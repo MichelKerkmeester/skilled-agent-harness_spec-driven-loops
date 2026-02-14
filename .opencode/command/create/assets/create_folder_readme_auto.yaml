@@ -1,9 +1,9 @@
 # ─────────────────────────────────────────────────────────────────
-# OPENCODE CREATE: README CREATION WORKFLOW (CONFIRM MODE)
+# OPENCODE CREATE: README CREATION WORKFLOW (AUTO MODE)
 # ─────────────────────────────────────────────────────────────────
-# Mode: confirm-only (interactive step-by-step approval)
-# Note: This workflow does NOT support :auto mode. All executions
-#       require user confirmation at checkpoints for content review.
+# Mode: autonomous (no user approval gates)
+# Note: This workflow executes all steps sequentially with
+#       continuous self-validation. Pauses only if confidence < 40%.
 #
 # Note: README files created in .opencode/skill/*/ or project directories are
 # auto-indexed by memory_index_scan with importance_weight 0.3 (skill) or 0.4 (project).
@@ -31,8 +31,10 @@ action: Generate scannable, well-organized README with table of contents
 operating_mode:
   workflow: sequential_6_step
   workflow_compliance: MANDATORY
-  workflow_execution: interactive
-  approvals: step_by_step
+  workflow_execution: autonomous
+  approvals: none
+  tracking: progressive_task_checklists
+  validation: continuous_self_validation
 
 development_philosophy:
   principle: "Question-answering format maximizes AI usefulness"
@@ -249,6 +251,47 @@ checkpoint_options:
     description: "Make changes before proceeding"
 
 # ─────────────────────────────────────────────────────────────────
+# WORKFLOW ENFORCEMENT (CRITICAL)
+# ─────────────────────────────────────────────────────────────────
+workflow_enforcement:
+  mode: strict
+  step_order: sequential_mandatory
+  skip_allowed: false
+
+  phase_gate:
+    location: "Between Step 2 and Step 3"
+    purpose: "Verify content discovery complete before structure selection"
+    requirements:
+    - "Key features identified (3-5)"
+    - "Target audience determined"
+    - "Prerequisites/dependencies gathered"
+    action_if_failed: "STOP and return to incomplete step"
+
+  critical_steps:
+    step_2_discovery:
+      enforcement: "MUST gather project information before writing"
+      verification: "Self-validate features are identified and concrete"
+    step_4_generation:
+      enforcement: "MUST use template structure with TOC, emojis, tables"
+      verification: "All sections written, no placeholder content"
+    step_5_validation:
+      enforcement: "MUST verify structure and completeness"
+      verification: "DQI score >= 70 before claiming complete"
+
+# ─────────────────────────────────────────────────────────────────
+# CIRCUIT BREAKER
+# ─────────────────────────────────────────────────────────────────
+circuit_breaker:
+  consecutive_failure_threshold: 3
+  states:
+    closed: "Normal operation"
+    open: "3+ failures — pause and report to user"
+    half_open: "Test with single retry before resuming"
+  on_open:
+    action: "Report failures to user with summary"
+    suggest: "Review inputs and try again, or escalate"
+
+# ─────────────────────────────────────────────────────────────────
 # WORKFLOW (6 STEPS WITH CHECKPOINTS)
 # ─────────────────────────────────────────────────────────────────
 workflow:
@@ -269,15 +312,6 @@ workflow:
     - target_confirmed
     - type_confirmed
     - scope_defined
-    checkpoint:
-      question: "Create [type] README at [path]. Proceed?"
-      options:
-      - label: "A) Proceed"
-        description: "Create README with these settings"
-      - label: "B) Change type"
-        description: "Select different README type"
-      - label: "C) Change location"
-        description: "Use different target path"
 
   step_2_content_discovery:
     purpose: Gather project information based on type
@@ -321,9 +355,6 @@ workflow:
     - features_identified
     - metadata_gathered
     - structure_understood
-    checkpoint:
-      question: "Key features identified. Review?"
-      options: checkpoint_options.standard
 
   step_3_structure_selection:
     purpose: Choose appropriate template based on type
@@ -355,9 +386,6 @@ workflow:
     - template_selected
     - sections_planned
     - content_outline
-    checkpoint:
-      question: "Structure selected. Proceed to generation?"
-      options: checkpoint_options.standard
 
   step_4_content_generation:
     purpose: Write comprehensive README following selected structure
@@ -383,15 +411,6 @@ workflow:
     - sections_count: number
     - tables_count: number
     - code_blocks_count: number
-    checkpoint:
-      question: "README generated. Review?"
-      options:
-      - label: "A) Show full content"
-        description: "Display complete README"
-      - label: "B) Show TABLE OF CONTENTS"
-        description: "Display section structure"
-      - label: "C) Proceed"
-        description: "Continue to validation"
 
   step_5_validation:
     purpose: Verify README quality and completeness
@@ -423,15 +442,6 @@ workflow:
     - validation_passed: boolean
     - checklist_results: object
     - dqi_score: number (optional)
-    checkpoint:
-      question: "Validation complete. README ready?"
-      options:
-      - label: "Proceed"
-        description: "Continue to save context"
-      - label: "Fix issues"
-        description: "Address validation failures"
-      - label: "View summary"
-        description: "Show final summary"
 
   step_6_save_context:
     purpose: Preserve workflow decisions and context
@@ -455,13 +465,6 @@ workflow:
     outputs:
     - memory_file: "[SPEC_FOLDER]/memory/[DD-MM-YY_HH-MM]__readme_creation_session.md"
     validation: context_saved
-    checkpoint:
-      question: "Context saved. README creation complete!"
-      options:
-      - label: "Done"
-        description: "Complete workflow"
-      - label: "View summary"
-        description: "Show final summary"
 
     # ── SEMANTIC MEMORY INTEGRATION ─────────────────────────────────
     post_save_indexing:
@@ -574,9 +577,40 @@ completion_report:
     STATUS=OK PATH=[readme-path]
 
 # ─────────────────────────────────────────────────────────────────
+# AUTONOMOUS EXECUTION
+# ─────────────────────────────────────────────────────────────────
+autonomous_execution:
+  principle: "Execute workflow steps sequentially without user approval gates"
+  decision_making: "Use confidence framework to self-assess at each step"
+  uncertainty_handling: "If confidence < 40%, pause and report to user"
+  progress_tracking: "Log step completion with validation status"
+  completion_criteria: "All steps validated, DQI >= 70, README created"
+
+# ─────────────────────────────────────────────────────────────────
+# QUALITY STANDARDS
+# ─────────────────────────────────────────────────────────────────
+quality_standards:
+  dqi_minimum: 70
+  dqi_enforcement: FLEXIBLE
+  validation_pipeline:
+    stage_1: "Structural check (title, TOC, sections, separators)"
+    stage_2: "Content check (code blocks, tables, no placeholders)"
+  template_adherence: required
+  core_standards_reference: ".opencode/skill/workflows-documentation/references/core_standards.md"
+
+# ─────────────────────────────────────────────────────────────────
 # ERROR RECOVERY
 # ─────────────────────────────────────────────────────────────────
 error_recovery:
+  template_not_found:
+    action: "Check template paths, verify workflows-documentation skill exists"
+    fallback: "Use inline minimal template structure"
+  validation_failure:
+    action: "Show specific validation errors, guide fixes"
+    retry: true
+  file_write_failure:
+    action: "Check permissions, verify path exists, create parent directories"
+    retry: true
   path_not_exist:
     action: "Create directory or choose different path"
     options: ["Create directory", "Choose different path", "Cancel"]
@@ -588,23 +622,42 @@ error_recovery:
     questions: ["Project name?", "Key features?", "Target audience?"]
   validation_fails:
     action: "Show which sections need content, guide fixes"
+    loop: true
+  user_rejects_approach:
+    action: "Return to planning, gather alternative requirements"
+    restart_from: "step_2_content_discovery"
+
+# ─────────────────────────────────────────────────────────────────
+# TERMINATION
+# ─────────────────────────────────────────────────────────────────
+termination:
+  after_step: step_6_save_context
+  message: "README creation workflow complete."
+  next_steps:
+    - condition: "README needs screenshots"
+      action: "Add visual assets to enhance documentation"
+    - condition: "Need install guide"
+      action: "Run /create:install_guide"
+    - condition: "Want to save context"
+      action: "Run /memory:save"
+    - condition: "Create another README"
+      action: "Run /create:folder_readme [path]"
 
 # ─────────────────────────────────────────────────────────────────
 # RULES
 # ─────────────────────────────────────────────────────────────────
 rules:
   ALWAYS:
-  - include_quick_start_section
-  - use_code_examples_with_language_tags
-  - create_table_of_contents_with_links
-  - use_emoji_prefixes_for_sections
-  - add_horizontal_rules_between_sections
-  - answer_common_questions_in_structure
-  - validate_before_claiming_complete
-
+  - "Self-validate at each step before proceeding"
+  - "Load readme_template.md before creating content"
+  - "Include Quick Start section with clear examples"
+  - "Create table of contents with proper anchor links"
+  - "Use emoji prefixes for all H2 sections"
+  - "Validate structure before claiming complete"
   NEVER:
-  - skip_installation_section
-  - leave_broken_links
-  - use_placeholder_examples
-  - omit_troubleshooting_section
-  - create_without_user_confirmed_path
+  - "Prompt user for approval at checkpoints"
+  - "Skip validation steps"
+  - "Create documents without loading templates first"
+  - "Leave placeholder text in final output"
+  - "Omit troubleshooting section"
+  - "Create README without user-confirmed path"

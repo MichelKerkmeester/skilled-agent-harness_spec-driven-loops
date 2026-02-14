@@ -1,48 +1,83 @@
 ---
-description: Create a reference file for an existing skill - deep-dive technical documentation with workflows, patterns, or debugging guides - supports :auto and :confirm modes
+description: "Create a reference file for an existing skill - deep-dive technical documentation with workflows, patterns, or debugging guides - supports :auto and :confirm modes"
 argument-hint: "<skill-name> <reference-type> [--chained] [:auto|:confirm]"
 allowed-tools: Read, Write, Edit, Bash, Glob, Grep, TodoWrite
 ---
 
 > ⚠️ **EXECUTION PROTOCOL — READ FIRST**
 >
-> **YOU are the executor.** Run this workflow directly — do NOT delegate to other agents.
-> Do NOT use the Task tool to dispatch sub-agents.
+> This command runs a structured YAML workflow. Do NOT dispatch agents from this document.
 >
-> **WORKFLOW SEQUENCE:**
-> 1. Run Phase 0: Verify you are the @write agent (self-check, not a dispatch)
-> 2. Run the Unified Setup Phase: gather user inputs in one consolidated prompt
-> 3. Load the YAML workflow: `assets/create_skill_reference.yaml`
-> 4. Execute the YAML steps sequentially
+> **YOUR FIRST ACTION:**
+> 1. Run Phase 0: @write agent self-verification (below)
+> 2. Run Setup Phase: consolidated prompt to gather inputs
+> 3. Determine execution mode from user input (`:auto` or `:confirm`)
+> 4. Load the corresponding YAML file from `assets/`:
+>    - Auto mode → `create_skill_reference_auto.yaml`
+>    - Confirm mode → `create_skill_reference_confirm.yaml`
+> 5. Execute the YAML workflow step by step
 >
 > The @write references below are self-verification checks — not dispatch instructions.
-> Content after the setup phases is reference context for the YAML workflow.
-
-## ⚡ GATE 3 STATUS: EXEMPT (Predefined Location)
-
-**This command creates files at a predefined location and is EXEMPT from the spec folder question.**
-
-| Property        | Value                                                                                |
-| --------------- | ------------------------------------------------------------------------------------ |
-| **Location**    | `.opencode/skill/[skill-name]/references/` or `.opencode/skill/[skill-name]/assets/` |
-| **Reason**      | Skill-internal files, not project documentation                                      |
-| **Alternative** | Use `/create:skill` for full skill creation with spec folder                         |
+> All content after the Setup Phase is reference context for the YAML workflow.
 
 ---
 
-# 🚨 SINGLE CONSOLIDATED PROMPT - ONE USER INTERACTION
+# 🚨 PHASE 0: @WRITE AGENT VERIFICATION
 
-**This workflow uses a SINGLE consolidated prompt to gather ALL required inputs in ONE user interaction.**
+**STATUS: ☐ BLOCKED / ⏭️ N/A if chained**
+
+```
+EXECUTE THIS AUTOMATIC SELF-CHECK (NOT A USER QUESTION):
+
+SELF-CHECK: Are you operating as the @write agent?
+│
+├─ INDICATORS that you ARE @write agent:
+│   ├─ You were invoked with "@write" prefix
+│   ├─ You have template-first workflow capabilities
+│   ├─ You load templates BEFORE creating content
+│   ├─ You validate template alignment AFTER creating
+│
+├─ IF YES (all indicators present):
+│   └─ write_agent_verified = TRUE → Continue to Setup Phase
+│
+└─ IF NO or UNCERTAIN:
+    │
+    ├─ ⛔ HARD BLOCK - DO NOT PROCEED
+    │
+    ├─ DISPLAY to user:
+    │   ┌────────────────────────────────────────────────────────────┐
+    │   │ ⛔ WRITE AGENT REQUIRED                                    │
+    │   │                                                            │
+    │   │ This command requires the @write agent for:                │
+    │   │   • Template-first workflow (loads before creating)          │
+    │   │   • DQI scoring (target: 75+ Good)                         │
+    │   │   • workflows-documentation skill integration               │
+    │   │                                                            │
+    │   │ To proceed, restart with:                                  │
+    │   │   @write /create:skill_reference [skill-name] [type]       │
+    │   │                                                            │
+    │   │ Reference: .opencode/agent/write.md                        │
+    │   └────────────────────────────────────────────────────────────┘
+    │
+    └─ RETURN: STATUS=FAIL ERROR="Write agent required"
+```
+
+**Phase Output:**
+- `write_agent_verified = ________________`
+
+---
+
+# 🔒 UNIFIED SETUP PHASE
+
+**STATUS: ☐ BLOCKED / ⏭️ N/A if chained**
+
+**🚨 SINGLE CONSOLIDATED PROMPT - ONE USER INTERACTION**
+
+This workflow uses a SINGLE consolidated prompt to gather ALL required inputs in ONE user interaction.
 
 **Round-trip optimization:** This workflow requires only 1 user interaction (0 if --chained).
 
 **⚡ CHAINED EXECUTION MODE:** If invoked with `--chained` flag, skip to workflow with provided parameters.
-
----
-
-## 🔒 UNIFIED SETUP PHASE
-
-**STATUS: ☐ BLOCKED / ⏭️ N/A if chained**
 
 ```
 EXECUTE THIS SINGLE SETUP PHASE:
@@ -59,7 +94,7 @@ EXECUTE THIS SINGLE SETUP PHASE:
    │   ├─ IF all parameters present:
    │   │   ├─ SET write_agent_verified = "skipped-chained"
    │   │   ├─ SET STATUS: ⏭️ N/A (parent verified)
-   │   │   └─ SKIP directly to "# Reference Creation" workflow
+   │   │   └─ SKIP directly to "⚡ INSTRUCTIONS" section
    │   │
    │   └─ IF parameters missing:
    │       └─ FALL THROUGH to step 2 (normal execution)
@@ -67,54 +102,21 @@ EXECUTE THIS SINGLE SETUP PHASE:
    └─ IF NOT chained:
        └─ CONTINUE to step 2
 
-2. CHECK Phase 0: @write Agent Verification (automatic):
-   │
-   ├─ SELF-CHECK: Are you operating as the @write agent?
-   │   │
-   │   ├─ INDICATORS that you ARE @write agent:
-   │   │   ├─ You were invoked with "@write" prefix
-   │   │   ├─ You have template-first workflow capabilities
-   │   │   ├─ You load templates BEFORE creating content
-   │   │
-   │   ├─ IF YES (all indicators present):
-   │   │   └─ SET write_agent_verified = "yes" → Continue to step 3
-   │   │
-   │   └─ IF NO or UNCERTAIN:
-   │       │
-   │       ├─ ⛔ HARD BLOCK - DO NOT PROCEED
-   │       │
-   │       ├─ DISPLAY to user:
-   │       │   ┌────────────────────────────────────────────────────────────┐
-   │       │   │ ⛔ WRITE AGENT REQUIRED                                    │
-   │       │   │                                                            │
-   │       │   │ This command requires the @write agent for:                │
-   │       │   │   • Template-first workflow                                  │
-   │       │   │   • DQI scoring                                            │
-   │       │   │   • workflows-documentation skill integration               │
-   │       │   │                                                            │
-   │       │   │ To proceed, restart with:                                  │
-   │       │   │   @write /create:skill_reference [args]                    │
-   │       │   │                                                            │
-   │       │   │ Reference: .opencode/agent/write.md                        │
-   │       │   └────────────────────────────────────────────────────────────┘
-   │       │
-   │       └─ RETURN: STATUS=FAIL ERROR="Write agent required"
-
-3. CHECK for mode suffix in $ARGUMENTS or command invocation:
+2. CHECK for mode suffix in $ARGUMENTS or command invocation:
    ├─ ":auto" suffix detected → execution_mode = "AUTONOMOUS" (pre-set, omit Q2)
    ├─ ":confirm" suffix detected → execution_mode = "INTERACTIVE" (pre-set, omit Q2)
    └─ No suffix → execution_mode = "ASK" (include Q2 in prompt)
 
-4. CHECK if $ARGUMENTS contains skill name and reference type:
+3. CHECK if $ARGUMENTS contains skill name and reference type:
    ├─ Parse first argument as: skill_name (if present, omit Q0)
    ├─ Parse second argument as: reference_type (if present AND valid, omit Q1)
    │   └─ Valid types: workflow, patterns, debugging, tools, quick_ref
    └─ IF either missing or invalid → include in prompt
 
-5. List available skills:
+4. List available skills:
    $ ls .opencode/skill/*/SKILL.md 2>/dev/null | sed 's|.*/skill/||;s|/SKILL.md||'
 
-6. ASK user with SINGLE CONSOLIDATED prompt (include only applicable questions):
+5. ASK user with SINGLE CONSOLIDATED prompt (include only applicable questions):
 
    ┌────────────────────────────────────────────────────────────────┐
    │ **Before proceeding, please answer:**                          │
@@ -137,14 +139,14 @@ EXECUTE THIS SINGLE SETUP PHASE:
    │ Reply with answers, e.g.: "A, A" or "my-skill, A, A"           │
    └────────────────────────────────────────────────────────────────┘
 
-7. WAIT for user response (DO NOT PROCEED)
+6. WAIT for user response (DO NOT PROCEED)
 
-8. Parse response and store ALL results:
+7. Parse response and store ALL results:
    - skill_name = [from Q0 or $ARGUMENTS]
    - reference_type = [from Q1 or $ARGUMENTS: workflow/patterns/debugging/tools/quick_ref]
    - execution_mode = [AUTONOMOUS/INTERACTIVE from suffix or Q2]
 
-9. VERIFY skill exists (inline check):
+8. VERIFY skill exists (inline check):
    │
    ├─ Run: ls -d .opencode/skill/[skill_name] 2>/dev/null
    │
@@ -166,7 +168,7 @@ EXECUTE THIS SINGLE SETUP PHASE:
        │
        └─ WAIT for response and process based on choice
 
-10. SET STATUS: ✅ PASSED
+9. SET STATUS: ✅ PASSED
 
 **STOP HERE** - Wait for user to answer ALL applicable questions before continuing.
 
@@ -186,74 +188,57 @@ EXECUTE THIS SINGLE SETUP PHASE:
 
 ---
 
-## 📋 MODE BEHAVIORS
-
-**AUTONOMOUS (:auto):**
-- Execute all steps without approval prompts
-- Only stop for errors or missing required input
-- Best for: Experienced users, scripted workflows, batch operations
-
-**INTERACTIVE (:confirm):**
-- Pause at each major step for user approval
-- Show preview before file creation
-- Ask for confirmation on critical decisions
-- Best for: New users, learning workflows, high-stakes changes
-
-**Default:** INTERACTIVE (creation workflows benefit from confirmation)
-
----
-
 ## ✅ PHASE STATUS VERIFICATION (BLOCKING)
 
 **Before continuing to the workflow, verify ALL values are set:**
 
 | FIELD                | REQUIRED | YOUR VALUE | SOURCE                     |
 | -------------------- | -------- | ---------- | -------------------------- |
-| write_agent_verified | ✅ Yes    | ______     | Step 1 (chained) or Step 2 |
+| write_agent_verified | ✅ Yes    | ______     | Step 1 (chained) or Phase 0 |
 | skill_name           | ✅ Yes    | ______     | Q0 or $ARGUMENTS           |
 | reference_type       | ✅ Yes    | ______     | Q1 or $ARGUMENTS           |
 | execution_mode       | ✅ Yes    | ______     | Suffix or Q2               |
-| skill_path           | ✅ Yes    | ______     | Step 9 verification        |
+| skill_path           | ✅ Yes    | ______     | Step 8 verification        |
 
 ```
 VERIFICATION CHECK:
 ├─ ALL required fields have values?
-│   ├─ YES → Proceed to "# Reference Creation" section below
+│   ├─ YES → Proceed to "⚡ INSTRUCTIONS" section below
 │   └─ NO  → Re-prompt for missing values only
 ```
 
 ---
 
-## ⚠️ VIOLATION SELF-DETECTION (BLOCKING)
+## ⚡ INSTRUCTIONS
 
-**YOU ARE IN VIOLATION IF YOU:**
+After Phase 0 and Setup Phase pass, load and execute the appropriate YAML workflow:
 
-- Executed command without @write agent verification when not chained
-- Started reading the workflow section before all fields are set
-- Proceeded without both skill name AND reference type
-- Asked questions in MULTIPLE separate prompts instead of ONE consolidated prompt
-- Attempted to create reference for non-existent skill
-- Inferred inputs from context instead of explicit user input
-- Claimed chained mode without valid parent workflow parameters
+- **AUTONOMOUS (`:auto`)**: `.opencode/command/create/assets/create_skill_reference_auto.yaml`
+- **INTERACTIVE (`:confirm`)**: `.opencode/command/create/assets/create_skill_reference_confirm.yaml`
 
-**VIOLATION RECOVERY PROTOCOL:**
-```
-1. STOP immediately
-2. STATE: "I violated the UNIFIED SETUP PHASE by [specific action]. Correcting now."
-3. PRESENT the single consolidated prompt with ALL applicable questions
-4. WAIT for user response
-5. RESUME only after all fields are set
-```
+The YAML contains: detailed step activities, checkpoints, confidence scoring, error recovery, validation gates, resource routing, and completion reporting.
 
 ---
 
-# 📊 WORKFLOW EXECUTION - MANDATORY TRACKING
-
-**⛔ ENFORCEMENT RULE:** Execute steps IN ORDER (1→5). Mark each step ✅ ONLY after completing ALL its activities and verifying outputs. DO NOT SKIP STEPS.
+> **📚 REFERENCE CONTEXT** — The sections below provide reference information for the YAML workflow. They are NOT direct execution instructions.
 
 ---
 
-## WORKFLOW TRACKING
+<!-- REFERENCE ONLY -->
+
+## ⛔ GATE 3 STATUS: EXEMPT (Predefined Location)
+
+**This command creates files at a predefined location and is EXEMPT from the spec folder question.**
+
+| Property        | Value                                                                                |
+| --------------- | ------------------------------------------------------------------------------------ |
+| **Location**    | `.opencode/skill/[skill-name]/references/` or `.opencode/skill/[skill-name]/assets/` |
+| **Reason**      | Skill-internal files, not project documentation                                      |
+| **Alternative** | Use `/create:skill` for full skill creation with spec folder                         |
+
+---
+
+## 📊 WORKFLOW TRACKING
 
 | STEP | NAME          | STATUS | REQUIRED OUTPUT       | VERIFICATION               |
 | ---- | ------------- | ------ | --------------------- | -------------------------- |
@@ -354,33 +339,28 @@ STEP 5 (Validation) REQUIREMENTS:
 
 ---
 
-# Reference Creation
+## ⚠️ VIOLATION SELF-DETECTION (BLOCKING)
 
-Create a technical reference file for an existing skill following the `skill_reference_template.md` structure. Reference files provide Level 3 progressive disclosure - deep technical guidance loaded when needed.
+**YOU ARE IN VIOLATION IF YOU:**
 
-**Reference File Location:** `.opencode/skill/[skill-name]/references/`
+- Executed command without @write agent verification when not chained
+- Started reading the workflow section before all fields are set
+- Proceeded without both skill name AND reference type
+- Asked questions in MULTIPLE separate prompts instead of ONE consolidated prompt
+- Attempted to create reference for non-existent skill
+- Inferred inputs from context instead of explicit user input
+- Claimed chained mode without valid parent workflow parameters
 
-**Naming Convention:** snake_case with `.md` extension
-- ✅ `implementation_workflows.md`
-- ✅ `tool_catalog.md`
-- ✅ `debugging_guide.md`
-- ❌ `ImplementationWorkflows.md` (no PascalCase)
-- ❌ `implementation-workflows.md` (no kebab-case)
-
----
-
-```yaml
-role: Expert Reference Creator using workflows-documentation skill
-purpose: Create deep-dive technical reference files for skills
-action: Generate workflow, pattern, debugging, or tool reference documentation
-
-operating_mode:
-  workflow: sequential_5_step
-  workflow_compliance: MANDATORY
-  workflow_execution: interactive
-  approvals: step_by_step
-  chained_support: true
+**VIOLATION RECOVERY PROTOCOL:**
 ```
+1. STOP immediately
+2. STATE: "I violated the UNIFIED SETUP PHASE by [specific action]. Correcting now."
+3. PRESENT the single consolidated prompt with ALL applicable questions
+4. WAIT for user response
+5. RESUME only after all fields are set
+```
+
+<!-- END REFERENCE -->
 
 ---
 
@@ -405,69 +385,36 @@ $ARGUMENTS
 
 ---
 
-## 3. ⚡ INSTRUCTIONS
-
-### Step 4: Verify All Fields Set
-
-Confirm you have these values from the Unified Setup Phase:
-- `skill_name` from Q0 or $ARGUMENTS
-- `reference_type` from Q1 or $ARGUMENTS
-- `skill_path` from Step 9 verification
-
-**If ANY field is incomplete, STOP and return to the UNIFIED SETUP PHASE section.**
-
-### Step 5: Load & Execute Workflow
-
-Load and execute the workflow definition:
-
-```
-.opencode/command/create/assets/create_skill_reference.yaml
-```
-
-The YAML file contains:
-- Reference type specifications and size targets
-- Step-by-step activities with checkpoints
-- Content structure patterns per reference type
-- Code example formatting requirements
-- SKILL.md integration procedures
-- Validation requirements
-- Completion report template
-
-Execute all 5 steps in sequence following the workflow definition.
-
----
-
-## 4. 📌 REFERENCE (See YAML for Details)
+## 3. 📌 REFERENCE (See YAML for Details)
 
 | Section            | Location in YAML                     |
 | ------------------ | ------------------------------------ |
-| Reference Types    | `notes.reference_type_selection`     |
-| Size Targets       | `notes.reference_type_size_targets`  |
-| Workflow Structure | `notes.workflow_reference_structure` |
-| Pattern Structure  | `notes.pattern_reference_structure`  |
-| Chained Mode       | `notes.chained_execution_mode`       |
-| Failure Recovery   | `failure_recovery`                   |
-| Completion Report  | `completion_report_template`         |
+| Reference Types    | `reference_types`                    |
+| Workflow Structure | `reference_types.workflow.structure` |
+| Pattern Structure  | `reference_types.patterns.structure` |
+| Chained Mode       | `operating_mode.chained_support`     |
+| Failure Recovery   | `error_recovery`                     |
+| Completion Report  | `completion_report`                  |
 
 ---
 
-## 5. 🔍 EXAMPLES
+## 4. 🔍 EXAMPLES
 
 **Example 1: Create workflow reference**
 ```
-/documentation:create_reference workflows-code workflow
+/create:skill_reference workflows-code workflow
 ```
 → Creates phased workflow documentation with checkpoints
 
 **Example 2: Create patterns reference**
 ```
-/documentation:create_reference workflows-documentation patterns
+/create:skill_reference workflows-documentation patterns
 ```
 → Creates before/after code pattern library
 
 **Example 3: Create debugging reference**
 ```
-/documentation:create_reference workflows-chrome-devtools debugging
+/create:skill_reference workflows-chrome-devtools debugging
 ```
 → Creates systematic troubleshooting guide
 
@@ -485,7 +432,7 @@ Execute all 5 steps in sequence following the workflow definition.
 
 ---
 
-## 6. 🔗 COMMAND CHAIN
+## 5. 🔗 COMMAND CHAIN
 
 This command is often used after skill creation:
 
@@ -499,7 +446,7 @@ This command is often used after skill creation:
 
 ---
 
-## 7. 📌 NEXT STEPS
+## 6. 📌 NEXT STEPS
 
 After reference creation completes, suggest relevant next steps:
 

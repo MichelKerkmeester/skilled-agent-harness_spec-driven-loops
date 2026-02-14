@@ -1,0 +1,782 @@
+# ─────────────────────────────────────────────────────────────────
+# OPENCODE CREATE: AGENT CREATION WORKFLOW (CONFIRM MODE)
+# ─────────────────────────────────────────────────────────────────
+# Mode: confirm-only (interactive step-by-step approval)
+# Note: This workflow does NOT support :auto mode due to its complex
+#       multi-phase nature requiring user decisions at each checkpoint.
+#       All executions use interactive confirmation gates.
+# ───────────────────────────────────────────────────────────────────
+role: Expert Agent Creator using workflows-documentation skill
+purpose: Create production-ready OpenCode agents with 6-step workflow
+action: Guide agent creation from understanding through validation with YAML frontmatter verification and permission configuration
+
+# ─────────────────────────────────────────────────────────────────
+# PREREQUISITE: @write AGENT VERIFICATION
+# ─────────────────────────────────────────────────────────────────
+# This workflow REQUIRES the @write agent for:
+#   • Template-first workflow (loads templates before creating)
+#   • YAML frontmatter validation
+#   • workflows-documentation skill integration
+#
+# PHASE 0 in the command markdown verifies @write agent BEFORE
+# this YAML workflow loads. If you're executing this workflow,
+# @write verification has already passed.
+#
+# To invoke correctly: @write /create:agent [agent-name]
+# ─────────────────────────────────────────────────────────────────
+
+operating_mode:
+  workflow: sequential_6_step
+  workflow_compliance: MANDATORY
+  workflow_execution: interactive
+  approvals: step_by_step
+  tracking: progressive_task_checklists
+  validation: checkpoint_based_with_yaml_validation
+  permission_configuration: explicit_approval_required
+
+development_philosophy:
+  principle: "Understand purpose before defining configuration"
+  approach: "Understand → Plan → Generate → Validate"
+  mandate: "Concrete use cases first, then tools/permissions, then content"
+
+# ─────────────────────────────────────────────────────────────────
+# CONFIDENCE & CLARIFICATION FRAMEWORK
+# ─────────────────────────────────────────────────────────────────
+confidence_framework:
+  thresholds:
+    high: { range: "80-100%", action: "Proceed with citable source" }
+    medium: { range: "40-79%", action: "Proceed with caution, document assumptions" }
+    low: { range: "0-39%", action: "STOP - Ask clarification with A/B/C options" }
+
+  scoring_weights:
+    purpose_clarity: 0.30
+    use_case_specificity: 0.25
+    tool_permission_clarity: 0.25
+    behavioral_rules_defined: 0.20
+
+  clarification_format: |
+    "I need clarity (confidence: [NN%]). Which approach:
+    - A) [option with brief rationale]
+    - B) [option with brief rationale]
+    - C) [option with brief rationale]"
+
+  escalation:
+    timebox_minutes: 10
+    failed_attempts_threshold: 2
+    action: "Present options to user with current findings"
+
+# ─────────────────────────────────────────────────────────────────
+# REQUEST ANALYSIS FRAMEWORK
+# ─────────────────────────────────────────────────────────────────
+request_analysis_framework:
+  solution_flow:
+  - "Parse carefully: What is ACTUALLY requested?"
+  - "Gather Context: Read files, check existing agents"
+  - "Identify Approach: SIMPLEST solution that works"
+  - "Validate Choice: Follow patterns, maintainable"
+  - "Clarify If Needed: If <80% confidence, ask"
+  - "Scope Check: Solving ONLY what was asked?"
+  - "Execute: Implement with minimal complexity"
+
+  pre_change_validation:
+    items:
+    - "Agent name format validated? (kebab-case)"
+    - "Agent path confirmed?"
+    - "Spec folder created?"
+    - "Purpose and use cases gathered?"
+    - "Confidence >=80%? (if not: ask)"
+    stop_conditions: [ "Any item unchecked", "No spec folder" ]
+    stop_action: "STOP and address before proceeding"
+
+# ─────────────────────────────────────────────────────────────────
+# USER INPUTS (From gate outputs)
+# ─────────────────────────────────────────────────────────────────
+user_inputs:
+  agent_name: |
+    [AGENT_NAME]
+    Name for the agent in kebab-case (e.g., review, security-audit).
+    FROM UNIFIED SETUP PHASE (Q0 or command argument).
+
+  agent_path: |
+    [AGENT_PATH]
+    Output directory. Default: .opencode/agent/
+    FROM UNIFIED SETUP PHASE (--path flag or default).
+
+  spec_path: |
+    [SPEC_PATH]
+    Spec folder for tracking this work.
+    FROM UNIFIED SETUP PHASE (Q1 choice A/B/C/D).
+
+  memory_loaded: |
+    [MEMORY_LOADED]
+    Whether previous context was loaded.
+    FROM UNIFIED SETUP PHASE (Q3 if applicable).
+
+# ─────────────────────────────────────────────────────────────────
+# FIELD HANDLING
+# ─────────────────────────────────────────────────────────────────
+field_handling:
+  agent_name:
+    validation: "kebab-case, lowercase, hyphens/digits only, no uppercase/special chars"
+    required: true
+
+  agent_mode:
+    validation: "must be one of: primary, subagent, all"
+    default: "subagent"
+    note: "Determines how agent is invoked and appears in UI"
+
+  defaults:
+    agent_path_local: ".opencode/agent/"
+    agent_path_global: "~/.config/opencode/agent/"
+    temperature: 0.1
+    spec_path_from_phase: "FROM USER CHOICE IN SETUP PHASE"
+
+# ─────────────────────────────────────────────────────────────────
+# DOCUMENTATION LEVEL
+# ─────────────────────────────────────────────────────────────────
+documentation_level:
+  default: "Level 1 (Baseline)"
+  required_files:
+  - spec.md
+  - plan.md
+  - tasks.md
+  note: "Agent creation typically Level 1 unless complex orchestration"
+
+# ─────────────────────────────────────────────────────────────────
+# AGENT CREATION TEMPLATES
+# ─────────────────────────────────────────────────────────────────
+agent_templates:
+  primary: .opencode/skill/workflows-documentation/assets/opencode/agent_template.md
+
+agent_scripts:
+  validate_document: .opencode/skill/workflows-documentation/scripts/validate_document.py
+  extract_structure: .opencode/skill/workflows-documentation/scripts/extract_structure.py
+
+agent_references:
+  agent_creation: .opencode/skill/workflows-documentation/references/agent_creation.md
+  core_standards: .opencode/skill/workflows-documentation/references/core_standards.md
+  validation: .opencode/skill/workflows-documentation/references/validation.md
+
+# ─────────────────────────────────────────────────────────────────
+# CHECKPOINT OPTIONS
+# ─────────────────────────────────────────────────────────────────
+checkpoint_options:
+  standard:
+  - label: "Approve"
+    description: "Approve and continue to next step"
+  - label: "Review"
+    description: "Show more details"
+  - label: "Modify"
+    description: "Make changes before proceeding"
+  - label: "Skip"
+    description: "Skip this step (if optional)"
+
+# ─────────────────────────────────────────────────────────────────
+# WORKFLOW ENFORCEMENT (CRITICAL)
+# ─────────────────────────────────────────────────────────────────
+workflow_enforcement:
+  mode: strict
+  step_order: sequential_mandatory
+  skip_allowed: false
+
+  phase_gate:
+    location: "Between Step 2 and Step 3"
+    purpose: "Verify understanding complete before configuration planning"
+    requirements:
+    - "Purpose clearly defined"
+    - "2-3 concrete use cases gathered"
+    - "Authority and scope documented"
+    action_if_failed: "STOP and return to incomplete step"
+
+  critical_steps:
+    step_2_understanding:
+      enforcement: "MUST gather purpose, use cases, and authority"
+      verification: "Cannot proceed without user confirmation of understanding"
+    step_3_planning:
+      enforcement: "MUST define permissions, tools, and behavioral rules"
+      verification: "All configuration decisions documented and approved"
+    step_4_generation:
+      enforcement: "MUST use agent_template.md structure"
+      verification: "Frontmatter valid YAML, all required sections present"
+    step_5_validation:
+      enforcement: "MUST run YAML validation"
+      verification: "Frontmatter parses without errors"
+
+# ─────────────────────────────────────────────────────────────────
+# WORKFLOW (6 STEPS WITH CHECKPOINTS)
+# ─────────────────────────────────────────────────────────────────
+workflow:
+  # ═══════════════════════════════════════════════════════════════
+  # PHASE A: PLANNING (Steps 1-3)
+  # ═══════════════════════════════════════════════════════════════
+
+  step_1_request_analysis:
+    purpose: Parse inputs and validate agent name (from UNIFIED SETUP PHASE)
+    activities:
+    - Confirm agent_name from UNIFIED SETUP PHASE (Q0 or argument)
+    - Confirm agent_path from UNIFIED SETUP PHASE (--path flag or default)
+    - Confirm spec_path from UNIFIED SETUP PHASE (Q1 choice A/B/C/D)
+    - Confirm memory_loaded from UNIFIED SETUP PHASE (Q3 if applicable)
+    - Verify agent name format (kebab-case, lowercase only)
+    - Check if agent already exists at target path
+    validation:
+      name_format: "lowercase with hyphens only"
+      check_exists: true
+      command: "ls [agent_path]/[agent_name].md 2>/dev/null"
+    outputs:
+    - agent_name_validated
+    - agent_path_confirmed
+    - agent_exists_check
+    checkpoint:
+      question: "Creating agent '[agent-name]' at [path]. Proceed?"
+      options:
+      - label: "A) Proceed"
+        description: "Create agent with these settings"
+      - label: "B) Change name"
+        description: "Use a different agent name"
+      - label: "C) Change path"
+        description: "Use a different output location"
+
+  step_1b_agent_discovery:
+    purpose: Search for similar existing agents before creating new one (MANDATORY)
+    gate_type: SOFT_BLOCK
+    enforcement: "Warn if similar agent exists, allow user override"
+    activities:
+    - name: "Find existing agents"
+      tool: Glob
+      invocation: "Direct call"
+      query_template: ".opencode/agent/*.md"
+      expected: "List of existing agents"
+    - name: "Search for similar agents by name"
+      tool: Grep
+      invocation: "Direct call"
+      query_template: "name: .*{agent_name}"
+      parameters:
+        path: ".opencode/agent/"
+    - name: "Search for similar agents by description/purpose"
+      tool: Grep
+      invocation: "Direct call"
+      query_template: "{agent_keywords}"
+      parameters:
+        path: ".opencode/agent/"
+    - name: "Analyze search results"
+      tasks:
+      - Check if any agent names are similar
+      - Identify potential duplicates or overlapping functionality
+      - Note existing patterns that could be reused
+    validation:
+      similar_exists_threshold: "name match or significant keyword overlap"
+      action_if_found: "SOFT_BLOCK - Present findings to user"
+    outputs:
+    - similar_agents_found: list_of_matching_agents
+    - reusable_patterns: patterns_to_consider
+    - proceed_recommendation: boolean
+    checkpoint:
+      condition: "similar_agents_found.length > 0"
+      question: "Found similar agent(s): [agent_names]. Continue creating new agent?"
+      options:
+      - label: "A) Proceed anyway"
+        description: "Create new agent despite similar existing one"
+      - label: "B) Review existing first"
+        description: "Load and review the similar agent before deciding"
+      - label: "C) Abort"
+        description: "Cancel agent creation"
+    skip_condition: "User explicitly skips discovery"
+
+  step_1c_spec_folder_setup:
+    purpose: Create documentation folder for tracking (if user chose B or C in Q1)
+    condition: "spec_choice != D (Skip)"
+    activities:
+    - IF spec_choice == B (Create new):
+      - Find next available spec number
+      - Command: "ls -d specs/[0-9]*/ | sed 's/.*\\/\\([0-9]*\\)-.*/\\1/' | sort -n | tail -1"
+      - Create folder: specs/[NNN]-[agent-name]/
+    - IF spec_choice == A or C (Use existing):
+      - Use selected spec_path
+    - Initialize spec.md with agent creation context
+    - Create plan.md with approach
+    templates:
+    # Use Level 1 templates as default for agent creation
+    - .opencode/skill/system-spec-kit/templates/level_1/spec.md
+    - .opencode/skill/system-spec-kit/templates/level_1/plan.md
+    outputs:
+    - spec.md: created_with_context
+    - plan.md: created_with_approach
+    checkpoint:
+      question: "Spec folder created/confirmed. Continue to understanding phase?"
+      options: checkpoint_options.standard
+
+  step_2_understanding:
+    purpose: Gather purpose, use cases, and authority (CRITICAL - DO NOT SKIP)
+    enforcement: MANDATORY
+    activities:
+    - Ask focused questions about agent functionality
+    - Gather purpose and role definition
+    - Collect 2-3 concrete use cases
+    - Define authority and scope
+    - Identify when NOT to use this agent
+    questions:
+    - "What is the agent's PURPOSE? What specific role will it fill?"
+    - "Give 2-3 concrete USE CASES when this agent would be invoked"
+    - "What AUTHORITY does this agent have? What decisions can it make?"
+    - "What should this agent NOT do?"
+    prompt_template: |
+      ┌────────────────────────────────────────────────────────────┐
+      │ "What is the agent's purpose and use cases?"               │
+      │                                                            │
+      │ Please provide:                                            │
+      │ - Purpose: What specific role will it fill?                │
+      │ - Use Cases: 2-3 concrete examples of when invoked         │
+      │ - Authority: What decisions can it make?                   │
+      │ - Boundaries: What should it NOT do?                       │
+      └────────────────────────────────────────────────────────────┘
+    outputs:
+    - purpose_defined: "clear role and responsibility"
+    - use_cases_gathered: "2-3 concrete examples"
+    - authority_defined: "scope and decision-making power"
+    - boundaries_defined: "what not to do"
+    validation: understanding_complete
+    checkpoint:
+      question: "I've identified: Purpose=[purpose], Use Cases=[list]. Is this correct?"
+      options:
+      - label: "A) Approve"
+        description: "Understanding is correct"
+      - label: "B) Add more"
+        description: "Add additional details"
+      - label: "C) Modify"
+        description: "Change existing understanding"
+
+  # ═══════════════════════════════════════════════════════════════
+  # 🔒 PHASE GATE: UNDERSTANDING → CONFIGURATION
+  # ═══════════════════════════════════════════════════════════════
+  phase_gate_understanding_to_configuration:
+    trigger: "After Step 2 completes"
+    enforcement: HARD_BLOCK
+    verification: |
+      BEFORE proceeding to Configuration Phase (Step 3):
+
+      VERIFY all understanding artifacts exist:
+      ├─ [ ] Purpose clearly defined
+      ├─ [ ] 2-3 concrete use cases gathered
+      ├─ [ ] Authority and scope documented
+      ├─ [ ] Boundaries identified (what NOT to do)
+
+      IF any artifact missing:
+      └─ STOP → Return to Step 2 → Complete it → Return here
+
+      WHEN all artifacts verified:
+      └─ SET PHASE GATE STATUS: ✅ PASSED → Proceed to Step 3
+    action_if_failed: "Return to incomplete step"
+
+  # ═══════════════════════════════════════════════════════════════
+  # PHASE B: IMPLEMENTATION (Steps 3-6)
+  # ═══════════════════════════════════════════════════════════════
+
+  step_3_planning:
+    purpose: Define agent mode, permissions, tools, and behavioral rules
+    activities:
+    - Determine agent mode (primary/subagent/all)
+    - Identify required tools based on use cases
+    - Define permissions for each tool (allow/deny/ask)
+    - Define behavioral rules (ALWAYS/NEVER/ESCALATE IF)
+    - Identify skills to integrate
+    - Plan agent structure sections
+    agent_mode_selection:
+      primary:
+        description: "Main assistant, appears in Tab cycle"
+        invocation: "Tab cycle, @ mention"
+        use_case: "Primary conversation handler"
+      subagent:
+        description: "Specialized assistant, invoked on demand"
+        invocation: "@ mention, automatic by orchestrators"
+        use_case: "Specialized tasks delegated by primary agents"
+      all:
+        description: "Hybrid mode with both capabilities"
+        invocation: "Tab cycle, @ mention, automatic"
+        use_case: "Multi-purpose agents (use sparingly)"
+    permission_planning:
+      core_tools:
+        read: { purpose: "Read files", default: "allow" }
+        write: { purpose: "Create files", default: "allow" }
+        edit: { purpose: "Modify files", default: "allow" }
+        bash: { purpose: "Execute commands", default: "allow" }
+        grep: { purpose: "Search content", default: "allow" }
+        glob: { purpose: "Find files", default: "allow" }
+      extended_tools:
+        webfetch: { purpose: "Fetch URLs", default: "deny" }
+        memory: { purpose: "Spec Kit Memory", default: "allow" }
+        chrome_devtools: { purpose: "Browser debugging", default: "deny" }
+        external_directory: { purpose: "Access files outside project", default: "allow" }
+      permission_values:
+        allow: "Allow all operations without approval"
+        deny: "Disable the tool completely"
+        ask: "Prompt for approval before running (edit, bash, webfetch only)"
+    behavioral_rules_template: |
+      ✅ ALWAYS:
+        - [What must it always do based on purpose?]
+      
+      ❌ NEVER:
+        - [What must it never do based on boundaries?]
+      
+      ⚠️ ESCALATE IF:
+        - [When should it ask for help?]
+    outputs:
+    - agent_mode_selected
+    - permissions_configured
+    - tools_identified
+    - rules_defined
+    - skills_identified
+    validation: configuration_planned
+    checkpoint:
+      question: "Configuration: Mode=[mode], Permissions=[summary], Rules=[summary]. Approve?"
+      options:
+      - label: "A) Approve"
+        description: "Configuration is correct"
+      - label: "B) Modify permissions"
+        description: "Adjust tool permissions"
+      - label: "C) Modify rules"
+        description: "Adjust behavioral rules"
+
+  step_4_generation:
+    purpose: Create agent markdown file with YAML frontmatter and content
+    activities:
+    - Load agent_template.md for structure reference
+    - Generate YAML frontmatter with all required fields
+    - Write intro paragraph (1-2 sentences based on purpose)
+    - "Write Section 1 - 🔄 CORE WORKFLOW (numbered steps based on use cases)"
+    - "Write Section 2 - 📋 [DOMAIN SECTION] (content based on purpose)"
+    - "Write Section 3 - 🚫 ANTI-PATTERNS (Never rules from planning)"
+    - "Write Section 4 - 🔗 RELATED RESOURCES (skills and resources)"
+    - Write file to agent_path
+    - Verify file exists and is readable
+    frontmatter_template: |
+      ---
+      name: [agent_name]
+      description: "[One-line description from purpose - no angle brackets]"
+      mode: [agent_mode]
+      temperature: 0.1
+      permission:
+        read: [allow/deny]
+        write: [allow/deny]
+        edit: [allow/deny/ask]
+        bash: [allow/deny/ask]
+        grep: [allow/deny]
+        glob: [allow/deny]
+        webfetch: [allow/deny/ask]
+        memory: [allow/deny]
+        chrome_devtools: [allow/deny]
+        external_directory: [allow/deny]
+      ---
+    quality_requirements:
+      frontmatter: "no angle brackets, no placeholders, valid YAML"
+      intro: "1-2 sentences only"
+      voice_workflow: "imperative"
+      voice_description: "third-person"
+    outputs:
+    - agent_file_created
+    - frontmatter_complete
+    - content_complete
+    validation: file_created
+    checkpoint:
+      question: "Agent file generated at [path]. Review content?"
+      options:
+      - label: "A) Show frontmatter"
+        description: "Display YAML frontmatter block"
+      - label: "B) Show content"
+        description: "Display markdown body"
+      - label: "C) Proceed"
+        description: "Continue to validation"
+
+  step_5_validation:
+    purpose: YAML frontmatter syntax validation and quality checks
+    enforcement: HARD_BLOCK
+    activities:
+    - Parse YAML frontmatter with Python yaml module
+    - Verify required fields present (name, description, mode, permission)
+    - Verify mode is valid (primary/subagent/all)
+    - Verify permission object has valid values (allow/deny/ask)
+    - Verify no deprecated 'tools' or 'allowed-tools' object present
+    - Run validate_document.py if available
+    - IF validation fails: Fix issues and re-run
+    - Repeat until passing
+    validation_command: |
+      python3 -c "
+      import yaml
+      import sys
+      try:
+          content = open('[agent_path]/[agent_name].md').read()
+          parts = content.split('---')
+          if len(parts) < 3:
+              print('ERROR: Missing frontmatter delimiters')
+              sys.exit(1)
+          fm = yaml.safe_load(parts[1])
+          assert 'name' in fm, 'Missing required field: name'
+          assert 'description' in fm, 'Missing required field: description'
+          assert 'mode' in fm, 'Missing required field: mode'
+          assert fm['mode'] in ['primary', 'subagent', 'all'], f'Invalid mode: {fm[\"mode\"]}'
+          assert 'permission' in fm, 'Missing permission object'
+          assert 'tools' not in fm, 'Deprecated tools object found - use permission instead'
+          print('✅ YAML validation PASSED')
+      except Exception as e:
+          print(f'❌ YAML validation FAILED: {e}')
+          sys.exit(1)
+      "
+    quality_gates:
+      yaml_parse: "must pass (valid YAML syntax)"
+      required_fields: "name, description, mode, permission"
+      mode_valid: "one of: primary, subagent, all"
+      permission_format: "unified permission object (v1.1.1+)"
+      no_deprecated: "no tools or allowed-tools object"
+      enforcement: HARD_BLOCK
+    fix_workflow: |
+      IF validation fails:
+      1. Review specific errors from validation output
+      2. Fix issues in agent file
+      3. Re-run validation command
+      4. Repeat until passing
+    outputs:
+    - yaml_validation_result: pass_or_fail
+    - validation_errors: list_if_failed
+    validation: yaml_valid
+    checkpoint:
+      question: "Validation complete. [PASS/FAIL]. Proceed?"
+      options:
+      - label: "A) Continue to save context"
+        description: "Validation passed, finalize agent"
+      - label: "B) Review errors"
+        description: "Show detailed validation errors"
+      - label: "C) Fix issues"
+        description: "Address validation failures and revalidate"
+
+  step_6_save_context:
+    purpose: Preserve workflow decisions and context
+    condition: "spec_path is not null"
+    activities:
+    - Invoke system-spec-kit skill
+    - Document agent creation decisions
+    - Record configuration rationale
+    - Save validation results
+    - Create memory file with timestamp
+    - Index memory file for immediate search availability
+    tool_invocation:
+      command: 'Read(".opencode/skill/system-spec-kit/SKILL.md")'
+      note: "Activate context saving via memory skill"
+    memory_content:
+      include:
+      - Agent name and purpose
+      - Mode and invocation method
+      - Permission decisions and rationale
+      - Use cases gathered
+      - Behavioral rules defined
+      - Any challenges or decisions made
+    outputs:
+    - memory_file: "specs/[NNN]-[agent-name]/memory/[timestamp]_agent_creation.md"
+    validation: context_saved
+    checkpoint:
+      question: "Context saved. Agent creation complete!"
+      options:
+      - label: "Done"
+        description: "Complete workflow"
+      - label: "View summary"
+        description: "Show final summary"
+
+    # ── SEMANTIC MEMORY INTEGRATION ─────────────────────────────────
+    post_save_indexing:
+      purpose: "Index memory file immediately for search availability"
+      mcp_tool: memory_save
+      invocation: |
+        spec_kit_memory_memory_save({
+          filePath: "specs/[NNN]-[agent-name]/memory/[timestamp]_agent_creation.md"
+        })
+      critical_note: "Call semantic memory MCP DIRECTLY - NEVER through Code Mode"
+      when: "Immediately after memory file is written to disk"
+
+    anchor_requirements:
+      enforcement: MANDATORY
+      minimum_anchors: 2
+      # Note: Anchor IDs support prefix matching — 'summary' matches 'summary-049', etc.
+      pattern: "[context-type]-[keywords]-[spec-number]"
+      format: "<!-- ANCHOR:ID --> content <!-- /ANCHOR:ID -->"
+      case: "UPPERCASE recommended for visibility"
+      required_sections:
+      - context_type: "general"
+        section: "Session summary with agent creation outcomes"
+        example_id: "GENERAL-SESSION-SUMMARY-{spec#}"
+        example: |
+          <!-- ANCHOR:GENERAL-SESSION-SUMMARY-{spec#} -->
+          ## Session Summary
+          Created agent X with mode Y...
+          <!-- /ANCHOR:GENERAL-SESSION-SUMMARY-{spec#} -->
+      - context_type: "decision"
+        section: "Key decisions made during agent creation"
+        example_id: "DECISION-AGENT-CONFIG-{spec#}"
+        example: |
+          <!-- ANCHOR:DECISION-AGENT-CONFIG-{spec#} -->
+          ## Key Decisions
+          - Chose subagent mode because...
+          - Permission configuration rationale...
+          <!-- /ANCHOR:DECISION-AGENT-CONFIG-{spec#} -->
+      optional_sections:
+      - context_type: "implementation"
+        section: "Agent structure and sections added"
+        example_id: "IMPLEMENTATION-AGENT-STRUCTURE-{spec#}"
+      - context_type: "general"
+        section: "Validation results and quality checks"
+        example_id: "GENERAL-VALIDATION-{spec#}"
+      benefit: "93% token savings on anchor-based retrieval"
+      reference: "See /memory:save Step 3 for full anchor documentation"
+
+    importance_tier:
+      assign: important
+      rationale: "Agent creation captures significant patterns and decisions for future reference"
+      promotion_note: "Use memory_update() to promote to 'critical' if this agent becomes widely used"
+      tier_reference: |
+        constitutional: Core project rules (auto-surface always)
+        critical: Foundational decisions (high priority in search)
+        important: Significant work like agent creation (this workflow)
+        normal: Standard context (default)
+        temporary: Short-term notes
+        deprecated: Outdated but retained
+
+# ─────────────────────────────────────────────────────────────────
+# CIRCUIT BREAKER
+# ─────────────────────────────────────────────────────────────────
+circuit_breaker:
+  consecutive_failure_threshold: 3
+  states:
+    closed: "Normal operation"
+    open: "3+ failures — pause and report to user"
+    half_open: "Test with single retry before resuming"
+  on_open:
+    action: "Report failures to user with summary"
+    suggest: "Review inputs and try again, or escalate"
+
+# ─────────────────────────────────────────────────────────────────
+# ERROR RECOVERY
+# ─────────────────────────────────────────────────────────────────
+error_recovery:
+  invalid_agent_name:
+    action: "Show valid format (kebab-case), prompt for correction"
+    example: "Expected: my-agent-name (lowercase, hyphens, no special chars)"
+  agent_already_exists:
+    action: "Offer to update existing or choose new name"
+    options: [ "Update existing", "Choose new name", "Cancel" ]
+  yaml_parse_error:
+    action: "Check for syntax errors in frontmatter, fix and re-validate"
+    common_issues:
+    - "Missing colon after field name"
+    - "Incorrect indentation (use 2 spaces)"
+    - "Unquoted strings with special characters"
+    - "Missing quotes around description"
+  missing_required_field:
+    action: "Add the missing field to frontmatter and re-validate"
+    required_fields: [ "name", "description", "mode", "permission" ]
+  invalid_mode:
+    action: "Correct mode value to one of: primary, subagent, all"
+  deprecated_format:
+    action: "Convert old 'tools' or 'allowed-tools' object to unified 'permission' object"
+    migration: "See v1.1.1+ format in agent_template.md"
+
+# ─────────────────────────────────────────────────────────────────
+# INTERACTIVE EXECUTION
+# ─────────────────────────────────────────────────────────────────
+interactive_execution:
+  principle: "Execute workflow steps with user approval at each checkpoint"
+  user_feedback_handling:
+    approve: "Continue to next step"
+    review: "Show detailed output before proceeding"
+    modify: "Apply requested changes and re-validate"
+    skip: "Mark step as skipped with reason, continue"
+
+# ─────────────────────────────────────────────────────────────────
+# QUALITY STANDARDS
+# ─────────────────────────────────────────────────────────────────
+quality_standards:
+  yaml_validation: MANDATORY
+  yaml_enforcement: HARD_BLOCK
+  validation_pipeline:
+    stage_1: "YAML frontmatter parsing (python yaml.safe_load)"
+    stage_2: "Required fields check (name, description, mode, permission)"
+    stage_3: "Mode validation (primary/subagent/all)"
+    stage_4: "Permission format validation (unified v1.1.1+)"
+  template_adherence: required
+  core_standards_reference: ".opencode/skill/workflows-documentation/references/core_standards.md"
+
+# ─────────────────────────────────────────────────────────────────
+# COMPLETION REPORT TEMPLATE
+# ─────────────────────────────────────────────────────────────────
+completion_report:
+  template: |
+    ✅ Agent Creation Complete
+
+    Agent: [agent-name]
+    Location: [full-path]
+    Mode: [primary/subagent/all]
+
+    Configuration:
+    - Permission: [summary of key permissions]
+    - Skills: [integrated skills]
+    - Behavioral Rules: [ALWAYS/NEVER count]
+
+    Spec Folder: specs/[NNN]-[agent-name]/
+    Memory: [timestamp]_agent_creation.md
+
+    Validation:
+    - YAML frontmatter: PASSED ✅
+    - Required fields: PASSED ✅
+    - Permission format: v1.1.1+ ✅
+
+    Invocation:
+    [IF mode == primary]
+    - Press Tab to cycle to this agent
+    [ENDIF]
+    [IF mode == subagent]
+    - Type @[agent-name] to invoke
+    - Primary agents can invoke automatically
+    [ENDIF]
+    [IF mode == all]
+    - Tab cycle OR @ mention OR automatic invocation
+    [ENDIF]
+
+    Next Steps:
+    - Restart OpenCode to load the new agent
+    - Test invocation with a sample request
+    - Iterate on behavioral rules based on testing
+
+    STATUS=OK PATH=[agent-path]
+
+# ─────────────────────────────────────────────────────────────────
+# TERMINATION
+# ─────────────────────────────────────────────────────────────────
+termination:
+  after_step: step_6_save_context
+  message: "Agent creation workflow complete."
+  next_steps:
+    - condition: "Agent needs testing"
+      action: "Test with sample requests matching use cases"
+    - condition: "Agent needs refinement"
+      action: "Iterate on behavioral rules based on testing"
+    - condition: "Context should be saved"
+      action: "Run /memory:save"
+
+# ─────────────────────────────────────────────────────────────────
+# RULES
+# ─────────────────────────────────────────────────────────────────
+rules:
+  ALWAYS:
+    - "Copy templates from canonical paths, never create from memory"
+    - "Run YAML validation before claiming completion"
+    - "Pause at checkpoints for user approval"
+    - "Respect user feedback and modification requests"
+    - "Reference core_standards.md for formatting rules"
+    - "Validate frontmatter syntax with yaml.safe_load"
+    - "Use unified permission object (v1.1.1+), never deprecated tools object"
+    - "Save context after successful completion"
+  NEVER:
+    - "Skip validation steps"
+    - "Create documents without loading templates first"
+    - "Proceed without user approval at checkpoints"
+    - "Leave placeholder text in final output"
+    - "Use deprecated 'tools' or 'allowed-tools' frontmatter format"
+    - "Ignore YAML parse errors"
+    - "Dispatch agents from within this workflow"

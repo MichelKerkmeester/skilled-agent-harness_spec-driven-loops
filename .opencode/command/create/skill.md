@@ -1,78 +1,91 @@
 ---
-description: Create a complete OpenCode skill with 9-step workflow including resource planning - supports :auto and :confirm modes
-argument-hint: "<skill-name> [--path output-dir] [:auto|:confirm]"
-allowed-tools: [Read, Write, Edit, Bash, Glob, Grep, TodoWrite]
+description: "Create a new skill with SKILL.md, references, assets, and scripts - supports :auto and :confirm modes"
+argument-hint: "<skill_name> [skill_description] [:auto|:confirm]"
+allowed-tools: Read, Write, Edit, Bash, Glob, Grep, TodoWrite
 ---
 
 > ⚠️ **EXECUTION PROTOCOL — READ FIRST**
 >
-> **YOU are the executor.** Run this workflow directly — do NOT delegate to other agents.
-> Do NOT use the Task tool to dispatch sub-agents.
+> This command runs a structured YAML workflow. Do NOT dispatch agents from this document.
 >
-> **WORKFLOW SEQUENCE:**
-> 1. Run Phase 0: Verify you are the @write agent (self-check, not a dispatch)
-> 2. Run the Unified Setup Phase: gather user inputs in one consolidated prompt
-> 3. Load the YAML workflow: `assets/create_skill.yaml`
-> 4. Execute the YAML steps sequentially
+> **YOUR FIRST ACTION:**
+> 1. Run Phase 0: @write agent self-verification (below)
+> 2. Run Setup Phase: consolidated prompt to gather inputs
+> 3. Determine execution mode from user input (`:auto` or `:confirm`)
+> 4. Load the corresponding YAML file from `assets/`:
+>    - Auto mode → `create_skill_auto.yaml`
+>    - Confirm mode → `create_skill_confirm.yaml`
+> 5. Execute the YAML workflow step by step
 >
 > The @write references below are self-verification checks — not dispatch instructions.
-> Content after the setup phases is reference context for the YAML workflow.
-
-# 🚨 SINGLE CONSOLIDATED PROMPT - ONE USER INTERACTION
-
-**This workflow uses a SINGLE consolidated prompt to gather ALL required inputs in ONE user interaction.**
-
-**Round-trip optimization:** This workflow requires only 1 user interaction.
+> All content after the Setup Phase is reference context for the YAML workflow.
 
 ---
 
-## 🔒 UNIFIED SETUP PHASE
+# 🚨 PHASE 0: @WRITE AGENT VERIFICATION
 
 **STATUS: ☐ BLOCKED**
 
 ```
+EXECUTE THIS AUTOMATIC SELF-CHECK (NOT A USER QUESTION):
+
+SELF-CHECK: Are you operating as the @write agent?
+│
+├─ INDICATORS that you ARE @write agent:
+│   ├─ You were invoked with "@write" prefix
+│   ├─ You have template-first workflow capabilities
+│   ├─ You load templates BEFORE creating content
+│   ├─ You validate template alignment AFTER creating
+│
+├─ IF YES (all indicators present):
+│   └─ write_agent_verified = TRUE → Continue to Setup Phase
+│
+└─ IF NO or UNCERTAIN:
+    │
+    ├─ ⛔ HARD BLOCK - DO NOT PROCEED
+    │
+    ├─ DISPLAY to user:
+    │   ┌────────────────────────────────────────────────────────────┐
+    │   │ ⛔ WRITE AGENT REQUIRED                                    │
+    │   │                                                            │
+    │   │ This command requires the @write agent for:                │
+    │   │   • Template-first workflow (loads before creating)          │
+    │   │   • DQI scoring (target: 90+ Excellent)                    │
+    │   │   • workflows-documentation skill integration               │
+    │   │                                                            │
+    │   │ To proceed, restart with:                                  │
+    │   │   @write /create:skill [skill-name]                        │
+    │   │                                                            │
+    │   │ Reference: .opencode/agent/write.md                        │
+    │   └────────────────────────────────────────────────────────────┘
+    │
+    └─ RETURN: STATUS=FAIL ERROR="Write agent required"
+```
+
+**Phase Output:**
+- `write_agent_verified = ________________`
+
+---
+
+# 🔒 UNIFIED SETUP PHASE
+
+**STATUS: ☐ BLOCKED**
+
+**🚨 SINGLE CONSOLIDATED PROMPT - ONE USER INTERACTION**
+
+This workflow uses a SINGLE consolidated prompt to gather ALL required inputs in ONE user interaction.
+
+**Round-trip optimization:** This workflow requires only 1 user interaction.
+
+```
 EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
 
-1. CHECK Phase 0: @write agent verification (AUTOMATIC - not a question):
-   │
-   ├─ SELF-CHECK: Are you operating as the @write agent?
-   │   │
-   │   ├─ INDICATORS that you ARE @write agent:
-   │   │   ├─ You were invoked with "@write" prefix
-   │   │   ├─ You have template-first workflow capabilities
-   │   │   ├─ You load templates BEFORE creating content
-   │   │   ├─ You validate template alignment AFTER creating
-   │   │
-   │   ├─ IF YES (all indicators present):
-   │   │   └─ write_agent_verified = TRUE → Continue to step 2
-   │   │
-   │   └─ IF NO or UNCERTAIN:
-   │       │
-   │       ├─ ⛔ HARD BLOCK - DO NOT PROCEED
-   │       │
-   │       ├─ DISPLAY to user:
-   │       │   ┌────────────────────────────────────────────────────────────┐
-   │       │   │ ⛔ WRITE AGENT REQUIRED                                    │
-   │       │   │                                                            │
-   │       │   │ This command requires the @write agent for:                │
-   │       │   │   • Template-first workflow (loads before creating)          │
-   │       │   │   • DQI scoring (target: 90+ Excellent)                    │
-   │       │   │   • workflows-documentation skill integration               │
-   │       │   │                                                            │
-   │       │   │ To proceed, restart with:                                  │
-   │       │   │   @write /create:skill [skill-name]                        │
-   │       │   │                                                            │
-   │       │   │ Reference: .opencode/agent/write.md                        │
-   │       │   └────────────────────────────────────────────────────────────┘
-   │       │
-   │       └─ RETURN: STATUS=FAIL ERROR="Write agent required"
-
-2. CHECK for mode suffix in $ARGUMENTS or command invocation:
+1. CHECK for mode suffix in $ARGUMENTS or command invocation:
    ├─ ":auto" suffix detected → execution_mode = "AUTONOMOUS" (pre-set, omit Q2)
    ├─ ":confirm" suffix detected → execution_mode = "INTERACTIVE" (pre-set, omit Q2)
    └─ No suffix → execution_mode = "ASK" (include Q2 in prompt)
 
-3. CHECK if $ARGUMENTS contains a skill name (ignoring flags):
+2. CHECK if $ARGUMENTS contains a skill name (ignoring flags):
    ├─ IF $ARGUMENTS has content → skill_name = extracted value, omit Q0
    │   ├─ Extract --path flag if present (optional)
    │   ├─ VALIDATE skill name format:
@@ -83,14 +96,14 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    │   └─ Store output path as: skill_path (default: .opencode/skill/)
    └─ IF $ARGUMENTS is empty → include Q0 in prompt
 
-4. Search for related spec folders:
+3. Search for related spec folders:
    $ ls -d specs/*/ 2>/dev/null | tail -10
 
-5. Determine if memory loading question is needed:
+4. Determine if memory loading question is needed:
    - Will be asked ONLY if user selects A or C for spec folder AND memory/ has files
    - Include Q3 placeholder with note "(if using existing spec with memory files)"
 
-6. ASK user with SINGLE CONSOLIDATED prompt (include only applicable questions):
+5. ASK user with SINGLE CONSOLIDATED prompt (include only applicable questions):
 
    ┌────────────────────────────────────────────────────────────────┐
    │ **Before proceeding, please answer:**                          │
@@ -117,9 +130,9 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    │ Reply with answers, e.g.: "B, A, C" or "pdf-editor, B, A, C"   │
    └────────────────────────────────────────────────────────────────┘
 
-7. WAIT for user response (DO NOT PROCEED)
+6. WAIT for user response (DO NOT PROCEED)
 
-8. Parse response and store ALL results:
+7. Parse response and store ALL results:
    - skill_name = [from Q0 or $ARGUMENTS]
    - skill_path = [from --path flag or default: .opencode/skill/]
    - spec_choice = [A/B/C/D from Q1]
@@ -127,12 +140,12 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    - execution_mode = [AUTONOMOUS/INTERACTIVE from suffix or Q2]
    - memory_choice = [A/B/C from Q3, or N/A if not applicable]
 
-9. Execute background operations based on choices:
+8. Execute background operations based on choices:
    - IF spec_choice == B: Find next number and create: specs/[NNN]-[skill-name]/
    - IF memory_choice == A: Load most recent memory file
    - IF memory_choice == B: Load up to 3 recent memory files
 
-10. SET STATUS: ✅ PASSED
+9. SET STATUS: ✅ PASSED
 
 **STOP HERE** - Wait for user to answer ALL applicable questions before continuing.
 
@@ -153,23 +166,6 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
 
 ---
 
-## 📋 MODE BEHAVIORS
-
-**AUTONOMOUS (:auto):**
-- Execute all steps without approval prompts
-- Only stop for errors or missing required input
-- Best for: Experienced users, scripted workflows, batch operations
-
-**INTERACTIVE (:confirm):**
-- Pause at each major step for user approval
-- Show preview before file creation
-- Ask for confirmation on critical decisions
-- Best for: New users, learning workflows, high-stakes changes
-
-**Default:** INTERACTIVE (creation workflows benefit from confirmation)
-
----
-
 ## ✅ PHASE STATUS VERIFICATION (BLOCKING)
 
 **Before continuing to the workflow, verify ALL values are set:**
@@ -187,60 +183,64 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
 ```
 VERIFICATION CHECK:
 ├─ ALL required fields have values?
-│   ├─ YES → Proceed to "# Skill Creation Workflow" section below
+│   ├─ YES → Proceed to "⚡ INSTRUCTIONS" section below
 │   └─ NO  → Re-prompt for missing values only
 ```
 
 ---
 
-## ⚠️ VIOLATION SELF-DETECTION (BLOCKING)
+## ⚡ INSTRUCTIONS
 
-**YOU ARE IN VIOLATION IF YOU:**
+After Phase 0 and Setup Phase pass, load and execute the appropriate YAML workflow:
 
-**Phase Violations:**
-- Executed command without @write agent verification
-- Started reading the workflow section before all fields are set
-- Asked questions in MULTIPLE separate prompts instead of ONE consolidated prompt
-- Proceeded without asking user for skill name when not in $ARGUMENTS
-- Auto-created or assumed a spec folder without user confirmation
-- Auto-selected execution mode without suffix or explicit user choice
-- Inferred skill name from context instead of explicit user input
+- **AUTONOMOUS (`:auto`)**: `.opencode/command/create/assets/create_skill_auto.yaml`
+- **INTERACTIVE (`:confirm`)**: `.opencode/command/create/assets/create_skill_confirm.yaml`
 
-**Workflow Violations (Steps 1-9):**
-- Skipped understanding phase and jumped to initialization
-- Created SKILL.md without gathering examples first
-- Did not run validation scripts before claiming complete
-- Claimed "complete" without DQI score verification
-- Skipped resource recommendation (Step 8) and went straight to save context
+The YAML contains: detailed step activities, checkpoints, confidence scoring, error recovery, validation gates, resource routing, and completion reporting.
 
-**VIOLATION RECOVERY PROTOCOL:**
+---
+
+> **📚 REFERENCE CONTEXT** — The sections below provide reference information for the YAML workflow. They are NOT direct execution instructions.
+
+---
+
+## 1. 📖 ROLE & PURPOSE
+
+```yaml
+role: Expert Skill Creator using workflows-documentation skill
+purpose: Create production-ready OpenCode skills with proper structure and validation
+action: Guide skill creation from understanding through packaging with DQI verification and resource routing
+
+operating_mode:
+  workflow: sequential_9_step
+  workflow_compliance: MANDATORY
+  workflow_execution: interactive
+  approvals: step_by_step
+  tracking: progressive_task_checklists
+  validation: checkpoint_based_with_dqi
+  resource_routing: chained_command_execution
 ```
-FOR PHASE VIOLATIONS:
-1. STOP immediately - do not continue current action
-2. STATE: "I asked questions separately instead of consolidated. Correcting now."
-3. PRESENT the single consolidated prompt with ALL applicable questions
-4. WAIT for user response
-5. RESUME only after all fields are set
 
-FOR WORKFLOW VIOLATIONS:
-1. STOP immediately
-2. STATE: "I skipped STEP [X] by [specific action]. Correcting now."
-3. RETURN to the skipped step
-4. COMPLETE all activities for that step
-5. VERIFY outputs exist
-6. MARK step ✅ in tracking table
-7. CONTINUE to next step in sequence
+Create a complete, production-ready OpenCode skill following the 9-step skill creation process from the `workflows-documentation` skill. The workflow ensures understanding before implementation, validates quality through DQI scoring, and offers intelligent resource recommendations with dynamic routing.
+
+---
+
+## 2. 📝 CONTRACT
+
+**Inputs:** `$ARGUMENTS` — Skill name in hyphen-case with optional output path
+**Outputs:** Complete skill folder with SKILL.md + resources + `STATUS=<OK|FAIL|CANCELLED>`
+
+### User Input
+
+```text
+$ARGUMENTS
 ```
 
 ---
 
-# 📊 WORKFLOW EXECUTION - MANDATORY TRACKING
+## 3. 📊 WORKFLOW OVERVIEW
 
 **⛔ ENFORCEMENT RULE:** Execute steps IN ORDER (1→9). Mark each step ✅ ONLY after completing ALL its activities and verifying outputs. DO NOT SKIP STEPS.
-
----
-
-## WORKFLOW TRACKING
 
 | STEP | NAME             | STATUS | REQUIRED OUTPUT             | VERIFICATION                   |
 | ---- | ---------------- | ------ | --------------------------- | ------------------------------ |
@@ -256,7 +256,67 @@ FOR WORKFLOW VIOLATIONS:
 
 ---
 
-## 📊 WORKFLOW DIAGRAM
+## 4. 🎯 MODE BEHAVIORS
+
+**AUTONOMOUS (:auto):**
+- Execute all steps without approval prompts
+- Only stop for errors or missing required input
+- Best for: Experienced users, scripted workflows, batch operations
+
+**INTERACTIVE (:confirm):**
+- Pause at each major step for user approval
+- Show preview before file creation
+- Ask for confirmation on critical decisions
+- Best for: New users, learning workflows, high-stakes changes
+
+**Default:** INTERACTIVE (creation workflows benefit from confirmation)
+
+---
+
+## 5. ⛔ CRITICAL ENFORCEMENT RULES
+
+```
+STEP 3 (Understanding) REQUIREMENTS:
+├─ MUST gather 3-5 concrete usage examples from user
+├─ MUST identify trigger patterns (what users say)
+├─ MUST define success criteria
+└─ MUST NOT proceed without examples (blocks Step 4+)
+
+STEP 6 (Content) REQUIREMENTS:
+├─ MUST populate all SKILL.md sections
+├─ MUST create bundled resources identified in Step 4
+├─ MUST follow template structure from assets/
+├─ MUST NOT leave placeholder text
+├─ MUST include required sections: WHEN TO USE, HOW IT WORKS, RULES
+├─ RULES section MUST have subsections: ✅ ALWAYS, ❌ NEVER, ⚠️ ESCALATE IF
+├─ SECTION BOUNDARIES (CRITICAL):
+│   ├─ "WHEN TO USE" = ONLY activation triggers, use cases, exclusions
+│   │   └─ NO file references, NO navigation guides
+│   └─ "SMART ROUTING" = Navigation Guide + Phase Detection + Resource Router
+│       └─ ALL file/resource references go here
+├─ SIZE CONSTRAINTS:
+│   ├─ Max 5000 words (3000 recommended)
+│   └─ Max 3000 lines
+
+STEP 7 (Validation) REQUIREMENTS:
+├─ MUST run package_skill.py --check before claiming complete
+│   └─ Command: python .opencode/skill/workflows-documentation/scripts/package_skill.py <skill-path> --check
+├─ MUST pass all validation checks (frontmatter, sections, size)
+├─ MUST NOT claim "complete" without validation pass
+└─ MUST fix issues if validation fails
+
+STEP 8 (Resource Routing) REQUIREMENTS:
+├─ MUST analyze Step 3/4 outputs for resource recommendations
+├─ MUST present recommendations with clear rationale
+├─ MUST wait for explicit user choice (A/B/C/D)
+├─ MUST execute selected resource creation via chained commands
+├─ MUST NOT auto-create resources without user approval
+└─ MUST NOT skip this step (user can choose "Skip" option)
+```
+
+---
+
+## 6. 📊 WORKFLOW DIAGRAM
 
 ```mermaid
 flowchart TD
@@ -325,125 +385,52 @@ flowchart TD
 
 ---
 
-## ⛔ CRITICAL ENFORCEMENT RULES
+<!-- REFERENCE ONLY -->
 
+## 7. ⚠️ VIOLATION SELF-DETECTION (BLOCKING)
+
+**YOU ARE IN VIOLATION IF YOU:**
+
+**Phase Violations:**
+- Executed command without @write agent verification
+- Started reading the workflow section before all fields are set
+- Asked questions in MULTIPLE separate prompts instead of ONE consolidated prompt
+- Proceeded without asking user for skill name when not in $ARGUMENTS
+- Auto-created or assumed a spec folder without user confirmation
+- Auto-selected execution mode without suffix or explicit user choice
+- Inferred skill name from context instead of explicit user input
+
+**Workflow Violations (Steps 1-9):**
+- Skipped understanding phase and jumped to initialization
+- Created SKILL.md without gathering examples first
+- Did not run validation scripts before claiming complete
+- Claimed "complete" without DQI score verification
+- Skipped resource recommendation (Step 8) and went straight to save context
+
+**VIOLATION RECOVERY PROTOCOL:**
 ```
-STEP 3 (Understanding) REQUIREMENTS:
-├─ MUST gather 3-5 concrete usage examples from user
-├─ MUST identify trigger patterns (what users say)
-├─ MUST define success criteria
-└─ MUST NOT proceed without examples (blocks Step 4+)
+FOR PHASE VIOLATIONS:
+1. STOP immediately - do not continue current action
+2. STATE: "I asked questions separately instead of consolidated. Correcting now."
+3. PRESENT the single consolidated prompt with ALL applicable questions
+4. WAIT for user response
+5. RESUME only after all fields are set
 
-STEP 6 (Content) REQUIREMENTS:
-├─ MUST populate all SKILL.md sections
-├─ MUST create bundled resources identified in Step 4
-├─ MUST follow template structure from assets/
-├─ MUST NOT leave placeholder text
-├─ MUST include required sections: WHEN TO USE, HOW IT WORKS, RULES
-├─ RULES section MUST have subsections: ✅ ALWAYS, ❌ NEVER, ⚠️ ESCALATE IF
-├─ SECTION BOUNDARIES (CRITICAL):
-│   ├─ "WHEN TO USE" = ONLY activation triggers, use cases, exclusions
-│   │   └─ NO file references, NO navigation guides
-│   └─ "SMART ROUTING" = Navigation Guide + Phase Detection + Resource Router
-│       └─ ALL file/resource references go here
-├─ SIZE CONSTRAINTS:
-│   ├─ Max 5000 words (3000 recommended)
-│   └─ Max 3000 lines
-
-STEP 7 (Validation) REQUIREMENTS:
-├─ MUST run package_skill.py --check before claiming complete
-│   └─ Command: python .opencode/skill/workflows-documentation/scripts/package_skill.py <skill-path> --check
-├─ MUST pass all validation checks (frontmatter, sections, size)
-├─ MUST NOT claim "complete" without validation pass
-└─ MUST fix issues if validation fails
-
-STEP 8 (Resource Routing) REQUIREMENTS:
-├─ MUST analyze Step 3/4 outputs for resource recommendations
-├─ MUST present recommendations with clear rationale
-├─ MUST wait for explicit user choice (A/B/C/D)
-├─ MUST execute selected resource creation via chained commands
-├─ MUST NOT auto-create resources without user approval
-└─ MUST NOT skip this step (user can choose "Skip" option)
+FOR WORKFLOW VIOLATIONS:
+1. STOP immediately
+2. STATE: "I skipped STEP [X] by [specific action]. Correcting now."
+3. RETURN to the skipped step
+4. COMPLETE all activities for that step
+5. VERIFY outputs exist
+6. MARK step ✅ in tracking table
+7. CONTINUE to next step in sequence
 ```
+
+<!-- END REFERENCE -->
 
 ---
 
-# Skill Creation Workflow
-
-Create a complete, production-ready OpenCode skill following the 9-step workflow from understanding through validation and resource creation.
-
----
-
-```yaml
-role: Expert Skill Creator using workflows-documentation skill
-purpose: Create production-ready OpenCode skills with proper structure and validation
-action: Guide skill creation from understanding through packaging with DQI verification and resource routing
-
-operating_mode:
-  workflow: sequential_9_step
-  workflow_compliance: MANDATORY
-  workflow_execution: interactive
-  approvals: step_by_step
-  tracking: progressive_task_checklists
-  validation: checkpoint_based_with_dqi
-  resource_routing: chained_command_execution
-```
-
----
-
-## 1. 🎯 PURPOSE
-
-Create a complete, production-ready OpenCode skill following the 9-step skill creation process from the `workflows-documentation` skill. The workflow ensures understanding before implementation, validates quality through DQI scoring, and offers intelligent resource recommendations with dynamic routing.
-
----
-
-## 2. 📝 CONTRACT
-
-**Inputs:** `$ARGUMENTS` — Skill name in hyphen-case with optional output path
-**Outputs:** Complete skill folder with SKILL.md + resources + `STATUS=<OK|FAIL|CANCELLED>`
-
-### User Input
-
-```text
-$ARGUMENTS
-```
-
----
-
-## 3. ⚡ INSTRUCTIONS
-
-### Step 4: Verify All Phases Passed
-
-Confirm you have these values from the phases:
-- `skill_name` from PHASE 1
-- `skill_path` from PHASE 1 (default: .opencode/skill/)
-- `spec_choice` and `spec_path` from PHASE 2
-- `memory_loaded` status from PHASE 3
-
-**If ANY phase is incomplete, STOP and return to the MANDATORY PHASES section.**
-
-### Step 5: Load & Execute Workflow
-
-Load and execute the workflow definition:
-
-```
-.opencode/command/create/assets/create_skill.yaml
-```
-
-The YAML file contains:
-- Detailed step-by-step activities
-- Checkpoint prompts and options
-- Error recovery procedures
-- Validation requirements
-- Resource recommendation engine
-- Chained command routing
-- Completion report template
-
-Execute all 9 steps in sequence following the workflow definition.
-
----
-
-## 4. 📌 REFERENCE (See YAML for Details)
+## 8. 📌 REFERENCE TABLE
 
 | Section             | Location in YAML                     |
 | ------------------- | ------------------------------------ |
@@ -458,7 +445,7 @@ Execute all 9 steps in sequence following the workflow definition.
 
 ---
 
-## 5. 🔍 EXAMPLES
+## 9. 🔍 EXAMPLES
 
 **Example 1: Basic skill creation**
 ```
@@ -499,7 +486,7 @@ python .opencode/skill/workflows-documentation/scripts/package_skill.py .opencod
 
 ---
 
-## 6. 🔗 COMMAND CHAIN
+## 10. 🔗 COMMAND CHAIN
 
 This command creates skills that may need additional resources:
 
@@ -513,7 +500,7 @@ This command creates skills that may need additional resources:
 
 ---
 
-## 7. 📌 NEXT STEPS
+## 11. 📌 NEXT STEPS
 
 After skill creation completes, suggest relevant next steps:
 

@@ -1,9 +1,10 @@
 # ─────────────────────────────────────────────────────────────────
-# OPENCODE CREATE: INSTALLATION GUIDE WORKFLOW (CONFIRM MODE)
+# OPENCODE CREATE: INSTALLATION GUIDE WORKFLOW (AUTO MODE)
 # ─────────────────────────────────────────────────────────────────
-# Mode: confirm-only (interactive step-by-step approval)
-# Note: This workflow does NOT support :auto mode. All executions
-#       require user confirmation at checkpoints for content review.
+# Mode: autonomous (no user approval gates)
+# Workflow Execution: autonomous
+# Approvals: none
+# Validation: continuous_self_validation
 # ───────────────────────────────────────────────────────────────────
 role: Expert Installation Guide Creator using workflows-documentation skill
 purpose: Create comprehensive AI-first installation guides with multi-platform support
@@ -25,10 +26,12 @@ action: Generate step-by-step setup instructions with AI-assisted install prompt
 # ─────────────────────────────────────────────────────────────────
 
 operating_mode:
-  workflow: sequential_5_step
+  workflow: sequential_6_step
   workflow_compliance: MANDATORY
-  workflow_execution: interactive
-  approvals: step_by_step
+  workflow_execution: autonomous
+  approvals: none
+  tracking: progressive_task_checklists
+  validation: continuous_self_validation
 
 development_philosophy:
   principle: "AI-First approach with copy-paste prompt for assisted installation"
@@ -231,7 +234,87 @@ checkpoint_options:
     description: "Make changes before proceeding"
 
 # ─────────────────────────────────────────────────────────────────
-# WORKFLOW (5 STEPS WITH CHECKPOINTS)
+# WORKFLOW ENFORCEMENT (CRITICAL)
+# ─────────────────────────────────────────────────────────────────
+workflow_enforcement:
+  mode: strict
+  step_order: sequential_mandatory
+  skip_allowed: false
+
+  phase_gate:
+    location: "Between Step 3 and Step 4"
+    purpose: "Verify requirements and steps defined before generation"
+    requirements:
+    - "Prerequisites identified and documented"
+    - "Installation steps defined for each platform"
+    - "Verification commands specified"
+    - "Troubleshooting scenarios captured"
+    action_if_failed: "STOP and return to incomplete step"
+
+  critical_steps:
+    step_2_requirements_discovery:
+      enforcement: "MUST identify all prerequisites and platform needs"
+      verification: "Cannot proceed without prerequisites list"
+    step_4_content_generation:
+      enforcement: "MUST include AI-First section and all 11 sections"
+      verification: "All sections populated, AI prompt complete"
+    step_5_validation:
+      enforcement: "MUST verify commands and validate completeness"
+      verification: "DQI score ≥ 70 (Acceptable) before claiming complete"
+
+# ─────────────────────────────────────────────────────────────────
+# CIRCUIT BREAKER
+# ─────────────────────────────────────────────────────────────────
+circuit_breaker:
+  consecutive_failure_threshold: 3
+  states:
+    closed: "Normal operation"
+    open: "3+ failures — pause and report to user"
+    half_open: "Test with single retry before resuming"
+  on_open:
+    action: "Report failures to user with summary"
+    suggest: "Review inputs and try again, or escalate"
+
+# ─────────────────────────────────────────────────────────────────
+# AUTONOMOUS EXECUTION
+# ─────────────────────────────────────────────────────────────────
+autonomous_execution:
+  principle: "Execute workflow steps sequentially without user approval"
+  self_validation_approach:
+    continuous: "Self-validate at each step completion"
+    confidence_threshold: "Stop only if confidence < 40%"
+    error_handling: "Apply error_recovery strategies automatically"
+
+# ─────────────────────────────────────────────────────────────────
+# QUALITY STANDARDS
+# ─────────────────────────────────────────────────────────────────
+quality_standards:
+  dqi_minimum: 70
+  dqi_band: "Acceptable"
+  dqi_enforcement: FLEXIBLE
+  validation_pipeline:
+    stage_1: "Verify all 11 sections present"
+    stage_2: "Validate AI-First prompt completeness"
+    stage_3: "Check command syntax and platform coverage"
+  template_adherence: required
+  core_standards_reference: ".opencode/skill/workflows-documentation/references/core_standards.md"
+
+# ─────────────────────────────────────────────────────────────────
+# TERMINATION
+# ─────────────────────────────────────────────────────────────────
+termination:
+  after_step: step_6_save_context
+  message: "Installation guide creation workflow complete."
+  next_steps:
+    - condition: "Guide needs testing"
+      action: "Test AI-First prompt with real installation"
+    - condition: "Need related documentation"
+      action: "Run /create:folder_readme for project README"
+    - condition: "Context should be saved"
+      action: "Run /memory:save (if spec folder exists)"
+
+# ─────────────────────────────────────────────────────────────────
+# WORKFLOW (6 STEPS WITH CHECKPOINTS)
 # ─────────────────────────────────────────────────────────────────
 workflow:
   step_1_request_analysis:
@@ -253,15 +336,6 @@ workflow:
     - type_prefix_confirmed
     - platforms_confirmed
     - output_path_confirmed
-    checkpoint:
-      question: "Create [type] installation guide for [project]. Output: [output_path]. Platforms: [platforms]. Proceed?"
-      options:
-      - label: "A) Proceed"
-        description: "Create guide with these settings"
-      - label: "B) Change type prefix"
-        description: "Select different type prefix"
-      - label: "C) Change output location"
-        description: "Specify different output path"
 
   step_2_requirements_discovery:
     purpose: Identify all prerequisites
@@ -295,15 +369,6 @@ workflow:
     - requirements_list
     - platform_specific_needs
     - configuration_requirements
-    checkpoint:
-      question: "Prerequisites identified. Review?"
-      options:
-      - label: "A) Show list"
-        description: "Display all prerequisites"
-      - label: "B) Add more"
-        description: "Add additional requirements"
-      - label: "C) Proceed"
-        description: "Continue to step definition"
 
   step_3_steps_definition:
     purpose: Define installation steps for each platform
@@ -339,15 +404,6 @@ workflow:
     - steps_list
     - platform_commands
     - verification_commands
-    checkpoint:
-      question: "Installation steps defined. Review?"
-      options:
-      - label: "A) Show steps"
-        description: "Display step list"
-      - label: "B) Modify steps"
-        description: "Add or remove steps"
-      - label: "C) Proceed"
-        description: "Continue to content generation"
 
   step_4_content_generation:
     purpose: Write comprehensive AI-First installation guide
@@ -370,15 +426,6 @@ workflow:
     - install_guide_file: created
     - sections_count: 11
     - ai_first_prompt: complete
-    checkpoint:
-      question: "Installation guide generated. Review?"
-      options:
-      - label: "A) Show full content"
-        description: "Display complete guide"
-      - label: "B) Show AI-First section"
-        description: "Display AI prompt section"
-      - label: "C) Proceed"
-        description: "Continue to validation"
 
   step_5_validation:
     purpose: Verify guide quality and completeness
@@ -415,15 +462,6 @@ workflow:
     - validation_passed: boolean
     - checklist_results: object
     - dqi_score: number (optional)
-    checkpoint:
-      question: "Validation complete. Guide ready?"
-      options:
-      - label: "Proceed"
-        description: "Continue to save context"
-      - label: "Fix issues"
-        description: "Address validation failures"
-      - label: "View summary"
-        description: "Show final summary"
 
   step_6_save_context:
     purpose: Preserve workflow decisions and context
@@ -448,13 +486,6 @@ workflow:
     outputs:
     - memory_file: "[SPEC_FOLDER]/memory/[DD-MM-YY_HH-MM]__install_guide_session.md"
     validation: context_saved
-    checkpoint:
-      question: "Context saved. Installation guide creation complete!"
-      options:
-      - label: "Done"
-        description: "Complete workflow"
-      - label: "View summary"
-        description: "Show final summary"
 
     # ── SEMANTIC MEMORY INTEGRATION ─────────────────────────────────
     post_save_indexing:

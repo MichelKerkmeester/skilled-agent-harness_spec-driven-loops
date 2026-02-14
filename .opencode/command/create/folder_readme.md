@@ -6,92 +6,94 @@ allowed-tools: Read, Write, Edit, Bash, Glob, Grep, TodoWrite
 
 > ⚠️ **EXECUTION PROTOCOL — READ FIRST**
 >
-> **YOU are the executor.** Run this workflow directly — do NOT delegate to other agents.
-> Do NOT use the Task tool to dispatch sub-agents.
+> This command runs a structured YAML workflow. Do NOT dispatch agents from this document.
 >
-> **WORKFLOW SEQUENCE:**
-> 1. Run Phase 0: Verify you are the @write agent (self-check, not a dispatch)
-> 2. Run the Unified Setup Phase: gather user inputs in one consolidated prompt
-> 3. Load the YAML workflow: `assets/create_folder_readme.yaml`
-> 4. Execute the YAML steps sequentially
+> **YOUR FIRST ACTION:**
+> 1. Run Phase 0: @write agent self-verification (below)
+> 2. Run Setup Phase: consolidated prompt to gather inputs
+> 3. Determine execution mode from user input (`:auto` or `:confirm`)
+> 4. Load the corresponding YAML file from `assets/`:
+>    - Auto mode → `create_folder_readme_auto.yaml`
+>    - Confirm mode → `create_folder_readme_confirm.yaml`
+> 5. Execute the YAML workflow step by step
 >
 > The @write references below are self-verification checks — not dispatch instructions.
-> Content after the setup phases is reference context for the YAML workflow.
-
-## ⚡ GATE 3 STATUS: EXEMPT (Self-Documenting Artifact)
-
-**This command creates documentation files that ARE the documentation artifact.**
-
-| Property        | Value                                                       |
-| --------------- | ----------------------------------------------------------- |
-| **Location**    | User-specified path (`install_guides/` or target directory) |
-| **Reason**      | The created file IS the documentation                       |
-| **Spec Folder** | Not required - the guide/README serves as its own spec      |
+> All content after the Setup Phase is reference context for the YAML workflow.
 
 ---
 
-# 🚨 SINGLE CONSOLIDATED PROMPT - ONE USER INTERACTION
-
-**This workflow uses a SINGLE consolidated prompt to gather ALL required inputs in ONE user interaction.**
-
-**Round-trip optimization:** This workflow requires only 1 user interaction (all questions asked together), with an optional follow-up only if README already exists.
-
----
-
-## 🔒 UNIFIED SETUP PHASE
+# 🚨 PHASE 0: @WRITE AGENT VERIFICATION
 
 **STATUS: ☐ BLOCKED**
 
 ```
+EXECUTE THIS AUTOMATIC SELF-CHECK (NOT A USER QUESTION):
+
+SELF-CHECK: Are you operating as the @write agent?
+│
+├─ INDICATORS that you ARE @write agent:
+│   ├─ You were invoked with "@write" prefix
+│   ├─ You have template-first workflow capabilities
+│   ├─ You load templates BEFORE creating content
+│   ├─ You validate template alignment AFTER creating
+│
+├─ IF YES (all indicators present):
+│   └─ write_agent_verified = TRUE → Continue to Setup Phase
+│
+└─ IF NO or UNCERTAIN:
+    │
+    ├─ ⛔ HARD BLOCK - DO NOT PROCEED
+    │
+    ├─ DISPLAY to user:
+    │   ┌────────────────────────────────────────────────────────────┐
+    │   │ ⛔ WRITE AGENT REQUIRED                                    │
+    │   │                                                            │
+    │   │ This command requires the @write agent for:                │
+    │   │   • Template-first workflow (loads before creating)          │
+    │   │   • DQI scoring (target: 75+ Good)                         │
+    │   │   • workflows-documentation skill integration               │
+    │   │                                                            │
+    │   │ To proceed, restart with:                                  │
+    │   │   @write /create:folder_readme [target-path]               │
+    │   │                                                            │
+    │   │ Reference: .opencode/agent/write.md                        │
+    │   └────────────────────────────────────────────────────────────┘
+    │
+    └─ RETURN: STATUS=FAIL ERROR="Write agent required"
+```
+
+**Phase Output:**
+- `write_agent_verified = ________________`
+
+---
+
+# 🔒 UNIFIED SETUP PHASE
+
+**STATUS: ☐ BLOCKED**
+
+**🚨 SINGLE CONSOLIDATED PROMPT - ONE USER INTERACTION**
+
+This workflow uses a SINGLE consolidated prompt to gather ALL required inputs in ONE user interaction.
+
+**Round-trip optimization:** This workflow requires only 1 user interaction (all questions asked together), with an optional follow-up only if README already exists.
+
+```
 EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
 
-1. CHECK Phase 0: @write agent verification (automatic)
-   ├─ SELF-CHECK: Are you operating as the @write agent?
-   │   │
-   │   ├─ INDICATORS that you ARE @write agent:
-   │   │   ├─ You were invoked with "@write" prefix
-   │   │   ├─ You have template-first workflow capabilities
-   │   │   ├─ You load templates BEFORE creating content
-   │   │   ├─ You validate template alignment AFTER creating
-   │   │
-   │   ├─ IF YES (all indicators present):
-   │   │   └─ write_agent_verified = TRUE → Continue to step 2
-   │   │
-   │   └─ IF NO or UNCERTAIN:
-   │       │
-   │       ├─ ⛔ HARD BLOCK - DO NOT PROCEED
-   │       │
-   │       ├─ DISPLAY to user:
-   │       │   ┌────────────────────────────────────────────────────────────┐
-   │       │   │ ⛔ WRITE AGENT REQUIRED                                    │
-   │       │   │                                                            │
-   │       │   │ This command requires the @write agent for:                │
-   │       │   │   • Template-first workflow (loads before creating)          │
-   │       │   │   • DQI scoring (target: 75+ Good)                         │
-   │       │   │   • workflows-documentation skill integration               │
-   │       │   │                                                            │
-   │       │   │ To proceed, restart with:                                  │
-   │       │   │   @write /create:folder_readme [target-path]               │
-   │       │   │                                                            │
-   │       │   │ Reference: .opencode/agent/write.md                        │
-   │       │   └────────────────────────────────────────────────────────────┘
-   │       │
-   │       └─ RETURN: STATUS=FAIL ERROR="Write agent required"
-
-2. CHECK for mode suffix in command invocation:
+1. CHECK for mode suffix in $ARGUMENTS or command invocation:
    ├─ ":auto" suffix detected → execution_mode = "AUTONOMOUS" (pre-set, omit Q2)
    ├─ ":confirm" suffix detected → execution_mode = "INTERACTIVE" (pre-set, omit Q2)
    └─ No suffix → execution_mode = "ASK" (include Q2 in prompt)
 
-3. CHECK if $ARGUMENTS contains target path:
+2. CHECK if $ARGUMENTS contains target path:
    ├─ IF $ARGUMENTS has path content (ignoring flags) → target_path = $ARGUMENTS, omit Q0
    └─ IF $ARGUMENTS is empty → include Q0 in prompt
 
-4. CHECK if $ARGUMENTS contains --type flag:
+3. CHECK if $ARGUMENTS contains --type flag:
    ├─ IF --type flag present → readme_type = [parsed value], omit Q1
    └─ IF no --type flag → include Q1 in prompt
 
-5. ASK user with SINGLE CONSOLIDATED prompt (include only applicable questions):
+4. ASK user with SINGLE CONSOLIDATED prompt (include only applicable questions):
 
    ┌────────────────────────────────────────────────────────────────┐
    │ **Before proceeding, please answer:**                          │
@@ -100,27 +102,27 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    │    Where should the README be created?                         │
    │    (e.g., .opencode/skill/my-skill, src/components, ./)        │
    │                                                                │
-   │ **Q1. README Type** (required):                                │
+   │ **Q1. README Type** (if not provided via --type):              │
    │    A) Project - Main project documentation at root level       │
    │    B) Component - Documentation for a module/package/skill     │
    │    C) Feature - Documentation for a specific feature/system     │
    │    D) Skill - Documentation for an OpenCode skill              │
    │                                                                │
    │ **Q2. Execution Mode** (if no :auto/:confirm suffix):            │
-   │    A) Interactive - Pause at each step for approval            │
-   │    B) Autonomous - Execute all steps without prompts           │
+   │    A) Interactive - Confirm at each step (Recommended)          │
+   │    B) Autonomous - Execute without prompts                     │
    │                                                                │
    │ Reply with answers, e.g.: "B, A" or "src/components, B, A"     │
    └────────────────────────────────────────────────────────────────┘
 
-6. WAIT for user response (DO NOT PROCEED)
+5. WAIT for user response (DO NOT PROCEED)
 
-7. Parse response and store ALL results:
+6. Parse response and store ALL results:
    - target_path = [from Q0 or $ARGUMENTS]
    - readme_type = [A/B/C/D from Q1 or --type flag → project/component/feature/skill]
    - execution_mode = [AUTONOMOUS/INTERACTIVE from suffix or Q2]
 
-8. VERIFY target and check for existing README:
+7. VERIFY target and check for existing README:
    ├─ Check if target path exists:
    │   $ ls -la [target_path] 2>/dev/null
    │
@@ -144,14 +146,15 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
        ├─ WAIT for user response
        └─ Process based on choice (D = RETURN STATUS=CANCELLED)
 
-9. SET STATUS: ✅ PASSED
+8. SET STATUS: ✅ PASSED
 
 **STOP HERE** - Wait for user to answer ALL applicable questions before continuing.
 
 ⛔ HARD STOP: DO NOT proceed until user explicitly answers
-⛔ NEVER infer README location from context
-⛔ NEVER overwrite existing README without confirmation
+⛔ NEVER auto-create directories without user confirmation
+⛔ NEVER auto-select execution mode without suffix or explicit choice
 ⛔ NEVER split these questions into multiple prompts
+⛔ NEVER infer README location from context
 ```
 
 **Phase Output:**
@@ -163,30 +166,13 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
 
 ---
 
-## 📋 MODE BEHAVIORS
-
-**AUTONOMOUS (:auto):**
-- Execute all steps without approval prompts
-- Only stop for errors or missing required input
-- Best for: Experienced users, scripted workflows, batch operations
-
-**INTERACTIVE (:confirm):**
-- Pause at each major step for user approval
-- Show preview before file creation
-- Ask for confirmation on critical decisions
-- Best for: New users, learning workflows, high-stakes changes
-
-**Default:** INTERACTIVE (creation workflows benefit from confirmation)
-
----
-
 ## ✅ PHASE STATUS VERIFICATION (BLOCKING)
 
 **Before continuing to the workflow, verify ALL values are set:**
 
 | FIELD                  | REQUIRED      | YOUR VALUE | SOURCE                |
 | ---------------------- | ------------- | ---------- | --------------------- |
-| write_agent_verified   | ✅ Yes         | ______     | Auto-check (Step 1)   |
+| write_agent_verified   | ✅ Yes         | ______     | Automatic check       |
 | target_path            | ✅ Yes         | ______     | Q0 or $ARGUMENTS      |
 | readme_type            | ✅ Yes         | ______     | Q1 or --type flag     |
 | execution_mode         | ✅ Yes         | ______     | Suffix or Q2          |
@@ -195,11 +181,40 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
 ```
 VERIFICATION CHECK:
 ├─ ALL required fields have values?
-│   ├─ YES → Proceed to "# README Creation Workflow" section below
+│   ├─ YES → Proceed to "⚡ INSTRUCTIONS" section below
 │   └─ NO  → Re-prompt for missing values only
 ```
 
 ---
+
+## ⚡ INSTRUCTIONS
+
+After Phase 0 and Setup Phase pass, load and execute the appropriate YAML workflow:
+
+- **AUTONOMOUS (`:auto`)**: `.opencode/command/create/assets/create_folder_readme_auto.yaml`
+- **INTERACTIVE (`:confirm`)**: `.opencode/command/create/assets/create_folder_readme_confirm.yaml`
+
+The YAML contains: detailed step activities, checkpoints, confidence scoring, error recovery, validation gates, resource routing, and completion reporting.
+
+---
+
+> **📚 REFERENCE CONTEXT** — The sections below provide reference information for the YAML workflow. They are NOT direct execution instructions.
+
+---
+
+## ⛔ GATE 3 STATUS: EXEMPT (Self-Documenting Artifact)
+
+**This command creates documentation files that ARE the documentation artifact.**
+
+| Property        | Value                                                       |
+| --------------- | ----------------------------------------------------------- |
+| **Location**    | User-specified path (`install_guides/` or target directory) |
+| **Reason**      | The created file IS the documentation                       |
+| **Spec Folder** | Not required - the guide/README serves as its own spec      |
+
+---
+
+<!-- REFERENCE ONLY -->
 
 ## ⚠️ VIOLATION SELF-DETECTION (BLOCKING)
 
@@ -237,15 +252,28 @@ FOR WORKFLOW VIOLATIONS:
 7. CONTINUE to next step in sequence
 ```
 
----
-
-# 📊 WORKFLOW EXECUTION - MANDATORY TRACKING
-
-**⛔ ENFORCEMENT RULE:** Execute steps IN ORDER (1→5). Mark each step ✅ ONLY after completing ALL its activities and verifying outputs. DO NOT SKIP STEPS.
+<!-- END REFERENCE -->
 
 ---
 
-## WORKFLOW TRACKING
+## 📋 MODE BEHAVIORS
+
+**AUTONOMOUS (:auto):**
+- Execute all steps without approval prompts
+- Only stop for errors or missing required input
+- Best for: Experienced users, scripted workflows, batch operations
+
+**INTERACTIVE (:confirm):**
+- Pause at each major step for user approval
+- Show preview before file creation
+- Ask for confirmation on critical decisions
+- Best for: New users, learning workflows, high-stakes changes
+
+**Default:** INTERACTIVE (creation workflows benefit from confirmation)
+
+---
+
+## 📊 WORKFLOW TRACKING
 
 | STEP | NAME       | STATUS | REQUIRED OUTPUT     | VERIFICATION                |
 | ---- | ---------- | ------ | ------------------- | --------------------------- |
@@ -326,26 +354,6 @@ STEP 5 (Validation) REQUIREMENTS:
 
 ---
 
-# README Creation Workflow
-
-Create a comprehensive README.md following the documentation patterns from SpecKit, Memory System, and Code Environment READMEs. Uses numbered sections with emojis, table of contents, tables for data, and proper progressive disclosure.
-
----
-
-```yaml
-role: Expert README Creator using workflows-documentation skill
-purpose: Create comprehensive README files with proper structure and AI-optimization
-action: Generate scannable, well-organized README with table of contents
-
-operating_mode:
-  workflow: sequential_6_step
-  workflow_compliance: MANDATORY
-  workflow_execution: interactive
-  approvals: step_by_step
-```
-
----
-
 ## 1. 🎯 PURPOSE
 
 Create a comprehensive README.md following the documentation patterns from SpecKit, Memory System, and Code Environment READMEs. The README will use numbered sections with emojis, table of contents, tables for data, and proper progressive disclosure.
@@ -365,44 +373,7 @@ $ARGUMENTS
 
 ---
 
-## 3. ⚡ INSTRUCTIONS
-
-> **Note:** Steps 1-3 (intent parsing, skill loading, asset loading) are handled automatically by the command framework. This section covers the agent execution steps.
-
-### Step 4: Verify Unified Setup Phase Passed
-
-Confirm you have these values from the unified setup phase:
-- `write_agent_verified` (must be TRUE)
-- `target_path` (from Q0 or $ARGUMENTS)
-- `readme_type` (from Q1 or --type flag: project|component|feature|skill)
-- `execution_mode` (from suffix or Q2: AUTONOMOUS|INTERACTIVE)
-- `existing_readme_action` (from Q3, if applicable)
-
-**If ANY required field is missing, STOP and return to the UNIFIED SETUP PHASE section.**
-
-### Step 5: Load & Execute Workflow
-
-Load and execute the workflow definition:
-
-```
-.opencode/command/create/assets/create_folder_readme.yaml
-```
-
-The YAML file contains:
-- Detailed step-by-step activities
-- README type configurations and sections
-- Template structures for each type
-- AI optimization principles
-- Checkpoint prompts and options
-- Error recovery procedures
-- Validation requirements
-- Completion report template
-
-Execute all 5 steps in sequence following the workflow definition.
-
----
-
-## 4. 📌 REFERENCE (See YAML for Details)
+## 3. 📌 REFERENCE (See YAML for Details)
 
 | Section           | Location in YAML                                   |
 | ----------------- | -------------------------------------------------- |
@@ -417,7 +388,7 @@ Execute all 5 steps in sequence following the workflow definition.
 
 ---
 
-## 5. 🔍 EXAMPLES
+## 4. 🔍 EXAMPLES
 
 **Example 1: Project README**
 ```
@@ -451,7 +422,7 @@ Execute all 5 steps in sequence following the workflow definition.
 
 ---
 
-## 6. 🔗 COMMAND CHAIN
+## 5. 🔗 COMMAND CHAIN
 
 This command creates standalone documentation:
 
@@ -464,7 +435,7 @@ This command creates standalone documentation:
 
 ---
 
-## 7. 📌 NEXT STEPS
+## 6. 📌 NEXT STEPS
 
 After README creation completes, suggest relevant next steps:
 

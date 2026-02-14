@@ -31,10 +31,12 @@ action: Generate workflow, patterns, debugging, or tool integration documentatio
 # ─────────────────────────────────────────────────────────────────
 
 operating_mode:
-  workflow: sequential_5_step
+  workflow: sequential_6_step
   workflow_compliance: MANDATORY
   workflow_execution: interactive
   approvals: step_by_step
+  tracking: progressive_task_checklists
+  validation: checkpoint_based
   chained_support: true # Can be invoked from parent workflows (skill.md Step 8)
 
 development_philosophy:
@@ -206,7 +208,62 @@ checkpoint_options:
     description: "Make changes before proceeding"
 
 # ─────────────────────────────────────────────────────────────────
-# WORKFLOW (5 STEPS WITH CHECKPOINTS)
+# WORKFLOW ENFORCEMENT (CRITICAL)
+# ─────────────────────────────────────────────────────────────────
+workflow_enforcement:
+  mode: strict
+  step_order: sequential_mandatory
+  skip_allowed: false
+
+  critical_steps:
+    step_2_planning:
+      enforcement: "MUST define content structure based on reference type"
+      verification: "Cannot proceed without clear section plan"
+    step_4_content:
+      enforcement: "MUST follow template structure patterns"
+      verification: "All sections written with examples, no placeholders"
+    step_5_validation:
+      enforcement: "MUST update SKILL.md integration"
+      verification: "Navigation Guide and SMART ROUTING updated"
+
+# ─────────────────────────────────────────────────────────────────
+# CIRCUIT BREAKER
+# ─────────────────────────────────────────────────────────────────
+circuit_breaker:
+  consecutive_failure_threshold: 3
+  states:
+    closed: "Normal operation"
+    open: "3+ failures — pause and report to user"
+    half_open: "Test with single retry before resuming"
+  on_open:
+    action: "Report failures to user with summary"
+    suggest: "Review inputs and try again, or escalate"
+
+# ─────────────────────────────────────────────────────────────────
+# INTERACTIVE EXECUTION
+# ─────────────────────────────────────────────────────────────────
+interactive_execution:
+  principle: "Execute workflow steps with user approval at each checkpoint"
+  user_feedback_handling:
+    approve: "Continue to next step"
+    review: "Show detailed output before proceeding"
+    modify: "Apply requested changes and re-validate"
+    skip: "Mark step as skipped with reason, continue"
+
+# ─────────────────────────────────────────────────────────────────
+# QUALITY STANDARDS
+# ─────────────────────────────────────────────────────────────────
+quality_standards:
+  dqi_minimum: 75
+  dqi_enforcement: HARD_BLOCK
+  validation_pipeline:
+    stage_1: "python3 .opencode/scripts/validate_document.py [file]"
+    stage_2: "python3 .opencode/scripts/extract_structure.py [file]"
+  template_adherence: required
+  core_standards_reference: ".opencode/skill/workflows-documentation/references/core_standards.md"
+
+# ─────────────────────────────────────────────────────────────────
+# WORKFLOW (6 STEPS WITH CHECKPOINTS)
 # ─────────────────────────────────────────────────────────────────
 workflow:
   step_1_request_analysis:
@@ -562,6 +619,9 @@ completion_report:
 # ERROR RECOVERY
 # ─────────────────────────────────────────────────────────────────
 error_recovery:
+  template_not_found:
+    action: "Report template path, verify workflows-documentation skill exists"
+    fallback: "Use minimal structure based on reference type"
   skill_not_found:
     action: "List available skills, prompt for selection"
     options: [ "List skills", "Provide path", "Cancel" ]
@@ -574,6 +634,15 @@ error_recovery:
   no_references_dir:
     action: "Create directory automatically"
     command: "mkdir -p [skill-path]/references/"
+  validation_failure:
+    action: "Show specific errors, guide fixes, re-validate"
+    loop: true
+  file_write_failure:
+    action: "Check permissions, verify path exists"
+    fallback: "Report error and halt"
+  user_rejects_approach:
+    action: "Return to planning step, gather new requirements"
+    reset_to: step_2_planning
 
 # ─────────────────────────────────────────────────────────────────
 # REFERENCE TEMPLATES
@@ -583,20 +652,38 @@ reference_templates:
   core_standards: .opencode/skill/workflows-documentation/references/core_standards.md
 
 # ─────────────────────────────────────────────────────────────────
+# TERMINATION
+# ─────────────────────────────────────────────────────────────────
+termination:
+  after_step: step_6_save_context
+  message: "Reference creation workflow complete."
+  next_steps:
+    - condition: "Skill needs more references"
+      action: "Run /create:skill_reference [skill-name] [type]"
+    - condition: "Skill needs asset files"
+      action: "Run /create:skill_asset [skill-name] [type]"
+    - condition: "Want to validate complete skill"
+      action: "Run quick_validate.py [skill-path]"
+    - condition: "Context should be saved"
+      action: "Run /memory:save"
+
+# ─────────────────────────────────────────────────────────────────
 # RULES
 # ─────────────────────────────────────────────────────────────────
 rules:
   ALWAYS:
-  - use_skill_reference_template
-  - include_explicit_reasoning
-  - name_validation_checkpoints
-  - use_before_after_emojis
-  - update_skill_md_routing
-  - validate_before_claiming_complete
+  - "Copy templates from canonical paths, never create from memory"
+  - "Run validation before claiming completion"
+  - "Pause at checkpoints for user approval"
+  - "Respect user feedback and modification requests"
+  - "Include explicit reasoning in reference content"
+  - "Name all validation checkpoints"
+  - "Update SKILL.md routing after reference creation"
 
   NEVER:
-  - skip_core_principle
-  - create_without_examples
-  - leave_unnamed_checkpoints
-  - omit_language_in_code_blocks
-  - create_for_nonexistent_skill
+  - "Skip validation steps"
+  - "Create documents without loading templates first"
+  - "Proceed without user approval at checkpoints"
+  - "Leave placeholder text in final output"
+  - "Omit emojis from before/after examples (patterns type)"
+  - "Create references for non-existent skills"

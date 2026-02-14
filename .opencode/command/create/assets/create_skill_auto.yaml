@@ -1,10 +1,9 @@
 # ─────────────────────────────────────────────────────────────────
-# OPENCODE CREATE: SKILL CREATION WORKFLOW (CONFIRM MODE)
+# OPENCODE CREATE: SKILL CREATION WORKFLOW (AUTO MODE)
 # ─────────────────────────────────────────────────────────────────
-# Mode: confirm-only (interactive step-by-step approval)
-# Note: This workflow does NOT support :auto mode due to its complex
-#       multi-phase nature requiring user decisions at each checkpoint.
-#       All executions use interactive confirmation gates.
+# Mode: autonomous (no user approval gates)
+# Note: This workflow executes all steps sequentially with
+#       continuous self-validation. Pauses only if confidence < 40%.
 # ───────────────────────────────────────────────────────────────────
 role: Expert Skill Creator using workflows-documentation skill
 purpose: Create production-ready OpenCode skills with 9-step workflow
@@ -28,10 +27,10 @@ action: Guide skill creation from understanding through packaging with DQI verif
 operating_mode:
   workflow: sequential_9_step
   workflow_compliance: MANDATORY
-  workflow_execution: interactive
-  approvals: step_by_step
+  workflow_execution: autonomous
+  approvals: none
   tracking: progressive_task_checklists
-  validation: checkpoint_based_with_dqi
+  validation: continuous_self_validation
   resource_routing: dynamic_recommendation
 
 development_philosophy:
@@ -155,20 +154,6 @@ skill_references:
   validation: .opencode/skill/workflows-documentation/references/validation.md
 
 # ─────────────────────────────────────────────────────────────────
-# CHECKPOINT OPTIONS
-# ─────────────────────────────────────────────────────────────────
-checkpoint_options:
-  standard:
-  - label: "Approve"
-    description: "Approve and continue to next step"
-  - label: "Review"
-    description: "Show more details"
-  - label: "Modify"
-    description: "Make changes before proceeding"
-  - label: "Skip"
-    description: "Skip this step (if optional)"
-
-# ─────────────────────────────────────────────────────────────────
 # WORKFLOW ENFORCEMENT (CRITICAL)
 # ─────────────────────────────────────────────────────────────────
 workflow_enforcement:
@@ -189,19 +174,19 @@ workflow_enforcement:
   critical_steps:
     step_3_understanding:
       enforcement: "MUST gather 3-5 concrete usage examples"
-      verification: "Cannot proceed without user confirmation of examples"
+      verification: "Self-validate examples are concrete and actionable"
     step_6_content:
       enforcement: "MUST use skill_md_template.md structure"
       verification: "All 6 sections written, under 5000 words"
     step_7_validation:
       enforcement: "MUST run validation scripts"
-      verification: "DQI score ≥ 75 before claiming complete"
+      verification: "DQI score >= 75 before claiming complete"
     step_8_resource_routing:
-      enforcement: "MUST offer resource recommendations based on skill analysis"
-      verification: "User confirms resource selection before proceeding"
+      enforcement: "MUST analyze skill for resource opportunities"
+      verification: "Resource recommendations generated and applied"
 
 # ─────────────────────────────────────────────────────────────────
-# WORKFLOW (9 STEPS WITH CHECKPOINTS)
+# WORKFLOW (9 STEPS - AUTONOMOUS)
 # ─────────────────────────────────────────────────────────────────
 workflow:
   # ═══════════════════════════════════════════════════════════════
@@ -225,15 +210,6 @@ workflow:
     - skill_name_validated
     - skill_path_confirmed
     - skill_exists_check
-    checkpoint:
-      question: "Creating skill '[skill-name]' at [path]. Proceed?"
-      options:
-      - label: "A) Proceed"
-        description: "Create skill with these settings"
-      - label: "B) Change name"
-        description: "Use a different skill name"
-      - label: "C) Change path"
-        description: "Use a different output location"
 
   step_1b_skill_discovery:
     purpose: Search for similar existing skills before creating new one (MANDATORY)
@@ -264,21 +240,12 @@ workflow:
       - Note existing patterns that could be reused
     validation:
       similar_exists_threshold: "name match or significant keyword overlap"
-      action_if_found: "SOFT_BLOCK - Present findings to user"
+      action_if_found: "Log finding and proceed unless exact duplicate"
     outputs:
     - similar_skills_found: list_of_matching_skills
     - reusable_patterns: patterns_to_consider
     - proceed_recommendation: boolean
-    checkpoint:
-      condition: "similar_skills_found.length > 0"
-      question: "Found similar skill(s): [skill_names]. Continue creating new skill?"
-      options:
-      - label: "A) Proceed anyway"
-        description: "Create new skill despite similar existing one"
-      - label: "B) Review existing first"
-        description: "Load and review the similar skill before deciding"
-      - label: "C) Abort"
-        description: "Cancel skill creation"
+    auto_decision: "Proceed unless exact name match found; log similar skills for reference"
     skip_condition: "User explicitly skips discovery"
 
   step_2_spec_folder_setup:
@@ -300,9 +267,6 @@ workflow:
     outputs:
     - spec.md: created_with_context
     - plan.md: created_with_approach
-    checkpoint:
-      question: "Spec folder created/confirmed. Continue to understanding phase?"
-      options: checkpoint_options.standard
 
   step_3_understanding:
     purpose: Gather concrete usage examples (CRITICAL - DO NOT SKIP)
@@ -333,15 +297,6 @@ workflow:
     - success_criteria: "what done looks like"
     - anti_patterns: "what not to do"
     validation: examples_gathered
-    checkpoint:
-      question: "I've identified these use cases: [list]. Is this correct?"
-      options:
-      - label: "A) Approve"
-        description: "These examples are correct"
-      - label: "B) Add more"
-        description: "Add additional examples"
-      - label: "C) Modify"
-        description: "Change existing examples"
 
   step_4_planning:
     purpose: Identify bundled resources needed
@@ -382,12 +337,9 @@ workflow:
     - references_list: identified
     - assets_list: identified
     validation: resources_planned
-    checkpoint:
-      question: "Resource plan complete. Review?"
-      options: checkpoint_options.standard
 
   # ═══════════════════════════════════════════════════════════════
-  # 🔒 PHASE GATE: PLANNING → IMPLEMENTATION
+  # PHASE GATE: PLANNING -> IMPLEMENTATION
   # ═══════════════════════════════════════════════════════════════
   phase_gate_planning_to_implementation:
     trigger: "After Step 4 completes"
@@ -396,16 +348,16 @@ workflow:
       BEFORE proceeding to Implementation Phase (Steps 5-9):
 
       VERIFY all planning artifacts exist:
-      ├─ [ ] Examples gathered (3-5 concrete use cases)
-      ├─ [ ] Trigger patterns identified
-      ├─ [ ] Resource plan created (scripts, references, assets)
-      ├─ [ ] Success criteria defined
+      - [ ] Examples gathered (3-5 concrete use cases)
+      - [ ] Trigger patterns identified
+      - [ ] Resource plan created (scripts, references, assets)
+      - [ ] Success criteria defined
 
       IF any artifact missing:
-      └─ STOP → Return to appropriate step (3 or 4) → Complete it → Return here
+        STOP -> Return to appropriate step (3 or 4) -> Complete it -> Return here
 
       WHEN all artifacts verified:
-      └─ SET PHASE GATE STATUS: ✅ PASSED → Proceed to Step 5
+        SET PHASE GATE STATUS: PASSED -> Proceed to Step 5
     action_if_failed: "Return to incomplete step"
 
   # ═══════════════════════════════════════════════════════════════
@@ -431,35 +383,32 @@ workflow:
     - skill_scaffolded: true
     - directories_created: list
     validation: skill_scaffolded
-    checkpoint:
-      question: "Skill scaffolded. Proceed to content creation?"
-      options: checkpoint_options.standard
 
   step_6_content_creation:
     purpose: Populate SKILL.md and bundled resources
     activities:
     - Load skill_md_template.md for structure reference
     - Fill YAML frontmatter (name, description, allowed-tools, version)
-    - "Write Section 1 - 🎯 WHEN TO USE (activation triggers and use cases ONLY)"
-    - "Write Section 2 - 🧭 SMART ROUTING (Activation Detection flowchart + Resource Router)"
-    - "Write Section 3 - 🛠️ HOW IT WORKS"
-    - "Write Section 4 - 📋 RULES (ALWAYS/NEVER/ESCALATE IF)"
-    - "Write Section 5 - 🏆 SUCCESS CRITERIA"
-    - "Write Section 6 - 🔌 INTEGRATION POINTS"
-    - "Write Section 7 - 📋 QUICK REFERENCE (optional)"
-    - "Write Section 8 - 📦 BUNDLED RESOURCES (optional)"
+    - "Write Section 1 - WHEN TO USE (activation triggers and use cases ONLY)"
+    - "Write Section 2 - SMART ROUTING (Activation Detection flowchart + Resource Router)"
+    - "Write Section 3 - HOW IT WORKS"
+    - "Write Section 4 - RULES (ALWAYS/NEVER/ESCALATE IF)"
+    - "Write Section 5 - SUCCESS CRITERIA"
+    - "Write Section 6 - INTEGRATION POINTS"
+    - "Write Section 7 - QUICK REFERENCE (optional)"
+    - "Write Section 8 - BUNDLED RESOURCES (optional)"
     - Create bundled resources from Step 4 plan
     - Delete unused example/placeholder files
     section_boundary_rules:
       critical_distinction: |
-        ❌ WRONG: Navigation Guide in "When to Use"
-        ❌ WRONG: Separate "Navigation Guide" subsection listing files
-        ✅ RIGHT: File refs inline in Activation Detection flowchart and Resource Router
+        WRONG: Navigation Guide in "When to Use"
+        WRONG: Separate "Navigation Guide" subsection listing files
+        RIGHT: File refs inline in Activation Detection flowchart and Resource Router
 
         "When to Use" = WHEN (triggers, conditions, use cases)
         "Smart Routing" = WHAT (files inline in flowchart + Router load() calls)
 
-        ⚠️ ANTI-PATTERN: Do NOT create a separate "Navigation Guide" - it's redundant
+        ANTI-PATTERN: Do NOT create a separate "Navigation Guide" - it's redundant
       section_1_when_to_use:
         allowed_content:
         - Activation Triggers
@@ -495,15 +444,6 @@ workflow:
     - skill_md: complete
     - resources_created: list
     validation: content_complete
-    checkpoint:
-      question: "SKILL.md and resources created. Review content?"
-      options:
-      - label: "A) Show SKILL.md"
-        description: "Display the main skill file"
-      - label: "B) Show resources"
-        description: "List created resources"
-      - label: "C) Proceed"
-        description: "Continue to validation"
 
   step_7_validation:
     purpose: Quality checks and DQI scoring
@@ -511,7 +451,7 @@ workflow:
     activities:
     - Run quick_validate.py for frontmatter and structure check
     - Run extract_structure.py for DQI score calculation
-    - Verify DQI score ≥ 75 (Good band)
+    - Verify DQI score >= 75 (Good band)
     - IF validation fails: Fix issues and re-run
     - Repeat until passing
     script_executions:
@@ -542,22 +482,13 @@ workflow:
     - dqi_score: number
     - dqi_band: string
     validation: quality_verified
-    checkpoint:
-      question: "Validation complete. DQI: [score] ([band]). Proceed to resource routing?"
-      options:
-      - label: "A) Continue to resource routing"
-        description: "Get AI recommendations for additional resources"
-      - label: "B) Review DQI"
-        description: "Show detailed quality breakdown"
-      - label: "C) Fix issues"
-        description: "Address validation failures and revalidate"
 
   step_8_resource_routing:
     purpose: Offer AI-driven resource recommendations based on skill analysis
     activities:
     - Analyze skill content for resource opportunities
     - Generate recommendations based on trigger analysis
-    - Present recommendations with rationale
+    - Auto-select recommended resources based on confidence
     - Execute chained commands for selected resources
     - Update SKILL.md with new resource references
     trigger_analysis:
@@ -586,25 +517,10 @@ workflow:
       - trigger: "Step-by-step instructions needed"
         recommendation: "guide asset"
         command: "/create:skill_asset [skill-name] guide --chained"
-    presentation_format: |
-      ┌────────────────────────────────────────────────────────────┐
-      │ 📚 Resource Recommendations for [skill-name]               │
-      │                                                            │
-      │ Based on your skill's content, I recommend:                │
-      │                                                            │
-      │ [A] workflow reference                                      │
-      │     Why: [rationale based on trigger analysis]             │
-      │                                                            │
-      │ [B] debugging reference                                    │
-      │     Why: [rationale based on trigger analysis]             │
-      │                                                            │
-      │ [C] template asset                                         │
-      │     Why: [rationale based on trigger analysis]             │
-      │                                                            │
-      │ [skip] Continue without additional resources               │
-      │                                                            │
-      │ Select options (e.g., "A, C" or "all" or "skip"):          │
-      └────────────────────────────────────────────────────────────┘
+    auto_selection:
+      mode: "confidence-based"
+      threshold: "Select resources where trigger confidence >= 70%"
+      log: "Report selected resources and rationale"
     chained_execution:
       mode: "sequential"
       pass_parameters:
@@ -619,8 +535,8 @@ workflow:
       - "Resource Router"
       format: |
         Add to Activation Detection flowchart:
-        ├─► [condition]
-        │   └─► Load: [resource_path]
+        - [condition]
+          -> Load: [resource_path]
 
         Add to Resource Router:
         # [Category Name]
@@ -628,20 +544,11 @@ workflow:
         if context.[condition]:
             return load("[resource_path]")  # [brief description]
     outputs:
-    - recommendations_presented: list
-    - user_selections: list
+    - recommendations_generated: list
+    - resources_auto_selected: list
     - resources_created: list
     - skill_md_updated: boolean
     validation: resources_routed
-    checkpoint:
-      question: "Resource creation complete. [N] resources added. Continue to save context?"
-      options:
-      - label: "A) Save context and finish"
-        description: "Complete workflow with context preservation"
-      - label: "B) Add more resources"
-        description: "Return to resource recommendations"
-      - label: "C) Skip context saving"
-        description: "Complete without saving context"
 
   step_9_save_context:
     purpose: Preserve workflow decisions and context
@@ -666,13 +573,6 @@ workflow:
     outputs:
     - memory_file: "specs/[NNN]-[skill-name]/memory/[timestamp]_skill_creation.md"
     validation: context_saved
-    checkpoint:
-      question: "Context saved. Skill creation complete!"
-      options:
-      - label: "Done"
-        description: "Complete workflow"
-      - label: "View summary"
-        description: "Show final summary"
 
     # ── SEMANTIC MEMORY INTEGRATION ─────────────────────────────────
     post_save_indexing:
@@ -732,11 +632,46 @@ workflow:
         deprecated: Outdated but retained
 
 # ─────────────────────────────────────────────────────────────────
+# CIRCUIT BREAKER
+# ─────────────────────────────────────────────────────────────────
+circuit_breaker:
+  consecutive_failure_threshold: 3
+  states:
+    closed: "Normal operation"
+    open: "3+ failures — pause and report to user"
+    half_open: "Test with single retry before resuming"
+  on_open:
+    action: "Report failures to user with summary"
+    suggest: "Review inputs and try again, or escalate"
+
+# ─────────────────────────────────────────────────────────────────
+# AUTONOMOUS EXECUTION
+# ─────────────────────────────────────────────────────────────────
+autonomous_execution:
+  principle: "Execute workflow steps sequentially without user approval gates"
+  decision_making: "Use confidence framework to self-assess at each step"
+  uncertainty_handling: "If confidence < 40%, pause and report to user"
+  progress_tracking: "Log step completion with validation status"
+  completion_criteria: "All steps validated, DQI >= 75, all files created"
+
+# ─────────────────────────────────────────────────────────────────
+# QUALITY STANDARDS
+# ─────────────────────────────────────────────────────────────────
+quality_standards:
+  dqi_minimum: 75
+  dqi_enforcement: HARD_BLOCK
+  validation_pipeline:
+    stage_1: "python3 .opencode/scripts/validate_document.py [file]"
+    stage_2: "python3 .opencode/scripts/extract_structure.py [file]"
+  template_adherence: required
+  core_standards_reference: ".opencode/skill/workflows-documentation/references/core_standards.md"
+
+# ─────────────────────────────────────────────────────────────────
 # COMPLETION REPORT TEMPLATE
 # ─────────────────────────────────────────────────────────────────
 completion_report:
   template: |
-    ✅ Skill Creation Complete
+    Skill Creation Complete
 
     Skill: [skill-name]
     Location: [full-path]
@@ -751,14 +686,14 @@ completion_report:
     Resources Added (Step 8):
     - [resource_1] ([type])
     - [resource_2] ([type])
-    - (or "None - user skipped")
+    - (or "None - auto-skipped")
 
     Spec Folder: specs/[NNN]-[skill-name]/
     Memory: [timestamp]_skill_creation.md
 
     Validation:
     - quick_validate: PASSED
-    - DQI: [score] ≥ 75 ✅
+    - DQI: [score] >= 75
 
     Next Steps:
     - Test skill with real examples
@@ -780,6 +715,15 @@ error_recovery:
   init_script_fails:
     action: "Check permissions, verify path exists, create directories manually"
     fallback: "mkdir -p [skill-path]/{scripts,references,assets}"
+  template_not_found:
+    action: "Check template paths, verify skill exists"
+    fallback: "Use inline minimal template"
+  validation_failure:
+    action: "Report specific failures, suggest fixes"
+    retry: true
+  file_write_failure:
+    action: "Check permissions, verify path exists"
+    retry: true
   validation_fails:
     action: "Show specific errors, guide fixes, re-validate"
     loop: true
@@ -791,30 +735,36 @@ error_recovery:
     - "Check for placeholder text"
 
 # ─────────────────────────────────────────────────────────────────
+# TERMINATION
+# ─────────────────────────────────────────────────────────────────
+termination:
+  after_step: step_9_save_context
+  message: "Skill creation workflow complete."
+  next_steps:
+    - condition: "Skill needs reference files"
+      action: "Run /create:skill_reference"
+    - condition: "Skill needs asset files"
+      action: "Run /create:skill_asset"
+    - condition: "Skill needs testing"
+      action: "Invoke skill and test with sample input"
+    - condition: "Context should be saved"
+      action: "Run /memory:save"
+
+# ─────────────────────────────────────────────────────────────────
 # RULES
 # ─────────────────────────────────────────────────────────────────
 rules:
   ALWAYS:
-  - start_with_concrete_examples
-  - use_templates_not_scratch
-  - validate_before_claiming_complete
-  - offer_resource_recommendations_after_validation
-  - save_context_on_completion
-  - keep_skill_md_under_5k_words
-  - use_third_person_voice_in_description
-  - use_imperative_voice_in_instructions
-  - mark_step_complete_only_after_verification
-  - put_file_refs_inline_in_activation_detection_flowchart
-  - put_file_refs_inline_in_resource_router_load_calls
-  - keep_when_to_use_focused_on_triggers_only
-
+    - "Self-validate at each step before proceeding"
+    - "Copy templates from canonical paths, never create from memory"
+    - "Run validation before claiming completion"
+    - "Reference core_standards.md for formatting rules"
+    - "Save context after successful completion"
+    - "Report progress at key milestones"
   NEVER:
-  - skip_understanding_phase
-  - create_skill_without_examples
-  - claim_complete_with_failing_validation
-  - auto_create_resources_without_user_selection
-  - use_second_person_voice
-  - include_angle_brackets_in_frontmatter
-  - proceed_past_phase_gate_without_verification
-  - put_file_references_in_when_to_use_section
-  - create_separate_navigation_guide_subsection
+    - "Prompt user for approval at checkpoints"
+    - "Skip validation steps"
+    - "Create documents without loading templates first"
+    - "Leave placeholder text in final output"
+    - "Ignore DQI score below minimum threshold"
+    - "Over-engineer or expand beyond stated scope"

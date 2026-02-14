@@ -1,48 +1,83 @@
 ---
-description: Create an asset file for an existing skill - templates, lookups, examples, or guides - supports :auto and :confirm modes
+description: "Create an asset file for an existing skill - templates, lookups, examples, or guides - supports :auto and :confirm modes"
 argument-hint: "<skill-name> <asset-type> [--chained] [:auto|:confirm]"
 allowed-tools: Read, Write, Edit, Bash, Glob, Grep, TodoWrite
 ---
 
 > ⚠️ **EXECUTION PROTOCOL — READ FIRST**
 >
-> **YOU are the executor.** Run this workflow directly — do NOT delegate to other agents.
-> Do NOT use the Task tool to dispatch sub-agents.
+> This command runs a structured YAML workflow. Do NOT dispatch agents from this document.
 >
-> **WORKFLOW SEQUENCE:**
-> 1. Run Phase 0: Verify you are the @write agent (self-check, not a dispatch)
-> 2. Run the Unified Setup Phase: gather user inputs in one consolidated prompt
-> 3. Load the YAML workflow: `assets/create_skill_asset.yaml`
-> 4. Execute the YAML steps sequentially
+> **YOUR FIRST ACTION:**
+> 1. Run Phase 0: @write agent self-verification (below)
+> 2. Run Setup Phase: consolidated prompt to gather inputs
+> 3. Determine execution mode from user input (`:auto` or `:confirm`)
+> 4. Load the corresponding YAML file from `assets/`:
+>    - Auto mode → `create_skill_asset_auto.yaml`
+>    - Confirm mode → `create_skill_asset_confirm.yaml`
+> 5. Execute the YAML workflow step by step
 >
 > The @write references below are self-verification checks — not dispatch instructions.
-> Content after the setup phases is reference context for the YAML workflow.
-
-## ⚡ GATE 3 STATUS: EXEMPT (Predefined Location)
-
-**This command creates files at a predefined location and is EXEMPT from the spec folder question.**
-
-| Property        | Value                                                                                |
-| --------------- | ------------------------------------------------------------------------------------ |
-| **Location**    | `.opencode/skill/[skill-name]/references/` or `.opencode/skill/[skill-name]/assets/` |
-| **Reason**      | Skill-internal files, not project documentation                                      |
-| **Alternative** | Use `/create:skill` for full skill creation with spec folder                         |
+> All content after the Setup Phase is reference context for the YAML workflow.
 
 ---
 
-# 🚨 SINGLE CONSOLIDATED PROMPT - ONE USER INTERACTION
+# 🚨 PHASE 0: @WRITE AGENT VERIFICATION
 
-**This workflow uses a SINGLE consolidated prompt to gather ALL required inputs in ONE user interaction.**
+**STATUS: ☐ BLOCKED**
+
+```
+EXECUTE THIS AUTOMATIC SELF-CHECK (NOT A USER QUESTION):
+
+SELF-CHECK: Are you operating as the @write agent?
+│
+├─ INDICATORS that you ARE @write agent:
+│   ├─ You were invoked with "@write" prefix
+│   ├─ You have template-first workflow capabilities
+│   ├─ You load templates BEFORE creating content
+│   ├─ You validate template alignment AFTER creating
+│
+├─ IF YES (all indicators present):
+│   └─ write_agent_verified = TRUE → Continue to Setup Phase
+│
+└─ IF NO or UNCERTAIN:
+    │
+    ├─ ⛔ HARD BLOCK - DO NOT PROCEED
+    │
+    ├─ DISPLAY to user:
+    │   ┌────────────────────────────────────────────────────────────┐
+    │   │ ⛔ WRITE AGENT REQUIRED                                    │
+    │   │                                                            │
+    │   │ This command requires the @write agent for:                │
+    │   │   • Template-first workflow (loads before creating)          │
+    │   │   • DQI scoring (target: 75+ Good)                         │
+    │   │   • workflows-documentation skill integration               │
+    │   │                                                            │
+    │   │ To proceed, restart with:                                  │
+    │   │   @write /create:skill_asset [skill-name] [type]           │
+    │   │                                                            │
+    │   │ Reference: .opencode/agent/write.md                        │
+    │   └────────────────────────────────────────────────────────────┘
+    │
+    └─ RETURN: STATUS=FAIL ERROR="Write agent required"
+```
+
+**Phase Output:**
+- `write_agent_verified = ________________`
+
+---
+
+# 🔒 UNIFIED SETUP PHASE
+
+**STATUS: ☐ BLOCKED**
+
+**🚨 SINGLE CONSOLIDATED PROMPT - ONE USER INTERACTION**
+
+This workflow uses a SINGLE consolidated prompt to gather ALL required inputs in ONE user interaction.
 
 **Round-trip optimization:** This workflow requires only 1 user interaction (0 if --chained).
 
 **⚡ CHAINED EXECUTION MODE:** If invoked with `--chained` flag, skip to workflow with provided parameters.
-
----
-
-## 🔒 UNIFIED SETUP PHASE
-
-**STATUS: ☐ BLOCKED / ⏭️ N/A if chained**
 
 ```
 EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
@@ -58,7 +93,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    │   │
    │   ├─ IF all parameters present:
    │   │   ├─ SET STATUS: ⏭️ N/A (chained mode - all inputs from parent)
-   │   │   └─ SKIP directly to "# Asset Creation" workflow section
+   │   │   └─ SKIP directly to "⚡ INSTRUCTIONS" section
    │   │
    │   └─ IF parameters missing:
    │       └─ FALL THROUGH to step 2 (normal execution)
@@ -66,59 +101,27 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    └─ IF NOT chained:
        └─ PROCEED to step 2
 
-2. CHECK Phase 0: @write agent verification (automatic):
-   ├─ SELF-CHECK: Are you operating as the @write agent?
-   │   │
-   │   ├─ INDICATORS that you ARE @write agent:
-   │   │   ├─ You were invoked with "@write" prefix
-   │   │   ├─ You have template-first workflow capabilities
-   │   │   ├─ You load templates BEFORE creating content
-   │   │
-   │   ├─ IF YES (all indicators present):
-   │   │   └─ CONTINUE to step 3
-   │   │
-   │   └─ IF NO or UNCERTAIN:
-   │       │
-   │       ├─ ⛔ HARD BLOCK - DO NOT PROCEED
-   │       │
-   │       ├─ DISPLAY to user:
-   │       │   ┌────────────────────────────────────────────────────────────┐
-   │       │   │ ⛔ WRITE AGENT REQUIRED                                    │
-   │       │   │                                                            │
-   │       │   │ This command requires the @write agent for:                │
-   │       │   │   • Template-first workflow                                  │
-   │       │   │   • DQI scoring                                            │
-   │       │   │   • workflows-documentation skill integration               │
-   │       │   │                                                            │
-   │       │   │ To proceed, restart with:                                  │
-   │       │   │   @write /create:skill_asset [args]                        │
-   │       │   │                                                            │
-   │       │   │ Reference: .opencode/agent/write.md                        │
-   │       │   └────────────────────────────────────────────────────────────┘
-   │       │
-   │       └─ RETURN: STATUS=FAIL ERROR="Write agent required"
-
-3. CHECK for mode suffix in $ARGUMENTS or command invocation:
+2. CHECK for mode suffix in $ARGUMENTS or command invocation:
    ├─ ":auto" suffix detected → execution_mode = "AUTONOMOUS" (pre-set, omit Q2)
    ├─ ":confirm" suffix detected → execution_mode = "INTERACTIVE" (pre-set, omit Q2)
    └─ No suffix → execution_mode = "ASK" (include Q2 in prompt)
 
-4. CHECK if $ARGUMENTS contains skill name and asset type:
+3. CHECK if $ARGUMENTS contains skill name and asset type:
    ├─ IF $ARGUMENTS has skill_name → omit Q0
    ├─ IF $ARGUMENTS has valid asset_type (template/lookup/example/guide) → omit Q1
    └─ IF $ARGUMENTS is empty or incomplete → include applicable questions
 
-5. List available skills:
+4. List available skills:
    $ ls .opencode/skill/*/SKILL.md 2>/dev/null | sed 's|.*/skill/||;s|/SKILL.md||'
 
-6. ASK user with SINGLE CONSOLIDATED prompt (include only applicable questions):
+5. ASK user with SINGLE CONSOLIDATED prompt (include only applicable questions):
 
    ┌────────────────────────────────────────────────────────────────┐
    │ **Before proceeding, please answer:**                          │
    │                                                                │
-   │ **Q0. Skill Name** (if not provided):                          │
+   │ **Q0. Skill Name** (if not provided in command):               │
    │    Which existing skill needs an asset?                        │
-   │    Available: [list from step 5]                               │
+   │    Available: [list from step 4]                               │
    │                                                                │
    │ **Q1. Asset Type** (required):                                 │
    │    A) Template - Copy-paste starting points                    │
@@ -133,20 +136,20 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    │ Reply with answers, e.g.: "A, A" or "my-skill, A, A"           │
    └────────────────────────────────────────────────────────────────┘
 
-7. WAIT for user response (DO NOT PROCEED)
+6. WAIT for user response (DO NOT PROCEED)
 
-8. Parse response and store ALL results:
+7. Parse response and store ALL results:
    - skill_name = [from Q0 or $ARGUMENTS]
    - asset_type = [A=template, B=lookup, C=example, D=guide from Q1 or $ARGUMENTS]
    - execution_mode = [AUTONOMOUS/INTERACTIVE from suffix or Q2]
 
-9. Verify skill exists (inline check, not separate phase):
+8. Verify skill exists (inline check, not separate phase):
    ├─ Run: ls -d .opencode/skill/[skill_name] 2>/dev/null
    │
    ├─ IF skill found:
    │   ├─ Store path as: skill_path
    │   ├─ Verify SKILL.md exists
-   │   └─ CONTINUE to step 10
+   │   └─ CONTINUE to step 9
    │
    └─ IF skill NOT found:
        │
@@ -160,26 +163,83 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
        │   └────────────────────────────────────────────────────────────┘
        │
        ├─ WAIT for response
-       └─ Process based on choice, then retry step 9
+       └─ Process based on choice, then retry step 8
 
-10. SET STATUS: ✅ PASSED
+9. SET STATUS: ✅ PASSED
 
 **STOP HERE** - Wait for user to answer ALL applicable questions before continuing.
 
 ⛔ HARD STOP: DO NOT proceed until user explicitly answers
+⛔ NEVER auto-create spec folders without user confirmation
+⛔ NEVER auto-select execution mode without suffix or explicit choice
 ⛔ NEVER split these questions into multiple prompts
-⛔ NEVER infer skill name from context or conversation history
+⛔ NEVER infer skill names from context, screenshots, or conversation history
 ⛔ NEVER assume asset type without explicit input
 ⛔ NEVER create assets for non-existent skills
 ```
 
 **Phase Output:**
+- `write_agent_verified = ________________`
 - `skill_name = ________________`
 - `asset_type = ________________`
 - `skill_path = ________________`
 - `execution_mode = ________________`
 
 ---
+
+## ✅ PHASE STATUS VERIFICATION (BLOCKING)
+
+**Before continuing to the workflow, verify ALL values are set:**
+
+| FIELD          | REQUIRED | YOUR VALUE | SOURCE                  |
+| -------------- | -------- | ---------- | ----------------------- |
+| write_agent_verified | ✅ Yes         | ______     | Automatic check        |
+| skill_name     | ✅ Yes    | ______     | Q0 or $ARGUMENTS        |
+| asset_type     | ✅ Yes    | ______     | Q1 or $ARGUMENTS        |
+| skill_path     | ✅ Yes    | ______     | Derived from skill_name |
+| execution_mode | ✅ Yes    | ______     | Suffix or Q2            |
+
+```
+VERIFICATION CHECK:
+├─ IF chained mode (--chained flag):
+│   └─ All values from parent? → Proceed to "⚡ INSTRUCTIONS"
+│
+├─ IF normal mode:
+│   └─ ALL required fields have values? → Proceed to "⚡ INSTRUCTIONS"
+│
+└─ OTHERWISE → Re-prompt for missing values only
+```
+
+---
+
+## ⚡ INSTRUCTIONS
+
+After Phase 0 and Setup Phase pass, load and execute the appropriate YAML workflow:
+
+- **AUTONOMOUS (`:auto`)**: `.opencode/command/create/assets/create_skill_asset_auto.yaml`
+- **INTERACTIVE (`:confirm`)**: `.opencode/command/create/assets/create_skill_asset_confirm.yaml`
+
+The YAML contains: detailed step activities, checkpoints, confidence scoring, error recovery, validation gates, resource routing, and completion reporting.
+
+---
+
+> **📚 REFERENCE CONTEXT** — The sections below provide reference information for the YAML workflow. They are NOT direct execution instructions.
+
+---
+
+## ⛔ GATE 3 STATUS: EXEMPT (Predefined Location)
+
+**This command creates files at a predefined location and is EXEMPT from the spec folder question.**
+
+| Property        | Value                                                                                |
+| --------------- | ------------------------------------------------------------------------------------ |
+| **Location**    | `.opencode/skill/[skill-name]/references/` or `.opencode/skill/[skill-name]/assets/` |
+| **Reason**      | Skill-internal files, not project documentation                                      |
+| **Alternative** | Use `/create:skill` for full skill creation with spec folder                         |
+
+---
+
+<!-- REFERENCE ONLY -->
 
 ## 📋 MODE BEHAVIORS
 
@@ -195,30 +255,6 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
 - Best for: New users, learning workflows, high-stakes changes
 
 **Default:** INTERACTIVE (creation workflows benefit from confirmation)
-
----
-
-## ✅ PHASE STATUS VERIFICATION (BLOCKING)
-
-**Before continuing to the workflow, verify ALL values are set:**
-
-| FIELD          | REQUIRED | YOUR VALUE | SOURCE                  |
-| -------------- | -------- | ---------- | ----------------------- |
-| skill_name     | ✅ Yes    | ______     | Q0 or $ARGUMENTS        |
-| asset_type     | ✅ Yes    | ______     | Q1 or $ARGUMENTS        |
-| skill_path     | ✅ Yes    | ______     | Derived from skill_name |
-| execution_mode | ✅ Yes    | ______     | Suffix or Q2            |
-
-```
-VERIFICATION CHECK:
-├─ IF chained mode (--chained flag):
-│   └─ All values from parent? → Proceed to workflow
-│
-├─ IF normal mode:
-│   └─ ALL required fields have values? → Proceed to workflow
-│
-└─ OTHERWISE → Re-prompt for missing values only
-```
 
 ---
 
@@ -243,129 +279,7 @@ VERIFICATION CHECK:
 5. RESUME only after all fields are set
 ```
 
----
-
-# 📊 WORKFLOW EXECUTION - MANDATORY TRACKING
-
-**⛔ ENFORCEMENT RULE:** Execute steps IN ORDER (1→5). Mark each step ✅ ONLY after completing ALL its activities and verifying outputs. DO NOT SKIP STEPS.
-
----
-
-## WORKFLOW TRACKING
-
-| STEP | NAME          | STATUS | REQUIRED OUTPUT        | VERIFICATION               |
-| ---- | ------------- | ------ | ---------------------- | -------------------------- |
-| 1    | Analysis      | ☐      | Skill path, asset type | Skill verified, type valid |
-| 2    | Planning      | ☐      | Filename, sections     | File spec determined       |
-| 3    | Template Load | ☐      | Structure patterns     | Template loaded            |
-| 4    | Content       | ☐      | [asset_name].md        | Asset file created         |
-| 5    | Validation    | ☐      | Updated SKILL.md       | Integration complete       |
-
----
-
-## 📊 WORKFLOW DIAGRAM
-
-```mermaid
-flowchart TD
-    subgraph phases["Pre-Execution Phases"]
-        P0["Phase 0: @write Agent Verification"]
-        PC["Phase C: Chained Check"]
-        P1["Phase 1: Input Validation"]
-        P2["Phase 2: Skill Verification"]
-    end
-
-    subgraph workflow["5-Step Workflow"]
-        S1["Step 1: Analysis"]
-        S2["Step 2: Planning"]
-        S3["Step 3: Template Load"]
-        S4["Step 4: Content Creation"]
-        S5["Step 5: Validation"]
-    end
-
-    START((Start)) --> CHAINED{--chained flag?}
-
-    CHAINED -->|Yes| PC
-    CHAINED -->|No| P0
-
-    P0 --> P0_GATE{@write agent?}
-    P0_GATE -->|No| BLOCK[/"⛔ HARD BLOCK<br/>Restart with @write"/]
-    P0_GATE -->|Yes| PC
-
-    PC --> PC_GATE{Parent params<br/>provided?}
-    PC_GATE -->|Yes, skip P1-P2| S1
-    PC_GATE -->|No| P1
-
-    P1 --> P1_GATE{skill_name &<br/>asset_type?}
-    P1_GATE -->|Missing| ASK1[/"Ask user for input"/]
-    ASK1 --> P1
-    P1_GATE -->|Valid| P2
-
-    P2 --> P2_GATE{Skill exists?}
-    P2_GATE -->|No| ASK2[/"Ask: A) Correct name<br/>B) Full path<br/>C) Create skill"/]
-    ASK2 --> P2
-    P2_GATE -->|Yes| S1
-
-    S1 --> S2
-    S2 --> S3
-    S3 --> S4
-    S4 --> S5
-    S5 --> DONE((Complete))
-
-    classDef phase fill:#1e3a5f,stroke:#3b82f6,color:#fff
-    classDef gate fill:#7c2d12,stroke:#ea580c,color:#fff
-    classDef verify fill:#065f46,stroke:#10b981,color:#fff
-    classDef block fill:#7f1d1d,stroke:#ef4444,color:#fff
-
-    class P0,PC,P1,P2 phase
-    class P0_GATE,PC_GATE,P1_GATE,P2_GATE,CHAINED gate
-    class S1,S2,S3,S4,S5,DONE verify
-    class BLOCK block
-```
-
----
-
-## ⛔ CRITICAL ENFORCEMENT RULES
-
-```
-STEP 2 (Planning) REQUIREMENTS:
-├─ MUST determine filename following naming conventions
-├─ MUST identify sections based on asset type
-├─ MUST plan content structure before generation
-└─ MUST NOT proceed without clear file spec
-
-STEP 4 (Content) REQUIREMENTS:
-├─ MUST follow asset template structure
-├─ MUST include examples appropriate to asset type
-├─ MUST create content matching the asset purpose
-└─ MUST NOT leave placeholder content
-
-STEP 5 (Validation) REQUIREMENTS:
-├─ MUST update SKILL.md Navigation Guide
-├─ MUST add routing rules to SMART ROUTING section
-├─ MUST verify asset is complete and functional
-└─ MUST NOT claim "complete" without SKILL.md update
-```
-
----
-
-# Asset Creation
-
-Create a new asset file for an existing skill following the `skill_asset_template.md` structure.
-
----
-
-```yaml
-role: Expert Asset Creator using workflows-documentation skill
-purpose: Create skill asset files (templates, lookups, examples, guides)
-action: Generate properly structured asset files with validation
-
-operating_mode:
-  workflow: sequential_5_step
-  workflow_compliance: MANDATORY
-  workflow_execution: interactive
-  approvals: step_by_step
-  chained_support: true
-```
+<!-- END REFERENCE -->
 
 ---
 
@@ -388,35 +302,22 @@ $ARGUMENTS
 
 ---
 
-## 3. ⚡ INSTRUCTIONS
+## 3. 📊 WORKFLOW EXECUTION - MANDATORY TRACKING
 
-### Step 4: Verify Unified Setup Passed
+**⛔ ENFORCEMENT RULE:** Execute steps IN ORDER (1→6). Mark each step ✅ ONLY after completing ALL its activities and verifying outputs. DO NOT SKIP STEPS.
 
-Confirm you have these values from the unified setup phase:
-- `skill_name` from Q0 or $ARGUMENTS
-- `asset_type` from Q1 or $ARGUMENTS
-- `skill_path` derived from skill_name verification
-- `execution_mode` from suffix or Q2
+---
 
-**If ANY field is incomplete, STOP and return to the UNIFIED SETUP PHASE section.**
+## WORKFLOW TRACKING
 
-### Step 5: Load & Execute Workflow
-
-Load and execute the workflow definition:
-
-```
-.opencode/command/create/assets/create_skill_asset.yaml
-```
-
-The YAML file contains:
-- Asset type specifications and naming conventions
-- Step-by-step activities with checkpoints
-- Content structure patterns per asset type
-- SKILL.md integration procedures
-- Validation requirements
-- Completion report template
-
-Execute all 5 steps in sequence following the workflow definition.
+| STEP | NAME          | STATUS | REQUIRED OUTPUT        | VERIFICATION               |
+| ---- | ------------- | ------ | ---------------------- | -------------------------- |
+| 1    | Analysis      | ☐      | Skill path, asset type | Skill verified, type valid |
+| 2    | Planning      | ☐      | Filename, sections     | File spec determined       |
+| 3    | Template Load | ☐      | Structure patterns     | Template loaded            |
+| 4    | Content       | ☐      | [asset_name].md        | Asset file created         |
+| 5    | Validation    | ☐      | Updated SKILL.md       | Integration complete       |
+| 6    | Save Context  | ☐      | Memory file            | Context preserved          |
 
 ---
 

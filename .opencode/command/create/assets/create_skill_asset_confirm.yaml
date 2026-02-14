@@ -1,10 +1,10 @@
 # ─────────────────────────────────────────────────────────────────
 # OPENCODE CREATE: ASSET FILE CREATION WORKFLOW (CONFIRM MODE)
 # ─────────────────────────────────────────────────────────────────
-# Mode: confirm-only (interactive step-by-step approval)
-# Note: This workflow does NOT support :auto mode. All executions
-#       require user confirmation at checkpoints. When invoked with
-#       --chained flag from parent workflows, checkpoints still apply.
+# Mode: interactive (step-by-step approval with checkpoints)
+# Note: This workflow pauses at checkpoints for user approval.
+#       When invoked with --chained flag from parent workflows,
+#       checkpoints still apply.
 # ───────────────────────────────────────────────────────────────────
 role: Expert Asset Creator using workflows-documentation skill
 purpose: Create asset files for existing skills (templates, lookups, examples, guides)
@@ -31,7 +31,7 @@ action: Generate properly structured asset files with validation
 # ─────────────────────────────────────────────────────────────────
 
 operating_mode:
-  workflow: sequential_5_step
+  workflow: sequential_6_step
   workflow_compliance: MANDATORY
   workflow_execution: interactive
   approvals: step_by_step
@@ -90,6 +90,47 @@ request_analysis_framework:
       - "Confidence >=80%? (if not: ask)"
     stop_conditions: ["Any item unchecked", "Skill not found"]
     stop_action: "STOP and address before proceeding"
+
+# ─────────────────────────────────────────────────────────────────
+# WORKFLOW ENFORCEMENT (CRITICAL)
+# ─────────────────────────────────────────────────────────────────
+workflow_enforcement:
+  mode: strict
+  step_order: sequential_mandatory
+  skip_allowed: false
+
+  phase_gate:
+    location: "Between Step 2 and Step 3"
+    purpose: "Verify planning complete before template loading"
+    requirements:
+    - "Asset purpose defined"
+    - "Filename determined"
+    - "Sections planned"
+    action_if_failed: "STOP and return to incomplete step"
+
+  critical_steps:
+    step_2_asset_planning:
+      enforcement: "MUST determine filename and purpose"
+      verification: "Cannot proceed without user approval of plan"
+    step_4_content_creation:
+      enforcement: "MUST use skill_asset_template.md structure"
+      verification: "Complete examples included, no placeholders"
+    step_5_validation:
+      enforcement: "MUST update SKILL.md Navigation Guide"
+      verification: "Integration verified before claiming complete"
+
+# ─────────────────────────────────────────────────────────────────
+# CIRCUIT BREAKER
+# ─────────────────────────────────────────────────────────────────
+circuit_breaker:
+  consecutive_failure_threshold: 3
+  states:
+    closed: "Normal operation"
+    open: "3+ failures — pause and report to user"
+    half_open: "Test with single retry before resuming"
+  on_open:
+    action: "Report failures to user with summary"
+    suggest: "Review inputs and try again, or escalate"
 
 # ─────────────────────────────────────────────────────────────────
 # USER INPUTS (From gate outputs)
@@ -173,7 +214,7 @@ checkpoint_options:
     description: "Make changes before proceeding"
 
 # ─────────────────────────────────────────────────────────────────
-# WORKFLOW (5 STEPS WITH CHECKPOINTS)
+# WORKFLOW (6 STEPS WITH CHECKPOINTS)
 # ─────────────────────────────────────────────────────────────────
 workflow:
   step_1_request_analysis:
@@ -418,6 +459,29 @@ workflow:
         deprecated: Outdated but retained
 
 # ─────────────────────────────────────────────────────────────────
+# INTERACTIVE EXECUTION
+# ─────────────────────────────────────────────────────────────────
+interactive_execution:
+  principle: "Execute workflow steps with user approval at each checkpoint"
+  user_feedback_handling:
+    approve: "Continue to next step"
+    review: "Show detailed output before proceeding"
+    modify: "Apply requested changes and re-validate"
+    skip: "Mark step as skipped with reason, continue"
+
+# ─────────────────────────────────────────────────────────────────
+# QUALITY STANDARDS
+# ─────────────────────────────────────────────────────────────────
+quality_standards:
+  dqi_minimum: 75
+  dqi_enforcement: HARD_BLOCK
+  validation_pipeline:
+    stage_1: "python3 .opencode/scripts/validate_document.py [file]"
+    stage_2: "python3 .opencode/scripts/extract_structure.py [file]"
+  template_adherence: required
+  core_standards_reference: ".opencode/skill/workflows-documentation/references/core_standards.md"
+
+# ─────────────────────────────────────────────────────────────────
 # ASSET FILE TEMPLATE
 # ─────────────────────────────────────────────────────────────────
 templates:
@@ -491,6 +555,34 @@ error_recovery:
   no_skill_md:
     action: "Skill may be malformed, offer to fix"
     options: ["Fix skill structure", "Cancel"]
+  template_not_found:
+    action: "Check template path, verify workflows-documentation skill exists"
+    fallback: "Use inline minimal template"
+  validation_failure:
+    action: "Show specific errors, guide fixes, re-validate"
+    loop: true
+  file_write_failure:
+    action: "Check permissions, verify path exists"
+    retry: true
+  user_rejects_approach:
+    action: "Offer alternatives or cancel"
+    options: ["Modify plan", "Cancel"]
+
+# ─────────────────────────────────────────────────────────────────
+# TERMINATION
+# ─────────────────────────────────────────────────────────────────
+termination:
+  after_step: step_6_save_context
+  message: "Asset creation workflow complete."
+  next_steps:
+    - condition: "Skill needs more assets"
+      action: "Run /create:skill_asset [skill-name] [type]"
+    - condition: "Skill needs reference files"
+      action: "Run /create:skill_reference [skill-name] [type]"
+    - condition: "Asset needs testing"
+      action: "Test asset in skill context"
+    - condition: "Context should be saved"
+      action: "Run /memory:save"
 
 # ─────────────────────────────────────────────────────────────────
 # REFERENCE TEMPLATES
@@ -504,16 +596,23 @@ reference_templates:
 # ─────────────────────────────────────────────────────────────────
 rules:
   ALWAYS:
-  - use_skill_asset_template
-  - include_complete_examples
-  - update_skill_md_navigation
-  - follow_naming_conventions
-  - add_quick_reference_section
-  - validate_before_claiming_complete
+  - "Copy templates from canonical paths, never create from memory"
+  - "Use skill_asset_template.md structure"
+  - "Include complete examples in all assets"
+  - "Update SKILL.md Navigation Guide and SMART ROUTING"
+  - "Follow naming conventions for asset type"
+  - "Add quick reference section at end"
+  - "Pause at checkpoints for user approval"
+  - "Validate before claiming complete"
+  - "Save context after successful completion"
 
   NEVER:
-  - create_without_purpose
-  - skip_examples
-  - duplicate_skill_md_content
-  - leave_placeholders_unfilled
-  - create_for_nonexistent_skill
+  - "Skip validation steps"
+  - "Create documents without loading templates first"
+  - "Proceed without user approval at checkpoints"
+  - "Leave placeholder text in final output"
+  - "Create without clear purpose"
+  - "Skip examples or content"
+  - "Duplicate SKILL.md content unnecessarily"
+  - "Create for non-existent skill"
+  - "Dispatch agents from within this workflow"

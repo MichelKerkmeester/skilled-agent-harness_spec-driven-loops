@@ -6,92 +6,98 @@ allowed-tools: Read, Write, Edit, Bash, Glob, Grep, TodoWrite
 
 > ⚠️ **EXECUTION PROTOCOL — READ FIRST**
 >
-> **YOU are the executor.** Run this workflow directly — do NOT delegate to other agents.
-> Do NOT use the Task tool to dispatch sub-agents.
+> This command runs a structured YAML workflow. Do NOT dispatch agents from this document.
 >
-> **WORKFLOW SEQUENCE:**
-> 1. Run Phase 0: Verify you are the @write agent (self-check, not a dispatch)
-> 2. Run the Unified Setup Phase: gather user inputs in one consolidated prompt
-> 3. Load the YAML workflow: `assets/create_install_guide.yaml`
-> 4. Execute the YAML steps sequentially
+> **YOUR FIRST ACTION:**
+> 1. Run Phase 0: @write agent self-verification (below)
+> 2. Run Setup Phase: consolidated prompt to gather inputs
+> 3. Determine execution mode from user input (`:auto` or `:confirm`)
+> 4. Load the corresponding YAML file from `assets/`:
+>    - Auto mode → `create_install_guide_auto.yaml`
+>    - Confirm mode → `create_install_guide_confirm.yaml`
+> 5. Execute the YAML workflow step by step
 >
 > The @write references below are self-verification checks — not dispatch instructions.
-> Content after the setup phases is reference context for the YAML workflow.
-
-## ⚡ GATE 3 STATUS: EXEMPT (Self-Documenting Artifact)
-
-**This command creates documentation files that ARE the documentation artifact.**
-
-| Property        | Value                                                       |
-| --------------- | ----------------------------------------------------------- |
-| **Location**    | User-specified path (`install_guides/` or target directory) |
-| **Reason**      | The created file IS the documentation                       |
-| **Spec Folder** | Not required - the guide/README serves as its own spec      |
+> All content after the Setup Phase is reference context for the YAML workflow.
 
 ---
 
-# 🚨 SINGLE CONSOLIDATED PROMPT - ONE USER INTERACTION
-
-**This workflow uses a SINGLE consolidated prompt to gather ALL required inputs in ONE user interaction.**
-
-**Round-trip optimization:** This workflow requires only 1 user interaction.
-
----
-
-## 🔒 UNIFIED SETUP PHASE
+# 🚨 PHASE 0: @WRITE AGENT VERIFICATION
 
 **STATUS: ☐ BLOCKED**
 
 ```
+EXECUTE THIS AUTOMATIC SELF-CHECK (NOT A USER QUESTION):
+
+SELF-CHECK: Are you operating as the @write agent?
+│
+├─ INDICATORS that you ARE @write agent:
+│   ├─ You were invoked with "@write" prefix
+│   ├─ You have template-first workflow capabilities
+│   ├─ You load templates BEFORE creating content
+│   ├─ You validate template alignment AFTER creating
+│
+├─ IF YES (all indicators present):
+│   └─ write_agent_verified = TRUE → Continue to Setup Phase
+│
+└─ IF NO or UNCERTAIN:
+    │
+    ├─ ⛔ HARD BLOCK - DO NOT PROCEED
+    │
+    ├─ DISPLAY to user:
+    │   ┌────────────────────────────────────────────────────────────┐
+    │   │ ⛔ WRITE AGENT REQUIRED                                    │
+    │   │                                                            │
+    │   │ This command requires the @write agent for:                │
+    │   │   • Template-first workflow (loads before creating)          │
+    │   │   • DQI scoring (target: 75+ Good)                         │
+    │   │   • workflows-documentation skill integration               │
+    │   │                                                            │
+    │   │ To proceed, restart with:                                  │
+    │   │   @write /create:install_guide [project-name]              │
+    │   │                                                            │
+    │   │ Reference: .opencode/agent/write.md                        │
+    │   └────────────────────────────────────────────────────────────┘
+    │
+    └─ RETURN: STATUS=FAIL ERROR="Write agent required"
+```
+
+**Phase Output:**
+- `write_agent_verified = ________________`
+
+---
+
+# 🔒 UNIFIED SETUP PHASE
+
+**STATUS: ☐ BLOCKED**
+
+**🚨 SINGLE CONSOLIDATED PROMPT - ONE USER INTERACTION**
+
+This workflow uses a SINGLE consolidated prompt to gather ALL required inputs in ONE user interaction.
+
+**Round-trip optimization:** This workflow requires only 1 user interaction.
+
+```
 EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
 
-1. CHECK Phase 0: @write agent verification (automatic)
-   ├─ SELF-CHECK: Are you operating as the @write agent?
-   │   ├─ INDICATORS that you ARE @write agent:
-   │   │   ├─ You were invoked with "@write" prefix
-   │   │   ├─ You have template-first workflow capabilities
-   │   │   ├─ You load templates BEFORE creating content
-   │   │   ├─ You validate template alignment AFTER creating
-   │   │
-   │   ├─ IF YES (all indicators present):
-   │   │   └─ write_agent_verified = TRUE → Continue to step 2
-   │   │
-   │   └─ IF NO or UNCERTAIN:
-   │       ├─ ⛔ HARD BLOCK - DO NOT PROCEED
-   │       ├─ DISPLAY to user:
-   │       │   ┌────────────────────────────────────────────────────────────┐
-   │       │   │ ⛔ WRITE AGENT REQUIRED                                    │
-   │       │   │                                                            │
-   │       │   │ This command requires the @write agent for:                │
-   │       │   │   • Template-first workflow (loads before creating)          │
-   │       │   │   • DQI scoring (target: 90+ Excellent)                    │
-   │       │   │   • workflows-documentation skill integration               │
-   │       │   │                                                            │
-   │       │   │ To proceed, restart with:                                  │
-   │       │   │   @write /create:install_guide [project-name]              │
-   │       │   │                                                            │
-   │       │   │ Reference: .opencode/agent/write.md                        │
-   │       │   └────────────────────────────────────────────────────────────┘
-   │       └─ RETURN: STATUS=FAIL ERROR="Write agent required"
-
-2. CHECK for mode suffix in $ARGUMENTS or command invocation:
+1. CHECK for mode suffix in $ARGUMENTS or command invocation:
    ├─ ":auto" suffix detected → execution_mode = "AUTONOMOUS" (pre-set, omit Q3)
    ├─ ":confirm" suffix detected → execution_mode = "INTERACTIVE" (pre-set, omit Q3)
    └─ No suffix → execution_mode = "ASK" (include Q3 in prompt)
 
-3. CHECK if $ARGUMENTS contains a project name:
+2. CHECK if $ARGUMENTS contains a project name:
    ├─ IF $ARGUMENTS has content (ignoring flags/suffixes) → project_name = $ARGUMENTS, omit Q0
    └─ IF $ARGUMENTS is empty → include Q0 in prompt
 
-4. CHECK for --platforms flag in $ARGUMENTS:
+3. CHECK for --platforms flag in $ARGUMENTS:
    ├─ IF --platforms flag present with valid values → platforms = [values], omit Q1
    └─ IF no --platforms flag → include Q1 in prompt
 
-5. Check for existing installation guides:
+4. Check for existing installation guides:
    $ ls -la ./install_guides/*.md ./INSTALL.md ./docs/INSTALL.md 2>/dev/null
    - Will inform conflict handling in Q2 if files exist
 
-6. ASK user with SINGLE CONSOLIDATED prompt (include only applicable questions):
+5. ASK user with SINGLE CONSOLIDATED prompt (include only applicable questions):
 
    ┌────────────────────────────────────────────────────────────────┐
    │ **Before proceeding, please answer:**                          │
@@ -119,9 +125,9 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    │ Reply with answers, e.g.: "A, A, A" or "my-tool, A, A, A"      │
    └────────────────────────────────────────────────────────────────┘
 
-7. WAIT for user response (DO NOT PROCEED)
+6. WAIT for user response (DO NOT PROCEED)
 
-8. Parse response and store ALL results:
+7. Parse response and store ALL results:
    - project_name = [from Q0 or $ARGUMENTS]
    - platforms = [from Q1 or --platforms flag: all/macos/linux/windows/docker]
    - output_path = [derived from Q2 choice]
@@ -129,10 +135,10 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    - conflict_resolution = [if existing: overwrite/merge/cancel]
    - execution_mode = [AUTONOMOUS/INTERACTIVE from suffix or Q3]
 
-9. IF output location has conflict AND conflict_resolution not set:
+8. IF output location has conflict AND conflict_resolution not set:
    - Handle inline based on Q2 response (E/F/G options)
 
-10. SET STATUS: ✅ PASSED
+9. SET STATUS: ✅ PASSED
 
 **STOP HERE** - Wait for user to answer ALL applicable questions before continuing.
 
@@ -152,23 +158,6 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
 
 ---
 
-## 📋 MODE BEHAVIORS
-
-**AUTONOMOUS (:auto):**
-- Execute all steps without approval prompts
-- Only stop for errors or missing required input
-- Best for: Experienced users, scripted workflows, batch operations
-
-**INTERACTIVE (:confirm):**
-- Pause at each major step for user approval
-- Show preview before file creation
-- Ask for confirmation on critical decisions
-- Best for: New users, learning workflows, high-stakes changes
-
-**Default:** INTERACTIVE (creation workflows benefit from confirmation)
-
----
-
 ## ✅ PHASE STATUS VERIFICATION (BLOCKING)
 
 **Before continuing to the workflow, verify ALL values are set:**
@@ -185,143 +174,34 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
 ```
 VERIFICATION CHECK:
 ├─ ALL required fields have values?
-│   ├─ YES → Proceed to "# Installation Guide Creation Workflow" section below
+│   ├─ YES → Proceed to "⚡ INSTRUCTIONS" section below
 │   └─ NO  → Re-prompt for missing values only
 ```
 
 ---
 
-## ⚠️ VIOLATION SELF-DETECTION (BLOCKING)
+## ⚡ INSTRUCTIONS
 
-**YOU ARE IN VIOLATION IF YOU:**
+After Phase 0 and Setup Phase pass, load and execute the appropriate YAML workflow:
 
-**Phase Violations:**
-- Executed command without @write agent verification
-- Started reading the workflow section before all fields are set
-- Asked questions in MULTIPLE separate prompts instead of ONE consolidated prompt
-- Proceeded without explicit project name when not in $ARGUMENTS
-- Inferred project from context instead of explicit user input
-- Assumed platforms without confirmation
-- Overwrote existing file without user choice
+- **AUTONOMOUS (`:auto`)**: `.opencode/command/create/assets/create_install_guide_auto.yaml`
+- **INTERACTIVE (`:confirm`)**: `.opencode/command/create/assets/create_install_guide_confirm.yaml`
 
-**Workflow Violations (Steps 1-5):**
-- Skipped requirements discovery and jumped to generation
-- Generated guide without AI-First section
-- Did not include all 11 sections (9 required + 2 optional)
-- Claimed "complete" without validation checklist
-
-**VIOLATION RECOVERY PROTOCOL:**
-```
-FOR PHASE VIOLATIONS:
-1. STOP immediately - do not continue current action
-2. STATE: "I asked questions separately instead of consolidated. Correcting now."
-3. PRESENT the single consolidated prompt with ALL applicable questions
-4. WAIT for user response
-5. RESUME only after all fields are set
-
-FOR WORKFLOW VIOLATIONS:
-1. STOP immediately
-2. STATE: "I violated STEP [X] by [specific action]. Correcting now."
-3. RETURN to the violated step
-4. COMPLETE the step properly
-5. RESUME only after step passes
-```
+The YAML contains: detailed step activities, checkpoints, confidence scoring, error recovery, validation gates, resource routing, and completion reporting.
 
 ---
 
-# 📊 WORKFLOW EXECUTION - MANDATORY TRACKING
-
-**⛔ ENFORCEMENT RULE:** Execute steps IN ORDER (1→5). Mark each step ✅ ONLY after completing ALL its activities and verifying outputs. DO NOT SKIP STEPS.
+> **📚 REFERENCE CONTEXT** — The sections below provide reference information for the YAML workflow. They are NOT direct execution instructions.
 
 ---
 
-## WORKFLOW TRACKING
-
-| STEP | NAME       | STATUS | REQUIRED OUTPUT   | VERIFICATION                |
-| ---- | ---------- | ------ | ----------------- | --------------------------- |
-| 1    | Analysis   | ☐      | Scope defined     | Project/platforms confirmed |
-| 2    | Discovery  | ☐      | Requirements list | Prerequisites identified    |
-| 3    | Steps      | ☐      | Step-by-step plan | Installation steps defined  |
-| 4    | Generation | ☐      | Complete guide    | All 11 sections included    |
-| 5    | Validation | ☐      | Validated guide   | Commands verified           |
-
----
-
-## 📊 WORKFLOW VISUALIZATION
-
-```mermaid
-flowchart TD
-    subgraph SETUP["UNIFIED SETUP PHASE"]
-        S0["1. @write Agent Check"] --> S1a["2. Mode Detection"]
-        S1a --> S2a["3. Parse Args"]
-        S2a --> S3a["4. Check Existing Files"]
-        S3a --> S4a{{"Q0-Q3 Prompt"}}
-    end
-
-    subgraph workflow["5-Step Workflow"]
-        S1["Step 1: Analysis"]
-        S2["Step 2: Discovery"]
-        S3["Step 3: Steps"]
-        S4["Step 4: Generation"]
-        S5["Step 5: Validation"]
-    end
-
-    START(["Command Invoked"]) --> S0
-    S0 -->|"❌ FAIL"| BLOCK1{{"⛔ HARD BLOCK<br/>Restart with @write"}}
-
-    S4a -->|"User Response"| VERIFY{{"All fields set?"}}
-
-    VERIFY -->|"All ✅"| S1
-    VERIFY -->|"Missing"| REPROMPT{{"Re-prompt<br/>missing only"}}
-    REPROMPT --> S4a
-
-    S1 -->|"Scope defined"| S2
-    S2 -->|"Requirements list"| S3
-    S3 -->|"Steps defined"| S4
-    S4 -->|"11 sections"| S5
-    S5 -->|"Commands verified"| DONE(["✅ Guide Complete"])
-
-    classDef phase fill:#1e3a5f,stroke:#3b82f6,color:#fff
-    classDef gate fill:#7c2d12,stroke:#ea580c,color:#fff
-    classDef verify fill:#065f46,stroke:#10b981,color:#fff
-    classDef step fill:#1e3a5f,stroke:#3b82f6,color:#fff
-
-    class S0,S1a,S2a,S3a,S4a phase
-    class BLOCK1,REPROMPT gate
-    class VERIFY,S5 verify
-    class S1,S2,S3,S4 step
-```
-
----
-
-## ⛔ CRITICAL ENFORCEMENT RULES
-
-```
-STEP 2 (Discovery) REQUIREMENTS:
-├─ MUST identify all prerequisites
-├─ MUST determine project type (MCP/CLI/PLUGIN/SDK/SERVICE)
-├─ MUST gather platform-specific requirements
-└─ MUST NOT proceed without clear requirements list
-
-STEP 4 (Generation) REQUIREMENTS:
-├─ MUST include AI-First prompt section
-├─ MUST include ALL 11 sections (9 required + 2 optional)
-├─ MUST add platform-specific configuration
-├─ MUST include troubleshooting section
-└─ MUST NOT skip any required section
-
-STEP 5 (Validation) REQUIREMENTS:
-├─ MUST verify all commands are accurate
-├─ MUST check all platforms covered
-├─ MUST validate AI-First prompt completeness
-└─ MUST NOT claim "complete" without validation checklist
-```
-
----
+<!-- REFERENCE ONLY -->
 
 # Installation Guide Creation Workflow
 
 Create a comprehensive AI-first installation guide with clear prerequisites, step-by-step instructions, and troubleshooting for common issues. Every guide starts with a copy-paste AI prompt.
+
+<!-- END REFERENCE -->
 
 ---
 
