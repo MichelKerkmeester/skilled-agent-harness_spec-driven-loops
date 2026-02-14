@@ -71,7 +71,6 @@ npm test && npx eslint . && npm run build
 ```
 workflows-code--full-stack/
 ├── SKILL.md                          # Entry point with routing logic
-├── CHANGELOG.md
 ├── README.md
 ├── references/
 │   ├── backend/

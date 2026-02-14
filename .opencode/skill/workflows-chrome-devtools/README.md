@@ -74,7 +74,6 @@ workflows-chrome-devtools/
 ├── SKILL.md                 # Entry point -- routing logic, rules, full reference
 ├── README.md                # This file
 ├── INSTALL_GUIDE.md         # Detailed installation instructions
-├── CHANGELOG.md             # Version history
 ├── references/
 │   ├── cdp_patterns.md      # CDP domain patterns, Unix composability
 │   ├── session_management.md # Session lifecycle, multi-session, recovery

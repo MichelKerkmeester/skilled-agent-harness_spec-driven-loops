@@ -78,7 +78,6 @@ python3 scripts/validate_document.py path/to/README.md
 workflows-documentation/
 ├── SKILL.md                          # Entry point with routing logic
 ├── README.md                         # This file
-├── CHANGELOG.md                      # Version history
 ├── assets/
 │   ├── documentation/                # Document templates
 │   │   ├── frontmatter_templates.md  # Frontmatter validation (11 types)

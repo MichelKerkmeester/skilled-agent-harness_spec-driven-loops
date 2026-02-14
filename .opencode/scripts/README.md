@@ -50,7 +50,6 @@ trigger_phrases:
 | File | Purpose |
 |------|---------|
 | `SET-UP_GUIDE.md` | Customization guide for adapting `skill_advisor.py` to your project |
-| `CHANGELOG.md` | Version history and changes log |
 | `README.md` | This documentation |
 
 ### Key Statistics
@@ -80,7 +79,6 @@ trigger_phrases:
 .opencode/scripts/
 ├── skill_advisor.py     # Skill routing engine (Gate 2)
 ├── SET-UP_GUIDE.md      # Customization guide
-├── CHANGELOG.md         # Version history
 └── README.md            # This file
 ```
 
@@ -743,7 +741,7 @@ A: No, the script uses simple word tokenization. Regex patterns will be treated 
 | Document | Purpose |
 |----------|---------|
 | [SET-UP_GUIDE.md](./SET-UP_GUIDE.md) | Step-by-step customization guide for `skill_advisor.py` |
-| [CHANGELOG.md](./CHANGELOG.md) | Version history and changes |
+| [Changelog](../changelog/02--skill-advisor/) | Version history and changes |
 | [AGENTS.md](../../AGENTS.md) | Framework rules including Gate 2 skill routing |
 
 ### Skill System

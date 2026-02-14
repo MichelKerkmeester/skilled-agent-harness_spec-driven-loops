@@ -69,7 +69,7 @@ From `global.html`:
 ```html
 <!-- Preconnect -->
 <link rel="preconnect" href="https://example-cdn.b-cdn.net" crossorigin>
-<link rel="preconnect" href="https://pub-85443b585f1e4411ab5cc976c4fb08ca.r2.dev" crossorigin>
+<link rel="preconnect" href="https://pub-53729c3289024c618f90a09ec4c63bf9.r2.dev" crossorigin>
 <link rel="preconnect" href="https://cdn.prod.website-files.com" crossorigin>
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="preconnect" href="https://use.typekit.net" crossorigin>
@@ -155,8 +155,8 @@ Downloads high-priority resources for the current page with elevated priority. B
 
 **Custom Scripts:**
 ```html
-<link rel="preload" href="https://pub-85443b585f1e4411ab5cc976c4fb08ca.r2.dev/dropdown.js?v={version}" as="script">
-<link rel="preload" href="https://pub-85443b585f1e4411ab5cc976c4fb08ca.r2.dev/mobile_menu.js?v={version}" as="script">
+<link rel="preload" href="https://pub-53729c3289024c618f90a09ec4c63bf9.r2.dev/dropdown.js?v={version}" as="script">
+<link rel="preload" href="https://pub-53729c3289024c618f90a09ec4c63bf9.r2.dev/mobile_menu.js?v={version}" as="script">
 ```
 
 ---

@@ -6,7 +6,7 @@ tools:
   - Grep
   - Glob
   - Task
-model: sonnet
+model: haiku
 mcpServers:
   - spec_kit_memory
   - code_mode

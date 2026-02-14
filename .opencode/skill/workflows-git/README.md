@@ -68,7 +68,6 @@ skill_advisor.py "commit my changes" --threshold 0.8
 ```
 .opencode/skill/workflows-git/
 ├── SKILL.md                              # Entry point with routing logic
-├── CHANGELOG.md                          # Version history
 ├── README.md                             # This file
 ├── references/
 │   ├── worktree_workflows.md             # 7-step workspace creation

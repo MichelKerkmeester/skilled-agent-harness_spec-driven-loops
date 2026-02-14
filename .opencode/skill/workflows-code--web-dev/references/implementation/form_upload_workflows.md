@@ -32,7 +32,7 @@ Single source of truth for understanding, maintaining, and extending the file up
 - **[implementation_workflows.md](./implementation_workflows.md)**: Condition-based waiting, validation patterns
 - **[code_quality_standards.md](../standards/code_quality_standards.md)**: Naming conventions, initialization patterns
 - **FilePond CDN**: `unpkg.com/filepond` (CSS + JS + plugins — check HTML source for current version)
-- **Cloudflare Worker**: `r2-upload-proxy.cloudflare-decorated911.workers.dev`
+- **Cloudflare Worker**: `worker--upload-form.lorenzo-89a.workers.dev`
 
 ---
 
@@ -44,7 +44,7 @@ Single source of truth for understanding, maintaining, and extending the file up
 Browser (drag/click)
   --> FilePond (invisible, validation + file handling)
     --> XHR POST (FormData with file)
-      --> Cloudflare Worker (r2-upload-proxy)
+      --> Cloudflare Worker (worker--upload-form)
         --> R2 Bucket (storage)
           --> CDN URL (response.url)
             --> Hidden input [data-file-upload="url"]
@@ -57,7 +57,7 @@ Browser (drag/click)
 |-----------|------|----------------|
 | **FilePond Connector** | `src/2_javascript/form/input_upload.js` | Bridges FilePond to Webflow UI, state machine, progress display, drag-drop |
 | **Upload CSS** | `src/1_css/input_upload.css` | State-driven visibility, dropzone styling, progress animation |
-| **Cloudflare Worker** | External: `r2-upload-proxy` | Receives FormData POST, stores file in R2, returns CDN URL |
+| **Cloudflare Worker** | External: `worker--upload-form` | Receives FormData POST, stores file in R2, returns CDN URL |
 | **Form Validation** | `src/2_javascript/form/form_validation.js` | File type/size validation via `accept` attribute |
 | **Form Submission** | `src/2_javascript/form/form_submission.js` | Skips File objects in JSON, includes URL string from hidden input |
 | **Form Persistence** | `src/2_javascript/form/form_persistence.js` | Persists upload URL in localStorage across page refreshes |
@@ -139,7 +139,7 @@ Set on the wrapper element to override defaults:
 
 | Attribute | Default | Description |
 |-----------|---------|-------------|
-| `data-upload-endpoint` | `https://r2-upload-proxy.cloudflare-decorated911.workers.dev` | Worker endpoint URL |
+| `data-upload-endpoint` | `https://worker--upload-form.lorenzo-89a.workers.dev` | Worker endpoint URL |
 | `data-max-size` | `5MB` | Maximum file size (FilePond format) |
 | `data-accepted-types` | `application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document` | Comma-separated MIME types |
 
@@ -203,7 +203,7 @@ if (plugins.length > 0) {
 <script src="https://unpkg.com/filepond@{version}/dist/filepond.min.js" defer></script>
 
 <!-- 3. Custom connector THIRD -->
-<script src="https://pub-85443b585f1e4411ab5cc976c4fb08ca.r2.dev/input_upload.min.js?v={version}" defer></script>
+<script src="https://pub-53729c3289024c618f90a09ec4c63bf9.r2.dev/input_upload.min.js?v={version}" defer></script>
 ```
 
 > **Note**: Check `werken_bij.html` or `vacature.html` for current pinned versions.
@@ -264,6 +264,7 @@ FilePond.create(input_el, {
   dropOnPage: false,           // Custom drop handling
   dropOnElement: false,
   acceptedFileTypes: [...],    // From data-accepted-types
+  fileValidateTypeDetectType: detect_file_type, // Extension-based MIME fallback
   maxFileSize: '5MB',          // From data-max-size
   server: { process, revert }, // Custom XHR handlers
 });
@@ -343,13 +344,13 @@ State transitions always remove all state classes first, then add the appropriat
 
 ### Endpoint and Purpose
 
-- **URL**: `https://r2-upload-proxy.cloudflare-decorated911.workers.dev`
+- **URL**: `https://worker--upload-form.lorenzo-89a.workers.dev`
 - **Purpose**: Receives file uploads from the browser and stores them in Cloudflare R2 storage, returning a public CDN URL.
 
 ### Request Format
 
 ```
-POST https://r2-upload-proxy.cloudflare-decorated911.workers.dev
+POST https://worker--upload-form.lorenzo-89a.workers.dev
 Content-Type: multipart/form-data
 
 FormData:
@@ -361,7 +362,7 @@ FormData:
 **Success** (HTTP 200):
 ```json
 {
-  "url": "https://pub-85443b585f1e4411ab5cc976c4fb08ca.r2.dev/uploaded-filename.pdf"
+  "url": "https://pub-53729c3289024c618f90a09ec4c63bf9.r2.dev/uploaded-filename.pdf"
 }
 ```
 
@@ -374,8 +375,8 @@ FormData:
 
 ### R2 Bucket and CDN URL Pattern
 
-- **CDN domain**: `pub-85443b585f1e4411ab5cc976c4fb08ca.r2.dev`
-- **URL pattern**: `https://pub-85443b585f1e4411ab5cc976c4fb08ca.r2.dev/{filename}`
+- **CDN domain**: `pub-53729c3289024c618f90a09ec4c63bf9.r2.dev`
+- **URL pattern**: `https://pub-53729c3289024c618f90a09ec4c63bf9.r2.dev/{filename}`
 - The same R2 bucket serves both uploaded user files and project CDN assets (JS/CSS)
 
 ### Error Scenarios
@@ -465,28 +466,59 @@ Default accepted types configured in `DEFAULTS.acceptedTypes`:
 | Extension | MIME Type | Browser Reports As | Notes |
 |-----------|-----------|-------------------|-------|
 | `.pdf` | `application/pdf` | `application/pdf` | Consistent across all browsers |
-| `.doc` | `application/msword` | `application/msword` | Legacy Word format |
-| `.docx` | `application/vnd.openxmlformats-officedocument.wordprocessingml.document` | `application/vnd.openxmlformats-officedocument.wordprocessingml.document` | Modern Word format |
+| `.doc` | `application/msword` | `application/msword` or `application/octet-stream` | Legacy Word — some browsers misreport |
+| `.docx` | `application/vnd.openxmlformats-officedocument.wordprocessingml.document` | Correct, `application/zip`, or `application/octet-stream` | Modern Word — browsers often misreport |
 
-### Why Extensions Don't Work
+### Extension-Based MIME Detection Fallback
+
+Browsers inconsistently report MIME types for Office documents (e.g., `.docx` may be reported as `application/zip` or `application/octet-stream`). To handle this, the connector includes a **`fileValidateTypeDetectType` callback** that uses extension-based detection as a fallback.
+
+**`MIME_TYPE_MAP`** — maps file extensions to correct MIME types:
+
+```javascript
+const MIME_TYPE_MAP = {
+  '.pdf': 'application/pdf',
+  '.doc': 'application/msword',
+  '.docx': 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+};
+```
+
+**`detect_file_type(source, type)`** — called by FilePond before validation:
+
+1. If the browser-reported MIME type is already a known accepted type → trust it
+2. If not → extract file extension from `source.name` and look up in `MIME_TYPE_MAP`
+3. If extension matches → return the correct MIME type (overriding browser's report)
+4. If no match → pass through original type (FilePond's default validation handles rejection)
+
+This is configured in the FilePond instance:
+
+```javascript
+FilePond.create(input_el, {
+  acceptedFileTypes: accepted_types_array,
+  fileValidateTypeDetectType: detect_file_type, // Extension-based fallback
+  // ...
+});
+```
+
+### Why Extensions Don't Work in `acceptedFileTypes`
 
 FilePond's `acceptedFileTypes` matches against the **browser-reported MIME type**, not the file extension. This is critical:
 
 - A `.docx` file has MIME `application/vnd.openxmlformats-officedocument.wordprocessingml.document`
 - Setting `acceptedFileTypes: ['.docx']` will NOT work — FilePond expects MIME strings
 - The browser determines MIME type from the file's binary signature, not its extension
-
-**The `.doc/.docx` lesson**: A previous bug occurred when only `application/pdf` was in the accepted types, causing Word documents to be rejected with "Invalid file type". The fix was adding both `application/msword` and `application/vnd.openxmlformats-officedocument.wordprocessingml.document` to the MIME list.
+- Use `fileValidateTypeDetectType` for extension-based detection as a fallback (see above)
 
 ### Adding New File Types
 
 To accept additional file types:
 
 1. **Find the MIME type** — check the table below or use browser DevTools to inspect `file.type`
-2. **Update DEFAULTS** — add to `DEFAULTS.acceptedTypes` in `input_upload.js`
-3. **OR use data attribute** — set `data-accepted-types` on the wrapper element
-4. **Update description label** — change `data-label-description` to reflect new types
-5. **Minify and deploy** — follow CDN deployment workflow
+2. **Update `DEFAULTS.acceptedTypes`** — add MIME type to the comma-separated string in `input_upload.js`
+3. **Update `MIME_TYPE_MAP`** — add extension-to-MIME mapping for extension-based fallback detection
+4. **OR use data attribute** — set `data-accepted-types` on the wrapper element (MIME types only)
+5. **Update description label** — change `data-label-description` to reflect new types
+6. **Minify and deploy** — follow CDN deployment workflow
 
 ### Common MIME Types Reference
 
@@ -517,14 +549,18 @@ To accept additional file types:
 
 **Symptom**: User drops/selects a valid file but gets "Invalid file type" error.
 
-**Root Cause**: MIME type mismatch between what the browser reports and what `acceptedFileTypes` expects.
+**Root Causes**:
+1. MIME type not in `acceptedFileTypes` — the MIME string is missing from `DEFAULTS.acceptedTypes`
+2. Browser misreports MIME type — especially common with `.doc`/`.docx` files (may report as `application/zip` or `application/octet-stream`)
+3. Extension not in `MIME_TYPE_MAP` — the `detect_file_type` fallback can't map the extension
 
 **Fix**:
 1. Check what MIME type the browser assigns: `console.log(file.type)` in DevTools
 2. Add the exact MIME string to `DEFAULTS.acceptedTypes` or `data-accepted-types`
-3. Do NOT use file extensions (`.doc`) — use MIME types (`application/msword`)
+3. Add the extension-to-MIME mapping in `MIME_TYPE_MAP` (for browser MIME misreport fallback)
+4. Do NOT use file extensions (`.doc`) in `acceptedFileTypes` — use MIME types (`application/msword`)
 
-**Real example**: `.doc` files were rejected because only `application/pdf` was configured. Fix: add `application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document`.
+**Real example**: `.docx` files were rejected because browsers reported them as `application/zip` instead of the correct MIME type. Fix: added `MIME_TYPE_MAP` with extension-based fallback detection via `fileValidateTypeDetectType`.
 
 ### FilePond Not Loading
 
@@ -589,10 +625,10 @@ Scripts use the `?v=` query parameter pattern for cache busting (semver format: 
 
 | Script | CDN Path |
 |--------|----------|
-| `input_upload.min.js` | `pub-85443b585f1e4411ab5cc976c4fb08ca.r2.dev/input_upload.min.js?v={version}` |
-| `form_validation.min.js` | `pub-85443b585f1e4411ab5cc976c4fb08ca.r2.dev/form_validation.min.js?v={version}` |
-| `form_submission.min.js` | `pub-85443b585f1e4411ab5cc976c4fb08ca.r2.dev/form_submission.min.js?v={version}` |
-| `form_persistence.min.js` | `pub-85443b585f1e4411ab5cc976c4fb08ca.r2.dev/form_persistence.min.js?v={version}` |
+| `input_upload.min.js` | `pub-53729c3289024c618f90a09ec4c63bf9.r2.dev/input_upload.min.js?v={version}` |
+| `form_validation.min.js` | `pub-53729c3289024c618f90a09ec4c63bf9.r2.dev/form_validation.min.js?v={version}` |
+| `form_submission.min.js` | `pub-53729c3289024c618f90a09ec4c63bf9.r2.dev/form_submission.min.js?v={version}` |
+| `form_persistence.min.js` | `pub-53729c3289024c618f90a09ec4c63bf9.r2.dev/form_persistence.min.js?v={version}` |
 
 > **Note**: Check `werken_bij.html` and `vacature.html` for current version numbers. See [cdn_deployment.md](../deployment/cdn_deployment.md) for versioning rules.
 

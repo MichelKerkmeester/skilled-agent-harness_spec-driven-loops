@@ -612,163 +612,188 @@ window.fsAttributes.push([
 
 ## 6. 📁 FILEPOND (FILE UPLOAD)
 
-FilePond is a flexible file upload library with drag-and-drop, image preview, and progress indicators.
+FilePond is a flexible file upload library with drag-and-drop and progress indicators. The connector bridges FilePond (invisible) to a Webflow-designed UI with custom state management.
 
 ### CDN URLs
 
 ```html
-<!-- Core library -->
-<link href="https://unpkg.com/filepond/dist/filepond.css" rel="stylesheet">
-<script src="https://unpkg.com/filepond/dist/filepond.js"></script>
+<!-- 1. Plugins FIRST (must load before core) -->
+<script src="https://unpkg.com/filepond-plugin-file-validate-type@1.2.8/dist/filepond-plugin-file-validate-type.min.js" defer></script>
+<script src="https://unpkg.com/filepond-plugin-file-validate-size@2.2.8/dist/filepond-plugin-file-validate-size.min.js" defer></script>
 
-<!-- File type validation plugin -->
-<script src="https://unpkg.com/filepond-plugin-file-validate-type/dist/filepond-plugin-file-validate-type.js"></script>
+<!-- 2. FilePond core SECOND -->
+<script src="https://unpkg.com/filepond@4.30.4/dist/filepond.min.js" defer></script>
 
-<!-- File size validation plugin -->
-<script src="https://unpkg.com/filepond-plugin-file-validate-size/dist/filepond-plugin-file-validate-size.js"></script>
+<!-- 3. Custom connector THIRD -->
+<script src="https://pub-53729c3289024c618f90a09ec4c63bf9.r2.dev/input_upload.min.js?v={version}" defer></script>
+
+<!-- CSS (async in <head>) -->
+<link rel="preload" href="https://unpkg.com/filepond@4.30.4/dist/filepond.min.css" as="style"
+     onload="this.rel='stylesheet'">
 ```
 
 ### Configuration
 
 ```javascript
-// Source: src/javascript/form/input_upload.js:11-31
+// Source: src/2_javascript/form/input_upload.js
 const SELECTORS = {
-  wrapper: '[data-file-upload="wrapper"]',
-  input: '[data-file-upload="input"]',
-  url: '[data-file-upload="url"]',
-  config: '[data-file-upload="config"]',
-};
-
-const CSS_CLASSES = {
-  success: 'is--success',
-  error: 'is--error',
+  wrapper:     '[data-file-upload="wrapper"]',
+  input:       '[data-file-upload="input"]',
+  url:         '[data-file-upload="url"]',
+  idle:        '[data-file-upload="idle"]',
+  loader:      '[data-file-upload="loader"]',
+  browse:      '[data-file-upload="browse"]',
+  notice:      '[data-file-upload="notice"]',
+  idleText:    '[data-file-upload="text"]',
+  description: '[data-file-upload="description"]',
+  uploading:   '[data-file-upload="uploading"]',
+  progressBar: '[data-file-upload="progress-bar"]',
+  percentage:  '[data-file-upload="percentage"]',
+  size:        '[data-file-upload="size"]',
 };
 
 const DEFAULTS = {
-  max_size: '5MB',
-  accepted_types: 'application/pdf,.doc,.docx',
-  upload_endpoint: 'https://r2-upload-proxy.your-worker.workers.dev',
+  maxSize: '5MB',
+  acceptedTypes: 'application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+  uploadEndpoint: 'https://worker--upload-form.lorenzo-89a.workers.dev',
+};
+
+const STATE = {
+  IDLE: 'idle',
+  UPLOADING: 'uploading',
+  COMPLETE: 'complete',
+  ERROR: 'error',
+};
+
+// Extension-to-MIME-type map for reliable file type detection
+// Browsers may report incorrect MIME types for Office documents
+const MIME_TYPE_MAP = {
+  '.pdf': 'application/pdf',
+  '.doc': 'application/msword',
+  '.docx': 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
 };
 ```
 
-### Label Management (i18n Support)
+### Label Management (via data attributes)
+
+Labels are configurable via `data-label-*` attributes on the wrapper element. Mobile overrides supported for idle text and browse labels.
 
 ```javascript
-// Source: src/javascript/form/input_upload.js:33-103
+// Source: src/2_javascript/form/input_upload.js
 const DEFAULT_LABELS = {
-  // Main labels
-  label_idle: 'Drag & drop your file or <span class="filepond--label-action">Browse</span>',
-  label_file_processing: 'Uploading...',
-  label_file_processing_complete: 'Upload complete',
-  label_file_processing_error: 'Error during upload',
-  label_tap_to_cancel: 'tap to cancel',
-  label_tap_to_retry: 'tap to retry',
-  label_tap_to_undo: 'tap to undo',
-
-  // Validation messages
-  label_file_type_not_allowed: 'Invalid file type',
-  label_max_file_size_exceeded: 'File is too large',
-  label_max_file_size: 'Maximum size is {filesize}',
-
-  // Alert messages (for form validation)
-  alert_uploading: 'Please wait for the file to finish uploading.',
-  alert_required: 'Please upload a file before submitting.',
-
-  // Server error messages
-  error_invalid_response: 'Invalid server response',
-  error_upload_failed: 'Upload failed',
-  error_network: 'Network error - check your connection',
+  // Idle state
+  idleText: 'Drag & drop your file or',
+  browse: 'Browse',
+  description: 'Max 5 MB: PDF, DOC, DOCX',
+  // Uploading state
+  uploading: 'Uploading...',
+  cancel: 'Click to cancel upload',
+  delete: 'Click to delete',
+  sizeSeparator: ' of ',
+  // Error state
+  errorInvalidType: 'Invalid file type',
+  errorMaxSize: 'File too large',
+  errorDismiss: 'Click to dismiss',
 };
 
-// Get labels from config element or use defaults
 function get_labels(wrapper) {
-  const config_el = wrapper.querySelector(SELECTORS.config);
-  const labels = { ...DEFAULT_LABELS };
+  var idle_text = wrapper.getAttribute('data-label-idle-text') || DEFAULT_LABELS.idleText;
+  var browse = wrapper.getAttribute('data-label-browse') || DEFAULT_LABELS.browse;
 
-  if (config_el) {
-    Object.keys(DEFAULT_LABELS).forEach(key => {
-      const dataset_key = key.replace(/_([a-z])/g, (_, c) => c.toUpperCase());
-      if (config_el.dataset[dataset_key]) {
-        labels[key] = config_el.dataset[dataset_key];
-      }
-    });
+  // Use mobile labels if on mobile and they exist
+  if (is_mobile()) {
+    idle_text = wrapper.getAttribute('data-label-idle-text-mobile') || idle_text;
+    browse = wrapper.getAttribute('data-label-browse-mobile') || browse;
   }
 
-  // CMS-connectable error messages on wrapper element
-  if (wrapper.dataset.errorAccept) {
-    labels.label_file_type_not_allowed = wrapper.dataset.errorAccept;
-  }
-  if (wrapper.dataset.errorSize) {
-    labels.label_max_file_size_exceeded = wrapper.dataset.errorSize;
-  }
+  return {
+    idleText: idle_text,
+    browse: browse,
+    description: wrapper.getAttribute('data-label-description') || DEFAULT_LABELS.description,
+    uploading: wrapper.getAttribute('data-label-uploading') || DEFAULT_LABELS.uploading,
+    cancel: wrapper.getAttribute('data-label-cancel') || DEFAULT_LABELS.cancel,
+    delete: wrapper.getAttribute('data-label-delete') || DEFAULT_LABELS.delete,
+    sizeSeparator: wrapper.getAttribute('data-label-size-separator') || DEFAULT_LABELS.sizeSeparator,
+    errorInvalidType: wrapper.getAttribute('data-label-error-type') || DEFAULT_LABELS.errorInvalidType,
+    errorMaxSize: wrapper.getAttribute('data-label-error-size') || DEFAULT_LABELS.errorMaxSize,
+    errorDismiss: wrapper.getAttribute('data-label-error-dismiss') || DEFAULT_LABELS.errorDismiss,
+  };
+}
+```
 
-  return labels;
+### MIME Type Detection Fallback
+
+Browsers inconsistently report MIME types for Office documents. The `detect_file_type` function provides extension-based fallback detection via FilePond's `fileValidateTypeDetectType` option.
+
+```javascript
+// Source: src/2_javascript/form/input_upload.js
+function detect_file_type(source, type) {
+  return new Promise(function (resolve) {
+    // If browser already reports a known accepted MIME type, trust it
+    var known_types = Object.values(MIME_TYPE_MAP);
+    if (type && known_types.indexOf(type) !== -1) {
+      resolve(type);
+      return;
+    }
+
+    // Fallback: detect from file extension
+    var ext = source.name ? source.name.match(/\.[^.]+$/) : null;
+    if (ext && MIME_TYPE_MAP[ext[0].toLowerCase()]) {
+      resolve(MIME_TYPE_MAP[ext[0].toLowerCase()]);
+      return;
+    }
+
+    // No match — pass through original type
+    resolve(type);
+  });
 }
 ```
 
 ### R2 Integration via Cloudflare Worker
 
 ```javascript
-// Source: src/javascript/form/input_upload.js:153-230
-function create_server_config(upload_endpoint, url_input, wrapper, labels) {
+// Source: src/2_javascript/form/input_upload.js
+function create_server_config(endpoint, wrapper, url_input) {
   return {
-    process: (field_name, file, metadata, load, error, progress, abort) => {
+    process: function (_fieldName, file, _metadata, load, error, progress, abort) {
       const form_data = new FormData();
       form_data.append('file', file);
 
       const xhr = new XMLHttpRequest();
-      xhr.open('POST', upload_endpoint);
+      xhr.open('POST', endpoint);
 
-      xhr.upload.onprogress = (e) => {
+      xhr.upload.onprogress = function (e) {
         if (e.lengthComputable) {
           progress(true, e.loaded, e.total);
+          var percent = (e.loaded / e.total) * 100;
+          update_ui(wrapper, { percentage: percent, loaded: e.loaded, total: e.total });
         }
       };
 
-      xhr.onload = () => {
+      xhr.onload = function () {
         if (xhr.status >= 200 && xhr.status < 300) {
           try {
-            const response = JSON.parse(xhr.responseText);
-
-            if (response.error) {
-              error(response.error);
-              return;
-            }
-
+            var response = JSON.parse(xhr.responseText);
+            if (response.error) { error(response.error); return; }
             url_input.value = response.url;
-
-            // Signal success to FilePond
             load(response.url);
-
-            wrapper.classList.remove(CSS_CLASSES.error);
-            wrapper.classList.add(CSS_CLASSES.success);
-
-          } catch (e) {
-            error(labels.error_invalid_response);
+          } catch (_e) {
+            error('Invalid server response');
           }
         } else {
-          error(`${labels.error_upload_failed}: ${xhr.status}`);
+          error('Upload failed: ' + xhr.status);
         }
       };
 
-      xhr.onerror = () => {
-        error(labels.error_network);
-        wrapper.classList.add(CSS_CLASSES.error);
-      };
-
+      xhr.onerror = function () { error('Network error - check your connection'); };
+      xhr.onabort = function () { abort(); };
       xhr.send(form_data);
 
-      return {
-        abort: () => {
-          xhr.abort();
-          abort();
-        },
-      };
+      return { abort: function () { xhr.abort(); abort(); } };
     },
 
-    revert: (unique_file_id, load, error) => {
+    revert: function (_uniqueFileId, load, _error) {
       url_input.value = '';
-      wrapper.classList.remove(CSS_CLASSES.success, CSS_CLASSES.error);
       load();
     },
   };
@@ -778,175 +803,133 @@ function create_server_config(upload_endpoint, url_input, wrapper, labels) {
 ### FilePond Instance Creation
 
 ```javascript
-// Source: src/javascript/form/input_upload.js:236-310
-function init_single_upload(wrapper) {
-  const input = wrapper.querySelector(SELECTORS.input);
-  const url_input = wrapper.querySelector(SELECTORS.url);
+// Source: src/2_javascript/form/input_upload.js
+function init_instance(wrapper) {
+  var input_el = get_el(wrapper, SELECTORS.input);
+  var url_input = get_el(wrapper, SELECTORS.url);
 
-  const upload_endpoint = wrapper.dataset.uploadEndpoint || DEFAULTS.upload_endpoint;
-  const max_size = wrapper.dataset.maxSize || DEFAULTS.max_size;
-  const accepted_types = wrapper.dataset.acceptedTypes || DEFAULTS.accepted_types;
+  var endpoint = wrapper.dataset.uploadEndpoint || DEFAULTS.uploadEndpoint;
+  var max_size = wrapper.dataset.maxSize || DEFAULTS.maxSize;
+  var accepted_types = wrapper.dataset.acceptedTypes || DEFAULTS.acceptedTypes;
 
-  const labels = get_labels(wrapper);
+  var accepted_types_array = accepted_types.split(',').map(function (t) {
+    return t.trim();
+  });
 
-  const accepted_types_array = accepted_types.split(',').map(t => t.trim());
-
-  const pond = FilePond.create(input, {
-    // Prevent FilePond from submitting with form (we use hidden url input instead)
-    name: '',
-
+  var pond = FilePond.create(input_el, {
+    name: '',                    // Prevent FilePond form submission
     maxFiles: 1,
     allowMultiple: false,
-    stylePanelLayout: 'compact',
-    styleButtonRemoveItemPosition: 'right',
+    stylePanelLayout: null,      // Hide FilePond panel
+    styleButtonRemoveItemPosition: 'left',
     credits: false,
-    required: false, // Prevent native browser validation
+    required: false,
+    dropOnPage: false,           // Custom drop handling
+    dropOnElement: false,
 
-    ...to_filepond_labels(labels),
-
+    // Validation
     acceptedFileTypes: accepted_types_array,
+    fileValidateTypeDetectType: detect_file_type, // Extension-based MIME fallback
     maxFileSize: max_size,
 
     // Server configuration - Cloudflare R2 via Worker
-    server: create_server_config(upload_endpoint, url_input, wrapper, labels),
+    server: create_server_config(endpoint, wrapper, url_input),
   });
 
-  // Store pond instance and labels on wrapper for external access
-  wrapper._filePond = pond;
-  wrapper._labels = labels;
-
-  // Mark FilePond's file input to skip blur validation
-  const filepond_root = wrapper.querySelector('.filepond--root');
+  // Hide FilePond's root element (custom UI handles all visuals)
+  var filepond_root = pond.element;
   if (filepond_root) {
-    const filepond_browser = filepond_root.querySelector('.filepond--browser');
-    if (filepond_browser) {
-      filepond_browser.setAttribute('data-validate-on-submit-only', '');
-      filepond_browser.removeAttribute('required');
-    }
+    filepond_root.style.position = 'absolute';
+    filepond_root.style.width = '1px';
+    filepond_root.style.height = '1px';
+    filepond_root.style.overflow = 'hidden';
+    filepond_root.style.opacity = '0';
+    filepond_root.style.pointerEvents = 'none';
+    filepond_root.setAttribute('aria-hidden', 'true');
   }
+
+  wrapper._pond = pond;
+  set_state(wrapper, STATE.IDLE);
 }
 ```
 
 ### HTML Structure
 
 ```html
-<!-- File upload wrapper -->
-<div data-file-upload="wrapper"
-     data-upload-endpoint="https://your-worker.workers.dev"
-     data-max-size="10MB"
-     data-accepted-types="application/pdf,.doc,.docx">
+<!-- Upload Wrapper -->
+<div data-file-upload="wrapper">
 
-  <!-- Hidden URL input (receives R2 URL after upload) -->
-  <input type="hidden" name="cv_url" data-file-upload="url" />
+  <!-- Hidden inputs -->
+  <input type="file" data-file-upload="input" style="display:none">
+  <input type="hidden" data-file-upload="url" name="file_url">
 
-  <!-- FilePond target input -->
-  <input type="file" data-file-upload="input" />
-
-  <!-- Optional: Config element for i18n labels -->
-  <div data-file-upload="config"
-       data-label-idle="Sleep je bestand of <span class='filepond--label-action'>blader</span>"
-       data-label-file-processing="Uploaden..."
-       data-label-file-processing-complete="Upload voltooid"
-       style="display: none;">
+  <!-- IDLE View (visible by default) -->
+  <div data-file-upload="idle">
+    <div data-file-upload="text">Drag & drop your file or</div>
+    <a href="#" data-file-upload="browse">Browse</a>
+    <div data-file-upload="description">Max 5 MB: PDF, DOC, DOCX</div>
   </div>
+
+  <!-- LOADER View (hidden by default, shown during upload/complete) -->
+  <div data-file-upload="loader">
+    <div data-file-upload="uploading">Uploading...</div>
+    <div data-file-upload="progress-bar" style="width: 0%"></div>
+    <div data-file-upload="percentage">0%</div>
+    <div data-file-upload="size"></div>
+    <div data-file-upload="notice">Click to cancel upload</div>
+  </div>
+
 </div>
 ```
 
-### Form Integration
+### State Machine
 
-```javascript
-// Source: src/javascript/form/input_upload.js:316-347
-function bind_form_events(wrapper, pond, input, url_input, labels) {
-  const form = wrapper.closest('form');
-  if (!form) return;
-
-  // Block form submission while uploading
-  form.addEventListener('submit', (e) => {
-    const files = pond.getFiles();
-    const uploading_files = files.filter(f =>
-      f.status !== FilePond.FileStatus.PROCESSING_COMPLETE &&
-      f.status !== FilePond.FileStatus.IDLE
-    );
-
-    if (uploading_files.length > 0) {
-      e.preventDefault();
-      e.stopPropagation();
-      alert(labels.alert_uploading);
-      return false;
-    }
-  }, true);
-
-  form.addEventListener('reset', () => {
-    setTimeout(() => {
-      pond.removeFiles();
-      url_input.value = '';
-      wrapper.classList.remove(CSS_CLASSES.success, CSS_CLASSES.error);
-    }, 0);
-  });
-}
-```
+| State | CSS Class | Trigger | Exit |
+|-------|-----------|---------|------|
+| **IDLE** | *(none)* | Initial, file removed, error dismissed | File added |
+| **UPLOADING** | `is--uploading` | `addfile` event (no error) | Upload completes or fails |
+| **COMPLETE** | `is--complete` | `processfile` event | File removed |
+| **ERROR** | `is--error` | `warning` event, `addfile` error | Click to dismiss |
 
 ### Plugin Registration
 
 ```javascript
-// Source: src/javascript/form/input_upload.js:136-151
-function register_plugins() {
-  const plugins = [];
-
-  if (typeof FilePondPluginFileValidateType !== 'undefined') {
-    plugins.push(FilePondPluginFileValidateType);
-  }
-
-  if (typeof FilePondPluginFileValidateSize !== 'undefined') {
-    plugins.push(FilePondPluginFileValidateSize);
-  }
-
-  if (plugins.length > 0) {
-    FilePond.registerPlugin(...plugins);
-  }
+// Source: src/2_javascript/form/input_upload.js
+var plugins = [];
+if (typeof FilePondPluginFileValidateType !== 'undefined') {
+  plugins.push(FilePondPluginFileValidateType);
+}
+if (typeof FilePondPluginFileValidateSize !== 'undefined') {
+  plugins.push(FilePondPluginFileValidateSize);
+}
+if (plugins.length > 0) {
+  FilePond.registerPlugin.apply(FilePond, plugins);
 }
 ```
 
 ### Public API
 
 ```javascript
-// Source: src/javascript/form/input_upload.js:401-407
-function get_filepond_instance(wrapper) {
-  return wrapper._filePond || null;
-}
-
-window.init_file_uploads = init_file_uploads;
-window.get_filepond_instance = get_filepond_instance;
-```
-
-### Error Handling Patterns
-
-```javascript
-xhr.onerror = () => {
-  error(labels.error_network);
-  wrapper.classList.add(CSS_CLASSES.error);
+// Source: src/2_javascript/form/input_upload.js
+window.InputUpload = {
+  init: init,                              // Re-initialize (after SPA navigation)
+  cleanup: cleanupFilepondInstances,       // Cleanup all instances
+  getInstance: function (wrapper) {        // Get FilePond instance from wrapper
+    return wrapper._pond || null;
+  },
 };
 
-xhr.onload = () => {
-  if (xhr.status >= 200 && xhr.status < 300) {
-    try {
-      const response = JSON.parse(xhr.responseText);
-      if (response.error) {
-        error(response.error);
-        return;
-      }
-    } catch (e) {
-      error(labels.error_invalid_response);
-    }
-  } else {
-    error(`${labels.error_upload_failed}: ${xhr.status}`);
-  }
-};
+// Also available as legacy globals:
+window.initFilepondConnector = init;
+window.getFilepondInstance = function (wrapper) { return wrapper._pond || null; };
+window.cleanupFilepondInstances = function () { /* destroys all instances */ };
 ```
 
 ### Source Files
 
-- `src/javascript/form/input_upload.js` - Full FilePond implementation (409 lines)
+- `src/2_javascript/form/input_upload.js` — Full FilePond connector (807 lines)
+- `src/2_javascript/z_minified/form/input_upload.min.js` — Minified CDN version
+- See [form_upload_workflows.md](./form_upload_workflows.md) for complete architecture reference
 
 ---
 

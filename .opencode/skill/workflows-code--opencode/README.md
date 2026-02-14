@@ -67,7 +67,6 @@ This skill activates automatically via Gate 2 (`skill_advisor.py`) when you're w
 .opencode/skill/workflows-code--opencode/
 ├── SKILL.md                          # Entry point with routing logic
 ├── README.md                         # This file
-├── CHANGELOG.md                      # Version history
 ├── references/
 │   ├── shared/
 │   │   ├── universal_patterns.md     # Cross-language naming, commenting

@@ -2,7 +2,7 @@
 name: context
 description: Exclusive exploration entry point. Routes ALL codebase search, file discovery, and context retrieval. Dispatches @explore/@research for deeper analysis. The Context Agent.
 mode: subagent
-model: github-copilot/claude-sonnet-4.5
+model: github-copilot/claude-haiku-4.5
 temperature: 0.1
 permission:
   read: allow

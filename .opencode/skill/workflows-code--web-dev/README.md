@@ -66,7 +66,6 @@ Phase 0: Research (optional) -> Phase 1: Implementation -> Phase 1.5: Code Quali
 ```
 .opencode/skill/workflows-code--web-dev/
 ├── SKILL.md                          # Entry point with routing logic
-├── CHANGELOG.md                      # Version history
 ├── README.md                         # This file
 ├── references/
 │   ├── implementation/

@@ -31,7 +31,7 @@ Version parameters are your cache-busting mechanism - increment on EVERY change,
 | Component     | Value                                                    |
 | ------------- | -------------------------------------------------------- |
 | Provider      | Cloudflare R2                                            |
-| Bucket URL    | `https://pub-85443b585f1e4411ab5cc976c4fb08ca.r2.dev/`   |
+| Bucket URL    | `https://pub-53729c3289024c618f90a09ec4c63bf9.r2.dev/`   |
 | File Structure| Flat (no folders)                                        |
 | Access        | Public bucket                                            |
 
@@ -44,7 +44,7 @@ Version parameters are your cache-busting mechanism - increment on EVERY change,
 Version parameters use the format `?v=major.minor.patch`:
 
 ```
-https://pub-85443b585f1e4411ab5cc976c4fb08ca.r2.dev/script_name.js?v=X.Y.Z
+https://pub-53729c3289024c618f90a09ec4c63bf9.r2.dev/script_name.js?v=X.Y.Z
                                                                       └─┬─┘
                                                                 major.minor.patch
 ```
@@ -110,7 +110,7 @@ Use grep to find all HTML files that reference a specific script:
 grep -r "hero_video.js" src/html/ --include="*.html"
 
 # Find all R2 CDN references
-grep -r "pub-85443b585f1e4411ab5cc976c4fb08ca.r2.dev" src/html/ --include="*.html"
+grep -r "pub-53729c3289024c618f90a09ec4c63bf9.r2.dev" src/html/ --include="*.html"
 ```
 
 ### Update Pattern
@@ -119,12 +119,12 @@ Each script typically has TWO references per HTML file:
 
 1. **Preload link** (in `<head>`)
 ```html
-<link rel="preload" href="https://pub-85443b585f1e4411ab5cc976c4fb08ca.r2.dev/script_name.js?v={version}" as="script">
+<link rel="preload" href="https://pub-53729c3289024c618f90a09ec4c63bf9.r2.dev/script_name.js?v={version}" as="script">
 ```
 
 2. **Script tag** (in footer)
 ```html
-<script src="https://pub-85443b585f1e4411ab5cc976c4fb08ca.r2.dev/script_name.js?v={version}" defer></script>
+<script src="https://pub-53729c3289024c618f90a09ec4c63bf9.r2.dev/script_name.js?v={version}" defer></script>
 ```
 
 **IMPORTANT:** Both must be updated to the same version!
@@ -154,7 +154,7 @@ grep -r "script_name.js?v=" src/html/
 1. Go to https://dash.cloudflare.com
 2. Select your account
 3. Navigate to R2 Object Storage
-4. Select the bucket (pub-85443b585f1e4411ab5cc976c4fb08ca)
+4. Select the bucket (pub-53729c3289024c618f90a09ec4c63bf9)
 
 **Step 2: Upload File**
 1. Click "Upload" button
@@ -166,7 +166,7 @@ grep -r "script_name.js?v=" src/html/
 1. File should appear in bucket file list
 2. Click on file to view details
 3. Copy public URL to verify accessibility
-4. Test URL in browser: `https://pub-85443b585f1e4411ab5cc976c4fb08ca.r2.dev/hero_video.js`
+4. Test URL in browser: `https://pub-53729c3289024c618f90a09ec4c63bf9.r2.dev/hero_video.js`
 
 ### File Naming
 
