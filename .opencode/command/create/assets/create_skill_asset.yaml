@@ -1,4 +1,6 @@
 # ───────────────────────────────────────────────────────────────────
+# REFERENCE ONLY — This file is loaded and executed by the parent command file.
+# Do not treat this content as standalone instructions.
 # DOCUMENTATION: ASSET FILE CREATION WORKFLOW
 # ───────────────────────────────────────────────────────────────────
 # Mode: confirm-only (interactive step-by-step approval)

@@ -4,6 +4,20 @@ argument-hint: "<skill-name> <asset-type> [--chained] [:auto|:confirm]"
 allowed-tools: Read, Write, Edit, Bash, Glob, Grep, TodoWrite
 ---
 
+> ⚠️ **EXECUTION PROTOCOL — READ FIRST**
+>
+> **YOU are the executor.** Run this workflow directly — do NOT delegate to other agents.
+> Do NOT use the Task tool to dispatch sub-agents.
+>
+> **WORKFLOW SEQUENCE:**
+> 1. Run Phase 0: Verify you are the @write agent (self-check, not a dispatch)
+> 2. Run the Unified Setup Phase: gather user inputs in one consolidated prompt
+> 3. Load the YAML workflow: `assets/create_skill_asset.yaml`
+> 4. Execute the YAML steps sequentially
+>
+> The @write references below are self-verification checks — not dispatch instructions.
+> Content after the setup phases is reference context for the YAML workflow.
+
 ## ⚡ GATE 3 STATUS: EXEMPT (Predefined Location)
 
 **This command creates files at a predefined location and is EXEMPT from the spec folder question.**

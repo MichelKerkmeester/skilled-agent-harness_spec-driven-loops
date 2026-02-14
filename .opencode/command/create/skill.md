@@ -1,8 +1,22 @@
 ---
 description: Create a complete OpenCode skill with 9-step workflow including resource planning - supports :auto and :confirm modes
 argument-hint: "<skill-name> [--path output-dir] [:auto|:confirm]"
-allowed-tools: [Read, Write, Edit, Bash, Glob, Grep, Task, TodoWrite]
+allowed-tools: [Read, Write, Edit, Bash, Glob, Grep, TodoWrite]
 ---
+
+> ⚠️ **EXECUTION PROTOCOL — READ FIRST**
+>
+> **YOU are the executor.** Run this workflow directly — do NOT delegate to other agents.
+> Do NOT use the Task tool to dispatch sub-agents.
+>
+> **WORKFLOW SEQUENCE:**
+> 1. Run Phase 0: Verify you are the @write agent (self-check, not a dispatch)
+> 2. Run the Unified Setup Phase: gather user inputs in one consolidated prompt
+> 3. Load the YAML workflow: `assets/create_skill.yaml`
+> 4. Execute the YAML steps sequentially
+>
+> The @write references below are self-verification checks — not dispatch instructions.
+> Content after the setup phases is reference context for the YAML workflow.
 
 # 🚨 SINGLE CONSOLIDATED PROMPT - ONE USER INTERACTION
 

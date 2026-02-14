@@ -84,6 +84,7 @@ TASK_KEYWORDS = {
     "IMPLEMENTATION": ["implement", "build", "create", "add", "feature", "code"],
     "ANIMATION": ["animation", "motion", "gsap", "lenis", "scroll", "carousel", "slider", "swiper"],
     "FORMS": ["form", "validation", "input", "submit", "botpoison"],
+    "FORM_UPLOAD": ["upload", "filepond", "file upload", "drag drop", "mime type", "r2 upload", "file type", "dropzone"],
     "VIDEO": ["video", "hls", "streaming", "player"],
     "DEPLOYMENT": ["deploy", "minify", "cdn", "r2", "production"],
 
@@ -158,6 +159,10 @@ def route_frontend_resources(task):
         # CONDITIONAL: Load if third-party library integration detected
         if task.has_third_party or 'finsweet' in task.keywords:
             return load("references/implementation/third_party_integrations.md")  # CONDITIONAL: external libraries, CDN loading
+
+        # CONDITIONAL: Load if file upload / FilePond keywords detected
+        if task.has_file_upload or 'filepond' in task.keywords or 'upload' in task.keywords:
+            return load("references/implementation/form_upload_workflows.md")  # CONDITIONAL: FilePond, R2 upload, MIME types
 
         # CONDITIONAL: Load if performance keywords detected (throttle, debounce, RAF)
         if task.needs_performance_optimization:
@@ -256,6 +261,7 @@ def route_frontend_resources(task):
 | Third-party library integration, CDN loading, HLS.js      | [third_party_integrations.md](./references/implementation/third_party_integrations.md)                                                             | CONDITIONAL |
 | MutationObserver, IntersectionObserver, SharedObservers   | [observer_patterns.md](./references/implementation/observer_patterns.md)                                                                           | CONDITIONAL |
 | RAF, requestIdleCallback, queueMicrotask, scheduling APIs | [async_patterns.md](./references/implementation/async_patterns.md)                                                                                 | CONDITIONAL |
+| File upload, FilePond, drag-drop, MIME types, R2 upload   | [form_upload_workflows.md](./references/implementation/form_upload_workflows.md)                                                                   | CONDITIONAL |
 
 **Phase 2: Debugging**
 

@@ -7,6 +7,44 @@ Public Release: https://github.com/MichelKerkmeester/opencode-spec-kit-framework
 
 ---
 
+## [**2.0.1.2**] - 2026-02-14
+
+> Create command dispatch security fix + defensive hardening — continuation of v2.0.1.1 (Spec 118 → Spec 008)
+
+### 🔍 What changed
+
+Applied the same dispatch vulnerability fix pattern from v2.0.1.1 (spec_kit commands) to the 6 create commands. The root cause: OpenCode's Go runtime injects phantom agent dispatch instructions when it detects `@agent` references combined with `Task` in a command's `allowed-tools` frontmatter.
+
+**Critical fix:** `create/skill.md` had the same two-factor vulnerability — `Task` in allowed-tools + `@write` agent references. Removed `Task` (not needed for slash command chaining) and added imperative guardrail block.
+
+**Defensive hardening:** All 6 create commands now have execution protocol guardrails preventing phantom dispatch, even if `Task` is re-added in the future. All 6 YAML workflow assets marked as `REFERENCE ONLY`.
+
+**Discovery:** `create_agent.yaml` exists but is never loaded by `agent.md` (orphaned file — inline workflow used instead). Flagged for future cleanup.
+
+### 📁 Files Changed
+
+**6 command files hardened:**
+- `.opencode/command/create/skill.md` — `Task` removed from allowed-tools + guardrail added (**critical fix**)
+- `.opencode/command/create/agent.md` — guardrail added (no-YAML variant)
+- `.opencode/command/create/skill_reference.md` — guardrail added
+- `.opencode/command/create/skill_asset.md` — guardrail added
+- `.opencode/command/create/install_guide.md` — guardrail added
+- `.opencode/command/create/folder_readme.md` — guardrail added
+
+**6 YAML assets marked:**
+- `.opencode/command/create/assets/create_skill.yaml` — `REFERENCE ONLY` comment
+- `.opencode/command/create/assets/create_agent.yaml` — `REFERENCE ONLY` comment
+- `.opencode/command/create/assets/create_skill_reference.yaml` — `REFERENCE ONLY` comment
+- `.opencode/command/create/assets/create_skill_asset.yaml` — `REFERENCE ONLY` comment
+- `.opencode/command/create/assets/create_install_guide.yaml` — `REFERENCE ONLY` comment
+- `.opencode/command/create/assets/create_folder_readme.yaml` — `REFERENCE ONLY` comment
+
+### 🚀 Upgrade
+
+Drop-in replacement. Copy `.opencode/command/create/` to your project.
+
+---
+
 ## [**2.0.1.1**] - 2026-02-14
 
 **Command Dispatch Security Fix + Style Alignment (Spec 118)** — Fixed phantom dispatch vulnerability across all **7 spec_kit command files**, added imperative guardrails and REFERENCE comments to **11 YAML workflow files**, aligned **112 H2 headers** with emoji standards, plus AGENTS.md audit fixes and repository cleanup.
