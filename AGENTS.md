@@ -43,24 +43,24 @@
 
 ### Quick Reference: Common Workflows
 
-| Task                     | Flow                                                                                                                          |
-| ------------------------ | ----------------------------------------------------------------------------------------------------------------------------- |
-| **File modification**    | Gate 1 → Gate 2 → Gate 3 (ask spec folder) → Load memory context → Execute                                                    |
-| **Research/exploration** | `memory_match_triggers()` → `memory_context()` (unified) OR `memory_search()` (targeted) → Document findings                  |
-| **Code search**          | `Grep()` for text patterns, `Glob()` for file discovery, `Read()` for file contents                                           |
-| **Resume prior work**    | `/memory:continue` OR `memory_search({ query, specFolder, anchors: ['state', 'next-steps'] })` → Review checklist → Continue  |
+| Task                     | Flow                                                                                                                               |
+| ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------- |
+| **File modification**    | Gate 1 → Gate 2 → Gate 3 (ask spec folder) → Load memory context → Execute                                                         |
+| **Research/exploration** | `memory_match_triggers()` → `memory_context()` (unified) OR `memory_search()` (targeted) → Document findings                       |
+| **Code search**          | `Grep()` for text patterns, `Glob()` for file discovery, `Read()` for file contents                                                |
+| **Resume prior work**    | `/memory:continue` OR `memory_search({ query, specFolder, anchors: ['state', 'next-steps'] })` → Review checklist → Continue       |
 | **Save context**         | `/memory:save` OR `node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js [spec-folder-path]` → Auto-indexed |
-| **Claim completion**     | Validation runs automatically → Load `checklist.md` → Verify ALL items → Mark with evidence                                   |
-| **Debug delegation**     | `/spec_kit:debug` → Model selection → Task tool dispatch                                                                      |
-| **Debug stuck issue**    | 3+ failed attempts → /spec_kit:debug → Model selection → Task tool dispatch                                                   |
-| **End session**          | `/spec_kit:handover` → Save context → Provide continuation prompt                                                             |
-| **New spec folder**      | Option B (Gate 3) → Research via Task tool → Evidence-based plan → Approval → Implement                                       |
-| **Complex multi-step**   | Task tool → Decompose → Delegate → Synthesize                                                                                 |
-| **Documentation**        | workflows-documentation skill → Classify → Load template → Fill → Validate (`validate_document.py`) → DQI score → Verify      |
-| **CDN deployment**       | Minify → Verify → Update HTML versions → Upload to R2 → Browser test                                                          |
-| **JavaScript minify**    | `minify-webflow.mjs` → `verify-minification.mjs` → `test-minified-runtime.mjs` → Browser test                                 |
-| **Learn from mistakes**  | `/memory:learn correct` → Document what went wrong → Stability penalty applied → Pattern extracted                            |
-| **Database maintenance** | `/memory:manage` → stats, health, cleanup, checkpoint operations                                                              |
+| **Claim completion**     | Validation runs automatically → Load `checklist.md` → Verify ALL items → Mark with evidence                                        |
+| **Debug delegation**     | `/spec_kit:debug` → Model selection → Task tool dispatch                                                                           |
+| **Debug stuck issue**    | 3+ failed attempts → /spec_kit:debug → Model selection → Task tool dispatch                                                        |
+| **End session**          | `/spec_kit:handover` → Save context → Provide continuation prompt                                                                  |
+| **New spec folder**      | Option B (Gate 3) → Research via Task tool → Evidence-based plan → Approval → Implement                                            |
+| **Complex multi-step**   | Task tool → Decompose → Delegate → Synthesize                                                                                      |
+| **Documentation**        | workflows-documentation skill → Classify → Load template → Fill → Validate (`validate_document.py`) → DQI score → Verify           |
+| **CDN deployment**       | Minify → Verify → Update HTML versions → Upload to R2 → Browser test                                                               |
+| **JavaScript minify**    | `minify-webflow.mjs` → `verify-minification.mjs` → `test-minified-runtime.mjs` → Browser test                                      |
+| **Learn from mistakes**  | `/memory:learn correct` → Document what went wrong → Stability penalty applied → Pattern extracted                                 |
+| **Database maintenance** | `/memory:manage` → stats, health, cleanup, checkpoint operations                                                                   |
 
 ### Coding Analysis Lenses 
 
@@ -309,32 +309,32 @@ Reply with answers, e.g.: "B, A, C" or "A, , A" (blank for default)
 
 ### Common Failure Patterns
 
-| #   | Stage          | Pattern                      | Trigger Phrase                               | Response Action                                       |
-| --- | -------------- | ---------------------------- | -------------------------------------------- | ----------------------------------------------------- |
-| 1   | Understanding  | Task Misinterpretation       | N/A                                          | Parse request, confirm scope                          |
-| 2   | Understanding  | Assumptions                  | N/A                                          | Read existing code first                              |
-| 3   | Planning       | Rush to Code                 | "straightforward"                            | Analyze → Verify → Simplest                           |
-| 4   | Planning       | Over-Engineering             | N/A                                          | YAGNI - solve only stated                             |
-| 5   | Planning       | Skip Process                 | "I already know"                             | Follow checklist anyway                               |
-| 6   | Implementation | Clever > Clear               | N/A                                          | Obvious code wins                                     |
-| 7   | Implementation | Fabrication                  | "obvious" w/o verify                         | Output "UNKNOWN", verify first                        |
-| 8   | Implementation | Cascading Breaks             | N/A                                          | Reproduce before fixing                               |
-| 9   | Implementation | Root Folder Pollution        | Creating temp file                           | STOP → Move to scratch/ → Verify                      |
-| 10  | Review         | Skip Verification            | "trivial edit"                               | Run ALL tests, no exceptions                          |
-| 11  | Review         | Retain Legacy                | "just in case"                               | Remove unused, ask if unsure                          |
-| 12  | Completion     | Skip Stack Verification      | "works", "done"                              | Run stack-appropriate verification first              |
-| 13  | Any            | Internal Contradiction       | Conflicting requirements                     | HALT → State conflict explicitly → Request resolution |
-| 14  | Understanding  | Wrong Search Tool            | "find", "search", "list"                     | Grep for text patterns, Glob for files                |
-| 15  | Planning       | Skip Research                | "simple task"                                | Dispatch Research anyway for evidence                 |
-| 16  | Any            | Task Without Context         | Missing dispatch context                     | Use 4-section format with full context                |
-| 17  | Implementation | Skip Debug Delegation        | "tried 3+ times", "same error"               | STOP → Suggest /spec_kit:debug → Wait for response    |
-| 18  | Any            | Skip Handover at Session End | "stopping", "done for now", "continue later" | Suggest /spec_kit:handover → Wait for response        |
-| 19  | Understanding  | Skip Skill Routing           | "obvious which skill", "user specified"      | STOP → Run skill_advisor.py OR cite user direction    |
-| 20  | Any            | Cargo Culting                | "best practice", "always should"             | BIAS lens: Does this pattern fit THIS specific case?  |
-| 21  | Planning       | Gold-Plating                 | "while we're here", "might as well"          | SCOPE lens: Is this in the original scope?            |
-| 22  | Implementation | Wrong Abstraction            | "DRY this up" for 2 similar blocks           | CLARITY lens: Same concept or just similar code?      |
-| 23  | Planning       | Premature Optimization       | "might be slow", "could bottleneck"          | VALUE lens: Has performance been measured?            |
-| 24  | Any            | Wrong Agent for Spec Docs  | "write spec.md", "create plan.md"            | STOP → Must use @speckit → Never @general/@write for spec template files |
+| #   | Stage          | Pattern                      | Trigger Phrase                               | Response Action                                                          |
+| --- | -------------- | ---------------------------- | -------------------------------------------- | ------------------------------------------------------------------------ |
+| 1   | Understanding  | Task Misinterpretation       | N/A                                          | Parse request, confirm scope                                             |
+| 2   | Understanding  | Assumptions                  | N/A                                          | Read existing code first                                                 |
+| 3   | Planning       | Rush to Code                 | "straightforward"                            | Analyze → Verify → Simplest                                              |
+| 4   | Planning       | Over-Engineering             | N/A                                          | YAGNI - solve only stated                                                |
+| 5   | Planning       | Skip Process                 | "I already know"                             | Follow checklist anyway                                                  |
+| 6   | Implementation | Clever > Clear               | N/A                                          | Obvious code wins                                                        |
+| 7   | Implementation | Fabrication                  | "obvious" w/o verify                         | Output "UNKNOWN", verify first                                           |
+| 8   | Implementation | Cascading Breaks             | N/A                                          | Reproduce before fixing                                                  |
+| 9   | Implementation | Root Folder Pollution        | Creating temp file                           | STOP → Move to scratch/ → Verify                                         |
+| 10  | Review         | Skip Verification            | "trivial edit"                               | Run ALL tests, no exceptions                                             |
+| 11  | Review         | Retain Legacy                | "just in case"                               | Remove unused, ask if unsure                                             |
+| 12  | Completion     | Skip Stack Verification      | "works", "done"                              | Run stack-appropriate verification first                                 |
+| 13  | Any            | Internal Contradiction       | Conflicting requirements                     | HALT → State conflict explicitly → Request resolution                    |
+| 14  | Understanding  | Wrong Search Tool            | "find", "search", "list"                     | Grep for text patterns, Glob for files                                   |
+| 15  | Planning       | Skip Research                | "simple task"                                | Dispatch Research anyway for evidence                                    |
+| 16  | Any            | Task Without Context         | Missing dispatch context                     | Use 4-section format with full context                                   |
+| 17  | Implementation | Skip Debug Delegation        | "tried 3+ times", "same error"               | STOP → Suggest /spec_kit:debug → Wait for response                       |
+| 18  | Any            | Skip Handover at Session End | "stopping", "done for now", "continue later" | Suggest /spec_kit:handover → Wait for response                           |
+| 19  | Understanding  | Skip Skill Routing           | "obvious which skill", "user specified"      | STOP → Run skill_advisor.py OR cite user direction                       |
+| 20  | Any            | Cargo Culting                | "best practice", "always should"             | BIAS lens: Does this pattern fit THIS specific case?                     |
+| 21  | Planning       | Gold-Plating                 | "while we're here", "might as well"          | SCOPE lens: Is this in the original scope?                               |
+| 22  | Implementation | Wrong Abstraction            | "DRY this up" for 2 similar blocks           | CLARITY lens: Same concept or just similar code?                         |
+| 23  | Planning       | Premature Optimization       | "might be slow", "could bottleneck"          | VALUE lens: Has performance been measured?                               |
+| 24  | Any            | Wrong Agent for Spec Docs    | "write spec.md", "create plan.md"            | STOP → Must use @speckit → Never @general/@write for spec template files |
 
 **Enforcement:** STOP → Acknowledge ("I was about to [pattern]") → Correct → Verify
 
@@ -489,17 +489,17 @@ Execute → Implement with minimal complexity
 
 When using the orchestrate agent or Task tool for complex multi-step workflows, route to specialized agents:
 
-| Agent          | File                             | Use When                                         |
-| -------------- | -------------------------------- | ------------------------------------------------ |
-| `@general`     | Built-in                         | Implementation, complex tasks                    |
-| `@context`  | `.opencode/agent/context.md`     | ALL codebase exploration, file search, pattern discovery, context loading. Internally dispatches sub-agents for fast search and deep investigation. |
-| `@orchestrate` | `.opencode/agent/orchestrate.md` | Multi-agent coordination, complex workflows      |
-| `@research`    | `.opencode/agent/research.md`    | Evidence gathering, planning, Gate 3 Option B. ✅ Exception: may write `research.md` inside spec folders |
-| `@write`       | `.opencode/agent/write.md`       | Creating READMEs, Skills, Guides                 |
-| `@review`      | `.opencode/agent/review.md`      | Code review, PRs, quality gates (READ-ONLY)      |
+| Agent          | File                             | Use When                                                                                                                                                                                                                                                                                |
+| -------------- | -------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `@general`     | Built-in                         | Implementation, complex tasks                                                                                                                                                                                                                                                           |
+| `@context`     | `.opencode/agent/context.md`     | ALL codebase exploration, file search, pattern discovery, context loading. Internally dispatches sub-agents for fast search and deep investigation.                                                                                                                                     |
+| `@orchestrate` | `.opencode/agent/orchestrate.md` | Multi-agent coordination, complex workflows                                                                                                                                                                                                                                             |
+| `@research`    | `.opencode/agent/research.md`    | Evidence gathering, planning, Gate 3 Option B. ✅ Exception: may write `research.md` inside spec folders                                                                                                                                                                                 |
+| `@write`       | `.opencode/agent/write.md`       | Creating READMEs, Skills, Guides                                                                                                                                                                                                                                                        |
+| `@review`      | `.opencode/agent/review.md`      | Code review, PRs, quality gates (READ-ONLY)                                                                                                                                                                                                                                             |
 | `@speckit`     | `.opencode/agent/speckit.md`     | Spec folder creation Level 1-3+ ⛔ **EXCLUSIVE: Only agent permitted to create/write ANY documentation (*.md) inside spec folders. Exceptions: `memory/` (uses generate-context.js), `scratch/` (temporary, any agent), `handover.md` (@handover only), `research.md` (@research only)** |
-| `@debug`       | `.opencode/agent/debug.md`       | Fresh perspective debugging, root cause analysis |
-| `@handover`    | `.opencode/agent/handover.md`    | Session continuation, context preservation. ✅ Exception: may write `handover.md` inside spec folders |
+| `@debug`       | `.opencode/agent/debug.md`       | Fresh perspective debugging, root cause analysis                                                                                                                                                                                                                                        |
+| `@handover`    | `.opencode/agent/handover.md`    | Session continuation, context preservation. ✅ Exception: may write `handover.md` inside spec folders                                                                                                                                                                                    |
 
 **Agent Selection Quick Reference:**
 - **ALL codebase exploration / file search / context loading** → `@context`
@@ -553,32 +553,6 @@ Task Received → Gate 2: Run skill_advisor.py
 3. Read bundled resources from `references/`, `scripts/`, `assets/` paths
 4. Follow skill instructions to completion
 5. Do NOT re-invoke a skill already in context
-
-### Available Skills
-
-| Skill                          | Description                                                                                       | Path                                               |
-| ------------------------------ | ------------------------------------------------------------------------------------------------- | -------------------------------------------------- |
-| `system-spec-kit`              | Spec folder documentation, template architecture, validation, and Spec Kit Memory                 | `.opencode/skill/system-spec-kit/`                 |
-| `workflows-code--web-dev`      | Single-stack web code orchestrator (Webflow, vanilla JS) with 3-phase lifecycle                   | `.opencode/skill/workflows-code--web-dev/`         |
-| `workflows-code--full-stack`   | Multi-stack code orchestrator (Go, Node.js, React, React Native, Swift) with auto-detection       | `.opencode/skill/workflows-code--full-stack/`      |
-| `workflows-code--opencode`     | Multi-language code standards for OpenCode system code (JS, TS, Python, Shell, JSON/JSONC)        | `.opencode/skill/workflows-code--opencode/`        |
-| `workflows-documentation`      | Markdown and OpenCode component specialist (document quality, content optimization, install guides)| `.opencode/skill/workflows-documentation/`         |
-| `workflows-git`                | Git workflow orchestrator (workspace setup, clean commits, work completion)                        | `.opencode/skill/workflows-git/`                   |
-| `workflows-chrome-devtools`    | Chrome DevTools automation via CLI (bdg) and MCP with intelligent routing                         | `.opencode/skill/workflows-chrome-devtools/`       |
-| `mcp-code-mode`                | MCP orchestration via TypeScript execution for external tools (Webflow, Figma, ClickUp, etc.)     | `.opencode/skill/mcp-code-mode/`                   |
-| `mcp-figma`                    | Figma design file access via MCP (18 tools for file retrieval, export, components, styles)        | `.opencode/skill/mcp-figma/`                       |
-
-### Primary Skill: workflows-code
-
-For ALL frontend code implementation, `workflows-code` is the primary orchestrator skill.
-
-**3-Phase Lifecycle (MANDATORY):**
-1. **Phase 1 - Implementation**: Write code following Webflow patterns, async handling, validation
-2. **Phase 1.5 - Code Quality Gate**: Validate against style standards (P0 items MUST pass)
-3. **Phase 2 - Debugging**: Fix issues systematically using DevTools, trace root cause
-4. **Phase 3 - Verification**: Browser testing at multiple viewports (MANDATORY before "done")
-
-**The Iron Law**: NO COMPLETION CLAIMS WITHOUT FRESH BROWSER VERIFICATION EVIDENCE
 
 ### Skill Maintenance
 
