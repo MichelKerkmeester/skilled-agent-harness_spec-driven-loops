@@ -140,7 +140,7 @@ Phase 0: Research (optional) -> Phase 1: Implementation -> Phase 1.5: Code Quali
 
 ## 5. ⚙️ CONFIGURATION
 <!-- ANCHOR:configuration -->
-**Version:** 1.0.9.2
+**Version:** 1.0.5.0
 
 **Allowed tools:** Bash, Edit, Glob, Grep, Read, Task, Write
 

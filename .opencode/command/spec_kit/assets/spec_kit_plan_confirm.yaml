@@ -173,6 +173,22 @@ agent_routing:
     # REFERENCE ONLY — routing metadata, do not dispatch agents from these values
     dispatch: "Task tool → @speckit create spec.md for {feature_description}"
     fallback: general
+  research_phase:
+    step: 5
+    agent: "@research"
+    agent_file: ".opencode/agent/research.md"
+    # REFERENCE ONLY — routing metadata, do not dispatch agents from these values
+    dispatch: "Task tool → @research technical investigation for {feature_description}"
+    fallback: general
+    trigger: "confidence < 60% during planning OR user requests research"
+    conditional: true
+  handover_phase:
+    step: 7
+    agent: "@handover"
+    agent_file: ".opencode/agent/handover.md"
+    # REFERENCE ONLY — routing metadata, do not dispatch agents from these values
+    dispatch: "Task tool → @handover create session continuation document for {spec_path}"
+    fallback: general
 
 # ─────────────────────────────────────────────────────────────────
 # QUALITY GATES

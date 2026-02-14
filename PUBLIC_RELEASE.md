@@ -172,17 +172,17 @@ gh release create vX.X.X.X \
 
 | Field              | Value                                                                                  |
 | ------------------ | -------------------------------------------------------------------------------------- |
-| **Version**        | v2.0.1.4                                                                               |
+| **Version**        | v2.0.2.0                                                                               |
 | **Release Date**   | 2026-02-14                                                                             |
 | **GitHub**         | https://github.com/MichelKerkmeester/opencode-spec-kit-framework                       |
 | **Latest Release** | https://github.com/MichelKerkmeester/opencode-spec-kit-framework/releases/latest       |
-| **Release Notes**  | https://github.com/MichelKerkmeester/opencode-spec-kit-framework/releases/tag/v2.0.1.4 |
+| **Release Notes**  | https://github.com/MichelKerkmeester/opencode-spec-kit-framework/releases/tag/v2.0.2.0 |
 
 ### Release Notes
 
 Release notes for each version are stored as individual files in `changelog/vX.X.X.X.md`, formatted per the template in Section 7. Each file's content is used directly as the `--notes-file` body for `gh release create`.
 
-**Latest**: See `changelog/v2.0.1.4.md`
+**Latest**: See `.opencode/changelog/00--opencode-environment/v2.0.2.0.md`
 
 ---
 
@@ -314,7 +314,8 @@ Releases use a 4-part versioning scheme: `MAJOR.MINOR.SERIES.PATCH`
 | `1.3.2.x` | 1.3.2.0     | @speckit exclusivity + governance rules    |
 | `1.3.3.x` | 1.3.3.0     | Claude Code subagents + orchestrate.md improvements |
 | `2.0.0.x` | 2.0.0.0-7   | JS→TS migration, Spec Kit script automation, architectural refactoring |
-| `2.0.1.x` | 2.0.1.0-4   | Documentation alignment, security fixes & optimization (specs 008, 111-118) |
+| `2.0.1.x` | 2.0.1.0-5   | Documentation alignment, security fixes & optimization (specs 008, 111-118) |
+| `2.0.2.x` | 2.0.2.0     | Agent routing compliance + changelog reorganization (spec 014) |
 
 ---
 

@@ -226,12 +226,14 @@ specs/042-user-authentication/
 
 ### Mode Suffixes
 
-| Suffix | Behavior |
-|--------|----------|
-| `:auto` | Execute without approval gates |
-| `:confirm` | Pause at each step for approval |
+| Suffix | Behavior | Applies To |
+|--------|----------|------------|
+| `:auto` | Execute without approval gates | Most commands |
+| `:confirm` | Pause at each step for approval | Most commands |
+| `:with-research` | Dispatch @research before verification | `/spec_kit:complete` only |
+| `:auto-debug` | Auto-dispatch @debug on 3+ failures | `/spec_kit:complete` only |
 
-> **Note:** Mode suffixes are supported by most commands but not all. `/spec_kit:handover` does not support `:auto`/`:confirm` suffixes — it always runs in interactive mode.
+> **Note:** `:auto`/`:confirm` are supported by most commands. `/spec_kit:handover` always runs in interactive mode. `:with-research` and `:auto-debug` can be combined: `/spec_kit:complete :with-research :auto-debug`
 
 ### Workflow Decision Guide
 
@@ -793,6 +795,16 @@ Every error now includes actionable recovery guidance. 49 error codes mapped to 
 | **117** | /create:folder_readme alignment | create_folder_readme.yaml aligned with canonical 9-section structure (765→611 lines, -20%); embedded templates replaced with reference stubs; emoji/naming inconsistencies fixed; folder_readme.md references corrected |
 
 **Impact:** Reduced token overhead for memory retrieval, consistent documentation across the entire skill system, streamlined AI instruction surface, and unified template architecture with a canonical 9-section scaffold.
+
+### Spec 014 (004-agents): Agent Routing Compliance
+
+| Area | Files | Key Outcome |
+|------|-------|-------------|
+| **Create commands** | 18 (12 YAML + 6 MD) | @speckit for spec folders, @context for discovery, @review quality gates |
+| **Spec_kit commands** | 15 (10 YAML + 5 MD) | @debug at failure >= 3, @research at confidence < 60%, dual-phase @review, @handover at session end |
+| **Test suite** | 90+ files | 18/18 sub-agent simulation tests passed |
+
+**Impact:** All 33 command files now comply with AGENTS.md routing rules. 204 verification checks passed for create commands. SKILL.md updated with Agent Dispatch table and mode suffix documentation.
 
 ---
 

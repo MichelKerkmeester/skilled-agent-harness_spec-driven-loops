@@ -239,29 +239,16 @@ workflow:
     purpose: Search for similar existing skills before creating new one (MANDATORY)
     gate_type: SOFT_BLOCK
     enforcement: "Warn if similar skill exists, allow user override"
+    agent_routing:
+      agent: "@context"
+      agent_file: ".opencode/agent/context.md"
+      rule_reference: "AGENTS.md Rule 4 — Route ALL exploration through @context"
+      dispatch: "Task tool → @context for memory-first skill discovery"
+      fallback: "general (with warning: bypasses memory checks)"
     activities:
-    - name: "Find existing skills"
-      tool: Glob
-      invocation: "Direct call"
-      query_template: ".opencode/skill/*/SKILL.md"
-      expected: "List of existing skills"
-    - name: "Search for similar skills by name"
-      tool: Grep
-      invocation: "Direct call"
-      query_template: "name: .*{skill_name}"
-      parameters:
-        path: ".opencode/skill/"
-    - name: "Search for similar skills by keywords"
-      tool: Grep
-      invocation: "Direct call"
-      query_template: "{skill_keywords}"
-      parameters:
-        path: ".opencode/skill/"
-    - name: "Analyze search results"
-      tasks:
-      - Check if any skill names are similar
-      - Identify potential duplicates or overlapping functionality
-      - Note existing patterns that could be reused
+    - "Dispatch @context to discover existing skills matching '{skill_name}'"
+    - "@context performs memory-first retrieval, then codebase search"
+    - "Context Package returns: similar skills, reusable patterns, duplicates"
     validation:
       similar_exists_threshold: "name match or significant keyword overlap"
       action_if_found: "SOFT_BLOCK - Present findings to user"
@@ -291,15 +278,20 @@ workflow:
       - Create folder: specs/[NNN]-[skill-name]/
     - IF spec_choice == A or C (Use existing):
       - Use selected spec_path
-    - Initialize spec.md with skill creation context
-    - Create plan.md with approach
+    - "Dispatch @speckit for spec.md and plan.md creation (AGENTS.md Rule 5)"
+    agent_routing:
+      agent: "@speckit"
+      agent_file: ".opencode/agent/speckit.md"
+      rule_reference: "AGENTS.md Rule 5 — ALL spec folder docs MUST go through @speckit"
+      dispatch: "Task tool → @speckit create spec.md + plan.md with skill creation context"
+      fallback: "general (with warning: bypasses template enforcement)"
     templates:
     # Use Level 2 templates as default for skill creation
     - .opencode/skill/system-spec-kit/templates/level_2/spec.md
     - .opencode/skill/system-spec-kit/templates/level_2/plan.md
     outputs:
-    - spec.md: created_with_context
-    - plan.md: created_with_approach
+    - spec.md: created_via_speckit
+    - plan.md: created_via_speckit
     checkpoint:
       question: "Spec folder created/confirmed. Continue to understanding phase?"
       options: checkpoint_options.standard
@@ -642,6 +634,35 @@ workflow:
         description: "Return to resource recommendations"
       - label: "C) Skip context saving"
         description: "Complete without saving context"
+
+  step_8b_quality_review:
+    purpose: Quality-score the created skill artifact
+    agent_routing:
+      agent: "@review"
+      agent_file: ".opencode/agent/review.md"
+      rule_reference: "AGENTS.md §3 — @review for code review / quality scoring"
+      dispatch: "Task tool → @review focused review of created skill"
+      blocking: false
+    activities:
+    - "Dispatch @review to quality-score the created SKILL.md and associated files"
+    - "Review checks: template adherence, completeness, pattern consistency"
+    - "Score against 100-point rubric (Accuracy 40%, Completeness 35%, Consistency 25%)"
+    on_low_score:
+      threshold: 70
+      action: "Log warnings and suggest improvements; do not block workflow"
+    outputs:
+    - quality_score: number
+    - review_findings: list
+    - improvement_suggestions: list (if score < 70)
+    checkpoint:
+      question: "Quality review complete (score: [quality_score]/100). Continue?"
+      options:
+      - label: "A) Accept and continue"
+        description: "Proceed to save context"
+      - label: "B) View findings"
+        description: "Show detailed review findings"
+      - label: "C) Address issues"
+        description: "Fix issues before continuing"
 
   step_9_save_context:
     purpose: Preserve workflow decisions and context

@@ -6,6 +6,8 @@ allowed-tools: Read, Bash, spec_kit_memory_memory_stats, spec_kit_memory_memory_
 
 # 🚨 MANDATORY FIRST ACTION - DO NOT SKIP
 
+---
+
 ## 1. ✅ ARGUMENT PARSING GATE
 
 **STATUS: ☐ BLOCKED** (until argument is parsed)

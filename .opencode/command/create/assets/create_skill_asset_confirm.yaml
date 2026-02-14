@@ -371,6 +371,35 @@ workflow:
       - label: "View summary"
         description: "Show final summary"
 
+  step_5b_quality_review:
+    purpose: Quality-score the created asset artifact
+    agent_routing:
+      agent: "@review"
+      agent_file: ".opencode/agent/review.md"
+      rule_reference: "AGENTS.md §3 — @review for code review / quality scoring"
+      dispatch: "Task tool → @review focused review of created asset"
+      blocking: false
+    activities:
+    - "Dispatch @review to quality-score the created asset file"
+    - "Review checks: template adherence, content quality, SKILL.md integration"
+    - "Score against 100-point rubric (Accuracy 40%, Completeness 35%, Consistency 25%)"
+    on_low_score:
+      threshold: 70
+      action: "Log warnings and suggest improvements; do not block workflow"
+    outputs:
+    - quality_score: number
+    - review_findings: list
+    - improvement_suggestions: list (if score < 70)
+    checkpoint:
+      question: "Quality review complete (score: [quality_score]/100). Continue?"
+      options:
+      - label: "A) Accept and continue"
+        description: "Proceed to save context"
+      - label: "B) View findings"
+        description: "Show detailed review findings"
+      - label: "C) Address issues"
+        description: "Fix issues before continuing"
+
   step_6_save_context:
     purpose: Preserve workflow decisions and context
     activities:

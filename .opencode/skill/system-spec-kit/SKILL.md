@@ -2,7 +2,7 @@
 name: system-spec-kit
 description: "Unified documentation and context preservation: spec folder workflow (levels 1-3+), CORE + ADDENDUM template architecture (v2.2), validation, and Spec Kit Memory for context preservation. Mandatory for all file modifications."
 allowed-tools: [Bash, Edit, Glob, Grep, Read, Task, Write]
-version: 2.2.0.0
+version: 2.2.8.0
 ---
 
 <!-- Keywords: spec-kit, speckit, documentation-workflow, spec-folder, template-enforcement, context-preservation, progressive-documentation, validation, spec-kit-memory, vector-search, hybrid-search, bm25, rrf-fusion, fsrs-decay, constitutional-tier, checkpoint, importance-tiers, cognitive-memory, co-activation, tiered-injection -->
@@ -65,6 +65,7 @@ Think of it as a "project folder" for AI-assisted development - it keeps context
   - `scratch/` → temporary workspace, any agent
   - `handover.md` → @handover agent only
   - `research.md` → @research agent only
+  - `debug-delegation.md` → @debug agent only
 
 Routing to `@general`, `@write`, or other agents for spec documentation is a **hard violation**. See constitutional memory: `speckit-exclusivity.md`
 
@@ -156,6 +157,20 @@ The memory system auto-discovers and indexes READMEs from 4 sources during `memo
 > **`/spec_kit:complete` flags:** Supports `:with-research` (runs research before verification) and `:auto-debug` (auto-dispatches debug agent on failures). Usage: `/spec_kit:complete :with-research :auto-debug`
 | **Handover**       | "stopping", "break", "continue later" | quick_reference.md                         | /spec_kit:handover  |
 | **Resume**         | "continue", "pick up", "resume"       | quick_reference.md                         | /spec_kit:resume    |
+
+### Agent Dispatch in Commands
+
+Spec_kit commands dispatch these agents at specific workflow steps (added in spec 014):
+
+| Agent | Commands | Trigger | Behavior |
+| ----- | -------- | ------- | -------- |
+| **@debug** | implement (Step 6), complete (Step 10) | `failure_count >= 3` on same error | Auto-suggest `/spec_kit:debug`; `:auto-debug` flag auto-dispatches |
+| **@review** | implement (Steps 8a/8b), complete (Steps 12a/12b) | End of implementation | Dual-phase: Mode 2 Pre-Commit (advisory) + Mode 4 Gate Validation (blocking on P0) |
+| **@review** | debug (Step 5) | Post-fix validation | Advisory only (`blocking: false`) |
+| **@research** | plan (Step 5) | `confidence < 60%` OR user request | Dispatched via `:with-research` flag or automatic confidence gating |
+| **@handover** | plan (Step 7), implement (Step 9), complete (Step 14), research (Step 9) | Session end | Proactive context preservation; suggest handover document creation |
+
+> **Note:** `resume.md` and `handover.md` commands are meta-workflow tools — they don't dispatch agents because they don't create code artifacts.
 
 ### Reference Sub-folders
 

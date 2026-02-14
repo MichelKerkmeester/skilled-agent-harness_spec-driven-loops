@@ -21,6 +21,8 @@ allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task, webfetch, memory_conte
 
 This workflow gathers ALL inputs in ONE prompt. Round-trip: 1 user interaction.
 
+---
+
 ## 0. 📋 UNIFIED SETUP PHASE
 
 **FIRST MESSAGE PROTOCOL**: This prompt MUST be your FIRST response. No analysis, no tool calls — ask ALL questions immediately, then wait.
@@ -105,9 +107,13 @@ operating_mode:
   validation: completeness_check_17_sections
 ```
 
+---
+
 ## 1. 🎯 PURPOSE
 
 Run the 9-step research workflow: codebase investigation, external research, technical analysis, and documentation. Creates research.md with 17 comprehensive sections. Use when technical uncertainty exists before planning.
+
+---
 
 ## 2. 📝 CONTRACT
 
@@ -117,6 +123,8 @@ Run the 9-step research workflow: codebase investigation, external research, tec
 ```text
 $ARGUMENTS
 ```
+
+---
 
 ## 3. 📊 WORKFLOW OVERVIEW
 
@@ -149,9 +157,13 @@ $ARGUMENTS
 | Re-running with minor changes | `:auto` |
 | Multi-stakeholder review needed | `:confirm` |
 
+---
+
 ## 4. 📌 RESEARCH DOCUMENT SECTIONS
 
 The generated `research.md` contains 17 sections: Metadata, Investigation Report, Executive Overview, Core Architecture, Technical Specifications, Constraints & Limitations, Integration Patterns, Implementation Guide, Code Examples, Testing & Debugging, Performance, Security, Maintenance, API Reference, Troubleshooting, Acknowledgements, Appendix & Changelog.
+
+---
 
 ## 5. ⚡ INSTRUCTIONS
 
@@ -160,6 +172,8 @@ After setup phase passes, load and execute the appropriate YAML prompt:
 - **INTERACTIVE**: `.opencode/command/spec_kit/assets/spec_kit_research_confirm.yaml`
 
 The YAML contains detailed step-by-step workflow, field extraction rules, completion report format, and all configuration.
+
+---
 
 ## 6. 📊 OUTPUT FORMATS
 
@@ -176,6 +190,8 @@ STATUS=OK PATH=[spec-folder-path]
 Error: [error description]  Step: [step number]
 STATUS=FAIL ERROR="[message]"
 ```
+
+---
 
 ## 7. 🔧 PARALLEL DISPATCH
 
@@ -207,6 +223,8 @@ STATUS=FAIL ERROR="[message]"
 
 Format: `[W:R-{sequence}]` where sequence is a 3-digit number (001, 002, etc.)
 
+---
+
 ## 8. 💾 MEMORY INTEGRATION
 
 ### Before Starting Research
@@ -230,12 +248,15 @@ Format: `[W:R-{sequence}]` where sequence is a 3-digit number (001, 002, etc.)
 | During Step 5 | `memory_context({ input: "Why did we choose X over Y?" })` | Prior decisions |
 | After Step 9 | `generate-context.js [spec-folder]` | Preserve current research |
 
+---
+
 ## 9. 🔀 AGENT ROUTING
 
 | Step | Agent | Fallback | Purpose |
 |------|-------|----------|---------|
 | Step 3 (Codebase explore) | `@context` | `general-purpose` | Codebase exploration, file search, pattern discovery (EXCLUSIVE per AGENTS.md) |
 | Steps 3-7 (Investigation) | `@research` | `general` | 5-step investigation phase |
+| Step 9 (Save Context, session end) | `@handover` | `general` | Session continuation if ending after research |
 
 ### Agent Dispatch
 
@@ -243,11 +264,25 @@ Format: `[W:R-{sequence}]` where sequence is a 3-digit number (001, 002, etc.)
 Task tool -> `@research` agent. Input: topic={research_topic}, spec_folder={spec_path}. Execute Steps 3-7: Codebase Investigation (dispatch via @context, subagent_type: "context"), External Research, Technical Analysis, Quality Checklist, Solution Design. Return structured findings for research.md compilation.
 <!-- END REFERENCE -->
 
+### @handover Dispatch Template
+
+<!-- REFERENCE ONLY — Do not dispatch agents from this template -->
+```
+You are the @handover agent. Create a session continuation document.
+Spec Folder: {spec_path} | Workflow: research | Step: 9
+Context: Research complete, user ending session.
+Create: handover.md with research findings summary, next steps, and continuation guidance.
+```
+<!-- END REFERENCE -->
+
 ### Fallback Behavior
 
 <!-- REFERENCE ONLY — Do not dispatch agents from this template -->
 When `@research` unavailable: warning displayed, workflow continues with `subagent_type: "general"` (OpenCode) or `"general-purpose"` (Claude Code). Same steps executed, potentially less specialized output.
+When `@handover` unavailable: Falls back to `subagent_type: "general"`, handover.md creation with less template validation.
 <!-- END REFERENCE -->
+
+---
 
 ## 10. ✅ QUALITY GATES
 
@@ -265,6 +300,8 @@ Score >= 70 = PASS (proceed). Score < 70 = FAIL (block, require remediation).
 
 **Post-execution:** research.md exists with all 17 sections, key questions answered, quality checklist verified (L2+), context saved to memory/.
 
+---
+
 ## 11. ⚠️ ERROR HANDLING
 
 | Error | Action |
@@ -276,12 +313,16 @@ Score >= 70 = PASS (proceed). Score < 70 = FAIL (block, require remediation).
 | `memory_operation_failure` | Save to scratch/ as backup |
 | 3+ consecutive failures | Halt: Retry / Skip / Abort / Debug |
 
+---
+
 ## 12. 📌 KEY DIFFERENCES
 
 - **Does NOT proceed to implementation** - Terminates after research.md
 - **Primary output is research.md** - Comprehensive technical documentation
 - **Use case** - Technical uncertainty, feasibility analysis, documentation
 - **Next steps** - Feeds into `/spec_kit:plan` or `/spec_kit:complete`
+
+---
 
 ## 13. 🔍 EXAMPLES
 
@@ -290,11 +331,15 @@ Score >= 70 = PASS (proceed). Score < 70 = FAIL (block, require remediation).
 /spec_kit:research:confirm "Real-time collaboration system with conflict resolution"
 ```
 
+---
+
 ## 14. 🔗 COMMAND CHAIN
 
 `/spec_kit:research` -> `/spec_kit:plan` -> `/spec_kit:implement`
 
 **Explicit next step:** `/spec_kit:plan [feature-description]`
+
+---
 
 ## 15. 📌 NEXT STEPS
 
@@ -305,6 +350,8 @@ Score >= 70 = PASS (proceed). Score < 70 = FAIL (block, require remediation).
 | Research reveals blockers | Document in research.md | Capture constraints |
 | Need to pause work | `/spec_kit:handover [spec-folder-path]` | Save context for later |
 | Want to save context | `/memory:save [spec-folder-path]` | Preserve research findings |
+
+---
 
 ## 16. 📌 REFERENCE
 

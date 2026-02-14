@@ -36,7 +36,7 @@ ARGUMENT VALIDATION:
 └─ OTHERWISE: Proceed to subcommand routing
 ```
 
----
+--- calc(var(--number) * 1%) Set "-1" for no max width
 
 ## 2. 🔀 SUBCOMMAND ROUTING
 
@@ -237,11 +237,11 @@ STATUS=OK LEARNING_TYPE=<type> FOLDER=<target_spec_folder>
 
 **CRITICAL:** Use the correct MCP tools for each step.
 
-| Step             | Required MCP Call                                                 | Mode     | On Failure   |
-| ---------------- | ----------------------------------------------------------------- | -------- | ------------ |
-| SOURCE LINKING   | `memory_search({ query, limit: 3 })`                             | OPTIONAL | Skip linking |
-| FOLDER SELECTION | `memory_list({ sortBy: "updated_at", limit: 10 })`               | SINGLE   | Ask user     |
-| SAVE             | `memory_save({ filePath: "specs/.../memory/....md", force: false })` | SINGLE | Show error   |
+| Step             | Required MCP Call                                                    | Mode     | On Failure   |
+| ---------------- | -------------------------------------------------------------------- | -------- | ------------ |
+| SOURCE LINKING   | `memory_search({ query, limit: 3 })`                                 | OPTIONAL | Skip linking |
+| FOLDER SELECTION | `memory_list({ sortBy: "updated_at", limit: 10 })`                   | SINGLE   | Ask user     |
+| SAVE             | `memory_save({ filePath: "specs/.../memory/....md", force: false })` | SINGLE   | Show error   |
 
 **Tool Call Signatures:**
 

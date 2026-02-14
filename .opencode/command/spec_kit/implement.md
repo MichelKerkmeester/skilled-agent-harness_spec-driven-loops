@@ -244,17 +244,29 @@ Supports parallel agent dispatch for complex phases (configured in YAML prompts)
 
 ## 8. 🔀 AGENT ROUTING
 
-| Step                                         | Agent      | Fallback  | Purpose                                       |
-| -------------------------------------------- | ---------- | --------- | --------------------------------------------- |
-| Step 7 (Verification)                        | `@review`  | `general` | P0/P1 checklist verification + quality scoring|
-| Step 7 (implementation-summary.md)           | `@speckit` | `general` | Spec folder doc creation (AGENTS.md exclusive)|
-| Step 2/6 (substantive tasks.md)              | `@speckit` | `general` | New task content in spec folder               |
+| Step                                         | Agent      | Fallback  | Purpose                                            |
+| -------------------------------------------- | ---------- | --------- | -------------------------------------------------- |
+| Step 7 (Verification)                        | `@review`  | `general` | Pre-Commit code review + P0/P1 gate validation (blocking) |
+| Step 7 (implementation-summary.md)           | `@speckit` | `general` | Spec folder doc creation (AGENTS.md exclusive)     |
+| Step 2/6 (substantive tasks.md)              | `@speckit` | `general` | New task content in spec folder                    |
+| Step 6 (Development, 3+ failures)            | `@debug`   | `general` | Fresh-perspective debugging (4-phase methodology)  |
+| Step 9 (Session Handover)                    | `@handover`| `general` | Session continuation document creation             |
 
 > Minor status updates (checkbox toggles) may use `@general`. Only substantive creation requires `@speckit`.
 
-### @review Dispatch Template
+### @review Dispatch Template (Dual-Phase)
+
+**Phase A — Pre-Commit Code Review (Mode 2, non-blocking):**
 ```
-You are the @review agent. Verify implementation completeness.
+You are the @review agent (Mode 2: Pre-Commit). Review code changes for quality.
+Spec Folder: {spec_path} | Tasks: {spec_path}/tasks.md
+Execute: Review code changes -> Check patterns/standards -> Flag issues
+Return: Code quality assessment, issues found, recommendations
+```
+
+**Phase B — Gate Validation (Mode 4, blocking):**
+```
+You are the @review agent (Mode 4: Gate Validation). Verify implementation completeness.
 Spec Folder: {spec_path} | Checklist: {spec_path}/checklist.md
 Execute: Load checklist -> Verify P0 [x] with evidence -> Verify P1 -> Score (100-point)
 Return: P0 status, P1 status, Quality score, Blocking issues
@@ -267,13 +279,41 @@ Spec Folder: {spec_path} | Level: {documentation_level} | Tasks: {spec_path}/tas
 Create using template-first approach. Return: file confirmation + validation status.
 ```
 
+### @debug Dispatch Template
+```
+You are the @debug agent. Follow your 4-phase debugging methodology.
+Spec Folder: {spec_path} | Task: {current_task_id}
+Error: {error_message} | Files: {affected_files} | Prior Attempts: {previous_attempts}
+Execute: OBSERVE -> ANALYZE -> HYPOTHESIZE -> FIX
+Return: Root cause, proposed fix, verification steps (Success/Blocked/Escalation)
+```
+
+### @handover Dispatch Template
+```
+You are the @handover agent. Create a session continuation document.
+Spec Folder: {spec_path} | Workflow: implement | Step: 9
+Context: Implementation complete, user opted for handover.
+Create: handover.md with current state, pending items, and continuation guidance.
+```
+
+### Step 6 Debug Integration
+
+Track `failure_count` per task during Step 6 (reset for each new task in tasks.md):
+
+IF failure_count >= 3:
+- Suggest to user: A) Dispatch @debug agent B) Continue manually (reset count) C) Skip task D) Pause workflow
+
+IF debug triggered: Store current_task_id, dispatch @debug via Task tool (subagent_type: "debug"), display checkpoint (root cause, fix status, progress). User responds: Y (retry) / n (pause) / review (debug findings). <!-- REFERENCE: Activated by YAML workflow step, not directly -->
+
 ### Blocking Behavior
 
-`@review` uses `blocking: true`: P0 FAIL -> workflow CANNOT proceed to completion claims.
+`@review` Phase B uses `blocking: true`: P0 FAIL -> workflow CANNOT proceed to completion claims. Phase A is advisory (non-blocking).
 
 ### Fallback
 
 When `@speckit` unavailable: Warning logged, continues with `subagent_type: "general"`, less template validation.
+When `@debug` unavailable: Falls back to `subagent_type: "general-purpose"`, same 4-phase methodology attempted.
+When `@handover` unavailable: Falls back to `subagent_type: "general"`, handover.md creation with less template validation.
 
 ---
 

@@ -112,6 +112,17 @@ agent_routing:
     # REFERENCE ONLY — routing metadata, do not dispatch agents from these values
     dispatch: "Task tool → @speckit create debug-delegation.md in {spec_path} using template with {task_id}, {error_message}, {error_category}, {affected_files}, {previous_attempts}"
     fallback: "general"
+  post_fix_review:
+    step: 5
+    agent: "@review"
+    agent_file: ".opencode/agent/review.md"
+    purpose: "Post-fix code quality validation after fix applied (Option A)"
+    # REFERENCE ONLY — routing metadata, do not dispatch agents from these values
+    dispatch: "Task tool → @review validate code quality of applied fix in {spec_path}"
+    fallback: "general"
+    blocking: false
+    advisory: true
+    note: "Non-blocking — fix is not blocked, but P0 issues are reported to the user"
 
 # ─────────────────────────────────────────────────────────────────
 # WORKFLOW ENFORCEMENT

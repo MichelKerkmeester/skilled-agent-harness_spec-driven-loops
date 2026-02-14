@@ -21,6 +21,8 @@ allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task, memory_context, memory
 
 This workflow gathers ALL inputs in ONE prompt. Round-trip: 1 user interaction.
 
+---
+
 ## 0. 📋 UNIFIED SETUP PHASE
 
 **FIRST MESSAGE PROTOCOL**: This prompt MUST be your FIRST response. No analysis, no tool calls — ask ALL questions immediately, then wait.
@@ -124,9 +126,13 @@ operating_mode:
   validation: consistency_check_before_handoff
 ```
 
+---
+
 ## 1. 🎯 PURPOSE
 
 Run the planning workflow: specification, clarification, and technical planning. Creates spec.md, plan.md, and checklists without implementation. Use when planning needs review before coding.
+
+---
 
 ## 2. 📝 CONTRACT
 
@@ -138,6 +144,8 @@ Run the planning workflow: specification, clarification, and technical planning.
 ```text
 $ARGUMENTS
 ```
+
+---
 
 ## 3. 📊 WORKFLOW OVERVIEW
 
@@ -151,6 +159,8 @@ $ARGUMENTS
 | 6    | Save Context     | Save conversation context    | memory/*.md              |
 | 7    | Handover Check   | Prompt for session handover  | handover.md (optional)   |
 
+---
+
 ## 4. ⚡ INSTRUCTIONS
 
 After all phases pass, load and execute the appropriate YAML prompt:
@@ -159,6 +169,8 @@ After all phases pass, load and execute the appropriate YAML prompt:
 - **INTERACTIVE**: `.opencode/command/spec_kit/assets/spec_kit_plan_confirm.yaml`
 
 The YAML contains detailed step-by-step workflow, field extraction rules, completion report format, and all configuration.
+
+---
 
 ## 5. 📊 OUTPUT FORMATS
 
@@ -177,11 +189,15 @@ Error: [description] | Step: [number]
 STATUS=FAIL ERROR="[message]"
 ```
 
+---
+
 ## 6. 📌 REFERENCE
 
 **Full details in YAML prompts:** Workflow steps, field extraction, documentation levels (1/2/3), templates, completion report, mode behaviors, parallel dispatch config, checklist guidelines, failure recovery.
 
 **See also:** AGENTS.md Sections 2-6 for memory loading, confidence framework, and request analysis.
+
+---
 
 ## 7. 🔀 PARALLEL DISPATCH
 
@@ -220,6 +236,8 @@ After agents return, verify hypotheses by reading identified files.
 
 **Workstream Prefix:** `[W:PLAN]` for all planning dispatch tracking.
 
+---
+
 ## 8. 💾 MEMORY INTEGRATION
 
 ### Unified Memory Retrieval
@@ -248,12 +266,16 @@ Use `/memory:context` with intent-aware retrieval:
 2. **Anchors auto-extracted:** planning-[feature], decisions, architecture, next-steps
 3. **Verify:** Check memory/*.md created with proper anchors
 
+---
+
 ## 9. 🔀 AGENT ROUTING
 
-| Step                          | Agent      | Fallback  | Purpose                                              |
-| ----------------------------- | ---------- | --------- | ---------------------------------------------------- |
-| Step 3 (Specification)        | `@speckit` | `general` | Template-first spec folder creation with validation  |
-| Step 5 (Codebase Exploration) | `@context` | `general-purpose` | Exclusive agent for file search, pattern discovery   |
+| Step                                        | Agent      | Fallback          | Purpose                                              |
+| ------------------------------------------- | ---------- | ----------------- | ---------------------------------------------------- |
+| Step 3 (Specification)                      | `@speckit` | `general`         | Template-first spec folder creation with validation  |
+| Step 5 (Codebase Exploration)               | `@context` | `general-purpose` | Exclusive agent for file search, pattern discovery   |
+| Step 5 (Planning, low confidence)           | `@research`| `general`         | Technical investigation when confidence < 60%        |
+| Step 7 (Handover Check)                     | `@handover`| `general`         | Session continuation document creation               |
 
 <!-- REFERENCE ONLY — Do not dispatch agents from this template -->
 **Dispatch flow:** Check agent availability → dispatch if available → fallback to `subagent_type: "general-purpose"` (Claude Code) or `"general"` (OpenCode) with warning → agent returns file confirmation with validation status.
@@ -264,7 +286,26 @@ You are the @speckit agent. Create spec folder documentation.
 Feature: {feature_description} | Level: {documentation_level} | Folder: {spec_path}
 Create spec.md using template-first approach. Validate structure. Return file confirmation.
 ```
+
+**@research dispatch template (conditional):**
+```
+Trigger: confidence < 60% during Step 5 planning OR user explicitly requests research.
+You are the @research agent. Conduct technical investigation.
+Topic: {feature_description} | Spec Folder: {spec_path}
+Execute: Codebase investigation -> External research -> Technical analysis
+Return: Structured findings for plan.md Technical Context section.
+```
+
+**@handover dispatch template:**
+```
+You are the @handover agent. Create a session continuation document.
+Spec Folder: {spec_path} | Workflow: plan | Step: 7
+Context: Planning complete, user opted for handover.
+Create: handover.md with current state, planning artifacts, and implementation guidance.
+```
 <!-- END REFERENCE -->
+
+---
 
 ## 10. ✅ QUALITY GATES
 
@@ -290,11 +331,15 @@ Create spec.md using template-first approach. Validate structure. Return file co
 
 Record results in decision-record.md for architectural changes.
 
+---
+
 ## 11. 📌 KEY DIFFERENCES FROM /SPEC_KIT:COMPLETE
 
 - **Terminates after planning** — no task breakdown, analysis, or implementation
 - **Next step guidance** — recommends `/spec_kit:implement` when ready
 - **Use case** — planning phase separation, stakeholder review, feasibility analysis
+
+---
 
 ## 12. 🔍 EXAMPLES
 
@@ -304,6 +349,8 @@ Record results in decision-record.md for architectural changes.
 /spec_kit:plan "Build analytics dashboard" tech stack: React, Chart.js, existing API
 ```
 
+---
+
 ## 13. 🔗 COMMAND CHAIN
 
 ```
@@ -311,6 +358,8 @@ Record results in decision-record.md for architectural changes.
 ```
 
 Next step: `/spec_kit:implement [spec-folder-path]`
+
+---
 
 ## 14. 📌 NEXT STEPS
 

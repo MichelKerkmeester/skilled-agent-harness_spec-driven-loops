@@ -2,7 +2,7 @@
 name: workflows-code--full-stack
 description: "Stack-agnostic development orchestrator guiding developers through implementation, debugging, and verification phases with automatic stack detection via marker files and bundled stack-specific knowledge."
 allowed-tools: [Bash, Edit, Glob, Grep, Read, Task, Write]
-version: 1.0.0
+version: 1.0.0.0
 ---
 
 <!-- Keywords: workflows-code, development-orchestrator, multi-stack, stack-detection, debugging-workflow, implementation-patterns, react, nextjs, react-native, swift, go, nodejs -->

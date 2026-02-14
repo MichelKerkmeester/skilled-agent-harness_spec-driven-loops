@@ -32,9 +32,13 @@ operating_mode:
   validation: checkpoint_based_with_checklist_verification
 ```
 
+---
+
 ## 1. 🎯 PURPOSE
 
 Run the full 14-step SpecKit workflow: specification, clarification, planning, task breakdown, implementation, and context saving.
+
+---
 
 ## 2. 📝 CONTRACT
 
@@ -44,6 +48,8 @@ Run the full 14-step SpecKit workflow: specification, clarification, planning, t
 ```text
 $ARGUMENTS
 ```
+
+---
 
 ## 3. 📊 WORKFLOW OVERVIEW
 
@@ -77,6 +83,8 @@ $ARGUMENTS
 | (combined) | `/spec_kit:complete :auto :with-research :auto-debug` | All options combined |
 | (default) | `/spec_kit:complete "feature"` | Ask user to choose mode during setup |
 
+---
+
 ## 4. 📊 PHASE A: PLANNING (Steps 1-7)
 
 | STEP | NAME | REQUIRED OUTPUT | VERIFICATION |
@@ -108,6 +116,8 @@ When `:with-research` flag present or research_triggered == TRUE:
 - User responds: Y (continue) / n (pause) / review (see research.md first)
 - If research_triggered == FALSE, skip directly to workflow execution
 
+---
+
 ## 5. ⚡ PHASE B: IMPLEMENTATION (Steps 8-14)
 
 | STEP | NAME | REQUIRED OUTPUT | VERIFICATION |
@@ -138,6 +148,8 @@ When `:with-research` flag present or research_triggered == TRUE:
 
 **Step 14 (Session Handover Check):** Display handover prompt offering `/spec_kit:handover`. Recommended if: continuing later, another dev may pick up, implementation has nuances. Wait for user response before marking workflow complete.
 
+---
+
 ## 6. 🔧 STEP 10 DEBUG INTEGRATION
 
 Track failure_count per task during Step 10 (reset for each task in tasks.md):
@@ -148,6 +160,8 @@ IF failure_count >= 3:
 
 IF debug triggered: Store current_task_id, execute debug workflow (5 steps) via Task tool, display checkpoint (root cause, fix status, progress). User responds: Y (retry) / n (pause) / review (debug findings). <!-- REFERENCE: Activated by YAML workflow step, not directly -->
 
+---
+
 ## 7. ⚡ INSTRUCTIONS
 
 After setup phase passes, load and execute the appropriate YAML prompt:
@@ -155,6 +169,8 @@ After setup phase passes, load and execute the appropriate YAML prompt:
 - **INTERACTIVE**: `.opencode/command/spec_kit/assets/spec_kit_complete_confirm.yaml`
 
 The YAML contains detailed step-by-step workflow, field extraction rules, completion report format, and all configuration.
+
+---
 
 ## 8. 📊 OUTPUT FORMATS
 
@@ -171,6 +187,8 @@ Error: [error description]  Step: [step number]
 STATUS=FAIL ERROR="[message]"
 ```
 
+---
+
 ## 9. ✅ VALIDATION
 
 Validation runs automatically on the spec folder before marking complete.
@@ -185,6 +203,8 @@ Validation runs automatically on the spec folder before marking complete.
 **7 Rules:** FILE_EXISTS, PLACEHOLDER_FILLED, SECTIONS_PRESENT, LEVEL_DECLARED, PRIORITY_TAGS, EVIDENCE_CITED, ANCHORS_VALID
 
 **Exit codes:** 0 = pass, 1 = warnings, 2 = errors (must fix)
+
+---
 
 ## 10. 🔀 PARALLEL DISPATCH
 
@@ -225,6 +245,8 @@ Steps 3 (Specification), 6 (Planning + auto 4-agent), 8 (Analysis), 10 (Developm
 
 `[W:ARCH]` Architecture | `[W:FEAT]` Feature | `[W:DEPS]` Dependency | `[W:TEST]` Test | `[W:IMPL-N]` Implementation workstream N
 
+---
+
 ## 11. 🔀 AGENT ROUTING
 
 | Step/Phase | Agent | Fallback | Purpose |
@@ -232,7 +254,9 @@ Steps 3 (Specification), 6 (Planning + auto 4-agent), 8 (Analysis), 10 (Developm
 | Step 6 (Exploration) | `@context` | `general-purpose` | 4-agent parallel codebase exploration |
 | Phase 3 (Research) | `@research` | `general` | 9-step research workflow (if triggered) |
 | Step 3 (Specification) | `@speckit` | `general` | Template-first spec folder creation |
-| Step 11 (Verification) | `@review` | `general` | P0/P1 checklist verification (blocking) |
+| Step 11 (Verification) | `@review` | `general` | Pre-Commit code review (Mode 2) + P0/P1 gate validation (Mode 4, blocking) |
+| Step 10 (Development, 3+ failures) | `@debug` | `general` | Fresh-perspective debugging (auto if :auto-debug) |
+| Step 14 (Handover Check) | `@handover` | `general` | Session continuation document creation |
 
 ### Dispatch Details
 
@@ -249,15 +273,25 @@ Steps 3 (Specification), 6 (Planning + auto 4-agent), 8 (Analysis), 10 (Developm
 
 **Speckit** (Step 3): Task tool -> the speckit agent. Input: feature={feature_description}, level={documentation_level}, folder={spec_path}. Create spec.md via template-first approach.
 
-**Review** (Step 11): Task tool -> the review agent. Input: spec_folder={spec_path}, checklist={spec_path}/checklist.md. Return: P0 status [PASS/FAIL], P1 status [PASS/PARTIAL/FAIL], quality score [0-100], blocking issues.
+**Review** (Step 11, Dual-Phase):
+- Phase A (Pre-Commit, Mode 2): Task tool -> the review agent. Input: spec_folder={spec_path}, tasks={spec_path}/tasks.md. Review code changes for quality, patterns, standards. Return: code quality assessment, issues, recommendations. Non-blocking/advisory.
+- Phase B (Gate Validation, Mode 4): Task tool -> the review agent. Input: spec_folder={spec_path}, checklist={spec_path}/checklist.md. Return: P0 status [PASS/FAIL], P1 status [PASS/PARTIAL/FAIL], quality score [0-100], blocking issues.
+
+**Debug** (Step 10): Task tool -> the debug agent when failure_count >= 3. Input: spec_folder={spec_path}, task={current_task_id}, error={error_message}, files={affected_files}, attempts={previous_attempts}. Execute OBSERVE -> ANALYZE -> HYPOTHESIZE -> FIX. Return: root cause, proposed fix, verification steps.
+
+**Handover** (Step 14): Task tool -> the handover agent. Input: spec_folder={spec_path}, workflow=complete, step=14. Create handover.md with current state, pending items, and continuation guidance.
 
 ### Blocking Behavior (Step 11)
 
-The review agent uses `blocking: true`: P0 FAIL = workflow CANNOT proceed to Step 12. User must address P0 items.
+The review agent Phase B uses `blocking: true`: P0 FAIL = workflow CANNOT proceed to Step 12. User must address P0 items. Phase A is advisory (non-blocking).
 
 ### Fallback Behavior
 
 When specialized agent unavailable: warning displayed, workflow continues with `subagent_type: "general"` (OpenCode) or `"general-purpose"` (Claude Code). For the review agent fallback: blocking behavior PRESERVED.
+When `@debug` unavailable: Falls back to `subagent_type: "general-purpose"`, same 4-phase methodology attempted.
+When `@handover` unavailable: Falls back to `subagent_type: "general"`, handover.md creation with less template validation.
+
+---
 
 ## 12. ✅ QUALITY GATES
 
@@ -287,6 +321,8 @@ Required at Planning Gate for Level 3/3+ (optional Level 2). Record in decision-
 
 **Post-execution (>= 70):** All tasks marked [x] (30), implementation-summary.md exists (40), memory/*.md saved (20), validation passed (10)
 
+---
+
 ## 13. ⚠️ ERROR HANDLING
 
 | Error | Action |
@@ -299,6 +335,8 @@ Required at Planning Gate for Level 3/3+ (optional Level 2). Record in decision-
 | Validation errors (exit 2) | Fix before proceeding |
 | Incomplete session detected | Offer: Resume / Restart / Cancel |
 
+---
+
 ## 14. 🔗 COMMAND CHAIN
 
 - **Standard**: `/spec_kit:complete "feature"` -- 14 steps
@@ -306,6 +344,8 @@ Required at Planning Gate for Level 3/3+ (optional Level 2). Record in decision-
 - **Auto-Debug**: `/spec_kit:complete "feature" :auto-debug` -- 14 steps with auto debug
 - **Full Options**: `/spec_kit:complete "feature" :auto :with-research :auto-debug`
 - **Split workflows**: `/spec_kit:research` -> `/spec_kit:plan` -> `/spec_kit:implement`
+
+---
 
 ## 15. 📌 NEXT STEPS
 
@@ -318,6 +358,8 @@ Required at Planning Gate for Level 3/3+ (optional Level 2). Record in decision-
 | Ready for next feature | `/spec_kit:complete [feature-description]` | Start new workflow |
 | Need crash recovery | `/memory:continue` | Session recovery |
 | Record learning | `/memory:learn` | Explicit learning |
+
+---
 
 ## 16. 📌 REFERENCE
 

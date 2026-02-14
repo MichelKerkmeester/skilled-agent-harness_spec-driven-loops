@@ -202,6 +202,18 @@ The YAML contains: detailed step activities, checkpoints, confidence scoring, er
 
 ---
 
+## Agent Routing
+
+This command dispatches a specialized agent at a specific workflow step (see YAML for details):
+
+| Step | Agent | Rule | Purpose |
+|------|-------|------|---------|
+| 5b: Quality Review | @review | §3 — @review for quality scoring | 100-point rubric scoring of created README |
+
+**Agent file**: `.opencode/agent/review.md`
+
+---
+
 ## ⛔ GATE 3 STATUS: EXEMPT (Self-Documenting Artifact)
 
 **This command creates documentation files that ARE the documentation artifact.**

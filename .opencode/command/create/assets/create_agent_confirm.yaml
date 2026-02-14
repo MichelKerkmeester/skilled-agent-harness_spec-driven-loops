@@ -241,29 +241,16 @@ workflow:
     purpose: Search for similar existing agents before creating new one (MANDATORY)
     gate_type: SOFT_BLOCK
     enforcement: "Warn if similar agent exists, allow user override"
+    agent_routing:
+      agent: "@context"
+      agent_file: ".opencode/agent/context.md"
+      rule_reference: "AGENTS.md Rule 4 — Route ALL exploration through @context"
+      dispatch: "Task tool → @context for memory-first agent discovery"
+      fallback: "general (with warning: bypasses memory checks)"
     activities:
-    - name: "Find existing agents"
-      tool: Glob
-      invocation: "Direct call"
-      query_template: ".opencode/agent/*.md"
-      expected: "List of existing agents"
-    - name: "Search for similar agents by name"
-      tool: Grep
-      invocation: "Direct call"
-      query_template: "name: .*{agent_name}"
-      parameters:
-        path: ".opencode/agent/"
-    - name: "Search for similar agents by description/purpose"
-      tool: Grep
-      invocation: "Direct call"
-      query_template: "{agent_keywords}"
-      parameters:
-        path: ".opencode/agent/"
-    - name: "Analyze search results"
-      tasks:
-      - Check if any agent names are similar
-      - Identify potential duplicates or overlapping functionality
-      - Note existing patterns that could be reused
+    - "Dispatch @context to discover existing agents matching '{agent_name}'"
+    - "@context performs memory-first retrieval, then codebase search"
+    - "Context Package returns: similar agents, reusable patterns, duplicates"
     validation:
       similar_exists_threshold: "name match or significant keyword overlap"
       action_if_found: "SOFT_BLOCK - Present findings to user"
@@ -293,15 +280,20 @@ workflow:
       - Create folder: specs/[NNN]-[agent-name]/
     - IF spec_choice == A or C (Use existing):
       - Use selected spec_path
-    - Initialize spec.md with agent creation context
-    - Create plan.md with approach
+    - "Dispatch @speckit for spec.md and plan.md creation (AGENTS.md Rule 5)"
+    agent_routing:
+      agent: "@speckit"
+      agent_file: ".opencode/agent/speckit.md"
+      rule_reference: "AGENTS.md Rule 5 — ALL spec folder docs MUST go through @speckit"
+      dispatch: "Task tool → @speckit create spec.md + plan.md with agent creation context"
+      fallback: "general (with warning: bypasses template enforcement)"
     templates:
     # Use Level 1 templates as default for agent creation
     - .opencode/skill/system-spec-kit/templates/level_1/spec.md
     - .opencode/skill/system-spec-kit/templates/level_1/plan.md
     outputs:
-    - spec.md: created_with_context
-    - plan.md: created_with_approach
+    - spec.md: created_via_speckit
+    - plan.md: created_via_speckit
     checkpoint:
       question: "Spec folder created/confirmed. Continue to understanding phase?"
       options: checkpoint_options.standard
@@ -547,6 +539,35 @@ workflow:
         description: "Show detailed validation errors"
       - label: "C) Fix issues"
         description: "Address validation failures and revalidate"
+
+  step_5b_quality_review:
+    purpose: Quality-score the created agent artifact
+    agent_routing:
+      agent: "@review"
+      agent_file: ".opencode/agent/review.md"
+      rule_reference: "AGENTS.md §3 — @review for code review / quality scoring"
+      dispatch: "Task tool → @review focused review of created agent"
+      blocking: false
+    activities:
+    - "Dispatch @review to quality-score the created agent definition file"
+    - "Review checks: frontmatter validity, permission config, behavioral rules"
+    - "Score against 100-point rubric (Accuracy 40%, Completeness 35%, Consistency 25%)"
+    on_low_score:
+      threshold: 70
+      action: "Log warnings and suggest improvements; do not block workflow"
+    outputs:
+    - quality_score: number
+    - review_findings: list
+    - improvement_suggestions: list (if score < 70)
+    checkpoint:
+      question: "Quality review complete (score: [quality_score]/100). Continue?"
+      options:
+      - label: "A) Accept and continue"
+        description: "Proceed to save context"
+      - label: "B) View findings"
+        description: "Show detailed review findings"
+      - label: "C) Address issues"
+        description: "Fix issues before continuing"
 
   step_6_save_context:
     purpose: Preserve workflow decisions and context

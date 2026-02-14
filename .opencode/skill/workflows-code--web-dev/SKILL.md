@@ -2,7 +2,7 @@
 name: workflows-code--web-dev
 description: "Orchestrator guiding developers through implementation, debugging, and verification phases across specialized code quality skills (project)"
 allowed-tools: [Bash, Edit, Glob, Grep, Read, Task, Write]
-version: 1.0.9.2
+version: 1.0.5.0
 ---
 
 <!-- Keywords: workflows-code, development-orchestrator, frontend-development, browser-verification, debugging-workflow, implementation-patterns, webflow-integration -->

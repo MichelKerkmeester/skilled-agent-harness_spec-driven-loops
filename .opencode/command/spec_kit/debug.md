@@ -174,11 +174,12 @@ operating_mode:
 
 ### Agent Routing
 
-| Agent     | Scope                              | When                                       |
-| --------- | ---------------------------------- | ------------------------------------------ |
-| @speckit  | `debug-delegation.md` creation     | Step 2: Generate Report (spec folder docs) |
-| @debug    | 4-phase debugging methodology      | Step 3: Dispatch Sub-Agent                 |
-| @handover | Session handover (if needed)       | Post-resolution                            |
+| Agent     | Scope                                | When                                       |
+| --------- | ------------------------------------ | ------------------------------------------ |
+| @speckit  | `debug-delegation.md` creation       | Step 2: Generate Report (spec folder docs) |
+| @debug    | 4-phase debugging methodology        | Step 3: Dispatch Sub-Agent                 |
+| @review   | Post-fix code quality validation     | Step 5: After fix applied (Option A)       |
+| @handover | Session handover (if needed)         | Post-resolution                            |
 
 > Per AGENTS.md, the speckit agent is the exclusive agent for creating documentation inside spec folders.
 
@@ -268,6 +269,8 @@ Before/during debugging, validation runs automatically: FILE_EXISTS, PLACEHOLDER
 ---
 
 > **📋 REFERENCE ONLY** — The dispatch templates below are used by YAML workflow steps. Do not execute them directly from this document.
+
+---
 
 ## 10. 🔀 SUB-AGENT DELEGATION
 

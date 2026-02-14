@@ -160,6 +160,14 @@ agent_routing:
     # REFERENCE ONLY — routing metadata, do not dispatch agents from these values
     dispatch: "Task tool → @research 9-step workflow for {research_topic}"
     fallback: general
+  handover_phase:
+    step: 9
+    agent: "@handover"
+    agent_file: ".opencode/agent/handover.md"
+    # REFERENCE ONLY — routing metadata, do not dispatch agents from these values
+    dispatch: "Task tool → @handover create session continuation document for {spec_path}"
+    fallback: general
+    note: "Session continuation if ending after research"
 
 # ─────────────────────────────────────────────────────────────────
 # QUALITY GATES

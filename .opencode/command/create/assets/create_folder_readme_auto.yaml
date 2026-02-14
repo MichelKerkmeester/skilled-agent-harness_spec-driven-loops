@@ -443,6 +443,26 @@ workflow:
     - checklist_results: object
     - dqi_score: number (optional)
 
+  step_5b_quality_review:
+    purpose: Quality-score the created README artifact
+    agent_routing:
+      agent: "@review"
+      agent_file: ".opencode/agent/review.md"
+      rule_reference: "AGENTS.md §3 — @review for code review / quality scoring"
+      dispatch: "Task tool → @review focused review of created README"
+      blocking: false
+    activities:
+    - "Dispatch @review to quality-score the created README file"
+    - "Review checks: structure completeness, content quality, DQI standards"
+    - "Score against 100-point rubric (Accuracy 40%, Completeness 35%, Consistency 25%)"
+    on_low_score:
+      threshold: 70
+      action: "Log warnings and suggest improvements; do not block workflow"
+    outputs:
+    - quality_score: number
+    - review_findings: list
+    - improvement_suggestions: list (if score < 70)
+
   step_6_save_context:
     purpose: Preserve workflow decisions and context
     activities:
