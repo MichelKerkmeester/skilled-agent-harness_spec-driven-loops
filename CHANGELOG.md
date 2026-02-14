@@ -1,9 +1,38 @@
 # Changelog
 
 All notable changes to the OpenCode Dev Environment are documented in this file.
-Public Release: https://github.com/MichelKerkmeester/opencode-spec-kit-framework
+> Part of [OpenCode Dev Environment](https://github.com/MichelKerkmeester/opencode-spec-kit-framework)
 
-> The format is based on [Keep a Changelog](https://keepachangelog.com/)
+---
+
+## [**2.0.1.4**] - 2026-02-14
+
+> Create YAML workflow alignment + CHANGELOG style standardization
+
+### Changed
+
+Replaced `REFERENCE ONLY` headers in all **6 create YAML workflow files** with proper workflow title headers matching the spec_kit YAML convention. The create YAMLs now identify as executable workflows (`OPENCODE CREATE: [WORKFLOW] (CONFIRM MODE)`) rather than subordinate reference documents — consistent with how spec_kit YAMLs use `SMART SPECKIT: [WORKFLOW] ([MODE])`.
+
+Separately, standardized **10 CHANGELOG files** across the project: removed emoji prefixes from section headers, unified repository link format, and applied bold version number formatting for consistency.
+
+### Files
+
+**6 YAML workflow headers updated:**
+- `.opencode/command/create/assets/create_skill.yaml`
+- `.opencode/command/create/assets/create_agent.yaml`
+- `.opencode/command/create/assets/create_skill_reference.yaml`
+- `.opencode/command/create/assets/create_skill_asset.yaml`
+- `.opencode/command/create/assets/create_install_guide.yaml`
+- `.opencode/command/create/assets/create_folder_readme.yaml`
+
+**10 CHANGELOGs standardized:**
+- `CHANGELOG.md` (root)
+- `.opencode/scripts/CHANGELOG.md`
+- 8 skill CHANGELOGs in `.opencode/skill/*/CHANGELOG.md`
+
+### Upgrade
+
+Drop-in replacement. Copy `.opencode/command/create/assets/` to your project.
 
 ---
 
@@ -11,13 +40,13 @@ Public Release: https://github.com/MichelKerkmeester/opencode-spec-kit-framework
 
 > workflows-code--web-dev: Form Upload reference document + CDN version cleanup
 
-### 🔍 What changed
+### Changed
 
 Added a comprehensive **form upload reference document** (`form_upload_workflows.md`, 633 lines, DQI 97/100) documenting the full FilePond-to-R2 upload pipeline: architecture, Webflow data attributes, FilePond configuration, state machine, Cloudflare Worker proxy, form integration, and MIME type reference. Updated SKILL.md routing with `FORM_UPLOAD` keyword group and conditional loading.
 
 Separately, removed all hardcoded CDN version numbers across **7 skill files** (~35 instances) to reduce documentation maintenance overhead. Replaced with `{version}` placeholders that point developers to source HTML files for current pinned versions.
 
-### 📁 Files Changed
+### Files
 
 **New:**
 - `.opencode/skill/workflows-code--web-dev/references/implementation/form_upload_workflows.md` — 11-section upload pipeline reference
@@ -32,7 +61,7 @@ Separately, removed all hardcoded CDN version numbers across **7 skill files** (
 - `.opencode/skill/workflows-code--web-dev/references/performance/resource_loading.md`
 - `.opencode/skill/workflows-code--web-dev/assets/integrations/hls_patterns.js`
 
-### 🚀 Upgrade
+### Upgrade
 
 Drop-in replacement. Copy `.opencode/skill/workflows-code--web-dev/` to your project.
 
@@ -42,7 +71,7 @@ Drop-in replacement. Copy `.opencode/skill/workflows-code--web-dev/` to your pro
 
 > Create command dispatch security fix + defensive hardening — continuation of v2.0.1.1 (Spec 118 → Spec 008)
 
-### 🔍 What changed
+### Changed
 
 Applied the same dispatch vulnerability fix pattern from v2.0.1.1 (spec_kit commands) to the 6 create commands. The root cause: OpenCode's Go runtime injects phantom agent dispatch instructions when it detects `@agent` references combined with `Task` in a command's `allowed-tools` frontmatter.
 
@@ -52,7 +81,7 @@ Applied the same dispatch vulnerability fix pattern from v2.0.1.1 (spec_kit comm
 
 **Discovery:** `create_agent.yaml` exists but is never loaded by `agent.md` (orphaned file — inline workflow used instead). Flagged for future cleanup.
 
-### 📁 Files Changed
+### Files
 
 **6 command files hardened:**
 - `.opencode/command/create/skill.md` — `Task` removed from allowed-tools + guardrail added (**critical fix**)
@@ -70,7 +99,7 @@ Applied the same dispatch vulnerability fix pattern from v2.0.1.1 (spec_kit comm
 - `.opencode/command/create/assets/create_install_guide.yaml` — `REFERENCE ONLY` comment
 - `.opencode/command/create/assets/create_folder_readme.yaml` — `REFERENCE ONLY` comment
 
-### 🚀 Upgrade
+### Upgrade
 
 Drop-in replacement. Copy `.opencode/command/create/` to your project.
 
@@ -84,7 +113,9 @@ Drop-in replacement. Copy `.opencode/command/create/` to your project.
 
 ---
 
-### Security Fix: Command Dispatch Vulnerability (Spec 118)
+### Changed
+
+**Security Fix — Command Dispatch Vulnerability (Spec 118):**
 
 OpenCode's Go runtime was injecting phantom dispatch instructions into command files based on `@agent` references combined with `allowed-tools: Task` in frontmatter. The injected text existed nowhere in the codebase — confirmed via exhaustive grep — yet agents were dispatching directly instead of loading YAML workflows.
 
@@ -96,17 +127,21 @@ OpenCode's Go runtime was injecting phantom dispatch instructions into command f
 - **@agent reference density reduction**: `complete.md` reduced from 19 to 9 @agent references, `debug.md` from 15 to 9, lowering the probability of phantom dispatch text injection
 - **YAML REFERENCE comments**: Added 30 `# REFERENCE ONLY` comments across 11 YAML workflow asset files, clarifying that agent references in YAML are routing metadata, not dispatch instructions
 
-### Style Alignment
+**Style Alignment:**
 
 - **H2 emoji headers**: Added emojis to all 112 H2 headers across 7 command files, aligning with `workflows-documentation` style standards
 - **Decimal step renumbering**: Renumbered `## 7.5` to `## 8.` in `plan.md` (with subsequent sections renumbered), eliminating non-standard decimal step numbering
 
-### AGENTS.md Audit Fixes
+---
+
+### Fixed
+
+**AGENTS.md Audit Fixes:**
 
 - **skill_advisor.py phantom references (B2)**: Fixed references to 2 removed skills (`mcp-narsil`, `mcp-browser`) that caused skill routing failures
 - **Template paths and skill table (B3)**: Corrected stale template paths in §9 and added 4 missing skills to the Available Skills table
 
-### Repository Cleanup
+**Repository Cleanup:**
 
 - **Specs removed from tracking**: All spec folders removed from git tracking (kept on disk, added to `.gitignore`), reducing repo size for public consumers
 - **`.agents/` symlinks**: Added `.agents/` directory with symlinks to `.opencode/agent/` and `.opencode/command/` for user convenience
@@ -128,7 +163,9 @@ OpenCode's Go runtime was injecting phantom dispatch instructions into command f
 
 ---
 
-### Memory System Integration (Spec 111)
+### New
+
+**Memory System Integration (Spec 111):**
 
 - **4-source indexing pipeline**: Memory system now indexes from specFiles, constitutionalFiles, skillReadmes, and projectReadmes (was 2-source)
 - **README content discovery**: `findProjectReadmes()` and `findSkillReadmes()` auto-discover READMEs with `README_EXCLUDE_PATTERNS` exclusion
@@ -139,7 +176,11 @@ OpenCode's Go runtime was injecting phantom dispatch instructions into command f
 - **49 new tests**: `anchor-prefix-matching.vitest.ts` (28) + `anchor-id-simplification.vitest.ts` (21)
 - **7 Architecture Decision Records**: ADR-001 through ADR-007 documenting schema design, weights, exclusions, prefix matching, anchor simplification, symlink handling, and 4-source pipeline
 
-### Documentation Alignment (Specs 112-115)
+---
+
+### Changed
+
+**Documentation Alignment (Specs 112-115):**
 
 - **~473 anchor tags**: Embedded across 74 READMEs in `.opencode/` for precise memory retrieval via Spec Kit Memory MCP
 - **README template**: `readme_template.md` reduced 1589→1058 lines (-33%), 16→14 sections, added 5 evolved patterns (badge shields, ASCII diagrams, innovation tables, before/after comparisons, anchor placement rules)
@@ -149,14 +190,14 @@ OpenCode's Go runtime was injecting phantom dispatch instructions into command f
 - **system-spec-kit SKILL.md**: Reduced 1,055→701 lines (-34%) through consolidation
 - **Command file restoration**: 12 command files restored to ≤600 lines (from over-reduced 64-114 lines), `command_template.md` style applied
 
-### Command & Prompt Optimization (Specs 116-117)
+**Command & Prompt Optimization (Specs 116-117):**
 
 - **YAML reduction**: 13 YAML prompt assets 13,333→5,378 lines (-59.7%) using compact flow notation, removed Mermaid diagrams and decorative separators
 - **Prompt reduction**: 7 `.md` command files 3,746→2,239 lines (-40.2%) preserving all routing logic and workflow steps
 - **/create:folder_readme**: YAML 765→611 lines (-20%), aligned 4 README types with canonical 9-section structure, fixed 10 alignment gaps, standardized emoji vocabulary
 - **Agent routing fixes**: Proper routing added to 4 YAML files (`explore`→`context`), 5 `.md` files (@context/@speckit), full @speckit compliance (19/19 command files)
 
-### Testing
+**Testing:**
 
 - **Test suite**: 4,037 tests across 120 test files (71 skipped = external API/embedding tests)
 - **Memory integration**: 49 new tests for anchor schema (prefix matching + ID simplification)
@@ -185,13 +226,13 @@ OpenCode's Go runtime was injecting phantom dispatch instructions into command f
 3. **`workflow.ts` Module Extraction** — Extracted 4 focused modules: `quality-scorer.ts` (122 LOC), `topic-extractor.ts` (88 LOC), `file-writer.ts` (33 LOC), `memory-indexer.ts` (159 LOC). 865→495 LOC (-43%)
 4. **Structured Logging Migration** — 12 library-internal `console.warn` calls converted to `structuredLog` across 5 files (`config.ts`, `content-filter.ts`, `decision-tree-generator.ts`, `message-utils.ts`, `template-renderer.ts`). CLI/pipeline scripts intentionally kept as `console.*` (correct for user-facing output)
 
-### Added
+### New
 
 5. **`shared/utils/jsonc-strip.ts`** — Shared JSONC comment-stripping utility (95 LOC). `config.ts` and `content-filter.ts` now use shared utility instead of inline regex. Fixed latent bug in `content-filter.ts` naive regex that could corrupt strings containing `//`
 6. **Shell Libraries** — `scripts/lib/shell-common.sh` (54 LOC), `scripts/lib/git-branch.sh` (134 LOC), `scripts/lib/template-utils.sh` (80 LOC)
 7. **Template Fragments** — 5 addenda fragments (`level3-arch/` prefix/suffix/guidance, `level3plus-govern/` suffix/guidance) and 5 sharded templates (`spec-index.md`, `01-overview.md`, `02-requirements.md`, `03-architecture.md`, `04-testing.md`)
 
-### FixedThere
+### Fixed
 
 8. **sed/grep POSIX Portability** — 5 GNU-specific fixes: 3 `sed 's/-\+/-/g'` → `sed 's/--*/-/g'` (BSD treats `\+` as literal), 1 fragile `sed i\` rewrite to printf+sed, 1 `grep -P '\b'` → `grep -w` (POSIX compliant)
 9. **Code Quality Hardening** — 11 untyped `catch (e)` → `catch (e: unknown)` with proper `instanceof Error` guards, 8 non-null assertions (`!`) replaced with explicit null checks across 10 files
@@ -295,7 +336,7 @@ OpenCode's Go runtime was injecting phantom dispatch instructions into command f
 1. **`system-spec-kit` SKILL.md** — Trimmed `description` from ~430 to ~220 chars to reduce system prompt token usage
 2. **`workflows-documentation` SKILL.md** — Trimmed `description` from ~290 to ~200 chars for the same reason
 
-### Added
+### New
 
 1. **`workflows-git` SKILL.md** — Added `argument-hint: "[worktree|commit|finish]"` for improved user discoverability
 
@@ -311,7 +352,7 @@ OpenCode's Go runtime was injecting phantom dispatch instructions into command f
 
 ---
 
-### Added
+### New
 
 1. **`shared/scoring/README.md`** — Documents composite folder scoring formula, 8 function exports, 5 constants, design decision references (D1/D2/D4/D7/D8)
 2. **`shared/utils/README.md`** — Documents path-security (CWE-22/59/78 prevention) and retry (exponential backoff with error classification) utilities
@@ -368,7 +409,7 @@ OpenCode's Go runtime was injecting phantom dispatch instructions into command f
 
 ---
 
-### Added
+### New
 
 1. **TypeScript Infrastructure** — `tsconfig.json` with project references for 3 workspaces (`shared/`, `mcp_server/`, `scripts/`), `shared/types.ts` central type definitions, `sqlite-vec.d.ts` native extension declarations. CommonJS output preserves backward compatibility
 2. **1,589 New Tests** (spec 100) — Achieved 100% module export coverage across 26 test files, including 48 FTS5 SQL injection security tests. Test suite grew from ~700 to **3,872 tests** across 114 test files
@@ -411,7 +452,7 @@ OpenCode's Go runtime was injecting phantom dispatch instructions into command f
 
 ---
 
-### Added
+### New
 
 1. **Claude Code Subagent Conversion** — Duplicated all 8 OpenCode agent files (`context`, `debug`, `handover`, `orchestrate`, `research`, `review`, `speckit`, `write`) to `.claude/agents/` with Claude Code-compatible YAML frontmatter (`name`, `description`, `tools`, `model`, `mcpServers`). Previous symlinks replaced with standalone files. Body content byte-identical to OpenCode source. All agents configured with `spec_kit_memory` and `code_mode` MCP servers. Model assignments: `opus` for orchestrate/research/debug/review, `sonnet` for context/speckit/write/handover. `permissionMode: plan` for review (read-only agent)
 2. **Tool Call Budget (TCB)** — New §26 in orchestrate.md with 3-layer defense against runaway agent dispatches: estimation heuristic table, thresholds (1–8 safe, 9–12 caution, 13+ must split), batch sizing rule, Agent Self-Governance Footer for mid-flight scope reporting, and "Aborted Task Recovery" 6-step protocol in §14. TCB estimation field added to task decomposition (§10) and PDR templates
@@ -433,7 +474,7 @@ OpenCode's Go runtime was injecting phantom dispatch instructions into command f
 
 ---
 
-### Added
+### New
 
 1. **@speckit Exclusivity Rule** — New enforcement system ensuring ONLY `@speckit` can create/write documentation (`*.md`) inside spec folders. Constitutional memory #280 created with 29 trigger phrases. Enforcement across 5 layers: constitutional memory, `orchestrate.md`, `AGENTS.md`, individual agent files, and skill documentation. Four exceptions: `memory/` (uses `generate-context.js`), `scratch/` (any agent), `handover.md` (`@handover` only), `research.md` (`@research` only). 10 files modified across agents, skills, and framework docs
 2. **Orchestrator Default Parallel Ceiling** — New default maximum of 3 agents dispatched simultaneously in `orchestrate.md`. Previously unlimited (up to 4). Ranges 4–9 and 10–20 require explicit user override. Updated §13 (parallel table + ceiling paragraph), §23 (summary), §25 (scaling heuristics), §27 (scale thresholds), §28 (collection patterns). Escape clause: "unless user explicitly requests more"
@@ -480,7 +521,7 @@ OpenCode's Go runtime was injecting phantom dispatch instructions into command f
 
 ---
 
-### Added
+### New
 
 **@context Agent**
 
@@ -585,7 +626,7 @@ Adds **Context Window Budget (CWB)** system to the orchestrate agent, preventing
 
 ---
 
-### Added
+### New
 
 **Context Window Budget System (§27)**
 
@@ -811,7 +852,7 @@ Reply with answers, e.g.: "B, A, C"
 
 ## [**1.2.2.0**] - 2026-02-04
 
-### Added
+### New
 
 **AGENTS.md Coding Analysis Lenses**
 
@@ -837,7 +878,7 @@ New coding-focused analysis framework integrated into AGENTS.md for improved cod
 
 ## [**1.2.1.0**] - 2026-02-04
 
-### Added
+### New
 
 **New Skill: workflows-code--opencode**
 
@@ -899,7 +940,7 @@ Two internal fixes improving memory save reliability and generate-context script
 
 ## [**1.2.0.2**] - 2026-02-03
 
-### Added
+### New
 
 **Documentation Validation: ALL CAPS Section Headers**
 
@@ -935,9 +976,7 @@ The largest release in SpecKit history: **6 specs batched** delivering a complet
 
 ---
 
-## Highlights
-
-### 🏗️ Memory System Overhaul (Spec 082)
+### Memory System Overhaul (Spec 082)
 - **Causal Memory Graph** — 6 relationship types (caused, enabled, supersedes, contradicts, derived_from, supports) with depth-limited traversal
 - **Session Deduplication** — Hash-based duplicate prevention achieving **50% token savings** on follow-up queries
 - **Intent-Aware Retrieval** — 5 intent types (add_feature, fix_bug, refactor, security_audit, understand) with automatic query classification
@@ -946,7 +985,7 @@ The largest release in SpecKit history: **6 specs batched** delivering a complet
 - **Recovery Hints System** — 49 error codes with actionable guidance
 - **Schema Migrations v8-v11** — causal_edges, memory_corrections, session_state tables + archival columns
 
-### 📋 Command Consolidation (Spec 083)
+### Command Consolidation (Spec 083)
 - **44% reduction** — 9 commands consolidated to 5
 - **`/memory:context`** — Unified entry with intent-aware routing (absorbed search)
 - **`/memory:learn`** — Feedback loop with `correct` subcommand (absorbed correct)
@@ -954,7 +993,7 @@ The largest release in SpecKit history: **6 specs batched** delivering a complet
 - **`/memory:why` removed** — Per user request
 - **7 logic bugs fixed** — MCP tool names, intent detection, cross-platform paths
 
-### 🔧 Bug Remediation (Specs 083-085)
+### Bug Remediation (Specs 083-085)
 - **86 bugs fixed total** — 21 P0, 32 P1, 27 P2, 6 P3
 - **30-agent audit** — Spec 084 with 77% false positive filtering (8 confirmed fixes)
 - **10-agent parallel fixes** — Spec 085 with 34 bugs across core infrastructure, scoring, extractors, templates
@@ -962,7 +1001,7 @@ The largest release in SpecKit history: **6 specs batched** delivering a complet
 - **Tool prefix corrections** — All commands now use full `spec_kit_memory_` prefix
 - **Template inheritance fixes** — Level 3 properly inherits from Level 2
 
-### 📝 Documentation Quality (Spec 004)
+### Documentation Quality (Spec 004)
 - **`validate_document.py`** — New Python validation script with auto-fix capability
 - **Template rules** — 5 document types (readme, skill, reference, asset, agent) with severity levels
 - **Test suite** — 6 test fixtures, 53 files validated, 0 invalid in main codebase
@@ -970,7 +1009,7 @@ The largest release in SpecKit history: **6 specs batched** delivering a complet
 
 ---
 
-## New MCP Tools (8)
+### New MCP Tools
 
 | Tool                          | Layer | Purpose                              |
 | ----------------------------- | ----- | ------------------------------------ |
@@ -987,7 +1026,7 @@ The largest release in SpecKit history: **6 specs batched** delivering a complet
 
 ---
 
-## Database Schema Changes
+### Database Schema Changes
 
 | Version | Table/Column                 | Purpose                                    |
 | ------- | ---------------------------- | ------------------------------------------ |
@@ -998,7 +1037,7 @@ The largest release in SpecKit history: **6 specs batched** delivering a complet
 
 ---
 
-## Files Changed
+### Files
 
 **68 files** modified across 6 specs:
 
@@ -1014,7 +1053,7 @@ The largest release in SpecKit history: **6 specs batched** delivering a complet
 
 ---
 
-## Upgrade
+### Upgrade
 
 1. **Restart Required** — Restart OpenCode to load schema migrations (v8→v11)
 2. **Command Migration** — Update scripts using old commands:
@@ -1034,9 +1073,7 @@ Critical documentation fix for **Code Mode prefixed environment variables**. Upd
 
 ---
 
-## Highlights
-
-### 🔧 Prefixed Environment Variables Documentation
+### Prefixed Environment Variables Documentation
 
 - **Critical discovery** — Code Mode requires prefixed env vars: `figma_FIGMA_API_KEY` not `FIGMA_API_KEY`
 - **Format pattern** — `{manual_name}_{VAR}` where manual_name comes from `.utcp_config.json`
@@ -1044,7 +1081,7 @@ Critical documentation fix for **Code Mode prefixed environment variables**. Upd
 - **mcp-figma updated** — 3 files: INSTALL_GUIDE.md, README.md, SKILL.md
 - **Troubleshooting added** — New section for "Variable not found" errors
 
-### 📝 Skill-Level CHANGELOGs
+### Skill-Level CHANGELOGs
 
 - **5 CHANGELOGs created** — mcp-code-mode, mcp-figma, workflows-chrome-devtools, workflows-documentation, workflows-git
 - **Retroactive history** — Full version history traced from global CHANGELOG
@@ -1052,7 +1089,7 @@ Critical documentation fix for **Code Mode prefixed environment variables**. Upd
 
 ---
 
-## Files Changed
+### Files
 
 **mcp-code-mode skill (5 files):**
 - `SKILL.md` — Added "Critical: Prefixed Environment Variables" section
@@ -1075,7 +1112,7 @@ Critical documentation fix for **Code Mode prefixed environment variables**. Upd
 
 ---
 
-## Upgrade
+### Upgrade
 
 No action required. Pull latest to get corrected documentation. If you previously set environment variables without prefixes, update your `.env` file:
 
@@ -1097,23 +1134,21 @@ Major Spec Kit Memory upgrade implementing **cognitive memory** with FSRS algori
 
 ---
 
-## Highlights
-
-### 🧠 Cognitive Memory System (Spec 079)
+### Cognitive Memory System (Spec 079)
 - **FSRS power-law decay** — `R(t,S) = (1 + 0.235 × t/S)^(-0.5)` replaces exponential decay
 - **Prediction Error Gating** — Prevents duplicates (≥0.95), handles contradictions (0.90-0.94), links related (0.70-0.89)
 - **5-state memory model** — HOT/WARM/COLD/DORMANT/ARCHIVED with configurable thresholds
 - **Testing Effect** — Accessing memories strengthens them (desirable difficulty bonus)
 - **Schema v4 migration** — Additive columns (stability, difficulty, last_review, review_count)
 
-### 🔧 Bug Remediation (Spec 080)
+### Bug Remediation (Spec 080)
 - **30 bugs fixed** — 3 CRITICAL, 8 HIGH, 9 MEDIUM, 10 LOW across 18 files
 - **FSRS integration** — Fixed function signature mismatch (FSRS now executes)
 - **ReDoS eliminated** — Line-by-line parsing replaces vulnerable regex patterns
 - **Threshold fixes** — DORMANT (0.02) and LOW_MATCH (0.50) now differentiated
 - **Transaction safety** — SAVEPOINT/ROLLBACK pattern, cache mutex, atomic migrations
 
-### 📝 Agent System Improvements (Spec 005)
+### Agent System Improvements (Spec 005)
 - **20 Mermaid diagrams** — Visual workflows for all 7 agents, 7 spec_kit commands, 6 create commands
 - **Unified setup pattern** — Create commands refactored from 2-4 interactions to 1 consolidated prompt
 - **OUTPUT VERIFICATION** — Added to orchestrate.md, HARD BLOCK section to research.md
@@ -1121,7 +1156,7 @@ Major Spec Kit Memory upgrade implementing **cognitive memory** with FSRS algori
 
 ---
 
-## Files Changed
+### Files
 
 **Spec Kit Memory MCP (18 files):**
 - `lib/cognitive/` — fsrs-scheduler.js (NEW), prediction-error-gate.js (NEW), tier-classifier.js, attention-decay.js, co-activation.js, working-memory.js
@@ -1138,7 +1173,7 @@ Major Spec Kit Memory upgrade implementing **cognitive memory** with FSRS algori
 
 ---
 
-## Upgrade
+### Upgrade
 
 1. **Restart MCP server** — Schema v4 migration runs automatically on first start
 2. **No breaking changes** — Existing memories receive default values (stability=1.0, difficulty=5.0)
@@ -1154,28 +1189,26 @@ New **workflows-code--full-stack** skill for multi-stack projects supporting **5
 
 ---
 
-## Highlights
-
-### ✨ New Skill: workflows-code--full-stack
+### New Skill: workflows-code--full-stack
 - **5 technology stacks** — Go, Node.js, React, React Native, Swift with automatic detection
 - **Stack detection via marker files** — `go.mod`, `Package.swift`, `app.json`, `next.config.js`, `package.json`
 - **Hierarchical structure** — `references/{category}/{stack}/` and `assets/{category}/{stack}/`
 - **Smart resource routing** — 7 task keywords, 4 load levels, dynamic resource discovery
 - **66 bundled resources** — 36 reference files + 30 asset files (checklists + patterns)
 
-### 📝 Skill Rename: workflows-code → workflows-code--web-dev
+### Skill Rename: workflows-code → workflows-code--web-dev
 - **Clarified scope** — Now explicitly for single-stack web projects (Webflow, vanilla JS)
 - **No functional changes** — All references, assets, and patterns remain identical
 - **Clear distinction** — Use `--web-dev` for web, `--full-stack` for multi-stack projects
 
-### 🏗️ AGENTS.md Section 9 Update
+### AGENTS.md Section 9 Update
 - **Skills variant table** — Documents both `workflows-code--web-dev` and `workflows-code--full-stack`
 - **Corrected stack detection** — Updated markers table (Go, Node.js, React, React Native, Swift)
 - **Accurate directory structure** — Reflects actual `{category}/{stack}/` path pattern
 
 ---
 
-## Files Changed
+### Files
 
 **New skill:**
 - `.opencode/skill/workflows-code--full-stack/` — Complete skill with 66 resources
@@ -1189,7 +1222,7 @@ New **workflows-code--full-stack** skill for multi-stack projects supporting **5
 
 ---
 
-## Upgrade
+### Upgrade
 
 1. **Update skill references** — If you reference `workflows-code`, choose the appropriate variant:
    - Web projects (Webflow, vanilla JS): `workflows-code--web-dev`
@@ -1207,14 +1240,12 @@ Performance patterns series adding **Phase 0: Research** to workflows-code, **6 
 
 ---
 
-## Highlights
-
-### ✨ Phase 0: Research Stage
+### Phase 0: Research Stage
 - **Pre-implementation analysis** — New optional phase in workflows-code for complex performance work
 - **10-agent methodology** — Reference for parallel analysis covering HTML, JS, CSS, third-party, LCP, animations, network
 - **Research-first approach** — Prevents "fix symptoms, miss root cause" anti-pattern
 
-### 📝 Performance References (6 New Files)
+### Performance References (6 New Files)
 - **cwv_remediation.md** — LCP safety timeout (3s), FCP preconnects, TBT requestIdleCallback, CLS prevention
 - **resource_loading.md** — Preconnect with crossorigin, async CSS (`onload="this.rel='stylesheet'"`), script defer/async
 - **webflow_constraints.md** — TypeKit sync loading, jQuery auto-injection, CSS generation limits, workarounds table
@@ -1222,20 +1253,20 @@ Performance patterns series adding **Phase 0: Research** to workflows-code, **6 
 - **performance_checklist.md** — PageSpeed Insights capture protocol, before/after comparison, regression prevention
 - **multi_agent_patterns.md** — 10-agent specialization model for comprehensive codebase analysis
 
-### 🏗️ AGENTS.md Enhancement
+### AGENTS.md Enhancement
 - **Section 9: CODE IMPLEMENTATION** — New dedicated section for workflows-code guidance
 - **Multi-stack examples** — Detection markers table (Go, Node.js, Python, Angular, React Native, DevOps)
 - **Stack-specific verification** — Commands table with `go test`, `npm test`, `pytest`, `ng test`
 - **Universal template** — Removed project-specific references for broader applicability
 
-### 🔧 Quality Fixes (27 Files)
+### Quality Fixes (27 Files)
 - **P0: validation_patterns.js** — 44 methods + 45 variables converted camelCase → snake_case
 - **P1: BEM convention** — Fixed `.block--element` → `.block__element` in code_quality_checklist.md
 - **P1: Broken links** — Fixed `./performance_patterns.md` → `../implementation/performance_patterns.md`
 - **P2: Checkbox markers** — Standardized `□` across debugging/verification checklists
 - **SKILL.md routing** — Fixed 6 kebab-case → snake_case file references
 
-### 📋 async_patterns.md Expansion
+### async_patterns.md Expansion
 - **Lines: 104 → 511** — Comprehensive scheduling patterns documentation
 - **New sections**: requestAnimationFrame, queueMicrotask, scheduler.postTask
 - **Browser compatibility** — Support tables for scheduling APIs
@@ -1243,7 +1274,7 @@ Performance patterns series adding **Phase 0: Research** to workflows-code, **6 
 
 ---
 
-## Files Changed
+### Files
 
 **workflows-code skill (17 files):**
 - `SKILL.md` · `validation_patterns.js` · `async_patterns.md`
@@ -1257,7 +1288,7 @@ Performance patterns series adding **Phase 0: Research** to workflows-code, **6 
 
 ---
 
-## Upgrade
+### Upgrade
 
 No action required. Pull latest to get performance patterns and AGENTS.md enhancements.
 
@@ -1388,25 +1419,23 @@ Comprehensive SpecKit intelligence upgrade introducing **dual-threshold validati
 
 ---
 
-## Highlights
-
-### ✨ Dual-Threshold Validation
+### Dual-Threshold Validation
 - **READINESS formula**: `(confidence >= 0.70) AND (uncertainty <= 0.35)`
 - **"Confident Ignorance" detection**: High confidence + high uncertainty triggers investigation
 - **4-factor uncertainty model**: Epistemic gaps (0.30), Model boundaries (0.25), Temporal variability (0.20), Situational completeness (0.25)
 - **skill_advisor.py**: New `calculate_uncertainty()` and `passes_dual_threshold()` functions
 
-### 📋 Five Checks Framework
+### Five Checks Framework
 - **Architectural validation**: Required for Level 3/3+ specs, recommended for Level 2
 - **5 checks**: Necessary? · Beyond Local Maxima? · Sufficient? · Fits Goal? · Open Horizons?
 - **New reference**: `references/validation/five-checks.md`
 
-### 🏗️ Script Reorganization
+### Script Reorganization
 - **decision-tree-generator.js**: `extractors/` → `lib/` (generator, not extractor)
 - **opencode-capture.js**: `lib/` → `extractors/` (captures session data)
 - **Import paths**: Updated in 5 files (decision-extractor, diagram-extractor, data-loader, index.js, test file)
 
-### 📝 Documentation Overhaul
+### Documentation Overhaul
 - **README.md**: Streamlined with -623 lines net reduction
 - **AGENTS.md**: Agent Routing now Section 6, Tool System → 7, Skills System → 8
 - **New references**: `epistemic-vectors.md`, `decision-format.md`, `five-checks.md`
@@ -1484,7 +1513,7 @@ Comprehensive SpecKit intelligence upgrade introducing **dual-threshold validati
 
 ---
 
-## Files Changed
+### Files
 
 **Core Files (4)**
 - `AGENTS.md` · `README.md` · `CHANGELOG.md` · `skill_advisor.py`
@@ -1497,7 +1526,7 @@ Comprehensive SpecKit intelligence upgrade introducing **dual-threshold validati
 
 ---
 
-## Upgrade
+### Upgrade
 
 No action required. Pull latest to get:
 - Dual-threshold validation in skill routing
@@ -1514,27 +1543,25 @@ Consolidates **all setup questions into a single prompt** across 7 SpecKit comma
 
 ---
 
-## Highlights
-
-### ✨ Single Consolidated Prompt
+### Single Consolidated Prompt
 - **All 7 commands** now ask ALL questions in ONE prompt instead of multiple phases
 - **Before**: 3-5 separate interactions (spec folder → execution mode → dispatch mode → memory context)
 - **After**: Single consolidated prompt with Q0-Q5, reply with "A, B, A" format
 - **Commands updated**: research, plan, implement, complete, debug, resume, handover
 
-### 🔧 User-Facing Model Selection
+### User-Facing Model Selection
 - **Q2 AI Model options** in debug.md simplified:
   - `B) Gemini - Google models (Pro/Ultra)` → `B) Gemini - Google`
   - `C) Codex - OpenAI models (GPT-4/o1)` → `C) Codex - OpenAI`
 
-### 📋 Dispatch Mode Descriptions
+### Dispatch Mode Descriptions
 - **Mode descriptions** made model-agnostic across all YAML configs:
   - `1 Opus orchestrator + 2 Sonnet parallel workers` → `1 orchestrator + 2 parallel workers`
   - `1 Opus orchestrator + 3 Sonnet parallel workers` → `1 orchestrator + 3 parallel workers`
 
 ---
 
-### Files Changed
+### Files
 
 **Commands (7)**
 - `research.md` · `plan.md` · `implement.md` · `complete.md` · `debug.md` · `resume.md` · `handover.md`
@@ -2175,7 +2202,7 @@ Critical MCP protocol fix ensuring Cognitive Memory v17.1 functions correctly. A
 
 ---
 
-### Added
+### New
 
 1. **VS Code Extension Install Guide** — Step-by-step installation guide for non-technical users (`OpenCode - VS Code Extension.md`):
    - AI-first installation prompt for guided setup
@@ -2637,7 +2664,7 @@ Security and documentation release fixing hardcoded API key exposure in `.utcp_c
 
 ---
 
-### Added
+### New
 
 1. **Neural Backend Comparison** — Table showing all 3 options: Voyage AI (recommended) · OpenAI · Local ONNX
 2. **Configuration Examples** — Separate examples for each neural backend in install guide
@@ -2692,7 +2719,7 @@ Major infrastructure release with critical bug fixes, security hardening, MCP in
 
 ---
 
-### Added
+### New
 
 1. **MCP Install Scripts Suite** — Shell-based installers for all 6 MCP servers with shared utilities library (33 functions)
 2. **Sub-agent Delegation** — `/spec_kit:handover` and `/memory:save` now delegate heavy work to sub-agents for token efficiency
@@ -2740,7 +2767,7 @@ Comprehensive Spec Kit & Memory system audit with test suite fixes, documentatio
 
 ---
 
-### Added
+### New
 
 1. **Script Registry** — `scripts-registry.json` - Centralized JSON config for all 14 scripts and 9 rules
 2. **Registry Loader** — `registry-loader.sh` - CLI tool to query script registry
@@ -2813,7 +2840,7 @@ Comprehensive system hardening release with critical bug fixes, security improve
 
 ---
 
-### Added
+### New
 
 1. **Embedding Cache** — LRU cache (1000 entries) reduces redundant API calls
 2. **Shared Utilities** — `shared/utils.js` consolidated `validateFilePath` and `escapeRegex` utilities
@@ -2855,7 +2882,7 @@ Technical debt remediation for Spec Kit Memory system with 6 infrastructure impr
 
 ---
 
-### Added
+### New
 
 1. **mcp-figma Skill** — 18 tools for Figma integration
 2. **Debug Command Assets** — `/spec_kit:debug` with auto and confirm modes
@@ -2888,7 +2915,7 @@ Enhanced install guides with comprehensive H1 descriptions for all MCP servers. 
 
 ---
 
-### Added
+### New
 
 1. **Create Agent Command** — `/create:agent` with 5-phase workflow for agent creation
 2. **Agent Template** — `agent_template.md` for consistent agent structure
@@ -2910,7 +2937,7 @@ Fixes critical Narsil MCP parameter naming issues across all 39 high-priority to
 
 ---
 
-### Added
+### New
 
 1. **Server Script** — `narsil-server.sh` for HTTP server management
 2. **Search Wrapper** — `narsil-search.sh` CLI wrapper for reliable search
@@ -2961,7 +2988,7 @@ Documents discovered Narsil bugs and limitations with workarounds.
 
 ---
 
-### Added
+### New
 
 1. **Skill Creation Guide** — Required templates and file locations
 2. **Skill Advisor Config** — Documentation (Section 12)
@@ -2983,7 +3010,7 @@ Documents Narsil's HTTP server and React frontend for interactive code graph vis
 
 ---
 
-### Added
+### New
 
 1. **HTTP Backend** — Server (port 3000) for graph data
 2. **React Frontend** — Interactive visualization (port 5173)
@@ -3006,7 +3033,7 @@ Adds project-local Narsil index support for isolated per-project indexing.
 
 ---
 
-### Added
+### New
 
 1. **Project-Local Index** — `.narsil-index/` instead of shared `~/.cache/narsil-mcp/`
 2. **Persist Flag** — `--persist` for index persistence
@@ -3074,7 +3101,7 @@ Major semantic search upgrade with Qwen3 embedding model.
 
 ---
 
-### Added
+### New
 
 1. **Qwen3 Embeddings** — `mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ` with 4-bit quantization
 2. **Progressive Indexing** — Progressive scope indexing for large projects
@@ -3095,7 +3122,7 @@ Strengthens write agent enforcement for /create commands.
 
 ---
 
-### Added
+### New
 
 1. HARD BLOCK section for write agent enforcement
 2. Prompt prefix requirement
@@ -3112,7 +3139,7 @@ Enforces @write agent for skill creation with multi-layer enforcement.
 
 ---
 
-### Added
+### New
 
 1. Skill creation requires `@write` agent prefix
 2. HARD BLOCK enforcement for write agent
@@ -3136,7 +3163,7 @@ Complete skill system overhaul standardizing 69 reference/asset files across all
 
 ---
 
-### Added
+### New
 
 1. `execution_methods` reference
 2. `folder_structure` reference
@@ -3169,7 +3196,7 @@ Constitutional memory system improvements with 4x token budget increase.
 
 ---
 
-### Added
+### New
 
 1. Constitutional README documentation
 2. `cleanup-orphaned-vectors.js` utility
@@ -3255,7 +3282,7 @@ First official release of the OpenCode Dev Environment.
 
 ---
 
-### Added
+### New
 
 1. **Spec Kit** — Unified documentation system with automation, slash commands, integrated semantic memory, and sub-folder versioning
 2. **Skills Framework** — 8 domain-specific skills that auto-load based on task
@@ -3269,7 +3296,7 @@ First official release of the OpenCode Dev Environment.
 
 ---
 
-### Features
+### New
 
 1. Persistent memory across sessions, models, projects
 2. Gate 3 enforces spec folders on every change

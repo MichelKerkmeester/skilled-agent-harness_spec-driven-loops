@@ -1,8 +1,6 @@
-# ───────────────────────────────────────────────────────────────────
-# REFERENCE ONLY — This file is loaded and executed by the parent command file.
-# Do not treat this content as standalone instructions.
-# DOCUMENTATION: REFERENCE FILE CREATION WORKFLOW
-# ───────────────────────────────────────────────────────────────────
+# ─────────────────────────────────────────────────────────────────
+# OPENCODE CREATE: REFERENCE FILE CREATION WORKFLOW (CONFIRM MODE)
+# ─────────────────────────────────────────────────────────────────
 # Mode: confirm-only (interactive step-by-step approval)
 # Note: This workflow does NOT support :auto mode. All executions
 #       require user confirmation at checkpoints. When invoked with

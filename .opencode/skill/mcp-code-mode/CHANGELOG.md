@@ -8,7 +8,7 @@ All notable changes to the mcp-code-mode skill are documented in this file.
 
 ## [**1.1.0.3**] - 2026-02-07
 
-Script alignment with workflows-code--opencode standards (Phase 19).
+Script alignment with workflows-code--opencode standards (**Phase 19**).
 
 ---
 
@@ -21,7 +21,7 @@ Script alignment with workflows-code--opencode standards (Phase 19).
 
 ## [**1.1.0.2**] - 2026-02-03
 
-Script comment standardization per workflows-code code_style_guide.md.
+Script comment standardization per workflows-code **code_style_guide.md**.
 
 ---
 
@@ -47,9 +47,11 @@ Documentation update to reflect **critical finding** that Code Mode requires **p
    - `SKILL.md` — Added "Critical: Prefixed Environment Variables" section
    - `mcp_server/INSTALL_GUIDE.md` — Updated env example with prefixed format
 
+---
+
 ### Changed
 
-**Environment Variable Format:**
+1. **Environment variable format** — Switched from unprefixed to Code Mode's `{manual}_{VAR}` format:
 ```bash
 # OLD (incorrect for Code Mode)
 CLICKUP_API_KEY=pk_xxx
@@ -64,7 +66,7 @@ figma_FIGMA_API_KEY=figd_xxx
 
 ## [**1.0.3.2**] - 2026-01-05
 
-Embeds MCP server source code into skill folder and documents the prefixed environment variable requirement.
+Embeds MCP server source code into skill folder and documents the **prefixed environment variable** requirement.
 
 ---
 
@@ -90,35 +92,31 @@ Embeds MCP server source code into skill folder and documents the prefixed envir
 
 ## [**1.0.0.0**] - 2025-12-28
 
-Initial release of mcp-code-mode skill providing MCP orchestration via TypeScript execution.
+Initial release of mcp-code-mode skill providing **MCP orchestration** via TypeScript execution with **98.7% context reduction** and access to **200+ tools**.
 
 ---
 
-### Features
+### New
 
 1. **TypeScript Execution** — Execute TypeScript code with direct access to 200+ MCP tools
 2. **Progressive Discovery** — Tools loaded on-demand via `search_tools()`, `list_tools()`, `tool_info()`
 3. **98.7% Context Reduction** — ~1.6k tokens vs ~141k for 47 tools natively
 4. **State Persistence** — Data flows naturally between operations in single execution
 5. **Multi-Tool Workflows** — Chain Webflow, Figma, ClickUp, Chrome DevTools in single call
-
-### Included MCP Servers
-
-- **Webflow** — 40+ tools for sites, collections, pages, CMS items
-- **ClickUp** — 20+ tools for tasks, lists, workspaces
-- **Figma** — 18 tools for files, comments, images, components, styles
-- **Notion** — 20+ tools for pages, databases, blocks
-- **Chrome DevTools** — 26 tools per instance for browser automation
-
-### Documentation
-
-- `SKILL.md` — AI agent instructions and workflow guidance
-- `README.md` — User documentation with examples
-- `references/naming_convention.md` — Critical tool naming patterns
-- `references/configuration.md` — Setup guide for .utcp_config.json
-- `references/tool_catalog.md` — Complete tool inventory
-- `assets/config_template.md` — Template configuration file
-- `assets/env_template.md` — Template environment file
+6. **MCP Server integrations** — Pre-configured servers:
+   - **Webflow** — 40+ tools for sites, collections, pages, CMS items
+   - **ClickUp** — 20+ tools for tasks, lists, workspaces
+   - **Figma** — 18 tools for files, comments, images, components, styles
+   - **Notion** — 20+ tools for pages, databases, blocks
+   - **Chrome DevTools** — 26 tools per instance for browser automation
+7. **Documentation suite** — Complete reference set:
+   - `SKILL.md` — AI agent instructions and workflow guidance
+   - `README.md` — User documentation with examples
+   - `references/naming_convention.md` — Critical tool naming patterns
+   - `references/configuration.md` — Setup guide for .utcp_config.json
+   - `references/tool_catalog.md` — Complete tool inventory
+   - `assets/config_template.md` — Template configuration file
+   - `assets/env_template.md` — Template environment file
 
 ---
 

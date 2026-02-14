@@ -8,11 +8,13 @@ All notable changes to the workflows-code--opencode skill (multi-language OpenCo
 
 ## [**1.3.2**] - 2026-02-08
 
-### Added — TypeScript Build & Rebuild Workflow Documentation
+Added **build workflow knowledge** to TypeScript references after discovering that editing `.ts` source files requires explicit `dist/` rebuild — the MCP server and CLI scripts run from compiled `.js`, not `.ts` source.
 
-Added build workflow knowledge to TypeScript references after discovering that editing `.ts` source files requires explicit `dist/` rebuild — the MCP server and CLI scripts run from compiled `.js`, not `.ts` source.
+---
 
-**New content (3 files)**:
+### New
+
+**TypeScript Build & Rebuild Workflow Documentation:**
 
 | File | Changes |
 |------|---------|
@@ -22,39 +24,41 @@ Added build workflow knowledge to TypeScript references after discovering that e
 
 **Context**: During a P0 bug fix session (FSRS swapped args, snake_case/camelCase column mismatches across 4 MCP handler files), the `tsc --build` command failed with ~50 pre-existing type errors (`strict: true` + MCP SDK type mismatches). The `--noCheck --force` flag combination was needed to emit JavaScript. One additional TS4094 error required a type assertion pattern for re-exported classes with private members. This knowledge was captured to prevent future agents from getting stuck on the same issue.
 
-**Version**: 1.3.1 → 1.3.2
-
 ---
 
 ## [**1.3.1**] - 2026-02-07
 
-### Fixed — Template Alignment + Router Correction
+Aligned all reference and asset files with `workflows-documentation` templates, then fixed **17 broken section references** in the SKILL.md Use Case Router.
 
-Aligned all reference and asset files with `workflows-documentation` templates, then fixed 17 broken section references in the SKILL.md Use Case Router.
+---
 
-**Template alignment (22 files checked, 7 edited)**:
-- 6 reference files: Added `## 1. OVERVIEW` section, emoji H2 headers, renumbered sections (JS style_guide, JS quality_standards, JS quick_reference, TS style_guide, TS quality_standards, TS quick_reference)
-- 1 asset file: Added emoji H2 headers to `typescript_checklist.md`
-- 10 reference files + 5 asset files already aligned (no changes)
+### Fixed
 
-**SKILL.md Use Case Router (17 fixes)**:
-- All section number references shifted +1 to account for new OVERVIEW sections
-- Removed phantom Python entry (`python/quality_standards.md#4` — CLI argument parsing/argparse does not exist in the file)
-- Fixed 2 Shell entries pointing to wrong file (`shell/quality_standards.md` → `shell/style_guide.md` for color definitions and logging functions)
-- Fixed Config `$schema` reference (`#3` → `#7`)
-- Updated TS header description from "box-drawing format" to "dash-line format"
+**Template alignment (22 files checked, 7 edited):**
 
-**Version**: 1.3.0 → 1.3.1
+1. **6 reference files** — Added `## 1. OVERVIEW` section, emoji H2 headers, renumbered sections (JS style_guide, JS quality_standards, JS quick_reference, TS style_guide, TS quality_standards, TS quick_reference)
+2. **1 asset file** — Added emoji H2 headers to `typescript_checklist.md`
+3. **10 reference files + 5 asset files** — Already aligned (no changes)
+
+**SKILL.md Use Case Router (17 fixes):**
+
+4. **Section number references** — All shifted +1 to account for new OVERVIEW sections
+5. **Phantom Python entry removed** — `python/quality_standards.md#4` (CLI argument parsing/argparse does not exist in the file)
+6. **2 Shell entries corrected** — `shell/quality_standards.md` → `shell/style_guide.md` for color definitions and logging functions
+7. **Config `$schema` reference** — `#3` → `#7`
+8. **TS header description** — Updated from "box-drawing format" to "dash-line format"
 
 ---
 
 ## [**1.3.0**] - 2026-02-07
 
-### Changed — Post-Migration Alignment (Phase 17)
+Comprehensive **bi-directional alignment** between this skill and the system-spec-kit codebase after the TypeScript migration (Phases 1-16). Audit found **645 violations** across 136 files. All **15 remediation tasks** completed.
 
-Comprehensive bi-directional alignment between this skill and the system-spec-kit codebase after the TypeScript migration (Phases 1-16). Audit found 645 violations across 136 files — the skill was substantially outdated. All 15 remediation tasks completed.
+---
 
-**Skill corrections (Track A — 9 tasks)**:
+### Changed
+
+**Skill corrections (Track A — 9 tasks):**
 
 | Change | Details |
 |--------|---------|
@@ -68,7 +72,7 @@ Comprehensive bi-directional alignment between this skill and the system-spec-ki
 | Mixed JS/TS patterns documented (A8) | New Section 8 in TS style_guide.md — 5 coexistence patterns (require, strict, aliases, allowJs, .d.ts) |
 | tsconfig outDir corrected (A9) | `"outDir": "."` → `"outDir": "./dist"` in TS quality_standards.md baseline |
 
-**Code fixes applied to system-spec-kit (Track B — 6 tasks)**:
+**Code fixes applied to system-spec-kit (Track B — 6 tasks):**
 
 | Change | Details |
 |--------|---------|
@@ -79,12 +83,13 @@ Comprehensive bi-directional alignment between this skill and the system-spec-ki
 | filters.jsonc keys fixed (B5) | 6 snake_case keys → camelCase + 3 consumer files updated |
 | TS headers verified (B6) | Zero `// ============` remaining, all use `// -------` |
 
-**Key decisions**:
-- D1: Skill adapts to code for header format (62+ files consistent)
-- D2: snake_case rename completed in-phase (originally deferred to Phase 18)
-- D6: `to_string` → `toDisplayString` (avoids Object.prototype.toString shadow)
-- D7: MemoryRecord snake_case untouched (DB-mapped dual naming)
-- D8: Voyage `input_type` untouched (API parameter name)
+**Key decisions:**
+
+1. **D1** — Skill adapts to code for header format (62+ files consistent)
+2. **D2** — snake_case rename completed in-phase (originally deferred to Phase 18)
+3. **D6** — `to_string` → `toDisplayString` (avoids Object.prototype.toString shadow)
+4. **D7** — MemoryRecord snake_case untouched (DB-mapped dual naming)
+5. **D8** — Voyage `input_type` untouched (API parameter name)
 
 **Verification**: 8 parallel agents (4 Opus + 4 Sonnet) implemented changes. 2 verification agents confirmed 15/15 tasks PASS. `tsc --build`: 0 new errors.
 
@@ -92,11 +97,15 @@ Comprehensive bi-directional alignment between this skill and the system-spec-ki
 
 ## [**1.2.0**] - 2026-02-07
 
-### Added — TypeScript Language Standards
+Added comprehensive **TypeScript coding standards** in preparation for the system-spec-kit JavaScript-to-TypeScript migration (Phase 0).
 
-Added comprehensive TypeScript coding standards in preparation for the system-spec-kit JavaScript-to-TypeScript migration (Phase 0).
+---
 
-**New reference files (4)**:
+### New
+
+**TypeScript Language Standards:**
+
+**New reference files (4):**
 
 | File | Content |
 |------|---------|
@@ -105,7 +114,11 @@ Added comprehensive TypeScript coding standards in preparation for the system-sp
 | `references/typescript/quick_reference.md` | Complete TS file template, naming cheat sheet, type annotation patterns, utility type patterns, import/export templates, error handling patterns, tsconfig quick reference |
 | `assets/checklists/typescript_checklist.md` | P0: file header, no `any` in public API, PascalCase types. P1: explicit return types, interfaces for data shapes, strict mode, TSDoc. P2: utility types, discriminated unions, type-only imports, generic constraints |
 
-**Updated existing files (5)**:
+---
+
+### Changed
+
+**Updated existing files (5):**
 
 | File | Changes |
 |------|---------|
@@ -115,23 +128,26 @@ Added comprehensive TypeScript coding standards in preparation for the system-sp
 | `assets/checklists/universal_checklist.md` | Added TypeScript to file header check, naming conventions, validation workflow (`tsc --noEmit`), language-specific checklists list |
 | `CHANGELOG.md` | This entry |
 
-**Key conventions established**:
-- `PascalCase` for interfaces, type aliases, enums, and enum members
-- `camelCase` for functions, variables, parameters (same as JavaScript)
-- `I` prefix retained only for legacy `IEmbeddingProvider` and `IVectorStore` (Decision D5)
-- `import type` on separate line for type-only imports
-- `unknown` over `any` in public API (P0 blocker)
-- TSDoc replaces JSDoc (no `{type}` in tags — native TS types used instead)
-- `strict: true` in tsconfig replaces `'use strict'` directive
-- tsconfig baseline: `target: es2022`, `module: commonjs`, `strict: true`, `composite: true`
+**Key conventions established:**
+
+1. **PascalCase** — For interfaces, type aliases, enums, and enum members
+2. **camelCase** — For functions, variables, parameters (same as JavaScript)
+3. **`I` prefix** — Retained only for legacy `IEmbeddingProvider` and `IVectorStore` (Decision D5)
+4. **`import type`** — On separate line for type-only imports
+5. **`unknown` over `any`** — In public API (P0 blocker)
+6. **TSDoc** — Replaces JSDoc (no `{type}` in tags — native TS types used instead)
+7. **`strict: true`** — In tsconfig replaces `'use strict'` directive
+8. **tsconfig baseline** — `target: es2022`, `module: commonjs`, `strict: true`, `composite: true`
 
 ---
 
 ## [**1.1.0**] - 2026-02-06
 
-### Changed — JavaScript Naming Convention Alignment
+Aligned JavaScript naming conventions with **ecosystem standards** (MDN, Airbnb, Node.js core).
 
-Aligned JavaScript naming conventions with ecosystem standards (MDN, Airbnb, Node.js core).
+---
+
+### Changed
 
 | Element | Before (v1.0) | After (v1.1) |
 |---------|---------------|--------------|
@@ -143,24 +159,24 @@ Aligned JavaScript naming conventions with ecosystem standards (MDN, Airbnb, Nod
 
 **No changes**: Constants (`UPPER_SNAKE_CASE`), Classes (`PascalCase`), Files (`kebab-case`), Python, Shell, Config.
 
-**Updated files**:
-- `SKILL.md` — Naming matrix, routing comments, code examples
-- `references/javascript/style_guide.md` — Rewritten Section 4 with camelCase examples
-- `references/javascript/quality_standards.md` — Export pattern flipped to camelCase primary
-- `references/javascript/quick_reference.md` — Naming cheat sheet + file template updated
-- `references/shared/universal_patterns.md` — JS code examples updated
-- `references/shared/code_organization.md` — Export pattern flipped
-- `assets/checklists/javascript_checklist.md` — P0: camelCase functions
-- `assets/checklists/universal_checklist.md` — Already correct (no changes needed)
+**Updated files:**
 
-**Migration**: All ~206 JS files in `system-spec-kit/` migrated from snake_case to camelCase.
-MCP handler exports include backward-compatible snake_case aliases.
+1. **SKILL.md** — Naming matrix, routing comments, code examples
+2. **`references/javascript/style_guide.md`** — Rewritten Section 4 with camelCase examples
+3. **`references/javascript/quality_standards.md`** — Export pattern flipped to camelCase primary
+4. **`references/javascript/quick_reference.md`** — Naming cheat sheet + file template updated
+5. **`references/shared/universal_patterns.md`** — JS code examples updated
+6. **`references/shared/code_organization.md`** — Export pattern flipped
+7. **`assets/checklists/javascript_checklist.md`** — P0: camelCase functions
+8. **`assets/checklists/universal_checklist.md`** — Already correct (no changes needed)
+
+**Migration**: All ~206 JS files in `system-spec-kit/` migrated from snake_case to camelCase. MCP handler exports include backward-compatible snake_case aliases.
 
 ---
 
 ## [**1.0.0**] - 2026-02-04
 
-Initial release providing multi-language code standards for OpenCode system code across JavaScript, Python, Shell, and JSON/JSONC.
+Initial release providing **multi-language code standards** for OpenCode system code across JavaScript, Python, Shell, and JSON/JSONC.
 
 ---
 
@@ -175,36 +191,22 @@ Initial release providing multi-language code standards for OpenCode system code
 3. **Universal patterns** — `references/shared/universal_patterns.md` for cross-language consistency
 4. **Quality checklist** — `assets/code_quality_checklist.md` for pre-commit validation
 5. **skill_advisor.py integration** — INTENT_BOOSTERS and MULTI_SKILL_BOOSTERS for automatic routing
+6. **Language detection** — Automatic routing based on file extension
+7. **Unified commenting** — WHY-focused comments, quantity limits (5/10 lines)
+8. **Reference patterns** — T###, REQ-###, SEC-###, BUG-### prefixes
+9. **Naming conventions** — snake_case (Python/Shell), camelCase (JS), kebab-case (files)
+10. **Resource loading** — 3-tier system: ALWAYS, CONDITIONAL, ON_DEMAND
+11. **Skill routing configuration** — INTENT_BOOSTERS added to `skill_advisor.py`:
+    ```python
+    "opencode": ("workflows-code--opencode", 2.0),
+    "mcp": ("workflows-code--opencode", 1.5),
+    "python": ("workflows-code--opencode", 1.0),
+    "shell": ("workflows-code--opencode", 1.0),
+    "bash": ("workflows-code--opencode", 1.0),
+    "jsonc": ("workflows-code--opencode", 1.5),
+    ```
 
----
-
-### Features
-
-| Feature | Description |
-|---------|-------------|
-| **Language detection** | Automatic routing based on file extension |
-| **Unified commenting** | WHY-focused comments, quantity limits (5/10 lines) |
-| **Reference patterns** | T###, REQ-###, SEC-###, BUG-### prefixes |
-| **Naming conventions** | snake_case (Python/Shell), camelCase (JS), kebab-case (files) |
-| **Resource loading** | 3-tier system: ALWAYS, CONDITIONAL, ON_DEMAND |
-
----
-
-### Skill Routing
-
-```python
-# INTENT_BOOSTERS added to skill_advisor.py
-"opencode": ("workflows-code--opencode", 2.0),
-"mcp": ("workflows-code--opencode", 1.5),
-"python": ("workflows-code--opencode", 1.0),
-"shell": ("workflows-code--opencode", 1.0),
-"bash": ("workflows-code--opencode", 1.0),
-"jsonc": ("workflows-code--opencode", 1.5),
-```
-
----
-
-### Notes
+**Notes:**
 
 - Derived from workflows-code patterns, adapted for multi-language OpenCode context
 - Inline commenting standards aligned with workflows-code (quantity limit, WHY not WHAT, no commented-out code)

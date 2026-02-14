@@ -1,6 +1,6 @@
 # Changelog - workflows-git
 
-All notable changes to the workflows-git skill are documented in this file.
+All notable changes to the workflows-git skill.
 
 > Part of [OpenCode Dev Environment](https://github.com/MichelKerkmeester/opencode-spec-kit-framework)
 
@@ -8,17 +8,19 @@ All notable changes to the workflows-git skill are documented in this file.
 
 ## [**1.5.1**] - 2026-02-12
 
-### Added
+Added **frontmatter argument hint** for improved user discoverability.
 
-**Frontmatter Audit**
+---
 
-- Added `argument-hint: "[worktree|commit|finish]"` to SKILL.md frontmatter for improved user discoverability
+### New
+
+1. **Frontmatter argument hint** — Added `argument-hint: "[worktree|commit|finish]"` to SKILL.md frontmatter
 
 ---
 
 ## [**1.5.0**] - 2026-01-14
 
-Full Git workflow orchestrator for complete development lifecycle.
+Full Git workflow orchestrator for **complete development lifecycle**.
 
 ---
 
@@ -41,47 +43,21 @@ Full Git workflow orchestrator for complete development lifecycle.
 
 ## [**1.0.0.0**] - 2025-12-20
 
-Initial release of workflows-git skill for Git operations.
+Initial release of workflows-git skill for **Git operations**.
 
 ---
 
-### Features
+### New
 
-1. **Git Operations**:
-   - Branch management (create, switch, delete)
-   - Commit workflows with message conventions
-   - Merge and rebase strategies
-   - Stash management
-   - Remote operations (push, pull, fetch)
+1. **Git Operations** — Branch management (create, switch, delete), commit workflows with message conventions, merge and rebase strategies, stash management, remote operations (push, pull, fetch)
 
-2. **GitHub Integration** (via GitHub CLI or MCP):
-   - Pull request creation and review
-   - Issue management
-   - Repository operations
-   - Actions workflow monitoring
+2. **GitHub Integration** — Pull request creation and review, issue management, repository operations, Actions workflow monitoring (via GitHub CLI or MCP)
 
-3. **Worktree Management**:
-   - Parallel branch development
-   - Isolated workspace setup
-   - Branch switching without stashing
+3. **Worktree Management** — Parallel branch development, isolated workspace setup, branch switching without stashing
 
-4. **Conventional Commits**:
-   - Type prefixes (feat, fix, docs, style, refactor, test, chore)
-   - Scope guidance
-   - Breaking change notation
+4. **Conventional Commits** — Type prefixes (feat, fix, docs, style, refactor, test, chore), scope guidance, breaking change notation
 
-### Documentation (10 files)
-
-- `SKILL.md` — AI agent instructions with workflow routing
-- `CHANGELOG.md` — Version history
-- `references/commit_workflows.md` — Commit conventions and workflows
-- `references/quick_reference.md` — Quick command reference
-- `references/finish_workflows.md` — Branch integration and PR workflows
-- `references/worktree_workflows.md` — Worktree management patterns
-- `references/shared_patterns.md` — GitHub MCP and shared patterns
-- `assets/pr_template.md` — Pull request template
-- `assets/commit_message_template.md` — Commit message template
-- `assets/worktree_checklist.md` — Worktree setup checklist
+5. **Documentation (10 files)** — `SKILL.md` (AI agent instructions with workflow routing), `CHANGELOG.md` (version history), `references/commit_workflows.md` (commit conventions), `references/quick_reference.md` (quick command reference), `references/finish_workflows.md` (branch integration and PR workflows), `references/worktree_workflows.md` (worktree management patterns), `references/shared_patterns.md` (GitHub MCP and shared patterns), `assets/pr_template.md` (pull request template), `assets/commit_message_template.md` (commit message template), `assets/worktree_checklist.md` (worktree setup checklist)
 
 ---
 

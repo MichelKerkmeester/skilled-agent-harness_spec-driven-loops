@@ -19,6 +19,8 @@ Documentation update to reflect **critical finding** that Code Mode requires **p
    - `README.md` — Updated Environment Variables section with prefixed format, fixed troubleshooting
    - `SKILL.md` — Updated Figma Provider Configuration section with critical prefixed variable warning
 
+---
+
 ### Changed
 
 **Environment Variable Format for Code Mode:**
@@ -51,7 +53,7 @@ Initial release of mcp-figma skill for design-to-code workflows.
 
 ---
 
-### Features
+### New
 
 1. **18 Figma Tools** — Complete access to Figma's design platform:
    - **File Management** — `get_file`, `get_file_nodes`, `set_api_key`, `check_api_key`
@@ -61,20 +63,16 @@ Initial release of mcp-figma skill for design-to-code workflows.
    - **Team/Projects** — `get_team_projects`, `get_project_files`
    - **Comments** — `get_comments`, `post_comment`, `delete_comment`
 
-2. **Two Installation Options**:
-   - **Option A (Official)** — HTTP remote server at `mcp.figma.com/mcp` with OAuth
-   - **Option B (Framelink)** — Local stdio via `figma-developer-mcp` package
+2. **Two Installation Options** — Option A (Official): HTTP remote server at `mcp.figma.com/mcp` with OAuth; Option B (Framelink): Local stdio via `figma-developer-mcp` package
 
 3. **Code Mode Integration** — Token-efficient access via `call_tool_chain()`
 
-### Documentation
-
-- `SKILL.md` — AI agent instructions with activation triggers and workflow guidance
-- `README.md` — User documentation with tool reference and examples
-- `INSTALL_GUIDE.md` — Complete installation for both options
-- `references/tool_reference.md` — All 18 tools with parameter documentation
-- `references/quick_start.md` — 5-minute getting started guide
-- `assets/tool_categories.md` — HIGH/MEDIUM/LOW tool prioritization
+4. **`SKILL.md`** — AI agent instructions with activation triggers and workflow guidance
+5. **`README.md`** — User documentation with tool reference and examples
+6. **`INSTALL_GUIDE.md`** — Complete installation for both options
+7. **`references/tool_reference.md`** — All 18 tools with parameter documentation
+8. **`references/quick_start.md`** — 5-minute getting started guide
+9. **`assets/tool_categories.md`** — HIGH/MEDIUM/LOW tool prioritization
 
 ---
 

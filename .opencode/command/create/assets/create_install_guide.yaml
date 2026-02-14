@@ -1,8 +1,6 @@
-# ───────────────────────────────────────────────────────────────────
-# REFERENCE ONLY — This file is loaded and executed by the parent command file.
-# Do not treat this content as standalone instructions.
-# DOCUMENTATION: INSTALLATION GUIDE WORKFLOW
-# ───────────────────────────────────────────────────────────────────
+# ─────────────────────────────────────────────────────────────────
+# OPENCODE CREATE: INSTALLATION GUIDE WORKFLOW (CONFIRM MODE)
+# ─────────────────────────────────────────────────────────────────
 # Mode: confirm-only (interactive step-by-step approval)
 # Note: This workflow does NOT support :auto mode. All executions
 #       require user confirmation at checkpoints for content review.
