@@ -52,7 +52,7 @@
                                 },
                                 "to": [
                                     {
-                                        "shell_command": "osascript -e 'set the clipboard to \"According to/.opencode/agent/orchestrate.md logic, delegate simultaneously to up to \"' -e 'tell application \"System Events\" to keystroke \"v\" using command down'"
+                                        "shell_command": "osascript -e 'set the clipboard to \"According to/.opencode/agent/orchestrate.md logic (Are you Claude Code? Reference /.claude/agents/orchestrate.md instead), delegate simultaneously to up to \"' -e 'tell application \"System Events\" to keystroke \"v\" using command down'"
                                     }
                                 ],
                                 "type": "basic"
@@ -69,7 +69,7 @@
                                 },
                                 "to": [
                                     {
-                                        "shell_command": "osascript -e 'set the clipboard to \"According to/.opencode/agent/write.md logic, work on \"' -e 'tell application \"System Events\" to keystroke \"v\" using command down'"
+                                        "shell_command": "osascript -e 'set the clipboard to \"Create spec kit documentation with /.opencode/agent/speckit.md subagent(s)  (Are you Claude Code? Reference /.claude/agents/speckit.md instead)\"' -e 'tell application \"System Events\" to keystroke \"v\" using command down'"
                                     }
                                 ],
                                 "type": "basic"
@@ -86,7 +86,7 @@
                                 },
                                 "to": [
                                     {
-                                        "shell_command": "osascript -e 'set the clipboard to \"Before diving in, use a parallel sub-agent to scan all available skills and identify which ones are relevant to completing this task. Apply these skills directly in your approach rather than relying on general reasoning alone.\" & return & return & \"After completing the task, report which skills you utilized and how each one contributed to the outcome.\"' -e 'tell application \"System Events\" to keystroke \"v\" using command down'"
+                                        "shell_command": "osascript -e 'set the clipboard to \"Review all code you updated or created with /.opencode/agent/review.md subagent(s)  (Are you Claude Code? Reference /.claude/agents/review.md instead)\"' -e 'tell application \"System Events\" to keystroke \"v\" using command down'"
                                     }
                                 ],
                                 "type": "basic"
@@ -103,7 +103,7 @@
                                 },
                                 "to": [
                                     {
-                                        "shell_command": "osascript -e 'set the clipboard to \"Before diving in, use a parallel sub-agent to scan all available commands and identify which ones are relevant to completing this task.\" & return & return & \"Treat these commands as reference patterns rather than literal instructions. Extract their underlying logic, sequencing, or workflow structure and adapt what'\\''s useful to build an approach tailored to this specific task. Only apply a command directly as-is when it'\\''s 80% or more relevant to what you'\\''re trying to accomplish.\" & return & return & \"After completing the task, report which commands you referenced or applied and how each one contributed to the outcome.\"' -e 'tell application \"System Events\" to keystroke \"v\" using command down'"
+                                        "shell_command": "osascript -e 'set the clipboard to \"Create or update documentation with /.opencode/agent/write.md subagent(s)  (Are you Claude Code? Reference /.claude/agents/write.md instead)\"' -e 'tell application \"System Events\" to keystroke \"v\" using command down'"
                                     }
                                 ],
                                 "type": "basic"
