@@ -141,7 +141,7 @@ Set on the wrapper element to override defaults:
 |-----------|---------|-------------|
 | `data-upload-endpoint` | `https://worker--upload-form.lorenzo-89a.workers.dev` | Worker endpoint URL |
 | `data-max-size` | `5MB` | Maximum file size (FilePond format) |
-| `data-accepted-types` | `application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document` | Comma-separated MIME types |
+| `data-accepted-types` | `application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,text/plain,text/markdown,application/vnd.oasis.opendocument.text,application/rtf,text/rtf` | Comma-separated MIME types (extensions appended as fallback) |
 
 ### Label Customization
 
@@ -151,13 +151,14 @@ Labels are configurable via `data-label-*` attributes on the wrapper. Mobile ove
 |-----------|---------|-----------------|
 | `data-label-idle-text` | "Drag & drop your file or" | `data-label-idle-text-mobile` |
 | `data-label-browse` | "Browse" | `data-label-browse-mobile` |
-| `data-label-description` | "Max 5 MB: PDF, DOC, DOCX" | -- |
+| `data-label-description` | "Max 5 MB: PDF, DOC, DOCX, TXT, MD, ODT, RTF" | -- |
 | `data-label-uploading` | "Uploading..." | -- |
 | `data-label-cancel` | "Click to cancel upload" | -- |
 | `data-label-delete` | "Click to delete" | -- |
 | `data-label-size-separator` | " of " | -- |
 | `data-label-error-type` | "Invalid file type" | -- |
 | `data-label-error-size` | "File too large" | -- |
+| `data-label-error-upload` | "Upload failed, please try again" | -- |
 | `data-label-error-dismiss` | "Click to dismiss" | -- |
 
 Mobile detection uses multiple signals: user agent, viewport width (<=991px), touch capability, and pointer media query (coarse).
@@ -334,7 +335,8 @@ State transitions always remove all state classes first, then add the appropriat
 | `addfile` (no error) | Set state UPLOADING, initialize progress UI |
 | `addfile` (error) | Set state ERROR, show error message |
 | `processfileprogress` | Update progress bar, percentage, size text |
-| `processfile` | Set state COMPLETE, show filename, show delete notice |
+| `processfile` (no error) | Set state COMPLETE, show filename, show delete notice |
+| `processfile` (error) | Set state ERROR, show upload error, clear URL input |
 | `removefile` | Reset to IDLE state |
 | `warning` | Set state ERROR (invalid type or max size exceeded) |
 
@@ -375,9 +377,10 @@ FormData:
 
 ### R2 Bucket and CDN URL Pattern
 
-- **CDN domain**: `pub-53729c3289024c618f90a09ec4c63bf9.r2.dev`
-- **URL pattern**: `https://pub-53729c3289024c618f90a09ec4c63bf9.r2.dev/{filename}`
-- The same R2 bucket serves both uploaded user files and project CDN assets (JS/CSS)
+- **CDN domain**: `pub-383189394a924ad3b619aa4522f32d27.r2.dev` (uploaded user files)
+- **Project CDN domain**: `pub-53729c3289024c618f90a09ec4c63bf9.r2.dev` (JS/CSS assets)
+- **URL pattern**: `https://pub-383189394a924ad3b619aa4522f32d27.r2.dev/{filename}`
+- Uploaded user files are stored in a separate R2 bucket from project assets
 
 ### Error Scenarios
 
@@ -400,7 +403,39 @@ The upload URL flows to Formspark through a hidden input:
 2. **Form submitted** -> `form_submission.js` converts FormData to JSON
 3. **File fields skipped** -> `File` objects are excluded from JSON (cannot stringify)
 4. **URL included** -> The hidden input value is a plain string, so it's included in the JSON payload
-5. **Formspark receives** -> `{ "file_url": "https://pub-...r2.dev/filename.pdf", ...other_fields }`
+5. **Formspark receives** -> `{ "file_url": "https://pub-383189394a924ad3b619aa4522f32d27.r2.dev/filename.pdf", ...other_fields }`
+
+### Upload URL Validation Guard
+
+Both the FilePond connector and form submission handler prevent submitting when an upload is in a non-idle state but the URL is missing:
+
+```javascript
+// Connector-level guard (input_upload.js:759-781)
+form.addEventListener('submit', function (e) {
+  var current_state = wrapper.dataset.uploadState || STATE.IDLE;
+  var has_upload_url = !!(url_input.value && url_input.value.trim());
+
+  if (current_state !== STATE.IDLE && !has_upload_url) {
+    var labels = get_labels(wrapper);
+    set_state(wrapper, STATE.ERROR);
+    update_ui(wrapper, {
+      status: labels.errorUpload,
+      percentage: 0,
+      notice: labels.errorDismiss,
+    });
+    e.preventDefault();
+    e.stopImmediatePropagation();
+  }
+}, true);
+
+// Form-level guard (form_submission.js:589-594)
+const upload_blocker = get_upload_submission_blocker(this.form);
+if (upload_blocker) {
+  const upload_error = new Error('File upload did not complete. Please upload again.');
+  this.handle_error(upload_error);
+  return;
+}
+```
 
 ### form_validation.js Integration
 
@@ -468,6 +503,10 @@ Default accepted types configured in `DEFAULTS.acceptedTypes`:
 | `.pdf` | `application/pdf` | `application/pdf` | Consistent across all browsers |
 | `.doc` | `application/msword` | `application/msword` or `application/octet-stream` | Legacy Word — some browsers misreport |
 | `.docx` | `application/vnd.openxmlformats-officedocument.wordprocessingml.document` | Correct, `application/zip`, or `application/octet-stream` | Modern Word — browsers often misreport |
+| `.txt` | `text/plain` | `text/plain` | Consistent |
+| `.md` | `text/markdown` | `text/markdown` or `text/plain` | May vary by browser |
+| `.odt` | `application/vnd.oasis.opendocument.text` | Correct or `application/zip` | OpenDocument Text — may misreport |
+| `.rtf` | `application/rtf` or `text/rtf` | `application/rtf`, `text/rtf`, or `application/octet-stream` | Rich Text Format — dual MIME types supported |
 
 ### Extension-Based MIME Detection Fallback
 
@@ -480,6 +519,10 @@ const MIME_TYPE_MAP = {
   '.pdf': 'application/pdf',
   '.doc': 'application/msword',
   '.docx': 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+  '.txt': 'text/plain',
+  '.md': 'text/markdown',
+  '.odt': 'application/vnd.oasis.opendocument.text',
+  '.rtf': 'application/rtf',
 };
 ```
 
@@ -500,14 +543,36 @@ FilePond.create(input_el, {
 });
 ```
 
-### Why Extensions Don't Work in `acceptedFileTypes`
+### Extension Aliases as Fallback
 
-FilePond's `acceptedFileTypes` matches against the **browser-reported MIME type**, not the file extension. This is critical:
+The connector intentionally appends file extension aliases to the `acceptedFileTypes` array as a fallback mechanism. While FilePond's validation primarily matches MIME types, some browsers/platforms report DOC/DOCX files as generic MIME types during file selection (e.g., `application/zip`, `application/octet-stream`). To handle this:
 
-- A `.docx` file has MIME `application/vnd.openxmlformats-officedocument.wordprocessingml.document`
-- Setting `acceptedFileTypes: ['.docx']` will NOT work — FilePond expects MIME strings
-- The browser determines MIME type from the file's binary signature, not its extension
-- Use `fileValidateTypeDetectType` for extension-based detection as a fallback (see above)
+1. **MIME list remains primary** — Full MIME types are listed first in `acceptedFileTypes`
+2. **Extension aliases appended** — Extensions like `.docx`, `.pdf`, etc. are added automatically
+3. **Native input synchronized** — The native file input's `accept` attribute is kept in sync with the normalized FilePond configuration
+
+**Implementation:**
+```javascript
+// Parse accepted types into array
+var accepted_types_array = accepted_types.split(',').map(function (t) {
+  return t.replace(/\s+/g, '');
+});
+
+// Add extension aliases as a fallback for browsers/platforms that
+// report DOC/DOCX as generic zip/octet MIME types during selection.
+Object.keys(MIME_TYPE_MAP).forEach(function (ext) {
+  if (accepted_types_array.indexOf(ext) === -1) {
+    accepted_types_array.push(ext);
+  }
+});
+
+// Keep native accept in sync with normalized FilePond configuration.
+// This prevents Webflow/editor stale values from drifting and ensures
+// extension fallbacks (.docx, etc.) are available in all browsers.
+input_el.setAttribute('accept', accepted_types_array.join(','));
+```
+
+This dual approach provides maximum compatibility across browsers while maintaining proper MIME-based validation via `fileValidateTypeDetectType`.
 
 ### Adding New File Types
 
@@ -558,9 +623,9 @@ To accept additional file types:
 1. Check what MIME type the browser assigns: `console.log(file.type)` in DevTools
 2. Add the exact MIME string to `DEFAULTS.acceptedTypes` or `data-accepted-types`
 3. Add the extension-to-MIME mapping in `MIME_TYPE_MAP` (for browser MIME misreport fallback)
-4. Do NOT use file extensions (`.doc`) in `acceptedFileTypes` — use MIME types (`application/msword`)
+4. Extension aliases are automatically appended to `acceptedFileTypes` and the native `accept` attribute for maximum compatibility
 
-**Real example**: `.docx` files were rejected because browsers reported them as `application/zip` instead of the correct MIME type. Fix: added `MIME_TYPE_MAP` with extension-based fallback detection via `fileValidateTypeDetectType`.
+**Validation Error Mapping**: The `resolve_validation_error_message` function handles multiple wording variants for size and type errors (e.g., "File is too large", "too big", "max file size", "size exceeded").
 
 ### FilePond Not Loading
 

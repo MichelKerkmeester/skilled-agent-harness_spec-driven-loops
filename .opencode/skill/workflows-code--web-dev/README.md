@@ -24,6 +24,7 @@ importance_tier: "normal"
 6. [💡 EXAMPLES](#6--examples)
 7. [🛠️ TROUBLESHOOTING](#7--troubleshooting)
 8. [📚 RELATED](#8--related)
+9. [📝 CHANGELOG](#9--changelog)
 
 ---
 
@@ -140,7 +141,7 @@ Phase 0: Research (optional) -> Phase 1: Implementation -> Phase 1.5: Code Quali
 
 ## 5. ⚙️ CONFIGURATION
 <!-- ANCHOR:configuration -->
-**Version:** 1.0.5.0
+**Version:** 1.0.6.0
 
 **Allowed tools:** Bash, Edit, Glob, Grep, Read, Task, Write
 
@@ -217,3 +218,16 @@ wrangler r2 object put project-cdn/js/file.min.js \
 | `workflows-code--full-stack`    | Multi-stack variant (Go, Node, React, Swift)      |
 | `AGENTS.md`                     | Parent behavioral framework                       |
 <!-- /ANCHOR:related -->
+
+---
+
+## 9. 📝 CHANGELOG
+<!-- ANCHOR:changelog -->
+### 2026-02-14 - v1.0.6.0
+- Updated FilePond upload documentation to match current implementation and production behavior.
+- Documented `data-label-error-upload` and clarified localized upload-failure messaging.
+- Clarified MIME-first validation with extension alias fallbacks and native `accept` synchronization.
+- Added guidance for `processfile` error-path handling (ERROR state instead of forced COMPLETE).
+- Added upload URL submission-guard notes to prevent non-idle upload states from submitting with empty hidden URL values.
+- Updated uploaded-file R2 domain references to `pub-383189394a924ad3b619aa4522f32d27.r2.dev` and aligned cross-references.
+<!-- /ANCHOR:changelog -->

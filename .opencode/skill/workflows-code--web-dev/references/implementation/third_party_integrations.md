@@ -654,7 +654,7 @@ const SELECTORS = {
 
 const DEFAULTS = {
   maxSize: '5MB',
-  acceptedTypes: 'application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+  acceptedTypes: 'application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,text/plain,text/markdown,application/vnd.oasis.opendocument.text,application/rtf,text/rtf',
   uploadEndpoint: 'https://worker--upload-form.lorenzo-89a.workers.dev',
 };
 
@@ -671,6 +671,10 @@ const MIME_TYPE_MAP = {
   '.pdf': 'application/pdf',
   '.doc': 'application/msword',
   '.docx': 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+  '.txt': 'text/plain',
+  '.md': 'text/markdown',
+  '.odt': 'application/vnd.oasis.opendocument.text',
+  '.rtf': 'application/rtf',
 };
 ```
 
@@ -684,7 +688,7 @@ const DEFAULT_LABELS = {
   // Idle state
   idleText: 'Drag & drop your file or',
   browse: 'Browse',
-  description: 'Max 5 MB: PDF, DOC, DOCX',
+  description: 'Max 5 MB: PDF, DOC, DOCX, TXT, MD, ODT, RTF',
   // Uploading state
   uploading: 'Uploading...',
   cancel: 'Click to cancel upload',
@@ -693,6 +697,7 @@ const DEFAULT_LABELS = {
   // Error state
   errorInvalidType: 'Invalid file type',
   errorMaxSize: 'File too large',
+  errorUpload: 'Upload failed, please try again',
   errorDismiss: 'Click to dismiss',
 };
 
@@ -716,6 +721,7 @@ function get_labels(wrapper) {
     sizeSeparator: wrapper.getAttribute('data-label-size-separator') || DEFAULT_LABELS.sizeSeparator,
     errorInvalidType: wrapper.getAttribute('data-label-error-type') || DEFAULT_LABELS.errorInvalidType,
     errorMaxSize: wrapper.getAttribute('data-label-error-size') || DEFAULT_LABELS.errorMaxSize,
+    errorUpload: wrapper.getAttribute('data-label-error-upload') || DEFAULT_LABELS.errorUpload,
     errorDismiss: wrapper.getAttribute('data-label-error-dismiss') || DEFAULT_LABELS.errorDismiss,
   };
 }
@@ -813,8 +819,21 @@ function init_instance(wrapper) {
   var accepted_types = wrapper.dataset.acceptedTypes || DEFAULTS.acceptedTypes;
 
   var accepted_types_array = accepted_types.split(',').map(function (t) {
-    return t.trim();
+    return t.replace(/\s+/g, '');
   });
+
+  // Add extension aliases as a fallback for browsers/platforms that
+  // report DOC/DOCX as generic zip/octet MIME types during selection.
+  Object.keys(MIME_TYPE_MAP).forEach(function (ext) {
+    if (accepted_types_array.indexOf(ext) === -1) {
+      accepted_types_array.push(ext);
+    }
+  });
+
+  // Keep native accept in sync with normalized FilePond configuration.
+  // This prevents Webflow/editor stale values from drifting and ensures
+  // extension fallbacks (.docx, etc.) are available in all browsers.
+  input_el.setAttribute('accept', accepted_types_array.join(','));
 
   var pond = FilePond.create(input_el, {
     name: '',                    // Prevent FilePond form submission
@@ -861,13 +880,13 @@ function init_instance(wrapper) {
 
   <!-- Hidden inputs -->
   <input type="file" data-file-upload="input" style="display:none">
-  <input type="hidden" data-file-upload="url" name="file_url">
+  <input type="hidden" data-file-upload="url" name="cv_url">
 
   <!-- IDLE View (visible by default) -->
   <div data-file-upload="idle">
     <div data-file-upload="text">Drag & drop your file or</div>
     <a href="#" data-file-upload="browse">Browse</a>
-    <div data-file-upload="description">Max 5 MB: PDF, DOC, DOCX</div>
+    <div data-file-upload="description">Max 5 MB: PDF, DOC, DOCX, TXT, MD, ODT, RTF</div>
   </div>
 
   <!-- LOADER View (hidden by default, shown during upload/complete) -->
@@ -927,9 +946,15 @@ window.cleanupFilepondInstances = function () { /* destroys all instances */ };
 
 ### Source Files
 
-- `src/2_javascript/form/input_upload.js` — Full FilePond connector (807 lines)
+- `src/2_javascript/form/input_upload.js` — Full FilePond connector (948 lines)
 - `src/2_javascript/z_minified/form/input_upload.min.js` — Minified CDN version
-- See [form_upload_workflows.md](./form_upload_workflows.md) for complete architecture reference
+- See **[form_upload_workflows.md](./form_upload_workflows.md)** for complete architecture reference, including:
+  - Full pipeline: browser → FilePond → Worker → R2 → Formspark
+  - Upload URL validation guards (connector-level and form-level)
+  - Extension alias fallback mechanism
+  - Validation error mapping for wording variants
+  - R2 bucket configuration (separate buckets for user files vs. project assets)
+  - MIME type detection and browser compatibility notes
 
 ---
 

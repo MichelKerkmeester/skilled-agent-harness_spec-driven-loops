@@ -218,11 +218,18 @@ MEMORY DATABASE STATS
 Total: <N>  |  Size: <size>  |  Last Indexed: <date>
 Tiers: ★constitutional:<N> ◆critical:<N> ◇important:<N> ○normal:<N> ◌temporary:<N> ✗deprecated:<N>
 Top Folders: <folder-1>:<N> | <folder-2>:<N> | <folder-3>:<N>
-[s]can | [c]leanup | [h]ealth | [p]oint (checkpoint) | [q]uit
+
+Available Actions
+scan — Index new/changed memory files
+cleanup — Remove old or deprecated memories (with confirmation)
+health — Run system health diagnostics
+point — Checkpoint operations (create, restore, list, delete)
+quit — Exit
+
 STATUS=OK
 ```
 
-Actions: `s`→Scan, `c`→Cleanup (Gate 1), `h`→Health, `p`→Checkpoint submenu, `q`→Exit
+User Input: Type action name (scan, cleanup, health, point, quit) to proceed
 
 ---
 
