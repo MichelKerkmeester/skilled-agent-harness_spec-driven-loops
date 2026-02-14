@@ -32,11 +32,11 @@ operating_mode:
   validation: checkpoint_based_with_checklist_verification
 ```
 
-## 1. PURPOSE
+## 1. 🎯 PURPOSE
 
 Run the full 14-step SpecKit workflow: specification, clarification, planning, task breakdown, implementation, and context saving.
 
-## 2. CONTRACT
+## 2. 📝 CONTRACT
 
 **Inputs:** `$ARGUMENTS` -- Feature description with optional parameters (branch, scope, context)
 **Outputs:** Complete spec folder with all artifacts + `STATUS=<OK|FAIL|CANCELLED>`
@@ -45,7 +45,7 @@ Run the full 14-step SpecKit workflow: specification, clarification, planning, t
 $ARGUMENTS
 ```
 
-## 3. WORKFLOW OVERVIEW
+## 3. 📊 WORKFLOW OVERVIEW
 
 | Step | Name | Purpose | Outputs |
 |------|------|---------|---------|
@@ -77,7 +77,7 @@ $ARGUMENTS
 | (combined) | `/spec_kit:complete :auto :with-research :auto-debug` | All options combined |
 | (default) | `/spec_kit:complete "feature"` | Ask user to choose mode during setup |
 
-## 4. PHASE A: PLANNING (Steps 1-7)
+## 4. 📊 PHASE A: PLANNING (Steps 1-7)
 
 | STEP | NAME | REQUIRED OUTPUT | VERIFICATION |
 |------|------|----------------|--------------|
@@ -108,7 +108,7 @@ When `:with-research` flag present or research_triggered == TRUE:
 - User responds: Y (continue) / n (pause) / review (see research.md first)
 - If research_triggered == FALSE, skip directly to workflow execution
 
-## 5. PHASE B: IMPLEMENTATION (Steps 8-14)
+## 5. ⚡ PHASE B: IMPLEMENTATION (Steps 8-14)
 
 | STEP | NAME | REQUIRED OUTPUT | VERIFICATION |
 |------|------|----------------|--------------|
@@ -138,7 +138,7 @@ When `:with-research` flag present or research_triggered == TRUE:
 
 **Step 14 (Session Handover Check):** Display handover prompt offering `/spec_kit:handover`. Recommended if: continuing later, another dev may pick up, implementation has nuances. Wait for user response before marking workflow complete.
 
-## 6. STEP 10 DEBUG INTEGRATION
+## 6. 🔧 STEP 10 DEBUG INTEGRATION
 
 Track failure_count per task during Step 10 (reset for each task in tasks.md):
 
@@ -148,7 +148,7 @@ IF failure_count >= 3:
 
 IF debug triggered: Store current_task_id, execute debug workflow (5 steps) via Task tool, display checkpoint (root cause, fix status, progress). User responds: Y (retry) / n (pause) / review (debug findings). <!-- REFERENCE: Activated by YAML workflow step, not directly -->
 
-## 7. INSTRUCTIONS
+## 7. ⚡ INSTRUCTIONS
 
 After setup phase passes, load and execute the appropriate YAML prompt:
 - **AUTONOMOUS**: `.opencode/command/spec_kit/assets/spec_kit_complete_auto.yaml`
@@ -156,7 +156,7 @@ After setup phase passes, load and execute the appropriate YAML prompt:
 
 The YAML contains detailed step-by-step workflow, field extraction rules, completion report format, and all configuration.
 
-## 8. OUTPUT FORMATS
+## 8. 📊 OUTPUT FORMATS
 
 **Success:**
 ```
@@ -171,7 +171,7 @@ Error: [error description]  Step: [step number]
 STATUS=FAIL ERROR="[message]"
 ```
 
-## 9. VALIDATION
+## 9. ✅ VALIDATION
 
 Validation runs automatically on the spec folder before marking complete.
 
@@ -186,7 +186,7 @@ Validation runs automatically on the spec folder before marking complete.
 
 **Exit codes:** 0 = pass, 1 = warnings, 2 = errors (must fix)
 
-## 10. PARALLEL DISPATCH
+## 10. 🔀 PARALLEL DISPATCH
 
 ### Complexity Scoring (5 Dimensions)
 
@@ -225,7 +225,7 @@ Steps 3 (Specification), 6 (Planning + auto 4-agent), 8 (Analysis), 10 (Developm
 
 `[W:ARCH]` Architecture | `[W:FEAT]` Feature | `[W:DEPS]` Dependency | `[W:TEST]` Test | `[W:IMPL-N]` Implementation workstream N
 
-## 11. AGENT ROUTING
+## 11. 🔀 AGENT ROUTING
 
 | Step/Phase | Agent | Fallback | Purpose |
 |------------|-------|----------|---------|
@@ -259,7 +259,7 @@ The review agent uses `blocking: true`: P0 FAIL = workflow CANNOT proceed to Ste
 
 When specialized agent unavailable: warning displayed, workflow continues with `subagent_type: "general"` (OpenCode) or `"general-purpose"` (Claude Code). For the review agent fallback: blocking behavior PRESERVED.
 
-## 12. QUALITY GATES
+## 12. ✅ QUALITY GATES
 
 | Gate | Location | Purpose | Threshold | Blocking |
 |------|----------|---------|-----------|----------|
@@ -287,7 +287,7 @@ Required at Planning Gate for Level 3/3+ (optional Level 2). Record in decision-
 
 **Post-execution (>= 70):** All tasks marked [x] (30), implementation-summary.md exists (40), memory/*.md saved (20), validation passed (10)
 
-## 13. ERROR HANDLING
+## 13. ⚠️ ERROR HANDLING
 
 | Error | Action |
 |-------|--------|
@@ -299,7 +299,7 @@ Required at Planning Gate for Level 3/3+ (optional Level 2). Record in decision-
 | Validation errors (exit 2) | Fix before proceeding |
 | Incomplete session detected | Offer: Resume / Restart / Cancel |
 
-## 14. COMMAND CHAIN
+## 14. 🔗 COMMAND CHAIN
 
 - **Standard**: `/spec_kit:complete "feature"` -- 14 steps
 - **With Research**: `/spec_kit:complete "feature" :with-research` -- Research + 14 steps
@@ -307,7 +307,7 @@ Required at Planning Gate for Level 3/3+ (optional Level 2). Record in decision-
 - **Full Options**: `/spec_kit:complete "feature" :auto :with-research :auto-debug`
 - **Split workflows**: `/spec_kit:research` -> `/spec_kit:plan` -> `/spec_kit:implement`
 
-## 15. NEXT STEPS
+## 15. 📌 NEXT STEPS
 
 | Condition | Suggested Command | Reason |
 |-----------|-------------------|--------|
@@ -319,7 +319,7 @@ Required at Planning Gate for Level 3/3+ (optional Level 2). Record in decision-
 | Need crash recovery | `/memory:continue` | Session recovery |
 | Record learning | `/memory:learn` | Explicit learning |
 
-## 16. REFERENCE
+## 16. 📌 REFERENCE
 
 **Full details in YAML prompts:** Workflow steps, field extraction, documentation levels (1/2/3), templates, completion report format, mode behaviors (auto/confirm), parallel dispatch, checklist verification, failure recovery.
 

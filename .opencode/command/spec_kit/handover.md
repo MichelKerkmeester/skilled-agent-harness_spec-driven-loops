@@ -20,7 +20,7 @@ This workflow uses a SINGLE consolidated prompt to gather ALL required inputs in
 
 ---
 
-## 1. UNIFIED SETUP PHASE
+## 1. 📋 UNIFIED SETUP PHASE
 
 **STATUS: BLOCKED**
 
@@ -78,7 +78,7 @@ NEVER split into multiple prompts
 
 ---
 
-## 2. PHASE STATUS VERIFICATION (BLOCKING)
+## 2. ✅ PHASE STATUS VERIFICATION (BLOCKING)
 
 | FIELD             | REQUIRED | SOURCE                          |
 | ----------------- | -------- | ------------------------------- |
@@ -90,7 +90,7 @@ All required fields set? YES -> Proceed to workflow. NO -> Re-prompt for missing
 
 ---
 
-## 3. WORKFLOW STEPS (4 STEPS)
+## 3. 📊 WORKFLOW STEPS (4 STEPS)
 
 **Execute steps IN ORDER. Mark each ONLY after completing ALL activities. DO NOT SKIP.**
 
@@ -121,20 +121,20 @@ operating_mode:
 
 ---
 
-## 4. PURPOSE
+## 4. 🎯 PURPOSE
 
 Create a handover document that enables seamless session continuation. Captures session context, decisions, blockers, and next steps.
 
 ---
 
-## 5. CONTRACT
+## 5. 📝 CONTRACT
 
 **Inputs:** `$ARGUMENTS` -- Optional spec folder path
 **Outputs:** `handover.md` + `STATUS=<OK|FAIL|CANCELLED>`
 
 ---
 
-## 6. WORKFLOW OVERVIEW
+## 6. 📊 WORKFLOW OVERVIEW
 
 | Step | Name            | Purpose                              | Outputs           |
 | ---- | --------------- | ------------------------------------ | ----------------- |
@@ -145,7 +145,7 @@ Create a handover document that enables seamless session continuation. Captures 
 
 ---
 
-## 7. INSTRUCTIONS
+## 7. ⚡ INSTRUCTIONS
 
 After all phases pass, load the YAML prompt for workflow configuration:
 
@@ -186,7 +186,7 @@ Show created file path and continuation instructions.
 
 ---
 
-## 8. OUTPUT FORMATS
+## 8. 📊 OUTPUT FORMATS
 
 **Output Location:** `[spec_folder]/handover.md` (NOT in memory/)
 
@@ -213,14 +213,14 @@ Show created file path and continuation instructions.
 
 ---
 
-## 9. REFERENCE
+## 9. 📌 REFERENCE
 
 **Template:** `.opencode/skill/system-spec-kit/templates/handover.md`
 **See also:** AGENTS.md Section 2 (Compaction Recovery, Context Health).
 
 ---
 
-## 10. SUB-AGENT DELEGATION
+## 10. 🔀 SUB-AGENT DELEGATION
 
 Delegates execution to `@handover` agent for token efficiency. Main agent handles validation/interaction; sub-agent handles context gathering and file generation.
 
@@ -296,7 +296,7 @@ fallback: Execute Steps 1-3 directly -> Step 4
 
 ---
 
-## 11. EXAMPLES
+## 11. 🔍 EXAMPLES
 
 ```
 /spec_kit:handover                           # Auto-detect recent spec folder
@@ -305,7 +305,7 @@ fallback: Execute Steps 1-3 directly -> Step 4
 
 ---
 
-## 12. RELATED RESOURCES
+## 12. 🔗 RELATED RESOURCES
 
 ### Commands
 
@@ -336,7 +336,7 @@ fallback: Execute Steps 1-3 directly -> Step 4
 
 ---
 
-## 13. INTEGRATION
+## 13. 🔗 INTEGRATION
 
 ### Context Health Suggestions
 
@@ -358,7 +358,7 @@ Proactive suggestion on: "stopping", "done", "finished", "break", "later", "forg
 
 ---
 
-## 14. COMMAND CHAIN
+## 14. 🔗 COMMAND CHAIN
 
 ```
 [Any workflow] -> /spec_kit:handover -> [/spec_kit:resume]
@@ -368,7 +368,7 @@ Next step: `/spec_kit:resume [spec-folder-path]` (in new session)
 
 ---
 
-## 15. NEXT STEPS
+## 15. 📌 NEXT STEPS
 
 | Condition                 | Suggested Action                           | Reason                    |
 | ------------------------- | ------------------------------------------ | ------------------------- |

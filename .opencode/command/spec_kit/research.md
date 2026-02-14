@@ -21,7 +21,7 @@ allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task, webfetch, memory_conte
 
 This workflow gathers ALL inputs in ONE prompt. Round-trip: 1 user interaction.
 
-## 0. UNIFIED SETUP PHASE
+## 0. 📋 UNIFIED SETUP PHASE
 
 **FIRST MESSAGE PROTOCOL**: This prompt MUST be your FIRST response. No analysis, no tool calls — ask ALL questions immediately, then wait.
 
@@ -105,11 +105,11 @@ operating_mode:
   validation: completeness_check_17_sections
 ```
 
-## 1. PURPOSE
+## 1. 🎯 PURPOSE
 
 Run the 9-step research workflow: codebase investigation, external research, technical analysis, and documentation. Creates research.md with 17 comprehensive sections. Use when technical uncertainty exists before planning.
 
-## 2. CONTRACT
+## 2. 📝 CONTRACT
 
 **Inputs:** `$ARGUMENTS` -- Research topic with optional parameters (focus, scope, constraints)
 **Outputs:** Spec folder with research.md (17 sections) + `STATUS=<OK|FAIL|CANCELLED>`
@@ -118,7 +118,7 @@ Run the 9-step research workflow: codebase investigation, external research, tec
 $ARGUMENTS
 ```
 
-## 3. WORKFLOW OVERVIEW
+## 3. 📊 WORKFLOW OVERVIEW
 
 | Step | Name | Purpose | Outputs |
 |------|------|---------|---------|
@@ -149,11 +149,11 @@ $ARGUMENTS
 | Re-running with minor changes | `:auto` |
 | Multi-stakeholder review needed | `:confirm` |
 
-## 4. RESEARCH DOCUMENT SECTIONS
+## 4. 📌 RESEARCH DOCUMENT SECTIONS
 
 The generated `research.md` contains 17 sections: Metadata, Investigation Report, Executive Overview, Core Architecture, Technical Specifications, Constraints & Limitations, Integration Patterns, Implementation Guide, Code Examples, Testing & Debugging, Performance, Security, Maintenance, API Reference, Troubleshooting, Acknowledgements, Appendix & Changelog.
 
-## 5. INSTRUCTIONS
+## 5. ⚡ INSTRUCTIONS
 
 After setup phase passes, load and execute the appropriate YAML prompt:
 - **AUTONOMOUS**: `.opencode/command/spec_kit/assets/spec_kit_research_auto.yaml`
@@ -161,7 +161,7 @@ After setup phase passes, load and execute the appropriate YAML prompt:
 
 The YAML contains detailed step-by-step workflow, field extraction rules, completion report format, and all configuration.
 
-## 6. OUTPUT FORMATS
+## 6. 📊 OUTPUT FORMATS
 
 **Success:**
 ```
@@ -177,7 +177,7 @@ Error: [error description]  Step: [step number]
 STATUS=FAIL ERROR="[message]"
 ```
 
-## 7. PARALLEL DISPATCH
+## 7. 🔧 PARALLEL DISPATCH
 
 ### Complexity Scoring (5 Dimensions)
 
@@ -207,7 +207,7 @@ STATUS=FAIL ERROR="[message]"
 
 Format: `[W:R-{sequence}]` where sequence is a 3-digit number (001, 002, etc.)
 
-## 8. MEMORY INTEGRATION
+## 8. 💾 MEMORY INTEGRATION
 
 ### Before Starting Research
 
@@ -230,7 +230,7 @@ Format: `[W:R-{sequence}]` where sequence is a 3-digit number (001, 002, etc.)
 | During Step 5 | `memory_context({ input: "Why did we choose X over Y?" })` | Prior decisions |
 | After Step 9 | `generate-context.js [spec-folder]` | Preserve current research |
 
-## 9. AGENT ROUTING
+## 9. 🔀 AGENT ROUTING
 
 | Step | Agent | Fallback | Purpose |
 |------|-------|----------|---------|
@@ -249,7 +249,7 @@ Task tool -> `@research` agent. Input: topic={research_topic}, spec_folder={spec
 When `@research` unavailable: warning displayed, workflow continues with `subagent_type: "general"` (OpenCode) or `"general-purpose"` (Claude Code). Same steps executed, potentially less specialized output.
 <!-- END REFERENCE -->
 
-## 10. QUALITY GATES
+## 10. ✅ QUALITY GATES
 
 | Gate | Location | Purpose | Threshold |
 |------|----------|---------|-----------|
@@ -265,7 +265,7 @@ Score >= 70 = PASS (proceed). Score < 70 = FAIL (block, require remediation).
 
 **Post-execution:** research.md exists with all 17 sections, key questions answered, quality checklist verified (L2+), context saved to memory/.
 
-## 11. ERROR HANDLING
+## 11. ⚠️ ERROR HANDLING
 
 | Error | Action |
 |-------|--------|
@@ -276,27 +276,27 @@ Score >= 70 = PASS (proceed). Score < 70 = FAIL (block, require remediation).
 | `memory_operation_failure` | Save to scratch/ as backup |
 | 3+ consecutive failures | Halt: Retry / Skip / Abort / Debug |
 
-## 12. KEY DIFFERENCES
+## 12. 📌 KEY DIFFERENCES
 
 - **Does NOT proceed to implementation** - Terminates after research.md
 - **Primary output is research.md** - Comprehensive technical documentation
 - **Use case** - Technical uncertainty, feasibility analysis, documentation
 - **Next steps** - Feeds into `/spec_kit:plan` or `/spec_kit:complete`
 
-## 13. EXAMPLES
+## 13. 🔍 EXAMPLES
 
 ```
 /spec_kit:research:auto "Webflow CMS integration with external payment gateway and email service"
 /spec_kit:research:confirm "Real-time collaboration system with conflict resolution"
 ```
 
-## 14. COMMAND CHAIN
+## 14. 🔗 COMMAND CHAIN
 
 `/spec_kit:research` -> `/spec_kit:plan` -> `/spec_kit:implement`
 
 **Explicit next step:** `/spec_kit:plan [feature-description]`
 
-## 15. NEXT STEPS
+## 15. 📌 NEXT STEPS
 
 | Condition | Suggested Command | Reason |
 |-----------|-------------------|--------|
@@ -306,7 +306,7 @@ Score >= 70 = PASS (proceed). Score < 70 = FAIL (block, require remediation).
 | Need to pause work | `/spec_kit:handover [spec-folder-path]` | Save context for later |
 | Want to save context | `/memory:save [spec-folder-path]` | Preserve research findings |
 
-## 16. REFERENCE
+## 16. 📌 REFERENCE
 
 **Full details in YAML prompts:** Workflow steps, field extraction, documentation levels (1/2/3), templates, completion report format, mode behaviors (auto/confirm), parallel dispatch, research document structure, failure recovery.
 

@@ -23,7 +23,7 @@ This workflow uses a SINGLE consolidated prompt to gather ALL required inputs in
 
 ---
 
-## 0. UNIFIED SETUP PHASE
+## 0. 📋 UNIFIED SETUP PHASE
 
 **STATUS: BLOCKED**
 
@@ -127,13 +127,13 @@ operating_mode:
 
 ---
 
-## 1. PURPOSE
+## 1. 🎯 PURPOSE
 
 Run the 9-step implementation workflow: plan review, task breakdown, quality validation, development, completion summary, and handover check. Picks up where `/spec_kit:plan` left off.
 
 ---
 
-## 2. CONTRACT
+## 2. 📝 CONTRACT
 
 **Inputs:** `$ARGUMENTS` -- Spec folder path (REQUIRED) with optional parameters
 **Outputs:** Completed implementation + implementation-summary.md + optional handover.md + `STATUS=<OK|FAIL|CANCELLED>`
@@ -147,7 +147,7 @@ Missing prerequisites -> guide user to `/spec_kit:plan` first.
 
 ---
 
-## 3. WORKFLOW OVERVIEW
+## 3. 📊 WORKFLOW OVERVIEW
 
 | Step | Name                   | Purpose                                       | Outputs                   |
 | ---- | ---------------------- | --------------------------------------------- | ------------------------- |
@@ -179,7 +179,7 @@ Use `memory_context()` (L1 unified entry) as primary retrieval. Use `memory_sear
 
 ---
 
-## 4. INSTRUCTIONS
+## 4. ⚡ INSTRUCTIONS
 
 After all phases pass, load and execute the appropriate YAML prompt:
 
@@ -190,7 +190,7 @@ The YAML contains detailed step-by-step workflow, field extraction rules, comple
 
 ---
 
-## 5. OUTPUT FORMATS
+## 5. 📊 OUTPUT FORMATS
 
 ### Success
 ```
@@ -208,7 +208,7 @@ STATUS=FAIL ERROR="[message]"
 
 ---
 
-## 6. REFERENCE
+## 6. 📌 REFERENCE
 
 **Full details in YAML prompts:** Workflow steps, field extraction, doc levels (1/2/3), templates, completion report, mode behaviors, parallel dispatch, checklist verification, failure recovery.
 
@@ -216,7 +216,7 @@ STATUS=FAIL ERROR="[message]"
 
 ---
 
-## 7. PARALLEL DISPATCH
+## 7. 🔧 PARALLEL DISPATCH
 
 Supports parallel agent dispatch for complex phases (configured in YAML prompts).
 
@@ -242,7 +242,7 @@ Supports parallel agent dispatch for complex phases (configured in YAML prompts)
 
 ---
 
-## 8. AGENT ROUTING
+## 8. 🔀 AGENT ROUTING
 
 | Step                                         | Agent      | Fallback  | Purpose                                       |
 | -------------------------------------------- | ---------- | --------- | --------------------------------------------- |
@@ -277,7 +277,7 @@ When `@speckit` unavailable: Warning logged, continues with `subagent_type: "gen
 
 ---
 
-## 9. QUALITY GATES
+## 9. ✅ QUALITY GATES
 
 | Gate                | Location        | Threshold | Blocking          |
 | ------------------- | --------------- | --------- | ----------------- |
@@ -295,7 +295,7 @@ Example: `[E:evidence/test-output.log]` or `[EVIDENCE: hero.js:45-67 verified]`
 
 ---
 
-## 10. PREFLIGHT BASELINE (Step 5.5)
+## 10. 📊 PREFLIGHT BASELINE (Step 5.5)
 
 Capture epistemic baseline before implementation. Execute after Step 5, before Step 6. Skip for quick fixes (<10 LOC) or continuation with existing PREFLIGHT.
 
@@ -308,7 +308,7 @@ Skip: `"skip preflight"`, `"quick fix"` (auto if LOC<10), `"continuation"` (auto
 
 ---
 
-## 11. POSTFLIGHT LEARNING (Step 7.5)
+## 11. 📊 POSTFLIGHT LEARNING (Step 7.5)
 
 Capture learning delta after implementation. Execute after Step 7, before Step 8. Skip if no PREFLIGHT captured.
 
@@ -325,7 +325,7 @@ Reference: `.opencode/skill/system-spec-kit/references/memory/epistemic-vectors.
 
 ---
 
-## 12. KEY DIFFERENCES FROM /SPEC_KIT:COMPLETE
+## 12. 📌 KEY DIFFERENCES FROM /SPEC_KIT:COMPLETE
 
 - Requires existing plan (won't create spec.md/plan.md)
 - Starts at implementation (skips specification/planning)
@@ -333,13 +333,13 @@ Reference: `.opencode/skill/system-spec-kit/references/memory/epistemic-vectors.
 
 ---
 
-## 13. VALIDATION DURING IMPLEMENTATION
+## 13. ✅ VALIDATION DURING IMPLEMENTATION
 
 Runs automatically: **PLACEHOLDER_FILLED** (replace `[PLACEHOLDER]`), **PRIORITY_TAGS** (P0/P1/P2), **EVIDENCE_CITED** (`[SOURCE:]` citations).
 
 ---
 
-## 14. EXAMPLES
+## 14. 🔍 EXAMPLES
 
 ```
 /spec_kit:implement:auto specs/042-user-auth/       # Autonomous mode
@@ -348,7 +348,7 @@ Runs automatically: **PLACEHOLDER_FILLED** (replace `[PLACEHOLDER]`), **PRIORITY
 
 ---
 
-## 15. COMMAND CHAIN
+## 15. 🔗 COMMAND CHAIN
 
 ```
 [/spec_kit:plan] -> /spec_kit:implement -> [/spec_kit:handover]
@@ -358,7 +358,7 @@ Prerequisite: `/spec_kit:plan [feature-description]` (creates spec.md, plan.md)
 
 ---
 
-## 16. NEXT STEPS
+## 16. 📌 NEXT STEPS
 
 | Condition                 | Suggested Command                          | Reason                          |
 | ------------------------- | ------------------------------------------ | ------------------------------- |

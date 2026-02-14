@@ -26,7 +26,7 @@ This workflow gathers ALL inputs in ONE prompt. Mode defaults to INTERACTIVE unl
 
 > **Gate 3 Note:** Resume inherently satisfies Gate 3 — it REQUIRES a spec folder (provided or detected).
 
-## 1. UNIFIED SETUP PHASE
+## 1. 📊 UNIFIED SETUP PHASE
 
 **STATUS: BLOCKED**
 
@@ -115,7 +115,7 @@ STOP HERE - Wait for user answers before continuing.
 - `spec_path` | `detection_method` | `execution_mode`
 - `artifacts_valid` | `memory_loaded`
 
-## 2. PHASE STATUS VERIFICATION (BLOCKING)
+## 2. ✅ PHASE STATUS VERIFICATION (BLOCKING)
 
 | FIELD            | REQUIRED      | SOURCE                        |
 | ---------------- | ------------- | ----------------------------- |
@@ -127,7 +127,7 @@ STOP HERE - Wait for user answers before continuing.
 
 ALL required fields set? → Proceed to workflow | Missing? → Re-prompt for missing only
 
-## 3. VIOLATION SELF-DETECTION (BLOCKING)
+## 3. ⚠️ VIOLATION SELF-DETECTION (BLOCKING)
 
 **You are in violation if you:** started workflow before fields set, asked questions in multiple prompts, proceeded without validating artifacts, assumed spec folder without confirmation, didn't display progress, claimed "resumed" without continuation options.
 
@@ -139,7 +139,7 @@ ALL required fields set? → Proceed to workflow | Missing? → Re-prompt for mi
 
 Execute steps IN ORDER. Mark each ✅ ONLY after completing ALL activities and verifying outputs.
 
-## 4. AUTO MODE (4 STEPS)
+## 4. 🔀 AUTO MODE (4 STEPS)
 
 | STEP | NAME               | REQUIRED OUTPUT      | VERIFICATION            |
 | ---- | ------------------ | -------------------- | ----------------------- |
@@ -148,7 +148,7 @@ Execute steps IN ORDER. Mark each ✅ ONLY after completing ALL activities and v
 | 3    | Calculate Progress | progress_percentages | Tasks/checklist counted |
 | 4    | Present Resume     | resume_summary       | Summary displayed       |
 
-## 5. CONFIRM MODE (5 STEPS)
+## 5. 🔀 CONFIRM MODE (5 STEPS)
 
 | STEP | NAME               | REQUIRED OUTPUT      | VERIFICATION            |
 | ---- | ------------------ | -------------------- | ----------------------- |
@@ -178,11 +178,11 @@ operating_mode:
   validation: artifact_based
 ```
 
-## 6. PURPOSE
+## 6. 🎯 PURPOSE
 
 Resume work on an existing spec folder by detecting the last active session, loading context from memory files, and presenting progress with next steps. Utility workflow for session continuity.
 
-## 7. CONTRACT
+## 7. 📝 CONTRACT
 
 **Inputs:** `$ARGUMENTS` — Optional spec folder path with optional :auto/:confirm suffix
 **Outputs:** Resumed session context + progress display + `STATUS=<OK|FAIL|CANCELLED>`
@@ -191,7 +191,7 @@ Resume work on an existing spec folder by detecting the last active session, loa
 $ARGUMENTS
 ```
 
-## 8. INSTRUCTIONS
+## 8. ⚡ INSTRUCTIONS
 
 After all phases pass, load and execute the appropriate YAML prompt:
 
@@ -200,7 +200,7 @@ After all phases pass, load and execute the appropriate YAML prompt:
 
 The YAML contains detailed step-by-step workflow, output formats, and all configuration.
 
-## 9. SESSION DETECTION FLOW
+## 9. 🔀 SESSION DETECTION FLOW
 
 **Priority order for finding spec folder:**
 1. Validate provided path from $ARGUMENTS
@@ -216,7 +216,7 @@ The YAML contains detailed step-by-step workflow, output formats, and all config
 
 **Stale session (>7 days):** Warn user, offer: A) Resume anyway, B) Fresh start, C) Review changes, D) Cancel
 
-## 10. OUTPUT FORMATS
+## 10. 📊 OUTPUT FORMATS
 
 **Success:**
 ```
@@ -229,13 +229,13 @@ Ready to continue. What would you like to work on?
 
 **Stale Session (>7 days):** Warn context may be outdated, offer Resume/Fresh/Review/Cancel.
 
-## 11. REFERENCE
+## 11. 📌 REFERENCE
 
 **Full details in YAML prompts:** Workflow steps, progress calculation, memory loading, session detection priority, stale handling, mode behaviors, failure recovery.
 
 **See also:** AGENTS.md Sections 2-6 for memory loading, confidence framework, and request analysis.
 
-## 12. MCP TOOL USAGE
+## 12. 🔧 MCP TOOL USAGE
 
 Call MCP tools directly — NEVER through Code Mode.
 
@@ -275,12 +275,12 @@ Call MCP tools directly — NEVER through Code Mode.
 
 After loading context, auto-validates: missing files, broken memory anchors, unfilled placeholders.
 
-## 13. PARALLEL DISPATCH
+## 13. 🔀 PARALLEL DISPATCH
 
 Resume is a **utility workflow** — no parallel dispatch. All steps sequential.
 - Auto: 4 steps | Confirm: 5 steps with user checkpoints
 
-## 14. EXAMPLES
+## 14. 🔍 EXAMPLES
 
 ```
 /spec_kit:resume                                          → Auto-detect from recent memory
@@ -289,7 +289,7 @@ Resume is a **utility workflow** — no parallel dispatch. All steps sequential.
 /spec_kit:resume:confirm specs/014-*/                      → Interactive with memory options
 ```
 
-## 15. RELATED COMMANDS
+## 15. 🔗 RELATED COMMANDS
 
 | Command               | Relationship                                            |
 | --------------------- | ------------------------------------------------------- |
@@ -299,7 +299,7 @@ Resume is a **utility workflow** — no parallel dispatch. All steps sequential.
 | `/spec_kit:handover`  | Create handover doc (resume loads these)                |
 | `/memory:continue`    | Crash recovery — loads CONTINUE_SESSION.md              |
 
-## 16. COMMAND CHAIN
+## 16. 🔗 COMMAND CHAIN
 
 ```
 [/spec_kit:handover] → /spec_kit:resume → [Continue workflow]
@@ -307,7 +307,7 @@ Resume is a **utility workflow** — no parallel dispatch. All steps sequential.
 
 Prerequisite: `/spec_kit:handover [spec-folder-path]` (creates handover.md)
 
-## 17. NEXT STEPS
+## 17. 📌 NEXT STEPS
 
 | Condition                  | Suggested Command                        | Reason                    |
 | -------------------------- | ---------------------------------------- | ------------------------- |

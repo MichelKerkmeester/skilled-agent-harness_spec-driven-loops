@@ -21,7 +21,7 @@ allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task, memory_context, memory
 
 This workflow gathers ALL inputs in ONE prompt. Round-trip: 1 user interaction.
 
-## 0. UNIFIED SETUP PHASE
+## 0. 📋 UNIFIED SETUP PHASE
 
 **FIRST MESSAGE PROTOCOL**: This prompt MUST be your FIRST response. No analysis, no tool calls — ask ALL questions immediately, then wait.
 
@@ -124,11 +124,11 @@ operating_mode:
   validation: consistency_check_before_handoff
 ```
 
-## 1. PURPOSE
+## 1. 🎯 PURPOSE
 
 Run the planning workflow: specification, clarification, and technical planning. Creates spec.md, plan.md, and checklists without implementation. Use when planning needs review before coding.
 
-## 2. CONTRACT
+## 2. 📝 CONTRACT
 
 **Inputs:** `$ARGUMENTS` — Feature description with optional parameters (branch, scope, context)
 **Outputs:** Spec folder with: spec.md, plan.md, checklist.md (Level 2+), memory/*.md
@@ -139,7 +139,7 @@ Run the planning workflow: specification, clarification, and technical planning.
 $ARGUMENTS
 ```
 
-## 3. WORKFLOW OVERVIEW
+## 3. 📊 WORKFLOW OVERVIEW
 
 | Step | Name             | Purpose                      | Outputs                  |
 | ---- | ---------------- | ---------------------------- | ------------------------ |
@@ -151,7 +151,7 @@ $ARGUMENTS
 | 6    | Save Context     | Save conversation context    | memory/*.md              |
 | 7    | Handover Check   | Prompt for session handover  | handover.md (optional)   |
 
-## 4. INSTRUCTIONS
+## 4. ⚡ INSTRUCTIONS
 
 After all phases pass, load and execute the appropriate YAML prompt:
 
@@ -160,7 +160,7 @@ After all phases pass, load and execute the appropriate YAML prompt:
 
 The YAML contains detailed step-by-step workflow, field extraction rules, completion report format, and all configuration.
 
-## 5. OUTPUT FORMATS
+## 5. 📊 OUTPUT FORMATS
 
 **Success:**
 ```
@@ -177,13 +177,13 @@ Error: [description] | Step: [number]
 STATUS=FAIL ERROR="[message]"
 ```
 
-## 6. REFERENCE
+## 6. 📌 REFERENCE
 
 **Full details in YAML prompts:** Workflow steps, field extraction, documentation levels (1/2/3), templates, completion report, mode behaviors, parallel dispatch config, checklist guidelines, failure recovery.
 
 **See also:** AGENTS.md Sections 2-6 for memory loading, confidence framework, and request analysis.
 
-## 7. PARALLEL DISPATCH
+## 7. 🔀 PARALLEL DISPATCH
 
 Supports smart parallel sub-agent dispatch using 5-dimension complexity scoring.
 
@@ -220,7 +220,7 @@ After agents return, verify hypotheses by reading identified files.
 
 **Workstream Prefix:** `[W:PLAN]` for all planning dispatch tracking.
 
-## 7.5 MEMORY INTEGRATION
+## 8. 💾 MEMORY INTEGRATION
 
 ### Unified Memory Retrieval
 
@@ -248,7 +248,7 @@ Use `/memory:context` with intent-aware retrieval:
 2. **Anchors auto-extracted:** planning-[feature], decisions, architecture, next-steps
 3. **Verify:** Check memory/*.md created with proper anchors
 
-## 8. AGENT ROUTING
+## 9. 🔀 AGENT ROUTING
 
 | Step                          | Agent      | Fallback  | Purpose                                              |
 | ----------------------------- | ---------- | --------- | ---------------------------------------------------- |
@@ -266,7 +266,7 @@ Create spec.md using template-first approach. Validate structure. Return file co
 ```
 <!-- END REFERENCE -->
 
-## 9. QUALITY GATES
+## 10. ✅ QUALITY GATES
 
 | Gate Type      | Trigger Point          | Threshold | Validates                        |
 | -------------- | ---------------------- | --------- | -------------------------------- |
@@ -290,13 +290,13 @@ Create spec.md using template-first approach. Validate structure. Return file co
 
 Record results in decision-record.md for architectural changes.
 
-## 10. KEY DIFFERENCES FROM /SPEC_KIT:COMPLETE
+## 11. 📌 KEY DIFFERENCES FROM /SPEC_KIT:COMPLETE
 
 - **Terminates after planning** — no task breakdown, analysis, or implementation
 - **Next step guidance** — recommends `/spec_kit:implement` when ready
 - **Use case** — planning phase separation, stakeholder review, feasibility analysis
 
-## 11. EXAMPLES
+## 12. 🔍 EXAMPLES
 
 ```
 /spec_kit:plan:auto Add dark mode toggle to the settings page
@@ -304,7 +304,7 @@ Record results in decision-record.md for architectural changes.
 /spec_kit:plan "Build analytics dashboard" tech stack: React, Chart.js, existing API
 ```
 
-## 12. COMMAND CHAIN
+## 13. 🔗 COMMAND CHAIN
 
 ```
 [/spec_kit:research] → /spec_kit:plan → [/spec_kit:implement]
@@ -312,7 +312,7 @@ Record results in decision-record.md for architectural changes.
 
 Next step: `/spec_kit:implement [spec-folder-path]`
 
-## 13. NEXT STEPS
+## 14. 📌 NEXT STEPS
 
 | Condition                    | Suggested Command                        | Reason                    |
 | ---------------------------- | ---------------------------------------- | ------------------------- |

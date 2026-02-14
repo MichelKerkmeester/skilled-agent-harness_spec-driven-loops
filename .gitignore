@@ -74,6 +74,7 @@ __pycache__/
 # ───────────────────────────────────────────
 .opencode/command/agent_router.md
 .claude/commands/agent_router.md
+.agents/commands/agent_router.md
 
 # Temporary files
 # ───────────────────────────────────────────
