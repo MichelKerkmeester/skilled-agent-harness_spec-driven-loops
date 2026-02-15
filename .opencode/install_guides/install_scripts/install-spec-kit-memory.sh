@@ -62,17 +62,16 @@ install_mcp() {
 
     # Remove native modules before install to prevent ERR_DLOPEN_FAILED
     log_info "Removing stale native modules..."
-    for mod_dir in "${server_dir}/node_modules/better-sqlite3" "${server_dir}/node_modules/sqlite-vec" \
-                   "${workspace_root}/node_modules/better-sqlite3" "${workspace_root}/node_modules/sqlite-vec"; do
+    for mod_dir in "${server_dir}/node_modules/better-sqlite3" "${server_dir}/node_modules/sqlite-vec"; do
         if [[ -d "${mod_dir}" ]]; then
             rm -rf "${mod_dir}" 2>/dev/null || true
         fi
     done
 
-    # Install dependencies from workspace root (npm workspaces: shared, mcp_server, scripts)
-    log_step "Installing dependencies (npm workspaces)..."
+    # Install dependencies from mcp_server directory
+    log_step "Installing dependencies..."
     (
-        cd "${workspace_root}"
+        cd "${server_dir}"
         npm install --silent 2>/dev/null || npm install
     )
 
@@ -86,14 +85,14 @@ install_mcp() {
     # Rebuild native modules for current Node.js version
     log_step "Rebuilding native modules..."
     (
-        cd "${workspace_root}"
+        cd "${server_dir}"
         npm rebuild 2>/dev/null || true
     )
 
-    # Build TypeScript (all 3 workspaces: shared → mcp_server → scripts)
+    # Build TypeScript
     log_step "Building TypeScript..."
     (
-        cd "${workspace_root}"
+        cd "${server_dir}"
         # Try standard build first; fall back to --noCheck for pre-existing type errors
         npx tsc --build 2>/dev/null || npx tsc --build --noCheck --force
     )
@@ -107,7 +106,7 @@ install_mcp() {
     # Verify the server script exists
     if [[ ! -f "${server_dir}/${MCP_SERVER_SCRIPT}" ]]; then
         log_error "Server script not found: ${server_dir}/${MCP_SERVER_SCRIPT}"
-        log_info "Try building manually: cd ${workspace_root} && npx tsc --build --noCheck --force"
+        log_info "Try building manually: cd ${server_dir} && npx tsc --build --noCheck --force"
         exit 1
     fi
 
@@ -116,7 +115,7 @@ install_mcp() {
     # Run smoke test
     log_step "Running smoke test..."
     (
-        cd "${workspace_root}"
+        cd "${server_dir}"
         npm run test:cli 2>/dev/null
     )
 
@@ -192,13 +191,11 @@ verify_installation() {
         log_warn "Server script syntax check failed (may still work)"
     fi
     
-    # Verify node_modules exist (may be in parent dir due to npm hoisting)
-    local parent_dir
-    parent_dir="$(dirname "${project_root}/${MCP_SERVER_DIR}")"
-    if [[ -d "${project_root}/${MCP_SERVER_DIR}/node_modules" ]] || [[ -d "${parent_dir}/node_modules" ]]; then
+    # Verify node_modules exist in mcp_server
+    if [[ -d "${project_root}/${MCP_SERVER_DIR}/node_modules" ]]; then
         log_success "Dependencies verified"
     else
-        log_warn "node_modules not found - dependencies may be installed elsewhere"
+        log_warn "node_modules not found in ${MCP_SERVER_DIR}"
     fi
     
     # Verify config entry exists

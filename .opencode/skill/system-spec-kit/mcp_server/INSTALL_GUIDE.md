@@ -302,7 +302,9 @@ The Spec Kit Memory MCP server is bundled within the `system-spec-kit` skill fol
 
 ### Step 1: Install Dependencies and Build
 
-Navigate to the **skill root** (not mcp_server/) and install dependencies across all workspaces:
+**Option A: Install from skill root (recommended - uses workspace management)**
+
+Navigate to the **skill root** and install dependencies across all workspaces:
 
 ```bash
 cd .opencode/skill/system-spec-kit
@@ -324,7 +326,20 @@ This installs all required packages across the workspace:
 - `sqlite-vec` - Vector similarity extension
 - `@huggingface/transformers` - Local embedding model
 
-> **Important**: The project uses npm workspaces (`shared/`, `mcp_server/`, `scripts/`). Always run `npm install` and `npm run build` from the skill root, not from individual workspace directories.
+> **Note**: The project uses npm workspaces (`shared/`, `mcp_server/`, `scripts/`). You can run `npm install` and `npm run build` from the skill root to manage the entire project.
+
+**Option B: Install MCP server dependencies directly**
+
+If you only need the MCP server (not the full workspace):
+
+```bash
+cd .opencode/skill/system-spec-kit/mcp_server
+npm install
+
+# Build TypeScript from skill root (manages compilation across workspaces)
+cd .opencode/skill/system-spec-kit
+npm run build
+```
 
 ### Step 2: Test Server Startup
 
@@ -348,7 +363,7 @@ See [Section 4: Configuration](#4--configuration) for client-specific setup.
 
 **Quick Verification:**
 ```bash
-ls .opencode/skill/system-spec-kit/mcp_server/dist/context-server.js && ls .opencode/skill/system-spec-kit/node_modules/better-sqlite3 && echo "✅ PASS" || echo "❌ FAIL"
+ls .opencode/skill/system-spec-kit/mcp_server/dist/context-server.js && ls .opencode/skill/system-spec-kit/mcp_server/node_modules/better-sqlite3 && echo "✅ PASS" || echo "❌ FAIL"
 ```
 
 ❌ **STOP if validation fails** - Fix before continuing.
@@ -471,8 +486,8 @@ ls -la .opencode/skill/system-spec-kit/mcp_server/dist/
 
 ```bash
 # Check node_modules exists
-ls -la .opencode/skill/system-spec-kit/node_modules/better-sqlite3
-# Should show the better-sqlite3 directory (dependencies are hoisted to skill root)
+ls -la .opencode/skill/system-spec-kit/mcp_server/node_modules/better-sqlite3
+# Should show the better-sqlite3 directory
 ```
 
 ### Check 3: Test Server Startup
@@ -1267,7 +1282,7 @@ See `specs/005-memory/018-gate3-enforcement/` for a complete example:
 
 **Fix**:
 ```bash
-# Install from skill root (npm workspaces)
+# Install from skill root (npm workspaces manage the build)
 cd .opencode/skill/system-spec-kit
 npm install
 
@@ -1283,9 +1298,11 @@ npm run test:cli
 
 **If that doesn't work**:
 ```bash
-# Check node_modules exists (hoisted to skill root)
-ls -la .opencode/skill/system-spec-kit/node_modules
-# If missing, run npm install from skill root
+# Check node_modules exists in mcp_server
+ls -la .opencode/skill/system-spec-kit/mcp_server/node_modules
+# If missing, install MCP server dependencies
+cd .opencode/skill/system-spec-kit/mcp_server
+npm install
 
 # Check dist/ directory exists with compiled output
 ls -la .opencode/skill/system-spec-kit/mcp_server/dist/
@@ -1300,16 +1317,16 @@ ls -la .opencode/skill/system-spec-kit/mcp_server/dist/
 
 **Fix**:
 ```bash
-# Check if the right platform binary exists (dependencies hoisted to skill root)
-ls .opencode/skill/system-spec-kit/node_modules/sqlite-vec-darwin-arm64/  # macOS ARM
-ls .opencode/skill/system-spec-kit/node_modules/sqlite-vec-darwin-x64/    # macOS Intel
-ls .opencode/skill/system-spec-kit/node_modules/sqlite-vec-linux-x64/     # Linux x64
+# Check if the right platform binary exists
+ls .opencode/skill/system-spec-kit/mcp_server/node_modules/sqlite-vec-darwin-arm64/  # macOS ARM
+ls .opencode/skill/system-spec-kit/mcp_server/node_modules/sqlite-vec-darwin-x64/    # macOS Intel
+ls .opencode/skill/system-spec-kit/mcp_server/node_modules/sqlite-vec-linux-x64/     # Linux x64
 ```
 
 **If that doesn't work**:
 ```bash
-# Reinstall dependencies from skill root
-cd .opencode/skill/system-spec-kit
+# Reinstall MCP server dependencies
+cd .opencode/skill/system-spec-kit/mcp_server
 npm install
 ```
 
@@ -1322,7 +1339,7 @@ npm install
 **Fix**:
 ```bash
 # Clear the HuggingFace Transformers model cache
-rm -rf .opencode/skill/system-spec-kit/node_modules/@huggingface/transformers/.cache
+rm -rf .opencode/skill/system-spec-kit/mcp_server/node_modules/@huggingface/transformers/.cache
 
 # Restart MCP server (model will re-download on first use)
 ```
@@ -1507,14 +1524,14 @@ memory_index_scan({ specFolder: "049-auth-system", force: true })
 **Check HuggingFace Transformers (if using local embeddings):**
 ```bash
 # Verify the model cache exists
-ls .opencode/skill/system-spec-kit/node_modules/@huggingface/transformers
+ls .opencode/skill/system-spec-kit/mcp_server/node_modules/@huggingface/transformers
 
-# If missing, reinstall from skill root
-cd .opencode/skill/system-spec-kit
+# If missing, reinstall from mcp_server
+cd .opencode/skill/system-spec-kit/mcp_server
 npm install
 
 # If model cache is corrupted (protobuf errors), clear and restart:
-rm -rf .opencode/skill/system-spec-kit/node_modules/@huggingface/transformers/.cache
+rm -rf .opencode/skill/system-spec-kit/mcp_server/node_modules/@huggingface/transformers/.cache
 # Model will re-download on next MCP server startup
 ```
 

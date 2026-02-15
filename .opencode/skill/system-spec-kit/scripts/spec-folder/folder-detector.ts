@@ -146,7 +146,7 @@ async function detectSpecFolder(collectedData: CollectedDataForAlignment | null 
   try {
     // eslint-disable-next-line @typescript-eslint/no-var-requires
     const Database = require(
-      path.join(CONFIG.PROJECT_ROOT, '.opencode/skill/system-spec-kit/node_modules/better-sqlite3')
+      path.join(CONFIG.PROJECT_ROOT, '.opencode/skill/system-spec-kit/mcp_server/node_modules/better-sqlite3')
     );
     const dbPath = path.join(
       CONFIG.PROJECT_ROOT,

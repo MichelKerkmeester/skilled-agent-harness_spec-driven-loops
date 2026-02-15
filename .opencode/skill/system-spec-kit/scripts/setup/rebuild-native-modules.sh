@@ -18,9 +18,9 @@ echo "MODULE_VERSION: $(node -e 'console.log(process.versions.modules)')"
 echo "Platform:       $(uname -s) $(uname -m)"
 echo ""
 
-# Step 1: Rebuild better-sqlite3 (root workspace)
+# Step 1: Rebuild better-sqlite3 (mcp_server)
 echo "── Step 1: Rebuilding better-sqlite3..."
-cd "$ROOT_DIR"
+cd "$ROOT_DIR/mcp_server"
 npm rebuild better-sqlite3
 echo "   ✓ better-sqlite3 rebuilt"
 

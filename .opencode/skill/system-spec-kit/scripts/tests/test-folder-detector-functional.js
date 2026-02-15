@@ -16,7 +16,7 @@ const os = require('os');
 const SCRIPTS_DIR = path.join(__dirname, '..', 'dist');
 const SKILL_ROOT = path.join(__dirname, '..', '..'); // .opencode/skill/system-spec-kit
 const PROJECT_ROOT = path.resolve(__dirname, '..', '..', '..', '..', '..'); // actual project root
-const BETTER_SQLITE3_PATH = path.join(SKILL_ROOT, 'node_modules/better-sqlite3');
+const BETTER_SQLITE3_PATH = path.join(SKILL_ROOT, 'mcp_server/node_modules/better-sqlite3');
 const REAL_DB_PATH = path.join(SKILL_ROOT, 'mcp_server/database/context-index.sqlite');
 
 // Test results tracking
@@ -902,7 +902,7 @@ async function testConfigProjectRootAlignment() {
     // Test 3: better-sqlite3 path from PROJECT_ROOT resolves
     const constructedSqlitePath = path.join(
       CONFIG.PROJECT_ROOT,
-      '.opencode/skill/system-spec-kit/node_modules/better-sqlite3'
+      '.opencode/skill/system-spec-kit/mcp_server/node_modules/better-sqlite3'
     );
     try {
       require.resolve(constructedSqlitePath);
