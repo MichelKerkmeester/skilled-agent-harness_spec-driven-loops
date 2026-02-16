@@ -34,7 +34,7 @@
   // DOCUMENTATION ONLY — Not read at runtime
   // MCP server resolves DB path via mcp_server/core/config.js (SPEC_KIT_DB_DIR env var)
   "memoryIndex": {
-    "databasePath": ".opencode/skill/system-spec-kit/mcp_server/database/context-index.sqlite",
+    "databasePath": ".opencode/skill/system-spec-kit/mcp_server/dist/database/context-index.sqlite",
     "autoRebuildOnSave": true,
     "verifyOnStartup": false
   },

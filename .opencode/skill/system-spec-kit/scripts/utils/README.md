@@ -1,6 +1,6 @@
 ---
 title: "System Spec Kit Utilities"
-description: "Shared utility modules providing core functionality for data validation, path sanitization, file operations, logging, and input normalization across all system-spec-kit scripts."
+description: "Shared utility modules providing core functionality for data validation, path sanitization, file operations, logging and input normalization across all system-spec-kit scripts."
 trigger_phrases:
   - "spec kit utilities"
   - "data validator path utils"
@@ -10,28 +10,29 @@ importance_tier: "normal"
 
 # System Spec Kit Utilities
 
-> Shared utility modules providing core functionality for data validation, path sanitization, file operations, logging, and input normalization across all system-spec-kit scripts.
+> Shared utility modules providing core functionality for data validation, path sanitization, file operations, logging and input normalization across all system-spec-kit scripts.
 
 ---
 
 ## TABLE OF CONTENTS
 <!-- ANCHOR:table-of-contents -->
 
-- [1. 📖 OVERVIEW](#1--overview)
-- [2. 🚀 QUICK START](#2--quick-start)
-- [3. 📁 STRUCTURE](#3--structure)
-- [4. 🛠️ TROUBLESHOOTING](#4--troubleshooting)
-- [5. 📚 RELATED DOCUMENTS](#5--related-documents)
+- [1. OVERVIEW](#1--overview)
+- [2. QUICK START](#2--quick-start)
+- [3. STRUCTURE](#3--structure)
+- [4. TROUBLESHOOTING](#4--troubleshooting)
+- [5. RELATED DOCUMENTS](#5--related-documents)
 
 ---
 
 <!-- /ANCHOR:table-of-contents -->
-## 1. 📖 OVERVIEW
+
+## 1. OVERVIEW
 <!-- ANCHOR:overview -->
 
 ### What are System Spec Kit Utilities?
 
-The utilities folder contains reusable TypeScript modules (compiled to JavaScript) that provide essential functionality for all system-spec-kit scripts. These modules handle data validation, path security, file I/O, structured logging, message formatting, prompt generation, and tool detection. They enforce security standards (CWE-22 path traversal prevention), normalize diverse input formats, and provide consistent error handling across the entire script ecosystem.
+The utilities folder contains reusable TypeScript modules (compiled to JavaScript) that provide core functionality for all system-spec-kit scripts. These modules handle data validation, path security, file I/O, structured logging, message formatting, prompt generation and tool detection. They enforce security standards (CWE-22 path traversal prevention), normalize diverse input formats and provide consistent error handling across the entire script collection.
 
 **Build System**: TypeScript source files (`.ts`) are compiled to `dist/utils/` using the TypeScript compiler. Scripts import from the compiled output at runtime.
 
@@ -39,7 +40,7 @@ The utilities folder contains reusable TypeScript modules (compiled to JavaScrip
 
 | Category | Count | Details |
 |----------|-------|---------|
-| Utility Modules | 11 | Core functionality for all scripts |
+| Utility Modules | 10 | Core functionality for all scripts |
 | Primary Functions | 40+ | Validation, sanitization, normalization, logging |
 | Security Standards | CWE-22, Path Traversal | Enforced in path-utils.ts |
 
@@ -66,10 +67,9 @@ The utilities folder contains reusable TypeScript modules (compiled to JavaScrip
 ---
 
 <!-- /ANCHOR:overview -->
-## 2. 🚀 QUICK START
-<!-- ANCHOR:quick-start -->
 
-### 30-Second Setup
+## 2. QUICK START
+<!-- ANCHOR:quick-start -->
 
 ```bash
 # 1. Navigate to scripts directory
@@ -87,7 +87,7 @@ node -e "const { sanitizePath } = require('./dist/utils/path-utils'); console.lo
 ```bash
 # Check all TypeScript source files exist
 ls -la utils/*.ts
-# Expected: 11 TypeScript files
+# Expected: 10 TypeScript files
 
 # Check compiled output exists
 ls -la dist/utils/*.js
@@ -105,8 +105,8 @@ node -e "const { sanitizePath } = require('./dist/utils/path-utils'); console.lo
 const { sanitizePath } = require('./dist/utils/path-utils');
 const { readJsonFile } = require('./dist/utils/file-helpers');
 const { structuredLog } = require('./dist/utils/logger');
-const { validateInputData } = require('./dist/utils/data-validator');
-const { normalizeInput } = require('./dist/utils/input-normalizer');
+const { validateDataStructure } = require('./dist/utils/data-validator');
+const { normalizeInputData } = require('./dist/utils/input-normalizer');
 
 // Use path sanitization (prevents CWE-22 attacks)
 const safePath = sanitizePath('/specs/001-feature');
@@ -121,7 +121,8 @@ structuredLog('info', 'Processing spec folder', { path: safePath });
 ---
 
 <!-- /ANCHOR:quick-start -->
-## 3. 📁 STRUCTURE
+
+## 3. STRUCTURE
 <!-- ANCHOR:structure -->
 
 ```
@@ -157,21 +158,22 @@ dist/utils/                    # TypeScript compilation output
 
 | File | Purpose |
 |------|---------|
-| `data-validator.ts` | Validates and transforms spec folder data structures; applies flag mappings for arrays and presence checks |
-| `file-helpers.ts` | Provides safe file I/O operations with UTF-8 encoding, existence checks, and error handling |
+| `data-validator.ts` | Validates and transforms spec folder data structures. Applies flag mappings for arrays and presence checks |
+| `file-helpers.ts` | Provides safe file I/O operations with UTF-8 encoding, existence checks and error handling |
 | `index.ts` | Aggregates exports from all utility modules for convenient importing |
-| `input-normalizer.ts` | Normalizes diverse input formats (strings, objects, arrays) into consistent structures; transforms key decisions |
+| `input-normalizer.ts` | Normalizes diverse input formats (strings, objects, arrays) into consistent structures. Transforms key decisions |
 | `logger.ts` | Structured logging with severity levels (info, warn, error) and contextual data |
-| `message-utils.ts` | Formats user-facing messages, error reports, and validation feedback |
-| `path-utils.ts` | Sanitizes file paths to prevent directory traversal (CWE-22); validates against allowed base directories |
+| `message-utils.ts` | Formats user-facing messages, error reports and validation feedback |
+| `path-utils.ts` | Sanitizes file paths to prevent directory traversal (CWE-22). Validates against allowed base directories |
 | `prompt-utils.ts` | Generates prompts for CLI interactions and user input collection |
 | `tool-detection.ts` | Detects available MCP tools and their capabilities for dynamic feature enablement |
-| `validation-utils.ts` | Validates spec folders against path-scoped rules; verifies checklist completeness |
+| `validation-utils.ts` | Validates spec folders against path-scoped rules. Verifies checklist completeness |
 
 ---
 
 <!-- /ANCHOR:structure -->
-## 4. 🛠️ TROUBLESHOOTING
+
+## 4. TROUBLESHOOTING
 <!-- ANCHOR:troubleshooting -->
 
 ### Common Issues
@@ -213,16 +215,16 @@ if (!data) {
 
 #### Input normalization doesn't match expected format
 
-**Symptom**: `normalizeInput()` returns unexpected structure
+**Symptom**: `normalizeInputData()` returns unexpected structure
 
 **Cause**: Input format doesn't match expected patterns
 
 **Solution**:
 ```javascript
-const { normalizeInput } = require('./dist/utils/input-normalizer');
+const { normalizeInputData } = require('./dist/utils/input-normalizer');
 
 // Ensure input matches expected shape
-const normalized = normalizeInput({
+const normalized = normalizeInputData({
   specFolder: '/specs/001-test',
   summary: 'Test summary',
   keyDecisions: ['Decision 1', 'Decision 2'] // Array of strings or objects
@@ -276,13 +278,14 @@ node -e "const { sanitizePath } = require('./dist/utils/path-utils'); console.lo
 node -e "const utils = require('./dist/utils/index'); console.log(Object.keys(utils));"
 
 # Test data validator
-node -e "const { validateInputData } = require('./dist/utils/data-validator'); console.log(validateInputData({ summary: 'test' }));"
+node -e "const { validateDataStructure } = require('./dist/utils/data-validator'); console.log(validateDataStructure({ SUMMARY: 'test' }));"
 ```
 
 ---
 
 <!-- /ANCHOR:troubleshooting -->
-## 5. 📚 RELATED DOCUMENTS
+
+## 5. RELATED DOCUMENTS
 <!-- ANCHOR:related -->
 
 ### Internal Documentation
@@ -305,4 +308,5 @@ node -e "const { validateInputData } = require('./dist/utils/data-validator'); c
 ---
 
 *Documentation for system-spec-kit utilities v2.1 | TypeScript Migration | Last updated: 2026-02-07*
+
 <!-- /ANCHOR:related -->

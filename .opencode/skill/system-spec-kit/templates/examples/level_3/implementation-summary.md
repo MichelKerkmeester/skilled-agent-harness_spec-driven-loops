@@ -8,6 +8,7 @@ decision summary, comprehensive metrics, and lessons learned sections. -->
 
 ---
 
+<!-- ANCHOR:metadata -->
 ## Metadata
 
 | Field | Value |
@@ -18,14 +19,20 @@ decision summary, comprehensive metrics, and lessons learned sections. -->
 | **Actual Effort** | 24 hours (estimated: 22 hours) |
 | **LOC Added** | 587 (estimated: ~600) |
 
+
+<!-- /ANCHOR:metadata -->
 ---
 
+<!-- ANCHOR:exec-summary -->
 ## Executive Summary
 
 Successfully implemented a complete email/password authentication system with registration, login, logout, and protected routes. The system uses JWT tokens for stateless session management and bcrypt for secure password hashing. All milestones were achieved, and the implementation is production-ready with comprehensive test coverage and monitoring in place.
 
+
+<!-- /ANCHOR:exec-summary -->
 ---
 
+<!-- ANCHOR:what-built -->
 ## What Was Built
 
 Implemented a production-ready authentication system including:
@@ -56,8 +63,11 @@ Implemented a production-ready authentication system including:
 | `tests/` | Created | Test suite | 58 |
 | **Total** | | | **587** |
 
+
+<!-- /ANCHOR:what-built -->
 ---
 
+<!-- ANCHOR:arch-decisions -->
 ## Architecture Decisions Summary
 
 | ADR | Decision | Status | Impact |
@@ -68,8 +78,11 @@ Implemented a production-ready authentication system including:
 
 See `decision-record.md` for full ADR documentation.
 
+
+<!-- /ANCHOR:arch-decisions -->
 ---
 
+<!-- ANCHOR:impl-decisions -->
 ## Key Decisions (Implementation)
 
 | Decision | Rationale |
@@ -79,8 +92,11 @@ See `decision-record.md` for full ADR documentation.
 | 24-hour token expiry | Balance between security and UX |
 | No refresh tokens | Simplified MVP, planned for Phase 2 |
 
+
+<!-- /ANCHOR:impl-decisions -->
 ---
 
+<!-- ANCHOR:verification -->
 ## Verification Results
 
 | Test Type | Status | Coverage | Details |
@@ -101,8 +117,11 @@ See `decision-record.md` for full ADR documentation.
 | NFR-S01 | bcrypt 10+ rounds | 10 | Pass |
 | NFR-S02 | No enumeration | Verified | Pass |
 
+
+<!-- /ANCHOR:verification -->
 ---
 
+<!-- ANCHOR:milestones -->
 ## Milestone Achievement
 
 | Milestone | Target | Actual | Status |
@@ -113,8 +132,11 @@ See `decision-record.md` for full ADR documentation.
 | M4 UI | Day 4 noon | Day 4 noon | On time |
 | M5 Release | Day 5 EOD | Day 5 + 2h | Slight delay |
 
+
+<!-- /ANCHOR:milestones -->
 ---
 
+<!-- ANCHOR:limitations -->
 ## Known Limitations
 
 1. **localStorage token storage** - XSS vulnerable; HttpOnly cookies planned for Phase 2
@@ -123,8 +145,11 @@ See `decision-record.md` for full ADR documentation.
 4. **No refresh tokens** - Users must re-login after 24h; Phase 2 improvement
 5. **No concurrent session limit** - Users can have unlimited sessions
 
+
+<!-- /ANCHOR:limitations -->
 ---
 
+<!-- ANCHOR:risks-realized -->
 ## Risks Realized
 
 | Risk ID | Occurred | Impact | Resolution |
@@ -134,8 +159,11 @@ See `decision-record.md` for full ADR documentation.
 | R-003 | Accepted | Low | Documented, Phase 2 mitigation planned |
 | R-004 | Accepted | Med | Rate limiting spec created for Phase 2 |
 
+
+<!-- /ANCHOR:risks-realized -->
 ---
 
+<!-- ANCHOR:lessons -->
 ## Lessons Learned
 
 ### What Went Well
@@ -153,8 +181,11 @@ See `decision-record.md` for full ADR documentation.
 - Allocate more time for error state UI/UX
 - Consider authentication library (Passport.js) for OAuth integration
 
+
+<!-- /ANCHOR:lessons -->
 ---
 
+<!-- ANCHOR:deviations -->
 ## Deviations from Plan
 
 | Planned | Actual | Reason |
@@ -163,14 +194,19 @@ See `decision-record.md` for full ADR documentation.
 | No auth.css | Created auth.css | Dedicated styling needed |
 | 4 test files | 5 test files | Split unit tests for clarity |
 
+
+<!-- /ANCHOR:deviations -->
 ---
 
+<!-- ANCHOR:follow-up -->
 ## Follow-Up Items
 
 - [ ] spec/013-oauth-integration - Google/GitHub OAuth
 - [ ] spec/014-password-reset - Email-based recovery
 - [ ] spec/015-rate-limiting - Protect login endpoint
 - [ ] Phase 2: Migrate to HttpOnly cookies
+
+<!-- /ANCHOR:follow-up -->
 
 ---
 

@@ -17,18 +17,19 @@ importance_tier: "normal"
 ## TABLE OF CONTENTS
 <!-- ANCHOR:table-of-contents -->
 
-- [1. 📖 OVERVIEW](#1--overview)
-- [2. 📁 STRUCTURE](#2--structure)
-- [3. 🏗️ TYPE ARCHITECTURE](#3--type-architecture)
-- [4. 💾 INTERFACES](#4--interfaces)
-- [5. 🔧 ROOT TYPE: SESSIONDATA](#5--root-type-sessiondata)
-- [6. 📊 MIGRATION NOTES](#6--migration-notes)
-- [7. 📚 RELATED](#7--related)
+- [1. OVERVIEW](#1--overview)
+- [2. STRUCTURE](#2--structure)
+- [3. TYPE ARCHITECTURE](#3--type-architecture)
+- [4. INTERFACES](#4--interfaces)
+- [5. ROOT TYPE: SESSIONDATA](#5--root-type-sessiondata)
+- [6. MIGRATION NOTES](#6--migration-notes)
+- [7. RELATED](#7--related)
 
 ---
 
 <!-- /ANCHOR:table-of-contents -->
-## 1. 📖 OVERVIEW
+
+## 1. OVERVIEW
 <!-- ANCHOR:overview -->
 
 **Shared session type definitions** used across the Spec Kit scripts pipeline. This module is the **canonical source of truth** for all session-related types, eliminating parallel type hierarchies that previously existed between `simulation-factory` and the extractors (resolves **TECH-DEBT P6-05**).
@@ -36,22 +37,24 @@ importance_tier: "normal"
 ---
 
 <!-- /ANCHOR:overview -->
-## 2. 📁 STRUCTURE
+
+## 2. STRUCTURE
 <!-- ANCHOR:structure -->
 
 ```
 types/
-└── session-types.ts    # 16 interfaces across 4 sections
+└── session-types.ts    # Canonical session interfaces across 4 sections
 ```
 
 **Imports from:**
-- `../extractors/file-extractor` — `FileChange`, `ObservationDetailed`
-- `../extractors/session-extractor` — `ToolCounts`, `SpecFileEntry`
+- `../extractors/file-extractor` for `FileChange`, `ObservationDetailed`
+- `../extractors/session-extractor` for `ToolCounts`, `SpecFileEntry`
 
 ---
 
 <!-- /ANCHOR:structure -->
-## 3. 🏗️ TYPE ARCHITECTURE
+
+## 3. TYPE ARCHITECTURE
 <!-- ANCHOR:type-architecture -->
 
 ```
@@ -82,18 +85,19 @@ DiagramData
 ---
 
 <!-- /ANCHOR:type-architecture -->
-## 4. 💾 INTERFACES
+
+## 4. INTERFACES
 <!-- ANCHOR:interfaces -->
 
-### Section 1 — Decision Types
+### Section 1: Decision Types
 
 | Interface | Fields | Purpose |
 |-----------|--------|---------|
 | `DecisionOption` | `OPTION_NUMBER`, `LABEL`, `DESCRIPTION`, `PROS`, `CONS` | Single option within a decision |
-| `DecisionRecord` | `TITLE`, `CONTEXT`, `CHOSEN`, `RATIONALE`, `CONFIDENCE`, `EVIDENCE`, `CAVEATS`, `FOLLOWUP` + 18 total | Complete decision with rationale, evidence, and follow-up items |
+| `DecisionRecord` | `TITLE`, `CONTEXT`, `CHOSEN`, `RATIONALE`, `CONFIDENCE`, `EVIDENCE`, `CAVEATS`, `FOLLOWUP` + 18 total | Complete decision with rationale, evidence and follow-up items |
 | `DecisionData` | `DECISIONS`, `DECISION_COUNT`, confidence breakdowns | Aggregate container with confidence-level counts |
 
-### Section 2 — Phase / Conversation Types
+### Section 2: Phase / Conversation Types
 
 | Interface | Fields | Purpose |
 |-----------|--------|---------|
@@ -103,7 +107,7 @@ DiagramData
 | `ConversationPhase` | `PHASE_NAME`, `DURATION` | Named phase within a conversation |
 | `ConversationData` | `MESSAGES`, `PHASES`, `DURATION`, `FLOW_PATTERN`, `TOOL_COUNT` | Full conversation structure |
 
-### Section 3 — Diagram Types
+### Section 3: Diagram Types
 
 | Interface | Fields | Purpose |
 |-----------|--------|---------|
@@ -113,18 +117,19 @@ DiagramData
 | `PatternSummaryEntry` | `PATTERN_NAME`, `COUNT` | Pattern usage summary |
 | `DiagramData` | `DIAGRAMS`, `AUTO_DECISION_TREES`, `DIAGRAM_TYPES`, `PATTERN_SUMMARY` | Aggregate diagram container |
 
-### Section 4 — Session Types
+### Section 4: Session Types
 
 | Interface | Fields | Purpose |
 |-----------|--------|---------|
 | `OutcomeEntry` | `OUTCOME`, `TYPE?` | Single session outcome |
-| `SessionData` | 35+ fields | **Root type** — complete AI coding session context |
+| `SessionData` | 35+ fields | **Root type**: complete AI coding session context |
 
 ---
 
 <!-- /ANCHOR:interfaces -->
-## 5. 🔧 ROOT TYPE: SESSIONDATA
-<!-- ANCHOR:root-type-sessiondata -->
+
+## 5. ROOT TYPE: SESSIONDATA
+<!-- ANCHOR:session-data -->
 
 `SessionData` is the top-level type representing a complete session. Key field groups:
 
@@ -139,19 +144,21 @@ DiagramData
 
 ---
 
-<!-- /ANCHOR:root-type-sessiondata -->
-## 6. 📊 MIGRATION NOTES
-<!-- ANCHOR:migration-notes -->
+<!-- /ANCHOR:session-data -->
 
-This module was created to resolve **TECH-DEBT P6-05** — parallel type hierarchies where `simulation-factory` and the extractors each maintained their own copies of the same interfaces. All consumers now import from this single canonical source.
+## 6. MIGRATION NOTES
+<!-- ANCHOR:migration -->
+
+This module was created to resolve **TECH-DEBT P6-05**, where `simulation-factory` and the extractors each maintained their own copies of the same interfaces. All consumers now import from this single canonical source.
 
 **Before:** Types duplicated in `simulation-factory.ts` and extractor modules.
 **After:** Single source in `types/session-types.ts`, imported by all consumers.
 
 ---
 
-<!-- /ANCHOR:migration-notes -->
-## 7. 📚 RELATED
+<!-- /ANCHOR:migration -->
+
+## 7. RELATED
 <!-- ANCHOR:related -->
 
 | Resource | Path |
@@ -160,4 +167,5 @@ This module was created to resolve **TECH-DEBT P6-05** — parallel type hierarc
 | Session extractor (provides `ToolCounts`, `SpecFileEntry`) | `../extractors/session-extractor.ts` |
 | Simulation factory (primary consumer) | `../simulation-factory.ts` |
 | Scripts README | `../README.md` |
+
 <!-- /ANCHOR:related -->

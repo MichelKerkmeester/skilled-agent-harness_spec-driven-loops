@@ -1,6 +1,6 @@
 ---
 title: "Errors"
-description: "Error handling subsystem with custom error classes, 49 error codes, and actionable recovery hints."
+description: "Error handling subsystem with custom error classes, recovery hints, and document-aware operation context."
 trigger_phrases:
   - "error handling"
   - "recovery hints"
@@ -10,26 +10,27 @@ importance_tier: "normal"
 
 # Errors
 
-> Error handling subsystem with custom error classes, 49 error codes, and actionable recovery hints.
+> Error handling subsystem with custom error classes and recovery hints for memory and spec-document workflows.
 
 ---
 
-<!-- ANCHOR:toc -->
 ## TABLE OF CONTENTS
+<!-- ANCHOR:table-of-contents -->
 
-- [1. 📖 OVERVIEW](#1--overview)
-- [2. 📁 STRUCTURE](#2--structure)
-- [3. ⚡ FEATURES](#3--features)
-- [4. 💡 USAGE EXAMPLES](#4--usage-examples)
-- [5. 📚 RELATED RESOURCES](#5--related-resources)
-<!-- /ANCHOR:toc -->
+- [1. OVERVIEW](#1--overview)
+- [2. STRUCTURE](#2--structure)
+- [3. FEATURES](#3--features)
+- [4. USAGE EXAMPLES](#4--usage-examples)
+- [5. RELATED RESOURCES](#5--related-resources)
+
+<!-- /ANCHOR:table-of-contents -->
 
 ---
 
+## 1. OVERVIEW
 <!-- ANCHOR:overview -->
-## 1. 📖 OVERVIEW
 
-The errors subsystem provides standardized error handling for the Spec Kit Memory MCP server. Every error includes a code, message, and actionable recovery guidance to help agents self-diagnose and resolve issues.
+The errors subsystem provides standardized error handling for the Spec Kit Memory MCP server. Every error includes a code and message paired with actionable recovery guidance to help agents self-diagnose and resolve issues across memory operations and Spec 126 document-aware indexing/search paths.
 
 ### Key Statistics
 
@@ -47,12 +48,13 @@ The errors subsystem provides standardized error handling for the Spec Kit Memor
 | **Tool Context** | Tool-specific hints provide contextual guidance |
 | **User-Friendly Messages** | Internal errors translated to clear messages |
 | **Transient Detection** | Automatic classification of retryable vs permanent errors |
+
 <!-- /ANCHOR:overview -->
 
 ---
 
+## 2. STRUCTURE
 <!-- ANCHOR:structure -->
-## 2. 📁 STRUCTURE
 
 ```
 errors/
@@ -69,12 +71,13 @@ errors/
 | `core.ts` | Custom error classes, timeout wrapper, error response builder |
 | `recovery-hints.ts` | Error code catalog with severity levels and recovery actions |
 | `index.ts` | Unified export of all error functionality |
+
 <!-- /ANCHOR:structure -->
 
 ---
 
+## 3. FEATURES
 <!-- ANCHOR:features -->
-## 3. ⚡ FEATURES
 
 ### Error Classification
 
@@ -100,7 +103,7 @@ errors/
 Every error code includes:
 - **hint**: Primary recovery suggestion
 - **actions**: Specific actionable steps (array)
-- **severity**: low, medium, high, or critical
+- **severity**: low, medium, high or critical
 - **toolTip**: Quick tool recommendation (optional)
 
 ### Transient Error Detection
@@ -111,12 +114,13 @@ Automatic classification for retry logic:
 |-----------|----------|
 | Transient (retry) | SQLITE_BUSY, ECONNRESET, ETIMEDOUT, rate limit |
 | Permanent (fail-fast) | unauthorized, authentication failed, invalid api key |
+
 <!-- /ANCHOR:features -->
 
 ---
 
-<!-- ANCHOR:examples -->
-## 4. 💡 USAGE EXAMPLES
+## 4. USAGE EXAMPLES
+<!-- ANCHOR:usage-examples -->
 
 ### Example 1: Build Error Response
 
@@ -165,12 +169,13 @@ const error = createErrorWithHint(
 | Check permanent | `isPermanentError(err)` | For fail-fast paths |
 | User-friendly | `userFriendlyError(err)` | For external messages |
 | With timeout | `withTimeout(promise, ms, 'op')` | For async operations |
-<!-- /ANCHOR:examples -->
+
+<!-- /ANCHOR:usage-examples -->
 
 ---
 
+## 5. RELATED RESOURCES
 <!-- ANCHOR:related -->
-## 5. 📚 RELATED RESOURCES
 
 ### Internal Documentation
 
@@ -191,9 +196,10 @@ createErrorWithHint
 ERROR_CODES, RECOVERY_HINTS, TOOL_SPECIFIC_HINTS, DEFAULT_HINT,
 getRecoveryHint, hasSpecificHint, getAvailableHints, getErrorCodes
 ```
+
 <!-- /ANCHOR:related -->
 
 ---
 
-**Version**: 1.7.2
-**Last Updated**: 2026-02-08
+**Version**: 1.8.0
+**Last Updated**: 2026-02-16

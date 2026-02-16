@@ -9,6 +9,7 @@ organization. Use this for enterprise-scale multi-agent coordination. -->
 
 ---
 
+<!-- ANCHOR:notation -->
 ## Task Notation
 
 | Prefix | Meaning |
@@ -20,8 +21,11 @@ organization. Use this for enterprise-scale multi-agent coordination. -->
 
 **3-Tier Task Format**: `T### [W-X] [P?] Description (file path) [effort] {deps: T###}`
 
+
+<!-- /ANCHOR:notation -->
 ---
 
+<!-- ANCHOR:milestones -->
 ## Milestone Reference
 
 | Milestone | Tasks | Target | Status |
@@ -33,8 +37,11 @@ organization. Use this for enterprise-scale multi-agent coordination. -->
 | M5 Security | T029-T030 | Day 4 EOD | Complete |
 | M6 Release | T031-T048 | Day 5 EOD | Complete |
 
+
+<!-- /ANCHOR:milestones -->
 ---
 
+<!-- ANCHOR:ai-exec -->
 ## AI Execution Protocol
 
 ### Pre-Task Checklist
@@ -55,8 +62,11 @@ Before starting any task, verify:
 | TASK-DOC | Update status immediately |
 | TASK-SYNC | Wait at sync points |
 
+
+<!-- /ANCHOR:ai-exec -->
 ---
 
+<!-- ANCHOR:workstreams -->
 ## Workstream Organization
 
 | Workstream | Owner | Scope | Files |
@@ -65,8 +75,11 @@ Before starting any task, verify:
 | W-B | API Agent | API & UI | src/auth/*.js, views/*.ejs |
 | W-C | Test Agent | Testing | tests/*.js |
 
+
+<!-- /ANCHOR:workstreams -->
 ---
 
+<!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup [Milestone M1] [W-A]
 
 - [x] T001 [W-A] Create auth directory structure (`src/auth/`) [15m]
@@ -74,15 +87,21 @@ Before starting any task, verify:
 - [x] T003 [W-A] [P] Configure environment variables (`env.example`, `.env`) [15m]
 - [x] T004 [W-A] [P] Add User model to Prisma schema (`prisma/schema.prisma`) [20m]
 
+
+<!-- /ANCHOR:phase-1 -->
 ---
 
+<!-- ANCHOR:phase-2 -->
 ## Phase 2: Database [Milestone M1] [W-A]
 
 - [x] T005 [W-A] Run Prisma migration (`prisma/migrations/`) [15m] {deps: T004}
 - [x] T006 [W-A] Add unique index on email (`prisma/schema.prisma`) [10m] {deps: T005}
 
+
+<!-- /ANCHOR:phase-2 -->
 ---
 
+<!-- ANCHOR:phase-3 -->
 ## Phase 3: Core Services [Milestone M2] [W-A]
 
 ### Hash Service
@@ -99,8 +118,11 @@ Before starting any task, verify:
 
 **>>> SYNC-001: W-A Services ready for API integration <<<**
 
+
+<!-- /ANCHOR:phase-3 -->
 ---
 
+<!-- ANCHOR:phase-4 -->
 ## Phase 4: API Endpoints [Milestone M3] [W-B]
 
 ### Registration
@@ -123,8 +145,11 @@ Before starting any task, verify:
 ### Integration
 - [x] T022 [W-B] Wire up all routes in app.js (`app.js`) [20m] {deps: T015, T018, T019, T020}
 
+
+<!-- /ANCHOR:phase-4 -->
 ---
 
+<!-- ANCHOR:phase-5 -->
 ## Phase 5: UI [Milestone M4] [W-B]
 
 - [x] T023 [W-B] Create registration form view (`views/auth/register.ejs`) [30m] {deps: T015}
@@ -136,8 +161,11 @@ Before starting any task, verify:
 
 **>>> SYNC-002: W-A, W-B complete - Full integration test suite <<<**
 
+
+<!-- /ANCHOR:phase-5 -->
 ---
 
+<!-- ANCHOR:phase-6 -->
 ## Phase 6: Security Review [Milestone M5]
 
 - [x] T029 Security team review scheduled [0m] {deps: SYNC-002}
@@ -146,8 +174,11 @@ Before starting any task, verify:
   - **Date**: 2025-01-17
   - **Status**: Approved with notes (HttpOnly cookies recommended for Phase 2)
 
+
+<!-- /ANCHOR:phase-6 -->
 ---
 
+<!-- ANCHOR:phase-7 -->
 ## Phase 7: Verification [Milestone M6] [W-C]
 
 ### Unit Tests
@@ -180,8 +211,11 @@ Before starting any task, verify:
 
 **>>> SYNC-003: All workstreams complete - Final verification <<<**
 
+
+<!-- /ANCHOR:phase-7 -->
 ---
 
+<!-- ANCHOR:completion -->
 ## Completion Criteria
 
 - [x] All tasks marked `[x]`
@@ -196,8 +230,11 @@ Before starting any task, verify:
 - [x] All ADRs have status: Accepted
 - [x] All approvals obtained (spec.md section 12)
 
+
+<!-- /ANCHOR:completion -->
 ---
 
+<!-- ANCHOR:status-log -->
 ## Status Updates Log
 
 ### 2025-01-15 14:00
@@ -235,14 +272,19 @@ Before starting any task, verify:
 - **Evidence**: All browsers tested, docs complete, approvals obtained
 - **Next**: Launch approval
 
+
+<!-- /ANCHOR:status-log -->
 ---
 
+<!-- ANCHOR:cross-refs -->
 ## Cross-References
 
 - **Specification**: See `spec.md`
 - **Plan**: See `plan.md`
 - **Checklist**: See `checklist.md`
 - **Decisions**: See `decision-record.md`
+
+<!-- /ANCHOR:cross-refs -->
 
 ---
 

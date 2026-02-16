@@ -1,6 +1,6 @@
 ---
 name: debug
-description: "Debugging specialist with fresh perspective and systematic 4-phase methodology"
+description: "Debugging specialist with fresh perspective and systematic 4-phase methodology for root cause analysis"
 tools:
   - Read
   - Write

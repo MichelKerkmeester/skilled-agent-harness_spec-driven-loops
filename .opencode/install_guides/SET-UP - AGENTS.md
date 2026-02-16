@@ -982,7 +982,7 @@ Use this checklist after customizing AGENTS.md:
 cat AGENTS.md | head -20
 
 # Verify skill routing
-python .opencode/scripts/skill_advisor.py "help me debug CSS"
+python .opencode/skill/scripts/skill_advisor.py "help me debug CSS"
 
 # Verify MCP tools
 cat opencode.json | jq '.mcp.servers | keys'

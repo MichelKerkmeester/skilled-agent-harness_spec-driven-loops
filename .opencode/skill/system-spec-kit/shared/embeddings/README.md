@@ -1,6 +1,6 @@
 ---
 title: "Embeddings Factory"
-description: "Flexible embeddings system supporting multiple backends with robust fallback and per-profile databases."
+description: "Flexible embeddings system supporting multiple backends with strong fallback and per-profile databases."
 trigger_phrases:
   - "embeddings factory"
   - "embedding provider selection"
@@ -10,12 +10,12 @@ importance_tier: "normal"
 
 # Embeddings Factory
 
-> Flexible embeddings system supporting multiple backends with robust fallback and per-profile databases.
+> Flexible embeddings system supporting multiple backends with strong fallback and per-profile databases.
 
 ---
 
-## TABLE OF CONTENTS
 <!-- ANCHOR:table-of-contents -->
+## TABLE OF CONTENTS
 
 - [1. 📖 OVERVIEW](#1--overview)
 - [2. 🚀 QUICK START](#2--quick-start)
@@ -26,21 +26,22 @@ importance_tier: "normal"
 - [7. 🛠️ TROUBLESHOOTING](#7--troubleshooting)
 - [8. 📚 RELATED DOCUMENTS](#8--related-documents)
 
+<!-- /ANCHOR:table-of-contents -->
+
 ---
 
-<!-- /ANCHOR:table-of-contents -->
-## 1. 📖 OVERVIEW
 <!-- ANCHOR:overview -->
+## 1. 📖 OVERVIEW
 
 ### What is the Embeddings Factory?
 
-The Embeddings Factory is a multi-provider architecture for generating vector embeddings. It automatically selects the best available provider based on environment configuration, with robust fallback to ensure embedding generation never fails.
+The Embeddings Factory is a multi-provider architecture for generating vector embeddings. It automatically selects the best available provider based on environment configuration, with strong fallback to ensure embedding generation never fails.
 
 ### Key Statistics
 
 | Category | Value | Details |
 |----------|-------|---------|
-| Providers | 4 | Voyage, HF Local, OpenAI, Ollama (future) |
+| Providers | 3 | Voyage, HF Local, OpenAI |
 | Default Model | nomic-embed-text-v1.5 | 768-dimensional vectors |
 | Recommended | Voyage | Best retrieval quality (+8%) |
 
@@ -48,10 +49,10 @@ The Embeddings Factory is a multi-provider architecture for generating vector em
 
 | Feature | Description |
 |---------|-------------|
-| **Multi-Provider** | Supports Voyage, OpenAI, HuggingFace local, and Ollama |
+| **Multi-Provider** | Supports Voyage, OpenAI, and HuggingFace local |
 | **Auto-Detection** | Automatically selects provider based on available API keys |
 | **Per-Profile DBs** | Each provider/model combo uses its own SQLite database |
-| **Robust Fallback** | Degrades gracefully to local embeddings if cloud fails |
+| **Strong Fallback** | Degrades gracefully to local embeddings if cloud fails |
 
 ### Requirements
 
@@ -62,21 +63,22 @@ The Embeddings Factory is a multi-provider architecture for generating vector em
 
 ### Provider Comparison
 
-| Feature | Voyage | HF Local | OpenAI | Ollama |
-|---------|--------|----------|--------|--------|
-| Cost | ~$0.06/1M | Free | ~$0.02/1M | Free |
-| Quality | Best (+8%) | Good | Good | Good |
-| Latency | Low | Medium | Low-Medium | Low |
-| Privacy | Cloud | Local | Cloud | Local |
-| Offline | No | Yes | No | Yes |
-| Setup | API key | Easy | API key | Install + model |
-| Dimension | 1024 | 768 | 1536/3072 | Model dependent |
+| Feature | Voyage | HF Local | OpenAI |
+|---------|--------|----------|--------|
+| Cost | ~$0.06/1M | Free | ~$0.02/1M |
+| Quality | Best (+8%) | Good | Good |
+| Latency | Low | Medium | Low-Medium |
+| Privacy | Cloud | Local | Cloud |
+| Offline | No | Yes | No |
+| Setup | API key | Easy | API key |
+| Dimension | 1024 | 768 | 1536/3072 |
+
+<!-- /ANCHOR:overview -->
 
 ---
 
-<!-- /ANCHOR:overview -->
-## 2. 🚀 QUICK START
 <!-- ANCHOR:quick-start -->
+## 2. 🚀 QUICK START
 
 ### 30-Second Setup
 
@@ -113,11 +115,12 @@ console.log(`Dimensions: ${embedding.length}`);
 // Expected: Dimensions: 1024 (Voyage) or 768 (HF local)
 ```
 
+<!-- /ANCHOR:quick-start -->
+
 ---
 
-<!-- /ANCHOR:quick-start -->
-## 3. 📁 STRUCTURE
 <!-- ANCHOR:structure -->
+## 3. 📁 STRUCTURE
 
 ```
 embeddings/
@@ -126,8 +129,7 @@ embeddings/
 └── providers/
     ├── hf-local.ts         # HuggingFace local (fallback)
     ├── voyage.ts           # Voyage AI (recommended)
-    ├── openai.ts           # OpenAI embeddings API
-    └── ollama.ts           # Ollama (future)
+    └── openai.ts           # OpenAI embeddings API
 ```
 
 ### Key Files
@@ -139,11 +141,12 @@ embeddings/
 | `providers/voyage.ts` | Voyage AI integration (recommended) |
 | `providers/hf-local.ts` | Local HuggingFace fallback |
 
+<!-- /ANCHOR:structure -->
+
 ---
 
-<!-- /ANCHOR:structure -->
-## 4. ⚡ FEATURES
 <!-- ANCHOR:features -->
+## 4. ⚡ FEATURES
 
 ### Per-Profile Databases
 
@@ -164,9 +167,9 @@ database/
 
 ---
 
-### Robust Fallback
+### Strong Fallback
 
-If a cloud provider fails during warmup/healthcheck (auth, network, rate limit), the system automatically degrades to HF local **before** indexing data, preventing dimension mixing.
+If a cloud provider fails during warmup or healthcheck (authentication or network issues), the system automatically degrades to HF local **before** indexing data, preventing dimension mixing.
 
 ```
 Cloud Provider → Health Check Failed → Fallback to HF Local → Continue
@@ -183,11 +186,12 @@ The public API maintains 100% compatibility. Existing code works without changes
 const { generateDocumentEmbedding, getEmbeddingDimension } = require('./embeddings');
 ```
 
+<!-- /ANCHOR:features -->
+
 ---
 
-<!-- /ANCHOR:features -->
-## 5. ⚙️ CONFIGURATION
 <!-- ANCHOR:configuration -->
+## 5. ⚙️ CONFIGURATION
 
 ### Environment Variables
 
@@ -221,11 +225,12 @@ export HF_EMBEDDINGS_MODEL=nomic-ai/nomic-embed-text-v1.5
 3. Auto-detection: OpenAI if `OPENAI_API_KEY` exists
 4. Fallback: HF local
 
+<!-- /ANCHOR:configuration -->
+
 ---
 
-<!-- /ANCHOR:configuration -->
+<!-- ANCHOR:usage-examples -->
 ## 6. 💡 USAGE EXAMPLES
-<!-- ANCHOR:examples -->
 
 ### Example 1: Generate Embeddings
 
@@ -300,11 +305,12 @@ OPENAI_API_KEY=sk-... node scripts/tests/test-embeddings-factory.js
 | Check provider | `getProviderMetadata()` | Debugging, logging |
 | Get DB path | `getEmbeddingProfile().getDatabasePath(dir)` | Database management |
 
+<!-- /ANCHOR:usage-examples -->
+
 ---
 
-<!-- /ANCHOR:examples -->
-## 7. 🛠️ TROUBLESHOOTING
 <!-- ANCHOR:troubleshooting -->
+## 7. 🛠️ TROUBLESHOOTING
 
 ### Common Issues
 
@@ -376,11 +382,12 @@ echo "OPENAI_API_KEY: ${OPENAI_API_KEY:0:10}..."
 echo "EMBEDDINGS_PROVIDER: $EMBEDDINGS_PROVIDER"
 ```
 
+<!-- /ANCHOR:troubleshooting -->
+
 ---
 
-<!-- /ANCHOR:troubleshooting -->
-## 8. 📚 RELATED DOCUMENTS
 <!-- ANCHOR:related -->
+## 8. 📚 RELATED DOCUMENTS
 
 ### Internal Documentation
 
@@ -399,15 +406,12 @@ echo "EMBEDDINGS_PROVIDER: $EMBEDDINGS_PROVIDER"
 | [Voyage AI](https://www.voyageai.com/) | Recommended embedding provider |
 | [OpenAI Embeddings](https://platform.openai.com/docs/guides/embeddings) | OpenAI embedding API docs |
 
-### Future: Ollama Provider
+### Provider Status
 
-To implement the Ollama provider:
+`factory.ts` reserves the `ollama` provider name but does not implement it yet. Current production providers are `voyage`, `openai`, and `hf-local`.
 
-1. Create `providers/ollama.ts` similar to `openai.ts`
-2. HTTP requests to `http://localhost:11434/api/embeddings`
-3. Add `case 'ollama':` in `factory.ts`
+<!-- /ANCHOR:related -->
 
 ---
 
 *Documentation version: 2.0 | Last updated: 2025-12-31*
-<!-- /ANCHOR:related -->

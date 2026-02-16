@@ -3,6 +3,7 @@
 
 ---
 
+<!-- ANCHOR:nfr -->
 ## L2: NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -16,9 +17,11 @@
 ### Reliability
 - **NFR-R01**: [Uptime target - e.g., 99.9%]
 - **NFR-R02**: [Error rate - e.g., <1%]
+<!-- /ANCHOR:nfr -->
 
 ---
 
+<!-- ANCHOR:edge-cases -->
 ## L2: EDGE CASES
 
 ### Data Boundaries
@@ -34,9 +37,11 @@
 ### State Transitions
 - Partial completion: [Recovery behavior]
 - Session expiry: [User experience]
+<!-- /ANCHOR:edge-cases -->
 
 ---
 
+<!-- ANCHOR:complexity -->
 ## L2: COMPLEXITY ASSESSMENT
 
 | Dimension | Score | Notes |
@@ -45,5 +50,6 @@
 | Risk | [/25] | [Auth, API, breaking changes] |
 | Research | [/20] | [Investigation needs] |
 | **Total** | **[/70]** | **Level 2** |
+<!-- /ANCHOR:complexity -->
 
 ---

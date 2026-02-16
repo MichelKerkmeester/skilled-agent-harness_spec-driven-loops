@@ -17,16 +17,15 @@ importance_tier: "normal"
 ## TABLE OF CONTENTS
 <!-- ANCHOR:table-of-contents -->
 
-- [1. 📖 OVERVIEW](#1--overview)
-- [2. 📁 STRUCTURE](#2--structure)
-- [3. ⚡ FEATURES](#3--features)
-- [4. 💡 USAGE EXAMPLES](#4--usage-examples)
-- [5. 📚 RELATED RESOURCES](#5--related-resources)
-
----
+- [1. OVERVIEW](#1--overview)
+- [2. STRUCTURE](#2--structure)
+- [3. FEATURES](#3--features)
+- [4. USAGE EXAMPLES](#4--usage-examples)
+- [5. RELATED RESOURCES](#5--related-resources)
 
 <!-- /ANCHOR:table-of-contents -->
-## 1. 📖 OVERVIEW
+
+## 1. OVERVIEW
 <!-- ANCHOR:overview -->
 
 The utils module provides foundational utilities used throughout the MCP server. These include date formatting and path traversal security (re-exported from `@spec-kit/shared`).
@@ -43,21 +42,20 @@ The utils module provides foundational utilities used throughout the MCP server.
 | Metric | Value |
 |--------|-------|
 | Utility modules | 4 |
-| Source | `format-helpers.ts`, `retry.ts`, `logger.ts` are local; `path-security.ts` re-exports from `@spec-kit/shared` |
-
----
+| Source | `format-helpers.ts`, `retry.ts` and `logger.ts` are local. `path-security.ts` re-exports from `@spec-kit/shared` |
 
 <!-- /ANCHOR:overview -->
-## 2. 📁 STRUCTURE
+
+## 2. STRUCTURE
 <!-- ANCHOR:structure -->
 
 ```
 utils/
-├── format-helpers.ts   # Output formatting utilities
-├── retry.ts            # Retry logic with exponential backoff
-├── logger.ts           # Structured logging utilities
-├── path-security.ts    # Re-exports from @spec-kit/shared/utils/path-security
-└── README.md           # This file
+ format-helpers.ts   # Output formatting utilities
+ retry.ts            # Retry logic with exponential backoff
+ logger.ts           # Structured logging utilities
+ path-security.ts    # Re-exports from @spec-kit/shared/utils/path-security
+ README.md           # This file
 ```
 
 ### Key Files
@@ -69,10 +67,9 @@ utils/
 | `logger.ts` | Structured logging utilities for MCP server operations |
 | `path-security.ts` | Re-exports path validation and regex escaping from `@spec-kit/shared/utils/path-security` |
 
----
-
 <!-- /ANCHOR:structure -->
-## 3. ⚡ FEATURES
+
+## 3. FEATURES
 <!-- ANCHOR:features -->
 
 ### Format Helpers (`format-helpers.ts`)
@@ -102,11 +99,10 @@ Re-exports from `@spec-kit/shared/utils/path-security`:
 |----------|---------|
 | Structured logging | Consistent log output for MCP server operations |
 
----
-
 <!-- /ANCHOR:features -->
-## 4. 💡 USAGE EXAMPLES
-<!-- ANCHOR:examples -->
+
+## 4. USAGE EXAMPLES
+<!-- ANCHOR:usage-examples -->
 
 ### Format Helpers
 
@@ -132,10 +128,9 @@ const escaped = escapeRegex('file.name (1)');
 // Returns: "file\\.name \\(1\\)"
 ```
 
----
+<!-- /ANCHOR:usage-examples -->
 
-<!-- /ANCHOR:examples -->
-## 5. 📚 RELATED RESOURCES
+## 5. RELATED RESOURCES
 <!-- ANCHOR:related -->
 
 ### Internal Documentation
@@ -152,8 +147,9 @@ const escaped = escapeRegex('file.name (1)');
 |-------|-----------|
 | Path Traversal | CWE-22: Improper Limitation of Pathname |
 
+<!-- /ANCHOR:related -->
+
 ---
 
 **Version**: 1.7.2
-**Last Updated**: 2026-02-08
-<!-- /ANCHOR:related -->
+**Last Updated**: 2026-02-16

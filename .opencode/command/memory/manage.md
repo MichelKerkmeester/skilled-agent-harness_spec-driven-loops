@@ -194,7 +194,7 @@ $ARGUMENTS
 spec_kit_memory_memory_stats({})
 spec_kit_memory_memory_list({ limit: N, sortBy: "created_at", specFolder: "optional" })
 spec_kit_memory_memory_search({ query: "<q>", limit: N, specFolder: "optional" })
-spec_kit_memory_memory_index_scan({ force: <bool>, specFolder: "optional" })
+spec_kit_memory_memory_index_scan({ force, specFolder, includeReadmes, includeSpecDocs, includeConstitutional, incremental })
 spec_kit_memory_memory_validate({ id: <id>, wasUseful: <bool> })
 spec_kit_memory_memory_update({ id: <id>, importanceTier: "<tier>", triggerPhrases: [...] })
 spec_kit_memory_memory_delete({ id: <id> })
@@ -204,6 +204,17 @@ spec_kit_memory_checkpoint_restore({ name: "<name>", clearExisting: <bool> })
 spec_kit_memory_checkpoint_list({ limit: 50, specFolder: "optional" })
 spec_kit_memory_checkpoint_delete({ name: "<name>" })
 ```
+
+### `memory_index_scan` Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| force | boolean | false | Force re-index all files |
+| specFolder | string | - | Limit scan to specific spec folder |
+| includeReadmes | boolean | true | Include skill + project README files |
+| includeSpecDocs | boolean | true | Include spec folder documents |
+| includeConstitutional | boolean | true | Include constitutional rule files |
+| incremental | boolean | true | Skip unchanged files (mtime check) |
 
 ---
 
@@ -223,7 +234,7 @@ Available Actions
 scan — Index new/changed memory files
 cleanup — Remove old or deprecated memories (with confirmation)
 health — Run system health diagnostics
-point — Checkpoint operations (create, restore, list, delete)
+checkpoint — Checkpoint operations (create, restore, list, delete)
 quit — Exit
 
 STATUS=OK
@@ -237,12 +248,34 @@ User Input: Type action name (scan, cleanup, health, point, quit) to proceed
 
 **Trigger:** `/memory:manage scan` or `/memory:manage scan --force`
 
-Normal scan skips unchanged files (content hash match). Force scan re-indexes all files regardless.
+Normal scan skips unchanged files (mtime check). Force scan re-indexes all files regardless.
+
+### 5-Source Pipeline
+
+The scan discovers memory-eligible files from five sources:
+
+| # | Source | Key | Location |
+|---|--------|-----|----------|
+| 1 | Spec Memories | specFiles | specs/*/memory/*.md |
+| 2 | Constitutional | constitutionalFiles | .opencode/skill/*/constitutional/*.md |
+| 3 | Skill READMEs | skillReadmes | .opencode/skill/*/README.md |
+| 4 | Project READMEs | projectReadmes | **/README.md |
+| 5 | Spec Documents | specDocFiles | .opencode/specs/**/*.md |
+
+### Call Examples
 
 ```javascript
-spec_kit_memory_memory_index_scan({ force: false })  // Normal
-spec_kit_memory_memory_index_scan({ force: true })   // Force
+spec_kit_memory_memory_index_scan({ force: false })  // Normal incremental
+spec_kit_memory_memory_index_scan({ force: true })   // Force full re-index
 ```
+
+**Targeted indexing examples:**
+- Spec docs only: `{ includeReadmes: false }`
+- READMEs only: `{ includeSpecDocs: false }`
+- Specific folder: `{ specFolder: "007-auth" }`
+- Force full re-index: `{ force: true }`
+
+### Output
 
 ```
 SCAN COMPLETE — Mode: <normal|force>
@@ -383,11 +416,11 @@ Execute `spec_kit_memory_memory_health({})`. Display:
 
 ```
 MEMORY SYSTEM HEALTH
-Status: ✓ Healthy  |  Size: <size>  |  Schema: v9  |  Total: <N>
-Tables: ✓ memories (v9) ✓ causal_edges ✓ memory_corrections ✓ session_state ✓ checkpoints
+Status: ✓ Healthy  |  Size: <size>  |  Schema: v13  |  Total: <N>
+Tables: ✓ memory_index (v13) ✓ causal_edges ✓ memory_corrections ✓ session_state ✓ checkpoints
 Checks: ✓ DB accessible ✓ Embeddings valid ✓ No orphans ✓ No duplicate IDs
 Warnings: ⚠ <N> no trigger phrases  ⚠ <N> older than 90 days
-STATUS=OK HEALTH=<healthy|degraded|error> SCHEMA=v9
+STATUS=OK HEALTH=<healthy|degraded|error> SCHEMA=v13
 ```
 
 ---

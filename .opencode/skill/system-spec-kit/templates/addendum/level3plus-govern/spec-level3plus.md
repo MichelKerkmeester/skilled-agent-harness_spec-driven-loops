@@ -3,6 +3,7 @@
 
 ---
 
+<!-- ANCHOR:approval-workflow -->
 ## L3+: APPROVAL WORKFLOW
 
 | Checkpoint | Approver | Status | Date |
@@ -11,9 +12,11 @@
 | Design Review | [Role/Name] | [Pending/Approved] | [Date] |
 | Implementation Review | [Role/Name] | [Pending/Approved] | [Date] |
 | Launch Approval | [Role/Name] | [Pending/Approved] | [Date] |
+<!-- /ANCHOR:approval-workflow -->
 
 ---
 
+<!-- ANCHOR:compliance -->
 ## L3+: COMPLIANCE CHECKPOINTS
 
 ### Security Compliance
@@ -30,9 +33,11 @@
 - [ ] API documentation complete
 - [ ] User documentation updated
 - [ ] Runbook created
+<!-- /ANCHOR:compliance -->
 
 ---
 
+<!-- ANCHOR:stakeholders -->
 ## L3+: STAKEHOLDER MATRIX
 
 | Stakeholder | Role | Interest | Communication |
@@ -40,9 +45,11 @@
 | [Name] | Product | High | [Weekly sync] |
 | [Name] | Engineering Lead | High | [Daily standup] |
 | [Name] | QA | Medium | [Test reviews] |
+<!-- /ANCHOR:stakeholders -->
 
 ---
 
+<!-- ANCHOR:changelog -->
 ## L3+: CHANGE LOG
 
 ### v1.0 ([Date])
@@ -61,5 +68,6 @@
 **REMOVED**:
 - [Removed requirement] - Reason: [Why]
 -->
+<!-- /ANCHOR:changelog -->
 
 ---

@@ -1,6 +1,6 @@
 ---
 title: "CLI Chrome DevTools - Example Scripts"
-description: "Production-ready bash scripts for browser debugging, testing, and automation using browser-debugger-cli (bdg)"
+description: "Production-ready bash scripts for browser debugging, testing and automation using browser-debugger-cli (bdg)"
 trigger_phrases:
   - "chrome devtools examples"
   - "bdg example scripts"
@@ -10,35 +10,35 @@ importance_tier: "normal"
 
 # CLI Chrome DevTools - Example Scripts
 
-> Production-ready bash scripts for browser debugging, testing, and automation using `browser-debugger-cli` (bdg).
+> Production-ready bash scripts for browser debugging, testing and automation using `browser-debugger-cli` (bdg).
 
 ---
 
 #### TABLE OF CONTENTS
 
-1. [📖 OVERVIEW](#1--overview)
-2. [⚙️ PREREQUISITES](#2--prerequisites)
-3. [📜 AVAILABLE SCRIPTS](#3--available-scripts)
+1. [OVERVIEW](#1--overview)
+2. [PREREQUISITES](#2--prerequisites)
+3. [AVAILABLE SCRIPTS](#3--available-scripts)
    - 3.1 [performance-baseline.sh](#31-performance-baselinesh)
    - 3.2 [animation-testing.sh](#32-animation-testingsh)
    - 3.3 [multi-viewport-test.sh](#33-multi-viewport-testsh)
-4. [🔗 COMMON PATTERNS](#4--common-patterns)
-5. [⚙️ CUSTOMIZATION TIPS](#5--customization-tips)
-6. [🔧 TROUBLESHOOTING](#6--troubleshooting)
-7. [📖 SEE ALSO](#7--see-also)
-8. [💡 CONTRIBUTING](#8--contributing)
+4. [COMMON PATTERNS](#4--common-patterns)
+5. [CUSTOMIZATION TIPS](#5--customization-tips)
+6. [TROUBLESHOOTING](#6--troubleshooting)
+7. [SEE ALSO](#7--see-also)
+8. [CONTRIBUTING](#8--contributing)
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 <!-- ANCHOR:overview -->
 
-This directory contains production-ready bash scripts demonstrating practical browser automation, performance testing, and visual regression workflows using the browser-debugger-cli (bdg) tool.
+This directory contains production-ready bash scripts demonstrating practical browser debugging, automation, performance testing and visual regression workflows using the browser-debugger-cli (bdg) tool.
 
 ### Key Features
 
 **Performance Testing**
-- Comprehensive baseline capture with metrics, HAR traces, screenshots
+- Comprehensive baseline capture with metrics, HAR traces and screenshots
 - Animation performance validation with configurable thresholds
 - Multi-viewport responsive testing across 5+ device sizes
 
@@ -52,10 +52,11 @@ This directory contains production-ready bash scripts demonstrating practical br
 - Configurable thresholds for automated validation
 - Timestamped output for historical comparison
 
+<!-- /ANCHOR:overview -->
+
 ---
 
-<!-- /ANCHOR:overview -->
-## 2. ⚙️ PREREQUISITES
+## 2. PREREQUISITES
 <!-- ANCHOR:prerequisites -->
 
 ```bash
@@ -70,10 +71,11 @@ command -v jq >/dev/null || echo "Install jq for JSON parsing"
 command -v bc >/dev/null || echo "Install bc for calculations"
 ```
 
+<!-- /ANCHOR:prerequisites -->
+
 ---
 
-<!-- /ANCHOR:prerequisites -->
-## 3. 📜 AVAILABLE SCRIPTS
+## 3. AVAILABLE SCRIPTS
 <!-- ANCHOR:available-scripts -->
 
 ### 3.1 performance-baseline.sh
@@ -93,12 +95,12 @@ command -v bc >/dev/null || echo "Install bc for calculations"
 ```
 
 **What it captures:**
-- ✅ Performance metrics (Layout, Script, Task durations)
-- ✅ Network HAR trace (all requests)
-- ✅ Screenshot (visual baseline)
-- ✅ Console logs (errors and warnings)
-- ✅ DOM statistics (node counts, images, scripts)
-- ✅ Summary report (formatted text)
+- Performance metrics (Layout, Script, Task durations)
+- Network HAR trace (all requests)
+- Screenshot (visual baseline)
+- Console logs (errors and warnings)
+- DOM statistics (node counts, images, scripts)
+- Summary report (formatted text)
 
 **Output:**
 ```
@@ -139,21 +141,11 @@ performance-baselines/
 ```
 
 **What it tests:**
-- ✅ Layout count (threshold: ≤3)
-- ✅ Style recalc count (threshold: ≤5)
-- ✅ Task duration (threshold: ≤200ms)
-- ✅ Before/after visual states
-- ✅ Console errors during animation
-
-**Output:**
-```
-animation-tests/
-├── animation-before-20241127-143022.png
-├── animation-after-20241127-143022.png
-├── animation-metrics-20241127-143022.json
-├── animation-console-20241127-143022.json
-└── animation-report-20241127-143022.txt
-```
+- Layout count (threshold: 3 or fewer)
+- Style recalc count (threshold: 5 or fewer)
+- Task duration (threshold: 200ms or less)
+- Before/after visual states
+- Console errors during animation
 
 **Exit codes:**
 - `0` - All assertions passed
@@ -172,7 +164,7 @@ animation-tests/
 
 ### 3.3 multi-viewport-test.sh
 
-**Purpose:** Test page rendering across desktop, tablet, and mobile viewports
+**Purpose:** Test page rendering across desktop, laptop, tablet and mobile viewports
 
 **Usage:**
 ```bash
@@ -187,17 +179,17 @@ animation-tests/
 ```
 
 **Viewports tested:**
-- 🖥️ Desktop: 1920x1080
-- 💻 Laptop: 1366x768
-- 📱 Tablet: 768x1024
-- 📱 Mobile: 375x667 (mobile: true)
-- 📱 Mobile Large: 414x896 (mobile: true)
+- Desktop: 1920x1080
+- Laptop: 1366x768
+- Tablet: 768x1024
+- Mobile: 375x667 (mobile: true)
+- Mobile Large: 414x896 (mobile: true)
 
 **What it captures per viewport:**
-- ✅ Initial state screenshot
-- ✅ Animated state screenshot (if triggered)
-- ✅ Performance metrics
-- ✅ Console logs (checks for errors)
+- Initial state screenshot
+- Animated state screenshot (if triggered)
+- Performance metrics
+- Console logs (checks for errors)
 
 **Output:**
 ```
@@ -227,10 +219,11 @@ viewport-tests/20241127-143022/
 - See: `.opencode/skill/workflows-code--web-dev/references/verification/verification_workflows.md` (Section 2)
 - See: `.opencode/skill/workflows-code--web-dev/references/implementation/animation_workflows.md` (Multi-Viewport Testing)
 
+<!-- /ANCHOR:available-scripts -->
+
 ---
 
-<!-- /ANCHOR:available-scripts -->
-## 4. 🔗 COMMON PATTERNS
+## 4. COMMON PATTERNS
 <!-- ANCHOR:common-patterns -->
 
 ### Chaining Scripts in CI/CD
@@ -241,7 +234,7 @@ viewport-tests/20241127-143022/
 
 set -e  # Exit on first failure
 
-echo "🔍 Running visual regression tests..."
+echo "Running visual regression tests..."
 
 # 1. Capture current baseline
 ./performance-baseline.sh https://staging.example.com ./baselines/current
@@ -252,7 +245,7 @@ echo "🔍 Running visual regression tests..."
 # 3. Multi-viewport testing
 ./multi-viewport-test.sh https://staging.example.com ".hero" "animate-in"
 
-echo "✅ All visual tests passed"
+echo "All visual tests passed"
 ```
 
 ### Performance Comparison
@@ -284,11 +277,12 @@ mv viewport-tests/*/desktop-initial.png current-desktop.png
 compare baseline-desktop.png current-desktop.png diff.png
 ```
 
+<!-- /ANCHOR:common-patterns -->
+
 ---
 
-<!-- /ANCHOR:common-patterns -->
-## 5. ⚙️ CUSTOMIZATION TIPS
-<!-- ANCHOR:customization-tips -->
+## 5. CUSTOMIZATION TIPS
+<!-- ANCHOR:customization -->
 
 ### Adjusting Performance Thresholds
 
@@ -327,10 +321,11 @@ sleep 0.3
 sleep 2
 ```
 
+<!-- /ANCHOR:customization -->
+
 ---
 
-<!-- /ANCHOR:customization-tips -->
-## 6. 🔧 TROUBLESHOOTING
+## 6. TROUBLESHOOTING
 <!-- ANCHOR:troubleshooting -->
 
 ### Script fails immediately
@@ -375,10 +370,11 @@ bdg dom screenshot ./test-output/test.png 2>&1
 bdg stop 2>&1
 ```
 
+<!-- /ANCHOR:troubleshooting -->
+
 ---
 
-<!-- /ANCHOR:troubleshooting -->
-## 7. 📖 SEE ALSO
+## 7. SEE ALSO
 <!-- ANCHOR:related -->
 
 ### Skill Documentation
@@ -401,10 +397,11 @@ bdg stop 2>&1
 - **workflows-code** - Development workflow orchestration
 - **workflows-documentation** - Documentation creation and validation
 
+<!-- /ANCHOR:related -->
+
 ---
 
-<!-- /ANCHOR:related -->
-## 8. 💡 CONTRIBUTING
+## 8. CONTRIBUTING
 <!-- ANCHOR:contributing -->
 
 To add new example scripts:
@@ -415,9 +412,10 @@ To add new example scripts:
 4. Update this README with usage examples
 5. Reference relevant workflow documentation
 
+<!-- /ANCHOR:contributing -->
+
 ---
 
 **Directory Version**: 1.0.0
 **Last Updated**: 2025-01-27
 **Maintained By**: AI Documentation
-<!-- /ANCHOR:contributing -->

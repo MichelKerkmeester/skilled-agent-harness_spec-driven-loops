@@ -18,6 +18,7 @@ interface SessionConfig {
   sessionTtlMinutes: number;
   maxEntriesPerSession: number;
   enabled: boolean;
+  dbUnavailableMode: 'allow' | 'block';
 }
 
 interface InitResult {
@@ -160,6 +161,7 @@ const SESSION_CONFIG: SessionConfig = {
   sessionTtlMinutes: parseInt(process.env.SESSION_TTL_MINUTES as string, 10) || 30,
   maxEntriesPerSession: parseInt(process.env.SESSION_MAX_ENTRIES as string, 10) || 100,
   enabled: process.env.DISABLE_SESSION_DEDUP !== 'true',
+  dbUnavailableMode: process.env.SESSION_DEDUP_DB_UNAVAILABLE_MODE === 'allow' ? 'allow' : 'block',
 };
 
 /* ---------------------------------------------------------------
@@ -311,8 +313,9 @@ function generateMemoryHash(memory: MemoryInput): string {
 function shouldSendMemory(sessionId: string, memory: MemoryInput | number): boolean {
   if (!SESSION_CONFIG.enabled) return true;
   if (!db) {
-    console.warn('[session-manager] Database not initialized. Server may still be starting up. Allowing memory.');
-    return true;
+    const allow = SESSION_CONFIG.dbUnavailableMode === 'allow';
+    console.warn(`[session-manager] Database not initialized. dbUnavailableMode=${SESSION_CONFIG.dbUnavailableMode}. ${allow ? 'Allowing' : 'Blocking'} memory.`);
+    return allow;
   }
   if (!sessionId || typeof sessionId !== 'string') return true;
 
@@ -330,15 +333,22 @@ function shouldSendMemory(sessionId: string, memory: MemoryInput | number): bool
   } catch (error: unknown) {
     const message = error instanceof Error ? error.message : String(error);
     console.warn(`[session-manager] shouldSendMemory check failed: ${message}`);
-    return true;
+    return SESSION_CONFIG.dbUnavailableMode === 'allow';
   }
 }
 
 function shouldSendMemoriesBatch(sessionId: string, memories: MemoryInput[]): Map<number | undefined, boolean> {
   const result = new Map<number | undefined, boolean>();
 
-  if (!SESSION_CONFIG.enabled || !db || !sessionId || !Array.isArray(memories)) {
+  if (!SESSION_CONFIG.enabled || !sessionId || !Array.isArray(memories)) {
     memories.forEach((m) => result.set(m.id, true));
+    return result;
+  }
+
+  if (!db) {
+    const allow = SESSION_CONFIG.dbUnavailableMode === 'allow';
+    console.warn(`[session-manager] Database not initialized for batch dedup. dbUnavailableMode=${SESSION_CONFIG.dbUnavailableMode}. ${allow ? 'Allowing' : 'Blocking'} batch.`);
+    memories.forEach((m) => result.set(m.id, allow));
     return result;
   }
 
@@ -358,7 +368,8 @@ function shouldSendMemoriesBatch(sessionId: string, memories: MemoryInput[]): Ma
   } catch (error: unknown) {
     const message = error instanceof Error ? error.message : String(error);
     console.warn(`[session-manager] shouldSendMemoriesBatch failed: ${message}`);
-    memories.forEach((m) => result.set(m.id, true));
+    const allow = SESSION_CONFIG.dbUnavailableMode === 'allow';
+    memories.forEach((m) => result.set(m.id, allow));
     return result;
   }
 }
@@ -1086,4 +1097,3 @@ export {
   // T302: Shutdown (GAP 1)
   shutdown,
 };
-

@@ -359,8 +359,8 @@ describe('BM25 Security & Coverage Gap Tests', () => {
       const mockDb = {
         prepare: () => ({
           all: () => [
-            { id: 1, title: 'Memory System', content: 'Semantic search retrieval', trigger_phrases: 'memory,search', spec_folder: 'specs/001' },
-            { id: 2, title: 'Index Management', content: 'BM25 indexing pipeline', trigger_phrases: 'index,bm25', spec_folder: 'specs/002' },
+            { id: 1, title: 'Memory System', content_text: 'Semantic search retrieval', trigger_phrases: 'memory,search', file_path: 'specs/001/spec.md' },
+            { id: 2, title: 'Index Management', content_text: 'BM25 indexing pipeline', trigger_phrases: 'index,bm25', file_path: 'specs/002/spec.md' },
           ],
         }),
       };
@@ -375,8 +375,8 @@ describe('BM25 Security & Coverage Gap Tests', () => {
       const mockDb = {
         prepare: () => ({
           all: () => [
-            { id: 10, title: 'Title Only', content: null, trigger_phrases: null, spec_folder: null },
-            { id: 11, title: null, content: 'Content only text here', trigger_phrases: null, spec_folder: null },
+            { id: 10, title: 'Title Only', content_text: null, trigger_phrases: null, file_path: null },
+            { id: 11, title: null, content_text: 'Content only text here', trigger_phrases: null, file_path: null },
           ],
         }),
       };
@@ -391,9 +391,9 @@ describe('BM25 Security & Coverage Gap Tests', () => {
       const mockDb = {
         prepare: () => ({
           all: () => [
-            { id: 20, title: null, content: null, trigger_phrases: null, spec_folder: null },
-            { id: 21, title: '', content: '', trigger_phrases: '', spec_folder: '' },
-            { id: 22, title: 'Valid', content: 'Valid content here', trigger_phrases: null, spec_folder: null },
+            { id: 20, title: null, content_text: null, trigger_phrases: null, file_path: null },
+            { id: 21, title: '', content_text: '', trigger_phrases: '', file_path: '' },
+            { id: 22, title: 'Valid', content_text: 'Valid content here', trigger_phrases: null, file_path: null },
           ],
         }),
       };
@@ -410,7 +410,7 @@ describe('BM25 Security & Coverage Gap Tests', () => {
       const mockDb = {
         prepare: () => ({
           all: () => [
-            { id: 100, title: 'Fresh', content: 'Fresh content only', trigger_phrases: null, spec_folder: null },
+            { id: 100, title: 'Fresh', content_text: 'Fresh content only', trigger_phrases: null, file_path: null },
           ],
         }),
       };

@@ -117,7 +117,7 @@
 │ GATE 2: SKILL ROUTING [ALWAYS REQUIRED for non-trivial tasks]               │
 │                                                                             │
 │ Action:  Verify skill routing via ONE of:                                   │
-│   A) Run: python3 .opencode/scripts/skill_advisor.py "[request]" --threshold 0.8│
+│   A) Run: python3 .opencode/skill/scripts/skill_advisor.py "[request]" --threshold 0.8│
 │   B) Cite user's explicit direction: "User specified: [exact quote]"         │
 │                                                                             │
 │ Logic:   Script confidence ≥ 0.8 → MUST invoke recommended skill             │
@@ -167,7 +167,7 @@
 
 5. Wait for answer, THEN proceed
 6. Verify skill routing (Gate 2) before substantive work:
-   - Run `python3 .opencode/scripts/skill_advisor.py "[request]" --threshold 0.8`
+   - Run `python3 .opencode/skill/scripts/skill_advisor.py "[request]" --threshold 0.8`
    - OR cite user's explicit skill/agent direction if provided
 
 **Why**: Large tasks feel urgent. Urgency bypasses process. Ask first, analyze after.
@@ -206,6 +206,14 @@
 │            node [script] /tmp/save-context-data.json                        │
 │   Mode 2 (Direct): Pass spec folder path directly                           │
 │            node [script] specs/005-memory                                   │
+│                                                                             │
+│   Subfolder Support:                                                        │
+│     # Nested path: parent/child format                                      │
+│     node [script] 003-system-spec-kit/121-child-name                        │
+│     # Bare child: auto-searches all parents for unique match                │
+│     node [script] 121-child-name                                            │
+│     # With prefix                                                            │
+│     node [script] specs/003-parent/121-child-name                           │
 │                                                                             │
 │ INDEXING NOTE: Script reports "Indexed as memory #X" but running MCP server │
 │   may not see it immediately (separate DB connection). For immediate MCP    │
@@ -489,19 +497,51 @@ Execute → Implement with minimal complexity
 
 When using the orchestrate agent or Task tool for complex multi-step workflows, route to specialized agents:
 
-| Agent          | File                             | Use When                                                                                                                                                                                                                                                                                |
-| -------------- | -------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `@general`     | Built-in                         | Implementation, complex tasks                                                                                                                                                                                                                                                           |
-| `@context`     | `.opencode/agent/context.md`     | ALL codebase exploration, file search, pattern discovery, context loading. Internally dispatches sub-agents for fast search and deep investigation.                                                                                                                                     |
-| `@orchestrate` | `.opencode/agent/orchestrate.md` | Multi-agent coordination, complex workflows                                                                                                                                                                                                                                             |
-| `@research`    | `.opencode/agent/research.md`    | Evidence gathering, planning, Gate 3 Option B. ✅ Exception: may write `research.md` inside spec folders                                                                                                                                                                                 |
-| `@write`       | `.opencode/agent/write.md`       | Creating READMEs, Skills, Guides                                                                                                                                                                                                                                                        |
-| `@review`      | `.opencode/agent/review.md`      | Code review, PRs, quality gates (READ-ONLY)                                                                                                                                                                                                                                             |
-| `@speckit`     | `.opencode/agent/speckit.md`     | Spec folder creation Level 1-3+ ⛔ **EXCLUSIVE: Only agent permitted to create/write ANY documentation (*.md) inside spec folders. Exceptions: `memory/` (uses generate-context.js), `scratch/` (temporary, any agent), `handover.md` (@handover only), `research.md` (@research only)** |
-| `@debug`       | `.opencode/agent/debug.md`       | Fresh perspective debugging, root cause analysis                                                                                                                                                                                                                                        |
-| `@handover`    | `.opencode/agent/handover.md`    | Session continuation, context preservation. ✅ Exception: may write `handover.md` inside spec folders                                                                                                                                                                                    |
+### Agent Definitions
 
-**Agent Selection Quick Reference:**
+| Agent          | Use When                                                                                                                                                                                                                                                                                |
+| -------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `@general`     | Implementation, complex tasks                                                                                                                                                                                                                                                           |
+| `@context`     | ALL codebase exploration, file search, pattern discovery, context loading. Internally dispatches sub-agents for fast search and deep investigation.                                                                                                                                     |
+| `@orchestrate` | Multi-agent coordination, complex workflows                                                                                                                                                                                                                                             |
+| `@research`    | Evidence gathering, planning, Gate 3 Option B. ✅ Exception: may write `research.md` inside spec folders                                                                                                                                                                                 |
+| `@write`       | Creating READMEs, Skills, Guides                                                                                                                                                                                                                                                        |
+| `@review`      | Code review, PRs, quality gates (READ-ONLY)                                                                                                                                                                                                                                             |
+| `@speckit`     | Spec folder creation Level 1-3+ ⛔ **EXCLUSIVE: Only agent permitted to create/write ANY documentation (*.md) inside spec folders. Exceptions: `memory/` (uses generate-context.js), `scratch/` (temporary, any agent), `handover.md` (@handover only), `research.md` (@research only)** |
+| `@debug`       | Fresh perspective debugging, root cause analysis                                                                                                                                                                                                                                        |
+| `@handover`    | Session continuation, context preservation. ✅ Exception: may write `handover.md` inside spec folders                                                                                                                                                                                    |
+
+### Cross-Platform Agent Files
+
+Agent definitions exist across three platforms. Body content is shared; frontmatter is platform-specific.
+
+| Agent          | OpenCode (Copilot)               | Claude Code                     | Codex                          |
+| -------------- | -------------------------------- | ------------------------------- | ------------------------------ |
+| `@general`     | Built-in                         | Built-in                        | Built-in                       |
+| `@context`     | `.opencode/agent/context.md`     | `.claude/agents/context.md`     | `.codex/agents/context.md`     |
+| `@orchestrate` | `.opencode/agent/orchestrate.md` | `.claude/agents/orchestrate.md` | `.codex/agents/orchestrate.md` |
+| `@research`    | `.opencode/agent/research.md`    | `.claude/agents/research.md`    | `.codex/agents/research.md`    |
+| `@write`       | `.opencode/agent/write.md`       | `.claude/agents/write.md`       | `.codex/agents/write.md`       |
+| `@review`      | `.opencode/agent/review.md`      | `.claude/agents/review.md`      | `.codex/agents/review.md`      |
+| `@speckit`     | `.opencode/agent/speckit.md`     | `.claude/agents/speckit.md`     | `.codex/agents/speckit.md`     |
+| `@debug`       | `.opencode/agent/debug.md`       | `.claude/agents/debug.md`       | `.codex/agents/debug.md`       |
+| `@handover`    | `.opencode/agent/handover.md`    | `.claude/agents/handover.md`    | `.codex/agents/handover.md`    |
+
+### Cross-Platform Model Mapping
+
+Each platform uses its own model identifiers. Agents are grouped into tiers:
+
+| Tier          | Agents                       | OpenCode (Copilot)  | Claude Code | Codex Profile | Codex Model           |
+| ------------- | ---------------------------- | ------------------- | ----------- | ------------- | --------------------- |
+| **Fast**      | context, handover            | `claude-haiku-4.5`  | `haiku`     | `fast`        | `gpt-5.3-codex-spark` |
+| **Balanced**  | speckit, write               | `claude-sonnet-4.5` | `sonnet`    | `balanced`    | `gpt-5.3-codex`       |
+| **Powerful**  | debug, research, orchestrate | `claude-opus-4.6`   | `opus`      | `powerful`    | `gpt-5.3-codex`       |
+| **Read-only** | review                       | `claude-opus-4.6`   | `opus`      | `readonly`    | `gpt-5.3-codex`       |
+
+Codex profiles are defined in `.codex/config.toml`. Sub-agent dispatch uses the `codex-specialized-subagents` MCP server.
+
+### Agent Selection Quick Reference
+
 - **ALL codebase exploration / file search / context loading** → `@context`
 - **Code changes needed** → `@general`
 - **Research/planning** → `@research`

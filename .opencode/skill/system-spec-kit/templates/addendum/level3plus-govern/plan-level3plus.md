@@ -3,6 +3,7 @@
 
 ---
 
+<!-- ANCHOR:ai-execution -->
 ## L3+: AI EXECUTION FRAMEWORK
 
 ### Tier 1: Sequential Foundation
@@ -23,9 +24,11 @@
 **Agent**: Primary
 **Task**: Merge outputs, resolve conflicts
 **Duration**: ~60s
+<!-- /ANCHOR:ai-execution -->
 
 ---
 
+<!-- ANCHOR:workstreams -->
 ## L3+: WORKSTREAM COORDINATION
 
 ### Workstream Definition
@@ -47,9 +50,11 @@
 - Each file owned by ONE workstream
 - Cross-workstream changes require SYNC
 - Conflicts resolved at sync points
+<!-- /ANCHOR:workstreams -->
 
 ---
 
+<!-- ANCHOR:communication -->
 ## L3+: COMMUNICATION PLAN
 
 ### Checkpoints
@@ -61,5 +66,6 @@
 1. Technical blockers → Engineering Lead
 2. Scope changes → Product Owner
 3. Resource issues → Project Manager
+<!-- /ANCHOR:communication -->
 
 ---

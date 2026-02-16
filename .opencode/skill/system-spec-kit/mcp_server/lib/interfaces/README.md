@@ -1,6 +1,6 @@
 ---
 title: "Interfaces"
-description: "Protocol abstractions enabling testable, swappable backends for embedding providers and vector stores."
+description: "Protocol abstractions for embedding/vector backends, with shared-package migration notes."
 trigger_phrases:
   - "interfaces"
   - "embedding provider interface"
@@ -10,26 +10,27 @@ importance_tier: "normal"
 
 # Interfaces
 
-> Protocol abstractions enabling testable, swappable backends for embedding providers and vector stores.
+> Protocol abstractions for embedding/vector backends, with shared-package migration notes.
 
 ---
 
-<!-- ANCHOR:table-of-contents -->
 ## TABLE OF CONTENTS
+<!-- ANCHOR:table-of-contents -->
 
-- [1. 📖 OVERVIEW](#1--overview)
-- [2. 📁 STRUCTURE](#2--structure)
-- [3. ⚡ FEATURES](#3--features)
-- [4. 💡 USAGE EXAMPLES](#4--usage-examples)
-- [5. 📚 RELATED RESOURCES](#5--related-resources)
+- [1. OVERVIEW](#1--overview)
+- [2. STRUCTURE](#2--structure)
+- [3. FEATURES](#3--features)
+- [4. USAGE EXAMPLES](#4--usage-examples)
+- [5. RELATED RESOURCES](#5--related-resources)
 
 <!-- /ANCHOR:table-of-contents -->
+
 ---
 
+## 1. OVERVIEW
 <!-- ANCHOR:overview -->
-## 1. 📖 OVERVIEW
 
-The interfaces module provides abstract base classes that define contracts for embedding providers and vector stores. These interfaces enable dependency injection, making the system testable with mock implementations and allowing swappable backends without code changes.
+The interfaces module documents contracts for embedding providers and vector stores. Most interfaces now live in `@spec-kit/shared`; this local module remains the compatibility layer and local vector-store stub.
 
 ### Key Benefits
 
@@ -37,14 +38,16 @@ The interfaces module provides abstract base classes that define contracts for e
 |---------|-------------|
 | **Testability** | Mock implementations for fast, deterministic unit tests |
 | **Flexibility** | Swap backends (local vs API embeddings) via configuration |
-| **Future-proofing** | Migrate to new systems (e.g., LadybugDB) without interface changes |
+| **Adaptability** | Migrate to new systems (e.g., LadybugDB) without interface changes |
 | **Decoupling** | Core logic depends on interfaces, not concrete implementations |
+| **Spec 126 Alignment** | Retrieval pipeline preserves document metadata (`documentType`, `specLevel`) through storage boundaries |
 
 <!-- /ANCHOR:overview -->
+
 ---
 
+## 2. STRUCTURE
 <!-- ANCHOR:structure -->
-## 2. 📁 STRUCTURE
 
 > **Note**: Most source files (`embedding-provider.ts`, `index.ts`) were relocated to `@spec-kit/shared` during the shared package migration. `vector-store.ts` remains as a local stub/re-export.
 
@@ -63,10 +66,11 @@ interfaces/
 | `index.ts` | Relocated to `@spec-kit/shared` |
 
 <!-- /ANCHOR:structure -->
+
 ---
 
+## 3. FEATURES
 <!-- ANCHOR:features -->
-## 3. ⚡ FEATURES
 
 ### IEmbeddingProvider Interface
 
@@ -110,10 +114,11 @@ Defines the contract for vector similarity search and storage.
 | `MockVectorStore` | In-memory storage, cosine similarity search |
 
 <!-- /ANCHOR:features -->
+
 ---
 
-<!-- ANCHOR:examples -->
-## 4. 💡 USAGE EXAMPLES
+## 4. USAGE EXAMPLES
+<!-- ANCHOR:usage-examples -->
 
 ### Using MockEmbeddingProvider for Tests
 
@@ -163,11 +168,12 @@ const result = await provider.embed('test');
 // result is null or Float32Array
 ```
 
-<!-- /ANCHOR:examples -->
+<!-- /ANCHOR:usage-examples -->
+
 ---
 
+## 5. RELATED RESOURCES
 <!-- ANCHOR:related -->
-## 5. 📚 RELATED RESOURCES
 
 ### Internal Documentation
 
@@ -186,7 +192,8 @@ const result = await provider.embed('test');
 | Strategy Pattern | Swap implementations at runtime |
 
 <!-- /ANCHOR:related -->
+
 ---
 
-**Version**: 1.7.2
-**Last Updated**: 2026-02-08
+**Version**: 1.8.0
+**Last Updated**: 2026-02-16

@@ -1,6 +1,6 @@
 ---
 title: "Spec Folder Utilities"
-description: "TypeScript modules for spec folder detection, alignment validation, and directory setup."
+description: "TypeScript modules for spec folder detection and alignment validation."
 trigger_phrases:
   - "spec folder detection"
   - "alignment validation"
@@ -10,34 +10,35 @@ importance_tier: "normal"
 
 # Spec Folder Utilities
 
-> TypeScript modules for spec folder detection, alignment validation, and directory setup.
+> TypeScript modules for spec folder detection and alignment validation.
 
 ---
 
 ## TABLE OF CONTENTS
 <!-- ANCHOR:table-of-contents -->
 
-- [1. 📖 OVERVIEW](#1--overview)
-- [2. 🚀 QUICK START](#2--quick-start)
-- [3. 📁 STRUCTURE](#3--structure)
-- [4. 🛠️ TROUBLESHOOTING](#4--troubleshooting)
-- [5. 📚 RELATED DOCUMENTS](#5--related-documents)
+- [1. OVERVIEW](#1--overview)
+- [2. QUICK START](#2--quick-start)
+- [3. STRUCTURE](#3--structure)
+- [4. TROUBLESHOOTING](#4--troubleshooting)
+- [5. RELATED DOCUMENTS](#5--related-documents)
+
+<!-- /ANCHOR:table-of-contents -->
 
 ---
 
-<!-- /ANCHOR:table-of-contents -->
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 <!-- ANCHOR:overview -->
 
 ### What are Spec Folder Utilities?
 
-The `scripts/spec-folder/` directory contains TypeScript modules that handle intelligent spec folder detection and alignment validation. These utilities ensure memory context is saved to the correct spec folder by analyzing conversation topics, validating alignment scores, and managing directory setup.
+The `scripts/spec-folder/` directory contains TypeScript modules that handle intelligent spec folder detection and alignment validation. These utilities ensure memory context is saved to the correct spec folder by analyzing conversation topics and validating alignment scores.
 
 ### Key Features
 
 | Feature                     | Description                                                                         |
 | --------------------------- | ----------------------------------------------------------------------------------- |
-| **Smart Detection**         | Auto-detect appropriate spec folder from CLI args, prompts, or conversation context |
+| **Smart Detection**         | Auto-detect appropriate spec folder from CLI args, prompts or conversation context  |
 | **Alignment Validation**    | Calculate alignment scores between conversation topics and spec folder names        |
 | **Archive Filtering**       | Automatically exclude archived folders (z_, archive, old patterns)                  |
 | **Multi-Directory Support** | Handle both `specs/` and `.opencode/specs/` locations                               |
@@ -51,10 +52,11 @@ The `scripts/spec-folder/` directory contains TypeScript modules that handle int
 | npm         | 8+      | Package manager                                         |
 | TypeScript  | 5.9+    | Source files are TypeScript, compiled output in `dist/` |
 
+<!-- /ANCHOR:overview -->
+
 ---
 
-<!-- /ANCHOR:overview -->
-## 2. 🚀 QUICK START
+## 2. QUICK START
 <!-- ANCHOR:quick-start -->
 
 ### Using in Memory Save Workflow
@@ -112,10 +114,11 @@ const topics = extractConversationTopics({
 // Returns: ['authentication', 'login', 'flow', 'auth', 'token', 'validation', 'error']
 ```
 
+<!-- /ANCHOR:quick-start -->
+
 ---
 
-<!-- /ANCHOR:quick-start -->
-## 3. 📁 STRUCTURE
+## 3. STRUCTURE
 <!-- ANCHOR:structure -->
 
 ```
@@ -143,14 +146,15 @@ scripts/dist/spec-folder/
 | File                     | Purpose                                                                             |
 | ------------------------ | ----------------------------------------------------------------------------------- |
 | `index.ts`               | Central export point for all spec-folder utilities                                  |
-| `folder-detector.ts`     | Detects appropriate spec folder from CLI args, prompts, or context analysis         |
-| `alignment-validator.ts` | Validates alignment between conversation topics and folder names, calculates scores |
+| `folder-detector.ts`     | Detects appropriate spec folder from CLI args, prompts or context analysis          |
+| `alignment-validator.ts` | Validates alignment between conversation topics and folder names. Calculates scores |
 | `directory-setup.ts`     | Creates and validates `memory/` directory within spec folders                       |
+
+<!-- /ANCHOR:structure -->
 
 ---
 
-<!-- /ANCHOR:structure -->
-## 4. 🛠️ TROUBLESHOOTING
+## 4. TROUBLESHOOTING
 <!-- ANCHOR:troubleshooting -->
 
 ### Common Issues
@@ -186,11 +190,11 @@ node scripts/dist/memory/generate-context.js /tmp/context.json specs/042-feature
 
 #### Multiple specs directories warning
 
-**Symptom**: `⚠️ Multiple specs directories found`
+**Symptom**: `Multiple specs directories found`
 
 **Cause**: Both `specs/` and `.opencode/specs/` exist
 
-**Solution**: This is informational - the script uses priority order (specs/ first):
+**Solution**: This is informational. The script uses priority order (specs/ first):
 ```javascript
 // Priority order:
 // 1. specs/ (if exists)
@@ -216,16 +220,17 @@ ls -la specs/ .opencode/specs/
 ls -la scripts/dist/spec-folder/
 
 # Rebuild TypeScript files if needed
-npm run build --workspace=scripts
+npx tsc -b .opencode/skill/system-spec-kit/scripts/tsconfig.json
 
 # Test with actual generate-context script (which uses these utilities)
 node scripts/dist/memory/generate-context.js --help
 ```
 
+<!-- /ANCHOR:troubleshooting -->
+
 ---
 
-<!-- /ANCHOR:troubleshooting -->
-## 5. 📚 RELATED DOCUMENTS
+## 5. RELATED DOCUMENTS
 <!-- ANCHOR:related -->
 
 ### Internal Documentation
@@ -245,7 +250,8 @@ node scripts/dist/memory/generate-context.js --help
 | [TypeScript Handbook](https://www.typescriptlang.org/docs/)       | TypeScript documentation             |
 | [Node.js ES Modules](https://nodejs.org/api/esm.html)             | ES modules system reference          |
 
+<!-- /ANCHOR:related -->
+
 ---
 
 *Documentation version: 1.1 | Last updated: 2026-02-07 | Migrated to TypeScript with dist/ output*
-<!-- /ANCHOR:related -->

@@ -312,7 +312,7 @@ IF debug triggered: Store current_task_id, dispatch @debug via Task tool (subage
 ### Fallback
 
 When `@speckit` unavailable: Warning logged, continues with `subagent_type: "general"`, less template validation.
-When `@debug` unavailable: Falls back to `subagent_type: "general-purpose"`, same 4-phase methodology attempted.
+When `@debug` unavailable: Falls back to `subagent_type: "general"`, same 4-phase methodology attempted.
 When `@handover` unavailable: Falls back to `subagent_type: "general"`, handover.md creation with less template validation.
 
 ---

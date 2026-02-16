@@ -9,6 +9,7 @@ Matrix, and Change Log sections. Use this for enterprise-scale changes (complexi
 
 ---
 
+<!-- ANCHOR:executive-summary -->
 ## EXECUTIVE SUMMARY
 
 This specification covers the implementation of a comprehensive, enterprise-grade user authentication system for the application. The system will support email/password registration and login, secure password storage with bcrypt, and JWT-based session management. Given the security-critical nature and multi-team coordination required, this specification includes formal approval workflows, compliance checkpoints, and AI execution protocols.
@@ -17,8 +18,11 @@ This specification covers the implementation of a comprehensive, enterprise-grad
 
 **Critical Dependencies**: PostgreSQL database, bcrypt library, Security team review
 
+
+<!-- /ANCHOR:executive-summary -->
 ---
 
+<!-- ANCHOR:metadata -->
 ## 1. METADATA
 
 | Field | Value |
@@ -31,8 +35,11 @@ This specification covers the implementation of a comprehensive, enterprise-grad
 | **Estimated LOC** | ~600 |
 | **Complexity Score** | 82/100 |
 
+
+<!-- /ANCHOR:metadata -->
 ---
 
+<!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
@@ -41,8 +48,11 @@ The application currently has no user authentication, allowing anyone to access 
 ### Purpose
 Implement a production-ready, enterprise-grade email/password authentication system that provides secure user registration, login, and session management while establishing patterns and infrastructure for future authentication enhancements and meeting compliance requirements.
 
+
+<!-- /ANCHOR:problem -->
 ---
 
+<!-- ANCHOR:scope -->
 ## 3. SCOPE
 
 ### In Scope
@@ -78,8 +88,11 @@ Implement a production-ready, enterprise-grade email/password authentication sys
 | prisma/schema.prisma | Modify | Add User model |
 | tests/ | Create | Unit and integration tests |
 
+
+<!-- /ANCHOR:scope -->
 ---
 
+<!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
 
 ### P0 - Blockers (MUST complete)
@@ -103,8 +116,11 @@ Implement a production-ready, enterprise-grade email/password authentication sys
 | REQ-010 | Users can log out | Token cleared, redirected to login |
 | REQ-011 | Compliance documentation complete | All checkpoints documented |
 
+
+<!-- /ANCHOR:requirements -->
 ---
 
+<!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
 - **SC-001**: User can complete full registration and login flow in under 30 seconds
@@ -113,8 +129,11 @@ Implement a production-ready, enterprise-grade email/password authentication sys
 - **SC-004**: Test coverage > 80% for auth modules
 - **SC-005**: All approval gates passed
 
+
+<!-- /ANCHOR:success-criteria -->
 ---
 
+<!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
 | Type | Item | Impact | Mitigation |
@@ -126,8 +145,11 @@ Implement a production-ready, enterprise-grade email/password authentication sys
 | Risk | Token security | Session hijacking | HttpOnly cookies in Phase 2 |
 | Risk | Timing attacks | Email enumeration | Constant-time comparison |
 
+
+<!-- /ANCHOR:risks -->
 ---
 
+<!-- ANCHOR:nfr -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -147,8 +169,11 @@ Implement a production-ready, enterprise-grade email/password authentication sys
 - **NFR-R02**: Graceful degradation with clear error messages on failures
 - **NFR-R03**: No data loss on service restart (stateless auth)
 
+
+<!-- /ANCHOR:nfr -->
 ---
 
+<!-- ANCHOR:edge-cases -->
 ## 8. EDGE CASES
 
 ### Data Boundaries
@@ -167,8 +192,11 @@ Implement a production-ready, enterprise-grade email/password authentication sys
 - **Multiple login attempts**: Allow all (rate limiting in Phase 2)
 - **Simultaneous registration**: Database unique constraint prevents duplicates
 
+
+<!-- /ANCHOR:edge-cases -->
 ---
 
+<!-- ANCHOR:complexity -->
 ## 9. COMPLEXITY ASSESSMENT
 
 | Dimension | Score | Triggers |
@@ -180,8 +208,11 @@ Implement a production-ready, enterprise-grade email/password authentication sys
 | Coordination | 15/15 | Security team, QA team, Product approval required |
 | **Total** | **82/100** | **Level 3+ (Threshold: 80)** |
 
+
+<!-- /ANCHOR:complexity -->
 ---
 
+<!-- ANCHOR:risk-matrix -->
 ## 10. RISK MATRIX
 
 | Risk ID | Description | Impact | Likelihood | Mitigation |
@@ -193,8 +224,11 @@ Implement a production-ready, enterprise-grade email/password authentication sys
 | R-005 | Database breach exposes hashes | M | L | bcrypt makes cracking expensive |
 | R-006 | Security review delays launch | M | M | Schedule review early, parallel work |
 
+
+<!-- /ANCHOR:risk-matrix -->
 ---
 
+<!-- ANCHOR:user-stories -->
 ## 11. USER STORIES
 
 ### US-001: New User Registration (Priority: P0)
@@ -222,8 +256,11 @@ Implement a production-ready, enterprise-grade email/password authentication sys
 **Acceptance Criteria**:
 1. Given I am logged in, When I click logout, Then my session is terminated and I am redirected to the login page
 
+
+<!-- /ANCHOR:user-stories -->
 ---
 
+<!-- ANCHOR:approval-workflow -->
 ## 12. APPROVAL WORKFLOW
 
 | Checkpoint | Approver | Status | Date |
@@ -234,8 +271,11 @@ Implement a production-ready, enterprise-grade email/password authentication sys
 | Implementation Review | Senior Dev (Chris) | Approved | 2025-01-19 |
 | Launch Approval | Engineering Manager (Pat) | Approved | 2025-01-20 |
 
+
+<!-- /ANCHOR:approval-workflow -->
 ---
 
+<!-- ANCHOR:compliance -->
 ## 13. COMPLIANCE CHECKPOINTS
 
 ### Security Compliance
@@ -254,8 +294,11 @@ Implement a production-ready, enterprise-grade email/password authentication sys
 - [x] Test coverage requirement met (>80%)
 - [x] Documentation complete
 
+
+<!-- /ANCHOR:compliance -->
 ---
 
+<!-- ANCHOR:stakeholders -->
 ## 14. STAKEHOLDER MATRIX
 
 | Stakeholder | Role | Interest | Communication |
@@ -267,8 +310,11 @@ Implement a production-ready, enterprise-grade email/password authentication sys
 | Pat | Engineering Manager | Medium | Launch approval, milestone updates |
 | QA Team | Quality Assurance | Medium | Test plan review, defect triage |
 
+
+<!-- /ANCHOR:stakeholders -->
 ---
 
+<!-- ANCHOR:changelog -->
 ## 15. CHANGE LOG
 
 ### v1.0 (2025-01-15)
@@ -295,22 +341,30 @@ Implement a production-ready, enterprise-grade email/password authentication sys
 - Implementation summary linked
 - Status updated to Complete
 
+
+<!-- /ANCHOR:changelog -->
 ---
 
+<!-- ANCHOR:questions -->
 ## 16. OPEN QUESTIONS
 
 - Should we implement "Remember Me" functionality in this phase? **RESOLVED: Deferred to Phase 2**
 - What should the session token expiration time be? **RESOLVED: 24 hours**
 - Should we support concurrent sessions? **RESOLVED: Yes, no limit initially**
 
+
+<!-- /ANCHOR:questions -->
 ---
 
+<!-- ANCHOR:related-docs -->
 ## RELATED DOCUMENTS
 
 - **Implementation Plan**: See `plan.md`
 - **Task Breakdown**: See `tasks.md`
 - **Verification Checklist**: See `checklist.md`
 - **Decision Records**: See `decision-record.md`
+
+<!-- /ANCHOR:related-docs -->
 
 ---
 

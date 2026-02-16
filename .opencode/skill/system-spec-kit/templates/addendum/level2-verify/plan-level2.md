@@ -3,6 +3,7 @@
 
 ---
 
+<!-- ANCHOR:phase-deps -->
 ## L2: PHASE DEPENDENCIES
 
 ```
@@ -17,9 +18,11 @@ Phase 1.5 (Config) ───┘
 | Config | Setup | Core |
 | Core | Setup, Config | Verify |
 | Verify | Core | None |
+<!-- /ANCHOR:phase-deps -->
 
 ---
 
+<!-- ANCHOR:effort -->
 ## L2: EFFORT ESTIMATION
 
 | Phase | Complexity | Estimated Effort |
@@ -28,9 +31,11 @@ Phase 1.5 (Config) ───┘
 | Core Implementation | [Low/Med/High] | [e.g., 4-8 hours] |
 | Verification | [Low/Med/High] | [e.g., 1-2 hours] |
 | **Total** | | **[e.g., 6-12 hours]** |
+<!-- /ANCHOR:effort -->
 
 ---
 
+<!-- ANCHOR:enhanced-rollback -->
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deployment Checklist
@@ -47,5 +52,6 @@ Phase 1.5 (Config) ───┘
 ### Data Reversal
 - **Has data migrations?** [Yes/No]
 - **Reversal procedure**: [Steps or "N/A"]
+<!-- /ANCHOR:enhanced-rollback -->
 
 ---

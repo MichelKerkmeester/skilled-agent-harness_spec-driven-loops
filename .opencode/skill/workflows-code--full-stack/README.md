@@ -28,12 +28,11 @@ importance_tier: "normal"
 ---
 
 ## 1. 📖 OVERVIEW
-
 <!-- ANCHOR:overview -->
 
-This skill provides a unified development workflow for any technology stack: **Go**, **Node.js**, **React/Next.js**, **React Native/Expo**, and **Swift**. It automatically detects the active stack via marker files (`go.mod`, `Package.swift`, `app.json`, `package.json`, `next.config.js`) and loads the appropriate standards, checklists, and code patterns.
+This skill provides a unified development workflow for any technology stack: **Go**, **Node.js**, **React/Next.js**, **React Native/Expo** and **Swift**. It automatically detects the active stack via marker files (`go.mod`, `Package.swift`, `app.json`, `package.json`, `next.config.js`) and loads the appropriate code standards and checklists along with reusable patterns.
 
-The core lifecycle is **Implementation -> Debugging (if needed) -> Verification (MANDATORY)**. Every completion claim must be backed by running the stack-specific test, lint, and build commands. This enforces "The Iron Law": no claiming "done" without verification evidence.
+The core lifecycle is **Implementation -> Debugging (if needed) -> Verification (MANDATORY)**. Every completion claim must be backed by running the stack-specific verification commands (test, lint, build, type-check). This enforces "The Iron Law": no claiming "done" without verification evidence.
 
 The skill uses intelligent task classification (keywords like "implement", "debug", "verify") to load only the resources needed for the current phase, keeping context lean. It integrates with the OpenCode framework via Gate 2 skill routing and Spec Kit Memory for context preservation.
 
@@ -42,11 +41,10 @@ The skill uses intelligent task classification (keywords like "implement", "debu
 ---
 
 ## 2. 🚀 QUICK START
-
 <!-- ANCHOR:quick-start -->
 
-1. **Activation** -- The skill is invoked automatically via Gate 2 (`skill_advisor.py`) when code-related tasks are detected.
-2. **Stack detection** -- Marker files in the project root determine which stack resources load.
+1. **Activation:** The skill is invoked automatically via Gate 2 (`skill_advisor.py`) when code-related tasks are detected.
+2. **Stack detection:** Marker files in the project root determine which stack resources load.
 3. **Work through phases**:
    - **Phase 1**: Implement following stack-specific standards from `references/`
    - **Phase 2**: Debug systematically (one change at a time, trace root cause)
@@ -57,7 +55,7 @@ The skill uses intelligent task classification (keywords like "implement", "debu
 go test ./... && golangci-lint run && go build ./...
 
 # Example: React project verification
-npm test && npx eslint . && npm run build
+npm test && npm run lint && npm run build
 ```
 
 <!-- /ANCHOR:quick-start -->
@@ -65,7 +63,6 @@ npm test && npx eslint . && npm run build
 ---
 
 ## 3. 📁 STRUCTURE
-
 <!-- ANCHOR:structure -->
 
 ```
@@ -97,14 +94,13 @@ workflows-code--full-stack/
 ---
 
 ## 4. ⚡ FEATURES
-
 <!-- ANCHOR:features -->
 
 - **Automatic stack detection** via marker files (`go.mod`, `Package.swift`, `app.json`, `package.json`)
 - **3-phase lifecycle**: Implementation, Debugging, Verification (mandatory)
 - **Smart resource loading** with 4 load levels: MINIMAL, DEBUGGING, FOCUSED, STANDARD
 - **Task classification** routing (verification, debugging, testing, database, API, deployment, implementation)
-- **Per-stack checklists**: code quality (P0/P1 items), debugging, and verification
+- **Per-stack checklists**: code quality (P0/P1 items), debugging and verification
 - **Bundled code patterns**: `.go`, `.ts`, `.tsx`, `.swift` templates for each stack
 - **Stack-specific rules**: Go context/error handling, Swift optionals, React hooks, Node.js async
 
@@ -113,7 +109,6 @@ workflows-code--full-stack/
 ---
 
 ## 5. ⚙️ CONFIGURATION
-
 <!-- ANCHOR:configuration -->
 
 | Setting            | Description                                   | Default         |
@@ -132,15 +127,14 @@ workflows-code--full-stack/
 6. `package.json` with "react" -> React
 7. `package.json` with "express" or "fastify" -> Node.js
 
-**Adding a new stack**: Create `references/{category}/{stack}/` and `assets/{category}/{stack}/` directories, add detection logic to SKILL.md Section 2, and update `STACK_FOLDERS`.
+**Adding a new stack**: Create `references/{category}/{stack}/` and `assets/{category}/{stack}/` directories. Add detection logic to SKILL.md Section 2 and update `STACK_FOLDERS`.
 
 <!-- /ANCHOR:configuration -->
 
 ---
 
 ## 6. 💡 EXAMPLES
-
-<!-- ANCHOR:examples -->
+<!-- ANCHOR:usage-examples -->
 
 **Implementing a Go API endpoint:**
 ```
@@ -157,7 +151,7 @@ Detect: package.json with "react" -> STACK=REACT
 Load:   assets/frontend/react/checklists/debugging_checklist.md
         references/frontend/react/testing_strategy.md
 Fix:    One change at a time, trace root cause
-Verify: npm test -> npx eslint . -> npm run build
+Verify: npm test -> npm run lint -> npm run build
 ```
 
 **Verifying a Swift feature:**
@@ -167,17 +161,16 @@ Load:   assets/mobile/swift/checklists/verification_checklist.md
 Verify: swift test -> swiftlint -> swift build
 ```
 
-<!-- /ANCHOR:examples -->
+<!-- /ANCHOR:usage-examples -->
 
 ---
 
 ## 7. 🛠️ TROUBLESHOOTING
-
 <!-- ANCHOR:troubleshooting -->
 
 | Issue                        | Cause                                          | Fix                                              |
 | ---------------------------- | ---------------------------------------------- | ------------------------------------------------ |
-| Wrong stack detected         | Multiple marker files present                  | First match wins; reorder or remove extra markers |
+| Wrong stack detected         | Multiple marker files present                  | First match wins. Reorder or remove extra markers.|
 | P0 gate blocking completion  | Failing code quality checklist item            | Fix the P0 item or escalate if blocked            |
 | Resources not loading        | Stack folder path mismatch                     | Verify `references/{category}/{stack}/` exists    |
 | Tests pass but build fails   | Lint or type errors not caught by tests         | Run full verification chain: test + lint + build  |
@@ -188,12 +181,12 @@ Verify: swift test -> swiftlint -> swift build
 ---
 
 ## 8. 📚 RELATED
-
 <!-- ANCHOR:related -->
 
 | Resource                         | Relationship                                    |
 | -------------------------------- | ----------------------------------------------- |
 | `workflows-code--web-dev`        | Single-stack variant for Webflow/vanilla JS     |
+| `workflows-code--opencode`       | OpenCode system code standards for core tooling  |
 | `workflows-documentation`        | Documentation creation and skill authoring      |
 | `workflows-git`                  | Git commit hygiene and branch workflows         |
 | `workflows-chrome-devtools`      | Browser debugging (CLI-first via bdg)           |

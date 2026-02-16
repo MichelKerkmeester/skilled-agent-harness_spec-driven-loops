@@ -178,7 +178,7 @@ operating_mode:
 | --------- | ------------------------------------ | ------------------------------------------ |
 | @speckit  | `debug-delegation.md` creation       | Step 2: Generate Report (spec folder docs) |
 | @debug    | 4-phase debugging methodology        | Step 3: Dispatch Sub-Agent                 |
-| @review   | Post-fix code quality validation     | Step 5: After fix applied (Option A)       |
+| @review   | Post-fix code quality validation (advisory, model-agnostic) | Step 5: After fix applied (Option A)       |
 | @handover | Session handover (if needed)         | Post-resolution                            |
 
 > Per AGENTS.md, the speckit agent is the exclusive agent for creating documentation inside spec folders.

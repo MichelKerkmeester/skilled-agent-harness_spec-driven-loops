@@ -1,11 +1,10 @@
-# MCP Install Scripts
+# Component Install Scripts
 
-> Automated installation scripts for Model Context Protocol (MCP) servers used by OpenCode, providing idempotent setup with validation checkpoints.
+> Automated installation scripts for OpenCode MCP servers and related tools. Provides idempotent setup with validation checkpoints.
 
 ---
 
 ## TABLE OF CONTENTS
-<!-- ANCHOR:table-of-contents -->
 
 - [1. 📖 OVERVIEW](#1--overview)
 - [2. 🚀 QUICK START](#2--quick-start)
@@ -19,32 +18,30 @@
 
 ---
 
-<!-- /ANCHOR:table-of-contents -->
 ## 1. 📖 OVERVIEW
-<!-- ANCHOR:overview -->
 
-### What are MCP Install Scripts?
+### What are Component Install Scripts?
 
-MCP Install Scripts automate the installation and configuration of Model Context Protocol servers for OpenCode. Each script handles prerequisites, installation, configuration, and verification in a single command, ensuring consistent setup across environments.
+These scripts automate installation and configuration of OpenCode components (MCP servers plus related tooling). Each script handles prerequisites, installation, configuration, and verification in a single command.
 
 ### Key Statistics
 
 | Category | Count | Details |
 |----------|-------|---------|
-| Install Scripts | 5 | One per MCP server |
+| Install Scripts | 6 | 5 component installers + 1 master installer |
 | Shared Utilities | 36 | Functions in `_utils.sh` |
 | Platforms | 3 | macOS, Linux, Windows (WSL) |
-| Install Time | 2-10 min | Per MCP, depending on complexity |
+| Install Time | 2-10 min | Per component, depending on complexity |
 
 ### Key Features
 
 | Feature | Description |
 |---------|-------------|
-| **Idempotent** | Safe to run multiple times - detects existing installations |
+| **Idempotent** | Safe to run multiple times. Detects existing installations |
 | **Validated** | Each phase has verification checkpoints |
 | **Configurable** | Supports `--verbose`, `--skip-verify`, `--dry-run` flags |
 | **Backup-Safe** | Creates timestamped backups before modifying configs |
-| **Cross-Platform** | Works on macOS, Linux, and Windows (WSL) |
+| **Cross-Platform** | Works on macOS, Linux and Windows (WSL) |
 
 ### Requirements
 
@@ -56,9 +53,7 @@ MCP Install Scripts automate the installation and configuration of Model Context
 
 ---
 
-<!-- /ANCHOR:overview -->
 ## 2. 🚀 QUICK START
-<!-- ANCHOR:quick-start -->
 
 ### 30-Second Setup
 
@@ -96,9 +91,7 @@ opencode
 
 ---
 
-<!-- /ANCHOR:quick-start -->
 ## 3. 📁 STRUCTURE
-<!-- ANCHOR:structure -->
 
 ```
 install_scripts/
@@ -126,19 +119,17 @@ install_scripts/
 
 ---
 
-<!-- /ANCHOR:structure -->
 ## 4. ⚡ FEATURES
-<!-- ANCHOR:features -->
 
 ### Available Scripts
 
-| Script | MCP | Description | Prerequisites |
-|--------|-----|-------------|---------------|
-| `install-sequential-thinking.sh` | Sequential Thinking | Structured problem-solving via flexible thinking | Node.js 18+ |
-| `install-spec-kit-memory.sh` | Spec Kit Memory | Semantic vector search for conversation context | Node.js 18+, npm |
-| `install-code-mode.sh` | Code Mode | MCP orchestration via TypeScript execution | Node.js 18+ |
-| `install-chrome-devtools.sh` | Chrome DevTools | Browser debugging via CDP (bdg CLI) | Node.js 18+, Chrome |
-| `install-figma.sh` | Figma | Design file access (Official or Framelink) | Node.js 18+ |
+| Script | Component | Description | Prerequisites |
+|--------|-----------|-------------|---------------|
+| `install-sequential-thinking.sh` | Sequential Thinking MCP | Structured problem-solving via flexible thinking | Node.js 18+ |
+| `install-spec-kit-memory.sh` | Spec Kit Memory MCP | Semantic vector search for conversation context | Node.js 18+, npm |
+| `install-code-mode.sh` | Code Mode MCP | MCP orchestration via TypeScript execution | Node.js 18+ |
+| `install-chrome-devtools.sh` | Chrome DevTools CLI | Browser debugging via CDP (bdg CLI) | Node.js 18+, Chrome |
+| `install-figma.sh` | Figma MCP | Design file access (Official or Framelink) | Node.js 18+ |
 
 ### Shared Utilities (_utils.sh)
 
@@ -172,9 +163,7 @@ install_scripts/
 
 ---
 
-<!-- /ANCHOR:features -->
 ## 5. ⚙️ CONFIGURATION
-<!-- ANCHOR:configuration -->
 
 ### Configuration Files
 
@@ -214,9 +203,7 @@ All scripts support these standard options:
 
 ---
 
-<!-- /ANCHOR:configuration -->
 ## 6. 💡 USAGE EXAMPLES
-<!-- ANCHOR:examples -->
 
 ### Example 1: Install Core MCPs
 
@@ -264,9 +251,7 @@ All scripts support these standard options:
 
 ---
 
-<!-- /ANCHOR:examples -->
 ## 7. 🛠️ TROUBLESHOOTING
-<!-- ANCHOR:troubleshooting -->
 
 ### Common Issues
 
@@ -354,9 +339,7 @@ bdg --version
 
 ---
 
-<!-- /ANCHOR:troubleshooting -->
 ## 8. ❓ FAQ
-<!-- ANCHOR:faq -->
 
 ### General Questions
 
@@ -368,15 +351,15 @@ A: Install Code Mode first if you plan to use Framelink (Figma). Otherwise, orde
 
 **Q: Are the scripts safe to run multiple times?**
 
-A: Yes, all scripts are idempotent. They detect existing installations and skip redundant work. Config files are backed up before modification.
+A: Yes. All scripts are idempotent. They detect existing installations and skip redundant work. Config files are backed up before modification.
 
 ---
 
-**Q: Do I need all 5 MCPs?**
+**Q: Do I need all 5 component installers?**
 
 A: No. Install based on your needs:
-- **Core**: Code Mode, Spec Kit Memory, Sequential Thinking
-- **Optional**: Figma (design), Chrome DevTools (debugging)
+- **Core**: Code Mode MCP, Spec Kit Memory MCP, Sequential Thinking MCP
+- **Optional**: Figma MCP (design), Chrome DevTools CLI (debugging)
 
 ---
 
@@ -410,7 +393,7 @@ See the Contributing section in the source for the full template.
 
 **Q: Can I run these in Docker/CI?**
 
-A: Yes, use `--dry-run` to preview or the test Docker environment:
+A: Yes. Use `--dry-run` to preview or the test Docker environment:
 ```bash
 cd test/
 docker build -t mcp-install-test .
@@ -420,9 +403,7 @@ Note: The master installer (`install-all.sh`) automatically uses non-interactive
 
 ---
 
-<!-- /ANCHOR:faq -->
 ## 9. 📚 RELATED DOCUMENTS
-<!-- ANCHOR:related -->
 
 ### Internal Documentation
 
@@ -445,4 +426,3 @@ Note: The master installer (`install-all.sh`) automatically uses non-interactive
 ---
 
 *Part of the [OpenCode Development Environment](https://github.com/MichelKerkmeester/opencode-dev-environment)*
-<!-- /ANCHOR:related -->

@@ -1,5 +1,7 @@
-<!-- SPECKIT_LEVEL: 3 -->
+<!-- SPECKIT_LEVEL: 3+ -->
 # Task 02 — SKILL.md & References Audit
+
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify + level3-arch + level3plus-govern | v2.2 -->
 
 <!-- ANCHOR:metadata -->
 ## Metadata
@@ -8,7 +10,7 @@
 |-------|-------|
 | **Parent Spec** | 130 — Memory Overhaul & Agent Upgrade Release |
 | **Task** | 02 of 07 |
-| **Level** | 3 |
+| **Level** | 3+ |
 | **Priority** | P1 |
 | **Status** | Draft |
 | **Created** | 2026-02-16 |
@@ -33,7 +35,7 @@ Audit all SKILL.md files (9 total) and system-spec-kit reference files to ensure
 
 | File | Key Audit Points |
 |------|-----------------|
-| `.opencode/skill/system-spec-kit/SKILL.md` | Version (should reflect post-v2.2.18.0 state), 5-source discovery, 7 intents, upgrade-level workflow, auto-populate workflow, anchor tag script, check-placeholders.sh |
+| `.opencode/skill/system-spec-kit/SKILL.md` | Version (should reflect post-v2.2.18.0 state), 5-source discovery, 7 intents, upgrade-level workflow, auto-populate workflow, anchor tag script, check-placeholders.sh, spec 126 MCP server hardening (import paths, specFolder filtering, metadata preservation, causal edge stability) |
 
 ### SKILL.md Files (P1) — Other Skills
 
@@ -83,6 +85,7 @@ Audit all SKILL.md files (9 total) and system-spec-kit reference files to ensure
    - AI auto-populate workflow
    - check-placeholders.sh verification
    - Anchor tag conventions (spec 129, if implemented)
+   - Spec 126 MCP server hardening (import path fixes, specFolder boundary filtering, document_type/spec_level preservation, vector metadata updates, causal edge conflict-update semantics)
 3. **Cross-references**: Links to reference files and README resolve correctly
 
 ### Reference File Checks
@@ -119,6 +122,55 @@ The implementer should populate `changes.md` with:
 4. All reference files consistent with current implementation
 5. changes.md has no placeholder text
 <!-- /ANCHOR:acceptance -->
+
+---
+
+<!-- ANCHOR:approval-workflow -->
+## Approval Workflow
+
+| Checkpoint | Approver | Status | Date |
+|------------|----------|--------|------|
+| Audit Plan Review | Spec Owner | Approved | 2026-02-16 |
+| Changes Review | Tech Lead | Pending | TBD |
+| Implementation Complete | Spec Owner | Pending | TBD |
+<!-- /ANCHOR:approval-workflow -->
+
+---
+
+<!-- ANCHOR:compliance -->
+## Compliance Checkpoints
+
+### Documentation Standards
+- [ ] All SKILL.md files follow standard format with version, description, and cross-references
+- [ ] Reference files use consistent anchor tags
+- [ ] Cross-references resolve to existing sections
+
+### Quality Gates
+- [ ] No placeholder text in changes.md
+- [ ] Version numbers aligned across all files
+- [ ] Feature descriptions match implementation state
+<!-- /ANCHOR:compliance -->
+
+---
+
+<!-- ANCHOR:stakeholders -->
+## Stakeholder Matrix
+
+| Stakeholder | Role | Interest | Communication |
+|-------------|------|----------|---------------|
+| Spec Owner | Documentation Lead | High | Direct updates via changes.md |
+| Tech Lead | System Architect | Medium | Review approval for changes |
+| End Users | AI Assistants | High | Updated documentation via skill loading |
+<!-- /ANCHOR:stakeholders -->
+
+---
+
+<!-- ANCHOR:changelog -->
+## Change Log
+
+### v1.0 (2026-02-16)
+**Initial task specification** — Defined audit scope for 9 SKILL.md files and 7 reference files.
+<!-- /ANCHOR:changelog -->
 
 ---
 

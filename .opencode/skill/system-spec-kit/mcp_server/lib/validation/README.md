@@ -1,6 +1,6 @@
 ---
 title: "Validation"
-description: "Pre-flight quality gates for memory operations: anchor validation, duplicate detection, and token budget verification."
+description: "Pre-flight quality gates for memory operations: anchor validation, duplicate detection and token budget verification."
 trigger_phrases:
   - "validation"
   - "preflight"
@@ -10,23 +10,22 @@ importance_tier: "normal"
 
 # Validation
 
-> Pre-flight quality gates for memory operations: anchor validation, duplicate detection, and token budget verification.
+> Pre-flight quality gates for memory operations: anchor validation, duplicate detection, token budget verification and content size checks.
 
 ---
 
 ## TABLE OF CONTENTS
 <!-- ANCHOR:table-of-contents -->
 
-- [1. 📖 OVERVIEW](#1--overview)
-- [2. 📁 STRUCTURE](#2--structure)
-- [3. ⚡ FEATURES](#3--features)
-- [4. 💡 USAGE EXAMPLES](#4--usage-examples)
-- [5. 📚 RELATED RESOURCES](#5--related-resources)
-
----
+- [1. OVERVIEW](#1--overview)
+- [2. STRUCTURE](#2--structure)
+- [3. FEATURES](#3--features)
+- [4. USAGE EXAMPLES](#4--usage-examples)
+- [5. RELATED RESOURCES](#5--related-resources)
 
 <!-- /ANCHOR:table-of-contents -->
-## 1. 📖 OVERVIEW
+
+## 1. OVERVIEW
 <!-- ANCHOR:overview -->
 
 The validation subsystem provides pre-flight checks that run before expensive operations like embedding generation or database writes. It prevents invalid data from entering the system and provides actionable feedback for resolution.
@@ -43,21 +42,20 @@ The validation subsystem provides pre-flight checks that run before expensive op
 
 | Feature | Description |
 |---------|-------------|
-| **Anchor Validation** | Validates `<!-- ANCHOR: id -->` format, closure, and uniqueness |
+| **Anchor Validation** | Validates `<!-- ANCHOR:id -->` format, closure and uniqueness |
 | **Duplicate Detection** | Exact (SHA-256 hash) and similar (vector similarity) duplicate finding |
 | **Token Budget** | Estimates tokens and enforces limits before API calls |
 | **Unified Preflight** | Single `runPreflight()` runs all checks with dry-run support |
 
----
-
 <!-- /ANCHOR:overview -->
-## 2. 📁 STRUCTURE
+
+## 2. STRUCTURE
 <!-- ANCHOR:structure -->
 
 ```
 validation/
-├── preflight.ts  # Pre-flight validation before expensive operations
-└── README.md     # This file
+ preflight.ts  # Pre-flight validation before expensive operations
+ README.md     # This file
 ```
 
 ### Key Files
@@ -66,10 +64,9 @@ validation/
 |------|---------|
 | `preflight.ts` | All validation logic: anchors, duplicates, tokens, content size, unified preflight |
 
----
-
 <!-- /ANCHOR:structure -->
-## 3. ⚡ FEATURES
+
+## 3. FEATURES
 <!-- ANCHOR:features -->
 
 ### Anchor Format Validation
@@ -78,7 +75,7 @@ Validates memory file anchor tags:
 
 | Check | Description |
 |-------|-------------|
-| Format | Must match `<!-- ANCHOR: id -->` pattern |
+| Format | Must match `<!-- ANCHOR:id -->` pattern |
 | ID Pattern | Alphanumeric start, allows hyphens and slashes |
 | Closure | Each opening tag needs `<!-- /ANCHOR: id -->` |
 | Uniqueness | No duplicate anchor IDs in same file |
@@ -137,11 +134,10 @@ Prevents exceeding embedding API limits:
 
 **Classes:** `PreflightError`
 
----
-
 <!-- /ANCHOR:features -->
-## 4. 💡 USAGE EXAMPLES
-<!-- ANCHOR:examples -->
+
+## 4. USAGE EXAMPLES
+<!-- ANCHOR:usage-examples -->
 
 ### Example 1: Run All Pre-flight Checks
 
@@ -210,10 +206,9 @@ const result = runPreflight(
 | Token estimate | `estimateTokens()` | Before embedding API |
 | Hash compute | `computeContentHash()` | Duplicate detection |
 
----
+<!-- /ANCHOR:usage-examples -->
 
-<!-- /ANCHOR:examples -->
-## 5. 📚 RELATED RESOURCES
+## 5. RELATED RESOURCES
 <!-- ANCHOR:related -->
 
 ### Internal Documentation
@@ -244,8 +239,9 @@ MCP_DUPLICATE_THRESHOLD=0.95
 MCP_ANCHOR_STRICT=true
 ```
 
+<!-- /ANCHOR:related -->
+
 ---
 
 **Version**: 1.7.2
-**Last Updated**: 2026-02-08
-<!-- /ANCHOR:related -->
+**Last Updated**: 2026-02-16

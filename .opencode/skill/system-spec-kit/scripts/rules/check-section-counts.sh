@@ -33,7 +33,9 @@ _section_get_declared_level() {
 _section_count_h2() {
     local file="$1"
     if [[ -f "$file" ]]; then
-        grep -c "^## " "$file" 2>/dev/null || echo "0"
+        local count
+        count=$(grep -c "^## " "$file" 2>/dev/null || true)
+        echo "${count:-0}"
     else
         echo "0"
     fi
@@ -43,7 +45,9 @@ _section_count_h2() {
 _section_count_h3() {
     local file="$1"
     if [[ -f "$file" ]]; then
-        grep -c "^### " "$file" 2>/dev/null || echo "0"
+        local count
+        count=$(grep -c "^### " "$file" 2>/dev/null || true)
+        echo "${count:-0}"
     else
         echo "0"
     fi
@@ -55,7 +59,7 @@ _section_count_requirements() {
     local spec_file="$folder/spec.md"
     if [[ -f "$spec_file" ]]; then
         local count
-        count=$(grep -c "REQ-FUNC-\|REQ-DATA-\|REQ-" "$spec_file" 2>/dev/null | head -1 | tr -d '\n' || echo "0")
+        count=$(grep -cE "REQ-FUNC-|REQ-DATA-|REQ-" "$spec_file" 2>/dev/null || true)
         echo "${count:-0}"
     else
         echo "0"
@@ -68,7 +72,7 @@ _section_count_acceptance_scenarios() {
     local spec_file="$folder/spec.md"
     if [[ -f "$spec_file" ]]; then
         local count
-        count=$(grep -c "\*\*Given\*\*" "$spec_file" 2>/dev/null | head -1 | tr -d '\n' || echo "0")
+        count=$(grep -c "\*\*Given\*\*" "$spec_file" 2>/dev/null || true)
         echo "${count:-0}"
     else
         echo "0"

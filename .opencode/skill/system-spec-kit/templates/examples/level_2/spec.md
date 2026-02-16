@@ -9,6 +9,7 @@ Use this when features need systematic QA validation (~100-499 LOC). -->
 
 ---
 
+<!-- ANCHOR:metadata -->
 ## 1. METADATA
 
 | Field | Value |
@@ -19,8 +20,11 @@ Use this when features need systematic QA validation (~100-499 LOC). -->
 | **Created** | 2025-01-15 |
 | **Branch** | `012-user-authentication` |
 
+
+<!-- /ANCHOR:metadata -->
 ---
 
+<!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
@@ -29,8 +33,11 @@ The application currently has no user authentication, allowing anyone to access 
 ### Purpose
 Implement a basic email/password authentication system that allows users to register, log in, and maintain authenticated sessions, providing the foundation for user-specific features.
 
+
+<!-- /ANCHOR:problem -->
 ---
 
+<!-- ANCHOR:scope -->
 ## 3. SCOPE
 
 ### In Scope
@@ -57,8 +64,11 @@ Implement a basic email/password authentication system that allows users to regi
 | src/middleware/auth.js | Create | Authentication middleware |
 | src/validators/auth.js | Create | Input validation schemas |
 
+
+<!-- /ANCHOR:scope -->
 ---
 
+<!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
 
 ### P0 - Blockers (MUST complete)
@@ -78,16 +88,22 @@ Implement a basic email/password authentication system that allows users to regi
 | REQ-006 | Session persists across page refresh | Token in localStorage, auto-login on page load |
 | REQ-007 | Duplicate email registration prevented | Clear error message, no duplicate users in DB |
 
+
+<!-- /ANCHOR:requirements -->
 ---
 
+<!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
 - **SC-001**: User can complete full registration and login flow in under 30 seconds
 - **SC-002**: Authentication state persists correctly across browser refresh
 - **SC-003**: All security checklist items pass verification
 
+
+<!-- /ANCHOR:success-criteria -->
 ---
 
+<!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
 | Type | Item | Impact | Mitigation |
@@ -97,8 +113,11 @@ Implement a basic email/password authentication system that allows users to regi
 | Risk | Token security | Session hijacking possible | Use HttpOnly cookies in Phase 2 |
 | Risk | Timing attacks | Email enumeration | Use constant-time comparison |
 
+
+<!-- /ANCHOR:risks -->
 ---
 
+<!-- ANCHOR:nfr -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -114,8 +133,11 @@ Implement a basic email/password authentication system that allows users to regi
 - **NFR-R01**: Auth service available when database is reachable
 - **NFR-R02**: Graceful degradation with clear error messages on failures
 
+
+<!-- /ANCHOR:nfr -->
 ---
 
+<!-- ANCHOR:edge-cases -->
 ## 8. EDGE CASES
 
 ### Data Boundaries
@@ -134,20 +156,28 @@ Implement a basic email/password authentication system that allows users to regi
 - **Multiple login attempts**: Rate limiting in Phase 2, current: allow all
 - **Simultaneous registration**: Database unique constraint prevents duplicates
 
+
+<!-- /ANCHOR:edge-cases -->
 ---
 
+<!-- ANCHOR:questions -->
 ## 9. OPEN QUESTIONS
 
 - Should we implement "Remember Me" functionality in this phase? **RESOLVED: Deferred to Phase 2**
 - What should the session token expiration time be? **RESOLVED: 24 hours**
 
+
+<!-- /ANCHOR:questions -->
 ---
 
+<!-- ANCHOR:related-docs -->
 ## RELATED DOCUMENTS
 
 - **Implementation Plan**: See `plan.md`
 - **Task Breakdown**: See `tasks.md`
 - **Verification Checklist**: See `checklist.md`
+
+<!-- /ANCHOR:related-docs -->
 
 ---
 

@@ -10,7 +10,7 @@ importance_tier: "normal"
 
 # Figma MCP
 
-> Programmatic access to Figma design files through **18 specialized tools**. Get files, export images, extract components and styles, manage team projects, and handle collaborative comments. Accessed via **Code Mode** for token-efficient workflows.
+> Programmatic access to Figma design files through **18 specialized tools**. Get files, export images, extract components and styles, manage team projects and handle collaborative comments. Accessed via **Code Mode** for token-efficient workflows.
 
 > **Navigation**:
 > - New to Figma MCP? Start with [Quick Start](#2--quick-start)
@@ -24,17 +24,17 @@ importance_tier: "normal"
 
 ---
 
-## TABLE OF CONTENTS
 <!-- ANCHOR:table-of-contents -->
+## TABLE OF CONTENTS
 
 - [1. 📖 OVERVIEW](#1--overview)
 - [2. 🚀 QUICK START](#2--quick-start)
 - [3. 📁 STRUCTURE](#3--structure)
 - [4. ⚡ FEATURES](#4--features)
 - [5. ⚙️ CONFIGURATION](#5--configuration)
-- [6. 🔧 NAMING CONVENTION](#6--naming-convention)
+- [6. 🏷️ NAMING CONVENTION](#6--naming-convention)
 - [7. 💡 USAGE EXAMPLES](#7--usage-examples)
-- [8. 🔌 MCP TOOLS (18 TOTAL)](#8--mcp-tools-18-total)
+- [8. 🧰 MCP TOOLS (18 TOTAL)](#8--mcp-tools-18-total)
 - [9. 🛠️ TROUBLESHOOTING](#9--troubleshooting)
 - [10. ❓ FAQ](#10--faq)
 - [11. 📚 RELATED DOCUMENTS](#11--related-documents)
@@ -42,12 +42,13 @@ importance_tier: "normal"
 ---
 
 <!-- /ANCHOR:table-of-contents -->
-## 1. 📖 OVERVIEW
+
 <!-- ANCHOR:overview -->
+## 1. 📖 OVERVIEW
 
 ### What is Figma MCP?
 
-Figma MCP is an MCP server that provides AI assistants with programmatic access to Figma's design platform. It enables reading design files, exporting images, extracting components and styles, managing team projects, and handling collaborative comments—all through Code Mode's efficient TypeScript execution.
+Figma MCP is an MCP server that provides AI assistants with programmatic access to Figma's design platform. It enables reading design files, exporting images, extracting components and styles, managing team projects and handling collaborative comments through Code Mode's efficient TypeScript execution.
 
 ### Key Statistics
 
@@ -74,7 +75,7 @@ Figma MCP is an MCP server that provides AI assistants with programmatic access 
 |---------|-------------|
 | **Design File Access** | Retrieve complete Figma files with configurable depth |
 | **Node Extraction** | Get specific nodes by ID for targeted data retrieval |
-| **Image Export** | Render nodes as PNG, JPG, SVG, or PDF at custom scales |
+| **Image Export** | Render nodes as PNG, JPG, SVG or PDF at custom scales |
 | **Component Discovery** | List and retrieve components from files or teams |
 | **Style Extraction** | Access design tokens (colors, typography, effects) |
 | **Collaboration** | Read and post comments on design files |
@@ -100,13 +101,14 @@ Figma MCP is an MCP server that provides AI assistants with programmatic access 
 ---
 
 <!-- /ANCHOR:overview -->
-## 2. 🚀 QUICK START
+
 <!-- ANCHOR:quick-start -->
+## 2. 🚀 QUICK START
 
 ### Prerequisites
 
 - Code Mode MCP configured in `.utcp_config.json`
-- Figma Personal Access Token (from Figma Settings → Account → Personal access tokens)
+- Figma Personal Access Token (from Figma Settings > Account > Personal access tokens)
 
 ### 30-Second Setup
 
@@ -156,8 +158,9 @@ https://www.figma.com/file/ABC123xyz/My-Design-File
 ---
 
 <!-- /ANCHOR:quick-start -->
-## 3. 📁 STRUCTURE
+
 <!-- ANCHOR:structure -->
+## 3. 📁 STRUCTURE
 
 ```
 .opencode/skill/mcp-figma/
@@ -182,8 +185,9 @@ https://www.figma.com/file/ABC123xyz/My-Design-File
 ---
 
 <!-- /ANCHOR:structure -->
-## 4. ⚡ FEATURES
+
 <!-- ANCHOR:features -->
+## 4. ⚡ FEATURES
 
 ### File Management
 
@@ -264,8 +268,9 @@ See [references/tool_reference.md](./references/tool_reference.md) for complete 
 ---
 
 <!-- /ANCHOR:features -->
-## 5. ⚙️ CONFIGURATION
+
 <!-- ANCHOR:configuration -->
+## 5. ⚙️ CONFIGURATION
 
 ### Code Mode Configuration
 
@@ -302,14 +307,14 @@ Add to `.env`:
 
 ```bash
 # Figma API Key
-# Get from: Figma → Settings → Account → Personal access tokens
+# Get from: Figma > Settings > Account > Personal access tokens
 #
-# ⚠️ CRITICAL: Code Mode requires PREFIXED variable names!
+# CRITICAL: Code Mode requires PREFIXED variable names!
 # The prefix is the "name" field from your .utcp_config.json (e.g., "figma")
 figma_FIGMA_API_KEY=figd_your_token_here
 ```
 
-> **⚠️ Code Mode Naming**: Code Mode prefixes all env vars with `{manual_name}_`. If your config has `"name": "figma"`, use `figma_FIGMA_API_KEY` in your `.env` file, NOT `FIGMA_API_KEY`.
+> **Code Mode Naming**: Code Mode prefixes all env vars with `{manual_name}_`. If your config has `"name": "figma"`, use `figma_FIGMA_API_KEY` in your `.env` file, NOT `FIGMA_API_KEY`.
 
 > **Security**: Never commit `.env` to version control. Add it to `.gitignore`.
 
@@ -319,7 +324,7 @@ figma_FIGMA_API_KEY=figd_your_token_here
 2. Scroll to **Personal access tokens**
 3. Click **Generate new token**
 4. Give it a description (e.g., "MCP Integration")
-5. Copy the token immediately (you won't see it again)
+5. Copy the token immediately (you will not see it again)
 6. Add to your `.env` file
 
 ### MCP Client Configurations
@@ -357,8 +362,9 @@ figma_FIGMA_API_KEY=figd_your_token_here
 ---
 
 <!-- /ANCHOR:configuration -->
-## 6. 🔧 NAMING CONVENTION
+
 <!-- ANCHOR:naming-convention -->
+## 6. 🏷️ NAMING CONVENTION
 
 ### Critical Pattern
 
@@ -380,16 +386,16 @@ figma.figma_{tool_name}
 ### Common Mistakes
 
 ```typescript
-// ❌ WRONG - missing figma_ prefix
+// WRONG - missing figma_ prefix
 await figma.get_file({ fileKey: "abc" });
 
-// ❌ WRONG - dot instead of underscore
+// WRONG - dot instead of underscore
 await figma.figma.get_file({ fileKey: "abc" });
 
-// ❌ WRONG - camelCase
+// WRONG - camelCase
 await figma.figma_getFile({ fileKey: "abc" });
 
-// ✅ CORRECT
+// CORRECT
 await figma.figma_get_file({ fileKey: "abc" });
 ```
 
@@ -405,8 +411,9 @@ tool_info({ tool_name: "figma.figma_get_file" });
 ---
 
 <!-- /ANCHOR:naming-convention -->
+
+<!-- ANCHOR:usage-examples -->
 ## 7. 💡 USAGE EXAMPLES
-<!-- ANCHOR:examples -->
 
 ### Example 1: Get Design File Structure
 
@@ -497,7 +504,7 @@ call_tool_chain({
   code: `
     const comment = await figma.figma_post_comment({
       fileKey: "abc123XYZ",
-      message: "✅ Approved for development",
+      message: "Approved for development",
       client_meta: {
         node_id: "1:234"  // Attach to specific node
       }
@@ -555,9 +562,10 @@ call_tool_chain({
 
 ---
 
-<!-- /ANCHOR:examples -->
-## 8. 🔌 MCP TOOLS (18 TOTAL)
-<!-- ANCHOR:mcp-tools-18-total -->
+<!-- /ANCHOR:usage-examples -->
+
+<!-- ANCHOR:mcp-tools -->
+## 8. 🧰 MCP TOOLS (18 TOTAL)
 
 ### Tool Priority Classification
 
@@ -604,9 +612,10 @@ See [references/tool_reference.md](./references/tool_reference.md) for complete 
 
 ---
 
-<!-- /ANCHOR:mcp-tools-18-total -->
-## 9. 🛠️ TROUBLESHOOTING
+<!-- /ANCHOR:mcp-tools -->
+
 <!-- ANCHOR:troubleshooting -->
+## 9. 🛠️ TROUBLESHOOTING
 
 ### Common Issues
 
@@ -654,7 +663,7 @@ await figma.figma_get_file({ fileKey: "abc" });
                               Use this part
    ```
 2. Check file permissions in Figma
-3. Ensure file wasn't deleted or moved
+3. Ensure file was not deleted or moved
 
 #### Rate Limiting
 
@@ -672,7 +681,7 @@ await figma.figma_get_file({ fileKey: "abc" });
 
 **Symptom**: `Environment variable FIGMA_API_KEY not found` or `Variable 'figma_FIGMA_API_KEY' referenced in call template configuration not found`
 
-**Cause**: Token not in `.env`, `.env` not loaded, or wrong variable name format.
+**Cause**: Token not in `.env`, `.env` not loaded or wrong variable name format.
 
 **Solution**:
 1. Check `.env` file exists
@@ -730,22 +739,23 @@ call_tool_chain({
 ---
 
 <!-- /ANCHOR:troubleshooting -->
-## 10. ❓ FAQ
+
 <!-- ANCHOR:faq -->
+## 10. ❓ FAQ
 
 ### General Questions
 
 **Q: What can Figma MCP do?**
 
-A: Figma MCP provides programmatic access to Figma's design platform through 18 tools covering file access, image export, component/style extraction, team management, and collaboration.
+A: Figma MCP provides programmatic access to Figma's design platform through 18 tools covering file access, image export, component/style extraction, team management and collaboration.
 
 **Q: Why use Code Mode instead of native MCP?**
 
-A: Code Mode adds ~1.6k tokens overhead vs ~54k for native MCP (18 tools × 3k each). This is a 97% token savings, crucial for context-heavy conversations.
+A: Code Mode adds ~1.6k tokens overhead vs ~54k for native MCP (18 tools x 3k each). This is a 97% token savings, crucial for context-heavy conversations.
 
-**Q: What's the difference between file-level and team-level tools?**
+**Q: What is the difference between file-level and team-level tools?**
 
-A: File-level tools (`get_file_components`, `get_file_styles`) work on a single file. Team-level tools (`get_team_components`, `get_team_styles`) aggregate across all files in a team—useful for design system documentation.
+A: File-level tools (`get_file_components`, `get_file_styles`) work on a single file. Team-level tools (`get_team_components`, `get_team_styles`) aggregate across all files in a team. This is useful for design system documentation.
 
 ### Technical Questions
 
@@ -760,7 +770,7 @@ https://www.figma.com/file/ABC123xyz/My-Design
 
 **Q: What image formats are supported?**
 
-A: PNG, JPG, SVG, and PDF. Use `format` parameter in `get_image`:
+A: PNG, JPG, SVG and PDF. Use `format` parameter in `get_image`:
 ```typescript
 await figma.figma_get_image({
   fileKey: "abc",
@@ -772,11 +782,11 @@ await figma.figma_get_image({
 
 **Q: How do I get a specific node ID?**
 
-A: In Figma, right-click any element → "Copy link". The node ID is in the URL after `node-id=`. Or use `get_file` with `depth` to explore the structure.
+A: In Figma, right-click any element and select "Copy link". The node ID is in the URL after `node-id=`. You can also use `get_file` with `depth` to explore the structure.
 
 **Q: Can I create or edit designs?**
 
-A: No, Figma MCP is read-only. It can read files, export images, and post comments, but cannot create or modify design elements.
+A: No, Figma MCP is read-only. It can read files, export images and post comments, but cannot create or modify design elements.
 
 **Q: What are the API rate limits?**
 
@@ -785,8 +795,9 @@ A: Figma's API has rate limits that vary by endpoint. If you hit limits, wait 60
 ---
 
 <!-- /ANCHOR:faq -->
-## 11. 📚 RELATED DOCUMENTS
+
 <!-- ANCHOR:related -->
+## 11. 📚 RELATED DOCUMENTS
 
 ### Internal Documentation
 
@@ -810,10 +821,12 @@ A: Figma's API has rate limits that vary by endpoint. If you hit limits, wait 60
 | Skill | Purpose |
 |-------|---------|
 | [mcp-code-mode](../mcp-code-mode/README.md) | Tool orchestration via TypeScript execution |
+| [workflows-chrome-devtools](../workflows-chrome-devtools/README.md) | Browser-side validation for design implementation |
 
 ### Install Guide
 
 | Guide | Purpose |
 |-------|---------|
 | [Install Guide](./INSTALL_GUIDE.md) | Complete installation instructions |
+
 <!-- /ANCHOR:related -->

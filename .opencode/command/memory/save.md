@@ -228,7 +228,7 @@ Content...
 
 ### Step 4: Create JSON Data (AI CONSTRUCTS THIS)
 
-**CRITICAL:** The AI MUST construct this JSON from Step 2 analysis. Without proper JSON, the script falls back to simulation mode with placeholder data.
+**CRITICAL:** The AI MUST construct this JSON from Step 2 analysis. Without proper JSON, the script falls back to stateless mode — automatic extraction from the spec folder rather than rich conversation context.
 
 **Required JSON Structure:**
 ```json
@@ -245,7 +245,7 @@ Content...
   ],
   "triggerPhrases": [
     "generate-context", "memory save", "JSON input",
-    "simulation mode", "context preservation"
+    "stateless mode", "context preservation"
   ],
   "technicalContext": {
     "rootCause": "Description of the problem's root cause",
@@ -303,7 +303,7 @@ rm "$TEMP_FILE"
 ✓ Indexed as memory #NN
 ```
 
-**If you see "simulation mode" warnings, the JSON was not loaded correctly.**
+**If you see "stateless mode" warnings, the JSON was not loaded correctly.**
 
 **Mode 2 (Direct Path) — Minimal save:**
 ```bash
@@ -346,7 +346,7 @@ specs/{spec-folder}/memory/{timestamp}__{topic}.md
 | Embedding fails        | File saved, will auto-index on MCP restart      |
 | MCP unavailable        | File saved, indexing deferred to restart         |
 | Duplicate session (<1h)| Warn, offer: Overwrite / Append / New / Cancel  |
-| "Simulation mode"      | JSON not loaded — check temp file path/content  |
+| "Stateless mode"       | JSON not loaded — check temp file path/content  |
 
 ---
 
@@ -442,6 +442,8 @@ Current triggers:
 | **memory_save MCP tool**       | On demand        | Immediate indexing of single file |
 | **memory_index_scan MCP tool** | On demand        | Bulk re-index of folder/all files |
 
+> **Note:** Since spec 126, spec folder documents are auto-indexed as the 5th source in the indexing pipeline.
+
 ### Deferred Indexing (Graceful Degradation)
 
 When MCP is unavailable or embedding fails, the system uses deferred indexing:
@@ -456,6 +458,9 @@ When MCP is unavailable or embedding fails, the system uses deferred indexing:
 # Single file
 spec_kit_memory_memory_save({ filePath: "specs/.../memory/context.md", force: true })
 
+# Single file (non-blocking embedding)
+spec_kit_memory_memory_save({ filePath: "specs/.../memory/context.md", asyncEmbedding: true })
+
 # Entire folder
 spec_kit_memory_memory_index_scan({ specFolder: "011-memory", force: true })
 ```
@@ -467,7 +472,7 @@ spec_kit_memory_memory_index_scan({ specFolder: "011-memory", force: true })
 | MCP server unreachable | Restart OpenCode to restart MCP server                                         |
 | Embedding timeout      | Use `memory_index_scan` with smaller batch                                     |
 | Corrupted file         | Read file, verify ANCHOR tags, re-save with corrections                        |
-| Database locked        | Delete `.opencode/skill/system-spec-kit/mcp_server/database/context-index.sqlite`, restart |
+| Database locked        | Delete `.opencode/skill/system-spec-kit/mcp_server/dist/database/context-index.sqlite` (and `-wal` / `-shm` sidecars), restart |
 
 ### Full Parameter Reference: memory_save
 
@@ -477,13 +482,18 @@ spec_kit_memory_memory_index_scan({ specFolder: "011-memory", force: true })
 | `force`         | boolean | false      | Force re-index even if content hash unchanged           |
 | `dryRun`        | boolean | false      | Validate only without saving                            |
 | `skipPreflight` | boolean | false      | Skip pre-flight validation checks (not recommended)     |
+| `asyncEmbedding`| boolean | false      | Defer embedding generation for non-blocking saves       |
 
 ### Full Parameter Reference: memory_index_scan
 
-| Parameter    | Type    | Default | Description                                      |
-| ------------ | ------- | ------- | ------------------------------------------------ |
-| `specFolder` | string  | -       | Limit scan to specific spec folder (omit for all)|
-| `force`      | boolean | false   | Force re-index all files                         |
+| Parameter            | Type    | Default | Description                                       |
+| -------------------- | ------- | ------- | ------------------------------------------------- |
+| `force`              | boolean | false   | Force re-index all files                          |
+| `specFolder`         | string  | -       | Limit scan to specific spec folder                |
+| `includeReadmes`     | boolean | true    | Include skill + project README files              |
+| `includeSpecDocs`    | boolean | true    | Include spec folder documents                     |
+| `includeConstitutional` | boolean | true | Include constitutional rule files                 |
+| `incremental`        | boolean | true    | Skip unchanged files (mtime check)                |
 
 ---
 
@@ -554,7 +564,7 @@ Prevents redundant saves of the same conversation content (accidental duplicates
 
 | Usage                                                  | Behavior                              |
 | ------------------------------------------------------ | ------------------------------------- |
-| `/memory:save`                                         | Auto-detect spec folder, save context |
+| `/memory:save`                                         | Ask for folder (or use active Gate 3 folder), then save |
 | `/memory:save 011-memory`                              | Save to specific spec folder          |
 | `/memory:save specs/006-semantic-memory/003-debugging` | Save to nested spec folder            |
 

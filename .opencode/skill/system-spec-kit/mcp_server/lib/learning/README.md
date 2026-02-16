@@ -1,6 +1,6 @@
 ---
 title: "Learning"
-description: "Memory correction tracking system that learns from superseded, deprecated, refined, and merged memories."
+description: "Correction tracking that updates stability signals across memory and spec-document entries."
 trigger_phrases:
   - "learning corrections"
   - "memory stability"
@@ -10,26 +10,27 @@ importance_tier: "normal"
 
 # Learning
 
-> Memory correction tracking system that learns from superseded, deprecated, refined, and merged memories.
+> Correction tracking that updates stability signals across memory and spec-document entries.
 
 ---
 
-<!-- ANCHOR:table-of-contents -->
 ## TABLE OF CONTENTS
+<!-- ANCHOR:table-of-contents -->
 
-- [1. 📖 OVERVIEW](#1--overview)
-- [2. 📁 STRUCTURE](#2--structure)
-- [3. ⚡ FEATURES](#3--features)
-- [4. 💡 USAGE EXAMPLES](#4--usage-examples)
-- [5. 📚 RELATED RESOURCES](#5--related-resources)
+- [1. OVERVIEW](#1--overview)
+- [2. STRUCTURE](#2--structure)
+- [3. FEATURES](#3--features)
+- [4. USAGE EXAMPLES](#4--usage-examples)
+- [5. RELATED RESOURCES](#5--related-resources)
 
 <!-- /ANCHOR:table-of-contents -->
+
 ---
 
+## 1. OVERVIEW
 <!-- ANCHOR:overview -->
-## 1. 📖 OVERVIEW
 
-The learning module tracks memory corrections over time, applying stability adjustments that help the system learn which memories are most reliable. When memories are corrected, the original loses stability while the replacement gains it, naturally surfacing better information in search results.
+The learning module tracks corrections over time and applies stability adjustments that help the system learn which entries are most reliable. Post-Spec 126 this applies to both standard memory notes and indexed spec documents, improving ranking quality for spec and decision retrieval.
 
 ### Key Benefits
 
@@ -41,10 +42,11 @@ The learning module tracks memory corrections over time, applying stability adju
 | **Atomic operations** | Database transactions ensure consistency |
 
 <!-- /ANCHOR:overview -->
+
 ---
 
+## 2. STRUCTURE
 <!-- ANCHOR:structure -->
-## 2. 📁 STRUCTURE
 
 > **Note**: Source files remain locally and are also available in `@spec-kit/shared`.
 
@@ -63,10 +65,11 @@ learning/
 | `index.ts` | Unified export of all learning functionality |
 
 <!-- /ANCHOR:structure -->
+
 ---
 
+## 3. FEATURES
 <!-- ANCHOR:features -->
-## 3. ⚡ FEATURES
 
 ### Correction Types
 
@@ -104,10 +107,11 @@ learning/
 | `merge_memories(source_ids, merged_id, reason)` | Consolidate multiple memories |
 
 <!-- /ANCHOR:features -->
+
 ---
 
-<!-- ANCHOR:examples -->
-## 4. 💡 USAGE EXAMPLES
+## 4. USAGE EXAMPLES
+<!-- ANCHOR:usage-examples -->
 
 ### Recording a Correction
 
@@ -182,11 +186,12 @@ const stats = get_corrections_stats();
 // { total: 42, by_type: { superseded: 30, deprecated: 8, ... }, undone: 3 }
 ```
 
-<!-- /ANCHOR:examples -->
+<!-- /ANCHOR:usage-examples -->
+
 ---
 
+## 5. RELATED RESOURCES
 <!-- ANCHOR:related -->
-## 5. 📚 RELATED RESOURCES
 
 ### Internal Documentation
 
@@ -211,7 +216,8 @@ The module creates a `memory_corrections` table with:
 - Indexes for efficient queries
 
 <!-- /ANCHOR:related -->
+
 ---
 
-**Version**: 1.7.2
-**Last Updated**: 2026-02-08
+**Version**: 1.8.0
+**Last Updated**: 2026-02-16

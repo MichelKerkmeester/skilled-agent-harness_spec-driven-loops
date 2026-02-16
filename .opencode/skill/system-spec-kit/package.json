@@ -22,8 +22,8 @@
     "test:embeddings": "node scripts/tests/test-embeddings-factory.js",
     "postinstall": "node scripts/setup/record-node-version.js"
   },
-  "dependencies": {},
   "devDependencies": {
+    "@huggingface/transformers": "^3.8.1",
     "@types/better-sqlite3": "^7.6.13",
     "@types/node": "^25.2.1",
     "typescript": "^5.9.3"

@@ -228,7 +228,9 @@ const INTENT_TO_MODE: Record<string, string> = {
   fix_bug: 'focused',
   refactor: 'deep',
   security_audit: 'deep',
-  understand: 'focused'
+  understand: 'focused',
+  find_spec: 'deep',
+  find_decision: 'focused'
 };
 
 /* ---------------------------------------------------------------

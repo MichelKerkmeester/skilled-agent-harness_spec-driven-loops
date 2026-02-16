@@ -1,6 +1,6 @@
 ---
 title: "Config"
-description: "Configuration files for Spec Kit's memory system, complexity detection, search, and content filtering"
+description: "Configuration files for Spec Kit's memory system, complexity detection, search and content filtering"
 trigger_phrases:
   - "spec kit config"
   - "memory system configuration"
@@ -10,7 +10,7 @@ importance_tier: "normal"
 
 # Config
 
-> Configuration files for Spec Kit's memory system, complexity detection, search, and content filtering.
+> Configuration files for Spec Kit's memory system, complexity detection, search and content filtering.
 
 ---
 
@@ -22,24 +22,26 @@ importance_tier: "normal"
 - [3. Usage](#3--usage)
 - [4. Related Documents](#4--related-documents)
 
+<!-- /ANCHOR:table-of-contents -->
+
 ---
 
-<!-- /ANCHOR:table-of-contents -->
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 <!-- ANCHOR:overview -->
 
-This directory contains the JSON configuration files that control how the Spec Kit system operates. All files use JSONC format (JSON with comments) for maintainability. These configs are loaded by various scripts throughout the system to determine behavior for memory indexing, search ranking, complexity scoring, and content quality control.
+This directory contains the JSON configuration files that control how the Spec Kit system operates. All files use JSONC format (JSON with comments) for maintainability. These configs are loaded by various scripts throughout the system to determine behavior for memory indexing, search ranking, complexity scoring and content quality control.
 
 | File                       | Purpose                                                              |
 | -------------------------- | -------------------------------------------------------------------- |
-| `config.jsonc`             | Main configuration for memory, search, decay, tiers, and templates  |
-| `complexity-config.jsonc`  | **DEPRECATED** — Complexity detection weights/thresholds (not read by any runtime code; retained for reference) |
+| `config.jsonc`             | Main configuration for memory, search, decay, tiers and templates   |
+| `complexity-config.jsonc`  | **DEPRECATED**: Complexity detection weights/thresholds (not read by any runtime code, retained for reference) |
 | `filters.jsonc`            | Content filtering pipeline for noise removal and quality scoring     |
+
+<!-- /ANCHOR:overview -->
 
 ---
 
-<!-- /ANCHOR:overview -->
-## 2. ⚙️ CONFIGURATION OPTIONS
+## 2. CONFIGURATION OPTIONS
 <!-- ANCHOR:configuration -->
 
 ### config.jsonc
@@ -51,7 +53,7 @@ This directory contains the JSON configuration files that control how the Spec K
 3. **Memory Index** - SQLite database path, auto-rebuild, verification
 4. **Trigger Surfacing** - Auto-surface relevant memories (min similarity: 70, max: 3 results)
 5. **Memory Decay** - Time-based relevance decay (90-day scale, 0.3 weight, ~62 day half-life)
-6. **Importance Tiers** - Six-tier system (constitutional → deprecated) with search boosts and expiration
+6. **Importance Tiers** - Six-tier system (constitutional to deprecated) with search boosts and expiration
 7. **Hybrid Search** - RRF fusion of FTS + vector results (k=60)
 8. **Context Type Detection** - Auto-classify context types (research, implementation, decision, discovery)
 9. **Access Tracking** - Boost frequently accessed memories (0.1 per access, max 0.5)
@@ -90,10 +92,10 @@ This directory contains the JSON configuration files that control how the Spec K
 - Uncertainty keywords (unknown, unclear, tbd): 15 points each
 
 **Feature Scaling:**
-- User stories: 1-2 (Level 1) → 8-15 (Level 3+)
-- Phases: 2-3 (Level 1) → 8-12 (Level 3+)
-- Tasks: 5-15 (Level 1) → 100-200 (Level 3+)
-- Checklist items: 10-20 (Level 1) → 100-150 (Level 3+)
+- User stories: 1-2 (Level 1) to 8-15 (Level 3+)
+- Phases: 2-3 (Level 1) to 8-12 (Level 3+)
+- Tasks: 5-15 (Level 1) to 100-200 (Level 3+)
+- Checklist items: 10-20 (Level 1) to 100-150 (Level 3+)
 
 ### filters.jsonc
 
@@ -114,11 +116,12 @@ This directory contains the JSON configuration files that control how the Spec K
 - Factors: Uniqueness (30%), Density (30%), File refs (20%), Decisions (20%)
 - Purpose: Flag low-quality content for review
 
+<!-- /ANCHOR:configuration -->
+
 ---
 
-<!-- /ANCHOR:configuration -->
-## 3. 💡 USAGE
-<!-- ANCHOR:examples -->
+## 3. USAGE
+<!-- ANCHOR:usage -->
 
 ### Loading Configs
 
@@ -138,9 +141,9 @@ The loader strips JSONC comments and parses JSON safely with fallback to default
 
 ### Modifying Settings
 
-1. **Edit the JSONC file** directly - comments are preserved
-2. **Reload required** - Most scripts load config on startup
-3. **Validation** - Invalid JSON will fall back to defaults with warnings
+1. **Edit the JSONC file** directly. Comments are preserved
+2. **Reload required**: Most scripts load config on startup
+3. **Validation**: Invalid JSON will fall back to defaults with warnings
 
 ### Common Adjustments
 
@@ -174,10 +177,11 @@ The loader strips JSONC comments and parses JSON safely with fallback to default
 }
 ```
 
+<!-- /ANCHOR:usage -->
+
 ---
 
-<!-- /ANCHOR:examples -->
-## 4. 📚 RELATED DOCUMENTS
+## 4. RELATED DOCUMENTS
 <!-- ANCHOR:related -->
 
 | Document | Purpose |
@@ -189,7 +193,8 @@ The loader strips JSONC comments and parses JSON safely with fallback to default
 | [Config Loader](../scripts/core/config.ts) | Implementation of config loading |
 | [Content Filter](../scripts/lib/content-filter.ts) | Filter pipeline implementation |
 
+<!-- /ANCHOR:related -->
+
 ---
 
-<!-- /ANCHOR:related -->
 *Part of the system-spec-kit conversation memory and context preservation system.*

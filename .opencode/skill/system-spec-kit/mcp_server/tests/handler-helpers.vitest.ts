@@ -325,10 +325,10 @@ describe('CONTEXT_MODES', () => {
 ──────────────────────────────────────────────────────────────── */
 
 describe('INTENT_TO_MODE', () => {
-  it('has all 5 intent mappings', () => {
+  it('has all 7 intent mappings', () => {
     if (!memoryContext?.INTENT_TO_MODE) return;
     const mapping = memoryContext.INTENT_TO_MODE;
-    const expected = ['add_feature', 'fix_bug', 'refactor', 'security_audit', 'understand'];
+    const expected = ['add_feature', 'fix_bug', 'refactor', 'security_audit', 'understand', 'find_spec', 'find_decision'];
     const keys = Object.keys(mapping);
     expect(keys).toHaveLength(expected.length);
     for (const k of expected) {

@@ -438,6 +438,42 @@ describe('MEMORY SAVE EXTENDED', () => {
       }
     });
 
+    it.skipIf(!canRun || !db)('returns error when reinforcement update affects zero rows', () => {
+      const row = db.prepare('SELECT id FROM memory_index LIMIT 1').get();
+      if (!row) {
+        return;
+      }
+
+      const triggerName = `skip_reinforce_${Date.now()}`;
+      const parsed = {
+        specFolder: 'specs/test',
+        filePath: '/test/memory.md',
+        title: 'Test',
+        triggerPhrases: [],
+        content: 'test content',
+        contentHash: 'hash',
+        contextType: 'implementation',
+        importanceTier: 'normal',
+      };
+
+      try {
+        db.exec(`
+          CREATE TRIGGER ${triggerName}
+          BEFORE UPDATE ON memory_index
+          WHEN OLD.id = ${Number(row.id)}
+          BEGIN
+            SELECT RAISE(IGNORE);
+          END;
+        `);
+
+        const result = reinforceFn!(row.id, parsed);
+        expect(result.status).toBe('error');
+        expect(String(result.error || '')).toContain('matched 0 rows');
+      } finally {
+        db.exec(`DROP TRIGGER IF EXISTS ${triggerName}`);
+      }
+    });
+
     it.skipIf(!canRun || !db)('error result has expected fields', () => {
       const parsed = {
         specFolder: 'specs/my-spec',

@@ -22,27 +22,28 @@ importance_tier: "normal"
 
 ---
 
-## TABLE OF CONTENTS
 <!-- ANCHOR:table-of-contents -->
+## TABLE OF CONTENTS
 
 - [1. 📖 OVERVIEW](#1--overview)
 - [2. 🚀 QUICK START](#2--quick-start)
-- [3. 💡 TOOL SELECTION GUIDE](#3--tool-selection-guide)
-- [4. 🔌 MCP TOOLS (7 TOTAL)](#4--mcp-tools-7-total)
-- [5. 🔧 NAMING CONVENTION](#5--naming-convention)
+- [3. 🔍 TOOL SELECTION GUIDE](#3--tool-selection-guide)
+- [4. 🧰 MCP TOOLS (7 TOTAL)](#4--mcp-tools-7-total)
+- [5. 🏷️ NAMING CONVENTION](#5--naming-convention)
 - [6. ⚙️ CONFIGURATION](#6--configuration)
 - [7. 🏗️ ARCHITECTURE](#7--architecture)
 - [8. 📊 PERFORMANCE](#8--performance)
 - [9. 💡 USAGE PATTERNS](#9--usage-patterns)
 - [10. 🛠️ TROUBLESHOOTING](#10--troubleshooting)
 - [11. 📚 RESOURCES](#11--resources)
-- [12. 📊 QUICK REFERENCE CARD](#12--quick-reference-card)
+- [12. 📌 QUICK REFERENCE CARD](#12--quick-reference-card)
 
 ---
 
 <!-- /ANCHOR:table-of-contents -->
-## 1. 📖 OVERVIEW
+
 <!-- ANCHOR:overview -->
+## 1. 📖 OVERVIEW
 
 ### What It Does
 
@@ -50,7 +51,7 @@ Code Mode transforms AI agents from clunky tool callers into efficient code exec
 
 ### Why Code Mode?
 
-Research from [Apple](https://machinelearning.apple.com/research/codeact), [Cloudflare](https://blog.cloudflare.com/code-mode/), and [Anthropic](https://www.anthropic.com/engineering/code-execution-with-mcp) proves that LLMs excel at writing code but struggle with tool calls.
+Research from [Apple](https://machinelearning.apple.com/research/codeact), [Cloudflare](https://blog.cloudflare.com/code-mode/), [Anthropic](https://www.anthropic.com/engineering/code-execution-with-mcp) and others proves that LLMs excel at writing code but struggle with tool calls.
 
 ### Key Capabilities
 
@@ -85,20 +86,21 @@ Research from [Apple](https://machinelearning.apple.com/research/codeact), [Clou
 ---
 
 <!-- /ANCHOR:overview -->
-## 2. 🚀 QUICK START
+
 <!-- ANCHOR:quick-start -->
+## 2. 🚀 QUICK START
 
 ### Prerequisites
 
 | Component | Purpose |
 |-----------|---------|
 | **Node.js 18+** | Runtime environment |
-| **MCP Client** | OpenCode, Claude Desktop, or compatible client |
+| **MCP Client** | OpenCode, Claude Desktop or compatible client |
 | **API Keys** | For services you want to connect (optional) |
 
 ### Two MCP Configuration Systems
 
-**IMPORTANT**: Code Mode only accesses tools in `.utcp_config.json`. Native MCP tools like Sequential Thinking and Spec Kit Memory are NOT accessed through Code Mode.
+**IMPORTANT**: Code Mode only accesses tools in `.utcp_config.json`. Native MCP tools like Sequential Thinking, Spec Kit Memory and codex-specialized-subagents are NOT accessed through Code Mode.
 
 | System | Config File | Examples |
 |--------|-------------|----------|
@@ -127,8 +129,9 @@ call_tool_chain({
 ---
 
 <!-- /ANCHOR:quick-start -->
-## 3. 💡 TOOL SELECTION GUIDE
-<!-- ANCHOR:tool-selection-guide -->
+
+<!-- ANCHOR:tool-selection -->
+## 3. 🔍 TOOL SELECTION GUIDE
 
 ### Tools at a Glance
 
@@ -167,24 +170,25 @@ search_tools  call_tool_   list_tools  register_   deregister_
 
 ### When to Use Code Mode
 
-**✅ USE Code Mode for:**
+**USE Code Mode for:**
 - All external MCP tool calls (Webflow, Figma, ClickUp, etc.)
 - Multi-tool workflows requiring state between calls
 - Browser automation via Chrome DevTools MCP
 - Any tools configured in `.utcp_config.json`
 
-**❌ DO NOT use Code Mode for:**
+**DO NOT use Code Mode for:**
 - File operations (use Read, Write, Edit tools)
 - Text searching (use Grep tool)
 - File discovery (use Glob tool)
 - Bash commands (use Bash tool)
-- Native MCP tools (Sequential Thinking, Spec Kit Memory)
+- Native MCP tools (Sequential Thinking, Spec Kit Memory, codex-specialized-subagents)
 
 ---
 
-<!-- /ANCHOR:tool-selection-guide -->
-## 4. 🔌 MCP TOOLS (7 TOTAL)
-<!-- ANCHOR:mcp-tools-7-total -->
+<!-- /ANCHOR:tool-selection -->
+
+<!-- ANCHOR:mcp-tools -->
+## 4. 🧰 MCP TOOLS (7 TOTAL)
 
 ### 4.1 call_tool_chain
 
@@ -330,9 +334,10 @@ register_manual({
 
 ---
 
-<!-- /ANCHOR:mcp-tools-7-total -->
-## 5. 🔧 NAMING CONVENTION
+<!-- /ANCHOR:mcp-tools -->
+
 <!-- ANCHOR:naming-convention -->
+## 5. 🏷️ NAMING CONVENTION
 
 ### Critical Pattern
 
@@ -354,11 +359,11 @@ register_manual({
 ### Common Mistakes
 
 ```typescript
-// ❌ WRONG - missing manual prefix
+// WRONG - missing manual prefix
 await webflow.sites_list({});
 await clickup.create_task({});
 
-// ✅ CORRECT - includes manual prefix
+// CORRECT - includes manual prefix
 await webflow.webflow_sites_list({});
 await clickup.clickup_create_task({});
 ```
@@ -381,8 +386,9 @@ tool_info({ tool_name: "webflow.webflow_sites_list" });
 ---
 
 <!-- /ANCHOR:naming-convention -->
-## 6. ⚙️ CONFIGURATION
+
 <!-- ANCHOR:configuration -->
+## 6. ⚙️ CONFIGURATION
 
 ### Configuration Files
 
@@ -455,30 +461,31 @@ tool_info({ tool_name: "webflow.webflow_sites_list" });
 ---
 
 <!-- /ANCHOR:configuration -->
-## 7. 🏗️ ARCHITECTURE
+
 <!-- ANCHOR:architecture -->
+## 7. 🏗️ ARCHITECTURE
 
 ### System Overview
 
 ```text
 ┌─────────────────────────────────────────────────────────────────┐
 │                    CLI AI Agents (OpenCode)                     │
-└─────────────────────────────┬───────────────────────────────────┘
+└─────────────────────────────────┬───────────────────────────────┘
                               │ MCP Protocol (stdio)
                               ▼
 ┌─────────────────────────────────────────────────────────────────┐
 │                    Code Mode MCP Server                         │
 │  ┌───────────────────────────────────────────────────────────┐  │
 │  │              TypeScript Execution Sandbox                 │  │
-│  │  • V8 Isolate (secure)                                    │  │
-│  │  • Tool access via TypeScript API                         │  │
-│  │  • console.log() captured                                 │  │
+│  │  - V8 Isolate (secure)                                    │  │
+│  │  - Tool access via TypeScript API                         │  │
+│  │  - console.log() captured                                 │  │
 │  └───────────────────────────────────────────────────────────┘  │
 │  ┌───────────────────────────────────────────────────────────┐  │
 │  │                UTCP Client Layer                          │  │
-│  │  • Progressive tool discovery                             │  │
-│  │  • TypeScript interface generation                        │  │
-│  │  • Tool registration management                           │  │
+│  │  - Progressive tool discovery                             │  │
+│  │  - TypeScript interface generation                        │  │
+│  │  - Tool registration management                           │  │
 │  └───────────────────────────────────────────────────────────┘  │
 └─────────────────────────────────────────────────────────────────┘
                               │
@@ -503,8 +510,9 @@ tool_info({ tool_name: "webflow.webflow_sites_list" });
 ---
 
 <!-- /ANCHOR:architecture -->
-## 8. 📊 PERFORMANCE
+
 <!-- ANCHOR:performance -->
+## 8. 📊 PERFORMANCE
 
 ### Benchmark Results
 
@@ -536,8 +544,9 @@ Independent [Python benchmark study](https://github.com/imran31415/codemode_pyth
 ---
 
 <!-- /ANCHOR:performance -->
+
+<!-- ANCHOR:usage-patterns -->
 ## 9. 💡 USAGE PATTERNS
-<!-- ANCHOR:examples -->
 
 ### Pattern 1: Single Tool Call
 
@@ -612,9 +621,10 @@ call_tool_chain({
 
 ---
 
-<!-- /ANCHOR:examples -->
-## 10. 🛠️ TROUBLESHOOTING
+<!-- /ANCHOR:usage-patterns -->
+
 <!-- ANCHOR:troubleshooting -->
+## 10. 🛠️ TROUBLESHOOTING
 
 ### Common Errors
 
@@ -624,16 +634,16 @@ call_tool_chain({
 
 **Solution**: Use `{manual_name}.{manual_name}_{tool_name}` pattern
 ```typescript
-// ❌ Wrong
+// Wrong
 await webflow.sites_list({});
 
-// ✅ Correct
+// Correct
 await webflow.webflow_sites_list({});
 ```
 
 #### "UTCP config file not found"
 
-**Cause**: Code Mode can't find `.utcp_config.json`
+**Cause**: Code Mode cannot find `.utcp_config.json`
 
 **Solution**:
 1. Check `UTCP_CONFIG_FILE` env var points to correct absolute path
@@ -647,7 +657,7 @@ await webflow.webflow_sites_list({});
 **Solution**:
 1. Check MCP server command is correct and executable
 2. Verify environment variables are set in `.env`
-3. Try `list_tools()` to see what's registered
+3. Try `list_tools()` to see what is registered
 
 #### "Execution timeout"
 
@@ -674,8 +684,9 @@ tool_info({ tool_name: "webflow.webflow_sites_list" });
 ---
 
 <!-- /ANCHOR:troubleshooting -->
+
+<!-- ANCHOR:resources -->
 ## 11. 📚 RESOURCES
-<!-- ANCHOR:related -->
 
 ### Bundled Files
 
@@ -704,6 +715,8 @@ tool_info({ tool_name: "webflow.webflow_sites_list" });
 | Skill | Purpose | MCP Type |
 |-------|---------|----------|
 | **[system-spec-kit](../system-spec-kit/README.md)** | Context preservation | Native MCP |
+| **[mcp-figma](../mcp-figma/README.md)** | Figma design file retrieval and export | Code Mode MCP |
+| **[workflows-chrome-devtools](../workflows-chrome-devtools/README.md)** | Browser automation with CLI-first fallback to MCP | Hybrid (CLI + Code Mode MCP) |
 
 ### Cross-Skill Workflow
 
@@ -741,9 +754,10 @@ call_tool_chain({
 
 ---
 
-<!-- /ANCHOR:related -->
-## 12. 📊 QUICK REFERENCE CARD
-<!-- ANCHOR:quick-reference-card -->
+<!-- /ANCHOR:resources -->
+
+<!-- ANCHOR:quick-reference -->
+## 12. 📌 QUICK REFERENCE CARD
 
 ### Essential Commands
 
@@ -778,5 +792,6 @@ Examples:
 - `clickup.clickup_create_task({})`
 - `figma.figma_get_file({})`
 
-**Remember**: Code Mode is for **external MCP tools** (Webflow, Figma, ClickUp, etc.). Native MCP tools like Sequential Thinking and Spec Kit Memory should be called directly, NOT through `call_tool_chain()`.
-<!-- /ANCHOR:quick-reference-card -->
+**Remember**: Code Mode is for **external MCP tools** (Webflow, Figma, ClickUp, etc.). Native MCP tools like Sequential Thinking, Spec Kit Memory and codex-specialized-subagents should be called directly, NOT through `call_tool_chain()`.
+
+<!-- /ANCHOR:quick-reference -->

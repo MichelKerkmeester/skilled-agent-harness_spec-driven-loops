@@ -77,8 +77,9 @@
 ### v2.2.17.0 — Specs 126 + 127: Full Spec Doc Indexing + Documentation Alignment
 
 - **Date**: 2026-02-16
-- **Files changed**: 26 (10 modified + 4 created for code, 12 spec docs)
+- **Files changed**: 26 total (16 code, 10 documentation)
 - **Spec 126 (code)**: Schema v13, 11 document types, scoring multipliers, 2 new intents (find_spec + find_decision), spec document crawler, causal chains, feature flag (includeSpecDocs)
+- **Spec 126 post-implementation hardening**: MCP server import path regression fixes (context-server.ts, attention-decay.ts), memory-index specFolder boundary filtering + incremental chain coverage, memory-save document_type/spec_level preservation in update/reinforce paths, vector-index metadata update plumbing, causal edge conflict-update semantics for stable edge IDs
 - **Spec 127 (docs)**: All READMEs, SKILL.md, and reference files aligned to post-126 state
 - **5th indexing source**: Spec folder documents join memory, constitutional, skill READMEs, project READMEs
 - **7 intents total** (was 5): added find_spec, find_decision
@@ -87,7 +88,7 @@
 
 - **Date**: 2026-02-16
 - **Files changed**: 7 (1 created, 6 modified)
-- **Post-upgrade AI workflow**: Agent reads existing spec context, replaces `[placeholder]` text
+- **Post-upgrade AI workflow**: Agent reads existing spec context, replaces unresolved placeholder text
 - **New script**: `check-placeholders.sh` — scans for remaining bracket placeholder patterns
 - **ADR-001**: AI-side workflow over script modification
 - **ADR-002**: Missing context handled with "N/A" rather than fabrication

@@ -1,6 +1,6 @@
 ---
 title: "Spec Kit Memory MCP Server"
-description: "Cognitive memory system for AI assistants featuring hybrid search, FSRS-powered decay, causal graphs, and session deduplication."
+description: "Cognitive memory system for AI assistants featuring hybrid search, FSRS-powered decay, causal graphs and session deduplication."
 trigger_phrases:
   - "MCP server"
   - "spec kit memory"
@@ -10,9 +10,9 @@ importance_tier: "normal"
 
 # Spec Kit Memory MCP Server
 
-> AI memory that actually persists without poisoning your context window.
+> AI memory that persists without poisoning your context window.
 
-A cognitive memory system for AI assistants featuring hybrid search, FSRS-powered decay, causal graphs, and session deduplication. Context works across sessions, models, and projects--without re-explaining everything every conversation.
+A cognitive memory system for AI assistants featuring hybrid search, FSRS-powered decay, causal graphs and session deduplication. Context works across sessions, models, projects and tools, without re-explaining everything every conversation.
 
 ---
 
@@ -29,13 +29,11 @@ A cognitive memory system for AI assistants featuring hybrid search, FSRS-powere
 - [8. ⚙️ CONFIGURATION](#8--configuration)
 - [9. 💡 USAGE EXAMPLES](#9--usage-examples)
 - [10. 🛠️ TROUBLESHOOTING](#10--troubleshooting)
-- [11. 🔗 RELATED RESOURCES](#11--related-resources)
+- [11. 📚 RELATED RESOURCES](#11--related-resources)
 
 ---
 
 <!-- /ANCHOR:table-of-contents -->
-
----
 
 ## 1. 📖 OVERVIEW
 <!-- ANCHOR:overview -->
@@ -55,7 +53,7 @@ None of it works because none of it understands *what matters*.
 
 This MCP server gives your AI assistant persistent memory with intelligence built in:
 
-- **Hybrid search** finds what you mean, not just what you typed
+- **Hybrid search** finds what you mean, not what you typed
 - **Cognitive decay** keeps relevant memories fresh, lets stale ones fade
 - **Causal graphs** trace decision lineage ("Why did we choose JWT?")
 - **Session awareness** prevents duplicate context, saves tokens
@@ -90,9 +88,18 @@ This MCP server gives your AI assistant persistent memory with intelligence buil
 | **RRF Search Fusion** | +40-50% relevance | Combines vector + BM25 + graph with k=60, 10% convergence bonus |
 | **Type-Specific Half-Lives** | Smarter decay | 9 memory types decay at different rates |
 | **Incremental Indexing** | 10-100x faster | Content hash + mtime diff updates |
-| **4-Source Pipeline** | Broader knowledge | Indexes spec files, constitutional, skill READMEs, project READMEs |
+| **5-Source Pipeline** | Broader knowledge | Indexes spec files, constitutional, skill READMEs, project READMEs and spec documents |
+| **Document-Type Scoring** | Precision ranking | 11 document types with scoring multipliers (spec: 1.4x, plan: 1.3x, constitutional: 2.0x, scratch: 0.6x) |
 | **Recovery Hints** | Self-service errors | 49 error codes with actionable guidance |
 | **Lazy Model Loading** | <500ms startup | Defer embedding init until first use |
+
+### Spec 126 Post-Implementation Hardening
+
+- Fixed import-path regressions in `context-server.ts` and `lib/cognitive/attention-decay.ts` to prevent runtime module resolution failures after compile.
+- Hardened `memory-index` specFolder boundary filtering and incremental chain coverage so scoped indexing stays folder-safe while preserving spec document chain links.
+- Hardened `memory-save` update/reinforce paths to preserve `document_type` and `spec_level` metadata.
+- Added vector-index metadata update plumbing so metadata changes propagate to vector-layer records.
+- Updated causal edge conflict handling to conflict-update semantics that keep edge IDs stable across link updates.
 
 ---
 
@@ -117,8 +124,6 @@ This MCP server gives your AI assistant persistent memory with intelligence buil
 ---
 
 <!-- /ANCHOR:overview -->
-
----
 
 ## 2. 🔧 MCP TOOLS
 <!-- ANCHOR:mcp-tools -->
@@ -148,7 +153,7 @@ This MCP server gives your AI assistant persistent memory with intelligence buil
 | Tool | Purpose | Latency |
 |------|---------|---------|
 | `memory_save` | Index a single memory file | ~1s |
-| `memory_index_scan` | Bulk scan and index workspace (4-source pipeline, incremental) | varies |
+| `memory_index_scan` | Bulk scan and index workspace (5-source pipeline, incremental) | varies |
 | `memory_update` | Update metadata/tier/triggers | <50ms* |
 | `memory_delete` | Delete by ID or spec folder | <50ms |
 | `memory_validate` | Record validation feedback | <50ms |
@@ -274,28 +279,28 @@ All handler responses include a `tokenBudget` field in the `meta` object showing
 | `incremental` | boolean | true | Skip unchanged files (mtime + hash check) |
 | `includeConstitutional` | boolean | true | Scan `.opencode/skill/*/constitutional/` directories |
 | `includeReadmes` | boolean | **true** | Include README files from skill and project directories |
+| `includeSpecDocs` | boolean | **true** | Include spec folder documents (specs, plans, tasks, etc.) from `.opencode/specs/` |
 
-**4-Source Pipeline:** When `memory_index_scan` runs, it categorizes discovered files into four sources:
+**5-Source Pipeline:** When `memory_index_scan` runs, it categorizes discovered files into five sources:
 
 | Source | Path Pattern | Importance Weight | Description |
 |--------|-------------|-------------------|-------------|
-| `specFiles` | `specs/**/memory/*.md` | Per-file metadata | Memory files from spec folders |
-| `constitutionalFiles` | `.opencode/skill/*/constitutional/*.md` | Per-file metadata | Constitutional tier files |
-| `skillReadmes` | `.opencode/skill/*/README.md` | 0.3 | Skill documentation (lower weight to never outrank user work) |
+| `constitutionalFiles` | `.opencode/skill/*/constitutional/*.md` | Per-file metadata | Constitutional tier files (never decay, always surface) |
+| `specDocuments` | `.opencode/specs/**/*.md` | Per-type multiplier | Spec folder documents (specs, plans, decisions) with document-type scoring |
+| `specFiles` | `specs/**/memory/*.md` | 0.5 | Memory files from spec folders |
 | `projectReadmes` | `**/README.md` (excl. node_modules, .git, etc.) | 0.4 | Project documentation providing codebase context |
+| `skillReadmes` | `.opencode/skill/*/README.md` | 0.3 | Skill documentation (lower weight to never outrank user work) |
 
-README sources are indexed with reduced importance weights so they provide useful background context during search without outranking user-authored memories. All 75 indexed READMEs follow consistent formatting and anchor conventions (specs 111/113), which improves embedding quality and anchor-based retrieval accuracy. Set `includeReadmes: false` for backward-compatible behavior that excludes README sources.
+README sources are indexed with reduced importance weights so they provide useful background context during search without outranking user-authored memories. All 75 indexed READMEs follow consistent formatting and anchor conventions (specs 111/113), which improves embedding quality and anchor-based retrieval accuracy. Set `includeReadmes: false` for backward-compatible behavior that excludes README sources. Spec documents are controlled by `includeSpecDocs` (default: `true`) or the `SPECKIT_INDEX_SPEC_DOCS` environment variable, and use document-type scoring multipliers (11 types).
 
 ---
 
 <!-- /ANCHOR:mcp-tools -->
 
----
-
 ## 3. 🧠 COGNITIVE MEMORY
 <!-- ANCHOR:cognitive-memory -->
 
-This isn't basic memory storage. The system implements biologically-inspired cognitive features that mirror how human memory actually works.
+This is not basic memory storage. The system implements biologically-inspired cognitive features that mirror how human memory works.
 
 ### FSRS Power-Law Decay
 
@@ -308,9 +313,9 @@ R(t, S) = (1 + (19/81) × t/S)^(-0.5)    where 19/81 ≈ 0.2346; R(S,S) = 0.9
 Where:
 - `R(t, S)` = Retrievability (probability of recall) at time t with stability S
 - `t` = Time elapsed since last access (in days)
-- `S` = Stability (memory strength in days)--higher = slower decay
+- `S` = Stability (memory strength in days). Higher values mean slower decay
 
-**Why FSRS beats exponential decay:** Exponential decay forgets too aggressively. FSRS matches how human memory actually works--rapid initial forgetting that slows over time.
+**Why FSRS beats exponential decay:** Exponential decay forgets too aggressively. FSRS matches how human memory works: rapid initial forgetting that slows over time.
 
 ---
 
@@ -350,7 +355,7 @@ Different memory types decay at different rates. Procedural knowledge lasts long
 
 ### Multi-Factor Decay
 
-Decay score is computed from 5 factors, not just time elapsed:
+Decay score is computed from 5 factors, not time elapsed alone:
 
 | Factor | Weight | Description |
 |--------|--------|-------------|
@@ -371,7 +376,7 @@ Prevents duplicate memories from polluting the index:
 | Similarity | Category | Action |
 |------------|----------|--------|
 | >= 0.95 | **DUPLICATE** | Block save, reinforce existing |
-| 0.90-0.94 | **HIGH_MATCH** | Check for contradiction; UPDATE or SUPERSEDE |
+| 0.90-0.94 | **HIGH_MATCH** | Check for contradiction. UPDATE or SUPERSEDE |
 | 0.70-0.89 | **MEDIUM_MATCH** | Create with link to related memory |
 | 0.50-0.69 | **LOW_MATCH** | Create new, note similarity |
 | < 0.50 | **UNIQUE** | Create new memory normally |
@@ -380,7 +385,7 @@ Prevents duplicate memories from polluting the index:
 
 ### Testing Effect
 
-Accessing memories strengthens them--the harder the recall, the greater the benefit:
+Accessing memories strengthens them. The harder the recall, the greater the benefit:
 
 | Retrievability at Access | Stability Boost |
 |--------------------------|-----------------|
@@ -461,8 +466,6 @@ LI = (KnowledgeDelta * 0.4) + (UncertaintyReduction * 0.35) + (ContextImprovemen
 
 <!-- /ANCHOR:cognitive-memory -->
 
----
-
 ## 4. 🔍 SEARCH SYSTEM
 <!-- ANCHOR:search-system -->
 
@@ -538,6 +541,8 @@ The system detects query intent and applies task-specific search weights:
 | **refactor** | +patterns, +structure | "improve auth module" |
 | **security_audit** | +security, +vulnerabilities | "check auth security" |
 | **understand** | +semantic, +explanatory | "how does auth work" |
+| **find_spec** | +spec documents, +plans, +decision records | "find the spec for auth" |
+| **find_decision** | +decision records, +architectural context | "why did we choose JWT" |
 
 ---
 
@@ -578,7 +583,7 @@ We chose JWT with refresh tokens because:
 
 ### Constitutional Tier
 
-The **constitutional** tier is special--these memories ALWAYS appear at the top of search results:
+The **constitutional** tier is special. These memories ALWAYS appear at the top of search results:
 
 | Behavior | Description |
 |----------|-------------|
@@ -591,8 +596,6 @@ The **constitutional** tier is special--these memories ALWAYS appear at the top 
 ---
 
 <!-- /ANCHOR:search-system -->
-
----
 
 ## 5. 📊 IMPORTANCE TIERS
 <!-- ANCHOR:importance-tiers -->
@@ -621,7 +624,7 @@ The **constitutional** tier is special--these memories ALWAYS appear at the top 
 
 ### Source-Type Importance Weighting
 
-In addition to tiers, the indexing pipeline assigns importance weights based on file source. This ensures auto-indexed content (like READMEs) never outranks user-authored memories:
+The indexing pipeline also assigns importance weights based on file source. This ensures auto-indexed content (like READMEs) never outranks user-authored memories:
 
 | Source Type | Weight | Rationale |
 |-------------|--------|-----------|
@@ -633,8 +636,6 @@ In addition to tiers, the indexing pipeline assigns importance weights based on 
 ---
 
 <!-- /ANCHOR:importance-tiers -->
-
----
 
 ## 6. 📁 STRUCTURE
 <!-- ANCHOR:structure -->
@@ -658,7 +659,7 @@ mcp_server/
 │   ├── memory-triggers.ts  # memory_match_triggers + cognitive
 │   ├── memory-save.ts      # memory_save + PE gating
 │   ├── memory-crud.ts      # update/delete/list/stats/health/validate
-│   ├── memory-index.ts     # memory_index_scan + 4-source pipeline + README indexing
+│   ├── memory-index.ts     # memory_index_scan + 5-source pipeline + README/spec doc indexing
 │   ├── checkpoints.ts      # checkpoint_create/list/restore/delete
 │   ├── session-learning.ts # preflight/postflight/learning history
 │   ├── memory-context.ts   # memory_context + unified entry
@@ -722,10 +723,10 @@ mcp_server/
 │   │   ├── vector-index-impl.ts    # Vector index implementation
 │   │   ├── hybrid-search.ts        # FTS5 + vector fusion with RRF
 │   │   ├── rrf-fusion.ts           # RRF fusion algorithm
-│   │   ├── bm25-index.ts           # BM25 lexical search
+│   │   ├── bm25-index.ts          # BM25 lexical search
 │   │   ├── cross-encoder.ts        # Cross-encoder reranking
 │   │   ├── reranker.ts             # Reranking utilities
-│   │   └── intent-classifier.ts    # 5 intent types
+│   │   └── intent-classifier.ts    # 7 intent types
 │   │
 │   ├── session/            # Session management (1 module)
 │   │   └── session-manager.ts      # Session deduplication
@@ -791,13 +792,11 @@ mcp_server/
 └── node_modules/           # Dependencies
 ```
 
-> **Note:** All source files are TypeScript (`.ts`) in the source directories (root, core, handlers, lib, tools, formatters, hooks, utils, scripts). The TypeScript compiler (`tsc`) compiles them to JavaScript in the `dist/` directory via `outDir: "./dist"` in tsconfig.json. At runtime, `node` executes `dist/context-server.js` (specified in package.json as the entry point). The `__dirname` variable resolves to `dist/core/` at runtime, so path resolution in config.ts uses `SERVER_DIR = path.join(__dirname, '..')` to reach `dist/`, `LIB_DIR = path.join(__dirname, '..', 'lib')` to reach `dist/lib/`, and `SHARED_DIR = path.join(SERVER_DIR, '..', 'shared')` for the workspace-shared directory.
+> **Note:** All source files are TypeScript (`.ts`) in the source directories (root, core, handlers, lib, tools, formatters, hooks, utils, scripts). The TypeScript compiler (`tsc`) compiles them to JavaScript in the `dist/` directory via `outDir: "./dist"` in tsconfig.json. At runtime, `node` executes `dist/context-server.js` (specified in package.json as the entry point). The `__dirname` variable resolves to `dist/core/` at runtime, so path resolution in config.ts uses `SERVER_DIR = path.join(__dirname, '..')` to reach `dist/` and `LIB_DIR = path.join(__dirname, '..', 'lib')` to reach `dist/lib/`. `SHARED_DIR = path.join(SERVER_DIR, '..', 'shared')` resolves to the workspace-shared directory.
 
 ---
 
 <!-- /ANCHOR:structure -->
-
----
 
 ## 7. 🚀 QUICK START
 <!-- ANCHOR:quick-start -->
@@ -862,8 +861,6 @@ Add to your MCP client configuration (e.g., `opencode.json`):
 
 <!-- /ANCHOR:quick-start -->
 
----
-
 ## 8. ⚙️ CONFIGURATION
 <!-- ANCHOR:configuration -->
 
@@ -873,15 +870,17 @@ Add to your MCP client configuration (e.g., `opencode.json`):
 
 | Variable | Default | Description |
 |----------|---------|-------------|
-| `MEMORY_DB_PATH` | `./database/context-index.sqlite` | Database location |
+| `MEMORY_DB_PATH` | `./dist/database/context-index.sqlite` | Database location |
 | `MEMORY_BASE_PATH` | CWD | Workspace root for memory files |
 | `DEBUG_TRIGGER_MATCHER` | `false` | Enable verbose trigger logs |
+
+In this repository, `database/context-index.sqlite` is maintained as a compatibility symlink to the canonical runtime path `dist/database/context-index.sqlite`.
 
 #### Embedding Providers
 
 | Variable | Required | Description |
 |----------|----------|-------------|
-| `EMBEDDINGS_PROVIDER` | No | Force: `voyage`, `openai`, or `hf-local` |
+| `EMBEDDINGS_PROVIDER` | No | Force: `voyage`, `openai` or `hf-local` |
 | `VOYAGE_API_KEY` | For Voyage | Voyage AI API key |
 | `OPENAI_API_KEY` | For OpenAI | OpenAI API key |
 
@@ -917,6 +916,7 @@ Add to your MCP client configuration (e.g., `opencode.json`):
 | `SPECKIT_RELATIONS` | `true` | Enable causal memory graph |
 | `SPECKIT_CROSS_ENCODER` | `false` | Enable cross-encoder reranking |
 | `SPECKIT_INCREMENTAL` | `true` | Enable incremental indexing |
+| `SPECKIT_INDEX_SPEC_DOCS` | `false` | Enable spec folder document indexing (5th source) |
 
 ---
 
@@ -937,7 +937,7 @@ Add to your MCP client configuration (e.g., `opencode.json`):
 
 | Table | Purpose |
 |-------|---------|
-| `memory_index` | Memory metadata (title, tier, triggers) |
+| `memory_index` | Memory metadata (title, tier, triggers, document_type, spec_level per schema v13) |
 | `vec_memories` | Vector embeddings (sqlite-vec) |
 | `memory_fts` | Full-text search index (FTS5) |
 | `checkpoints` | State snapshots |
@@ -978,10 +978,8 @@ Add to your MCP client configuration (e.g., `opencode.json`):
 
 <!-- /ANCHOR:configuration -->
 
----
-
 ## 9. 💡 USAGE EXAMPLES
-<!-- ANCHOR:examples -->
+<!-- ANCHOR:usage-examples -->
 
 ### Basic Memory Search
 
@@ -1097,9 +1095,7 @@ checkpoint_restore({ name: "pre-cleanup" })
 
 ---
 
-<!-- /ANCHOR:examples -->
-
----
+<!-- /ANCHOR:usage-examples -->
 
 ## 10. 🛠️ TROUBLESHOOTING
 <!-- ANCHOR:troubleshooting -->
@@ -1128,7 +1124,7 @@ rm -rf ~/.cache/huggingface/
 **Solution:**
 ```bash
 # Delete database
-rm .opencode/skill/system-spec-kit/mcp_server/database/context-index.sqlite
+rm .opencode/skill/system-spec-kit/mcp_server/dist/database/context-index.sqlite
 
 # Restart MCP server (recreates database)
 # Then re-index
@@ -1144,7 +1140,7 @@ memory_index_scan({ force: true })
 **Solution:**
 ```bash
 # Delete database (clears old embeddings)
-rm .opencode/skill/system-spec-kit/mcp_server/database/context-index.sqlite
+rm .opencode/skill/system-spec-kit/mcp_server/dist/database/context-index.sqlite
 
 # Re-index with new provider
 memory_index_scan({ force: true })
@@ -1182,7 +1178,7 @@ Every error includes actionable recovery guidance:
 |------------|---------------|
 | `E041` | Run `memory_index_scan` to rebuild vector index |
 | `E001` | Check embedding API key or set `SPECKIT_LOCAL_EMBEDDINGS=true` |
-| `E040` | Query too long - reduce to < 10000 characters |
+| `E040` | Query too long, reduce to < 10000 characters |
 | `timeout` | Increase `SPECKIT_SEARCH_TIMEOUT` or simplify query |
 | `corrupted` | Delete checkpoint and recreate |
 | `not_found` | List available checkpoints with `checkpoint_list()` |
@@ -1228,9 +1224,7 @@ node dist/tests/causal-edges.test.js
 
 <!-- /ANCHOR:troubleshooting -->
 
----
-
-## 11. 🔗 RELATED RESOURCES
+## 11. 📚 RELATED RESOURCES
 <!-- ANCHOR:related -->
 
 ### Parent Documentation
@@ -1251,7 +1245,7 @@ node dist/tests/causal-edges.test.js
 | `lib/scoring/composite-scoring.ts` | Multi-factor ranking |
 | `lib/search/hybrid-search.ts` | FTS5 + vector fusion with RRF |
 | `lib/search/bm25-index.ts` | BM25 lexical search |
-| `lib/search/intent-classifier.ts` | 5 intent types |
+| `lib/search/intent-classifier.ts` | 7 intent types |
 | `lib/storage/causal-edges.ts` | Causal graph storage |
 | `lib/session/session-manager.ts` | Session deduplication |
 | `lib/errors/recovery-hints.ts` | 49 error codes |
@@ -1268,4 +1262,5 @@ node dist/tests/causal-edges.test.js
 | Voyage AI | https://www.voyageai.com/ |
 | FTS5 Docs | https://www.sqlite.org/fts5.html |
 | RRF Paper | https://plg.uwaterloo.ca/~gvcormac/cormacksigir09-rrf.pdf |
+
 <!-- /ANCHOR:related -->

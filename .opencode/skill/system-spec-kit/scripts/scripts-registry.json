@@ -56,6 +56,23 @@
       "dependencies": []
     },
     {
+      "name": "upgrade-level",
+      "path": "scripts/spec/upgrade-level.sh",
+      "type": "bash",
+      "description": "Upgrade existing spec folders to higher documentation levels with backup and rollback. Post-upgrade: AI must auto-populate injected placeholder content from existing spec context",
+      "trigger": ["upgrade level", "level upgrade", "promote spec level"],
+      "calledBy": ["AI Assistant", "Developer"],
+      "essential": true,
+      "inputs": {
+        "required": "Spec folder path, --to <2|3|3+>",
+        "options": "--dry-run, --verbose, --json, --keep-backups"
+      },
+      "outputs": ["Upgraded spec docs", "Backup directory", "JSON result with --json"],
+      "gate": "Documentation Level Upgrade",
+      "version": "1.0.0",
+      "dependencies": ["scripts/lib/shell-common.sh", "templates/"]
+    },
+    {
       "name": "check-prerequisites",
       "path": "scripts/setup/check-prerequisites.sh",
       "type": "bash",
@@ -199,7 +216,7 @@
     },
     {
       "name": "skill_advisor",
-      "path": "../../../scripts/skill_advisor.py",
+      "path": "../../scripts/skill_advisor.py",
       "type": "python",
       "description": "Analyze user requests and recommend appropriate skills for Gate 2 routing",
       "trigger": ["which skill", "skill routing", "Gate 2"],
@@ -213,7 +230,7 @@
       "gate": "Gate 2 (Skill Routing)",
       "version": "1.0.0",
       "dependencies": [],
-      "location": ".opencode/scripts/skill_advisor.py"
+      "location": ".opencode/skill/scripts/skill_advisor.py"
     }
   ],
   "rules": [

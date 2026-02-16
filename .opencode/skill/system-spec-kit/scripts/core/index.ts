@@ -17,3 +17,10 @@ export type {
   WorkflowConfig,
   SpecKitConfig,
 } from './config';
+
+export {
+  SPEC_FOLDER_PATTERN,
+  SPEC_FOLDER_BASIC_PATTERN,
+  findChildFolderSync,
+  findChildFolderAsync,
+} from './subfolder-utils';

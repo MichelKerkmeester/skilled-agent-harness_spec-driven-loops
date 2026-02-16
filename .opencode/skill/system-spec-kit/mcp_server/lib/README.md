@@ -1,6 +1,6 @@
 ---
 title: "MCP Server Library"
-description: "Core library modules for search, scoring, cognitive memory, and storage."
+description: "Core library modules for search, scoring, cognitive memory and storage."
 trigger_phrases:
   - "mcp library"
   - "lib modules"
@@ -10,7 +10,7 @@ importance_tier: "normal"
 
 # MCP Server Library
 
-> Core library modules for search, scoring, cognitive memory, and storage.
+> Core library modules for search, scoring, cognitive memory and storage.
 
 ---
 
@@ -29,12 +29,12 @@ importance_tier: "normal"
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 <!-- ANCHOR:overview -->
 
 ### What is the MCP Server Library?
 
-The MCP Server Library provides the core functionality for the Spec Kit Memory MCP server. It implements cognitive memory features including semantic search, attention decay, importance scoring, and intelligent context retrieval. These modules work together to provide AI assistants with human-like memory recall and context awareness.
+The MCP Server Library provides the core functionality for the Spec Kit Memory MCP server. It implements cognitive memory features including semantic search, attention decay, importance scoring and intelligent context retrieval. These modules work together to provide AI assistants with human-like memory recall and context awareness.
 
 ### Key Statistics
 
@@ -42,7 +42,9 @@ The MCP Server Library provides the core functionality for the Spec Kit Memory M
 |----------|-------|---------|
 | Module Categories | 15+ | search, scoring, cognitive, storage, parsing, providers, utils, session, errors, learning, architecture, embeddings, response, cache, config, validation, interfaces |
 | Cognitive Features | 10+ | FSRS scheduler, attention decay, PE gating, working memory, tier classification, co-activation, temporal contiguity, archival manager, causal graph, corrections |
-| Search Methods | 7 | Vector similarity, hybrid search, RRF fusion, reranking, BM25 index, cross-encoder, intent classification |
+| Search Intents | 7 | add_feature, fix_bug, refactor, security_audit, understand, find_spec, find_decision |
+| Index Sources | 5 | spec memories, constitutional files, skill READMEs, project READMEs, spec documents (`includeSpecDocs`) |
+| Schema Milestones | v13+ | v13 introduced `document_type` and `spec_level` for spec-doc indexing and scoring |
 | Total Modules | 50+ | Organized into domain-specific folders |
 
 ### Key Features
@@ -50,11 +52,13 @@ The MCP Server Library provides the core functionality for the Spec Kit Memory M
 | Feature | Description |
 |---------|-------------|
 | **Semantic Search** | Vector-based similarity search with SQLite vector index and hybrid keyword matching |
-| **Cognitive Memory** | Human-like memory features including attention decay, working memory, and co-activation |
+| **Cognitive Memory** | Human-like memory features including attention decay, working memory and co-activation |
 | **Importance Scoring** | Six-tier importance classification (constitutional, critical, important, normal, temporary, deprecated) |
-| **Folder Ranking** | Composite scoring for spec folders based on recency, relevance, and importance |
-| **Content Parsing** | Memory file parsing, trigger matching, and entity scope detection |
-| **Batch Processing** | Utilities for batch operations, retry logic, and rate limiting |
+| **Folder Ranking** | Composite scoring for spec folders based on recency, relevance and importance |
+| **Document-Type Scoring** | Document-aware ranking supports spec lifecycle docs (spec/plan/tasks/checklist/decision-record/implementation-summary/research/handover) |
+| **Spec Document Indexing** | 5-source indexing pipeline supports optional spec-doc ingestion via `includeSpecDocs` (default: true) |
+| **Content Parsing** | Memory file parsing, trigger matching and entity scope detection |
+| **Batch Processing** | Utilities for batch operations, retry logic and rate limiting |
 
 ### Requirements
 
@@ -68,7 +72,7 @@ The MCP Server Library provides the core functionality for the Spec Kit Memory M
 
 ---
 
-## 2. 🚀 QUICK START
+## 2. QUICK START
 <!-- ANCHOR:quick-start -->
 
 ### 30-Second Setup
@@ -109,7 +113,7 @@ console.log(`Found ${results.length} relevant memories`);
 
 ---
 
-## 3. 📁 STRUCTURE
+## 3. STRUCTURE
 <!-- ANCHOR:structure -->
 
 ```
@@ -122,7 +126,7 @@ lib/                            # TypeScript source files
 │   ├── reranker.ts             # Result reranking
 │   ├── bm25-index.ts           # BM25 lexical indexing
 │   ├── cross-encoder.ts        # Cross-encoder reranking
-│   ├── intent-classifier.ts    # 5 intent types classification
+│   ├── intent-classifier.ts    # 7 intent types classification
 │   └── README.md               # Module documentation
 │
 ├── scoring/                    # Ranking and scoring (4 modules)
@@ -233,7 +237,7 @@ dist/lib/                       # Compiled JavaScript + type definitions
 | `search/reranker.ts` | Result reranking |
 | `search/bm25-index.ts` | BM25 lexical search indexing |
 | `search/cross-encoder.ts` | Cross-encoder semantic reranking |
-| `search/intent-classifier.ts` | 5 intent types classification |
+| `search/intent-classifier.ts` | 7 intent types classification |
 | `cognitive/attention-decay.ts` | Multi-factor decay with type-specific half-lives |
 | `cognitive/fsrs-scheduler.ts` | FSRS power-law forgetting curve algorithm |
 | `cognitive/prediction-error-gate.ts` | Four-tier similarity gating to prevent duplicates |
@@ -255,10 +259,10 @@ dist/lib/                       # Compiled JavaScript + type definitions
 
 ---
 
-## 4. ⚡ FEATURES
+## 4. FEATURES
 <!-- ANCHOR:features -->
 
-### Search & Retrieval
+### Search and Retrieval
 
 **Vector Index**: Semantic similarity search using Voyage AI embeddings
 
@@ -272,7 +276,7 @@ dist/lib/                       # Compiled JavaScript + type definitions
 
 | Aspect | Details |
 |--------|---------|
-| **Purpose** | Leverage both semantic understanding and exact keyword matches |
+| **Purpose** | Use both semantic understanding and exact keyword matches |
 | **Usage** | `search.hybridSearch.search(query, options)` |
 | **Fusion** | Uses Reciprocal Rank Fusion (RRF) to merge results |
 
@@ -301,11 +305,11 @@ const retrievability = cognitive.fsrsScheduler.calculate_retrievability(
 
 The tier classifier uses this priority order when calculating retrievability:
 
-1. **Pre-computed `retrievability`** - If memory has a numeric `retrievability` field, use it directly (highest priority)
-2. **FSRS calculation** - If timestamps exist (`last_review`, `lastReview`, `updated_at`, or `created_at`), calculate using FSRS formula
-3. **Stability fallback** - If only `stability` exists but no timestamps, use `min(1, stability / 10)`
-4. **Attention score fallback** - If `attentionScore` exists, use it directly
-5. **Default** - Returns 0 if no data available
+1. **Pre-computed `retrievability`**: If memory has a numeric `retrievability` field, use it directly (highest priority)
+2. **FSRS calculation**: If timestamps exist (`last_review`, `lastReview`, `updated_at`, or `created_at`), calculate using FSRS formula
+3. **Stability fallback**: If only `stability` exists but no timestamps, use `min(1, stability / 10)`
+4. **Attention score fallback**: If `attentionScore` exists, use it directly
+5. **Default**: Returns 0 if no data available
 
 **Prediction Error Gating**: Prevents duplicate memories using three-tier similarity thresholds
 
@@ -346,10 +350,10 @@ const newStability = cognitive.fsrsScheduler.update_stability(
 | Aspect | Details |
 |--------|---------|
 | **Purpose** | When one memory is retrieved, boost related memories |
-| **Mechanism** | Shared spec folders, temporal proximity, entity relationships |
+| **Mechanism** | Shared spec folders, temporal proximity and entity relationships |
 | **Impact** | Improves context coherence across multiple retrievals |
 
-### Scoring & Ranking
+### Scoring and Ranking
 
 **Importance Tiers**: Six-level classification system
 
@@ -365,7 +369,7 @@ const newStability = cognitive.fsrsScheduler.update_stability(
 **Composite Scoring**: Multi-factor ranking for spec folders
 
 ```typescript
-// Combines recency, relevance, importance, and access patterns
+// Combines recency, relevance, importance and access patterns
 const score = scoring.folderScoring.calculate_folder_score({
   specFolder: 'specs/007-authentication',
   queryRelevance: 0.85,
@@ -375,7 +379,7 @@ const score = scoring.folderScoring.calculate_folder_score({
 });
 ```
 
-### Storage & Persistence
+### Storage and Persistence
 
 **Access Tracking**: Records memory access patterns
 
@@ -395,7 +399,7 @@ await storage.checkpoints.save_checkpoint('before-refactor');
 await storage.checkpoints.restore_checkpoint('before-refactor');
 ```
 
-### Parsing & Validation
+### Parsing and Validation
 
 **Memory Parser**: Extracts structured data from markdown memory files
 
@@ -403,7 +407,7 @@ await storage.checkpoints.restore_checkpoint('before-refactor');
 |---------|-------------|
 | ANCHOR sections | Parses `<!-- ANCHOR: name -->` blocks |
 | Frontmatter | Extracts YAML metadata |
-| Entity extraction | Identifies files, functions, concepts |
+| Entity extraction | Identifies files, functions and concepts |
 
 **Trigger Matcher**: Matches user prompts to memory trigger phrases
 
@@ -415,12 +419,18 @@ const matches = await parsing.triggerMatcher.match_triggers({
 });
 ```
 
+### Spec 126 Hardening References
+
+- `handlers/memory-index.ts`: indexes 5 sources and applies safety rules for incremental updates and post-success mtime writes.
+- `lib/search/vector-index-impl.ts`: v13 migration adds `document_type` and `spec_level` columns and indexes.
+- `tests/spec126-full-spec-doc-indexing.vitest.ts`: validates document typing, scoring multipliers and spec-doc intent routing.
+
 <!-- /ANCHOR:features -->
 
 ---
 
-## 5. 💡 USAGE EXAMPLES
-<!-- ANCHOR:examples -->
+## 5. USAGE EXAMPLES
+<!-- ANCHOR:usage-examples -->
 
 ### Example 1: Semantic Memory Search
 
@@ -520,11 +530,11 @@ const results = await utils.process_batches(
 | Init modules | `cognitive.attentionDecay.init(db);` | Modules requiring database |
 | Error handling | `try { ... } catch (err) { if (err instanceof errors.ValidationError) ... }` | Specific error types |
 
-<!-- /ANCHOR:examples -->
+<!-- /ANCHOR:usage-examples -->
 
 ---
 
-## 6. 🛠️ TROUBLESHOOTING
+## 6. TROUBLESHOOTING
 <!-- ANCHOR:troubleshooting -->
 
 ### Common Issues
@@ -614,7 +624,7 @@ console.log('Embedding dimensions:', embedding.length);
 
 ---
 
-## 7. 📚 RELATED DOCUMENTS
+## 7. RELATED DOCUMENTS
 <!-- ANCHOR:related -->
 
 ### Internal Documentation

@@ -1,17 +1,17 @@
 ---
 title: Level Specifications
-description: Complete specifications for all documentation levels using CORE + ADDENDUM architecture (v2.0).
+description: Complete specifications for all documentation levels using CORE + ADDENDUM architecture (v2.2).
 ---
 
 # Level Specifications - Complete Level 1-3+ Requirements
 
-Complete specifications for all documentation levels using the CORE + ADDENDUM architecture (v2.0) where higher levels ADD VALUE, not just length.
+Complete specifications for all documentation levels using the CORE + ADDENDUM architecture (v2.2) where higher levels ADD VALUE, not just length.
 
 ---
 
 ## 1. 📖 OVERVIEW
 
-### Template Architecture: CORE + ADDENDUM (v2.0)
+### Template Architecture: CORE + ADDENDUM (v2.2)
 
 Templates use a compositional model where core content is shared and addendums add level-specific VALUE:
 
@@ -28,10 +28,10 @@ templates/
 │   ├── level3-arch/         # +Architecture (~220 LOC)
 │   └── level3plus-govern/   # +Governance (~190 LOC)
 │
-├── level_1/                 # Composed Level 1: Core only (~455 LOC)
-├── level_2/                 # Composed Level 2: Core + L2 (~875 LOC)
-├── level_3/                 # Composed Level 3: Core + L2 + L3 (~1090 LOC)
-└── level_3+/                # Composed Level 3+: All addendums (~1075 LOC)
+├── level_1/                 # Composed Level 1: Core only (5 files incl. README)
+├── level_2/                 # Composed Level 2: Core + L2 (6 files incl. README)
+├── level_3/                 # Composed Level 3: Core + L2 + L3 (7 files incl. README)
+└── level_3+/                # Composed Level 3+: All addendums (7 files incl. README)
 ```
 
 ### Template Paths - Quick Reference
@@ -68,7 +68,7 @@ Level 3+ (Extended):    +Enterprise governance, AI protocols (~1075 LOC)
 **Key Points:**
 - LOC thresholds are **SOFT GUIDANCE** (not enforcement)
 - **Higher levels add VALUE** - not just more boilerplate
-- **Enforcement is MANUAL** - verify required templates exist before claiming completion
+- **Verification is script-assisted** - use `validate.sh`, `check-completion.sh`, and `check-placeholders.sh` where applicable
 - When in doubt, choose higher level
 
 **Note:** Single typo/whitespace fixes (<5 characters in one file) are exempt from spec folder requirements.
@@ -297,6 +297,7 @@ specs/012-user-profile-api/
 - `tasks.md` (from Level 2) - Task breakdown by user story
 - `checklist.md` (from Level 2) - Validation/QA checklists
 - `decision-record.md` (NEW at Level 3) - Architecture Decision Records/ADRs
+- `implementation-summary.md` (from Level 2) - Post-implementation outcomes and verification evidence
 
 ### Optional Files
 
@@ -379,6 +380,7 @@ Level 3+ is auto-detected via complexity scoring for highly complex tasks:
 - `tasks.md` (from Level 3) - With 3-Tier Task Format, AI Execution Protocol
 - `checklist.md` (from Level 3) - Extended (100-150 items) with sign-off section
 - `decision-record.md` (from Level 3) - Architecture Decision Records
+- `implementation-summary.md` (from Level 3) - Required completion artifact for all levels
 
 ### Extended Features (Auto-Enabled)
 
@@ -504,14 +506,57 @@ Level 3+ is auto-detected via complexity scoring for highly complex tasks:
 
 ## 6. 🔄 LEVEL MIGRATION
 
-### When Scope Grows During Implementation
+### Script-Assisted Upgrade (Recommended)
 
-If you discover mid-work that scope is larger than anticipated, escalate by adding the required files:
+Use `upgrade-level.sh` to upgrade existing spec folders to a higher documentation level:
 
-| From  | To                         | Action                                                | Files to Add |
-| ----- | -------------------------- | ----------------------------------------------------- | ------------ |
-| 1 → 2 | Add verification           | `checklist.md`                                        |              |
-| 2 → 3 | Add decision documentation | `decision-record.md` (+ optional `research.md`)       |              |
+```bash
+# Upgrade to Level 2 (auto-detects current level)
+bash upgrade-level.sh specs/042-feature/ --to 2
+
+# Upgrade to Level 3 (chains through intermediate levels automatically)
+bash upgrade-level.sh specs/042-feature/ --to 3
+
+# Upgrade to Level 3+ (enterprise governance)
+bash upgrade-level.sh specs/042-feature/ --to 3+
+
+# Preview changes without modifying files
+bash upgrade-level.sh specs/042-feature/ --to 3 --dry-run
+```
+
+**Supported upgrade paths:**
+
+| From   | To   | Files Added                                            |
+| ------ | ---- | ------------------------------------------------------ |
+| L1 → L2 | +Verify | `checklist.md` + addendum sections in existing files |
+| L2 → L3 | +Arch   | `decision-record.md` + addendum sections             |
+| L3 → L3+ | +Govern | Extended governance sections + AI protocols          |
+| L1 → L3 | Skip-level | Chains through L2 automatically                 |
+
+**Post-Upgrade: AI Auto-Populate (Mandatory)**
+
+After `upgrade-level.sh` runs, newly injected template sections contain `[placeholder]` text. The AI agent **must** auto-populate these placeholders by:
+
+1. Reading existing spec context (spec.md, plan.md, tasks.md, etc.)
+2. Deriving appropriate content for each placeholder from that context
+3. Replacing all `[placeholder]` markers with populated content
+4. Running `check-placeholders.sh` to verify none remain
+
+```bash
+.opencode/skill/system-spec-kit/scripts/spec/check-placeholders.sh specs/042-feature/
+```
+
+> **Note:** The script handles structural changes (file creation, addendum injection, backups). The AI handles semantic content — filling placeholders with project-specific information derived from existing documentation.
+
+### Manual Upgrade (Fallback)
+
+If the script is unavailable, manually add the required files:
+
+| From   | To                         | Action                                                 | Files to Add |
+| ------ | -------------------------- | ------------------------------------------------------ | ------------ |
+| 1 → 2  | Add verification           | Copy `checklist.md` from `templates/level_2/`          |              |
+| 2 → 3  | Add decision documentation | Copy `decision-record.md` from `templates/level_3/`    |              |
+| 3 → 3+ | Add governance             | Copy extended sections from `templates/level_3+/`      |              |
 
 **Changelog example:**
 
@@ -714,7 +759,7 @@ Some templates are not level-specific but can be used at any documentation level
 - [level_selection_guide.md](./level_selection_guide.md) - 5-dimension complexity scoring and auto-detection
 - [path_scoped_rules.md](../validation/path_scoped_rules.md) - Path-scoped validation rules reference
 
-### Templates (CORE + ADDENDUM v2.0)
+### Templates (CORE + ADDENDUM v2.2)
 
 **Core Templates (Foundation for all levels):**
 - [spec-core.md](../../templates/core/spec-core.md) - Essential what/why/how (~80 lines)

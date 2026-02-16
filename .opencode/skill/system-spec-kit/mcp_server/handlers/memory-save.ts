@@ -7,6 +7,7 @@
 --------------------------------------------------------------- */
 
 // Node built-ins
+import fs from 'fs';
 import path from 'path';
 
 // Shared packages
@@ -54,6 +55,8 @@ interface ParsedMemory {
   memoryTypeSource?: string;
   hasCausalLinks?: boolean;
   causalLinks?: CausalLinks;
+  /** Spec 126: Document structural type (spec, plan, tasks, memory, readme, etc.) */
+  documentType?: string;
 }
 
 interface ValidationResult {
@@ -165,16 +168,57 @@ function escapeLikePattern(str: string): string {
 --------------------------------------------------------------- */
 
 /**
- * Calculate importance weight based on file path.
- * User work memories get standard weight (0.5).
- * Skill README documentation gets reduced weight (0.3) - reference material.
- * Project/code-folder READMEs get weight (0.4) - between user work and skill docs.
+ * Calculate importance weight based on file path and document type.
+ * Spec 126: Expanded from README-only to support all document types.
+ *
+ * Weights: constitutional -> 1.0, spec/decision-record -> 0.8, plan -> 0.7,
+ * tasks/impl-summary/research -> 0.6, checklist/handover -> 0.5,
+ * memory -> 0.5, project readme -> 0.4, skill readme -> 0.3, scratch -> 0.25
  */
-function calculateReadmeWeight(filePath: string): number {
+function calculateDocumentWeight(filePath: string, documentType?: string): number {
+  // If documentType is provided, use it directly
+  if (documentType) {
+    const DOC_TYPE_WEIGHTS: Record<string, number> = {
+      spec: 0.8,
+      decision_record: 0.8,
+      plan: 0.7,
+      tasks: 0.6,
+      implementation_summary: 0.6,
+      research: 0.6,
+      checklist: 0.5,
+      handover: 0.5,
+      constitutional: 1.0,
+      memory: 0.5,
+      readme: 0.4,
+      scratch: 0.25,
+    };
+    const weight = DOC_TYPE_WEIGHTS[documentType];
+    if (weight !== undefined) {
+      // Skill READMEs get lower weight than project READMEs
+      if (documentType === 'readme') {
+        const normalizedPath = filePath.replace(/\\/g, '/');
+        if (normalizedPath.includes('.opencode/skill/')) return 0.3;
+      }
+      return weight;
+    }
+  }
+
+  // Fallback: path-based heuristic (backward compatibility)
   const normalizedPath = filePath.replace(/\\/g, '/');
   const isReadme = normalizedPath.toLowerCase().endsWith('readme.md');
   const isSkillRm = normalizedPath.toLowerCase().includes('.opencode/skill/') && isReadme;
+  if (normalizedPath.includes('/scratch/')) return 0.25;
   return isSkillRm ? 0.3 : (isReadme ? 0.4 : 0.5);
+}
+
+/** @deprecated Use calculateDocumentWeight() instead */
+function calculateReadmeWeight(filePath: string): number {
+  return calculateDocumentWeight(filePath);
+}
+
+/** Spec 126: True for structural spec documents (not memory/readme/constitutional). */
+function isSpecDocumentType(documentType?: string): boolean {
+  return !!documentType && documentType !== 'memory' && documentType !== 'readme' && documentType !== 'constitutional';
 }
 
 /** Find memories with similar embeddings for PE gating deduplication */
@@ -235,22 +279,23 @@ function reinforceExistingMemory(memoryId: number, parsed: ParsedMemory): IndexR
       retrievability
     );
 
-    // Calculate importance weight so READMEs get correct weight on reinforcement
-    const importanceWeight = calculateReadmeWeight(parsed.filePath);
+    // Spec 126: Keep document-type-aware weighting on reinforcement
+    const importanceWeight = calculateDocumentWeight(parsed.filePath, parsed.documentType);
 
     // P4-05 FIX: Check result.changes to detect no-op updates (e.g., deleted memory)
     const updateResult = database.prepare(`
       UPDATE memory_index
       SET stability = ?,
           importance_weight = ?,
+          content_text = COALESCE(content_text, ?),
           last_review = datetime('now'),
           review_count = COALESCE(review_count, 0) + 1,
           updated_at = datetime('now')
       WHERE id = ?
-    `).run(newStability, importanceWeight, memoryId);
+    `).run(newStability, importanceWeight, parsed.content, memoryId);
 
     if ((updateResult as { changes: number }).changes === 0) {
-      console.warn(`[memory-save] PE reinforcement UPDATE matched 0 rows for memory ${memoryId}`);
+      throw new Error(`PE reinforcement UPDATE matched 0 rows for memory ${memoryId}`);
     }
 
     return {
@@ -294,15 +339,21 @@ function markMemorySuperseded(memoryId: number): boolean {
 function updateExistingMemory(memoryId: number, parsed: ParsedMemory, embedding: Float32Array): IndexResult {
   const database = requireDb();
 
-  // Calculate importance weight so READMEs get correct weight on update
-  const importanceWeight = calculateReadmeWeight(parsed.filePath);
+  // Spec 126: Keep document-type-aware weighting and metadata on update
+  const importanceWeight = calculateDocumentWeight(parsed.filePath, parsed.documentType);
+  const specLevel = isSpecDocumentType(parsed.documentType)
+    ? detectSpecLevelFromParsed(parsed.filePath)
+    : null;
 
   vectorIndex.updateMemory({
     id: memoryId,
     title: parsed.title ?? undefined,
     triggerPhrases: parsed.triggerPhrases,
     importanceWeight,
-    embedding: embedding
+    embedding: embedding,
+    documentType: parsed.documentType || 'memory',
+    specLevel,
+    contentText: parsed.content,
   });
 
   const fileMetadata = incrementalIndex.getFileMetadata(parsed.filePath);
@@ -317,9 +368,22 @@ function updateExistingMemory(memoryId: number, parsed: ParsedMemory, embedding:
         last_review = datetime('now'),
         review_count = COALESCE(review_count, 0) + 1,
         updated_at = datetime('now'),
-        file_mtime_ms = ?
+        file_mtime_ms = ?,
+        document_type = ?,
+        spec_level = ?,
+        content_text = ?
     WHERE id = ?
-  `).run(parsed.contentHash, parsed.contextType, parsed.importanceTier, importanceWeight, fileMtimeMs, memoryId);
+  `).run(
+    parsed.contentHash,
+    parsed.contextType,
+    parsed.importanceTier,
+    importanceWeight,
+    fileMtimeMs,
+    parsed.documentType || 'memory',
+    specLevel,
+    parsed.content,
+    memoryId
+  );
 
   return {
     status: 'updated',
@@ -503,6 +567,50 @@ function processCausalLinks(database: BetterSqlite3.Database, memoryId: number, 
 }
 
 /* ---------------------------------------------------------------
+   5b. SPEC LEVEL DETECTION (Spec 126)
+--------------------------------------------------------------- */
+
+/**
+ * Detect spec documentation level for a file by checking its parent spec.md.
+ * Delegates to the spec.md file in the same directory (or returns null).
+ */
+function detectSpecLevelFromParsed(filePath: string): number | null {
+  const dir = path.dirname(filePath);
+  const specMdPath = path.join(dir, 'spec.md');
+
+  try {
+    if (!fs.existsSync(specMdPath)) return null;
+
+    // Read first 2KB for SPECKIT_LEVEL marker
+    const fd = fs.openSync(specMdPath, 'r');
+    let bytesRead = 0;
+    const buffer = Buffer.alloc(2048);
+    try {
+      bytesRead = fs.readSync(fd, buffer, 0, 2048, 0);
+    } finally {
+      fs.closeSync(fd);
+    }
+
+    const header = buffer.toString('utf-8', 0, bytesRead);
+    const levelMatch = header.match(/<!--\s*SPECKIT_LEVEL:\s*(\d\+?)\s*-->/i);
+    if (levelMatch) {
+      const levelStr = levelMatch[1];
+      if (levelStr === '3+') return 4;
+      const level = parseInt(levelStr, 10);
+      if (level >= 1 && level <= 3) return level;
+    }
+
+    // Heuristic: check sibling files
+    const siblings = fs.readdirSync(dir).map(f => f.toLowerCase());
+    if (siblings.includes('decision-record.md')) return 3;
+    if (siblings.includes('checklist.md')) return 2;
+    return 1;
+  } catch {
+    return null;
+  }
+}
+
+/* ---------------------------------------------------------------
    6. INDEX MEMORY FILE
 --------------------------------------------------------------- */
 
@@ -659,10 +767,15 @@ async function indexMemoryFile(filePath: string, { force = false, parsedOverride
   // CREATE NEW MEMORY
   let id: number;
 
+  // Spec 126: Detect spec level for spec documents
+  const specLevel = isSpecDocumentType(parsed.documentType)
+    ? detectSpecLevelFromParsed(filePath)
+    : null;
+
   if (embedding) {
     const indexWithMetadata = database.transaction(() => {
-      // Determine importance weight based on content source
-      const importanceWeight = calculateReadmeWeight(filePath);
+      // Determine importance weight based on document type (Spec 126)
+      const importanceWeight = calculateDocumentWeight(filePath, parsed.documentType);
 
       const memory_id: number = vectorIndex.indexMemory({
         specFolder: parsed.specFolder,
@@ -670,7 +783,10 @@ async function indexMemoryFile(filePath: string, { force = false, parsedOverride
         title: parsed.title,
         triggerPhrases: parsed.triggerPhrases,
         importanceWeight,
-        embedding: embedding
+        embedding: embedding,
+        documentType: parsed.documentType || 'memory',
+        specLevel,
+        contentText: parsed.content,
       });
 
       const fileMetadata = incrementalIndex.getFileMetadata(filePath);
@@ -687,7 +803,9 @@ async function indexMemoryFile(filePath: string, { force = false, parsedOverride
             difficulty = ?,
             last_review = datetime('now'),
             review_count = 0,
-            file_mtime_ms = ?
+            file_mtime_ms = ?,
+            document_type = ?,
+            spec_level = ?
         WHERE id = ?
       `).run(
         parsed.contentHash,
@@ -698,6 +816,8 @@ async function indexMemoryFile(filePath: string, { force = false, parsedOverride
         fsrsScheduler.DEFAULT_INITIAL_STABILITY,
         fsrsScheduler.DEFAULT_INITIAL_DIFFICULTY,
         fileMtimeMs,
+        parsed.documentType || 'memory',
+        specLevel,
         memory_id
       );
 
@@ -734,8 +854,8 @@ async function indexMemoryFile(filePath: string, { force = false, parsedOverride
     console.error(`[memory-save] Using deferred indexing for ${path.basename(filePath)}`);
 
     const indexDeferred = database.transaction(() => {
-      // Determine importance weight based on content source
-      const importanceWeight = calculateReadmeWeight(filePath);
+      // Determine importance weight based on document type (Spec 126)
+      const importanceWeight = calculateDocumentWeight(filePath, parsed.documentType);
 
       const memory_id: number = vectorIndex.indexMemoryDeferred({
         specFolder: parsed.specFolder,
@@ -743,7 +863,10 @@ async function indexMemoryFile(filePath: string, { force = false, parsedOverride
         title: parsed.title,
         triggerPhrases: parsed.triggerPhrases,
         importanceWeight,
-        failureReason: embeddingFailureReason
+        failureReason: embeddingFailureReason,
+        documentType: parsed.documentType || 'memory',
+        specLevel,
+        contentText: parsed.content,
       });
 
       const fileMetadata = incrementalIndex.getFileMetadata(filePath);
@@ -760,7 +883,9 @@ async function indexMemoryFile(filePath: string, { force = false, parsedOverride
             difficulty = ?,
             last_review = datetime('now'),
             review_count = 0,
-            file_mtime_ms = ?
+            file_mtime_ms = ?,
+            document_type = ?,
+            spec_level = ?
         WHERE id = ?
       `).run(
         parsed.contentHash,
@@ -771,6 +896,8 @@ async function indexMemoryFile(filePath: string, { force = false, parsedOverride
         fsrsScheduler.DEFAULT_INITIAL_STABILITY,
         fsrsScheduler.DEFAULT_INITIAL_DIFFICULTY,
         fileMtimeMs,
+        parsed.documentType || 'memory',
+        specLevel,
         memory_id
       );
 
@@ -899,7 +1026,7 @@ async function handleMemorySave(args: SaveArgs): Promise<MCPResponse> {
   const validatedPath: string = validateFilePathLocal(file_path);
 
   if (!memoryParser.isMemoryFile(validatedPath)) {
-    throw new Error('File must be in specs/**/memory/ or .opencode/specs/**/memory/ or .opencode/skill/*/constitutional/ directory and have .md extension');
+    throw new Error('File must be a .md file in: specs/**/memory/, specs/**/ (spec docs), .opencode/skill/*/constitutional/, or a README.md');
   }
 
   // PRE-FLIGHT VALIDATION
@@ -1168,6 +1295,7 @@ export {
   getAtomicityMetrics,
 
   // PE gating helper functions
+  calculateDocumentWeight,
   calculateReadmeWeight,
   findSimilarMemories,
   reinforceExistingMemory,
@@ -1189,6 +1317,7 @@ const index_memory_file = indexMemoryFile;
 const handle_memory_save = handleMemorySave;
 const atomic_save_memory = atomicSaveMemory;
 const get_atomicity_metrics = getAtomicityMetrics;
+const calculate_document_weight = calculateDocumentWeight;
 const calculate_readme_weight = calculateReadmeWeight;
 const find_similar_memories = findSimilarMemories;
 const reinforce_existing_memory = reinforceExistingMemory;
@@ -1203,6 +1332,7 @@ export {
   handle_memory_save,
   atomic_save_memory,
   get_atomicity_metrics,
+  calculate_document_weight,
   calculate_readme_weight,
   find_similar_memories,
   reinforce_existing_memory,
@@ -1212,4 +1342,3 @@ export {
   process_causal_links,
   resolve_memory_reference,
 };
-

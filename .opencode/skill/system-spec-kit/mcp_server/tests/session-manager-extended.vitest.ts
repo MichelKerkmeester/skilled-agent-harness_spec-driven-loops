@@ -632,4 +632,44 @@ describe('Session Manager Extended Tests', () => {
       }
     });
   });
+
+  // ── 17. db unavailable dedup mode ─────────────────────────
+
+  describe('17. db unavailable dedup mode', () => {
+    it('blocks sending when DB unavailable and mode is block', () => {
+      const originalMode = sm.CONFIG.dbUnavailableMode;
+      try {
+        teardown();
+        sm.CONFIG.dbUnavailableMode = 'block';
+
+        const single = sm.shouldSendMemory('db-down-block', mem({ id: 9101 }));
+        expect(single).toBe(false);
+
+        const batch = sm.shouldSendMemoriesBatch('db-down-block', [mem({ id: 9102 }), mem({ id: 9103 })]);
+        expect(batch.get(9102)).toBe(false);
+        expect(batch.get(9103)).toBe(false);
+      } finally {
+        sm.CONFIG.dbUnavailableMode = originalMode;
+        setup();
+      }
+    });
+
+    it('allows sending when DB unavailable and mode is allow', () => {
+      const originalMode = sm.CONFIG.dbUnavailableMode;
+      try {
+        teardown();
+        sm.CONFIG.dbUnavailableMode = 'allow';
+
+        const single = sm.shouldSendMemory('db-down-allow', mem({ id: 9201 }));
+        expect(single).toBe(true);
+
+        const batch = sm.shouldSendMemoriesBatch('db-down-allow', [mem({ id: 9202 }), mem({ id: 9203 })]);
+        expect(batch.get(9202)).toBe(true);
+        expect(batch.get(9203)).toBe(true);
+      } finally {
+        sm.CONFIG.dbUnavailableMode = originalMode;
+        setup();
+      }
+    });
+  });
 });

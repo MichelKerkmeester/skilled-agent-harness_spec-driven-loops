@@ -10,6 +10,7 @@ architecture decisions. -->
 
 ---
 
+<!-- ANCHOR:adr-001 -->
 ## ADR-001: Session Management Strategy
 
 ### Metadata
@@ -94,8 +95,11 @@ The application needs session management to maintain user authentication state a
 
 ---
 
+
+<!-- /ANCHOR:adr-001 -->
 ---
 
+<!-- ANCHOR:adr-002 -->
 ## ADR-002: Password Hashing Algorithm
 
 ### Metadata
@@ -178,8 +182,11 @@ User passwords must be securely hashed before storage to protect user data in ca
 
 ---
 
+
+<!-- /ANCHOR:adr-002 -->
 ---
 
+<!-- ANCHOR:adr-003 -->
 ## ADR-003: Client-Side Token Storage
 
 ### Metadata
@@ -259,8 +266,11 @@ JWT tokens need to be stored client-side for authenticated requests. The storage
 
 **Rollback**: Change token storage location; no breaking changes to backend.
 
+
+<!-- /ANCHOR:adr-003 -->
 ---
 
+<!-- ANCHOR:adr-index -->
 ## ADR Index
 
 | ADR | Title | Status | Date | Deciders |
@@ -268,6 +278,8 @@ JWT tokens need to be stored client-side for authenticated requests. The storage
 | ADR-001 | Session Management Strategy | Accepted | 2025-01-15 | Jordan, Alex, Chris |
 | ADR-002 | Password Hashing Algorithm | Accepted | 2025-01-15 | Jordan, Alex |
 | ADR-003 | Client-Side Token Storage | Accepted | 2025-01-15 | Jordan, Alex, Frontend Lead |
+
+<!-- /ANCHOR:adr-index -->
 
 ---
 

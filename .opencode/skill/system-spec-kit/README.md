@@ -12,7 +12,7 @@ importance_tier: "normal"
 
 > Your AI assistant forgets everything between sessions. Not anymore.
 
-Spec Kit is a unified documentation and memory system that makes AI-assisted development actually sustainable. It enforces documentation by design, preserves context across sessions, and provides the missing infrastructure that stateless AI assistants desperately need.
+Spec Kit is a unified documentation and memory system that makes AI-assisted development sustainable. It enforces documentation by design and preserves context across sessions, giving stateless AI assistants the infrastructure they need.
 
 ---
 
@@ -29,7 +29,7 @@ Spec Kit is a unified documentation and memory system that makes AI-assisted dev
 - [8. 🛠️ TROUBLESHOOTING](#8--troubleshooting)
 - [9. 📚 RELATED RESOURCES](#9--related-resources)
 - [10. 📋 RECENT CHANGES](#10--recent-changes)
-- [11. 📊 THE BOTTOM LINE](#11--the-bottom-line)
+- [11. 📊 IN SUMMARY](#11--the-bottom-line)
 
 ---
 
@@ -47,65 +47,66 @@ AI coding assistants are powerful but stateless. Every session starts from zero:
 
 ### The Solution
 
-Spec Kit adds the missing layers: persistent memory, enforced documentation, and automated workflows. Documentation isn't optional--Gate 3 blocks file changes without a spec folder. Memory persists across sessions, models, and projects.
+Spec Kit adds the missing layers: persistent memory, enforced documentation, automated workflows and cross-session context. Documentation isn't optional. Gate 3 blocks file changes without a spec folder. Memory persists across sessions, models, projects and tools.
 
 ---
 
 ### What Makes This Different
 
-| Capability | Basic Approach | Spec Kit |
-|------------|----------------|----------|
-| **Decision Archaeology** | "Why did we build it this way?" | Causal graph traces decision lineage |
-| **Token Usage** | Re-send same memories every query | Session deduplication saves 50% on follow-ups |
-| **Context** | Re-explain everything every session | Memory persists across sessions, models, projects |
-| **Debugging** | Same error, 10th attempt, no progress | AI detects frustration, auto-suggests sub-agent |
-| **Documentation** | "I'll document later" (never happens) | Gate 3 enforces spec folders on every file change |
-| **Quality Gates** | Trust the AI did it right | PREFLIGHT/POSTFLIGHT validation at operation boundaries |
-| **Handoffs** | 2-hour "what did you do" meetings | `/spec_kit:handover` produces a 15-line summary |
+| Capability               | Basic Approach                        | Spec Kit                                                |
+| ------------------------ | ------------------------------------- | ------------------------------------------------------- |
+| **Decision Archaeology** | "Why did we build it this way?"       | Causal graph traces decision lineage                    |
+| **Token Usage**          | Re-send same memories every query     | Session deduplication saves 50% on follow-ups           |
+| **Context**              | Re-explain everything every session   | Memory persists across sessions, models, projects       |
+| **Debugging**            | Same error, 10th attempt, no progress | AI detects frustration, auto-suggests sub-agent         |
+| **Documentation**        | "I'll document later" (never happens) | Gate 3 enforces spec folders on every file change       |
+| **Quality Gates**        | Trust the AI did it right             | PREFLIGHT/POSTFLIGHT validation at operation boundaries |
+| **Handoffs**             | 2-hour "what did you do" meetings     | `/spec_kit:handover` produces a 15-line summary         |
 
 ---
 
 ### Key Innovations
 
-| Innovation | Impact | Description |
-|------------|--------|-------------|
-| **Causal Memory Graph** | "Why" queries | 6 relationship types: caused, enabled, supersedes, contradicts, derived_from, supports |
-| **Session Deduplication** | -50% tokens | Hash-based tracking prevents re-surfacing same memories |
-| **ANCHOR Retrieval** | 93% token savings | Section-level memory extraction, not full files |
-| **Intent-Aware Retrieval** | +20% match rate | 5 intent types auto-detected from query phrasing |
-| **BM25 Hybrid Search** | +40-50% relevance | Pure JS BM25 combined with vector via RRF fusion |
-| **Cross-Encoder Reranking** | Precision retrieval | Voyage/Cohere/local providers with length penalty |
-| **5-State Memory Model** | Automatic lifecycle | HOT/WARM/COLD/DORMANT/ARCHIVED with threshold transitions |
-| **Type-Specific Half-Lives** | +20% decay accuracy | 9 memory types with distinct decay rates |
-| **Multi-Factor Decay** | +30-40% relevance | 5 factors: temporal, usage, importance, pattern, citation |
-| **Memory Consolidation** | Storage efficiency | 5-phase pipeline: REPLAY, ABSTRACT, INTEGRATE, PRUNE, STRENGTHEN |
-| **Recovery Hints** | Zero-frustration errors | 49 error codes with actionable recovery guidance |
-| **Lazy Model Loading** | <500ms MCP startup | Deferred embedding initialization |
+| Innovation                   | Impact                  | Description                                                                                  |
+| ---------------------------- | ----------------------- | -------------------------------------------------------------------------------------------- |
+| **Causal Memory Graph**      | "Why" queries           | 6 relationship types: caused, enabled, supersedes, contradicts, derived_from, supports       |
+| **Session Deduplication**    | -50% tokens             | Hash-based tracking prevents re-surfacing same memories                                      |
+| **ANCHOR Retrieval**         | 93% token savings       | Section-level memory extraction, not full files                                              |
+| **Intent-Aware Retrieval**   | +20% match rate         | 7 intent types auto-detected from query phrasing                                             |
+| **Document-Type Scoring**    | Precision ranking       | 11 document types with scoring multipliers (spec: 1.4x, constitutional: 2.0x, scratch: 0.6x) |
+| **BM25 Hybrid Search**       | +40-50% relevance       | Pure JS BM25 combined with vector via RRF fusion                                             |
+| **Cross-Encoder Reranking**  | Precision retrieval     | Voyage/Cohere/local providers with length penalty                                            |
+| **5-State Memory Model**     | Automatic lifecycle     | HOT/WARM/COLD/DORMANT/ARCHIVED with threshold transitions                                    |
+| **Type-Specific Half-Lives** | +20% decay accuracy     | 9 memory types with distinct decay rates                                                     |
+| **Multi-Factor Decay**       | +30-40% relevance       | 5 factors: temporal, usage, importance, pattern, citation                                    |
+| **Memory Consolidation**     | Storage efficiency      | 5-phase pipeline: REPLAY, ABSTRACT, INTEGRATE, PRUNE, STRENGTHEN                             |
+| **Recovery Hints**           | Zero-frustration errors | 49 error codes with actionable recovery guidance                                             |
+| **Lazy Model Loading**       | <500ms MCP startup      | Deferred embedding initialization                                                            |
 
 ---
 
 ### By The Numbers
 
-| Category | Count |
-|----------|-------|
-| **MCP Tools** | 22 (memory, checkpoint, causal, drift, learning) |
-| **Templates** | 10 (specs, plans, research, decisions) |
-| **Scripts** | 90 (44 TS + 18 JS + 27 shell + 1 Python) |
-| **Commands** | 12 (7 spec_kit + 5 memory), all ≤600 lines, full agent routing (19/19) |
-| **Importance Tiers** | 6 (constitutional -> deprecated) |
-| **Memory Types** | 9 (working, episodic, procedural, semantic, etc.) |
-| **ANCHOR Coverage** | ~473 anchors across 74 READMEs for precise memory retrieval |
-| **README Compliance** | 75 READMEs styled per readme_template.md (7 rules) |
-| **Test Coverage** | 3,988 tests across 118 test files |
+| Category              | Count                                                                  |
+| --------------------- | ---------------------------------------------------------------------- |
+| **MCP Tools**         | 22 (memory, checkpoint, causal, drift, learning)                       |
+| **Templates**         | 10 (specs, plans, research, decisions)                                 |
+| **Scripts**           | 90 (44 TS + 18 JS + 27 shell + 1 Python)                               |
+| **Commands**          | 12 (7 spec_kit + 5 memory), all ≤600 lines, full agent routing (19/19) |
+| **Importance Tiers**  | 6 (constitutional -> deprecated)                                       |
+| **Memory Types**      | 9 (working, episodic, procedural, semantic, etc.)                      |
+| **ANCHOR Coverage**   | ~473 anchors across 74 READMEs for precise memory retrieval            |
+| **README Compliance** | 75 READMEs styled per readme_template.md (7 rules)                     |
+| **Test Coverage**     | 3,988 tests across 118 test files                                      |
 
 ### Requirements
 
-| Requirement | Minimum |
-|-------------|---------|
-| Node.js | 18+ |
-| TypeScript | 5.0+ (compile with `npm run build`) |
-| OpenCode | 1.0.190+ |
-| Bash | 4.0+ |
+| Requirement | Minimum                             |
+| ----------- | ----------------------------------- |
+| Node.js     | 18+                                 |
+| TypeScript  | 5.0+ (compile with `npm run build`) |
+| OpenCode    | 1.0.190+                            |
+| Bash        | 4.0+                                |
 
 ---
 
@@ -142,12 +143,12 @@ ls specs/###-user-authentication/
 
 ### Level Selection
 
-| LOC Estimate | Level | What You Get |
-|--------------|-------|--------------|
-| <100 | 1 | spec.md + plan.md + tasks.md + implementation-summary.md |
-| 100-499 | 2 | Level 1 + checklist.md |
-| >=500 | 3 | Level 2 + decision-record.md |
-| Complex | 3+ | Level 3 + extended governance |
+| LOC Estimate | Level | What You Get                                             |
+| ------------ | ----- | -------------------------------------------------------- |
+| <100         | 1     | spec.md + plan.md + tasks.md + implementation-summary.md |
+| 100-499      | 2     | Level 1 + checklist.md                                   |
+| >=500        | 3     | Level 2 + decision-record.md                             |
+| Complex      | 3+    | Level 3 + extended governance                            |
 
 **Decision rule:** When in doubt, choose the higher level. Future-you will thank present-you.
 
@@ -171,13 +172,13 @@ Level 3+ (Extended):    +Enterprise governance, AI protocols (~1350 LOC)
 
 ### When to Use Each Level
 
-| Task | Level | Rationale |
-|------|-------|-----------|
-| Fix CSS alignment | 1 | Simple, low risk |
-| Add form validation | 1-2 | Borderline, low complexity |
-| Modal component | 2 | Multiple files, needs QA |
-| Auth system refactor | 3 | Architecture change, high risk |
-| Database migration | 3 | High risk overrides LOC |
+| Task                 | Level | Rationale                      |
+| -------------------- | ----- | ------------------------------ |
+| Fix CSS alignment    | 1     | Simple, low risk               |
+| Add form validation  | 1-2   | Borderline, low complexity     |
+| Modal component      | 2     | Multiple files, needs QA       |
+| Auth system refactor | 3     | Architecture change, high risk |
+| Database migration   | 3     | High risk overrides LOC        |
 
 **Override factors:** Complexity, risk, security implications, multiple systems affected.
 
@@ -204,34 +205,34 @@ specs/042-user-authentication/
 
 ### Spec Kit Commands
 
-| Command | Steps | Purpose |
-|---------|-------|---------|
-| `/spec_kit:complete` | 14 | Full end-to-end workflow |
-| `/spec_kit:plan` | 7 | Planning only (no implementation) |
-| `/spec_kit:implement` | 11 | Execute pre-planned work (9 main + Steps 5.5/7.5 PREFLIGHT/POSTFLIGHT) |
-| `/spec_kit:research` | 9 | Technical investigation |
-| `/spec_kit:resume` | 4 | Resume previous session |
-| `/spec_kit:handover` | 4 | Create session handover document |
-| `/spec_kit:debug` | 5 | Delegate debugging to sub-agent |
+| Command               | Steps | Purpose                                                                |
+| --------------------- | ----- | ---------------------------------------------------------------------- |
+| `/spec_kit:complete`  | 14    | Full end-to-end workflow                                               |
+| `/spec_kit:plan`      | 7     | Planning only (no implementation)                                      |
+| `/spec_kit:implement` | 11    | Execute pre-planned work (9 main + Steps 5.5/7.5 PREFLIGHT/POSTFLIGHT) |
+| `/spec_kit:research`  | 9     | Technical investigation                                                |
+| `/spec_kit:resume`    | 4     | Resume previous session                                                |
+| `/spec_kit:handover`  | 4     | Create session handover document                                       |
+| `/spec_kit:debug`     | 5     | Delegate debugging to sub-agent                                        |
 
 ### Memory Commands
 
-| Command | Purpose |
-|---------|---------|
-| `/memory:save [folder]` | Save context via generate-context.js |
-| `/memory:context <query>` | Unified entry with intent awareness |
-| `/memory:manage` | Database management operations |
-| `/memory:continue` | Session recovery from crash/compaction |
-| `/memory:learn` | Explicit learning capture |
+| Command                   | Purpose                                |
+| ------------------------- | -------------------------------------- |
+| `/memory:save [folder]`   | Save context via generate-context.js   |
+| `/memory:context <query>` | Unified entry with intent awareness    |
+| `/memory:manage`          | Database management operations         |
+| `/memory:continue`        | Session recovery from crash/compaction |
+| `/memory:learn`           | Explicit learning capture              |
 
 ### Mode Suffixes
 
-| Suffix | Behavior | Applies To |
-|--------|----------|------------|
-| `:auto` | Execute without approval gates | Most commands |
-| `:confirm` | Pause at each step for approval | Most commands |
+| Suffix           | Behavior                               | Applies To                |
+| ---------------- | -------------------------------------- | ------------------------- |
+| `:auto`          | Execute without approval gates         | Most commands             |
+| `:confirm`       | Pause at each step for approval        | Most commands             |
 | `:with-research` | Dispatch @research before verification | `/spec_kit:complete` only |
-| `:auto-debug` | Auto-dispatch @debug on 3+ failures | `/spec_kit:complete` only |
+| `:auto-debug`    | Auto-dispatch @debug on 3+ failures    | `/spec_kit:complete` only |
 
 > **Note:** `:auto`/`:confirm` are supported by most commands. `/spec_kit:handover` always runs in interactive mode. `:with-research` and `:auto-debug` can be combined: `/spec_kit:complete :with-research :auto-debug`
 
@@ -266,31 +267,31 @@ The `/spec_kit:debug` command prompts for model selection, then dispatches to th
 ## 5. 💾 MEMORY SYSTEM
 <!-- ANCHOR:memory-system -->
 
-### The Memory Revolution
+### Memory Architecture
 
-This isn't basic chat log storage. This is a cognitive memory system with biologically-inspired attention dynamics:
+This goes beyond basic chat log storage. This is a cognitive memory system with biologically-inspired attention dynamics:
 
-| Basic Chat Logs | This Memory System |
-|-----------------|-------------------|
-| Search: Ctrl+F (text only) | Search: Hybrid semantic + BM25 (RRF fusion) |
-| Prioritization: None | Prioritization: 6-tier importance (constitutional -> deprecated) |
-| Privacy: Often cloud-stored | Privacy: Local options available (HF Local runs on YOUR machine) |
+| Basic Chat Logs                   | This Memory System                                                   |
+| --------------------------------- | -------------------------------------------------------------------- |
+| Search: Ctrl+F (text only)        | Search: Hybrid semantic + BM25 (RRF fusion)                          |
+| Prioritization: None              | Prioritization: 6-tier importance (constitutional -> deprecated)     |
+| Privacy: Often cloud-stored       | Privacy: Local options available (HF Local runs on YOUR machine)     |
 | Token Efficiency: Load everything | Token Efficiency: ANCHOR format (93% savings) + session dedup (-50%) |
-| Recovery: Hope you backed up | Recovery: Checkpoints = undo button for your index |
-| "Why" queries: Impossible | "Why" queries: Causal graph traces decision lineage |
+| Recovery: Hope you backed up      | Recovery: Checkpoints = undo button for your index                   |
+| "Why" queries: Impossible         | "Why" queries: Causal graph traces decision lineage                  |
 
 ---
 
 ### The Six Importance Tiers
 
-| Tier | Boost | Decay | Use Case |
-|------|-------|-------|----------|
-| **constitutional** | 3.0x | Never | Project rules, always-surface (~2000 tokens max) |
-| **critical** | 2.0x | Never | Architecture decisions, breaking changes |
-| **important** | 1.5x | Never | Key implementations, major features |
-| **normal** | 1.0x | 90-day | Standard development context (default) |
-| **temporary** | 0.5x | 7-day | Debug sessions, experiments |
-| **deprecated** | 0.0x | Excluded | Outdated information (preserved but hidden) |
+| Tier               | Boost | Decay    | Use Case                                         |
+| ------------------ | ----- | -------- | ------------------------------------------------ |
+| **constitutional** | 3.0x  | Never    | Project rules, always-surface (~2000 tokens max) |
+| **critical**       | 2.0x  | Never    | Architecture decisions, breaking changes         |
+| **important**      | 1.5x  | Never    | Key implementations, major features              |
+| **normal**         | 1.0x  | 90-day   | Standard development context (default)           |
+| **temporary**      | 0.5x  | 7-day    | Debug sessions, experiments                      |
+| **deprecated**     | 0.0x  | Excluded | Outdated information (preserved but hidden)      |
 
 ---
 
@@ -298,13 +299,13 @@ This isn't basic chat log storage. This is a cognitive memory system with biolog
 
 Memories transition through discrete states based on attention scores:
 
-| State | Score Range | Behavior | Max Items |
-|-------|-------------|----------|-----------|
-| **HOT** | 0.80-1.00 | Always retrieve | 5 |
-| **WARM** | 0.25-0.80 | Retrieve on match | 10 |
-| **COLD** | 0.05-0.25 | Retrieve if nothing else | - |
-| **DORMANT** | 0.02-0.05 | Skip unless explicit | - |
-| **ARCHIVED** | 0.00-0.02 | Exclude from search | - |
+| State        | Score Range | Behavior                 | Max Items |
+| ------------ | ----------- | ------------------------ | --------- |
+| **HOT**      | 0.80-1.00   | Always retrieve          | 5         |
+| **WARM**     | 0.25-0.80   | Retrieve on match        | 10        |
+| **COLD**     | 0.05-0.25   | Retrieve if nothing else | -         |
+| **DORMANT**  | 0.02-0.05   | Skip unless explicit     | -         |
+| **ARCHIVED** | 0.00-0.02   | Exclude from search      | -         |
 
 This enables automatic cleanup without deletion. ARCHIVED memories are preserved but hidden from search.
 
@@ -314,17 +315,17 @@ This enables automatic cleanup without deletion. ARCHIVED memories are preserved
 
 Different memory types decay at different rates. A debug session fades faster than architectural knowledge:
 
-| Type | Half-Life | Example |
-|------|-----------|---------|
-| constitutional | Infinity | "Never edit without reading first" |
-| procedural | 90+ days | "How to deploy to production" |
-| semantic | 60 days | "RRF stands for Reciprocal Rank Fusion" |
-| episodic | 14 days | "Fixed bug XYZ on Tuesday" |
-| working | 1 day | "Currently debugging auth flow" |
-| causal | 45 days | Decision relationships |
-| declarative | 60 days | Facts and definitions |
-| contextual | 30 days | Session-specific context |
-| constitutional_critical | Infinity | Never-forget critical rules |
+| Type                    | Half-Life | Example                                 |
+| ----------------------- | --------- | --------------------------------------- |
+| constitutional          | Infinity  | "Never edit without reading first"      |
+| procedural              | 90+ days  | "How to deploy to production"           |
+| semantic                | 60 days   | "RRF stands for Reciprocal Rank Fusion" |
+| episodic                | 14 days   | "Fixed bug XYZ on Tuesday"              |
+| working                 | 1 day     | "Currently debugging auth flow"         |
+| causal                  | 45 days   | Decision relationships                  |
+| declarative             | 60 days   | Facts and definitions                   |
+| contextual              | 30 days   | Session-specific context                |
+| constitutional_critical | Infinity  | Never-forget critical rules             |
 
 ---
 
@@ -334,14 +335,14 @@ Answer "why" queries by tracing decision lineage:
 
 **6 Relationship Types:**
 
-| Relation | Meaning |
-|----------|---------|
-| `caused` | A directly led to B |
-| `enabled` | A made B possible |
-| `supersedes` | B replaces A |
-| `contradicts` | A and B conflict |
+| Relation       | Meaning                        |
+| -------------- | ------------------------------ |
+| `caused`       | A directly led to B            |
+| `enabled`      | A made B possible              |
+| `supersedes`   | B replaces A                   |
+| `contradicts`  | A and B conflict               |
 | `derived_from` | B was extracted/learned from A |
-| `supports` | A provides evidence for B |
+| `supports`     | A provides evidence for B      |
 
 **Usage:**
 ```typescript
@@ -355,12 +356,12 @@ memory_drift_why({ memoryId: 'abc123', maxDepth: 3 })
 
 Stop re-sending the same memories every query:
 
-| Without Dedup | With Dedup |
-|---------------|------------|
+| Without Dedup                          | With Dedup                             |
+| -------------------------------------- | -------------------------------------- |
 | Query 1: Send 5 memories (5000 tokens) | Query 1: Send 5 memories (5000 tokens) |
-| Query 2: Send same 5 memories again | Query 2: Skip already-seen, send 2 new |
-| Query 3: Send same 5 memories again | Query 3: Skip already-seen, send 1 new |
-| **Total: 15,000 tokens** | **Total: 8,000 tokens (-47%)** |
+| Query 2: Send same 5 memories again    | Query 2: Skip already-seen, send 2 new |
+| Query 3: Send same 5 memories again    | Query 3: Skip already-seen, send 1 new |
+| **Total: 15,000 tokens**               | **Total: 8,000 tokens (-47%)**         |
 
 Hash-based Set tracks `sentMemories` per session. State persists to SQLite for crash recovery.
 
@@ -370,49 +371,49 @@ Hash-based Set tracks `sentMemories` per session. State persists to SQLite for c
 
 **Search & Retrieval**
 
-| Tool | Purpose |
-|------|---------|
-| `memory_search` | Semantic search with vector similarity |
-| `memory_match_triggers` | Fast keyword matching (<50ms) |
-| `memory_list` | Browse stored memories |
-| `memory_stats` | Get system statistics |
+| Tool                    | Purpose                                |
+| ----------------------- | -------------------------------------- |
+| `memory_search`         | Semantic search with vector similarity |
+| `memory_match_triggers` | Fast keyword matching (<50ms)          |
+| `memory_list`           | Browse stored memories                 |
+| `memory_stats`          | Get system statistics                  |
 
 **CRUD Operations**
 
-| Tool | Purpose |
-|------|---------|
-| `memory_save` | Index a memory file |
-| `memory_index_scan` | Bulk scan and index workspace (`includeReadmes`: boolean, default `true`) |
-| `memory_update` | Update memory metadata and tier |
-| `memory_delete` | Delete memories by ID or folder |
-| `memory_validate` | Record validation feedback |
+| Tool                | Purpose                                                                                                               |
+| ------------------- | --------------------------------------------------------------------------------------------------------------------- |
+| `memory_save`       | Index a memory file                                                                                                   |
+| `memory_index_scan` | Bulk scan and index workspace (`includeReadmes`: boolean, default `true`. `includeSpecDocs`: boolean, default `true`) |
+| `memory_update`     | Update memory metadata and tier                                                                                       |
+| `memory_delete`     | Delete memories by ID or folder                                                                                       |
+| `memory_validate`   | Record validation feedback                                                                                            |
 
 **Checkpoints**
 
-| Tool | Purpose |
-|------|---------|
-| `checkpoint_create` | Snapshot current state with embeddings |
-| `checkpoint_list` | List available checkpoints |
-| `checkpoint_restore` | Restore from checkpoint |
-| `checkpoint_delete` | Remove checkpoint |
+| Tool                 | Purpose                                |
+| -------------------- | -------------------------------------- |
+| `checkpoint_create`  | Snapshot current state with embeddings |
+| `checkpoint_list`    | List available checkpoints             |
+| `checkpoint_restore` | Restore from checkpoint                |
+| `checkpoint_delete`  | Remove checkpoint                      |
 
 **Session Learning**
 
-| Tool | Purpose |
-|------|---------|
-| `task_preflight` | Capture epistemic baseline before task |
-| `task_postflight` | Capture post-task state, calculate Learning Index |
-| `memory_get_learning_history` | Get learning trends and summaries |
+| Tool                          | Purpose                                           |
+| ----------------------------- | ------------------------------------------------- |
+| `task_preflight`              | Capture epistemic baseline before task            |
+| `task_postflight`             | Capture post-task state, calculate Learning Index |
+| `memory_get_learning_history` | Get learning trends and summaries                 |
 
 **Causal Tools**
 
-| Tool | Purpose |
-|------|---------|
-| `memory_drift_why` | Trace causal chain for decision lineage |
-| `memory_causal_link` | Create causal relationships between memories |
-| `memory_causal_stats` | Graph statistics and coverage metrics |
-| `memory_causal_unlink` | Remove causal relationships |
-| `memory_context` | L1 Orchestration unified entry point |
+| Tool                   | Purpose                                      |
+| ---------------------- | -------------------------------------------- |
+| `memory_drift_why`     | Trace causal chain for decision lineage      |
+| `memory_causal_link`   | Create causal relationships between memories |
+| `memory_causal_stats`  | Graph statistics and coverage metrics        |
+| `memory_causal_unlink` | Remove causal relationships                  |
+| `memory_context`       | L1 Orchestration unified entry point         |
 
 > **Note:** Full tool names use `spec_kit_memory_` prefix (e.g., `spec_kit_memory_memory_search`).
 
@@ -473,11 +474,11 @@ Query
 
 ### Embedding Providers
 
-| Provider | Dimensions | Best For |
-|----------|------------|----------|
-| **Voyage** | 1024 | Recommended, best retrieval |
-| **OpenAI** | 1536/3072 | Alternative cloud option |
-| **HF Local** | 768 | Privacy, offline, default fallback |
+| Provider     | Dimensions | Best For                           |
+| ------------ | ---------- | ---------------------------------- |
+| **Voyage**   | 1024       | Recommended, best retrieval        |
+| **OpenAI**   | 1536/3072  | Alternative cloud option           |
+| **HF Local** | 768        | Privacy, offline, default fallback |
 
 **Auto-detection priority:** Voyage -> OpenAI -> HF Local
 
@@ -487,32 +488,33 @@ If embedding fails, the system degrades gracefully to keyword search.
 
 ---
 
-### 4-Source Indexing Pipeline
+### 5-Source Indexing Pipeline
 
-The `memory_index_scan` tool indexes content from four distinct sources:
+The `memory_index_scan` tool indexes content from five distinct sources:
 
-| # | Source | Location Pattern | Weight |
-|---|--------|------------------|--------|
-| 1 | **Spec Memories** | `specs/*/memory/*.md` | `0.5` |
-| 2 | **Constitutional Rules** | `.opencode/skill/*/constitutional/*.md` | — |
-| 3 | **Skill READMEs** | `.opencode/skill/*/README.md` | `0.3` |
-| 4 | **Project READMEs** | `**/README.md` (project root) | `0.4` |
+| #   | Source                   | Location Pattern                        | Weight              |
+| --- | ------------------------ | --------------------------------------- | ------------------- |
+| 1   | **Constitutional Rules** | `.opencode/skill/*/constitutional/*.md` | -                   |
+| 2   | **Spec Documents**       | `.opencode/specs/**/*.md`               | Per-type multiplier |
+| 3   | **Spec Memories**        | `specs/*/memory/*.md`                   | `0.5`               |
+| 4   | **Project READMEs**      | `**/README.md` (project root)           | `0.4`               |
+| 5   | **Skill READMEs**        | `.opencode/skill/*/README.md`           | `0.3`               |
 
-Sources 3 and 4 are controlled by the `includeReadmes` parameter (default: `true`). Set to `false` to skip README discovery and only index spec memories and constitutional rules.
+Sources 3 and 4 are controlled by the `includeReadmes` parameter (default: `true`). Source 5 is controlled by the `includeSpecDocs` parameter (default: `true`) or the `SPECKIT_INDEX_SPEC_DOCS` environment variable. Spec documents are scored with document-type multipliers: spec (1.4x), plan (1.3x), constitutional (2.0x), memory (1.0x), readme (0.8x), scratch (0.6x).
 
 #### Tiered Importance Weights
 
 README sources receive reduced importance to ensure user work memories always outrank documentation in search results:
 
-| Source | `importance_weight` | Score Multiplier | Effect |
-|--------|--------------------:|:----------------:|--------|
-| User work (spec memories) | `0.5` | `1.0x` | Full score |
-| Project READMEs | `0.4` | `0.9x` | -10% |
-| Skill READMEs | `0.3` | `0.8x` | -20% |
+| Source                    | `importance_weight` | Score Multiplier | Effect     |
+| ------------------------- | ------------------: | :--------------: | ---------- |
+| User work (spec memories) |               `0.5` |      `1.0x`      | Full score |
+| Project READMEs           |               `0.4` |      `0.9x`      | -10%       |
+| Skill READMEs             |               `0.3` |      `0.8x`      | -20%       |
 
 The formula: `score *= (0.5 + importance_weight)`. At equal semantic relevance, user work always ranks higher.
 
-> **Deep dive:** See [references/memory/readme_indexing.md](./references/memory/readme_indexing.md) for discovery functions, exclude patterns, YAML frontmatter options, and known limitations.
+> **Full details:** See [references/memory/readme_indexing.md](./references/memory/readme_indexing.md) for discovery functions, exclude patterns, YAML frontmatter options and known limitations.
 
 ---
 
@@ -522,18 +524,18 @@ The formula: `score *= (0.5 + importance_weight)`. At equal semantic relevance, 
 
 ### Template Overview
 
-| Template | Level | Description |
-|----------|-------|-------------|
-| `spec.md` | 1+ | Feature specification with user stories |
-| `plan.md` | 1+ | Implementation plan with architecture |
-| `tasks.md` | 1+ | Task breakdown by user story |
-| `implementation-summary.md` | 1+ | Post-implementation summary |
-| `checklist.md` | 2+ | Validation/QA checklists (P0/P1/P2) |
-| `decision-record.md` | 3+ | Architecture Decision Records |
-| `research.md` | 3 | Comprehensive multi-domain research |
-| `handover.md` | Any | Full session continuity |
-| `debug-delegation.md` | Any | Sub-agent debugging delegation |
-| `context_template.md` | Any | Memory context template |
+| Template                    | Level | Description                             |
+| --------------------------- | ----- | --------------------------------------- |
+| `spec.md`                   | 1+    | Feature specification with user stories |
+| `plan.md`                   | 1+    | Implementation plan with architecture   |
+| `tasks.md`                  | 1+    | Task breakdown by user story            |
+| `implementation-summary.md` | 1+    | Post-implementation summary             |
+| `checklist.md`              | 2+    | Validation/QA checklists (P0/P1/P2)     |
+| `decision-record.md`        | 3+    | Architecture Decision Records           |
+| `research.md`               | 3     | Comprehensive multi-domain research     |
+| `handover.md`               | Any   | Full session continuity                 |
+| `debug-delegation.md`       | Any   | Sub-agent debugging delegation          |
+| `context_template.md`       | Any   | Memory context template                 |
 
 ### Template Composition (CORE + ADDENDUM)
 
@@ -564,11 +566,11 @@ cp .opencode/skill/system-spec-kit/templates/handover.md specs/###-name/
 
 ### Priority System (checklist.md)
 
-| Priority | Meaning | Deferral Rules |
-|----------|---------|----------------|
-| **P0** | HARD BLOCKER | MUST complete, cannot defer |
-| **P1** | Required | MUST complete OR user-approved deferral |
-| **P2** | Optional | Can defer without approval |
+| Priority | Meaning      | Deferral Rules                          |
+| -------- | ------------ | --------------------------------------- |
+| **P0**   | HARD BLOCKER | MUST complete, cannot defer             |
+| **P1**   | Required     | MUST complete OR user-approved deferral |
+| **P2**   | Optional     | Can defer without approval              |
 
 ---
 
@@ -578,33 +580,34 @@ cp .opencode/skill/system-spec-kit/templates/handover.md specs/###-name/
 
 ### Script Overview
 
-| Script | Purpose |
-|--------|---------|
-| `spec/create.sh` | Create feature branch & spec folder |
-| `spec/validate.sh` | Validation orchestrator (13 rules) |
-| `spec/calculate-completeness.sh` | Calculate completeness % |
-| `spec/recommend-level.sh` | Recommend documentation level |
-| `spec/archive.sh` | Archive completed spec folders |
-| `memory/generate-context.ts` | Memory file generation (source) |
-| `templates/compose.sh` | Compose level templates |
+| Script                           | Purpose                                                |
+| -------------------------------- | ------------------------------------------------------ |
+| `spec/create.sh`                 | Create feature branch & spec folder                    |
+| `spec/validate.sh`               | Validation orchestrator (13 rules)                     |
+| `spec/calculate-completeness.sh` | Calculate completeness %                               |
+| `spec/check-placeholders.sh`     | Verify zero placeholders after upgrade + auto-populate |
+| `spec/recommend-level.sh`        | Recommend documentation level                          |
+| `spec/archive.sh`                | Archive completed spec folders                         |
+| `memory/generate-context.ts`     | Memory file generation (source)                        |
+| `templates/compose.sh`           | Compose level templates                                |
 
 ### Validation Rules (13 Total)
 
-| Rule | Severity | Description |
-|------|----------|-------------|
-| `FILE_EXISTS` | ERROR | Required files present for level |
-| `PLACEHOLDER_FILLED` | ERROR | No unfilled `[YOUR_VALUE_HERE:]` patterns |
-| `SECTIONS_PRESENT` | WARNING | Required markdown sections exist |
-| `LEVEL_DECLARED` | INFO | Level explicitly stated |
-| `PRIORITY_TAGS` | WARNING | P0/P1/P2 format validated |
-| `EVIDENCE_CITED` | WARNING | Non-P2 items cite evidence |
-| `ANCHORS_VALID` | ERROR | Memory file anchor pairs matched |
-| `FOLDER_NAMING` | ERROR | Follows `###-short-name` convention |
-| `FRONTMATTER_VALID` | WARNING | YAML frontmatter structured correctly |
-| `COMPLEXITY_MATCH` | WARNING | Content metrics match declared level |
-| `AI_PROTOCOL` | WARNING | Level 3/3+ has AI execution protocols |
-| `LEVEL_MATCH` | ERROR | Level consistent across all files |
-| `SECTION_COUNTS` | WARNING | Section counts within expected ranges |
+| Rule                 | Severity | Description                               |
+| -------------------- | -------- | ----------------------------------------- |
+| `FILE_EXISTS`        | ERROR    | Required files present for level          |
+| `PLACEHOLDER_FILLED` | ERROR    | No unfilled `[YOUR_VALUE_HERE:]` patterns |
+| `SECTIONS_PRESENT`   | WARNING  | Required markdown sections exist          |
+| `LEVEL_DECLARED`     | INFO     | Level explicitly stated                   |
+| `PRIORITY_TAGS`      | WARNING  | P0/P1/P2 format validated                 |
+| `EVIDENCE_CITED`     | WARNING  | Non-P2 items cite evidence                |
+| `ANCHORS_VALID`      | ERROR    | Memory file anchor pairs matched          |
+| `FOLDER_NAMING`      | ERROR    | Follows `###-short-name` convention       |
+| `FRONTMATTER_VALID`  | WARNING  | YAML frontmatter structured correctly     |
+| `COMPLEXITY_MATCH`   | WARNING  | Content metrics match declared level      |
+| `AI_PROTOCOL`        | WARNING  | Level 3/3+ has AI execution protocols     |
+| `LEVEL_MATCH`        | ERROR    | Level consistent across all files         |
+| `SECTION_COUNTS`     | WARNING  | Section counts within expected ranges     |
 
 **Exit Codes:** `0` = Pass | `1` = Warnings | `2` = Errors
 
@@ -625,7 +628,7 @@ cp .opencode/skill/system-spec-kit/templates/handover.md specs/###-name/
 node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js specs/042-feature/
 ```
 
-**IMPORTANT:** Memory files MUST be created via this script, not manually. Source is TypeScript (`generate-context.ts`); `node` executes the compiled `.js` output from `dist/`.
+**IMPORTANT:** Memory files MUST be created via this script, not manually. Source is TypeScript (`generate-context.ts`). `node` executes the compiled `.js` output from `dist/`.
 
 ---
 
@@ -682,13 +685,13 @@ memory_index_scan({ specFolder: "###-folder" })
 
 ### Quick Fixes
 
-| Problem | Quick Fix |
-|---------|-----------|
-| Spec folder not found | `./scripts/spec/create.sh "name" --level 1` |
-| Validation failing | `./scripts/spec/validate.sh <folder> --verbose` |
-| Memory not indexing | `memory_index_scan({ specFolder: "..." })` |
-| ANCHOR tag mismatch | Check every `<!-- ANCHOR: name -->` has matching `<!-- /ANCHOR: name -->` |
-| Embedding API errors | Check API key or set `EMBEDDINGS_PROVIDER=hf-local` |
+| Problem               | Quick Fix                                                                 |
+| --------------------- | ------------------------------------------------------------------------- |
+| Spec folder not found | `./scripts/spec/create.sh "name" --level 1`                               |
+| Validation failing    | `./scripts/spec/validate.sh <folder> --verbose`                           |
+| Memory not indexing   | `memory_index_scan({ specFolder: "..." })`                                |
+| ANCHOR tag mismatch   | Check every `<!-- ANCHOR: name -->` has matching `<!-- /ANCHOR: name -->` |
+| Embedding API errors  | Check API key or set `EMBEDDINGS_PROVIDER=hf-local`                       |
 
 ### Recovery Hints
 
@@ -711,14 +714,14 @@ Every error now includes actionable recovery guidance. 49 error codes mapped to 
 
 ### Internal Documentation
 
-| Document | Purpose |
-|----------|---------|
-| [SKILL.md](./SKILL.md) | AI workflow instructions (701 lines, streamlined from 1,055) |
-| [mcp_server/README.md](./mcp_server/README.md) | Memory MCP installation and configuration |
-| [references/memory/memory_system.md](./references/memory/memory_system.md) | Memory system deep dive |
-| [references/memory/readme_indexing.md](./references/memory/readme_indexing.md) | 4-source indexing pipeline, README weights, discovery |
-| [references/validation/validation_rules.md](./references/validation/validation_rules.md) | All validation rules and fixes |
-| [references/validation/five-checks.md](./references/validation/five-checks.md) | Five Checks evaluation framework |
+| Document                                                                                 | Purpose                                                      |
+| ---------------------------------------------------------------------------------------- | ------------------------------------------------------------ |
+| [SKILL.md](./SKILL.md)                                                                   | AI workflow instructions (701 lines, streamlined from 1,055) |
+| [mcp_server/README.md](./mcp_server/README.md)                                           | Memory MCP installation and configuration                    |
+| [references/memory/memory_system.md](./references/memory/memory_system.md)               | Memory system detailed reference                             |
+| [references/memory/readme_indexing.md](./references/memory/readme_indexing.md)           | 5-source indexing pipeline, README weights, discovery        |
+| [references/validation/validation_rules.md](./references/validation/validation_rules.md) | All validation rules and fixes                               |
+| [references/validation/five-checks.md](./references/validation/five-checks.md)           | Five Checks evaluation framework                             |
 
 ### Directory Structure
 
@@ -761,61 +764,18 @@ Every error now includes actionable recovery guidance. 49 error codes mapped to 
 
 ### Key Locations
 
-| Resource | Location |
-|----------|----------|
-| **Templates** | `.opencode/skill/system-spec-kit/templates/` |
-| **Scripts** | `.opencode/skill/system-spec-kit/scripts/` |
-| **Memory MCP** | `.opencode/skill/system-spec-kit/mcp_server/` |
-| **References** | `.opencode/skill/system-spec-kit/references/` |
-| **Commands** | `.opencode/command/spec_kit/` and `.opencode/command/memory/` (12 files, all ≤600 lines) |
+| Resource       | Location                                                                                 |
+| -------------- | ---------------------------------------------------------------------------------------- |
+| **Templates**  | `.opencode/skill/system-spec-kit/templates/`                                             |
+| **Scripts**    | `.opencode/skill/system-spec-kit/scripts/`                                               |
+| **Memory MCP** | `.opencode/skill/system-spec-kit/mcp_server/`                                            |
+| **References** | `.opencode/skill/system-spec-kit/references/`                                            |
+| **Commands**   | `.opencode/command/spec_kit/` and `.opencode/command/memory/` (12 files, all ≤600 lines) |
 
 ### External Dependencies
 
-| Resource | Purpose |
-|----------|---------|
+| Resource    | Purpose                             |
+| ----------- | ----------------------------------- |
 | `AGENTS.md` | Project-level AI behavior framework |
-| `AGENTS.md` | Gate definitions and enforcement |
-| `specs/` | Directory for all spec folders |
-
----
-
-<!-- /ANCHOR:related -->
-## 10. 📋 RECENT CHANGES
-<!-- ANCHOR:recent-changes -->
-
-### Specs 111-117: Documentation, Template & Command Overhaul
-
-| Spec | Focus | Key Outcome |
-|------|-------|-------------|
-| **111** | Anchor tag rollout | ~473 anchor tags across 74 READMEs for precise memory retrieval |
-| **112** | Memory command READMEs | 5 memory command READMEs aligned with command_template.md |
-| **113** | README styling | 75 READMEs styled per readme_template.md (7 rules) |
-| **114** | SKILL.md + command cleanup | SKILL.md reduced 1,055 to 701 lines; 12 command files at ≤600 lines; full agent routing compliance (19/19 commands) |
-| **115** | README template alignment | readme_template.md restructured (1589→1058 lines, 16→14 sections); canonical 9-section scaffold in §13; root README.md restructured (756→971 lines, 7→9 sections); 5 evolved patterns added (anchors, TOC format, badges, architecture diagrams, Before/After patterns) |
-| **117** | /create:folder_readme alignment | create_folder_readme.yaml aligned with canonical 9-section structure (765→611 lines, -20%); embedded templates replaced with reference stubs; emoji/naming inconsistencies fixed; folder_readme.md references corrected |
-
-**Impact:** Reduced token overhead for memory retrieval, consistent documentation across the entire skill system, streamlined AI instruction surface, and unified template architecture with a canonical 9-section scaffold.
-
-### Spec 014 (004-agents): Agent Routing Compliance
-
-| Area | Files | Key Outcome |
-|------|-------|-------------|
-| **Create commands** | 18 (12 YAML + 6 MD) | @speckit for spec folders, @context for discovery, @review quality gates |
-| **Spec_kit commands** | 15 (10 YAML + 5 MD) | @debug at failure >= 3, @research at confidence < 60%, dual-phase @review, @handover at session end |
-| **Test suite** | 90+ files | 18/18 sub-agent simulation tests passed |
-
-**Impact:** All 33 command files now comply with AGENTS.md routing rules. 204 verification checks passed for create commands. SKILL.md updated with Agent Dispatch table and mode suffix documentation.
-
----
-
-<!-- /ANCHOR:recent-changes -->
-## 11. 📊 THE BOTTOM LINE
-<!-- ANCHOR:the-bottom-line -->
-
-Six months from now, you'll know exactly why you made that architectural decision. Your AI assistant will pick up where you left off. And context that used to vanish between sessions? It's searchable forever.
-
-**Ready to start?**
-```bash
-/spec_kit:complete "your first documented feature" :auto
-```
-<!-- /ANCHOR:the-bottom-line -->
+| `AGENTS.md` | Gate definitions and enforcement    |
+| `specs/`    | Directory for all spec folders      |

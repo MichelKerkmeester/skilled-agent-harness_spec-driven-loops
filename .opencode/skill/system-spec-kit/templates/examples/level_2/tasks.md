@@ -8,6 +8,7 @@ including effort estimates and explicit verification tasks for each feature. -->
 
 ---
 
+<!-- ANCHOR:notation -->
 ## Task Notation
 
 | Prefix | Meaning |
@@ -19,8 +20,11 @@ including effort estimates and explicit verification tasks for each feature. -->
 
 **Task Format**: `T### [P?] Description (file path) [effort]`
 
+
+<!-- /ANCHOR:notation -->
 ---
 
+<!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup (1 hour)
 
 - [x] T001 Create auth directory structure (`src/auth/`) [15m]
@@ -28,8 +32,11 @@ including effort estimates and explicit verification tasks for each feature. -->
 - [x] T003 [P] Add User model to Prisma schema (`prisma/schema.prisma`) [20m]
 - [x] T004 [P] Run Prisma migration (`prisma/migrations/`) [15m]
 
+
+<!-- /ANCHOR:phase-1 -->
 ---
 
+<!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation (4-6 hours)
 
 ### Core Utilities
@@ -49,8 +56,11 @@ including effort estimates and explicit verification tasks for each feature. -->
 ### Integration
 - [x] T013 Wire up routes in app.js (`app.js`) [15m]
 
+
+<!-- /ANCHOR:phase-2 -->
 ---
 
+<!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification (2-3 hours)
 
 ### Unit Tests
@@ -75,8 +85,11 @@ including effort estimates and explicit verification tasks for each feature. -->
 - [x] T026 Complete implementation-summary.md [20m]
 - [x] T027 Mark all checklist items with evidence [15m]
 
+
+<!-- /ANCHOR:phase-3 -->
 ---
 
+<!-- ANCHOR:completion -->
 ## Completion Criteria
 
 - [x] All tasks marked `[x]`
@@ -86,13 +99,18 @@ including effort estimates and explicit verification tasks for each feature. -->
 - [x] Manual verification passed
 - [x] Checklist.md fully verified
 
+
+<!-- /ANCHOR:completion -->
 ---
 
+<!-- ANCHOR:cross-refs -->
 ## Cross-References
 
 - **Specification**: See `spec.md`
 - **Plan**: See `plan.md`
 - **Checklist**: See `checklist.md`
+
+<!-- /ANCHOR:cross-refs -->
 
 ---
 

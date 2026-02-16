@@ -3,7 +3,7 @@
 // Integration Tests: README Anchor Schema (Spec 111)
 // ---------------------------------------------------------------
 // Validates that handleMemoryIndexScan correctly discovers and
-// categorizes 4 source types: specFiles, constitutionalFiles,
+// categorizes 5 source types: specFiles, constitutionalFiles,
 // skillReadmes, projectReadmes.
 // ---------------------------------------------------------------
 
@@ -20,7 +20,7 @@ import * as handler from '../handlers/memory-index';
 
 let tempDir: string | null = null;
 
-/** Create a minimal workspace with all 4 source types */
+/** Create a minimal workspace with all 5 source types */
 function createTestWorkspace(): string {
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'spec111-integration-'));
 
@@ -169,14 +169,14 @@ describe('Spec 111: handleMemoryIndexScan includeReadmes behavior', () => {
     }
   });
 
-  it('S111-6: _debug_fileCounts contains all 4 source type categories', async () => {
+  it('S111-6: _debug_fileCounts contains all 5 source type categories', async () => {
     try {
       const result = await handler.handleMemoryIndexScan({});
       const parsed = JSON.parse(result.content[0].text);
 
       if (parsed.data?._debug_fileCounts) {
         const counts = parsed.data._debug_fileCounts;
-        // Verify all 4 source type keys exist
+        // Verify all 5 source type keys exist
         expect(counts).toHaveProperty('specFiles');
         expect(counts).toHaveProperty('constitutionalFiles');
         expect(counts).toHaveProperty('skillReadmes');

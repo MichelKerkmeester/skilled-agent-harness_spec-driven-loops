@@ -1,5 +1,7 @@
-<!-- SPECKIT_LEVEL: 3 -->
+<!-- SPECKIT_LEVEL: 3+ -->
 # Task 07 — Tagged Release
+
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify + level3-arch + level3plus-govern | v2.2 -->
 
 <!-- ANCHOR:metadata -->
 ## Metadata
@@ -8,9 +10,9 @@
 |-------|-------|
 | **Parent Spec** | 130 — Memory Overhaul & Agent Upgrade Release |
 | **Task** | 07 of 07 |
-| **Level** | 3 |
+| **Level** | 3+ |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | In Progress (release notes prepared; publication blocked) |
 | **Created** | 2026-02-16 |
 | **Depends On** | Task 06 (Global README Update) |
 | **Blocks** | None (final task) |
@@ -105,6 +107,61 @@ gh release create v2.1.0.0 \
 5. No breaking changes section confirms no functional changes
 6. changes.md has no placeholder text
 <!-- /ANCHOR:acceptance -->
+
+---
+
+<!-- ANCHOR:approval-workflow -->
+## Approval Workflow
+
+| Checkpoint | Approver | Status | Date |
+|------------|----------|--------|------|
+| Release Plan Review | Spec Owner | Approved | 2026-02-16 |
+| All Tasks Complete | Tech Lead | Pending | TBD |
+| Pre-Release Checklist | QA | Pending | TBD |
+| Tag Creation Approval | Release Manager | Pending | TBD |
+| Publication Approval | Spec Owner | Pending | TBD |
+<!-- /ANCHOR:approval-workflow -->
+
+---
+
+<!-- ANCHOR:compliance -->
+## Compliance Checkpoints
+
+### Release Standards
+- [ ] All changes from Tasks 01-06 committed to main branch
+- [ ] All task checklists passed with evidence
+- [ ] Version number follows semantic versioning
+- [ ] Release notes follow PUBLIC_RELEASE.md conventions
+
+### Quality Gates
+- [ ] No placeholder text in changes.md or release notes
+- [ ] Breaking changes section accurate (confirms no functional changes)
+- [ ] Git tag points to correct commit
+- [ ] GitHub release published successfully
+<!-- /ANCHOR:compliance -->
+
+---
+
+<!-- ANCHOR:stakeholders -->
+## Stakeholder Matrix
+
+| Stakeholder | Role | Interest | Communication |
+|-------------|------|----------|---------------|
+| Spec Owner | Documentation Lead | High | Release coordination |
+| Release Manager | Version Control | High | Tag creation and publication |
+| Tech Lead | System Architect | High | Technical accuracy of release notes |
+| End Users | Developers/AI Assistants | High | Release consumption and upgrade path |
+| External Contributors | Open Source Community | Medium | Public release visibility |
+<!-- /ANCHOR:stakeholders -->
+
+---
+
+<!-- ANCHOR:changelog -->
+## Change Log
+
+### v1.0 (2026-02-16)
+**Initial task specification** — Defined GitHub release process for v2.1.0.0 following PUBLIC_RELEASE.md conventions.
+<!-- /ANCHOR:changelog -->
 
 ---
 

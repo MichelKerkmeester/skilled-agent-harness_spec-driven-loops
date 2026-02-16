@@ -1,6 +1,6 @@
 ---
 title: "Embeddings Modules"
-description: "Embedding provider fallback chain with graceful degradation for the Spec Kit Memory system."
+description: "Shared-package embedding provider chain with graceful degradation and BM25 fallback."
 trigger_phrases:
   - "embedding provider"
   - "fallback chain"
@@ -10,32 +10,33 @@ importance_tier: "normal"
 
 # Embeddings Modules
 
-> Embedding provider fallback chain with graceful degradation for the Spec Kit Memory system.
+> Shared-package embedding provider chain with graceful degradation and BM25 fallback.
 
 ---
 
 ## TABLE OF CONTENTS
 <!-- ANCHOR:table-of-contents -->
 
-- [1. 📖 OVERVIEW](#1--overview)
-- [2. 📁 STRUCTURE](#2--structure)
-- [3. ⚡ FEATURES](#3--features)
-- [4. 💡 USAGE EXAMPLES](#4--usage-examples)
-- [5. 📚 RELATED RESOURCES](#5--related-resources)
+- [1. OVERVIEW](#1--overview)
+- [2. STRUCTURE](#2--structure)
+- [3. FEATURES](#3--features)
+- [4. USAGE EXAMPLES](#4--usage-examples)
+- [5. RELATED RESOURCES](#5--related-resources)
+
+<!-- /ANCHOR:table-of-contents -->
 
 ---
 
-<!-- /ANCHOR:table-of-contents -->
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 <!-- ANCHOR:overview -->
 
-The embeddings module implements a three-tier provider fallback chain ensuring reliable embedding generation with graceful degradation. When the primary API provider fails, it automatically falls back to local models, and ultimately to BM25-only text search mode.
+The embeddings module documents the embedding provider chain now sourced from `@spec-kit/shared/embeddings`. The runtime still uses three-tier fallback: primary API provider, optional local fallback, then BM25-only mode.
 
 ### Key Statistics
 
 | Category | Count | Details |
 |----------|-------|---------|
-| Modules | 2 | provider-chain, index |
+| Modules | 2 | provider-chain, index (relocated to shared package) |
 | Provider Tiers | 3 | Primary API, Local model, BM25-only |
 | Fallback Timeout | 100ms | Max time for fallback attempts |
 
@@ -45,6 +46,7 @@ The embeddings module implements a three-tier provider fallback chain ensuring r
 |---------|-------------|
 | **Three-Tier Fallback** | Primary API -> Local model -> BM25-only |
 | **Graceful Degradation** | Search continues even when all embedding providers fail |
+| **Spec 126 Compatibility** | BM25 fallback still participates in document-aware scoring/ranking |
 | **Diagnostic Logging** | Detailed fallback logs with reasons and timestamps |
 | **Environment Control** | `ENABLE_LOCAL_FALLBACK` env var controls local model usage |
 
@@ -60,10 +62,11 @@ BM25-Only Mode
 Text-based search only
 ```
 
+<!-- /ANCHOR:overview -->
+
 ---
 
-<!-- /ANCHOR:overview -->
-## 2. 📁 STRUCTURE
+## 2. STRUCTURE
 <!-- ANCHOR:structure -->
 
 > **Note**: Source files (`provider-chain.ts`, `index.ts`) were relocated to `@spec-kit/shared/embeddings` during the shared package migration. This directory retains the README for architectural reference. The `lib/providers/embeddings.ts` module re-exports from the shared package.
@@ -80,10 +83,11 @@ embeddings/
 | `provider-chain.ts` | `@spec-kit/shared/embeddings` |
 | `index.ts` | `@spec-kit/shared/embeddings` |
 
+<!-- /ANCHOR:structure -->
+
 ---
 
-<!-- /ANCHOR:structure -->
-## 3. ⚡ FEATURES
+## 3. FEATURES
 <!-- ANCHOR:features -->
 
 ### Provider Chain
@@ -143,11 +147,12 @@ const metadata = bm25.get_metadata();
 | `LOCAL_UNAVAILABLE` | Local model not found or initialization failed |
 | `NETWORK_ERROR` | ECONNREFUSED, ENOTFOUND, ENETUNREACH |
 
+<!-- /ANCHOR:features -->
+
 ---
 
-<!-- /ANCHOR:features -->
-## 4. 💡 USAGE EXAMPLES
-<!-- ANCHOR:examples -->
+## 4. USAGE EXAMPLES
+<!-- ANCHOR:usage-examples -->
 
 ### Example 1: Create and Use Provider Chain
 
@@ -225,10 +230,11 @@ console.log(JSON.stringify(status, null, 2));
 | Get status | `chain.getStatus()` | Monitoring/debugging |
 | Get metadata | `chain.get_metadata()` | Provider info |
 
+<!-- /ANCHOR:usage-examples -->
+
 ---
 
-<!-- /ANCHOR:examples -->
-## 5. 📚 RELATED RESOURCES
+## 5. RELATED RESOURCES
 <!-- ANCHOR:related -->
 
 ### Internal Documentation
@@ -247,8 +253,9 @@ console.log(JSON.stringify(status, null, 2));
 | [Voyage AI Docs](https://docs.voyageai.com/) | Primary API provider |
 | [HuggingFace Transformers](https://huggingface.co/docs/transformers) | Local model support |
 
+<!-- /ANCHOR:related -->
+
 ---
 
-**Version**: 1.7.2
-**Last Updated**: 2026-02-08
-<!-- /ANCHOR:related -->
+**Version**: 1.8.0
+**Last Updated**: 2026-02-16

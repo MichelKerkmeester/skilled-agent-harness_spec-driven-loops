@@ -9,6 +9,7 @@ and formal sign-off sections. Use this for enterprise-scale changes. -->
 
 ---
 
+<!-- ANCHOR:protocol -->
 ## Verification Protocol
 
 | Priority | Handling | Completion Impact |
@@ -17,8 +18,11 @@ and formal sign-off sections. Use this for enterprise-scale changes. -->
 | **[P1]** | Required | Must complete OR get user approval |
 | **[P2]** | Optional | Can defer with documented reason |
 
+
+<!-- /ANCHOR:protocol -->
 ---
 
+<!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
 - [x] CHK-001 [P0] Requirements documented in spec.md
@@ -30,8 +34,11 @@ and formal sign-off sections. Use this for enterprise-scale changes. -->
 - [x] CHK-004 [P1] Stakeholder matrix defined
   - **Evidence**: spec.md section 14 with 6 stakeholders
 
+
+<!-- /ANCHOR:pre-impl -->
 ---
 
+<!-- ANCHOR:code-quality -->
 ## Code Quality
 
 - [x] CHK-010 [P0] Code passes lint/format checks
@@ -47,8 +54,11 @@ and formal sign-off sections. Use this for enterprise-scale changes. -->
 - [x] CHK-015 [P2] Code complexity within limits
   - **Evidence**: No function exceeds 50 LOC, cyclomatic complexity < 10
 
+
+<!-- /ANCHOR:code-quality -->
 ---
 
+<!-- ANCHOR:testing -->
 ## Testing
 
 - [x] CHK-020 [P0] All acceptance criteria met
@@ -66,8 +76,11 @@ and formal sign-off sections. Use this for enterprise-scale changes. -->
 - [x] CHK-026 [P2] Performance tests completed
   - **Evidence**: Load testing deferred (documented in spec)
 
+
+<!-- /ANCHOR:testing -->
 ---
 
+<!-- ANCHOR:security -->
 ## Security
 
 - [x] CHK-030 [P0] No hardcoded secrets
@@ -85,8 +98,11 @@ and formal sign-off sections. Use this for enterprise-scale changes. -->
 - [x] CHK-036 [P2] Rate limiting implemented
   - **Evidence**: Deferred to Phase 2 (documented)
 
+
+<!-- /ANCHOR:security -->
 ---
 
+<!-- ANCHOR:docs -->
 ## Documentation
 
 - [x] CHK-040 [P1] Spec/plan/tasks synchronized
@@ -100,8 +116,11 @@ and formal sign-off sections. Use this for enterprise-scale changes. -->
 - [x] CHK-044 [P2] User documentation updated
   - **Evidence**: Login/registration help text added
 
+
+<!-- /ANCHOR:docs -->
 ---
 
+<!-- ANCHOR:file-org -->
 ## File Organization
 
 - [x] CHK-050 [P1] Temp files in scratch/ only
@@ -113,8 +132,11 @@ and formal sign-off sections. Use this for enterprise-scale changes. -->
 - [x] CHK-053 [P1] All new files in appropriate directories
   - **Evidence**: auth/ for endpoints, utils/ for services
 
+
+<!-- /ANCHOR:file-org -->
 ---
 
+<!-- ANCHOR:arch-verify -->
 ## L3: Architecture Verification
 
 - [x] CHK-100 [P0] Architecture decisions documented in decision-record.md
@@ -128,8 +150,11 @@ and formal sign-off sections. Use this for enterprise-scale changes. -->
 - [x] CHK-104 [P1] Dependency graph verified
   - **Evidence**: All task dependencies followed during execution
 
+
+<!-- /ANCHOR:arch-verify -->
 ---
 
+<!-- ANCHOR:perf-verify -->
 ## L3: Performance Verification
 
 - [x] CHK-110 [P1] Response time targets met (NFR-P01)
@@ -143,8 +168,11 @@ and formal sign-off sections. Use this for enterprise-scale changes. -->
 - [x] CHK-114 [P2] Database query performance
   - **Evidence**: User lookup < 50ms with email index
 
+
+<!-- /ANCHOR:perf-verify -->
 ---
 
+<!-- ANCHOR:deploy-ready -->
 ## L3: Deployment Readiness
 
 - [x] CHK-120 [P0] Rollback procedure documented and tested
@@ -158,8 +186,11 @@ and formal sign-off sections. Use this for enterprise-scale changes. -->
 - [x] CHK-124 [P1] Pre-deployment backup created
   - **Evidence**: Database snapshot created before migration
 
+
+<!-- /ANCHOR:deploy-ready -->
 ---
 
+<!-- ANCHOR:l3plus-arch-verify -->
 ## L3+: Architecture Verification (Extended)
 
 - [x] CHK-130 [P1] AI Execution Protocol followed
@@ -171,8 +202,11 @@ and formal sign-off sections. Use this for enterprise-scale changes. -->
 - [x] CHK-133 [P2] Status updates logged
   - **Evidence**: 5 status updates in tasks.md status log
 
+
+<!-- /ANCHOR:l3plus-arch-verify -->
 ---
 
+<!-- ANCHOR:l3plus-perf-verify -->
 ## L3+: Performance Verification (Extended)
 
 - [x] CHK-140 [P1] Critical path completed within estimate
@@ -182,8 +216,11 @@ and formal sign-off sections. Use this for enterprise-scale changes. -->
 - [x] CHK-142 [P2] Multi-agent coordination efficient
   - **Evidence**: 3 workstreams completed without conflicts
 
+
+<!-- /ANCHOR:l3plus-perf-verify -->
 ---
 
+<!-- ANCHOR:l3plus-deploy-ready -->
 ## L3+: Deployment Readiness (Extended)
 
 - [x] CHK-150 [P0] All approval gates passed
@@ -193,8 +230,11 @@ and formal sign-off sections. Use this for enterprise-scale changes. -->
 - [x] CHK-152 [P2] Knowledge transfer completed
   - **Evidence**: Handoff session with on-call team
 
+
+<!-- /ANCHOR:l3plus-deploy-ready -->
 ---
 
+<!-- ANCHOR:compliance-verify -->
 ## L3+: Compliance Verification
 
 - [x] CHK-160 [P1] Security review completed
@@ -208,8 +248,11 @@ and formal sign-off sections. Use this for enterprise-scale changes. -->
 - [x] CHK-164 [P1] Code review completed
   - **Evidence**: PR #123 approved by Chris (Senior Dev)
 
+
+<!-- /ANCHOR:compliance-verify -->
 ---
 
+<!-- ANCHOR:docs-verify -->
 ## L3+: Documentation Verification
 
 - [x] CHK-170 [P1] All spec documents synchronized
@@ -221,8 +264,11 @@ and formal sign-off sections. Use this for enterprise-scale changes. -->
 - [x] CHK-173 [P2] Knowledge transfer documented
   - **Evidence**: Session notes in memory/
 
+
+<!-- /ANCHOR:docs-verify -->
 ---
 
+<!-- ANCHOR:sign-off -->
 ## L3+: SIGN-OFF
 
 | Approver | Role | Status | Date | Notes |
@@ -233,8 +279,11 @@ and formal sign-off sections. Use this for enterprise-scale changes. -->
 | Chris | Senior Developer | [x] Approved | 2025-01-19 | Code review passed |
 | Pat | Engineering Manager | [x] Approved | 2025-01-20 | Clear for launch |
 
+
+<!-- /ANCHOR:sign-off -->
 ---
 
+<!-- ANCHOR:summary -->
 ## Verification Summary
 
 | Category | Total | Verified |
@@ -248,6 +297,8 @@ and formal sign-off sections. Use this for enterprise-scale changes. -->
 **Verified By**: AI Assistant (Claude) + Human Review
 **ADRs**: 3 documented, 3 accepted
 **Approvals**: 5/5 obtained
+
+<!-- /ANCHOR:summary -->
 
 ---
 

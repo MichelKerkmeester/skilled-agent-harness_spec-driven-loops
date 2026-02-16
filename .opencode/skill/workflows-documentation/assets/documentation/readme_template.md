@@ -18,7 +18,7 @@ Templates for creating README files with scannable structure and progressive dis
 - **Scannable**: Designed for quick evaluation, not linear reading
 - **Progressive disclosure**: Quick Start first, details later
 - **Self-contained**: Can be understood without reading other docs
-- **Multi-audience**: Serves evaluators, users, and troubleshooters
+- **Multi-audience**: Serves evaluators, users and troubleshooters
 
 **Location**: Project root (`README.md`) or component/feature directories
 
@@ -125,7 +125,7 @@ Every README follows a 9-section structure. Use what's needed, remove what's not
 
 ## 5. 📝 SECTION DEEP DIVES
 
-> 📋 See §13 Complete Template for the copy-paste scaffold.
+> See §14 Complete Template for the copy-paste scaffold.
 
 **Universal Writing Tips**:
 - Test every command before documenting
@@ -146,7 +146,7 @@ Every README follows a 9-section structure. Use what's needed, remove what's not
 **Writing Tips**:
 - Lead with value proposition (why should I care?)
 - Keep descriptions action-oriented ("enables X" not "is designed for X")
-- Statistics build credibility - include if available
+- Statistics build credibility. Include if available.
 
 ### Advanced Overview Patterns
 
@@ -200,7 +200,7 @@ These patterns appear in mature project READMEs and go beyond the basic template
 
 **Writing Tips**:
 - Assume nothing is installed (or state prerequisites clearly)
-- "30-Second Setup" is aspirational - aim for it
+- "30-Second Setup" is aspirational. Aim for it.
 
 ### Structure Section (3)
 
@@ -241,7 +241,7 @@ These patterns appear in mature project READMEs and go beyond the basic template
 **Writing Tips**:
 - Show complete example config (not fragments)
 - Document ALL defaults
-- Explain the "why" not just the "what"
+- Explain the "why" not the "what"
 
 ### Usage Examples Section (6)
 
@@ -253,7 +253,7 @@ These patterns appear in mature project READMEs and go beyond the basic template
 - Expected results for each example
 
 **Writing Tips**:
-- Build complexity progressively (basic → advanced)
+- Build complexity progressively (basic to advanced)
 - Use realistic examples, not toy data
 
 ### Troubleshooting Section (7)
@@ -280,7 +280,7 @@ These patterns appear in mature project READMEs and go beyond the basic template
 
 **Writing Tips**:
 - Keep answers concise (2-3 sentences max)
-- Actually answer the question asked
+- Answer the question asked
 
 ### Related Documents Section (9)
 
@@ -301,11 +301,11 @@ These patterns appear in mature project READMEs and go beyond the basic template
 
 ### Progressive Disclosure
 
-Essential information first, details on demand: title + one-line (10s) → overview (30s) → quick start (2m) → full docs (as needed).
+Essential information first, details on demand: title + one-line (10s), then overview (30s), then quick start (2m), then full docs (as needed).
 
 ### Table-First Approach
 
-Tables are scannable. Use them for feature comparisons, configuration options, file listings, requirements, and quick reference.
+Tables are scannable. Use them for feature comparisons, configuration options, file listings, requirements and quick reference.
 
 | Requirement | Minimum | Recommended |
 |-------------|---------|-------------|
@@ -393,22 +393,6 @@ For optional content:
 
 Note the double-dash after the number in the anchor.
 
-### Anchor Tag Placement
-
-Anchors open AFTER the H2 heading line, and content sits between the open/close tags:
-```markdown
-## N. 📖 SECTION_NAME
-<!-- ANCHOR:section-name -->
-[section content here]
-<!-- /ANCHOR:section-name -->
-```
-
-Never place anchor tags before the heading. Each `<!-- ANCHOR:name -->` must have a matching `<!-- /ANCHOR:name -->`.
-
-### TOC Consistency Rule
-
-Every TOC entry MUST have a matching H2 heading. Every H2 heading SHOULD have a TOC entry. No phantom links allowed — if a TOC link points to a heading that doesn't exist, it's a broken document.
-
 ### Badge Placement
 
 Badges go above H1 in a `<div align="left">` wrapper. The blockquote tagline goes immediately after H1, before the first horizontal rule (`---`).
@@ -425,8 +409,6 @@ Before finalizing a README, verify all applicable items:
 - [ ] All included sections have content (no empty sections)
 - [ ] Section numbers are sequential
 - [ ] Horizontal rules between major sections
-- [ ] Every `<!-- ANCHOR:name -->` has a matching `<!-- /ANCHOR:name -->`
-- [ ] No orphaned opening or closing anchor tags
 - [ ] TOC entries match actual H2 headings (no phantom links)
 - [ ] Section numbers in H2 headings match TOC order
 
@@ -454,9 +436,114 @@ Before finalizing a README, verify all applicable items:
 - [ ] Commands in fenced code blocks
 - [ ] Key terms bolded consistently
 
+### Human Voice Rules (HVR)
+- [ ] No em dashes. Use commas, periods, or colons instead.
+- [ ] No semicolons. Split into two sentences or use "and".
+- [ ] No Oxford commas. Remove comma before final "and/or" in 3+ item lists.
+- [ ] No "not just X, but also Y" patterns
+- [ ] No exactly three-item inline lists. Use 2, 4, or 5 items instead (tables and bullet lists are exempt).
+- [ ] No setup language ("Let's explore", "dive in", "when it comes to", "at its core")
+- [ ] No banned words: leverage, robust, seamless, ecosystem, utilize, holistic, curate, harness, elevate, foster, empower, landscape, groundbreaking, cutting-edge, delve, illuminate, innovative, remarkable
+- [ ] No banned phrases: "It's important to", "It's worth noting", "When it comes to", "Dive into", "That being said", "Having said that", "The reality is", "Here's the thing", "Moving forward", "At the end of the day"
+- [ ] No banned metaphors: "deep dive", "bridge the gap", "at the heart of", "game-changer", "pave the way"
+- [ ] Active voice throughout. Direct address. Simple words.
+- [ ] Soft deduction words minimized: very, really, truly, absolutely, incredibly, just, actually, basically, simply, obviously, clearly
+- [ ] "However" used max 2 times per file
+- [ ] Max 1 ellipsis per file
+
 ---
 
-## 9. 💡 PATTERNS FROM EXISTING READMES
+## 9. 🗣️ HUMAN VOICE RULES (HVR)
+
+All README content must follow Human Voice Rules. These rules produce writing that reads as direct, clear and human-authored rather than AI-generated.
+
+### Punctuation
+
+| Rule | Action |
+|------|--------|
+| No em dashes (—) | Replace with commas, periods, or colons |
+| No semicolons (;) | Split into two sentences or use "and" |
+| No Oxford commas | Remove comma before final "and/or" in 3+ item lists |
+| Max 1 ellipsis per file | Remove excess ellipses |
+
+### Structure Rules
+
+| Rule | Action |
+|------|--------|
+| No "not just X, but also Y" | Rewrite as direct statement |
+| No exactly three-item inline lists | Use 2, 4, or 5 items (tables and bullet lists exempt) |
+| No setup language | Remove "Let's explore", "dive in", "when it comes to", "at its core" |
+
+### Banned Words
+
+Replace these words in all documentation:
+
+| Banned Word | Replacement |
+|-------------|-------------|
+| leverage | use |
+| robust | strong, reliable |
+| seamless | smooth |
+| ecosystem | (remove or be specific) |
+| utilize/utilizing | use/using |
+| holistic | complete, whole |
+| curate | select |
+| harness | use |
+| elevate | improve, raise |
+| foster | support, encourage |
+| empower | enable |
+| landscape | (remove or be specific) |
+| groundbreaking | new, first |
+| cutting-edge | latest, advanced |
+| delve | look at, examine |
+| illuminate | explain, clarify |
+| innovative | new |
+| remarkable | notable |
+
+### Banned Phrases
+
+Remove or rewrite these phrases entirely:
+- "It's important to"
+- "It's worth noting"
+- "When it comes to"
+- "Dive into"
+- "That being said"
+- "Having said that"
+- "The reality is"
+- "Here's the thing"
+- "Moving forward"
+- "At the end of the day"
+
+### Banned Metaphors
+
+| Metaphor | Replacement |
+|----------|-------------|
+| "deep dive" | detailed look |
+| "bridge the gap" | connect |
+| "at the heart of" | central to |
+| "game-changer" | (state the specific change) |
+| "pave the way" | enable |
+
+### Voice Directives
+
+- **Active voice**: Write "The script validates structure" not "Structure is validated by the script"
+- **Direct address**: Write "Run the command" not "The command should be run"
+- **Simple words**: Prefer short, common words over long, formal ones
+- **Varied sentence lengths**: Mix short and long sentences for rhythm
+- **No meta-commentary**: Remove "As mentioned above" or "In this section we will"
+- **Cut fluff**: Remove unnecessary modifiers and filler words
+
+### Soft Deductions
+
+Minimize these words (they weaken writing without adding meaning):
+- very, really, truly, absolutely, incredibly
+- just, actually, basically, simply
+- obviously, clearly
+
+Limit "however" to max 2 per file. Replace vague verbs with specific ones.
+
+---
+
+## 10. 💡 PATTERNS FROM EXISTING READMES
 
 ### Effective Overview Pattern
 
@@ -491,7 +578,7 @@ and [key benefit 2] for [target audience].
 
 ---
 
-## 10. 🔄 README MAINTENANCE
+## 11. 🔄 README MAINTENANCE
 
 ### When to Update
 
@@ -542,9 +629,9 @@ If deprecating a project/component:
 
 ---
 
-## 11. 📄 YAML FRONTMATTER SCHEMA
+## 12. 📄 YAML FRONTMATTER SCHEMA
 
-README files that should be indexed by the Spec Kit Memory system can include YAML frontmatter at the very top of the file. This metadata enables semantic search, trigger-phrase matching, and importance-based ranking.
+README files that should be indexed by the Spec Kit Memory system can include YAML frontmatter at the very top of the file. This metadata enables semantic search, trigger-phrase matching and importance-based ranking.
 
 ### Frontmatter Format
 
@@ -588,7 +675,7 @@ importance_tier: "normal"  # constitutional | critical | important | normal | te
 | Standard project root `README.md` (not memory-indexed) | ⚠️ Optional | Not indexed by memory system |
 | File is inside `scratch/` directory (temporary) | ⚠️ Optional | Temporary by nature |
 | Content already captured in dedicated memory files | ⚠️ Optional | Redundant with existing memories |
-| Purely for human consumption with no AI retrieval intent | ❌ Not needed | No memory indexing required |
+| For human consumption only with no AI retrieval intent | ❌ Not needed | No memory indexing required |
 | One-off guide unlikely to be referenced again | ❌ Not needed | No future retrieval expected |
 
 ### Example: Skill README with Frontmatter
@@ -614,7 +701,7 @@ importance_tier: "important"
 
 ---
 
-## 12. 🏷️ ANCHOR TEMPLATES FOR STRUCTURED RETRIEVAL
+## 13. 🏷️ ANCHOR TEMPLATES FOR STRUCTURED RETRIEVAL
 
 Memory files and spec folder documents (including READMEs) use a standardized set of **retrieval anchors** for fine-grained context extraction. These anchors enable the memory system to pull specific sections without loading entire files.
 
@@ -688,7 +775,7 @@ Issues preventing progress:
 - **Format**: `<!-- ANCHOR: name -->` to open, `<!-- /ANCHOR: name -->` to close (note the space after `ANCHOR:`)
 - **IDs**: Lowercase with hyphens only (e.g., `next-steps`, not `NextSteps`)
 - **No nesting**: Anchors must not overlap or nest inside each other
-- **Include only what applies**: Not every document needs all seven anchors; use what's relevant
+- **Include only what applies**: Not every document needs all seven anchors. Use what's relevant.
 - **Minimum for memory files**: `summary` anchor is strongly recommended for all indexed documents
 - **Retrieval**: Use `memory_search({ query: "...", anchors: ["state", "next-steps"] })` to extract specific sections
 
@@ -705,13 +792,13 @@ README files under `.opencode/skill/` are automatically indexed by the Spec Kit 
 **How README Indexing Works**:
 - Discovered by `findSkillReadmes()` during `memory_index_scan()`
 - Classified as `semantic` memory type (documentation describing concepts)
-- Assigned `normal` tier with reduced importance weight (0.3) — surfaces when relevant but never outranks user work memories
+- Assigned `normal` tier with reduced importance weight (0.3). Surfaces when relevant but never outranks user work memories.
 - Searchable via `memory_search({ query: "..." })` alongside memory files
 - Grouped under `skill:SKILL-NAME` spec folder identifier
 
 ---
 
-## 13. 📋 COMPLETE TEMPLATE
+## 14. 📋 COMPLETE TEMPLATE
 
 Copy and customize this template. Replace all `[PLACEHOLDER]` markers with actual content. Remove sections that don't apply (keep minimum: Overview, Quick Start, Troubleshooting).
 
@@ -739,7 +826,6 @@ description: "[Brief description for memory indexing]"
 ---
 
 ## TABLE OF CONTENTS
-<!-- ANCHOR:toc -->
 
 - [1. 📖 OVERVIEW](#1--overview)
 - [2. 🚀 QUICK START](#2--quick-start)
@@ -751,12 +837,9 @@ description: "[Brief description for memory indexing]"
 - [8. ❓ FAQ](#8--faq)
 - [9. 📚 RELATED DOCUMENTS](#9--related-documents)
 
-<!-- /ANCHOR:toc -->
-
 ---
 
 ## 1. 📖 OVERVIEW
-<!-- ANCHOR:overview -->
 
 ### What is [PROJECT_NAME]?
 
@@ -783,12 +866,9 @@ description: "[Brief description for memory indexing]"
 |-------------|---------|-------------|
 | [Runtime/Tool] | [Version] | [Version] |
 
-<!-- /ANCHOR:overview -->
-
 ---
 
 ## 2. 🚀 QUICK START
-<!-- ANCHOR:quick-start -->
 
 ### 30-Second Setup
 
@@ -820,12 +900,9 @@ description: "[Brief description for memory indexing]"
 [minimal usage command or code]
 ```
 
-<!-- /ANCHOR:quick-start -->
-
 ---
 
 ## 3. 📁 STRUCTURE
-<!-- ANCHOR:structure -->
 
 ```
 [root-directory]/
@@ -843,12 +920,9 @@ description: "[Brief description for memory indexing]"
 | `[filename-1]` | [What it does] |
 | `[filename-2]` | [What it does] |
 
-<!-- /ANCHOR:structure -->
-
 ---
 
 ## 4. ⚡ FEATURES
-<!-- ANCHOR:features -->
 
 ### [Feature Category 1]
 
@@ -869,12 +943,9 @@ description: "[Brief description for memory indexing]"
 [command or code example]
 ```
 
-<!-- /ANCHOR:features -->
-
 ---
 
 ## 5. ⚙️ CONFIGURATION
-<!-- ANCHOR:configuration -->
 
 ### Configuration File
 
@@ -898,12 +969,9 @@ description: "[Brief description for memory indexing]"
 |----------|----------|-------------|
 | `[VAR_NAME]` | [Yes/No] | [What it controls] |
 
-<!-- /ANCHOR:configuration -->
-
 ---
 
 ## 6. 💡 USAGE EXAMPLES
-<!-- ANCHOR:examples -->
 
 ### Example 1: [Use Case Name]
 
@@ -935,12 +1003,9 @@ description: "[Brief description for memory indexing]"
 | [Pattern 1] | `[code]` | [Scenario] |
 | [Pattern 2] | `[code]` | [Scenario] |
 
-<!-- /ANCHOR:examples -->
-
 ---
 
 ## 7. 🛠️ TROUBLESHOOTING
-<!-- ANCHOR:troubleshooting -->
 
 ### Common Issues
 
@@ -980,12 +1045,9 @@ description: "[Brief description for memory indexing]"
 [diagnostic command 2]
 ```
 
-<!-- /ANCHOR:troubleshooting -->
-
 ---
 
 ## 8. ❓ FAQ
-<!-- ANCHOR:faq -->
 
 ### General Questions
 
@@ -1011,12 +1073,9 @@ A: [Answer with code if applicable.]
 [example]
 ```
 
-<!-- /ANCHOR:faq -->
-
 ---
 
 ## 9. 📚 RELATED DOCUMENTS
-<!-- ANCHOR:related -->
 
 ### Internal Documentation
 
@@ -1030,8 +1089,6 @@ A: [Answer with code if applicable.]
 |----------|-------------|
 | [Resource Name](https://url) | [What it provides] |
 
-<!-- /ANCHOR:related -->
-
 ---
 
 *[Optional: Footer with version info or maintainer contact]*
@@ -1039,7 +1096,7 @@ A: [Answer with code if applicable.]
 
 ---
 
-## 14. 🔗 RELATED RESOURCES
+## 15. 🔗 RELATED RESOURCES
 
 ### Templates
 - [skill_asset_template.md](../opencode/skill_asset_template.md) - Pattern reference for this document

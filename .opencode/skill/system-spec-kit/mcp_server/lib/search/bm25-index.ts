@@ -210,22 +210,23 @@ class BM25Index {
 
     try {
       const rows = (database.prepare(
-        `SELECT id, title, content, trigger_phrases, spec_folder
+        `SELECT id, title, content_text, trigger_phrases, file_path
          FROM memory_index
-         WHERE status IS NULL OR status != 'deleted'`
+         WHERE is_archived = 0`
       ) as Database.Statement).all() as Array<{
         id: number;
         title: string | null;
-        content: string | null;
+        content_text: string | null;
         trigger_phrases: string | null;
-        spec_folder: string | null;
+        file_path: string | null;
       }>;
 
       for (const row of rows) {
         const textParts: string[] = [];
         if (row.title) textParts.push(row.title);
-        if (row.content) textParts.push(row.content);
+        if (row.content_text) textParts.push(row.content_text);
         if (row.trigger_phrases) textParts.push(row.trigger_phrases);
+        if (row.file_path) textParts.push(row.file_path);
         const text = textParts.join(' ');
         if (text.trim()) {
           this.addDocument(String(row.id), text);

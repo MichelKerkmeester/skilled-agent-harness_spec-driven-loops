@@ -9,6 +9,7 @@ Multiple ADRs can be included in a single file for related decisions. -->
 
 ---
 
+<!-- ANCHOR:adr-001 -->
 ## ADR-001: Session Management Strategy
 
 ### Metadata
@@ -87,8 +88,11 @@ The application needs session management to maintain user authentication state a
 
 ---
 
+
+<!-- /ANCHOR:adr-001 -->
 ---
 
+<!-- ANCHOR:adr-002 -->
 ## ADR-002: Password Hashing Algorithm
 
 ### Metadata
@@ -165,8 +169,11 @@ User passwords must be securely hashed before storage to protect user data in ca
 
 ---
 
+
+<!-- /ANCHOR:adr-002 -->
 ---
 
+<!-- ANCHOR:adr-003 -->
 ## ADR-003: Client-Side Token Storage
 
 ### Metadata
@@ -239,6 +246,8 @@ JWT tokens need to be stored client-side for authenticated requests. The storage
 - Login/logout UI components
 
 **Rollback**: Change token storage location; no breaking changes to backend.
+
+<!-- /ANCHOR:adr-003 -->
 
 ---
 

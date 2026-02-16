@@ -1,0 +1,76 @@
+# Codex CLI project configuration
+# Ported from opencode.json — MCP servers and settings
+# Docs: https://developers.openai.com/codex/mcp
+
+# --- MCP Servers ---
+
+[mcp_servers.sequential_thinking]
+command = "npx"
+args = ["-y", "@modelcontextprotocol/server-sequential-thinking"]
+
+[mcp_servers.spec_kit_memory]
+# Persistent memory with vector search, hybrid retrieval, and causal lineage tracking
+# Database: .opencode/skill/system-spec-kit/mcp_server/dist/database/context-index.sqlite
+# Providers: Voyage (1024 dims), OpenAI (1536/3072 dims), HF Local (768 dims, no API needed)
+command = "node"
+args = [".opencode/skill/system-spec-kit/mcp_server/dist/context-server.js"]
+
+[mcp_servers.spec_kit_memory.env]
+EMBEDDINGS_PROVIDER = "auto"
+MEMORY_DB_PATH = "/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/dist/database/context-index.sqlite"
+# For cloud providers: add VOYAGE_API_KEY or OPENAI_API_KEY
+# Get Voyage key: https://dash.voyageai.com/api-keys (recommended, 8% better than OpenAI)
+# Get OpenAI key: https://platform.openai.com/api-keys
+
+[mcp_servers.code_mode]
+# MCP orchestration via TypeScript execution for external tools (Webflow, Figma, ClickUp, etc.)
+command = "node"
+args = [".opencode/skill/mcp-code-mode/mcp_server/dist/index.js"]
+
+[mcp_servers.code_mode.env]
+UTCP_CONFIG_FILE = ".utcp_config.json"
+
+# --- Skills Config ---
+# Skills are auto-discovered from .codex/skills/ (symlinked to .opencode/skill/)
+# To disable a specific skill:
+# [[skills.config]]
+# path = ".codex/skills/workflows-git/SKILL.md"
+# enabled = false
+
+# --- Profiles (model tiers for sub-agent dispatch) ---
+
+[profiles.fast]
+model = "gpt-5.3-codex-spark"
+model_reasoning_effort = "high"
+approval_policy = "on-request"
+sandbox_mode = "workspace-write"
+
+[profiles.balanced]
+model = "gpt-5.3-codex"
+model_reasoning_effort = "high"
+approval_policy = "on-request"
+sandbox_mode = "workspace-write"
+
+[profiles.powerful]
+model = "gpt-5.3-codex"
+model_reasoning_effort = "extra_high"
+approval_policy = "on-request"
+sandbox_mode = "workspace-write"
+
+[profiles.readonly]
+model = "gpt-5.3-codex"
+model_reasoning_effort = "extra_high"
+approval_policy = "on-request"
+sandbox_mode = "read-only"
+
+# --- Sub-Agent Dispatch MCP ---
+
+[mcp_servers.codex-specialized-subagents]
+# Reads .codex/agents/*.md frontmatter, spawns `codex exec --profile <name> "<task>"`
+command = "npx"
+args = ["-y", "codex-specialized-subagents"]
+
+# --- Fallback filenames ---
+# Codex checks: AGENTS.override.md → AGENTS.md → fallback names
+# project_doc_fallback_filenames = ["CLAUDE.md"]
+# project_doc_max_bytes = 65536

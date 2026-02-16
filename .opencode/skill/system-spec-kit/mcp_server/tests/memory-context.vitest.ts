@@ -132,9 +132,9 @@ describe('T001-T010: Context Modes Configuration [deferred - requires DB test fi
 ------------------------------------------------------------------ */
 
 describe('T011-T020: Intent-to-Mode Routing [deferred - requires DB test fixtures]', () => {
-  it('T011: INTENT_TO_MODE contains all 5 intent types', () => {
+  it('T011: INTENT_TO_MODE contains all 7 intent types', () => {
     const intents: string[] = Object.keys(INTENT_TO_MODE);
-    expect(intents.length).toBe(5);
+    expect(intents.length).toBe(7);
   });
 
   it('T012: add_feature maps to deep mode', () => {
@@ -164,14 +164,14 @@ describe('T011-T020: Intent-to-Mode Routing [deferred - requires DB test fixture
   });
 
   it('T018: Deep-requiring intents map to deep', () => {
-    const deepIntents: string[] = ['add_feature', 'refactor', 'security_audit'];
+    const deepIntents: string[] = ['add_feature', 'refactor', 'security_audit', 'find_spec'];
     for (const intent of deepIntents) {
       expect(INTENT_TO_MODE[intent]).toBe('deep');
     }
   });
 
   it('T019: Focus-requiring intents map to focused', () => {
-    const focusedIntents: string[] = ['fix_bug', 'understand'];
+    const focusedIntents: string[] = ['fix_bug', 'understand', 'find_decision'];
     for (const intent of focusedIntents) {
       expect(INTENT_TO_MODE[intent]).toBe('focused');
     }

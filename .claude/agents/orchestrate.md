@@ -1,6 +1,6 @@
 ---
 name: orchestrate
-description: "Senior task commander for multi-agent coordination and complex workflows"
+description: "Senior orchestration agent with full authority over task decomposition, delegation, quality evaluation, and unified delivery synthesis"
 tools:
   - Task
 model: opus

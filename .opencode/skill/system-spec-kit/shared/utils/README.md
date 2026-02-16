@@ -10,49 +10,53 @@ importance_tier: "normal"
 
 # Shared Utilities
 
-> Low-level utility functions shared across `system-spec-kit`, providing security-hardened path validation and resilient retry logic with intelligent error classification.
+> Low-level utility functions shared across `system-spec-kit`, providing path validation, retry/backoff classification, and JSONC parsing helpers.
 
 ---
 
 ## TABLE OF CONTENTS
 <!-- ANCHOR:table-of-contents -->
 
-- [1. 📖 OVERVIEW](#1--overview)
-- [2. 📁 STRUCTURE](#2--structure)
-- [3. 🔧 PATH SECURITY](#3--path-security)
-- [4. 🔧 RETRY](#4--retry)
-- [5. 📚 RELATED](#5--related)
-
----
+- [1. OVERVIEW](#1--overview)
+- [2. STRUCTURE](#2--structure)
+- [3. PATH SECURITY](#3--path-security)
+- [4. RETRY](#4--retry)
+- [5. RELATED](#5--related)
 
 <!-- /ANCHOR:table-of-contents -->
-## 1. 📖 OVERVIEW
+
+---
+
+## 1. OVERVIEW
 <!-- ANCHOR:overview -->
 
-Low-level utility functions shared across `system-spec-kit`. These modules provide **security-hardened path validation** and **resilient retry logic** with intelligent error classification.
+Low-level utility functions shared across `system-spec-kit`. These modules provide **security-hardened path validation**, **resilient retry logic** with error classification, and **JSONC comment stripping** for config parsing.
 
-Both modules were migrated from `mcp_server/lib/utils/` to enable reuse by scripts and other consumers outside the MCP server.
-
----
+`path-security.ts` and `retry.ts` were migrated from `mcp_server/lib/utils/` to enable reuse by scripts and other consumers outside the MCP server.
 
 <!-- /ANCHOR:overview -->
-## 2. 📁 STRUCTURE
-<!-- ANCHOR:structure -->
-
-| File                 | Lines | Purpose                                              |
-| -------------------- | ----- | ---------------------------------------------------- |
-| `path-security.ts`   | 89    | Filesystem path validation preventing traversal attacks |
-| `retry.ts`           | 373   | Retry-with-exponential-backoff and error classification |
 
 ---
 
+## 2. STRUCTURE
+<!-- ANCHOR:structure -->
+
+| File | Purpose |
+| ---- | ------- |
+| `path-security.ts` | Filesystem path validation preventing traversal attacks |
+| `retry.ts` | Retry-with-exponential-backoff and error classification |
+| `jsonc-strip.ts` | JSONC comment stripping while preserving string literals |
+
 <!-- /ANCHOR:structure -->
-## 3. 🔧 PATH SECURITY
+
+---
+
+## 3. PATH SECURITY
 <!-- ANCHOR:path-security -->
 
 **File:** `path-security.ts`
 
-Validates filesystem paths against a set of allowed base directories. Prevents directory traversal, symlink escape, and null-byte injection attacks.
+Validates filesystem paths against a set of allowed base directories. Prevents directory traversal, symlink escape, null-byte injection, and path canonicalization attacks.
 
 ### Exports
 
@@ -89,10 +93,11 @@ const blocked = validateFilePath('/project/../etc/passwd', ['/project/specs']);
 | CWE-59 | Symlink Following   | `fs.realpathSync()` resolves symlinks before check |
 | CWE-78 | Null Byte Injection | Explicit `\0` rejection before `path.resolve()`   |
 
+<!-- /ANCHOR:path-security -->
+
 ---
 
-<!-- /ANCHOR:path-security -->
-## 4. 🔧 RETRY
+## 4. RETRY
 <!-- ANCHOR:retry -->
 
 **File:** `retry.ts`
@@ -105,7 +110,7 @@ Retry-with-exponential-backoff utility that classifies errors as **transient** (
 | ------------------- | ---------- | ---------------------------------------------------- |
 | `retryWithBackoff`  | `function` | Execute an async function with retry logic           |
 | `withRetry`         | `function` | Wrap any async function to add retry behavior        |
-| `classifyError`     | `function` | Classify an error as transient, permanent, or unknown |
+| `classifyError`     | `function` | Classify an error as transient, permanent or unknown |
 | `isTransientError`  | `function` | Check if error is retryable                          |
 | `isPermanentError`  | `function` | Check if error is permanent (no retry)               |
 | `calculateBackoff`  | `function` | Calculate delay for a given attempt number           |
@@ -163,7 +168,7 @@ const data = await retryWithBackoff(
   }
 );
 
-// Wrapper usage — creates a retryable version of any async function
+// Wrapper usage: creates a retryable version of any async function
 const resilientFetch = withRetry(fetchData, { operationName: 'fetch-data' });
 const result = await resilientFetch(url, options);
 ```
@@ -182,20 +187,21 @@ const result = await resilientFetch(url, options);
 
 Imported from `shared/types`:
 
-- **`RetryConfig`** — `maxRetries`, `baseDelayMs`, `maxDelayMs`, `exponentialBase`
-- **`ErrorClassification`** — `type` (`transient` | `permanent` | `unknown`), `reason`, `shouldRetry`
-- **`RetryOptions`** — Extends config with `operationName`, `onRetry`, `shouldRetry` callback
-- **`RetryAttemptLogEntry`** — Per-attempt diagnostic record
-
----
+- **`RetryConfig`**: `maxRetries`, `baseDelayMs`, `maxDelayMs`, `exponentialBase`
+- **`ErrorClassification`**: `type` (`transient` | `permanent` | `unknown`), `reason`, `shouldRetry`
+- **`RetryOptions`**: Extends config with `operationName`, `onRetry`, `shouldRetry` callback
+- **`RetryAttemptLogEntry`**: Per-attempt diagnostic record
 
 <!-- /ANCHOR:retry -->
-## 5. 📚 RELATED
-<!-- ANCHOR:related -->
-
-- **Types:** `shared/types.ts` — `RetryConfig`, `ErrorClassification`, `RetryOptions`, `RetryAttemptLogEntry`
-- **Origin:** Both modules migrated from `mcp_server/lib/utils/` for cross-consumer reuse
 
 ---
 
+## 5. RELATED
+<!-- ANCHOR:related -->
+
+- **Types:** `shared/types.ts` contains `RetryConfig`, `ErrorClassification`, `RetryOptions`, `RetryAttemptLogEntry`
+- **Origin:** `path-security.ts` and `retry.ts` migrated from `mcp_server/lib/utils/`; `jsonc-strip.ts` is shared-native
+
 <!-- /ANCHOR:related -->
+
+---

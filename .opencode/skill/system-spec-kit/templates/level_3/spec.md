@@ -22,6 +22,7 @@ DO NOT use Level 3 if:
 
 ---
 
+<!-- ANCHOR:executive-summary -->
 ## EXECUTIVE SUMMARY
 
 [2-3 sentence high-level overview for stakeholders who need quick context]
@@ -29,9 +30,11 @@ DO NOT use Level 3 if:
 **Key Decisions**: [Major decision 1], [Major decision 2]
 
 **Critical Dependencies**: [Blocking dependency]
+<!-- /ANCHOR:executive-summary -->
 
 ---
 
+<!-- ANCHOR:metadata -->
 ## 1. METADATA
 
 | Field | Value |
@@ -41,9 +44,11 @@ DO NOT use Level 3 if:
 | **Status** | [Draft/In Progress/Review/Complete] |
 | **Created** | [YYYY-MM-DD] |
 | **Branch** | `[###-feature-name]` |
+<!-- /ANCHOR:metadata -->
 
 ---
 
+<!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
@@ -51,9 +56,11 @@ DO NOT use Level 3 if:
 
 ### Purpose
 [One-sentence outcome statement. What does success look like?]
+<!-- /ANCHOR:problem -->
 
 ---
 
+<!-- ANCHOR:scope -->
 ## 3. SCOPE
 
 ### In Scope
@@ -70,9 +77,11 @@ DO NOT use Level 3 if:
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
 | [path/to/file.js] | [Modify/Create/Delete] | [Brief description] |
+<!-- /ANCHOR:scope -->
 
 ---
 
+<!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
 
 ### P0 - Blockers (MUST complete)
@@ -86,25 +95,31 @@ DO NOT use Level 3 if:
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
 | REQ-002 | [Requirement description] | [How to verify it's done] |
+<!-- /ANCHOR:requirements -->
 
 ---
 
+<!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
 - **SC-001**: [Primary measurable outcome]
 - **SC-002**: [Secondary measurable outcome]
+<!-- /ANCHOR:success-criteria -->
 
 ---
 
+<!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
 | Dependency | [System/API] | [What if blocked] | [Fallback plan] |
 | Risk | [Risk description] | [High/Med/Low] | [Mitigation strategy] |
+<!-- /ANCHOR:risks -->
 
 ---
 
+<!-- ANCHOR:nfr -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -115,9 +130,11 @@ DO NOT use Level 3 if:
 
 ### Reliability
 - **NFR-R01**: [Uptime target - e.g., 99.9%]
+<!-- /ANCHOR:nfr -->
 
 ---
 
+<!-- ANCHOR:edge-cases -->
 ## 8. EDGE CASES
 
 ### Data Boundaries
@@ -127,9 +144,11 @@ DO NOT use Level 3 if:
 ### Error Scenarios
 - External service failure: [Fallback behavior]
 - Network timeout: [Retry strategy]
+<!-- /ANCHOR:edge-cases -->
 
 ---
 
+<!-- ANCHOR:complexity -->
 ## 9. COMPLEXITY ASSESSMENT
 
 | Dimension | Score | Triggers |
@@ -140,17 +159,21 @@ DO NOT use Level 3 if:
 | Multi-Agent | [/15] | [Workstreams: X] |
 | Coordination | [/15] | [Dependencies: X] |
 | **Total** | **[/100]** | **Level 3** |
+<!-- /ANCHOR:complexity -->
 
 ---
 
+<!-- ANCHOR:risk-matrix -->
 ## 10. RISK MATRIX
 
 | Risk ID | Description | Impact | Likelihood | Mitigation |
 |---------|-------------|--------|------------|------------|
 | R-001 | [Risk] | [H/M/L] | [H/M/L] | [Strategy] |
+<!-- /ANCHOR:risk-matrix -->
 
 ---
 
+<!-- ANCHOR:user-stories -->
 ## 11. USER STORIES
 
 ### US-001: [Title] (Priority: P0)
@@ -168,13 +191,16 @@ DO NOT use Level 3 if:
 
 **Acceptance Criteria**:
 1. Given [context], When [action], Then [outcome]
+<!-- /ANCHOR:user-stories -->
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - [Question 1 requiring clarification]
 - [Question 2 requiring clarification]
+<!-- /ANCHOR:questions -->
 
 ---
 

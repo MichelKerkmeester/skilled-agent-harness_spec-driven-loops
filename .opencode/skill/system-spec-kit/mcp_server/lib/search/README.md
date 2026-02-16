@@ -1,6 +1,6 @@
 ---
 title: "Search Subsystem"
-description: "Multi-modal hybrid search architecture combining vector, lexical (BM25/FTS5), and graph-based retrieval with Reciprocal Rank Fusion (RRF)."
+description: "Multi-modal hybrid search architecture combining vector, lexical (BM25/FTS5) and graph-based retrieval with Reciprocal Rank Fusion (RRF)."
 trigger_phrases:
   - "search subsystem"
   - "hybrid search"
@@ -10,36 +10,36 @@ importance_tier: "normal"
 
 # Search Subsystem
 
-> Multi-modal hybrid search architecture combining vector, lexical (BM25/FTS5), and graph-based retrieval with Reciprocal Rank Fusion (RRF).
+> Multi-modal hybrid search architecture combining vector and lexical (BM25/FTS5) retrieval alongside graph-based discovery, fused with Reciprocal Rank Fusion (RRF).
 
 ---
 
 ## TABLE OF CONTENTS
 <!-- ANCHOR:table-of-contents -->
 
-- [1. 📖 OVERVIEW](#1--overview)
-- [2. 📊 KEY CONCEPTS](#2--key-concepts)
-- [3. 📁 MODULE STRUCTURE](#3--module-structure)
-- [4. ⚡ FEATURES](#4--features)
-- [5. 💡 USAGE EXAMPLES](#5--usage-examples)
-- [6. 📚 RELATED RESOURCES](#6--related-resources)
+- [1. OVERVIEW](#1--overview)
+- [2. KEY CONCEPTS](#2--key-concepts)
+- [3. MODULE STRUCTURE](#3--module-structure)
+- [4. FEATURES](#4--features)
+- [5. USAGE EXAMPLES](#5--usage-examples)
+- [6. RELATED RESOURCES](#6--related-resources)
 
 <!-- /ANCHOR:table-of-contents -->
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 <!-- ANCHOR:overview -->
 
-The search subsystem provides production-grade hybrid search capabilities with multiple retrieval methods fused via RRF scoring. It handles query expansion, intent classification, typo tolerance, and optional cross-encoder reranking.
+The search subsystem provides production-grade hybrid search capabilities with multiple retrieval methods fused via RRF scoring. It handles query expansion, intent classification, typo tolerance and optional cross-encoder reranking.
 
 **Core Capabilities:**
 - **Triple-Hybrid Search**: Vector (semantic) + BM25/FTS5 (lexical) + Graph (relationship-based)
 - **RRF Score Fusion**: Industry-standard k=60 with convergence bonuses
-- **Intent Classification**: 5 intent types route to task-specific retrieval weights
+- **Intent Classification**: 7 intent types route to task-specific retrieval weights
 - **Query Enhancement**: Fuzzy matching (Levenshtein) + acronym expansions (via hybrid-search.ts inline logic)
 - **Reranking Pipeline**: Optional cross-encoder with length penalties
-- **Schema Management**: sqlite-vec with 10 migration versions (v1-v9, v12; v10-v11 skipped)
+- **Schema Management**: sqlite-vec schema includes v13 document-type fields used for spec-doc indexing and scoring
 
 **Architecture Pattern:**
 ```
@@ -66,7 +66,7 @@ Final Results
 
 ---
 
-## 2. 📊 KEY CONCEPTS
+## 2. KEY CONCEPTS
 <!-- ANCHOR:key-concepts -->
 
 ### Reciprocal Rank Fusion (RRF)
@@ -75,7 +75,7 @@ Final Results
 
 **Why RRF?**
 - Parameter-free fusion (no weight tuning required)
-- Robust to retrieval method failures (graceful degradation)
+- Resilient to retrieval method failures (graceful degradation)
 - Citation: Cormack et al. "RRF outperforms Condorcet" (SIGIR 2009)
 
 **Enhancements (REQ-011):**
@@ -98,11 +98,11 @@ score(D, Q) = Sum IDF(qi) * (tf(qi,D) * (k1+1)) / (tf(qi,D) + k1 * (1-b + b*|D|/
 ```
 
 **Parameters:**
-- `k1 = 1.2` - Term frequency saturation (higher = less saturation)
-- `b = 0.75` - Length normalization (0=ignore length, 1=full penalty)
-- `tf(qi,D)` - Term frequency of query term qi in document D
-- `|D|` - Document length, `avgdl` - Average document length
-- `IDF(qi)` - Inverse document frequency: `log((N - n(qi) + 0.5) / (n(qi) + 0.5) + 1)`
+- `k1 = 1.2`: Term frequency saturation (higher = less saturation)
+- `b = 0.75`: Length normalization (0=ignore length, 1=full penalty)
+- `tf(qi,D)`: Term frequency of query term qi in document D
+- `|D|`: Document length, `avgdl`: Average document length
+- `IDF(qi)`: Inverse document frequency: `log((N - n(qi) + 0.5) / (n(qi) + 0.5) + 1)`
 
 **Why BM25?**
 - Handles term frequency saturation (repeated words don't dominate)
@@ -111,7 +111,7 @@ score(D, Q) = Sum IDF(qi) * (tf(qi,D) * (k1+1)) / (tf(qi,D) + k1 * (1-b + b*|D|/
 
 ### Intent-Aware Retrieval
 
-**5 Intent Types** (REQ-012, T036-T039):
+**7 Intent Types** (REQ-012, T036-T039):
 
 | Intent           | Description                  | Prioritizes                         |
 | ---------------- | ---------------------------- | ----------------------------------- |
@@ -120,6 +120,8 @@ score(D, Q) = Sum IDF(qi) * (tf(qi,D) * (k1+1)) / (tf(qi,D) + k1 * (1-b + b*|D|/
 | `refactor`       | Restructuring code           | Patterns, dependencies, design docs |
 | `security_audit` | Security review              | Vulnerabilities, audit logs         |
 | `understand`     | Learning/exploring (default) | Explanations, context, decisions    |
+| `find_spec`      | Spec document retrieval      | Boosts spec-doc source weights      |
+| `find_decision`  | Decision rationale lookup    | Boosts decision-record source weights |
 
 **Detection**: Keyword matching with primary (2x weight) and secondary (1x weight) terms.
 
@@ -152,7 +154,7 @@ score(D, Q) = Sum IDF(qi) * (tf(qi,D) * (k1+1)) / (tf(qi,D) + k1 * (1-b + b*|D|/
 
 ---
 
-## 3. 📁 MODULE STRUCTURE
+## 3. MODULE STRUCTURE
 <!-- ANCHOR:structure -->
 
 ### Migration Status
@@ -162,7 +164,7 @@ score(D, Q) = Sum IDF(qi) * (tf(qi,D) * (k1+1)) / (tf(qi,D) + k1 * (1-b + b*|D|/
 | Status               | Files                                                                                        |
 | -------------------- | -------------------------------------------------------------------------------------------- |
 | **TypeScript**       | `hybrid-search.ts`, `cross-encoder.ts`, `intent-classifier.ts`, `bm25-index.ts`             |
-| **TypeScript**       | `vector-index.ts` (typed facade) → `vector-index-impl.ts` (full implementation)             |
+| **TypeScript**       | `vector-index.ts` (typed facade) -> `vector-index-impl.ts` (full implementation)             |
 | **TypeScript**       | `reranker.ts` (score-based reranking), `rrf-fusion.ts` (RRF score fusion)                    |
 
 ### Facade Pattern: vector-index
@@ -179,13 +181,13 @@ vector-index.ts          (700 LOC)
     v
 vector-index-impl.ts     (3333 LOC)
   - Full TypeScript implementation
-  - Schema creation & migrations (v1-v12)
+  - Schema creation & migrations (includes v13 document-type migration)
   - All database operations (CRUD, search, caching)
   - Uses import syntax (ESM)
   - References SERVER_DIR for config paths
 ```
 
-**NOTE**: `vector-index.ts` is a typed facade; modifying it without updating `vector-index-impl.ts` may not have the expected runtime effect, since most logic lives in the impl file.
+**NOTE**: `vector-index.ts` is a typed facade. Modifying it without updating `vector-index-impl.ts` may not have the expected runtime effect, since most logic lives in the impl file.
 
 ### Module Listing
 
@@ -195,10 +197,10 @@ vector-index-impl.ts     (3333 LOC)
 | `vector-index-impl.ts`   | ~3333  | TypeScript | Full implementation: schema, CRUD, search, caching  |
 | `hybrid-search.ts`       | ~381   | TypeScript | Orchestrates vector/BM25/graph fusion via RRF       |
 | `cross-encoder.ts`       | ~433   | TypeScript | Reranking with Voyage/Cohere providers              |
-| `intent-classifier.ts`   | ~291   | TypeScript | 5 intent types with keyword patterns                |
+| `intent-classifier.ts`   | ~291   | TypeScript | 7 intent types with keyword patterns                |
 | `bm25-index.ts`          | ~241   | TypeScript | Pure TypeScript BM25 (REQ-028, v1.2.0)              |
-| `reranker.ts`            | —      | TypeScript | Score-based reranking utility (sort + truncate)     |
-| `rrf-fusion.ts`          | —      | TypeScript | Reciprocal Rank Fusion scoring logic                |
+| `reranker.ts`            | -      | TypeScript | Score-based reranking utility (sort + truncate)     |
+| `rrf-fusion.ts`          | -      | TypeScript | Reciprocal Rank Fusion scoring logic                |
 
 **Total**: ~5,379+ LOC across 8 files (all TypeScript)
 
@@ -241,7 +243,7 @@ vector-index-impl.ts     (3333 LOC)
 
 ---
 
-## 4. ⚡ FEATURES
+## 4. FEATURES
 <!-- ANCHOR:features -->
 
 ### Configuration Options
@@ -276,7 +278,7 @@ const DEFAULT_B = 0.75;    // Length normalization
 
 ### Vector Index Features
 
-**Schema Versions** (v1-v9, v12; note: v10-v11 are skipped):
+**Schema Versions** (v1-v9, v12-v14. Note: v10-v11 are skipped):
 
 | Version | Migration                                                                    |
 | ------- | ---------------------------------------------------------------------------- |
@@ -289,8 +291,14 @@ const DEFAULT_B = 0.75;    // Length normalization
 | v7      | `partial` embedding_status + `idx_embedding_pending` + `idx_fts_fallback` (REQ-031, T096) |
 | v8      | `causal_edges` table with 6 relationship types (REQ-012, T043-T047)          |
 | v9      | `memory_corrections` table for learning from corrections (REQ-015, REQ-026, T052-T055) |
-| v10-v11 | **Skipped** (no migration functions exist; version jumps from 9 to 12)       |
-| v12     | Unified `memory_conflicts` DDL -- drop & recreate with canonical schema (KL-1) |
+| v10-v11 | **Skipped** (no migration functions exist. Version jumps from 9 to 12)       |
+| v12     | Unified `memory_conflicts` DDL: drop and recreate with canonical schema (KL-1) |
+| v13     | Add `document_type` + `spec_level` columns and indexes for spec-doc indexing and document-type scoring (Spec 126) |
+| v14     | Follow-up schema updates after v13 (current schema constant) |
+
+**Spec 126 hardening references:**
+- `tests/spec126-full-spec-doc-indexing.vitest.ts`: validates 8 spec document types, scoring multipliers and new intents.
+- `handlers/memory-index.ts`: keeps 5-source indexing and `includeSpecDocs` wiring aligned with search expectations.
 
 **Multi-Provider Support**:
 - Voyage AI: 1024-dim (default)
@@ -343,9 +351,9 @@ hybridSearch("authentication", { specFolder: "specs/007-auth" })
 ```
 
 **Graceful Degradation**:
-- If BM25 disabled -> Vector + FTS5 only
-- If RRF disabled -> Vector-only with basic metadata
-- If no graph -> Vector + Lexical fusion
+- If BM25 disabled: Vector + FTS5 only
+- If RRF disabled: Vector-only with basic metadata
+- If no graph: Vector + Lexical fusion
 
 ### Intent Classification Features
 
@@ -398,8 +406,8 @@ hybridSearch("authentication", { specFolder: "specs/007-auth" })
 
 ---
 
-## 5. 💡 USAGE EXAMPLES
-<!-- ANCHOR:examples -->
+## 5. USAGE EXAMPLES
+<!-- ANCHOR:usage-examples -->
 
 ### Basic Hybrid Search
 
@@ -487,7 +495,7 @@ if (bm25Index.isBm25Enabled()) {
 ```typescript
 import { initializeDb, getDb } from './vector-index';
 
-// Initialize DB (auto-runs migrations to v12)
+// Initialize DB (auto-runs migrations to current schema, including v13+)
 initializeDb();
 
 // Check current version
@@ -496,11 +504,11 @@ const version = db.prepare('PRAGMA user_version').pluck().get() as number;
 console.log(`Schema version: ${version}`);
 ```
 
-<!-- /ANCHOR:examples -->
+<!-- /ANCHOR:usage-examples -->
 
 ---
 
-## 6. 📚 RELATED RESOURCES
+## 6. RELATED RESOURCES
 <!-- ANCHOR:related -->
 
 ### Internal Dependencies
@@ -528,10 +536,10 @@ console.log(`Schema version: ${version}`);
 
 ### Related Documentation
 
-- `../cognitive/README.md` - Cognitive layer (attention, tier classification)
-- `../storage/README.md` - Storage layer (checkpoints, history, access tracking)
-- `../parsing/README.md` - Parsing layer (memory parser, trigger matcher)
-- `context-server.ts` - MCP integration and API endpoints
+- `../cognitive/README.md`: Cognitive layer (attention, tier classification)
+- `../storage/README.md`: Storage layer (checkpoints, history, access tracking)
+- `../parsing/README.md`: Parsing layer (memory parser, trigger matcher)
+- `context-server.ts`: MCP integration and API endpoints
 
 ### Research References
 
@@ -557,10 +565,10 @@ console.log(`Schema version: ${version}`);
 ---
 
 **Version**: 1.7.2
-**Last Updated**: 2026-02-08
+**Last Updated**: 2026-02-16
 **Maintainer**: system-spec-kit MCP server
 
 **Migration Status**:
-- TypeScript migration is **complete** -- all 8 code files are TypeScript (0 `.js` source files)
-- `vector-index.ts` is a typed facade; `vector-index-impl.ts` is the full implementation
+- TypeScript migration is **complete**: all 8 code files are TypeScript (0 `.js` source files)
+- `vector-index.ts` is a typed facade. `vector-index-impl.ts` is the full implementation
 - `reranker.ts` and `rrf-fusion.ts` provide score-based reranking and RRF fusion utilities

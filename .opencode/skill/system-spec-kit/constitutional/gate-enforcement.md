@@ -187,7 +187,7 @@ These rules apply automatically without numbered gate structure.
 **TRIGGER:** After understanding the request (applies to ALL non-trivial tasks)
 
 **Action:**
-1. Run `python3 .opencode/scripts/skill_advisor.py "[request]" --threshold 0.8`
+1. Run `python3 .opencode/skill/scripts/skill_advisor.py "[request]" --threshold 0.8`
 2. OR cite user's explicit direction: "User specified: [exact quote]"
 
 **Enforcement:**

@@ -9,6 +9,7 @@ planning required for a simple authentication feature. Note the straightforward
 
 ---
 
+<!-- ANCHOR:summary -->
 ## 1. SUMMARY
 
 ### Technical Context
@@ -23,8 +24,11 @@ planning required for a simple authentication feature. Note the straightforward
 ### Overview
 This implementation adds email/password authentication using bcrypt for password hashing and JWT tokens for session management. The approach prioritizes security best practices while maintaining simplicity for this initial authentication feature.
 
+
+<!-- /ANCHOR:summary -->
 ---
 
+<!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
 
 ### Definition of Ready
@@ -37,8 +41,11 @@ This implementation adds email/password authentication using bcrypt for password
 - [x] Tests passing (if applicable)
 - [x] Docs updated (spec/plan/tasks)
 
+
+<!-- /ANCHOR:quality-gates -->
 ---
 
+<!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
 
 ### Pattern
@@ -58,8 +65,11 @@ MVC - Following existing Express.js application structure
 5. Token stored client-side, sent with subsequent requests
 6. Middleware validates token and attaches user to request
 
+
+<!-- /ANCHOR:architecture -->
 ---
 
+<!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
@@ -78,8 +88,11 @@ MVC - Following existing Express.js application structure
 - [x] Edge cases handled (duplicate email, invalid password)
 - [x] Documentation updated
 
+
+<!-- /ANCHOR:phases -->
 ---
 
+<!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
 
 | Test Type | Scope | Tools |
@@ -88,8 +101,11 @@ MVC - Following existing Express.js application structure
 | Integration | Registration/login API endpoints | Supertest |
 | Manual | Full user journey, error states | Browser (Chrome) |
 
+
+<!-- /ANCHOR:testing -->
 ---
 
+<!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
 | Dependency | Type | Status | Impact if Blocked |
@@ -99,8 +115,11 @@ MVC - Following existing Express.js application structure
 | Prisma | Internal | Green | Cannot persist users |
 | PostgreSQL | Internal | Green | All auth features blocked |
 
+
+<!-- /ANCHOR:dependencies -->
 ---
 
+<!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
 - **Trigger**: Critical security vulnerability discovered, or login breaks existing functionality
@@ -108,6 +127,8 @@ MVC - Following existing Express.js application structure
   1. Revert all commits in the `012-user-authentication` branch
   2. Drop the `users` table (no existing user data to preserve)
   3. Remove auth routes from app.js
+
+<!-- /ANCHOR:rollback -->
 
 ---
 

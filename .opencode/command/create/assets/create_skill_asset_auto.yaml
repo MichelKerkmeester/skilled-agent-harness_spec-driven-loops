@@ -453,8 +453,8 @@ quality_standards:
   dqi_minimum: 75
   dqi_enforcement: HARD_BLOCK
   validation_pipeline:
-    stage_1: "python3 .opencode/scripts/validate_document.py [file]"
-    stage_2: "python3 .opencode/scripts/extract_structure.py [file]"
+    stage_1: "python3 .opencode/skill/workflows-documentation/scripts/validate_document.py [file]"
+    stage_2: "python3 .opencode/skill/workflows-documentation/scripts/extract_structure.py [file]"
   template_adherence: required
   core_standards_reference: ".opencode/skill/workflows-documentation/references/core_standards.md"
 

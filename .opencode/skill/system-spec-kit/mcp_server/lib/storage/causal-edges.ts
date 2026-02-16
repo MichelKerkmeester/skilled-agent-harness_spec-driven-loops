@@ -86,12 +86,20 @@ function insertEdge(
 
   try {
     const clampedStrength = Math.max(0, Math.min(1, strength));
-    const result = (db.prepare(`
-      INSERT OR REPLACE INTO causal_edges (source_id, target_id, relation, strength, evidence)
+    (db.prepare(`
+      INSERT INTO causal_edges (source_id, target_id, relation, strength, evidence)
       VALUES (?, ?, ?, ?, ?)
+      ON CONFLICT(source_id, target_id, relation) DO UPDATE SET
+        strength = excluded.strength,
+        evidence = COALESCE(excluded.evidence, causal_edges.evidence)
     `) as Database.Statement).run(sourceId, targetId, relation, clampedStrength, evidence);
 
-    return (result as { lastInsertRowid: number | bigint }).lastInsertRowid as number;
+    const row = (db.prepare(`
+      SELECT id FROM causal_edges
+      WHERE source_id = ? AND target_id = ? AND relation = ?
+    `) as Database.Statement).get(sourceId, targetId, relation) as { id: number } | undefined;
+
+    return row?.id ?? null;
   } catch (error: unknown) {
     const msg = error instanceof Error ? error.message : String(error);
     console.warn(`[causal-edges] insertEdge error: ${msg}`);
@@ -361,7 +369,58 @@ function findOrphanedEdges(): CausalEdge[] {
 }
 
 /* -------------------------------------------------------------
-   9. EXPORTS
+   9. SPEC DOCUMENT CHAINS (Spec 126)
+----------------------------------------------------------------*/
+
+/**
+ * Create causal relationship chain between spec folder documents.
+ * Links: spec -> plan (CAUSED), plan -> tasks (CAUSED), tasks -> impl-summary (CAUSED)
+ * Also: checklist SUPPORTS spec, decision-record SUPPORTS plan, research SUPPORTS spec
+ *
+ * @param documentIds Map of document_type -> memory_index.id for documents in the same spec folder
+ */
+function createSpecDocumentChain(documentIds: Record<string, number>): { inserted: number; failed: number } {
+  if (!db) return { inserted: 0, failed: 0 };
+
+  const edges: Array<{
+    sourceId: string;
+    targetId: string;
+    relation: RelationType;
+    strength?: number;
+    evidence?: string | null;
+  }> = [];
+
+  const ids = documentIds;
+
+  // Primary chain: spec -> plan -> tasks -> implementation_summary
+  if (ids.spec && ids.plan) {
+    edges.push({ sourceId: String(ids.spec), targetId: String(ids.plan), relation: RELATION_TYPES.CAUSED, strength: 0.9, evidence: 'Spec 126: spec -> plan chain' });
+  }
+  if (ids.plan && ids.tasks) {
+    edges.push({ sourceId: String(ids.plan), targetId: String(ids.tasks), relation: RELATION_TYPES.CAUSED, strength: 0.9, evidence: 'Spec 126: plan -> tasks chain' });
+  }
+  if (ids.tasks && ids.implementation_summary) {
+    edges.push({ sourceId: String(ids.tasks), targetId: String(ids.implementation_summary), relation: RELATION_TYPES.CAUSED, strength: 0.8, evidence: 'Spec 126: tasks -> impl-summary chain' });
+  }
+
+  // Support relationships
+  if (ids.checklist && ids.spec) {
+    edges.push({ sourceId: String(ids.checklist), targetId: String(ids.spec), relation: RELATION_TYPES.SUPPORTS, strength: 0.7, evidence: 'Spec 126: checklist supports spec' });
+  }
+  if (ids.decision_record && ids.plan) {
+    edges.push({ sourceId: String(ids.decision_record), targetId: String(ids.plan), relation: RELATION_TYPES.SUPPORTS, strength: 0.8, evidence: 'Spec 126: decision-record supports plan' });
+  }
+  if (ids.research && ids.spec) {
+    edges.push({ sourceId: String(ids.research), targetId: String(ids.spec), relation: RELATION_TYPES.SUPPORTS, strength: 0.7, evidence: 'Spec 126: research supports spec' });
+  }
+
+  if (edges.length === 0) return { inserted: 0, failed: 0 };
+
+  return insertEdgesBatch(edges);
+}
+
+/* -------------------------------------------------------------
+   10. EXPORTS
 ----------------------------------------------------------------*/
 
 export {
@@ -381,6 +440,7 @@ export {
   deleteEdgesForMemory,
   getGraphStats,
   findOrphanedEdges,
+  createSpecDocumentChain,
 };
 
 export type {

@@ -1,6 +1,6 @@
 ---
 title: README Indexing Pipeline
-description: How README files are discovered, weighted, and indexed as a 4th memory source alongside spec memories, constitutional rules, and skill READMEs.
+description: How README files are discovered, weighted, and indexed within the 5-source indexing pipeline alongside memory files, constitutional rules, project READMEs, and spec documents.
 trigger_phrases:
   - "readme indexing"
   - "readme discovery"
@@ -11,22 +11,7 @@ importance_tier: "normal"
 
 # README Indexing Pipeline
 
-> How README files are discovered, weighted, and indexed as a 4th memory source alongside spec memories, constitutional rules, and skill READMEs.
-
----
-
-<!-- ANCHOR:table-of-contents -->
-## Table of Contents
-
-- [1. 📖 OVERVIEW](#1--overview)
-- [2. 🔧 DISCOVERY FUNCTIONS](#2--discovery-functions)
-- [3. ⚙️ IMPORTANCE WEIGHTS AND SCORING](#3--importance-weights-and-scoring)
-- [4. ⚙️ YAML FRONTMATTER](#4--yaml-frontmatter)
-- [5. 🔧 ANCHOR TAGS](#5--anchor-tags)
-- [6. ⚙️ CONFIGURATION](#6--configuration)
-- [7. 🛠️ KNOWN LIMITATIONS](#7--known-limitations)
-- [8. 📚 RELATED RESOURCES](#8--related-resources)
-<!-- /ANCHOR:table-of-contents -->
+> How README files are discovered, weighted, and indexed within the 5-source indexing pipeline alongside memory files, constitutional rules, project READMEs, and spec documents.
 
 ---
 
@@ -42,18 +27,21 @@ README files provide persistent project documentation context that complements s
 - The `includeReadmes` parameter is `true` (default)
 - README files exist in skill directories or the project root
 
-### 4-Source Indexing Pipeline
+### 5-Source Indexing Pipeline
 
-The memory system indexes content from four distinct sources:
+The memory system indexes content from five distinct sources:
 
-| # | Source | Variable | Discovery Function | Location Pattern |
-|---|--------|----------|--------------------|------------------|
-| 1 | **Spec Memories** | `specFiles` | `findMemoryFiles()` | `specs/*/memory/*.md` |
-| 2 | **Constitutional Rules** | `constitutionalFiles` | `findConstitutionalFiles()` | `.opencode/skill/*/constitutional/*.md` |
-| 3 | **Skill READMEs** | `skillReadmes` | `findSkillReadmes()` | `.opencode/skill/*/README.md` |
-| 4 | **Project READMEs** | `projectReadmes` | `findProjectReadmes()` | `**/README.md` (project root) |
+| #   | Source                   | Variable              | Discovery Function          | Location Pattern                        |
+| --- | ------------------------ | --------------------- | --------------------------- | --------------------------------------- |
+| 1   | **Memory Files**         | `memoryFiles`         | `findMemoryFiles()`         | `specs/*/memory/*.md`                   |
+| 2   | **Constitutional Rules** | `constitutionalFiles` | `findConstitutionalFiles()` | `.opencode/skill/*/constitutional/*.md` |
+| 3   | **Skill READMEs**        | `skillReadmes`        | `findSkillReadmes()`        | `.opencode/skill/*/README.md`           |
+| 4   | **Project READMEs**      | `projectReadmes`      | `findProjectReadmes()`      | `**/README.md` (project root)           |
+| 5   | **Spec Documents**       | `specDocuments`       | `findSpecDocuments()`       | `.opencode/specs/**/*.md`               |
 
-Sources 3 and 4 are controlled by the `includeReadmes` parameter.
+Sources 3 and 4 are controlled by the `includeReadmes` parameter. Source 5 is controlled by the `includeSpecDocs` parameter (default: `true`) or the `SPECKIT_INDEX_SPEC_DOCS` environment variable. The spec-document source relies on schema v13 fields (`document_type`, `spec_level`) introduced in spec 126.
+
+Post-hardening alignment: spec-document scans use strict `specFolder` boundary filtering (no prefix bleed), and `document_type`/`spec_level` metadata is preserved on update/reinforce paths.
 
 ### Pipeline Flow
 
@@ -82,42 +70,42 @@ memory_index_scan({ includeReadmes: true })
 
 Scans `.opencode/skill/*/README.md` for skill-level documentation.
 
-| Property | Value |
-|----------|-------|
-| **Scan root** | `.opencode/skill/` |
-| **Pattern** | `*/README.md` (one level deep) |
-| **Spec folder ID** | `skill:SKILL-NAME` |
-| **Memory type** | `semantic` |
-| **Importance weight** | `0.3` |
+| Property              | Value                          |
+| --------------------- | ------------------------------ |
+| **Scan root**         | `.opencode/skill/`             |
+| **Pattern**           | `*/README.md` (one level deep) |
+| **Spec folder ID**    | `skill:SKILL-NAME`             |
+| **Memory type**       | `semantic`                     |
+| **Importance weight** | `0.3`                          |
 
 ### findProjectReadmes()
 
 Scans the project root for any `README.md` files, excluding common non-project directories.
 
-| Property | Value |
-|----------|-------|
-| **Scan root** | Project root directory |
-| **Pattern** | `**/README.md` (recursive) |
-| **Spec folder ID** | `project:PATH` |
-| **Memory type** | `semantic` |
-| **Importance weight** | `0.4` |
+| Property              | Value                      |
+| --------------------- | -------------------------- |
+| **Scan root**         | Project root directory     |
+| **Pattern**           | `**/README.md` (recursive) |
+| **Spec folder ID**    | `project:PATH`             |
+| **Memory type**       | `semantic`                 |
+| **Importance weight** | `0.4`                      |
 
 ### Exclude Patterns
 
 Both discovery functions exclude the following directories:
 
-| Pattern | Reason |
-|---------|--------|
-| `node_modules` | Third-party dependencies |
-| `.git` | Version control internals |
-| `dist` | Build output |
-| `build` | Build output |
-| `coverage` | Test coverage reports |
-| `vendor` | Vendored dependencies |
-| `__pycache__` | Python bytecode cache |
-| `.next` | Next.js build directory |
-| `.nuxt` | Nuxt.js build directory |
-| `.output` | Nitro/Nuxt output directory |
+| Pattern        | Reason                      |
+| -------------- | --------------------------- |
+| `node_modules` | Third-party dependencies    |
+| `.git`         | Version control internals   |
+| `dist`         | Build output                |
+| `build`        | Build output                |
+| `coverage`     | Test coverage reports       |
+| `vendor`       | Vendored dependencies       |
+| `__pycache__`  | Python bytecode cache       |
+| `.next`        | Next.js build directory     |
+| `.nuxt`        | Nuxt.js build directory     |
+| `.output`      | Nitro/Nuxt output directory |
 
 **Skill READMEs** additionally exclude files found inside `node_modules/` and hidden directories (`.`-prefixed).
 
@@ -129,11 +117,12 @@ Both discovery functions exclude the following directories:
 
 README sources receive reduced importance weights relative to user work memories. This ensures documentation never outranks session-specific context (decisions, blockers, implementation notes) in search results.
 
-| Source Type | `importance_weight` | Effective Multiplier | Rationale |
-|-------------|--------------------:|---------------------:|-----------|
-| **User work** (spec memories) | `0.5` | `1.0x` | Highest priority: decisions, context, blockers |
-| **Project READMEs** | `0.4` | `0.9x` | Project-level docs, moderately relevant |
-| **Skill READMEs** | `0.3` | `0.8x` | Skill documentation, background reference |
+| Source Type                   | `importance_weight` | Effective Multiplier | Rationale                                                        |
+| ----------------------------- | ------------------: | -------------------: | ---------------------------------------------------------------- |
+| **User work** (spec memories) |               `0.5` |               `1.0x` | Highest priority: decisions, context, blockers                   |
+| **Spec documents**            |            Per-type |  Per-type multiplier | Document-type scoring: spec 1.4x, plan 1.3x, constitutional 2.0x |
+| **Project READMEs**           |               `0.4` |               `0.9x` | Project-level docs, moderately relevant                          |
+| **Skill READMEs**             |               `0.3` |               `0.8x` | Skill documentation, background reference                        |
 
 ### Scoring Formula
 
@@ -145,11 +134,11 @@ score *= (0.5 + importance_weight)
 
 **Worked examples:**
 
-| Source | importance_weight | Multiplier `(0.5 + w)` | Base Score 0.80 | Final Score |
-|--------|------------------:|------------------------:|----------------:|------------:|
-| User work | 0.5 | 1.00 | 0.80 | 0.80 |
-| Project README | 0.4 | 0.90 | 0.80 | 0.72 |
-| Skill README | 0.3 | 0.80 | 0.80 | 0.64 |
+| Source         | importance_weight | Multiplier `(0.5 + w)` | Base Score 0.80 | Final Score |
+| -------------- | ----------------: | ---------------------: | --------------: | ----------: |
+| User work      |               0.5 |                   1.00 |            0.80 |        0.80 |
+| Project README |               0.4 |                   0.90 |            0.80 |        0.72 |
+| Skill README   |               0.3 |                   0.80 |            0.80 |        0.64 |
 
 This means at equal semantic relevance, user work memories always rank higher than README documentation.
 
@@ -173,12 +162,12 @@ importance_tier: "normal"
 ---
 ```
 
-| Field | Type | Required | Default | Description |
-|-------|------|----------|---------|-------------|
-| `title` | string | No | Filename-derived | Display title for the memory entry |
-| `description` | string | No | First paragraph | Brief description used in search results |
-| `trigger_phrases` | string[] | No | `[]` | Keywords for fast trigger matching via `memory_match_triggers()` |
-| `importance_tier` | string | No | `normal` | One of: constitutional, critical, important, normal, temporary, deprecated |
+| Field             | Type     | Required | Default          | Description                                                                |
+| ----------------- | -------- | -------- | ---------------- | -------------------------------------------------------------------------- |
+| `title`           | string   | No       | Filename-derived | Display title for the memory entry                                         |
+| `description`     | string   | No       | First paragraph  | Brief description used in search results                                   |
+| `trigger_phrases` | string[] | No       | `[]`             | Keywords for fast trigger matching via `memory_match_triggers()`           |
+| `importance_tier` | string   | No       | `normal`         | One of: constitutional, critical, important, normal, temporary, deprecated |
 
 ### Frontmatter Best Practices
 
@@ -195,22 +184,22 @@ README files support `<!-- ANCHOR:name -->` tags for section-level retrieval, en
 
 ### Valid Anchor Tags
 
-| Anchor ID | Content Type | Use Case |
-|-----------|-------------|----------|
-| `summary` | High-level overview | Quick context refresh |
-| `state` | Current project state | Resume work |
-| `decisions` | Key decisions made | Understanding rationale |
-| `context` | Project/domain context | Understand scope |
-| `artifacts` | Files, outputs, deliverables | Track what exists |
-| `next-steps` | Planned actions | Continue work |
-| `blockers` | Current blockers or issues | Identify problems |
+| Anchor ID    | Content Type                 | Use Case                |
+| ------------ | ---------------------------- | ----------------------- |
+| `summary`    | High-level overview          | Quick context refresh   |
+| `state`      | Current project state        | Resume work             |
+| `decisions`  | Key decisions made           | Understanding rationale |
+| `context`    | Project/domain context       | Understand scope        |
+| `artifacts`  | Files, outputs, deliverables | Track what exists       |
+| `next-steps` | Planned actions              | Continue work           |
+| `blockers`   | Current blockers or issues   | Identify problems       |
 
 ### Anchor Format
 
 ```markdown
 <!-- ANCHOR:summary -->
 This project implements a memory indexing system that supports
-four source types for comprehensive context retrieval.
+five source types for comprehensive context retrieval.
 <!-- /ANCHOR:summary -->
 
 <!-- ANCHOR:decisions -->
@@ -221,11 +210,11 @@ four source types for comprehensive context retrieval.
 
 ### Token Savings with Anchors
 
-| Retrieval Method | Typical Tokens | Savings |
-|-----------------|---------------:|--------:|
-| Full file (`includeContent: true`) | ~2000 | - |
-| Single anchor (`anchors: ['summary']`) | ~150 | ~93% |
-| Two anchors (`anchors: ['summary', 'decisions']`) | ~300 | ~85% |
+| Retrieval Method                                  | Typical Tokens | Savings |
+| ------------------------------------------------- | -------------: | ------: |
+| Full file (`includeContent: true`)                |          ~2000 |       - |
+| Single anchor (`anchors: ['summary']`)            |           ~150 |    ~93% |
+| Two anchors (`anchors: ['summary', 'decisions']`) |           ~300 |    ~85% |
 
 ---
 
@@ -246,10 +235,10 @@ memory_index_scan({ includeReadmes: false })
 memory_index_scan({ specFolder: "007-auth", includeReadmes: true })
 ```
 
-| Value | Behavior |
-|-------|----------|
-| `true` (default) | Discovers and indexes both skill READMEs and project READMEs |
-| `false` | Skips README discovery entirely; only indexes spec memories and constitutional rules |
+| Value            | Behavior                                                                             |
+| ---------------- | ------------------------------------------------------------------------------------ |
+| `true` (default) | Discovers and indexes both skill READMEs and project READMEs                         |
+| `false`          | Skips README discovery entirely; only indexes spec memories and constitutional rules |
 
 ### When to Disable README Indexing
 
@@ -287,11 +276,11 @@ memory_search({
 
 ### Other Considerations
 
-| Limitation | Description | Impact |
-|-----------|-------------|--------|
-| No real-time sync | README changes require manual `memory_index_scan()` | Must re-scan after README edits |
-| No partial update | Changing one README re-indexes the entire file | Minor performance overhead |
-| Exclude patterns are hardcoded | Cannot add custom exclude directories | Fork or PR required to customize |
+| Limitation                      | Description                                            | Impact                           |
+| ------------------------------- | ------------------------------------------------------ | -------------------------------- |
+| No real-time sync               | README changes require manual `memory_index_scan()`    | Must re-scan after README edits  |
+| No partial update               | Changing one README re-indexes the entire file         | Minor performance overhead       |
+| Exclude patterns are hardcoded  | Cannot add custom exclude directories                  | Fork or PR required to customize |
 | Flat importance per source type | All skill READMEs get 0.3, all project READMEs get 0.4 | No per-file weight customization |
 
 ---

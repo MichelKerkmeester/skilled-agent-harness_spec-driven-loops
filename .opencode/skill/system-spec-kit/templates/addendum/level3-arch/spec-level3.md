@@ -3,6 +3,7 @@
 
 ---
 
+<!-- ANCHOR:executive-summary -->
 ## L3: EXECUTIVE SUMMARY
 
 [2-3 sentence high-level overview for stakeholders who need quick context]
@@ -16,6 +17,7 @@
 - [Blocking dependency 2]
 
 **Timeline**: [Expected duration or milestone]
+<!-- /ANCHOR:executive-summary -->
 
 ---
 
@@ -34,15 +36,18 @@
 
 ---
 
+<!-- ANCHOR:risk-matrix -->
 ## L3: RISK MATRIX
 
 | Risk ID | Description | Impact | Likelihood | Mitigation | Owner |
 |---------|-------------|--------|------------|------------|-------|
 | R-001 | [Risk] | [H/M/L] | [H/M/L] | [Strategy] | [Name] |
 | R-002 | [Risk] | [H/M/L] | [H/M/L] | [Strategy] | [Name] |
+<!-- /ANCHOR:risk-matrix -->
 
 ---
 
+<!-- ANCHOR:user-stories -->
 ## L3: USER STORIES (Extended)
 
 ### US-001: [Title] (Priority: P0)
@@ -63,5 +68,6 @@
 
 **Acceptance Criteria**:
 1. Given [context], When [action], Then [outcome]
+<!-- /ANCHOR:user-stories -->
 
 ---

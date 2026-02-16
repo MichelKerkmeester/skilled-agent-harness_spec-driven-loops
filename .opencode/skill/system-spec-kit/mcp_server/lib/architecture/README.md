@@ -1,6 +1,6 @@
 ---
 title: "Architecture Module"
-description: "7-layer MCP architecture with token budgets for progressive disclosure and cognitive load management."
+description: "7-layer MCP architecture with token budgets and document-aware routing after Spec 126."
 trigger_phrases:
   - "architecture"
   - "layer definitions"
@@ -10,26 +10,27 @@ importance_tier: "normal"
 
 # Architecture Module
 
-> 7-layer MCP architecture with token budgets for progressive disclosure and cognitive load management.
+> 7-layer MCP architecture with token budgets and document-aware routing after Spec 126.
 
 ---
 
-<!-- ANCHOR:table-of-contents -->
 ## TABLE OF CONTENTS
+<!-- ANCHOR:table-of-contents -->
 
 - [1. OVERVIEW](#1--overview)
 - [2. STRUCTURE](#2--structure)
 - [3. FEATURES](#3--features)
 - [4. USAGE](#4--usage)
 - [5. RELATED RESOURCES](#5--related-resources)
+
 <!-- /ANCHOR:table-of-contents -->
 
 ---
 
+## 1. OVERVIEW
 <!-- ANCHOR:overview -->
-## 1. 📖 OVERVIEW
 
-The architecture module defines the 7-layer MCP tool organization (T060) that enables progressive disclosure from high-level orchestration to specialized operations. Each layer has an assigned token budget to manage response sizes and cognitive load.
+The architecture module defines the 7-layer MCP tool organization (T060) that enables progressive disclosure from high-level orchestration to specialized operations. Post-Spec 126, this layer model also frames document-aware behavior (spec documents, memory notes, constitutional files) used across indexing and retrieval.
 
 ### Design Principles
 
@@ -38,6 +39,7 @@ The architecture module defines the 7-layer MCP tool organization (T060) that en
 | **Progressive Disclosure** | Start with high-level, drill down as needed |
 | **Token Efficiency** | Higher layers = fewer tokens, more targeted |
 | **Cognitive Load** | Reduce choices at each decision point |
+| **Document Awareness** | Keep retrieval aware of `documentType` and `specLevel` metadata |
 
 ### Layer Summary
 
@@ -50,12 +52,13 @@ The architecture module defines the 7-layer MCP tool organization (T060) that en
 | L5 | Lifecycle | 600 | Checkpoint and version management |
 | L6 | Analysis | 1200 | Deep inspection and causal analysis |
 | L7 | Maintenance | 1000 | System maintenance and bulk operations |
+
 <!-- /ANCHOR:overview -->
 
 ---
 
+## 2. STRUCTURE
 <!-- ANCHOR:structure -->
-## 2. 📁 STRUCTURE
 
 ```
 architecture/
@@ -68,12 +71,13 @@ architecture/
 | File | Purpose |
 |------|---------|
 | `layer-definitions.ts` | Layer constants, tool-to-layer mapping, token budget helpers, documentation generator |
+
 <!-- /ANCHOR:structure -->
 
 ---
 
+## 3. FEATURES
 <!-- ANCHOR:features -->
-## 3. ⚡ FEATURES
 
 ### Layer Definitions
 
@@ -105,12 +109,13 @@ Each layer includes:
 ### Exported Constants
 
 `LAYER_DEFINITIONS`, `TOOL_LAYER_MAP`
+
 <!-- /ANCHOR:features -->
 
 ---
 
-<!-- ANCHOR:examples -->
-## 4. 💡 USAGE
+## 4. USAGE
+<!-- ANCHOR:usage -->
 
 ### Basic Import
 
@@ -142,12 +147,13 @@ const enhanced = enhanceDescription('memory_search', 'Search memories');
 const layers = getRecommendedLayers('search');
 // Returns: ['L1', 'L2'] - Start orchestration, fallback to core
 ```
-<!-- /ANCHOR:examples -->
+
+<!-- /ANCHOR:usage -->
 
 ---
 
+## 5. RELATED RESOURCES
 <!-- ANCHOR:related -->
-## 5. 📚 RELATED RESOURCES
 
 ### Internal Documentation
 
@@ -162,9 +168,10 @@ const layers = getRecommendedLayers('search');
 | Module | Relationship |
 |--------|--------------|
 | `context-server.ts` | Uses layer definitions for tool organization |
+
 <!-- /ANCHOR:related -->
 
 ---
 
-**Version**: 1.7.2
-**Last Updated**: 2026-02-08
+**Version**: 1.8.0
+**Last Updated**: 2026-02-16

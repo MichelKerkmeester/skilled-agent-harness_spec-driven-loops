@@ -1,6 +1,6 @@
 ---
 title: "Cognitive Subsystem"
-description: "Research-backed memory decay, retrieval, and classification engine for the Spec Kit Memory MCP server."
+description: "Research-backed memory decay, retrieval, classification and lifecycle engine with document-aware scoring inputs."
 trigger_phrases:
   - "cognitive memory"
   - "FSRS decay"
@@ -10,29 +10,30 @@ importance_tier: "normal"
 
 # Cognitive Subsystem
 
-> Research-backed memory decay, retrieval, and classification engine for the Spec Kit Memory MCP server.
+> Research-backed memory decay, retrieval, classification and lifecycle engine with document-aware scoring inputs.
 
 ---
 
 ## TABLE OF CONTENTS
 <!-- ANCHOR:table-of-contents -->
 
-- [1. 📖 OVERVIEW](#1--overview)
-- [2. 📖 KEY CONCEPTS](#2--key-concepts)
-- [3. 📁 STRUCTURE](#3--structure)
-- [4. ⚡ FEATURES](#4--features)
-- [5. 💡 USAGE EXAMPLES](#5--usage-examples)
-- [6. 🛠️ TROUBLESHOOTING](#6--troubleshooting)
-- [7. ❓ FAQ](#7--faq)
-- [8. 📚 RELATED RESOURCES](#8--related-resources)
+- [1. OVERVIEW](#1--overview)
+- [2. KEY CONCEPTS](#2--key-concepts)
+- [3. STRUCTURE](#3--structure)
+- [4. FEATURES](#4--features)
+- [5. USAGE EXAMPLES](#5--usage-examples)
+- [6. TROUBLESHOOTING](#6--troubleshooting)
+- [7. FAQ](#7--faq)
+- [8. RELATED RESOURCES](#8--related-resources)
+
+<!-- /ANCHOR:table-of-contents -->
 
 ---
 
-<!-- /ANCHOR:table-of-contents -->
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 <!-- ANCHOR:overview -->
 
-The cognitive subsystem implements human memory principles to manage conversation context intelligently. It models how memories decay, strengthen through use, and transition between activity states based on research-validated algorithms from cognitive science and spaced repetition systems.
+The cognitive subsystem implements human memory principles to manage conversation context intelligently. It models how memories decay and strengthen through use, then transition between activity states based on research-validated algorithms from cognitive science and spaced repetition systems. Post-Spec 126 retrieval also consumes `documentType` and `specLevel` metadata from indexing, so cognitive scoring is applied to both memory notes and spec documents.
 
 ### What is the Cognitive Subsystem?
 
@@ -92,6 +93,7 @@ The cognitive subsystem is the "brain" of the memory system. It determines which
 | **Type-Specific Decay**    | Constitutional (none), Critical (none), Normal (0.80/turn)        | Memory importance = retention time   |
 | **Testing Effect**         | Low retrievability = greater boost on success                     | Harder recalls strengthen more       |
 | **Automatic Archival**     | 90-day threshold with background job (2hr interval)               | Lifecycle management                 |
+| **Document-Aware Retrieval** | Uses indexed doc metadata (`spec`, `plan`, `decision_record`, etc.) in ranking inputs | Better relevance for spec workflows |
 
 ### Requirements
 
@@ -101,10 +103,11 @@ The cognitive subsystem is the "brain" of the memory system. It determines which
 | better-sqlite3 | 8.0+    | Latest      |
 | Memory (RAM)   | 256MB   | 1GB+        |
 
+<!-- /ANCHOR:overview -->
+
 ---
 
-<!-- /ANCHOR:overview -->
-## 2. 📖 KEY CONCEPTS
+## 2. KEY CONCEPTS
 <!-- ANCHOR:key-concepts -->
 
 ### The FSRS Formula
@@ -167,10 +170,10 @@ Prevents duplicate memories using similarity thresholds:
 
 | Threshold    | Action                      | Logic                             |
 | ------------ | --------------------------- | --------------------------------- |
-| >= 0.95 (95%) | **REINFORCE**               | Exact duplicate - boost existing  |
-| >= 0.85 (85%) | **UPDATE** or **SUPERSEDE** | High match - check contradiction  |
-| >= 0.70 (70%) | **CREATE_LINKED**           | Medium match - new with relations |
-| < 0.50 (50%) | **CREATE**                  | Low match - fully new memory      |
+| >= 0.95 (95%) | **REINFORCE**               | Exact duplicate, boost existing   |
+| >= 0.85 (85%) | **UPDATE** or **SUPERSEDE** | High match, check contradiction   |
+| >= 0.70 (70%) | **CREATE_LINKED**           | Medium match, new with relations  |
+| < 0.50 (50%) | **CREATE**                  | Low match, fully new memory       |
 
 **Contradiction Detection:**
 - Pattern types: negation, replacement, deprecation, correction, clarification, prohibition, obsolescence, explicit
@@ -230,10 +233,11 @@ Different memory types decay at different rates:
 half_life = 60 days → stability ≈ 4.69 days
 ```
 
+<!-- /ANCHOR:key-concepts -->
+
 ---
 
-<!-- /ANCHOR:key-concepts -->
-## 3. 📁 STRUCTURE
+## 3. STRUCTURE
 <!-- ANCHOR:structure -->
 
 ```
@@ -262,10 +266,11 @@ cognitive/                      # TypeScript source files (8 modules)
 | `archival-manager.ts`      | Lifecycle management       | `runArchivalScan`, `archiveMemory`, `startBackgroundJob`                 |
 | `temporal-contiguity.ts`   | Time-based linking         | `vectorSearchWithContiguity`, `getTemporalNeighbors`, `buildTimeline`   |
 
+<!-- /ANCHOR:structure -->
+
 ---
 
-<!-- /ANCHOR:structure -->
-## 4. ⚡ FEATURES
+## 4. FEATURES
 <!-- ANCHOR:features -->
 
 ### FSRS Power-Law Decay
@@ -681,7 +686,7 @@ SPECKIT_ARCHIVAL=true                          # Default: true (env var name)
 
 ### Temporal Contiguity
 
-**Purpose**: Boost search results when memories are temporally adjacent, query temporal neighbors, and build spec-folder timelines.
+**Purpose**: Boost search results by temporal proximity and query temporal neighbors. Also builds spec-folder timelines.
 
 **Usage**:
 ```typescript
@@ -723,11 +728,12 @@ MAX_WINDOW: 86400        // 24 hours in seconds (maximum allowed window)
 BOOST_FACTOR: 0.15       // Maximum similarity boost for temporally adjacent memories
 ```
 
+<!-- /ANCHOR:features -->
+
 ---
 
-<!-- /ANCHOR:features -->
-## 5. 💡 USAGE EXAMPLES
-<!-- ANCHOR:examples -->
+## 5. USAGE EXAMPLES
+<!-- ANCHOR:usage-examples -->
 
 ### Example 1: Initialize Cognitive System
 
@@ -758,7 +764,7 @@ archival.startBackgroundJob();
 import * as decay from './attention-decay';
 import * as coActivation from './co-activation';
 
-// Memory was accessed — apply FSRS review update
+// Memory was accessed, apply FSRS review update
 decay.activateMemoryWithFsrs(42, 3);  // memoryId=42, grade=GOOD(3)
 
 // Spread activation to related memories
@@ -787,20 +793,20 @@ switch (decision.action) {
     break;
 
   case 'SUPERSEDE':
-    // Contradiction detected — mark old as deprecated, create new
+    // Contradiction detected, mark old as deprecated, create new
     db.prepare('UPDATE memory_index SET importance_tier = ? WHERE id = ?')
       .run('deprecated', decision.existingMemoryId);
     createNewMemory(newMemoryContent);
     break;
 
   case 'UPDATE':
-    // High similarity but no contradiction — update existing
+    // High similarity but no contradiction, update existing
     appendToMemory(decision.existingMemoryId!, newMemoryContent);
     break;
 
   case 'CREATE_LINKED':
   case 'CREATE':
-    // Medium/low similarity — create new
+    // Medium/low similarity, create new
     createNewMemory(newMemoryContent);
     break;
 }
@@ -837,10 +843,11 @@ for (const memory of activeMemories) {
 | **State Check**   | Context selection → Filter by state  | `classifyState`, `filterAndLimitByState`             |
 | **Nightly Jobs**  | Background → Archive                 | `runArchivalScan`, `startBackgroundJob`              |
 
+<!-- /ANCHOR:usage-examples -->
+
 ---
 
-<!-- /ANCHOR:examples -->
-## 6. 🛠️ TROUBLESHOOTING
+## 6. TROUBLESHOOTING
 <!-- ANCHOR:troubleshooting -->
 
 ### Common Issues
@@ -903,7 +910,7 @@ import * as gate from './prediction-error-gate';
 const decision = gate.evaluateMemory(contentHash, newContent, candidates, { specFolder });
 
 if (decision.action === 'REINFORCE') {
-  // Don't create new — boost existing
+  // Don't create new, boost existing
   console.log(`Reinforced existing memory ${decision.existingMemoryId}`);
   return decision.existingMemoryId;
 }
@@ -943,10 +950,11 @@ console.log(`State: ${classification.state}, R: ${classification.retrievability}
 | State always COLD    | Use `activateMemoryWithFsrs()` (updates last_review)             |
 | Slow queries         | `CREATE INDEX idx_memory_state ON memory_index(memory_type)`      |
 
+<!-- /ANCHOR:troubleshooting -->
+
 ---
 
-<!-- /ANCHOR:troubleshooting -->
-## 7. ❓ FAQ
+## 7. FAQ
 <!-- ANCHOR:faq -->
 
 ### General Questions
@@ -965,7 +973,7 @@ A: **Retrievability** (R) is the FSRS-calculated probability of recall (0.0 to 1
 
 **Q: Why do constitutional memories never decay?**
 
-A: Constitutional memories are permanent rules and principles (like coding standards, architectural decisions). They should ALWAYS be available, so `decay_rate = 1.0` (100% retention = no decay). This applies to both `constitutional` and `critical` tiers.
+A: Constitutional memories are permanent rules and principles (like coding standards and architectural decisions). They should ALWAYS be available, so `decay_rate = 1.0` (100% retention = no decay). This applies to both `constitutional` and `critical` tiers.
 
 ---
 
@@ -989,22 +997,23 @@ A: Yes, set `SPECKIT_ARCHIVAL=false` in environment or:
 import * as archival from './archival-manager';
 archival.stopBackgroundJob();
 ```
-But you'll need to manually manage old memories to prevent database growth.
+You will need to manually manage old memories to prevent database growth.
 
 ---
 
 **Q: What are the orphaned dist/ files?**
 
 A: Two compiled `.js` files exist in `dist/lib/cognitive/` without corresponding `.ts` sources:
-- `consolidation.js` — 5-phase consolidation pipeline (source was deleted)
-- `summary-generator.js` — Auto-summary generation (source was deleted)
+- `consolidation.js`: 5-phase consolidation pipeline (source was deleted)
+- `summary-generator.js`: Auto-summary generation (source was deleted)
 
-Note: `temporal-contiguity.js` in dist/ is **not** orphaned — it is compiled from the active `temporal-contiguity.ts` source module. The `index.js` barrel file in dist/ may reference deleted modules and should be rebuilt.
+Note: `temporal-contiguity.js` in dist/ is **not** orphaned. It is compiled from the active `temporal-contiguity.ts` source module. The `index.js` barrel file in dist/ may reference deleted modules and should be rebuilt.
+
+<!-- /ANCHOR:faq -->
 
 ---
 
-<!-- /ANCHOR:faq -->
-## 8. 📚 RELATED RESOURCES
+## 8. RELATED RESOURCES
 <!-- ANCHOR:related -->
 
 ### Internal Modules
@@ -1022,7 +1031,7 @@ Note: `temporal-contiguity.js` in dist/ is **not** orphaned — it is compiled f
 | ------------------------------------------------------------------------------- | ------------------------------------------------------------- |
 | [FSRS Paper](https://github.com/open-spaced-repetition/fsrs4anki)               | Free Spaced Repetition Scheduler algorithm                    |
 | [Anki Research](https://faqs.ankiweb.net/what-spaced-repetition-algorithm.html) | Spaced repetition validation dataset                          |
-| [ACT-R](http://act-r.psy.cmu.edu/)                                              | Adaptive Control of Thought - Rational cognitive architecture |
+| [ACT-R](http://act-r.psy.cmu.edu/)                                              | Adaptive Control of Thought, Rational cognitive architecture  |
 
 ### Configuration Reference
 
@@ -1036,5 +1045,6 @@ Note: `temporal-contiguity.js` in dist/ is **not** orphaned — it is compiled f
 | `SPECKIT_ARCHIVAL`         | true      | Enable background archival job            |
 | `SPECKIT_WORKING_MEMORY`   | true      | Enable working memory sessions            |
 
-*Cognitive Subsystem v1.7.2 — Research-Backed Memory Management*
 <!-- /ANCHOR:related -->
+
+*Cognitive Subsystem v1.8.0, Research-Backed Memory Management*

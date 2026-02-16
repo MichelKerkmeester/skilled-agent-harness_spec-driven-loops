@@ -222,8 +222,8 @@ The YAML contains detailed step-by-step workflow, output formats, and all config
 
 **Priority order for finding spec folder:**
 1. Validate provided path from $ARGUMENTS
-2. `memory_context()` — L1 unified retrieval (score > 0.6)
-3. `memory_match_triggers()` — fast phrase matching (<50ms)
+2. `memory_match_triggers()` — fast phrase matching (<50ms)
+3. `memory_context()` — L1 unified retrieval (score > 0.6)
 4. Glob by mtime: `ls -t specs/**/memory/*.md`
 5. No session found → offer: /spec_kit:complete or specify path
 
@@ -294,6 +294,11 @@ Call MCP tools directly — NEVER through Code Mode.
 - handover.md takes priority over CONTINUE_SESSION.md
 - Use `/memory:continue` for explicit crash recovery
 - Older handovers preserved for audit trail
+
+### Compaction Continuation Safety
+
+- If a context-compaction continuation prompt is detected, stop and present current task/state summary before taking actions.
+- Wait for user confirmation after the summary, then proceed with normal resume flow.
 
 ### Validation on Resume
 

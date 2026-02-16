@@ -1,6 +1,6 @@
 ---
 title: "Scoring Algorithms"
-description: "Multi-factor scoring system for memory retrieval with composite weighting, importance tiers, folder ranking, and confidence tracking."
+description: "Multi-factor scoring system for memory retrieval with composite weighting, importance tiers, folder ranking and confidence tracking."
 trigger_phrases:
   - "scoring algorithms"
   - "importance tiers"
@@ -10,37 +10,39 @@ importance_tier: "normal"
 
 # Scoring Algorithms
 
-> Multi-factor scoring system for memory retrieval with composite weighting, importance tiers, folder ranking, and confidence tracking.
+> Multi-factor scoring system for memory retrieval with composite weighting, importance tiers, folder ranking and confidence tracking.
 
 ---
 
 ## TABLE OF CONTENTS
 <!-- ANCHOR:table-of-contents -->
 
-- [1. 📖 OVERVIEW](#1--overview)
-- [2. 📊 KEY CONCEPTS](#2--key-concepts)
-- [3. 📁 STRUCTURE](#3--structure)
-- [4. 💡 USAGE](#4--usage)
-- [5. 📚 RELATED RESOURCES](#5--related-resources)
+- [1. OVERVIEW](#1--overview)
+- [2. KEY CONCEPTS](#2--key-concepts)
+- [3. STRUCTURE](#3--structure)
+- [4. USAGE](#4--usage)
+- [5. RELATED RESOURCES](#5--related-resources)
 
 <!-- /ANCHOR:table-of-contents -->
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 <!-- ANCHOR:overview -->
 
 ### What is the Scoring Module?
 
-The scoring module provides multi-factor algorithms for ranking memories in the Spec Kit Memory system. It combines similarity scores with temporal decay, importance tiers, usage patterns, and validation feedback to surface the most relevant memories.
+The scoring module provides multi-factor algorithms for ranking memories in the Spec Kit Memory system. It combines similarity scores with temporal decay, importance tiers, usage patterns and validation feedback to surface the most relevant memories.
 
 ### Key Features
 
 | Feature | Description |
 |---------|-------------|
-| **5-Factor Composite** | REQ-017 compliant scoring with temporal, usage, importance, pattern, citation factors |
+| **5-Factor Composite** | REQ-017 compliant scoring with temporal, usage, importance, pattern and citation factors |
 | **6-Tier Importance** | Constitutional (always surface) to deprecated (hidden from search) |
-| **Folder Scoring** | Rank spec folders by recency, activity, and importance |
+| **Document-Type Scoring** | Applies document-type multipliers used by spec folder retrieval |
+| **Intent-Aware Weighting** | Supports 7 intent types including `find_spec` and `find_decision` |
+| **Folder Scoring** | Rank spec folders by recency, activity and importance |
 | **Confidence Tracking** | User feedback loop for memory promotion |
 | **FSRS Decay** | Spaced repetition formula for retrievability |
 
@@ -57,7 +59,7 @@ The scoring module provides multi-factor algorithms for ranking memories in the 
 
 ---
 
-## 2. 📊 KEY CONCEPTS
+## 2. KEY CONCEPTS
 <!-- ANCHOR:key-concepts -->
 
 ### 5-Factor Composite Weights (REQ-017)
@@ -101,20 +103,24 @@ The scoring module provides multi-factor algorithms for ranking memories in the 
 | **Activity** | 0.20 | Memory count (capped at 5 for max) |
 | **Validation** | 0.10 | User feedback score (placeholder) |
 
+### Document-Type Multipliers
+
+The scoring layer includes document-type multipliers for 11 document types (for example `spec`, `plan`, `tasks`, `checklist`, `decision-record`, `implementation-summary`, `memory`, `readme`, `scratch`, `constitutional`, `research`). These multipliers are used by folder scoring and document retrieval ranking.
+
 <!-- /ANCHOR:key-concepts -->
 
 ---
 
-## 3. 📁 STRUCTURE
+## 3. STRUCTURE
 <!-- ANCHOR:structure -->
 
 ```
 scoring/
-├── composite-scoring.ts     # 5-factor and 6-factor composite scoring
-├── importance-tiers.ts      # 6-tier importance configuration
-├── folder-scoring.ts        # Re-exports from @spec-kit/shared/scoring/folder-scoring
-├── confidence-tracker.ts    # User validation and promotion
-└── README.md                # This file
+ composite-scoring.ts     # 5-factor and 6-factor composite scoring
+ importance-tiers.ts      # 6-tier importance configuration
+ folder-scoring.ts        # Re-exports from @spec-kit/shared/scoring/folder-scoring
+ confidence-tracker.ts    # User validation and promotion
+ README.md                # This file
 ```
 
 **Note:** `index.js` and `scoring.js` exist only as compiled JS in `dist/lib/scoring/` (never migrated to TypeScript source). They provide barrel re-exports and base decay utilities respectively.
@@ -132,8 +138,8 @@ scoring/
 
 ---
 
-## 4. 💡 USAGE
-<!-- ANCHOR:examples -->
+## 4. USAGE
+<!-- ANCHOR:usage -->
 
 ### Example 1: Calculate 5-Factor Score
 
@@ -204,7 +210,7 @@ const info = getConfidenceInfo(db, memoryId);
 
 > **Note on `validationCount`:** SQLite returns `validation_count` (snake_case column name).
 > The code type-casts to include both `validationCount` and `validation_count` for safety,
-> but the camelCase variant is always `undefined` — the `??` fallback chain ensures
+> but the camelCase variant is always `undefined`. The `??` fallback chain ensures
 > `validation_count` is used at runtime. No bug, but the type cast is defensive/misleading.
 
 ### Common Patterns
@@ -216,11 +222,11 @@ const info = getConfidenceInfo(db, memoryId);
 | Archive check | `isArchived('/z_archive/old')` | Deprioritize archived folders |
 | Score breakdown | `getFiveFactorBreakdown(row)` | Debug/explain scoring |
 
-<!-- /ANCHOR:examples -->
+<!-- /ANCHOR:usage -->
 
 ---
 
-## 5. 📚 RELATED RESOURCES
+## 5. RELATED RESOURCES
 <!-- ANCHOR:related -->
 
 ### Internal Documentation
@@ -243,11 +249,11 @@ const info = getConfidenceInfo(db, memoryId);
 ---
 
 **Version**: 1.7.2
-**Last Updated**: 2026-02-08
+**Last Updated**: 2026-02-16
 
 **Migration Notes**:
 - 4 of 6 modules migrated to TypeScript (.ts) as source of truth
-- `index.js` and `scoring.js` remain as compiled JS only in `dist/lib/scoring/` (barrel re-exports and base decay utilities; never had .ts source)
+- `index.js` and `scoring.js` remain as compiled JS only in `dist/lib/scoring/` (barrel re-exports and base decay utilities, never had .ts source)
 - Compiled output in `dist/lib/scoring/`
 - `folder-scoring.ts` re-exports from `@spec-kit/shared/scoring/folder-scoring`
 - Import paths use ES modules (`import` instead of `require`)

@@ -1,146 +1,77 @@
 ---
 title: "Level 3+ Templates"
-description: "Extended templates for enterprise-scale changes requiring formal governance, multi-agent coordination, and compliance tracking"
+description: "Governance-heavy templates for high-complexity or regulated work."
 trigger_phrases:
-  - "level 3+ templates"
-  - "enterprise governance templates"
-  - "multi-agent coordination templates"
+  - "level 3+"
+  - "governance"
+  - "compliance"
 importance_tier: "normal"
 ---
 
 # Level 3+ Templates
 
-> Extended templates for enterprise-scale changes requiring formal governance, multi-agent coordination, and compliance tracking.
+Use for work that needs formal governance, compliance traceability, and coordinated execution.
 
----
-
-## TABLE OF CONTENTS
-
-- [1. Overview](#1--overview)
-- [2. Structure](#2--structure)
-- [3. Quick Start](#3--quick-start)
-- [4. Related Documents](#4--related-documents)
-
----
-
-## 1. 📖 OVERVIEW
+## When to Use
 <!-- ANCHOR:overview -->
 
-Level 3+ templates support enterprise-scale changes requiring formal approval workflows, compliance tracking, multi-agent coordination, and comprehensive governance. These templates build on Level 3 by adding AI execution frameworks, extended checklists, workstream coordination, and compliance checkpoints.
-
-### When to Use Level 3+
-
-Use Level 3+ templates when:
-
-1. **Enterprise Scale** - High-visibility changes with formal approval workflows
-2. **Compliance Required** - SOX, HIPAA, or other regulatory checkpoints needed
-3. **Stakeholder Governance** - Sign-off tracking across multiple stakeholders
-4. **Multi-Agent Coordination** - AI execution protocols for coordinated work
-5. **High Complexity** - Complexity score 80-100 with extensive dependencies
-6. **Version Tracking** - Changelog and version history mandated
-
-**Do NOT use Level 3+ if:**
-- Standard complex feature without governance requirements (use Level 3)
-- No formal approvals required (use Level 3)
-- Compliance not mandated (use Level 3)
-- Single-agent execution sufficient (use Level 3)
-
-### What Level 3+ Adds
-
-Level 3+ builds on Level 3 by adding enterprise governance and multi-agent coordination:
-
-| Addition | Purpose | Impact |
-|----------|---------|--------|
-| **AI Execution Framework** | Pre-task checklists, execution rules, status tracking | Coordinated multi-agent work |
-| **Extended Checklist** | 100-150 items with P0/P1/P2 prioritization | Comprehensive validation |
-| **Workstream Coordination** | Parallel workstream tracking and dependencies | Complex project management |
-| **Compliance Checkpoints** | SOX, HIPAA, regulatory tracking | Enterprise compliance |
-| **Approval Workflow** | Stakeholder matrix with sign-off tracking | Formal governance |
-| **Communication Plan** | Status reporting, escalation paths | Stakeholder management |
-
-**Template Composition:**
-```
-Level 3+ = Core + Level 2 Verify + Level 3 Arch + Level 3+ Govern
-         = ~640 LOC of structured documentation
-```
+- Formal approval workflow is required.
+- Compliance checkpoints must be documented.
+- Workstreams or multi-agent coordination are expected.
+- Complexity is high enough that Level 3 is not sufficient.
 
 <!-- /ANCHOR:overview -->
----
 
-## 2. 📁 STRUCTURE
-<!-- ANCHOR:structure -->
+## Required Files
+<!-- ANCHOR:files -->
 
-Level 3+ includes 6 template files:
+- `spec.md`
+- `plan.md`
+- `tasks.md`
+- `checklist.md`
+- `decision-record.md`
+- `implementation-summary.md`
 
-| File | Purpose | Additions Over Level 3 |
-|------|---------|------------------------|
-| `spec.md` | Feature specification | +Approval Workflow, +Compliance Checkpoints, +Stakeholder Matrix |
-| `plan.md` | Implementation plan | +AI Execution Framework, +Workstream Coordination, +Communication Plan |
-| `tasks.md` | Task breakdown | +3-Tier Task Format, +AI Execution Protocol, +Workstream Organization |
-| `checklist.md` | Validation checklist | +Extended items (100-150), +Sign-off section, +Compliance verification |
-| `decision-record.md` | Architecture decisions | +Decision Authority, +Review Requirements, +Governance notes |
-| `implementation-summary.md` | Post-implementation outcomes | Standard template (no L3+ additions) |
+These are the same core files as Level 3 with governance-expanded sections.
 
-All files include `SPECKIT_LEVEL: 3+` frontmatter.
+<!-- /ANCHOR:files -->
 
-<!-- /ANCHOR:structure -->
----
+## Governance Additions
+<!-- ANCHOR:additions -->
 
-## 3. 🚀 QUICK START
+- Approval workflow and stakeholder sign-off structure.
+- Compliance checkpoints and traceability fields.
+- Workstream coordination and execution protocol sections.
+- Expanded checklist coverage for release-readiness validation.
+
+<!-- /ANCHOR:additions -->
+
+## Quick Start
 <!-- ANCHOR:quick-start -->
 
-### 1. Copy Templates to Spec Folder
-
 ```bash
-# Create new spec folder
 mkdir -p specs/###-feature-name
-
-# Copy all Level 3+ templates
 cp .opencode/skill/system-spec-kit/templates/level_3+/*.md specs/###-feature-name/
-
-# Create supporting folders
-mkdir -p specs/###-feature-name/{memory,scratch}
+bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/###-feature-name/
 ```
 
-### 2. Fill Templates in Order
-
-1. **spec.md** - Define requirements, stakeholders, approval workflow
-2. **plan.md** - Create implementation plan with AI execution framework
-3. **tasks.md** - Break down into workstreams with task dependencies
-4. **decision-record.md** - Document architectural decisions as they occur
-5. **checklist.md** - Track validation items throughout implementation
-6. **implementation-summary.md** - Document outcomes after completion
-
-### 3. Verify Level Requirements
-
-Before claiming completion, ensure:
-- All 6 template files filled completely
-- Approval workflow documented with sign-offs
-- Compliance checkpoints completed (if applicable)
-- Extended checklist items verified (100-150 items)
-- AI execution protocols followed for multi-agent work
-
 <!-- /ANCHOR:quick-start -->
----
 
-## 4. 📚 RELATED DOCUMENTS
+## Workflow Notes
+<!-- ANCHOR:workflow-notes -->
+
+- Keep approvals and compliance checks updated as work progresses.
+- Track checklist evidence continuously; do not batch at the end.
+- Finalize `implementation-summary.md` with delivered outcomes and open follow-ups.
+
+<!-- /ANCHOR:workflow-notes -->
+
+## Related
 <!-- ANCHOR:related -->
 
-### Level Documentation
-- [Level 3 Templates](../level_3/) - Standard complex features without governance
-- [Level Specifications](../../references/templates/level_specifications.md) - Complete level requirements
-
-### Addendum Components
-- [Level 3+ Governance Addendum](../addendum/level3plus-govern/) - Source components for L3+ additions
+- `../level_3/README.md`
+- `../addendum/level3plus-govern/`
+- `../../references/templates/level_specifications.md`
+- `../../references/validation/validation_rules.md`
 
 <!-- /ANCHOR:related -->
----
-
-<!--
-LEVEL 3+ TEMPLATES - Enterprise Governance
-- Complexity score 80-100
-- Multi-agent coordination
-- Formal approval workflows
-- Compliance tracking
-- Extended checklists (100-150 items)
--->

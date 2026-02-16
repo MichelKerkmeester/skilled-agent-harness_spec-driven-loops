@@ -1,6 +1,6 @@
 ---
-title: "Memory Type Configuration"
-description: "9-type cognitive memory system with differentiated half-lives and automatic type inference from file paths, frontmatter, and keywords."
+title: "Memory and Document Type Configuration"
+description: "Memory-type decay configuration plus Spec 126 document-type inference and defaults."
 trigger_phrases:
   - "memory types"
   - "half-life configuration"
@@ -8,37 +8,40 @@ trigger_phrases:
 importance_tier: "normal"
 ---
 
-# Memory Type Configuration
+# Memory and Document Type Configuration
 
-> 9-type cognitive memory system with differentiated half-lives and automatic type inference from file paths, frontmatter, and keywords.
+> Memory-type decay configuration plus Spec 126 document-type inference and defaults.
 
 ---
 
 ## TABLE OF CONTENTS
 <!-- ANCHOR:table-of-contents -->
 
-- [1. 📖 OVERVIEW](#1--overview)
-- [2. 📖 KEY CONCEPTS](#2--key-concepts)
-- [3. 📁 STRUCTURE](#3--structure)
-- [4. 💡 USAGE](#4--usage)
-- [5. 📚 RELATED RESOURCES](#5--related-resources)
+- [1. OVERVIEW](#1--overview)
+- [2. KEY CONCEPTS](#2--key-concepts)
+- [3. STRUCTURE](#3--structure)
+- [4. USAGE](#4--usage)
+- [5. RELATED RESOURCES](#5--related-resources)
+
+<!-- /ANCHOR:table-of-contents -->
 
 ---
 
-<!-- /ANCHOR:table-of-contents -->
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 <!-- ANCHOR:overview -->
 
 ### What is the Config Module?
 
-The config module defines the 9 cognitive memory types used in the Spec Kit Memory system. Each type has a differentiated half-life that controls how quickly memories decay, enabling the system to naturally prioritize recent working context while preserving long-term architectural knowledge.
+The config module defines two related configuration layers: memory types (decay behavior) and spec document types (indexing and weighting behavior introduced in Spec 126). This keeps retrieval aligned with both conversational memory state and spec-folder document structure.
 
 ### Key Features
 
 | Feature | Description |
 |---------|-------------|
 | **9 Memory Types** | From working (1-day half-life) to meta-cognitive (never decays) |
+| **8 Spec Document Types** | `spec`, `plan`, `tasks`, `checklist`, `decision_record`, `implementation_summary`, `research`, `handover` |
 | **Automatic Inference** | Detect memory type from path, frontmatter, or keywords |
+| **Document Inference** | Detect `documentType` from spec-folder filenames and location |
 | **Tier Mapping** | Link importance tiers to appropriate memory types |
 | **Validation** | Verify type assignments and warn on mismatches |
 
@@ -47,14 +50,16 @@ The config module defines the 9 cognitive memory types used in the Spec Kit Memo
 | Category | Count | Details |
 |----------|-------|---------|
 | Memory Types | 9 | Cognitive categories with differentiated decay |
+| Spec Document Types | 8 | Canonical spec folder docs recognized by filename |
 | Path Patterns | 30+ | Regex patterns for type inference |
 | Keyword Mappings | 40+ | Title/trigger phrase to type mapping |
 | Half-Life Range | 1-365 days | Plus null for never-decay |
 
+<!-- /ANCHOR:overview -->
+
 ---
 
-<!-- /ANCHOR:overview -->
-## 2. 📖 KEY CONCEPTS
+## 2. KEY CONCEPTS
 <!-- ANCHOR:key-concepts -->
 
 ### Memory Types and Half-Lives
@@ -105,10 +110,11 @@ The system infers memory type using this precedence:
 | `architecture`, `adr-\d+` | semantic | `docs/adr-001.md` |
 | `constitutional`, `claude.md` | meta-cognitive | `AGENTS.md`, `AGENTS.md` |
 
+<!-- /ANCHOR:key-concepts -->
+
 ---
 
-<!-- /ANCHOR:key-concepts -->
-## 3. 📁 STRUCTURE
+## 3. STRUCTURE
 <!-- ANCHOR:structure -->
 
 ```
@@ -127,11 +133,12 @@ config/
 | `memory-types.ts` | Type definitions, half-lives, path/keyword patterns |
 | `type-inference.ts` | Multi-source inference with confidence scoring |
 
+<!-- /ANCHOR:structure -->
+
 ---
 
-<!-- /ANCHOR:structure -->
-## 4. 💡 USAGE
-<!-- ANCHOR:examples -->
+## 4. USAGE
+<!-- ANCHOR:usage -->
 
 ### Example 1: Get Type Configuration
 
@@ -213,17 +220,18 @@ const validation = validateInferredType('declarative', '/specs/scratch/temp.md')
 | Get default | `getDefaultType()` | Fallback assignment |
 | Reset config | `getDefaultHalfLives()` | Config recovery |
 
+<!-- /ANCHOR:usage -->
+
 ---
 
-<!-- /ANCHOR:examples -->
-## 5. 📚 RELATED RESOURCES
+## 5. RELATED RESOURCES
 <!-- ANCHOR:related -->
 
 ### Internal Documentation
 
 | Document | Purpose |
 |----------|---------|
-| [../scoring/README.md](../scoring/README.md) | Composite scoring with tier integration |
+| [../scoring/README.md](../scoring/README.md) | Composite scoring with tier and document-type integration |
 | [../cognitive/README.md](../cognitive/README.md) | Attention decay using half-lives |
 | [../../configs/search-weights.json](../../configs/search-weights.json) | Runtime weight configuration |
 
@@ -234,7 +242,8 @@ const validation = validateInferredType('declarative', '/specs/scratch/temp.md')
 | [../../README.md](../../README.md) | MCP server overview |
 | [../../../SKILL.md](../../../SKILL.md) | System Spec Kit skill documentation |
 
+<!-- /ANCHOR:related -->
+
 ---
 
-*Documentation version: 1.7.2 | Last updated: 2026-02-08*
-<!-- /ANCHOR:related -->
+*Documentation version: 1.8.0 | Last updated: 2026-02-16*

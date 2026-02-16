@@ -273,12 +273,12 @@ Use `/memory:context` with intent-aware retrieval:
 | Step                                        | Agent      | Fallback          | Purpose                                              |
 | ------------------------------------------- | ---------- | ----------------- | ---------------------------------------------------- |
 | Step 3 (Specification)                      | `@speckit` | `general`         | Template-first spec folder creation with validation  |
-| Step 5 (Codebase Exploration)               | `@context` | `general-purpose` | Exclusive agent for file search, pattern discovery   |
+| Step 5 (Codebase Exploration)               | `@context` | `general`         | Exclusive agent for file search, pattern discovery   |
 | Step 5 (Planning, low confidence)           | `@research`| `general`         | Technical investigation when confidence < 60%        |
 | Step 7 (Handover Check)                     | `@handover`| `general`         | Session continuation document creation               |
 
 <!-- REFERENCE ONLY — Do not dispatch agents from this template -->
-**Dispatch flow:** Check agent availability → dispatch if available → fallback to `subagent_type: "general-purpose"` (Claude Code) or `"general"` (OpenCode) with warning → agent returns file confirmation with validation status.
+**Dispatch flow:** Check agent availability → dispatch if available → fallback to `subagent_type: "general"` with warning → agent returns file confirmation with validation status.
 
 **@speckit dispatch template:**
 ```

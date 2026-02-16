@@ -1,5 +1,7 @@
-<!-- SPECKIT_LEVEL: 3 -->
+<!-- SPECKIT_LEVEL: 3+ -->
 # Task 01 — README Audit & Alignment
+
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify + level3-arch + level3plus-govern | v2.2 -->
 
 <!-- ANCHOR:metadata -->
 ## Metadata
@@ -8,7 +10,7 @@
 |-------|-------|
 | **Parent Spec** | 130 — Memory Overhaul & Agent Upgrade Release |
 | **Task** | 01 of 07 |
-| **Level** | 3 |
+| **Level** | 3+ |
 | **Priority** | P1 |
 | **Status** | Draft |
 | **Created** | 2026-02-16 |
@@ -34,8 +36,8 @@ Audit every README.md file in the `.opencode/` directory tree to ensure all stat
 | File | Key Audit Points |
 |------|-----------------|
 | `.opencode/README.md` | Statistics table: agent count, skill count, command count, template count, test count |
-| `.opencode/skill/system-spec-kit/README.md` | 5-source pipeline (not 4), 7 intents (not 5), schema v13, document-type scoring, `includeSpecDocs` parameter, check-placeholders.sh, upgrade-level.sh, auto-populate workflow |
-| `.opencode/skill/system-spec-kit/mcp_server/README.md` | Same as above + `includeSpecDocs` parameter documentation, feature flags, schema v13 structure |
+| `.opencode/skill/system-spec-kit/README.md` | 5-source pipeline (not 4), 7 intents (not 5), schema v13, document-type scoring, `includeSpecDocs` parameter, check-placeholders.sh, upgrade-level.sh, auto-populate workflow, spec 126 MCP server hardening (import paths, specFolder filtering, metadata preservation) |
+| `.opencode/skill/system-spec-kit/mcp_server/README.md` | Same as above + `includeSpecDocs` parameter documentation, feature flags, schema v13 structure, MCP server hardening details |
 
 ### Medium-Priority README Files (P1)
 
@@ -94,9 +96,15 @@ MCP skill READMEs (2 files):
    - AI auto-populate workflow (spec 128)
    - Document-type scoring (spec 126)
    - `includeSpecDocs` parameter (spec 126)
-5. **Missing anchor tags**: Every H2 section should have `<!-- ANCHOR:name -->` / `<!-- /ANCHOR:name -->` pairs (specs 013/129)
-6. **HVR violations**: No three-item inline lists, no superlatives, no marketing language (spec 122)
-7. **Stale file/test counts**: Counts should reflect current state after all implementations
+5. **Missing spec 126 hardening details**:
+   - MCP server import path regression fixes (context-server.ts, attention-decay.ts)
+   - memory-index specFolder boundary filtering + incremental chain coverage
+   - memory-save document_type/spec_level preservation in update/reinforce paths
+   - vector-index metadata update plumbing
+   - causal edge conflict-update semantics for stable edge IDs
+6. **Missing anchor tags**: Every H2 section should have `<!-- ANCHOR:name -->` / `<!-- /ANCHOR:name -->` pairs (specs 013/129)
+7. **HVR violations**: No three-item inline lists, no superlatives, no marketing language (spec 122)
+8. **Stale file/test counts**: Counts should reflect current state after all implementations
 <!-- /ANCHOR:audit-criteria -->
 
 ---
@@ -126,8 +134,59 @@ The implementer should populate `changes.md` with:
 
 ---
 
+<!-- ANCHOR:approval-workflow -->
+## Approval Workflow
+
+| Checkpoint | Approver | Status | Date |
+|------------|----------|--------|------|
+| Audit Scope Review | User | Pending | |
+| changes.md Review | User | Pending | |
+| Implementation Approval | User | Pending | |
+<!-- /ANCHOR:approval-workflow -->
+
+---
+
+<!-- ANCHOR:compliance -->
+## Compliance Checkpoints
+
+### Documentation Compliance
+- [ ] All README audit findings documented in changes.md
+- [ ] Before/after text provided for each change
+- [ ] Priority (P0/P1/P2) assigned to each change
+- [ ] No placeholder text remains
+
+### Process Compliance
+- [ ] Audit systematic (all 60+ files checked)
+- [ ] Priority tiers followed (P0 first, then P1, then P2)
+- [ ] Self-contained (no external dependencies)
+<!-- /ANCHOR:compliance -->
+
+---
+
+<!-- ANCHOR:stakeholders -->
+## Stakeholder Matrix
+
+| Stakeholder | Role | Interest | Communication |
+|-------------|------|----------|---------------|
+| Michel | Maintainer | High | Review changes.md before implementation |
+| Agent System | Executor | High | Self-contained spec for audit execution |
+<!-- /ANCHOR:stakeholders -->
+
+---
+
 ## Related Documents
 
 - **Parent**: [../spec.md](../spec.md)
+- **Plan**: [plan.md](plan.md)
+- **Tasks**: [tasks.md](tasks.md)
 - **Checklist**: [checklist.md](checklist.md)
+- **Decisions**: [decision-record.md](decision-record.md)
 - **Changes**: [changes.md](changes.md)
+
+---
+
+<!--
+Level 3+ specification for Task 01
+README audit across 60+ files with 3-tier priority system
+Produces changes.md with explicit before/after text for implementer
+-->

@@ -56,6 +56,8 @@ export interface MemoryDbRow {
   last_review: string | null;
   review_count: number;
   file_mtime_ms: number | null;
+  document_type: string;
+  spec_level: number | null;
 }
 
 // ---------------------------------------------------------------
@@ -100,6 +102,8 @@ export interface Memory {
   lastReview: string | null;
   reviewCount: number;
   fileMtimeMs: number | null;
+  documentType: string;
+  specLevel: number | null;
 }
 
 // ---------------------------------------------------------------
@@ -145,6 +149,8 @@ export function dbRowToMemory(row: MemoryDbRow): Memory {
     lastReview: row.last_review,
     reviewCount: row.review_count,
     fileMtimeMs: row.file_mtime_ms,
+    documentType: row.document_type,
+    specLevel: row.spec_level,
   };
 }
 
@@ -188,6 +194,8 @@ export function memoryToDbRow(memory: Partial<Memory>): Partial<MemoryDbRow> {
   if (memory.lastReview !== undefined) row.last_review = memory.lastReview;
   if (memory.reviewCount !== undefined) row.review_count = memory.reviewCount;
   if (memory.fileMtimeMs !== undefined) row.file_mtime_ms = memory.fileMtimeMs;
+  if (memory.documentType !== undefined) row.document_type = memory.documentType;
+  if (memory.specLevel !== undefined) row.spec_level = memory.specLevel;
 
   return row;
 }
@@ -231,6 +239,8 @@ export function partialDbRowToMemory(row: Partial<MemoryDbRow> & { id: number })
   if (row.last_review !== undefined) mem.lastReview = row.last_review;
   if (row.review_count !== undefined) mem.reviewCount = row.review_count;
   if (row.file_mtime_ms !== undefined) mem.fileMtimeMs = row.file_mtime_ms;
+  if (row.document_type !== undefined) mem.documentType = row.document_type;
+  if (row.spec_level !== undefined) mem.specLevel = row.spec_level;
 
   return mem;
 }

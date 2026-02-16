@@ -9,6 +9,7 @@ and cross-references to decision records. Use this for complex features (500+ LO
 
 ---
 
+<!-- ANCHOR:executive-summary -->
 ## EXECUTIVE SUMMARY
 
 This specification covers the implementation of a comprehensive user authentication system for the application. The system will support email/password registration and login, secure password storage with bcrypt, and JWT-based session management. This is a foundational feature that enables all future user-specific functionality including personalization, user preferences, and access control.
@@ -17,8 +18,11 @@ This specification covers the implementation of a comprehensive user authenticat
 
 **Critical Dependencies**: PostgreSQL database, bcrypt library
 
+
+<!-- /ANCHOR:executive-summary -->
 ---
 
+<!-- ANCHOR:metadata -->
 ## 1. METADATA
 
 | Field | Value |
@@ -30,8 +34,11 @@ This specification covers the implementation of a comprehensive user authenticat
 | **Branch** | `012-user-authentication` |
 | **Estimated LOC** | ~600 |
 
+
+<!-- /ANCHOR:metadata -->
 ---
 
+<!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
@@ -40,8 +47,11 @@ The application currently has no user authentication, allowing anyone to access 
 ### Purpose
 Implement a production-ready email/password authentication system that provides secure user registration, login, and session management while establishing patterns and infrastructure for future authentication enhancements.
 
+
+<!-- /ANCHOR:problem -->
 ---
 
+<!-- ANCHOR:scope -->
 ## 3. SCOPE
 
 ### In Scope
@@ -75,8 +85,11 @@ Implement a production-ready email/password authentication system that provides 
 | prisma/schema.prisma | Modify | Add User model |
 | tests/ | Create | Unit and integration tests |
 
+
+<!-- /ANCHOR:scope -->
 ---
 
+<!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
 
 ### P0 - Blockers (MUST complete)
@@ -98,8 +111,11 @@ Implement a production-ready email/password authentication system that provides 
 | REQ-008 | Duplicate email registration prevented | Clear error message, no duplicate users in DB |
 | REQ-009 | Users can log out | Token cleared, redirected to login |
 
+
+<!-- /ANCHOR:requirements -->
 ---
 
+<!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
 - **SC-001**: User can complete full registration and login flow in under 30 seconds
@@ -107,8 +123,11 @@ Implement a production-ready email/password authentication system that provides 
 - **SC-003**: All security checklist items pass verification
 - **SC-004**: Test coverage > 80% for auth modules
 
+
+<!-- /ANCHOR:success-criteria -->
 ---
 
+<!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
 | Type | Item | Impact | Mitigation |
@@ -119,8 +138,11 @@ Implement a production-ready email/password authentication system that provides 
 | Risk | Token security | Session hijacking | HttpOnly cookies in Phase 2 |
 | Risk | Timing attacks | Email enumeration | Constant-time comparison |
 
+
+<!-- /ANCHOR:risks -->
 ---
 
+<!-- ANCHOR:nfr -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -139,8 +161,11 @@ Implement a production-ready email/password authentication system that provides 
 - **NFR-R02**: Graceful degradation with clear error messages on failures
 - **NFR-R03**: No data loss on service restart (stateless auth)
 
+
+<!-- /ANCHOR:nfr -->
 ---
 
+<!-- ANCHOR:edge-cases -->
 ## 8. EDGE CASES
 
 ### Data Boundaries
@@ -159,8 +184,11 @@ Implement a production-ready email/password authentication system that provides 
 - **Multiple login attempts**: Allow all (rate limiting in Phase 2)
 - **Simultaneous registration**: Database unique constraint prevents duplicates
 
+
+<!-- /ANCHOR:edge-cases -->
 ---
 
+<!-- ANCHOR:risk-matrix -->
 ## 9. RISK MATRIX
 
 | Risk ID | Description | Impact | Likelihood | Mitigation |
@@ -171,8 +199,11 @@ Implement a production-ready email/password authentication system that provides 
 | R-004 | Brute force login attempts | M | H | Add rate limiting (Phase 2) |
 | R-005 | Database breach exposes hashes | M | L | bcrypt makes cracking expensive |
 
+
+<!-- /ANCHOR:risk-matrix -->
 ---
 
+<!-- ANCHOR:user-stories -->
 ## 10. USER STORIES
 
 ### US-001: New User Registration (Priority: P0)
@@ -200,22 +231,30 @@ Implement a production-ready email/password authentication system that provides 
 **Acceptance Criteria**:
 1. Given I am logged in, When I click logout, Then my session is terminated and I am redirected to the login page
 
+
+<!-- /ANCHOR:user-stories -->
 ---
 
+<!-- ANCHOR:open-questions -->
 ## 11. OPEN QUESTIONS
 
 - Should we implement "Remember Me" functionality in this phase? **RESOLVED: Deferred to Phase 2**
 - What should the session token expiration time be? **RESOLVED: 24 hours**
 - Should we support concurrent sessions? **RESOLVED: Yes, no limit initially**
 
+
+<!-- /ANCHOR:open-questions -->
 ---
 
+<!-- ANCHOR:related-docs -->
 ## RELATED DOCUMENTS
 
 - **Implementation Plan**: See `plan.md`
 - **Task Breakdown**: See `tasks.md`
 - **Verification Checklist**: See `checklist.md`
 - **Decision Records**: See `decision-record.md`
+
+<!-- /ANCHOR:related-docs -->
 
 ---
 

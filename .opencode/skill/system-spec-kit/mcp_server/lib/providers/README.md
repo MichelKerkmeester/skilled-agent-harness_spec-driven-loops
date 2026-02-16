@@ -14,23 +14,23 @@ importance_tier: "normal"
 
 ---
 
-<!-- ANCHOR:table-of-contents -->
 ## TABLE OF CONTENTS
+<!-- ANCHOR:table-of-contents -->
 
-- [1. 📖 OVERVIEW](#1--overview)
-- [2. 📁 STRUCTURE](#2--structure)
-- [3. ⚡ FEATURES](#3--features)
-- [4. 💡 USAGE EXAMPLES](#4--usage-examples)
-- [5. 📚 RELATED RESOURCES](#5--related-resources)
+- [1. OVERVIEW](#1--overview)
+- [2. STRUCTURE](#2--structure)
+- [3. FEATURES](#3--features)
+- [4. USAGE EXAMPLES](#4--usage-examples)
+- [5. RELATED RESOURCES](#5--related-resources)
 
 <!-- /ANCHOR:table-of-contents -->
 
 ---
 
+## 1. OVERVIEW
 <!-- ANCHOR:overview -->
-## 1. 📖 OVERVIEW
 
-The providers module handles embedding generation and retry logic for the Spec Kit Memory MCP server. It provides a unified abstraction layer for multiple embedding providers (Voyage AI, OpenAI) with exponential backoff retry management to ensure reliable embedding generation.
+The providers module handles embedding generation and retry logic for the Spec Kit Memory MCP server. It provides a unified abstraction layer for multiple embedding providers (Voyage AI, OpenAI) with exponential backoff retry management for reliable embedding generation.
 
 ### Key Statistics
 
@@ -44,23 +44,23 @@ The providers module handles embedding generation and retry logic for the Spec K
 
 | Feature | Description |
 |---------|-------------|
-| **Provider Abstraction** | Unified interface for Voyage AI, OpenAI, and local models (re-exported from `@spec-kit/shared/embeddings`) |
+| **Provider Abstraction** | Unified interface for Voyage AI, OpenAI and local models (re-exported from `@spec-kit/shared/embeddings`) |
 | **Exponential Backoff** | Retry with 1min, 5min, 15min delays |
-| **Background Retry Job** | Automatic processing of pending embeddings every 5 minutes |
+| **Background Retry Job** | Optional processing of pending embeddings every 5 minutes |
 | **Graceful Degradation** | Falls back to BM25-only mode when all providers fail |
 
 <!-- /ANCHOR:overview -->
 
 ---
 
+## 2. STRUCTURE
 <!-- ANCHOR:structure -->
-## 2. 📁 STRUCTURE
 
 ```
 providers/
-├── embeddings.ts        # Re-export from @spec-kit/shared/embeddings
-├── retry-manager.ts     # Exponential backoff with background job
-└── README.md            # This file
+ embeddings.ts        # Re-export from @spec-kit/shared/embeddings
+ retry-manager.ts     # Exponential backoff with background job
+ README.md            # This file
 ```
 
 ### Key Files
@@ -78,8 +78,8 @@ TypeScript source files compile to `mcp_server/dist/lib/providers/` with corresp
 
 ---
 
+## 3. FEATURES
 <!-- ANCHOR:features -->
-## 3. ⚡ FEATURES
 
 ### Embeddings Provider (`embeddings.ts`)
 
@@ -132,8 +132,8 @@ const queryEmbedding = await generateQueryEmbedding('how to authenticate?');
 
 ---
 
-<!-- ANCHOR:examples -->
-## 4. 💡 USAGE EXAMPLES
+## 4. USAGE EXAMPLES
+<!-- ANCHOR:usage-examples -->
 
 ### Example 1: Generate Embedding
 
@@ -183,12 +183,12 @@ stopBackgroundJob();
 | Reset failed | `resetForRetry(id)` | Re-attempt specific item |
 | Start background | `startBackgroundJob()` | Server startup |
 
-<!-- /ANCHOR:examples -->
+<!-- /ANCHOR:usage-examples -->
 
 ---
 
+## 5. RELATED RESOURCES
 <!-- ANCHOR:related -->
-## 5. 📚 RELATED RESOURCES
 
 ### Internal Documentation
 
@@ -210,4 +210,4 @@ stopBackgroundJob();
 ---
 
 **Version**: 1.7.2
-**Last Updated**: 2026-02-08
+**Last Updated**: 2026-02-16

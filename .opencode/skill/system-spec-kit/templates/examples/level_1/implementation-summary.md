@@ -8,6 +8,7 @@ the completed authentication feature. Created AFTER implementation completes. --
 
 ---
 
+<!-- ANCHOR:metadata -->
 ## Metadata
 
 | Field | Value |
@@ -16,8 +17,11 @@ the completed authentication feature. Created AFTER implementation completes. --
 | **Completed** | 2025-01-17 |
 | **Level** | 1 |
 
+
+<!-- /ANCHOR:metadata -->
 ---
 
+<!-- ANCHOR:what-built -->
 ## What Was Built
 
 Implemented a complete email/password authentication system including user registration, login, and session management. The system uses bcrypt for secure password hashing and JWT tokens for stateless session management. Both registration and login flows are fully functional with appropriate error handling for common edge cases.
@@ -35,8 +39,11 @@ Implemented a complete email/password authentication system including user regis
 | `prisma/schema.prisma` | Modified | Added User model with email and passwordHash fields |
 | `app.js` | Modified | Registered auth routes |
 
+
+<!-- /ANCHOR:what-built -->
 ---
 
+<!-- ANCHOR:decisions -->
 ## Key Decisions
 
 | Decision | Rationale |
@@ -46,8 +53,11 @@ Implemented a complete email/password authentication system including user regis
 | Store token in localStorage | Simple for MVP, will migrate to HttpOnly cookies in Phase 2 |
 | No email verification | Out of scope for Phase 1, requires email service integration |
 
+
+<!-- /ANCHOR:decisions -->
 ---
 
+<!-- ANCHOR:verification -->
 ## Verification
 
 | Test Type | Status | Notes |
@@ -56,14 +66,19 @@ Implemented a complete email/password authentication system including user regis
 | Unit | Pass | hash.js functions tested with Jest (100% coverage) |
 | Integration | Pass | Registration and login endpoints tested with Supertest |
 
+
+<!-- /ANCHOR:verification -->
 ---
 
+<!-- ANCHOR:limitations -->
 ## Known Limitations
 
 1. **localStorage token storage** - Vulnerable to XSS attacks; will migrate to HttpOnly cookies in Phase 2
 2. **No password reset** - Users cannot recover accounts; requires email service (deferred to separate spec)
 3. **No rate limiting** - Login endpoint could be brute-forced; should add rate limiting before production
 4. **24-hour token expiry** - Fixed expiration; refresh token mechanism planned for future
+
+<!-- /ANCHOR:limitations -->
 
 ---
 

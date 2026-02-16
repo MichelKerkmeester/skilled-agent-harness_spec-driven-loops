@@ -1,6 +1,6 @@
 ---
 title: "Validation Rules"
-description: "Modular shell scripts that validate spec folder structure, content quality, and documentation completeness"
+description: "Modular shell scripts that validate spec folder structure and documentation completeness"
 trigger_phrases:
   - "validation rules"
   - "check spec folder"
@@ -10,30 +10,31 @@ importance_tier: "normal"
 
 # Validation Rules
 
-> Modular shell scripts that validate spec folder structure, content quality, and documentation completeness.
+> Modular shell scripts that validate spec folder structure and documentation completeness.
 
 ---
 
 ## TABLE OF CONTENTS
 <!-- ANCHOR:table-of-contents -->
 
-- [1. 📖 OVERVIEW](#1--overview)
-- [2. 🚀 QUICK START](#2--quick-start)
-- [3. 📁 STRUCTURE](#3--structure)
-- [4. ⚡ FEATURES](#4--features)
-- [5. 💡 USAGE EXAMPLES](#5--usage-examples)
-- [6. 🛠️ TROUBLESHOOTING](#6--troubleshooting)
-- [7. 📚 RELATED DOCUMENTS](#7--related-documents)
+- [1. OVERVIEW](#1--overview)
+- [2. QUICK START](#2--quick-start)
+- [3. STRUCTURE](#3--structure)
+- [4. FEATURES](#4--features)
+- [5. USAGE EXAMPLES](#5--usage-examples)
+- [6. TROUBLESHOOTING](#6--troubleshooting)
+- [7. RELATED DOCUMENTS](#7--related-documents)
+
+<!-- /ANCHOR:table-of-contents -->
 
 ---
 
-<!-- /ANCHOR:table-of-contents -->
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 <!-- ANCHOR:overview -->
 
 ### What are Validation Rules?
 
-Validation rules are modular shell scripts that check spec folders for structural correctness, content quality, and documentation completeness. Each rule focuses on a single validation concern and returns standardized results that the orchestrator (`validate-spec.sh`) aggregates.
+Validation rules are modular shell scripts that check spec folders for structural correctness and documentation completeness. Each rule focuses on a single validation concern and returns standardized results that the orchestrator (`spec/validate.sh`) aggregates.
 
 ### Key Statistics
 
@@ -60,10 +61,11 @@ Validation rules are modular shell scripts that check spec folders for structura
 | grep        | POSIX   | GNU grep    |
 | awk         | POSIX   | gawk        |
 
+<!-- /ANCHOR:overview -->
+
 ---
 
-<!-- /ANCHOR:overview -->
-## 2. 🚀 QUICK START
+## 2. QUICK START
 <!-- ANCHOR:quick-start -->
 
 ### 30-Second Setup
@@ -75,7 +77,7 @@ Validation rules are modular shell scripts that check spec folders for structura
 cd specs/003-memory-and-spec-kit/046-post-release-refinement-1/
 
 # Run validation (automatically invokes all rules)
-../../.opencode/skill/system-spec-kit/scripts/validate-spec.sh .
+../../.opencode/skill/system-spec-kit/scripts/spec/validate.sh .
 ```
 
 ### Verify Installation
@@ -95,13 +97,14 @@ ls -la .opencode/skill/system-spec-kit/scripts/rules/
 
 ```bash
 # Validate a spec folder with verbose output
-.opencode/skill/system-spec-kit/scripts/validate-spec.sh specs/my-spec/ --verbose
+.opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/my-spec/ --verbose
 ```
+
+<!-- /ANCHOR:quick-start -->
 
 ---
 
-<!-- /ANCHOR:quick-start -->
-## 3. 📁 STRUCTURE
+## 3. STRUCTURE
 <!-- ANCHOR:structure -->
 
 ```
@@ -126,20 +129,21 @@ rules/
 
 | File                      | Purpose                                                                   |
 | ------------------------- | ------------------------------------------------------------------------- |
-| `check-files.sh`          | Core validation - ensures required files exist for documentation level    |
-| `check-folder-naming.sh`  | Structure validation - ensures ###-short-name pattern                     |
-| `check-complexity.sh`     | Level validation - ensures declared level matches content complexity      |
-| `check-level-match.sh`    | File validation - ensures required files match declared level             |
-| `check-ai-protocols.sh`   | Protocol validation - ensures L3+ specs have AI execution protocols       |
-| `check-section-counts.sh` | Content validation - validates section counts are within expected ranges  |
-| `check-frontmatter.sh`    | Metadata validation - validates YAML frontmatter structure                |
-| `check-priority-tags.sh`  | Quality validation - ensures checklist items have P0/P1/P2 context        |
-| `check-evidence.sh`       | Completion validation - ensures completed items cite evidence             |
+| `check-files.sh`          | Core validation: ensures required files exist for documentation level     |
+| `check-folder-naming.sh`  | Structure validation: ensures ###-short-name pattern                      |
+| `check-complexity.sh`     | Level validation: ensures declared level matches content complexity       |
+| `check-level-match.sh`    | File validation: ensures required files match declared level              |
+| `check-ai-protocols.sh`   | Protocol validation: ensures L3+ specs have AI execution protocols        |
+| `check-section-counts.sh` | Content validation: validates section counts are within expected ranges   |
+| `check-frontmatter.sh`    | Metadata validation: validates YAML frontmatter structure                 |
+| `check-priority-tags.sh`  | Quality validation: ensures checklist items have P0/P1/P2 context         |
+| `check-evidence.sh`       | Completion validation: ensures completed items cite evidence              |
+
+<!-- /ANCHOR:structure -->
 
 ---
 
-<!-- /ANCHOR:structure -->
-## 4. ⚡ FEATURES
+## 4. FEATURES
 <!-- ANCHOR:features -->
 
 ### Rule Interface
@@ -166,6 +170,8 @@ All rules implement a standardized interface:
 | L2    | L1 + `checklist.md`              |
 | L3    | L2 + `decision-record.md`        |
 
+`implementation-summary.md` is required once implementation progress is detected (checked tasks/checklist items).
+
 **Severity**: error (blocks validation)
 
 ---
@@ -189,7 +195,7 @@ All rules implement a standardized interface:
 **Evidence Patterns**:
 - `[EVIDENCE: description]` or `[Evidence: ...]`
 - `| Evidence:` (pipe-separated)
-- `✓`, `✔`, `☑`, `✅` with description
+- Checkmark symbols with description
 - `(verified)`, `(tested)`, `(confirmed)` at end
 - `[DEFERRED: reason]` counts as explained
 
@@ -228,19 +234,19 @@ All rules implement a standardized interface:
 **Purpose**: Validates that declared complexity level matches actual content
 
 **Complexity Calculation**:
-- Counts user stories, phases, tasks, requirements
+- Counts user stories, phases, tasks and requirements
 - Checks for AI protocol presence (L3+ indicator)
 - Compares against level thresholds
 
 **Complexity Scoring**:
 ```
-Score = User Stories × 10 + Phases × 5 + Tasks × 2 + Requirements × 1
+Score = User Stories x 10 + Phases x 5 + Tasks x 2 + Requirements x 1
 ```
 
 **Thresholds**:
 - L1: Score 0-30 (simple, <100 LOC)
 - L2: Score 31-70 (moderate, 100-499 LOC)
-- L3: Score 71+ (complex, ≥500 LOC)
+- L3: Score 71+ (complex, 500+ LOC)
 - L3+: Score 80+ with AI protocols
 
 **Severity**: warn (advisory)
@@ -334,11 +340,11 @@ L3+: 10+ major sections, detailed acceptance scenarios
 **Pattern**: `[0-9]{3}-[a-z0-9-]+`
 
 **Examples**:
-- ✓ `007-add-authentication`
-- ✓ `042-fix-login-bug`
-- ✗ `add-authentication` (missing number prefix)
-- ✗ `7-feature` (number not zero-padded)
-- ✗ `007_feature` (underscore instead of hyphen)
+- `007-add-authentication`
+- `042-fix-login-bug`
+- `add-authentication` (missing number prefix)
+- `7-feature` (number not zero-padded)
+- `007_feature` (underscore instead of hyphen)
 
 **Severity**: error (blocks validation)
 
@@ -356,30 +362,31 @@ L3+: 10+ major sections, detailed acceptance scenarios
 
 **Severity**: warn (advisory)
 
+<!-- /ANCHOR:features -->
+
 ---
 
-<!-- /ANCHOR:features -->
-## 5. 💡 USAGE EXAMPLES
-<!-- ANCHOR:examples -->
+## 5. USAGE EXAMPLES
+<!-- ANCHOR:usage-examples -->
 
 ### Example 1: Basic Validation
 
 ```bash
 # Validate a spec folder
-.opencode/skill/system-spec-kit/scripts/validate-spec.sh specs/my-feature/
+.opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/my-feature/
 
 # Output:
-# ✓ FILE_EXISTS: All required files present for Level 2
-# ✓ PRIORITY_TAGS: All checklist items have priority context
-# ⚠ EVIDENCE_CITED: Found 3 completed item(s) without evidence
-# ✓ PLACEHOLDER_FILLED: No unfilled placeholders found
+# FILE_EXISTS: All required files present for Level 2
+# PRIORITY_TAGS: All checklist items have priority context
+# EVIDENCE_CITED: Found 3 completed item(s) without evidence
+# PLACEHOLDER_FILLED: No unfilled placeholders found
 ```
 
 ### Example 2: Verbose Output
 
 ```bash
 # Get detailed output including passing rules
-.opencode/skill/system-spec-kit/scripts/validate-spec.sh specs/my-feature/ --verbose
+.opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/my-feature/ --verbose
 
 # Shows all rule results with details
 ```
@@ -388,7 +395,7 @@ L3+: 10+ major sections, detailed acceptance scenarios
 
 ```bash
 # Get machine-readable output
-.opencode/skill/system-spec-kit/scripts/validate-spec.sh specs/my-feature/ --json
+.opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/my-feature/ --json
 
 # Returns structured JSON for programmatic processing
 ```
@@ -397,14 +404,15 @@ L3+: 10+ major sections, detailed acceptance scenarios
 
 | Pattern         | Command                               | When to Use         |
 | --------------- | ------------------------------------- | ------------------- |
-| Quick check     | `validate-spec.sh <folder>`           | Before committing   |
-| Detailed review | `validate-spec.sh <folder> --verbose` | Debugging failures  |
-| CI integration  | `validate-spec.sh <folder> --json`    | Automated pipelines |
+| Quick check     | `spec/validate.sh <folder>`           | Before committing   |
+| Detailed review | `spec/validate.sh <folder> --verbose` | Debugging failures  |
+| CI integration  | `spec/validate.sh <folder> --json`    | Automated pipelines |
+
+<!-- /ANCHOR:usage-examples -->
 
 ---
 
-<!-- /ANCHOR:examples -->
-## 6. 🛠️ TROUBLESHOOTING
+## 6. TROUBLESHOOTING
 <!-- ANCHOR:troubleshooting -->
 
 ### Common Issues
@@ -467,17 +475,18 @@ run_check "specs/my-spec" 2
 echo "Status: $RULE_STATUS, Message: $RULE_MESSAGE"
 ```
 
+<!-- /ANCHOR:troubleshooting -->
+
 ---
 
-<!-- /ANCHOR:troubleshooting -->
-## 7. 📚 RELATED DOCUMENTS
+## 7. RELATED DOCUMENTS
 <!-- ANCHOR:related -->
 
 ### Internal Documentation
 
 | Document                                | Purpose                             |
 | --------------------------------------- | ----------------------------------- |
-| [validate-spec.sh](../spec/validate.sh) | Orchestrator that invokes all rules |
+| [validate.sh](../spec/validate.sh) | Orchestrator that invokes all rules |
 | [SKILL.md](../../SKILL.md)              | Parent skill documentation          |
 | [templates/](../../templates/)          | Spec folder templates               |
 
@@ -488,7 +497,8 @@ echo "Status: $RULE_STATUS, Message: $RULE_MESSAGE"
 | [Bash Reference](https://www.gnu.org/software/bash/manual/) | Bash scripting documentation |
 | [ShellCheck](https://www.shellcheck.net/)                   | Shell script linting tool    |
 
+<!-- /ANCHOR:related -->
+
 ---
 
 *Documentation version: 1.0 | Last updated: 2025-12-26*
-<!-- /ANCHOR:related -->

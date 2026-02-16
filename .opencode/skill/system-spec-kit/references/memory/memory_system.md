@@ -7,6 +7,8 @@ description: Detailed documentation for Spec Kit Memory MCP tools, behavior note
 
 Spec Kit Memory MCP tools, behavior notes, and configuration options.
 
+Current baseline (specs 126/127): schema v13 (`document_type`, `spec_level`), 5 indexed content sources, 7 intent types, and `includeSpecDocs: true` by default.
+
 ---
 
 ## 1. 📖 OVERVIEW
@@ -18,7 +20,7 @@ The Spec Kit Memory system provides context preservation across sessions through
 | Component | Location | Purpose |
 |-----------|----------|---------|
 | MCP Server | `mcp_server/context-server.ts` | Spec Kit Memory MCP with vector search |
-| Database | `mcp_server/database/context-index.sqlite` | SQLite with FTS5 + vector embeddings |
+| Database | `mcp_server/dist/database/context-index.sqlite` | SQLite with FTS5 + vector embeddings (canonical runtime path; `mcp_server/database/context-index.sqlite` is a compatibility symlink) |
 | Constitutional | `constitutional/` | Always-surface rules (Gate 3 enforcement) |
 | Scripts | `scripts/memory/generate-context.ts` | Memory file generation with ANCHOR format |
 
@@ -32,7 +34,7 @@ The Spec Kit Memory system provides context preservation across sessions through
 
 ### Indexable Content Sources
 
-The memory system indexes content from four distinct sources:
+The memory system indexes content from five distinct sources:
 
 | Source | Location Pattern | Memory Type | Default Tier | Discovery |
 |--------|-----------------|-------------|--------------|-----------|
@@ -40,6 +42,7 @@ The memory system indexes content from four distinct sources:
 | **Constitutional Rules** | `.opencode/skill/*/constitutional/*.md` | `meta-cognitive` | `constitutional` | `findConstitutionalFiles()` |
 | **Skill READMEs** | `.opencode/skill/**/README.md` | `semantic` | `normal` | `findSkillReadmes()` |
 | **Project READMEs** | `README.md`, `*/README.md` | `semantic` | `normal` | `findProjectReadmes()` |
+| **Spec Documents** | `.opencode/specs/**/*.md` | Per-type (spec, plan, tasks, etc.) | `normal` | `findSpecDocuments()` |
 
 **Content Source Behavior:**
 
@@ -47,6 +50,14 @@ The memory system indexes content from four distinct sources:
 - **Constitutional Rules** — Always-surface critical rules. Injected at top of every search result. No decay.
 - **Skill READMEs** — Skill documentation with `<!-- ANCHOR:name -->` tags for section-level retrieval. Classified as `semantic` type with `normal` tier and reduced importance weight (0.3 vs default 0.5). This ensures README documentation never outranks user work memories (decisions, context, blockers) in search results. READMEs surface only when highly relevant to the query. Grouped under `skill:SKILL-NAME` identifier.
 - **Project READMEs** — Discovered via `findProjectReadmes()`, indexed at weight 0.4. Includes root `README.md` and key directory READMEs (e.g., `src/README.md`, `docs/README.md`). Provides project-level context such as setup instructions, architecture overviews, and contribution guidelines. Weight 0.4 ranks them above skill READMEs (0.3) but below user work memories (0.5). Controlled by `includeReadmes` parameter on `memory_index_scan()`. See [readme_indexing.md](./readme_indexing.md) for full pipeline details.
+- **Spec Documents** — Discovered via `findSpecDocuments()` which walks `.opencode/specs/`. Indexes spec folder documentation (specs, plans, tasks, checklists, decision records, implementation summaries, research, handovers) with 11 document types and per-type scoring multipliers: spec (1.4x), plan (1.3x), constitutional (2.0x), memory (1.0x), readme (0.8x), scratch (0.6x). Controlled by `includeSpecDocs` parameter (default: `true`) or the `SPECKIT_INDEX_SPEC_DOCS` environment variable. Causal chains are created via `createSpecDocumentChain()` linking spec->plan->tasks->implementation_summary.
+
+**Post-implementation hardening (spec 126 follow-up):**
+
+- Import-path regression fixes in `context-server.ts` and `attention-decay.ts`
+- Exact `specFolder` boundary filtering plus improved incremental chain coverage
+- `document_type` and `spec_level` preservation in update/reinforce flows, including vector metadata update plumbing
+- Causal edge conflict-update semantics to keep edge IDs stable
 
 **Skill README Indexing Pipeline:**
 1. `findSkillReadmes()` recursively discovers `README.md` files under `.opencode/skill/`
@@ -103,7 +114,7 @@ Six-tier system for prioritizing memory relevance:
 
 | Layer | Tool | Purpose | Example Use |
 |-------|------|---------|-------------|
-| L1: Orchestration | `memory_context()` | Unified entry point with intent-aware routing | START HERE for most memory operations |
+| L1: Orchestration | `memory_context()` | Unified entry point with intent-aware routing (7 intents) | START HERE for most memory operations |
 | L2: Core | `memory_search()` | Semantic search with vector similarity | Find prior decisions on auth |
 | L2: Core | `memory_match_triggers()` | Fast keyword matching (<50ms) with cognitive features | Gate enforcement |
 | L2: Core | `memory_save()` | Index a memory file. Re-generates embedding when **content hash** changes. Title-only changes do not trigger re-embedding. | After generate-context.js |
@@ -133,6 +144,7 @@ Six-tier system for prioritizing memory relevance:
 | `force` | boolean | false | Force re-index all files (ignore content hash) |
 | `includeConstitutional` | boolean | true | Scan `.opencode/skill/*/constitutional/` directories |
 | `includeReadmes` | boolean | true | Scan for README.md files (skill READMEs and project READMEs). When true, discovers and indexes READMEs with reduced importance (0.3 for skill, 0.4 for project) to ensure they never outrank user work memories. |
+| `includeSpecDocs` | boolean | true | Scan for spec folder documents in `.opencode/specs/`. When true, discovers and indexes specs, plans, tasks, decision records, etc. with document-type scoring multipliers (11 types). Also controllable via `SPECKIT_INDEX_SPEC_DOCS` env var. |
 | `incremental` | boolean | true | Skip files whose mtime and content hash are unchanged since last index |
 
 | L7: Maintenance | `memory_get_learning_history()` | Get learning history (preflight/postflight records) | Analyze learning patterns |
@@ -172,6 +184,20 @@ Six-tier system for prioritizing memory relevance:
 | `tier` | string | No | - | Filter by importance tier |
 | `limit` | number | No | 10 | Maximum results to return |
 | `useDecay` | boolean | No | true | Apply temporal decay scoring |
+
+### Intent-Aware Retrieval (7 Intents)
+
+The system detects query intent and applies task-specific search weights. Seven intent types are supported:
+
+| Intent | Weight Adjustments |
+|--------|-------------------|
+| `add_feature` | +procedural, +architectural |
+| `fix_bug` | +error logs, +debug, +recent |
+| `refactor` | +patterns, +structure |
+| `security_audit` | +security, +vulnerabilities |
+| `understand` | +semantic, +explanatory |
+| `find_spec` | +spec documents, +plans, +decision records |
+| `find_decision` | +decision records, +architectural context |
 
 ### Constitutional Memory Behavior
 

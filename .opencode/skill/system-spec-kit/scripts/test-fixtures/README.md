@@ -1,6 +1,6 @@
 ---
 title: "SpecKit Validation Test Fixtures"
-description: "Comprehensive test scenarios for validating SpecKit spec folder structure, content rules, and validation logic."
+description: "Test scenarios for validating SpecKit spec folder structure, content rules, validation logic and edge-case handling."
 trigger_phrases:
   - "test fixtures"
   - "validation fixtures"
@@ -10,26 +10,27 @@ importance_tier: "normal"
 
 # SpecKit Validation Test Fixtures
 
-> Comprehensive test scenarios for validating SpecKit spec folder structure, content rules, and validation logic.
+> Test scenarios for validating SpecKit spec folder structure, content rules, validation logic and edge-case handling.
 
 ---
 
 ## TABLE OF CONTENTS
 <!-- ANCHOR:table-of-contents -->
 
-- [1. 📖 OVERVIEW](#1--overview)
-- [2. 🚀 QUICK START](#2--quick-start)
-- [3. 📁 STRUCTURE](#3--structure)
-- [4. ⚡ FEATURES](#4--features)
-- [5. 💡 USAGE EXAMPLES](#5--usage-examples)
-- [6. 🛠️ TROUBLESHOOTING](#6--troubleshooting)
-- [7. 📚 RELATED DOCUMENTS](#7--related-documents)
-- [8. 🧠 COGNITIVE MEMORY FIXTURES](#8--cognitive-memory-fixtures)
+- [1. OVERVIEW](#1--overview)
+- [2. QUICK START](#2--quick-start)
+- [3. STRUCTURE](#3--structure)
+- [4. FEATURES](#4--features)
+- [5. USAGE EXAMPLES](#5--usage-examples)
+- [6. TROUBLESHOOTING](#6--troubleshooting)
+- [7. RELATED DOCUMENTS](#7--related-documents)
+- [8. COGNITIVE MEMORY FIXTURES](#8--cognitive-memory-fixtures)
 
 ---
 
 <!-- /ANCHOR:table-of-contents -->
-## 1. 📖 OVERVIEW
+
+## 1. OVERVIEW
 <!-- ANCHOR:overview -->
 
 ### What are Test Fixtures?
@@ -51,7 +52,7 @@ Test fixtures are pre-built spec folder examples that cover all validation scena
 
 | Feature | Description |
 |---------|-------------|
-| **Comprehensive Coverage** | Tests for structure, content, anchors, priorities, evidence, placeholders |
+| **Full Coverage** | Tests for structure, content, anchors, priorities, evidence, placeholders |
 | **Level-Specific Tests** | Fixtures for all documentation levels (1, 2, 3, 3+) |
 | **Regression Prevention** | Automated test suite catches validation logic regressions |
 | **Documentation by Example** | Each fixture demonstrates a specific rule or violation |
@@ -63,22 +64,21 @@ Test fixtures are pre-built spec folder examples that cover all validation scena
 |-------------|---------|-------------|
 | Bash | 4.0+ | 5.0+ |
 | SpecKit | 2.0+ | Latest |
-| Test Runner | validate-spec.sh | test-validation.sh |
+| Test Runner | spec/validate.sh | test-validation.sh |
 
 ---
 
 <!-- /ANCHOR:overview -->
-## 2. 🚀 QUICK START
-<!-- ANCHOR:quick-start -->
 
-### 30-Second Setup
+## 2. QUICK START
+<!-- ANCHOR:quick-start -->
 
 ```bash
 # 1. Navigate to scripts directory
 cd .opencode/skill/system-spec-kit/scripts
 
 # 2. Run validation on a single fixture
-./validate-spec.sh test-fixtures/002-valid-level1
+./spec/validate.sh test-fixtures/002-valid-level1
 
 # 3. Run full test suite
 ./tests/test-validation.sh
@@ -99,7 +99,7 @@ cd .opencode/skill/system-spec-kit/scripts
 
 ```bash
 # Test a specific validation rule
-./validate-spec.sh test-fixtures/007-valid-anchors
+./spec/validate.sh test-fixtures/007-valid-anchors
 
 # Output shows anchor validation results
 ```
@@ -107,7 +107,8 @@ cd .opencode/skill/system-spec-kit/scripts
 ---
 
 <!-- /ANCHOR:quick-start -->
-## 3. 📁 STRUCTURE
+
+## 3. STRUCTURE
 <!-- ANCHOR:structure -->
 
 ```
@@ -197,7 +198,8 @@ test-fixtures/
 ---
 
 <!-- /ANCHOR:structure -->
-## 4. ⚡ FEATURES
+
+## 4. FEATURES
 <!-- ANCHOR:features -->
 
 ### Validation Rule Coverage
@@ -257,15 +259,16 @@ test-fixtures/004-valid-level3/
 ---
 
 <!-- /ANCHOR:features -->
-## 5. 💡 USAGE EXAMPLES
-<!-- ANCHOR:examples -->
+
+## 5. USAGE EXAMPLES
+<!-- ANCHOR:usage-examples -->
 
 ### Example 1: Validate Single Fixture
 
 ```bash
 # Test a specific validation scenario
 cd .opencode/skill/system-spec-kit/scripts
-./validate-spec.sh test-fixtures/007-valid-anchors
+./spec/validate.sh test-fixtures/007-valid-anchors
 ```
 
 **Result**: Shows validation results for anchor syntax checking.
@@ -284,26 +287,26 @@ cd .opencode/skill/system-spec-kit/scripts
 
 ```bash
 # Test all anchor-related fixtures
-./validate-spec.sh test-fixtures/007-valid-anchors
-./validate-spec.sh test-fixtures/008-invalid-anchors
-./validate-spec.sh test-fixtures/011-anchors-duplicate-ids
-./validate-spec.sh test-fixtures/012-anchors-empty-memory
-./validate-spec.sh test-fixtures/013-anchors-multiple-files
-./validate-spec.sh test-fixtures/014-anchors-nested
+./spec/validate.sh test-fixtures/007-valid-anchors
+./spec/validate.sh test-fixtures/008-invalid-anchors
+./spec/validate.sh test-fixtures/011-anchors-duplicate-ids
+./spec/validate.sh test-fixtures/012-anchors-empty-memory
+./spec/validate.sh test-fixtures/013-anchors-multiple-files
+./spec/validate.sh test-fixtures/014-anchors-nested
 ```
 
-**Result**: Comprehensive testing of anchor validation logic.
+**Result**: Tests anchor validation logic across all cases.
 
 ### Example 4: Debug Validation Logic
 
 ```bash
 # Test edge case to verify validation behavior
-./validate-spec.sh test-fixtures/038-placeholder-in-codeblock --verbose
+./spec/validate.sh test-fixtures/038-placeholder-in-codeblock --verbose
 
 # Confirm placeholders in code blocks are allowed (should pass)
 ```
 
-**Result**: Validates that validation script correctly allows placeholders in code contexts.
+**Result**: Validates that the validation script correctly allows placeholders in code contexts.
 
 ### Example 5: Regression Testing
 
@@ -320,16 +323,17 @@ cd .opencode/skill/system-spec-kit/scripts
 
 | Pattern | Command | When to Use |
 |---------|---------|-------------|
-| Single fixture test | `./validate-spec.sh test-fixtures/[name]` | Testing specific rule |
+| Single fixture test | `./spec/validate.sh test-fixtures/[name]` | Testing specific rule |
 | Full regression test | `./tests/test-validation.sh` | After validation changes |
-| Rule category test | `./validate-spec.sh test-fixtures/*-priority-*` | Testing priority logic |
-| Baseline validation | `./validate-spec.sh test-fixtures/00[2-4]-valid-*` | Sanity check |
-| Edge case verification | `./validate-spec.sh test-fixtures/0[3-4][0-9]-*` | Boundary conditions |
+| Rule category test | `./spec/validate.sh test-fixtures/*-priority-*` | Testing priority logic |
+| Baseline validation | `./spec/validate.sh test-fixtures/00[2-4]-valid-*` | Sanity check |
+| Edge case verification | `./spec/validate.sh test-fixtures/0[3-4][0-9]-*` | Boundary conditions |
 
 ---
 
-<!-- /ANCHOR:examples -->
-## 6. 🛠️ TROUBLESHOOTING
+<!-- /ANCHOR:usage-examples -->
+
+## 6. TROUBLESHOOTING
 <!-- ANCHOR:troubleshooting -->
 
 ### Common Issues
@@ -343,7 +347,7 @@ cd .opencode/skill/system-spec-kit/scripts
 **Solution**:
 ```bash
 # Run specific failing fixture with verbose output
-./validate-spec.sh test-fixtures/[failing-fixture] --verbose
+./spec/validate.sh test-fixtures/[failing-fixture] --verbose
 
 # Compare expected vs actual validation results
 # Update fixture or fix validation logic as needed
@@ -378,7 +382,7 @@ grep -r "PLACEHOLDER" .  # Check for placeholders
 grep -r "P3" .           # Check for invalid priorities
 
 # Run with verbose output to see validation logic
-./validate-spec.sh test-fixtures/[fixture-name] --verbose
+./spec/validate.sh test-fixtures/[fixture-name] --verbose
 ```
 
 #### Need to add new test case
@@ -399,7 +403,7 @@ cp -r test-fixtures/002-valid-level1/* test-fixtures/052-new-test-case/
 # Edit files to introduce the condition you want to test
 
 # 4. Validate behavior
-./validate-spec.sh test-fixtures/052-new-test-case
+./spec/validate.sh test-fixtures/052-new-test-case
 
 # 5. Add to test suite
 # Update ../tests/test-validation.sh with expected result
@@ -437,7 +441,8 @@ ls test-fixtures/ | grep "priority"
 ---
 
 <!-- /ANCHOR:troubleshooting -->
-## 7. 📚 RELATED DOCUMENTS
+
+## 7. RELATED DOCUMENTS
 <!-- ANCHOR:related -->
 
 ### Internal Documentation
@@ -445,7 +450,7 @@ ls test-fixtures/ | grep "priority"
 | Document | Purpose |
 |----------|---------|
 | [../../SKILL.md](../../SKILL.md) | SpecKit skill documentation |
-| [../../references/validation/validation_rules.md](../../references/validation/validation_rules.md) | Complete validation rule reference |
+| [../../references/validation/validation_rules.md](../../references/validation/validation_rules.md) | Validation rule reference |
 | [../../references/validation/phase_checklists.md](../../references/validation/phase_checklists.md) | Validation phase definitions |
 | [../../references/templates/template_guide.md](../../references/templates/template_guide.md) | Template usage guide |
 | [../spec/validate.sh](../spec/validate.sh) | Main validation script |
@@ -455,7 +460,7 @@ ls test-fixtures/ | grep "priority"
 | Resource | Location |
 |----------|----------|
 | Test runner | `../tests/test-validation.sh` |
-| Validation script | `../validate-spec.sh` |
+| Validation script | `../spec/validate.sh` |
 | Template fixtures | `../templates/` |
 
 ### Fixture Categories
@@ -472,12 +477,13 @@ ls test-fixtures/ | grep "priority"
 ---
 
 <!-- /ANCHOR:related -->
-## 8. 🧠 COGNITIVE MEMORY FIXTURES
-<!-- ANCHOR:cognitive-memory-fixtures -->
+
+## 8. COGNITIVE MEMORY FIXTURES
+<!-- ANCHOR:cognitive-fixtures -->
 
 ### Overview
 
-Additional fixtures for testing the Cognitive Memory Upgrade features including FSRS scheduling, prediction error gating, tier classification, and semantic similarity.
+Additional fixtures for testing the Cognitive Memory Upgrade features including FSRS scheduling, prediction error gating, tier classification and semantic similarity.
 
 ### Cognitive Memory Fixtures
 
@@ -492,4 +498,5 @@ Additional fixtures for testing the Cognitive Memory Upgrade features including 
 ---
 
 *Test fixtures for SpecKit v2.1 validation system | Last updated: 2026-02-07*
-<!-- /ANCHOR:cognitive-memory-fixtures -->
+
+<!-- /ANCHOR:cognitive-fixtures -->

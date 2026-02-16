@@ -1,6 +1,6 @@
 ---
 title: "MCP Server Configuration Files"
-description: "Search weight configuration and system parameters for the Spec Kit Memory MCP server."
+description: "Search-weight reference config and documented active/legacy sections for memory scoring behavior."
 trigger_phrases:
   - "search weights"
   - "mcp config"
@@ -10,301 +10,40 @@ importance_tier: "normal"
 
 # MCP Server Configuration Files
 
-> Search weight configuration and system parameters for the Spec Kit Memory MCP server.
+## Overview
 
----
+`configs/` currently contains:
 
-## TABLE OF CONTENTS
-<!-- ANCHOR:table-of-contents -->
+- `search-weights.json`
 
-- [1. 📖 OVERVIEW](#1--overview)
-- [2. 🚀 QUICK START](#2--quick-start)
-- [3. 📁 STRUCTURE](#3--structure)
-- [4. ⚙️ CONFIGURATION OPTIONS](#4--configuration-options)
-- [5. 💡 USAGE EXAMPLES](#5--usage-examples)
-- [6. 🛠️ TROUBLESHOOTING](#6--troubleshooting)
-- [7. 📚 RELATED DOCUMENTS](#7--related-documents)
+This file is partly active and partly legacy/reference. Its inline notes are the source of truth for what is currently loaded at runtime.
 
-<!-- /ANCHOR:table-of-contents -->
+## Implemented State
 
----
+Current sections in `search-weights.json`:
 
-## 1. 📖 OVERVIEW
-<!-- ANCHOR:overview -->
+- `documentTypeMultipliers` (Spec 126): active scoring reference for 11 document types.
+- `maxTriggersPerMemory`: active cap used by trigger-related flows.
+- `smartRanking`: marked as partially legacy in comments.
+- `rrfFusion`: marked as dead config in comments.
+- `crossEncoder`: marked as dead config in comments.
 
-The `configs/` folder contains JSON configuration files that control search behavior and ranking algorithms for the Spec Kit Memory MCP server. These configurations tune how semantic search results are ranked, weighted, and prioritized.
+Important: canonical scoring behavior lives in TypeScript modules (not this README), primarily `lib/scoring/composite-scoring.ts` and related handlers.
 
-**Note:** Configuration files remain as JSON (not compiled). The TypeScript modules in `lib/` read these configurations at runtime. After the TypeScript migration, module source files are in `lib/*.ts` and compiled output is in `dist/lib/*.js`.
+## Hardening Notes
 
-### Key Features
+- Spec 126 added document-type multiplier coverage aligned to schema/document-type indexing.
+- Spec 125 audit documented dead/legacy config sections to reduce ambiguity.
+- Treat this folder as config reference plus transition notes until legacy paths are fully removed.
 
-| Feature | Description |
-|---------|-------------|
-| **Search Weight Tuning** | Configure recency, access count, and relevance weights for result ranking |
-| **Trigger Limits** | Set maximum trigger phrases per memory for performance |
-| **Smart Ranking** | Balance between recent activity, access frequency, and semantic relevance |
-
-### Requirements
-
-| Requirement | Version | Purpose |
-|-------------|---------|---------|
-| Node.js | 18+ | Runtime for MCP server |
-| JSON | - | Configuration format |
-
-<!-- /ANCHOR:overview -->
-
----
-
-## 2. 🚀 QUICK START
-<!-- ANCHOR:quick-start -->
-
-### Viewing Current Configuration
+## Validation
 
 ```bash
-# View the current search weights
-cat .opencode/skill/system-spec-kit/mcp_server/configs/search-weights.json
-```
-
-### Modifying Configuration
-
-```bash
-# Edit the configuration file
-nano .opencode/skill/system-spec-kit/mcp_server/configs/search-weights.json
-
-# Restart the MCP server for changes to take effect
-# (Server automatically reloads configuration on restart)
-```
-
-### Verify Configuration
-
-```bash
-# Use memory_stats tool to verify configuration is loaded
-# The tool will reflect updated weights in search results
-```
-
-<!-- /ANCHOR:quick-start -->
-
----
-
-## 3. 📁 STRUCTURE
-<!-- ANCHOR:structure -->
-
-```
-configs/
-└── search-weights.json    # Search ranking configuration (v1.8.0)
-```
-
-### Key Files
-
-| File | Purpose |
-|------|---------|
-| `search-weights.json` | Controls smart ranking algorithm weights and trigger limits |
-
-<!-- /ANCHOR:structure -->
-
----
-
-## 4. ⚙️ CONFIGURATION OPTIONS
-<!-- ANCHOR:configuration -->
-
-### Configuration File
-
-**Location**: `search-weights.json`
-
-```json
-{
-  "_comment": "Search weight configuration for semantic memory v1.8.0",
-  "_version": "1.8.0",
-  "maxTriggersPerMemory": 10,
-  "smartRanking": {
-    "recencyWeight": 0.35,
-    "accessWeight": 0.25,
-    "retrievabilityWeight": 0.15,
-    "relevanceWeight": 0.25
-  }
-}
-```
-
-### Configuration Options
-
-| Option | Type | Default | Description |
-|--------|------|---------|-------------|
-| `maxTriggersPerMemory` | number | 10 | Maximum trigger phrases to store per memory file |
-| `smartRanking.recencyWeight` | number | 0.35 | Weight for temporal recency (0.0-1.0) |
-| `smartRanking.accessWeight` | number | 0.25 | Weight for access count popularity (0.0-1.0) |
-| `smartRanking.retrievabilityWeight` | number | 0.15 | Weight for cognitive retrievability (anchor quality, 0.0-1.0) |
-| `smartRanking.relevanceWeight` | number | 0.25 | Weight for semantic similarity (0.0-1.0) |
-
-### Weight Tuning Guidelines
-
-**Total weights should sum to 1.0 for balanced scoring.**
-
-| Use Case | Recommended Settings |
-|----------|---------------------|
-| **Prefer recent memories** | `recencyWeight: 0.5`, `accessWeight: 0.2`, `retrievabilityWeight: 0.1`, `relevanceWeight: 0.2` |
-| **Prefer frequently accessed** | `recencyWeight: 0.2`, `accessWeight: 0.5`, `retrievabilityWeight: 0.1`, `relevanceWeight: 0.2` |
-| **Pure semantic search** | `recencyWeight: 0.1`, `accessWeight: 0.1`, `retrievabilityWeight: 0.1`, `relevanceWeight: 0.7` |
-| **Balanced (default)** | `recencyWeight: 0.35`, `accessWeight: 0.25`, `retrievabilityWeight: 0.15`, `relevanceWeight: 0.25` |
-| **Quality-focused** | `recencyWeight: 0.2`, `accessWeight: 0.2`, `retrievabilityWeight: 0.4`, `relevanceWeight: 0.2` |
-
-<!-- /ANCHOR:configuration -->
-
----
-
-## 5. 💡 USAGE EXAMPLES
-<!-- ANCHOR:examples -->
-
-### Example 1: Increase Relevance Weight
-
-```json
-{
-  "_comment": "Prioritize semantic similarity over recency",
-  "_version": "1.8.0",
-  "maxTriggersPerMemory": 10,
-  "smartRanking": {
-    "recencyWeight": 0.15,
-    "accessWeight": 0.15,
-    "retrievabilityWeight": 0.1,
-    "relevanceWeight": 0.6
-  }
-}
-```
-
-**Result**: Search results prioritize semantic relevance over temporal factors.
-
-### Example 2: Limit Trigger Phrases
-
-```json
-{
-  "_comment": "Reduce triggers for faster matching",
-  "_version": "1.8.0",
-  "maxTriggersPerMemory": 5,
-  "smartRanking": {
-    "recencyWeight": 0.35,
-    "accessWeight": 0.25,
-    "retrievabilityWeight": 0.15,
-    "relevanceWeight": 0.25
-  }
-}
-```
-
-**Result**: Faster trigger matching with fewer phrases per memory (trades recall for speed).
-
-### Example 3: Recency-Focused Configuration
-
-```json
-{
-  "_comment": "Favor recent memories for active projects",
-  "_version": "1.8.0",
-  "maxTriggersPerMemory": 10,
-  "smartRanking": {
-    "recencyWeight": 0.6,
-    "accessWeight": 0.2,
-    "retrievabilityWeight": 0.1,
-    "relevanceWeight": 0.1
-  }
-}
-```
-
-**Result**: Recent memories surface first, useful during active development.
-
-### Common Patterns
-
-| Pattern | Configuration | When to Use |
-|---------|--------------|-------------|
-| Default | `0.35, 0.25, 0.15, 0.25` | General purpose search |
-| Research | `0.1, 0.1, 0.1, 0.7` | Deep semantic exploration |
-| Active Dev | `0.5, 0.2, 0.1, 0.2` | Current project focus |
-| Popular First | `0.15, 0.6, 0.1, 0.15` | Frequently referenced docs |
-| Quality Focus | `0.2, 0.2, 0.4, 0.2` | Well-structured memories |
-
-<!-- /ANCHOR:examples -->
-
----
-
-## 6. 🛠️ TROUBLESHOOTING
-<!-- ANCHOR:troubleshooting -->
-
-### Common Issues
-
-#### Configuration Not Loading
-
-**Symptom**: Changes to `search-weights.json` have no effect on search results
-
-**Cause**: MCP server caches configuration on startup
-
-**Solution**:
-```bash
-# Restart the MCP server to reload configuration
-# (Stop and restart via your MCP client or opencode.json)
-```
-
-#### Invalid Weight Values
-
-**Symptom**: Search results behave unexpectedly or errors occur
-
-**Cause**: Weights are negative, sum to values far from 1.0, or are non-numeric
-
-**Solution**:
-```bash
-# Validate JSON syntax
-node -e "JSON.parse(require('fs').readFileSync('configs/search-weights.json', 'utf8'))"
-
-# Ensure weights sum to ~1.0
-# Ensure all weights are 0.0-1.0 range
-```
-
-#### Trigger Matching Performance
-
-**Symptom**: `memory_match_triggers` is slower than expected
-
-**Cause**: `maxTriggersPerMemory` is too high
-
-**Solution**: Reduce to 5-8 triggers per memory for faster matching.
-
-### Quick Fixes
-
-| Problem | Quick Fix |
-|---------|-----------|
-| Config not loaded | Restart MCP server |
-| Invalid JSON | Validate with `node -e` command |
-| Poor results | Reset to defaults: `0.5, 0.3, 0.2` |
-
-### Diagnostic Commands
-
-```bash
-# Validate JSON syntax
 node -e "JSON.parse(require('fs').readFileSync('.opencode/skill/system-spec-kit/mcp_server/configs/search-weights.json', 'utf8'))"
-
-# View effective configuration (check server logs on startup)
-# Server logs: "Loaded search weights: {recencyWeight: 0.5, ...}"
 ```
 
-<!-- /ANCHOR:troubleshooting -->
+## Related
 
----
-
-## 7. 📚 RELATED DOCUMENTS
-<!-- ANCHOR:related -->
-
-### Internal Documentation
-
-| Document | Purpose |
-|----------|---------|
-| [MCP Server README](../README.md) | Complete MCP server documentation |
-| [Hybrid Search Module](../lib/search/hybrid-search.ts) | TypeScript source for search weight application |
-| [Composite Scoring Module](../lib/scoring/composite-scoring.ts) | TypeScript source for score calculation (includes retrievability) |
-| [Compiled Output](../dist/lib/search/) | JavaScript output from TypeScript compilation |
-
-### External Resources
-
-| Resource | Description |
-|----------|-------------|
-| [Spec Kit Memory Skill](../../SKILL.md) | Parent skill documentation |
-| [Memory Search Reference](../../references/memory/save_workflow.md) | Search workflow patterns |
-
----
-
-*Configuration version: 1.8.0 | Last updated: 2026-01-27*
-
-<!-- /ANCHOR:related -->
+- `../lib/scoring/composite-scoring.ts`
+- `../handlers/memory-search.ts`
+- `../../references/memory/memory_system.md`

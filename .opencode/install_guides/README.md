@@ -1,6 +1,6 @@
 ---
 title: "Install Guides"
-description: "Setup and installation guides for the OpenCode framework including MCP servers, skills, agents, and CLI tools."
+description: "Setup and installation guides for the OpenCode framework including MCP servers, skills, agents and CLI tools."
 trigger_phrases:
   - "install guides"
   - "setup"
@@ -18,8 +18,8 @@ importance_tier: "important"
 
 ---
 
-## TABLE OF CONTENTS
 <!-- ANCHOR:table-of-contents -->
+## TABLE OF CONTENTS
 
 - [1. 📖 OVERVIEW](#1--overview)
 - [2. 📋 GUIDES INVENTORY](#2--guides-inventory)
@@ -41,36 +41,34 @@ importance_tier: "important"
 - [18. 📖 QUICK REFERENCE](#18--quick-reference)
 - [19. 📚 RELATED DOCUMENTS](#19--related-documents)
 
-<!-- /ANCHOR:table-of-contents -->
-
 ---
 
-## 1. 📖 OVERVIEW
+<!-- /ANCHOR:table-of-contents -->
 <!-- ANCHOR:overview -->
+## 1. 📖 OVERVIEW
 
 ### What is this directory?
 
-The `install_guides/` directory is the central hub for all OpenCode setup and installation documentation. It contains both this main installation guide and dedicated guides for individual components (MCP servers, agents, skills, CLI tools).
+The `install_guides/` directory is the central hub for all OpenCode setup and installation documentation. It contains both this main installation guide and dedicated guides for individual components (MCP servers, agents, skills and CLI tools).
 
 ### Key Statistics
 
 | Category | Count | Details |
 |----------|-------|---------|
-| Guide files | 9 | 5 MCP guides, 4 SET-UP guides |
+| Guide files | 10 | 5 MCP guides, 4 SET-UP guides, 1 index guide |
 | Install scripts | 1 | `install_scripts/` directory |
 | MCP servers covered | 3 | Code Mode, Spec Kit Memory, Sequential Thinking |
 | Platforms supported | 3 | macOS, Linux, Windows WSL |
 
 ### What this guide covers
 
-This README serves as both the **directory index** (listing all available guides) and the **main installation walkthrough** for the full OpenCode environment. Execute phases sequentially; each includes validation checkpoints.
-
-<!-- /ANCHOR:overview -->
+This README serves as both the **directory index** (listing all available guides) and the **main installation walkthrough** for the full OpenCode environment. Execute phases sequentially. Each includes validation checkpoints.
 
 ---
 
-## 2. 📋 GUIDES INVENTORY
+<!-- /ANCHOR:overview -->
 <!-- ANCHOR:guides-inventory -->
+## 2. 📋 GUIDES INVENTORY
 
 All guides in this directory, sorted by recommended reading order:
 
@@ -88,12 +86,11 @@ All guides in this directory, sorted by recommended reading order:
 | **[SET-UP - Skill Creation.md](./SET-UP%20-%20Skill%20Creation.md)** | Custom skill creation: extending AI agent capabilities | Advanced users |
 | **[install_scripts/](./install_scripts/)** | Automated installation scripts | All users |
 
-<!-- /ANCHOR:guides-inventory -->
-
 ---
 
-## 3. 🚀 USAGE
+<!-- /ANCHOR:guides-inventory -->
 <!-- ANCHOR:usage -->
+## 3. 🚀 USAGE
 
 ### When to use which guide
 
@@ -123,12 +120,11 @@ My environment:
 Start with Pre-Flight Check to detect what's already installed, then guide me through each phase.
 ```
 
-<!-- /ANCHOR:usage -->
-
 ---
 
-## 4. 🔎 PRE-FLIGHT CHECK
+<!-- /ANCHOR:usage -->
 <!-- ANCHOR:pre-flight-check -->
+## 4. 🔎 PRE-FLIGHT CHECK
 
 Run this command to detect what's already installed:
 
@@ -167,12 +163,11 @@ echo ""
 - Mix of ✅/❌ → Use "Missing only" mode to install ❌ items
 - All ❌ → Use "Full" mode
 
-<!-- /ANCHOR:pre-flight-check -->
-
 ---
 
-## 5. 🔍 ENVIRONMENT DETECTION
+<!-- /ANCHOR:pre-flight-check -->
 <!-- ANCHOR:environment-detection -->
+## 5. 🔍 ENVIRONMENT DETECTION
 
 Answer these questions to configure your installation:
 
@@ -276,12 +271,11 @@ git checkout -- script.sh
 uname -s | grep -E "Darwin|Linux" && echo "✅ PASS" || echo "❌ FAIL"
 ```
 
-<!-- /ANCHOR:environment-detection -->
-
 ---
 
+<!-- /ANCHOR:environment-detection -->
+<!-- ANCHOR:version-compatibility-resources -->
 ## 6. 📋 VERSION COMPATIBILITY & RESOURCES
-<!-- ANCHOR:version-compatibility -->
 
 ### 6.1 Version Compatibility Matrix
 
@@ -316,12 +310,11 @@ uname -s | grep -E "Darwin|Linux" && echo "✅ PASS" || echo "❌ FAIL"
 uname -s | grep -E "Darwin|Linux" && echo "✅ PASS" || echo "❌ FAIL"
 ```
 
-<!-- /ANCHOR:version-compatibility -->
-
 ---
 
-## 7. 🧩 COMPONENT MATRIX
+<!-- /ANCHOR:version-compatibility-resources -->
 <!-- ANCHOR:component-matrix -->
+## 7. 🧩 COMPONENT MATRIX
 
 ### 7.1 Component Overview
 
@@ -398,14 +391,13 @@ Prerequisites → Code Mode → Spec Kit Memory
 
 **Note:** Native Skills are built-in to OpenCode v1.0.190+ and require no installation. Skills are auto-discovered from `.opencode/skill/*/SKILL.md`.
 
-<!-- /ANCHOR:component-matrix -->
-
 ---
 
-## 8. 📥 PHASE 1: PREREQUISITES
+<!-- /ANCHOR:component-matrix -->
 <!-- ANCHOR:phase-1-prerequisites -->
+## 8. 📥 PHASE 1: PREREQUISITES
 
-> **Skip Check:** Run `node -v && python3 -V` — if both return versions, skip to Phase 2.
+> **Skip Check:** Run `node -v && python3 -V`. If both return versions, skip to Phase 2.
 
 ### 8.1 Node.js 18+
 
@@ -482,20 +474,19 @@ sudo apt install python3.12 python3.12-venv
 node --version | grep -E "^v(1[89]|2[0-9])" && python3 --version | grep -E "3\.(1[0-9]|[2-9][0-9])" && echo "✅ PASS" || echo "❌ FAIL"
 ```
 
-<!-- /ANCHOR:phase-1-prerequisites -->
-
 ---
 
+<!-- /ANCHOR:phase-1-prerequisites -->
+<!-- ANCHOR:phase-2-ollama-models-optional -->
 ## 9. 🤖 PHASE 2: OLLAMA & MODELS (OPTIONAL)
-<!-- ANCHOR:phase-2-ollama -->
 
 Ollama provides local LLM inference and embeddings. **No longer required** for Spec Kit Memory.
 
 **Since v12.0:** Spec Kit Memory supports multiple embedding backends:
-- **Voyage** (recommended if you have `VOYAGE_API_KEY`) - best retrieval quality, cloud embeddings
-- **OpenAI** (alternative if you have `OPENAI_API_KEY`) - cloud embeddings
-- **HF Local** (default without API keys) - local embeddings with HuggingFace Transformers
-- **Ollama** (optional) - for local embeddings via Ollama
+- **Voyage** (recommended if you have `VOYAGE_API_KEY`). Best retrieval quality, cloud embeddings
+- **OpenAI** (alternative if you have `OPENAI_API_KEY`). Cloud embeddings
+- **HF Local** (default without API keys). Local embeddings with HuggingFace Transformers
+- **Ollama** (optional). For local embeddings via Ollama
 
 > **Skip Check:** If you prefer OpenAI or HF local, you can skip this entire phase.
 
@@ -551,19 +542,18 @@ ollama pull llama3.2
 ollama list | grep -q "nomic-embed-text" && echo "✅ PASS" || echo "❌ FAIL"
 ```
 
-<!-- /ANCHOR:phase-2-ollama -->
-
 ---
 
-## 10. ⚙️ PHASE 3: MCP SERVERS
+<!-- /ANCHOR:phase-2-ollama-models-optional -->
 <!-- ANCHOR:phase-3-mcp-servers -->
+## 10. ⚙️ PHASE 3: MCP SERVERS
 
-> **Skip Check:** Run `grep -q '"code_mode"' opencode.json && grep -q '"spec_kit_memory"' opencode.json && echo "✅ All configured"` — if all configured, skip to Phase 4.
+> **Skip Check:** Run `grep -q '"code_mode"' opencode.json && grep -q '"spec_kit_memory"' opencode.json && echo "✅ All configured"`. If all configured, skip to Phase 4.
 
 ### Installation Order (Important!)
 
-1. **Code Mode** (foundation - install FIRST)
-2. Spec Kit Memory (context preservation - **now supports multiple embedding providers**)
+1. **Code Mode** (foundation, install FIRST)
+2. Spec Kit Memory (context preservation, **now supports multiple embedding providers**)
 3. Sequential Thinking (complex reasoning)
 
 ---
@@ -648,7 +638,7 @@ Spec Kit Memory now supports three embedding backends:
 **Default provider:** HF Local (free, offline, no API key needed)
 
 **Provider selection:**
-- Default: HF Local (768d) — works out of the box, no API key required
+- Default: HF Local (768d), works out of the box with no API key required
 - If `VOYAGE_API_KEY` set + `EMBEDDINGS_PROVIDER=voyage`: uses Voyage (recommended, 8% better retrieval)
 - If `OPENAI_API_KEY` set + `EMBEDDINGS_PROVIDER=openai`: uses OpenAI
 - Manual override: `export EMBEDDINGS_PROVIDER=hf-local|voyage|openai`
@@ -802,12 +792,11 @@ bdg --version >/dev/null 2>&1 && echo "✅ PASS" || echo "❌ FAIL"
 grep -q '"code_mode"' opencode.json && grep -q '"spec_kit_memory"' opencode.json && echo "✅ PASS" || echo "❌ FAIL"
 ```
 
-<!-- /ANCHOR:phase-3-mcp-servers -->
-
 ---
 
-## 11. 🔌 PHASE 4: PLUGINS
+<!-- /ANCHOR:phase-3-mcp-servers -->
 <!-- ANCHOR:phase-4-plugins -->
+## 11. 🔌 PHASE 4: PLUGINS
 
 ### 11.1 Native Skills (Built-in)
 
@@ -821,22 +810,22 @@ Skills are automatically discovered from:
 **Current Skills (9 total):**
 | Skill                      | Version    | Purpose                                              |
 | -------------------------- | ---------- | ---------------------------------------------------- |
-| mcp-code-mode              | v1.2.0     | External tool orchestration                          |
-| mcp-figma                  | v1.0.0     | Figma design file access and integration             |
-| system-spec-kit            | v2.2.0     | Spec folder + template system + context preservation |
-| workflows-chrome-devtools  | v2.1.0     | Browser debugging                                    |
+| mcp-code-mode              | v1.0.4.0   | External tool orchestration                          |
+| mcp-figma                  | v1.0.2.0   | Figma design file access and integration             |
+| system-spec-kit            | v2.2.9.0   | Spec folder + template system + context preservation |
+| workflows-chrome-devtools  | v1.0.1.0   | Browser debugging                                    |
 | workflows-code--full-stack | v1.0.0     | Full-stack implementation orchestrator               |
-| workflows-code--opencode   | v1.3.2     | OpenCode system code standards                       |
-| workflows-code--web-dev    | v1.0.9     | Web development implementation orchestrator          |
-| workflows-documentation    | v5.2.0     | Unified markdown and skill management                |
-| workflows-git              | v1.5.0     | Git workflow orchestrator                            |
+| workflows-code--opencode   | v1.0.5.0   | OpenCode system code standards                       |
+| workflows-code--web-dev    | v1.0.5.0   | Web development implementation orchestrator          |
+| workflows-documentation    | v1.0.6.0   | Unified markdown and skill management                |
+| workflows-git              | v1.0.2.0   | Git workflow orchestrator                            |
 
 **How it works:**
 - OpenCode scans skill folders on startup
 - Skills are surfaced as `skills_*` functions (e.g., `skills_mcp_code_mode`)
 - Agents read `SKILL.md` files directly when a task matches
 
-**No configuration needed** - skills in `.opencode/skill/` are automatically available.
+**No configuration needed.** Skills in `.opencode/skill/` are automatically available.
 
 ### Validation: `native_skills_check`
 
@@ -900,12 +889,11 @@ export OPENAI_API_KEY="your-api-key"
 test -d .opencode/skill && [ $(ls -1 .opencode/skill | wc -l) -ge 1 ] && echo "✅ PASS" || echo "❌ FAIL"
 ```
 
-<!-- /ANCHOR:phase-4-plugins -->
-
 ---
 
-## 12. 📝 CONFIGURATION TEMPLATES
+<!-- /ANCHOR:phase-4-plugins -->
 <!-- ANCHOR:configuration-templates -->
+## 12. 📝 CONFIGURATION TEMPLATES
 
 ### 12.1 Complete `opencode.json` (Full Bundle)
 
@@ -973,12 +961,11 @@ test -d .opencode/skill && [ $(ls -1 .opencode/skill | wc -l) -ge 1 ] && echo "�
 }
 ```
 
-<!-- /ANCHOR:configuration-templates -->
-
 ---
 
-## 13. ✅ FINAL VERIFICATION
+<!-- /ANCHOR:configuration-templates -->
 <!-- ANCHOR:final-verification -->
+## 13. ✅ FINAL VERIFICATION
 
 ### Checklist
 
@@ -1008,14 +995,13 @@ ls .opencode/skill/                 # Skills
 cat opencode.json | jq '.mcp | keys'  # MCP servers
 ```
 
-<!-- /ANCHOR:final-verification -->
-
 ---
 
-## 14. 🚨 DISASTER RECOVERY
+<!-- /ANCHOR:final-verification -->
 <!-- ANCHOR:disaster-recovery -->
+## 14. 🚨 DISASTER RECOVERY
 
-Emergency procedures for backup, recovery, and clean uninstallation of OpenCode components. Use this section when things go wrong or when performing maintenance.
+Emergency procedures for backup, recovery and clean uninstallation of OpenCode components. Use this section when things go wrong or when performing maintenance.
 
 ### Quick Reference
 
@@ -1081,7 +1067,7 @@ BACKUP=$(ls -td ~/.opencode-backup-* 2>/dev/null | head -1) && [ -n "$BACKUP" ] 
 | Config invalid JSON          | Restore from backup or regenerate from Section 12 templates |
 | npm packages broken          | `npm cache clean --force && npm install -g <package>`      |
 | Python/uv issues             | `uv cache clean && uv tool install <tool> --force`         |
-| Skills not loading           | Restart OpenCode; verify SKILL.md frontmatter              |
+| Skills not loading           | Restart OpenCode. Verify SKILL.md frontmatter              |
 | All else fails               | Complete clean uninstall (14.2) then reinstall             |
 
 ---
@@ -1120,12 +1106,11 @@ cat opencode.json | jq '.mcp | keys'  # MCP servers configured
 2. **After failure:** Run rollback (14.3), restart OpenCode
 3. **Monthly:** Clean old backups: `ls -td ~/.opencode-backup-* | tail -n +6 | xargs rm -rf`
 
-<!-- /ANCHOR:disaster-recovery -->
-
 ---
 
-## 15. ⚙️ POST-INSTALLATION CONFIGURATION
+<!-- /ANCHOR:disaster-recovery -->
 <!-- ANCHOR:post-installation-configuration -->
+## 15. ⚙️ POST-INSTALLATION CONFIGURATION
 
 After installing OpenCode components, customize the AI agent configuration for your project.
 
@@ -1142,8 +1127,8 @@ The `AGENTS (Universal).md` file is a template for AI agent behavior. Customize 
 
 | Project Type | Primary Tools                   | Primary Skills                           | Remove/De-emphasize           |
 | ------------ | ------------------------------- | ---------------------------------------- | ----------------------------- |
-| Front-end    | Chrome DevTools, Webflow, Figma | workflows-chrome-devtools, mcp-code-mode | Database tools, API patterns  |
-| Back-end     | API testing, Database tools     | workflows-code                           | Browser tools, Webflow, Figma |
+| Front-end    | Chrome DevTools, Webflow, Figma | workflows-chrome-devtools, workflows-code--web-dev | Database tools, API patterns  |
+| Back-end     | API testing, Database tools     | workflows-code--full-stack               | Browser tools, Webflow, Figma |
 | Full-stack   | All tools                       | All skills                               | Nothing                       |
 
 **Detailed Guide**: [SET-UP - AGENTS.md](./SET-UP%20-%20AGENTS.md)
@@ -1154,7 +1139,7 @@ The Skill Advisor (`skill_advisor.py`) powers Gate 2 in AGENTS.md, routing reque
 
 ```bash
 # Verify skill advisor
-python .opencode/scripts/skill_advisor.py "help me write documentation"
+python .opencode/skill/scripts/skill_advisor.py "help me write documentation"
 ```
 
 If confidence > 0.8, the AI agent MUST use the recommended skill.
@@ -1177,7 +1162,7 @@ python .opencode/skill/workflows-documentation/scripts/package_skill.py .opencod
 
 ### 15.4 Agent System
 
-The Agent System provides specialized AI personas with defined authorities, tool permissions, and behavioral rules. Unlike skills (knowledge bundles), agents have **authority** to act and **tools** to execute.
+The Agent System provides specialized AI personas with defined authorities, tool permissions and behavioral rules. Unlike skills (knowledge bundles), agents have **authority** to act and **tools** to execute.
 
 **Available Agents (8 total):**
 | Agent           | Purpose                         | Key Capability                        |
@@ -1209,14 +1194,13 @@ ls .opencode/skill/           # Skills installed
 cat opencode.json | jq '.mcp | keys'  # MCP servers configured
 ```
 
-<!-- /ANCHOR:post-installation-configuration -->
-
 ---
 
-## 16. 🚀 WHAT'S NEXT?
+<!-- /ANCHOR:post-installation-configuration -->
 <!-- ANCHOR:whats-next -->
+## 16. 🚀 WHAT'S NEXT?
 
-Congratulations on completing the installation! Here's your roadmap for getting started.
+You have completed the installation. Here is your roadmap for getting started.
 
 ### 16.1 First Steps (Day 1)
 
@@ -1224,7 +1208,7 @@ Congratulations on completing the installation! Here's your roadmap for getting 
 | ---- | ---------------------- | ---------------------------------------------------------------- |
 | 1    | Verify installation    | Run health check script from Section 14.5                        |
 | 2    | Customize AGENTS.md    | Edit `AGENTS.md` for your project type                           |
-| 3    | Test skill invocation  | `python .opencode/scripts/skill_advisor.py "your task"`          |
+| 3    | Test skill invocation  | `python .opencode/skill/scripts/skill_advisor.py "your task"`          |
 | 4    | Save first memory      | Use `/memory:save` or "save context" in conversation             |
 
 ### 16.2 Common Workflows
@@ -1235,7 +1219,7 @@ Congratulations on completing the installation! Here's your roadmap for getting 
 | **Browser Debugging**    | Chrome DevTools CLI           | `bdg screenshot --url https://example.com`                |
 | **Documentation**        | workflows-documentation skill | Invoke skill for doc structure                            |
 | **Git Operations**       | workflows-git skill           | Commit, PR creation workflows                             |
-| **Implementation**       | workflows-code skill          | 3-phase implementation lifecycle                          |
+| **Implementation**       | workflows-code--web-dev or workflows-code--full-stack | 3-phase implementation lifecycle                          |
 
 ### 16.3 Available Commands (19 total)
 
@@ -1251,7 +1235,8 @@ Congratulations on completing the installation! Here's your roadmap for getting 
 | ------------- | ------------------------------------------ | ----------------------------- |
 | OpenCode Docs | https://opencode.ai/docs                   | Official documentation        |
 | Memory Skill  | `.opencode/skill/system-spec-kit/SKILL.md` | Context preservation          |
-| Code Skill    | `.opencode/skill/workflows-code/SKILL.md`  | Implementation patterns       |
+| Code Skill    | `.opencode/skill/workflows-code--web-dev/SKILL.md` | Frontend implementation patterns |
+| Code Skill    | `.opencode/skill/workflows-code--full-stack/SKILL.md` | Multi-stack implementation patterns |
 | Git Skill     | `.opencode/skill/workflows-git/SKILL.md`   | Git workflows                 |
 | AGENTS.md     | `AGENTS.md`                                | AI agent behavior reference   |
 | Agent System  | `.opencode/install_guides/SET-UP - Opencode Agents.md` | Agent creation & usage |
@@ -1263,12 +1248,11 @@ Congratulations on completing the installation! Here's your roadmap for getting 
 - [ ] Set up backup schedule for configurations
 - [ ] Practice spec folder workflow for all file modifications
 
-<!-- /ANCHOR:whats-next -->
-
 ---
 
-## 17. 🔧 TROUBLESHOOTING
+<!-- /ANCHOR:whats-next -->
 <!-- ANCHOR:troubleshooting -->
+## 17. 🔧 TROUBLESHOOTING
 
 <details>
 <summary><strong>Code Mode Issues</strong></summary>
@@ -1296,14 +1280,14 @@ npx utcp-mcp
 ### Database not found
 ```bash
 # Create directory if missing
-mkdir -p .opencode/skill/system-spec-kit/mcp_server/database
+mkdir -p .opencode/skill/system-spec-kit/mcp_server/dist/database
 
 # Database is created on first run
 node .opencode/skill/system-spec-kit/mcp_server/dist/context-server.js
 ```
 
 ### Embeddings not working
-1. Default provider is HF Local — no Ollama required
+1. Default provider is HF Local. No Ollama required
 2. Clear corrupted model cache: `rm -rf .opencode/skill/system-spec-kit/mcp_server/node_modules/@huggingface/transformers/.cache`
 3. Restart MCP server (model re-downloads on first use)
 4. If using cloud provider: verify API key is set and `EMBEDDINGS_PROVIDER` matches
@@ -1311,7 +1295,7 @@ node .opencode/skill/system-spec-kit/mcp_server/dist/context-server.js
 ### Memory search returns empty
 ```bash
 # Check database has content
-sqlite3 .opencode/skill/system-spec-kit/mcp_server/database/context-index.sqlite "SELECT COUNT(*) FROM memories;"
+sqlite3 .opencode/skill/system-spec-kit/mcp_server/dist/database/context-index.sqlite "SELECT COUNT(*) FROM memory_index;"
 ```
 
 </details>
@@ -1397,12 +1381,11 @@ sudo chown -R $(whoami) /usr/local/lib/node_modules
 
 </details>
 
-<!-- /ANCHOR:troubleshooting -->
-
 ---
 
-## 18. 📖 QUICK REFERENCE
+<!-- /ANCHOR:troubleshooting -->
 <!-- ANCHOR:quick-reference -->
+## 18. 📖 QUICK REFERENCE
 
 ### Essential Commands
 
@@ -1438,12 +1421,11 @@ sudo chown -R $(whoami) /usr/local/lib/node_modules
 | CLI Tools          | 1     | Chrome DevTools (bdg)                                                                                                    |
 | Plugins            | 2     | Antigravity Auth, OpenAI Codex Auth                                                                                      |
 
-<!-- /ANCHOR:quick-reference -->
-
 ---
 
+<!-- /ANCHOR:quick-reference -->
+<!-- ANCHOR:related-documents -->
 ## 19. 📚 RELATED DOCUMENTS
-<!-- ANCHOR:related -->
 
 ### Internal Documentation
 
@@ -1459,5 +1441,4 @@ sudo chown -R $(whoami) /usr/local/lib/node_modules
 |----------|-------------|
 | [OpenCode Docs](https://opencode.ai/docs) | Official OpenCode documentation |
 | [Model Context Protocol](https://modelcontextprotocol.io) | MCP specification and standards |
-
-<!-- /ANCHOR:related -->
+<!-- /ANCHOR:related-documents -->

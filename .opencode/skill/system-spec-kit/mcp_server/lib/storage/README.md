@@ -1,6 +1,6 @@
 ---
 title: "Storage Layer"
-description: "Persistence layer for the Spec Kit Memory MCP server - handles memory indexing, checkpoints, causal graphs, and atomic file operations."
+description: "Persistence layer for the Spec Kit Memory MCP server. Handles memory indexing, checkpoints, causal graphs and atomic file operations."
 trigger_phrases:
   - "storage layer"
   - "memory indexing"
@@ -10,27 +10,28 @@ importance_tier: "normal"
 
 # Storage Layer
 
-> Persistence layer for the Spec Kit Memory MCP server - handles memory indexing, checkpoints, causal graphs, and atomic file operations.
+> Persistence layer for the Spec Kit Memory MCP server. Handles memory indexing, checkpoints, causal graphs and atomic file operations.
 
 ---
 
 ## TABLE OF CONTENTS
 <!-- ANCHOR:table-of-contents -->
 
-- [1. 📖 OVERVIEW](#1--overview)
-- [2. 📁 STRUCTURE](#2--structure)
-- [3. ⚡ FEATURES](#3--features)
-- [4. 💡 USAGE EXAMPLES](#4--usage-examples)
-- [5. 🛠️ TROUBLESHOOTING](#5--troubleshooting)
-- [6. 📚 RELATED RESOURCES](#6--related-resources)
+- [1. OVERVIEW](#1--overview)
+- [2. STRUCTURE](#2--structure)
+- [3. FEATURES](#3--features)
+- [4. USAGE EXAMPLES](#4--usage-examples)
+- [5. TROUBLESHOOTING](#5--troubleshooting)
+- [6. RELATED RESOURCES](#6--related-resources)
+
+<!-- /ANCHOR:table-of-contents -->
 
 ---
 
-<!-- /ANCHOR:table-of-contents -->
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 <!-- ANCHOR:overview -->
 
-The storage layer provides all persistence operations for the Spec Kit Memory MCP server. It manages memory state across sessions, tracks access patterns for relevance scoring, and enables causal relationship mapping between memories.
+The storage layer provides all persistence operations for the Spec Kit Memory MCP server. It manages memory state across sessions and tracks access patterns for relevance scoring. It also enables causal relationship mapping between memories.
 
 ### Key Statistics
 
@@ -45,26 +46,28 @@ The storage layer provides all persistence operations for the Spec Kit Memory MC
 |---------|-------------|
 | **Incremental Indexing** | Mtime-based fast path skips unchanged files |
 | **Causal Edges** | 6 relationship types model decision lineage between memories |
+| **Spec Doc Edge Builder** | Auto-builds document edges across spec.md, plan.md, tasks.md, checklist.md, and decision records |
 | **Checkpoints** | Gzip-compressed state snapshots for rollback |
 | **Atomic Transactions** | File write + index insert with pending file recovery |
 | **Access Tracking** | Batched accumulator updates minimize I/O while tracking usage for relevance boost |
 
+<!-- /ANCHOR:overview -->
+
 ---
 
-<!-- /ANCHOR:overview -->
-## 2. 📁 STRUCTURE
+## 2. STRUCTURE
 <!-- ANCHOR:structure -->
 
 ```
 storage/
-├── access-tracker.ts      # Track memory access for usage boost scoring
-├── causal-edges.ts        # Causal graph storage with 6 relationship types
-├── checkpoints.ts         # Gzip-compressed state snapshots
-├── history.ts             # Change history tracking (ADD/UPDATE/DELETE events)
-├── incremental-index.ts   # Mtime-based incremental indexing
-├── index-refresh.ts       # Embedding index freshness management
-├── transaction-manager.ts # Atomic file + index operations
-└── README.md              # This file
+ access-tracker.ts      # Track memory access for usage boost scoring
+ causal-edges.ts        # Causal graph storage with 6 relationship types
+ checkpoints.ts         # Gzip-compressed state snapshots
+ history.ts             # Change history tracking (ADD/UPDATE/DELETE events)
+ incremental-index.ts   # Mtime-based incremental indexing
+ index-refresh.ts       # Embedding index freshness management
+ transaction-manager.ts # Atomic file + index operations
+ README.md              # This file
 ```
 
 ### Key Files
@@ -76,13 +79,14 @@ storage/
 | `checkpoints.ts` | Creates/restores gzip-compressed checkpoints with MAX_CHECKPOINTS (10) enforcement |
 | `history.ts` | Tracks change history for memory entries (ADD, UPDATE, DELETE) with actor attribution |
 | `incremental-index.ts` | Determines which files need re-indexing via mtime fast path |
-| `index-refresh.ts` | Manages embedding index freshness — status tracking, retry logic, and unindexed document querying |
+| `index-refresh.ts` | Manages embedding index freshness: status tracking, retry logic and unindexed document querying |
 | `transaction-manager.ts` | Atomic file writes (temp+rename) with pending file crash recovery |
+
+<!-- /ANCHOR:structure -->
 
 ---
 
-<!-- /ANCHOR:structure -->
-## 3. ⚡ FEATURES
+## 3. FEATURES
 <!-- ANCHOR:features -->
 
 ### Incremental Indexing (v1.2.0)
@@ -118,6 +122,8 @@ Decision logic (`shouldReindex(filePath)`):
 
 Supports depth-limited traversal (default 3 hops) for causal chain queries.
 
+Structural helper APIs create deterministic relationships between core spec documents in the same folder, including dependencies and implementation progression edges.
+
 ### Checkpoints
 
 **Purpose**: Create named snapshots of memory state for rollback/recovery.
@@ -137,7 +143,7 @@ Note: Restored checkpoints do **not** include embedding vectors. Run `memory_ind
 | Aspect | Details |
 |--------|---------|
 | **Accumulator** | Increments by 0.1 per access, flushes to DB at threshold (0.5) |
-| **Usage Boost** | `min(0.2, accessCount * 0.02)` — max +20% base boost |
+| **Usage Boost** | `min(0.2, accessCount * 0.02)`, max +20% base boost |
 | **Recency Multiplier** | 2x if accessed within 1 hour, 1.5x if within 24 hours |
 | **Effective Max** | Up to +40% with recency multiplier |
 
@@ -159,8 +165,8 @@ Note: Restored checkpoints do **not** include embedding vectors. Run `memory_ind
 
 | Aspect | Details |
 |--------|---------|
-| **Events** | `ADD`, `UPDATE`, `DELETE` — tracked per memory entry |
-| **Actors** | `user`, `system`, `hook`, `decay` — identifies who made the change |
+| **Events** | `ADD`, `UPDATE`, `DELETE`, tracked per memory entry |
+| **Actors** | `user`, `system`, `hook`, `decay`, identifies who made the change |
 | **Storage** | `memory_history` table with foreign key to `memory_index` |
 | **Diff Support** | Stores `prev_value` and `new_value` for change comparison |
 
@@ -201,11 +207,12 @@ Note: Restored checkpoints do **not** include embedding vectors. Run `memory_ind
 
 **Exported types:** `IndexStats`, `UnindexedDocument`
 
+<!-- /ANCHOR:features -->
+
 ---
 
-<!-- /ANCHOR:features -->
-## 4. 💡 USAGE EXAMPLES
-<!-- ANCHOR:examples -->
+## 4. USAGE EXAMPLES
+<!-- ANCHOR:usage-examples -->
 
 ### Example 1: Check if File Needs Re-indexing
 
@@ -284,10 +291,11 @@ console.log(`Restored ${result.restored} memories, ${result.skipped} skipped`);
 | Check index health | `getIndexStats()` | Monitor embedding status distribution |
 | Get metrics | `getMetrics()` | Check transaction success/failure counts |
 
+<!-- /ANCHOR:usage-examples -->
+
 ---
 
-<!-- /ANCHOR:examples -->
-## 5. 🛠️ TROUBLESHOOTING
+## 5. TROUBLESHOOTING
 <!-- ANCHOR:troubleshooting -->
 
 ### Common Issues
@@ -361,10 +369,11 @@ console.log(`Needs refresh: ${needsRefresh()}`);
 console.log(getUnindexedDocuments());
 ```
 
+<!-- /ANCHOR:troubleshooting -->
+
 ---
 
-<!-- /ANCHOR:troubleshooting -->
-## 6. 📚 RELATED RESOURCES
+## 6. RELATED RESOURCES
 <!-- ANCHOR:related -->
 
 ### Internal Documentation
@@ -380,7 +389,8 @@ console.log(getUnindexedDocuments());
 |--------|---------|
 | `context-server.ts` | MCP server that uses storage layer |
 
+<!-- /ANCHOR:related -->
+
 ---
 
-*Documentation version: 1.7.2 | Last updated: 2026-02-08 | Storage layer v1.2.0*
-<!-- /ANCHOR:related -->
+*Documentation version: 1.7.2 | Last updated: 2026-02-16 | Storage layer v1.2.0*

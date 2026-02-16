@@ -254,8 +254,8 @@ Format: `[W:R-{sequence}]` where sequence is a 3-digit number (001, 002, etc.)
 
 | Step | Agent | Fallback | Purpose |
 |------|-------|----------|---------|
-| Step 3 (Codebase explore) | `@context` | `general-purpose` | Codebase exploration, file search, pattern discovery (EXCLUSIVE per AGENTS.md) |
-| Steps 3-7 (Investigation) | `@research` | `general` | 5-step investigation phase |
+| Step 3 (Codebase explore) | `@context` | `general` | Codebase exploration, file search, pattern discovery (EXCLUSIVE per AGENTS.md) |
+| Steps 3-7 (Investigation) | `@research` | `general` | 5-step investigation phase (model-agnostic) |
 | Step 9 (Save Context, session end) | `@handover` | `general` | Session continuation if ending after research |
 
 ### Agent Dispatch
@@ -278,7 +278,7 @@ Create: handover.md with research findings summary, next steps, and continuation
 ### Fallback Behavior
 
 <!-- REFERENCE ONLY — Do not dispatch agents from this template -->
-When `@research` unavailable: warning displayed, workflow continues with `subagent_type: "general"` (OpenCode) or `"general-purpose"` (Claude Code). Same steps executed, potentially less specialized output.
+When `@research` unavailable: warning displayed, workflow continues with `subagent_type: "general"`. Same steps executed, potentially less specialized output.
 When `@handover` unavailable: Falls back to `subagent_type: "general"`, handover.md creation with less template validation.
 <!-- END REFERENCE -->
 

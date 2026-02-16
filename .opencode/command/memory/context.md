@@ -24,6 +24,10 @@ IF $ARGUMENTS is empty, undefined, or contains only whitespace:
             description: "Context for security review"
           - label: "Understand"
             description: "Context for learning existing code"
+          - label: "Find spec"
+            description: "Context for spec document retrieval"
+          - label: "Find decision"
+            description: "Context for decision rationale lookup"
     → WAIT for user response
     → Use their response to determine the intent and query
     → Only THEN continue with this workflow
@@ -70,7 +74,7 @@ Provide a unified entry point for context retrieval that:
 - Applies task-specific weights for search optimization
 - Combines search + load in a single operation
 - Returns context with relevance explanation
-- Enforces token budget constraints (2000-4000 tokens)
+- Enforces L1 token budget constraints (target: ~2000 tokens per call)
 - Handles session deduplication for cross-session queries
 
 ---
@@ -93,7 +97,7 @@ Provide a unified entry point for context retrieval that:
 
 ### Intent Classification
 
-The system detects one of five intent types:
+The system detects one of seven intent types:
 
 | Intent Type        | Description                    | Weight Adjustments                                       |
 | ------------------ | ------------------------------ | -------------------------------------------------------- |
@@ -102,6 +106,8 @@ The system detects one of five intent types:
 | **refactor**       | Code restructuring             | architecture: 1.5x, patterns: 1.4x, decisions: 1.2x      |
 | **security_audit** | Security review                | decisions: 1.4x, implementation: 1.3x, security: 1.5x    |
 | **understand**     | Learning existing code         | architecture: 1.4x, decisions: 1.3x, overview: 1.5x      |
+| **find_spec**      | Spec document retrieval        | spec-doc: 1.5x, architecture: 1.3x, overview: 1.2x       |
+| **find_decision**  | Decision rationale lookup      | decisions: 1.5x, rationale: 1.4x, architecture: 1.2x     |
 
 ### Detection Logic
 
@@ -114,6 +120,8 @@ Intent is detected via keyword matching against the query. Keywords are phrase-b
 | `refactor`       | 'refactor', 'restructure', 'improve', 'clean up', 'optimize'                 |
 | `security_audit` | 'security', 'vulnerability', 'auth', 'sanitize', 'xss', 'csrf'              |
 | `understand`     | 'how', 'why', 'what', 'explain', 'understand', 'learn'                       |
+| `find_spec`      | 'spec', 'specification', 'spec folder', 'spec document', 'find spec'         |
+| `find_decision`  | 'decision', 'rationale', 'why did we', 'chose', 'decision record'            |
 
 **Default fallback:** If no keywords match, defaults to `understand`.
 
@@ -147,6 +155,8 @@ Select appropriate anchors:
     - refactor: ['architecture', 'patterns', 'decisions']
     - security_audit: ['decisions', 'implementation', 'security']
     - understand: ['architecture', 'decisions', 'summary', 'overview']
+    - find_spec: ['spec-doc', 'architecture', 'overview', 'specification']
+    - find_decision: ['decisions', 'rationale', 'architecture', 'context']
     ↓
 Adjust search parameters:
     - Weight boost for relevant context types
@@ -217,6 +227,8 @@ STATUS=OK INTENT=<intent> RESULTS=<count>
 | **refactor**       | architecture, patterns, decisions      | technical-specs, code-quality  | Need structure understanding + rationale      |
 | **security_audit** | decisions, implementation, security    | validation, auth, sanitization | Need security decisions + validation patterns |
 | **understand**     | architecture, decisions, summary       | overview, context, background  | Need high-level understanding first           |
+| **find_spec**      | spec-doc, architecture, overview       | specification, structure       | Need spec document content + structure        |
+| **find_decision**  | decisions, rationale, architecture     | context, background, history   | Need decision records + rationale context     |
 
 ### Example: add_feature Intent
 
@@ -277,17 +289,17 @@ Anchors:
 
 ## 7. 📌 TOKEN BUDGET ENFORCEMENT
 
-**Token Budget Range:** 2000-4000 tokens (configurable per intent)
+**memory_context L1 Budget:** ~2000 tokens total (mode-managed)
 
-### Budget Allocation by Intent
+### Budget Guidance by Mode
 
-| Intent             | Target Budget | Prioritization Strategy                      |
-| ------------------ | ------------- | -------------------------------------------- |
-| **add_feature**    | 3500 tokens   | Favor implementation examples, code patterns |
-| **fix_bug**        | 3000 tokens   | Favor error context, decision history        |
-| **refactor**       | 3000 tokens   | Favor architecture docs, pattern guides      |
-| **security_audit** | 4000 tokens   | Include all security-relevant context        |
-| **understand**     | 2500 tokens   | Favor summaries, high-level overviews        |
+| Mode      | Target Budget | Typical Use                                  |
+| --------- | ------------- | -------------------------------------------- |
+| `quick`   | ~800          | Fast trigger/context lookup                  |
+| `focused` | ~1500         | Intent-optimized retrieval (`fix_bug`, etc.) |
+| `resume`  | ~1200         | Session recovery (`state`, `next-steps`)     |
+| `deep`    | ~2000         | Broader context for complex work             |
+| `auto`    | mode-routed   | Server selects mode from detected intent     |
 
 ### Truncation Logic
 
@@ -308,7 +320,7 @@ Prevent duplicate context when the same query spans multiple sessions or when ov
 ### Strategy
 
 - Content hashing: Each result is hashed; duplicates with same hash are merged (keeping most recent version)
-- Cross-session detection via `session_id` metadata and content hash comparison
+- Cross-session detection via `sessionId` metadata and content hash comparison
 - Timestamp-based recency preference when duplicates found
 
 ### Deduplication Metadata
@@ -337,14 +349,14 @@ deduplication:
 │ INTENT DETECT   │ Parse query, match keywords                             │ LOCAL    │ Default to      │
 │                 │                                                         │          │ 'understand'    │
 ├─────────────────┼─────────────────────────────────────────────────────────┼──────────┼─────────────────┤
-│ TRIGGER CHECK   │ spec_kit_memory_memory_match_triggers({ prompt: query })│ SINGLE   │ Continue        │
+│ CONTEXT (PREF)  │ spec_kit_memory_memory_context({ input, ... })          │ SINGLE   │ Fall back to    │
+│                 │                                                         │          │ manual search   │
+├─────────────────┼─────────────────────────────────────────────────────────┼──────────┼─────────────────┤
+│ TRIGGER CHECK   │ spec_kit_memory_memory_match_triggers({ prompt: query })│ OPTIONAL │ Continue        │
 │                 │                                                         │          │ without         │
 ├─────────────────┼─────────────────────────────────────────────────────────┼──────────┼─────────────────┤
-│ SEARCH          │ spec_kit_memory_memory_search({ query, anchors,         │ SINGLE   │ Show error msg  │
+│ SEARCH (MANUAL) │ spec_kit_memory_memory_search({ query, anchors,         │ SINGLE   │ Show error msg  │
 │                 │   includeContent: true })                               │          │                 │
-├─────────────────┼─────────────────────────────────────────────────────────┼──────────┼─────────────────┤
-│ CONTEXT         │ (context retrieval handled by search with anchors)      │ OPTIONAL │ Skip drift      │
-│                 │                                                         │          │ detection       │
 └─────────────────┴─────────────────────────────────────────────────────────┴──────────┴─────────────────┘
 ```
 
@@ -356,7 +368,7 @@ deduplication:
 // Option 1: Dedicated context tool (preferred — single call)
 spec_kit_memory_memory_context({
   input: "<query>",
-  intent: "<add_feature|fix_bug|refactor|security_audit|understand>",  // Optional, auto-detected if omitted
+  intent: "<add_feature|fix_bug|refactor|security_audit|understand|find_spec|find_decision>",  // Optional, auto-detected if omitted
   specFolder: "<folder>",  // Optional
   includeContent: true,
   anchors: ["<anchor1>", "<anchor2>"],  // Intent-specific
@@ -395,6 +407,8 @@ spec_kit_memory_memory_search({
 | `/memory:context "how does auth work?"`       | Auto-detect understand intent          |
 | `/memory:context "optimize auth code"`        | Auto-detect refactor intent            |
 | `/memory:context "auth security review"`      | Auto-detect security_audit intent      |
+| `/memory:context "find the spec for auth"`    | Auto-detect find_spec intent           |
+| `/memory:context "why did we choose JWT"`     | Auto-detect find_decision intent       |
 
 ---
 

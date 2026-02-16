@@ -9,6 +9,7 @@ sections. Use this for enterprise-scale changes requiring multi-agent coordinati
 
 ---
 
+<!-- ANCHOR:summary -->
 ## 1. SUMMARY
 
 ### Technical Context
@@ -23,8 +24,11 @@ sections. Use this for enterprise-scale changes requiring multi-agent coordinati
 ### Overview
 This implementation adds a complete email/password authentication system using bcrypt for password hashing and JWT tokens for stateless session management. The architecture follows established patterns in the codebase (MVC) while introducing reusable utilities for hashing and token management. Given the complexity score (82), this plan includes AI execution protocols for multi-agent coordination.
 
+
+<!-- /ANCHOR:summary -->
 ---
 
+<!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
 
 ### Definition of Ready
@@ -46,8 +50,11 @@ This implementation adds a complete email/password authentication system using b
 - [x] All approvals obtained
 - [x] Compliance checkpoints verified
 
+
+<!-- /ANCHOR:quality-gates -->
 ---
 
+<!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
 
 ### Pattern
@@ -94,8 +101,11 @@ MVC - Following existing Express.js application structure
                     └─────────────┘
 ```
 
+
+<!-- /ANCHOR:architecture -->
 ---
 
+<!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup (Day 1 AM)
@@ -133,8 +143,11 @@ MVC - Following existing Express.js application structure
 - [x] Security review
 - [x] Documentation updated
 
+
+<!-- /ANCHOR:phases -->
 ---
 
+<!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
 
 | Test Type | Scope | Tools | Coverage Target |
@@ -144,8 +157,11 @@ MVC - Following existing Express.js application structure
 | Manual | User journeys, edge cases | Browser | Critical paths |
 | Security | OWASP auth items | Manual + SAST | Auth-specific |
 
+
+<!-- /ANCHOR:testing -->
 ---
 
+<!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
 | Dependency | Type | Status | Impact if Blocked |
@@ -157,15 +173,21 @@ MVC - Following existing Express.js application structure
 | PostgreSQL@14+ | Internal | Green | All auth features blocked |
 | Security Team | Human | Green | Blocks launch approval |
 
+
+<!-- /ANCHOR:dependencies -->
 ---
 
+<!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
 - **Trigger**: Critical security vulnerability, or breaks existing functionality
 - **Procedure**: Revert commits, drop users table, remove auth routes
 
+
+<!-- /ANCHOR:rollback -->
 ---
 
+<!-- ANCHOR:l2-phase-deps -->
 ## L2: PHASE DEPENDENCIES
 
 ```
@@ -183,8 +205,11 @@ Phase 2 (Database) ───┴──> Phase 3 (Services) ──> Phase 4 (API) 
 | UI | API | Verify |
 | Verify | All | None |
 
+
+<!-- /ANCHOR:l2-phase-deps -->
 ---
 
+<!-- ANCHOR:l2-effort -->
 ## L2: EFFORT ESTIMATION
 
 | Phase | Complexity | Estimated Effort |
@@ -197,8 +222,11 @@ Phase 2 (Database) ───┴──> Phase 3 (Services) ──> Phase 4 (API) 
 | Verification | Medium | 5 hours |
 | **Total** | | **22 hours (~3 days)** |
 
+
+<!-- /ANCHOR:l2-effort -->
 ---
 
+<!-- ANCHOR:l2-rollback -->
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deployment Checklist
@@ -218,8 +246,11 @@ Phase 2 (Database) ───┴──> Phase 3 (Services) ──> Phase 4 (API) 
 - **Has data migrations?** Yes (users table)
 - **Reversal procedure**: `npx prisma migrate rollback` or manual DROP TABLE
 
+
+<!-- /ANCHOR:l2-rollback -->
 ---
 
+<!-- ANCHOR:l3-dep-graph -->
 ## L3: DEPENDENCY GRAPH
 
 ```
@@ -257,8 +288,11 @@ Phase 2 (Database) ───┴──> Phase 3 (Services) ──> Phase 4 (API) 
          └─────────────┘
 ```
 
+
+<!-- /ANCHOR:l3-dep-graph -->
 ---
 
+<!-- ANCHOR:l3-critical-path -->
 ## L3: CRITICAL PATH
 
 1. **Setup** - 2 hours - CRITICAL
@@ -270,8 +304,11 @@ Phase 2 (Database) ───┴──> Phase 3 (Services) ──> Phase 4 (API) 
 
 **Total Critical Path**: 23 hours + external review time
 
+
+<!-- /ANCHOR:l3-critical-path -->
 ---
 
+<!-- ANCHOR:l3-milestones -->
 ## L3: MILESTONES
 
 | Milestone | Description | Success Criteria | Target |
@@ -283,8 +320,11 @@ Phase 2 (Database) ───┴──> Phase 3 (Services) ──> Phase 4 (API) 
 | M5 | Security Review | Security team sign-off | Day 4 EOD |
 | M6 | Release Ready | All tests pass, all approvals | Day 5 EOD |
 
+
+<!-- /ANCHOR:l3-milestones -->
 ---
 
+<!-- ANCHOR:l3-adr-summary -->
 ## L3: ARCHITECTURE DECISION SUMMARY
 
 See `decision-record.md` for full ADRs:
@@ -295,8 +335,11 @@ See `decision-record.md` for full ADRs:
 | ADR-002 | bcrypt with 10 rounds | Accepted |
 | ADR-003 | localStorage for tokens (MVP) | Accepted |
 
+
+<!-- /ANCHOR:l3-adr-summary -->
 ---
 
+<!-- ANCHOR:l3plus-ai-exec -->
 ## L3+: AI EXECUTION FRAMEWORK
 
 ### Tier 1: Sequential Foundation (Primary Agent)
@@ -342,6 +385,9 @@ See `decision-record.md` for full ADRs:
 
 ### Status Reporting Format
 ```
+
+<!-- /ANCHOR:l3plus-ai-exec -->
+<!-- ANCHOR:status-update-timestamp -->
 ## Status Update - [TIMESTAMP]
 - **Task**: T### - [Description]
 - **Workstream**: [W-A | W-B | W-C]
@@ -351,8 +397,11 @@ See `decision-record.md` for full ADRs:
 - **Next**: T### - [Next task]
 ```
 
+
+<!-- /ANCHOR:status-update-timestamp -->
 ---
 
+<!-- ANCHOR:l3plus-workstreams -->
 ## L3+: WORKSTREAM COORDINATION
 
 ### Workstream Definition
@@ -388,8 +437,11 @@ W-B (API & UI) ─────────────────────�
 W-C (Testing) ◄──────────────────────┘
 ```
 
+
+<!-- /ANCHOR:l3plus-workstreams -->
 ---
 
+<!-- ANCHOR:l3plus-communication -->
 ## L3+: COMMUNICATION PLAN
 
 ### Checkpoints
@@ -412,6 +464,8 @@ W-C (Testing) ◄─────────────────────
 | Blocker identified | Tech Lead | Direct message |
 | Security concern | Security Lead | Security channel |
 | Launch ready | All stakeholders | Email + Slack |
+
+<!-- /ANCHOR:l3plus-communication -->
 
 ---
 

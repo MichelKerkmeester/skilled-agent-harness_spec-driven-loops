@@ -171,7 +171,9 @@ function resolve_database_path() {
 // v10: Schema consolidation and index optimization
 // v11: Error code deduplication and validation improvements
 // v12: Unified memory_conflicts DDL (KL-1 Schema Unification)
-const SCHEMA_VERSION = 12;
+// v13: Add document_type and spec_level columns for full spec folder document indexing (Spec 126)
+// v14: Add content_text column + FTS5 rebuild for BM25 full-text search across restarts
+const SCHEMA_VERSION = 14;
 
 /* ─────────────────────────────────────────────────────────────
    2. SECURITY HELPERS
@@ -730,6 +732,142 @@ function run_migrations(database: any, from_version: any, to_version: any) {
       } catch (e: any) {
         console.warn('[VectorIndex] Migration v12 warning (indexes):', e.message);
       }
+    },
+    13: () => {
+      // v12 -> v13: Add document_type and spec_level for full spec folder document indexing (Spec 126)
+      // document_type: structural role in spec lifecycle (spec, plan, tasks, etc.)
+      // spec_level: spec documentation level (1, 2, 3, 4 for 3+)
+      try {
+        database.exec("ALTER TABLE memory_index ADD COLUMN document_type TEXT DEFAULT 'memory'");
+        logger.info('Migration v13: Added document_type column');
+      } catch (e: any) {
+        if (!e.message.includes('duplicate column')) {
+          console.warn('[VectorIndex] Migration v13 warning (document_type):', e.message);
+        }
+      }
+
+      try {
+        database.exec('ALTER TABLE memory_index ADD COLUMN spec_level INTEGER');
+        logger.info('Migration v13: Added spec_level column');
+      } catch (e: any) {
+        if (!e.message.includes('duplicate column')) {
+          console.warn('[VectorIndex] Migration v13 warning (spec_level):', e.message);
+        }
+      }
+
+      // Create indexes for efficient document type queries
+      try {
+        database.exec('CREATE INDEX IF NOT EXISTS idx_document_type ON memory_index(document_type)');
+        database.exec('CREATE INDEX IF NOT EXISTS idx_doc_type_folder ON memory_index(document_type, spec_folder)');
+        logger.info('Migration v13: Created document_type indexes');
+      } catch (e: any) {
+        console.warn('[VectorIndex] Migration v13 warning (indexes):', e.message);
+      }
+
+      // Backfill existing rows: constitutional files -> 'constitutional', readme files -> 'readme'
+      try {
+        database.exec(`
+          UPDATE memory_index SET document_type = 'constitutional'
+          WHERE document_type = 'memory'
+            AND importance_tier = 'constitutional'
+        `);
+        database.exec(`
+          UPDATE memory_index SET document_type = 'readme'
+          WHERE document_type = 'memory'
+            AND file_path LIKE '%readme.md'
+        `);
+        logger.info('Migration v13: Backfilled document_type for constitutional and readme files');
+      } catch (e: any) {
+        console.warn('[VectorIndex] Migration v13 warning (backfill):', e.message);
+      }
+    },
+
+    // ── Migration v14: Add content_text column for BM25 full-text search ──
+    14: () => {
+      // 1. Add content_text column to memory_index
+      try {
+        database.exec('ALTER TABLE memory_index ADD COLUMN content_text TEXT');
+        logger.info('Migration v14: Added content_text column');
+      } catch (e: any) {
+        if (!e.message.includes('duplicate column')) {
+          console.warn('[VectorIndex] Migration v14 warning (content_text):', e.message);
+        }
+      }
+
+      // 2. Rebuild FTS5 with content_text included
+      try {
+        // Drop existing triggers
+        database.exec('DROP TRIGGER IF EXISTS memory_fts_insert');
+        database.exec('DROP TRIGGER IF EXISTS memory_fts_update');
+        database.exec('DROP TRIGGER IF EXISTS memory_fts_delete');
+
+        // Drop and recreate FTS5 table with content_text
+        database.exec('DROP TABLE IF EXISTS memory_fts');
+        database.exec(`
+          CREATE VIRTUAL TABLE memory_fts USING fts5(
+            title, trigger_phrases, file_path, content_text,
+            content='memory_index', content_rowid='id'
+          )
+        `);
+
+        // Recreate triggers including content_text
+        database.exec(`
+          CREATE TRIGGER memory_fts_insert AFTER INSERT ON memory_index BEGIN
+            INSERT INTO memory_fts(rowid, title, trigger_phrases, file_path, content_text)
+            VALUES (new.id, new.title, new.trigger_phrases, new.file_path, new.content_text);
+          END
+        `);
+        database.exec(`
+          CREATE TRIGGER memory_fts_update AFTER UPDATE ON memory_index BEGIN
+            INSERT INTO memory_fts(memory_fts, rowid, title, trigger_phrases, file_path, content_text)
+            VALUES ('delete', old.id, old.title, old.trigger_phrases, old.file_path, old.content_text);
+            INSERT INTO memory_fts(rowid, title, trigger_phrases, file_path, content_text)
+            VALUES (new.id, new.title, new.trigger_phrases, new.file_path, new.content_text);
+          END
+        `);
+        database.exec(`
+          CREATE TRIGGER memory_fts_delete AFTER DELETE ON memory_index BEGIN
+            INSERT INTO memory_fts(memory_fts, rowid, title, trigger_phrases, file_path, content_text)
+            VALUES ('delete', old.id, old.title, old.trigger_phrases, old.file_path, old.content_text);
+          END
+        `);
+        logger.info('Migration v14: Rebuilt FTS5 table with content_text');
+      } catch (e: any) {
+        console.warn('[VectorIndex] Migration v14 warning (FTS5 rebuild):', e.message);
+      }
+
+      // 3. Backfill existing rows from disk
+      try {
+        const rows = database.prepare(
+          'SELECT id, file_path FROM memory_index WHERE content_text IS NULL'
+        ).all() as Array<{ id: number; file_path: string }>;
+
+        let backfilled = 0;
+        const updateStmt = database.prepare(
+          'UPDATE memory_index SET content_text = ? WHERE id = ?'
+        );
+
+        for (const row of rows) {
+          try {
+            if (row.file_path && fs.existsSync(row.file_path)) {
+              const content = fs.readFileSync(row.file_path, 'utf-8');
+              updateStmt.run(content, row.id);
+              backfilled++;
+            }
+          } catch (_: any) {
+            // Skip files that can't be read
+          }
+        }
+
+        // Rebuild FTS5 index after backfill
+        if (backfilled > 0) {
+          database.exec("INSERT INTO memory_fts(memory_fts) VALUES('rebuild')");
+        }
+
+        logger.info(`Migration v14: Backfilled content_text for ${backfilled}/${rows.length} rows`);
+      } catch (e: any) {
+        console.warn('[VectorIndex] Migration v14 warning (backfill):', e.message);
+      }
     }
   };
 
@@ -1159,6 +1297,9 @@ function create_schema(database: any) {
       review_count INTEGER DEFAULT 0,
       file_mtime_ms INTEGER,
       is_archived INTEGER DEFAULT 0,
+      document_type TEXT DEFAULT 'memory',
+      spec_level INTEGER,
+      content_text TEXT,
       UNIQUE(spec_folder, file_path, anchor_id)
     )
   `);
@@ -1186,35 +1327,35 @@ function create_schema(database: any) {
     logger.info(`Created vec_memories table with dimension ${embedding_dim}`);
   }
 
-  // Create FTS5 virtual table
+  // Create FTS5 virtual table (includes content_text for full-text search)
   database.exec(`
     CREATE VIRTUAL TABLE IF NOT EXISTS memory_fts USING fts5(
-      title, trigger_phrases, file_path,
+      title, trigger_phrases, file_path, content_text,
       content='memory_index', content_rowid='id'
     )
   `);
 
-  // Create FTS5 sync triggers
+  // Create FTS5 sync triggers (includes content_text)
   database.exec(`
     CREATE TRIGGER IF NOT EXISTS memory_fts_insert AFTER INSERT ON memory_index BEGIN
-      INSERT INTO memory_fts(rowid, title, trigger_phrases, file_path)
-      VALUES (new.id, new.title, new.trigger_phrases, new.file_path);
+      INSERT INTO memory_fts(rowid, title, trigger_phrases, file_path, content_text)
+      VALUES (new.id, new.title, new.trigger_phrases, new.file_path, new.content_text);
     END
   `);
 
   database.exec(`
     CREATE TRIGGER IF NOT EXISTS memory_fts_update AFTER UPDATE ON memory_index BEGIN
-      INSERT INTO memory_fts(memory_fts, rowid, title, trigger_phrases, file_path)
-      VALUES ('delete', old.id, old.title, old.trigger_phrases, old.file_path);
-      INSERT INTO memory_fts(rowid, title, trigger_phrases, file_path)
-      VALUES (new.id, new.title, new.trigger_phrases, new.file_path);
+      INSERT INTO memory_fts(memory_fts, rowid, title, trigger_phrases, file_path, content_text)
+      VALUES ('delete', old.id, old.title, old.trigger_phrases, old.file_path, old.content_text);
+      INSERT INTO memory_fts(rowid, title, trigger_phrases, file_path, content_text)
+      VALUES (new.id, new.title, new.trigger_phrases, new.file_path, new.content_text);
     END
   `);
 
   database.exec(`
     CREATE TRIGGER IF NOT EXISTS memory_fts_delete AFTER DELETE ON memory_index BEGIN
-      INSERT INTO memory_fts(memory_fts, rowid, title, trigger_phrases, file_path)
-      VALUES ('delete', old.id, old.title, old.trigger_phrases, old.file_path);
+      INSERT INTO memory_fts(memory_fts, rowid, title, trigger_phrases, file_path, content_text)
+      VALUES ('delete', old.id, old.title, old.trigger_phrases, old.file_path, old.content_text);
     END
   `);
 
@@ -1292,6 +1433,8 @@ function create_schema(database: any) {
     CREATE INDEX IF NOT EXISTS idx_content_hash ON memory_index(content_hash);
     CREATE INDEX IF NOT EXISTS idx_last_accessed ON memory_index(last_accessed DESC);
     CREATE INDEX IF NOT EXISTS idx_file_mtime ON memory_index(file_mtime_ms);
+    CREATE INDEX IF NOT EXISTS idx_document_type ON memory_index(document_type);
+    CREATE INDEX IF NOT EXISTS idx_doc_type_folder ON memory_index(document_type, spec_folder);
   `);
 
   database.exec(`
@@ -1319,13 +1462,16 @@ function index_memory(params: any) {
     title = null,
     triggerPhrases = [],
     importanceWeight = 0.5,
-    embedding
+    embedding,
+    documentType = 'memory',
+    specLevel = null,
+    contentText = null
   } = params;
 
   if (!embedding) {
     throw new Error('Embedding is required');
   }
-  
+
   const expected_dim = get_embedding_dim();
   if (embedding.length !== expected_dim) {
     console.warn(`[vector-index] Embedding dimension mismatch: expected ${expected_dim}, got ${embedding.length}`);
@@ -1345,7 +1491,8 @@ function index_memory(params: any) {
       title,
       triggerPhrases,
       importanceWeight,
-      embedding
+      embedding,
+      contentText
     });
   }
 
@@ -1356,11 +1503,13 @@ function index_memory(params: any) {
       INSERT INTO memory_index (
         spec_folder, file_path, anchor_id, title, trigger_phrases,
         importance_weight, created_at, updated_at, embedding_model,
-        embedding_generated_at, embedding_status
-      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        embedding_generated_at, embedding_status, document_type, spec_level,
+        content_text
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     `).run(
       specFolder, filePath, anchorId, title, triggers_json,
-      importanceWeight, now, now, embeddingsProvider.getModelName(), now, embedding_status
+      importanceWeight, now, now, embeddingsProvider.getModelName(), now, embedding_status,
+      documentType, specLevel, contentText
     );
 
     const row_id = BigInt(result.lastInsertRowid);
@@ -1389,7 +1538,10 @@ function index_memory_deferred(params: any) {
     title = null,
     triggerPhrases = [],
     importanceWeight = 0.5,
-    failureReason = null
+    failureReason = null,
+    documentType = 'memory',
+    specLevel = null,
+    contentText = null
   } = params;
 
   const now = new Date().toISOString();
@@ -1406,9 +1558,12 @@ function index_memory_deferred(params: any) {
           importance_weight = ?,
           embedding_status = 'pending',
           failure_reason = ?,
-          updated_at = ?
+          updated_at = ?,
+          document_type = ?,
+          spec_level = ?,
+          content_text = ?
       WHERE id = ?
-    `).run(title, triggers_json, importanceWeight, failureReason, now, existing.id);
+    `).run(title, triggers_json, importanceWeight, failureReason, now, documentType, specLevel, contentText, existing.id);
     return existing.id;
   }
 
@@ -1416,11 +1571,12 @@ function index_memory_deferred(params: any) {
     INSERT INTO memory_index (
       spec_folder, file_path, anchor_id, title, trigger_phrases,
       importance_weight, created_at, updated_at, embedding_status,
-      failure_reason, retry_count
-    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, 'pending', ?, 0)
+      failure_reason, retry_count, document_type, spec_level,
+      content_text
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, 'pending', ?, 0, ?, ?, ?)
   `).run(
     specFolder, filePath, anchorId, title, triggers_json,
-    importanceWeight, now, now, failureReason
+    importanceWeight, now, now, failureReason, documentType, specLevel, contentText
   );
 
   const row_id = BigInt(result.lastInsertRowid);
@@ -1432,7 +1588,17 @@ function index_memory_deferred(params: any) {
 function update_memory(params: any) {
   const database = initialize_db();
 
-  const { id, title, triggerPhrases, importanceWeight, importanceTier, embedding } = params;
+  const {
+    id,
+    title,
+    triggerPhrases,
+    importanceWeight,
+    importanceTier,
+    embedding,
+    documentType,
+    specLevel,
+    contentText,
+  } = params;
 
   const now = new Date().toISOString();
 
@@ -1456,6 +1622,18 @@ function update_memory(params: any) {
       updates.push('importance_tier = ?');
       values.push(importanceTier);
       clear_constitutional_cache();
+    }
+    if (documentType !== undefined) {
+      updates.push('document_type = ?');
+      values.push(documentType);
+    }
+    if (specLevel !== undefined) {
+      updates.push('spec_level = ?');
+      values.push(specLevel);
+    }
+    if (contentText !== undefined) {
+      updates.push('content_text = ?');
+      values.push(contentText);
     }
     if (embedding) {
       updates.push('embedding_model = ?');

@@ -1,1 +1,1 @@
-../scripts/SET-UP_GUIDE.md
+../skill/scripts/SET-UP_GUIDE.md

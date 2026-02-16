@@ -1,6 +1,6 @@
 ---
 name: research
-description: "Technical investigation specialist with evidence gathering and pattern analysis"
+description: "Technical investigation specialist with evidence gathering, pattern analysis, and research documentation capabilities"
 tools:
   - Read
   - Write

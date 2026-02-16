@@ -3,6 +3,7 @@
 
 ---
 
+<!-- ANCHOR:dependency-graph -->
 ## L3: DEPENDENCY GRAPH
 
 ```
@@ -25,9 +26,11 @@
 | [Component B] | A | [Output] | D |
 | [Component C] | A | [Output] | D |
 | [Component D] | B, C | [Final] | None |
+<!-- /ANCHOR:dependency-graph -->
 
 ---
 
+<!-- ANCHOR:critical-path -->
 ## L3: CRITICAL PATH
 
 1. **[Phase/Task]** - [Duration estimate] - CRITICAL
@@ -39,9 +42,11 @@
 **Parallel Opportunities**:
 - [Task A] and [Task B] can run simultaneously
 - [Task C] and [Task D] can run after Phase 1
+<!-- /ANCHOR:critical-path -->
 
 ---
 
+<!-- ANCHOR:milestones -->
 ## L3: MILESTONES
 
 | Milestone | Description | Success Criteria | Target |
@@ -49,6 +54,7 @@
 | M1 | [Setup Complete] | [All dependencies ready] | [Date/Phase] |
 | M2 | [Core Done] | [Main features working] | [Date/Phase] |
 | M3 | [Release Ready] | [All tests pass] | [Date/Phase] |
+<!-- /ANCHOR:milestones -->
 
 ---
 

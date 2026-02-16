@@ -222,7 +222,7 @@ Show created file path and continuation instructions.
 
 ## 10. 🔀 SUB-AGENT DELEGATION
 
-Delegates execution to `@handover` agent for token efficiency. Main agent handles validation/interaction; sub-agent handles context gathering and file generation.
+Delegates execution to `@handover` agent for token efficiency. Main/orchestrating agent handles validation and user interaction; the `@handover` sub-agent handles context gathering and file generation.
 
 **Agent File:** `.opencode/agent/handover.md`
 
@@ -232,7 +232,7 @@ Delegates execution to `@handover` agent for token efficiency. Main agent handle
 Main Agent (reads command):
 +-- PHASE 1: Input & Spec Detection (validation)
 +-- PHASE 2: Pre-Handover Validation
-+-- DISPATCH: Task tool with sub-agent
++-- DISPATCH: Task tool with sub-agent (`subagent_type: "handover"`)
 |   +-- Sub-agent gathers context, creates handover.md, returns result
 +-- FALLBACK (if Task unavailable): Execute Steps 1-3 directly
 +-- Step 4: Display Result (always main agent)
@@ -323,7 +323,7 @@ fallback: Execute Steps 1-3 directly -> Step 4
 | Agent          | Relationship                                     |
 | -------------- | ------------------------------------------------ |
 | `@handover`    | Dedicated sub-agent for this command             |
-| `@orchestrate` | May coordinate in multi-agent workflows          |
+| `@orchestrate` | Coordinates multi-agent routing; handover creation remains owned by `@handover` |
 | `@speckit`     | Works with spec folders this command reads       |
 
 ### Files

@@ -1,415 +1,46 @@
 ---
 title: "Core System Scripts"
-description: "Core workflow orchestration and configuration modules for the system-spec-kit memory and context generation system."
+description: "Core TypeScript workflow modules for context generation, scoring, writing, and indexing."
 trigger_phrases:
   - "core workflow"
-  - "workflow orchestration"
-  - "spec kit config"
-  - "generate context workflow"
+  - "memory workflow"
+  - "subfolder resolution"
 importance_tier: "normal"
 ---
 
 # Core System Scripts
 
-> Core workflow orchestration and configuration modules for the system-spec-kit memory and context generation system.
+The `core/` directory contains orchestration modules used by `dist/memory/generate-context.js`.
 
----
+## Current Inventory
 
-## TABLE OF CONTENTS
-<!-- ANCHOR:table-of-contents -->
+- `workflow.ts` - main orchestration flow
+- `config.ts` - config loading and path/constants wiring
+- `subfolder-utils.ts` - spec folder and child-folder resolution helpers
+- `topic-extractor.ts` - derive topic signals from folder/content inputs
+- `quality-scorer.ts` - quality scoring support for generated artifacts
+- `file-writer.ts` - write/validation helpers for generated files
+- `memory-indexer.ts` - indexing hooks and metadata preparation
+- `index.ts` - barrel exports
 
-- [1. 📖 OVERVIEW](#1--overview)
-- [2. 🚀 QUICK START](#2--quick-start)
-- [3. 📁 STRUCTURE](#3--structure)
-- [4. ⚡ FEATURES](#4--features)
-- [5. 💡 USAGE EXAMPLES](#5--usage-examples)
-- [6. 🏗️ ARCHITECTURE](#6--architecture)
-- [7. 🛠️ TROUBLESHOOTING](#7--troubleshooting)
-- [8. 📚 RELATED DOCUMENTS](#8--related-documents)
-- [9. 📊 TYPESCRIPT MIGRATION NOTES](#9--typescript-migration-notes)
+## Runtime Model
 
----
-
-<!-- /ANCHOR:table-of-contents -->
-## 1. 📖 OVERVIEW
-<!-- ANCHOR:overview -->
-
-### What is Core?
-
-The `core/` directory contains the foundational modules that orchestrate the entire system-spec-kit workflow. This includes configuration management, the main workflow engine that coordinates context generation, and module exports for clean dependency management across the system.
-
-### Key Statistics
-
-| Category | Count | Details |
-|----------|-------|---------|
-| TypeScript Source Modules | 3 | workflow.ts, config.ts, index.ts |
-| Compiled Output | dist/core/ | workflow.js, config.js, index.js (CommonJS) |
-| Orchestration Phases | 6 | Setup, extraction, enhancement, rendering, validation, persistence |
-| Dependencies | 4+ | extractors/, renderers/, lib/, @spec-kit/mcp-server/ |
-
-### Key Features
-
-| Feature | Description |
-|---------|-------------|
-| **Workflow Orchestration** | Coordinates all extractors, renderers, and memory operations in correct sequence |
-| **Configuration Management** | Loads and validates project-wide settings with JSONC comment support |
-| **Atomic File Operations** | Ensures file writes are validated for placeholders and anchors before committing |
-| **Database Integration** | Manages vector database updates and notification mechanisms |
-| **Static Imports** | All dependencies imported statically at module load time after TypeScript migration |
-
-### Requirements
-
-| Requirement | Minimum | Used For |
-|-------------|---------|----------|
-| Node.js | 14+ | Module system and async/await |
-| Dependencies | extractors/, lib/, renderers/ | Data processing and template rendering |
-
----
-
-<!-- /ANCHOR:overview -->
-## 2. 🚀 QUICK START
-<!-- ANCHOR:quick-start -->
-
-### Running the Core Workflow
-
-The core workflow is typically invoked through the main entry point, not directly:
+- Source of truth: `core/*.ts`
+- Runtime: `dist/core/*.js`
+- Build command:
 
 ```bash
-# Generate context for a spec folder (invokes core workflow)
-# Note: Execute the compiled JavaScript from dist/ directory
-node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js specs/001-example/
-
-# The workflow will:
-# 1. Load configuration from config/config.jsonc
-# 2. Detect the spec folder and setup context directory
-# 3. Extract conversations, decisions, diagrams, files
-# 4. Generate summaries and embeddings
-# 5. Populate templates and write memory files atomically
-# 6. Update vector database index
-```
-
-### Configuration
-
-Configuration is loaded from `.opencode/skill/system-spec-kit/config/config.jsonc`:
-
-```jsonc
-{
-  "maxResultPreview": 500,
-  "maxConversationMessages": 100,
-  "maxToolOutputLines": 100,
-  "messageTimeWindow": 300000,      // 5 minutes
-  "contextPreviewHeadLines": 50,
-  "contextPreviewTailLines": 20,
-  "timezoneOffsetHours": 0          // UTC default
-}
-```
-
----
-
-<!-- /ANCHOR:quick-start -->
-## 3. 📁 STRUCTURE
-<!-- ANCHOR:structure -->
-
-```
-core/
-├── workflow.ts          # Main orchestration engine (TypeScript source, 24KB)
-├── config.ts            # Configuration loader with JSONC support (7KB)
-├── index.ts             # Module exports for clean imports (500B)
-└── README.md            # This documentation
-```
-
-**Compiled output** (generated by `npm run build` from scripts/):
-```
-dist/core/
-├── workflow.js          # Compiled orchestration engine (CommonJS)
-├── workflow.d.ts        # TypeScript type definitions
-├── config.js            # Compiled configuration loader
-├── config.d.ts          # TypeScript type definitions
-├── index.js             # Compiled module exports
-└── index.d.ts           # TypeScript type definitions
-```
-
-### Module Responsibilities
-
-| Module (Source) | Compiled Output | Exports | Used By |
-|-----------------|-----------------|---------|---------|
-| `config.ts` | `dist/core/config.js` | `CONFIG`, `findActiveSpecsDir()` | All scripts needing project configuration |
-| `workflow.ts` | `dist/core/workflow.js` | `runWorkflow()` | Memory generation entry points |
-| `index.ts` | `dist/core/index.js` | Re-exports from config | Scripts importing from `core/` |
-
----
-
-<!-- /ANCHOR:structure -->
-## 4. ⚡ FEATURES
-<!-- ANCHOR:features -->
-
-### Workflow Orchestration
-
-The `workflow.js` module coordinates the entire context generation pipeline:
-
-| Phase | Operations | Output |
-|-------|------------|--------|
-| **1. Setup** | Detect spec folder, setup context directory, load config | Context directory structure |
-| **2. Extraction** | Extract conversations, decisions, diagrams, files | Structured data objects |
-| **3. Enhancement** | Generate semantic descriptions, implementation summaries | Enhanced data with embeddings |
-| **4. Rendering** | Populate templates with extracted data | Markdown content |
-| **5. Validation** | Check for leaked placeholders, validate anchors | Validation warnings |
-| **6. Persistence** | Write files atomically, update database index | Memory files on disk |
-
-### Configuration Management
-
-**JSONC Support**: Load configuration files with inline comments:
-```javascript
-const { CONFIG } = require('./core/config');
-
-// Access configuration values
-console.log(CONFIG.maxConversationMessages); // 100
-console.log(CONFIG.PROJECT_ROOT);            // Auto-detected project root
-```
-
-**Environment Detection**: Auto-detects project root and active specs directory.
-
-### Atomic File Operations
-
-All file writes go through validation:
-- **Placeholder Detection**: Blocks writes with unreplaced `{{TEMPLATE_VAR}}` markers
-- **Anchor Validation**: Checks for unclosed or orphaned anchor tags
-- **Atomic Writes**: Ensures all files succeed or none are written
-
-### Static Imports
-
-All dependencies are imported statically at module load time:
-```javascript
-// Libraries imported at startup:
-- flowchart-generator (diagram generation)
-- semantic-summarizer (file change summaries)
-- embeddings (vector operations)
-- vector-index (database updates)
-```
-
----
-
-<!-- /ANCHOR:features -->
-## 5. 💡 USAGE EXAMPLES
-<!-- ANCHOR:examples -->
-
-### Example 1: Importing Configuration
-
-```javascript
-// Import from compiled output (dist/)
-const { CONFIG, findActiveSpecsDir } = require('./dist/core');
-
-console.log('Project root:', CONFIG.PROJECT_ROOT);
-console.log('Active specs:', findActiveSpecsDir());
-console.log('Max messages:', CONFIG.maxConversationMessages);
-```
-
-### Example 2: Running the Workflow Programmatically
-
-```javascript
-// Import compiled workflow module
-const { runWorkflow } = require('./dist/core/workflow');
-
-async function generateContext(specFolder) {
-  try {
-    const result = await runWorkflow({
-      specFolderArg: specFolder,
-      collectedData: collectedData,
-      silent: false
-    });
-    console.log('Context generated:', result.writtenFiles);
-  } catch (error) {
-    console.error('Workflow failed:', error.message);
-  }
-}
-```
-
-### Example 3: Custom Configuration Override
-
-```javascript
-// Import from compiled output
-const { CONFIG } = require('./dist/core/config');
-
-// Override defaults for specific use case
-CONFIG.maxConversationMessages = 200;
-CONFIG.contextPreviewHeadLines = 100;
-```
-
-### Example 4: TypeScript Development
-
-```typescript
-// Edit TypeScript source files
-// File: core/workflow.ts
-import { CONFIG } from './config';
-import { extractConversations } from '../extractors';
-
-export async function runWorkflow(params: WorkflowParams) {
-  // Implementation...
-}
-
-// After editing, compile to JavaScript:
-// cd scripts/
-// npm run build
-
-// Then import compiled output:
-// const { runWorkflow } = require('./dist/core/workflow');
-```
-
----
-
-<!-- /ANCHOR:examples -->
-## 6. 🏗️ ARCHITECTURE
-<!-- ANCHOR:architecture -->
-
-### Dependency Flow
-
-```
-workflow.ts (source) → dist/core/workflow.js (compiled)
-    ├─► config.ts → dist/core/config.js (configuration)
-    ├─► extractors/ → dist/extractors/ (data extraction)
-    │   ├─► conversation-extractor.ts → .js
-    │   ├─► decision-extractor.ts → .js
-    │   ├─► diagram-extractor.ts → .js
-    │   ├─► file-extractor.ts → .js
-    │   ├─► session-extractor.ts → .js
-    │   └─► collect-session-data.ts → .js
-    ├─► renderers/ → dist/renderers/ (template population)
-    ├─► lib/ → dist/lib/ (support libraries)
-    │   ├─► semantic-summarizer.ts → .js
-    │   ├─► embeddings.ts → .js (re-exports @spec-kit/shared)
-    │   ├─► flowchart-generator.ts → .js
-    │   └─► trigger-extractor.ts → .js (re-exports @spec-kit/shared)
-    └─► @spec-kit/mcp-server/lib/search/vector-index (database, cross-workspace import)
-```
-
-**Note**: All TypeScript sources compile to `dist/` subdirectories. Runtime imports use compiled `.js` files from `dist/`.
-
-### Key Workflow Steps
-
-1. **Initialization**: Load config, detect spec folder, setup context directory
-2. **Data Collection**: Extract data from spec folder files and session metadata
-3. **Processing**: Generate summaries, embeddings, semantic descriptions
-4. **Validation**: Check placeholders, anchors, data structure
-5. **Output**: Write memory files atomically, update vector database
-6. **Notification**: Signal database updates via `.db-updated` file
-
----
-
-<!-- /ANCHOR:architecture -->
-## 7. 🛠️ TROUBLESHOOTING
-<!-- ANCHOR:troubleshooting -->
-
-### Common Issues
-
-#### Leaked Placeholders Error
-
-**Symptom**: `Error: Leaked placeholders in [filename]: {{VAR_NAME}}`
-
-**Cause**: Template variable was not replaced during rendering
-
-**Solution**: Check template population logic in `renderers/` - ensure all variables have values
-
-```javascript
-// Verify data before rendering
-console.log('Template data:', templateData);
-```
-
-#### Unclosed Anchor Warning
-
-**Symptom**: `Unclosed: context` or `Orphaned: /context`
-
-**Cause**: Anchor tags don't have matching open/close pairs
-
-**Solution**: Verify anchor format in templates:
-```markdown
-<!-- ANCHOR:context -->
-Content here
-<!-- /ANCHOR:context -->
-```
-
-#### Configuration Not Loading
-
-**Symptom**: Using default values instead of custom config
-
-**Cause**: `config.jsonc` has syntax errors or invalid JSON
-
-**Solution**: Validate JSONC syntax (both `//` and `/* */` comment styles are supported)
-
-```bash
-# Check for syntax errors
-cat .opencode/skill/system-spec-kit/config/config.jsonc
-```
-
-### Quick Fixes
-
-| Problem | Quick Fix |
-|---------|-----------|
-| Module not found | Check require path is `./core` not `../core` |
-| Workflow hangs | Check for missing extractors in lazy load section |
-| Database not updating | Verify `.db-updated` file permissions |
-
-### Diagnostic Commands
-
-```bash
-# Check configuration is valid (use compiled output from dist/)
-node -e "console.log(require('./.opencode/skill/system-spec-kit/scripts/dist/core/config').CONFIG)"
-
-# Verify project root detection
-node -e "const { findActiveSpecsDir } = require('./.opencode/skill/system-spec-kit/scripts/dist/core'); console.log(findActiveSpecsDir())"
-
-# Test workflow import
-node -e "const { runWorkflow } = require('./.opencode/skill/system-spec-kit/scripts/dist/core/workflow'); console.log('Workflow loaded')"
-
-# Compile TypeScript after making changes
 cd .opencode/skill/system-spec-kit/scripts && npm run build
 ```
 
----
+## Workflow Notes
 
-<!-- /ANCHOR:troubleshooting -->
-## 8. 📚 RELATED DOCUMENTS
-<!-- ANCHOR:related -->
+- `workflow.ts` composes loaders, extractors, renderers, and lib utilities.
+- `subfolder-utils.ts` supports subfolder-aware operations used by memory save flows.
+- `file-writer.ts` and `memory-indexer.ts` keep generated context output consistent with indexing expectations.
 
-| Document | Purpose |
-|----------|---------|
-| [extractors/README.md](../extractors/README.md) | Data extraction modules used by workflow |
-| [../README.md](../README.md) | Scripts directory overview |
-| [../../SKILL.md](../../SKILL.md) | System-spec-kit skill documentation |
-| [config/config.jsonc](../../config/config.jsonc) | Project-wide configuration |
+## Quick Verification
 
-### Related Modules
-
-| Module | Purpose |
-|--------|---------|
-| `renderers/` | Template population using extracted data |
-| `lib/` | Support libraries for embeddings, summarization |
-| `mcp_server/` | Vector database and search functionality |
-
----
-
-<!-- /ANCHOR:related -->
-
----
-
-## 9. 📊 TYPESCRIPT MIGRATION NOTES
-<!-- ANCHOR:typescript-migration-notes -->
-
-**Migration Completed**: 2026-02-07
-
-The core/ directory has been fully migrated to TypeScript:
-
-- **Source**: `core/*.ts` (TypeScript)
-- **Output**: `dist/core/*.js` + `.d.ts` (CommonJS + type definitions)
-- **Runtime**: All imports use compiled JavaScript from `dist/core/`
-- **Build**: `npm run build` from scripts/ directory compiles all TypeScript sources
-
-**Import Example**:
-```javascript
-// Runtime imports use dist/
-const { runWorkflow } = require('./dist/core/workflow');
+```bash
+node -e "const core=require('./.opencode/skill/system-spec-kit/scripts/dist/core'); console.log(Object.keys(core))"
 ```
-
----
-
-*Part of the system-spec-kit conversation memory and context preservation system.*
-<!-- /ANCHOR:typescript-migration-notes -->

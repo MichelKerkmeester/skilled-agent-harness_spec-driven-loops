@@ -8,7 +8,7 @@ import * as path from 'path';
 import * as fsSync from 'fs';
 
 // Internal modules
-import { CONFIG, findActiveSpecsDir, getSpecsDirectories } from '../core';
+import { CONFIG, findActiveSpecsDir, getSpecsDirectories, SPEC_FOLDER_PATTERN, SPEC_FOLDER_BASIC_PATTERN, findChildFolderSync } from '../core';
 import { runWorkflow } from '../core/workflow';
 import { loadCollectedData } from '../loaders';
 import { collectSessionData } from '../extractors/collect-session-data';
@@ -45,6 +45,11 @@ Examples:
   node generate-context.js /tmp/context-data.json .opencode/specs/001-feature/
   node generate-context.js specs/001-feature/
   node generate-context.js .opencode/specs/001-feature/
+
+Subfolder examples:
+  node generate-context.js 003-parent/121-child
+  node generate-context.js 121-child          (auto-searches all parents)
+  node generate-context.js specs/003-parent/121-child
 
 Output:
   Creates a memory file in <spec-folder>/memory/ with ANCHOR format
@@ -103,11 +108,32 @@ process.on('SIGINT', () => {
    3. SPEC FOLDER VALIDATION
 ------------------------------------------------------------------*/
 
-const SPEC_FOLDER_PATTERN: RegExp = /^\d{3}-[a-z][a-z0-9-]*$/;
-const SPEC_FOLDER_BASIC_PATTERN: RegExp = /^\d{3}-[a-zA-Z]/;
-
 function isValidSpecFolder(folderPath: string): SpecFolderValidation {
   const folderName = path.basename(folderPath);
+
+  // --- Subfolder support: parent/child format (e.g., "003-parent/121-child") ---
+  const normalizedInput = folderPath.replace(/\\/g, '/').replace(/\/+$/, '');
+  // Extract the trailing portion that might be "parent/child"
+  const trailingSegments = normalizedInput.split('/');
+  // Check if the last two segments both match the spec folder pattern
+  if (trailingSegments.length >= 2) {
+    const lastTwo = trailingSegments.slice(-2);
+    if (SPEC_FOLDER_PATTERN.test(lastTwo[0]) && SPEC_FOLDER_PATTERN.test(lastTwo[1])) {
+      // Both segments are valid spec folder names — valid nested spec folder
+      const hasSpecsParent = normalizedInput.includes('/specs/') ||
+                             normalizedInput.startsWith('specs/') ||
+                             normalizedInput.includes('/.opencode/specs/') ||
+                             normalizedInput.startsWith('.opencode/specs/');
+
+      if (!hasSpecsParent) {
+        return {
+          valid: true,
+          warning: `Spec folder not under specs/ or .opencode/specs/ path: ${folderPath}`
+        };
+      }
+      return { valid: true };
+    }
+  }
 
   if (!SPEC_FOLDER_PATTERN.test(folderName)) {
     if (/^\d{3}-/.test(folderName)) {
@@ -124,11 +150,10 @@ function isValidSpecFolder(folderPath: string): SpecFolderValidation {
     return { valid: false, reason: 'Invalid spec folder format. Expected: NNN-feature-name' };
   }
 
-  const normalizedPath = folderPath.replace(/\\/g, '/');
-  const hasSpecsParent = normalizedPath.includes('/specs/') ||
-                         normalizedPath.startsWith('specs/') ||
-                         normalizedPath.includes('/.opencode/specs/') ||
-                         normalizedPath.startsWith('.opencode/specs/');
+  const hasSpecsParent = normalizedInput.includes('/specs/') ||
+                         normalizedInput.startsWith('specs/') ||
+                         normalizedInput.includes('/.opencode/specs/') ||
+                         normalizedInput.startsWith('.opencode/specs/');
 
   if (!hasSpecsParent) {
     return {
@@ -150,6 +175,50 @@ function parseArguments(): void {
   if (!arg1) return;
 
   const folderName = path.basename(arg1);
+
+  // --- Subfolder support: detect nested parent/child spec paths ---
+  // Check if arg1 is a nested spec path (e.g., "003-parent/121-child",
+  // "specs/003-parent/121-child", ".opencode/specs/003-parent/121-child")
+  let resolvedNestedPath: string | null = null;
+  if (!arg1.endsWith('.json')) {
+    let cleaned = arg1;
+    // Strip known prefixes to get the relative portion
+    if (cleaned.startsWith('.opencode/specs/')) {
+      cleaned = cleaned.slice('.opencode/specs/'.length);
+    } else if (cleaned.startsWith('specs/')) {
+      cleaned = cleaned.slice('specs/'.length);
+    }
+    // Remove trailing slashes
+    cleaned = cleaned.replace(/\/+$/, '');
+
+    // Check if cleaned is "parent/child" format (exactly one separator, both segments valid)
+    const segments = cleaned.split('/');
+    if (segments.length === 2 && SPEC_FOLDER_PATTERN.test(segments[0]) && SPEC_FOLDER_PATTERN.test(segments[1])) {
+      // Try to resolve to an absolute path using known specs directories
+      for (const specsDir of getSpecsDirectories()) {
+        const candidate = path.join(specsDir, segments[0], segments[1]);
+        if (fsSync.existsSync(candidate)) {
+          resolvedNestedPath = candidate;
+          break;
+        }
+      }
+      // Even if path doesn't exist on disk yet, treat it as a spec folder reference
+      if (!resolvedNestedPath) {
+        const activeDir = findActiveSpecsDir();
+        if (activeDir) {
+          resolvedNestedPath = path.join(activeDir, segments[0], segments[1]);
+        }
+      }
+    }
+  }
+
+  if (resolvedNestedPath) {
+    CONFIG.SPEC_FOLDER_ARG = resolvedNestedPath;
+    CONFIG.DATA_FILE = null;
+    console.log('   Stateless mode: Nested spec folder provided directly');
+    return;
+  }
+
   const isSpecFolderPath: boolean = (
     arg1.startsWith('specs/') ||
     arg1.startsWith('.opencode/specs/') ||
@@ -177,6 +246,20 @@ function validateArguments(): void {
 
   if (validation.valid) return;
 
+  // --- Subfolder support: before failing, try to find the folder as a child ---
+  const inputBaseName = path.basename(CONFIG.SPEC_FOLDER_ARG);
+  if (SPEC_FOLDER_PATTERN.test(inputBaseName)) {
+    // Input looks like a valid spec folder name but wasn't found at top level.
+    // Try finding it as a child folder inside any parent.
+    const resolved = findChildFolderSync(inputBaseName);
+    if (resolved) {
+      console.log(`   Resolved child folder "${inputBaseName}" → ${resolved}`);
+      CONFIG.SPEC_FOLDER_ARG = resolved;
+      return;
+    }
+    // findChildFolder logs its own error for ambiguous matches
+  }
+
   console.error(`\nError: Invalid spec folder format: ${CONFIG.SPEC_FOLDER_ARG}`);
   console.error(`   Reason: ${validation.reason}`);
   console.error('Expected format: ###-feature-name (e.g., "122-skill-standardization")\n');
@@ -191,11 +274,35 @@ function validateArguments(): void {
         console.error('Did you mean:');
         matches.forEach((m) => console.error(`  - ${m}`));
       } else {
-        const allSpecs = available.filter((n) => SPEC_FOLDER_PATTERN.test(n) && !n.match(/^z_|archive/i))
-                                  .sort().reverse().slice(0, 5);
-        if (allSpecs.length) {
-          console.error('Available spec folders:');
-          allSpecs.forEach((f) => console.error(`  - ${f}`));
+        // --- Subfolder support: 2-level deep scan as fallback ---
+        let deepMatches: string[] = [];
+        const targetBase = path.basename(CONFIG.SPEC_FOLDER_ARG!);
+
+        for (const parentEntry of available) {
+          if (!SPEC_FOLDER_PATTERN.test(parentEntry)) continue;
+          const parentPath = path.join(specsDir, parentEntry);
+          try {
+            if (!fsSync.statSync(parentPath).isDirectory()) continue;
+            const children = fsSync.readdirSync(parentPath);
+            const childMatches = children.filter(
+              (c) => c.includes(targetBase) && SPEC_FOLDER_PATTERN.test(c)
+            );
+            for (const child of childMatches) {
+              deepMatches.push(`${parentEntry}/${child}`);
+            }
+          } catch { /* skip unreadable dirs */ }
+        }
+
+        if (deepMatches.length > 0) {
+          console.error('Did you mean (in subfolders):');
+          deepMatches.forEach((m) => console.error(`  - ${m}`));
+        } else {
+          const allSpecs = available.filter((n) => SPEC_FOLDER_PATTERN.test(n) && !n.match(/^z_|archive/i))
+                                    .sort().reverse().slice(0, 5);
+          if (allSpecs.length) {
+            console.error('Available spec folders:');
+            allSpecs.forEach((f) => console.error(`  - ${f}`));
+          }
         }
       }
     } catch (e: unknown) {
@@ -258,6 +365,4 @@ export {
   parseArguments,
   validateArguments,
   isValidSpecFolder,
-  SPEC_FOLDER_PATTERN,
-  SPEC_FOLDER_BASIC_PATTERN,
 };

@@ -1,6 +1,6 @@
 ---
 title: "Workflows Documentation"
-description: "Unified markdown and OpenCode component specialist providing document quality enforcement, content optimization, component creation workflows, ASCII flowcharts, and install guides"
+description: "Unified markdown and OpenCode component specialist providing document quality enforcement, content optimization, component creation workflows, ASCII flowcharts and install guides"
 trigger_phrases:
   - "documentation quality enforcement"
   - "opencode component creation workflow"
@@ -10,11 +10,9 @@ importance_tier: "normal"
 
 # Workflows Documentation
 
-> Unified markdown and OpenCode component specialist providing document quality enforcement, content optimization, component creation workflows, ASCII flowcharts, and install guides.
+> Unified markdown and OpenCode component specialist providing document quality enforcement, content optimization, component creation workflows, ASCII flowcharts and install guides.
 
 ---
-
-<!-- ANCHOR:table-of-contents -->
 
 - [1. 📖 OVERVIEW](#1--overview)
 - [2. 🚀 QUICK START](#2--quick-start)
@@ -25,18 +23,18 @@ importance_tier: "normal"
 - [7. 🛠️ TROUBLESHOOTING](#7--troubleshooting)
 - [8. 📚 RELATED](#8--related)
 
-<!-- /ANCHOR:table-of-contents -->
-
 ---
 
 ## 1. 📖 OVERVIEW
 <!-- ANCHOR:overview -->
 
-This skill is the central documentation engine for OpenCode projects. It operates in four modes: **Document Quality** (structure enforcement, DQI scoring, content optimization), **Component Creation** (skills, agents, commands with templates and validation), **Flowchart Creation** (ASCII diagrams for workflows and decision trees), and **Install Guide Creation** (phase-based setup documentation).
+This skill is the central documentation engine for OpenCode projects. It operates in four modes: **Document Quality** (structure enforcement, DQI scoring, content optimization), **Component Creation** (skills, agents, commands with templates and validation), **Flowchart Creation** (ASCII diagrams for workflows and decision trees) and **Install Guide Creation** (phase-based setup documentation).
 
 The architecture follows a script-assisted AI analysis model: Python scripts handle deterministic parsing and metrics extraction, while the AI handles quality judgment and recommendations. The core principle is **structure first, then content, then quality**.
 
-Use this skill when creating or improving markdown documentation, scaffolding new OpenCode components (skills, agents, commands), visualizing workflows as ASCII flowcharts, or writing installation guides. Do not use it for non-markdown files, simple typo fixes, or auto-generated API docs.
+All documentation output must follow **Human Voice Rules (HVR)**: no em dashes, no semicolons, no Oxford commas, no banned words (leverage, robust, seamless, etc.) and active voice throughout. See `readme_template.md` §9 for the full HVR ruleset.
+
+Use this skill when creating or improving markdown documentation, scaffolding new OpenCode components (skills, agents, commands), visualizing workflows as ASCII flowcharts or writing installation guides. Do not use it for non-markdown files or auto-generated API docs. Simple typo fixes also fall outside its scope.
 
 <!-- /ANCHOR:overview -->
 
@@ -83,7 +81,7 @@ workflows-documentation/
 │   │   ├── frontmatter_templates.md  # Frontmatter validation (11 types)
 │   │   ├── install_guide_template.md # 5-phase install guide template
 │   │   ├── llmstxt_templates.md      # llms.txt generation templates
-│   │   └── readme_template.md        # README structure (14 sections)
+│   │   └── readme_template.md        # README structure (15 sections + HVR)
 │   ├── flowcharts/                   # ASCII flowchart patterns (6 types)
 │   │   ├── simple_workflow.md        # Linear sequential
 │   │   ├── decision_tree_flow.md     # Branching logic
@@ -123,10 +121,11 @@ workflows-documentation/
 <!-- ANCHOR:features -->
 
 **Mode 1 - Document Quality:**
-- Document Quality Index (DQI) scoring on a 0-100 scale across structure, content, and style
+- Document Quality Index (DQI) scoring on a 0-100 scale across structure, content and style
 - Auto-detection of document types (README, SKILL, Knowledge, Command, Spec, Generic)
 - Safe auto-fixes for common violations (H2 case, separators, filenames)
 - Frontmatter validation for 11 document types
+- Human Voice Rules (HVR) enforcement for all documentation output
 
 **Mode 2 - Component Creation:**
 - Skill scaffolding via `init_skill.py` with 6-step workflow
@@ -135,7 +134,7 @@ workflows-documentation/
 - Packaging and validation via `package_skill.py`
 
 **Mode 3 - Flowchart Creation:**
-- 7 core ASCII patterns: linear, decision, parallel, nested, approval, loop, pipeline
+- 6 core ASCII patterns: linear, decision, parallel, nested, approval-loop and pipeline
 - Consistent box styles (process, decision diamond, terminal)
 - Validation via `validate_flowchart.sh`
 
@@ -168,12 +167,12 @@ Template rules are defined in `assets/template_rules.json`.
 ---
 
 ## 6. 💡 EXAMPLES
-<!-- ANCHOR:examples -->
+<!-- ANCHOR:usage-examples -->
 
 **Validate document quality:**
 ```bash
 python3 .opencode/skill/workflows-documentation/scripts/extract_structure.py path/to/doc.md
-# Returns JSON with DQI score, checklist results, and recommendations
+# Returns JSON with DQI score, checklist results and recommendations
 ```
 
 **Create a new skill:**
@@ -188,7 +187,7 @@ python3 .opencode/skill/workflows-documentation/scripts/validate_document.py REA
 # Exit 0 = pass, Exit 1 = warnings, Exit 2 = errors
 ```
 
-<!-- /ANCHOR:examples -->
+<!-- /ANCHOR:usage-examples -->
 
 ---
 
@@ -201,6 +200,7 @@ python3 .opencode/skill/workflows-documentation/scripts/validate_document.py REA
 | `validate_document.py` exit 2 | Blocking errors (missing frontmatter, wrong section order) | Fix critical violations before re-running |
 | `package_skill.py` fails | SKILL.md over 5k words or missing required sections | Move detail to `references/`, ensure all required sections present |
 | Missing H2 emojis flagged as error | Template-based docs require H2 emojis | Copy headers from templates rather than writing from memory |
+| HVR violations in output | Banned words, em dashes or semicolons in text | Review `readme_template.md` §9 for full HVR ruleset and fix violations |
 
 <!-- /ANCHOR:troubleshooting -->
 
@@ -211,7 +211,9 @@ python3 .opencode/skill/workflows-documentation/scripts/validate_document.py REA
 
 - **system-spec-kit** - Spec folder documentation structure and validation
 - **workflows-git** - Uses documentation quality for commit/PR descriptions
+- **workflows-code--opencode** - System code standards and cross-language checklists
 - **workflows-code--web-dev** - Code implementation lifecycle (pairs with documentation for verification)
+- **workflows-code--full-stack** - Multi-stack implementation lifecycle and stack-aware verification
 - [CommonMark specification](https://spec.commonmark.org/) - Markdown rendering standard
 - [llms.txt specification](https://llmstxt.org/) - LLM navigation format
 

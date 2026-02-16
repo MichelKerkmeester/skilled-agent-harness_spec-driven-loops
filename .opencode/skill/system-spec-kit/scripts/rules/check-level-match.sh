@@ -20,28 +20,82 @@ set -eo pipefail
 _level_extract_from_file() {
     local file="$1"
     if [[ -f "$file" ]]; then
-        # Look for various level declaration patterns
-        local level level_line
-        level_line=$(grep -E "^\- \*\*Level\*\*:" "$file" 2>/dev/null || true)
-        if [[ -n "$level_line" ]]; then
-            level=$(echo "$level_line" | head -1 | sed 's/.*Level.*: *//' | tr -d '[:space:]' | sed 's/\[.*\]//' | head -c 2)
-            if [[ -n "$level" ]]; then
-                echo "$level"
-                return 0
-            fi
+        local level=""
+
+        # Pattern 0: SPECKIT_LEVEL marker
+        level=$(grep -oE '<!-- SPECKIT_LEVEL: *[123]\+? *-->' "$file" 2>/dev/null | grep -oE '[123]\+?' | head -1 || true)
+
+        # Pattern 1: Metadata bullet format
+        if [[ -z "$level" ]]; then
+            level=$(grep -E '^\- \*\*Level\*\*:\s*[123]\+?' "$file" 2>/dev/null | grep -oE '[123]\+?' | head -1 || true)
         fi
 
-        # Alternative: look for Level in checklist type
-        level_line=$(grep -E "Level [0-9]" "$file" 2>/dev/null || true)
-        if [[ -n "$level_line" ]]; then
-            level=$(echo "$level_line" | head -1 | grep -oE "Level [0-9]+" | sed 's/Level //' | head -c 2)
-            if [[ -n "$level" ]]; then
-                echo "$level"
-                return 0
-            fi
+        # Pattern 2: Table format with bold
+        if [[ -z "$level" ]]; then
+            level=$(grep -E '^\|\s*\*\*Level\*\*\s*\|\s*[123]\+?\s*\|' "$file" 2>/dev/null | grep -oE '[123]\+?' | head -1 || true)
+        fi
+
+        # Pattern 3: Table format without bold
+        if [[ -z "$level" ]]; then
+            level=$(grep -E '^\|\s*Level\s*\|\s*[123]\+?\s*\|' "$file" 2>/dev/null | grep -oE '[123]\+?' | head -1 || true)
+        fi
+
+        # Pattern 4: YAML frontmatter
+        if [[ -z "$level" ]]; then
+            level=$(grep -E '^level:\s*[123]\+?' "$file" 2>/dev/null | grep -oE '[123]\+?' | head -1 || true)
+        fi
+
+        # Pattern 5: Anchored inline fallback
+        if [[ -z "$level" ]]; then
+            level=$(grep -E '^[Ll]evel[: ]+[123]\+?' "$file" 2>/dev/null | grep -oE '[123]\+?' | head -1 || true)
+        fi
+
+        if [[ -n "$level" ]]; then
+            echo "$level"
+            return 0
         fi
     fi
     echo ""
+}
+
+# Detect whether a file contains an explicit but invalid level declaration
+_level_has_invalid_declaration() {
+    local file="$1"
+    [[ -f "$file" ]] || return 1
+
+    local line=""
+
+    line=$(grep -E '<!--[[:space:]]*SPECKIT_LEVEL:' "$file" 2>/dev/null | head -1 || true)
+    if [[ -n "$line" ]] && ! echo "$line" | grep -qE '<!--[[:space:]]*SPECKIT_LEVEL:[[:space:]]*([123]\+?)[[:space:]]*-->'; then
+        return 0
+    fi
+
+    line=$(grep -E '^\- \*\*Level\*\*:' "$file" 2>/dev/null | head -1 || true)
+    if [[ -n "$line" ]] && ! echo "$line" | grep -qE '^\-[[:space:]]+\*\*Level\*\*:[[:space:]]*([123]\+?)[[:space:]]*$'; then
+        return 0
+    fi
+
+    line=$(grep -E '^\|\s*\*\*Level\*\*\s*\|' "$file" 2>/dev/null | head -1 || true)
+    if [[ -n "$line" ]] && ! echo "$line" | grep -qE '^\|[[:space:]]*\*\*Level\*\*[[:space:]]*\|[[:space:]]*([123]\+?)[[:space:]]*\|'; then
+        return 0
+    fi
+
+    line=$(grep -E '^\|\s*Level\s*\|' "$file" 2>/dev/null | head -1 || true)
+    if [[ -n "$line" ]] && ! echo "$line" | grep -qE '^\|[[:space:]]*Level[[:space:]]*\|[[:space:]]*([123]\+?)[[:space:]]*\|'; then
+        return 0
+    fi
+
+    line=$(grep -E '^level:' "$file" 2>/dev/null | head -1 || true)
+    if [[ -n "$line" ]] && ! echo "$line" | grep -qE '^level:[[:space:]]*([123]\+?)[[:space:]]*$'; then
+        return 0
+    fi
+
+    line=$(grep -E '^[Ll]evel(:[[:space:]]*|[[:space:]]+)[0-9]\+?[[:space:]]*$' "$file" 2>/dev/null | head -1 || true)
+    if [[ -n "$line" ]] && ! echo "$line" | grep -qE '^[Ll]evel[: ]+([123]\+?)[[:space:]]*$'; then
+        return 0
+    fi
+
+    return 1
 }
 
 # Check if file should declare level
@@ -50,9 +104,11 @@ _level_should_have() {
     local basename
     basename=$(basename "$file")
 
-    # These files should have level declarations
+    # These files should have level declarations.
+    # NOTE: plan.md is intentionally not required because many valid Level 1
+    # fixtures/specs omit a plan-level declaration while still being consistent.
     case "$basename" in
-        spec.md|plan.md|checklist.md)
+        spec.md|checklist.md)
             return 0
             ;;
         *)
@@ -84,6 +140,10 @@ run_check() {
         primary_level=$(_level_extract_from_file "$folder/spec.md")
     fi
 
+    if [[ -z "$primary_level" ]] && _level_has_invalid_declaration "$folder/spec.md"; then
+        errors+=("spec.md contains an invalid level declaration (expected 1, 2, 3, or 3+)")
+    fi
+
     if [[ -z "$primary_level" ]]; then
         # Use inferred level if spec.md doesn't declare one
         primary_level="$level"
@@ -103,7 +163,11 @@ run_check() {
                         errors+=("$basename declares Level $file_level, but spec.md declares Level $primary_level")
                     fi
                 else
-                    warnings+=("$basename does not declare a level (expected Level $primary_level)")
+                    if _level_has_invalid_declaration "$file"; then
+                        errors+=("$basename contains an invalid level declaration (expected 1, 2, 3, or 3+)")
+                    else
+                        warnings+=("$basename does not declare a level (expected Level $primary_level)")
+                    fi
                 fi
             fi
         fi

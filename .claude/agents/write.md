@@ -1,6 +1,6 @@
 ---
 name: write
-description: "Documentation generation and maintenance specialist"
+description: "Documentation generation and maintenance specialist using workflows-documentation skill for DQI-compliant, template-aligned output"
 tools:
   - Read
   - Write

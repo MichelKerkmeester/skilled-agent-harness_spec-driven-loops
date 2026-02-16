@@ -36,7 +36,7 @@ Umbrella specification coordinating documentation alignment across 11 source spe
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-Specs 014–016 (agent system) and 122–129 (spec-kit system) have been implemented across 200+ files, but their documentation artifacts contain stale counts (e.g., "4 sources" instead of 5), wrong version numbers, missing feature descriptions (upgrade-level, auto-populate, anchor tags), and outdated architecture references. No systematic audit has been performed to ensure cross-referential consistency.
+Specs 014–016 (agent system) and 122–129 (spec-kit system) have been implemented across 200+ files, but their documentation artifacts contain stale counts (e.g., "4 sources" instead of 5), wrong version numbers, missing feature descriptions (upgrade-level, auto-populate, anchor tags), and outdated architecture references. Additionally, spec 126 post-implementation hardening (MCP server import path fixes, memory-index specFolder boundary filtering, memory-save document_type/spec_level preservation, vector-index metadata updates, causal edge conflict-update semantics) is not documented in spec 130 context. No systematic audit has been performed to ensure cross-referential consistency.
 
 ### Purpose
 Produce a complete set of specification documents (7 subtask specs with checklists) that enable future agents to systematically audit and align all documentation artifacts to reflect the current post-implementation state.
@@ -48,9 +48,9 @@ Produce a complete set of specification documents (7 subtask specs with checklis
 ## 3. SCOPE
 
 ### In Scope
-- 7 subtask specification folders (spec.md + checklist.md + changes.md each)
+- 7 subtask specification folders (each with Level 3+ doc set: spec.md, plan.md, tasks.md, checklist.md, decision-record.md, implementation-summary.md, plus changes.md for implementers)
+- Root umbrella Level 3+ documentation (spec.md, plan.md, tasks.md, checklist.md, decision-record.md, implementation-summary.md, README.md)
 - Consolidated changelog reference covering all 11 source specs
-- Root umbrella spec and README
 - Dependency ordering and self-contained task specifications
 
 ### Out of Scope
@@ -59,34 +59,86 @@ Produce a complete set of specification documents (7 subtask specs with checklis
 - Test creation or modification
 - Git tagging or GitHub release execution
 
+### Task Breakdown & Dependency Chain
+
+The specification defines 7 tasks executed in dependency order:
+
+**Phase 1 - Parallel Audits (Tasks 01-04)**: These 4 tasks run in parallel with no inter-dependencies:
+- **Task 01 (README Audit)**: Audit 60+ README files across .opencode/ to reflect 5-source pipeline, 7 intent types, schema v13, document-type scoring, specs 122-129 features, and spec 126 MCP server hardening (import path fixes, specFolder filtering, document_type/spec_level preservation, vector metadata updates, causal edge stability)
+- **Task 02 (SKILL Audit)**: Verify system-spec-kit SKILL.md and 7 reference files document upgrade-level.sh, auto-populate workflow, check-placeholders.sh, anchor tag conventions, and spec 126 MCP server hardening details
+- **Task 03 (Command Audit)**: Verify 9 command .md files and YAML assets reflect spec 014 agent routing, spec 128 script references, and memory command 5-source pipeline descriptions
+- **Task 04 (Agent Audit)**: Ensure 24 agent configs across 3 platforms (OpenCode, Claude Code, Codex) match spec 016 requirements: Handover=Haiku, Review=model-agnostic, Codex-native frontmatter
+
+**Phase 2 - Changelog Creation (Task 05)**: Blocked by all Phase 1 tasks completing:
+- **Task 05 (Changelog Creation)**: Create 3 changelog entries (environment v2.1.0.0, spec-kit v2.2.19.0, agents v2.0.4.0) documenting alignment work identified in Tasks 01-04
+
+**Phase 3 - Root README Update (Task 06)**: Blocked by Task 05:
+- **Task 06 (Root README Update)**: Update root README.md statistics table, Memory Engine description (5 sources, 7 intents), Spec Kit feature list, and Agent System counts to reflect post-alignment state
+
+**Phase 4 - Release (Task 07)**: Blocked by Task 06:
+- **Task 07 (GitHub Release)**: Create git tag v2.1.0.0 and GitHub release with notes covering Agent Updates, Spec-Kit Updates, and Documentation Updates from all prior tasks
+
 ### Files to Create
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `130-*/README.md` | Create | Executive overview with dependency graph |
-| `130-*/spec.md` | Create | Level 3+ umbrella specification |
+| `130-*/README.md` | Create | Executive overview with dependency graph and task summaries |
+| `130-*/spec.md` | Create | Level 3+ umbrella specification with governance sections |
+| `130-*/plan.md` | Create | 7-task coordination approach |
+| `130-*/tasks.md` | Create | 19 tasks across 7 workstreams with dependencies |
+| `130-*/checklist.md` | Create | Root verification checklist with P0/P1/P2 items |
+| `130-*/decision-record.md` | Create | Umbrella coordination decisions |
+| `130-*/implementation-summary.md` | Create | Post-execution summary template |
 | `130-*/changelog-reference.md` | Create | Consolidated changelog from 11 source specs |
-| `130-*/task-01-*/spec.md` | Create | README audit specification |
-| `130-*/task-01-*/checklist.md` | Create | README audit checklist |
-| `130-*/task-01-*/changes.md` | Create | Empty template for implementer |
-| `130-*/task-02-*/spec.md` | Create | SKILL.md + references audit spec |
-| `130-*/task-02-*/checklist.md` | Create | SKILL.md audit checklist |
-| `130-*/task-02-*/changes.md` | Create | Empty template for implementer |
-| `130-*/task-03-*/spec.md` | Create | Command configs audit spec |
-| `130-*/task-03-*/checklist.md` | Create | Command configs audit checklist |
-| `130-*/task-03-*/changes.md` | Create | Empty template for implementer |
-| `130-*/task-04-*/spec.md` | Create | Agent configs audit spec |
-| `130-*/task-04-*/checklist.md` | Create | Agent configs audit checklist |
-| `130-*/task-04-*/changes.md` | Create | Empty template for implementer |
-| `130-*/task-05-*/spec.md` | Create | Changelog creation spec |
-| `130-*/task-05-*/checklist.md` | Create | Changelog creation checklist |
-| `130-*/task-05-*/changes.md` | Create | Empty template for implementer |
-| `130-*/task-06-*/spec.md` | Create | Root README update spec |
-| `130-*/task-06-*/checklist.md` | Create | Root README update checklist |
-| `130-*/task-06-*/changes.md` | Create | Empty template for implementer |
-| `130-*/task-07-*/spec.md` | Create | Tagged release spec |
-| `130-*/task-07-*/checklist.md` | Create | Tagged release checklist |
-| `130-*/task-07-*/changes.md` | Create | Empty template for implementer |
+| `130-*/task-01-*/spec.md` | Create | Level 3+ README audit specification |
+| `130-*/task-01-*/plan.md` | Create | README audit implementation approach |
+| `130-*/task-01-*/tasks.md` | Create | README audit task breakdown |
+| `130-*/task-01-*/checklist.md` | Create | Level 3+ README audit checklist |
+| `130-*/task-01-*/decision-record.md` | Create | README audit scope decisions |
+| `130-*/task-01-*/implementation-summary.md` | Create | Post-audit summary template |
+| `130-*/task-01-*/changes.md` | Create | Empty template for implementer to populate |
+| `130-*/task-02-*/spec.md` | Create | Level 3+ SKILL.md audit specification |
+| `130-*/task-02-*/plan.md` | Create | SKILL audit implementation approach |
+| `130-*/task-02-*/tasks.md` | Create | SKILL audit task breakdown |
+| `130-*/task-02-*/checklist.md` | Create | Level 3+ SKILL audit checklist |
+| `130-*/task-02-*/decision-record.md` | Create | SKILL audit criteria decisions |
+| `130-*/task-02-*/implementation-summary.md` | Create | Post-audit summary template |
+| `130-*/task-02-*/changes.md` | Create | Empty template for implementer to populate |
+| `130-*/task-03-*/spec.md` | Create | Level 3+ command configs audit specification |
+| `130-*/task-03-*/plan.md` | Create | Command audit implementation approach |
+| `130-*/task-03-*/tasks.md` | Create | Command audit task breakdown |
+| `130-*/task-03-*/checklist.md` | Create | Level 3+ command audit checklist |
+| `130-*/task-03-*/decision-record.md` | Create | Command scope decisions |
+| `130-*/task-03-*/implementation-summary.md` | Create | Post-audit summary template |
+| `130-*/task-03-*/changes.md` | Create | Empty template for implementer to populate |
+| `130-*/task-04-*/spec.md` | Create | Level 3+ agent configs audit specification |
+| `130-*/task-04-*/plan.md` | Create | Agent audit implementation approach |
+| `130-*/task-04-*/tasks.md` | Create | Agent audit task breakdown |
+| `130-*/task-04-*/checklist.md` | Create | Level 3+ agent audit checklist |
+| `130-*/task-04-*/decision-record.md` | Create | Platform scope decisions |
+| `130-*/task-04-*/implementation-summary.md` | Create | Post-audit summary template |
+| `130-*/task-04-*/changes.md` | Create | Empty template for implementer to populate |
+| `130-*/task-05-*/spec.md` | Create | Level 3+ changelog creation specification |
+| `130-*/task-05-*/plan.md` | Create | Changelog implementation approach |
+| `130-*/task-05-*/tasks.md` | Create | Changelog task breakdown |
+| `130-*/task-05-*/checklist.md` | Create | Level 3+ changelog checklist |
+| `130-*/task-05-*/decision-record.md` | Create | Version numbering decisions |
+| `130-*/task-05-*/implementation-summary.md` | Create | Post-changelog summary template |
+| `130-*/task-05-*/changes.md` | Create | Empty template for implementer to populate |
+| `130-*/task-06-*/spec.md` | Create | Level 3+ root README update specification |
+| `130-*/task-06-*/plan.md` | Create | README update implementation approach |
+| `130-*/task-06-*/tasks.md` | Create | README update task breakdown |
+| `130-*/task-06-*/checklist.md` | Create | Level 3+ README update checklist |
+| `130-*/task-06-*/decision-record.md` | Create | Changelog structure decisions |
+| `130-*/task-06-*/implementation-summary.md` | Create | Post-update summary template |
+| `130-*/task-06-*/changes.md` | Create | Empty template for implementer to populate |
+| `130-*/task-07-*/spec.md` | Create | Level 3+ release specification |
+| `130-*/task-07-*/plan.md` | Create | Release implementation approach |
+| `130-*/task-07-*/tasks.md` | Create | Release task breakdown |
+| `130-*/task-07-*/checklist.md` | Create | Level 3+ release checklist |
+| `130-*/task-07-*/decision-record.md` | Create | Version strategy decisions |
+| `130-*/task-07-*/implementation-summary.md` | Create | Post-release summary template |
+| `130-*/task-07-*/changes.md` | Create | Empty template for implementer to populate |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -145,7 +197,7 @@ Produce a complete set of specification documents (7 subtask specs with checklis
 
 ### Documentation Quality
 - **NFR-D01**: All spec documents follow SpecKit template conventions
-- **NFR-D02**: No placeholder text (`[placeholder]`, `[TODO]`) in any delivered file
+- **NFR-D02**: No unfilled placeholders (like PLACEHOLDER or TODO in brackets) in any delivered file
 
 ### Self-Containment
 - **NFR-S01**: Each task spec provides enough context for an agent to execute without reading other task specs
@@ -208,15 +260,52 @@ Produce a complete set of specification documents (7 subtask specs with checklis
 **As a** maintainer, **I want** spec documents that define exactly what to audit in each documentation artifact, **so that** agents can execute alignment work systematically without ad-hoc decisions.
 
 **Acceptance Criteria**:
-1. Given a task spec, When an agent reads it, Then the agent can identify every file to audit and every criterion to check
-2. Given all 7 task specs, When executed in dependency order, Then all documentation artifacts are aligned to post-implementation state
+1. **Given** a task spec, **When** an agent reads it, **Then** the agent can identify every file to audit and every criterion to check
+2. **Given** all 7 task specs, **When** executed in dependency order, **Then** all documentation artifacts are aligned to post-implementation state
 
 ### US-002: Changelog Consolidation (Priority: P1)
 
 **As a** maintainer, **I want** a single consolidated changelog reference, **so that** I can verify version numbers and feature coverage across all 3 tracks without opening 11 individual changelogs.
 
 **Acceptance Criteria**:
-1. Given changelog-reference.md, When I look up any source spec, Then I find its version number, date, file count, and key changes
+1. **Given** changelog-reference.md, **When** I look up any source spec, **Then** I find its version number, date, file count, and key changes
+2. **Given** all 3 track changelogs, **When** I compare version numbers, **Then** cross-track references are consistent and no spec is missing
+
+### US-003: Self-Contained Task Specifications (Priority: P0)
+
+**As an** agent executor, **I want** each task spec to contain all context needed for execution, **so that** I don't need to read sibling specs or external documentation mid-task.
+
+**Acceptance Criteria**:
+1. **Given** task-01 spec.md, **When** I read the scope section, **Then** all 60+ README paths are explicitly listed
+2. **Given** task-02 spec.md, **When** I start audit work, **Then** the spec defines every criterion without referencing external docs
+3. **Given** any task spec, **When** checking dependencies, **Then** blocked-by fields match the root dependency graph
+
+### US-004: Cross-Reference Consistency (Priority: P1)
+
+**As a** maintainer, **I want** dependency graphs consistent across all documents, **so that** task ordering is unambiguous and agents follow the correct execution sequence.
+
+**Acceptance Criteria**:
+1. **Given** README dependency graph, **When** I compare to spec.md section 3, **Then** phase ordering matches exactly
+2. **Given** task specs blocked-by fields, **When** I trace dependencies, **Then** no circular dependencies exist
+3. **Given** root tasks.md, **When** I count task dependencies, **Then** sum matches individual task spec blocked-by counts
+
+### US-005: Quality Gate Enforcement (Priority: P1)
+
+**As a** maintainer, **I want** explicit P0/P1/P2 priority markings in all checklists, **so that** agents understand which items block completion and which can be deferred.
+
+**Acceptance Criteria**:
+1. **Given** root checklist.md, **When** I scan priority tags, **Then** all 74 items have [P0], [P1], or [P2] markers
+2. **Given** task-01 checklist.md, **When** agent claims completion, **Then** all P0 items are verified with evidence
+3. **Given** any P1 item uncompleted, **When** claiming done, **Then** user approval or completion is documented
+
+### US-006: Version Traceability (Priority: P1)
+
+**As a** release manager, **I want** version numbers traceable from source specs through changelogs to root README, **so that** GitHub release notes accurately reflect all implemented features.
+
+**Acceptance Criteria**:
+1. **Given** changelog-reference.md version entries, **When** I check source spec changelogs, **Then** all version numbers match
+2. **Given** task-05 changelog creation output, **When** I verify against task-06 root README update, **Then** statistics reflect post-alignment counts
+3. **Given** task-07 GitHub release notes, **When** I trace features back to source specs, **Then** all 11 specs (014-016, 122-129) are represented
 <!-- /ANCHOR:user-stories -->
 
 ---

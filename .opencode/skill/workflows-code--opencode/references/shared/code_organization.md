@@ -504,6 +504,7 @@ scripts/
 ├── core/                       # Core script logic
 │   ├── index.ts                # Barrel exports
 │   ├── config.ts               # Script configuration
+│   ├── subfolder-utils.ts      # Spec folder pattern matching and child resolution
 │   └── workflow.ts             # Workflow orchestration
 ├── extractors/                 # Data extractors
 │   ├── index.ts                # Barrel exports

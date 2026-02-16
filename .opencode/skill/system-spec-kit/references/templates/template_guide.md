@@ -15,10 +15,12 @@ Guide to template selection, copying, adaptation, and quality standards.
 
 ```
 Level 1 (Baseline):     spec.md + plan.md + tasks.md + implementation-summary.md
-                              ↓
+                               ↓
 Level 2 (Verification): Level 1 + checklist.md
-                              ↓
+                               ↓
 Level 3 (Full):         Level 2 + decision-record.md + optional research.md
+                               ↓
+Level 3+ (Extended):    Level 3 + governance/AI protocol content
 ```
 
 ### Core Principles
@@ -200,6 +202,34 @@ cp .opencode/skill/system-spec-kit/templates/research.md specs/###-name/research
 
 ---
 
+### Level 3+: Extended Governance (Complexity score: 80-100)
+
+**Required Templates:** Same file set as Level 3, using `templates/level_3+/`
+
+**Copy commands:**
+```bash
+cp .opencode/skill/system-spec-kit/templates/level_3+/spec.md specs/###-name/spec.md
+cp .opencode/skill/system-spec-kit/templates/level_3+/plan.md specs/###-name/plan.md
+cp .opencode/skill/system-spec-kit/templates/level_3+/tasks.md specs/###-name/tasks.md
+cp .opencode/skill/system-spec-kit/templates/level_3+/implementation-summary.md specs/###-name/implementation-summary.md
+cp .opencode/skill/system-spec-kit/templates/level_3+/checklist.md specs/###-name/checklist.md
+cp .opencode/skill/system-spec-kit/templates/level_3+/decision-record.md specs/###-name/decision-record-[topic].md
+```
+
+**When to use:**
+- Multi-agent or multi-workstream coordination
+- High-risk architectural or governance-heavy work
+- Enterprise/compliance requirements and formal sign-off flows
+
+**Level 3+ expectations:**
+- AI execution protocol sections remain intact and project-specific
+- Extended checklist includes P0/P1/P2 gating and sign-off sections
+- Governance, approval, and stakeholder communication sections are populated
+
+**Enforcement:** Hard block if required Level 3 files are missing; quality gates rely on checklist completion and validation scripts
+
+---
+
 ## 3. 📐 TEMPLATE STRUCTURE STANDARDS
 
 ### 1. Numbered H2 Sections
@@ -304,7 +334,7 @@ cp .opencode/skill/system-spec-kit/templates/level_N/[template].md specs/###-nam
 **Step 2: Fill Metadata Block**
 - Set created date (today)
 - Set status (usually "draft" or "active")
-- Set level (0/1/2/3)
+- Set level (1/2/3/3+)
 - Set estimated LOC
 - Add other metadata as needed
 
@@ -674,7 +704,7 @@ node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js spe
 5. **Use descriptive filenames** - `decision-record-[topic].md`, not `decision-record-final.md`
 6. **Keep sections relevant** - State "N/A" instead of deleting sections
 7. **Link sibling documents** - Cross-reference spec.md ↔ plan.md ↔ tasks.md
-8. **Document level changes** - Note upgrades/downgrades in changelog
+8. **Document level changes** - Use `upgrade-level.sh` for level upgrades (recommended), then auto-populate placeholder content. Note changes in changelog
 9. **Keep history immutable** - Append to history, don't rewrite
 10. **Validate before coding** - Complete pre-implementation checklist first
 
@@ -694,6 +724,30 @@ Before presenting documentation to user, verify:
 - [ ] Descriptive filenames used (for decision records)
 
 **If ANY unchecked → Fix before presenting to user**
+
+---
+
+### Script-Assisted Level Upgrades
+
+When scope grows during implementation and a level upgrade is needed, use `upgrade-level.sh` instead of manually copying templates:
+
+```bash
+# Upgrade spec folder to a higher level (auto-detects current level)
+bash upgrade-level.sh specs/042-feature/ --to 2
+
+# Preview changes without modifying files
+bash upgrade-level.sh specs/042-feature/ --to 3 --dry-run
+```
+
+The script handles structural changes (new files, addendum injection, backups). After it runs, the AI agent **must** auto-populate all `[placeholder]` text in newly injected sections by reading existing spec context and deriving appropriate content.
+
+Verify placeholder cleanup before completion:
+
+```bash
+.opencode/skill/system-spec-kit/scripts/spec/check-placeholders.sh specs/042-feature/
+```
+
+For manual upgrades (fallback), copy the required templates from the target level folder and adapt them following the standard adaptation process above.
 
 ---
 
@@ -830,7 +884,7 @@ spec.md and plan.md exist but don't reference each other
 
 There are **two distinct sub-folder systems**:
 
-### 9.1 Automatic Sub-Folder Versioning (Workflow-Triggered)
+### 10.1 Automatic Sub-Folder Versioning (Workflow-Triggered)
 
 **Triggered when:** User selects Option A to reuse existing spec folder with root-level content.
 
@@ -858,7 +912,7 @@ specs/122-skill-standardization/
 
 **See:** `system-spec-kit SKILL.md` Section 3 (Sub-Folder Versioning) for full versioning workflow.
 
-### 9.2 Manual Sub-Folders for Organization
+### 10.2 Manual Sub-Folders for Organization
 
 Create sub-folders **manually** within spec folders when:
 - **Complex umbrella projects** require organizing multiple related work streams

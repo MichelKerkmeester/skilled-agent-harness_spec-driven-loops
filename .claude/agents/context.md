@@ -1,6 +1,6 @@
 ---
 name: context
-description: "Context retrieval, analysis, and exploration dispatch agent"
+description: "Production context agent with comprehensive retrieval, memory-first exploration, structured Context Packages, and analysis dispatch"
 tools:
   - Read
   - Grep

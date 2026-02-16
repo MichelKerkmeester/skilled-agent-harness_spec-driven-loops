@@ -1,6 +1,6 @@
 ---
 title: "workflows-code--opencode"
-description: "Multi-language code standards for OpenCode system code (JavaScript, TypeScript, Python, Shell, JSON/JSONC) with language detection routing, universal patterns, and quality checklists"
+description: "Multi-language code standards for OpenCode system code (JavaScript, TypeScript, Python, Shell, JSON/JSONC) with language detection routing, universal patterns and quality checklists"
 trigger_phrases:
   - "opencode system code standards"
   - "multi-language code quality"
@@ -10,30 +10,29 @@ importance_tier: "normal"
 
 # workflows-code--opencode
 
-> Multi-language code standards for OpenCode system code (JavaScript, TypeScript, Python, Shell, JSON/JSONC) with language detection routing, universal patterns, and quality checklists.
+> Multi-language code standards for OpenCode system code (JavaScript, TypeScript, Python, Shell and JSON/JSONC) with language detection routing, universal patterns and quality checklists.
 
 ---
 
 #### TABLE OF CONTENTS
 
-1. [📖 OVERVIEW](#1--overview)
-2. [🚀 QUICK START](#2--quick-start)
-3. [📁 STRUCTURE](#3--structure)
-4. [⚡ FEATURES](#4--features)
-5. [⚙️ CONFIGURATION](#5--configuration)
-6. [💡 EXAMPLES](#6--examples)
-7. [🛠️ TROUBLESHOOTING](#7--troubleshooting)
-8. [📚 RELATED](#8--related)
+1. [OVERVIEW](#1--overview)
+2. [QUICK START](#2--quick-start)
+3. [STRUCTURE](#3--structure)
+4. [FEATURES](#4--features)
+5. [CONFIGURATION](#5--configuration)
+6. [EXAMPLES](#6--examples)
+7. [TROUBLESHOOTING](#7--troubleshooting)
+8. [RELATED](#8--related)
 
 ---
 
+<!-- ANCHOR:overview -->
 ## 1. 📖 OVERVIEW
 
-<!-- ANCHOR:overview -->
+This skill enforces consistent code standards across all languages used in the OpenCode system: JavaScript, TypeScript, Python, Shell and JSON/JSONC. It provides evidence-based patterns extracted from the actual OpenCode codebase with `file:line` citations, not theoretical guidelines.
 
-This skill enforces consistent code standards across all languages used in the OpenCode system: JavaScript, TypeScript, Python, Shell, and JSON/JSONC. It provides evidence-based patterns extracted from the actual OpenCode codebase with `file:line` citations, not theoretical guidelines.
-
-The skill uses a smart routing system that detects the target language via file extension or keyword matching, then loads only the relevant references. Shared patterns (naming, commenting, file organization) load on every invocation, while language-specific style guides and quality standards load conditionally.
+The skill uses a smart routing system that detects the target language via file extension or keyword matching, then loads only the relevant references. Shared patterns (naming, commenting and file organization) load on every invocation. Language-specific style guides and quality standards load conditionally.
 
 **Core Principle**: Consistency within language + Clarity across languages = maintainable system code.
 
@@ -41,11 +40,10 @@ The skill uses a smart routing system that detects the target language via file 
 
 ---
 
+<!-- ANCHOR:quick-start -->
 ## 2. 🚀 QUICK START
 
-<!-- ANCHOR:quick-start -->
-
-This skill activates automatically via Gate 2 (`skill_advisor.py`) when you're working on OpenCode system code. No manual invocation is needed for most tasks.
+This skill activates automatically via Gate 2 (`skill_advisor.py`) when you work on OpenCode system code. No manual invocation is needed for most tasks.
 
 **Typical flow:**
 1. Skill detects the language from the file extension or task keywords
@@ -53,15 +51,14 @@ This skill activates automatically via Gate 2 (`skill_advisor.py`) when you're w
 3. Language-specific style guide and quality standards load conditionally
 4. Checklists load on demand for validation passes
 
-**Manual invocation:** Load the skill when writing or reviewing code in `.opencode/`, MCP servers, or system scripts.
+**Manual invocation:** Load the skill when writing or reviewing code in `.opencode/`, MCP servers or system scripts.
 
 <!-- /ANCHOR:quick-start -->
 
 ---
 
-## 3. 📁 STRUCTURE
-
 <!-- ANCHOR:structure -->
+## 3. 📁 STRUCTURE
 
 ```
 .opencode/skill/workflows-code--opencode/
@@ -104,26 +101,24 @@ This skill activates automatically via Gate 2 (`skill_advisor.py`) when you're w
 
 ---
 
+<!-- ANCHOR:features -->
 ## 4. ⚡ FEATURES
 
-<!-- ANCHOR:features -->
-
-- **Smart language detection** -- Routes to the correct standards via file extension or keyword matching across 5 languages
-- **Three-tier resource loading** -- ALWAYS (shared patterns), CONDITIONAL (language-specific), ON_DEMAND (checklists)
-- **Evidence-based patterns** -- All standards are extracted from real OpenCode codebase files, not theoretical guidelines
-- **File header templates** -- Language-specific box-drawing headers for JavaScript, TypeScript, Python, Shell, and JSONC
-- **Naming convention matrix** -- Complete naming rules per language (functions, constants, classes, interfaces, types, enums, generics)
-- **Quality checklists** -- P0/P1/P2 prioritized validation for each language
-- **WHY-not-WHAT commenting** -- Enforces meaningful comments with reference traceability (T###, BUG-###, REQ-###)
-- **Error handling patterns** -- Guard clauses, try-catch, typed exceptions, and early-return tuples per language
+- **Smart language detection**: Routes to the correct standards via file extension or keyword matching across 5 languages
+- **Three-tier resource loading**: ALWAYS (shared patterns), CONDITIONAL (language-specific), ON_DEMAND (checklists)
+- **Evidence-based patterns**: All standards are extracted from real OpenCode codebase files, not theoretical guidelines
+- **File header templates**: Language-specific box-drawing headers for JavaScript, TypeScript, Python, Shell and JSONC
+- **Naming convention matrix**: Complete naming rules per language (functions, constants, classes, interfaces, types and enums)
+- **Quality checklists**: P0/P1/P2 prioritized validation for each language
+- **WHY-not-WHAT commenting**: Enforces meaningful comments with reference traceability (T###, BUG-###, REQ-###)
+- **Error handling patterns**: Guard clauses, try-catch, typed exceptions and early-return tuples per language
 
 <!-- /ANCHOR:features -->
 
 ---
 
-## 5. ⚙️ CONFIGURATION
-
 <!-- ANCHOR:configuration -->
+## 5. ⚙️ CONFIGURATION
 
 No configuration files are required. The skill self-configures through language detection.
 
@@ -137,19 +132,18 @@ No configuration files are required. The skill self-configures through language 
 
 **Priority levels for quality gates:**
 
-| Level | Handling                | Examples                          |
-| ----- | ----------------------- | --------------------------------- |
-| P0    | HARD BLOCKER -- must fix | File header, no commented code    |
-| P1    | Required OR skip w/approval | Naming, error handling        |
-| P2    | Can defer               | Reference comments, import order  |
+| Level | Handling                    | Examples                          |
+| ----- | --------------------------- | --------------------------------- |
+| P0    | HARD BLOCKER, must fix      | File header, no commented code    |
+| P1    | Required OR skip w/approval | Naming, error handling            |
+| P2    | Can defer                   | Reference comments, import order  |
 
 <!-- /ANCHOR:configuration -->
 
 ---
 
+<!-- ANCHOR:usage-examples -->
 ## 6. 💡 EXAMPLES
-
-<!-- ANCHOR:examples -->
 
 **Language detection keywords:**
 
@@ -170,13 +164,12 @@ No configuration files are required. The skill self-configures through language 
 | Classes   | `PascalCase`  | `PascalCase`  | N/A           | N/A         |
 | Variables | `camelCase`   | `snake_case`  | `lower_snake` | `camelCase` |
 
-<!-- /ANCHOR:examples -->
+<!-- /ANCHOR:usage-examples -->
 
 ---
 
-## 7. 🛠️ TROUBLESHOOTING
-
 <!-- ANCHOR:troubleshooting -->
+## 7. 🛠️ TROUBLESHOOTING
 
 | Issue                          | Cause                            | Fix                                              |
 | ------------------------------ | -------------------------------- | ------------------------------------------------ |
@@ -186,17 +179,16 @@ No configuration files are required. The skill self-configures through language 
 | Skill loads but no references  | Language not in supported set    | Check supported: JS, TS, Python, Shell, JSON/JSONC|
 
 **Escalation triggers:**
-- Pattern conflicts with existing code -- prefer consistency
-- Language detection is ambiguous -- ask user to clarify
-- Security-sensitive code -- require explicit review
+- Pattern conflicts with existing code. Prefer consistency.
+- Language detection is ambiguous. Ask user to clarify.
+- Security-sensitive code. Require explicit review.
 
 <!-- /ANCHOR:troubleshooting -->
 
 ---
 
-## 8. 📚 RELATED
-
 <!-- ANCHOR:related -->
+## 8. 📚 RELATED
 
 **Related skills:**
 
@@ -204,10 +196,11 @@ No configuration files are required. The skill self-configures through language 
 | ----------------------------- | ------------------------------------------------- |
 | `workflows-code--web-dev`     | Web/frontend code (DOM, CSS, browser testing)     |
 | `workflows-code--full-stack`  | Multi-stack projects (Go, React, Swift, etc.)     |
+| `mcp-code-mode`               | TypeScript orchestration for external MCP tools    |
 | `workflows-documentation`     | Markdown docs, skill creation, DQI validation     |
 | `system-spec-kit`             | Spec folders, memory, context preservation        |
 | `workflows-git`               | Git workflows, commits, PR creation               |
 
-**Key distinction:** This skill covers system/backend code standards only. For frontend/browser work, use `workflows-code--web-dev`. For multi-stack projects with Go, React, or Swift, use `workflows-code--full-stack`.
+**Key distinction:** This skill covers system/backend code standards only. For frontend/browser work, use `workflows-code--web-dev`. For multi-stack projects with Go, React or Swift, use `workflows-code--full-stack`.
 
 <!-- /ANCHOR:related -->

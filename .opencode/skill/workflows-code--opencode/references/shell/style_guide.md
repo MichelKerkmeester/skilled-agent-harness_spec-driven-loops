@@ -19,7 +19,7 @@ Defines consistent styling rules for Bash scripts to ensure reliability, readabi
 
 Applies to all shell files in:
 - `.opencode/skill/*/scripts/` - Skill automation scripts
-- `.opencode/scripts/` - Project-level utilities
+- `.opencode/agent/scripts/` - Agent provider scripts
 - `scripts/` - Build and deployment scripts
 
 ### Key Sources

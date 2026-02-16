@@ -128,7 +128,7 @@ When `:with-research` flag present or research_triggered == TRUE:
 | 10 | Development | code changes + tasks marked `[x]` | **ALL tasks in tasks.md marked complete** |
 | 11 | Checklist Verify | All P0/P1 verified | **Level 2+ ONLY - BLOCKING** |
 | 11.5 | **POSTFLIGHT Capture** | postflight_delta | Learning delta calculated |
-| 12 | Completion | `implementation-summary.md` | **Summary file created (MANDATORY L2+)** |
+| 12 | Completion | `implementation-summary.md` | **Summary file created (MANDATORY Level 1+)** |
 | 13 | Save Context | `memory/*.md` | Context preserved |
 | 14 | Handover Check | User prompted | Handover offered before completion |
 
@@ -138,11 +138,18 @@ When `:with-research` flag present or research_triggered == TRUE:
 
 **Step 10 (Development):** Load tasks.md, execute in order. Mark each task `[x]` when completed. MUST NOT claim "development complete" until ALL tasks marked `[x]`. Test code changes before marking complete.
 
+**Step 10 - Scope Growth / Level Upgrade:** If scope grows during Step 10, run `upgrade-level.sh` to add higher-level templates. After the script completes, the AI agent **must** auto-populate all injected `[placeholder]` text:
+1. Read all existing spec files (spec.md, plan.md, tasks.md, implementation-summary.md) for context
+2. Identify all `[placeholder]` patterns in newly injected template sections
+3. Replace each placeholder with content derived from existing spec context
+4. Run `check-placeholders.sh` on the spec folder to verify zero placeholders remain
+If source context is insufficient for a section, write "N/A - insufficient source context" rather than leaving placeholders or fabricating content.
+
 **Step 11 (Checklist Verification - Level 2+ BLOCKING):** Load checklist.md. Verify ALL P0 items marked `[x]` with evidence. P1: marked `[x]` with evidence OR documented user approval to defer. P2: may defer without approval. Evidence format: `[EVIDENCE: file.js:45-67 - implementation verified]`. HARD BLOCK: Cannot proceed to Step 12 if any P0 items unchecked.
 
 **Step 11.5 (POSTFLIGHT):** Execute after Step 11, before Step 12. Skip if: quick fix (<10 LOC) or no PREFLIGHT at Step 9.5. Call `task_postflight()` with: specFolder, taskId, knowledgeScore, uncertaintyScore, contextScore, gapsClosed, newGapsDiscovered. Learning Index = (Knowledge Delta x 0.4) + (Uncertainty Reduction x 0.35) + (Context Improvement x 0.25).
 
-**Step 12 (Completion - MANDATORY L2+):** Validation runs automatically (exit 0=pass, 1=warnings, 2=errors must fix). Verify all tasks show `[x]`. Create implementation-summary.md with: files modified/created, verification steps, deviations from plan, testing results.
+**Step 12 (Completion - MANDATORY Level 1+):** Validation runs automatically (exit 0=pass, 1=warnings, 2=errors must fix). Verify all tasks show `[x]`. Create implementation-summary.md with: files modified/created, verification steps, deviations from plan, testing results.
 
 **Step 13 (Save Context):** Use `node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js [spec-folder-path]`. DO NOT use Write/Edit tools to create memory files directly.
 
@@ -251,10 +258,10 @@ Steps 3 (Specification), 6 (Planning + auto 4-agent), 8 (Analysis), 10 (Developm
 
 | Step/Phase | Agent | Fallback | Purpose |
 |------------|-------|----------|---------|
-| Step 6 (Exploration) | `@context` | `general-purpose` | 4-agent parallel codebase exploration |
+| Step 6 (Exploration) | `@context` | `general` | 4-agent parallel codebase exploration |
 | Phase 3 (Research) | `@research` | `general` | 9-step research workflow (if triggered) |
 | Step 3 (Specification) | `@speckit` | `general` | Template-first spec folder creation |
-| Step 11 (Verification) | `@review` | `general` | Pre-Commit code review (Mode 2) + P0/P1 gate validation (Mode 4, blocking) |
+| Step 12 (Completion Verification) | `@review` | `general` | Pre-Commit code review (Mode 2) + P0/P1 gate validation (Mode 4, blocking; model-agnostic) |
 | Step 10 (Development, 3+ failures) | `@debug` | `general` | Fresh-perspective debugging (auto if :auto-debug) |
 | Step 14 (Handover Check) | `@handover` | `general` | Session continuation document creation |
 
@@ -263,7 +270,7 @@ Steps 3 (Specification), 6 (Planning + auto 4-agent), 8 (Analysis), 10 (Developm
 - **Step 6**: 4 parallel `@context` agents (`subagent_type: "context"`) -- architecture, features, dependencies, tests <!-- REFERENCE: Activated by YAML workflow step, not directly -->
 - **Phase 3**: When `:with-research` OR confidence < 60%, dispatch `@research` <!-- REFERENCE: Activated by YAML workflow step, not directly -->
 - **Step 3**: Dispatch `@speckit` for template-first spec creation <!-- REFERENCE: Activated by YAML workflow step, not directly -->
-- **Step 11**: Dispatch `@review` with `blocking: true` -- P0 failures halt workflow <!-- REFERENCE: Activated by YAML workflow step, not directly -->
+- **Step 12**: Dispatch `@review` with `blocking: true` -- P0 failures halt workflow <!-- REFERENCE: Activated by YAML workflow step, not directly -->
 
 > **📋 REFERENCE ONLY** — The dispatch templates below are used by YAML workflow steps. Do not execute them directly from this document.
 
@@ -287,8 +294,8 @@ The review agent Phase B uses `blocking: true`: P0 FAIL = workflow CANNOT procee
 
 ### Fallback Behavior
 
-When specialized agent unavailable: warning displayed, workflow continues with `subagent_type: "general"` (OpenCode) or `"general-purpose"` (Claude Code). For the review agent fallback: blocking behavior PRESERVED.
-When `@debug` unavailable: Falls back to `subagent_type: "general-purpose"`, same 4-phase methodology attempted.
+When specialized agent unavailable: warning displayed, workflow continues with `subagent_type: "general"`. For the review agent fallback: blocking behavior PRESERVED.
+When `@debug` unavailable: Falls back to `subagent_type: "general"`, same 4-phase methodology attempted.
 When `@handover` unavailable: Falls back to `subagent_type: "general"`, handover.md creation with less template validation.
 
 ---

@@ -1,5 +1,7 @@
-<!-- SPECKIT_LEVEL: 3 -->
+<!-- SPECKIT_LEVEL: 3+ -->
 # Task 03 — Command Configs Audit
+
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify + level3-arch + level3plus-govern | v2.2 -->
 
 <!-- ANCHOR:metadata -->
 ## Metadata
@@ -8,7 +10,7 @@
 |-------|-------|
 | **Parent Spec** | 130 — Memory Overhaul & Agent Upgrade Release |
 | **Task** | 03 of 07 |
-| **Level** | 3 |
+| **Level** | 3+ |
 | **Priority** | P1 |
 | **Status** | Draft |
 | **Created** | 2026-02-16 |
@@ -122,6 +124,55 @@ The implementer should populate `changes.md` with:
 5. All 4 memory command .md files audited
 6. changes.md has no placeholder text
 <!-- /ANCHOR:acceptance -->
+
+---
+
+<!-- ANCHOR:approval-workflow -->
+## Approval Workflow
+
+| Checkpoint | Approver | Status | Date |
+|------------|----------|--------|------|
+| Audit Plan Review | Spec Owner | Approved | 2026-02-16 |
+| Changes Review | Tech Lead | Pending | TBD |
+| Implementation Complete | Spec Owner | Pending | TBD |
+<!-- /ANCHOR:approval-workflow -->
+
+---
+
+<!-- ANCHOR:compliance -->
+## Compliance Checkpoints
+
+### Documentation Standards
+- [ ] All command .md files follow standard format with agent routing
+- [ ] YAML assets reference correct script paths
+- [ ] Cross-references to agents and scripts resolve
+
+### Quality Gates
+- [ ] No placeholder text in changes.md
+- [ ] Agent routing consistent across .md and YAML files
+- [ ] Script references match current file locations
+<!-- /ANCHOR:compliance -->
+
+---
+
+<!-- ANCHOR:stakeholders -->
+## Stakeholder Matrix
+
+| Stakeholder | Role | Interest | Communication |
+|-------------|------|----------|---------------|
+| Spec Owner | Documentation Lead | High | Direct updates via changes.md |
+| Tech Lead | System Architect | Medium | Review approval for changes |
+| End Users | AI Assistants | High | Updated commands via command loading |
+<!-- /ANCHOR:stakeholders -->
+
+---
+
+<!-- ANCHOR:changelog -->
+## Change Log
+
+### v1.0 (2026-02-16)
+**Initial task specification** — Defined audit scope for command configs across create, spec_kit, and memory namespaces.
+<!-- /ANCHOR:changelog -->
 
 ---
 

@@ -568,7 +568,7 @@ async function handleMemoryHealth(_args: HealthArgs): Promise<MCPResponse> {
         model: providerMetadata.model,
         dimension: profile ? profile.dim : 768,
         healthy: providerMetadata.healthy !== false,
-        databasePath: profile ? profile.getDatabasePath(path.resolve(__dirname, '../database')) : null
+        databasePath: vectorIndex.getDbPath()
       }
     },
     hints,
@@ -605,4 +605,3 @@ export {
   handle_memory_health,
   set_embedding_model_ready,
 };
-

@@ -1,6 +1,6 @@
 ---
 title: "MCP Server Test Suite"
-description: "Comprehensive Vitest-based test suite for cognitive memory and MCP handlers."
+description: "Vitest-based test suite for cognitive memory and MCP handlers."
 trigger_phrases:
   - "test suite"
   - "vitest"
@@ -10,34 +10,34 @@ importance_tier: "normal"
 
 # MCP Server Test Suite
 
-> Comprehensive Vitest-based test suite for cognitive memory and MCP handlers.
+> Vitest-based test suite for cognitive memory and MCP handlers.
 
 ---
 
 ## TABLE OF CONTENTS
 <!-- ANCHOR:table-of-contents -->
 
-- [1. 📖 OVERVIEW](#1--overview)
-- [2. 🚀 QUICK START](#2--quick-start)
-- [3. 📁 STRUCTURE](#3--structure)
-- [4. ⚡ FEATURES](#4--features)
-- [5. 💡 USAGE EXAMPLES](#5--usage-examples)
-- [6. 🛠️ TROUBLESHOOTING](#6--troubleshooting)
-- [7. 🧪 RUNNING VERIFICATION](#7--running-verification)
-- [8. 📚 RELATED RESOURCES](#8--related-resources)
-
-<!-- /ANCHOR:table-of-contents -->
+- [1. OVERVIEW](#1--overview)
+- [2. QUICK START](#2--quick-start)
+- [3. STRUCTURE](#3--structure)
+- [4. FEATURES](#4--features)
+- [5. USAGE EXAMPLES](#5--usage-examples)
+- [6. TROUBLESHOOTING](#6--troubleshooting)
+- [7. RUNNING VERIFICATION](#7--running-verification)
+- [8. RELATED RESOURCES](#8--related-resources)
 
 ---
 
-## 1. 📖 OVERVIEW
+<!-- /ANCHOR:table-of-contents -->
+
+## 1. OVERVIEW
 <!-- ANCHOR:overview -->
 
 ### What are the MCP Server Tests?
 
-The test suite validates all critical functionality of the Spec Kit Memory MCP server. Tests cover cognitive memory features (attention decay, working memory, co-activation), tier classification, summary generation, search pipelines, MCP tool handlers, and integration scenarios. All tests use **Vitest** as the test framework with `.vitest.ts` file extensions.
+The test suite validates all critical functionality of the Spec Kit Memory MCP server. Tests cover cognitive memory features (attention decay, working memory, co-activation and confidence tracking), tier classification, summary generation, search pipelines, MCP tool handlers and integration scenarios. All tests use **Vitest** as the test framework with `.vitest.ts` file extensions.
 
-**TypeScript Migration:** The full JS-to-TS migration is complete (Spec 092). All test files are TypeScript (`.vitest.ts`). There are zero `.test.js`, `.test.ts`, or standalone `.js` test files remaining.
+**TypeScript Migration:** The full JS-to-TS migration is complete (Spec 092). All test files are TypeScript (`.vitest.ts`). There are zero `.test.js`, `.test.ts` or standalone `.js` test files remaining.
 
 ### Key Statistics
 
@@ -53,9 +53,10 @@ The test suite validates all critical functionality of the Spec Kit Memory MCP s
 | Feature | Description |
 |---------|-------------|
 | **Vitest Framework** | Modern TypeScript-native test runner with built-in assertions |
-| **Comprehensive Coverage** | 118 test files covering cognitive, search, handlers, integration |
+| **Full Coverage** | 118 test files covering cognitive, search, handlers and integration |
 | **Category Organization** | Tests grouped by functional domain (cognitive, search, handlers, integration, unit) |
-| **Type Safety** | Full TypeScript — type checking at test level |
+| **Type Safety** | Full TypeScript with type checking at test level |
+| **Spec 126/127 Reality Checks** | Coverage for 5-source indexing, 7 intents, schema v13 document fields, document-type scoring and `includeSpecDocs` |
 
 ### Requirements
 
@@ -65,14 +66,12 @@ The test suite validates all critical functionality of the Spec Kit Memory MCP s
 | Vitest | Configured in project | Latest |
 | better-sqlite3 | 9+ | Latest |
 
-<!-- /ANCHOR:overview -->
-
 ---
 
-## 2. 🚀 QUICK START
-<!-- ANCHOR:quick-start -->
+<!-- /ANCHOR:overview -->
 
-### 30-Second Setup
+## 2. QUICK START
+<!-- ANCHOR:quick-start -->
 
 ```bash
 # 1. Navigate to the mcp_server directory
@@ -113,11 +112,11 @@ npx vitest run tests/working-memory.vitest.ts
 #  Tests: 51 passed
 ```
 
-<!-- /ANCHOR:quick-start -->
-
 ---
 
-## 3. 📁 STRUCTURE
+<!-- /ANCHOR:quick-start -->
+
+## 3. STRUCTURE
 <!-- ANCHOR:structure -->
 
 ```
@@ -141,7 +140,7 @@ tests/
 ├── rrf-fusion.vitest.ts                   # RRF fusion with k=60
 ├── bm25-index.vitest.ts                   # BM25 lexical indexing
 ├── bm25-security.vitest.ts                # BM25 security hardening
-├── intent-classifier.vitest.ts            # 5 intent types
+├── intent-classifier.vitest.ts            # 7 intent types
 ├── cross-encoder.vitest.ts                # Cross-encoder reranking
 ├── cross-encoder-extended.vitest.ts        # Extended cross-encoder tests
 ├── hybrid-search.vitest.ts                # Hybrid search
@@ -168,6 +167,7 @@ tests/
 ├── # MCP Handler Tests
 ├── handler-memory-context.vitest.ts       # Memory context handler
 ├── handler-memory-crud.vitest.ts          # Memory CRUD handler
+├── handler-memory-index-cooldown.vitest.ts # Index scan cooldown hardening
 ├── handler-memory-save.vitest.ts          # Memory save handler
 ├── handler-memory-search.vitest.ts        # Memory search handler
 ├── handler-memory-triggers.vitest.ts      # Memory triggers handler
@@ -198,7 +198,7 @@ tests/
 ├── lazy-loading.vitest.ts                 # Lazy loading
 ├── channel.vitest.ts                      # Channel communication
 ├── context-server.vitest.ts               # Context server
-├── errors-comprehensive.vitest.ts         # Comprehensive error handling
+├── errors-comprehensive.vitest.ts         # Error handling coverage
 ├── entity-scope.vitest.ts                 # Entity scope
 ├── history.vitest.ts                      # History module
 │
@@ -251,6 +251,7 @@ tests/
 ├── t214-decay-delete-race.vitest.ts       # Decay delete race condition
 ├── t302-session-cleanup.vitest.ts         # Session cleanup
 ├── t503-learning-stats-filters.vitest.ts  # Learning stats filters
+├── spec126-full-spec-doc-indexing.vitest.ts # Spec-doc indexing, schema v13, scoring, intent expansion
 │
 ├── # Unit Tests (Focused Type/Logic Validation)
 ├── unit-composite-scoring-types.vitest.ts # Composite scoring types
@@ -283,17 +284,19 @@ tests/
 | `schema-migration.vitest.ts` | Schema migrations |
 | `handler-memory-search.vitest.ts` | Memory search handler tests |
 | `handler-memory-save.vitest.ts` | Memory save handler tests |
+| `handler-memory-index-cooldown.vitest.ts` | memory_index_scan cooldown and rate-limit safety |
 | `handler-session-learning.vitest.ts` | Session learning handler tests |
 | `integration-save-pipeline.vitest.ts` | Save pipeline integration |
 | `integration-search-pipeline.vitest.ts` | Search pipeline integration |
 | `memory-save-integration.vitest.ts` | PE gate + save handler integration |
 | `memory-search-integration.vitest.ts` | Testing effect integration |
-
-<!-- /ANCHOR:structure -->
+| `spec126-full-spec-doc-indexing.vitest.ts` | 5-source indexing expectations, v13 fields, document-type scoring, find_spec/find_decision |
 
 ---
 
-## 4. ⚡ FEATURES
+<!-- /ANCHOR:structure -->
+
+## 4. FEATURES
 <!-- ANCHOR:features -->
 
 ### Test Framework
@@ -362,12 +365,12 @@ npx vitest run --reporter=verbose tests/handler-*.vitest.ts
 npx vitest
 ```
 
-<!-- /ANCHOR:features -->
-
 ---
 
-## 5. 💡 USAGE EXAMPLES
-<!-- ANCHOR:examples -->
+<!-- /ANCHOR:features -->
+
+## 5. USAGE EXAMPLES
+<!-- ANCHOR:usage-examples -->
 
 ### Example 1: Run All Tests
 
@@ -422,17 +425,17 @@ npx vitest run tests/unit-*.vitest.ts
 
 | Pattern | Command | When to Use |
 |---------|---------|-------------|
-| Full suite | `npx vitest run` | Before commits, comprehensive validation |
+| Full suite | `npx vitest run` | Before commits, full validation |
 | Single file | `npx vitest run tests/[name].vitest.ts` | Focused development |
 | Watch mode | `npx vitest` | Active development, auto re-run |
 | Pattern match | `npx vitest run tests/handler-*.vitest.ts` | Test a category |
 | Verbose | `npx vitest run --reporter=verbose` | Debug failures |
 
-<!-- /ANCHOR:examples -->
-
 ---
 
-## 6. 🛠️ TROUBLESHOOTING
+<!-- /ANCHOR:usage-examples -->
+
+## 6. TROUBLESHOOTING
 <!-- ANCHOR:troubleshooting -->
 
 ### Common Issues
@@ -449,7 +452,7 @@ npx vitest run tests/unit-*.vitest.ts
 cd .opencode/skill/system-spec-kit/mcp_server
 npm run build
 
-# Vitest uses ts-node/esbuild for TypeScript — check vitest.config.ts
+# Vitest uses ts-node/esbuild for TypeScript. Check vitest.config.ts
 ```
 
 #### Database connection errors
@@ -500,12 +503,12 @@ ls tests/*.vitest.ts | wc -l
 npx vitest run --reporter=verbose 2>&1 | head -50
 ```
 
-<!-- /ANCHOR:troubleshooting -->
-
 ---
 
-## 7. 🧪 RUNNING VERIFICATION
-<!-- ANCHOR:running-verification -->
+<!-- /ANCHOR:troubleshooting -->
+
+## 7. RUNNING VERIFICATION
+<!-- ANCHOR:verification -->
 
 ### Full Verification Run
 
@@ -544,11 +547,11 @@ See [VERIFICATION_REPORT.md](./VERIFICATION_REPORT.md) for the complete Phase 3 
 - Test result summary template
 - Verification checklist
 
-<!-- /ANCHOR:running-verification -->
-
 ---
 
-## 8. 📚 RELATED RESOURCES
+<!-- /ANCHOR:verification -->
+
+## 8. RELATED RESOURCES
 <!-- ANCHOR:related -->
 
 ### Internal Documentation
@@ -577,6 +580,8 @@ See [VERIFICATION_REPORT.md](./VERIFICATION_REPORT.md) for the complete Phase 3 
 | Working Memory | `working-memory.vitest.ts` | Capacity limits, eviction, session management |
 | Tier Classifier | `tier-classifier.vitest.ts` | Six-tier classification, keyword detection |
 | Archival Manager | `archival-manager.vitest.ts` | Archival system lifecycle |
+| Spec Document Indexing | `spec126-full-spec-doc-indexing.vitest.ts` | Schema v13 fields (`document_type`, `spec_level`), 8 spec doc types, scoring multipliers, 7 intents |
+| Index Scan Hardening | `handler-memory-index-cooldown.vitest.ts` | Scan cooldown/rate-limit behavior for `memory_index_scan` |
 
 ### External Resources
 
@@ -586,8 +591,8 @@ See [VERIFICATION_REPORT.md](./VERIFICATION_REPORT.md) for the complete Phase 3 
 | [better-sqlite3 Testing](https://github.com/WiseLibs/better-sqlite3/wiki/Testing) | Database testing patterns |
 | [MCP Testing Guide](https://modelcontextprotocol.io/testing) | MCP protocol testing best practices |
 
-<!-- /ANCHOR:related -->
-
 ---
+
+<!-- /ANCHOR:related -->
 
 *Documentation version: 2.0 | Last updated: 2026-02-11*

@@ -10,12 +10,12 @@ importance_tier: "normal"
 
 # Shared Library Modules
 
-> Consolidated TypeScript modules shared between CLI scripts and MCP server for embedding generation and trigger extraction. Source files are `.ts`; compiled CommonJS `.js` output is produced in-place.
+> Consolidated TypeScript modules shared between CLI scripts and MCP server for embeddings, scoring, normalization, and utility logic. Source files are `.ts`. Compiled CommonJS output is produced in `shared/dist/`.
 
 ---
 
-## TABLE OF CONTENTS
 <!-- ANCHOR:table-of-contents -->
+## TABLE OF CONTENTS
 
 - [1. 📖 OVERVIEW](#1--overview)
 - [2. 🚀 QUICK START](#2--quick-start)
@@ -26,11 +26,12 @@ importance_tier: "normal"
 - [7. 🛠️ TROUBLESHOOTING](#7--troubleshooting)
 - [8. 📚 RELATED DOCUMENTS](#8--related-documents)
 
+<!-- /ANCHOR:table-of-contents -->
+
 ---
 
-<!-- /ANCHOR:table-of-contents -->
-## 1. 📖 OVERVIEW
 <!-- ANCHOR:overview -->
+## 1. 📖 OVERVIEW
 
 ### What is the shared/ Directory?
 
@@ -70,7 +71,7 @@ This consolidation eliminates code duplication and ensures consistent behavior a
 │                                    └─────────────┘               │
 │                                                                  │
 │  Note: Source is TypeScript (.ts); compiled output is            │
-│  CommonJS (.js) produced in-place via `npm run build`.          │
+│  CommonJS (.js) in shared/dist via `tsc -b`.                    │
 │                                                                  │
 └──────────────────────────────────────────────────────────────────┘
 ```
@@ -79,7 +80,7 @@ This consolidation eliminates code duplication and ensures consistent behavior a
 
 | Category                 | Count         | Details                                          |
 | ------------------------ | ------------- | ------------------------------------------------ |
-| Core Modules             | 3             | embeddings.ts, trigger-extractor.ts, chunking.ts |
+| Top-Level Modules        | 6             | index, embeddings, chunking, trigger extractor, types, normalization |
 | Provider Implementations | 3             | OpenAI, HF Local, Voyage                         |
 | Embedding Dimensions     | 768/1024/1536 | Provider-dependent                               |
 
@@ -89,7 +90,7 @@ This consolidation eliminates code duplication and ensures consistent behavior a
 | ------------------------------- | -------------------------------------------------------------- |
 | **Multi-Provider Embeddings**   | Supports Voyage, OpenAI, HuggingFace local with auto-detection |
 | **Dynamic Dimension Detection** | 768 (HF), 1024 (Voyage), 1536/3072 (OpenAI)                    |
-| **Task-Specific Functions**     | Document, query, and clustering embeddings                     |
+| **Task-Specific Functions**     | Document, query and clustering embeddings                      |
 | **TF-IDF + Semantic Triggers**  | Advanced trigger phrase extraction (v11)                       |
 
 ### Requirements
@@ -99,11 +100,12 @@ This consolidation eliminates code duplication and ensures consistent behavior a
 | Node.js              | 18+     | 20+         |
 | @xenova/transformers | 2.0+    | Latest      |
 
+<!-- /ANCHOR:overview -->
+
 ---
 
-<!-- /ANCHOR:overview -->
-## 2. 🚀 QUICK START
 <!-- ANCHOR:quick-start -->
+## 2. 🚀 QUICK START
 
 ### 30-Second Setup
 
@@ -124,9 +126,10 @@ import { extractTriggerPhrases } from '../shared/trigger-extractor';
 ls .opencode/skill/system-spec-kit/shared/
 
 # Expected source files:
+# index.ts, types.ts, normalization.ts
 # embeddings.ts, chunking.ts, trigger-extractor.ts
-# embeddings/ (subfolder with providers)
-# Compiled .js files are also present alongside .ts sources
+# embeddings/, scoring/, utils/
+# Compiled output is written to shared/dist/
 ```
 
 ### First Use
@@ -144,20 +147,22 @@ const embedding: Float32Array = await generateDocumentEmbedding('How does authen
 console.log(`Embedding dimensions: ${embedding.length}`);
 ```
 
+<!-- /ANCHOR:quick-start -->
+
 ---
 
-<!-- /ANCHOR:quick-start -->
-## 3. 📁 STRUCTURE
 <!-- ANCHOR:structure -->
+## 3. 📁 STRUCTURE
 
 ```
 shared/
-├── Core Modules
-│   ├── embeddings.ts           # Multi-provider embedding generation
-│   ├── chunking.ts             # Semantic chunking utilities
-│   └── trigger-extractor.ts    # Trigger phrase extraction (v11)
-│
-├── embeddings/                 # Provider Implementations
+├── index.ts                    # Barrel exports for all shared modules
+├── types.ts                    # Shared type definitions
+├── normalization.ts            # DB row <-> app object normalization
+├── embeddings.ts               # Multi-provider embedding generation
+├── chunking.ts                 # Semantic chunking utilities
+├── trigger-extractor.ts        # Trigger phrase extraction
+├── embeddings/                 # Provider implementations and profile helpers
 │   ├── factory.ts              # Provider selection and auto-detection
 │   ├── profile.ts              # Embedding profiles and DB path generation
 │   ├── README.md               # Embeddings factory documentation
@@ -165,24 +170,33 @@ shared/
 │       ├── hf-local.ts         # HuggingFace local (fallback)
 │       ├── openai.ts           # OpenAI embeddings API
 │       └── voyage.ts           # Voyage AI (recommended)
-│
-└── README.md                   # This file
+├── scoring/
+│   ├── folder-scoring.ts       # Composite folder ranking logic
+│   └── README.md
+├── utils/
+│   ├── path-security.ts        # Path validation and containment checks
+│   ├── retry.ts                # Retry/backoff classification logic
+│   ├── jsonc-strip.ts          # JSONC comment stripping helper
+│   └── README.md
+├── dist/                       # Compiled JS output
+└── README.md
 ```
 
 ### Key Files
 
 | File                    | Purpose                                             |
 | ----------------------- | --------------------------------------------------- |
-| `embeddings.ts`         | Unified API for multi-provider embedding generation |
-| `trigger-extractor.ts`  | TF-IDF + semantic trigger phrase extraction         |
-| `embeddings/factory.ts` | Provider selection with fallback logic              |
-| `embeddings/profile.ts` | Per-profile database path generation                |
+| `embeddings.ts` | Unified API for multi-provider embedding generation |
+| `trigger-extractor.ts` | Trigger phrase extraction for memory indexing |
+| `normalization.ts` | Canonical DB row <-> app object conversion |
+| `scoring/folder-scoring.ts` | Composite folder scoring and ranking |
+
+<!-- /ANCHOR:structure -->
 
 ---
 
-<!-- /ANCHOR:structure -->
-## 4. ⚡ FEATURES
 <!-- ANCHOR:features -->
+## 4. ⚡ FEATURES
 
 ### Multi-Provider Embeddings (embeddings.ts)
 
@@ -193,7 +207,7 @@ shared/
 | **Providers**      | Voyage AI, OpenAI, HuggingFace local    |
 | **Auto-Detection** | Selects best provider based on API keys |
 | **Fallback**       | Graceful degradation to HF local        |
-| **Task Types**     | Document, query, clustering embeddings  |
+| **Task Types**     | Document, query and clustering embeddings  |
 
 **Key Functions**:
 
@@ -249,11 +263,12 @@ shared/
 | Privacy    | Cloud      | Local    | Cloud     |
 | Offline    | No         | Yes      | No        |
 
+<!-- /ANCHOR:features -->
+
 ---
 
-<!-- /ANCHOR:features -->
-## 5. ⚙️ CONFIGURATION
 <!-- ANCHOR:configuration -->
+## 5. ⚙️ CONFIGURATION
 
 ### Environment Variables
 
@@ -284,11 +299,12 @@ database/
 └── context-index__openai__text-embedding-3-large__3072.sqlite
 ```
 
+<!-- /ANCHOR:configuration -->
+
 ---
 
-<!-- /ANCHOR:configuration -->
+<!-- ANCHOR:usage-examples -->
 ## 6. 💡 USAGE EXAMPLES
-<!-- ANCHOR:examples -->
 
 ### Example 1: CLI Script Usage
 
@@ -379,11 +395,12 @@ console.log(result);
 | Extract triggers   | `extractTriggerPhrases(text)`     | Memory indexing     |
 | Pre-warm model     | `preWarmModel()`                  | Application startup |
 
+<!-- /ANCHOR:usage-examples -->
+
 ---
 
-<!-- /ANCHOR:examples -->
-## 7. 🛠️ TROUBLESHOOTING
 <!-- ANCHOR:troubleshooting -->
+## 7. 🛠️ TROUBLESHOOTING
 
 ### Common Issues
 
@@ -454,11 +471,12 @@ node -e "require('./shared/embeddings').generateDocumentEmbedding('test').then(e
 node -e "console.log(require('./shared/trigger-extractor').extractTriggerPhrases('memory search trigger extraction'))"
 ```
 
+<!-- /ANCHOR:troubleshooting -->
+
 ---
 
-<!-- /ANCHOR:troubleshooting -->
-## 8. 📚 RELATED DOCUMENTS
 <!-- ANCHOR:related -->
+## 8. 📚 RELATED DOCUMENTS
 
 ### Internal Documentation
 
@@ -478,7 +496,8 @@ node -e "console.log(require('./shared/trigger-extractor').extractTriggerPhrases
 | [Voyage AI](https://www.voyageai.com/)                                    | Recommended embedding provider     |
 | [OpenAI Embeddings](https://platform.openai.com/docs/guides/embeddings)   | OpenAI embedding API docs          |
 
+<!-- /ANCHOR:related -->
+
 ---
 
-<!-- /ANCHOR:related -->
 *Documentation version: 2.0 | Last updated: 2026-02-07 | Migrated to TypeScript*

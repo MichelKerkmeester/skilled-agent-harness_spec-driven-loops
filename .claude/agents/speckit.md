@@ -1,6 +1,6 @@
 ---
 name: speckit
-description: "Spec folder documentation specialist for creating and maintaining Level 1-3+ documentation"
+description: "Spec folder documentation specialist for creating and maintaining Level 1-3+ documentation with template enforcement"
 tools:
   - Read
   - Write

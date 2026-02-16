@@ -8,6 +8,7 @@ including dependencies, milestone mapping, and detailed verification tasks. -->
 
 ---
 
+<!-- ANCHOR:notation -->
 ## Task Notation
 
 | Prefix | Meaning |
@@ -19,8 +20,11 @@ including dependencies, milestone mapping, and detailed verification tasks. -->
 
 **Task Format**: `T### [P?] Description (file path) [effort] {deps: T###}`
 
+
+<!-- /ANCHOR:notation -->
 ---
 
+<!-- ANCHOR:milestones -->
 ## Milestone Reference
 
 | Milestone | Tasks | Target |
@@ -31,8 +35,11 @@ including dependencies, milestone mapping, and detailed verification tasks. -->
 | M4 | T023-T028 | Day 4 noon |
 | M5 | T029-T042 | Day 5 EOD |
 
+
+<!-- /ANCHOR:milestones -->
 ---
 
+<!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup [Milestone M1]
 
 - [x] T001 Create auth directory structure (`src/auth/`) [15m]
@@ -40,15 +47,21 @@ including dependencies, milestone mapping, and detailed verification tasks. -->
 - [x] T003 [P] Configure environment variables (`env.example`, `.env`) [15m]
 - [x] T004 [P] Add User model to Prisma schema (`prisma/schema.prisma`) [20m]
 
+
+<!-- /ANCHOR:phase-1 -->
 ---
 
+<!-- ANCHOR:phase-2 -->
 ## Phase 2: Database [Milestone M1]
 
 - [x] T005 Run Prisma migration (`prisma/migrations/`) [15m] {deps: T004}
 - [x] T006 Add unique index on email (`prisma/schema.prisma`) [10m] {deps: T005}
 
+
+<!-- /ANCHOR:phase-2 -->
 ---
 
+<!-- ANCHOR:phase-3 -->
 ## Phase 3: Core Services [Milestone M2]
 
 ### Hash Service
@@ -63,8 +76,11 @@ including dependencies, milestone mapping, and detailed verification tasks. -->
 - [x] T011 [P] Create registration validator (`src/validators/auth.js`) [30m] {deps: T002}
 - [x] T012 [P] Create login validator (`src/validators/auth.js`) [20m] {deps: T011}
 
+
+<!-- /ANCHOR:phase-3 -->
 ---
 
+<!-- ANCHOR:phase-4 -->
 ## Phase 4: API Endpoints [Milestone M3]
 
 ### Registration
@@ -87,8 +103,11 @@ including dependencies, milestone mapping, and detailed verification tasks. -->
 ### Integration
 - [x] T022 Wire up all routes in app.js (`app.js`) [20m] {deps: T015, T018, T019, T020}
 
+
+<!-- /ANCHOR:phase-4 -->
 ---
 
+<!-- ANCHOR:phase-5 -->
 ## Phase 5: UI [Milestone M4]
 
 - [x] T023 Create registration form view (`views/auth/register.ejs`) [30m] {deps: T015}
@@ -98,8 +117,11 @@ including dependencies, milestone mapping, and detailed verification tasks. -->
 - [x] T027 [P] Add success feedback styling (`public/css/auth.css`) [15m]
 - [x] T028 Add logout button to nav (`views/partials/nav.ejs`) [15m] {deps: T019}
 
+
+<!-- /ANCHOR:phase-5 -->
 ---
 
+<!-- ANCHOR:phase-6 -->
 ## Phase 6: Verification [Milestone M5]
 
 ### Unit Tests
@@ -130,8 +152,11 @@ including dependencies, milestone mapping, and detailed verification tasks. -->
 - [x] T047 Complete implementation-summary.md [20m]
 - [x] T048 Mark all checklist items with evidence [20m]
 
+
+<!-- /ANCHOR:phase-6 -->
 ---
 
+<!-- ANCHOR:completion -->
 ## Completion Criteria
 
 - [x] All tasks marked `[x]`
@@ -143,14 +168,19 @@ including dependencies, milestone mapping, and detailed verification tasks. -->
 - [x] Checklist.md fully verified
 - [x] All ADRs have status: Accepted
 
+
+<!-- /ANCHOR:completion -->
 ---
 
+<!-- ANCHOR:cross-refs -->
 ## Cross-References
 
 - **Specification**: See `spec.md`
 - **Plan**: See `plan.md`
 - **Checklist**: See `checklist.md`
 - **Decisions**: See `decision-record.md`
+
+<!-- /ANCHOR:cross-refs -->
 
 ---
 

@@ -5,8 +5,10 @@
 
 ---
 
+<!-- ANCHOR:adr-001 -->
 ## ADR-001: [Decision Title]
 
+<!-- ANCHOR:adr-001-context -->
 ### Metadata
 
 | Field | Value |
@@ -25,17 +27,21 @@
 - [Technical constraint]
 - [Business constraint]
 - [Time/resource constraint]
+<!-- /ANCHOR:adr-001-context -->
 
 ---
 
+<!-- ANCHOR:adr-001-decision -->
 ### Decision
 
 **Summary**: [One-sentence description of the decision]
 
 **Details**: [How it will be implemented, 2-3 sentences]
+<!-- /ANCHOR:adr-001-decision -->
 
 ---
 
+<!-- ANCHOR:adr-001-alternatives -->
 ### Alternatives Considered
 
 | Option | Pros | Cons | Score |
@@ -45,9 +51,11 @@
 | [Alternative B] | [Advantages] | [Disadvantages] | [Z/10] |
 
 **Why Chosen**: [Rationale for selection]
+<!-- /ANCHOR:adr-001-alternatives -->
 
 ---
 
+<!-- ANCHOR:adr-001-consequences -->
 ### Consequences
 
 **Positive**:
@@ -61,9 +69,11 @@
 | Risk | Impact | Mitigation |
 |------|--------|------------|
 | [Risk] | [H/M/L] | [Strategy] |
+<!-- /ANCHOR:adr-001-consequences -->
 
 ---
 
+<!-- ANCHOR:adr-001-five-checks -->
 ### Five Checks Evaluation
 
 | # | Check | Result | Evidence |
@@ -75,9 +85,11 @@
 | 5 | **Open Horizons?** | [PASS/FAIL] | [Is this long-term aligned?] |
 
 **Checks Summary**: [X/5 PASS]
+<!-- /ANCHOR:adr-001-five-checks -->
 
 ---
 
+<!-- ANCHOR:adr-001-impl -->
 ### Implementation
 
 **Affected Systems**:
@@ -85,6 +97,8 @@
 - [System/Component 2]
 
 **Rollback**: [How to revert if needed]
+<!-- /ANCHOR:adr-001-impl -->
+<!-- /ANCHOR:adr-001 -->
 
 ---
 

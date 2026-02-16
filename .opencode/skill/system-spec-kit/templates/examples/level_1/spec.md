@@ -9,6 +9,7 @@ creating your own Level 1 specs. -->
 
 ---
 
+<!-- ANCHOR:metadata -->
 ## 1. METADATA
 
 | Field | Value |
@@ -19,8 +20,11 @@ creating your own Level 1 specs. -->
 | **Created** | 2025-01-15 |
 | **Branch** | `012-user-authentication` |
 
+
+<!-- /ANCHOR:metadata -->
 ---
 
+<!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
@@ -29,8 +33,11 @@ The application currently has no user authentication, allowing anyone to access 
 ### Purpose
 Implement a basic email/password authentication system that allows users to register, log in, and maintain authenticated sessions, providing the foundation for user-specific features.
 
+
+<!-- /ANCHOR:problem -->
 ---
 
+<!-- ANCHOR:scope -->
 ## 3. SCOPE
 
 ### In Scope
@@ -54,8 +61,11 @@ Implement a basic email/password authentication system that allows users to regi
 | src/utils/hash.js | Create | Password hashing utilities |
 | src/middleware/auth.js | Create | Authentication middleware |
 
+
+<!-- /ANCHOR:scope -->
 ---
 
+<!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
 
 ### P0 - Blockers (MUST complete)
@@ -73,15 +83,21 @@ Implement a basic email/password authentication system that allows users to regi
 | REQ-004 | Invalid login shows appropriate error | "Invalid email or password" message, no credential enumeration |
 | REQ-005 | Session persists across page refresh | Token in localStorage, auto-login on page load |
 
+
+<!-- /ANCHOR:requirements -->
 ---
 
+<!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
 - **SC-001**: User can complete full registration and login flow in under 30 seconds
 - **SC-002**: Authentication state persists correctly across browser refresh
 
+
+<!-- /ANCHOR:success-criteria -->
 ---
 
+<!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
 | Type | Item | Impact | Mitigation |
@@ -90,12 +106,17 @@ Implement a basic email/password authentication system that allows users to regi
 | Dependency | Database connection | Cannot store users | Validate DB connection at startup |
 | Risk | Token security | Session hijacking possible | Use HttpOnly cookies in Phase 2 |
 
+
+<!-- /ANCHOR:risks -->
 ---
 
+<!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
 - Should we implement "Remember Me" functionality in this phase?
 - What should the session token expiration time be? (Current default: 24 hours)
+
+<!-- /ANCHOR:questions -->
 
 ---
 

@@ -17,23 +17,24 @@ importance_tier: "normal"
 ## TABLE OF CONTENTS
 <!-- ANCHOR:table-of-contents -->
 
-- [1. 📖 OVERVIEW](#1--overview)
-- [2. 🚀 QUICK START](#2--quick-start)
-- [3. 📁 STRUCTURE](#3--structure)
-- [4. ⚡ FEATURES](#4--features)
-- [5. 💡 USAGE EXAMPLES](#5--usage-examples)
-- [6. 🛠️ TROUBLESHOOTING](#6--troubleshooting)
-- [7. 📚 RELATED DOCUMENTS](#7--related-documents)
+- [1. OVERVIEW](#1--overview)
+- [2. QUICK START](#2--quick-start)
+- [3. STRUCTURE](#3--structure)
+- [4. FEATURES](#4--features)
+- [5. USAGE EXAMPLES](#5--usage-examples)
+- [6. TROUBLESHOOTING](#6--troubleshooting)
+- [7. RELATED DOCUMENTS](#7--related-documents)
+
+<!-- /ANCHOR:table-of-contents -->
 
 ---
 
-<!-- /ANCHOR:table-of-contents -->
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 <!-- ANCHOR:overview -->
 
 ### What is Template Composer?
 
-The Template Composer (`compose.sh`) is an automated build system that generates level-specific documentation templates from modular source components. It merges core templates with level-specific addendums to create consistent, complete templates for Levels 1, 2, 3, and 3+.
+The Template Composer (`compose.sh`) is an automated build system that generates level-specific documentation templates from modular source components. It merges core templates with level-specific addendums to create consistent templates for Levels 1, 2, 3 and 3+.
 
 **Purpose**: Maintain single-source-of-truth template components while preventing drift across documentation levels.
 
@@ -63,13 +64,12 @@ The Template Composer (`compose.sh`) is an automated build system that generates
 | Bash | 4.0+ | 5.0+ |
 | Operating System | macOS/Linux | macOS/Linux |
 
+<!-- /ANCHOR:overview -->
+
 ---
 
-<!-- /ANCHOR:overview -->
-## 2. 🚀 QUICK START
+## 2. QUICK START
 <!-- ANCHOR:quick-start -->
-
-### 30-Second Setup
 
 ```bash
 # 1. Navigate to scripts/templates directory
@@ -101,10 +101,11 @@ chmod +x compose.sh
 # Output shows each composition step and files written
 ```
 
+<!-- /ANCHOR:quick-start -->
+
 ---
 
-<!-- /ANCHOR:quick-start -->
-## 3. 📁 STRUCTURE
+## 3. STRUCTURE
 <!-- ANCHOR:structure -->
 
 ```
@@ -129,7 +130,7 @@ templates/
     ├── tasks.md
     ├── implementation-summary.md
     ├── checklist.md             # (Level 2+)
-    └── decision-record.md       # (Level 3+)
+    └── decision-record.md       # (Level 3 and 3+)
 ```
 
 ### Key Files
@@ -141,10 +142,11 @@ templates/
 | `addendum/level*/*.md` | Level-specific template sections | `../../templates/addendum/` |
 | `level_N/*.md` | Composed output templates ready for use | `../../templates/level_N/` |
 
+<!-- /ANCHOR:structure -->
+
 ---
 
-<!-- /ANCHOR:structure -->
-## 4. ⚡ FEATURES
+## 4. FEATURES
 <!-- ANCHOR:features -->
 
 ### Automated Template Composition
@@ -209,11 +211,12 @@ Special HTML comments control composition behavior:
 ./compose.sh
 ```
 
+<!-- /ANCHOR:features -->
+
 ---
 
-<!-- /ANCHOR:features -->
-## 5. 💡 USAGE EXAMPLES
-<!-- ANCHOR:examples -->
+## 5. USAGE EXAMPLES
+<!-- ANCHOR:usage-examples -->
 
 ### Example 1: Compose All Templates
 
@@ -244,7 +247,7 @@ cd .opencode/skill/system-spec-kit/scripts/templates
 ./compose.sh --verify 2
 ```
 
-**Result**: Only Level 2 templates are updated, other levels unchanged.
+**Result**: Only Level 2 templates are updated. Other levels remain unchanged.
 
 ### Example 4: CI/CD Validation
 
@@ -268,10 +271,11 @@ cd .opencode/skill/system-spec-kit/scripts/templates
 | Debug composition | `./compose.sh --verbose` | When troubleshooting merge logic |
 | Selective update | `./compose.sh 2 3` | After editing specific addendums |
 
+<!-- /ANCHOR:usage-examples -->
+
 ---
 
-<!-- /ANCHOR:examples -->
-## 6. 🛠️ TROUBLESHOOTING
+## 6. TROUBLESHOOTING
 <!-- ANCHOR:troubleshooting -->
 
 ### Common Issues
@@ -343,10 +347,11 @@ grep -r "SPECKIT_" core/ addendum/
 grep -r "SPECKIT_" core/ addendum/
 ```
 
+<!-- /ANCHOR:troubleshooting -->
+
 ---
 
-<!-- /ANCHOR:troubleshooting -->
-## 7. 📚 RELATED DOCUMENTS
+## 7. RELATED DOCUMENTS
 <!-- ANCHOR:related -->
 
 ### Internal Documentation
@@ -368,7 +373,8 @@ grep -r "SPECKIT_" core/ addendum/
 | Level 3+ addendum | `../../templates/addendum/level3plus-govern/` |
 | Composed outputs | `../../templates/level_N/` |
 
+<!-- /ANCHOR:related -->
+
 ---
 
 *Documentation for SpecKit v2.0 Template Composer | Last updated: 2026-02-07 | Path clarifications added*
-<!-- /ANCHOR:related -->

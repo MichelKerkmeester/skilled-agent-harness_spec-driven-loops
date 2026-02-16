@@ -1,19 +1,19 @@
 ---
 name: workflows-documentation
-description: "Unified markdown and OpenCode component specialist providing document quality enforcement, content optimization, component creation workflows (skills, agents, commands), ASCII flowcharts, and install guides."
+description: "Unified markdown and OpenCode component specialist providing document quality enforcement, content optimization, component creation workflows (skills, agents, commands), ASCII flowcharts and install guides."
 allowed-tools: [Bash, Edit, Glob, Grep, Read, Task, Write]
-version: 1.0.5.0
+version: 1.0.6.0
 ---
 
 <!-- Keywords: workflows-documentation, markdown-quality, skill-creation, document-validation, ascii-flowchart, llms-txt, content-optimization, extract-structure -->
 
 # Documentation Creation Specialist - Unified Markdown & Component Management
 
-Unified specialist providing: (1) Document quality pipeline with structure enforcement and content optimization, (2) OpenCode component creation (skills, agents, commands) with scaffolding, validation, and packaging, (3) ASCII flowchart creation for visualizing workflows, and (4) Install guide creation for setup documentation.
+Unified specialist providing: (1) Document quality pipeline with structure enforcement and content optimization, (2) OpenCode component creation (skills, agents, commands) with scaffolding, validation and packaging, (3) ASCII flowchart creation for visualizing workflows and (4) Install guide creation for setup documentation.
 
 **Core Principle**: Structure first, then content, then quality.
 
-**Architecture**: Scripts handle deterministic parsing/metrics, AI handles quality judgment and recommendations.
+**Architecture**: Scripts handle deterministic parsing/metrics. AI handles quality judgment and recommendations.
 
 ---
 
@@ -34,7 +34,7 @@ Enforce markdown structure, optimize content for AI assistants, validate quality
 - Fixing frontmatter syntax errors
 
 **Validation Workflow** - Apply after Write/Edit operations:
-- Auto-correct filename violations (ALL CAPS → lowercase, hyphens → underscores)
+- Auto-correct filename violations (ALL CAPS to lowercase, hyphens to underscores)
 - Fix safe violations (separators, H2 case, emoji per rules)
 - Check critical violations (missing frontmatter, wrong section order)
 
@@ -46,7 +46,7 @@ Enforce markdown structure, optimize content for AI assistants, validate quality
 
 ### Use Case: OpenCode Component Creation
 
-Create and manage OpenCode components: skills, agents, and commands. Each component type has templates, validation, and quality standards.
+Create and manage OpenCode components (skills, agents, commands). Each component type has templates and validation with quality standards.
 
 **Component Types:**
 - **Skills** (.opencode/skill/) - Knowledge bundles with workflows → [skill_creation.md](./references/skill_creation.md)
@@ -69,7 +69,7 @@ Create and manage OpenCode components: skills, agents, and commands. Each compon
 
 ### Use Case: Flowchart Creation
 
-Create ASCII flowcharts for visualizing workflows, user journeys, and decision trees.
+Create ASCII flowcharts for visualizing workflows, user journeys and decision trees.
 
 **Use when**:
 - Documenting multi-step processes with branching
@@ -81,7 +81,7 @@ Create ASCII flowcharts for visualizing workflows, user journeys, and decision t
 
 ### Use Case: Install Guide Creation
 
-Create and validate installation documentation for MCP servers, plugins, and tools using phase-based templates.
+Create and validate installation documentation for MCP servers, plugins and tools using phase-based templates.
 
 **Use when**:
 - Creating documentation for MCP server installation
@@ -99,8 +99,7 @@ Create and validate installation documentation for MCP servers, plugins, and too
 - Simple typo fixes (use Edit tool directly)
 - Internal notes or drafts
 - Auto-generated API docs
-- Very simple 2-3 step processes (use bullet points)
-- Code architecture (use mermaid diagrams)
+- Short 2-3 step processes (use bullet points)
 
 ---
 
@@ -147,7 +146,7 @@ TASK CONTEXT
 | Optimizing content         | `references/optimization.md`                    | Question coverage, AI-friendly transformations |
 | Validating quality         | `references/validation.md`                      | DQI scoring, quality gates                     |
 | Workflow guidance          | `references/workflows.md`                       | Execution modes, enforcement patterns          |
-| **Creating README**        | `assets/documentation/readme_template.md`       | README structure (13 sections)                 |
+| **Creating README**        | `assets/documentation/readme_template.md`       | README structure (14 sections + HVR)           |
 | **Validating frontmatter** | `assets/documentation/frontmatter_templates.md` | Frontmatter validation & templates (11 types)  |
 
 **Mode 2 - OpenCode Component Creation:**
@@ -254,7 +253,7 @@ def route_documentation_resources(task):
     return "Quick Reference"
 ```
 
-**Key Insight**: Always run `extract_structure.py` first - it provides the structured JSON that enables accurate AI quality assessment. Without it, quality evaluation is subjective guesswork.
+**Key Insight**: Always run `extract_structure.py` first. It provides the structured JSON that enables accurate AI quality assessment. Without it, quality evaluation is subjective guesswork.
 
 ---
 
@@ -284,7 +283,7 @@ scripts/extract_structure.py path/to/document.md
 | SKILL     | Strict      | Required    | No structural checklist failures |
 | Knowledge | Moderate    | Forbidden   | Consistent, scannable reference  |
 | Command   | Strict      | Required    | Must be executable               |
-| Spec      | Loose       | Optional    | Working docs; avoid blocking     |
+| Spec      | Loose       | Optional    | Working docs. Avoid blocking.    |
 | Generic   | Flexible    | Optional    | Best-effort structure            |
 
 ### Mode 2: OpenCode Component Creation
@@ -326,7 +325,7 @@ scripts/extract_structure.py .opencode/skill/my-skill/SKILL.md
 5. Validate frontmatter syntax
 6. Test with real examples
 
-**Key Difference from Skills**: Agents have tool permissions (true/false per tool) and action permissions (allow/deny), not just allowed-tools array.
+**Key Difference from Skills**: Agents have tool permissions (true/false per tool) and action permissions (allow/deny), not an allowed-tools array.
 
 #### Command Creation
 
@@ -388,6 +387,7 @@ Standard Flow:      Branch:           Parallel:         Merge:
 7. **ALWAYS validate before completion** (structure + content + style)
 8. **ALWAYS provide metrics** (before/after counts from script output)
 9. **ALWAYS run `validate_document.py` before delivery** (exit 0 required for READMEs)
+10. **ALWAYS enforce Human Voice Rules (HVR)** on all documentation output. See `readme_template.md` §9 for the full ruleset covering punctuation, banned words, voice directives and structure rules.
 
 #### ❌ NEVER
 
@@ -396,6 +396,7 @@ Standard Flow:      Branch:           Parallel:         Merge:
 3. **NEVER block for safe violations** (only block: missing frontmatter, wrong order)
 4. **NEVER generate llms.txt without asking**
 5. **NEVER apply wrong enforcement level**
+6. **NEVER use banned HVR words** (leverage, robust, seamless, ecosystem, utilize, holistic, curate, harness, elevate, foster, empower, landscape, groundbreaking, cutting-edge, delve, illuminate, innovative, remarkable)
 
 #### ⚠️ ESCALATE IF
 
@@ -571,7 +572,9 @@ The `extract_structure.py` script computes a **DQI** (0-100) based on measurable
 | ------------- | --- | ------------------------------------------------- |
 | **Structure** | 40  | Checklist pass rate (type-specific)               |
 | **Content**   | 30  | Word count, heading density, code examples, links |
-| **Style**     | 30  | H2 formatting, dividers, intro paragraph          |
+| **Style**     | 30  | H2 formatting, dividers, intro paragraph, HVR compliance |
+
+**HVR Compliance in DQI**: Human Voice Rules violations count against the Style component. Documents with em dashes, semicolons, banned words or banned phrases receive deductions in the Style score. Full HVR ruleset is defined in `readme_template.md` §9.
 
 **Quality Bands**:
 
@@ -606,6 +609,7 @@ The `extract_structure.py` script computes a **DQI** (0-100) based on measurable
 - ✅ Document type detected, checklist reviewed
 - ✅ Evaluation questions answered, recommendations generated
 - ✅ All critical issues addressed
+- ✅ HVR compliance verified (no banned words, punctuation or structure violations)
 
 **Skill Creation Complete**:
 - ✅ YAML frontmatter with name + description (third-person, specific)
@@ -687,7 +691,7 @@ Key integrations:
 
 | Skill               | Integration                                                                   |
 | ------------------- | ----------------------------------------------------------------------------- |
-| **system-spec-kit** | Context files can be optimized; validates spec folder documentation structure |
+| **system-spec-kit** | Context files can be optimized. Validates spec folder documentation structure. |
 | **workflows-git**   | Uses documentation quality for commit/PR descriptions                         |
 
 ### Workflow Integration
@@ -731,4 +735,4 @@ Need fast navigation? See [quick_reference.md](./references/quick_reference.md)
 
 ---
 
-**Remember**: This skill operates in four modes - Document Quality, Skill Creation, Flowchart Creation, and Install Guide Creation. All modes integrate seamlessly for creating and validating high-quality documentation and skills.
+**Remember**: This skill operates in four modes: Document Quality, Skill Creation, Flowchart Creation and Install Guide Creation. All modes integrate smoothly for creating and validating high-quality documentation and skills.

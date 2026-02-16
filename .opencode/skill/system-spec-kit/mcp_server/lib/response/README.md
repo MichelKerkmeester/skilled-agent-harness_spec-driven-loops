@@ -14,23 +14,23 @@ importance_tier: "normal"
 
 ---
 
-<!-- ANCHOR:table-of-contents -->
 ## TABLE OF CONTENTS
+<!-- ANCHOR:table-of-contents -->
 
-- [1. 📖 OVERVIEW](#1--overview)
-- [2. 📁 STRUCTURE](#2--structure)
-- [3. ⚡ FEATURES](#3--features)
-- [4. 💡 USAGE](#4--usage)
-- [5. 📚 RELATED RESOURCES](#5--related-resources)
+- [1. OVERVIEW](#1--overview)
+- [2. STRUCTURE](#2--structure)
+- [3. FEATURES](#3--features)
+- [4. USAGE](#4--usage)
+- [5. RELATED RESOURCES](#5--related-resources)
 
 <!-- /ANCHOR:table-of-contents -->
 
 ---
 
+## 1. OVERVIEW
 <!-- ANCHOR:overview -->
-## 1. 📖 OVERVIEW
 
-The response module provides a standardized envelope format for all MCP tool responses. This ensures consistent structure across tools, enables token counting, and provides actionable hints for AI agents.
+The response module provides a standardized envelope format for all MCP tool responses. It ensures consistent structure across tools and enables token counting. It also provides actionable hints for AI agents.
 
 ### Envelope Structure
 
@@ -62,13 +62,13 @@ The response module provides a standardized envelope format for all MCP tool res
 
 ---
 
+## 2. STRUCTURE
 <!-- ANCHOR:structure -->
-## 2. 📁 STRUCTURE
 
 ```
 response/
-├── envelope.ts  # Response envelope factory functions
-└── README.md    # This file
+ envelope.ts  # Response envelope factory functions
+ README.md    # This file
 ```
 
 ### Key Files
@@ -81,8 +81,8 @@ response/
 
 ---
 
+## 3. FEATURES
 <!-- ANCHOR:features -->
-## 3. ⚡ FEATURES
 
 ### Core Envelope Functions
 
@@ -123,8 +123,8 @@ response/
 
 ---
 
-<!-- ANCHOR:examples -->
-## 4. 💡 USAGE
+## 4. USAGE
+<!-- ANCHOR:usage -->
 
 ### Basic Import
 
@@ -190,12 +190,12 @@ const mcpResponse = createMCPResponse({
 // Returns: { content: [{ type: 'text', text: '...' }], isError: false }
 ```
 
-<!-- /ANCHOR:examples -->
+<!-- /ANCHOR:usage -->
 
 ---
 
+## 5. RELATED RESOURCES
 <!-- ANCHOR:related -->
-## 5. 📚 RELATED RESOURCES
 
 ### Internal Documentation
 
@@ -218,4 +218,4 @@ const mcpResponse = createMCPResponse({
 ---
 
 **Version**: 1.7.2
-**Last Updated**: 2026-02-08
+**Last Updated**: 2026-02-16

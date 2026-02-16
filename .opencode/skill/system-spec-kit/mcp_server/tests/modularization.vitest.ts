@@ -26,7 +26,7 @@ const EXTENDED_LIMITS: Record<string, number> = {
   'handlers/memory-triggers.js': 350, // Trigger matching with cognitive features
   'handlers/memory-crud.js': 600,   // CRUD operations with validation
   'handlers/memory-save.js': 1300,  // Save logic with parsing, validation, indexing
-  'handlers/memory-index.js': 500,  // Index operations with scanning logic
+  'handlers/memory-index.js': 600,  // Index operations with scanning + spec document discovery (Spec 126)
 };
 
 function countLines(filePath: string): number {

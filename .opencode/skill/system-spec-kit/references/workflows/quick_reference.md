@@ -21,6 +21,7 @@ Quick reference for spec folder management, commands, and troubleshooting using 
 Level 1 (Baseline):     spec.md + plan.md + tasks.md + implementation-summary.md
 Level 2 (Verification): Level 1 + checklist.md
 Level 3 (Full):         Level 2 + decision-record.md + optional research
+Level 3+ (Extended):    Level 3 + governance/AI execution content
 ```
 
 ### Key Points
@@ -37,11 +38,13 @@ Level 3 (Full):         Level 2 + decision-record.md + optional research
 | Any task (baseline) | 1 | spec.md + plan.md + tasks.md + implementation-summary.md | None |
 | Needs QA validation | 2 | L1 + checklist.md | None |
 | Complex/architectural | 3 | L2 + decision-record.md | research.md |
+| Enterprise/governance heavy | 3+ | L3 file set from `templates/level_3+/` | research.md |
 
 **LOC as soft guidance:**
 - <100 LOC suggests Level 1
 - 100-499 LOC suggests Level 2
 - >=500 LOC suggests Level 3
+- High complexity/risk and governance needs suggest Level 3+
 
 ---
 
@@ -75,6 +78,17 @@ cp .opencode/skill/system-spec-kit/templates/level_3/tasks.md specs/###-name/tas
 cp .opencode/skill/system-spec-kit/templates/level_3/implementation-summary.md specs/###-name/implementation-summary.md
 cp .opencode/skill/system-spec-kit/templates/level_3/checklist.md specs/###-name/checklist.md
 cp .opencode/skill/system-spec-kit/templates/level_3/decision-record.md specs/###-name/decision-record-[topic].md
+```
+
+### Level 3+: Extended Documentation (complete set)
+
+```bash
+cp .opencode/skill/system-spec-kit/templates/level_3+/spec.md specs/###-name/spec.md
+cp .opencode/skill/system-spec-kit/templates/level_3+/plan.md specs/###-name/plan.md
+cp .opencode/skill/system-spec-kit/templates/level_3+/tasks.md specs/###-name/tasks.md
+cp .opencode/skill/system-spec-kit/templates/level_3+/implementation-summary.md specs/###-name/implementation-summary.md
+cp .opencode/skill/system-spec-kit/templates/level_3+/checklist.md specs/###-name/checklist.md
+cp .opencode/skill/system-spec-kit/templates/level_3+/decision-record.md specs/###-name/decision-record-[topic].md
 ```
 
 ### Optional Templates (Level 3 Only)
@@ -148,12 +162,13 @@ Context saved to `specs/###-folder/memory/` or `memory/` (fallback).
 
 Before making ANY file changes, verify:
 
-- [ ] Determined level (1/2/3) or exempt (typo fix)
+- [ ] Determined level (1/2/3/3+) or exempt (typo fix)
 - [ ] Created `/specs/[###-short-name]/`
 - [ ] Copied ALL REQUIRED templates for chosen level:
   - [ ] Level 1: spec.md + plan.md + tasks.md + implementation-summary.md
   - [ ] Level 2: Level 1 + checklist.md
   - [ ] Level 3: Level 2 + decision-record.md
+  - [ ] Level 3+: Use full Level 3 file set from `templates/level_3+/`
 - [ ] Renamed templates correctly
 - [ ] Filled ALL template sections with actual content
 - [ ] Removed placeholder text and sample sections
@@ -233,12 +248,37 @@ When workflow prompts at conversation start:
 
 ## 10. 🔄 LEVEL MIGRATION (Progressive Enhancement)
 
-If scope grows during implementation, add the required files:
+### Script-Assisted Upgrade (Recommended)
+
+```bash
+# Upgrade to Level 2 (auto-detects current level)
+bash upgrade-level.sh specs/042-feature/ --to 2
+
+# Upgrade to Level 3 (chains through intermediate levels)
+bash upgrade-level.sh specs/042-feature/ --to 3
+
+# Upgrade to Level 3+
+bash upgrade-level.sh specs/042-feature/ --to 3+
+
+# Preview changes first
+bash upgrade-level.sh specs/042-feature/ --to 3 --dry-run
+```
+
+**Post-Upgrade:** After the script runs, AI **must** auto-populate all `[placeholder]` text in newly injected sections by reading existing spec context and deriving appropriate content.
+
+Then verify placeholders are fully resolved:
+
+```bash
+.opencode/skill/system-spec-kit/scripts/spec/check-placeholders.sh specs/042-feature/
+```
+
+### Manual Fallback
 
 | From | To | Files to Add |
 |------|----|--------------|
 | 1 → 2 | Add verification | checklist.md |
 | 2 → 3 | Add decision documentation | decision-record.md (+ optional research.md) |
+| 3 → 3+ | Add governance | Extended governance sections + AI protocols |
 
 **Always:**
 - Update `level:` field in metadata
@@ -477,6 +517,7 @@ node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js spe
 Checklist verification is **MANDATORY** for all Level 2+ documentation:
 - Level 2: Features requiring QA validation (100-499 LOC guidance)
 - Level 3: Complex/architectural work (>=500 LOC guidance)
+- Level 3+: Complex governance/multi-agent work (high complexity/risk)
 
 The `checklist.md` is an **ACTIVE VERIFICATION TOOL**, not passive documentation.
 
@@ -601,7 +642,10 @@ When in doubt:
 - [debug-delegation.md](../../templates/debug-delegation.md) - Debug task delegation template
 
 **Summary Templates:**
-- [implementation-summary.md](../../templates/implementation-summary.md) - Step 11 completion summary
+- [implementation-summary.md](../../templates/level_1/implementation-summary.md) - Required completion summary (Level 1 baseline)
+- [implementation-summary.md](../../templates/level_2/implementation-summary.md) - Required completion summary (Level 2)
+- [implementation-summary.md](../../templates/level_3/implementation-summary.md) - Required completion summary (Level 3)
+- [implementation-summary.md](../../templates/level_3+/implementation-summary.md) - Required completion summary (Level 3+)
 
 ### Related Skills
 - `workflows-code` - Implementation, debugging, and verification lifecycle

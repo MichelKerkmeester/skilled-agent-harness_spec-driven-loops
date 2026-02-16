@@ -1,6 +1,6 @@
 ---
 title: "Session Layer"
-description: "Session management for the Spec Kit Memory MCP server - handles session deduplication, crash recovery, and context persistence."
+description: "Session management for the Spec Kit Memory MCP server. Handles session deduplication, crash recovery and context persistence."
 trigger_phrases:
   - "session management"
   - "session deduplication"
@@ -10,24 +10,25 @@ importance_tier: "normal"
 
 # Session Layer
 
-> Session management for the Spec Kit Memory MCP server - handles session deduplication, crash recovery, and context persistence.
+> Session management for the Spec Kit Memory MCP server. Handles deduplication and crash recovery with context persistence.
 
 ---
 
 ## TABLE OF CONTENTS
 <!-- ANCHOR:table-of-contents -->
 
-- [1. 📖 OVERVIEW](#1--overview)
-- [2. 📁 STRUCTURE](#2--structure)
-- [3. ⚡ FEATURES](#3--features)
-- [4. 💡 USAGE EXAMPLES](#4--usage-examples)
-- [5. 🛠️ TROUBLESHOOTING](#5--troubleshooting)
-- [6. 📚 RELATED RESOURCES](#6--related-resources)
+- [1. OVERVIEW](#1--overview)
+- [2. STRUCTURE](#2--structure)
+- [3. FEATURES](#3--features)
+- [4. USAGE EXAMPLES](#4--usage-examples)
+- [5. TROUBLESHOOTING](#5--troubleshooting)
+- [6. RELATED RESOURCES](#6--related-resources)
+
+<!-- /ANCHOR:table-of-contents -->
 
 ---
 
-<!-- /ANCHOR:table-of-contents -->
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 <!-- ANCHOR:overview -->
 
 The session layer provides all session-related operations for the Spec Kit Memory MCP server. It prevents duplicate context injection (saving ~50% tokens on follow-up queries) and enables crash recovery with immediate SQLite persistence.
@@ -50,16 +51,17 @@ The session layer provides all session-related operations for the Spec Kit Memor
 | **Token Savings** | ~50% reduction on follow-up queries |
 | **State Persistence** | Zero data loss on crash via immediate saves |
 
+<!-- /ANCHOR:overview -->
+
 ---
 
-<!-- /ANCHOR:overview -->
-## 2. 📁 STRUCTURE
+## 2. STRUCTURE
 <!-- ANCHOR:structure -->
 
 ```
 session/
-├── session-manager.ts  # Session deduplication, crash recovery, state management (~28KB)
-└── README.md           # This file
+ session-manager.ts  # Session deduplication, crash recovery, state management (~28KB)
+ README.md           # This file
 ```
 
 ### Key Files
@@ -68,10 +70,11 @@ session/
 |------|---------|
 | `session-manager.ts` | Core session tracking, deduplication, state persistence, CONTINUE_SESSION.md |
 
+<!-- /ANCHOR:structure -->
+
 ---
 
-<!-- /ANCHOR:structure -->
-## 3. ⚡ FEATURES
+## 3. FEATURES
 <!-- ANCHOR:features -->
 
 ### Session Deduplication (v1.2.0)
@@ -106,13 +109,13 @@ Session Query Flow:
 | **CONTINUE_SESSION.md** | Human-readable recovery file in spec folder |
 
 Session states:
-- `active` - Session in progress
-- `completed` - Session ended normally
-- `interrupted` - Session crashed (detected on restart)
+- `active`: Session in progress
+- `completed`: Session ended normally
+- `interrupted`: Session crashed (detected on restart)
 
 ### CONTINUE_SESSION.md Generation
 
-**Purpose**: Human-readable recovery file for seamless session continuation.
+**Purpose**: Human-readable recovery file for smooth session continuation.
 
 Generated on checkpoint with:
 - Session ID and status
@@ -121,11 +124,12 @@ Generated on checkpoint with:
 - Pending work description
 - Quick resume command
 
+<!-- /ANCHOR:features -->
+
 ---
 
-<!-- /ANCHOR:features -->
-## 4. 💡 USAGE EXAMPLES
-<!-- ANCHOR:examples -->
+## 4. USAGE EXAMPLES
+<!-- ANCHOR:usage-examples -->
 
 ### Example 1: Filter Search Results (Primary Integration)
 
@@ -196,10 +200,11 @@ checkpointSession(sessionId, {
 | Recover state | `recoverState(sessionId)` | On session resume |
 | Complete session | `completeSession(sessionId)` | On normal session end |
 
+<!-- /ANCHOR:usage-examples -->
+
 ---
 
-<!-- /ANCHOR:examples -->
-## 5. 🛠️ TROUBLESHOOTING
+## 5. TROUBLESHOOTING
 <!-- ANCHOR:troubleshooting -->
 
 ### Common Issues
@@ -274,10 +279,11 @@ console.log(getInterruptedSessions());
 | `SESSION_MAX_ENTRIES` | 100 | Maximum entries per session |
 | `DISABLE_SESSION_DEDUP` | false | Set 'true' to disable deduplication |
 
+<!-- /ANCHOR:troubleshooting -->
+
 ---
 
-<!-- /ANCHOR:troubleshooting -->
-## 6. 📚 RELATED RESOURCES
+## 6. RELATED RESOURCES
 <!-- ANCHOR:related -->
 
 ### Internal Documentation
@@ -294,7 +300,8 @@ console.log(getInterruptedSessions());
 | `context-server.ts` | MCP server that uses session layer |
 | `storage/checkpoints.ts` | Checkpoint creation uses session state |
 
+<!-- /ANCHOR:related -->
+
 ---
 
-*Documentation version: 1.7.2 | Last updated: 2026-02-08 | Session layer v1.2.0*
-<!-- /ANCHOR:related -->
+*Documentation version: 1.7.2 | Last updated: 2026-02-16 | Session layer v1.2.0*

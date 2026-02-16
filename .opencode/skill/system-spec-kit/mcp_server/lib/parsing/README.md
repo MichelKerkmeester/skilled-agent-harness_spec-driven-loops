@@ -14,22 +14,23 @@ importance_tier: "normal"
 
 ---
 
-<!-- ANCHOR:table-of-contents -->
 ## TABLE OF CONTENTS
+<!-- ANCHOR:table-of-contents -->
 
-- [1. 📖 OVERVIEW](#1--overview)
-- [2. 📁 STRUCTURE](#2--structure)
-- [3. ⚡ FEATURES](#3--features)
-- [4. 💡 USAGE EXAMPLES](#4--usage-examples)
-- [5. 📚 RELATED RESOURCES](#5--related-resources)
+- [1. OVERVIEW](#1--overview)
+- [2. STRUCTURE](#2--structure)
+- [3. FEATURES](#3--features)
+- [4. USAGE EXAMPLES](#4--usage-examples)
+- [5. RELATED RESOURCES](#5--related-resources)
 
 <!-- /ANCHOR:table-of-contents -->
+
 ---
 
+## 1. OVERVIEW
 <!-- ANCHOR:overview -->
-## 1. 📖 OVERVIEW
 
-The parsing module provides core functionality for extracting structured data from memory files. It handles ANCHOR section extraction (enabling ~93% token savings), trigger phrase matching (<50ms for proactive surfacing), and encoding detection for UTF-8/UTF-16 files.
+The parsing module provides core functionality for extracting structured data from memory files. It handles ANCHOR section extraction (enabling ~93% token savings) and trigger phrase matching (<50ms for proactive surfacing). It also supports encoding detection for UTF-8/UTF-16 files.
 
 ### Key Statistics
 
@@ -46,21 +47,23 @@ The parsing module provides core functionality for extracting structured data fr
 | **ANCHOR Extraction** | Parse `<!-- ANCHOR:id -->` sections for targeted retrieval |
 | **Trigger Matching** | Match user prompts against cached trigger phrases with Unicode support |
 | **Memory Type Inference** | Automatic classification (research, implementation, decision, discovery) via `inferMemoryType` from config |
+| **Spec Document Classification** | Derives `documentType` and `specLevel` from file paths for full spec folder indexing |
 | **Causal Link Extraction** | Parse relationship metadata (caused_by, supersedes, derived_from, blocks, related_to) |
 | **Entity Scope Detection** | Context type detection from content or tool usage, SQL scope filter building, session ID generation |
 
 <!-- /ANCHOR:overview -->
+
 ---
 
+## 2. STRUCTURE
 <!-- ANCHOR:structure -->
-## 2. 📁 STRUCTURE
 
 ```
 parsing/
-├── entity-scope.ts       # Context type detection, scope filtering, session ID generation
-├── memory-parser.ts      # Core memory file parsing with ANCHOR extraction
-├── trigger-matcher.ts    # Fast trigger phrase matching (<50ms target)
-└── README.md             # This file
+ entity-scope.ts       # Context type detection, scope filtering, session ID generation
+ memory-parser.ts      # Core memory file parsing with ANCHOR extraction
+ trigger-matcher.ts    # Fast trigger phrase matching (<50ms target)
+ README.md             # This file
 ```
 
 ### Key Files
@@ -72,10 +75,11 @@ parsing/
 | `trigger-matcher.ts` | Match prompts against trigger phrases with LRU regex caching |
 
 <!-- /ANCHOR:structure -->
+
 ---
 
+## 3. FEATURES
 <!-- ANCHOR:features -->
-## 3. ⚡ FEATURES
 
 ### Memory Parser (`memory-parser.ts`)
 
@@ -100,6 +104,8 @@ parsing/
 | `extractTriggerPhrases` | `(content: string) => string[]` | Extract trigger phrases from YAML or `## Trigger Phrases` section |
 | `extractContextType` | `(content: string) => ContextType` | Extract context type from metadata |
 | `extractImportanceTier` | `(content: string) => string` | Extract importance tier |
+| `extractDocumentType` | `(filePath: string) => string` | Derive document type from folder and filename |
+| `extractSpecLevel` | `(filePath: string) => number \| null` | Derive spec level (1, 2, 3, 4) from spec paths |
 | `computeContentHash` | `(content: string) => string` | SHA-256 hash of content |
 | `extractCausalLinks` | `(content: string) => CausalLinks` | Extract causal link metadata from YAML |
 | `hasCausalLinks` | `(causalLinks: CausalLinks) => boolean` | Check if any causal links are present |
@@ -109,7 +115,7 @@ parsing/
 | `validateParsedMemory` | `(parsed: ParsedMemory) => ParsedMemoryValidation` | Validate parsed memory data |
 | `findMemoryFiles` | `(workspacePath: string, options?) => string[]` | Find all memory files in a workspace |
 
-**Exported types:** `CausalLinks`, `TypeInferenceResult`, `ParsedMemory`, `AnchorValidation`, `ParsedMemoryValidation`, `ContextType`, `FindMemoryFilesOptions`
+**Exported types:** `CausalLinks`, `TypeInferenceResult`, `ParsedMemory`, `AnchorValidation`, `ParsedMemoryValidation`, `ContextType`, `FindMemoryFilesOptions`, `DocumentType`
 
 **Exported constants:** `MEMORY_FILE_PATTERN`, `CONTEXT_TYPE_MAP`
 
@@ -147,14 +153,14 @@ parsing/
 
 ### Entity Scope (`entity-scope.ts`)
 
-**Purpose**: Context type detection, scope filtering, and session ID generation
+**Purpose**: Context type detection, scope filtering and session ID generation
 
 | Aspect | Details |
 |--------|---------|
 | **Context Types** | `research`, `implementation`, `decision`, `discovery`, `general` |
-| **Content Detection** | Keyword scanning (explored→research, implemented→implementation, decided→decision, found→discovery) |
-| **Tool Detection** | Infers context from tool usage (AskUserQuestion→decision, Read/Grep/Glob majority→research) |
-| **Scope Filtering** | Builds SQL WHERE clauses from specFolder, sessionId, and contextTypes |
+| **Content Detection** | Keyword scanning (explored->research, implemented->implementation, decided->decision, found->discovery) |
+| **Tool Detection** | Infers context from tool usage (AskUserQuestion->decision, Read/Grep/Glob majority->research) |
+| **Scope Filtering** | Builds SQL WHERE clauses from specFolder, sessionId and contextTypes |
 
 **Exported functions:**
 
@@ -169,10 +175,11 @@ parsing/
 **Exported constants:** `CONTEXT_TYPES`
 
 <!-- /ANCHOR:features -->
+
 ---
 
-<!-- ANCHOR:examples -->
-## 4. 💡 USAGE EXAMPLES
+## 4. USAGE EXAMPLES
+<!-- ANCHOR:usage-examples -->
 
 ### Example 1: Parse Memory File with Anchors
 
@@ -212,11 +219,12 @@ console.log(`Match time: ${result.stats.matchTimeMs}ms`);
 | Trigger match | `matchTriggerPhrases(prompt, limit)` | Proactive surfacing |
 | Find files | `findMemoryFiles(workspace, { specFolder })` | Directory scanning |
 
-<!-- /ANCHOR:examples -->
+<!-- /ANCHOR:usage-examples -->
+
 ---
 
+## 5. RELATED RESOURCES
 <!-- ANCHOR:related -->
-## 5. 📚 RELATED RESOURCES
 
 ### Internal Documentation
 
@@ -228,7 +236,8 @@ console.log(`Match time: ${result.stats.matchTimeMs}ms`);
 | [config/](../config/) | Type inference used by memory-parser |
 
 <!-- /ANCHOR:related -->
+
 ---
 
 **Version**: 1.7.2
-**Last Updated**: 2026-02-08
+**Last Updated**: 2026-02-16

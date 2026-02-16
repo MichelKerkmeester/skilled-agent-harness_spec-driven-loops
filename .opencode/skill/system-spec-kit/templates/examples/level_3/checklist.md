@@ -8,6 +8,7 @@ and deployment readiness sections added to the Level 2 base. -->
 
 ---
 
+<!-- ANCHOR:protocol -->
 ## Verification Protocol
 
 | Priority | Handling | Completion Impact |
@@ -16,8 +17,11 @@ and deployment readiness sections added to the Level 2 base. -->
 | **[P1]** | Required | Must complete OR get user approval |
 | **[P2]** | Optional | Can defer with documented reason |
 
+
+<!-- /ANCHOR:protocol -->
 ---
 
+<!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
 - [x] CHK-001 [P0] Requirements documented in spec.md
@@ -27,8 +31,11 @@ and deployment readiness sections added to the Level 2 base. -->
 - [x] CHK-003 [P1] Dependencies identified and available
   - **Evidence**: All npm packages installed, PostgreSQL running
 
+
+<!-- /ANCHOR:pre-impl -->
 ---
 
+<!-- ANCHOR:code-quality -->
 ## Code Quality
 
 - [x] CHK-010 [P0] Code passes lint/format checks
@@ -40,8 +47,11 @@ and deployment readiness sections added to the Level 2 base. -->
 - [x] CHK-013 [P1] Code follows project patterns
   - **Evidence**: MVC structure, consistent naming, existing style guide followed
 
+
+<!-- /ANCHOR:code-quality -->
 ---
 
+<!-- ANCHOR:testing -->
 ## Testing
 
 - [x] CHK-020 [P0] All acceptance criteria met
@@ -53,8 +63,11 @@ and deployment readiness sections added to the Level 2 base. -->
 - [x] CHK-023 [P1] Error scenarios validated
   - **Evidence**: Database failure, invalid input, expired token scenarios tested
 
+
+<!-- /ANCHOR:testing -->
 ---
 
+<!-- ANCHOR:security -->
 ## Security
 
 - [x] CHK-030 [P0] No hardcoded secrets
@@ -64,8 +77,11 @@ and deployment readiness sections added to the Level 2 base. -->
 - [x] CHK-032 [P1] Auth/authz working correctly
   - **Evidence**: Protected routes return 401 without valid token
 
+
+<!-- /ANCHOR:security -->
 ---
 
+<!-- ANCHOR:docs -->
 ## Documentation
 
 - [x] CHK-040 [P1] Spec/plan/tasks synchronized
@@ -75,8 +91,11 @@ and deployment readiness sections added to the Level 2 base. -->
 - [x] CHK-042 [P2] README updated
   - **Evidence**: Auth section added, environment variables documented
 
+
+<!-- /ANCHOR:docs -->
 ---
 
+<!-- ANCHOR:file-org -->
 ## File Organization
 
 - [x] CHK-050 [P1] Temp files in scratch/ only
@@ -86,8 +105,11 @@ and deployment readiness sections added to the Level 2 base. -->
 - [x] CHK-052 [P2] Findings saved to memory/
   - **Evidence**: Session context saved with key decisions
 
+
+<!-- /ANCHOR:file-org -->
 ---
 
+<!-- ANCHOR:arch-verify -->
 ## L3: Architecture Verification
 
 - [x] CHK-100 [P0] Architecture decisions documented in decision-record.md
@@ -99,8 +121,11 @@ and deployment readiness sections added to the Level 2 base. -->
 - [x] CHK-103 [P2] Component diagram accurate
   - **Evidence**: plan.md diagram matches final implementation
 
+
+<!-- /ANCHOR:arch-verify -->
 ---
 
+<!-- ANCHOR:perf-verify -->
 ## L3: Performance Verification
 
 - [x] CHK-110 [P1] Response time targets met (NFR-P01)
@@ -112,8 +137,11 @@ and deployment readiness sections added to the Level 2 base. -->
 - [x] CHK-113 [P1] Token validation performance (NFR-P03)
   - **Evidence**: Token verify avg 3ms < 10ms target
 
+
+<!-- /ANCHOR:perf-verify -->
 ---
 
+<!-- ANCHOR:deploy-ready -->
 ## L3: Deployment Readiness
 
 - [x] CHK-120 [P0] Rollback procedure documented and tested
@@ -125,8 +153,11 @@ and deployment readiness sections added to the Level 2 base. -->
 - [x] CHK-123 [P2] Runbook created
   - **Evidence**: Auth troubleshooting section in ops/runbooks/auth.md
 
+
+<!-- /ANCHOR:deploy-ready -->
 ---
 
+<!-- ANCHOR:summary -->
 ## Verification Summary
 
 | Category | Total | Verified |
@@ -138,6 +169,8 @@ and deployment readiness sections added to the Level 2 base. -->
 **Verification Date**: 2025-01-20
 **Verified By**: AI Assistant (Claude)
 **ADRs**: 3 documented, 3 accepted
+
+<!-- /ANCHOR:summary -->
 
 ---
 

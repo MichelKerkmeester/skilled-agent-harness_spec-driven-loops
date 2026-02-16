@@ -8,6 +8,7 @@ verification evidence. Each item marked [x] includes evidence of completion. -->
 
 ---
 
+<!-- ANCHOR:protocol -->
 ## Verification Protocol
 
 | Priority | Handling | Completion Impact |
@@ -16,8 +17,11 @@ verification evidence. Each item marked [x] includes evidence of completion. -->
 | **[P1]** | Required | Must complete OR get user approval |
 | **[P2]** | Optional | Can defer with documented reason |
 
+
+<!-- /ANCHOR:protocol -->
 ---
 
+<!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
 - [x] CHK-001 [P0] Requirements documented in spec.md
@@ -27,8 +31,11 @@ verification evidence. Each item marked [x] includes evidence of completion. -->
 - [x] CHK-003 [P1] Dependencies identified and available
   - **Evidence**: bcrypt@5.1.1, jsonwebtoken@9.0.0, express-validator@7.0.1 installed
 
+
+<!-- /ANCHOR:pre-impl -->
 ---
 
+<!-- ANCHOR:code-quality -->
 ## Code Quality
 
 - [x] CHK-010 [P0] Code passes lint/format checks
@@ -40,8 +47,11 @@ verification evidence. Each item marked [x] includes evidence of completion. -->
 - [x] CHK-013 [P1] Code follows project patterns
   - **Evidence**: MVC structure maintained, matches existing auth patterns
 
+
+<!-- /ANCHOR:code-quality -->
 ---
 
+<!-- ANCHOR:testing -->
 ## Testing
 
 - [x] CHK-020 [P0] All acceptance criteria met
@@ -53,8 +63,11 @@ verification evidence. Each item marked [x] includes evidence of completion. -->
 - [x] CHK-023 [P1] Error scenarios validated
   - **Evidence**: Database failure gracefully handled with generic error
 
+
+<!-- /ANCHOR:testing -->
 ---
 
+<!-- ANCHOR:security -->
 ## Security
 
 - [x] CHK-030 [P0] No hardcoded secrets
@@ -64,8 +77,11 @@ verification evidence. Each item marked [x] includes evidence of completion. -->
 - [x] CHK-032 [P1] Auth/authz working correctly
   - **Evidence**: Protected routes return 401 without valid token
 
+
+<!-- /ANCHOR:security -->
 ---
 
+<!-- ANCHOR:docs -->
 ## Documentation
 
 - [x] CHK-040 [P1] Spec/plan/tasks synchronized
@@ -75,8 +91,11 @@ verification evidence. Each item marked [x] includes evidence of completion. -->
 - [x] CHK-042 [P2] README updated (if applicable)
   - **Evidence**: Auth section added to main README
 
+
+<!-- /ANCHOR:docs -->
 ---
 
+<!-- ANCHOR:file-org -->
 ## File Organization
 
 - [x] CHK-050 [P1] Temp files in scratch/ only
@@ -86,8 +105,11 @@ verification evidence. Each item marked [x] includes evidence of completion. -->
 - [x] CHK-052 [P2] Findings saved to memory/
   - **Evidence**: N/A - no complex findings requiring memory save
 
+
+<!-- /ANCHOR:file-org -->
 ---
 
+<!-- ANCHOR:summary -->
 ## Verification Summary
 
 | Category | Total | Verified |
@@ -98,6 +120,8 @@ verification evidence. Each item marked [x] includes evidence of completion. -->
 
 **Verification Date**: 2025-01-17
 **Verified By**: AI Assistant (Claude)
+
+<!-- /ANCHOR:summary -->
 
 ---
 

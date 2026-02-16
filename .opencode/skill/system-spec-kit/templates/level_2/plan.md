@@ -5,6 +5,7 @@
 
 ---
 
+<!-- ANCHOR:summary -->
 ## 1. SUMMARY
 
 ### Technical Context
@@ -18,9 +19,11 @@
 
 ### Overview
 [2-3 sentences: what this implements and the technical approach]
+<!-- /ANCHOR:summary -->
 
 ---
 
+<!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
 
 ### Definition of Ready
@@ -32,9 +35,11 @@
 - [ ] All acceptance criteria met
 - [ ] Tests passing (if applicable)
 - [ ] Docs updated (spec/plan/tasks)
+<!-- /ANCHOR:quality-gates -->
 
 ---
 
+<!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
 
 ### Pattern
@@ -46,9 +51,11 @@
 
 ### Data Flow
 [Brief description of how data moves through the system]
+<!-- /ANCHOR:architecture -->
 
 ---
 
+<!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
@@ -65,9 +72,11 @@
 - [ ] Manual testing complete
 - [ ] Edge cases handled
 - [ ] Documentation updated
+<!-- /ANCHOR:phases -->
 
 ---
 
+<!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
 
 | Test Type | Scope | Tools |
@@ -75,27 +84,30 @@
 | Unit | [Components/functions] | [Jest/pytest/etc.] |
 | Integration | [API endpoints/flows] | [Tools] |
 | Manual | [User journeys] | Browser |
+<!-- /ANCHOR:testing -->
 
 ---
 
+<!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
 | [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+<!-- /ANCHOR:dependencies -->
 
 ---
 
+<!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
 - **Trigger**: [Conditions requiring rollback]
 - **Procedure**: [How to revert changes]
+<!-- /ANCHOR:rollback -->
 
 ---
 
-
----
-
+<!-- ANCHOR:phase-deps -->
 ## L2: PHASE DEPENDENCIES
 
 ```
@@ -110,9 +122,11 @@ Phase 1.5 (Config) ───┘
 | Config | Setup | Core |
 | Core | Setup, Config | Verify |
 | Verify | Core | None |
+<!-- /ANCHOR:phase-deps -->
 
 ---
 
+<!-- ANCHOR:effort -->
 ## L2: EFFORT ESTIMATION
 
 | Phase | Complexity | Estimated Effort |
@@ -121,9 +135,11 @@ Phase 1.5 (Config) ───┘
 | Core Implementation | [Low/Med/High] | [e.g., 4-8 hours] |
 | Verification | [Low/Med/High] | [e.g., 1-2 hours] |
 | **Total** | | **[e.g., 6-12 hours]** |
+<!-- /ANCHOR:effort -->
 
 ---
 
+<!-- ANCHOR:enhanced-rollback -->
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deployment Checklist
@@ -140,6 +156,7 @@ Phase 1.5 (Config) ───┘
 ### Data Reversal
 - **Has data migrations?** [Yes/No]
 - **Reversal procedure**: [Steps or "N/A"]
+<!-- /ANCHOR:enhanced-rollback -->
 
 ---
 

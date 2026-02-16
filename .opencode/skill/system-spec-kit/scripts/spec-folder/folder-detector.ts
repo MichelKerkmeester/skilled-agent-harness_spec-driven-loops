@@ -9,7 +9,7 @@ import * as path from 'path';
 
 // Internal modules
 import { promptUser, promptUserChoice } from '../utils/prompt-utils';
-import { CONFIG, findActiveSpecsDir, getAllExistingSpecsDirs } from '../core';
+import { CONFIG, findActiveSpecsDir, getAllExistingSpecsDirs, SPEC_FOLDER_PATTERN, findChildFolderAsync } from '../core';
 import {
   ALIGNMENT_CONFIG,
   isArchiveFolder,
@@ -68,11 +68,13 @@ async function detectSpecFolder(collectedData: CollectedDataForAlignment | null 
   // Priority 1: CLI argument
   if (CONFIG.SPEC_FOLDER_ARG) {
     const specArg: string = CONFIG.SPEC_FOLDER_ARG;
-    const specFolderPath: string = specArg.startsWith('specs/')
-      ? path.join(CONFIG.PROJECT_ROOT, specArg)
-      : specArg.startsWith('.opencode/specs/')
+    const specFolderPath: string = path.isAbsolute(specArg)
+      ? specArg
+      : specArg.startsWith('specs/')
         ? path.join(CONFIG.PROJECT_ROOT, specArg)
-        : path.join(specsDir || defaultSpecsDir, specArg);
+        : specArg.startsWith('.opencode/specs/')
+          ? path.join(CONFIG.PROJECT_ROOT, specArg)
+          : path.join(specsDir || defaultSpecsDir, specArg);
 
     try {
       await fs.access(specFolderPath);
@@ -91,6 +93,27 @@ async function detectSpecFolder(collectedData: CollectedDataForAlignment | null 
 
       return specFolderPath;
     } catch {
+      // NEW: Try nested parent/child resolution (e.g., "005-memory/002-upgrade")
+      const argParts = specArg.split('/');
+      if (argParts.length === 2 && SPEC_FOLDER_PATTERN.test(argParts[0]) && SPEC_FOLDER_PATTERN.test(argParts[1])) {
+        for (const dir of existingSpecsDirs) {
+          const nestedPath = path.join(dir, argParts[0], argParts[1]);
+          try {
+            await fs.access(nestedPath);
+            console.log(`   Using spec folder from CLI argument (nested): ${argParts[0]}/${argParts[1]}`);
+            return nestedPath;
+          } catch {
+            // Not found in this specs dir, continue searching
+          }
+        }
+      }
+
+      // Bare child search across all parents
+      const childResult = await findChildFolderAsync(specArg);
+      if (childResult) {
+        return childResult;
+      }
+
       console.error(`\n Specified spec folder not found: ${CONFIG.SPEC_FOLDER_ARG}\n`);
       console.error('Expected format: ###-feature-name (e.g., "122-skill-standardization")\n');
 
@@ -138,6 +161,41 @@ async function detectSpecFolder(collectedData: CollectedDataForAlignment | null 
         return specFolderPath;
       }
     } catch {
+      // NEW: Try nested parent/child resolution for JSON data value
+      const dataParts = specFolderFromData.split('/');
+      if (dataParts.length === 2 && SPEC_FOLDER_PATTERN.test(dataParts[0]) && SPEC_FOLDER_PATTERN.test(dataParts[1])) {
+        for (const dir of existingSpecsDirs) {
+          const nestedPath = path.join(dir, dataParts[0], dataParts[1]);
+          try {
+            await fs.access(nestedPath);
+            console.log(`   Using spec folder from data (nested): ${dataParts[0]}/${dataParts[1]}`);
+
+            if (collectedData) {
+              const alignmentResult = await validateFolderAlignment(collectedData, dataParts[1], path.join(dir, dataParts[0]));
+              if (alignmentResult.proceed && alignmentResult.useAlternative && alignmentResult.selectedFolder) {
+                const altPath = path.join(dir, dataParts[0], alignmentResult.selectedFolder);
+                try {
+                  await fs.access(altPath);
+                  return altPath;
+                } catch {
+                  // Alternative not found as nested, use original
+                }
+              }
+            }
+
+            return nestedPath;
+          } catch {
+            // Not found in this specs dir, continue searching
+          }
+        }
+      }
+
+      // Bare child search across all parents
+      const childResult = await findChildFolderAsync(specFolderFromData);
+      if (childResult) {
+        return childResult;
+      }
+
       console.warn(`   Spec folder from data not found: ${specFolderFromData}`);
     }
   }
@@ -197,6 +255,53 @@ async function detectSpecFolder(collectedData: CollectedDataForAlignment | null 
       .reverse();
 
     specFolders = filterArchiveFolders(specFolders);
+
+    // NEW: 2-level deep scanning — prefer nested child over parent
+    {
+      interface FolderCandidate {
+        folderPath: string;
+        mtime: number;
+        isNested: boolean;
+      }
+      const candidates: FolderCandidate[] = [];
+
+      for (const topFolder of specFolders) {
+        const topPath = path.join(specsDir, topFolder);
+        try {
+          // Scan children of this top-level folder
+          const children = await fs.readdir(topPath);
+          for (const child of children) {
+            if (!SPEC_FOLDER_PATTERN.test(child)) continue;
+            const childPath = path.join(topPath, child);
+            try {
+              const childStat = await fs.stat(childPath);
+              if (childStat.isDirectory()) {
+                candidates.push({ folderPath: childPath, mtime: childStat.mtimeMs, isNested: true });
+              }
+            } catch {
+              // Can't stat child, skip
+            }
+          }
+
+          // Also include the parent as a fallback candidate
+          const topStat = await fs.stat(topPath);
+          candidates.push({ folderPath: topPath, mtime: topStat.mtimeMs, isNested: false });
+        } catch {
+          // Can't read/stat top-level folder, skip
+        }
+      }
+
+      // If nested children were found, prefer the most recent child by mtime
+      const nestedCandidates = candidates.filter((c) => c.isNested);
+      if (nestedCandidates.length > 0) {
+        nestedCandidates.sort((a, b) => b.mtime - a.mtime);
+        const best = nestedCandidates[0];
+        const parentName = path.basename(path.dirname(best.folderPath));
+        const childName = path.basename(best.folderPath);
+        console.log(`   Auto-detected nested spec folder: ${parentName}/${childName}`);
+        return best.folderPath;
+      }
+    }
 
     if (specFolders.length === 0) {
       printNoSpecFolderError();

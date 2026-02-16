@@ -1,6 +1,6 @@
 ---
 title: "Cache Module"
-description: "Tool output caching with 60s TTL, LRU eviction, and write-through invalidation."
+description: "Tool output caching with TTL, LRU eviction, and spec-document-aware invalidation paths."
 trigger_phrases:
   - "tool cache"
   - "cache TTL"
@@ -10,26 +10,27 @@ importance_tier: "normal"
 
 # Cache Module
 
-> Tool output caching with 60s TTL, LRU eviction, and write-through invalidation.
+> Tool output caching with TTL, LRU eviction, and spec-document-aware invalidation paths.
 
 ---
 
 ## TABLE OF CONTENTS
 <!-- ANCHOR:table-of-contents -->
 
-- [1. 📖 OVERVIEW](#1--overview)
-- [2. 📁 STRUCTURE](#2--structure)
-- [3. ⚡ FEATURES](#3--features)
-- [4. 💡 USAGE](#4--usage)
-- [5. 📚 RELATED RESOURCES](#5--related-resources)
+- [1. OVERVIEW](#1--overview)
+- [2. STRUCTURE](#2--structure)
+- [3. FEATURES](#3--features)
+- [4. USAGE](#4--usage)
+- [5. RELATED RESOURCES](#5--related-resources)
+
 <!-- /ANCHOR:table-of-contents -->
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 <!-- ANCHOR:overview -->
 
-The cache module provides in-memory caching for MCP tool outputs to reduce redundant operations and improve response times. It uses SHA-256 hashed keys for deterministic cache lookups and supports automatic TTL-based expiration.
+The cache module provides in-memory caching for MCP tool outputs to reduce redundant operations and improve response times. It uses SHA-256 hashed keys for deterministic cache lookups and supports automatic TTL-based expiration. Post-Spec 126, cache invalidation is especially important for spec document indexing and document-aware retrieval flows.
 
 ### Key Characteristics
 
@@ -49,11 +50,12 @@ The cache module provides in-memory caching for MCP tool outputs to reduce redun
 | `TOOL_CACHE_TTL_MS` | `60000` | TTL in milliseconds |
 | `TOOL_CACHE_MAX_ENTRIES` | `1000` | Maximum cache entries |
 | `TOOL_CACHE_CLEANUP_INTERVAL_MS` | `30000` | Cleanup interval in ms |
+
 <!-- /ANCHOR:overview -->
 
 ---
 
-## 2. 📁 STRUCTURE
+## 2. STRUCTURE
 <!-- ANCHOR:structure -->
 
 ```
@@ -66,12 +68,13 @@ cache/
 
 | File | Purpose |
 |------|---------|
-| `tool-cache.ts` | Cache implementation with TTL, LRU eviction, invalidation, statistics |
+| `tool-cache.ts` | Cache implementation with TTL, LRU eviction, invalidation and statistics |
+
 <!-- /ANCHOR:structure -->
 
 ---
 
-## 3. ⚡ FEATURES
+## 3. FEATURES
 <!-- ANCHOR:features -->
 
 ### Core Operations
@@ -98,6 +101,8 @@ cache/
 | `invalidateOnWrite(operation, context)` | Auto-invalidate after write operations |
 | `clear()` | Clear entire cache |
 
+Write-driven invalidation is used for memory and spec document changes so search and ranking do not serve stale `documentType`/`specLevel` context.
+
 ### High-Level Wrapper
 
 ```typescript
@@ -105,7 +110,7 @@ cache/
 await withCache(toolName, args, asyncFn, options);
 ```
 
-### Statistics & Lifecycle
+### Statistics and Lifecycle
 
 | Function | Purpose |
 |----------|---------|
@@ -127,12 +132,13 @@ await withCache(toolName, args, asyncFn, options);
 | `hitRate` | Percentage of hits vs total requests |
 
 **Exported constant:** `CONFIG` (aliased from `TOOL_CACHE_CONFIG`)
+
 <!-- /ANCHOR:features -->
 
 ---
 
-## 4. 💡 USAGE
-<!-- ANCHOR:examples -->
+## 4. USAGE
+<!-- ANCHOR:usage -->
 
 ### Basic Import
 
@@ -185,11 +191,12 @@ import { getStats } from './tool-cache';
 const stats = getStats();
 // { hits: 42, misses: 8, hitRate: '84.00%', currentSize: 15, ... }
 ```
-<!-- /ANCHOR:examples -->
+
+<!-- /ANCHOR:usage -->
 
 ---
 
-## 5. 📚 RELATED RESOURCES
+## 5. RELATED RESOURCES
 <!-- ANCHOR:related -->
 
 ### Internal Documentation
@@ -206,9 +213,10 @@ const stats = getStats();
 |--------|--------------|
 | `context-server.ts` | Integrates caching for tool operations |
 | `lib/search/` | Search operations benefit from caching |
+
 <!-- /ANCHOR:related -->
 
 ---
 
-**Version**: 1.7.2
-**Last Updated**: 2026-02-08
+**Version**: 1.8.0
+**Last Updated**: 2026-02-16

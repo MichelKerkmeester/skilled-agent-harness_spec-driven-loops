@@ -176,9 +176,15 @@ detect_level() {
     local level=""
     
     if [[ -f "$spec_file" ]]; then
-        # Pattern 1: Table format with bold (most common)
+        # Pattern 0: SPECKIT_LEVEL marker (most authoritative)
+        # <!-- SPECKIT_LEVEL: 2 --> or <!-- SPECKIT_LEVEL: 3+ -->
+        level=$(grep -oE '<!-- SPECKIT_LEVEL: *[123]\+? *-->' "$spec_file" 2>/dev/null | grep -oE '[123]\+?' | head -1 || true)
+
+        # Pattern 1: Table format with bold (common)
         # | **Level** | 2 | or | **Level** | 3+ |
-        level=$(grep -E '\|\s*\*\*Level\*\*\s*\|\s*[123]\+?\s*\|' "$spec_file" 2>/dev/null | grep -oE '[123]\+?' | head -1 || true)
+        if [[ -z "$level" ]]; then
+            level=$(grep -E '\|\s*\*\*Level\*\*\s*\|\s*[123]\+?\s*\|' "$spec_file" 2>/dev/null | grep -oE '[123]\+?' | head -1 || true)
+        fi
         
         # Pattern 2: Table format without bold
         # | Level | 2 | or | Level | 3+ |
@@ -192,10 +198,10 @@ detect_level() {
             level=$(grep -E '^level:\s*[123]\+?' "$spec_file" 2>/dev/null | grep -oE '[123]\+?' | head -1 || true)
         fi
         
-        # Pattern 4: Inline "Level: N" or "Level N" (case insensitive)
-        # Level: 2 or Level 3+
+        # Pattern 4: Anchored inline "Level: N" or "Level N"
+        # (line-start only to avoid prose false-positives)
         if [[ -z "$level" ]]; then
-            level=$(grep -iE 'level[: ]+[123]\+?' "$spec_file" 2>/dev/null | grep -oE '[123]\+?' | head -1 || true)
+            level=$(grep -E '^[Ll]evel[: ]+[123]\+?' "$spec_file" 2>/dev/null | grep -oE '[123]\+?' | head -1 || true)
         fi
         
         [[ -n "$level" ]] && { DETECTED_LEVEL="$level"; LEVEL_METHOD="explicit"; return; }

@@ -1,13 +1,13 @@
 // ---------------------------------------------------------------
 // MODULE: Intent Classifier
-// 5 intent types with keyword/pattern scoring
+// 7 intent types with keyword/pattern scoring
 // ---------------------------------------------------------------
 
 /* -----------------------------------------------------------
    1. TYPES & CONSTANTS
 ----------------------------------------------------------------*/
 
-type IntentType = 'add_feature' | 'fix_bug' | 'refactor' | 'security_audit' | 'understand';
+type IntentType = 'add_feature' | 'fix_bug' | 'refactor' | 'security_audit' | 'understand' | 'find_spec' | 'find_decision';
 
 interface IntentResult {
   intent: IntentType;
@@ -29,6 +29,8 @@ const INTENT_TYPES: Record<string, IntentType> = {
   REFACTOR: 'refactor',
   SECURITY_AUDIT: 'security_audit',
   UNDERSTAND: 'understand',
+  FIND_SPEC: 'find_spec',
+  FIND_DECISION: 'find_decision',
 } as const;
 
 const INTENT_KEYWORDS: Record<IntentType, string[]> = {
@@ -53,6 +55,14 @@ const INTENT_KEYWORDS: Record<IntentType, string[]> = {
     'understand', 'explain', 'describe', 'overview',
     'architecture', 'design', 'flow', 'documentation', 'guide',
     'learn',
+  ],
+  find_spec: [
+    'spec', 'specification', 'requirements', 'scope', 'feature',
+    'plan', 'tasks', 'checklist', 'implementation',
+  ],
+  find_decision: [
+    'decision', 'why', 'chose', 'rationale', 'alternative',
+    'trade-off', 'tradeoff', 'adr', 'decision-record',
   ],
 };
 
@@ -94,6 +104,20 @@ const INTENT_PATTERNS: Record<IntentType, RegExp[]> = {
     /how\s+does\s+(?:the\s+|this\s+)/i,
     /what\s+is\s+(?:the\s+|this\s+)/i,
   ],
+  find_spec: [
+    /(?:find|show|get)\s+(?:the\s+)?spec/i,
+    /what\s+(?:are|were)\s+the\s+requirements/i,
+    /what\s+(?:is|was)\s+the\s+(?:scope|plan)/i,
+    /spec(?:ification)?\s+for\s+/i,
+    /what\s+(?:did|does)\s+(?:the\s+)?(?:spec|plan)\s+say/i,
+  ],
+  find_decision: [
+    /why\s+(?:did|do)\s+we\s+(?:choose|pick|select|decide)/i,
+    /what\s+(?:was|were)\s+the\s+(?:decision|rationale)/i,
+    /decision\s+(?:record|log|history)/i,
+    /(?:find|show|get)\s+(?:the\s+)?decision/i,
+    /what\s+alternatives?\s+(?:were|was)\s+considered/i,
+  ],
 };
 
 /**
@@ -117,6 +141,8 @@ const INTENT_WEIGHT_ADJUSTMENTS: Record<IntentType, IntentWeights> = {
   refactor: { recency: 0.2, importance: 0.3, similarity: 0.5, contextType: 'implementation' },
   security_audit: { recency: 0.1, importance: 0.5, similarity: 0.4, contextType: 'research' },
   understand: { recency: 0.2, importance: 0.3, similarity: 0.5, contextType: null },
+  find_spec: { recency: 0.1, importance: 0.5, similarity: 0.4, contextType: 'decision' },
+  find_decision: { recency: 0.1, importance: 0.5, similarity: 0.4, contextType: 'decision' },
 };
 
 /* -----------------------------------------------------------
@@ -171,7 +197,7 @@ function classifyIntent(query: string): IntentResult {
     return {
       intent: 'understand',
       confidence: 0,
-      scores: { add_feature: 0, fix_bug: 0, refactor: 0, security_audit: 0, understand: 0 },
+      scores: { add_feature: 0, fix_bug: 0, refactor: 0, security_audit: 0, understand: 0, find_spec: 0, find_decision: 0 },
       keywords: [],
     };
   }
@@ -182,6 +208,8 @@ function classifyIntent(query: string): IntentResult {
     refactor: 0,
     security_audit: 0,
     understand: 0,
+    find_spec: 0,
+    find_decision: 0,
   };
 
   const allKeywords: string[] = [];
@@ -302,6 +330,8 @@ function getIntentDescription(intent: IntentType): string {
     refactor: 'Refactoring or improving existing code',
     security_audit: 'Security audit or vulnerability assessment',
     understand: 'Understanding or exploring the codebase',
+    find_spec: 'Finding spec documents, requirements, or plans',
+    find_decision: 'Finding decision records or rationale',
   };
   return descriptions[intent] || 'Unknown intent';
 }

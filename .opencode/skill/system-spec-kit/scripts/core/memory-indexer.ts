@@ -9,14 +9,9 @@ import * as path from 'path';
 import { structuredLog } from '../utils';
 import { generateEmbedding, EMBEDDING_DIM, MODEL_NAME } from '../lib/embeddings';
 import * as vectorIndex from '@spec-kit/mcp-server/lib/search/vector-index';
+import { DB_UPDATED_FILE } from '@spec-kit/mcp-server/core/config';
 import { extractTriggerPhrases } from '../lib/trigger-extractor';
 import type { CollectedDataFull } from '../extractors/collect-session-data';
-
-/* -----------------------------------------------------------------
-   CONSTANTS
-------------------------------------------------------------------*/
-
-const DB_UPDATED_FILE: string = path.join(__dirname, '../../../mcp_server/database/.db-updated');
 
 /* -----------------------------------------------------------------
    UTILITY FUNCTIONS

@@ -192,3 +192,28 @@ export function getTiersByImportance(): ImportanceTier[] {
     return IMPORTANCE_TIERS[b].value - IMPORTANCE_TIERS[a].value;
   });
 }
+
+// ---------------------------------------------------------------
+// 6. DOCUMENT TYPE HELPERS (Spec 126)
+// ---------------------------------------------------------------
+
+/**
+ * Get the default importance tier for a given document type.
+ * Spec/plan/decision-record are 'important'; others are 'normal'.
+ */
+export function getDefaultTierForDocumentType(documentType: string): ImportanceTier {
+  const DOC_TYPE_TIERS: Record<string, ImportanceTier> = {
+    spec: 'important',
+    plan: 'important',
+    decision_record: 'important',
+    constitutional: 'constitutional',
+    tasks: 'normal',
+    checklist: 'normal',
+    implementation_summary: 'normal',
+    research: 'normal',
+    handover: 'normal',
+    memory: 'normal',
+    readme: 'normal',
+  };
+  return DOC_TYPE_TIERS[documentType] || 'normal';
+}

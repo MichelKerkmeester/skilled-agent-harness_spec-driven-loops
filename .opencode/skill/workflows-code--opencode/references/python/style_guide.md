@@ -18,7 +18,7 @@ Defines consistent styling rules for Python code to ensure readability, maintain
 ### Scope
 
 Applies to all Python files in:
-- `.opencode/scripts/` - Utility scripts
+- `.opencode/skill/scripts/` - Skill routing scripts (skill_advisor.py)
 - `.opencode/skill/*/scripts/` - Skill-specific scripts
 - `scripts/` - Project-level automation
 

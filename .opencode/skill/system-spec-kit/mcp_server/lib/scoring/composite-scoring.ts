@@ -147,6 +147,23 @@ export const IMPORTANCE_MULTIPLIERS: Readonly<Record<string, number>> = {
 export const CITATION_DECAY_RATE: number = 0.1;
 export const CITATION_MAX_DAYS: number = 90;
 
+// Spec 126: Document type scoring multipliers
+// Applied as a final multiplier to composite scores so spec documents
+// rank higher than regular memory files for relevant queries.
+export const DOCUMENT_TYPE_MULTIPLIERS: Readonly<Record<string, number>> = {
+  spec: 1.4,
+  decision_record: 1.4,
+  plan: 1.3,
+  tasks: 1.1,
+  implementation_summary: 1.1,
+  checklist: 1.0,
+  handover: 1.0,
+  memory: 1.0,
+  constitutional: 2.0,
+  readme: 0.8,
+  scratch: 0.6,
+};
+
 // Pattern alignment bonus configuration
 export const PATTERN_ALIGNMENT_BONUSES: PatternAlignmentBonuses = {
   exact_match: 0.3,
@@ -316,6 +333,28 @@ export function calculatePatternScore(row: ScoringInput, options: ScoringOptions
     score += (similarity - PATTERN_ALIGNMENT_BONUSES.semantic_threshold) * 0.5;
   }
 
+  // Spec 126: Document-type pattern alignment bonus
+  // Boost score when query keywords match the document type
+  if (queryLower && row.document_type) {
+    const docType = row.document_type as string;
+    const DOC_TYPE_QUERY_MAP: Record<string, string[]> = {
+      'spec': ['spec', 'specification', 'requirements', 'scope', 'what'],
+      'decision_record': ['decision', 'why', 'rationale', 'chose', 'alternative'],
+      'plan': ['plan', 'approach', 'how', 'strategy', 'phase'],
+      'tasks': ['task', 'todo', 'work', 'remaining', 'progress'],
+      'implementation_summary': ['implementation', 'summary', 'built', 'completed', 'result'],
+      'checklist': ['checklist', 'verify', 'check', 'qa', 'quality'],
+      'research': ['research', 'investigate', 'analysis', 'findings', 'experiment'],
+    };
+    const matchKeywords = DOC_TYPE_QUERY_MAP[docType];
+    if (matchKeywords) {
+      const hasDocTypeMatch = matchKeywords.some(kw => queryLower.includes(kw));
+      if (hasDocTypeMatch) {
+        score += PATTERN_ALIGNMENT_BONUSES.type_match;
+      }
+    }
+  }
+
   return Math.max(0, Math.min(1, score));
 }
 
@@ -351,13 +390,18 @@ export function calculateFiveFactorScore(row: ScoringInput, options: ScoringOpti
   const patternScore = calculatePatternScore(row, options);
   const citationScore = calculateCitationScore(row);
 
-  const composite = (
+  let composite = (
     temporalScore * weights.temporal +
     usageScore * weights.usage +
     importanceScore * weights.importance +
     patternScore * weights.pattern +
     citationScore * weights.citation
   );
+
+  // Spec 126: Apply document type multiplier
+  const docType = (row.document_type as string) || 'memory';
+  const docMultiplier = DOCUMENT_TYPE_MULTIPLIERS[docType] ?? 1.0;
+  composite *= docMultiplier;
 
   return Math.max(0, Math.min(1, composite));
 }
@@ -386,7 +430,7 @@ export function calculateCompositeScore(row: ScoringInput, options: ScoringOptio
   const tierBoost = getTierBoost(tier);
   const retrievabilityScore = calculateRetrievabilityScore(row);
 
-  const composite = (
+  let composite = (
     similarity * weights.similarity +
     importance * weights.importance +
     recencyScore * weights.recency +
@@ -394,6 +438,11 @@ export function calculateCompositeScore(row: ScoringInput, options: ScoringOptio
     tierBoost * weights.tierBoost +
     retrievabilityScore * weights.retrievability
   );
+
+  // Spec 126: Apply document type multiplier
+  const docType = (row.document_type as string) || 'memory';
+  const docMultiplier = DOCUMENT_TYPE_MULTIPLIERS[docType] ?? 1.0;
+  composite *= docMultiplier;
 
   return Math.max(0, Math.min(1, composite));
 }

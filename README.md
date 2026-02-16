@@ -8,7 +8,7 @@
 
 </div>
 
-> Your AI forgets everything between sessions. This one doesn't. A universal framework with spec-driven documentation, cognitive memory and multi-agent orchestration. Purpose-built for AI-assisted development.
+> Your AI forgets everything between sessions. This one doesn't. A universal framework with spec-driven documentation, cognitive memory, multi-agent orchestration and automated validation. Purpose-built for AI-assisted development.
 
 ---
 
@@ -32,9 +32,9 @@
 
 AI coding assistants are powerful, but they have amnesia. Every session starts from zero. You explain your auth system Monday. By Wednesday, it's a blank slate. Architectural decisions? Lost in chat history. Documentation? "I'll do it later" (you won't).
 
-Two custom-built systems fix this: a **spec-kit documentation framework** (84 templates, 4 levels) and a **cognitive memory MCP server** (29 tools across 7 layers) that turn stateless AI sessions into a continuous, searchable development history. Purpose-built for AI-assisted development, not a wrapper around existing tools.
+Two custom-built systems fix this: a **spec-kit documentation framework** (84 templates, 4 levels) and a **cognitive memory MCP server** (22 memory tools across 7 layers, plus 7 Code Mode tools) that turn stateless AI sessions into a continuous, searchable development history. Purpose-built for AI-assisted development, not a wrapper around existing tools.
 
-**Who it's for:** Developers using AI assistants who are tired of re-explaining context every session, losing decisions to chat history and hoping documentation happens "later."
+**Who it's for:** Developers using AI assistants who are tired of re-explaining context every session and losing decisions to chat history while hoping documentation happens "later."
 
 ### Key Statistics
 
@@ -48,7 +48,7 @@ Two custom-built systems fix this: a **spec-kit documentation framework** (84 te
 | Templates        | 84    | CORE + ADDENDUM composition model (v2.2)         |
 | YAML Assets      | 25    | 12 create + 13 spec_kit execution specifications |
 | Validation Rules | 13    | Pluggable, automated spec folder checks          |
-| Test Files       | 118   | 3,988 tests, 0 TypeScript errors                 |
+| Test Files       | 126   | 122 passing + 4 skipped; 4,256 tests total       |
 
 ### How It All Connects
 
@@ -78,7 +78,8 @@ Two custom-built systems fix this: a **spec-kit documentation framework** (84 te
 ┌──────────────────────────────────────────────────────────────┐
 │  MEMORY ENGINE (29 MCP tools: 22 memory + 7 code mode)       │
 │  Cognitive tiers ─ Causal graphs ─ Hybrid search             │
-│  Sources: spec memory + READMEs + constitutional files        │
+│  Sources: spec memory + constitutional + skill READMEs +     │
+│           project READMEs + spec documents                   │
 │  Embeddings: Voyage | OpenAI | HuggingFace Local (free)      │
 └──────────────────────┬───────────────────────────────────────┘
                        ▼
@@ -89,7 +90,7 @@ Two custom-built systems fix this: a **spec-kit documentation framework** (84 te
 └──────────────────────────────────────────────────────────────┘
 ```
 
-Everything connects. Memory files live *inside* spec folders. Gates enforce documentation before any file change. Skills auto-load based on your task. Agents coordinate and delegate. The result: every AI-assisted session is documented, searchable and recoverable.
+Everything connects. Memory files live *inside* spec folders. Gates enforce documentation before any file change. Skills auto-load based on your task. Agents coordinate and delegate. The result: every AI-assisted session is documented, searchable, recoverable and auditable.
 
 **Local-first**: The Memory Engine runs on your local system with no cloud dependency. See [Embedding Providers](#embedding-providers) for optional cloud upgrades.
 
@@ -216,7 +217,7 @@ Level 3+: [CORE] + [all addendums]             -> 6+ files
 
 #### Validation and Automation
 
-**13 pluggable validation rules** run before any spec folder can be marked complete:
+**13 pluggable validation rules** run before you can mark any spec folder complete:
 
 | Rule                   | Validates                                    |
 | ---------------------- | -------------------------------------------- |
@@ -240,6 +241,8 @@ Exit code 0 = pass. Exit code 2 = must fix.
 
 Memory files live *inside* spec folders at `specs/###-feature/memory/`. Saves enforced via `generate-context.js` (never manual). Sub-folder versioning (`001/`, `002/`, `003/`) gives each version independent context. `/memory:continue` auto-loads relevant memories when resuming.
 
+Spec Kit workflow features include `upgrade-level.sh`, the auto-populate workflow, `check-placeholders.sh`, and anchor tags.
+
 > Full reference: [System Spec Kit Documentation](.opencode/skill/system-spec-kit/README.md)
 
 </details>
@@ -253,7 +256,21 @@ Memory files live *inside* spec folders at `specs/###-feature/memory/`. Saves en
 
 > *Remember everything. Surface what matters. Keep it private.*
 
-Your AI assistant forgets everything between sessions. The Memory Engine fixes this with a custom MCP server: 22 tools across 7 architectural layers giving your AI persistent, searchable, *cognitive* memory.
+Your AI assistant forgets everything between sessions. The Memory Engine fixes this with 22 MCP tools across 7 architectural layers: 5-source indexing, 7-intent retrieval routing, schema v13 metadata (`document_type`, `spec_level`), and document-type scoring.
+
+#### 5-Source Discovery Pipeline
+
+The memory index builds from 5 distinct source types, each with its own discovery path and importance weight:
+
+| # | Source                    | Discovery Path                          | Weight | What Gets Indexed                          |
+| - | ------------------------ | --------------------------------------- | ------ | ------------------------------------------ |
+| 1 | **Constitutional docs**  | `constitutional.md` files               | 1.0    | System rules (never decay, always surface) |
+| 2 | **Spec folder documents**| `.opencode/specs/**/*.md`               | 0.6-0.8| Specs, plans, tasks, decisions, summaries  |
+| 3 | **Memory files**         | `specs/###-feature/memory/*.md`         | 0.5    | Session context, decisions, progress       |
+| 4 | **Project READMEs**      | `.opencode/**/README.md`, root README   | 0.4    | Architecture, structure, conventions       |
+| 5 | **Skill READMEs**        | `.opencode/skill/*/README.md`           | 0.3    | Domain expertise, tool documentation       |
+
+Source 2 was added in spec 126 — prior to that, spec folder documents (the most authoritative project knowledge) were invisible to memory search. Controlled via `includeSpecDocs` parameter on `memory_index_scan` and `SPECKIT_INDEX_SPEC_DOCS` environment variable.
 
 #### MCP Tool Layers
 
@@ -273,7 +290,7 @@ Most agents interact only with L1-L2. Mutation (L4) and lifecycle (L5) are reser
 
 #### Cognitive Features
 
-Not basic vector storage. Inspired by biological working memory with three cognitive subsystems:
+Not basic vector storage. Inspired by biological working memory with cognitive subsystems:
 
 **Attention-Based Decay**: memory relevance decays using `recency x frequency x importance` scoring.
 
@@ -295,7 +312,7 @@ new_score = current_score x (decay_rate ^ turns_elapsed)
 | `WARM`       | 0.25 - 0.79 | Summary only                       |
 | `COLD`       | < 0.25      | Trigger phrases only (suppressed)  |
 
-**Co-Activation (Spreading Activation)**: when a primary memory is activated, semantically related memories receive a 0.35 score boost. Search for "authentication" and the system co-activates memories about JWT tokens, OAuth setup and session management.
+**Co-Activation (Spreading Activation)**: when a primary memory is activated, semantically related memories receive a 0.35 score boost. Search for "authentication" and the system co-activates memories about JWT tokens and OAuth setup along with session management.
 
 Two additional subsystems: **FSRS Scheduler** (spaced repetition for review intervals) and **Prediction Error Gating** (novel discoveries amplified, expected content deprioritized).
 
@@ -309,9 +326,11 @@ Three search engines fuse via Reciprocal Rank Fusion (RRF):
 | **Keyword** | BM25 term frequency              | Technical terms, code identifiers         |
 | **Trigger** | Exact phrase matching            | Precise recall for known patterns         |
 
-Plus: FTS5 for exact substrings, cross-encoder reranking and 4 embedding providers (Voyage AI, OpenAI, HuggingFace Local, auto-detection).
+Plus: FTS5 for exact substrings, cross-encoder reranking, 4 embedding providers (Voyage AI, OpenAI, HuggingFace Local, auto-detection), schema v13 document metadata, and intent-aware scoring.
 
-**Intent-Aware Scoring**: weights adjust for 5 task types.
+**Spec126 Hardening**: import-path fixes, `specFolder` filtering, metadata preservation, vector metadata plumbing, and stable causal edge semantics.
+
+**Intent-Aware Scoring**: weights adjust for 7 task types.
 
 | Task Intent      | Weight Adjustment                                     |
 | ---------------- | ----------------------------------------------------- |
@@ -320,6 +339,25 @@ Plus: FTS5 for exact substrings, cross-encoder reranking and 4 embedding provide
 | `understand`     | Balanced weights across all memory types              |
 | `refactor`       | Boosts code structure, dependency information         |
 | `security_audit` | Boosts security decisions, vulnerability context      |
+| `find_spec`      | Boosts spec documents, plans, decision records        |
+| `find_decision`  | Boosts decision records, architectural context        |
+
+**Document-Type Scoring**: search results are multiplied by document type to prioritize authoritative sources. Schema v13 tracks `document_type` and `spec_level` per indexed entry.
+
+| Document Type              | Multiplier | Rationale                                     |
+| -------------------------- | ---------- | --------------------------------------------- |
+| `constitutional`           | 2.0x       | System rules — always highest priority        |
+| `spec`                     | 1.4x       | Authoritative requirements and scope          |
+| `decision_record`          | 1.4x       | Architectural decisions with rationale        |
+| `plan`                     | 1.3x       | Implementation approach and design            |
+| `tasks`                    | 1.1x       | Ordered task breakdowns                       |
+| `implementation_summary`   | 1.1x       | Post-implementation records                   |
+| `research`                 | 1.0x       | Investigation findings                        |
+| `checklist`                | 1.0x       | QA validation items                           |
+| `handover`                 | 1.0x       | Session continuation context                  |
+| `memory`                   | 1.0x       | Baseline — session context and decisions      |
+| `readme`                   | 0.8x       | Documentation (informational, not decisions)  |
+| `scratch`                  | 0.6x       | Temporary workspace (lowest priority)         |
 
 #### ANCHOR Format
 
@@ -348,6 +386,17 @@ Every decision has a lineage. The causal graph tracks 6 relationship types:
 
 Use `memory_drift_why` to trace the causal chain up to N hops. `memory_causal_stats` reports coverage percentage (target: 60% of memories linked).
 
+**Spec Document Chains**: when spec folder documents are indexed, `createSpecDocumentChain()` automatically establishes relationship edges between related documents within the same spec folder:
+
+```
+spec.md ──caused──► plan.md ──caused──► tasks.md ──caused──► implementation-summary.md
+                       ▲
+  decision-record.md ──supports──┘   research.md ──supports──► spec.md
+  checklist.md ──supports──► spec.md
+```
+
+This enables traversal from high-level specs down to implementation details (and back) via `memory_drift_why`.
+
 > Full reference: [MCP Server Documentation](.opencode/skill/system-spec-kit/mcp_server/README.md) | [Memory System Guide](.opencode/skill/system-spec-kit/README.md)
 
 </details>
@@ -359,7 +408,9 @@ Use `memory_drift_why` to trace the causal chain up to N hops. `memory_causal_st
 
 <br>
 
-Ten specialized agents prevent AI assistants from making assumptions, skipping documentation and creating technical debt. Two are built into OpenCode. Eight are custom agents in `.opencode/agent/`.
+Ten specialized agents prevent AI assistants from making assumptions, skipping documentation, creating technical debt and drifting from scope. Two are built into OpenCode. Eight are custom agents in `.opencode/agent/`.
+
+This is a 10 specialized agents / 3-platform model (OpenCode, Claude Code, Codex) with aligned role definitions.
 
 #### All Agents
 
@@ -372,9 +423,9 @@ Ten specialized agents prevent AI assistants from making assumptions, skipping d
 | `@speckit`     | Custom   | claude-sonnet | Spec folder creation (exclusive: only agent that writes spec docs) |
 | `@debug`       | Custom   | claude-opus   | Fresh-perspective debugging, root cause analysis                   |
 | `@research`    | Custom   | claude-opus   | Evidence gathering, technical investigation                        |
-| `@review`      | Custom   | claude-opus   | Code review with pattern validation (READ-ONLY)                    |
+| `@review`      | Custom   | inherited     | Code review with pattern validation (READ-ONLY)                    |
 | `@write`       | Custom   | claude-sonnet | Documentation generation (READMEs, skills, guides)                 |
-| `@handover`    | Custom   | claude-sonnet | Session continuation, context preservation                         |
+| `@handover`    | Custom   | claude-haiku  | Session continuation, context preservation                         |
 
 #### Enterprise Orchestration
 
@@ -657,7 +708,7 @@ CLI-first for speed and token efficiency. MCP fallback for multi-tool integratio
 - Four options: Merge locally, Create PR, Keep as-is, Discard
 - Automated cleanup: delete feature branches, remove worktrees
 
-**Integration**: GitHub MCP (via Code Mode) for remote operations. Local git commands for commits, diffs and merges.
+**Integration**: GitHub MCP (via Code Mode) for remote operations. Local git commands for commits and diffs as well as merges.
 
 </details>
 
@@ -803,6 +854,20 @@ memory_search({ query: "authentication flow", specFolder: "005-auth", includeCon
 → Constitutional memories always appear first
 ```
 
+Bulk indexing with source control:
+```
+memory_index_scan({ includeReadmes: true, includeSpecDocs: true })
+→ Indexes all 5 sources (memory files, constitutional, skill READMEs, project READMEs, spec documents)
+→ Skips unchanged files (content hash comparison)
+→ Generates embeddings only for new/modified content
+
+memory_index_scan({ specFolder: "043-rate-limiting", force: true })
+→ Re-indexes a single spec folder (force = regenerate all embeddings)
+
+memory_index_scan({ includeSpecDocs: false })
+→ Index without spec documents (equivalent to pre-spec-126 behavior)
+```
+
 ---
 
 ## 7. 🛠️ TROUBLESHOOTING
@@ -895,7 +960,7 @@ A: Yes. Copy `.opencode/`, `opencode.json` and `AGENTS.md` to your project root.
 
 **Q: How is this different from Cursor's memory or Copilot's context?**
 
-A: Those are session-scoped. This system persists across sessions, models and even projects. It uses causal graphs to trace decision lineage, cognitive tiers to prioritize relevance and ANCHOR format for 93% token savings. It's also local-first. Your code stays on your machine.
+A: Those are session-scoped. This system persists across sessions, models and even projects. It uses causal graphs to trace decision lineage and cognitive tiers to prioritize relevance. It uses ANCHOR format for 93% token savings. It's also local-first. Your code stays on your machine.
 
 ---
 
@@ -957,22 +1022,22 @@ A: Minimal. SQLite databases are compact. A project with 100+ memories typically
 
 ### Changelogs
 
-| Component                                                              | Versions |
-| ---------------------------------------------------------------------- | -------- |
-| [OpenCode Environment](.opencode/changelog/00--opencode-environment/)  | 85 files |
-| [System Spec Kit](.opencode/changelog/01--system-spec-kit/)            | 35 files |
-| [AGENTS.md](.opencode/changelog/02--agents-md/)                        | 30 files |
-| [Agent Orchestration](.opencode/changelog/03--agent-orchestration/)    | 25 files |
-| [Commands](.opencode/changelog/04--commands/)                          | 30 files |
-| [Skill Advisor](.opencode/changelog/05--skill-advisor/)                | 6 files  |
-| [Workflows: Documentation](.opencode/changelog/06--workflows-documentation/) | 8 files  |
-| [Workflows: Code (OpenCode)](.opencode/changelog/07--workflows-code--opencode/) | 8 files  |
-| [Workflows: Code (Web Dev)](.opencode/changelog/08--workflows-code--web-dev/) | 8 files  |
+| Component                                                                           | Versions |
+| ----------------------------------------------------------------------------------- | -------- |
+| [OpenCode Environment](.opencode/changelog/00--opencode-environment/)               | 85 files |
+| [System Spec Kit](.opencode/changelog/01--system-spec-kit/)                         | 35 files |
+| [AGENTS.md](.opencode/changelog/02--agents-md/)                                     | 30 files |
+| [Agent Orchestration](.opencode/changelog/03--agent-orchestration/)                 | 25 files |
+| [Commands](.opencode/changelog/04--commands/)                                       | 30 files |
+| [Skill Advisor](.opencode/changelog/05--skill-advisor/)                             | 6 files  |
+| [Workflows: Documentation](.opencode/changelog/06--workflows-documentation/)        | 8 files  |
+| [Workflows: Code (OpenCode)](.opencode/changelog/07--workflows-code--opencode/)     | 8 files  |
+| [Workflows: Code (Web Dev)](.opencode/changelog/08--workflows-code--web-dev/)       | 8 files  |
 | [Workflows: Code (Full Stack)](.opencode/changelog/09--workflows-code--full-stack/) | 3 files  |
-| [Workflows: Git](.opencode/changelog/10--workflows-git/)               | 5 files  |
-| [Workflows: Chrome DevTools](.opencode/changelog/11--workflows-chrome-devtools/) | 4 files  |
-| [MCP: Code Mode](.opencode/changelog/12--mcp-code-mode/)              | 7 files  |
-| [MCP: Figma](.opencode/changelog/13--mcp-figma/)                      | 5 files  |
+| [Workflows: Git](.opencode/changelog/10--workflows-git/)                            | 5 files  |
+| [Workflows: Chrome DevTools](.opencode/changelog/11--workflows-chrome-devtools/)    | 4 files  |
+| [MCP: Code Mode](.opencode/changelog/12--mcp-code-mode/)                            | 7 files  |
+| [MCP: Figma](.opencode/changelog/13--mcp-figma/)                                    | 5 files  |
 
 ### External Resources
 

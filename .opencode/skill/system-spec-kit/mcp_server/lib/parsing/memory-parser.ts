@@ -49,6 +49,8 @@ export interface ParsedMemory {
   memoryTypeConfidence: number;
   causalLinks: CausalLinks;
   hasCausalLinks: boolean;
+  /** Spec 126: Document structural type (spec, plan, tasks, memory, readme, etc.) */
+  documentType: string;
 }
 
 /** Anchor validation result */
@@ -162,6 +164,9 @@ export function parseMemoryFile(filePath: string): ParsedMemory {
   // T126: Extract causal_links for relationship tracking (CHK-231)
   const causalLinks = extractCausalLinks(content);
 
+  // Spec 126: Infer document type from file path
+  const documentType = extractDocumentType(filePath);
+
   return {
     filePath,
     specFolder: spec_folder,
@@ -180,7 +185,48 @@ export function parseMemoryFile(filePath: string): ParsedMemory {
     // T126: Causal links for memory graph relationships
     causalLinks: causalLinks,
     hasCausalLinks: hasCausalLinks(causalLinks),
+    // Spec 126: Document structural type
+    documentType,
   };
+}
+
+/**
+ * Spec 126: Extract document type from filename.
+ * Maps well-known spec folder filenames to their document types.
+ */
+export function extractDocumentType(filePath: string): string {
+  const normalizedPath = filePath.replace(/\\/g, '/');
+  const basename = path.basename(normalizedPath).toLowerCase();
+
+  // Spec folder document types
+  const FILENAME_TO_DOC_TYPE: Record<string, string> = {
+    'spec.md': 'spec',
+    'plan.md': 'plan',
+    'tasks.md': 'tasks',
+    'checklist.md': 'checklist',
+    'decision-record.md': 'decision_record',
+    'implementation-summary.md': 'implementation_summary',
+    'research.md': 'research',
+    'handover.md': 'handover',
+  };
+
+  // Only classify as spec doc type if in specs/ and not in memory/ or scratch/
+  if (normalizedPath.includes('/specs/') && !normalizedPath.includes('/memory/') && !normalizedPath.includes('/scratch/')) {
+    const docType = FILENAME_TO_DOC_TYPE[basename];
+    if (docType) return docType;
+  }
+
+  // Constitutional files
+  if (normalizedPath.includes('/constitutional/') && normalizedPath.endsWith('.md')) {
+    return 'constitutional';
+  }
+
+  // README files
+  if (basename === 'readme.md') {
+    return 'readme';
+  }
+
+  return 'memory';
 }
 
 /** Extract spec folder name from file path */
@@ -212,6 +258,12 @@ export function extractSpecFolder(filePath: string): string {
     return match[1];
   }
 
+  // Spec 126: Match specs/domain/spec-name/doc.md pattern (non-memory spec folder documents)
+  const specDocMatch = normalizedPath.match(/specs\/([^/]+(?:\/[^/]+)*?)\/(?:spec|plan|tasks|checklist|decision-record|implementation-summary|research|handover)\.md$/i);
+  if (specDocMatch) {
+    return specDocMatch[1];
+  }
+
   // Fallback: try to extract from path segments
   const segments = normalizedPath.split('/');
   const specsIndex = segments.findIndex(s => s === 'specs');
@@ -220,6 +272,11 @@ export function extractSpecFolder(filePath: string): string {
     const memoryIndex = segments.indexOf('memory', specsIndex);
     if (memoryIndex > specsIndex + 1) {
       return segments.slice(specsIndex + 1, memoryIndex).join('/');
+    }
+    // Spec 126: If no memory/ dir, check for spec document at leaf
+    const fileName = segments[segments.length - 1].toLowerCase();
+    if (SPEC_DOCUMENT_FILENAMES_SET.has(fileName)) {
+      return segments.slice(specsIndex + 1, segments.length - 1).join('/');
     }
   }
 
@@ -479,6 +536,16 @@ export function isMemoryFile(filePath: string): boolean {
     normalizedPath.includes('/specs/')
   );
 
+  // Spec folder documents (spec.md, plan.md, tasks.md, etc.) — Spec 126
+  const isSpecDocument = (
+    normalizedPath.endsWith('.md') &&
+    normalizedPath.includes('/specs/') &&
+    !normalizedPath.includes('/memory/') &&
+    !normalizedPath.includes('/scratch/') &&
+    !normalizedPath.includes('/z_archive/') &&
+    SPEC_DOCUMENT_FILENAMES_SET.has(path.basename(normalizedPath).toLowerCase())
+  );
+
   // Constitutional memories in skill folder
   const isConstitutional = (
     normalizedPath.endsWith('.md') &&
@@ -497,8 +564,20 @@ export function isMemoryFile(filePath: string): boolean {
   // Project/code-folder READMEs (must check after skill README to avoid overlap)
   const isProjectRm = isProjectReadme(filePath);
 
-  return isSpecsMemory || isConstitutional || isSkillReadme || isProjectRm;
+  return isSpecsMemory || isSpecDocument || isConstitutional || isSkillReadme || isProjectRm;
 }
+
+/** Set of recognized spec folder document filenames (lowercase) */
+const SPEC_DOCUMENT_FILENAMES_SET = new Set([
+  'spec.md',
+  'plan.md',
+  'tasks.md',
+  'checklist.md',
+  'decision-record.md',
+  'implementation-summary.md',
+  'research.md',
+  'handover.md',
+]);
 
 /** Validate anchor tags in memory content */
 export function validateAnchors(content: string): AnchorValidation {

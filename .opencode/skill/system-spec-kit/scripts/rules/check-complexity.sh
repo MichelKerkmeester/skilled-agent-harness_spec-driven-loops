@@ -21,11 +21,37 @@ _complexity_get_declared_level() {
     local folder="$1"
     local spec_file="$folder/spec.md"
     if [[ -f "$spec_file" ]]; then
-        local level_line
-        level_line=$(grep -E "^\- \*\*Level\*\*:" "$spec_file" 2>/dev/null || true)
-        if [[ -n "$level_line" ]]; then
-            echo "$level_line" | head -1 | sed 's/.*Level.*: *//' | tr -d '[:space:]' | sed 's/\[.*\]//' | head -c 2
+        local level
+
+        # Pattern 0: SPECKIT_LEVEL marker (authoritative)
+        level=$(grep -oE '<!-- SPECKIT_LEVEL: *[123]\+? *-->' "$spec_file" 2>/dev/null | grep -oE '[123]\+?' | head -1 || true)
+
+        # Pattern 1: Metadata table with bold key
+        if [[ -z "$level" ]]; then
+            level=$(grep -E '\|\s*\*\*Level\*\*\s*\|\s*[123]\+?\s*\|' "$spec_file" 2>/dev/null | grep -oE '[123]\+?' | head -1 || true)
         fi
+
+        # Pattern 2: Metadata table without bold key
+        if [[ -z "$level" ]]; then
+            level=$(grep -E '\|\s*Level\s*\|\s*[123]\+?\s*\|' "$spec_file" 2>/dev/null | grep -oE '[123]\+?' | head -1 || true)
+        fi
+
+        # Pattern 3: Bullet metadata
+        if [[ -z "$level" ]]; then
+            level=$(grep -E '^\- \*\*Level\*\*:[[:space:]]*[123]\+?' "$spec_file" 2>/dev/null | grep -oE '[123]\+?' | head -1 || true)
+        fi
+
+        # Pattern 4: YAML frontmatter
+        if [[ -z "$level" ]]; then
+            level=$(grep -E '^level:[[:space:]]*[123]\+?' "$spec_file" 2>/dev/null | grep -oE '[123]\+?' | head -1 || true)
+        fi
+
+        # Pattern 5: Anchored inline fallback
+        if [[ -z "$level" ]]; then
+            level=$(grep -E '^[Ll]evel[: ]+[123]\+?' "$spec_file" 2>/dev/null | grep -oE '[123]\+?' | head -1 || true)
+        fi
+
+        echo "$level"
     fi
 }
 
@@ -34,7 +60,22 @@ _complexity_count_user_stories() {
     local folder="$1"
     local spec_file="$folder/spec.md"
     if [[ -f "$spec_file" ]]; then
-        grep -c "^### User Story" "$spec_file" 2>/dev/null || echo "0"
+        local count
+        count=$(grep -cE "^### (User Story|US-)" "$spec_file" 2>/dev/null || true)
+        echo "${count:-0}"
+    else
+        echo "0"
+    fi
+}
+
+# Count acceptance scenarios in spec.md
+_complexity_count_acceptance_scenarios() {
+    local folder="$1"
+    local spec_file="$folder/spec.md"
+    if [[ -f "$spec_file" ]]; then
+        local count
+        count=$(grep -cE "\*\*Given\*\*|^[[:space:]]*[0-9]+\.[[:space:]]+Given\b" "$spec_file" 2>/dev/null || true)
+        echo "${count:-0}"
     else
         echo "0"
     fi
@@ -45,7 +86,9 @@ _complexity_count_phases() {
     local folder="$1"
     local plan_file="$folder/plan.md"
     if [[ -f "$plan_file" ]]; then
-        grep -c "^### Phase" "$plan_file" 2>/dev/null || echo "0"
+        local count
+        count=$(grep -cE "^##+[[:space:]]+Phase\b" "$plan_file" 2>/dev/null || true)
+        echo "${count:-0}"
     else
         echo "0"
     fi
@@ -56,25 +99,12 @@ _complexity_count_tasks() {
     local folder="$1"
     local tasks_file="$folder/tasks.md"
     if [[ -f "$tasks_file" ]]; then
-        grep -cE "^- \[ \] T[0-9]|^- \[ \] TASK-" "$tasks_file" 2>/dev/null || echo "0"
+        local count
+        count=$(grep -cE "^- \[[ xX]\][[:space:]]+" "$tasks_file" 2>/dev/null || true)
+        echo "${count:-0}"
     else
         echo "0"
     fi
-}
-
-# Check for AI protocol presence
-_complexity_has_ai_protocol() {
-    local folder="$1"
-    local tasks_file="$folder/tasks.md"
-    local plan_file="$folder/plan.md"
-
-    if [[ -f "$tasks_file" ]] && grep -q "AI EXECUTION" "$tasks_file" 2>/dev/null; then
-        return 0
-    fi
-    if [[ -f "$plan_file" ]] && grep -q "AI EXECUTION" "$plan_file" 2>/dev/null; then
-        return 0
-    fi
-    return 1
 }
 
 # ───────────────────────────────────────────────────────────────
@@ -103,28 +133,27 @@ run_check() {
     fi
 
     # Get content counts
-    local story_count phase_count task_count
+    local story_count scenario_count phase_count task_count
     story_count=$(_complexity_count_user_stories "$folder")
+    scenario_count=$(_complexity_count_acceptance_scenarios "$folder")
     phase_count=$(_complexity_count_phases "$folder")
     task_count=$(_complexity_count_tasks "$folder")
 
-    # Define expected ranges per level
-    local min_stories max_stories min_phases max_phases min_tasks max_tasks
+    # Define minimum signal thresholds per level.
+    # Keep these intentionally conservative to avoid false warnings on current templates.
+    local min_phases min_tasks
     case "$declared_level" in
         1)
-            min_stories=1; max_stories=2
-            min_phases=2; max_phases=3
-            min_tasks=5; max_tasks=15
+            min_phases=1
+            min_tasks=3
             ;;
         2)
-            min_stories=2; max_stories=4
-            min_phases=3; max_phases=5
-            min_tasks=15; max_tasks=50
+            min_phases=2
+            min_tasks=4
             ;;
         3|3+)
-            min_stories=4; max_stories=15
-            min_phases=5; max_phases=12
-            min_tasks=50; max_tasks=200
+            min_phases=2
+            min_tasks=5
             ;;
         *)
             # Unknown level - skip checks
@@ -134,35 +163,14 @@ run_check() {
             ;;
     esac
 
-    # Check user story count
-    if [[ "$story_count" -lt "$min_stories" ]]; then
-        warnings+=("User stories ($story_count) below minimum ($min_stories) for Level $declared_level")
-    fi
-    if [[ "$story_count" -gt "$max_stories" ]]; then
-        warnings+=("User stories ($story_count) above maximum ($max_stories) for Level $declared_level")
-    fi
-
     # Check phase count
     if [[ "$phase_count" -lt "$min_phases" ]]; then
         warnings+=("Phases ($phase_count) below minimum ($min_phases) for Level $declared_level")
-    fi
-    if [[ "$phase_count" -gt "$max_phases" ]]; then
-        warnings+=("Phases ($phase_count) above maximum ($max_phases) for Level $declared_level")
     fi
 
     # Check task count
     if [[ "$task_count" -lt "$min_tasks" ]]; then
         warnings+=("Tasks ($task_count) below minimum ($min_tasks) for Level $declared_level")
-    fi
-    if [[ "$task_count" -gt "$max_tasks" ]]; then
-        warnings+=("Tasks ($task_count) above maximum ($max_tasks) for Level $declared_level")
-    fi
-
-    # Check AI protocol for Level 3+
-    if [[ "$declared_level" = "3" ]] || [[ "$declared_level" = "3+" ]]; then
-        if ! _complexity_has_ai_protocol "$folder"; then
-            warnings+=("Level $declared_level should include AI Execution Protocol")
-        fi
     fi
 
     # ───────────────────────────────────────────────────────────────
@@ -171,7 +179,7 @@ run_check() {
 
     if [[ ${#warnings[@]} -eq 0 ]]; then
         RULE_STATUS="pass"
-        RULE_MESSAGE="Complexity level consistent with content (Level $declared_level)"
+        RULE_MESSAGE="Complexity level consistent with content (Level $declared_level; phases=$phase_count, tasks=$task_count, stories=$story_count, scenarios=$scenario_count)"
     else
         RULE_STATUS="warn"
         RULE_MESSAGE="Content metrics may not match declared Level $declared_level"

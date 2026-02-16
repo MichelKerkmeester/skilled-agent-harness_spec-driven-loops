@@ -11,7 +11,7 @@ import path from 'path';
 
 import { getLastScanTime, setLastScanTime, checkDatabaseUpdated } from '../core';
 import { INDEX_SCAN_COOLDOWN, DEFAULT_BASE_PATH, BATCH_SIZE } from '../core/config';
-import { processBatches, toErrorMessage, type RetryErrorResult } from '../utils';
+import { processBatches, requireDb, toErrorMessage, type RetryErrorResult } from '../utils';
 
 /* ---------------------------------------------------------------
    2. LIB MODULE IMPORTS
@@ -29,7 +29,135 @@ import { createMCPSuccessResponse, createMCPErrorResponse } from '../lib/respons
 import type { MCPResponse, EmbeddingProfile } from './types';
 
 /* ---------------------------------------------------------------
-   3. TYPES
+   3. SPEC DOCUMENT DISCOVERY (Spec 126)
+--------------------------------------------------------------- */
+
+/** Well-known spec folder document filenames */
+const SPEC_DOCUMENT_FILENAMES = new Set([
+  'spec.md',
+  'plan.md',
+  'tasks.md',
+  'checklist.md',
+  'decision-record.md',
+  'implementation-summary.md',
+  'research.md',
+  'handover.md',
+]);
+
+/** Directories to exclude from spec document discovery */
+const SPEC_DOC_EXCLUDE_DIRS = new Set(['z_archive', 'scratch', 'memory', 'node_modules']);
+
+/**
+ * Discover spec folder documents (.opencode/specs/ directory tree).
+ * Finds spec.md, plan.md, tasks.md, checklist.md, decision-record.md,
+ * implementation-summary.md, research.md, handover.md.
+ *
+ * Excludes z_archive/, scratch/, memory/, and hidden directories.
+ */
+function findSpecDocuments(workspacePath: string, options: { specFolder?: string | null } = {}): string[] {
+  // Feature flag: allow opt-out
+  if (process.env.SPECKIT_INDEX_SPEC_DOCS === 'false') {
+    return [];
+  }
+
+  const results: string[] = [];
+
+  // Check both possible specs locations
+  const specsRoots = [
+    path.join(workspacePath, '.opencode', 'specs'),
+    path.join(workspacePath, 'specs'),
+  ];
+
+  for (const specsRoot of specsRoots) {
+    if (!fs.existsSync(specsRoot)) continue;
+
+    function walkSpecsDir(dir: string): void {
+      try {
+        const entries = fs.readdirSync(dir, { withFileTypes: true });
+        for (const entry of entries) {
+          if (entry.isDirectory()) {
+            // Skip excluded directories and hidden dirs
+            if (SPEC_DOC_EXCLUDE_DIRS.has(entry.name) || entry.name.startsWith('.')) {
+              continue;
+            }
+            walkSpecsDir(path.join(dir, entry.name));
+          } else if (entry.isFile() && SPEC_DOCUMENT_FILENAMES.has(entry.name.toLowerCase())) {
+            const fullPath = path.join(dir, entry.name);
+
+            // If specFolder filter is provided, check it matches
+            if (options.specFolder) {
+              const normalizedSpecFolder = options.specFolder.replace(/\\/g, '/').replace(/\/+$/, '');
+              const relativePath = path.relative(specsRoot, fullPath).replace(/\\/g, '/');
+              if (
+                relativePath !== normalizedSpecFolder &&
+                !relativePath.startsWith(`${normalizedSpecFolder}/`)
+              ) {
+                continue;
+              }
+            }
+
+            results.push(fullPath);
+          }
+        }
+      } catch {
+        // Skip directories we can't read
+      }
+    }
+
+    walkSpecsDir(specsRoot);
+  }
+
+  return results;
+}
+
+/**
+ * Detect the spec documentation level from a spec.md file.
+ * Reads first 2KB looking for <!-- SPECKIT_LEVEL: N --> marker.
+ * Falls back to document completeness heuristic if marker not found.
+ */
+function detectSpecLevel(specPath: string): number | null {
+  try {
+    // Read first 2KB for the level marker
+    const fd = fs.openSync(specPath, 'r');
+    let bytesRead = 0;
+    const buffer = Buffer.alloc(2048);
+    try {
+      bytesRead = fs.readSync(fd, buffer, 0, 2048, 0);
+    } finally {
+      fs.closeSync(fd);
+    }
+
+    const header = buffer.toString('utf-8', 0, bytesRead);
+
+    // Look for SPECKIT_LEVEL marker
+    const levelMatch = header.match(/<!--\s*SPECKIT_LEVEL:\s*(\d\+?)\s*-->/i);
+    if (levelMatch) {
+      const levelStr = levelMatch[1];
+      if (levelStr === '3+') return 4;
+      const level = parseInt(levelStr, 10);
+      if (level >= 1 && level <= 3) return level;
+    }
+
+    // Heuristic fallback: check sibling files
+    const dir = path.dirname(specPath);
+    try {
+      const siblings = fs.readdirSync(dir).map(f => f.toLowerCase());
+      const hasDecisionRecord = siblings.includes('decision-record.md');
+      const hasChecklist = siblings.includes('checklist.md');
+
+      if (hasDecisionRecord) return 3;
+      if (hasChecklist) return 2;
+      return 1;
+    } catch {
+      return null;
+    }
+  } catch {
+    return null;
+  }
+}
+
+/* ---------------------------------------------------------------
+   4. TYPES
 --------------------------------------------------------------- */
 
 interface IndexResult {
@@ -56,7 +184,7 @@ interface ScanResults {
   skipped_mtime: number;
   skipped_hash: number;
   mtimeUpdates: number;
-  files: { file: string; status?: string; specFolder?: string; id?: number; isConstitutional?: boolean; error?: string; errorDetail?: string }[];
+  files: { file: string; filePath?: string; status?: string; specFolder?: string; id?: number; isConstitutional?: boolean; error?: string; errorDetail?: string }[];
   constitutional: {
     found: number;
     indexed: number;
@@ -81,6 +209,7 @@ interface ScanArgs {
   force?: boolean;
   includeConstitutional?: boolean;
   includeReadmes?: boolean;
+  includeSpecDocs?: boolean;
   incremental?: boolean;
 }
 
@@ -218,6 +347,7 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
     force = false,
     includeConstitutional: include_constitutional = true,
     includeReadmes: include_readmes = true,
+    includeSpecDocs: include_spec_docs = true,
     incremental = true
   } = args;
 
@@ -251,7 +381,6 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
       }
     });
   }
-  await setLastScanTime(now);
 
   const workspacePath: string = DEFAULT_BASE_PATH;
 
@@ -259,9 +388,11 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
   const constitutionalFiles: string[] = include_constitutional ? findConstitutionalFiles(workspacePath) : [];
   const readmeFiles: string[] = include_readmes ? findSkillReadmes(workspacePath) : [];
   const projectReadmeFiles: string[] = include_readmes ? await findProjectReadmes(workspacePath) : [];
-  const files = [...specFiles, ...constitutionalFiles, ...readmeFiles, ...projectReadmeFiles];
+  const specDocFiles: string[] = include_spec_docs ? findSpecDocuments(workspacePath, { specFolder: spec_folder }) : [];
+  const files = [...specFiles, ...constitutionalFiles, ...readmeFiles, ...projectReadmeFiles, ...specDocFiles];
 
   if (files.length === 0) {
+    await setLastScanTime(now);
     return createMCPSuccessResponse({
       tool: 'memory_index_scan',
       summary: 'No memory files found',
@@ -351,6 +482,7 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
         results.failed++;
         results.files.push({
           file: path.basename(filePath),
+          filePath,
           status: 'failed',
           error: result.error,
           errorDetail: result.errorDetail
@@ -381,6 +513,7 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
         if (result.status !== 'unchanged') {
           results.files.push({
             file: path.basename(filePath),
+            filePath,
             specFolder: result.specFolder,
             status: result.status,
             id: result.id,
@@ -401,6 +534,77 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
     results.mtimeUpdates = mtimeUpdateResult.updated;
   }
 
+  // Spec 126: Create causal chains between spec folder documents.
+  // Includes deferred indexing outcomes and incremental single-file updates.
+  if (include_spec_docs) {
+    try {
+      // Determine which spec folders had spec document changes in this scan.
+      // We use parsed document type (not basename) to avoid false positives
+      // from memory/plan.md or similar filenames.
+      const affectedSpecFolders = new Set<string>();
+      for (const fileResult of results.files) {
+        if (!fileResult.specFolder || fileResult.status === 'failed') {
+          continue;
+        }
+
+        if (!fileResult.filePath) {
+          continue;
+        }
+
+        const docType = memoryParser.extractDocumentType(fileResult.filePath);
+        if (
+          docType !== 'memory' &&
+          docType !== 'readme' &&
+          docType !== 'constitutional'
+        ) {
+          affectedSpecFolders.add(fileResult.specFolder);
+        }
+      }
+
+      if (affectedSpecFolders.size > 0) {
+        const database = requireDb();
+        const { createSpecDocumentChain, init: initCausalEdges } = await import('../lib/storage/causal-edges');
+        initCausalEdges(database);
+
+        // Build full per-folder document map from DB (not just this scan's files).
+        const selectDocIds = database.prepare(`
+          SELECT document_type, MAX(id) AS id
+          FROM memory_index
+          WHERE spec_folder = ?
+            AND document_type IN ('spec', 'plan', 'tasks', 'checklist', 'decision_record', 'implementation_summary', 'research', 'handover')
+          GROUP BY document_type
+        `);
+
+        let chainsCreated = 0;
+        let foldersProcessed = 0;
+
+        for (const folder of affectedSpecFolders) {
+          const rows = selectDocIds.all(folder) as Array<{ document_type: string; id: number }>;
+          const docIds: Record<string, number> = {};
+
+          for (const row of rows) {
+            if (row.document_type && typeof row.id === 'number') {
+              docIds[row.document_type] = row.id;
+            }
+          }
+
+          if (Object.keys(docIds).length >= 2) {
+            const chainResult = createSpecDocumentChain(docIds);
+            chainsCreated += chainResult.inserted;
+            foldersProcessed++;
+          }
+        }
+
+        if (chainsCreated > 0) {
+          console.error(`[memory-index-scan] Spec 126: Created ${chainsCreated} causal chain edges across ${foldersProcessed} spec folders`);
+        }
+      }
+    } catch (err: unknown) {
+      const message = toErrorMessage(err);
+      console.warn('[memory-index-scan] Spec 126: Causal chain creation failed:', message);
+    }
+  }
+
   if (results.indexed > 0 || results.updated > 0) {
     triggerMatcher.clearCache();
   }
@@ -418,6 +622,8 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
     hints.push('All files already up-to-date. Use force: true to re-index');
   }
 
+  await setLastScanTime(now);
+
   return createMCPSuccessResponse({
     tool: 'memory_index_scan',
     summary,
@@ -431,8 +637,10 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
         constitutionalFiles: constitutionalFiles.length,
         skillReadmes: readmeFiles.length,
         projectReadmes: projectReadmeFiles.length,
+        specDocFiles: specDocFiles.length,
         totalFiles: files.length,
         includeReadmes: include_readmes,
+        includeSpecDocs: include_spec_docs,
         workspacePath
       }
     },
@@ -450,6 +658,8 @@ export {
   findConstitutionalFiles,
   findSkillReadmes,
   findProjectReadmes,
+  findSpecDocuments,
+  detectSpecLevel,
 };
 
 // Backward-compatible aliases (snake_case)
@@ -458,6 +668,8 @@ const index_single_file = indexSingleFile;
 const find_constitutional_files = findConstitutionalFiles;
 const find_skill_readmes = findSkillReadmes;
 const find_project_readmes = findProjectReadmes;
+const find_spec_documents = findSpecDocuments;
+const detect_spec_level = detectSpecLevel;
 
 export {
   handle_memory_index_scan,
@@ -465,5 +677,6 @@ export {
   find_constitutional_files,
   find_skill_readmes,
   find_project_readmes,
+  find_spec_documents,
+  detect_spec_level,
 };
-

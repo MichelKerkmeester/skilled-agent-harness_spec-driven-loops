@@ -9,6 +9,7 @@ Rollback sections compared to Level 1. -->
 
 ---
 
+<!-- ANCHOR:summary -->
 ## 1. SUMMARY
 
 ### Technical Context
@@ -23,8 +24,11 @@ Rollback sections compared to Level 1. -->
 ### Overview
 This implementation adds email/password authentication using bcrypt for password hashing and JWT tokens for session management. The approach prioritizes security best practices while maintaining simplicity for this initial authentication feature.
 
+
+<!-- /ANCHOR:summary -->
 ---
 
+<!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
 
 ### Definition of Ready
@@ -39,8 +43,11 @@ This implementation adds email/password authentication using bcrypt for password
 - [x] Docs updated (spec/plan/tasks)
 - [x] Checklist items verified
 
+
+<!-- /ANCHOR:quality-gates -->
 ---
 
+<!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
 
 ### Pattern
@@ -62,8 +69,11 @@ MVC - Following existing Express.js application structure
 6. Token stored client-side, sent with subsequent requests
 7. Middleware validates token and attaches user to request
 
+
+<!-- /ANCHOR:architecture -->
 ---
 
+<!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
@@ -85,8 +95,11 @@ MVC - Following existing Express.js application structure
 - [x] Edge cases handled (duplicate email, invalid password)
 - [x] Documentation updated
 
+
+<!-- /ANCHOR:phases -->
 ---
 
+<!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
 
 | Test Type | Scope | Tools |
@@ -95,8 +108,11 @@ MVC - Following existing Express.js application structure
 | Integration | Registration/login API endpoints | Supertest |
 | Manual | Full user journey, error states, edge cases | Browser (Chrome, Firefox) |
 
+
+<!-- /ANCHOR:testing -->
 ---
 
+<!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
 | Dependency | Type | Status | Impact if Blocked |
@@ -107,15 +123,21 @@ MVC - Following existing Express.js application structure
 | Prisma | Internal | Green | Cannot persist users |
 | PostgreSQL | Internal | Green | All auth features blocked |
 
+
+<!-- /ANCHOR:dependencies -->
 ---
 
+<!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
 - **Trigger**: Critical security vulnerability discovered, or login breaks existing functionality
 - **Procedure**: Revert commits, drop users table, remove auth routes
 
+
+<!-- /ANCHOR:rollback -->
 ---
 
+<!-- ANCHOR:l2-phase-deps -->
 ## L2: PHASE DEPENDENCIES
 
 ```
@@ -131,8 +153,11 @@ Phase 1.5 (Schema) ───┘
 | Core | Setup, Schema | Verify |
 | Verify | Core | None |
 
+
+<!-- /ANCHOR:l2-phase-deps -->
 ---
 
+<!-- ANCHOR:l2-effort -->
 ## L2: EFFORT ESTIMATION
 
 | Phase | Complexity | Estimated Effort |
@@ -143,8 +168,11 @@ Phase 1.5 (Schema) ───┘
 | Testing & Verification | Medium | 2-3 hours |
 | **Total** | | **7.5-10.5 hours** |
 
+
+<!-- /ANCHOR:l2-effort -->
 ---
 
+<!-- ANCHOR:l2-rollback -->
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deployment Checklist
@@ -162,6 +190,8 @@ Phase 1.5 (Schema) ───┘
 ### Data Reversal
 - **Has data migrations?** Yes (users table)
 - **Reversal procedure**: DROP TABLE users; (no data to preserve for new feature)
+
+<!-- /ANCHOR:l2-rollback -->
 
 ---
 

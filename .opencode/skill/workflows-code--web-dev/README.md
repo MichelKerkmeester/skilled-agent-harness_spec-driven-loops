@@ -30,17 +30,20 @@ importance_tier: "normal"
 
 ## 1. 📖 OVERVIEW
 <!-- ANCHOR:overview -->
+
 This skill provides unified workflow guidance across specialized code quality domains for frontend development. It enforces a mandatory development lifecycle: Research (optional) -> Implementation -> Code Quality Gate -> Debugging (if needed) -> Verification (MANDATORY).
 
-The core principle is that no completion claim ("works", "fixed", "done") is valid without fresh browser verification evidence. The skill routes to domain-specific references based on task keywords, loading resources at three levels: ALWAYS (every invocation), CONDITIONAL (keyword match), and ON_DEMAND (explicit request).
+The core principle is that no completion claim ("works", "fixed", "done") is valid without fresh browser verification evidence. The skill routes to domain-specific references based on task keywords, loading resources at multiple levels from always-loaded to on-demand (see Configuration for details).
 
-It covers the full frontend development spectrum including async handling, form validation, animation workflows, CSS architecture, accessibility, performance optimization, CDN deployment, and minification -- all within a Webflow-centric development context.
+It covers the full frontend development spectrum including async handling, form validation, animation workflows, CSS architecture, accessibility, performance optimization, CDN deployment and minification. All of this operates within a Webflow-centric development context.
+
 <!-- /ANCHOR:overview -->
 
 ---
 
 ## 2. 🚀 QUICK START
 <!-- ANCHOR:quick-start -->
+
 This skill activates automatically via Gate 2 skill routing when frontend development tasks are detected.
 
 **Manual invocation:**
@@ -58,12 +61,14 @@ skill_advisor.py "implement form validation" --threshold 0.8
 Phase 0: Research (optional) -> Phase 1: Implementation -> Phase 1.5: Code Quality Gate
     -> Phase 2: Debugging (if needed) -> Phase 3: Verification (MANDATORY)
 ```
+
 <!-- /ANCHOR:quick-start -->
 
 ---
 
 ## 3. 📁 STRUCTURE
 <!-- ANCHOR:structure -->
+
 ```
 .opencode/skill/workflows-code--web-dev/
 ├── SKILL.md                          # Entry point with routing logic
@@ -96,7 +101,7 @@ Phase 0: Research (optional) -> Phase 1: Implementation -> Phase 1.5: Code Quali
 │   │   ├── webflow_constraints.md        # Platform limitations
 │   │   └── third_party.md               # GTM, analytics optimization
 │   ├── research/
-│   │   └── multi_agent_patterns.md       # 10-agent research methodology
+│   │   └── multi_agent_patterns.md       # Multi-agent research methodology
 │   └── standards/
 │       ├── code_quality_standards.md     # Initialization, validation, async
 │       ├── code_style_guide.md           # Naming, formatting, comments
@@ -120,27 +125,31 @@ Phase 0: Research (optional) -> Phase 1: Implementation -> Phase 1.5: Code Quali
     ├── verify-minification.mjs           # AST verification
     └── test-minified-runtime.mjs         # Runtime testing
 ```
+
 <!-- /ANCHOR:structure -->
 
 ---
 
 ## 4. ⚡ FEATURES
 <!-- ANCHOR:features -->
-- **Smart routing** -- Keyword-based resource loading at three levels (ALWAYS, CONDITIONAL, ON_DEMAND)
-- **4-phase lifecycle** -- Research, Implementation, Code Quality Gate, Debugging, Verification
-- **Code quality gate** -- P0/P1/P2 priority enforcement for JavaScript and CSS standards
-- **Browser verification** -- Mandatory multi-viewport testing (375px, 991px, 1920px) before completion claims
-- **Domain coverage** -- Animation, forms, video, accessibility, performance, observers, CSS architecture
-- **Deployment pipeline** -- Minification (Terser), AST verification, CDN deployment (Cloudflare R2)
-- **Performance targets** -- FCP < 1.8s, LCP < 2.5s, CLS < 0.1, 60fps animations, 0 console errors
-- **Timing constants** -- Validated defaults: 64ms pointer throttle, 180ms validation debounce, 200ms resize debounce
-- **10-agent research** -- Parallel analysis methodology for complex performance audits
+
+- **Smart routing:** Keyword-based resource loading at multiple levels (ALWAYS, CONDITIONAL, ON_DEMAND)
+- **5-stage lifecycle:** Research, Implementation, Code Quality Gate, Debugging and Verification
+- **Code quality gate:** P0/P1/P2 priority enforcement for JavaScript and CSS standards
+- **Browser verification:** Mandatory multi-viewport testing (375px, 991px, 1920px) before completion claims
+- **Domain coverage:** Animation, forms, video, accessibility, performance, observers, CSS architecture
+- **Deployment pipeline:** Minification (Terser), AST verification, CDN deployment (Cloudflare R2)
+- **Performance targets:** FCP < 1.8s, LCP < 2.5s, CLS < 0.1, 60fps animations, 0 console errors
+- **Timing constants:** Validated defaults: 64ms pointer throttle, 180ms validation debounce, 200ms resize debounce
+- **Multi-agent research:** Parallel analysis methodology for complex performance audits
+
 <!-- /ANCHOR:features -->
 
 ---
 
 ## 5. ⚙️ CONFIGURATION
 <!-- ANCHOR:configuration -->
+
 **Version:** 1.0.6.0
 
 **Allowed tools:** Bash, Edit, Glob, Grep, Read, Task, Write
@@ -154,19 +163,21 @@ Phase 0: Research (optional) -> Phase 1: Implementation -> Phase 1.5: Code Quali
 | ON_DEMAND   | Loaded on explicit request only  | `performance_patterns.md`      |
 
 **Code quality thresholds:**
-- P0 violations: HARD BLOCK -- must fix before proceeding
+- P0 violations: HARD BLOCK. Must fix before proceeding.
 - P1 violations: Fix or document approved deferral
 - P2 violations: Can defer with documented reason
 
 **Browser testing matrix:**
-- Minimum (always): Chrome Desktop 1920px + Mobile 375px + Console clean
+- Minimum (always): Chrome Desktop 1920px, Mobile 375px, Console clean
 - Standard (production): Add Tablet 991px emulation
+
 <!-- /ANCHOR:configuration -->
 
 ---
 
 ## 6. 💡 EXAMPLES
-<!-- ANCHOR:examples -->
+<!-- ANCHOR:usage-examples -->
+
 **Common minification workflow:**
 ```bash
 node .opencode/skill/workflows-code--web-dev/scripts/minify-webflow.mjs
@@ -180,7 +191,7 @@ wrangler r2 object put project-cdn/js/file.min.js \
   --file src/javascript/z_minified/file.min.js
 ```
 
-**Phase detection -- where am I?**
+**Phase detection: where am I?**
 
 | Phase               | You're here if...                    | Exit criteria              |
 | ------------------- | ------------------------------------ | -------------------------- |
@@ -189,26 +200,30 @@ wrangler r2 object put project-cdn/js/file.min.js \
 | 1.5: Code Quality   | Running checklist after implementation | All P0 items passing     |
 | 2: Debugging        | Code has bugs/failing tests          | All tests passing          |
 | 3: Verification     | Final validation                     | Verified in browser        |
-<!-- /ANCHOR:examples -->
+
+<!-- /ANCHOR:usage-examples -->
 
 ---
 
 ## 7. 🛠️ TROUBLESHOOTING
 <!-- ANCHOR:troubleshooting -->
+
 | Issue                                  | Resolution                                          |
 | -------------------------------------- | --------------------------------------------------- |
 | Skill not activating                   | Check Gate 2 routing via `skill_advisor.py`         |
 | P0 violation unclear                   | Load `code_style_enforcement.md` for remediation    |
 | Minification fails                     | See `error_recovery.md` for recovery procedures     |
 | CDN version mismatch                   | Grep HTML files for `v=` and increment manually     |
-| Console errors persist after fix       | Test across all viewports -- some errors are viewport-specific |
+| Console errors persist after fix       | Test across all viewports. Some errors are viewport-specific. |
 | 3+ debugging attempts failed           | Escalate via `/spec_kit:debug` for fresh perspective |
+
 <!-- /ANCHOR:troubleshooting -->
 
 ---
 
 ## 8. 📚 RELATED
 <!-- ANCHOR:related -->
+
 | Resource                        | Relationship                                      |
 | ------------------------------- | ------------------------------------------------- |
 | `workflows-chrome-devtools`     | Browser debugging companion (CLI-first via bdg)   |
@@ -217,12 +232,14 @@ wrangler r2 object put project-cdn/js/file.min.js \
 | `system-spec-kit`               | Spec folder management, memory, context           |
 | `workflows-code--full-stack`    | Multi-stack variant (Go, Node, React, Swift)      |
 | `AGENTS.md`                     | Parent behavioral framework                       |
+
 <!-- /ANCHOR:related -->
 
 ---
 
 ## 9. 📝 CHANGELOG
 <!-- ANCHOR:changelog -->
+
 ### 2026-02-14 - v1.0.6.0
 - Updated FilePond upload documentation to match current implementation and production behavior.
 - Documented `data-label-error-upload` and clarified localized upload-failure messaging.
@@ -230,4 +247,5 @@ wrangler r2 object put project-cdn/js/file.min.js \
 - Added guidance for `processfile` error-path handling (ERROR state instead of forced COMPLETE).
 - Added upload URL submission-guard notes to prevent non-idle upload states from submitting with empty hidden URL values.
 - Updated uploaded-file R2 domain references to `pub-383189394a924ad3b619aa4522f32d27.r2.dev` and aligned cross-references.
+
 <!-- /ANCHOR:changelog -->

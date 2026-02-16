@@ -114,6 +114,7 @@ export interface ScanArgs {
   force?: boolean;
   includeConstitutional?: boolean;
   includeReadmes?: boolean;
+  includeSpecDocs?: boolean;
   incremental?: boolean;
 }
 

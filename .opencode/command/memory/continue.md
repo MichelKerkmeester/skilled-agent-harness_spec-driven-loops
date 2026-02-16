@@ -112,8 +112,10 @@ All session state is immediately persisted to SQLite with write-ahead logging (W
 ### Database Path
 
 ```
-.opencode/skill/system-spec-kit/mcp_server/database/context-index.sqlite
+.opencode/skill/system-spec-kit/mcp_server/dist/database/context-index.sqlite
 ```
+
+Compatibility note: `.opencode/skill/system-spec-kit/mcp_server/database/context-index.sqlite` may exist as a symlink to the canonical `dist/database` path.
 
 Recovery from SQLite returns the most recent `session_state` record for the given session ID, with `_recovered: true`, `_recovered_at` timestamp, and `_source: 'sqlite'` metadata.
 

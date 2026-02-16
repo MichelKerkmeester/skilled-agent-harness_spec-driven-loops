@@ -54,14 +54,16 @@ const TEST_QUERIES = {
 ──────────────────────────────────────────────────────────────── */
 
 describe('T036: Intent Types', () => {
-  it('INTENT_TYPES contains all 5 required types', () => {
+  it('INTENT_TYPES contains all 7 required types', () => {
     const types = Object.values(intentClassifier.INTENT_TYPES);
-    expect(types.length).toBe(5);
+    expect(types.length).toBe(7);
     expect(types).toContain('add_feature');
     expect(types).toContain('fix_bug');
     expect(types).toContain('refactor');
     expect(types).toContain('security_audit');
     expect(types).toContain('understand');
+    expect(types).toContain('find_spec');
+    expect(types).toContain('find_decision');
   });
 
   it('All intent types have descriptions via getIntentDescription', () => {
@@ -211,7 +213,7 @@ describe('T039: Validation Functions', () => {
 
   it('get_valid_intents returns all intent types', () => {
     const valid = intentClassifier.getValidIntents();
-    expect(valid.length).toBe(5);
+    expect(valid.length).toBe(7);
   });
 
   it('get_intent_description returns description for valid intent', () => {

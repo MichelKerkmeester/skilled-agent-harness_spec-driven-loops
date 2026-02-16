@@ -243,10 +243,11 @@ These dependencies are required and typically available via shared node_modules:
 
 The memory database is stored at:
 ```
-.opencode/skill/system-spec-kit/mcp_server/database/context-index.sqlite
+.opencode/skill/system-spec-kit/mcp_server/dist/database/context-index.sqlite
 ```
 
 This location is within the skill folder for self-contained deployment.
+`mcp_server/database/context-index.sqlite` may also exist as a compatibility symlink.
 
 ### Common Setup Gotchas
 
@@ -419,7 +420,8 @@ Add to `opencode.json` in your project root:
       ],
       "environment": {
         "EMBEDDINGS_PROVIDER": "hf-local",
-        "_NOTE_1_DATABASE": "Stores vectors in: .opencode/skill/system-spec-kit/mcp_server/database/context-index.sqlite",
+        "MEMORY_DB_PATH": ".opencode/skill/system-spec-kit/mcp_server/dist/database/context-index.sqlite",
+        "_NOTE_1_DATABASE": "Stores vectors in: .opencode/skill/system-spec-kit/mcp_server/dist/database/context-index.sqlite",
         "_NOTE_2_PROVIDERS": "Supports: Voyage (1024 dims, recommended), OpenAI (1536/3072 dims), HF Local (768 dims, no API needed)",
         "_NOTE_3_EMBEDDINGS_PROVIDER": "Current: 'hf-local' (free, offline). Options: 'auto', 'voyage', 'openai'",
         "_NOTE_4_CLOUD_PROVIDERS": "For cloud: add VOYAGE_API_KEY or OPENAI_API_KEY and set EMBEDDINGS_PROVIDER=auto",
@@ -447,11 +449,13 @@ The MCP server and database are bundled **inside the skill folder** for several 
 2. Run `npm install` from the skill root (`system-spec-kit/`)
 3. Run `npm run build` from the skill root to compile TypeScript (or `npx tsc --build --noCheck --force` if type errors occur)
 4. Update the path in `opencode.json` to match the new project location
-5. The database will be created fresh on first use (or copy `database/` to preserve memories)
+5. The database will be created fresh on first use (or copy `dist/database/` to preserve memories)
 
 ### Database Path Configuration
 
-The default database path is `.opencode/skill/system-spec-kit/mcp_server/database/context-index.sqlite`. This can be overridden via environment variable:
+The default database path is `.opencode/skill/system-spec-kit/mcp_server/dist/database/context-index.sqlite`. This can be overridden via environment variable:
+
+`mcp_server/database/context-index.sqlite` may exist as a compatibility symlink to the canonical `dist/database` path.
 
 ```json
 {
@@ -468,7 +472,7 @@ The default database path is `.opencode/skill/system-spec-kit/mcp_server/databas
 ### One-Command Health Check
 
 ```bash
-sqlite3 .opencode/skill/system-spec-kit/mcp_server/database/context-index.sqlite "SELECT 'OK: ' || COUNT(*) || ' memories' FROM memory_index" 2>/dev/null || echo "Database not created yet (will be created on first save)"
+sqlite3 .opencode/skill/system-spec-kit/mcp_server/dist/database/context-index.sqlite "SELECT 'OK: ' || COUNT(*) || ' memories' FROM memory_index" 2>/dev/null || echo "Database not created yet (will be created on first save)"
 ```
 
 ### Check 1: Verify Server Files
@@ -1820,7 +1824,8 @@ sqlite3 .opencode/skill/system-spec-kit/mcp_server/database/context-index.sqlite
       "command": ["node", "${workspaceFolder}/.opencode/skill/system-spec-kit/mcp_server/dist/context-server.js"],
       "environment": {
         "EMBEDDINGS_PROVIDER": "hf-local",
-        "_NOTE_1_DATABASE": "Stores vectors in: .opencode/skill/system-spec-kit/mcp_server/database/context-index.sqlite",
+        "MEMORY_DB_PATH": ".opencode/skill/system-spec-kit/mcp_server/dist/database/context-index.sqlite",
+        "_NOTE_1_DATABASE": "Stores vectors in: .opencode/skill/system-spec-kit/mcp_server/dist/database/context-index.sqlite",
         "_NOTE_2_PROVIDERS": "Supports: Voyage (1024 dims, recommended), OpenAI (1536/3072 dims), HF Local (768 dims, no API needed)",
         "_NOTE_3_EMBEDDINGS_PROVIDER": "Current: 'hf-local' (free, offline). Options: 'auto', 'voyage', 'openai'",
         "_NOTE_4_CLOUD_PROVIDERS": "For cloud: add VOYAGE_API_KEY or OPENAI_API_KEY and set EMBEDDINGS_PROVIDER=auto"

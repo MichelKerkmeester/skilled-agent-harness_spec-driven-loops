@@ -28,7 +28,7 @@ This specification-only umbrella produces audit and alignment specs for 11 sourc
 | 123 | Generate-context subfolder fix | v2.2.14.0 | 3 files, path resolution |
 | 124 | Upgrade-level script | v2.2.15.0 | 1 file, 1,490+ LOC |
 | 125 | System-wide remediation | v2.2.16.0 | 10 defects fixed, 14-test suite |
-| 126 | Full spec doc indexing | v2.2.17.0 | Schema v13, 5th source, 7 intents |
+| 126 | Full spec doc indexing | v2.2.17.0 | Schema v13, 5th source, 7 intents, MCP server hardening |
 | 127 | Documentation alignment | v2.2.17.0 | 10 files, post-126 alignment |
 | 128 | AI auto-populate workflow | v2.2.18.0 | 7 files, check-placeholders.sh |
 | 129 | Anchor tags | (pending) | Templates + script |
@@ -77,15 +77,15 @@ This specification-only umbrella produces audit and alignment specs for 11 sourc
 
 ## Subtasks
 
-| # | Folder | Title | Depends On |
-|---|--------|-------|------------|
-| 01 | `task-01-readme-alignment/` | README Audit & Alignment | — |
-| 02 | `task-02-skill-speckit-alignment/` | SKILL.md & References Audit | — |
-| 03 | `task-03-command-alignment/` | Command Configs Audit | — |
-| 04 | `task-04-agent-alignment/` | Agent Configs Audit | — |
-| 05 | `task-05-changelog-updates/` | Changelog Creation | Tasks 01–04 |
-| 06 | `task-06-global-readme-update/` | Root README Update | Task 05 |
-| 07 | `task-07-github-release/` | Tagged Release | Task 06 |
+| # | Folder | Title | Summary | Depends On |
+|---|--------|-------|---------|------------|
+| 01 | `task-01-readme-alignment/` | README Audit & Alignment | Audit 60+ README files across .opencode/ for version numbers, feature descriptions, and cross-references reflecting 5-source pipeline, 7 intents, and specs 122-129 features | — |
+| 02 | `task-02-skill-speckit-alignment/` | SKILL.md & References Audit | Verify system-spec-kit SKILL.md and 7 reference files document upgrade-level.sh, auto-populate workflow, check-placeholders.sh, and anchor tag conventions | — |
+| 03 | `task-03-command-alignment/` | Command Configs Audit | Verify 9 command .md files and YAML assets reflect spec 014 agent routing, spec 128 script references, and 5-source memory pipeline | — |
+| 04 | `task-04-agent-alignment/` | Agent Configs Audit | Ensure 24 agent configs across 3 platforms match spec 016 requirements (Handover=Haiku, Review=model-agnostic, Codex-native frontmatter) | — |
+| 05 | `task-05-changelog-updates/` | Changelog Creation | Create 3 changelog entries (environment v2.1.0.0, spec-kit v2.2.19.0, agents v2.0.4.0) documenting alignment work from Tasks 01-04 | Tasks 01–04 |
+| 06 | `task-06-global-readme-update/` | Root README Update | Update root README.md statistics table, Memory Engine description, Spec Kit features, and Agent System counts to reflect post-alignment state | Task 05 |
+| 07 | `task-07-github-release/` | Tagged Release | Create git tag v2.1.0.0 and GitHub release with notes covering Agent Updates, Spec-Kit Updates, and Documentation Updates from all prior tasks | Task 06 |
 
 ## Related Documents
 

@@ -1,6 +1,6 @@
 ---
 name: handover
-description: "Session handover specialist for creating continuation documents with context preservation"
+description: "Session handover specialist for creating continuation documents with context preservation and seamless session branching"
 tools:
   - Read
   - Write
@@ -8,7 +8,7 @@ tools:
   - Bash
   - Grep
   - Glob
-model: sonnet
+model: haiku
 mcpServers:
   - spec_kit_memory
   - code_mode

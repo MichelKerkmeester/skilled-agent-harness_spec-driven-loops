@@ -9,6 +9,7 @@ and simple phase structure. -->
 
 ---
 
+<!-- ANCHOR:notation -->
 ## Task Notation
 
 | Prefix | Meaning |
@@ -20,16 +21,22 @@ and simple phase structure. -->
 
 **Task Format**: `T### [P?] Description (file path)`
 
+
+<!-- /ANCHOR:notation -->
 ---
 
+<!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
 - [x] T001 Create auth directory structure (`src/auth/`)
 - [x] T002 Install bcrypt and jsonwebtoken (`package.json`)
 - [x] T003 [P] Add User model to Prisma schema (`prisma/schema.prisma`)
 
+
+<!-- /ANCHOR:phase-1 -->
 ---
 
+<!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
 - [x] T004 Implement password hashing utility (`src/utils/hash.js`)
@@ -40,8 +47,11 @@ and simple phase structure. -->
 - [x] T009 [P] Create login form view (`views/auth/login.ejs`)
 - [x] T010 Wire up routes in app.js (`app.js`)
 
+
+<!-- /ANCHOR:phase-2 -->
 ---
 
+<!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
 - [x] T011 Test registration with valid data
@@ -51,20 +61,28 @@ and simple phase structure. -->
 - [x] T015 Verify session persistence after page refresh
 - [x] T016 Update spec documentation with implementation notes
 
+
+<!-- /ANCHOR:phase-3 -->
 ---
 
+<!-- ANCHOR:completion -->
 ## Completion Criteria
 
 - [x] All tasks marked `[x]`
 - [x] No `[B]` blocked tasks remaining
 - [x] Manual verification passed
 
+
+<!-- /ANCHOR:completion -->
 ---
 
+<!-- ANCHOR:cross-refs -->
 ## Cross-References
 
 - **Specification**: See `spec.md`
 - **Plan**: See `plan.md`
+
+<!-- /ANCHOR:cross-refs -->
 
 ---
 

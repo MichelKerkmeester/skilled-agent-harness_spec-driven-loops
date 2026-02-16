@@ -47,6 +47,8 @@ interface MemoryIndexRow {
   review_count: number;
   content_hash: string | null;
   related_memories: string | null;
+  document_type?: string;
+  spec_level?: number | null;
   isConstitutional?: boolean;
   similarity?: number;
   keywordScore?: number;
@@ -61,6 +63,9 @@ interface IndexMemoryParams {
   triggerPhrases?: string[];
   importanceWeight?: number;
   embedding: Float32Array | number[];
+  documentType?: string;
+  specLevel?: number | null;
+  contentText?: string | null;
 }
 
 interface UpdateMemoryParams {
@@ -70,6 +75,9 @@ interface UpdateMemoryParams {
   importanceWeight?: number;
   importanceTier?: string;
   embedding?: Float32Array | number[];
+  documentType?: string;
+  specLevel?: number | null;
+  contentText?: string | null;
 }
 
 interface VectorSearchOptions {

@@ -1,5 +1,7 @@
-<!-- SPECKIT_LEVEL: 3 -->
+<!-- SPECKIT_LEVEL: 3+ -->
 # Task 04 — Agent Configs Audit
+
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify + level3-arch + level3plus-govern | v2.2 -->
 
 <!-- ANCHOR:metadata -->
 ## Metadata
@@ -8,7 +10,7 @@
 |-------|-------|
 | **Parent Spec** | 130 — Memory Overhaul & Agent Upgrade Release |
 | **Task** | 04 of 07 |
-| **Level** | 3 |
+| **Level** | 3+ |
 | **Priority** | P1 |
 | **Status** | Draft |
 | **Created** | 2026-02-16 |
@@ -156,6 +158,56 @@ The implementer should populate `changes.md` with:
 6. Cross-platform consistency verified (body content matches)
 7. changes.md has no placeholder text
 <!-- /ANCHOR:acceptance -->
+
+---
+
+<!-- ANCHOR:approval-workflow -->
+## Approval Workflow
+
+| Checkpoint | Approver | Status | Date |
+|------------|----------|--------|------|
+| Audit Plan Review | Spec Owner | Approved | 2026-02-16 |
+| Changes Review | Tech Lead | Pending | TBD |
+| Implementation Complete | Spec Owner | Pending | TBD |
+<!-- /ANCHOR:approval-workflow -->
+
+---
+
+<!-- ANCHOR:compliance -->
+## Compliance Checkpoints
+
+### Documentation Standards
+- [ ] All agent configs use correct platform-specific frontmatter
+- [ ] Codex agents use Codex-native frontmatter format
+- [ ] Agent body content consistent across all 3 platforms
+
+### Quality Gates
+- [ ] No placeholder text in changes.md
+- [ ] Model assignments match spec 016 requirements
+- [ ] Profile-to-agent mapping correct for Codex platform
+- [ ] Cross-platform consistency verified
+<!-- /ANCHOR:compliance -->
+
+---
+
+<!-- ANCHOR:stakeholders -->
+## Stakeholder Matrix
+
+| Stakeholder | Role | Interest | Communication |
+|-------------|------|----------|---------------|
+| Spec Owner | Documentation Lead | High | Direct updates via changes.md |
+| Tech Lead | System Architect | Medium | Review approval for changes |
+| Platform Maintainers | OpenCode/Claude/Codex teams | High | Cross-platform consistency verification |
+<!-- /ANCHOR:stakeholders -->
+
+---
+
+<!-- ANCHOR:changelog -->
+## Change Log
+
+### v1.0 (2026-02-16)
+**Initial task specification** — Defined audit scope for 24 agent config files across 3 platforms plus AGENTS.md.
+<!-- /ANCHOR:changelog -->
 
 ---
 

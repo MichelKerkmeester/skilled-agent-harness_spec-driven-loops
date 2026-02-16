@@ -9,6 +9,7 @@ embedded ADRs compared to Level 2. Use this for complex features (500+ LOC). -->
 
 ---
 
+<!-- ANCHOR:summary -->
 ## 1. SUMMARY
 
 ### Technical Context
@@ -23,8 +24,11 @@ embedded ADRs compared to Level 2. Use this for complex features (500+ LOC). -->
 ### Overview
 This implementation adds a complete email/password authentication system using bcrypt for password hashing and JWT tokens for stateless session management. The architecture follows established patterns in the codebase (MVC) while introducing reusable utilities for hashing and token management that will support future auth features.
 
+
+<!-- /ANCHOR:summary -->
 ---
 
+<!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
 
 ### Definition of Ready
@@ -42,8 +46,11 @@ This implementation adds a complete email/password authentication system using b
 - [x] Checklist items verified
 - [x] Security review passed
 
+
+<!-- /ANCHOR:quality-gates -->
 ---
 
+<!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
 
 ### Pattern
@@ -99,8 +106,11 @@ User Request → Validator → Controller → Service → Model → Database
                     └─────────────┘
 ```
 
+
+<!-- /ANCHOR:architecture -->
 ---
 
+<!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup (Day 1 AM)
@@ -138,8 +148,11 @@ User Request → Validator → Controller → Service → Model → Database
 - [x] Edge cases handled
 - [x] Documentation updated
 
+
+<!-- /ANCHOR:phases -->
 ---
 
+<!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
 
 | Test Type | Scope | Tools | Coverage Target |
@@ -149,8 +162,11 @@ User Request → Validator → Controller → Service → Model → Database
 | Manual | User journeys, edge cases | Browser | Critical paths |
 | Security | OWASP basics | Manual review | Auth-specific items |
 
+
+<!-- /ANCHOR:testing -->
 ---
 
+<!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
 | Dependency | Type | Status | Impact if Blocked |
@@ -161,15 +177,21 @@ User Request → Validator → Controller → Service → Model → Database
 | Prisma@5.x | Internal | Green | Cannot persist users |
 | PostgreSQL@14+ | Internal | Green | All auth features blocked |
 
+
+<!-- /ANCHOR:dependencies -->
 ---
 
+<!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
 - **Trigger**: Critical security vulnerability, or breaks existing functionality
 - **Procedure**: Revert commits, drop users table, remove auth routes
 
+
+<!-- /ANCHOR:rollback -->
 ---
 
+<!-- ANCHOR:l2-phase-deps -->
 ## L2: PHASE DEPENDENCIES
 
 ```
@@ -187,8 +209,11 @@ Phase 2 (Database) ───┴──> Phase 3 (Services) ──> Phase 4 (API) 
 | UI | API | Verify |
 | Verify | All | None |
 
+
+<!-- /ANCHOR:l2-phase-deps -->
 ---
 
+<!-- ANCHOR:l2-effort -->
 ## L2: EFFORT ESTIMATION
 
 | Phase | Complexity | Estimated Effort |
@@ -201,8 +226,11 @@ Phase 2 (Database) ───┴──> Phase 3 (Services) ──> Phase 4 (API) 
 | Verification | Medium | 5 hours |
 | **Total** | | **22 hours (~3 days)** |
 
+
+<!-- /ANCHOR:l2-effort -->
 ---
 
+<!-- ANCHOR:l2-rollback -->
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deployment Checklist
@@ -221,8 +249,11 @@ Phase 2 (Database) ───┴──> Phase 3 (Services) ──> Phase 4 (API) 
 - **Has data migrations?** Yes (users table)
 - **Reversal procedure**: `npx prisma migrate rollback` or manual DROP TABLE
 
+
+<!-- /ANCHOR:l2-rollback -->
 ---
 
+<!-- ANCHOR:l3-dep-graph -->
 ## L3: DEPENDENCY GRAPH
 
 ```
@@ -273,8 +304,11 @@ Phase 2 (Database) ───┴──> Phase 3 (Services) ──> Phase 4 (API) 
 | API Endpoints | Services | /register, /login, /logout | UI |
 | UI | API | Forms, feedback | Verify |
 
+
+<!-- /ANCHOR:l3-dep-graph -->
 ---
 
+<!-- ANCHOR:l3-critical-path -->
 ## L3: CRITICAL PATH
 
 1. **Setup** - 2 hours - CRITICAL
@@ -290,8 +324,11 @@ Phase 2 (Database) ───┴──> Phase 3 (Services) ──> Phase 4 (API) 
 - UI can start after API stubs are defined
 - Unit tests can be written alongside service implementation
 
+
+<!-- /ANCHOR:l3-critical-path -->
 ---
 
+<!-- ANCHOR:l3-milestones -->
 ## L3: MILESTONES
 
 | Milestone | Description | Success Criteria | Target |
@@ -302,8 +339,11 @@ Phase 2 (Database) ───┴──> Phase 3 (Services) ──> Phase 4 (API) 
 | M4 | UI Complete | Forms rendering, submitting | Day 4 noon |
 | M5 | Release Ready | All tests pass, docs complete | Day 5 EOD |
 
+
+<!-- /ANCHOR:l3-milestones -->
 ---
 
+<!-- ANCHOR:l3-adr-summary -->
 ## L3: ARCHITECTURE DECISION SUMMARY
 
 See `decision-record.md` for full ADRs:
@@ -313,6 +353,8 @@ See `decision-record.md` for full ADRs:
 | ADR-001 | JWT over sessions | Stateless, scales better, API-friendly |
 | ADR-002 | bcrypt with 10 rounds | Industry standard, good security/perf balance |
 | ADR-003 | localStorage for tokens | Simple MVP, HttpOnly cookies in Phase 2 |
+
+<!-- /ANCHOR:l3-adr-summary -->
 
 ---
 

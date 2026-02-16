@@ -1,11 +1,11 @@
 ---
 title: Sub-Folder Versioning
-description: Manual pattern for organizing iterative work within existing spec folders using memory-based context preservation.
+description: Workflow-assisted pattern for organizing iterative work within existing spec folders using versioned sub-folders and isolated memory context.
 ---
 
 # Sub-Folder Versioning - Iterative Work Organization Pattern
 
-Manual pattern for organizing iterative work within existing spec folders using memory-based context preservation.
+Workflow-assisted pattern for organizing iterative work within existing spec folders using memory-based context preservation.
 
 ---
 
@@ -17,7 +17,7 @@ Enable clean separation of iterative work within a single spec folder while pres
 
 ### Important Note
 
-Sub-folder versioning is a **manual organizational pattern** - there is no automatic archiving. The AI agent guides users through the process but all file operations are explicit.
+Sub-folder versioning is **workflow-assisted**: the AI can suggest it during Option A flows and `create.sh --subfolder` can create numbered sub-folders with `memory/` and `scratch/` automatically. Existing root docs are not auto-moved; archival/reorganization remains explicit.
 
 ### When to Use
 
@@ -67,8 +67,18 @@ User decides whether to:
 
 If creating a sub-folder, the user (with AI guidance):
 1. Chooses a descriptive name for the sub-folder
-2. Creates the folder structure manually or via `scripts/spec/create.sh --subfolder`
+2. Creates the folder structure manually or via `.opencode/skill/system-spec-kit/scripts/spec/create.sh --subfolder`
 3. Copies templates as needed
+
+**Script-assisted example:**
+
+```bash
+.opencode/skill/system-spec-kit/scripts/spec/create.sh \
+  --subfolder specs/003-system-spec-kit \
+  --topic memory-overhaul \
+  --level 3+ \
+  "Wave 1 follow-up"
+```
 
 ### Step 4: Path Tracking
 
@@ -78,7 +88,7 @@ Spec folder path passed via CLI argument to generate-context.js (stateless - no 
 
 ## 4. 🏷️ NAMING CONVENTION
 
-- **Sub-folder format**: `{###}-{descriptive-name}` (manually numbered)
+- **Sub-folder format**: `{###}-{descriptive-name}` (script-generated or manual)
 - **Numbers**: 001, 002, 003, etc. (3-digit padded, sequential)
 - **Name rules**: lowercase, hyphens, 2-3 words (shorter is better)
 - **Examples**: `001-mcp-code-mode`, `002-api-refactor`, `003-bug-fixes`
@@ -90,6 +100,7 @@ Spec folder path passed via CLI argument to generate-context.js (stateless - no 
 - Spec folder path passed explicitly via CLI argument (stateless)
 - Writes to specified sub-folder's `memory/` directory
 - Each iteration has isolated conversation history
+- Sub-folder creation also provisions isolated `scratch/` directories
 - Root `memory/` preserved for legacy saves (backward compatibility)
 
 ---
@@ -152,7 +163,39 @@ Spec folder path passed via CLI argument to generate-context.js (stateless - no 
 
 ---
 
-## 8. 🔗 RELATED RESOURCES
+## 8. 🔧 generate-context.js Integration
+
+When using subfolder versioning, the memory save script (`generate-context.js`) fully supports nested paths.
+
+### Supported Input Formats
+
+| Input                                  | Resolution                                        |
+| -------------------------------------- | ------------------------------------------------- |
+| `003-parent/121-child`                 | Resolves to `{specsDir}/003-parent/121-child/`    |
+| `121-child` (bare)                     | Searches all parents, requires unique match        |
+| `specs/003-parent/121-child`           | Strips prefix, resolves nested                     |
+| `.opencode/specs/003-parent/121-child` | Strips prefix, resolves nested                     |
+
+### Memory File Location
+
+Memory files are always saved to the CHILD folder's `memory/` directory:
+- `specs/003-parent/121-child/memory/` (correct)
+- `specs/003-parent/memory/` (wrong — parent-level, not child)
+
+### Bare Child Ambiguity
+
+If a child name like `121-audit` exists under multiple parents, the script requires the full path:
+
+```
+Error: Ambiguous child folder "121-audit" found in multiple parents:
+  - specs/003-system-spec-kit/121-audit/
+  - specs/005-anobel/121-audit/
+Please specify the full path: parent/child
+```
+
+---
+
+## 9. 🔗 RELATED RESOURCES
 
 ### Reference Files
 - [template_guide.md](../templates/template_guide.md) - Template selection, adaptation, and quality standards

@@ -1,6 +1,6 @@
 ---
 name: review
-description: "Code review specialist with pattern validation, quality scoring, and standards enforcement"
+description: "Code review specialist with pattern validation, quality scoring, and standards enforcement for PRs and code changes"
 tools:
   - Read
   - Bash

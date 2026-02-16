@@ -8,6 +8,7 @@ verification documentation and test coverage details. -->
 
 ---
 
+<!-- ANCHOR:metadata -->
 ## Metadata
 
 | Field | Value |
@@ -17,8 +18,11 @@ verification documentation and test coverage details. -->
 | **Level** | 2 |
 | **Actual Effort** | 9.5 hours (estimated: 7.5-10.5 hours) |
 
+
+<!-- /ANCHOR:metadata -->
 ---
 
+<!-- ANCHOR:what-built -->
 ## What Was Built
 
 Implemented a complete email/password authentication system including user registration, login, and session management. The system uses bcrypt for secure password hashing, JWT tokens for stateless session management, and express-validator for input validation. Both registration and login flows are fully functional with comprehensive error handling and input validation.
@@ -41,8 +45,11 @@ Implemented a complete email/password authentication system including user regis
 | `tests/unit/auth-validator.test.js` | Created | Unit tests for validation schemas |
 | `tests/integration/auth.test.js` | Created | Integration tests for auth endpoints |
 
+
+<!-- /ANCHOR:what-built -->
 ---
 
+<!-- ANCHOR:decisions -->
 ## Key Decisions
 
 | Decision | Rationale |
@@ -53,8 +60,11 @@ Implemented a complete email/password authentication system including user regis
 | express-validator for input | Declarative validation, consistent error format, well-maintained |
 | No email verification | Out of scope for Phase 1, requires email service integration |
 
+
+<!-- /ANCHOR:decisions -->
 ---
 
+<!-- ANCHOR:verification -->
 ## Verification
 
 | Test Type | Status | Coverage | Notes |
@@ -73,8 +83,11 @@ Implemented a complete email/password authentication system including user regis
 | src/auth/register.js | 85% | 80% | 100% |
 | src/auth/login.js | 88% | 82% | 100% |
 
+
+<!-- /ANCHOR:verification -->
 ---
 
+<!-- ANCHOR:nfr-verify -->
 ## NFR Verification
 
 | NFR ID | Target | Actual | Status |
@@ -85,8 +98,11 @@ Implemented a complete email/password authentication system including user regis
 | NFR-S02 | No credential enumeration | Verified | Pass |
 | NFR-S03 | Input sanitized | express-validator | Pass |
 
+
+<!-- /ANCHOR:nfr-verify -->
 ---
 
+<!-- ANCHOR:limitations -->
 ## Known Limitations
 
 1. **localStorage token storage** - Vulnerable to XSS attacks; will migrate to HttpOnly cookies in Phase 2
@@ -94,14 +110,19 @@ Implemented a complete email/password authentication system including user regis
 3. **No rate limiting** - Login endpoint could be brute-forced; should add rate limiting before production
 4. **24-hour token expiry** - Fixed expiration; refresh token mechanism planned for future
 
+
+<!-- /ANCHOR:limitations -->
 ---
 
+<!-- ANCHOR:deviations -->
 ## Deviations from Plan
 
 | Planned | Actual | Reason |
 |---------|--------|--------|
 | 4-6 hours core impl | 5.5 hours | Added extra input validation |
 | No auth.css | Created auth.css | Needed for error message styling |
+
+<!-- /ANCHOR:deviations -->
 
 ---
 

@@ -19,27 +19,28 @@ The constitutional tier is the highest importance level in the Spec Kit Memory s
 ## TABLE OF CONTENTS
 <!-- ANCHOR:table-of-contents -->
 
-- [1. 📖 OVERVIEW](#1--overview)
-- [2. 🚀 QUICK START](#2--quick-start)
-- [3. 📁 STRUCTURE](#3--structure)
-- [4. ⚡ FEATURES](#4--features)
-- [5. ⚙️ CONFIGURATION](#5--configuration)
-- [6. 🔧 CREATING CONSTITUTIONAL MEMORIES](#6--creating-constitutional-memories)
-- [7. ⚙️ CUSTOMIZATION](#7--customization)
-- [8. 💡 USAGE EXAMPLES](#8--usage-examples)
-- [9. 🛠️ TROUBLESHOOTING](#9--troubleshooting)
-- [10. 📚 RELATED DOCUMENTS](#10--related-documents)
-- [11. 📊 SUMMARY](#11--summary)
+- [1. OVERVIEW](#1--overview)
+- [2. QUICK START](#2--quick-start)
+- [3. STRUCTURE](#3--structure)
+- [4. FEATURES](#4--features)
+- [5. CONFIGURATION](#5--configuration)
+- [6. CREATING CONSTITUTIONAL MEMORIES](#6--creating-constitutional-memories)
+- [7. CUSTOMIZATION](#7--customization)
+- [8. USAGE EXAMPLES](#8--usage-examples)
+- [9. TROUBLESHOOTING](#9--troubleshooting)
+- [10. RELATED DOCUMENTS](#10--related-documents)
+- [11. SUMMARY](#11--summary)
 
 ---
 
 <!-- /ANCHOR:table-of-contents -->
-## 1. 📖 OVERVIEW
+
+## 1. OVERVIEW
 <!-- ANCHOR:overview -->
 
 ### What is the constitutional/ Directory?
 
-The `constitutional/` directory contains memory files that are **always surfaced** at the top of every `memory_search()` result. These are operational rules, safety constraints, and critical context that AI agents must always have access to—regardless of what they're searching for.
+The `constitutional/` directory contains memory files that are **always surfaced** at the top of every `memory_search()` result. These are operational rules, safety constraints and critical context that AI agents must always have access to, regardless of what they're searching for.
 
 Think of constitutional memories as the "system prompt" for your memory system: rules that apply globally and should never be forgotten.
 
@@ -79,7 +80,8 @@ Think of constitutional memories as the "system prompt" for your memory system: 
 ---
 
 <!-- /ANCHOR:overview -->
-## 2. 🚀 QUICK START
+
+## 2. QUICK START
 <!-- ANCHOR:quick-start -->
 
 ### 30-Second Setup
@@ -106,13 +108,9 @@ triggerPhrases:
   - keyword2
 ---
 
-<!-- ANCHOR:my-rule-id -->
-
 # My Rule Title
 
 Your rule content here...
-
-<!-- /ANCHOR:my-rule-id -->
 ```
 
 ### Verify Installation
@@ -132,13 +130,14 @@ ls .opencode/skill/system-spec-kit/constitutional/
 After creating a constitutional memory:
 
 1. **Restart the MCP server** (or run `memory_index_scan`)
-2. **Run any search** - your constitutional memory will appear at the top
-3. **Verify** with `memory_search({ query: "anything" })` - check for `isConstitutional: true`
+2. **Run any search**: your constitutional memory will appear at the top
+3. **Verify** with `memory_search({ query: "anything" })`. Check for `isConstitutional: true`
 
 ---
 
 <!-- /ANCHOR:quick-start -->
-## 3. 📁 STRUCTURE
+
+## 3. STRUCTURE
 <!-- ANCHOR:structure -->
 
 ### Directory Layout
@@ -169,7 +168,8 @@ constitutional/
 ---
 
 <!-- /ANCHOR:structure -->
-## 4. ⚡ FEATURES
+
+## 4. FEATURES
 <!-- ANCHOR:features -->
 
 ### 4.1 Always-Surface Behavior
@@ -206,7 +206,7 @@ Constitutional memories support **fast trigger phrase matching** (<50ms) for pro
 
 1. Define trigger phrases in YAML frontmatter
 2. When user message contains a trigger phrase, the memory surfaces
-3. No embedding generation required - pure string matching
+3. No embedding generation required. Pure string matching
 
 **Example triggers:**
 
@@ -259,7 +259,8 @@ Constitutional memories are limited to **~2000 tokens total** per search to prev
 ---
 
 <!-- /ANCHOR:features -->
-## 5. ⚙️ CONFIGURATION
+
+## 5. CONFIGURATION
 <!-- ANCHOR:configuration -->
 
 ### 5.1 YAML Frontmatter Requirements
@@ -297,7 +298,7 @@ triggerPhrases:                      # Recommended: Fast matching phrases
 | Add common misspellings | Add phrases longer than 3 words |
 | Keep list focused (10-50 phrases) | Add hundreds of phrases |
 
-**Example - Gate 3 Triggers:**
+**Example, Gate 3 Triggers:**
 
 ```yaml
 triggerPhrases:
@@ -324,8 +325,9 @@ triggerPhrases:
 ---
 
 <!-- /ANCHOR:configuration -->
-## 6. 🔧 CREATING CONSTITUTIONAL MEMORIES
-<!-- ANCHOR:creating-constitutional-memories -->
+
+## 6. CREATING CONSTITUTIONAL MEMORIES
+<!-- ANCHOR:creating-memories -->
 
 ### Step-by-Step Guide
 
@@ -336,7 +338,7 @@ Ask yourself:
 - Would forgetting this rule cause significant problems?
 - Is this a safety constraint or hard requirement?
 
-If yes to all → Constitutional tier is appropriate.
+If yes to all, constitutional tier is appropriate.
 
 #### Step 2: Create the File
 
@@ -359,11 +361,9 @@ triggerPhrases:
 ---
 ```
 
-#### Step 4: Add Content with ANCHOR
+#### Step 4: Add Content
 
 ```markdown
-<!-- ANCHOR:my-rule-main -->
-
 # My Rule Title
 
 > Brief description of what this rule enforces.
@@ -377,8 +377,6 @@ Your rule content here...
 | Trigger | Action |
 |---------|--------|
 | ... | ... |
-
-<!-- /ANCHOR:my-rule-main -->
 ```
 
 #### Step 5: Index the Memory
@@ -417,8 +415,6 @@ triggerPhrases:
   - domain_term1
   - domain_term2
 ---
-
-<!-- ANCHOR:rule-id-main -->
 
 # RULE TITLE
 
@@ -470,18 +466,17 @@ These rules are HARD BLOCKS. No exceptions.
 [ ] Am I following the rule?
 ```
 
-<!-- /ANCHOR:rule-id-main -->
-
 ---
 
-*Constitutional Memory - Always surfaces at top of search results*
+*Constitutional Memory: Always surfaces at top of search results*
 *Location: .opencode/skill/system-spec-kit/constitutional/*
 ```
 
 ---
 
-<!-- /ANCHOR:creating-constitutional-memories -->
-## 7. ⚙️ CUSTOMIZATION
+<!-- /ANCHOR:creating-memories -->
+
+## 7. CUSTOMIZATION
 <!-- ANCHOR:customization -->
 
 ### 7.1 Adding New Trigger Phrases
@@ -511,7 +506,7 @@ memory_save({
 ### 7.2 Modifying Existing Rules
 
 1. **Edit the file** directly in the constitutional directory
-2. **Preserve ANCHOR format** - ensure opening and closing tags match
+2. **Preserve ANCHOR format**: ensure opening and closing tags match
 3. **Re-index** after changes
 
 ```bash
@@ -542,21 +537,17 @@ triggerPhrases:
   - security
 ---
 
-<!-- ANCHOR:security-rules -->
-
 # Security Rules
 
 ## NEVER Commit Secrets
 
-**TRIGGER:** Any file containing passwords, API keys, tokens
+**TRIGGER:** Any file containing passwords, API keys or tokens
 
 **ACTION:**
 1. STOP immediately
 2. Remove secret from file
 3. Add to .gitignore
 4. Use environment variables instead
-
-<!-- /ANCHOR:security-rules -->
 ```
 
 ### 7.4 Disabling Constitutional Surfacing
@@ -575,8 +566,9 @@ memory_search({
 ---
 
 <!-- /ANCHOR:customization -->
-## 8. 💡 USAGE EXAMPLES
-<!-- ANCHOR:examples -->
+
+## 8. USAGE EXAMPLES
+<!-- ANCHOR:usage-examples -->
 
 ### Example 1: Gate Enforcement (Default)
 
@@ -585,7 +577,7 @@ The default `gate-enforcement.md` enforces the spec folder question:
 ```markdown
 ### GATE 3: SPEC FOLDER BEFORE FILE MODIFICATIONS [HARD BLOCK]
 
-**TRIGGER:** Any intent to create, edit, delete, fix, implement, update, rename, or move files.
+**TRIGGER:** Any intent to create, edit, delete, fix, implement, update, rename or move files.
 
 **REQUIRED ACTION:**
 
@@ -610,8 +602,6 @@ triggerPhrases:
   - call
 ---
 
-<!-- ANCHOR:api-constraints -->
-
 # API Constraints
 
 ## Rate Limits
@@ -625,8 +615,6 @@ triggerPhrases:
 Every API call MUST include:
 - `Authorization: Bearer {token}`
 - `X-Request-ID: {uuid}`
-
-<!-- /ANCHOR:api-constraints -->
 ```
 
 ### Example 3: Multi-Section Constitutional Memory
@@ -643,27 +631,24 @@ triggerPhrases:
   - implement
 ---
 
-<!-- ANCHOR:code-quality-naming -->
 ## Naming Conventions
 
 - camelCase for variables and functions
 - PascalCase for classes
 - SCREAMING_SNAKE_CASE for constants
-<!-- /ANCHOR:code-quality-naming -->
 
-<!-- ANCHOR:code-quality-testing -->
 ## Testing Requirements
 
 - All public functions must have tests
 - Minimum 80% code coverage
 - Integration tests for API endpoints
-<!-- /ANCHOR:code-quality-testing -->
 ```
 
 ---
 
-<!-- /ANCHOR:examples -->
-## 9. 🛠️ TROUBLESHOOTING
+<!-- /ANCHOR:usage-examples -->
+
+## 9. TROUBLESHOOTING
 <!-- ANCHOR:troubleshooting -->
 
 ### Common Issues
@@ -672,7 +657,7 @@ triggerPhrases:
 
 **Symptom:** Your constitutional memory doesn't appear in search results
 
-**Causes & Solutions:**
+**Causes and Solutions:**
 
 | Cause | Solution |
 |-------|----------|
@@ -685,7 +670,7 @@ triggerPhrases:
 
 **Symptom:** `memory_match_triggers()` doesn't return your memory
 
-**Causes & Solutions:**
+**Causes and Solutions:**
 
 | Cause | Solution |
 |-------|----------|
@@ -731,7 +716,8 @@ memory_match_triggers({ prompt: "fix the bug" })
 ---
 
 <!-- /ANCHOR:troubleshooting -->
-## 10. 📚 RELATED DOCUMENTS
+
+## 10. RELATED DOCUMENTS
 <!-- ANCHOR:related -->
 
 ### Internal Documentation
@@ -761,16 +747,17 @@ memory_match_triggers({ prompt: "fix the bug" })
 ---
 
 <!-- /ANCHOR:related -->
-## 11. 📊 SUMMARY
+
+## 11. SUMMARY
 <!-- ANCHOR:summary -->
 
 Constitutional memories are the **highest priority** context in the Spec Kit Memory system:
 
 - **Always surface** at the top of every search result
-- **Never decay** - permanent importance
-- **3.0x search boost** - highest priority
-- **~2000 token budget** - keep them concise
-- **Trigger matching** - proactive surfacing in <50ms
+- **Never decay**: permanent importance
+- **3.0x search boost**: highest priority
+- **~2000 token budget**: keep them concise
+- **Trigger matching**: proactive surfacing in <50ms
 
 Use constitutional tier for:
 - Gate enforcement rules
@@ -782,5 +769,6 @@ Use constitutional tier for:
 
 ---
 
-<!-- /ANCHOR:summary -->
 *Documentation version: 1.0 | Last updated: 2025-12-27*
+
+<!-- /ANCHOR:summary -->

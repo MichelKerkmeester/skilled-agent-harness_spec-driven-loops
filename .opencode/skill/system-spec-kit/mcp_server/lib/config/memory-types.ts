@@ -128,6 +128,9 @@ export const PATH_TYPE_PATTERNS: readonly PathTypePattern[] = [
   { pattern: /\/session-state/i, type: 'working' },
 
   // Prospective patterns (future actions)
+  { pattern: /\/plan\.md$/i, type: 'procedural' },
+  { pattern: /\/tasks\.md$/i, type: 'prospective' },
+  { pattern: /\/handover\.md$/i, type: 'episodic' },
   { pattern: /todo/i, type: 'prospective' },
   { pattern: /next[-_]?steps/i, type: 'prospective' },
   { pattern: /backlog/i, type: 'prospective' },
@@ -290,6 +293,98 @@ export function getDefaultHalfLives(): Record<MemoryTypeName, number | null> {
     'meta-cognitive': null,
   };
 }
+
+// ---------------------------------------------------------------
+// 6. DOCUMENT TYPES (Spec 126: Full Spec Folder Document Indexing)
+// ---------------------------------------------------------------
+
+export type DocumentType =
+  | 'spec'
+  | 'plan'
+  | 'tasks'
+  | 'checklist'
+  | 'decision_record'
+  | 'implementation_summary'
+  | 'research'
+  | 'handover'
+  | 'memory'
+  | 'readme'
+  | 'constitutional';
+
+export interface SpecDocumentConfig {
+  filePattern: RegExp;
+  documentType: DocumentType;
+  memoryType: MemoryTypeName;
+  defaultImportanceTier: string;
+  defaultImportanceWeight: number;
+}
+
+/** Configuration for each spec folder document type */
+export const SPEC_DOCUMENT_CONFIGS: readonly SpecDocumentConfig[] = [
+  { filePattern: /\/spec\.md$/i,                    documentType: 'spec',                    memoryType: 'semantic',     defaultImportanceTier: 'important', defaultImportanceWeight: 0.8 },
+  { filePattern: /\/plan\.md$/i,                    documentType: 'plan',                    memoryType: 'procedural',   defaultImportanceTier: 'important', defaultImportanceWeight: 0.7 },
+  { filePattern: /\/tasks\.md$/i,                   documentType: 'tasks',                   memoryType: 'prospective',  defaultImportanceTier: 'normal',    defaultImportanceWeight: 0.6 },
+  { filePattern: /\/checklist\.md$/i,               documentType: 'checklist',               memoryType: 'procedural',   defaultImportanceTier: 'normal',    defaultImportanceWeight: 0.5 },
+  { filePattern: /\/decision-record\.md$/i,         documentType: 'decision_record',         memoryType: 'semantic',     defaultImportanceTier: 'important', defaultImportanceWeight: 0.8 },
+  { filePattern: /\/implementation-summary\.md$/i,  documentType: 'implementation_summary',  memoryType: 'declarative',  defaultImportanceTier: 'normal',    defaultImportanceWeight: 0.6 },
+  { filePattern: /\/research\.md$/i,                documentType: 'research',                memoryType: 'semantic',     defaultImportanceTier: 'normal',    defaultImportanceWeight: 0.6 },
+  { filePattern: /\/handover\.md$/i,                documentType: 'handover',                memoryType: 'episodic',     defaultImportanceTier: 'normal',    defaultImportanceWeight: 0.5 },
+] as const;
+
+/** Well-known spec folder document filenames */
+export const SPEC_DOCUMENT_FILENAMES = new Set([
+  'spec.md',
+  'plan.md',
+  'tasks.md',
+  'checklist.md',
+  'decision-record.md',
+  'implementation-summary.md',
+  'research.md',
+  'handover.md',
+]);
+
+/**
+ * Infer document type from a file path.
+ * Returns the DocumentType if the file matches a known spec document pattern,
+ * or falls back based on path characteristics.
+ */
+export function inferDocumentTypeFromPath(filePath: string): DocumentType {
+  const normalizedPath = filePath.replace(/\\/g, '/');
+
+  // Check spec document patterns first
+  for (const config of SPEC_DOCUMENT_CONFIGS) {
+    if (config.filePattern.test(normalizedPath)) {
+      // Only classify as spec doc if it's actually in a specs/ directory (not memory/)
+      if (normalizedPath.includes('/specs/') && !normalizedPath.includes('/memory/')) {
+        return config.documentType;
+      }
+    }
+  }
+
+  // Constitutional files
+  if (normalizedPath.includes('/constitutional/') && normalizedPath.endsWith('.md')) {
+    return 'constitutional';
+  }
+
+  // README files
+  if (normalizedPath.toLowerCase().endsWith('readme.md')) {
+    return 'readme';
+  }
+
+  // Default: memory
+  return 'memory';
+}
+
+/**
+ * Get the SpecDocumentConfig for a given document type.
+ */
+export function getSpecDocumentConfig(documentType: DocumentType): SpecDocumentConfig | null {
+  return SPEC_DOCUMENT_CONFIGS.find(c => c.documentType === documentType) ?? null;
+}
+
+// ---------------------------------------------------------------
+// 7. HALF-LIFE VALIDATION
+// ---------------------------------------------------------------
 
 export function validateHalfLifeConfig(config: Record<string, unknown> | null | undefined): HalfLifeValidationResult {
   const errors: string[] = [];

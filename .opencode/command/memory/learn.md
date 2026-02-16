@@ -36,8 +36,6 @@ ARGUMENT VALIDATION:
 └─ OTHERWISE: Proceed to subcommand routing
 ```
 
---- calc(var(--number) * 1%) Set "-1" for no max width
-
 ## 2. 🔀 SUBCOMMAND ROUTING
 
 **After validating required arguments, route based on $ARGUMENTS:**
@@ -87,6 +85,8 @@ action: Classify learning, link to source, save with importance boost
 
 **Confidence:** All explicit learnings via `/memory:learn` receive 85% (auto-set). If classification confidence < 80% → ASK user to select type from menu.
 
+> **Note:** Learning types (pattern, mistake, insight, optimization, constraint) are orthogonal to the 7 retrieval intents. Learnings are indexed as memories and retrievable via all intents including `find_spec` and `find_decision`.
+
 ---
 
 ## 5. 📊 CORE WORKFLOW (Phases 1-4)
@@ -122,7 +122,7 @@ action: Classify learning, link to source, save with importance boost
 **Phase 2 Output:**
 ```
 learning_type: [pattern|mistake|insight|optimization|constraint]
-learning_title: "________________"
+learning_title: "Debounce input handlers in Webflow"
 classification_confidence: [0-100]%
 ```
 
@@ -252,7 +252,8 @@ spec_kit_memory_memory_save({
   filePath: "specs/<folder>/memory/<filename>.md",
   force: false,
   dryRun: false,       // Validate only without saving
-  skipPreflight: false  // Skip pre-flight validation (not recommended)
+  skipPreflight: false,  // Skip pre-flight validation (not recommended)
+  asyncEmbedding: false  // Optional non-blocking embedding mode
 })
 ```
 
