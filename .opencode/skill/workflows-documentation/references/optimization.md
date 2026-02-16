@@ -9,7 +9,7 @@ description: 16 proven patterns for converting documentation into AI-friendly qu
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 ### What Is Optimization?
 
@@ -31,7 +31,7 @@ This reference provides deep-dive technical guidance on transformation patterns 
 
 ---
 
-## 2. 📊 QUALITY HEURISTICS (NON-SCORING)
+## 2. QUALITY HEURISTICS (NON-SCORING)
 
 These heuristics describe what “good” looks like. This skill does not compute an external score; use them as guidance.
 
@@ -53,7 +53,7 @@ These heuristics describe what “good” looks like. This skill does not comput
 
 ---
 
-## 3. 🔍 ANALYSIS WORKFLOW
+## 3. ANALYSIS WORKFLOW
 
 **Step 1: Audit Current State**
 - Count question-answering snippets vs API-only snippets
@@ -77,7 +77,7 @@ These heuristics describe what “good” looks like. This skill does not comput
 
 ---
 
-## 4. 🔄 TRANSFORMATION PATTERNS
+## 4. TRANSFORMATION PATTERNS
 
 ### Pattern 1: API Reference → Usage Example
 
@@ -354,7 +354,7 @@ print(response)
 
 ---
 
-## 5. 📖 README OPTIMIZATION STRATEGY
+## 5. README OPTIMIZATION STRATEGY
 
 **High Priority Sections**:
 1. **Quick Start** - Installation + first usage (Pattern 2, Pattern 6)
@@ -380,7 +380,7 @@ print(response)
 
 ---
 
-## 6. ✅ QUALITY CHECKLIST
+## 6. QUALITY CHECKLIST
 
 Before finalizing, verify each snippet:
 
@@ -406,7 +406,7 @@ Before finalizing, verify each snippet:
 
 ---
 
-## 7. 🔁 ITERATION PROCESS
+## 7. ITERATION PROCESS
 
 1. Extract structure JSON (scripts)
 2. Identify missing questions / weak sections (AI judgment)
@@ -423,7 +423,7 @@ Before finalizing, verify each snippet:
 
 ---
 
-## 8. 🔗 RELATED RESOURCES
+## 8. RELATED RESOURCES
 
 ### Reference Files
 - [core_standards.md](./core_standards.md) - Document type rules and structural requirements

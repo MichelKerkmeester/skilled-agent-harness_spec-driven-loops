@@ -23,7 +23,7 @@ importance_tier: "normal"
 - [4. ⚡ FEATURES](#4--features)
 - [5. 💡 USAGE EXAMPLES](#5--usage-examples)
 - [6. 🛠️ TROUBLESHOOTING](#6--troubleshooting)
-- [7. RUNNING VERIFICATION](#7--running-verification)
+- [7. ✅ RUNNING VERIFICATION](#7--running-verification)
 - [8. 🔗 RELATED RESOURCES](#8--related-resources)
 
 ---
@@ -507,7 +507,7 @@ npx vitest run --reporter=verbose 2>&1 | head -50
 
 <!-- /ANCHOR:troubleshooting -->
 
-## 7. RUNNING VERIFICATION
+## 7. ✅ RUNNING VERIFICATION
 <!-- ANCHOR:verification -->
 
 ### Full Verification Run

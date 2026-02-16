@@ -9,7 +9,7 @@ Templates for creating llms.txt files that provide AI assistants with project co
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 ### What Is llms.txt?
 
@@ -58,7 +58,7 @@ AI receives question about project
 
 ---
 
-## 2. 🎯 WHEN TO CREATE LLMS.TXT
+## 2. WHEN TO CREATE LLMS.TXT
 
 ### Create llms.txt When
 
@@ -130,7 +130,7 @@ Does the project have multiple documentation files (3+)?
 
 ---
 
-## 3. 📋 LLMS.TXT STRUCTURE
+## 3. LLMS.TXT STRUCTURE
 
 ### Required Components
 
@@ -192,7 +192,7 @@ Each link must include a description:
 
 ---
 
-## 4. ⚡ WRITING PROCESS
+## 4. WRITING PROCESS
 
 ### Step 1: Gather Documentation Inventory
 
@@ -240,7 +240,7 @@ For each link, answer: "What will the reader learn from this resource?"
 
 ---
 
-## 5. 📝 SECTION GUIDELINES
+## 5. SECTION GUIDELINES
 
 ### Opening Section (Required)
 
@@ -312,7 +312,7 @@ Secondary resources that aren't essential:
 
 ---
 
-## 6. 🔗 URL AND LINK PATTERNS
+## 6. URL AND LINK PATTERNS
 
 ### GitHub URL Patterns
 
@@ -343,7 +343,7 @@ When both exist, prefer markdown over rendered HTML:
 
 ---
 
-## 7. 🏷️ PROJECT TYPE VARIATIONS
+## 7. PROJECT TYPE VARIATIONS
 
 ### Libraries/Packages
 
@@ -383,7 +383,7 @@ When both exist, prefer markdown over rendered HTML:
 
 ---
 
-## 8. ⚠️ ANTI-PATTERNS TO AVOID
+## 8. ANTI-PATTERNS TO AVOID
 
 ### Too Granular
 
@@ -453,7 +453,7 @@ The DataStream class provides methods for...
 
 ---
 
-## 9. ✅ LLMS.TXT CHECKLIST
+## 9. LLMS.TXT CHECKLIST
 
 Before publishing, verify:
 
@@ -482,7 +482,7 @@ Before publishing, verify:
 
 ---
 
-## 10. 🌳 DECISION TREE: SECTION SELECTION
+## 10. DECISION TREE: SECTION SELECTION
 
 ### For Libraries/Packages
 - **Must have**: DOCUMENTATION, API REFERENCE, EXAMPLES
@@ -506,7 +506,7 @@ Before publishing, verify:
 
 ---
 
-## 11. 📊 BEST PRACTICES SUMMARY
+## 11. BEST PRACTICES SUMMARY
 
 ### DO
 
@@ -532,7 +532,7 @@ Before publishing, verify:
 
 ---
 
-## 12. 📚 COMPLETE EXAMPLES
+## 12. COMPLETE EXAMPLES
 
 ### Example 1: Python Library (Data Processing)
 
@@ -803,7 +803,7 @@ The skill provides:
 
 ---
 
-## 13. ⚙️ COMMON CUSTOMIZATIONS
+## 13. COMMON CUSTOMIZATIONS
 
 ### Open Source Project
 
@@ -839,7 +839,7 @@ Add sections:
 
 ---
 
-## 14. 🔗 RELATED RESOURCES
+## 14. RELATED RESOURCES
 
 ### Templates
 - [frontmatter_templates.md](./frontmatter_templates.md) - Frontmatter by document type

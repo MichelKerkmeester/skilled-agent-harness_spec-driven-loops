@@ -9,7 +9,7 @@ Step-by-step guide from concept to packaged skill with validation standards and 
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 ### What Is This Reference?
 
@@ -43,7 +43,7 @@ This reference file provides Level 3 deep-dive technical guidance on skill creat
 
 ---
 
-## 2. 🧠 UNDERSTANDING SKILLS
+## 2. UNDERSTANDING SKILLS
 
 ### What Skills Provide
 
@@ -67,7 +67,7 @@ Skills are modular, self-contained packages that transform an AI agent from a ge
 
 ---
 
-## 3. 📦 SKILL ANATOMY
+## 3. SKILL ANATOMY
 
 Every skill consists of a required SKILL.md file and optional bundled resources:
 
@@ -216,7 +216,7 @@ Files used within the output the agent produces (not loaded into context).
 
 ---
 
-## 4. 🚀 SKILL CREATION PROCESS
+## 4. SKILL CREATION PROCESS
 
 Follow these steps in order, skipping only if there is a clear reason they are not applicable.
 
@@ -317,7 +317,7 @@ description: [TODO: Complete description]
 
 # Skill Name
 
-## 1. 🎯 WHEN TO USE
+## 1. WHEN TO USE
 [TODO: Activation triggers and use cases ONLY - NO file references here]
 
 ### Activation Triggers
@@ -329,7 +329,7 @@ description: [TODO: Complete description]
 ### When NOT to Use
 [TODO: Exclusions and boundaries]
 
-## 2. 🧭 SMART ROUTING
+## 2. SMART ROUTING
 
 ### Activation Detection
 ```
@@ -365,22 +365,22 @@ def route_request(context):
     # Default: SKILL.md covers basic cases
 ```
 
-## 3. 📦 REFERENCES
+## 3. REFERENCES
 [TODO: Add 3-column tables listing bundled resources]
 
-## 4. 🛠️ HOW IT WORKS
+## 4. HOW IT WORKS
 [TODO: Explain how the skill works]
 
-## 5. 📋 RULES
+## 5. RULES
 [TODO: Add ALWAYS/NEVER/ESCALATE IF rules]
 
-## 6. 🏆 SUCCESS CRITERIA
+## 6. SUCCESS CRITERIA
 [TODO: Define success criteria]
 
-## 7. 🔌 INTEGRATION POINTS
+## 7. INTEGRATION POINTS
 [TODO: Describe integration points]
 
-## 📦 BUNDLED RESOURCES
+## BUNDLED RESOURCES
 [TODO: List bundled resources]
 ```
 
@@ -673,7 +673,7 @@ Iteration 3:
 
 ---
 
-## 5. 🏆 VALIDATION REQUIREMENTS
+## 5. VALIDATION REQUIREMENTS
 
 ### Minimal Validation (quick_validate.py)
 
@@ -716,7 +716,7 @@ scripts/extract_structure.py .opencode/skill/my-skill/SKILL.md
 
 ---
 
-## 6. 📋 SKILL WRITING BEST PRACTICES
+## 6. SKILL WRITING BEST PRACTICES
 
 ### ️ Writing Style Guidelines
 
@@ -809,7 +809,7 @@ See [workflows.md](./workflows.md) for detailed execution modes.
 
 ---
 
-## 7. ⚠️ COMMON PITFALLS
+## 7. COMMON PITFALLS
 
 ### Pitfall 1: Generic Descriptions
 
@@ -1022,7 +1022,7 @@ def route_request(context):
 
 ---
 
-## 8. 💡 EXAMPLE SKILLS
+## 8. EXAMPLE SKILLS
 
 ### Example 1: PDF Editor Skill
 
@@ -1107,7 +1107,7 @@ database-query/
 
 ---
 
-## 9. 🔧 SKILL MAINTENANCE
+## 9. SKILL MAINTENANCE
 
 ### When to Update Skills
 
@@ -1146,7 +1146,7 @@ version: 2.0.0
 
 ---
 
-## 10. 📤 DISTRIBUTION
+## 10. DISTRIBUTION
 
 ### Packaging for Distribution
 
@@ -1179,7 +1179,7 @@ scripts/package_skill.py <path/to/skill> <output-directory>
 
 ---
 
-## 11. 📋 QUICK REFERENCE
+## 11. QUICK REFERENCE
 
 ### File Structure
 
@@ -1267,7 +1267,7 @@ scripts/extract_structure.py <skill-path>/SKILL.md
 
 ---
 
-## 12. 🛠️ SCRIPT USAGE
+## 12. SCRIPT USAGE
 
 ### init_skill.py
 
@@ -1361,7 +1361,7 @@ python scripts/quick_validate.py .opencode/skill/pdf-editor
 
 ---
 
-## 13. 🔗 RELATED RESOURCES
+## 13. RELATED RESOURCES
 
 ### Templates
 - [skill_md_template.md](../assets/opencode/skill_md_template.md) - SKILL.md file templates

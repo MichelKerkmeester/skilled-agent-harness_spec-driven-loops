@@ -14,21 +14,21 @@ importance_tier: "normal"
 
 ---
 
-## TABLE OF CONTENTS
 <!-- ANCHOR:table-of-contents -->
+## TABLE OF CONTENTS
 
 - [1. 📖 OVERVIEW](#1--overview)
 - [2. 📁 STRUCTURE](#2--structure)
-- [3. PATH SECURITY](#3--path-security)
-- [4. RETRY](#4--retry)
+- [3. 🔒 PATH SECURITY]](#3--path-security)
+- [4. 🔁 RETRY]](#4--retry)
 - [5. 📚 RELATED](#5--related)
 
 <!-- /ANCHOR:table-of-contents -->
 
 ---
 
-## 1. 📖 OVERVIEW
 <!-- ANCHOR:overview -->
+## 1. 📖 OVERVIEW
 
 Low-level utility functions shared across `system-spec-kit`. These modules provide **security-hardened path validation**, **resilient retry logic** with error classification, and **JSONC comment stripping** for config parsing.
 
@@ -38,8 +38,8 @@ Low-level utility functions shared across `system-spec-kit`. These modules provi
 
 ---
 
-## 2. 📁 STRUCTURE
 <!-- ANCHOR:structure -->
+## 2. 📁 STRUCTURE
 
 | File | Purpose |
 | ---- | ------- |
@@ -51,8 +51,8 @@ Low-level utility functions shared across `system-spec-kit`. These modules provi
 
 ---
 
-## 3. PATH SECURITY
 <!-- ANCHOR:path-security -->
+## 3. 🔒 PATH SECURITY
 
 **File:** `path-security.ts`
 
@@ -97,8 +97,8 @@ const blocked = validateFilePath('/project/../etc/passwd', ['/project/specs']);
 
 ---
 
-## 4. RETRY
 <!-- ANCHOR:retry -->
+## 4. 🔁 RETRY
 
 **File:** `retry.ts`
 
@@ -196,8 +196,8 @@ Imported from `shared/types`:
 
 ---
 
-## 5. 📚 RELATED
 <!-- ANCHOR:related -->
+## 5. 📚 RELATED
 
 - **Types:** `shared/types.ts` contains `RetryConfig`, `ErrorClassification`, `RetryOptions`, `RetryAttemptLogEntry`
 - **Origin:** `path-security.ts` and `retry.ts` migrated from `mcp_server/lib/utils/`; `jsonc-strip.ts` is shared-native

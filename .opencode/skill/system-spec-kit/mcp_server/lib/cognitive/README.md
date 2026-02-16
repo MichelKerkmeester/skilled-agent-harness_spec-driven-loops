@@ -18,7 +18,7 @@ importance_tier: "normal"
 <!-- ANCHOR:table-of-contents -->
 
 - [1. 📖 OVERVIEW](#1--overview)
-- [2. KEY CONCEPTS](#2--key-concepts)
+- [2. 🧩 KEY CONCEPTS]](#2--key-concepts)
 - [3. 📁 STRUCTURE](#3--structure)
 - [4. ⚡ FEATURES](#4--features)
 - [5. 💡 USAGE EXAMPLES](#5--usage-examples)
@@ -107,7 +107,7 @@ The cognitive subsystem is the "brain" of the memory system. It determines which
 
 ---
 
-## 2. KEY CONCEPTS
+## 2. 🧩 KEY CONCEPTS
 <!-- ANCHOR:key-concepts -->
 
 ### The FSRS Formula

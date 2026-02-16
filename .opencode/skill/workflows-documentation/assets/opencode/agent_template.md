@@ -4,7 +4,7 @@
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 Agents are specialized AI personas with defined authorities, tool permissions, and behavioral rules. Unlike skills (which provide knowledge and workflows), agents have **authority** to act and **tools** to execute.
 
@@ -33,7 +33,7 @@ Create an agent when you need:
 
 ---
 
-## 2. 📋 FRONTMATTER REFERENCE
+## 2. FRONTMATTER REFERENCE
 
 ### Required Fields (v1.1.1+ Format)
 
@@ -108,14 +108,14 @@ permission:                         # REQUIRED: Unified permission object (v1.1.
 
 ---
 
-## 3. 🏗️ REQUIRED SECTIONS
+## 3. REQUIRED SECTIONS
 
 Every agent file MUST include these sections in order:
 
 ### Section 1: Core Workflow
 
 ```markdown
-## 1. 🔄 CORE WORKFLOW
+## 1. CORE WORKFLOW
 
 ### [Workflow Name]
 
@@ -129,7 +129,7 @@ Every agent file MUST include these sections in order:
 ### Section 2: Capability Scan
 
 ```markdown
-## 2. 🔍 CAPABILITY SCAN
+## 2. CAPABILITY SCAN
 
 ### Skills
 
@@ -147,7 +147,7 @@ Every agent file MUST include these sections in order:
 ### Section N-2: Output Verification (NEW - MANDATORY)
 
 ```markdown
-## N. ✅ OUTPUT VERIFICATION
+## N. OUTPUT VERIFICATION
 
 **CRITICAL**: Before claiming completion, you MUST verify output against actual evidence.
 
@@ -187,7 +187,7 @@ Fix verification gaps first
 ### Section N-1: Anti-Patterns
 
 ```markdown
-## N. 🚫 ANTI-PATTERNS
+## N. ANTI-PATTERNS
 
 ❌ **Never [anti-pattern]**
 - [Reason why this is problematic]
@@ -199,7 +199,7 @@ Fix verification gaps first
 ### Section N: Related Resources
 
 ```markdown
-## N. 🔗 RELATED RESOURCES
+## N. RELATED RESOURCES
 
 ### Commands
 
@@ -223,7 +223,7 @@ Fix verification gaps first
 ### Final Section: Summary (RECOMMENDED)
 
 ```markdown
-## N. 📊 SUMMARY
+## N. SUMMARY
 
 \`\`\`
 ┌─────────────────────────────────────────────────────────────────────────┐
@@ -248,26 +248,26 @@ Fix verification gaps first
 
 ---
 
-## 4. 📦 OPTIONAL SECTIONS
+## 4. OPTIONAL SECTIONS
 
 Include these sections based on agent type:
 
 ### For Orchestrator Agents (task: allow)
 
 ```markdown
-## N. 🗺️ AGENT CAPABILITY MAP
+## N. AGENT CAPABILITY MAP
 
 [Description of available sub-agents and their roles]
 
-## N. 📋 TASK DECOMPOSITION FORMAT
+## N. TASK DECOMPOSITION FORMAT
 
 [Template for structuring delegated tasks]
 
-## N. ⚡ PARALLEL VS SEQUENTIAL
+## N. PARALLEL VS SEQUENTIAL
 
 [Guidelines for parallel vs sequential execution]
 
-## N. 🔧 FAILURE HANDLING
+## N. FAILURE HANDLING
 
 [Retry → Reassign → Escalate protocol]
 ```
@@ -275,15 +275,15 @@ Include these sections based on agent type:
 ### For Specialist Agents
 
 ```markdown
-## N. 🗺️ [DOMAIN] ROUTING
+## N. [DOMAIN] ROUTING
 
 [Decision tree for handling different request types]
 
-## N. 📝 OUTPUT FORMAT
+## N. OUTPUT FORMAT
 
 [Standard output format for deliverables]
 
-## N. 📤 RESPONSE FORMATS
+## N. RESPONSE FORMATS
 
 ### Success Response
 [Template for successful completion]
@@ -298,18 +298,18 @@ Include these sections based on agent type:
 ### For Sub-Agents (mode: subagent)
 
 ```markdown
-## N. 📥 CONTEXT HANDOFF FORMAT
+## N. CONTEXT HANDOFF FORMAT
 
 [Expected input format when dispatched]
 
-## N. ⚡ ESCALATION PROTOCOL
+## N. ESCALATION PROTOCOL
 
 [When and how to escalate to orchestrator]
 ```
 
 ---
 
-## 5. 📝 INTRO PARAGRAPH PATTERNS
+## 5. INTRO PARAGRAPH PATTERNS
 
 After the H1 title, include 1-2 sentence description followed by critical statements:
 
@@ -349,7 +349,7 @@ Code review specialist with full authority over pattern validation, quality scor
 
 ---
 
-## 6. 📝 COMPLETE TEMPLATE
+## 6. COMPLETE TEMPLATE
 
 Copy this template to create a new agent:
 
@@ -385,7 +385,7 @@ permission:
 
 ---
 
-## 1. 🔄 CORE WORKFLOW
+## 1. CORE WORKFLOW
 
 ### [N]-Step [Domain] Process
 
@@ -399,7 +399,7 @@ permission:
 
 ---
 
-## 2. 🔍 CAPABILITY SCAN
+## 2. CAPABILITY SCAN
 
 ### Skills
 
@@ -415,7 +415,7 @@ permission:
 
 ---
 
-## 3. 🗺️ [DOMAIN] ROUTING
+## 3. [DOMAIN] ROUTING
 
 \`\`\`
 [Request Type]
@@ -432,7 +432,7 @@ permission:
 
 ---
 
-## 4. 📋 RULES
+## 4. RULES
 
 ### ALWAYS
 
@@ -453,7 +453,7 @@ permission:
 
 ---
 
-## 5. 📝 OUTPUT FORMAT
+## 5. OUTPUT FORMAT
 
 ### [Output Type] Report
 
@@ -476,7 +476,7 @@ permission:
 
 ---
 
-## 6. ✅ OUTPUT VERIFICATION
+## 6. OUTPUT VERIFICATION
 
 **CRITICAL**: Before claiming completion, you MUST verify output against actual evidence.
 
@@ -516,7 +516,7 @@ Fix verification gaps first
 
 ---
 
-## 7. 🚫 ANTI-PATTERNS
+## 7. ANTI-PATTERNS
 
 ❌ **Never [anti-pattern 1]**
 - [Reason why this is problematic]
@@ -529,7 +529,7 @@ Fix verification gaps first
 
 ---
 
-## 8. 🔗 RELATED RESOURCES
+## 8. RELATED RESOURCES
 
 ### Commands
 
@@ -552,7 +552,7 @@ Fix verification gaps first
 
 ---
 
-## 9. 📊 SUMMARY
+## 9. SUMMARY
 
 \`\`\`
 ┌─────────────────────────────────────────────────────────────────────────┐
@@ -582,7 +582,7 @@ Fix verification gaps first
 
 ---
 
-## 7. 💡 PRODUCTION EXAMPLES
+## 7. PRODUCTION EXAMPLES
 
 ### Current Production Agents
 
@@ -633,7 +633,7 @@ head -100 .opencode/agent/debug.md
 
 ---
 
-## 8. ✅ VALIDATION CHECKLIST
+## 8. VALIDATION CHECKLIST
 
 Before deploying an agent, verify:
 
@@ -648,13 +648,13 @@ Before deploying an agent, verify:
 **Structure:**
 - [ ] H1 title follows "# The [Role]: [Subtitle]" pattern
 - [ ] Intro has **CRITICAL** and **IMPORTANT** statements
-- [ ] Section 1 is "🔄 CORE WORKFLOW"
-- [ ] Has "🔍 CAPABILITY SCAN" section
-- [ ] Has "✅ OUTPUT VERIFICATION" section (mandatory)
-- [ ] Has "🚫 ANTI-PATTERNS" section
-- [ ] Has "📊 SUMMARY" section (recommended)
-- [ ] Last numbered section is "🔗 RELATED RESOURCES"
-- [ ] All H2 sections have emoji and number
+- [ ] Section 1 is "CORE WORKFLOW"
+- [ ] Has "CAPABILITY SCAN" section
+- [ ] Has "OUTPUT VERIFICATION" section (mandatory)
+- [ ] Has "ANTI-PATTERNS" section
+- [ ] Has "SUMMARY" section (recommended)
+- [ ] Last numbered section is "RELATED RESOURCES"
+- [ ] All H2 sections have number and ALL CAPS name
 
 **Content:**
 - [ ] Core workflow has numbered steps with verbs
@@ -666,7 +666,7 @@ Before deploying an agent, verify:
 
 ---
 
-## 9. 🔗 RELATED RESOURCES
+## 9. RELATED RESOURCES
 
 ### Templates
 

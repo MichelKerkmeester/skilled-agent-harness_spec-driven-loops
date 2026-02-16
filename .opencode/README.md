@@ -19,6 +19,7 @@ importance_tier: "normal"
 ---
 
 ## TABLE OF CONTENTS
+<!-- ANCHOR:table-of-contents -->
 
 - [1. 📖 OVERVIEW](#1--overview)
 - [2. 📁 DIRECTORY STRUCTURE](#2--directory-structure)
@@ -30,9 +31,12 @@ importance_tier: "normal"
 - [8. 🏗️ GATE SYSTEM](#8--gate-system)
 - [9. 🚀 GETTING STARTED](#9--getting-started)
 
+<!-- /ANCHOR:table-of-contents -->
+
 ---
 
 ## 1. 📖 OVERVIEW
+<!-- ANCHOR:overview -->
 
 This directory serves as the configuration backbone of the OpenCode AI Assistant Framework. It contains agents, skills, commands, scripts, specs and configuration that power an AI coding assistant with persistent memory and structured documentation.
 
@@ -56,9 +60,12 @@ Together, these systems enable context-aware development with traceability, hard
 | YAML assets | 25 | Command execution YAML files |
 | Validation rules | 13 | Spec folder validation scripts |
 
+<!-- /ANCHOR:overview -->
+
 ---
 
 ## 2. 📁 DIRECTORY STRUCTURE
+<!-- ANCHOR:directory-structure -->
 
 ```
 .opencode/
@@ -79,9 +86,12 @@ Together, these systems enable context-aware development with traceability, hard
 - **`skill/`**: Self-contained skill modules with `SKILL.md` entry points, bundled references, scripts and assets for domain-specific workflows.
 - **`specs/`**: Archived or system-level spec folders. User spec folders typically live in project root `/specs/`.
 
+<!-- /ANCHOR:directory-structure -->
+
 ---
 
 ## 3. 🔌 AGENTS OVERVIEW
+<!-- ANCHOR:agents-overview -->
 
 The framework includes 8 specialized agents plus 2 built-in agents:
 
@@ -102,9 +112,12 @@ This is a 10 specialized agents / 3-platform model (OpenCode, Claude Code, Codex
 
 **Agent Routing:** Automatic via Gate 2 (`skill_advisor.py`) or manual via `@agent_name` syntax. Current agent state includes model-agnostic `@review`, Haiku-tier `@handover`, and Codex profile-based agent frontmatter.
 
+<!-- /ANCHOR:agents-overview -->
+
 ---
 
 ## 4. ⚡ SKILLS OVERVIEW
+<!-- ANCHOR:skills-overview -->
 
 Skills are specialized, on-demand capabilities invoked for complex workflows:
 
@@ -122,9 +135,12 @@ Skills are specialized, on-demand capabilities invoked for complex workflows:
 
 **Skill Structure:** Each skill contains `SKILL.md` (entry point), `references/` (documentation), `scripts/` (automation) and `assets/` (templates/checklists).
 
+<!-- /ANCHOR:skills-overview -->
+
 ---
 
 ## 5. 💡 COMMANDS OVERVIEW
+<!-- ANCHOR:commands-overview -->
 
 Commands are invoked with `/command_name` syntax in the chat interface.
 
@@ -159,9 +175,12 @@ Commands are invoked with `/command_name` syntax in the chat interface.
 
 - `/agent_router`: Interactive agent selection for complex tasks
 
+<!-- /ANCHOR:commands-overview -->
+
 ---
 
 ## 6. ⚙️ KEY CONFIGURATION FILES
+<!-- ANCHOR:key-configuration-files -->
 
 ### `opencode.json` (project root)
 Primary configuration file defining:
@@ -191,9 +210,12 @@ System prompt defining:
 - Agent routing rules and escalation paths
 - Code quality standards and anti-patterns
 
+<!-- /ANCHOR:key-configuration-files -->
+
 ---
 
 ## 7. 💾 MEMORY SYSTEM
+<!-- ANCHOR:memory-system -->
 
 The Spec Kit Memory MCP provides persistent context across sessions:
 
@@ -212,9 +234,12 @@ The Spec Kit Memory MCP provides persistent context across sessions:
 
 **Unified Entry Point:** `memory_context()` provides intent-aware routing with 7 intents: `add_feature`, `fix_bug`, `understand`, `refactor`, `security_audit`, `find_spec`, `find_decision`.
 
+<!-- /ANCHOR:memory-system -->
+
 ---
 
 ## 8. 🏗️ GATE SYSTEM
+<!-- ANCHOR:gate-system -->
 
 All AI interactions pass through 3 mandatory gates to ensure quality and traceability:
 
@@ -239,9 +264,12 @@ All AI interactions pass through 3 mandatory gates to ensure quality and traceab
 
 **Enforcement:** Gate violations trigger self-correction protocol (STOP, Ask, Wait, Continue).
 
+<!-- /ANCHOR:gate-system -->
+
 ---
 
 ## 9. 🚀 GETTING STARTED
+<!-- ANCHOR:getting-started -->
 
 ### Installation
 
@@ -283,3 +311,5 @@ All AI interactions pass through 3 mandatory gates to ensure quality and traceab
 - **Skills:** `SKILL.md` in each `.opencode/skill/[skill-name]/` directory
 - **Commands:** `.md` files in `.opencode/command/[domain]/[command-name].md`
 - **Setup:** `.opencode/install_guides/` for installation and configuration
+
+<!-- /ANCHOR:getting-started -->

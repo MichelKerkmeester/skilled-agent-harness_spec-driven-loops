@@ -9,7 +9,7 @@ Templates for creating phased installation guides with validation checkpoints.
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 **Purpose**: Install guides provide step-by-step instructions for installing, configuring, and verifying software tools. They bridge the gap between "download this" and "now use it successfully."
 
@@ -33,7 +33,7 @@ Each phase has a validation checkpoint - do not proceed until the checkpoint pas
 
 ---
 
-## 2. 🎯 WHEN TO CREATE INSTALL GUIDES
+## 2. WHEN TO CREATE INSTALL GUIDES
 
 **Create install guides when**:
 - Installing MCP servers that connect to AI assistants
@@ -58,7 +58,7 @@ Simple one-liner install? → Just document the command inline
 
 ---
 
-## 3. 📂 INSTALL GUIDE TYPES
+## 3. INSTALL GUIDE TYPES
 
 ### MCP Server Guides
 **Purpose**: Install and configure Model Context Protocol servers for AI assistants
@@ -103,7 +103,7 @@ Simple one-liner install? → Just document the command inline
 
 ---
 
-## 4. 🏗️ STANDARD INSTALL GUIDE STRUCTURE
+## 4. STANDARD INSTALL GUIDE STRUCTURE
 
 Every install guide follows an 11-section structure (sections 0-10), with 9 required and 2 optional:
 
@@ -147,7 +147,7 @@ Every install guide follows an 11-section structure (sections 0-10), with 9 requ
 
 ---
 
-## 5. 🔀 PHASE VALIDATION PATTERN
+## 5. PHASE VALIDATION PATTERN
 
 **Core Principle**: Never proceed to the next phase without validation. This prevents cascading failures.
 
@@ -192,7 +192,7 @@ Always include a STOP condition after validation checklists:
 
 ---
 
-## 6. ⚙️ PLATFORM CONFIGURATION PATTERNS
+## 6. PLATFORM CONFIGURATION PATTERNS
 
 ### OpenCode Configuration (`opencode.json`)
 
@@ -260,7 +260,7 @@ Always use `YOUR_USERNAME` as a placeholder and remind users to replace it:
 
 ---
 
-## 7. 🔧 TROUBLESHOOTING PATTERNS
+## 7. TROUBLESHOOTING PATTERNS
 
 ### Error Table Format (Required)
 
@@ -346,7 +346,7 @@ Use 3-column format: Error → Cause → Fix
 
 ---
 
-## 8. 📝 TEMPLATE GUIDELINES
+## 8. TEMPLATE GUIDELINES
 
 ### Naming Conventions
 
@@ -433,7 +433,7 @@ Use `[PLACEHOLDER]` format with SCREAMING_SNAKE_CASE:
 
 ---
 
-## 9. ✅ INSTALL GUIDE CHECKLIST
+## 9. INSTALL GUIDE CHECKLIST
 
 Before publishing an install guide, verify:
 
@@ -467,7 +467,7 @@ Integration:
 
 ---
 
-## 10. 💡 PATTERNS FROM EXISTING GUIDES
+## 10. PATTERNS FROM EXISTING GUIDES
 
 ### MCP Server Guide Patterns
 
@@ -532,7 +532,7 @@ IF condition_2:
 
 ---
 
-## 11. 🔄 INSTALL GUIDE MAINTENANCE
+## 11. INSTALL GUIDE MAINTENANCE
 
 ### When to Update
 
@@ -558,7 +558,7 @@ If a tool is deprecated:
 
 ---
 
-## 12. 🎓 BEST PRACTICES SUMMARY
+## 12. BEST PRACTICES SUMMARY
 
 **DO**:
 - ✅ Start with AI-First prompt for quick setup
@@ -582,7 +582,7 @@ If a tool is deprecated:
 
 ---
 
-## 13. 📋 COMPLETE TEMPLATE
+## 13. COMPLETE TEMPLATE
 
 Copy and customize this template for new install guides. Replace all `[PLACEHOLDERS]` with actual values.
 
@@ -593,7 +593,7 @@ Complete installation and configuration guide for [TOOL_NAME], [PRIMARY_PURPOSE 
 
 ---
 
-## 🤖 AI-FIRST INSTALL GUIDE
+## AI-FIRST INSTALL GUIDE
 
 **Copy and paste this prompt to your AI assistant to get installation help:**
 
@@ -624,23 +624,23 @@ Guide me through each step with the exact commands I need to run.
 
 ---
 
-## 📋 TABLE OF CONTENTS
+## TABLE OF CONTENTS
 
-0. [🤖 AI-FIRST INSTALL GUIDE](#-ai-first-install-guide)
-1. [📖 OVERVIEW](#1--overview)
-2. [📋 PREREQUISITES](#2--prerequisites)
-3. [📥 INSTALLATION](#3--installation)
-4. [⚙️ CONFIGURATION](#4-️-configuration)
-5. [✅ VERIFICATION](#5--verification)
-6. [🚀 USAGE](#6--usage)
-7. [🔧 FEATURES](#7--features) *(optional)*
-8. [💡 EXAMPLES](#8--examples) *(optional)*
-9. [🔧 TROUBLESHOOTING](#9--troubleshooting)
-10. [📚 RESOURCES](#10--resources)
+0. [AI-FIRST INSTALL GUIDE](#-ai-first-install-guide)
+1. [OVERVIEW](#1--overview)
+2. [PREREQUISITES](#2--prerequisites)
+3. [INSTALLATION](#3--installation)
+4. [CONFIGURATION](#4--configuration)
+5. [VERIFICATION](#5--verification)
+6. [USAGE](#6--usage)
+7. [FEATURES](#7--features) *(optional)*
+8. [EXAMPLES](#8--examples) *(optional)*
+9. [TROUBLESHOOTING](#9--troubleshooting)
+10. [RESOURCES](#10--resources)
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 [TOOL_NAME] is [DESCRIPTION]. It provides [KEY_BENEFIT_1] and [KEY_BENEFIT_2].
 
@@ -672,7 +672,7 @@ Guide me through each step with the exact commands I need to run.
 
 ---
 
-## 2. 📋 PREREQUISITES
+## 2. PREREQUISITES
 
 **Phase 1** focuses on installing required software dependencies.
 
@@ -716,7 +716,7 @@ Guide me through each step with the exact commands I need to run.
 
 ---
 
-## 3. 📥 INSTALLATION
+## 3. INSTALLATION
 
 This section covers **Phase 2 (Install)** and **Phase 3 (Initialize)**.
 
@@ -766,7 +766,7 @@ which [BINARY_NAME]        # → [PATH]
 
 ---
 
-## 4. ⚙️ CONFIGURATION
+## 4. CONFIGURATION
 
 Connect [TOOL_NAME] to your AI assistant (Phase 4).
 
@@ -841,7 +841,7 @@ ls -la /Users/YOUR_USERNAME/.local/bin/[BINARY]
 
 ---
 
-## 5. ✅ VERIFICATION
+## 5. VERIFICATION
 
 Verify end-to-end connection in your AI assistant.
 
@@ -876,7 +876,7 @@ Expected: Should list [TOOL_NAME] tools.
 
 ---
 
-## 6. 🚀 USAGE
+## 6. USAGE
 
 ### Daily Workflow
 
@@ -900,7 +900,7 @@ opencode
 
 ---
 
-## 7. 🔧 TROUBLESHOOTING
+## 7. TROUBLESHOOTING
 
 ### Common Errors
 
@@ -928,7 +928,7 @@ opencode
 
 ---
 
-## 8. 📚 RESOURCES
+## 8. RESOURCES
 
 ### File Locations
 
@@ -980,7 +980,7 @@ You now have [TOOL_NAME] installed and configured. [BRIEF_USAGE_INSTRUCTION]
 
 ---
 
-## 14. 🔗 RELATED RESOURCES
+## 14. RELATED RESOURCES
 
 ### Templates
 - [skill_asset_template.md](../opencode/skill_asset_template.md) - Pattern reference for this document

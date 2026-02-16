@@ -9,7 +9,7 @@ Execution modes, validation patterns, and phase interactions for Mode 1 (Documen
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 ### What Are Workflows?
 
@@ -36,7 +36,7 @@ This reference provides deep-dive technical guidance on execution modes, validat
 
 ---
 
-## 2. ⚙️ FOUR EXECUTION MODES
+## 2. FOUR EXECUTION MODES
 
 | Workflow | Phases | Command | Use When | Output |
 | --- | --- | --- | --- | --- |
@@ -53,14 +53,14 @@ This reference provides deep-dive technical guidance on execution modes, validat
 
 ---
 
-## 3. 🔗 VALIDATION INTEGRATION
+## 3. VALIDATION INTEGRATION
 
 > **Note**: These validation patterns are conceptual workflows describing when and how validation should occur. They are not implemented as automated hooks - apply these checks manually using the available scripts.
 
 **Pre-Delivery Format Validation** (MANDATORY for READMEs):
 - **When**: Before claiming completion on any README
 - **Script**: `python scripts/validate_document.py <file>`
-- **Action**: Check TOC, H2 emojis, anchor format, required sections
+- **Action**: Check TOC, H2 format, anchor format, required sections
 - **Blocking**: Yes - exit code 1 blocks delivery
 - **Auto-fix**: Use `--fix` for safe issues (single-dash anchors)
 
@@ -95,7 +95,7 @@ Run: python scripts/extract_structure.py <file>
 
 ---
 
-## 4. 🛠️ ENFORCEMENT WORKFLOWS
+## 4. ENFORCEMENT WORKFLOWS
 
 > **Note**: These are manual workflow patterns for the AI agent to follow when violations are detected. They are not automated scripts.
 
@@ -172,7 +172,7 @@ C) Skip this section
 
 ---
 
-## 5. 🔄 PHASE INTERACTIONS
+## 5. PHASE INTERACTIONS
 
 **Independent execution**:
 - Phase 1 (Enforcement) → Standalone structure validation
@@ -201,7 +201,7 @@ Phase 3: AI provides recommendations
 
 ---
 
-## 6. 📝 COMMON WORKFLOW EXAMPLES
+## 6. COMMON WORKFLOW EXAMPLES
 
 **Example 1: New SKILL Creation**
 ```bash
@@ -246,7 +246,7 @@ scripts/extract_structure.py specs/042/spec.md
 
 ---
 
-## 7. 📦 BATCH PROCESSING
+## 7. BATCH PROCESSING
 
 **Multi-file extraction**:
 ```bash
@@ -267,7 +267,7 @@ done
 
 ---
 
-## 8. 🔧 QUICK TROUBLESHOOTING
+## 8. QUICK TROUBLESHOOTING
 
 | Issue | Cause | Solution |
 |-------|-------|----------|
@@ -280,7 +280,7 @@ done
 
 ---
 
-## 9. 🔗 RELATED RESOURCES
+## 9. RELATED RESOURCES
 
 ### Reference Files
 - [core_standards.md](./core_standards.md) - Document type rules and structural requirements

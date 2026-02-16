@@ -14,23 +14,23 @@ importance_tier: "normal"
 
 ---
 
-## TABLE OF CONTENTS
 <!-- ANCHOR:table-of-contents -->
+## TABLE OF CONTENTS
 
 - [1. 📖 OVERVIEW](#1--overview)
 - [2. 📁 STRUCTURE](#2--structure)
-- [3. TYPE ARCHITECTURE](#3--type-architecture)
-- [4. INTERFACES](#4--interfaces)
-- [5. ROOT TYPE: SESSIONDATA](#5--root-type-sessiondata)
-- [6. MIGRATION NOTES](#6--migration-notes)
+- [3. 🏷️ TYPE ARCHITECTURE]](#3--type-architecture)
+- [4. 🔌 INTERFACES]](#4--interfaces)
+- [5. 🏷️ ROOT TYPE: SESSIONDATA]](#5--root-type-sessiondata)
+- [6. 📝 MIGRATION NOTES]](#6--migration-notes)
 - [7. 📚 RELATED](#7--related)
 
 ---
 
 <!-- /ANCHOR:table-of-contents -->
 
-## 1. 📖 OVERVIEW
 <!-- ANCHOR:overview -->
+## 1. 📖 OVERVIEW
 
 **Shared session type definitions** used across the Spec Kit scripts pipeline. This module is the **canonical source of truth** for all session-related types, eliminating parallel type hierarchies that previously existed between `simulation-factory` and the extractors (resolves **TECH-DEBT P6-05**).
 
@@ -38,8 +38,8 @@ importance_tier: "normal"
 
 <!-- /ANCHOR:overview -->
 
-## 2. 📁 STRUCTURE
 <!-- ANCHOR:structure -->
+## 2. 📁 STRUCTURE
 
 ```
 types/
@@ -54,8 +54,8 @@ types/
 
 <!-- /ANCHOR:structure -->
 
-## 3. TYPE ARCHITECTURE
 <!-- ANCHOR:type-architecture -->
+## 3. 🏷️ TYPE ARCHITECTURE
 
 ```
 SessionData (root)
@@ -86,8 +86,8 @@ DiagramData
 
 <!-- /ANCHOR:type-architecture -->
 
-## 4. INTERFACES
 <!-- ANCHOR:interfaces -->
+## 4. 🔌 INTERFACES
 
 ### Section 1: Decision Types
 
@@ -128,8 +128,8 @@ DiagramData
 
 <!-- /ANCHOR:interfaces -->
 
-## 5. ROOT TYPE: SESSIONDATA
 <!-- ANCHOR:session-data -->
+## 5. 🏷️ ROOT TYPE: SESSIONDATA
 
 `SessionData` is the top-level type representing a complete session. Key field groups:
 
@@ -146,8 +146,8 @@ DiagramData
 
 <!-- /ANCHOR:session-data -->
 
-## 6. MIGRATION NOTES
 <!-- ANCHOR:migration -->
+## 6. 📝 MIGRATION NOTES
 
 This module was created to resolve **TECH-DEBT P6-05**, where `simulation-factory` and the extractors each maintained their own copies of the same interfaces. All consumers now import from this single canonical source.
 
@@ -158,8 +158,8 @@ This module was created to resolve **TECH-DEBT P6-05**, where `simulation-factor
 
 <!-- /ANCHOR:migration -->
 
-## 7. 📚 RELATED
 <!-- ANCHOR:related -->
+## 7. 📚 RELATED
 
 | Resource | Path |
 |----------|------|

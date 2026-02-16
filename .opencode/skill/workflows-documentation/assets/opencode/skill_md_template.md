@@ -9,7 +9,7 @@ Templates for creating SKILL.md files with proper structure, frontmatter, and re
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 ### Purpose of SKILL.md Files
 
@@ -54,7 +54,7 @@ SKILL.md architecture follows progressive disclosure:
 **Required Elements**:
 - ✅ YAML frontmatter with required fields
 - ✅ H1 title with subtitle
-- ✅ Numbered H2 sections with emojis (ALL CAPS)
+- ✅ Numbered H2 sections (ALL CAPS)
 - ✅ Section separators (`---`)
 - ✅ No table of contents (forbidden in SKILL.md)
 
@@ -65,7 +65,7 @@ SKILL.md architecture follows progressive disclosure:
 
 ---
 
-## 2. 📋 FRONTMATTER REQUIREMENTS
+## 2. FRONTMATTER REQUIREMENTS
 
 ### Required Fields
 
@@ -97,7 +97,7 @@ version: 1.0.0
 
 ---
 
-## 3. 🔧 SKILL TEMPLATE (WITH BUNDLED RESOURCES)
+## 3. SKILL TEMPLATE (WITH BUNDLED RESOURCES)
 
 **Use for**: Skills with bundled resources (references, scripts, or assets)
 
@@ -128,7 +128,7 @@ version: 1.0.0
 
 ---
 
-## 1. 🎯 WHEN TO USE
+## 1. WHEN TO USE
 
 <!-- CRITICAL: This section contains ONLY activation triggers and use cases.
      NO file references or navigation guides here - those go in Section 2. -->
@@ -163,7 +163,7 @@ version: 1.0.0
 
 ---
 
-## 2. 🧭 SMART ROUTING
+## 2. SMART ROUTING
 
 <!-- CRITICAL: This section contains:
      1. Activation Detection (flowchart WITH file refs inline)
@@ -240,7 +240,7 @@ def route_[skill_name]_resources(task):
 
 ---
 
-## 3. 🛠️ HOW IT WORKS
+## 3. HOW IT WORKS
 
 ### [Primary Workflow] Overview
 
@@ -297,7 +297,7 @@ See [workflow-details.md](./references/workflow-details.md) for complete step-by
      Subsections with semantic emojis (✅ ALWAYS, ❌ NEVER, ⚠️ ESCALATE IF) are REQUIRED.
      Do NOT remove these emojis. Do NOT add horizontal dividers (---) between H3 subsections. -->
 
-## 4. 📋 RULES
+## 4. RULES
 
 <!-- REQUIRED SUBSECTIONS (package_skill.py validation): -->
 <!-- - ✅ ALWAYS (or "ALWAYS") -->
@@ -352,7 +352,7 @@ See [workflow-details.md](./references/workflow-details.md) for complete step-by
 
 ---
 
-## 5. 🏆 SUCCESS CRITERIA
+## 5. SUCCESS CRITERIA
 
 ### [Primary Workflow] Completion Checklist
 
@@ -379,7 +379,7 @@ See [workflow-details.md](./references/workflow-details.md) for complete step-by
 
 ---
 
-## 6. 🔌 INTEGRATION POINTS
+## 6. INTEGRATION POINTS
 
 ### [Integration System 1 - e.g., Validation Workflow]
 
@@ -418,7 +418,7 @@ See [workflow-details.md](./references/workflow-details.md) for complete step-by
 
 ---
 
-## 7. 🔗 RELATED RESOURCES
+## 7. RELATED RESOURCES
 
 ### Reference Files
 - [reference-name.md](./references/reference-name.md) - Description of reference file
@@ -469,7 +469,7 @@ See [workflow-details.md](./references/workflow-details.md) for complete step-by
 
 ---
 
-## 4. 📝 SECTION-BY-SECTION CONTENT GUIDANCE
+## 4. SECTION-BY-SECTION CONTENT GUIDANCE
 
 ### Section 1: WHEN TO USE
 
@@ -550,7 +550,7 @@ Section 2 contains TWO subsections:
 
 **Structure**:
 
-## 2. 🧭 SMART ROUTING
+## 2. SMART ROUTING
 
 ### Activation Detection
 
@@ -871,7 +871,7 @@ mode_detection:
 
 ---
 
-## 5. ⚠️ COMMON PITFALLS
+## 5. COMMON PITFALLS
 
 For the complete list of 8 common pitfalls with before/after examples, see:
 → **[skill_creation.md § 7. COMMON PITFALLS](../../references/skill_creation.md#7--common-pitfalls)**
@@ -894,7 +894,7 @@ For the complete list of 8 common pitfalls with before/after examples, see:
 
 ---
 
-## 6. 🔍 QUALITY CHECKLIST & QUICK REFERENCE
+## 6. QUALITY CHECKLIST & QUICK REFERENCE
 
 ### Pre-Packaging Checklist
 
@@ -911,8 +911,8 @@ Frontmatter:
 
 Structure:
 □ H1 title with descriptive subtitle
-□ Numbered H2 sections (1. 🎯 WHEN TO USE, 2. 🧭 SMART ROUTING & REFERENCES, etc.)
-□ H2 headings use ALL CAPS + emoji
+□ Numbered H2 sections (1. WHEN TO USE, 2. SMART ROUTING & REFERENCES, etc.)
+□ H2 headings use ALL CAPS
 □ Section separators (---) between major sections
 □ No table of contents (forbidden in SKILL.md)
 □ Proper heading hierarchy (H1 → H2 → H3)
@@ -946,7 +946,7 @@ Quality:
 □ Concrete examples included
 □ Rationale provided for rules
 □ Language is third-person (descriptions) or imperative (instructions)
-□ Consistent emoji usage
+□ Consistent heading format
 □ All code blocks specify language
 □ Links work correctly
 □ Section 1 contains ONLY triggers/use cases (NO file references)
@@ -964,7 +964,7 @@ Quality:
 | **Frontmatter**       | Required YAML with fields  | `name`, `description`, `allowed-tools`                                                             |
 | **Name Format**       | `hyphen-case`              | ✅ `workflows-chrome-devtools`  ❌ `devtools_cli`                                                    |
 | **Description Voice** | Third-person               | ✅ "Use when..."  ❌ "You should..."                                                                 |
-| **H2 Format**         | Number + Emoji + ALL CAPS  | ✅ `## 1. 🎯 WHEN TO USE`                                                                            |
+| **H2 Format**         | Number + ALL CAPS          | ✅ `## 1. WHEN TO USE`                                                                            |
 | **TOC**               | Forbidden in SKILL.md      | ❌ No table of contents                                                                             |
 | **Sections**          | 6 required sections        | WHEN TO USE (triggers only), SMART ROUTING (flowchart + router), HOW IT WORKS, RULES, SUCCESS CRITERIA, INTEGRATION POINTS |
 | **File Size**         | <5k words (<3k preferred)  | Move details to references/                                                                        |
@@ -1002,7 +1002,7 @@ python .opencode/skill/workflows-documentation/scripts/package_skill.py .opencod
 
 ---
 
-## 7. 🔗 RELATED RESOURCES
+## 7. RELATED RESOURCES
 
 ### Templates
 - [frontmatter_templates.md](../documentation/frontmatter_templates.md) - Frontmatter by document type

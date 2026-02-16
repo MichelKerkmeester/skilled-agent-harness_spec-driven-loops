@@ -56,7 +56,7 @@ This directory contains production-ready bash scripts demonstrating practical br
 
 ---
 
-## 2. PREREQUISITES
+## 2. ✅ PREREQUISITES
 <!-- ANCHOR:prerequisites -->
 
 ```bash
@@ -75,7 +75,7 @@ command -v bc >/dev/null || echo "Install bc for calculations"
 
 ---
 
-## 3. AVAILABLE SCRIPTS
+## 3. 📜 AVAILABLE SCRIPTS
 <!-- ANCHOR:available-scripts -->
 
 ### 3.1 performance-baseline.sh
@@ -223,7 +223,7 @@ viewport-tests/20241127-143022/
 
 ---
 
-## 4. COMMON PATTERNS
+## 4. 🔁 COMMON PATTERNS
 <!-- ANCHOR:common-patterns -->
 
 ### Chaining Scripts in CI/CD
@@ -281,7 +281,7 @@ compare baseline-desktop.png current-desktop.png diff.png
 
 ---
 
-## 5. CUSTOMIZATION TIPS
+## 5. 🧩 CUSTOMIZATION TIPS
 <!-- ANCHOR:customization -->
 
 ### Adjusting Performance Thresholds
@@ -374,7 +374,7 @@ bdg stop 2>&1
 
 ---
 
-## 7. SEE ALSO
+## 7. 📚 SEE ALSO
 <!-- ANCHOR:related -->
 
 ### Skill Documentation
@@ -401,7 +401,7 @@ bdg stop 2>&1
 
 ---
 
-## 8. CONTRIBUTING
+## 8. 🤝 CONTRIBUTING
 <!-- ANCHOR:contributing -->
 
 To add new example scripts:

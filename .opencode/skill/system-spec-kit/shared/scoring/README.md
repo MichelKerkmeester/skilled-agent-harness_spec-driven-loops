@@ -14,22 +14,22 @@ importance_tier: "normal"
 
 ---
 
-## TABLE OF CONTENTS
 <!-- ANCHOR:table-of-contents -->
+## TABLE OF CONTENTS
 
 - [1. 📖 OVERVIEW](#1--overview)
 - [2. 📁 STRUCTURE](#2--structure)
-- [3. SCORING FORMULA](#3--scoring-formula)
-- [4. KEY EXPORTS](#4--key-exports)
-- [5. DESIGN DECISIONS](#5--design-decisions)
+- [3. 🧮 SCORING FORMULA]](#3--scoring-formula)
+- [4. 📌 KEY EXPORTS]](#4--key-exports)
+- [5. 📌 DESIGN DECISIONS]](#5--design-decisions)
 - [6. 📚 RELATED](#6--related)
 
 <!-- /ANCHOR:table-of-contents -->
 
 ---
 
-## 1. 📖 OVERVIEW
 <!-- ANCHOR:overview -->
+## 1. 📖 OVERVIEW
 
 Computes **composite relevance scores** for spec folders based on their memories. Used by `memory_stats` and `memory_list` to rank folders by how relevant they are to the current session. The primary use case is **"resume recent work"**, which is why recency carries the highest weight.
 
@@ -37,8 +37,8 @@ Computes **composite relevance scores** for spec folders based on their memories
 
 ---
 
-## 2. 📁 STRUCTURE
 <!-- ANCHOR:structure -->
+## 2. 📁 STRUCTURE
 
 ```
 scoring/
@@ -50,8 +50,8 @@ scoring/
 
 ---
 
-## 3. SCORING FORMULA
 <!-- ANCHOR:scoring-formula -->
+## 3. 🧮 SCORING FORMULA
 
 ```
 score = (recency * 0.40 + importance * 0.30 + activity * 0.20 + validation * 0.10) * archiveMultiplier
@@ -89,8 +89,8 @@ Constitutional-tier memories are **exempt from decay** (always 1.0).
 
 ---
 
-## 4. KEY EXPORTS
 <!-- ANCHOR:key-exports -->
+## 4. 📌 KEY EXPORTS
 
 ### Functions
 
@@ -125,8 +125,8 @@ Constitutional-tier memories are **exempt from decay** (always 1.0).
 
 ---
 
-## 5. DESIGN DECISIONS
 <!-- ANCHOR:design-decisions -->
+## 5. 📌 DESIGN DECISIONS
 
 | ID  | Decision                    | Rationale                                            |
 | --- | --------------------------- | ---------------------------------------------------- |
@@ -140,8 +140,8 @@ Constitutional-tier memories are **exempt from decay** (always 1.0).
 
 ---
 
-## 6. 📚 RELATED
 <!-- ANCHOR:related -->
+## 6. 📚 RELATED
 
 - **Types**: `../types` contains `ArchivePattern`, `FolderScore`, `FolderScoreOptions`, `Memory`, `ScoreWeights`, `TierWeights`
 - **Consumers**: `memory_stats` endpoint, `memory_list` with composite ranking

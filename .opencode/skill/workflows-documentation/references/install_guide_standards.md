@@ -9,7 +9,7 @@ Standards for clear, reliable install guides with validation checkpoints at each
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 This reference defines standards for install guide documentation. Install guides require special consideration: unclear instructions lead to failed setups, wasted time, and frustrated users.
 
@@ -23,7 +23,7 @@ This reference defines standards for install guide documentation. Install guides
 
 ---
 
-## 2. 🧭 Core Principles
+## 2. Core Principles
 
 ### Phase-Based Installation
 
@@ -52,7 +52,7 @@ Phase 5: Verification     → Validate: System works end-to-end
 
 ---
 
-## 3. 📋 REQUIRED SECTIONS
+## 3. REQUIRED SECTIONS
 
 | Section | Required | Purpose |
 |---------|----------|---------|
@@ -83,7 +83,7 @@ Phase 5: Verification     → Validate: System works end-to-end
 
 ---
 
-## 4. ✅ PHASE VALIDATION PATTERN
+## 4. PHASE VALIDATION PATTERN
 
 ### Validation Checkpoint Format
 
@@ -114,7 +114,7 @@ Phase 5: Verification     → Validate: System works end-to-end
 
 ---
 
-## 5. 🖥️ PLATFORM CONFIGURATION
+## 5. PLATFORM CONFIGURATION
 
 ### Multi-Platform Instructions
 
@@ -163,7 +163,7 @@ $env:MCP_PATH = "$HOME\.mcp"
 
 ---
 
-## 6. 🔧 TROUBLESHOOTING STANDARDS
+## 6. TROUBLESHOOTING STANDARDS
 
 ### Error Table Format (3-column required)
 
@@ -191,7 +191,7 @@ $env:MCP_PATH = "$HOME\.mcp"
 
 ---
 
-## 7. 🏆 QUALITY CRITERIA
+## 7. QUALITY CRITERIA
 
 ### DQI Components for Install Guides
 
@@ -223,7 +223,7 @@ $env:MCP_PATH = "$HOME\.mcp"
 
 ---
 
-## 8. 🔗 CROSS-REFERENCES
+## 8. CROSS-REFERENCES
 
 - **[core_standards.md](./core_standards.md)** - Filename conventions, heading format, emoji rules
 - **[validation.md](./validation.md)** - DQI scoring methodology, quality bands

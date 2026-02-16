@@ -9,11 +9,28 @@ trigger_phrases:
 importance_tier: "normal"
 ---
 
+
 # Memory Scripts
+
+<!-- ANCHOR:table-of-contents -->
+## TABLE OF CONTENTS
+
+- [1. 📖 OVERVIEW](#1--overview)
+- [2. 📋 CURRENT INVENTORY](#2--current-inventory)
+- [3. 📌 MEMORY SAVE RULE COMMANDS](#3--memory-save-rule-commands)
+- [4. 📌 MAINTENANCE COMMANDS](#4--maintenance-commands)
+- [5. 📌 WORKFLOW ALIGNMENT](#5--workflow-alignment)
+
+<!-- /ANCHOR:table-of-contents -->
+<!-- ANCHOR:overview -->
+## 1. 📖 OVERVIEW
 
 The `memory/` directory contains the CLI entrypoints for the Spec Kit memory pipeline.
 
-## Current Inventory
+<!-- /ANCHOR:overview -->
+<!-- ANCHOR:current-inventory -->
+## 2. 📋 CURRENT INVENTORY
+
 
 - `generate-context.ts` - generate memory output from spec folder or JSON input
 - `rank-memories.ts` - rank memory candidates by scoring rules
@@ -21,7 +38,11 @@ The `memory/` directory contains the CLI entrypoints for the Spec Kit memory pip
 
 Runtime files are compiled into `../dist/memory/`.
 
-## Memory Save Rule Commands
+
+<!-- /ANCHOR:current-inventory -->
+<!-- ANCHOR:memory-save-rule-commands -->
+## 3. 📌 MEMORY SAVE RULE COMMANDS
+
 
 Direct spec-folder mode:
 
@@ -35,15 +56,24 @@ JSON input mode:
 node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js /tmp/save-context-data.json specs/003-system-spec-kit/130-memory-overhaul-and-agent-upgrade-release
 ```
 
-## Maintenance Commands
+
+<!-- /ANCHOR:memory-save-rule-commands -->
+<!-- ANCHOR:maintenance-commands -->
+## 4. 📌 MAINTENANCE COMMANDS
+
 
 ```bash
 node .opencode/skill/system-spec-kit/scripts/dist/memory/rank-memories.js /tmp/memories.json
 node .opencode/skill/system-spec-kit/scripts/dist/memory/cleanup-orphaned-vectors.js
 ```
 
-## Workflow Alignment
+
+<!-- /ANCHOR:maintenance-commands -->
+<!-- ANCHOR:workflow-alignment -->
+## 5. 📌 WORKFLOW ALIGNMENT
+
 
 - Uses the modular core/extractors/loaders/renderers/lib pipeline.
 - Supports subfolder-aware spec path handling through core utilities.
 - Produces ANCHOR-structured markdown expected by downstream validation and indexing.
+<!-- /ANCHOR:workflow-alignment -->

@@ -40,7 +40,7 @@
       "toc_required": true,
       "toc_anchor_format": "double_dash",
       "toc_uppercase_required": true,
-      "h2_emoji_required": true,
+      "h2_emoji_required": false,
       "h2_uppercase_required": true,
       "first_section_name": "overview",
       "last_section_pattern": "related"
@@ -78,7 +78,7 @@
         "quality checklist & quick reference": "quality_checklist"
       },
       "toc_required": false,
-      "h2_emoji_required": true
+      "h2_emoji_required": false
     },
     "command": {
       "description": "Command files in .opencode/command/ folders",
@@ -140,7 +140,7 @@
         "safety features": "safety_features"
       },
       "toc_required": false,
-      "h2_emoji_required": true,
+      "h2_emoji_required": false,
       "frontmatter_required": true,
       "frontmatter_fields": {
         "required": ["description"],
@@ -177,7 +177,7 @@
       "toc_required": true,
       "toc_anchor_format": "double_dash",
       "toc_uppercase_required": true,
-      "h2_emoji_required": true,
+      "h2_emoji_required": false,
       "h2_uppercase_required": true,
       "phase_validation_required": true
     },
@@ -218,7 +218,7 @@
         "four execution modes": "execution_modes"
       },
       "toc_required": false,
-      "h2_emoji_required": true
+      "h2_emoji_required": false
     },
     "asset": {
       "description": "Asset files in skill assets/ folders",
@@ -268,7 +268,7 @@
         "naming reference": "naming_reference"
       },
       "toc_required": false,
-      "h2_emoji_required": true
+      "h2_emoji_required": false
     },
     "agent": {
       "description": "Agent definition files in .opencode/agent/",
@@ -323,7 +323,7 @@
         "response formats": "response_formats"
       },
       "toc_required": false,
-      "h2_emoji_required": true,
+      "h2_emoji_required": false,
       "frontmatter_required": true,
       "frontmatter_fields": {
         "required": ["name", "description", "mode", "temperature", "permission"],
@@ -344,10 +344,8 @@
       "description": "Errors that must be fixed before document is considered valid",
       "exit_code": 1,
       "errors": [
-        "missing_h2_emoji",
         "h2_not_uppercase",
         "toc_single_dash_anchor",
-        "toc_missing_emoji",
         "toc_not_uppercase",
         "missing_toc",
         "missing_required_section"
@@ -377,16 +375,6 @@
       "safe": true,
       "pattern": "#(\\d+)-([a-z])",
       "replacement": "#$1--$2"
-    },
-    "add_h2_emoji": {
-      "description": "Add missing emoji to H2 header if section name matches known mapping",
-      "safe": true,
-      "requires_mapping": true
-    },
-    "fix_toc_emoji": {
-      "description": "Add missing emoji to TOC entry if section name matches known mapping",
-      "safe": true,
-      "requires_mapping": true
     },
     "uppercase_h2_section": {
       "description": "Convert H2 section name to ALL CAPS",

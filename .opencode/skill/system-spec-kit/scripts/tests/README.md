@@ -8,11 +8,27 @@ trigger_phrases:
 importance_tier: "normal"
 ---
 
+
 # System Spec Kit Test Suite
+
+<!-- ANCHOR:table-of-contents -->
+## TABLE OF CONTENTS
+
+- [1. 📖 OVERVIEW](#1--overview)
+- [2. 📋 CURRENT INVENTORY](#2--current-inventory)
+- [3. 📌 RECOMMENDED RUN ORDER](#3--recommended-run-order)
+- [4. 📌 FOCUS AREAS](#4--focus-areas)
+
+<!-- /ANCHOR:table-of-contents -->
+<!-- ANCHOR:overview -->
+## 1. 📖 OVERVIEW
 
 The `tests/` directory validates script behavior, TypeScript module contracts, and end-to-end flows.
 
-## Current Inventory
+<!-- /ANCHOR:overview -->
+<!-- ANCHOR:current-inventory -->
+## 2. 📋 CURRENT INVENTORY
+
 
 JavaScript tests:
 - `test-bug-fixes.js`
@@ -46,7 +62,11 @@ Fixtures and cache:
 - `test-fixtures/`
 - `.pytest_cache/`
 
-## Recommended Run Order
+
+<!-- /ANCHOR:current-inventory -->
+<!-- ANCHOR:recommended-run-order -->
+## 3. 📌 RECOMMENDED RUN ORDER
+
 
 ```bash
 cd .opencode/skill/system-spec-kit/scripts
@@ -61,8 +81,13 @@ bash test-validation.sh
 python3 test_dual_threshold.py
 ```
 
-## Focus Areas
+
+<!-- /ANCHOR:recommended-run-order -->
+<!-- ANCHOR:focus-areas -->
+## 4. 📌 FOCUS AREAS
+
 
 - Upgrade path coverage for `spec/upgrade-level.sh` and placeholder handling.
 - Subfolder resolution coverage for memory save and folder matching behavior.
 - Validation regression coverage for shell rule orchestration.
+<!-- /ANCHOR:focus-areas -->

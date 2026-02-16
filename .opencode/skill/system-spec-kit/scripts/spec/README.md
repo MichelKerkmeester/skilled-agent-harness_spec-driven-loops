@@ -9,11 +9,28 @@ trigger_phrases:
 importance_tier: "normal"
 ---
 
+
 # Spec Scripts
+
+<!-- ANCHOR:table-of-contents -->
+## TABLE OF CONTENTS
+
+- [1. 📖 OVERVIEW](#1--overview)
+- [2. 📋 CURRENT INVENTORY](#2--current-inventory)
+- [3. 📌 UPGRADE FLOW (SPEC124/128/129)](#3--upgrade-flow-spec124128129)
+- [4. 📌 COMPLETION GATE](#4--completion-gate)
+- [5. 📝 NOTES](#5--notes)
+
+<!-- /ANCHOR:table-of-contents -->
+<!-- ANCHOR:overview -->
+## 1. 📖 OVERVIEW
 
 The `scripts/spec/` directory is the shell-based spec lifecycle layer.
 
-## Current Inventory
+<!-- /ANCHOR:overview -->
+<!-- ANCHOR:current-inventory -->
+## 2. 📋 CURRENT INVENTORY
+
 
 - `create.sh` - create new spec folders from templates
 - `upgrade-level.sh` - upgrade existing folders to `2`, `3`, or `3+`
@@ -24,7 +41,11 @@ The `scripts/spec/` directory is the shell-based spec lifecycle layer.
 - `recommend-level.sh` - recommend level from task signals
 - `archive.sh` - archive completed or stale specs
 
-## Upgrade Flow (Spec124/128/129)
+
+<!-- /ANCHOR:current-inventory -->
+<!-- ANCHOR:upgrade-flow-spec124128129 -->
+## 3. 📌 UPGRADE FLOW (SPEC124/128/129)
+
 
 Canonical flow for upgrades:
 
@@ -43,7 +64,11 @@ bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/003-system-s
 
 `validate.sh` executes modular rules in `scripts/rules/`, including `check-anchors.sh` for ANCHOR tag pairing.
 
-## Completion Gate
+
+<!-- /ANCHOR:upgrade-flow-spec124128129 -->
+<!-- ANCHOR:completion-gate -->
+## 4. 📌 COMPLETION GATE
+
 
 Before completion claims:
 
@@ -51,7 +76,12 @@ Before completion claims:
 bash .opencode/skill/system-spec-kit/scripts/spec/check-completion.sh specs/003-system-spec-kit/130-memory-overhaul-and-agent-upgrade-release
 ```
 
-## Notes
+
+<!-- /ANCHOR:completion-gate -->
+<!-- ANCHOR:notes -->
+## 5. 📝 NOTES
+
 
 - `upgrade-level.sh` supports `--dry-run`, `--json`, `--verbose`, and `--keep-backups`.
 - `create.sh` supports `--subfolder` for subfolder-based work inside an existing spec folder.
+<!-- /ANCHOR:notes -->

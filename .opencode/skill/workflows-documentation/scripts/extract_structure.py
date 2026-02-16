@@ -304,8 +304,8 @@ SECTION_EMOJIS = {
 }
 
 # Document types that require H2 emojis (blocking error if missing)
-# These are template-based document types where emoji omission is a critical error
-EMOJI_REQUIRED_TYPES = {'skill', 'readme', 'asset', 'reference'}
+# Emoji enforcement has been removed — no document types require H2 emojis
+EMOJI_REQUIRED_TYPES = set()
 
 
 def detect_placeholders(content: str) -> List[Dict[str, Any]]:
@@ -665,7 +665,7 @@ SKILL_CHECKLIST = [
     ('has_when_to_use', 'Has WHEN TO USE section', lambda fm, h, c: any('WHEN TO USE' in heading['text'].upper() for heading in h)),
     ('has_how_it_works', 'Has HOW IT WORKS section', lambda fm, h, c: any('HOW IT WORKS' in heading['text'].upper() or 'HOW TO USE' in heading['text'].upper() or 'SMART ROUTING' in heading['text'].upper() for heading in h)),
     ('has_rules', 'Has RULES section', lambda fm, h, c: any('RULES' in heading['text'].upper() for heading in h)),
-    ('h2_numbered_emoji', 'H2s have number + emoji', lambda fm, h, c: all(heading['has_number'] and heading['has_emoji'] for heading in h if heading['level'] == 2)),
+    ('h2_numbered', 'H2s have number prefix', lambda fm, h, c: all(heading['has_number'] for heading in h if heading['level'] == 2)),
     ('no_toc', 'No table of contents', lambda fm, h, c: not any('TABLE OF CONTENTS' in heading['text'].upper() or 'TOC' == heading['text'].upper() for heading in h)),
     ('no_placeholders', 'No placeholder markers', lambda fm, h, c: len(detect_placeholders(c)) == 0),
     ('code_has_language', 'Code blocks have language tags', lambda fm, h, c: all(b['language'] != 'unknown' for b in extract_code_blocks(c)) if extract_code_blocks(c) else True),
@@ -677,7 +677,6 @@ README_CHECKLIST = [
     ('has_blockquote', 'Has blockquote description after H1', lambda fm, h, c: bool(re.search(r'^>\s+.+', c, re.MULTILINE))),
     ('has_toc', 'Has TABLE OF CONTENTS section', lambda fm, h, c: any('TABLE OF CONTENTS' in heading['text'].upper() or heading['text'].upper() == 'TOC' for heading in h)),
     ('h2_numbered', 'H2s have number prefix', lambda fm, h, c: all(heading['has_number'] for heading in h if heading['level'] == 2 and 'TABLE OF CONTENTS' not in heading['text'].upper()) if any(heading['level'] == 2 for heading in h) else True),
-    ('h2_emoji', 'H2s have emoji', lambda fm, h, c: all(heading['has_emoji'] for heading in h if heading['level'] == 2 and 'TABLE OF CONTENTS' not in heading['text'].upper()) if any(heading['level'] == 2 for heading in h) else True),
 ]
 
 COMMAND_CHECKLIST = [
@@ -695,7 +694,6 @@ ASSET_CHECKLIST = [
     ('h1_no_emoji', 'H1 has no emoji', lambda fm, h, c: not any(heading['has_emoji'] for heading in h if heading['level'] == 1)),
     ('has_intro', 'Has introduction paragraph', lambda fm, h, c: check_intro_paragraph(c, h)),
     ('h2_numbered', 'H2s have number prefix', lambda fm, h, c: all(heading['has_number'] for heading in h if heading['level'] == 2)),
-    ('h2_emoji', 'H2s have emoji', lambda fm, h, c: all(heading['has_emoji'] for heading in h if heading['level'] == 2)),
     ('no_placeholders', 'No placeholder markers', lambda fm, h, c: len(detect_placeholders(c)) == 0),
     ('code_has_language', 'Code blocks have language tags', lambda fm, h, c: all(b['language'] != 'unknown' for b in extract_code_blocks(c)) if extract_code_blocks(c) else True),
     ('has_examples', 'Contains code examples', lambda fm, h, c: '```' in c),
@@ -705,7 +703,6 @@ REFERENCE_CHECKLIST = [
     ('has_h1_title', 'Has H1 title', lambda fm, h, c: any(heading['level'] == 1 for heading in h)),
     ('has_intro', 'Has introduction paragraph', lambda fm, h, c: check_intro_paragraph(c, h)),
     ('h2_numbered', 'H2s have number prefix', lambda fm, h, c: all(heading['has_number'] for heading in h if heading['level'] == 2) if any(heading['level'] == 2 for heading in h) else True),
-    ('h2_emoji', 'H2s have emoji', lambda fm, h, c: all(heading['has_emoji'] for heading in h if heading['level'] == 2) if any(heading['level'] == 2 for heading in h) else True),
     ('no_placeholders', 'No placeholder markers', lambda fm, h, c: len(detect_placeholders(c)) == 0),
     ('has_depth', 'Has substantial content (>200 words)', lambda fm, h, c: len(re.findall(r'\b\w+\b', c)) > 200),
 ]
@@ -1065,14 +1062,13 @@ def calculate_dqi(
     # ═══════════════════════════════════════════════════════════════
     style_score = 0
     
-    # H2 formatting: number + emoji + ALL CAPS (12 points)
+    # H2 formatting: number + ALL CAPS (12 points)
     h2_headings = [h for h in headings if h['level'] == 2]
     if h2_headings:
         h2_with_number = sum(1 for h in h2_headings if h['has_number'])
-        h2_with_emoji = sum(1 for h in h2_headings if h['has_emoji'])
         h2_all_caps = sum(1 for h in h2_headings if re.sub(r'^\d+\.\s*', '', re.sub(r'^[\U0001F300-\U0001F9FF\u2600-\u26FF\u2700-\u27BF]\s*', '', h['text'])).isupper())
-        
-        h2_format_rate = (h2_with_number + h2_with_emoji + h2_all_caps) / (len(h2_headings) * 3)
+
+        h2_format_rate = (h2_with_number + h2_all_caps) / (len(h2_headings) * 2)
         h2_format_score = round(h2_format_rate * 12)
     else:
         h2_format_score = 12  # No H2s = no penalty

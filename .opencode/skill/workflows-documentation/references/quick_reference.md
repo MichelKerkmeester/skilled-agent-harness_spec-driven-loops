@@ -9,13 +9,13 @@ Commands, quality gates, and patterns at a glance.
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 **README Format Validation** (MANDATORY before delivery):
 ```bash
 scripts/validate_document.py document.md
 # Exit 0 = valid, Exit 1 = blocking errors
-# Checks: TOC, H2 emojis, anchors, required sections
+# Checks: TOC, H2 format, anchors, required sections
 ```
 
 **Extract Structure** (for AI analysis):
@@ -47,7 +47,7 @@ python scripts/package_skill.py skill-path        # Package skill
 
 ---
 
-## 2. 🔒 QUALITY GATES
+## 2. QUALITY GATES
 
 | Document Type | Target | Checklist | Content |
 | --- | --- | --- | --- |
@@ -65,7 +65,7 @@ python scripts/package_skill.py skill-path        # Package skill
 
 ---
 
-## 3. 📊 DQI SCORING
+## 3. DQI SCORING
 
 | Component | Max | Measures |
 |-----------|-----|----------|
@@ -77,7 +77,7 @@ python scripts/package_skill.py skill-path        # Package skill
 
 ---
 
-## 4. 🎨 TRANSFORMATION PATTERNS (TOP 8)
+## 4. TRANSFORMATION PATTERNS (TOP 8)
 
 | # | Pattern | Impact | Effort |
 |---|---------|--------|--------|
@@ -92,7 +92,7 @@ python scripts/package_skill.py skill-path        # Package skill
 
 ---
 
-## 5. 📚 DOCUMENT TYPES & ENFORCEMENT
+## 5. DOCUMENT TYPES & ENFORCEMENT
 
 **SKILL.md** (Strict):
 - YAML frontmatter required
@@ -130,7 +130,7 @@ python scripts/package_skill.py skill-path        # Package skill
 
 ---
 
-## 6. 🛠️ COMMON ISSUES - QUICK FIXES
+## 6. COMMON ISSUES - QUICK FIXES
 
 **Issue**: Checklist failures in JSON output
 **Fix**: Review specific failures, address structural issues first
@@ -139,14 +139,14 @@ python scripts/package_skill.py skill-path        # Package skill
 **Fix**: Answer "How do I..." questions, add practical examples
 
 **Issue**: Style compliance issues
-**Fix**: All H2 must be ALL CAPS with emoji, --- separators between H2
+**Fix**: All H2 must be ALL CAPS, --- separators between H2
 
 **Issue**: Frontmatter issues detected
 **Fix**: Keep description on single line, use [Tool1, Tool2] array format
 
 ---
 
-## 7. 📁 FILE STRUCTURE
+## 7. FILE STRUCTURE
 
 ```
 .opencode/skill/workflows-documentation/
@@ -173,7 +173,7 @@ python scripts/package_skill.py skill-path        # Package skill
 
 ---
 
-## 8. 📊 CONTENT QUALITY QUICK GUIDE
+## 8. CONTENT QUALITY QUICK GUIDE
 
 **AI evaluates content for**:
 - Clarity and completeness
@@ -189,7 +189,7 @@ python scripts/package_skill.py skill-path        # Package skill
 
 ---
 
-## 9. 🔗 INTEGRATION POINTS
+## 9. INTEGRATION POINTS
 
 **Validation Workflow**:
 ```
@@ -201,7 +201,7 @@ python scripts/package_skill.py skill-path        # Package skill
 
 ---
 
-## 10. 📦 INSTALL GUIDE CREATION
+## 10. INSTALL GUIDE CREATION
 
 ### Template
 `assets/install_guide_template.md`
@@ -249,7 +249,7 @@ python scripts/package_skill.py skill-path        # Package skill
 
 ---
 
-## 11. 🛠️ SKILL CREATION QUICK STEPS
+## 11. SKILL CREATION QUICK STEPS
 
 1. **Understanding** → Get concrete examples (~5 min)
 2. **Planning** → Identify scripts/refs/assets (~5 min)
@@ -260,7 +260,7 @@ python scripts/package_skill.py skill-path        # Package skill
 
 ---
 
-## 12. 🔗 RELATED RESOURCES
+## 12. RELATED RESOURCES
 
 ### Reference Files
 - [core_standards.md](./core_standards.md) - Document type rules and structural requirements

@@ -18,7 +18,7 @@ importance_tier: "normal"
 <!-- ANCHOR:table-of-contents -->
 
 - [1. 📖 OVERVIEW](#1--overview)
-- [2. KEY CONCEPTS](#2--key-concepts)
+- [2. 🧩 KEY CONCEPTS]](#2--key-concepts)
 - [3. 📁 STRUCTURE](#3--structure)
 - [4. 💡 USAGE](#4--usage)
 - [5. 🔗 RELATED RESOURCES](#5--related-resources)
@@ -59,7 +59,7 @@ The scoring module provides multi-factor algorithms for ranking memories in the 
 
 ---
 
-## 2. KEY CONCEPTS
+## 2. 🧩 KEY CONCEPTS
 <!-- ANCHOR:key-concepts -->
 
 ### 5-Factor Composite Weights (REQ-017)

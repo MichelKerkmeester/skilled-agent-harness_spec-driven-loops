@@ -18,8 +18,8 @@ importance_tier: "normal"
 <!-- ANCHOR:table-of-contents -->
 
 - [1. 📖 OVERVIEW](#1--overview)
-- [2. KEY CONCEPTS](#2--key-concepts)
-- [3. MODULE STRUCTURE](#3--module-structure)
+- [2. 🧩 KEY CONCEPTS]](#2--key-concepts)
+- [3. 📁 MODULE STRUCTURE]](#3--module-structure)
 - [4. ⚡ FEATURES](#4--features)
 - [5. 💡 USAGE EXAMPLES](#5--usage-examples)
 - [6. 🔗 RELATED RESOURCES](#6--related-resources)
@@ -66,7 +66,7 @@ Final Results
 
 ---
 
-## 2. KEY CONCEPTS
+## 2. 🧩 KEY CONCEPTS
 <!-- ANCHOR:key-concepts -->
 
 ### Reciprocal Rank Fusion (RRF)
@@ -154,7 +154,7 @@ score(D, Q) = Sum IDF(qi) * (tf(qi,D) * (k1+1)) / (tf(qi,D) + k1 * (1-b + b*|D|/
 
 ---
 
-## 3. MODULE STRUCTURE
+## 3. 📁 MODULE STRUCTURE
 <!-- ANCHOR:structure -->
 
 ### Migration Status

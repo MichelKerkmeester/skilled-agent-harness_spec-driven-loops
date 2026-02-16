@@ -8,11 +8,28 @@ trigger_phrases:
 importance_tier: "normal"
 ---
 
+
 # Data Extractors
+
+<!-- ANCHOR:table-of-contents -->
+## TABLE OF CONTENTS
+
+- [1. 📖 OVERVIEW](#1--overview)
+- [2. 📋 CURRENT INVENTORY](#2--current-inventory)
+- [3. 📌 ROLE IN PIPELINE](#3--role-in-pipeline)
+- [4. 📝 NOTES](#4--notes)
+- [5. 📌 QUICK IMPORT CHECK](#5--quick-import-check)
+
+<!-- /ANCHOR:table-of-contents -->
+<!-- ANCHOR:overview -->
+## 1. 📖 OVERVIEW
 
 The `extractors/` directory converts collected session input into structured data used by templates and indexing.
 
-## Current Inventory
+<!-- /ANCHOR:overview -->
+<!-- ANCHOR:current-inventory -->
+## 2. 📋 CURRENT INVENTORY
+
 
 - `collect-session-data.ts`
 - `conversation-extractor.ts`
@@ -24,19 +41,32 @@ The `extractors/` directory converts collected session input into structured dat
 - `opencode-capture.ts`
 - `index.ts`
 
-## Role in Pipeline
+
+<!-- /ANCHOR:current-inventory -->
+<!-- ANCHOR:role-in-pipeline -->
+## 3. 📌 ROLE IN PIPELINE
+
 
 - Input: normalized data from `loaders/data-loader.ts`
 - Processing: extraction and enrichment across conversation, files, decisions, and session context
 - Output: structured objects consumed by `renderers/template-renderer.ts` and core workflow/indexing layers
 
-## Notes
+
+<!-- /ANCHOR:role-in-pipeline -->
+<!-- ANCHOR:notes -->
+## 4. 📝 NOTES
+
 
 - Decision tree generation logic is provided by `lib/decision-tree-generator.ts` and used by extractor flow.
 - Runtime imports use compiled files under `dist/extractors/`.
 
-## Quick Import Check
+
+<!-- /ANCHOR:notes -->
+<!-- ANCHOR:quick-import-check -->
+## 5. 📌 QUICK IMPORT CHECK
+
 
 ```bash
 node -e "const e=require('./.opencode/skill/system-spec-kit/scripts/dist/extractors'); console.log(Object.keys(e))"
 ```
+<!-- /ANCHOR:quick-import-check -->

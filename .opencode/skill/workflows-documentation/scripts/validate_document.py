@@ -252,35 +252,6 @@ def validate_toc(content, doc_type_rules, rules):
         if entry_match:
             entry_text = entry_match.group(1)
 
-            # Check for missing emoji
-            if not has_emoji(entry_text):
-                section_name = normalize_section_name(entry_text)
-                section_name = re.sub(r'^\d+_*', '', section_name)
-                expected_emoji = doc_type_rules.get('section_emojis', {}).get(section_name)
-
-                # Generate fixed TOC entry if emoji mapping exists
-                fixed_line = None
-                if expected_emoji:
-                    # Pattern: "- [N. SECTION_NAME](#anchor)" -> "- [N. EMOJI SECTION_NAME](#anchor)"
-                    # Match: "N. " at start of entry text, insert emoji after it
-                    fixed_entry = re.sub(
-                        r'^(\d+\.)\s+',
-                        rf'\1 {expected_emoji} ',
-                        entry_text
-                    )
-                    fixed_line = line.replace(f'[{entry_text}]', f'[{fixed_entry}]')
-
-                errors.append({
-                    'type': 'toc_missing_emoji',
-                    'severity': 'blocking',
-                    'message': f'TOC entry missing emoji: "{entry_text}"',
-                    'line': line,
-                    'expected_emoji': expected_emoji,
-                    'auto_fixable': expected_emoji is not None,
-                    'fix': fixed_line,
-                    'fix_hint': f'Add {expected_emoji} emoji after section number' if expected_emoji else 'Add appropriate emoji'
-                })
-
             # Check for ALL CAPS (only for readme type which requires it)
             uppercase_required = doc_type_rules.get('toc_uppercase_required', False)
             if uppercase_required and not is_uppercase_section(entry_text):

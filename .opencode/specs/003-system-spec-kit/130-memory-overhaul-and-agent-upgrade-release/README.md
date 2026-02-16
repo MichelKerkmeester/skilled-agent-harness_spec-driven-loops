@@ -6,10 +6,29 @@
 
 ---
 
+<!-- ANCHOR:table-of-contents -->
+## TABLE OF CONTENTS
+
+- [1. 📖 OVERVIEW](#1--overview)
+
+---
+<!-- /ANCHOR:table-of-contents -->
+
+<!-- ANCHOR:overview -->
+## 1. 📖 OVERVIEW
+
+This README documents the purpose and usage of this spec folder and links to the primary artifacts in this directory.
+
+---
+<!-- /ANCHOR:overview -->
+
+<!-- ANCHOR:purpose -->
 ## Purpose
 
 This specification-only umbrella produces audit and alignment specs for 11 source specs (014–016 agent system, 122–129 spec-kit system) that have been implemented but whose documentation artifacts have not been audited for cross-referential consistency. No code changes — only spec documents in this 130/ folder.
+<!-- /ANCHOR:purpose -->
 
+<!-- ANCHOR:source-specs -->
 ## Source Specs
 
 ### Agent System Track (specs 014–016)
@@ -40,7 +59,9 @@ This specification-only umbrella produces audit and alignment specs for 11 sourc
 | 013 | README anchor infrastructure | v2.0.3.0 (00--opencode-environment) | 70 files, 469 anchor pairs |
 | 016 | Codex platform integration | v2.0.4.0 (00--opencode-environment) | 11 files, 4 profiles |
 | 126+127 | 5th indexing source + 7 intents | v2.0.5.0 (00--opencode-environment) | 14 files |
+<!-- /ANCHOR:source-specs -->
 
+<!-- ANCHOR:dependency-graph -->
 ## Dependency Graph
 
 ```
@@ -74,7 +95,9 @@ This specification-only umbrella produces audit and alignment specs for 11 sourc
 **Task 05**: Blocked by Tasks 01–04
 **Task 06**: Blocked by Task 05
 **Task 07**: Blocked by Task 06
+<!-- /ANCHOR:dependency-graph -->
 
+<!-- ANCHOR:subtasks -->
 ## Subtasks
 
 | # | Folder | Title | Summary | Depends On |
@@ -86,8 +109,12 @@ This specification-only umbrella produces audit and alignment specs for 11 sourc
 | 05 | `task-05-changelog-updates/` | Changelog Creation | Create 3 changelog entries (environment v2.1.0.0, spec-kit v2.2.19.0, agents v2.0.4.0) documenting alignment work from Tasks 01-04 | Tasks 01–04 |
 | 06 | `task-06-global-readme-update/` | Root README Update | Update root README.md statistics table, Memory Engine description, Spec Kit features, and Agent System counts to reflect post-alignment state | Task 05 |
 | 07 | `task-07-github-release/` | Tagged Release | Create git tag v2.1.0.0 and GitHub release with notes covering Agent Updates, Spec-Kit Updates, and Documentation Updates from all prior tasks | Task 06 |
+<!-- /ANCHOR:subtasks -->
 
+<!-- ANCHOR:related-documents -->
 ## Related Documents
 
 - **Specification**: [spec.md](spec.md) — Full Level 3+ umbrella specification
 - **Changelog Reference**: [changelog-reference.md](changelog-reference.md) — Consolidated changelog from all 11 source specs
+<!-- /ANCHOR:related-documents -->
+

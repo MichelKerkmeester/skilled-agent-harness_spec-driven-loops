@@ -9,7 +9,7 @@ Quality gates, DQI scoring, and script-assisted AI analysis for markdown documen
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 ### What Is Validation?
 
@@ -31,7 +31,7 @@ This reference provides deep-dive technical guidance on qualitative assessment, 
 
 ---
 
-## 2. 📊 SCRIPT-ASSISTED AI EVALUATION
+## 2. SCRIPT-ASSISTED AI EVALUATION
 
 **Two-stage validation pipeline:**
 
@@ -49,8 +49,6 @@ python scripts/validate_document.py document.md
 |-------|----------|--------------|
 | Missing TOC section | blocking | No |
 | TOC anchor single-dash (should be `#1--`) | blocking | Yes |
-| TOC entry missing emoji | blocking | No |
-| H2 header missing emoji | blocking | Partial |
 | Missing required section | blocking | No |
 | Non-sequential numbering | warning | No |
 
@@ -89,7 +87,7 @@ RESULT: Quality Assessment + Recommendations
 
 ---
 
-## 3. 🔢 CHECKLIST-BASED VALIDATION
+## 3. CHECKLIST-BASED VALIDATION
 
 ### Structure Checklist (from extract_structure.py)
 
@@ -101,7 +99,7 @@ The script runs type-specific checklists and reports pass/fail results:
 - ✅ Code blocks properly fenced
 - ✅ No unclosed markdown elements
 - ✅ Section separators (`---`) correct
-- ✅ Emoji usage correct (H2 numbered have emoji, H3 semantic only in RULES sections)
+- ✅ H3 semantic emoji correct (only in RULES sections)
 
 **SKILL-Specific Checks** (14 checks total):
 - ✅ `frontmatter_exists` - YAML frontmatter present
@@ -114,7 +112,7 @@ The script runs type-specific checklists and reports pass/fail results:
 - ✅ `has_when_to_use` - Has WHEN TO USE section
 - ✅ `has_how_it_works` - Has HOW IT WORKS or HOW TO USE section
 - ✅ `has_rules` - Has RULES section
-- ✅ `h2_numbered_emoji` - H2s have number + emoji format
+- ✅ `h2_numbered` - H2s have number prefix format
 - ✅ `no_toc` - No table of contents section
 - ✅ `no_placeholders` - No placeholder markers ([TODO], [PLACEHOLDER], etc.)
 - ✅ `code_has_language` - Code blocks have language tags
@@ -162,21 +160,16 @@ AI evaluates content based on extracted data and evaluation questions:
 AI checks style based on core_standards.md:
 
 **Key Style Checks**:
-- ✅ H2 numbered headings: ALL CAPS + emoji (e.g., `## 1. 🎯 WHEN TO USE`)
+- ✅ H2 numbered headings: ALL CAPS (e.g., `## 1. WHEN TO USE`)
 - ✅ H3 headings: Only semantic emojis (✅ ❌ ⚠️), no decorative emojis
 - ✅ Code examples include comments
 - ✅ Bullet lists under 7 items
 - ✅ Consistent terminology
 - ✅ Active voice preferred
 
-**Emoji style compliance**:
-- ✅ Semantic emojis on H3: `### ✅ ALWAYS Rules` (functional signal)
-- ❌ Decorative emojis on H3: `### 🔧 Pattern 1` (visual noise)
-- See [core_standards.md](./core_standards.md#6--emoji-usage-rules) for criteria
-
 ---
 
-## 4. 🧮 DOCUMENT QUALITY INDEX (DQI)
+## 4. DOCUMENT QUALITY INDEX (DQI)
 
 The `extract_structure.py` script computes a **Document Quality Index (DQI)** - a 100% deterministic score from 0-100 based on measurable document attributes. This replaces subjective AI-only assessment with quantifiable metrics.
 
@@ -186,7 +179,7 @@ The `extract_structure.py` script computes a **Document Quality Index (DQI)** - 
 |-----------|-----|------------------|
 | **Structure** | 40 | Checklist pass rate (type-specific validation) |
 | **Content** | 30 | Word count, heading density, code examples, tables/lists, links |
-| **Style** | 30 | H2 formatting (number+emoji+CAPS), section dividers, intro paragraph |
+| **Style** | 30 | H2 formatting (number+CAPS), section dividers, intro paragraph |
 
 ### Content Score Breakdown (30 points)
 
@@ -202,7 +195,7 @@ The `extract_structure.py` script computes a **Document Quality Index (DQI)** - 
 
 | Metric | Max | Criteria |
 |--------|-----|----------|
-| H2 formatting | 12 | Number + emoji + ALL CAPS on H2 headings |
+| H2 formatting | 12 | Number + ALL CAPS on H2 headings |
 | Section dividers | 6 | Horizontal rules between H2 sections |
 | Style issues | 8 | Penalty of -2 per style issue detected |
 | Intro paragraph | 4 | Brief introduction after H1 |
@@ -256,7 +249,7 @@ The `extract_structure.py` script computes a **Document Quality Index (DQI)** - 
 
 ---
 
-## 5. 🔒 QUALITY GATES
+## 5. QUALITY GATES
 
 Quality bands are defined in Section 4 (DQI). This section specifies document-specific enforcement requirements.
 
@@ -312,7 +305,7 @@ Quality bands are defined in Section 4 (DQI). This section specifies document-sp
 
 ---
 
-## 6. 📈 ASSESSMENT INTERPRETATION
+## 6. ASSESSMENT INTERPRETATION
 
 ### Checklist Passes, Low Content Quality
 
@@ -339,7 +332,7 @@ Quality bands are defined in Section 4 (DQI). This section specifies document-sp
 **Diagnosis**: Valid structure, good content, but inconsistent formatting
 
 **Fix**: Apply style guide compliance:
-- Fix H2 heading format (ALL CAPS + emoji)
+- Fix H2 heading format (ALL CAPS)
 - Add code comments
 - Break long bullet lists (max 7 items)
 - Use consistent terminology
@@ -355,7 +348,7 @@ Quality bands are defined in Section 4 (DQI). This section specifies document-sp
 
 ---
 
-## 7. 💡 IMPROVEMENT RECOMMENDATIONS
+## 7. IMPROVEMENT RECOMMENDATIONS
 
 **When Quality Rating < 80**:
 
@@ -373,11 +366,11 @@ Quality bands are defined in Section 4 (DQI). This section specifies document-sp
 **Quick fixes** (high impact, low effort):
 - Structure: Fix frontmatter format, add missing sections
 - Content: Add examples, combine concepts with usage
-- Style: Fix H2 format, add emoji, break long lists
+- Style: Fix H2 format, break long lists
 
 ---
 
-## 8. 📋 JSON OUTPUT FORMAT
+## 8. JSON OUTPUT FORMAT
 
 **Example extract_structure.py output**:
 ```json
@@ -397,7 +390,7 @@ Quality bands are defined in Section 4 (DQI). This section specifies document-sp
   "structure": {
     "headings": [
       {"level": 1, "text": "Example Skill - Subtitle", "line": 5, "has_emoji": false, "has_number": false},
-      {"level": 2, "text": "1. 🎯 WHEN TO USE", "line": 10, "has_emoji": true, "has_number": true}
+      {"level": 2, "text": "1. WHEN TO USE", "line": 10, "has_emoji": false, "has_number": true}
     ],
     "sections": [...]
   },
@@ -485,7 +478,7 @@ RECOMMENDATIONS:
 
 ---
 
-## 9. 💻 VALIDATION COMMANDS
+## 9. VALIDATION COMMANDS
 
 **Extract structure for single file**:
 ```bash
@@ -525,7 +518,7 @@ fi
 
 ---
 
-## 10. 🔗 RELATED RESOURCES
+## 10. RELATED RESOURCES
 
 ### Reference Files
 - [core_standards.md](./core_standards.md) - Document type rules and structural requirements

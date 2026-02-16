@@ -17,7 +17,7 @@ Unified specialist providing: (1) Document quality pipeline with structure enfor
 
 ---
 
-## 1. 🎯 WHEN TO USE
+## 1. WHEN TO USE
 
 ### Use Case: Document Quality Management
 
@@ -35,7 +35,7 @@ Enforce markdown structure, optimize content for AI assistants, validate quality
 
 **Validation Workflow** - Apply after Write/Edit operations:
 - Auto-correct filename violations (ALL CAPS to lowercase, hyphens to underscores)
-- Fix safe violations (separators, H2 case, emoji per rules)
+- Fix safe violations (separators, H2 case)
 - Check critical violations (missing frontmatter, wrong section order)
 
 **Manual Optimization** - Run when:
@@ -103,7 +103,7 @@ Create and validate installation documentation for MCP servers, plugins and tool
 
 ---
 
-## 2. 🧭 SMART ROUTING & REFERENCES
+## 2. SMART ROUTING & REFERENCES
 
 ### Mode Selection
 
@@ -257,7 +257,7 @@ def route_documentation_resources(task):
 
 ---
 
-## 3. 🛠️ HOW IT WORKS
+## 3. HOW IT WORKS
 
 ### Mode 1: Document Quality
 
@@ -372,7 +372,7 @@ Standard Flow:      Branch:           Parallel:         Merge:
 
 ---
 
-## 4. 📋 RULES
+## 4. RULES
 
 ### Mode 1: Document Quality
 
@@ -531,38 +531,9 @@ Standard Flow:      Branch:           Parallel:         Merge:
 2. External dependencies unavailable
 3. Installation requires special permissions
 
-### Emoji Usage Rules
-
-| Heading Level    | Emoji Rule      | Example                      |
-| ---------------- | --------------- | ---------------------------- |
-| **H1** (`#`)     | ❌ NEVER         | `# Documentation Specialist` |
-| **H2** (`##`)    | ✅ ALWAYS        | `## 1. 🎯 CAPABILITIES`       |
-| **H3** (`###`)   | ⚠️ SEMANTIC ONLY | `### ✅ ALWAYS` (RULES only)  |
-| **H4+** (`####`) | ❌ NEVER         | `#### Success Metrics`       |
-
-**Body Text**: ✅ Status indicators (✅ ❌ ⚠️), priority markers (🔴 🟡 🔵), visual indicators (📊 🔍 ⚡) - only when enhancing clarity.
-
-**H3 Semantic Exception**: Emojis ✅ ❌ ⚠️ REQUIRED on H3 in RULES sections for functional signaling.
-
-### H2 Emoji Enforcement by Document Type
-
-| Document Type       | Emoji Required  | Enforcement Level | Missing Emoji Severity |
-| ------------------- | --------------- | ----------------- | ---------------------- |
-| **SKILL.md**        | ✅ Yes           | Strict            | `error` (BLOCKING)     |
-| **README.md**       | ✅ Yes           | Strict            | `error` (BLOCKING)     |
-| **Asset files**     | ✅ Yes           | Strict            | `error` (BLOCKING)     |
-| **Reference files** | ✅ Yes           | Strict            | `error` (BLOCKING)     |
-| **Command files**   | ⚠️ Semantic only | Moderate          | `warning`              |
-| **Spec files**      | ❌ No            | Loose             | N/A                    |
-| **Generic**         | ❌ No            | Flexible          | N/A                    |
-
-**CRITICAL**: For template-based documents (SKILL, README, asset, reference), missing H2 emojis are BLOCKING errors. The `extract_structure.py` script will return `severity: 'error'` for these violations.
-
-**Prevention**: Always COPY headers from templates. Never reconstruct from memory.
-
 ---
 
-## 5. 🏆 SUCCESS CRITERIA
+## 5. SUCCESS CRITERIA
 
 ### Document Quality Index (DQI)
 
@@ -654,7 +625,7 @@ The `extract_structure.py` script computes a **DQI** (0-100) based on measurable
 
 ---
 
-## 6. 🔌 INTEGRATION POINTS
+## 6. INTEGRATION POINTS
 
 ### Framework Integration
 
@@ -705,7 +676,7 @@ Key integrations:
 
 ---
 
-## 7. 📚 EXTERNAL RESOURCES
+## 7. EXTERNAL RESOURCES
 
 - **llms.txt specification**: https://llmstxt.org/
 - **Context7 (external docs benchmark)**: https://context7.ai/
@@ -714,7 +685,7 @@ Key integrations:
 
 ---
 
-## 8. 🔗 RELATED RESOURCES
+## 8. RELATED RESOURCES
 
 ### For Document Quality
 

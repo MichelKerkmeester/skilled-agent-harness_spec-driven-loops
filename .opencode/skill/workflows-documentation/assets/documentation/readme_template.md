@@ -9,7 +9,7 @@ Templates for creating README files with scannable structure and progressive dis
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 **Purpose**: README files are the entry point to any project, component, or feature. They answer "What is this?" and "How do I use it?" in a scannable, progressive format.
 
@@ -48,7 +48,7 @@ A good README lets someone:
 
 ---
 
-## 2. 🎯 WHEN TO CREATE READMEs
+## 2. WHEN TO CREATE READMEs
 
 **Create READMEs when**:
 - Starting a new project (root-level README is mandatory)
@@ -78,7 +78,7 @@ Is this a project root?
 
 ---
 
-## 3. 📂 README TYPES
+## 3. README TYPES
 
 | Type | Purpose | Location | Audience | Key Focus |
 |------|---------|----------|----------|-----------|
@@ -103,7 +103,7 @@ Is this a project root?
 
 ---
 
-## 4. 🏗️ STANDARD README STRUCTURE
+## 4. STANDARD README STRUCTURE
 
 Every README follows a 9-section structure. Use what's needed, remove what's not.
 
@@ -123,7 +123,7 @@ Every README follows a 9-section structure. Use what's needed, remove what's not
 
 ---
 
-## 5. 📝 SECTION DEEP DIVES
+## 5. SECTION DEEP DIVES
 
 > See §14 Complete Template for the copy-paste scaffold.
 
@@ -297,7 +297,7 @@ These patterns appear in mature project READMEs and go beyond the basic template
 
 ---
 
-## 6. ✍️ WRITING PATTERNS
+## 6. WRITING PATTERNS
 
 ### Progressive Disclosure
 
@@ -344,27 +344,27 @@ For optional content:
 
 ---
 
-## 7. 🎨 STYLE REFERENCE
+## 7. STYLE REFERENCE
 
-### Emoji Usage
+### Heading Format
 
 | Element | Rule | Example |
 |---------|------|---------|
-| H1 | Never | `# Project Name` |
-| H2 | Always (numbered) | `## 1. 📖 OVERVIEW` |
-| H3 | Never | `### Configuration` |
-| H4+ | Never | `#### Options` |
+| H1 | Plain title | `# Project Name` |
+| H2 | Numbered, ALL CAPS | `## 1. OVERVIEW` |
+| H3 | Title case | `### Configuration` |
+| H4+ | Title case | `#### Options` |
 
-**Standard Section Emojis**:
-- 📖 Overview
-- 🚀 Quick Start
-- 📁 Structure
-- ⚡ Features
-- ⚙️ Configuration
-- 💡 Usage Examples
-- 🛠️ Troubleshooting
-- ❓ FAQ
-- 📚 Related Documents
+**Standard Section Names**:
+- OVERVIEW
+- QUICK START
+- STRUCTURE
+- FEATURES
+- CONFIGURATION
+- USAGE EXAMPLES
+- TROUBLESHOOTING
+- FAQ
+- RELATED DOCUMENTS
 
 ### Formatting Conventions
 
@@ -379,7 +379,7 @@ For optional content:
 
 ### Section Numbering
 
-- Always use `N. ` prefix before emoji: `## 1. 📖 OVERVIEW`
+- Always use `N. ` prefix: `## 1. OVERVIEW`
 - Maintain sequential numbering
 - Update TOC links when removing sections
 - Link format: `#n--section-name` (number + double-dash + lowercase-hyphenated)
@@ -387,8 +387,8 @@ For optional content:
 ### TOC Link Format
 
 ```markdown
-- [1. 📖 OVERVIEW](#1--overview)
-- [2. 🚀 QUICK START](#2--quick-start)
+- [1. OVERVIEW](#1--overview)
+- [2. QUICK START](#2--quick-start)
 ```
 
 Note the double-dash after the number in the anchor.
@@ -399,7 +399,7 @@ Badges go above H1 in a `<div align="left">` wrapper. The blockquote tagline goe
 
 ---
 
-## 8. ✅ README CHECKLIST
+## 8. README CHECKLIST
 
 Before finalizing a README, verify all applicable items:
 
@@ -430,7 +430,7 @@ Before finalizing a README, verify all applicable items:
 - [ ] Consistent terminology throughout
 
 ### Style
-- [ ] Emoji only on H2 headings
+- [ ] H2 headings use numbered ALL CAPS format
 - [ ] TOC links match section headers exactly
 - [ ] File paths in backticks
 - [ ] Commands in fenced code blocks
@@ -453,7 +453,7 @@ Before finalizing a README, verify all applicable items:
 
 ---
 
-## 9. 🗣️ HUMAN VOICE RULES (HVR)
+## 9. HUMAN VOICE RULES (HVR)
 
 All README content must follow Human Voice Rules. These rules produce writing that reads as direct, clear and human-authored rather than AI-generated.
 
@@ -543,14 +543,14 @@ Limit "however" to max 2 per file. Replace vague verbs with specific ones.
 
 ---
 
-## 10. 💡 PATTERNS FROM EXISTING READMES
+## 10. PATTERNS FROM EXISTING READMES
 
 ### Effective Overview Pattern
 
 From well-structured project READMEs:
 
 ```markdown
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 ### What is [Project]?
 
@@ -578,7 +578,7 @@ and [key benefit 2] for [target audience].
 
 ---
 
-## 11. 🔄 README MAINTENANCE
+## 11. README MAINTENANCE
 
 ### When to Update
 
@@ -629,7 +629,7 @@ If deprecating a project/component:
 
 ---
 
-## 12. 📄 YAML FRONTMATTER SCHEMA
+## 12. YAML FRONTMATTER SCHEMA
 
 README files that should be indexed by the Spec Kit Memory system can include YAML frontmatter at the very top of the file. This metadata enables semantic search, trigger-phrase matching and importance-based ranking.
 
@@ -701,7 +701,7 @@ importance_tier: "important"
 
 ---
 
-## 13. 🏷️ ANCHOR TEMPLATES FOR STRUCTURED RETRIEVAL
+## 13. ANCHOR TEMPLATES FOR STRUCTURED RETRIEVAL
 
 Memory files and spec folder documents (including READMEs) use a standardized set of **retrieval anchors** for fine-grained context extraction. These anchors enable the memory system to pull specific sections without loading entire files.
 
@@ -798,7 +798,7 @@ README files under `.opencode/skill/` are automatically indexed by the Spec Kit 
 
 ---
 
-## 14. 📋 COMPLETE TEMPLATE
+## 14. COMPLETE TEMPLATE
 
 Copy and customize this template. Replace all `[PLACEHOLDER]` markers with actual content. Remove sections that don't apply (keep minimum: Overview, Quick Start, Troubleshooting).
 
@@ -827,19 +827,19 @@ description: "[Brief description for memory indexing]"
 
 ## TABLE OF CONTENTS
 
-- [1. 📖 OVERVIEW](#1--overview)
-- [2. 🚀 QUICK START](#2--quick-start)
-- [3. 📁 STRUCTURE](#3--structure)
-- [4. ⚡ FEATURES](#4--features)
-- [5. ⚙️ CONFIGURATION](#5--configuration)
-- [6. 💡 USAGE EXAMPLES](#6--usage-examples)
-- [7. 🛠️ TROUBLESHOOTING](#7--troubleshooting)
-- [8. ❓ FAQ](#8--faq)
-- [9. 📚 RELATED DOCUMENTS](#9--related-documents)
+- [1. OVERVIEW](#1--overview)
+- [2. QUICK START](#2--quick-start)
+- [3. STRUCTURE](#3--structure)
+- [4. FEATURES](#4--features)
+- [5. CONFIGURATION](#5--configuration)
+- [6. USAGE EXAMPLES](#6--usage-examples)
+- [7. TROUBLESHOOTING](#7--troubleshooting)
+- [8. FAQ](#8--faq)
+- [9. RELATED DOCUMENTS](#9--related-documents)
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 ### What is [PROJECT_NAME]?
 
@@ -868,7 +868,7 @@ description: "[Brief description for memory indexing]"
 
 ---
 
-## 2. 🚀 QUICK START
+## 2. QUICK START
 
 ### 30-Second Setup
 
@@ -902,7 +902,7 @@ description: "[Brief description for memory indexing]"
 
 ---
 
-## 3. 📁 STRUCTURE
+## 3. STRUCTURE
 
 ```
 [root-directory]/
@@ -922,7 +922,7 @@ description: "[Brief description for memory indexing]"
 
 ---
 
-## 4. ⚡ FEATURES
+## 4. FEATURES
 
 ### [Feature Category 1]
 
@@ -945,7 +945,7 @@ description: "[Brief description for memory indexing]"
 
 ---
 
-## 5. ⚙️ CONFIGURATION
+## 5. CONFIGURATION
 
 ### Configuration File
 
@@ -971,7 +971,7 @@ description: "[Brief description for memory indexing]"
 
 ---
 
-## 6. 💡 USAGE EXAMPLES
+## 6. USAGE EXAMPLES
 
 ### Example 1: [Use Case Name]
 
@@ -1005,7 +1005,7 @@ description: "[Brief description for memory indexing]"
 
 ---
 
-## 7. 🛠️ TROUBLESHOOTING
+## 7. TROUBLESHOOTING
 
 ### Common Issues
 
@@ -1047,7 +1047,7 @@ description: "[Brief description for memory indexing]"
 
 ---
 
-## 8. ❓ FAQ
+## 8. FAQ
 
 ### General Questions
 
@@ -1075,7 +1075,7 @@ A: [Answer with code if applicable.]
 
 ---
 
-## 9. 📚 RELATED DOCUMENTS
+## 9. RELATED DOCUMENTS
 
 ### Internal Documentation
 
@@ -1096,7 +1096,7 @@ A: [Answer with code if applicable.]
 
 ---
 
-## 15. 🔗 RELATED RESOURCES
+## 15. RELATED RESOURCES
 
 ### Templates
 - [skill_asset_template.md](../opencode/skill_asset_template.md) - Pattern reference for this document

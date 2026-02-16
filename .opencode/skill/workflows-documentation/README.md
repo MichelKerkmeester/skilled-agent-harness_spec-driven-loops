@@ -14,18 +14,20 @@ importance_tier: "normal"
 
 ---
 
-- [1. 📖 OVERVIEW](#1--overview)
-- [2. 🚀 QUICK START](#2--quick-start)
-- [3. 📁 STRUCTURE](#3--structure)
-- [4. ⚡ FEATURES](#4--features)
-- [5. ⚙️ CONFIGURATION](#5--configuration)
-- [6. 💡 EXAMPLES](#6--examples)
-- [7. 🛠️ TROUBLESHOOTING](#7--troubleshooting)
-- [8. 📚 RELATED](#8--related)
+## TABLE OF CONTENTS
+
+- [1. OVERVIEW](#1--overview)
+- [2. QUICK START](#2--quick-start)
+- [3. STRUCTURE](#3--structure)
+- [4. FEATURES](#4--features)
+- [5. CONFIGURATION](#5--configuration)
+- [6. EXAMPLES](#6--examples)
+- [7. TROUBLESHOOTING](#7--troubleshooting)
+- [8. RELATED](#8--related)
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 <!-- ANCHOR:overview -->
 
 This skill is the central documentation engine for OpenCode projects. It operates in four modes: **Document Quality** (structure enforcement, DQI scoring, content optimization), **Component Creation** (skills, agents, commands with templates and validation), **Flowchart Creation** (ASCII diagrams for workflows and decision trees) and **Install Guide Creation** (phase-based setup documentation).
@@ -40,7 +42,7 @@ Use this skill when creating or improving markdown documentation, scaffolding ne
 
 ---
 
-## 2. 🚀 QUICK START
+## 2. QUICK START
 <!-- ANCHOR:quick-start -->
 
 The skill is invoked automatically via Gate 2 routing when documentation tasks are detected, or manually via the `skill` tool:
@@ -69,7 +71,7 @@ python3 scripts/validate_document.py path/to/README.md
 
 ---
 
-## 3. 📁 STRUCTURE
+## 3. STRUCTURE
 <!-- ANCHOR:structure -->
 
 ```
@@ -117,7 +119,7 @@ workflows-documentation/
 
 ---
 
-## 4. ⚡ FEATURES
+## 4. FEATURES
 <!-- ANCHOR:features -->
 
 **Mode 1 - Document Quality:**
@@ -147,7 +149,7 @@ workflows-documentation/
 
 ---
 
-## 5. ⚙️ CONFIGURATION
+## 5. CONFIGURATION
 <!-- ANCHOR:configuration -->
 
 No configuration required. The skill auto-detects document types and applies the appropriate enforcement level:
@@ -166,7 +168,7 @@ Template rules are defined in `assets/template_rules.json`.
 
 ---
 
-## 6. 💡 EXAMPLES
+## 6. EXAMPLES
 <!-- ANCHOR:usage-examples -->
 
 **Validate document quality:**
@@ -191,7 +193,7 @@ python3 .opencode/skill/workflows-documentation/scripts/validate_document.py REA
 
 ---
 
-## 7. 🛠️ TROUBLESHOOTING
+## 7. TROUBLESHOOTING
 <!-- ANCHOR:troubleshooting -->
 
 | Issue | Cause | Fix |
@@ -199,14 +201,13 @@ python3 .opencode/skill/workflows-documentation/scripts/validate_document.py REA
 | DQI score below 60 | Missing structure or content | Run `extract_structure.py`, address flagged violations |
 | `validate_document.py` exit 2 | Blocking errors (missing frontmatter, wrong section order) | Fix critical violations before re-running |
 | `package_skill.py` fails | SKILL.md over 5k words or missing required sections | Move detail to `references/`, ensure all required sections present |
-| Missing H2 emojis flagged as error | Template-based docs require H2 emojis | Copy headers from templates rather than writing from memory |
 | HVR violations in output | Banned words, em dashes or semicolons in text | Review `readme_template.md` §9 for full HVR ruleset and fix violations |
 
 <!-- /ANCHOR:troubleshooting -->
 
 ---
 
-## 8. 📚 RELATED
+## 8. RELATED
 <!-- ANCHOR:related -->
 
 - **system-spec-kit** - Spec folder documentation structure and validation

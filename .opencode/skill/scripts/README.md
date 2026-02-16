@@ -16,6 +16,7 @@ trigger_phrases:
 ---
 
 ## TABLE OF CONTENTS
+<!-- ANCHOR:table-of-contents -->
 
 - [1. 📖 OVERVIEW](#1--overview)
 - [2. 📁 STRUCTURE](#2--structure)
@@ -27,9 +28,12 @@ trigger_phrases:
 - [8. ❓ FAQ](#8--faq)
 - [9. 📚 RELATED DOCUMENTS](#9--related-documents)
 
+<!-- /ANCHOR:table-of-contents -->
+
 ---
 
 ## 1. 📖 OVERVIEW
+<!-- ANCHOR:overview -->
 
 ### What is this directory?
 
@@ -67,9 +71,12 @@ trigger_phrases:
 | Python | 3.6+ | 3.10+ |
 | `.opencode/skill/` | At least 1 SKILL.md | All project skills installed |
 
+<!-- /ANCHOR:overview -->
+
 ---
 
 ## 2. 📁 STRUCTURE
+<!-- ANCHOR:structure -->
 
 ```
 .opencode/skill/scripts/
@@ -94,9 +101,12 @@ trigger_phrases:
     └── ...
 ```
 
+<!-- /ANCHOR:structure -->
+
 ---
 
 ## 3. 🚀 QUICK START
+<!-- ANCHOR:quick-start -->
 
 ### 30-Second Setup
 
@@ -148,9 +158,12 @@ if (( $(echo "$CONFIDENCE > 0.8" | bc -l) )); then
 fi
 ```
 
+<!-- /ANCHOR:quick-start -->
+
 ---
 
 ## 4. ⚡ SKILL ADVISOR
+<!-- ANCHOR:skill-advisor -->
 
 ### How It Integrates with AGENTS.md
 
@@ -418,9 +431,12 @@ Slash commands exposed as pseudo-skills for routing:
 | `command-spec-kit` | Create specifications using `/spec_kit` slash command |
 | `command-memory-save` | Save conversation context using `/memory:save` |
 
+<!-- /ANCHOR:skill-advisor -->
+
 ---
 
 ## 5. ⚙️ CONFIGURATION
+<!-- ANCHOR:configuration -->
 
 ### Customization Points
 
@@ -479,9 +495,12 @@ skills["command-deploy"] = {
 }
 ```
 
+<!-- /ANCHOR:configuration -->
+
 ---
 
 ## 6. 💡 USAGE EXAMPLES
+<!-- ANCHOR:usage-examples -->
 
 ### Example 1: Git Operations
 
@@ -574,9 +593,12 @@ $ python skill_advisor.py "call figma api"
 | Specifications | system-spec-kit | spec, checklist, plan, specification |
 | External MCP tools | mcp-code-mode | webflow, figma, clickup, notion |
 
+<!-- /ANCHOR:usage-examples -->
+
 ---
 
 ## 7. 🛠️ TROUBLESHOOTING
+<!-- ANCHOR:troubleshooting -->
 
 ### No Skills Found
 
@@ -653,9 +675,12 @@ python .opencode/skill/scripts/skill_advisor.py "test"
 
 **Solution:** Ensure only JSON is printed to stdout. Errors should go to stderr.
 
+<!-- /ANCHOR:troubleshooting -->
+
 ---
 
 ## 8. ❓ FAQ
+<!-- ANCHOR:faq -->
 
 ### General Questions
 
@@ -707,9 +732,12 @@ print(f"DEBUG: tokens={tokens}, expanded={search_terms}", file=sys.stderr)
 
 A: No, the script uses word tokenization. Regex patterns will be treated as literal text.
 
+<!-- /ANCHOR:faq -->
+
 ---
 
 ## 9. 📚 RELATED DOCUMENTS
+<!-- ANCHOR:related-documents -->
 
 ### Internal Documentation
 
@@ -727,3 +755,5 @@ A: No, the script uses word tokenization. Regex patterns will be treated as lite
 | `.opencode/skill/*/SKILL.md` | Individual skill definitions parsed by the advisor |
 | [system-spec-kit README](../skill/system-spec-kit/README.md) | Documentation and memory framework |
 | [workflows-documentation SKILL.md](../skill/workflows-documentation/SKILL.md) | Documentation standards and templates |
+
+<!-- /ANCHOR:related-documents -->

@@ -4,7 +4,6 @@
 
 ---
 
-<!-- ANCHOR:table-of-contents -->
 ## TABLE OF CONTENTS
 
 - [1. 📖 OVERVIEW](#1--overview)
@@ -15,7 +14,6 @@
 - [6. 📚 RELATED DOCUMENTS](#6--related-documents)
 
 ---
-<!-- /ANCHOR:table-of-contents -->
 
 <!-- ANCHOR:overview -->
 ## 1. 📖 OVERVIEW
@@ -54,9 +52,9 @@ Level 2 includes **5 template files**:
 | `checklist.md` | Verification checklist | P0/P1/P2 prioritized verification items |
 
 **Total Files**: 5 (Level 1 has 4, Level 3 has 6)
+<!-- /ANCHOR:overview -->
 
 ---
-<!-- /ANCHOR:overview -->
 
 <!-- ANCHOR:quick-start -->
 ## 2. 🚀 QUICK START
@@ -96,9 +94,9 @@ node .opencode/skill/system-spec-kit/scripts/validate-spec.js specs/###-feature-
 # 1 = Warnings (non-blocking)
 # 2 = Errors (blocking - must fix)
 ```
+<!-- /ANCHOR:quick-start -->
 
 ---
-<!-- /ANCHOR:quick-start -->
 
 <!-- ANCHOR:structure -->
 ## 3. 📁 STRUCTURE
@@ -123,9 +121,9 @@ specs/###-feature-name/
 | `checklist.md` | P0/P1/P2 prioritized verification items |
 | `spec.md` | Specification with NFRs and edge cases |
 | `plan.md` | Implementation plan with effort estimates |
+<!-- /ANCHOR:structure -->
 
 ---
-<!-- /ANCHOR:structure -->
 
 <!-- ANCHOR:features -->
 ## 4. ⚡ FEATURES
@@ -153,9 +151,9 @@ specs/###-feature-name/
 ### Validation Script
 
 Automated validation ensures all required sections and formatting standards are met.
+<!-- /ANCHOR:features -->
 
 ---
-<!-- /ANCHOR:features -->
 
 <!-- ANCHOR:troubleshooting -->
 ## 5. 🛠️ TROUBLESHOOTING
@@ -214,9 +212,9 @@ ls -la specs/###-feature-name/
 # Compare with template
 diff specs/###-feature-name/checklist.md .opencode/skill/system-spec-kit/templates/level_2/checklist.md
 ```
+<!-- /ANCHOR:troubleshooting -->
 
 ---
-<!-- /ANCHOR:troubleshooting -->
 
 <!-- ANCHOR:related-documents -->
 ## 6. 📚 RELATED DOCUMENTS
@@ -232,7 +230,6 @@ diff specs/###-feature-name/checklist.md .opencode/skill/system-spec-kit/templat
 | [Level Decision Matrix](../../assets/level_decision_matrix.md) | How to choose the right level |
 | [Validation Rules](../../references/validation/validation_rules.md) | What validation checks |
 | [system-spec-kit SKILL.md](../../SKILL.md) | Primary skill documentation |
-
----
 <!-- /ANCHOR:related-documents -->
 
+---

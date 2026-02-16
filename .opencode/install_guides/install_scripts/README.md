@@ -5,6 +5,7 @@
 ---
 
 ## TABLE OF CONTENTS
+<!-- ANCHOR:table-of-contents -->
 
 - [1. 📖 OVERVIEW](#1--overview)
 - [2. 🚀 QUICK START](#2--quick-start)
@@ -16,9 +17,12 @@
 - [8. ❓ FAQ](#8--faq)
 - [9. 📚 RELATED DOCUMENTS](#9--related-documents)
 
+<!-- /ANCHOR:table-of-contents -->
+
 ---
 
 ## 1. 📖 OVERVIEW
+<!-- ANCHOR:overview -->
 
 ### What are Component Install Scripts?
 
@@ -51,9 +55,12 @@ These scripts automate installation and configuration of OpenCode components (MC
 | npm | 9+ | 10+ |
 | Bash | 4.0+ | 5.0+ |
 
+<!-- /ANCHOR:overview -->
+
 ---
 
 ## 2. 🚀 QUICK START
+<!-- ANCHOR:quick-start -->
 
 ### 30-Second Setup
 
@@ -89,9 +96,12 @@ opencode
 # Ask: "Use sequential thinking to analyze this problem..."
 ```
 
+<!-- /ANCHOR:quick-start -->
+
 ---
 
 ## 3. 📁 STRUCTURE
+<!-- ANCHOR:structure -->
 
 ```
 install_scripts/
@@ -117,9 +127,12 @@ install_scripts/
 | `install-all.sh` | Master installer with `--skip` and `--only` flags |
 | `test/Dockerfile` | Docker image for clean environment testing |
 
+<!-- /ANCHOR:structure -->
+
 ---
 
 ## 4. ⚡ FEATURES
+<!-- ANCHOR:features -->
 
 ### Available Scripts
 
@@ -161,9 +174,12 @@ install_scripts/
 ./install-all.sh --dry-run
 ```
 
+<!-- /ANCHOR:features -->
+
 ---
 
 ## 5. ⚙️ CONFIGURATION
+<!-- ANCHOR:configuration -->
 
 ### Configuration Files
 
@@ -201,9 +217,12 @@ All scripts support these standard options:
 | `--force` | Force reinstallation |
 | `--add-profile` | Add CHROME_PATH to shell profile |
 
+<!-- /ANCHOR:configuration -->
+
 ---
 
 ## 6. 💡 USAGE EXAMPLES
+<!-- ANCHOR:usage-examples -->
 
 ### Example 1: Install Core MCPs
 
@@ -249,9 +268,12 @@ All scripts support these standard options:
 | Reinstall | `./install-{name}.sh --force` | Fix broken installation |
 | Debug | `./install-{name}.sh -v` | Troubleshoot issues |
 
+<!-- /ANCHOR:usage-examples -->
+
 ---
 
 ## 7. 🛠️ TROUBLESHOOTING
+<!-- ANCHOR:troubleshooting -->
 
 ### Common Issues
 
@@ -337,9 +359,12 @@ npx -y @modelcontextprotocol/server-sequential-thinking --help
 bdg --version
 ```
 
+<!-- /ANCHOR:troubleshooting -->
+
 ---
 
 ## 8. ❓ FAQ
+<!-- ANCHOR:faq -->
 
 ### General Questions
 
@@ -401,9 +426,12 @@ docker run -it mcp-install-test
 ```
 Note: The master installer (`install-all.sh`) automatically uses non-interactive flags for Figma (`-a`) when running.
 
+<!-- /ANCHOR:faq -->
+
 ---
 
 ## 9. 📚 RELATED DOCUMENTS
+<!-- ANCHOR:related-documents -->
 
 ### Internal Documentation
 
@@ -426,3 +454,5 @@ Note: The master installer (`install-all.sh`) automatically uses non-interactive
 ---
 
 *Part of the [OpenCode Development Environment](https://github.com/MichelKerkmeester/opencode-dev-environment)*
+
+<!-- /ANCHOR:related-documents -->

@@ -7,7 +7,7 @@ description: Templates and guidelines for creating asset files in AI agent skill
 
 Templates and guidelines for creating asset files in AI agent skills.
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 ### Location & Naming
 
@@ -39,7 +39,7 @@ Templates and guidelines for creating asset files in AI agent skills.
 
 ---
 
-## 2. 🎯 ASSET FILE TYPES
+## 2. ASSET FILE TYPES
 
 ### Template Files
 **Purpose**: Provide copy-paste starting points for common tasks
@@ -114,7 +114,7 @@ Templates and guidelines for creating asset files in AI agent skills.
 
 ---
 
-## 3. 📋 DOCUMENT STRUCTURE
+## 3. DOCUMENT STRUCTURE
 
 ### Title and Intro
 
@@ -130,7 +130,7 @@ description: [One-line description - same as intro]
 
 [1-2 SHORT sentences only. Brief hook/summary. NO subsections, NO headers here.]
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 ### Purpose
 
@@ -142,13 +142,13 @@ description: [One-line description - same as intro]
 
 ---
 
-## 2. [EMOJI] [Content Section]
+## 2. [Content Section]
 
 [The actual template/checklist/snippet content]
 
 ---
 
-## N. 🔗 Related Resources (optional, if present must be last)
+## N. Related Resources (optional, if present must be last)
 
 [Links to related files]
 ```
@@ -163,7 +163,7 @@ description: [One-line description - same as intro]
 
 Copy-paste templates for creating well-structured commit messages.
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 ### Purpose
 
@@ -175,7 +175,7 @@ Copy the appropriate template based on commit type...
 
 ---
 
-## 2. 📝 COMMIT TEMPLATES
+## 2. COMMIT TEMPLATES
 ...
 ```
 
@@ -209,7 +209,7 @@ Atomic commits with clear intent = maintainable history.
 
 ---
 
-## 4. 🏗️ STANDARD ASSET STRUCTURE
+## 4. STANDARD ASSET STRUCTURE
 
 **Template**:
 
@@ -218,7 +218,7 @@ Atomic commits with clear intent = maintainable history.
 
 Brief introduction (1-2 sentences) explaining what this asset provides and when to use it.
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 ### Purpose
 
@@ -230,7 +230,7 @@ Brief introduction (1-2 sentences) explaining what this asset provides and when 
 
 ---
 
-## 2. [EMOJI] SECTION NAME
+## 2. SECTION NAME
 
 **Key Points**:
 - Point 1
@@ -258,20 +258,20 @@ Brief introduction (1-2 sentences) explaining what this asset provides and when 
 
 ---
 
-## 3. [EMOJI] SECTION NAME
+## 3. SECTION NAME
 
 [Continue pattern...]
 
 ---
 
-## N. 🔗 RELATED RESOURCES
+## N. RELATED RESOURCES
 
 [Links to related files - MUST be last section if present]
 ```
 
 ---
 
-## 5. 🧠 LOGIC REPRESENTATION PATTERNS
+## 5. LOGIC REPRESENTATION PATTERNS
 
 **Purpose**: Guidelines for representing logic, workflows, and decision trees in asset files using structured formats instead of prose.
 
@@ -312,7 +312,7 @@ Brief introduction (1-2 sentences) explaining what this asset provides and when 
 
 ---
 
-## 6. 🔀 DECISION LOGIC EXAMPLES
+## 6. DECISION LOGIC EXAMPLES
 
 **Purpose**: Demonstrate how to convert markdown prose into structured decision logic.
 
@@ -411,7 +411,7 @@ def validate_document(doc, doc_type):
 
 ---
 
-## 7. 🔄 WORKFLOW PATTERNS
+## 7. WORKFLOW PATTERNS
 
 **Purpose**: Show how to represent multi-step workflows using YAML structures.
 
@@ -549,7 +549,7 @@ variant_generation_logic:
 
 ---
 
-## 8. ⚙️ CONFIGURATION TEMPLATES
+## 8. CONFIGURATION TEMPLATES
 
 **Purpose**: Demonstrate structured data formats for configuration and metadata.
 
@@ -647,7 +647,7 @@ VALIDATION_LEVELS = {
 
 ---
 
-## 9. 📝 TEMPLATE GUIDELINES
+## 9. TEMPLATE GUIDELINES
 
 ### Naming Conventions
 
@@ -750,7 +750,7 @@ VALIDATION_LEVELS = {
 
 ---
 
-## 10. ✅ ASSET FILE CHECKLIST
+## 10. ASSET FILE CHECKLIST
 
 **Before creating an asset file, verify**:
 
@@ -784,7 +784,7 @@ Integration:
 
 ---
 
-## 11. 💡 EXAMPLES FROM THIS SKILL
+## 11. EXAMPLES FROM THIS SKILL
 
 ### Example 1: Template File
 
@@ -839,7 +839,7 @@ Integration:
 
 ---
 
-## 12. 🔄 ASSET MAINTENANCE
+## 12. ASSET MAINTENANCE
 
 ### When to Update Assets
 
@@ -878,7 +878,7 @@ Integration:
 
 ---
 
-## 13. 🎓 BEST PRACTICES SUMMARY
+## 13. BEST PRACTICES SUMMARY
 
 **DO**:
 - ✅ Create assets for reference data >50 lines
@@ -899,7 +899,7 @@ Integration:
 
 ---
 
-## 14. 📚 ASSET FILE NAMING QUICK REFERENCE
+## 14. ASSET FILE NAMING QUICK REFERENCE
 
 **Location**: `.opencode/skill/[skill-name]/assets/`
 
@@ -921,7 +921,7 @@ Integration:
 
 ---
 
-## 15. 🔗 RELATED RESOURCES
+## 15. RELATED RESOURCES
 
 ### Templates
 - [frontmatter_templates.md](../documentation/frontmatter_templates.md) - Frontmatter by document type

@@ -4,6 +4,23 @@
 
 ---
 
+<!-- ANCHOR:table-of-contents -->
+## TABLE OF CONTENTS
+
+- [1. 📖 OVERVIEW](#1--overview)
+
+---
+<!-- /ANCHOR:table-of-contents -->
+
+<!-- ANCHOR:overview -->
+## 1. 📖 OVERVIEW
+
+This README documents the purpose and usage of this spec folder and links to the primary artifacts in this directory.
+
+---
+<!-- /ANCHOR:overview -->
+
+<!-- ANCHOR:overview -->
 ## Overview
 
 This folder contains comprehensive test documentation consolidated from spec 083-speckit-reimagined-test-suite.
@@ -12,7 +29,9 @@ This folder contains comprehensive test documentation consolidated from spec 083
 **Source:** 083-speckit-reimagined-test-suite (archived)
 
 ---
+<!-- /ANCHOR:overview -->
 
+<!-- ANCHOR:contents -->
 ## Contents
 
 | File | Purpose | Lines |
@@ -22,7 +41,9 @@ This folder contains comprehensive test documentation consolidated from spec 083
 | `existing-tests-audit.md` | Audit of 29 existing test files with gap analysis | 531 |
 
 ---
+<!-- /ANCHOR:contents -->
 
+<!-- ANCHOR:test-suite-location -->
 ## Test Suite Location
 
 Actual test files are located in:
@@ -33,7 +54,9 @@ Actual test files are located in:
 Current test count: ~850+ tests across 29 files.
 
 ---
+<!-- /ANCHOR:test-suite-location -->
 
+<!-- ANCHOR:key-metrics -->
 ## Key Metrics
 
 | Metric | Value |
@@ -54,7 +77,9 @@ Current test count: ~850+ tests across 29 files.
 | W-I Infra | 32 | 22 | 68.8% |
 
 ---
+<!-- /ANCHOR:key-metrics -->
 
+<!-- ANCHOR:running-tests -->
 ## Running Tests
 
 ```bash
@@ -69,9 +94,13 @@ node tests/tier-classifier.test.js
 ```
 
 ---
+<!-- /ANCHOR:running-tests -->
 
+<!-- ANCHOR:references -->
 ## References
 
 - **Parent Spec:** `082-speckit-reimagined/spec.md`
 - **Original Spec:** `z_archive/083-speckit-reimagined-test-suite/` (archived)
 - **Test Location:** `.opencode/skill/system-spec-kit/mcp_server/tests/`
+<!-- /ANCHOR:references -->
+

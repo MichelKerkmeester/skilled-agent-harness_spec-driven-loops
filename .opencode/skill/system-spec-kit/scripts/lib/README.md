@@ -8,11 +8,27 @@ trigger_phrases:
 importance_tier: "normal"
 ---
 
+
 # Scripts Library
+
+<!-- ANCHOR:table-of-contents -->
+## TABLE OF CONTENTS
+
+- [1. 📖 OVERVIEW](#1--overview)
+- [2. 📋 CURRENT INVENTORY](#2--current-inventory)
+- [3. 📝 NOTES](#3--notes)
+- [4. 📌 QUICK VALIDATION](#4--quick-validation)
+
+<!-- /ANCHOR:table-of-contents -->
+<!-- ANCHOR:overview -->
+## 1. 📖 OVERVIEW
 
 The `lib/` directory provides reusable helper modules for memory generation, formatting, scoring, and shell script support.
 
-## Current Inventory
+<!-- /ANCHOR:overview -->
+<!-- ANCHOR:current-inventory -->
+## 2. 📋 CURRENT INVENTORY
+
 
 TypeScript modules:
 - `anchor-generator.ts`
@@ -31,14 +47,23 @@ Shell helper libraries:
 - `shell-common.sh`
 - `template-utils.sh`
 
-## Notes
+
+<!-- /ANCHOR:current-inventory -->
+<!-- ANCHOR:notes -->
+## 3. 📝 NOTES
+
 
 - `embeddings.ts` and `trigger-extractor.ts` are wrapper/re-export style modules aligned with shared package behavior.
 - `shell-common.sh` and `template-utils.sh` are used by shell workflows such as validation and upgrade operations.
 - Runtime JavaScript output is under `dist/lib/`.
 
-## Quick Validation
+
+<!-- /ANCHOR:notes -->
+<!-- ANCHOR:quick-validation -->
+## 4. 📌 QUICK VALIDATION
+
 
 ```bash
 node -e "const m=require('./.opencode/skill/system-spec-kit/scripts/dist/lib/anchor-generator'); console.log(typeof m.generateAnchorId)"
 ```
+<!-- /ANCHOR:quick-validation -->

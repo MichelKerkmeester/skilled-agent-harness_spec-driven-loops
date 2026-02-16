@@ -9,7 +9,7 @@ Templates for creating reference files in AI agent skills with deep-dive technic
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 ### Location & Naming
 
@@ -43,7 +43,7 @@ Templates for creating reference files in AI agent skills with deep-dive technic
 
 ---
 
-## 2. 📋 DOCUMENT STRUCTURE
+## 2. DOCUMENT STRUCTURE
 
 ### Document Structure: Title and Intro
 
@@ -61,7 +61,7 @@ description: [One-line description - same as intro]
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 [All detailed content goes here, NOT in the intro]
 ```
 
@@ -77,7 +77,7 @@ Step-by-step workflows for creating clean, atomic commits with proper filtering.
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 ### Purpose
 Provides systematic workflows for analyzing changes, filtering artifacts, and creating well-structured commits.
@@ -106,7 +106,7 @@ Atomic commits with clear intent + filtered artifacts = maintainable Git history
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 ### Purpose
 Provides systematic workflows...  ← Now this duplicates the intro!
@@ -161,7 +161,7 @@ Level 3: Reference files (this document)
 
 ---
 
-## 3. 🎯 WHEN TO CREATE REFERENCE FILES
+## 3. WHEN TO CREATE REFERENCE FILES
 
 ### Create Reference File When
 
@@ -208,7 +208,7 @@ Level 3: Reference files (this document)
 
 ---
 
-## 4. 🧠 AI AGENT SKILL REFERENCE CHARACTERISTICS
+## 4. AI AGENT SKILL REFERENCE CHARACTERISTICS
 
 ### Core Principle Statements
 
@@ -218,7 +218,7 @@ Level 3: Reference files (this document)
 
 **Format**:
 ```markdown
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 ### Core Principle
 
@@ -381,7 +381,7 @@ Analyze situation
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 ### Prerequisites
 Follow [standard name] for all implementations:
@@ -611,7 +611,7 @@ You MUST complete each phase before proceeding to the next.
 
 ---
 
-## 5. 🔄 CONVERTING LOGIC TO EXECUTABLE CODE
+## 5. CONVERTING LOGIC TO EXECUTABLE CODE
 
 ### When to Extract Logic from Markdown
 
@@ -698,7 +698,7 @@ def test_quick_mode():
 
 ---
 
-## 6. 📋 YAML CONFIGURATION PATTERNS
+## 6. YAML CONFIGURATION PATTERNS
 
 ### Purpose
 
@@ -814,7 +814,7 @@ class VariantDetector:
 
 ---
 
-## 7. 🐍 PYTHON SCRIPT INTEGRATION
+## 7. PYTHON SCRIPT INTEGRATION
 
 ### When to Use Python for Logic
 
@@ -938,7 +938,7 @@ def test_default_mode():
 
 ---
 
-## 8. 🏗️ STANDARD STRUCTURE TEMPLATE
+## 8. STANDARD STRUCTURE TEMPLATE
 
 ### Complete Skill Directory Structure
 
@@ -1005,7 +1005,7 @@ def test_default_mode():
 
 ---
 
-## 9. 🔗 RELATED RESOURCES
+## 9. RELATED RESOURCES
 
 ### Templates
 - [frontmatter_templates.md](../documentation/frontmatter_templates.md) - Frontmatter by document type

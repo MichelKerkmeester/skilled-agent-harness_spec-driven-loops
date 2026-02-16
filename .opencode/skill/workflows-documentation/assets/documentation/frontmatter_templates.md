@@ -9,7 +9,7 @@ Templates and validation rules for YAML frontmatter by document type.
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 ### What Is YAML Frontmatter?
 
@@ -88,7 +88,7 @@ Level 3: Field Format
 
 ---
 
-## 2. 🎯 WHEN TO ADD FRONTMATTER
+## 2. WHEN TO ADD FRONTMATTER
 
 ### Add Frontmatter When
 
@@ -164,7 +164,7 @@ Is this document invoked programmatically?
 
 ---
 
-## 3. 📋 FIELD REFERENCE
+## 3. FIELD REFERENCE
 
 ### `name` Field
 
@@ -290,7 +290,7 @@ model: opus
 
 ---
 
-## 4. 🏷️ DOCUMENT TYPE TEMPLATES
+## 4. DOCUMENT TYPE TEMPLATES
 
 ### SKILL.md Frontmatter Template
 
@@ -373,7 +373,7 @@ Brief introduction...
 
 ---
 
-## 5. ✅ VALIDATION RULES
+## 5. VALIDATION RULES
 
 ### Validation by Document Type
 
@@ -454,7 +454,7 @@ validation_rules:
 
 ---
 
-## 6. 🔧 COMMON FIXES
+## 6. COMMON FIXES
 
 ### Missing Frontmatter
 
@@ -565,7 +565,7 @@ Content...
 
 ---
 
-## 7. 🤖 AUTO-GENERATION GUIDELINES
+## 7. AUTO-GENERATION GUIDELINES
 
 ### Field Inference Rules
 
@@ -651,7 +651,7 @@ Document type detected?
 
 ---
 
-## 8. 💬 INTERACTIVE WORKFLOW
+## 8. INTERACTIVE WORKFLOW
 
 ### Adding Frontmatter Interactively
 
@@ -704,7 +704,7 @@ Press Enter to keep default, or type new value.
 
 ---
 
-## 9. 📊 BEST PRACTICES SUMMARY
+## 9. BEST PRACTICES SUMMARY
 
 ### DO
 
@@ -728,7 +728,7 @@ Press Enter to keep default, or type new value.
 
 ---
 
-## 10. 📋 QUICK REFERENCE
+## 10. QUICK REFERENCE
 
 ### Frontmatter Decision Tree
 
@@ -763,7 +763,7 @@ Document type?
 
 ---
 
-## 11. 🔗 RELATED RESOURCES
+## 11. RELATED RESOURCES
 
 ### Templates
 - [skill_md_template.md](../opencode/skill_md_template.md) - SKILL.md file templates

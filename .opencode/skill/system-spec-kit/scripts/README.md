@@ -9,11 +9,28 @@ trigger_phrases:
 importance_tier: "normal"
 ---
 
+
 # System-Spec-Kit Scripts
+
+<!-- ANCHOR:table-of-contents -->
+## TABLE OF CONTENTS
+
+- [1. 📖 OVERVIEW](#1--overview)
+- [2. 📋 INVENTORY SNAPSHOT](#2--inventory-snapshot)
+- [3. 📌 POST-SPEC124/128/129 WORKFLOW](#3--post-spec124128129-workflow)
+- [4. 📌 BUILD AND RUNTIME](#4--build-and-runtime)
+- [5. 📚 RELATED READMES](#5--related-readmes)
+
+<!-- /ANCHOR:table-of-contents -->
+<!-- ANCHOR:overview -->
+## 1. 📖 OVERVIEW
 
 This directory contains the shell and TypeScript tooling that powers spec creation, upgrades, validation, memory save, and context indexing.
 
-## Inventory Snapshot
+<!-- /ANCHOR:overview -->
+<!-- ANCHOR:inventory-snapshot -->
+## 2. 📋 INVENTORY SNAPSHOT
+
 
 Top-level files:
 - `common.sh`
@@ -33,7 +50,11 @@ Primary script directories:
 - `lib/` - 10 TypeScript libraries plus 3 shell helper libraries
 - `tests/` - JS, shell, and Python test suites for scripts and modules
 
-## Post-Spec124/128/129 Workflow
+
+<!-- /ANCHOR:inventory-snapshot -->
+<!-- ANCHOR:post-spec124128129-workflow -->
+## 3. 📌 POST-SPEC124/128/129 WORKFLOW
+
 
 For spec-level upgrades and memory-safe docs flow:
 1. Run `spec/upgrade-level.sh` to inject level-specific template sections.
@@ -44,7 +65,11 @@ For spec-level upgrades and memory-safe docs flow:
 
 Anchor requirements introduced in this workflow are validated by `rules/check-anchors.sh` and enforced through `spec/validate.sh`.
 
-## Build and Runtime
+
+<!-- /ANCHOR:post-spec124128129-workflow -->
+<!-- ANCHOR:build-and-runtime -->
+## 4. 📌 BUILD AND RUNTIME
+
 
 TypeScript sources compile to `dist/`:
 
@@ -65,7 +90,11 @@ JSON mode is also supported:
 node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js /tmp/save-context-data.json specs/003-system-spec-kit/130-memory-overhaul-and-agent-upgrade-release
 ```
 
-## Related Readmes
+
+<!-- /ANCHOR:build-and-runtime -->
+<!-- ANCHOR:related-readmes -->
+## 5. 📚 RELATED READMES
+
 
 - `spec/README.md`
 - `core/README.md`
@@ -75,3 +104,4 @@ node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js /tm
 - `loaders/README.md`
 - `renderers/README.md`
 - `lib/README.md`
+<!-- /ANCHOR:related-readmes -->
