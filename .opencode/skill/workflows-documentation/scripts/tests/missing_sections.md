@@ -4,13 +4,13 @@
 
 ---
 
-## 1. 🎯 WHEN TO USE
+## 1. WHEN TO USE
 
 Use this skill when testing.
 
 ---
 
-## 2. 🔧 RANDOM SECTION
+## 2. RANDOM SECTION
 
 This SKILL.md is missing the required sections:
 - smart_routing

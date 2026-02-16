@@ -79,3 +79,5 @@ tmp/
 # Non-dev AI systems specs (project-specific, not framework)
 # ───────────────────────────────────────────
 .opencode/specs/000-ai-systems-non-dev
+
+.opencode/agent/.provider-backups/

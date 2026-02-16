@@ -17,19 +17,19 @@ This folder contains the scripts that manage provider profile switching while ke
 <!-- ANCHOR:table-of-contents -->
 ## TABLE OF CONTENTS
 
-- [1. 📖 OVERVIEW](#1--overview)
-- [2. ⚙️ SCRIPTS](#2-️-scripts)
-- [3. 📁 MANAGED AGENT SET](#3--managed-agent-set)
-- [4. 🔄 ACTIVATION LOGIC](#4--activation-logic)
-- [5. 💡 USAGE](#5--usage)
-- [6. 🚪 EXIT CODES](#6--exit-codes)
-- [7. 🛠️ TROUBLESHOOTING](#7-️-troubleshooting)
+- [1. OVERVIEW](#1-overview)
+- [2. SCRIPTS](#2-scripts)
+- [3. MANAGED AGENT SET](#3-managed-agent-set)
+- [4. ACTIVATION LOGIC](#4-activation-logic)
+- [5. USAGE](#5-usage)
+- [6. EXIT CODES](#6-exit-codes)
+- [7. TROUBLESHOOTING](#7-troubleshooting)
 
 ---
 
 <!-- /ANCHOR:table-of-contents -->
 <!-- ANCHOR:overview -->
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 Runtime agents stay in `.opencode/agent/*.md`.
 
@@ -43,7 +43,7 @@ Activation copies the selected provider profile into runtime files, verifies par
 
 <!-- /ANCHOR:overview -->
 <!-- ANCHOR:scripts -->
-## 2. ⚙️ SCRIPTS
+## 2. SCRIPTS
 
 | Script | Purpose |
 |--------|---------|
@@ -54,7 +54,7 @@ Activation copies the selected provider profile into runtime files, verifies par
 
 <!-- /ANCHOR:scripts -->
 <!-- ANCHOR:managed-agent-set -->
-## 3. 📁 MANAGED AGENT SET
+## 3. MANAGED AGENT SET
 
 Both scripts manage the same 8 runtime files:
 
@@ -71,7 +71,7 @@ Both scripts manage the same 8 runtime files:
 
 <!-- /ANCHOR:managed-agent-set -->
 <!-- ANCHOR:activation-logic -->
-## 4. 🔄 ACTIVATION LOGIC
+## 4. ACTIVATION LOGIC
 
 `activate-provider.sh` performs these steps:
 
@@ -88,7 +88,7 @@ Both scripts manage the same 8 runtime files:
 
 <!-- /ANCHOR:activation-logic -->
 <!-- ANCHOR:usage -->
-## 5. 💡 USAGE
+## 5. USAGE
 
 ```bash
 # Dry run (no file writes)
@@ -108,7 +108,7 @@ Both scripts manage the same 8 runtime files:
 
 <!-- /ANCHOR:usage -->
 <!-- ANCHOR:exit-codes -->
-## 6. 🚪 EXIT CODES
+## 6. EXIT CODES
 
 ### activate-provider.sh
 
@@ -132,7 +132,7 @@ Both scripts manage the same 8 runtime files:
 
 <!-- /ANCHOR:exit-codes -->
 <!-- ANCHOR:troubleshooting -->
-## 7. 🛠️ TROUBLESHOOTING
+## 7. TROUBLESHOOTING
 
 - If activation fails with verification errors, check profile file integrity and re-run status.
 - If status shows mixed/unknown, re-activate a provider and verify all 8 files match.

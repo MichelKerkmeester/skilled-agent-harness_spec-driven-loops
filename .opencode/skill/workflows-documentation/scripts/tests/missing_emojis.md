@@ -1,6 +1,6 @@
-# Test README - Missing H2 Emojis
+# Test README - No H2 Emojis
 
-> README with H2 headers missing emojis (blocking error)
+> README with H2 headers without emojis (valid - emojis not required)
 
 ---
 
@@ -13,13 +13,13 @@
 
 ## 1. OVERVIEW
 
-This H2 header is missing an emoji.
-Should trigger `missing_h2_emoji` error.
+This H2 header has no emoji.
+Emojis are not required on H2 headers.
 
 ---
 
 ## 2. USAGE
 
-This H2 header is also missing an emoji.
+This H2 header also has no emoji.
 
 ---

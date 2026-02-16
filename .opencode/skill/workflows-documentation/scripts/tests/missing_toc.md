@@ -4,14 +4,14 @@
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 This README is missing the TABLE OF CONTENTS section.
 It should trigger a `missing_toc` error.
 
 ---
 
-## 2. 💡 USAGE
+## 2. USAGE
 
 Usage content here.
 

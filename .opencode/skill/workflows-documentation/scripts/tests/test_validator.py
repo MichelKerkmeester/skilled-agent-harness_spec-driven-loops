@@ -31,14 +31,14 @@ TEST_CASES = [
         "doc_type": "readme",
         "expected_exit": 0,
         "expected_errors": [],
-        "description": "Valid README with TOC, double-dash anchors, and H2 emojis"
+        "description": "Valid README with TOC and double-dash anchors"
     },
     {
         "file": "valid_skill.md",
         "doc_type": "skill",
         "expected_exit": 0,
         "expected_errors": [],
-        "description": "Valid SKILL.md with all required sections and emojis"
+        "description": "Valid SKILL.md with all required sections"
     },
     {
         "file": "missing_toc.md",
@@ -57,9 +57,9 @@ TEST_CASES = [
     {
         "file": "missing_emojis.md",
         "doc_type": "readme",
-        "expected_exit": 1,
-        "expected_errors": ["missing_h2_emoji"],
-        "description": "README with H2 headers missing required emojis"
+        "expected_exit": 0,
+        "expected_errors": [],
+        "description": "README without H2 emojis (valid - emojis not required)"
     },
     {
         "file": "missing_sections.md",
