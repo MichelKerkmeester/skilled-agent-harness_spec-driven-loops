@@ -1,0 +1,3 @@
+Add user authentication with OAuth2 and JWT tokens.
+This will require database changes for user sessions.
+Multiple files will be affected including auth service, middleware, and API routes.
