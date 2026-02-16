@@ -75,3 +75,7 @@ __pycache__/
 # ───────────────────────────────────────────
 scratch/
 tmp/
+
+# Non-dev AI systems specs (project-specific, not framework)
+# ───────────────────────────────────────────
+.opencode/specs/000-ai-systems-non-dev
