@@ -116,10 +116,10 @@ gh release create v2.1.0.0 \
 | Checkpoint | Approver | Status | Date |
 |------------|----------|--------|------|
 | Release Plan Review | Spec Owner | Approved | 2026-02-16 |
-| All Tasks Complete | Tech Lead | Pending | TBD |
-| Pre-Release Checklist | QA | Pending | TBD |
-| Tag Creation Approval | Release Manager | Pending | TBD |
-| Publication Approval | Spec Owner | Pending | TBD |
+| All Tasks Complete | Tech Lead | Pending | Pending publication |
+| Pre-Release Checklist | QA | Pending | Pending publication |
+| Tag Creation Approval | Release Manager | Pending | Pending publication |
+| Publication Approval | Spec Owner | Pending | Pending publication |
 <!-- /ANCHOR:approval-workflow -->
 
 ---

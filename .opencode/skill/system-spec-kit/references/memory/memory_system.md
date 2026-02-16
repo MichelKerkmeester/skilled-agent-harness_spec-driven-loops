@@ -38,10 +38,10 @@ The memory system indexes content from five distinct sources:
 
 | Source | Location Pattern | Memory Type | Default Tier | Discovery |
 |--------|-----------------|-------------|--------------|-----------|
-| **Memory Files** | `specs/*/memory/*.md` | Varies (episodic, procedural, etc.) | `normal` | `findMemoryFiles()` |
+| **Memory Files** | `specs/*/memory/*.{md,txt}` | Varies (episodic, procedural, etc.) | `normal` | `findMemoryFiles()` |
 | **Constitutional Rules** | `.opencode/skill/*/constitutional/*.md` | `meta-cognitive` | `constitutional` | `findConstitutionalFiles()` |
-| **Skill READMEs** | `.opencode/skill/**/README.md` | `semantic` | `normal` | `findSkillReadmes()` |
-| **Project READMEs** | `README.md`, `*/README.md` | `semantic` | `normal` | `findProjectReadmes()` |
+| **Skill READMEs** | `.opencode/skill/**/README.{md,txt}` | `semantic` | `normal` | `findSkillReadmes()` |
+| **Project READMEs** | `README.{md,txt}`, `*/README.{md,txt}` | `semantic` | `normal` | `findProjectReadmes()` |
 | **Spec Documents** | `.opencode/specs/**/*.md` | Per-type (spec, plan, tasks, etc.) | `normal` | `findSpecDocuments()` |
 
 **Content Source Behavior:**
@@ -49,7 +49,7 @@ The memory system indexes content from five distinct sources:
 - **Memory Files** — Session-specific context generated via `generate-context.js`. Subject to temporal decay.
 - **Constitutional Rules** — Always-surface critical rules. Injected at top of every search result. No decay.
 - **Skill READMEs** — Skill documentation with `<!-- ANCHOR:name -->` tags for section-level retrieval. Classified as `semantic` type with `normal` tier and reduced importance weight (0.3 vs default 0.5). This ensures README documentation never outranks user work memories (decisions, context, blockers) in search results. READMEs surface only when highly relevant to the query. Grouped under `skill:SKILL-NAME` identifier.
-- **Project READMEs** — Discovered via `findProjectReadmes()`, indexed at weight 0.4. Includes root `README.md` and key directory READMEs (e.g., `src/README.md`, `docs/README.md`). Provides project-level context such as setup instructions, architecture overviews, and contribution guidelines. Weight 0.4 ranks them above skill READMEs (0.3) but below user work memories (0.5). Controlled by `includeReadmes` parameter on `memory_index_scan()`. See [readme_indexing.md](./readme_indexing.md) for full pipeline details.
+- **Project READMEs** — Discovered via `findProjectReadmes()`, indexed at weight 0.4. Includes root `README.md` and key directory READMEs (e.g., `src/README.md`, `docs/README.md`, `.opencode/command/**/README.txt`). Provides project-level context such as setup instructions, architecture overviews, and contribution guidelines. Weight 0.4 ranks them above skill READMEs (0.3) but below user work memories (0.5). Controlled by `includeReadmes` parameter on `memory_index_scan()`. See [readme_indexing.md](./readme_indexing.md) for full pipeline details.
 - **Spec Documents** — Discovered via `findSpecDocuments()` which walks `.opencode/specs/`. Indexes spec folder documentation (specs, plans, tasks, checklists, decision records, implementation summaries, research, handovers) with 11 document types and per-type scoring multipliers: spec (1.4x), plan (1.3x), constitutional (2.0x), memory (1.0x), readme (0.8x), scratch (0.6x). Controlled by `includeSpecDocs` parameter (default: `true`) or the `SPECKIT_INDEX_SPEC_DOCS` environment variable. Causal chains are created via `createSpecDocumentChain()` linking spec->plan->tasks->implementation_summary.
 
 **Post-implementation hardening (spec 126 follow-up):**
@@ -60,14 +60,14 @@ The memory system indexes content from five distinct sources:
 - Causal edge conflict-update semantics to keep edge IDs stable
 
 **Skill README Indexing Pipeline:**
-1. `findSkillReadmes()` recursively discovers `README.md` files under `.opencode/skill/`
+1. `findSkillReadmes()` recursively discovers `README.md` and `README.txt` files under `.opencode/skill/`
 2. `isMemoryFile()` validates each README as an indexable file
 3. `extractSpecFolder()` returns `skill:SKILL-NAME` as the folder identifier
 4. `PATH_TYPE_PATTERNS` classifies as `semantic` memory type
 5. Content is embedded and indexed alongside memory and constitutional files
 
 **Project README Indexing Pipeline:**
-1. `findProjectReadmes()` discovers `README.md` files in the project root and key directories
+1. `findProjectReadmes()` discovers `README.md` and `README.txt` files in the project root and key directories
 2. Files are indexed at importance weight 0.4 with `semantic` memory type
 3. Controlled by `includeReadmes` parameter (default: `true`) on `memory_index_scan()`
 4. See [readme_indexing.md](./readme_indexing.md) for discovery rules, filtering, and anchor extraction
@@ -143,7 +143,7 @@ Six-tier system for prioritizing memory relevance:
 | `specFolder` | string | - | Limit scan to specific spec folder |
 | `force` | boolean | false | Force re-index all files (ignore content hash) |
 | `includeConstitutional` | boolean | true | Scan `.opencode/skill/*/constitutional/` directories |
-| `includeReadmes` | boolean | true | Scan for README.md files (skill READMEs and project READMEs). When true, discovers and indexes READMEs with reduced importance (0.3 for skill, 0.4 for project) to ensure they never outrank user work memories. |
+| `includeReadmes` | boolean | true | Scan for README.md and README.txt files (skill READMEs and project READMEs). When true, discovers and indexes READMEs with reduced importance (0.3 for skill, 0.4 for project) to ensure they never outrank user work memories. |
 | `includeSpecDocs` | boolean | true | Scan for spec folder documents in `.opencode/specs/`. When true, discovers and indexes specs, plans, tasks, decision records, etc. with document-type scoring multipliers (11 types). Also controllable via `SPECKIT_INDEX_SPEC_DOCS` env var. |
 | `incremental` | boolean | true | Skip files whose mtime and content hash are unchanged since last index |
 

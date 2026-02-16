@@ -243,7 +243,7 @@ node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js dat
 
 When no spec folder is provided, the AI agent:
 
-1. **Checks recent memory files** - `ls -t specs/*/memory/*.md | head -1`
+1. **Checks recent memory files** - `ls -t specs/*/memory/*.{md,txt} | head -1`
 2. **Asks user** - "Which spec folder should I save to?"
 3. **Suggests highest-numbered** - `ls specs/ | grep "^[0-9]" | sort -rn | head -1`
 
@@ -521,7 +521,7 @@ node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js dat
 ls -d specs/[0-9][0-9][0-9]-*/
 
 # Find most recently modified memory file
-ls -t specs/*/memory/*.md 2>/dev/null | head -1
+ls -t specs/*/memory/*.{md,txt} 2>/dev/null | head -1
 
 # Count memories per spec folder
 for d in specs/*/memory/; do

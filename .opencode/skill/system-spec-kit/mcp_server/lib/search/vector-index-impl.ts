@@ -774,7 +774,10 @@ function run_migrations(database: any, from_version: any, to_version: any) {
         database.exec(`
           UPDATE memory_index SET document_type = 'readme'
           WHERE document_type = 'memory'
-            AND file_path LIKE '%readme.md'
+            AND (
+              LOWER(file_path) LIKE '%readme.md'
+              OR LOWER(file_path) LIKE '%readme.txt'
+            )
         `);
         logger.info('Migration v13: Backfilled document_type for constitutional and readme files');
       } catch (e: any) {

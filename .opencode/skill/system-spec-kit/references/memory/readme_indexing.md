@@ -33,11 +33,11 @@ The memory system indexes content from five distinct sources:
 
 | #   | Source                   | Variable              | Discovery Function          | Location Pattern                        |
 | --- | ------------------------ | --------------------- | --------------------------- | --------------------------------------- |
-| 1   | **Memory Files**         | `memoryFiles`         | `findMemoryFiles()`         | `specs/*/memory/*.md`                   |
+| 1   | **Memory Files**         | `specFiles`           | `findMemoryFiles()`         | `specs/*/memory/*.{md,txt}`             |
 | 2   | **Constitutional Rules** | `constitutionalFiles` | `findConstitutionalFiles()` | `.opencode/skill/*/constitutional/*.md` |
-| 3   | **Skill READMEs**        | `skillReadmes`        | `findSkillReadmes()`        | `.opencode/skill/*/README.md`           |
-| 4   | **Project READMEs**      | `projectReadmes`      | `findProjectReadmes()`      | `**/README.md` (project root)           |
-| 5   | **Spec Documents**       | `specDocuments`       | `findSpecDocuments()`       | `.opencode/specs/**/*.md`               |
+| 3   | **Skill READMEs**        | `skillReadmes`        | `findSkillReadmes()`        | `.opencode/skill/*/README.{md,txt}`     |
+| 4   | **Project READMEs**      | `projectReadmes`      | `findProjectReadmes()`      | `**/README.{md,txt}` (project root)     |
+| 5   | **Spec Documents**       | `specDocFiles`        | `findSpecDocuments()`       | `.opencode/specs/**/*.md`               |
 
 Sources 3 and 4 are controlled by the `includeReadmes` parameter. Source 5 is controlled by the `includeSpecDocs` parameter (default: `true`) or the `SPECKIT_INDEX_SPEC_DOCS` environment variable. The spec-document source relies on schema v13 fields (`document_type`, `spec_level`) introduced in spec 126.
 
@@ -68,25 +68,25 @@ memory_index_scan({ includeReadmes: true })
 
 ### findSkillReadmes()
 
-Scans `.opencode/skill/*/README.md` for skill-level documentation.
+Scans `.opencode/skill/**/README.md` and `.opencode/skill/**/README.txt` for skill-level documentation.
 
 | Property              | Value                          |
 | --------------------- | ------------------------------ |
 | **Scan root**         | `.opencode/skill/`             |
-| **Pattern**           | `*/README.md` (one level deep) |
+| **Pattern**           | `**/README.{md,txt}` (recursive) |
 | **Spec folder ID**    | `skill:SKILL-NAME`             |
 | **Memory type**       | `semantic`                     |
 | **Importance weight** | `0.3`                          |
 
 ### findProjectReadmes()
 
-Scans the project root for any `README.md` files, excluding common non-project directories.
+Scans the project root for any `README.md` and `README.txt` files, excluding common non-project directories.
 
 | Property              | Value                      |
 | --------------------- | -------------------------- |
 | **Scan root**         | Project root directory     |
-| **Pattern**           | `**/README.md` (recursive) |
-| **Spec folder ID**    | `project:PATH`             |
+| **Pattern**           | `**/README.{md,txt}` (recursive) |
+| **Spec folder ID**    | `project-readmes`          |
 | **Memory type**       | `semantic`                 |
 | **Importance weight** | `0.4`                      |
 

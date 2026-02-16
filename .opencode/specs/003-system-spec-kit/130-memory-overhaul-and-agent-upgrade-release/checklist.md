@@ -177,7 +177,7 @@
 | P1 Items | 28 | 22/28 |
 | P2 Items | 3 | 0/3 |
 
-**Verification Date**: 2026-02-16 (Task 06 completed)
+**Verification Date**: 2026-02-16 (Task 07 prepared; publication still blocked)
 <!-- /ANCHOR:summary -->
 
 ---

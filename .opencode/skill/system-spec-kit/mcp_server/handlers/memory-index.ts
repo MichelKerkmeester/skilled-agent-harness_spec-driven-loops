@@ -47,6 +47,13 @@ const SPEC_DOCUMENT_FILENAMES = new Set([
 /** Directories to exclude from spec document discovery */
 const SPEC_DOC_EXCLUDE_DIRS = new Set(['z_archive', 'scratch', 'memory', 'node_modules']);
 
+/** README filename matcher for markdown and plain text docs */
+const README_FILE_PATTERN = /^readme\.(md|txt)$/i;
+
+function isReadmeFileName(fileName: string): boolean {
+  return README_FILE_PATTERN.test(fileName);
+}
+
 /**
  * Discover spec folder documents (.opencode/specs/ directory tree).
  * Finds spec.md, plan.md, tasks.md, checklist.md, decision-record.md,
@@ -245,7 +252,7 @@ function findConstitutionalFiles(workspacePath: string): string[] {
         const files = fs.readdirSync(constitutionalDir, { withFileTypes: true });
         for (const file of files) {
           if (file.isFile() && file.name.endsWith('.md')) {
-            if (file.name.toLowerCase() === 'readme.md') continue;
+            if (isReadmeFileName(file.name)) continue;
             results.push(path.join(constitutionalDir, file.name));
           }
         }
@@ -262,8 +269,8 @@ function findConstitutionalFiles(workspacePath: string): string[] {
 }
 
 /**
- * Find README.md files in skill directories for indexing.
- * Discovers READMEs recursively under .opencode/skill/ directories.
+ * Find README.md and README.txt files in skill directories for indexing.
+ * Discovers README docs recursively under .opencode/skill/ directories.
  * Per ADR-003: Separate discovery path from constitutional files.
  */
 function findSkillReadmes(workspacePath: string): string[] {
@@ -274,7 +281,7 @@ function findSkillReadmes(workspacePath: string): string[] {
     return results;
   }
 
-  // Recursive function to find README.md files
+  // Recursive function to find README docs
   function walkDir(dir: string): void {
     try {
       const entries = fs.readdirSync(dir, { withFileTypes: true });
@@ -286,7 +293,7 @@ function findSkillReadmes(workspacePath: string): string[] {
             continue;
           }
           walkDir(fullPath);
-        } else if ((entry.isFile() || entry.isSymbolicLink()) && entry.name.toLowerCase() === 'readme.md') {
+        } else if ((entry.isFile() || entry.isSymbolicLink()) && isReadmeFileName(entry.name)) {
           results.push(fullPath);
         }
       }
@@ -300,7 +307,7 @@ function findSkillReadmes(workspacePath: string): string[] {
 }
 
 /**
- * Find project/code-folder README files (not under .opencode/skill/).
+ * Find project/code-folder README docs (not under .opencode/skill/).
  * Uses catch-all discovery with exclusion patterns.
  */
 async function findProjectReadmes(workspaceRoot: string): Promise<string[]> {
@@ -323,7 +330,7 @@ async function findProjectReadmes(workspaceRoot: string): Promise<string[]> {
           continue;
         }
 
-        if (entry.name.toLowerCase() === 'readme.md') {
+        if (isReadmeFileName(entry.name)) {
           readmes.push(fullPath);
         }
       }

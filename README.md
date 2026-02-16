@@ -14,19 +14,19 @@
 
 ## TABLE OF CONTENTS
 
-- [1. 📖 OVERVIEW](#1--overview)
-- [2. 🚀 QUICK START](#2--quick-start)
-- [3. 📁 STRUCTURE](#3--structure)
-- [4. ⚡ FEATURES](#4--features)
-- [5. ⚙️ CONFIGURATION](#5--configuration)
-- [6. 💡 USAGE EXAMPLES](#6--usage-examples)
-- [7. 🛠️ TROUBLESHOOTING](#7--troubleshooting)
-- [8. ❓ FAQ](#8--faq)
-- [9. 📚 RELATED DOCUMENTS](#9--related-documents)
+- [1. OVERVIEW](#1-overview)
+- [2. QUICK START](#2-quick-start)
+- [3. STRUCTURE](#3-structure)
+- [4. FEATURES](#4-features)
+- [5. CONFIGURATION](#5-configuration)
+- [6. USAGE EXAMPLES](#6-usage-examples)
+- [7. TROUBLESHOOTING](#7-troubleshooting)
+- [8. FAQ](#8-faq)
+- [9. RELATED DOCUMENTS](#9-related-documents)
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 ### What is This?
 
@@ -104,7 +104,7 @@ Everything connects. Memory files live *inside* spec folders. Gates enforce docu
 
 ---
 
-## 2. 🚀 QUICK START
+## 2. QUICK START
 
 ### Prerequisites
 
@@ -140,7 +140,7 @@ opencode
 
 ---
 
-## 3. 📁 STRUCTURE
+## 3. STRUCTURE
 
 ```
 .opencode/
@@ -177,7 +177,7 @@ specs/                        # Spec folder documentation
 
 ---
 
-## 4. ⚡ FEATURES
+## 4. FEATURES
 
 <details open>
 <summary><strong>Spec Kit Documentation</strong>: 4 levels, 84 templates, 13 validation rules</summary>
@@ -266,9 +266,9 @@ The memory index builds from 5 distinct source types, each with its own discover
 | - | ------------------------ | --------------------------------------- | ------ | ------------------------------------------ |
 | 1 | **Constitutional docs**  | `constitutional.md` files               | 1.0    | System rules (never decay, always surface) |
 | 2 | **Spec folder documents**| `.opencode/specs/**/*.md`               | 0.6-0.8| Specs, plans, tasks, decisions, summaries  |
-| 3 | **Memory files**         | `specs/###-feature/memory/*.md`         | 0.5    | Session context, decisions, progress       |
-| 4 | **Project READMEs**      | `.opencode/**/README.md`, root README   | 0.4    | Architecture, structure, conventions       |
-| 5 | **Skill READMEs**        | `.opencode/skill/*/README.md`           | 0.3    | Domain expertise, tool documentation       |
+| 3 | **Memory files**         | `specs/###-feature/memory/*.{md,txt}`   | 0.5    | Session context, decisions, progress       |
+| 4 | **Project READMEs**      | `.opencode/**/README.{md,txt}`, root README | 0.4 | Architecture, structure, conventions       |
+| 5 | **Skill READMEs**        | `.opencode/skill/*/README.{md,txt}`     | 0.3    | Domain expertise, tool documentation       |
 
 Source 2 was added in spec 126 — prior to that, spec folder documents (the most authoritative project knowledge) were invisible to memory search. Controlled via `includeSpecDocs` parameter on `memory_index_scan` and `SPECKIT_INDEX_SPEC_DOCS` environment variable.
 
@@ -735,7 +735,7 @@ Every component follows standardized patterns for customization:
 
 ---
 
-## 5. ⚙️ CONFIGURATION
+## 5. CONFIGURATION
 
 ### Configuration File
 
@@ -788,7 +788,7 @@ See individual install guides in [`.opencode/install_guides/`](.opencode/install
 
 ---
 
-## 6. 💡 USAGE EXAMPLES
+## 6. USAGE EXAMPLES
 
 Real workflows, not toy examples.
 
@@ -870,7 +870,7 @@ memory_index_scan({ includeSpecDocs: false })
 
 ---
 
-## 7. 🛠️ TROUBLESHOOTING
+## 7. TROUBLESHOOTING
 
 Something broken? Start here.
 
@@ -942,7 +942,7 @@ cd .opencode/skill/system-spec-kit && npm run test:cli
 
 ---
 
-## 8. ❓ FAQ
+## 8. FAQ
 
 ### General Questions
 
@@ -1008,7 +1008,7 @@ A: Minimal. SQLite databases are compact. A project with 100+ memories typically
 
 ---
 
-## 9. 📚 RELATED DOCUMENTS
+## 9. RELATED DOCUMENTS
 
 ### Internal Documentation
 

@@ -205,7 +205,7 @@ function calculateDocumentWeight(filePath: string, documentType?: string): numbe
 
   // Fallback: path-based heuristic (backward compatibility)
   const normalizedPath = filePath.replace(/\\/g, '/');
-  const isReadme = normalizedPath.toLowerCase().endsWith('readme.md');
+  const isReadme = /readme\.(md|txt)$/i.test(normalizedPath);
   const isSkillRm = normalizedPath.toLowerCase().includes('.opencode/skill/') && isReadme;
   if (normalizedPath.includes('/scratch/')) return 0.25;
   return isSkillRm ? 0.3 : (isReadme ? 0.4 : 0.5);
@@ -1026,7 +1026,7 @@ async function handleMemorySave(args: SaveArgs): Promise<MCPResponse> {
   const validatedPath: string = validateFilePathLocal(file_path);
 
   if (!memoryParser.isMemoryFile(validatedPath)) {
-    throw new Error('File must be a .md file in: specs/**/memory/, specs/**/ (spec docs), .opencode/skill/*/constitutional/, or a README.md');
+    throw new Error('File must be a .md or .txt file in: specs/**/memory/, specs/**/ (spec docs), .opencode/skill/*/constitutional/, or README.md/README.txt paths');
   }
 
   // PRE-FLIGHT VALIDATION

@@ -4,7 +4,7 @@ The **Public repo** is the source of truth for the OpenCode framework. Projects 
 
 ---
 
-## 1. 🏗️ ARCHITECTURE
+## 1. ARCHITECTURE
 
 ```text
 Public Repo (source of truth)
@@ -31,7 +31,7 @@ When `.opencode/` is a symlink, Node.js `__dirname` in CommonJS resolves to the 
 
 ---
 
-## 2. 🔗 REPOSITORY LOCATIONS
+## 2. REPOSITORY LOCATIONS
 
 | Location                    | Path/URL                                                         |
 | --------------------------- | ---------------------------------------------------------------- |
@@ -40,7 +40,7 @@ When `.opencode/` is a symlink, Node.js `__dirname` in CommonJS resolves to the 
 
 ---
 
-## 3. 🗂️ SHARED VS PROJECT-SPECIFIC
+## 3. SHARED VS PROJECT-SPECIFIC
 
 ### Shared (via symlink — lives in Public repo)
 
@@ -65,7 +65,7 @@ When `.opencode/` is a symlink, Node.js `__dirname` in CommonJS resolves to the 
 
 ---
 
-## 4. 🚀 RELEASE WORKFLOW
+## 4. RELEASE WORKFLOW
 
 Since `.opencode/` is a symlink, the old "sync" step is eliminated. Changes to the framework are made directly in the Public repo.
 
@@ -98,7 +98,7 @@ No Release   Full Release
            │
     ┌──────┴──────┐
     │   PHASE 3   │ ─── Show changes, get approval
-    │   REVIEW    │◄─── ⛔ STOP: User approval required
+    │   REVIEW    │<--- STOP: User approval required
     └──────┬──────┘
            │
     ┌──────┴──────┐
@@ -137,7 +137,7 @@ No Release   Full Release
 
 ### Phase 3: REVIEW
 
-> ⛔ **HARD STOP:** Do NOT proceed without user approval.
+> **HARD STOP:** Do NOT proceed without user approval.
 
 ```bash
 cd ~/your-project/
@@ -168,7 +168,7 @@ gh release create vX.X.X.X \
 
 ---
 
-## 5. 📋 CURRENT RELEASE
+## 5. CURRENT RELEASE
 
 | Field              | Value                                                                                  |
 | ------------------ | -------------------------------------------------------------------------------------- |
@@ -186,7 +186,7 @@ Release notes for each version are stored as individual files in `changelog/vX.X
 
 ---
 
-## 6. ⚙️ ADDING A NEW PROJECT
+## 6. ADDING A NEW PROJECT
 
 To connect a new project to the shared OpenCode framework:
 
@@ -213,9 +213,9 @@ echo ".opencode-local/" >> .gitignore
 
 ---
 
-## 7. 📝 RELEASE NOTES TEMPLATE
+## 7. RELEASE NOTES TEMPLATE
 
-GitHub release notes format optimized for scannability. Uses H2/H3 structure with emoji headers.
+GitHub release notes format optimized for scannability. Uses H2/H3 structure with category headers.
 
 ### 7.1 Format
 
@@ -224,12 +224,12 @@ Short summary (1-2 sentences) with **bold key stats** like counts, percentages, 
 
 ## Highlights
 
-### 🔧 Category Title
+### Category: Fixes
 - **Feature name**: Description of what it does
 - **Another feature**: More details here
 - **Path format**: `old/path` → `new/path` (use arrows for changes)
 
-### 📝 Another Category
+### Category: Documentation
 - **Item one**: Description
 - **Item two**: Description with `code` references
 
@@ -246,24 +246,24 @@ Or for simple patches: "No action required. Pull latest to get [description]."
 
 ### 7.2 Rules
 
-> **Note:** Emoji headers are used **only** for GitHub release notes (published via `gh release create`). The local changelog files in `.opencode/changelog/` use plain text headers without emojis.
+> **Note:** Category headers are used for GitHub release notes and local changelog files should stay plain text.
 
 **Structure:**
 - 1-2 sentence summary with **bold** key stats (counts, percentages, spec numbers)
 - `## Highlights` as main H2 section
-- `### 🔧 Emoji Title` for H3 category headers (GitHub release notes only)
+- `### Category: <Title>` for H3 category headers
 - Bullet points with **bold label**: description
 - `## Files Changed` section listing affected files
 - `## Upgrade` section (always last)
 
-**Emoji vocabulary for H3 headers:**
-- `🔧` — Fixes, repairs, patches
-- `🏗️` — Architecture, structure changes
-- `📝` — Documentation, templates
-- `🧪` — Tests, validation
-- `📋` — Commands, workflows
-- `✨` — New features
-- `⚠️` — Breaking changes
+**Category vocabulary for H3 headers:**
+- `Fixes` - repairs, patches
+- `Architecture` - structure changes
+- `Documentation` - templates
+- `Testing` - validation
+- `Commands` - workflows
+- `Features` - new items
+- `Breaking Changes` - compatibility impacts
 
 **Inline formatting:**
 - `·` (middle dot) for compact file lists: `file1.yaml` · `file2.yaml`
@@ -276,15 +276,15 @@ Or for simple patches: "No action required. Pull latest to get [description]."
 Before publishing:
 - [ ] 1-2 sentence summary with **bold** key stats
 - [ ] `## Highlights` H2 section present
-- [ ] `### 🔧 Emoji Title` H3 headers for categories
+- [ ] `### Category: <Title>` H3 headers for categories
 - [ ] Bullet points use **bold label**: description format
 - [ ] `## Files Changed` section listing affected files
 - [ ] `## Upgrade` section last
-- [ ] Emojis from approved vocabulary only
+- [ ] Category labels are consistent and plain text
 
 ---
 
-## 8. 📖 VERSIONING SCHEME
+## 8. VERSIONING SCHEME
 
 Releases use a 4-part versioning scheme: `MAJOR.MINOR.SERIES.PATCH`
 
@@ -319,7 +319,7 @@ Releases use a 4-part versioning scheme: `MAJOR.MINOR.SERIES.PATCH`
 
 ---
 
-## 9. 💡 NOTES
+## 9. NOTES
 
 - **Source of truth**: Public repo contains the authoritative OpenCode framework
 - **Symlink model**: Projects consume the framework via `.opencode/` symlink

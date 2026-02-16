@@ -26,6 +26,10 @@ describe('MEMORY PARSER - README INDEXING', () => {
       expect(mod.isMemoryFile('/project/.opencode/skill/my-skill/subdir/README.md')).toBe(true);
     });
 
+    it('R03b: accepts skill README.txt', () => {
+      expect(mod.isMemoryFile('/project/.opencode/skill/my-skill/README.txt')).toBe(true);
+    });
+
     it('R04: rejects skill constitutional README.md', () => {
       // constitutional dir READMEs are explicitly excluded
       expect(mod.isMemoryFile('/project/.opencode/skill/my-skill/constitutional/README.md')).toBe(false);
@@ -43,6 +47,10 @@ describe('MEMORY PARSER - README INDEXING', () => {
 
     it('R07: accepts code-folder README.md', () => {
       expect(mod.isMemoryFile('/project/src/components/README.md')).toBe(true);
+    });
+
+    it('R07b: accepts code-folder README.txt', () => {
+      expect(mod.isMemoryFile('/project/src/components/README.txt')).toBe(true);
     });
 
     it('R08: rejects README.md in node_modules', () => {
@@ -100,7 +108,7 @@ describe('MEMORY PARSER - README INDEXING', () => {
     });
 
     it('R20: rejects file named readme-extra.md', () => {
-      // Only exact "readme.md" should match
+      // Only exact "readme.md" or "readme.txt" should match
       expect(mod.isMemoryFile('/project/readme-extra.md')).toBe(false);
     });
 
@@ -135,6 +143,11 @@ describe('MEMORY PARSER - README INDEXING', () => {
       const result = mod.extractSpecFolder('/project/.opencode/skill/my-tool/readme.md');
       expect(result).toBe('skill:my-tool');
     });
+
+    it('R26b: returns skill:SKILL-NAME for README.txt', () => {
+      const result = mod.extractSpecFolder('/project/.opencode/skill/my-tool/README.txt');
+      expect(result).toBe('skill:my-tool');
+    });
   });
 
   describe('extractSpecFolder - project README paths', () => {
@@ -145,6 +158,11 @@ describe('MEMORY PARSER - README INDEXING', () => {
 
     it('R28: returns project-readmes for code-folder README', () => {
       const result = mod.extractSpecFolder('/project/src/components/README.md');
+      expect(result).toBe('project-readmes');
+    });
+
+    it('R28b: returns project-readmes for code-folder README.txt', () => {
+      const result = mod.extractSpecFolder('/project/src/components/README.txt');
       expect(result).toBe('project-readmes');
     });
   });
@@ -190,8 +208,8 @@ describe('MEMORY PARSER - README INDEXING', () => {
       expect(mod.isProjectReadme('/project/CONTRIBUTING.md')).toBe(false);
     });
 
-    it('R37: rejects readme.txt', () => {
-      expect(mod.isProjectReadme('/project/readme.txt')).toBe(false);
+    it('R37: accepts readme.txt', () => {
+      expect(mod.isProjectReadme('/project/readme.txt')).toBe(true);
     });
 
     it('R38: rejects node_modules README', () => {

@@ -202,12 +202,12 @@ All flagged files underwent manual reconciliation review. No blocking contradict
 | Scope compliance | Pass | No code changes, no out-of-scope file modifications |
 | Task checklist updates | Pass | All completed P0/P1 items marked with evidence citations |
 
-### Validation Script (Pending Full Run)
+### Validation Script (Root Spec Folder)
 
 | Test Type | Status | Notes |
 |-----------|--------|-------|
-| validate.sh (full spec folder) | Pending | To be run after all task folders upgraded to Level 3+ |
-| Cross-reference check | Pending | Awaiting plan.md, tasks.md, decision-record.md completion |
+| validate.sh (full spec folder) | Pass | 2026-02-16 run: RESULT PASSED, 0 errors, 0 warnings |
+| Cross-reference check | Pending | Cross-reference review not yet marked complete in root checklist (CHK-093) |
 | Self-containment check | Pending | Agent executability verification deferred until full task specs ready |
 <!-- /ANCHOR:verification -->
 

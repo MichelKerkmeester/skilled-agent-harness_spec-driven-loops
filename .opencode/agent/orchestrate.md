@@ -2,6 +2,8 @@
 name: orchestrate
 description: Senior orchestration agent with full authority over task decomposition, delegation, quality evaluation, and unified delivery synthesis
 mode: primary
+model: openai/gpt-5.3-codex
+reasoningEffort: extra_high
 temperature: 0.1
 permission:
   read: deny

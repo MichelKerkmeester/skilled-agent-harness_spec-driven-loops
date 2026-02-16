@@ -2,7 +2,8 @@
 name: handover
 description: Session handover specialist for creating continuation documents with context preservation and seamless session branching
 mode: subagent
-model: github-copilot/claude-haiku-4.5
+model: openai/gpt-5.3-codex-spark
+reasoningEffort: high
 temperature: 0.1
 permission:
   read: allow

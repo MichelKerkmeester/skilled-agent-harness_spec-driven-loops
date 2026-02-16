@@ -490,7 +490,7 @@ spec_kit_memory_memory_index_scan({ specFolder: "011-memory", force: true })
 | -------------------- | ------- | ------- | ------------------------------------------------- |
 | `force`              | boolean | false   | Force re-index all files                          |
 | `specFolder`         | string  | -       | Limit scan to specific spec folder                |
-| `includeReadmes`     | boolean | true    | Include skill + project README files              |
+| `includeReadmes`     | boolean | true    | Include skill + project README.md and README.txt files |
 | `includeSpecDocs`    | boolean | true    | Include spec folder documents                     |
 | `includeConstitutional` | boolean | true | Include constitutional rule files                 |
 | `incremental`        | boolean | true    | Skip unchanged files (mtime check)                |

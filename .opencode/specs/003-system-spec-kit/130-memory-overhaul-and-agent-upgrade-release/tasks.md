@@ -23,13 +23,13 @@
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Root Documentation
 
-- [ ] T001 Create root plan.md (this folder)
-- [ ] T002 Create root tasks.md (this folder)
-- [ ] T003 Create root checklist.md (this folder)
-- [ ] T004 Create root decision-record.md (this folder)
-- [ ] T005 Create root implementation-summary.md (this folder)
-- [ ] T006 Update root README.md with task summaries (this folder)
-- [ ] T007 Verify root spec.md completeness (this folder)
+- [x] T001 Create root plan.md (this folder)
+- [x] T002 Create root tasks.md (this folder)
+- [x] T003 Create root checklist.md (this folder)
+- [x] T004 Create root decision-record.md (this folder)
+- [x] T005 Create root implementation-summary.md (this folder)
+- [x] T006 Update root README.md with task summaries (this folder)
+- [x] T007 Verify root spec.md completeness (this folder)
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -60,7 +60,7 @@ Each task folder requires:
 
 - [x] T012 Create Task 05 complete Level 3+ docs (task-05-changelog-updates/) — Completed: 3 changelog entries created and checklist verified
 - [x] T013 Create Task 06 complete Level 3+ docs (task-06-global-readme-update/) — Completed: 11 README changes documented with evidence (commit ff21d305)
-- [ ] T014 Create Task 07 complete Level 3+ docs (task-07-github-release/) — In progress: release notes prepared; publication blocked on clean release commit and tag
+- [B] T014 Track Task 07 publication readiness (task-07-github-release/) — Prepared: release notes finalized; publication blocked on clean release commit, tag, and release creation
 
 ### T012-T014 Subtasks (Per Task Folder)
 Each task folder requires (same as Phase 2):
@@ -75,8 +75,8 @@ Each task folder requires (same as Phase 2):
 <!-- ANCHOR:phase-4 -->
 ## Phase 4: Verification
 
-- [ ] T015 Run validate.sh on entire spec folder
-- [ ] T016 Check for placeholder tokens (\[placeholder\], \[TODO\])
+- [x] T015 Run validate.sh on entire spec folder — Completed: validate.sh passed (0 errors, 0 warnings)
+- [x] T016 Check for placeholder tokens (\[placeholder\], \[TODO\]) — Completed: validator PLACEHOLDER_FILLED check passed
 - [ ] T017 Verify all cross-references resolve
 - [ ] T018 Verify task specs are self-contained
 - [ ] T019 Verify dependency graph consistent across all docs

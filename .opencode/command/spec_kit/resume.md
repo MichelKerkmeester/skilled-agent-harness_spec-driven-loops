@@ -45,7 +45,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    └─ Empty → auto-detect from recent memory files
 
 3. Auto-detect if needed:
-   - Glob("specs/**/memory/*.md") → Sort by mtime, take first
+   - Glob("specs/**/memory/*.{md,txt}") → Sort by mtime, take first
    - Found → spec_path = extracted, detection_method = "recent"
    - Not found → detection_method = "none" (include Q0)
 

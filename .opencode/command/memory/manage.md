@@ -211,7 +211,7 @@ spec_kit_memory_checkpoint_delete({ name: "<name>" })
 |-----------|------|---------|-------------|
 | force | boolean | false | Force re-index all files |
 | specFolder | string | - | Limit scan to specific spec folder |
-| includeReadmes | boolean | true | Include skill + project README files |
+| includeReadmes | boolean | true | Include skill + project README.md and README.txt files |
 | includeSpecDocs | boolean | true | Include spec folder documents |
 | includeConstitutional | boolean | true | Include constitutional rule files |
 | incremental | boolean | true | Skip unchanged files (mtime check) |
@@ -256,10 +256,10 @@ The scan discovers memory-eligible files from five sources:
 
 | # | Source | Key | Location |
 |---|--------|-----|----------|
-| 1 | Spec Memories | specFiles | specs/*/memory/*.md |
+| 1 | Spec Memories | specFiles | specs/*/memory/*.{md,txt} |
 | 2 | Constitutional | constitutionalFiles | .opencode/skill/*/constitutional/*.md |
-| 3 | Skill READMEs | skillReadmes | .opencode/skill/*/README.md |
-| 4 | Project READMEs | projectReadmes | **/README.md |
+| 3 | Skill READMEs | skillReadmes | .opencode/skill/*/README.{md,txt} |
+| 4 | Project READMEs | projectReadmes | **/README.{md,txt} |
 | 5 | Spec Documents | specDocFiles | .opencode/specs/**/*.md |
 
 ### Call Examples

@@ -278,7 +278,7 @@ All handler responses include a `tokenBudget` field in the `meta` object showing
 | `force` | boolean | false | Force re-index all files (ignore content hash) |
 | `incremental` | boolean | true | Skip unchanged files (mtime + hash check) |
 | `includeConstitutional` | boolean | true | Scan `.opencode/skill/*/constitutional/` directories |
-| `includeReadmes` | boolean | **true** | Include README files from skill and project directories |
+| `includeReadmes` | boolean | **true** | Include README.md and README.txt files from skill and project directories |
 | `includeSpecDocs` | boolean | **true** | Include spec folder documents (specs, plans, tasks, etc.) from `.opencode/specs/` |
 
 **5-Source Pipeline:** When `memory_index_scan` runs, it categorizes discovered files into five sources:
@@ -287,11 +287,11 @@ All handler responses include a `tokenBudget` field in the `meta` object showing
 |--------|-------------|-------------------|-------------|
 | `constitutionalFiles` | `.opencode/skill/*/constitutional/*.md` | Per-file metadata | Constitutional tier files (never decay, always surface) |
 | `specDocuments` | `.opencode/specs/**/*.md` | Per-type multiplier | Spec folder documents (specs, plans, decisions) with document-type scoring |
-| `specFiles` | `specs/**/memory/*.md` | 0.5 | Memory files from spec folders |
-| `projectReadmes` | `**/README.md` (excl. node_modules, .git, etc.) | 0.4 | Project documentation providing codebase context |
-| `skillReadmes` | `.opencode/skill/*/README.md` | 0.3 | Skill documentation (lower weight to never outrank user work) |
+| `specFiles` | `specs/**/memory/*.{md,txt}` | 0.5 | Memory files from spec folders |
+| `projectReadmes` | `**/README.{md,txt}` (excl. node_modules, .git, etc.) | 0.4 | Project documentation providing codebase context |
+| `skillReadmes` | `.opencode/skill/*/README.{md,txt}` | 0.3 | Skill documentation (lower weight to never outrank user work) |
 
-README sources are indexed with reduced importance weights so they provide useful background context during search without outranking user-authored memories. All 75 indexed READMEs follow consistent formatting and anchor conventions (specs 111/113), which improves embedding quality and anchor-based retrieval accuracy. Set `includeReadmes: false` for backward-compatible behavior that excludes README sources. Spec documents are controlled by `includeSpecDocs` (default: `true`) or the `SPECKIT_INDEX_SPEC_DOCS` environment variable, and use document-type scoring multipliers (11 types).
+README sources are indexed with reduced importance weights so they provide useful background context during search without outranking user-authored memories. README.md and README.txt documents follow consistent formatting and anchor conventions (specs 111/113), which improves embedding quality and anchor-based retrieval accuracy. Set `includeReadmes: false` for backward-compatible behavior that excludes README sources. Spec documents are controlled by `includeSpecDocs` (default: `true`) or the `SPECKIT_INDEX_SPEC_DOCS` environment variable, and use document-type scoring multipliers (11 types).
 
 ---
 

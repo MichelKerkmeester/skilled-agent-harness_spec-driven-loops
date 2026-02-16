@@ -2,7 +2,8 @@
 name: write
 description: Documentation generation and maintenance specialist using workflows-documentation skill for DQI-compliant, template-aligned output
 mode: subagent
-model: github-copilot/claude-sonnet-4.5
+model: openai/gpt-5.3-codex
+reasoningEffort: high
 temperature: 0.1
 permission:
   read: allow

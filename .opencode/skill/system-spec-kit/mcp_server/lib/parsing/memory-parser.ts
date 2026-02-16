@@ -74,7 +74,7 @@ export type ContextType = 'implementation' | 'research' | 'decision' | 'discover
    2. CONFIGURATION
    --------------------------------------------------------------- */
 
-export const MEMORY_FILE_PATTERN: RegExp = /specs\/([^/]+)(?:\/[^/]+)*\/memory\/[^/]+\.md$/;
+export const MEMORY_FILE_PATTERN: RegExp = /specs\/([^/]+)(?:\/[^/]+)*\/memory\/[^/]+\.(?:md|txt)$/i;
 
 export const CONTEXT_TYPE_MAP: Record<string, ContextType> = {
   'implementation': 'implementation',
@@ -222,7 +222,7 @@ export function extractDocumentType(filePath: string): string {
   }
 
   // README files
-  if (basename === 'readme.md') {
+  if (isReadmeFileName(basename)) {
     return 'readme';
   }
 
@@ -241,7 +241,7 @@ export function extractSpecFolder(filePath: string): string {
   normalizedPath = normalizedPath.replace(/\\/g, '/');
 
   // README files in skill directories → skill:SKILL-NAME
-  const skillReadmeMatch = normalizedPath.match(/\.opencode\/skill\/([^/]+)(?:\/.*)?\/readme\.md$/i);
+  const skillReadmeMatch = normalizedPath.match(/\.opencode\/skill\/([^/]+)(?:\/.*)?\/readme\.(?:md|txt)$/i);
   if (skillReadmeMatch) {
     return `skill:${skillReadmeMatch[1]}`;
   }
@@ -513,12 +513,23 @@ const README_EXCLUDE_PATTERNS = [
   '.pytest_cache',
 ];
 
+/** README filename matcher for markdown and plain text docs */
+const README_FILE_PATTERN = /^readme\.(md|txt)$/i;
+
+function isReadmeFileName(fileName: string): boolean {
+  return README_FILE_PATTERN.test(fileName);
+}
+
+function isMarkdownOrTextFile(filePath: string): boolean {
+  return /\.(md|txt)$/i.test(filePath);
+}
+
 /** Check if a file is a project/code-folder README (not a skill README) */
 export function isProjectReadme(filePath: string): boolean {
   const normalized = filePath.replace(/\\/g, '/');
   const basename = path.basename(normalized).toLowerCase();
 
-  if (basename !== 'readme.md') return false;
+  if (!isReadmeFileName(basename)) return false;
 
   return !README_EXCLUDE_PATTERNS.some(pattern =>
     normalized.toLowerCase().includes(pattern.toLowerCase())
@@ -531,7 +542,7 @@ export function isMemoryFile(filePath: string): boolean {
 
   // Standard memory files in specs
   const isSpecsMemory = (
-    normalizedPath.endsWith('.md') &&
+    isMarkdownOrTextFile(normalizedPath) &&
     normalizedPath.includes('/memory/') &&
     normalizedPath.includes('/specs/')
   );
@@ -551,12 +562,12 @@ export function isMemoryFile(filePath: string): boolean {
     normalizedPath.endsWith('.md') &&
     normalizedPath.includes('/.opencode/skill/') &&
     normalizedPath.includes('/constitutional/') &&
-    !normalizedPath.toLowerCase().endsWith('readme.md')
+    !isReadmeFileName(path.basename(normalizedPath))
   );
 
   // README files in skill directories (indexed as semantic documentation)
   const isSkillReadme = (
-    normalizedPath.toLowerCase().endsWith('readme.md') &&
+    isReadmeFileName(path.basename(normalizedPath)) &&
     normalizedPath.includes('/.opencode/skill/') &&
     !normalizedPath.includes('/constitutional/')
   );
@@ -721,7 +732,7 @@ export function findMemoryFiles(workspacePath: string, options: FindMemoryFilesO
           continue;
         }
         walkDir(fullPath, depth + 1);
-      } else if (entry.isFile() && entry.name.endsWith('.md')) {
+      } else if (entry.isFile() && /\.(md|txt)$/i.test(entry.name)) {
         // Check if it's in a memory folder
         if (fullPath.includes('/memory/') || fullPath.includes('\\memory\\')) {
           // Apply spec folder filter if specified

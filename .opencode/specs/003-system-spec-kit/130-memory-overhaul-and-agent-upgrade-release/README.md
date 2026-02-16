@@ -9,13 +9,13 @@
 <!-- ANCHOR:table-of-contents -->
 ## TABLE OF CONTENTS
 
-- [1. 📖 OVERVIEW](#1--overview)
+- [1. OVERVIEW](#1-overview)
 
 ---
 <!-- /ANCHOR:table-of-contents -->
 
 <!-- ANCHOR:overview -->
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 This README documents the purpose and usage of this spec folder and links to the primary artifacts in this directory.
 
@@ -117,4 +117,3 @@ This specification-only umbrella produces audit and alignment specs for 11 sourc
 - **Specification**: [spec.md](spec.md) — Full Level 3+ umbrella specification
 - **Changelog Reference**: [changelog-reference.md](changelog-reference.md) — Consolidated changelog from all 11 source specs
 <!-- /ANCHOR:related-documents -->
-

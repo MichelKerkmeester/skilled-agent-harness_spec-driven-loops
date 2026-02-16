@@ -2,7 +2,8 @@
 name: debug
 description: Debugging specialist with fresh perspective and systematic 4-phase methodology for root cause analysis
 mode: subagent
-model: github-copilot/claude-opus-4.6
+model: openai/gpt-5.3-codex
+reasoningEffort: extra_high
 temperature: 0.2
 permission:
   read: allow

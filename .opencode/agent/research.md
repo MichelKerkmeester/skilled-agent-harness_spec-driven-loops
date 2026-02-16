@@ -2,7 +2,8 @@
 name: research
 description: Technical investigation specialist with evidence gathering, pattern analysis, and research documentation capabilities
 mode: subagent
-model: github-copilot/claude-opus-4.6
+model: openai/gpt-5.3-codex
+reasoningEffort: extra_high
 temperature: 0.1
 permission:
   read: allow

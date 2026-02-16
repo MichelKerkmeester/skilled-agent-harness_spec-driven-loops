@@ -158,7 +158,7 @@ export const PATH_TYPE_PATTERNS: readonly PathTypePattern[] = [
   { pattern: /decision[-_]?record/i, type: 'semantic' },
   { pattern: /adr[-_]?\d+/i, type: 'semantic' },
   // README files in skill directories (semantic documentation)
-  { pattern: /(?:^|\/)readme\.md$/i, type: 'semantic' },
+  { pattern: /(?:^|\/)readme\.(md|txt)$/i, type: 'semantic' },
 
   // Autobiographical patterns (history)
   { pattern: /changelog/i, type: 'autobiographical' },
@@ -367,7 +367,7 @@ export function inferDocumentTypeFromPath(filePath: string): DocumentType {
   }
 
   // README files
-  if (normalizedPath.toLowerCase().endsWith('readme.md')) {
+  if (/readme\.(md|txt)$/i.test(normalizedPath)) {
     return 'readme';
   }
 

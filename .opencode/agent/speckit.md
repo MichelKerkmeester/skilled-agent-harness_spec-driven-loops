@@ -2,7 +2,8 @@
 name: speckit
 description: Spec folder documentation specialist for creating and maintaining Level 1-3+ documentation with template enforcement
 mode: subagent
-model: github-copilot/claude-sonnet-4.5
+model: openai/gpt-5.3-codex
+reasoningEffort: high
 temperature: 0.1
 permission:
   read: allow

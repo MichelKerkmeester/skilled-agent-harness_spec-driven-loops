@@ -496,11 +496,11 @@ The `memory_index_scan` tool indexes content from five distinct sources:
 | --- | ------------------------ | --------------------------------------- | ------------------- |
 | 1   | **Constitutional Rules** | `.opencode/skill/*/constitutional/*.md` | -                   |
 | 2   | **Spec Documents**       | `.opencode/specs/**/*.md`               | Per-type multiplier |
-| 3   | **Spec Memories**        | `specs/*/memory/*.md`                   | `0.5`               |
-| 4   | **Project READMEs**      | `**/README.md` (project root)           | `0.4`               |
-| 5   | **Skill READMEs**        | `.opencode/skill/*/README.md`           | `0.3`               |
+| 3   | **Spec Memories**        | `specs/*/memory/*.{md,txt}`             | `0.5`               |
+| 4   | **Project READMEs**      | `**/README.{md,txt}` (project root)     | `0.4`               |
+| 5   | **Skill READMEs**        | `.opencode/skill/*/README.{md,txt}`     | `0.3`               |
 
-Sources 3 and 4 are controlled by the `includeReadmes` parameter (default: `true`). Source 5 is controlled by the `includeSpecDocs` parameter (default: `true`) or the `SPECKIT_INDEX_SPEC_DOCS` environment variable. Spec documents are scored with document-type multipliers: spec (1.4x), plan (1.3x), constitutional (2.0x), memory (1.0x), readme (0.8x), scratch (0.6x).
+Sources 4 and 5 are controlled by the `includeReadmes` parameter (default: `true`) and include README.md plus README.txt files. Source 2 is controlled by the `includeSpecDocs` parameter (default: `true`) or the `SPECKIT_INDEX_SPEC_DOCS` environment variable. Spec documents are scored with document-type multipliers: spec (1.4x), plan (1.3x), constitutional (2.0x), memory (1.0x), readme (0.8x), scratch (0.6x).
 
 #### Tiered Importance Weights
 

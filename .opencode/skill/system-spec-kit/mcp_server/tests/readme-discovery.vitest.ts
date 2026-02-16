@@ -3,8 +3,8 @@
  * Tests for README discovery functions (Spec 111: README Anchor Schema)
  *
  * Covers:
- * - findSkillReadmes()    — discovers README.md files under .opencode/skill/
- * - findProjectReadmes()  — discovers project-level README.md files (excludes .opencode/skill/)
+ * - findSkillReadmes()    — discovers README.md and README.txt files under .opencode/skill/
+ * - findProjectReadmes()  — discovers project-level README.md and README.txt files (excludes .opencode/skill/)
  * - calculateReadmeWeight() — returns importance weight based on file path origin
  */
 import { describe, it, expect, beforeEach, afterEach } from 'vitest';
@@ -59,6 +59,13 @@ describe('findSkillReadmes', () => {
     expect(result[0]).toBe(path.join(tmpDir, '.opencode', 'skill', 'my-skill', 'README.md'));
   });
 
+  it('T131-01: Discovers README.txt in a skill root directory', () => {
+    createFile('.opencode/skill/my-skill/README.txt');
+    const result = findSkillReadmes(tmpDir);
+    expect(result).toHaveLength(1);
+    expect(result[0]).toBe(path.join(tmpDir, '.opencode', 'skill', 'my-skill', 'README.txt'));
+  });
+
   it('T111-04: Discovers README.md in nested subdirectories', () => {
     createFile('.opencode/skill/my-skill/references/README.md');
     createFile('.opencode/skill/my-skill/assets/sub/README.md');
@@ -71,7 +78,7 @@ describe('findSkillReadmes', () => {
   });
 
   it('T111-05: Case-insensitive match (readme.md, Readme.md, README.MD)', () => {
-    // The function checks entry.name.toLowerCase() === 'readme.md'
+    // The function checks a case-insensitive README filename pattern
     // Create files with different cases - only exact lowercase match on the FS matters
     createFile('.opencode/skill/skill-a/README.md');
     createFile('.opencode/skill/skill-b/Readme.md');
@@ -130,6 +137,13 @@ describe('findProjectReadmes', () => {
     expect(result[0]).toBe(path.join(tmpDir, 'README.md'));
   });
 
+  it('T131-02: Discovers root-level README.txt', async () => {
+    createFile('README.txt');
+    const result = await findProjectReadmes(tmpDir);
+    expect(result).toHaveLength(1);
+    expect(result[0]).toBe(path.join(tmpDir, 'README.txt'));
+  });
+
   it('T111-12: Discovers README.md in subdirectories', async () => {
     createFile('README.md');
     createFile('packages/core/README.md');
@@ -181,6 +195,14 @@ describe('findProjectReadmes', () => {
     expect(result).toHaveLength(2);
   });
 
+  it('T131-05: Includes command README.txt under .opencode/command/', async () => {
+    createFile('.opencode/command/spec_kit/README.txt');
+    const result = await findProjectReadmes(tmpDir);
+    expect(result).toHaveLength(1);
+    const relativePath = path.relative(tmpDir, result[0]).replace(/\\/g, '/');
+    expect(relativePath).toBe('.opencode/command/spec_kit/README.txt');
+  });
+
   it('T111-18: Handles deeply nested project directories', async () => {
     createFile('src/components/ui/forms/README.md');
     const result = await findProjectReadmes(tmpDir);
@@ -211,6 +233,10 @@ describe('calculateReadmeWeight', () => {
     expect(calculateReadmeWeight('/workspace/packages/core/README.md')).toBe(0.4);
   });
 
+  it('T131-03: Returns 0.4 for README.txt paths', () => {
+    expect(calculateReadmeWeight('/workspace/docs/README.txt')).toBe(0.4);
+  });
+
   it('T111-24: Returns 0.5 for non-README files', () => {
     expect(calculateReadmeWeight('/workspace/specs/001/memory/context.md')).toBe(0.5);
   });
@@ -225,6 +251,10 @@ describe('calculateReadmeWeight', () => {
 
   it('T111-27: Case-insensitive skill path detection', () => {
     expect(calculateReadmeWeight('/workspace/.opencode/skill/test/readme.md')).toBe(0.3);
+  });
+
+  it('T131-04: Case-insensitive README.txt detection', () => {
+    expect(calculateReadmeWeight('/workspace/.opencode/skill/test/readme.txt')).toBe(0.3);
   });
 
   it('T111-28: Handles Windows-style backslash paths', () => {

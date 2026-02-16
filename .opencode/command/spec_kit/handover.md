@@ -29,7 +29,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
 
 1. CHECK for spec folder in $ARGUMENTS:
    - IF has path -> validate path exists
-   - IF empty -> auto-detect: Glob("specs/**/memory/*.md"), sort by mtime, take first
+   - IF empty -> auto-detect: Glob("specs/**/memory/*.{md,txt}"), sort by mtime, take first
 
 2. Auto-detect result:
    - Found: spec_path = extracted, detection_method = "recent"

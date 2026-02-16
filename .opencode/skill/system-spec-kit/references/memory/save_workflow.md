@@ -324,10 +324,10 @@ This workflow writes memory files in `specs/*/memory/` (source 1). During `memor
 
 | Content Type | Location | Weight | Indexed By |
 |-------------|----------|--------|------------|
-| Memory files | `specs/*/memory/*.md` | 0.5 | `findMemoryFiles()` |
+| Memory files | `specs/*/memory/*.{md,txt}` | 0.5 | `findMemoryFiles()` |
 | Constitutional rules | `.opencode/skill/*/constitutional/*.md` | 1.0 | `findConstitutionalFiles()` |
-| Skill READMEs | `.opencode/skill/**/README.md` | 0.3 | `findSkillReadmes()` |
-| Project READMEs | Root `README.md` + key directory READMEs | 0.4 | `findProjectReadmes()` |
+| Skill READMEs | `.opencode/skill/**/README.{md,txt}` | 0.3 | `findSkillReadmes()` |
+| Project READMEs | Root `README.md` + key directory `README.{md,txt}` files | 0.4 | `findProjectReadmes()` |
 | Spec documents | `.opencode/specs/**/*.md` | Per-type multiplier | `findSpecDocuments()` |
 
 README types are controlled by the `includeReadmes` parameter in `memory_index_scan()`. Spec documents are controlled by the `includeSpecDocs` parameter (default: `true`) or the `SPECKIT_INDEX_SPEC_DOCS` environment variable. Spec documents use 11 document types with scoring multipliers (e.g., spec: 1.4x, plan: 1.3x, constitutional: 2.0x) and schema v13 fields (`document_type`, `spec_level`).
@@ -398,10 +398,10 @@ For retrieval, `memory_context()` routes queries across 7 intents (including `fi
 
 ```bash
 # Find anchors by keyword (UPPERCASE format)
-grep -l "ANCHOR:.*decision.*auth" specs/*/memory/*.md
+grep -l "ANCHOR:.*decision.*auth" specs/*/memory/*.{md,txt}
 
 # List all anchors in a file
-grep "<!-- ANCHOR:" specs/049-*/memory/*.md
+grep "<!-- ANCHOR:" specs/049-*/memory/*.{md,txt}
 
 # Extract specific section
 sed -n '/<!-- ANCHOR:decision-jwt-049 -->/,/<!-- \/ANCHOR:decision-jwt-049 -->/p' file.md
@@ -461,10 +461,10 @@ done | sort -rn
 
 ```bash
 # Search within current spec folder (UPPERCASE format)
-grep -r "ANCHOR:.*keyword" specs/###-current-spec/memory/*.md
+grep -r "ANCHOR:.*keyword" specs/###-current-spec/memory/*.{md,txt}
 
 # Cross-spec search if broader context needed
-grep -r "ANCHOR:.*keyword" specs/*/memory/*.md
+grep -r "ANCHOR:.*keyword" specs/*/memory/*.{md,txt}
 
 # Extract specific anchor directly (UPPERCASE format)
 sed -n '/<!-- ANCHOR:decision-auth-049 -->/,/<!-- \/ANCHOR:decision-auth-049 -->/p' file.md

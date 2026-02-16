@@ -96,6 +96,10 @@ describe('Spec 126 Phase 2: Type Configuration', () => {
       expect(inferDocumentTypeFromPath('/project/.opencode/skill/system-spec-kit/README.md')).toBe('readme');
     });
 
+    it('Returns "readme" for README.txt files', () => {
+      expect(inferDocumentTypeFromPath('/project/.opencode/command/spec_kit/README.txt')).toBe('readme');
+    });
+
     it('Returns "memory" for unrecognized files', () => {
       expect(inferDocumentTypeFromPath('/project/.opencode/specs/003/100/memory/random-notes.md')).toBe('memory');
     });
@@ -207,6 +211,10 @@ describe('Spec 126 Phase 4: Parser Enhancements', () => {
       expect(extractDocumentType('/p/.opencode/skill/kit/README.md')).toBe('readme');
     });
 
+    it('Returns "readme" for readme.txt', () => {
+      expect(extractDocumentType('/p/.opencode/command/kit/README.txt')).toBe('readme');
+    });
+
     it('Returns "memory" for unrecognized files in memory/', () => {
       expect(extractDocumentType('/p/.opencode/specs/003/100/memory/notes.md')).toBe('memory');
     });
@@ -257,6 +265,10 @@ describe('Spec 126 Phase 4: Parser Enhancements', () => {
     it('Accepts constitutional files', () => {
       expect(isMemoryFile('/p/.opencode/skill/kit/constitutional/rules.md')).toBe(true);
     });
+
+    it('Accepts README.txt files', () => {
+      expect(isMemoryFile('/p/.opencode/command/spec_kit/README.txt')).toBe(true);
+    });
   });
 
   describe('T068: extractSpecFolder() handles non-memory paths', () => {
@@ -283,6 +295,11 @@ describe('Spec 126 Phase 4: Parser Enhancements', () => {
     it('Returns skill: prefix for skill README', () => {
       const result = extractSpecFolder('/p/.opencode/skill/system-spec-kit/README.md');
       expect(result).toBe('skill:system-spec-kit');
+    });
+
+    it('Returns project-readmes for command README.txt', () => {
+      const result = extractSpecFolder('/p/.opencode/command/spec_kit/README.txt');
+      expect(result).toBe('project-readmes');
     });
   });
 });
