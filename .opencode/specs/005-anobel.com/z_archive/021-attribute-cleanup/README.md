@@ -5,7 +5,7 @@
 ---
 
 <!-- ANCHOR:overview -->
-## 1. OVERVIEW
+## 1. 📖 OVERVIEW
 
 **Purpose**: Level 1 templates provide minimal documentation structure for small features, bug fixes, and simple changes that don't require extensive validation or architectural decisions.
 
@@ -40,7 +40,7 @@ Level 1 requires **4 core files**:
 ---
 
 <!-- ANCHOR:quick-start -->
-## 2. QUICK START
+## 2. 🚀 QUICK START
 
 ### 30-Second Setup
 
@@ -79,7 +79,7 @@ cp .opencode/skill/system-spec-kit/templates/level_1/implementation-summary.md s
 ---
 
 <!-- ANCHOR:features -->
-## 3. FEATURES
+## 3. ⚡ FEATURES
 
 ### Characteristics
 
@@ -93,7 +93,7 @@ cp .opencode/skill/system-spec-kit/templates/level_1/implementation-summary.md s
 ---
 
 <!-- ANCHOR:troubleshooting -->
-## 4. TROUBLESHOOTING
+## 4. 🛠️ TROUBLESHOOTING
 
 ### Common Issues
 
@@ -129,7 +129,7 @@ cp .opencode/skill/system-spec-kit/templates/level_1/implementation-summary.md s
 ---
 
 <!-- ANCHOR:related-documents -->
-## 5. RELATED DOCUMENTS
+## 5. 📚 RELATED DOCUMENTS
 
 ### Internal Documentation
 

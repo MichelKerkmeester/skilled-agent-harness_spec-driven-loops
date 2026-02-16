@@ -17,17 +17,17 @@ importance_tier: "normal"
 ## TABLE OF CONTENTS
 <!-- ANCHOR:table-of-contents -->
 
-- [1. OVERVIEW](#1--overview)
-- [2. STRUCTURE](#2--structure)
+- [1. 📖 OVERVIEW](#1--overview)
+- [2. 📁 STRUCTURE](#2--structure)
 - [3. PATH SECURITY](#3--path-security)
 - [4. RETRY](#4--retry)
-- [5. RELATED](#5--related)
+- [5. 📚 RELATED](#5--related)
 
 <!-- /ANCHOR:table-of-contents -->
 
 ---
 
-## 1. OVERVIEW
+## 1. 📖 OVERVIEW
 <!-- ANCHOR:overview -->
 
 Low-level utility functions shared across `system-spec-kit`. These modules provide **security-hardened path validation**, **resilient retry logic** with error classification, and **JSONC comment stripping** for config parsing.
@@ -38,7 +38,7 @@ Low-level utility functions shared across `system-spec-kit`. These modules provi
 
 ---
 
-## 2. STRUCTURE
+## 2. 📁 STRUCTURE
 <!-- ANCHOR:structure -->
 
 | File | Purpose |
@@ -196,7 +196,7 @@ Imported from `shared/types`:
 
 ---
 
-## 5. RELATED
+## 5. 📚 RELATED
 <!-- ANCHOR:related -->
 
 - **Types:** `shared/types.ts` contains `RetryConfig`, `ErrorClassification`, `RetryOptions`, `RetryAttemptLogEntry`

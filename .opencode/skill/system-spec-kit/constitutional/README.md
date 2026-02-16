@@ -19,23 +19,23 @@ The constitutional tier is the highest importance level in the Spec Kit Memory s
 ## TABLE OF CONTENTS
 <!-- ANCHOR:table-of-contents -->
 
-- [1. OVERVIEW](#1--overview)
-- [2. QUICK START](#2--quick-start)
-- [3. STRUCTURE](#3--structure)
-- [4. FEATURES](#4--features)
-- [5. CONFIGURATION](#5--configuration)
+- [1. 📖 OVERVIEW](#1--overview)
+- [2. 🚀 QUICK START](#2--quick-start)
+- [3. 📁 STRUCTURE](#3--structure)
+- [4. ⚡ FEATURES](#4--features)
+- [5. ⚙️ CONFIGURATION](#5--configuration)
 - [6. CREATING CONSTITUTIONAL MEMORIES](#6--creating-constitutional-memories)
 - [7. CUSTOMIZATION](#7--customization)
-- [8. USAGE EXAMPLES](#8--usage-examples)
-- [9. TROUBLESHOOTING](#9--troubleshooting)
-- [10. RELATED DOCUMENTS](#10--related-documents)
+- [8. 💡 USAGE EXAMPLES](#8--usage-examples)
+- [9. 🛠️ TROUBLESHOOTING](#9--troubleshooting)
+- [10. 📚 RELATED DOCUMENTS](#10--related-documents)
 - [11. SUMMARY](#11--summary)
 
 ---
 
 <!-- /ANCHOR:table-of-contents -->
 
-## 1. OVERVIEW
+## 1. 📖 OVERVIEW
 <!-- ANCHOR:overview -->
 
 ### What is the constitutional/ Directory?
@@ -81,7 +81,7 @@ Think of constitutional memories as the "system prompt" for your memory system: 
 
 <!-- /ANCHOR:overview -->
 
-## 2. QUICK START
+## 2. 🚀 QUICK START
 <!-- ANCHOR:quick-start -->
 
 ### 30-Second Setup
@@ -137,7 +137,7 @@ After creating a constitutional memory:
 
 <!-- /ANCHOR:quick-start -->
 
-## 3. STRUCTURE
+## 3. 📁 STRUCTURE
 <!-- ANCHOR:structure -->
 
 ### Directory Layout
@@ -169,7 +169,7 @@ constitutional/
 
 <!-- /ANCHOR:structure -->
 
-## 4. FEATURES
+## 4. ⚡ FEATURES
 <!-- ANCHOR:features -->
 
 ### 4.1 Always-Surface Behavior
@@ -260,7 +260,7 @@ Constitutional memories are limited to **~2000 tokens total** per search to prev
 
 <!-- /ANCHOR:features -->
 
-## 5. CONFIGURATION
+## 5. ⚙️ CONFIGURATION
 <!-- ANCHOR:configuration -->
 
 ### 5.1 YAML Frontmatter Requirements
@@ -567,7 +567,7 @@ memory_search({
 
 <!-- /ANCHOR:customization -->
 
-## 8. USAGE EXAMPLES
+## 8. 💡 USAGE EXAMPLES
 <!-- ANCHOR:usage-examples -->
 
 ### Example 1: Gate Enforcement (Default)
@@ -648,7 +648,7 @@ triggerPhrases:
 
 <!-- /ANCHOR:usage-examples -->
 
-## 9. TROUBLESHOOTING
+## 9. 🛠️ TROUBLESHOOTING
 <!-- ANCHOR:troubleshooting -->
 
 ### Common Issues
@@ -717,7 +717,7 @@ memory_match_triggers({ prompt: "fix the bug" })
 
 <!-- /ANCHOR:troubleshooting -->
 
-## 10. RELATED DOCUMENTS
+## 10. 📚 RELATED DOCUMENTS
 <!-- ANCHOR:related -->
 
 ### Internal Documentation

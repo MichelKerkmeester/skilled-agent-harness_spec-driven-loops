@@ -17,19 +17,19 @@ importance_tier: "normal"
 ## TABLE OF CONTENTS
 <!-- ANCHOR:table-of-contents -->
 
-- [1. OVERVIEW](#1--overview)
-- [2. STRUCTURE](#2--structure)
+- [1. 📖 OVERVIEW](#1--overview)
+- [2. 📁 STRUCTURE](#2--structure)
 - [3. TYPE ARCHITECTURE](#3--type-architecture)
 - [4. INTERFACES](#4--interfaces)
 - [5. ROOT TYPE: SESSIONDATA](#5--root-type-sessiondata)
 - [6. MIGRATION NOTES](#6--migration-notes)
-- [7. RELATED](#7--related)
+- [7. 📚 RELATED](#7--related)
 
 ---
 
 <!-- /ANCHOR:table-of-contents -->
 
-## 1. OVERVIEW
+## 1. 📖 OVERVIEW
 <!-- ANCHOR:overview -->
 
 **Shared session type definitions** used across the Spec Kit scripts pipeline. This module is the **canonical source of truth** for all session-related types, eliminating parallel type hierarchies that previously existed between `simulation-factory` and the extractors (resolves **TECH-DEBT P6-05**).
@@ -38,7 +38,7 @@ importance_tier: "normal"
 
 <!-- /ANCHOR:overview -->
 
-## 2. STRUCTURE
+## 2. 📁 STRUCTURE
 <!-- ANCHOR:structure -->
 
 ```
@@ -158,7 +158,7 @@ This module was created to resolve **TECH-DEBT P6-05**, where `simulation-factor
 
 <!-- /ANCHOR:migration -->
 
-## 7. RELATED
+## 7. 📚 RELATED
 <!-- ANCHOR:related -->
 
 | Resource | Path |

@@ -5,7 +5,7 @@ A custom Table of Contents scroll-spy implementation for Webflow that provides f
 ---
 
 <!-- ANCHOR:overview -->
-## 1. Overview
+## 1. 📖 OVERVIEW
 
 ### What It Does
 
@@ -32,7 +32,7 @@ Automatically highlights the currently visible section in your Table of Contents
 ---
 
 <!-- ANCHOR:quick-start -->
-## 2. Quick Start
+## 2. 🚀 QUICK START
 
 **Minimum setup in 3 steps:**
 
@@ -90,7 +90,7 @@ In **Project Settings > Custom Code > Head Code** (or page-level), add the CSS f
 ---
 
 <!-- ANCHOR:webflow-setup-detailed -->
-## 3. Webflow Setup (Detailed)
+## 3. WEBFLOW SETUP (DETAILED)
 
 ### 3.1 Create TOC Navigation Structure
 
@@ -176,7 +176,7 @@ Section (or Div Block)
 ---
 
 <!-- ANCHOR:configuration -->
-## 4. Configuration
+## 4. ⚙ ️ CONFIGURATION
 
 All configuration is done via data attributes on the `data-toc-container` element.
 
@@ -232,7 +232,7 @@ data-toc-active-class="toc-active"
 ---
 
 <!-- ANCHOR:styling-the-active-state -->
-## 5. Styling the Active State
+## 5. STYLING THE ACTIVE STATE
 
 The script applies **all four** styling mechanisms simultaneously, giving you flexibility in how you style the active TOC link.
 
@@ -289,7 +289,7 @@ If you prefer using Webflow Designer's native Current state styling:
 ---
 
 <!-- ANCHOR:troubleshooting -->
-## 6. Troubleshooting
+## 6. 🛠 ️ TROUBLESHOOTING
 
 ### Active State Not Updating
 
@@ -353,7 +353,7 @@ window.__tocScrollspyCdnInit = false;
 ---
 
 <!-- ANCHOR:api-reference -->
-## 7. API Reference
+## 7. API REFERENCE
 
 ### Data Attributes
 
@@ -391,7 +391,7 @@ window.__tocScrollspyCdnInit = false;
 ---
 
 <!-- ANCHOR:source-files -->
-## 8. Source Files
+## 8. SOURCE FILES
 
 | File | Location | Purpose |
 |------|----------|---------|
@@ -403,7 +403,7 @@ window.__tocScrollspyCdnInit = false;
 ---
 
 <!-- ANCHOR:version-history -->
-## 9. Version History
+## 9. VERSION HISTORY
 
 | Version | Date | Changes |
 |---------|------|---------|
@@ -413,7 +413,7 @@ window.__tocScrollspyCdnInit = false;
 ---
 
 <!-- ANCHOR:related-documentation -->
-## 10. Related Documentation
+## 10. RELATED DOCUMENTATION
 
 - [Feature Specification](./spec.md)
 - [Implementation Plan](./plan.md)

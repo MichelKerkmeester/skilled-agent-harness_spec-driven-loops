@@ -17,17 +17,17 @@ importance_tier: "normal"
 ## TABLE OF CONTENTS
 <!-- ANCHOR:table-of-contents -->
 
-- [1. OVERVIEW](#1--overview)
+- [1. 📖 OVERVIEW](#1--overview)
 - [2. KEY CONCEPTS](#2--key-concepts)
-- [3. STRUCTURE](#3--structure)
-- [4. USAGE](#4--usage)
-- [5. RELATED RESOURCES](#5--related-resources)
+- [3. 📁 STRUCTURE](#3--structure)
+- [4. 💡 USAGE](#4--usage)
+- [5. 🔗 RELATED RESOURCES](#5--related-resources)
 
 <!-- /ANCHOR:table-of-contents -->
 
 ---
 
-## 1. OVERVIEW
+## 1. 📖 OVERVIEW
 <!-- ANCHOR:overview -->
 
 ### What is the Scoring Module?
@@ -111,7 +111,7 @@ The scoring layer includes document-type multipliers for 11 document types (for 
 
 ---
 
-## 3. STRUCTURE
+## 3. 📁 STRUCTURE
 <!-- ANCHOR:structure -->
 
 ```
@@ -138,7 +138,7 @@ scoring/
 
 ---
 
-## 4. USAGE
+## 4. 💡 USAGE
 <!-- ANCHOR:usage -->
 
 ### Example 1: Calculate 5-Factor Score
@@ -226,7 +226,7 @@ const info = getConfidenceInfo(db, memoryId);
 
 ---
 
-## 5. RELATED RESOURCES
+## 5. 🔗 RELATED RESOURCES
 <!-- ANCHOR:related -->
 
 ### Internal Documentation

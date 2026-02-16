@@ -17,18 +17,18 @@ importance_tier: "normal"
 ## TABLE OF CONTENTS
 <!-- ANCHOR:table-of-contents -->
 
-- [1. OVERVIEW](#1--overview)
+- [1. 📖 OVERVIEW](#1--overview)
 - [2. KEY CONCEPTS](#2--key-concepts)
 - [3. MODULE STRUCTURE](#3--module-structure)
-- [4. FEATURES](#4--features)
-- [5. USAGE EXAMPLES](#5--usage-examples)
-- [6. RELATED RESOURCES](#6--related-resources)
+- [4. ⚡ FEATURES](#4--features)
+- [5. 💡 USAGE EXAMPLES](#5--usage-examples)
+- [6. 🔗 RELATED RESOURCES](#6--related-resources)
 
 <!-- /ANCHOR:table-of-contents -->
 
 ---
 
-## 1. OVERVIEW
+## 1. 📖 OVERVIEW
 <!-- ANCHOR:overview -->
 
 The search subsystem provides production-grade hybrid search capabilities with multiple retrieval methods fused via RRF scoring. It handles query expansion, intent classification, typo tolerance and optional cross-encoder reranking.
@@ -243,7 +243,7 @@ vector-index-impl.ts     (3333 LOC)
 
 ---
 
-## 4. FEATURES
+## 4. ⚡ FEATURES
 <!-- ANCHOR:features -->
 
 ### Configuration Options
@@ -406,7 +406,7 @@ hybridSearch("authentication", { specFolder: "specs/007-auth" })
 
 ---
 
-## 5. USAGE EXAMPLES
+## 5. 💡 USAGE EXAMPLES
 <!-- ANCHOR:usage-examples -->
 
 ### Basic Hybrid Search
@@ -508,7 +508,7 @@ console.log(`Schema version: ${version}`);
 
 ---
 
-## 6. RELATED RESOURCES
+## 6. 🔗 RELATED RESOURCES
 <!-- ANCHOR:related -->
 
 ### Internal Dependencies

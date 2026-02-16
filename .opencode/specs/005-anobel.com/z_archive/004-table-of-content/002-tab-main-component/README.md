@@ -5,7 +5,7 @@ An attribute-based tab component for Webflow that links tab buttons to content p
 ---
 
 <!-- ANCHOR:overview -->
-## 1. Overview
+## 1. 📖 OVERVIEW
 
 ### What It Does
 
@@ -34,7 +34,7 @@ data-tab="webshop"    ←→     data-tab-content="webshop"
 ---
 
 <!-- ANCHOR:quick-start -->
-## 2. Quick Start
+## 2. 🚀 QUICK START
 
 ### Step 1: Create Tab Buttons
 
@@ -73,7 +73,7 @@ Add CSS to **Project Settings > Custom Code > Head Code**
 ---
 
 <!-- ANCHOR:webflow-setup-detailed -->
-## 3. Webflow Setup (Detailed)
+## 3. WEBFLOW SETUP (DETAILED)
 
 ### 3.1 Element Structure
 
@@ -183,7 +183,7 @@ If no default is specified, the first tab becomes active.
 ---
 
 <!-- ANCHOR:configuration -->
-## 4. Configuration
+## 4. ⚙ ️ CONFIGURATION
 
 ### Data Attributes Reference
 
@@ -214,7 +214,7 @@ If no default is specified, the first tab becomes active.
 ---
 
 <!-- ANCHOR:styling -->
-## 5. Styling
+## 5. STYLING
 
 ### Style Variants
 
@@ -286,7 +286,7 @@ Replace with your Webflow variables or hard-coded colors as needed.
 ---
 
 <!-- ANCHOR:keyboard-navigation -->
-## 6. Keyboard Navigation
+## 6. KEYBOARD NAVIGATION
 
 The component supports full keyboard navigation:
 
@@ -302,7 +302,7 @@ The component supports full keyboard navigation:
 ---
 
 <!-- ANCHOR:troubleshooting -->
-## 7. Troubleshooting
+## 7. 🛠 ️ TROUBLESHOOTING
 
 ### Content Not Showing
 
@@ -367,7 +367,7 @@ The component supports full keyboard navigation:
 ---
 
 <!-- ANCHOR:api-reference -->
-## 8. API Reference
+## 8. API REFERENCE
 
 ### Console Messages
 
@@ -387,7 +387,7 @@ The tab system exposes no public API. All interaction is via data attributes and
 ---
 
 <!-- ANCHOR:source-files -->
-## 9. Source Files
+## 9. SOURCE FILES
 
 | File | Location | Purpose |
 |------|----------|---------|
@@ -398,7 +398,7 @@ The tab system exposes no public API. All interaction is via data attributes and
 ---
 
 <!-- ANCHOR:related-components -->
-## 10. Related Components
+## 10. RELATED COMPONENTS
 
 - **tab_menu.js** - Class-based tab menu (visual only, no content switching)
 - **toc_scrollspy.js** - Table of contents with scroll detection
@@ -407,7 +407,7 @@ The tab system exposes no public API. All interaction is via data attributes and
 ---
 
 <!-- ANCHOR:complete-example -->
-## 11. Complete Example
+## 11. COMPLETE EXAMPLE
 
 ```html
 <!-- Tab Container -->
@@ -455,7 +455,7 @@ The tab system exposes no public API. All interaction is via data attributes and
 ---
 
 <!-- ANCHOR:version-history -->
-## 12. Version History
+## 12. VERSION HISTORY
 
 | Version | Date | Changes |
 |---------|------|---------|

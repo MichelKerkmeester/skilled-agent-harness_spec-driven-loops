@@ -30,7 +30,7 @@ importance_tier: "normal"
 
 ---
 
-## 1. OVERVIEW
+## 1. 📖 OVERVIEW
 <!-- ANCHOR:overview -->
 
 This directory contains production-ready bash scripts demonstrating practical browser debugging, automation, performance testing and visual regression workflows using the browser-debugger-cli (bdg) tool.
@@ -325,7 +325,7 @@ sleep 2
 
 ---
 
-## 6. TROUBLESHOOTING
+## 6. 🛠️ TROUBLESHOOTING
 <!-- ANCHOR:troubleshooting -->
 
 ### Script fails immediately

@@ -17,19 +17,19 @@ importance_tier: "normal"
 ## TABLE OF CONTENTS
 <!-- ANCHOR:table-of-contents -->
 
-- [1. OVERVIEW](#1--overview)
-- [2. QUICK START](#2--quick-start)
-- [3. STRUCTURE](#3--structure)
-- [4. FEATURES](#4--features)
-- [5. USAGE EXAMPLES](#5--usage-examples)
-- [6. TROUBLESHOOTING](#6--troubleshooting)
-- [7. RELATED DOCUMENTS](#7--related-documents)
+- [1. 📖 OVERVIEW](#1--overview)
+- [2. 🚀 QUICK START](#2--quick-start)
+- [3. 📁 STRUCTURE](#3--structure)
+- [4. ⚡ FEATURES](#4--features)
+- [5. 💡 USAGE EXAMPLES](#5--usage-examples)
+- [6. 🛠️ TROUBLESHOOTING](#6--troubleshooting)
+- [7. 📚 RELATED DOCUMENTS](#7--related-documents)
 
 <!-- /ANCHOR:table-of-contents -->
 
 ---
 
-## 1. OVERVIEW
+## 1. 📖 OVERVIEW
 <!-- ANCHOR:overview -->
 
 ### What is Template Composer?
@@ -68,7 +68,7 @@ The Template Composer (`compose.sh`) is an automated build system that generates
 
 ---
 
-## 2. QUICK START
+## 2. 🚀 QUICK START
 <!-- ANCHOR:quick-start -->
 
 ```bash
@@ -105,7 +105,7 @@ chmod +x compose.sh
 
 ---
 
-## 3. STRUCTURE
+## 3. 📁 STRUCTURE
 <!-- ANCHOR:structure -->
 
 ```
@@ -146,7 +146,7 @@ templates/
 
 ---
 
-## 4. FEATURES
+## 4. ⚡ FEATURES
 <!-- ANCHOR:features -->
 
 ### Automated Template Composition
@@ -215,7 +215,7 @@ Special HTML comments control composition behavior:
 
 ---
 
-## 5. USAGE EXAMPLES
+## 5. 💡 USAGE EXAMPLES
 <!-- ANCHOR:usage-examples -->
 
 ### Example 1: Compose All Templates
@@ -275,7 +275,7 @@ cd .opencode/skill/system-spec-kit/scripts/templates
 
 ---
 
-## 6. TROUBLESHOOTING
+## 6. 🛠️ TROUBLESHOOTING
 <!-- ANCHOR:troubleshooting -->
 
 ### Common Issues
@@ -351,7 +351,7 @@ grep -r "SPECKIT_" core/ addendum/
 
 ---
 
-## 7. RELATED DOCUMENTS
+## 7. 📚 RELATED DOCUMENTS
 <!-- ANCHOR:related -->
 
 ### Internal Documentation
