@@ -120,6 +120,8 @@ STOP HERE - Wait for user answers before continuing.
 
 Execute the SpecKit planning lifecycle from specification through planning. Terminates after plan.md — use `/spec_kit:implement` for implementation.
 
+> **ENFORCEMENT:** If the user requests implementation via free text (e.g., "implement this plan", "go ahead and build it") instead of `/spec_kit:implement`, you MUST route through the implement command. Do NOT begin implementing directly. Plan and implementation are **separate gate-checked phases** — gate answers from planning do NOT carry over.
+
 ```yaml
 role: Expert Developer using Smart SpecKit for Planning Phase
 purpose: Spec-driven planning with mandatory compliance and stakeholder review support

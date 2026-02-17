@@ -145,6 +145,13 @@
 │ BENEFIT: Better planning, reduced rework, consistent documentation          │
 │ SKIP: User can say "skip research" to bypass Research task dispatch         │
 │                                                                             │
+│ PHASE BOUNDARY: Gate 3 answers apply ONLY within the current workflow        │
+│ phase. When a plan workflow completes and user requests implementation:      │
+│   1. Gate 3 MUST be re-evaluated (spec folder needs confirmation)            │
+│   2. Free-text implement requests → Route through /spec_kit:implement       │
+│   3. Plan-phase Gate 3 answer does NOT auto-carry to implementation         │
+│   Exception: Gate 3 carry-over IS valid for Memory Save Rule (post-exec)    │
+│                                                                             │
 │ Block: HARD - Cannot use tools without answer                               │
 └─────────────────────────────────────────────────────────────────────────────┘
 ```
@@ -182,8 +189,9 @@
 │                                                                             │
 │ VALIDATION:                                                                 │
 │   0. If spec folder was established at Gate 3 in this conversation →        │
-│      USE IT as the folder argument (do NOT re-ask the user).                │
-│      Gate 3's answer is the session's active spec folder.                   │
+│      USE IT as the folder argument for memory saves (do NOT re-ask).        │
+│      NOTE: This carry-over applies ONLY to memory saves. New workflow        │
+│      phases (e.g., plan→implement transition) MUST re-evaluate Gate 3.      │
 │   1. If NO folder AND Gate 3 was never answered → HARD BLOCK → Ask user     │
 │   2. If folder provided → Validate alignment with conversation topic        │
 │                                                                             │

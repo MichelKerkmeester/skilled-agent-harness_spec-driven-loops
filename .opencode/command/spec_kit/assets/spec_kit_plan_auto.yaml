@@ -426,6 +426,13 @@ termination:
   after_step: 7
   message: "Planning phase completed. Workflow terminated after step 7."
   next_steps: [Review planning docs, Validate technical approach, "Use /spec_kit:implement:auto or /spec_kit:implement:confirm"]
+  enforcement: |
+    CRITICAL: If user requests implementation via free text (e.g., "implement this plan",
+    "go ahead and build it", "start coding"), you MUST:
+    1. Route through /spec_kit:implement command (do NOT implement directly)
+    2. Re-evaluate Gate 3 (spec folder confirmation for implementation phase)
+    3. NEVER skip gates because they were passed during the plan phase
+    Plan and implementation are SEPARATE gate-checked workflows.
 
 # ─────────────────────────────────────────────────────────────────
 # AUTONOMOUS EXECUTION GUIDANCE
