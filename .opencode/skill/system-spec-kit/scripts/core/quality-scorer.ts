@@ -1,17 +1,41 @@
 // --- MODULE: Quality Scorer ---
 // Scores the quality of generated memory files based on multiple criteria
 
+interface FileWithDescription {
+  DESCRIPTION?: string;
+}
+
+interface ObservationWithNarrative {
+  TITLE?: string;
+  NARRATIVE?: string;
+}
+
+interface QualityBreakdown {
+  triggerPhrases: number;
+  keyTopics: number;
+  fileDescriptions: number;
+  contentLength: number;
+  noLeakedTags: number;
+  observationDedup: number;
+}
+
 export interface QualityScore {
   score: number;
   warnings: string[];
-  breakdown: {
-    triggerPhrases: number;
-    keyTopics: number;
-    fileDescriptions: number;
-    contentLength: number;
-    noLeakedTags: number;
-    observationDedup: number;
-  };
+  breakdown: QualityBreakdown;
+}
+
+function hasMeaningfulDescription(description?: string): boolean {
+  if (!description) {
+    return false;
+  }
+
+  const normalized = description.trim().toLowerCase();
+  if (normalized.length <= 5) {
+    return false;
+  }
+
+  return !normalized.includes('description pending') && !normalized.includes('(description pending)');
 }
 
 /**
@@ -23,11 +47,11 @@ export function scoreMemoryQuality(
   content: string,
   triggerPhrases: string[],
   keyTopics: string[],
-  files: Array<{ DESCRIPTION?: string }>,
-  observations: Array<{ TITLE?: string; NARRATIVE?: string }>
+  files: FileWithDescription[],
+  observations: ObservationWithNarrative[]
 ): QualityScore {
   const warnings: string[] = [];
-  const breakdown = {
+  const breakdown: QualityBreakdown = {
     triggerPhrases: 0,
     keyTopics: 0,
     fileDescriptions: 0,
@@ -59,12 +83,8 @@ export function scoreMemoryQuality(
   }
 
   // 3. File descriptions populated (0-20 points)
-  const filesWithDesc = files.filter(f =>
-    f.DESCRIPTION &&
-    f.DESCRIPTION.length > 5 &&
-    !f.DESCRIPTION.includes('description pending') &&
-    !f.DESCRIPTION.includes('(description pending)')
-  );
+  // This rewards memory files that remain self-explanatory in future sessions.
+  const filesWithDesc = files.filter((file) => hasMeaningfulDescription(file.DESCRIPTION));
   if (files.length === 0) {
     breakdown.fileDescriptions = 20; // No files = not applicable, full score
   } else {
@@ -89,7 +109,7 @@ export function scoreMemoryQuality(
 
   // 5. No leaked HTML tags (0-15 points)
   const leakedTags = content.match(/<(?:summary|details|div|span|p|br|hr)\b[^>]*>/gi) || [];
-  // Exclude tags inside code blocks
+  // Exclude tags inside fenced code blocks to avoid false positives.
   const codeBlocks = content.match(/```[\s\S]*?```/g) || [];
   const codeContent = codeBlocks.join(' ');
   const tagsInCode = codeContent.match(/<(?:summary|details|div|span|p|br|hr)\b[^>]*>/gi) || [];
@@ -105,6 +125,7 @@ export function scoreMemoryQuality(
   }
 
   // 6. Observation deduplication quality (0-15 points)
+  // Repeated titles usually indicate low-information duplication.
   if (observations.length === 0) {
     breakdown.observationDedup = 15; // No observations = not applicable
   } else {

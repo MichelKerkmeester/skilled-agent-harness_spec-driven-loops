@@ -219,40 +219,124 @@ TASK CONTEXT
 ### Resource Router (Implementation Logic)
 
 ```python
+import os
+
+SKILL_ROOT = ".opencode/skill/workflows-documentation"
+
+
+def safe_load(relative_path):
+    """Load markdown only from this skill directory."""
+    candidate = os.path.normpath(os.path.join(SKILL_ROOT, relative_path))
+    root = os.path.normpath(SKILL_ROOT)
+    if not candidate.startswith(root + os.sep):
+        raise ValueError(f"Out-of-scope resource path: {relative_path}")
+    if not candidate.endswith(".md"):
+        raise ValueError(f"Only markdown resources are allowed: {relative_path}")
+    return load(candidate)
+
+
+def discover_markdown_resources():
+    """Recursively discover references/assets markdown resources."""
+    discovered = []
+    for subdir in ("references", "assets"):
+        scan_root = os.path.join(SKILL_ROOT, subdir)
+        for dirpath, _, filenames in os.walk(scan_root):
+            for filename in filenames:
+                if filename.endswith(".md"):
+                    discovered.append(os.path.join(dirpath, filename))
+    return sorted(discovered)
+
+
 def route_documentation_resources(task):
-    """Route to appropriate documentation resources."""
-    
-    # Mode 1: Document Quality
-    if task.involves("DQI") or task.involves("quality score"):
-        load("references/validation.md")
+    """Route using weighted intent scoring from task text and flags."""
+    text = (getattr(task, "text", "") or "").lower()
+    keywords = set(getattr(task, "keywords", []) or [])
+
+    # Optional helper for diagnostics/debugging of available resources.
+    if getattr(task, "list_available_resources", False):
+        return discover_markdown_resources()
+
+    scores = {
+        "mode_1_quality": 0.0,
+        "mode_1_optimization": 0.0,
+        "mode_2_skill": 0.0,
+        "mode_2_reference": 0.0,
+        "mode_3_flowchart": 0.0,
+        "mode_4_install": 0.0,
+        "quick_reference": 0.0,
+    }
+
+    # Flag-based weights
+    if getattr(task, "needs_dqi", False) or getattr(task, "needs_validation", False):
+        scores["mode_1_quality"] += 4.0
+    if getattr(task, "needs_optimization", False):
+        scores["mode_1_optimization"] += 4.0
+    if getattr(task, "creating_skill", False):
+        scores["mode_2_skill"] += 4.0
+    if getattr(task, "creating_reference", False) or getattr(task, "creating_asset", False):
+        scores["mode_2_reference"] += 4.0
+    if getattr(task, "creating_flowchart", False):
+        scores["mode_3_flowchart"] += 4.0
+    if getattr(task, "creating_install_guide", False):
+        scores["mode_4_install"] += 4.0
+    if getattr(task, "needs_quick_reference", False):
+        scores["quick_reference"] += 3.0
+
+    # Text/keyword weights
+    keyword_map = {
+        "mode_1_quality": ("dqi", "quality score", "validate", "extract_structure"),
+        "mode_1_optimization": ("optimize", "ai context", "llms.txt"),
+        "mode_2_skill": ("skill creation", "new skill", "init_skill", "package_skill"),
+        "mode_2_reference": ("reference file", "bundled resource", "asset template"),
+        "mode_3_flowchart": ("flowchart", "ascii diagram", "decision tree", "swimlane"),
+        "mode_4_install": ("install guide", "setup instructions", "phase", "prerequisite"),
+        "quick_reference": ("quick reference", "cheat sheet", "standards lookup"),
+    }
+    for route_name, terms in keyword_map.items():
+        for term in terms:
+            if term in text or term in keywords:
+                scores[route_name] += 1.0
+
+    precedence = [
+        "mode_1_quality",
+        "mode_1_optimization",
+        "mode_2_skill",
+        "mode_2_reference",
+        "mode_3_flowchart",
+        "mode_4_install",
+        "quick_reference",
+    ]
+    selected = max(precedence, key=lambda name: (scores[name], -precedence.index(name)))
+
+    if selected == "mode_1_quality":
+        safe_load("references/validation.md")
+        safe_load("references/workflows.md")
         return "Mode 1: Document Quality"
-    
-    if task.involves("optimize") or task.involves("AI context"):
-        load("references/optimization.md")
+
+    if selected == "mode_1_optimization":
+        safe_load("references/optimization.md")
         return "Mode 1: Content Optimization"
-    
-    # Mode 2: Component Creation (Skills, Agents, Commands)
-    if task.involves("skill creation") or task.involves("new skill"):
-        load("references/skill_creation.md")
-        load("assets/opencode/skill_md_template.md")
+
+    if selected == "mode_2_skill":
+        safe_load("references/skill_creation.md")
+        safe_load("assets/opencode/skill_md_template.md")
         return "Mode 2: Skill Creation"
-    
-    if task.involves("reference file") or task.involves("bundled resource"):
-        load("assets/opencode/skill_reference_template.md")
+
+    if selected == "mode_2_reference":
+        safe_load("assets/opencode/skill_reference_template.md")
         return "Mode 2: Reference Creation"
-    
-    # Mode 3: Flowchart Creation
-    if task.involves("flowchart") or task.involves("ASCII diagram"):
-        load("assets/flowcharts/")
-        return "Mode 3: Flowchart Creation"
-    
-    # Mode 4: Install Guide
-    if task.involves("install guide") or task.involves("setup instructions"):
-        load("assets/documentation/install_guide_template.md")
+
+    if selected == "mode_3_flowchart":
+        return [
+            path for path in discover_markdown_resources()
+            if "/assets/flowcharts/" in path.replace("\\", "/")
+        ]
+
+    if selected == "mode_4_install":
+        safe_load("assets/documentation/install_guide_template.md")
         return "Mode 4: Install Guide"
-    
-    # Default
-    load("references/quick_reference.md")
+
+    safe_load("references/quick_reference.md")
     return "Quick Reference"
 ```
 

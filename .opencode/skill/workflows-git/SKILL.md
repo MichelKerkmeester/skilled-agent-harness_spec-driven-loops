@@ -65,58 +65,109 @@ GIT WORKFLOW CONTEXT
 
 ### Resource Router
 ```python
+import os
+
+SKILL_ROOT = ".opencode/skill/workflows-git"
+
+
+def safe_load(relative_path):
+    """Load markdown only from this skill directory."""
+    candidate = os.path.normpath(os.path.join(SKILL_ROOT, relative_path))
+    root = os.path.normpath(SKILL_ROOT)
+    if not candidate.startswith(root + os.sep):
+        raise ValueError(f"Out-of-scope resource path: {relative_path}")
+    if not candidate.endswith(".md"):
+        raise ValueError(f"Only markdown resources are allowed: {relative_path}")
+    return load(candidate)
+
+
+def discover_markdown_resources():
+    """Recursively discover references/assets markdown resources."""
+    discovered = []
+    for subdir in ("references", "assets"):
+        scan_root = os.path.join(SKILL_ROOT, subdir)
+        for dirpath, _, filenames in os.walk(scan_root):
+            for filename in filenames:
+                if filename.endswith(".md"):
+                    discovered.append(os.path.join(dirpath, filename))
+    return sorted(discovered)
+
+
 def route_git_resources(task):
-    # ──────────────────────────────────────────────────────────────────
-    # Phase 1: Workspace Setup (git-worktrees)
-    # Purpose: Complete 7-step worktree creation workflow
-    # Key Insight: Directory selection priority, safety verification, branch strategies
-    # ──────────────────────────────────────────────────────────────────
-    if task.needs_isolated_workspace or "worktree" in task.keywords:
-        return load("references/worktree_workflows.md")  # 7-step creation workflow
+    text = (getattr(task, "text", "") or "").lower()
+    keywords = set(getattr(task, "keywords", []) or [])
 
-    # ──────────────────────────────────────────────────────────────────
-    # Phase 2: Commit Workflow (git-commit)
-    # Purpose: Complete 6-step commit workflow
-    # Key Insight: File categorization, artifact filtering, Conventional Commits
-    # ──────────────────────────────────────────────────────────────────
-    if task.has_staged_changes or "commit" in task.keywords:
-        load("references/commit_workflows.md")  # 6-step commit workflow
-        if task.needs_message_help:
-            return load("assets/commit_message_template.md")  # Conventional Commits examples
+    # Optional helper for diagnostics/debugging of available resources.
+    if getattr(task, "list_available_resources", False):
+        return discover_markdown_resources()
 
-    # ──────────────────────────────────────────────────────────────────
-    # Phase 3: Completion/Integration (git-finish)
-    # Purpose: Complete 5-step completion workflow
-    # Key Insight: Test verification gate, 4 options (merge/PR/keep/discard)
-    # ──────────────────────────────────────────────────────────────────
-    if task.ready_to_integrate or "merge" in task.keywords or "pr" in task.keywords:
-        load("references/finish_workflows.md")  # 5-step completion workflow
-        if task.creating_pr:
-            return load("assets/pr_template.md")  # PR description template
+    scores = {
+        "workspace_setup": 0.0,
+        "commit": 0.0,
+        "finish": 0.0,
+        "shared_patterns": 0.0,
+        "quick_reference": 0.0,
+    }
 
-    # ──────────────────────────────────────────────────────────────────
-    # Quick Reference
-    # Purpose: One-page cheat sheet
-    # Key Insight: Skill selection flowchart, essential commands
-    # ──────────────────────────────────────────────────────────────────
-    if task.needs_quick_reference:
-        return load("references/quick_reference.md")  # one-page cheat sheet
+    # Flag-based weights (high confidence signals)
+    if getattr(task, "needs_isolated_workspace", False):
+        scores["workspace_setup"] += 4.0
+    if getattr(task, "setting_up_worktree", False):
+        scores["workspace_setup"] += 2.0
+    if getattr(task, "has_staged_changes", False):
+        scores["commit"] += 3.0
+    if getattr(task, "needs_message_help", False):
+        scores["commit"] += 2.0
+    if getattr(task, "ready_to_integrate", False):
+        scores["finish"] += 4.0
+    if getattr(task, "creating_pr", False):
+        scores["finish"] += 2.0
+    if getattr(task, "needs_command_reference", False) or getattr(task, "needs_conventions", False):
+        scores["shared_patterns"] += 3.0
+    if getattr(task, "needs_quick_reference", False):
+        scores["quick_reference"] += 3.0
 
-    # ──────────────────────────────────────────────────────────────────
-    # Shared Patterns
-    # Purpose: Common git patterns and command reference
-    # Key Insight: Branch naming, git commands, Conventional Commits format
-    # ──────────────────────────────────────────────────────────────────
-    if task.needs_command_reference or task.needs_conventions:
-        return load("references/shared_patterns.md")
+    # Text/keyword weights (lower confidence, still meaningful)
+    keyword_map = {
+        "workspace_setup": ("worktree", "workspace", "branch strategy", "parallel work"),
+        "commit": ("commit", "conventional commit", "staged", "message"),
+        "finish": ("finish", "merge", "pr", "pull request", "integrate"),
+        "shared_patterns": ("convention", "pattern", "reference", "branch naming"),
+        "quick_reference": ("quick", "cheat sheet", "overview"),
+    }
+    for route_name, terms in keyword_map.items():
+        for term in terms:
+            if term in text or term in keywords:
+                scores[route_name] += 1.0
 
-    # ──────────────────────────────────────────────────────────────────
-    # Worktree Checklist
-    # Purpose: Step-by-step worktree creation checklist
-    # Key Insight: Validation checkpoints for workspace setup
-    # ──────────────────────────────────────────────────────────────────
-    if task.setting_up_worktree:
-        return load("assets/worktree_checklist.md")  # step-by-step validation
+    # Tie-breaker preserves existing workflow intent.
+    precedence = ["workspace_setup", "commit", "finish", "shared_patterns", "quick_reference"]
+    selected = max(precedence, key=lambda name: (scores[name], -precedence.index(name)))
+
+    if selected == "workspace_setup":
+        safe_load("references/worktree_workflows.md")
+        if getattr(task, "setting_up_worktree", False):
+            safe_load("assets/worktree_checklist.md")
+        return "Phase 1: workspace setup"
+
+    if selected == "commit":
+        safe_load("references/commit_workflows.md")
+        if getattr(task, "needs_message_help", False):
+            safe_load("assets/commit_message_template.md")
+        return "Phase 2: commit"
+
+    if selected == "finish":
+        safe_load("references/finish_workflows.md")
+        if getattr(task, "creating_pr", False):
+            safe_load("assets/pr_template.md")
+        return "Phase 3: finish"
+
+    if selected == "shared_patterns":
+        safe_load("references/shared_patterns.md")
+        return "Shared patterns"
+
+    safe_load("references/quick_reference.md")
+    return "Quick reference"
 
 # ══════════════════════════════════════════════════════════════════════
 # STATIC RESOURCES (always available, not conditionally loaded)

@@ -77,168 +77,126 @@ This orchestrator operates in four primary phases:
 ### Task Keyword Triggers
 
 ```python
-TASK_KEYWORDS = {
-    # Core workflow phases
-    "VERIFICATION": ["done", "complete", "works", "verify", "finished"],
-    "DEBUGGING": ["bug", "fix", "error", "broken", "issue", "failing"],
-    "CODE_QUALITY": ["style check", "quality check", "validate code", "check standards", "code review"],
-
-    # Implementation domains
-    "IMPLEMENTATION": ["implement", "build", "create", "add", "feature", "code"],
-    "ANIMATION": ["animation", "motion", "gsap", "lenis", "scroll", "carousel", "slider", "swiper"],
-    "FORMS": ["form", "validation", "input", "submit", "botpoison"],
-    "FORM_UPLOAD": ["upload", "filepond", "file upload", "drag drop", "mime type", "r2 upload", "file type", "dropzone"],
-    "VIDEO": ["video", "hls", "streaming", "player"],
-    "DEPLOYMENT": ["deploy", "minify", "cdn", "r2", "production"],
-
-    # Technical domains
-    "ASYNC": ["async", "await", "promise", "fetch", "timeout", "setTimeout"],
-    "DOM": ["dom", "element", "querySelector", "event", "click", "listener"],
-    "CSS": ["css", "style", "layout", "responsive", "media query", "flexbox", "grid"],
-    "API": ["api", "fetch", "endpoint", "request", "response"],
-    "ACCESSIBILITY": ["a11y", "accessibility", "aria", "screen reader", "keyboard", "focus", "tab"],
-
-    # CONDITIONAL: triggers performance pattern loading
-    "PERFORMANCE": ["performance", "optimize", "core web vitals", "lazy load", "cache", "throttle", "debounce", "requestAnimationFrame", "RAF"],
-    "OBSERVERS": ["observer", "mutation", "intersection", "resize observer", "shared_observers", "sharedobservers", "observer consolidation"],
-    "SCHEDULING": ["requestIdleCallback", "queueMicrotask", "idle callback", "postTask", "scheduling API", "main thread blocking"],
-    "THIRD_PARTY": ["third-party", "third party", "external library", "library integration", "script loading", "finsweet"]
+TASK_SIGNALS = {
+    "VERIFICATION": {"verify": 2.4, "done": 2.1, "complete": 2.0, "works": 1.8, "finished": 1.7},
+    "DEBUGGING": {"bug": 2.3, "fix": 2.0, "error": 2.4, "broken": 1.8, "issue": 1.6, "failing": 1.9},
+    "CODE_QUALITY": {"style check": 2.2, "quality check": 2.2, "validate code": 2.0, "check standards": 2.0, "code review": 1.7},
+    "IMPLEMENTATION": {"implement": 2.0, "build": 1.7, "create": 1.5, "add": 1.2, "feature": 1.5, "code": 1.0},
+    "ANIMATION": {"animation": 2.1, "motion": 1.8, "gsap": 2.3, "lenis": 2.1, "scroll": 1.4, "carousel": 1.8, "slider": 1.8, "swiper": 2.1},
+    "FORMS": {"form": 2.0, "validation": 1.7, "input": 1.4, "submit": 1.5, "botpoison": 2.2},
+    "FORM_UPLOAD": {"upload": 2.2, "filepond": 2.5, "file upload": 2.3, "drag drop": 1.9, "mime type": 1.8, "r2 upload": 2.2, "dropzone": 1.8},
+    "VIDEO": {"video": 2.0, "hls": 2.4, "streaming": 2.1, "player": 1.4},
+    "DEPLOYMENT": {"deploy": 2.2, "minify": 2.1, "cdn": 2.0, "r2": 1.8, "production": 1.5},
+    "ASYNC": {"async": 1.9, "await": 1.8, "promise": 1.6, "fetch": 1.4, "timeout": 1.4, "settimeout": 1.3},
+    "DOM": {"dom": 2.0, "element": 1.4, "queryselector": 1.8, "event": 1.4, "click": 1.3, "listener": 1.5},
+    "CSS": {"css": 2.0, "style": 1.5, "layout": 1.6, "responsive": 1.7, "media query": 1.6, "flexbox": 1.5, "grid": 1.5},
+    "API": {"api": 2.0, "endpoint": 1.8, "request": 1.5, "response": 1.4},
+    "ACCESSIBILITY": {"a11y": 2.3, "accessibility": 2.1, "aria": 1.8, "screen reader": 1.8, "keyboard": 1.5, "focus": 1.7, "tab": 1.3},
+    "PERFORMANCE": {"performance": 2.2, "optimize": 1.7, "core web vitals": 2.4, "lazy load": 1.9, "cache": 1.5, "throttle": 1.5, "debounce": 1.5, "requestanimationframe": 1.8, "raf": 1.4},
+    "OBSERVERS": {"observer": 2.1, "mutation": 1.8, "intersection": 1.8, "resize observer": 1.9, "shared_observers": 2.2, "sharedobservers": 2.2, "observer consolidation": 2.3},
+    "SCHEDULING": {"requestidlecallback": 2.4, "queuemicrotask": 2.1, "idle callback": 2.2, "posttask": 2.1, "scheduling api": 2.0, "main thread blocking": 1.8},
+    "THIRD_PARTY": {"third-party": 2.1, "third party": 2.1, "external library": 2.1, "library integration": 1.9, "script loading": 1.7, "finsweet": 2.2}
 }
 ```
 
 ### Resource Router
 ```python
+from pathlib import Path
+
+def _assert_scope(path, skill_root):
+    resolved = path.resolve()
+    root = skill_root.resolve()
+    if root not in resolved.parents and resolved != root:
+        raise ValueError(f"Out-of-scope path blocked: {resolved}")
+
+
+def discover_router_docs(skill_root):
+    """Smart Router V2: recursive markdown discovery under this skill only."""
+    docs = list((skill_root / "references").rglob("*.md"))
+    docs.extend((skill_root / "assets").rglob("*.md"))
+    for doc in docs:
+        _assert_scope(doc, skill_root)
+    return docs
+
+
+def classify_intents(task_text):
+    """Weighted intent scoring with ambiguity support (top-2)."""
+    text = task_text.lower()
+    scores = {intent: 0.0 for intent in TASK_SIGNALS}
+    for intent, terms in TASK_SIGNALS.items():
+        for term, weight in terms.items():
+            if term in text:
+                scores[intent] += weight
+
+    ranked = sorted(scores.items(), key=lambda item: item[1], reverse=True)
+    best_intent, best_score = ranked[0]
+    second_intent, second_score = ranked[1]
+    if best_score == 0:
+        return ["IMPLEMENTATION"], scores
+    if (best_score - second_score) <= 0.7:
+        return [best_intent, second_intent], scores
+    return [best_intent], scores
+
+
 def route_frontend_resources(task):
-    # ──────────────────────────────────────────────────────────────────
-    # Level-based loading
-    # ALWAYS: Load for every phase invocation
-    # CONDITIONAL: Load if keywords match
-    # ON_DEMAND: Load on explicit request
-    # ──────────────────────────────────────────────────────────────────
-    
-    # ──────────────────────────────────────────────────────────────────
-    # Phase 1: Implementation
-    # ALWAYS: implementation_workflows.md
-    # CONDITIONAL: animation, webflow, security, css, swiper, a11y (if keywords match)
-    # ON_DEMAND: performance, observer (on request)
-    # ──────────────────────────────────────────────────────────────────
-    if task.phase == "implementation":
-        # CONDITIONAL: Load for async/validation if keywords detected
-        if task.has_async_loading:
-            load("assets/patterns/wait_patterns.js")  # CONDITIONAL: async waiting patterns
-        if task.needs_validation:
-            load("assets/patterns/validation_patterns.js")  # CONDITIONAL: validation templates
+    skill_root = Path(".opencode/skill/workflows-code--web-dev")
+    discover_router_docs(skill_root)
 
-        # CONDITIONAL: Load if deployment keywords detected
-        if task.needs_minification:
-            return load("references/deployment/minification_guide.md")  # CONDITIONAL: terser, verification
-        if task.needs_cdn_deployment:
-            return load("references/deployment/cdn_deployment.md")  # CONDITIONAL: R2 upload, versioning
-
-        # CONDITIONAL: Load if animation keywords detected
-        if task.has_animations:
-            return load("references/implementation/animation_workflows.md")  # CONDITIONAL: CSS vs Motion.dev
-
-        # CONDITIONAL: Load if CSS keywords detected (css, style, layout, responsive)
-        if task.has_css_work:
-            load("references/implementation/css_patterns.md")  # CONDITIONAL: CSS architecture
-
-        # CONDITIONAL: Load if carousel/slider keywords detected
-        if task.has_carousel or task.has_slider:
-            return load("references/implementation/swiper_patterns.md")  # CONDITIONAL: Swiper.js patterns
-
-        # CONDITIONAL: Load if accessibility/focus keywords detected
-        if task.has_accessibility or task.has_focus:
-            return load("references/implementation/focus_management.md")  # CONDITIONAL: a11y, keyboard nav
-
-        # CONDITIONAL: Load if webflow keywords detected
-        if task.webflow_specific:
-            return load("references/implementation/webflow_patterns.md")  # CONDITIONAL: platform limits
-
-        # CONDITIONAL: Load if security keywords detected
-        if task.security_concerns:
-            return load("references/implementation/security_patterns.md")  # CONDITIONAL: OWASP Top 10
-
-        # CONDITIONAL: Load if third-party library integration detected
-        if task.has_third_party or 'finsweet' in task.keywords:
-            return load("references/implementation/third_party_integrations.md")  # CONDITIONAL: external libraries, CDN loading
-
-        # CONDITIONAL: Load if file upload / FilePond keywords detected
-        if task.has_file_upload or 'filepond' in task.keywords or 'upload' in task.keywords:
-            return load("references/implementation/form_upload_workflows.md")  # CONDITIONAL: FilePond, R2 upload, MIME types
-
-        # CONDITIONAL: Load if performance keywords detected (throttle, debounce, RAF)
-        if task.needs_performance_optimization:
-            return load("references/implementation/performance_patterns.md")  # CONDITIONAL: throttle, debounce, RAF
-
-        # CONDITIONAL: Load if observer/SharedObservers keywords detected
-        if task.needs_observer_patterns:
-            return load("references/implementation/observer_patterns.md")  # CONDITIONAL: MutationObserver, IO, SharedObservers
-
-        # CONDITIONAL: Load if browser scheduling APIs detected
-        if task.has_scheduling_apis or 'requestIdleCallback' in task.keywords:
-            load("references/implementation/async_patterns.md")  # CONDITIONAL: RAF, idle callback, scheduling
-
-        # CONDITIONAL: Load if lenis smooth scroll detected
-        if task.has_lenis or 'lenis' in task.keywords:
-            load("assets/integrations/lenis_patterns.js")  # CONDITIONAL: Lenis smooth scroll patterns
-
-        # CONDITIONAL: Load if HLS video streaming detected
-        if task.has_hls or 'hls' in task.keywords:
-            load("assets/integrations/hls_patterns.js")  # CONDITIONAL: HLS.js video patterns
-
-        # ALWAYS: Default implementation patterns
-        return load("references/implementation/implementation_workflows.md")
-
-    # ──────────────────────────────────────────────────────────────────
-    # Phase 1.5: Code Quality Gate (MANDATORY for all code files)
-    # ALWAYS: code_quality_checklist.md
-    # CONDITIONAL: code_style_enforcement.md (if violations found)
-    # JavaScript (.js): Sections 2-7 | CSS (.css): Section 8
-    # ──────────────────────────────────────────────────────────────────
-    if task.phase == "code_quality" or task.implementation_complete:
-        load("assets/checklists/code_quality_checklist.md")  # ALWAYS: validation checklist
-        if task.has_violations:
-            load("references/standards/code_style_enforcement.md")  # CONDITIONAL: remediation
-        return True  # Gate must pass before proceeding
-
-    # ──────────────────────────────────────────────────────────────────
-    # Phase 2: Debugging
-    # ALWAYS: debugging_workflows.md + debugging_checklist.md
-    # CONDITIONAL: css, swiper, focus (if debugging those domains)
-    # ──────────────────────────────────────────────────────────────────
-    if task.phase == "debugging":
-        load("assets/checklists/debugging_checklist.md")  # ALWAYS: step-by-step workflow
-
-        # CONDITIONAL: Load if CSS debugging
-        if task.has_css_issues:
-            load("references/implementation/css_patterns.md")  # CONDITIONAL: CSS debugging
-
-        # CONDITIONAL: Load if carousel/slider debugging
-        if task.has_carousel_issues or task.has_slider_issues:
-            load("references/implementation/swiper_patterns.md")  # CONDITIONAL: Swiper debugging
-
-        # CONDITIONAL: Load if focus/accessibility debugging
-        if task.has_focus_issues or task.has_a11y_issues:
-            load("references/implementation/focus_management.md")  # CONDITIONAL: a11y debugging
-
-        # For DevTools reference, see workflows-chrome-devtools skill
-        return load("references/debugging/debugging_workflows.md")  # ALWAYS: root cause tracing
-
-    # ──────────────────────────────────────────────────────────────────
-    # Phase 3: Verification (MANDATORY)
-    # ALWAYS: verification_workflows.md + verification_checklist.md
-    # ──────────────────────────────────────────────────────────────────
     if task.phase == "verification" or task.claiming_complete:
-        load("assets/checklists/verification_checklist.md")  # ALWAYS: mandatory steps
-        return load("references/verification/verification_workflows.md")  # ALWAYS: browser testing
+        return [
+            "assets/checklists/verification_checklist.md",
+            "references/verification/verification_workflows.md"
+        ]
 
-    # ──────────────────────────────────────────────────────────────────
-    # Quick Reference
-    # ──────────────────────────────────────────────────────────────────
-    if task.needs_quick_reference:
-        load("references/standards/quick_reference.md")  # one-page cheat sheet (includes CSS patterns)
-        return True
+    if task.phase == "code_quality" or task.implementation_complete:
+        resources = ["assets/checklists/code_quality_checklist.md"]
+        if task.has_violations:
+            resources.append("references/standards/code_style_enforcement.md")
+        return resources
+
+    if task.phase == "debugging":
+        resources = [
+            "assets/checklists/debugging_checklist.md",
+            "references/debugging/debugging_workflows.md"
+        ]
+        if task.has_css_issues:
+            resources.append("references/implementation/css_patterns.md")
+        if task.has_carousel_issues or task.has_slider_issues:
+            resources.append("references/implementation/swiper_patterns.md")
+        if task.has_focus_issues or task.has_a11y_issues:
+            resources.append("references/implementation/focus_management.md")
+        return resources
+
+    intents, scores = classify_intents(task.description)
+    intent_to_resources = {
+        "IMPLEMENTATION": ["references/implementation/implementation_workflows.md"],
+        "ANIMATION": ["references/implementation/animation_workflows.md"],
+        "FORMS": ["assets/patterns/validation_patterns.js"],
+        "FORM_UPLOAD": ["references/implementation/form_upload_workflows.md"],
+        "VIDEO": ["assets/integrations/hls_patterns.js"],
+        "DEPLOYMENT": ["references/deployment/minification_guide.md", "references/deployment/cdn_deployment.md"],
+        "ASYNC": ["assets/patterns/wait_patterns.js", "references/implementation/async_patterns.md"],
+        "DOM": ["references/implementation/implementation_workflows.md"],
+        "CSS": ["references/implementation/css_patterns.md"],
+        "API": ["references/implementation/implementation_workflows.md"],
+        "ACCESSIBILITY": ["references/implementation/focus_management.md"],
+        "PERFORMANCE": ["references/implementation/performance_patterns.md"],
+        "OBSERVERS": ["references/implementation/observer_patterns.md"],
+        "SCHEDULING": ["references/implementation/async_patterns.md"],
+        "THIRD_PARTY": ["references/implementation/third_party_integrations.md"]
+    }
+
+    selected = ["references/implementation/implementation_workflows.md"]  # ALWAYS for implementation
+    for intent in intents:
+        selected.extend(intent_to_resources.get(intent, []))
+
+    # Optional explicit loads stay supported.
+    if "lenis" in task.description.lower():
+        selected.append("assets/integrations/lenis_patterns.js")
+    if "hls" in task.description.lower():
+        selected.append("assets/integrations/hls_patterns.js")
+
+    return list(dict.fromkeys(selected))
 
 # See "The Iron Law" in Section 1 - Phase 3: Verification
 # See "Code Quality Gate" in Section 3 - Phase 1.5 for style enforcement

@@ -43,7 +43,7 @@ const search_weights = JSON.parse(
 ) as SearchWeightsConfig;
 const MAX_TRIGGERS_PER_MEMORY = search_weights.maxTriggersPerMemory || 10;
 
-type EmbeddingInput = Float32Array | number[] | ArrayBufferView;
+type EmbeddingInput = Float32Array | number[];
 type JsonObject = Record<string, unknown>;
 type MemoryRow = {
   id: number;
@@ -55,8 +55,14 @@ type MemoryRow = {
   importance_weight?: number;
   created_at?: string;
   access_count?: number;
+  last_accessed?: number;
+  confidence?: number;
   keyword_score?: number;
   similarity?: number;
+  avg_similarity?: number;
+  concept_similarities?: number[];
+  smartScore?: number;
+  relationSimilarity?: number;
   isConstitutional?: boolean;
   [key: string]: unknown;
 };
@@ -109,6 +115,10 @@ type EnrichedSearchResult = {
   snippet: string;
   id: number;
   importanceWeight: number;
+  created_at?: string;
+  access_count?: number;
+  smartScore?: number;
+  spec_folder?: string;
   searchMethod?: string;
   isConstitutional: boolean;
   [key: string]: unknown;
@@ -132,10 +142,18 @@ function to_embedding_buffer(embedding: EmbeddingInput) {
   if (embedding instanceof Float32Array) {
     return Buffer.from(embedding.buffer, embedding.byteOffset, embedding.byteLength);
   }
-  if (Array.isArray(embedding)) {
-    return Buffer.from(new Float32Array(embedding).buffer);
+  return Buffer.from(new Float32Array(embedding).buffer);
+}
+
+function parse_trigger_phrases(value: string | string[] | undefined): string[] {
+  if (!value) return [];
+  if (Array.isArray(value)) return value;
+  try {
+    const parsed = JSON.parse(value);
+    return Array.isArray(parsed) ? parsed : [];
+  } catch (_: unknown) {
+    return [];
   }
-  return Buffer.from(embedding.buffer, embedding.byteOffset, embedding.byteLength);
 }
 
 
@@ -235,7 +253,7 @@ function validate_embedding_dimension() {
 
     const stored_row = db.prepare(`
       SELECT value FROM vec_metadata WHERE key = 'embedding_dim'
-    `).get();
+    `).get() as { value: string } | undefined;
 
     if (!stored_row) {
       return { valid: true, stored: null, current: get_embedding_dim(), reason: 'No stored dimension' };
@@ -506,9 +524,7 @@ function get_constitutional_memories(
     results = results.slice(0, max_constitutional_count);
 
     results = results.map((row: MemoryRow) => {
-      if (row.trigger_phrases) {
-        row.trigger_phrases = JSON.parse(row.trigger_phrases);
-      }
+      row.trigger_phrases = parse_trigger_phrases(row.trigger_phrases);
       row.isConstitutional = true;
       return row;
     });
@@ -1042,7 +1058,7 @@ function ensure_schema_version(database: Database.Database) {
     )
   `);
 
-  const row = database.prepare('SELECT version FROM schema_version WHERE id = 1').get();
+  const row = database.prepare('SELECT version FROM schema_version WHERE id = 1').get() as { version: number } | undefined;
   const current_version = row ? row.version : 0;
 
   if (current_version < SCHEMA_VERSION) {
@@ -1129,8 +1145,8 @@ function initialize_db(custom_path: string | null = null): Database.Database {
 }
 
 function migrate_confidence_columns(database: Database.Database) {
-  const columns = database.prepare(`PRAGMA table_info(memory_index)`).all();
-  const column_names = columns.map((c: { name: string }) => c.name);
+  const columns = database.prepare(`PRAGMA table_info(memory_index)`).all() as Array<{ name: string }>;
+  const column_names = columns.map((c) => c.name);
 
   if (!column_names.includes('confidence')) {
     try {
@@ -1296,17 +1312,17 @@ function migrate_constitutional_tier(database: Database.Database) {
   const table_info = database.prepare(`
     SELECT sql FROM sqlite_master
     WHERE type='table' AND name='memory_index'
-  `).get();
+  `).get() as { sql?: string } | undefined;
 
   if (table_info && table_info.sql) {
     if (table_info.sql.includes("'constitutional'")) {
       return;
     }
 
-    const constitutional_count = database.prepare(`
+    const constitutional_count = (database.prepare(`
       SELECT COUNT(*) as count FROM memory_index
       WHERE importance_tier = 'constitutional'
-    `).get().count;
+    `).get() as { count: number }).count;
 
     if (constitutional_count > 0) {
       console.warn(`[vector-index] Found ${constitutional_count} constitutional memories`);
@@ -1630,7 +1646,7 @@ function index_memory(params: IndexMemoryParams) {
   if (existing) {
     return update_memory({
       id: existing.id,
-      title,
+      title: title ?? undefined,
       triggerPhrases,
       importanceWeight,
       embedding,
@@ -1746,7 +1762,7 @@ function update_memory(params: UpdateMemoryParams) {
 
   const update_memory_tx = database.transaction(() => {
     const updates = ['updated_at = ?'];
-    const values = [now];
+    const values: unknown[] = [now];
 
     if (title !== undefined) {
       updates.push('title = ?');
@@ -1841,7 +1857,7 @@ function delete_memory_by_path(spec_folder: string, file_path: string, anchor_id
   const row = database.prepare(`
     SELECT id FROM memory_index
     WHERE spec_folder = ? AND file_path = ? AND (anchor_id = ? OR (anchor_id IS NULL AND ? IS NULL))
-  `).get(spec_folder, file_path, anchor_id, anchor_id);
+  `).get(spec_folder, file_path, anchor_id, anchor_id) as { id: number } | undefined;
 
   if (row) {
     return delete_memory(row.id);
@@ -1856,9 +1872,7 @@ function get_memory(id: number): MemoryRow | null {
   const row = stmts.get_by_id.get(id);
 
   if (row) {
-    if (row.trigger_phrases) {
-      row.trigger_phrases = JSON.parse(row.trigger_phrases);
-    }
+    row.trigger_phrases = parse_trigger_phrases(row.trigger_phrases);
     row.isConstitutional = row.importance_tier === 'constitutional';
   }
 
@@ -1870,12 +1884,10 @@ function get_memories_by_folder(spec_folder: string): MemoryRow[] {
 
   const rows = database.prepare(`
     SELECT * FROM memory_index WHERE spec_folder = ? ORDER BY created_at DESC
-  `).all(spec_folder);
+  `).all(spec_folder) as MemoryRow[];
 
   return rows.map((row: MemoryRow) => {
-    if (row.trigger_phrases) {
-      row.trigger_phrases = JSON.parse(row.trigger_phrases);
-    }
+    row.trigger_phrases = parse_trigger_phrases(row.trigger_phrases);
     row.isConstitutional = row.importance_tier === 'constitutional';
     return row;
   });
@@ -1885,7 +1897,7 @@ function get_memory_count() {
   const database = initialize_db();
   const stmts = init_prepared_statements(database);
   const result = stmts.count_all.get();
-  return result.count;
+  return result?.count ?? 0;
 }
 
 function get_status_counts() {
@@ -1959,7 +1971,7 @@ function vector_search(query_embedding: EmbeddingInput, options: VectorSearchOpt
        END`
     : 'm.importance_weight';
 
-  let constitutional_results = [];
+  let constitutional_results: MemoryRow[] = [];
 
   if (includeConstitutional && tier !== 'constitutional') {
     constitutional_results = get_constitutional_memories(database, specFolder, includeArchived);
@@ -2018,9 +2030,7 @@ function vector_search(query_embedding: EmbeddingInput, options: VectorSearchOpt
   const rows = database.prepare(sql).all(...params);
 
   const regular_results = (rows as MemoryRow[]).map((row: MemoryRow) => {
-    if (row.trigger_phrases) {
-      row.trigger_phrases = JSON.parse(row.trigger_phrases);
-    }
+    row.trigger_phrases = parse_trigger_phrases(row.trigger_phrases);
     row.isConstitutional = row.importance_tier === 'constitutional';
     return row;
   });
@@ -2120,9 +2130,7 @@ function multi_concept_search(
   const rows = database.prepare(sql).all(...params);
 
   return (rows as MemoryRow[]).map((row: MemoryRow) => {
-    if (row.trigger_phrases) {
-      row.trigger_phrases = JSON.parse(row.trigger_phrases);
-    }
+    row.trigger_phrases = parse_trigger_phrases(row.trigger_phrases);
     row.concept_similarities = concept_buffers.map((_, i) => Number(row[`similarity_${i}`] ?? 0));
     row.avg_similarity = (row.concept_similarities as number[]).reduce((a, b) => a + b, 0) / concepts.length;
     row.isConstitutional = row.importance_tier === 'constitutional';
@@ -2213,7 +2221,7 @@ function extract_tags(content: unknown): string[] {
     return [];
   }
 
-  const tags = new Set();
+  const tags = new Set<string>();
 
   const yaml_tags_match = content.match(/^---[\s\S]*?^tags:\s*\[([^\]]+)\]/m);
   if (yaml_tags_match && yaml_tags_match[1]) {
@@ -2343,7 +2351,7 @@ function keyword_search(
     let score = 0;
     const searchable_text = [
       row.title || '',
-      row.trigger_phrases || '',
+      parse_trigger_phrases(row.trigger_phrases).join(' '),
       row.spec_folder || '',
       row.file_path || ''
     ].join(' ').toLowerCase();
@@ -2354,13 +2362,13 @@ function keyword_search(
         if ((row.title || '').toLowerCase().includes(term)) {
           score += 2;
         }
-        if ((row.trigger_phrases || '').toLowerCase().includes(term)) {
+        if (parse_trigger_phrases(row.trigger_phrases).join(' ').toLowerCase().includes(term)) {
           score += 1.5;
         }
       }
     }
 
-    score *= (0.5 + row.importance_weight);
+    score *= (0.5 + (row.importance_weight ?? 0));
     return { ...row, keyword_score: score };
   });
 
@@ -2370,13 +2378,7 @@ function keyword_search(
     .slice(0, limit);
 
   return filtered.map((row: MemoryRow) => {
-    if (row.trigger_phrases) {
-      try {
-        row.trigger_phrases = JSON.parse(row.trigger_phrases);
-      } catch (e: unknown) {
-        row.trigger_phrases = [];
-      }
-    }
+    row.trigger_phrases = parse_trigger_phrases(row.trigger_phrases);
     row.isConstitutional = row.importance_tier === 'constitutional';
     return row;
   });
@@ -2437,7 +2439,7 @@ async function vector_search_enriched(
       tags,
       snippet,
       id: row.id,
-      importanceWeight: row.importance_weight,
+      importanceWeight: row.importance_weight ?? 0.5,
       searchMethod: search_method,
       isConstitutional: row.isConstitutional || row.importance_tier === 'constitutional'
     };
@@ -2503,7 +2505,7 @@ async function multi_concept_search_enriched(
     return {
       rank: i + 1,
       avgSimilarity: Math.round((row.avg_similarity || 0) * 100) / 100,
-      conceptSimilarities: row.concept_similarities || [],
+      conceptSimilarities: (row.concept_similarities as number[] | undefined) || [],
       title,
       specFolder: row.spec_folder,
       filePath: row.file_path,
@@ -2511,7 +2513,7 @@ async function multi_concept_search_enriched(
       tags,
       snippet,
       id: row.id,
-      importanceWeight: row.importance_weight,
+      importanceWeight: row.importance_weight ?? 0.5,
       isConstitutional: row.isConstitutional || row.importance_tier === 'constitutional'
     };
   });
@@ -2582,7 +2584,7 @@ async function multi_concept_keyword_search(
       tags,
       snippet,
       id: row.id,
-      importanceWeight: row.importance_weight,
+      importanceWeight: row.importance_weight ?? 0.5,
       searchMethod: 'keyword',
       isConstitutional: row.importance_tier === 'constitutional'
     };
@@ -2661,7 +2663,7 @@ function apply_diversity(results: EnrichedSearchResult[], diversity_factor = 0.3
 
     for (let i = 0; i < remaining.length; i++) {
       const candidate = remaining[i];
-      const relevance = candidate.smartScore || (candidate.similarity / 100) || 0;
+      const relevance = candidate.smartScore || ((candidate.similarity ?? 0) / 100) || 0;
 
       let max_similarity_to_selected = 0;
       for (const sel of selected) {
@@ -2692,11 +2694,11 @@ function learn_from_selection(search_query: string, selected_memory_id: number) 
 
   const database = initialize_db();
 
-  let memory;
+  let memory: { trigger_phrases?: string | null } | undefined;
   try {
     memory = database.prepare(
       'SELECT trigger_phrases FROM memory_index WHERE id = ?'
-    ).get(selected_memory_id);
+    ).get(selected_memory_id) as { trigger_phrases?: string | null } | undefined;
   } catch (e: unknown) {
     console.warn(`[vector-index] learn_from_selection query error: ${get_error_message(e)}`);
     return false;
@@ -2706,7 +2708,7 @@ function learn_from_selection(search_query: string, selected_memory_id: number) 
 
   let existing: string[] = [];
   try {
-    existing = JSON.parse(memory.trigger_phrases || '[]');
+    existing = parse_trigger_phrases(memory.trigger_phrases || undefined);
   } catch (e: unknown) {
     existing = [];
   }
@@ -2996,7 +2998,7 @@ function get_related_memories(memory_id: number): MemoryRow[] {
 
     const memory = database.prepare(`
       SELECT related_memories FROM memory_index WHERE id = ?
-    `).get(memory_id);
+    `).get(memory_id) as { related_memories?: string | null } | undefined;
 
     if (!memory || !memory.related_memories) {
       return [];
@@ -3004,7 +3006,7 @@ function get_related_memories(memory_id: number): MemoryRow[] {
 
     const related = safe_parse_json(memory.related_memories, []);
 
-    return (related as RelatedMemoryLink[]).map((rel: RelatedMemoryLink) => {
+    return (related as RelatedMemoryLink[]).map((rel: RelatedMemoryLink): MemoryRow | null => {
       const full_memory = get_memory(rel.id);
       if (full_memory) {
         return {
@@ -3013,7 +3015,7 @@ function get_related_memories(memory_id: number): MemoryRow[] {
         };
       }
       return null;
-    }).filter((memory): memory is MemoryRow => Boolean(memory));
+    }).filter((relatedMemory): relatedMemory is MemoryRow => Boolean(relatedMemory));
   } catch (error: unknown) {
     console.warn(`[vector-index] Failed to get related memories for ${memory_id}: ${get_error_message(error)}`);
     return [];
@@ -3147,8 +3149,10 @@ function find_cleanup_candidates(options: CleanupOptions = {}) {
   }
 
   return (rows as MemoryRow[]).map((row: MemoryRow) => {
-    const age_string = format_age_string(row.created_at);
-    const last_access_string = format_age_string(row.last_accessed);
+    const age_string = format_age_string(row.created_at ?? null);
+    const last_access_string = format_age_string(
+      typeof row.last_accessed === 'number' ? new Date(row.last_accessed).toISOString() : null
+    );
 
     const reasons = [];
     if (row.created_at && new Date(row.created_at) < cutoff_date) {
@@ -3237,11 +3241,11 @@ function delete_memories(memory_ids: number[]) {
 function get_memory_preview(memory_id: number, max_lines = 50) {
   const database = initialize_db();
 
-  let memory;
+  let memory: MemoryRow | undefined;
   try {
     memory = database.prepare(`
       SELECT * FROM memory_index WHERE id = ?
-    `).get(memory_id);
+    `).get(memory_id) as MemoryRow | undefined;
   } catch (e: unknown) {
     console.warn(`[vector-index] get_memory_preview query error: ${get_error_message(e)}`);
     return null;
@@ -3276,8 +3280,10 @@ function get_memory_preview(memory_id: number, max_lines = 50) {
     lastAccessedAt: memory.last_accessed,
     accessCount: memory.access_count || 0,
     confidence: memory.confidence || 0.5,
-    ageString: format_age_string(memory.created_at),
-    lastAccessString: format_age_string(memory.last_accessed),
+    ageString: format_age_string(memory.created_at ?? null),
+    lastAccessString: format_age_string(
+      typeof memory.last_accessed === 'number' ? new Date(memory.last_accessed).toISOString() : null
+    ),
     content
   };
 }
@@ -3310,10 +3316,10 @@ function verify_integrity(options: { autoClean?: boolean } = {}) {
   const find_orphaned_vector_ids = () => {
     if (!sqlite_vec_available) return [];
     try {
-      return database.prepare(`
+      return (database.prepare(`
         SELECT v.rowid FROM vec_memories v
         WHERE NOT EXISTS (SELECT 1 FROM memory_index m WHERE m.id = v.rowid)
-      `).all().map((r: { rowid: number }) => r.rowid);
+      `).all() as Array<{ rowid: number }>).map((r) => r.rowid);
     } catch (e: unknown) {
       console.warn('[vector-index] Could not query orphaned vectors:', get_error_message(e));
       return [];
@@ -3338,18 +3344,18 @@ function verify_integrity(options: { autoClean?: boolean } = {}) {
     logger.info(`Cleaned ${cleaned_vectors} orphaned vectors`);
   }
 
-  const missing_vectors = database.prepare(`
+  const missing_vectors = (database.prepare(`
     SELECT COUNT(*) as count FROM memory_index m
     WHERE m.embedding_status = 'success'
     AND NOT EXISTS (SELECT 1 FROM vec_memories v WHERE v.rowid = m.id)
-  `).get().count;
+  `).get() as { count: number }).count;
 
-  const total_memories = database.prepare('SELECT COUNT(*) as count FROM memory_index').get().count;
-  const total_vectors = database.prepare('SELECT COUNT(*) as count FROM vec_memories').get().count;
+  const total_memories = (database.prepare('SELECT COUNT(*) as count FROM memory_index').get() as { count: number }).count;
+  const total_vectors = (database.prepare('SELECT COUNT(*) as count FROM vec_memories').get() as { count: number }).count;
 
   const check_orphaned_files = () => {
-    const memories = database.prepare('SELECT id, file_path FROM memory_index').all();
-    const orphaned = [];
+    const memories = database.prepare('SELECT id, file_path FROM memory_index').all() as Array<{ id: number; file_path?: string | null }>;
+    const orphaned: Array<{ id: number; file_path: string; reason: string }> = [];
     
     for (const memory of memories) {
       if (memory.file_path && !fs.existsSync(memory.file_path)) {

@@ -51,76 +51,128 @@ Browser debugging and automation through two complementary approaches: CLI (bdg)
 ### Resource Router
 
 ```python
+import os
+
+SKILL_ROOT = ".opencode/skill/workflows-chrome-devtools"
+
+
+def safe_load(relative_path):
+    """Load markdown only from this skill directory."""
+    candidate = os.path.normpath(os.path.join(SKILL_ROOT, relative_path))
+    root = os.path.normpath(SKILL_ROOT)
+    if not candidate.startswith(root + os.sep):
+        raise ValueError(f"Out-of-scope resource path: {relative_path}")
+    if not candidate.endswith(".md"):
+        raise ValueError(f"Only markdown resources are allowed: {relative_path}")
+    return load(candidate)
+
+
+def discover_markdown_resources():
+    """Recursively discover references/assets markdown resources."""
+    discovered = []
+    for subdir in ("references", "assets"):
+        scan_root = os.path.join(SKILL_ROOT, subdir)
+        for dirpath, _, filenames in os.walk(scan_root):
+            for filename in filenames:
+                if filename.endswith(".md"):
+                    discovered.append(os.path.join(dirpath, filename))
+    return sorted(discovered)
+
+
 def route_chrome_devtools(context):
     """
     Resource Router for workflows-chrome-devtools skill
     Routes to CLI (priority) or MCP (fallback) based on availability
     """
+    text = (getattr(context, "text", "") or "").lower()
+    keywords = set(getattr(context, "keywords", []) or [])
+
+    # Optional helper for diagnostics/debugging of available resources.
+    if getattr(context, "list_available_resources", False):
+        return discover_markdown_resources()
 
     # ══════════════════════════════════════════════════════════════════════
-    # APPROACH SELECTION (First Decision)
+    # APPROACH SELECTION (weighted intent + capability signals)
     # ══════════════════════════════════════════════════════════════════════
+    approach_scores = {"cli": 0.0, "mcp": 0.0, "install": 0.0}
 
-    # ──────────────────────────────────────────────────────────────────
-    # CLI APPROACH (PRIORITY)
-    # Purpose: Fast, token-efficient browser debugging via terminal
-    # Key Insight: Check `command -v bdg` - if available, ALWAYS prefer CLI
-    # ──────────────────────────────────────────────────────────────────
-    if context.cli_available:  # command -v bdg
-        return "Use CLI approach (Section 3)"
+    if getattr(context, "cli_available", False):
+        approach_scores["cli"] += 5.0
+    else:
+        approach_scores["install"] += 3.0
 
-    # ──────────────────────────────────────────────────────────────────
-    # MCP APPROACH (FALLBACK)
-    # Purpose: Multi-tool integration when CLI unavailable
-    # Key Insight: Requires Code Mode configured in .utcp_config.json
-    # ──────────────────────────────────────────────────────────────────
-    if context.code_mode_configured:
+    if getattr(context, "code_mode_configured", False):
+        approach_scores["mcp"] += 4.0
+
+    if getattr(context, "needs_multi_tool_integration", False) or getattr(context, "parallel_browser_sessions", False):
+        approach_scores["mcp"] += 2.0
+
+    for term in ("bdg", "browser-debugger-cli", "terminal", "cli"):
+        if term in text or term in keywords:
+            approach_scores["cli"] += 1.0
+    for term in ("mcp", "code mode", "multi-tool", "parallel"):
+        if term in text or term in keywords:
+            approach_scores["mcp"] += 1.0
+    for term in ("install", "setup", "not installed"):
+        if term in text or term in keywords:
+            approach_scores["install"] += 1.0
+
+    approach_precedence = ["cli", "mcp", "install"]
+    selected_approach = max(
+        approach_precedence,
+        key=lambda name: (approach_scores[name], -approach_precedence.index(name))
+    )
+
+    # ══════════════════════════════════════════════════════════════════════
+    # REFERENCE ROUTING (now reachable; no early return before this block)
+    # ══════════════════════════════════════════════════════════════════════
+    reference_scores = {
+        "cdp_patterns": 0.0,
+        "session_management": 0.0,
+        "troubleshooting": 0.0,
+        "production_automation": 0.0,
+    }
+
+    if getattr(context, "needs_cdp_patterns", False) or getattr(context, "exploring_domains", False):
+        reference_scores["cdp_patterns"] += 3.0
+    if getattr(context, "session_complexity", False) or getattr(context, "multi_session", False):
+        reference_scores["session_management"] += 3.0
+    if getattr(context, "has_error", False) or getattr(context, "troubleshooting", False):
+        reference_scores["troubleshooting"] += 4.0
+    if getattr(context, "production_automation", False) or getattr(context, "ci_cd", False):
+        reference_scores["production_automation"] += 3.0
+
+    term_map = {
+        "cdp_patterns": ("cdp", "domain", "pipe", "jq"),
+        "session_management": ("session", "multi-session", "lifecycle"),
+        "troubleshooting": ("error", "failed", "troubleshoot", "install issue"),
+        "production_automation": ("ci", "pipeline", "automation", "production"),
+    }
+    for route_name, terms in term_map.items():
+        for term in terms:
+            if term in text or term in keywords:
+                reference_scores[route_name] += 1.0
+
+    reference_precedence = ["troubleshooting", "session_management", "cdp_patterns", "production_automation"]
+    selected_reference = max(
+        reference_precedence,
+        key=lambda name: (reference_scores[name], -reference_precedence.index(name))
+    )
+
+    if selected_reference == "troubleshooting" and reference_scores["troubleshooting"] > 0:
+        safe_load("references/troubleshooting.md")
+    elif selected_reference == "session_management" and reference_scores["session_management"] > 0:
+        safe_load("references/session_management.md")
+    elif selected_reference == "cdp_patterns" and reference_scores["cdp_patterns"] > 0:
+        safe_load("references/cdp_patterns.md")
+    elif selected_reference == "production_automation" and reference_scores["production_automation"] > 0:
+        safe_load("examples/README.md")
+
+    if selected_approach == "cli":
+        return "Use CLI approach (Section 3.1)"
+    if selected_approach == "mcp":
         return "Use MCP approach (Section 3.2)"
-
-    # ──────────────────────────────────────────────────────────────────
-    # INSTALLATION NEEDED
-    # Purpose: Guide user to install CLI for optimal experience
-    # Key Insight: CLI is preferred - recommend installation first
-    # ──────────────────────────────────────────────────────────────────
     return "Install CLI: npm install -g browser-debugger-cli@alpha"
-
-    # ══════════════════════════════════════════════════════════════════════
-    # REFERENCE ROUTING (Load as needed)
-    # ══════════════════════════════════════════════════════════════════════
-
-    # ──────────────────────────────────────────────────────────────────
-    # CDP PATTERNS
-    # Purpose: Complete CDP domain patterns, Unix composability
-    # Key Insight: Load when exploring CDP domains or piping output
-    # ──────────────────────────────────────────────────────────────────
-    if context.needs_cdp_patterns or context.exploring_domains:
-        return load("references/cdp_patterns.md")
-
-    # ──────────────────────────────────────────────────────────────────
-    # SESSION MANAGEMENT
-    # Purpose: Advanced session patterns, multi-session, recovery
-    # Key Insight: Load for complex session handling or errors
-    # ──────────────────────────────────────────────────────────────────
-    if context.session_complexity or context.multi_session:
-        return load("references/session_management.md")
-
-    # ──────────────────────────────────────────────────────────────────
-    # TROUBLESHOOTING
-    # Purpose: Error resolution, installation fixes, platform issues
-    # Key Insight: Load immediately when errors occur
-    # ──────────────────────────────────────────────────────────────────
-    if context.has_error or context.troubleshooting:
-        return load("references/troubleshooting.md")
-
-    # ──────────────────────────────────────────────────────────────────
-    # PRODUCTION AUTOMATION
-    # Purpose: CI/CD templates, production-ready bash scripts
-    # Key Insight: Load for automated testing or pipeline integration
-    # ──────────────────────────────────────────────────────────────────
-    if context.production_automation or context.ci_cd:
-        return load("examples/README.md")
-
-    # Default: SKILL.md covers basic cases
 
 # ══════════════════════════════════════════════════════════════════════
 # STATIC RESOURCES (always available)

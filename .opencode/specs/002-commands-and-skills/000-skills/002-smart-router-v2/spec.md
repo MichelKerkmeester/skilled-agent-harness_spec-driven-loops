@@ -115,6 +115,7 @@ Implement weighted keyword intent classification with recursive discovery and st
 | REQ-005 | Documentation of weighted scoring methodology | Each skill documents how keyword weights influence routing decisions |
 | REQ-006 | Consistent weighted scoring ranges across skills | All skills use 0.1-1.0 scale with documented thresholds (e.g., >0.7 = high priority) |
 | REQ-007 | Testing strategy for routing accuracy improvements | Each skill documents verification approach for routing improvements |
+| REQ-008 | Public-to-Barter rollout parity documentation | Barter updates explicitly map to Public baseline behavior and note intentional deviations |
 <!-- /ANCHOR:requirements -->
 
 ---
@@ -128,6 +129,42 @@ Implement weighted keyword intent classification with recursive discovery and st
 - **SC-004**: No breaking changes to existing skill invocation patterns (verified via agent routing tests)
 - **SC-005**: Routing accuracy improvement measurable via intent classification hit rate (target: 40%+ improvement)
 <!-- /ANCHOR:success-criteria -->
+
+---
+
+<!-- ANCHOR:acceptance-scenarios -->
+## 13. ACCEPTANCE SCENARIOS
+
+### AS-001: Weighted Priority Wins
+**Given** a user request with mixed intent terms ("debug React component performance"),
+**When** weighted keyword classification runs,
+**Then** the highest aggregate weighted intent route is selected (workflows-code--full-stack with React stack detection).
+
+### AS-002: Low Confidence Fallback
+**Given** all candidate intent scores are below threshold (all < 0.5),
+**When** classification completes,
+**Then** routing falls back to legacy-safe generic behavior without blocking.
+
+### AS-003: Recursive Discovery Enabled
+**Given** nested references/assets directories (e.g., `references/backend/go/patterns/`),
+**When** recursive discovery runs,
+**Then** all relevant files within depth limit (3 levels) are discoverable.
+
+### AS-004: Recursive Discovery Safe Skip
+**Given** missing references/ or assets/ directories,
+**When** routing behavior executes,
+**Then** skill operates normally without errors (graceful degradation).
+
+### AS-005: Stack Marker Resolution
+**Given** multiple stack markers present (go.mod + package.json),
+**When** stack detection runs,
+**Then** documented priority order determines selected stack path (no ambiguity).
+
+### AS-006: Cross-Repo Parity
+**Given** equivalent prompts executed in Public and Barter repositories,
+**When** routing decisions are made,
+**Then** behavior is parity-consistent unless explicitly documented as intentional deviation.
+<!-- /ANCHOR:acceptance-scenarios -->
 
 ---
 

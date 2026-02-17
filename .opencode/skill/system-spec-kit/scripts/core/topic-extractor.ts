@@ -6,6 +6,13 @@ export interface DecisionForTopics {
   RATIONALE?: string;
 }
 
+const WORD_PATTERN = /\b[a-z][a-z0-9]+\b/g;
+const SIMULATION_MARKER = 'SIMULATION';
+
+function tokenizeWords(text: string): string[] {
+  return text.toLowerCase().match(WORD_PATTERN) || [];
+}
+
 // NOTE: Similar to extractors/session-extractor.ts:extractKeyTopics but differs in:
 // - Uses compound phrase extraction (bigrams) for more meaningful topics
 // - Accepts `string` only (session-extractor accepts `string | undefined`)
@@ -40,7 +47,7 @@ export function extractKeyTopics(
   };
 
   const addBigrams = (text: string, weight: number): void => {
-    const words = text.toLowerCase().match(/\b[a-z][a-z0-9]+\b/g) || [];
+    const words = tokenizeWords(text);
     const filtered = words.filter(w => !stopwords.has(w) && (w.length >= 3 || validShortTerms.has(w)));
     for (let i = 0; i < filtered.length - 1; i++) {
       const bigram = `${filtered[i]} ${filtered[i + 1]}`;
@@ -66,18 +73,18 @@ export function extractKeyTopics(
   decisions.forEach((d) => {
     const title = d.TITLE || '';
     const rationale = d.RATIONALE || '';
-    if (title && !title.includes('SIMULATION')) {
-      (title.toLowerCase().match(/\b[a-z][a-z0-9]+\b/g) || []).forEach(w => addWord(w, 2.0));
+    if (title && !title.includes(SIMULATION_MARKER)) {
+      tokenizeWords(title).forEach(w => addWord(w, 2.0));
       addBigrams(title, 2.0);
     }
-    if (rationale && !rationale.includes('SIMULATION')) {
-      (rationale.toLowerCase().match(/\b[a-z][a-z0-9]+\b/g) || []).forEach(w => addWord(w, 1.0));
+    if (rationale && !rationale.includes(SIMULATION_MARKER)) {
+      tokenizeWords(rationale).forEach(w => addWord(w, 1.0));
     }
   });
 
   // Summary gets standard weight
-  if (summary && summary.length >= 20 && !summary.includes('SIMULATION')) {
-    (summary.toLowerCase().match(/\b[a-z][a-z0-9]+\b/g) || []).forEach(w => addWord(w, 1.0));
+  if (summary && summary.length >= 20 && !summary.includes(SIMULATION_MARKER)) {
+    tokenizeWords(summary).forEach(w => addWord(w, 1.0));
     addBigrams(summary, 1.0);
   }
 

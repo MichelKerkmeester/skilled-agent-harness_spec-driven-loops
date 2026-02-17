@@ -7,7 +7,6 @@
 {
   // ─────────────────────────────────────────────────────────────
   // 1. LEGACY SETTINGS
-  // ACTIVE — Read at runtime by scripts/core/config.js → CONFIG object
   // ─────────────────────────────────────────────────────────────
   "maxResultPreview": 500,
   "maxConversationMessages": 100,
@@ -15,12 +14,9 @@
   "messageTimeWindow": 300000,
   "contextPreviewHeadLines": 50,
   "contextPreviewTailLines": 20,
-  "timezoneOffsetHours": 1,         // CET (code fallback: 0/UTC if config fails to load)
-
+  "timezoneOffsetHours": 1, // CET (code fallback: 0/UTC if config fails to load)
   // ─────────────────────────────────────────────────────────────
   // 2. SEMANTIC SEARCH
-  // DOCUMENTATION ONLY — Not read at runtime
-  // MCP server uses its own hardcoded values in handlers/memory-crud.js
   // ─────────────────────────────────────────────────────────────
   "semanticSearch": {
     "enabled": true,
@@ -28,28 +24,19 @@
     "maxResults": 10,
     "embeddingModel": "voyage-4"
   },
-
-  // DOCUMENTATION ONLY — Not read at runtime
-  // MCP server resolves DB path via mcp_server/core/config.js (SPEC_KIT_DB_DIR env var)
   "memoryIndex": {
     "databasePath": ".opencode/skill/system-spec-kit/mcp_server/dist/database/context-index.sqlite",
     "autoRebuildOnSave": true,
     "verifyOnStartup": false
   },
-
-  // DOCUMENTATION ONLY — Not read at runtime
-  // Trigger surfacing behavior is hardcoded in MCP server handlers
   "triggerSurfacing": {
     "enabled": true,
     "minSimilarity": 70,
     "maxResults": 3,
     "performanceTargetMs": 50
   },
-
   // ─────────────────────────────────────────────────────────────
   // 3. MEMORY DECAY
-  // DOCUMENTATION ONLY — Not read at runtime
-  // MCP server uses hardcoded decay logic in its scoring modules
   // ─────────────────────────────────────────────────────────────
   // Half-life ≈ 62 days with scaleDays=90
   "memoryDecay": {
@@ -57,11 +44,8 @@
     "scaleDays": 90,
     "decayWeight": 0.3
   },
-
   // ─────────────────────────────────────────────────────────────
   // 4. IMPORTANCE TIERS
-  // DOCUMENTATION ONLY — Not read at runtime
-  // Actual behavior hardcoded in mcp_server/lib/scoring/importance-tiers.js
   // ─────────────────────────────────────────────────────────────
   "importanceTiers": {
     "constitutional": {
@@ -96,11 +80,8 @@
       "excludeFromSearch": true
     }
   },
-
   // ─────────────────────────────────────────────────────────────
   // 5. HYBRID SEARCH
-  // DOCUMENTATION ONLY — Not read at runtime
-  // MCP server uses hardcoded values in mcp_server/lib/search/hybrid-search.js
   // ─────────────────────────────────────────────────────────────
   // Uses RRF (Reciprocal Rank Fusion) to combine FTS + vector results
   // ftsWeight/vectorWeight reserved for future weighted mode
@@ -111,27 +92,30 @@
     "rrfK": 60,
     "fallbackEnabled": true
   },
-
   // ─────────────────────────────────────────────────────────────
   // 6. CONTEXT TYPE DETECTION
-  // DOCUMENTATION ONLY — Not read at runtime
-  // No code references these thresholds or rules
   // ─────────────────────────────────────────────────────────────
   "contextTypeDetection": {
     "enabled": true,
     "rules": {
-      "research": { "readToolsThreshold": 0.5, "writeToolsMax": 0.1 },
-      "implementation": { "writeToolsThreshold": 0.3 },
-      "decision": { "requiresAskUser": true },
-      "discovery": { "webToolsThreshold": 0.3 }
+      "research": {
+        "readToolsThreshold": 0.5,
+        "writeToolsMax": 0.1
+      },
+      "implementation": {
+        "writeToolsThreshold": 0.3
+      },
+      "decision": {
+        "requiresAskUser": true
+      },
+      "discovery": {
+        "webToolsThreshold": 0.3
+      }
     },
     "defaultType": "general"
   },
-
   // ─────────────────────────────────────────────────────────────
   // 7. ACCESS TRACKING
-  // DOCUMENTATION ONLY — Not read at runtime
-  // No code reads these values from config.jsonc
   // ─────────────────────────────────────────────────────────────
   "accessTracking": {
     "enabled": true,
@@ -139,50 +123,36 @@
     "maxBoost": 0.5,
     "threshold": 5
   },
-
   // ─────────────────────────────────────────────────────────────
   // 8. CHECKPOINTS
-  // DOCUMENTATION ONLY — Not read at runtime
-  // MCP server uses hardcoded MAX_CHECKPOINTS and CHECKPOINT_TTL_DAYS
-  // in mcp_server/lib/storage/checkpoints.js
   // ─────────────────────────────────────────────────────────────
   "checkpoints": {
     "enabled": true,
     "maxCheckpoints": 10,
     "autoCleanupDays": 30
   },
-
   // ─────────────────────────────────────────────────────────────
   // 9. CONSTITUTIONAL TIER
-  // DOCUMENTATION ONLY — Not read at runtime
-  // MCP server uses hardcoded values in mcp_server/lib/scoring/importance-tiers.js
-  // and mcp_server/lib/search/vector-index.js
   // ─────────────────────────────────────────────────────────────
   "constitutionalTier": {
     "enabled": true,
     "maxTokens": 2000,
     "alwaysSurface": true
   },
-
   // ─────────────────────────────────────────────────────────────
   // 10. CONFIDENCE TRACKING
-  // DOCUMENTATION ONLY — Not read at runtime
-  // No code reads these values from config.jsonc
   // ─────────────────────────────────────────────────────────────
   "confidenceTracking": {
     "enabled": true,
     "promotionThreshold": 0.9,
     "minValidations": 5
   },
-
   // ─────────────────────────────────────────────────────────────
   // 11. TEMPLATES
-  // DOCUMENTATION ONLY — Not read at runtime
-  // scripts/core/config.js hardcodes TEMPLATE_DIR via path.join()
   // ─────────────────────────────────────────────────────────────
   // Controls which template set is used when creating spec folders
   "templates": {
-    "styleFallback": "minimal",   // Fallback if selected style not found
-    "minimalPath": "templates"    // Path to minimal templates (default)
+    "styleFallback": "minimal", // Fallback if selected style not found
+    "minimalPath": "templates" // Path to minimal templates (default)
   }
 }

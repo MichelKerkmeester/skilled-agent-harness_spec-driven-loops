@@ -113,38 +113,90 @@ TASK CONTEXT
     │
     └─► Need to manage comments
         └─► Tools: get_comments, post_comment, delete_comment
+
+Weighted intent fallback:
+    └─► Mixed requests score file/export/component/style/team/comment intents
+        └─► Route to highest-confidence intent while preserving tool naming
 ```
 
 ### Resource Router
 
 ```python
+from pathlib import Path
+
+SKILL_ROOT = Path(".").resolve()
+
+
+def _guard(path):
+    """Scoped routing guard: allow only this skill folder markdown files."""
+    resolved = (SKILL_ROOT / path).resolve()
+    if not str(resolved).startswith(str(SKILL_ROOT)):
+        raise ValueError(f"Blocked out-of-scope resource: {path}")
+    if resolved.suffix != ".md":
+        raise ValueError(f"Blocked non-markdown resource: {path}")
+    return resolved
+
+
+def _discover_markdown_fallbacks():
+    """Recursive discovery for references/assets markdown resources."""
+    docs = []
+    for folder in ("references", "assets"):
+        base = SKILL_ROOT / folder
+        if base.exists():
+            docs.extend(sorted(p for p in base.rglob("*.md") if p.is_file()))
+    return docs
+
+
+def _intent_scores(task):
+    text = (task.query or "").lower()
+    scores = {
+        "quick_start": 0,
+        "tool_reference": 0,
+    }
+
+    # Existing activation semantics preserved: first-use/verification => quick start
+    if task.is_first_use or task.needs_verification:
+        scores["quick_start"] += 9
+    if task.needs_tool_discovery or task.needs_full_reference:
+        scores["tool_reference"] += 9
+
+    # Smarter weighted keyword/intent classification
+    quick_start_terms = [
+        "first use", "setup", "verify", "verification", "getting started", "token",
+    ]
+    reference_terms = [
+        "which tool", "tool discovery", "full reference", "all tools", "parameters",
+        "components", "styles", "comments", "team projects", "export",
+    ]
+
+    scores["quick_start"] += sum(2 for term in quick_start_terms if term in text)
+    scores["tool_reference"] += sum(2 for term in reference_terms if term in text)
+
+    return scores
+
+
 def route_figma_resources(task):
     """
     Resource Router for mcp-figma skill
     Load references based on task context
     """
 
-    # ──────────────────────────────────────────────────────────────────
-    # QUICK START
-    # Purpose: First-time usage, verification, basic commands
-    # Key Insight: Fastest path to working state
-    # ──────────────────────────────────────────────────────────────────
-    if task.is_first_use or task.needs_verification:
-        return load("references/quick_start.md")
+    scores = _intent_scores(task)
+    primary_intent = max(scores, key=scores.get)
 
-    # ──────────────────────────────────────────────────────────────────
-    # COMPLETE REFERENCE
-    # Purpose: All 18 tools with descriptions and interfaces
-    # Key Insight: Use for discovery or when unsure which tool
-    # ──────────────────────────────────────────────────────────────────
-    if task.needs_tool_discovery or task.needs_full_reference:
-        return load("references/tool_reference.md")
+    if scores[primary_intent] <= 0:
+        return _discover_markdown_fallbacks()
 
-    # Default: SKILL.md covers basic usage
+    if primary_intent == "quick_start":
+        return load(_guard("references/quick_start.md"))
 
-# ══════════════════════════════════════════════════════════════════════
+    if primary_intent == "tool_reference":
+        return load(_guard("references/tool_reference.md"))
+
+    return _discover_markdown_fallbacks()
+
+
 # STATIC RESOURCES (always available, not conditionally loaded)
-# ══════════════════════════════════════════════════════════════════════
 # assets/tool_categories.md → Priority categorization of all 18 tools
 ```
 

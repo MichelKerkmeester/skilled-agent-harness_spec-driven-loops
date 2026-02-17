@@ -77,12 +77,14 @@ Multi-language code standards for OpenCode system code across JavaScript, TypeSc
 ### Language Detection Algorithm
 
 ```python
+from pathlib import Path
+
 LANGUAGE_KEYWORDS = {
-    "JAVASCRIPT": ["node", "npm", "commonjs", "require", "module.exports", "mcp", "opencode"],
-    "TYPESCRIPT": ["typescript", "ts", "tsx", "interface", "type", "tsconfig", "tsc", "strict"],
-    "PYTHON": ["python", "pip", "pytest", "argparse", "docstring", "typing"],
-    "SHELL": ["bash", "shell", "shebang", "set -e", "pipefail", "script"],
-    "CONFIG": ["json", "jsonc", "config", "schema", "manifest", "package.json"]
+    "JAVASCRIPT": {"node": 1.8, "npm": 1.2, "commonjs": 2.0, "require": 1.5, "module.exports": 2.1, "mcp": 1.8, "opencode": 1.2},
+    "TYPESCRIPT": {"typescript": 2.4, "ts": 1.1, "tsx": 1.4, "interface": 2.0, "type": 1.4, "tsconfig": 2.1, "tsc": 1.8, "strict": 1.3},
+    "PYTHON": {"python": 2.3, "pip": 1.2, "pytest": 2.0, "argparse": 1.7, "docstring": 1.6, "typing": 1.3},
+    "SHELL": {"bash": 2.2, "shell": 1.3, "shebang": 1.5, "set -e": 1.5, "pipefail": 1.7, "script": 1.1},
+    "CONFIG": {"json": 2.0, "jsonc": 2.1, "config": 1.5, "schema": 1.8, "manifest": 1.5, "package.json": 2.0}
 }
 
 FILE_EXTENSIONS = {
@@ -92,75 +94,110 @@ FILE_EXTENSIONS = {
     ".sh": "SHELL", ".bash": "SHELL",
     ".json": "CONFIG", ".jsonc": "CONFIG"
 }
+
+def _assert_scope(path, skill_root):
+    resolved = path.resolve()
+    root = skill_root.resolve()
+    if root not in resolved.parents and resolved != root:
+        raise ValueError(f"Out-of-scope path blocked: {resolved}")
+
+
+def discover_router_docs(skill_root):
+    """Smart Router V2 scope guard + recursive markdown discovery."""
+    docs = list((skill_root / "references").rglob("*.md"))
+    docs.extend((skill_root / "assets").rglob("*.md"))
+    for doc in docs:
+        _assert_scope(doc, skill_root)
+    return docs
+
+
+def detect_language_v2(task):
+    """Weighted language intent scoring with top-2 ambiguity handling."""
+    ext = Path(task.path).suffix.lower() if getattr(task, "path", "") else ""
+    if ext in FILE_EXTENSIONS:
+        return [FILE_EXTENSIONS[ext]], {FILE_EXTENSIONS[ext]: 100.0}
+
+    text = task.context.lower()
+    scores = {lang: 0.0 for lang in LANGUAGE_KEYWORDS}
+    for language, signals in LANGUAGE_KEYWORDS.items():
+        for term, weight in signals.items():
+            if term in text:
+                scores[language] += weight
+
+    ranked = sorted(scores.items(), key=lambda item: item[1], reverse=True)
+    best_lang, best_score = ranked[0]
+    second_lang, second_score = ranked[1]
+    if best_score == 0:
+        return ["UNKNOWN"], scores
+    if (best_score - second_score) <= 0.6:
+        return [best_lang, second_lang], scores
+    return [best_lang], scores
 ```
 
 ### Resource Router
 
 ```python
 def route_opencode_resources(task):
-    # ──────────────────────────────────────────────────────────────────
-    # ALWAYS: Shared patterns (load first for every invocation)
-    # ──────────────────────────────────────────────────────────────────
-    load("references/shared/universal_patterns.md")   # ALWAYS: naming, commenting
-    load("references/shared/code_organization.md")    # ALWAYS: file structure
+    skill_root = Path(".opencode/skill/workflows-code--opencode")
+    discover_router_docs(skill_root)
 
-    language = detect_language(task.context)
+    selected = [
+        "references/shared/universal_patterns.md",   # ALWAYS
+        "references/shared/code_organization.md"     # ALWAYS
+    ]
 
-    # ──────────────────────────────────────────────────────────────────
-    # JAVASCRIPT (~65 files in OpenCode — decreasing as TS migration continues)
-    # Key patterns: camelCase functions, box headers, 'use strict'
-    # ──────────────────────────────────────────────────────────────────
-    if language == "JAVASCRIPT":
-        load("references/javascript/style_guide.md")       # CONDITIONAL
-        load("references/javascript/quality_standards.md") # CONDITIONAL
-        if task.needs_checklist:
-            load("assets/checklists/javascript_checklist.md")  # ON_DEMAND
-        return load("references/javascript/quick_reference.md")
+    languages, scores = detect_language_v2(task)
 
-    # ──────────────────────────────────────────────────────────────────
-    # TYPESCRIPT (~341 files in OpenCode — primary language post-migration)
-    # Key patterns: PascalCase interfaces/types/enums, import type, strict
-    # ──────────────────────────────────────────────────────────────────
-    if language == "TYPESCRIPT":
-        load("references/typescript/style_guide.md")       # CONDITIONAL
-        load("references/typescript/quality_standards.md") # CONDITIONAL
-        if task.needs_checklist:
-            load("assets/checklists/typescript_checklist.md")  # ON_DEMAND
-        return load("references/typescript/quick_reference.md")
+    # Ambiguity handling: when top-2 are close, load both quick references.
+    for language in languages:
+        if language == "JAVASCRIPT":
+            selected.extend([
+                "references/javascript/style_guide.md",
+                "references/javascript/quality_standards.md",
+                "references/javascript/quick_reference.md"
+            ])
+            if task.needs_checklist:
+                selected.append("assets/checklists/javascript_checklist.md")
 
-    # ──────────────────────────────────────────────────────────────────
-    # PYTHON (10 files in OpenCode)
-    # Key patterns: Google docstrings, early return tuples, type hints
-    # ──────────────────────────────────────────────────────────────────
-    if language == "PYTHON":
-        load("references/python/style_guide.md")       # CONDITIONAL
-        load("references/python/quality_standards.md") # CONDITIONAL
-        if task.needs_checklist:
-            load("assets/checklists/python_checklist.md")  # ON_DEMAND
-        return load("references/python/quick_reference.md")
+        elif language == "TYPESCRIPT":
+            selected.extend([
+                "references/typescript/style_guide.md",
+                "references/typescript/quality_standards.md",
+                "references/typescript/quick_reference.md"
+            ])
+            if task.needs_checklist:
+                selected.append("assets/checklists/typescript_checklist.md")
 
-    # ──────────────────────────────────────────────────────────────────
-    # SHELL (60+ files in OpenCode)
-    # Key patterns: set -euo pipefail, ANSI colors, log_* functions
-    # ──────────────────────────────────────────────────────────────────
-    if language == "SHELL":
-        load("references/shell/style_guide.md")       # CONDITIONAL
-        load("references/shell/quality_standards.md") # CONDITIONAL
-        if task.needs_checklist:
-            load("assets/checklists/shell_checklist.md")  # ON_DEMAND
-        return load("references/shell/quick_reference.md")
+        elif language == "PYTHON":
+            selected.extend([
+                "references/python/style_guide.md",
+                "references/python/quality_standards.md",
+                "references/python/quick_reference.md"
+            ])
+            if task.needs_checklist:
+                selected.append("assets/checklists/python_checklist.md")
 
-    # ──────────────────────────────────────────────────────────────────
-    # CONFIG (JSON/JSONC)
-    # Key patterns: JSONC section comments, camelCase keys, $schema
-    # ──────────────────────────────────────────────────────────────────
-    if language == "CONFIG":
-        load("references/config/style_guide.md")  # CONDITIONAL
-        if task.needs_checklist:
-            load("assets/checklists/config_checklist.md")  # ON_DEMAND
-        return load("references/config/quick_reference.md")
+        elif language == "SHELL":
+            selected.extend([
+                "references/shell/style_guide.md",
+                "references/shell/quality_standards.md",
+                "references/shell/quick_reference.md"
+            ])
+            if task.needs_checklist:
+                selected.append("assets/checklists/shell_checklist.md")
 
-    return prompt_user("Which language? (js/py/sh/json)")
+        elif language == "CONFIG":
+            selected.extend([
+                "references/config/style_guide.md",
+                "references/config/quick_reference.md"
+            ])
+            if task.needs_checklist:
+                selected.append("assets/checklists/config_checklist.md")
+
+    if languages == ["UNKNOWN"]:
+        return prompt_user("Which language? (js/ts/py/sh/json)")
+
+    return list(dict.fromkeys(selected))
 ```
 
 ### Specific Use Case Router
@@ -464,7 +501,7 @@ This skill operates within the behavioral framework defined in AGENTS.md.
 **JavaScript**
 ```javascript
 // ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ [Module Name]                                                             ║
+// ║ [Module Name]                                                            ║
 // ╚══════════════════════════════════════════════════════════════════════════╝
 
 'use strict';
@@ -479,7 +516,7 @@ const fs = require('fs');
 ```python
 #!/usr/bin/env python3
 # ╔══════════════════════════════════════════════════════════════════════════╗
-# ║ [Script Name]                                                             ║
+# ║ [Script Name]                                                            ║
 # ╚══════════════════════════════════════════════════════════════════════════╝
 """Brief description."""
 
@@ -493,7 +530,7 @@ import sys
 ```bash
 #!/usr/bin/env bash
 # ╔══════════════════════════════════════════════════════════════════════════╗
-# ║ [Script Name]                                                             ║
+# ║ [Script Name]                                                            ║
 # ╚══════════════════════════════════════════════════════════════════════════╝
 # Brief description.
 

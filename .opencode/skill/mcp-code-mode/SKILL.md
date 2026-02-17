@@ -76,68 +76,112 @@ TASK CONTEXT
     ├─► External API integration via MCP servers
     │   └─► ACTIVATE Code Mode
     │
+    ├─► Mixed/ambiguous phrasing
+    │   └─► Score weighted intent signals, then route by top intent
+    │
     └─► Single tool call or non-MCP task
         └─► Use direct MCP tool call, skip Code Mode
 ```
 
 ### Resource Router
 ```python
-def route_code_mode_resources(task):
-    # ──────────────────────────────────────────────────────────────────
-    # TOOL NAMING (CRITICAL)
-    # Purpose: Tool naming pattern and common mistakes
-    # Key Insight: ⚠️ CRITICAL: Tool naming errors (read first)
-    # ──────────────────────────────────────────────────────────────────
+from pathlib import Path
+
+SKILL_ROOT = Path(".").resolve()
+
+
+def _guard(path):
+    """Scoped routing guard: only load markdown under this skill folder."""
+    resolved = (SKILL_ROOT / path).resolve()
+    if not str(resolved).startswith(str(SKILL_ROOT)):
+        raise ValueError(f"Blocked out-of-scope resource: {path}")
+    if resolved.suffix != ".md":
+        raise ValueError(f"Blocked non-markdown resource: {path}")
+    return resolved
+
+
+def _discover_markdown_fallbacks():
+    """Recursive discovery for references/assets markdown resources."""
+    docs = []
+    for folder in ("references", "assets"):
+        base = SKILL_ROOT / folder
+        if base.exists():
+            docs.extend(sorted(p for p in base.rglob("*.md") if p.is_file()))
+    return docs
+
+
+def _intent_scores(task):
+    text = (task.query or "").lower()
+    scores = {
+        "naming": 0,
+        "setup": 0,
+        "validate": 0,
+        "catalog": 0,
+        "workflow": 0,
+        "architecture": 0,
+    }
+
+    # Weighted keyword + signal scoring (preserves existing activation semantics)
     if task.error_contains("tool not found") or task.error_contains("naming"):
-        return load("references/naming_convention.md")  # priority: CRITICAL
-
-    # ──────────────────────────────────────────────────────────────────
-    # CONFIGURATION AND SETUP
-    # Purpose: .utcp_config.json and .env setup
-    # Key Insight: Setting up Code Mode, adding MCP servers
-    # ──────────────────────────────────────────────────────────────────
+        scores["naming"] += 10
     if task.needs_setup or task.env_vars_not_loading:
-        load("references/configuration.md")  # .utcp_config.json and .env setup
-        load("assets/config_template.md")  # template file
-        return load("assets/env_template.md")  # env template
-
-    # ──────────────────────────────────────────────────────────────────
-    # CONFIG VALIDATION
-    # Purpose: Validates .utcp_config.json structure
-    # Key Insight: Before deploying configuration, troubleshooting errors
-    # ──────────────────────────────────────────────────────────────────
+        scores["setup"] += 9
     if task.validating_config:
+        scores["validate"] += 9
+    if task.needs_tool_list or "what tools" in text:
+        scores["catalog"] += 8
+    if task.multi_tool_workflow or task.needs_error_handling:
+        scores["workflow"] += 8
+    if task.how_it_works or task.token_questions:
+        scores["architecture"] += 7
+
+    keyword_weights = {
+        "naming": ["name", "naming", "tool not found", "prefix", "format"],
+        "setup": ["setup", "install", "configure", ".utcp_config", ".env"],
+        "validate": ["validate", "validation", "check config", "schema"],
+        "catalog": ["what tools", "list tools", "discover tools", "catalog"],
+        "workflow": ["workflow", "orchestrate", "multi-tool", "error handling"],
+        "architecture": ["architecture", "internals", "token", "performance"],
+    }
+    for intent, terms in keyword_weights.items():
+        scores[intent] += sum(2 for term in terms if term in text)
+
+    return scores
+
+
+def route_code_mode_resources(task):
+    scores = _intent_scores(task)
+    primary_intent = max(scores, key=scores.get)
+
+    if scores[primary_intent] <= 0:
+        return _discover_markdown_fallbacks()
+
+    if primary_intent == "naming":
+        return load(_guard("references/naming_convention.md"))  # priority: CRITICAL
+
+    if primary_intent == "setup":
+        load(_guard("references/configuration.md"))
+        load(_guard("assets/config_template.md"))
+        return load(_guard("assets/env_template.md"))
+
+    if primary_intent == "validate":
         return execute("scripts/validate_config.py")  # syntax + env var checks
 
-    # ──────────────────────────────────────────────────────────────────
-    # TOOL DISCOVERY
-    # Purpose: Complete list of 200+ available tools
-    # Key Insight: Discovering available tools and capabilities
-    # ──────────────────────────────────────────────────────────────────
-    if task.needs_tool_list or "what tools" in task.query:
-        return load("references/tool_catalog.md")  # 200+ available tools
+    if primary_intent == "catalog":
+        return load(_guard("references/tool_catalog.md"))
 
-    # ──────────────────────────────────────────────────────────────────
-    # WORKFLOWS AND ERROR HANDLING
-    # Purpose: 5 comprehensive workflow examples
-    # Key Insight: Multi-tool orchestration, error handling patterns
-    # ──────────────────────────────────────────────────────────────────
-    if task.multi_tool_workflow or task.needs_error_handling:
-        return load("references/workflows.md")  # 5 workflow examples
+    if primary_intent == "workflow":
+        return load(_guard("references/workflows.md"))
 
-    # ──────────────────────────────────────────────────────────────────
-    # ARCHITECTURE
-    # Purpose: System architecture and token economics
-    # Key Insight: Understanding how Code Mode works internally
-    # ──────────────────────────────────────────────────────────────────
-    if task.how_it_works or task.token_questions:
-        return load("references/architecture.md")  # system internals
+    if primary_intent == "architecture":
+        return load(_guard("references/architecture.md"))
 
-    # ══════════════════════════════════════════════════════════════════════
-    # STATIC RESOURCES (always available, not conditionally loaded)
-    # ══════════════════════════════════════════════════════════════════════
-    # assets/config_template.md → Template .utcp_config.json file
-    # assets/env_template.md → Template .env file with placeholders
+    return _discover_markdown_fallbacks()
+
+
+# STATIC RESOURCES (always available, not conditionally loaded)
+# assets/config_template.md → Template .utcp_config.json file
+# assets/env_template.md → Template .env file with placeholders
 ```
 
 ---

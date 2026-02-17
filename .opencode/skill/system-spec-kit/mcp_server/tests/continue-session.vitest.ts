@@ -1,17 +1,6 @@
-// ───────────────────────────────────────────────────────────────
-// TEST: CONTINUE_SESSION Auto-Generation (T124)
-// TEST: CONTINUE_SESSION.md Generation (T017-T020)
-// ───────────────────────────────────────────────────────────────
-// Source: continue-session.test.js (695 lines)
-//
-// T124 tests (collect-session-data): TRY ACTIVE with createRequire
-//   - Functions: determineSessionStatus, estimateCompletionPercent, buildContinueSessionData
-//   - Source: ../../scripts/dist/extractors/collect-session-data.js (pure logic)
-//
-// T017-T020 tests (session-manager): describe.skip
-//   - Function: generateContinueSessionMd
-//   - Source: ../dist/lib/session/session-manager.js (DB-dependent imports)
-// ───────────────────────────────────────────────────────────────
+// CONTINUE_SESSION coverage:
+// - T124 uses collect-session-data extractor
+// - T017-T020 retains DB-dependent placeholders
 
 import { describe, it, expect } from 'vitest';
 import { createRequire } from 'module';
@@ -20,10 +9,6 @@ import path from 'path';
 // @ts-ignore -- vitest runs as ESM; tsc sees CommonJS from tsconfig
 const customRequire = createRequire(import.meta.url);
 
-// ─────────────────────────────────────────────────────────────
-// Module loading for T124 (collect-session-data — pure logic)
-// ─────────────────────────────────────────────────────────────
-
 let collectSessionData: any;
 let collectSessionDataLoaded = false;
 
@@ -31,8 +16,7 @@ try {
   const collectSessionDataPath = path.join(__dirname, '../../scripts/dist/extractors/collect-session-data.js');
   collectSessionData = customRequire(collectSessionDataPath);
   collectSessionDataLoaded = true;
-} catch (_err) {
-  // Module not available — tests will be skipped
+} catch (_err: unknown) {
 }
 
 // ─────────────────────────────────────────────────────────────

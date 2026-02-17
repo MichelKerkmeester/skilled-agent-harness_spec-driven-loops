@@ -13,6 +13,14 @@ export const SPEC_FOLDER_PATTERN: RegExp = /^\d{3}-[a-z][a-z0-9-]*$/;
 /** Basic pattern for initial spec folder detection (less strict). */
 export const SPEC_FOLDER_BASIC_PATTERN: RegExp = /^\d{3}-[a-zA-Z]/;
 
+function isDirectorySync(filePath: string): boolean {
+  try {
+    return fsSync.statSync(filePath).isDirectory();
+  } catch {
+    return false;
+  }
+}
+
 /** Find a bare child folder under all spec parents (sync). */
 export function findChildFolderSync(childName: string): string | null {
   if (!childName) return null;
@@ -24,12 +32,12 @@ export function findChildFolderSync(childName: string): string | null {
 
     const parentFolders = fsSync.readdirSync(specsDir).filter((entry: string) => {
       const entryPath = path.join(specsDir, entry);
-      return SPEC_FOLDER_PATTERN.test(entry) && fsSync.statSync(entryPath).isDirectory();
+      return SPEC_FOLDER_PATTERN.test(entry) && isDirectorySync(entryPath);
     });
 
     for (const parent of parentFolders) {
       const candidatePath = path.join(specsDir, parent, childName);
-      if (fsSync.existsSync(candidatePath) && fsSync.statSync(candidatePath).isDirectory()) {
+      if (fsSync.existsSync(candidatePath) && isDirectorySync(candidatePath)) {
         matches.push(candidatePath);
       }
     }
@@ -57,7 +65,7 @@ export async function findChildFolderAsync(childName: string): Promise<string | 
   for (const specsDir of specsDirs) {
     try {
       await fs.access(specsDir);
-    } catch {
+    } catch (_error: unknown) {
       continue;
     }
 
@@ -71,7 +79,7 @@ export async function findChildFolderAsync(childName: string): Promise<string | 
         if (SPEC_FOLDER_PATTERN.test(entry) && stat.isDirectory()) {
           parentFolders.push(entry);
         }
-      } catch {
+      } catch (_error: unknown) {
         continue;
       }
     }
@@ -83,7 +91,7 @@ export async function findChildFolderAsync(childName: string): Promise<string | 
         if (stat.isDirectory()) {
           matches.push(candidatePath);
         }
-      } catch {
+      } catch (_error: unknown) {
         continue;
       }
     }
