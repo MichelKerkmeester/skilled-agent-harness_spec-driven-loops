@@ -1,1 +1,1 @@
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/AGENTS.md
+AGENTS.md
