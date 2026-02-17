@@ -792,7 +792,7 @@ func RegistryPaymentsBusinessLayer(ctx di.Context, opts *di.RegistryOpts) (*Paym
 <!-- ANCHOR:rules -->
 ## 10. RULES
 
-### ALWAYS
+### ✅ ALWAYS
 
 - Register BOTH configuration and instance factory for each injectable type
 - Use `di.WithOpts(opts)` when calling `di.Create` inside factory functions
@@ -800,7 +800,7 @@ func RegistryPaymentsBusinessLayer(ctx di.Context, opts *di.RegistryOpts) (*Paym
 - Test configuration loading before committing changes
 - Check injection token strings match JSON keys exactly
 
-### NEVER
+### ❌ NEVER
 
 - Create instances with `di.Create` without proper token registration
 - Move configurations to different nesting levels without updating code
@@ -808,7 +808,7 @@ func RegistryPaymentsBusinessLayer(ctx di.Context, opts *di.RegistryOpts) (*Paym
 - Hardcode configuration values that should come from JSON/env
 - Create circular dependencies in the `di.Create` chain
 
-### ESCALATE IF
+### ⚠️ ESCALATE IF
 
 - Breadcrumbs don't match expected JSON structure
 - Configuration works in dev but fails in production

@@ -50,7 +50,6 @@ vi.mock('../handlers/memory-triggers', () => ({
 // DB-dependent imports - commented out for deferred test suite
 import * as handler from '../handlers/memory-context';
 
-// Helper function to timeout handler calls
 async function withTimeout<T>(promise: Promise<T>, ms: number, name: string): Promise<T> {
   return Promise.race([
     promise,
@@ -61,9 +60,6 @@ async function withTimeout<T>(promise: Promise<T>, ms: number, name: string): Pr
 }
 
 describe('Handler Memory Context (T524) [deferred - requires DB test fixtures]', () => {
-  // DB-dependent imports would go here when unskipped
-  // import * as handler from '../handlers/memory-context';
-
   // ─────────────────────────────────────────────────────────────
   // SUITE: Auto Mode Routing
   // ─────────────────────────────────────────────────────────────

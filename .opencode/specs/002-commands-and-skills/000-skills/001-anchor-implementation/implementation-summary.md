@@ -1,3 +1,4 @@
+<!-- ANCHOR:summary -->
 # Implementation Summary: Retrieval Anchors for Skill Documentation
 
 **Spec Folder**: `specs/002-commands-and-skills/000-skills/001-anchor-implementation`  
@@ -16,6 +17,7 @@ This document captures the actual implementation experience, challenges encounte
 **Key Finding**: Implementation deviated significantly from the original automated approach, using a manual crawl-and-anchor strategy instead, resulting in same-day completion (vs. planned 5 days) and exceeding all coverage targets.
 
 ---
+<!-- /ANCHOR:summary -->
 
 ## 1. IMPLEMENTATION TIMELINE
 

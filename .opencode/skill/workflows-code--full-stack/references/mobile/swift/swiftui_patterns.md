@@ -1579,7 +1579,7 @@ struct AnimationValues {
 <!-- ANCHOR:rules -->
 ## 10. RULES
 
-### ALWAYS
+### ✅ ALWAYS
 
 1. **Extract complex views** - Break down into smaller, reusable components
 2. **Use @State for local state** - View-owned, simple state
@@ -1592,7 +1592,7 @@ struct AnimationValues {
 9. **Handle loading and error states** - Show appropriate UI feedback
 10. **Use semantic colors** - .primary, .secondary, .background for theming
 
-### NEVER
+### ❌ NEVER
 
 1. **Force unwrap in views** - Always handle optionals safely
 2. **Use NavigationView** - Deprecated, use NavigationStack
@@ -1605,7 +1605,7 @@ struct AnimationValues {
 9. **Block the main thread** - Use async/await for long operations
 10. **Hardcode dimensions** - Use relative sizing when possible
 
-### ESCALATE IF
+### ⚠️ ESCALATE IF
 
 1. **Performance issues** - Profile with Instruments before optimizing
 2. **Complex navigation requirements** - Discuss architecture approach

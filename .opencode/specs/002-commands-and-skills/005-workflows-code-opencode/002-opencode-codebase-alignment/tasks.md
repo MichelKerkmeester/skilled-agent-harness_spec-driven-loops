@@ -115,11 +115,11 @@
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks `T001` through `T024` are marked `[x]`, or `[C]` tasks are explicitly marked not-triggered with evidence.
-- [ ] All P0 requirements in `spec.md` are satisfied with verifiable evidence.
-- [ ] Final gate G4 is passed and recorded.
-- [ ] `checklist.md` and `implementation-summary.md` are updated and consistent with the verification ledger.
-- [ ] Completion packet is assembled for maintainer review, including rollback notes and saved memory context.
+- [x] All tasks `T001` through `T024` are marked `[x]`, or `[C]` tasks are explicitly marked not-triggered with evidence.
+- [x] All P0 requirements in `spec.md` are satisfied with verifiable evidence.
+- [x] Final gate G4 is passed and recorded.
+- [x] `checklist.md` and `implementation-summary.md` are updated and consistent with the verification ledger.
+- [x] Completion packet is assembled for maintainer review, including rollback notes and saved memory context.
 <!-- /ANCHOR:completion -->
 
 ---

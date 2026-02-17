@@ -581,7 +581,7 @@ func (m *MicroserviceConfiguration) LookupNode(lookupPath string) (any, error) {
 <!-- ANCHOR:rules -->
 ## 8. RULES
 
-### ALWAYS
+### ✅ ALWAYS
 
 - Use `sync.Once` for registry functions
 - Call all domain registries in `init()`
@@ -590,7 +590,7 @@ func (m *MicroserviceConfiguration) LookupNode(lookupPath string) (any, error) {
 - Embed configuration structs (not named fields)
 - Follow the new pattern for new microservices
 
-### NEVER
+### ❌ NEVER
 
 - Put business logic in registry functions
 - Create circular dependencies between registries
@@ -598,7 +598,7 @@ func (m *MicroserviceConfiguration) LookupNode(lookupPath string) (any, error) {
 - Use named fields for bundle configurations
 - Manually wire dependencies in main()
 
-### ESCALATE IF
+### ⚠️ ESCALATE IF
 
 - Circular dependency detected
 - Configuration not found after correct nesting

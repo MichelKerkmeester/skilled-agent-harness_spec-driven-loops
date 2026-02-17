@@ -1140,7 +1140,7 @@ struct UserItem: Identifiable {
 <!-- ANCHOR:rules -->
 ## 8. RULES
 
-### ALWAYS
+### ✅ ALWAYS
 
 1. **Choose appropriate storage** - Match storage type to data needs
 2. **Handle errors gracefully** - Never crash on storage failures
@@ -1153,7 +1153,7 @@ struct UserItem: Identifiable {
 9. **Consider offline first** - Cache for offline access
 10. **Monitor storage usage** - Respect device storage limits
 
-### NEVER
+### ❌ NEVER
 
 1. **Store passwords in UserDefaults** - Use Keychain instead
 2. **Block main thread** - Use async/background operations
@@ -1166,7 +1166,7 @@ struct UserItem: Identifiable {
 9. **Ignore CloudKit quotas** - Monitor usage limits
 10. **Skip error handling** - Storage can fail
 
-### ESCALATE IF
+### ⚠️ ESCALATE IF
 
 1. **Schema migration complexity** - Plan migrations carefully
 2. **Data corruption detected** - Investigate root cause

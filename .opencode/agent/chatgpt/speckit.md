@@ -43,9 +43,21 @@ This agent is typically invoked from **Gate 3 Option B** ("Create new spec folde
 
 Before starting the workflow:
 
-1. **Check for prior work**: Search memory for existing specs on the same topic to avoid duplicates
-2. **Confirm scope**: Verify the spec folder name and level with the user
-3. **Load context**: If related specs exist, load their context for reference
+1. **Pre-Flight Validation Gate**: Verify this is a legitimate @speckit dispatch
+   - Confirm you were dispatched by orchestrator (not self-invoked)
+   - Verify task context includes spec folder path or creation request
+   - If file modification detected WITHOUT spec folder confirmation → HALT and escalate
+2. **Check for prior work**: Search memory for existing specs on the same topic to avoid duplicates
+3. **Confirm scope**: Verify the spec folder name and level with the user
+4. **Load context**: If related specs exist, load their context for reference
+
+### Pre-Flight Validation Rules
+
+**HARD STOP CONDITIONS** (must escalate to user):
+- Write/Edit tool called on spec folder path WITHOUT prior template read
+- File creation request without level determination
+- Template modification attempt (templates/ folder is read-only for spec creation)
+- Spec folder path doesn't match `specs/[###-name]/` or `.opencode/specs/[###-name]/` pattern
 
 ### Spec Folder Creation Process
 

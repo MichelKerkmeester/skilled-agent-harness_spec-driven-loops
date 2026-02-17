@@ -3,7 +3,6 @@
 // TEST: CONTEXT SERVER
 // ---------------------------------------------------------------
 
-// Converted from: context-server.test.ts (custom runner)
 import { describe, it, expect, beforeAll } from 'vitest'
 import fs from 'fs'
 import path from 'path'

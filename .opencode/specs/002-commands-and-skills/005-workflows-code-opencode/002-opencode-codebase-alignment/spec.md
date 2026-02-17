@@ -366,19 +366,19 @@ Deliver one standards-aligned codebase surface for TypeScript, JavaScript, Pytho
 ## 14. COMPLIANCE CHECKPOINTS
 
 ### Process Compliance
-- [ ] Only in-scope files changed
-- [ ] Every change maps to alignment or in-scope bug fix
-- [ ] KISS principle applied; no unnecessary abstraction added
+- [x] Only in-scope files changed
+- [x] Every change maps to alignment or in-scope bug fix
+- [x] KISS principle applied; no unnecessary abstraction added
 
 ### Quality Compliance
-- [ ] Impacted checks pass after each batch
-- [ ] No intentional behavior changes introduced
-- [ ] Language standards applied consistently in touched files
+- [x] Impacted checks pass after each batch
+- [x] No intentional behavior changes introduced
+- [x] Language standards applied consistently in touched files
 
 ### Governance Compliance
-- [ ] Standards/code mismatches documented and reconciled
-- [ ] Risk matrix reviewed before completion claim
-- [ ] Rollback boundaries preserved
+- [x] Standards/code mismatches documented and reconciled
+- [x] Risk matrix reviewed before completion claim
+- [x] Rollback boundaries preserved
 <!-- /ANCHOR:compliance -->
 
 ---

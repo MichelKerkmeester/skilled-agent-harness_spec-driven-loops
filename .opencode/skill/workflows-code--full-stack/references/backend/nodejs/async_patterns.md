@@ -1304,7 +1304,7 @@ async function needsAsync(): Promise<number> {
 <!-- ANCHOR:rules -->
 ## 12. RULES
 
-### ALWAYS
+### ✅ ALWAYS
 
 1. **Await all promises** - No floating promises
 2. **Handle errors** - Try/catch or .catch() for every async operation
@@ -1319,7 +1319,7 @@ async function needsAsync(): Promise<number> {
 11. **Cancel ongoing operations on shutdown** - Use AbortController
 12. **Limit concurrency** - Prevent resource exhaustion
 
-### NEVER
+### ❌ NEVER
 
 1. **Ignore promise rejections** - Always handle errors
 2. **Use `.then()/.catch()` in async functions** - Use await instead
@@ -1334,7 +1334,7 @@ async function needsAsync(): Promise<number> {
 11. **Use `new Promise` for simple transforms** - Use .then() chains
 12. **Return inside finally** - Can swallow errors
 
-### ESCALATE IF
+### ⚠️ ESCALATE IF
 
 1. **Deadlock suspected** - Circular await dependencies
 2. **Memory growing** - Possible promise accumulation

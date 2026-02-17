@@ -159,9 +159,23 @@ Sub-orchestrators operate within **inherited constraints** — they CANNOT excee
 **Action:** MUST delegate to `@context` first to gather context and patterns.
 **Logic:** Implementation without exploration leads to rework.
 
-### Rule 2: Spec Folder (Gate 3)
+### Rule 2: Spec Folder (Gate 3) — HARD BLOCK
 **Trigger:** Request involves file modification.
-**Action:** Confirm existence of a Spec Folder. If none exists (or user selected Option B), delegate to `@context` to discover patterns for the new spec.
+**Action:** 
+1. **VERIFICATION GATE**: Before ANY spec folder creation dispatch, verify:
+   - Spec folder path matches `specs/[###-name]/` or `.opencode/specs/[###-name]/` pattern
+   - Level selection (1, 2, 3, 3+) is determined and documented
+   - User confirmation received (Option A/B/C/D from Gate 3)
+2. **DISPATCH VALIDATION**: When dispatching @speckit:
+   - Spec folder path MUST be provided in task context
+   - Level MUST be specified
+   - Template source (`templates/level_N/`) MUST be referenced
+3. **POST-CREATION VERIFICATION**: After @speckit completes:
+   - Verify files exist via @context file existence check
+   - Confirm validation passed (exit code 0 or 1, NOT 2)
+4. If none exists (or user selected Option B), delegate to `@context` to discover patterns for the new spec.
+
+**ENFORCEMENT**: Dispatches to @speckit without spec folder path or level determination MUST be rejected. Sub-agent must retry with required context.
 
 ### Rule 3: Context Preservation
 **Trigger:** Completion of major milestone or session end.
@@ -185,6 +199,38 @@ Sub-orchestrators operate within **inherited constraints** — they CANNOT excee
 - **Minor status updates** (e.g., checking task boxes) by implementing agents are acceptable
 **Logic:** `@speckit` enforces template structure, Level 1-3+ standards, and validation that other agents lack. Bypassing `@speckit` produces non-standard documentation that fails quality gates.
 **Dispatch Protocol:** When dispatching @speckit, READ `.opencode/agent/speckit.md` and include its content in the Task prompt. This ensures template structure, Level 1-3+ standards, and validation workflows are enforced. Simply instructing a general agent to "act as @speckit" bypasses all enforcement.
+
+### Rule 6: Routing Violation Detection (T018)
+
+**PURPOSE**: Detect and prevent incorrect agent routing for spec folder documentation.
+
+**DETECTION PATTERNS** (trigger violation alert):
+
+| Violation Type | Detection Signal | Correct Routing |
+|----------------|------------------|-----------------|
+| **Wrong Agent for Spec Docs** | Task creates `specs/*/spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `decision-record.md` via @general/@write | @speckit ONLY |
+| **Template Bypass** | Write tool used on spec folder paths WITHOUT prior Read from `templates/level_N/` | REJECT → Must use templates |
+| **Level Not Determined** | @speckit dispatch without explicit Level (1/2/3/3+) in task context | REJECT → Determine level first |
+| **No Validation** | @speckit completion claim without `validate.sh` output | REJECT → Run validation |
+
+**ENFORCEMENT ACTIONS**:
+
+1. **Pre-Dispatch Check**: Before dispatching ANY agent for spec folder work:
+   - If task involves creating/modifying spec template files → Agent MUST be @speckit
+   - If agent is @speckit → Task context MUST include spec folder path + level
+   
+2. **Output Review**: When reviewing @speckit outputs (see §6):
+   - Verify `validate.sh` was run (exit code in output)
+   - Verify template source cited (e.g., "copied from templates/level_3/spec.md")
+   - Verify all required files for level present
+
+3. **Violation Response**: If wrong agent detected:
+   - STOP synthesis immediately
+   - Log violation: "ROUTING VIOLATION: [agent] attempted spec documentation (Rule 5 requires @speckit)"
+   - REJECT output
+   - Re-dispatch to @speckit with proper context
+
+**EMERGENCY BYPASS**: If @speckit repeatedly fails (3+ attempts) AND user explicitly approves bypass, log exception and proceed with @general. This must be recorded in decision-record.md.
 
 ### Two-Tier Dispatch Model
 

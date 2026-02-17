@@ -284,20 +284,20 @@ _, err = di.Create[*bundles.ValidationsBundle](dictx, di.WithOpts(opts), di.With
 <!-- ANCHOR:rules -->
 ## 7. RULES
 
-### ALWAYS
+### ✅ ALWAYS
 
 - Register validators BEFORE handlers that use them
 - Check which validator token contains the validators you need
 - Test endpoints after adding new validation tags
 - Register validators in both microservices AND lambdas that use them
 
-### NEVER
+### ❌ NEVER
 
 - Assume validators are globally available
 - Add validation tags without ensuring the validator is registered
 - Skip validator registration for "simple" services
 
-### ESCALATE IF
+### ⚠️ ESCALATE IF
 
 - You need a validator that doesn't fit any existing token category
 - Multiple services need conflicting validator configurations

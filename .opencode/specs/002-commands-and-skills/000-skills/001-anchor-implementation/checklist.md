@@ -1,3 +1,4 @@
+<!-- ANCHOR:summary -->
 # Checklist: Retrieval Anchors for Skill Documentation
 
 **Spec Folder**: `specs/002-commands-and-skills/000-skills/001-anchor-implementation`  
@@ -7,6 +8,7 @@
 **Completed**: 2026-02-17
 
 ---
+<!-- /ANCHOR:summary -->
 
 ## PRIORITY SYSTEM
 

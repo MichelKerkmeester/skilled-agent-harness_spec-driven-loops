@@ -222,14 +222,12 @@ describe('Preflight Validation', () => {
         { content: TEST_CONTENT_LARGE, file_path: '/test/memory.md', spec_folder: 'test-spec' },
         { dry_run: true, check_anchors: true, check_tokens: true, check_size: true }
       );
-      // In dry-run mode, pass is always true (doesn't block)
       expect(result.pass).toBe(true);
       expect(result.dry_run).toBe(true);
       expect(result.dry_run_would_pass).toBe(false);
     });
 
     it('selective check disabling', () => {
-      // Content with unclosed anchor but skip anchor validation
       const result = preflight.runPreflight(
         { content: TEST_CONTENT_UNCLOSED_ANCHOR, file_path: '/test/memory.md', spec_folder: 'test-spec' },
         { check_anchors: false, check_tokens: true, check_size: true }
@@ -416,7 +414,6 @@ More content follows.
       const testContent = 'Test memory content for exact match detection';
       const contentHash = preflight.computeContentHash(testContent);
 
-      // Create mock database with prepare().get() that returns matching hash
       const mockDatabase = {
         prepare: (sql: any) => ({
           get: (...params: any[]) => {
@@ -535,7 +532,6 @@ More content follows.
     });
 
     it('T166: token budget warning at 80% threshold', () => {
-      // With max_tokens=1000 and warning_threshold=0.8, warning triggers at 800+ tokens
       // 2450 chars → ~700 tokens + 150 overhead = ~850 tokens = 85% of 1000
       const content = 'x'.repeat(2450);
       const result = preflight.checkTokenBudget(content, {
@@ -558,7 +554,6 @@ More content follows.
     });
 
     it('no warning below 80% threshold', () => {
-      // Content that yields ~50% usage
       const content = 'y'.repeat(1000); // ~286 tokens + 150 overhead = ~436 tokens = 43.6% of 1000
       const result = preflight.checkTokenBudget(content, {
         maxTokens: 1000,
@@ -601,19 +596,16 @@ This is additional content to ensure size validation passes.
         }
       );
 
-      // Verify all checks were run
       expect(result.details.checks_run).toContain('content_size');
       expect(result.details.checks_run).toContain('anchor_format');
       expect(result.details.checks_run).toContain('token_budget');
       expect(result.details.checks_run).toContain('duplicate_check');
 
-      // Verify details are populated
       expect(result.details.content_size).toBeTruthy();
       expect(result.details.anchor_format).toBeTruthy();
       expect(result.details.token_budget).toBeTruthy();
       expect(result.details.duplicate_check).toBeTruthy();
 
-      // Verify overall pass status
       expect(result.pass).toBe(true);
       expect(result.errors).toHaveLength(0);
     });
@@ -635,13 +627,11 @@ This is additional content to ensure size validation passes.
       expect(result.pass).toBe(false);
       expect(result.errors.length).toBeGreaterThanOrEqual(1);
 
-      // Verify the error is from content size check
       const sizeError = result.errors.find(e =>
         e.code === preflight.PreflightErrorCodes.CONTENT_TOO_SMALL
       );
       expect(sizeError).toBeTruthy();
 
-      // Verify checks were still run
       expect(result.details.checks_run.length).toBeGreaterThan(0);
       expect(result.details.checks_run).toContain('content_size');
     });

@@ -322,7 +322,7 @@ gh pr create                           # Create PR
 <!-- ANCHOR:rules -->
 ## 9. RULES
 
-### ALWAYS
+### ✅ ALWAYS
 - Run baseline tests to completion (don't skip or timeout)
 - Filter artifacts from commits (don't add to .gitignore)
 - Follow Conventional Commits format
@@ -330,7 +330,7 @@ gh pr create                           # Create PR
 - Use `git add <files>` not `git add .`
 - Cleanup worktrees after merge/PR/discard
 
-### NEVER
+### ❌ NEVER
 - Skip `.gitignore` verification for project-local worktrees
 - Commit internal artifacts or temp files
 - Use vague commit messages ("fix stuff", "changes")

@@ -409,7 +409,7 @@ CreatedAt time.Time `gorm:"type:timestamptz"`
 <!-- ANCHOR:rules -->
 ## 11. RULES
 
-### ALWAYS
+### ✅ ALWAYS
 
 - Specify `type:uuid` for all `uid.UID` fields
 - Use `type:timestamptz` for all timestamp fields
@@ -419,7 +419,7 @@ CreatedAt time.Time `gorm:"type:timestamptz"`
 - Place `database_models.SoftDeletable` at the END of struct
 - Use pointers for nullable fields
 
-### NEVER
+### ❌ NEVER
 
 - Omit `type:uuid` from `uid.UID` fields (creates VARCHAR)
 - Use `float64` for currency amounts (precision loss)
@@ -427,7 +427,7 @@ CreatedAt time.Time `gorm:"type:timestamptz"`
 - Use `type:json` instead of `type:jsonb` (not indexed)
 - Leave string types without explicit length specification
 
-### ESCALATE IF
+### ⚠️ ESCALATE IF
 
 - Existing table has wrong column type (requires migration)
 - Need to change primary key type on existing table

@@ -124,13 +124,15 @@ Weighted intent fallback:
 ```python
 from pathlib import Path
 
-SKILL_ROOT = Path(".").resolve()
+SKILL_ROOT = Path(__file__).resolve().parent
 
 
 def _guard(path):
     """Scoped routing guard: allow only this skill folder markdown files."""
     resolved = (SKILL_ROOT / path).resolve()
-    if not str(resolved).startswith(str(SKILL_ROOT)):
+    try:
+        resolved.relative_to(SKILL_ROOT)
+    except ValueError:
         raise ValueError(f"Blocked out-of-scope resource: {path}")
     if resolved.suffix != ".md":
         raise ValueError(f"Blocked non-markdown resource: {path}")
@@ -182,10 +184,23 @@ def route_figma_resources(task):
     """
 
     scores = _intent_scores(task)
-    primary_intent = max(scores, key=scores.get)
+    ranked = sorted(scores.items(), key=lambda item: item[1], reverse=True)
+    primary_intent, primary_score = ranked[0]
+    secondary_intent, secondary_score = ranked[1]
 
-    if scores[primary_intent] <= 0:
+    if primary_score <= 0:
         return _discover_markdown_fallbacks()
+
+    # Ambiguity handling: if intent scores are close, load both top resources.
+    if secondary_score > 0 and (primary_score - secondary_score) <= 2:
+        return {
+            "primary": primary_intent,
+            "secondary": secondary_intent,
+            "results": [
+                load(_guard("references/quick_start.md")) if primary_intent == "quick_start" else load(_guard("references/tool_reference.md")),
+                load(_guard("references/quick_start.md")) if secondary_intent == "quick_start" else load(_guard("references/tool_reference.md")),
+            ],
+        }
 
     if primary_intent == "quick_start":
         return load(_guard("references/quick_start.md"))

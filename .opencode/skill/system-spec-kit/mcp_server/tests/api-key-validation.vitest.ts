@@ -1,4 +1,4 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it } from 'vitest';
 
 // ───────────────────────────────────────────────────────────────
 // TEST: API Key Validation (T087-T090)
@@ -8,9 +8,6 @@ import { describe, it, expect } from 'vitest';
 //
 // Original: api-key-validation.test.js
 // Deferred: requires ../../shared/dist/embeddings/factory (external API)
-
-// Commented out — external module not available in vitest context
-// import { validateApiKey, VALIDATION_TIMEOUT_MS } from '../../shared/dist/embeddings/factory';
 
 describe.skip('API Key Validation (T087-T090) [deferred - requires external API/startup fixtures]', () => {
   const ORIGINAL_ENV = { ...process.env };
@@ -26,7 +23,6 @@ describe.skip('API Key Validation (T087-T090) [deferred - requires external API/
 
   describe('VALIDATION_TIMEOUT_MS constant', () => {
     it('should be 5000ms (CHK-170)', () => {
-      // expect(VALIDATION_TIMEOUT_MS).toBe(5000);
     });
   });
 
@@ -37,8 +33,6 @@ describe.skip('API Key Validation (T087-T090) [deferred - requires external API/
       process.env.EMBEDDINGS_PROVIDER = 'hf-local';
 
       try {
-        // expect(result.valid).toBe(true);
-        // expect(result.provider).toBe('hf-local');
       } finally {
         resetEnv();
       }
@@ -52,10 +46,6 @@ describe.skip('API Key Validation (T087-T090) [deferred - requires external API/
       process.env.EMBEDDINGS_PROVIDER = 'voyage';
 
       try {
-        // expect(result.valid).toBe(false);
-        // expect(result.errorCode).toBe('E050');
-        // expect(result.actions).toBeDefined();
-        // expect(result.actions!.length).toBeGreaterThan(0);
       } finally {
         resetEnv();
       }
@@ -69,10 +59,6 @@ describe.skip('API Key Validation (T087-T090) [deferred - requires external API/
       process.env.EMBEDDINGS_PROVIDER = 'openai';
 
       try {
-        // expect(result.valid).toBe(false);
-        // expect(result.actions).toBeDefined();
-        // expect(result.actions!.length).toBeGreaterThan(0);
-        // expect(result.actions!.some((a: string) => a.includes('API_KEY') || a.includes('environment variable'))).toBe(true);
       } finally {
         resetEnv();
       }
@@ -82,13 +68,11 @@ describe.skip('API Key Validation (T087-T090) [deferred - requires external API/
   describe('Valid API key (CHK-167)', () => {
     it('should return success when API key is valid', async () => {
       // Only meaningful with a real API key configured
-      // expect(result.valid).toBe(true);
     });
   });
 
   describe('Timeout (CHK-170)', () => {
     it('should respect the configured timeout', async () => {
-      // expect(elapsed).toBeLessThanOrEqual(5500);
     });
   });
 });

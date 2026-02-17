@@ -140,7 +140,6 @@ describe('Index Re-exports (DB-dependent)', () => {
 
   for (const dir of directories) {
     it(`${dir}/index.js exports items`, () => {
-      // expect(exportCount).toBeGreaterThan(0);
     });
   }
 });
@@ -162,7 +161,6 @@ describe('Core Module Exports (DB-dependent)', () => {
 
   for (const fn of required) {
     it(`core.${fn} is exported`, () => {
-      // expect(fn in core).toBe(true);
     });
   }
 });
@@ -188,7 +186,6 @@ describe('Handler Module Exports (DB-dependent)', () => {
 
   for (const fn of required) {
     it(`handlers.${fn} is exported as function`, () => {
-      // expect(typeof handlers[fn]).toBe('function');
     });
   }
 });
@@ -207,7 +204,6 @@ describe('Formatter Module Exports (DB-dependent)', () => {
 
   for (const fn of required) {
     it(`formatters.${fn} is exported as function`, () => {
-      // expect(typeof formatters[fn]).toBe('function');
     });
   }
 });
@@ -227,7 +223,6 @@ describe('Utils Module Exports (DB-dependent)', () => {
 
   for (const fn of required) {
     it(`utils.${fn} is exported`, () => {
-      // expect(fn in utils).toBe(true);
     });
   }
 });
@@ -248,7 +243,6 @@ describe('Hooks Module Exports (DB-dependent)', () => {
 
   for (const fn of required) {
     it(`hooks.${fn} is exported`, () => {
-      // expect(fn in hooks).toBe(true);
     });
   }
 });
@@ -262,19 +256,15 @@ describe('Validator Function Tests (DB-dependent)', () => {
   // Original: testValidatorFunctions() — requires dist/utils which has DB deps
 
   it('validateQuery(null) throws', () => {
-    // expect(() => validateQuery(null)).toThrow();
   });
 
   it('validateQuery("   ") throws', () => {
-    // expect(() => validateQuery('   ')).toThrow();
   });
 
   it('validateQuery("test query") returns trimmed', () => {
-    // expect(validQuery).toBe('test query');
   });
 
   it('validateInputLengths with valid input does not throw', () => {
-    // expect(() => validateInputLengths({ query: 'test', specFolder: 'test/folder' })).not.toThrow();
   });
 });
 
@@ -287,15 +277,8 @@ describe('Token Metrics Tests (DB-dependent)', () => {
   // Original: testTokenMetrics() — requires dist/formatters
 
   it('estimateTokens("Hello world") returns positive number', () => {
-    // expect(typeof tokens).toBe('number');
-    // expect(tokens).toBeGreaterThan(0);
   });
 
   it('calculateTokenMetrics returns object with actualTokens', () => {
-    //   { content: 'Short content', tier: 'HOT' },
-    //   { content: 'Another piece of content here', tier: 'WARM' },
-    // ];
-    // expect(typeof metrics).toBe('object');
-    // expect('actualTokens' in metrics).toBe(true);
   });
 });

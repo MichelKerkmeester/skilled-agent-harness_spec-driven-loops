@@ -732,7 +732,7 @@ The orchestrator's context window is finite (~150K available tokens). When many 
 
 ---
 
-## 26. TOOL CALL BUDGET (TCB)
+## 27. TOOL CALL BUDGET (TCB)
 
 ### Why This Exists
 

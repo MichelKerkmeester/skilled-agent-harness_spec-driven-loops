@@ -118,10 +118,13 @@ def route_chrome_devtools(context):
             approach_scores["install"] += 1.0
 
     approach_precedence = ["cli", "mcp", "install"]
-    selected_approach = max(
+    ranked_approaches = sorted(
         approach_precedence,
-        key=lambda name: (approach_scores[name], -approach_precedence.index(name))
+        key=lambda name: (approach_scores[name], -approach_precedence.index(name)),
+        reverse=True,
     )
+    selected_approach = ranked_approaches[0]
+    secondary_approach = ranked_approaches[1]
 
     # ══════════════════════════════════════════════════════════════════════
     # REFERENCE ROUTING (now reachable; no early return before this block)
@@ -168,11 +171,26 @@ def route_chrome_devtools(context):
     elif selected_reference == "production_automation" and reference_scores["production_automation"] > 0:
         safe_load("examples/README.md")
 
-    if selected_approach == "cli":
-        return "Use CLI approach (Section 3.1)"
-    if selected_approach == "mcp":
-        return "Use MCP approach (Section 3.2)"
-    return "Install CLI: npm install -g browser-debugger-cli@alpha"
+    def _approach_message(approach_name):
+        if approach_name == "cli":
+            return "Use CLI approach (Section 3.1)"
+        if approach_name == "mcp":
+            return "Use MCP approach (Section 3.2)"
+        return "Install CLI: npm install -g browser-debugger-cli@alpha"
+
+    # Ambiguity handling: when top approaches are close, return top-2 routing.
+    if (
+        approach_scores[selected_approach] > 0
+        and approach_scores[secondary_approach] > 0
+        and (approach_scores[selected_approach] - approach_scores[secondary_approach]) <= 1.0
+    ):
+        return {
+            "primary": _approach_message(selected_approach),
+            "secondary": _approach_message(secondary_approach),
+            "delta": approach_scores[selected_approach] - approach_scores[secondary_approach],
+        }
+
+    return _approach_message(selected_approach)
 
 # ══════════════════════════════════════════════════════════════════════
 # STATIC RESOURCES (always available)

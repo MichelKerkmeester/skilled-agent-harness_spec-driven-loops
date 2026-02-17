@@ -6,11 +6,6 @@ import { describe, it, expect, beforeEach, afterEach } from 'vitest';
 // REQ-029: Pre-Flight API Key Validation
 // Tests for validate_api_key() function with HTTP mocking
 //
-// Original: api-validation.test.js
-// Deferred: requires ../../shared/dist/embeddings/factory (external API + HTTP mocking)
-
-// Commented out — external module not available in vitest context
-// import { validateApiKey, VALIDATION_TIMEOUT_MS } from '../../shared/dist/embeddings/factory';
 
 describe.skip('API Validation (T177-T184) [deferred - requires external API/startup fixtures]', () => {
   const ORIGINAL_ENV = { ...process.env };
@@ -89,8 +84,6 @@ describe.skip('API Validation (T177-T184) [deferred - requires external API/star
         model: 'voyage-4',
       });
 
-      // expect(result.valid).toBe(true);
-      // expect(result.provider).toBe('voyage');
     });
   });
 
@@ -105,8 +98,6 @@ describe.skip('API Validation (T177-T184) [deferred - requires external API/star
         model: 'text-embedding-3-small',
       });
 
-      // expect(result.valid).toBe(true);
-      // expect(result.provider).toBe('openai');
     });
   });
 
@@ -116,9 +107,6 @@ describe.skip('API Validation (T177-T184) [deferred - requires external API/star
       delete process.env.OPENAI_API_KEY;
       process.env.EMBEDDINGS_PROVIDER = 'hf-local';
 
-      // expect(result.valid).toBe(true);
-      // expect(result.provider).toBe('hf-local');
-      // expect(result.reason).toContain('Local provider');
     });
 
     it('should skip API validation for ollama', async () => {
@@ -126,14 +114,11 @@ describe.skip('API Validation (T177-T184) [deferred - requires external API/star
       delete process.env.OPENAI_API_KEY;
       process.env.EMBEDDINGS_PROVIDER = 'ollama';
 
-      // expect(result.valid).toBe(true);
-      // expect(result.provider).toBe('ollama');
     });
   });
 
   describe('T180: Validation timeout', () => {
     it('should have VALIDATION_TIMEOUT_MS of 5000ms', () => {
-      // expect(VALIDATION_TIMEOUT_MS).toBe(5000);
     });
 
     it('should time out with E053 when response exceeds timeout', async () => {
@@ -143,10 +128,6 @@ describe.skip('API Validation (T177-T184) [deferred - requires external API/star
 
       mockFetch(200, {}, { delay: 6000 });
 
-      // expect(result.valid).toBe(false);
-      // expect(result.errorCode).toBe('E053');
-      // expect(result.error).toContain('timed out');
-      // expect(elapsed).toBeLessThan(500);
     });
   });
 
@@ -158,9 +139,6 @@ describe.skip('API Validation (T177-T184) [deferred - requires external API/star
 
       mockFetch(401, { error: { message: 'Invalid API key' } });
 
-      // expect(result.valid).toBe(false);
-      // expect(result.errorCode).toBe('E050');
-      // expect(result.httpStatus).toBe(401);
     });
 
     it('should detect 403 Forbidden as E050', async () => {
@@ -170,9 +148,6 @@ describe.skip('API Validation (T177-T184) [deferred - requires external API/star
 
       mockFetch(403, { error: { message: 'Access forbidden' } });
 
-      // expect(result.valid).toBe(false);
-      // expect(result.errorCode).toBe('E050');
-      // expect(result.httpStatus).toBe(403);
     });
   });
 
@@ -184,9 +159,6 @@ describe.skip('API Validation (T177-T184) [deferred - requires external API/star
 
       mockFetch(429, { error: { message: 'Rate limit exceeded' } });
 
-      // expect(result.valid).toBe(true);
-      // expect(result.httpStatus).toBe(429);
-      // expect(result.warning).toContain('rate limit');
     });
   });
 
@@ -198,9 +170,6 @@ describe.skip('API Validation (T177-T184) [deferred - requires external API/star
 
       mockFetch(500, { error: { message: 'Internal server error' } });
 
-      // expect(result.valid).toBe(true);
-      // expect(result.httpStatus).toBe(500);
-      // expect(result.warning).toContain('500');
     });
 
     it('should treat 503 as valid with warning', async () => {
@@ -210,8 +179,6 @@ describe.skip('API Validation (T177-T184) [deferred - requires external API/star
 
       mockFetch(503, { error: { message: 'Service unavailable' } });
 
-      // expect(result.valid).toBe(true);
-      // expect(result.httpStatus).toBe(503);
     });
   });
 
@@ -221,8 +188,6 @@ describe.skip('API Validation (T177-T184) [deferred - requires external API/star
       delete process.env.OPENAI_API_KEY;
       process.env.EMBEDDINGS_PROVIDER = 'hf-local';
 
-      // expect(result.valid).toBe(true);
-      // expect(result.reason).toContain('no API key required');
     });
   });
 });

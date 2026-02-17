@@ -2,13 +2,6 @@
 
 > **Universal behavior framework** defining guardrails, standards, and decision protocols.
 
-#### 👨‍🚀 HOW TO USE / ADAPT THIS FRAMEWORK
-
-1. Use this `AGENTS.md` as your starting point for SpecKit and memory workflows in any codebase.
-2. Adapt the framework to fit your project's code standards, workflows, etc.
-3. Update or extend rules, tools, and protocols as needed.
-4. For practical setup examples and detailed instructions, see `.opencode/install_guides/SET-UP - AGENTS.md`.
-
 ---
 
 ## 1. 🚨 CRITICAL RULES (MANDATORY)
@@ -154,37 +147,30 @@
 │                                                                             │
 │ Block: HARD - Cannot use tools without answer                               │
 └─────────────────────────────────────────────────────────────────────────────┘
-
-### First Message Protocol
-
-**RULE**: If the user's FIRST message requests file modifications:
-1. Gate 3 question is your FIRST response
-2. No analysis first ("let me understand the scope")
-3. No tool calls first ("let me check what exists")
-4. Ask immediately:
-
-   **Spec Folder** (required): A) Existing | B) New | C) Update related | D) Skip
-
-5. Wait for answer, THEN proceed
-6. Verify skill routing (Gate 2) before substantive work:
-   - Run `python3 .opencode/skill/scripts/skill_advisor.py "[request]" --threshold 0.8`
-   - OR cite user's explicit skill/agent direction if provided
-
-**Why**: Large tasks feel urgent. Urgency bypasses process. Ask first, analyze after.
-
-                                    ↓ PASS
-┌─────────────────────────────────────────────────────────────────────────────┐
-│ MEMORY CONTEXT LOADING [SOFT]                                               │
-│ Trigger: User selected A or C in Gate 3 AND memory files exist               │
-│ Action:  memory_search({ specFolder, includeContent: true })                │
-│          → Results include embedded content (no separate load needed)       │
-│          → Constitutional memories always appear first                       │
-│          → Display relevant context directly from search results            │
-│ Skip:    User can say "skip context" to proceed immediately                 │
-└─────────────────────────────────────────────────────────────────────────────┘
-                                    ↓ PASS
-                              ✅ EXECUTE TASK
 ```
+
+### @speckit Exclusivity Enforcement (T020)
+
+**CRITICAL RULE**: ALL spec folder template documentation MUST be created by @speckit agent exclusively.
+
+**SCOPE**: Any markdown file (*.md) written inside `specs/[###-name]/` or `.opencode/specs/[###-name]/` — including but not limited to:
+- spec.md, plan.md, tasks.md, checklist.md, decision-record.md, implementation-summary.md
+
+**EXCEPTIONS** (non-@speckit agents MAY write):
+- `memory/` subdirectory → Use `generate-context.js` script (NEVER manual Write tool)
+- `scratch/` subdirectory → Temporary workspace, any agent permitted
+- `handover.md` → @handover agent exclusively
+- `research.md` → @research agent exclusively
+
+**DETECTION**: If @general, @write, or other non-@speckit agent attempts to create/modify spec template files → VIOLATION
+
+**RESPONSE**:
+1. STOP immediately
+2. STATE: "ROUTING VIOLATION: Spec folder documentation requires @speckit agent (exclusive authority per AGENTS.md §3 Gate 3)"
+3. Re-route to @speckit with proper context (spec folder path + level + task requirements)
+
+**WHY**: @speckit enforces template structure (CORE + ADDENDUM v2.2), ANCHOR tags, Level 1-3+ standards, and validation workflows. Other agents lack this enforcement and produce non-compliant documentation.
+
 
 ### 🔒 POST-EXECUTION RULES (Behavioral - Not Numbered)
 
@@ -298,55 +284,6 @@ Reply with answers, e.g.: "B, A, C" or "A, , A" (blank for default)
 **Gate Bypass Phrases** (user can skip specific gates):
 - Memory Context Loading: "skip context", "fresh start", "skip memory", [skip]
 - Completion Verification: Level 1 tasks (no checklist.md required)
-
-
-### Compliance Checkpoints
-
-**MANDATORY:**
-- Before **proposing solutions**: Verify approach aligns with project patterns and conventions
-- Before **writing documentation**: Use workflows-documentation skill for structure/style enforcement
-- Before **code discovery**: Use Grep for text patterns, Glob for file discovery, Read for file contents
-- Before **research tasks**: Use Spec Kit Memory MCP to find prior work, saved context, and related memories (MANDATORY)
-- Before **spec folder creation**: Use system-spec-kit skill for template structure and sub-folder organization. ⛔ **HARD RULE: ONLY @speckit may create or substantively write ANY documentation (*.md) inside spec folders. Exceptions: `memory/` (uses generate-context.js), `scratch/` (temporary, any agent), `handover.md` (@handover agent for session continuation), `research.md` (@research agent for investigation findings). Using @general, @write, or other agents for spec folder documentation is a routing violation.**
-- Before **session end or major milestones**: Use `/memory:save` or "save context" to preserve important context (manual trigger required)
-- Before **code implementation**: Load workflows-code skill for 3-phase development lifecycle (Implementation → Testing → Verification)
-- Before **git operations**: Use workflows-git skill for read-only analysis (enforces Git Operations Policy from §1)
-- **If conflict exists**: Project-specific patterns override general practices
-
-**Violation handling:** If proposed solution contradicts project patterns, STOP and ask for clarification or revise approach.
-
-### Common Failure Patterns
-
-| #   | Stage          | Pattern                      | Trigger Phrase                               | Response Action                                                          |
-| --- | -------------- | ---------------------------- | -------------------------------------------- | ------------------------------------------------------------------------ |
-| 1   | Understanding  | Task Misinterpretation       | N/A                                          | Parse request, confirm scope                                             |
-| 2   | Understanding  | Assumptions                  | N/A                                          | Read existing code first                                                 |
-| 3   | Planning       | Rush to Code                 | "straightforward"                            | Analyze → Verify → Simplest                                              |
-| 4   | Planning       | Over-Engineering             | N/A                                          | YAGNI - solve only stated                                                |
-| 5   | Planning       | Skip Process                 | "I already know"                             | Follow checklist anyway                                                  |
-| 6   | Implementation | Clever > Clear               | N/A                                          | Obvious code wins                                                        |
-| 7   | Implementation | Fabrication                  | "obvious" w/o verify                         | Output "UNKNOWN", verify first                                           |
-| 8   | Implementation | Cascading Breaks             | N/A                                          | Reproduce before fixing                                                  |
-| 9   | Implementation | Root Folder Pollution        | Creating temp file                           | STOP → Move to scratch/ → Verify                                         |
-| 10  | Review         | Skip Verification            | "trivial edit"                               | Run ALL tests, no exceptions                                             |
-| 11  | Review         | Retain Legacy                | "just in case"                               | Remove unused, ask if unsure                                             |
-| 12  | Completion     | Skip Stack Verification      | "works", "done"                              | Run stack-appropriate verification first                                 |
-| 13  | Any            | Internal Contradiction       | Conflicting requirements                     | HALT → State conflict explicitly → Request resolution                    |
-| 14  | Understanding  | Wrong Search Tool            | "find", "search", "list"                     | Grep for text patterns, Glob for files                                   |
-| 15  | Planning       | Skip Research                | "simple task"                                | Dispatch Research anyway for evidence                                    |
-| 16  | Any            | Task Without Context         | Missing dispatch context                     | Use 4-section format with full context                                   |
-| 17  | Implementation | Skip Debug Delegation        | "tried 3+ times", "same error"               | STOP → Suggest /spec_kit:debug → Wait for response                       |
-| 18  | Any            | Skip Handover at Session End | "stopping", "done for now", "continue later" | Suggest /spec_kit:handover → Wait for response                           |
-| 19  | Understanding  | Skip Skill Routing           | "obvious which skill", "user specified"      | STOP → Run skill_advisor.py OR cite user direction                       |
-| 20  | Any            | Cargo Culting                | "best practice", "always should"             | BIAS lens: Does this pattern fit THIS specific case?                     |
-| 21  | Planning       | Gold-Plating                 | "while we're here", "might as well"          | SCOPE lens: Is this in the original scope?                               |
-| 22  | Implementation | Wrong Abstraction            | "DRY this up" for 2 similar blocks           | CLARITY lens: Same concept or just similar code?                         |
-| 23  | Planning       | Premature Optimization       | "might be slow", "could bottleneck"          | VALUE lens: Has performance been measured?                               |
-| 24  | Any            | Wrong Agent for Spec Docs    | "write spec.md", "create plan.md"            | STOP → Must use @speckit → Never @general/@write for spec template files |
-
-**Enforcement:** STOP → Acknowledge ("I was about to [pattern]") → Correct → Verify
-
-**Lens-based Detection (Patterns 20-23):** Apply relevant lens silently. If triggered, surface the concern naturally without referencing the pattern number or lens name.
 
 ---
 
@@ -511,17 +448,6 @@ When using the orchestrate agent or Task tool for complex multi-step workflows, 
 | `@debug`       | Fresh perspective debugging, root cause analysis                                                                                                                                                                                                                                        |
 | `@handover`    | Session continuation, context preservation. ✅ Exception: may write `handover.md` inside spec folders                                                                                                                                                                                    |
 
-**Agent Selection Quick Reference:**
-- **ALL codebase exploration / file search / context loading** → `@context`
-- **Code changes needed** → `@general`
-- **Research/planning** → `@research`
-- **Quality evaluation** → `@review`
-- **Spec documentation** → `@speckit` ⛔ EXCLUSIVE (no other agent may create spec template files)
-- **Debugging (3+ failed attempts)** → `@debug`
-- **Documentation creation** → `@write`
-- **Multi-agent orchestration** → `@orchestrate`
-- **Session handover** → `@handover`
-
 ### Agent Runtime Files
 
 Agent path references should use only `.opencode/agent/` as the canonical runtime location.
@@ -537,7 +463,6 @@ Agent path references should use only `.opencode/agent/` as the canonical runtim
 | `@speckit`     | `.opencode/agent/speckit.md`     |
 | `@debug`       | `.opencode/agent/debug.md`       |
 | `@handover`    | `.opencode/agent/handover.md`    |
-
 
 ---
 
@@ -591,104 +516,3 @@ When creating or editing skills:
 - Use the templates in `workflows-documentation/assets/opencode/` (`skill_md_template.md`, `skill_reference_template.md`, `skill_asset_template.md`)
 - Ensure all bundled resources are referenced with relative paths
 - Test skill invocation before committing
-
----
-
-## 10. 💻 WORKFLOWS CODE
-
-The `workflows-code` skills serve as domain orchestrators for code implementation. Two variants exist:
-
-| Skill                        | Use Case                                                       | Path                                          |
-| ---------------------------- | -------------------------------------------------------------- | --------------------------------------------- |
-| `workflows-code--web-dev`    | Single-stack web projects (Webflow, vanilla JS)                | `.opencode/skill/workflows-code--web-dev/`    |
-| `workflows-code--full-stack` | Multi-stack projects (Go, Node.js, React, React Native, Swift) | `.opencode/skill/workflows-code--full-stack/` |
-
----
-
-### Single-Stack: workflows-code--web-dev
-
-For web-only projects (e.g., Webflow, vanilla JavaScript).
-
-**3-Phase Lifecycle (MANDATORY)**
-
-1. **Phase 1 - Implementation**: Write code following stack-specific patterns
-2. **Phase 2 - Testing/Debugging**: Run tests, fix failures, debug issues
-3. **Phase 3 - Verification**: Run verification suite (MANDATORY before "done")
-
-**The Iron Law**: NO COMPLETION CLAIMS WITHOUT STACK-APPROPRIATE VERIFICATION
-**Invocation:** Automatic via Gate 3 routing when code tasks detected.
-**Verification:** Browser testing at multiple viewports + console clean.
-
-**Skill Structure**
-```
-.opencode/skill/workflows-code--web-dev/
-├── SKILL.md              # Entry point with routing logic
-├── references/
-│   ├── implementation/   # Framework patterns, async, validation
-│   ├── debugging/        # DevTools, error recovery
-│   ├── verification/     # Browser testing requirements
-│   ├── deployment/       # CDN deployment, minification
-│   └── standards/        # Code quality, style guide
-├── assets/
-│   └── checklists/       # Quality gate checklists
-└── scripts/              # Build/deploy automation
-```
-
-#### Customize for your project
-
-1. Add website specfiic patterns to `references/`, `assets/` and `scripts/`.
-2. Update and allign the SKILL.md routing and logic.
-
----
-
-### Multi-Stack: workflows-code--full-stack
-
-For projects with multiple technology stacks.
-
-**Stack Detection via Marker Files**
-
-| Stack            | Category | Detection Marker                                | Example Patterns                  |
-| ---------------- | -------- | ----------------------------------------------- | --------------------------------- |
-| **Go**           | backend  | `go.mod`                                        | Domain layers, table-driven tests |
-| **Node.js**      | backend  | `package.json` with "express"                   | Express routes, async/await       |
-| **React**        | frontend | `next.config.js` or `package.json` with "react" | Server/Client components, hooks   |
-| **React Native** | mobile   | `app.json` with "expo"                          | Navigation, hooks, platform APIs  |
-| **Swift**        | mobile   | `Package.swift`                                 | SwiftUI, Combine, async/await     |
-
-**How Auto-Detection Works**
-1. Skill checks for marker files at session start
-2. Stack-specific patterns load from `references/{category}/{stack}/`
-3. Verification commands auto-adjust per stack
-
-**Multi-Stack Skill Structure**
-```
-.opencode/skill/workflows-code--full-stack/
-├── SKILL.md              # Entry point with stack detection router
-├── references/
-│   ├── backend/go/       # Go standards and patterns
-│   ├── backend/nodejs/   # Node.js standards and patterns
-│   ├── frontend/react/   # React/Next.js standards and patterns
-│   ├── mobile/react-native/  # React Native standards and patterns
-│   └── mobile/swift/     # Swift standards and patterns
-└── assets/
-    ├── backend/go/checklists/ + patterns/
-    ├── backend/nodejs/checklists/ + patterns/
-    ├── frontend/react/checklists/ + patterns/
-    ├── mobile/react-native/checklists/ + patterns/
-    └── mobile/swift/checklists/ + patterns/
-```
-
-**Stack-Specific Verification Commands**
-
-| Stack        | Verification Command                                     |
-| ------------ | -------------------------------------------------------- |
-| Go           | `go test ./...` → `golangci-lint run` → `go build ./...` |
-| Node.js      | `npm test` → `npm run lint` → `npm run build`            |
-| React        | `npm test` → `npm run lint` → `npm run build`            |
-| React Native | `npm test` → `npx eslint .` → `npx expo export`          |
-| Swift        | `swift test` → `swiftlint` → `swift build`               |
-
-#### Customize for your project
-
-1. Add stack-specific patterns to `references/{category}/{stack}/`, `assets/{category}/{stack}/`.
-2. Update and allign the SKILL.md routing and logic.

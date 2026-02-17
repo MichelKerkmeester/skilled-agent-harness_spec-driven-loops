@@ -94,16 +94,16 @@ flowchart TD
 
 ### Agent Selection (Priority Order)
 
-| Priority | Task Type                     | Agent                        | Skills                                        | subagent_type |
-| -------- | ----------------------------- | ---------------------------- | --------------------------------------------- | ------------- |
-| 1        | ALL codebase exploration, file search, pattern discovery, context loading | `@context`                   | Memory tools, Glob, Grep, Read                | `"general"`   |
-| 2        | Evidence / investigation      | `@research`                  | `system-spec-kit`                             | `"general"`   |
-| 3        | Spec folder docs              | `@speckit` ⛔ EXCLUSIVE      | `system-spec-kit`                             | `"general"`   |
-| 4        | Code review / security        | `@review`                    | `workflows-code--web-dev` / `workflows-code--full-stack` (if available) | `"general"`   |
-| 5        | Documentation (non-spec)      | `@write`                     | `workflows-documentation`                     | `"general"`   |
-| 6        | Implementation / testing      | `@general`                   | `workflows-code--web-dev` / `workflows-code--full-stack`, `workflows-chrome-devtools` | `"general"`   |
-| 7        | Debugging (stuck, 3+ fails)   | `@debug`                     | Code analysis tools                           | `"general"`   |
-| 8        | Session handover              | `@handover`                  | `system-spec-kit`                             | `"general"`   |
+| Priority | Task Type                     | Agent                        | Tier | Skills                                        | subagent_type |
+| -------- | ----------------------------- | ---------------------------- | ---- | --------------------------------------------- | ------------- |
+| 1        | ALL codebase exploration, file search, pattern discovery, context loading | `@context`                   | DISPATCHER | Memory tools, Glob, Grep, Read                | `"general"`   |
+| 2        | Evidence / investigation      | `@research`                  | LEAF | `system-spec-kit`                             | `"general"`   |
+| 3        | Spec folder docs              | `@speckit` ⛔ EXCLUSIVE      | LEAF | `system-spec-kit`                             | `"general"`   |
+| 4        | Code review / security        | `@review`                    | LEAF | `workflows-code--web-dev` / `workflows-code--full-stack` (if available) | `"general"`   |
+| 5        | Documentation (non-spec)      | `@write`                     | LEAF | `workflows-documentation`                     | `"general"`   |
+| 6        | Implementation / testing      | `@general`                   | LEAF | `workflows-code--web-dev` / `workflows-code--full-stack`, `workflows-chrome-devtools` | `"general"`   |
+| 7        | Debugging (stuck, 3+ fails)   | `@debug`                     | LEAF | Code analysis tools                           | `"general"`   |
+| 8        | Session handover              | `@handover`                  | LEAF | `system-spec-kit`                             | `"general"`   |
 
 ### Agent Loading Protocol (MANDATORY)
 
@@ -148,7 +148,7 @@ Sub-orchestrators operate within **inherited constraints** — they CANNOT excee
 | Quality Threshold  | Same or stricter than parent                               |
 | **Context Budget** | **MUST compress results before returning to parent (§23)** |
 
-**Nesting Depth:** Maximum 2 levels (Parent → Sub → Sub-Sub is the deepest allowed).
+**Nesting Depth:** Governed by NDP (§26). Sub-orchestrators inherit their parent's depth + 1. A sub-orchestrator at depth 1 can only dispatch LEAF agents at depth 2. **No agent chain may exceed depth 2 (3 levels total).** See §26 for tier classification, legal/illegal chains, and enforcement instructions.
 
 ---
 
@@ -363,7 +363,8 @@ TASK #N: [Descriptive Title]
 ├─ Compensation: [Rollback action if saga-enabled | "none"]
 ├─ Branch: [Optional conditional routing - see §11]
 ├─ Scale: [1-agent | 2-4 agents | 10+ agents]
-└─ Est. Tool Calls: [N] ([breakdown]) → [Single agent | Split: M agents × ~K calls] (§26)
+├─ Depth: [0|1|2] — current dispatch depth (§26 NDP). Agent tier: [ORCHESTRATOR|DISPATCHER|LEAF]
+└─ Est. Tool Calls: [N] ([breakdown]) → [Single agent | Split: M agents × ~K calls] (§27)
 ```
 
 ### Complexity Estimation
@@ -392,6 +393,7 @@ PRE-DELEGATION REASONING [Task #N]:
 ├─ Complexity: [low/medium/high] → Because: [cite criteria from §10]
 ├─ Agent: @[agent] → Because: [cite §3 (Agent Routing)]
 ├─ Agent Def: [loaded | built-in | prior-session] → [.opencode/agent/<name>.md]
+├─ Depth: [N] → Tier: [ORCHESTRATOR|DISPATCHER|LEAF] (§26 NDP)
 ├─ Parallel: [Yes/No] → Because: [data dependency]
 ├─ Risk: [Low/Medium/High] → [If High: fallback agent]
 └─ TCB: [N] tool calls → [Single agent | Split: M × ~K calls] (mandatory for file I/O tasks)
@@ -514,7 +516,7 @@ Maximum nesting: 3 levels deep. If deeper needed, refactor into separate tasks.
 When a sub-agent returns "Tool execution aborted" or an empty/error result:
 1. **Classify** as OVERLOAD — the agent exceeded system execution limits
 2. **Do NOT retry with the same scope** — the same task will fail again
-3. **Estimate** the original task's tool call count (see §26)
+3. **Estimate** the original task's tool call count (see §27)
 4. **Auto-split** into N agents where each has ≤8 estimated tool calls
 5. **Re-dispatch** in parallel with explicit scope per agent
 6. **Escalate** to user only if the split attempt also fails
@@ -630,7 +632,7 @@ Resume flow: Load checkpoint → Validate pending tasks → Restore context → 
 
 **Agents:** @research, @write, @review, @debug, @speckit, @handover (custom) + @general, @context (built-in). @context handles ALL exploration tasks exclusively.
 
-**Resilience:** Circuit Breaker (§15) | Saga Compensation (§17) | Caching (§18) | Checkpointing (§20) | CWB (§23) | TCB (§26)
+**Resilience:** Circuit Breaker (§15) | Saga Compensation (§17) | Caching (§18) | Checkpointing (§20) | CWB (§23) | NDP (§26) | TCB (§27)
 
 **Parallel-first:** 1-3 agents default ceiling (user can override) | 4-9 summary-only | 10+ waves of 5. Max 20 agents total.
 
@@ -705,13 +707,19 @@ The orchestrator's context window is finite (~150K available tokens). When many 
 - ALL documentation (*.md) written inside spec folders REQUIRES `@speckit` exclusively. This covers every markdown file in `specs/[###-name]/` — not just named templates. Using `@general`, `@write`, or other agents bypasses template enforcement, Level 1-3+ validation, and quality standards. Exceptions: `@handover` may write `handover.md`, `@research` may write `research.md`, any agent may write to `memory/` and `scratch/`. See §5 Rule 5.
 
 ❌ **Never dispatch a single agent for 13+ estimated tool calls**
-- Single agents with too many sequential operations (reads, writes, edits, bash) exceed system execution limits, returning "Tool execution aborted" and losing all progress. Always estimate tool calls before dispatch and split at 12+. See §26 for the Tool Call Budget system.
+- Single agents with too many sequential operations (reads, writes, edits, bash) exceed system execution limits, returning "Tool execution aborted" and losing all progress. Always estimate tool calls before dispatch and split at 12+. See §27 for the Tool Call Budget system.
 
 ❌ **Never bypass @context for exploration tasks**
 - ALL codebase exploration, file search, and pattern discovery MUST route through @context (subagent_type: `"general"`). @context provides memory integration, structured output, and Context Packages that direct exploration sub-agents lack. Bypassing @context wastes tokens and produces unstructured results.
 
 ❌ **Never improvise custom agent instructions instead of loading their definition file**
 - Every custom agent (@context, @research, @speckit, @review, @write, @debug, @handover) has a definition file in `.opencode/agent/`. These files contain specialized templates, enforcement rules, and quality standards. Dispatching a generic agent with "you are @speckit" in the prompt produces documentation without template enforcement, validation, or Level 1-3+ compliance. ALWAYS read and include the actual agent definition file. See §3 Agent Loading Protocol.
+
+❌ **Never dispatch beyond maximum depth 3 (depth counter 0-1-2)**
+- Deep nesting (4+ levels) wastes tokens on orchestration overhead and produces no additional value. Every dispatch must include `Depth: N` and respect the NDP tier classification. LEAF agents MUST NOT dispatch sub-agents. DISPATCHER agents may only dispatch LEAFs. If a task cannot be completed at the current depth, the agent must return partial results and escalate to the parent rather than nesting deeper. See §26 for the Nesting Depth Protocol.
+
+❌ **Never let LEAF agents dispatch sub-agents**
+- LEAF agents (@general, @write, @review, @speckit, @debug, @handover, @explore, @research) execute work directly. If a LEAF agent spawns a sub-agent, it violates the NDP and creates unbounded nesting chains. When dispatching LEAF agents, ALWAYS include the LEAF Enforcement Instruction (§26). See §26 for tier assignments.
 
 ---
 
@@ -734,7 +742,98 @@ The orchestrator's context window is finite (~150K available tokens). When many 
 
 ---
 
-## 26. TOOL CALL BUDGET (TCB)
+## 26. NESTING DEPTH PROTOCOL (NDP)
+
+### Why This Exists
+
+Sub-agents can spawn sub-agents, which spawn more sub-agents, creating chains 5+ levels deep. Each nesting level adds orchestration overhead (context, instructions, synthesis) without adding value. The NDP enforces an absolute ceiling on nesting depth and classifies every agent by its dispatch authority.
+
+### Agent Tier Classification
+
+Every agent is assigned exactly ONE tier that determines its dispatch authority:
+
+| Tier | Dispatch Authority | Who |
+| --- | --- | --- |
+| **ORCHESTRATOR** | Can dispatch ANY tier (ORCHESTRATOR, DISPATCHER, LEAF) | Top-level orchestrator, sub-orchestrators |
+| **DISPATCHER** | Can dispatch LEAF agents ONLY | @context |
+| **LEAF** | MUST NOT dispatch any sub-agents | @general, @write, @review, @speckit, @debug, @handover, @explore, @research |
+
+### Agent Tier Assignments
+
+| Agent | Tier | Rationale |
+| --- | --- | --- |
+| Orchestrator (self) | ORCHESTRATOR | Top-level task commander |
+| Sub-Orchestrator | ORCHESTRATOR | Inherits reduced depth budget from parent |
+| @context | DISPATCHER | Must dispatch @explore/@research for deep investigation |
+| @general | LEAF | Implementation agent — executes directly |
+| @write | LEAF | Documentation agent — executes directly |
+| @review | LEAF | Review agent — executes directly |
+| @speckit | LEAF | Spec documentation agent — executes directly |
+| @debug | LEAF | Debug agent — executes directly |
+| @handover | LEAF | Handover agent — executes directly |
+| @research | LEAF | Research agent — executes directly |
+| @explore | LEAF | Exploration agent — executes directly |
+
+### Absolute Depth Rules
+
+**Maximum depth: 3 levels** (depth counter 0, 1, 2). No agent at depth 2 may dispatch further.
+
+| Depth | Who Can Be Here | Can Dispatch? |
+| --- | --- | --- |
+| **0** | Orchestrator only | Yes — any tier |
+| **1** | Any agent dispatched by depth-0 | Yes — if ORCHESTRATOR or DISPATCHER tier |
+| **2** | Any agent dispatched by depth-1 | **NO** — all agents at depth 2 are effectively LEAF regardless of tier |
+| **3+** | **FORBIDDEN** | N/A |
+
+### Depth Counting Rules
+
+1. The top-level orchestrator is always **depth 0**
+2. Each dispatch increments depth by 1: `child_depth = parent_depth + 1`
+3. Parallel dispatches at the same level share the same depth (siblings, not children)
+4. Sub-orchestrators inherit remaining depth budget: `remaining = max_depth - current_depth`
+5. Every dispatch MUST include `Depth: N` so the receiving agent knows its position
+
+### Legal Nesting Chains
+
+```
+LEGAL: Orchestrator(0) → @speckit(1)                          [depth 1, LEAF]
+LEGAL: Orchestrator(0) → @context(1) → @explore(2)            [depth 2, LEAF]
+LEGAL: Orchestrator(0) → Sub-Orch(1) → @general(2)            [depth 2, LEAF]
+LEGAL: Orchestrator(0) → @context(1) + @speckit(1)            [parallel at depth 1]
+```
+
+### Illegal Nesting Chains
+
+```
+ILLEGAL: Orch(0) → Sub-Orch(1) → @context(2) → @explore(3)   [depth 3 FORBIDDEN]
+ILLEGAL: Orch(0) → @context(1) → @explore(2) → ???(3)         [LEAF cannot dispatch]
+ILLEGAL: Orch(0) → Sub-Orch(1) → Sub-Orch(2) → @leaf(3)      [depth 3 FORBIDDEN]
+ILLEGAL: Orch(0) → @speckit(1) → @general(2)                  [LEAF @speckit cannot dispatch]
+```
+
+### Enforcement Mechanism
+
+Since enforcement is instruction-based (no runtime tooling), depth is embedded in **three places** per dispatch:
+
+1. **Task Decomposition Format** (Section 10): `Depth` field
+2. **Pre-Delegation Reasoning** (Section 10): `Depth` line
+3. **Agent instruction** (in the dispatch prompt): "You are at depth N. Maximum depth is 2. You MUST NOT dispatch sub-agents." (for LEAF agents) or "You are at depth N. You may dispatch LEAF agents at depth N+1." (for DISPATCHER/ORCHESTRATOR agents)
+
+### LEAF Enforcement Instruction
+
+When dispatching a LEAF agent, append this to the Task prompt:
+
+> **NESTING CONSTRAINT:** You are a LEAF agent at depth [N]. You MUST NOT dispatch sub-agents or use the Task tool to create sub-tasks. Execute your work directly using your available tools. If you cannot complete the task alone, return what you have and escalate to the orchestrator.
+
+### DISPATCHER Enforcement Instruction
+
+When dispatching a DISPATCHER agent (currently only @context), append this:
+
+> **NESTING CONSTRAINT:** You are a DISPATCHER agent at depth [N]. You may dispatch LEAF agents at depth [N+1] only. Do NOT dispatch ORCHESTRATOR or DISPATCHER agents. Maximum depth for your sub-agents is [N+1].
+
+---
+
+## 27. TOOL CALL BUDGET (TCB)
 
 ### Why This Exists
 

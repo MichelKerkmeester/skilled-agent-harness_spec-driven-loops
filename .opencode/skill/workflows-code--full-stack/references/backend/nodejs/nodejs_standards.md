@@ -997,7 +997,7 @@ The ESLint configuration above enforces this order automatically.
 <!-- ANCHOR:rules -->
 ## 11. RULES
 
-### ALWAYS
+### ✅ ALWAYS
 
 1. **Use TypeScript strict mode** - Enable all strict checks in tsconfig.json
 2. **Validate environment variables** - Use Zod schema on startup
@@ -1012,7 +1012,7 @@ The ESLint configuration above enforces this order automatically.
 11. **Separate concerns** - Controllers, services, repositories in separate files
 12. **Export types separately** - Use `export type` for type-only exports
 
-### NEVER
+### ❌ NEVER
 
 1. **Use `any` type** - Use `unknown` and narrow with type guards
 2. **Ignore TypeScript errors** - Fix or properly suppress with comment
@@ -1027,7 +1027,7 @@ The ESLint configuration above enforces this order automatically.
 11. **Use `require()`** - Use ES module imports
 12. **Disable ESLint rules globally** - Fix the code or disable per-line
 
-### ESCALATE IF
+### ⚠️ ESCALATE IF
 
 1. **New pattern needed** - Consult team before introducing new conventions
 2. **Major dependency upgrade** - Breaking changes require team review

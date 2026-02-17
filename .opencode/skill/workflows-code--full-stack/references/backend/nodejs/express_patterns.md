@@ -1279,7 +1279,7 @@ app.use(cors(corsOptions));
 <!-- ANCHOR:rules -->
 ## 12. RULES
 
-### ALWAYS
+### ✅ ALWAYS
 
 1. **Use arrow functions for controller methods** - Preserves `this` binding
 2. **Validate all request inputs** - Use Zod schemas for body, query, params
@@ -1294,7 +1294,7 @@ app.use(cors(corsOptions));
 11. **Keep controllers thin** - Delegate logic to services
 12. **Type infer from Zod schemas** - Use `z.infer<typeof schema>` for types
 
-### NEVER
+### ❌ NEVER
 
 1. **Send raw errors to client** - Always sanitize error responses
 2. **Use `async` without try/catch** - Or use asyncHandler wrapper
@@ -1309,7 +1309,7 @@ app.use(cors(corsOptions));
 11. **Throw errors in middleware without next()** - Always forward to error handler
 12. **Mix authentication methods** - One consistent auth strategy
 
-### ESCALATE IF
+### ⚠️ ESCALATE IF
 
 1. **New middleware pattern needed** - Consult team before introducing
 2. **Authentication strategy change** - Security implications require review

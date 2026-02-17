@@ -366,7 +366,7 @@ func (l *PaymentsBusinessLayer) GetWalletWithSubscriptions(
 <!-- ANCHOR:rules -->
 ## 7. RULES
 
-### ALWAYS
+### ✅ ALWAYS
 
 1. **Return models from business layer** - All business layer methods return `pkg/models/*` types
 2. **Use adapters only in business layer** - Adaptation happens exclusively at business layer
@@ -376,7 +376,7 @@ func (l *PaymentsBusinessLayer) GetWalletWithSubscriptions(
 6. **Aggregate adapters in business layer** - Use `Adapters` struct pattern
 7. **Test adapter field mappings** - Validate all fields map correctly
 
-### NEVER
+### ❌ NEVER
 
 1. **Adapt in services** - Services must not import adapter packages
 2. **Adapt in controllers** - Controllers receive models from business layer
@@ -386,7 +386,7 @@ func (l *PaymentsBusinessLayer) GetWalletWithSubscriptions(
 6. **Use inconsistent naming** - Use `Adapt`/`AdaptCollection` only
 7. **Fail without defaults** - Adapters should be resilient
 
-### ESCALATE IF
+### ⚠️ ESCALATE IF
 
 1. **Cross-domain adaptation needed** - May need architectural review
 2. **Circular dependencies** - Adapter importing creates cycle

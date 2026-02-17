@@ -575,7 +575,7 @@ func TestWalletAdapter_AdaptCollection(t *testing.T) {
 <!-- ANCHOR:rules -->
 ## 9. RULES
 
-### ALWAYS
+### ✅ ALWAYS
 
 1. **Follow layered architecture strictly** - Controllers to Business Layer to Services to Repositories
 2. **Use `services.Service[T]`** for transaction support in services
@@ -589,7 +589,7 @@ func TestWalletAdapter_AdaptCollection(t *testing.T) {
 10. **Adapt entities to models only in business layer** - See `models_vs_entities_and_adapters.md`
 11. **Return models from business layer** - Entities from services
 
-### NEVER
+### ❌ NEVER
 
 1. **Skip architectural layers** - e.g., Controllers to Services directly
 2. **Put business logic in HTTP handlers** - Keep controllers thin
@@ -604,7 +604,7 @@ func TestWalletAdapter_AdaptCollection(t *testing.T) {
 11. **Import `*_entities` packages in controllers** - Use models only
 12. **Ignore errors** - `result, _ := doSomething()` is forbidden
 
-### ESCALATE IF
+### ⚠️ ESCALATE IF
 
 1. **New pattern needed** - Consult team before introducing new patterns
 2. **Transaction complexity** - Nested transactions or cross-domain transactions

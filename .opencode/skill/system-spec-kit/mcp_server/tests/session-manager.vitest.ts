@@ -77,10 +77,8 @@ function resetDb(): void {
 
 describe('Session Manager Tests (T001-T008)', () => {
   beforeAll(() => {
-    // Create in-memory database for testing
     testDb = new Database(':memory:');
 
-    // Initialize session manager
     const result = sessionManager.init(testDb);
     if (!result.success) {
       throw new Error(`Failed to initialize session manager: ${result.error}`);
@@ -217,15 +215,12 @@ describe('Session Manager Tests (T001-T008)', () => {
       const sessionId: string = 'test-session-T004';
       const memory: MemoryObject = createMemory({ id: 200, anchorId: 'sent-memory' });
 
-      // First check - should be true (new memory)
       const firstCheck: boolean = sessionManager.shouldSendMemory(sessionId, memory);
       expect(firstCheck).toBe(true);
 
-      // Mark as sent
       const markResult: MarkResult = sessionManager.markMemorySent(sessionId, memory);
       expect(markResult.success).toBe(true);
 
-      // Second check - should be false (already sent)
       const secondCheck: boolean = sessionManager.shouldSendMemory(sessionId, memory);
       expect(secondCheck).toBe(false);
     });
@@ -248,7 +243,6 @@ describe('Session Manager Tests (T001-T008)', () => {
         createMemory({ id: 303, anchorId: 'memory-c' }),
       ];
 
-      // Mark each memory as sent and verify
       for (const memory of memories) {
         const result: MarkResult = sessionManager.markMemorySent(sessionId, memory);
         expect(result.success).toBe(true);
@@ -256,12 +250,10 @@ describe('Session Manager Tests (T001-T008)', () => {
         expect(result.hash).toHaveLength(16);
       }
 
-      // Verify all are now blocked
       for (const memory of memories) {
         expect(sessionManager.shouldSendMemory(sessionId, memory)).toBe(false);
       }
 
-      // Verify database state
       const count = testDb!.prepare(`
         SELECT COUNT(*) as count FROM session_sent_memories WHERE session_id = ?
       `).get(sessionId) as { count: number };
@@ -284,23 +276,17 @@ describe('Session Manager Tests (T001-T008)', () => {
       const session2: string = 'session-unique-002';
       const memory: MemoryObject = createMemory({ id: 400, anchorId: 'shared-memory' });
 
-      // Mark memory as sent in session1
       sessionManager.markMemorySent(session1, memory);
 
-      // Session1 should block the memory
       expect(sessionManager.shouldSendMemory(session1, memory)).toBe(false);
 
-      // Session2 should NOT block the same memory (different session)
       expect(sessionManager.shouldSendMemory(session2, memory)).toBe(true);
 
-      // Mark in session2 and verify isolation
       sessionManager.markMemorySent(session2, memory);
 
-      // Now both should block
       expect(sessionManager.shouldSendMemory(session1, memory)).toBe(false);
       expect(sessionManager.shouldSendMemory(session2, memory)).toBe(false);
 
-      // Verify database state shows separate entries
       const entries = testDb!.prepare(`
         SELECT session_id FROM session_sent_memories ORDER BY session_id
       `).all() as Array<{ session_id: string }>;
@@ -322,7 +308,6 @@ describe('Session Manager Tests (T001-T008)', () => {
     it('T007: Filters duplicate memories from search results', () => {
       const sessionId: string = 'test-session-T007';
 
-      // Create search results with 5 memories
       const searchResults: MemoryObject[] = [
         createMemory({ id: 501, anchorId: 'result-1' }),
         createMemory({ id: 502, anchorId: 'result-2' }),
@@ -331,23 +316,18 @@ describe('Session Manager Tests (T001-T008)', () => {
         createMemory({ id: 505, anchorId: 'result-5' }),
       ];
 
-      // Mark 2 memories as already sent
       sessionManager.markMemorySent(sessionId, searchResults[1]); // 502
       sessionManager.markMemorySent(sessionId, searchResults[3]); // 504
 
-      // Filter the search results
       const { filtered, dedupStats }: FilterResult = sessionManager.filterSearchResults(sessionId, searchResults);
 
-      // Should have 3 results remaining
       expect(filtered).toHaveLength(3);
 
-      // Verify correct IDs remain
       const filteredIds: number[] = filtered.map((m: MemoryObject) => m.id);
       expect(filteredIds).toContain(501);
       expect(filteredIds).toContain(503);
       expect(filteredIds).toContain(505);
 
-      // Verify dedup stats
       expect(dedupStats.filtered).toBe(2);
       expect(dedupStats.total).toBe(5);
       expect(dedupStats.enabled).toBe(true);
@@ -373,18 +353,14 @@ describe('Session Manager Tests (T001-T008)', () => {
         createMemory({ id: 604, anchorId: 'result-4' }),
       ];
 
-      // Mark 3 memories as already sent
       sessionManager.markMemorySent(sessionId, searchResults[0]); // 601
       sessionManager.markMemorySent(sessionId, searchResults[1]); // 602
       sessionManager.markMemorySent(sessionId, searchResults[2]); // 603
 
-      // Filter the search results
       const { filtered, dedupStats }: FilterResult = sessionManager.filterSearchResults(sessionId, searchResults);
 
-      // Verify token savings estimate exists
       expect(dedupStats.tokenSavingsEstimate).toBeTruthy();
 
-      // Implementation uses ~200 tokens per memory
       // 3 filtered * 200 = ~600 tokens
       expect(dedupStats.tokenSavingsEstimate).toBe('~600 tokens');
     });

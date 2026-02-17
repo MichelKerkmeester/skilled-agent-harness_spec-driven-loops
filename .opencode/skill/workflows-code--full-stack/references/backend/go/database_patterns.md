@@ -501,7 +501,7 @@ db.Model(&User{}).
 <!-- ANCHOR:rules -->
 ## 8. RULES
 
-### ALWAYS
+### ✅ ALWAYS
 
 1. **Use `database.Repository[T]`** for all repositories
 2. **Create tx-aware repos with `WithTx(tx)`** in transactions - no nil check needed, `WithTx` handles nil internally
@@ -514,7 +514,7 @@ db.Model(&User{}).
 9. **Use `.Model(&Entity{})`** before GORM operations
 10. **Nil-check pointer relations in adapters** before accessing nested fields (see section 7)
 
-### NEVER
+### ❌ NEVER
 
 1. **Create transactions manually** - Use data layer's `Transaction()`
 2. **Mix transactional and non-transactional** repository access
@@ -526,7 +526,7 @@ db.Model(&User{}).
 8. **Use raw SQL without justification** - Prefer GORM's fluent API
 9. **Access nested fields on pointer relations without nil-checking** (e.g., `entity.Relation.Field` where `Relation` is a pointer) - causes panics with soft-deleted records
 
-### ESCALATE IF
+### ⚠️ ESCALATE IF
 
 1. **Complex joins needed** - May require query optimization
 2. **Performance issues** - Transaction isolation or query tuning needed

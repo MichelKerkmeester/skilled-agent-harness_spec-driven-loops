@@ -491,7 +491,7 @@ if err != nil {
 <!-- ANCHOR:rules -->
 ## 11. RULES
 
-### ALWAYS
+### ✅ ALWAYS
 
 1. **Keep handlers thin** - Delegate to business layer
 2. **Validate input** - Check required fields, cap max values
@@ -503,7 +503,7 @@ if err != nil {
 8. **Return models from business layer** - Already adapted
 9. **Define static routes BEFORE parameterized routes** - See Section 4 (Route Precedence)
 
-### NEVER
+### ❌ NEVER
 
 1. **Put business logic in controllers** - Delegate to business layer
 2. **Ignore errors** - Always handle and wrap
@@ -516,7 +516,7 @@ if err != nil {
 9. **Call services directly** - Use business layer
 10. **Register parameterized routes before static routes** - Causes route shadowing
 
-### ESCALATE IF
+### ⚠️ ESCALATE IF
 
 1. **Complex validation needed** - Consider validation middleware
 2. **New auth pattern required** - Consult security team

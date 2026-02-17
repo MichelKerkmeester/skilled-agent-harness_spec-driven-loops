@@ -326,13 +326,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
 ### When to Use Context
 
-#### ALWAYS
+#### ✅ ALWAYS
 
 - Theme, locale, auth state (truly global, low update frequency)
 - When prop drilling becomes excessive (3+ levels)
 - Dependency injection (providing services/configs)
 
-#### NEVER
+#### ❌ NEVER
 
 - High-frequency updates (use Zustand/Jotai instead)
 - Complex state logic (consider dedicated state library)

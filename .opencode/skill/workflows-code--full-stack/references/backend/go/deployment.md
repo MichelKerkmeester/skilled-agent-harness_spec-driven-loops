@@ -431,7 +431,7 @@ go test ./...
 <!-- ANCHOR:rules -->
 ## 13. RULES
 
-### ALWAYS
+### ✅ ALWAYS
 
 - Test locally before tagging
 - Follow semantic versioning
@@ -440,7 +440,7 @@ go test ./...
 - Have a rollback plan for production
 - Communicate breaking changes
 
-### NEVER
+### ❌ NEVER
 
 - Push directly to production without staging validation
 - Skip the version tagging strategy
@@ -448,7 +448,7 @@ go test ./...
 - Deploy without monitoring
 - Modify workflow files without review
 
-### ESCALATE IF
+### ⚠️ ESCALATE IF
 
 - Production deployment fails
 - Multiple services fail simultaneously

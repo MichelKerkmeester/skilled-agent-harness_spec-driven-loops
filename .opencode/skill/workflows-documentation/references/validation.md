@@ -104,7 +104,7 @@ The script runs type-specific checklists and reports pass/fail results:
 - ✅ Code blocks properly fenced
 - ✅ No unclosed markdown elements
 - ✅ Section separators (`---`) correct
-- ✅ H3 semantic emoji correct (only in RULES sections)
+- ✅ H3/H4 semantic emoji correct (only in RULES sections)
 
 **SKILL-Specific Checks** (14 checks total):
 - ✅ `frontmatter_exists` - YAML frontmatter present
@@ -166,7 +166,7 @@ AI checks style based on core_standards.md:
 
 **Key Style Checks**:
 - ✅ H2 numbered headings: ALL CAPS (e.g., `## 1. WHEN TO USE`)
-- ✅ H3 headings: Only semantic emojis (✅ ❌ ⚠️), no decorative emojis
+- ✅ H3/H4 RULES headings: Only semantic emojis (✅ ❌ ⚠️), no decorative emojis
 - ✅ Code examples include comments
 - ✅ Bullet lists under 7 items
 - ✅ Consistent terminology

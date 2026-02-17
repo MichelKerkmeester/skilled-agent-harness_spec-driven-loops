@@ -214,7 +214,7 @@ Level 3: Reference files (this document)
 - Overview and "When to Use"
 - High-level workflow (3-5 steps)
 - Essential rules (ALWAYS/NEVER/ESCALATE IF)
-  > **Note**: RULES sections in SKILL.md use semantic emojis on H3: `### ✅ ALWAYS`, `### ❌ NEVER`, `### ⚠️ ESCALATE IF`. These are the ONLY H3 headings that require emojis. See [skill_md_template.md](./skill_md_template.md) for the complete pattern.
+  > **Note**: RULES sections in SKILL.md use semantic emojis on H3/H4: `### ✅ ALWAYS`, `### ❌ NEVER`, `### ⚠️ ESCALATE IF` (or `####` at phase depth). These are the ONLY rule-heading emojis allowed. See [skill_md_template.md](./skill_md_template.md) for the complete pattern.
 - Quick reference
 
 **Size**: Content under 200 lines

@@ -682,7 +682,7 @@ func (ms *NotificationsMicroservice) Init(ctx context.Context) error {
 <!-- ANCHOR:rules -->
 ## 12. RULES
 
-### ALWAYS
+### ✅ ALWAYS
 
 - Use domain-specific event constructors (e.g., `event.NewWalletSubscriptionCreatedEvent`)
 - Register all event types in MessagePacks before consuming
@@ -691,7 +691,7 @@ func (ms *NotificationsMicroservice) Init(ctx context.Context) error {
 - Use `uid.NewUUID()` for event IDs
 - Set meaningful `event_description` and `field_description` tags
 
-### NEVER
+### ❌ NEVER
 
 - Emit events without a producer configured
 - Mix event types in a single `Forward()` call
@@ -699,7 +699,7 @@ func (ms *NotificationsMicroservice) Init(ctx context.Context) error {
 - Hard-code queue URLs (use configuration)
 - Skip message pack registration
 
-### ESCALATE IF
+### ⚠️ ESCALATE IF
 
 - Events are lost (not appearing in consumer)
 - Requeue loops occur (same message processed repeatedly)

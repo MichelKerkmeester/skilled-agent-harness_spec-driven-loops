@@ -1241,7 +1241,7 @@ npm run test:unit
 <!-- ANCHOR:rules -->
 ## 12. RULES
 
-### ALWAYS
+### ✅ ALWAYS
 
 1. **Follow AAA pattern** - Arrange, Act, Assert structure
 2. **Use descriptive test names** - Describe behavior, not implementation
@@ -1256,7 +1256,7 @@ npm run test:unit
 11. **Use realistic test data** - Faker for random but valid data
 12. **Document complex test setups** - Comments for non-obvious logic
 
-### NEVER
+### ❌ NEVER
 
 1. **Test implementation details** - Test behavior, not internals
 2. **Share state between tests** - Each test must be independent
@@ -1271,7 +1271,7 @@ npm run test:unit
 11. **Mock everything** - Integration tests need real interactions
 12. **Couple tests to order** - Tests must run in any order
 
-### ESCALATE IF
+### ⚠️ ESCALATE IF
 
 1. **Coverage dropping** - Investigate missing tests
 2. **Tests taking too long** - Optimize or parallelize

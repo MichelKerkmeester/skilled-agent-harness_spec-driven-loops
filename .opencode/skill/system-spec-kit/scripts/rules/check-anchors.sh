@@ -58,7 +58,23 @@ run_check() {
 # ───────────────────────────────────────────────────────────────
 
     local -a errors=()
+    local -a missing_anchors=()
     local file_count=0
+
+    # T007: Check that major spec docs have at least 1 ANCHOR tag
+    local -a major_docs=("spec.md" "plan.md" "tasks.md" "checklist.md" "decision-record.md")
+    for doc_name in "${major_docs[@]}"; do
+        local doc_path="$folder/$doc_name"
+        if [[ -f "$doc_path" ]]; then
+            local anchor_count
+            anchor_count=$(grep -c '<!-- ANCHOR:' "$doc_path" 2>/dev/null || echo "0")
+            # Fix: grep -c might return multiple lines if there are errors, take first line only
+            anchor_count=$(echo "$anchor_count" | head -1)
+            if [[ "$anchor_count" -eq 0 ]]; then
+                missing_anchors+=("$doc_name: No ANCHOR tags found (required for structured retrieval)")
+            fi
+        fi
+    done
 
     for file in "${all_files[@]}"; do
         ((file_count++)) || true
@@ -113,13 +129,32 @@ run_check() {
 # 4. RESULTS
 # ───────────────────────────────────────────────────────────────
 
-    if [[ ${#errors[@]} -eq 0 ]]; then
+    local has_errors=false
+    
+    if [[ ${#missing_anchors[@]} -gt 0 ]]; then
+        RULE_STATUS="fail"
+        RULE_MESSAGE="ANCHOR tags missing in ${#missing_anchors[@]} major spec document(s)"
+        RULE_DETAILS+=("${missing_anchors[@]}")
+        has_errors=true
+    fi
+
+    if [[ ${#errors[@]} -gt 0 ]]; then
+        if [[ "$has_errors" == true ]]; then
+            RULE_MESSAGE="$RULE_MESSAGE; Found ${#errors[@]} anchor mismatch(es)"
+        else
+            RULE_STATUS="fail"
+            RULE_MESSAGE="Found ${#errors[@]} anchor mismatch(es)"
+        fi
+        RULE_DETAILS+=("${errors[@]}")
+        has_errors=true
+    fi
+    
+    if [[ "$has_errors" == false ]]; then
         RULE_STATUS="pass"
         RULE_MESSAGE="All anchor pairs valid in $file_count file(s)"
     else
-        RULE_STATUS="fail"
-        RULE_MESSAGE="Found ${#errors[@]} anchor mismatch(es)"
-        RULE_DETAILS=("${errors[@]}")
-        RULE_REMEDIATION="Ensure each <!-- ANCHOR:id --> has matching <!-- /ANCHOR:id -->"
+        RULE_REMEDIATION="1. Add ANCHOR tags to major spec docs (spec.md, plan.md, tasks.md, checklist.md, decision-record.md)
+2. Ensure each <!-- ANCHOR:id --> has matching <!-- /ANCHOR:id -->
+3. Use anchor-generator.ts to auto-wrap sections with ANCHOR tags"
     fi
 }

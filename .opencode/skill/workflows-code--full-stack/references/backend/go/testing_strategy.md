@@ -631,7 +631,7 @@ go test -race ./...
 <!-- ANCHOR:rules -->
 ## 9. RULES
 
-### ALWAYS
+### ✅ ALWAYS
 
 - Use table-driven tests for multiple scenarios
 - Mock external dependencies in unit tests
@@ -641,7 +641,7 @@ go test -race ./...
 - Name tests descriptively: `TestType_Method_Scenario`
 - Run tests before committing: `go test ./...`
 
-### NEVER
+### ❌ NEVER
 
 - Write tests that depend on execution order
 - Use real external services in unit tests
@@ -650,7 +650,7 @@ go test -race ./...
 - Use global state between tests
 - Hard-code time-dependent values
 
-### ESCALATE IF
+### ⚠️ ESCALATE IF
 
 - Test coverage drops below 70%
 - Tests are flaky (pass/fail randomly)
@@ -1133,7 +1133,7 @@ func KillProcessOnPort(port uint32) error {
 <!-- ANCHOR:rules-2 -->
 ## 14. RULES
 
-### ALWAYS
+### ✅ ALWAYS
 
 - Use table-driven tests for multiple scenarios
 - Mock external dependencies in unit tests
@@ -1146,7 +1146,7 @@ func KillProcessOnPort(port uint32) error {
 - **Use `e2e_utils.KillProcessOnPort()` before starting embedded postgres**
 - **Defer all cleanup: `database.Stop()`, `mr.Close()`, `os.Unsetenv()`**
 
-### NEVER
+### ❌ NEVER
 
 - Write tests that depend on execution order
 - Use real external services in unit tests
@@ -1158,7 +1158,7 @@ func KillProcessOnPort(port uint32) error {
 - **Leave stale embedded postgres processes running**
 - **Skip CI environment checks in utilities**
 
-### ESCALATE IF
+### ⚠️ ESCALATE IF
 
 - Test coverage drops below 70%
 - Tests are flaky (pass/fail randomly)

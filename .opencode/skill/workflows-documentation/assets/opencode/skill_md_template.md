@@ -330,7 +330,8 @@ See [workflow-details.md](./references/workflow-details.md) for complete step-by
 
 <!-- NOTE: RULES section is REQUIRED by package_skill.py validation.
      Subsections with semantic emojis (✅ ALWAYS, ❌ NEVER, ⚠️ ESCALATE IF) are REQUIRED.
-     Do NOT remove these emojis. Do NOT add horizontal dividers (---) between H3 subsections. -->
+     Use H3 by default; H4 is allowed when nested under phase headings.
+     Do NOT remove these emojis. Do NOT add horizontal dividers (---) between RULES subsections. -->
 
 <!-- /ANCHOR:how-it-works -->
 <!-- ANCHOR:rules -->

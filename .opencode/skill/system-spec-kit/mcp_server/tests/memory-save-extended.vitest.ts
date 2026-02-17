@@ -1,7 +1,3 @@
-// ---------------------------------------------------------------
-// TEST: MEMORY SAVE EXTENDED
-// ---------------------------------------------------------------
-
 import { describe, it, expect, beforeAll } from 'vitest';
 import path from 'path';
 import os from 'os';
@@ -29,7 +25,7 @@ describe('MEMORY SAVE EXTENDED', () => {
      DB HELPERS
   ──────────────────────────────────────────────────────────────── */
 
-  function createTestDb(): any {
+  function createTestDb(): Database.Database {
     const db = new Database(':memory:');
 
     // Create memory_index table (matches production schema)
@@ -94,7 +90,7 @@ describe('MEMORY SAVE EXTENDED', () => {
     return db;
   }
 
-  function seedTestMemories(db: any): void {
+  function seedTestMemories(db: Database.Database): void {
     const stmt = db.prepare(`
       INSERT INTO memory_index (id, spec_folder, file_path, title, content, content_hash, stability, difficulty)
       VALUES (?, ?, ?, ?, ?, ?, ?, ?)
@@ -256,7 +252,6 @@ describe('MEMORY SAVE EXTENDED', () => {
     it.skipIf(!processFn)('resolves and inserts valid links', () => {
       const db = createTestDb();
       seedTestMemories(db);
-      // Memory 1 exists; caused_by with reverse=true means edge from resolved -> memoryId
       const result = processFn!(db, 10, { caused_by: ['1'] } as CausalLinksInput);
       expect(result.processed).toBe(1);
       expect(result.resolved).toBe(1);
@@ -295,9 +290,8 @@ describe('MEMORY SAVE EXTENDED', () => {
       expect(result.processed).toBe(1);
       expect(result.resolved).toBe(1);
       expect(result.inserted).toBe(1);
-      // Verify edge was inserted
-      const edges = db.prepare('SELECT source_id, target_id, relation FROM causal_edges').all();
-      const edge = edges.find((e: any) => e.relation === 'supersedes');
+      const edges = db.prepare('SELECT source_id, target_id, relation FROM causal_edges').all() as Array<{ source_id: string; target_id: string; relation: string }>;
+      const edge = edges.find((e) => e.relation === 'supersedes');
       expect(edge).toBeDefined();
       db.close();
     });
@@ -325,7 +319,7 @@ describe('MEMORY SAVE EXTENDED', () => {
     const hasGetDb = typeof vectorIndex.getDb === 'function';
     const canRun = logPeFn && hasGetDb;
 
-    let db: any = null;
+    let db: Database.Database | null = null;
     beforeAll(() => {
       if (canRun) {
         try {
@@ -392,7 +386,7 @@ describe('MEMORY SAVE EXTENDED', () => {
     const hasGetDb = typeof vectorIndex.getDb === 'function';
     const canRun = reinforceFn && hasGetDb;
 
-    let db: any = null;
+    let db: Database.Database | null = null;
     beforeAll(() => {
       if (canRun) {
         try {
@@ -421,7 +415,8 @@ describe('MEMORY SAVE EXTENDED', () => {
     });
 
     it.skipIf(!canRun || !db)('returns correct shape for valid memory', () => {
-      const row = db.prepare('SELECT id FROM memory_index LIMIT 1').get();
+      if (!db) return;
+      const row = db.prepare('SELECT id FROM memory_index LIMIT 1').get() as { id: number } | undefined;
       if (!row) {
         // No memories in DB to test with - skip gracefully
         return;
@@ -449,7 +444,8 @@ describe('MEMORY SAVE EXTENDED', () => {
     });
 
     it.skipIf(!canRun || !db)('returns error when reinforcement update affects zero rows', () => {
-      const row = db.prepare('SELECT id FROM memory_index LIMIT 1').get();
+      if (!db) return;
+      const row = db.prepare('SELECT id FROM memory_index LIMIT 1').get() as { id: number } | undefined;
       if (!row) {
         return;
       }
@@ -517,7 +513,7 @@ describe('MEMORY SAVE EXTENDED', () => {
     const hasGetDb = typeof vectorIndex.getDb === 'function';
     const canRun = markSupersededFn && hasGetDb;
 
-    let db: any = null;
+    let db: Database.Database | null = null;
     beforeAll(() => {
       if (canRun) {
         try {
@@ -529,17 +525,18 @@ describe('MEMORY SAVE EXTENDED', () => {
     });
 
     it.skipIf(!canRun || !db)('returns true for valid memory', () => {
-      const row = db.prepare('SELECT id FROM memory_index LIMIT 1').get();
+      if (!db) return;
+      const row = db.prepare('SELECT id FROM memory_index LIMIT 1').get() as { id: number } | undefined;
       if (!row) {
         // No memories in DB - skip gracefully
         return;
       }
       // Save original tier for restoration
-      const original = db.prepare('SELECT importance_tier FROM memory_index WHERE id = ?').get(row.id);
+      const original = db.prepare('SELECT importance_tier FROM memory_index WHERE id = ?').get(row.id) as { importance_tier: string } | undefined;
       const result = markSupersededFn!(row.id);
       expect(result).toBe(true);
       // Verify the tier was actually changed
-      const updated = db.prepare('SELECT importance_tier FROM memory_index WHERE id = ?').get(row.id);
+      const updated = db.prepare('SELECT importance_tier FROM memory_index WHERE id = ?').get(row.id) as { importance_tier: string } | undefined;
       if (updated) {
         expect(updated.importance_tier).toBe('deprecated');
       }
@@ -576,7 +573,7 @@ describe('MEMORY SAVE EXTENDED', () => {
     const hasGetDb = typeof vectorIndex.getDb === 'function';
     const canRun = updateFn && hasGetDb;
 
-    let db: any = null;
+    let db: Database.Database | null = null;
     beforeAll(() => {
       if (canRun) {
         try {
@@ -588,7 +585,8 @@ describe('MEMORY SAVE EXTENDED', () => {
     });
 
     it.skipIf(!canRun || !db)('returns correct shape', () => {
-      const row = db.prepare('SELECT id FROM memory_index LIMIT 1').get();
+      if (!db) return;
+      const row = db.prepare('SELECT id FROM memory_index LIMIT 1').get() as { id: number } | undefined;
       if (!row) {
         // No memories in DB - skip gracefully
         return;
@@ -614,7 +612,8 @@ describe('MEMORY SAVE EXTENDED', () => {
     });
 
     it.skipIf(!canRun || !db)('includes metadata fields', () => {
-      const row = db.prepare('SELECT id FROM memory_index LIMIT 1').get();
+      if (!db) return;
+      const row = db.prepare('SELECT id FROM memory_index LIMIT 1').get() as { id: number } | undefined;
       if (!row) {
         // No memories in DB - skip gracefully
         return;
@@ -706,20 +705,18 @@ This is test content.
           { file_path: testFile, content },
           { force: true }
         );
-        // If it resolves, check shape
         expect(typeof result.success).toBe('boolean');
         expect(typeof result.filePath).toBe('string');
       } catch (err: unknown) {
         expect(getErrorMessage(err)).toBeDefined();
       } finally {
-        try { fs.rmSync(tmpDir, { recursive: true, force: true }); } catch {}
+        try { fs.rmSync(tmpDir, { recursive: true, force: true }); } catch (_cleanupError: unknown) {}
       }
     });
 
     it.skipIf(!atomicSaveFn)('rejects for empty params', async () => {
       try {
         const result = await atomicSaveFn!({ file_path: '', content: '' }, {});
-        // If it resolves, success should be false
         expect(result.success).toBe(false);
       } catch (err: unknown) {
         expect(getErrorMessage(err)).toBeDefined();
@@ -763,7 +760,6 @@ This is test content.
     });
 
     it.skipIf(!indexFileFn)('force option accepted', async () => {
-      // Without a valid file, we test that the option is accepted and function proceeds
       await expect(indexFileFn!('/tmp/nonexistent.md', { force: true })).rejects.toThrow();
     });
   });

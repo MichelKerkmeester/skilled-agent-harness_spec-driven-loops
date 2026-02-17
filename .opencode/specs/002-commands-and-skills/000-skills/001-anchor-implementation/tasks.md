@@ -1,3 +1,4 @@
+<!-- ANCHOR:summary -->
 # Task Breakdown: Retrieval Anchors for Skill Documentation
 
 **Spec Folder**: `specs/002-commands-and-skills/000-skills/001-anchor-implementation`  
@@ -17,6 +18,7 @@
 **Validation Result**: 0 issues detected
 
 ---
+<!-- /ANCHOR:summary -->
 
 ## TASK ORGANIZATION
 

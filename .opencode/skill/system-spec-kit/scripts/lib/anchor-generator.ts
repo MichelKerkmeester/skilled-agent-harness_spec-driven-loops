@@ -3,7 +3,7 @@
 // Generates unique, searchable anchor IDs for decisions, files, and spec sections
 // ---------------------------------------------------------------
 
-import crypto from 'crypto';
+import * as crypto from 'crypto';
 
 // ---------------------------------------------------------------
 // 1. TYPES
@@ -171,7 +171,127 @@ function getCurrentDate(): string {
 }
 
 // ---------------------------------------------------------------
-// 9. EXPORTS
+// 10. TEMPLATE ANCHOR WRAPPING (T011-T014)
+// ---------------------------------------------------------------
+
+/**
+ * Detects ## headings and wraps sections with ANCHOR tags
+ * Preserves existing ANCHORs and detects collisions
+ */
+export interface AnchorWrapResult {
+  content: string;
+  anchorsAdded: number;
+  anchorsPreserved: number;
+  collisions: string[];
+}
+
+/**
+ * Extract existing ANCHOR IDs from content
+ */
+function extractExistingAnchors(content: string): string[] {
+  const anchorPattern = /<!--\s*ANCHOR:\s*([a-z0-9-]+)\s*-->/gi;
+  const matches = content.matchAll(anchorPattern);
+  return Array.from(matches, (m) => m[1]);
+}
+
+/**
+ * Check if a line is already wrapped with ANCHOR tags
+ */
+function isAlreadyWrapped(lines: string[], index: number): boolean {
+  // Look backwards for opening ANCHOR tag (within 2 lines)
+  for (let i = Math.max(0, index - 2); i < index; i++) {
+    if (/<!--\s*ANCHOR:/i.test(lines[i])) return true;
+  }
+  return false;
+}
+
+/**
+ * Find the end of a markdown section (next ## heading or end of file)
+ */
+function findSectionEnd(lines: string[], startIndex: number): number {
+  for (let i = startIndex + 1; i < lines.length; i++) {
+    if (/^##\s+/.test(lines[i])) return i - 1;
+  }
+  return lines.length - 1;
+}
+
+/**
+ * Auto-wrap template sections with ANCHOR tags
+ * 
+ * @param content - Markdown content to process
+ * @param specNumber - Spec folder number (e.g., "132")
+ * @returns Result with wrapped content and statistics
+ */
+function wrapSectionsWithAnchors(
+  content: string,
+  specNumber: string | null = null
+): AnchorWrapResult {
+  const lines = content.split('\n');
+  const existingAnchors = extractExistingAnchors(content);
+  const usedAnchors: string[] = [...existingAnchors];
+  const collisions: string[] = [];
+  
+  let anchorsAdded = 0;
+  let anchorsPreserved = existingAnchors.length;
+  
+  const result: string[] = [];
+  let i = 0;
+  
+  while (i < lines.length) {
+    const line = lines[i];
+    
+    // Detect ## headings (not # or ### or more)
+    const headingMatch = line.match(/^##\s+(.+)$/);
+    
+    if (headingMatch && !isAlreadyWrapped(lines, i)) {
+      const headingText = headingMatch[1];
+      const category = categorizeSection(headingText);
+      
+      // Generate anchor ID
+      let anchorId = generateSemanticSlug(headingText);
+      
+      // Detect collision
+      if (usedAnchors.includes(anchorId)) {
+        const originalId = anchorId;
+        anchorId = validateAnchorUniqueness(anchorId, usedAnchors);
+        collisions.push(`${originalId} → ${anchorId}`);
+      }
+      
+      usedAnchors.push(anchorId);
+      
+      // Find section end
+      const sectionEnd = findSectionEnd(lines, i);
+      
+      // Add opening ANCHOR tag
+      result.push(`<!-- ANCHOR:${anchorId} -->`);
+      
+      // Add heading + section content
+      for (let j = i; j <= sectionEnd; j++) {
+        result.push(lines[j]);
+      }
+      
+      // Add closing ANCHOR tag
+      result.push(`<!-- /ANCHOR:${anchorId} -->`);
+      result.push(''); // Empty line for spacing
+      
+      anchorsAdded++;
+      i = sectionEnd + 1;
+    } else {
+      result.push(line);
+      i++;
+    }
+  }
+  
+  return {
+    content: result.join('\n'),
+    anchorsAdded,
+    anchorsPreserved,
+    collisions,
+  };
+}
+
+// ---------------------------------------------------------------
+// 11. EXPORTS
 // ---------------------------------------------------------------
 
 export {
@@ -184,6 +304,7 @@ export {
   slugify,
   extractSpecNumber,
   getCurrentDate,
+  wrapSectionsWithAnchors,
   // Constants
   STOP_WORDS,
   ACTION_VERBS,

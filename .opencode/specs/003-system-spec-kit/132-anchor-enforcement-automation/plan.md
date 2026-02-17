@@ -440,6 +440,45 @@ Phase 2 (Validation) ──┬──► Phase 3 (ANCHOR Gen) ──┬──► 
 | **Total** | **11** | **Mixed** | **13-19 hours** |
 
 **Coordination Protocol**: Orchestrator dispatches Tier 2 agents in parallel, waits for completion, then dispatches Tier 3 sequentially with handoff Context Packages between agents.
+
+### Pre-Task Checklist
+
+Before starting any task in this spec:
+- [ ] Read relevant section in spec.md to understand requirements
+- [ ] Review corresponding phase in plan.md for technical approach
+- [ ] Check tasks.md for dependencies and blocking tasks
+- [ ] Verify checklist.md for quality gates applicable to this task
+- [ ] Load prior context from memory/ if resuming work
+
+### Task Execution Rules
+
+| Rule ID | Rule | Enforcement |
+|---------|------|-------------|
+| TASK-SEQ | Complete tasks in dependency order (see [B:T###] markers) | HARD |
+| TASK-SCOPE | Only modify files listed in task scope | HARD |
+| TASK-TEST | Run validation/tests before marking complete | HARD |
+| TASK-DOC | Update checklist.md with evidence after completion | SOFT |
+| TASK-SAVE | Save context to memory/ at phase boundaries | SOFT |
+
+### Status Reporting Format
+
+When reporting task completion:
+```
+Task: T### - [Task Name]
+Status: [COMPLETE | IN PROGRESS | BLOCKED]
+Evidence: [Tool output, file paths, test results]
+Files Modified: [List of changed files]
+Next: [Next task ID or blocking issue]
+```
+
+### Blocked Task Protocol
+
+If a task cannot be completed:
+1. Mark task as BLOCKED in tasks.md with reason
+2. Document blocking issue in scratch/
+3. Attempt resolution (max 3 attempts)
+4. If still blocked: Report to user with options (skip, defer, escalate)
+5. Do NOT proceed to dependent tasks while blocked
 <!-- /ANCHOR:ai-execution -->
 
 ---

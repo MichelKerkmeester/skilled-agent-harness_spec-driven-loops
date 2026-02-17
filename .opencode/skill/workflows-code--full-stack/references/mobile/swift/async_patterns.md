@@ -1234,7 +1234,7 @@ class DownloadViewModel {
 <!-- ANCHOR:rules -->
 ## 9. RULES
 
-### ALWAYS
+### ✅ ALWAYS
 
 1. **Use async/await over completion handlers** - Cleaner, more readable code
 2. **Check for cancellation in long operations** - `Task.checkCancellation()`
@@ -1247,7 +1247,7 @@ class DownloadViewModel {
 9. **Resume continuations exactly once** - Critical for withCheckedContinuation
 10. **Use Sendable for cross-actor types** - Ensures thread safety
 
-### NEVER
+### ❌ NEVER
 
 1. **Force unwrap Task.value** - Always handle potential errors
 2. **Ignore CancellationError** - Propagate or handle explicitly
@@ -1260,7 +1260,7 @@ class DownloadViewModel {
 9. **Use global actors for everything** - Only when truly needed
 10. **Ignore actor reentrancy** - Be aware of suspension points
 
-### ESCALATE IF
+### ⚠️ ESCALATE IF
 
 1. **Complex concurrency patterns needed** - Multi-actor coordination
 2. **Performance issues with async code** - May need optimization

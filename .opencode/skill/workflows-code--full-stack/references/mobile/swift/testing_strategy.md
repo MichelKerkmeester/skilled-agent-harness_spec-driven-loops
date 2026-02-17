@@ -1257,7 +1257,7 @@ func createTestContainer() -> DependencyContainer {
 <!-- ANCHOR:rules -->
 ## 9. RULES
 
-### ALWAYS
+### ✅ ALWAYS
 
 1. **Use descriptive test names** - Clear naming convention
 2. **Follow AAA pattern** - Arrange, Act, Assert
@@ -1270,7 +1270,7 @@ func createTestContainer() -> DependencyContainer {
 9. **Test async code properly** - Use async/await, not sleep
 10. **Maintain test fixtures** - Keep mock data up to date
 
-### NEVER
+### ❌ NEVER
 
 1. **Test implementation details** - Test behavior, not internals
 2. **Share state between tests** - Each test should be independent
@@ -1283,7 +1283,7 @@ func createTestContainer() -> DependencyContainer {
 9. **Hard-code test data inline** - Use fixtures and factories
 10. **Test third-party code** - Trust but verify at boundaries
 
-### ESCALATE IF
+### ⚠️ ESCALATE IF
 
 1. **Test coverage drops significantly** - Investigate cause
 2. **Tests become slow** - May need restructuring

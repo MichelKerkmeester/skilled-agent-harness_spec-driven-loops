@@ -1271,7 +1271,7 @@ final class FormViewModelTests: XCTestCase {
 <!-- ANCHOR:rules -->
 ## 9. RULES
 
-### ALWAYS
+### ✅ ALWAYS
 
 1. **Use @Observable for iOS 17+** - Modern, efficient observation
 2. **Inject dependencies via init** - Enables testing and flexibility
@@ -1284,7 +1284,7 @@ final class FormViewModelTests: XCTestCase {
 9. **Use @MainActor when needed** - For UI-related properties
 10. **Document public APIs** - Clear contracts
 
-### NEVER
+### ❌ NEVER
 
 1. **Put business logic in Views** - Views are for presentation only
 2. **Skip dependency injection** - Makes testing impossible
@@ -1297,7 +1297,7 @@ final class FormViewModelTests: XCTestCase {
 9. **Store View-specific state in ViewModel** - Keep presentation state in View
 10. **Skip validation** - Always validate before operations
 
-### ESCALATE IF
+### ⚠️ ESCALATE IF
 
 1. **Architecture decisions needed** - ViewModel boundaries, data flow
 2. **State management complexity** - Multiple sources of truth

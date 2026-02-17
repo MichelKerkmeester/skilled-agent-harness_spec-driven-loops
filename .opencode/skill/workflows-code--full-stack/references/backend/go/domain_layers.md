@@ -1057,7 +1057,7 @@ Use state machines when:
 <!-- ANCHOR:rules -->
 ## 13. RULES
 
-### ALWAYS
+### ✅ ALWAYS
 
 1. **Embed `services.Service[T]`** in services for transaction support
 2. **Implement `NewXServiceFrom`** copy constructor for `WithTx` to work
@@ -1069,7 +1069,7 @@ Use state machines when:
 8. **Adapt entities to models only in business layer** - Final boundary
 9. **Return models from business layer methods** - Not entities
 
-### NEVER
+### ❌ NEVER
 
 1. **Forget to implement copy constructor** - `WithTx` will panic
 2. **Mix transactional and non-transactional** repository access in same operation
@@ -1081,7 +1081,7 @@ Use state machines when:
 8. **Expose entities beyond business layer** - Use models
 9. **Return models from services** - Return entities instead
 
-### ESCALATE IF
+### ⚠️ ESCALATE IF
 
 1. **"wrong call to WithTx on Service[T]"** - `NewXServiceFrom` not implemented
 2. **Changes not persisted** - Not using `WithTx` inside transaction handler

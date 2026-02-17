@@ -260,7 +260,9 @@ Template: assets/command_template.md
 # EMOJI POLICY: Commands use SEMANTIC emojis only
 # - H1: No decorative emoji, semantic allowed (🚨 for mandatory/blocking)
 # - H2: No decorative emoji, semantic allowed (🔒 for phases, ✅ ❌ ⚠️ for validation)
-# - H3/H4: No emoji
+# - H3/H4: No emoji EXCEPT RULES headings
+#   - `### ✅ ALWAYS`, `### ❌ NEVER`, `### ⚠️ ESCALATE IF`
+#   - `#### ✅ ALWAYS`, `#### ❌ NEVER`, `#### ⚠️ ESCALATE IF`
 # - Body text: No emoji (unless user data)
 # 
 # SEMANTIC emojis allowed:

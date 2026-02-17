@@ -87,13 +87,15 @@ TASK CONTEXT
 ```python
 from pathlib import Path
 
-SKILL_ROOT = Path(".").resolve()
+SKILL_ROOT = Path(__file__).resolve().parent
 
 
 def _guard(path):
     """Scoped routing guard: only load markdown under this skill folder."""
     resolved = (SKILL_ROOT / path).resolve()
-    if not str(resolved).startswith(str(SKILL_ROOT)):
+    try:
+        resolved.relative_to(SKILL_ROOT)
+    except ValueError:
         raise ValueError(f"Blocked out-of-scope resource: {path}")
     if resolved.suffix != ".md":
         raise ValueError(f"Blocked non-markdown resource: {path}")
@@ -149,34 +151,51 @@ def _intent_scores(task):
     return scores
 
 
-def route_code_mode_resources(task):
-    scores = _intent_scores(task)
-    primary_intent = max(scores, key=scores.get)
-
-    if scores[primary_intent] <= 0:
-        return _discover_markdown_fallbacks()
-
-    if primary_intent == "naming":
+def _load_for_intent(intent):
+    if intent == "naming":
         return load(_guard("references/naming_convention.md"))  # priority: CRITICAL
 
-    if primary_intent == "setup":
+    if intent == "setup":
         load(_guard("references/configuration.md"))
         load(_guard("assets/config_template.md"))
         return load(_guard("assets/env_template.md"))
 
-    if primary_intent == "validate":
+    if intent == "validate":
         return execute("scripts/validate_config.py")  # syntax + env var checks
 
-    if primary_intent == "catalog":
+    if intent == "catalog":
         return load(_guard("references/tool_catalog.md"))
 
-    if primary_intent == "workflow":
+    if intent == "workflow":
         return load(_guard("references/workflows.md"))
 
-    if primary_intent == "architecture":
+    if intent == "architecture":
         return load(_guard("references/architecture.md"))
 
     return _discover_markdown_fallbacks()
+
+
+def route_code_mode_resources(task):
+    scores = _intent_scores(task)
+    ranked = sorted(scores.items(), key=lambda item: item[1], reverse=True)
+    primary_intent, primary_score = ranked[0]
+    secondary_intent, secondary_score = ranked[1]
+
+    if primary_score <= 0:
+        return _discover_markdown_fallbacks()
+
+    # Ambiguity handling: when top two intents are close, load both resources.
+    if secondary_score > 0 and (primary_score - secondary_score) <= 2:
+        return {
+            "primary": primary_intent,
+            "secondary": secondary_intent,
+            "results": [
+                _load_for_intent(primary_intent),
+                _load_for_intent(secondary_intent),
+            ],
+        }
+
+    return _load_for_intent(primary_intent)
 
 
 # STATIC RESOURCES (always available, not conditionally loaded)
@@ -422,24 +441,34 @@ call_tool_chain({
   code: `
     // Step 1: Discover what tools are available
     const availableTools = await search_tools({
-      task_description: "your task here",
+      task_description: "sync design QA tasks and publish status",
       limit: 10
     });
 
     console.log("Available tools:", availableTools);
 
     // Step 2: Call tools using correct naming pattern
-    // Pattern: {manual_name}.{manual_name}_{tool_name}
-    const result = await manual_name.manual_name_tool_name({
-      // parameters here
+    const task = await clickup.clickup_create_task({
+      name: "Verify hero section spacing",
+      listName: "Design QA",
+      description: "Compare Figma spacing against production page"
     });
 
     // Step 3: Chain multiple tools if needed
-    const result2 = await another_manual.another_manual_other_tool({
-      data: result.output
+    const cmsItem = await webflow.webflow_collections_items_create_item_live({
+      collection_id: "design-qa-queue",
+      request: {
+        items: [{
+          fieldData: {
+            name: task.name,
+            status: "Queued",
+            taskUrl: task.url
+          }
+        }]
+      }
     });
 
-    return { result, result2 };
+    return { task, cmsItem, availableTools: availableTools.length };
   `,
   timeout: 60000
 });
@@ -653,9 +682,13 @@ call_tool_chain({
 call_tool_chain({
   code: `
     try {
-      const result1 = await tool1.tool1_action({...});
-      const result2 = await tool2.tool2_action({...});
-      return { success: true, result1, result2 };
+      const design = await figma.figma_get_file({ fileKey: "AbC123DeF45" });
+      const task = await clickup.clickup_create_task({
+        name: `Implement ${design.name}`,
+        listName: "Frontend Sprint",
+        description: "Build from latest approved Figma file"
+      });
+      return { success: true, designName: design.name, taskId: task.id };
     } catch (error) {
       return { success: false, error: error.message };
     }

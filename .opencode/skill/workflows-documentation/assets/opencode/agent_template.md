@@ -445,19 +445,19 @@ permission:
 
 ## 4. RULES
 
-### ALWAYS
+### ✅ ALWAYS
 
 - [Rule 1]
 - [Rule 2]
 - [Rule 3]
 
-### NEVER
+### ❌ NEVER
 
 - [Rule 1]
 - [Rule 2]
 - [Rule 3]
 
-### ESCALATE IF
+### ⚠️ ESCALATE IF
 
 - [Condition 1]
 - [Condition 2]

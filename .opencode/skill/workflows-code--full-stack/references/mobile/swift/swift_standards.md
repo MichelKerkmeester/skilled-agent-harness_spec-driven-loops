@@ -763,7 +763,7 @@ class Settings {
 <!-- ANCHOR:rules -->
 ## 10. RULES
 
-### ALWAYS
+### ✅ ALWAYS
 
 1. **Follow Swift API Design Guidelines** - Clarity at the point of use is paramount
 2. **Use meaningful names** - Names should be self-documenting
@@ -776,7 +776,7 @@ class Settings {
 9. **Group related code** - Keep related functionality together
 10. **Use Swift 5.9+ features** - Leverage modern Swift capabilities
 
-### NEVER
+### ❌ NEVER
 
 1. **Force unwrap optionals** - Use `guard let` or `if let`
 2. **Use abbreviations** - Except well-known ones (URL, ID, etc.)
@@ -789,7 +789,7 @@ class Settings {
 9. **Nest types deeply** - Flatten when possible
 10. **Ignore the style guide** - Consistency matters
 
-### ESCALATE IF
+### ⚠️ ESCALATE IF
 
 1. **Architecture decisions needed** - Major structural changes require team consensus
 2. **New patterns introduced** - Document and discuss before adopting

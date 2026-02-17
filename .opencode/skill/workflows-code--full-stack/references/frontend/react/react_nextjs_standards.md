@@ -192,7 +192,7 @@ app/
 
 ### Component File Naming
 
-#### ALWAYS
+#### ✅ ALWAYS
 
 - Use PascalCase for component files: `Button.tsx`, `UserProfile.tsx`
 - Use PascalCase for component directories: `Button/`, `UserProfile/`
@@ -217,7 +217,7 @@ export function Button({ variant = 'primary', size = 'md', children }: ButtonPro
 }
 ```
 
-#### NEVER
+#### ❌ NEVER
 
 - Mix naming conventions in the same directory
 - Use default exports for components (prefer named exports)
@@ -596,14 +596,14 @@ const publicConfig = {
 };
 ```
 
-#### ALWAYS
+#### ✅ ALWAYS
 
 - Prefix client-accessible variables with `NEXT_PUBLIC_`
 - Validate environment variables at build time
 - Keep `.env.example` up to date with all required variables
 - Never commit secrets (use `.env.local` for local secrets)
 
-#### NEVER
+#### ❌ NEVER
 
 - Access server-only env vars in client components
 - Hardcode secrets or API keys

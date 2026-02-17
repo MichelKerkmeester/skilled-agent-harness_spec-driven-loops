@@ -106,7 +106,7 @@ python scripts/package_skill.py skill-path        # Package skill
 **SKILL.md** (Strict):
 - YAML frontmatter required
 - H1 with subtitle
-- H3 allowed (semantic emojis ✅❌⚠️ only in RULES subsections)
+- H3/H4 allowed for RULES subsections (semantic emojis ✅❌⚠️ only)
 - Blocks on violations
 
 **Knowledge** (Moderate):

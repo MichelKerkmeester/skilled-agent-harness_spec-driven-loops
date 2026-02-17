@@ -101,7 +101,8 @@ def route_git_resources(task):
     if getattr(task, "list_available_resources", False):
         return discover_markdown_resources()
 
-    scores = {
+    # WEIGHTED INTENT SCORING: combine strong flags + weaker text signals.
+    intent_scores = {
         "workspace_setup": 0.0,
         "commit": 0.0,
         "finish": 0.0,
@@ -111,21 +112,21 @@ def route_git_resources(task):
 
     # Flag-based weights (high confidence signals)
     if getattr(task, "needs_isolated_workspace", False):
-        scores["workspace_setup"] += 4.0
+        intent_scores["workspace_setup"] += 4.0
     if getattr(task, "setting_up_worktree", False):
-        scores["workspace_setup"] += 2.0
+        intent_scores["workspace_setup"] += 2.0
     if getattr(task, "has_staged_changes", False):
-        scores["commit"] += 3.0
+        intent_scores["commit"] += 3.0
     if getattr(task, "needs_message_help", False):
-        scores["commit"] += 2.0
+        intent_scores["commit"] += 2.0
     if getattr(task, "ready_to_integrate", False):
-        scores["finish"] += 4.0
+        intent_scores["finish"] += 4.0
     if getattr(task, "creating_pr", False):
-        scores["finish"] += 2.0
+        intent_scores["finish"] += 2.0
     if getattr(task, "needs_command_reference", False) or getattr(task, "needs_conventions", False):
-        scores["shared_patterns"] += 3.0
+        intent_scores["shared_patterns"] += 3.0
     if getattr(task, "needs_quick_reference", False):
-        scores["quick_reference"] += 3.0
+        intent_scores["quick_reference"] += 3.0
 
     # Text/keyword weights (lower confidence, still meaningful)
     keyword_map = {
@@ -138,36 +139,49 @@ def route_git_resources(task):
     for route_name, terms in keyword_map.items():
         for term in terms:
             if term in text or term in keywords:
-                scores[route_name] += 1.0
+                intent_scores[route_name] += 1.0
 
     # Tie-breaker preserves existing workflow intent.
     precedence = ["workspace_setup", "commit", "finish", "shared_patterns", "quick_reference"]
-    selected = max(precedence, key=lambda name: (scores[name], -precedence.index(name)))
+    ranked = sorted(precedence, key=lambda name: (intent_scores[name], -precedence.index(name)), reverse=True)
+    selected = ranked[0]
+    secondary = ranked[1]
 
-    if selected == "workspace_setup":
-        safe_load("references/worktree_workflows.md")
-        if getattr(task, "setting_up_worktree", False):
-            safe_load("assets/worktree_checklist.md")
-        return "Phase 1: workspace setup"
+    def _load_selected(route_name):
+        if route_name == "workspace_setup":
+            safe_load("references/worktree_workflows.md")
+            if getattr(task, "setting_up_worktree", False):
+                safe_load("assets/worktree_checklist.md")
+            return "Phase 1: workspace setup"
 
-    if selected == "commit":
-        safe_load("references/commit_workflows.md")
-        if getattr(task, "needs_message_help", False):
-            safe_load("assets/commit_message_template.md")
-        return "Phase 2: commit"
+        if route_name == "commit":
+            safe_load("references/commit_workflows.md")
+            if getattr(task, "needs_message_help", False):
+                safe_load("assets/commit_message_template.md")
+            return "Phase 2: commit"
 
-    if selected == "finish":
-        safe_load("references/finish_workflows.md")
-        if getattr(task, "creating_pr", False):
-            safe_load("assets/pr_template.md")
-        return "Phase 3: finish"
+        if route_name == "finish":
+            safe_load("references/finish_workflows.md")
+            if getattr(task, "creating_pr", False):
+                safe_load("assets/pr_template.md")
+            return "Phase 3: finish"
 
-    if selected == "shared_patterns":
-        safe_load("references/shared_patterns.md")
-        return "Shared patterns"
+        if route_name == "shared_patterns":
+            safe_load("references/shared_patterns.md")
+            return "Shared patterns"
 
-    safe_load("references/quick_reference.md")
-    return "Quick reference"
+        safe_load("references/quick_reference.md")
+        return "Quick reference"
+
+    # Ambiguity handling: when top intents are close, return top-2 routing.
+    if intent_scores[selected] > 0 and intent_scores[secondary] > 0 and (intent_scores[selected] - intent_scores[secondary]) <= 1.0:
+        return {
+            "primary": _load_selected(selected),
+            "secondary": _load_selected(secondary),
+            "delta": intent_scores[selected] - intent_scores[secondary],
+        }
+
+    return _load_selected(selected)
 
 # ══════════════════════════════════════════════════════════════════════
 # STATIC RESOURCES (always available, not conditionally loaded)

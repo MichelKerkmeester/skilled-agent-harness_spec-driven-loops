@@ -306,38 +306,51 @@ def route_documentation_resources(task):
         "mode_4_install",
         "quick_reference",
     ]
-    selected = max(precedence, key=lambda name: (scores[name], -precedence.index(name)))
+    ranked = sorted(precedence, key=lambda name: (scores[name], -precedence.index(name)), reverse=True)
+    selected = ranked[0]
+    secondary = ranked[1]
 
-    if selected == "mode_1_quality":
-        safe_load("references/validation.md")
-        safe_load("references/workflows.md")
-        return "Mode 1: Document Quality"
+    def _load_selected(route_name):
+        if route_name == "mode_1_quality":
+            safe_load("references/validation.md")
+            safe_load("references/workflows.md")
+            return "Mode 1: Document Quality"
 
-    if selected == "mode_1_optimization":
-        safe_load("references/optimization.md")
-        return "Mode 1: Content Optimization"
+        if route_name == "mode_1_optimization":
+            safe_load("references/optimization.md")
+            return "Mode 1: Content Optimization"
 
-    if selected == "mode_2_skill":
-        safe_load("references/skill_creation.md")
-        safe_load("assets/opencode/skill_md_template.md")
-        return "Mode 2: Skill Creation"
+        if route_name == "mode_2_skill":
+            safe_load("references/skill_creation.md")
+            safe_load("assets/opencode/skill_md_template.md")
+            return "Mode 2: Skill Creation"
 
-    if selected == "mode_2_reference":
-        safe_load("assets/opencode/skill_reference_template.md")
-        return "Mode 2: Reference Creation"
+        if route_name == "mode_2_reference":
+            safe_load("assets/opencode/skill_reference_template.md")
+            return "Mode 2: Reference Creation"
 
-    if selected == "mode_3_flowchart":
-        return [
-            path for path in discover_markdown_resources()
-            if "/assets/flowcharts/" in path.replace("\\", "/")
-        ]
+        if route_name == "mode_3_flowchart":
+            return [
+                path for path in discover_markdown_resources()
+                if "/assets/flowcharts/" in path.replace("\\", "/")
+            ]
 
-    if selected == "mode_4_install":
-        safe_load("assets/documentation/install_guide_template.md")
-        return "Mode 4: Install Guide"
+        if route_name == "mode_4_install":
+            safe_load("assets/documentation/install_guide_template.md")
+            return "Mode 4: Install Guide"
 
-    safe_load("references/quick_reference.md")
-    return "Quick Reference"
+        safe_load("references/quick_reference.md")
+        return "Quick Reference"
+
+    # Ambiguity handling: when two intents are close, load both top routes.
+    if scores[selected] > 0 and scores[secondary] > 0 and (scores[selected] - scores[secondary]) <= 1.0:
+        return {
+            "primary": _load_selected(selected),
+            "secondary": _load_selected(secondary),
+            "delta": scores[selected] - scores[secondary],
+        }
+
+    return _load_selected(selected)
 ```
 
 **Key Insight**: Always run `extract_structure.py` first. It provides the structured JSON that enables accurate AI quality assessment. Without it, quality evaluation is subjective guesswork.
