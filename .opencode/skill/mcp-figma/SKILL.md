@@ -2,7 +2,7 @@
 name: mcp-figma
 description: "Figma design file access via MCP providing 18 tools for file retrieval, image export, component/style extraction, team management, and collaborative commenting. Accessed via Code Mode for token-efficient workflows."
 allowed-tools: [Read, mcp__code_mode__call_tool_chain, mcp__code_mode__list_tools, mcp__code_mode__search_tools, mcp__code_mode__tool_info]
-version: 1.0.2.0
+version: 1.0.7.0
 ---
 
 <!-- Keywords: figma, mcp-figma, design-files, components, styles, images, export, design-tokens, design-system, collaboration, comments, team-projects -->
