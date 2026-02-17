@@ -36,16 +36,16 @@
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T007 Update `.opencode/skill/mcp-code-mode/SKILL.md` with weighted routing model
-- [ ] T008 Update `.opencode/skill/mcp-figma/SKILL.md` with weighted routing model
-- [ ] T009 Update `.opencode/skill/workflows-chrome-devtools/SKILL.md` with weighted routing priorities
-- [ ] T010 Update `.opencode/skill/workflows-code--full-stack/SKILL.md` with stack-aware weighted routing
-- [ ] T011 Update `.opencode/skill/workflows-code--opencode/SKILL.md` with language-aware weighted routing
-- [ ] T012 Update `.opencode/skill/workflows-code--web-dev/SKILL.md` with stack-aware weighted routing
-- [ ] T013 [P] Update `.opencode/skill/workflows-documentation/SKILL.md` with recursive discovery and weighted intent mapping
-- [ ] T014 [P] Update `.opencode/skill/workflows-git/SKILL.md` with weighted intent mapping and read-only priority
-- [ ] T015 Update `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Barter/coder/.opencode/skill/workflows-git/SKILL.md` with Barter-aligned weighted routing
-- [ ] T016 Update `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Barter/coder/.opencode/skill/workflows-code/SKILL.md` with Barter-aligned weighted + stack routing
+- [x] T007 Update `.opencode/skill/mcp-code-mode/SKILL.md` with Smart Routing pseudocode-first layout + weighted routing + banned phrase cleanup
+- [x] T008 Update `.opencode/skill/mcp-figma/SKILL.md` with Smart Routing pseudocode-first layout + weighted routing + banned phrase cleanup
+- [x] T009 Update `.opencode/skill/workflows-chrome-devtools/SKILL.md` with Smart Routing pseudocode-first layout + weighted priorities + banned phrase cleanup
+- [x] T010 Update `.opencode/skill/workflows-code--full-stack/SKILL.md` with stack-aware weighted routing + scoped guard + recursive discovery
+- [x] T011 Update `.opencode/skill/workflows-code--opencode/SKILL.md` with language-aware weighted routing + scoped guard + recursive discovery
+- [x] T012 Update `.opencode/skill/workflows-code--web-dev/SKILL.md` with stack-aware weighted routing + scoped guard + recursive discovery
+- [x] T013 [P] Update `.opencode/skill/workflows-documentation/SKILL.md` with recursive discovery + weighted intent mapping + ambiguity handling
+- [x] T014 [P] Update `.opencode/skill/workflows-git/SKILL.md` with weighted intent mapping + scoped guard + ambiguity handling
+- [x] T015 Update `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Barter/coder/.opencode/skill/workflows-git/SKILL.md` with Barter-aligned weighted routing + pseudocode-first Smart Routing
+- [x] T016 Update `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Barter/coder/.opencode/skill/workflows-code/SKILL.md` with Barter-aligned weighted + stack routing + pseudocode-first Smart Routing
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -53,12 +53,13 @@
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T017 Validate weighted score consistency (0.1-1.0 bands) across all 10 targets
+- [x] T017 Validate weighted score consistency (0.1-1.0 bands), banned phrase removal, and heading ordering via Smart Router suite report (`scratch/smart-router-tests/reports/latest-report.json`)
 - [ ] T018 Validate fallback behavior for low-confidence prompts in all updated skills
-- [ ] T019 [P] Validate recursive discovery handling for nested references/assets where applicable
+- [x] T019 [P] Validate recursive discovery handling for nested references/assets and fixture traversal (`scratch/smart-router-tests/fixtures/`)
 - [ ] T020 [P] Validate stack/language marker handling for code workflow skills
-- [ ] T021 Run spec validation and close all P0 checklist gates
-- [ ] T022 Finalize implementation summary with execution evidence
+- [x] T021 Run spec validation and close all P0 checklist gates (`.opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/002-commands-and-skills/000-skills/002-smart-router-v2` -> PASSED)
+- [x] T022 Finalize implementation summary with execution evidence
+- [x] T023 Final cleanup verification complete: removed `### Routing Reference Tables` from SKILL.md corpus, kept Smart Routing pseudocode-first ordering, and confirmed zero heading occurrences across Public + Barter roots
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -66,8 +67,8 @@
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All implementation tasks T007-T016 marked `[x]`
-- [ ] All verification tasks T017-T022 marked `[x]`
+- [x] All implementation tasks T007-T016 marked `[x]`
+- [ ] All verification tasks T017-T022 marked `[x]` (T018 and T020 remain open)
 - [ ] No `[B]` blocked tasks remain
 - [ ] Checklist P0 items complete with evidence
 <!-- /ANCHOR:completion -->

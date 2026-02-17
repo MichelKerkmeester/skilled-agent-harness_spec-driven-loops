@@ -217,7 +217,7 @@ Browser debugging task received
      ▼               ▼
 ┌──────────────┐ ┌──────────────────┐
 │ Use CLI      │ │ Is Code Mode     │
-│ Section 3.1  │ │ configured?      │
+│ Section 3.1  │ │ configured?       │
 └──────────────┘ └────────┬─────────┘
                           │
                   ┌───────┴───────┐
@@ -262,102 +262,6 @@ npm install -g browser-debugger-cli@alpha
 
 # Verify
 bdg --version 2>&1
-```
-
-**Platform support**: macOS (native), Linux (native), Windows (WSL only)
-
-#### Self-Discovery Workflow
-
-**Core differentiator**: bdg is self-documenting. ALWAYS use discovery commands.
-
-```bash
-# Step 1: List available domains
-bdg cdp --list
-
-# Step 2: Explore specific domain
-bdg cdp --describe Page
-
-# Step 3: Search for capability
-bdg cdp --search screenshot
-
-# Step 4: Get method details
-bdg cdp --describe Page.captureScreenshot
-
-# Step 5: Execute
-bdg cdp Page.captureScreenshot 2>&1
-```
-
-#### Session Management
-
-```bash
-# Start session
-bdg https://example.com 2>&1
-
-# Verify active
-bdg status 2>&1
-
-# Execute operations
-bdg dom screenshot output.png 2>&1
-bdg console --list 2>&1
-
-# Stop session (cleanup)
-bdg stop 2>&1
-```
-
-**Cleanup pattern**:
-```bash
-#!/bin/bash
-trap "bdg stop 2>&1" EXIT INT TERM
-bdg https://example.com 2>&1
-# ... operations ...
-# Cleanup automatic on exit
-```
-
-#### Common CDP Patterns
-
-**Screenshots**:
-```bash
-bdg dom screenshot output.png 2>&1
-```
-
-**Console logs**:
-```bash
-bdg console --list 2>&1 | jq '.[] | select(.level == "error")'
-```
-
-**DOM queries**:
-```bash
-bdg dom query ".my-class" 2>&1
-bdg dom query "#element-id" 2>&1
-```
-
-**Cookies**:
-```bash
-bdg network getCookies 2>&1
-bdg cdp Network.setCookie '{"name":"auth","value":"token","domain":"example.com"}' 2>&1
-```
-
-**JavaScript execution**:
-```bash
-bdg dom eval "document.title" 2>&1
-```
-
-**HAR export**:
-```bash
-bdg network har network-trace.har 2>&1
-```
-
-#### Unix Composability
-
-```bash
-# Pipe to jq
-bdg console --list 2>&1 | jq '.[] | select(.level == "error")'
-
-# Filter cookies
-bdg network getCookies 2>&1 | jq '[.[] | {name, domain}]'
-
-# Grep patterns
-bdg console --list 2>&1 | grep -i "error"
 ```
 
 ### MCP Approach (Fallback) - Chrome DevTools via Code Mode
@@ -706,77 +610,8 @@ Key integrations:
 ---
 
 <!-- /ANCHOR:integration-points -->
-<!-- ANCHOR:examples -->
-## 7. EXAMPLES
-
-### Example 1: Screenshot Capture (CLI)
-
-```bash
-# Verify installation
-command -v bdg || echo "Install: npm install -g browser-debugger-cli@alpha"
-
-# Start session
-bdg https://example.com 2>&1
-
-# Capture screenshot
-bdg dom screenshot example.png 2>&1
-
-# Stop session
-bdg stop 2>&1
-```
-
-### Example 2: Console Log Analysis (CLI)
-
-```bash
-bdg https://example.com 2>&1
-bdg cdp Runtime.enable 2>&1
-bdg console --list 2>&1 | jq '.[] | select(.level=="error")' > errors.json
-bdg stop 2>&1
-```
-
-### Example 3: Screenshot via MCP (Single Instance)
-
-```typescript
-await call_tool_chain({
-  code: `
-    await chrome_devtools_1.chrome_devtools_1_navigate_page({
-      url: "https://example.com"
-    });
-    const screenshot = await chrome_devtools_1.chrome_devtools_1_take_screenshot({});
-    return screenshot;
-  `,
-  timeout: 30000
-});
-```
-
-### Example 4: Parallel Screenshots via MCP (Multi-Instance)
-
-```typescript
-await call_tool_chain({
-  code: `
-    // Navigate both instances in parallel
-    await chrome_devtools_1.chrome_devtools_1_navigate_page({
-      url: "https://production.example.com"
-    });
-    await chrome_devtools_2.chrome_devtools_2_navigate_page({
-      url: "https://staging.example.com"
-    });
-
-    // Capture screenshots from both
-    const prod = await chrome_devtools_1.chrome_devtools_1_take_screenshot({});
-    const staging = await chrome_devtools_2.chrome_devtools_2_take_screenshot({});
-
-    return { production: prod, staging: staging };
-  `,
-  timeout: 60000
-});
-```
-
----
-
-<!-- /ANCHOR:examples -->
 <!-- ANCHOR:quick-reference -->
-## 8. QUICK REFERENCE
+## 7. QUICK REFERENCE
 
 ### Essential CLI Commands
 
@@ -825,23 +660,4 @@ command -v bdg || { echo "Install bdg first"; exit 1; }
 bdg "$URL" 2>&1 || exit 1
 # ... operations ...
 ```
-
----
-
 <!-- /ANCHOR:quick-reference -->
-<!-- ANCHOR:related-resources -->
-## 9. RELATED RESOURCES
-
-### references/
-
-- **cdp_patterns.md** (~2k words): CDP domain patterns, Unix composability, advanced workflows
-- **session_management.md** (~1k words): Session lifecycle, multi-session, error recovery
-- **troubleshooting.md** (~1.5k words): Installation issues, browser errors, platform fixes
-
-### examples/
-
-- **README.md**: Comprehensive usage guide, CI/CD patterns
-- **performance-baseline.sh**: Performance testing workflow
-- **animation-testing.sh**: Animation validation with thresholds
-- **multi-viewport-test.sh**: Responsive testing across 5 viewports
-<!-- /ANCHOR:related-resources -->

@@ -13,6 +13,7 @@
 | **Spec Folder** | 019-incorrect-sub-agent-nesting |
 | **Completed** | 2026-02-17 |
 | **Level** | 3 |
+| **Status** | Complete |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -35,13 +36,36 @@ Added 7 semantic emojis aligned with context.md and workflows-documentation conv
 - `### 🔒 Agent Loading Protocol (MANDATORY)` / `#### 🔒 LEAF Enforcement Instruction` / `#### 🔒 DISPATCHER Enforcement Instruction`
 - `### 🔒 Review Checklist (MANDATORY)` / `### ❌ Rejection Criteria`
 
+### Phase 4: Skill Reference Wildcard
+
+Replaced all `workflows-code--web-dev` / `workflows-code--full-stack` specific references with `workflows-code--*` wildcard pattern for auto-detection of any available variant. Applied across 6 agent files (3 orchestrate.md + 3 review.md variants).
+
+### Phase 5: Claude Code Agent Sync
+
+Duplicated all 8 copilot agent files to `.claude/agents/` with Claude Code (CC) frontmatter format:
+- OpenCode `permission` object → CC `tools` list (allowed tools only)
+- OpenCode `model: github-copilot/claude-*` → CC `model: opus|sonnet|haiku`
+- Added `mcpServers: [spec_kit_memory, code_mode]` to all CC agents
+- Removed OpenCode-specific fields (`mode`, `temperature`, `reasoningEffort`)
+
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/agent/orchestrate.md` | Modified | Full restructure 27→10 sections + emoji alignment |
-| `.opencode/agent/chatgpt/orchestrate.md` | Modified | Identical to base (except frontmatter model field) |
-| `.opencode/agent/copilot/orchestrate.md` | Modified | Same restructure; frontmatter without model/reasoningEffort |
+| `.opencode/agent/orchestrate.md` | Modified | Full restructure + emojis + workflows-code--* |
+| `.opencode/agent/chatgpt/orchestrate.md` | Modified | Identical to base |
+| `.opencode/agent/copilot/orchestrate.md` | Modified | Same; frontmatter without model/reasoningEffort |
+| `.opencode/agent/review.md` | Modified | workflows-code--* wildcard |
+| `.opencode/agent/chatgpt/review.md` | Modified | workflows-code--* wildcard |
+| `.opencode/agent/copilot/review.md` | Modified | workflows-code--* wildcard |
+| `.claude/agents/orchestrate.md` | Modified | CC sync with restructured body |
+| `.claude/agents/context.md` | Modified | CC sync with copilot body |
+| `.claude/agents/review.md` | Modified | CC sync with copilot body + workflows-code--* |
+| `.claude/agents/research.md` | Modified | CC sync with copilot body |
+| `.claude/agents/speckit.md` | Modified | CC sync with copilot body |
+| `.claude/agents/write.md` | Modified | CC sync with copilot body |
+| `.claude/agents/debug.md` | Modified | CC sync with copilot body |
+| `.claude/agents/handover.md` | Modified | CC sync with copilot body |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -58,7 +82,9 @@ Added 7 semantic emojis aligned with context.md and workflows-documentation conv
 | Remove 6 aspirational sections | No runtime implementation backed them; dead weight in the document |
 | Condense anti-patterns 12→6 | Removed items that merely restated existing rules |
 | Promote copilot Rule 2 + Rule 6 to all variants | Genuinely useful enforcement, not copilot-specific |
-| Semantic emojis only | Aligned with context.md patterns: ✅/❌/🔒/⚠️ on subsections, never on H2 headers |
+| Semantic emojis only | Aligned with context.md patterns: ✅/❌/🔒 on subsections, never on H2 headers |
+| `workflows-code--*` wildcard | Auto-detects any available workflows-code variant instead of hardcoding specific names |
+| CC agent sync from copilot | Copilot has latest body content; CC frontmatter preserved for Claude Code compatibility |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -74,6 +100,8 @@ Added 7 semantic emojis aligned with context.md and workflows-documentation conv
 | Tier coverage | Pass | All 11 agents have Tier assignments in §2 routing table |
 | Emoji alignment | Pass | 7 semantic emojis added, all consistent with context.md vocabulary |
 | NDP integrity | Pass | Legal chains (4 examples), illegal chains (4 examples) preserved with ✅/❌ markers |
+| Wildcard refs | Pass | Zero `workflows-code--web-dev` / `--full-stack` references remain in any agent file |
+| CC sync | Pass | All 8 .claude/agents/ files have CC frontmatter + copilot body content |
 <!-- /ANCHOR:verification -->
 
 ---

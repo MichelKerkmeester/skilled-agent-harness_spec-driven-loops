@@ -1,1 +1,0 @@
-../../.opencode/install_guides/MCP - Code Mode.md

@@ -251,139 +251,49 @@ def route_speckit_resources(task):
     return {"intents": intents, "resources": loaded}
 ```
 
-### Routing Reference Tables (Human Lookup)
+### Resource Loading Levels
 
-#### Phase-to-Command Quick Map
+| Level       | When to Load               | Resources                    |
+| ----------- | -------------------------- | ---------------------------- |
+| ALWAYS      | Every skill invocation     | Shared patterns + SKILL.md   |
+| CONDITIONAL | If language keywords match | Language-specific references |
+| ON_DEMAND   | Only on explicit request   | Deep-dive quality standards  |
 
-| Phase              | Trigger                               | Load Resources                             | Execute             |
-| ------------------ | ------------------------------------- | ------------------------------------------ | ------------------- |
-| **Planning**       | New feature, "plan", "design"         | level_specifications.md, template_guide.md | /spec_kit:plan      |
-| **Research**       | "investigate", "explore", "analyze"   | quick_reference.md, worked_examples.md     | /spec_kit:research  |
-| **Implementation** | "implement", "build", "code"          | validation_rules.md, template_guide.md     | /spec_kit:implement |
-| **Debugging**      | "stuck", "error", "not working"       | quick_reference.md, troubleshooting.md     | /spec_kit:debug     |
-| **Completion**     | "done", "finished", "complete"        | validation_rules.md, phase_checklists.md   | /spec_kit:complete  |
-| **Handover**       | "stopping", "break", "continue later" | quick_reference.md                         | /spec_kit:handover  |
-| **Resume**         | "continue", "pick up", "resume"       | quick_reference.md                         | /spec_kit:resume    |
+### Routing Authority
 
-### Keyword-to-Folder Quick Map
+Intent scoring and the in-code resource map in this section are the authoritative routing source. Do not maintain separate use-case routing tables.
 
-This table is a quick index for humans. Smart Router V2 scoring remains the routing source of truth.
+### Resource Domains
 
-| Keywords                                          | Route To                 |
-| ------------------------------------------------- | ------------------------ |
-| "memory", "save context", "MCP", "trigger"        | `references/memory/`     |
-| "embeddings", "vector", "semantic", "decay"       | `references/memory/`     |
-| "anchor", "snapshot"                              | `references/memory/`     |
-| "template", "level 1/2/3", "spec.md format"       | `references/templates/`  |
-| "validate", "rules", "checklist", "P0/P1/P2"      | `references/validation/` |
-| "folder", "naming", "structure", "versioning"     | `references/structure/`  |
-| "workflow", "example", "commands", "quick"        | `references/workflows/`  |
-| "debug", "error", "stuck", "troubleshoot"         | `references/debugging/`  |
-| "env", "environment", "configuration"             | `references/config/`     |
-| "scripts", "generate-context", "check-completion" | `scripts/`               |
+The router discovers markdown resources recursively from `references/` and `assets/` and then applies intent scoring from `RESOURCE_MAP`. Keep this section domain-focused rather than static file inventories.
 
-### Memory System Triggers
-
-> **Note:** Tool names use the full `spec_kit_memory_*` prefix as required by OpenCode MCP integration.
-
-| Trigger Pattern                                     | Action                            | MCP Tool                                                                       |
-| --------------------------------------------------- | --------------------------------- | ------------------------------------------------------------------------------ |
-| "save context", "save memory", `/memory:save`       | Generate + index memory file      | `spec_kit_memory_memory_save()`                                                |
-| "search memory", "find prior", "what did we decide" | Semantic search across sessions   | `spec_kit_memory_memory_search({ query: "..." })` (query OR concepts required) |
-| "list memories", "show context"                     | Browse stored memories            | `spec_kit_memory_memory_list()`                                                |
-| "checkpoint", "save state"                          | Create named checkpoint           | `spec_kit_memory_checkpoint_create()`                                          |
-| "restore checkpoint", "rollback"                    | Restore from checkpoint           | `spec_kit_memory_checkpoint_restore()`                                         |
-| Gate enforcement (any file modification)            | Auto-surface constitutional rules | `spec_kit_memory_memory_match_triggers()`                                      |
-| "continue", "resume", `/memory:continue`            | Session recovery (crash/timeout)  | `spec_kit_memory_memory_search()` + state anchors                              |
-| "context", "get context", `/memory:context`         | Intent-aware context retrieval    | `spec_kit_memory_memory_context()` with intent routing                         |
-| "correct", "correction", `/memory:learn correct`    | Learn from corrections            | `spec_kit_memory_memory_update()` with penalty                                 |
-| "learn", "insight", `/memory:learn`                 | Capture session learnings         | `spec_kit_memory_memory_save()` with learning tier                             |
-| "manage", "cleanup", "database", `/memory:manage`   | Database management + checkpoints | `spec_kit_memory_memory_stats()`, `memory_health()`, `checkpoint_*()`, etc.    |
-
-### Cognitive Memory Features
-
-The `memory_match_triggers()` tool includes cognitive features: **FSRS v4 attention decay** (power-law retrievability model), **tiered content injection** (HOT=full content, WARM=summary, COLD/DORMANT/ARCHIVED=metadata only), **co-activation** (BFS spreading activation across related memories), and **working memory** (session-scoped, 7-item capacity). Uses snake_case parameters (`session_id`, `include_cognitive`) unlike other tools.
-
-**Full documentation:** See [mcp_server/README.md](./mcp_server/README.md#3--cognitive-memory) and [memory_system.md](./references/memory/memory_system.md).
-
-### README Content Discovery
-
-The memory system auto-discovers and indexes content from 5 sources during `memory_index_scan()`: spec memories (0.5 weight), constitutional rules (per-file tier), skill READMEs (0.3), project READMEs (0.4) and spec folder documents (per-type multiplier via `includeSpecDocs`). READMEs require `<!-- ANCHOR:name -->` tags for section-level retrieval. Control with `includeReadmes` parameter (default: `true`) and `includeSpecDocs` parameter (default: `true`) or `SPECKIT_INDEX_SPEC_DOCS` env var. Post-spec126 hardening enforces specFolder boundary filtering and stabilizes the incremental spec-document chain pass.
-
-**See:** [readme_indexing.md](./references/memory/readme_indexing.md) for discovery functions, exclude patterns, and weight rationale.
-
-> **`/spec_kit:complete` flags:** Supports `:with-research` (runs research before verification) and `:auto-debug` (auto-dispatches debug agent on failures). Usage: `/spec_kit:complete :with-research :auto-debug`
-
-### Agent Dispatch in Commands
-
-Spec_kit commands dispatch these agents at specific workflow steps (added in spec 014):
-
-| Agent | Commands | Trigger | Behavior |
-| ----- | -------- | ------- | -------- |
-| **@debug** | implement (Step 6), complete (Step 10) | `failure_count >= 3` on same error | Auto-suggest `/spec_kit:debug`; `:auto-debug` flag auto-dispatches |
-| **@review** | implement (Steps 8a/8b), complete (Steps 12a/12b) | End of implementation | Dual-phase: Mode 2 Pre-Commit (advisory) + Mode 4 Gate Validation (blocking on P0) |
-| **@review** | debug (Step 5) | Post-fix validation | Advisory only (`blocking: false`) |
-| **@research** | plan (Step 5) | `confidence < 60%` OR user request | Dispatched via `:with-research` flag or automatic confidence gating |
-| **@handover** | plan (Step 7), implement (Step 9), complete (Step 14), research (Step 9) | Session end | Proactive context preservation; suggest handover document creation |
-
-> **Note:** `resume.md` and `handover.md` commands are meta-workflow tools — they don't dispatch agents because they don't create code artifacts.
-
-### Reference Sub-folders
-
-| Sub-folder    | Purpose                         | Files                                                                                                |
-| ------------- | ------------------------------- | ---------------------------------------------------------------------------------------------------- |
-| `memory/`     | Context preservation, MCP tools | memory_system.md, save_workflow.md, trigger_config.md, epistemic-vectors.md, embedding_resilience.md |
-| `templates/`  | Template system, level specs    | level_specifications.md, template_guide.md, template_style_guide.md, level_selection_guide.md        |
-| `validation/` | Validation rules, checklists    | validation_rules.md, phase_checklists.md, path_scoped_rules.md, five-checks.md, decision-format.md   |
-| `structure/`  | Folder organization, routing    | folder_structure.md, folder_routing.md, sub_folder_versioning.md                                     |
-| `workflows/`  | Usage workflows, examples       | quick_reference.md, execution_methods.md, worked_examples.md                                         |
-| `debugging/`  | Troubleshooting, debugging      | troubleshooting.md, universal_debugging_methodology.md                                               |
-| `config/`     | Configuration                   | environment_variables.md                                                                             |
+- `references/memory/` for context retrieval, save workflows, trigger behavior, and indexing.
+- `references/templates/` for level selection, template composition, and structure guides.
+- `references/validation/` for checklist policy, verification rules, and decision formats.
+- `references/structure/` for folder organization and sub-folder versioning.
+- `references/workflows/` for command workflows and worked examples.
+- `references/debugging/` for troubleshooting and root-cause methodology.
+- `references/config/` for runtime environment configuration.
 
 ### Shared Modules (`shared/`)
 
-Canonical TypeScript modules shared between CLI scripts and MCP server (`@spec-kit/shared` v1.7.2). Modules: `embeddings.ts` (with provider factory for HuggingFace local, OpenAI, and Voyage), `normalization.ts`, `chunking.ts`, `trigger-extractor.ts`, `types.ts`. Subdirectories: `embeddings/` (factory, profile, providers), `scoring/` (folder-scoring), `utils/` (path-security, retry). Source is `.ts`; compiled CommonJS `.js` output is produced in-place.
+`shared/` contains TypeScript modules used by CLI scripts and the MCP server (embeddings, normalization, chunking, trigger extraction, scoring, and path utilities). Source and API details are maintained in [shared/README.md](./shared/README.md).
 
-**Full documentation:** See [shared/README.md](./shared/README.md)
+### Template and Script Sources of Truth
 
-### Configuration (`config/`)
+- Level definitions and template size guidance: [level_specifications.md](./references/templates/level_specifications.md)
+- Template usage and composition rules: [template_guide.md](./references/templates/template_guide.md)
+- Use `templates/level_N/` for operational templates; `core/` and `addendum/` remain composition inputs.
+- Script architecture, build outputs, and runtime entrypoints: [scripts/README.md](./scripts/README.md)
+- Memory save JSON schema and workflow contracts: [save_workflow.md](./references/memory/save_workflow.md)
 
-Runtime configuration for the memory system:
-- `config.jsonc` — Legacy settings (only Section 1 active; MCP server uses hardcoded values)
-- `filters.jsonc` — Content filtering pipeline
-
-**Full documentation:** See [environment_variables.md](./references/config/environment_variables.md)
-
-### Resource Inventory
-
-**Template Architecture (CORE + ADDENDUM v2.2):**
-
-| Folder                | Contents            | When to Use               |
-| --------------------- | ------------------- | ------------------------- |
-| `templates/level_1/`  | 5 files (~455 LOC)  | **Default for new specs** |
-| `templates/level_2/`  | 6 files (~875 LOC)  | QA validation needed      |
-| `templates/level_3/`  | 7 files (~1090 LOC) | Architecture decisions    |
-| `templates/level_3+/` | 7 files (~1075 LOC) | Enterprise governance     |
-
-> **Source of truth for template LOC counts:** [level_specifications.md](./references/templates/level_specifications.md)
-
-> **IMPORTANT:** Always copy from `templates/level_N/`. The `core/` and `addendum/` folders are source components only.
-
-**Key Scripts:**
-
-| Script                 | Purpose                                       |
-| ---------------------- | --------------------------------------------- |
-| `generate-context.ts`  | Generate memory files from conversation (source) |
-| `spec/validate.sh`     | Validate spec folder structure                |
-| `spec/create.sh`       | Create new spec folders with templates        |
-| `spec/archive.sh`      | Archive completed spec folders to z_archive/  |
-| `spec/check-completion.sh` | Completion Verification Rule enforcement  |
-| `spec/recommend-level.sh`  | Automated spec level recommendation       |
-| `templates/compose.sh` | Compose level templates from core + addendums |
-
-**Full documentation:** See [level_specifications.md](./references/templates/level_specifications.md) and [template_guide.md](./references/templates/template_guide.md)
-
-> **generate-context.ts** accepts two input modes: a spec folder path (direct) or a JSON file path (manual injection). Source `.ts` compiled to `scripts/dist/`. See [scripts/README.md](./scripts/README.md) for architecture and [save_workflow.md](./references/memory/save_workflow.md) for JSON schema.
+Primary operational scripts:
+- `spec/validate.sh`
+- `spec/create.sh`
+- `spec/archive.sh`
+- `spec/check-completion.sh`
+- `spec/recommend-level.sh`
+- `templates/compose.sh`
 
 ---
 
@@ -656,51 +566,6 @@ Context preservation across sessions via hybrid search (vector similarity + BM25
 
 **Full documentation:** See [memory_system.md](./references/memory/memory_system.md) for tool behavior, importance tiers, and configuration.
 
-### Consolidated Question Protocol
-
-All commands use a **single consolidated prompt** to gather required inputs in one interaction:
-
-1. **Spec Folder Selection** — A) Existing | B) New | C) Update related | D) Skip
-2. **Memory Context** — A) Load recent | B) Load all | C) Skip
-3. **Execution Mode** — A) Autonomous | B) Interactive (if applicable)
-
-Commands consolidate all questions into ONE user prompt to minimize round-trips. See individual command files for specific question sets.
-
-> **Note:** Users can reply with shorthand (e.g., "A, C, A") to answer all questions at once.
-
-### Prior Work Search (Research Workflow Phase 3)
-
-During `/spec_kit:research`, Phase 3 automatically searches for related prior work via `memory_match_triggers()` (keyword) and `memory_search()` (semantic). If matches are found, the user is asked to load all matches, constitutional only, or skip. Constitutional tier memories receive a 3.0x search boost. This phase runs between Spec Folder Setup (Phase 2) and Memory Context Loading (Phase 4) and is skipped if no prior work exists.
-
-**See:** `/spec_kit:research` command for the full 9-step research workflow.
-
-### Debug Delegation Workflow
-
-**Trigger:** `/spec_kit:debug`, frustration keywords ("stuck", "can't fix"), or same error 3+ times. **MANDATORY:** After 3 failed attempts on the same error, suggest `/spec_kit:debug` before continuing.
-
-**Flow:** Ask model selection (Claude/Gemini/OpenAI/Other) → Generate `debug-delegation.md` → Dispatch sub-agent via Task tool → Present findings → Update with resolution. The `:auto-debug` flag on `/spec_kit:complete` can auto-dispatch without manual invocation.
-
-**Full details:** See `.opencode/agent/debug.md` and `templates/debug-delegation.md`.
-
-### Command Pattern Protocol
-
-Commands in `.opencode/command/**/*.md` are **Reference Patterns**:
-
-1. **Scan** available commands for relevance to task
-2. **Extract** logic (decision trees), sequencing (order of ops), structure (outputs)
-3. **Adapt** if <80% match; apply directly if >80%
-4. **Report** contributions in `implementation-summary.md`
-
-> **Exception:** Explicitly invoked commands (e.g., `/spec_kit:complete`) are **ENFORCED LAW**, not just reference.
-
-### Parallel Dispatch Configuration
-
-SpecKit supports smart parallel sub-agent dispatch based on 5-dimension complexity scoring:
-- **<20% complexity:** Proceed directly
-- **≥20% + 2 domains:** Ask user for dispatch preference
-- **Step 6 Planning:** Auto-dispatches 4 parallel exploration agents
-
-**Full configuration:** See [parallel_dispatch_config.md](./assets/parallel_dispatch_config.md)
 
 ### Validation Workflow
 

@@ -182,9 +182,6 @@ def route_figma_resources(task):
 
     return _discover_markdown_fallbacks()
 
-
-# STATIC RESOURCES (always available, not conditionally loaded)
-# assets/tool_categories.md → Priority categorization of all 18 tools
 ```
 
 ---
@@ -422,7 +419,7 @@ Dependency Chain:
 │  .utcp_config.json                                               │
 │  └─► Configures: figma provider (among others)                    │
 │      └─► Package: figma-developer-mcp                            │
-│      └─► Auth: FIGMA_API_KEY                                     │
+│      └─► Auth: FIGMA_API_KEY                                    │
 └─────────────────────────────────────────────────────────────────┘
 ```
 

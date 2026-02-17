@@ -37,22 +37,22 @@
 
 ### Base orchestrate.md (`.opencode/agent/orchestrate.md`)
 
-- [ ] T006 Add NDP section (new Section 27) with tier definitions and depth rules
-- [ ] T007 Update Section 3 Agent Routing table — add Tier column
-- [ ] T008 Update Section 4 Sub-Orchestrator Pattern — add depth inheritance rule and replace "Maximum 2 levels" with NDP reference
-- [ ] T009 Update Section 10 Task Decomposition Format — add `Depth` field
-- [ ] T010 Update Section 10 PDR template — add `Depth` line
-- [ ] T011 Add anti-pattern to Section 24 — "Never dispatch beyond max depth 3"
-- [ ] T012 Add LEAF enforcement instruction to dispatch template
+- [x] T006 Add NDP section — now §2 in restructured 10-section layout
+- [x] T007 Update Agent Routing table — Tier column added in §2
+- [x] T008 Update Sub-Orchestrator Pattern — depth inheritance rule in §3, NDP reference
+- [x] T009 Update Task Decomposition Format — `Depth` field in §3
+- [x] T010 Update PDR template — `Depth` line in §3
+- [x] T011 Add anti-patterns — 2 NDP anti-patterns in §9
+- [x] T012 Add LEAF enforcement instruction — §2:168-172
 
 ### ChatGPT orchestrate.md (`.opencode/agent/chatgpt/orchestrate.md`)
 
-- [ ] T013 [P] Apply T006-T012 changes (identical content)
+- [x] T013 [P] Apply T006-T012 changes (byte-identical to base)
 
 ### Copilot orchestrate.md (`.opencode/agent/copilot/orchestrate.md`)
 
-- [ ] T014 [P] Apply T006-T012 changes (identical content)
-- [ ] T015 Fix Section 11 — remove conflicting "Maximum nesting: 3 levels deep" and reference NDP instead
+- [x] T014 [P] Apply T006-T012 changes (identical except frontmatter)
+- [x] T015 Fix Section 11 conflict — conditional branching now in §3 subsection, no separate section
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -60,23 +60,37 @@
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T016 Diff NDP sections across all 3 files — must be identical
-- [ ] T017 Verify every agent in routing table has Tier classification
-- [ ] T018 Trace workflow: User > Orchestrator > @context > @explore — confirm depth stays within 3
-- [ ] T019 Trace workflow: User > Orchestrator > Sub-Orchestrator > @general — confirm depth stays within 3
-- [ ] T020 Trace workflow: User > Orchestrator > @speckit — confirm LEAF, no sub-dispatch
-- [ ] T021 Update checklist.md with verification results
+- [x] T016 Diff NDP sections across all 3 files — identical (chatgpt byte-identical, copilot 2-line frontmatter diff only)
+- [x] T017 Verify every agent in routing table has Tier classification — 11 agents, all classified
+- [x] T018 Trace workflow: Orch > @context > @explore — depth 0>1>2, legal
+- [x] T019 Trace workflow: Orch > Sub-Orch > @general — depth 0>1>2, legal
+- [x] T020 Trace workflow: Orch > @speckit — depth 0>1, LEAF confirmed
+- [x] T021 Update checklist.md — all 20 items verified with evidence
 <!-- /ANCHOR:phase-3 -->
+
+---
+
+<!-- ANCHOR:phase-4 -->
+## Phase 4: Cross-Cutting Improvements
+
+- [x] T022 Full restructure 27→10 sections across all 3 orchestrate.md variants
+- [x] T023 Add 7 semantic emojis aligned with context.md conventions
+- [x] T024 Replace `workflows-code--web-dev`/`--full-stack` with `workflows-code--*` wildcard in all agent files (6 files: 3 orchestrate + 3 review)
+- [x] T025 Sync all 8 copilot agents to `.claude/agents/` with CC frontmatter
+- [x] T026 Create `02--agents` changelog folder and v1.0.0.0 entry
+- [x] T027 Save context via generate-context.js
+<!-- /ANCHOR:phase-4 -->
 
 ---
 
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed (T016-T020)
-- [ ] All 3 orchestrate.md files synchronized
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Manual verification passed (T016-T020)
+- [x] All 3 orchestrate.md files synchronized
+- [x] All .claude/agents files synced with copilot body + CC frontmatter
 <!-- /ANCHOR:completion -->
 
 ---
@@ -93,6 +107,6 @@
 
 <!--
 LEVEL 3 TASKS
-- 3 phases: Design, Implementation, Verification
-- 21 tasks total
+- 4 phases: Design, Implementation, Verification, Cross-Cutting
+- 27 tasks total
 -->

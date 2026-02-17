@@ -11,7 +11,7 @@
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 002-commands-and-skills/000-skills/002-smart-router-v2 |
-| **Completed** | Pending (documentation-only phase) |
+| **Completed** | 2026-02-17 (Smart Router rollout + verification captured) |
 | **Level** | 3 |
 <!-- /ANCHOR:metadata -->
 
@@ -20,18 +20,19 @@
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Execution updates to target SKILL.md files have not started yet. This file is intentionally scaffolded for the upcoming implementation phase and will be finalized after Smart Router V2 changes are applied to all 10 rollout targets.
+Smart Router rollout work in this session is complete for immediate `*/SKILL.md` targets under Public and Barter skill roots, and verification artifacts are now captured in spec scratch.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `spec.md` | Existing | Defines Smart Router V2 requirements and target scope |
-| `plan.md` | Created | Defines rollout phases, dependency graph, and milestones |
-| `tasks.md` | Created | Defines execution and verification task sequencing |
-| `checklist.md` | Created | Defines P0/P1/P2 verification gates and current phase status |
-| `decision-record.md` | Created | Captures architecture decisions and alternatives |
-| `implementation-summary.md` | Created | Initial pending scaffold for post-execution closeout |
+| `tasks.md` | Updated | Marks completed rollout tasks and verification progress for this session |
+| `checklist.md` | Updated | Adds evidence-backed verification status and refreshed P0/P1/P2 counts |
+| `implementation-summary.md` | Updated | Replaces scaffold state with execution evidence and outcomes |
+| `scratch/smart-router-tests/run-smart-router-tests.mjs` | Created | Smart Router verification runner for SKILL.md structure and rule checks |
+| `scratch/smart-router-tests/router-rules.json` | Created | Centralized routing/test rules (markers, banned phrases, heading policy) |
+| `scratch/smart-router-tests/fixtures/` | Created | Fixture set for recursive discovery validation |
+| `scratch/smart-router-tests/reports/latest-report.json` | Updated | Latest suite result: total 82, passed 82, failed 0 |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -44,6 +45,8 @@ Execution updates to target SKILL.md files have not started yet. This file is in
 | Use weighted scoring with fallback | Improves relevance while preserving backward compatibility |
 | Use depth-limited recursive discovery | Surfaces nested resources without unbounded traversal |
 | Roll out Public targets before Barter targets | Reduces cross-repository coordination risk |
+| Standardize Smart Routing section ordering | Ensures router pseudocode appears first and removes heading drift (`### Activation Detection` removed) |
+| Remove initiative-scoped banned phrases globally | Eliminates stale phrasing and keeps routing docs aligned to current conventions |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -53,9 +56,10 @@ Execution updates to target SKILL.md files have not started yet. This file is in
 
 | Test Type | Status | Notes |
 |-----------|--------|-------|
-| Manual | Pass | Documentation files created and populated for current phase |
-| Unit | Skip | Not applicable in documentation-only phase |
-| Integration | Skip | Target skill-file rollout not executed yet |
+| Automated suite | Pass | `node scratch/smart-router-tests/run-smart-router-tests.mjs` -> total 82, passed 82, failed 0 |
+| Report artifact | Pass | `scratch/smart-router-tests/reports/latest-report.json` confirms markers, banned phrase removal, and heading-order assertions |
+| Final cleanup verification | Pass | `### Routing Reference Tables` heading scan returned zero matches across Public + Barter SKILL roots; pseudocode-first ordering still validated by 82/82 Smart Router test pass |
+| Spec validation | Pass | `.opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/002-commands-and-skills/000-skills/002-smart-router-v2` -> Errors: 0, Warnings: 0 |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -63,7 +67,9 @@ Execution updates to target SKILL.md files have not started yet. This file is in
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-This summary is pre-implementation and does not yet include execution evidence for the 10 target SKILL.md files. Final verification metrics, actual changed-file lists, and rollout outcomes will be added after implementation and verification phases complete.
+Low-confidence fallback behavior and some L3 deployment/compliance checklist items remain open in `checklist.md`. These are tracked as pending follow-up verification/documentation tasks and do not block recording the completed session scope above.
+
+Final cleanup note: this pass removed residual `### Routing Reference Tables` headings from the SKILL.md corpus (final remaining update landed in Public `system-spec-kit`) and re-confirmed that Smart Routing sections still keep router pseudocode as the first subsection.
 <!-- /ANCHOR:limitations -->
 
 ---

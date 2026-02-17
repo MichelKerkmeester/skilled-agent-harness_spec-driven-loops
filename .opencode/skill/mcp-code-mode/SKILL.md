@@ -609,34 +609,8 @@ call_tool_chain({
 ---
 
 <!-- /ANCHOR:integration-points -->
-<!-- ANCHOR:references -->
-## 8. REFERENCES
-
-### Configuration
-| Document | Purpose | Key Insight |
-|----------|---------|-------------|
-| [configuration.md](references/configuration.md) | Setup guide | .utcp_config.json structure |
-| [env_template.md](assets/env_template.md) | Environment variables | API key patterns |
-| [config_template.md](assets/config_template.md) | Config examples | Server definitions |
-
-### Tool Documentation
-| Document | Purpose | Key Insight |
-|----------|---------|-------------|
-| [naming_convention.md](references/naming_convention.md) | Tool naming patterns | `{manual}.{manual}_{tool}` |
-| [tool_catalog.md](references/tool_catalog.md) | Available tools | By server category |
-| [workflows.md](references/workflows.md) | Usage patterns | Multi-tool examples |
-
-### Architecture
-| Document | Purpose | Key Insight |
-|----------|---------|-------------|
-| [architecture.md](references/architecture.md) | System design | Performance benefits |
-| [README.md](README.md) | Overview | Quick start |
-
----
-
-<!-- /ANCHOR:references -->
 <!-- ANCHOR:quick-reference -->
-## 9. QUICK REFERENCE
+## 8. QUICK REFERENCE
 
 ### Essential Commands
 
@@ -718,7 +692,7 @@ call_tool_chain({
 
 <!-- /ANCHOR:quick-reference -->
 <!-- ANCHOR:related-resources -->
-## 10. RELATED RESOURCES
+## 9. RELATED RESOURCES
 
 ### scripts/
 
