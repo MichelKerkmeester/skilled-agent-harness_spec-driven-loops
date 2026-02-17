@@ -27,9 +27,9 @@ This guide provides **one comprehensive SKILL template** (Section 3) that covers
 
 **The template is flexible:**
 - **Simple skills**: Use core sections only (WHEN TO USE, HOW IT WORKS, RULES)
-- **Skills with bundled resources**: Keep router pseudocode first, then loading levels + routing authority + resource domains; use references folder, assets folder, scripts folder
+- **Skills with bundled resources**: Include detection context, merged resource domains/mapping, loading levels, and one authoritative Smart Router Pseudocode block; use `references/`, `assets/`, and `scripts/`
 - **Multi-mode skills**: Expand WHEN TO USE and HOW IT WORKS sections by mode
-- **All skills**: MUST include Section 2 (SMART ROUTING) with integrated resource catalog
+- **All skills**: MUST include Section 2 (SMART ROUTING) with detection guidance + domain-based routing + pseudocode
 
 **Target size**: 800-2000 lines for SKILL.md (<5k words total)
 
@@ -198,51 +198,82 @@ version: 1.0.0
 <!-- ANCHOR:smart-routing -->
 ## 2. SMART ROUTING
 
-<!-- CRITICAL: This section starts with router pseudocode and remains the single routing authority.
-     Do NOT add Activation Detection flowcharts, navigation guides, or separate use-case tables. -->
+<!-- CRITICAL: Keep one authoritative Smart Router Pseudocode block in this section.
+     Detection context may appear before pseudocode. Do NOT duplicate routing logic in separate lookup tables. -->
 
-### Resource Router
+### [Primary Detection Signal]
+
+[Document the first routing signal clearly, for example project detection, stack detection, or mode detection.]
+
+```bash
+# Example (replace with skill-specific detection)
+[ -f "go.mod" ] && STACK="GO"
+[ -f "package.json" ] && STACK="NODEJS"
+```
+
+### Phase Detection
+
+```text
+TASK CONTEXT
+    |
+    +- STEP 0: Detect [project/stack/mode]
+    +- STEP 1: Score intents (top-2 when ambiguity is small)
+    +- Phase 1: Implementation
+    +- Phase 2: Testing/Debugging
+    +- Phase 3: Verification
+```
+
+### Resource Domains
+
+The router discovers markdown resources recursively from `references/` and `assets/` and then applies intent scoring from `INTENT_MODEL`.
+
+Knowledge is organized by domain mapping:
+
+```text
+references/[domain]/...
+assets/[domain]/...
+```
+
+- `references/[domain]/` for guidance, standards, and troubleshooting.
+- `assets/[domain]/` for templates, checklists, and reusable outputs.
+- `scripts/` for optional automation entrypoints when needed.
+
+### Resource Loading Levels
+
+| Level       | When to Load             | Resources                    |
+| ----------- | ------------------------ | ---------------------------- |
+| ALWAYS      | Every skill invocation   | Baseline references          |
+| CONDITIONAL | If intent signals match  | Intent-mapped references     |
+| ON_DEMAND   | Only on explicit request | Deep-dive standards/templates|
+
+### Smart Router Pseudocode
 
 ```python
 from pathlib import Path
 
 SKILL_ROOT = Path(__file__).resolve().parent
 RESOURCE_BASES = (SKILL_ROOT / "references", SKILL_ROOT / "assets")
-DEFAULT_RESOURCE = "references/workflows/quick_reference.md"
+DEFAULT_RESOURCE = "references/[default].md"
 
-INTENT_SIGNALS = {
-    "PRIMARY": {"weight": 3, "keywords": ["[primary keyword]", "[primary phrase]"]},
-    "SECONDARY": {"weight": 3, "keywords": ["[secondary keyword]", "[secondary phrase]"]},
-    "DEBUG": {"weight": 4, "keywords": ["error", "failed", "debug", "stuck"]},
+INTENT_MODEL = {
+    "PRIMARY": {"keywords": [("[primary keyword]", 4), ("[phrase]", 3)]},
+    "DEBUGGING": {"keywords": [("error", 4), ("failed", 4), ("debug", 3)]},
+    "VERIFICATION": {"keywords": [("verify", 4), ("done", 3), ("complete", 3)]},
 }
 
 RESOURCE_MAP = {
-    "PRIMARY": ["references/[primary-guide].md"],
-    "SECONDARY": ["references/[secondary-guide].md", "assets/[template].md"],
-    "DEBUG": ["references/[troubleshooting].md"],
+    "PRIMARY": ["references/[domain]/[primary].md"],
+    "DEBUGGING": ["assets/[domain]/checklists/debugging_checklist.md"],
+    "VERIFICATION": ["assets/[domain]/checklists/verification_checklist.md"],
 }
 
-COMMAND_BOOSTS = {
-    "/[skill]:[primary]": "PRIMARY",
-    "/[skill]:[secondary]": "SECONDARY",
+LOAD_LEVELS = {
+    "PRIMARY": "STANDARD",
+    "DEBUGGING": "DEBUGGING",
+    "VERIFICATION": "MINIMAL",
 }
 
-LOADING_LEVELS = {
-    "ALWAYS": [DEFAULT_RESOURCE],
-    "ON_DEMAND_KEYWORDS": ["deep dive", "full checklist", "full template"],
-    "ON_DEMAND": ["references/[deep-dive].md"],
-}
-
-
-def _task_text(task) -> str:
-    parts = [
-        str(getattr(task, "query", "")),
-        str(getattr(task, "text", "")),
-        " ".join(getattr(task, "keywords", []) or []),
-        str(getattr(task, "command", "")),
-    ]
-    return " ".join(parts).lower()
-
+AMBIGUITY_DELTA = 1
 
 def _guard_in_skill(relative_path: str) -> str:
     resolved = (SKILL_ROOT / relative_path).resolve()
@@ -251,92 +282,52 @@ def _guard_in_skill(relative_path: str) -> str:
         raise ValueError(f"Only markdown resources are routable: {relative_path}")
     return resolved.relative_to(SKILL_ROOT).as_posix()
 
-
 def discover_markdown_resources() -> set[str]:
     docs = []
     for base in RESOURCE_BASES:
         if base.exists():
-            docs.extend(p for p in base.rglob("*.md") if p.is_file())
+            docs.extend(path for path in base.rglob("*.md") if path.is_file())
     return {doc.relative_to(SKILL_ROOT).as_posix() for doc in docs}
 
-
-def score_intents(task) -> dict[str, float]:
-    text = _task_text(task)
-    scores = {intent: 0.0 for intent in INTENT_SIGNALS}
-
-    for intent, cfg in INTENT_SIGNALS.items():
-        for keyword in cfg["keywords"]:
+def classify_intents(user_request, task=None):
+    text = (user_request or "").lower()
+    scores = {intent: 0 for intent in INTENT_MODEL}
+    for intent, cfg in INTENT_MODEL.items():
+        for keyword, weight in cfg["keywords"]:
             if keyword in text:
-                scores[intent] += cfg["weight"]
+                scores[intent] += weight
 
-    command = str(getattr(task, "command", "")).lower()
-    for prefix, intent in COMMAND_BOOSTS.items():
-        if command.startswith(prefix):
-            scores[intent] += 6
+    ranked = sorted(scores.items(), key=lambda pair: pair[1], reverse=True)
+    primary, primary_score = ranked[0]
+    if primary_score == 0:
+        return ("PRIMARY", None, scores)
 
-    return scores
+    secondary, secondary_score = ranked[1]
+    if secondary_score > 0 and (primary_score - secondary_score) <= AMBIGUITY_DELTA:
+        return (primary, secondary, scores)
+    return (primary, None, scores)
 
-
-def select_intents(scores: dict[str, float], ambiguity_delta: float = 1.0) -> list[str]:
-    ranked = sorted(scores.items(), key=lambda item: item[1], reverse=True)
-    if not ranked or ranked[0][1] <= 0:
-        return ["PRIMARY"]
-
-    selected = [ranked[0][0]]
-    if len(ranked) > 1 and ranked[1][1] > 0 and (ranked[0][1] - ranked[1][1]) <= ambiguity_delta:
-        selected.append(ranked[1][0])
-
-    return selected[:2]
-
-
-def route_[skill_name]_resources(task):
+def route_[skill_name]_resources(user_request, task=None):
     inventory = discover_markdown_resources()
-    intents = select_intents(score_intents(task), ambiguity_delta=1.0)
+    primary, secondary, scores = classify_intents(user_request, task)
+    intents = [primary] + ([secondary] if secondary else [])
     loaded = []
     seen = set()
 
-    def load_if_available(relative_path: str) -> None:
+    def load_if_available(relative_path: str):
         guarded = _guard_in_skill(relative_path)
         if guarded in inventory and guarded not in seen:
             load(guarded)
             loaded.append(guarded)
             seen.add(guarded)
 
-    for relative_path in LOADING_LEVELS["ALWAYS"]:
-        load_if_available(relative_path)
-
+    load_if_available(DEFAULT_RESOURCE)
     for intent in intents:
         for relative_path in RESOURCE_MAP.get(intent, []):
             load_if_available(relative_path)
 
-    text = _task_text(task)
-    if any(keyword in text for keyword in LOADING_LEVELS["ON_DEMAND_KEYWORDS"]):
-        for relative_path in LOADING_LEVELS["ON_DEMAND"]:
-            load_if_available(relative_path)
-
-    if not loaded:
-        load_if_available(DEFAULT_RESOURCE)
-
-    return {"intents": intents, "resources": loaded}
+    return {"intents": intents, "intent_scores": scores, "resources": loaded}
 ```
-
-### Resource Loading Levels
-
-| Level       | When to Load             | Resources                    |
-| ----------- | ------------------------ | ---------------------------- |
-| ALWAYS      | Every skill invocation   | Shared patterns + SKILL.md   |
-| CONDITIONAL | If intent signals match  | Intent-mapped references     |
-| ON_DEMAND   | Only on explicit request | Deep-dive quality standards  |
-
-### Routing Authority
-
-Intent scoring and the in-code resource map in this section are the authoritative routing source. Do not maintain separate use-case routing tables.
-
-### Resource Domains
-
-- `references/[domain]/` for in-depth guidance and standards.
-- `assets/[domain]/` for templates, examples, and reusable outputs.
-- `scripts/` for optional automation entrypoints when needed.
 
 ---
 
@@ -557,16 +548,16 @@ See [workflow-details.md](./references/workflow-details.md) for complete step-by
 ├── SKILL.md (800-1000 lines)
 └── Bundled Resources
     ├── scripts/          - Executable automation
-    ├── references/       - Detailed documentation (FLAT - no subfolders)
+    ├── references/       - Detailed documentation (flat or domain subfolders)
     └── assets/           - Templates and examples (subfolders OK)
         ├── opencode/     - OpenCode component templates (skills, agents, commands)
         └── documentation/ - Document templates (README, install guides)
 ```
 
 **Folder Organization Principle**:
-- **references/** = Keep FLAT (files directly in folder, no subfolders)
-  - Simpler navigation, easier discovery
-  - Example: `references/core_standards.md`, `references/validation.md`
+- **references/** = flat for small skills, domain subfolders for medium/complex skills
+  - Flat example: `references/core_standards.md`, `references/validation.md`
+  - Domain example: `references/backend/go/`, `references/frontend/react/`
 - **assets/** = Subfolders ALLOWED when organizing many files by category
   - Group related templates together
   - Example: `assets/opencode/`, `assets/documentation/`, `assets/flowcharts/`
@@ -642,24 +633,26 @@ See [workflow-details.md](./references/workflow-details.md) for complete step-by
 
 **Critical Rule**:
 ```
-❌ WRONG: Activation Detection flowcharts as the primary routing source
+❌ WRONG: Section 2 with no explicit detection logic (project/stack/mode)
 ❌ WRONG: Separate use-case routing tables or navigation guides
-✅ RIGHT: Router pseudocode first, then loading levels + routing authority + resource domains
+✅ RIGHT: Detection context + merged resource domains/mapping + loading levels + one authoritative pseudocode block
 
-Section 2 contains four subsections:
-1. Resource Router (pseudocode first)
-2. Resource Loading Levels
-3. Routing Authority
-4. Resource Domains
+Section 2 typically contains five subsections:
+1. Primary Detection Signal
+2. Phase Detection
+3. Resource Domains (including folder mapping)
+4. Resource Loading Levels
+5. Smart Router Pseudocode (authoritative)
 ```
 
 **Placement**: After Section 1 (WHEN TO USE), before Section 3 (HOW IT WORKS)
 
 **Essential Content**:
-- **Resource Router** - pseudocode with scoped path guard, recursive discovery, weighted intent scoring, and top-2 ambiguity handling
+- **Primary Detection Signal** - explicit stack/project/mode detection rule
+- **Phase Detection** - concise execution flow from detection to verification
+- **Resource Domains** - merged domain mapping + concise domain-level paths
 - **Resource Loading Levels** - ALWAYS/CONDITIONAL/ON_DEMAND table aligned to in-code behavior
-- **Routing Authority** - single-source rule that points to the router code + resource map
-- **Resource Domains** - concise domain-level paths (no static file inventories)
+- **Smart Router Pseudocode** - scoped guard + recursive discovery + weighted scoring + top-2 ambiguity handling
 
 **Structure**:
 
@@ -667,42 +660,66 @@ Section 2 contains four subsections:
 <!-- ANCHOR:smart-routing-2 -->
 ## 2. SMART ROUTING
 
-### Resource Router
+### [Primary Detection Signal]
 
-```python
-# Pseudocode-first router (authoritative)
-# 1) Scope guard resource paths to current skill root
-# 2) Discover markdown resources recursively
-# 3) Score intents with weighted keyword + command boosts
-# 4) Select top-2 intents when scores are close
-# 5) Load ALWAYS resources, then CONDITIONAL intent resources, then ON_DEMAND resources
+```bash
+# Example detection logic
+[ -f "go.mod" ] && STACK="GO"
+[ -f "package.json" ] && STACK="NODEJS"
 ```
+
+### Phase Detection
+
+```text
+TASK CONTEXT
+    |
+    +- STEP 0: Detect project/stack/mode
+    +- STEP 1: Score intents (top-2 on ambiguity)
+    +- Phase 1: Implementation
+    +- Phase 2: Testing/Debugging
+    +- Phase 3: Verification
+```
+
+### Resource Domains
+
+The router discovers markdown resources recursively from `references/` and `assets/` and then applies intent scoring from `INTENT_MODEL`.
+
+```text
+references/[domain]/...
+assets/[domain]/...
+```
+
+- `references/[domain]/` for standards, architecture, and troubleshooting.
+- `assets/[domain]/` for checklists and templates.
 
 ### Resource Loading Levels
 
 | Level       | When to Load             | Resources                    |
 | ----------- | ------------------------ | ---------------------------- |
-| ALWAYS      | Every skill invocation   | Shared patterns + SKILL.md   |
+| ALWAYS      | Every skill invocation   | Baseline references          |
 | CONDITIONAL | If intent signals match  | Intent-mapped references     |
-| ON_DEMAND   | Only on explicit request | Deep-dive quality standards  |
+| ON_DEMAND   | Only on explicit request | Deep-dive standards/templates|
 
-### Routing Authority
+### Smart Router Pseudocode
 
-Intent scoring and the in-code resource map in this section are the authoritative routing source. Do not maintain separate use-case routing tables.
-
-### Resource Domains
-
-- `references/[domain]/` for guidance, standards, and troubleshooting.
-- `assets/[domain]/` for templates and examples.
-- `scripts/` for optional automation where needed.
+```python
+# Authoritative router logic
+# 1) Scope guard resource paths to current skill root
+# 2) Discover markdown resources recursively
+# 3) Score intents with weighted signals
+# 4) Select top-2 intents when scores are close
+# 5) Apply load levels and resource map
+```
 
 **Writing Tips**:
-- Put router pseudocode first under SMART ROUTING.
+- Start Section 2 with the strongest detection signal for this skill.
+- Keep resource domains and folder mapping in a single section.
 - Keep conditions measurable and tied to resource paths.
 - Keep `RESOURCE_MAP` and loading levels synchronized.
+- Keep one authoritative pseudocode block in Section 2.
 - Require scoped guards and recursive discovery in every router.
 - Use top-2 ambiguity handling when intent scores are close.
-- Avoid static use-case tables and activation flowcharts.
+- Avoid duplicate lookup tables and static file inventories.
 
 **Word Budget**: 80-200 lines
 
@@ -1026,12 +1043,14 @@ Content - NEW Standardization (2025):
 □ Section 1 (WHEN TO USE) contains ONLY activation triggers and use cases
 □ Section 1 does NOT contain file-path routing logic
 □ SMART ROUTING section exists (Section 2 - REQUIRED for all skills)
-□ Section 2 first subsection is Resource Router pseudocode
+□ Section 2 includes explicit detection signal(s) (project/stack/mode as applicable)
+□ Section 2 includes Phase Detection summary flow
+□ Section 2 includes merged Resource Domains + folder mapping guidance
 □ Section 2 includes scoped guard + recursive discovery markers
 □ Section 2 includes weighted intent scoring + top-2 ambiguity handling
 □ Section 2 includes Resource Loading Levels table
-□ Section 2 includes Routing Authority statement
-□ Section 2 includes domain-level resource paths (not static inventories)
+□ Section 2 includes one authoritative Smart Router Pseudocode block
+□ Section 2 avoids duplicate routing lookup tables and static file inventories
 □ Flowchart supplements added to complex logic blocks in Section 3 (where applicable)
 □ Python/YAML code preserved (supplements, not replacements)
 □ All ASCII diagrams use consistent style (when used)
@@ -1045,7 +1064,7 @@ Quality:
 □ All code blocks specify language
 □ Links work correctly
 □ Section 1 contains ONLY triggers/use cases (NO file references)
-□ Section 2 Resource Router load() calls include file refs with descriptions
+□ Section 2 Smart Router Pseudocode load() calls include file refs with descriptions
 
 
 ### Quick Reference Table
@@ -1058,7 +1077,7 @@ Quality:
 | **Description Voice** | Third-person               | ✅ "Use when..."  ❌ "You should..."                                                                 |
 | **H2 Format**         | Number + ALL CAPS          | ✅ `## 1. WHEN TO USE`                                                                            |
 | **TOC**               | Forbidden in SKILL.md      | ❌ No table of contents                                                                             |
-| **Sections**          | 6 required sections        | WHEN TO USE (triggers only), SMART ROUTING (router-first + loading levels + authority), HOW IT WORKS, RULES, SUCCESS CRITERIA, INTEGRATION POINTS |
+| **Sections**          | 6 required sections        | WHEN TO USE (triggers only), SMART ROUTING (detection + domains + loading levels + pseudocode), HOW IT WORKS, RULES, SUCCESS CRITERIA, INTEGRATION POINTS |
 | **File Size**         | <5k words (<3k preferred)  | Move details to references/                                                                        |
 | **Rules Format**      | ALWAYS, NEVER, ESCALATE IF | All caps headers, specific rules                                                                   |
 | **Examples**          | Concrete and realistic     | Show actual use cases                                                                              |

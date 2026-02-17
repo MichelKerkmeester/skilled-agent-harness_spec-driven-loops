@@ -85,16 +85,16 @@ skill-name/
 │   └── Markdown instructions (required)
 └── Bundled Resources (optional)
     ├── scripts/          - Executable code (Python/Bash/etc.)
-    ├── references/       - Documentation (FLAT - no subfolders recommended)
+    ├── references/       - Documentation (flat or domain subfolders)
     └── assets/           - Files used in output (subfolders OK for organization)
         ├── opencode/     - OpenCode component templates (skills, agents, commands)
         └── documentation/ - Document templates (README, install guides)
 ```
 
 **Folder Organization Principle**:
-- **references/** = Keep FLAT (files directly in folder, no subfolders)
-  - Simpler navigation, easier discovery for AI agents
-  - Example: `references/core_standards.md`, `references/validation.md`
+- **references/** = flat for small skills, domain subfolders for medium/complex skills
+  - Flat example: `references/core_standards.md`, `references/validation.md`
+  - Domain example: `references/backend/go/`, `references/frontend/react/`
 - **assets/** = Subfolders ALLOWED when organizing many files by category
   - Group related templates together for clarity
   - Example: `assets/opencode/`, `assets/documentation/`, `assets/flowcharts/`
@@ -112,7 +112,7 @@ skill-name/
 
 **Required Sections** (enforced by markdown-document-specialist validation):
 1. WHEN TO USE (activation triggers and use cases ONLY)
-2. SMART ROUTING (router-first pseudocode with scoped guard, recursive discovery, weighted intent scoring, and ambiguity handling)
+2. SMART ROUTING (detection guidance + merged resource domains/mapping + loading levels + authoritative pseudocode)
 3. HOW IT WORKS
 4. RULES (ALWAYS/NEVER/ESCALATE IF)
 
@@ -129,7 +129,7 @@ Intent scoring and the in-code resource map in SMART ROUTING are the authoritati
 ```
 ❌ WRONG: File references or routing logic in "WHEN TO USE"
 ❌ WRONG: Separate use-case routing tables or navigation guides
-✅ RIGHT: Router pseudocode first, then loading levels and domain-based resource guidance
+✅ RIGHT: Detection context plus merged domains/mapping and one authoritative pseudocode block
 
 "WHEN TO USE" = WHEN (triggers, conditions, use cases)
 "SMART ROUTING" = HOW resources are selected and loaded (authoritative)
@@ -342,57 +342,58 @@ description: [TODO: Complete description]
 
 ## 2. SMART ROUTING
 
-### Activation Detection
+### [Primary Detection Signal]
+```bash
+[ -f "go.mod" ] && STACK="GO"
+[ -f "package.json" ] && STACK="NODEJS"
 ```
+
+### Phase Detection
+```text
 TASK CONTEXT
-    │
-    ├─► [Condition 1]
-    │   └─► Load: references/guide.md
-    │
-    ├─► [Condition 2]
-    │   └─► Load: references/detailed.md
-    │
-    └─► [Default condition]
-        └─► Use SKILL.md only
+    |
+    +- STEP 0: Detect [project/stack/mode]
+    +- STEP 1: Score intents (top-2 on ambiguity)
+    +- Phase 1: Implementation
+    +- Phase 2: Testing/Debugging
+    +- Phase 3: Verification
 ```
 
-### Resource Router
+### Resource Domains
+```text
+references/[domain]/...
+assets/[domain]/...
+```
+
+### Resource Loading Levels
+| Level       | When to Load             | Resources                    |
+| ----------- | ------------------------ | ---------------------------- |
+| ALWAYS      | Every skill invocation   | Baseline references          |
+| CONDITIONAL | If intent signals match  | Intent-mapped references     |
+| ON_DEMAND   | Only on explicit request | Deep-dive standards/templates|
+
+### Smart Router Pseudocode
 ```python
-def route_request(context):
-    # ──────────────────────────────────────────────────────────────────
-    # Detailed Guide
-    # Purpose: Complete step-by-step guide for complex tasks
-    # ──────────────────────────────────────────────────────────────────
-    if context.needs_detailed_guide:
-        return load("references/guide.md")  # Step-by-step instructions
-
-    # ──────────────────────────────────────────────────────────────────
-    # Quick Reference
-    # Purpose: Fast lookup for common patterns
-    # ──────────────────────────────────────────────────────────────────
-    if context.needs_quick_lookup:
-        return load("references/quick_ref.md")  # Cheat sheet
-
-    # Default: SKILL.md covers basic cases
+def route_request(user_request, task=None):
+    # 1) Discover markdown resources recursively under this skill
+    # 2) Apply scoped guard for in-skill loading only
+    # 3) Score intents with weighted signals
+    # 4) Select top-2 intents when ambiguity delta is small
+    # 5) Load ALWAYS -> CONDITIONAL -> ON_DEMAND resources
+    return {"intents": intents, "resources": loaded}
 ```
 
-## 3. REFERENCES
-[TODO: Add 3-column tables listing bundled resources]
-
-## 4. HOW IT WORKS
+## 3. HOW IT WORKS
 [TODO: Explain how the skill works]
 
-## 5. RULES
+## 4. RULES
 [TODO: Add ALWAYS/NEVER/ESCALATE IF rules]
 
-## 6. SUCCESS CRITERIA
+## 5. SUCCESS CRITERIA
 [TODO: Define success criteria]
 
-## 7. INTEGRATION POINTS
+## 6. INTEGRATION POINTS
 [TODO: Describe integration points]
-
-## BUNDLED RESOURCES
-[TODO: List bundled resources]
 ```
 
 **After initialization**: Customize or remove generated files as needed.
@@ -482,61 +483,60 @@ Answer these questions in SKILL.md:
 
 3. **How should the agent route to the right resources?**
    - Section 2: SMART ROUTING
-   - **Contains TWO subsections:**
-     1. **Activation Detection** - ASCII flowchart with file refs inline in each branch
-     2. **Resource Router** - Python pseudocode with descriptive comments and `load()` calls
-   - **Anti-pattern**: Do NOT create a separate "Navigation Guide" listing files - this is redundant because files are already referenced in the flowchart and Router
+   - **Contains FIVE routing subsections (recommended order):**
+     1. **Primary Detection Signal** (project/stack/mode)
+     2. **Phase Detection** (execution flow)
+     3. **Resource Domains** (includes folder mapping)
+     4. **Resource Loading Levels**
+     5. **Smart Router Pseudocode** (single authoritative router block)
+   - **Anti-pattern**: Do NOT duplicate routing logic in separate lookup tables
    - Example content:
-     ```markdown
-     ## 2. SMART ROUTING
-     
-     ### Activation Detection
-     ```
-     TASK CONTEXT
-         │
-         ├─► Structure validation needed
-         │   └─► Load: references/validation.md
-         │
-         ├─► Content creation task
-         │   └─► Load: assets/templates/
-         │
-         └─► Quality review requested
-             └─► Load: references/core_standards.md
-     ```
-     
-     ### Resource Router
-     ```python
-     def route_request(context):
-         # ──────────────────────────────────────────────────────────────────
-         # Validation Reference
-         # Purpose: Quality scoring and structure validation
-         # ──────────────────────────────────────────────────────────────────
-         if context.needs_validation:
-             return load("references/validation.md")  # Quality scoring
+      ```markdown
+      ## 2. SMART ROUTING
+      
+      ### [Primary Detection Signal]
+      ```bash
+      [ -f "go.mod" ] && STACK="GO"
+      [ -f "package.json" ] && STACK="NODEJS"
+      ```
 
-         # ──────────────────────────────────────────────────────────────────
-         # Templates
-         # Purpose: Starting templates for content creation
-         # ──────────────────────────────────────────────────────────────────
-         if context.needs_templates:
-             return load("assets/templates/")  # Output templates
+      ### Resource Domains
+      ```text
+      references/[domain]/...
+      assets/[domain]/...
+      ```
 
-         # Default: SKILL.md covers basic cases
-     ```
-     ```
+      ### Resource Loading Levels
+      | Level       | When to Load             | Resources                    |
+      | ----------- | ------------------------ | ---------------------------- |
+      | ALWAYS      | Every skill invocation   | Baseline references          |
+      | CONDITIONAL | If intent signals match  | Intent-mapped references     |
+      | ON_DEMAND   | Only on explicit request | Deep-dive standards/templates|
 
-4. **What resources are bundled with this skill?**
-   - Section 3: REFERENCES
-   - 3-column categorized tables (Document | Purpose | Key Insight)
-   - Group by Core Framework, Bundled Resources, etc.
+      ### Smart Router Pseudocode
+      ```python
+      def route_request(user_request, task=None):
+          # 1) Discover markdown resources recursively
+          # 2) Apply scoped guard (in-skill only)
+          # 3) Score intents (weighted)
+          # 4) Handle ambiguity with top-2 intent routing
+          # 5) Load by ALWAYS -> CONDITIONAL -> ON_DEMAND
+          return {"intents": intents, "resources": loaded}
+      ```
+      ```
+
+4. **How should bundled resources be organized for routing clarity?**
+   - Keep domain structure explicit (for example `references/backend/go/`)
+   - Mirror key domains under `assets/` when templates/checklists are stack-specific
+   - Keep one source of truth for mapping in `Resource Domains`
 
 5. **How should the agent use the skill in practice?**
-   - Section 4: HOW IT WORKS
+   - Section 3: HOW IT WORKS
    - Reference all bundled resources
    - Explain workflow and decision points
 
 6. **What rules govern skill usage?**
-   - Section 5: RULES
+   - Section 4: RULES
    - ALWAYS rules (required actions)
    - NEVER rules (forbidden actions)
    - ESCALATE IF (when to ask user)
@@ -977,7 +977,7 @@ description: This is my skill description all on one line.
 
 ### Pitfall 8: File References in Wrong Section or Redundant Navigation Guide
 
-**Problem**: File references placed in "WHEN TO USE" section, or a separate "Navigation Guide" subsection created (redundant pattern).
+**Problem**: File references placed in "WHEN TO USE" section, or routing logic duplicated across multiple tables/snippets.
 
 **Example**:
 ```markdown
@@ -985,18 +985,18 @@ description: This is my skill description all on one line.
 ## 1. WHEN TO USE
 See `references/guide.md` for details...
 
-# Bad - Separate Navigation Guide (redundant)
+# Bad - Separate lookup table duplicates router logic
 ## 2. SMART ROUTING
 
-### Navigation Guide
-| Resource | Path |
-|----------|------|
-| Standards | `references/core_standards.md` |
+### Routing Table
+| Intent | Path |
+|--------|------|
+| Validation | `references/core_standards.md` |
 
-### Resource Router
+### Smart Router Pseudocode
 ...
 
-# Good - File refs inline in flowchart and Router
+# Good - Detection + domains + one authoritative pseudocode block
 ## 1. WHEN TO USE
 
 ### Activation Triggers
@@ -1004,24 +1004,20 @@ See `references/guide.md` for details...
 
 ## 2. SMART ROUTING
 
-### Activation Detection
-```
-TASK CONTEXT
-    │
-    ├─► Validation needed
-    │   └─► Load: references/core_standards.md
-    │
-    └─► Quick task
-        └─► Use SKILL.md only
+### [Primary Detection Signal]
+```bash
+[ -f "package.json" ] && STACK="NODEJS"
 ```
 
-### Resource Router
+### Resource Domains
+```text
+references/[domain]/...
+assets/[domain]/...
+```
+
+### Smart Router Pseudocode
 ```python
 def route_request(context):
-    # ──────────────────────────────────────────────────────────────────
-    # Core Standards
-    # Purpose: Document type rules and structural requirements
-    # ──────────────────────────────────────────────────────────────────
     if context.needs_validation:
         return load("references/core_standards.md")  # Validation rules
 ```
@@ -1030,12 +1026,12 @@ def route_request(context):
 **Rule**:
 ```
 "When to Use" = WHEN (triggers, conditions, use cases)
-"Smart Routing" = WHAT (files inline in flowchart + Router load() calls)
+"Smart Routing" = HOW resources are selected and loaded
 
-⚠️ ANTI-PATTERN: Do NOT create a separate "Navigation Guide" - it's redundant
+⚠️ ANTI-PATTERN: Do NOT duplicate routing logic in separate lookup tables
 ```
 
-**Fix**: Put file references inline in Activation Detection flowchart branches and Resource Router load() calls. Do NOT create a separate Navigation Guide table.
+**Fix**: Keep Section 2 cohesive with detection context, merged resource domains/mapping, loading levels, and one authoritative Smart Router Pseudocode block.
 
 ---
 
@@ -1215,15 +1211,15 @@ skill-name/
 │   └── Markdown content (<5k words)
 ├── scripts/ (optional)
 │   └── *.py, *.sh
-├── references/ (optional, FLAT - no subfolders)
-│   └── *.md
+├── references/ (optional, flat or domain subfolders)
+│   └── [domain]/... or *.md
 └── assets/ (optional, subfolders OK)
     ├── opencode/     - OpenCode component templates
     ├── documentation/ - Document templates
     └── *.*
 ```
 
-**Organization**: `references/` stays flat for simplicity; `assets/` can use subfolders to group related files.
+**Organization**: Use flat `references/` for small skills; use domain subfolders for medium/complex skills. `assets/` can use subfolders to group related files.
 
 ### ️ Writing Style
 
@@ -1235,7 +1231,7 @@ skill-name/
 ### Required Sections
 
 1. WHEN TO USE (activation triggers and use cases ONLY)
-2. SMART ROUTING (router-first pseudocode + loading levels + resource domains)
+2. SMART ROUTING (detection + resource domains/mapping + loading levels + authoritative pseudocode)
 3. HOW IT WORKS
 4. RULES
 
@@ -1249,14 +1245,15 @@ Section 1 "WHEN TO USE" contains:
   └─ Keyword Triggers (optional)
 
 Section 2 "SMART ROUTING" contains:
-  ├─ Resource Router (pseudocode FIRST)
+  ├─ Primary Detection Signal
+  ├─ Phase Detection
+  ├─ Resource Domains (includes folder mapping)
   ├─ Resource Loading Levels (ALWAYS/CONDITIONAL/ON_DEMAND)
-  ├─ Routing Authority statement
-  └─ Resource Domains (domain-level paths, no static inventories)
+  └─ Smart Router Pseudocode (single authoritative router block)
 
 Routing Authority Standard:
-  Intent scoring and the in-code resource map are the authoritative routing source.
-  Do not maintain separate use-case routing tables.
+  Keep one authoritative pseudocode block in Section 2.
+  Do not maintain separate routing lookup tables.
 ```
 
 ### Recommended Sections
