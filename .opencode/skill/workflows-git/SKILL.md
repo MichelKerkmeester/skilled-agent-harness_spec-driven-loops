@@ -40,6 +40,14 @@ Use this orchestrator when:
 <!-- ANCHOR:smart-routing -->
 ## 2. SMART ROUTING
 
+### Resource Loading Levels
+
+| Level       | When to Load             | Resources                  |
+| ----------- | ------------------------ | -------------------------- |
+| ALWAYS      | Every skill invocation   | Quick reference baseline   |
+| CONDITIONAL | If intent signals match  | Setup/commit/finish docs   |
+| ON_DEMAND   | Only on explicit request | Extended patterns/templates|
+
 ### Smart Router Pseudocode
 
 ```python
@@ -144,15 +152,6 @@ def route_git_resources(task):
 
     return {"intents": intents, "resources": loaded}
 ```
-
-### Resource Loading Levels
-
-| Level       | When to Load             | Resources                  |
-| ----------- | ------------------------ | -------------------------- |
-| ALWAYS      | Every skill invocation   | Quick reference baseline   |
-| CONDITIONAL | If intent signals match  | Setup/commit/finish docs   |
-| ON_DEMAND   | Only on explicit request | Extended patterns/templates|
-
 
 ---
 

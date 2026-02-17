@@ -1,17 +1,17 @@
 ---
 name: workflows-code--full-stack
-description: "Stack-agnostic development orchestrator guiding developers through implementation, debugging, and verification phases with automatic stack detection via marker files and bundled stack-specific knowledge."
+description: "Stack-agnostic development orchestrator guiding developers through implementation, testing, and verification phases with automatic stack detection via marker files and bundled stack-specific knowledge."
 allowed-tools: [Bash, Edit, Glob, Grep, Read, Task, Write]
-version: 1.0.1.0
+version: 1.1.0.0
 ---
 
 <!-- Keywords: workflows-code, development-orchestrator, multi-stack, stack-detection, debugging-workflow, implementation-patterns, react, nextjs, react-native, swift, go, nodejs -->
 
 # Code Workflows - Stack-Agnostic Development Orchestrator
 
-Unified workflow guidance for any technology stack: Go, React, React Native, Swift, Node.js, and more.
+Unified workflow guidance for any technology stack: Go, Node.js, React/Next.js, React Native/Expo, Swift, and more.
 
-**Core Principle**: Implementation → Debugging (if needed) → Verification (MANDATORY) = reliable, production-ready code.
+**Core principle**: Implementation -> Testing/Debugging -> Verification (MANDATORY) = reliable, production-ready code.
 
 ---
 
@@ -21,37 +21,95 @@ Unified workflow guidance for any technology stack: Go, React, React Native, Swi
 ### Activation Triggers
 
 **Use this skill when:**
-- Starting development work (any stack)
-- Implementing features, APIs, components, services
-- Encountering errors or unexpected behavior
-- Before ANY completion claim ("works", "fixed", "done", "complete")
+- Starting development work across any supported stack
+- Implementing new features, APIs, components, services, or modules
+- Encountering errors, failing tests, or unexpected runtime behavior
+- Before any completion claim (`works`, `fixed`, `done`, `complete`, `passing`)
+- After implementation changes that require verification evidence
 
 **Keyword triggers:**
-- Implementation: "implement", "build", "create", "add feature", "service", "component"
-- Debugging: "debug", "fix", "error", "not working", "broken", "issue", "bug"
-- Verification: "done", "complete", "works", "fixed", "finished", "verify", "test"
+- Implementation: `implement`, `build`, `create`, `add feature`, `service`, `component`, `handler`
+- Testing: `test`, `unit test`, `integration test`, `coverage`, `mock`
+- Debugging: `debug`, `fix`, `error`, `broken`, `issue`, `bug`, `failing`
+- Verification: `done`, `complete`, `works`, `finished`, `verify`
 
 ### When NOT to Use
 
-- Documentation-only changes → use workflows-documentation
-- Git/version control → use workflows-git
-- Infrastructure/DevOps → use specialized DevOps skills
+**Do NOT use this skill for:**
+- Documentation-only changes (use `workflows-documentation`)
+- Git/version-control workflows (use `workflows-git`)
+- Browser inspection tasks only (use `workflows-chrome-devtools`)
 
 ### Phase Overview
 
+This orchestrator runs in three primary phases:
+
 | Phase                       | Purpose                                           | Trigger                               |
 | --------------------------- | ------------------------------------------------- | ------------------------------------- |
-| **Phase 1: Implementation** | Writing code following stack-specific patterns    | Starting new code, modifying existing |
-| **Phase 2: Debugging**      | Fixing issues systematically, root cause analysis | Test failures, errors                 |
-| **Phase 3: Verification**   | Final validation before completion claims         | Before ANY "done" claim               |
+| **Phase 1: Implementation** | Write code with stack-specific patterns           | Starting/modifying code               |
+| **Phase 2: Testing**        | Debug failures and validate behavior              | Test failures, runtime errors         |
+| **Phase 3: Verification**   | Final evidence before completion claims           | Before any `done`/`works` statement   |
 
-**The Iron Law**: NO COMPLETION CLAIMS WITHOUT RUNNING VERIFICATION FOR YOUR STACK
+**The Iron Law**: no completion claims without verification commands for the detected stack.
 
 ---
 
 <!-- /ANCHOR:when-to-use -->
 <!-- ANCHOR:smart-routing -->
 ## 2. SMART ROUTING
+
+### Stack Detection
+
+Stack detection is explicit and ordered. First match wins, then verification commands are selected for that stack.
+
+```bash
+[ -f "go.mod" ] && STACK="GO"
+[ -f "Package.swift" ] && STACK="SWIFT"
+[ -f "app.json" ] && grep -q "expo" app.json 2>/dev/null && STACK="REACT_NATIVE"
+[ -f "package.json" ] && grep -Eq 'react-native|expo' package.json && STACK="REACT_NATIVE"
+[ -f "next.config.js" -o -f "next.config.mjs" -o -f "next.config.ts" ] && STACK="REACT"
+[ -f "package.json" ] && grep -Eq '"next"|"react"' package.json && STACK="REACT"
+[ -f "package.json" ] && STACK="NODEJS"
+```
+
+### Phase Detection
+
+```
+TASK CONTEXT
+    |
+    +- STEP 0: Detect stack from marker files (routing + verification commands)
+    |
+    +- STEP 1: Weighted intent scoring (top-2 when ambiguity delta is small)
+    |
+    +- Phase 1: Implementation -> stack standards, architecture, patterns
+    +- Phase 2: Testing/Debugging -> testing/debug resources + debugging checklist
+    +- Phase 3: Verification -> stack verification commands + verification checklist
+```
+
+### Resource Domains
+
+The router discovers markdown resources recursively from `references/` and `assets/` and then applies intent scoring from `INTENT_MODEL`.
+
+Knowledge is bundled in stack domains under `references/` and `assets/`:
+
+```text
+references/backend/go/
+references/backend/nodejs/
+references/frontend/react/
+references/mobile/react-native/
+references/mobile/swift/
+
+assets/{category}/{stack}/checklists/
+assets/{category}/{stack}/patterns/
+```
+
+### Resource Loading Levels
+
+| Level       | When to Load             | Resources                         |
+| ----------- | ------------------------ | --------------------------------- |
+| ALWAYS      | Every skill invocation   | Stack standards baseline          |
+| CONDITIONAL | If intent signals match  | Stack-focused docs + checklists   |
+| ON_DEMAND   | Only on explicit request | Deeper stack references/patterns  |
 
 ### Smart Router Pseudocode
 
@@ -60,7 +118,7 @@ from pathlib import Path
 
 SKILL_ROOT = Path(__file__).resolve().parent
 RESOURCE_BASES = (SKILL_ROOT / "references", SKILL_ROOT / "assets")
-DEFAULT_RESOURCE = "references/backend/nodejs/nodejs_standards.md"
+DEFAULT_RESOURCE = "references/frontend/react/react_nextjs_standards.md"
 
 STACK_FOLDERS = {
     "GO": ("backend", "go"),
@@ -78,50 +136,33 @@ STACK_VERIFICATION_COMMANDS = {
     "SWIFT": ["swift test", "swiftlint", "swift build"],
 }
 
-INTENT_SIGNALS = {
-    "IMPLEMENTATION": {"weight": 3, "keywords": ["implement", "build", "create", "feature"]},
-    "DEBUGGING": {"weight": 4, "keywords": ["debug", "fix", "error", "broken", "failing"]},
-    "TESTING": {"weight": 3, "keywords": ["test", "coverage", "unit", "integration"]},
-    "VERIFICATION": {"weight": 4, "keywords": ["verify", "done", "complete", "works", "finished"]},
+INTENT_MODEL = {
+    "IMPLEMENTATION": {"keywords": [("implement", 4), ("build", 3), ("create", 3), ("feature", 3)]},
+    "DEBUGGING": {"keywords": [("bug", 4), ("fix", 4), ("error", 4), ("broken", 3)]},
+    "TESTING": {"keywords": [("test", 4), ("unit", 2), ("integration", 2), ("coverage", 2)]},
+    "VERIFICATION": {"keywords": [("verify", 4), ("done", 3), ("complete", 3), ("works", 2)]},
+    "DATABASE": {"keywords": [("database", 4), ("sql", 3), ("migration", 3), ("schema", 2)]},
+    "API": {"keywords": [("api", 4), ("endpoint", 3), ("handler", 3), ("route", 2)]},
+    "DEPLOYMENT": {"keywords": [("deploy", 4), ("release", 3), ("docker", 3), ("kubernetes", 3)]},
 }
 
-RESOURCE_MAP = {
-    "IMPLEMENTATION": ["references/{cat}/{stack}/{stack}_standards.md", "assets/{cat}/{stack}/checklists/code_quality_checklist.md"],
-    "DEBUGGING": ["assets/{cat}/{stack}/checklists/debugging_checklist.md"],
-    "TESTING": ["assets/{cat}/{stack}/checklists/debugging_checklist.md"],
-    "VERIFICATION": ["assets/{cat}/{stack}/checklists/verification_checklist.md"],
+LOAD_LEVELS = {
+    "VERIFICATION": "MINIMAL",
+    "DEBUGGING": "DEBUGGING",
+    "TESTING": "FOCUSED",
+    "DATABASE": "FOCUSED",
+    "API": "FOCUSED",
+    "DEPLOYMENT": "FOCUSED",
+    "IMPLEMENTATION": "STANDARD",
 }
 
-def detect_stack(workspace_files, package_json_text="", app_json_text="") -> str:
-    """Stack detection for routing and verification command selection."""
-    workspace = set(workspace_files or [])
-    package_json = (package_json_text or "").lower()
-    app_json = (app_json_text or "").lower()
-
-    if "go.mod" in workspace:
-        return "GO"
-
-    if "Package.swift" in workspace or any(name.endswith(".xcodeproj") for name in workspace):
-        return "SWIFT"
-
-    if "app.json" in workspace and "expo" in app_json:
-        return "REACT_NATIVE"
-    if "package.json" in workspace and ("react-native" in package_json or "expo" in package_json):
-        return "REACT_NATIVE"
-
-    if "next.config.js" in workspace or "next.config.mjs" in workspace or "next.config.ts" in workspace:
-        return "REACT"
-    if "package.json" in workspace and ("\"next\"" in package_json or "\"react\"" in package_json):
-        return "REACT"
-
-    if "package.json" in workspace:
-        return "NODEJS"
-    return "NODEJS"
+AMBIGUITY_DELTA = 1
 
 def _task_text(task) -> str:
     return " ".join([
         str(getattr(task, "query", "")),
         str(getattr(task, "text", "")),
+        str(getattr(task, "description", "")),
         " ".join(getattr(task, "keywords", []) or []),
     ]).lower()
 
@@ -136,100 +177,123 @@ def discover_markdown_resources() -> set[str]:
     docs = []
     for base in RESOURCE_BASES:
         if base.exists():
-            docs.extend(p for p in base.rglob("*.md") if p.is_file())
+            docs.extend(path for path in base.rglob("*.md") if path.is_file())
     return {doc.relative_to(SKILL_ROOT).as_posix() for doc in docs}
 
-def score_intents(task) -> dict[str, float]:
-    """Weighted intent scoring from request text and phase signals."""
-    text = _task_text(task)
-    scores = {intent: 0.0 for intent in INTENT_SIGNALS}
-    for intent, cfg in INTENT_SIGNALS.items():
-        for keyword in cfg["keywords"]:
+def detect_stack(workspace_files, package_json_text="", app_json_text="") -> str:
+    workspace = set(workspace_files or [])
+    package_json = (package_json_text or "").lower()
+    app_json = (app_json_text or "").lower()
+
+    if "go.mod" in workspace:
+        return "GO"
+    if "Package.swift" in workspace or any(name.endswith(".xcodeproj") for name in workspace):
+        return "SWIFT"
+    if "app.json" in workspace and "expo" in app_json:
+        return "REACT_NATIVE"
+    if "package.json" in workspace and ("react-native" in package_json or "expo" in package_json):
+        return "REACT_NATIVE"
+    if "next.config.js" in workspace or "next.config.mjs" in workspace or "next.config.ts" in workspace:
+        return "REACT"
+    if "package.json" in workspace and ("\"next\"" in package_json or "\"react\"" in package_json):
+        return "REACT"
+    if "package.json" in workspace:
+        return "NODEJS"
+    return "NODEJS"
+
+def classify_intents(user_request, task=None):
+    text = (user_request or "").lower()
+    intent_scores = {intent: 0 for intent in INTENT_MODEL}
+
+    for intent, cfg in INTENT_MODEL.items():
+        for keyword, weight in cfg["keywords"]:
             if keyword in text:
-                scores[intent] += cfg["weight"]
-    return scores
+                intent_scores[intent] += weight
 
-def select_intents(scores: dict[str, float], ambiguity_delta: float = 0.8, max_intents: int = 2) -> list[str]:
-    ranked = sorted(scores.items(), key=lambda item: item[1], reverse=True)
-    if not ranked or ranked[0][1] <= 0:
-        return ["IMPLEMENTATION"]
-    selected = [ranked[0][0]]
-    if len(ranked) > 1 and ranked[1][1] > 0 and (ranked[0][1] - ranked[1][1]) <= ambiguity_delta:
-        selected.append(ranked[1][0])
-    return selected[:max_intents]
+    if task and getattr(task, "needs_verification", False):
+        intent_scores["VERIFICATION"] += 5
+    if task and getattr(task, "is_debugging", False):
+        intent_scores["DEBUGGING"] += 5
+    if task and getattr(task, "is_testing", False):
+        intent_scores["TESTING"] += 4
 
-def verification_commands_for(stack: str) -> list[str]:
+    ranked = sorted(intent_scores.items(), key=lambda pair: pair[1], reverse=True)
+    primary_intent, primary_score = ranked[0]
+    if primary_score == 0:
+        return ("IMPLEMENTATION", None, intent_scores)
+
+    secondary_intent, secondary_score = ranked[1]
+    if secondary_score > 0 and (primary_score - secondary_score) <= AMBIGUITY_DELTA:
+        return (primary_intent, secondary_intent, intent_scores)
+    return (primary_intent, None, intent_scores)
+
+def select_load_level(primary_intent: str) -> str:
+    return LOAD_LEVELS.get(primary_intent, "STANDARD")
+
+def _filter_paths(paths, keywords):
+    if not keywords:
+        return paths
+    lowered = [keyword.lower() for keyword in keywords]
+    return [path for path in paths if any(keyword in path.lower() for keyword in lowered)]
+
+def verification_commands_for(stack: str):
     return STACK_VERIFICATION_COMMANDS.get(stack, STACK_VERIFICATION_COMMANDS["NODEJS"])
 
-def route_full_stack_resources(task, workspace_files, package_json_text="", app_json_text=""):
+def route_resources(user_request, task=None, workspace_files=None, package_json_text="", app_json_text=""):
     inventory = discover_markdown_resources()
+    task = task or type("Task", (), {"query": user_request})()
+
     stack = detect_stack(workspace_files, package_json_text, app_json_text)
-    category, folder = STACK_FOLDERS[stack]
-    intents = select_intents(score_intents(task), ambiguity_delta=0.8)
+    category, folder = STACK_FOLDERS.get(stack, STACK_FOLDERS["NODEJS"])
+    primary, secondary, intent_scores = classify_intents(user_request, task)
+
+    active_intents = [primary] + ([secondary] if secondary else [])
+    load_level = select_load_level(primary)
+
+    stack_ref_prefix = f"references/{category}/{folder}/"
+    stack_asset_prefix = f"assets/{category}/{folder}/"
+    stack_refs = sorted(path for path in inventory if path.startswith(stack_ref_prefix))
+    stack_assets = sorted(path for path in inventory if path.startswith(stack_asset_prefix))
+
     loaded = []
     seen = set()
 
-    def load_if_available(template_path: str) -> None:
-        resolved = template_path.replace("{cat}", category).replace("{stack}", folder)
-        guarded = _guard_in_skill(resolved)
+    def load_if_available(relative_path: str):
+        guarded = _guard_in_skill(relative_path)
         if guarded in inventory and guarded not in seen:
             load(guarded)
             loaded.append(guarded)
             seen.add(guarded)
 
-    for intent in intents:
-        for template_path in RESOURCE_MAP.get(intent, []):
-            load_if_available(template_path)
+    load_if_available(DEFAULT_RESOURCE)
 
-    if not loaded:
-        fallback = DEFAULT_RESOURCE
-        guarded = _guard_in_skill(fallback)
-        if guarded in inventory:
-            load(guarded)
-            loaded.append(guarded)
+    if load_level == "MINIMAL":
+        load_if_available(f"assets/{category}/{folder}/checklists/verification_checklist.md")
+    elif load_level == "DEBUGGING":
+        debug_refs = _filter_paths(stack_refs, ["test", "debug", "error", "issue"])
+        for path in (debug_refs or stack_refs[:6]):
+            load_if_available(path)
+        load_if_available(f"assets/{category}/{folder}/checklists/debugging_checklist.md")
+    elif load_level == "FOCUSED":
+        focused_keywords = [keyword for keyword, _weight in INTENT_MODEL.get(primary, {}).get("keywords", [])]
+        focused_refs = _filter_paths(stack_refs, focused_keywords)
+        for path in (focused_refs or stack_refs[:6]):
+            load_if_available(path)
+    else:
+        for path in stack_refs:
+            load_if_available(path)
+        for path in stack_assets:
+            load_if_available(path)
 
     return {
         "stack": stack,
-        "intents": intents,
+        "intents": active_intents,
+        "intent_scores": intent_scores,
+        "load_level": load_level,
         "verification_commands": verification_commands_for(stack),
         "resources": loaded,
     }
 ```
-
-### Stack Detection (For Verification Commands)
-
-Stack detection is explicit and ordered. First match wins, then verification commands are selected for that stack.
-
-```bash
-[ -f "go.mod" ] && STACK="GO"
-[ -f "Package.swift" ] && STACK="SWIFT"
-[ -f "app.json" ] && grep -q "expo" app.json 2>/dev/null && STACK="REACT_NATIVE"
-[ -f "package.json" ] && grep -Eq 'react-native|expo' package.json && STACK="REACT_NATIVE"
-[ -f "next.config.js" -o -f "next.config.mjs" -o -f "next.config.ts" ] && STACK="REACT"
-[ -f "package.json" ] && grep -Eq '"next"|"react"' package.json && STACK="REACT"
-[ -f "package.json" ] && STACK="NODEJS"
-```
-
-This stack is then used for both `STACK_FOLDERS` routing and `STACK_VERIFICATION_COMMANDS` selection.
-
-### Resource Loading Levels
-
-| Level       | When to Load            | Resources                         |
-| ----------- | ----------------------- | --------------------------------- |
-| ALWAYS      | Every invocation        | Stack standards/checklists        |
-| CONDITIONAL | If intent signals match | Debugging/testing/verification    |
-| ON_DEMAND   | Explicit deep-dive ask  | Additional stack-specific guides  |
-
-### Resource Domains
-
-The router discovers markdown resources recursively from `references/` and `assets/` and then applies intent scoring from `RESOURCE_MAP`. Keep this section domain-focused rather than static file inventories.
-
-- `references/backend/` for Go and Node.js standards, API patterns, and backend implementation guidance.
-- `references/frontend/` for React and Next.js standards, component patterns, and frontend architecture guidance.
-- `references/mobile/` for React Native and Swift standards, platform patterns, and mobile implementation guidance.
-- `assets/backend/` for backend checklists and reusable implementation patterns.
-- `assets/frontend/` for frontend checklists and reusable implementation patterns.
-- `assets/mobile/` for mobile checklists and reusable implementation patterns.
 
 ---
 
@@ -239,67 +303,76 @@ The router discovers markdown resources recursively from `references/` and `asse
 
 ### Development Lifecycle
 
+All stacks follow the same execution flow:
+
 ```
-Implementation → Debugging (if issues) → Verification (MANDATORY)
+Implementation -> Testing/Debugging (if issues) -> Verification (MANDATORY)
 ```
 
 ### Phase 1: Implementation (Stack-Specific)
 
-**Common Stack Patterns:**
+Implementation patterns are loaded from `references/{category}/{stack}/` based on detected stack.
 
-| Stack        | Key Patterns                                      | Naming                                   |
-| ------------ | ------------------------------------------------- | ---------------------------------------- |
-| Go           | Domain layers, DI, generics, table-driven tests   | `snake_case` files, `PascalCase` exports |
-| Node.js      | Express middleware, async/await, service patterns | `camelCase` everywhere                   |
-| React        | Hooks, component composition, data fetching       | `kebab-case` files, `PascalCase` classes |
-| React Native | Hooks extraction, responsive scaling, navigation  | `kebab-case` files, `PascalCase` classes |
-| Swift        | MVVM, SwiftUI views, async/await, Combine         | `PascalCase` types, `camelCase` members  |
+| Stack        | Key Patterns                                              | Naming                                   |
+| ------------ | --------------------------------------------------------- | ---------------------------------------- |
+| Go           | Domain layers, DI, repository patterns, table-driven tests| `snake_case` files, `PascalCase` exports |
+| Node.js      | Service layering, async flow, middleware composition      | `camelCase` for symbols                  |
+| React/Next.js| Component architecture, state boundaries, data fetching   | `kebab-case` files, `PascalCase` components |
+| React Native | Hooks extraction, navigation flow, responsive behavior    | `kebab-case` files, `PascalCase` components |
+| Swift        | MVVM separation, SwiftUI composition, async handling      | `PascalCase` types, `camelCase` members  |
 
-**Code Quality Gate (Before claiming implementation complete):**
+### Phase 2: Testing/Debugging
 
-1. Detect stack via marker files
-2. Load `assets/{category}/{stack}/checklists/code_quality_checklist.md`
-3. Validate P0 items (MUST fix), P1 items (fix or document deferral)
-4. **Gate Rule**: If ANY P0 item fails, completion is BLOCKED
+**Systematic debugging workflow:**
 
-### Phase 2: Debugging
+1. **Root Cause Investigation**
+   - Read full error output
+   - Reproduce consistently
+   - Check recent changes (`git diff`)
+   - Trace symptom to source
 
-**Systematic Debugging** (Universal):
+2. **Pattern Analysis**
+   - Compare against known good patterns in stack references
+   - Identify mismatches in architecture, types, or flow
 
-1. **Root Cause Investigation** - Read errors, reproduce, check `git diff`, trace data flow
-2. **Pattern Analysis** - Find working examples, compare against stack patterns
-3. **Hypothesis Testing** - Single hypothesis, one change at a time, if 3+ fixes failed → question approach
-4. **Implementation** - Document fix, implement, run verification
+3. **Hypothesis and Testing**
+   - Form a single hypothesis
+   - Apply one change at a time
+   - Re-test after each change
 
-**Stack-Specific Testing:**
+4. **Implementation**
+   - Apply root-cause fix
+   - Re-run stack checks
 
-| Stack        | Test Command    | Coverage         | Lint                |
-| ------------ | --------------- | ---------------- | ------------------- |
-| Go           | `go test ./...` | `go test -cover` | `golangci-lint run` |
-| Node.js      | `npm test`      | Jest coverage    | ESLint              |
-| React        | `npm test`      | Jest coverage    | ESLint              |
-| React Native | `npm test`      | Jest coverage    | ESLint              |
-| Swift        | `swift test`    | Xcode coverage   | SwiftLint           |
+**Stack-specific testing commands:**
+
+| Stack        | Test Command    | Coverage              | Lint                |
+| ------------ | --------------- | --------------------- | ------------------- |
+| Go           | `go test ./...` | `go test -cover`      | `golangci-lint run` |
+| Node.js      | `npm test`      | Jest/Vitest coverage  | `npx eslint .`      |
+| React/Next.js| `npm test`      | Jest/Vitest coverage  | `npx eslint .`      |
+| React Native | `npm test`      | Jest coverage         | `npx eslint .`      |
+| Swift        | `swift test`    | Xcode coverage        | `swiftlint`         |
 
 ### Phase 3: Verification (MANDATORY)
 
-**The Gate Function** - BEFORE claiming any status:
+**The gate function before completion claims:**
 
-1. **IDENTIFY:** What command proves this claim?
-2. **RUN:** Execute verification command
-3. **VERIFY:** All tests pass? Linting clean?
-4. **RECORD:** Note what you verified
-5. **ONLY THEN:** Make the claim
+1. **IDENTIFY** what command proves the claim
+2. **RUN** stack-specific test/lint/build commands
+3. **VERIFY** outputs are clean
+4. **RECORD** exactly what was verified
+5. **ONLY THEN** claim completion
 
-**Stack-Specific Verification:**
+**Stack-specific verification commands:**
 
-| Stack          | Test Command    | Lint Command        | Build Command     |
-| -------------- | --------------- | ------------------- | ----------------- |
-| `GO`           | `go test ./...` | `golangci-lint run` | `go build ./...`  |
-| `NODEJS`       | `npm test`      | `npx eslint .`      | `npm run build`   |
-| `REACT`        | `npm test`      | `npx eslint .`      | `npm run build`   |
-| `REACT_NATIVE` | `npm test`      | `npx eslint .`      | `npx expo export` |
-| `SWIFT`        | `swift test`    | `swiftlint`         | `swift build`     |
+| Stack        | Test            | Lint                | Build             |
+| ------------ | --------------- | ------------------- | ----------------- |
+| Go           | `go test ./...` | `golangci-lint run` | `go build ./...`  |
+| Node.js      | `npm test`      | `npx eslint .`      | `npm run build`   |
+| React/Next.js| `npm test`      | `npx eslint .`      | `npm run build`   |
+| React Native | `npm test`      | `npx eslint .`      | `npx expo export` |
+| Swift        | `swift test`    | `swiftlint`         | `swift build`     |
 
 ---
 
@@ -307,82 +380,60 @@ Implementation → Debugging (if issues) → Verification (MANDATORY)
 <!-- ANCHOR:rules -->
 ## 4. RULES
 
-### Universal Rules (All Stacks)
+### Phase 1: Implementation (Universal)
 
-#### ✅ ALWAYS
-- Validate all inputs at function boundaries
-- Handle errors with meaningful messages
-- Add tests for new functionality
-- Run verification before claiming complete
+#### ALWAYS
+- Follow stack patterns from `references/{category}/{stack}/`
+- Validate all inputs and external boundaries
+- Handle errors with clear, actionable messages
+- Keep implementation aligned with existing architecture
 
-#### ❌ NEVER
+#### NEVER
 - Skip input validation
-- Catch and swallow errors silently
-- Change multiple things simultaneously when debugging
-- Claim "works" without running tests
+- Hide failures with silent catch blocks
+- Mix conflicting stack patterns in one change
+- Leave debug-only code in production paths
 
-#### ⚠️ ESCALATE IF
-- Bug only occurs in production
-- Root cause in third-party dependency
-- Cannot reproduce consistently
+#### ESCALATE IF
+- Required pattern is missing or contradictory
+- Security-sensitive behavior is unclear
+- Change introduces interface-breaking behavior
 
-### Go-Specific
+### Phase 2: Testing/Debugging (Universal)
 
-| ✅ ALWAYS                             | ❌ NEVER                                       |
-| ------------------------------------ | --------------------------------------------- |
-| Use `context.Context` as first param | Ignore errors (use `_` only when intentional) |
-| Return errors as last return value   | Use `panic` for normal error handling         |
-| Use `defer` for cleanup              | Share memory without synchronization          |
-| Use table-driven tests               | Use global mutable state                      |
+#### ALWAYS
+- Reproduce issue before fixing
+- Trace symptoms back to root cause
+- Test one meaningful change at a time
+- Re-run relevant tests after each fix
 
-### Swift-Specific
+#### NEVER
+- Apply multi-fix batches without isolation
+- Patch symptoms only
+- Skip post-fix verification
+- Continue beyond three failed attempts without reframing
 
-| ✅ ALWAYS                                  | ❌ NEVER                                  |
-| ----------------------------------------- | ---------------------------------------- |
-| Use `guard let` or `if let` for optionals | Force unwrap (`!`) without proven safety |
-| Use `weak self` in closures               | Block main thread with sync operations   |
-| Use `@MainActor` for UI updates           | Use `try!` without handling errors       |
+#### ESCALATE IF
+- Bug cannot be reproduced reliably
+- Failure depends on production-only conditions
+- Root cause is in third-party dependency internals
 
-### React / Next.js Specific
+### Phase 3: Verification (MANDATORY)
 
-| ✅ ALWAYS                             | ❌ NEVER                              |
-| ------------------------------------ | ------------------------------------ |
-| Use hooks at top level of components | Mutate state directly                |
-| Include all deps in useEffect arrays | Use `any` type without justification |
-| Handle loading and error states      | Skip key prop in lists               |
+#### ALWAYS
+- Run stack test/lint/build commands
+- Document what was actually verified
+- Include known limitations if full verification is not possible
 
-### React Native / Expo Specific
+#### NEVER
+- Claim `works` without command evidence
+- Use `should work` as a completion statement
+- Skip verification because change appears small
 
-| ✅ ALWAYS                                        | ❌ NEVER                                   |
-| ----------------------------------------------- | ----------------------------------------- |
-| Use `FlatList` for long lists                   | Use inline styles for repeated components |
-| Handle platform-specific with `Platform.select` | Skip testing on physical devices          |
-| Test on both iOS and Android                    | Use synchronous storage for large data    |
-
-### Node.js Specific
-
-| ✅ ALWAYS                             | ❌ NEVER                               |
-| ------------------------------------ | ------------------------------------- |
-| Use async/await over callbacks       | Block event loop with sync operations |
-| Validate all API inputs              | Store secrets in code                 |
-| Use environment variables for config | Trust client data without validation  |
-
-### Debugging Rules
-
-| ✅ ALWAYS                     | ❌ NEVER                                           |
-| ---------------------------- | ------------------------------------------------- |
-| Read complete error messages | Skip error messages                               |
-| Test one change at a time    | Change multiple things simultaneously             |
-| Trace backward to root cause | Fix symptoms without understanding cause          |
-| Document root cause          | Proceed with 4th fix without questioning approach |
-
-### ✅ Verification Rules
-
-| ✅ ALWAYS                           | ❌ NEVER                               |
-| ---------------------------------- | ------------------------------------- |
-| Run tests before claiming complete | Claim "works" without running tests   |
-| Note what you verified             | Say "should work" - prove it          |
-| Check for errors in output         | Skip verification for "small changes" |
+#### ESCALATE IF
+- Full test suite is unavailable
+- Verification requires unavailable environments
+- Coverage is insufficient for risk level
 
 ---
 
@@ -390,28 +441,41 @@ Implementation → Debugging (if issues) → Verification (MANDATORY)
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-### Phase Completion Checklists
+### Phase 1: Implementation
 
-| Phase          | Checklist Path                                              | Key Criteria                         |
-| -------------- | ----------------------------------------------------------- | ------------------------------------ |
-| Implementation | `assets/{cat}/{stack}/checklists/code_quality_checklist.md` | Stack conventions, P0 items pass     |
-| Debugging      | `assets/{cat}/{stack}/checklists/debugging_checklist.md`    | Root cause documented, fix at source |
-| Verification   | `assets/{cat}/{stack}/checklists/verification_checklist.md` | Tests pass, verified in environment  |
+Implementation is successful when:
+- Code follows stack conventions
+- Inputs are validated and failure paths are handled
+- New behavior is covered by tests where appropriate
+- Build passes for the stack
 
-### Stack-Specific Success Criteria
+Quality gates:
+- Does this match patterns in stack references?
+- Are edge-case and invalid-input paths covered?
 
-| Stack          | Test Coverage | Lint Clean | Build Success | Environment Verified |
-| -------------- | ------------- | ---------- | ------------- | -------------------- |
-| `GO`           | 80%+          | Required   | Required      | `go test -race`      |
-| `NODEJS`       | 80%+          | Required   | Required      | API Tests            |
-| `REACT`        | 70%+          | Required   | Required      | Browser (multi-VP)   |
-| `REACT_NATIVE` | 70%+          | Required   | Required      | Device/Simulator     |
-| `SWIFT`        | 70%+          | Required   | Required      | Device/Simulator     |
+### Phase 2: Testing/Debugging
 
-### Performance Targets
+Debugging is successful when:
+- Root cause is identified
+- Fix addresses cause rather than symptom
+- Relevant tests pass after the fix
+- Linting and static checks are clean
 
-**Web:** FCP < 1.8s, LCP < 2.5s, TTI < 3.8s, CLS < 0.1, FPS 60fps, Errors 0
-**Mobile:** App Launch < 2s, Memory (no leaks), FPS 60fps
+Quality gates:
+- Can root cause be explained clearly?
+- Do before/after results prove the fix?
+
+### Phase 3: Verification
+
+Verification is successful when:
+- Stack test/lint/build commands pass
+- Results are documented in completion message
+- Remaining limitations are explicit
+
+Quality gates:
+- Which commands were run?
+- Were outputs clean?
+- Is there enough evidence to claim completion?
 
 ---
 
@@ -419,26 +483,45 @@ Implementation → Debugging (if issues) → Verification (MANDATORY)
 <!-- ANCHOR:integration-points -->
 ## 6. INTEGRATION POINTS
 
-### Framework Integration
+### Knowledge Base Integration (Bundled)
 
-- **Gate 2**: Skill routing via `skill_advisor.py`
-- **Memory**: Context preserved via Spec Kit Memory MCP
-
-### Knowledge Base Structure
+All stack knowledge is bundled directly in this skill:
 
 ```
 workflows-code--full-stack/
-├── references/{category}/{stack}/*.md    # Reference docs per stack
-├── assets/{category}/{stack}/checklists/ # Code quality, debugging, verification
-├── assets/{category}/{stack}/patterns/   # Code templates
+├── references/
+│   ├── backend/go/
+│   ├── backend/nodejs/
+│   ├── frontend/react/
+│   └── mobile/{react-native,swift}/
+├── assets/
+│   └── {category}/{stack}/{checklists,patterns}/
 └── SKILL.md
 ```
 
+### Naming Conventions (Stack-Specific)
+
+| Stack        | Files        | Variables    | Functions/Types                 |
+| ------------ | ------------ | ------------ | ------------------------------- |
+| Go           | `snake_case` | `camelCase`  | `PascalCase` exports            |
+| Node.js      | `kebab-case` | `camelCase`  | `camelCase`                     |
+| React/Next.js| `kebab-case` | `camelCase`  | `PascalCase` components         |
+| React Native | `kebab-case` | `camelCase`  | `PascalCase` components         |
+| Swift        | `PascalCase` | `camelCase`  | `PascalCase` types              |
+
+### Tool Usage Guidelines
+
+- `Bash`: run stack CLI, test/lint/build commands
+- `Read`: inspect source and references
+- `Grep`: locate patterns and symbols
+- `Glob`: discover files and stack markers
+
 ### External Tools
 
-| Tool                          | Purpose                               |
-| ----------------------------- | ------------------------------------- |
-| **workflows-chrome-devtools** | Browser debugging (CLI-first via bdg) |
+- Go: `go`, `golangci-lint`
+- Node.js/React: `npm`, `npx eslint`
+- React Native: `expo`, `npm`
+- Swift: `swift`, `swiftlint`
 
 ---
 
@@ -446,62 +529,77 @@ workflows-code--full-stack/
 <!-- ANCHOR:external-resources -->
 ## 7. EXTERNAL RESOURCES
 
-| Stack        | Documentation           |
-| ------------ | ----------------------- |
-| Go           | go.dev/doc              |
-| Node.js      | nodejs.org/docs         |
-| React        | react.dev               |
-| Next.js      | nextjs.org/docs         |
-| React Native | reactnative.dev         |
-| Expo         | docs.expo.dev           |
-| Swift        | swift.org/documentation |
+### Official Documentation
+
+| Stack        | Documentation                                     |
+| ------------ | ------------------------------------------------- |
+| Go           | [go.dev/doc](https://go.dev/doc/)                 |
+| Node.js      | [nodejs.org/docs](https://nodejs.org/en/docs/)    |
+| React        | [react.dev](https://react.dev/)                   |
+| Next.js      | [nextjs.org/docs](https://nextjs.org/docs)        |
+| React Native | [reactnative.dev](https://reactnative.dev/)       |
+| Expo         | [docs.expo.dev](https://docs.expo.dev/)           |
+| Swift        | [swift.org/documentation](https://swift.org/documentation/) |
+
+### Testing Frameworks
+
+| Stack        | Frameworks       | Documentation                                 |
+| ------------ | ---------------- | --------------------------------------------- |
+| Go           | testing/testify  | [pkg.go.dev/testing](https://pkg.go.dev/testing) |
+| Node.js      | Jest/Vitest      | [jestjs.io](https://jestjs.io/)               |
+| React        | RTL/Jest/Vitest  | [testing-library.com](https://testing-library.com/) |
+| React Native | Jest/Detox       | [jestjs.io](https://jestjs.io/)               |
+| Swift        | XCTest           | [developer.apple.com](https://developer.apple.com/documentation/xctest) |
 
 ---
 
 <!-- /ANCHOR:external-resources -->
-<!-- ANCHOR:related-skills -->
-## 8. RELATED SKILLS
+<!-- ANCHOR:related-resources -->
+## 8. RELATED RESOURCES
 
-| Skill                         | Use For                              |
-| ----------------------------- | ------------------------------------ |
-| **workflows-documentation**   | Documentation, skill creation        |
-| **workflows-git**             | Git workflows, commit hygiene        |
-| **system-spec-kit**           | Spec folder management, memory       |
-| **workflows-chrome-devtools** | Browser debugging, screenshots       |
+### Related Skills
+
+| Skill                         | Use For                                                     |
+| ----------------------------- | ----------------------------------------------------------- |
+| **workflows-documentation**   | Documentation quality, skill creation, markdown validation  |
+| **workflows-git**             | Git workflows, commit hygiene, PR creation                  |
+| **system-spec-kit**           | Spec folder management, memory system, context preservation |
+| **mcp-code-mode**             | Token-efficient MCP orchestration and tool chaining         |
+| **mcp-figma**                 | Figma file/component access and design extraction workflows |
+| **workflows-chrome-devtools** | Browser debugging, screenshots, console access              |
 
 ### Navigation Guide
 
-**Implementation:** Detect stack → Load `*_standards.md` → Load `code_quality_checklist.md`
-**Debugging:** Load `debugging_checklist.md` → Load `*testing*.md` → Follow 4-step debug
-**Verification:** Load `verification_checklist.md` → Run test/lint/build → Claim done
+**For Implementation Tasks:**
+1. Confirm applicability in Section 1
+2. Detect stack from markers in Section 2
+3. Load `references/{category}/{stack}/` patterns
+4. Follow Phase 1 workflow from Section 3
+
+**For Debugging Tasks:**
+1. Load `assets/{category}/{stack}/checklists/debugging_checklist.md`
+2. Load stack testing references (for example `testing_strategy.md`)
+3. Follow systematic debugging flow
+
+**For Verification Tasks:**
+1. Load `assets/{category}/{stack}/checklists/verification_checklist.md`
+2. Run stack verification commands
+3. Claim completion only with command evidence
 
 ---
 
-<!-- /ANCHOR:related-skills -->
-<!-- ANCHOR:where-am-i -->
-## 9. WHERE AM I?
-
-| Phase                 | You're here if...            | Exit criteria              |
-| --------------------- | ---------------------------- | -------------------------- |
-| **1: Implementation** | Writing/modifying code       | Code builds, P0 items pass |
-| **2: Debugging**      | Code has bugs/failing tests  | All tests passing          |
-| **3: Verification**   | Tests pass, final validation | Verified, ready to ship    |
-
-**Transitions:** 1→2 (bugs found) | 2→1 (missing code) | 2→3 (fixed) | 3→1/2 (issues found)
-**Key principle:** Always end with Phase 3 before claiming completion.
-
----
-
-<!-- /ANCHOR:where-am-i -->
+<!-- /ANCHOR:related-resources -->
 <!-- ANCHOR:quick-reference -->
-## 10. QUICK REFERENCE
+## 9. QUICK REFERENCE
 
 ### Universal Workflow
 
-1. **Detect Stack** → Check marker files (`go.mod`, `Package.swift`, `app.json`, `package.json`)
-2. **Load Resources** → `references/{category}/{stack}/` + `assets/{category}/{stack}/`
-3. **Execute** → Follow phase-specific patterns
-4. **Verify** → Use verification checklist before claiming completion
+1. Detect stack from marker files
+2. Classify intent (implementation/debugging/testing/verification)
+3. Load stack resources from `references/{category}/{stack}/`
+4. Apply fix/feature with stack patterns
+5. Run stack test/lint/build commands
+6. Document verification evidence
 
 ### Stack Commands Quick Reference
 
@@ -513,59 +611,25 @@ workflows-code--full-stack/
 | REACT_NATIVE | `npm test`      | `npx eslint .`      | `npx expo export` |
 | SWIFT        | `swift test`    | `swiftlint`         | `swift build`     |
 
-### Resource Paths
+### Stack Resource Paths
 
-| Stack        | Standards                                                  | Checklists                               |
-| ------------ | ---------------------------------------------------------- | ---------------------------------------- |
-| GO           | `references/backend/go/go_standards.md`                    | `assets/backend/go/checklists/`          |
-| NODEJS       | `references/backend/nodejs/nodejs_standards.md`            | `assets/backend/nodejs/checklists/`      |
-| REACT        | `references/frontend/react/react_nextjs_standards.md`      | `assets/frontend/react/checklists/`      |
-| REACT_NATIVE | `references/mobile/react-native/react-native-standards.md` | `assets/mobile/react-native/checklists/` |
-| SWIFT        | `references/mobile/swift/swift_standards.md`               | `assets/mobile/swift/checklists/`        |
+| Stack Domain      | Reference Paths                                                                 |
+| ----------------- | ------------------------------------------------------------------------------- |
+| Backend Go        | `references/backend/go/`                                                         |
+| Backend Node.js   | `references/backend/nodejs/`                                                     |
+| Frontend React    | `references/frontend/react/` (`api_patterns.md`, `component_architecture.md`, `data_fetching.md`) |
+| Mobile React Native | `references/mobile/react-native/`                                              |
+| Mobile Swift      | `references/mobile/swift/`                                                       |
 
-### Success Checklist (Quick)
+### Verification Checklist (Quick)
 
+```text
+[ ] Stack detected from marker files
+[ ] Correct standards loaded for stack
+[ ] Relevant tests passing
+[ ] Linting clean
+[ ] Build successful (if applicable)
+[ ] Verification evidence documented
 ```
-[ ] Stack detected via marker file
-[ ] Standards loaded for stack
-[ ] Code quality P0 items passing
-[ ] Stack test command run and passing
-[ ] Lint command passing
-[ ] Build succeeds
-[ ] Documented what was verified
-```
-
----
 
 <!-- /ANCHOR:quick-reference -->
-<!-- ANCHOR:directory-structure -->
-## 11. DIRECTORY STRUCTURE
-
-```
-workflows-code--full-stack/
-├── SKILL.md
-├── references/
-│   ├── backend/go/           # go_standards.md, api_design.md, database_patterns.md, ...
-│   ├── backend/nodejs/       # nodejs_standards.md, express_patterns.md, ...
-│   ├── frontend/react/       # react_nextjs_standards.md, state_management.md, ...
-│   └── mobile/
-│       ├── react-native/     # react-native-standards.md, navigation-patterns.md, ...
-│       └── swift/            # swift_standards.md, swiftui_patterns.md, ...
-└── assets/
-    ├── backend/go/           # checklists/ + patterns/
-    ├── backend/nodejs/       # checklists/ + patterns/
-    ├── frontend/react/       # checklists/ + patterns/
-    └── mobile/
-        ├── react-native/     # checklists/ + patterns/
-        └── swift/            # checklists/ + patterns/
-```
-
-### Adding New Stack
-
-1. Create `references/{category}/{stack}/` with `{stack}_standards.md`
-2. Create `assets/{category}/{stack}/checklists/` (code_quality, debugging, verification)
-3. Create `assets/{category}/{stack}/patterns/`
-4. Add detection logic to Section 2
-5. Add to STACK_FOLDERS mapping
-6. Add rules to Section 4
-<!-- /ANCHOR:directory-structure -->
