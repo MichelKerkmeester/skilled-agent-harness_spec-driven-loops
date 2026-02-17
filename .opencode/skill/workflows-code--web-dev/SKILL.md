@@ -192,6 +192,21 @@ def route_frontend_resources(task):
 | CONDITIONAL | If task keywords match   | Domain-specific references         |
 | ON_DEMAND   | Only on explicit request | Deep-dive optimization guides      |
 
+### Resource Domains
+
+The router discovers markdown resources recursively from `references/` and `assets/` and then applies intent scoring from `RESOURCE_MAP`. Keep this section domain-focused rather than static file inventories.
+
+- `references/implementation/` for feature implementation patterns, async workflows, and integration guidance.
+- `references/debugging/` for root-cause workflows, error recovery, and troubleshooting methodology.
+- `references/verification/` for browser-based verification workflows and completion validation.
+- `references/standards/` for style enforcement, quality expectations, and compliance guidance.
+- `references/performance/` for optimization strategies and performance diagnostics.
+- `references/deployment/` for minification and CDN deployment workflows.
+- `references/research/` for structured pre-implementation analysis patterns.
+- `assets/checklists/` for implementation, debugging, quality, and verification gates.
+- `assets/integrations/` for external integration patterns (for example Lenis and HLS).
+- `assets/patterns/` for reusable implementation snippets and validation/waiting patterns.
+
 ---
 
 <!-- /ANCHOR:smart-routing -->

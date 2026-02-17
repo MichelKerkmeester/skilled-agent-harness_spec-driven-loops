@@ -70,6 +70,14 @@ STACK_FOLDERS = {
     "SWIFT": ("mobile", "swift"),
 }
 
+STACK_VERIFICATION_COMMANDS = {
+    "GO": ["go test ./...", "golangci-lint run", "go build ./..."],
+    "NODEJS": ["npm test", "npx eslint .", "npm run build"],
+    "REACT": ["npm test", "npx eslint .", "npm run build"],
+    "REACT_NATIVE": ["npm test", "npx eslint .", "npx expo export"],
+    "SWIFT": ["swift test", "swiftlint", "swift build"],
+}
+
 INTENT_SIGNALS = {
     "IMPLEMENTATION": {"weight": 3, "keywords": ["implement", "build", "create", "feature"]},
     "DEBUGGING": {"weight": 4, "keywords": ["debug", "fix", "error", "broken", "failing"]},
@@ -85,18 +93,29 @@ RESOURCE_MAP = {
 }
 
 def detect_stack(workspace_files, package_json_text="", app_json_text="") -> str:
-    if "go.mod" in workspace_files:
+    """Stack detection for routing and verification command selection."""
+    workspace = set(workspace_files or [])
+    package_json = (package_json_text or "").lower()
+    app_json = (app_json_text or "").lower()
+
+    if "go.mod" in workspace:
         return "GO"
-    if "Package.swift" in workspace_files:
+
+    if "Package.swift" in workspace or any(name.endswith(".xcodeproj") for name in workspace):
         return "SWIFT"
-    if "app.json" in workspace_files and "expo" in app_json_text.lower():
+
+    if "app.json" in workspace and "expo" in app_json:
         return "REACT_NATIVE"
-    if "package.json" in workspace_files and "react-native" in package_json_text.lower():
+    if "package.json" in workspace and ("react-native" in package_json or "expo" in package_json):
         return "REACT_NATIVE"
-    if "next.config.js" in workspace_files or "next.config.mjs" in workspace_files:
+
+    if "next.config.js" in workspace or "next.config.mjs" in workspace or "next.config.ts" in workspace:
         return "REACT"
-    if "package.json" in workspace_files and '"react"' in package_json_text:
+    if "package.json" in workspace and ("\"next\"" in package_json or "\"react\"" in package_json):
         return "REACT"
+
+    if "package.json" in workspace:
+        return "NODEJS"
     return "NODEJS"
 
 def _task_text(task) -> str:
@@ -139,6 +158,9 @@ def select_intents(scores: dict[str, float], ambiguity_delta: float = 0.8, max_i
         selected.append(ranked[1][0])
     return selected[:max_intents]
 
+def verification_commands_for(stack: str) -> list[str]:
+    return STACK_VERIFICATION_COMMANDS.get(stack, STACK_VERIFICATION_COMMANDS["NODEJS"])
+
 def route_full_stack_resources(task, workspace_files, package_json_text="", app_json_text=""):
     inventory = discover_markdown_resources()
     stack = detect_stack(workspace_files, package_json_text, app_json_text)
@@ -166,8 +188,29 @@ def route_full_stack_resources(task, workspace_files, package_json_text="", app_
             load(guarded)
             loaded.append(guarded)
 
-    return {"stack": stack, "intents": intents, "resources": loaded}
+    return {
+        "stack": stack,
+        "intents": intents,
+        "verification_commands": verification_commands_for(stack),
+        "resources": loaded,
+    }
 ```
+
+### Stack Detection (For Verification Commands)
+
+Stack detection is explicit and ordered. First match wins, then verification commands are selected for that stack.
+
+```bash
+[ -f "go.mod" ] && STACK="GO"
+[ -f "Package.swift" ] && STACK="SWIFT"
+[ -f "app.json" ] && grep -q "expo" app.json 2>/dev/null && STACK="REACT_NATIVE"
+[ -f "package.json" ] && grep -Eq 'react-native|expo' package.json && STACK="REACT_NATIVE"
+[ -f "next.config.js" -o -f "next.config.mjs" -o -f "next.config.ts" ] && STACK="REACT"
+[ -f "package.json" ] && grep -Eq '"next"|"react"' package.json && STACK="REACT"
+[ -f "package.json" ] && STACK="NODEJS"
+```
+
+This stack is then used for both `STACK_FOLDERS` routing and `STACK_VERIFICATION_COMMANDS` selection.
 
 ### Resource Loading Levels
 
@@ -176,6 +219,17 @@ def route_full_stack_resources(task, workspace_files, package_json_text="", app_
 | ALWAYS      | Every invocation        | Stack standards/checklists        |
 | CONDITIONAL | If intent signals match | Debugging/testing/verification    |
 | ON_DEMAND   | Explicit deep-dive ask  | Additional stack-specific guides  |
+
+### Resource Domains
+
+The router discovers markdown resources recursively from `references/` and `assets/` and then applies intent scoring from `RESOURCE_MAP`. Keep this section domain-focused rather than static file inventories.
+
+- `references/backend/` for Go and Node.js standards, API patterns, and backend implementation guidance.
+- `references/frontend/` for React and Next.js standards, component patterns, and frontend architecture guidance.
+- `references/mobile/` for React Native and Swift standards, platform patterns, and mobile implementation guidance.
+- `assets/backend/` for backend checklists and reusable implementation patterns.
+- `assets/frontend/` for frontend checklists and reusable implementation patterns.
+- `assets/mobile/` for mobile checklists and reusable implementation patterns.
 
 ---
 

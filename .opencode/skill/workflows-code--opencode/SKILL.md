@@ -209,6 +209,18 @@ def route_opencode_resources(task):
 | CONDITIONAL | If language keywords match | Language-specific references |
 | ON_DEMAND   | Only on explicit request   | Deep-dive quality standards  |
 
+### Resource Domains
+
+The router discovers markdown resources recursively from `references/` and `assets/` and then applies intent scoring from `RESOURCE_MAP`. Keep this section domain-focused rather than static file inventories.
+
+- `references/shared/` for universal cross-language patterns, structure conventions, and organization guidance.
+- `references/javascript/` for JavaScript style, quality standards, and quick-reference guidance.
+- `references/typescript/` for TypeScript style, quality standards, and quick-reference guidance.
+- `references/python/` for Python style, quality standards, and quick-reference guidance.
+- `references/shell/` for shell scripting style, quality standards, and quick-reference guidance.
+- `references/config/` for JSON/JSONC style rules and configuration guidance.
+- `assets/checklists/` for language-specific quality gates and completion checklists.
+
 ---
 
 <!-- /ANCHOR:smart-routing -->
