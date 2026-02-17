@@ -113,6 +113,19 @@ FILE_EXTENSIONS = {
     ".json": "CONFIG", ".jsonc": "CONFIG"
 }
 
+NOISY_SYNONYMS = {
+    "TYPESCRIPT": {"typecheck": 1.8, "lint": 1.3, "strict": 1.2, "ci": 1.0},
+    "SHELL": {"shell safety": 2.0, "pipefail": 1.7, "unsafe": 1.6, "script warning": 1.4},
+    "CONFIG": {"jsonc": 2.0, "schema": 1.3, "config drift": 1.4, "format": 1.2},
+}
+
+UNKNOWN_FALLBACK_CHECKLIST = [
+    "List changed file extensions in the patch",
+    "Confirm CI failure category (style, typecheck, shell safety, config parsing)",
+    "Provide one representative failing command/output",
+    "Confirm minimum verification command set before completion claim",
+]
+
 def _task_text(task) -> str:
     return " ".join([
         str(getattr(task, "context", "")),
@@ -147,14 +160,20 @@ def detect_languages(task):
         for term, weight in signals.items():
             if term in text:
                 scores[language] += weight
+    for language, synonyms in NOISY_SYNONYMS.items():
+        for term, weight in synonyms.items():
+            if term in text:
+                scores[language] += weight
 
     ranked = sorted(scores.items(), key=lambda item: item[1], reverse=True)
     best_lang, best_score = ranked[0]
     second_lang, second_score = ranked[1]
     if best_score == 0:
         return ["UNKNOWN"], scores
+    adaptive_limit = 3 if sum(1 for term in ["ci", "mixed", "multi", "format", "safety"] if term in text) >= 2 else 2
     if (best_score - second_score) <= 0.8:
-        return [best_lang, second_lang], scores
+        top_languages = [language for language, score in ranked if score > 0][:adaptive_limit]
+        return top_languages, scores
     return [best_lang], scores
 
 def route_opencode_resources(task):
@@ -162,7 +181,7 @@ def route_opencode_resources(task):
 
     selected = ["references/shared/universal_patterns.md", "references/shared/code_organization.md"]
 
-    languages, _scores = detect_languages(task)
+    languages, language_scores = detect_languages(task)
 
     # Ambiguity handling: when top-2 are close, load both quick references.
     for language in languages:
@@ -211,7 +230,13 @@ def route_opencode_resources(task):
                 selected.append("assets/checklists/config_checklist.md")
 
     if languages == ["UNKNOWN"]:
-        return {"languages": languages, "resources": selected, "needs_clarification": True}
+        return {
+            "languages": languages,
+            "language_scores": language_scores,
+            "resources": selected,
+            "needs_clarification": True,
+            "disambiguation_checklist": UNKNOWN_FALLBACK_CHECKLIST,
+        }
 
     deduped = []
     seen = set()
@@ -220,7 +245,7 @@ def route_opencode_resources(task):
         if guarded in inventory and guarded not in seen:
             deduped.append(guarded)
             seen.add(guarded)
-    return {"languages": languages, "resources": deduped}
+    return {"languages": languages, "language_scores": language_scores, "resources": deduped}
 ```
 
 ---

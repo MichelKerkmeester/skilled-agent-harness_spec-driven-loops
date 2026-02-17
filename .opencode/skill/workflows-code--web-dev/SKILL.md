@@ -112,6 +112,22 @@ TASK_SIGNALS = {
     "PERFORMANCE": {"performance": 2.2, "optimize": 1.7, "core web vitals": 2.4},
 }
 
+NOISY_SYNONYMS = {
+    "DEBUGGING": {"unstable": 1.4, "janky": 1.6, "freeze": 1.6, "stutter": 1.5, "regression": 1.3},
+    "PERFORMANCE": {"cls": 1.7, "layout shift": 1.7, "main thread": 1.4, "stuck frame": 1.4},
+    "FORMS": {"duplicate submit": 1.9, "double submit": 1.9, "slow network": 1.2},
+    "VERIFICATION": {"before claiming": 1.6, "prove": 1.4, "evidence": 1.3},
+}
+
+MULTI_SYMPTOM_TERMS = ["janky", "stutter", "freeze", "cls", "duplicate", "flaky", "intermittent", "regression"]
+
+UNKNOWN_FALLBACK_CHECKLIST = [
+    "Identify primary failing surface (animation, forms, layout, network)",
+    "Capture one reproducible browser trace (console + performance profile)",
+    "Confirm target environment (mobile/desktop and browser)",
+    "State expected completion evidence (Lighthouse, lint, runtime checks)",
+]
+
 RESOURCE_MAP = {
     "IMPLEMENTATION": ["references/implementation/implementation_workflows.md"],
     "CODE_QUALITY": ["assets/checklists/code_quality_checklist.md", "references/standards/code_style_enforcement.md"],
@@ -160,24 +176,39 @@ def score_intents(task):
         for term, weight in terms.items():
             if term in text:
                 scores[intent] += weight
+    for intent, synonyms in NOISY_SYNONYMS.items():
+        for term, weight in synonyms.items():
+            if term in text:
+                scores[intent] += weight
     if getattr(task, "phase", "") == "verification" or getattr(task, "claiming_complete", False):
         scores["VERIFICATION"] += 5
     if getattr(task, "phase", "") == "debugging":
         scores["DEBUGGING"] += 5
     return scores
 
-def select_intents(scores: dict[str, float], ambiguity_delta: float = 0.8, max_intents: int = 2) -> list[str]:
+def select_intents(scores: dict[str, float], task_text: str, ambiguity_delta: float = 0.8, base_max_intents: int = 2, adaptive_max_intents: int = 3) -> list[str]:
     ranked = sorted(scores.items(), key=lambda item: item[1], reverse=True)
     if not ranked or ranked[0][1] <= 0:
         return ["IMPLEMENTATION"]
+
+    noisy_hits = sum(1 for term in MULTI_SYMPTOM_TERMS if term in (task_text or ""))
+    max_intents = adaptive_max_intents if noisy_hits >= 3 else base_max_intents
+
     selected = [ranked[0][0]]
-    if len(ranked) > 1 and ranked[1][1] > 0 and (ranked[0][1] - ranked[1][1]) <= ambiguity_delta:
-        selected.append(ranked[1][0])
+    for intent, score in ranked[1:]:
+        if score <= 0:
+            continue
+        if (ranked[0][1] - score) <= ambiguity_delta:
+            selected.append(intent)
+        if len(selected) >= max_intents:
+            break
     return selected[:max_intents]
 
 def route_frontend_resources(task):
     inventory = discover_markdown_resources()
-    intents = select_intents(score_intents(task), ambiguity_delta=0.8)
+    task_text = _task_text(task)
+    scores = score_intents(task)
+    intents = select_intents(scores, task_text, ambiguity_delta=0.8)
     loaded = []
     seen = set()
 
@@ -190,11 +221,24 @@ def route_frontend_resources(task):
 
     for relative_path in LOADING_LEVELS["ALWAYS"]:
         load_if_available(relative_path)
+
+    if sum(scores.values()) < 0.5:
+        load_if_available("assets/checklists/debugging_checklist.md")
+        load_if_available("assets/checklists/verification_checklist.md")
+        return {
+            "intents": ["IMPLEMENTATION"],
+            "intent_scores": scores,
+            "load_level": "UNKNOWN_FALLBACK",
+            "needs_disambiguation": True,
+            "disambiguation_checklist": UNKNOWN_FALLBACK_CHECKLIST,
+            "resources": loaded,
+        }
+
     for intent in intents:
         for relative_path in RESOURCE_MAP.get(intent, []):
             load_if_available(relative_path)
 
-    text = _task_text(task)
+    text = task_text
     if "lenis" in text:
         load_if_available("references/implementation/animation_workflows.md")
     if "hls" in text:
@@ -206,7 +250,7 @@ def route_frontend_resources(task):
     if not loaded:
         load_if_available(DEFAULT_RESOURCE)
 
-    return {"intents": intents, "resources": loaded}
+    return {"intents": intents, "intent_scores": scores, "resources": loaded}
 ```
 
 ---

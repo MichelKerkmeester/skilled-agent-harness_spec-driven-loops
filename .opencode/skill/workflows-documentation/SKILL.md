@@ -2,7 +2,7 @@
 name: workflows-documentation
 description: "Unified markdown and OpenCode component specialist providing document quality enforcement, content optimization, component creation workflows (skills, agents, commands), ASCII flowcharts and install guides."
 allowed-tools: [Bash, Edit, Glob, Grep, Read, Task, Write]
-version: 1.0.7.0
+version: 1.0.8.0
 ---
 
 <!-- Keywords: workflows-documentation, markdown-quality, skill-creation, document-validation, ascii-flowchart, llms-txt, content-optimization, extract-structure -->

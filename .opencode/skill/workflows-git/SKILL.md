@@ -66,6 +66,19 @@ INTENT_SIGNALS = {
     "SHARED_PATTERNS": {"weight": 3, "keywords": ["convention", "pattern", "reference", "branch naming"]},
 }
 
+NOISY_SYNONYMS = {
+    "WORKSPACE_SETUP": {"dirty workspace": 2.2, "unclean": 1.4, "mixed changes": 1.5},
+    "COMMIT": {"half-staged": 2.0, "boundary": 1.4, "split commit": 1.4},
+    "FINISH": {"ship": 1.5, "hotfix": 1.6, "trunk": 1.8, "minimal risk": 1.4},
+}
+
+UNKNOWN_FALLBACK_CHECKLIST = [
+    "Confirm base branch (main/master/trunk)",
+    "Confirm whether staged/unstaged changes should be split",
+    "Provide required PR policy (squash, template fields, checks)",
+    "Confirm hotfix urgency versus cleanup tolerance",
+]
+
 RESOURCE_MAP = {
     "WORKSPACE_SETUP": ["references/worktree_workflows.md", "assets/worktree_checklist.md"],
     "COMMIT": ["references/commit_workflows.md", "assets/commit_message_template.md"],
@@ -108,6 +121,10 @@ def score_intents(task) -> dict[str, float]:
         for keyword in cfg["keywords"]:
             if keyword in text:
                 scores[intent] += cfg["weight"]
+    for intent, synonyms in NOISY_SYNONYMS.items():
+        for term, weight in synonyms.items():
+            if term in text:
+                scores[intent] += weight
     if getattr(task, "needs_isolated_workspace", False):
         scores["WORKSPACE_SETUP"] += 4
     if getattr(task, "has_staged_changes", False):
@@ -116,18 +133,29 @@ def score_intents(task) -> dict[str, float]:
         scores["FINISH"] += 4
     return scores
 
-def select_intents(scores: dict[str, float], ambiguity_delta: float = 1.0, max_intents: int = 2) -> list[str]:
+def select_intents(scores: dict[str, float], task_text: str, ambiguity_delta: float = 1.0, base_max_intents: int = 2, adaptive_max_intents: int = 3) -> list[str]:
     ranked = sorted(scores.items(), key=lambda item: item[1], reverse=True)
     if not ranked or ranked[0][1] <= 0:
         return ["SHARED_PATTERNS"]
+
+    noisy_hits = sum(1 for term in ["dirty workspace", "half-staged", "hotfix", "minimal risk", "trunk"] if term in (task_text or ""))
+    max_intents = adaptive_max_intents if noisy_hits >= 2 else base_max_intents
+
     selected = [ranked[0][0]]
-    if len(ranked) > 1 and ranked[1][1] > 0 and (ranked[0][1] - ranked[1][1]) <= ambiguity_delta:
-        selected.append(ranked[1][0])
+    for intent, score in ranked[1:]:
+        if score <= 0:
+            continue
+        if (ranked[0][1] - score) <= ambiguity_delta:
+            selected.append(intent)
+        if len(selected) >= max_intents:
+            break
     return selected[:max_intents]
 
 def route_git_resources(task):
     inventory = discover_markdown_resources()
-    intents = select_intents(score_intents(task), ambiguity_delta=1.0)
+    task_text = _task_text(task)
+    scores = score_intents(task)
+    intents = select_intents(scores, task_text, ambiguity_delta=1.0)
     loaded = []
     seen = set()
 
@@ -140,6 +168,18 @@ def route_git_resources(task):
 
     for relative_path in LOADING_LEVELS["ALWAYS"]:
         load_if_available(relative_path)
+
+    if sum(scores.values()) < 0.5:
+        load_if_available("references/shared_patterns.md")
+        return {
+            "intents": ["SHARED_PATTERNS"],
+            "intent_scores": scores,
+            "load_level": "UNKNOWN_FALLBACK",
+            "needs_disambiguation": True,
+            "disambiguation_checklist": UNKNOWN_FALLBACK_CHECKLIST,
+            "resources": loaded,
+        }
+
     for intent in intents:
         for relative_path in RESOURCE_MAP.get(intent, []):
             load_if_available(relative_path)
@@ -152,7 +192,7 @@ def route_git_resources(task):
     if not loaded:
         load_if_available(DEFAULT_RESOURCE)
 
-    return {"intents": intents, "resources": loaded}
+    return {"intents": intents, "intent_scores": scores, "resources": loaded}
 ```
 
 ---

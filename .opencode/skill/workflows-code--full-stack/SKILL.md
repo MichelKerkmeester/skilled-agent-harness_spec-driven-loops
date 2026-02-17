@@ -138,6 +138,24 @@ STACK_VERIFICATION_COMMANDS = {
     "SWIFT": ["swift test", "swiftlint", "swift build"],
 }
 
+NOISY_SYNONYMS = {
+    "DEBUGGING": ["unstable", "janky", "freeze", "stutter", "regression", "flaky", "broken"],
+    "TESTING": ["intermittent", "ci", "pipeline", "nondeterministic", "race"],
+    "VERIFICATION": ["prove", "evidence", "before claiming", "sign off"],
+}
+
+MULTI_SYMPTOM_TERMS = [
+    "unstable", "janky", "freeze", "stutter", "regression", "flaky", "empty payload", "intermittent"
+]
+
+UNKNOWN_FALLBACK_CHECKLIST = [
+    "Confirm target stack or provide marker files (go.mod, package.json, app.json, Package.swift)",
+    "Name affected runtime path (web, mobile, backend, CI)",
+    "Share one reproducible error/log snippet",
+    "State current phase (implementation/debugging/verification)",
+    "Confirm expected verification command set before completion claim",
+]
+
 INTENT_MODEL = {
     "IMPLEMENTATION": {"keywords": [("implement", 4), ("build", 3), ("create", 3), ("feature", 3)]},
     "DEBUGGING": {"keywords": [("bug", 4), ("fix", 4), ("error", 4), ("broken", 3)]},
@@ -182,26 +200,37 @@ def discover_markdown_resources() -> set[str]:
             docs.extend(path for path in base.rglob("*.md") if path.is_file())
     return {doc.relative_to(SKILL_ROOT).as_posix() for doc in docs}
 
-def detect_stack(workspace_files, package_json_text="", app_json_text="") -> str:
+def detect_stack_candidates(workspace_files, package_json_text="", app_json_text="") -> list[str]:
     workspace = set(workspace_files or [])
     package_json = (package_json_text or "").lower()
     app_json = (app_json_text or "").lower()
+    candidates = []
 
     if "go.mod" in workspace:
-        return "GO"
+        candidates.append("GO")
     if "Package.swift" in workspace or any(name.endswith(".xcodeproj") for name in workspace):
-        return "SWIFT"
+        candidates.append("SWIFT")
     if "app.json" in workspace and "expo" in app_json:
-        return "REACT_NATIVE"
+        candidates.append("REACT_NATIVE")
     if "package.json" in workspace and ("react-native" in package_json or "expo" in package_json):
-        return "REACT_NATIVE"
+        candidates.append("REACT_NATIVE")
     if "next.config.js" in workspace or "next.config.mjs" in workspace or "next.config.ts" in workspace:
-        return "REACT"
+        candidates.append("REACT")
     if "package.json" in workspace and ("\"next\"" in package_json or "\"react\"" in package_json):
-        return "REACT"
+        candidates.append("REACT")
     if "package.json" in workspace:
-        return "NODEJS"
-    return "NODEJS"
+        candidates.append("NODEJS")
+
+    deduped = []
+    seen = set()
+    for stack_name in candidates:
+        if stack_name not in seen:
+            deduped.append(stack_name)
+            seen.add(stack_name)
+    return deduped or ["NODEJS"]
+
+def detect_stack(workspace_files, package_json_text="", app_json_text="") -> str:
+    return detect_stack_candidates(workspace_files, package_json_text, app_json_text)[0]
 
 def classify_intents(user_request, task=None):
     text = (user_request or "").lower()
@@ -211,6 +240,11 @@ def classify_intents(user_request, task=None):
         for keyword, weight in cfg["keywords"]:
             if keyword in text:
                 intent_scores[intent] += weight
+
+    for intent, synonyms in NOISY_SYNONYMS.items():
+        for synonym in synonyms:
+            if synonym in text:
+                intent_scores[intent] += 1.2
 
     if task and getattr(task, "needs_verification", False):
         intent_scores["VERIFICATION"] += 5
@@ -241,15 +275,37 @@ def _filter_paths(paths, keywords):
 def verification_commands_for(stack: str):
     return STACK_VERIFICATION_COMMANDS.get(stack, STACK_VERIFICATION_COMMANDS["NODEJS"])
 
+def verification_command_candidates(stacks: list[str]) -> dict[str, list[str]]:
+    return {stack_name: verification_commands_for(stack_name) for stack_name in stacks}
+
+def select_intents(scores: dict[str, float], task_text: str, ambiguity_delta: float = 0.8, base_max_intents: int = 2, adaptive_max_intents: int = 3) -> list[str]:
+    ranked = sorted(scores.items(), key=lambda item: item[1], reverse=True)
+    if not ranked or ranked[0][1] <= 0:
+        return ["IMPLEMENTATION"]
+
+    noisy_hits = sum(1 for term in MULTI_SYMPTOM_TERMS if term in (task_text or ""))
+    max_intents = adaptive_max_intents if noisy_hits >= 3 else base_max_intents
+
+    selected = [ranked[0][0]]
+    for intent, score in ranked[1:]:
+        if score <= 0:
+            continue
+        if (ranked[0][1] - score) <= ambiguity_delta:
+            selected.append(intent)
+        if len(selected) >= max_intents:
+            break
+    return selected
+
 def route_resources(user_request, task=None, workspace_files=None, package_json_text="", app_json_text=""):
     inventory = discover_markdown_resources()
     task = task or type("Task", (), {"query": user_request})()
 
-    stack = detect_stack(workspace_files, package_json_text, app_json_text)
+    stack_candidates = detect_stack_candidates(workspace_files, package_json_text, app_json_text)
+    stack = stack_candidates[0]
     category, folder = STACK_FOLDERS.get(stack, STACK_FOLDERS["NODEJS"])
     primary, secondary, intent_scores = classify_intents(user_request, task)
-
-    active_intents = [primary] + ([secondary] if secondary else [])
+    task_text = _task_text(task)
+    active_intents = select_intents(intent_scores, task_text, ambiguity_delta=0.8)
     load_level = select_load_level(primary)
 
     stack_ref_prefix = f"references/{category}/{folder}/"
@@ -268,6 +324,21 @@ def route_resources(user_request, task=None, workspace_files=None, package_json_
             seen.add(guarded)
 
     load_if_available(DEFAULT_RESOURCE)
+
+    if sum(intent_scores.values()) < 0.5:
+        load_if_available(f"assets/{category}/{folder}/checklists/debugging_checklist.md")
+        load_if_available(f"assets/{category}/{folder}/checklists/verification_checklist.md")
+        return {
+            "stack": stack,
+            "stack_candidates": stack_candidates,
+            "intents": ["IMPLEMENTATION"],
+            "intent_scores": intent_scores,
+            "load_level": "UNKNOWN_FALLBACK",
+            "needs_disambiguation": True,
+            "disambiguation_checklist": UNKNOWN_FALLBACK_CHECKLIST,
+            "verification_commands": verification_command_candidates(stack_candidates),
+            "resources": loaded,
+        }
 
     if load_level == "MINIMAL":
         load_if_available(f"assets/{category}/{folder}/checklists/verification_checklist.md")
@@ -289,10 +360,11 @@ def route_resources(user_request, task=None, workspace_files=None, package_json_
 
     return {
         "stack": stack,
+        "stack_candidates": stack_candidates,
         "intents": active_intents,
         "intent_scores": intent_scores,
         "load_level": load_level,
-        "verification_commands": verification_commands_for(stack),
+        "verification_commands": verification_command_candidates(stack_candidates),
         "resources": loaded,
     }
 ```
