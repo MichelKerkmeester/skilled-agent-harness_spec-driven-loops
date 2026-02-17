@@ -60,125 +60,129 @@ Execute TypeScript code with direct access to 200+ MCP tools through progressive
 <!-- ANCHOR:smart-routing -->
 ## 2. SMART ROUTING
 
-### Resource Router
+### Smart Router Pseudocode
+
 ```python
 from pathlib import Path
 
 SKILL_ROOT = Path(__file__).resolve().parent
+RESOURCE_BASES = (SKILL_ROOT / "references", SKILL_ROOT / "assets")
+DEFAULT_RESOURCE = "references/quick_reference.md"
 
+INTENT_SIGNALS = {
+    "NAMING": {"weight": 4, "keywords": ["tool not found", "naming", "prefix", "format"]},
+    "SETUP": {"weight": 4, "keywords": ["setup", "install", "configure", ".utcp_config", ".env"]},
+    "VALIDATE": {"weight": 4, "keywords": ["validate", "validation", "check config", "schema"]},
+    "CATALOG": {"weight": 3, "keywords": ["what tools", "list tools", "discover tools", "catalog"]},
+    "WORKFLOW": {"weight": 3, "keywords": ["workflow", "orchestrate", "multi-tool", "error handling"]},
+    "ARCHITECTURE": {"weight": 2, "keywords": ["architecture", "token", "performance", "internals"]},
+}
 
-def _guard(path):
-    """Scoped routing guard: only load markdown under this skill folder."""
-    resolved = (SKILL_ROOT / path).resolve()
-    try:
-        resolved.relative_to(SKILL_ROOT)
-    except ValueError:
-        raise ValueError(f"Blocked out-of-scope resource: {path}")
-    if resolved.suffix != ".md":
-        raise ValueError(f"Blocked non-markdown resource: {path}")
-    return resolved
+RESOURCE_MAP = {
+    "NAMING": ["references/naming_convention.md"],
+    "SETUP": ["references/configuration.md", "assets/config_template.md", "assets/env_template.md"],
+    "VALIDATE": ["references/configuration.md", "references/naming_convention.md"],
+    "CATALOG": ["references/tool_catalog.md"],
+    "WORKFLOW": ["references/workflows.md"],
+    "ARCHITECTURE": ["references/architecture.md"],
+}
 
+COMMAND_BOOSTS = {
+    "search_tools": "CATALOG",
+    "list_tools": "CATALOG",
+    "tool_info": "CATALOG",
+    "call_tool_chain": "WORKFLOW",
+}
 
-def _discover_markdown_fallbacks():
-    """Recursive discovery for references/assets markdown resources."""
+LOADING_LEVELS = {
+    "ALWAYS": [DEFAULT_RESOURCE],
+    "ON_DEMAND_KEYWORDS": ["full config", "deep dive", "full workflow", "all tools"],
+    "ON_DEMAND": ["references/configuration.md", "references/workflows.md"],
+}
+
+def _task_text(task) -> str:
+    parts = [
+        str(getattr(task, "query", "")),
+        str(getattr(task, "text", "")),
+        " ".join(getattr(task, "keywords", []) or []),
+        str(getattr(task, "command", "")),
+    ]
+    return " ".join(parts).lower()
+
+def _guard_in_skill(relative_path: str) -> str:
+    resolved = (SKILL_ROOT / relative_path).resolve()
+    resolved.relative_to(SKILL_ROOT)
+    if resolved.suffix.lower() != ".md":
+        raise ValueError(f"Only markdown resources are routable: {relative_path}")
+    return resolved.relative_to(SKILL_ROOT).as_posix()
+
+def discover_markdown_resources() -> set[str]:
     docs = []
-    for folder in ("references", "assets"):
-        base = SKILL_ROOT / folder
+    for base in RESOURCE_BASES:
         if base.exists():
-            docs.extend(sorted(p for p in base.rglob("*.md") if p.is_file()))
-    return docs
+            docs.extend(p for p in base.rglob("*.md") if p.is_file())
+    return {doc.relative_to(SKILL_ROOT).as_posix() for doc in docs}
 
-
-def _intent_scores(task):
-    text = (task.query or "").lower()
-    scores = {
-        "naming": 0,
-        "setup": 0,
-        "validate": 0,
-        "catalog": 0,
-        "workflow": 0,
-        "architecture": 0,
-    }
-
-    # Weighted keyword + signal scoring (preserves existing activation semantics)
-    if task.error_contains("tool not found") or task.error_contains("naming"):
-        scores["naming"] += 10
-    if task.needs_setup or task.env_vars_not_loading:
-        scores["setup"] += 9
-    if task.validating_config:
-        scores["validate"] += 9
-    if task.needs_tool_list or "what tools" in text:
-        scores["catalog"] += 8
-    if task.multi_tool_workflow or task.needs_error_handling:
-        scores["workflow"] += 8
-    if task.how_it_works or task.token_questions:
-        scores["architecture"] += 7
-
-    keyword_weights = {
-        "naming": ["name", "naming", "tool not found", "prefix", "format"],
-        "setup": ["setup", "install", "configure", ".utcp_config", ".env"],
-        "validate": ["validate", "validation", "check config", "schema"],
-        "catalog": ["what tools", "list tools", "discover tools", "catalog"],
-        "workflow": ["workflow", "orchestrate", "multi-tool", "error handling"],
-        "architecture": ["architecture", "internals", "token", "performance"],
-    }
-    for intent, terms in keyword_weights.items():
-        scores[intent] += sum(2 for term in terms if term in text)
-
+def score_intents(task) -> dict[str, float]:
+    """Weighted intent scoring from request text and signals."""
+    text = _task_text(task)
+    scores = {intent: 0.0 for intent in INTENT_SIGNALS}
+    for intent, cfg in INTENT_SIGNALS.items():
+        for keyword in cfg["keywords"]:
+            if keyword in text:
+                scores[intent] += cfg["weight"]
+    command = str(getattr(task, "command", "")).lower()
+    for signal, intent in COMMAND_BOOSTS.items():
+        if signal in command:
+            scores[intent] += 4
     return scores
 
-
-def _load_for_intent(intent):
-    if intent == "naming":
-        return load(_guard("references/naming_convention.md"))  # priority: CRITICAL
-
-    if intent == "setup":
-        load(_guard("references/configuration.md"))
-        load(_guard("assets/config_template.md"))
-        return load(_guard("assets/env_template.md"))
-
-    if intent == "validate":
-        return execute("scripts/validate_config.py")  # syntax + env var checks
-
-    if intent == "catalog":
-        return load(_guard("references/tool_catalog.md"))
-
-    if intent == "workflow":
-        return load(_guard("references/workflows.md"))
-
-    if intent == "architecture":
-        return load(_guard("references/architecture.md"))
-
-    return _discover_markdown_fallbacks()
-
+def select_intents(scores: dict[str, float], ambiguity_delta: float = 1.0, max_intents: int = 2) -> list[str]:
+    ranked = sorted(scores.items(), key=lambda item: item[1], reverse=True)
+    if not ranked or ranked[0][1] <= 0:
+        return ["WORKFLOW"]
+    selected = [ranked[0][0]]
+    if len(ranked) > 1 and ranked[1][1] > 0 and (ranked[0][1] - ranked[1][1]) <= ambiguity_delta:
+        selected.append(ranked[1][0])
+    return selected[:max_intents]
 
 def route_code_mode_resources(task):
-    scores = _intent_scores(task)
-    ranked = sorted(scores.items(), key=lambda item: item[1], reverse=True)
-    primary_intent, primary_score = ranked[0]
-    secondary_intent, secondary_score = ranked[1]
+    inventory = discover_markdown_resources()
+    intents = select_intents(score_intents(task), ambiguity_delta=1.0)
+    loaded = []
+    seen = set()
 
-    if primary_score <= 0:
-        return _discover_markdown_fallbacks()
+    def load_if_available(relative_path: str) -> None:
+        guarded = _guard_in_skill(relative_path)
+        if guarded in inventory and guarded not in seen:
+            load(guarded)
+            loaded.append(guarded)
+            seen.add(guarded)
 
-    # Ambiguity handling: when top two intents are close, load both resources.
-    if secondary_score > 0 and (primary_score - secondary_score) <= 2:
-        return {
-            "primary": primary_intent,
-            "secondary": secondary_intent,
-            "results": [
-                _load_for_intent(primary_intent),
-                _load_for_intent(secondary_intent),
-            ],
-        }
+    for relative_path in LOADING_LEVELS["ALWAYS"]:
+        load_if_available(relative_path)
+    for intent in intents:
+        for relative_path in RESOURCE_MAP.get(intent, []):
+            load_if_available(relative_path)
 
-    return _load_for_intent(primary_intent)
+    text = _task_text(task)
+    if any(keyword in text for keyword in LOADING_LEVELS["ON_DEMAND_KEYWORDS"]):
+        for relative_path in LOADING_LEVELS["ON_DEMAND"]:
+            load_if_available(relative_path)
 
+    if not loaded:
+        load_if_available(DEFAULT_RESOURCE)
 
-# STATIC RESOURCES (always available, not conditionally loaded)
-# assets/config_template.md → Template .utcp_config.json file
-# assets/env_template.md → Template .env file with placeholders
+    return {"intents": intents, "resources": loaded}
 ```
+
+### Resource Loading Levels
+
+| Level       | When to Load             | Resources                    |
+| ----------- | ------------------------ | ---------------------------- |
+| ALWAYS      | Every skill invocation   | Core quick reference         |
+| CONDITIONAL | If intent signals match  | Intent-mapped references     |
+| ON_DEMAND   | Only on explicit request | Full configuration/workflows |
 
 ---
 

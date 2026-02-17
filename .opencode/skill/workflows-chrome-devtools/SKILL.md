@@ -46,192 +46,124 @@ Browser debugging and automation through two complementary approaches: CLI (bdg)
 
 <!-- /ANCHOR:when-to-use -->
 <!-- ANCHOR:smart-routing-references -->
-## 2. SMART ROUTING & REFERENCES
+## 2. SMART ROUTING
 
-### Resource Router
+### Smart Router Pseudocode
 
 ```python
-import os
+from pathlib import Path
 
-SKILL_ROOT = ".opencode/skill/workflows-chrome-devtools"
+SKILL_ROOT = Path(__file__).resolve().parent
+RESOURCE_BASES = (SKILL_ROOT / "references", SKILL_ROOT / "assets")
+DEFAULT_RESOURCE = "references/cdp_patterns.md"
 
+INTENT_SIGNALS = {
+    "CLI": {"weight": 4, "keywords": ["bdg", "browser-debugger-cli", "terminal", "cli"]},
+    "MCP": {"weight": 4, "keywords": ["mcp", "code mode", "multi-tool", "parallel sessions"]},
+    "INSTALL": {"weight": 4, "keywords": ["install", "setup", "not installed", "command -v bdg"]},
+    "TROUBLESHOOT": {"weight": 4, "keywords": ["error", "failed", "troubleshoot", "session issue"]},
+    "AUTOMATION": {"weight": 3, "keywords": ["ci", "pipeline", "automation", "production"]},
+}
 
-def safe_load(relative_path):
-    """Load markdown only from this skill directory."""
-    candidate = os.path.normpath(os.path.join(SKILL_ROOT, relative_path))
-    root = os.path.normpath(SKILL_ROOT)
-    if not candidate.startswith(root + os.sep):
-        raise ValueError(f"Out-of-scope resource path: {relative_path}")
-    if not candidate.endswith(".md"):
-        raise ValueError(f"Only markdown resources are allowed: {relative_path}")
-    return load(candidate)
+RESOURCE_MAP = {
+    "CLI": ["references/cdp_patterns.md", "references/session_management.md"],
+    "MCP": ["references/session_management.md", "references/cdp_patterns.md"],
+    "INSTALL": ["references/troubleshooting.md"],
+    "TROUBLESHOOT": ["references/troubleshooting.md"],
+    "AUTOMATION": ["examples/README.md"],
+}
 
+LOADING_LEVELS = {
+    "ALWAYS": [DEFAULT_RESOURCE],
+    "ON_DEMAND_KEYWORDS": ["full troubleshooting", "full session guide", "all patterns"],
+    "ON_DEMAND": ["references/troubleshooting.md", "references/session_management.md"],
+}
 
-def discover_markdown_resources():
-    """Recursively discover references/assets markdown resources."""
-    discovered = []
-    for subdir in ("references", "assets"):
-        scan_root = os.path.join(SKILL_ROOT, subdir)
-        for dirpath, _, filenames in os.walk(scan_root):
-            for filename in filenames:
-                if filename.endswith(".md"):
-                    discovered.append(os.path.join(dirpath, filename))
-    return sorted(discovered)
+def _task_text(task) -> str:
+    parts = [
+        str(getattr(task, "text", "")),
+        str(getattr(task, "query", "")),
+        " ".join(getattr(task, "keywords", []) or []),
+    ]
+    return " ".join(parts).lower()
 
+def _guard_in_skill(relative_path: str) -> str:
+    resolved = (SKILL_ROOT / relative_path).resolve()
+    resolved.relative_to(SKILL_ROOT)
+    if resolved.suffix.lower() != ".md":
+        raise ValueError(f"Only markdown resources are routable: {relative_path}")
+    return resolved.relative_to(SKILL_ROOT).as_posix()
 
-def route_chrome_devtools(context):
-    """
-    Resource Router for workflows-chrome-devtools skill
-    Routes to CLI (priority) or MCP (fallback) based on availability
-    """
-    text = (getattr(context, "text", "") or "").lower()
-    keywords = set(getattr(context, "keywords", []) or [])
+def discover_markdown_resources() -> set[str]:
+    docs = []
+    for base in RESOURCE_BASES:
+        if base.exists():
+            docs.extend(p for p in base.rglob("*.md") if p.is_file())
+    docs.extend(p for p in (SKILL_ROOT / "examples").rglob("*.md") if (SKILL_ROOT / "examples").exists())
+    return {doc.relative_to(SKILL_ROOT).as_posix() for doc in docs}
 
-    # Optional helper for diagnostics/debugging of available resources.
-    if getattr(context, "list_available_resources", False):
-        return discover_markdown_resources()
+def score_intents(task) -> dict[str, float]:
+    """Weighted intent scoring from request text and capability signals."""
+    text = _task_text(task)
+    scores = {intent: 0.0 for intent in INTENT_SIGNALS}
+    for intent, cfg in INTENT_SIGNALS.items():
+        for keyword in cfg["keywords"]:
+            if keyword in text:
+                scores[intent] += cfg["weight"]
+    if getattr(task, "cli_available", False):
+        scores["CLI"] += 5
+    if getattr(task, "code_mode_configured", False):
+        scores["MCP"] += 4
+    if getattr(task, "has_error", False):
+        scores["TROUBLESHOOT"] += 4
+    return scores
 
-    # ══════════════════════════════════════════════════════════════════════
-    # APPROACH SELECTION (weighted intent + capability signals)
-    # ══════════════════════════════════════════════════════════════════════
-    approach_scores = {"cli": 0.0, "mcp": 0.0, "install": 0.0}
+def select_intents(scores: dict[str, float], ambiguity_delta: float = 1.0, max_intents: int = 2) -> list[str]:
+    ranked = sorted(scores.items(), key=lambda item: item[1], reverse=True)
+    if not ranked or ranked[0][1] <= 0:
+        return ["CLI"]
+    selected = [ranked[0][0]]
+    if len(ranked) > 1 and ranked[1][1] > 0 and (ranked[0][1] - ranked[1][1]) <= ambiguity_delta:
+        selected.append(ranked[1][0])
+    return selected[:max_intents]
 
-    if getattr(context, "cli_available", False):
-        approach_scores["cli"] += 5.0
-    else:
-        approach_scores["install"] += 3.0
+def route_chrome_devtools_resources(task):
+    inventory = discover_markdown_resources()
+    intents = select_intents(score_intents(task), ambiguity_delta=1.0)
+    loaded = []
+    seen = set()
 
-    if getattr(context, "code_mode_configured", False):
-        approach_scores["mcp"] += 4.0
+    def load_if_available(relative_path: str) -> None:
+        guarded = _guard_in_skill(relative_path)
+        if guarded in inventory and guarded not in seen:
+            load(guarded)
+            loaded.append(guarded)
+            seen.add(guarded)
 
-    if getattr(context, "needs_multi_tool_integration", False) or getattr(context, "parallel_browser_sessions", False):
-        approach_scores["mcp"] += 2.0
+    for relative_path in LOADING_LEVELS["ALWAYS"]:
+        load_if_available(relative_path)
+    for intent in intents:
+        for relative_path in RESOURCE_MAP.get(intent, []):
+            load_if_available(relative_path)
 
-    for term in ("bdg", "browser-debugger-cli", "terminal", "cli"):
-        if term in text or term in keywords:
-            approach_scores["cli"] += 1.0
-    for term in ("mcp", "code mode", "multi-tool", "parallel"):
-        if term in text or term in keywords:
-            approach_scores["mcp"] += 1.0
-    for term in ("install", "setup", "not installed"):
-        if term in text or term in keywords:
-            approach_scores["install"] += 1.0
+    text = _task_text(task)
+    if any(keyword in text for keyword in LOADING_LEVELS["ON_DEMAND_KEYWORDS"]):
+        for relative_path in LOADING_LEVELS["ON_DEMAND"]:
+            load_if_available(relative_path)
 
-    approach_precedence = ["cli", "mcp", "install"]
-    ranked_approaches = sorted(
-        approach_precedence,
-        key=lambda name: (approach_scores[name], -approach_precedence.index(name)),
-        reverse=True,
-    )
-    selected_approach = ranked_approaches[0]
-    secondary_approach = ranked_approaches[1]
+    if not loaded:
+        load_if_available(DEFAULT_RESOURCE)
 
-    # ══════════════════════════════════════════════════════════════════════
-    # REFERENCE ROUTING (now reachable; no early return before this block)
-    # ══════════════════════════════════════════════════════════════════════
-    reference_scores = {
-        "cdp_patterns": 0.0,
-        "session_management": 0.0,
-        "troubleshooting": 0.0,
-        "production_automation": 0.0,
-    }
-
-    if getattr(context, "needs_cdp_patterns", False) or getattr(context, "exploring_domains", False):
-        reference_scores["cdp_patterns"] += 3.0
-    if getattr(context, "session_complexity", False) or getattr(context, "multi_session", False):
-        reference_scores["session_management"] += 3.0
-    if getattr(context, "has_error", False) or getattr(context, "troubleshooting", False):
-        reference_scores["troubleshooting"] += 4.0
-    if getattr(context, "production_automation", False) or getattr(context, "ci_cd", False):
-        reference_scores["production_automation"] += 3.0
-
-    term_map = {
-        "cdp_patterns": ("cdp", "domain", "pipe", "jq"),
-        "session_management": ("session", "multi-session", "lifecycle"),
-        "troubleshooting": ("error", "failed", "troubleshoot", "install issue"),
-        "production_automation": ("ci", "pipeline", "automation", "production"),
-    }
-    for route_name, terms in term_map.items():
-        for term in terms:
-            if term in text or term in keywords:
-                reference_scores[route_name] += 1.0
-
-    reference_precedence = ["troubleshooting", "session_management", "cdp_patterns", "production_automation"]
-    selected_reference = max(
-        reference_precedence,
-        key=lambda name: (reference_scores[name], -reference_precedence.index(name))
-    )
-
-    if selected_reference == "troubleshooting" and reference_scores["troubleshooting"] > 0:
-        safe_load("references/troubleshooting.md")
-    elif selected_reference == "session_management" and reference_scores["session_management"] > 0:
-        safe_load("references/session_management.md")
-    elif selected_reference == "cdp_patterns" and reference_scores["cdp_patterns"] > 0:
-        safe_load("references/cdp_patterns.md")
-    elif selected_reference == "production_automation" and reference_scores["production_automation"] > 0:
-        safe_load("examples/README.md")
-
-    def _approach_message(approach_name):
-        if approach_name == "cli":
-            return "Use CLI approach (Section 3.1)"
-        if approach_name == "mcp":
-            return "Use MCP approach (Section 3.2)"
-        return "Install CLI: npm install -g browser-debugger-cli@alpha"
-
-    # Ambiguity handling: when top approaches are close, return top-2 routing.
-    if (
-        approach_scores[selected_approach] > 0
-        and approach_scores[secondary_approach] > 0
-        and (approach_scores[selected_approach] - approach_scores[secondary_approach]) <= 1.0
-    ):
-        return {
-            "primary": _approach_message(selected_approach),
-            "secondary": _approach_message(secondary_approach),
-            "delta": approach_scores[selected_approach] - approach_scores[secondary_approach],
-        }
-
-    return _approach_message(selected_approach)
-
-# ══════════════════════════════════════════════════════════════════════
-# STATIC RESOURCES (always available)
-# ══════════════════════════════════════════════════════════════════════
-# examples/performance-baseline.sh  → Performance testing workflow
-# examples/animation-testing.sh     → Animation validation
-# examples/multi-viewport-test.sh   → Responsive testing
+    return {"intents": intents, "resources": loaded}
 ```
 
-### Routing Decision Tree
+### Resource Loading Levels
 
-```
-Browser debugging task received
-        │
-        ▼
-┌─────────────────────────────────┐
-│ Is bdg CLI available?           │
-│ (command -v bdg)                │
-└────────────┬────────────────────┘
-             │
-     ┌───────┴───────┐
-    YES              NO
-     │               │
-     ▼               ▼
-┌──────────────┐ ┌──────────────────┐
-│ Use CLI      │ │ Is Code Mode     │
-│ Section 3.1  │ │ configured?       │
-└──────────────┘ └────────┬─────────┘
-                          │
-                  ┌───────┴───────┐
-                 YES              NO
-                  │               │
-                  ▼               ▼
-          ┌──────────────┐ ┌──────────────┐
-          │ Use MCP      │ │ Install CLI: │
-          │ Section 3.2  │ │ npm i -g     │
-          └──────────────┘ │ browser-     │
-                           │ debugger-cli │
-                           │ @alpha       │
-                           └──────────────┘
-```
+| Level       | When to Load             | Resources                       |
+| ----------- | ------------------------ | ------------------------------- |
+| ALWAYS      | Every skill invocation   | Core CDP pattern reference      |
+| CONDITIONAL | If intent signals match  | CLI/MCP/session/troubleshooting |
+| ON_DEMAND   | Only on explicit request | Full diagnostics set            |
 
 ---
 

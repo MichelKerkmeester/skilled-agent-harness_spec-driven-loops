@@ -40,155 +40,118 @@ Use this orchestrator when:
 <!-- ANCHOR:smart-routing -->
 ## 2. SMART ROUTING
 
-### Resource Router
+### Smart Router Pseudocode
+
 ```python
-import os
+from pathlib import Path
 
-SKILL_ROOT = ".opencode/skill/workflows-git"
+SKILL_ROOT = Path(__file__).resolve().parent
+RESOURCE_BASES = (SKILL_ROOT / "references", SKILL_ROOT / "assets")
+DEFAULT_RESOURCE = "references/quick_reference.md"
 
+INTENT_SIGNALS = {
+    "WORKSPACE_SETUP": {"weight": 4, "keywords": ["worktree", "workspace", "branch strategy", "parallel work"]},
+    "COMMIT": {"weight": 4, "keywords": ["commit", "staged", "message", "conventional commit"]},
+    "FINISH": {"weight": 4, "keywords": ["finish", "merge", "pr", "pull request", "integrate"]},
+    "SHARED_PATTERNS": {"weight": 3, "keywords": ["convention", "pattern", "reference", "branch naming"]},
+}
 
-def safe_load(relative_path):
-    """Load markdown only from this skill directory."""
-    candidate = os.path.normpath(os.path.join(SKILL_ROOT, relative_path))
-    root = os.path.normpath(SKILL_ROOT)
-    if not candidate.startswith(root + os.sep):
-        raise ValueError(f"Out-of-scope resource path: {relative_path}")
-    if not candidate.endswith(".md"):
-        raise ValueError(f"Only markdown resources are allowed: {relative_path}")
-    return load(candidate)
+RESOURCE_MAP = {
+    "WORKSPACE_SETUP": ["references/worktree_workflows.md", "assets/worktree_checklist.md"],
+    "COMMIT": ["references/commit_workflows.md", "assets/commit_message_template.md"],
+    "FINISH": ["references/finish_workflows.md", "assets/pr_template.md"],
+    "SHARED_PATTERNS": ["references/shared_patterns.md"],
+}
 
+LOADING_LEVELS = {
+    "ALWAYS": [DEFAULT_RESOURCE],
+    "ON_DEMAND_KEYWORDS": ["full git flow", "all templates", "full reference"],
+    "ON_DEMAND": ["references/shared_patterns.md", "assets/commit_message_template.md"],
+}
 
-def discover_markdown_resources():
-    """Recursively discover references/assets markdown resources."""
-    discovered = []
-    for subdir in ("references", "assets"):
-        scan_root = os.path.join(SKILL_ROOT, subdir)
-        for dirpath, _, filenames in os.walk(scan_root):
-            for filename in filenames:
-                if filename.endswith(".md"):
-                    discovered.append(os.path.join(dirpath, filename))
-    return sorted(discovered)
+def _task_text(task) -> str:
+    return " ".join([
+        str(getattr(task, "text", "")),
+        str(getattr(task, "query", "")),
+        " ".join(getattr(task, "keywords", []) or []),
+    ]).lower()
 
+def _guard_in_skill(relative_path: str) -> str:
+    resolved = (SKILL_ROOT / relative_path).resolve()
+    resolved.relative_to(SKILL_ROOT)
+    if resolved.suffix.lower() != ".md":
+        raise ValueError(f"Only markdown resources are routable: {relative_path}")
+    return resolved.relative_to(SKILL_ROOT).as_posix()
+
+def discover_markdown_resources() -> set[str]:
+    docs = []
+    for base in RESOURCE_BASES:
+        if base.exists():
+            docs.extend(p for p in base.rglob("*.md") if p.is_file())
+    return {doc.relative_to(SKILL_ROOT).as_posix() for doc in docs}
+
+def score_intents(task) -> dict[str, float]:
+    """Weighted intent scoring from request text and workflow flags."""
+    text = _task_text(task)
+    scores = {intent: 0.0 for intent in INTENT_SIGNALS}
+    for intent, cfg in INTENT_SIGNALS.items():
+        for keyword in cfg["keywords"]:
+            if keyword in text:
+                scores[intent] += cfg["weight"]
+    if getattr(task, "needs_isolated_workspace", False):
+        scores["WORKSPACE_SETUP"] += 4
+    if getattr(task, "has_staged_changes", False):
+        scores["COMMIT"] += 4
+    if getattr(task, "ready_to_integrate", False):
+        scores["FINISH"] += 4
+    return scores
+
+def select_intents(scores: dict[str, float], ambiguity_delta: float = 1.0, max_intents: int = 2) -> list[str]:
+    ranked = sorted(scores.items(), key=lambda item: item[1], reverse=True)
+    if not ranked or ranked[0][1] <= 0:
+        return ["SHARED_PATTERNS"]
+    selected = [ranked[0][0]]
+    if len(ranked) > 1 and ranked[1][1] > 0 and (ranked[0][1] - ranked[1][1]) <= ambiguity_delta:
+        selected.append(ranked[1][0])
+    return selected[:max_intents]
 
 def route_git_resources(task):
-    text = (getattr(task, "text", "") or "").lower()
-    keywords = set(getattr(task, "keywords", []) or [])
+    inventory = discover_markdown_resources()
+    intents = select_intents(score_intents(task), ambiguity_delta=1.0)
+    loaded = []
+    seen = set()
 
-    # Optional helper for diagnostics/debugging of available resources.
-    if getattr(task, "list_available_resources", False):
-        return discover_markdown_resources()
+    def load_if_available(relative_path: str) -> None:
+        guarded = _guard_in_skill(relative_path)
+        if guarded in inventory and guarded not in seen:
+            load(guarded)
+            loaded.append(guarded)
+            seen.add(guarded)
 
-    # WEIGHTED INTENT SCORING: combine strong flags + weaker text signals.
-    intent_scores = {
-        "workspace_setup": 0.0,
-        "commit": 0.0,
-        "finish": 0.0,
-        "shared_patterns": 0.0,
-        "quick_reference": 0.0,
-    }
+    for relative_path in LOADING_LEVELS["ALWAYS"]:
+        load_if_available(relative_path)
+    for intent in intents:
+        for relative_path in RESOURCE_MAP.get(intent, []):
+            load_if_available(relative_path)
 
-    # Flag-based weights (high confidence signals)
-    if getattr(task, "needs_isolated_workspace", False):
-        intent_scores["workspace_setup"] += 4.0
-    if getattr(task, "setting_up_worktree", False):
-        intent_scores["workspace_setup"] += 2.0
-    if getattr(task, "has_staged_changes", False):
-        intent_scores["commit"] += 3.0
-    if getattr(task, "needs_message_help", False):
-        intent_scores["commit"] += 2.0
-    if getattr(task, "ready_to_integrate", False):
-        intent_scores["finish"] += 4.0
-    if getattr(task, "creating_pr", False):
-        intent_scores["finish"] += 2.0
-    if getattr(task, "needs_command_reference", False) or getattr(task, "needs_conventions", False):
-        intent_scores["shared_patterns"] += 3.0
-    if getattr(task, "needs_quick_reference", False):
-        intent_scores["quick_reference"] += 3.0
+    text = _task_text(task)
+    if any(keyword in text for keyword in LOADING_LEVELS["ON_DEMAND_KEYWORDS"]):
+        for relative_path in LOADING_LEVELS["ON_DEMAND"]:
+            load_if_available(relative_path)
 
-    # Text/keyword weights (lower confidence, still meaningful)
-    keyword_map = {
-        "workspace_setup": ("worktree", "workspace", "branch strategy", "parallel work"),
-        "commit": ("commit", "conventional commit", "staged", "message"),
-        "finish": ("finish", "merge", "pr", "pull request", "integrate"),
-        "shared_patterns": ("convention", "pattern", "reference", "branch naming"),
-        "quick_reference": ("quick", "cheat sheet", "overview"),
-    }
-    for route_name, terms in keyword_map.items():
-        for term in terms:
-            if term in text or term in keywords:
-                intent_scores[route_name] += 1.0
+    if not loaded:
+        load_if_available(DEFAULT_RESOURCE)
 
-    # Tie-breaker preserves existing workflow intent.
-    precedence = ["workspace_setup", "commit", "finish", "shared_patterns", "quick_reference"]
-    ranked = sorted(precedence, key=lambda name: (intent_scores[name], -precedence.index(name)), reverse=True)
-    selected = ranked[0]
-    secondary = ranked[1]
-
-    def _load_selected(route_name):
-        if route_name == "workspace_setup":
-            safe_load("references/worktree_workflows.md")
-            if getattr(task, "setting_up_worktree", False):
-                safe_load("assets/worktree_checklist.md")
-            return "Phase 1: workspace setup"
-
-        if route_name == "commit":
-            safe_load("references/commit_workflows.md")
-            if getattr(task, "needs_message_help", False):
-                safe_load("assets/commit_message_template.md")
-            return "Phase 2: commit"
-
-        if route_name == "finish":
-            safe_load("references/finish_workflows.md")
-            if getattr(task, "creating_pr", False):
-                safe_load("assets/pr_template.md")
-            return "Phase 3: finish"
-
-        if route_name == "shared_patterns":
-            safe_load("references/shared_patterns.md")
-            return "Shared patterns"
-
-        safe_load("references/quick_reference.md")
-        return "Quick reference"
-
-    # Ambiguity handling: when top intents are close, return top-2 routing.
-    if intent_scores[selected] > 0 and intent_scores[secondary] > 0 and (intent_scores[selected] - intent_scores[secondary]) <= 1.0:
-        return {
-            "primary": _load_selected(selected),
-            "secondary": _load_selected(secondary),
-            "delta": intent_scores[selected] - intent_scores[secondary],
-        }
-
-    return _load_selected(selected)
-
-# ══════════════════════════════════════════════════════════════════════
-# STATIC RESOURCES (always available, not conditionally loaded)
-# ══════════════════════════════════════════════════════════════════════
-# assets/commit_message_template.md → Format guide with real-world examples
-# assets/pr_template.md → Structured PR descriptions with examples
+    return {"intents": intents, "resources": loaded}
 ```
 
-### Phase Detection
-```
-GIT WORKFLOW CONTEXT
-    │
-    ├─► Starting new work / need isolated workspace
-    │   └─► PHASE 1: Workspace Setup (git-worktrees)
-    │       └─► Load: worktree_workflows.md, worktree_checklist.md
-    │
-    ├─► Ready to commit changes
-    │   └─► PHASE 2: Commit (git-commit)
-    │       └─► Load: commit_workflows.md, commit_message_template.md
-    │
-    ├─► Work complete / ready to integrate
-    │   └─► PHASE 3: Finish (git-finish)
-    │       └─► Load: finish_workflows.md, pr_template.md
-    │
-    ├─► Need command reference / conventions
-    │   └─► Load: shared_patterns.md
-    │
-    └─► Quick overview needed
-        └─► Load: quick_reference.md
-```
+### Resource Loading Levels
+
+| Level       | When to Load             | Resources                  |
+| ----------- | ------------------------ | -------------------------- |
+| ALWAYS      | Every skill invocation   | Quick reference baseline   |
+| CONDITIONAL | If intent signals match  | Setup/commit/finish docs   |
+| ON_DEMAND   | Only on explicit request | Extended patterns/templates|
 
 
 ---

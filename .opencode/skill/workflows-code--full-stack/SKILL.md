@@ -56,8 +56,35 @@ Unified workflow guidance for any technology stack: Go, React, React Native, Swi
 ### Smart Router Pseudocode
 
 ```python
-def detect_stack(workspace_files, package_json_text="", app_json_text=""):
-    """Stack detection with deterministic priority."""
+from pathlib import Path
+
+SKILL_ROOT = Path(__file__).resolve().parent
+RESOURCE_BASES = (SKILL_ROOT / "references", SKILL_ROOT / "assets")
+DEFAULT_RESOURCE = "references/backend/nodejs/nodejs_standards.md"
+
+STACK_FOLDERS = {
+    "GO": ("backend", "go"),
+    "NODEJS": ("backend", "nodejs"),
+    "REACT": ("frontend", "react"),
+    "REACT_NATIVE": ("mobile", "react-native"),
+    "SWIFT": ("mobile", "swift"),
+}
+
+INTENT_SIGNALS = {
+    "IMPLEMENTATION": {"weight": 3, "keywords": ["implement", "build", "create", "feature"]},
+    "DEBUGGING": {"weight": 4, "keywords": ["debug", "fix", "error", "broken", "failing"]},
+    "TESTING": {"weight": 3, "keywords": ["test", "coverage", "unit", "integration"]},
+    "VERIFICATION": {"weight": 4, "keywords": ["verify", "done", "complete", "works", "finished"]},
+}
+
+RESOURCE_MAP = {
+    "IMPLEMENTATION": ["references/{cat}/{stack}/{stack}_standards.md", "assets/{cat}/{stack}/checklists/code_quality_checklist.md"],
+    "DEBUGGING": ["assets/{cat}/{stack}/checklists/debugging_checklist.md"],
+    "TESTING": ["assets/{cat}/{stack}/checklists/debugging_checklist.md"],
+    "VERIFICATION": ["assets/{cat}/{stack}/checklists/verification_checklist.md"],
+}
+
+def detect_stack(workspace_files, package_json_text="", app_json_text="") -> str:
     if "go.mod" in workspace_files:
         return "GO"
     if "Package.swift" in workspace_files:
@@ -70,177 +97,85 @@ def detect_stack(workspace_files, package_json_text="", app_json_text=""):
         return "REACT"
     if "package.json" in workspace_files and '"react"' in package_json_text:
         return "REACT"
-    if "package.json" in workspace_files and ('"express"' in package_json_text or '"fastify"' in package_json_text):
-        return "NODEJS"
-    return "NODEJS"  # Safe backend default
-```
+    return "NODEJS"
 
-### Stack-to-Folder Mapping
+def _task_text(task) -> str:
+    return " ".join([
+        str(getattr(task, "query", "")),
+        str(getattr(task, "text", "")),
+        " ".join(getattr(task, "keywords", []) or []),
+    ]).lower()
 
-| Stack        | Category | References                        | Assets                        |
-| ------------ | -------- | --------------------------------- | ----------------------------- |
-| GO           | backend  | `references/backend/go/`          | `assets/backend/go/`          |
-| NODEJS       | backend  | `references/backend/nodejs/`      | `assets/backend/nodejs/`      |
-| REACT        | frontend | `references/frontend/react/`      | `assets/frontend/react/`      |
-| REACT_NATIVE | mobile   | `references/mobile/react-native/` | `assets/mobile/react-native/` |
-| SWIFT        | mobile   | `references/mobile/swift/`        | `assets/mobile/swift/`        |
+def _guard_in_skill(relative_path: str) -> str:
+    resolved = (SKILL_ROOT / relative_path).resolve()
+    resolved.relative_to(SKILL_ROOT)
+    if resolved.suffix.lower() != ".md":
+        raise ValueError(f"Only markdown resources are routable: {relative_path}")
+    return resolved.relative_to(SKILL_ROOT).as_posix()
 
-### Task Classification & Load Levels
+def discover_markdown_resources() -> set[str]:
+    docs = []
+    for base in RESOURCE_BASES:
+        if base.exists():
+            docs.extend(p for p in base.rglob("*.md") if p.is_file())
+    return {doc.relative_to(SKILL_ROOT).as_posix() for doc in docs}
 
-```python
-from pathlib import Path
+def score_intents(task) -> dict[str, float]:
+    """Weighted intent scoring from request text and phase signals."""
+    text = _task_text(task)
+    scores = {intent: 0.0 for intent in INTENT_SIGNALS}
+    for intent, cfg in INTENT_SIGNALS.items():
+        for keyword in cfg["keywords"]:
+            if keyword in text:
+                scores[intent] += cfg["weight"]
+    return scores
 
-TASK_SIGNALS = {
-    "VERIFICATION": {
-        "done": 2.2, "complete": 2.0, "works": 1.8, "verify": 2.4, "finished": 1.8, "test": 1.4
-    },
-    "DEBUGGING": {
-        "bug": 2.4, "fix": 2.1, "error": 2.4, "broken": 2.0, "issue": 1.6, "failing": 2.0, "crash": 2.6
-    },
-    "TESTING": {
-        "test": 2.1, "mock": 1.6, "coverage": 2.0, "spec": 1.4, "unit": 1.7, "integration": 1.9
-    },
-    "DATABASE": {
-        "database": 2.2, "query": 1.8, "gorm": 2.2, "sql": 2.1, "migration": 2.0, "model": 1.5, "schema": 1.8
-    },
-    "API": {
-        "api": 2.0, "endpoint": 2.0, "handler": 1.8, "http": 1.6, "route": 1.7, "rest": 1.5, "request": 1.3
-    },
-    "DEPLOYMENT": {
-        "deploy": 2.3, "release": 2.0, "production": 1.9, "kubernetes": 2.1, "docker": 2.1
-    },
-    "IMPLEMENTATION": {
-        "implement": 2.1, "create": 1.7, "add": 1.3, "build": 1.8, "feature": 1.6, "new": 1.0
-    }
-}
-
-LOAD_LEVELS = {
-    "VERIFICATION": "MINIMAL",
-    "DEBUGGING": "DEBUGGING",
-    "TESTING": "FOCUSED",
-    "DATABASE": "FOCUSED",
-    "API": "FOCUSED",
-    "DEPLOYMENT": "FOCUSED",
-    "IMPLEMENTATION": "STANDARD"
-}
-
-STACK_FOLDERS = {
-    "GO": ("backend", "go"),
-    "NODEJS": ("backend", "nodejs"),
-    "REACT": ("frontend", "react"),
-    "REACT_NATIVE": ("mobile", "react-native"),
-    "SWIFT": ("mobile", "swift")
-}
-
-def _assert_scope(path, skill_root):
-    """Scope guard: all discovery stays inside current skill folder."""
-    resolved = path.resolve()
-    root = skill_root.resolve()
-    if root not in resolved.parents and resolved != root:
-        raise ValueError(f"Out-of-scope path blocked: {resolved}")
-
-
-def discover_markdown_files(skill_root):
-    """Recursive discovery for references/assets markdown files only."""
-    refs = list((skill_root / "references").rglob("*.md"))
-    assets = list((skill_root / "assets").rglob("*.md"))
-    discovered = refs + assets
-    for file_path in discovered:
-        _assert_scope(file_path, skill_root)
-    return discovered
-
-
-def score_intents(user_request):
-    """Weighted intent scoring."""
-    text = user_request.lower()
-    scores = {intent: 0.0 for intent in TASK_SIGNALS}
-    for intent, weighted_terms in TASK_SIGNALS.items():
-        for term, weight in weighted_terms.items():
-            if term in text:
-                scores[intent] += weight
+def select_intents(scores: dict[str, float], ambiguity_delta: float = 0.8, max_intents: int = 2) -> list[str]:
     ranked = sorted(scores.items(), key=lambda item: item[1], reverse=True)
-    best_intent, best_score = ranked[0]
-    second_intent, second_score = ranked[1]
-    if best_score == 0:
-        return ["IMPLEMENTATION"], scores
-    if (best_score - second_score) <= 0.6:
-        return [best_intent, second_intent], scores
-    return [best_intent], scores
+    if not ranked or ranked[0][1] <= 0:
+        return ["IMPLEMENTATION"]
+    selected = [ranked[0][0]]
+    if len(ranked) > 1 and ranked[1][1] > 0 and (ranked[0][1] - ranked[1][1]) <= ambiguity_delta:
+        selected.append(ranked[1][0])
+    return selected[:max_intents]
 
-
-def route_resources(user_request, stack, skill_root):
-    """Route stack resources with stack-prioritized filtering and ambiguity handling."""
-    discover_markdown_files(skill_root)
+def route_full_stack_resources(task, workspace_files, package_json_text="", app_json_text=""):
+    inventory = discover_markdown_resources()
+    stack = detect_stack(workspace_files, package_json_text, app_json_text)
     category, folder = STACK_FOLDERS[stack]
-    candidate_intents, _ = score_intents(user_request)
+    intents = select_intents(score_intents(task), ambiguity_delta=0.8)
+    loaded = []
+    seen = set()
 
-    selected = []
-    for task_type in candidate_intents:
-        load_level = LOAD_LEVELS[task_type]
+    def load_if_available(template_path: str) -> None:
+        resolved = template_path.replace("{cat}", category).replace("{stack}", folder)
+        guarded = _guard_in_skill(resolved)
+        if guarded in inventory and guarded not in seen:
+            load(guarded)
+            loaded.append(guarded)
+            seen.add(guarded)
 
-        if load_level == "MINIMAL":
-            selected.append(f"assets/{category}/{folder}/checklists/verification_checklist.md")
-            continue
+    for intent in intents:
+        for template_path in RESOURCE_MAP.get(intent, []):
+            load_if_available(template_path)
 
-        if load_level == "DEBUGGING":
-            selected.extend([
-                f"assets/{category}/{folder}/checklists/debugging_checklist.md",
-                f"references/{category}/{folder}/*testing*.md"
-            ])
-            continue
+    if not loaded:
+        fallback = DEFAULT_RESOURCE
+        guarded = _guard_in_skill(fallback)
+        if guarded in inventory:
+            load(guarded)
+            loaded.append(guarded)
 
-        if load_level == "FOCUSED":
-            selected.extend([
-                f"references/{category}/{folder}/*_standards.md",
-                f"references/{category}/{folder}/*{task_type.lower()}*.md"
-            ])
-            continue
-
-        selected.extend([
-            f"references/{category}/{folder}/*.md",
-            f"assets/{category}/{folder}/checklists/code_quality_checklist.md",
-            f"assets/{category}/{folder}/patterns/*.*"
-        ])
-
-    # Preserve order but remove duplicates.
-    return list(dict.fromkeys(selected))
+    return {"stack": stack, "intents": intents, "resources": loaded}
 ```
 
-### Phase Detection Flow
+### Resource Loading Levels
 
-```
-TASK CONTEXT
-    │
-    ├─► STEP 0: Detect Stack (from marker files)
-    │   └─► Scope guard + recursive discovery in skill folder
-    │
-    ├─► STEP 1: Score task intents (weighted, multi-hit)
-    │   ├─► If close scores: keep top-2 intents
-    │   └─► Otherwise: keep top intent
-    │
-    ├─► PHASE 2: Stack-prioritized resource filtering
-    │   └─► Load: *standards*.md, patterns/*.*
-    │
-    ├─► PHASE 3: Debugging
-    │   └─► Load: debugging_checklist.md, *testing*.md
-    │
-    └─► PHASE 4: Verification (MANDATORY)
-        └─► Load: verification_checklist.md
-        └─► Run: stack-specific test commands
-```
-
-### Stack Resources Pattern
-
-All stacks follow the same structure:
-
-| Resource Type       | Path Pattern                                                     | Load Level   |
-| ------------------- | ---------------------------------------------------------------- | ------------ |
-| Standards           | `references/{category}/{stack}/*_standards.md`                   | ALWAYS       |
-| Domain/Architecture | `references/{category}/{stack}/*.md`                             | CONDITIONAL  |
-| Code Quality Check  | `assets/{category}/{stack}/checklists/code_quality_checklist.md` | ALWAYS       |
-| Debugging Check     | `assets/{category}/{stack}/checklists/debugging_checklist.md`    | DEBUGGING    |
-| Verification Check  | `assets/{category}/{stack}/checklists/verification_checklist.md` | VERIFICATION |
-| Code Patterns       | `assets/{category}/{stack}/patterns/*.*`                         | CONDITIONAL  |
+| Level       | When to Load            | Resources                         |
+| ----------- | ----------------------- | --------------------------------- |
+| ALWAYS      | Every invocation        | Stack standards/checklists        |
+| CONDITIONAL | If intent signals match | Debugging/testing/verification    |
+| ON_DEMAND   | Explicit deep-dive ask  | Additional stack-specific guides  |
 
 ---
 

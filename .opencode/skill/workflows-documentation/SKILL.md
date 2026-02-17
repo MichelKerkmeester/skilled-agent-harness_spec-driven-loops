@@ -106,254 +106,118 @@ Create and validate installation documentation for MCP servers, plugins and tool
 
 <!-- /ANCHOR:when-to-use -->
 <!-- ANCHOR:smart-routing-references -->
-## 2. SMART ROUTING & REFERENCES
+## 2. SMART ROUTING
 
 ### Smart Router Pseudocode
 
 ```python
-import os
+from pathlib import Path
 
-SKILL_ROOT = ".opencode/skill/workflows-documentation"
+SKILL_ROOT = Path(__file__).resolve().parent
+RESOURCE_BASES = (SKILL_ROOT / "references", SKILL_ROOT / "assets")
+DEFAULT_RESOURCE = "references/quick_reference.md"
 
+INTENT_SIGNALS = {
+    "DOC_QUALITY": {"weight": 4, "keywords": ["dqi", "quality", "validate", "extract_structure"]},
+    "OPTIMIZATION": {"weight": 3, "keywords": ["optimize", "llms.txt", "ai context"]},
+    "SKILL_CREATION": {"weight": 4, "keywords": ["skill creation", "new skill", "init_skill", "package_skill"]},
+    "AGENT_COMMAND": {"weight": 4, "keywords": ["create agent", "create command", "agent template", "command template"]},
+    "FLOWCHART": {"weight": 3, "keywords": ["flowchart", "ascii diagram", "decision tree", "swimlane"]},
+    "INSTALL_GUIDE": {"weight": 3, "keywords": ["install guide", "setup instructions", "prerequisite"]},
+}
 
-def safe_load(relative_path):
-    """Load markdown only from this skill directory."""
-    candidate = os.path.normpath(os.path.join(SKILL_ROOT, relative_path))
-    root = os.path.normpath(SKILL_ROOT)
-    if not candidate.startswith(root + os.sep):
-        raise ValueError(f"Out-of-scope resource path: {relative_path}")
-    if not candidate.endswith(".md"):
-        raise ValueError(f"Only markdown resources are allowed: {relative_path}")
-    return load(candidate)
+RESOURCE_MAP = {
+    "DOC_QUALITY": ["references/validation.md", "references/workflows.md", "references/core_standards.md"],
+    "OPTIMIZATION": ["references/optimization.md", "assets/documentation/llmstxt_templates.md"],
+    "SKILL_CREATION": ["references/skill_creation.md", "assets/opencode/skill_md_template.md", "assets/opencode/skill_reference_template.md"],
+    "AGENT_COMMAND": ["assets/opencode/agent_template.md", "assets/opencode/command_template.md"],
+    "FLOWCHART": ["assets/flowcharts/simple_workflow.md", "assets/flowcharts/decision_tree_flow.md"],
+    "INSTALL_GUIDE": ["assets/documentation/install_guide_template.md", "references/install_guide_standards.md"],
+}
 
+LOADING_LEVELS = {
+    "ALWAYS": [DEFAULT_RESOURCE],
+    "ON_DEMAND_KEYWORDS": ["full standards", "all templates", "deep dive"],
+    "ON_DEMAND": ["assets/documentation/readme_template.md", "assets/documentation/frontmatter_templates.md"],
+}
 
-def discover_markdown_resources():
-    """Recursively discover references/assets markdown resources."""
-    discovered = []
-    for subdir in ("references", "assets"):
-        scan_root = os.path.join(SKILL_ROOT, subdir)
-        for dirpath, _, filenames in os.walk(scan_root):
-            for filename in filenames:
-                if filename.endswith(".md"):
-                    discovered.append(os.path.join(dirpath, filename))
-    return sorted(discovered)
+def _task_text(task) -> str:
+    return " ".join([
+        str(getattr(task, "text", "")),
+        str(getattr(task, "query", "")),
+        " ".join(getattr(task, "keywords", []) or []),
+    ]).lower()
 
+def _guard_in_skill(relative_path: str) -> str:
+    resolved = (SKILL_ROOT / relative_path).resolve()
+    resolved.relative_to(SKILL_ROOT)
+    if resolved.suffix.lower() != ".md":
+        raise ValueError(f"Only markdown resources are routable: {relative_path}")
+    return resolved.relative_to(SKILL_ROOT).as_posix()
+
+def discover_markdown_resources() -> set[str]:
+    docs = []
+    for base in RESOURCE_BASES:
+        if base.exists():
+            docs.extend(p for p in base.rglob("*.md") if p.is_file())
+    return {doc.relative_to(SKILL_ROOT).as_posix() for doc in docs}
+
+def score_intents(task) -> dict[str, float]:
+    """Weighted intent scoring from request text and documentation modes."""
+    text = _task_text(task)
+    scores = {intent: 0.0 for intent in INTENT_SIGNALS}
+    for intent, cfg in INTENT_SIGNALS.items():
+        for keyword in cfg["keywords"]:
+            if keyword in text:
+                scores[intent] += cfg["weight"]
+    return scores
+
+def select_intents(scores: dict[str, float], ambiguity_delta: float = 1.0, max_intents: int = 2) -> list[str]:
+    ranked = sorted(scores.items(), key=lambda item: item[1], reverse=True)
+    if not ranked or ranked[0][1] <= 0:
+        return ["DOC_QUALITY"]
+    selected = [ranked[0][0]]
+    if len(ranked) > 1 and ranked[1][1] > 0 and (ranked[0][1] - ranked[1][1]) <= ambiguity_delta:
+        selected.append(ranked[1][0])
+    return selected[:max_intents]
 
 def route_documentation_resources(task):
-    """Route using weighted intent scoring from task text and flags."""
-    text = (getattr(task, "text", "") or "").lower()
-    keywords = set(getattr(task, "keywords", []) or [])
+    inventory = discover_markdown_resources()
+    intents = select_intents(score_intents(task), ambiguity_delta=1.0)
+    loaded = []
+    seen = set()
 
-    # Optional helper for diagnostics/debugging of available resources.
-    if getattr(task, "list_available_resources", False):
-        return discover_markdown_resources()
+    def load_if_available(relative_path: str) -> None:
+        guarded = _guard_in_skill(relative_path)
+        if guarded in inventory and guarded not in seen:
+            load(guarded)
+            loaded.append(guarded)
+            seen.add(guarded)
 
-    scores = {
-        "mode_1_quality": 0.0,
-        "mode_1_optimization": 0.0,
-        "mode_2_skill": 0.0,
-        "mode_2_reference": 0.0,
-        "mode_3_flowchart": 0.0,
-        "mode_4_install": 0.0,
-        "quick_reference": 0.0,
-    }
+    for relative_path in LOADING_LEVELS["ALWAYS"]:
+        load_if_available(relative_path)
+    for intent in intents:
+        for relative_path in RESOURCE_MAP.get(intent, []):
+            load_if_available(relative_path)
 
-    # Flag-based weights
-    if getattr(task, "needs_dqi", False) or getattr(task, "needs_validation", False):
-        scores["mode_1_quality"] += 4.0
-    if getattr(task, "needs_optimization", False):
-        scores["mode_1_optimization"] += 4.0
-    if getattr(task, "creating_skill", False):
-        scores["mode_2_skill"] += 4.0
-    if getattr(task, "creating_reference", False) or getattr(task, "creating_asset", False):
-        scores["mode_2_reference"] += 4.0
-    if getattr(task, "creating_flowchart", False):
-        scores["mode_3_flowchart"] += 4.0
-    if getattr(task, "creating_install_guide", False):
-        scores["mode_4_install"] += 4.0
-    if getattr(task, "needs_quick_reference", False):
-        scores["quick_reference"] += 3.0
+    text = _task_text(task)
+    if any(keyword in text for keyword in LOADING_LEVELS["ON_DEMAND_KEYWORDS"]):
+        for relative_path in LOADING_LEVELS["ON_DEMAND"]:
+            load_if_available(relative_path)
 
-    # Text/keyword weights
-    keyword_map = {
-        "mode_1_quality": ("dqi", "quality score", "validate", "extract_structure"),
-        "mode_1_optimization": ("optimize", "ai context", "llms.txt"),
-        "mode_2_skill": ("skill creation", "new skill", "init_skill", "package_skill"),
-        "mode_2_reference": ("reference file", "bundled resource", "asset template"),
-        "mode_3_flowchart": ("flowchart", "ascii diagram", "decision tree", "swimlane"),
-        "mode_4_install": ("install guide", "setup instructions", "phase", "prerequisite"),
-        "quick_reference": ("quick reference", "cheat sheet", "standards lookup"),
-    }
-    for route_name, terms in keyword_map.items():
-        for term in terms:
-            if term in text or term in keywords:
-                scores[route_name] += 1.0
+    if not loaded:
+        load_if_available(DEFAULT_RESOURCE)
 
-    precedence = [
-        "mode_1_quality",
-        "mode_1_optimization",
-        "mode_2_skill",
-        "mode_2_reference",
-        "mode_3_flowchart",
-        "mode_4_install",
-        "quick_reference",
-    ]
-    ranked = sorted(precedence, key=lambda name: (scores[name], -precedence.index(name)), reverse=True)
-    selected = ranked[0]
-    secondary = ranked[1]
-
-    def _load_selected(route_name):
-        if route_name == "mode_1_quality":
-            safe_load("references/validation.md")
-            safe_load("references/workflows.md")
-            return "Mode 1: Document Quality"
-
-        if route_name == "mode_1_optimization":
-            safe_load("references/optimization.md")
-            return "Mode 1: Content Optimization"
-
-        if route_name == "mode_2_skill":
-            safe_load("references/skill_creation.md")
-            safe_load("assets/opencode/skill_md_template.md")
-            return "Mode 2: Skill Creation"
-
-        if route_name == "mode_2_reference":
-            safe_load("assets/opencode/skill_reference_template.md")
-            return "Mode 2: Reference Creation"
-
-        if route_name == "mode_3_flowchart":
-            return [
-                path for path in discover_markdown_resources()
-                if "/assets/flowcharts/" in path.replace("\\", "/")
-            ]
-
-        if route_name == "mode_4_install":
-            safe_load("assets/documentation/install_guide_template.md")
-            return "Mode 4: Install Guide"
-
-        safe_load("references/quick_reference.md")
-        return "Quick Reference"
-
-    # Ambiguity handling: when two intents are close, load both top routes.
-    if scores[selected] > 0 and scores[secondary] > 0 and (scores[selected] - scores[secondary]) <= 1.0:
-        return {
-            "primary": _load_selected(selected),
-            "secondary": _load_selected(secondary),
-            "delta": scores[selected] - scores[secondary],
-        }
-
-    return _load_selected(selected)
+    return {"intents": intents, "resources": loaded}
 ```
 
-### Mode Selection
+### Resource Loading Levels
 
-```text
-TASK CONTEXT
-    │
-    ├─► Improving markdown / documentation quality
-    │   └─► MODE 1: Document Quality
-    │       ├─► README creation: readme_template.md
-    │       ├─► Knowledge files, general markdown
-    │       ├─► Frontmatter validation: frontmatter_templates.md
-    │       ├─► Quality analysis: extract_structure.py → JSON
-    │       └─► llms.txt generation (ask first)
-    │
-    ├─► Creating OpenCode components (skills, agents, commands)
-    │   └─► MODE 2: Component Creation
-    │       ├─► Skills: init_skill.py + skill_md_template.md
-    │       ├─► Agents: agent_template.md
-    │       └─► Commands: command_template.md
-    │
-    ├─► Creating ASCII flowcharts / diagrams
-    │   └─► MODE 3: Flowchart Creation
-    │       └─► Load flowchart assets by pattern type
-    │
-    ├─► Creating install guide / setup documentation
-    │   └─► MODE 4: Install Guide Creation
-    │       └─► Load: install_guide_template.md
-    │
-    └─► Quick reference / standards lookup
-        └─► Load: quick_reference.md
-```
-
-### Resource Router (Quick Reference)
-
-**Mode 1 - Document Quality:**
-
-| Condition                  | Resource                                        | Purpose                                        |
-| -------------------------- | ----------------------------------------------- | ---------------------------------------------- |
-| Checking structure         | `references/core_standards.md`                  | Filename conventions, structural violations    |
-| Optimizing content         | `references/optimization.md`                    | Question coverage, AI-friendly transformations |
-| Validating quality         | `references/validation.md`                      | DQI scoring, quality gates                     |
-| Workflow guidance          | `references/workflows.md`                       | Execution modes, enforcement patterns          |
-| **Creating README**        | `assets/documentation/readme_template.md`       | README structure (14 sections + HVR)           |
-| **Validating frontmatter** | `assets/documentation/frontmatter_templates.md` | Frontmatter validation & templates (11 types)  |
-
-**Mode 2 - OpenCode Component Creation:**
-
-| Category     | Condition          | Resource                                         | Purpose                                   |
-| ------------ | ------------------ | ------------------------------------------------ | ----------------------------------------- |
-| **Skills**   | Creating skill     | `references/skill_creation.md` + `init_skill.py` | 6-step workflow                           |
-|              | SKILL.md template  | `assets/opencode/skill_md_template.md`           | SKILL.md structure                        |
-|              | Reference template | `assets/opencode/skill_reference_template.md`    | Reference docs in references/             |
-|              | Asset template     | `assets/opencode/skill_asset_template.md`        | Bundled assets in assets/                 |
-|              | Packaging skill    | `scripts/package_skill.py`                       | Validation + zip                          |
-| **Agents**   | Creating agent     | `assets/opencode/agent_template.md`              | Agent file with frontmatter & permissions |
-| **Commands** | Creating command   | `assets/opencode/command_template.md`            | Command creation guide (19 sections)      |
-| **Shared**   | Component README   | `assets/documentation/readme_template.md`        | README for skill/agent/command folders    |
-|              | Quick validation   | `scripts/quick_validate.py`                      | Fast validation checks                    |
-
-**Mode 3 - Flowcharts:**
-
-| Pattern       | Resource                                            | Use Case         |
-| ------------- | --------------------------------------------------- | ---------------- |
-| Linear        | `assets/flowcharts/simple_workflow.md`              | Sequential steps |
-| Decision      | `assets/flowcharts/decision_tree_flow.md`           | Branching logic  |
-| Parallel      | `assets/flowcharts/parallel_execution.md`           | Concurrent tasks |
-| Nested        | `assets/flowcharts/user_onboarding.md`              | Sub-processes    |
-| Loop/Approval | `assets/flowcharts/approval_workflow_loops.md`      | Review cycles    |
-| Swimlane      | `assets/flowcharts/system_architecture_swimlane.md` | Multi-stage      |
-
-**Mode 4 - Install Guide Creation:**
-
-| Condition              | Resource                                         | Purpose              |
-| ---------------------- | ------------------------------------------------ | -------------------- |
-| Creating install guide | `assets/documentation/install_guide_template.md` | Phase-based template |
-| Need standards         | `references/install_guide_standards.md`          | Best practices       |
-| Validating guide       | `scripts/extract_structure.py`                   | Quality check        |
-
-**General Utilities:**
-
-| Condition           | Resource                                         | Purpose                                      |
-| ------------------- | ------------------------------------------------ | -------------------------------------------- |
-| Need frontmatter    | `assets/documentation/frontmatter_templates.md`  | Frontmatter validation & templates (11 secs) |
-| Generating llms.txt | `assets/documentation/llmstxt_templates.md`      | llms.txt creation with decision framework    |
-| Creating install    | `assets/documentation/install_guide_template.md` | 5-phase install guide template (14 sections) |
-| Analyzing docs      | `scripts/extract_structure.py`                   | Parse to JSON for AI analysis                |
-| Quick reference     | `references/quick_reference.md`                  | One-page cheat sheet                         |
-
-### Core References
-
-| Document                                            | Purpose                          | Key Insight                    |
-| --------------------------------------------------- | -------------------------------- | ------------------------------ |
-| [skill_creation.md](references/skill_creation.md)   | Complete skill creation workflow | Template structure, validation |
-| [validation.md](references/validation.md)           | DQI scoring criteria             | Quality gates                  |
-| [optimization.md](references/optimization.md)       | Content optimization             | AI context efficiency          |
-| [core_standards.md](references/core_standards.md)   | Structural standards             | Section ordering               |
-| [workflows.md](references/workflows.md)             | Execution modes                  | Mode selection                 |
-| [quick_reference.md](references/quick_reference.md) | Command cheat sheet              | Common operations              |
-
-### Templates
-
-| Template                                                                   | Purpose                 | Usage                 |
-| -------------------------------------------------------------------------- | ----------------------- | --------------------- |
-| [skill_md_template.md](assets/opencode/skill_md_template.md)               | SKILL.md template       | New skill creation    |
-| [skill_reference_template.md](assets/opencode/skill_reference_template.md) | Reference file template | Bundled resources     |
-| [readme_template.md](assets/documentation/readme_template.md)              | README template         | Project documentation |
-| [command_template.md](assets/opencode/command_template.md)                 | Command template        | Slash commands        |
-| [agent_template.md](assets/opencode/agent_template.md)                     | Agent template          | Custom agents         |
-
-**Key Insight**: Always run `extract_structure.py` first. It provides the structured JSON that enables accurate AI quality assessment. Without it, quality evaluation is subjective guesswork.
+| Level       | When to Load             | Resources                   |
+| ----------- | ------------------------ | --------------------------- |
+| ALWAYS      | Every skill invocation   | Quick reference baseline    |
+| CONDITIONAL | If intent signals match  | Mode-specific docs/templates|
+| ON_DEMAND   | Only on explicit request | Extended standards/template |
 
 ---
 

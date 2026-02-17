@@ -145,7 +145,7 @@ After creating a constitutional memory:
 ```
 constitutional/
 ├── README.md              # This documentation file
-├── gate-enforcement.md    # Gate 3 and behavioral rules (default)
+├── gate-enforcement.md    # Edge cases (compaction, continuation) + gate cross-reference
 └── [your-rules].md        # Custom constitutional memories
 ```
 
@@ -161,7 +161,7 @@ constitutional/
 
 | File | Required | Purpose |
 |------|----------|---------|
-| `gate-enforcement.md` | Recommended | Core gate system rules |
+| `gate-enforcement.md` | Recommended | Edge cases (compaction, continuation) + gate cross-reference |
 | `README.md` | Recommended | This documentation |
 | Custom files | Optional | Your domain-specific rules |
 

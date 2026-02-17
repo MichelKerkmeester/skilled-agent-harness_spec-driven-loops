@@ -91,98 +91,113 @@ Programmatic access to Figma design files through 18 specialized tools covering 
 <!-- ANCHOR:smart-routing -->
 ## 2. SMART ROUTING
 
-### Resource Router
+### Smart Router Pseudocode
 
 ```python
 from pathlib import Path
 
 SKILL_ROOT = Path(__file__).resolve().parent
+RESOURCE_BASES = (SKILL_ROOT / "references", SKILL_ROOT / "assets")
+DEFAULT_RESOURCE = "references/quick_start.md"
 
+INTENT_SIGNALS = {
+    "QUICK_START": {"weight": 4, "keywords": ["first use", "setup", "verify", "token", "getting started"]},
+    "TOOL_REFERENCE": {"weight": 4, "keywords": ["which tool", "all tools", "parameters", "components", "styles", "comments", "export"]},
+}
 
-def _guard(path):
-    """Scoped routing guard: allow only this skill folder markdown files."""
-    resolved = (SKILL_ROOT / path).resolve()
-    try:
-        resolved.relative_to(SKILL_ROOT)
-    except ValueError:
-        raise ValueError(f"Blocked out-of-scope resource: {path}")
-    if resolved.suffix != ".md":
-        raise ValueError(f"Blocked non-markdown resource: {path}")
-    return resolved
+RESOURCE_MAP = {
+    "QUICK_START": ["references/quick_start.md"],
+    "TOOL_REFERENCE": ["references/tool_reference.md", "assets/tool_categories.md"],
+}
 
+LOADING_LEVELS = {
+    "ALWAYS": [DEFAULT_RESOURCE],
+    "ON_DEMAND_KEYWORDS": ["full reference", "deep dive", "all figma tools"],
+    "ON_DEMAND": ["references/tool_reference.md", "assets/tool_categories.md"],
+}
 
-def _discover_markdown_fallbacks():
-    """Recursive discovery for references/assets markdown resources."""
+def _task_text(task) -> str:
+    parts = [
+        str(getattr(task, "query", "")),
+        str(getattr(task, "text", "")),
+        " ".join(getattr(task, "keywords", []) or []),
+    ]
+    return " ".join(parts).lower()
+
+def _guard_in_skill(relative_path: str) -> str:
+    resolved = (SKILL_ROOT / relative_path).resolve()
+    resolved.relative_to(SKILL_ROOT)
+    if resolved.suffix.lower() != ".md":
+        raise ValueError(f"Only markdown resources are routable: {relative_path}")
+    return resolved.relative_to(SKILL_ROOT).as_posix()
+
+def discover_markdown_resources() -> set[str]:
     docs = []
-    for folder in ("references", "assets"):
-        base = SKILL_ROOT / folder
+    for base in RESOURCE_BASES:
         if base.exists():
-            docs.extend(sorted(p for p in base.rglob("*.md") if p.is_file()))
-    return docs
+            docs.extend(p for p in base.rglob("*.md") if p.is_file())
+    return {doc.relative_to(SKILL_ROOT).as_posix() for doc in docs}
 
-
-def _intent_scores(task):
-    text = (task.query or "").lower()
-    scores = {
-        "quick_start": 0,
-        "tool_reference": 0,
-    }
-
-    # Existing activation semantics preserved: first-use/verification => quick start
-    if task.is_first_use or task.needs_verification:
-        scores["quick_start"] += 9
-    if task.needs_tool_discovery or task.needs_full_reference:
-        scores["tool_reference"] += 9
-
-    # Smarter weighted keyword/intent classification
-    quick_start_terms = [
-        "first use", "setup", "verify", "verification", "getting started", "token",
-    ]
-    reference_terms = [
-        "which tool", "tool discovery", "full reference", "all tools", "parameters",
-        "components", "styles", "comments", "team projects", "export",
-    ]
-
-    scores["quick_start"] += sum(2 for term in quick_start_terms if term in text)
-    scores["tool_reference"] += sum(2 for term in reference_terms if term in text)
-
+def score_intents(task) -> dict[str, float]:
+    """Weighted intent scoring from request text and signals."""
+    text = _task_text(task)
+    scores = {intent: 0.0 for intent in INTENT_SIGNALS}
+    for intent, cfg in INTENT_SIGNALS.items():
+        for keyword in cfg["keywords"]:
+            if keyword in text:
+                scores[intent] += cfg["weight"]
+    if getattr(task, "is_first_use", False):
+        scores["QUICK_START"] += 4
+    if getattr(task, "needs_tool_discovery", False) or getattr(task, "needs_full_reference", False):
+        scores["TOOL_REFERENCE"] += 4
     return scores
 
+def select_intents(scores: dict[str, float], ambiguity_delta: float = 1.0, max_intents: int = 2) -> list[str]:
+    ranked = sorted(scores.items(), key=lambda item: item[1], reverse=True)
+    if not ranked or ranked[0][1] <= 0:
+        return ["QUICK_START"]
+    selected = [ranked[0][0]]
+    if len(ranked) > 1 and ranked[1][1] > 0 and (ranked[0][1] - ranked[1][1]) <= ambiguity_delta:
+        selected.append(ranked[1][0])
+    return selected[:max_intents]
 
 def route_figma_resources(task):
-    """
-    Resource Router for mcp-figma skill
-    Load references based on task context
-    """
+    inventory = discover_markdown_resources()
+    intents = select_intents(score_intents(task), ambiguity_delta=1.0)
+    loaded = []
+    seen = set()
 
-    scores = _intent_scores(task)
-    ranked = sorted(scores.items(), key=lambda item: item[1], reverse=True)
-    primary_intent, primary_score = ranked[0]
-    secondary_intent, secondary_score = ranked[1]
+    def load_if_available(relative_path: str) -> None:
+        guarded = _guard_in_skill(relative_path)
+        if guarded in inventory and guarded not in seen:
+            load(guarded)
+            loaded.append(guarded)
+            seen.add(guarded)
 
-    if primary_score <= 0:
-        return _discover_markdown_fallbacks()
+    for relative_path in LOADING_LEVELS["ALWAYS"]:
+        load_if_available(relative_path)
+    for intent in intents:
+        for relative_path in RESOURCE_MAP.get(intent, []):
+            load_if_available(relative_path)
 
-    # Ambiguity handling: if intent scores are close, load both top resources.
-    if secondary_score > 0 and (primary_score - secondary_score) <= 2:
-        return {
-            "primary": primary_intent,
-            "secondary": secondary_intent,
-            "results": [
-                load(_guard("references/quick_start.md")) if primary_intent == "quick_start" else load(_guard("references/tool_reference.md")),
-                load(_guard("references/quick_start.md")) if secondary_intent == "quick_start" else load(_guard("references/tool_reference.md")),
-            ],
-        }
+    text = _task_text(task)
+    if any(keyword in text for keyword in LOADING_LEVELS["ON_DEMAND_KEYWORDS"]):
+        for relative_path in LOADING_LEVELS["ON_DEMAND"]:
+            load_if_available(relative_path)
 
-    if primary_intent == "quick_start":
-        return load(_guard("references/quick_start.md"))
+    if not loaded:
+        load_if_available(DEFAULT_RESOURCE)
 
-    if primary_intent == "tool_reference":
-        return load(_guard("references/tool_reference.md"))
-
-    return _discover_markdown_fallbacks()
-
+    return {"intents": intents, "resources": loaded}
 ```
+
+### Resource Loading Levels
+
+| Level       | When to Load             | Resources                    |
+| ----------- | ------------------------ | ---------------------------- |
+| ALWAYS      | Every skill invocation   | Quick start baseline         |
+| CONDITIONAL | If intent signals match  | Tool and category references |
+| ON_DEMAND   | Only on explicit request | Full-reference materials     |
 
 ---
 

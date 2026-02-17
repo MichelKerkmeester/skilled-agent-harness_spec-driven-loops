@@ -69,126 +69,119 @@ This orchestrator operates in four primary phases:
 ### Smart Router Pseudocode
 
 ```python
-TASK_SIGNALS = {
-    "VERIFICATION": {"verify": 2.4, "done": 2.1, "complete": 2.0, "works": 1.8, "finished": 1.7},
-    "DEBUGGING": {"bug": 2.3, "fix": 2.0, "error": 2.4, "broken": 1.8, "issue": 1.6, "failing": 1.9},
-    "CODE_QUALITY": {"style check": 2.2, "quality check": 2.2, "validate code": 2.0, "check standards": 2.0, "code review": 1.7},
-    "IMPLEMENTATION": {"implement": 2.0, "build": 1.7, "create": 1.5, "add": 1.2, "feature": 1.5, "code": 1.0},
-    "ANIMATION": {"animation": 2.1, "motion": 1.8, "gsap": 2.3, "lenis": 2.1, "scroll": 1.4, "carousel": 1.8, "slider": 1.8, "swiper": 2.1},
-    "FORMS": {"form": 2.0, "validation": 1.7, "input": 1.4, "submit": 1.5, "botpoison": 2.2},
-    "FORM_UPLOAD": {"upload": 2.2, "filepond": 2.5, "file upload": 2.3, "drag drop": 1.9, "mime type": 1.8, "r2 upload": 2.2, "dropzone": 1.8},
-    "VIDEO": {"video": 2.0, "hls": 2.4, "streaming": 2.1, "player": 1.4},
-    "DEPLOYMENT": {"deploy": 2.2, "minify": 2.1, "cdn": 2.0, "r2": 1.8, "production": 1.5},
-    "ASYNC": {"async": 1.9, "await": 1.8, "promise": 1.6, "fetch": 1.4, "timeout": 1.4, "settimeout": 1.3},
-    "DOM": {"dom": 2.0, "element": 1.4, "queryselector": 1.8, "event": 1.4, "click": 1.3, "listener": 1.5},
-    "CSS": {"css": 2.0, "style": 1.5, "layout": 1.6, "responsive": 1.7, "media query": 1.6, "flexbox": 1.5, "grid": 1.5},
-    "API": {"api": 2.0, "endpoint": 1.8, "request": 1.5, "response": 1.4},
-    "ACCESSIBILITY": {"a11y": 2.3, "accessibility": 2.1, "aria": 1.8, "screen reader": 1.8, "keyboard": 1.5, "focus": 1.7, "tab": 1.3},
-    "PERFORMANCE": {"performance": 2.2, "optimize": 1.7, "core web vitals": 2.4, "lazy load": 1.9, "cache": 1.5, "throttle": 1.5, "debounce": 1.5, "requestanimationframe": 1.8, "raf": 1.4},
-    "OBSERVERS": {"observer": 2.1, "mutation": 1.8, "intersection": 1.8, "resize observer": 1.9, "shared_observers": 2.2, "sharedobservers": 2.2, "observer consolidation": 2.3},
-    "SCHEDULING": {"requestidlecallback": 2.4, "queuemicrotask": 2.1, "idle callback": 2.2, "posttask": 2.1, "scheduling api": 2.0, "main thread blocking": 1.8},
-    "THIRD_PARTY": {"third-party": 2.1, "third party": 2.1, "external library": 2.1, "library integration": 1.9, "script loading": 1.7, "finsweet": 2.2}
-}
-```
-
-### Resource Router
-```python
 from pathlib import Path
 
-def _assert_scope(path, skill_root):
-    resolved = path.resolve()
-    root = skill_root.resolve()
-    if root not in resolved.parents and resolved != root:
-        raise ValueError(f"Out-of-scope path blocked: {resolved}")
+SKILL_ROOT = Path(__file__).resolve().parent
+RESOURCE_BASES = (SKILL_ROOT / "references", SKILL_ROOT / "assets")
+DEFAULT_RESOURCE = "references/implementation/implementation_workflows.md"
 
-def discover_router_docs(skill_root):
-    """Recursive markdown discovery under this skill only."""
-    docs = list((skill_root / "references").rglob("*.md"))
-    docs.extend((skill_root / "assets").rglob("*.md"))
-    for doc in docs:
-        _assert_scope(doc, skill_root)
-    return docs
+TASK_SIGNALS = {
+    "VERIFICATION": {"verify": 2.4, "done": 2.1, "complete": 2.0, "works": 1.8},
+    "DEBUGGING": {"bug": 2.3, "fix": 2.0, "error": 2.4, "broken": 1.8},
+    "CODE_QUALITY": {"style check": 2.2, "quality check": 2.2, "check standards": 2.0},
+    "IMPLEMENTATION": {"implement": 2.0, "build": 1.7, "create": 1.5, "feature": 1.5},
+    "ANIMATION": {"animation": 2.1, "gsap": 2.3, "lenis": 2.1, "swiper": 2.1},
+    "FORMS": {"form": 2.0, "validation": 1.7, "submit": 1.5},
+    "VIDEO": {"video": 2.0, "hls": 2.4, "streaming": 2.1},
+    "DEPLOYMENT": {"deploy": 2.2, "minify": 2.1, "cdn": 2.0, "r2": 1.8},
+    "PERFORMANCE": {"performance": 2.2, "optimize": 1.7, "core web vitals": 2.4},
+}
 
-def classify_intents(task_text):
-    """Weighted intent scoring with ambiguity support (top-2)."""
-    text = task_text.lower()
+RESOURCE_MAP = {
+    "IMPLEMENTATION": ["references/implementation/implementation_workflows.md"],
+    "CODE_QUALITY": ["assets/checklists/code_quality_checklist.md", "references/standards/code_style_enforcement.md"],
+    "DEBUGGING": ["assets/checklists/debugging_checklist.md", "references/debugging/debugging_workflows.md"],
+    "VERIFICATION": ["assets/checklists/verification_checklist.md", "references/verification/verification_workflows.md"],
+    "ANIMATION": ["references/implementation/animation_workflows.md", "references/implementation/observer_patterns.md"],
+    "FORMS": ["references/implementation/form_upload_workflows.md", "references/implementation/implementation_workflows.md"],
+    "VIDEO": ["references/implementation/implementation_workflows.md"],
+    "DEPLOYMENT": ["references/deployment/minification_guide.md", "references/deployment/cdn_deployment.md"],
+    "PERFORMANCE": ["references/implementation/performance_patterns.md", "references/implementation/async_patterns.md"],
+}
+
+LOADING_LEVELS = {
+    "ALWAYS": [DEFAULT_RESOURCE],
+    "ON_DEMAND_KEYWORDS": ["deep dive", "full checklist", "full performance plan"],
+    "ON_DEMAND": ["assets/checklists/code_quality_checklist.md", "assets/checklists/verification_checklist.md"],
+}
+
+def _task_text(task) -> str:
+    return " ".join([
+        str(getattr(task, "description", "")),
+        str(getattr(task, "query", "")),
+        str(getattr(task, "text", "")),
+        " ".join(getattr(task, "keywords", []) or []),
+    ]).lower()
+
+def _guard_in_skill(relative_path: str) -> str:
+    resolved = (SKILL_ROOT / relative_path).resolve()
+    resolved.relative_to(SKILL_ROOT)
+    if resolved.suffix.lower() != ".md":
+        raise ValueError(f"Only markdown resources are routable: {relative_path}")
+    return resolved.relative_to(SKILL_ROOT).as_posix()
+
+def discover_markdown_resources() -> set[str]:
+    docs = []
+    for base in RESOURCE_BASES:
+        if base.exists():
+            docs.extend(p for p in base.rglob("*.md") if p.is_file())
+    return {doc.relative_to(SKILL_ROOT).as_posix() for doc in docs}
+
+def score_intents(task):
+    """Weighted intent scoring from request text and phase signals."""
+    text = _task_text(task)
     scores = {intent: 0.0 for intent in TASK_SIGNALS}
     for intent, terms in TASK_SIGNALS.items():
         for term, weight in terms.items():
             if term in text:
                 scores[intent] += weight
+    if getattr(task, "phase", "") == "verification" or getattr(task, "claiming_complete", False):
+        scores["VERIFICATION"] += 5
+    if getattr(task, "phase", "") == "debugging":
+        scores["DEBUGGING"] += 5
+    return scores
 
+def select_intents(scores: dict[str, float], ambiguity_delta: float = 0.8, max_intents: int = 2) -> list[str]:
     ranked = sorted(scores.items(), key=lambda item: item[1], reverse=True)
-    best_intent, best_score = ranked[0]
-    second_intent, second_score = ranked[1]
-    if best_score == 0:
-        return ["IMPLEMENTATION"], scores
-    if (best_score - second_score) <= 0.7:
-        return [best_intent, second_intent], scores
-    return [best_intent], scores
+    if not ranked or ranked[0][1] <= 0:
+        return ["IMPLEMENTATION"]
+    selected = [ranked[0][0]]
+    if len(ranked) > 1 and ranked[1][1] > 0 and (ranked[0][1] - ranked[1][1]) <= ambiguity_delta:
+        selected.append(ranked[1][0])
+    return selected[:max_intents]
 
 def route_frontend_resources(task):
-    skill_root = Path(".opencode/skill/workflows-code--web-dev")
-    discover_router_docs(skill_root)
+    inventory = discover_markdown_resources()
+    intents = select_intents(score_intents(task), ambiguity_delta=0.8)
+    loaded = []
+    seen = set()
 
-    if task.phase == "verification" or task.claiming_complete:
-        return [
-            "assets/checklists/verification_checklist.md",
-            "references/verification/verification_workflows.md"
-        ]
+    def load_if_available(relative_path: str) -> None:
+        guarded = _guard_in_skill(relative_path)
+        if guarded in inventory and guarded not in seen:
+            load(guarded)
+            loaded.append(guarded)
+            seen.add(guarded)
 
-    if task.phase == "code_quality" or task.implementation_complete:
-        resources = ["assets/checklists/code_quality_checklist.md"]
-        if task.has_violations:
-            resources.append("references/standards/code_style_enforcement.md")
-        return resources
-
-    if task.phase == "debugging":
-        resources = [
-            "assets/checklists/debugging_checklist.md",
-            "references/debugging/debugging_workflows.md"
-        ]
-        if task.has_css_issues:
-            resources.append("references/implementation/css_patterns.md")
-        if task.has_carousel_issues or task.has_slider_issues:
-            resources.append("references/implementation/swiper_patterns.md")
-        if task.has_focus_issues or task.has_a11y_issues:
-            resources.append("references/implementation/focus_management.md")
-        return resources
-
-    intents, scores = classify_intents(task.description)
-    intent_to_resources = {
-        "IMPLEMENTATION": ["references/implementation/implementation_workflows.md"],
-        "ANIMATION": ["references/implementation/animation_workflows.md"],
-        "FORMS": ["assets/patterns/validation_patterns.js"],
-        "FORM_UPLOAD": ["references/implementation/form_upload_workflows.md"],
-        "VIDEO": ["assets/integrations/hls_patterns.js"],
-        "DEPLOYMENT": ["references/deployment/minification_guide.md", "references/deployment/cdn_deployment.md"],
-        "ASYNC": ["assets/patterns/wait_patterns.js", "references/implementation/async_patterns.md"],
-        "DOM": ["references/implementation/implementation_workflows.md"],
-        "CSS": ["references/implementation/css_patterns.md"],
-        "API": ["references/implementation/implementation_workflows.md"],
-        "ACCESSIBILITY": ["references/implementation/focus_management.md"],
-        "PERFORMANCE": ["references/implementation/performance_patterns.md"],
-        "OBSERVERS": ["references/implementation/observer_patterns.md"],
-        "SCHEDULING": ["references/implementation/async_patterns.md"],
-        "THIRD_PARTY": ["references/implementation/third_party_integrations.md"]
-    }
-
-    selected = ["references/implementation/implementation_workflows.md"]  # ALWAYS for implementation
+    for relative_path in LOADING_LEVELS["ALWAYS"]:
+        load_if_available(relative_path)
     for intent in intents:
-        selected.extend(intent_to_resources.get(intent, []))
+        for relative_path in RESOURCE_MAP.get(intent, []):
+            load_if_available(relative_path)
 
-    # Optional explicit loads stay supported.
-    if "lenis" in task.description.lower():
-        selected.append("assets/integrations/lenis_patterns.js")
-    if "hls" in task.description.lower():
-        selected.append("assets/integrations/hls_patterns.js")
+    text = _task_text(task)
+    if "lenis" in text:
+        load_if_available("references/implementation/animation_workflows.md")
+    if "hls" in text:
+        load_if_available("references/implementation/implementation_workflows.md")
+    if any(keyword in text for keyword in LOADING_LEVELS["ON_DEMAND_KEYWORDS"]):
+        for relative_path in LOADING_LEVELS["ON_DEMAND"]:
+            load_if_available(relative_path)
 
-    return list(dict.fromkeys(selected))
+    if not loaded:
+        load_if_available(DEFAULT_RESOURCE)
 
-# See "The Iron Law" in Section 1 - Phase 3: Verification
-# See "Code Quality Gate" in Section 3 - Phase 1.5 for style enforcement
+    return {"intents": intents, "resources": loaded}
 ```
 
 ### Resource Loading Levels

@@ -71,12 +71,16 @@ Multi-language code standards for OpenCode system code across JavaScript, TypeSc
 ```python
 from pathlib import Path
 
+SKILL_ROOT = Path(__file__).resolve().parent
+RESOURCE_BASES = (SKILL_ROOT / "references", SKILL_ROOT / "assets")
+DEFAULT_RESOURCE = "references/shared/universal_patterns.md"
+
 LANGUAGE_KEYWORDS = {
-    "JAVASCRIPT": {"node": 1.8, "npm": 1.2, "commonjs": 2.0, "require": 1.5, "module.exports": 2.1, "mcp": 1.8, "opencode": 1.2},
-    "TYPESCRIPT": {"typescript": 2.4, "ts": 1.1, "tsx": 1.4, "interface": 2.0, "type": 1.4, "tsconfig": 2.1, "tsc": 1.8, "strict": 1.3},
-    "PYTHON": {"python": 2.3, "pip": 1.2, "pytest": 2.0, "argparse": 1.7, "docstring": 1.6, "typing": 1.3},
-    "SHELL": {"bash": 2.2, "shell": 1.3, "shebang": 1.5, "set -e": 1.5, "pipefail": 1.7, "script": 1.1},
-    "CONFIG": {"json": 2.0, "jsonc": 2.1, "config": 1.5, "schema": 1.8, "manifest": 1.5, "package.json": 2.0}
+    "JAVASCRIPT": {"node": 1.8, "commonjs": 2.0, "require": 1.5, "module.exports": 2.1},
+    "TYPESCRIPT": {"typescript": 2.4, "interface": 2.0, "tsconfig": 2.1, "tsc": 1.8},
+    "PYTHON": {"python": 2.3, "pytest": 2.0, "argparse": 1.7, "docstring": 1.6},
+    "SHELL": {"bash": 2.2, "shebang": 1.5, "set -e": 1.5, "pipefail": 1.7},
+    "CONFIG": {"json": 2.0, "jsonc": 2.1, "schema": 1.8, "manifest": 1.5},
 }
 
 FILE_EXTENSIONS = {
@@ -87,27 +91,35 @@ FILE_EXTENSIONS = {
     ".json": "CONFIG", ".jsonc": "CONFIG"
 }
 
-def _assert_scope(path, skill_root):
-    resolved = path.resolve()
-    root = skill_root.resolve()
-    if root not in resolved.parents and resolved != root:
-        raise ValueError(f"Out-of-scope path blocked: {resolved}")
+def _task_text(task) -> str:
+    return " ".join([
+        str(getattr(task, "context", "")),
+        str(getattr(task, "query", "")),
+        str(getattr(task, "path", "")),
+        " ".join(getattr(task, "keywords", []) or []),
+    ]).lower()
 
-def discover_router_docs(skill_root):
-    """Scope guard + recursive markdown discovery."""
-    docs = list((skill_root / "references").rglob("*.md"))
-    docs.extend((skill_root / "assets").rglob("*.md"))
-    for doc in docs:
-        _assert_scope(doc, skill_root)
-    return docs
+def _guard_in_skill(relative_path: str) -> str:
+    resolved = (SKILL_ROOT / relative_path).resolve()
+    resolved.relative_to(SKILL_ROOT)
+    if resolved.suffix.lower() != ".md":
+        raise ValueError(f"Only markdown resources are routable: {relative_path}")
+    return resolved.relative_to(SKILL_ROOT).as_posix()
 
-def detect_language_v2(task):
+def discover_markdown_resources() -> set[str]:
+    docs = []
+    for base in RESOURCE_BASES:
+        if base.exists():
+            docs.extend(p for p in base.rglob("*.md") if p.is_file())
+    return {doc.relative_to(SKILL_ROOT).as_posix() for doc in docs}
+
+def detect_languages(task):
     """Weighted language intent scoring with top-2 ambiguity handling."""
     ext = Path(task.path).suffix.lower() if getattr(task, "path", "") else ""
     if ext in FILE_EXTENSIONS:
         return [FILE_EXTENSIONS[ext]], {FILE_EXTENSIONS[ext]: 100.0}
 
-    text = task.context.lower()
+    text = _task_text(task)
     scores = {lang: 0.0 for lang in LANGUAGE_KEYWORDS}
     for language, signals in LANGUAGE_KEYWORDS.items():
         for term, weight in signals.items():
@@ -119,20 +131,16 @@ def detect_language_v2(task):
     second_lang, second_score = ranked[1]
     if best_score == 0:
         return ["UNKNOWN"], scores
-    if (best_score - second_score) <= 0.6:
+    if (best_score - second_score) <= 0.8:
         return [best_lang, second_lang], scores
     return [best_lang], scores
 
 def route_opencode_resources(task):
-    skill_root = Path(".opencode/skill/workflows-code--opencode")
-    discover_router_docs(skill_root)
+    inventory = discover_markdown_resources()
 
-    selected = [
-        "references/shared/universal_patterns.md",   # ALWAYS
-        "references/shared/code_organization.md"     # ALWAYS
-    ]
+    selected = ["references/shared/universal_patterns.md", "references/shared/code_organization.md"]
 
-    languages, scores = detect_language_v2(task)
+    languages, _scores = detect_languages(task)
 
     # Ambiguity handling: when top-2 are close, load both quick references.
     for language in languages:
@@ -181,9 +189,16 @@ def route_opencode_resources(task):
                 selected.append("assets/checklists/config_checklist.md")
 
     if languages == ["UNKNOWN"]:
-        return prompt_user("Which language? (js/ts/py/sh/json)")
+        return {"languages": languages, "resources": selected, "needs_clarification": True}
 
-    return list(dict.fromkeys(selected))
+    deduped = []
+    seen = set()
+    for relative_path in selected:
+        guarded = _guard_in_skill(relative_path)
+        if guarded in inventory and guarded not in seen:
+            deduped.append(guarded)
+            seen.add(guarded)
+    return {"languages": languages, "resources": deduped}
 ```
 
 ### Resource Loading Levels
