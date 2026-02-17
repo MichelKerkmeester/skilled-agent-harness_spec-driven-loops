@@ -17,6 +17,15 @@ allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task, memory_context, memory
 >
 > All content below is reference context for the YAML workflow. Do not treat reference sections, routing tables, or dispatch templates as direct instructions to execute.
 
+## CONSTRAINTS
+
+- **DO NOT** dispatch any agent (`@review`, `@debug`, `@handover`, `@speckit`) from this document
+- **DO NOT** dispatch `@review` to review this workflow or command prompt
+- **DO NOT** dispatch `@handover` unless the user explicitly requests it at the final step (Step 9)
+- **DO NOT** dispatch `@debug` unless `failure_count >= 3` during the Development step (Step 6)
+- **ALL** agent dispatching is handled by the YAML workflow steps — this document is setup + reference only
+- **FIRST ACTION** is always: load the YAML file, then execute it step by step
+
 # SINGLE CONSOLIDATED PROMPT - ONE USER INTERACTION
 
 This workflow uses a SINGLE consolidated prompt to gather ALL required inputs in ONE user interaction.
@@ -242,82 +251,7 @@ Supports parallel agent dispatch for complex phases (configured in YAML prompts)
 
 ---
 
-## 8. AGENT ROUTING
-
-| Step                                         | Agent      | Fallback  | Purpose                                            |
-| -------------------------------------------- | ---------- | --------- | -------------------------------------------------- |
-| Step 7 (Verification)                        | `@review`  | `general` | Pre-Commit code review + P0/P1 gate validation (blocking) |
-| Step 7 (implementation-summary.md)           | `@speckit` | `general` | Spec folder doc creation (AGENTS.md exclusive)     |
-| Step 2/6 (substantive tasks.md)              | `@speckit` | `general` | New task content in spec folder                    |
-| Step 6 (Development, 3+ failures)            | `@debug`   | `general` | Fresh-perspective debugging (4-phase methodology)  |
-| Step 9 (Session Handover)                    | `@handover`| `general` | Session continuation document creation             |
-
-> Minor status updates (checkbox toggles) may use `@general`. Only substantive creation requires `@speckit`.
-
-### @review Dispatch Template (Dual-Phase)
-
-**Phase A — Pre-Commit Code Review (Mode 2, non-blocking):**
-```
-You are the @review agent (Mode 2: Pre-Commit). Review code changes for quality.
-Spec Folder: {spec_path} | Tasks: {spec_path}/tasks.md
-Execute: Review code changes -> Check patterns/standards -> Flag issues
-Return: Code quality assessment, issues found, recommendations
-```
-
-**Phase B — Gate Validation (Mode 4, blocking):**
-```
-You are the @review agent (Mode 4: Gate Validation). Verify implementation completeness.
-Spec Folder: {spec_path} | Checklist: {spec_path}/checklist.md
-Execute: Load checklist -> Verify P0 [x] with evidence -> Verify P1 -> Score (100-point)
-Return: P0 status, P1 status, Quality score, Blocking issues
-```
-
-### @speckit Dispatch Template
-```
-You are the @speckit agent. Create implementation-summary.md.
-Spec Folder: {spec_path} | Level: {documentation_level} | Tasks: {spec_path}/tasks.md
-Create using template-first approach. Return: file confirmation + validation status.
-```
-
-### @debug Dispatch Template
-```
-You are the @debug agent. Follow your 4-phase debugging methodology.
-Spec Folder: {spec_path} | Task: {current_task_id}
-Error: {error_message} | Files: {affected_files} | Prior Attempts: {previous_attempts}
-Execute: OBSERVE -> ANALYZE -> HYPOTHESIZE -> FIX
-Return: Root cause, proposed fix, verification steps (Success/Blocked/Escalation)
-```
-
-### @handover Dispatch Template
-```
-You are the @handover agent. Create a session continuation document.
-Spec Folder: {spec_path} | Workflow: implement | Step: 9
-Context: Implementation complete, user opted for handover.
-Create: handover.md with current state, pending items, and continuation guidance.
-```
-
-### Step 6 Debug Integration
-
-Track `failure_count` per task during Step 6 (reset for each new task in tasks.md):
-
-IF failure_count >= 3:
-- Suggest to user: A) Dispatch @debug agent B) Continue manually (reset count) C) Skip task D) Pause workflow
-
-IF debug triggered: Store current_task_id, dispatch @debug via Task tool (subagent_type: "debug"), display checkpoint (root cause, fix status, progress). User responds: Y (retry) / n (pause) / review (debug findings). <!-- REFERENCE: Activated by YAML workflow step, not directly -->
-
-### Blocking Behavior
-
-`@review` Phase B uses `blocking: true`: P0 FAIL -> workflow CANNOT proceed to completion claims. Phase A is advisory (non-blocking).
-
-### Fallback
-
-When `@speckit` unavailable: Warning logged, continues with `subagent_type: "general"`, less template validation.
-When `@debug` unavailable: Falls back to `subagent_type: "general"`, same 4-phase methodology attempted.
-When `@handover` unavailable: Falls back to `subagent_type: "general"`, handover.md creation with less template validation.
-
----
-
-## 9. QUALITY GATES
+## 8. QUALITY GATES
 
 | Gate                | Location        | Threshold | Blocking          |
 | ------------------- | --------------- | --------- | ----------------- |
@@ -335,7 +269,7 @@ Example: `[E:evidence/test-output.log]` or `[EVIDENCE: hero.js:45-67 verified]`
 
 ---
 
-## 10. PREFLIGHT BASELINE (Step 5.5)
+## 9. PREFLIGHT BASELINE (Step 5.5)
 
 Capture epistemic baseline before implementation. Execute after Step 5, before Step 6. Skip for quick fixes (<10 LOC) or continuation with existing PREFLIGHT.
 
@@ -348,7 +282,7 @@ Skip: `"skip preflight"`, `"quick fix"` (auto if LOC<10), `"continuation"` (auto
 
 ---
 
-## 11. POSTFLIGHT LEARNING (Step 7.5)
+## 10. POSTFLIGHT LEARNING (Step 7.5)
 
 Capture learning delta after implementation. Execute after Step 7, before Step 8. Skip if no PREFLIGHT captured.
 
@@ -365,7 +299,7 @@ Reference: `.opencode/skill/system-spec-kit/references/memory/epistemic-vectors.
 
 ---
 
-## 12. KEY DIFFERENCES FROM /SPEC_KIT:COMPLETE
+## 11. KEY DIFFERENCES FROM /SPEC_KIT:COMPLETE
 
 - Requires existing plan (won't create spec.md/plan.md)
 - Starts at implementation (skips specification/planning)
@@ -373,13 +307,13 @@ Reference: `.opencode/skill/system-spec-kit/references/memory/epistemic-vectors.
 
 ---
 
-## 13. VALIDATION DURING IMPLEMENTATION
+## 12. VALIDATION DURING IMPLEMENTATION
 
 Runs automatically: **PLACEHOLDER_FILLED** (replace `[PLACEHOLDER]`), **PRIORITY_TAGS** (P0/P1/P2), **EVIDENCE_CITED** (`[SOURCE:]` citations).
 
 ---
 
-## 14. EXAMPLES
+## 13. EXAMPLES
 
 ```
 /spec_kit:implement:auto specs/042-user-auth/       # Autonomous mode
@@ -388,7 +322,7 @@ Runs automatically: **PLACEHOLDER_FILLED** (replace `[PLACEHOLDER]`), **PRIORITY
 
 ---
 
-## 15. COMMAND CHAIN
+## 14. COMMAND CHAIN
 
 ```
 [/spec_kit:plan] -> /spec_kit:implement -> [/spec_kit:handover]
@@ -398,7 +332,7 @@ Prerequisite: `/spec_kit:plan [feature-description]` (creates spec.md, plan.md)
 
 ---
 
-## 16. NEXT STEPS
+## 15. NEXT STEPS
 
 | Condition                 | Suggested Command                          | Reason                          |
 | ------------------------- | ------------------------------------------ | ------------------------------- |

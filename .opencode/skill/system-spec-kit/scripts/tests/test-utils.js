@@ -144,20 +144,17 @@
     const DIMENSIONS = 384;
     const embedding = new Array(DIMENSIONS);
 
-    // Simple hash-based pseudo-embedding
     let hash = 0;
     for (let i = 0; i < text.length; i++) {
       hash = ((hash << 5) - hash) + text.charCodeAt(i);
-      hash = hash & hash; // Convert to 32bit integer
+      hash = hash & hash;
     }
 
-    // Generate deterministic values
     for (let i = 0; i < DIMENSIONS; i++) {
       const seed = (hash * (i + 1)) % 1000000;
-      embedding[i] = (Math.sin(seed) + 1) / 2; // Normalize to [0, 1]
+      embedding[i] = (Math.sin(seed) + 1) / 2;
     }
 
-    // Normalize to unit vector
     const magnitude = Math.sqrt(embedding.reduce((sum, v) => sum + v * v, 0));
     return embedding.map(v => v / magnitude);
   }
@@ -408,30 +405,25 @@
   ────────────────────────────────────────────────────────────────*/
 
   module.exports = {
-    // Paths
     FIXTURES_DIR,
     MEMORY_DIR,
     DATABASE_DIR,
 
-    // Test data creation
     createTestMemory,
     mockDatabase,
     mockEmbedding,
 
-    // Assertions
     assert,
     assertApproxEqual,
     assertInRange,
     assertArrayEqual,
     assertThrows,
 
-    // Test infrastructure
     createTestRunner,
     loadFixture,
     createTempDir,
     cleanupTempDir,
 
-    // Utilities
     sleep,
     randomString,
     cosineSimilarity

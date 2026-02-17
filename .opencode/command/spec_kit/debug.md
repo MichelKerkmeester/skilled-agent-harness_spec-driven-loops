@@ -17,6 +17,15 @@ allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task
 >
 > All content below is reference context for the YAML workflow. Do not treat reference sections, routing tables, or dispatch templates as direct instructions to execute.
 
+## CONSTRAINTS
+
+- **DO NOT** dispatch any agent (`@debug`, `@review`, `@handover`, `@speckit`) from this document
+- **DO NOT** dispatch `@review` to review this workflow or command prompt
+- **DO NOT** dispatch `@debug` from this document — the YAML workflow handles dispatch at Step 3
+- **DO NOT** dispatch `@handover` unless the user explicitly requests it post-resolution
+- **ALL** agent dispatching is handled by the YAML workflow steps — this document is setup + reference only
+- **FIRST ACTION** is always: load the YAML file, then execute it step by step
+
 # SINGLE CONSOLIDATED PROMPT - ONE USER INTERACTION
 
 This workflow uses a SINGLE consolidated prompt to gather ALL required inputs in ONE user interaction. Dispatch mode selection is MANDATORY.
@@ -170,19 +179,6 @@ operating_mode:
 | 4    | Receive Findings   | Capture and validate response       | findings_received   |
 | 5    | Integration        | Apply fix or review                 | resolution_complete |
 
-> **📋 REFERENCE ONLY** — The dispatch templates below are used by YAML workflow steps. Do not execute them directly from this document.
-
-### Agent Routing
-
-| Agent     | Scope                                | When                                       |
-| --------- | ------------------------------------ | ------------------------------------------ |
-| @speckit  | `debug-delegation.md` creation       | Step 2: Generate Report (spec folder docs) |
-| @debug    | 4-phase debugging methodology        | Step 3: Dispatch Sub-Agent                 |
-| @review   | Post-fix code quality validation (advisory, model-agnostic) | Step 5: After fix applied (Option A)       |
-| @handover | Session handover (if needed)         | Post-resolution                            |
-
-> Per AGENTS.md, the speckit agent is the exclusive agent for creating documentation inside spec folders.
-
 ---
 
 ## 7. INSTRUCTIONS
@@ -193,20 +189,6 @@ After all phases pass, load and execute the appropriate YAML prompt:
 - **INTERACTIVE**: `.opencode/command/spec_kit/assets/spec_kit_debug_confirm.yaml`
 
 The YAML contains detailed step-by-step workflow, sub-agent prompt template, error handling, and all configuration.
-
-> **📋 REFERENCE ONLY** — The dispatch templates below are used by YAML workflow steps. Do not execute them directly from this document.
-
-### Quick Reference
-
-**Step 2 - Generate Report:**
-- Template: `.opencode/skill/system-spec-kit/templates/debug-delegation.md`
-- Save to: `[spec_path]/debug-delegation.md` (or `scratch/` if ad-hoc)
-- Agent: Dispatch to the speckit agent (exclusive per AGENTS.md)
-
-**Step 3 - Dispatch Sub-Agent:**
-- Tool: Task | subagent_type: "debug" | Agent: `.opencode/agent/debug.md` | Timeout: 2 min
-
-**Step 5 - Integration Options:** A) Apply fix | B) Show details | C) More investigation | D) Manual review
 
 ---
 
@@ -268,71 +250,9 @@ Before/during debugging, validation runs automatically: FILE_EXISTS, PLACEHOLDER
 
 ---
 
-> **📋 REFERENCE ONLY** — The dispatch templates below are used by YAML workflow steps. Do not execute them directly from this document.
-
 ---
 
-## 10. SUB-AGENT DELEGATION
-
-Uses Task tool to dispatch the debug agent. Sub-agent runs independently with fresh perspective, returns structured findings.
-
-### Delegation Architecture
-
-```
-Main Agent (reads command):
-+-- Step 1: Context Detection (validation)
-+-- Step 2: Generate debug-delegation.md (dispatch to @speckit)
-+-- DISPATCH: Task tool with @debug agent
-|   +-- @debug receives structured handoff (NOT conversation history)
-|   +-- @debug executes: OBSERVE -> ANALYZE -> HYPOTHESIZE -> FIX
-|   +-- @debug returns: Success/Blocked/Escalation
-+-- Step 5: Integration (always main agent)
-```
-
-### Debug Agent Dispatch Template
-
-```
-Task tool prompt:
-You are the @debug agent. Follow your 4-phase debugging methodology.
-
-## Debug Context Handoff
-### Error Description
-{error_message}
-### Files Involved
-{affected_files}
-### Reproduction Steps
-{reproduction_steps}
-### Prior Attempts
-{previous_attempts}
-### Environment
-{environment_context}
-
-Execute OBSERVE -> ANALYZE -> HYPOTHESIZE -> FIX.
-Return findings in structured format (Success/Blocked/Escalation).
-subagent_type: "debug"
-```
-
-### Sub-Agent Isolation (By Design)
-
-The debug agent does NOT have conversation history access. Intentional: prevents inherited assumptions, provides fresh perspective. All context via structured handoff only.
-
-### Context Handoff Format (debug-delegation.md)
-
-| Section            | Required | Purpose                          |
-| ------------------ | -------- | -------------------------------- |
-| Error Description  | Yes      | Exact error message, symptoms    |
-| Files Involved     | Yes      | Affected files with roles        |
-| Reproduction Steps | Yes      | How to trigger the error         |
-| Prior Attempts     | Yes      | What was tried and why it failed |
-| Environment        | Optional | Runtime, versions, config        |
-
-### Timeout & Retry
-
-Timeout: 2 min | Retry: max 3 re-dispatches | After 3 failed hypotheses -> ESCALATION response
-
----
-
-## 11. EXAMPLES
+## 10. EXAMPLES
 
 ```
 /spec_kit:debug                                          # Auto-detect + conversation error
@@ -343,7 +263,7 @@ After multiple failed attempts: Creates comprehensive delegation report with all
 
 ---
 
-## 12. RELATED COMMANDS
+## 11. RELATED COMMANDS
 
 | Command              | Relationship                                    |
 | -------------------- | ----------------------------------------------- |
@@ -353,7 +273,7 @@ After multiple failed attempts: Creates comprehensive delegation report with all
 
 ---
 
-## 13. INTEGRATION
+## 12. INTEGRATION
 
 ### Debug Agent
 
@@ -378,7 +298,7 @@ After resolution:
 
 ---
 
-## 14. COMMAND CHAIN
+## 13. COMMAND CHAIN
 
 ```
 [/spec_kit:implement] -> /spec_kit:debug -> [Return to original workflow]
@@ -389,7 +309,7 @@ After resolution: Return to the original workflow step that triggered debugging.
 
 ---
 
-## 15. NEXT STEPS
+## 14. NEXT STEPS
 
 | Condition                      | Suggested Command                       | Reason                          |
 | ------------------------------ | --------------------------------------- | ------------------------------- |

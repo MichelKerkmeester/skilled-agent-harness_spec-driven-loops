@@ -183,56 +183,50 @@ multi_agent_config:
         - { role: dependency_explorer, focus: "Dependency and Test Analysis", step: 6 }
   fallback: { timeout_s: 60, on_timeout: "continue with available", on_all_fail: "single-agent mode" }
 
-# ─────────────────────────────────────────────────────────────────
-# AGENT ROUTING CONFIGURATION
-# ─────────────────────────────────────────────────────────────────
-# REFERENCE ONLY — routing metadata, do not dispatch agents from these values
-agent_routing:
-  research_phase:
-    condition: ":with-research OR confidence < 60%"
-    agent: "@research"
+# ─── AGENT AVAILABILITY (conditional — not instructions) ──────────
+# These entries define WHICH agent to use IF a workflow step calls for it.
+# Do NOT dispatch agents based on reading this section.
+# Agents are activated ONLY when their designated step is executing.
+agent_availability:
+  research:
+    available_at_step: "Phase 3 (if :with-research OR confidence < 60%)"
+    condition: "ONLY dispatch when :with-research flag is set OR confidence < 60% during planning"
     agent_file: ".opencode/agent/research.md"
-    # REFERENCE ONLY — routing metadata, do not dispatch agents from these values
-    dispatch: "Task tool → @research 9-step workflow for {feature_description}"
-    fallback: general
-  specification_phase:
-    step: 3
-    agent: "@speckit"
+    fallback: "general"
+    not_for: "proactive research or pre-step investigation"
+  speckit:
+    available_at_step: 3
+    condition: "ONLY dispatch when Step 3 is actively executing"
     agent_file: ".opencode/agent/speckit.md"
     model: opus
-    # REFERENCE ONLY — routing metadata, do not dispatch agents from these values
-    dispatch: "Task tool → @speckit create spec.md for {feature_description}"
-    fallback: general
-  verification_phase:
-    step: 11
-    agent: "@review"
+    fallback: "general"
+    not_for: "reviewing this workflow prompt or any pre-step activity"
+  review:
+    available_at_step: 11
+    condition: "ONLY dispatch when Step 11 is actively executing and all prior steps are completed"
     agent_file: ".opencode/agent/review.md"
-    # REFERENCE ONLY — routing metadata, do not dispatch agents from these values
-    dispatch: "Task tool → @review Pre-Commit code review (Mode 2) + P0/P1 gate validation (Mode 4)"
-    fallback: general
+    fallback: "general"
     blocking: true
     on_block: "P0 items incomplete. Address before completion."
     dual_phase:
       phase_a: { mode: 2, name: "Pre-Commit code review", blocking: false }
       phase_b: { mode: 4, name: "Gate Validation", blocking: true }
-  debug_phase:
-    step: 10
-    agent: "@debug"
+    not_for: "reviewing this workflow prompt, reviewing the command, or any pre-step validation"
+  debug:
+    available_at_step: 10
+    condition: "ONLY dispatch when failure_count >= 3 during Step 10 development"
     agent_file: ".opencode/agent/debug.md"
-    # REFERENCE ONLY — routing metadata, do not dispatch agents from these values
-    dispatch: "Task tool → @debug 4-phase debugging for {spec_path} task {current_task_id}"
     fallback: "general-purpose"
-    trigger: "failure_count >= 3 (auto if :auto-debug flag)"
     failure_tracking: { counter: "task_failure_count", reset_on: "new_task", threshold: 3 }
     on_threshold_auto_debug: "auto_dispatch_debug"
-    on_threshold_else: "Suggest: A) Dispatch @debug B) Continue manually C) Skip task D) Pause"
-  handover_phase:
-    step: 14
-    agent: "@handover"
+    on_threshold_else: "Suggest: A) Dispatch debug B) Continue manually C) Skip task D) Pause"
+    not_for: "proactive debugging, pre-step investigation, or reviewing this workflow"
+  handover:
+    available_at_step: 14
+    condition: "ONLY dispatch when user explicitly requests handover at Step 14"
     agent_file: ".opencode/agent/handover.md"
-    # REFERENCE ONLY — routing metadata, do not dispatch agents from these values
-    dispatch: "Task tool → @handover create session continuation document for {spec_path}"
-    fallback: general
+    fallback: "general"
+    not_for: "automatic handover, pre-step context saving, or premature session ending"
 
 # ─────────────────────────────────────────────────────────────────
 # QUALITY GATES

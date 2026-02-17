@@ -291,8 +291,9 @@ export function computeFolderScores(memories: FolderMemoryInput[], options: Fold
     .map(p => {
       try {
         return new RegExp(p, 'i');
-      } catch (err) {
-        console.warn(`[folder-scoring] Invalid exclude pattern '${p}': ${(err as Error).message}`);
+      } catch (error: unknown) {
+        const message = error instanceof Error ? error.message : String(error);
+        console.warn(`[folder-scoring] Invalid exclude pattern '${p}': ${message}`);
         return null;
       }
     })

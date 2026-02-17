@@ -1208,8 +1208,9 @@ async function handleMemorySave(args: SaveArgs): Promise<MCPResponse> {
   // success to process other pending embeddings in the queue (fire-and-forget).
   // This complements the immediate retry triggered by asyncEmbedding in indexMemoryFile.
   if (result.embeddingStatus === 'success') {
-    retryManager.processRetryQueue(2).catch((err: Error) => {
-      console.warn('[memory-save] Opportunistic retry failed:', err.message);
+    retryManager.processRetryQueue(2).catch((err: unknown) => {
+      const message = err instanceof Error ? err.message : String(err);
+      console.warn('[memory-save] Opportunistic retry failed:', message);
     });
   }
 

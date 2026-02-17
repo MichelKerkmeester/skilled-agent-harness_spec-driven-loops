@@ -72,8 +72,9 @@ export function validateFilePath(filePath: string, allowedBasePaths: string[]): 
     }
 
     return realResolved;
-  } catch (err) {
-    console.warn(`[utils] Path validation error: ${(err as Error).message}`);
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : String(error);
+    console.warn(`[utils] Path validation error: ${message}`);
     return null;
   }
 }

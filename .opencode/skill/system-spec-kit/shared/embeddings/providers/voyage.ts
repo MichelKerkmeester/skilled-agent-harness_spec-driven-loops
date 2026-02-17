@@ -54,6 +54,14 @@ interface ErrorWithStatus extends Error {
   code?: string;
 }
 
+function getErrorMessage(error: unknown): string {
+  return error instanceof Error ? error.message : String(error);
+}
+
+function isAbortError(error: unknown): boolean {
+  return error instanceof Error && error.name === 'AbortError';
+}
+
 export class VoyageProvider implements IEmbeddingProvider {
   private readonly apiKey: string;
   readonly baseUrl: string;
@@ -131,10 +139,10 @@ export class VoyageProvider implements IEmbeddingProvider {
 
       return data;
 
-    } catch (error) {
+    } catch (error: unknown) {
       clearTimeout(timeoutId);
 
-      if ((error as Error).name === 'AbortError') {
+      if (isAbortError(error)) {
         const timeoutError: ErrorWithStatus = new Error('Voyage request timeout');
         timeoutError.code = 'ETIMEDOUT';
         throw timeoutError;
@@ -202,8 +210,8 @@ export class VoyageProvider implements IEmbeddingProvider {
 
       return embedding;
 
-    } catch (error) {
-      console.warn(`[voyage] Generation failed: ${(error as Error).message}`);
+    } catch (error: unknown) {
+      console.warn(`[voyage] Generation failed: ${getErrorMessage(error)}`);
       this.isHealthy = false;
       throw error;
     }
@@ -230,8 +238,8 @@ export class VoyageProvider implements IEmbeddingProvider {
       this.isHealthy = result !== null;
       console.error('[voyage] Connectivity verified successfully');
       return this.isHealthy;
-    } catch (error) {
-      console.warn(`[voyage] Warmup failed: ${(error as Error).message}`);
+    } catch (error: unknown) {
+      console.warn(`[voyage] Warmup failed: ${getErrorMessage(error)}`);
       this.isHealthy = false;
       return false;
     }
@@ -263,7 +271,7 @@ export class VoyageProvider implements IEmbeddingProvider {
       const result = await this.embedQuery('health check');
       this.isHealthy = result !== null;
       return this.isHealthy;
-    } catch (error) {
+    } catch (error: unknown) {
       this.isHealthy = false;
       return false;
     }

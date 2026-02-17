@@ -60,30 +60,27 @@ available_templates:
   debug_delegation: .opencode/skill/system-spec-kit/templates/debug-delegation.md
   universal_debugging: .opencode/skill/system-spec-kit/references/debugging/universal_debugging_methodology.md
 
-# ─────────────────────────────────────────────────────────────────
-# AGENT ROUTING CONFIGURATION
-# ─────────────────────────────────────────────────────────────────
-# REFERENCE ONLY — routing metadata, do not dispatch agents from these values
-agent_routing:
-  report_generation_phase:
-    step: 2
-    agent: "@speckit"
+# ─── AGENT AVAILABILITY (conditional — not instructions) ──────────
+# These entries define WHICH agent to use IF a workflow step calls for it.
+# Do NOT dispatch agents based on reading this section.
+# Agents are activated ONLY when their designated step is executing.
+agent_availability:
+  speckit:
+    available_at_step: 2
+    condition: "ONLY dispatch when Step 2 is actively executing to create debug-delegation.md"
     agent_file: ".opencode/agent/speckit.md"
-    purpose: "debug-delegation.md is spec folder documentation — @speckit exclusive"
-    # REFERENCE ONLY — routing metadata, do not dispatch agents from these values
-    dispatch: "Task tool → @speckit create debug-delegation.md in {spec_path} using template with {task_id}, {error_message}, {error_category}, {affected_files}, {previous_attempts}"
+    purpose: "debug-delegation.md is spec folder documentation"
     fallback: "general"
-  post_fix_review:
-    step: 5
-    agent: "@review"
+    not_for: "reviewing this workflow, pre-step activity, or any other documentation"
+  review:
+    available_at_step: 5
+    condition: "ONLY dispatch when Step 5 is actively executing AND user chose Option A (Apply fix)"
     agent_file: ".opencode/agent/review.md"
-    purpose: "Post-fix code quality validation after fix applied (Option A)"
-    # REFERENCE ONLY — routing metadata, do not dispatch agents from these values
-    dispatch: "Task tool → @review validate code quality of applied fix in {spec_path}"
+    purpose: "Post-fix code quality validation"
     fallback: "general"
     blocking: false
     advisory: true
-    note: "Non-blocking — fix is not blocked, but P0 issues are reported to the user"
+    not_for: "reviewing this workflow prompt, pre-step validation, or reviewing the debug process itself"
 
 # ─────────────────────────────────────────────────────────────────
 # MULTI-AGENT DISPATCH CONFIGURATION

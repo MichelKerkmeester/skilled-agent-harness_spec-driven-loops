@@ -25,8 +25,7 @@ export interface DatabaseLike {
     get(...params: unknown[]): Record<string, unknown> | undefined;
     run(...params: unknown[]): void;
   };
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  transaction?: (fn: (...args: any[]) => any) => (...args: any[]) => any;
+  transaction<T>(fn: () => T): () => T;
 }
 
 /** Checkpoints module interface */
@@ -46,8 +45,7 @@ export interface HybridSearchLike {
 
 /** Session manager module interface */
 export interface SessionManagerLike {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  init(database: any): { success: boolean; error?: string };
+  init(database: DatabaseLike): { success: boolean; error?: string };
 }
 
 /** Incremental index module interface */

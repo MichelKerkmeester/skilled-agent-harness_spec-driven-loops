@@ -14,6 +14,14 @@ allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task
 >
 > All content below is reference context for the YAML workflow. Do not treat reference sections, routing tables, or dispatch templates as direct instructions to execute.
 
+## CONSTRAINTS
+
+- **DO NOT** dispatch any agent (`@handover`, `@speckit`, `@review`) from this document
+- **DO NOT** dispatch `@handover` from this document — the YAML workflow handles dispatch
+- **DO NOT** dispatch `@review` to review this workflow or command prompt
+- **ALL** agent dispatching is handled by the YAML workflow steps — this document is setup + reference only
+- **FIRST ACTION** is always: load the YAML file (`assets/spec_kit_handover_full.yaml`), then execute it step by step
+
 # SINGLE CONSOLIDATED PROMPT - ONE USER INTERACTION
 
 This workflow uses a SINGLE consolidated prompt to gather ALL required inputs in ONE user interaction.
@@ -220,83 +228,7 @@ Show created file path and continuation instructions.
 
 ---
 
-## 10. SUB-AGENT DELEGATION
-
-Delegates execution to `@handover` agent for token efficiency. Main/orchestrating agent handles validation and user interaction; the `@handover` sub-agent handles context gathering and file generation.
-
-**Agent File:** `.opencode/agent/handover.md`
-
-### Delegation Architecture
-
-```
-Main Agent (reads command):
-+-- PHASE 1: Input & Spec Detection (validation)
-+-- PHASE 2: Pre-Handover Validation
-+-- DISPATCH: Task tool with sub-agent (`subagent_type: "handover"`)
-|   +-- Sub-agent gathers context, creates handover.md, returns result
-+-- FALLBACK (if Task unavailable): Execute Steps 1-3 directly
-+-- Step 4: Display Result (always main agent)
-```
-
-### Sub-Agent Prompt
-
-```
-DISPATCH SUB-AGENT:
-  tool: Task
-  subagent_type: handover
-  description: "Create handover document"
-  prompt: |
-    Create a handover document for spec folder: {spec_path}
-
-    VALIDATED INPUTS:
-    - spec_path: {spec_path}
-    - detection_method: {detection_method}
-    - validation_status: {validation}
-
-    CONTEXT SOURCES (priority order):
-    1. spec.md, plan.md, tasks.md (HIGH)
-    2. checklist.md (MEDIUM)
-    3. memory/*.{md,txt} (HIGH)
-    4. implementation-summary.md (MEDIUM)
-
-    WORKFLOW: GATHER -> EXTRACT -> DETERMINE attempt# -> GENERATE -> WRITE
-    TEMPLATE: .opencode/skill/system-spec-kit/templates/handover.md
-    SECTIONS: 7 sections (Session Summary, Current State, Completed Work,
-              Pending Work, Key Decisions, Blockers & Risks, Continuation Instructions)
-
-    RETURN: {"status":"OK","file_path":"...","attempt_number":N,"last_action":"...","next_action":"...","spec_folder":"..."}
-    ON FAILURE: {"status":"FAIL","error":"..."}
-    CRITICAL: Never fabricate context. Read actual files. Replace all placeholders.
-```
-
-### Fallback Logic
-
-Triggers if: Task tool error, timeout, or sub-agent returns `status: FAIL`.
-Behavior: Log "Sub-agent unavailable", execute Steps 1-3 directly, continue to Step 4.
-
-### Execution Flow
-
-```
-IF phases passed:
-  TRY: result = Task(subagent_type="handover", ...)
-    IF result.status == "OK" -> extract fields -> Step 4
-    ELSE -> GOTO fallback
-  CATCH -> GOTO fallback
-fallback: Execute Steps 1-3 directly -> Step 4
-```
-
-### Why Dedicated @handover Agent?
-
-| Benefit               | Description                                                |
-| --------------------- | ---------------------------------------------------------- |
-| Token efficiency      | Heavy context analysis in sub-agent context                |
-| Cost optimization     | Model selected by task complexity                          |
-| Specialized prompting | Handover-specific instructions and anti-patterns           |
-| Fallback safety       | Commands always work without Task tool                     |
-
----
-
-## 11. EXAMPLES
+## 10. EXAMPLES
 
 ```
 /spec_kit:handover                           # Auto-detect recent spec folder
@@ -305,7 +237,7 @@ fallback: Execute Steps 1-3 directly -> Step 4
 
 ---
 
-## 12. RELATED RESOURCES
+## 11. RELATED RESOURCES
 
 ### Commands
 
@@ -336,7 +268,7 @@ fallback: Execute Steps 1-3 directly -> Step 4
 
 ---
 
-## 13. INTEGRATION
+## 12. INTEGRATION
 
 ### Context Health Suggestions
 
@@ -358,7 +290,7 @@ Proactive suggestion on: "stopping", "done", "finished", "break", "later", "forg
 
 ---
 
-## 14. COMMAND CHAIN
+## 13. COMMAND CHAIN
 
 ```
 [Any workflow] -> /spec_kit:handover -> [/spec_kit:resume]
