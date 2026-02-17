@@ -176,8 +176,9 @@ async function populateTemplate(templateName: string, data: TemplateContext): Pr
   try {
     template = await fs.readFile(templatePath, 'utf-8');
   } catch (readError: unknown) {
+    const readErrorMessage = readError instanceof Error ? readError.message : String(readError);
     throw new Error(
-      `Failed to read template "${templateName}": ${(readError as Error).message}`
+      `Failed to read template "${templateName}": ${readErrorMessage}`
     );
   }
 

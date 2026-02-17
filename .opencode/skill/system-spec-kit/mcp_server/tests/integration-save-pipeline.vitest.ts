@@ -57,7 +57,7 @@ describe('Integration Save Pipeline (T526) [deferred - requires DB test fixtures
       const fakePath = path.join(os.tmpdir(), 'mcp-test-nonexistent-' + Date.now(), 'memory', 'fake.md');
       try {
         await saveHandler.handleMemorySave({ filePath: fakePath, force: true });
-      } catch (error: any) {
+      } catch (error: unknown) {
         // Force flag should NOT be the reason for the error — file-not-found is expected
         expect(error.message).not.toMatch(/force/);
       }
@@ -67,7 +67,7 @@ describe('Integration Save Pipeline (T526) [deferred - requires DB test fixtures
       const fakePath = path.join(os.tmpdir(), 'mcp-test-nonexistent-' + Date.now(), 'memory', 'fake.md');
       try {
         await saveHandler.handleMemorySave({ filePath: fakePath, dryRun: true });
-      } catch (error: any) {
+      } catch (error: unknown) {
         // dryRun flag should NOT be the reason for the error
         expect(error.message).not.toMatch(/dryRun/);
       }
@@ -83,7 +83,7 @@ describe('Integration Save Pipeline (T526) [deferred - requires DB test fixtures
     it('T526-7: Save errors have consistent response format', async () => {
       try {
         await saveHandler.handleMemorySave({});
-      } catch (error: any) {
+      } catch (error: unknown) {
         expect(typeof error.message).toBe('string');
         return;
       }

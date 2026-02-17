@@ -81,7 +81,7 @@ function teardownTestDb(): void {
   if (test_db_path && fs.existsSync(test_db_path)) {
     try {
       fs.unlinkSync(test_db_path);
-    } catch (e: any) {
+    } catch (e: unknown) {
       // Ignore cleanup errors
     }
   }

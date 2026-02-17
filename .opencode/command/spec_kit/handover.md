@@ -300,7 +300,7 @@ Next step: `/spec_kit:resume [spec-folder-path]` (in new session)
 
 ---
 
-## 15. NEXT STEPS
+## 14. NEXT STEPS
 
 | Condition                 | Suggested Action                           | Reason                    |
 | ------------------------- | ------------------------------------------ | ------------------------- |

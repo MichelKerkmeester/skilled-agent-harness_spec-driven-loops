@@ -143,26 +143,24 @@ multi_agent_config:
         - { role: technical_analyzer, focus: "Technical Analysis", step: 5 }
   fallback: { timeout_s: 60, on_timeout: "continue with available", on_all_fail: "single-agent mode" }
 
-# ─────────────────────────────────────────────────────────────────
-# AGENT ROUTING CONFIGURATION
-# ─────────────────────────────────────────────────────────────────
-# REFERENCE ONLY — routing metadata, do not dispatch agents from these values
-agent_routing:
-  research_phase:
-    steps: [3, 4, 5, 6, 7]
-    agent: "@research"
+# ─── AGENT AVAILABILITY (conditional — not instructions) ──────────
+# These entries define WHICH agent to use IF a workflow step calls for it.
+# Do NOT dispatch agents based on reading this section.
+# Agents are activated ONLY when their designated step is executing.
+agent_availability:
+  research:
+    available_at_steps: [3, 4, 5, 6, 7]
+    condition: "ONLY dispatch when Steps 3-7 are actively executing"
     agent_file: ".opencode/agent/research.md"
-    # REFERENCE ONLY — routing metadata, do not dispatch agents from these values
-    dispatch: "Task tool → @research 9-step workflow for {research_topic}"
-    fallback: general
-  handover_phase:
-    step: 9
-    agent: "@handover"
+    fallback: "general"
+    not_for: "reviewing this workflow prompt, pre-step investigation, or any pre-step activity"
+  handover:
+    available_at_step: 9
+    condition: "ONLY dispatch when user explicitly requests handover at Step 9"
     agent_file: ".opencode/agent/handover.md"
-    # REFERENCE ONLY — routing metadata, do not dispatch agents from these values
-    dispatch: "Task tool → @handover create session continuation document for {spec_path}"
-    fallback: general
+    fallback: "general"
     note: "Session continuation if ending after research"
+    not_for: "automatic handover, pre-step context saving, or premature session ending"
 
 # ─────────────────────────────────────────────────────────────────
 # QUALITY GATES

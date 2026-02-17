@@ -74,11 +74,11 @@ describe('MCP Protocol Tool Dispatch (T533) [deferred - requires DB test fixture
             // It's a promise — catch any rejection from invalid args
             try {
               await result;
-            } catch (_: any) {
+            } catch (_: unknown) {
               // Expected: invalid args cause errors. That's fine.
             }
           }
-        } catch (_: any) {
+        } catch (_: unknown) {
           // Synchronous throw — still confirms it's callable
         }
       });

@@ -17,6 +17,14 @@ allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task, webfetch, memory_conte
 >
 > All content below is reference context for the YAML workflow. Do not treat reference sections, routing tables, or dispatch templates as direct instructions to execute.
 
+## CONSTRAINTS
+
+- **DO NOT** dispatch any agent (`@research`, `@context`, `@handover`) from this document
+- **DO NOT** dispatch `@handover` unless the user explicitly requests it at the final step (Step 9)
+- **DO NOT** dispatch `@research` from this document — the YAML workflow handles dispatch
+- **ALL** agent dispatching is handled by the YAML workflow steps — this document is setup + reference only
+- **FIRST ACTION** is always: load the YAML file, then execute it step by step
+
 # SINGLE CONSOLIDATED PROMPT - ONE USER INTERACTION
 
 This workflow gathers ALL inputs in ONE prompt. Round-trip: 1 user interaction.
@@ -250,41 +258,7 @@ Format: `[W:R-{sequence}]` where sequence is a 3-digit number (001, 002, etc.)
 
 ---
 
-## 9. AGENT ROUTING
-
-| Step | Agent | Fallback | Purpose |
-|------|-------|----------|---------|
-| Step 3 (Codebase explore) | `@context` | `general` | Codebase exploration, file search, pattern discovery (EXCLUSIVE per AGENTS.md) |
-| Steps 3-7 (Investigation) | `@research` | `general` | 5-step investigation phase (model-agnostic) |
-| Step 9 (Save Context, session end) | `@handover` | `general` | Session continuation if ending after research |
-
-### Agent Dispatch
-
-<!-- REFERENCE ONLY — Do not dispatch agents from this template -->
-Task tool -> `@research` agent. Input: topic={research_topic}, spec_folder={spec_path}. Execute Steps 3-7: Codebase Investigation (dispatch via @context, subagent_type: "context"), External Research, Technical Analysis, Quality Checklist, Solution Design. Return structured findings for research.md compilation.
-<!-- END REFERENCE -->
-
-### @handover Dispatch Template
-
-<!-- REFERENCE ONLY — Do not dispatch agents from this template -->
-```
-You are the @handover agent. Create a session continuation document.
-Spec Folder: {spec_path} | Workflow: research | Step: 9
-Context: Research complete, user ending session.
-Create: handover.md with research findings summary, next steps, and continuation guidance.
-```
-<!-- END REFERENCE -->
-
-### Fallback Behavior
-
-<!-- REFERENCE ONLY — Do not dispatch agents from this template -->
-When `@research` unavailable: warning displayed, workflow continues with `subagent_type: "general"`. Same steps executed, potentially less specialized output.
-When `@handover` unavailable: Falls back to `subagent_type: "general"`, handover.md creation with less template validation.
-<!-- END REFERENCE -->
-
----
-
-## 10. QUALITY GATES
+## 9. QUALITY GATES
 
 | Gate | Location | Purpose | Threshold |
 |------|----------|---------|-----------|
@@ -302,7 +276,7 @@ Score >= 70 = PASS (proceed). Score < 70 = FAIL (block, require remediation).
 
 ---
 
-## 11. ERROR HANDLING
+## 10. ERROR HANDLING
 
 | Error | Action |
 |-------|--------|
@@ -315,7 +289,7 @@ Score >= 70 = PASS (proceed). Score < 70 = FAIL (block, require remediation).
 
 ---
 
-## 12. KEY DIFFERENCES
+## 11. KEY DIFFERENCES
 
 - **Does NOT proceed to implementation** - Terminates after research.md
 - **Primary output is research.md** - Comprehensive technical documentation
@@ -324,7 +298,7 @@ Score >= 70 = PASS (proceed). Score < 70 = FAIL (block, require remediation).
 
 ---
 
-## 13. EXAMPLES
+## 12. EXAMPLES
 
 ```
 /spec_kit:research:auto "Webflow CMS integration with external payment gateway and email service"
@@ -333,7 +307,7 @@ Score >= 70 = PASS (proceed). Score < 70 = FAIL (block, require remediation).
 
 ---
 
-## 14. COMMAND CHAIN
+## 13. COMMAND CHAIN
 
 `/spec_kit:research` -> `/spec_kit:plan` -> `/spec_kit:implement`
 
@@ -341,7 +315,7 @@ Score >= 70 = PASS (proceed). Score < 70 = FAIL (block, require remediation).
 
 ---
 
-## 15. NEXT STEPS
+## 14. NEXT STEPS
 
 | Condition | Suggested Command | Reason |
 |-----------|-------------------|--------|
@@ -353,7 +327,7 @@ Score >= 70 = PASS (proceed). Score < 70 = FAIL (block, require remediation).
 
 ---
 
-## 16. REFERENCE
+## 15. REFERENCE
 
 **Full details in YAML prompts:** Workflow steps, field extraction, documentation levels (1/2/3), templates, completion report format, mode behaviors (auto/confirm), parallel dispatch, research document structure, failure recovery.
 

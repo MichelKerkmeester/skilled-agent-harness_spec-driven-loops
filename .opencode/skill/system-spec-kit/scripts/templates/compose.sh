@@ -651,7 +651,7 @@ while [[ $# -gt 0 ]]; do
             LEVELS_TO_COMPOSE+=("$1")
             shift
             ;;
-        "3+"|3+)
+        "3+")
             LEVELS_TO_COMPOSE+=("3+")
             shift
             ;;

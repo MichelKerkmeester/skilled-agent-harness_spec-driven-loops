@@ -232,6 +232,10 @@ function createTestEmbedding(dim = 1024, seed = 0): Float32Array {
   return embedding;
 }
 
+function getErrorMessage(error: unknown): string {
+  return error instanceof Error ? error.message : String(error);
+}
+
 // ─────────────────────────────────────────────────────────────
 // Test Suite: IVectorStore Interface (T084)
 // ─────────────────────────────────────────────────────────────
@@ -245,8 +249,8 @@ describe('Protocol Abstractions', () => {
       let threw = false;
       try {
         await base.search(null, 10);
-      } catch (e: any) {
-        threw = e.message.includes('must be implemented');
+      } catch (e: unknown) {
+        threw = getErrorMessage(e).includes('must be implemented');
       }
       expect(threw).toBe(true);
     });
@@ -353,8 +357,8 @@ describe('Protocol Abstractions', () => {
       let dimError = false;
       try {
         await mock.upsert('bad', createTestEmbedding(768), { spec_folder: 'test', file_path: 'bad.md' });
-      } catch (e: any) {
-        dimError = e.message.includes('mismatch');
+      } catch (e: unknown) {
+        dimError = getErrorMessage(e).includes('mismatch');
       }
       expect(dimError).toBe(true);
     });
@@ -371,8 +375,8 @@ describe('Protocol Abstractions', () => {
       let threw = false;
       try {
         await base.embed('test');
-      } catch (e: any) {
-        threw = e.message.includes('must be implemented');
+      } catch (e: unknown) {
+        threw = getErrorMessage(e).includes('must be implemented');
       }
       expect(threw).toBe(true);
     });
@@ -436,7 +440,7 @@ describe('Protocol Abstractions', () => {
       const nullEmbed = await mock.embed('');
       expect(nullEmbed).toBeNull();
 
-      const nullEmbed2 = await mock.embed(null as any);
+      const nullEmbed2 = await mock.embed(null as unknown as string);
       expect(nullEmbed2).toBeNull();
     });
 
@@ -460,8 +464,8 @@ describe('Protocol Abstractions', () => {
       let credError = false;
       try {
         await mock.validateCredentials();
-      } catch (e: any) {
-        credError = e.message.includes('invalid');
+      } catch (e: unknown) {
+        credError = getErrorMessage(e).includes('invalid');
       }
       expect(credError).toBe(true);
 

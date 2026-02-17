@@ -43,6 +43,42 @@ interface ErrorWithStatus extends Error {
   code?: string;
 }
 
+function getErrorMessage(error: unknown): string {
+  return error instanceof Error ? error.message : String(error);
+}
+
+function isAbortError(error: unknown): boolean {
+  return error instanceof Error && error.name === 'AbortError';
+}
+
+interface OpenAIErrorBody {
+  error?: {
+    message?: string;
+  };
+}
+
+function parseOpenAIErrorBody(payload: unknown): OpenAIErrorBody {
+  if (!payload || typeof payload !== 'object') {
+    return {};
+  }
+
+  const payloadRecord = payload as Record<string, unknown>;
+  if (!payloadRecord.error || typeof payloadRecord.error !== 'object') {
+    return {};
+  }
+
+  const errorRecord = payloadRecord.error as Record<string, unknown>;
+  if (typeof errorRecord.message !== 'string') {
+    return {};
+  }
+
+  return {
+    error: {
+      message: errorRecord.message,
+    },
+  };
+}
+
 export class OpenAIProvider implements IEmbeddingProvider {
   private readonly apiKey: string;
   readonly baseUrl: string;
@@ -96,7 +132,8 @@ export class OpenAIProvider implements IEmbeddingProvider {
       clearTimeout(timeoutId);
 
       if (!response.ok) {
-        const errorBody = await response.json().catch(() => ({ error: { message: response.statusText } })) as { error?: { message?: string } };
+        const errorPayload = await response.json().catch(() => ({}));
+        const errorBody = parseOpenAIErrorBody(errorPayload);
         const error: ErrorWithStatus = new Error(
           `OpenAI API error: ${errorBody.error?.message || response.statusText}`
         );
@@ -114,10 +151,10 @@ export class OpenAIProvider implements IEmbeddingProvider {
 
       return data;
 
-    } catch (error) {
+    } catch (error: unknown) {
       clearTimeout(timeoutId);
 
-      if ((error as Error).name === 'AbortError') {
+      if (isAbortError(error)) {
         const timeoutError: ErrorWithStatus = new Error('OpenAI request timeout');
         timeoutError.code = 'ETIMEDOUT';
         throw timeoutError;
@@ -185,8 +222,8 @@ export class OpenAIProvider implements IEmbeddingProvider {
 
       return embedding;
 
-    } catch (error) {
-      console.warn(`[openai] Generation failed: ${(error as Error).message}`);
+    } catch (error: unknown) {
+      console.warn(`[openai] Generation failed: ${getErrorMessage(error)}`);
       this.isHealthy = false;
       throw error;
     }
@@ -214,8 +251,8 @@ export class OpenAIProvider implements IEmbeddingProvider {
       this.isHealthy = result !== null;
       console.error('[openai] Connectivity verified successfully');
       return this.isHealthy;
-    } catch (error) {
-      console.warn(`[openai] Warmup failed: ${(error as Error).message}`);
+    } catch (error: unknown) {
+      console.warn(`[openai] Warmup failed: ${getErrorMessage(error)}`);
       this.isHealthy = false;
       return false;
     }
@@ -247,7 +284,7 @@ export class OpenAIProvider implements IEmbeddingProvider {
       const result = await this.embedQuery('health check');
       this.isHealthy = result !== null;
       return this.isHealthy;
-    } catch (error) {
+    } catch (error: unknown) {
       this.isHealthy = false;
       return false;
     }

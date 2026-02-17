@@ -359,7 +359,7 @@ workflow:
     structure_requirements:
     - "Explicit reasoning throughout"
     - "Named validation checkpoints"
-    - "Before/after with ❌/✅ emojis"
+    - "Before/after comparisons (❌/✅ emojis optional)"
     - "Links to scripts and assets"
     outputs:
     - template_loaded
@@ -471,7 +471,7 @@ workflow:
       structure:
       - "Core principle present (for workflows)"
       - "Phased structure with checkpoints"
-      - "Before/after examples have ❌/✅ emojis"
+      - "Before/after examples clearly labeled (❌/✅ emojis optional)"
       - "All code blocks specify language"
       content:
       - "Explicit reasoning throughout"
@@ -714,5 +714,4 @@ rules:
   - "Create documents without loading templates first"
   - "Proceed without user approval at checkpoints"
   - "Leave placeholder text in final output"
-  - "Omit emojis from before/after examples (patterns type)"
   - "Create references for non-existent skills"

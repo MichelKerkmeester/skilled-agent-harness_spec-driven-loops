@@ -183,7 +183,7 @@ function validateFilePathLocal(filePath: string): string | null {
 ----------------------------------------------------------------*/
 
 function clearConstitutionalCache(specFolder?: string | null): void {
-  jsVectorIndex.clearConstitutionalCache(specFolder as any);
+  jsVectorIndex.clearConstitutionalCache(specFolder);
 }
 
 /* -----------------------------------------------------------
@@ -198,7 +198,7 @@ function clearConstitutionalCache(specFolder?: string | null): void {
 import * as jsVectorIndex from './vector-index-impl';
 
 function initializeDb(customPath?: string | null): Database.Database {
-  return jsVectorIndex.initializeDb(customPath as any);
+  return jsVectorIndex.initializeDb(customPath);
 }
 
 /* -----------------------------------------------------------
@@ -222,7 +222,7 @@ function deleteMemory(id: number): boolean {
 }
 
 function deleteMemoryByPath(specFolder: string, filePath: string, anchorId?: string | null): boolean {
-  return jsVectorIndex.deleteMemoryByPath(specFolder, filePath, anchorId as any);
+  return jsVectorIndex.deleteMemoryByPath(specFolder, filePath, anchorId);
 }
 
 function getMemory(id: number): MemoryIndexRow | null {
@@ -286,7 +286,7 @@ async function cachedSearch(query: string, limit: number = 20, options: Record<s
 }
 
 function clearSearchCache(specFolder: string | null = null): number {
-  return jsVectorIndex.clearSearchCache(specFolder as any);
+  return jsVectorIndex.clearSearchCache(specFolder);
 }
 
 function applySmartRanking(results: EnrichedResult[]): EnrichedResult[] {

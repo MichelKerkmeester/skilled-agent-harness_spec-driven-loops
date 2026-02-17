@@ -56,6 +56,19 @@ type FeatureExtractionPipeline = (text: string, options: { pooling: string; norm
 // Type for the HuggingFace pipeline factory function
 type PipelineFactory = (task: string, model: string, options: Record<string, unknown>) => Promise<FeatureExtractionPipeline>;
 
+function getErrorMessage(error: unknown): string {
+  return error instanceof Error ? error.message : String(error);
+}
+
+function getErrorCode(error: unknown): string | undefined {
+  if (typeof error !== 'object' || error === null || !('code' in error)) {
+    return undefined;
+  }
+
+  const { code } = error as { code?: unknown };
+  return typeof code === 'string' ? code : undefined;
+}
+
 export class HfLocalProvider implements IEmbeddingProvider {
   modelName: string;
   dim: number;
@@ -122,10 +135,10 @@ export class HfLocalProvider implements IEmbeddingProvider {
         try {
           this.extractor = await loadWithTimeout(targetDevice);
           currentDevice = targetDevice;
-        } catch (deviceError) {
+        } catch (deviceError: unknown) {
           // MPS unavailable, fallback to CPU
-          if (targetDevice !== 'cpu' && !(deviceError as Error).message.includes('timed out')) {
-            console.warn(`[hf-local] ${targetDevice.toUpperCase()} unavailable (${(deviceError as Error).message}), using CPU`);
+          if (targetDevice !== 'cpu' && !getErrorMessage(deviceError).includes('timed out')) {
+            console.warn(`[hf-local] ${targetDevice.toUpperCase()} unavailable (${getErrorMessage(deviceError)}), using CPU`);
             this.extractor = await loadWithTimeout('cpu');
             currentDevice = 'cpu';
           } else {
@@ -137,13 +150,13 @@ export class HfLocalProvider implements IEmbeddingProvider {
         console.warn(`[hf-local] Model loaded in ${this.modelLoadTime}ms (device: ${currentDevice})`);
 
         return this.extractor!;
-      } catch (error) {
+      } catch (error: unknown) {
         this.loadingPromise = null;
         this.isHealthy = false;
 
         // Detect native module version mismatch (onnxruntime-node, sharp)
-        const errMsg = error instanceof Error ? error.message : String(error);
-        const errCode = (error as NodeJS.ErrnoException)?.code;
+        const errMsg = getErrorMessage(error);
+        const errCode = getErrorCode(error);
         if (errCode === 'ERR_DLOPEN_FAILED' || errMsg.includes('NODE_MODULE_VERSION') || errMsg.includes('was compiled against a different Node.js version')) {
           console.error('[hf-local] \u2550\u2550\u2550 NATIVE MODULE ERROR \u2550\u2550\u2550');
           console.error(`[hf-local] ${errMsg}`);
@@ -203,8 +216,8 @@ export class HfLocalProvider implements IEmbeddingProvider {
 
       return embedding;
 
-    } catch (error) {
-      console.warn(`[hf-local] Generation failed: ${(error as Error).message}`);
+    } catch (error: unknown) {
+      console.warn(`[hf-local] Generation failed: ${getErrorMessage(error)}`);
       this.isHealthy = false;
       throw error;
     }
@@ -232,8 +245,8 @@ export class HfLocalProvider implements IEmbeddingProvider {
       await this.embedQuery('test warmup query');
       console.error('[hf-local] Model successfully pre-warmed');
       return true;
-    } catch (error) {
-      console.warn(`[hf-local] Warmup failed: ${(error as Error).message}`);
+    } catch (error: unknown) {
+      console.warn(`[hf-local] Warmup failed: ${getErrorMessage(error)}`);
       this.isHealthy = false;
       return false;
     }
@@ -264,7 +277,7 @@ export class HfLocalProvider implements IEmbeddingProvider {
       const result = await this.embedQuery('health check');
       this.isHealthy = result !== null;
       return this.isHealthy;
-    } catch (error) {
+    } catch (error: unknown) {
       this.isHealthy = false;
       return false;
     }

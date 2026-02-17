@@ -86,7 +86,7 @@ export function vectorSearchWithContiguity(
 export function getTemporalNeighbors(
   memoryId: number,
   windowSeconds: number,
-): Array<{ time_delta_seconds: number; [key: string]: any }> {
+): Array<{ time_delta_seconds: number; [key: string]: unknown }> {
   if (!db) {
     console.warn('[temporal-contiguity] Database not initialized.');
     return [];
@@ -111,7 +111,7 @@ export function getTemporalNeighbors(
       memoryId,
       anchor.created_at,
       windowSeconds,
-    ) as Array<{ time_delta_seconds: number; [key: string]: any }>;
+    ) as Array<{ time_delta_seconds: number; [key: string]: unknown }>;
 
     return rows;
   } catch (error: unknown) {
@@ -128,7 +128,7 @@ export function getTemporalNeighbors(
 export function buildTimeline(
   specFolder: string | null,
   limit: number,
-): Array<{ created_at: string; [key: string]: any }> {
+): Array<{ created_at: string; [key: string]: unknown }> {
   if (!db) {
     console.warn('[temporal-contiguity] Database not initialized.');
     return [];
@@ -141,14 +141,14 @@ export function buildTimeline(
          WHERE spec_folder = ?
          ORDER BY created_at DESC
          LIMIT ?
-      `) as Database.Statement).all(specFolder, limit) as Array<{ created_at: string; [key: string]: any }>;
+      `) as Database.Statement).all(specFolder, limit) as Array<{ created_at: string; [key: string]: unknown }>;
     }
 
     return (db.prepare(`
       SELECT * FROM memory_index
        ORDER BY created_at DESC
        LIMIT ?
-    `) as Database.Statement).all(limit) as Array<{ created_at: string; [key: string]: any }>;
+    `) as Database.Statement).all(limit) as Array<{ created_at: string; [key: string]: unknown }>;
   } catch (error: unknown) {
     const msg = error instanceof Error ? error.message : String(error);
     console.warn(`[temporal-contiguity] buildTimeline error: ${msg}`);

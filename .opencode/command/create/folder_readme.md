@@ -353,7 +353,7 @@ STEP 2 (Discovery) REQUIREMENTS:
 STEP 4 (Generation) REQUIREMENTS:
 ├─ MUST include title + tagline
 ├─ MUST include TABLE OF CONTENTS
-├─ MUST use numbered sections with emojis
+├─ MUST use numbered sections (emojis optional but recommended)
 ├─ MUST include tables for structured data
 └─ MUST NOT leave placeholder content
 
@@ -368,7 +368,7 @@ STEP 5 (Validation) REQUIREMENTS:
 
 ## 1. PURPOSE
 
-Create a comprehensive README.md following the documentation patterns from SpecKit, Memory System, and Code Environment READMEs. The README will use numbered sections with emojis, table of contents, tables for data, and proper progressive disclosure.
+Create a comprehensive README.md following the documentation patterns from SpecKit, Memory System, and Code Environment READMEs. The README will use numbered sections (optionally with emojis), table of contents, tables for data, and proper progressive disclosure.
 
 ---
 

@@ -26,7 +26,7 @@ describe('Integration Causal Graph (T528) [deferred - requires DB test fixtures]
         // Handler may return MCP error response instead of throwing
         expect(result).toBeDefined();
         expect(result.isError).toBe(true);
-      } catch (error: any) {
+      } catch (error: unknown) {
         // Error thrown is also acceptable — validates required params
         expect(error.message).toBeDefined();
       }
@@ -37,7 +37,7 @@ describe('Integration Causal Graph (T528) [deferred - requires DB test fixtures]
         const result = await causalHandler.handleMemoryDriftWhy({});
         // Handler accepted it — valid behavior for handlers that check later
         expect(result).toBeDefined();
-      } catch (error: any) {
+      } catch (error: unknown) {
         expect(error.message).toBeDefined();
       }
     });
@@ -47,7 +47,7 @@ describe('Integration Causal Graph (T528) [deferred - requires DB test fixtures]
         const result = await causalHandler.handleMemoryCausalStats({});
         // Should succeed or fail at DB layer, not at validation
         expect(result).toBeDefined();
-      } catch (error: any) {
+      } catch (error: unknown) {
         // DB errors are acceptable — parameter validation errors are not
         const isInfraError =
           (error.message && (error.message.includes('database') || error.message.includes('SQLITE') ||
@@ -63,7 +63,7 @@ describe('Integration Causal Graph (T528) [deferred - requires DB test fixtures]
         const result = await causalHandler.handleMemoryCausalUnlink({});
         // Handler accepted it — valid behavior for handlers that check later
         expect(result).toBeDefined();
-      } catch (error: any) {
+      } catch (error: unknown) {
         expect(error.message).toBeDefined();
       }
     });
@@ -86,7 +86,7 @@ describe('Integration Causal Graph (T528) [deferred - requires DB test fixtures]
           });
           accepted = true;
           break;
-        } catch (error: any) {
+        } catch (error: unknown) {
           if (error.message && error.message.includes('relation')) {
             // Relation type was rejected — fail
             expect.unreachable(`Relation "${relation}" rejected: ${error.message}`);
@@ -106,7 +106,7 @@ describe('Integration Causal Graph (T528) [deferred - requires DB test fixtures]
           memoryId: 'test-memory-id',
           direction: 'outgoing',
         });
-      } catch (error: any) {
+      } catch (error: unknown) {
         // Direction should not be the reason for failure
         expect(error.message).not.toContain('direction');
       }
@@ -122,7 +122,7 @@ describe('Integration Causal Graph (T528) [deferred - requires DB test fixtures]
         // Handler may return MCP error response instead of throwing
         expect(result).toBeDefined();
         expect(result.isError).toBe(true);
-      } catch (error: any) {
+      } catch (error: unknown) {
         expect(typeof error.message).toBe('string');
       }
     });

@@ -38,7 +38,7 @@ describe('Integration Search Pipeline (T525) [deferred - requires DB test fixtur
           'T525-2'
         );
         // If it returns, it passed input validation
-      } catch (error: any) {
+      } catch (error: unknown) {
         // DB/infra errors are acceptable — input validation errors are not
         const isInfraError =
           error.message?.includes('database') ||
@@ -71,7 +71,7 @@ describe('Integration Search Pipeline (T525) [deferred - requires DB test fixtur
           expect(text.error !== undefined || text.results !== undefined).toBe(true);
         }
         // If handler returned without throwing, that's acceptable
-      } catch (error: any) {
+      } catch (error: unknown) {
         const isTimeout = error.message?.includes('Timeout');
         if (isTimeout) {
           return; // skip on timeout
@@ -88,7 +88,7 @@ describe('Integration Search Pipeline (T525) [deferred - requires DB test fixtur
           5000,
           'T525-4'
         );
-      } catch (error: any) {
+      } catch (error: unknown) {
         if (error.message?.includes('Timeout')) {
           return; // skip on timeout
         }
@@ -110,7 +110,7 @@ describe('Integration Search Pipeline (T525) [deferred - requires DB test fixtur
           'T525-5'
         );
         expect.unreachable('No error thrown for empty args');
-      } catch (error: any) {
+      } catch (error: unknown) {
         if (error.message?.includes('Timeout')) {
           return; // skip on timeout
         }
@@ -139,7 +139,7 @@ describe('Integration Search Pipeline (T525) [deferred - requires DB test fixtur
           'T525-7'
         );
         expect.unreachable('No error thrown');
-      } catch (error: any) {
+      } catch (error: unknown) {
         if (error.message?.includes('Timeout')) {
           return; // skip on timeout
         }
@@ -155,7 +155,7 @@ describe('Integration Search Pipeline (T525) [deferred - requires DB test fixtur
           5000,
           'T525-8'
         );
-      } catch (error: any) {
+      } catch (error: unknown) {
         if (error.message?.includes('Timeout')) {
           return; // skip on timeout
         }
@@ -175,7 +175,7 @@ describe('Integration Search Pipeline (T525) [deferred - requires DB test fixtur
           5000,
           'T525-9'
         );
-      } catch (error: any) {
+      } catch (error: unknown) {
         if (error.message?.includes('Timeout')) {
           return; // skip on timeout
         }
@@ -195,7 +195,7 @@ describe('Integration Search Pipeline (T525) [deferred - requires DB test fixtur
           5000,
           'T525-10'
         );
-      } catch (error: any) {
+      } catch (error: unknown) {
         if (error.message?.includes('Timeout')) {
           return; // skip on timeout
         }

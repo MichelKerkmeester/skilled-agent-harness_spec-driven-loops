@@ -102,7 +102,7 @@ export function recordValidation(db: Database, memoryId: number, wasUseful: bool
         wasPromoted: false,
       };
     })();
-  } catch (error) {
+  } catch (error: unknown) {
     console.error(`[confidence-tracker] recordValidation failed for memory ${memoryId}:`, error);
     return {
       confidence: CONFIDENCE_BASE,
@@ -128,7 +128,7 @@ export function getConfidenceScore(db: Database, memoryId: number): number {
     }
 
     return memory.confidence ?? CONFIDENCE_BASE;
-  } catch (error) {
+  } catch (error: unknown) {
     console.error(`[confidence-tracker] getConfidenceScore failed for memory ${memoryId}:`, error);
     return CONFIDENCE_BASE;
   }
@@ -157,7 +157,7 @@ export function checkPromotionEligible(db: Database, memoryId: number): boolean 
 
     return confidence >= PROMOTION_CONFIDENCE_THRESHOLD &&
            validationCount >= PROMOTION_VALIDATION_THRESHOLD;
-  } catch (error) {
+  } catch (error: unknown) {
     console.error(`[confidence-tracker] checkPromotionEligible failed for memory ${memoryId}:`, error);
     return false;
   }
@@ -198,7 +198,7 @@ export function promoteToCritical(db: Database, memoryId: number): boolean {
     console.warn(`[confidence-tracker] Memory ${memoryId} promoted to critical tier`);
 
     return true;
-  } catch (error) {
+  } catch (error: unknown) {
     console.error(`[confidence-tracker] promoteToCritical failed for memory ${memoryId}:`, error);
     return false;
   }
@@ -233,7 +233,7 @@ export function getConfidenceInfo(db: Database, memoryId: number): ConfidenceInf
         validationsMet: validationCount >= PROMOTION_VALIDATION_THRESHOLD,
       },
     };
-  } catch (error) {
+  } catch (error: unknown) {
     console.error(`[confidence-tracker] getConfidenceInfo failed for memory ${memoryId}:`, error);
     return {
       memoryId,

@@ -13,6 +13,43 @@ import type {
   ApiKeyValidationResult,
 } from '../types';
 
+function getErrorMessage(error: unknown): string {
+  return error instanceof Error ? error.message : String(error);
+}
+
+function isAbortError(error: unknown): boolean {
+  return error instanceof Error && error.name === 'AbortError';
+}
+
+interface ValidationErrorBody {
+  detail?: string;
+  error?: {
+    message?: string;
+  };
+}
+
+function parseValidationErrorBody(payload: unknown): ValidationErrorBody {
+  if (!payload || typeof payload !== 'object') {
+    return {};
+  }
+
+  const payloadRecord = payload as Record<string, unknown>;
+  const detail = typeof payloadRecord.detail === 'string' ? payloadRecord.detail : undefined;
+
+  let message: string | undefined;
+  if (payloadRecord.error && typeof payloadRecord.error === 'object') {
+    const errorRecord = payloadRecord.error as Record<string, unknown>;
+    if (typeof errorRecord.message === 'string') {
+      message = errorRecord.message;
+    }
+  }
+
+  return {
+    detail,
+    error: message ? { message } : undefined,
+  };
+}
+
 // ---------------------------------------------------------------
 // 1. PROVIDER RESOLUTION
 // ---------------------------------------------------------------
@@ -159,8 +196,8 @@ export async function createEmbeddingsProvider(options: CreateProviderOptions = 
           }
           try {
             await provider.warmup();
-          } catch (fallbackWarmupError) {
-            console.warn(`[factory] Fallback warmup failed: ${(fallbackWarmupError as Error).message}`);
+          } catch (fallbackWarmupError: unknown) {
+            console.warn(`[factory] Fallback warmup failed: ${getErrorMessage(fallbackWarmupError)}`);
             // Continue anyway - provider will attempt lazy initialization on first use
           }
         }
@@ -169,8 +206,8 @@ export async function createEmbeddingsProvider(options: CreateProviderOptions = 
 
     return provider;
 
-  } catch (error) {
-    console.error(`[factory] Error creating provider ${providerName}:`, (error as Error).message);
+  } catch (error: unknown) {
+    console.error(`[factory] Error creating provider ${providerName}:`, getErrorMessage(error));
 
     // Fallback to hf-local for cloud providers when auto-detected (not explicitly set)
     if ((providerName === 'openai' || providerName === 'voyage') && !options.provider) {
@@ -191,8 +228,8 @@ export async function createEmbeddingsProvider(options: CreateProviderOptions = 
       if (options.warmup) {
         try {
           await provider.warmup();
-        } catch (fallbackWarmupError) {
-          console.warn(`[factory] Fallback warmup failed: ${(fallbackWarmupError as Error).message}`);
+        } catch (fallbackWarmupError: unknown) {
+          console.warn(`[factory] Fallback warmup failed: ${getErrorMessage(fallbackWarmupError)}`);
           // Continue anyway - provider will attempt lazy initialization on first use
         }
       }
@@ -314,7 +351,8 @@ export async function validateApiKey(options: { timeout?: number } = {}): Promis
     clearTimeout(timeoutId);
 
     if (!response.ok) {
-      const errorBody = await response.json().catch(() => ({})) as { detail?: string; error?: { message?: string } };
+      const errorPayload = await response.json().catch(() => ({}));
+      const errorBody = parseValidationErrorBody(errorPayload);
       const errorMessage = errorBody.detail
         || errorBody.error?.message
         || response.statusText;
@@ -363,10 +401,10 @@ export async function validateApiKey(options: { timeout?: number } = {}): Promis
       reason: 'API key validated successfully',
     };
 
-  } catch (error) {
+  } catch (error: unknown) {
     clearTimeout(timeoutId);
 
-    if ((error as Error).name === 'AbortError') {
+    if (isAbortError(error)) {
       return {
         valid: false,
         provider: providerName,
@@ -384,7 +422,7 @@ export async function validateApiKey(options: { timeout?: number } = {}): Promis
     return {
       valid: false,
       provider: providerName,
-      error: `Network error during validation: ${(error as Error).message}`,
+      error: `Network error during validation: ${getErrorMessage(error)}`,
       errorCode: 'E053',
       actions: [
         'Check internet connectivity',

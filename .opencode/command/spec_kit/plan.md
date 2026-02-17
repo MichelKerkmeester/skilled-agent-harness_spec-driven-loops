@@ -17,6 +17,14 @@ allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task, memory_context, memory
 >
 > All content below is reference context for the YAML workflow. Do not treat reference sections, routing tables, or dispatch templates as direct instructions to execute.
 
+## CONSTRAINTS
+
+- **DO NOT** dispatch any agent (`@speckit`, `@research`, `@handover`, `@context`) from this document
+- **DO NOT** dispatch `@handover` unless the user explicitly requests it at the final step (Step 7)
+- **DO NOT** dispatch `@research` unless confidence < 60% during planning (Step 5)
+- **ALL** agent dispatching is handled by the YAML workflow steps — this document is setup + reference only
+- **FIRST ACTION** is always: load the YAML file, then execute it step by step
+
 # SINGLE CONSOLIDATED PROMPT - ONE USER INTERACTION
 
 This workflow gathers ALL inputs in ONE prompt. Round-trip: 1 user interaction.
@@ -217,7 +225,6 @@ Supports smart parallel sub-agent dispatch using 5-dimension complexity scoring.
 
 ### Planning Step: 4-Agent Parallel Exploration (Automatic)
 
-<!-- REFERENCE ONLY — Do not dispatch agents from this template -->
 Step 5 dispatches 4 `@context` agents via Task tool (`subagent_type: "context"`):
 1. **Architecture Explorer** — structure, entry points, connections
 2. **Feature Explorer** — similar features, related patterns
@@ -225,7 +232,6 @@ Step 5 dispatches 4 `@context` agents via Task tool (`subagent_type: "context"`)
 4. **Test Explorer** — test patterns, testing infrastructure
 
 After agents return, verify hypotheses by reading identified files.
-<!-- END REFERENCE -->
 
 **Eligible Phases:** Step 3 (Specification), Step 5 (Planning with 4-agent exploration)
 
@@ -268,46 +274,7 @@ Use `/memory:context` with intent-aware retrieval:
 
 ---
 
-## 9. AGENT ROUTING
-
-| Step                                        | Agent      | Fallback          | Purpose                                              |
-| ------------------------------------------- | ---------- | ----------------- | ---------------------------------------------------- |
-| Step 3 (Specification)                      | `@speckit` | `general`         | Template-first spec folder creation with validation  |
-| Step 5 (Codebase Exploration)               | `@context` | `general`         | Exclusive agent for file search, pattern discovery   |
-| Step 5 (Planning, low confidence)           | `@research`| `general`         | Technical investigation when confidence < 60%        |
-| Step 7 (Handover Check)                     | `@handover`| `general`         | Session continuation document creation               |
-
-<!-- REFERENCE ONLY — Do not dispatch agents from this template -->
-**Dispatch flow:** Check agent availability → dispatch if available → fallback to `subagent_type: "general"` with warning → agent returns file confirmation with validation status.
-
-**@speckit dispatch template:**
-```
-You are the @speckit agent. Create spec folder documentation.
-Feature: {feature_description} | Level: {documentation_level} | Folder: {spec_path}
-Create spec.md using template-first approach. Validate structure. Return file confirmation.
-```
-
-**@research dispatch template (conditional):**
-```
-Trigger: confidence < 60% during Step 5 planning OR user explicitly requests research.
-You are the @research agent. Conduct technical investigation.
-Topic: {feature_description} | Spec Folder: {spec_path}
-Execute: Codebase investigation -> External research -> Technical analysis
-Return: Structured findings for plan.md Technical Context section.
-```
-
-**@handover dispatch template:**
-```
-You are the @handover agent. Create a session continuation document.
-Spec Folder: {spec_path} | Workflow: plan | Step: 7
-Context: Planning complete, user opted for handover.
-Create: handover.md with current state, planning artifacts, and implementation guidance.
-```
-<!-- END REFERENCE -->
-
----
-
-## 10. QUALITY GATES
+## 9. QUALITY GATES
 
 | Gate Type      | Trigger Point          | Threshold | Validates                        |
 | -------------- | ---------------------- | --------- | -------------------------------- |
@@ -333,7 +300,7 @@ Record results in decision-record.md for architectural changes.
 
 ---
 
-## 11. KEY DIFFERENCES FROM /SPEC_KIT:COMPLETE
+## 10. KEY DIFFERENCES FROM /SPEC_KIT:COMPLETE
 
 - **Terminates after planning** — no task breakdown, analysis, or implementation
 - **Next step guidance** — recommends `/spec_kit:implement` when ready
@@ -341,7 +308,7 @@ Record results in decision-record.md for architectural changes.
 
 ---
 
-## 12. EXAMPLES
+## 11. EXAMPLES
 
 ```
 /spec_kit:plan:auto Add dark mode toggle to the settings page
@@ -351,7 +318,7 @@ Record results in decision-record.md for architectural changes.
 
 ---
 
-## 13. COMMAND CHAIN
+## 12. COMMAND CHAIN
 
 ```
 [/spec_kit:research] → /spec_kit:plan → [/spec_kit:implement]
@@ -361,7 +328,7 @@ Next step: `/spec_kit:implement [spec-folder-path]`
 
 ---
 
-## 14. NEXT STEPS
+## 13. NEXT STEPS
 
 | Condition                    | Suggested Command                        | Reason                    |
 | ---------------------------- | ---------------------------------------- | ------------------------- |

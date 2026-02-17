@@ -86,9 +86,10 @@ describe('validateFilePathLocal', () => {
       const result = validateFilePathLocal(testPath);
       expect(typeof result).toBe('string');
       expect(result.length).toBeGreaterThan(0);
-    } catch (e: any) {
+    } catch (e: unknown) {
       // If CWD is not in ALLOWED_BASE_PATHS, this may throw — that's acceptable
-      expect(e.message).toContain('Access denied');
+      const message = e instanceof Error ? e.message : String(e);
+      expect(message).toContain('Access denied');
     }
   });
 

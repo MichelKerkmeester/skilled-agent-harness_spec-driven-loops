@@ -17,6 +17,11 @@ import * as os from 'os';
 
 import * as handler from '../handlers/memory-index';
 
+function isServerDependencyError(error: unknown): boolean {
+  const message = error instanceof Error ? error.message : String(error);
+  return /database|getDb|Rate limited|vector_index|null|not initialized|Database/.test(message);
+}
+
 let tempDir: string | null = null;
 
 afterAll(() => {
@@ -46,9 +51,8 @@ describe('Regression: Spec memory file indexing unchanged', () => {
       const parsed = JSON.parse(result.content[0].text);
       // Should complete without error (may return 0 files)
       expect(parsed.data?.status || parsed.summary).toBeTruthy();
-    } catch (error: any) {
-      const isServerDep = /database|getDb|Rate limited|vector_index|null|not initialized|Database/.test(error.message);
-      if (!isServerDep) throw error;
+    } catch (error: unknown) {
+      if (!isServerDependencyError(error)) throw error;
     }
   });
 
@@ -64,9 +68,8 @@ describe('Regression: Spec memory file indexing unchanged', () => {
         // specFolder should only filter spec files, readmes are workspace-wide
         expect(typeof parsed.data._debug_fileCounts.specFiles).toBe('number');
       }
-    } catch (error: any) {
-      const isServerDep = /database|getDb|Rate limited|vector_index|null|not initialized|Database/.test(error.message);
-      if (!isServerDep) throw error;
+    } catch (error: unknown) {
+      if (!isServerDependencyError(error)) throw error;
     }
   });
 
@@ -118,9 +121,8 @@ describe('Regression: Constitutional file handling unchanged', () => {
         expect(typeof parsed.data._debug_fileCounts.constitutionalFiles).toBe('number');
         expect(parsed.data._debug_fileCounts.skillReadmes).toBe(0);
       }
-    } catch (error: any) {
-      const isServerDep = /database|getDb|Rate limited|vector_index|null|not initialized|Database/.test(error.message);
-      if (!isServerDep) throw error;
+    } catch (error: unknown) {
+      if (!isServerDependencyError(error)) throw error;
     }
   });
 
@@ -134,9 +136,8 @@ describe('Regression: Constitutional file handling unchanged', () => {
       if (parsed.data?._debug_fileCounts) {
         expect(parsed.data._debug_fileCounts.constitutionalFiles).toBe(0);
       }
-    } catch (error: any) {
-      const isServerDep = /database|getDb|Rate limited|vector_index|null|not initialized|Database/.test(error.message);
-      if (!isServerDep) throw error;
+    } catch (error: unknown) {
+      if (!isServerDependencyError(error)) throw error;
     }
   });
 
@@ -160,9 +161,8 @@ describe('Regression: includeReadmes=false mimics pre-spec-111 behavior', () => 
         // Total should only be spec + constitutional
         expect(counts.totalFiles).toBe(counts.specFiles + counts.constitutionalFiles);
       }
-    } catch (error: any) {
-      const isServerDep = /database|getDb|Rate limited|vector_index|null|not initialized|Database/.test(error.message);
-      if (!isServerDep) throw error;
+    } catch (error: unknown) {
+      if (!isServerDependencyError(error)) throw error;
     }
   });
 
@@ -179,9 +179,8 @@ describe('Regression: includeReadmes=false mimics pre-spec-111 behavior', () => 
       // Must be valid JSON
       const parsed = JSON.parse(result.content[0].text);
       expect(parsed).toBeTruthy();
-    } catch (error: any) {
-      const isServerDep = /database|getDb|Rate limited|vector_index|null|not initialized|Database/.test(error.message);
-      if (!isServerDep) throw error;
+    } catch (error: unknown) {
+      if (!isServerDependencyError(error)) throw error;
     }
   });
 
@@ -193,9 +192,8 @@ describe('Regression: includeReadmes=false mimics pre-spec-111 behavior', () => 
       if (parsed.data) {
         expect(parsed.data.status).toBe('complete');
       }
-    } catch (error: any) {
-      const isServerDep = /database|getDb|Rate limited|vector_index|null|not initialized|Database/.test(error.message);
-      if (!isServerDep) throw error;
+    } catch (error: unknown) {
+      if (!isServerDependencyError(error)) throw error;
     }
   });
 
@@ -245,7 +243,8 @@ describe('Regression: Tool schema contract', () => {
   it('REG-15: includeReadmes default is true in schema', async () => {
     const { TOOL_DEFINITIONS } = await import('../tool-schemas');
     const scanTool = TOOL_DEFINITIONS.find((t: any) => t.name === 'memory_index_scan');
-    const readmesProp = (scanTool!.inputSchema.properties as any).includeReadmes;
+    const schemaProperties = scanTool!.inputSchema.properties as Record<string, { default?: unknown; type?: unknown }>;
+    const readmesProp = schemaProperties.includeReadmes;
     expect(readmesProp.default).toBe(true);
     expect(readmesProp.type).toBe('boolean');
   });

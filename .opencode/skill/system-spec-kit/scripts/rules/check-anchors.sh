@@ -3,9 +3,7 @@
 # RULE: CHECK-ANCHORS
 # ───────────────────────────────────────────────────────────────
 
-# Strict mode baseline for sourced rule scripts.
-# -u is intentionally disabled because this file is sourced by validate.sh and relies
-# on shared global state plus empty-array patterns across Bash 3.2 environments.
+# Sourced by validate.sh; keep -u disabled for shared rule-state compatibility.
 set -eo pipefail
 
 # Rule: ANCHORS_VALID

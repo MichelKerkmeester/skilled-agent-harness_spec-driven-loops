@@ -160,35 +160,31 @@ multi_agent_config:
         - { role: dependency_explorer, focus: "Dependency and Test Analysis", step: 5 }
   fallback: { timeout_s: 60, on_timeout: "continue with available", on_all_fail: "single-agent mode" }
 
-# ─────────────────────────────────────────────────────────────────
-# AGENT ROUTING CONFIGURATION
-# ─────────────────────────────────────────────────────────────────
-# REFERENCE ONLY — routing metadata, do not dispatch agents from these values
-agent_routing:
-  specification_phase:
-    step: 3
-    agent: "@speckit"
+# ─── AGENT AVAILABILITY (conditional — not instructions) ──────────
+# These entries define WHICH agent to use IF a workflow step calls for it.
+# Do NOT dispatch agents based on reading this section.
+# Agents are activated ONLY when their designated step is executing.
+agent_availability:
+  speckit:
+    available_at_step: 3
+    condition: "ONLY dispatch when Step 3 is actively executing"
     agent_file: ".opencode/agent/speckit.md"
     model: opus
-    # REFERENCE ONLY — routing metadata, do not dispatch agents from these values
-    dispatch: "Task tool → @speckit create spec.md for {feature_description}"
-    fallback: general
-  research_phase:
-    step: 5
-    agent: "@research"
+    fallback: "general"
+    not_for: "reviewing this workflow prompt or any pre-step activity"
+  research:
+    available_at_step: 5
+    condition: "ONLY dispatch when confidence < 60% during Step 5 planning OR user explicitly requests research"
     agent_file: ".opencode/agent/research.md"
-    # REFERENCE ONLY — routing metadata, do not dispatch agents from these values
-    dispatch: "Task tool → @research technical investigation for {feature_description}"
-    fallback: general
-    trigger: "confidence < 60% during planning OR user requests research"
+    fallback: "general"
     conditional: true
-  handover_phase:
-    step: 7
-    agent: "@handover"
+    not_for: "proactive research, pre-step investigation, or reviewing this workflow"
+  handover:
+    available_at_step: 7
+    condition: "ONLY dispatch when user explicitly requests handover at Step 7"
     agent_file: ".opencode/agent/handover.md"
-    # REFERENCE ONLY — routing metadata, do not dispatch agents from these values
-    dispatch: "Task tool → @handover create session continuation document for {spec_path}"
-    fallback: general
+    fallback: "general"
+    not_for: "automatic handover, pre-step context saving, or premature session ending"
 
 # ─────────────────────────────────────────────────────────────────
 # QUALITY GATES

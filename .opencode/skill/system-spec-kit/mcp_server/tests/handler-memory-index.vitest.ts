@@ -117,7 +117,7 @@ describe('Handler Memory Index (T520) [deferred - requires DB test fixtures]', (
 
         const parsed = JSON.parse(result.content[0].text);
         expect(parsed.data || parsed.summary).toBeTruthy();
-      } catch (error: any) {
+      } catch (error: unknown) {
         // Server dependency errors are acceptable — skip-equivalent
         const isServerDep = /database|getDb|Rate limited|vector_index|null|not initialized|Database/.test(error.message);
         if (!isServerDep) {

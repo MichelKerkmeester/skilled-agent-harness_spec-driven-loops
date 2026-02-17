@@ -35,8 +35,8 @@ describe('Vector Index Implementation [deferred - requires DB test fixtures]', (
 
     try {
       mod = await import('../lib/search/vector-index-impl');
-    } catch (e: any) {
-      importError = e as Error;
+    } catch (e: unknown) {
+      importError = e instanceof Error ? e : new Error(String(e));
     }
   });
 
@@ -45,12 +45,12 @@ describe('Vector Index Implementation [deferred - requires DB test fixtures]', (
       if (mod && !importError) {
         mod.closeDb();
       }
-    } catch (_: any) { /* ignore */ }
+    } catch (_: unknown) {}
     try {
       if (fs.existsSync(TMP_DIR)) {
         fs.rmSync(TMP_DIR, { recursive: true, force: true });
       }
-    } catch (_: any) { /* ignore */ }
+    } catch (_: unknown) {}
   });
 
   // ─────────────────────────────────────────────────────────────
@@ -185,12 +185,12 @@ describe('Vector Index Implementation [deferred - requires DB test fixtures]', (
     });
 
     it('returns "Untitled" for null content and no filename', () => {
-      const title = mod.extractTitle(null as any, undefined as any);
+      const title = mod.extractTitle(null as unknown as string, undefined);
       expect(title).toBe('Untitled');
     });
 
     it('returns filename for undefined content', () => {
-      const title = mod.extractTitle(undefined as any, 'backup.txt');
+      const title = mod.extractTitle(undefined as unknown as string, 'backup.txt');
       expect(title).toBe('backup');
     });
   });
@@ -215,7 +215,7 @@ describe('Vector Index Implementation [deferred - requires DB test fixtures]', (
     });
 
     it('returns empty string for null content', () => {
-      const snippet = mod.extractSnippet(null as any, 200);
+      const snippet = mod.extractSnippet(null as unknown as string, 200);
       expect(snippet).toBe('');
     });
 
@@ -263,7 +263,7 @@ describe('Vector Index Implementation [deferred - requires DB test fixtures]', (
     });
 
     it('returns empty array for null', () => {
-      const tags = mod.extractTags(null as any);
+      const tags = mod.extractTags(null as unknown as string);
       expect(Array.isArray(tags)).toBe(true);
       expect(tags.length).toBe(0);
     });
@@ -299,7 +299,7 @@ describe('Vector Index Implementation [deferred - requires DB test fixtures]', (
     });
 
     it('returns null for null content and no path', () => {
-      const date = mod.extractDate(null as any, undefined);
+      const date = mod.extractDate(null as unknown as string, undefined);
       expect(date).toBeNull();
     });
   });
@@ -324,7 +324,7 @@ describe('Vector Index Implementation [deferred - requires DB test fixtures]', (
     });
 
     it('returns empty for null', () => {
-      const terms = mod.parseQuotedTerms(null as any);
+      const terms = mod.parseQuotedTerms(null as unknown as string);
       expect(terms).toEqual([]);
     });
 
@@ -390,7 +390,7 @@ describe('Vector Index Implementation [deferred - requires DB test fixtures]', (
 
     it('schema version is >= 12', () => {
       const db = mod.getDb();
-      const versionRow = db!.prepare('SELECT version FROM schema_version WHERE id = 1').get() as any;
+      const versionRow = db!.prepare('SELECT version FROM schema_version WHERE id = 1').get() as { version: number } | undefined;
       expect(versionRow).toBeTruthy();
       expect(versionRow.version).toBeGreaterThanOrEqual(12);
     });
@@ -592,7 +592,7 @@ describe('Vector Index Implementation [deferred - requires DB test fixtures]', (
     });
 
     it('rejects non-numeric input', () => {
-      const result = mod.updateConfidence(deferredId1!, 'not a number' as any);
+      const result = mod.updateConfidence(deferredId1!, 'not a number' as unknown as number);
       expect(result).toBe(false);
     });
   });
@@ -627,7 +627,8 @@ describe('Vector Index Implementation [deferred - requires DB test fixtures]', (
       const results = mod.keywordSearch('alpha', { limit: 10 });
       expect(Array.isArray(results)).toBe(true);
       expect(results.length).toBeGreaterThan(0);
-      expect((results[0] as any).keyword_score).toBeGreaterThan(0);
+        const firstResult = results[0] as { keyword_score: number };
+        expect(firstResult.keyword_score).toBeGreaterThan(0);
     });
 
     it('filters by specFolder', () => {
@@ -646,7 +647,7 @@ describe('Vector Index Implementation [deferred - requires DB test fixtures]', (
     });
 
     it('returns empty for null query', () => {
-      const results = mod.keywordSearch(null as any);
+      const results = mod.keywordSearch(null as unknown as string);
       expect(results.length).toBe(0);
     });
 
@@ -674,7 +675,9 @@ describe('Vector Index Implementation [deferred - requires DB test fixtures]', (
         { similarity: 70, created_at: now, access_count: 10, specFolder: 'b' },
       ];
 
-      const ranked = mod.applySmartRanking(mockResults as any);
+      const ranked = mod.applySmartRanking(
+        mockResults as Array<{ similarity: number; created_at: string; access_count: number; specFolder: string }>
+      );
       expect(ranked.length).toBe(2);
       expect(ranked[0].smartScore).toBeDefined();
       expect(ranked[1].smartScore).toBeDefined();
@@ -687,12 +690,12 @@ describe('Vector Index Implementation [deferred - requires DB test fixtures]', (
   describe('applyDiversity', () => {
     it('returns input unchanged for <=3 results', () => {
       const small = [{ id: 1 }, { id: 2 }];
-      const diverse = mod.applyDiversity(small as any, 0.3);
+      const diverse = mod.applyDiversity(small as Array<{ id: number }>, 0.3);
       expect(diverse.length).toBe(2);
     });
 
     it('handles null input', () => {
-      const diverse = mod.applyDiversity(null as any);
+      const diverse = mod.applyDiversity(null as unknown as Array<{ id: number }>);
       expect(!diverse || diverse.length === 0).toBe(true);
     });
 
@@ -703,7 +706,10 @@ describe('Vector Index Implementation [deferred - requires DB test fixtures]', (
         { id: 3, smartScore: 0.80, specFolder: 'b', date: '2025-01-02' },
         { id: 4, smartScore: 0.75, specFolder: 'c', date: '2025-01-03' },
       ];
-      const diverse = mod.applyDiversity(mockResults as any, 0.5);
+      const diverse = mod.applyDiversity(
+        mockResults as Array<{ id: number; smartScore: number; specFolder: string; date: string }>,
+        0.5
+      );
       expect(diverse.length).toBe(4);
       expect(diverse[0].id).toBe(1);
     });
@@ -787,7 +793,7 @@ describe('Vector Index Implementation [deferred - requires DB test fixtures]', (
     });
 
     it('handles null input', () => {
-      const result = mod.deleteMemories(null as any);
+      const result = mod.deleteMemories(null as unknown as number[]);
       expect(result).toEqual({ deleted: 0, failed: 0 });
     });
   });
@@ -988,7 +994,8 @@ describe('Vector Index Implementation [deferred - requires DB test fixtures]', (
       expect(Array.isArray(searchResults)).toBe(true);
       expect(searchResults.length).toBeGreaterThan(0);
       if (searchResults.length > 0) {
-        expect((searchResults[0] as any).similarity).toBeGreaterThan(0);
+        const firstResult = searchResults[0] as { similarity: number };
+        expect(firstResult.similarity).toBeGreaterThan(0);
       }
     });
 
@@ -1027,7 +1034,7 @@ describe('Vector Index Implementation [deferred - requires DB test fixtures]', (
           specFolder: 'specs/test-vec',
           filePath: path.join(TMP_DIR, 'vec-null.md'),
           title: 'Null Embedding',
-          embedding: null as any,
+          embedding: null as unknown as Float32Array,
         });
       }).toThrow(/required/);
     });
@@ -1115,7 +1122,7 @@ describe('Vector Index Implementation [deferred - requires DB test fixtures]', (
     });
 
     it('returns false for null query', () => {
-      const result = mod.learnFromSelection(null as any, deferredId1!);
+      const result = mod.learnFromSelection(null as unknown as string, deferredId1!);
       expect(result).toBe(false);
     });
 
@@ -1125,7 +1132,7 @@ describe('Vector Index Implementation [deferred - requires DB test fixtures]', (
     });
 
     it('returns false for null memory ID', () => {
-      const result = mod.learnFromSelection('valid query terms', null as any);
+      const result = mod.learnFromSelection('valid query terms', null as unknown as number);
       expect(result).toBe(false);
     });
   });
@@ -1245,7 +1252,7 @@ describe('Vector Index Implementation [deferred - requires DB test fixtures]', (
     });
 
     it('rejects null', () => {
-      const result = mod.validateFilePath(null as any);
+      const result = mod.validateFilePath(null as unknown as string);
       expect(result).toBeNull();
     });
   });

@@ -123,7 +123,7 @@ describe('Integration Error Recovery (T532) [deferred - requires DB test fixture
           if (!(result && result.isError === true)) {
             inconsistentHandlers.push(`${h.name} (no error thrown)`);
           }
-        } catch (error: any) {
+        } catch (error: unknown) {
           if (typeof error.message !== 'string') {
             inconsistentHandlers.push(`${h.name} (missing message)`);
           }
@@ -147,7 +147,7 @@ describe('Integration Error Recovery (T532) [deferred - requires DB test fixture
         const result = await searchHandlerModule.handleMemorySearch({ query: 12345 } as any);
         // Handler accepted coerced input — valid behavior (type coercion handled)
         expect(result).toBeDefined();
-      } catch (error: any) {
+      } catch (error: unknown) {
         // Error thrown is also valid — just verify it has a message
         expect(typeof error.message).toBe('string');
       }

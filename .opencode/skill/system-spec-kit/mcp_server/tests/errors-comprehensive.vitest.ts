@@ -137,7 +137,7 @@ describe('C. withTimeout', () => {
     try {
       await withTimeout(slow, 10, 'my-operation');
       expect.unreachable('Should have thrown');
-    } catch (e: any) {
+    } catch (e: unknown) {
       expect(e.code === ErrorCodes.SEARCH_FAILED || e.code === 'E040').toBe(true);
     }
   });
@@ -157,7 +157,7 @@ describe('C. withTimeout', () => {
     try {
       await withTimeout(slow, 25, 'timeout-test');
       expect.unreachable('Should have thrown');
-    } catch (e: any) {
+    } catch (e: unknown) {
       expect(e).toBeInstanceOf(MemoryError);
     }
   });
@@ -167,7 +167,7 @@ describe('C. withTimeout', () => {
     try {
       await withTimeout(slow, 15, 'details-test');
       expect.unreachable('Should have thrown');
-    } catch (e: any) {
+    } catch (e: unknown) {
       expect(e.details).toBeTruthy();
       expect(e.details.timeout).toBeTruthy();
       expect(e.details.operation).toBeTruthy();

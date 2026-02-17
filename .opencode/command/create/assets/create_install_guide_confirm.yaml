@@ -173,49 +173,61 @@ platforms:
 # ─────────────────────────────────────────────────────────────────
 # REQUIRED SECTIONS (11 sections: 0-10, with 7-8 optional)
 # ─────────────────────────────────────────────────────────────────
+# Note: Emojis shown are suggested patterns, not required.
 required_sections:
 - number: 0
-  name: "🤖 AI-FIRST INSTALL GUIDE"
+  name: "AI-FIRST INSTALL GUIDE"
+  emoji: "🤖"
   purpose: "Copy-paste prompt for AI-assisted install"
   required: true
 - number: 1
-  name: "📖 OVERVIEW"
+  name: "OVERVIEW"
+  emoji: "📖"
   purpose: "What it is, why use it"
   required: true
 - number: 2
-  name: "📋 PREREQUISITES"
+  name: "PREREQUISITES"
+  emoji: "📋"
   purpose: "What's needed before install"
   required: true
 - number: 3
-  name: "📥 INSTALLATION"
+  name: "INSTALLATION"
+  emoji: "📥"
   purpose: "Step-by-step commands"
   required: true
 - number: 4
-  name: "⚙️ CONFIGURATION"
+  name: "CONFIGURATION"
+  emoji: "⚙️"
   purpose: "Platform-specific config"
   required: true
 - number: 5
-  name: "✅ VERIFICATION"
+  name: "VERIFICATION"
+  emoji: "✅"
   purpose: "How to test it works"
   required: true
 - number: 6
-  name: "🚀 USAGE"
+  name: "USAGE"
+  emoji: "🚀"
   purpose: "How to use it"
   required: true
 - number: 7
-  name: "🎯 FEATURES"
+  name: "FEATURES"
+  emoji: "🎯"
   purpose: "Detailed feature docs"
   required: false # Optional
 - number: 8
-  name: "💡 EXAMPLES"
+  name: "EXAMPLES"
+  emoji: "💡"
   purpose: "Practical use cases"
   required: false # Optional
 - number: 9
-  name: "🔧 TROUBLESHOOTING"
+  name: "TROUBLESHOOTING"
+  emoji: "🔧"
   purpose: "Common problems + fixes"
   required: true
 - number: 10
-  name: "📚 RESOURCES"
+  name: "RESOURCES"
+  emoji: "📚"
   purpose: "Links, references"
   required: true
 
@@ -443,7 +455,7 @@ workflow:
     - Write to output_path
     quality_requirements:
       ai_first_section: "Copy-paste prompt with placeholders, 'What AI will do' list"
-      sections: "All 11 sections (0-10) with emoji prefixes"
+      sections: "All 11 sections (0-10) numbered (emojis optional)"
       tables: "For prerequisites, features, comparisons"
       code_blocks: "Always specify language"
       diagrams: "ASCII for architecture/flow"
@@ -477,7 +489,7 @@ workflow:
       - "'What the AI will do' lists 5-8 specific actions"
       - "Expected setup time is realistic"
       structure:
-      - "All 11 sections present (0-10)"
+      - "All 11 sections present (0-10) numbered (emojis optional)"
       - "TABLE OF CONTENTS links work"
       - "ASCII diagram in Overview"
       - "Comparison table included"

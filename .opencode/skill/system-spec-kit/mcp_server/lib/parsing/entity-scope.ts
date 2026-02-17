@@ -89,9 +89,9 @@ export function buildScopeFilter(scope: {
   specFolder?: string;
   sessionId?: string;
   contextTypes?: string[];
-}): { clause: string; params: any[] } {
+}): { clause: string; params: unknown[] } {
   const conditions: string[] = [];
-  const params: any[] = [];
+  const params: unknown[] = [];
 
   if (scope.specFolder) {
     conditions.push('spec_folder = ?');

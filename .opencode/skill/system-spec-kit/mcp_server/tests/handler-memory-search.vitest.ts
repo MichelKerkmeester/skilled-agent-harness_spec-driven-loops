@@ -31,7 +31,7 @@ describe('Handler Memory Search (T516) [deferred - requires DB test fixtures]', 
         const text = JSON.parse(result.content[0].text);
         const errorMsg = text.error || (text.data && text.data.error);
         expect(errorMsg || result.isError).toBeTruthy();
-      } catch (error: any) {
+      } catch (error: unknown) {
         // Also acceptable: throwing is valid behavior
         expect(error).toBeDefined();
       }

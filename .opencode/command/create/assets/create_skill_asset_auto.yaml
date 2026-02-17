@@ -275,9 +275,9 @@ workflow:
     - Note formatting requirements
     template_path: .opencode/skill/workflows-documentation/assets/opencode/skill_asset_template.md
     key_structure_elements:
-    - "Title with emoji and descriptive subtitle"
+    - "Title with descriptive subtitle (emoji optional as visual marker)"
     - "Introduction paragraph (1-2 sentences)"
-    - "Numbered sections with emojis"
+    - "Numbered sections (emoji visual markers optional)"
     - "Horizontal rules between major sections"
     - "Quick reference at end"
     outputs:
@@ -288,17 +288,17 @@ workflow:
   step_4_content_creation:
     purpose: Generate asset file following template structure
     activities:
-    - Write title with emoji and descriptive subtitle
+    - Write title with descriptive subtitle (emoji optional as visual marker)
     - Write brief introduction (1-2 sentences)
-    - Create numbered sections with emojis
+    - Create numbered sections (emoji visual markers optional)
     - Add type-specific content (templates, tables, examples, steps)
     - Include complete examples
     - Add quick reference section at end
     - Write to skill's assets directory
     quality_requirements:
-      title: "Emoji + descriptive subtitle"
+      title: "Descriptive subtitle - emoji optional as visual marker"
       introduction: "1-2 sentences explaining purpose and when to use"
-      sections: "Numbered with emojis"
+      sections: "Numbered - emoji visual markers optional"
       content: "Complete, practical, immediately usable"
       examples: "Working, annotated examples"
       separators: "Horizontal rules between major sections"
@@ -316,8 +316,8 @@ workflow:
     - Integration check (update SKILL.md Navigation Guide, SMART ROUTING)
     validation_checklist:
       structure:
-      - "Title with emoji present"
-      - "Sections numbered with emojis"
+      - "Title with descriptive subtitle present (emoji optional as visual marker)"
+      - "Sections numbered (emoji visual markers optional)"
       - "Horizontal rules between sections"
       - "No broken links"
       content:
@@ -463,13 +463,13 @@ quality_standards:
 # ─────────────────────────────────────────────────────────────────
 templates:
   asset_structure: |
-    # [Emoji] [Asset Title] - [Descriptive Subtitle]
+    # [Asset Title] - [Descriptive Subtitle]
     
     [Brief introduction explaining what this asset provides and when to use it.]
     
     ---
     
-    ## 1. [EMOJI] [SECTION NAME]
+    ## 1. [SECTION NAME]
     
     **Purpose**: [Brief explanation]
     
@@ -478,13 +478,13 @@ templates:
     
     ---
     
-    ## 2. [EMOJI] [SECTION NAME]
+    ## 2. [SECTION NAME]
     
     [Continue pattern...]
     
     ---
     
-    ## N. 📋 QUICK REFERENCE
+    ## N. QUICK REFERENCE
     
     [Summary table or checklist]
 

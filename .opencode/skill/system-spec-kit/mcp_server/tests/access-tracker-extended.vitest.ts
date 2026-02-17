@@ -36,8 +36,8 @@ function createDb(rowCount = 10): any {
 }
 
 function teardown() {
-  try { mod.reset(); } catch (_: any) { /* ignore */ }
-  try { if (testDb) { testDb.close(); testDb = null; } } catch (_: any) { /* ignore */ }
+  try { mod.reset(); } catch (_: unknown) { /* ignore */ }
+  try { if (testDb) { testDb.close(); testDb = null; } } catch (_: unknown) { /* ignore */ }
 }
 
 /* ─────────────────────────────────────────────────────────────

@@ -416,7 +416,7 @@ describe('Attention Decay Integration (T035)', () => {
       expect(typeof breakdown.usage).toBe('number');
       expect(typeof breakdown.composite).toBe('number');
       expect(breakdown.weights).toBeDefined();
-    } catch (err: any) {
+    } catch (err: unknown) {
       // Known production bug: calculateImportanceScore receives memory object instead of (tier, weight)
       // This causes .toLowerCase() to fail on non-string input
       // Test passes either way - documenting actual behavior
@@ -853,7 +853,7 @@ describe('Edge Cases: Batch Operations', () => {
       const results = [{ id: 'a' }, null, { id: 'b' }].filter(Boolean);
       const scored = applyFiveFactorScoring(results, {});
       expect(Array.isArray(scored)).toBe(true);
-    } catch (err: any) {
+    } catch (err: unknown) {
       // If it throws, that's also acceptable behavior
       expect(true).toBe(true);
     }

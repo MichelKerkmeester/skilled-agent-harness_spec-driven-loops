@@ -85,7 +85,7 @@ describe('Hybrid Search Unit Tests (T031+)', () => {
       try {
         hybridSearch.init(null, mockVectorSearch);
         // No error thrown means null db accepted
-      } catch (e: any) {
+      } catch (e: unknown) {
         // Throws error means it validates - also acceptable
         expect(e).toBeDefined();
       }
@@ -96,7 +96,7 @@ describe('Hybrid Search Unit Tests (T031+)', () => {
       try {
         hybridSearch.init(mockDb, null);
         // No error thrown means null accepted
-      } catch (e: any) {
+      } catch (e: unknown) {
         // Throws error means it validates - also acceptable
         expect(e).toBeDefined();
       }

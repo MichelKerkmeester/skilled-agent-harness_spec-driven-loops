@@ -16,7 +16,7 @@ async function captureError(handlerName: string, invalidArgs: any): Promise<{ er
   try {
     const result = await handlerFn(invalidArgs);
     return { error: null, response: result };
-  } catch (error: any) {
+  } catch (error: unknown) {
     return { error, response: null };
   }
 }

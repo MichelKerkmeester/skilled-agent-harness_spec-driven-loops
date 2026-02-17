@@ -190,7 +190,7 @@ readme_types:
 # ─────────────────────────────────────────────────────────────────
 # AI OPTIMIZATION PRINCIPLES
 # ─────────────────────────────────────────────────────────────────
-ai_optimization:
+    ai_optimization:
   question_answering:
     description: "Structure to answer common questions"
     examples:
@@ -202,7 +202,7 @@ ai_optimization:
   scannable_structure:
     description: "Easy to scan and find information"
     techniques:
-    - "Clear headings with emojis"
+    - "Clear headings (emojis recommended for visual hierarchy)"
     - "Code examples for every feature"
     - "Tables for options"
     - "ASCII diagrams for architecture"
@@ -272,7 +272,7 @@ workflow_enforcement:
       enforcement: "MUST gather project information before writing"
       verification: "Self-validate features are identified and concrete"
     step_4_generation:
-      enforcement: "MUST use template structure with TOC, emojis, tables"
+      enforcement: "MUST use template structure with TOC, section formatting, tables"
       verification: "All sections written, no placeholder content"
     step_5_validation:
       enforcement: "MUST verify structure and completeness"
@@ -401,7 +401,7 @@ workflow:
     quality_requirements:
       title: "Clear, concise value proposition"
       toc: "Numbered, linked to actual sections"
-      sections: "Emoji prefixes from canonical 9-section set (📖 🚀 📁 ⚡ ⚙️ 💡 🛠️ ❓ 📚)"
+      sections: "Section headers - numbered format recommended, emojis optional as visual markers"
       tables: "For structured data (features, commands, config)"
       code_blocks: "Always specify language"
       diagrams: "ASCII for architecture/flow"
@@ -423,7 +423,7 @@ workflow:
       structure:
       - "Title + one-liner tagline present"
       - "TABLE OF CONTENTS present and linked"
-      - "All sections numbered with emojis"
+      - "All sections numbered (emojis optional as visual markers)"
       - "Horizontal rules between sections"
       content:
       - "All code blocks have language tags"
@@ -666,13 +666,13 @@ termination:
 # ─────────────────────────────────────────────────────────────────
 # RULES
 # ─────────────────────────────────────────────────────────────────
-rules:
+      rules:
   ALWAYS:
   - "Self-validate at each step before proceeding"
   - "Load readme_template.md before creating content"
   - "Include Quick Start section with clear examples"
   - "Create table of contents with proper anchor links"
-  - "Use emoji prefixes for all H2 sections"
+  - "Use section formatting with optional emoji visual markers"
   - "Validate structure before claiming complete"
   NEVER:
   - "Prompt user for approval at checkpoints"

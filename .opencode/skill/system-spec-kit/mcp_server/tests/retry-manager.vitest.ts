@@ -180,7 +180,7 @@ describe('retry-manager [deferred - requires DB test fixtures]', () => {
           now, now, status, retryCount, lastRetryAt, failureReason,
           0.5, 'normal',
         );
-      } catch (e: any) {
+      } catch (_error: unknown) {
         db.prepare(`
           UPDATE memory_index
           SET embedding_status = ?, retry_count = ?, last_retry_at = ?,
@@ -367,7 +367,10 @@ describe('retry-manager [deferred - requires DB test fixtures]', () => {
 
         mod.markAsFailed(4001, 'Intentional test failure');
 
-        const row = db.prepare('SELECT embedding_status, failure_reason FROM memory_index WHERE id = ?').get(4001) as any;
+        const row = db.prepare('SELECT embedding_status, failure_reason FROM memory_index WHERE id = ?').get(4001) as {
+          embedding_status: string;
+          failure_reason: string | null;
+        };
         expect(row.embedding_status).toBe('failed');
         expect(row.failure_reason).toBe('Intentional test failure');
       });
@@ -383,7 +386,9 @@ describe('retry-manager [deferred - requires DB test fixtures]', () => {
 
         mod.markAsFailed(4010, 'Testing timestamp');
 
-        const row = db.prepare('SELECT updated_at FROM memory_index WHERE id = ?').get(4010) as any;
+        const row = db.prepare('SELECT updated_at FROM memory_index WHERE id = ?').get(4010) as {
+          updated_at: string;
+        };
         expect(row.updated_at).not.toBe(oldDate);
       });
     });
@@ -399,7 +404,12 @@ describe('retry-manager [deferred - requires DB test fixtures]', () => {
         const result = mod.resetForRetry(5001);
         expect(result).toBe(true);
 
-        const row = db.prepare('SELECT embedding_status, retry_count, last_retry_at, failure_reason FROM memory_index WHERE id = ?').get(5001) as any;
+        const row = db.prepare('SELECT embedding_status, retry_count, last_retry_at, failure_reason FROM memory_index WHERE id = ?').get(5001) as {
+          embedding_status: string;
+          retry_count: number;
+          last_retry_at: string | null;
+          failure_reason: string | null;
+        };
         expect(row.embedding_status).toBe('retry');
         expect(row.retry_count).toBe(0);
         expect(row.last_retry_at).toBeNull();
@@ -523,7 +533,9 @@ describe('retry-manager [deferred - requires DB test fixtures]', () => {
         mod.markAsFailed(8001, 'First failure');
         mod.markAsFailed(8001, 'Second failure');
 
-        const row = db.prepare('SELECT failure_reason FROM memory_index WHERE id = ?').get(8001) as any;
+        const row = db.prepare('SELECT failure_reason FROM memory_index WHERE id = ?').get(8001) as {
+          failure_reason: string | null;
+        };
         expect(row.failure_reason).toBe('Second failure');
       });
 
@@ -533,11 +545,15 @@ describe('retry-manager [deferred - requires DB test fixtures]', () => {
         const resetResult = mod.resetForRetry(8010);
         expect(resetResult).toBe(true);
 
-        const row1 = db.prepare('SELECT embedding_status FROM memory_index WHERE id = ?').get(8010) as any;
+        const row1 = db.prepare('SELECT embedding_status FROM memory_index WHERE id = ?').get(8010) as {
+          embedding_status: string;
+        };
         expect(row1.embedding_status).toBe('retry');
 
         mod.markAsFailed(8010, 'failed again');
-        const row2 = db.prepare('SELECT embedding_status FROM memory_index WHERE id = ?').get(8010) as any;
+        const row2 = db.prepare('SELECT embedding_status FROM memory_index WHERE id = ?').get(8010) as {
+          embedding_status: string;
+        };
         expect(row2.embedding_status).toBe('failed');
       });
 

@@ -47,6 +47,23 @@ function sleep(ms: number): Promise<void> {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
+interface ErrorWithStatus {
+  status?: number;
+}
+
+function getErrorMessage(error: unknown): string {
+  return error instanceof Error ? error.message : String(error);
+}
+
+function getErrorStatus(error: unknown): number | undefined {
+  if (typeof error !== 'object' || error === null || !('status' in error)) {
+    return undefined;
+  }
+
+  const status = Reflect.get(error, 'status');
+  return typeof status === 'number' ? status : undefined;
+}
+
 /**
  * Generate SHA256 hash key for cache lookup.
  * Uses 32 hex chars (128 bits) for cache keys.
@@ -165,7 +182,7 @@ async function getProvider(): Promise<IEmbeddingProvider> {
       const initTime = providerInitCompleteTime - (providerInitStartTime as number);
       console.error(`[embeddings] Provider created lazily (${initTime}ms)`);
       return providerInstance;
-    } catch (error) {
+    } catch (error: unknown) {
       providerInitPromise = null;
       providerInitStartTime = null;
       throw error;
@@ -318,9 +335,9 @@ async function generateBatchEmbeddings(
         );
         // Success: decay backoff
         currentBackoff = Math.max(0, Math.floor(currentBackoff / 2));
-      } catch (error) {
-        const errMsg = (error as Error).message || '';
-        const errStatus = (error as { status?: number }).status;
+      } catch (error: unknown) {
+        const errMsg = getErrorMessage(error);
+        const errStatus = getErrorStatus(error);
         const is429 = errStatus === 429 || /429|rate limit|too many requests/i.test(errMsg);
 
         if (is429 && retryCount < MAX_429_RETRIES) {
@@ -507,8 +524,8 @@ async function preWarmModel(): Promise<boolean> {
     await provider.warmup();
     console.error('[embeddings] Provider warmed up successfully');
     return true;
-  } catch (error) {
-    console.error('[embeddings] Pre-warmup failed:', (error as Error).message);
+  } catch (error: unknown) {
+    console.error('[embeddings] Pre-warmup failed:', getErrorMessage(error));
     return false;
   }
 }

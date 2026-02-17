@@ -69,7 +69,7 @@ describe('Handler Memory CRUD (T519) [deferred - requires DB test fixtures]', ()
       try {
         await handler.handleMemoryUpdate({});
         expect.unreachable('Should have thrown');
-      } catch (error: any) {
+      } catch (error: unknown) {
         const isMemoryError =
           error.name === 'MemoryError' ||
           error.code === 'E031' ||
@@ -82,7 +82,7 @@ describe('Handler Memory CRUD (T519) [deferred - requires DB test fixtures]', ()
       try {
         await handler.handleMemoryUpdate({ id: 1, importanceWeight: 1.5 });
         expect.unreachable('Should have thrown');
-      } catch (error: any) {
+      } catch (error: unknown) {
         expect(
           error.code === 'E030' || (error.message && error.message.includes('importanceWeight'))
         ).toBe(true);
@@ -93,7 +93,7 @@ describe('Handler Memory CRUD (T519) [deferred - requires DB test fixtures]', ()
       try {
         await handler.handleMemoryUpdate({ id: 1, importanceWeight: -0.5 });
         expect.unreachable('Should have thrown');
-      } catch (error: any) {
+      } catch (error: unknown) {
         expect(
           error.code === 'E030' || (error.message && error.message.includes('importanceWeight'))
         ).toBe(true);
@@ -104,7 +104,7 @@ describe('Handler Memory CRUD (T519) [deferred - requires DB test fixtures]', ()
       try {
         await handler.handleMemoryUpdate({ id: 1, importanceTier: 'invalid_tier' });
         expect.unreachable('Should have thrown');
-      } catch (error: any) {
+      } catch (error: unknown) {
         expect(
           error.code === 'E030' || (error.message && error.message.includes('importance tier'))
         ).toBe(true);
@@ -130,7 +130,7 @@ describe('Handler Memory CRUD (T519) [deferred - requires DB test fixtures]', ()
       try {
         await handler.handleMemoryList({});
         // No validation error — pass
-      } catch (error: any) {
+      } catch (error: unknown) {
         // DB errors are acceptable (means validation passed)
         expect(
           error.message.includes('database') ||
@@ -146,7 +146,7 @@ describe('Handler Memory CRUD (T519) [deferred - requires DB test fixtures]', ()
       try {
         await handler.handleMemoryStats({ folderRanking: 'invalid_ranking' });
         expect.unreachable('Should have thrown');
-      } catch (error: any) {
+      } catch (error: unknown) {
         // Either validation error or DB error is acceptable
         expect(
           error.message.includes('folderRanking') ||
@@ -161,7 +161,7 @@ describe('Handler Memory CRUD (T519) [deferred - requires DB test fixtures]', ()
       try {
         await handler.handleMemoryStats({ excludePatterns: 'not-an-array' });
         expect.unreachable('Should have thrown');
-      } catch (error: any) {
+      } catch (error: unknown) {
         expect(
           error.message.includes('excludePatterns') ||
             error.message.includes('array') ||
@@ -175,7 +175,7 @@ describe('Handler Memory CRUD (T519) [deferred - requires DB test fixtures]', ()
       try {
         await handler.handleMemoryStats(null);
         // Defaults used — pass
-      } catch (error: any) {
+      } catch (error: unknown) {
         // DB errors are acceptable (means validation passed)
         expect(
           error.message.includes('database') || error.message.includes('getDb')
@@ -195,7 +195,7 @@ describe('Handler Memory CRUD (T519) [deferred - requires DB test fixtures]', ()
         expect(
           (parsed.data && typeof parsed.data.status === 'string') || parsed.summary
         ).toBeTruthy();
-      } catch (error: any) {
+      } catch (error: unknown) {
         // DB errors are acceptable
         expect(
           error.message.includes('database') || error.message.includes('getDb')

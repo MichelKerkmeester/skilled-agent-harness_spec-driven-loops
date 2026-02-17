@@ -55,7 +55,7 @@ describe('Handler Causal Graph (T523) [deferred - requires DB test fixtures]', (
         expect(result.content.length).toBeGreaterThan(0);
         const parsed = JSON.parse(result.content[0].text);
         expect(parsed.data || parsed.summary).toBeTruthy();
-      } catch (error: any) {
+      } catch (error: unknown) {
         // DB required — acceptable
         expect(
           error.message.includes('database') || error.message.includes('getDb')
@@ -80,7 +80,7 @@ describe('Handler Causal Graph (T523) [deferred - requires DB test fixtures]', (
           const parsed = JSON.parse(result.content[0].text);
           expect(parsed.data && parsed.data.error).toBeTruthy();
         }
-      } catch (error: any) {
+      } catch (error: unknown) {
         // Any error thrown means handler rejected invalid input
         expect(error.message).toBeDefined();
       }
@@ -99,7 +99,7 @@ describe('Handler Causal Graph (T523) [deferred - requires DB test fixtures]', (
             (parsed.data?.details?.missingParams?.includes('sourceId'));
           expect(sourceIdMentioned).toBe(true);
         }
-      } catch (error: any) {
+      } catch (error: unknown) {
         // Handler rejected invalid input
         expect(error.message).toBeDefined();
       }
@@ -118,7 +118,7 @@ describe('Handler Causal Graph (T523) [deferred - requires DB test fixtures]', (
             (parsed.data?.details?.missingParams?.includes('relation'));
           expect(relationMentioned).toBe(true);
         }
-      } catch (error: any) {
+      } catch (error: unknown) {
         expect(error.message).toBeDefined();
       }
     });
@@ -134,7 +134,7 @@ describe('Handler Causal Graph (T523) [deferred - requires DB test fixtures]', (
           }
           // If validRelations not present, test is inconclusive but not failing
         }
-      } catch (error: any) {
+      } catch (error: unknown) {
         // Handler rejected invalid input
         expect(error.message).toBeDefined();
       }
@@ -168,7 +168,7 @@ describe('Handler Causal Graph (T523) [deferred - requires DB test fixtures]', (
         expect(result.content.length).toBeGreaterThan(0);
         const parsed = JSON.parse(result.content[0].text);
         expect(parsed.data || parsed.summary).toBeTruthy();
-      } catch (error: any) {
+      } catch (error: unknown) {
         // DB required — acceptable
         expect(
           error.message.includes('database') || error.message.includes('getDb')

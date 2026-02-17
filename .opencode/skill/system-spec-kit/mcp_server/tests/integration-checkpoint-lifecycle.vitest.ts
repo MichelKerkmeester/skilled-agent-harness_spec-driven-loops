@@ -24,7 +24,7 @@ describe('Integration Checkpoint Lifecycle (T529) [deferred - requires DB test f
         const result = await checkpointHandler.handleCheckpointList({});
         // If it succeeds, it should return content
         expect(result).toBeDefined();
-      } catch (error: any) {
+      } catch (error: unknown) {
         // DB or infra errors are acceptable (no DB in test env)
         const isInfraError = error.message &&
           (error.message.includes('database') || error.message.includes('SQLITE') ||
@@ -57,7 +57,7 @@ describe('Integration Checkpoint Lifecycle (T529) [deferred - requires DB test f
           name: 'test-checkpoint-' + Date.now(),
           metadata: { reason: 'integration test', version: '1.0' },
         });
-      } catch (error: any) {
+      } catch (error: unknown) {
         // Metadata-specific rejection = real failure
         expect(error.message).not.toMatch(/metadata/i);
       }
@@ -70,7 +70,7 @@ describe('Integration Checkpoint Lifecycle (T529) [deferred - requires DB test f
         await checkpointHandler.handleCheckpointList({
           specFolder: 'specs/test-folder',
         });
-      } catch (error: any) {
+      } catch (error: unknown) {
         // specFolder-specific rejection = real failure
         expect(error.message).not.toMatch(/specFolder/i);
       }

@@ -574,7 +574,7 @@ describe('handleMemoryUpdate - Happy Path', () => {
       await handler.handleMemoryUpdate({ id: 999 });
       // If no throw, fail
       expect(true).toBe(false);
-    } catch (error: any) {
+    } catch (error: unknown) {
       const isExpected = error.name === 'MemoryError' ||
                          (error.code && error.code.startsWith('E')) ||
                          error.message.includes('not found') ||
@@ -595,7 +595,7 @@ describe('handleMemoryUpdate - Embedding Regeneration', () => {
     try {
       await handler.handleMemoryUpdate({ id: 1, title: 'New Title', allowPartialUpdate: false });
       expect(true).toBe(false); // should have thrown
-    } catch (error: any) {
+    } catch (error: unknown) {
       const isExpected = error.name === 'MemoryError' ||
                          error.message.includes('rolled back') ||
                          error.message.includes('Embedding');
@@ -618,7 +618,7 @@ describe('handleMemoryUpdate - Embedding Regeneration', () => {
     try {
       await handler.handleMemoryUpdate({ id: 3, title: 'New Title', allowPartialUpdate: false });
       expect(true).toBe(false);
-    } catch (error: any) {
+    } catch (error: unknown) {
       const isExpected = error.message.includes('null') ||
                          error.message.includes('rolled back') ||
                          error.message.includes('Embedding') ||

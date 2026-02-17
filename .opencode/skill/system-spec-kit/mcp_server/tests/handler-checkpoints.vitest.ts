@@ -90,7 +90,7 @@ describe('Handler Checkpoints (T521, T102) [deferred - requires DB test fixtures
         expect(result.content.length).toBeGreaterThan(0);
         const parsed = JSON.parse(result.content[0].text);
         expect(parsed.data?.count !== undefined || parsed.summary !== undefined).toBe(true);
-      } catch (error: any) {
+      } catch (error: unknown) {
         // DB-dependent — acceptable to skip if DB not available
         expect(
           error.message.includes('database') ||
@@ -195,7 +195,7 @@ describe('Handler Checkpoints (T521, T102) [deferred - requires DB test fixtures
       try {
         try {
           await handler.handleCheckpointRestore({ name: 't102-test-nonexistent' });
-        } catch (_err: any) {
+        } catch (_err: unknown) {
           // Expected — checkpoint won't exist or DB may not be init'd
         }
 

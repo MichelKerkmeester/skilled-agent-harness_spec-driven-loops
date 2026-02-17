@@ -16,17 +16,26 @@
 
 - [🔭 1. OVERVIEW](#1--overview)
 - [🚀 2. QUICK START](#2--quick-start)
-- [📂 3. STRUCTURE](#3--structure)
-- [⚡ 4. FEATURES](#4--features)
-- [⚙️ 5. CONFIGURATION](#5-️-configuration)
-- [💡 6. USAGE EXAMPLES](#6--usage-examples)
-- [🔧 7. TROUBLESHOOTING](#7--troubleshooting)
-- [❓ 8. FAQ](#8--faq)
-- [📚 9. RELATED DOCUMENTS](#9--related-documents)
+- [📝 3. SPEC KIT DOCUMENTATION](#3--spec-kit-documentation)
+- [🧠 4. MEMORY ENGINE](#4--memory-engine)
+- [🤖 5. AGENT NETWORK](#5--agent-network)
+- [⌨️ 6. COMMAND ARCHITECTURE](#6--command-architecture)
+- [🧩 7. SKILLS LIBRARY](#7--skills-library)
+- [🚧 8. GATE SYSTEM](#8--gate-system)
+- [💻 9. CODE MODE MCP](#9--code-mode-mcp)
+- [🌐 10. CHROME DEVTOOLS](#10--chrome-devtools)
+- [🔀 11. GIT WORKFLOWS](#11--git-workflows)
+- [🔌 12. EXTENSIBILITY](#12--extensibility)
+- [⚙️ 13. CONFIGURATION](#13--configuration)
+- [💡 14. USAGE EXAMPLES](#14--usage-examples)
+- [🔧 15. TROUBLESHOOTING](#15--troubleshooting)
+- [❓ 16. FAQ](#16--faq)
+- [📚 17. RELATED DOCUMENTS](#17--related-documents)
 
 ---
 
 ## 1. 🔭 OVERVIEW
+<!-- ANCHOR:overview -->
 
 ### What is This?
 
@@ -35,20 +44,6 @@ AI coding assistants are powerful, but they have amnesia. Every session starts f
 Two custom-built systems fix this: a **spec-kit documentation framework** (84 templates, 4 levels) and a **cognitive memory MCP server** (22 memory tools across 7 layers, plus 7 Code Mode tools) that turn stateless AI sessions into a continuous, searchable development history. Purpose-built for AI-assisted development, not a wrapper around existing tools.
 
 **Who it's for:** Developers using AI assistants who are tired of re-explaining context every session and losing decisions to chat history while hoping documentation happens "later."
-
-### Key Statistics
-
-| Category         | Count | Details                                          |
-| ---------------- | ----- | ------------------------------------------------ |
-| MCP Servers      | 3     | Memory Engine, Code Mode, Sequential Thinking    |
-| MCP Tools        | 29    | 22 memory (L1-L7) + 7 Code Mode                  |
-| Agents           | 10    | 8 custom + 2 built-in (`@general`, `@explore`)   |
-| Skills           | 9     | Domain expertise, auto-loaded by task keywords   |
-| Commands         | 19    | 7 spec_kit + 5 memory + 6 create + 1 utility     |
-| Templates        | 84    | CORE + ADDENDUM composition model (v2.2)         |
-| YAML Assets      | 25    | 12 create + 13 spec_kit execution specifications |
-| Validation Rules | 13    | Pluggable, automated spec folder checks          |
-| Test Files       | 126   | 122 passing + 4 skipped; 4,256 tests total       |
 
 ### How It All Connects
 
@@ -102,9 +97,12 @@ Everything connects. Memory files live *inside* spec folders. Gates enforce docu
 | Node.js                                     | v18+      | v20+        |
 | npm                                         | v9+       | v10+        |
 
+<!-- /ANCHOR:overview -->
+
 ---
 
 ## 2. 🚀 QUICK START
+<!-- ANCHOR:quick-start -->
 
 ### Prerequisites
 
@@ -138,55 +136,18 @@ opencode
 # Expected: 9 skills listed
 ```
 
----
-
-## 3. 📂 STRUCTURE
-
-```
-.opencode/
-├── agent/                    # 8 custom agent definitions
-│   ├── orchestrate.md        # Multi-agent coordination
-│   ├── context.md            # Context retrieval & synthesis
-│   ├── speckit.md            # Spec documentation (exclusive)
-│   └── ...                   # debug, research, write, review, handover
-├── skill/                    # 9 domain skills
-│   ├── system-spec-kit/      # Core: memory MCP server, templates, validation
-│   ├── workflows-code--*/    # Code (web-dev, full-stack, opencode)
-│   ├── workflows-git/        # Git workflow automation
-│   └── ...                   # documentation, chrome-devtools, mcp-*
-├── command/                  # 19 slash commands + 25 YAML assets
-│   ├── spec_kit/             # 7 commands + 13 YAML execution assets
-│   ├── memory/               # 5 commands
-│   └── create/               # 6 commands + 12 YAML execution assets
-├── install_guides/           # 10 setup guides (5-phase)
-└── scripts/                  # Routing & automation
-
-specs/                        # Spec folder documentation
-├── ###-feature-name/         # Per-feature: spec, plan, tasks, checklist
-│   ├── memory/               # Session context (auto-generated)
-│   └── scratch/              # Temporary workspace
-```
-
-### Key Files
-
-| File                               | Purpose                                 |
-| ---------------------------------- | --------------------------------------- |
-| `opencode.json`                    | MCP server configuration (3 servers)    |
-| `AGENTS.md`                        | Gate system, protocols, agent routing   |
-| `.opencode/skill/system-spec-kit/` | Memory engine + documentation framework |
+<!-- /ANCHOR:quick-start -->
 
 ---
 
-## 4. ⚡ FEATURES
+## 3. 📝 SPEC KIT DOCUMENTATION
+<!-- ANCHOR:spec-kit-documentation -->
 
-<details open>
-<summary><strong>📝 Spec Kit Documentation</strong>: 4 levels, 84 templates, 13 validation rules</summary>
-
-<br>
+4 levels, 84 templates, 13 validation rules.
 
 Every feature leaves a trail. Not for bureaucracy. For your future self, your team and the AI that picks up where you left off.
 
-#### Four Documentation Levels
+### Four Documentation Levels
 
 | Level  | LOC            | Required Files                                        | Use When                           |
 | ------ | -------------- | ----------------------------------------------------- | ---------------------------------- |
@@ -195,7 +156,7 @@ Every feature leaves a trail. Not for bureaucracy. For your future self, your te
 | **3**  | >=500          | Level 2 + decision-record.md (+ optional research.md) | Complex/architecture changes       |
 | **3+** | Complexity 80+ | Level 3 + AI protocols, extended checklist, sign-offs | Multi-agent, enterprise governance |
 
-#### CORE + ADDENDUM Template Architecture
+### CORE + ADDENDUM Template Architecture
 
 **84 templates** across the v2.2 composition model. CORE templates are shared across levels. ADDENDUM templates extend them. Update CORE once and all levels inherit. Zero duplication.
 
@@ -213,9 +174,10 @@ Level 3+: [CORE] + [all addendums]             -> 6+ files
 | `tasks.md`                  | Ordered task breakdown with status tracking           |
 | `checklist.md`              | QA validation items (P0/P1/P2 priority)               |
 | `decision-record.md`        | Architectural decisions with rationale and trade-offs |
+| `research.md`               | Technical investigation findings (optional, L3+)      |
 | `implementation-summary.md` | Post-implementation record of what was built          |
 
-#### Validation and Automation
+### Validation and Automation
 
 **13 pluggable validation rules** run before you can mark any spec folder complete:
 
@@ -237,42 +199,34 @@ Level 3+: [CORE] + [all addendums]             -> 6+ files
 
 Exit code 0 = pass. Exit code 2 = must fix.
 
-#### Memory Integration
-
-Memory files live *inside* spec folders at `specs/###-feature/memory/`. Saves enforced via `generate-context.js` (never manual). Sub-folder versioning (`001/`, `002/`, `003/`) gives each version independent context. `/memory:continue` auto-loads relevant memories when resuming.
-
-Spec Kit workflow features include `upgrade-level.sh`, the auto-populate workflow, `check-placeholders.sh`, and anchor tags.
-
-> Full reference: [System Spec Kit Documentation](.opencode/skill/system-spec-kit/README.md)
-
-</details>
+<!-- /ANCHOR:spec-kit-documentation -->
 
 ---
 
-<details open>
-<summary><strong>🧠 The Memory Engine</strong>: 22 MCP tools across 7 cognitive layers</summary>
+## 4. 🧠 MEMORY ENGINE
+<!-- ANCHOR:memory-engine -->
 
-<br>
+22 MCP tools across 7 cognitive layers.
 
 > *Remember everything. Surface what matters. Keep it private.*
 
 Your AI assistant forgets everything between sessions. The Memory Engine fixes this with 22 MCP tools across 7 architectural layers: 5-source indexing, 7-intent retrieval routing, schema v13 metadata (`document_type`, `spec_level`), and document-type scoring.
 
-#### 5-Source Discovery Pipeline
+### 5-Source Discovery Pipeline
 
 The memory index builds from 5 distinct source types, each with its own discovery path and importance weight:
 
-| # | Source                    | Discovery Path                          | Weight | What Gets Indexed                          |
-| - | ------------------------ | --------------------------------------- | ------ | ------------------------------------------ |
-| 1 | **Constitutional docs**  | `constitutional.md` files               | 1.0    | System rules (never decay, always surface) |
-| 2 | **Spec folder documents**| `.opencode/specs/**/*.md`               | 0.6-0.8| Specs, plans, tasks, decisions, summaries  |
-| 3 | **Memory files**         | `specs/###-feature/memory/*.{md,txt}`   | 0.5    | Session context, decisions, progress       |
-| 4 | **Project READMEs**      | `.opencode/**/README.{md,txt}`, root README | 0.4 | Architecture, structure, conventions       |
-| 5 | **Skill READMEs**        | `.opencode/skill/*/README.{md,txt}`     | 0.3    | Domain expertise, tool documentation       |
+| #   | Source                    | Discovery Path                              | Weight  | What Gets Indexed                          |
+| --- | ------------------------- | ------------------------------------------- | ------- | ------------------------------------------ |
+| 1   | **Constitutional docs**   | `constitutional.md` files                   | 1.0     | System rules (never decay, always surface) |
+| 2   | **Spec folder documents** | `.opencode/specs/**/*.md`                   | 0.6-0.8 | Specs, plans, tasks, decisions, summaries  |
+| 3   | **Memory files**          | `specs/###-feature/memory/*.{md,txt}`       | 0.5     | Session context, decisions, progress       |
+| 4   | **Project READMEs**       | `.opencode/**/README.{md,txt}`, root README | 0.4     | Architecture, structure, conventions       |
+| 5   | **Skill READMEs**         | `.opencode/skill/*/README.{md,txt}`         | 0.3     | Domain expertise, tool documentation       |
 
 Source 2 was added in spec 126 — prior to that, spec folder documents (the most authoritative project knowledge) were invisible to memory search. Controlled via `includeSpecDocs` parameter on `memory_index_scan` and `SPECKIT_INDEX_SPEC_DOCS` environment variable.
 
-#### MCP Tool Layers
+### MCP Tool Layers
 
 Each layer has enforced token budgets to prevent context bloat:
 
@@ -288,7 +242,7 @@ Each layer has enforced token budgets to prevent context bloat:
 
 Most agents interact only with L1-L2. Mutation (L4) and lifecycle (L5) are reserved for explicit user actions. Analysis (L6) is invoked at task boundaries for learning measurement.
 
-#### Cognitive Features
+### Cognitive Features
 
 Not basic vector storage. Inspired by biological working memory with cognitive subsystems:
 
@@ -316,7 +270,7 @@ new_score = current_score x (decay_rate ^ turns_elapsed)
 
 Two additional subsystems: **FSRS Scheduler** (spaced repetition for review intervals) and **Prediction Error Gating** (novel discoveries amplified, expected content deprioritized).
 
-#### Hybrid Search Architecture
+### Hybrid Search Architecture
 
 Three search engines fuse via Reciprocal Rank Fusion (RRF):
 
@@ -344,22 +298,22 @@ Plus: FTS5 for exact substrings, cross-encoder reranking, 4 embedding providers 
 
 **Document-Type Scoring**: search results are multiplied by document type to prioritize authoritative sources. Schema v13 tracks `document_type` and `spec_level` per indexed entry.
 
-| Document Type              | Multiplier | Rationale                                     |
-| -------------------------- | ---------- | --------------------------------------------- |
-| `constitutional`           | 2.0x       | System rules — always highest priority        |
-| `spec`                     | 1.4x       | Authoritative requirements and scope          |
-| `decision_record`          | 1.4x       | Architectural decisions with rationale        |
-| `plan`                     | 1.3x       | Implementation approach and design            |
-| `tasks`                    | 1.1x       | Ordered task breakdowns                       |
-| `implementation_summary`   | 1.1x       | Post-implementation records                   |
-| `research`                 | 1.0x       | Investigation findings                        |
-| `checklist`                | 1.0x       | QA validation items                           |
-| `handover`                 | 1.0x       | Session continuation context                  |
-| `memory`                   | 1.0x       | Baseline — session context and decisions      |
-| `readme`                   | 0.8x       | Documentation (informational, not decisions)  |
-| `scratch`                  | 0.6x       | Temporary workspace (lowest priority)         |
+| Document Type            | Multiplier | Rationale                                    |
+| ------------------------ | ---------- | -------------------------------------------- |
+| `constitutional`         | 2.0x       | System rules — always highest priority       |
+| `spec`                   | 1.4x       | Authoritative requirements and scope         |
+| `decision_record`        | 1.4x       | Architectural decisions with rationale       |
+| `plan`                   | 1.3x       | Implementation approach and design           |
+| `tasks`                  | 1.1x       | Ordered task breakdowns                      |
+| `implementation_summary` | 1.1x       | Post-implementation records                  |
+| `research`               | 1.0x       | Investigation findings                       |
+| `checklist`              | 1.0x       | QA validation items                          |
+| `handover`               | 1.0x       | Session continuation context                 |
+| `memory`                 | 1.0x       | Baseline — session context and decisions     |
+| `readme`                 | 0.8x       | Documentation (informational, not decisions) |
+| `scratch`                | 0.6x       | Temporary workspace (lowest priority)        |
 
-#### ANCHOR Format
+### ANCHOR Format
 
 Structured content markers enabling selective retrieval with ~93% token savings:
 
@@ -371,7 +325,7 @@ Key architectural decisions for this spec...
 
 Instead of loading entire memory files (~2,000 tokens), the system retrieves only the relevant anchor section (~150 tokens). ~473 anchor tags across 74 READMEs enable section-level extraction throughout the project.
 
-#### Causal Memory Graph
+### Causal Memory Graph
 
 Every decision has a lineage. The causal graph tracks 6 relationship types:
 
@@ -399,20 +353,20 @@ This enables traversal from high-level specs down to implementation details (and
 
 > Full reference: [MCP Server Documentation](.opencode/skill/system-spec-kit/mcp_server/README.md) | [Memory System Guide](.opencode/skill/system-spec-kit/README.md)
 
-</details>
+<!-- /ANCHOR:memory-engine -->
 
 ---
 
-<details>
-<summary><strong>🤖 The Agent Network</strong>: 10 specialized agents with role-based routing</summary>
+## 5. 🤖 AGENT NETWORK
+<!-- ANCHOR:agent-network -->
 
-<br>
+10 specialized agents with role-based routing.
 
 Ten specialized agents prevent AI assistants from making assumptions, skipping documentation, creating technical debt and drifting from scope. Two are built into OpenCode. Eight are custom agents in `.opencode/agent/`.
 
 This is a 10 specialized agents / 3-platform model (OpenCode, Claude Code, Codex) with aligned role definitions.
 
-#### All Agents
+### All Agents
 
 | Agent          | Type     | Model         | Role                                                               |
 | -------------- | -------- | ------------- | ------------------------------------------------------------------ |
@@ -427,7 +381,7 @@ This is a 10 specialized agents / 3-platform model (OpenCode, Claude Code, Codex
 | `@write`       | Custom   | claude-sonnet | Documentation generation (READMEs, skills, guides)                 |
 | `@handover`    | Custom   | claude-haiku  | Session continuation, context preservation                         |
 
-#### Enterprise Orchestration
+### Enterprise Orchestration
 
 The `@orchestrate` agent implements distributed-systems patterns:
 
@@ -440,22 +394,22 @@ The `@orchestrate` agent implements distributed-systems patterns:
 - **Conditional Branching**: IF/THEN/ELSE logic with 3-level nesting
 - **Sub-Orchestrator Pattern**: delegates complex sub-workflows to nested orchestrators
 
-#### How Agents Get Chosen
+### How Agents Get Chosen
 
 `@research` for investigation. `@speckit` for spec documentation (exclusively). `@debug` when stuck 3+ attempts. `@review` for code quality. `@orchestrate` for multi-agent coordination.
 
-#### Fresh-Perspective Debugging
+### Fresh-Perspective Debugging
 
 The `@debug` agent uses a 4-phase methodology: Observe, Analyze, Hypothesize, Fix. It starts with no prior context on purpose. Trigger with `/spec_kit:debug`, select your preferred model and get a fresh perspective.
 
-</details>
+<!-- /ANCHOR:agent-network -->
 
 ---
 
-<details>
-<summary><strong>⌨️ Command Architecture</strong>: 19 commands across 4 namespaces with 25 YAML assets</summary>
+## 6. ⌨️ COMMAND ARCHITECTURE
+<!-- ANCHOR:command-architecture -->
 
-<br>
+19 commands across 4 namespaces with 25 YAML assets.
 
 Commands are user-triggered workflows built on a two-layer architecture. Markdown entry points route to YAML execution engines.
 
@@ -471,7 +425,7 @@ Commands are user-triggered workflows built on a two-layer architecture. Markdow
 | Enforcement       | No enforcement       | Gates prevent skipping   |
 | Skill Loading     | Manual skill loading | Auto-loads what's needed |
 
-#### spec_kit/ (7 commands)
+### spec_kit/ (7 commands)
 
 All support `:auto` and `:confirm` mode suffixes.
 
@@ -485,7 +439,7 @@ All support `:auto` and `:confirm` mode suffixes.
 | `/spec_kit:resume`    | Continue a previous session (auto-loads memory)        |
 | `/spec_kit:handover`  | Create session handover (`:quick` or `:full` variants) |
 
-#### memory/ (5 commands)
+### memory/ (5 commands)
 
 | Command            | Purpose                                                       |
 | ------------------ | ------------------------------------------------------------- |
@@ -495,7 +449,7 @@ All support `:auto` and `:confirm` mode suffixes.
 | `/memory:learn`    | Explicit learning capture (`correct` subcommand for mistakes) |
 | `/memory:manage`   | Database ops: stats, health, cleanup, checkpoints             |
 
-#### create/ (6 commands)
+### create/ (6 commands)
 
 | Command                   | Purpose                                      |
 | ------------------------- | -------------------------------------------- |
@@ -506,38 +460,38 @@ All support `:auto` and `:confirm` mode suffixes.
 | `/create:skill_reference` | Create a skill reference file                |
 | `/create:install_guide`   | Generate a 5-phase install guide             |
 
-#### Utility (1 command)
+### Utility (1 command)
 
 | Command         | Purpose                                                                |
 | --------------- | ---------------------------------------------------------------------- |
 | `/agent_router` | Route requests to AI Systems with full System Prompt identity adoption |
 
-</details>
+<!-- /ANCHOR:command-architecture -->
 
 ---
 
-<details>
-<summary><strong>🧩 Skills Library</strong>: 9 domain skills, auto-loaded by task keywords</summary>
+## 7. 🧩 SKILLS LIBRARY
+<!-- ANCHOR:skills-library -->
 
-<br>
+9 domain skills, auto-loaded by task keywords.
 
 Skills are domain expertise on demand. The AI loads the right skill and already knows your conventions.
 
-#### All Skills
+### All Skills
 
 | Skill                        | Domain        | Purpose                                                                 |
 | ---------------------------- | ------------- | ----------------------------------------------------------------------- |
-| `system-spec-kit`            | Documentation | Spec folders, templates, memory integration, context preservation       |
-| `workflows-code--full-stack` | Multi-Stack   | Go, Node.js, React, React Native, Swift, auto-detected via marker files |
-| `workflows-code--web-dev`    | Web Dev       | Webflow, vanilla JS: implementation, debugging, verification            |
-| `workflows-git`              | Git           | Commits, branches, PRs, worktrees                                       |
-| `workflows-code--opencode`   | System Code   | TypeScript, Python, Shell for MCP servers and scripts                   |
-| `workflows-documentation`    | Docs          | Document quality scoring, skill creation, install guides                |
 | `mcp-code-mode`              | Integrations  | External tools via Code Mode (Figma, GitHub, ClickUp)                   |
-| `workflows-chrome-devtools`  | Browser       | DevTools automation, screenshots, debugging                             |
 | `mcp-figma`                  | Design        | Figma file access, components, styles, comments                         |
+| `system-spec-kit`            | Documentation | Spec folders, templates, memory integration, context preservation       |
+| `workflows-chrome-devtools`  | Browser       | DevTools automation, screenshots, debugging                             |
+| `workflows-code--full-stack` | Multi-Stack   | Go, Node.js, React, React Native, Swift, auto-detected via marker files |
+| `workflows-code--opencode`   | System Code   | TypeScript, Python, Shell for MCP servers and scripts                   |
+| `workflows-code--web-dev`    | Web Dev       | Webflow, vanilla JS: implementation, debugging, verification            |
+| `workflows-documentation`    | Docs          | Document quality scoring, skill creation, install guides                |
+| `workflows-git`              | Git           | Commits, branches, PRs, worktrees                                       |
 
-#### Auto-Detection
+### Auto-Detection
 
 `skill_advisor.py` analyzes your request keywords. Confidence >= 0.8 = skill auto-loads.
 
@@ -551,14 +505,14 @@ Skills are domain expertise on demand. The AI loads the right skill and already 
 | **React Native** | mobile   | `app.json` with "expo"                          | Navigation, hooks, platform APIs  |
 | **Swift**        | mobile   | `Package.swift`                                 | SwiftUI, Combine, async/await     |
 
-</details>
+<!-- /ANCHOR:skills-library -->
 
 ---
 
-<details>
-<summary><strong>🚧 The Gate System</strong>: 3 mandatory gates before any file change</summary>
+## 8. 🚧 GATE SYSTEM
+<!-- ANCHOR:gate-system -->
 
-<br>
+3 mandatory gates before any file change.
 
 Every request passes through mandatory gates before the AI touches a single file. *Enforced*, not suggested. No exceptions.
 
@@ -580,7 +534,7 @@ If the request involves *any* file modification, the AI must ask: A) Use existin
 - **Memory Save**: `generate-context.js` is mandatory (no manual memory file creation)
 - **Completion Verification**: AI loads `checklist.md` and verifies every item with evidence
 
-#### Analysis Lenses
+### Analysis Lenses
 
 Six lenses applied silently to catch problems:
 
@@ -593,7 +547,7 @@ Six lenses applied silently to catch problems:
 | **VALUE**          | Cosmetic changes disguised as improvements |
 | **SUSTAINABILITY** | Future maintenance nightmares              |
 
-#### Auto-Detected Anti-Patterns
+### Auto-Detected Anti-Patterns
 
 24 pre-indexed anti-patterns with automatic detection. Six core patterns:
 
@@ -606,18 +560,18 @@ Six lenses applied silently to catch problems:
 | Cargo culting          | "best practice", "always should" | "Does this pattern fit this specific case?"                |
 | Wrong abstraction      | "DRY this up" (2 instances)      | "Similar code isn't always the same concept."              |
 
-</details>
+<!-- /ANCHOR:gate-system -->
 
 ---
 
-<details>
-<summary><strong>💻 Code Mode MCP</strong>: 7 tools for external integrations with 98.7% context savings</summary>
+## 9. 💻 CODE MODE MCP
+<!-- ANCHOR:code-mode-mcp -->
 
-<br>
+7 tools for external integrations with 98.7% context savings.
 
 External tool integration via TypeScript execution. Instead of loading all tool definitions into context upfront, Code Mode uses **progressive disclosure**: search for tools, load only what's needed, execute in TypeScript.
 
-#### Code Mode Tools (7)
+### Code Mode Tools (7)
 
 | Tool                         | Purpose                                                     |
 | ---------------------------- | ----------------------------------------------------------- |
@@ -629,7 +583,7 @@ External tool integration via TypeScript execution. Instead of loading all tool 
 | `deregister_manual`          | Remove a tool provider                                      |
 | `get_required_keys_for_tool` | Check required environment variables for a tool             |
 
-#### Progressive Tool Disclosure
+### Progressive Tool Disclosure
 
 ```typescript
 // 1. Discover relevant tools
@@ -642,7 +596,7 @@ tool_info({ tool_name: "webflow.webflow_sites_list" })
 call_tool_chain({ code: "await webflow.webflow_sites_list({})" })
 ```
 
-#### Performance
+### Performance
 
 | Metric             | Without Code Mode      | With Code Mode          |
 | ------------------ | ---------------------- | ----------------------- |
@@ -654,14 +608,14 @@ call_tool_chain({ code: "await webflow.webflow_sites_list({})" })
 
 **Configuration**: `.utcp_config.json` defines available MCP servers. Tool naming: `{manual}.{manual}_{tool}()`.
 
-</details>
+<!-- /ANCHOR:code-mode-mcp -->
 
 ---
 
-<details>
-<summary><strong>🌐 Chrome DevTools Integration</strong>: dual-mode browser debugging</summary>
+## 10. 🌐 CHROME DEVTOOLS
+<!-- ANCHOR:chrome-devtools -->
 
-<br>
+Dual-mode browser debugging.
 
 CLI-first for speed and token efficiency. MCP fallback for multi-tool integration.
 
@@ -684,14 +638,14 @@ CLI-first for speed and token efficiency. MCP fallback for multi-tool integratio
 | Network traces | `bdg network har trace.har`                                   |
 | JS execution   | `bdg dom eval "document.title"`                               |
 
-</details>
+<!-- /ANCHOR:chrome-devtools -->
 
 ---
 
-<details>
-<summary><strong>🔀 Git Workflows</strong>: 3-phase professional git orchestration</summary>
+## 11. 🔀 GIT WORKFLOWS
+<!-- ANCHOR:git-workflows -->
 
-<br>
+3-phase professional git orchestration.
 
 **Phase 1: Workspace Setup**, git worktrees for isolated development:
 - Parallel work without branch juggling or stash chaos
@@ -710,14 +664,14 @@ CLI-first for speed and token efficiency. MCP fallback for multi-tool integratio
 
 **Integration**: GitHub MCP (via Code Mode) for remote operations. Local git commands for commits and diffs as well as merges.
 
-</details>
+<!-- /ANCHOR:git-workflows -->
 
 ---
 
-<details>
-<summary><strong>🔌 Extensibility</strong>: custom skills, agents, commands and templates</summary>
+## 12. 🔌 EXTENSIBILITY
+<!-- ANCHOR:extensibility -->
 
-<br>
+Custom skills, agents, commands and templates.
 
 Every component follows standardized patterns for customization:
 
@@ -731,11 +685,12 @@ Every component follows standardized patterns for customization:
 
 **Philosophy**: Convention over configuration. Templates provide structure. You own the content. The framework adapts to your project.
 
-</details>
+<!-- /ANCHOR:extensibility -->
 
 ---
 
-## 5. ⚙️ CONFIGURATION
+## 13. ⚙️ CONFIGURATION
+<!-- ANCHOR:configuration -->
 
 ### Configuration File
 
@@ -786,9 +741,12 @@ export EMBEDDINGS_PROVIDER=hf-local
 
 See individual install guides in [`.opencode/install_guides/`](.opencode/install_guides/) for setup details and install scripts.
 
+<!-- /ANCHOR:configuration -->
+
 ---
 
-## 6. 💡 USAGE EXAMPLES
+## 14. 💡 USAGE EXAMPLES
+<!-- ANCHOR:usage-examples -->
 
 Real workflows, not toy examples.
 
@@ -868,9 +826,12 @@ memory_index_scan({ includeSpecDocs: false })
 → Index without spec documents (equivalent to pre-spec-126 behavior)
 ```
 
+<!-- /ANCHOR:usage-examples -->
+
 ---
 
-## 7. 🔧 TROUBLESHOOTING
+## 15. 🔧 TROUBLESHOOTING
+<!-- ANCHOR:troubleshooting -->
 
 Something broken? Start here.
 
@@ -940,9 +901,12 @@ opencode --version
 cd .opencode/skill/system-spec-kit && npm run test:cli
 ```
 
+<!-- /ANCHOR:troubleshooting -->
+
 ---
 
-## 8. ❓ FAQ
+## 16. ❓ FAQ
+<!-- ANCHOR:faq -->
 
 ### General Questions
 
@@ -1006,9 +970,12 @@ Skills are auto-discovered from `.opencode/skill/*/SKILL.md`. No plugin registra
 
 A: Minimal. SQLite databases are compact. A project with 100+ memories typically uses under 50MB including embeddings. The HF Local model downloads on first use (~130MB) and is cached for subsequent runs.
 
+<!-- /ANCHOR:faq -->
+
 ---
 
-## 9. 📚 RELATED DOCUMENTS
+## 17. 📚 RELATED DOCUMENTS
+<!-- ANCHOR:related-documents -->
 
 ### Internal Documentation
 
@@ -1045,6 +1012,8 @@ A: Minimal. SQLite databases are compact. A project with 100+ memories typically
 | ------------------------------------------------------------------------------------- | ---------------------------------------------------- |
 | [OpenCode](https://github.com/sst/opencode)                                           | The AI coding assistant that powers this environment |
 | [GitHub Issues](https://github.com/MichelKerkmeester/opencode-dev-environment/issues) | Report bugs and request features                     |
+
+<!-- /ANCHOR:related-documents -->
 
 ---
 

@@ -125,7 +125,7 @@ describe('Spec 111: handleMemoryIndexScan includeReadmes behavior', () => {
       if (parsed.data?._debug_fileCounts) {
         expect(parsed.data._debug_fileCounts.includeReadmes).toBe(true);
       }
-    } catch (error: any) {
+    } catch (error: unknown) {
       // Server dependency errors are acceptable — skip-equivalent
       const isServerDep = /database|getDb|Rate limited|vector_index|null|not initialized|Database/.test(error.message);
       if (!isServerDep) throw error;
@@ -145,7 +145,7 @@ describe('Spec 111: handleMemoryIndexScan includeReadmes behavior', () => {
         expect(typeof counts.skillReadmes).toBe('number');
         expect(typeof counts.projectReadmes).toBe('number');
       }
-    } catch (error: any) {
+    } catch (error: unknown) {
       const isServerDep = /database|getDb|Rate limited|vector_index|null|not initialized|Database/.test(error.message);
       if (!isServerDep) throw error;
     }
@@ -163,7 +163,7 @@ describe('Spec 111: handleMemoryIndexScan includeReadmes behavior', () => {
         expect(counts.skillReadmes).toBe(0);
         expect(counts.projectReadmes).toBe(0);
       }
-    } catch (error: any) {
+    } catch (error: unknown) {
       const isServerDep = /database|getDb|Rate limited|vector_index|null|not initialized|Database/.test(error.message);
       if (!isServerDep) throw error;
     }
@@ -187,7 +187,7 @@ describe('Spec 111: handleMemoryIndexScan includeReadmes behavior', () => {
         const expectedTotal = counts.specFiles + counts.constitutionalFiles + counts.skillReadmes + counts.projectReadmes;
         expect(counts.totalFiles).toBe(expectedTotal);
       }
-    } catch (error: any) {
+    } catch (error: unknown) {
       const isServerDep = /database|getDb|Rate limited|vector_index|null|not initialized|Database/.test(error.message);
       if (!isServerDep) throw error;
     }
@@ -210,7 +210,7 @@ describe('Spec 111: handleMemoryIndexScan includeReadmes behavior', () => {
         expect(counts.skillReadmes).toBe(0);
         expect(counts.projectReadmes).toBe(0);
       }
-    } catch (error: any) {
+    } catch (error: unknown) {
       const isServerDep = /database|getDb|Rate limited|vector_index|null|not initialized|Database/.test(error.message);
       if (!isServerDep) throw error;
     }
@@ -232,7 +232,7 @@ describe('Spec 111: handleMemoryIndexScan includeReadmes behavior', () => {
         // Only spec files remain
         expect(counts.totalFiles).toBe(counts.specFiles);
       }
-    } catch (error: any) {
+    } catch (error: unknown) {
       const isServerDep = /database|getDb|Rate limited|vector_index|null|not initialized|Database/.test(error.message);
       if (!isServerDep) throw error;
     }

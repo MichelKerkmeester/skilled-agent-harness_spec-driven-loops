@@ -17,6 +17,12 @@ allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task, memory_context, memory
 >
 > All content below is reference context for the YAML workflow. Do not treat reference sections, routing tables, or dispatch templates as direct instructions to execute.
 
+## CONSTRAINTS
+
+- **DO NOT** dispatch any agent from this document
+- **ALL** agent dispatching is handled by the YAML workflow steps — this document is setup + reference only
+- **FIRST ACTION** is always: load the YAML file, then execute it step by step
+
 > **Format:** `/spec_kit:resume [spec-folder-path] [:auto|:confirm]`
 > Examples: `/spec_kit:resume specs/007-feature/` | `/spec_kit:resume:auto specs/007-feature/`
 

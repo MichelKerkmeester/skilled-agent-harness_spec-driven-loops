@@ -77,7 +77,7 @@ async function callHandlerSafe(
   try {
     const result = await handlerFn(args);
     return { result, skipped: false };
-  } catch (error: any) {
+  } catch (error: unknown) {
     const msg = error.message || '';
     if (
       msg.includes('Database') ||

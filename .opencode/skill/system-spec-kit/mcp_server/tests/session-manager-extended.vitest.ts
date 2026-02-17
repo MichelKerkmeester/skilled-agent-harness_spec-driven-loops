@@ -29,8 +29,8 @@ function teardown() {
 
 function resetDb() {
   if (!testDb) return;
-  try { testDb.exec('DELETE FROM session_sent_memories'); } catch (_: any) {}
-  try { testDb.exec('DELETE FROM session_state'); } catch (_: any) {}
+  try { testDb.exec('DELETE FROM session_sent_memories'); } catch (_: unknown) {}
+  try { testDb.exec('DELETE FROM session_state'); } catch (_: unknown) {}
 }
 
 function mem(overrides: any = {}) {
@@ -58,7 +58,7 @@ function makeTmpDir(): string {
 
 /** Recursively remove a directory */
 function rmDir(dir: string) {
-  try { fs.rmSync(dir, { recursive: true, force: true }); } catch (_: any) {}
+  try { fs.rmSync(dir, { recursive: true, force: true }); } catch (_: unknown) {}
 }
 
 /* ─────────────────────────────────────────────────────────────

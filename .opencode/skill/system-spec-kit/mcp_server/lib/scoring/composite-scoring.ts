@@ -28,7 +28,7 @@ let fsrsScheduler: FsrsSchedulerModule | null = null;
 try {
   // eslint-disable-next-line @typescript-eslint/no-require-imports
   fsrsScheduler = require('../cognitive/fsrs-scheduler') as FsrsSchedulerModule;
-} catch (_) {
+} catch {
   // fsrs-scheduler not yet implemented, use inline calculation
 }
 

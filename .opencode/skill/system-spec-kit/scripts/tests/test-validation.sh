@@ -357,10 +357,22 @@ ${test_entry}"
 
     local exit_code=0
     local output
+    local -a validator_cmd=("$VALIDATOR" "$fixture_path")
+    if [[ -n "$flags" ]]; then
+        local -a flag_args=()
+        # Intentional split: flags are provided as a CLI fragment.
+        # shellcheck disable=SC2206
+        flag_args=($flags)
+        validator_cmd+=("${flag_args[@]}")
+    fi
     if [[ -n "$env_vars" ]]; then
-        output=$(env $env_vars "$VALIDATOR" "$fixture_path" $flags 2>&1) || exit_code=$?
+        local -a env_args=()
+        # Intentional split: env_vars are KEY=VALUE assignments.
+        # shellcheck disable=SC2206
+        env_args=($env_vars)
+        output=$(env "${env_args[@]}" "${validator_cmd[@]}" 2>&1) || exit_code=$?
     else
-        output=$("$VALIDATOR" "$fixture_path" $flags 2>&1) || exit_code=$?
+        output=$("${validator_cmd[@]}" 2>&1) || exit_code=$?
     fi
 
     local end_time

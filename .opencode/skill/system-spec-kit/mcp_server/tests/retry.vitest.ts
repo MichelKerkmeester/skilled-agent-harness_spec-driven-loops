@@ -23,6 +23,17 @@ import {
   DEFAULT_CONFIG,
 } from '../lib/utils/retry';
 
+type RetryTestError = Error & {
+  code?: string;
+  response?: { status?: number };
+  cause?: { code?: string };
+  attemptLog?: Array<{ errorType?: string; classificationReason?: string }>;
+};
+
+function asRetryTestError(error: unknown): RetryTestError {
+  return error instanceof Error ? (error as RetryTestError) : new Error(String(error));
+}
+
 /**
  * Create a mock error with HTTP status
  */
@@ -193,7 +204,7 @@ describe('retryWithBackoff Function Tests', () => {
     const retryThenSuccessFn = async () => {
       attempt++;
       if (attempt < 2) {
-        const error = new Error('timeout') as any;
+        const error: RetryTestError = new Error('timeout');
         error.code = 'ETIMEDOUT';
         throw error;
       }
@@ -269,7 +280,7 @@ describe('CHK-185: Retry Attempt Logging', () => {
 
 describe('Helper Function Tests', () => {
   it('T_H1: extractStatusCode from response object', () => {
-    const error = new Error('API error') as any;
+    const error: RetryTestError = new Error('API error');
     error.response = { status: 429 };
     expect(extractStatusCode(error)).toBe(429);
   });
@@ -280,7 +291,7 @@ describe('Helper Function Tests', () => {
   });
 
   it('T_H3: extractErrorCode from cause', () => {
-    const error = new Error('Network failure') as any;
+    const error: RetryTestError = new Error('Network failure');
     error.cause = { code: 'ECONNRESET' };
     expect(extractErrorCode(error)).toBe('ECONNRESET');
   });
@@ -521,8 +532,8 @@ describe('T190: isPermanent Flag on Permanent Errors', () => {
     const fn = async () => { throw originalError; };
     try {
       await retryWithBackoff(fn, { operationName: 'T190-cause', baseDelayMs: 10 });
-    } catch (error: any) {
-      expect(error.cause).toBe(originalError);
+    } catch (error: unknown) {
+      expect(asRetryTestError(error).cause).toBe(originalError);
     }
   });
 });
@@ -533,9 +544,10 @@ describe('T191: Retry Attempt Logging with Error Classification', () => {
     const fn = async () => { attempt++; throw createHttpError(503, 'Service Unavailable'); };
     try {
       await retryWithBackoff(fn, { operationName: 'T191-log', maxRetries: 2, baseDelayMs: 10 });
-    } catch (error: any) {
-      expect(error.attemptLog).toBeInstanceOf(Array);
-      expect(error.attemptLog.length).toBe(3);
+    } catch (error: unknown) {
+      const retryError = asRetryTestError(error);
+      expect(retryError.attemptLog).toBeInstanceOf(Array);
+      expect(retryError.attemptLog?.length).toBe(3);
     }
   });
 
@@ -544,8 +556,10 @@ describe('T191: Retry Attempt Logging with Error Classification', () => {
     const fn = async () => { attempt++; throw createHttpError(500, 'Internal Server Error'); };
     try {
       await retryWithBackoff(fn, { operationName: 'T191-errortype', maxRetries: 1, baseDelayMs: 10 });
-    } catch (error: any) {
-      expect(error.attemptLog.every((e: any) => e.errorType === 'transient')).toBe(true);
+    } catch (error: unknown) {
+      const retryError = asRetryTestError(error);
+      const attemptLog = retryError.attemptLog ?? [];
+      expect(attemptLog.every((entry) => entry.errorType === 'transient')).toBe(true);
     }
   });
 
@@ -554,14 +568,16 @@ describe('T191: Retry Attempt Logging with Error Classification', () => {
     const fn = async () => { attempt++; throw createHttpError(401, 'Unauthorized'); };
     try {
       await retryWithBackoff(fn, { operationName: 'T191-perm', maxRetries: 3, baseDelayMs: 10 });
-    } catch (error: any) {
-      expect(error.attemptLog.length).toBe(1);
-      expect(error.attemptLog[0].errorType).toBe('permanent');
+    } catch (error: unknown) {
+      const retryError = asRetryTestError(error);
+      const attemptLog = retryError.attemptLog ?? [];
+      expect(attemptLog.length).toBe(1);
+      expect(attemptLog[0]?.errorType).toBe('permanent');
     }
   });
 
   it('T191d: onRetry callback receives (attempt, error, delay)', async () => {
-    const params: any[] = [];
+    const params: Array<{ attemptNum: number; errorMessage: string; delay: number }> = [];
     let attempt = 0;
     const fn = async () => {
       attempt++;
@@ -584,8 +600,10 @@ describe('T191: Retry Attempt Logging with Error Classification', () => {
     const fn = async () => { attempt++; throw createHttpError(503, 'Service Unavailable'); };
     try {
       await retryWithBackoff(fn, { operationName: 'T191-reason', maxRetries: 1, baseDelayMs: 10 });
-    } catch (error: any) {
-      expect(error.attemptLog.every((e: any) => e.classificationReason?.includes('HTTP 503'))).toBe(true);
+    } catch (error: unknown) {
+      const retryError = asRetryTestError(error);
+      const attemptLog = retryError.attemptLog ?? [];
+      expect(attemptLog.every((entry) => entry.classificationReason?.includes('HTTP 503'))).toBe(true);
     }
   });
 

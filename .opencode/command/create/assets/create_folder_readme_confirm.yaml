@@ -384,7 +384,7 @@ workflow:
       - "Code blocks with language tags"
       - "Horizontal rules between major sections"
     emoji_conventions:
-      # Canonical 9-section emojis from readme_template.md §13
+      # Canonical 9-section emojis from readme_template.md §13 (optional for sections)
       overview: "📖"
       quick_start: "🚀"
       structure: "📁"
@@ -416,7 +416,7 @@ workflow:
     quality_requirements:
       title: "Clear, concise value proposition"
       toc: "Numbered, linked to actual sections"
-      sections: "Emoji prefixes from canonical 9-section set (📖 🚀 📁 ⚡ ⚙️ 💡 🛠️ ❓ 📚)"
+      sections: "Numbered sections (emojis optional)"
       tables: "For structured data (features, commands, config)"
       code_blocks: "Always specify language"
       diagrams: "ASCII for architecture/flow"
@@ -447,7 +447,7 @@ workflow:
       structure:
       - "Title + one-liner tagline present"
       - "TABLE OF CONTENTS present and linked"
-      - "All sections numbered with emojis"
+      - "All sections numbered (emojis optional)"
       - "Horizontal rules between sections"
       content:
       - "All code blocks have language tags"
@@ -722,7 +722,7 @@ rules:
   - "Pause at checkpoints for user approval"
   - "Include Quick Start section with clear examples"
   - "Create table of contents with proper anchor links"
-  - "Use emoji prefixes for all H2 sections"
+  - "Use numbered H2 sections (emojis optional)"
   - "Validate structure before claiming complete"
   NEVER:
   - "Skip validation steps"

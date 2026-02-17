@@ -199,7 +199,7 @@ describe('MCP Protocol Input Validation (T534) [deferred - requires DB test fixt
             // No error thrown and no standard response — unexpected
             expect(result).toBeDefined();
           }
-        } catch (error: any) {
+        } catch (error: unknown) {
           // Handler threw an error — this IS the expected behavior for invalid input
           expect(error).toBeDefined();
         }
@@ -219,7 +219,7 @@ describe('MCP Protocol Input Validation (T534) [deferred - requires DB test fixt
           const result = await handlerFn(null);
           // Either returns error response or handles gracefully — both acceptable
           expect(result).toBeDefined();
-        } catch (error: any) {
+        } catch (error: unknown) {
           // Threw on null input — acceptable
           expect(error).toBeDefined();
         }
@@ -239,7 +239,7 @@ describe('MCP Protocol Input Validation (T534) [deferred - requires DB test fixt
           const result = await handlerFn(undefined);
           // Either returns error response or handles gracefully — both acceptable
           expect(result).toBeDefined();
-        } catch (error: any) {
+        } catch (error: unknown) {
           // Threw on undefined input — acceptable
           expect(error).toBeDefined();
         }

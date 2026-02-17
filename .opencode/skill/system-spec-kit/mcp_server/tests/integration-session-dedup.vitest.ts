@@ -20,7 +20,7 @@ describe('Integration Session Dedup (T531) [deferred - requires DB test fixtures
           5000,
           'T531-1'
         );
-      } catch (error: any) {
+      } catch (error: unknown) {
         // sessionId should not be the cause of error
         expect(error.message).not.toContain('sessionId');
       }
@@ -37,7 +37,7 @@ describe('Integration Session Dedup (T531) [deferred - requires DB test fixtures
           5000,
           'T531-2'
         );
-      } catch (error: any) {
+      } catch (error: unknown) {
         // enableDedup should not be the cause of error
         expect(error.message).not.toContain('enableDedup');
       }
@@ -58,7 +58,7 @@ describe('Integration Session Dedup (T531) [deferred - requires DB test fixtures
           5000,
           'T531-3'
         );
-      } catch (error: any) {
+      } catch (error: unknown) {
         // session_id should not be the cause of error
         expect(error.message).not.toContain('session_id');
       }
@@ -74,7 +74,7 @@ describe('Integration Session Dedup (T531) [deferred - requires DB test fixtures
           5000,
           'T531-4'
         );
-      } catch (error: any) {
+      } catch (error: unknown) {
         // Should not fail due to missing session
         expect(error.message).not.toContain('session');
       }
@@ -95,7 +95,7 @@ describe('Integration Session Dedup (T531) [deferred - requires DB test fixtures
           5000,
           'T531-5'
         );
-      } catch (error: any) {
+      } catch (error: unknown) {
         // dedup should not be the cause of error
         expect(error.message).not.toContain('dedup');
       }
@@ -112,7 +112,7 @@ describe('Integration Session Dedup (T531) [deferred - requires DB test fixtures
           5000,
           'T531-6'
         );
-      } catch (error: any) {
+      } catch (error: unknown) {
         // enableDedup should not be the cause of error
         expect(error.message).not.toContain('enableDedup');
       }

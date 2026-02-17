@@ -3,8 +3,7 @@
 # RULE: CHECK-FOLDER-NAMING
 # ───────────────────────────────────────────────────────────────
 
-# T504 FIX: Using 'set -eo pipefail' (not -u) for macOS bash 3.2 compatibility.
-# The -u flag causes failures with empty arrays and when sourced by the orchestrator.
+# Sourced by validate.sh; keep -u disabled for shared rule-state compatibility.
 set -eo pipefail
 
 # Rule: FOLDER_NAMING

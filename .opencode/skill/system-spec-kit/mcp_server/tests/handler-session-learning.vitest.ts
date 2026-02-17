@@ -54,7 +54,7 @@ describe('Handler Session Learning (T522) [deferred - requires DB test fixtures]
           contextScore: 40,
         });
         expect.unreachable('No error thrown');
-      } catch (error: any) {
+      } catch (error: unknown) {
         expect(
           error.code === 'E031' || (error.message && error.message.includes('specFolder'))
         ).toBe(true);
@@ -70,7 +70,7 @@ describe('Handler Session Learning (T522) [deferred - requires DB test fixtures]
           contextScore: 40,
         });
         expect.unreachable('No error thrown');
-      } catch (error: any) {
+      } catch (error: unknown) {
         expect(
           error.code === 'E031' || (error.message && error.message.includes('taskId'))
         ).toBe(true);
@@ -86,7 +86,7 @@ describe('Handler Session Learning (T522) [deferred - requires DB test fixtures]
           contextScore: 40,
         });
         expect.unreachable('No error thrown');
-      } catch (error: any) {
+      } catch (error: unknown) {
         expect(
           error.code === 'E031' || (error.message && error.message.includes('knowledgeScore'))
         ).toBe(true);
@@ -103,7 +103,7 @@ describe('Handler Session Learning (T522) [deferred - requires DB test fixtures]
           contextScore: 40,
         });
         expect.unreachable('No error thrown');
-      } catch (error: any) {
+      } catch (error: unknown) {
         expect(
           error.code === 'E030' || (error.message && error.message.includes('0 and 100'))
         ).toBe(true);
@@ -120,7 +120,7 @@ describe('Handler Session Learning (T522) [deferred - requires DB test fixtures]
           contextScore: 40,
         });
         expect.unreachable('No error thrown');
-      } catch (error: any) {
+      } catch (error: unknown) {
         expect(
           error.code === 'E030' || (error.message && error.message.includes('0 and 100'))
         ).toBe(true);
@@ -141,7 +141,7 @@ describe('Handler Session Learning (T522) [deferred - requires DB test fixtures]
           contextScore: 60,
         });
         expect.unreachable('No error thrown');
-      } catch (error: any) {
+      } catch (error: unknown) {
         expect(
           error.code === 'E031' || (error.message && error.message.includes('specFolder'))
         ).toBe(true);
@@ -157,7 +157,7 @@ describe('Handler Session Learning (T522) [deferred - requires DB test fixtures]
           contextScore: 60,
         });
         expect.unreachable('No error thrown');
-      } catch (error: any) {
+      } catch (error: unknown) {
         expect(
           error.code === 'E031' || (error.message && error.message.includes('taskId'))
         ).toBe(true);
@@ -174,7 +174,7 @@ describe('Handler Session Learning (T522) [deferred - requires DB test fixtures]
           contextScore: 60,
         });
         expect.unreachable('No error thrown');
-      } catch (error: any) {
+      } catch (error: unknown) {
         expect(
           error.code === 'E030' || (error.message && error.message.includes('0 and 100'))
         ).toBe(true);
@@ -190,7 +190,7 @@ describe('Handler Session Learning (T522) [deferred - requires DB test fixtures]
       try {
         await handler.handleGetLearningHistory({});
         expect.unreachable('No error thrown');
-      } catch (error: any) {
+      } catch (error: unknown) {
         expect(
           error.code === 'E031' || (error.message && error.message.includes('specFolder'))
         ).toBe(true);

@@ -177,7 +177,7 @@ export function markFailed(id: number, reason: string): boolean {
 /**
  * Returns [] when nothing needs refresh (stub for now).
  */
-export function ensureIndexFresh(): any[] {
+export function ensureIndexFresh(): UnindexedDocument[] {
   assertDb();
 
   if (!needsRefresh()) {

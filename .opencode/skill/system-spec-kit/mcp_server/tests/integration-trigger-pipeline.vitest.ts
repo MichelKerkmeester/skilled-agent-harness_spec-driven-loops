@@ -54,7 +54,7 @@ describe('Integration Trigger Pipeline (T527) [deferred - requires DB test fixtu
           session_id: 'sess-test-001',
           turnNumber: 5,
         });
-      } catch (error: any) {
+      } catch (error: unknown) {
         // Fail only if the error is specifically about these params
         expect(error.message).not.toMatch(/session_id/);
         expect(error.message).not.toMatch(/turnNumber/);
@@ -67,7 +67,7 @@ describe('Integration Trigger Pipeline (T527) [deferred - requires DB test fixtu
           prompt: 'test trigger matching',
           include_cognitive: true,
         });
-      } catch (error: any) {
+      } catch (error: unknown) {
         // Fail only if the error is specifically about include_cognitive
         expect(error.message).not.toMatch(/include_cognitive/);
       }
@@ -90,7 +90,7 @@ describe('Integration Trigger Pipeline (T527) [deferred - requires DB test fixtu
     it('T527-7: Error propagation through pipeline', async () => {
       try {
         await triggerHandler.handleMemoryMatchTriggers({});
-      } catch (error: any) {
+      } catch (error: unknown) {
         expect(typeof error.message).toBe('string');
         return;
       }

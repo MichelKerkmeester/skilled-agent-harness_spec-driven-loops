@@ -5,6 +5,7 @@
 import fs from 'fs';
 import path from 'path';
 import { DB_UPDATED_FILE } from './config';
+import type { DatabaseExtended } from '../../shared/types';
 
 /* ---------------------------------------------------------------
    1. TYPES
@@ -18,15 +19,8 @@ export interface VectorIndexLike {
   vectorSearch?: unknown;
 }
 
-/** Minimal database interface */
-export interface DatabaseLike {
-  exec(sql: string): void;
-  prepare(sql: string): {
-    get(...params: unknown[]): Record<string, unknown> | undefined;
-    run(...params: unknown[]): void;
-  };
-  transaction<T>(fn: () => T): () => T;
-}
+/** Canonical DB type shared across MCP runtime modules */
+export type DatabaseLike = DatabaseExtended;
 
 /** Checkpoints module interface */
 export interface CheckpointsLike {

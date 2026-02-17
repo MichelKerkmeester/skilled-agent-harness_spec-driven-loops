@@ -313,9 +313,9 @@ workflow:
     - Add quick reference section at end
     - Write to skill's assets directory
     quality_requirements:
-      title: "Emoji + descriptive subtitle"
+      title: "Descriptive title with subtitle (emojis optional)"
       introduction: "1-2 sentences explaining purpose and when to use"
-      sections: "Numbered with emojis"
+      sections: "Numbered (emojis optional)"
       content: "Complete, practical, immediately usable"
       examples: "Working, annotated examples"
       separators: "Horizontal rules between major sections"
@@ -342,8 +342,8 @@ workflow:
     - Integration check (update SKILL.md Navigation Guide, SMART ROUTING)
     validation_checklist:
       structure:
-      - "Title with emoji present"
-      - "Sections numbered with emojis"
+      - "Title present (emojis optional)"
+      - "Sections numbered (emojis optional)"
       - "Horizontal rules between sections"
       - "No broken links"
       content:

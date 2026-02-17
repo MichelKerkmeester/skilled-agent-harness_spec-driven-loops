@@ -15,9 +15,7 @@
 #
 # Exit codes: 0=success, 1=validation error, 2=upgrade error, 3=backup error
 
-# Strict mode baseline.
-# -u is intentionally disabled because this script uses Bash 3.2-safe empty-array
-# and positional-argument expansion patterns across a large compatibility surface.
+# Keep -u disabled: this script relies on dynamic expansion patterns in upgrade flows.
 set -eo pipefail
 
 # Cleanup temp files on interrupt or exit
@@ -255,7 +253,7 @@ level_to_numeric() {
         1)  echo 1 ;;
         2)  echo 2 ;;
         3)  echo 3 ;;
-        "3+"|3+) echo 4 ;;
+        "3+") echo 4 ;;
         *)  echo 0 ;;
     esac
 }

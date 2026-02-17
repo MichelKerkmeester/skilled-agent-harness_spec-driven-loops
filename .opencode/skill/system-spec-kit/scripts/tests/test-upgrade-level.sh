@@ -7,7 +7,7 @@
 # level detection, input validation, already-at-target, missing spec.md.
 # COMPATIBILITY: bash 3.2+ (macOS default)
 
-set -eo pipefail
+set -euo pipefail
 
 # ───────────────────────────────────────────────────────────────
 # 1. CONFIGURATION

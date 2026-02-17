@@ -91,7 +91,7 @@ interface ErrorWithStatus extends Error {
   statusCode?: number;
   code?: string;
   response?: { status: number };
-  cause?: { code?: string };
+  cause?: unknown;
 }
 
 export function extractStatusCode(error: ErrorWithStatus): number | null {
@@ -126,8 +126,11 @@ export function extractErrorCode(error: ErrorWithStatus): string | null {
   }
 
   // Cause chain (Error.cause)
-  if (error.cause && typeof error.cause.code === 'string') {
-    return error.cause.code;
+  if (error.cause && typeof error.cause === 'object') {
+    const causeRecord = error.cause as Record<string, unknown>;
+    if (typeof causeRecord.code === 'string') {
+      return causeRecord.code;
+    }
   }
 
   return null;
@@ -138,7 +141,7 @@ export function classifyError(error: Error | null): ErrorClassification {
     return { type: 'unknown', reason: 'No error provided', shouldRetry: false };
   }
 
-  const errorWithStatus = error as ErrorWithStatus;
+  const errorWithStatus: ErrorWithStatus = error;
   const statusCode = extractStatusCode(errorWithStatus);
   const errorCode = extractErrorCode(errorWithStatus);
   const message = error.message || String(error);
@@ -241,6 +244,10 @@ interface RetryError extends Error {
   retriesExhausted?: boolean;
 }
 
+function getErrorMessage(error: unknown): string {
+  return error instanceof Error ? error.message : String(error);
+}
+
 export async function retryWithBackoff<T>(fn: () => Promise<T>, options: RetryOptions = {}): Promise<T> {
   const {
     operationName = 'operation',
@@ -280,8 +287,8 @@ export async function retryWithBackoff<T>(fn: () => Promise<T>, options: RetryOp
 
       return result;
 
-    } catch (error) {
-      lastError = error as Error;
+    } catch (error: unknown) {
+      lastError = error instanceof Error ? error : new Error(String(error));
 
       // Classify the error
       const classification = classifyError(lastError);
@@ -348,8 +355,8 @@ export async function retryWithBackoff<T>(fn: () => Promise<T>, options: RetryOp
       if (onRetry) {
         try {
           await onRetry(attempt, lastError, delay);
-        } catch (callbackError) {
-          console.error(`[retry] onRetry callback error: ${(callbackError as Error).message}`);
+        } catch (callbackError: unknown) {
+          console.error(`[retry] onRetry callback error: ${getErrorMessage(callbackError)}`);
         }
       }
 

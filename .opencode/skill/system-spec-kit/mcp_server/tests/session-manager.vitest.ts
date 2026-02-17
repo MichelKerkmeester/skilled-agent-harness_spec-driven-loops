@@ -65,7 +65,7 @@ function resetDb(): void {
   if (testDb) {
     try {
       testDb.exec('DELETE FROM session_sent_memories');
-    } catch (e: any) {
+    } catch (_error: unknown) {
       // Table might not exist yet
     }
   }

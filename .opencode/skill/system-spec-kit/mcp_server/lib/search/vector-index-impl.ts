@@ -1,8 +1,6 @@
 // Vector Index Implementation - TypeScript type checking enabled
 // ───────────────────────────────────────────────────────────────
 // SEARCH: VECTOR INDEX — converted from JS
-// Type checking enabled - legacy paths still use `: any` annotations
-//
 // DECAY STRATEGY (ADR-004): Search-time temporal decay uses an
 // FSRS-preferred strategy. Memories with FSRS review data (last_review
 // IS NOT NULL, review_count > 0) use the FSRS v4 power-law formula:
@@ -45,6 +43,89 @@ const search_weights = JSON.parse(
 const MAX_TRIGGERS_PER_MEMORY = search_weights.maxTriggersPerMemory || 10;
 
 type EmbeddingInput = Float32Array | number[] | ArrayBufferView;
+type JsonObject = Record<string, unknown>;
+type MemoryRow = {
+  id: number;
+  spec_folder: string;
+  file_path: string;
+  title?: string | null;
+  trigger_phrases?: string | string[];
+  importance_tier?: string;
+  importance_weight?: number;
+  created_at?: string;
+  access_count?: number;
+  keyword_score?: number;
+  similarity?: number;
+  isConstitutional?: boolean;
+  [key: string]: unknown;
+};
+type IndexMemoryParams = {
+  specFolder: string;
+  filePath: string;
+  anchorId?: string | null;
+  title?: string | null;
+  triggerPhrases?: string[];
+  importanceWeight?: number;
+  embedding: EmbeddingInput;
+  documentType?: string;
+  specLevel?: number | null;
+  contentText?: string | null;
+};
+type IndexMemoryDeferredParams = Omit<IndexMemoryParams, 'embedding'> & {
+  failureReason?: string | null;
+};
+type UpdateMemoryParams = {
+  id: number;
+  title?: string;
+  triggerPhrases?: string[];
+  importanceWeight?: number;
+  importanceTier?: string;
+  embedding?: EmbeddingInput;
+  documentType?: string;
+  specLevel?: number | null;
+  contentText?: string | null;
+};
+type VectorSearchOptions = {
+  limit?: number;
+  specFolder?: string | null;
+  minSimilarity?: number;
+  useDecay?: boolean;
+  tier?: string | null;
+  contextType?: string | null;
+  includeConstitutional?: boolean;
+  includeArchived?: boolean;
+};
+type EnrichedSearchResult = {
+  rank: number;
+  similarity?: number;
+  avgSimilarity?: number;
+  conceptSimilarities?: number[];
+  title: string;
+  specFolder: string;
+  filePath: string;
+  date: string | null;
+  tags: string[];
+  snippet: string;
+  id: number;
+  importanceWeight: number;
+  searchMethod?: string;
+  isConstitutional: boolean;
+  [key: string]: unknown;
+};
+type RelatedMemoryLink = { id: number; similarity: number };
+type UsageStatsOptions = { sortBy?: string; order?: string; limit?: number };
+type CleanupOptions = {
+  maxAgeDays?: number;
+  maxAccessCount?: number;
+  maxConfidence?: number;
+  limit?: number;
+};
+type EnhancedSearchOptions = {
+  specFolder?: string | null;
+  minSimilarity?: number;
+  diversityFactor?: number;
+  noDiversity?: boolean;
+};
 
 function to_embedding_buffer(embedding: EmbeddingInput) {
   if (embedding instanceof Float32Array) {
@@ -307,17 +388,17 @@ function safe_parse_json(json_string: unknown, default_value = []) {
    3. DATABASE SINGLETON
 ────────────────────────────────────────────────────────────────*/
 
-let db: any = null;
+let db: Database.Database | null = null;
 let db_path = DEFAULT_DB_PATH;
 let sqlite_vec_available = true;
 let shutting_down = false;
 
-let constitutional_cache = new Map();
+let constitutional_cache = new Map<string, { data: MemoryRow[]; timestamp: number }>();
 const CONSTITUTIONAL_CACHE_TTL = 300000;
 
 // BUG-012 FIX: Track which cache keys are currently being loaded
 // This prevents thundering herd when multiple concurrent calls hit cache expiry
-let constitutional_cache_loading = new Map();
+let constitutional_cache_loading = new Map<string, boolean>();
 
 let last_db_mod_time = 0;
 
@@ -344,9 +425,18 @@ function is_constitutional_cache_valid() {
    4. PREPARED STATEMENT CACHING
 ────────────────────────────────────────────────────────────────*/
 
-let prepared_statements: any = null;
+type PreparedStatements = {
+  count_all: Database.Statement<[], { count: number }>;
+  count_by_folder: Database.Statement<[string], { count: number }>;
+  get_by_id: Database.Statement<[number], MemoryRow | undefined>;
+  get_by_path: Database.Statement<[string], MemoryRow | undefined>;
+  get_by_folder_and_path: Database.Statement<[string, string, string | null, string | null], { id: number } | undefined>;
+  get_stats: Database.Statement<[], { total: number; complete: number; pending: number; failed: number }>;
+  list_base: Database.Statement<[number, number], MemoryRow[]>;
+};
+let prepared_statements: PreparedStatements | null = null;
 
-function init_prepared_statements(database: any) {
+function init_prepared_statements(database: Database.Database): PreparedStatements {
   if (prepared_statements) return prepared_statements;
   
   prepared_statements = {
@@ -375,7 +465,11 @@ function clear_prepared_statements() {
 
 // BUG-004 FIX: Checks external DB modifications before using cache
 // BUG-012 FIX: Prevent thundering herd when cache expires
-function get_constitutional_memories(database: any, spec_folder = null, includeArchived = false) {
+function get_constitutional_memories(
+  database: Database.Database,
+  spec_folder: string | null = null,
+  includeArchived = false
+): MemoryRow[] {
   const cache_key = spec_folder || 'global';
   const now = Date.now();
   const cached = constitutional_cache.get(cache_key);
@@ -403,14 +497,14 @@ function get_constitutional_memories(database: any, spec_folder = null, includeA
     `;
 
     const params = spec_folder ? [spec_folder] : [];
-    let results = database.prepare(constitutional_sql).all(...params);
+    let results = database.prepare(constitutional_sql).all(...params) as MemoryRow[];
 
     const MAX_CONSTITUTIONAL_TOKENS = 2000;
     const TOKENS_PER_MEMORY = 100;
     const max_constitutional_count = Math.floor(MAX_CONSTITUTIONAL_TOKENS / TOKENS_PER_MEMORY);
     results = results.slice(0, max_constitutional_count);
 
-    results = results.map((row: any) => {
+    results = results.map((row: MemoryRow) => {
       if (row.trigger_phrases) {
         row.trigger_phrases = JSON.parse(row.trigger_phrases);
       }
@@ -426,7 +520,7 @@ function get_constitutional_memories(database: any, spec_folder = null, includeA
   }
 }
 
-function clear_constitutional_cache(spec_folder = null) {
+function clear_constitutional_cache(spec_folder: string | null = null) {
   if (spec_folder) {
     constitutional_cache.delete(spec_folder);
   } else {
@@ -441,8 +535,8 @@ function clear_constitutional_cache(spec_folder = null) {
 // Run schema migrations from one version to another
 // Each migration is idempotent - safe to run multiple times
 // BUG-019 FIX: Wrap migrations in transaction for atomicity
-function run_migrations(database: any, from_version: any, to_version: any) {
-  const migrations = {
+function run_migrations(database: Database.Database, from_version: number, to_version: number) {
+  const migrations: Record<number, () => void> = {
     1: () => {
       // v0 -> v1: Initial schema (already exists via create_schema)
     },
@@ -922,9 +1016,9 @@ function run_migrations(database: any, from_version: any, to_version: any) {
   // If any migration fails, all changes are rolled back preventing partial schema corruption
   const run_all_migrations = database.transaction(() => {
     for (let v = from_version + 1; v <= to_version; v++) {
-      if ((migrations as any)[v]) {
+      if (migrations[v]) {
         logger.info(`Running migration v${v}`);
-        (migrations as any)[v]();
+        migrations[v]();
       }
     }
   });
@@ -938,7 +1032,7 @@ function run_migrations(database: any, from_version: any, to_version: any) {
 }
 
 // Ensure schema version table exists and run any pending migrations
-function ensure_schema_version(database: any) {
+function ensure_schema_version(database: Database.Database) {
   database.exec(`
     CREATE TABLE IF NOT EXISTS schema_version (
       id INTEGER PRIMARY KEY CHECK (id = 1),
@@ -966,7 +1060,7 @@ function ensure_schema_version(database: any) {
 }
 
 // Initialize or get database connection. Creates schema on first use.
-function initialize_db(custom_path = null) {
+function initialize_db(custom_path: string | null = null) {
   if (db && !custom_path) {
     return db;
   }
@@ -1033,9 +1127,9 @@ function initialize_db(custom_path = null) {
   return db;
 }
 
-function migrate_confidence_columns(database: any) {
+function migrate_confidence_columns(database: Database.Database) {
   const columns = database.prepare(`PRAGMA table_info(memory_index)`).all();
-  const column_names = columns.map((c: any) => c.name);
+  const column_names = columns.map((c: { name: string }) => c.name);
 
   if (!column_names.includes('confidence')) {
     try {
@@ -1197,7 +1291,7 @@ function migrate_confidence_columns(database: any) {
 }
 
 // Migrate existing database to support constitutional tier
-function migrate_constitutional_tier(database: any) {
+function migrate_constitutional_tier(database: Database.Database) {
   const table_info = database.prepare(`
     SELECT sql FROM sqlite_master
     WHERE type='table' AND name='memory_index'
@@ -1252,7 +1346,7 @@ function migrate_constitutional_tier(database: any) {
  */
 
 // P2-001: Create indexes for commonly queried columns
-function create_common_indexes(database: any) {
+function create_common_indexes(database: Database.Database) {
   try {
     database.exec(`CREATE INDEX IF NOT EXISTS idx_file_path ON memory_index(file_path)`);
     logger.info('Created idx_file_path index');
@@ -1293,7 +1387,7 @@ function create_common_indexes(database: any) {
 }
 
 // Create database schema
-function create_schema(database: any) {
+function create_schema(database: Database.Database) {
   const table_exists = database.prepare(`
     SELECT name FROM sqlite_master
     WHERE type='table' AND name='memory_index'
@@ -1499,7 +1593,7 @@ function create_schema(database: any) {
    6. CORE OPERATIONS
 ────────────────────────────────────────────────────────────────*/
 
-function index_memory(params: any) {
+function index_memory(params: IndexMemoryParams) {
   const database = initialize_db();
 
   const {
@@ -1575,7 +1669,7 @@ function index_memory(params: any) {
 }
 
 // REQ-031: Deferred indexing - entry searchable via BM25/FTS5 only
-function index_memory_deferred(params: any) {
+function index_memory_deferred(params: IndexMemoryDeferredParams) {
   const database = initialize_db();
 
   const {
@@ -1632,7 +1726,7 @@ function index_memory_deferred(params: any) {
   return Number(row_id);
 }
 
-function update_memory(params: any) {
+function update_memory(params: UpdateMemoryParams) {
   const database = initialize_db();
 
   const {
@@ -1715,7 +1809,7 @@ function update_memory(params: any) {
   return update_memory_tx();
 }
 
-function delete_memory(id: any) {
+function delete_memory(id: number) {
   const database = initialize_db();
 
   const delete_memory_tx = database.transaction(() => {
@@ -1740,7 +1834,7 @@ function delete_memory(id: any) {
   return delete_memory_tx();
 }
 
-function delete_memory_by_path(spec_folder: any, file_path: any, anchor_id = null) {
+function delete_memory_by_path(spec_folder: string, file_path: string, anchor_id: string | null = null) {
   const database = initialize_db();
 
   const row = database.prepare(`
@@ -1754,7 +1848,7 @@ function delete_memory_by_path(spec_folder: any, file_path: any, anchor_id = nul
   return false;
 }
 
-function get_memory(id: any) {
+function get_memory(id: number): MemoryRow | null {
   const database = initialize_db();
 
   const stmts = init_prepared_statements(database);
@@ -1770,14 +1864,14 @@ function get_memory(id: any) {
   return row || null;
 }
 
-function get_memories_by_folder(spec_folder: any) {
+function get_memories_by_folder(spec_folder: string): MemoryRow[] {
   const database = initialize_db();
 
   const rows = database.prepare(`
     SELECT * FROM memory_index WHERE spec_folder = ? ORDER BY created_at DESC
   `).all(spec_folder);
 
-  return rows.map((row: any) => {
+  return rows.map((row: MemoryRow) => {
     if (row.trigger_phrases) {
       row.trigger_phrases = JSON.parse(row.trigger_phrases);
     }
@@ -1803,8 +1897,8 @@ function get_status_counts() {
   `).all();
 
   const counts = { pending: 0, success: 0, failed: 0, retry: 0 };
-  for (const row of rows) {
-    (counts as any)[row.embedding_status] = row.count;
+  for (const row of rows as Array<{ embedding_status: keyof typeof counts; count: number }>) {
+    counts[row.embedding_status] = row.count;
   }
 
   return counts;
@@ -1824,7 +1918,7 @@ function get_stats() {
    7. VECTOR SEARCH
 ────────────────────────────────────────────────────────────────*/
 
-function vector_search(query_embedding: any, options: any = {}) {
+function vector_search(query_embedding: EmbeddingInput, options: VectorSearchOptions = {}): MemoryRow[] {
   if (!sqlite_vec_available) {
     console.warn('[vector-index] Vector search unavailable - sqlite-vec not loaded');
     return [];
@@ -1871,7 +1965,7 @@ function vector_search(query_embedding: any, options: any = {}) {
   }
 
   const where_clauses = ['m.embedding_status = \'success\''];
-  const params: any[] = [query_buffer];
+  const params: unknown[] = [query_buffer];
 
   where_clauses.push('(m.expires_at IS NULL OR m.expires_at > datetime(\'now\'))');
 
@@ -1922,7 +2016,7 @@ function vector_search(query_embedding: any, options: any = {}) {
 
   const rows = database.prepare(sql).all(...params);
 
-  const regular_results = rows.map((row: any) => {
+  const regular_results = (rows as MemoryRow[]).map((row: MemoryRow) => {
     if (row.trigger_phrases) {
       row.trigger_phrases = JSON.parse(row.trigger_phrases);
     }
@@ -1933,7 +2027,9 @@ function vector_search(query_embedding: any, options: any = {}) {
   return [...constitutional_results, ...regular_results];
 }
 
-function get_constitutional_memories_public(options: any = {}) {
+function get_constitutional_memories_public(
+  options: { specFolder?: string | null; maxTokens?: number; includeArchived?: boolean } = {}
+): MemoryRow[] {
   const database = initialize_db();
   const { specFolder = null, maxTokens = 2000, includeArchived = false } = options;
 
@@ -1948,7 +2044,10 @@ function get_constitutional_memories_public(options: any = {}) {
   return results;
 }
 
-function multi_concept_search(concept_embeddings: any, options: any = {}) {
+function multi_concept_search(
+  concept_embeddings: EmbeddingInput[],
+  options: { limit?: number; specFolder?: string | null; minSimilarity?: number; includeArchived?: boolean } = {}
+): MemoryRow[] {
   if (!sqlite_vec_available) {
     console.warn('[vector-index] Multi-concept search unavailable - sqlite-vec not loaded');
     return [];
@@ -2019,12 +2118,12 @@ function multi_concept_search(concept_embeddings: any, options: any = {}) {
 
   const rows = database.prepare(sql).all(...params);
 
-  return rows.map((row: any) => {
+  return (rows as MemoryRow[]).map((row: MemoryRow) => {
     if (row.trigger_phrases) {
       row.trigger_phrases = JSON.parse(row.trigger_phrases);
     }
-    row.concept_similarities = concept_buffers.map((_: any, i: any) => row[`similarity_${i}`]);
-    row.avg_similarity = row.concept_similarities.reduce((a: any, b: any) => a + b, 0) / concepts.length;
+    row.concept_similarities = concept_buffers.map((_, i) => Number(row[`similarity_${i}`] ?? 0));
+    row.avg_similarity = (row.concept_similarities as number[]).reduce((a, b) => a + b, 0) / concepts.length;
     row.isConstitutional = row.importance_tier === 'constitutional';
     return row;
   });
@@ -2034,7 +2133,7 @@ function multi_concept_search(concept_embeddings: any, options: any = {}) {
    8. CONTENT EXTRACTION HELPERS
 ────────────────────────────────────────────────────────────────*/
 
-function extract_title(content: any, filename: any) {
+function extract_title(content: unknown, filename?: string) {
   if (!content || typeof content !== 'string') {
     return filename ? path.basename(filename, path.extname(filename)) : 'Untitled';
   }
@@ -2063,7 +2162,7 @@ function extract_title(content: any, filename: any) {
   return filename ? path.basename(filename, path.extname(filename)) : 'Untitled';
 }
 
-function extract_snippet(content: any, max_length = 200) {
+function extract_snippet(content: unknown, max_length = 200) {
   if (!content || typeof content !== 'string') {
     return '';
   }
@@ -2108,7 +2207,7 @@ function extract_snippet(content: any, max_length = 200) {
   return snippet;
 }
 
-function extract_tags(content: any) {
+function extract_tags(content: unknown): string[] {
   if (!content || typeof content !== 'string') {
     return [];
   }
@@ -2144,7 +2243,7 @@ function extract_tags(content: any) {
   return Array.from(tags);
 }
 
-function extract_date(content: any, file_path: any) {
+function extract_date(content: unknown, file_path?: string) {
   if (content && typeof content === 'string') {
     const date_match = content.match(/^---[\s\S]*?^date:\s*(.+)$/m);
     if (date_match && date_match[1]) {
@@ -2182,7 +2281,7 @@ function extract_date(content: any, file_path: any) {
    9. EMBEDDING GENERATION WRAPPER
 ────────────────────────────────────────────────────────────────*/
 
-async function generate_query_embedding(query: any) {
+async function generate_query_embedding(query: string): Promise<Float32Array | null> {
   if (!query || typeof query !== 'string' || query.trim().length === 0) {
     console.warn('[vector-index] Empty query provided for embedding');
     return null;
@@ -2202,7 +2301,10 @@ async function generate_query_embedding(query: any) {
    10. KEYWORD SEARCH FALLBACK
 ────────────────────────────────────────────────────────────────*/
 
-function keyword_search(query: any, options: any = {}) {
+function keyword_search(
+  query: string,
+  options: { limit?: number; specFolder?: string | null; includeArchived?: boolean } = {}
+): MemoryRow[] {
   const database = initialize_db();
   const { limit = 20, specFolder = null, includeArchived = false } = options;
 
@@ -2216,7 +2318,7 @@ function keyword_search(query: any, options: any = {}) {
   }
 
   let where_clause = '1=1';
-  const params = [];
+  const params: unknown[] = [];
 
   if (specFolder) {
     where_clause += ' AND spec_folder = ?';
@@ -2236,7 +2338,7 @@ function keyword_search(query: any, options: any = {}) {
 
   const rows = database.prepare(sql).all(...params);
 
-  const scored = rows.map((row: any) => {
+  const scored = (rows as MemoryRow[]).map((row: MemoryRow) => {
     let score = 0;
     const searchable_text = [
       row.title || '',
@@ -2262,11 +2364,11 @@ function keyword_search(query: any, options: any = {}) {
   });
 
   const filtered = scored
-    .filter((row: any) => row.keyword_score > 0)
-    .sort((a: any, b: any) => b.keyword_score - a.keyword_score)
+    .filter((row: MemoryRow) => Number(row.keyword_score ?? 0) > 0)
+    .sort((a: MemoryRow, b: MemoryRow) => Number(b.keyword_score ?? 0) - Number(a.keyword_score ?? 0))
     .slice(0, limit);
 
-  return filtered.map((row: any) => {
+  return filtered.map((row: MemoryRow) => {
     if (row.trigger_phrases) {
       try {
         row.trigger_phrases = JSON.parse(row.trigger_phrases);
@@ -2283,7 +2385,11 @@ function keyword_search(query: any, options: any = {}) {
    11. ENRICHED VECTOR SEARCH
 ────────────────────────────────────────────────────────────────*/
 
-async function vector_search_enriched(query: any, limit = 20, options: any = {}) {
+async function vector_search_enriched(
+  query: string,
+  limit = 20,
+  options: { specFolder?: string | null; minSimilarity?: number } = {}
+): Promise<EnrichedSearchResult[]> {
   const start_time = Date.now();
   const { specFolder = null, minSimilarity = 30 } = options;
 
@@ -2306,10 +2412,10 @@ async function vector_search_enriched(query: any, limit = 20, options: any = {})
 
   // HIGH-004 FIX: Read all files concurrently to avoid blocking event loop
   const file_contents = await Promise.all(
-    raw_results.map((row: any) => safe_read_file_async(row.file_path))
+    raw_results.map((row: MemoryRow) => safe_read_file_async(row.file_path))
   );
 
-  const enriched_results = raw_results.map((row: any, i: any) => {
+  const enriched_results = raw_results.map((row: MemoryRow, i: number) => {
     const content = file_contents[i];
     const title = row.title || extract_title(content, row.file_path);
     const snippet = extract_snippet(content);
@@ -2348,7 +2454,11 @@ async function vector_search_enriched(query: any, limit = 20, options: any = {})
    12. MULTI-CONCEPT SEARCH
 ────────────────────────────────────────────────────────────────*/
 
-async function multi_concept_search_enriched(concepts: any, limit = 20, options: any = {}) {
+async function multi_concept_search_enriched(
+  concepts: Array<string | EmbeddingInput>,
+  limit = 20,
+  options: { specFolder?: string | null; minSimilarity?: number } = {}
+): Promise<EnrichedSearchResult[]> {
   const start_time = Date.now();
 
   if (!Array.isArray(concepts) || concepts.length < 2 || concepts.length > 5) {
@@ -2357,7 +2467,7 @@ async function multi_concept_search_enriched(concepts: any, limit = 20, options:
 
   const { specFolder = null, minSimilarity = 50 } = options;
 
-  const concept_embeddings = [];
+  const concept_embeddings: EmbeddingInput[] = [];
   for (const concept of concepts) {
     if (typeof concept === 'string') {
       const embedding = await generate_query_embedding(concept);
@@ -2379,10 +2489,10 @@ async function multi_concept_search_enriched(concepts: any, limit = 20, options:
   const raw_results = multi_concept_search(concept_embeddings, { limit, specFolder, minSimilarity });
 
   const file_contents = await Promise.all(
-    raw_results.map((row: any) => safe_read_file_async(row.file_path))
+    raw_results.map((row: MemoryRow) => safe_read_file_async(row.file_path))
   );
 
-  const enriched_results = raw_results.map((row: any, i: any) => {
+  const enriched_results = raw_results.map((row: MemoryRow, i: number) => {
     const content = file_contents[i];
     const title = row.title || extract_title(content, row.file_path);
     const snippet = extract_snippet(content);
@@ -2413,18 +2523,21 @@ async function multi_concept_search_enriched(concepts: any, limit = 20, options:
   return enriched_results;
 }
 
-async function multi_concept_keyword_search(concepts: any, limit = 20, options: any = {}) {
-  const database = initialize_db();
+async function multi_concept_keyword_search(
+  concepts: string[],
+  limit = 20,
+  options: { specFolder?: string | null } = {}
+): Promise<EnrichedSearchResult[]> {
   const { specFolder = null } = options;
 
   if (!concepts.length) return [];
 
-  const concept_results = concepts.map((concept: any) =>
+  const concept_results = concepts.map((concept: string) =>
     keyword_search(concept, { limit: 100, specFolder })
   );
 
-  const id_counts = new Map();
-  const id_to_row = new Map();
+  const id_counts = new Map<number, number>();
+  const id_to_row = new Map<number, MemoryRow>();
 
   for (const results of concept_results) {
     for (const row of results) {
@@ -2436,7 +2549,7 @@ async function multi_concept_keyword_search(concepts: any, limit = 20, options: 
     }
   }
 
-  const matching_ids = [];
+  const matching_ids: number[] = [];
   for (const [id, count] of id_counts) {
     if (count === concepts.length) {
       matching_ids.push(id);
@@ -2444,7 +2557,7 @@ async function multi_concept_keyword_search(concepts: any, limit = 20, options: 
   }
 
   const limited_ids = matching_ids.slice(0, limit);
-  const rows = limited_ids.map(id => id_to_row.get(id));
+  const rows = limited_ids.map(id => id_to_row.get(id)).filter((row): row is MemoryRow => Boolean(row));
 
   const file_contents = await Promise.all(
     rows.map(row => safe_read_file_async(row.file_path))
@@ -2477,12 +2590,12 @@ async function multi_concept_keyword_search(concepts: any, limit = 20, options: 
   return enriched_results;
 }
 
-function parse_quoted_terms(query: any) {
+function parse_quoted_terms(query: string): string[] {
   if (!query || typeof query !== 'string') {
     return [];
   }
 
-  const quoted = [];
+  const quoted: string[] = [];
   const regex = /"([^"]+)"/g;
   let match;
 
@@ -2500,7 +2613,7 @@ function parse_quoted_terms(query: any) {
 ────────────────────────────────────────────────────────────────*/
 
 // BUG-012 FIX: Weights read from config instead of hardcoded
-function apply_smart_ranking(results: any) {
+function apply_smart_ranking(results: EnrichedSearchResult[]): EnrichedSearchResult[] {
   if (!results || results.length === 0) return results;
 
   const recency_weight = search_weights.smartRanking?.recencyWeight || 0.3;
@@ -2511,7 +2624,7 @@ function apply_smart_ranking(results: any) {
   const week_ms = 7 * 24 * 60 * 60 * 1000;
   const month_ms = 30 * 24 * 60 * 60 * 1000;
 
-  return results.map((r: any) => {
+  return results.map((r: EnrichedSearchResult) => {
     const created_at = r.created_at ? new Date(r.created_at).getTime() : now;
     const age = now - created_at;
     let recency_factor;
@@ -2530,12 +2643,12 @@ function apply_smart_ranking(results: any) {
     r.smartScore = Math.round(r.smartScore * 100) / 100;
 
     return r;
-  }).sort((a: any, b: any) => b.smartScore - a.smartScore);
+  }).sort((a, b) => Number(b.smartScore ?? 0) - Number(a.smartScore ?? 0));
 }
 
 // Apply diversity filtering using MMR (Maximal Marginal Relevance)
 // Reduces redundancy by penalizing items too similar to already-selected items
-function apply_diversity(results: any, diversity_factor = 0.3) {
+function apply_diversity(results: EnrichedSearchResult[], diversity_factor = 0.3): EnrichedSearchResult[] {
   if (!results || results.length <= 3) return results;
 
   const selected = [results[0]];
@@ -2573,7 +2686,7 @@ function apply_diversity(results: any, diversity_factor = 0.3) {
   return selected;
 }
 
-function learn_from_selection(search_query: any, selected_memory_id: any) {
+function learn_from_selection(search_query: string, selected_memory_id: number) {
   if (!search_query || !selected_memory_id) return false;
 
   const database = initialize_db();
@@ -2590,7 +2703,7 @@ function learn_from_selection(search_query: any, selected_memory_id: any) {
 
   if (!memory) return false;
 
-  let existing = [];
+  let existing: string[] = [];
   try {
     existing = JSON.parse(memory.trigger_phrases || '[]');
   } catch (e: unknown) {
@@ -2607,10 +2720,10 @@ function learn_from_selection(search_query: any, selected_memory_id: any) {
   const new_terms = search_query
     .toLowerCase()
     .split(/\s+/)
-    .filter((term: any) => {
+    .filter((term: string) => {
       if (term.length < 4) return false;
       if (stop_words.includes(term)) return false;
-      if (existing.some((e: any) => e.toLowerCase() === term)) return false;
+      if (existing.some((e: string) => e.toLowerCase() === term)) return false;
       if (/^\d+$/.test(term)) return false;
       return true;
     })
@@ -2631,7 +2744,7 @@ function learn_from_selection(search_query: any, selected_memory_id: any) {
   }
 }
 
-async function enhanced_search(query: any, limit = 20, options: any = {}) {
+async function enhanced_search(query: string, limit = 20, options: EnhancedSearchOptions = {}) {
   const start_time = Date.now();
 
   const fetch_limit = Math.min(limit * 2, 100);
@@ -2661,23 +2774,31 @@ async function enhanced_search(query: any, limit = 20, options: any = {}) {
 ────────────────────────────────────────────────────────────────*/
 
 // LRU Cache with O(1) eviction using doubly-linked list
-class LRUCache {
-  max_size: any;
-  ttl_ms: any;
-  cache: any;
-  head: any;
-  tail: any;
+type CacheNode<TValue> = {
+  key: string;
+  value: TValue;
+  timestamp: number;
+  prev: CacheNode<TValue> | null;
+  next: CacheNode<TValue> | null;
+};
 
-  constructor(max_size: any, ttl_ms: any) {
+class LRUCache<TValue> {
+  max_size: number;
+  ttl_ms: number;
+  cache: Map<string, CacheNode<TValue>>;
+  head: CacheNode<TValue>;
+  tail: CacheNode<TValue>;
+
+  constructor(max_size: number, ttl_ms: number) {
     this.max_size = max_size;
     this.ttl_ms = ttl_ms;
-    this.cache = new Map();
-    this.head = { prev: null, next: null };
-    this.tail = { prev: this.head, next: null };
+    this.cache = new Map<string, CacheNode<TValue>>();
+    this.head = { key: '__head__', value: null as unknown as TValue, timestamp: 0, prev: null, next: null };
+    this.tail = { key: '__tail__', value: null as unknown as TValue, timestamp: 0, prev: this.head, next: null };
     this.head.next = this.tail;
   }
 
-  get(key: any) {
+  get(key: string): TValue | null {
     const node = this.cache.get(key);
     if (!node) return null;
     if (Date.now() - node.timestamp > this.ttl_ms) {
@@ -2689,7 +2810,7 @@ class LRUCache {
     return node.value;
   }
 
-  set(key: any, value: any) {
+  set(key: string, value: TValue) {
     let node = this.cache.get(key);
     if (node) {
       node.value = value;
@@ -2701,25 +2822,33 @@ class LRUCache {
       this.cache.set(key, node);
       if (this.cache.size > this.max_size) {
         const oldest = this.tail.prev;
-        this._remove(oldest);
-        this.cache.delete(oldest.key);
+        if (oldest && oldest !== this.head) {
+          this._remove(oldest);
+          this.cache.delete(oldest.key);
+        }
       }
     }
   }
 
-  _add_to_front(node: any) {
+  _add_to_front(node: CacheNode<TValue>) {
     node.next = this.head.next;
     node.prev = this.head;
-    this.head.next.prev = node;
+    if (this.head.next) {
+      this.head.next.prev = node;
+    }
     this.head.next = node;
   }
 
-  _remove(node: any) {
-    node.prev.next = node.next;
-    node.next.prev = node.prev;
+  _remove(node: CacheNode<TValue>) {
+    if (node.prev) {
+      node.prev.next = node.next;
+    }
+    if (node.next) {
+      node.next.prev = node.prev;
+    }
   }
 
-  _move_to_front(node: any) {
+  _move_to_front(node: CacheNode<TValue>) {
     this._remove(node);
     this._add_to_front(node);
   }
@@ -2730,11 +2859,11 @@ class LRUCache {
     this.tail.prev = this.head;
   }
 
-  keys() {
+  keys(): IterableIterator<string> {
     return this.cache.keys();
   }
 
-  delete(key: any) {
+  delete(key: string) {
     const node = this.cache.get(key);
     if (node) {
       this._remove(node);
@@ -2748,7 +2877,7 @@ class LRUCache {
 }
 
 // LRU Cache instance for search queries
-let query_cache: any = null;
+let query_cache: LRUCache<{ results: EnrichedSearchResult[] }> | null = null;
 
 function get_query_cache() {
   if (!query_cache) {
@@ -2758,7 +2887,7 @@ function get_query_cache() {
 }
 
 // Find and link related memories when saving a new memory
-async function link_related_on_save(new_memory_id: any, content: any) {
+async function link_related_on_save(new_memory_id: number, content: string) {
   if (!content || typeof content !== 'string' || content.trim().length === 0) {
     return;
   }
@@ -2794,7 +2923,7 @@ async function link_related_on_save(new_memory_id: any, content: any) {
 }
 
 // Record memory access for usage tracking
-function record_access(memory_id: any) {
+function record_access(memory_id: number) {
   try {
     const database = initialize_db();
     const now = Date.now();
@@ -2813,14 +2942,14 @@ function record_access(memory_id: any) {
   }
 }
 
-function get_cache_key(query: any, limit: any, options: any) {
+function get_cache_key(query: string, limit: number, options: Record<string, unknown>) {
   const hash = crypto.createHash('sha256');
   hash.update(JSON.stringify({ query, limit, options }));
   return hash.digest('hex').substring(0, 16);
 }
 
 // Cached version of vector_search_enriched with LRU cache
-async function cached_search(query: any, limit = 20, options = {}) {
+async function cached_search(query: string, limit = 20, options: Record<string, unknown> = {}) {
   const cache = get_query_cache();
   const key = get_cache_key(query, limit, options);
 
@@ -2836,7 +2965,7 @@ async function cached_search(query: any, limit = 20, options = {}) {
   return results;
 }
 
-function clear_search_cache(spec_folder = null) {
+function clear_search_cache(spec_folder: string | null = null) {
   if (!query_cache) {
     return 0;
   }
@@ -2860,7 +2989,7 @@ function clear_search_cache(spec_folder = null) {
 }
 
 // Returns pre-computed related memories stored during save with full metadata
-function get_related_memories(memory_id: any) {
+function get_related_memories(memory_id: number): MemoryRow[] {
   try {
     const database = initialize_db();
 
@@ -2874,7 +3003,7 @@ function get_related_memories(memory_id: any) {
 
     const related = safe_parse_json(memory.related_memories, []);
 
-    return related.map((rel: any) => {
+    return (related as RelatedMemoryLink[]).map((rel: RelatedMemoryLink) => {
       const full_memory = get_memory(rel.id);
       if (full_memory) {
         return {
@@ -2883,7 +3012,7 @@ function get_related_memories(memory_id: any) {
         };
       }
       return null;
-    }).filter(Boolean);
+    }).filter((memory): memory is MemoryRow => Boolean(memory));
   } catch (error: unknown) {
     console.warn(`[vector-index] Failed to get related memories for ${memory_id}: ${get_error_message(error)}`);
     return [];
@@ -2891,7 +3020,7 @@ function get_related_memories(memory_id: any) {
 }
 
 // Returns memories sorted by access count or last accessed time
-function get_usage_stats(options: any = {}) {
+function get_usage_stats(options: UsageStatsOptions = {}) {
   const {
     sortBy = 'access_count',
     order = 'DESC',
@@ -2917,7 +3046,7 @@ function get_usage_stats(options: any = {}) {
 }
 
 // Valid statuses: 'pending', 'success', 'failed', 'retry', 'partial'
-function update_embedding_status(id: any, status: any) {
+function update_embedding_status(id: number, status: string) {
   const valid_statuses = ['pending', 'success', 'failed', 'retry', 'partial'];
   if (!valid_statuses.includes(status)) {
     console.warn(`[vector-index] Invalid embedding status: ${status}`);
@@ -2939,7 +3068,7 @@ function update_embedding_status(id: any, status: any) {
   }
 }
 
-function update_confidence(memory_id: any, confidence: any) {
+function update_confidence(memory_id: number, confidence: number) {
   if (typeof confidence !== 'number' || confidence < 0 || confidence > 1) {
     console.warn(`[vector-index] Invalid confidence value: ${confidence}`);
     return false;
@@ -2964,7 +3093,7 @@ function update_confidence(memory_id: any, confidence: any) {
    15. CLEANUP FUNCTIONS
 ────────────────────────────────────────────────────────────────*/
 
-function find_cleanup_candidates(options: any = {}) {
+function find_cleanup_candidates(options: CleanupOptions = {}) {
   const database = initialize_db();
 
   const {
@@ -3016,7 +3145,7 @@ function find_cleanup_candidates(options: any = {}) {
     return [];
   }
 
-  return rows.map((row: any) => {
+  return (rows as MemoryRow[]).map((row: MemoryRow) => {
     const age_string = format_age_string(row.created_at);
     const last_access_string = format_age_string(row.last_accessed);
 
@@ -3048,7 +3177,7 @@ function find_cleanup_candidates(options: any = {}) {
   });
 }
 
-function delete_memories(memory_ids: any) {
+function delete_memories(memory_ids: number[]) {
   if (!memory_ids || memory_ids.length === 0) {
     return { deleted: 0, failed: 0 };
   }
@@ -3057,7 +3186,7 @@ function delete_memories(memory_ids: any) {
   let deleted = 0;
   let failed = 0;
 
-  const failed_ids: any[] = [];
+  const failed_ids: number[] = [];
 
   const delete_transaction = database.transaction(() => {
     for (const id of memory_ids) {
@@ -3104,7 +3233,7 @@ function delete_memories(memory_ids: any) {
   return { deleted, failed };
 }
 
-function get_memory_preview(memory_id: any, max_lines = 50) {
+function get_memory_preview(memory_id: number, max_lines = 50) {
   const database = initialize_db();
 
   let memory;
@@ -3173,7 +3302,7 @@ function get_db() {
 }
 
 // BUG-013 FIX: Added autoClean option for automatic orphan cleanup
-function verify_integrity(options: any = {}) {
+function verify_integrity(options: { autoClean?: boolean } = {}) {
   const { autoClean = false } = options;
   const database = initialize_db();
 
@@ -3183,7 +3312,7 @@ function verify_integrity(options: any = {}) {
       return database.prepare(`
         SELECT v.rowid FROM vec_memories v
         WHERE NOT EXISTS (SELECT 1 FROM memory_index m WHERE m.id = v.rowid)
-      `).all().map((r: any) => r.rowid);
+      `).all().map((r: { rowid: number }) => r.rowid);
     } catch (e: unknown) {
       console.warn('[vector-index] Could not query orphaned vectors:', get_error_message(e));
       return [];

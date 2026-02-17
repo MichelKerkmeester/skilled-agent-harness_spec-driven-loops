@@ -3,9 +3,7 @@
 # RULE: CHECK-LEVEL
 # ───────────────────────────────────────────────────────────────
 
-# Strict mode baseline for sourced rule scripts.
-# -u is intentionally disabled because this file is sourced by validate.sh and reads
-# shared global state that may be unset outside orchestrated execution.
+# Sourced by validate.sh; keep -u disabled for shared rule-state compatibility.
 set -eo pipefail
 
 # Rule: LEVEL_DECLARED

@@ -30,6 +30,28 @@ interface SpecFolderInfo {
   score?: number;
 }
 
+function getSpecFolderFromCollectedData(collectedData: CollectedDataForAlignment | null): string | null {
+  if (!collectedData || typeof collectedData !== 'object') {
+    return null;
+  }
+
+  const specFolder = (collectedData as { SPEC_FOLDER?: unknown }).SPEC_FOLDER;
+  return typeof specFolder === 'string' && specFolder.trim().length > 0
+    ? specFolder
+    : null;
+}
+
+function getSpecFolderFromSessionRow(row: unknown): string | null {
+  if (!row || typeof row !== 'object') {
+    return null;
+  }
+
+  const specFolder = (row as { spec_folder?: unknown }).spec_folder;
+  return typeof specFolder === 'string' && specFolder.trim().length > 0
+    ? specFolder
+    : null;
+}
+
 /* -----------------------------------------------------------------
    2. HELPER FUNCTIONS
 ------------------------------------------------------------------*/
@@ -142,8 +164,8 @@ async function detectSpecFolder(collectedData: CollectedDataForAlignment | null 
   }
 
   // Priority 2: JSON data field
-  if (collectedData && (collectedData as Record<string, unknown>).SPEC_FOLDER) {
-    const specFolderFromData = (collectedData as Record<string, unknown>).SPEC_FOLDER as string;
+  const specFolderFromData = getSpecFolderFromCollectedData(collectedData);
+  if (specFolderFromData && collectedData) {
     const activeDir = specsDir || defaultSpecsDir;
     const specFolderPath = path.join(activeDir, specFolderFromData);
 
@@ -214,13 +236,15 @@ async function detectSpecFolder(collectedData: CollectedDataForAlignment | null 
     try {
       const row = db.prepare(
         `SELECT spec_folder FROM session_learning WHERE created_at > datetime('now', '-24 hours') ORDER BY created_at DESC LIMIT 1`
-      ).get() as { spec_folder: string } | undefined;
+      ).get() as unknown;
 
-      if (row?.spec_folder) {
+      const sessionSpecFolder = getSpecFolderFromSessionRow(row);
+
+      if (sessionSpecFolder) {
         const activeDir = specsDir || defaultSpecsDir;
-        const resolvedPath = path.join(activeDir, row.spec_folder);
+        const resolvedPath = path.join(activeDir, sessionSpecFolder);
         await fs.access(resolvedPath);
-        console.log(`   Using spec folder from session learning: ${row.spec_folder}`);
+        console.log(`   Using spec folder from session learning: ${sessionSpecFolder}`);
         return resolvedPath;
       }
     } finally {

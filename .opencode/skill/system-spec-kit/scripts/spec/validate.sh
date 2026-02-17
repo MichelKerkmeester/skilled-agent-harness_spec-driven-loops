@@ -4,9 +4,7 @@
 # ───────────────────────────────────────────────────────────────
 # Spec Folder Validation Orchestrator - Bash 3.2+ compatible
 
-# Strict mode baseline.
-# -u is intentionally disabled for Bash 3.2 compatibility when handling empty arrays
-# during sourced rule execution (for example: ${RULE_ORDER[@]}, ${RULE_DETAILS[@]}).
+# Keep -u disabled: this orchestrator sources rule scripts and shared mutable state.
 set -eo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"

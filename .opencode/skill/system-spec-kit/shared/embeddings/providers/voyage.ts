@@ -62,6 +62,35 @@ function isAbortError(error: unknown): boolean {
   return error instanceof Error && error.name === 'AbortError';
 }
 
+interface VoyageErrorBody {
+  detail?: string;
+  error?: {
+    message?: string;
+  };
+}
+
+function parseVoyageErrorBody(payload: unknown): VoyageErrorBody {
+  if (!payload || typeof payload !== 'object') {
+    return {};
+  }
+
+  const payloadRecord = payload as Record<string, unknown>;
+  const detail = typeof payloadRecord.detail === 'string' ? payloadRecord.detail : undefined;
+
+  let message: string | undefined;
+  if (payloadRecord.error && typeof payloadRecord.error === 'object') {
+    const errorRecord = payloadRecord.error as Record<string, unknown>;
+    if (typeof errorRecord.message === 'string') {
+      message = errorRecord.message;
+    }
+  }
+
+  return {
+    detail,
+    error: message ? { message } : undefined,
+  };
+}
+
 export class VoyageProvider implements IEmbeddingProvider {
   private readonly apiKey: string;
   readonly baseUrl: string;
@@ -121,7 +150,8 @@ export class VoyageProvider implements IEmbeddingProvider {
       clearTimeout(timeoutId);
 
       if (!response.ok) {
-        const errorBody = await response.json().catch(() => ({ detail: response.statusText })) as { detail?: string; error?: { message?: string } };
+        const errorPayload = await response.json().catch(() => ({}));
+        const errorBody = parseVoyageErrorBody(errorPayload);
         const error: ErrorWithStatus = new Error(
           `Voyage API error: ${errorBody.detail || errorBody.error?.message || response.statusText}`
         );

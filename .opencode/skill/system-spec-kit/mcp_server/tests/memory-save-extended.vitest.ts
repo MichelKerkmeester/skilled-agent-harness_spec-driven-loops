@@ -6,6 +6,10 @@ import Database from 'better-sqlite3';
 import * as handler from '../handlers/memory-save';
 import * as vectorIndex from '../lib/search/vector-index';
 
+function getErrorMessage(error: unknown): string {
+  return error instanceof Error ? error.message : String(error);
+}
+
 // ───────────────────────────────────────────────────────────────
 // TEST: MEMORY SAVE EXTENDED
 // Covers untested functions in handlers/memory-save.ts
@@ -699,9 +703,8 @@ This is test content.
         // If it resolves, check shape
         expect(typeof result.success).toBe('boolean');
         expect(typeof result.filePath).toBe('string');
-      } catch (err: any) {
-        // Expected failures are OK (file validation, path not in specs/, etc.)
-        expect(err.message).toBeDefined();
+      } catch (err: unknown) {
+        expect(getErrorMessage(err)).toBeDefined();
       } finally {
         try { fs.rmSync(tmpDir, { recursive: true, force: true }); } catch {}
       }
@@ -712,9 +715,8 @@ This is test content.
         const result = await atomicSaveFn!({ file_path: '', content: '' }, {});
         // If it resolves, success should be false
         expect(result.success).toBe(false);
-      } catch (err: any) {
-        // Rejection is also acceptable
-        expect(err.message).toBeDefined();
+      } catch (err: unknown) {
+        expect(getErrorMessage(err)).toBeDefined();
       }
     });
   });
@@ -745,13 +747,10 @@ This is test content.
         hasCausalLinks: false,
       } as any;
 
-      // This will likely fail at validation or DB step, but tests that parsedOverride is accepted
       try {
         await indexFileFn!('/fake/path.md', { parsedOverride: fakeParsed });
-        // If it passes, the parsedOverride was used
-      } catch (e: any) {
-        // Any error (validation, DB, etc.) shows the override was consumed
-        expect(e.message).toBeDefined();
+      } catch (e: unknown) {
+        expect(getErrorMessage(e)).toBeDefined();
       }
     });
 

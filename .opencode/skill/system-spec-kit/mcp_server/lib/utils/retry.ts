@@ -1,5 +1,5 @@
 // ---------------------------------------------------------------
-// UTILS: RETRY WITH EXPONENTIAL BACKOFF
+// MODULE: Retry
 // ---------------------------------------------------------------
 // REQ-032: Retry Logic with exponential backoff
 // Tasks: T101-T104, T185-T191
@@ -297,7 +297,7 @@ export async function retryWithBackoff<T>(
   for (let attempt = 0; attempt <= maxRetries; attempt++) {
     try {
       return await fn();
-    } catch (err) {
+    } catch (err: unknown) {
       const error = err instanceof Error ? err : new Error(String(err));
       const classification = classifyError(error);
 

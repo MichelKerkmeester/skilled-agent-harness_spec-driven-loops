@@ -68,8 +68,9 @@ describe('Path Security (T001-T007)', () => {
 
       // After symlink resolution, target is outside allowedDir → should be rejected
       expect(result).toBeNull();
-    } catch (e: any) {
-      if (e.code === 'EPERM' || e.code === 'EACCES') {
+    } catch (e: unknown) {
+      const code = e instanceof Error && 'code' in e ? String((e as { code?: unknown }).code) : '';
+      if (code === 'EPERM' || code === 'EACCES') {
         // Skip on permission errors
         return;
       }
@@ -93,10 +94,10 @@ describe('Path Security (T001-T007)', () => {
     const result1 = validateFilePath('', [cwd]);
     expect(result1).toBeNull();
 
-    const result2 = validateFilePath(null as any, [cwd]);
+    const result2 = validateFilePath(null as unknown as string, [cwd]);
     expect(result2).toBeNull();
 
-    const result3 = validateFilePath(undefined as any, [cwd]);
+    const result3 = validateFilePath(undefined as unknown as string, [cwd]);
     expect(result3).toBeNull();
   });
 
@@ -106,10 +107,10 @@ describe('Path Security (T001-T007)', () => {
     const result1 = validateFilePath(testPath, []);
     expect(result1).toBeNull();
 
-    const result2 = validateFilePath(testPath, null as any);
+    const result2 = validateFilePath(testPath, null as unknown as string[]);
     expect(result2).toBeNull();
 
-    const result3 = validateFilePath(testPath, undefined as any);
+    const result3 = validateFilePath(testPath, undefined as unknown as string[]);
     expect(result3).toBeNull();
   });
 });
