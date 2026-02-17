@@ -9,6 +9,7 @@ Complete guide to saving conversation context, execution methods, and retrieval.
 
 ---
 
+<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 ### Core Principle
@@ -64,6 +65,8 @@ The memory system supports **2 independent execution paths**. Any method can be 
 
 ---
 
+<!-- /ANCHOR:overview -->
+<!-- ANCHOR:method-selection -->
 ## 2. METHOD SELECTION
 
 ### Decision Tree
@@ -116,6 +119,8 @@ The memory system supports **2 independent execution paths**. Any method can be 
 
 ---
 
+<!-- /ANCHOR:method-selection -->
+<!-- ANCHOR:slash-commands -->
 ## 3. SLASH COMMANDS
 
 **When to Use:** Manual save with AI-powered conversation analysis
@@ -157,6 +162,8 @@ The memory system supports **2 independent execution paths**. Any method can be 
 
 ---
 
+<!-- /ANCHOR:slash-commands -->
+<!-- ANCHOR:direct-script -->
 ## 4. DIRECT SCRIPT
 
 **When to Use:** Testing, debugging, custom workflows, CI/CD pipelines
@@ -217,6 +224,8 @@ node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js \
 
 ---
 
+<!-- /ANCHOR:direct-script -->
+<!-- ANCHOR:output-format -->
 ## 5. OUTPUT FORMAT
 
 ### File Naming
@@ -265,6 +274,8 @@ specs/049-oauth-implementation/
 
 ---
 
+<!-- /ANCHOR:output-format -->
+<!-- ANCHOR:document-structure -->
 ## 6. DOCUMENT STRUCTURE
 
 ### Primary Document Sections
@@ -272,25 +283,37 @@ specs/049-oauth-implementation/
 ```markdown
 # Session Summary
 
+<!-- /ANCHOR:document-structure -->
+<!-- ANCHOR:overview-2 -->
 ## Overview
 [Brief session description]
 
+<!-- /ANCHOR:overview-2 -->
+<!-- ANCHOR:key-decisions -->
 ## Key Decisions
 <!-- ANCHOR:decisions-{spec#} -->
 [Decision documentation]
 <!-- /ANCHOR:decisions-{spec#} -->
 
+<!-- /ANCHOR:key-decisions -->
+<!-- ANCHOR:implementation-details -->
 ## Implementation Details
 <!-- ANCHOR:implementation-{spec#} -->
 [What was built]
 <!-- /ANCHOR:implementation-{spec#} -->
 
+<!-- /ANCHOR:implementation-details -->
+<!-- ANCHOR:conversation-flow -->
 ## Conversation Flow
 [Full dialogue with timestamps]
 
+<!-- /ANCHOR:conversation-flow -->
+<!-- ANCHOR:files-modified -->
 ## Files Modified
 [List of changed files]
 
+<!-- /ANCHOR:files-modified -->
+<!-- ANCHOR:session-metadata -->
 ## Session Metadata
 [Statistics and timing]
 ```
@@ -338,6 +361,8 @@ For retrieval, `memory_context()` routes queries across 7 intents (including `fi
 
 ---
 
+<!-- /ANCHOR:session-metadata -->
+<!-- ANCHOR:metadata -->
 ## 7. METADATA
 
 ### JSON Structure
@@ -382,6 +407,8 @@ For retrieval, `memory_context()` routes queries across 7 intents (including `fi
 
 ---
 
+<!-- /ANCHOR:metadata -->
+<!-- ANCHOR:anchor-retrieval -->
 ## 8. ANCHOR RETRIEVAL
 
 ### Token Efficiency Comparison
@@ -414,6 +441,8 @@ done | sort -rn
 
 ---
 
+<!-- /ANCHOR:anchor-retrieval -->
+<!-- ANCHOR:context-recovery -->
 ## 9. CONTEXT RECOVERY
 
 **CRITICAL:** Before implementing ANY changes in a spec folder with memory files, you MUST search for relevant anchors.
@@ -480,6 +509,8 @@ sed -n '/<!-- ANCHOR:decision-auth-049 -->/,/<!-- \/ANCHOR:decision-auth-049 -->
 
 ---
 
+<!-- /ANCHOR:context-recovery -->
+<!-- ANCHOR:validation-checklists -->
 ## 10. VALIDATION CHECKLISTS
 
 ### File Naming
@@ -512,6 +543,8 @@ sed -n '/<!-- ANCHOR:decision-auth-049 -->/,/<!-- \/ANCHOR:decision-auth-049 -->
 
 ---
 
+<!-- /ANCHOR:validation-checklists -->
+<!-- ANCHOR:troubleshooting -->
 ## 11. TROUBLESHOOTING
 
 ### Common Issues
@@ -546,6 +579,8 @@ node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js --h
 
 ---
 
+<!-- /ANCHOR:troubleshooting -->
+<!-- ANCHOR:related-resources -->
 ## 12. RELATED RESOURCES
 
 ### Reference Files
@@ -554,3 +589,4 @@ node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js --h
 
 ### Templates
 - [context_template.md](../../templates/context_template.md) - Context document template structure
+<!-- /ANCHOR:related-resources -->

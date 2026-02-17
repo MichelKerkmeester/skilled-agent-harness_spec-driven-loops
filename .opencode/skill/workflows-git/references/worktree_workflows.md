@@ -9,6 +9,7 @@ Complete workflow documentation for creating isolated git workspaces with minima
 
 ---
 
+<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 Git worktrees create isolated working directories sharing the same repository database. Each worktree can have a different branch checked out, allowing parallel work without context switching.
@@ -17,6 +18,8 @@ Git worktrees create isolated working directories sharing the same repository da
 
 ---
 
+<!-- /ANCHOR:overview -->
+<!-- ANCHOR:workspace-choice-enforcement -->
 ## 2. WORKSPACE CHOICE ENFORCEMENT
 
 **This workflow only applies when user has explicitly chosen "Create a git worktree" (Option B).**
@@ -35,6 +38,8 @@ If the user has not been prompted or selected a different option:
 
 ---
 
+<!-- /ANCHOR:workspace-choice-enforcement -->
+<!-- ANCHOR:process-overview -->
 ## 3. PROCESS OVERVIEW
 
 1. Determine worktree directory location (priority: existing → AGENTS.md → ask user)
@@ -51,6 +56,8 @@ If the user has not been prompted or selected a different option:
 
 ---
 
+<!-- /ANCHOR:process-overview -->
+<!-- ANCHOR:complete-workflow -->
 ## 4. COMPLETE WORKFLOW
 
 ### Step 1: Gather User Inputs
@@ -288,6 +295,8 @@ Fast mode (large repos):
 
 ---
 
+<!-- /ANCHOR:complete-workflow -->
+<!-- ANCHOR:branch-strategy-guide -->
 ## 5. BRANCH STRATEGY GUIDE
 
 ### Main Temp (Default - Recommended) ⭐
@@ -353,6 +362,8 @@ git worktree add --detach .worktrees/experiment main
 
 ---
 
+<!-- /ANCHOR:branch-strategy-guide -->
+<!-- ANCHOR:decision-matrix -->
 ## 6. DECISION MATRIX
 
 | Situation | Directory Strategy | Branch Strategy |
@@ -367,6 +378,8 @@ git worktree add --detach .worktrees/experiment main
 
 ---
 
+<!-- /ANCHOR:decision-matrix -->
+<!-- ANCHOR:common-mistakes -->
 ## 7. COMMON MISTAKES
 
 **Skipping .gitignore verification**:
@@ -391,6 +404,8 @@ git worktree add --detach .worktrees/experiment main
 
 ---
 
+<!-- /ANCHOR:common-mistakes -->
+<!-- ANCHOR:example-workflows -->
 ## 8. EXAMPLE WORKFLOWS
 
 ### Example 1: Main Temp (Default Workflow) ⭐
@@ -478,6 +493,8 @@ Agent: "Creating branch from detached HEAD..."
 
 ---
 
+<!-- /ANCHOR:example-workflows -->
+<!-- ANCHOR:troubleshooting -->
 ## 9. TROUBLESHOOTING
 
 ### Worktree Creation Fails
@@ -535,6 +552,8 @@ git worktree prune
 
 ---
 
+<!-- /ANCHOR:troubleshooting -->
+<!-- ANCHOR:success-criteria -->
 ## 10. SUCCESS CRITERIA
 
 **Worktree creation is successful when**:
@@ -552,6 +571,8 @@ git worktree prune
 
 ---
 
+<!-- /ANCHOR:success-criteria -->
+<!-- ANCHOR:related-resources -->
 ## 11. RELATED RESOURCES
 
 ### Reference Files
@@ -563,3 +584,4 @@ git worktree prune
 ### External Resources
 - [Git Documentation: git-worktree](https://git-scm.com/docs/git-worktree) - Official git worktree documentation
 - [Superpowers using-git-worktrees skill](https://github.com/obra/superpowers/blob/main/skills/using-git-worktrees/SKILL.md) - Original worktree skill reference
+<!-- /ANCHOR:related-resources -->

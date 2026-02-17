@@ -9,6 +9,7 @@ Performance optimization checklist covering animations, assets, requests, and Co
 
 ---
 
+<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 ### Purpose
@@ -24,6 +25,8 @@ Apply during Phase 1 (Implementation) when:
 
 ---
 
+<!-- /ANCHOR:overview -->
+<!-- ANCHOR:performance-checklist -->
 ## 2. PERFORMANCE CHECKLIST
 
 ### Code Splitting & Lazy Loading
@@ -328,6 +331,8 @@ document.querySelectorAll('img[data-src]').forEach(img => {
 
 ---
 
+<!-- /ANCHOR:performance-checklist -->
+<!-- ANCHOR:performance-budgets -->
 ## 3. PERFORMANCE BUDGETS
 
 **Target metrics:**
@@ -496,6 +501,8 @@ echo "✅ PASS: Animation performance budgets met"
 
 ---
 
+<!-- /ANCHOR:performance-budgets -->
+<!-- ANCHOR:anti-patterns -->
 ## 4. ANTI-PATTERNS
 
 **Never:**
@@ -508,6 +515,8 @@ echo "✅ PASS: Animation performance budgets met"
 
 ---
 
+<!-- /ANCHOR:anti-patterns -->
+<!-- ANCHOR:related-resources -->
 ## 5. RELATED RESOURCES
 
 ### Reference Files
@@ -521,3 +530,4 @@ echo "✅ PASS: Animation performance budgets met"
 
 ### Standards
 - **Integration with workflows-code**: Apply during Phase 1 (Implementation checklist), Phase 2 (Performance debugging), Phase 3 (Lighthouse verification)
+<!-- /ANCHOR:related-resources -->

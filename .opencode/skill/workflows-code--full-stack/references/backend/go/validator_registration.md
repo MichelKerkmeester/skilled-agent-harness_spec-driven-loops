@@ -9,6 +9,7 @@ How to register validators for enum types and custom validation rules across mic
 
 ---
 
+<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 ### Purpose
@@ -37,6 +38,8 @@ validator_registration.md (this file)
 
 ---
 
+<!-- /ANCHOR:overview -->
+<!-- ANCHOR:validation-system-architecture -->
 ## 2. VALIDATION SYSTEM ARCHITECTURE
 
 ### 2.1 How Validation Works
@@ -93,6 +96,8 @@ func RegisterValidationBundle(dictx di.Context, opts *di.RegistryOpts) (*Validat
 
 ---
 
+<!-- /ANCHOR:validation-system-architecture -->
+<!-- ANCHOR:registering-validators-in-microservices -->
 ## 3. REGISTERING VALIDATORS IN MICROSERVICES
 
 ### 3.1 The Problem
@@ -166,6 +171,8 @@ func RegistryCoreMicroservice(dictx di.Context, opts *di.RegistryOpts) (*CoreMic
 
 ---
 
+<!-- /ANCHOR:registering-validators-in-microservices -->
+<!-- ANCHOR:registering-validators-in-lambdas -->
 ## 4. REGISTERING VALIDATORS IN LAMBDAS
 
 ### 4.1 Lambda Validator Registration
@@ -200,6 +207,8 @@ Check these files for examples:
 
 ---
 
+<!-- /ANCHOR:registering-validators-in-lambdas -->
+<!-- ANCHOR:debugging-checklist -->
 ## 5. DEBUGGING CHECKLIST
 
 When you encounter "Undefined validation function" errors:
@@ -231,6 +240,8 @@ _, err = di.Create[*bundles.ValidationsBundle](dictx, di.WithOpts(opts), di.With
 
 ---
 
+<!-- /ANCHOR:debugging-checklist -->
+<!-- ANCHOR:creating-new-validators -->
 ## 6. CREATING NEW VALIDATORS
 
 ### 6.1 Adding to Existing Token
@@ -269,6 +280,8 @@ _, err = di.Create[*bundles.ValidationsBundle](dictx, di.WithOpts(opts), di.With
 
 ---
 
+<!-- /ANCHOR:creating-new-validators -->
+<!-- ANCHOR:rules -->
 ## 7. RULES
 
 ### ALWAYS
@@ -292,6 +305,8 @@ _, err = di.Create[*bundles.ValidationsBundle](dictx, di.WithOpts(opts), di.With
 
 ---
 
+<!-- /ANCHOR:rules -->
+<!-- ANCHOR:related-resources -->
 ## 8. RELATED RESOURCES
 
 | Topic | Location | Description |
@@ -301,3 +316,4 @@ _, err = di.Create[*bundles.ValidationsBundle](dictx, di.WithOpts(opts), di.With
 | Injection tokens | `infra/di/injection_tokens.go` | Token definitions |
 | Request models | `pkg/models/*/requests.go` | Models with validation tags |
 | DI Configuration | [di_configuration.md](./di_configuration.md) | DI system patterns |
+<!-- /ANCHOR:related-resources -->

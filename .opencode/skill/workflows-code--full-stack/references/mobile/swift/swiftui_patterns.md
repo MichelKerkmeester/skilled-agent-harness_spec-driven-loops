@@ -9,6 +9,7 @@ A comprehensive guide to SwiftUI view composition, state management, navigation 
 
 ---
 
+<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 ### Purpose
@@ -36,6 +37,8 @@ Declarative UI + unidirectional data flow + composition = predictable, maintaina
 
 ---
 
+<!-- /ANCHOR:overview -->
+<!-- ANCHOR:quick-start-creating-a-swiftui-view -->
 ## 2. QUICK START: CREATING A SWIFTUI VIEW
 
 ### The Checklist
@@ -146,6 +149,8 @@ struct ProductCardView: View {
 
 ---
 
+<!-- /ANCHOR:quick-start-creating-a-swiftui-view -->
+<!-- ANCHOR:state-management -->
 ## 3. STATE MANAGEMENT
 
 ### State Property Wrappers Overview
@@ -436,6 +441,8 @@ struct MyApp: App {
 
 ---
 
+<!-- /ANCHOR:state-management -->
+<!-- ANCHOR:navigation-patterns -->
 ## 4. NAVIGATION PATTERNS
 
 ### NavigationStack (iOS 16+)
@@ -660,6 +667,8 @@ struct AlertExampleView: View {
 
 ---
 
+<!-- /ANCHOR:navigation-patterns -->
+<!-- ANCHOR:list-and-data-display-patterns -->
 ## 5. LIST AND DATA DISPLAY PATTERNS
 
 ### Basic List Patterns
@@ -907,6 +916,8 @@ struct ProductGridItem: View {
 
 ---
 
+<!-- /ANCHOR:list-and-data-display-patterns -->
+<!-- ANCHOR:custom-view-modifiers -->
 ## 6. CUSTOM VIEW MODIFIERS
 
 ### Creating Custom Modifiers
@@ -1072,6 +1083,8 @@ struct ShakeModifier: ViewModifier {
 
 ---
 
+<!-- /ANCHOR:custom-view-modifiers -->
+<!-- ANCHOR:environment-and-preferences -->
 ## 7. ENVIRONMENT AND PREFERENCES
 
 ### Custom Environment Values
@@ -1233,6 +1246,8 @@ struct HighlightableView: View {
 
 ---
 
+<!-- /ANCHOR:environment-and-preferences -->
+<!-- ANCHOR:geometry-and-layout -->
 ## 8. GEOMETRY AND LAYOUT
 
 ### GeometryReader
@@ -1404,6 +1419,8 @@ struct TagsView: View {
 
 ---
 
+<!-- /ANCHOR:geometry-and-layout -->
+<!-- ANCHOR:animations -->
 ## 9. ANIMATIONS
 
 ### Basic Animations
@@ -1558,6 +1575,8 @@ struct AnimationValues {
 
 ---
 
+<!-- /ANCHOR:animations -->
+<!-- ANCHOR:rules -->
 ## 10. RULES
 
 ### ALWAYS
@@ -1595,6 +1614,8 @@ struct AnimationValues {
 
 ---
 
+<!-- /ANCHOR:rules -->
+<!-- ANCHOR:related-resources -->
 ## 11. RELATED RESOURCES
 
 | File | Purpose |
@@ -1604,3 +1625,4 @@ struct AnimationValues {
 | [async_patterns.md](./async_patterns.md) | Swift concurrency and async/await patterns |
 | [testing_strategy.md](./testing_strategy.md) | XCTest and testing best practices |
 | [persistence_patterns.md](./persistence_patterns.md) | SwiftData, Core Data, and storage patterns |
+<!-- /ANCHOR:related-resources -->

@@ -9,6 +9,7 @@ Templates for creating professional pull requests following best practices.
 
 ---
 
+<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 ### Purpose
@@ -24,36 +25,52 @@ This asset provides structured templates for pull request descriptions. Use it w
 
 ---
 
+<!-- /ANCHOR:overview -->
+<!-- ANCHOR:basic-structure -->
 ## 2. BASIC STRUCTURE
 
 ```markdown
+<!-- /ANCHOR:basic-structure -->
+<!-- ANCHOR:summary -->
 ## Summary
 <2-3 bullet points describing the changes>
 
+<!-- /ANCHOR:summary -->
+<!-- ANCHOR:test-plan -->
 ## Test Plan
 - [ ] <verification step 1>
 - [ ] <verification step 2>
 - [ ] All tests pass
 
+<!-- /ANCHOR:test-plan -->
+<!-- ANCHOR:related-issues -->
 ## Related Issues
 <Issue references>
 ```
 
 ---
 
+<!-- /ANCHOR:related-issues -->
+<!-- ANCHOR:complete-pr-template -->
 ## 3. COMPLETE PR TEMPLATE
 
 ```markdown
+<!-- /ANCHOR:complete-pr-template -->
+<!-- ANCHOR:summary-2 -->
 ## Summary
 
 - <Brief description of change 1>
 - <Brief description of change 2>
 - <Brief description of change 3>
 
+<!-- /ANCHOR:summary-2 -->
+<!-- ANCHOR:motivation -->
 ## Motivation
 
 <Why this change is needed - optional but recommended>
 
+<!-- /ANCHOR:motivation -->
+<!-- ANCHOR:test-plan-2 -->
 ## Test Plan
 
 ### Manual Testing
@@ -66,19 +83,27 @@ This asset provides structured templates for pull request descriptions. Use it w
 - [ ] All integration tests pass
 - [ ] No console errors
 
+<!-- /ANCHOR:test-plan-2 -->
+<!-- ANCHOR:screenshots-videos -->
 ## Screenshots/Videos
 
 <If applicable, add visual evidence of changes>
 
+<!-- /ANCHOR:screenshots-videos -->
+<!-- ANCHOR:breaking-changes -->
 ## Breaking Changes
 
 <If applicable, describe breaking changes and migration path>
 
+<!-- /ANCHOR:breaking-changes -->
+<!-- ANCHOR:related-issues-2 -->
 ## Related Issues
 
 Closes #<issue-number>
 Related to #<issue-number>
 
+<!-- /ANCHOR:related-issues-2 -->
+<!-- ANCHOR:additional-context -->
 ## Additional Context
 
 <Any other relevant information>
@@ -86,21 +111,29 @@ Related to #<issue-number>
 
 ---
 
+<!-- /ANCHOR:additional-context -->
+<!-- ANCHOR:example-feature-pr -->
 ## 4. EXAMPLE: FEATURE PR
 
 ```markdown
+<!-- /ANCHOR:example-feature-pr -->
+<!-- ANCHOR:summary-3 -->
 ## Summary
 
 - Implements OAuth2 authentication flow with JWT tokens
 - Adds login/logout endpoints
 - Includes user session management
 
+<!-- /ANCHOR:summary-3 -->
+<!-- ANCHOR:motivation-2 -->
 ## Motivation
 
 Replaces basic authentication to improve security and enable
 SSO integration. Current basic auth is vulnerable to brute-force
 attacks and doesn't support modern authentication patterns.
 
+<!-- /ANCHOR:motivation-2 -->
+<!-- ANCHOR:test-plan-3 -->
 ## Test Plan
 
 ### Manual Testing
@@ -116,11 +149,15 @@ attacks and doesn't support modern authentication patterns.
 - [x] Authentication flow tests added
 - [x] No console errors
 
+<!-- /ANCHOR:test-plan-3 -->
+<!-- ANCHOR:screenshots -->
 ## Screenshots
 
 ![Login screen](./screenshots/login.png)
 ![Dashboard after login](./screenshots/dashboard.png)
 
+<!-- /ANCHOR:screenshots -->
+<!-- ANCHOR:security-considerations -->
 ## Security Considerations
 
 - Tokens expire after 24 hours
@@ -128,11 +165,15 @@ attacks and doesn't support modern authentication patterns.
 - CSRF protection enabled
 - Rate limiting on login endpoint
 
+<!-- /ANCHOR:security-considerations -->
+<!-- ANCHOR:related-issues-3 -->
 ## Related Issues
 
 Closes #234
 Related to #235 (SSO integration - follow-up)
 
+<!-- /ANCHOR:related-issues-3 -->
+<!-- ANCHOR:deployment-notes -->
 ## Deployment Notes
 
 - Requires `JWT_SECRET` environment variable
@@ -141,27 +182,37 @@ Related to #235 (SSO integration - follow-up)
 
 ---
 
+<!-- /ANCHOR:deployment-notes -->
+<!-- ANCHOR:example-bug-fix-pr -->
 ## 5. EXAMPLE: BUG FIX PR
 
 ```markdown
+<!-- /ANCHOR:example-bug-fix-pr -->
+<!-- ANCHOR:summary-4 -->
 ## Summary
 
 - Fixes memory leak in data processing pipeline
 - Adds proper cleanup for event listeners
 - Implements connection pooling limits
 
+<!-- /ANCHOR:summary-4 -->
+<!-- ANCHOR:problem -->
 ## Problem
 
 Large datasets were causing memory usage to grow unbounded.
 Application would crash after processing ~10k records due to
 unclosed database connections and lingering event listeners.
 
+<!-- /ANCHOR:problem -->
+<!-- ANCHOR:solution -->
 ## Solution
 
 - Implemented connection pooling with max 20 concurrent connections
 - Added cleanup in `finally` blocks to ensure resources are released
 - Removed event listeners after processing complete
 
+<!-- /ANCHOR:solution -->
+<!-- ANCHOR:test-plan-4 -->
 ## Test Plan
 
 ### Manual Testing
@@ -174,11 +225,15 @@ unclosed database connections and lingering event listeners.
 - [x] Added memory leak regression test
 - [x] Load testing with 100k records passes
 
+<!-- /ANCHOR:test-plan-4 -->
+<!-- ANCHOR:before-after -->
 ## Before/After
 
 **Before**: Memory grows to 2GB after 10k records
 **After**: Memory stable at 150MB for 50k+ records
 
+<!-- /ANCHOR:before-after -->
+<!-- ANCHOR:related-issues-4 -->
 ## Related Issues
 
 Fixes #345
@@ -187,21 +242,29 @@ Fixes #346 (duplicate of same issue)
 
 ---
 
+<!-- /ANCHOR:related-issues-4 -->
+<!-- ANCHOR:example-refactoring-pr -->
 ## 6. EXAMPLE: REFACTORING PR
 
 ```markdown
+<!-- /ANCHOR:example-refactoring-pr -->
+<!-- ANCHOR:summary-5 -->
 ## Summary
 
 - Extracts validation logic to reusable middleware
 - Consolidates duplicate code across 5 route handlers
 - Improves testability and maintainability
 
+<!-- /ANCHOR:summary-5 -->
+<!-- ANCHOR:motivation-3 -->
 ## Motivation
 
 Validation logic was duplicated across multiple route handlers,
 making it hard to maintain and test. Each endpoint had slightly
 different validation patterns, leading to inconsistencies.
 
+<!-- /ANCHOR:motivation-3 -->
+<!-- ANCHOR:changes -->
 ## Changes
 
 - Created `ValidationMiddleware` class
@@ -209,6 +272,8 @@ different validation patterns, leading to inconsistencies.
 - Removed 200+ lines of duplicate code
 - Added comprehensive middleware tests
 
+<!-- /ANCHOR:changes -->
+<!-- ANCHOR:test-plan-5 -->
 ## Test Plan
 
 ### Functional Testing
@@ -221,6 +286,8 @@ different validation patterns, leading to inconsistencies.
 - [x] 32 new middleware tests added
 - [x] Code coverage increased from 78% to 85%
 
+<!-- /ANCHOR:test-plan-5 -->
+<!-- ANCHOR:non-functional-improvements -->
 ## Non-Functional Improvements
 
 - **Maintainability**: Validation logic now in one place
@@ -228,10 +295,14 @@ different validation patterns, leading to inconsistencies.
 - **Consistency**: All endpoints use same validation pattern
 - **Performance**: No degradation (benchmarked)
 
+<!-- /ANCHOR:non-functional-improvements -->
+<!-- ANCHOR:related-issues-5 -->
 ## Related Issues
 
 Closes #123
 
+<!-- /ANCHOR:related-issues-5 -->
+<!-- ANCHOR:migration-guide -->
 ## Migration Guide
 
 No external API changes. Internal developers should use
@@ -240,15 +311,21 @@ No external API changes. Internal developers should use
 
 ---
 
+<!-- /ANCHOR:migration-guide -->
+<!-- ANCHOR:example-documentation-pr -->
 ## 7. EXAMPLE: DOCUMENTATION PR
 
 ```markdown
+<!-- /ANCHOR:example-documentation-pr -->
+<!-- ANCHOR:summary-6 -->
 ## Summary
 
 - Updates API reference with authentication endpoints
 - Adds OAuth2 flow documentation
 - Includes code examples for common use cases
 
+<!-- /ANCHOR:summary-6 -->
+<!-- ANCHOR:documentation-added -->
 ## Documentation Added
 
 - Authentication overview
@@ -257,6 +334,8 @@ No external API changes. Internal developers should use
 - Error handling examples
 - Rate limiting documentation
 
+<!-- /ANCHOR:documentation-added -->
+<!-- ANCHOR:test-plan-6 -->
 ## Test Plan
 
 - [x] All code examples tested and verified
@@ -264,10 +343,14 @@ No external API changes. Internal developers should use
 - [x] Reviewed for clarity and completeness
 - [x] Spell-checked
 
+<!-- /ANCHOR:test-plan-6 -->
+<!-- ANCHOR:preview -->
 ## Preview
 
 Documentation preview available at: [link to preview deployment]
 
+<!-- /ANCHOR:preview -->
+<!-- ANCHOR:related-issues-6 -->
 ## Related Issues
 
 Closes #456
@@ -276,6 +359,8 @@ Related to #234 (OAuth2 feature PR)
 
 ---
 
+<!-- /ANCHOR:related-issues-6 -->
+<!-- ANCHOR:pr-title-guidelines -->
 ## 8. PR TITLE GUIDELINES
 
 **Format**: Follow Conventional Commits
@@ -295,6 +380,8 @@ chore(deps): update axios to v1.6.0
 
 ---
 
+<!-- /ANCHOR:pr-title-guidelines -->
+<!-- ANCHOR:summary-section-guidelines -->
 ## 9. SUMMARY SECTION GUIDELINES
 
 **DO**:
@@ -311,6 +398,8 @@ chore(deps): update axios to v1.6.0
 
 **Example - Good**:
 ```markdown
+<!-- /ANCHOR:summary-section-guidelines -->
+<!-- ANCHOR:summary-7 -->
 ## Summary
 
 - Implements real-time notifications using WebSocket
@@ -320,6 +409,8 @@ chore(deps): update axios to v1.6.0
 
 **Example - Bad**:
 ```markdown
+<!-- /ANCHOR:summary-7 -->
+<!-- ANCHOR:summary-8 -->
 ## Summary
 
 Updated the notification system. Made some changes to the
@@ -328,6 +419,8 @@ backend and frontend. Added WebSocket stuff.
 
 ---
 
+<!-- /ANCHOR:summary-8 -->
+<!-- ANCHOR:test-plan-guidelines -->
 ## 10. TEST PLAN GUIDELINES
 
 **Structure**:
@@ -349,6 +442,8 @@ backend and frontend. Added WebSocket stuff.
 
 **Example**:
 ```markdown
+<!-- /ANCHOR:test-plan-guidelines -->
+<!-- ANCHOR:test-plan-7 -->
 ## Test Plan
 
 ### Manual Testing
@@ -367,6 +462,8 @@ backend and frontend. Added WebSocket stuff.
 
 ---
 
+<!-- /ANCHOR:test-plan-7 -->
+<!-- ANCHOR:screenshots-videos-guidelines -->
 ## 11. SCREENSHOTS/VIDEOS GUIDELINES
 
 **When to include**:
@@ -377,6 +474,8 @@ backend and frontend. Added WebSocket stuff.
 
 **How to include**:
 ```markdown
+<!-- /ANCHOR:screenshots-videos-guidelines -->
+<!-- ANCHOR:screenshots-2 -->
 ## Screenshots
 
 ### Before
@@ -391,6 +490,8 @@ backend and frontend. Added WebSocket stuff.
 
 **Video example**:
 ```markdown
+<!-- /ANCHOR:screenshots-2 -->
+<!-- ANCHOR:demo-video -->
 ## Demo Video
 
 [Watch demo](https://example.com/demo.mp4)
@@ -400,6 +501,8 @@ Shows complete user flow: login → notification → mark as read
 
 ---
 
+<!-- /ANCHOR:demo-video -->
+<!-- ANCHOR:breaking-changes-guidelines -->
 ## 12. BREAKING CHANGES GUIDELINES
 
 **When to document**:
@@ -410,6 +513,8 @@ Shows complete user flow: login → notification → mark as read
 
 **Format**:
 ```markdown
+<!-- /ANCHOR:breaking-changes-guidelines -->
+<!-- ANCHOR:breaking-changes-2 -->
 ## Breaking Changes
 
 ### API Response Format Changed
@@ -431,6 +536,8 @@ See [migration guide](./docs/migration.md) for details.
 
 ---
 
+<!-- /ANCHOR:breaking-changes-2 -->
+<!-- ANCHOR:related-issues-guidelines -->
 ## 13. RELATED ISSUES GUIDELINES
 
 **Format**:
@@ -448,6 +555,8 @@ Part of #456       # Part of larger epic
 
 ---
 
+<!-- /ANCHOR:related-issues-guidelines -->
+<!-- ANCHOR:pr-checklist -->
 ## 14. PR CHECKLIST
 
 Before submitting PR, verify:
@@ -466,17 +575,23 @@ Before submitting PR, verify:
 
 ---
 
+<!-- /ANCHOR:pr-checklist -->
+<!-- ANCHOR:creating-prs-programmatically -->
 ## 15. CREATING PRS PROGRAMMATICALLY
 
 ### GitHub CLI (Preferred)
 ```bash
 gh pr create --title "feat(auth): add OAuth2 authentication" --body "$(cat <<'EOF'
+<!-- /ANCHOR:creating-prs-programmatically -->
+<!-- ANCHOR:summary-9 -->
 ## Summary
 
 - Implements OAuth2 authentication flow
 - Adds login/logout endpoints
 - Includes user session management
 
+<!-- /ANCHOR:summary-9 -->
+<!-- ANCHOR:test-plan-8 -->
 ## Test Plan
 
 ### Manual Testing
@@ -489,6 +604,8 @@ gh pr create --title "feat(auth): add OAuth2 authentication" --body "$(cat <<'EO
 - [x] 23 integration tests pass
 - [x] No console errors
 
+<!-- /ANCHOR:test-plan-8 -->
+<!-- ANCHOR:related-issues-7 -->
 ## Related Issues
 
 Closes #234
@@ -515,6 +632,8 @@ call_tool_chain(`github.github_create_pull_request({
 
 ---
 
+<!-- /ANCHOR:related-issues-7 -->
+<!-- ANCHOR:tips -->
 ## 16. TIPS
 
 1. **Write PR description as you code** - Don't wait until end
@@ -527,8 +646,11 @@ call_tool_chain(`github.github_create_pull_request({
 
 ---
 
+<!-- /ANCHOR:tips -->
+<!-- ANCHOR:related-resources -->
 ## 17. RELATED RESOURCES
 
 - [GitHub PR Best Practices](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests) - Official GitHub documentation on pull request collaboration
 - [Conventional Commits](https://www.conventionalcommits.org/) - Specification for commit message formatting
 - [GitHub CLI Manual](https://cli.github.com/manual/gh_pr_create) - Command reference for creating PRs via CLI
+<!-- /ANCHOR:related-resources -->

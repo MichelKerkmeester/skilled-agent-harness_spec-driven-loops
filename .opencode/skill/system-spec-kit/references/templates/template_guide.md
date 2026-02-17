@@ -9,6 +9,7 @@ Guide to template selection, copying, adaptation, and quality standards.
 
 ---
 
+<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 ### Progressive Enhancement Model
@@ -70,6 +71,8 @@ Templates in `level_N/` folders are **composed** from `core/` + `addendum/` sour
 
 ---
 
+<!-- /ANCHOR:overview -->
+<!-- ANCHOR:template-selection-by-level-progressive-enhancement -->
 ## 2. TEMPLATE SELECTION BY LEVEL (Progressive Enhancement)
 
 ### Level 1: Baseline Documentation (LOC guidance: <100)
@@ -230,6 +233,8 @@ cp .opencode/skill/system-spec-kit/templates/level_3+/decision-record.md specs/#
 
 ---
 
+<!-- /ANCHOR:template-selection-by-level-progressive-enhancement -->
+<!-- ANCHOR:template-structure-standards -->
 ## 3. TEMPLATE STRUCTURE STANDARDS
 
 ### 1. Numbered H2 Sections
@@ -238,8 +243,14 @@ cp .opencode/skill/system-spec-kit/templates/level_3+/decision-record.md specs/#
 
 **Example:**
 ```markdown
+<!-- /ANCHOR:template-structure-standards -->
+<!-- ANCHOR:objective -->
 ## 1. OBJECTIVE
+<!-- /ANCHOR:objective -->
+<!-- ANCHOR:scope -->
 ## 2. SCOPE
+<!-- /ANCHOR:scope -->
+<!-- ANCHOR:implementation -->
 ## 3. IMPLEMENTATION
 ```
 
@@ -286,6 +297,8 @@ estimated_loc: 350
 
 **Example before adaptation:**
 ```markdown
+<!-- /ANCHOR:implementation -->
+<!-- ANCHOR:problem -->
 ## Problem
 
 [PLACEHOLDER: Describe the problem this solves]
@@ -298,6 +311,8 @@ double-click and submit forms multiple times.
 
 **Example after adaptation:**
 ```markdown
+<!-- /ANCHOR:problem -->
+<!-- ANCHOR:problem-2 -->
 ## Problem
 
 The form submission button doesn't show loading state, causing users to
@@ -321,6 +336,8 @@ submissions are duplicates.
 
 ---
 
+<!-- /ANCHOR:problem-2 -->
+<!-- ANCHOR:template-adaptation-process -->
 ## 4. TEMPLATE ADAPTATION PROCESS
 
 ### Step-by-Step Adaptation
@@ -376,6 +393,8 @@ cp .opencode/skill/system-spec-kit/templates/level_N/[template].md specs/###-nam
 
 ---
 
+<!-- /ANCHOR:template-adaptation-process -->
+<!-- ANCHOR:supporting-templates -->
 ## 5. SUPPORTING TEMPLATES
 
 ### research.md - Comprehensive Feature Research
@@ -508,6 +527,8 @@ cp .opencode/skill/system-spec-kit/templates/level_3/decision-record.md specs/##
 
 ---
 
+<!-- /ANCHOR:supporting-templates -->
+<!-- ANCHOR:session-management-templates -->
 ## 6. SESSION MANAGEMENT TEMPLATES
 
 These templates support session continuity, temporary workspaces, and context preservation.
@@ -691,6 +712,8 @@ node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js spe
 
 ---
 
+<!-- /ANCHOR:session-management-templates -->
+<!-- ANCHOR:quality-standards -->
 ## 7. QUALITY STANDARDS
 
 ### Adherence Rules
@@ -751,6 +774,8 @@ For manual upgrades (fallback), copy the required templates from the target leve
 
 ---
 
+<!-- /ANCHOR:quality-standards -->
+<!-- ANCHOR:common-mistakes -->
 ## 8. COMMON MISTAKES
 
 ### Mistake 1: Creating from Scratch
@@ -773,6 +798,8 @@ cp .opencode/skill/system-spec-kit/templates/level_1/spec.md specs/042-feature/s
 
 **Wrong:**
 ```markdown
+<!-- /ANCHOR:common-mistakes -->
+<!-- ANCHOR:problem-3 -->
 ## Problem
 
 [PLACEHOLDER: Describe the problem]
@@ -780,6 +807,8 @@ cp .opencode/skill/system-spec-kit/templates/level_1/spec.md specs/042-feature/s
 
 **Right:**
 ```markdown
+<!-- /ANCHOR:problem-3 -->
+<!-- ANCHOR:problem-4 -->
 ## Problem
 
 The form submission button doesn't show loading state, causing duplicate submissions.
@@ -793,21 +822,31 @@ The form submission button doesn't show loading state, causing duplicate submiss
 
 **Wrong:**
 ```markdown
+<!-- /ANCHOR:problem-4 -->
+<!-- ANCHOR:objective-2 -->
 ## 1. OBJECTIVE
 [...]
 
+<!-- /ANCHOR:objective-2 -->
+<!-- ANCHOR:implementation-2 -->
 ## 3. IMPLEMENTATION
 [...]
 ```
 
 **Right:**
 ```markdown
+<!-- /ANCHOR:implementation-2 -->
+<!-- ANCHOR:objective-3 -->
 ## 1. OBJECTIVE
 [...]
 
+<!-- /ANCHOR:objective-3 -->
+<!-- ANCHOR:scope-2 -->
 ## 2. SCOPE
 N/A - Single file change, no scope considerations
 
+<!-- /ANCHOR:scope-2 -->
+<!-- ANCHOR:implementation-3 -->
 ## 3. IMPLEMENTATION
 [...]
 ```
@@ -850,6 +889,8 @@ spec.md and plan.md exist but don't reference each other
 
 ---
 
+<!-- /ANCHOR:implementation-3 -->
+<!-- ANCHOR:troubleshooting -->
 ## 9. TROUBLESHOOTING
 
 ### "I don't know what to put in this section"
@@ -880,6 +921,8 @@ spec.md and plan.md exist but don't reference each other
 
 ---
 
+<!-- /ANCHOR:troubleshooting -->
+<!-- ANCHOR:using-sub-folders-for-organization -->
 ## 10. USING SUB-FOLDERS FOR ORGANIZATION
 
 There are **two distinct sub-folder systems**:
@@ -1044,6 +1087,8 @@ The enforce-spec-folder workflow includes sub-folder detection:
 
 **In parent spec.md:**
 ```markdown
+<!-- /ANCHOR:using-sub-folders-for-organization -->
+<!-- ANCHOR:related-work -->
 ## Related Work
 
 This feature includes work organized in sub-folders:
@@ -1056,6 +1101,8 @@ See each sub-folder's README.md for details.
 
 **In sub-folder README.md:**
 ```markdown
+<!-- /ANCHOR:related-work -->
+<!-- ANCHOR:parent-spec -->
 ## Parent Spec
 
 - **Parent**: [Skill Standardization](../spec.md)
@@ -1066,6 +1113,8 @@ See each sub-folder's README.md for details.
 
 ---
 
+<!-- /ANCHOR:parent-spec -->
+<!-- ANCHOR:related-resources -->
 ## 11. RELATED RESOURCES
 
 ### Reference Files
@@ -1112,3 +1161,4 @@ Templates are now organized in level folders for pre-expanded, level-appropriate
 - `workflows-code` - Implementation, debugging, and verification lifecycle
 - `system-spec-kit` - Context preservation with semantic memory
 - `workflows-git` - Git workspace setup and clean commits
+<!-- /ANCHOR:related-resources -->

@@ -9,6 +9,7 @@ React Context patterns, Zustand setup, Jotai atomic state, Redux Toolkit integra
 
 ---
 
+<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 ### Purpose
@@ -31,6 +32,8 @@ Provides comprehensive guidance on state management strategies for React applica
 
 ---
 
+<!-- /ANCHOR:overview -->
+<!-- ANCHOR:state-categories -->
 ## 2. STATE CATEGORIES
 
 ### Understanding State Types
@@ -76,6 +79,8 @@ Provides comprehensive guidance on state management strategies for React applica
 
 ---
 
+<!-- /ANCHOR:state-categories -->
+<!-- ANCHOR:react-context -->
 ## 3. REACT CONTEXT
 
 ### Basic Context Pattern
@@ -335,6 +340,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
 ---
 
+<!-- /ANCHOR:react-context -->
+<!-- ANCHOR:zustand -->
 ## 4. ZUSTAND
 
 ### Why Zustand
@@ -665,6 +672,8 @@ export const useDataStore = create<DataState>((set, get) => ({
 
 ---
 
+<!-- /ANCHOR:zustand -->
+<!-- ANCHOR:jotai-atomic-state -->
 ## 5. JOTAI (ATOMIC STATE)
 
 ### Why Jotai
@@ -898,6 +907,8 @@ function CartSummary() {
 
 ---
 
+<!-- /ANCHOR:jotai-atomic-state -->
+<!-- ANCHOR:redux-toolkit-when-needed -->
 ## 6. REDUX TOOLKIT (WHEN NEEDED)
 
 ### When to Use Redux
@@ -1067,6 +1078,8 @@ function UserProfile() {
 
 ---
 
+<!-- /ANCHOR:redux-toolkit-when-needed -->
+<!-- ANCHOR:server-state-vs-client-state -->
 ## 7. SERVER STATE VS CLIENT STATE
 
 ### The Separation Principle
@@ -1196,6 +1209,8 @@ function ProductsPage() {
 
 ---
 
+<!-- /ANCHOR:server-state-vs-client-state -->
+<!-- ANCHOR:form-state-management -->
 ## 8. FORM STATE MANAGEMENT
 
 ### React Hook Form with Zustand
@@ -1334,6 +1349,8 @@ export const useWizardStore = create<WizardState>()(
 
 ---
 
+<!-- /ANCHOR:form-state-management -->
+<!-- ANCHOR:url-state-management -->
 ## 9. URL STATE MANAGEMENT
 
 ### Using nuqs for URL State
@@ -1420,6 +1437,8 @@ function Filters() {
 
 ---
 
+<!-- /ANCHOR:url-state-management -->
+<!-- ANCHOR:quick-reference -->
 ## 10. QUICK REFERENCE
 
 ### State Solution Decision Tree
@@ -1464,6 +1483,8 @@ What type of state?
 
 ---
 
+<!-- /ANCHOR:quick-reference -->
+<!-- ANCHOR:related-resources -->
 ## 11. RELATED RESOURCES
 
 ### Related References
@@ -1472,3 +1493,4 @@ What type of state?
 - [Data Fetching](./data_fetching.md) - React Query and server state patterns
 - [Forms & Validation](./forms_validation.md) - Form state with React Hook Form
 - [React/Next.js Standards](./react_nextjs_standards.md) - Project structure
+<!-- /ANCHOR:related-resources -->

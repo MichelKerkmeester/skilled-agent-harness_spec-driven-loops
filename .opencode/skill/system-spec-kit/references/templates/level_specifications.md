@@ -9,6 +9,7 @@ Complete specifications for all documentation levels using the CORE + ADDENDUM a
 
 ---
 
+<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 ### Template Architecture: CORE + ADDENDUM (v2.2)
@@ -75,6 +76,8 @@ Level 3+ (Extended):    +Enterprise governance, AI protocols (~1075 LOC)
 
 ---
 
+<!-- /ANCHOR:overview -->
+<!-- ANCHOR:level-1-baseline-documentation-loc-guidance-100 -->
 ## 2. LEVEL 1: BASELINE DOCUMENTATION (LOC guidance: <100)
 
 ### When to Use
@@ -165,6 +168,8 @@ Level 3+ (Extended):    +Enterprise governance, AI protocols (~1075 LOC)
 
 ---
 
+<!-- /ANCHOR:level-1-baseline-documentation-loc-guidance-100 -->
+<!-- ANCHOR:level-2-verification-added-loc-guidance-100-499 -->
 ## 3. LEVEL 2: VERIFICATION ADDED (LOC guidance: 100-499)
 
 ### When to Use
@@ -263,6 +268,8 @@ specs/012-user-profile-api/
 
 **Checklist Example:**
 ```markdown
+<!-- /ANCHOR:level-2-verification-added-loc-guidance-100-499 -->
+<!-- ANCHOR:implementation-checklist -->
 ## Implementation Checklist
 
 ### P0 - Blockers
@@ -279,6 +286,8 @@ specs/012-user-profile-api/
 
 ---
 
+<!-- /ANCHOR:implementation-checklist -->
+<!-- ANCHOR:level-3-full-documentation-loc-guidance-500 -->
 ## 4. LEVEL 3: FULL DOCUMENTATION (LOC guidance: ≥500)
 
 ### When to Use
@@ -362,6 +371,8 @@ specs/012-user-profile-api/
 
 ---
 
+<!-- /ANCHOR:level-3-full-documentation-loc-guidance-500 -->
+<!-- ANCHOR:level-3-extended-documentation-complexity-score-80-100 -->
 ## 5. LEVEL 3+: EXTENDED DOCUMENTATION (Complexity score: 80-100)
 
 ### When to Use
@@ -416,6 +427,8 @@ Level 3+ is auto-detected via complexity scoring for highly complex tasks:
 
 **Status Reporting Format:**
 ```
+<!-- /ANCHOR:level-3-extended-documentation-complexity-score-80-100 -->
+<!-- ANCHOR:status-update-timestamp -->
 ## Status Update - [TIMESTAMP]
 - **Task**: T### - [Description]
 - **Status**: [IN_PROGRESS | COMPLETED | BLOCKED]
@@ -504,6 +517,8 @@ Level 3+ is auto-detected via complexity scoring for highly complex tasks:
 
 ---
 
+<!-- /ANCHOR:status-update-timestamp -->
+<!-- ANCHOR:level-migration -->
 ## 6. LEVEL MIGRATION
 
 ### Script-Assisted Upgrade (Recommended)
@@ -561,6 +576,8 @@ If the script is unavailable, manually add the required files:
 **Changelog example:**
 
 ```markdown
+<!-- /ANCHOR:level-migration -->
+<!-- ANCHOR:change-log -->
 ## Change Log
 - 2025-11-15: Created as Level 1 (simple feature) - spec.md, plan.md, tasks.md
 - 2025-11-16: Escalated to Level 2 (discovered validation needs) - added checklist.md
@@ -587,6 +604,8 @@ If the script is unavailable, manually add the required files:
 
 ---
 
+<!-- /ANCHOR:change-log -->
+<!-- ANCHOR:status-field-convention -->
 ## 7. STATUS FIELD CONVENTION
 
 Every spec.md should include a status field to track lifecycle:
@@ -629,6 +648,8 @@ active (resume)
 
 ---
 
+<!-- /ANCHOR:status-field-convention -->
+<!-- ANCHOR:related-specs-update-vs-create -->
 ## 8. RELATED SPECS: UPDATE VS CREATE
 
 ### When to UPDATE Existing Spec
@@ -704,6 +725,8 @@ Search existing specs (folder names, titles)
 
 ---
 
+<!-- /ANCHOR:related-specs-update-vs-create -->
+<!-- ANCHOR:cross-cutting-templates-any-level -->
 ## 9. CROSS-CUTTING TEMPLATES (ANY LEVEL)
 
 Some templates are not level-specific but can be used at any documentation level. These support session management, context preservation, and work summaries.
@@ -751,6 +774,8 @@ Some templates are not level-specific but can be used at any documentation level
 
 ---
 
+<!-- /ANCHOR:cross-cutting-templates-any-level -->
+<!-- ANCHOR:related-resources -->
 ## 10. RELATED RESOURCES
 
 ### Reference Files
@@ -798,3 +823,4 @@ Some templates are not level-specific but can be used at any documentation level
 - `workflows-code` - Implementation, debugging, and verification lifecycle
 - `system-spec-kit` - Context preservation with semantic memory
 - `workflows-git` - Git workspace setup and clean commits
+<!-- /ANCHOR:related-resources -->

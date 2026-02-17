@@ -13,6 +13,7 @@ Orchestrates mandatory spec folder creation for all conversations involving file
 
 ---
 
+<!-- ANCHOR:when-to-use -->
 ## 1. WHEN TO USE
 
 ### What is a Spec Folder?
@@ -81,6 +82,8 @@ Routing to `@general`, `@write`, or other agents for spec documentation is a **h
 
 ---
 
+<!-- /ANCHOR:when-to-use -->
+<!-- ANCHOR:smart-routing -->
 ## 2. SMART ROUTING
 
 ### Activation Detection
@@ -247,6 +250,8 @@ Runtime configuration for the memory system:
 
 ---
 
+<!-- /ANCHOR:smart-routing -->
+<!-- ANCHOR:how-it-works -->
 ## 3. HOW IT WORKS
 
 ### Gate 3 Integration
@@ -362,10 +367,14 @@ The `checklist.md` is an **ACTIVE VERIFICATION TOOL**, not passive documentation
 
 **Example checklist entry:**
 ```markdown
+<!-- /ANCHOR:how-it-works -->
+<!-- ANCHOR:p0-blockers -->
 ## P0 - Blockers
 - [x] Auth flow working [Test: npm run test:auth - 12/12 passing]
 - [x] No console errors [Screenshot: evidence/console-clean.png]
 
+<!-- /ANCHOR:p0-blockers -->
+<!-- ANCHOR:p1-required -->
 ## P1 - Required  
 - [x] Unit tests added [File: tests/auth.test.ts - 8 new tests]
 - [ ] Documentation updated [DEFERRED: Will complete in follow-up PR]
@@ -448,11 +457,15 @@ Memory files are always saved to the child folder's `memory/` directory (e.g., `
 **Memory File Structure:**
 ```markdown
 <!-- ANCHOR:context -->
+<!-- /ANCHOR:p1-required -->
+<!-- ANCHOR:project-context -->
 ## Project Context
 [Auto-generated summary of conversation and decisions]
 <!-- /ANCHOR:context -->
 
 <!-- ANCHOR:state -->
+<!-- /ANCHOR:project-context -->
+<!-- ANCHOR:project-state-snapshot -->
 ## Project State Snapshot
 - Phase: Implementation
 - Last Action: Completed auth middleware
@@ -461,6 +474,8 @@ Memory files are always saved to the child folder's `memory/` directory (e.g., `
 <!-- /ANCHOR:state -->
 
 <!-- ANCHOR:artifacts -->
+<!-- /ANCHOR:project-state-snapshot -->
+<!-- ANCHOR:key-artifacts -->
 ## Key Artifacts
 - Modified: src/middleware/auth.ts
 - Created: src/utils/jwt.ts
@@ -590,6 +605,8 @@ Automated validation of spec folder contents via `validate.sh`.
 
 ---
 
+<!-- /ANCHOR:key-artifacts -->
+<!-- ANCHOR:rules -->
 ## 4. RULES
 
 ### ✅ ALWAYS
@@ -636,6 +653,8 @@ Automated validation of spec folder contents via `validate.sh`.
 
 ---
 
+<!-- /ANCHOR:rules -->
+<!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
 ### Documentation Created
@@ -681,6 +700,8 @@ Automated validation of spec folder contents via `validate.sh`.
 
 ---
 
+<!-- /ANCHOR:success-criteria -->
+<!-- ANCHOR:integration-points -->
 ## 6. INTEGRATION POINTS
 
 ### Priority System
@@ -719,6 +740,8 @@ Automated validation of spec folder contents via `validate.sh`.
 
 ---
 
+<!-- /ANCHOR:integration-points -->
+<!-- ANCHOR:related-resources -->
 ## 7. RELATED RESOURCES
 
 ### Related Skills
@@ -746,3 +769,4 @@ Automated validation of spec folder contents via `validate.sh`.
 ---
 
 **Remember**: This skill is the foundational documentation orchestrator. It enforces structure, template usage, context preservation, and validation for all file modifications. Every conversation that modifies files MUST have a spec folder.
+<!-- /ANCHOR:related-resources -->

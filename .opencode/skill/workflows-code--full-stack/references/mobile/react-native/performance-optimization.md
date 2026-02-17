@@ -9,6 +9,7 @@ A practical guide to keeping a React Native/Expo app fast and responsive, explai
 
 ---
 
+<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 ### Purpose
@@ -29,6 +30,8 @@ Measure first, then optimize. Most performance issues come from a small number o
 
 ---
 
+<!-- /ANCHOR:overview -->
+<!-- ANCHOR:the-golden-rule-measure-first -->
 ## 2. THE GOLDEN RULE: MEASURE FIRST
 
 **Don't optimize prematurely.** Most performance issues come from a small number of problems:
@@ -46,6 +49,8 @@ Measure first, then optimize. Most performance issues come from a small number o
 
 ---
 
+<!-- /ANCHOR:the-golden-rule-measure-first -->
+<!-- ANCHOR:quick-wins-things-that-almost-always-help -->
 ## 3. QUICK WINS: THINGS THAT ALMOST ALWAYS HELP
 
 ### Use expo-image Instead of Image
@@ -99,6 +104,8 @@ const styles = StyleSheet.create({
 
 ---
 
+<!-- /ANCHOR:quick-wins-things-that-almost-always-help -->
+<!-- ANCHOR:flashlist-high-performance-lists -->
 ## 4. FLASHLIST: HIGH-PERFORMANCE LISTS
 
 For high-performance lists (chat, feed), use `@shopify/flash-list` instead of FlatList.
@@ -158,6 +165,8 @@ import { FlashList } from "@shopify/flash-list";
 
 ---
 
+<!-- /ANCHOR:flashlist-high-performance-lists -->
+<!-- ANCHOR:flatlist-optimization-deep-dive -->
 ## 5. FLATLIST OPTIMIZATION DEEP DIVE
 
 ### The Problem
@@ -224,6 +233,8 @@ const renderItem = useCallback(({ item }) => (
 
 ---
 
+<!-- /ANCHOR:flatlist-optimization-deep-dive -->
+<!-- ANCHOR:when-to-use-react-memo-usecallback-usememo -->
 ## 6. WHEN TO USE REACT.MEMO, USECALLBACK, USEMEMO
 
 ### Decision Tree
@@ -289,6 +300,8 @@ const fullName = useMemo(() => `${first} ${last}`, [first, last]);  // Just do i
 
 ---
 
+<!-- /ANCHOR:when-to-use-react-memo-usecallback-usememo -->
+<!-- ANCHOR:profiling-how-to-find-performance-issues -->
 ## 7. PROFILING: HOW TO FIND PERFORMANCE ISSUES
 
 ### React DevTools Profiler
@@ -329,6 +342,8 @@ console.log(`Operation took ${duration.toFixed(2)}ms`);
 
 ---
 
+<!-- /ANCHOR:profiling-how-to-find-performance-issues -->
+<!-- ANCHOR:api-layer-optimizations -->
 ## 8. API LAYER OPTIMIZATIONS
 
 ### What's Already Built In
@@ -368,6 +383,8 @@ useEffect(() => {
 
 ---
 
+<!-- /ANCHOR:api-layer-optimizations -->
+<!-- ANCHOR:redux-state-avoiding-unnecessary-re-renders -->
 ## 9. REDUX STATE: AVOIDING UNNECESSARY RE-RENDERS
 
 ### Problem: Over-selecting
@@ -407,6 +424,8 @@ const selectFilteredOrders = createSelector(
 
 ---
 
+<!-- /ANCHOR:redux-state-avoiding-unnecessary-re-renders -->
+<!-- ANCHOR:memory-leaks-prevention-and-detection -->
 ## 10. MEMORY LEAKS: PREVENTION AND DETECTION
 
 ### Common Causes
@@ -474,6 +493,8 @@ useEffect(() => {
 
 ---
 
+<!-- /ANCHOR:memory-leaks-prevention-and-detection -->
+<!-- ANCHOR:images-the-big-performance-win -->
 ## 11. IMAGES: THE BIG PERFORMANCE WIN
 
 ### expo-image Best Practices
@@ -513,6 +534,8 @@ useEffect(() => {
 
 ---
 
+<!-- /ANCHOR:images-the-big-performance-win -->
+<!-- ANCHOR:animations-keep-them-smooth -->
 ## 12. ANIMATIONS: KEEP THEM SMOOTH
 
 ### Rule: Use Native Driver
@@ -551,6 +574,8 @@ const animatedStyle = useAnimatedStyle(() => ({
 
 ---
 
+<!-- /ANCHOR:animations-keep-them-smooth -->
+<!-- ANCHOR:debugging-production-performance -->
 ## 13. DEBUGGING PRODUCTION PERFORMANCE
 
 ### Disable Console Logs in Production
@@ -565,6 +590,8 @@ if (ENV.ENV_NAME !== 'production') {
 
 ---
 
+<!-- /ANCHOR:debugging-production-performance -->
+<!-- ANCHOR:image-processing-before-upload -->
 ## 14. IMAGE PROCESSING BEFORE UPLOAD
 
 Use `expo-image-manipulator` to resize images before uploading to reduce upload time and server storage.
@@ -598,6 +625,8 @@ const cachedImage = await processedImage.saveAsync({
 
 ---
 
+<!-- /ANCHOR:image-processing-before-upload -->
+<!-- ANCHOR:deferring-non-critical-work -->
 ## 15. DEFERRING NON-CRITICAL WORK
 
 Use `InteractionManager` to defer heavy operations until animations and interactions are complete.
@@ -641,6 +670,8 @@ const _keyboardDidShow = () => {
 
 ---
 
+<!-- /ANCHOR:deferring-non-critical-work -->
+<!-- ANCHOR:throttle-vs-debounce -->
 ## 16. THROTTLE VS DEBOUNCE
 
 ### When to Use Which
@@ -725,6 +756,8 @@ Debounce (300ms): User types, pauses, types again
 
 ---
 
+<!-- /ANCHOR:throttle-vs-debounce -->
+<!-- ANCHOR:common-performance-mistakes -->
 ## 17. COMMON PERFORMANCE MISTAKES
 
 | ❌ Don't | ✅ Do | Why |
@@ -739,6 +772,8 @@ Debounce (300ms): User types, pauses, types again
 
 ---
 
+<!-- /ANCHOR:common-performance-mistakes -->
+<!-- ANCHOR:key-files-reference -->
 ## 18. KEY FILES REFERENCE
 
 | Purpose | Path |
@@ -753,6 +788,8 @@ Debounce (300ms): User types, pauses, types again
 
 ---
 
+<!-- /ANCHOR:key-files-reference -->
+<!-- ANCHOR:related-resources -->
 ## 19. RELATED RESOURCES
 
 ### Related References
@@ -760,3 +797,4 @@ Debounce (300ms): User types, pauses, types again
 - [React Hooks Patterns](./react-hooks-patterns.md) - Custom hooks and state management
 - [Expo Patterns](./expo-patterns.md) - Expo-specific patterns and configuration
 - [Navigation Patterns](./navigation-patterns.md) - React Navigation patterns
+<!-- /ANCHOR:related-resources -->

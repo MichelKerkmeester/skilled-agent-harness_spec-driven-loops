@@ -9,12 +9,15 @@ How to execute spec folder operations - validation, completion checking, context
 
 ---
 
+<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 This document covers validation, completion checking, context saving, folder creation, and template composition operations.
 
 ---
 
+<!-- /ANCHOR:overview -->
+<!-- ANCHOR:validation -->
 ## 2. VALIDATION
 
 ### validate.sh
@@ -42,6 +45,8 @@ bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh --json specs/001-f
 
 ---
 
+<!-- /ANCHOR:validation -->
+<!-- ANCHOR:completion-checking -->
 ## 3. COMPLETION CHECKING
 
 ### check-completion.sh
@@ -65,6 +70,8 @@ bash .opencode/skill/system-spec-kit/scripts/spec/check-completion.sh --json spe
 
 ---
 
+<!-- /ANCHOR:completion-checking -->
+<!-- ANCHOR:context-saving -->
 ## 4. CONTEXT SAVING
 
 ### generate-context.ts
@@ -89,6 +96,8 @@ node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js /tm
 
 ---
 
+<!-- /ANCHOR:context-saving -->
+<!-- ANCHOR:spec-folder-creation -->
 ## 5. SPEC FOLDER CREATION
 
 ### spec/create.sh
@@ -118,6 +127,8 @@ bash .opencode/skill/system-spec-kit/scripts/spec/create.sh --subfolder specs/00
 
 ---
 
+<!-- /ANCHOR:spec-folder-creation -->
+<!-- ANCHOR:level-recommendation -->
 ## 6. LEVEL RECOMMENDATION
 
 ### recommend-level.sh
@@ -143,6 +154,8 @@ bash .opencode/skill/system-spec-kit/scripts/spec/recommend-level.sh --auth --ap
 
 ---
 
+<!-- /ANCHOR:level-recommendation -->
+<!-- ANCHOR:template-composition -->
 ## 7. TEMPLATE COMPOSITION
 
 ### compose.sh
@@ -192,6 +205,8 @@ bash .opencode/skill/system-spec-kit/scripts/templates/compose.sh 2 3
 
 ---
 
+<!-- /ANCHOR:template-composition -->
+<!-- ANCHOR:memory-workflow-12-steps -->
 ## 8. MEMORY WORKFLOW (12 Steps)
 
 The `generate-context.ts` script orchestrates a 12-step workflow via `workflow.ts`:
@@ -247,9 +262,12 @@ Low quality sessions (<20 score) receive a warning header in the output.
 
 ---
 
+<!-- /ANCHOR:memory-workflow-12-steps -->
+<!-- ANCHOR:related-resources -->
 ## 9. RELATED RESOURCES
 
 - [Validation Rules](../validation/validation_rules.md)
 - [Folder Routing](../structure/folder_routing.md)
 - [Quick Reference](../workflows/quick_reference.md)
 - [Template Guide](../templates/template_guide.md)
+<!-- /ANCHOR:related-resources -->

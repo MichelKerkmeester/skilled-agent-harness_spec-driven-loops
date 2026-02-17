@@ -9,6 +9,7 @@ Mandatory async/await patterns for Node.js backend projects defining promise han
 
 ---
 
+<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 ### Purpose
@@ -42,6 +43,8 @@ Level 2: Related knowledge files
 
 ---
 
+<!-- /ANCHOR:overview -->
+<!-- ANCHOR:promise-fundamentals -->
 ## 2. PROMISE FUNDAMENTALS
 
 ### How Do I Create Promises?
@@ -130,6 +133,8 @@ await promise
 
 ---
 
+<!-- /ANCHOR:promise-fundamentals -->
+<!-- ANCHOR:async-await-patterns -->
 ## 3. ASYNC/AWAIT PATTERNS
 
 ### Basic Async Function Structure
@@ -224,6 +229,8 @@ async function processCheckout(cartId: string): Promise<Order> {
 
 ---
 
+<!-- /ANCHOR:async-await-patterns -->
+<!-- ANCHOR:error-handling-in-async-code -->
 ## 4. ERROR HANDLING IN ASYNC CODE
 
 ### Try/Catch Patterns
@@ -371,6 +378,8 @@ if (failures.length > 0) {
 
 ---
 
+<!-- /ANCHOR:error-handling-in-async-code -->
+<!-- ANCHOR:concurrent-operations -->
 ## 5. CONCURRENT OPERATIONS
 
 ### Promise.all - All Must Succeed
@@ -536,6 +545,8 @@ async function rateLimitedProcess<T, R>(
 
 ---
 
+<!-- /ANCHOR:concurrent-operations -->
+<!-- ANCHOR:retry-patterns -->
 ## 6. RETRY PATTERNS
 
 ### Basic Retry
@@ -669,6 +680,8 @@ async function retryWithJitter<T>(
 
 ---
 
+<!-- /ANCHOR:retry-patterns -->
+<!-- ANCHOR:timeout-patterns -->
 ## 7. TIMEOUT PATTERNS
 
 ### Basic Timeout
@@ -768,6 +781,8 @@ operation.cancel();
 
 ---
 
+<!-- /ANCHOR:timeout-patterns -->
+<!-- ANCHOR:stream-processing -->
 ## 8. STREAM PROCESSING
 
 ### Readable Stream Patterns
@@ -913,6 +928,8 @@ async function* iterateCursor<T>(
 
 ---
 
+<!-- /ANCHOR:stream-processing -->
+<!-- ANCHOR:event-emitter-patterns -->
 ## 9. EVENT EMITTER PATTERNS
 
 ### Typed Event Emitter
@@ -1058,6 +1075,8 @@ class AsyncQueue<T> extends EventEmitter {
 
 ---
 
+<!-- /ANCHOR:event-emitter-patterns -->
+<!-- ANCHOR:resource-management -->
 ## 10. RESOURCE MANAGEMENT
 
 ### Cleanup Patterns
@@ -1194,6 +1213,8 @@ async function queryDatabase(): Promise<Data> {
 
 ---
 
+<!-- /ANCHOR:resource-management -->
+<!-- ANCHOR:common-anti-patterns -->
 ## 11. COMMON ANTI-PATTERNS
 
 ### Avoid These Patterns
@@ -1279,6 +1300,8 @@ async function needsAsync(): Promise<number> {
 
 ---
 
+<!-- /ANCHOR:common-anti-patterns -->
+<!-- ANCHOR:rules -->
 ## 12. RULES
 
 ### ALWAYS
@@ -1322,6 +1345,8 @@ async function needsAsync(): Promise<number> {
 
 ---
 
+<!-- /ANCHOR:rules -->
+<!-- ANCHOR:related-resources -->
 ## 13. RELATED RESOURCES
 
 | File                                         | Purpose                                    |
@@ -1329,3 +1354,4 @@ async function needsAsync(): Promise<number> {
 | [nodejs_standards.md](./nodejs_standards.md) | Project structure and logging              |
 | [express_patterns.md](./express_patterns.md) | Async middleware and error handling        |
 | [testing_strategy.md](./testing_strategy.md) | Testing async code with Jest               |
+<!-- /ANCHOR:related-resources -->

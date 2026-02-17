@@ -202,15 +202,12 @@ The YAML contains: detailed step activities, checkpoints, confidence scoring, er
 
 ---
 
-## Agent Routing
+## CONSTRAINTS
 
-This command dispatches a specialized agent at a specific workflow step (see YAML for details):
-
-| Step | Agent | Rule | Purpose |
-|------|-------|------|---------|
-| 5b: Quality Review | @review | §3 — @review for quality scoring | 100-point rubric scoring of created README |
-
-**Agent file**: `.opencode/agent/review.md`
+- **DO NOT** dispatch any agent (`@review`) from this document
+- **DO NOT** dispatch `@review` to review this workflow or command prompt
+- **ALL** agent dispatching is handled by the YAML workflow steps — this document is setup + reference only
+- **FIRST ACTION** is always: run Phase 0, then Setup Phase, then load the YAML file
 
 ---
 
@@ -225,8 +222,6 @@ This command dispatches a specialized agent at a specific workflow step (see YAM
 | **Spec Folder** | Not required - the guide/README serves as its own spec      |
 
 ---
-
-<!-- REFERENCE ONLY -->
 
 ## VIOLATION SELF-DETECTION (BLOCKING)
 
@@ -263,8 +258,6 @@ FOR WORKFLOW VIOLATIONS:
 6. MARK step ✅ in tracking table
 7. CONTINUE to next step in sequence
 ```
-
-<!-- END REFERENCE -->
 
 ---
 
@@ -353,7 +346,7 @@ STEP 2 (Discovery) REQUIREMENTS:
 STEP 4 (Generation) REQUIREMENTS:
 ├─ MUST include title + tagline
 ├─ MUST include TABLE OF CONTENTS
-├─ MUST use numbered sections (emojis optional but recommended)
+├─ MUST use numbered sections
 ├─ MUST include tables for structured data
 └─ MUST NOT leave placeholder content
 
@@ -368,7 +361,7 @@ STEP 5 (Validation) REQUIREMENTS:
 
 ## 1. PURPOSE
 
-Create a comprehensive README.md following the documentation patterns from SpecKit, Memory System, and Code Environment READMEs. The README will use numbered sections (optionally with emojis), table of contents, tables for data, and proper progressive disclosure.
+Create a comprehensive README.md following the documentation patterns from SpecKit, Memory System, and Code Environment READMEs. The README will use numbered sections, table of contents, tables for data, and proper progressive disclosure.
 
 ---
 

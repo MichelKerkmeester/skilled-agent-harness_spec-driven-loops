@@ -9,12 +9,15 @@ Configuration options via environment variables for the Spec Kit system.
 
 ---
 
+<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 These variables control memory system behavior, token budgets, script execution, and batch processing.
 
 ---
 
+<!-- /ANCHOR:overview -->
+<!-- ANCHOR:memory-system-mcp-server -->
 ## 2. MEMORY SYSTEM (MCP SERVER)
 
 | Variable | Default | Purpose |
@@ -27,6 +30,8 @@ These variables control memory system behavior, token budgets, script execution,
 
 ---
 
+<!-- /ANCHOR:memory-system-mcp-server -->
+<!-- ANCHOR:embedding-providers -->
 ## 3. EMBEDDING PROVIDERS
 
 The MCP server supports multiple embedding providers for semantic search. Provider selection follows this precedence:
@@ -69,6 +74,8 @@ The MCP server supports multiple embedding providers for semantic search. Provid
 
 ---
 
+<!-- /ANCHOR:embedding-providers -->
+<!-- ANCHOR:token-budget -->
 ## 4. TOKEN BUDGET
 
 | Variable | Default | Purpose |
@@ -80,6 +87,8 @@ The MCP server supports multiple embedding providers for semantic search. Provid
 
 ---
 
+<!-- /ANCHOR:token-budget -->
+<!-- ANCHOR:scripts -->
 ## 5. SCRIPTS
 
 | Variable | Default | Purpose |
@@ -92,6 +101,8 @@ The MCP server supports multiple embedding providers for semantic search. Provid
 
 ---
 
+<!-- /ANCHOR:scripts -->
+<!-- ANCHOR:batch-processing -->
 ## 6. BATCH PROCESSING
 
 | Variable | Default | Purpose |
@@ -101,6 +112,8 @@ The MCP server supports multiple embedding providers for semantic search. Provid
 
 ---
 
+<!-- /ANCHOR:batch-processing -->
+<!-- ANCHOR:usage-examples -->
 ## 7. USAGE EXAMPLES
 
 ```bash
@@ -131,6 +144,8 @@ VOYAGE_EMBEDDINGS_MODEL=voyage-4-large VOYAGE_API_KEY=your-key node mcp_server/c
 
 ---
 
+<!-- /ANCHOR:usage-examples -->
+<!-- ANCHOR:feature-flags -->
 ## 8. FEATURE FLAGS
 
 Feature flags control experimental and optional functionality. All flags default to production-safe values.
@@ -191,9 +206,12 @@ SPEC_KIT_ENABLE_TRIGGERS=false node mcp_server/context-server.ts
 
 ---
 
+<!-- /ANCHOR:feature-flags -->
+<!-- ANCHOR:related-resources -->
 ## 9. RELATED RESOURCES
 
 - [Execution Methods](../workflows/execution_methods.md)
 - [Troubleshooting](../debugging/troubleshooting.md)
 - [Quick Reference](../workflows/quick_reference.md)
 - [Memory System Architecture](../memory/memory_system.md)
+<!-- /ANCHOR:related-resources -->

@@ -9,6 +9,7 @@ Event system architecture, SQS producers/consumers, message packs, and event rou
 
 ---
 
+<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 ### Purpose
@@ -37,6 +38,8 @@ infrastructure_events.md (this file)
 
 ---
 
+<!-- /ANCHOR:overview -->
+<!-- ANCHOR:architecture-overview -->
 ## 2. ARCHITECTURE OVERVIEW
 
 ### How does the event system work?
@@ -103,6 +106,8 @@ infrastructure_events.md (this file)
 
 ---
 
+<!-- /ANCHOR:architecture-overview -->
+<!-- ANCHOR:core-interfaces -->
 ## 3. CORE INTERFACES
 
 ### What interfaces define the event system?
@@ -133,6 +138,8 @@ type Consumer interface {
 
 ---
 
+<!-- /ANCHOR:core-interfaces -->
+<!-- ANCHOR:event-wrappers -->
 ## 4. EVENT WRAPPERS
 
 ### How do I create and emit an event?
@@ -210,6 +217,8 @@ event.WithDelayedConsumption(10 * time.Minute).Emit(ctx)
 
 ---
 
+<!-- /ANCHOR:event-wrappers -->
+<!-- ANCHOR:message-packs -->
 ## 5. MESSAGE PACKS
 
 ### How are event types defined?
@@ -329,6 +338,8 @@ func RegisterAllPacks(factories ...*message_factory.Factory) {
 
 ---
 
+<!-- /ANCHOR:message-packs -->
+<!-- ANCHOR:sqs-consumer -->
 ## 6. SQS CONSUMER
 
 ### How do I configure an SQS consumer?
@@ -415,6 +426,8 @@ func (s *Consumer) requeueOrDelete(ctx context.Context, log logger.Interface, er
 
 ---
 
+<!-- /ANCHOR:sqs-consumer -->
+<!-- ANCHOR:producers-pool -->
 ## 7. PRODUCERS POOL
 
 ### How do I configure a ProducersPool?
@@ -489,6 +502,8 @@ func (p *ProducersPool) Produce(ctx context.Context, wrapper UntypedEventWrapper
 
 ---
 
+<!-- /ANCHOR:producers-pool -->
+<!-- ANCHOR:message-router -->
 ## 8. MESSAGE ROUTER
 
 ### How do I route messages to handlers?
@@ -530,6 +545,8 @@ func (ms *PaymentsMicroservice) Run(ctx context.Context) error {
 
 ---
 
+<!-- /ANCHOR:message-router -->
+<!-- ANCHOR:forwarder -->
 ## 9. FORWARDER
 
 ### How do I use the Forwarder for simple routing?
@@ -563,6 +580,8 @@ err := forwarder.Forward(ctx, event1, event2)  // All must have same PayloadType
 
 ---
 
+<!-- /ANCHOR:forwarder -->
+<!-- ANCHOR:bundles -->
 ## 10. BUNDLES
 
 ### SQS Consumer Bundle
@@ -600,6 +619,8 @@ func init() {
 
 ---
 
+<!-- /ANCHOR:bundles -->
+<!-- ANCHOR:common-patterns -->
 ## 11. COMMON PATTERNS
 
 ### Emitting Events from Business Layer
@@ -657,6 +678,8 @@ func (ms *NotificationsMicroservice) Init(ctx context.Context) error {
 
 ---
 
+<!-- /ANCHOR:common-patterns -->
+<!-- ANCHOR:rules -->
 ## 12. RULES
 
 ### ALWAYS
@@ -685,6 +708,8 @@ func (ms *NotificationsMicroservice) Init(ctx context.Context) error {
 
 ---
 
+<!-- /ANCHOR:rules -->
+<!-- ANCHOR:related-resources -->
 ## 13. RELATED RESOURCES
 
 | Topic | Document | Section |
@@ -693,3 +718,4 @@ func (ms *NotificationsMicroservice) Init(ctx context.Context) error {
 | Business layer event emission | [domain_layers.md](./domain_layers.md) | Business layer |
 | Error handling | [go_standards.md](./go_standards.md) | Error handling |
 | Testing events | [testing_strategy.md](./testing_strategy.md) | E2E mock patterns |
+<!-- /ANCHOR:related-resources -->

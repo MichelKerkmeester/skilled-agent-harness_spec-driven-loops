@@ -9,6 +9,7 @@ Server Components vs Client Components, composition patterns, props handling, co
 
 ---
 
+<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 ### Purpose
@@ -31,6 +32,8 @@ Provides comprehensive guidance on React component patterns including Server Com
 
 ---
 
+<!-- /ANCHOR:overview -->
+<!-- ANCHOR:server-components-vs-client-components -->
 ## 2. SERVER COMPONENTS VS CLIENT COMPONENTS
 
 ### The Mental Model
@@ -273,6 +276,8 @@ export function CommentSection({ postId, initialComments }: CommentSectionProps)
 
 ---
 
+<!-- /ANCHOR:server-components-vs-client-components -->
+<!-- ANCHOR:component-folder-structure -->
 ## 3. COMPONENT FOLDER STRUCTURE
 
 ### Standard Component Structure
@@ -398,6 +403,8 @@ import { Button, Input, Modal } from '@/components/ui';
 
 ---
 
+<!-- /ANCHOR:component-folder-structure -->
+<!-- ANCHOR:props-and-children-patterns -->
 ## 4. PROPS AND CHILDREN PATTERNS
 
 ### TypeScript Props Interface
@@ -568,6 +575,8 @@ interface IconProps {
 
 ---
 
+<!-- /ANCHOR:props-and-children-patterns -->
+<!-- ANCHOR:compound-components -->
 ## 5. COMPOUND COMPONENTS
 
 ### Pattern Overview
@@ -857,6 +866,8 @@ export const Tabs = {
 
 ---
 
+<!-- /ANCHOR:compound-components -->
+<!-- ANCHOR:render-props-pattern -->
 ## 6. RENDER PROPS PATTERN
 
 ### When to Use
@@ -1095,6 +1106,8 @@ const [isEnabled, setIsEnabled] = useState(false);
 
 ---
 
+<!-- /ANCHOR:render-props-pattern -->
+<!-- ANCHOR:higher-order-components-hocs -->
 ## 7. HIGHER-ORDER COMPONENTS (HOCs)
 
 ### When to Use (Modern Approach)
@@ -1203,6 +1216,8 @@ const SafeChart = withErrorBoundary(
 
 ---
 
+<!-- /ANCHOR:higher-order-components-hocs -->
+<!-- ANCHOR:component-composition-patterns -->
 ## 8. COMPONENT COMPOSITION PATTERNS
 
 ### Slot Pattern
@@ -1401,6 +1416,8 @@ export function useCart() {
 
 ---
 
+<!-- /ANCHOR:component-composition-patterns -->
+<!-- ANCHOR:forwardref-and-imperative-handle -->
 ## 9. FORWARDREF AND IMPERATIVE HANDLE
 
 ### ForwardRef Pattern
@@ -1539,6 +1556,8 @@ function Page() {
 
 ---
 
+<!-- /ANCHOR:forwardref-and-imperative-handle -->
+<!-- ANCHOR:accessibility-patterns -->
 ## 10. ACCESSIBILITY PATTERNS
 
 ### ARIA Attributes in Components
@@ -1652,6 +1671,8 @@ export function TrapFocus({ children, active }: TrapFocusProps) {
 
 ---
 
+<!-- /ANCHOR:accessibility-patterns -->
+<!-- ANCHOR:quick-reference -->
 ## 11. QUICK REFERENCE
 
 ### Component Decision Tree
@@ -1702,6 +1723,8 @@ Need to access DOM?
 
 ---
 
+<!-- /ANCHOR:quick-reference -->
+<!-- ANCHOR:related-resources -->
 ## 12. RELATED RESOURCES
 
 ### Related References
@@ -1711,3 +1734,4 @@ Need to access DOM?
 - [Data Fetching](./data_fetching.md) - Server Actions and React Query integration
 - [Forms & Validation](./forms_validation.md) - React Hook Form and Zod integration
 - [Testing Strategy](./testing_strategy.md) - Component testing patterns
+<!-- /ANCHOR:related-resources -->

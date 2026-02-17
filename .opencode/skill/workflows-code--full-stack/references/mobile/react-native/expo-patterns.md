@@ -9,6 +9,7 @@ A practical guide to working with Expo in a React Native codebase, explaining WH
 
 ---
 
+<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 ### Purpose
@@ -29,6 +30,8 @@ Type-safe configuration + environment-aware builds + feature flags = maintainabl
 
 ---
 
+<!-- /ANCHOR:overview -->
+<!-- ANCHOR:quick-start-your-first-day -->
 ## 2. QUICK START: YOUR FIRST DAY
 
 If you're new to this project, here's what you need to know:
@@ -40,6 +43,8 @@ If you're new to this project, here's what you need to know:
 
 ---
 
+<!-- /ANCHOR:quick-start-your-first-day -->
+<!-- ANCHOR:understanding-the-configuration -->
 ## 3. UNDERSTANDING THE CONFIGURATION
 
 ### Why Dynamic Config (`app.config.ts`)?
@@ -213,6 +218,8 @@ npx expo prebuild --clean
 
 ---
 
+<!-- /ANCHOR:understanding-the-configuration -->
+<!-- ANCHOR:build-profiles-eas -->
 ## 4. BUILD PROFILES (EAS)
 
 ### When to Use Each Profile
@@ -256,6 +263,8 @@ eas build --profile production --platform ios
 
 ---
 
+<!-- /ANCHOR:build-profiles-eas -->
+<!-- ANCHOR:working-with-assets -->
 ## 5. WORKING WITH ASSETS
 
 ### Directory Structure Explained
@@ -328,6 +337,8 @@ import { generateImage } from 'assets';
 
 ---
 
+<!-- /ANCHOR:working-with-assets -->
+<!-- ANCHOR:environment-switching -->
 ## 6. ENVIRONMENT SWITCHING
 
 ### How Environments Work
@@ -373,6 +384,8 @@ const apiUrl = getApiBaseUrl(); // Returns correct URL for current env
 
 ---
 
+<!-- /ANCHOR:environment-switching -->
+<!-- ANCHOR:feature-flags -->
 ## 7. FEATURE FLAGS
 
 ### Why Feature Flags?
@@ -488,6 +501,8 @@ const isStatusEnabled = (status: string) => {
 
 ---
 
+<!-- /ANCHOR:feature-flags -->
+<!-- ANCHOR:expo-router-basics -->
 ## 8. EXPO-ROUTER BASICS
 
 ### File Structure = Routes
@@ -519,6 +534,8 @@ The handler in `+native-intent.tsx` parses these URLs and routes appropriately.
 
 ---
 
+<!-- /ANCHOR:expo-router-basics -->
+<!-- ANCHOR:splash-screen -->
 ## 9. SPLASH SCREEN
 
 ### How It Works
@@ -547,6 +564,8 @@ const handleNavigationReady = async () => {
 
 ---
 
+<!-- /ANCHOR:splash-screen -->
+<!-- ANCHOR:troubleshooting-guide -->
 ## 10. TROUBLESHOOTING GUIDE
 
 ### Metro Bundler Issues
@@ -592,6 +611,8 @@ npx expo prebuild --clean
 
 ---
 
+<!-- /ANCHOR:troubleshooting-guide -->
+<!-- ANCHOR:key-files-quick-reference -->
 ## 11. KEY FILES QUICK REFERENCE
 
 | What You Need | File Path |
@@ -606,6 +627,8 @@ npx expo prebuild --clean
 
 ---
 
+<!-- /ANCHOR:key-files-quick-reference -->
+<!-- ANCHOR:do-this-not-that -->
 ## 12. DO THIS, NOT THAT
 
 | ❌ Don't | ✅ Do | Why |
@@ -619,6 +642,8 @@ npx expo prebuild --clean
 
 ---
 
+<!-- /ANCHOR:do-this-not-that -->
+<!-- ANCHOR:related-resources -->
 ## 13. RELATED RESOURCES
 
 ### Related References
@@ -627,3 +652,4 @@ npx expo prebuild --clean
 - [React Hooks Patterns](./react-hooks-patterns.md) - Custom hooks and state management
 - [Performance Optimization](./performance-optimization.md) - Performance best practices
 - [Native Modules](./native-modules.md) - Native integrations
+<!-- /ANCHOR:related-resources -->

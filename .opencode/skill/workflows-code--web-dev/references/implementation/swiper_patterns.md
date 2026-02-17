@@ -9,6 +9,7 @@ Production-tested Swiper.js configurations for carousels and marquees with Inter
 
 ---
 
+<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 ### Purpose
@@ -39,6 +40,8 @@ Swiper carousels must pause when off-screen to conserve CPU. Use IntersectionObs
 
 ---
 
+<!-- /ANCHOR:overview -->
+<!-- ANCHOR:timeline-carousel-pattern -->
 ## 2. TIMELINE CAROUSEL PATTERN
 
 ### Configuration
@@ -160,6 +163,8 @@ function initTimelineSwiper() {
 
 ---
 
+<!-- /ANCHOR:timeline-carousel-pattern -->
+<!-- ANCHOR:marquee-pattern -->
 ## 3. MARQUEE PATTERN
 
 ### Configuration
@@ -255,6 +260,8 @@ if (cappedRepeats > 1) {
 
 ---
 
+<!-- /ANCHOR:marquee-pattern -->
+<!-- ANCHOR:intersectionobserver-autoplay-control -->
 ## 4. INTERSECTIONOBSERVER AUTOPLAY CONTROL
 
 ### Core Pattern
@@ -341,6 +348,8 @@ const visibilityObserver = createAutoplayVisibilityObserver(swiper, container);
 
 ---
 
+<!-- /ANCHOR:intersectionobserver-autoplay-control -->
+<!-- ANCHOR:accessibility-configuration -->
 ## 5. ACCESSIBILITY CONFIGURATION
 
 ### Interactive Carousels (a11y: enabled)
@@ -413,6 +422,8 @@ a11y: false,
 
 ---
 
+<!-- /ANCHOR:accessibility-configuration -->
+<!-- ANCHOR:webflow-class-naming -->
 ## 6. WEBFLOW CLASS NAMING
 
 ### Custom Class Configuration
@@ -482,6 +493,8 @@ navigation: {
 
 ---
 
+<!-- /ANCHOR:webflow-class-naming -->
+<!-- ANCHOR:initialization-patterns -->
 ## 7. INITIALIZATION PATTERNS
 
 ### CDN Initialization Guard
@@ -558,6 +571,8 @@ if (window.Webflow?.push) {
 
 ---
 
+<!-- /ANCHOR:initialization-patterns -->
+<!-- ANCHOR:common-patterns-summary -->
 ## 8. COMMON PATTERNS SUMMARY
 
 ### Configuration Templates
@@ -611,6 +626,8 @@ const marqueeConfig = {
 
 ---
 
+<!-- /ANCHOR:common-patterns-summary -->
+<!-- ANCHOR:troubleshooting -->
 ## 9. TROUBLESHOOTING
 
 ### Swiper Not Initializing
@@ -676,6 +693,8 @@ clone.setAttribute("aria-hidden", "true");
 
 ---
 
+<!-- /ANCHOR:troubleshooting -->
+<!-- ANCHOR:related-resources -->
 ## 10. RELATED RESOURCES
 
 ### Reference Files
@@ -693,3 +712,4 @@ clone.setAttribute("aria-hidden", "true");
 - [Swiper.js API Documentation](https://swiperjs.com/swiper-api)
 - [Swiper.js Accessibility](https://swiperjs.com/swiper-api#a11y)
 - [IntersectionObserver API](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver)
+<!-- /ANCHOR:related-resources -->

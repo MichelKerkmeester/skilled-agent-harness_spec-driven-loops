@@ -9,6 +9,7 @@ Quick reference for complexity-based level selection and feature enabling.
 
 ---
 
+<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 ### Purpose
@@ -24,6 +25,8 @@ This matrix provides quick-reference guidance for selecting the appropriate docu
 
 ---
 
+<!-- /ANCHOR:overview -->
+<!-- ANCHOR:level-selection-by-score -->
 ## 2. LEVEL SELECTION BY SCORE
 
 | Score Range | Level | Name         | Templates                                   | Features Auto-Enabled         |
@@ -35,6 +38,8 @@ This matrix provides quick-reference guidance for selecting the appropriate docu
 
 ---
 
+<!-- /ANCHOR:level-selection-by-score -->
+<!-- ANCHOR:dimension-scoring-signals -->
 ## 3. DIMENSION SCORING SIGNALS
 
 ### Scope (25% weight)
@@ -94,6 +99,8 @@ This matrix provides quick-reference guidance for selecting the appropriate docu
 
 ---
 
+<!-- /ANCHOR:dimension-scoring-signals -->
+<!-- ANCHOR:feature-decision-matrix -->
 ## 4. FEATURE DECISION MATRIX
 
 | Feature               | Level 1 | Level 2 | Level 3  | Level 3+ |
@@ -112,6 +119,8 @@ This matrix provides quick-reference guidance for selecting the appropriate docu
 
 ---
 
+<!-- /ANCHOR:feature-decision-matrix -->
+<!-- ANCHOR:content-scaling-matrix -->
 ## 5. CONTENT SCALING MATRIX
 
 | Content Type         | Level 1 | Level 2 | Level 3 | Level 3+ |
@@ -125,6 +134,8 @@ This matrix provides quick-reference guidance for selecting the appropriate docu
 
 ---
 
+<!-- /ANCHOR:content-scaling-matrix -->
+<!-- ANCHOR:quick-decision-guide -->
 ## 6. QUICK DECISION GUIDE
 
 ### When to Override Auto-Detection
@@ -168,6 +179,8 @@ Choose the appropriate template **style** based on user experience and requireme
 
 ---
 
+<!-- /ANCHOR:quick-decision-guide -->
+<!-- ANCHOR:example-classifications -->
 ## 7. EXAMPLE CLASSIFICATIONS
 
 | Task Description                         | Score | Level | Key Factors                      |
@@ -182,6 +195,8 @@ Choose the appropriate template **style** based on user experience and requireme
 
 ---
 
+<!-- /ANCHOR:example-classifications -->
+<!-- ANCHOR:cli-quick-reference -->
 ## 8. CLI QUICK REFERENCE
 
 ```bash
@@ -202,6 +217,8 @@ Choose the appropriate template **style** based on user experience and requireme
 
 ---
 
+<!-- /ANCHOR:cli-quick-reference -->
+<!-- ANCHOR:spec-traceability -->
 ## 9. SPEC TRACEABILITY
 
 This decision matrix addresses the following spec requirements:
@@ -218,6 +235,8 @@ This decision matrix addresses the following spec requirements:
 
 ---
 
+<!-- /ANCHOR:spec-traceability -->
+<!-- ANCHOR:related-resources -->
 ## 10. RELATED RESOURCES
 
 ### Asset Files
@@ -234,3 +253,4 @@ This decision matrix addresses the following spec requirements:
 
 ### Related Skills
 - `system-spec-kit` - Spec folder workflow orchestrator
+<!-- /ANCHOR:related-resources -->

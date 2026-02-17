@@ -9,6 +9,7 @@ Workflow-assisted pattern for organizing iterative work within existing spec fol
 
 ---
 
+<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 ### Purpose
@@ -28,6 +29,8 @@ Sub-folder versioning is **workflow-assisted**: the AI can suggest it during Opt
 
 ---
 
+<!-- /ANCHOR:overview -->
+<!-- ANCHOR:directory-structure -->
 ## 2. DIRECTORY STRUCTURE
 
 ```
@@ -51,6 +54,8 @@ specs/###-name/
 
 ---
 
+<!-- /ANCHOR:directory-structure -->
+<!-- ANCHOR:workflow-steps -->
 ## 3. WORKFLOW STEPS
 
 ### Step 1: Recognition
@@ -86,6 +91,8 @@ Spec folder path passed via CLI argument to generate-context.js (stateless - no 
 
 ---
 
+<!-- /ANCHOR:workflow-steps -->
+<!-- ANCHOR:naming-convention -->
 ## 4. NAMING CONVENTION
 
 - **Sub-folder format**: `{###}-{descriptive-name}` (script-generated or manual)
@@ -95,6 +102,8 @@ Spec folder path passed via CLI argument to generate-context.js (stateless - no 
 
 ---
 
+<!-- /ANCHOR:naming-convention -->
+<!-- ANCHOR:memory-context-routing -->
 ## 5. MEMORY CONTEXT ROUTING
 
 - Spec folder path passed explicitly via CLI argument (stateless)
@@ -105,6 +114,8 @@ Spec folder path passed via CLI argument to generate-context.js (stateless - no 
 
 ---
 
+<!-- /ANCHOR:memory-context-routing -->
+<!-- ANCHOR:example-use-case -->
 ## 6. EXAMPLE USE CASE
 
 ### Manual Sub-Folder Organization
@@ -153,6 +164,8 @@ Spec folder path passed via CLI argument to generate-context.js (stateless - no 
 
 ---
 
+<!-- /ANCHOR:example-use-case -->
+<!-- ANCHOR:benefits -->
 ## 7. BENEFITS
 
 - Clean separation of iterative work
@@ -163,6 +176,8 @@ Spec folder path passed via CLI argument to generate-context.js (stateless - no 
 
 ---
 
+<!-- /ANCHOR:benefits -->
+<!-- ANCHOR:generate-context-js-integration -->
 ## 8. generate-context.js Integration
 
 When using subfolder versioning, the memory save script (`generate-context.js`) fully supports nested paths.
@@ -195,6 +210,8 @@ Please specify the full path: parent/child
 
 ---
 
+<!-- /ANCHOR:generate-context-js-integration -->
+<!-- ANCHOR:related-resources -->
 ## 9. RELATED RESOURCES
 
 ### Reference Files
@@ -205,3 +222,4 @@ Please specify the full path: parent/child
 ### Related Skills
 - `system-spec-kit` - Spec folder workflow orchestrator
 - `system-spec-kit` - Context preservation with semantic memory
+<!-- /ANCHOR:related-resources -->

@@ -9,6 +9,7 @@ Maps documentation levels to required templates with ready-to-use copy commands.
 
 ---
 
+<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 ### Purpose
@@ -24,6 +25,8 @@ This asset provides the definitive source for which templates are required at ea
 
 ---
 
+<!-- /ANCHOR:overview -->
+<!-- ANCHOR:template-location -->
 ## 2. TEMPLATE LOCATION
 
 ### Directory Structure
@@ -76,6 +79,8 @@ compose.sh --verify           # Check if templates are current
 
 ---
 
+<!-- /ANCHOR:template-location -->
+<!-- ANCHOR:required-templates-by-level-progressive-enhancement -->
 ## 3. REQUIRED TEMPLATES BY LEVEL (Progressive Enhancement)
 
 ```
@@ -138,6 +143,8 @@ cp .opencode/skill/system-spec-kit/templates/research.md specs/###-name/research
 
 ---
 
+<!-- /ANCHOR:required-templates-by-level-progressive-enhancement -->
+<!-- ANCHOR:optional-templates-level-3-only -->
 ## 4. OPTIONAL TEMPLATES (Level 3 Only)
 
 These templates are OPTIONAL and only apply to Level 3 documentation:
@@ -152,6 +159,8 @@ These templates are OPTIONAL and only apply to Level 3 documentation:
 
 ---
 
+<!-- /ANCHOR:optional-templates-level-3-only -->
+<!-- ANCHOR:folder-structure-by-level-progressive-enhancement -->
 ## 5. FOLDER STRUCTURE BY LEVEL (Progressive Enhancement)
 
 ### Level 1: Baseline Documentation
@@ -241,6 +250,8 @@ specs/046-enterprise-migration/
 
 ---
 
+<!-- /ANCHOR:folder-structure-by-level-progressive-enhancement -->
+<!-- ANCHOR:template-structure-requirements -->
 ## 6. TEMPLATE STRUCTURE REQUIREMENTS
 
 All templates follow consistent structure:
@@ -310,6 +321,8 @@ Content that will be indexed...
 
 ---
 
+<!-- /ANCHOR:template-structure-requirements -->
+<!-- ANCHOR:template-adherence-rules -->
 ## 7. TEMPLATE ADHERENCE RULES
 
 **Non-negotiable rules:**
@@ -329,6 +342,8 @@ Content that will be indexed...
 
 ---
 
+<!-- /ANCHOR:template-adherence-rules -->
+<!-- ANCHOR:step-by-step-template-usage-progressive-enhancement -->
 ## 8. STEP-BY-STEP TEMPLATE USAGE (Progressive Enhancement)
 
 ### Step 1: Determine Level
@@ -410,6 +425,8 @@ Get explicit "yes/go ahead/proceed" before ANY file changes.
 
 ---
 
+<!-- /ANCHOR:step-by-step-template-usage-progressive-enhancement -->
+<!-- ANCHOR:related-resources -->
 ## 9. RELATED RESOURCES
 
 ### Asset Files
@@ -460,4 +477,4 @@ Get explicit "yes/go ahead/proceed" before ANY file changes.
 
 ### Related Skills
 - `system-spec-kit` - Spec folder workflow orchestrator
-- `workflows-documentation` - Document quality and skill creation
+- `workflows-documentation` - Document quality and skill creation<!-- /ANCHOR:related-resources -->

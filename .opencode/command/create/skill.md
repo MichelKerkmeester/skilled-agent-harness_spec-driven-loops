@@ -204,17 +204,12 @@ The YAML contains: detailed step activities, checkpoints, confidence scoring, er
 
 ---
 
-## Agent Routing
+## CONSTRAINTS
 
-This command dispatches specialized agents at specific workflow steps (see YAML for details):
-
-| Step | Agent | Rule | Purpose |
-|------|-------|------|---------|
-| 1b: Skill Discovery | @context | Rule 4 — ALL exploration through @context | Memory-first search for similar/duplicate skills |
-| 2: Spec Folder Setup | @speckit | Rule 5 — ALL spec folder docs through @speckit | Template-enforced spec.md + plan.md creation |
-| 8b: Quality Review | @review | §3 — @review for quality scoring | 100-point rubric scoring of created artifact |
-
-**Agent files**: `.opencode/agent/context.md`, `.opencode/agent/speckit.md`, `.opencode/agent/review.md`
+- **DO NOT** dispatch any agent (`@context`, `@speckit`, `@review`) from this document
+- **DO NOT** dispatch `@review` to review this workflow or command prompt
+- **ALL** agent dispatching is handled by the YAML workflow steps — this document is setup + reference only
+- **FIRST ACTION** is always: run Phase 0, then Setup Phase, then load the YAML file
 
 ---
 
@@ -399,10 +394,6 @@ flowchart TD
 
 ---
 
-<!-- REFERENCE ONLY -->
-
----
-
 ## 7. VIOLATION SELF-DETECTION (BLOCKING)
 
 **YOU ARE IN VIOLATION IF YOU:**
@@ -441,8 +432,6 @@ FOR WORKFLOW VIOLATIONS:
 6. MARK step ✅ in tracking table
 7. CONTINUE to next step in sequence
 ```
-
-<!-- END REFERENCE -->
 
 ---
 

@@ -15,6 +15,7 @@ importance_tier: "normal"
 
 ---
 
+<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 ### Core Principle
@@ -64,6 +65,8 @@ memory_index_scan({ includeReadmes: true })
 
 ---
 
+<!-- /ANCHOR:overview -->
+<!-- ANCHOR:discovery-functions -->
 ## 2. DISCOVERY FUNCTIONS
 
 ### findSkillReadmes()
@@ -111,6 +114,8 @@ Both discovery functions exclude the following directories:
 
 ---
 
+<!-- /ANCHOR:discovery-functions -->
+<!-- ANCHOR:importance-weights-and-scoring -->
 ## 3. IMPORTANCE WEIGHTS AND SCORING
 
 ### Tiered Importance System
@@ -144,6 +149,8 @@ This means at equal semantic relevance, user work memories always rank higher th
 
 ---
 
+<!-- /ANCHOR:importance-weights-and-scoring -->
+<!-- ANCHOR:yaml-frontmatter -->
 ## 4. YAML FRONTMATTER
 
 README files can include optional YAML frontmatter to improve indexing quality. When frontmatter is absent, the system falls back to filename-based metadata extraction.
@@ -178,6 +185,8 @@ importance_tier: "normal"
 
 ---
 
+<!-- /ANCHOR:yaml-frontmatter -->
+<!-- ANCHOR:anchor-tags -->
 ## 5. ANCHOR TAGS
 
 README files support `<!-- ANCHOR:name -->` tags for section-level retrieval, enabling token-efficient context loading.
@@ -218,6 +227,8 @@ five source types for comprehensive context retrieval.
 
 ---
 
+<!-- /ANCHOR:anchor-tags -->
+<!-- ANCHOR:configuration -->
 ## 6. CONFIGURATION
 
 ### The `includeReadmes` Parameter
@@ -248,6 +259,8 @@ memory_index_scan({ specFolder: "007-auth", includeReadmes: true })
 
 ---
 
+<!-- /ANCHOR:configuration -->
+<!-- ANCHOR:known-limitations -->
 ## 7. KNOWN LIMITATIONS
 
 ### Composite ID Matching Issue
@@ -285,6 +298,8 @@ memory_search({
 
 ---
 
+<!-- /ANCHOR:known-limitations -->
+<!-- ANCHOR:related-resources -->
 ## 8. RELATED RESOURCES
 
 ### Reference Files
@@ -298,3 +313,4 @@ memory_search({
 
 ### Related Skills
 - `system-spec-kit` - Parent skill orchestrating spec folder workflow
+<!-- /ANCHOR:related-resources -->

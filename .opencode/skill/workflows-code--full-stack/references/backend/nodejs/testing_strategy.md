@@ -9,6 +9,7 @@ Mandatory testing patterns for Node.js backend projects defining Jest configurat
 
 ---
 
+<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 ### Purpose
@@ -42,6 +43,8 @@ Level 2: Related knowledge files
 
 ---
 
+<!-- /ANCHOR:overview -->
+<!-- ANCHOR:test-organization -->
 ## 2. TEST ORGANIZATION
 
 ### Directory Structure
@@ -90,6 +93,8 @@ tests/
 
 ---
 
+<!-- /ANCHOR:test-organization -->
+<!-- ANCHOR:jest-configuration -->
 ## 3. JEST CONFIGURATION
 
 ### Install Dependencies
@@ -204,6 +209,8 @@ afterEach(() => {
 
 ---
 
+<!-- /ANCHOR:jest-configuration -->
+<!-- ANCHOR:unit-testing-patterns -->
 ## 4. UNIT TESTING PATTERNS
 
 ### Service Unit Test Structure
@@ -363,6 +370,8 @@ describe('error handling', () => {
 
 ---
 
+<!-- /ANCHOR:unit-testing-patterns -->
+<!-- ANCHOR:integration-testing-with-supertest -->
 ## 5. INTEGRATION TESTING WITH SUPERTEST
 
 ### API Test Setup
@@ -623,6 +632,8 @@ describe('Users API', () => {
 
 ---
 
+<!-- /ANCHOR:integration-testing-with-supertest -->
+<!-- ANCHOR:mocking-strategies -->
 ## 6. MOCKING STRATEGIES
 
 ### Module Mocking
@@ -737,6 +748,8 @@ describe('payment service', () => {
 
 ---
 
+<!-- /ANCHOR:mocking-strategies -->
+<!-- ANCHOR:test-fixtures -->
 ## 7. TEST FIXTURES
 
 ### Fixture Factory
@@ -849,6 +862,8 @@ export async function createUsersInDb(count: number): Promise<User[]> {
 
 ---
 
+<!-- /ANCHOR:test-fixtures -->
+<!-- ANCHOR:database-testing -->
 ## 8. DATABASE TESTING
 
 ### Test Database Setup
@@ -946,6 +961,8 @@ afterAll(async () => {
 
 ---
 
+<!-- /ANCHOR:database-testing -->
+<!-- ANCHOR:testing-async-code -->
 ## 9. TESTING ASYNC CODE
 
 ### Promise Resolution
@@ -1038,6 +1055,8 @@ describe('event emitter', () => {
 
 ---
 
+<!-- /ANCHOR:testing-async-code -->
+<!-- ANCHOR:coverage-and-reporting -->
 ## 10. COVERAGE AND REPORTING
 
 ### Coverage Configuration
@@ -1094,6 +1113,8 @@ open coverage/lcov-report/index.html
 
 ---
 
+<!-- /ANCHOR:coverage-and-reporting -->
+<!-- ANCHOR:ci-cd-integration -->
 ## 11. CI/CD INTEGRATION
 
 ### GitHub Actions Workflow
@@ -1216,6 +1237,8 @@ npm run test:unit
 
 ---
 
+<!-- /ANCHOR:ci-cd-integration -->
+<!-- ANCHOR:rules -->
 ## 12. RULES
 
 ### ALWAYS
@@ -1259,6 +1282,8 @@ npm run test:unit
 
 ---
 
+<!-- /ANCHOR:rules -->
+<!-- ANCHOR:related-resources -->
 ## 13. RELATED RESOURCES
 
 | File                                         | Purpose                                  |
@@ -1266,3 +1291,4 @@ npm run test:unit
 | [nodejs_standards.md](./nodejs_standards.md) | Project structure and configuration      |
 | [express_patterns.md](./express_patterns.md) | Controller patterns and middleware       |
 | [async_patterns.md](./async_patterns.md)     | Testing async code patterns              |
+<!-- /ANCHOR:related-resources -->

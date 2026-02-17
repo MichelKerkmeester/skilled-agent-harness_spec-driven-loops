@@ -15,6 +15,7 @@ Unified workflow guidance across 6 specialized code quality skills for frontend 
 
 ---
 
+<!-- ANCHOR:when-to-use -->
 ## 1. WHEN TO USE
 
 ### Activation Triggers
@@ -61,6 +62,8 @@ This orchestrator operates in four primary phases:
 
 ---
 
+<!-- /ANCHOR:when-to-use -->
+<!-- ANCHOR:smart-routing -->
 ## 2. SMART ROUTING
 
 ### Resource Loading Levels
@@ -286,6 +289,8 @@ def route_frontend_resources(task):
 
 ---
 
+<!-- /ANCHOR:smart-routing -->
+<!-- ANCHOR:how-it-works -->
 ## 3. HOW IT WORKS
 
 ### Development Lifecycle
@@ -453,6 +458,8 @@ See [verification_workflows.md](./references/verification/verification_workflows
 
 ---
 
+<!-- /ANCHOR:how-it-works -->
+<!-- ANCHOR:rules -->
 ## 4. RULES
 
 ### Phase 1: Implementation
@@ -571,6 +578,8 @@ See [error_recovery.md](./references/debugging/error_recovery.md) for CDN upload
 
 ---
 
+<!-- /ANCHOR:rules -->
+<!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
 ### Phase Completion Checklists
@@ -594,6 +603,8 @@ Run Lighthouse 3× in Incognito with mobile emulation, use median scores.
 
 ---
 
+<!-- /ANCHOR:success-criteria -->
+<!-- ANCHOR:integration-points -->
 ## 6. INTEGRATION POINTS
 
 ### Framework Integration
@@ -628,6 +639,8 @@ Key integrations:
 
 ---
 
+<!-- /ANCHOR:integration-points -->
+<!-- ANCHOR:external-resources -->
 ## 7. EXTERNAL RESOURCES
 
 ### Official Documentation
@@ -649,6 +662,8 @@ Key integrations:
 
 ---
 
+<!-- /ANCHOR:external-resources -->
+<!-- ANCHOR:related-resources -->
 ## 8. RELATED RESOURCES
 
 ### Related Skills
@@ -679,6 +694,8 @@ Key integrations:
 
 ---
 
+<!-- /ANCHOR:related-resources -->
+<!-- ANCHOR:where-am-i-phase-detection -->
 ## 9. WHERE AM I? (Phase Detection)
 
 | Phase                 | You're here if...                      | Exit criteria                      |
@@ -693,6 +710,8 @@ Key integrations:
 
 ---
 
+<!-- /ANCHOR:where-am-i-phase-detection -->
+<!-- ANCHOR:quick-reference -->
 ## 10. QUICK REFERENCE
 
 ### Essential Timing Constants
@@ -810,3 +829,4 @@ Verification:
 □ Console errors: 0
 □ Documented what was tested
 ```
+<!-- /ANCHOR:quick-reference -->

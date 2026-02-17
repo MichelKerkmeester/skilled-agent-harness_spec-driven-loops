@@ -9,6 +9,7 @@ Critical reference for Go-to-PostgreSQL type mappings in GORM entities, database
 
 ---
 
+<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 ### Purpose
@@ -41,6 +42,8 @@ database_patterns_gorm_type_mappings.md (this file)
 
 ---
 
+<!-- /ANCHOR:overview -->
+<!-- ANCHOR:uid-uuid-types-critical -->
 ## 2. UID/UUID TYPES - CRITICAL
 
 ### How do I correctly define a uid.UID field?
@@ -104,6 +107,8 @@ type WorkflowActivityLog struct {
 
 ---
 
+<!-- /ANCHOR:uid-uuid-types-critical -->
+<!-- ANCHOR:standard-type-mappings -->
 ## 3. STANDARD TYPE MAPPINGS
 
 ### How do I map string types?
@@ -187,6 +192,8 @@ State MyEnumType `gorm:"type:my_enum_type"`
 
 ---
 
+<!-- /ANCHOR:standard-type-mappings -->
+<!-- ANCHOR:embedded-types -->
 ## 4. EMBEDDED TYPES
 
 ### How do I use SoftDeletable?
@@ -211,6 +218,8 @@ type MyEntity struct {
 
 ---
 
+<!-- /ANCHOR:embedded-types -->
+<!-- ANCHOR:constraints-indexes -->
 ## 5. CONSTRAINTS & INDEXES
 
 ### How do I define common constraints?
@@ -239,6 +248,8 @@ type Entity struct {
 
 ---
 
+<!-- /ANCHOR:constraints-indexes -->
+<!-- ANCHOR:nullable-fields -->
 ## 6. NULLABLE FIELDS
 
 ### How do I handle nullable vs non-nullable fields?
@@ -269,6 +280,8 @@ Age   sql.NullInt64  `gorm:"type:integer"`
 
 ---
 
+<!-- /ANCHOR:nullable-fields -->
+<!-- ANCHOR:migration-patterns -->
 ## 7. MIGRATION PATTERNS
 
 ### How do I create a migration with correct types?
@@ -290,6 +303,8 @@ func (m *Migration1234567890) Up(db *gorm.DB) error {
 
 ---
 
+<!-- /ANCHOR:migration-patterns -->
+<!-- ANCHOR:validation-checklist -->
 ## 8. VALIDATION CHECKLIST
 
 Before committing any entity definition, verify:
@@ -309,6 +324,8 @@ Before committing any entity definition, verify:
 
 ---
 
+<!-- /ANCHOR:validation-checklist -->
+<!-- ANCHOR:quick-reference-table -->
 ## 9. QUICK REFERENCE TABLE
 
 | Go Type                  | GORM Tag                  | PostgreSQL Type              | Notes                       |
@@ -328,6 +345,8 @@ Before committing any entity definition, verify:
 
 ---
 
+<!-- /ANCHOR:quick-reference-table -->
+<!-- ANCHOR:common-mistakes-fixes -->
 ## 10. COMMON MISTAKES & FIXES
 
 ### Mistake 1: Missing type:uuid
@@ -386,6 +405,8 @@ CreatedAt time.Time `gorm:"type:timestamptz"`
 
 ---
 
+<!-- /ANCHOR:common-mistakes-fixes -->
+<!-- ANCHOR:rules -->
 ## 11. RULES
 
 ### ALWAYS
@@ -415,6 +436,8 @@ CreatedAt time.Time `gorm:"type:timestamptz"`
 
 ---
 
+<!-- /ANCHOR:rules -->
+<!-- ANCHOR:related-resources -->
 ## 12. RELATED RESOURCES
 
 | Topic                        | Document                    | Section                          |
@@ -426,6 +449,8 @@ CreatedAt time.Time `gorm:"type:timestamptz"`
 
 ---
 
+<!-- /ANCHOR:related-resources -->
+<!-- ANCHOR:resources -->
 ## 13. RESOURCES
 
 ### Finding Examples
@@ -445,3 +470,4 @@ rg "database_models\.JSONB.*type:jsonb" --type go
 - **Our UID Package:** `pkg/uid/uid.go`
 - **Database Models:** `pkg/models/database/`
 - **Entity Examples:** `internal/domain/*/data_layer/*_entities/`
+<!-- /ANCHOR:resources -->

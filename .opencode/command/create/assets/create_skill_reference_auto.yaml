@@ -142,12 +142,12 @@ reference_types:
     purpose: "Code patterns with before/after examples"
     size_target: "300-800 lines"
     key_features:
-    - "Before/after comparisons (markers optional)"
+    - "Before/after comparisons"
     - "'Why better' explanations"
     - "Pattern comparison tables"
     structure:
     - "Introduction with purpose"
-    - "Each pattern: BEFORE, AFTER, Why better (markers optional)"
+    - "Each pattern: BEFORE, AFTER, Why better"
     - "Quick lookup table"
 
   debugging:
@@ -321,7 +321,7 @@ workflow:
     activities:
     - Read skill_reference_template.md from workflows-documentation skill
     - Extract patterns based on reference_type
-    - Note formatting requirements (emojis, checkpoints, code blocks)
+    - Note formatting requirements (emoji visual markers optional, checkpoints, code blocks)
     template_path: .opencode/skill/workflows-documentation/assets/opencode/skill_reference_template.md
     type_specific_patterns:
       workflow:
@@ -330,7 +330,6 @@ workflow:
       - "Named validation checkpoints"
       patterns:
       - "Before/After Code Examples"
-      - "Comparison markers (optional for clarity)"
       - "'Why better' explanations"
       debugging:
       - "Root cause analysis flow"
@@ -339,7 +338,7 @@ workflow:
     structure_requirements:
     - "Explicit reasoning throughout"
     - "Named validation checkpoints"
-    - "Before/after comparisons (markers optional for clarity)"
+    - "Before/after comparisons"
     - "Links to scripts and assets"
     outputs:
     - template_loaded
@@ -352,7 +351,7 @@ workflow:
     - Apply type-specific template structure
     - Write core principle (for workflows)
     - Create phased structure with checkpoints (for workflows)
-    - Write before/after examples (comparison markers optional for clarity)
+    - Write before/after examples
     - Create diagnostic flows (for debugging)
     - Include explicit reasoning throughout
     - Add named validation checkpoints
@@ -435,14 +434,14 @@ workflow:
   step_5_validation:
     purpose: Quality check and SKILL.md integration
     activities:
-    - Structure validation (core principle, phases, checkpoints, emojis)
+    - Structure validation (core principle, phases, checkpoints; emoji visual markers optional)
     - Content validation (explicit reasoning, named checkpoints, links)
     - Integration (update SKILL.md Navigation Guide, SMART ROUTING)
     validation_checklist:
       structure:
       - "Core principle present (for workflows)"
       - "Phased structure with checkpoints"
-      - "Before/after examples present with comparison labels"
+      - "Before/after examples present"
       - "All code blocks specify language"
       content:
       - "Explicit reasoning throughout"
@@ -463,12 +462,12 @@ workflow:
 
   step_5b_quality_review:
     purpose: Quality-score the created reference artifact
-    agent_routing:
-      agent: "@review"
+    agent_availability:
       agent_file: ".opencode/agent/review.md"
-      rule_reference: "AGENTS.md §3 — @review for code review / quality scoring"
-      dispatch: "Task tool → @review focused review of created reference"
+      rule_reference: "AGENTS.md §3 — quality scoring"
+      condition: "ONLY when this step is actively executing"
       blocking: false
+      not_for: "reviewing this workflow prompt or any pre-step activity"
     activities:
     - "Dispatch @review to quality-score the created reference file"
     - "Review checks: template adherence, content quality, SKILL.md integration"
@@ -660,5 +659,4 @@ rules:
   - "Skip validation steps"
   - "Create documents without loading templates first"
   - "Leave placeholder text in final output"
-  - "Omit comparison labels from before/after examples (patterns type)"
   - "Create references for non-existent skills"

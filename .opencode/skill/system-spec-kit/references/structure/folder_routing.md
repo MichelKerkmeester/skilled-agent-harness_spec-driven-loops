@@ -9,6 +9,7 @@ Stateless spec folder routing with alignment scoring for context preservation.
 
 ---
 
+<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 The memory system uses a **stateless CLI-first architecture**. The spec folder path is passed directly to `generate-context.ts` as an argument, then validated with alignment scoring.
@@ -37,6 +38,8 @@ Spec folder is passed explicitly as a CLI argument with alignment validation to 
 
 ---
 
+<!-- /ANCHOR:overview -->
+<!-- ANCHOR:detection-logic -->
 ## 2. DETECTION LOGIC
 
 ### Complete Routing Flow
@@ -101,6 +104,8 @@ Spec folder is passed explicitly as a CLI argument with alignment validation to 
 
 ---
 
+<!-- /ANCHOR:detection-logic -->
+<!-- ANCHOR:alignment-scoring -->
 ## 3. ALIGNMENT SCORING
 
 When saving context, the system calculates an **alignment score** (0-100%) to determine which spec folder best matches the conversation topic.
@@ -146,6 +151,8 @@ Stopwords are filtered: `the`, `this`, `that`, `with`, `for`, `and`, `from`, `fi
 
 ---
 
+<!-- /ANCHOR:alignment-scoring -->
+<!-- ANCHOR:threshold-behavior -->
 ## 4. THRESHOLD BEHAVIOR
 
 | Score      | Tier     | Action                                           |
@@ -172,6 +179,8 @@ const ALIGNMENT_CONFIG: AlignmentConfig = {
 
 ---
 
+<!-- /ANCHOR:threshold-behavior -->
+<!-- ANCHOR:keyword-extraction -->
 ## 5. KEYWORD EXTRACTION
 
 Keywords are extracted from:
@@ -217,6 +226,8 @@ only, own, same, so, than, too, very, just, also
 
 ---
 
+<!-- /ANCHOR:keyword-extraction -->
+<!-- ANCHOR:usage -->
 ## 6. USAGE
 
 ### Command Format
@@ -249,6 +260,8 @@ When no spec folder is provided, the AI agent:
 
 ---
 
+<!-- /ANCHOR:usage -->
+<!-- ANCHOR:sub-folder-routing -->
 ## 7. SUB-FOLDER ROUTING
 
 ### Sub-Folder Structure Example
@@ -287,6 +300,8 @@ specs/122-skill-standardization/
 
 ---
 
+<!-- /ANCHOR:sub-folder-routing -->
+<!-- ANCHOR:interactive-prompt -->
 ## 8. INTERACTIVE PROMPT
 
 When alignment **< 50%**, user sees an interactive prompt:
@@ -316,6 +331,8 @@ Folders matching these patterns are automatically excluded:
 
 ---
 
+<!-- /ANCHOR:interactive-prompt -->
+<!-- ANCHOR:bypass-options -->
 ## 9. BYPASS OPTIONS
 
 ### Environment Variable
@@ -344,6 +361,8 @@ Users can set preferences that persist within a session:
 
 ---
 
+<!-- /ANCHOR:bypass-options -->
+<!-- ANCHOR:usage-examples -->
 ## 10. USAGE EXAMPLES
 
 Three practical examples demonstrating each alignment tier and the expected behavior.
@@ -445,6 +464,8 @@ Select option (1-4):
 
 ---
 
+<!-- /ANCHOR:usage-examples -->
+<!-- ANCHOR:edge-cases -->
 ## 11. EDGE CASES
 
 ### No Spec Folder Provided
@@ -493,6 +514,8 @@ node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js dat
 
 ---
 
+<!-- /ANCHOR:edge-cases -->
+<!-- ANCHOR:validation-checkpoints -->
 ## 12. VALIDATION CHECKPOINTS
 
 ### Pre-Save Validation
@@ -534,6 +557,8 @@ test -d specs/###-name/memory/ && echo "OK" || echo "MISSING"
 
 ---
 
+<!-- /ANCHOR:validation-checkpoints -->
+<!-- ANCHOR:migration-from-marker-files -->
 ## 13. MIGRATION FROM MARKER FILES
 
 If migrating from a system that used `.spec-active` marker files:
@@ -561,6 +586,8 @@ find . -name ".spec-active*" -type f 2>/dev/null
 
 ---
 
+<!-- /ANCHOR:migration-from-marker-files -->
+<!-- ANCHOR:related-resources -->
 ## 14. RELATED RESOURCES
 
 ### Reference Files
@@ -574,3 +601,4 @@ find . -name ".spec-active*" -type f 2>/dev/null
 ---
 
 *Last Updated: 2025-12-25 | Architecture: Stateless CLI-First with Alignment Scoring*
+<!-- /ANCHOR:related-resources -->

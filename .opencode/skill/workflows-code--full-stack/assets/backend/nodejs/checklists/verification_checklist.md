@@ -9,6 +9,7 @@ Universal checklist for verifying work before claiming completion across TypeScr
 
 ---
 
+<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 ### Purpose
@@ -29,6 +30,8 @@ Use this checklist BEFORE claiming any work is complete, fixed, or working. Comp
 
 ---
 
+<!-- /ANCHOR:overview -->
+<!-- ANCHOR:before-claiming-anything -->
 ## 2. BEFORE CLAIMING ANYTHING
 
 - [ ] **I have actually run the code** (not just reviewed it)
@@ -40,6 +43,8 @@ Use this checklist BEFORE claiming any work is complete, fixed, or working. Comp
 
 ---
 
+<!-- /ANCHOR:before-claiming-anything -->
+<!-- ANCHOR:universal-test-execution -->
 ## 3. UNIVERSAL: TEST EXECUTION
 
 ### Automated Tests
@@ -68,6 +73,8 @@ Use this checklist BEFORE claiming any work is complete, fixed, or working. Comp
 
 ---
 
+<!-- /ANCHOR:universal-test-execution -->
+<!-- ANCHOR:typescript-javascript-browser-testing -->
 ## 4. TYPESCRIPT/JAVASCRIPT: BROWSER TESTING
 
 ### Minimum Requirements (ALWAYS REQUIRED)
@@ -95,6 +102,8 @@ Use this checklist BEFORE claiming any work is complete, fixed, or working. Comp
 
 ---
 
+<!-- /ANCHOR:typescript-javascript-browser-testing -->
+<!-- ANCHOR:typescript-javascript-viewport-testing -->
 ## 5. TYPESCRIPT/JAVASCRIPT: VIEWPORT TESTING
 
 - [ ] Mobile viewport (375px minimum)
@@ -121,6 +130,8 @@ Use this checklist BEFORE claiming any work is complete, fixed, or working. Comp
 
 ---
 
+<!-- /ANCHOR:typescript-javascript-viewport-testing -->
+<!-- ANCHOR:typescript-javascript-console-network -->
 ## 6. TYPESCRIPT/JAVASCRIPT: CONSOLE & NETWORK
 
 ### DevTools Console
@@ -142,6 +153,8 @@ Use this checklist BEFORE claiming any work is complete, fixed, or working. Comp
 
 ---
 
+<!-- /ANCHOR:typescript-javascript-console-network -->
+<!-- ANCHOR:go-test-verification -->
 ## 7. GO: TEST VERIFICATION
 
 ### Test Suite
@@ -177,6 +190,8 @@ Use this checklist BEFORE claiming any work is complete, fixed, or working. Comp
 
 ---
 
+<!-- /ANCHOR:go-test-verification -->
+<!-- ANCHOR:swift-test-verification -->
 ## 8. SWIFT: TEST VERIFICATION
 
 ### Test Suite (XCTest)
@@ -217,6 +232,8 @@ Use this checklist BEFORE claiming any work is complete, fixed, or working. Comp
 
 ---
 
+<!-- /ANCHOR:swift-test-verification -->
+<!-- ANCHOR:functionality-testing-all-platforms -->
 ## 9. FUNCTIONALITY TESTING (ALL PLATFORMS)
 
 ### Interactive Elements
@@ -253,6 +270,8 @@ Use this checklist BEFORE claiming any work is complete, fixed, or working. Comp
 
 ---
 
+<!-- /ANCHOR:functionality-testing-all-platforms -->
+<!-- ANCHOR:performance-targets -->
 ## 10. PERFORMANCE TARGETS
 
 ### Web (TypeScript/JavaScript)
@@ -289,6 +308,8 @@ Use this checklist BEFORE claiming any work is complete, fixed, or working. Comp
 
 ---
 
+<!-- /ANCHOR:performance-targets -->
+<!-- ANCHOR:documentation -->
 ## 11. DOCUMENTATION
 
 ### Evidence Recorded
@@ -324,6 +345,8 @@ Tested and it's fine
 
 ---
 
+<!-- /ANCHOR:documentation -->
+<!-- ANCHOR:red-flags-to-avoid -->
 ## 12. RED FLAGS TO AVOID
 
 **Did NOT think:**
@@ -340,6 +363,8 @@ Tested and it's fine
 
 ---
 
+<!-- /ANCHOR:red-flags-to-avoid -->
+<!-- ANCHOR:final-verification -->
 ## 13. FINAL VERIFICATION
 
 ### Can You Answer These?
@@ -355,6 +380,8 @@ Tested and it's fine
 
 ---
 
+<!-- /ANCHOR:final-verification -->
+<!-- ANCHOR:claiming-format-by-stack -->
 ## 14. CLAIMING FORMAT BY STACK
 
 ### TypeScript/JavaScript Web
@@ -392,6 +419,8 @@ VERIFICATION COMPLETE:
 
 ---
 
+<!-- /ANCHOR:claiming-format-by-stack -->
+<!-- ANCHOR:special-cases -->
 ## 15. SPECIAL CASES
 
 ### Can't Run Full Test Suite
@@ -423,6 +452,8 @@ VERIFICATION COMPLETE:
 
 ---
 
+<!-- /ANCHOR:special-cases -->
+<!-- ANCHOR:related-resources -->
 ## 16. RELATED RESOURCES
 
 ### Companion Checklists
@@ -433,3 +464,4 @@ VERIFICATION COMPLETE:
 ### Parent Skill
 
 - [SKILL.md](../../SKILL.md) - workflows-code skill (Phase 3: Verification)
+<!-- /ANCHOR:related-resources -->

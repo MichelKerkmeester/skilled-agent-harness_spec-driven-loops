@@ -9,6 +9,7 @@ A comprehensive guide to Swift concurrency including async/await, Task and TaskG
 
 ---
 
+<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 ### Purpose
@@ -37,6 +38,8 @@ Structured concurrency + async/await + actors = safe, readable, maintainable asy
 
 ---
 
+<!-- /ANCHOR:overview -->
+<!-- ANCHOR:async-await-fundamentals -->
 ## 2. ASYNC/AWAIT FUNDAMENTALS
 
 ### Basic Async Functions
@@ -204,6 +207,8 @@ func fetchWithTimeout(seconds: Int) async throws -> Data {
 
 ---
 
+<!-- /ANCHOR:async-await-fundamentals -->
+<!-- ANCHOR:task-and-taskgroup -->
 ## 3. TASK AND TASKGROUP
 
 ### Creating Tasks
@@ -385,6 +390,8 @@ func processImages(_ images: [UIImage], maxConcurrency: Int = 4) async -> [Proce
 
 ---
 
+<!-- /ANCHOR:task-and-taskgroup -->
+<!-- ANCHOR:actor-isolation -->
 ## 4. ACTOR ISOLATION
 
 ### Basic Actor
@@ -570,6 +577,8 @@ final class ThreadSafeCache<Key: Hashable & Sendable, Value: Sendable>: @uncheck
 
 ---
 
+<!-- /ANCHOR:actor-isolation -->
+<!-- ANCHOR:asyncsequence-and-asyncstream -->
 ## 5. ASYNCSEQUENCE AND ASYNCSTREAM
 
 ### Basic AsyncSequence
@@ -741,6 +750,8 @@ for await chunk in someAsyncSequence.chunked(by: 10) {
 
 ---
 
+<!-- /ANCHOR:asyncsequence-and-asyncstream -->
+<!-- ANCHOR:error-handling -->
 ## 6. ERROR HANDLING
 
 ### Async Error Patterns
@@ -900,6 +911,8 @@ func loadUserProfile(id: String) async -> UserProfile {
 
 ---
 
+<!-- /ANCHOR:error-handling -->
+<!-- ANCHOR:combine-basics-legacy-interop -->
 ## 7. COMBINE BASICS (Legacy/Interop)
 
 ### Publisher Basics
@@ -1052,6 +1065,8 @@ class SearchViewModel: ObservableObject {
 
 ---
 
+<!-- /ANCHOR:combine-basics-legacy-interop -->
+<!-- ANCHOR:practical-patterns -->
 ## 8. PRACTICAL PATTERNS
 
 ### Network Layer with Async/Await
@@ -1215,6 +1230,8 @@ class DownloadViewModel {
 
 ---
 
+<!-- /ANCHOR:practical-patterns -->
+<!-- ANCHOR:rules -->
 ## 9. RULES
 
 ### ALWAYS
@@ -1252,6 +1269,8 @@ class DownloadViewModel {
 
 ---
 
+<!-- /ANCHOR:rules -->
+<!-- ANCHOR:related-resources -->
 ## 10. RELATED RESOURCES
 
 | File | Purpose |
@@ -1261,3 +1280,4 @@ class DownloadViewModel {
 | [mvvm_architecture.md](./mvvm_architecture.md) | MVVM architecture patterns with SwiftUI |
 | [testing_strategy.md](./testing_strategy.md) | XCTest and testing best practices |
 | [persistence_patterns.md](./persistence_patterns.md) | SwiftData, Core Data, and storage patterns |
+<!-- /ANCHOR:related-resources -->

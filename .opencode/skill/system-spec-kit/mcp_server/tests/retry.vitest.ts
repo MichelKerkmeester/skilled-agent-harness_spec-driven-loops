@@ -26,7 +26,7 @@ import {
 type RetryTestError = Error & {
   code?: string;
   response?: { status?: number };
-  cause?: { code?: string };
+  cause?: unknown;
   attemptLog?: Array<{ errorType?: string; classificationReason?: string }>;
 };
 

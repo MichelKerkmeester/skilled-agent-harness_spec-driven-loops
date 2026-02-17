@@ -9,6 +9,7 @@ Language-agnostic quality checks that apply to all code files in the OpenCode de
 
 ---
 
+<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 ### Purpose
@@ -25,6 +26,8 @@ Provides baseline quality requirements that apply across all languages (JavaScri
 
 ---
 
+<!-- /ANCHOR:overview -->
+<!-- ANCHOR:p0-hard-blockers -->
 ## 2. P0 - HARD BLOCKERS
 
 These items MUST be fixed before any commit.
@@ -85,6 +88,8 @@ max_retries = 5
 
 ---
 
+<!-- /ANCHOR:p0-hard-blockers -->
+<!-- ANCHOR:p1-required -->
 ## 3. P1 - REQUIRED
 
 These must be addressed or receive approval to defer.
@@ -155,6 +160,8 @@ if (items.length > MAX_ITEMS) {
 
 ---
 
+<!-- /ANCHOR:p1-required -->
+<!-- ANCHOR:p2-recommended -->
 ## 4. P2 - RECOMMENDED
 
 These improve quality but can be deferred.
@@ -188,6 +195,8 @@ These improve quality but can be deferred.
 
 ---
 
+<!-- /ANCHOR:p2-recommended -->
+<!-- ANCHOR:validation-workflow -->
 ## 5. VALIDATION WORKFLOW
 
 ### Before Committing
@@ -238,11 +247,15 @@ python -m json.tool config.json
 
 ---
 
+<!-- /ANCHOR:validation-workflow -->
+<!-- ANCHOR:checklist-template -->
 ## 6. CHECKLIST TEMPLATE
 
 Copy this for code review:
 
 ```markdown
+<!-- /ANCHOR:checklist-template -->
+<!-- ANCHOR:universal-code-quality-check -->
 ## Universal Code Quality Check
 
 ### P0 - HARD BLOCKERS
@@ -267,6 +280,8 @@ Copy this for code review:
 
 ---
 
+<!-- /ANCHOR:universal-code-quality-check -->
+<!-- ANCHOR:related-resources -->
 ## 7. RELATED RESOURCES
 
 ### Language-Specific Checklists
@@ -282,3 +297,4 @@ Copy this for code review:
 - [Python Style Guide](../../references/python/style_guide.md)
 - [Shell Style Guide](../../references/shell/style_guide.md)
 - [Config Style Guide](../../references/config/style_guide.md)
+<!-- /ANCHOR:related-resources -->

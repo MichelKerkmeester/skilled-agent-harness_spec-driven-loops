@@ -9,6 +9,7 @@ Type system patterns, error handling, documentation, async patterns, and tsconfi
 
 ---
 
+<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 ### Purpose
@@ -23,6 +24,8 @@ Establishes type system patterns, error handling, documentation, async patterns,
 
 ---
 
+<!-- /ANCHOR:overview -->
+<!-- ANCHOR:interface-vs-type-decision-guide -->
 ## 2. INTERFACE vs TYPE DECISION GUIDE
 
 ### When to Use `interface`
@@ -93,6 +96,8 @@ type Coordinates = [x: number, y: number];
 
 ---
 
+<!-- /ANCHOR:interface-vs-type-decision-guide -->
+<!-- ANCHOR:type-safety-policies -->
 ## 3. TYPE SAFETY POLICIES
 
 ### `unknown` Over `any`
@@ -187,6 +192,8 @@ function getProperty<T>(obj: T, key: string): unknown {
 
 ---
 
+<!-- /ANCHOR:type-safety-policies -->
+<!-- ANCHOR:discriminated-unions -->
 ## 4. DISCRIMINATED UNIONS
 
 Use discriminated unions for state management where an object can be in one of several distinct states:
@@ -243,6 +250,8 @@ function getConnectionInfo(state: ConnectionState): string {
 
 ---
 
+<!-- /ANCHOR:discriminated-unions -->
+<!-- ANCHOR:utility-types -->
 ## 5. UTILITY TYPES
 
 ### Standard TypeScript Utility Types
@@ -291,6 +300,8 @@ type PublicMemory = Omit<MemoryRecord, 'internalScore'>;
 
 ---
 
+<!-- /ANCHOR:utility-types -->
+<!-- ANCHOR:return-type-annotations -->
 ## 6. RETURN TYPE ANNOTATIONS
 
 ### Policy: Explicit for Public API, Inferred for Private Helpers
@@ -324,6 +335,8 @@ function normalizeScore(raw: number, max: number) {
 
 ---
 
+<!-- /ANCHOR:return-type-annotations -->
+<!-- ANCHOR:tsdoc-documentation -->
 ## 7. TSDOC DOCUMENTATION
 
 ### TSDoc Format
@@ -454,6 +467,8 @@ interface CacheEntry<T> {
 
 ---
 
+<!-- /ANCHOR:tsdoc-documentation -->
+<!-- ANCHOR:typed-error-classes -->
 ## 8. TYPED ERROR CLASSES
 
 ### Custom Error Pattern
@@ -533,6 +548,8 @@ try {
 
 ---
 
+<!-- /ANCHOR:typed-error-classes -->
+<!-- ANCHOR:async-patterns -->
 ## 9. ASYNC PATTERNS
 
 ### Typed Promises
@@ -601,6 +618,8 @@ const result = await safeAsync(
 
 ---
 
+<!-- /ANCHOR:async-patterns -->
+<!-- ANCHOR:tsconfig-baseline -->
 ## 10. TSCONFIG BASELINE
 
 ### Root tsconfig.json for OpenCode Projects
@@ -732,6 +751,8 @@ Each workspace extends the root and declares its own composite settings:
 
 ---
 
+<!-- /ANCHOR:tsconfig-baseline -->
+<!-- ANCHOR:module-organization -->
 ## 11. MODULE ORGANIZATION
 
 ### ES Module Source, CommonJS Output
@@ -779,7 +800,10 @@ export type { SearchResult, SearchOptions } from '../types';
 
 ---
 
+<!-- /ANCHOR:module-organization -->
+<!-- ANCHOR:related-resources -->
 ## 12. RELATED RESOURCES
 
 - [style_guide.md](./style_guide.md) - Formatting and naming conventions
 - [quick_reference.md](./quick_reference.md) - Copy-paste templates and cheat sheets
+<!-- /ANCHOR:related-resources -->

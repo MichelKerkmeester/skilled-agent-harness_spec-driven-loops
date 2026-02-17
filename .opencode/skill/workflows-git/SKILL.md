@@ -14,6 +14,7 @@ Unified workflow guidance across workspace isolation, commit hygiene, and work c
 
 ---
 
+<!-- ANCHOR:when-to-use -->
 ## 1. WHEN TO USE
 
 ### When to Use This Orchestrator
@@ -35,6 +36,8 @@ Use this orchestrator when:
 
 ---
 
+<!-- /ANCHOR:when-to-use -->
+<!-- ANCHOR:smart-routing -->
 ## 2. SMART ROUTING
 
 ### Phase Detection
@@ -124,6 +127,8 @@ def route_git_resources(task):
 
 ---
 
+<!-- /ANCHOR:smart-routing -->
+<!-- ANCHOR:how-it-works -->
 ## 3. HOW IT WORKS
 
 ### Git Development Lifecycle Map
@@ -155,6 +160,8 @@ Git development flows through 3 phases:
 
 ---
 
+<!-- /ANCHOR:how-it-works -->
+<!-- ANCHOR:rules -->
 ## 4. RULES
 
 ### ✅ ALWAYS
@@ -189,6 +196,8 @@ Git development flows through 3 phases:
 
 ---
 
+<!-- /ANCHOR:rules -->
+<!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
 ### Workspace Setup Complete
@@ -221,6 +230,8 @@ Git development flows through 3 phases:
 
 ---
 
+<!-- /ANCHOR:success-criteria -->
+<!-- ANCHOR:integration-points -->
 ## 6. INTEGRATION POINTS
 
 ### Framework Integration
@@ -255,6 +266,8 @@ memory_search({ query: "branch strategy decisions", includeContent: true })
 
 ---
 
+<!-- /ANCHOR:integration-points -->
+<!-- ANCHOR:github-mcp-integration-remote -->
 ## 7. GITHUB MCP INTEGRATION (REMOTE)
 
 **GitHub MCP Server** provides programmatic access to GitHub's remote operations via Code Mode (`call_tool_chain`).
@@ -403,6 +416,8 @@ call_tool_chain({
 
 ---
 
+<!-- /ANCHOR:github-mcp-integration-remote -->
+<!-- ANCHOR:references -->
 ## 8. REFERENCES
 
 ### Core Workflows
@@ -423,6 +438,8 @@ call_tool_chain({
 
 ---
 
+<!-- /ANCHOR:references -->
+<!-- ANCHOR:workspace-choice-enforcement -->
 ## 9. WORKSPACE CHOICE ENFORCEMENT
 
 **MANDATORY**: The AI must NEVER autonomously decide between creating a branch or worktree.
@@ -462,6 +479,8 @@ Once user chooses, reuse their preference for the session unless:
 
 ---
 
+<!-- /ANCHOR:workspace-choice-enforcement -->
+<!-- ANCHOR:skill-selection-decision-tree -->
 ## 10. SKILL SELECTION DECISION TREE
 
 **What are you doing?**
@@ -514,6 +533,8 @@ git-finish (feature A) → git-finish (feature B)
 
 ---
 
+<!-- /ANCHOR:skill-selection-decision-tree -->
+<!-- ANCHOR:integration-examples -->
 ## 11. INTEGRATION EXAMPLES
 
 ### Example 1: New Authentication Feature
@@ -547,6 +568,8 @@ git-finish (feature A) → git-finish (feature B)
 
 ---
 
+<!-- /ANCHOR:integration-examples -->
+<!-- ANCHOR:related-resources -->
 ## 12. RELATED RESOURCES
 
 **For one-page cheat sheet**: See [quick_reference.md](./references/quick_reference.md)
@@ -560,3 +583,4 @@ CLEANUP: Remove worktrees after completion
 ```
 
 **Remember**: This skill orchestrates three specialized workflows - Worktree Management, Commit Hygiene, and Work Completion. All integrate seamlessly for a professional git development lifecycle.
+<!-- /ANCHOR:related-resources -->

@@ -10,6 +10,7 @@ Recovery procedures for common frontend deployment failures.
 
 ---
 
+<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 ### Purpose
@@ -29,6 +30,8 @@ Document → Isolate → Verify prerequisites → Retry with verbose → Escalat
 
 ---
 
+<!-- /ANCHOR:overview -->
+<!-- ANCHOR:cdn-upload-failure-recovery -->
 ## 2. CDN UPLOAD FAILURE RECOVERY
 
 **Symptoms:** Upload to Cloudflare R2 fails, file not accessible via CDN URL
@@ -48,6 +51,8 @@ curl -sI https://cdn.example.com/js/[filename].js | grep -E "(HTTP|content-lengt
 
 ---
 
+<!-- /ANCHOR:cdn-upload-failure-recovery -->
+<!-- ANCHOR:minification-failure-recovery -->
 ## 3. MINIFICATION FAILURE RECOVERY
 
 **Symptoms:** Terser fails, minified file has syntax errors, runtime breaks
@@ -68,6 +73,8 @@ node scripts/test-minified-runtime.mjs dist/[file].min.js
 
 ---
 
+<!-- /ANCHOR:minification-failure-recovery -->
+<!-- ANCHOR:version-mismatch-recovery -->
 ## 4. VERSION MISMATCH RECOVERY
 
 **Symptoms:** Browser loads old cached version, changes not visible
@@ -88,6 +95,8 @@ grep -r "v=[NEW_VERSION]" src/html/ | wc -l
 
 ---
 
+<!-- /ANCHOR:version-mismatch-recovery -->
+<!-- ANCHOR:general-recovery-protocol -->
 ## 5. GENERAL RECOVERY PROTOCOL
 
 When any failure occurs:
@@ -100,8 +109,11 @@ When any failure occurs:
 
 ---
 
+<!-- /ANCHOR:general-recovery-protocol -->
+<!-- ANCHOR:related-resources -->
 ## 6. RELATED RESOURCES
 
 - [cdn_deployment.md](../deployment/cdn_deployment.md) - CDN deployment workflow
 - [minification_guide.md](../deployment/minification_guide.md) - Minification procedures
 - [debugging_workflows.md](./debugging_workflows.md) - General debugging
+<!-- /ANCHOR:related-resources -->

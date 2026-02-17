@@ -9,6 +9,7 @@ A practical guide to building components in a React Native/Expo codebase, explai
 
 ---
 
+<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 ### Purpose
@@ -29,6 +30,8 @@ Consistent patterns + type safety + scale system = maintainable, responsive Reac
 
 ---
 
+<!-- /ANCHOR:overview -->
+<!-- ANCHOR:quick-start-creating-your-first-component -->
 ## 2. QUICK START: CREATING YOUR FIRST COMPONENT
 
 ### The Checklist
@@ -126,6 +129,8 @@ export type { MyComponentProps } from './my-component.props';
 
 ---
 
+<!-- /ANCHOR:quick-start-creating-your-first-component -->
+<!-- ANCHOR:file-naming-conventions -->
 ## 3. FILE NAMING CONVENTIONS
 
 ### Why Kebab-Case?
@@ -155,6 +160,8 @@ We use `kebab-case` (lowercase with hyphens) for files because:
 
 ---
 
+<!-- /ANCHOR:file-naming-conventions -->
+<!-- ANCHOR:typescript-props-interface-patterns -->
 ## 4. TYPESCRIPT: PROPS INTERFACE PATTERNS
 
 ### Extending React Native Types
@@ -210,6 +217,8 @@ export interface AppButtonProps extends TouchableOpacityProps {
 
 ---
 
+<!-- /ANCHOR:typescript-props-interface-patterns -->
+<!-- ANCHOR:styling-the-scale-system -->
 ## 5. STYLING: THE SCALE SYSTEM
 
 ### Why `scale()`?
@@ -264,6 +273,8 @@ width: '100%',  // Already relative
 
 ---
 
+<!-- /ANCHOR:styling-the-scale-system -->
+<!-- ANCHOR:design-tokens-colors-typography -->
 ## 6. DESIGN TOKENS: COLORS & TYPOGRAPHY
 
 ### Using Colors
@@ -338,6 +349,8 @@ import { StyledText } from 'components/styled-text/styled-text';
 
 ---
 
+<!-- /ANCHOR:design-tokens-colors-typography -->
+<!-- ANCHOR:component-patterns -->
 ## 7. COMPONENT PATTERNS
 
 ### The ScreenView Wrapper
@@ -418,6 +431,8 @@ return <Content data={data} />;
 
 ---
 
+<!-- /ANCHOR:component-patterns -->
+<!-- ANCHOR:common-mistakes-and-how-to-avoid-them -->
 ## 8. COMMON MISTAKES AND HOW TO AVOID THEM
 
 ### Mistake 1: Inline Styles
@@ -493,6 +508,8 @@ const Button = ({ variant = 'primary' }) => {
 
 ---
 
+<!-- /ANCHOR:common-mistakes-and-how-to-avoid-them -->
+<!-- ANCHOR:form-components -->
 ## 9. FORM COMPONENTS
 
 ### Using AppForm (Formik Wrapper)
@@ -547,6 +564,8 @@ const schema = Yup.object().shape({
 
 ---
 
+<!-- /ANCHOR:form-components -->
+<!-- ANCHOR:performance-patterns -->
 ## 10. PERFORMANCE PATTERNS
 
 ### When to Use React.memo
@@ -601,6 +620,8 @@ const fullName = `${firstName} ${lastName}`;
 
 ---
 
+<!-- /ANCHOR:performance-patterns -->
+<!-- ANCHOR:safe-area-handling -->
 ## 11. SAFE AREA HANDLING
 
 ### Using Safe Area Insets
@@ -643,6 +664,8 @@ const MyScreen = () => {
 
 ---
 
+<!-- /ANCHOR:safe-area-handling -->
+<!-- ANCHOR:import-organization -->
 ## 12. IMPORT ORGANIZATION
 
 ### Import Order
@@ -695,6 +718,8 @@ import { styles } from './my-component.styles';
 
 ---
 
+<!-- /ANCHOR:import-organization -->
+<!-- ANCHOR:quick-reference-component-checklist -->
 ## 13. QUICK REFERENCE: COMPONENT CHECKLIST
 
 Before submitting your component, verify:
@@ -711,6 +736,8 @@ Before submitting your component, verify:
 
 ---
 
+<!-- /ANCHOR:quick-reference-component-checklist -->
+<!-- ANCHOR:key-files-reference -->
 ## 14. KEY FILES REFERENCE
 
 | Purpose | Path |
@@ -726,6 +753,8 @@ Before submitting your component, verify:
 
 ---
 
+<!-- /ANCHOR:key-files-reference -->
+<!-- ANCHOR:do-this-not-that -->
 ## 15. DO THIS, NOT THAT
 
 | ❌ Don't | ✅ Do | Why |
@@ -740,6 +769,8 @@ Before submitting your component, verify:
 
 ---
 
+<!-- /ANCHOR:do-this-not-that -->
+<!-- ANCHOR:related-resources -->
 ## 16. RELATED RESOURCES
 
 ### Related References
@@ -748,3 +779,4 @@ Before submitting your component, verify:
 - [React Hooks Patterns](./react-hooks-patterns.md) - Custom hooks and state management
 - [Performance Optimization](./performance-optimization.md) - Performance best practices
 - [Native Modules](./native-modules.md) - Native integrations
+<!-- /ANCHOR:related-resources -->

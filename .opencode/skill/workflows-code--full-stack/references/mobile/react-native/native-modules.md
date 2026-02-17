@@ -9,6 +9,7 @@ A practical guide to the native integrations in a React Native/Expo app, explain
 
 ---
 
+<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 ### Purpose
@@ -31,6 +32,8 @@ Understand each native integration + follow permission patterns + handle errors 
 
 ---
 
+<!-- /ANCHOR:overview -->
+<!-- ANCHOR:quick-reference-what-s-available -->
 ## 2. QUICK REFERENCE: WHAT'S AVAILABLE
 
 | Feature | Package | Status |
@@ -45,6 +48,8 @@ Understand each native integration + follow permission patterns + handle errors 
 
 ---
 
+<!-- /ANCHOR:quick-reference-what-s-available -->
+<!-- ANCHOR:push-notifications -->
 ## 3. PUSH NOTIFICATIONS
 
 ### How It Works
@@ -135,6 +140,8 @@ if (pending) {
 
 ---
 
+<!-- /ANCHOR:push-notifications -->
+<!-- ANCHOR:location-services -->
 ## 4. LOCATION SERVICES
 
 ### Getting Current Location
@@ -213,6 +220,8 @@ const location = await Location.getCurrentPositionAsync({
 
 ---
 
+<!-- /ANCHOR:location-services -->
+<!-- ANCHOR:maps -->
 ## 5. MAPS
 
 ### Basic Map Usage
@@ -274,6 +283,8 @@ const clusters = superCluster.getClusters(bBox, zoom);
 
 ---
 
+<!-- /ANCHOR:maps -->
+<!-- ANCHOR:camera-image-picker -->
 ## 6. CAMERA & IMAGE PICKER
 
 ### Picking an Image from Library
@@ -366,6 +377,8 @@ const uploadImage = async (imageUri: string) => {
 
 ---
 
+<!-- /ANCHOR:camera-image-picker -->
+<!-- ANCHOR:google-sign-in -->
 ## 7. GOOGLE SIGN-IN
 
 ### Basic Usage
@@ -416,6 +429,8 @@ const signInWithGoogle = async () => {
 
 ---
 
+<!-- /ANCHOR:google-sign-in -->
+<!-- ANCHOR:error-tracking-sentry -->
 ## 8. ERROR TRACKING (SENTRY)
 
 ### Capturing Errors Manually
@@ -448,6 +463,8 @@ Sentry.captureException(error);
 
 ---
 
+<!-- /ANCHOR:error-tracking-sentry -->
+<!-- ANCHOR:permissions-the-complete-pattern -->
 ## 9. PERMISSIONS: THE COMPLETE PATTERN
 
 ### Platform-Specific Permissions
@@ -518,6 +535,8 @@ export const usePermission = (feature: keyof typeof PERMISSION_MAP) => {
 
 ---
 
+<!-- /ANCHOR:permissions-the-complete-pattern -->
+<!-- ANCHOR:storage-asyncstorage-redux-persist -->
 ## 10. STORAGE: ASYNCSTORAGE + REDUX PERSIST
 
 ### Direct AsyncStorage Usage
@@ -551,6 +570,8 @@ const persistConfig = {
 
 ---
 
+<!-- /ANCHOR:storage-asyncstorage-redux-persist -->
+<!-- ANCHOR:key-files-reference -->
 ## 11. KEY FILES REFERENCE
 
 | Purpose | Path |
@@ -565,6 +586,8 @@ const persistConfig = {
 
 ---
 
+<!-- /ANCHOR:key-files-reference -->
+<!-- ANCHOR:troubleshooting-checklist -->
 ## 12. TROUBLESHOOTING CHECKLIST
 
 | Issue | Check |
@@ -577,6 +600,8 @@ const persistConfig = {
 
 ---
 
+<!-- /ANCHOR:troubleshooting-checklist -->
+<!-- ANCHOR:related-resources -->
 ## 13. RELATED RESOURCES
 
 ### Related References
@@ -587,3 +612,4 @@ const persistConfig = {
 
 ### Related References
 - [Mobile Testing](./mobile_testing.md) - Testing native modules
+<!-- /ANCHOR:related-resources -->

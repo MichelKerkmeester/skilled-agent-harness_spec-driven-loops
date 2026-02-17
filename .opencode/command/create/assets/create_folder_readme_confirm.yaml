@@ -202,7 +202,7 @@ ai_optimization:
   scannable_structure:
     description: "Easy to scan and find information"
     techniques:
-    - "Clear headings with emojis"
+    - "Clear headings (emojis optional)"
     - "Code examples for every feature"
     - "Tables for options"
     - "ASCII diagrams for architecture"
@@ -272,7 +272,7 @@ workflow_enforcement:
       enforcement: "MUST gather project information before writing"
       verification: "Cannot proceed without identified features"
     step_4_generation:
-      enforcement: "MUST use template structure with TOC, emojis, tables"
+      enforcement: "MUST use template structure with TOC, sections, tables"
       verification: "All sections written, no placeholder content"
     step_5_validation:
       enforcement: "MUST verify structure and completeness"
@@ -379,7 +379,7 @@ workflow:
       all_types:
       - "Title + Tagline (one-liner description)"
       - "TABLE OF CONTENTS (numbered, linked)"
-      - "Numbered sections with emoji prefixes"
+      - "Numbered sections (emojis optional)"
       - "Tables for structured data"
       - "Code blocks with language tags"
       - "Horizontal rules between major sections"
@@ -407,7 +407,7 @@ workflow:
     activities:
     - Write Title + Tagline (concise, clear value proposition)
     - Generate TABLE OF CONTENTS (numbered, linked to sections)
-    - Write each section with emoji prefix
+    - Write each section (emojis optional)
     - Create tables for structured data (features, commands, config)
     - Add code blocks with language tags
     - Create ASCII diagrams for architecture/flow visualization
@@ -478,12 +478,12 @@ workflow:
 
   step_5b_quality_review:
     purpose: Quality-score the created README artifact
-    agent_routing:
-      agent: "@review"
+    agent_availability:
       agent_file: ".opencode/agent/review.md"
-      rule_reference: "AGENTS.md §3 — @review for code review / quality scoring"
-      dispatch: "Task tool → @review focused review of created README"
+      rule_reference: "AGENTS.md §3 — quality scoring"
+      condition: "ONLY when this step is actively executing"
       blocking: false
+      not_for: "reviewing this workflow prompt or any pre-step activity"
     activities:
     - "Dispatch @review to quality-score the created README file"
     - "Review checks: structure completeness, content quality, DQI standards"
@@ -628,7 +628,7 @@ completion_report:
     Structure:
     - Title + Tagline: ✅
     - TABLE OF CONTENTS: ✅
-    - Sections: [N] numbered with emojis
+    - Sections: [N] numbered (emojis optional)
     - Tables: [N]
     - Code blocks: [N]
     - ASCII diagrams: [N]

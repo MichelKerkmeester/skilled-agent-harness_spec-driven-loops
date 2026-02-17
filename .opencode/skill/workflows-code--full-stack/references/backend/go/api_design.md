@@ -9,6 +9,7 @@ Standards for designing HTTP controllers and endpoints in backend systems, cover
 
 ---
 
+<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 ### Purpose
@@ -39,6 +40,8 @@ Level 2: Related knowledge files
 
 ---
 
+<!-- /ANCHOR:overview -->
+<!-- ANCHOR:http-controllers-structure -->
 ## 2. HTTP CONTROLLERS STRUCTURE
 
 ### How Do I Define a Controller?
@@ -68,6 +71,8 @@ func (c httpControllers) SetupHTTP() error {
 
 ---
 
+<!-- /ANCHOR:http-controllers-structure -->
+<!-- ANCHOR:route-definition-patterns -->
 ## 3. ROUTE DEFINITION PATTERNS
 
 ### How Do I Define Route Groups?
@@ -98,6 +103,8 @@ func (c httpControllers) SetupHTTP() error {
 
 ---
 
+<!-- /ANCHOR:route-definition-patterns -->
+<!-- ANCHOR:route-precedence-critical -->
 ## 4. ROUTE PRECEDENCE (CRITICAL)
 
 ### Why Does Route Order Matter?
@@ -194,6 +201,8 @@ When reviewing HTTP controller code, verify:
 
 ---
 
+<!-- /ANCHOR:route-precedence-critical -->
+<!-- ANCHOR:handler-implementation -->
 ## 5. HANDLER IMPLEMENTATION
 
 ### What Is the Handler Signature?
@@ -238,6 +247,8 @@ func (c httpControllers) postVendorProvidePaymentInfo(ctx http.ServerCtx) error 
 
 ---
 
+<!-- /ANCHOR:handler-implementation -->
+<!-- ANCHOR:request-response-patterns -->
 ## 6. REQUEST/RESPONSE PATTERNS
 
 ### How Do I Define Request Models?
@@ -317,6 +328,8 @@ return http.Response(ctx, "payment info already provided", 208)
 
 ---
 
+<!-- /ANCHOR:request-response-patterns -->
+<!-- ANCHOR:query-parameters -->
 ## 7. QUERY PARAMETERS
 
 ### How Do I Parse Query Parameters?
@@ -362,6 +375,8 @@ func (c httpControllers) listVendorInvoices(ctx http.ServerCtx) error {
 
 ---
 
+<!-- /ANCHOR:query-parameters -->
+<!-- ANCHOR:authentication-authorization -->
 ## 8. AUTHENTICATION & AUTHORIZATION
 
 ### How Do I Extract JWT Data?
@@ -398,6 +413,8 @@ couponsPrivateGroup := c.server.Group("/coupons", c.gates.IsAuthenticated.Authen
 
 ---
 
+<!-- /ANCHOR:authentication-authorization -->
+<!-- ANCHOR:http-status-codes -->
 ## 9. HTTP STATUS CODES
 
 ### What Status Codes Are Used?
@@ -428,6 +445,8 @@ return http.Response(ctx, "no active main subscription", 404)
 
 ---
 
+<!-- /ANCHOR:http-status-codes -->
+<!-- ANCHOR:error-handling -->
 ## 10. ERROR HANDLING
 
 ### How Do I Return Validation Errors?
@@ -468,6 +487,8 @@ if err != nil {
 
 ---
 
+<!-- /ANCHOR:error-handling -->
+<!-- ANCHOR:rules -->
 ## 11. RULES
 
 ### ALWAYS
@@ -504,6 +525,8 @@ if err != nil {
 
 ---
 
+<!-- /ANCHOR:rules -->
+<!-- ANCHOR:related-resources -->
 ## 12. RELATED RESOURCES
 
 | File                                                                       | Purpose                               |
@@ -511,3 +534,4 @@ if err != nil {
 | [go_standards.md](./go_standards.md)                                       | Project structure, naming conventions |
 | [domain_layers.md](./domain_layers.md)                                     | Business layer patterns, transactions |
 | [models_vs_entities_and_adapters.md](./models_vs_entities_and_adapters.md) | Entity/model boundaries               |
+<!-- /ANCHOR:related-resources -->

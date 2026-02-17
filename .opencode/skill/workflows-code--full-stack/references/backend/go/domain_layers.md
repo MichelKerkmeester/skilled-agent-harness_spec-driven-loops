@@ -9,6 +9,7 @@ Understanding the layered architecture pattern used across all domains in backen
 
 ---
 
+<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 ### Purpose
@@ -40,6 +41,8 @@ Level 2: Related knowledge files
 
 ---
 
+<!-- /ANCHOR:overview -->
+<!-- ANCHOR:lifecycle-methods-defer-health-init -->
 ## 2. LIFECYCLE METHODS (Defer/Health/Init)
 
 ### What Lifecycle Methods Exist?
@@ -167,6 +170,8 @@ func (l *PaymentsBusinessLayer) InitLayer(_ context.Context) error {
 
 ---
 
+<!-- /ANCHOR:lifecycle-methods-defer-health-init -->
+<!-- ANCHOR:layer-hierarchy -->
 ## 3. LAYER HIERARCHY
 
 ### What Is the Domain Structure?
@@ -236,6 +241,8 @@ Database
 
 ---
 
+<!-- /ANCHOR:layer-hierarchy -->
+<!-- ANCHOR:generic-service-pattern -->
 ## 4. GENERIC SERVICE PATTERN
 
 ### How Does `services.Service[T]` Work?
@@ -284,6 +291,8 @@ func (svc Service[T]) TxNil() bool {
 
 ---
 
+<!-- /ANCHOR:generic-service-pattern -->
+<!-- ANCHOR:service-implementation -->
 ## 5. SERVICE IMPLEMENTATION
 
 ### How Do I Structure a Service?
@@ -364,6 +373,8 @@ walletService.paymentsDataLayer = service.Instance.paymentsDataLayer
 
 ---
 
+<!-- /ANCHOR:service-implementation -->
+<!-- ANCHOR:transaction-patterns -->
 ## 6. TRANSACTION PATTERNS
 
 ### Pattern 1: Service Method Without Transaction Requirement
@@ -454,6 +465,8 @@ func (s WalletService) GetAll(ctx context.Context, queryParams map[string][]stri
 
 ---
 
+<!-- /ANCHOR:transaction-patterns -->
+<!-- ANCHOR:cross-service-transactions -->
 ## 7. CROSS-SERVICE TRANSACTIONS
 
 ### How Do I Coordinate Multiple Services in a Transaction?
@@ -501,6 +514,8 @@ func (bl PaymentsBusinessLayer) ProvidePaymentInfoConfirm(
 
 ---
 
+<!-- /ANCHOR:cross-service-transactions -->
+<!-- ANCHOR:entity-model-boundary -->
 ## 8. ENTITY-MODEL BOUNDARY
 
 ### Where Do Entities Become Models?
@@ -559,6 +574,8 @@ func (bl PaymentsBusinessLayer) GetWalletWithSubscriptions(
 
 ---
 
+<!-- /ANCHOR:entity-model-boundary -->
+<!-- ANCHOR:pipeline-pattern-query-building -->
 ## 9. PIPELINE PATTERN (Query Building)
 
 ### What Is the Pipeline Pattern?
@@ -704,6 +721,8 @@ return operators.PaginatedResult[[]payments_entities.Wallet]{
 
 ---
 
+<!-- /ANCHOR:pipeline-pattern-query-building -->
+<!-- ANCHOR:data-layer-pattern -->
 ## 10. DATA LAYER PATTERN
 
 ### How Is the Data Layer Structured?
@@ -773,6 +792,8 @@ func (l GenericDataLayer) Transaction(
 
 ---
 
+<!-- /ANCHOR:data-layer-pattern -->
+<!-- ANCHOR:transaction-flow-examples -->
 ## 11. TRANSACTION FLOW EXAMPLES
 
 ### Example 1: Simple Service Method
@@ -861,6 +882,8 @@ func (s WalletService) GetWalletWithSubscriptions(
 
 ---
 
+<!-- /ANCHOR:transaction-flow-examples -->
+<!-- ANCHOR:state-machine-pattern -->
 ## 12. STATE MACHINE PATTERN
 
 ### What Is the State Machine Pattern?
@@ -1030,6 +1053,8 @@ Use state machines when:
 
 ---
 
+<!-- /ANCHOR:state-machine-pattern -->
+<!-- ANCHOR:rules -->
 ## 13. RULES
 
 ### ALWAYS
@@ -1066,6 +1091,8 @@ Use state machines when:
 
 ---
 
+<!-- /ANCHOR:rules -->
+<!-- ANCHOR:debugging-transaction-issues -->
 ## 14. DEBUGGING TRANSACTION ISSUES
 
 ### Common Issue: "wrong call to WithTx on Service[T]"
@@ -1090,6 +1117,8 @@ Use state machines when:
 
 ---
 
+<!-- /ANCHOR:debugging-transaction-issues -->
+<!-- ANCHOR:related-resources -->
 ## 15. RELATED RESOURCES
 
 | File                                                                       | Purpose                                      |
@@ -1098,3 +1127,4 @@ Use state machines when:
 | [database_patterns.md](./database_patterns.md)                             | Repository pattern, GORM, entity definitions |
 | [models_vs_entities_and_adapters.md](./models_vs_entities_and_adapters.md) | Adapter patterns, boundary rules             |
 | [api_design.md](./api_design.md)                                           | HTTP controller patterns                     |
+<!-- /ANCHOR:related-resources -->

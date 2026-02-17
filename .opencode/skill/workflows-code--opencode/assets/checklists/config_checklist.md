@@ -9,6 +9,7 @@ Quality validation checklist for JSON and JSONC configuration files in the OpenC
 
 ---
 
+<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 ### Purpose
@@ -25,6 +26,8 @@ Specific quality checks for configuration files (JSON, JSONC). Use alongside the
 
 ---
 
+<!-- /ANCHOR:overview -->
+<!-- ANCHOR:p0-hard-blockers -->
 ## 2. P0 - HARD BLOCKERS
 
 These items MUST be fixed before any commit.
@@ -83,6 +86,8 @@ grep -v '^\s*//' config.jsonc | python -m json.tool
 
 ---
 
+<!-- /ANCHOR:p0-hard-blockers -->
+<!-- ANCHOR:p1-required -->
 ## 3. P1 - REQUIRED
 
 These must be addressed or receive approval to defer.
@@ -157,6 +162,8 @@ These must be addressed or receive approval to defer.
 
 ---
 
+<!-- /ANCHOR:p1-required -->
+<!-- ANCHOR:p2-recommended -->
 ## 4. P2 - RECOMMENDED
 
 These improve quality but can be deferred.
@@ -227,6 +234,8 @@ These improve quality but can be deferred.
 
 ---
 
+<!-- /ANCHOR:p2-recommended -->
+<!-- ANCHOR:validation-patterns -->
 ## 5. VALIDATION PATTERNS
 
 ### Feature Toggle Pattern
@@ -267,11 +276,15 @@ These improve quality but can be deferred.
 
 ---
 
+<!-- /ANCHOR:validation-patterns -->
+<!-- ANCHOR:checklist-template -->
 ## 6. CHECKLIST TEMPLATE
 
 Copy this for code review:
 
 ```markdown
+<!-- /ANCHOR:checklist-template -->
+<!-- ANCHOR:config-file-quality-check -->
 ## Config File Quality Check
 
 ### P0 - HARD BLOCKERS
@@ -301,6 +314,8 @@ Copy this for code review:
 
 ---
 
+<!-- /ANCHOR:config-file-quality-check -->
+<!-- ANCHOR:validation-commands -->
 ## 7. VALIDATION COMMANDS
 
 ```bash
@@ -330,6 +345,8 @@ sed 's|//.*||' config.jsonc | python -m json.tool
 
 ---
 
+<!-- /ANCHOR:validation-commands -->
+<!-- ANCHOR:related-resources -->
 ## 8. RELATED RESOURCES
 
 ### Checklists
@@ -341,3 +358,4 @@ sed 's|//.*||' config.jsonc | python -m json.tool
 ### External Resources
 - [JSON Specification](https://www.json.org/)
 - [JSON Schema](https://json-schema.org/)
+<!-- /ANCHOR:related-resources -->

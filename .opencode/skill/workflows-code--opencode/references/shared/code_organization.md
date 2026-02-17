@@ -9,6 +9,7 @@ File structure and module organization principles for OpenCode system code.
 
 ---
 
+<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 ### Purpose
@@ -37,6 +38,8 @@ This reference defines how to organize files, structure modules, and order impor
 
 ---
 
+<!-- /ANCHOR:overview -->
+<!-- ANCHOR:file-structure-principles -->
 ## 2. FILE STRUCTURE PRINCIPLES
 
 ### Header-First Convention
@@ -109,6 +112,8 @@ Every significant file should have numbered sections:
 
 ---
 
+<!-- /ANCHOR:file-structure-principles -->
+<!-- ANCHOR:module-organization -->
 ## 3. MODULE ORGANIZATION
 
 ### Single Responsibility
@@ -177,6 +182,8 @@ Benefits:
 
 ---
 
+<!-- /ANCHOR:module-organization -->
+<!-- ANCHOR:import-ordering -->
 ## 4. IMPORT ORDERING
 
 ### Universal Import Order
@@ -275,6 +282,8 @@ source "${SCRIPT_DIR}/lib/output.sh"
 
 ---
 
+<!-- /ANCHOR:import-ordering -->
+<!-- ANCHOR:export-patterns -->
 ## 5. EXPORT PATTERNS
 
 ### JavaScript CommonJS Exports
@@ -361,6 +370,8 @@ __all__ = [
 
 ---
 
+<!-- /ANCHOR:export-patterns -->
+<!-- ANCHOR:directory-conventions -->
 ## 6. DIRECTORY CONVENTIONS
 
 ### OpenCode Skill Structure
@@ -591,6 +602,8 @@ scripts/
 
 ---
 
+<!-- /ANCHOR:directory-conventions -->
+<!-- ANCHOR:test-file-conventions -->
 ## 7. TEST FILE CONVENTIONS
 
 ### Test File Naming
@@ -650,6 +663,8 @@ describe('functionToTest', () => {
 
 ---
 
+<!-- /ANCHOR:test-file-conventions -->
+<!-- ANCHOR:related-resources -->
 ## 8. RELATED RESOURCES
 
 ### Universal Patterns
@@ -663,3 +678,4 @@ describe('functionToTest', () => {
 - `../python/style_guide.md` - Python imports, `__all__`
 - `../shell/style_guide.md` - Shell sourcing, functions
 - `../config/style_guide.md` - JSON/JSONC structure
+<!-- /ANCHOR:related-resources -->

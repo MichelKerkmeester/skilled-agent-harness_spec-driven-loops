@@ -9,6 +9,7 @@ Evaluation framework for validating significant decisions before implementation.
 
 ---
 
+<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 ### Core Principle
@@ -35,6 +36,8 @@ Every significant decision must earn its existence through five explicit checks:
 
 ---
 
+<!-- /ANCHOR:overview -->
+<!-- ANCHOR:the-five-checks -->
 ## 2. THE FIVE CHECKS
 
 ### Check 1: Necessary?
@@ -180,6 +183,8 @@ HORIZON CHECK:
 
 ---
 
+<!-- /ANCHOR:the-five-checks -->
+<!-- ANCHOR:evaluation-format -->
 ## 3. EVALUATION FORMAT
 
 ### Quick Assessment Table
@@ -210,6 +215,8 @@ When a check fails:
 
 ---
 
+<!-- /ANCHOR:evaluation-format -->
+<!-- ANCHOR:examples -->
 ## 4. EXAMPLES
 
 ### Example A: Decision That Passes All Checks
@@ -257,6 +264,8 @@ REMEDIATION:
 
 ---
 
+<!-- /ANCHOR:examples -->
+<!-- ANCHOR:integration-with-decision-records -->
 ## 5. INTEGRATION WITH DECISION RECORDS
 
 ### Placement in decision-record.md
@@ -264,6 +273,8 @@ REMEDIATION:
 For Level 3/3+ spec folders, include Five Checks in the decision record:
 
 ```markdown
+<!-- /ANCHOR:integration-with-decision-records -->
+<!-- ANCHOR:decision-decision-title -->
 ## Decision: [Decision Title]
 
 ### Context
@@ -296,6 +307,8 @@ For Level 3/3+ spec folders, include Five Checks in the decision record:
 
 ---
 
+<!-- /ANCHOR:decision-decision-title -->
+<!-- ANCHOR:quick-reference -->
 ## 6. QUICK REFERENCE
 
 ```
@@ -311,9 +324,12 @@ RESULT: [X/5 PASS] -> [PROCEED/RECONSIDER]
 
 ---
 
+<!-- /ANCHOR:quick-reference -->
+<!-- ANCHOR:related-resources -->
 ## 7. RELATED RESOURCES
 
 - [Structured Gate Decision Format](./decision-format.md) - Standard format for documenting decisions
 - [Checklist Template](../../templates/level_2/checklist.md) - Level 2+ validation checklist structure
 - [SKILL.md - Validation Workflow](../../SKILL.md) - Overview of validation workflows (Section 3)
 - [Decision Record Template](../../templates/level_3/decision-record.md) - For documenting Level 3/3+ decisions
+<!-- /ANCHOR:related-resources -->

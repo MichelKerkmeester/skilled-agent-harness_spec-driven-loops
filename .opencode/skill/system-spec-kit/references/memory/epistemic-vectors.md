@@ -9,6 +9,7 @@ Framework for measuring and tracking uncertainty separate from confidence, enabl
 
 ---
 
+<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 ### Why Uncertainty Tracking Matters
@@ -38,6 +39,8 @@ But this misses a critical dimension: "How much don't I know?"
 
 ---
 
+<!-- /ANCHOR:overview -->
+<!-- ANCHOR:the-four-uncertainty-factors -->
 ## 2. THE FOUR UNCERTAINTY FACTORS
 
 Uncertainty is computed as a weighted average of four distinct factors:
@@ -155,6 +158,8 @@ Even with domain knowledge, incomplete situational context can lead to incorrect
 
 ---
 
+<!-- /ANCHOR:the-four-uncertainty-factors -->
+<!-- ANCHOR:calculating-uncertainty -->
 ## 3. CALCULATING UNCERTAINTY
 
 ### Weighted Average Formula
@@ -180,6 +185,8 @@ Result: Uncertainty = 0.36 (MEDIUM - just over threshold)
 
 ---
 
+<!-- /ANCHOR:calculating-uncertainty -->
+<!-- ANCHOR:threshold-interpretation -->
 ## 4. THRESHOLD INTERPRETATION
 
 ### Uncertainty Thresholds
@@ -211,6 +218,8 @@ Result: Uncertainty = 0.36 (MEDIUM - just over threshold)
 
 ---
 
+<!-- /ANCHOR:threshold-interpretation -->
+<!-- ANCHOR:the-confident-ignorance-anti-pattern -->
 ## 5. THE "CONFIDENT IGNORANCE" ANTI-PATTERN
 
 ### Definition
@@ -261,6 +270,8 @@ When detected, do NOT proceed. Instead:
 
 ---
 
+<!-- /ANCHOR:the-confident-ignorance-anti-pattern -->
+<!-- ANCHOR:practical-assessment-guide -->
 ## 6. PRACTICAL ASSESSMENT GUIDE
 
 ### Quick Assessment Checklist
@@ -297,6 +308,8 @@ UNCERTAINTY ASSESSMENT:
 
 ---
 
+<!-- /ANCHOR:practical-assessment-guide -->
+<!-- ANCHOR:integration-with-gates -->
 ## 7. INTEGRATION WITH GATES
 
 ### Dual-Threshold Validation
@@ -377,6 +390,8 @@ DUAL-THRESHOLD CHECK:
 
 ---
 
+<!-- /ANCHOR:integration-with-gates -->
+<!-- ANCHOR:related-resources -->
 ## 8. RELATED RESOURCES
 
 ### AGENTS.md Reference
@@ -393,3 +408,4 @@ DUAL-THRESHOLD CHECK:
 ### Related Skills
 - `system-spec-kit` - Parent skill using uncertainty tracking in gates
 - `workflows-code` - Implementation skill with verification gates
+<!-- /ANCHOR:related-resources -->

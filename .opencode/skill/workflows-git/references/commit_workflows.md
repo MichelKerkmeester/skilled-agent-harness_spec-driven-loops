@@ -9,6 +9,7 @@ Complete workflow documentation for professional commit practices with Conventio
 
 ---
 
+<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 Systematically analyze changes, determine appropriate commit strategy, and craft professional commit messages following best practices. Ensures commits are atomic, well-documented, and exclude internal development artifacts.
@@ -17,6 +18,8 @@ Systematically analyze changes, determine appropriate commit strategy, and craft
 
 ---
 
+<!-- /ANCHOR:overview -->
+<!-- ANCHOR:process-overview -->
 ## 2. PROCESS OVERVIEW
 
 1. Analyze all changed files (categorize, evaluate value, identify patterns)
@@ -34,6 +37,8 @@ Systematically analyze changes, determine appropriate commit strategy, and craft
 
 ---
 
+<!-- /ANCHOR:process-overview -->
+<!-- ANCHOR:complete-workflow -->
 ## 3. COMPLETE WORKFLOW
 
 ### Step 1: Analyze Changed Files
@@ -280,6 +285,8 @@ git commit -m "type(scope): description" -m "Body explaining why"
 
 ---
 
+<!-- /ANCHOR:complete-workflow -->
+<!-- ANCHOR:decision-matrix -->
 ## 4. DECISION MATRIX
 
 | Scenario | Strategy | Commit Type | Notes |
@@ -295,6 +302,8 @@ git commit -m "type(scope): description" -m "Body explaining why"
 
 ---
 
+<!-- /ANCHOR:decision-matrix -->
+<!-- ANCHOR:common-mistakes -->
 ## 5. COMMON MISTAKES
 
 **Including internal artifacts**:
@@ -327,6 +336,8 @@ git commit -m "type(scope): description" -m "Body explaining why"
 
 ---
 
+<!-- /ANCHOR:common-mistakes -->
+<!-- ANCHOR:example-workflows -->
 ## 6. EXAMPLE WORKFLOWS
 
 ### Example 1: Single Feature Commit
@@ -472,6 +483,8 @@ Action Required: Please move test_helper.py to tests/ before next commit.
 
 ---
 
+<!-- /ANCHOR:example-workflows -->
+<!-- ANCHOR:troubleshooting -->
 ## 7. TROUBLESHOOTING
 
 ### Cannot Determine Commit Scope
@@ -539,6 +552,8 @@ Clients must update to handle JSON responses.
 
 ---
 
+<!-- /ANCHOR:troubleshooting -->
+<!-- ANCHOR:success-criteria -->
 ## 8. SUCCESS CRITERIA
 
 **Commit is successful when**:
@@ -561,6 +576,8 @@ Clients must update to handle JSON responses.
 
 ---
 
+<!-- /ANCHOR:success-criteria -->
+<!-- ANCHOR:related-resources -->
 ## 9. RELATED RESOURCES
 
 ### Reference Files
@@ -574,3 +591,4 @@ Clients must update to handle JSON responses.
 - [Git Best Practices](https://git-scm.com/book/en/v2/Distributed-Git-Contributing-to-a-Project) - Pro Git book chapter on contributing
 - [How to Write a Git Commit Message](https://chris.beams.io/posts/git-commit/) - The seven rules of great commits
 - [Semantic Versioning](https://semver.org/) - Version numbering based on changes
+<!-- /ANCHOR:related-resources -->

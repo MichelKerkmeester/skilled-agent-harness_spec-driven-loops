@@ -9,6 +9,7 @@ Reference guide for integrating external JavaScript libraries in Webflow project
 
 ---
 
+<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 ### Purpose
@@ -50,6 +51,8 @@ async function load_library() {
 
 ---
 
+<!-- /ANCHOR:overview -->
+<!-- ANCHOR:hls-js-video-streaming -->
 ## 2. HLS.JS (VIDEO STREAMING)
 
 HTTP Live Streaming library for adaptive video playback in non-Safari browsers.
@@ -151,6 +154,8 @@ function cleanup_hls_player(player) {
 
 ---
 
+<!-- /ANCHOR:hls-js-video-streaming -->
+<!-- ANCHOR:lenis-smooth-scroll -->
 ## 3. LENIS (SMOOTH SCROLL)
 
 Smooth scroll library providing momentum-based scrolling with global accessibility.
@@ -204,6 +209,8 @@ function close_modal() {
 
 ---
 
+<!-- /ANCHOR:lenis-smooth-scroll -->
+<!-- ANCHOR:botpoison-spam-protection -->
 ## 4. BOTPOISON (SPAM PROTECTION)
 
 Invisible captcha alternative for form spam protection without user friction.
@@ -380,6 +387,8 @@ try {
 
 ---
 
+<!-- /ANCHOR:botpoison-spam-protection -->
+<!-- ANCHOR:finsweet-attributes -->
 ## 5. FINSWEET ATTRIBUTES
 
 Webflow enhancement library providing CMS filtering, sorting, cookie consent, and other utilities.
@@ -610,6 +619,8 @@ window.fsAttributes.push([
 
 ---
 
+<!-- /ANCHOR:finsweet-attributes -->
+<!-- ANCHOR:filepond-file-upload -->
 ## 6. FILEPOND (FILE UPLOAD)
 
 FilePond is a flexible file upload library with drag-and-drop and progress indicators. The connector bridges FilePond (invisible) to a Webflow-designed UI with custom state management.
@@ -958,6 +969,8 @@ window.cleanupFilepondInstances = function () { /* destroys all instances */ };
 
 ---
 
+<!-- /ANCHOR:filepond-file-upload -->
+<!-- ANCHOR:best-practices -->
 ## 7. BEST PRACTICES
 
 ### CDN Loading Pattern
@@ -1081,6 +1094,8 @@ function destroy_player(player) {
 
 ---
 
+<!-- /ANCHOR:best-practices -->
+<!-- ANCHOR:library-summary -->
 ## 8. LIBRARY SUMMARY
 
 | Library | CDN | Version | Purpose |
@@ -1093,9 +1108,12 @@ function destroy_player(player) {
 
 ---
 
+<!-- /ANCHOR:library-summary -->
+<!-- ANCHOR:related-resources -->
 ## 9. RELATED RESOURCES
 
 ### Reference Files
 - [code_quality_standards.md](../standards/code_quality_standards.md) - CDN-safe initialization pattern for all library integrations
 - [implementation_workflows.md](./implementation_workflows.md) - Condition-based waiting patterns for library loading
 - [performance_patterns.md](./performance_patterns.md) - Lazy loading and code splitting strategies
+<!-- /ANCHOR:related-resources -->

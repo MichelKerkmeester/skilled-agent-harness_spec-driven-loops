@@ -13,6 +13,7 @@ Browser debugging and automation through two complementary approaches: CLI (bdg)
 
 ---
 
+<!-- ANCHOR:when-to-use -->
 ## 1. WHEN TO USE
 
 ### Activation Triggers
@@ -43,6 +44,8 @@ Browser debugging and automation through two complementary approaches: CLI (bdg)
 
 ---
 
+<!-- /ANCHOR:when-to-use -->
+<!-- ANCHOR:smart-routing-references -->
 ## 2. SMART ROUTING & REFERENCES
 
 ### Resource Router
@@ -162,6 +165,8 @@ Browser debugging task received
 
 ---
 
+<!-- /ANCHOR:smart-routing-references -->
+<!-- ANCHOR:how-it-works -->
 ## 3. HOW IT WORKS
 
 ### Tool Comparison
@@ -467,6 +472,8 @@ await call_tool_chain({
 
 ---
 
+<!-- /ANCHOR:how-it-works -->
+<!-- ANCHOR:rules -->
 ## 4. RULES
 
 ### ✅ ALWAYS Rules
@@ -549,6 +556,8 @@ await call_tool_chain({
 
 ---
 
+<!-- /ANCHOR:rules -->
+<!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
 ### Browser Debugging Completion Checklist
@@ -574,6 +583,8 @@ await call_tool_chain({
 
 ---
 
+<!-- /ANCHOR:success-criteria -->
+<!-- ANCHOR:integration-points -->
 ## 6. INTEGRATION POINTS
 
 ### Framework Integration
@@ -624,6 +635,8 @@ Key integrations:
 
 ---
 
+<!-- /ANCHOR:integration-points -->
+<!-- ANCHOR:examples -->
 ## 7. EXAMPLES
 
 ### Example 1: Screenshot Capture (CLI)
@@ -691,6 +704,8 @@ await call_tool_chain({
 
 ---
 
+<!-- /ANCHOR:examples -->
+<!-- ANCHOR:quick-reference -->
 ## 8. QUICK REFERENCE
 
 ### Essential CLI Commands
@@ -743,6 +758,8 @@ bdg "$URL" 2>&1 || exit 1
 
 ---
 
+<!-- /ANCHOR:quick-reference -->
+<!-- ANCHOR:related-resources -->
 ## 9. RELATED RESOURCES
 
 ### references/
@@ -757,3 +774,4 @@ bdg "$URL" 2>&1 || exit 1
 - **performance-baseline.sh**: Performance testing workflow
 - **animation-testing.sh**: Animation validation with thresholds
 - **multi-viewport-test.sh**: Responsive testing across 5 viewports
+<!-- /ANCHOR:related-resources -->

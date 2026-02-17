@@ -9,6 +9,7 @@ Templates for professional commit messages following Conventional Commits.
 
 ---
 
+<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 ### Purpose
@@ -24,6 +25,8 @@ This asset provides structured templates and examples for commit messages. Use i
 
 ---
 
+<!-- /ANCHOR:overview -->
+<!-- ANCHOR:basic-format -->
 ## 2. BASIC FORMAT
 
 ```
@@ -36,6 +39,8 @@ This asset provides structured templates and examples for commit messages. Use i
 
 ---
 
+<!-- /ANCHOR:basic-format -->
+<!-- ANCHOR:type-reference -->
 ## 3. TYPE REFERENCE
 
 | Type | When to Use | Breaking? |
@@ -52,6 +57,8 @@ This asset provides structured templates and examples for commit messages. Use i
 
 ---
 
+<!-- /ANCHOR:type-reference -->
+<!-- ANCHOR:scope-guidelines -->
 ## 4. SCOPE GUIDELINES
 
 **What is scope?**
@@ -70,6 +77,8 @@ The component or area of the codebase affected by the change.
 
 ---
 
+<!-- /ANCHOR:scope-guidelines -->
+<!-- ANCHOR:description-rules -->
 ## 5. DESCRIPTION RULES
 
 ✅ **DO**:
@@ -88,6 +97,8 @@ The component or area of the codebase affected by the change.
 
 ---
 
+<!-- /ANCHOR:description-rules -->
+<!-- ANCHOR:body-guidelines -->
 ## 6. BODY GUIDELINES
 
 **When to include a body**:
@@ -104,6 +115,8 @@ The component or area of the codebase affected by the change.
 
 ---
 
+<!-- /ANCHOR:body-guidelines -->
+<!-- ANCHOR:footer-guidelines -->
 ## 7. FOOTER GUIDELINES
 
 ### Breaking Changes
@@ -137,6 +150,8 @@ Related to #789
 
 ---
 
+<!-- /ANCHOR:footer-guidelines -->
+<!-- ANCHOR:complete-examples -->
 ## 8. COMPLETE EXAMPLES
 
 ### Example 1: Feature with Body
@@ -245,6 +260,8 @@ Related to #125
 
 ---
 
+<!-- /ANCHOR:complete-examples -->
+<!-- ANCHOR:bad-examples -->
 ## 9. BAD EXAMPLES
 
 ### ❌ Example 1: Vague
@@ -364,6 +381,8 @@ Adds documentation for new login endpoints.
 
 ---
 
+<!-- /ANCHOR:bad-examples -->
+<!-- ANCHOR:templates-for-common-scenarios -->
 ## 10. TEMPLATES FOR COMMON SCENARIOS
 
 ### Feature Addition
@@ -416,6 +435,8 @@ chore(deps): <update/add X to version Y>
 
 ---
 
+<!-- /ANCHOR:templates-for-common-scenarios -->
+<!-- ANCHOR:commit-message-checklist -->
 ## 11. COMMIT MESSAGE CHECKLIST
 
 Before committing, verify:
@@ -435,6 +456,8 @@ Before committing, verify:
 
 ---
 
+<!-- /ANCHOR:commit-message-checklist -->
+<!-- ANCHOR:quick-reference -->
 ## 12. QUICK REFERENCE
 
 ### Imperative Mood Conversion
@@ -468,8 +491,11 @@ chore: update <dependency>
 
 ---
 
+<!-- /ANCHOR:quick-reference -->
+<!-- ANCHOR:related-resources -->
 ## 13. RELATED RESOURCES
 
 - [Conventional Commits Specification](https://www.conventionalcommits.org/) - Official specification for commit message formatting
 - [How to Write a Git Commit Message](https://chris.beams.io/posts/git-commit/) - Best practices guide by Chris Beams
 - [Semantic Versioning](https://semver.org/) - Versioning specification that aligns with Conventional Commits
+<!-- /ANCHOR:related-resources -->

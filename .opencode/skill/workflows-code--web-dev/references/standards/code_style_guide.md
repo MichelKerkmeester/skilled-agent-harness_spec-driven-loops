@@ -9,6 +9,7 @@ Comprehensive styling, formatting, and commenting conventions ensuring consisten
 
 ---
 
+<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 ### Purpose
@@ -39,6 +40,8 @@ Code should be obviously correct at a glance. When style is consistent, reviewer
 
 ---
 
+<!-- /ANCHOR:overview -->
+<!-- ANCHOR:naming-conventions -->
 ## 2. NAMING CONVENTIONS
 
 ### JavaScript Identifiers
@@ -127,6 +130,8 @@ fluid_responsive.css
 
 ---
 
+<!-- /ANCHOR:naming-conventions -->
+<!-- ANCHOR:file-structure -->
 ## 3. FILE STRUCTURE
 
 ### JavaScript File Header (MANDATORY)
@@ -257,6 +262,8 @@ Every JavaScript file should follow this structure:
 
 ---
 
+<!-- /ANCHOR:file-structure -->
+<!-- ANCHOR:formatting -->
 ## 4. FORMATTING
 
 ### Indentation
@@ -418,6 +425,8 @@ function example (param) { }
 
 ---
 
+<!-- /ANCHOR:formatting -->
+<!-- ANCHOR:commenting-rules -->
 ## 5. COMMENTING RULES
 
 ### Principles
@@ -578,6 +587,8 @@ log('Processing item:', item.id);
 
 ---
 
+<!-- /ANCHOR:commenting-rules -->
+<!-- ANCHOR:css-style-conventions -->
 ## 6. CSS STYLE CONVENTIONS
 
 ### Custom Property Naming
@@ -693,6 +704,8 @@ src/1_css/
 
 ---
 
+<!-- /ANCHOR:css-style-conventions -->
+<!-- ANCHOR:quick-reference-checklist -->
 ## 7. QUICK REFERENCE CHECKLIST
 
 Before committing any code, verify:
@@ -739,6 +752,8 @@ Before committing any code, verify:
 
 ---
 
+<!-- /ANCHOR:quick-reference-checklist -->
+<!-- ANCHOR:related-resources -->
 ## 8. RELATED RESOURCES
 
 ### Standards Files
@@ -761,3 +776,4 @@ Before committing any code, verify:
 ---
 
 **Core principle:** Consistent style makes code predictable. Predictable code is maintainable code.
+<!-- /ANCHOR:related-resources -->

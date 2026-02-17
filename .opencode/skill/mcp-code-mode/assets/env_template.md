@@ -9,6 +9,7 @@ Copy-ready `.env` template for Code Mode UTCP authentication with all supported 
 
 ---
 
+<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 ### Purpose
@@ -21,6 +22,8 @@ Copy this template to `.env` in your project root, then replace placeholder valu
 
 ---
 
+<!-- /ANCHOR:overview -->
+<!-- ANCHOR:template -->
 ## 2. TEMPLATE
 
 ```bash
@@ -62,6 +65,8 @@ webflow_WEBFLOW_API_TOKEN=your_webflow_token_here
 
 ---
 
+<!-- /ANCHOR:template -->
+<!-- ANCHOR:credential-sources -->
 ## 3. CREDENTIAL SOURCES
 
 ### ClickUp
@@ -177,6 +182,8 @@ webflow_WEBFLOW_API_TOKEN=your_webflow_api_token_here
 
 ---
 
+<!-- /ANCHOR:credential-sources -->
+<!-- ANCHOR:critical-variable-naming-convention -->
 ## CRITICAL: Variable Naming Convention
 
 ### Code Mode Prefixes All Environment Variables
@@ -227,6 +234,8 @@ grep '_FIGMA_API_KEY' .env    # Should show: figma_FIGMA_API_KEY=...
 
 ---
 
+<!-- /ANCHOR:critical-variable-naming-convention -->
+<!-- ANCHOR:security-best-practices -->
 ## 4. SECURITY BEST PRACTICES
 
 ### .gitignore Configuration
@@ -277,6 +286,8 @@ grep '_FIGMA_API_KEY' .env    # Should show: figma_FIGMA_API_KEY=...
 
 ---
 
+<!-- /ANCHOR:security-best-practices -->
+<!-- ANCHOR:configuration-reference -->
 ## 5. CONFIGURATION REFERENCE
 
 ### Variable Syntax in .utcp_config.json
@@ -341,6 +352,8 @@ export CLICKUP_TEAM_ID=12345
 
 ---
 
+<!-- /ANCHOR:configuration-reference -->
+<!-- ANCHOR:troubleshooting -->
 ## 6. TROUBLESHOOTING
 
 ### Variable Not Found Error
@@ -386,6 +399,8 @@ Error: Access denied to resource
 
 ---
 
+<!-- /ANCHOR:troubleshooting -->
+<!-- ANCHOR:template-customization -->
 ## 7. TEMPLATE CUSTOMIZATION
 
 ### Adding New MCP Server Credentials
@@ -432,6 +447,8 @@ Then reference in `.utcp_config.json`:
 
 ---
 
+<!-- /ANCHOR:template-customization -->
+<!-- ANCHOR:validation-checklist -->
 ## 8. VALIDATION CHECKLIST
 
 **Before using Code Mode, verify:**
@@ -460,6 +477,8 @@ call_tool_chain({
 
 ---
 
+<!-- /ANCHOR:validation-checklist -->
+<!-- ANCHOR:related-resources -->
 ## 9. RELATED RESOURCES
 
 ### Templates
@@ -472,3 +491,4 @@ call_tool_chain({
 **Template Version**: 1.0.0
 **Last Updated**: 2025-01-23
 **Compatibility**: Code Mode UTCP v1.x
+<!-- /ANCHOR:related-resources -->

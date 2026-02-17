@@ -9,6 +9,7 @@ Conventions and standards for system-spec-kit templates ensuring documentation c
 
 ---
 
+<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 ### Core Principle
@@ -37,6 +38,8 @@ Current templates (10 user-facing + 1 internal):
 
 ---
 
+<!-- /ANCHOR:overview -->
+<!-- ANCHOR:metadata-format -->
 ## 2. METADATA FORMAT
 
 ### Standard Format
@@ -67,6 +70,8 @@ Use bulleted list format for metadata sections in all templates:
 
 ---
 
+<!-- /ANCHOR:metadata-format -->
+<!-- ANCHOR:placeholder-syntax -->
 ## 3. PLACEHOLDER SYNTAX
 
 ### Placeholder Types
@@ -107,6 +112,8 @@ Use bulleted list format for metadata sections in all templates:
 
 ---
 
+<!-- /ANCHOR:placeholder-syntax -->
+<!-- ANCHOR:section-numbering -->
 ## 4. SECTION NUMBERING
 
 ### Standard Format
@@ -114,8 +121,14 @@ Use bulleted list format for metadata sections in all templates:
 Use numbered sections with emoji and UPPERCASE:
 
 ```markdown
+<!-- /ANCHOR:section-numbering -->
+<!-- ANCHOR:section-name -->
 ## 1. SECTION NAME
+<!-- /ANCHOR:section-name -->
+<!-- ANCHOR:another-section -->
 ## 2. ANOTHER SECTION
+<!-- /ANCHOR:another-section -->
+<!-- ANCHOR:third-section -->
 ## 3. THIRD SECTION
 ```
 
@@ -138,6 +151,8 @@ The following templates may use Title Case for improved readability:
 
 ---
 
+<!-- /ANCHOR:third-section -->
+<!-- ANCHOR:date-formats -->
 ## 5. DATE FORMATS
 
 ### Standard Format
@@ -160,6 +175,8 @@ Always use ISO 8601 format: `YYYY-MM-DD`
 
 ---
 
+<!-- /ANCHOR:date-formats -->
+<!-- ANCHOR:file-naming -->
 ## 6. FILE NAMING
 
 ### Naming Convention
@@ -189,6 +206,8 @@ All templates should include a source marker for validation and change tracking:
 
 ---
 
+<!-- /ANCHOR:file-naming -->
+<!-- ANCHOR:frontmatter-requirements -->
 ## 7. FRONTMATTER REQUIREMENTS
 
 ### When Required
@@ -225,6 +244,8 @@ status: [Planning / In Progress / Complete]
 
 ---
 
+<!-- /ANCHOR:frontmatter-requirements -->
+<!-- ANCHOR:validation-rules -->
 ## 8. VALIDATION RULES
 
 ### Automated Checks
@@ -250,6 +271,8 @@ The `validate.sh` script enforces these rules:
 
 ---
 
+<!-- /ANCHOR:validation-rules -->
+<!-- ANCHOR:related-resources -->
 ## 9. RELATED RESOURCES
 
 ### Templates
@@ -273,3 +296,4 @@ The `validate.sh` script enforces these rules:
 - [validation_rules.md](../validation/validation_rules.md) - Complete validation rule documentation
 - [memory_system.md](../memory/memory_system.md) - Memory file format and indexing
 - [folder_routing.md](../structure/folder_routing.md) - Spec folder organization
+<!-- /ANCHOR:related-resources -->

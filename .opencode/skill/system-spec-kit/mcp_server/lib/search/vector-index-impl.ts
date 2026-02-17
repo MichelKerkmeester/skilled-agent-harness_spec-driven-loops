@@ -3396,8 +3396,8 @@ function verify_integrity(options: { autoClean?: boolean } = {}) {
  * @implements {IVectorStore}
  */
 class SQLiteVectorStore extends IVectorStore {
-  dbPath: any;
-  _initialized: any;
+  dbPath: string | null;
+  _initialized: boolean;
 
   /**
    * Create a new SQLiteVectorStore instance.
@@ -3405,7 +3405,7 @@ class SQLiteVectorStore extends IVectorStore {
    * @param {Object} [options={}] - Configuration options
    * @param {string} [options.dbPath] - Custom database path
    */
-  constructor(options: any = {}) {
+  constructor(options: { dbPath?: string } = {}) {
     super();
     this.dbPath = options.dbPath || null;
     this._initialized = false;
@@ -3431,7 +3431,7 @@ class SQLiteVectorStore extends IVectorStore {
    * @param {Object} [options={}] - Search options
    * @returns {Promise<Array>} Array of search results sorted by similarity
    */
-  async search(embedding: any, topK: any, options: any = {}) {
+  async search(embedding: EmbeddingInput, topK: number, options: VectorSearchOptions = {}) {
     this._ensureInitialized();
 
     // Validate embedding
@@ -3463,7 +3463,7 @@ class SQLiteVectorStore extends IVectorStore {
    * @param {Object} metadata - Associated metadata
    * @returns {Promise<number>} The ID of the inserted/updated record
    */
-  async upsert(id: any, embedding: any, metadata: any) {
+  async upsert(_id: string, embedding: EmbeddingInput, metadata: JsonObject) {
     this._ensureInitialized();
 
     // Validate embedding
@@ -3473,13 +3473,27 @@ class SQLiteVectorStore extends IVectorStore {
     }
 
     // Map metadata to index_memory params
-    const params = {
-      specFolder: metadata.spec_folder || metadata.specFolder,
-      filePath: metadata.file_path || metadata.filePath,
-      anchorId: metadata.anchor_id || metadata.anchorId || null,
-      title: metadata.title || null,
-      triggerPhrases: metadata.trigger_phrases || metadata.triggerPhrases || [],
-      importanceWeight: metadata.importance_weight || metadata.importanceWeight || 0.5,
+    const metadata_alias = metadata as JsonObject & {
+      spec_folder?: string;
+      specFolder?: string;
+      file_path?: string;
+      filePath?: string;
+      anchor_id?: string;
+      anchorId?: string;
+      title?: string;
+      trigger_phrases?: string[];
+      triggerPhrases?: string[];
+      importance_weight?: number;
+      importanceWeight?: number;
+    };
+
+    const params: IndexMemoryParams = {
+      specFolder: metadata_alias.spec_folder || metadata_alias.specFolder || '',
+      filePath: metadata_alias.file_path || metadata_alias.filePath || '',
+      anchorId: metadata_alias.anchor_id || metadata_alias.anchorId || null,
+      title: metadata_alias.title || null,
+      triggerPhrases: metadata_alias.trigger_phrases || metadata_alias.triggerPhrases || [],
+      importanceWeight: metadata_alias.importance_weight || metadata_alias.importanceWeight || 0.5,
       embedding: embedding
     };
 
@@ -3497,7 +3511,7 @@ class SQLiteVectorStore extends IVectorStore {
    * @param {number} id - Record ID to delete
    * @returns {Promise<boolean>} True if deleted, false if not found
    */
-  async delete(id: any) {
+  async delete(id: number) {
     this._ensureInitialized();
     return delete_memory(id);
   }
@@ -3508,7 +3522,7 @@ class SQLiteVectorStore extends IVectorStore {
    * @param {number} id - Record ID
    * @returns {Promise<Object|null>} The record or null if not found
    */
-  async get(id: any) {
+  async get(id: number) {
     this._ensureInitialized();
     return get_memory(id);
   }
@@ -3565,7 +3579,7 @@ class SQLiteVectorStore extends IVectorStore {
    * @param {string} [anchorId=null] - Anchor ID
    * @returns {Promise<boolean>} True if deleted
    */
-  async deleteByPath(specFolder: any, filePath: any, anchorId = null) {
+  async deleteByPath(specFolder: string, filePath: string, anchorId: string | null = null) {
     this._ensureInitialized();
     return delete_memory_by_path(specFolder, filePath, anchorId);
   }
@@ -3576,7 +3590,7 @@ class SQLiteVectorStore extends IVectorStore {
    * @param {string} specFolder - Spec folder path
    * @returns {Promise<Array>} Array of memories
    */
-  async getByFolder(specFolder: any) {
+  async getByFolder(specFolder: string) {
     this._ensureInitialized();
     return get_memories_by_folder(specFolder);
   }
@@ -3588,7 +3602,7 @@ class SQLiteVectorStore extends IVectorStore {
    * @param {Object} [options={}] - Search options
    * @returns {Promise<Array>} Enriched search results
    */
-  async searchEnriched(embedding: any, options: any = {}) {
+  async searchEnriched(embedding: string, options: { specFolder?: string | null; minSimilarity?: number } = {}) {
     this._ensureInitialized();
     return vector_search_enriched(embedding, undefined, options);
   }
@@ -3600,7 +3614,7 @@ class SQLiteVectorStore extends IVectorStore {
    * @param {Object} [options={}] - Search options
    * @returns {Promise<Array>} Enhanced search results
    */
-  async enhancedSearch(embedding: any, options: any = {}) {
+  async enhancedSearch(embedding: string, options: EnhancedSearchOptions = {}) {
     this._ensureInitialized();
     return enhanced_search(embedding, undefined, options);
   }
@@ -3611,7 +3625,7 @@ class SQLiteVectorStore extends IVectorStore {
    * @param {Object} [options={}] - Options
    * @returns {Promise<Array>} Constitutional memories
    */
-  async getConstitutionalMemories(options: any = {}) {
+  async getConstitutionalMemories(options: { specFolder?: string | null; maxTokens?: number; includeArchived?: boolean } = {}) {
     this._ensureInitialized();
     return get_constitutional_memories_public(options);
   }
@@ -3622,7 +3636,7 @@ class SQLiteVectorStore extends IVectorStore {
    * @param {Object} [options={}] - Options
    * @returns {Promise<Object>} Integrity report
    */
-  async verifyIntegrity(options: any = {}) {
+  async verifyIntegrity(options: { autoClean?: boolean } = {}) {
     this._ensureInitialized();
     return verify_integrity(options);
   }

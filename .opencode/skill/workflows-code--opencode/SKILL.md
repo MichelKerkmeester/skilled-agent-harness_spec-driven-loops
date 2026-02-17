@@ -15,6 +15,7 @@ Multi-language code standards for OpenCode system code across JavaScript, TypeSc
 
 ---
 
+<!-- ANCHOR:when-to-use -->
 ## 1. WHEN TO USE
 
 ### Activation Triggers
@@ -61,6 +62,8 @@ Multi-language code standards for OpenCode system code across JavaScript, TypeSc
 
 ---
 
+<!-- /ANCHOR:when-to-use -->
+<!-- ANCHOR:smart-routing -->
 ## 2. SMART ROUTING
 
 ### Resource Loading Levels
@@ -213,6 +216,8 @@ def route_opencode_resources(task):
 
 ---
 
+<!-- /ANCHOR:smart-routing -->
+<!-- ANCHOR:how-it-works -->
 ## 3. HOW IT WORKS
 
 ### Standards Workflow
@@ -261,6 +266,8 @@ STEP 4: Apply Standards
 
 ---
 
+<!-- /ANCHOR:how-it-works -->
+<!-- ANCHOR:rules -->
 ## 4. RULES
 
 ### ✅ ALWAYS
@@ -312,6 +319,8 @@ STEP 4: Apply Standards
 
 ---
 
+<!-- /ANCHOR:rules -->
+<!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
 ### Quality Gates
@@ -354,6 +363,8 @@ P2 Items (Can defer):
 
 ---
 
+<!-- /ANCHOR:success-criteria -->
+<!-- ANCHOR:integration-points -->
 ## 6. INTEGRATION POINTS
 
 ### Framework Integration
@@ -378,6 +389,8 @@ This skill operates within the behavioral framework defined in AGENTS.md.
 
 ---
 
+<!-- /ANCHOR:integration-points -->
+<!-- ANCHOR:external-resources -->
 ## 7. EXTERNAL RESOURCES
 
 | Resource          | URL                              | Use For                     |
@@ -392,6 +405,8 @@ This skill operates within the behavioral framework defined in AGENTS.md.
 
 ---
 
+<!-- /ANCHOR:external-resources -->
+<!-- ANCHOR:related-resources -->
 ## 8. RELATED RESOURCES
 
 ### Reference Files
@@ -425,6 +440,8 @@ This skill operates within the behavioral framework defined in AGENTS.md.
 
 ---
 
+<!-- /ANCHOR:related-resources -->
+<!-- ANCHOR:where-am-i-language-detection -->
 ## 9. WHERE AM I? (Language Detection)
 
 | Language   | You're here if...                                   | Load these resources          |
@@ -438,6 +455,8 @@ This skill operates within the behavioral framework defined in AGENTS.md.
 
 ---
 
+<!-- /ANCHOR:where-am-i-language-detection -->
+<!-- ANCHOR:quick-reference -->
 ## 10. QUICK REFERENCE
 
 ### File Header Templates
@@ -578,3 +597,4 @@ validate_file() {
 // Set value to 42
 // Loop through items
 ```
+<!-- /ANCHOR:quick-reference -->

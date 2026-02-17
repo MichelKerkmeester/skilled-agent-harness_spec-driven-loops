@@ -9,12 +9,15 @@ Advanced patterns for session lifecycle, multi-session handling, and state persi
 
 ---
 
+<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 Always verify session state before operations - session failures cascade. Implement proper cleanup patterns (trap-based) to prevent resource leaks and orphaned browser processes.
 
 ---
 
+<!-- /ANCHOR:overview -->
+<!-- ANCHOR:prerequisites -->
 ## 2. PREREQUISITES
 
 **Foundation:** Follow session basics from SKILL.md Section 3 before using advanced patterns:
@@ -29,6 +32,8 @@ Always verify session state before operations - session failures cascade. Implem
 
 ---
 
+<!-- /ANCHOR:prerequisites -->
+<!-- ANCHOR:session-lifecycle -->
 ## 3. SESSION LIFECYCLE
 
 ### Basic Lifecycle Pattern
@@ -57,6 +62,8 @@ bdg stop
 
 ---
 
+<!-- /ANCHOR:session-lifecycle -->
+<!-- ANCHOR:session-start-patterns -->
 ## 4. SESSION START PATTERNS
 
 ### Standard Start
@@ -146,6 +153,8 @@ start_with_timeout "https://example.com"
 
 ---
 
+<!-- /ANCHOR:session-start-patterns -->
+<!-- ANCHOR:session-status-verification -->
 ## 5. SESSION STATUS VERIFICATION
 
 ### Status Check Patterns
@@ -223,6 +232,8 @@ check_session_health
 
 ---
 
+<!-- /ANCHOR:session-status-verification -->
+<!-- ANCHOR:multi-session-management -->
 ## 6. MULTI-SESSION MANAGEMENT
 
 ### Concurrent Sessions Pattern
@@ -324,6 +335,8 @@ done
 
 ---
 
+<!-- /ANCHOR:multi-session-management -->
+<!-- ANCHOR:session-resumption -->
 ## 7. SESSION RESUMPTION
 
 ### Resume Check Pattern
@@ -420,6 +433,8 @@ restore_session_state
 
 ---
 
+<!-- /ANCHOR:session-resumption -->
+<!-- ANCHOR:error-handling -->
 ## 8. ERROR HANDLING
 
 ### Session Error Recovery
@@ -496,6 +511,8 @@ capture_with_fallback "https://example.com" "output.png"
 
 ---
 
+<!-- /ANCHOR:error-handling -->
+<!-- ANCHOR:session-cleanup -->
 ## 9. SESSION CLEANUP
 
 ### Before/After: Cleanup Patterns
@@ -575,6 +592,8 @@ stop_and_verify
 
 ---
 
+<!-- /ANCHOR:session-cleanup -->
+<!-- ANCHOR:performance-optimization -->
 ## 10. PERFORMANCE OPTIMIZATION
 
 ### Session Pooling Pattern
@@ -663,6 +682,8 @@ batch_operations "https://example.com" \
 
 ---
 
+<!-- /ANCHOR:performance-optimization -->
+<!-- ANCHOR:best-practices -->
 ## 11. BEST PRACTICES
 
 1. **Always verify session state** before executing operations
@@ -678,6 +699,8 @@ batch_operations "https://example.com" \
 
 ---
 
+<!-- /ANCHOR:best-practices -->
+<!-- ANCHOR:related-resources -->
 ## 12. RELATED RESOURCES
 
 ### Reference Files
@@ -694,3 +717,4 @@ batch_operations "https://example.com" \
 ---
 
 **Note**: bdg manages browser sessions internally. These patterns provide robust handling for production scripts and automation workflows.
+<!-- /ANCHOR:related-resources -->

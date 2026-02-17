@@ -9,6 +9,7 @@ Complete workflow documentation for completing development work with structured 
 
 ---
 
+<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 Systematically complete development work by verifying tests, presenting integration options, and executing the chosen workflow. Ensures work is properly integrated with clean branch management.
@@ -17,6 +18,8 @@ Systematically complete development work by verifying tests, presenting integrat
 
 ---
 
+<!-- /ANCHOR:overview -->
+<!-- ANCHOR:process-overview -->
 ## 2. PROCESS OVERVIEW
 
 1. Verify all tests pass (blocking gate)
@@ -34,6 +37,8 @@ Systematically complete development work by verifying tests, presenting integrat
 
 ---
 
+<!-- /ANCHOR:process-overview -->
+<!-- ANCHOR:complete-workflow -->
 ## 3. COMPLETE WORKFLOW
 
 ### Step 1: Verify Tests
@@ -171,13 +176,19 @@ git push -u origin <feature-branch>
 
 # 2. Create PR using GitHub CLI (preferred)
 gh pr create --title "<title>" --body "$(cat <<'EOF'
+<!-- /ANCHOR:complete-workflow -->
+<!-- ANCHOR:summary -->
 ## Summary
 <2-3 bullet points of what changed>
 
+<!-- /ANCHOR:summary -->
+<!-- ANCHOR:test-plan -->
 ## Test Plan
 - [ ] <verification steps>
 - [ ] All tests pass
 
+<!-- /ANCHOR:test-plan -->
+<!-- ANCHOR:related-issues -->
 ## Related Issues
 Closes #<issue-number> (if applicable)
 EOF
@@ -315,6 +326,8 @@ echo "No worktree cleanup needed."
 
 ---
 
+<!-- /ANCHOR:related-issues -->
+<!-- ANCHOR:decision-matrix -->
 ## 4. DECISION MATRIX
 
 | Scenario | Recommended Option | Rationale |
@@ -330,6 +343,8 @@ echo "No worktree cleanup needed."
 
 ---
 
+<!-- /ANCHOR:decision-matrix -->
+<!-- ANCHOR:common-mistakes -->
 ## 5. COMMON MISTAKES
 
 **Skipping test verification**:
@@ -364,6 +379,8 @@ echo "No worktree cleanup needed."
 
 ---
 
+<!-- /ANCHOR:common-mistakes -->
+<!-- ANCHOR:example-workflows -->
 ## 6. EXAMPLE WORKFLOWS
 
 ### Example 1: Quick Fix with Local Merge (Option 1)
@@ -445,16 +462,22 @@ User: "2"
 Pushed to origin/feature/user-auth
 
 > gh pr create --title "feat(auth): add OAuth2 user authentication" --body "$(cat <<'EOF'
+<!-- /ANCHOR:example-workflows -->
+<!-- ANCHOR:summary-2 -->
 ## Summary
 - Implements OAuth2 authentication flow
 - Adds JWT token management
 - Includes login/logout endpoints
 
+<!-- /ANCHOR:summary-2 -->
+<!-- ANCHOR:test-plan-2 -->
 ## Test Plan
 - [x] All unit tests pass (152 tests)
 - [ ] Manual testing of login flow
 - [ ] Security review
 
+<!-- /ANCHOR:test-plan-2 -->
+<!-- ANCHOR:related-issues-2 -->
 ## Related Issues
 Closes #234
 EOF
@@ -563,6 +586,8 @@ Deleted branch experiment/alternative-approach
 
 ---
 
+<!-- /ANCHOR:related-issues-2 -->
+<!-- ANCHOR:troubleshooting -->
 ## 7. TROUBLESHOOTING
 
 ### Tests Fail Before Options
@@ -790,6 +815,8 @@ Which option? (1-3)
 
 ---
 
+<!-- /ANCHOR:troubleshooting -->
+<!-- ANCHOR:success-criteria -->
 ## 8. SUCCESS CRITERIA
 
 ### Workflow Success
@@ -879,6 +906,8 @@ Which option? (1-3)
 
 ---
 
+<!-- /ANCHOR:success-criteria -->
+<!-- ANCHOR:related-resources -->
 ## 9. RELATED RESOURCES
 
 ### Reference Files
@@ -895,3 +924,4 @@ Which option? (1-3)
 - [Creating Pull Requests](https://cli.github.com/manual/gh_pr_create) - PR creation with gh CLI
 - [GitHub Flow Guide](https://docs.github.com/en/get-started/quickstart/github-flow) - GitHub's recommended workflow
 - [Pull Request Best Practices](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests) - Effective PR collaboration
+<!-- /ANCHOR:related-resources -->

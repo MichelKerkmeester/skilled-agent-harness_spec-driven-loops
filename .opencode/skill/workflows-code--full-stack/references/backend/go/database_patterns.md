@@ -9,6 +9,7 @@ Guidelines for working with databases in backend systems, covering the generic r
 
 ---
 
+<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 ### Purpose
@@ -40,6 +41,8 @@ Level 2: Related knowledge files
 
 ---
 
+<!-- /ANCHOR:overview -->
+<!-- ANCHOR:data-layer-architecture -->
 ## 2. DATA LAYER ARCHITECTURE
 
 ### How Do I Structure a Data Layer?
@@ -78,6 +81,8 @@ func NewPaymentDataLayer(_ context.Context, orm *database.Orm, layerConfig Payme
 
 ---
 
+<!-- /ANCHOR:data-layer-architecture -->
+<!-- ANCHOR:repository-pattern -->
 ## 3. REPOSITORY PATTERN
 
 ### How Do I Create a Repository?
@@ -158,6 +163,8 @@ func (r WalletRepository) Delete(walletID uid.UID) error {
 
 ---
 
+<!-- /ANCHOR:repository-pattern -->
+<!-- ANCHOR:transactions -->
 ## 4. TRANSACTIONS
 
 ### How Do I Use Data Layer Transactions?
@@ -258,6 +265,8 @@ if !s.TxNil() {
 
 ---
 
+<!-- /ANCHOR:transactions -->
+<!-- ANCHOR:entities -->
 ## 5. ENTITIES
 
 ### How Do I Define an Entity?
@@ -306,6 +315,8 @@ type WalletActivityLog struct {
 
 ---
 
+<!-- /ANCHOR:entities -->
+<!-- ANCHOR:query-patterns -->
 ## 6. QUERY PATTERNS
 
 ### How Do I Write Complex Queries with Joins?
@@ -369,6 +380,8 @@ func (r WalletRepository) GetAllThroughPipeline(ctx context.Context, pipe *pipel
 
 ---
 
+<!-- /ANCHOR:query-patterns -->
+<!-- ANCHOR:gorm-relationships-and-soft-delete-pitfalls -->
 ## 7. GORM RELATIONSHIPS AND SOFT-DELETE PITFALLS
 
 ### The Problem: Nil Pointer Relations
@@ -484,6 +497,8 @@ db.Model(&User{}).
 
 ---
 
+<!-- /ANCHOR:gorm-relationships-and-soft-delete-pitfalls -->
+<!-- ANCHOR:rules -->
 ## 8. RULES
 
 ### ALWAYS
@@ -520,6 +535,8 @@ db.Model(&User{}).
 
 ---
 
+<!-- /ANCHOR:rules -->
+<!-- ANCHOR:related-resources -->
 ## 9. RELATED RESOURCES
 
 | File                                                                                 | Purpose                                               |
@@ -528,3 +545,4 @@ db.Model(&User{}).
 | [go_standards.md](./go_standards.md)                                                 | Project structure, naming conventions                 |
 | [database_patterns_gorm_type_mappings.md](./database_patterns_gorm_type_mappings.md) | GORM type mappings reference                          |
 | [models_vs_entities_and_adapters.md](./models_vs_entities_and_adapters.md)           | Entity/model boundaries                               |
+<!-- /ANCHOR:related-resources -->

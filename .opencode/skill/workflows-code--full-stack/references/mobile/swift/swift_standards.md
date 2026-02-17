@@ -9,6 +9,7 @@ A comprehensive guide to Swift 5.9+ project structure, Xcode organization, Swift
 
 ---
 
+<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 ### Purpose
@@ -35,6 +36,8 @@ Clarity at the point of use + consistent naming + organized structure = maintain
 
 ---
 
+<!-- /ANCHOR:overview -->
+<!-- ANCHOR:project-structure -->
 ## 2. PROJECT STRUCTURE
 
 ### Xcode Project Organization
@@ -152,6 +155,8 @@ let package = Package(
 
 ---
 
+<!-- /ANCHOR:project-structure -->
+<!-- ANCHOR:file-naming-conventions -->
 ## 3. FILE NAMING CONVENTIONS
 
 ### File Naming Rules
@@ -209,6 +214,8 @@ Profile/
 
 ---
 
+<!-- /ANCHOR:file-naming-conventions -->
+<!-- ANCHOR:code-organization-within-files -->
 ## 4. CODE ORGANIZATION WITHIN FILES
 
 ### Type Organization Order
@@ -311,6 +318,8 @@ Use MARK comments to organize code sections:
 
 ---
 
+<!-- /ANCHOR:code-organization-within-files -->
+<!-- ANCHOR:naming-conventions -->
 ## 5. NAMING CONVENTIONS
 
 ### Swift API Design Guidelines
@@ -410,6 +419,8 @@ func isValid(for context: Context) -> Bool
 
 ---
 
+<!-- /ANCHOR:naming-conventions -->
+<!-- ANCHOR:swift-style-guide -->
 ## 6. SWIFT STYLE GUIDE
 
 ### Spacing and Indentation
@@ -528,6 +539,8 @@ let streetName = user.address?.street?.name
 
 ---
 
+<!-- /ANCHOR:swift-style-guide -->
+<!-- ANCHOR:swift-5-9-features -->
 ## 7. SWIFT 5.9+ FEATURES
 
 ### Macros
@@ -595,6 +608,8 @@ struct UniqueResource: ~Copyable {
 
 ---
 
+<!-- /ANCHOR:swift-5-9-features -->
+<!-- ANCHOR:documentation -->
 ## 8. DOCUMENTATION
 
 ### Documentation Comments
@@ -662,6 +677,8 @@ func fetchUser(id: String, includeProfile: Bool = false) async throws -> User {
 
 ---
 
+<!-- /ANCHOR:documentation -->
+<!-- ANCHOR:common-patterns -->
 ## 9. COMMON PATTERNS
 
 ### Dependency Injection
@@ -742,6 +759,8 @@ class Settings {
 
 ---
 
+<!-- /ANCHOR:common-patterns -->
+<!-- ANCHOR:rules -->
 ## 10. RULES
 
 ### ALWAYS
@@ -779,6 +798,8 @@ class Settings {
 
 ---
 
+<!-- /ANCHOR:rules -->
+<!-- ANCHOR:related-resources -->
 ## 11. RELATED RESOURCES
 
 | File | Purpose |
@@ -788,3 +809,4 @@ class Settings {
 | [async_patterns.md](./async_patterns.md) | Swift concurrency and async/await patterns |
 | [testing_strategy.md](./testing_strategy.md) | XCTest and testing best practices |
 | [persistence_patterns.md](./persistence_patterns.md) | SwiftData, Core Data, and storage patterns |
+<!-- /ANCHOR:related-resources -->

@@ -9,6 +9,7 @@ Quality validation checklist for Bash scripts in the OpenCode development enviro
 
 ---
 
+<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 ### Purpose
@@ -25,6 +26,8 @@ Specific quality checks for Bash shell scripts. Use alongside the [universal_che
 
 ---
 
+<!-- /ANCHOR:overview -->
+<!-- ANCHOR:p0-hard-blockers -->
 ## 2. P0 - HARD BLOCKERS
 
 These items MUST be fixed before any commit.
@@ -106,6 +109,8 @@ file_path=$1
 
 ---
 
+<!-- /ANCHOR:p0-hard-blockers -->
+<!-- ANCHOR:p1-required -->
 ## 3. P1 - REQUIRED
 
 These must be addressed or receive approval to defer.
@@ -196,6 +201,8 @@ echo "Error: file not found"  # Goes to stdout
 
 ---
 
+<!-- /ANCHOR:p1-required -->
+<!-- ANCHOR:p2-recommended -->
 ## 4. P2 - RECOMMENDED
 
 These improve quality but can be deferred.
@@ -257,11 +264,15 @@ validate_file() {
 
 ---
 
+<!-- /ANCHOR:p2-recommended -->
+<!-- ANCHOR:checklist-template -->
 ## 5. CHECKLIST TEMPLATE
 
 Copy this for code review:
 
 ```markdown
+<!-- /ANCHOR:checklist-template -->
+<!-- ANCHOR:shell-code-quality-check -->
 ## Shell Code Quality Check
 
 ### P0 - HARD BLOCKERS
@@ -294,6 +305,8 @@ Copy this for code review:
 
 ---
 
+<!-- /ANCHOR:shell-code-quality-check -->
+<!-- ANCHOR:validation-commands -->
 ## 6. VALIDATION COMMANDS
 
 ```bash
@@ -323,6 +336,8 @@ grep -n '^[^#]*\[ ' script.sh        # Old-style test
 
 ---
 
+<!-- /ANCHOR:validation-commands -->
+<!-- ANCHOR:related-resources -->
 ## 7. RELATED RESOURCES
 
 ### Checklists
@@ -334,3 +349,4 @@ grep -n '^[^#]*\[ ' script.sh        # Old-style test
 
 ### External Tools
 - [ShellCheck](https://www.shellcheck.net/) - Static analysis
+<!-- /ANCHOR:related-resources -->

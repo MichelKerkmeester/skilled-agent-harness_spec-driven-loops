@@ -9,6 +9,7 @@ Systematic diagnosis and resolution for semantic memory issues, context retrieva
 
 ---
 
+<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 **Core Principle:** Systematic diagnosis before fixes. Never guess at solutions.
@@ -43,6 +44,8 @@ Issue Detected
 
 ---
 
+<!-- /ANCHOR:overview -->
+<!-- ANCHOR:quick-fixes -->
 ## 2. QUICK FIXES
 
 | Issue | Symptom | Solution |
@@ -83,6 +86,8 @@ memory_search({ query: "test" })
 
 ---
 
+<!-- /ANCHOR:quick-fixes -->
+<!-- ANCHOR:common-errors -->
 ## 3. COMMON ERRORS
 
 ### Vector Index Issues
@@ -184,6 +189,8 @@ Where:
 
 ---
 
+<!-- /ANCHOR:common-errors -->
+<!-- ANCHOR:debugging -->
 ## 4. DEBUGGING
 
 ### Debugging Commands
@@ -266,6 +273,8 @@ memory_list({ limit: 3 })  // Should show recent entries
 
 ---
 
+<!-- /ANCHOR:debugging -->
+<!-- ANCHOR:escalation -->
 ## 5. ESCALATION
 
 ### When to Escalate
@@ -348,6 +357,8 @@ memory_update({ id: 123, importanceTier: "constitutional" })
 
 ---
 
+<!-- /ANCHOR:escalation -->
+<!-- ANCHOR:recovery-procedures -->
 ## 6. RECOVERY PROCEDURES
 
 ### Index Recovery
@@ -377,6 +388,8 @@ If settings are wrong:
 
 ---
 
+<!-- /ANCHOR:recovery-procedures -->
+<!-- ANCHOR:recovery-hints-catalog -->
 ## 7. RECOVERY HINTS CATALOG
 
 Quick reference for common recovery scenarios with symptoms and actions.
@@ -439,6 +452,8 @@ checkpoint_restore({ checkpointId: "checkpoint-###-prev" })
 
 ---
 
+<!-- /ANCHOR:recovery-hints-catalog -->
+<!-- ANCHOR:empty-trigger-phrases -->
 ## 8. EMPTY TRIGGER PHRASES
 
 **Symptom:** `memory_match_triggers()` returns no results even for relevant queries.
@@ -457,6 +472,8 @@ memory_delete({ id: <memory_id> })
 
 ---
 
+<!-- /ANCHOR:empty-trigger-phrases -->
+<!-- ANCHOR:related-resources -->
 ## 9. RELATED RESOURCES
 
 ### Reference Files
@@ -466,3 +483,4 @@ memory_delete({ id: <memory_id> })
 
 ### Related Skills
 - `system-spec-kit` - Spec folder creation and template management
+<!-- /ANCHOR:related-resources -->

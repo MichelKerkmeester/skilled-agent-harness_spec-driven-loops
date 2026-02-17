@@ -9,6 +9,7 @@ Fast lookup for Bash scripting patterns, syntax, and common structures in OpenCo
 
 ---
 
+<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 ### Purpose
@@ -19,6 +20,8 @@ Quick-access reference card for Bash patterns. For detailed explanations, see:
 
 ---
 
+<!-- /ANCHOR:overview -->
+<!-- ANCHOR:file-template -->
 ## 2. FILE TEMPLATE
 
 ```bash
@@ -109,6 +112,8 @@ main "$@"
 
 ---
 
+<!-- /ANCHOR:file-template -->
+<!-- ANCHOR:naming-conventions -->
 ## 3. NAMING CONVENTIONS
 
 | Element | Convention | Example |
@@ -121,6 +126,8 @@ main "$@"
 
 ---
 
+<!-- /ANCHOR:naming-conventions -->
+<!-- ANCHOR:variable-handling -->
 ## 4. VARIABLE HANDLING
 
 ### Declaration
@@ -166,6 +173,8 @@ done
 
 ---
 
+<!-- /ANCHOR:variable-handling -->
+<!-- ANCHOR:conditionals -->
 ## 5. CONDITIONALS
 
 ### String Tests
@@ -221,6 +230,8 @@ done
 
 ---
 
+<!-- /ANCHOR:conditionals -->
+<!-- ANCHOR:loops -->
 ## 6. LOOPS
 
 ### For Loops
@@ -279,6 +290,8 @@ done
 
 ---
 
+<!-- /ANCHOR:loops -->
+<!-- ANCHOR:functions -->
 ## 7. FUNCTIONS
 
 ### Definition
@@ -323,6 +336,8 @@ value=$(get_value)
 
 ---
 
+<!-- /ANCHOR:functions -->
+<!-- ANCHOR:argument-parsing -->
 ## 8. ARGUMENT PARSING
 
 ### Simple Positional
@@ -375,6 +390,8 @@ done
 
 ---
 
+<!-- /ANCHOR:argument-parsing -->
+<!-- ANCHOR:string-operations -->
 ## 9. STRING OPERATIONS
 
 ### Substitution
@@ -410,6 +427,8 @@ echo "${file##*.}"        # txt (extension)
 
 ---
 
+<!-- /ANCHOR:string-operations -->
+<!-- ANCHOR:common-patterns -->
 ## 10. COMMON PATTERNS
 
 ### Safe Temp Files
@@ -460,6 +479,8 @@ EOF
 
 ---
 
+<!-- /ANCHOR:common-patterns -->
+<!-- ANCHOR:quality-checklist -->
 ## 11. QUALITY CHECKLIST
 
 ```markdown
@@ -486,8 +507,11 @@ P2 - Recommended:
 
 ---
 
+<!-- /ANCHOR:quality-checklist -->
+<!-- ANCHOR:related-resources -->
 ## 12. RELATED RESOURCES
 
 - [style_guide.md](./style_guide.md) - Detailed style documentation
 - [quality_standards.md](./quality_standards.md) - Quality requirements
 - [ShellCheck](https://www.shellcheck.net/) - Static analysis
+<!-- /ANCHOR:related-resources -->

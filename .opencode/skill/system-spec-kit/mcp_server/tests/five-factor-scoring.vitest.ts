@@ -889,26 +889,34 @@ describe('Edge Cases: Batch Operations', () => {
 ------------------------------------------------------------------ */
 
 describe('Edge Cases: Factor Breakdown', () => {
+  type FactorBreakdownEntry = {
+    contribution: number;
+    value: number;
+    weight: number;
+    description: string;
+  };
+
   it('EDGE-BD-01: Breakdown contributions sum to total', () => {
     const breakdown = getFiveFactorBreakdown({ access_count: 5 }, {});
-    const factorSum = Object.values(breakdown.factors).reduce((sum: any, f: any) => sum + f.contribution, 0);
-    const diff = Math.abs((factorSum as number) - breakdown.total);
+    const factors = Object.values(breakdown.factors) as FactorBreakdownEntry[];
+    const factorSum = factors.reduce((sum, factor) => sum + factor.contribution, 0);
+    const diff = Math.abs(factorSum - breakdown.total);
     expect(diff).toBeLessThan(0.0001);
   });
 
   it('EDGE-BD-02: Each factor contribution = value * weight', () => {
     const breakdown = getFiveFactorBreakdown({ access_count: 5 }, {});
-    for (const [name, factor] of Object.entries(breakdown.factors)) {
-      const expected = (factor as any).value * (factor as any).weight;
-      expect(Math.abs(expected - (factor as any).contribution)).toBeLessThan(0.0001);
+    for (const factor of Object.values(breakdown.factors) as FactorBreakdownEntry[]) {
+      const expected = factor.value * factor.weight;
+      expect(Math.abs(expected - factor.contribution)).toBeLessThan(0.0001);
     }
   });
 
   it('EDGE-BD-03: Breakdown has description for each factor', () => {
     const breakdown = getFiveFactorBreakdown({}, {});
-    for (const factor of Object.values(breakdown.factors)) {
-      expect((factor as any).description).toBeDefined();
-      expect(typeof (factor as any).description).toBe('string');
+    for (const factor of Object.values(breakdown.factors) as FactorBreakdownEntry[]) {
+      expect(factor.description).toBeDefined();
+      expect(typeof factor.description).toBe('string');
     }
   });
 });

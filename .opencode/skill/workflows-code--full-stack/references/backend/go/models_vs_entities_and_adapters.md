@@ -9,6 +9,7 @@ Defines the architectural boundary between database entities and business models
 
 ---
 
+<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 ### Purpose
@@ -39,6 +40,8 @@ Level 2: Related knowledge files
 
 ---
 
+<!-- /ANCHOR:overview -->
+<!-- ANCHOR:core-principles -->
 ## 2. CORE PRINCIPLES
 
 ### What Are the Three Mandatory Principles?
@@ -71,6 +74,8 @@ Services, repositories, and data layers deal exclusively with entities.
 
 ---
 
+<!-- /ANCHOR:core-principles -->
+<!-- ANCHOR:layer-responsibilities -->
 ## 3. LAYER RESPONSIBILITIES
 
 ### What Does Each Layer Consume and Produce?
@@ -96,6 +101,8 @@ Repository → Entity → Service → Entity → Business Layer → [ADAPTER] �
 
 ---
 
+<!-- /ANCHOR:layer-responsibilities -->
+<!-- ANCHOR:adapter-design-pattern -->
 ## 4. ADAPTER DESIGN PATTERN
 
 ### How Do I Structure Adapters?
@@ -206,6 +213,8 @@ func (a WalletAdapter) AdaptCollection(wallets []payments_entities.Wallet) []pay
 
 ---
 
+<!-- /ANCHOR:adapter-design-pattern -->
+<!-- ANCHOR:error-handling-in-adapters -->
 ## 5. ERROR HANDLING IN ADAPTERS
 
 ### How Should Adapters Handle Errors?
@@ -247,6 +256,8 @@ func (a BillableItemAdapter) Adapt(item payments_entities.BillableItem) (payment
 
 ---
 
+<!-- /ANCHOR:error-handling-in-adapters -->
+<!-- ANCHOR:usage-in-business-layer -->
 ## 6. USAGE IN BUSINESS LAYER
 
 ### How Do I Structure the Business Layer?
@@ -351,6 +362,8 @@ func (l *PaymentsBusinessLayer) GetWalletWithSubscriptions(
 
 ---
 
+<!-- /ANCHOR:usage-in-business-layer -->
+<!-- ANCHOR:rules -->
 ## 7. RULES
 
 ### ALWAYS
@@ -382,6 +395,8 @@ func (l *PaymentsBusinessLayer) GetWalletWithSubscriptions(
 
 ---
 
+<!-- /ANCHOR:rules -->
+<!-- ANCHOR:testing-adapters -->
 ## 8. TESTING ADAPTERS
 
 ### How Do I Test Adapters?
@@ -424,6 +439,8 @@ func TestWalletAdapter_AdaptCollection(t *testing.T) {
 
 ---
 
+<!-- /ANCHOR:testing-adapters -->
+<!-- ANCHOR:complete-flow-example -->
 ## 9. COMPLETE FLOW EXAMPLE
 
 ### How Does Data Flow Through the System?
@@ -475,6 +492,8 @@ func (c httpControllers) getWallet(ctx http.ServerCtx) error {
 
 ---
 
+<!-- /ANCHOR:complete-flow-example -->
+<!-- ANCHOR:related-resources -->
 ## 10. RELATED RESOURCES
 
 | File                                           | Purpose                                  |
@@ -483,3 +502,4 @@ func (c httpControllers) getWallet(ctx http.ServerCtx) error {
 | [go_standards.md](./go_standards.md)           | Project structure, naming conventions    |
 | [api_design.md](./api_design.md)               | HTTP controller patterns                 |
 | [database_patterns.md](./database_patterns.md) | Repository and entity patterns           |
+<!-- /ANCHOR:related-resources -->

@@ -224,19 +224,14 @@ The YAML contains: detailed step activities, checkpoints, confidence scoring, er
 
 ---
 
-## Agent Routing
+## CONSTRAINTS
 
-This command dispatches a specialized agent at a specific workflow step (see YAML for details):
-
-| Step | Agent | Rule | Purpose |
-|------|-------|------|---------|
-| 5b: Quality Review | @review | §3 — @review for quality scoring | 100-point rubric scoring of created reference |
-
-**Agent file**: `.opencode/agent/review.md`
+- **DO NOT** dispatch any agent (`@review`) from this document
+- **DO NOT** dispatch `@review` to review this workflow or command prompt
+- **ALL** agent dispatching is handled by the YAML workflow steps — this document is setup + reference only
+- **FIRST ACTION** is always: run Phase 0, then Setup Phase, then load the YAML file
 
 ---
-
-<!-- REFERENCE ONLY -->
 
 ## GATE 3 STATUS: EXEMPT (Predefined Location)
 
@@ -371,8 +366,6 @@ STEP 5 (Validation) REQUIREMENTS:
 4. WAIT for user response
 5. RESUME only after all fields are set
 ```
-
-<!-- END REFERENCE -->
 
 ---
 

@@ -9,6 +9,7 @@ Go testing patterns, test types, mocking, and best practices for backend systems
 
 ---
 
+<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 ### Purpose
@@ -39,6 +40,8 @@ testing_strategy.md (this file)
 
 ---
 
+<!-- /ANCHOR:overview -->
+<!-- ANCHOR:test-types -->
 ## 2. TEST TYPES
 
 ### How do I decide which test type to write?
@@ -98,6 +101,8 @@ Test complete user flows against deployed environment.
 
 ---
 
+<!-- /ANCHOR:test-types -->
+<!-- ANCHOR:test-structure -->
 ## 3. TEST STRUCTURE
 
 ### How do I write a table-driven test?
@@ -196,6 +201,8 @@ func TestUserService(t *testing.T) {
 
 ---
 
+<!-- /ANCHOR:test-structure -->
+<!-- ANCHOR:mocking-patterns -->
 ## 4. MOCKING PATTERNS
 
 ### How do I create interface-based mocks?
@@ -323,6 +330,8 @@ func TestUserService_CreateUser(t *testing.T) {
 
 ---
 
+<!-- /ANCHOR:mocking-patterns -->
+<!-- ANCHOR:integration-tests -->
 ## 5. INTEGRATION TESTS
 
 ### How do I set up database tests?
@@ -454,6 +463,8 @@ func createTestOrder(t *testing.T, db *gorm.DB, vendorID uid.UID, title string) 
 
 ---
 
+<!-- /ANCHOR:integration-tests -->
+<!-- ANCHOR:setup-teardown -->
 ## 6. SETUP & TEARDOWN
 
 ### How do I use test helpers?
@@ -522,6 +533,8 @@ func TestIntegration_ExternalAPI(t *testing.T) {
 
 ---
 
+<!-- /ANCHOR:setup-teardown -->
+<!-- ANCHOR:best-practices -->
 ## 7. BEST PRACTICES
 
 ### Test Design Principles
@@ -567,6 +580,8 @@ user := &User{
 
 ---
 
+<!-- /ANCHOR:best-practices -->
+<!-- ANCHOR:code-coverage -->
 ## 8. CODE COVERAGE
 
 ### How do I run tests with coverage?
@@ -612,6 +627,8 @@ go test -race ./...
 
 ---
 
+<!-- /ANCHOR:code-coverage -->
+<!-- ANCHOR:rules -->
 ## 9. RULES
 
 ### ALWAYS
@@ -642,6 +659,8 @@ go test -race ./...
 
 ---
 
+<!-- /ANCHOR:rules -->
+<!-- ANCHOR:e2e-test-infrastructure -->
 ## 10. E2E TEST INFRASTRUCTURE
 
 End-to-end tests in this codebase use embedded infrastructure to create realistic testing environments without external dependencies. All E2E tests are located in `internal/e2e_tests/`.
@@ -866,6 +885,8 @@ func paymentsConfiguration(
 
 ---
 
+<!-- /ANCHOR:e2e-test-infrastructure -->
+<!-- ANCHOR:e2e-mock-patterns -->
 ## 11. E2E MOCK PATTERNS
 
 ### How do I create service-level mocks for E2E tests?
@@ -1003,6 +1024,8 @@ func mockRegistryPaymentService(
 
 ---
 
+<!-- /ANCHOR:e2e-mock-patterns -->
+<!-- ANCHOR:e2e-utilities -->
 ## 12. E2E UTILITIES
 
 ### How do I clean up embedded Postgres data?
@@ -1073,6 +1096,8 @@ func KillProcessOnPort(port uint32) error {
 
 ---
 
+<!-- /ANCHOR:e2e-utilities -->
+<!-- ANCHOR:e2e-testing-best-practices -->
 ## 13. E2E TESTING BEST PRACTICES
 
 ### Test Isolation
@@ -1104,6 +1129,8 @@ func KillProcessOnPort(port uint32) error {
 
 ---
 
+<!-- /ANCHOR:e2e-testing-best-practices -->
+<!-- ANCHOR:rules-2 -->
 ## 14. RULES
 
 ### ALWAYS
@@ -1142,6 +1169,8 @@ func KillProcessOnPort(port uint32) error {
 
 ---
 
+<!-- /ANCHOR:rules-2 -->
+<!-- ANCHOR:related-resources -->
 ## 15. RELATED RESOURCES
 
 | Topic | Document | Section |
@@ -1151,3 +1180,4 @@ func KillProcessOnPort(port uint32) error {
 | Database test patterns | [database_patterns.md](./database_patterns.md) | GORM testing |
 | DI for testing | [di_configuration.md](./di_configuration.md) | Injecting mocks |
 | DI token registration | [di_configuration.md](./di_configuration.md) | Registry tokens for mock injection |
+<!-- /ANCHOR:related-resources -->

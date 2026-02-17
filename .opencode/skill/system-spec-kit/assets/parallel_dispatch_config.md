@@ -9,6 +9,7 @@ Configuration for smart parallel sub-agent dispatch based on task complexity sco
 
 ---
 
+<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 ### Purpose
@@ -24,6 +25,8 @@ Defines when and how to dispatch parallel agents for complex tasks. Use this con
 
 ---
 
+<!-- /ANCHOR:overview -->
+<!-- ANCHOR:5-dimension-complexity-scoring -->
 ## 2. 5-DIMENSION COMPLEXITY SCORING
 
 | Dimension            | Weight | Scoring                                |
@@ -38,6 +41,8 @@ Defines when and how to dispatch parallel agents for complex tasks. Use this con
 
 ---
 
+<!-- /ANCHOR:5-dimension-complexity-scoring -->
+<!-- ANCHOR:decision-thresholds -->
 ## 3. DECISION THRESHOLDS
 
 | Score            | Action                                |
@@ -49,6 +54,8 @@ Defines when and how to dispatch parallel agents for complex tasks. Use this con
 
 ---
 
+<!-- /ANCHOR:decision-thresholds -->
+<!-- ANCHOR:4-agent-parallel-exploration-step-6-planning -->
 ## 4. 4-AGENT PARALLEL EXPLORATION (Step 6 Planning)
 
 | Agent                 | Focus                            | Purpose                          |
@@ -62,6 +69,8 @@ Defines when and how to dispatch parallel agents for complex tasks. Use this con
 
 ---
 
+<!-- /ANCHOR:4-agent-parallel-exploration-step-6-planning -->
+<!-- ANCHOR:tiered-spec-creation-architecture -->
 ## 5. TIERED SPEC CREATION ARCHITECTURE
 
 ### Workstream Notation
@@ -126,6 +135,8 @@ spec_creation_parallel:
 
 ---
 
+<!-- /ANCHOR:tiered-spec-creation-architecture -->
+<!-- ANCHOR:override-phrases -->
 ## 6. OVERRIDE PHRASES
 
 | Intent                    | Phrases                                                |
@@ -138,6 +149,8 @@ spec_creation_parallel:
 
 ---
 
+<!-- /ANCHOR:override-phrases -->
+<!-- ANCHOR:related-resources -->
 ## 7. RELATED RESOURCES
 
 ### Asset Files
@@ -154,3 +167,4 @@ spec_creation_parallel:
 
 ### Related Skills
 - `system-spec-kit` - Spec folder workflow orchestrator
+<!-- /ANCHOR:related-resources -->

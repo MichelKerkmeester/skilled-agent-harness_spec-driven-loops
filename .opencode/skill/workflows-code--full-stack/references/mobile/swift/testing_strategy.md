@@ -9,6 +9,7 @@ A comprehensive guide to testing Swift and SwiftUI applications including XCTest
 
 ---
 
+<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 ### Purpose
@@ -37,6 +38,8 @@ Fast feedback + isolated tests + comprehensive coverage = confidence in code qua
 
 ---
 
+<!-- /ANCHOR:overview -->
+<!-- ANCHOR:xctest-fundamentals -->
 ## 2. XCTEST FUNDAMENTALS
 
 ### Test Structure
@@ -193,6 +196,8 @@ final class CartServiceTests: XCTestCase {
 
 ---
 
+<!-- /ANCHOR:xctest-fundamentals -->
+<!-- ANCHOR:unit-testing-viewmodels -->
 ## 3. UNIT TESTING VIEWMODELS
 
 ### Testing @Observable ViewModels
@@ -445,6 +450,8 @@ final class CreateProductViewModelTests: XCTestCase {
 
 ---
 
+<!-- /ANCHOR:unit-testing-viewmodels -->
+<!-- ANCHOR:mocking-and-stubbing -->
 ## 4. MOCKING AND STUBBING
 
 ### Protocol-Based Mocks
@@ -695,6 +702,8 @@ extension User {
 
 ---
 
+<!-- /ANCHOR:mocking-and-stubbing -->
+<!-- ANCHOR:async-testing -->
 ## 5. ASYNC TESTING
 
 ### Testing Async Functions
@@ -849,6 +858,8 @@ final class CancellationTests: XCTestCase {
 
 ---
 
+<!-- /ANCHOR:async-testing -->
+<!-- ANCHOR:ui-testing-with-xcuitest -->
 ## 6. UI TESTING WITH XCUITEST
 
 ### Basic UI Tests
@@ -1066,6 +1077,8 @@ func testProductDetail_DisplaysCorrectInfo() {
 
 ---
 
+<!-- /ANCHOR:ui-testing-with-xcuitest -->
+<!-- ANCHOR:snapshot-testing -->
 ## 7. SNAPSHOT TESTING
 
 ### Using swift-snapshot-testing
@@ -1175,6 +1188,8 @@ final class ViewSnapshotTests: XCTestCase {
 
 ---
 
+<!-- /ANCHOR:snapshot-testing -->
+<!-- ANCHOR:test-organization -->
 ## 8. TEST ORGANIZATION
 
 ### Test Categories
@@ -1238,6 +1253,8 @@ func createTestContainer() -> DependencyContainer {
 
 ---
 
+<!-- /ANCHOR:test-organization -->
+<!-- ANCHOR:rules -->
 ## 9. RULES
 
 ### ALWAYS
@@ -1275,6 +1292,8 @@ func createTestContainer() -> DependencyContainer {
 
 ---
 
+<!-- /ANCHOR:rules -->
+<!-- ANCHOR:related-resources -->
 ## 10. RELATED RESOURCES
 
 | File | Purpose |
@@ -1284,3 +1303,4 @@ func createTestContainer() -> DependencyContainer {
 | [mvvm_architecture.md](./mvvm_architecture.md) | MVVM architecture patterns with SwiftUI |
 | [async_patterns.md](./async_patterns.md) | Swift concurrency and async/await patterns |
 | [persistence_patterns.md](./persistence_patterns.md) | SwiftData, Core Data, and storage patterns |
+<!-- /ANCHOR:related-resources -->

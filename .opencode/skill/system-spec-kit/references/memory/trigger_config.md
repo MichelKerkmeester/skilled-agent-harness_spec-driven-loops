@@ -9,6 +9,7 @@ Complete configuration guide for memory trigger phrases and the fast trigger mat
 
 ---
 
+<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 **Core Principle:** Trigger detection must be fast (<50ms) and reliable, using optimized phrase matching to surface relevant memories without impacting conversation flow.
@@ -32,6 +33,8 @@ This reference covers trigger phrase configuration, the MCP-based matching syste
 
 ---
 
+<!-- /ANCHOR:overview -->
+<!-- ANCHOR:trigger-phrases -->
 ## 2. TRIGGER PHRASES
 
 The following phrases activate memory operations (case-insensitive matching):
@@ -143,6 +146,8 @@ const matches = await memory_match_triggers({
 
 ---
 
+<!-- /ANCHOR:trigger-phrases -->
+<!-- ANCHOR:manual-save-methods -->
 ## 3. MANUAL SAVE METHODS
 
 ### Primary Method: Command
@@ -180,6 +185,8 @@ Include any of these phrases in your message:
 
 ---
 
+<!-- /ANCHOR:manual-save-methods -->
+<!-- ANCHOR:customization -->
 ## 4. CUSTOMIZATION
 
 ### Adding Custom Triggers
@@ -247,6 +254,8 @@ Override defaults in your spec folder's memory settings:
 <!-- specs/001-feature/memory/config.md -->
 # Memory Configuration
 
+<!-- /ANCHOR:customization -->
+<!-- ANCHOR:custom-triggers -->
 ## Custom Triggers
 - "feature complete"
 - "milestone reached"
@@ -255,6 +264,8 @@ Override defaults in your spec folder's memory settings:
 
 ---
 
+<!-- /ANCHOR:custom-triggers -->
+<!-- ANCHOR:performance-targets -->
 ## 5. PERFORMANCE TARGETS
 
 ### Trigger Matching Performance
@@ -287,6 +298,8 @@ function optimizedDetection(userMessage: string): CompiledTrigger | undefined {
 
 ---
 
+<!-- /ANCHOR:performance-targets -->
+<!-- ANCHOR:best-practices -->
 ## 6. BEST PRACTICES
 
 ### Good vs Bad Trigger Phrases
@@ -319,12 +332,16 @@ function optimizedDetection(userMessage: string): CompiledTrigger | undefined {
 ### When to Save (Manual Guidelines)
 
 ```markdown
+<!-- /ANCHOR:best-practices -->
+<!-- ANCHOR:save-more-frequently-when -->
 ## Save More Frequently When:
 - Complex multi-file refactoring
 - Debugging sessions with many iterations
 - Research with valuable discoveries
 - Architecture decisions in progress
 
+<!-- /ANCHOR:save-more-frequently-when -->
+<!-- ANCHOR:save-less-frequently-when -->
 ## Save Less Frequently When:
 - Simple, repetitive tasks
 - Well-understood changes
@@ -342,6 +359,8 @@ Before deploying custom triggers:
 
 ---
 
+<!-- /ANCHOR:save-less-frequently-when -->
+<!-- ANCHOR:related-resources -->
 ## 7. RELATED RESOURCES
 
 ### Reference Files
@@ -352,3 +371,4 @@ Before deploying custom triggers:
 
 ### Related Skills
 - `spec_kit_memory` - Integrated MCP tools for context preservation
+<!-- /ANCHOR:related-resources -->

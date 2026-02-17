@@ -9,6 +9,7 @@ Next.js 14+ App Router conventions, TypeScript configuration, file naming patter
 
 ---
 
+<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 ### Purpose
@@ -31,6 +32,8 @@ Provides comprehensive guidance on Next.js 14+ patterns including App Router arc
 
 ---
 
+<!-- /ANCHOR:overview -->
+<!-- ANCHOR:project-structure -->
 ## 2. PROJECT STRUCTURE
 
 ### App Router Directory Organization
@@ -168,6 +171,8 @@ app/
 
 ---
 
+<!-- /ANCHOR:project-structure -->
+<!-- ANCHOR:file-naming-conventions -->
 ## 3. FILE NAMING CONVENTIONS
 
 ### App Router Special Files
@@ -233,6 +238,8 @@ export function Button({ variant = 'primary', size = 'md', children }: ButtonPro
 
 ---
 
+<!-- /ANCHOR:file-naming-conventions -->
+<!-- ANCHOR:typescript-configuration -->
 ## 4. TYPESCRIPT CONFIGURATION
 
 ### Recommended tsconfig.json
@@ -381,6 +388,8 @@ function renderContent(state: ApiState<User[]>) {
 
 ---
 
+<!-- /ANCHOR:typescript-configuration -->
+<!-- ANCHOR:next-js-configuration -->
 ## 5. NEXT.JS CONFIGURATION
 
 ### next.config.js (Recommended)
@@ -494,6 +503,8 @@ router.push('/settings/profile');
 
 ---
 
+<!-- /ANCHOR:next-js-configuration -->
+<!-- ANCHOR:environment-configuration -->
 ## 6. ENVIRONMENT CONFIGURATION
 
 ### Environment Files
@@ -601,6 +612,8 @@ const publicConfig = {
 
 ---
 
+<!-- /ANCHOR:environment-configuration -->
+<!-- ANCHOR:routing-patterns -->
 ## 7. ROUTING PATTERNS
 
 ### Basic Routing Structure
@@ -733,6 +746,8 @@ export default function PhotoModal({ params }: { params: { id: string } }) {
 
 ---
 
+<!-- /ANCHOR:routing-patterns -->
+<!-- ANCHOR:layout-patterns -->
 ## 8. LAYOUT PATTERNS
 
 ### Root Layout (Required)
@@ -831,6 +846,8 @@ export default function Template({ children }: { children: React.ReactNode }) {
 
 ---
 
+<!-- /ANCHOR:layout-patterns -->
+<!-- ANCHOR:loading-and-error-states -->
 ## 9. LOADING AND ERROR STATES
 
 ### Loading UI
@@ -941,6 +958,8 @@ export default async function Page({ params }: { params: { id: string } }) {
 
 ---
 
+<!-- /ANCHOR:loading-and-error-states -->
+<!-- ANCHOR:middleware -->
 ## 10. MIDDLEWARE
 
 ### Middleware Configuration
@@ -1018,6 +1037,8 @@ export function middleware(request: NextRequest) {
 
 ---
 
+<!-- /ANCHOR:middleware -->
+<!-- ANCHOR:quick-reference -->
 ## 11. QUICK REFERENCE
 
 ### Checklist: New Feature Setup
@@ -1100,6 +1121,8 @@ import dynamic from 'next/dynamic';
 
 ---
 
+<!-- /ANCHOR:quick-reference -->
+<!-- ANCHOR:related-resources -->
 ## 12. RELATED RESOURCES
 
 ### Related References
@@ -1110,3 +1133,4 @@ import dynamic from 'next/dynamic';
 - [API Patterns](./api_patterns.md) - Route handlers and API design
 - [Forms & Validation](./forms_validation.md) - React Hook Form and Zod integration
 - [Testing Strategy](./testing_strategy.md) - React Testing Library and Playwright
+<!-- /ANCHOR:related-resources -->

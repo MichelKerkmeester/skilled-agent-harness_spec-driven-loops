@@ -7,6 +7,7 @@ description: Universal validation checklist for code quality and style complianc
 
 Universal validation checklist for code quality and style compliance across TypeScript/JavaScript, Go, and Swift.
 
+<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 ### Purpose
@@ -42,6 +43,8 @@ Validate code against quality standards before claiming implementation is comple
 
 ---
 
+<!-- /ANCHOR:overview -->
+<!-- ANCHOR:universal-file-organization-checks -->
 ## 2. UNIVERSAL: FILE ORGANIZATION CHECKS
 
 **Applies to:** All languages
@@ -65,6 +68,8 @@ Validate code against quality standards before claiming implementation is comple
 
 ---
 
+<!-- /ANCHOR:universal-file-organization-checks -->
+<!-- ANCHOR:universal-naming-convention-checks -->
 ## 3. UNIVERSAL: NAMING CONVENTION CHECKS
 
 **Applies to:** All languages
@@ -123,6 +128,8 @@ const result = validate();  // Should be: isValidEmail, validationErrors
 
 ---
 
+<!-- /ANCHOR:universal-naming-convention-checks -->
+<!-- ANCHOR:universal-comment-quality-checks -->
 ## 4. UNIVERSAL: COMMENT QUALITY CHECKS
 
 **Applies to:** All languages
@@ -172,6 +179,8 @@ if isValid {
 
 ---
 
+<!-- /ANCHOR:universal-comment-quality-checks -->
+<!-- ANCHOR:universal-error-handling-checks -->
 ## 5. UNIVERSAL: ERROR HANDLING CHECKS
 
 **Applies to:** All languages
@@ -226,6 +235,8 @@ const name = user.profile.name;  // Could be null
 
 ---
 
+<!-- /ANCHOR:universal-error-handling-checks -->
+<!-- ANCHOR:universal-code-quality-checks -->
 ## 6. UNIVERSAL: CODE QUALITY CHECKS
 
 **Applies to:** All languages
@@ -262,6 +273,8 @@ const name = user.profile.name;  // Could be null
 
 ---
 
+<!-- /ANCHOR:universal-code-quality-checks -->
+<!-- ANCHOR:typescript-javascript-specific-checks -->
 ## 7. TYPESCRIPT/JAVASCRIPT SPECIFIC CHECKS
 
 **Applies to:** `.ts`, `.tsx`, `.js`, `.jsx` files
@@ -358,6 +371,8 @@ useEffect(() => {
 
 ---
 
+<!-- /ANCHOR:typescript-javascript-specific-checks -->
+<!-- ANCHOR:go-specific-checks -->
 ## 8. GO SPECIFIC CHECKS
 
 **Applies to:** `.go` files
@@ -453,6 +468,8 @@ func GetUser(id string) User {
 
 ---
 
+<!-- /ANCHOR:go-specific-checks -->
+<!-- ANCHOR:swift-specific-checks -->
 ## 9. SWIFT SPECIFIC CHECKS
 
 **Applies to:** `.swift` files
@@ -559,6 +576,8 @@ DispatchQueue.main.sync {  // Can deadlock
 
 ---
 
+<!-- /ANCHOR:swift-specific-checks -->
+<!-- ANCHOR:verification-summary-template -->
 ## 10. VERIFICATION SUMMARY TEMPLATE
 
 After completing validation, document the results.
@@ -566,6 +585,8 @@ After completing validation, document the results.
 ### Universal Template (All Languages)
 
 ```markdown
+<!-- /ANCHOR:verification-summary-template -->
+<!-- ANCHOR:code-quality-verification-summary -->
 ## Code Quality Verification Summary
 
 **File**: [filename.ext]
@@ -593,6 +614,8 @@ After completing validation, document the results.
 
 ---
 
+<!-- /ANCHOR:code-quality-verification-summary -->
+<!-- ANCHOR:quick-reference -->
 ## 11. QUICK REFERENCE
 
 ### Pass Criteria by Language
@@ -630,6 +653,8 @@ After completing validation, document the results.
 
 ---
 
+<!-- /ANCHOR:quick-reference -->
+<!-- ANCHOR:related-resources -->
 ## 12. RELATED RESOURCES
 
 ### Companion Checklists
@@ -640,3 +665,4 @@ After completing validation, document the results.
 ### Parent Skill
 
 - [SKILL.md](../../SKILL.md) - workflows-code skill (Phase 1.5: Code Quality Gate)
+<!-- /ANCHOR:related-resources -->

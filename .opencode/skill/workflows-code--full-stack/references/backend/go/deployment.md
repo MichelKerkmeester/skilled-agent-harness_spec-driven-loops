@@ -9,6 +9,7 @@ CI/CD workflows, versioning strategy, and deployment patterns for backend system
 
 ---
 
+<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 ### Purpose
@@ -37,6 +38,8 @@ deployment.md (this file)
 
 ---
 
+<!-- /ANCHOR:overview -->
+<!-- ANCHOR:build-system -->
 ## 2. BUILD SYSTEM
 
 ### Makefile Targets
@@ -70,6 +73,8 @@ make push-cli-dockers ECR_REGISTRY=$REGISTRY
 
 ---
 
+<!-- /ANCHOR:build-system -->
+<!-- ANCHOR:development-workflow -->
 ## 3. DEVELOPMENT WORKFLOW
 
 ### How do I deploy to development?
@@ -105,6 +110,8 @@ git push origin v1.2.3-alpha.1
 
 ---
 
+<!-- /ANCHOR:development-workflow -->
+<!-- ANCHOR:production-workflow -->
 ## 4. PRODUCTION WORKFLOW
 
 ### How do I deploy to production?
@@ -151,6 +158,8 @@ Same as development but targets staging environment.
 
 ---
 
+<!-- /ANCHOR:production-workflow -->
+<!-- ANCHOR:version-tagging-strategy -->
 ## 5. VERSION TAGGING STRATEGY
 
 ### Version Format
@@ -188,6 +197,8 @@ echo "VERSION=$VV" >> $GITHUB_ENV
 
 ---
 
+<!-- /ANCHOR:version-tagging-strategy -->
+<!-- ANCHOR:docker-container-registry -->
 ## 6. DOCKER & CONTAINER REGISTRY
 
 ### ECR Image Naming
@@ -210,6 +221,8 @@ make push-cli-dockers ECR_REGISTRY=${{ steps.login-ecr.outputs.registry }}
 
 ---
 
+<!-- /ANCHOR:docker-container-registry -->
+<!-- ANCHOR:artifact-storage -->
 ## 7. ARTIFACT STORAGE
 
 ### S3 Bucket Structure
@@ -233,6 +246,8 @@ aws s3 cp ./bin_arm64/lambdas/ s3://$BUCKET/$PATH/$VERSION/ --recursive
 
 ---
 
+<!-- /ANCHOR:artifact-storage -->
+<!-- ANCHOR:gitops-deployment -->
 ## 8. GITOPS DEPLOYMENT
 
 ### How does GitOps deployment work?
@@ -284,6 +299,8 @@ Production additionally triggers Terraform for API Gateway:
 
 ---
 
+<!-- /ANCHOR:gitops-deployment -->
+<!-- ANCHOR:deployment-checklist -->
 ## 9. DEPLOYMENT CHECKLIST
 
 ### Before Tagging Release
@@ -318,6 +335,8 @@ Production additionally triggers Terraform for API Gateway:
 
 ---
 
+<!-- /ANCHOR:deployment-checklist -->
+<!-- ANCHOR:secrets-configuration -->
 ## 10. SECRETS & CONFIGURATION
 
 ### Required GitHub Secrets
@@ -338,6 +357,8 @@ Production additionally triggers Terraform for API Gateway:
 
 ---
 
+<!-- /ANCHOR:secrets-configuration -->
+<!-- ANCHOR:troubleshooting -->
 ## 11. TROUBLESHOOTING
 
 ### Build Failures
@@ -376,6 +397,8 @@ Production additionally triggers Terraform for API Gateway:
 
 ---
 
+<!-- /ANCHOR:troubleshooting -->
+<!-- ANCHOR:maintenance-workflows -->
 ## 12. MAINTENANCE WORKFLOWS
 
 ### Additional Workflows
@@ -404,6 +427,8 @@ go test ./...
 
 ---
 
+<!-- /ANCHOR:maintenance-workflows -->
+<!-- ANCHOR:rules -->
 ## 13. RULES
 
 ### ALWAYS
@@ -433,6 +458,8 @@ go test ./...
 
 ---
 
+<!-- /ANCHOR:rules -->
+<!-- ANCHOR:related-resources -->
 ## 14. RELATED RESOURCES
 
 | Topic | Document | Section |
@@ -441,3 +468,4 @@ go test ./...
 | Configuration | [di_configuration.md](./di_configuration.md) | Config structure |
 | Workflow files | `.github/workflows/` | YAML definitions |
 | Docker setup | `misc/dockerfiles/` | Dockerfile templates |
+<!-- /ANCHOR:related-resources -->

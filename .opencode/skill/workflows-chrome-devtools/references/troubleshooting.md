@@ -9,12 +9,15 @@ Systematic diagnostics and solutions for bdg CLI issues.
 
 ---
 
+<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 Find root cause before attempting fixes - symptom fixes create cascading failures. Always run systematic diagnostics (5-check sequence) before implementing solutions.
 
 ---
 
+<!-- /ANCHOR:overview -->
+<!-- ANCHOR:prerequisites -->
 ## 2. PREREQUISITES
 
 **Foundation:** Run quick diagnostics from this guide before deeper troubleshooting:
@@ -30,6 +33,8 @@ Find root cause before attempting fixes - symptom fixes create cascading failure
 
 ---
 
+<!-- /ANCHOR:prerequisites -->
+<!-- ANCHOR:quick-diagnostics -->
 ## 3. QUICK DIAGNOSTICS
 
 **Run these checks first**:
@@ -54,6 +59,8 @@ npm --version
 
 ---
 
+<!-- /ANCHOR:quick-diagnostics -->
+<!-- ANCHOR:installation-issues -->
 ## 4. INSTALLATION ISSUES
 
 ### Issue: bdg command not found
@@ -169,6 +176,8 @@ nvm use 18
 
 ---
 
+<!-- /ANCHOR:installation-issues -->
+<!-- ANCHOR:browser-connection-issues -->
 ## 5. BROWSER CONNECTION ISSUES
 
 ### Issue: Browser not found
@@ -318,6 +327,8 @@ netstat -an | grep 9222  # Default debugging port
 
 ---
 
+<!-- /ANCHOR:browser-connection-issues -->
+<!-- ANCHOR:session-management-issues -->
 ## 6. SESSION MANAGEMENT ISSUES
 
 ### Issue: Session won't start
@@ -447,6 +458,8 @@ ps aux | grep bdg
 
 ---
 
+<!-- /ANCHOR:session-management-issues -->
+<!-- ANCHOR:cdp-command-issues -->
 ## 7. CDP COMMAND ISSUES
 
 ### Issue: CDP method not found
@@ -547,6 +560,8 @@ bdg cdp Page.captureScreenshot 2>&1
 
 ---
 
+<!-- /ANCHOR:cdp-command-issues -->
+<!-- ANCHOR:output-parsing-issues -->
 ## Output Parsing Issues
 
 ### Issue: jq parse error
@@ -614,6 +629,8 @@ bdg cdp Page.captureScreenshot 2>&1 | jq -r '.result.data' | base64 -d > output.
 
 ---
 
+<!-- /ANCHOR:output-parsing-issues -->
+<!-- ANCHOR:performance-issues -->
 ## 8. PERFORMANCE ISSUES
 
 ### Issue: Slow CDP command execution
@@ -701,6 +718,8 @@ $ ps aux | grep chrome
 
 ---
 
+<!-- /ANCHOR:performance-issues -->
+<!-- ANCHOR:platform-specific-issues -->
 ## 9. PLATFORM-SPECIFIC ISSUES
 
 ### macOS: Gatekeeper blocking Chrome
@@ -755,6 +774,8 @@ export DISPLAY=:0
 
 ---
 
+<!-- /ANCHOR:platform-specific-issues -->
+<!-- ANCHOR:error-code-reference -->
 ## 10. ERROR CODE REFERENCE
 
 | Exit Code | Meaning | Solution |
@@ -770,6 +791,8 @@ export DISPLAY=:0
 
 ---
 
+<!-- /ANCHOR:error-code-reference -->
+<!-- ANCHOR:debug-mode -->
 ## 11. DEBUG MODE
 
 **Enable verbose logging**:
@@ -787,6 +810,8 @@ bdg status 2>&1
 
 ---
 
+<!-- /ANCHOR:debug-mode -->
+<!-- ANCHOR:getting-help -->
 ## 12. GETTING HELP
 
 1. **Check documentation**: https://github.com/szymdzum/browser-debugger-cli
@@ -800,6 +825,8 @@ bdg status 2>&1
 
 ---
 
+<!-- /ANCHOR:getting-help -->
+<!-- ANCHOR:common-solutions-checklist -->
 ## 13. COMMON SOLUTIONS CHECKLIST
 
 Before reporting issues, try these:
@@ -817,6 +844,8 @@ Before reporting issues, try these:
 
 ---
 
+<!-- /ANCHOR:common-solutions-checklist -->
+<!-- ANCHOR:related-resources -->
 ## 14. RELATED RESOURCES
 
 ### Reference Files
@@ -834,3 +863,4 @@ Before reporting issues, try these:
 ---
 
 **Note**: Most issues stem from missing installation, session state mismanagement, or incorrect CDP parameter format. Always verify session status before executing commands.
+<!-- /ANCHOR:related-resources -->

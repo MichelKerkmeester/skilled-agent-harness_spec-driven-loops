@@ -9,6 +9,7 @@ Fast lookup for Python coding patterns, naming conventions, and common structure
 
 ---
 
+<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 ### Purpose
@@ -19,6 +20,8 @@ Quick-access reference card for Python patterns. For detailed explanations, see:
 
 ---
 
+<!-- /ANCHOR:overview -->
+<!-- ANCHOR:file-template -->
 ## 2. FILE TEMPLATE
 
 ```python
@@ -89,6 +92,8 @@ if __name__ == "__main__":
 
 ---
 
+<!-- /ANCHOR:file-template -->
+<!-- ANCHOR:naming-conventions -->
 ## 3. NAMING CONVENTIONS
 
 | Element | Convention | Example |
@@ -102,6 +107,8 @@ if __name__ == "__main__":
 
 ---
 
+<!-- /ANCHOR:naming-conventions -->
+<!-- ANCHOR:type-hints -->
 ## 4. TYPE HINTS
 
 ### Common Patterns
@@ -137,6 +144,8 @@ def func(path: Path) -> Optional[Path]:
 
 ---
 
+<!-- /ANCHOR:type-hints -->
+<!-- ANCHOR:docstring-format -->
 ## 5. DOCSTRING FORMAT
 
 ### Function Docstring
@@ -181,6 +190,8 @@ class ClassName:
 
 ---
 
+<!-- /ANCHOR:docstring-format -->
+<!-- ANCHOR:common-patterns -->
 ## 6. COMMON PATTERNS
 
 ### Early Return / Guard Clauses
@@ -256,6 +267,8 @@ def process_file(file_path: Path) -> Tuple[bool, str, Dict]:
 
 ---
 
+<!-- /ANCHOR:common-patterns -->
+<!-- ANCHOR:exception-handling -->
 ## 7. EXCEPTION HANDLING
 
 ### Specific Exceptions
@@ -297,6 +310,8 @@ except Exception as e:
 
 ---
 
+<!-- /ANCHOR:exception-handling -->
+<!-- ANCHOR:constants -->
 ## 8. CONSTANTS
 
 ### Definition Pattern
@@ -325,6 +340,8 @@ CONFIG = {
 
 ---
 
+<!-- /ANCHOR:constants -->
+<!-- ANCHOR:string-formatting -->
 ## 9. STRING FORMATTING
 
 ### F-Strings (Preferred)
@@ -349,6 +366,8 @@ message = (
 
 ---
 
+<!-- /ANCHOR:string-formatting -->
+<!-- ANCHOR:imports -->
 ## 10. IMPORTS
 
 ### Standard Order
@@ -373,6 +392,8 @@ from ..common import shared_constant
 
 ---
 
+<!-- /ANCHOR:imports -->
+<!-- ANCHOR:quality-checklist -->
 ## 11. QUALITY CHECKLIST
 
 ```markdown
@@ -400,7 +421,10 @@ P2 - Recommended:
 
 ---
 
+<!-- /ANCHOR:quality-checklist -->
+<!-- ANCHOR:related-resources -->
 ## 12. RELATED RESOURCES
 
 - [style_guide.md](./style_guide.md) - Detailed style documentation
 - [quality_standards.md](./quality_standards.md) - Quality requirements and validation
+<!-- /ANCHOR:related-resources -->

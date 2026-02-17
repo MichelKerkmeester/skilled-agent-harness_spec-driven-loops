@@ -15,6 +15,7 @@ Unified workflow guidance for any technology stack: Go, React, React Native, Swi
 
 ---
 
+<!-- ANCHOR:when-to-use -->
 ## 1. WHEN TO USE
 
 ### Activation Triggers
@@ -48,6 +49,8 @@ Unified workflow guidance for any technology stack: Go, React, React Native, Swi
 
 ---
 
+<!-- /ANCHOR:when-to-use -->
+<!-- ANCHOR:smart-routing -->
 ## 2. SMART ROUTING
 
 ### Stack Detection (Marker File Based)
@@ -181,6 +184,8 @@ All stacks follow the same structure:
 
 ---
 
+<!-- /ANCHOR:smart-routing -->
+<!-- ANCHOR:how-it-works -->
 ## 3. HOW IT WORKS
 
 ### Development Lifecycle
@@ -249,6 +254,8 @@ Implementation → Debugging (if issues) → Verification (MANDATORY)
 
 ---
 
+<!-- /ANCHOR:how-it-works -->
+<!-- ANCHOR:rules -->
 ## 4. RULES
 
 ### Universal Rules (All Stacks)
@@ -330,6 +337,8 @@ Implementation → Debugging (if issues) → Verification (MANDATORY)
 
 ---
 
+<!-- /ANCHOR:rules -->
+<!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
 ### Phase Completion Checklists
@@ -357,6 +366,8 @@ Implementation → Debugging (if issues) → Verification (MANDATORY)
 
 ---
 
+<!-- /ANCHOR:success-criteria -->
+<!-- ANCHOR:integration-points -->
 ## 6. INTEGRATION POINTS
 
 ### Framework Integration
@@ -382,6 +393,8 @@ workflows-code--full-stack/
 
 ---
 
+<!-- /ANCHOR:integration-points -->
+<!-- ANCHOR:external-resources -->
 ## 7. EXTERNAL RESOURCES
 
 | Stack        | Documentation           |
@@ -396,6 +409,8 @@ workflows-code--full-stack/
 
 ---
 
+<!-- /ANCHOR:external-resources -->
+<!-- ANCHOR:related-skills -->
 ## 8. RELATED SKILLS
 
 | Skill                         | Use For                              |
@@ -413,6 +428,8 @@ workflows-code--full-stack/
 
 ---
 
+<!-- /ANCHOR:related-skills -->
+<!-- ANCHOR:where-am-i -->
 ## 9. WHERE AM I?
 
 | Phase                 | You're here if...            | Exit criteria              |
@@ -426,6 +443,8 @@ workflows-code--full-stack/
 
 ---
 
+<!-- /ANCHOR:where-am-i -->
+<!-- ANCHOR:quick-reference -->
 ## 10. QUICK REFERENCE
 
 ### Universal Workflow
@@ -469,6 +488,8 @@ workflows-code--full-stack/
 
 ---
 
+<!-- /ANCHOR:quick-reference -->
+<!-- ANCHOR:directory-structure -->
 ## 11. DIRECTORY STRUCTURE
 
 ```
@@ -498,3 +519,4 @@ workflows-code--full-stack/
 4. Add detection logic to Section 2
 5. Add to STACK_FOLDERS mapping
 6. Add rules to Section 4
+<!-- /ANCHOR:directory-structure -->

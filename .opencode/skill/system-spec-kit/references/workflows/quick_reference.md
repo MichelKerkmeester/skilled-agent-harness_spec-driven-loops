@@ -9,6 +9,7 @@ Fast lookup for spec folder commands, checklists, and troubleshooting.
 
 ---
 
+<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 ### Purpose
@@ -31,6 +32,8 @@ Level 3+ (Extended):    Level 3 + governance/AI execution content
 
 ---
 
+<!-- /ANCHOR:overview -->
+<!-- ANCHOR:level-decision-shortcuts-progressive-enhancement -->
 ## 2. LEVEL DECISION SHORTCUTS (Progressive Enhancement)
 
 | Situation | Level | Required Templates | Optional Templates |
@@ -48,6 +51,8 @@ Level 3+ (Extended):    Level 3 + governance/AI execution content
 
 ---
 
+<!-- /ANCHOR:level-decision-shortcuts-progressive-enhancement -->
+<!-- ANCHOR:template-copy-commands-progressive -->
 ## 3. TEMPLATE COPY COMMANDS (Progressive)
 
 ### Level 1: Baseline (ALL features start here)
@@ -94,12 +99,16 @@ cp .opencode/skill/system-spec-kit/templates/level_3+/decision-record.md specs/#
 ### Optional Templates (Level 3 Only)
 
 ```bash
+<!-- /ANCHOR:template-copy-commands-progressive -->
+<!-- ANCHOR:comprehensive-research-from-root-templates-folder -->
 ## Comprehensive Research (from root templates folder):
 cp .opencode/skill/system-spec-kit/templates/research.md specs/###-name/research.md
 ```
 
 ---
 
+<!-- /ANCHOR:comprehensive-research-from-root-templates-folder -->
+<!-- ANCHOR:essential-commands -->
 ## 4. ESSENTIAL COMMANDS
 
 ### Find Next Spec Number
@@ -158,6 +167,8 @@ Context saved to `specs/###-folder/memory/` or `memory/` (fallback).
 
 ---
 
+<!-- /ANCHOR:essential-commands -->
+<!-- ANCHOR:pre-implementation-checklist-progressive-enhancement -->
 ## 5. PRE-IMPLEMENTATION CHECKLIST (Progressive Enhancement)
 
 Before making ANY file changes, verify:
@@ -181,6 +192,8 @@ Before making ANY file changes, verify:
 
 ---
 
+<!-- /ANCHOR:pre-implementation-checklist-progressive-enhancement -->
+<!-- ANCHOR:folder-naming-examples -->
 ## 6. FOLDER NAMING EXAMPLES
 
 ### Good Examples ✅
@@ -201,6 +214,8 @@ Before making ANY file changes, verify:
 
 ---
 
+<!-- /ANCHOR:folder-naming-examples -->
+<!-- ANCHOR:status-field-values -->
 ## 7. STATUS FIELD VALUES
 
 | Status | Meaning | Reuse Priority |
@@ -213,6 +228,8 @@ Before making ANY file changes, verify:
 
 ---
 
+<!-- /ANCHOR:status-field-values -->
+<!-- ANCHOR:update-vs-create-decision -->
 ## 8. UPDATE VS CREATE DECISION
 
 ### UPDATE Existing Spec When:
@@ -233,6 +250,8 @@ Before making ANY file changes, verify:
 
 ---
 
+<!-- /ANCHOR:update-vs-create-decision -->
+<!-- ANCHOR:confirmation-options -->
 ## 9. CONFIRMATION OPTIONS
 
 When workflow prompts at conversation start:
@@ -246,6 +265,8 @@ When workflow prompts at conversation start:
 
 ---
 
+<!-- /ANCHOR:confirmation-options -->
+<!-- ANCHOR:level-migration-progressive-enhancement -->
 ## 10. LEVEL MIGRATION (Progressive Enhancement)
 
 ### Script-Assisted Upgrade (Recommended)
@@ -288,6 +309,8 @@ Then verify placeholders are fully resolved:
 
 ---
 
+<!-- /ANCHOR:level-migration-progressive-enhancement -->
+<!-- ANCHOR:troubleshooting -->
 ## 11. TROUBLESHOOTING
 
 ### "I forgot to create the spec folder"
@@ -360,6 +383,8 @@ Then verify placeholders are fully resolved:
 
 ---
 
+<!-- /ANCHOR:troubleshooting -->
+<!-- ANCHOR:what-requires-spec-folders -->
 ## 12. WHAT REQUIRES SPEC FOLDERS
 
 | File Type | Requires Spec | Examples |
@@ -379,6 +404,8 @@ Then verify placeholders are fully resolved:
 
 ---
 
+<!-- /ANCHOR:what-requires-spec-folders -->
+<!-- ANCHOR:skip-option-option-d-usage -->
 ## 13. SKIP OPTION (OPTION D) USAGE
 
 ### When Appropriate ✅
@@ -409,6 +436,8 @@ Skipping documentation:
 
 ---
 
+<!-- /ANCHOR:skip-option-option-d-usage -->
+<!-- ANCHOR:template-adaptation-checklist-progressive-enhancement -->
 ## 14. TEMPLATE ADAPTATION CHECKLIST (Progressive Enhancement)
 
 Before presenting documentation to user:
@@ -433,6 +462,8 @@ Before presenting documentation to user:
 
 ---
 
+<!-- /ANCHOR:template-adaptation-checklist-progressive-enhancement -->
+<!-- ANCHOR:context-save-handover -->
 ## 15. CONTEXT SAVE & HANDOVER
 
 ### Context Save
@@ -476,6 +507,8 @@ node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js spe
 
 ---
 
+<!-- /ANCHOR:context-save-handover -->
+<!-- ANCHOR:agent-critical-rules-progressive-enhancement -->
 ## 16. AGENT CRITICAL RULES (Progressive Enhancement)
 
 ### Absolutely Required
@@ -510,6 +543,8 @@ node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js spe
 
 ---
 
+<!-- /ANCHOR:agent-critical-rules-progressive-enhancement -->
+<!-- ANCHOR:checklist-verification-protocol-level-2 -->
 ## 17. CHECKLIST VERIFICATION PROTOCOL (Level 2+)
 
 ### When to Use
@@ -552,6 +587,8 @@ For each checklist item:
 ### Example: Properly Verified Checklist
 
 ```markdown
+<!-- /ANCHOR:checklist-verification-protocol-level-2 -->
+<!-- ANCHOR:verification-checklist -->
 ## Verification Checklist
 
 ### P0 - Blockers (MUST pass)
@@ -588,6 +625,8 @@ For each checklist item:
 
 ---
 
+<!-- /ANCHOR:verification-checklist -->
+<!-- ANCHOR:core-principle -->
 ## 18. Core Principle
 
 **Every file change deserves documentation.**
@@ -604,6 +643,8 @@ When in doubt:
 
 ---
 
+<!-- /ANCHOR:core-principle -->
+<!-- ANCHOR:related-resources -->
 ## 19. RELATED RESOURCES
 
 ### Reference Files
@@ -651,3 +692,4 @@ When in doubt:
 - `workflows-code` - Implementation, debugging, and verification lifecycle
 - `system-spec-kit` - Context preservation with semantic memory
 - `workflows-git` - Git workspace setup and clean commits
+<!-- /ANCHOR:related-resources -->

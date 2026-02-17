@@ -9,6 +9,7 @@ Coding conventions and formatting standards for Bash scripts in the OpenCode dev
 
 ---
 
+<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 ### Purpose
@@ -31,6 +32,8 @@ Applies to all shell files in:
 
 ---
 
+<!-- /ANCHOR:overview -->
+<!-- ANCHOR:file-structure -->
 ## 2. FILE STRUCTURE
 
 ### Shebang Line
@@ -117,6 +120,8 @@ log_info() {
 
 ---
 
+<!-- /ANCHOR:file-structure -->
+<!-- ANCHOR:naming-conventions -->
 ## 3. NAMING CONVENTIONS
 
 ### Functions
@@ -180,6 +185,8 @@ JSON_MODE=false
 
 ---
 
+<!-- /ANCHOR:naming-conventions -->
+<!-- ANCHOR:color-definitions -->
 ## 4. COLOR DEFINITIONS
 
 ### Standard Color Setup
@@ -217,6 +224,8 @@ printf "${YELLOW}WARNING:${NC} %s\n" "$warning"
 
 ---
 
+<!-- /ANCHOR:color-definitions -->
+<!-- ANCHOR:logging-functions -->
 ## 5. LOGGING FUNCTIONS
 
 ### Standard Logging Pattern
@@ -315,6 +324,8 @@ validate_json() {
 
 ---
 
+<!-- /ANCHOR:logging-functions -->
+<!-- ANCHOR:variable-handling -->
 ## 6. VARIABLE HANDLING
 
 ### Always Quote Variables
@@ -368,6 +379,8 @@ required_var="${REQUIRED_VAR:?Error: REQUIRED_VAR must be set}"
 
 ---
 
+<!-- /ANCHOR:variable-handling -->
+<!-- ANCHOR:conditional-expressions -->
 ## 7. CONDITIONAL EXPRESSIONS
 
 ### Use [[ ]] for Tests
@@ -415,6 +428,8 @@ if [[ -x "$path" ]]; then   # Is executable
 
 ---
 
+<!-- /ANCHOR:conditional-expressions -->
+<!-- ANCHOR:argument-parsing -->
 ## 8. ARGUMENT PARSING
 
 ### Simple Arguments
@@ -481,6 +496,8 @@ done
 
 ---
 
+<!-- /ANCHOR:argument-parsing -->
+<!-- ANCHOR:functions -->
 ## 9. FUNCTIONS
 
 ### Function Definition
@@ -528,6 +545,8 @@ validate() {
 
 ---
 
+<!-- /ANCHOR:functions -->
+<!-- ANCHOR:error-handling -->
 ## 10. ERROR HANDLING
 
 ### Exit on Error
@@ -564,6 +583,8 @@ printf "${RED}ERROR:${NC} %s\n" "$message" >&2
 
 ---
 
+<!-- /ANCHOR:error-handling -->
+<!-- ANCHOR:output-formatting -->
 ## 11. OUTPUT FORMATTING
 
 ### Printf vs Echo
@@ -593,6 +614,8 @@ fi
 
 ---
 
+<!-- /ANCHOR:output-formatting -->
+<!-- ANCHOR:related-resources -->
 ## 12. RELATED RESOURCES
 
 ### Internal References
@@ -602,3 +625,4 @@ fi
 ### External Standards
 - [Google Shell Style Guide](https://google.github.io/styleguide/shellguide.html)
 - [ShellCheck](https://www.shellcheck.net/) - Static analysis tool
+<!-- /ANCHOR:related-resources -->

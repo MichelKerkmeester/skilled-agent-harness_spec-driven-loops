@@ -9,12 +9,15 @@ Common patterns, commands, and conventions used across all git workflows.
 
 ---
 
+<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 This reference consolidates common patterns, commands, and conventions used across all git workflows (worktrees, commits, and finish). Use this as a quick lookup for branch naming, git commands, Conventional Commits format, and error handling patterns.
 
 ---
 
+<!-- /ANCHOR:overview -->
+<!-- ANCHOR:branch-naming-conventions -->
 ## 2. BRANCH NAMING CONVENTIONS
 
 ### Temporary Branches (Main-Focused Workflow)
@@ -88,6 +91,8 @@ git worktree add --detach .worktrees/experiment main
 
 ---
 
+<!-- /ANCHOR:branch-naming-conventions -->
+<!-- ANCHOR:git-command-reference -->
 ## 3. GIT COMMAND REFERENCE
 
 ### Worktree Operations
@@ -241,6 +246,8 @@ git remote show origin             # Show remote details
 
 ---
 
+<!-- /ANCHOR:git-command-reference -->
+<!-- ANCHOR:conventional-commits-format -->
 ## 4. CONVENTIONAL COMMITS FORMAT
 
 ### Structure
@@ -335,6 +342,8 @@ Clients must update to handle JSON responses.
 
 ---
 
+<!-- /ANCHOR:conventional-commits-format -->
+<!-- ANCHOR:common-git-patterns -->
 ## 5. COMMON GIT PATTERNS
 
 ### Pattern 1: Quick Fix Workflow
@@ -414,6 +423,8 @@ git worktree remove .worktrees/experiment
 
 ---
 
+<!-- /ANCHOR:common-git-patterns -->
+<!-- ANCHOR:error-handling-patterns -->
 ## 6. ERROR HANDLING PATTERNS
 
 ### Pattern: Tests Fail After Changes
@@ -566,6 +577,8 @@ git worktree list
 
 ---
 
+<!-- /ANCHOR:error-handling-patterns -->
+<!-- ANCHOR:quality-check-patterns -->
 ## 7. QUALITY CHECK PATTERNS
 
 ### Pre-Commit Checklist
@@ -604,6 +617,8 @@ git worktree list
 
 ---
 
+<!-- /ANCHOR:quality-check-patterns -->
+<!-- ANCHOR:file-type-patterns -->
 ## 8. FILE TYPE PATTERNS
 
 ### Files to Always Commit
@@ -637,6 +652,8 @@ git worktree list
 
 ---
 
+<!-- /ANCHOR:file-type-patterns -->
+<!-- ANCHOR:github-mcp-patterns -->
 ## 9. GITHUB MCP PATTERNS
 
 GitHub MCP provides programmatic access to GitHub's remote operations via Code Mode. Use these patterns for remote collaboration tasks.
@@ -787,6 +804,8 @@ call_tool_chain({
 
 ---
 
+<!-- /ANCHOR:github-mcp-patterns -->
+<!-- ANCHOR:related-resources -->
 ## 10. RELATED RESOURCES
 
 ### Reference Files
@@ -801,3 +820,4 @@ call_tool_chain({
 - [GitHub CLI Manual](https://cli.github.com/manual/) - Complete gh CLI reference
 - [Git Worktree Documentation](https://git-scm.com/docs/git-worktree) - Official git worktree documentation
 - [Semantic Versioning](https://semver.org/) - Version numbering based on changes
+<!-- /ANCHOR:related-resources -->

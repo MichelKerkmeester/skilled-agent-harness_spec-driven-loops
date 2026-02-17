@@ -9,12 +9,15 @@ CDP command reference with domain patterns and Unix pipeline examples.
 
 ---
 
+<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 Progressive disclosure from discovery to execution - always explore capabilities via `bdg cdp --list`/`--describe`/`--search` before executing CDP methods. Self-documentation eliminates hardcoded method lists and ensures up-to-date access to 300+ CDP methods across 53 domains.
 
 ---
 
+<!-- /ANCHOR:overview -->
+<!-- ANCHOR:prerequisites -->
 ## 2. PREREQUISITES
 
 **Foundation:** Follow session management basics from SKILL.md Section 3 for all CDP operations:
@@ -30,6 +33,8 @@ Progressive disclosure from discovery to execution - always explore capabilities
 
 ---
 
+<!-- /ANCHOR:prerequisites -->
+<!-- ANCHOR:quick-reference -->
 ## 3. QUICK REFERENCE
 
 **Common Use Cases**:
@@ -46,6 +51,8 @@ Progressive disclosure from discovery to execution - always explore capabilities
 
 ---
 
+<!-- /ANCHOR:quick-reference -->
+<!-- ANCHOR:cdp-domain-patterns -->
 ## 4. CDP DOMAIN PATTERNS
 
 ### Page Domain
@@ -315,6 +322,8 @@ bdg cdp Tracing.getCategories
 
 ---
 
+<!-- /ANCHOR:cdp-domain-patterns -->
+<!-- ANCHOR:complete-workflows -->
 ## 5. COMPLETE WORKFLOWS
 
 ### Workflow 1: Full Page Screenshot
@@ -478,6 +487,8 @@ bdg stop 2>&1
 
 ---
 
+<!-- /ANCHOR:complete-workflows -->
+<!-- ANCHOR:unix-composability-patterns -->
 ## 6. UNIX COMPOSABILITY PATTERNS
 
 ### Pattern 1: Pipe to jq for JSON Processing
@@ -578,6 +589,8 @@ bdg cdp Network.enable 2>/dev/null
 
 ---
 
+<!-- /ANCHOR:unix-composability-patterns -->
+<!-- ANCHOR:discovery-pattern-examples -->
 ## 7. DISCOVERY PATTERN EXAMPLES
 
 ### Before/After: Progressive Disclosure
@@ -636,6 +649,8 @@ bdg cdp --search intercept
 
 ---
 
+<!-- /ANCHOR:discovery-pattern-examples -->
+<!-- ANCHOR:advanced-patterns -->
 ## 8. ADVANCED PATTERNS
 
 ### Multi-Session Management
@@ -696,6 +711,8 @@ bdg stop 2>&1
 
 ---
 
+<!-- /ANCHOR:advanced-patterns -->
+<!-- ANCHOR:best-practices -->
 ## 9. BEST PRACTICES
 
 1. **Always verify session status** before executing CDP commands
@@ -709,6 +726,8 @@ bdg stop 2>&1
 
 ---
 
+<!-- /ANCHOR:best-practices -->
+<!-- ANCHOR:related-resources -->
 ## 10. RELATED RESOURCES
 
 ### Reference Files
@@ -725,3 +744,4 @@ bdg stop 2>&1
 ---
 
 **Reference**: Full CDP documentation at https://chromedevtools.github.io/devtools-protocol/
+<!-- /ANCHOR:related-resources -->

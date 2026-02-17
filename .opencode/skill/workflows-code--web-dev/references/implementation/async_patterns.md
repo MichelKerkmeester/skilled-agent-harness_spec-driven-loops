@@ -9,6 +9,7 @@ Browser scheduling APIs and patterns for non-blocking code execution.
 
 ---
 
+<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 Modern browsers provide APIs for scheduling work efficiently without blocking the main thread. This guide covers `requestIdleCallback`, `requestAnimationFrame`, `queueMicrotask`, `scheduler.postTask`, and related patterns for optimizing JavaScript execution timing.
@@ -23,6 +24,8 @@ Modern browsers provide APIs for scheduling work efficiently without blocking th
 
 ---
 
+<!-- /ANCHOR:overview -->
+<!-- ANCHOR:requestanimationframe-pattern -->
 ## 2. REQUESTANIMATIONFRAME PATTERN
 
 ### Overview
@@ -117,6 +120,8 @@ function animate(timestamp) {
 
 ---
 
+<!-- /ANCHOR:requestanimationframe-pattern -->
+<!-- ANCHOR:requestidlecallback-pattern -->
 ## 3. REQUESTIDLECALLBACK PATTERN
 
 ### Overview
@@ -188,6 +193,8 @@ function process_in_chunks(items, process_item, on_complete) {
 
 ---
 
+<!-- /ANCHOR:requestidlecallback-pattern -->
+<!-- ANCHOR:queuemicrotask-pattern -->
 ## 4. QUEUEMICROTASK PATTERN
 
 ### Overview
@@ -245,6 +252,8 @@ function bad_pattern() {
 
 ---
 
+<!-- /ANCHOR:queuemicrotask-pattern -->
+<!-- ANCHOR:scheduler-posttask-pattern -->
 ## 5. SCHEDULER.POSTTASK PATTERN
 
 ### Overview
@@ -319,6 +328,8 @@ schedule_task(function() {
 
 ---
 
+<!-- /ANCHOR:scheduler-posttask-pattern -->
+<!-- ANCHOR:priority-timing-decision-tree -->
 ## 6. PRIORITY & TIMING DECISION TREE
 
 ### Quick Reference Table
@@ -356,6 +367,8 @@ Is it a visual/animation update?
 
 ---
 
+<!-- /ANCHOR:priority-timing-decision-tree -->
+<!-- ANCHOR:browser-compatibility -->
 ## 7. BROWSER COMPATIBILITY
 
 ### Support Matrix
@@ -399,6 +412,8 @@ const async_scheduler = {
 
 ---
 
+<!-- /ANCHOR:browser-compatibility -->
+<!-- ANCHOR:webflow-specific-timing-patterns -->
 ## 8. WEBFLOW-SPECIFIC TIMING PATTERNS
 
 ### Wait for Collection List Render
@@ -474,6 +489,8 @@ window.Webflow.push(function() {
 
 ---
 
+<!-- /ANCHOR:webflow-specific-timing-patterns -->
+<!-- ANCHOR:real-example-gtm-delay -->
 ## 9. REAL EXAMPLE: GTM DELAY
 
 ```javascript
@@ -495,6 +512,8 @@ window.Webflow.push(function() {
 
 ---
 
+<!-- /ANCHOR:real-example-gtm-delay -->
+<!-- ANCHOR:related-resources -->
 ## 10. RELATED RESOURCES
 
 ### Internal References
@@ -509,3 +528,4 @@ window.Webflow.push(function() {
 - [MDN: requestIdleCallback](https://developer.mozilla.org/en-US/docs/Web/API/Window/requestIdleCallback)
 - [MDN: queueMicrotask](https://developer.mozilla.org/en-US/docs/Web/API/queueMicrotask)
 - [MDN: Scheduler.postTask](https://developer.mozilla.org/en-US/docs/Web/API/Scheduler/postTask)
+<!-- /ANCHOR:related-resources -->

@@ -9,6 +9,7 @@ description: 10-agent specialization model for comprehensive codebase analysis a
 
 ---
 
+<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 For complex codebase analysis, parallel agent execution provides comprehensive coverage that would take significantly longer with sequential investigation. This document describes the 10-agent specialization model proven effective in performance optimization research.
@@ -21,6 +22,8 @@ For complex codebase analysis, parallel agent execution provides comprehensive c
 
 ---
 
+<!-- /ANCHOR:overview -->
+<!-- ANCHOR:when-to-use-multi-agent-research -->
 ## 2. WHEN TO USE MULTI-AGENT RESEARCH
 
 ### Good Candidates
@@ -40,6 +43,8 @@ For complex codebase analysis, parallel agent execution provides comprehensive c
 
 ---
 
+<!-- /ANCHOR:when-to-use-multi-agent-research -->
+<!-- ANCHOR:the-10-agent-specialization-model -->
 ## 3. THE 10-AGENT SPECIALIZATION MODEL
 
 ### Agent Assignments
@@ -59,6 +64,8 @@ For complex codebase analysis, parallel agent execution provides comprehensive c
 
 ---
 
+<!-- /ANCHOR:the-10-agent-specialization-model -->
+<!-- ANCHOR:agent-focus-details -->
 ## 4. AGENT FOCUS DETAILS
 
 ### Agent 1: HTML Loading Strategy
@@ -133,6 +140,8 @@ For complex codebase analysis, parallel agent execution provides comprehensive c
 
 ---
 
+<!-- /ANCHOR:agent-focus-details -->
+<!-- ANCHOR:coordination-pattern -->
 ## 5. COORDINATION PATTERN
 
 ### Dispatch Phase
@@ -159,6 +168,8 @@ For complex codebase analysis, parallel agent execution provides comprehensive c
 Each agent should return:
 
 ```markdown
+<!-- /ANCHOR:coordination-pattern -->
+<!-- ANCHOR:agent-n-focus-area -->
 ## Agent N: [Focus Area]
 
 ### Key Findings
@@ -177,6 +188,8 @@ Each agent should return:
 
 ---
 
+<!-- /ANCHOR:agent-n-focus-area -->
+<!-- ANCHOR:example-performance-optimization -->
 ## 6. EXAMPLE: PERFORMANCE OPTIMIZATION
 
 From example.com (024-performance-optimization):
@@ -195,6 +208,8 @@ From example.com (024-performance-optimization):
 
 ---
 
+<!-- /ANCHOR:example-performance-optimization -->
+<!-- ANCHOR:scaling-considerations -->
 ## 7. SCALING CONSIDERATIONS
 
 | Agents | Use Case | Trade-off |
@@ -205,6 +220,8 @@ From example.com (024-performance-optimization):
 
 ---
 
+<!-- /ANCHOR:scaling-considerations -->
+<!-- ANCHOR:model-selection -->
 ## 8. MODEL SELECTION
 
 | Agent Type | Recommended Model | Reason |
@@ -215,6 +232,8 @@ From example.com (024-performance-optimization):
 
 ---
 
+<!-- /ANCHOR:model-selection -->
+<!-- ANCHOR:related-resources -->
 ## 9. RELATED RESOURCES
 
 ### Internal References
@@ -225,3 +244,4 @@ From example.com (024-performance-optimization):
 ### External Documentation
 
 - [Anthropic Multi-Agent Patterns](https://docs.anthropic.com/) - Best practices for agent coordination
+<!-- /ANCHOR:related-resources -->

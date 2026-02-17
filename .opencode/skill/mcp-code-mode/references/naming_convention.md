@@ -9,6 +9,7 @@ Master the critical naming pattern to avoid the #1 most common Code Mode error.
 
 ---
 
+<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 ### Core Pattern
@@ -30,6 +31,8 @@ Master the critical naming pattern to avoid the #1 most common Code Mode error.
 
 ---
 
+<!-- /ANCHOR:overview -->
+<!-- ANCHOR:common-mistakes -->
 ## 2. COMMON MISTAKES
 
 ### Mistake 1: Missing Manual Prefix
@@ -125,6 +128,8 @@ await webflow_prod.webflow_prod_sites_list({});
 
 ---
 
+<!-- /ANCHOR:common-mistakes -->
+<!-- ANCHOR:configuration-examples -->
 ## 3. CONFIGURATION EXAMPLES
 
 ### Example 1: Webflow
@@ -337,6 +342,8 @@ await chrome_devtools_1.chrome_devtools_1_get_console_message({});
 
 ---
 
+<!-- /ANCHOR:configuration-examples -->
+<!-- ANCHOR:tool-discovery -->
 ## 4. TOOL DISCOVERY
 
 **Before calling tools, discover what's available:**
@@ -389,6 +396,8 @@ const sites = await webflow.webflow_sites_list({});
 
 ---
 
+<!-- /ANCHOR:tool-discovery -->
+<!-- ANCHOR:troubleshooting-guide -->
 ## 5. TROUBLESHOOTING GUIDE
 
 ### Problem: "Tool not found" Error
@@ -453,6 +462,8 @@ ReferenceError: webflow_prod is not defined
 
 ---
 
+<!-- /ANCHOR:troubleshooting-guide -->
+<!-- ANCHOR:quick-reference -->
 ## 6. QUICK REFERENCE
 
 | Manual Name         | Naming Pattern                             | Example                                        |
@@ -466,6 +477,8 @@ ReferenceError: webflow_prod is not defined
 
 ---
 
+<!-- /ANCHOR:quick-reference -->
+<!-- ANCHOR:best-practices -->
 ## 7. BEST PRACTICES
 
 ### 1. Always Use Tool Discovery First
@@ -528,6 +541,8 @@ cat .utcp_config.json | grep '"name"'
 
 ---
 
+<!-- /ANCHOR:best-practices -->
+<!-- ANCHOR:summary -->
 ## 8. SUMMARY
 
 **Golden rule:** `{manual_name}.{manual_name}_{tool_name}`
@@ -544,10 +559,13 @@ cat .utcp_config.json | grep '"name"'
 
 ---
 
+<!-- /ANCHOR:summary -->
+<!-- ANCHOR:related-resources -->
 ## 9. RELATED RESOURCES
 
 ### Reference Files
 - [tool_catalog.md](./tool_catalog.md) - Complete list of 200+ tools organized by MCP server
 - [configuration.md](./configuration.md) - Configuration guide showing how manual names are defined
 - [architecture.md](./architecture.md) - System architecture and execution environment
-- [workflows.md](./workflows.md) - Workflow examples showing correct naming patterns in practice
+- [workflows.md](./workflows.md) - Workflow examples showing correct naming patterns in practice<!-- /ANCHOR:related-resources -->
+<!-- /ANCHOR:related-resources -->

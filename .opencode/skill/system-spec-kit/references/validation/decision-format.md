@@ -9,6 +9,7 @@ Standardized format for documenting gate decisions to ensure auditability and tr
 
 ---
 
+<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 The Structured Gate Decision Format provides a consistent way to document decisions made at each gate in the workflow. This format ensures:
@@ -20,6 +21,8 @@ The Structured Gate Decision Format provides a consistent way to document decisi
 
 ---
 
+<!-- /ANCHOR:overview -->
+<!-- ANCHOR:the-format -->
 ## 2. THE FORMAT
 
 ### Standard Gate Decision
@@ -44,6 +47,8 @@ GATE: [NAME] | DECISION: [PASS/BLOCK] | CONFIDENCE: [H/M/L] | EVIDENCE: [brief]
 
 ---
 
+<!-- /ANCHOR:the-format -->
+<!-- ANCHOR:field-definitions -->
 ## 3. FIELD DEFINITIONS
 
 ### GATE
@@ -179,6 +184,8 @@ with path specs/078-new-feature/
 
 ---
 
+<!-- /ANCHOR:field-definitions -->
+<!-- ANCHOR:examples -->
 ## 4. EXAMPLES
 
 ### PASS Example with Full Evidence
@@ -244,6 +251,8 @@ ALTERNATIVE: N/A - P0 items cannot be skipped
 
 ---
 
+<!-- /ANCHOR:examples -->
+<!-- ANCHOR:session-decision-log-level-3 -->
 ## 5. SESSION DECISION LOG (Level 3+)
 
 For Level 3+ spec folders, maintain a decision log table in decision-record.md:
@@ -251,6 +260,8 @@ For Level 3+ spec folders, maintain a decision log table in decision-record.md:
 ### Format
 
 ```markdown
+<!-- /ANCHOR:session-decision-log-level-3 -->
+<!-- ANCHOR:session-decision-log -->
 ## Session Decision Log
 
 | Timestamp | Gate | Decision | Confidence | Uncertainty | Evidence Summary |
@@ -276,6 +287,8 @@ For Level 3+ spec folders, maintain a decision log table in decision-record.md:
 
 ---
 
+<!-- /ANCHOR:session-decision-log -->
+<!-- ANCHOR:dual-threshold-validation -->
 ## 6. DUAL-THRESHOLD VALIDATION
 
 The decision format integrates with the dual-threshold validation system:
@@ -322,6 +335,8 @@ RESOLUTION_PATH:
 
 ---
 
+<!-- /ANCHOR:dual-threshold-validation -->
+<!-- ANCHOR:quick-reference -->
 ## 7. QUICK REFERENCE
 
 ### Decision Format Template
@@ -350,9 +365,12 @@ Before recording a decision:
 
 ---
 
+<!-- /ANCHOR:quick-reference -->
+<!-- ANCHOR:related-resources -->
 ## 8. RELATED RESOURCES
 
 - [Five Checks Framework](./five-checks.md) - Evaluation framework for significant decisions
 - [Decision Record Template](../../templates/level_3/decision-record.md) - For Level 3/3+ spec folders
 - [SKILL.md - Gates Overview](../../SKILL.md) - Gate system documentation
 - [AGENTS.md - Section 2](../../../../../AGENTS.md) - Gate definitions and protocols
+<!-- /ANCHOR:related-resources -->

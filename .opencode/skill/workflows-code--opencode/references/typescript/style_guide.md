@@ -9,6 +9,7 @@ Formatting standards and naming conventions for TypeScript files in the OpenCode
 
 ---
 
+<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 ### Purpose
@@ -23,6 +24,8 @@ Defines consistent styling rules for TypeScript files to ensure readability, mai
 
 ---
 
+<!-- /ANCHOR:overview -->
+<!-- ANCHOR:file-header-format -->
 ## 2. FILE HEADER FORMAT
 
 All TypeScript files MUST begin with a boxed header identifying the module.
@@ -61,6 +64,8 @@ import type { SearchOptions } from '../types';
 
 ---
 
+<!-- /ANCHOR:file-header-format -->
+<!-- ANCHOR:strict-mode -->
 ## 3. STRICT MODE
 
 ### tsconfig.json Replaces 'use strict'
@@ -89,6 +94,8 @@ In JavaScript, every file requires `'use strict';` at the top. In TypeScript, th
 
 ---
 
+<!-- /ANCHOR:strict-mode -->
+<!-- ANCHOR:section-organization -->
 ## 4. SECTION ORGANIZATION
 
 Large files are organized using numbered section dividers, consistent with JavaScript style.
@@ -155,6 +162,8 @@ enum ErrorCode {
 
 ---
 
+<!-- /ANCHOR:section-organization -->
+<!-- ANCHOR:naming-conventions -->
 ## 5. NAMING CONVENTIONS
 
 ### Interface Names
@@ -355,6 +364,8 @@ function fromRow(row: MemoryRow): MemoryRecord {
 
 ---
 
+<!-- /ANCHOR:naming-conventions -->
+<!-- ANCHOR:formatting-rules -->
 ## 6. FORMATTING RULES
 
 ### Indentation
@@ -473,6 +484,8 @@ function search(
 
 ---
 
+<!-- /ANCHOR:formatting-rules -->
+<!-- ANCHOR:import-ordering -->
 ## 7. IMPORT ORDERING
 
 ### Four-Group Import Order
@@ -530,6 +543,8 @@ export type { SearchResult, SearchOptions } from '../types';
 
 ---
 
+<!-- /ANCHOR:import-ordering -->
+<!-- ANCHOR:commenting-rules -->
 ## 8. COMMENTING RULES
 
 ### Principles (Same as JavaScript)
@@ -572,6 +587,8 @@ function search(query: string): void { }
 
 ---
 
+<!-- /ANCHOR:commenting-rules -->
+<!-- ANCHOR:mixed-js-ts-coexistence-patterns -->
 ## 9. MIXED JS/TS COEXISTENCE PATTERNS
 
 During the transitional period where the codebase contains both JavaScript and TypeScript files, the following patterns are acceptable.
@@ -655,7 +672,10 @@ Set `checkJs: true` only after the majority of JS files have been migrated or ty
 
 ---
 
+<!-- /ANCHOR:mixed-js-ts-coexistence-patterns -->
+<!-- ANCHOR:related-resources -->
 ## 10. RELATED RESOURCES
 
 - [quality_standards.md](./quality_standards.md) - Type system, TSDoc, error patterns, tsconfig
 - [quick_reference.md](./quick_reference.md) - Copy-paste templates and cheat sheets
+<!-- /ANCHOR:related-resources -->

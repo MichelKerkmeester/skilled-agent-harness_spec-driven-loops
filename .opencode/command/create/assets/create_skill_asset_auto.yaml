@@ -166,9 +166,9 @@ asset_types:
     naming: "[content]_templates.md"
     purpose: "Copy-paste starting points"
     structure:
-    - "Title with emoji and subtitle"
+    - "Title with subtitle"
     - "Introduction (1-2 sentences)"
-    - "Numbered sections with templates"
+    - "Numbered sections"
     - "Field guidelines for each"
     - "Complete examples"
 
@@ -177,7 +177,7 @@ asset_types:
     naming: "[topic]_lookup.md"
     purpose: "Lookup tables, decision trees"
     structure:
-    - "Title with emoji"
+    - "Title"
     - "Purpose statement"
     - "Tables or decision trees"
     - "Quick lookup format"
@@ -187,7 +187,7 @@ asset_types:
     naming: "[topic]_examples.md"
     purpose: "Working examples and patterns"
     structure:
-    - "Title with emoji"
+    - "Title"
     - "Before/after comparisons"
     - "Annotated examples"
     - "Anti-patterns to avoid"
@@ -197,7 +197,7 @@ asset_types:
     naming: "[process]_guide.md"
     purpose: "Step-by-step how-tos"
     structure:
-    - "Title with emoji"
+    - "Title"
     - "Prerequisites"
     - "Numbered steps"
     - "Troubleshooting"
@@ -275,9 +275,9 @@ workflow:
     - Note formatting requirements
     template_path: .opencode/skill/workflows-documentation/assets/opencode/skill_asset_template.md
     key_structure_elements:
-    - "Title with descriptive subtitle (emoji optional as visual marker)"
+    - "Title with descriptive subtitle"
     - "Introduction paragraph (1-2 sentences)"
-    - "Numbered sections (emoji visual markers optional)"
+    - "Numbered sections"
     - "Horizontal rules between major sections"
     - "Quick reference at end"
     outputs:
@@ -288,17 +288,17 @@ workflow:
   step_4_content_creation:
     purpose: Generate asset file following template structure
     activities:
-    - Write title with descriptive subtitle (emoji optional as visual marker)
+    - Write title with descriptive subtitle
     - Write brief introduction (1-2 sentences)
-    - Create numbered sections (emoji visual markers optional)
+    - Create numbered sections
     - Add type-specific content (templates, tables, examples, steps)
     - Include complete examples
     - Add quick reference section at end
     - Write to skill's assets directory
     quality_requirements:
-      title: "Descriptive subtitle - emoji optional as visual marker"
+      title: "Descriptive subtitle"
       introduction: "1-2 sentences explaining purpose and when to use"
-      sections: "Numbered - emoji visual markers optional"
+      sections: "Numbered"
       content: "Complete, practical, immediately usable"
       examples: "Working, annotated examples"
       separators: "Horizontal rules between major sections"
@@ -316,8 +316,8 @@ workflow:
     - Integration check (update SKILL.md Navigation Guide, SMART ROUTING)
     validation_checklist:
       structure:
-      - "Title with descriptive subtitle present (emoji optional as visual marker)"
-      - "Sections numbered (emoji visual markers optional)"
+      - "Title with descriptive subtitle present"
+      - "Sections numbered"
       - "Horizontal rules between sections"
       - "No broken links"
       content:
@@ -338,12 +338,12 @@ workflow:
 
   step_5b_quality_review:
     purpose: Quality-score the created asset artifact
-    agent_routing:
-      agent: "@review"
+    agent_availability:
       agent_file: ".opencode/agent/review.md"
-      rule_reference: "AGENTS.md §3 — @review for code review / quality scoring"
-      dispatch: "Task tool → @review focused review of created asset"
+      rule_reference: "AGENTS.md §3 — quality scoring"
+      condition: "ONLY when this step is actively executing"
       blocking: false
+      not_for: "reviewing this workflow prompt or any pre-step activity"
     activities:
     - "Dispatch @review to quality-score the created asset file"
     - "Review checks: template adherence, content quality, SKILL.md integration"
@@ -487,6 +487,7 @@ templates:
     ## N. QUICK REFERENCE
     
     [Summary table or checklist]
+    
 
 # ─────────────────────────────────────────────────────────────────
 # COMPLETION REPORT TEMPLATE

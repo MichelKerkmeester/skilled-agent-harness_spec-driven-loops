@@ -9,6 +9,7 @@ Modern microservice bootstrap pattern, registry hierarchy, configuration-DI mapp
 
 ---
 
+<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 ### Purpose
@@ -44,6 +45,8 @@ microservice_bootstrap_architecture.md (this file)
 
 ---
 
+<!-- /ANCHOR:overview -->
+<!-- ANCHOR:architecture-patterns -->
 ## 2. ARCHITECTURE PATTERNS
 
 ### New Pattern (Standard - 10 Microservices)
@@ -96,6 +99,8 @@ internal/ms/ms_chat/
 
 ---
 
+<!-- /ANCHOR:architecture-patterns -->
+<!-- ANCHOR:registry-system -->
 ## 3. REGISTRY SYSTEM
 
 ### How does the registry hierarchy work?
@@ -218,6 +223,8 @@ var (
 
 ---
 
+<!-- /ANCHOR:registry-system -->
+<!-- ANCHOR:file-organization -->
 ## 4. FILE ORGANIZATION
 
 ### Modern Microservice Structure
@@ -271,6 +278,8 @@ infra/di/
 
 ---
 
+<!-- /ANCHOR:file-organization -->
+<!-- ANCHOR:configuration-di-tree -->
 ## 5. CONFIGURATION & DI TREE
 
 ### Critical Principle
@@ -319,6 +328,8 @@ func (p *MicroserviceConfiguration) LookupNode(lookupPath string) (any, error) {
 
 ---
 
+<!-- /ANCHOR:configuration-di-tree -->
+<!-- ANCHOR:migration-guide -->
 ## 6. MIGRATION GUIDE
 
 ### How do I migrate from old to new pattern?
@@ -488,6 +499,8 @@ func main() {
 
 ---
 
+<!-- /ANCHOR:migration-guide -->
+<!-- ANCHOR:common-pitfalls -->
 ## 7. COMMON PITFALLS
 
 ### Pitfall 1: Missing Configuration Embedding
@@ -564,6 +577,8 @@ func (m *MicroserviceConfiguration) LookupNode(lookupPath string) (any, error) {
 
 ---
 
+<!-- /ANCHOR:common-pitfalls -->
+<!-- ANCHOR:rules -->
 ## 8. RULES
 
 ### ALWAYS
@@ -592,6 +607,8 @@ func (m *MicroserviceConfiguration) LookupNode(lookupPath string) (any, error) {
 
 ---
 
+<!-- /ANCHOR:rules -->
+<!-- ANCHOR:related-resources -->
 ## 9. RELATED RESOURCES
 
 | Topic | Document | Section |
@@ -605,3 +622,4 @@ func (m *MicroserviceConfiguration) LookupNode(lookupPath string) (any, error) {
 | Example: ms_payments | `internal/ms/ms_payments/` | Reference: MS with SQS consumers |
 | Example: ms_cron | `internal/ms/ms_cron/` | Reference: migrated cron service |
 | Example: ms_notifications | `internal/ms/ms_notifications/` | Reference: migrated notification service |
+<!-- /ANCHOR:related-resources -->

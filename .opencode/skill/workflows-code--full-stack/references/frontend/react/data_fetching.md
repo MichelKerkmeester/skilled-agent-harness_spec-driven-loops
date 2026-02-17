@@ -9,6 +9,7 @@ React Query / TanStack Query patterns, SWR patterns, Next.js Server Actions, err
 
 ---
 
+<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 ### Purpose
@@ -31,6 +32,8 @@ Provides comprehensive guidance on data fetching strategies for React and Next.j
 
 ---
 
+<!-- /ANCHOR:overview -->
+<!-- ANCHOR:data-fetching-strategies -->
 ## 2. DATA FETCHING STRATEGIES
 
 ### Strategy Overview
@@ -88,6 +91,8 @@ Provides comprehensive guidance on data fetching strategies for React and Next.j
 
 ---
 
+<!-- /ANCHOR:data-fetching-strategies -->
+<!-- ANCHOR:server-component-data-fetching -->
 ## 3. SERVER COMPONENT DATA FETCHING
 
 ### Basic Server Fetch
@@ -258,6 +263,8 @@ export async function deleteProduct(id: string) {
 
 ---
 
+<!-- /ANCHOR:server-component-data-fetching -->
+<!-- ANCHOR:react-query-tanstack-query -->
 ## 4. REACT QUERY (TANSTACK QUERY)
 
 ### Setup and Configuration
@@ -529,6 +536,8 @@ function InfiniteProductList() {
 
 ---
 
+<!-- /ANCHOR:react-query-tanstack-query -->
+<!-- ANCHOR:mutations-and-optimistic-updates -->
 ## 5. MUTATIONS AND OPTIMISTIC UPDATES
 
 ### Basic Mutation
@@ -695,6 +704,8 @@ function DeleteProduct({ productId }: { productId: string }) {
 
 ---
 
+<!-- /ANCHOR:mutations-and-optimistic-updates -->
+<!-- ANCHOR:server-actions -->
 ## 6. SERVER ACTIONS
 
 ### Basic Server Action
@@ -916,6 +927,8 @@ export function Comments({
 
 ---
 
+<!-- /ANCHOR:server-actions -->
+<!-- ANCHOR:swr-patterns -->
 ## 7. SWR PATTERNS
 
 ### Basic SWR Setup
@@ -1075,6 +1088,8 @@ function ToggleFavorite({ productId }: { productId: string }) {
 
 ---
 
+<!-- /ANCHOR:swr-patterns -->
+<!-- ANCHOR:error-handling -->
 ## 8. ERROR HANDLING
 
 ### Error Boundary Pattern
@@ -1217,6 +1232,8 @@ const { data } = useQuery({
 
 ---
 
+<!-- /ANCHOR:error-handling -->
+<!-- ANCHOR:loading-states -->
 ## 9. LOADING STATES
 
 ### Skeleton Loading
@@ -1314,6 +1331,8 @@ function Dashboard() {
 
 ---
 
+<!-- /ANCHOR:loading-states -->
+<!-- ANCHOR:cache-invalidation -->
 ## 10. CACHE INVALIDATION
 
 ### Manual Invalidation
@@ -1407,6 +1426,8 @@ function Notifications() {
 
 ---
 
+<!-- /ANCHOR:cache-invalidation -->
+<!-- ANCHOR:quick-reference -->
 ## 11. QUICK REFERENCE
 
 ### React Query Cheatsheet
@@ -1472,6 +1493,8 @@ revalidateTag(tag)
 
 ---
 
+<!-- /ANCHOR:quick-reference -->
+<!-- ANCHOR:related-resources -->
 ## 12. RELATED RESOURCES
 
 ### Related References
@@ -1480,3 +1503,4 @@ revalidateTag(tag)
 - [State Management](./state_management.md) - Separating server and client state
 - [API Patterns](./api_patterns.md) - Route handlers and API design
 - [Forms & Validation](./forms_validation.md) - Form submission with Server Actions
+<!-- /ANCHOR:related-resources -->

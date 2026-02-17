@@ -9,6 +9,7 @@ Focus trap implementation, focus restoration, and touch detection patterns for a
 
 ---
 
+<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 ### Purpose
@@ -39,6 +40,8 @@ Apply these patterns when:
 
 ---
 
+<!-- /ANCHOR:overview -->
+<!-- ANCHOR:focusable-selector-constant -->
 ## 2. FOCUSABLE_SELECTOR CONSTANT
 
 ### The Canonical Selector
@@ -99,6 +102,8 @@ function get_focusable(container) {
 
 ---
 
+<!-- /ANCHOR:focusable-selector-constant -->
+<!-- ANCHOR:focus-trap-implementation -->
 ## 3. FOCUS TRAP IMPLEMENTATION
 
 ### Pattern Overview
@@ -241,6 +246,8 @@ FOCUS TRAP VALIDATION:
 
 ---
 
+<!-- /ANCHOR:focus-trap-implementation -->
+<!-- ANCHOR:focus-restoration -->
 ## 4. FOCUS RESTORATION
 
 ### Save Focus on Modal Open
@@ -348,6 +355,8 @@ FOCUS RESTORATION VALIDATION:
 
 ---
 
+<!-- /ANCHOR:focus-restoration -->
+<!-- ANCHOR:touch-detection -->
 ## 5. TOUCH DETECTION
 
 ### Purpose
@@ -511,6 +520,8 @@ Detect Input Method
 
 ---
 
+<!-- /ANCHOR:touch-detection -->
+<!-- ANCHOR:anti-patterns -->
 ## 6. ANTI-PATTERNS
 
 ### Focus Trap Anti-Patterns
@@ -575,6 +586,8 @@ function restore_focus() {
 
 ---
 
+<!-- /ANCHOR:anti-patterns -->
+<!-- ANCHOR:integration-checklist -->
 ## 7. INTEGRATION CHECKLIST
 
 ### Before Modal Implementation
@@ -603,6 +616,8 @@ FOCUS MANAGEMENT CHECKLIST:
 
 ---
 
+<!-- /ANCHOR:integration-checklist -->
+<!-- ANCHOR:related-resources -->
 ## 8. RELATED RESOURCES
 
 ### Reference Files
@@ -622,3 +637,4 @@ FOCUS MANAGEMENT CHECKLIST:
 
 - [WCAG 2.1 Focus Guidelines](https://www.w3.org/WAI/WCAG21/Understanding/focus-visible.html) - W3C focus visibility requirements
 - [MDN: Using tabindex](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex) - Tabindex best practices
+<!-- /ANCHOR:related-resources -->

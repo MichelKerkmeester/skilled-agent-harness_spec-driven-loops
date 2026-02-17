@@ -202,7 +202,7 @@ readme_types:
   scannable_structure:
     description: "Easy to scan and find information"
     techniques:
-    - "Clear headings (emojis recommended for visual hierarchy)"
+    - "Clear headings"
     - "Code examples for every feature"
     - "Tables for options"
     - "ASCII diagrams for architecture"
@@ -367,7 +367,7 @@ workflow:
       all_types:
       - "Title + Tagline (one-liner description)"
       - "TABLE OF CONTENTS (numbered, linked)"
-      - "Numbered sections with emoji prefixes"
+      - "Numbered sections"
       - "Tables for structured data"
       - "Code blocks with language tags"
       - "Horizontal rules between major sections"
@@ -392,7 +392,7 @@ workflow:
     activities:
     - Write Title + Tagline (concise, clear value proposition)
     - Generate TABLE OF CONTENTS (numbered, linked to sections)
-    - Write each section with emoji prefix
+    - Write each section
     - Create tables for structured data (features, commands, config)
     - Add code blocks with language tags
     - Create ASCII diagrams for architecture/flow visualization
@@ -401,7 +401,7 @@ workflow:
     quality_requirements:
       title: "Clear, concise value proposition"
       toc: "Numbered, linked to actual sections"
-      sections: "Section headers - numbered format recommended, emojis optional as visual markers"
+      sections: "Section headers - numbered format recommended"
       tables: "For structured data (features, commands, config)"
       code_blocks: "Always specify language"
       diagrams: "ASCII for architecture/flow"
@@ -423,7 +423,7 @@ workflow:
       structure:
       - "Title + one-liner tagline present"
       - "TABLE OF CONTENTS present and linked"
-      - "All sections numbered (emojis optional as visual markers)"
+      - "All sections numbered"
       - "Horizontal rules between sections"
       content:
       - "All code blocks have language tags"
@@ -445,12 +445,12 @@ workflow:
 
   step_5b_quality_review:
     purpose: Quality-score the created README artifact
-    agent_routing:
-      agent: "@review"
+    agent_availability:
       agent_file: ".opencode/agent/review.md"
-      rule_reference: "AGENTS.md §3 — @review for code review / quality scoring"
-      dispatch: "Task tool → @review focused review of created README"
+      rule_reference: "AGENTS.md §3 — quality scoring"
+      condition: "ONLY when this step is actively executing"
       blocking: false
+      not_for: "reviewing this workflow prompt or any pre-step activity"
     activities:
     - "Dispatch @review to quality-score the created README file"
     - "Review checks: structure completeness, content quality, DQI standards"
@@ -579,7 +579,7 @@ completion_report:
     Structure:
     - Title + Tagline: ✅
     - TABLE OF CONTENTS: ✅
-    - Sections: [N] numbered with emojis
+    - Sections: [N] numbered
     - Tables: [N]
     - Code blocks: [N]
     - ASCII diagrams: [N]
@@ -672,7 +672,7 @@ termination:
   - "Load readme_template.md before creating content"
   - "Include Quick Start section with clear examples"
   - "Create table of contents with proper anchor links"
-  - "Use section formatting with optional emoji visual markers"
+  - "Use section formatting"
   - "Validate structure before claiming complete"
   NEVER:
   - "Prompt user for approval at checkpoints"

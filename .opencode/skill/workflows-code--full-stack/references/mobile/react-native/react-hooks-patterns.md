@@ -9,6 +9,7 @@ A practical guide to creating and using custom hooks in a React Native/Expo code
 
 ---
 
+<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 ### Purpose
@@ -31,6 +32,8 @@ Extract logic to hooks + proper cleanup + type safety = maintainable, testable R
 
 ---
 
+<!-- /ANCHOR:overview -->
+<!-- ANCHOR:quick-start-when-do-i-need-a-custom-hook -->
 ## 2. QUICK START: WHEN DO I NEED A CUSTOM HOOK?
 
 Ask yourself these questions:
@@ -44,6 +47,8 @@ Ask yourself these questions:
 
 ---
 
+<!-- /ANCHOR:quick-start-when-do-i-need-a-custom-hook -->
+<!-- ANCHOR:how-to-create-your-first-hook-step-by-step -->
 ## 3. HOW TO CREATE YOUR FIRST HOOK (STEP-BY-STEP)
 
 ### The Problem
@@ -130,6 +135,8 @@ const MyScreen = () => {
 
 ---
 
+<!-- /ANCHOR:how-to-create-your-first-hook-step-by-step -->
+<!-- ANCHOR:hook-naming-what-pattern-should-i-use -->
 ## 4. HOOK NAMING: WHAT PATTERN SHOULD I USE?
 
 ### Decision Tree
@@ -166,6 +173,8 @@ What does your hook do?
 
 ---
 
+<!-- /ANCHOR:hook-naming-what-pattern-should-i-use -->
+<!-- ANCHOR:common-patterns-with-examples -->
 ## 5. COMMON PATTERNS WITH EXAMPLES
 
 ### Pattern 1: Data Fetching Hook
@@ -309,6 +318,8 @@ export const useKeyboardVisible = () => {
 
 ---
 
+<!-- /ANCHOR:common-patterns-with-examples -->
+<!-- ANCHOR:common-mistakes-and-how-to-avoid-them -->
 ## 6. COMMON MISTAKES AND HOW TO AVOID THEM
 
 ### Mistake 1: Missing Dependency Array
@@ -411,6 +422,8 @@ export const useFeedHook = () => {
 
 ---
 
+<!-- /ANCHOR:common-mistakes-and-how-to-avoid-them -->
+<!-- ANCHOR:understanding-the-module-level-guard-pattern -->
 ## 7. UNDERSTANDING THE MODULE-LEVEL GUARD PATTERN
 
 You'll see this pattern in the codebase:
@@ -446,6 +459,8 @@ export const useFeedHook = () => {
 
 ---
 
+<!-- /ANCHOR:understanding-the-module-level-guard-pattern -->
+<!-- ANCHOR:hook-composition -->
 ## 8. HOOK COMPOSITION
 
 **Problem**: Your hook needs functionality from other hooks.
@@ -481,6 +496,8 @@ export const useProfile = () => {
 
 ---
 
+<!-- /ANCHOR:hook-composition -->
+<!-- ANCHOR:typescript-typing-your-hooks -->
 ## 9. TYPESCRIPT: TYPING YOUR HOOKS
 
 ### Return Type
@@ -519,6 +536,8 @@ const { data } = usePagination<Product>(fetchProducts);
 
 ---
 
+<!-- /ANCHOR:typescript-typing-your-hooks -->
+<!-- ANCHOR:debugging-hooks -->
 ## 10. DEBUGGING HOOKS
 
 ### "Too many re-renders"
@@ -557,6 +576,8 @@ const handleClick = useCallback(() => {
 
 ---
 
+<!-- /ANCHOR:debugging-hooks -->
+<!-- ANCHOR:quick-reference-which-hook-pattern -->
 ## 11. QUICK REFERENCE: WHICH HOOK PATTERN?
 
 | Scenario | Pattern | Example |
@@ -571,6 +592,8 @@ const handleClick = useCallback(() => {
 
 ---
 
+<!-- /ANCHOR:quick-reference-which-hook-pattern -->
+<!-- ANCHOR:key-files-reference -->
 ## 12. KEY FILES REFERENCE
 
 | Purpose | Path |
@@ -585,6 +608,8 @@ const handleClick = useCallback(() => {
 
 ---
 
+<!-- /ANCHOR:key-files-reference -->
+<!-- ANCHOR:rtk-query-api-architecture -->
 ## 13. RTK QUERY API ARCHITECTURE
 
 RTK Query is our data fetching layer. This section explains how the API is configured, the middleware chain, and how to create new API endpoints.
@@ -732,6 +757,8 @@ export const useMyFeatureHook = () => {
 
 ---
 
+<!-- /ANCHOR:rtk-query-api-architecture -->
+<!-- ANCHOR:redux-toolkit-slices -->
 ## 14. REDUX TOOLKIT SLICES
 
 Redux Toolkit slices manage application state. Each feature has its own slice with reducers and selectors.
@@ -913,6 +940,8 @@ export const rootReducer = combineReducers({
 
 ---
 
+<!-- /ANCHOR:redux-toolkit-slices -->
+<!-- ANCHOR:redux-store-configuration -->
 ## 15. REDUX STORE CONFIGURATION
 
 The Redux store is configured with persistence, middleware, and dev tools.
@@ -1055,6 +1084,8 @@ const myNewSliceBlacklistFilter = createBlacklistFilter('myNewSlice', ['tempData
 
 ---
 
+<!-- /ANCHOR:redux-store-configuration -->
+<!-- ANCHOR:websocket-chat-event-system-architecture -->
 ## 16. WEBSOCKET/CHAT EVENT SYSTEM ARCHITECTURE
 
 The chat system uses a WebSocket-based architecture with typed events, centralized dispatching, and Redux-based state management.
@@ -1577,6 +1608,8 @@ export const useServerSideChatMessageHandler = () => {
 
 ---
 
+<!-- /ANCHOR:websocket-chat-event-system-architecture -->
+<!-- ANCHOR:do-this-not-that -->
 ## 17. DO THIS, NOT THAT
 
 | ❌ Don't | ✅ Do | Why |
@@ -1591,6 +1624,8 @@ export const useServerSideChatMessageHandler = () => {
 
 ---
 
+<!-- /ANCHOR:do-this-not-that -->
+<!-- ANCHOR:related-resources -->
 ## 18. RELATED RESOURCES
 
 ### Related References
@@ -1598,3 +1633,4 @@ export const useServerSideChatMessageHandler = () => {
 - [Expo Patterns](./expo-patterns.md) - Expo-specific patterns and configuration
 - [Navigation Patterns](./navigation-patterns.md) - React Navigation patterns
 - [Performance Optimization](./performance-optimization.md) - Performance best practices
+<!-- /ANCHOR:related-resources -->

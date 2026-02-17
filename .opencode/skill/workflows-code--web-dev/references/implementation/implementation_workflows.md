@@ -9,6 +9,7 @@ Three specialized workflows for writing robust frontend code with proper timing,
 
 ---
 
+<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 ### Purpose
@@ -29,6 +30,8 @@ Follow code quality standards for all implementations:
 
 ---
 
+<!-- /ANCHOR:overview -->
+<!-- ANCHOR:condition-based-waiting -->
 ## 2. CONDITION-BASED WAITING
 
 **When to use**: DOM elements not ready, async libraries loading, race conditions, timing issues
@@ -290,6 +293,8 @@ See [performance_patterns.js](../../assets/patterns/performance_patterns.js) for
 
 ---
 
+<!-- /ANCHOR:condition-based-waiting -->
+<!-- ANCHOR:defense-in-depth-validation -->
 ## 3. DEFENSE-IN-DEPTH VALIDATION
 
 **When to use**: Form handling, API calls, DOM manipulation, user input, third-party data integration
@@ -487,6 +492,8 @@ See [validation_patterns.js](../../assets/patterns/validation_patterns.js) for f
 
 ---
 
+<!-- /ANCHOR:defense-in-depth-validation -->
+<!-- ANCHOR:minification-cdn-deployment -->
 ## 4. MINIFICATION & CDN DEPLOYMENT
 
 For JavaScript minification and CDN deployment workflows, see dedicated references:
@@ -522,6 +529,8 @@ node scripts/test-minified-runtime.mjs
 
 ---
 
+<!-- /ANCHOR:minification-cdn-deployment -->
+<!-- ANCHOR:quick-reference -->
 ## 5. QUICK REFERENCE
 
 ### Condition-Based Waiting Templates
@@ -566,6 +575,8 @@ function sanitizeText(text) {
 
 ---
 
+<!-- /ANCHOR:quick-reference -->
+<!-- ANCHOR:related-resources -->
 ## 6. RELATED RESOURCES
 
 ### Reference Files
@@ -588,3 +599,4 @@ function sanitizeText(text) {
 **For complete code examples and templates:**
 - [wait_patterns.js](../../assets/patterns/wait_patterns.js) - Condition-based waiting examples
 - [validation_patterns.js](../../assets/patterns/validation_patterns.js) - Defense-in-depth templates
+<!-- /ANCHOR:related-resources -->

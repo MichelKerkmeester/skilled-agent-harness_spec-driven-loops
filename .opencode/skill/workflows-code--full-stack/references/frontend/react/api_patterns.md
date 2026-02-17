@@ -9,6 +9,7 @@ Next.js Route handlers, tRPC integration, API design patterns, error responses, 
 
 ---
 
+<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 ### Purpose
@@ -31,6 +32,8 @@ Provides comprehensive guidance on building APIs in Next.js applications, coveri
 
 ---
 
+<!-- /ANCHOR:overview -->
+<!-- ANCHOR:route-handlers -->
 ## 2. ROUTE HANDLERS
 
 ### Basic Route Handler
@@ -321,6 +324,8 @@ export async function POST(request: NextRequest) {
 
 ---
 
+<!-- /ANCHOR:route-handlers -->
+<!-- ANCHOR:api-response-patterns -->
 ## 3. API RESPONSE PATTERNS
 
 ### Standardized Response Format
@@ -537,6 +542,8 @@ export class ApiError extends Error {
 
 ---
 
+<!-- /ANCHOR:api-response-patterns -->
+<!-- ANCHOR:authentication-patterns -->
 ## 4. AUTHENTICATION PATTERNS
 
 ### Session-Based Auth
@@ -711,6 +718,8 @@ export function withApiKey(handler: AuthenticatedHandler): RouteHandler {
 
 ---
 
+<!-- /ANCHOR:authentication-patterns -->
+<!-- ANCHOR:trpc-integration -->
 ## 5. TRPC INTEGRATION
 
 ### tRPC Setup
@@ -963,6 +972,8 @@ export function ProductList() {
 
 ---
 
+<!-- /ANCHOR:trpc-integration -->
+<!-- ANCHOR:middleware -->
 ## 6. MIDDLEWARE
 
 ### Global API Middleware
@@ -1118,6 +1129,8 @@ export async function OPTIONS(request: NextRequest) {
 
 ---
 
+<!-- /ANCHOR:middleware -->
+<!-- ANCHOR:webhooks -->
 ## 7. WEBHOOKS
 
 ### Webhook Handler
@@ -1232,6 +1245,8 @@ async function handlePaymentFailed(invoice: Stripe.Invoice) {
 
 ---
 
+<!-- /ANCHOR:webhooks -->
+<!-- ANCHOR:file-uploads -->
 ## 8. FILE UPLOADS
 
 ### Upload Handler
@@ -1357,6 +1372,8 @@ export async function POST(request: NextRequest) {
 
 ---
 
+<!-- /ANCHOR:file-uploads -->
+<!-- ANCHOR:quick-reference -->
 ## 9. QUICK REFERENCE
 
 ### Route Handler Methods
@@ -1413,6 +1430,8 @@ return new NextResponse(null, { status: 204 });
 
 ---
 
+<!-- /ANCHOR:quick-reference -->
+<!-- ANCHOR:related-resources -->
 ## 10. RELATED RESOURCES
 
 ### Related References
@@ -1421,3 +1440,4 @@ return new NextResponse(null, { status: 204 });
 - [Data Fetching](./data_fetching.md) - Consuming APIs in React
 - [Component Architecture](./component_architecture.md) - Server vs Client Components
 - [Testing Strategy](./testing_strategy.md) - API mocking with MSW
+<!-- /ANCHOR:related-resources -->

@@ -9,6 +9,7 @@ Deferral patterns for analytics, tag managers, and consent scripts to reduce mai
 
 ---
 
+<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 Third-party scripts (analytics, tag managers, consent) often block the main thread and degrade Core Web Vitals. This guide covers deferral patterns to minimize their performance impact while maintaining functionality.
@@ -21,6 +22,8 @@ Third-party scripts (analytics, tag managers, consent) often block the main thre
 
 ---
 
+<!-- /ANCHOR:overview -->
+<!-- ANCHOR:google-tag-manager-gtm-delay -->
 ## 2. GOOGLE TAG MANAGER (GTM) DELAY
 
 ### Problem
@@ -69,6 +72,8 @@ GTM loads inline in head, blocking FCP by 200-400ms.
 
 ---
 
+<!-- /ANCHOR:google-tag-manager-gtm-delay -->
+<!-- ANCHOR:analytics-deferral -->
 ## 3. ANALYTICS DEFERRAL
 
 ### When to Defer
@@ -97,6 +102,8 @@ new PerformanceObserver((list) => {
 
 ---
 
+<!-- /ANCHOR:analytics-deferral -->
+<!-- ANCHOR:consent-scripts -->
 ## 4. CONSENT SCRIPTS
 
 ### Performance Impact
@@ -118,6 +125,8 @@ Always verify GDPR/CCPA compliance before modifying consent scripts.
 
 ---
 
+<!-- /ANCHOR:consent-scripts -->
+<!-- ANCHOR:font-loading-external -->
 ## 5. FONT LOADING (EXTERNAL)
 
 ### Preconnect for Font Origins
@@ -145,6 +154,8 @@ Always verify GDPR/CCPA compliance before modifying consent scripts.
 
 ---
 
+<!-- /ANCHOR:font-loading-external -->
+<!-- ANCHOR:priority-matrix -->
 ## 6. PRIORITY MATRIX
 
 | Script Type | Priority | Strategy |
@@ -157,6 +168,8 @@ Always verify GDPR/CCPA compliance before modifying consent scripts.
 
 ---
 
+<!-- /ANCHOR:priority-matrix -->
+<!-- ANCHOR:related-resources -->
 ## 7. RELATED RESOURCES
 
 ### Internal References
@@ -168,3 +181,4 @@ Always verify GDPR/CCPA compliance before modifying consent scripts.
 ### External Documentation
 
 - [web.dev/third-party-javascript](https://web.dev/third-party-javascript/) - Third-party script best practices
+<!-- /ANCHOR:related-resources -->

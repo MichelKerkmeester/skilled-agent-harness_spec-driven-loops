@@ -9,6 +9,7 @@ Understand how Code Mode UTCP achieves 98.7% token savings while providing acces
 
 ---
 
+<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 ### What is Code Mode UTCP?
@@ -19,6 +20,8 @@ Understand how Code Mode UTCP achieves 98.7% token savings while providing acces
 
 ---
 
+<!-- /ANCHOR:overview -->
+<!-- ANCHOR:architecture-diagram -->
 ## 2. ARCHITECTURE DIAGRAM
 
 ```
@@ -90,6 +93,8 @@ Understand how Code Mode UTCP achieves 98.7% token savings while providing acces
 
 ---
 
+<!-- /ANCHOR:architecture-diagram -->
+<!-- ANCHOR:the-2-3-mcp-server-wall-problem -->
 ## 3. THE "2-3 MCP SERVER WALL" PROBLEM
 
 ### Traditional Approach (Before Code Mode)
@@ -150,6 +155,8 @@ Result: 98.7% token savings, unlimited scalability
 
 ---
 
+<!-- /ANCHOR:the-2-3-mcp-server-wall-problem -->
+<!-- ANCHOR:token-economics -->
 ## 4. TOKEN ECONOMICS
 
 | Approach                     | Tokens Consumed | Tools Visible | Tools Accessible | Usable?                   |
@@ -163,6 +170,8 @@ Result: 98.7% token savings, unlimited scalability
 
 ---
 
+<!-- /ANCHOR:token-economics -->
+<!-- ANCHOR:data-flow -->
 ## 5. DATA FLOW
 
 ### Single-Step Execution
@@ -275,6 +284,8 @@ Code Mode MCP
 
 ---
 
+<!-- /ANCHOR:data-flow -->
+<!-- ANCHOR:execution-environment -->
 ## 6. EXECUTION ENVIRONMENT
 
 ### V8 Isolate Sandbox
@@ -362,6 +373,8 @@ return { design, task, cms };  // All data returned
 
 ---
 
+<!-- /ANCHOR:execution-environment -->
+<!-- ANCHOR:configuration-integration -->
 ## 7. CONFIGURATION INTEGRATION
 
 ### How .utcp_config.json Connects
@@ -406,6 +419,8 @@ await webflow.webflow_sites_list({});
 
 ---
 
+<!-- /ANCHOR:configuration-integration -->
+<!-- ANCHOR:performance-characteristics -->
 ## 8. PERFORMANCE CHARACTERISTICS
 
 ### Execution Speed
@@ -451,6 +466,8 @@ Usable?    ✅      ✅      ✅     ✅      ✅      ✅
 
 ---
 
+<!-- /ANCHOR:performance-characteristics -->
+<!-- ANCHOR:architecture-benefits -->
 ## 9. ARCHITECTURE BENEFITS
 
 ### 1. Context Efficiency
@@ -485,6 +502,8 @@ Usable?    ✅      ✅      ✅     ✅      ✅      ✅
 
 ---
 
+<!-- /ANCHOR:architecture-benefits -->
+<!-- ANCHOR:summary -->
 ## 10. SUMMARY
 
 **Architecture highlights:**
@@ -502,6 +521,8 @@ Usable?    ✅      ✅      ✅     ✅      ✅      ✅
 
 ---
 
+<!-- /ANCHOR:summary -->
+<!-- ANCHOR:related-resources -->
 ## 11. RELATED RESOURCES
 
 ### Reference Files
@@ -512,3 +533,4 @@ Usable?    ✅      ✅      ✅     ✅      ✅      ✅
 
 ### Related Skills
 - `mcp-figma` - Figma design file access (via Code Mode)
+<!-- /ANCHOR:related-resources -->

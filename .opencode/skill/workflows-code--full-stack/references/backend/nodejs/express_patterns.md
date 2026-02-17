@@ -9,6 +9,7 @@ Mandatory Express.js patterns for backend projects defining route organization, 
 
 ---
 
+<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 ### Purpose
@@ -42,6 +43,8 @@ Level 2: Related knowledge files
 
 ---
 
+<!-- /ANCHOR:overview -->
+<!-- ANCHOR:application-structure -->
 ## 2. APPLICATION STRUCTURE
 
 ### How Do I Bootstrap the Express App?
@@ -171,6 +174,8 @@ export function gracefulShutdown(server: http.Server): void {
 
 ---
 
+<!-- /ANCHOR:application-structure -->
+<!-- ANCHOR:route-organization -->
 ## 3. ROUTE ORGANIZATION
 
 ### How Do I Structure Routes?
@@ -282,6 +287,8 @@ router.get('/users/:user_id/orders/:order', ...);
 
 ---
 
+<!-- /ANCHOR:route-organization -->
+<!-- ANCHOR:controller-patterns -->
 ## 4. CONTROLLER PATTERNS
 
 ### How Do I Structure Controllers?
@@ -388,6 +395,8 @@ export class UserController {
 
 ---
 
+<!-- /ANCHOR:controller-patterns -->
+<!-- ANCHOR:middleware-patterns -->
 ## 5. MIDDLEWARE PATTERNS
 
 ### What Is the Middleware Execution Order?
@@ -516,6 +525,8 @@ router.get('/users', asyncHandler(async (req, res) => {
 
 ---
 
+<!-- /ANCHOR:middleware-patterns -->
+<!-- ANCHOR:request-validation -->
 ## 6. REQUEST VALIDATION
 
 ### What Validation Library Should I Use?
@@ -673,6 +684,8 @@ const uploadSchema = z.object({
 
 ---
 
+<!-- /ANCHOR:request-validation -->
+<!-- ANCHOR:response-formatting -->
 ## 7. RESPONSE FORMATTING
 
 ### What Is the Standard Response Format?
@@ -815,6 +828,8 @@ export class UserController {
 
 ---
 
+<!-- /ANCHOR:response-formatting -->
+<!-- ANCHOR:error-handling-middleware -->
 ## 8. ERROR HANDLING MIDDLEWARE
 
 ### How Do I Create Error Handling Middleware?
@@ -943,6 +958,8 @@ export function handleJwtError(error: unknown): never {
 
 ---
 
+<!-- /ANCHOR:error-handling-middleware -->
+<!-- ANCHOR:authentication-patterns -->
 ## 9. AUTHENTICATION PATTERNS
 
 ### How Do I Implement JWT Authentication?
@@ -1166,6 +1183,8 @@ router.patch(
 
 ---
 
+<!-- /ANCHOR:authentication-patterns -->
+<!-- ANCHOR:rate-limiting -->
 ## 10. RATE LIMITING
 
 ### How Do I Implement Rate Limiting?
@@ -1221,6 +1240,8 @@ export const uploadRateLimiter = rateLimit({
 
 ---
 
+<!-- /ANCHOR:rate-limiting -->
+<!-- ANCHOR:cors-configuration -->
 ## 11. CORS CONFIGURATION
 
 ### How Do I Configure CORS?
@@ -1254,6 +1275,8 @@ app.use(cors(corsOptions));
 
 ---
 
+<!-- /ANCHOR:cors-configuration -->
+<!-- ANCHOR:rules -->
 ## 12. RULES
 
 ### ALWAYS
@@ -1297,6 +1320,8 @@ app.use(cors(corsOptions));
 
 ---
 
+<!-- /ANCHOR:rules -->
+<!-- ANCHOR:related-resources -->
 ## 13. RELATED RESOURCES
 
 | File                                         | Purpose                                     |
@@ -1304,3 +1329,4 @@ app.use(cors(corsOptions));
 | [nodejs_standards.md](./nodejs_standards.md) | Project structure and configuration         |
 | [async_patterns.md](./async_patterns.md)     | Promise and async/await best practices      |
 | [testing_strategy.md](./testing_strategy.md) | Integration testing with Supertest          |
+<!-- /ANCHOR:related-resources -->

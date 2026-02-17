@@ -9,6 +9,7 @@ Copy-paste templates, naming cheat sheet, and common patterns for JavaScript dev
 
 ---
 
+<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 ### Purpose
@@ -19,6 +20,8 @@ Quick-access reference card for JavaScript patterns. For detailed explanations, 
 
 ---
 
+<!-- /ANCHOR:overview -->
+<!-- ANCHOR:complete-file-template -->
 ## 2. COMPLETE FILE TEMPLATE
 
 ```javascript
@@ -96,6 +99,8 @@ module.exports = {
 
 ---
 
+<!-- /ANCHOR:complete-file-template -->
+<!-- ANCHOR:naming-cheat-sheet -->
 ## 3. NAMING CHEAT SHEET
 
 | Element          | Convention         | Example              |
@@ -111,6 +116,8 @@ module.exports = {
 
 ---
 
+<!-- /ANCHOR:naming-cheat-sheet -->
+<!-- ANCHOR:section-ordering -->
 ## 4. SECTION ORDERING
 
 ```
@@ -123,6 +130,8 @@ module.exports = {
 
 ---
 
+<!-- /ANCHOR:section-ordering -->
+<!-- ANCHOR:jsdoc-template -->
 ## 5. JSDOC TEMPLATE
 
 ```javascript
@@ -143,6 +152,8 @@ module.exports = {
 
 ---
 
+<!-- /ANCHOR:jsdoc-template -->
+<!-- ANCHOR:export-pattern-template -->
 ## 6. EXPORT PATTERN TEMPLATE
 
 ```javascript
@@ -165,6 +176,8 @@ module.exports = {
 
 ---
 
+<!-- /ANCHOR:export-pattern-template -->
+<!-- ANCHOR:error-handling-patterns -->
 ## 7. ERROR HANDLING PATTERNS
 
 ### Guard Clause
@@ -201,6 +214,8 @@ class CustomError extends Error {
 
 ---
 
+<!-- /ANCHOR:error-handling-patterns -->
+<!-- ANCHOR:common-one-liners -->
 ## 8. COMMON ONE-LINERS
 
 ```javascript
@@ -231,6 +246,8 @@ const resolved = path.resolve(basePath, relativePath);
 
 ---
 
+<!-- /ANCHOR:common-one-liners -->
+<!-- ANCHOR:import-order -->
 ## 9. IMPORT ORDER
 
 ```javascript
@@ -247,6 +264,8 @@ const { loadConfig } = require('./config');
 
 ---
 
+<!-- /ANCHOR:import-order -->
+<!-- ANCHOR:async-patterns -->
 ## 10. ASYNC PATTERNS
 
 ```javascript
@@ -271,7 +290,10 @@ async function safeFetch() {
 
 ---
 
+<!-- /ANCHOR:async-patterns -->
+<!-- ANCHOR:related-resources -->
 ## 11. RELATED RESOURCES
 
 - [style_guide.md](./style_guide.md) - Detailed formatting rules
 - [quality_standards.md](./quality_standards.md) - Error handling, JSDoc, security
+<!-- /ANCHOR:related-resources -->

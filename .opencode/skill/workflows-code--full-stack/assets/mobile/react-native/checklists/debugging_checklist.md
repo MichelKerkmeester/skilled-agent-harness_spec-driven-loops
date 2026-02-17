@@ -9,6 +9,7 @@ Universal step-by-step checklist for investigating technical issues systematical
 
 ---
 
+<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 ### Purpose
@@ -29,6 +30,8 @@ Use this checklist for ANY technical issue. Complete all applicable phases seque
 
 ---
 
+<!-- /ANCHOR:overview -->
+<!-- ANCHOR:before-attempting-any-fix -->
 ## 2. BEFORE ATTEMPTING ANY FIX
 
 - [ ] Opened appropriate debugging environment
@@ -41,6 +44,8 @@ Use this checklist for ANY technical issue. Complete all applicable phases seque
 
 ---
 
+<!-- /ANCHOR:before-attempting-any-fix -->
+<!-- ANCHOR:phase-1-root-cause-investigation -->
 ## 3. PHASE 1: ROOT CAUSE INVESTIGATION
 
 ### Error Analysis (Universal)
@@ -108,6 +113,8 @@ Use this checklist for ANY technical issue. Complete all applicable phases seque
 
 ---
 
+<!-- /ANCHOR:phase-1-root-cause-investigation -->
+<!-- ANCHOR:phase-2-pattern-analysis -->
 ## 4. PHASE 2: PATTERN ANALYSIS
 
 ### Working Examples
@@ -141,6 +148,8 @@ Use this checklist for ANY technical issue. Complete all applicable phases seque
 
 ---
 
+<!-- /ANCHOR:phase-2-pattern-analysis -->
+<!-- ANCHOR:phase-3-hypothesis-and-testing -->
 ## 5. PHASE 3: HYPOTHESIS AND TESTING
 
 ### Hypothesis Formation
@@ -175,6 +184,8 @@ Use this checklist for ANY technical issue. Complete all applicable phases seque
 
 ---
 
+<!-- /ANCHOR:phase-3-hypothesis-and-testing -->
+<!-- ANCHOR:phase-4-implementation -->
 ## 6. PHASE 4: IMPLEMENTATION
 
 ### Documentation
@@ -207,6 +218,8 @@ Use this checklist for ANY technical issue. Complete all applicable phases seque
 
 ---
 
+<!-- /ANCHOR:phase-4-implementation -->
+<!-- ANCHOR:root-cause-tracing-checklist -->
 ## 7. ROOT CAUSE TRACING CHECKLIST
 
 Use when errors occur deep in call stack:
@@ -245,6 +258,8 @@ Use when errors occur deep in call stack:
 
 ---
 
+<!-- /ANCHOR:root-cause-tracing-checklist -->
+<!-- ANCHOR:common-error-patterns -->
 ## 8. COMMON ERROR PATTERNS
 
 ### TypeScript/JavaScript
@@ -282,6 +297,8 @@ Use when errors occur deep in call stack:
 
 ---
 
+<!-- /ANCHOR:common-error-patterns -->
+<!-- ANCHOR:stuck-after-3-attempts -->
 ## 9. STUCK AFTER 3+ ATTEMPTS
 
 ### Architecture Questions
@@ -310,6 +327,8 @@ Use when errors occur deep in call stack:
 
 ---
 
+<!-- /ANCHOR:stuck-after-3-attempts -->
+<!-- ANCHOR:final-verification -->
 ## 10. FINAL VERIFICATION
 
 - [ ] Root cause identified and documented
@@ -327,6 +346,8 @@ Use when errors occur deep in call stack:
 
 ---
 
+<!-- /ANCHOR:final-verification -->
+<!-- ANCHOR:related-resources -->
 ## 11. RELATED RESOURCES
 
 ### Companion Checklists
@@ -337,3 +358,4 @@ Use when errors occur deep in call stack:
 ### Parent Skill
 
 - [SKILL.md](../../SKILL.md) - workflows-code skill (Phase 2: Debugging)
+<!-- /ANCHOR:related-resources -->

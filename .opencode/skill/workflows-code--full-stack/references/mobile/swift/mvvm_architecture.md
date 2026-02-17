@@ -9,6 +9,7 @@ A comprehensive guide to implementing MVVM architecture with SwiftUI, including 
 
 ---
 
+<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 ### Purpose
@@ -36,6 +37,8 @@ Clear separation of concerns + testable view models + dependency injection = mai
 
 ---
 
+<!-- /ANCHOR:overview -->
+<!-- ANCHOR:mvvm-fundamentals -->
 ## 2. MVVM FUNDAMENTALS
 
 ### Architecture Overview
@@ -92,6 +95,8 @@ Features/
 
 ---
 
+<!-- /ANCHOR:mvvm-fundamentals -->
+<!-- ANCHOR:observable-pattern-ios-17 -->
 ## 3. @OBSERVABLE PATTERN (iOS 17+)
 
 ### Basic @Observable ViewModel
@@ -331,6 +336,8 @@ struct ProductListScreen: View {
 
 ---
 
+<!-- /ANCHOR:observable-pattern-ios-17 -->
+<!-- ANCHOR:viewmodel-patterns -->
 ## 4. VIEWMODEL PATTERNS
 
 ### Form ViewModel Pattern
@@ -572,6 +579,8 @@ class SelectableListViewModel<Item: Identifiable> {
 
 ---
 
+<!-- /ANCHOR:viewmodel-patterns -->
+<!-- ANCHOR:dependency-injection -->
 ## 5. DEPENDENCY INJECTION
 
 ### Protocol-Based Dependencies
@@ -767,6 +776,8 @@ struct ProductListScreen: View {
 
 ---
 
+<!-- /ANCHOR:dependency-injection -->
+<!-- ANCHOR:protocol-oriented-design -->
 ## 6. PROTOCOL-ORIENTED DESIGN
 
 ### Repository Pattern
@@ -935,6 +946,8 @@ class ProductListViewModel {
 
 ---
 
+<!-- /ANCHOR:protocol-oriented-design -->
+<!-- ANCHOR:combine-integration -->
 ## 7. COMBINE INTEGRATION
 
 ### ViewModel with Combine (Legacy Pattern)
@@ -1107,6 +1120,8 @@ class NotificationViewModel {
 
 ---
 
+<!-- /ANCHOR:combine-integration -->
+<!-- ANCHOR:testing-viewmodels -->
 ## 8. TESTING VIEWMODELS
 
 ### Unit Testing @Observable ViewModels
@@ -1252,6 +1267,8 @@ final class FormViewModelTests: XCTestCase {
 
 ---
 
+<!-- /ANCHOR:testing-viewmodels -->
+<!-- ANCHOR:rules -->
 ## 9. RULES
 
 ### ALWAYS
@@ -1289,6 +1306,8 @@ final class FormViewModelTests: XCTestCase {
 
 ---
 
+<!-- /ANCHOR:rules -->
+<!-- ANCHOR:related-resources -->
 ## 10. RELATED RESOURCES
 
 | File | Purpose |
@@ -1298,3 +1317,4 @@ final class FormViewModelTests: XCTestCase {
 | [async_patterns.md](./async_patterns.md) | Swift concurrency and async/await patterns |
 | [testing_strategy.md](./testing_strategy.md) | XCTest and testing best practices |
 | [persistence_patterns.md](./persistence_patterns.md) | SwiftData, Core Data, and storage patterns |
+<!-- /ANCHOR:related-resources -->

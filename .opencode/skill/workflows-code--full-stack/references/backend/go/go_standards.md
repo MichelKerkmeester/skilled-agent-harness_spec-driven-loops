@@ -9,6 +9,7 @@ Mandatory Go coding conventions for backend projects defining project structure,
 
 ---
 
+<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 ### Purpose
@@ -40,6 +41,8 @@ Level 2: Related knowledge files
 
 ---
 
+<!-- /ANCHOR:overview -->
+<!-- ANCHOR:project-structure -->
 ## 2. PROJECT STRUCTURE
 
 ### How Is the Project Organized?
@@ -214,6 +217,8 @@ internal/cli/{cli_name}/
 
 ---
 
+<!-- /ANCHOR:project-structure -->
+<!-- ANCHOR:naming-conventions -->
 ## 3. NAMING CONVENTIONS
 
 ### What Are the File Naming Rules?
@@ -263,6 +268,8 @@ internal/cli/{cli_name}/
 
 ---
 
+<!-- /ANCHOR:naming-conventions -->
+<!-- ANCHOR:layer-architecture -->
 ## 4. LAYER ARCHITECTURE
 
 ### What Are the Architectural Layers?
@@ -318,6 +325,8 @@ Database
 
 ---
 
+<!-- /ANCHOR:layer-architecture -->
+<!-- ANCHOR:code-patterns -->
 ## 5. CODE PATTERNS
 
 ### How Do I Implement the Generic Service Pattern?
@@ -416,6 +425,8 @@ func NewPaymentDataLayer(_ context.Context, orm *database.Orm, layerConfig Payme
 
 ---
 
+<!-- /ANCHOR:code-patterns -->
+<!-- ANCHOR:error-handling -->
 ## 6. ERROR HANDLING
 
 ### How Do I Wrap Errors?
@@ -450,6 +461,8 @@ if has {
 
 ---
 
+<!-- /ANCHOR:error-handling -->
+<!-- ANCHOR:import-organization -->
 ## 7. IMPORT ORGANIZATION
 
 ### How Should I Organize Imports?
@@ -484,6 +497,8 @@ import (
 
 ---
 
+<!-- /ANCHOR:import-organization -->
+<!-- ANCHOR:testing -->
 ## 8. TESTING
 
 ### Where Do I Place Test Files?
@@ -556,6 +571,8 @@ func TestWalletAdapter_AdaptCollection(t *testing.T) {
 
 ---
 
+<!-- /ANCHOR:testing -->
+<!-- ANCHOR:rules -->
 ## 9. RULES
 
 ### ALWAYS
@@ -596,6 +613,8 @@ func TestWalletAdapter_AdaptCollection(t *testing.T) {
 
 ---
 
+<!-- /ANCHOR:rules -->
+<!-- ANCHOR:related-resources -->
 ## 10. RELATED RESOURCES
 
 | File                                                                       | Purpose                                             |
@@ -605,3 +624,4 @@ func TestWalletAdapter_AdaptCollection(t *testing.T) {
 | [models_vs_entities_and_adapters.md](./models_vs_entities_and_adapters.md) | Entity/model boundaries, adapter patterns           |
 | [api_design.md](./api_design.md)                                           | HTTP controller patterns, request/response handling |
 | [testing_strategy.md](./testing_strategy.md)                               | Test organization and patterns                      |
+<!-- /ANCHOR:related-resources -->

@@ -9,6 +9,7 @@ DI configuration structure, JSON nesting rules, token-to-key mapping, and debugg
 
 ---
 
+<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 ### Purpose
@@ -38,6 +39,8 @@ di_configuration.md (this file)
 
 ---
 
+<!-- /ANCHOR:overview -->
+<!-- ANCHOR:the-four-di-functions -->
 ## 2. THE FOUR DI FUNCTIONS
 
 The DI system in backend systems uses four core functions from `github.com/pixie-sh/di-go`. Understanding these is **critical** for working with the codebase.
@@ -176,6 +179,8 @@ The breadcrumbs tell you exactly where in the JSON hierarchy the system is looki
 
 ---
 
+<!-- /ANCHOR:the-four-di-functions -->
+<!-- ANCHOR:configuration-structure -->
 ## 4. CONFIGURATION STRUCTURE
 
 ### 4.1 How do I map registry tokens to JSON keys?
@@ -311,6 +316,8 @@ func RegistryPaymentsBusinessLayer(ctx di.Context, opts *di.RegistryOpts) (*Paym
 
 ---
 
+<!-- /ANCHOR:configuration-structure -->
+<!-- ANCHOR:configuration-patterns -->
 ## 5. CONFIGURATION PATTERNS
 
 ### Pattern 1: Root-Level Services (via Struct Embedding)
@@ -439,6 +446,8 @@ Configuration values can reference environment variables:
 
 ---
 
+<!-- /ANCHOR:configuration-patterns -->
+<!-- ANCHOR:debugging-configuration-issues -->
 ## 6. DEBUGGING CONFIGURATION ISSUES
 
 ### 6.1 How do I read error messages?
@@ -525,6 +534,8 @@ Breadcrumbs: [payments_business_layer payments_data_layer]
 
 ---
 
+<!-- /ANCHOR:debugging-configuration-issues -->
+<!-- ANCHOR:practical-guide -->
 ## 7. PRACTICAL GUIDE
 
 ### 7.1 How do I add configuration for a new service?
@@ -618,6 +629,8 @@ When adding a new service configuration:
 
 ---
 
+<!-- /ANCHOR:practical-guide -->
+<!-- ANCHOR:real-world-example-ms-payments -->
 ## 8. REAL-WORLD EXAMPLE: ms_payments
 
 This section traces through the complete ms_payments configuration to show how all concepts connect.
@@ -751,6 +764,8 @@ func RegistryPaymentsBusinessLayer(ctx di.Context, opts *di.RegistryOpts) (*Paym
 
 ---
 
+<!-- /ANCHOR:real-world-example-ms-payments -->
+<!-- ANCHOR:best-practices -->
 ## 9. BEST PRACTICES
 
 ### DO
@@ -773,6 +788,8 @@ func RegistryPaymentsBusinessLayer(ctx di.Context, opts *di.RegistryOpts) (*Paym
 
 ---
 
+<!-- /ANCHOR:best-practices -->
+<!-- ANCHOR:rules -->
 ## 10. RULES
 
 ### ALWAYS
@@ -801,6 +818,8 @@ func RegistryPaymentsBusinessLayer(ctx di.Context, opts *di.RegistryOpts) (*Paym
 
 ---
 
+<!-- /ANCHOR:rules -->
+<!-- ANCHOR:related-resources -->
 ## 11. RELATED RESOURCES
 
 | Topic | Location | Description |
@@ -812,3 +831,4 @@ func RegistryPaymentsBusinessLayer(ctx di.Context, opts *di.RegistryOpts) (*Paym
 | Config files | `misc/configs/*.json` | JSON configuration files |
 | Bundle configs | `bundles/*.go` | Shared bundle configurations |
 | Bootstrap | [microservice_bootstrap_architecture.md](./microservice_bootstrap_architecture.md) | Microservice startup process |
+<!-- /ANCHOR:related-resources -->

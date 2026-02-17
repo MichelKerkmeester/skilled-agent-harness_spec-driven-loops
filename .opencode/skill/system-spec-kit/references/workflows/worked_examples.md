@@ -9,6 +9,7 @@ Practical scenarios demonstrating SpecKit workflows for different documentation 
 
 ---
 
+<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 ### What Are Worked Examples?
@@ -35,6 +36,8 @@ These examples demonstrate real-world usage of the SpecKit system across differe
 
 ---
 
+<!-- /ANCHOR:overview -->
+<!-- ANCHOR:simple-bug-fix-level-1 -->
 ## 2. SIMPLE BUG FIX (LEVEL 1)
 
 ### Scenario
@@ -89,6 +92,8 @@ specs/008-fix-button-alignment/
 
 ---
 
+<!-- /ANCHOR:simple-bug-fix-level-1 -->
+<!-- ANCHOR:feature-implementation-level-2 -->
 ## 3. FEATURE IMPLEMENTATION (LEVEL 2)
 
 ### Scenario
@@ -143,6 +148,8 @@ specs/009-notification-system/
 
 ---
 
+<!-- /ANCHOR:feature-implementation-level-2 -->
+<!-- ANCHOR:architecture-change-level-3 -->
 ## 4. ARCHITECTURE CHANGE (LEVEL 3)
 
 ### Scenario
@@ -172,16 +179,24 @@ Level 3 requires an Architecture Decision Record (ADR):
 ```markdown
 # ADR-001: GraphQL Migration
 
+<!-- /ANCHOR:architecture-change-level-3 -->
+<!-- ANCHOR:status -->
 ## Status
 Approved
 
+<!-- /ANCHOR:status -->
+<!-- ANCHOR:context -->
 ## Context
 Current REST API has N+1 query problems causing performance issues.
 Mobile clients over-fetch data, increasing bandwidth usage.
 
+<!-- /ANCHOR:context -->
+<!-- ANCHOR:decision -->
 ## Decision
 Migrate to GraphQL with Apollo Server for the API layer.
 
+<!-- /ANCHOR:decision -->
+<!-- ANCHOR:consequences -->
 ## Consequences
 
 ### Positive
@@ -219,6 +234,8 @@ specs/010-graphql-migration/
 
 ---
 
+<!-- /ANCHOR:consequences -->
+<!-- ANCHOR:resuming-work -->
 ## 5. RESUMING WORK
 
 ### Scenario
@@ -270,6 +287,8 @@ AI: Loading context for specs/009-notification-system/
 
 ---
 
+<!-- /ANCHOR:resuming-work -->
+<!-- ANCHOR:related-resources -->
 ## 6. RELATED RESOURCES
 
 ### Reference Files
@@ -299,3 +318,4 @@ AI: Loading context for specs/009-notification-system/
 | 500+ | High | 3 | decision-record.md |
 
 > **Note**: Risk and complexity can override LOC thresholds. When in doubt, choose the higher level.
+<!-- /ANCHOR:related-resources -->

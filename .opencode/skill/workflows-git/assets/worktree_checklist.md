@@ -9,6 +9,7 @@ Step-by-step checklist for safe and reliable git worktree creation.
 
 ---
 
+<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 ### Purpose
@@ -24,6 +25,8 @@ This checklist ensures git worktrees are created safely with proper .gitignore c
 
 ---
 
+<!-- /ANCHOR:overview -->
+<!-- ANCHOR:pre-creation-checklist -->
 ## 2. PRE-CREATION CHECKLIST
 
 ### Step 1: Gather Information
@@ -89,6 +92,8 @@ This checklist ensures git worktrees are created safely with proper .gitignore c
 
 ---
 
+<!-- /ANCHOR:pre-creation-checklist -->
+<!-- ANCHOR:creation-checklist -->
 ## 3. CREATION CHECKLIST
 
 ### Step 4: Create Worktree
@@ -221,6 +226,8 @@ Run tests to ensure worktree starts in known-good state:
 
 ---
 
+<!-- /ANCHOR:creation-checklist -->
+<!-- ANCHOR:post-creation-checklist -->
 ## 4. POST-CREATION CHECKLIST
 
 ### Step 7: Final Verification
@@ -245,6 +252,8 @@ Run tests to ensure worktree starts in known-good state:
 
 ---
 
+<!-- /ANCHOR:post-creation-checklist -->
+<!-- ANCHOR:status-report-template -->
 ## 5. STATUS REPORT TEMPLATE
 
 Provide this information to user:
@@ -266,6 +275,8 @@ Example:
 
 ---
 
+<!-- /ANCHOR:status-report-template -->
+<!-- ANCHOR:common-issues-checklist -->
 ## 6. COMMON ISSUES CHECKLIST
 
 ### Issue: Worktree Creation Fails
@@ -353,6 +364,8 @@ git worktree add .worktrees/<name> -b <branch>
 
 ---
 
+<!-- /ANCHOR:common-issues-checklist -->
+<!-- ANCHOR:quick-reference-commands -->
 ## 7. QUICK REFERENCE COMMANDS
 
 **List all worktrees**:
@@ -388,6 +401,8 @@ git check-ignore -n .worktrees
 
 ---
 
+<!-- /ANCHOR:quick-reference-commands -->
+<!-- ANCHOR:success-criteria -->
 ## 8. SUCCESS CRITERIA
 
 Worktree creation is successful when:
@@ -406,8 +421,11 @@ Worktree creation is successful when:
 
 ---
 
+<!-- /ANCHOR:success-criteria -->
+<!-- ANCHOR:related-resources -->
 ## 9. RELATED RESOURCES
 
 - [worktree_workflows.md](../references/worktree_workflows.md) - Complete workflow details
 - [shared_patterns.md](../references/shared_patterns.md) - Common git patterns
 - [quick_reference.md](../references/quick_reference.md) - Command cheat sheet
+<!-- /ANCHOR:related-resources -->

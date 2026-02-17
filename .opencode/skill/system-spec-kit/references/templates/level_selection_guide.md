@@ -11,6 +11,7 @@ Guide to selecting appropriate documentation levels based on task complexity.
 
 ---
 
+<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 The complexity detection system automatically analyzes task descriptions to:
@@ -25,6 +26,8 @@ The complexity detection system automatically analyzes task descriptions to:
 
 ---
 
+<!-- /ANCHOR:overview -->
+<!-- ANCHOR:5-dimension-scoring-algorithm -->
 ## 2. 5-DIMENSION SCORING ALGORITHM
 
 The algorithm scores tasks across 5 weighted dimensions (0-100 scale):
@@ -78,6 +81,8 @@ Measures dependency complexity:
 
 ---
 
+<!-- /ANCHOR:5-dimension-scoring-algorithm -->
+<!-- ANCHOR:level-mapping -->
 ## 3. LEVEL MAPPING
 
 | Score     | Level | Name         | Description                              |
@@ -98,6 +103,8 @@ Level 3+ includes everything from Level 3 plus:
 
 ---
 
+<!-- /ANCHOR:level-mapping -->
+<!-- ANCHOR:cli-tool -->
 ## 4. CLI TOOL
 
 ### spec/create.sh
@@ -131,6 +138,8 @@ Templates are pre-expanded and ready to use in level-specific folders:
 
 ---
 
+<!-- /ANCHOR:cli-tool -->
+<!-- ANCHOR:dynamic-section-scaling -->
 ## 5. DYNAMIC SECTION SCALING
 
 Sections scale based on detected complexity:
@@ -146,6 +155,8 @@ Sections scale based on detected complexity:
 
 ---
 
+<!-- /ANCHOR:dynamic-section-scaling -->
+<!-- ANCHOR:validation-rules -->
 ## 6. VALIDATION RULES
 
 Four validation rules ensure complexity consistency:
@@ -193,6 +204,8 @@ Validates level consistency across all spec files:
 
 ---
 
+<!-- /ANCHOR:validation-rules -->
+<!-- ANCHOR:configuration -->
 ## 7. CONFIGURATION
 
 Configuration file: `config/complexity-config.jsonc`
@@ -201,6 +214,8 @@ Configuration file: `config/complexity-config.jsonc`
 
 ---
 
+<!-- /ANCHOR:configuration -->
+<!-- ANCHOR:related-resources -->
 ## 8. RELATED RESOURCES
 
 ### Templates (Level-Based Organization)
@@ -226,6 +241,8 @@ Templates are now pre-expanded in level folders, eliminating runtime gate proces
 
 ---
 
+<!-- /ANCHOR:related-resources -->
+<!-- ANCHOR:appendix-deprecated-content -->
 ## Appendix: Deprecated Content
 
 > **DEPRECATED:** The following content is retained for historical reference only.
@@ -287,3 +304,4 @@ Research-specific content at Level 3+
 | `dep-graph` | Level 2+ | Dependency visualization |
 | `effort-est` | Level 2+ | Effort estimation framework |
 | `ext-checklist` | Level 3+ | Extended checklist items |
+<!-- /ANCHOR:appendix-deprecated-content -->

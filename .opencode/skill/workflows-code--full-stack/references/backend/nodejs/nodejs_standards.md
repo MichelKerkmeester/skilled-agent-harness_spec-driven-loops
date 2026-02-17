@@ -9,6 +9,7 @@ Mandatory Node.js/TypeScript coding conventions for backend projects defining pr
 
 ---
 
+<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 ### Purpose
@@ -41,6 +42,8 @@ Level 2: Related knowledge files
 
 ---
 
+<!-- /ANCHOR:overview -->
+<!-- ANCHOR:project-structure -->
 ## 2. PROJECT STRUCTURE
 
 ### How Is the Project Organized?
@@ -171,6 +174,8 @@ src/
 
 ---
 
+<!-- /ANCHOR:project-structure -->
+<!-- ANCHOR:typescript-configuration -->
 ## 3. TYPESCRIPT CONFIGURATION
 
 ### What Is the Recommended tsconfig.json?
@@ -279,6 +284,8 @@ npm install -D tsc-alias
 
 ---
 
+<!-- /ANCHOR:typescript-configuration -->
+<!-- ANCHOR:eslint-configuration -->
 ## 4. ESLINT CONFIGURATION
 
 ### What Is the Recommended ESLint Setup?
@@ -378,6 +385,8 @@ module.exports = {
 
 ---
 
+<!-- /ANCHOR:eslint-configuration -->
+<!-- ANCHOR:prettier-configuration -->
 ## 5. PRETTIER CONFIGURATION
 
 ### What Is the Recommended Prettier Setup?
@@ -427,6 +436,8 @@ coverage
 
 ---
 
+<!-- /ANCHOR:prettier-configuration -->
+<!-- ANCHOR:environment-management -->
 ## 6. ENVIRONMENT MANAGEMENT
 
 ### How Do I Structure Environment Configuration?
@@ -570,6 +581,8 @@ LOG_FORMAT=pretty
 
 ---
 
+<!-- /ANCHOR:environment-management -->
+<!-- ANCHOR:logging-standards -->
 ## 7. LOGGING STANDARDS
 
 ### What Logging Library Should I Use?
@@ -714,6 +727,8 @@ export function requestLogger(req: Request, res: Response, next: NextFunction): 
 
 ---
 
+<!-- /ANCHOR:logging-standards -->
+<!-- ANCHOR:error-handling-conventions -->
 ## 8. ERROR HANDLING CONVENTIONS
 
 ### How Do I Define Custom Errors?
@@ -893,6 +908,8 @@ export async function createUser(data: CreateUserDTO): Promise<User> {
 
 ---
 
+<!-- /ANCHOR:error-handling-conventions -->
+<!-- ANCHOR:naming-conventions -->
 ## 9. NAMING CONVENTIONS
 
 ### What Are the File Naming Rules?
@@ -937,6 +954,8 @@ export async function createUser(data: CreateUserDTO): Promise<User> {
 
 ---
 
+<!-- /ANCHOR:naming-conventions -->
+<!-- ANCHOR:import-organization -->
 ## 10. IMPORT ORGANIZATION
 
 ### How Should I Organize Imports?
@@ -974,6 +993,8 @@ The ESLint configuration above enforces this order automatically.
 
 ---
 
+<!-- /ANCHOR:import-organization -->
+<!-- ANCHOR:rules -->
 ## 11. RULES
 
 ### ALWAYS
@@ -1017,6 +1038,8 @@ The ESLint configuration above enforces this order automatically.
 
 ---
 
+<!-- /ANCHOR:rules -->
+<!-- ANCHOR:related-resources -->
 ## 12. RELATED RESOURCES
 
 | File                                         | Purpose                                     |
@@ -1024,3 +1047,4 @@ The ESLint configuration above enforces this order automatically.
 | [express_patterns.md](./express_patterns.md) | Route organization and middleware patterns  |
 | [async_patterns.md](./async_patterns.md)     | Promise and async/await best practices      |
 | [testing_strategy.md](./testing_strategy.md) | Jest configuration and test patterns        |
+<!-- /ANCHOR:related-resources -->

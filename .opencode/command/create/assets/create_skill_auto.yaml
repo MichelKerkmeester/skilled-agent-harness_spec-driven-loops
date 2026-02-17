@@ -215,12 +215,12 @@ workflow:
     purpose: Search for similar existing skills before creating new one (MANDATORY)
     gate_type: SOFT_BLOCK
     enforcement: "Warn if similar skill exists, allow user override"
-    agent_routing:
-      agent: "@context"
+    agent_availability:
       agent_file: ".opencode/agent/context.md"
-      rule_reference: "AGENTS.md Rule 4 — Route ALL exploration through @context"
-      dispatch: "Task tool → @context for memory-first skill discovery"
+      rule_reference: "AGENTS.md Rule 4 — exploration"
+      condition: "ONLY when this step is actively executing"
       fallback: "general (with warning: bypasses memory checks)"
+      not_for: "reviewing this workflow prompt or any pre-step activity"
     activities:
     - "Dispatch @context to discover existing skills matching '{skill_name}'"
     - "@context performs memory-first retrieval, then codebase search"
@@ -246,12 +246,12 @@ workflow:
     - IF spec_choice == A or C (Use existing):
       - Use selected spec_path
     - "Dispatch @speckit for spec.md and plan.md creation (AGENTS.md Rule 5)"
-    agent_routing:
-      agent: "@speckit"
+    agent_availability:
       agent_file: ".opencode/agent/speckit.md"
-      rule_reference: "AGENTS.md Rule 5 — ALL spec folder docs MUST go through @speckit"
-      dispatch: "Task tool → @speckit create spec.md + plan.md with skill creation context"
+      rule_reference: "AGENTS.md Rule 5 — spec folder docs"
+      condition: "ONLY when this step is actively executing"
       fallback: "general (with warning: bypasses template enforcement)"
+      not_for: "reviewing this workflow prompt or any pre-step activity"
     templates:
     # Use Level 2 templates as default for skill creation
     - .opencode/skill/system-spec-kit/templates/level_2/spec.md
@@ -544,12 +544,12 @@ workflow:
 
   step_8b_quality_review:
     purpose: Quality-score the created skill artifact
-    agent_routing:
-      agent: "@review"
+    agent_availability:
       agent_file: ".opencode/agent/review.md"
-      rule_reference: "AGENTS.md §3 — @review for code review / quality scoring"
-      dispatch: "Task tool → @review focused review of created skill"
+      rule_reference: "AGENTS.md §3 — quality scoring"
+      condition: "ONLY when this step is actively executing"
       blocking: false
+      not_for: "reviewing this workflow prompt or any pre-step activity"
     activities:
     - "Dispatch @review to quality-score the created SKILL.md and associated files"
     - "Review checks: template adherence, completeness, pattern consistency"

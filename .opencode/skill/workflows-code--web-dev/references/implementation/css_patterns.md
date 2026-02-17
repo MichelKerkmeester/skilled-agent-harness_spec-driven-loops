@@ -9,6 +9,7 @@ Comprehensive CSS patterns for Webflow development including state machines, val
 
 ---
 
+<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 ### Purpose
@@ -45,6 +46,8 @@ Follow code quality standards for all CSS implementations:
 
 ---
 
+<!-- /ANCHOR:overview -->
+<!-- ANCHOR:webflow-css-token-system -->
 ## 2. WEBFLOW CSS TOKEN SYSTEM
 
 ### Important Disclaimer
@@ -180,6 +183,8 @@ For component-specific customization, define local CSS variables that reference 
 
 ---
 
+<!-- /ANCHOR:webflow-css-token-system -->
+<!-- ANCHOR:css-state-machine-pattern -->
 ## 3. CSS STATE MACHINE PATTERN
 
 ### Core Concept
@@ -288,6 +293,8 @@ For color transitions, use `color-mix()` with state percentage:
 
 ---
 
+<!-- /ANCHOR:css-state-machine-pattern -->
+<!-- ANCHOR:state-triggers -->
 ## 4. STATE TRIGGERS
 
 ### Hover Trigger
@@ -440,6 +447,8 @@ For color transitions, use `color-mix()` with state percentage:
 
 ---
 
+<!-- /ANCHOR:state-triggers -->
+<!-- ANCHOR:data-attribute-selector-patterns -->
 ## 5. DATA ATTRIBUTE SELECTOR PATTERNS
 
 ### Attribute Presence Selector
@@ -540,6 +549,8 @@ For color transitions, use `color-mix()` with state percentage:
 
 ---
 
+<!-- /ANCHOR:data-attribute-selector-patterns -->
+<!-- ANCHOR:form-validation-state-architecture -->
 ## 6. FORM VALIDATION STATE ARCHITECTURE
 
 ### Validation Class Pattern
@@ -690,6 +701,8 @@ Browser autofill adds its own styling that must be overridden to show validation
 
 ---
 
+<!-- /ANCHOR:form-validation-state-architecture -->
+<!-- ANCHOR:keyboard-vs-mouse-focus-detection -->
 ## 7. KEYBOARD VS MOUSE FOCUS DETECTION
 
 ### The Problem
@@ -780,6 +793,8 @@ body.using-keyboard [data-select="input"]:focus {
 
 ---
 
+<!-- /ANCHOR:keyboard-vs-mouse-focus-detection -->
+<!-- ANCHOR:accessibility-patterns -->
 ## 8. ACCESSIBILITY PATTERNS
 
 ### Reduced Motion Support
@@ -862,6 +877,8 @@ Validation states use semantic color tokens with sufficient contrast:
 
 ---
 
+<!-- /ANCHOR:accessibility-patterns -->
+<!-- ANCHOR:mobile-and-browser-specific-patterns -->
 ## 9. MOBILE AND BROWSER-SPECIFIC PATTERNS
 
 ### Hover Media Query
@@ -955,6 +972,8 @@ input:autofill {
 
 ---
 
+<!-- /ANCHOR:mobile-and-browser-specific-patterns -->
+<!-- ANCHOR:webflow-designer-mode-support -->
 ## 10. WEBFLOW DESIGNER MODE SUPPORT
 
 ### Designer Mode Detection
@@ -1015,6 +1034,8 @@ Webflow generates `.w-condition-invisible` for conditional visibility:
 
 ---
 
+<!-- /ANCHOR:webflow-designer-mode-support -->
+<!-- ANCHOR:component-state-patterns -->
 ## 11. COMPONENT STATE PATTERNS
 
 ### Open/Closed State (Dropdown)
@@ -1100,6 +1121,8 @@ Webflow generates `.w-condition-invisible` for conditional visibility:
 
 ---
 
+<!-- /ANCHOR:component-state-patterns -->
+<!-- ANCHOR:performance-patterns -->
 ## 12. PERFORMANCE PATTERNS
 
 ### Content Visibility
@@ -1171,6 +1194,8 @@ Webflow generates `.w-condition-invisible` for conditional visibility:
 
 ---
 
+<!-- /ANCHOR:performance-patterns -->
+<!-- ANCHOR:quick-reference -->
 ## 13. QUICK REFERENCE
 
 ### State Machine Setup
@@ -1243,6 +1268,8 @@ body.using-keyboard .element:focus { outline: 4px solid var(--state--focused); }
 
 ---
 
+<!-- /ANCHOR:quick-reference -->
+<!-- ANCHOR:related-resources -->
 ## 14. RELATED RESOURCES
 
 ### Reference Files
@@ -1261,3 +1288,4 @@ body.using-keyboard .element:focus { outline: 4px solid var(--state--focused); }
 - `/src/1_css/form/input_select.css` - Custom select component
 - `/src/1_css/form/input_global.css` - Mobile/browser fixes
 - `/src/1_css/global/performance.css` - Performance optimizations
+<!-- /ANCHOR:related-resources -->

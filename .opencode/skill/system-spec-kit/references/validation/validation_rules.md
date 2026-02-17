@@ -9,6 +9,7 @@ Complete reference for all validation rules used by the SpecKit validation syste
 
 ---
 
+<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 ### What Is This Reference?
@@ -34,6 +35,8 @@ This document provides comprehensive documentation for every validation rule enf
 
 ---
 
+<!-- /ANCHOR:overview -->
+<!-- ANCHOR:rule-summary -->
 ## 2. RULE SUMMARY
 
 | Rule ID              | Severity | Applies To    | Description                                    |
@@ -54,6 +57,8 @@ This document provides comprehensive documentation for every validation rule enf
 
 ---
 
+<!-- /ANCHOR:rule-summary -->
+<!-- ANCHOR:file-exists -->
 ## 3. FILE_EXISTS
 
 **Severity:** ERROR  
@@ -135,6 +140,8 @@ cp .opencode/skill/system-spec-kit/templates/implementation-summary.md specs/007
 
 ---
 
+<!-- /ANCHOR:file-exists -->
+<!-- ANCHOR:placeholder-filled -->
 ## 4. PLACEHOLDER_FILLED
 
 **Severity:** ERROR  
@@ -166,6 +173,8 @@ cp .opencode/skill/system-spec-kit/templates/implementation-summary.md specs/007
 
 ❌ **Fail:**
 ```markdown
+<!-- /ANCHOR:placeholder-filled -->
+<!-- ANCHOR:metadata -->
 ## Metadata
 
 | Field | Value |
@@ -175,6 +184,8 @@ cp .opencode/skill/system-spec-kit/templates/implementation-summary.md specs/007
 
 ✅ **Pass:**
 ```markdown
+<!-- /ANCHOR:metadata -->
+<!-- ANCHOR:metadata-2 -->
 ## Metadata
 
 | Field | Value |
@@ -192,6 +203,8 @@ Replace placeholder text with actual content:
 
 ---
 
+<!-- /ANCHOR:metadata-2 -->
+<!-- ANCHOR:sections-present -->
 ## 5. SECTIONS_PRESENT
 
 **Severity:** WARNING  
@@ -218,8 +231,14 @@ Replace placeholder text with actual content:
 ```markdown
 # My Spec
 
+<!-- /ANCHOR:sections-present -->
+<!-- ANCHOR:overview-does-not-match-problem-statement -->
 ## Overview           ← Does not match "Problem Statement"
+<!-- /ANCHOR:overview-does-not-match-problem-statement -->
+<!-- ANCHOR:what-we-need-does-not-match-requirements -->
 ## What We Need       ← Does not match "Requirements"
+<!-- /ANCHOR:what-we-need-does-not-match-requirements -->
+<!-- ANCHOR:scope-match -->
 ## Scope Match
 ```
 
@@ -227,8 +246,14 @@ Replace placeholder text with actual content:
 ```markdown
 # My Spec
 
+<!-- /ANCHOR:scope-match -->
+<!-- ANCHOR:problem-statement -->
 ## 1. Problem Statement 
+<!-- /ANCHOR:problem-statement -->
+<!-- ANCHOR:requirements -->
 ## 2. Requirements 
+<!-- /ANCHOR:requirements -->
+<!-- ANCHOR:scope -->
 ## 3. Scope 
 ```
 
@@ -237,10 +262,14 @@ Replace placeholder text with actual content:
 Add the missing section headers. You can use numbered prefixes:
 
 ```markdown
+<!-- /ANCHOR:scope -->
+<!-- ANCHOR:problem-statement-2 -->
 ## 1. Problem Statement
 
 [Content here]
 
+<!-- /ANCHOR:problem-statement-2 -->
+<!-- ANCHOR:requirements-2 -->
 ## 2. Requirements
 
 [Content here]
@@ -248,6 +277,8 @@ Add the missing section headers. You can use numbered prefixes:
 
 ---
 
+<!-- /ANCHOR:requirements-2 -->
+<!-- ANCHOR:level-declared -->
 ## 6. LEVEL_DECLARED
 
 **Severity:** INFO  
@@ -265,6 +296,8 @@ Add the missing section headers. You can use numbered prefixes:
 
 ✅ **Explicit (no INFO):**
 ```markdown
+<!-- /ANCHOR:level-declared -->
+<!-- ANCHOR:metadata-3 -->
 ## Metadata
 
 | Field | Value |
@@ -274,6 +307,8 @@ Add the missing section headers. You can use numbered prefixes:
 
 ⚠️ **Inferred (INFO logged):**
 ```markdown
+<!-- /ANCHOR:metadata-3 -->
+<!-- ANCHOR:metadata-4 -->
 ## Metadata
 
 | Field | Value |
@@ -292,6 +327,8 @@ Add the Level field to your spec.md metadata table:
 
 ---
 
+<!-- /ANCHOR:metadata-4 -->
+<!-- ANCHOR:priority-tags -->
 ## 7. PRIORITY_TAGS
 
 **Severity:** WARNING  
@@ -309,11 +346,15 @@ Add the Level field to your spec.md metadata table:
 
 **Section Headers (preferred):**
 ```markdown
+<!-- /ANCHOR:priority-tags -->
+<!-- ANCHOR:p0-critical-items -->
 ## P0 - Critical Items
 
 - [ ] Item one
 - [ ] Item two
 
+<!-- /ANCHOR:p0-critical-items -->
+<!-- ANCHOR:p1-required-items -->
 ## P1 - Required Items
 
 - [ ] Item three
@@ -331,11 +372,15 @@ Add the Level field to your spec.md metadata table:
 Priority tags apply to items **until the next priority header or end of file**:
 
 ```markdown
+<!-- /ANCHOR:p1-required-items -->
+<!-- ANCHOR:p0-critical -->
 ## P0 - Critical
 
 - [ ] Item A          ← P0 (from header)
 - [ ] Item B          ← P0 (from header)
 
+<!-- /ANCHOR:p0-critical -->
+<!-- ANCHOR:p1-required -->
 ## P1 - Required
 
 - [ ] Item C          ← P1 (context reset)
@@ -347,11 +392,15 @@ Priority tags apply to items **until the next priority header or end of file**:
 
 ✅ **Pass:**
 ```markdown
+<!-- /ANCHOR:p1-required -->
+<!-- ANCHOR:p0-blockers -->
 ## P0 - Blockers
 
 - [x] Database migration complete
 - [ ] API endpoints deployed
 
+<!-- /ANCHOR:p0-blockers -->
+<!-- ANCHOR:p1-required-2 -->
 ## P1 - Required
 
 - [ ] Documentation updated
@@ -359,6 +408,8 @@ Priority tags apply to items **until the next priority header or end of file**:
 
 ⚠️ **Warning (no priority context):**
 ```markdown
+<!-- /ANCHOR:p1-required-2 -->
+<!-- ANCHOR:tasks -->
 ## Tasks
 
 - [ ] Do something      ← No priority assigned
@@ -374,6 +425,8 @@ Add priority headers or inline tags to all checklist items:
 
 ---
 
+<!-- /ANCHOR:tasks -->
+<!-- ANCHOR:evidence-cited -->
 ## 8. EVIDENCE_CITED
 
 **Severity:** WARNING  
@@ -409,15 +462,21 @@ Evidence citations:
 
 ✅ **Pass:**
 ```markdown
+<!-- /ANCHOR:evidence-cited -->
+<!-- ANCHOR:p0-critical-2 -->
 ## P0 - Critical
 
 - [x] Auth flow working [Test: npm run test:auth - all 12 passing]
 - [x] Database migrated [Commit: abc1234]
 
+<!-- /ANCHOR:p0-critical-2 -->
+<!-- ANCHOR:p1-required-3 -->
 ## P1 - Required
 
 - [x] Docs updated [File: docs/api.md]
 
+<!-- /ANCHOR:p1-required-3 -->
+<!-- ANCHOR:p2-optional -->
 ## P2 - Optional
 
 - [ ] Refactor utils      ← No evidence needed (P2 exempt)
@@ -425,6 +484,8 @@ Evidence citations:
 
 ⚠️ **Warning:**
 ```markdown
+<!-- /ANCHOR:p2-optional -->
+<!-- ANCHOR:p0-critical-3 -->
 ## P0 - Critical
 
 - [x] Auth flow working   ← WARNING: No evidence cited
@@ -442,15 +503,21 @@ Evidence patterns are **case-insensitive**:
 Add evidence to non-P2 items:
 
 ```markdown
+<!-- /ANCHOR:p0-critical-3 -->
+<!-- ANCHOR:before -->
 ## Before
 - [x] Feature implemented
 
+<!-- /ANCHOR:before -->
+<!-- ANCHOR:after -->
 ## After
 - [x] Feature implemented [Test: npm test - 15/15 passing]
 ```
 
 ---
 
+<!-- /ANCHOR:after -->
+<!-- ANCHOR:anchors-valid -->
 ## 9. ANCHORS_VALID
 
 **Severity:** ERROR  
@@ -483,12 +550,16 @@ Content goes here...
 ✅ **Pass:**
 ```markdown
 <!-- ANCHOR:context -->
+<!-- /ANCHOR:anchors-valid -->
+<!-- ANCHOR:project-context -->
 ## Project Context
 
 This feature adds authentication...
 <!-- /ANCHOR:context -->
 
 <!-- ANCHOR:decisions -->
+<!-- /ANCHOR:project-context -->
+<!-- ANCHOR:key-decisions -->
 ## Key Decisions
 
 We chose JWT because...
@@ -498,11 +569,15 @@ We chose JWT because...
 ❌ **Error (unclosed anchor):**
 ```markdown
 <!-- ANCHOR:context -->
+<!-- /ANCHOR:key-decisions -->
+<!-- ANCHOR:project-context-2 -->
 ## Project Context
 
 This feature adds authentication...
 
 <!-- ANCHOR:decisions -->        ← ERROR: 'context' never closed
+<!-- /ANCHOR:project-context-2 -->
+<!-- ANCHOR:key-decisions-2 -->
 ## Key Decisions
 <!-- /ANCHOR:decisions -->
 ```
@@ -510,6 +585,8 @@ This feature adds authentication...
 ❌ **Error (mismatched names):**
 ```markdown
 <!-- ANCHOR:context -->
+<!-- /ANCHOR:key-decisions-2 -->
+<!-- ANCHOR:content -->
 ## Content
 <!-- /ANCHOR:Context -->         ← ERROR: 'context' ≠ 'Context'
 ```
@@ -533,11 +610,15 @@ Close "decisions"  → Stack: [] ✓
 3. Ensure name casing matches exactly
 
 ```markdown
+<!-- /ANCHOR:content -->
+<!-- ANCHOR:before-broken -->
 ## Before (broken)
 <!-- ANCHOR:context -->
 Content here...
 (missing close tag)
 
+<!-- /ANCHOR:before-broken -->
+<!-- ANCHOR:after-fixed -->
 ## After (fixed)
 <!-- ANCHOR:context -->
 Content here...
@@ -546,6 +627,8 @@ Content here...
 
 ---
 
+<!-- /ANCHOR:after-fixed -->
+<!-- ANCHOR:folder-naming -->
 ## 10. FOLDER_NAMING
 
 **Severity:** ERROR
@@ -590,6 +673,8 @@ mv specs/Feature specs/001-feature
 
 ---
 
+<!-- /ANCHOR:folder-naming -->
+<!-- ANCHOR:frontmatter-valid -->
 ## 11. FRONTMATTER_VALID
 
 **Severity:** WARNING
@@ -643,6 +728,8 @@ cp .opencode/skill/system-spec-kit/templates/level_1/spec.md specs/007-feature/
 
 ---
 
+<!-- /ANCHOR:frontmatter-valid -->
+<!-- ANCHOR:complexity-match -->
 ## 12. COMPLEXITY_MATCH
 
 **Severity:** WARNING
@@ -690,6 +777,8 @@ Either adjust the declared level or modify content to match:
 
 ---
 
+<!-- /ANCHOR:complexity-match -->
+<!-- ANCHOR:ai-protocol -->
 ## 13. AI_PROTOCOL
 
 **Severity:** WARNING
@@ -713,6 +802,8 @@ Either adjust the declared level or modify content to match:
 ### Detection Patterns
 
 ```markdown
+<!-- /ANCHOR:ai-protocol -->
+<!-- ANCHOR:ai-execution-protocol-main-section -->
 ## AI EXECUTION PROTOCOL         ← Main section
 ### Pre-Task Checklist           ← Component 1
 ### Execution Rules              ← Component 2
@@ -724,6 +815,8 @@ Either adjust the declared level or modify content to match:
 
 **Pass (Level 3+):**
 ```markdown
+<!-- /ANCHOR:ai-execution-protocol-main-section -->
+<!-- ANCHOR:ai-execution-protocol -->
 ## AI EXECUTION PROTOCOL
 
 ### Pre-Task Checklist
@@ -754,6 +847,8 @@ cat .opencode/skill/system-spec-kit/templates/level_3/plan.md
 
 ---
 
+<!-- /ANCHOR:ai-execution-protocol -->
+<!-- ANCHOR:level-match -->
 ## 14. LEVEL_MATCH
 
 **Severity:** ERROR
@@ -808,6 +903,8 @@ cp .opencode/skill/system-spec-kit/templates/level_2/checklist.md specs/007-feat
 
 ---
 
+<!-- /ANCHOR:level-match -->
+<!-- ANCHOR:section-counts -->
 ## 15. SECTION_COUNTS
 
 **Severity:** WARNING
@@ -851,6 +948,8 @@ Either expand content or reduce declared level:
 
 ---
 
+<!-- /ANCHOR:section-counts -->
+<!-- ANCHOR:configuration -->
 ## 16. CONFIGURATION
 
 ### Environment Variables
@@ -881,6 +980,8 @@ SPECKIT_JSON=true ./scripts/spec/validate.sh specs/007-feature/
 
 ---
 
+<!-- /ANCHOR:configuration -->
+<!-- ANCHOR:related-resources -->
 ## 17. RELATED RESOURCES
 
 ### Reference Files
@@ -893,3 +994,4 @@ SPECKIT_JSON=true ./scripts/spec/validate.sh specs/007-feature/
 
 - `../../scripts/spec/validate.sh` - Main validation script
 - `../../scripts/rules/` - Individual rule implementations
+<!-- /ANCHOR:related-resources -->

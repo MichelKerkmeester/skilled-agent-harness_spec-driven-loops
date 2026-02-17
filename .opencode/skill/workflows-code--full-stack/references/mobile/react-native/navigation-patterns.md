@@ -9,6 +9,7 @@ A practical guide to navigation in a React Native/Expo app, explaining HOW to ad
 
 ---
 
+<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 ### Purpose
@@ -28,6 +29,8 @@ Auth-based routing + typed navigation + proper cleanup = reliable app navigation
 
 ---
 
+<!-- /ANCHOR:overview -->
+<!-- ANCHOR:quick-start-understanding-our-navigation -->
 ## 2. QUICK START: UNDERSTANDING OUR NAVIGATION
 
 Before diving in, understand the **big picture**:
@@ -51,6 +54,8 @@ Are they logged in? (Redux auth state)
 
 ---
 
+<!-- /ANCHOR:quick-start-understanding-our-navigation -->
+<!-- ANCHOR:how-to-add-a-new-screen-step-by-step -->
 ## 3. HOW TO ADD A NEW SCREEN (STEP-BY-STEP)
 
 ### Step 1: Create the Screen Files
@@ -162,6 +167,8 @@ navigation.navigate('my_new_screen', { userId: '123' });
 
 ---
 
+<!-- /ANCHOR:how-to-add-a-new-screen-step-by-step -->
+<!-- ANCHOR:understanding-the-stack-structure -->
 ## 4. UNDERSTANDING THE STACK STRUCTURE
 
 ### Why Multiple Stacks?
@@ -206,6 +213,8 @@ AppStack
 
 ---
 
+<!-- /ANCHOR:understanding-the-stack-structure -->
+<!-- ANCHOR:common-navigation-patterns -->
 ## 5. COMMON NAVIGATION PATTERNS
 
 ### Pattern 1: Simple Navigation
@@ -359,6 +368,8 @@ notificationManager.setPendingNavigation({
 
 ---
 
+<!-- /ANCHOR:common-navigation-patterns -->
+<!-- ANCHOR:typescript-typing-deep-dive -->
 ## 6. TYPESCRIPT TYPING DEEP DIVE
 
 ### Why Types Matter
@@ -416,6 +427,8 @@ export type TabHomeScreenProps = CompositeScreenProps<
 
 ---
 
+<!-- /ANCHOR:typescript-typing-deep-dive -->
+<!-- ANCHOR:common-mistakes-and-how-to-avoid-them -->
 ## 7. COMMON MISTAKES AND HOW TO AVOID THEM
 
 ### Mistake 1: Navigating Before Ready
@@ -489,6 +502,8 @@ export type MyParamList = {
 
 ---
 
+<!-- /ANCHOR:common-mistakes-and-how-to-avoid-them -->
+<!-- ANCHOR:deep-linking -->
 ## 8. DEEP LINKING
 
 ### How Deep Links Work
@@ -535,6 +550,8 @@ adb shell am start -a android.intent.action.VIEW -d "myapp://order/123"
 
 ---
 
+<!-- /ANCHOR:deep-linking -->
+<!-- ANCHOR:debugging-navigation-issues -->
 ## 9. DEBUGGING NAVIGATION ISSUES
 
 ### "Navigation hasn't been initialized"
@@ -577,6 +594,8 @@ const { id } = route.params ?? {};
 
 ---
 
+<!-- /ANCHOR:debugging-navigation-issues -->
+<!-- ANCHOR:architecture-decision-why-not-just-expo-router -->
 ## 10. ARCHITECTURE DECISION: WHY NOT JUST EXPO-ROUTER?
 
 We use **both** expo-router (for entry) and React Navigation (for the main app):
@@ -593,6 +612,8 @@ We use **both** expo-router (for entry) and React Navigation (for the main app):
 
 ---
 
+<!-- /ANCHOR:architecture-decision-why-not-just-expo-router -->
+<!-- ANCHOR:glossary-navigation-terminology -->
 ## 11. GLOSSARY: NAVIGATION TERMINOLOGY
 
 | Term | What It Means | When You'll See It |
@@ -628,6 +649,8 @@ We use **both** expo-router (for entry) and React Navigation (for the main app):
 
 ---
 
+<!-- /ANCHOR:glossary-navigation-terminology -->
+<!-- ANCHOR:quick-reference-common-tasks -->
 ## 12. QUICK REFERENCE: COMMON TASKS
 
 | Task | How To |
@@ -643,6 +666,8 @@ We use **both** expo-router (for entry) and React Navigation (for the main app):
 
 ---
 
+<!-- /ANCHOR:quick-reference-common-tasks -->
+<!-- ANCHOR:key-files-reference -->
 ## 13. KEY FILES REFERENCE
 
 | Purpose | Path |
@@ -660,6 +685,8 @@ We use **both** expo-router (for entry) and React Navigation (for the main app):
 
 ---
 
+<!-- /ANCHOR:key-files-reference -->
+<!-- ANCHOR:related-resources -->
 ## 14. RELATED RESOURCES
 
 ### Related References
@@ -667,3 +694,4 @@ We use **both** expo-router (for entry) and React Navigation (for the main app):
 - [Expo Patterns](./expo-patterns.md) - Expo-specific patterns and configuration
 - [React Hooks Patterns](./react-hooks-patterns.md) - Custom hooks and state management
 - [Performance Optimization](./performance-optimization.md) - Performance best practices
+<!-- /ANCHOR:related-resources -->

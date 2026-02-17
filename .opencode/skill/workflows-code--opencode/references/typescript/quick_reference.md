@@ -9,6 +9,7 @@ Copy-paste templates, naming cheat sheet, and common patterns for TypeScript dev
 
 ---
 
+<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 ### Purpose
@@ -19,6 +20,8 @@ Quick-access reference card for TypeScript patterns. For detailed explanations, 
 
 ---
 
+<!-- /ANCHOR:overview -->
+<!-- ANCHOR:complete-file-template -->
 ## 2. COMPLETE FILE TEMPLATE
 
 ```typescript
@@ -118,6 +121,8 @@ export type { ModuleConfig, OperationOutcome };
 
 ---
 
+<!-- /ANCHOR:complete-file-template -->
+<!-- ANCHOR:naming-cheat-sheet -->
 ## 3. NAMING CHEAT SHEET
 
 | Element           | Convention         | Example                   |
@@ -141,6 +146,8 @@ export type { ModuleConfig, OperationOutcome };
 
 ---
 
+<!-- /ANCHOR:naming-cheat-sheet -->
+<!-- ANCHOR:section-ordering -->
 ## 4. SECTION ORDERING
 
 ```
@@ -154,6 +161,8 @@ export type { ModuleConfig, OperationOutcome };
 
 ---
 
+<!-- /ANCHOR:section-ordering -->
+<!-- ANCHOR:type-annotation-patterns -->
 ## 5. TYPE ANNOTATION PATTERNS
 
 ### Basic Annotations
@@ -223,6 +232,8 @@ const pair: [string, number] = ['score', 0.95];
 
 ---
 
+<!-- /ANCHOR:type-annotation-patterns -->
+<!-- ANCHOR:common-utility-type-patterns -->
 ## 6. COMMON UTILITY TYPE PATTERNS
 
 ```typescript
@@ -257,6 +268,8 @@ type SearchReturn = ReturnType<typeof searchMemories>;
 
 ---
 
+<!-- /ANCHOR:common-utility-type-patterns -->
+<!-- ANCHOR:import-export-templates -->
 ## 7. IMPORT / EXPORT TEMPLATES
 
 ### Import Ordering
@@ -305,6 +318,8 @@ export type * from './types';
 
 ---
 
+<!-- /ANCHOR:import-export-templates -->
+<!-- ANCHOR:error-handling-patterns -->
 ## 8. ERROR HANDLING PATTERNS
 
 ### Typed catch
@@ -404,6 +419,8 @@ async function safeFetch(id: string): Promise<Result<MemoryRecord>> {
 
 ---
 
+<!-- /ANCHOR:error-handling-patterns -->
+<!-- ANCHOR:tsdoc-template -->
 ## 9. TSDOC TEMPLATE
 
 ```typescript
@@ -424,6 +441,8 @@ async function safeFetch(id: string): Promise<Result<MemoryRecord>> {
 
 ---
 
+<!-- /ANCHOR:tsdoc-template -->
+<!-- ANCHOR:tsconfig-quick-reference -->
 ## 10. TSCONFIG QUICK REFERENCE
 
 ### Minimum Settings for OpenCode
@@ -475,6 +494,8 @@ npm run test:cli
 
 ---
 
+<!-- /ANCHOR:tsconfig-quick-reference -->
+<!-- ANCHOR:common-one-liners -->
 ## 11. COMMON ONE-LINERS
 
 ```typescript
@@ -509,7 +530,10 @@ const element = map.get(key)!;
 
 ---
 
+<!-- /ANCHOR:common-one-liners -->
+<!-- ANCHOR:related-resources -->
 ## 12. RELATED RESOURCES
 
 - [style_guide.md](./style_guide.md) - Detailed formatting rules
 - [quality_standards.md](./quality_standards.md) - Type system, TSDoc, error patterns
+<!-- /ANCHOR:related-resources -->

@@ -9,6 +9,7 @@ Testing strategy and patterns for React Native/Expo projects. Currently a bluepr
 
 ---
 
+<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 ### Purpose
@@ -24,12 +25,16 @@ Provides testing guidelines, Jest/React Native Testing Library setup, and patter
 
 ---
 
+<!-- /ANCHOR:overview -->
+<!-- ANCHOR:current-status -->
 ## 2. Current Status
 
 Most React Native projects do not currently have testing infrastructure. This document serves as a blueprint for when testing is added.
 
 ---
 
+<!-- /ANCHOR:current-status -->
+<!-- ANCHOR:quick-start-adding-testing-infrastructure -->
 ## 3. Quick Start: Adding Testing Infrastructure
 
 ### Step 1: Install Packages
@@ -116,6 +121,8 @@ Add to `package.json`:
 
 ---
 
+<!-- /ANCHOR:quick-start-adding-testing-infrastructure -->
+<!-- ANCHOR:where-to-put-tests -->
 ## 4. Where to Put Tests
 
 ### Option A: Co-located Tests (Recommended)
@@ -160,6 +167,8 @@ tests/
 
 ---
 
+<!-- /ANCHOR:where-to-put-tests -->
+<!-- ANCHOR:what-to-test-first -->
 ## 5. What to Test First
 
 ### Priority Order
@@ -183,6 +192,8 @@ tests/
 
 ---
 
+<!-- /ANCHOR:what-to-test-first -->
+<!-- ANCHOR:testing-patterns -->
 ## 6. Testing Patterns
 
 ### Testing a Utility Function
@@ -294,6 +305,8 @@ describe('useIsLoggedIn', () => {
 
 ---
 
+<!-- /ANCHOR:testing-patterns -->
+<!-- ANCHOR:common-mocks-you-ll-need -->
 ## 7. Common Mocks You'll Need
 
 ### Navigation Mock
@@ -358,6 +371,8 @@ export const getCurrentPositionAsync = jest.fn(() =>
 
 ---
 
+<!-- /ANCHOR:common-mocks-you-ll-need -->
+<!-- ANCHOR:tips-for-good-tests -->
 ## 8. Tips for Good Tests
 
 ### Use testID for Reliable Selection
@@ -408,6 +423,8 @@ it('calls onPress when clicked', () => {
 
 ---
 
+<!-- /ANCHOR:tips-for-good-tests -->
+<!-- ANCHOR:coverage-guidelines -->
 ## 9. Coverage Guidelines
 
 When testing is implemented, aim for:
@@ -423,6 +440,8 @@ When testing is implemented, aim for:
 
 ---
 
+<!-- /ANCHOR:coverage-guidelines -->
+<!-- ANCHOR:next-steps -->
 ## 10. Next Steps
 
 When you're ready to add testing:
@@ -434,6 +453,8 @@ When you're ready to add testing:
 
 ---
 
+<!-- /ANCHOR:next-steps -->
+<!-- ANCHOR:resources -->
 ## 11. Resources
 
 - [React Native Testing Library](https://callstack.github.io/react-native-testing-library/)
@@ -442,9 +463,12 @@ When you're ready to add testing:
 
 ---
 
+<!-- /ANCHOR:resources -->
+<!-- ANCHOR:related-resources -->
 ## 12. RELATED RESOURCES
 
 - [react-native-standards.md](./react-native-standards.md) - Core coding conventions
 - [react-hooks-patterns.md](./react-hooks-patterns.md) - Hook testing patterns
 - [navigation-patterns.md](./navigation-patterns.md) - Navigation testing
 - [performance-optimization.md](./performance-optimization.md) - Performance testing
+<!-- /ANCHOR:related-resources -->

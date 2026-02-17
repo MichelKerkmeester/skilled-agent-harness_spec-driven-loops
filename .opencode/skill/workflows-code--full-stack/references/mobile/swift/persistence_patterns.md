@@ -9,6 +9,7 @@ A comprehensive guide to data persistence in iOS including SwiftData for iOS 17+
 
 ---
 
+<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 ### Purpose
@@ -39,6 +40,8 @@ Choose the right storage for the data type + handle errors gracefully + maintain
 
 ---
 
+<!-- /ANCHOR:overview -->
+<!-- ANCHOR:swiftdata-ios-17 -->
 ## 2. SWIFTDATA (iOS 17+)
 
 ### Basic Model Definition
@@ -359,6 +362,8 @@ struct ContentView: View {
 
 ---
 
+<!-- /ANCHOR:swiftdata-ios-17 -->
+<!-- ANCHOR:core-data-legacy -->
 ## 3. CORE DATA (Legacy)
 
 ### Model Setup
@@ -553,6 +558,8 @@ extension UserListViewModel: NSFetchedResultsControllerDelegate {
 
 ---
 
+<!-- /ANCHOR:core-data-legacy -->
+<!-- ANCHOR:userdefaults -->
 ## 4. USERDEFAULTS
 
 ### Basic Usage
@@ -688,6 +695,8 @@ struct SettingsView: View {
 
 ---
 
+<!-- /ANCHOR:userdefaults -->
+<!-- ANCHOR:keychain -->
 ## 5. KEYCHAIN
 
 ### Keychain Wrapper
@@ -835,6 +844,8 @@ class AuthTokenManager {
 
 ---
 
+<!-- /ANCHOR:keychain -->
+<!-- ANCHOR:file-system -->
 ## 6. FILE SYSTEM
 
 ### File Manager Operations
@@ -992,6 +1003,8 @@ actor ImageCache {
 
 ---
 
+<!-- /ANCHOR:file-system -->
+<!-- ANCHOR:cloudkit-basics -->
 ## 7. CLOUDKIT BASICS
 
 ### CloudKit Setup
@@ -1123,6 +1136,8 @@ struct UserItem: Identifiable {
 
 ---
 
+<!-- /ANCHOR:cloudkit-basics -->
+<!-- ANCHOR:rules -->
 ## 8. RULES
 
 ### ALWAYS
@@ -1160,6 +1175,8 @@ struct UserItem: Identifiable {
 
 ---
 
+<!-- /ANCHOR:rules -->
+<!-- ANCHOR:related-resources -->
 ## 9. RELATED RESOURCES
 
 | File | Purpose |
@@ -1169,3 +1186,4 @@ struct UserItem: Identifiable {
 | [mvvm_architecture.md](./mvvm_architecture.md) | MVVM architecture patterns with SwiftUI |
 | [async_patterns.md](./async_patterns.md) | Swift concurrency and async/await patterns |
 | [testing_strategy.md](./testing_strategy.md) | XCTest and testing best practices |
+<!-- /ANCHOR:related-resources -->

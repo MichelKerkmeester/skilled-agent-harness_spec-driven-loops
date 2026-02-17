@@ -9,6 +9,7 @@ React Testing Library patterns, Jest configuration, Playwright E2E tests, MSW fo
 
 ---
 
+<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 ### Purpose
@@ -31,6 +32,8 @@ Provides comprehensive guidance on testing React and Next.js applications, cover
 
 ---
 
+<!-- /ANCHOR:overview -->
+<!-- ANCHOR:testing-pyramid -->
 ## 2. TESTING PYRAMID
 
 ### Test Distribution
@@ -70,6 +73,8 @@ Provides comprehensive guidance on testing React and Next.js applications, cover
 
 ---
 
+<!-- /ANCHOR:testing-pyramid -->
+<!-- ANCHOR:jest-configuration -->
 ## 3. JEST CONFIGURATION
 
 ### Next.js Jest Setup
@@ -169,6 +174,8 @@ afterAll(() => {
 
 ---
 
+<!-- /ANCHOR:jest-configuration -->
+<!-- ANCHOR:react-testing-library -->
 ## 4. REACT TESTING LIBRARY
 
 ### Basic Component Test
@@ -501,6 +508,8 @@ describe('useAuth', () => {
 
 ---
 
+<!-- /ANCHOR:react-testing-library -->
+<!-- ANCHOR:msw-mock-service-worker -->
 ## 5. MSW (MOCK SERVICE WORKER)
 
 ### MSW Setup
@@ -662,6 +671,8 @@ describe('Form submission', () => {
 
 ---
 
+<!-- /ANCHOR:msw-mock-service-worker -->
+<!-- ANCHOR:integration-tests -->
 ## 6. INTEGRATION TESTS
 
 ### Testing Page Components
@@ -808,6 +819,8 @@ describe('ContactPage', () => {
 
 ---
 
+<!-- /ANCHOR:integration-tests -->
+<!-- ANCHOR:playwright-e2e-tests -->
 ## 7. PLAYWRIGHT E2E TESTS
 
 ### Playwright Configuration
@@ -1086,6 +1099,8 @@ test.describe('Visual Regression', () => {
 
 ---
 
+<!-- /ANCHOR:playwright-e2e-tests -->
+<!-- ANCHOR:test-utilities -->
 ## 8. TEST UTILITIES
 
 ### Custom Render Function
@@ -1223,6 +1238,8 @@ declare global {
 
 ---
 
+<!-- /ANCHOR:test-utilities -->
+<!-- ANCHOR:quick-reference -->
 ## 9. QUICK REFERENCE
 
 ### Testing Cheatsheet
@@ -1276,6 +1293,8 @@ await waitForElementToBeRemoved(element)
 
 ---
 
+<!-- /ANCHOR:quick-reference -->
+<!-- ANCHOR:related-resources -->
 ## 10. RELATED RESOURCES
 
 ### Related References
@@ -1284,3 +1303,4 @@ await waitForElementToBeRemoved(element)
 - [Data Fetching](./data_fetching.md) - Testing async data patterns
 - [Forms & Validation](./forms_validation.md) - Form testing strategies
 - [API Patterns](./api_patterns.md) - API structure for mocking
+<!-- /ANCHOR:related-resources -->

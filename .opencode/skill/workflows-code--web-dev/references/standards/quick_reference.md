@@ -9,6 +9,7 @@ Quick-access cheat sheet with decision trees, code snippets, CSS patterns, and v
 
 ---
 
+<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 ### Purpose
@@ -19,6 +20,8 @@ One-page reference for fast lookups during implementation, debugging, and verifi
 - Determining which workflow to use (Decision Tree)
 - Reviewing verification checklists
 
+<!-- /ANCHOR:overview -->
+<!-- ANCHOR:navigation-decision-tree -->
 ## 2. NAVIGATION DECISION TREE
 
 ```
@@ -56,6 +59,8 @@ One-page reference for fast lookups during implementation, debugging, and verifi
 
 ---
 
+<!-- /ANCHOR:navigation-decision-tree -->
+<!-- ANCHOR:common-commands -->
 ## 3. COMMON COMMANDS
 
 ### Condition-Based Waiting
@@ -248,6 +253,8 @@ npm install -g browser-debugger-cli@alpha
 
 ---
 
+<!-- /ANCHOR:common-commands -->
+<!-- ANCHOR:debugging-checklist -->
 ## 4. DEBUGGING CHECKLIST
 
 ```markdown
@@ -279,6 +286,8 @@ npm install -g browser-debugger-cli@alpha
 
 ---
 
+<!-- /ANCHOR:debugging-checklist -->
+<!-- ANCHOR:verification-checklist -->
 ## 5. VERIFICATION CHECKLIST
 
 ```markdown
@@ -307,6 +316,8 @@ npm install -g browser-debugger-cli@alpha
 
 ---
 
+<!-- /ANCHOR:verification-checklist -->
+<!-- ANCHOR:code-snippets -->
 ## 6. CODE SNIPPETS
 
 ### waitForElement
@@ -355,6 +366,8 @@ const userId = validate(input, 'string', 'anonymous');
 
 ---
 
+<!-- /ANCHOR:code-snippets -->
+<!-- ANCHOR:key-principles -->
 ## 7. KEY PRINCIPLES
 
 **Implementation:**
@@ -374,6 +387,8 @@ const userId = validate(input, 'string', 'anonymous');
 
 ---
 
+<!-- /ANCHOR:key-principles -->
+<!-- ANCHOR:related-resources -->
 ## 8. RELATED RESOURCES
 
 ### Reference Files
@@ -398,6 +413,8 @@ const userId = validate(input, 'string', 'anonymous');
 
 ---
 
+<!-- /ANCHOR:related-resources -->
+<!-- ANCHOR:decision-matrix -->
 ## 9. DECISION MATRIX
 
 | Scenario                | Workflow                | Key Action                        |
@@ -417,6 +434,8 @@ const userId = validate(input, 'string', 'anonymous');
 
 ---
 
+<!-- /ANCHOR:decision-matrix -->
+<!-- ANCHOR:css-patterns -->
 ## 10. CSS PATTERNS
 
 ### Webflow Token Naming (Read-Only Reference)
@@ -552,6 +571,8 @@ document.addEventListener('mousedown', () => {
 
 ---
 
+<!-- /ANCHOR:css-patterns -->
+<!-- ANCHOR:common-one-liners -->
 ## 11. COMMON ONE-LINERS
 
 ### MutationObserver
@@ -697,3 +718,4 @@ element.style.height = `${targetHeight}px`;  // Animate to new height
 ---
 
 **For detailed workflows, see the main SKILL.md orchestrator**
+<!-- /ANCHOR:common-one-liners -->

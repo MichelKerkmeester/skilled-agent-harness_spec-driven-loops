@@ -116,6 +116,29 @@ Templates and guidelines for creating asset files in AI agent skills.
 
 ## 3. DOCUMENT STRUCTURE
 
+### Retrieval Anchor Convention (Required)
+
+Use retrieval anchors for every H2 section so sections can be loaded by anchor ID.
+
+**Format**:
+- Open marker immediately before each H2: `<!-- ANCHOR:section-slug -->`
+- Close marker immediately before the next H2 (or EOF): `<!-- /ANCHOR:section-slug -->`
+- Slug rules: kebab-case from H2 text, strip numbering/emojis/punctuation
+- Duplicate slugs: append `-2`, `-3`, etc.
+
+**Example**:
+
+```markdown
+<!-- ANCHOR:overview -->
+## 1. OVERVIEW
+
+[Section content]
+
+<!-- /ANCHOR:overview -->
+<!-- ANCHOR:asset-file-types -->
+## 2. ASSET FILE TYPES
+```
+
 ### Title and Intro
 
 **CRITICAL: The intro after the H1 title must be 1-2 SHORT sentences only.**
@@ -130,6 +153,7 @@ description: [One-line description - same as intro]
 
 [1-2 SHORT sentences only. Brief hook/summary. NO subsections, NO headers here.]
 
+<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 ### Purpose
@@ -142,15 +166,21 @@ description: [One-line description - same as intro]
 
 ---
 
+<!-- /ANCHOR:overview -->
+<!-- ANCHOR:content-section -->
 ## 2. [Content Section]
 
 [The actual template/checklist/snippet content]
 
 ---
 
+<!-- /ANCHOR:content-section -->
+<!-- ANCHOR:related-resources -->
 ## N. Related Resources (optional, if present must be last)
 
 [Links to related files]
+
+<!-- /ANCHOR:related-resources -->
 ```
 
 > **WARNING: DO NOT duplicate content between intro and OVERVIEW section.**
@@ -218,6 +248,7 @@ Atomic commits with clear intent = maintainable history.
 
 Brief introduction (1-2 sentences) explaining what this asset provides and when to use it.
 
+<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 ### Purpose
@@ -230,6 +261,8 @@ Brief introduction (1-2 sentences) explaining what this asset provides and when 
 
 ---
 
+<!-- /ANCHOR:overview -->
+<!-- ANCHOR:section-name -->
 ## 2. SECTION NAME
 
 **Key Points**:
@@ -258,15 +291,21 @@ Brief introduction (1-2 sentences) explaining what this asset provides and when 
 
 ---
 
+<!-- /ANCHOR:section-name -->
+<!-- ANCHOR:section-name-2 -->
 ## 3. SECTION NAME
 
 [Continue pattern...]
 
 ---
 
+<!-- /ANCHOR:section-name-2 -->
+<!-- ANCHOR:related-resources -->
 ## N. RELATED RESOURCES
 
 [Links to related files - MUST be last section if present]
+
+<!-- /ANCHOR:related-resources -->
 ```
 
 ---
