@@ -1,10 +1,12 @@
 # Spec: Retrieval Anchors for Skill Documentation
 
+<!-- ANCHOR: summary -->
 **Spec Folder**: `specs/002-commands-and-skills/000-skills/001-anchor-implementation`  
 **Level**: 3+ (Governance + Architecture)  
 **Status**: Planning  
 **Created**: 2026-02-17  
 **Owner**: System Architecture Team
+<!-- /ANCHOR: summary -->
 
 ---
 

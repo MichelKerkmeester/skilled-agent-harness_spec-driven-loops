@@ -1,9 +1,11 @@
 # Spec Folder Summary: Anchor Implementation Initiative
 
+<!-- ANCHOR: summary -->
 **Location**: `specs/002-commands-and-skills/000-skills/001-anchor-implementation/`  
 **Level**: 3+ (Governance + Architecture)  
 **Status**: ✅ Complete Documentation (Ready for Review)  
 **Created**: 2026-02-17
+<!-- /ANCHOR: summary -->
 
 ---
 
