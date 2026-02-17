@@ -200,56 +200,9 @@ def route_opencode_resources(task):
     return list(dict.fromkeys(selected))
 ```
 
-### Specific Use Case Router
+### Routing Authority
 
-**JavaScript**
-
-| Use Case                              | Route To                            | Level       |
-| ------------------------------------- | ----------------------------------- | ----------- |
-| File headers, box-drawing format      | `javascript/style_guide.md#2`       | CONDITIONAL |
-| Function naming, camelCase            | `javascript/style_guide.md#5`       | CONDITIONAL |
-| CommonJS exports, module organization | `javascript/quality_standards.md#2` | CONDITIONAL |
-| Error handling, try-catch patterns    | `javascript/quality_standards.md#3` | CONDITIONAL |
-| JSDoc documentation format            | `javascript/quality_standards.md#5` | ON_DEMAND   |
-
-**TypeScript**
-
-| Use Case                                    | Route To                              | Level       |
-| ------------------------------------------- | ------------------------------------- | ----------- |
-| File headers, dash-line format              | `typescript/style_guide.md#2`         | CONDITIONAL |
-| Naming (interfaces, types, enums, generics) | `typescript/style_guide.md#5`         | CONDITIONAL |
-| Interface vs type decision guide            | `typescript/quality_standards.md#2`   | CONDITIONAL |
-| Type safety (unknown, strict null, generics)| `typescript/quality_standards.md#3`   | CONDITIONAL |
-| Discriminated unions, state management      | `typescript/quality_standards.md#4`   | CONDITIONAL |
-| TSDoc documentation format                  | `typescript/quality_standards.md#7`   | ON_DEMAND   |
-| Typed error classes, async patterns         | `typescript/quality_standards.md#8`   | ON_DEMAND   |
-| tsconfig.json configuration                 | `typescript/quality_standards.md#10`  | ON_DEMAND   |
-| Build/rebuild dist after .ts edits          | `typescript/quality_standards.md#10`  | CONDITIONAL |
-
-**Python**
-
-| Use Case                            | Route To                        | Level       |
-| ----------------------------------- | ------------------------------- | ----------- |
-| Shebang, file header format         | `python/style_guide.md#2`       | CONDITIONAL |
-| Google-style docstrings             | `python/style_guide.md#5`       | CONDITIONAL |
-| Type hints, Optional/Union patterns | `python/quality_standards.md#3` | CONDITIONAL |
-
-**Shell**
-
-| Use Case                                | Route To                       | Level       |
-| --------------------------------------- | ------------------------------ | ----------- |
-| Shebang, strict mode setup              | `shell/style_guide.md#2`       | CONDITIONAL |
-| Variable quoting, local declarations    | `shell/style_guide.md#6`       | CONDITIONAL |
-| Color definitions, ANSI codes           | `shell/style_guide.md#4`       | CONDITIONAL |
-| Logging functions (log_info, log_error) | `shell/style_guide.md#5`       | CONDITIONAL |
-
-**Config**
-
-| Use Case                    | Route To                  | Level       |
-| --------------------------- | ------------------------- | ----------- |
-| JSON structure, key naming  | `config/style_guide.md#3` | CONDITIONAL |
-| JSONC section comments      | `config/style_guide.md#4` | CONDITIONAL |
-| Schema references ($schema) | `config/style_guide.md#7` | ON_DEMAND   |
+Smart Router V2 intent scoring and the in-code resource map in this section are the authoritative routing source. Do not maintain separate use-case routing tables.
 
 ---
 

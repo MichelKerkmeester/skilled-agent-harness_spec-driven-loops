@@ -15,8 +15,8 @@
 #
 # Exit codes: 0=success, 1=validation error, 2=upgrade error, 3=backup error
 
-# Keep -u disabled: this script relies on dynamic expansion patterns in upgrade flows.
-set -eo pipefail
+# Strict mode for safer upgrade execution.
+set -euo pipefail
 
 # Cleanup temp files on interrupt or exit
 CLEANUP_DIR=""

@@ -36,6 +36,7 @@ The `scripts/spec/` directory is the shell-based spec lifecycle layer.
 - `upgrade-level.sh` - upgrade existing folders to `2`, `3`, or `3+`
 - `check-placeholders.sh` - detect unresolved bracket placeholders after upgrades
 - `validate.sh` - orchestrate modular validation rules
+- `test-validation.sh` - validation test suite for exit code and rule behavior
 - `check-completion.sh` - enforce completion gate before claiming done
 - `calculate-completeness.sh` - compute checklist completion metrics
 - `recommend-level.sh` - recommend level from task signals
@@ -84,4 +85,5 @@ bash .opencode/skill/system-spec-kit/scripts/spec/check-completion.sh specs/003-
 
 - `upgrade-level.sh` supports `--dry-run`, `--json`, `--verbose`, and `--keep-backups`.
 - `create.sh` supports `--subfolder` for subfolder-based work inside an existing spec folder.
+- `validate.sh` supports emergency bypass via `SPECKIT_SKIP_VALIDATION=1`.
 <!-- /ANCHOR:notes -->

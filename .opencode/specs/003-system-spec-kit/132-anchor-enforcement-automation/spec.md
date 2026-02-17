@@ -209,27 +209,27 @@ Implement automated enforcement mechanisms that make template/anchor non-complia
 **As a** spec documentation author, **I want** ANCHOR tags automatically added to all major sections, **so that** I don't have to manually wrap every section and risk missing tags.
 
 **Acceptance Criteria**:
-1. Given a spec file created from template, When I fill in sections, Then all major sections have proper `<!-- ANCHOR:id -->` and `<!-- /ANCHOR:id -->` tags
-2. Given manual section edits, When ANCHOR tags already exist, Then auto-generation preserves existing tags
-3. Given a new section added, When section matches naming convention, Then ANCHOR tags generated automatically
+1. **Given** a spec file created from template, **When** I fill in sections, **Then** all major sections have proper `<!-- ANCHOR:id -->` and `<!-- /ANCHOR:id -->` tags
+2. **Given** manual section edits, **When** ANCHOR tags already exist, **Then** auto-generation preserves existing tags
+3. **Given** a new section added, **When** section matches naming convention, **Then** ANCHOR tags generated automatically
 
 ### US-002: Pre-flight Validation Gate (Priority: P0)
 
 **As a** system enforcing spec quality, **I want** validation to run before any spec file is written, **so that** non-compliant documentation never enters the codebase.
 
 **Acceptance Criteria**:
-1. Given a spec file creation attempt, When file content missing required sections, Then write is blocked with clear error message
-2. Given a spec file with mismatched ANCHOR tags, When validation runs, Then user sees line number and fix guidance
-3. Given validation failure, When user corrects issues, Then retry succeeds immediately
+1. **Given** a spec file creation attempt, **When** file content missing required sections, **Then** write is blocked with clear error message
+2. **Given** a spec file with mismatched ANCHOR tags, **When** validation runs, **Then** user sees line number and fix guidance
+3. **Given** validation failure, **When** user corrects issues, **Then** retry succeeds immediately
 
 ### US-003: Speckit Routing Enforcement (Priority: P0)
 
 **As a** orchestrator managing agent dispatch, **I want** spec file writes to ONLY go through @speckit, **so that** template compliance is guaranteed by design.
 
 **Acceptance Criteria**:
-1. Given a request to create spec documentation, When orchestrator evaluates routing, Then @speckit is the ONLY option dispatched
-2. Given @general or @write attempting spec file write, When file path is in spec folder, Then write is rejected with routing violation error
-3. Given emergency bypass scenario, When user explicitly overrides, Then bypass is logged for audit trail
+1. **Given** a request to create spec documentation, **When** orchestrator evaluates routing, **Then** @speckit is the ONLY option dispatched
+2. **Given** @general or @write attempting spec file write, **When** file path is in spec folder, **Then** write is rejected with routing violation error
+3. **Given** emergency bypass scenario, **When** user explicitly overrides, **Then** bypass is logged for audit trail
 <!-- /ANCHOR:user-stories -->
 
 ---

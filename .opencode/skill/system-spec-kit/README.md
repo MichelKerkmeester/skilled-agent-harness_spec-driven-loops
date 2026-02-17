@@ -584,6 +584,7 @@ cp .opencode/skill/system-spec-kit/templates/handover.md specs/###-name/
 | -------------------------------- | ------------------------------------------------------ |
 | `spec/create.sh`                 | Create feature branch & spec folder                    |
 | `spec/validate.sh`               | Validation orchestrator (13 rules)                     |
+| `spec/test-validation.sh`        | Validation regression suite (exit codes + rule failures) |
 | `spec/calculate-completeness.sh` | Calculate completeness %                               |
 | `spec/check-placeholders.sh`     | Verify zero placeholders after upgrade + auto-populate |
 | `spec/recommend-level.sh`        | Recommend documentation level                          |
@@ -716,7 +717,7 @@ Every error now includes actionable recovery guidance. 49 error codes mapped to 
 
 | Document                                                                                 | Purpose                                                      |
 | ---------------------------------------------------------------------------------------- | ------------------------------------------------------------ |
-| [SKILL.md](./SKILL.md)                                                                   | AI workflow instructions (701 lines, streamlined from 1,055) |
+| [SKILL.md](./SKILL.md)                                                                   | AI workflow instructions (routing, validation, command protocols) |
 | [mcp_server/README.md](./mcp_server/README.md)                                           | Memory MCP installation and configuration                    |
 | [references/memory/memory_system.md](./references/memory/memory_system.md)               | Memory system detailed reference                             |
 | [references/memory/readme_indexing.md](./references/memory/readme_indexing.md)           | 5-source indexing pipeline, README weights, discovery        |
@@ -727,7 +728,7 @@ Every error now includes actionable recovery guidance. 49 error codes mapped to 
 
 ```
 .opencode/skill/system-spec-kit/
-|-- SKILL.md                   # AI workflow instructions (701 lines)
+|-- SKILL.md                   # AI workflow instructions
 |-- README.md                  # This file
 |-- templates/                 # Template system (CORE + ADDENDUM)
 |   |-- core/                  # Foundation templates (4 files)

@@ -149,7 +149,7 @@ The generated `research.md` includes 17 sections:
 
 ## 6. RULES
 
-### ALWAYS
+### ✅ ALWAYS
 
 - Gather evidence BEFORE making claims (cite sources)
 - Use multiple investigation methods (code search + external research)
@@ -158,7 +158,7 @@ The generated `research.md` includes 17 sections:
 - Provide actionable recommendations with trade-offs
 - Cross-reference findings between codebase and external sources
 
-### NEVER
+### ❌ NEVER
 
 - Make implementation changes (research only)
 - Skip codebase investigation for implementation-related research
@@ -166,7 +166,7 @@ The generated `research.md` includes 17 sections:
 - Ignore existing patterns in favor of external recommendations
 - Proceed to planning without completing research documentation
 
-### ESCALATE IF
+### ⚠️ ESCALATE IF
 
 - Conflicting requirements discovered
 - Technical blockers identified that require architectural decisions

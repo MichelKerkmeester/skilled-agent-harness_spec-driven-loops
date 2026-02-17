@@ -89,10 +89,9 @@ run_check() {
             display_name="memory/$filename"
         fi
 
-        local tmp_opens tmp_closes
+        local tmp_opens="" tmp_closes=""
         tmp_opens=$(mktemp)
         tmp_closes=$(mktemp)
-        trap 'rm -f "$tmp_opens" "$tmp_closes"' RETURN
 
         # Extract opening anchors: <!-- ANCHOR:id --> format: "linenum id"
         { grep -n '<!-- ANCHOR:[^/]' "$file" 2>/dev/null || true; } | \

@@ -11,7 +11,7 @@
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 019-incorrect-sub-agent-nesting |
-| **Completed** | pending |
+| **Completed** | 2026-02-17 |
 | **Level** | 3 |
 <!-- /ANCHOR:metadata -->
 
@@ -20,11 +20,7 @@
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Pending implementation. Will document:
-- NDP section added to all 3 orchestrate.md files
-- Agent tier classifications
-- Depth tracking in dispatch templates
-- Anti-pattern additions
+Added the Nesting Depth Protocol (NDP) as new Section 26 to all three orchestrate.md variants (base, chatgpt, copilot). The NDP introduces a 3-tier agent classification system (ORCHESTRATOR/DISPATCHER/LEAF) with an absolute maximum dispatch depth of 3 levels (depth 0-1-2). Every dispatch template now includes a `Depth` field and tier-appropriate enforcement instructions. Two new anti-patterns were added to Section 24, and the Section 11 conditional branching nesting language was clarified to avoid confusion with agent dispatch nesting.
 
 ### Files Changed
 
@@ -54,9 +50,9 @@ Pending implementation. Will document:
 
 | Test Type | Status | Notes |
 |-----------|--------|-------|
-| Manual | Pending | Workflow traces through NDP |
-| Diff | Pending | Compare NDP sections across 3 files |
-| Scenario | Pending | Legal and illegal chain verification |
+| Manual | Pass | Workflow traces: Orch>@context>@explore (depth 2), Orch>Sub-Orch>@general (depth 2), Orch>@speckit LEAF (depth 1) — all within limits |
+| Diff | Pass | All 3 files have 12 DISPATCHER refs, 2 LEAF Enforcement refs, 0 "Maximum 2 levels" remnants |
+| Scenario | Pass | Legal chains verified (4 examples), illegal chains verified (4 examples) |
 <!-- /ANCHOR:verification -->
 
 ---

@@ -448,22 +448,6 @@ When using the orchestrate agent or Task tool for complex multi-step workflows, 
 | `@debug`       | Fresh perspective debugging, root cause analysis                                                                                                                                                                                                                                        |
 | `@handover`    | Session continuation, context preservation. ✅ Exception: may write `handover.md` inside spec folders                                                                                                                                                                                    |
 
-### Agent Runtime Files
-
-Agent path references should use only `.opencode/agent/` as the canonical runtime location.
-
-| Agent          | Runtime File                     |
-| -------------- | -------------------------------- |
-| `@general`     | Built-in                         |
-| `@context`     | `.opencode/agent/context.md`     |
-| `@orchestrate` | `.opencode/agent/orchestrate.md` |
-| `@research`    | `.opencode/agent/research.md`    |
-| `@write`       | `.opencode/agent/write.md`       |
-| `@review`      | `.opencode/agent/review.md`      |
-| `@speckit`     | `.opencode/agent/speckit.md`     |
-| `@debug`       | `.opencode/agent/debug.md`       |
-| `@handover`    | `.opencode/agent/handover.md`    |
-
 ---
 
 ## 8. ⚙️  MCP CONFIGURATION
@@ -505,14 +489,3 @@ Task Received → Gate 2: Run skill_advisor.py
 3. Read bundled resources from `references/`, `scripts/`, `assets/` paths
 4. Follow skill instructions to completion
 5. Do NOT re-invoke a skill already in context
-
-### Skill Maintenance
-
-Skills are located in `.opencode/skill/`.
-
-When creating or editing skills:
-- Create or edit skills based on the workflow logic defined in `.opencode/agent/write.md`
-- Validate skill structure matches template in `workflows-documentation/references/skill_creation.md`
-- Use the templates in `workflows-documentation/assets/opencode/` (`skill_md_template.md`, `skill_reference_template.md`, `skill_asset_template.md`)
-- Ensure all bundled resources are referenced with relative paths
-- Test skill invocation before committing

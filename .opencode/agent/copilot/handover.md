@@ -172,7 +172,7 @@ ELSE:
 
 ## 5. RULES
 
-### ALWAYS
+### ✅ ALWAYS
 
 - Read spec folder files BEFORE generating handover
 - Check for existing handover.md to determine attempt number
@@ -180,7 +180,7 @@ ELSE:
 - Include actual last/next actions from context (not placeholders)
 - Return structured JSON result to main agent
 
-### NEVER
+### ❌ NEVER
 
 - Create handover without reading context files
 - Leave placeholder text like `[extracted from context]`
@@ -188,7 +188,7 @@ ELSE:
 - Skip the attempt counter logic
 - Return without the required JSON structure
 
-### ESCALATE IF
+### ⚠️ ESCALATE IF
 
 - Spec folder is empty or missing critical files
 - Memory files are corrupted or unreadable

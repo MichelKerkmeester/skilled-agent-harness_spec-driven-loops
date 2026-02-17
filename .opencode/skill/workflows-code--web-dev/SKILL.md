@@ -202,48 +202,9 @@ def route_frontend_resources(task):
 # See "Code Quality Gate" in Section 3 - Phase 1.5 for style enforcement
 ```
 
-### Specific Use Case Router
+### Routing Authority
 
-**Phase 1: Implementation**
-
-| Use Case                                                  | Route To                                                                                                                                           | Load Level  |
-| --------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
-| Async/timing issues, DOM not ready, race conditions       | [implementation_workflows.md#2-condition-based-waiting](./references/implementation/implementation_workflows.md#2-condition-based-waiting)         | ALWAYS      |
-| Form input, API calls, DOM manipulation validation        | [implementation_workflows.md#3-defense-in-depth-validation](./references/implementation/implementation_workflows.md#3-defense-in-depth-validation) | ALWAYS      |
-| JavaScript minification, terser, verification             | [minification_guide.md](./references/deployment/minification_guide.md)                                                                             | CONDITIONAL |
-| CDN deployment, version management, Cloudflare R2         | [cdn_deployment.md](./references/deployment/cdn_deployment.md)                                                                                     | CONDITIONAL |
-| CSS vs Motion.dev, entrance animations, scroll triggers   | [animation_workflows.md](./references/implementation/animation_workflows.md)                                                                       | CONDITIONAL |
-| CSS architecture, custom properties, responsive patterns  | [css_patterns.md](./references/implementation/css_patterns.md)                                                                                     | CONDITIONAL |
-| Carousel, slider, Swiper.js integration                   | [swiper_patterns.md](./references/implementation/swiper_patterns.md)                                                                               | CONDITIONAL |
-| Focus management, keyboard navigation, accessibility      | [focus_management.md](./references/implementation/focus_management.md)                                                                             | CONDITIONAL |
-| Webflow collection lists, platform limits, ID duplication | [webflow_patterns.md](./references/implementation/webflow_patterns.md)                                                                             | CONDITIONAL |
-| Animation/video/asset optimization, throttle, debounce    | [performance_patterns.md](./references/implementation/performance_patterns.md)                                                                     | CONDITIONAL |
-| XSS, CSRF, injection prevention                           | [security_patterns.md](./references/implementation/security_patterns.md)                                                                           | CONDITIONAL |
-| Third-party library integration, CDN loading, HLS.js      | [third_party_integrations.md](./references/implementation/third_party_integrations.md)                                                             | CONDITIONAL |
-| MutationObserver, IntersectionObserver, SharedObservers   | [observer_patterns.md](./references/implementation/observer_patterns.md)                                                                           | CONDITIONAL |
-| RAF, requestIdleCallback, queueMicrotask, scheduling APIs | [async_patterns.md](./references/implementation/async_patterns.md)                                                                                 | CONDITIONAL |
-| File upload, FilePond, drag-drop, MIME types, R2 upload   | [form_upload_workflows.md](./references/implementation/form_upload_workflows.md)                                                                   | CONDITIONAL |
-
-**Phase 2: Debugging**
-
-| Use Case                                               | Route To                                                                                                                                 | Load Level  |
-| ------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
-| Console errors, layout bugs, event handler failures    | [debugging_workflows.md#2-systematic-debugging](./references/debugging/debugging_workflows.md#2-systematic-debugging)                    | ALWAYS      |
-| Deep call stack, mysterious failures, corrupted data   | [debugging_workflows.md#3-root-cause-tracing](./references/debugging/debugging_workflows.md#3-root-cause-tracing)                        | ALWAYS      |
-| Slow page, janky animations, memory leaks              | [debugging_workflows.md#4-performance-debugging](./references/debugging/debugging_workflows.md#4-performance-debugging)                  | CONDITIONAL |
-| Collection list not rendering, event listeners failing | [webflow_patterns.md](./references/implementation/webflow_patterns.md)                                                                   | CONDITIONAL |
-| Motion.dev not loading, layout jumps, jank             | [animation_workflows.md#7-common-issues-and-solutions](./references/implementation/animation_workflows.md#7-common-issues-and-solutions) | CONDITIONAL |
-| CSS layout bugs, specificity issues, responsive breaks | [css_patterns.md](./references/implementation/css_patterns.md)                                                                           | CONDITIONAL |
-| Carousel/slider not working, Swiper issues             | [swiper_patterns.md](./references/implementation/swiper_patterns.md)                                                                     | CONDITIONAL |
-| Focus trapping, keyboard navigation, a11y failures     | [focus_management.md](./references/implementation/focus_management.md)                                                                   | CONDITIONAL |
-
-**Phase 3: Verification**
-
-| Use Case                                             | Route To                                                                         | Load Level |
-| ---------------------------------------------------- | -------------------------------------------------------------------------------- | ---------- |
-| Before claiming "works", "fixed", "done", "complete" | [verification_workflows.md](./references/verification/verification_workflows.md) | ALWAYS     |
-| Animation working, layout fixed, feature complete    | [verification_workflows.md](./references/verification/verification_workflows.md) | ALWAYS     |
-| Video/media loads, form submission works             | [verification_workflows.md](./references/verification/verification_workflows.md) | ALWAYS     |
+Smart Router V2 intent scoring and the resource map in this section are the authoritative routing source. Do not maintain separate use-case routing tables.
 
 ---
 

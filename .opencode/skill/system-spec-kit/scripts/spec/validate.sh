@@ -4,8 +4,14 @@
 # ───────────────────────────────────────────────────────────────
 # Spec Folder Validation Orchestrator - Bash 3.2+ compatible
 
-# Keep -u disabled: this orchestrator sources rule scripts and shared mutable state.
-set -eo pipefail
+# Strict mode with guarded dynamic expansions.
+set -euo pipefail
+
+# Feature flag: Skip validation if SPECKIT_SKIP_VALIDATION is set
+if [[ -n "${SPECKIT_SKIP_VALIDATION:-}" ]]; then
+    echo "Validation skipped (SPECKIT_SKIP_VALIDATION=${SPECKIT_SKIP_VALIDATION})" >&2
+    exit 0
+fi
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 RULES_DIR="$SCRIPT_DIR/../rules"
@@ -325,7 +331,9 @@ run_all_rules() {
             warn) log_warn "${RULE_NAME:-$rule_name}" "${RULE_MESSAGE:-Warning}${timing_str}" ;;
             info) $VERBOSE && log_info "${RULE_NAME:-$rule_name}" "${RULE_MESSAGE:-Info}${timing_str}" ;;
         esac
-        for d in "${RULE_DETAILS[@]}"; do log_detail "$d"; done
+        if [[ -n "${RULE_DETAILS[*]-}" ]]; then
+            for d in "${RULE_DETAILS[@]}"; do log_detail "$d"; done
+        fi
         unset -f run_check 2>/dev/null || true
     done <<< "$rule_scripts"
 }

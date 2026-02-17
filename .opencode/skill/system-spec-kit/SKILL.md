@@ -146,9 +146,177 @@ The memory system auto-discovers and indexes content from 5 sources during `memo
 
 **See:** [readme_indexing.md](./references/memory/readme_indexing.md) for discovery functions, exclude patterns, and weight rationale.
 
-### Resource Router
+### Resource Router (Smart Router V2)
 
-**Phase-Based Loading:**
+The skill keeps both routing views on purpose:
+
+- **Specific use-case tables** are fast human lookup for prompts, command choices, and navigation.
+- **Smart Router pseudocode** is the authoritative routing logic for scoped loading, weighted intent scoring, and ambiguity handling.
+
+```python
+from pathlib import Path
+
+SKILL_ROOT = Path(__file__).resolve().parent
+RESOURCE_BASES = [SKILL_ROOT / "references", SKILL_ROOT / "assets"]
+
+
+def _guard_in_skill(relative_path: str) -> str:
+    """Allow markdown loads only within this skill folder."""
+    resolved = (SKILL_ROOT / relative_path).resolve()
+    resolved.relative_to(SKILL_ROOT)  # raises ValueError if out-of-scope
+    if resolved.suffix.lower() != ".md":
+        raise ValueError(f"Only markdown resources are routable: {relative_path}")
+    return resolved.relative_to(SKILL_ROOT).as_posix()
+
+
+def discover_markdown_resources() -> set[str]:
+    """Recursively discover routable markdown docs for this skill only."""
+    docs = []
+    for base in RESOURCE_BASES:
+        if base.exists():
+            docs.extend(sorted(p for p in base.rglob("*.md") if p.is_file()))
+    return {p.relative_to(SKILL_ROOT).as_posix() for p in docs}
+
+
+INTENT_SIGNALS = {
+    "PLAN": {
+        "weight": 3,
+        "keywords": ["plan", "design", "new spec", "level selection", "option b"],
+    },
+    "RESEARCH": {
+        "weight": 3,
+        "keywords": ["investigate", "explore", "analyze", "prior work", "evidence"],
+    },
+    "IMPLEMENT": {
+        "weight": 3,
+        "keywords": ["implement", "build", "execute", "phase", "workflow"],
+    },
+    "DEBUG": {
+        "weight": 4,
+        "keywords": ["stuck", "error", "not working", "failed", "debug"],
+    },
+    "COMPLETE": {
+        "weight": 4,
+        "keywords": ["done", "complete", "finish", "verify", "checklist"],
+    },
+    "MEMORY": {
+        "weight": 4,
+        "keywords": ["memory", "save context", "resume", "checkpoint", "context"],
+    },
+    "HANDOVER": {
+        "weight": 4,
+        "keywords": ["handover", "continue later", "next session", "pause"],
+    },
+}
+
+
+RESOURCE_MAP = {
+    "PLAN": [
+        "references/templates/level_specifications.md",
+        "references/templates/template_guide.md",
+    ],
+    "RESEARCH": [
+        "references/workflows/quick_reference.md",
+        "references/workflows/worked_examples.md",
+    ],
+    "IMPLEMENT": [
+        "references/validation/validation_rules.md",
+        "references/templates/template_guide.md",
+    ],
+    "DEBUG": [
+        "references/debugging/troubleshooting.md",
+        "references/workflows/quick_reference.md",
+    ],
+    "COMPLETE": [
+        "references/validation/validation_rules.md",
+        "references/validation/phase_checklists.md",
+    ],
+    "MEMORY": [
+        "references/memory/memory_system.md",
+        "references/memory/save_workflow.md",
+    ],
+    "HANDOVER": [
+        "references/workflows/quick_reference.md",
+    ],
+}
+
+
+def score_intents(task) -> dict[str, float]:
+    """Weighted scoring from explicit flags + request text + command context."""
+    text = " ".join(
+        [
+            str(getattr(task, "query", "")),
+            str(getattr(task, "text", "")),
+            " ".join(getattr(task, "keywords", []) or []),
+            str(getattr(task, "command", "")),
+        ]
+    ).lower()
+
+    scores = {intent: 0.0 for intent in INTENT_SIGNALS}
+
+    for intent, cfg in INTENT_SIGNALS.items():
+        for kw in cfg["keywords"]:
+            if kw in text:
+                scores[intent] += cfg["weight"]
+
+    # Strong explicit command boosts
+    command = str(getattr(task, "command", "")).lower()
+    if command.startswith("/spec_kit:plan"):
+        scores["PLAN"] += 6
+    if command.startswith("/spec_kit:research"):
+        scores["RESEARCH"] += 6
+    if command.startswith("/spec_kit:implement"):
+        scores["IMPLEMENT"] += 6
+    if command.startswith("/spec_kit:debug"):
+        scores["DEBUG"] += 6
+    if command.startswith("/spec_kit:complete"):
+        scores["COMPLETE"] += 6
+    if command.startswith("/spec_kit:handover"):
+        scores["HANDOVER"] += 6
+
+    return scores
+
+
+def select_intents(scores: dict[str, float], ambiguity_delta: float = 1.0) -> list[str]:
+    """Return top intent, plus top-2 when scores are close."""
+    ranked = sorted(scores.items(), key=lambda item: item[1], reverse=True)
+    primary, secondary = ranked[0], ranked[1]
+
+    if primary[1] <= 0:
+        return ["IMPLEMENT"]
+
+    selected = [primary[0]]
+    if secondary[1] > 0 and (primary[1] - secondary[1]) <= ambiguity_delta:
+        selected.append(secondary[0])
+    return selected
+
+
+def route_speckit_resources(task):
+    """Scoped, recursive, weighted, ambiguity-aware routing."""
+    inventory = discover_markdown_resources()
+    intents = select_intents(score_intents(task), ambiguity_delta=1.0)
+    loaded = []
+
+    for intent in intents:
+        for rel in RESOURCE_MAP.get(intent, []):
+            guarded = _guard_in_skill(rel)
+            if guarded in inventory:
+                load(guarded)
+                loaded.append(guarded)
+
+    # Fallback if no mapped resources were found
+    if not loaded:
+        fallback = _guard_in_skill("references/workflows/quick_reference.md")
+        if fallback in inventory:
+            load(fallback)
+            loaded.append(fallback)
+
+    return {"intents": intents, "resources": loaded}
+```
+
+### Routing Reference Tables (Human Lookup)
+
+#### Phase-to-Command Quick Map
 
 | Phase              | Trigger                               | Load Resources                             | Execute             |
 | ------------------ | ------------------------------------- | ------------------------------------------ | ------------------- |
@@ -157,10 +325,10 @@ The memory system auto-discovers and indexes content from 5 sources during `memo
 | **Implementation** | "implement", "build", "code"          | validation_rules.md, template_guide.md     | /spec_kit:implement |
 | **Debugging**      | "stuck", "error", "not working"       | quick_reference.md, troubleshooting.md     | /spec_kit:debug     |
 | **Completion**     | "done", "finished", "complete"        | validation_rules.md, phase_checklists.md   | /spec_kit:complete  |
-
-> **`/spec_kit:complete` flags:** Supports `:with-research` (runs research before verification) and `:auto-debug` (auto-dispatches debug agent on failures). Usage: `/spec_kit:complete :with-research :auto-debug`
 | **Handover**       | "stopping", "break", "continue later" | quick_reference.md                         | /spec_kit:handover  |
 | **Resume**         | "continue", "pick up", "resume"       | quick_reference.md                         | /spec_kit:resume    |
+
+> **`/spec_kit:complete` flags:** Supports `:with-research` (runs research before verification) and `:auto-debug` (auto-dispatches debug agent on failures). Usage: `/spec_kit:complete :with-research :auto-debug`
 
 ### Agent Dispatch in Commands
 
@@ -188,7 +356,9 @@ Spec_kit commands dispatch these agents at specific workflow steps (added in spe
 | `debugging/`  | Troubleshooting, debugging      | troubleshooting.md, universal_debugging_methodology.md                                               |
 | `config/`     | Configuration                   | environment_variables.md                                                                             |
 
-### Keyword-Based Routing
+### Keyword-to-Folder Quick Map
+
+This table is a quick index for humans. Smart Router V2 scoring remains the routing source of truth.
 
 | Keywords                                          | Route To                 |
 | ------------------------------------------------- | ------------------------ |
@@ -597,7 +767,7 @@ Automated validation of spec folder contents via `validate.sh`.
 
 1. **Determine level (1/2/3/3+) before ANY file changes** - Count LOC, assess complexity/risk
 2. **Copy templates from `templates/level_N/`** - Use level folders, NEVER create from scratch
-3. **Fill ALL placeholders** - Remove `[PLACEHOLDER]` and sample content
+3. **Fill ALL placeholders** - Remove placeholder markers and sample content
 4. **Ask A/B/C/D when file modification detected** - Present options, wait for selection
 5. **Check for related specs before creating new folders** - Search keywords, review status
 6. **Get explicit user approval before changes** - Show level, path, templates, approach
@@ -624,9 +794,9 @@ Automated validation of spec folder contents via `validate.sh`.
 
 ### ⚠️ ESCALATE IF
 
-1. **Scope grows during implementation** - Run `upgrade-level.sh` to add higher-level templates (recommended), then auto-populate all `[placeholder]` content:
+1. **Scope grows during implementation** - Run `upgrade-level.sh` to add higher-level templates (recommended), then auto-populate all placeholder content:
    - Read all existing spec files (spec.md, plan.md, tasks.md, implementation-summary.md) for context
-   - Replace every `[placeholder]` pattern in newly injected sections with content derived from that context
+   - Replace every placeholder marker pattern in newly injected sections with content derived from that context
    - For sections without sufficient source context, write "N/A — insufficient source context" instead of fabricating content
    - Run `check-placeholders.sh <spec-folder>` to verify zero placeholders remain (see [level_specifications.md](./references/templates/level_specifications.md) for the full procedure)
    - Document the level change in changelog

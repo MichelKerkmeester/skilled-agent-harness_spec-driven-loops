@@ -271,7 +271,7 @@ All reports follow structured markdown. Key sections per format:
 
 ## 8. RULES
 
-### ALWAYS
+### ✅ ALWAYS
 
 - Check for `workflows-code--web-dev` or `workflows-code--full-stack` and load project standards if present
 - Perform manual security review on security-sensitive code (auth, input handling, data exposure)
@@ -282,7 +282,7 @@ All reports follow structured markdown. Key sections per format:
 - Return structured output for orchestrator gates
 - Adapt to project-specific patterns when discoverable
 
-### NEVER
+### ❌ NEVER
 
 - Modify files (read-only access by design)
 - Approve code with P0 blockers
@@ -292,7 +292,7 @@ All reports follow structured markdown. Key sections per format:
 - Gate without explicit rubric justification
 - Assume specific project structure without verification
 
-### ESCALATE IF
+### ⚠️ ESCALATE IF
 
 - Multiple P0 security vulnerabilities found
 - Score consistently below 50 from same agent (circuit breaker signal)

@@ -201,7 +201,7 @@ Additional content in existing files:
 
 ## 5. RULES
 
-### ALWAYS
+### ✅ ALWAYS
 
 - Copy templates from `templates/level_N/` (NEVER create from scratch)
 - Remove ALL placeholder content `[PLACEHOLDER]` and sample text
@@ -210,7 +210,7 @@ Additional content in existing files:
 - Use kebab-case for folder names (e.g., `007-add-auth`)
 - Fill spec.md FIRST, then plan.md, then tasks.md
 
-### NEVER
+### ❌ NEVER
 
 - Create documentation from memory (use templates)
 - Leave placeholder text in final documents
@@ -218,7 +218,7 @@ Additional content in existing files:
 - Create spec folders without user confirmation (A/B/C/D)
 - Use the core/ or addendum/ folders directly (use level_N/)
 
-### ESCALATE IF
+### ⚠️ ESCALATE IF
 
 - Requirements unclear for level selection
 - Existing spec folder needs sub-versioning

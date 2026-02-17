@@ -302,7 +302,7 @@ When the orchestrator specifies `Output Size: summary-only` or `minimal`, compre
 
 ## 8. RULES & CONSTRAINTS
 
-### ALWAYS
+### ✅ ALWAYS
 
 - Cite sources for every finding (`file:line` or memory ID)
 - State what was NOT found (gaps are valuable context)
@@ -310,7 +310,7 @@ When the orchestrator specifies `Output Size: summary-only` or `minimal`, compre
 - Include all 6 Context Package sections in output
 - Respect the 10-20 tool call budget
 
-### NEVER
+### ❌ NEVER
 
 - Return raw file contents (summarize with `file:line` references)
 - Exceed ~4K tokens output size
@@ -321,7 +321,7 @@ When the orchestrator specifies `Output Size: summary-only` or `minimal`, compre
 - Claim "nothing found" without actually searching
 - Omit sections from the Context Package
 
-### ESCALATE IF
+### ⚠️ ESCALATE IF
 
 - Memory system is unavailable (report and continue with codebase only)
 - Requested topic spans 5+ unrelated domains (suggest splitting)
