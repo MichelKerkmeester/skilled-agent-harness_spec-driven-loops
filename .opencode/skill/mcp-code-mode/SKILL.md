@@ -60,7 +60,17 @@ Execute TypeScript code with direct access to 200+ MCP tools through progressive
 <!-- ANCHOR:smart-routing -->
 ## 2. SMART ROUTING
 
+### Resource Loading Levels
+
+| Level       | When to Load             | Resources                    |
+| ----------- | ------------------------ | ---------------------------- |
+| ALWAYS      | Every skill invocation   | Core quick reference         |
+| CONDITIONAL | If intent signals match  | Intent-mapped references     |
+| ON_DEMAND   | Only on explicit request | Full configuration/workflows |
+
 ### Smart Router Pseudocode
+
+The authoritative routing logic for scoped loading, weighted intent scoring, and ambiguity handling.
 
 ```python
 from pathlib import Path
@@ -175,14 +185,6 @@ def route_code_mode_resources(task):
 
     return {"intents": intents, "resources": loaded}
 ```
-
-### Resource Loading Levels
-
-| Level       | When to Load             | Resources                    |
-| ----------- | ------------------------ | ---------------------------- |
-| ALWAYS      | Every skill invocation   | Core quick reference         |
-| CONDITIONAL | If intent signals match  | Intent-mapped references     |
-| ON_DEMAND   | Only on explicit request | Full configuration/workflows |
 
 ---
 

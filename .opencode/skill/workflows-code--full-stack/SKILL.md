@@ -113,6 +113,8 @@ assets/{category}/{stack}/patterns/
 
 ### Smart Router Pseudocode
 
+The authoritative routing logic for scoped loading, weighted intent scoring, and ambiguity handling.
+
 ```python
 from pathlib import Path
 

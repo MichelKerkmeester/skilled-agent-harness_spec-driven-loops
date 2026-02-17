@@ -91,7 +91,17 @@ Programmatic access to Figma design files through 18 specialized tools covering 
 <!-- ANCHOR:smart-routing -->
 ## 2. SMART ROUTING
 
+### Resource Loading Levels
+
+| Level       | When to Load             | Resources                    |
+| ----------- | ------------------------ | ---------------------------- |
+| ALWAYS      | Every skill invocation   | Quick start baseline         |
+| CONDITIONAL | If intent signals match  | Tool and category references |
+| ON_DEMAND   | Only on explicit request | Full-reference materials     |
+
 ### Smart Router Pseudocode
+
+The authoritative routing logic for scoped loading, weighted intent scoring, and ambiguity handling.
 
 ```python
 from pathlib import Path
@@ -190,14 +200,6 @@ def route_figma_resources(task):
 
     return {"intents": intents, "resources": loaded}
 ```
-
-### Resource Loading Levels
-
-| Level       | When to Load             | Resources                    |
-| ----------- | ------------------------ | ---------------------------- |
-| ALWAYS      | Every skill invocation   | Quick start baseline         |
-| CONDITIONAL | If intent signals match  | Tool and category references |
-| ON_DEMAND   | Only on explicit request | Full-reference materials     |
 
 ---
 

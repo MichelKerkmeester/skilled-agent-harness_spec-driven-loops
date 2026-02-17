@@ -48,7 +48,17 @@ Browser debugging and automation through two complementary approaches: CLI (bdg)
 <!-- ANCHOR:smart-routing-references -->
 ## 2. SMART ROUTING
 
+### Resource Loading Levels
+
+| Level       | When to Load             | Resources                       |
+| ----------- | ------------------------ | ------------------------------- |
+| ALWAYS      | Every skill invocation   | Core CDP pattern reference      |
+| CONDITIONAL | If intent signals match  | CLI/MCP/session/troubleshooting |
+| ON_DEMAND   | Only on explicit request | Full diagnostics set            |
+
 ### Smart Router Pseudocode
+
+The authoritative routing logic for scoped loading, weighted intent scoring, and ambiguity handling.
 
 ```python
 from pathlib import Path
@@ -156,14 +166,6 @@ def route_chrome_devtools_resources(task):
 
     return {"intents": intents, "resources": loaded}
 ```
-
-### Resource Loading Levels
-
-| Level       | When to Load             | Resources                       |
-| ----------- | ------------------------ | ------------------------------- |
-| ALWAYS      | Every skill invocation   | Core CDP pattern reference      |
-| CONDITIONAL | If intent signals match  | CLI/MCP/session/troubleshooting |
-| ON_DEMAND   | Only on explicit request | Full diagnostics set            |
 
 ---
 

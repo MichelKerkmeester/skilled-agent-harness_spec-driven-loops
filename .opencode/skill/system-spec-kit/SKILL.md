@@ -86,9 +86,45 @@ Routing to `@general`, `@write`, or other agents for spec documentation is a **h
 <!-- ANCHOR:smart-routing -->
 ## 2. SMART ROUTING
 
-### Resource Router
+### Resource Domains
 
-**Smart Router pseudocode** is the authoritative routing logic for scoped loading, weighted intent scoring, and ambiguity handling.
+The router discovers markdown resources recursively from `references/` and `assets/` and then applies intent scoring from `RESOURCE_MAP`. Keep this section domain-focused rather than static file inventories.
+
+- `references/memory/` for context retrieval, save workflows, trigger behavior, and indexing.
+- `references/templates/` for level selection, template composition, and structure guides.
+- `references/validation/` for checklist policy, verification rules, and decision formats.
+- `references/structure/` for folder organization and sub-folder versioning.
+- `references/workflows/` for command workflows and worked examples.
+- `references/debugging/` for troubleshooting and root-cause methodology.
+- `references/config/` for runtime environment configuration.
+
+### Template and Script Sources of Truth
+
+- Level definitions and template size guidance: [level_specifications.md](./references/templates/level_specifications.md)
+- Template usage and composition rules: [template_guide.md](./references/templates/template_guide.md)
+- Use `templates/level_N/` for operational templates; `core/` and `addendum/` remain composition inputs.
+- Script architecture, build outputs, and runtime entrypoints: [scripts/README.md](./scripts/README.md)
+- Memory save JSON schema and workflow contracts: [save_workflow.md](./references/memory/save_workflow.md)
+
+Primary operational scripts:
+- `spec/validate.sh`
+- `spec/create.sh`
+- `spec/archive.sh`
+- `spec/check-completion.sh`
+- `spec/recommend-level.sh`
+- `templates/compose.sh`
+
+### Resource Loading Levels
+
+| Level       | When to Load               | Resources                    |
+| ----------- | -------------------------- | ---------------------------- |
+| ALWAYS      | Every skill invocation     | Shared patterns + SKILL.md   |
+| CONDITIONAL | If intent signals match   | Intent-mapped references     |
+| ON_DEMAND   | Only on explicit request   | Deep-dive quality standards  |
+
+### Smart Router Pseudocode
+
+The authoritative routing logic for scoped loading, weighted intent scoring, and ambiguity handling.
 
 ```python
 from pathlib import Path
@@ -246,42 +282,6 @@ def route_speckit_resources(task):
 
     return {"intents": intents, "resources": loaded}
 ```
-
-### Resource Loading Levels
-
-| Level       | When to Load               | Resources                    |
-| ----------- | -------------------------- | ---------------------------- |
-| ALWAYS      | Every skill invocation     | Shared patterns + SKILL.md   |
-| CONDITIONAL | If intent signals match   | Intent-mapped references     |
-| ON_DEMAND   | Only on explicit request   | Deep-dive quality standards  |
-
-### Resource Domains
-
-The router discovers markdown resources recursively from `references/` and `assets/` and then applies intent scoring from `RESOURCE_MAP`. Keep this section domain-focused rather than static file inventories.
-
-- `references/memory/` for context retrieval, save workflows, trigger behavior, and indexing.
-- `references/templates/` for level selection, template composition, and structure guides.
-- `references/validation/` for checklist policy, verification rules, and decision formats.
-- `references/structure/` for folder organization and sub-folder versioning.
-- `references/workflows/` for command workflows and worked examples.
-- `references/debugging/` for troubleshooting and root-cause methodology.
-- `references/config/` for runtime environment configuration.
-
-### Template and Script Sources of Truth
-
-- Level definitions and template size guidance: [level_specifications.md](./references/templates/level_specifications.md)
-- Template usage and composition rules: [template_guide.md](./references/templates/template_guide.md)
-- Use `templates/level_N/` for operational templates; `core/` and `addendum/` remain composition inputs.
-- Script architecture, build outputs, and runtime entrypoints: [scripts/README.md](./scripts/README.md)
-- Memory save JSON schema and workflow contracts: [save_workflow.md](./references/memory/save_workflow.md)
-
-Primary operational scripts:
-- `spec/validate.sh`
-- `spec/create.sh`
-- `spec/archive.sh`
-- `spec/check-completion.sh`
-- `spec/recommend-level.sh`
-- `templates/compose.sh`
 
 ---
 
