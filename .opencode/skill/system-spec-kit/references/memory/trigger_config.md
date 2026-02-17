@@ -254,8 +254,6 @@ Override defaults in your spec folder's memory settings:
 <!-- specs/001-feature/memory/config.md -->
 # Memory Configuration
 
-<!-- /ANCHOR:customization -->
-<!-- ANCHOR:custom-triggers -->
 ## Custom Triggers
 - "feature complete"
 - "milestone reached"
@@ -264,7 +262,7 @@ Override defaults in your spec folder's memory settings:
 
 ---
 
-<!-- /ANCHOR:custom-triggers -->
+<!-- /ANCHOR:customization -->
 <!-- ANCHOR:performance-targets -->
 ## 5. PERFORMANCE TARGETS
 
@@ -332,16 +330,12 @@ function optimizedDetection(userMessage: string): CompiledTrigger | undefined {
 ### When to Save (Manual Guidelines)
 
 ```markdown
-<!-- /ANCHOR:best-practices -->
-<!-- ANCHOR:save-more-frequently-when -->
 ## Save More Frequently When:
 - Complex multi-file refactoring
 - Debugging sessions with many iterations
 - Research with valuable discoveries
 - Architecture decisions in progress
 
-<!-- /ANCHOR:save-more-frequently-when -->
-<!-- ANCHOR:save-less-frequently-when -->
 ## Save Less Frequently When:
 - Simple, repetitive tasks
 - Well-understood changes
@@ -359,7 +353,7 @@ Before deploying custom triggers:
 
 ---
 
-<!-- /ANCHOR:save-less-frequently-when -->
+<!-- /ANCHOR:best-practices -->
 <!-- ANCHOR:related-resources -->
 ## 7. RELATED RESOURCES
 

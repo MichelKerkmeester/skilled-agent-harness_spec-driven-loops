@@ -404,13 +404,13 @@ workflow:
         deny: "Disable the tool completely"
         ask: "Prompt for approval before running (edit, bash, webfetch only)"
     behavioral_rules_template: |
-      ✅ ALWAYS:
+      ALWAYS:
         - [What must it always do based on purpose?]
       
-      ❌ NEVER:
+      NEVER:
         - [What must it never do based on boundaries?]
       
-      ⚠️ ESCALATE IF:
+      ESCALATE IF:
         - [When should it ask for help?]
     outputs:
     - agent_mode_selected
@@ -435,10 +435,10 @@ workflow:
     - Load agent_template.md for structure reference
     - Generate YAML frontmatter with all required fields
     - Write intro paragraph (1-2 sentences based on purpose)
-    - "Write Section 1 - 🔄 CORE WORKFLOW (numbered steps based on use cases)"
-    - "Write Section 2 - 📋 [DOMAIN SECTION] (content based on purpose)"
-    - "Write Section 3 - 🚫 ANTI-PATTERNS (Never rules from planning)"
-    - "Write Section 4 - 🔗 RELATED RESOURCES (skills and resources)"
+    - "Write Section 1 - CORE WORKFLOW (numbered steps based on use cases)"
+    - "Write Section 2 - [DOMAIN SECTION] (content based on purpose)"
+    - "Write Section 3 - ANTI-PATTERNS (Never rules from planning)"
+    - "Write Section 4 - RELATED RESOURCES (skills and resources)"
     - Write file to agent_path
     - Verify file exists and is readable
     frontmatter_template: |

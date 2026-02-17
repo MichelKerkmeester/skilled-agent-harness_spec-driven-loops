@@ -297,7 +297,7 @@ STEP 6 (Content) REQUIREMENTS:
 ├─ MUST follow template structure from assets/
 ├─ MUST NOT leave placeholder text
 ├─ MUST include required sections: WHEN TO USE, HOW IT WORKS, RULES
-├─ RULES section MUST have subsections: ✅ ALWAYS, ❌ NEVER, ⚠️ ESCALATE IF
+├─ RULES section MUST have subsections: ALWAYS, NEVER, ESCALATE IF
 ├─ SECTION BOUNDARIES (CRITICAL):
 │   ├─ "WHEN TO USE" = ONLY activation triggers, use cases, exclusions
 │   │   └─ NO file references, NO navigation guides

@@ -1,4 +1,8 @@
 // @ts-nocheck
+// ---------------------------------------------------------------
+// TEST: HANDLER MEMORY INDEX COOLDOWN
+// ---------------------------------------------------------------
+
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 const mocks = vi.hoisted(() => ({

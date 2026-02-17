@@ -1,4 +1,8 @@
 // @ts-nocheck
+// ---------------------------------------------------------------
+// TEST: T209 TRIGGER SETATTENTIONSCORE
+// ---------------------------------------------------------------
+
 import { describe, it, expect, beforeAll } from 'vitest';
 import * as fs from 'fs';
 import * as path from 'path';

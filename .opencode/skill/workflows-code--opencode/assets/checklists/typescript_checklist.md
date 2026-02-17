@@ -329,8 +329,6 @@ interface SearchConfig {
 Copy this for code review:
 
 ```markdown
-<!-- /ANCHOR:checklist-template -->
-<!-- ANCHOR:typescript-code-quality-check -->
 ## TypeScript Code Quality Check
 
 ### P0 - HARD BLOCKERS
@@ -364,7 +362,7 @@ Copy this for code review:
 
 ---
 
-<!-- /ANCHOR:typescript-code-quality-check -->
+<!-- /ANCHOR:checklist-template -->
 <!-- ANCHOR:validation-commands -->
 ## 6. VALIDATION COMMANDS
 

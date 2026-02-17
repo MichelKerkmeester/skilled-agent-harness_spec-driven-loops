@@ -9,6 +9,7 @@ Templates for creating llms.txt files that provide AI assistants with project co
 
 ---
 
+<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 ### What Is llms.txt?
@@ -58,6 +59,8 @@ AI receives question about project
 
 ---
 
+<!-- /ANCHOR:overview -->
+<!-- ANCHOR:when-to-create-llms-txt -->
 ## 2. WHEN TO CREATE LLMS.TXT
 
 ### Create llms.txt When
@@ -130,6 +133,8 @@ Does the project have multiple documentation files (3+)?
 
 ---
 
+<!-- /ANCHOR:when-to-create-llms-txt -->
+<!-- ANCHOR:llms-txt-structure -->
 ## 3. LLMS.TXT STRUCTURE
 
 ### Required Components
@@ -192,6 +197,8 @@ Each link must include a description:
 
 ---
 
+<!-- /ANCHOR:llms-txt-structure -->
+<!-- ANCHOR:writing-process -->
 ## 4. WRITING PROCESS
 
 ### Step 1: Gather Documentation Inventory
@@ -240,6 +247,8 @@ For each link, answer: "What will the reader learn from this resource?"
 
 ---
 
+<!-- /ANCHOR:writing-process -->
+<!-- ANCHOR:section-guidelines -->
 ## 5. SECTION GUIDELINES
 
 ### Opening Section (Required)
@@ -312,6 +321,8 @@ Secondary resources that aren't essential:
 
 ---
 
+<!-- /ANCHOR:section-guidelines -->
+<!-- ANCHOR:url-and-link-patterns -->
 ## 6. URL AND LINK PATTERNS
 
 ### GitHub URL Patterns
@@ -343,6 +354,8 @@ When both exist, prefer markdown over rendered HTML:
 
 ---
 
+<!-- /ANCHOR:url-and-link-patterns -->
+<!-- ANCHOR:project-type-variations -->
 ## 7. PROJECT TYPE VARIATIONS
 
 ### Libraries/Packages
@@ -383,6 +396,8 @@ When both exist, prefer markdown over rendered HTML:
 
 ---
 
+<!-- /ANCHOR:project-type-variations -->
+<!-- ANCHOR:anti-patterns-to-avoid -->
 ## 8. ANTI-PATTERNS TO AVOID
 
 ### Too Granular
@@ -453,6 +468,8 @@ The DataStream class provides methods for...
 
 ---
 
+<!-- /ANCHOR:anti-patterns-to-avoid -->
+<!-- ANCHOR:llms-txt-checklist -->
 ## 9. LLMS.TXT CHECKLIST
 
 Before publishing, verify:
@@ -482,6 +499,8 @@ Before publishing, verify:
 
 ---
 
+<!-- /ANCHOR:llms-txt-checklist -->
+<!-- ANCHOR:decision-tree-section-selection -->
 ## 10. DECISION TREE: SECTION SELECTION
 
 ### For Libraries/Packages
@@ -506,6 +525,8 @@ Before publishing, verify:
 
 ---
 
+<!-- /ANCHOR:decision-tree-section-selection -->
+<!-- ANCHOR:best-practices-summary -->
 ## 11. BEST PRACTICES SUMMARY
 
 ### DO
@@ -532,6 +553,8 @@ Before publishing, verify:
 
 ---
 
+<!-- /ANCHOR:best-practices-summary -->
+<!-- ANCHOR:complete-examples -->
 ## 12. COMPLETE EXAMPLES
 
 ### Example 1: Python Library (Data Processing)
@@ -803,6 +826,8 @@ The skill provides:
 
 ---
 
+<!-- /ANCHOR:complete-examples -->
+<!-- ANCHOR:common-customizations -->
 ## 13. COMMON CUSTOMIZATIONS
 
 ### Open Source Project
@@ -839,6 +864,8 @@ Add sections:
 
 ---
 
+<!-- /ANCHOR:common-customizations -->
+<!-- ANCHOR:related-resources -->
 ## 14. RELATED RESOURCES
 
 ### Templates
@@ -854,3 +881,4 @@ Add sections:
 ---
 
 Use these templates and patterns when generating llms.txt files for different project types!
+<!-- /ANCHOR:related-resources -->

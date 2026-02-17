@@ -26,7 +26,6 @@ describe.skip('API Key Validation (T087-T090) [deferred - requires external API/
 
   describe('VALIDATION_TIMEOUT_MS constant', () => {
     it('should be 5000ms (CHK-170)', () => {
-      // const { VALIDATION_TIMEOUT_MS } = require('../../shared/dist/embeddings/factory');
       // expect(VALIDATION_TIMEOUT_MS).toBe(5000);
     });
   });
@@ -38,7 +37,6 @@ describe.skip('API Key Validation (T087-T090) [deferred - requires external API/
       process.env.EMBEDDINGS_PROVIDER = 'hf-local';
 
       try {
-        // const result = await validateApiKey();
         // expect(result.valid).toBe(true);
         // expect(result.provider).toBe('hf-local');
       } finally {
@@ -54,7 +52,6 @@ describe.skip('API Key Validation (T087-T090) [deferred - requires external API/
       process.env.EMBEDDINGS_PROVIDER = 'voyage';
 
       try {
-        // const result = await validateApiKey();
         // expect(result.valid).toBe(false);
         // expect(result.errorCode).toBe('E050');
         // expect(result.actions).toBeDefined();
@@ -72,7 +69,6 @@ describe.skip('API Key Validation (T087-T090) [deferred - requires external API/
       process.env.EMBEDDINGS_PROVIDER = 'openai';
 
       try {
-        // const result = await validateApiKey();
         // expect(result.valid).toBe(false);
         // expect(result.actions).toBeDefined();
         // expect(result.actions!.length).toBeGreaterThan(0);
@@ -86,16 +82,12 @@ describe.skip('API Key Validation (T087-T090) [deferred - requires external API/
   describe('Valid API key (CHK-167)', () => {
     it('should return success when API key is valid', async () => {
       // Only meaningful with a real API key configured
-      // const result = await validateApiKey({ timeout: 5000 });
       // expect(result.valid).toBe(true);
     });
   });
 
   describe('Timeout (CHK-170)', () => {
     it('should respect the configured timeout', async () => {
-      // const start = Date.now();
-      // const result = await validateApiKey({ timeout: 5000 });
-      // const elapsed = Date.now() - start;
       // expect(elapsed).toBeLessThanOrEqual(5500);
     });
   });

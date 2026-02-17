@@ -283,37 +283,21 @@ specs/049-oauth-implementation/
 ```markdown
 # Session Summary
 
-<!-- /ANCHOR:document-structure -->
-<!-- ANCHOR:overview-2 -->
 ## Overview
 [Brief session description]
 
-<!-- /ANCHOR:overview-2 -->
-<!-- ANCHOR:key-decisions -->
 ## Key Decisions
-<!-- ANCHOR:decisions-{spec#} -->
 [Decision documentation]
-<!-- /ANCHOR:decisions-{spec#} -->
 
-<!-- /ANCHOR:key-decisions -->
-<!-- ANCHOR:implementation-details -->
 ## Implementation Details
-<!-- ANCHOR:implementation-{spec#} -->
 [What was built]
-<!-- /ANCHOR:implementation-{spec#} -->
 
-<!-- /ANCHOR:implementation-details -->
-<!-- ANCHOR:conversation-flow -->
 ## Conversation Flow
 [Full dialogue with timestamps]
 
-<!-- /ANCHOR:conversation-flow -->
-<!-- ANCHOR:files-modified -->
 ## Files Modified
 [List of changed files]
 
-<!-- /ANCHOR:files-modified -->
-<!-- ANCHOR:session-metadata -->
 ## Session Metadata
 [Statistics and timing]
 ```
@@ -323,9 +307,7 @@ specs/049-oauth-implementation/
 Each section includes HTML comment anchors for targeted retrieval (implemented in v1.7.2):
 
 ```html
-<!-- ANCHOR:category-keywords-spec# -->
 Content here...
-<!-- /ANCHOR:category-keywords-spec# -->
 ```
 
 **Categories**: `implementation`, `decision`, `guide`, `architecture`, `files`, `discovery`, `integration`
@@ -361,7 +343,7 @@ For retrieval, `memory_context()` routes queries across 7 intents (including `fi
 
 ---
 
-<!-- /ANCHOR:session-metadata -->
+<!-- /ANCHOR:document-structure -->
 <!-- ANCHOR:metadata -->
 ## 7. METADATA
 

@@ -287,7 +287,7 @@ quality_gates:
       - { id: checklist_verified, points: 15 }
       - { id: review_approval, points: 10 }
     on_fail: "PLANNING GATE BLOCKED ({score}/100, need 70). Missing: {missing_checks}. HALTED."
-    review_integration: { dispatch: true, agent: "@review", blocking: true, on_review_fail: "P0 items blocking. Address before implementation." }
+    review_integration: { blocking: true, on_review_fail: "P0 items blocking. Address before implementation." }
   post_execution:
     location: "After Step 12"
     threshold: 70

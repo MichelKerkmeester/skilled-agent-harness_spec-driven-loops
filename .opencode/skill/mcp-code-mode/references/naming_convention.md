@@ -567,5 +567,5 @@ cat .utcp_config.json | grep '"name"'
 - [tool_catalog.md](./tool_catalog.md) - Complete list of 200+ tools organized by MCP server
 - [configuration.md](./configuration.md) - Configuration guide showing how manual names are defined
 - [architecture.md](./architecture.md) - System architecture and execution environment
-- [workflows.md](./workflows.md) - Workflow examples showing correct naming patterns in practice<!-- /ANCHOR:related-resources -->
+- [workflows.md](./workflows.md) - Workflow examples showing correct naming patterns in practice
 <!-- /ANCHOR:related-resources -->

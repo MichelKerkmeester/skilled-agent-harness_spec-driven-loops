@@ -9,6 +9,7 @@ Standards for clear, reliable install guides with validation checkpoints at each
 
 ---
 
+<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 This reference defines standards for install guide documentation. Install guides require special consideration: unclear instructions lead to failed setups, wasted time, and frustrated users.
@@ -23,6 +24,8 @@ This reference defines standards for install guide documentation. Install guides
 
 ---
 
+<!-- /ANCHOR:overview -->
+<!-- ANCHOR:core-principles -->
 ## 2. Core Principles
 
 ### Phase-Based Installation
@@ -52,6 +55,8 @@ Phase 5: Verification     → Validate: System works end-to-end
 
 ---
 
+<!-- /ANCHOR:core-principles -->
+<!-- ANCHOR:required-sections -->
 ## 3. REQUIRED SECTIONS
 
 | Section | Required | Purpose |
@@ -83,6 +88,8 @@ Phase 5: Verification     → Validate: System works end-to-end
 
 ---
 
+<!-- /ANCHOR:required-sections -->
+<!-- ANCHOR:phase-validation-pattern -->
 ## 4. PHASE VALIDATION PATTERN
 
 ### Validation Checkpoint Format
@@ -114,6 +121,8 @@ Phase 5: Verification     → Validate: System works end-to-end
 
 ---
 
+<!-- /ANCHOR:phase-validation-pattern -->
+<!-- ANCHOR:platform-configuration -->
 ## 5. PLATFORM CONFIGURATION
 
 ### Multi-Platform Instructions
@@ -163,6 +172,8 @@ $env:MCP_PATH = "$HOME\.mcp"
 
 ---
 
+<!-- /ANCHOR:platform-configuration -->
+<!-- ANCHOR:troubleshooting-standards -->
 ## 6. TROUBLESHOOTING STANDARDS
 
 ### Error Table Format (3-column required)
@@ -191,6 +202,8 @@ $env:MCP_PATH = "$HOME\.mcp"
 
 ---
 
+<!-- /ANCHOR:troubleshooting-standards -->
+<!-- ANCHOR:quality-criteria -->
 ## 7. QUALITY CRITERIA
 
 ### DQI Components for Install Guides
@@ -223,6 +236,8 @@ $env:MCP_PATH = "$HOME\.mcp"
 
 ---
 
+<!-- /ANCHOR:quality-criteria -->
+<!-- ANCHOR:cross-references -->
 ## 8. CROSS-REFERENCES
 
 - **[core_standards.md](./core_standards.md)** - Filename conventions, heading format, emoji rules
@@ -241,3 +256,4 @@ $env:MCP_PATH = "$HOME\.mcp"
 - [ ] Time estimate included
 - [ ] All code blocks have language tags
 - [ ] STOP conditions at each validation
+<!-- /ANCHOR:cross-references -->

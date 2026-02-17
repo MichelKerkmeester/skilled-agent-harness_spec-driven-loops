@@ -432,26 +432,26 @@ workflow:
     activities:
     - Load skill_md_template.md for structure reference
     - Fill YAML frontmatter (name, description, allowed-tools, version)
-    - "Write Section 1 - 🎯 WHEN TO USE (activation triggers and use cases ONLY)"
-    - "Write Section 2 - 🧭 SMART ROUTING (Activation Detection flowchart + Resource Router)"
-    - "Write Section 3 - 🛠️ HOW IT WORKS"
-    - "Write Section 4 - 📋 RULES (ALWAYS/NEVER/ESCALATE IF)"
-    - "Write Section 5 - 🏆 SUCCESS CRITERIA"
-    - "Write Section 6 - 🔌 INTEGRATION POINTS"
-    - "Write Section 7 - 📋 QUICK REFERENCE (optional)"
-    - "Write Section 8 - 📦 BUNDLED RESOURCES (optional)"
+    - "Write Section 1 - WHEN TO USE (activation triggers and use cases ONLY)"
+    - "Write Section 2 - SMART ROUTING (Activation Detection flowchart + Resource Router)"
+    - "Write Section 3 - HOW IT WORKS"
+    - "Write Section 4 - RULES (ALWAYS/NEVER/ESCALATE IF)"
+    - "Write Section 5 - SUCCESS CRITERIA"
+    - "Write Section 6 - INTEGRATION POINTS"
+    - "Write Section 7 - QUICK REFERENCE (optional)"
+    - "Write Section 8 - BUNDLED RESOURCES (optional)"
     - Create bundled resources from Step 4 plan
     - Delete unused example/placeholder files
     section_boundary_rules:
       critical_distinction: |
-        ❌ WRONG: Navigation Guide in "When to Use"
-        ❌ WRONG: Separate "Navigation Guide" subsection listing files
-        ✅ RIGHT: File refs inline in Activation Detection flowchart and Resource Router
+        WRONG: Navigation Guide in "When to Use"
+        WRONG: Separate "Navigation Guide" subsection listing files
+        RIGHT: File refs inline in Activation Detection flowchart and Resource Router
 
         "When to Use" = WHEN (triggers, conditions, use cases)
         "Smart Routing" = WHAT (files inline in flowchart + Router load() calls)
 
-        ⚠️ ANTI-PATTERN: Do NOT create a separate "Navigation Guide" - it's redundant
+        ANTI-PATTERN: Do NOT create a separate "Navigation Guide" - it's redundant
       section_1_when_to_use:
         allowed_content:
         - Activation Triggers

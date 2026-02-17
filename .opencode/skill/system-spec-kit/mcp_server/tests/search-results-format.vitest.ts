@@ -1,4 +1,8 @@
 // @ts-nocheck
+// ---------------------------------------------------------------
+// TEST: SEARCH RESULTS FORMAT
+// ---------------------------------------------------------------
+
 // Converted from: search-results-format.test.ts (custom runner)
 import { describe, it, expect } from 'vitest';
 import { safeJsonParse, validateFilePathLocal, formatSearchResults } from '../formatters/search-results';

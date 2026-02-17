@@ -709,5 +709,5 @@ call_tool_chain({
 
 ### Install Guide
 
-- [INSTALL_GUIDE.md](INSTALL_GUIDE.md) - Installation and configuration<!-- /ANCHOR:related-resources -->
+- [INSTALL_GUIDE.md](INSTALL_GUIDE.md) - Installation and configuration
 <!-- /ANCHOR:related-resources -->

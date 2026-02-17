@@ -1,3 +1,7 @@
+// ---------------------------------------------------------------
+// TEST: MEMORY SEARCH INTEGRATION
+// ---------------------------------------------------------------
+
 import { describe, it, expect } from 'vitest';
 
 // DB-dependent imports (commented out - requires better-sqlite3 / dist modules)
@@ -31,7 +35,6 @@ describe('Memory Search Integration (T601-T650) [deferred - requires DB test fix
     });
 
     it('T603: GRADE_GOOD increases stability', () => {
-      // const newStability = fsrsScheduler.updateStability(1.0, 5.0, 0.9, fsrsScheduler.GRADE_GOOD);
       // expect(newStability).toBeGreaterThan(1.0);
       expect(true).toBe(true);
     });
@@ -94,7 +97,6 @@ describe('Memory Search Integration (T601-T650) [deferred - requires DB test fix
     });
 
     it('T619: FSRS stability bounds (0.1 to 365) respected', () => {
-      // const minResult = fsrsScheduler.updateStability(0.01, 5, 0.9, fsrsScheduler.GRADE_AGAIN);
       // expect(minResult).toBeGreaterThanOrEqual(0.1);
       expect(true).toBe(true);
     });
@@ -122,7 +124,6 @@ describe('Memory Search Integration (T601-T650) [deferred - requires DB test fix
     });
 
     it('T624: Each concept generates embedding', () => {
-      // for (const concept of concepts) { emb = await generateQueryEmbedding(concept) }
       expect(true).toBe(true);
     });
 
@@ -249,7 +250,6 @@ describe('Memory Search Integration (T601-T650) [deferred - requires DB test fix
     });
 
     it('T649: Timestamp parseable as Date', () => {
-      // const parsed = new Date(timestamp);
       // expect(isNaN(parsed.getTime())).toBe(false);
       expect(true).toBe(true);
     });

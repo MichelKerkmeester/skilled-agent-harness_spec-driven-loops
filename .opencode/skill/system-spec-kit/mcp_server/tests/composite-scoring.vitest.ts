@@ -1,4 +1,8 @@
 // @ts-nocheck
+// ---------------------------------------------------------------
+// TEST: COMPOSITE SCORING
+// ---------------------------------------------------------------
+
 // Converted from: composite-scoring.test.ts (custom runner)
 
 import { describe, it, expect } from 'vitest'

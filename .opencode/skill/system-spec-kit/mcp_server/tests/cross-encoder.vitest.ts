@@ -1,4 +1,8 @@
 // @ts-nocheck
+// ---------------------------------------------------------------
+// TEST: CROSS ENCODER
+// ---------------------------------------------------------------
+
 import { describe, it, expect, beforeEach } from 'vitest';
 import * as crossEncoder from '../lib/search/cross-encoder';
 

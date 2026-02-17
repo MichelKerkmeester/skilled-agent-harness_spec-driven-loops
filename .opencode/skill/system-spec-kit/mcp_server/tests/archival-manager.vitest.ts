@@ -1,4 +1,8 @@
 // @ts-nocheck
+// ---------------------------------------------------------------
+// TEST: ARCHIVAL MANAGER
+// ---------------------------------------------------------------
+
 import { describe, it, expect, beforeEach, afterEach } from 'vitest';
 
 import * as archivalManager from '../lib/cache/cognitive/archival-manager';

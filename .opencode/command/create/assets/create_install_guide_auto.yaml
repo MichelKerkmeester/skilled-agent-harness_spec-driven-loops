@@ -418,6 +418,7 @@ workflow:
     quality_requirements:
       ai_first_section: "Copy-paste prompt with placeholders, 'What AI will do' list"
       sections: "All 11 sections numbered"
+      heading_style: "Use plain text section headings; emojis optional (never required)"
       tables: "For prerequisites, features, comparisons"
       code_blocks: "Always specify language"
       diagrams: "ASCII for architecture/flow"
@@ -569,7 +570,7 @@ workflow:
 # ─────────────────────────────────────────────────────────────────
 templates:
   ai_first_section: |
-    ## 🤖 AI-FIRST INSTALL GUIDE
+    ## AI-FIRST INSTALL GUIDE
 
     **Copy and paste this prompt to your AI assistant to get installation help:**
 
@@ -605,28 +606,28 @@ templates:
 
     ---
 
-    ## 🤖 AI-FIRST INSTALL GUIDE
+    ## AI-FIRST INSTALL GUIDE
 
     [AI-First section from template above]
 
     ---
 
-    #### 📋 TABLE OF CONTENTS
+    #### TABLE OF CONTENTS
 
-    1. [📖 OVERVIEW](#1--overview)
-    2. [📋 PREREQUISITES](#2--prerequisites)
-    3. [📥 INSTALLATION](#3--installation)
-    4. [⚙️ CONFIGURATION](#4-️-configuration)
-    5. [✅ VERIFICATION](#5--verification)
-    6. [🚀 USAGE](#6--usage)
-    7. [🎯 FEATURES](#7--features)
-    8. [💡 EXAMPLES](#8--examples)
-    9. [🔧 TROUBLESHOOTING](#9--troubleshooting)
-    10. [📚 RESOURCES](#10--resources)
+    1. [OVERVIEW](#1--overview)
+    2. [PREREQUISITES](#2--prerequisites)
+    3. [INSTALLATION](#3--installation)
+    4. [CONFIGURATION](#4--configuration)
+    5. [VERIFICATION](#5--verification)
+    6. [USAGE](#6--usage)
+    7. [FEATURES](#7--features)
+    8. [EXAMPLES](#8--examples)
+    9. [TROUBLESHOOTING](#9--troubleshooting)
+    10. [RESOURCES](#10--resources)
 
     ---
 
-    ## 1. 📖 OVERVIEW
+    ## 1. OVERVIEW
 
     [2-3 paragraphs explaining what the project is and why to use it]
 
@@ -650,7 +651,7 @@ templates:
 
     ---
 
-    ## 2. 📋 PREREQUISITES
+    ## 2. PREREQUISITES
 
     Before installing, ensure you have:
 
@@ -679,7 +680,7 @@ templates:
 
     ---
 
-    ## 3. 📥 INSTALLATION
+    ## 3. INSTALLATION
 
     ### Step 1: [First Step Name]
 
@@ -705,7 +706,7 @@ templates:
 
     ---
 
-    ## 4. ⚙️ CONFIGURATION
+    ## 4. CONFIGURATION
 
     ### Option A: Configure for Claude Code CLI
 
@@ -747,7 +748,7 @@ templates:
 
     ---
 
-    ## 5. ✅ VERIFICATION
+    ## 5. VERIFICATION
 
     ### Check 1: [First Verification]
 
@@ -764,7 +765,7 @@ templates:
 
     ---
 
-    ## 6. 🚀 USAGE
+    ## 6. USAGE
 
     ### Basic Usage Pattern
 
@@ -776,7 +777,7 @@ templates:
 
     ---
 
-    ## 7. 🎯 FEATURES
+    ## 7. FEATURES
 
     ### 7.1 [Feature Name]
 
@@ -794,7 +795,7 @@ templates:
 
     ---
 
-    ## 8. 💡 EXAMPLES
+    ## 8. EXAMPLES
 
     ### Example 1: [Use Case Name]
 
@@ -808,7 +809,7 @@ templates:
 
     ---
 
-    ## 9. 🔧 TROUBLESHOOTING
+    ## 9. TROUBLESHOOTING
 
     ### [Problem Category 1]
 
@@ -828,7 +829,7 @@ templates:
 
     ---
 
-    ## 10. 📚 RESOURCES
+    ## 10. RESOURCES
 
     ### Documentation
 

@@ -1,3 +1,7 @@
+// ---------------------------------------------------------------
+// TEST: EMBEDDINGS
+// ---------------------------------------------------------------
+
 // Converted from: embeddings.test.ts (custom runner)
 // NOTE: lib/interfaces/embedding-provider module does NOT exist on disk.
 // All tests are deferred via describe.skip until the module is implemented.

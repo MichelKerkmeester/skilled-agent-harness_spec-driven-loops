@@ -1,4 +1,8 @@
 // @ts-nocheck
+// ---------------------------------------------------------------
+// TEST: T207 PROTECT LEARNING
+// ---------------------------------------------------------------
+
 // Converted from: t207-protect-learning.test.ts (custom runner)
 import { describe, it, expect } from 'vitest';
 import fs from 'fs';

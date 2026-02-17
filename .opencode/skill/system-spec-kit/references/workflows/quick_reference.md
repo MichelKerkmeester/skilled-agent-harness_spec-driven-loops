@@ -99,15 +99,13 @@ cp .opencode/skill/system-spec-kit/templates/level_3+/decision-record.md specs/#
 ### Optional Templates (Level 3 Only)
 
 ```bash
-<!-- /ANCHOR:template-copy-commands-progressive -->
-<!-- ANCHOR:comprehensive-research-from-root-templates-folder -->
 ## Comprehensive Research (from root templates folder):
 cp .opencode/skill/system-spec-kit/templates/research.md specs/###-name/research.md
 ```
 
 ---
 
-<!-- /ANCHOR:comprehensive-research-from-root-templates-folder -->
+<!-- /ANCHOR:template-copy-commands-progressive -->
 <!-- ANCHOR:essential-commands -->
 ## 4. ESSENTIAL COMMANDS
 
@@ -587,8 +585,6 @@ For each checklist item:
 ### Example: Properly Verified Checklist
 
 ```markdown
-<!-- /ANCHOR:checklist-verification-protocol-level-2 -->
-<!-- ANCHOR:verification-checklist -->
 ## Verification Checklist
 
 ### P0 - Blockers (MUST pass)
@@ -625,7 +621,7 @@ For each checklist item:
 
 ---
 
-<!-- /ANCHOR:verification-checklist -->
+<!-- /ANCHOR:checklist-verification-protocol-level-2 -->
 <!-- ANCHOR:core-principle -->
 ## 18. Core Principle
 

@@ -7,6 +7,9 @@
 import { describe, it, expect } from 'vitest';
 import * as coActivation from '../lib/cache/cognitive/co-activation';
 
+type CoActivationDb = Parameters<typeof coActivation.init>[0];
+const coActivationExports = coActivation as unknown as Record<string, unknown>;
+
 describe('Co-Activation Module', () => {
   /* ─────────────────────────────────────────────────────────────
      Module Exports
@@ -28,7 +31,7 @@ describe('Co-Activation Module', () => {
     ];
 
     it.each(expectedExports)('Export "%s" exists', (exp) => {
-      expect((coActivation as any)[exp]).toBeDefined();
+      expect(coActivationExports[exp]).toBeDefined();
     });
   });
 
@@ -99,7 +102,7 @@ describe('Co-Activation Module', () => {
     // It accepts any Database.Database argument
 
     it('init(null) does not throw', () => {
-      expect(() => (coActivation as any).init(null)).not.toThrow();
+      expect(() => coActivation.init(null as unknown as CoActivationDb)).not.toThrow();
     });
 
     it('isEnabled() returns boolean based on env var, not DB state', () => {

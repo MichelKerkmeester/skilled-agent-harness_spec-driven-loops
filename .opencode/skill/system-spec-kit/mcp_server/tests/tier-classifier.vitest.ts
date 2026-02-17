@@ -6,6 +6,8 @@
 import { describe, it, expect } from 'vitest';
 import * as tierClassifier from '../lib/cache/cognitive/tier-classifier';
 
+const tierClassifierModule = tierClassifier as unknown as Record<string, unknown>;
+
 describe('Tier Classifier (5-State Model)', () => {
 
   /* ─────────────────────────────────────────────────────────────
@@ -483,7 +485,7 @@ describe('Tier Classifier (5-State Model)', () => {
 
     for (const name of expectedExports) {
       it(`Export: ${name}`, () => {
-        expect((tierClassifier as any)[name]).toBeDefined();
+        expect(tierClassifierModule[name]).toBeDefined();
       });
     }
   });

@@ -1,3 +1,7 @@
+// ---------------------------------------------------------------
+// TEST: SCHEMA MIGRATION
+// ---------------------------------------------------------------
+
 import { describe, it, expect } from 'vitest';
 
 // DB-dependent imports (commented out - requires better-sqlite3 / dist modules)
@@ -8,7 +12,6 @@ describe('Schema Migration v4 (T701-T750) [deferred - requires DB test fixtures]
 
   describe('T701-T710 - Column Existence', () => {
     it('T701: Database initialized with full schema', () => {
-      // const freshDb = vectorIndex.initializeDb(freshDbPath);
       // expect(freshDb).toBeTruthy();
       expect(true).toBe(true);
     });

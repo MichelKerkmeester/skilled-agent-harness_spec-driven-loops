@@ -1,4 +1,8 @@
 // @ts-nocheck
+// ---------------------------------------------------------------
+// TEST: HANDLER MEMORY CONTEXT
+// ---------------------------------------------------------------
+
 import { describe, it, expect, beforeAll, vi } from 'vitest';
 
 // Mock core/db-state to prevent real DB operations that cause timeouts.
@@ -7,7 +11,7 @@ import { describe, it, expect, beforeAll, vi } from 'vitest';
 // { checkDatabaseUpdated, waitForEmbeddingModel } from '../core' which
 // re-exports from './db-state'.
 vi.mock('../core/db-state', async (importOriginal) => {
-  const actual = await importOriginal() as any;
+  const actual = await importOriginal() as unknown;
   return {
     ...actual,
     checkDatabaseUpdated: vi.fn(async () => false),
@@ -17,7 +21,7 @@ vi.mock('../core/db-state', async (importOriginal) => {
 });
 
 vi.mock('../core', async (importOriginal) => {
-  const actual = await importOriginal() as any;
+  const actual = await importOriginal() as unknown;
   return {
     ...actual,
     checkDatabaseUpdated: vi.fn(async () => false),

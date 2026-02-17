@@ -1,4 +1,8 @@
 // @ts-nocheck
+// ---------------------------------------------------------------
+// TEST: INTENT CLASSIFIER
+// ---------------------------------------------------------------
+
 import { describe, it, expect } from 'vitest';
 import * as intentClassifier from '../lib/search/intent-classifier';
 

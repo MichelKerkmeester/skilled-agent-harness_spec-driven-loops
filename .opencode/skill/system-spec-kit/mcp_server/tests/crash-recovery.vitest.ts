@@ -1,3 +1,7 @@
+// ---------------------------------------------------------------
+// TEST: CRASH RECOVERY
+// ---------------------------------------------------------------
+
 import { describe, it, expect } from 'vitest';
 
 // DB-dependent imports (commented out - requires better-sqlite3)
@@ -8,13 +12,11 @@ describe('Crash Recovery (T009-T016, T071-T075) [deferred - requires DB test fix
 
   describe('T073 - Session State Table', () => {
     it('should create session_state table and indexes', () => {
-      // const result = sessionManager.ensureSessionStateSchema();
       // expect(result.success).toBe(true);
       expect(true).toBe(true);
     });
 
     it('should save session state correctly', () => {
-      // const result = sessionManager.saveSessionState(sessionId, state);
       // expect(result.success).toBe(true);
       expect(true).toBe(true);
     });
@@ -22,7 +24,6 @@ describe('Crash Recovery (T009-T016, T071-T075) [deferred - requires DB test fix
 
   describe('T074 - Reset Interrupted Sessions', () => {
     it('should mark active sessions as interrupted on startup', () => {
-      // const result = sessionManager.resetInterruptedSessions();
       // expect(result.success).toBe(true);
       // expect(result.interruptedCount).toBe(2);
       expect(true).toBe(true);
@@ -34,7 +35,6 @@ describe('Crash Recovery (T009-T016, T071-T075) [deferred - requires DB test fix
     });
 
     it('should list interrupted sessions', () => {
-      // const result = sessionManager.getInterruptedSessions();
       // expect(result.sessions).toHaveLength(2);
       expect(true).toBe(true);
     });
@@ -42,14 +42,12 @@ describe('Crash Recovery (T009-T016, T071-T075) [deferred - requires DB test fix
 
   describe('T075 - Recover State with _recovered Flag', () => {
     it('should recover interrupted session with _recovered=true', () => {
-      // const result = sessionManager.recoverState(sessionId);
       // expect(result.success).toBe(true);
       // expect(result._recovered).toBe(true);
       expect(true).toBe(true);
     });
 
     it('should handle non-existent session gracefully', () => {
-      // const result = sessionManager.recoverState('does-not-exist');
       // expect(result.success).toBe(true);
       // expect(result.state).toBeNull();
       // expect(result._recovered).toBe(false);
@@ -59,7 +57,6 @@ describe('Crash Recovery (T009-T016, T071-T075) [deferred - requires DB test fix
 
   describe('T071 - Generate CONTINUE_SESSION.md', () => {
     it('should generate content with required sections', () => {
-      // const content = sessionManager.generateContinueSessionMd(sessionState);
       // expect(content).toContain('# CONTINUE SESSION');
       // expect(content).toContain('## Session State');
       // expect(content).toContain('## Context Summary');
@@ -77,14 +74,12 @@ describe('Crash Recovery (T009-T016, T071-T075) [deferred - requires DB test fix
 
   describe('T072 - Write CONTINUE_SESSION.md on Checkpoint', () => {
     it('should write CONTINUE_SESSION.md to spec folder', () => {
-      // const result = sessionManager.writeContinueSessionMd(sessionId, specFolder);
       // expect(result.success).toBe(true);
       // expect(result.filePath).toBeTruthy();
       expect(true).toBe(true);
     });
 
     it('should checkpoint session (save + generate md)', () => {
-      // const result = sessionManager.checkpointSession(sessionId, state, specFolder);
       // expect(result.success).toBe(true);
       expect(true).toBe(true);
     });
@@ -115,7 +110,6 @@ describe('Crash Recovery (T009-T016, T071-T075) [deferred - requires DB test fix
     });
 
     it('should serialize state_data as JSON', () => {
-      // const parsedData = JSON.parse(row.state_data);
       // expect(parsedData.testKey).toBe('testValue');
       expect(true).toBe(true);
     });
@@ -129,7 +123,6 @@ describe('Crash Recovery (T009-T016, T071-T075) [deferred - requires DB test fix
 
   describe('T011 - Status Transition: active -> completed', () => {
     it('should transition from active to completed', () => {
-      // const completeResult = sessionManager.completeSession(sessionId);
       // expect(completeResult.success).toBe(true);
       // expect(row.status).toBe('completed');
       expect(true).toBe(true);
@@ -138,7 +131,6 @@ describe('Crash Recovery (T009-T016, T071-T075) [deferred - requires DB test fix
 
   describe('T012 - Status Transition: active -> interrupted (crash)', () => {
     it('should transition from active to interrupted on crash simulation', () => {
-      // const resetResult = sessionManager.resetInterruptedSessions();
       // expect(row.status).toBe('interrupted');
       expect(true).toBe(true);
     });

@@ -260,8 +260,6 @@ For Level 3+ spec folders, maintain a decision log table in decision-record.md:
 ### Format
 
 ```markdown
-<!-- /ANCHOR:session-decision-log-level-3 -->
-<!-- ANCHOR:session-decision-log -->
 ## Session Decision Log
 
 | Timestamp | Gate | Decision | Confidence | Uncertainty | Evidence Summary |
@@ -287,7 +285,7 @@ For Level 3+ spec folders, maintain a decision log table in decision-record.md:
 
 ---
 
-<!-- /ANCHOR:session-decision-log -->
+<!-- /ANCHOR:session-decision-log-level-3 -->
 <!-- ANCHOR:dual-threshold-validation -->
 ## 6. DUAL-THRESHOLD VALIDATION
 

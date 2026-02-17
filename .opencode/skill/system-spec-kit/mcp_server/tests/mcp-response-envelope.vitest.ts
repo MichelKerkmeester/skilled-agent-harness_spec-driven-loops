@@ -1,4 +1,8 @@
 // @ts-nocheck
+// ---------------------------------------------------------------
+// TEST: MCP RESPONSE ENVELOPE
+// ---------------------------------------------------------------
+
 import { describe, it, expect } from 'vitest';
 
 import * as handlers from '../handlers/index';
@@ -69,7 +73,7 @@ async function callHandlerSafe(
   handlerName: string,
   args: any,
 ): Promise<{ result: any; skipped: boolean; skipReason?: string }> {
-  const handlerFn = (handlers as any)[handlerName];
+  const handlerFn = (handlers as unknown)[handlerName];
   if (typeof handlerFn !== 'function') {
     return { result: null, skipped: true, skipReason: `Handler '${handlerName}' not found` };
   }

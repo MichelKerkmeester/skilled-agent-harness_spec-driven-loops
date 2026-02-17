@@ -1,4 +1,8 @@
 // @ts-nocheck
+// ---------------------------------------------------------------
+// TEST: INTEGRATION SESSION DEDUP
+// ---------------------------------------------------------------
+
 import { describe, it, expect } from 'vitest';
 import * as searchHandler from '../handlers/memory-search';
 import * as triggerHandler from '../handlers/memory-triggers';

@@ -9,6 +9,7 @@ Filename conventions, document type detection, and structural validation rules f
 
 ---
 
+<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 ### What Are Core Standards?
@@ -26,6 +27,8 @@ This reference provides deep-dive technical guidance on structure validation, do
 
 ---
 
+<!-- /ANCHOR:overview -->
+<!-- ANCHOR:filename-conventions -->
 ## 2. FILENAME CONVENTIONS
 
 **Rule**: lowercase snake_case for all `.md` files
@@ -43,6 +46,8 @@ This reference provides deep-dive technical guidance on structure validation, do
 
 ---
 
+<!-- /ANCHOR:filename-conventions -->
+<!-- ANCHOR:document-type-detection -->
 ## 3. DOCUMENT TYPE DETECTION
 
 **Priority order** (highest to lowest):
@@ -84,6 +89,8 @@ This reference provides deep-dive technical guidance on structure validation, do
 
 ---
 
+<!-- /ANCHOR:document-type-detection -->
+<!-- ANCHOR:structural-violations -->
 ## 4. STRUCTURAL VIOLATIONS
 
 ### Safe Auto-Fixes (Non-Blocking)
@@ -144,6 +151,8 @@ allowed-tools: Read, Write, Edit
 
 ---
 
+<!-- /ANCHOR:structural-violations -->
+<!-- ANCHOR:common-violations-quick-reference -->
 ## 5. COMMON VIOLATIONS QUICK REFERENCE
 
 | Violation | Detection | Fix | Auto |
@@ -167,6 +176,8 @@ allowed-tools: Read, Write, Edit
 
 ---
 
+<!-- /ANCHOR:common-violations-quick-reference -->
+<!-- ANCHOR:divider-usage-rules -->
 ## 6. DIVIDER USAGE RULES
 
 ### Horizontal Rule Placement
@@ -213,6 +224,8 @@ Content...
 
 ---
 
+<!-- /ANCHOR:divider-usage-rules -->
+<!-- ANCHOR:document-type-requirements -->
 ## 7. DOCUMENT TYPE REQUIREMENTS
 
 ### Document Type Standards
@@ -296,6 +309,8 @@ Format: Plain text navigation file for LLMs
 
 ---
 
+<!-- /ANCHOR:document-type-requirements -->
+<!-- ANCHOR:related-resources -->
 ## 8. RELATED RESOURCES
 
 ### Reference Files
@@ -318,3 +333,4 @@ Format: Plain text navigation file for LLMs
 
 ### Additional Resources
 - `document_style_guide.md` - Project-specific style guide (create if needed)
+<!-- /ANCHOR:related-resources -->

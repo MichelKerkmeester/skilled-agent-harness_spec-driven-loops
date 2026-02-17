@@ -1,4 +1,8 @@
 // @ts-nocheck
+// ---------------------------------------------------------------
+// TEST: SESSION MANAGER
+// ---------------------------------------------------------------
+
 import { describe, it, expect, beforeAll, beforeEach, afterAll } from 'vitest';
 
 import Database from 'better-sqlite3';

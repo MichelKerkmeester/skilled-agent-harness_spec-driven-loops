@@ -176,19 +176,13 @@ git push -u origin <feature-branch>
 
 # 2. Create PR using GitHub CLI (preferred)
 gh pr create --title "<title>" --body "$(cat <<'EOF'
-<!-- /ANCHOR:complete-workflow -->
-<!-- ANCHOR:summary -->
 ## Summary
 <2-3 bullet points of what changed>
 
-<!-- /ANCHOR:summary -->
-<!-- ANCHOR:test-plan -->
 ## Test Plan
 - [ ] <verification steps>
 - [ ] All tests pass
 
-<!-- /ANCHOR:test-plan -->
-<!-- ANCHOR:related-issues -->
 ## Related Issues
 Closes #<issue-number> (if applicable)
 EOF
@@ -326,7 +320,7 @@ echo "No worktree cleanup needed."
 
 ---
 
-<!-- /ANCHOR:related-issues -->
+<!-- /ANCHOR:complete-workflow -->
 <!-- ANCHOR:decision-matrix -->
 ## 4. DECISION MATRIX
 
@@ -462,22 +456,16 @@ User: "2"
 Pushed to origin/feature/user-auth
 
 > gh pr create --title "feat(auth): add OAuth2 user authentication" --body "$(cat <<'EOF'
-<!-- /ANCHOR:example-workflows -->
-<!-- ANCHOR:summary-2 -->
 ## Summary
 - Implements OAuth2 authentication flow
 - Adds JWT token management
 - Includes login/logout endpoints
 
-<!-- /ANCHOR:summary-2 -->
-<!-- ANCHOR:test-plan-2 -->
 ## Test Plan
 - [x] All unit tests pass (152 tests)
 - [ ] Manual testing of login flow
 - [ ] Security review
 
-<!-- /ANCHOR:test-plan-2 -->
-<!-- ANCHOR:related-issues-2 -->
 ## Related Issues
 Closes #234
 EOF
@@ -586,7 +574,7 @@ Deleted branch experiment/alternative-approach
 
 ---
 
-<!-- /ANCHOR:related-issues-2 -->
+<!-- /ANCHOR:example-workflows -->
 <!-- ANCHOR:troubleshooting -->
 ## 7. TROUBLESHOOTING
 

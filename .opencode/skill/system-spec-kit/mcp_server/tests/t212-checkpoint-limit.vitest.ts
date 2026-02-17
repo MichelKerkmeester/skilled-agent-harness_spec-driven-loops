@@ -1,4 +1,8 @@
 // @ts-nocheck
+// ---------------------------------------------------------------
+// TEST: T212 CHECKPOINT LIMIT
+// ---------------------------------------------------------------
+
 import { describe, it, expect, beforeAll, afterAll } from 'vitest';
 
 import * as path from 'path';

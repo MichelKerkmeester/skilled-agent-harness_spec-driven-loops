@@ -4,6 +4,7 @@ Document approval flow with multiple reviewers, revision cycles, and escalation 
 
 ---
 
+<!-- ANCHOR:use-case-marketing-content-approval-process -->
 ## Use Case: Marketing Content Approval Process
 
 ```
@@ -311,6 +312,8 @@ Document approval flow with multiple reviewers, revision cycles, and escalation 
 
 ---
 
+<!-- /ANCHOR:use-case-marketing-content-approval-process -->
+<!-- ANCHOR:key-features-demonstrated -->
 ## Key Features Demonstrated
 
 - **Multi-stage approval** - 3 distinct review stages
@@ -323,6 +326,8 @@ Document approval flow with multiple reviewers, revision cycles, and escalation 
 - **Parallel skip paths** - Optional reviews can be bypassed
 - **Final validation gate** - Comprehensive checklist before publish
 
+<!-- /ANCHOR:key-features-demonstrated -->
+<!-- ANCHOR:review-stages -->
 ## Review Stages
 
 1. **Editorial (Stage 1)**
@@ -341,18 +346,24 @@ Document approval flow with multiple reviewers, revision cycles, and escalation 
    - High priority when issues found
    - Revision Count: 3
 
+<!-- /ANCHOR:review-stages -->
+<!-- ANCHOR:loop-back-points -->
 ## Loop-Back Points
 
 - **After Editorial** → Writer revises → Back to Editorial
 - **After Marketing** → Writer updates → Back to Marketing
 - **After Legal** → Writer fixes → Back to Legal (priority)
 
+<!-- /ANCHOR:loop-back-points -->
+<!-- ANCHOR:escalation-triggers -->
 ## Escalation Triggers
 
 - Major scope changes → VP Marketing review
 - Complete rewrite needed → New document cycle
 - Legal non-compliance → Priority revision
 
+<!-- /ANCHOR:escalation-triggers -->
+<!-- ANCHOR:when-to-use-this-pattern -->
 ## When to Use This Pattern
 
 - Document approval workflows
@@ -364,6 +375,8 @@ Document approval flow with multiple reviewers, revision cycles, and escalation 
 - Code review processes
 - Multi-stakeholder approvals
 
+<!-- /ANCHOR:when-to-use-this-pattern -->
+<!-- ANCHOR:design-principles-applied -->
 ## Design Principles Applied
 
 1. **Clear Stage Separation** - Each review phase distinct
@@ -375,8 +388,11 @@ Document approval flow with multiple reviewers, revision cycles, and escalation 
 7. **Time Tracking** - Duration estimates per stage
 8. **Complete Coverage** - All approval paths shown
 
+<!-- /ANCHOR:design-principles-applied -->
+<!-- ANCHOR:typical-timeline -->
 ## Typical Timeline
 
 - **Fast Track** (no revisions): 2 days
 - **Standard** (1-2 revisions): 3-4 days  
 - **Complex** (3+ revisions): 5+ days
+<!-- /ANCHOR:typical-timeline -->

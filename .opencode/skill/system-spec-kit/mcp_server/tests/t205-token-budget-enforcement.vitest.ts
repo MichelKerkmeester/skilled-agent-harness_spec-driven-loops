@@ -1,4 +1,8 @@
 // @ts-nocheck
+// ---------------------------------------------------------------
+// TEST: T205 TOKEN BUDGET ENFORCEMENT
+// ---------------------------------------------------------------
+
 import { describe, it, expect, beforeAll } from 'vitest';
 import * as fs from 'fs';
 import * as path from 'path';
@@ -49,7 +53,7 @@ describe('T205: Token Budget Enforcement [deferred - requires DB test fixtures]'
     it('T205-A3: All 7 layers have positive token budgets', () => {
       const layers = layerDefs.LAYER_DEFINITIONS;
       for (const [id, layer] of Object.entries(layers)) {
-        expect((layer as any).tokenBudget, `${id} should have positive budget`).toBeGreaterThan(0);
+        expect((layer as unknown).tokenBudget, `${id} should have positive budget`).toBeGreaterThan(0);
       }
     });
   });

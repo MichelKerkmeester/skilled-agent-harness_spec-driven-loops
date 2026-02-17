@@ -1,4 +1,8 @@
 // @ts-nocheck
+// ---------------------------------------------------------------
+// TEST: T206 SEARCH ARCHIVAL
+// ---------------------------------------------------------------
+
 // Converted from: t206-search-archival.test.ts (custom runner)
 import { describe, it, expect } from 'vitest';
 import fs from 'fs';

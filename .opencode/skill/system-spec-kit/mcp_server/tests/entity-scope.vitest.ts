@@ -1,3 +1,7 @@
+// ---------------------------------------------------------------
+// TEST: ENTITY SCOPE
+// ---------------------------------------------------------------
+
 // Converted from: entity-scope.test.ts (custom runner)
 import { describe, it, expect } from 'vitest';
 import * as mod from '../lib/parsing/entity-scope';

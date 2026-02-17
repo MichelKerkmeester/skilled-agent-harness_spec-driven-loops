@@ -1,3 +1,7 @@
+// ---------------------------------------------------------------
+// TEST: MEMORY SAVE EXTENDED
+// ---------------------------------------------------------------
+
 import { describe, it, expect, beforeAll } from 'vitest';
 import path from 'path';
 import os from 'os';
@@ -110,6 +114,7 @@ describe('MEMORY SAVE EXTENDED', () => {
     const resolveFn = typeof handler.resolveMemoryReference === 'function'
       ? handler.resolveMemoryReference
       : null;
+    type ResolveReferenceInput = Parameters<NonNullable<typeof resolveFn>>[1];
 
     it.skipIf(!resolveFn)('resolves numeric ID', () => {
       const db = createTestDb();
@@ -171,8 +176,8 @@ describe('MEMORY SAVE EXTENDED', () => {
       const db = createTestDb();
       seedTestMemories(db);
       const r1 = resolveFn!(db, '');
-      const r2 = resolveFn!(db, null as any);
-      const r3 = resolveFn!(db, undefined as any);
+      const r2 = resolveFn!(db, null as unknown as ResolveReferenceInput);
+      const r3 = resolveFn!(db, undefined as unknown as ResolveReferenceInput);
       expect(r1).toBeNull();
       expect(r2).toBeNull();
       expect(r3).toBeNull();
@@ -212,10 +217,11 @@ describe('MEMORY SAVE EXTENDED', () => {
     const processFn = typeof handler.processCausalLinks === 'function'
       ? handler.processCausalLinks
       : null;
+    type CausalLinksInput = Parameters<NonNullable<typeof processFn>>[2];
 
     it.skipIf(!processFn)('empty result for null input', () => {
       const db = createTestDb();
-      const result = processFn!(db, 100, null as any);
+      const result = processFn!(db, 100, null as unknown as CausalLinksInput);
       expect(result.processed).toBe(0);
       expect(result.inserted).toBe(0);
       expect(result.resolved).toBe(0);
@@ -224,7 +230,7 @@ describe('MEMORY SAVE EXTENDED', () => {
 
     it.skipIf(!processFn)('empty result for empty object', () => {
       const db = createTestDb();
-      const result = processFn!(db, 100, {} as any);
+      const result = processFn!(db, 100, {} as CausalLinksInput);
       expect(result.processed).toBe(0);
       expect(result.inserted).toBe(0);
       db.close();
@@ -232,7 +238,7 @@ describe('MEMORY SAVE EXTENDED', () => {
 
     it.skipIf(!processFn)('skips unknown link types', () => {
       const db = createTestDb();
-      const result = processFn!(db, 100, { unknown_type: ['ref1'] } as any);
+      const result = processFn!(db, 100, { unknown_type: ['ref1'] } as unknown as CausalLinksInput);
       expect(result.processed).toBe(0);
       expect(result.inserted).toBe(0);
       db.close();
@@ -241,7 +247,7 @@ describe('MEMORY SAVE EXTENDED', () => {
     it.skipIf(!processFn)('tracks unresolved references', () => {
       const db = createTestDb();
       seedTestMemories(db);
-      const result = processFn!(db, 100, { caused_by: ['nonexistent-ref'] } as any);
+      const result = processFn!(db, 100, { caused_by: ['nonexistent-ref'] } as CausalLinksInput);
       expect(result.processed).toBe(1);
       expect(result.unresolved).toHaveLength(1);
       db.close();
@@ -251,7 +257,7 @@ describe('MEMORY SAVE EXTENDED', () => {
       const db = createTestDb();
       seedTestMemories(db);
       // Memory 1 exists; caused_by with reverse=true means edge from resolved -> memoryId
-      const result = processFn!(db, 10, { caused_by: ['1'] } as any);
+      const result = processFn!(db, 10, { caused_by: ['1'] } as CausalLinksInput);
       expect(result.processed).toBe(1);
       expect(result.resolved).toBe(1);
       expect(result.inserted).toBe(1);
@@ -261,7 +267,7 @@ describe('MEMORY SAVE EXTENDED', () => {
     it.skipIf(!processFn)('handles multiple references', () => {
       const db = createTestDb();
       seedTestMemories(db);
-      const result = processFn!(db, 10, { caused_by: ['1', '2', 'nonexistent'] } as any);
+      const result = processFn!(db, 10, { caused_by: ['1', '2', 'nonexistent'] } as CausalLinksInput);
       expect(result.processed).toBe(3);
       expect(result.resolved).toBe(2);
       expect(result.unresolved).toHaveLength(1);
@@ -270,14 +276,14 @@ describe('MEMORY SAVE EXTENDED', () => {
 
     it.skipIf(!processFn)('skips empty arrays', () => {
       const db = createTestDb();
-      const result = processFn!(db, 100, { caused_by: [], supersedes: [] } as any);
+      const result = processFn!(db, 100, { caused_by: [], supersedes: [] } as unknown as CausalLinksInput);
       expect(result.processed).toBe(0);
       db.close();
     });
 
     it.skipIf(!processFn)('handles non-array values', () => {
       const db = createTestDb();
-      const result = processFn!(db, 100, { caused_by: 'not-an-array' } as any);
+      const result = processFn!(db, 100, { caused_by: 'not-an-array' } as unknown as CausalLinksInput);
       expect(result.processed).toBe(0);
       db.close();
     });
@@ -285,7 +291,7 @@ describe('MEMORY SAVE EXTENDED', () => {
     it.skipIf(!processFn)('supersedes link type', () => {
       const db = createTestDb();
       seedTestMemories(db);
-      const result = processFn!(db, 10, { supersedes: ['3'] } as any);
+      const result = processFn!(db, 10, { supersedes: ['3'] } as CausalLinksInput);
       expect(result.processed).toBe(1);
       expect(result.resolved).toBe(1);
       expect(result.inserted).toBe(1);
@@ -729,6 +735,8 @@ This is test content.
     const indexFileFn = typeof handler.indexMemoryFile === 'function'
       ? handler.indexMemoryFile
       : null;
+    type IndexFileOptions = Parameters<NonNullable<typeof indexFileFn>>[1];
+    type ParsedOverride = NonNullable<NonNullable<IndexFileOptions>['parsedOverride']>;
 
     it.skipIf(!indexFileFn)('rejects invalid file', async () => {
       await expect(indexFileFn!('/tmp/nonexistent-file.md')).rejects.toThrow();
@@ -745,7 +753,7 @@ This is test content.
         contextType: 'implementation',
         importanceTier: 'normal',
         hasCausalLinks: false,
-      } as any;
+      } as unknown as ParsedOverride;
 
       try {
         await indexFileFn!('/fake/path.md', { parsedOverride: fakeParsed });

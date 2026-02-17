@@ -298,8 +298,6 @@ class ValidationResult:
 Copy this for code review:
 
 ```markdown
-<!-- /ANCHOR:checklist-template -->
-<!-- ANCHOR:python-code-quality-check -->
 ## Python Code Quality Check
 
 ### P0 - HARD BLOCKERS
@@ -333,7 +331,7 @@ Copy this for code review:
 
 ---
 
-<!-- /ANCHOR:python-code-quality-check -->
+<!-- /ANCHOR:checklist-template -->
 <!-- ANCHOR:validation-commands -->
 ## 6. VALIDATION COMMANDS
 

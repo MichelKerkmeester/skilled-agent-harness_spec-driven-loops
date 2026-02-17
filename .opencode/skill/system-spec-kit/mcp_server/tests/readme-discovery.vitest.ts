@@ -1,4 +1,8 @@
 // @ts-nocheck
+// ---------------------------------------------------------------
+// TEST: README DISCOVERY
+// ---------------------------------------------------------------
+
 /**
  * Tests for README discovery functions (Spec 111: README Anchor Schema)
  *

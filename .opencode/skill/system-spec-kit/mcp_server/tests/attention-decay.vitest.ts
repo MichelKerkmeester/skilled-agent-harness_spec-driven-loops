@@ -8,6 +8,9 @@ import { describe, it, expect } from 'vitest';
 import * as attentionDecay from '../lib/cache/cognitive/attention-decay';
 import * as fsrsScheduler from '../lib/cache/cognitive/fsrs-scheduler';
 
+type AttentionDecayDb = Parameters<typeof attentionDecay.init>[0];
+const attentionDecayExports = attentionDecay as unknown as Record<string, unknown>;
+
 /* ─────────────────────────────────────────────────────────────
    DECAY_CONFIG
 ──────────────────────────────────────────────────────────────── */
@@ -28,7 +31,7 @@ describe('Attention Decay Module', () => {
     it('All importance tiers defined', () => {
       const tiers = attentionDecay.DECAY_CONFIG.decayRateByTier;
       const expectedTiers = ['constitutional', 'critical', 'important', 'normal', 'temporary', 'deprecated'];
-      const missingTiers = expectedTiers.filter(t => (tiers as any)[t] === undefined);
+      const missingTiers = expectedTiers.filter(t => (tiers as Record<string, unknown>)[t] === undefined);
       expect(missingTiers).toHaveLength(0);
     });
 
@@ -47,16 +50,16 @@ describe('Attention Decay Module', () => {
 
   describe('init()', () => {
     it('init(null) throws error', () => {
-      expect(() => attentionDecay.init(null as any)).toThrow('Database reference is required');
+      expect(() => attentionDecay.init(null as unknown as AttentionDecayDb)).toThrow('Database reference is required');
     });
 
     it('init(undefined) throws error', () => {
-      expect(() => attentionDecay.init(undefined as any)).toThrow('Database reference is required');
+      expect(() => attentionDecay.init(undefined as unknown as AttentionDecayDb)).toThrow('Database reference is required');
     });
 
     it('init(validDb) stores reference', () => {
       const mockDb = { prepare: () => { }, exec: () => { } };
-      attentionDecay.init(mockDb as any);
+      attentionDecay.init(mockDb as unknown as AttentionDecayDb);
       const db = attentionDecay.getDb();
       // @ts-ignore: test mock comparison
       expect(db).toBe(mockDb);
@@ -390,21 +393,21 @@ describe('Attention Decay Module', () => {
     const legacyExports = ['activateMemory', 'getDecayRate', 'DECAY_CONFIG', 'clearSession'];
 
     it.each(legacyExports)('Legacy export: %s', (name) => {
-      expect((attentionDecay as any)[name]).toBeDefined();
+      expect(attentionDecayExports[name]).toBeDefined();
     });
 
     // FSRS exports
     const fsrsExports = ['applyFsrsDecay', 'calculateRetrievabilityDecay', 'activateMemoryWithFsrs'];
 
     it.each(fsrsExports)('FSRS export: %s', (name) => {
-      expect((attentionDecay as any)[name]).toBeDefined();
+      expect(attentionDecayExports[name]).toBeDefined();
     });
 
     // Composite exports
     const compositeExports = ['calculateCompositeAttention', 'getAttentionBreakdown', 'applyCompositeDecay'];
 
     it.each(compositeExports)('Composite export: %s', (name) => {
-      expect((attentionDecay as any)[name]).toBeDefined();
+      expect(attentionDecayExports[name]).toBeDefined();
     });
   });
 
@@ -454,7 +457,7 @@ describe('Attention Decay Module', () => {
     ];
 
     it.each(expectedExports)('Export: %s', (name) => {
-      expect((attentionDecay as any)[name]).toBeDefined();
+      expect(attentionDecayExports[name]).toBeDefined();
     });
   });
 });

@@ -1,2 +1,5 @@
-// Re-export from shared (moved in Phase 2 of JS->TS migration)
+// ---------------------------------------------------------------
+// UTILS: PATH SECURITY BARREL
+// ---------------------------------------------------------------
+
 export * from '@spec-kit/shared/utils/path-security';

@@ -159,8 +159,6 @@ All checklist items MUST be tagged with priority markers:
 
 **Format Example:**
 ```markdown
-<!-- /ANCHOR:checklist-quality-requirements -->
-<!-- ANCHOR:implementation-checklist -->
 ## Implementation Checklist
 
 ### P0 - Blockers
@@ -202,7 +200,7 @@ Completed checklist items MUST include verification evidence:
 
 ---
 
-<!-- /ANCHOR:implementation-checklist -->
+<!-- /ANCHOR:checklist-quality-requirements -->
 <!-- ANCHOR:validation-rules-reference -->
 ## 8. VALIDATION RULES REFERENCE
 
@@ -274,8 +272,6 @@ If scope grows during implementation, escalate by adding the required files:
 
 **Changelog example:**
 ```markdown
-<!-- /ANCHOR:level-migration-during-implementation -->
-<!-- ANCHOR:change-log -->
 ## Change Log
 - 2025-11-15: Created as Level 1 (simple bug fix) - spec.md, plan.md, tasks.md
 - 2025-11-16: Escalated to Level 2 (discovered validation needs) - added checklist.md
@@ -286,7 +282,7 @@ If scope grows during implementation, escalate by adding the required files:
 
 ---
 
-<!-- /ANCHOR:change-log -->
+<!-- /ANCHOR:level-migration-during-implementation -->
 <!-- ANCHOR:quick-decision-flowchart -->
 ## 10. QUICK DECISION FLOWCHART
 
@@ -365,3 +361,4 @@ This decision matrix addresses the following spec requirements:
 ### Related Skills
 - `system-spec-kit` - Spec folder workflow orchestrator
 - `workflows-code` - Implementation, debugging, and verification lifecycle<!-- /ANCHOR:related-resources -->
+<!-- /ANCHOR:related-resources -->

@@ -1,4 +1,8 @@
 // @ts-nocheck
+// ---------------------------------------------------------------
+// TEST: INTEGRATION ERROR RECOVERY
+// ---------------------------------------------------------------
+
 import { describe, it, expect, beforeAll } from 'vitest';
 
 import * as searchHandlerModule from '../handlers/memory-search';
@@ -136,7 +140,7 @@ describe('Integration Error Recovery (T532) [deferred - requires DB test fixture
 
   describe('Edge Case Error Scenarios', () => {
     it('T532-5: Unknown tool name not in exports', () => {
-      const unknownHandler = (handlersBarrelModule as any)['handleNonExistentTool'];
+      const unknownHandler = (handlersBarrelModule as unknown)['handleNonExistentTool'];
       expect(unknownHandler).toBeUndefined();
     });
 
@@ -144,7 +148,7 @@ describe('Integration Error Recovery (T532) [deferred - requires DB test fixture
       if (!searchHandlerModule?.handleMemorySearch) return;
 
       try {
-        const result = await searchHandlerModule.handleMemorySearch({ query: 12345 } as any);
+        const result = await searchHandlerModule.handleMemorySearch({ query: 12345 } as unknown);
         // Handler accepted coerced input — valid behavior (type coercion handled)
         expect(result).toBeDefined();
       } catch (error: unknown) {

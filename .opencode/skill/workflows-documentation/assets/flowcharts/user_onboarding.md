@@ -4,6 +4,7 @@ Complete user onboarding journey with embedded multi-step processes.
 
 ---
 
+<!-- ANCHOR:use-case-product-onboarding-with-profile-content-creation -->
 ## Use Case: Product Onboarding with Profile & Content Creation
 
 Generic onboarding flow integrating value propositions, celebrations, and multi-step profile/content creation.
@@ -291,6 +292,8 @@ Generic onboarding flow integrating value propositions, celebrations, and multi-
 
 ---
 
+<!-- /ANCHOR:use-case-product-onboarding-with-profile-content-creation -->
+<!-- ANCHOR:key-features-demonstrated -->
 ## Key Features Demonstrated
 
 - **Layered onboarding** - Initial signup + enhanced onboarding layer
@@ -303,6 +306,8 @@ Generic onboarding flow integrating value propositions, celebrations, and multi-
 - **Progressive disclosure** - Information revealed at appropriate times
 - **Success criteria** - Clear completion checklist
 
+<!-- /ANCHOR:key-features-demonstrated -->
+<!-- ANCHOR:when-to-use-this-pattern -->
 ## When to Use This Pattern
 
 - Multi-phase onboarding flows
@@ -313,6 +318,8 @@ Generic onboarding flow integrating value propositions, celebrations, and multi-
 - Complex setup with celebrations
 - Gradual feature unlock patterns
 
+<!-- /ANCHOR:when-to-use-this-pattern -->
+<!-- ANCHOR:design-principles-applied -->
 ## Design Principles Applied
 
 1. **Context Before Effort** - Explain why before asking for work
@@ -323,6 +330,8 @@ Generic onboarding flow integrating value propositions, celebrations, and multi-
 6. **Flexibility** - Save draft vs publish options
 7. **Education** - Explain features as they're introduced
 
+<!-- /ANCHOR:design-principles-applied -->
+<!-- ANCHOR:estimated-time-to-complete -->
 ## Estimated Time to Complete
 
 - Initial signup: ~3 minutes
@@ -333,3 +342,4 @@ Generic onboarding flow integrating value propositions, celebrations, and multi-
 - Success screen: 30-45 seconds
 
 **Total**: ~12-15 minutes for complete onboarding
+<!-- /ANCHOR:estimated-time-to-complete -->

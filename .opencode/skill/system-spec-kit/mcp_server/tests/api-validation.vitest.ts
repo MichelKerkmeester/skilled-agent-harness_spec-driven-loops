@@ -89,7 +89,6 @@ describe.skip('API Validation (T177-T184) [deferred - requires external API/star
         model: 'voyage-4',
       });
 
-      // const result = await validateApiKey();
       // expect(result.valid).toBe(true);
       // expect(result.provider).toBe('voyage');
     });
@@ -106,7 +105,6 @@ describe.skip('API Validation (T177-T184) [deferred - requires external API/star
         model: 'text-embedding-3-small',
       });
 
-      // const result = await validateApiKey();
       // expect(result.valid).toBe(true);
       // expect(result.provider).toBe('openai');
     });
@@ -118,7 +116,6 @@ describe.skip('API Validation (T177-T184) [deferred - requires external API/star
       delete process.env.OPENAI_API_KEY;
       process.env.EMBEDDINGS_PROVIDER = 'hf-local';
 
-      // const result = await validateApiKey();
       // expect(result.valid).toBe(true);
       // expect(result.provider).toBe('hf-local');
       // expect(result.reason).toContain('Local provider');
@@ -129,7 +126,6 @@ describe.skip('API Validation (T177-T184) [deferred - requires external API/star
       delete process.env.OPENAI_API_KEY;
       process.env.EMBEDDINGS_PROVIDER = 'ollama';
 
-      // const result = await validateApiKey();
       // expect(result.valid).toBe(true);
       // expect(result.provider).toBe('ollama');
     });
@@ -147,9 +143,6 @@ describe.skip('API Validation (T177-T184) [deferred - requires external API/star
 
       mockFetch(200, {}, { delay: 6000 });
 
-      // const start = Date.now();
-      // const result = await validateApiKey({ timeout: 100 });
-      // const elapsed = Date.now() - start;
       // expect(result.valid).toBe(false);
       // expect(result.errorCode).toBe('E053');
       // expect(result.error).toContain('timed out');
@@ -165,7 +158,6 @@ describe.skip('API Validation (T177-T184) [deferred - requires external API/star
 
       mockFetch(401, { error: { message: 'Invalid API key' } });
 
-      // const result = await validateApiKey();
       // expect(result.valid).toBe(false);
       // expect(result.errorCode).toBe('E050');
       // expect(result.httpStatus).toBe(401);
@@ -178,7 +170,6 @@ describe.skip('API Validation (T177-T184) [deferred - requires external API/star
 
       mockFetch(403, { error: { message: 'Access forbidden' } });
 
-      // const result = await validateApiKey();
       // expect(result.valid).toBe(false);
       // expect(result.errorCode).toBe('E050');
       // expect(result.httpStatus).toBe(403);
@@ -193,7 +184,6 @@ describe.skip('API Validation (T177-T184) [deferred - requires external API/star
 
       mockFetch(429, { error: { message: 'Rate limit exceeded' } });
 
-      // const result = await validateApiKey();
       // expect(result.valid).toBe(true);
       // expect(result.httpStatus).toBe(429);
       // expect(result.warning).toContain('rate limit');
@@ -208,7 +198,6 @@ describe.skip('API Validation (T177-T184) [deferred - requires external API/star
 
       mockFetch(500, { error: { message: 'Internal server error' } });
 
-      // const result = await validateApiKey();
       // expect(result.valid).toBe(true);
       // expect(result.httpStatus).toBe(500);
       // expect(result.warning).toContain('500');
@@ -221,7 +210,6 @@ describe.skip('API Validation (T177-T184) [deferred - requires external API/star
 
       mockFetch(503, { error: { message: 'Service unavailable' } });
 
-      // const result = await validateApiKey();
       // expect(result.valid).toBe(true);
       // expect(result.httpStatus).toBe(503);
     });
@@ -233,7 +221,6 @@ describe.skip('API Validation (T177-T184) [deferred - requires external API/star
       delete process.env.OPENAI_API_KEY;
       process.env.EMBEDDINGS_PROVIDER = 'hf-local';
 
-      // const result = await validateApiKey();
       // expect(result.valid).toBe(true);
       // expect(result.reason).toContain('no API key required');
     });

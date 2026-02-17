@@ -9,6 +9,7 @@ Get started with Figma MCP in 5 minutes covering prerequisites and first command
 
 ---
 
+<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 ### Two Options Available
@@ -46,6 +47,8 @@ project/
 
 ---
 
+<!-- /ANCHOR:overview -->
+<!-- ANCHOR:verification -->
 ## 2. VERIFICATION
 
 ### Step 1: Verify Code Mode
@@ -88,6 +91,8 @@ call_tool_chain({
 
 ---
 
+<!-- /ANCHOR:verification -->
+<!-- ANCHOR:first-commands -->
 ## 3. FIRST COMMANDS
 
 ### Get a Figma File
@@ -178,6 +183,8 @@ call_tool_chain({
 
 ---
 
+<!-- /ANCHOR:first-commands -->
+<!-- ANCHOR:common-workflows -->
 ## 4. COMMON WORKFLOWS
 
 ### Design File Access
@@ -211,6 +218,8 @@ call_tool_chain({
 
 ---
 
+<!-- /ANCHOR:common-workflows -->
+<!-- ANCHOR:troubleshooting -->
 ## 5. TROUBLESHOOTING
 
 ### Tool Not Found
@@ -259,6 +268,8 @@ await figma.figma_get_file({...});
 
 ---
 
+<!-- /ANCHOR:troubleshooting -->
+<!-- ANCHOR:related-resources -->
 ## 6. RELATED RESOURCES
 
 | Guide | When to Use |
@@ -281,3 +292,5 @@ await figma.figma_get_file({...});
 ---
 
 **Remember**: All Figma tools use the naming pattern `figma.figma_{tool_name}` when called via Code Mode.
+
+<!-- /ANCHOR:related-resources -->

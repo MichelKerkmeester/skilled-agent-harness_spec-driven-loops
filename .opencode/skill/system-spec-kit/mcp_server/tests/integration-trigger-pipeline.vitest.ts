@@ -1,4 +1,8 @@
 // @ts-nocheck
+// ---------------------------------------------------------------
+// TEST: INTEGRATION TRIGGER PIPELINE
+// ---------------------------------------------------------------
+
 import { describe, it, expect, beforeAll } from 'vitest';
 
 import * as triggerHandler from '../handlers/memory-triggers';

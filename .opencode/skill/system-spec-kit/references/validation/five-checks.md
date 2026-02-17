@@ -273,8 +273,6 @@ REMEDIATION:
 For Level 3/3+ spec folders, include Five Checks in the decision record:
 
 ```markdown
-<!-- /ANCHOR:integration-with-decision-records -->
-<!-- ANCHOR:decision-decision-title -->
 ## Decision: [Decision Title]
 
 ### Context
@@ -307,7 +305,7 @@ For Level 3/3+ spec folders, include Five Checks in the decision record:
 
 ---
 
-<!-- /ANCHOR:decision-decision-title -->
+<!-- /ANCHOR:integration-with-decision-records -->
 <!-- ANCHOR:quick-reference -->
 ## 6. QUICK REFERENCE
 

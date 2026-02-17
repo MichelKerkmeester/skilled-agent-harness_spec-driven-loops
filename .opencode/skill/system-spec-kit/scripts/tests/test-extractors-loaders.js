@@ -666,7 +666,6 @@ async function testFileExtractor() {
     const dedupedFiles = extractFilesFromData(dupData, []);
     assertEqual(dedupedFiles.length, 1, 'EXT-File-016: Duplicate files deduplicated');
 
-    // Test legacy format support
     const legacyData = {
       filesModified: [
         { path: 'src/legacy.js', changes_summary: 'Legacy changes' }

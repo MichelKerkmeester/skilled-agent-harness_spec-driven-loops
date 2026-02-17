@@ -1,4 +1,8 @@
 // @ts-nocheck
+// ---------------------------------------------------------------
+// TEST: MEMORY TYPES
+// ---------------------------------------------------------------
+
 import { describe, it, expect } from 'vitest';
 import { MEMORY_TYPES, HALF_LIVES_DAYS } from '../lib/config/memory-types';
 import { inferTypeFromPath, extractExplicitType, inferTypeFromTier, inferTypeFromKeywords, inferMemoryType } from '../lib/config/type-inference';

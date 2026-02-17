@@ -1,4 +1,8 @@
 // @ts-nocheck
+// ---------------------------------------------------------------
+// TEST: MCP INPUT VALIDATION
+// ---------------------------------------------------------------
+
 import { describe, it, expect, beforeAll } from 'vitest';
 
 import * as handlers from '../handlers/index';
@@ -167,7 +171,7 @@ describe('MCP Protocol Input Validation (T534) [deferred - requires DB test fixt
       const testNum = i + 1;
 
       it(`T534-${testNum}: ${entry.tool} rejects invalid input (${entry.description})`, async () => {
-        const handlerFn = (handlers as any)[entry.handler];
+        const handlerFn = (handlers as unknown)[entry.handler];
         if (typeof handlerFn !== 'function') {
           // Handler not found — skip
           return;
@@ -210,7 +214,7 @@ describe('MCP Protocol Input Validation (T534) [deferred - requires DB test fixt
   describe('Null input handling', () => {
     CRITICAL_HANDLERS.forEach((entry) => {
       it(`T534-null: ${entry.tool} handles null input`, async () => {
-        const handlerFn = (handlers as any)[entry.handler];
+        const handlerFn = (handlers as unknown)[entry.handler];
         if (typeof handlerFn !== 'function') {
           return;
         }
@@ -230,7 +234,7 @@ describe('MCP Protocol Input Validation (T534) [deferred - requires DB test fixt
   describe('Undefined input handling', () => {
     CRITICAL_HANDLERS.forEach((entry) => {
       it(`T534-undef: ${entry.tool} handles undefined input`, async () => {
-        const handlerFn = (handlers as any)[entry.handler];
+        const handlerFn = (handlers as unknown)[entry.handler];
         if (typeof handlerFn !== 'function') {
           return;
         }

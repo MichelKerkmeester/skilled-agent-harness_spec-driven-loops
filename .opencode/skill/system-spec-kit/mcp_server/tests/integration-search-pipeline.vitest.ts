@@ -1,4 +1,8 @@
 // @ts-nocheck
+// ---------------------------------------------------------------
+// TEST: INTEGRATION SEARCH PIPELINE
+// ---------------------------------------------------------------
+
 import { describe, it, expect, beforeAll } from 'vitest';
 
 import * as searchHandler from '../handlers/memory-search';
@@ -65,8 +69,8 @@ describe('Integration Search Pipeline (T525) [deferred - requires DB test fixtur
           'T525-3'
         );
         // Handler may accept empty query and return results or error in response
-        if (result && (result as any).content) {
-          const text = JSON.parse((result as any).content[0].text);
+        if (result && (result as unknown).content) {
+          const text = JSON.parse((result as unknown).content[0].text);
           // Either an error response or results response is acceptable
           expect(text.error !== undefined || text.results !== undefined).toBe(true);
         }

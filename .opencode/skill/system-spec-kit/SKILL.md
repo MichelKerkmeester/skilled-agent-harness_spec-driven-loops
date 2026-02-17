@@ -367,14 +367,10 @@ The `checklist.md` is an **ACTIVE VERIFICATION TOOL**, not passive documentation
 
 **Example checklist entry:**
 ```markdown
-<!-- /ANCHOR:how-it-works -->
-<!-- ANCHOR:p0-blockers -->
 ## P0 - Blockers
 - [x] Auth flow working [Test: npm run test:auth - 12/12 passing]
 - [x] No console errors [Screenshot: evidence/console-clean.png]
 
-<!-- /ANCHOR:p0-blockers -->
-<!-- ANCHOR:p1-required -->
 ## P1 - Required  
 - [x] Unit tests added [File: tests/auth.test.ts - 8 new tests]
 - [ ] Documentation updated [DEFERRED: Will complete in follow-up PR]
@@ -456,30 +452,18 @@ Memory files are always saved to the child folder's `memory/` directory (e.g., `
 
 **Memory File Structure:**
 ```markdown
-<!-- ANCHOR:context -->
-<!-- /ANCHOR:p1-required -->
-<!-- ANCHOR:project-context -->
 ## Project Context
 [Auto-generated summary of conversation and decisions]
-<!-- /ANCHOR:context -->
 
-<!-- ANCHOR:state -->
-<!-- /ANCHOR:project-context -->
-<!-- ANCHOR:project-state-snapshot -->
 ## Project State Snapshot
 - Phase: Implementation
 - Last Action: Completed auth middleware
 - Next Action: Add unit tests for login flow
 - Blockers: None
-<!-- /ANCHOR:state -->
 
-<!-- ANCHOR:artifacts -->
-<!-- /ANCHOR:project-state-snapshot -->
-<!-- ANCHOR:key-artifacts -->
 ## Key Artifacts
 - Modified: src/middleware/auth.ts
 - Created: src/utils/jwt.ts
-<!-- /ANCHOR:artifacts -->
 ```
 
 ### Spec Kit Memory System (Integrated)
@@ -605,7 +589,7 @@ Automated validation of spec folder contents via `validate.sh`.
 
 ---
 
-<!-- /ANCHOR:key-artifacts -->
+<!-- /ANCHOR:how-it-works -->
 <!-- ANCHOR:rules -->
 ## 4. RULES
 

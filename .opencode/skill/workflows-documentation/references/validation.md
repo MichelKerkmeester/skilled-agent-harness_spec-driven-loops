@@ -9,6 +9,7 @@ Quality gates, DQI scoring, and script-assisted AI analysis for markdown documen
 
 ---
 
+<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 ### What Is Validation?
@@ -31,6 +32,8 @@ This reference provides deep-dive technical guidance on qualitative assessment, 
 
 ---
 
+<!-- /ANCHOR:overview -->
+<!-- ANCHOR:script-assisted-ai-evaluation -->
 ## 2. SCRIPT-ASSISTED AI EVALUATION
 
 **Two-stage validation pipeline:**
@@ -87,6 +90,8 @@ RESULT: Quality Assessment + Recommendations
 
 ---
 
+<!-- /ANCHOR:script-assisted-ai-evaluation -->
+<!-- ANCHOR:checklist-based-validation -->
 ## 3. CHECKLIST-BASED VALIDATION
 
 ### Structure Checklist (from extract_structure.py)
@@ -169,6 +174,8 @@ AI checks style based on core_standards.md:
 
 ---
 
+<!-- /ANCHOR:checklist-based-validation -->
+<!-- ANCHOR:document-quality-index-dqi -->
 ## 4. DOCUMENT QUALITY INDEX (DQI)
 
 The `extract_structure.py` script computes a **Document Quality Index (DQI)** - a 100% deterministic score from 0-100 based on measurable document attributes. This replaces subjective AI-only assessment with quantifiable metrics.
@@ -249,6 +256,8 @@ The `extract_structure.py` script computes a **Document Quality Index (DQI)** - 
 
 ---
 
+<!-- /ANCHOR:document-quality-index-dqi -->
+<!-- ANCHOR:quality-gates -->
 ## 5. QUALITY GATES
 
 Quality bands are defined in Section 4 (DQI). This section specifies document-specific enforcement requirements.
@@ -305,6 +314,8 @@ Quality bands are defined in Section 4 (DQI). This section specifies document-sp
 
 ---
 
+<!-- /ANCHOR:quality-gates -->
+<!-- ANCHOR:assessment-interpretation -->
 ## 6. ASSESSMENT INTERPRETATION
 
 ### Checklist Passes, Low Content Quality
@@ -348,6 +359,8 @@ Quality bands are defined in Section 4 (DQI). This section specifies document-sp
 
 ---
 
+<!-- /ANCHOR:assessment-interpretation -->
+<!-- ANCHOR:improvement-recommendations -->
 ## 7. IMPROVEMENT RECOMMENDATIONS
 
 **When Quality Rating < 80**:
@@ -370,6 +383,8 @@ Quality bands are defined in Section 4 (DQI). This section specifies document-sp
 
 ---
 
+<!-- /ANCHOR:improvement-recommendations -->
+<!-- ANCHOR:json-output-format -->
 ## 8. JSON OUTPUT FORMAT
 
 **Example extract_structure.py output**:
@@ -478,6 +493,8 @@ RECOMMENDATIONS:
 
 ---
 
+<!-- /ANCHOR:json-output-format -->
+<!-- ANCHOR:validation-commands -->
 ## 9. VALIDATION COMMANDS
 
 **Extract structure for single file**:
@@ -518,6 +535,8 @@ fi
 
 ---
 
+<!-- /ANCHOR:validation-commands -->
+<!-- ANCHOR:related-resources -->
 ## 10. RELATED RESOURCES
 
 ### Reference Files
@@ -536,3 +555,4 @@ fi
 - [install_guide_template.md](../assets/documentation/install_guide_template.md) - Install guide template (14 sections)
 - [llmstxt_templates.md](../assets/documentation/llmstxt_templates.md) - llms.txt with decision framework
 - [frontmatter_templates.md](../assets/documentation/frontmatter_templates.md) - Frontmatter validation & templates (11 sections)
+<!-- /ANCHOR:related-resources -->

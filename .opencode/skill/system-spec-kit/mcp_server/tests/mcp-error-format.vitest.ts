@@ -1,4 +1,8 @@
 // @ts-nocheck
+// ---------------------------------------------------------------
+// TEST: MCP ERROR FORMAT
+// ---------------------------------------------------------------
+
 import { describe, it, expect, beforeAll } from 'vitest';
 
 import * as handlers from '../handlers/index';
@@ -10,7 +14,7 @@ import { RECOVERY_HINTS } from '../lib/errors/recovery-hints';
 // Helper: invoke handler and capture error
 // ---------------------------------------------------------------
 async function captureError(handlerName: string, invalidArgs: any): Promise<{ error: any; response: any } | null> {
-  const handlerFn = (handlers as any)[handlerName];
+  const handlerFn = (handlers as unknown)[handlerName];
   if (typeof handlerFn !== 'function') return null;
 
   try {
@@ -49,7 +53,7 @@ describe('MCP Protocol Error Format Tests (T535) [deferred - requires DB test fi
     });
 
     it('T535-5: Error responses include recovery hint pattern', () => {
-      const recoverHints = RECOVERY_HINTS || (errorsBarrel as any).getRecoveryHint;
+      const recoverHints = RECOVERY_HINTS || (errorsBarrel as unknown).getRecoveryHint;
       if (recoverHints && typeof recoverHints === 'object') {
         expect(Object.keys(recoverHints).length).toBeGreaterThan(0);
       } else if (typeof recoverHints === 'function') {

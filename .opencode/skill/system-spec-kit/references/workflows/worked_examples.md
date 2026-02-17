@@ -179,24 +179,16 @@ Level 3 requires an Architecture Decision Record (ADR):
 ```markdown
 # ADR-001: GraphQL Migration
 
-<!-- /ANCHOR:architecture-change-level-3 -->
-<!-- ANCHOR:status -->
 ## Status
 Approved
 
-<!-- /ANCHOR:status -->
-<!-- ANCHOR:context -->
 ## Context
 Current REST API has N+1 query problems causing performance issues.
 Mobile clients over-fetch data, increasing bandwidth usage.
 
-<!-- /ANCHOR:context -->
-<!-- ANCHOR:decision -->
 ## Decision
 Migrate to GraphQL with Apollo Server for the API layer.
 
-<!-- /ANCHOR:decision -->
-<!-- ANCHOR:consequences -->
 ## Consequences
 
 ### Positive
@@ -234,7 +226,7 @@ specs/010-graphql-migration/
 
 ---
 
-<!-- /ANCHOR:consequences -->
+<!-- /ANCHOR:architecture-change-level-3 -->
 <!-- ANCHOR:resuming-work -->
 ## 5. RESUMING WORK
 

@@ -122,8 +122,6 @@ interface CausalLinksResult {
   errors: { type: string; reference: string; error: string }[];
 }
 
-// FileMetadata: uses incrementalIndex.FileMetadata (has .mtime, not .mtimeMs)
-
 interface AtomicSaveParams {
   file_path: string;
   content: string;
@@ -131,8 +129,6 @@ interface AtomicSaveParams {
 
 interface AtomicSaveOptions {
   force?: boolean;
-  // P4-09 FIX: Removed rollback_on_failure and create_pending_on_failure
-  // which were declared but never read by any code path.
 }
 
 interface AtomicSaveResult {
@@ -155,8 +151,6 @@ interface SaveArgs {
 
 /** Escape special SQL LIKE pattern characters (% and _) for safe queries */
 function escapeLikePattern(str: string): string {
-  // P4-08 FIX: Throw on non-string input instead of silently returning it,
-  // which would cause downstream SQL errors or logic bugs.
   if (typeof str !== 'string') {
     throw new TypeError(`escapeLikePattern expects string, got ${typeof str}`);
   }
@@ -615,10 +609,8 @@ function detectSpecLevelFromParsed(filePath: string): number | null {
 --------------------------------------------------------------- */
 
 /** Parse, validate, and index a memory file with PE gating, FSRS scheduling, and causal links */
-// T306: Added asyncEmbedding option to support non-blocking embedding generation
 async function indexMemoryFile(filePath: string, { force = false, parsedOverride = null as ReturnType<typeof memoryParser.parseMemoryFile> | null, asyncEmbedding = false } = {}): Promise<IndexResult> {
-  // P4-04 FIX: Accept pre-parsed result to avoid double-parsing when caller
-  // (e.g., handleMemorySave) has already parsed the file for preflight.
+  // Reuse parsed content when provided by caller to avoid a second parse.
   const parsed = parsedOverride || memoryParser.parseMemoryFile(filePath);
 
   const validation: ValidationResult = memoryParser.validateParsedMemory(parsed);
@@ -655,9 +647,6 @@ async function indexMemoryFile(filePath: string, { force = false, parsedOverride
   let embeddingStatus = 'pending';
   let embeddingFailureReason: string | null = null;
 
-  // T306: When asyncEmbedding is true, skip synchronous embedding generation entirely.
-  // The memory is saved with embedding_status='pending' and an immediate background
-  // attempt is triggered after save (fire-and-forget, non-blocking).
   if (asyncEmbedding) {
     embeddingFailureReason = 'Deferred: async_embedding requested';
     console.error(`[memory-save] T306: Async embedding mode - deferring embedding for ${path.basename(filePath)}`);
@@ -724,7 +713,6 @@ async function indexMemoryFile(filePath: string, { force = false, parsedOverride
       case predictionErrorGate.ACTION.SUPERSEDE: {
         const existingId = peDecision.existingMemoryId as number;
         console.error(`[PE-Gate] SUPERSEDE: Contradiction detected with memory ${existingId}`);
-        // P4-03 FIX: Check return value of markMemorySuperseded instead of ignoring it
         const superseded = markMemorySuperseded(existingId);
         if (!superseded) {
           console.warn(`[PE-Gate] Failed to mark memory ${existingId} as superseded, proceeding with CREATE anyway`);
@@ -735,7 +723,6 @@ async function indexMemoryFile(filePath: string, { force = false, parsedOverride
       case predictionErrorGate.ACTION.UPDATE: {
         const existingId = peDecision.existingMemoryId as number;
         console.error(`[PE-Gate] UPDATE: High similarity (${peDecision.similarity.toFixed(1)}%), updating existing`);
-        // T048: Guard embedding null in UPDATE path (prevents non-null assertion)
         if (!embedding) {
           console.warn(
             '[Memory Save] embedding unexpectedly null in UPDATE path, falling through to CREATE'
@@ -834,8 +821,6 @@ async function indexMemoryFile(filePath: string, { force = false, parsedOverride
         }
       }
 
-      // P4-07 FIX: BM25 indexing moved inside transaction so it only runs
-      // if the DB transaction succeeds (prevents BM25/DB inconsistency).
       if (bm25Index.isBm25Enabled()) {
         try {
           const bm25 = bm25Index.getIndex();
@@ -901,7 +886,6 @@ async function indexMemoryFile(filePath: string, { force = false, parsedOverride
         memory_id
       );
 
-      // P4-07 FIX: BM25 indexing inside deferred transaction too
       if (bm25Index.isBm25Enabled()) {
         try {
           const bm25 = bm25Index.getIndex();
@@ -935,8 +919,6 @@ async function indexMemoryFile(filePath: string, { force = false, parsedOverride
     }
   }
 
-  // P4-06 FIX: Distinguish deferred indexing from true 'indexed' status.
-  // When embedding is null (deferred path), report 'deferred' instead of 'indexed'.
   let resultStatus: string;
   if (existing) {
     resultStatus = 'updated';
@@ -978,10 +960,6 @@ async function indexMemoryFile(filePath: string, { force = false, parsedOverride
     result.message = 'Memory saved with deferred indexing - searchable via BM25/FTS5';
   }
 
-  // T306: When async embedding was requested, trigger an immediate non-blocking
-  // embedding attempt via setImmediate. This fires after the current response is
-  // returned, so concurrent saves are not blocked. The existing background retry
-  // manager (5-min interval) serves as a safety net if this attempt fails.
   if (asyncEmbedding && embeddingStatus === 'pending') {
     const memoryId = id;
     const memoryContent = parsed.content;
@@ -1016,7 +994,6 @@ async function indexMemoryFile(filePath: string, { force = false, parsedOverride
 async function handleMemorySave(args: SaveArgs): Promise<MCPResponse> {
   await checkDatabaseUpdated();
 
-  // T306: Extract asyncEmbedding option (default false for backward compatibility)
   const { filePath: file_path, force = false, dryRun = false, skipPreflight = false, asyncEmbedding = false } = args;
 
   if (!file_path || typeof file_path !== 'string') {
@@ -1030,8 +1007,6 @@ async function handleMemorySave(args: SaveArgs): Promise<MCPResponse> {
   }
 
   // PRE-FLIGHT VALIDATION
-  // P4-04 FIX: Hoist parsed result so it can be reused by indexMemoryFile,
-  // avoiding a redundant second parse of the same file.
   let parsedForPreflight: ReturnType<typeof memoryParser.parseMemoryFile> | null = null;
   if (!skipPreflight) {
     parsedForPreflight = memoryParser.parseMemoryFile(validatedPath);
@@ -1109,7 +1084,6 @@ async function handleMemorySave(args: SaveArgs): Promise<MCPResponse> {
     }
   }
 
-  // T306: Pass asyncEmbedding to indexMemoryFile for non-blocking embedding generation
   const result = await indexMemoryFile(validatedPath, { force, parsedOverride: parsedForPreflight, asyncEmbedding });
 
   if (result.status === 'unchanged') {
@@ -1189,7 +1163,6 @@ async function handleMemorySave(args: SaveArgs): Promise<MCPResponse> {
   }
   if (result.embeddingStatus === 'pending') {
     hints.push('Memory will be fully indexed when embedding provider becomes available');
-    // T306: Differentiate hint for explicit async embedding vs provider failure
     if (asyncEmbedding) {
       hints.push('Async embedding mode: immediate background attempt triggered, background retry manager as safety net');
     }
@@ -1204,9 +1177,6 @@ async function handleMemorySave(args: SaveArgs): Promise<MCPResponse> {
     }
   }
 
-  // T306: Opportunistic retry — when a sync embedding succeeds, piggyback on the
-  // success to process other pending embeddings in the queue (fire-and-forget).
-  // This complements the immediate retry triggered by asyncEmbedding in indexMemoryFile.
   if (result.embeddingStatus === 'success') {
     retryManager.processRetryQueue(2).catch((err: unknown) => {
       const message = err instanceof Error ? err.message : String(err);

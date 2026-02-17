@@ -1,4 +1,8 @@
 // @ts-nocheck
+// ---------------------------------------------------------------
+// TEST: INCREMENTAL INDEX V2
+// ---------------------------------------------------------------
+
 import { describe, it, expect, beforeEach } from 'vitest';
 import * as path from 'node:path';
 import * as fs from 'node:fs';

@@ -4,6 +4,7 @@ A basic linear workflow demonstrating sequential steps without branching.
 
 ---
 
+<!-- ANCHOR:use-case-new-user-registration -->
 ## Use Case: New User Registration
 
 ```
@@ -71,6 +72,8 @@ A basic linear workflow demonstrating sequential steps without branching.
 
 ---
 
+<!-- /ANCHOR:use-case-new-user-registration -->
+<!-- ANCHOR:key-features-demonstrated -->
 ## Key Features Demonstrated
 
 - **Terminal nodes**: Rounded boxes for start/end states
@@ -80,6 +83,8 @@ A basic linear workflow demonstrating sequential steps without branching.
 - **Role indicators**: User actions vs system actions
 - **Timing information**: Expected duration for each step
 
+<!-- /ANCHOR:key-features-demonstrated -->
+<!-- ANCHOR:when-to-use-this-pattern -->
 ## When to Use This Pattern
 
 - Onboarding flows
@@ -88,3 +93,4 @@ A basic linear workflow demonstrating sequential steps without branching.
 - Step-by-step tutorials
 - Installation procedures
 - Simple form submissions
+<!-- /ANCHOR:when-to-use-this-pattern -->

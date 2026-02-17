@@ -1,4 +1,8 @@
 // @ts-nocheck
+// ---------------------------------------------------------------
+// TEST: HANDLER MEMORY SAVE
+// ---------------------------------------------------------------
+
 import { describe, it, expect } from 'vitest';
 
 // DB-dependent imports - commented out for deferred test suite

@@ -121,14 +121,8 @@ Use bulleted list format for metadata sections in all templates:
 Use numbered sections with emoji and UPPERCASE:
 
 ```markdown
-<!-- /ANCHOR:section-numbering -->
-<!-- ANCHOR:section-name -->
 ## 1. SECTION NAME
-<!-- /ANCHOR:section-name -->
-<!-- ANCHOR:another-section -->
 ## 2. ANOTHER SECTION
-<!-- /ANCHOR:another-section -->
-<!-- ANCHOR:third-section -->
 ## 3. THIRD SECTION
 ```
 
@@ -151,7 +145,7 @@ The following templates may use Title Case for improved readability:
 
 ---
 
-<!-- /ANCHOR:third-section -->
+<!-- /ANCHOR:section-numbering -->
 <!-- ANCHOR:date-formats -->
 ## 5. DATE FORMATS
 

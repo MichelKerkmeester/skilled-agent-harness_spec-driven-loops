@@ -1,4 +1,8 @@
 // @ts-nocheck
+// ---------------------------------------------------------------
+// TEST: INTEGRATION CAUSAL GRAPH
+// ---------------------------------------------------------------
+
 import { describe, it, expect, beforeAll } from 'vitest';
 import * as causalHandler from '../handlers/causal-graph';
 import * as causalEdges from '../lib/storage/causal-edges';

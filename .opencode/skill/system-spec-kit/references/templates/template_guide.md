@@ -243,14 +243,8 @@ cp .opencode/skill/system-spec-kit/templates/level_3+/decision-record.md specs/#
 
 **Example:**
 ```markdown
-<!-- /ANCHOR:template-structure-standards -->
-<!-- ANCHOR:objective -->
 ## 1. OBJECTIVE
-<!-- /ANCHOR:objective -->
-<!-- ANCHOR:scope -->
 ## 2. SCOPE
-<!-- /ANCHOR:scope -->
-<!-- ANCHOR:implementation -->
 ## 3. IMPLEMENTATION
 ```
 
@@ -297,8 +291,6 @@ estimated_loc: 350
 
 **Example before adaptation:**
 ```markdown
-<!-- /ANCHOR:implementation -->
-<!-- ANCHOR:problem -->
 ## Problem
 
 [PLACEHOLDER: Describe the problem this solves]
@@ -311,8 +303,6 @@ double-click and submit forms multiple times.
 
 **Example after adaptation:**
 ```markdown
-<!-- /ANCHOR:problem -->
-<!-- ANCHOR:problem-2 -->
 ## Problem
 
 The form submission button doesn't show loading state, causing users to
@@ -336,7 +326,7 @@ submissions are duplicates.
 
 ---
 
-<!-- /ANCHOR:problem-2 -->
+<!-- /ANCHOR:template-structure-standards -->
 <!-- ANCHOR:template-adaptation-process -->
 ## 4. TEMPLATE ADAPTATION PROCESS
 
@@ -798,8 +788,6 @@ cp .opencode/skill/system-spec-kit/templates/level_1/spec.md specs/042-feature/s
 
 **Wrong:**
 ```markdown
-<!-- /ANCHOR:common-mistakes -->
-<!-- ANCHOR:problem-3 -->
 ## Problem
 
 [PLACEHOLDER: Describe the problem]
@@ -807,8 +795,6 @@ cp .opencode/skill/system-spec-kit/templates/level_1/spec.md specs/042-feature/s
 
 **Right:**
 ```markdown
-<!-- /ANCHOR:problem-3 -->
-<!-- ANCHOR:problem-4 -->
 ## Problem
 
 The form submission button doesn't show loading state, causing duplicate submissions.
@@ -822,31 +808,21 @@ The form submission button doesn't show loading state, causing duplicate submiss
 
 **Wrong:**
 ```markdown
-<!-- /ANCHOR:problem-4 -->
-<!-- ANCHOR:objective-2 -->
 ## 1. OBJECTIVE
 [...]
 
-<!-- /ANCHOR:objective-2 -->
-<!-- ANCHOR:implementation-2 -->
 ## 3. IMPLEMENTATION
 [...]
 ```
 
 **Right:**
 ```markdown
-<!-- /ANCHOR:implementation-2 -->
-<!-- ANCHOR:objective-3 -->
 ## 1. OBJECTIVE
 [...]
 
-<!-- /ANCHOR:objective-3 -->
-<!-- ANCHOR:scope-2 -->
 ## 2. SCOPE
 N/A - Single file change, no scope considerations
 
-<!-- /ANCHOR:scope-2 -->
-<!-- ANCHOR:implementation-3 -->
 ## 3. IMPLEMENTATION
 [...]
 ```
@@ -889,7 +865,7 @@ spec.md and plan.md exist but don't reference each other
 
 ---
 
-<!-- /ANCHOR:implementation-3 -->
+<!-- /ANCHOR:common-mistakes -->
 <!-- ANCHOR:troubleshooting -->
 ## 9. TROUBLESHOOTING
 
@@ -1087,8 +1063,6 @@ The enforce-spec-folder workflow includes sub-folder detection:
 
 **In parent spec.md:**
 ```markdown
-<!-- /ANCHOR:using-sub-folders-for-organization -->
-<!-- ANCHOR:related-work -->
 ## Related Work
 
 This feature includes work organized in sub-folders:
@@ -1101,8 +1075,6 @@ See each sub-folder's README.md for details.
 
 **In sub-folder README.md:**
 ```markdown
-<!-- /ANCHOR:related-work -->
-<!-- ANCHOR:parent-spec -->
 ## Parent Spec
 
 - **Parent**: [Skill Standardization](../spec.md)
@@ -1113,7 +1085,7 @@ See each sub-folder's README.md for details.
 
 ---
 
-<!-- /ANCHOR:parent-spec -->
+<!-- /ANCHOR:using-sub-folders-for-organization -->
 <!-- ANCHOR:related-resources -->
 ## 11. RELATED RESOURCES
 

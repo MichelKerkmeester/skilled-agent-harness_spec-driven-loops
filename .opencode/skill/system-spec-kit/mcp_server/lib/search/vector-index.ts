@@ -20,33 +20,33 @@ import { validateFilePath } from '../utils/path-security';
 
 interface MemoryIndexRow {
   id: number;
-  spec_folder: string;
-  file_path: string;
-  anchor_id: string | null;
-  title: string | null;
-  trigger_phrases: string | null;
+  spec_folder?: string;
+  file_path?: string;
+  anchor_id?: string | null;
+  title?: string | null;
+  trigger_phrases?: string | string[] | null;
   triggerPhrases?: string | string[];
-  importance_weight: number;
-  created_at: string;
-  updated_at: string;
-  embedding_model: string | null;
-  embedding_generated_at: string | null;
-  embedding_status: string;
-  retry_count: number;
-  last_retry_at: string | null;
-  failure_reason: string | null;
-  importance_tier: string;
-  access_count: number;
-  last_accessed: number;
-  confidence: number;
-  validation_count: number;
-  is_pinned: number;
-  stability: number;
-  difficulty: number;
-  last_review: string | null;
-  review_count: number;
-  content_hash: string | null;
-  related_memories: string | null;
+  importance_weight?: number;
+  created_at?: string;
+  updated_at?: string;
+  embedding_model?: string | null;
+  embedding_generated_at?: string | null;
+  embedding_status?: string;
+  retry_count?: number;
+  last_retry_at?: string | null;
+  failure_reason?: string | null;
+  importance_tier?: string;
+  access_count?: number;
+  last_accessed?: number;
+  confidence?: number;
+  validation_count?: number;
+  is_pinned?: number;
+  stability?: number;
+  difficulty?: number;
+  last_review?: string | null;
+  review_count?: number;
+  content_hash?: string | null;
+  related_memories?: string | null;
   document_type?: string;
   spec_level?: number | null;
   isConstitutional?: boolean;
@@ -93,7 +93,7 @@ interface VectorSearchOptions {
 
 interface EnrichedResult {
   rank: number;
-  similarity: number;
+  similarity?: number;
   title: string;
   specFolder: string;
   filePath: string;
@@ -102,22 +102,24 @@ interface EnrichedResult {
   snippet: string;
   id: number;
   importanceWeight: number;
-  searchMethod: string;
+  searchMethod?: string;
   isConstitutional: boolean;
+  [key: string]: unknown;
 }
 
 interface CleanupCandidate {
   id: number;
-  specFolder: string;
-  filePath: string;
-  title: string;
-  createdAt: string;
-  lastAccessedAt: number;
-  accessCount: number;
-  confidence: number;
-  ageString: string;
-  lastAccessString: string;
+  specFolder?: string;
+  filePath?: string;
+  title?: string;
+  createdAt?: string;
+  lastAccessedAt?: number | unknown;
+  accessCount?: number;
+  confidence?: number | unknown;
+  ageString?: string;
+  lastAccessString?: string;
   reasons: string[];
+  [key: string]: unknown;
 }
 
 interface IntegrityReport {
@@ -322,7 +324,7 @@ function recordAccess(memoryId: number): boolean {
 }
 
 function getUsageStats(options: { sortBy?: string; order?: string; limit?: number } = {}): Array<Record<string, unknown>> {
-  return jsVectorIndex.getUsageStats(options);
+  return jsVectorIndex.getUsageStats(options) as Array<Record<string, unknown>>;
 }
 
 function updateEmbeddingStatus(id: number, status: string): boolean {
@@ -338,7 +340,7 @@ function updateConfidence(memoryId: number, confidence: number): boolean {
 ----------------------------------------------------------------*/
 
 function findCleanupCandidates(options: { maxAgeDays?: number; maxAccessCount?: number; maxConfidence?: number; limit?: number } = {}): CleanupCandidate[] {
-  return jsVectorIndex.findCleanupCandidates(options);
+  return jsVectorIndex.findCleanupCandidates(options) as CleanupCandidate[];
 }
 
 function deleteMemories(memoryIds: number[]): { deleted: number; failed: number } {
@@ -393,24 +395,7 @@ function verifyIntegrity(options: { autoClean?: boolean } = {}): IntegrityReport
   return jsVectorIndex.verifyIntegrity(options);
 }
 
-const SQLiteVectorStore: {
-  new(options?: { dbPath?: string }): {
-    search(embedding: Float32Array, topK: number, options?: Record<string, unknown>): Promise<MemoryIndexRow[]>;
-    upsert(id: string, embedding: Float32Array, metadata: Record<string, unknown>): Promise<number>;
-    delete(id: number): Promise<boolean>;
-    get(id: number): Promise<MemoryIndexRow | null>;
-    getStats(): Promise<{ total: number; pending: number; success: number; failed: number; retry: number }>;
-    isAvailable(): boolean;
-    getEmbeddingDimension(): number;
-    close(): Promise<void>;
-    deleteByPath(specFolder: string, filePath: string, anchorId?: string | null): Promise<boolean>;
-    getByFolder(specFolder: string): Promise<MemoryIndexRow[]>;
-    searchEnriched(embedding: Float32Array, options?: Record<string, unknown>): Promise<EnrichedResult[]>;
-    enhancedSearch(embedding: Float32Array, options?: Record<string, unknown>): Promise<EnrichedResult[]>;
-    getConstitutionalMemories(options?: Record<string, unknown>): Promise<MemoryIndexRow[]>;
-    verifyIntegrity(options?: Record<string, unknown>): Promise<IntegrityReport>;
-  };
-} = jsVectorIndex.SQLiteVectorStore;
+const SQLiteVectorStore = jsVectorIndex.SQLiteVectorStore;
 
 /* -----------------------------------------------------------
    11. EXPORTS

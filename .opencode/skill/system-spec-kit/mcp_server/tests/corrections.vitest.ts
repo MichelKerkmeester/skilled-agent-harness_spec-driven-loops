@@ -1,3 +1,7 @@
+// ---------------------------------------------------------------
+// TEST: CORRECTIONS
+// ---------------------------------------------------------------
+
 import { describe, it, expect, beforeAll, afterAll } from 'vitest';
 import Database from 'better-sqlite3';
 import path from 'path';

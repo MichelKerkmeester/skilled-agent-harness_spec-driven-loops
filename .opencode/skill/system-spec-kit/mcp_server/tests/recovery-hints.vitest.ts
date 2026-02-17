@@ -19,6 +19,10 @@ import {
   getErrorCodes,
 } from '../lib/errors/recovery-hints';
 
+const errorCodeMap = ERROR_CODES as unknown as Record<string, string>;
+type RecoveryToolName = Parameters<typeof getRecoveryHint>[0];
+type RecoveryErrorCode = Parameters<typeof getRecoveryHint>[1];
+
 // ─────────────────────────────────────────────────────────────
 // T001: Module Loading
 // ─────────────────────────────────────────────────────────────
@@ -164,7 +168,7 @@ describe('RECOVERY_HINTS Catalog - T011-T020', () => {
       'FILE_TOO_LARGE',
     ];
     for (const codeName of lowSeverityCodes) {
-      const code = (ERROR_CODES as any)[codeName];
+      const code = errorCodeMap[codeName];
       const hint = RECOVERY_HINTS[code];
       expect(hint).toBeDefined();
       expect(hint.severity).toBe('low');
@@ -274,17 +278,20 @@ describe('getRecoveryHint() Function - T031-T040', () => {
   });
 
   it('T035: Returns DEFAULT_HINT for null error code', () => {
-    const nullCodeHint = getRecoveryHint('any_tool', null as any);
+    const nullCodeHint = getRecoveryHint('any_tool', null as unknown as RecoveryErrorCode);
     expect(nullCodeHint).toBe(DEFAULT_HINT);
   });
 
   it('T036: Returns DEFAULT_HINT for undefined error code', () => {
-    const undefinedCodeHint = getRecoveryHint('any_tool', undefined as any);
+    const undefinedCodeHint = getRecoveryHint('any_tool', undefined as unknown as RecoveryErrorCode);
     expect(undefinedCodeHint).toBe(DEFAULT_HINT);
   });
 
   it('T037: Works with null tool name (falls back to generic)', () => {
-    const nullToolHint = getRecoveryHint(null as any, ERROR_CODES.DB_CONNECTION_FAILED);
+    const nullToolHint = getRecoveryHint(
+      null as unknown as RecoveryToolName,
+      ERROR_CODES.DB_CONNECTION_FAILED
+    );
     const expectedDbHint = RECOVERY_HINTS[ERROR_CODES.DB_CONNECTION_FAILED];
     expect(nullToolHint).toBe(expectedDbHint);
   });
@@ -342,8 +349,14 @@ describe('hasSpecificHint() Helper - T041-T045', () => {
   });
 
   it('T045: Returns false for null/undefined inputs', () => {
-    const hasNull = hasSpecificHint(null as any, null as any);
-    const hasUndefined = hasSpecificHint(undefined as any, undefined as any);
+    const hasNull = hasSpecificHint(
+      null as unknown as RecoveryToolName,
+      null as unknown as RecoveryErrorCode
+    );
+    const hasUndefined = hasSpecificHint(
+      undefined as unknown as RecoveryToolName,
+      undefined as unknown as RecoveryErrorCode
+    );
     expect(hasNull).toBe(false);
     expect(hasUndefined).toBe(false);
   });
@@ -424,7 +437,7 @@ describe('getErrorCodes() Helper - T051-T055', () => {
     ];
     const codes = getErrorCodes();
     const allPresent = expectedCodeNames.every(
-      (name) => (codes as any)[name] !== undefined
+      (name) => (codes as unknown as Record<string, string>)[name] !== undefined
     );
     expect(allPresent).toBe(true);
   });
@@ -766,11 +779,17 @@ describe('Integration Tests - T091-T095', () => {
 
   it('T094: All exported functions handle edge cases without throwing', () => {
     expect(() => {
-      getRecoveryHint(null as any, null as any);
+      getRecoveryHint(
+        null as unknown as RecoveryToolName,
+        null as unknown as RecoveryErrorCode
+      );
       getRecoveryHint('', '');
-      hasSpecificHint(null as any, null as any);
+      hasSpecificHint(
+        null as unknown as RecoveryToolName,
+        null as unknown as RecoveryErrorCode
+      );
       hasSpecificHint('', '');
-      getAvailableHints(null as any);
+      getAvailableHints(null as unknown as RecoveryToolName);
       getAvailableHints('');
       getErrorCodes();
     }).not.toThrow();

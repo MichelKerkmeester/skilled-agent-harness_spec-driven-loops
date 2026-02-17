@@ -1,4 +1,8 @@
 // @ts-nocheck
+// ---------------------------------------------------------------
+// TEST: MCP TOOL DISPATCH
+// ---------------------------------------------------------------
+
 import { describe, it, expect } from 'vitest';
 import * as handlers from '../handlers/index';
 

@@ -1,4 +1,8 @@
 // @ts-nocheck
+// ---------------------------------------------------------------
+// TEST: CHANNEL
+// ---------------------------------------------------------------
+
 import { describe, it, expect, beforeEach } from 'vitest';
 import * as mod from '../lib/session/channel';
 

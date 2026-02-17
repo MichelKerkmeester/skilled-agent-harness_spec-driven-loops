@@ -126,7 +126,7 @@ describe('CHECKPOINTS EXTENDED TESTS [deferred - requires DB test fixtures]', ()
 
     it('EXT-S2: getDatabase throws when not initialized', () => {
       const savedDb = testDb;
-      checkpointStorage.init(null as any);
+      checkpointStorage.init(null as unknown);
 
       expect(() => checkpointStorage.getDatabase()).toThrow(/not initialized/);
 
@@ -169,11 +169,11 @@ describe('CHECKPOINTS EXTENDED TESTS [deferred - requires DB test fixtures]', ()
         VALUES (?, ?, ?, ?, ?)
       `).run('extra-spec', '/test/memory/extra.md', 'Extra Memory', now, 'normal');
 
-      const countBefore = (testDb.prepare('SELECT COUNT(*) as cnt FROM memory_index').get() as any).cnt;
+      const countBefore = (testDb.prepare('SELECT COUNT(*) as cnt FROM memory_index').get() as unknown).cnt;
 
       const result = checkpointStorage.restoreCheckpoint('clear-existing-test', true);
 
-      const countAfter = (testDb.prepare('SELECT COUNT(*) as cnt FROM memory_index').get() as any).cnt;
+      const countAfter = (testDb.prepare('SELECT COUNT(*) as cnt FROM memory_index').get() as unknown).cnt;
 
       expect(result).toBeDefined();
       expect(result.errors.length).toBe(0);
@@ -197,7 +197,7 @@ describe('CHECKPOINTS EXTENDED TESTS [deferred - requires DB test fixtures]', ()
 
       const extraExists = testDb.prepare(
         "SELECT COUNT(*) as cnt FROM memory_index WHERE file_path = '/test/memory/extra2.md'"
-      ).get() as any;
+      ).get() as unknown;
       expect(extraExists.cnt).toBe(0);
 
       checkpointStorage.deleteCheckpoint('clear-extra-test');
@@ -261,7 +261,7 @@ describe('CHECKPOINTS EXTENDED TESTS [deferred - requires DB test fixtures]', ()
   // 4.6 T101: Transaction rollback on corrupt restore
   describe('Storage: T101 Transaction Rollback on Corrupt Restore', () => {
     it('EXT-S11: transaction rollback preserves data on corrupt restore', () => {
-      const countBefore = (testDb.prepare('SELECT COUNT(*) as cnt FROM memory_index').get() as any).cnt;
+      const countBefore = (testDb.prepare('SELECT COUNT(*) as cnt FROM memory_index').get() as unknown).cnt;
       if (countBefore === 0) return;
 
       const cp = checkpointStorage.createCheckpoint({ name: 'rollback-test' });
@@ -281,14 +281,14 @@ describe('CHECKPOINTS EXTENDED TESTS [deferred - requires DB test fixtures]', ()
 
       const result = checkpointStorage.restoreCheckpoint('rollback-test', true);
 
-      const countAfter = (testDb.prepare('SELECT COUNT(*) as cnt FROM memory_index').get() as any).cnt;
+      const countAfter = (testDb.prepare('SELECT COUNT(*) as cnt FROM memory_index').get() as unknown).cnt;
       expect(countAfter).toBe(countBefore);
 
       checkpointStorage.deleteCheckpoint('rollback-test');
     });
 
     it('EXT-S12: rollback result reports errors', () => {
-      const countBefore = (testDb.prepare('SELECT COUNT(*) as cnt FROM memory_index').get() as any).cnt;
+      const countBefore = (testDb.prepare('SELECT COUNT(*) as cnt FROM memory_index').get() as unknown).cnt;
       if (countBefore === 0) return;
 
       const cp = checkpointStorage.createCheckpoint({ name: 'rollback-errors-test' });
@@ -313,7 +313,7 @@ describe('CHECKPOINTS EXTENDED TESTS [deferred - requires DB test fixtures]', ()
     });
 
     it('EXT-S13: rollback resets restored counter to 0', () => {
-      const countBefore = (testDb.prepare('SELECT COUNT(*) as cnt FROM memory_index').get() as any).cnt;
+      const countBefore = (testDb.prepare('SELECT COUNT(*) as cnt FROM memory_index').get() as unknown).cnt;
       if (countBefore === 0) return;
 
       const cp = checkpointStorage.createCheckpoint({ name: 'rollback-counter-test' });
@@ -458,7 +458,7 @@ describe('CHECKPOINTS EXTENDED TESTS [deferred - requires DB test fixtures]', ()
     });
 
     it('T107-08: validation rejects before DB mutation', () => {
-      const countBefore = (testDb.prepare('SELECT COUNT(*) as cnt FROM memory_index').get() as any).cnt;
+      const countBefore = (testDb.prepare('SELECT COUNT(*) as cnt FROM memory_index').get() as unknown).cnt;
 
       const ok = injectCheckpoint('t107-no-mutation', [
         { id: 9999, file_path: '/test/good.md', spec_folder: 'spec', title: 'Good', importance_weight: 0.5, created_at: '2025-01-01', updated_at: '2025-01-01', importance_tier: 'normal' },
@@ -467,7 +467,7 @@ describe('CHECKPOINTS EXTENDED TESTS [deferred - requires DB test fixtures]', ()
       if (!ok) return;
 
       const result = checkpointStorage.restoreCheckpoint('t107-no-mutation', true);
-      const countAfter = (testDb.prepare('SELECT COUNT(*) as cnt FROM memory_index').get() as any).cnt;
+      const countAfter = (testDb.prepare('SELECT COUNT(*) as cnt FROM memory_index').get() as unknown).cnt;
 
       expect(result).toBeDefined();
       expect(result.errors.length).toBeGreaterThan(0);

@@ -277,8 +277,6 @@ function process({ data, options = {} }) { }
 Copy this for code review:
 
 ```markdown
-<!-- /ANCHOR:checklist-template -->
-<!-- ANCHOR:javascript-code-quality-check -->
 ## JavaScript Code Quality Check
 
 ### P0 - HARD BLOCKERS
@@ -310,7 +308,7 @@ Copy this for code review:
 
 ---
 
-<!-- /ANCHOR:javascript-code-quality-check -->
+<!-- /ANCHOR:checklist-template -->
 <!-- ANCHOR:validation-commands -->
 ## 6. VALIDATION COMMANDS
 

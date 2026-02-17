@@ -1,4 +1,8 @@
 // @ts-nocheck
+// ---------------------------------------------------------------
+// TEST: ANCHOR ID SIMPLIFICATION
+// ---------------------------------------------------------------
+
 import { describe, it, expect } from 'vitest';
 import fs from 'fs';
 import path from 'path';

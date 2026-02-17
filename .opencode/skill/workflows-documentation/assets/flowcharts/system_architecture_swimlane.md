@@ -4,6 +4,7 @@ Multi-tier system architecture showing interaction between different layers and 
 
 ---
 
+<!-- ANCHOR:use-case-microservices-authentication-data-flow -->
 ## Use Case: Microservices Authentication & Data Flow
 
 ```
@@ -274,6 +275,8 @@ Multi-tier system architecture showing interaction between different layers and 
 
 ---
 
+<!-- /ANCHOR:use-case-microservices-authentication-data-flow -->
+<!-- ANCHOR:key-features-demonstrated -->
 ## Key Features Demonstrated
 
 - **Swimlane separation** - 6 distinct architectural layers
@@ -286,6 +289,8 @@ Multi-tier system architecture showing interaction between different layers and 
 - **Return paths** - Both success and error flows
 - **System integration** - Multiple databases and services
 
+<!-- /ANCHOR:key-features-demonstrated -->
+<!-- ANCHOR:architectural-layers -->
 ## Architectural Layers
 
 1. **Client Layer**
@@ -319,6 +324,8 @@ Multi-tier system architecture showing interaction between different layers and 
    - Primary data storage
    - Query execution
 
+<!-- /ANCHOR:architectural-layers -->
+<!-- ANCHOR:data-flow-steps -->
 ## Data Flow Steps
 
 1. User submits credentials
@@ -336,6 +343,8 @@ Multi-tier system architecture showing interaction between different layers and 
 13. Data returned through layers
 14. UI updated with data
 
+<!-- /ANCHOR:data-flow-steps -->
+<!-- ANCHOR:when-to-use-this-pattern -->
 ## When to Use This Pattern
 
 - System architecture documentation
@@ -347,6 +356,8 @@ Multi-tier system architecture showing interaction between different layers and 
 - Security architecture flows
 - Integration architecture
 
+<!-- /ANCHOR:when-to-use-this-pattern -->
+<!-- ANCHOR:design-principles-applied -->
 ## Design Principles Applied
 
 1. **Layer Separation** - Clear horizontal boundaries
@@ -358,9 +369,12 @@ Multi-tier system architecture showing interaction between different layers and 
 7. **Security** - Token validation and authentication
 8. **Complete Cycle** - Request to response fully shown
 
+<!-- /ANCHOR:design-principles-applied -->
+<!-- ANCHOR:performance-considerations -->
 ## Performance Considerations
 
 - **Cache Hit**: ~10ms response time
 - **Cache Miss**: ~100ms (includes DB query)
 - **Token Validation**: < 5ms
 - **Total Round Trip**: 100-200ms typical
+<!-- /ANCHOR:performance-considerations -->

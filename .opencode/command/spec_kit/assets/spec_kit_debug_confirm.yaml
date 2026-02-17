@@ -180,7 +180,7 @@ workflow:
     agent: "@debug"
     agent_file: ".opencode/agent/debug.md"
     task_parameters: { description: "Debug: [brief error summary - max 50 chars]", subagent_type: "debug", prompt: "[sub_agent_prompt_template]" }
-    # REFERENCE ONLY — routing metadata, do not dispatch agents from these values
+    # AGENT AVAILABILITY (conditional) — routing metadata, not dispatch instructions
     sub_agent_prompt_template: |
       # Debug Agent Dispatch
 

@@ -17,6 +17,7 @@ Unified specialist providing: (1) Document quality pipeline with structure enfor
 
 ---
 
+<!-- ANCHOR:when-to-use -->
 ## 1. WHEN TO USE
 
 ### Use Case: Document Quality Management
@@ -103,6 +104,8 @@ Create and validate installation documentation for MCP servers, plugins and tool
 
 ---
 
+<!-- /ANCHOR:when-to-use -->
+<!-- ANCHOR:smart-routing-references -->
 ## 2. SMART ROUTING & REFERENCES
 
 ### Mode Selection
@@ -257,6 +260,8 @@ def route_documentation_resources(task):
 
 ---
 
+<!-- /ANCHOR:smart-routing-references -->
+<!-- ANCHOR:how-it-works -->
 ## 3. HOW IT WORKS
 
 ### Mode 1: Document Quality
@@ -372,6 +377,8 @@ Standard Flow:      Branch:           Parallel:         Merge:
 
 ---
 
+<!-- /ANCHOR:how-it-works -->
+<!-- ANCHOR:rules -->
 ## 4. RULES
 
 ### ✅ Mode 1: Document Quality
@@ -533,6 +540,8 @@ Standard Flow:      Branch:           Parallel:         Merge:
 
 ---
 
+<!-- /ANCHOR:rules -->
+<!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
 ### Document Quality Index (DQI)
@@ -625,6 +634,8 @@ The `extract_structure.py` script computes a **DQI** (0-100) based on measurable
 
 ---
 
+<!-- /ANCHOR:success-criteria -->
+<!-- ANCHOR:integration-points -->
 ## 6. INTEGRATION POINTS
 
 ### Framework Integration
@@ -676,6 +687,8 @@ Key integrations:
 
 ---
 
+<!-- /ANCHOR:integration-points -->
+<!-- ANCHOR:external-resources -->
 ## 7. EXTERNAL RESOURCES
 
 - **llms.txt specification**: https://llmstxt.org/
@@ -685,6 +698,8 @@ Key integrations:
 
 ---
 
+<!-- /ANCHOR:external-resources -->
+<!-- ANCHOR:related-resources -->
 ## 8. RELATED RESOURCES
 
 ### For Document Quality
@@ -707,3 +722,4 @@ Need fast navigation? See [quick_reference.md](./references/quick_reference.md)
 ---
 
 **Remember**: This skill operates in four modes: Document Quality, Skill Creation, Flowchart Creation and Install Guide Creation. All modes integrate smoothly for creating and validating high-quality documentation and skills.
+<!-- /ANCHOR:related-resources -->

@@ -1,4 +1,8 @@
 // @ts-nocheck
+// ---------------------------------------------------------------
+// TEST: BATCH PROCESSOR
+// ---------------------------------------------------------------
+
 import { describe, it, expect, vi, afterEach } from 'vitest';
 import {
   processBatches,
@@ -165,7 +169,7 @@ describe('Batch Processor', () => {
       expect(results.length).toBe(3);
       expect(results[0]).toBe(1);
       expect(results[2]).toBe(3);
-      const errResult = results[1] as any;
+      const errResult = results[1] as unknown;
       expect(errResult.retries_failed).toBe(true);
       expect(errResult.error).toBeTruthy();
       expect(errResult.item).toBe(2);
@@ -241,7 +245,7 @@ describe('Batch Processor', () => {
         'test',
         async () => { throw new Error('permanent failure'); },
         { maxRetries: 2, retryDelay: 1 }
-      ) as any;
+      ) as unknown;
       expect(result.retries_failed).toBe(true);
       expect(result.error).toBeTruthy();
       expect(result.item).toBe('test');
@@ -253,7 +257,7 @@ describe('Batch Processor', () => {
         'val',
         async () => { attempts++; throw new Error('SQLITE_BUSY transient'); },
         { maxRetries: 0, retryDelay: 1 }
-      ) as any;
+      ) as unknown;
       expect(attempts).toBe(1);
       expect(result.retries_failed).toBe(true);
     });
@@ -300,7 +304,7 @@ describe('Batch Processor', () => {
       );
       expect(results.length).toBe(3);
       expect(results[0]).toBe(1);
-      expect((results[1] as any).retries_failed).toBe(true);
+      expect((results[1] as unknown).retries_failed).toBe(true);
       expect(results[2]).toBe(3);
     });
 

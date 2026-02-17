@@ -97,24 +97,14 @@ interface TriggerArgs {
    2b. CONSTANTS
 --------------------------------------------------------------- */
 
-/**
- * T208: Per-turn decay rate for attention scoring.
- * At turnNumber=1, factor=1.0 (no decay).
- * At turnNumber=50, factor≈0.364. At turnNumber=100, factor≈0.133.
- * This ensures memories matched early in a conversation receive
- * progressively less attention weight as the conversation lengthens.
- */
+/** Per-turn decay rate for attention scoring. */
 const TURN_DECAY_RATE = 0.98;
 
 /* ---------------------------------------------------------------
    2c. HELPER FUNCTIONS
 --------------------------------------------------------------- */
 
-/**
- * T201: Fetch full memory records from the database for a set of memory IDs.
- * Returns a Map<memoryId, TierInput> with all FSRS fields (stability,
- * last_review, importance_tier, etc.) needed for proper tier classification.
- */
+/** Fetch full memory records required for FSRS tier classification. */
 function fetchMemoryRecords(memoryIds: number[]): Map<number, TierInput> {
   const records = new Map<number, TierInput>();
   if (memoryIds.length === 0) return records;
@@ -123,7 +113,6 @@ function fetchMemoryRecords(memoryIds: number[]): Map<number, TierInput> {
   if (!db) return records;
 
   try {
-    // Use individual lookups to avoid SQL injection with dynamic IN clause
     const stmt = db.prepare(
       'SELECT * FROM memory_index WHERE id = ?'
     );
@@ -164,7 +153,6 @@ async function getTieredContent(
 
 /** Handle memory_match_triggers tool - matches prompt against trigger phrases with cognitive decay */
 async function handleMemoryMatchTriggers(args: TriggerArgs): Promise<MCPResponse> {
-  // BUG-001: Check for external database updates before processing
   await checkDatabaseUpdated();
 
   const {
@@ -175,7 +163,6 @@ async function handleMemoryMatchTriggers(args: TriggerArgs): Promise<MCPResponse
     include_cognitive: includeCognitive = true
   } = args;
 
-  // T120: Validate numeric parameters
   const limit = (typeof rawLimit === 'number' && Number.isFinite(rawLimit) && rawLimit > 0)
     ? Math.min(Math.floor(rawLimit), 50)
     : 3;
@@ -189,13 +176,11 @@ async function handleMemoryMatchTriggers(args: TriggerArgs): Promise<MCPResponse
 
   const startTime = Date.now();
 
-  // Check if cognitive features are enabled and requested
   const useCognitive = includeCognitive &&
     sessionId &&
     workingMemory.isEnabled() &&
     attentionDecay.getDb();
 
-  // Step 1: DECAY
   let decayStats: DecayStats | null = null;
   if (useCognitive) {
     try {
@@ -206,7 +191,6 @@ async function handleMemoryMatchTriggers(args: TriggerArgs): Promise<MCPResponse
     }
   }
 
-  // Step 2: MATCH
   const results: TriggerMatch[] = triggerMatcher.matchTriggerPhrases(prompt, limit * 2);
 
   if (!results || results.length === 0) {
@@ -230,20 +214,16 @@ async function handleMemoryMatchTriggers(args: TriggerArgs): Promise<MCPResponse
     });
   }
 
-  // Step 3-6: Apply cognitive features if enabled
   let formattedResults: FormattedResult[];
   let cognitiveStats: CognitiveStats | null = null;
 
   if (useCognitive) {
-    // Step 3: ACTIVATE
-    // T209: Boost attention scores in working memory for matched memories.
-    // Both attentionDecay.activateMemory (FSRS-side) and workingMemory.setAttentionScore
-    // (session-side) are called so matched memories are promoted in both systems.
+    // Step 3: ACTIVATE (T209)
     const activatedMemories: number[] = [];
     for (const match of results) {
       try {
         attentionDecay.activateMemory(match.memoryId);
-        // T209: Wire setAttentionScore — boost matched memory to 1.0 in working memory
+        // T209: Persist max attention boost for matched memories.
         workingMemory.setAttentionScore(sessionId as string, match.memoryId, 1.0);
         activatedMemories.push(match.memoryId);
       } catch (err: unknown) {
@@ -269,18 +249,12 @@ async function handleMemoryMatchTriggers(args: TriggerArgs): Promise<MCPResponse
       }
     }
 
-    // Step 5: CLASSIFY
-    // T201 FIX: Fetch full memory records from DB for proper FSRS-based classification.
-    // Previously, classification used only working-memory attention_score (defaulting to 1.0
-    // for untracked memories), causing ALL trigger matches to classify as HOT.
-    // Now uses classifyTier() with actual stability, last_review, importance_tier fields.
     const matchedIds = results.map((m: TriggerMatch) => m.memoryId);
     const fullRecords = fetchMemoryRecords(matchedIds);
 
     const sessionMemories: WorkingMemoryEntry[] = workingMemory.getSessionMemories(sessionId as string)
       .map(wm => ({ memoryId: (wm.id as number) || 0, attentionScore: (wm.attention_score as number) || 1.0 }));
 
-    // T208: Calculate turn-based decay factor (turnNumber=1 → 1.0, higher → more decay)
     const turnDecayFactor = turnNumber > 1
       ? Math.pow(TURN_DECAY_RATE, turnNumber - 1)
       : 1.0;
@@ -293,15 +267,11 @@ async function handleMemoryMatchTriggers(args: TriggerArgs): Promise<MCPResponse
       let tier: string;
 
       if (fullRecord) {
-        // T201: Use FSRS-based classification from full DB record
         const classification = tierClassifier.classifyTier(fullRecord);
         let effectiveRetrievability = classification.retrievability;
 
-        // T208: Apply turn-based decay to retrievability
         effectiveRetrievability *= turnDecayFactor;
 
-        // If memory is in working memory, use the lower of FSRS retrievability
-        // and working memory attention (attention can pull DOWN, not UP)
         if (wmEntry) {
           effectiveRetrievability = Math.min(effectiveRetrievability, wmEntry.attentionScore * turnDecayFactor);
         }
@@ -309,7 +279,6 @@ async function handleMemoryMatchTriggers(args: TriggerArgs): Promise<MCPResponse
         attentionScore = effectiveRetrievability;
         tier = tierClassifier.classifyState(effectiveRetrievability);
       } else {
-        // Fallback: no DB record found, use working memory or default
         const baseScore = wmEntry ? wmEntry.attentionScore : 1.0;
         attentionScore = baseScore * turnDecayFactor;
         tier = tierClassifier.classifyState(attentionScore);
@@ -323,7 +292,6 @@ async function handleMemoryMatchTriggers(args: TriggerArgs): Promise<MCPResponse
       };
     });
 
-    // Step 6: RETURN - Apply tier filtering and content depth
     const tieredResults = tierClassifier.filterAndLimitByState(enrichedResults);
 
     formattedResults = await Promise.all(tieredResults.map(async (r: EnrichedTriggerMatch) => {

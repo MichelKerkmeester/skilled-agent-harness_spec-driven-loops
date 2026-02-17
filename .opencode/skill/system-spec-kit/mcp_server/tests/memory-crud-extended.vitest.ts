@@ -11,7 +11,7 @@ import { describe, it, expect, beforeAll, afterEach, vi } from 'vitest';
 // Mock modules at the vi.mock level so handler's internal imports are intercepted.
 // vi.mock is hoisted to the top of the file by vitest.
 vi.mock('../core/db-state', async (importOriginal) => {
-  const actual = await importOriginal() as any;
+  const actual = await importOriginal() as unknown;
   return {
     ...actual,
     checkDatabaseUpdated: vi.fn(async () => false),
@@ -19,7 +19,7 @@ vi.mock('../core/db-state', async (importOriginal) => {
 });
 
 vi.mock('../core', async (importOriginal) => {
-  const actual = await importOriginal() as any;
+  const actual = await importOriginal() as unknown;
   return {
     ...actual,
     checkDatabaseUpdated: vi.fn(async () => false),
@@ -27,7 +27,7 @@ vi.mock('../core', async (importOriginal) => {
 });
 
 vi.mock('../lib/search/vector-index', async (importOriginal) => {
-  const actual = await importOriginal() as any;
+  const actual = await importOriginal() as unknown;
   return {
     ...actual,
     deleteMemory: vi.fn((...args: any[]) => actual.deleteMemory?.(...args)),
@@ -42,7 +42,7 @@ vi.mock('../lib/search/vector-index', async (importOriginal) => {
 });
 
 vi.mock('../lib/storage/checkpoints', async (importOriginal) => {
-  const actual = await importOriginal() as any;
+  const actual = await importOriginal() as unknown;
   return {
     ...actual,
     createCheckpoint: vi.fn((...args: any[]) => actual.createCheckpoint?.(...args)),
@@ -50,7 +50,7 @@ vi.mock('../lib/storage/checkpoints', async (importOriginal) => {
 });
 
 vi.mock('../lib/storage/causal-edges', async (importOriginal) => {
-  const actual = await importOriginal() as any;
+  const actual = await importOriginal() as unknown;
   return {
     ...actual,
     init: vi.fn((...args: any[]) => actual.init?.(...args)),
@@ -59,7 +59,7 @@ vi.mock('../lib/storage/causal-edges', async (importOriginal) => {
 });
 
 vi.mock('../lib/parsing/trigger-matcher', async (importOriginal) => {
-  const actual = await importOriginal() as any;
+  const actual = await importOriginal() as unknown;
   return {
     ...actual,
     clearCache: vi.fn((...args: any[]) => actual.clearCache?.(...args)),
@@ -67,7 +67,7 @@ vi.mock('../lib/parsing/trigger-matcher', async (importOriginal) => {
 });
 
 vi.mock('../lib/cache/tool-cache', async (importOriginal) => {
-  const actual = await importOriginal() as any;
+  const actual = await importOriginal() as unknown;
   return {
     ...actual,
     invalidateOnWrite: vi.fn((...args: any[]) => actual.invalidateOnWrite?.(...args)),
@@ -76,7 +76,7 @@ vi.mock('../lib/cache/tool-cache', async (importOriginal) => {
 
 // Mock the embeddings barrel that the handler actually imports
 vi.mock('../lib/providers/embeddings', async (importOriginal) => {
-  const actual = await importOriginal() as any;
+  const actual = await importOriginal() as unknown;
   return {
     ...actual,
     generateDocumentEmbedding: vi.fn((...args: any[]) => actual.generateDocumentEmbedding?.(...args)),
@@ -87,7 +87,7 @@ vi.mock('../lib/providers/embeddings', async (importOriginal) => {
 
 // Mock the folder-scoring barrel that the handler actually imports
 vi.mock('../lib/scoring/folder-scoring', async (importOriginal) => {
-  const actual = await importOriginal() as any;
+  const actual = await importOriginal() as unknown;
   return {
     ...actual,
     isArchived: vi.fn((...args: any[]) => actual.isArchived?.(...args)),

@@ -122,14 +122,14 @@ readme_types:
     scope: "Entire project"
     sections:
     # Canonical sections from readme_template.md §13 (omits FAQ for project scope)
-    - "📖 OVERVIEW"
-    - "🚀 QUICK START"
-    - "⚡ FEATURES"
-    - "📁 STRUCTURE"
-    - "⚙️ CONFIGURATION"
-    - "💡 USAGE EXAMPLES"
-    - "🛠️ TROUBLESHOOTING"
-    - "📚 RELATED DOCUMENTS"
+    - "OVERVIEW"
+    - "QUICK START"
+    - "FEATURES"
+    - "STRUCTURE"
+    - "CONFIGURATION"
+    - "USAGE EXAMPLES"
+    - "TROUBLESHOOTING"
+    - "RELATED DOCUMENTS"
     key_questions:
     - "What is this?"
     - "How do I install it?"
@@ -140,15 +140,15 @@ readme_types:
     scope: "Module or package"
     sections:
     # Full canonical 9-section set from readme_template.md §13
-    - "📖 OVERVIEW"
-    - "🚀 QUICK START"
-    - "⚡ FEATURES"
-    - "📁 STRUCTURE"
-    - "⚙️ CONFIGURATION"
-    - "💡 USAGE EXAMPLES"
-    - "🛠️ TROUBLESHOOTING"
-    - "❓ FAQ"
-    - "📚 RELATED DOCUMENTS"
+    - "OVERVIEW"
+    - "QUICK START"
+    - "FEATURES"
+    - "STRUCTURE"
+    - "CONFIGURATION"
+    - "USAGE EXAMPLES"
+    - "TROUBLESHOOTING"
+    - "FAQ"
+    - "RELATED DOCUMENTS"
     key_questions:
     - "What does this component do?"
     - "How do I use the API?"
@@ -158,12 +158,12 @@ readme_types:
     scope: "Specific feature"
     sections:
     # Canonical subset from readme_template.md §13 (omits STRUCTURE, FAQ, RELATED DOCUMENTS)
-    - "📖 OVERVIEW"
-    - "🚀 QUICK START"
-    - "⚡ FEATURES"
-    - "⚙️ CONFIGURATION"
-    - "💡 USAGE EXAMPLES"
-    - "🛠️ TROUBLESHOOTING"
+    - "OVERVIEW"
+    - "QUICK START"
+    - "FEATURES"
+    - "CONFIGURATION"
+    - "USAGE EXAMPLES"
+    - "TROUBLESHOOTING"
     key_questions:
     - "What does this feature do?"
     - "How do I enable it?"
@@ -173,15 +173,15 @@ readme_types:
     scope: "OpenCode skill"
     sections:
     # Full canonical 9-section set from readme_template.md §13
-    - "📖 OVERVIEW"
-    - "🚀 QUICK START"
-    - "⚡ FEATURES"
-    - "📁 STRUCTURE"
-    - "⚙️ CONFIGURATION"
-    - "💡 USAGE EXAMPLES"
-    - "🛠️ TROUBLESHOOTING"
-    - "❓ FAQ"
-    - "📚 RELATED DOCUMENTS"
+    - "OVERVIEW"
+    - "QUICK START"
+    - "FEATURES"
+    - "STRUCTURE"
+    - "CONFIGURATION"
+    - "USAGE EXAMPLES"
+    - "TROUBLESHOOTING"
+    - "FAQ"
+    - "RELATED DOCUMENTS"
     key_questions:
     - "When does this skill activate?"
     - "What commands are available?"
@@ -202,7 +202,7 @@ ai_optimization:
   scannable_structure:
     description: "Easy to scan and find information"
     techniques:
-    - "Clear headings (emojis optional)"
+    - "Clear headings"
     - "Code examples for every feature"
     - "Tables for options"
     - "ASCII diagrams for architecture"
@@ -379,21 +379,22 @@ workflow:
       all_types:
       - "Title + Tagline (one-liner description)"
       - "TABLE OF CONTENTS (numbered, linked)"
-      - "Numbered sections (emojis optional)"
+      - "Numbered sections"
       - "Tables for structured data"
       - "Code blocks with language tags"
       - "Horizontal rules between major sections"
-    emoji_conventions:
-      # Canonical 9-section emojis from readme_template.md §13 (optional for sections)
-      overview: "📖"
-      quick_start: "🚀"
-      structure: "📁"
-      features: "⚡"
-      configuration: "⚙️"
-      usage_examples: "💡"
-      troubleshooting: "🛠️"
-      faq: "❓"
-      related_documents: "📚"
+    emoji_guidance:
+      note: "Optional emoji prefix suggestions (not required in output)"
+      examples:
+        overview: "📖"
+        quick_start: "🚀"
+        structure: "📁"
+        features: "⚡"
+        configuration: "⚙️"
+        usage_examples: "💡"
+        troubleshooting: "🛠️"
+        faq: "❓"
+        related_documents: "📚"
     outputs:
     - template_selected
     - sections_planned
@@ -407,7 +408,7 @@ workflow:
     activities:
     - Write Title + Tagline (concise, clear value proposition)
     - Generate TABLE OF CONTENTS (numbered, linked to sections)
-    - Write each section (emojis optional)
+    - Write each section
     - Create tables for structured data (features, commands, config)
     - Add code blocks with language tags
     - Create ASCII diagrams for architecture/flow visualization
@@ -416,7 +417,7 @@ workflow:
     quality_requirements:
       title: "Clear, concise value proposition"
       toc: "Numbered, linked to actual sections"
-      sections: "Numbered sections (emojis optional)"
+      sections: "Numbered sections"
       tables: "For structured data (features, commands, config)"
       code_blocks: "Always specify language"
       diagrams: "ASCII for architecture/flow"
@@ -447,7 +448,7 @@ workflow:
       structure:
       - "Title + one-liner tagline present"
       - "TABLE OF CONTENTS present and linked"
-      - "All sections numbered (emojis optional)"
+      - "All sections numbered"
       - "Horizontal rules between sections"
       content:
       - "All code blocks have language tags"
@@ -628,7 +629,7 @@ completion_report:
     Structure:
     - Title + Tagline: ✅
     - TABLE OF CONTENTS: ✅
-    - Sections: [N] numbered (emojis optional)
+    - Sections: [N] numbered
     - Tables: [N]
     - Code blocks: [N]
     - ASCII diagrams: [N]
@@ -722,7 +723,7 @@ rules:
   - "Pause at checkpoints for user approval"
   - "Include Quick Start section with clear examples"
   - "Create table of contents with proper anchor links"
-  - "Use numbered H2 sections (emojis optional)"
+  - "Use numbered H2 sections"
   - "Validate structure before claiming complete"
   NEVER:
   - "Skip validation steps"

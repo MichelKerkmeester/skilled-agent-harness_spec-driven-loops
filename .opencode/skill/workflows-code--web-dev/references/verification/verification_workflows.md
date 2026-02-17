@@ -66,7 +66,7 @@ Skip any step = lying, not verifying.
 ---
 
 <!-- /ANCHOR:the-gate-function -->
-<!-- ANCHOR:5-automated-verification-options-mcp-or-cli -->
+<!-- ANCHOR:automated-verification-options-mcp-or-cli -->
 ## 2.5. AUTOMATED VERIFICATION OPTIONS (MCP OR CLI)
 
 **Automated browser testing enables faster, repeatable verification.**
@@ -358,7 +358,7 @@ bdg stop 2>&1
 
 ---
 
-<!-- /ANCHOR:5-automated-verification-options-mcp-or-cli -->
+<!-- /ANCHOR:automated-verification-options-mcp-or-cli -->
 <!-- ANCHOR:verification-requirements -->
 ## 3. VERIFICATION REQUIREMENTS
 

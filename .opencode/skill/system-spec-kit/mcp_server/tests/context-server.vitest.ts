@@ -1,4 +1,8 @@
 // @ts-nocheck
+// ---------------------------------------------------------------
+// TEST: CONTEXT SERVER
+// ---------------------------------------------------------------
+
 // Converted from: context-server.test.ts (custom runner)
 import { describe, it, expect, beforeAll } from 'vitest'
 import fs from 'fs'
@@ -71,7 +75,7 @@ describe('Context Server', () => {
       const extraInput = { query: 'hello', unexpectedField: true, anotherExtra: 42 }
       const extraResult = parseArgs<{ query: string }>(extraInput)
       expect(extraResult.query).toBe('hello')
-      expect((extraResult as any).unexpectedField).toBe(true)
+      expect((extraResult as unknown).unexpectedField).toBe(true)
     })
 
     // T7: parseArgs with type coercion edge cases (number as string)

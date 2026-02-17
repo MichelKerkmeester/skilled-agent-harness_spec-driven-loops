@@ -1,4 +1,8 @@
 // @ts-nocheck
+// ---------------------------------------------------------------
+// TEST: CONFIDENCE TRACKER
+// ---------------------------------------------------------------
+
 import { describe, it, expect, beforeAll, afterAll } from 'vitest';
 
 import * as path from 'path';

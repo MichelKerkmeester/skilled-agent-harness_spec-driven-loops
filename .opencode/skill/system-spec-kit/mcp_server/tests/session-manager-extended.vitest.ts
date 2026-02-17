@@ -1,4 +1,8 @@
 // @ts-nocheck
+// ---------------------------------------------------------------
+// TEST: SESSION MANAGER EXTENDED
+// ---------------------------------------------------------------
+
 import { describe, it, expect, beforeEach, afterAll } from 'vitest';
 import fs from 'fs';
 import os from 'os';

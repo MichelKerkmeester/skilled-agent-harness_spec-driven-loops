@@ -355,7 +355,7 @@ workflow:
     purpose: Create technical plan with implementation approach
     # Tool selection delegated to AGENTS.md Section 8
     parallel_dispatch_note: "Dispatches 4 parallel agents via Task tool (Architecture, Feature, Dependency, Test Explorers). No question asked - integral to this phase."
-    # REFERENCE ONLY — routing metadata, do not dispatch agents from these values
+    # AGENT AVAILABILITY (conditional) — routing metadata, not dispatch instructions
     inline_parallel_exploration:
       purpose: "Spawn 4 @context agents to discover codebase patterns before planning"
       execution: { tool: Task, subagent_type: context, model: opus, parallel: true }

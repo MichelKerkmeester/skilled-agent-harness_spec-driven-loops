@@ -585,8 +585,6 @@ After completing validation, document the results.
 ### Universal Template (All Languages)
 
 ```markdown
-<!-- /ANCHOR:verification-summary-template -->
-<!-- ANCHOR:code-quality-verification-summary -->
 ## Code Quality Verification Summary
 
 **File**: [filename.ext]
@@ -614,7 +612,7 @@ After completing validation, document the results.
 
 ---
 
-<!-- /ANCHOR:code-quality-verification-summary -->
+<!-- /ANCHOR:verification-summary-template -->
 <!-- ANCHOR:quick-reference -->
 ## 11. QUICK REFERENCE
 

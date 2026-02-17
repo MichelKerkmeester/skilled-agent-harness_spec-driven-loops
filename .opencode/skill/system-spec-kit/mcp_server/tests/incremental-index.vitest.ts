@@ -1,3 +1,7 @@
+// ---------------------------------------------------------------
+// TEST: INCREMENTAL INDEX
+// ---------------------------------------------------------------
+
 import { describe, it, expect } from 'vitest';
 
 // DB-dependent imports (commented out - requires better-sqlite3 / dist modules)
@@ -7,7 +11,6 @@ describe('Incremental Indexing (T064-T066) [deferred - requires DB test fixtures
 
   describe('T064 - Content Hash + Mtime Tracking', () => {
     it('should return content hash and mtime from getFileMetadata', () => {
-      // const metadata = incrementalIndex.getFileMetadata(filePath);
       // expect(metadata).not.toBeNull();
       // expect(typeof metadata.mtimeMs).toBe('number');
       // expect(typeof metadata.content_hash).toBe('string');
@@ -16,7 +19,6 @@ describe('Incremental Indexing (T064-T066) [deferred - requires DB test fixtures
     });
 
     it('should return null for non-existent file', () => {
-      // const metadata = incrementalIndex.getFileMetadata('/non/existent/path/file.md');
       // expect(metadata).toBeNull();
       expect(true).toBe(true);
     });
@@ -50,7 +52,6 @@ describe('Incremental Indexing (T064-T066) [deferred - requires DB test fixtures
 
   describe('T065 - shouldReindex Function', () => {
     it('should return reindex:true for new file (not in DB)', () => {
-      // const result = incrementalIndex.shouldReindex(db, filePath, { force: false });
       // expect(result.reindex).toBe(true);
       // expect(result.reason).toBe('new_file');
       expect(true).toBe(true);

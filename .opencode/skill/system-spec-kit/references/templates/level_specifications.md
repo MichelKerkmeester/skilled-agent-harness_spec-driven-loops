@@ -268,8 +268,6 @@ specs/012-user-profile-api/
 
 **Checklist Example:**
 ```markdown
-<!-- /ANCHOR:level-2-verification-added-loc-guidance-100-499 -->
-<!-- ANCHOR:implementation-checklist -->
 ## Implementation Checklist
 
 ### P0 - Blockers
@@ -286,7 +284,7 @@ specs/012-user-profile-api/
 
 ---
 
-<!-- /ANCHOR:implementation-checklist -->
+<!-- /ANCHOR:level-2-verification-added-loc-guidance-100-499 -->
 <!-- ANCHOR:level-3-full-documentation-loc-guidance-500 -->
 ## 4. LEVEL 3: FULL DOCUMENTATION (LOC guidance: ≥500)
 
@@ -427,8 +425,6 @@ Level 3+ is auto-detected via complexity scoring for highly complex tasks:
 
 **Status Reporting Format:**
 ```
-<!-- /ANCHOR:level-3-extended-documentation-complexity-score-80-100 -->
-<!-- ANCHOR:status-update-timestamp -->
 ## Status Update - [TIMESTAMP]
 - **Task**: T### - [Description]
 - **Status**: [IN_PROGRESS | COMPLETED | BLOCKED]
@@ -517,7 +513,7 @@ Level 3+ is auto-detected via complexity scoring for highly complex tasks:
 
 ---
 
-<!-- /ANCHOR:status-update-timestamp -->
+<!-- /ANCHOR:level-3-extended-documentation-complexity-score-80-100 -->
 <!-- ANCHOR:level-migration -->
 ## 6. LEVEL MIGRATION
 
@@ -576,8 +572,6 @@ If the script is unavailable, manually add the required files:
 **Changelog example:**
 
 ```markdown
-<!-- /ANCHOR:level-migration -->
-<!-- ANCHOR:change-log -->
 ## Change Log
 - 2025-11-15: Created as Level 1 (simple feature) - spec.md, plan.md, tasks.md
 - 2025-11-16: Escalated to Level 2 (discovered validation needs) - added checklist.md
@@ -604,7 +598,7 @@ If the script is unavailable, manually add the required files:
 
 ---
 
-<!-- /ANCHOR:change-log -->
+<!-- /ANCHOR:level-migration -->
 <!-- ANCHOR:status-field-convention -->
 ## 7. STATUS FIELD CONVENTION
 

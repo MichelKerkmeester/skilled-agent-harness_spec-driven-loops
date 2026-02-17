@@ -23,6 +23,9 @@ import {
   getCacheStats,
 } from '../lib/parsing/trigger-matcher';
 
+type TriggerPrompt = Parameters<typeof matchTriggerPhrases>[0];
+type UnicodeInput = Parameters<typeof normalizeUnicode>[0];
+
 describe('Trigger Matcher (T501)', () => {
   beforeEach(() => {
     clearCache();
@@ -90,8 +93,8 @@ describe('Trigger Matcher (T501)', () => {
   // 4.7 EMPTY PROMPT (T501-07)
   describe('Empty Prompt (T501-07)', () => {
     it('T501-07: empty/null/undefined prompt returns no matches', () => {
-      const result1 = matchTriggerPhrases(null as any);
-      const result2 = matchTriggerPhrases(undefined as any);
+      const result1 = matchTriggerPhrases(null as unknown as TriggerPrompt);
+      const result2 = matchTriggerPhrases(undefined as unknown as TriggerPrompt);
       const result3 = matchTriggerPhrases('');
 
       expect(Array.isArray(result1)).toBe(true);
@@ -122,7 +125,7 @@ describe('Trigger Matcher (T501)', () => {
     });
 
     it('T501-08d: null normalization returns empty string', () => {
-      const nullResult = normalizeUnicode(null as any);
+      const nullResult = normalizeUnicode(null as unknown as UnicodeInput);
       expect(nullResult).toBe('');
     });
   });

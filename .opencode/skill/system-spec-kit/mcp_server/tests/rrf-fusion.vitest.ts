@@ -1,4 +1,8 @@
 // @ts-nocheck
+// ---------------------------------------------------------------
+// TEST: RRF FUSION
+// ---------------------------------------------------------------
+
 // Converted from: rrf-fusion.test.ts (custom runner)
 import { describe, it, expect } from 'vitest';
 import {

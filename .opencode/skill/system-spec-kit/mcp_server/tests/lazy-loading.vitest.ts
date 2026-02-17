@@ -24,37 +24,27 @@ import { describe, it, expect } from 'vitest';
 describe.skip('Lazy Loading Startup Time (T016-T019) [deferred - requires external API/startup fixtures]', () => {
   describe('Lazy loading mode', () => {
     it('should import module in under 500ms (CHK-020)', () => {
-      // const startTime = Date.now();
-      // const embeddings = require('../../shared/dist/embeddings');
-      // const importTime = Date.now() - startTime;
       // expect(importTime).toBeLessThan(500);
     });
 
     it('should NOT initialize provider on import (CHK-021)', () => {
-      // const embeddings = require('../../shared/dist/embeddings');
       // expect(embeddings.isProviderInitialized()).toBe(false);
     });
 
     it('should initialize provider on first embedding call (CHK-022)', async () => {
-      // const embeddings = require('../../shared/dist/embeddings');
       // expect(embeddings.isProviderInitialized()).toBe(false);
       // await embeddings.generateEmbedding('test lazy loading');
       // expect(embeddings.isProviderInitialized()).toBe(true);
     });
 
     it('should be faster on second embedding (no re-init)', async () => {
-      // const embeddings = require('../../shared/dist/embeddings');
       // await embeddings.generateEmbedding('test lazy loading');
-      // const start = Date.now();
       // await embeddings.generateEmbedding('test lazy loading 2');
-      // const secondTime = Date.now() - start;
       // expect(secondTime).toBeLessThan(1000); // Should be noticeably faster
     });
 
     it('should report lazy loading stats after initialization', async () => {
-      // const embeddings = require('../../shared/dist/embeddings');
       // await embeddings.generateEmbedding('test lazy loading');
-      // const stats = embeddings.getLazyLoadingStats();
       // expect(stats.isInitialized).toBe(true);
       // expect(stats.initDurationMs).not.toBeNull();
     });
@@ -62,7 +52,6 @@ describe.skip('Lazy Loading Startup Time (T016-T019) [deferred - requires extern
 
   describe('Eager warmup check (CHK-024)', () => {
     it('should have shouldEagerWarmup() return false by default', () => {
-      // const embeddings = require('../../shared/dist/embeddings');
       // expect(embeddings.shouldEagerWarmup()).toBe(false);
     });
   });

@@ -31,7 +31,6 @@ describe('MEMORY PARSER - README INDEXING', () => {
     });
 
     it('R04: rejects skill constitutional README.md', () => {
-      // constitutional dir READMEs are explicitly excluded
       expect(mod.isMemoryFile('/project/.opencode/skill/my-skill/constitutional/README.md')).toBe(false);
     });
 

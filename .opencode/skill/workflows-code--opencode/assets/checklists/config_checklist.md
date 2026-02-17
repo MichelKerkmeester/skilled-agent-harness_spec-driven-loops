@@ -283,8 +283,6 @@ These improve quality but can be deferred.
 Copy this for code review:
 
 ```markdown
-<!-- /ANCHOR:checklist-template -->
-<!-- ANCHOR:config-file-quality-check -->
 ## Config File Quality Check
 
 ### P0 - HARD BLOCKERS
@@ -314,7 +312,7 @@ Copy this for code review:
 
 ---
 
-<!-- /ANCHOR:config-file-quality-check -->
+<!-- /ANCHOR:checklist-template -->
 <!-- ANCHOR:validation-commands -->
 ## 7. VALIDATION COMMANDS
 

@@ -1,4 +1,8 @@
 // @ts-nocheck
+// ---------------------------------------------------------------
+// TEST: HANDLER MEMORY SEARCH
+// ---------------------------------------------------------------
+
 import { describe, it, expect } from 'vitest';
 // DB-dependent imports - commented out for deferred test suite
 import * as handler from '../handlers/memory-search';

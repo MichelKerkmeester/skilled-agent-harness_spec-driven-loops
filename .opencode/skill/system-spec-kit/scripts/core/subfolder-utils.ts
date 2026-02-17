@@ -1,43 +1,19 @@
-/**
- * Shared subfolder resolution utilities.
- * 
- * Centralizes the bare-child-search algorithm and spec folder patterns
- * that were previously duplicated across generate-context.ts and folder-detector.ts.
- * 
- * @module subfolder-utils
- */
+// ---------------------------------------------------------------
+// CORE: SUBFOLDER UTILS
+// ---------------------------------------------------------------
 
 import * as path from 'path';
 import * as fsSync from 'fs';
 import * as fs from 'fs/promises';
 import { getSpecsDirectories } from './config';
 
-/**
- * Pattern matching valid spec folder names: 3 digits, hyphen, lowercase start.
- * Example matches: "003-system-spec-kit", "121-script-audit"
- * Example non-matches: "003-System", "3-foo", "abc-def"
- */
+/** Pattern for strict spec folder names: 3 digits + kebab-case suffix. */
 export const SPEC_FOLDER_PATTERN: RegExp = /^\d{3}-[a-z][a-z0-9-]*$/;
 
-/**
- * Basic pattern for initial spec folder detection (less strict).
- * Allows uppercase after the initial digit-hyphen prefix.
- * Example matches: "003-SystemSpecKit", "121-Script-Audit"
- */
+/** Basic pattern for initial spec folder detection (less strict). */
 export const SPEC_FOLDER_BASIC_PATTERN: RegExp = /^\d{3}-[a-zA-Z]/;
 
-/**
- * Search all spec base directories for a child folder by bare name (synchronous).
- * Iterates through each specs directory, then each parent folder within,
- * looking for a unique match of the given child name.
- * 
- * @param childName - The bare child folder name (e.g., "121-child-name")
- * @returns Absolute path to the matched child folder, or null if not found/ambiguous
- * 
- * @example
- * // Returns "/path/to/specs/003-parent/121-child-name" if unique match found
- * findChildFolderSync("121-child-name");
- */
+/** Find a bare child folder under all spec parents (sync). */
 export function findChildFolderSync(childName: string): string | null {
   if (!childName) return null;
   const specsDirs = getSpecsDirectories();
@@ -72,17 +48,7 @@ export function findChildFolderSync(childName: string): string | null {
   return null;
 }
 
-/**
- * Search all spec base directories for a child folder by bare name (asynchronous).
- * Async equivalent of findChildFolderSync for use in interactive/async contexts.
- * 
- * @param childName - The bare child folder name (e.g., "121-child-name")
- * @returns Promise resolving to absolute path of matched child folder, or null
- * 
- * @example
- * // Returns "/path/to/specs/003-parent/121-child-name" if unique match found
- * const result = await findChildFolderAsync("121-child-name");
- */
+/** Find a bare child folder under all spec parents (async). */
 export async function findChildFolderAsync(childName: string): Promise<string | null> {
   if (!childName) return null;
   const specsDirs = getSpecsDirectories();

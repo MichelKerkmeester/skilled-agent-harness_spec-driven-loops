@@ -300,14 +300,10 @@ memory_search({
 
 Memory files use HTML comment anchors:
 ```markdown
-<!-- ANCHOR:summary -->
 Brief summary of the session...
-<!-- /ANCHOR:summary -->
 
-<!-- ANCHOR:decisions -->
 - Decision 1: Chose approach X because...
 - Decision 2: Deferred Y until...
-<!-- /ANCHOR:decisions -->
 ```
 
 **Token Savings:**

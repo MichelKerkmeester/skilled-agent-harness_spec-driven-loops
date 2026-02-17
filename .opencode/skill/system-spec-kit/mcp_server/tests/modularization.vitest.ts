@@ -140,9 +140,6 @@ describe('Index Re-exports (DB-dependent)', () => {
 
   for (const dir of directories) {
     it(`${dir}/index.js exports items`, () => {
-      // const indexPath = path.join(MCP_SERVER_PATH, 'dist', dir, 'index.js');
-      // const exports = require(indexPath);
-      // const exportCount = Object.keys(exports).length;
       // expect(exportCount).toBeGreaterThan(0);
     });
   }
@@ -165,7 +162,6 @@ describe('Core Module Exports (DB-dependent)', () => {
 
   for (const fn of required) {
     it(`core.${fn} is exported`, () => {
-      // const core = require(path.join(MCP_SERVER_PATH, 'dist', 'core'));
       // expect(fn in core).toBe(true);
     });
   }
@@ -192,7 +188,6 @@ describe('Handler Module Exports (DB-dependent)', () => {
 
   for (const fn of required) {
     it(`handlers.${fn} is exported as function`, () => {
-      // const handlers = require(path.join(MCP_SERVER_PATH, 'dist', 'handlers'));
       // expect(typeof handlers[fn]).toBe('function');
     });
   }
@@ -212,7 +207,6 @@ describe('Formatter Module Exports (DB-dependent)', () => {
 
   for (const fn of required) {
     it(`formatters.${fn} is exported as function`, () => {
-      // const formatters = require(path.join(MCP_SERVER_PATH, 'dist', 'formatters'));
       // expect(typeof formatters[fn]).toBe('function');
     });
   }
@@ -233,7 +227,6 @@ describe('Utils Module Exports (DB-dependent)', () => {
 
   for (const fn of required) {
     it(`utils.${fn} is exported`, () => {
-      // const utils = require(path.join(MCP_SERVER_PATH, 'dist', 'utils'));
       // expect(fn in utils).toBe(true);
     });
   }
@@ -255,7 +248,6 @@ describe('Hooks Module Exports (DB-dependent)', () => {
 
   for (const fn of required) {
     it(`hooks.${fn} is exported`, () => {
-      // const hooks = require(path.join(MCP_SERVER_PATH, 'dist', 'hooks'));
       // expect(fn in hooks).toBe(true);
     });
   }
@@ -270,23 +262,18 @@ describe('Validator Function Tests (DB-dependent)', () => {
   // Original: testValidatorFunctions() — requires dist/utils which has DB deps
 
   it('validateQuery(null) throws', () => {
-    // const { validateQuery } = require(path.join(MCP_SERVER_PATH, 'dist', 'utils'));
     // expect(() => validateQuery(null)).toThrow();
   });
 
   it('validateQuery("   ") throws', () => {
-    // const { validateQuery } = require(path.join(MCP_SERVER_PATH, 'dist', 'utils'));
     // expect(() => validateQuery('   ')).toThrow();
   });
 
   it('validateQuery("test query") returns trimmed', () => {
-    // const { validateQuery } = require(path.join(MCP_SERVER_PATH, 'dist', 'utils'));
-    // const validQuery = validateQuery('test query');
     // expect(validQuery).toBe('test query');
   });
 
   it('validateInputLengths with valid input does not throw', () => {
-    // const { validateInputLengths } = require(path.join(MCP_SERVER_PATH, 'dist', 'utils'));
     // expect(() => validateInputLengths({ query: 'test', specFolder: 'test/folder' })).not.toThrow();
   });
 });
@@ -300,19 +287,14 @@ describe('Token Metrics Tests (DB-dependent)', () => {
   // Original: testTokenMetrics() — requires dist/formatters
 
   it('estimateTokens("Hello world") returns positive number', () => {
-    // const { estimateTokens } = require(path.join(MCP_SERVER_PATH, 'dist', 'formatters'));
-    // const tokens = estimateTokens('Hello world');
     // expect(typeof tokens).toBe('number');
     // expect(tokens).toBeGreaterThan(0);
   });
 
   it('calculateTokenMetrics returns object with actualTokens', () => {
-    // const { calculateTokenMetrics } = require(path.join(MCP_SERVER_PATH, 'dist', 'formatters'));
-    // const returnedResults = [
     //   { content: 'Short content', tier: 'HOT' },
     //   { content: 'Another piece of content here', tier: 'WARM' },
     // ];
-    // const metrics = calculateTokenMetrics(returnedResults, returnedResults);
     // expect(typeof metrics).toBe('object');
     // expect('actualTokens' in metrics).toBe(true);
   });

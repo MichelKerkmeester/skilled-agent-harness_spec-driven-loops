@@ -1,4 +1,8 @@
 // @ts-nocheck
+// ---------------------------------------------------------------
+// TEST: T201 T208 TIERED INJECTION TURNNUMBER
+// ---------------------------------------------------------------
+
 import { describe, it, expect } from 'vitest';
 
 import * as tierClassifier from '../lib/cache/cognitive/tier-classifier';
@@ -179,7 +183,7 @@ describe('T201 + T208: Tiered Injection + Turn Decay [deferred - requires DB tes
     });
 
     it('T208-7: Snake_case alias exported', () => {
-      expect(typeof (handler as any).handle_memory_match_triggers).toBe('function');
+      expect(typeof (handler as unknown).handle_memory_match_triggers).toBe('function');
     });
   });
 

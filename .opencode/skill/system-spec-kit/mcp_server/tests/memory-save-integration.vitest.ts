@@ -1,3 +1,7 @@
+// ---------------------------------------------------------------
+// TEST: MEMORY SAVE INTEGRATION
+// ---------------------------------------------------------------
+
 import { describe, it, expect } from 'vitest';
 
 // DB-dependent imports (commented out - requires better-sqlite3 / dist modules)
@@ -10,7 +14,6 @@ describe('Memory Save Integration (T501-T550) [deferred - requires DB test fixtu
 
   describe('T501-T510 - PE Gate Invocation', () => {
     it('T501: PE gate called before memory creation', () => {
-      // const result = evaluate(candidates, newContent);
       // expect(result.action).toBeTruthy();
       expect(true).toBe(true);
     });

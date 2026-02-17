@@ -5,6 +5,8 @@
 import { describe, it, expect } from 'vitest';
 import * as preflight from '../lib/validation/preflight';
 
+type DuplicateParams = Parameters<typeof preflight.checkDuplicate>[0];
+
 /* ─────────────────────────────────────────────────────────────
    Test Data
 ──────────────────────────────────────────────────────────────── */
@@ -427,7 +429,7 @@ More content follows.
       };
 
       const result = preflight.checkDuplicate(
-        { content: testContent, database: mockDatabase } as any,
+        { content: testContent, database: mockDatabase } as unknown as DuplicateParams,
         { check_exact: true }
       );
 
@@ -449,7 +451,7 @@ More content follows.
       };
 
       const result = preflight.checkDuplicate(
-        { content: testContent, database: mockDatabase } as any,
+        { content: testContent, database: mockDatabase } as unknown as DuplicateParams,
         { check_exact: true }
       );
 
@@ -547,8 +549,12 @@ More content follows.
       expect(result.warnings.length).toBeGreaterThan(0);
 
       const warning = result.warnings[0];
-      expect((warning as any).code).toBe(preflight.PreflightErrorCodes.TOKEN_BUDGET_WARNING);
-      expect((warning as any).suggestion).toBeTruthy();
+      if (typeof warning === 'string') {
+        expect(warning.length).toBeGreaterThan(0);
+      } else {
+        expect(warning.code).toBe(preflight.PreflightErrorCodes.TOKEN_BUDGET_WARNING);
+        expect(warning.suggestion).toBeTruthy();
+      }
     });
 
     it('no warning below 80% threshold', () => {

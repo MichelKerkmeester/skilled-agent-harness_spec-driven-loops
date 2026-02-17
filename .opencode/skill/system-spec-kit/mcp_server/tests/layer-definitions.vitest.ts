@@ -1,4 +1,8 @@
 // @ts-nocheck
+// ---------------------------------------------------------------
+// TEST: LAYER DEFINITIONS
+// ---------------------------------------------------------------
+
 import { describe, it, expect } from 'vitest';
 import * as mod from '../lib/architecture/layer-definitions';
 
@@ -25,14 +29,14 @@ describe('Layer Definitions Tests', () => {
     it('T02: Each layer has all required fields', () => {
       const requiredFields = ['id', 'name', 'description', 'tokenBudget', 'priority', 'useCase', 'tools'];
       for (const [layerId, layer] of Object.entries(LD)) {
-        const missing = requiredFields.filter(f => !(f in (layer as any)));
+        const missing = requiredFields.filter(f => !(f in (layer as unknown)));
         expect(missing).toEqual([]);
       }
     });
 
     it('T03: Layer IDs match their keys', () => {
       for (const [key, layer] of Object.entries(LD)) {
-        expect((layer as any).id).toBe(key);
+        expect((layer as unknown).id).toBe(key);
       }
     });
 
@@ -53,7 +57,7 @@ describe('Layer Definitions Tests', () => {
 
     it('T06: Token budgets are positive numbers', () => {
       for (const [layerId, layer] of Object.entries(LD)) {
-        const budget = (layer as any).tokenBudget;
+        const budget = (layer as unknown).tokenBudget;
         expect(typeof budget).toBe('number');
         expect(budget).toBeGreaterThan(0);
       }
@@ -61,7 +65,7 @@ describe('Layer Definitions Tests', () => {
 
     it('T07: Tools arrays are non-empty', () => {
       for (const [layerId, layer] of Object.entries(LD)) {
-        const tools = (layer as any).tools;
+        const tools = (layer as unknown).tools;
         expect(Array.isArray(tools)).toBe(true);
         expect(tools.length).toBeGreaterThan(0);
       }
@@ -93,7 +97,7 @@ describe('Layer Definitions Tests', () => {
     it('T10: All tools from LAYER_DEFINITIONS are mapped', () => {
       const allTools: string[] = [];
       for (const layer of Object.values(LD)) {
-        allTools.push(...(layer as any).tools);
+        allTools.push(...(layer as unknown).tools);
       }
       const missing = allTools.filter(t => !(t in TLM));
       expect(missing).toEqual([]);

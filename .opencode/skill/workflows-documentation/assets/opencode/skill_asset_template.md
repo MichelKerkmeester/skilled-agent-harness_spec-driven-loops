@@ -7,6 +7,7 @@ description: Templates and guidelines for creating asset files in AI agent skill
 
 Templates and guidelines for creating asset files in AI agent skills.
 
+<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 ### Location & Naming
@@ -39,6 +40,8 @@ Templates and guidelines for creating asset files in AI agent skills.
 
 ---
 
+<!-- /ANCHOR:overview -->
+<!-- ANCHOR:asset-file-types -->
 ## 2. ASSET FILE TYPES
 
 ### Template Files
@@ -114,6 +117,8 @@ Templates and guidelines for creating asset files in AI agent skills.
 
 ---
 
+<!-- /ANCHOR:asset-file-types -->
+<!-- ANCHOR:document-structure -->
 ## 3. DOCUMENT STRUCTURE
 
 ### Retrieval Anchor Convention (Required)
@@ -129,13 +134,10 @@ Use retrieval anchors for every H2 section so sections can be loaded by anchor I
 **Example**:
 
 ```markdown
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 [Section content]
 
-<!-- /ANCHOR:overview -->
-<!-- ANCHOR:asset-file-types -->
 ## 2. ASSET FILE TYPES
 ```
 
@@ -153,7 +155,6 @@ description: [One-line description - same as intro]
 
 [1-2 SHORT sentences only. Brief hook/summary. NO subsections, NO headers here.]
 
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 ### Purpose
@@ -166,21 +167,16 @@ description: [One-line description - same as intro]
 
 ---
 
-<!-- /ANCHOR:overview -->
-<!-- ANCHOR:content-section -->
 ## 2. [Content Section]
 
 [The actual template/checklist/snippet content]
 
 ---
 
-<!-- /ANCHOR:content-section -->
-<!-- ANCHOR:related-resources -->
 ## N. Related Resources (optional, if present must be last)
 
 [Links to related files]
 
-<!-- /ANCHOR:related-resources -->
 ```
 
 > **WARNING: DO NOT duplicate content between intro and OVERVIEW section.**
@@ -239,6 +235,8 @@ Atomic commits with clear intent = maintainable history.
 
 ---
 
+<!-- /ANCHOR:document-structure -->
+<!-- ANCHOR:standard-asset-structure -->
 ## 4. STANDARD ASSET STRUCTURE
 
 **Template**:
@@ -248,7 +246,6 @@ Atomic commits with clear intent = maintainable history.
 
 Brief introduction (1-2 sentences) explaining what this asset provides and when to use it.
 
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 ### Purpose
@@ -261,8 +258,6 @@ Brief introduction (1-2 sentences) explaining what this asset provides and when 
 
 ---
 
-<!-- /ANCHOR:overview -->
-<!-- ANCHOR:section-name -->
 ## 2. SECTION NAME
 
 **Key Points**:
@@ -291,25 +286,22 @@ Brief introduction (1-2 sentences) explaining what this asset provides and when 
 
 ---
 
-<!-- /ANCHOR:section-name -->
-<!-- ANCHOR:section-name-2 -->
 ## 3. SECTION NAME
 
 [Continue pattern...]
 
 ---
 
-<!-- /ANCHOR:section-name-2 -->
-<!-- ANCHOR:related-resources -->
 ## N. RELATED RESOURCES
 
 [Links to related files - MUST be last section if present]
 
-<!-- /ANCHOR:related-resources -->
 ```
 
 ---
 
+<!-- /ANCHOR:standard-asset-structure -->
+<!-- ANCHOR:logic-representation-patterns -->
 ## 5. LOGIC REPRESENTATION PATTERNS
 
 **Purpose**: Guidelines for representing logic, workflows, and decision trees in asset files using structured formats instead of prose.
@@ -351,6 +343,8 @@ Brief introduction (1-2 sentences) explaining what this asset provides and when 
 
 ---
 
+<!-- /ANCHOR:logic-representation-patterns -->
+<!-- ANCHOR:decision-logic-examples -->
 ## 6. DECISION LOGIC EXAMPLES
 
 **Purpose**: Demonstrate how to convert markdown prose into structured decision logic.
@@ -450,6 +444,8 @@ def validate_document(doc, doc_type):
 
 ---
 
+<!-- /ANCHOR:decision-logic-examples -->
+<!-- ANCHOR:workflow-patterns -->
 ## 7. WORKFLOW PATTERNS
 
 **Purpose**: Show how to represent multi-step workflows using YAML structures.
@@ -588,6 +584,8 @@ variant_generation_logic:
 
 ---
 
+<!-- /ANCHOR:workflow-patterns -->
+<!-- ANCHOR:configuration-templates -->
 ## 8. CONFIGURATION TEMPLATES
 
 **Purpose**: Demonstrate structured data formats for configuration and metadata.
@@ -686,6 +684,8 @@ VALIDATION_LEVELS = {
 
 ---
 
+<!-- /ANCHOR:configuration-templates -->
+<!-- ANCHOR:template-guidelines -->
 ## 9. TEMPLATE GUIDELINES
 
 ### Naming Conventions
@@ -789,6 +789,8 @@ VALIDATION_LEVELS = {
 
 ---
 
+<!-- /ANCHOR:template-guidelines -->
+<!-- ANCHOR:asset-file-checklist -->
 ## 10. ASSET FILE CHECKLIST
 
 **Before creating an asset file, verify**:
@@ -823,6 +825,8 @@ Integration:
 
 ---
 
+<!-- /ANCHOR:asset-file-checklist -->
+<!-- ANCHOR:examples-from-this-skill -->
 ## 11. EXAMPLES FROM THIS SKILL
 
 ### Example 1: Template File
@@ -878,6 +882,8 @@ Integration:
 
 ---
 
+<!-- /ANCHOR:examples-from-this-skill -->
+<!-- ANCHOR:asset-maintenance -->
 ## 12. ASSET MAINTENANCE
 
 ### When to Update Assets
@@ -917,6 +923,8 @@ Integration:
 
 ---
 
+<!-- /ANCHOR:asset-maintenance -->
+<!-- ANCHOR:best-practices-summary -->
 ## 13. BEST PRACTICES SUMMARY
 
 **DO**:
@@ -938,6 +946,8 @@ Integration:
 
 ---
 
+<!-- /ANCHOR:best-practices-summary -->
+<!-- ANCHOR:asset-file-naming-quick-reference -->
 ## 14. ASSET FILE NAMING QUICK REFERENCE
 
 **Location**: `.opencode/skill/[skill-name]/assets/`
@@ -960,6 +970,8 @@ Integration:
 
 ---
 
+<!-- /ANCHOR:asset-file-naming-quick-reference -->
+<!-- ANCHOR:related-resources -->
 ## 15. RELATED RESOURCES
 
 ### Templates
@@ -971,3 +983,4 @@ Integration:
 ### Standards
 - [core_standards.md](../../references/core_standards.md) - Document type rules
 - [skill_creation.md](../../references/skill_creation.md) - Full skill creation workflow
+<!-- /ANCHOR:related-resources -->

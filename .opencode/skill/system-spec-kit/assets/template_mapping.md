@@ -299,9 +299,7 @@ Memory files in `memory/` folders MUST use paired anchors for semantic indexing:
 
 **Required Format:**
 ```markdown
-<!-- ANCHOR:section-name -->
 Content that will be indexed...
-<!-- /ANCHOR:section-name -->
 ```
 
 **Rules:**
@@ -478,3 +476,4 @@ Get explicit "yes/go ahead/proceed" before ANY file changes.
 ### Related Skills
 - `system-spec-kit` - Spec folder workflow orchestrator
 - `workflows-documentation` - Document quality and skill creation<!-- /ANCHOR:related-resources -->
+<!-- /ANCHOR:related-resources -->

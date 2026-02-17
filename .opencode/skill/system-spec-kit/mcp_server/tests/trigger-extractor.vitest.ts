@@ -151,7 +151,7 @@ describe('Trigger Extractor (T515)', () => {
 
   describe('Empty content returns empty (T515-05)', () => {
     it('T515-05a: null input returns empty array', () => {
-      const result = extractTriggerPhrases(null as any);
+      const result = extractTriggerPhrases(null as unknown);
       expect(Array.isArray(result)).toBe(true);
       expect(result.length).toBe(0);
     });

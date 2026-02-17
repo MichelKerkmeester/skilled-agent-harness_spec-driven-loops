@@ -6,6 +6,9 @@
 import { describe, it, expect } from 'vitest';
 import * as workingMemory from '../lib/cache/cognitive/working-memory';
 
+const workingMemoryModule = workingMemory as unknown as Record<string, unknown>;
+type WorkingMemoryDb = Parameters<typeof workingMemory.init>[0];
+
 describe('Working Memory Module', () => {
 
   /* ─────────────────────────────────────────────────────────────
@@ -63,9 +66,10 @@ describe('Working Memory Module', () => {
 
     it('getConfig() has all expected keys', () => {
       const config = workingMemory.getConfig();
+      const configRecord = config as unknown as Record<string, unknown>;
       const expectedKeys = ['enabled', 'maxCapacity', 'sessionTimeoutMs', 'attentionDecayRate', 'minAttentionScore'];
       for (const key of expectedKeys) {
-        expect((config as any)[key]).toBeDefined();
+        expect(configRecord[key]).toBeDefined();
       }
     });
   });
@@ -123,7 +127,7 @@ describe('Working Memory Module', () => {
     it('init(null) does not throw', () => {
       // Production silently accepts null (db becomes null, ensureSchema skips)
       expect(() => {
-        (workingMemory as any).init(null);
+        workingMemory.init(null as unknown as WorkingMemoryDb);
       }).not.toThrow();
     });
   });
@@ -195,7 +199,7 @@ describe('Working Memory Module', () => {
 
     for (const name of expectedExports) {
       it(`Export: ${name}`, () => {
-        expect((workingMemory as any)[name]).toBeDefined();
+        expect(workingMemoryModule[name]).toBeDefined();
       });
     }
   });

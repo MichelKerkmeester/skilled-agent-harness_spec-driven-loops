@@ -1,4 +1,8 @@
 // @ts-nocheck
+// ---------------------------------------------------------------
+// TEST: HANDLER MEMORY INDEX
+// ---------------------------------------------------------------
+
 import { describe, it, expect, afterAll } from 'vitest';
 import * as path from 'path';
 import * as fs from 'fs';

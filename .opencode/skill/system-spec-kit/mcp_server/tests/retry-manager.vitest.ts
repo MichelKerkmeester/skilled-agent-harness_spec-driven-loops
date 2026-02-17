@@ -1,4 +1,8 @@
 // @ts-nocheck
+// ---------------------------------------------------------------
+// TEST: RETRY MANAGER
+// ---------------------------------------------------------------
+
 import { describe, it, expect, beforeEach, afterAll, vi } from 'vitest';
 import * as path from 'path';
 import * as os from 'os';

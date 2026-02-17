@@ -9,6 +9,7 @@ Templates for creating README files with scannable structure and progressive dis
 
 ---
 
+<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 **Purpose**: README files are the entry point to any project, component, or feature. They answer "What is this?" and "How do I use it?" in a scannable, progressive format.
@@ -48,6 +49,8 @@ A good README lets someone:
 
 ---
 
+<!-- /ANCHOR:overview -->
+<!-- ANCHOR:when-to-create-readmes -->
 ## 2. WHEN TO CREATE READMEs
 
 **Create READMEs when**:
@@ -78,6 +81,8 @@ Is this a project root?
 
 ---
 
+<!-- /ANCHOR:when-to-create-readmes -->
+<!-- ANCHOR:readme-types -->
 ## 3. README TYPES
 
 | Type | Purpose | Location | Audience | Key Focus |
@@ -103,6 +108,8 @@ Is this a project root?
 
 ---
 
+<!-- /ANCHOR:readme-types -->
+<!-- ANCHOR:standard-readme-structure -->
 ## 4. STANDARD README STRUCTURE
 
 Every README follows a 9-section structure. Use what's needed, remove what's not.
@@ -123,6 +130,8 @@ Every README follows a 9-section structure. Use what's needed, remove what's not
 
 ---
 
+<!-- /ANCHOR:standard-readme-structure -->
+<!-- ANCHOR:section-deep-dives -->
 ## 5. SECTION DEEP DIVES
 
 > See §14 Complete Template for the copy-paste scaffold.
@@ -297,6 +306,8 @@ These patterns appear in mature project READMEs and go beyond the basic template
 
 ---
 
+<!-- /ANCHOR:section-deep-dives -->
+<!-- ANCHOR:writing-patterns -->
 ## 6. WRITING PATTERNS
 
 ### Progressive Disclosure
@@ -344,6 +355,8 @@ For optional content:
 
 ---
 
+<!-- /ANCHOR:writing-patterns -->
+<!-- ANCHOR:style-reference -->
 ## 7. STYLE REFERENCE
 
 ### Heading Format
@@ -399,6 +412,8 @@ Badges go above H1 in a `<div align="left">` wrapper. The blockquote tagline goe
 
 ---
 
+<!-- /ANCHOR:style-reference -->
+<!-- ANCHOR:readme-checklist -->
 ## 8. README CHECKLIST
 
 Before finalizing a README, verify all applicable items:
@@ -453,6 +468,8 @@ Before finalizing a README, verify all applicable items:
 
 ---
 
+<!-- /ANCHOR:readme-checklist -->
+<!-- ANCHOR:human-voice-rules-hvr -->
 ## 9. HUMAN VOICE RULES (HVR)
 
 All README content must follow Human Voice Rules. These rules produce writing that reads as direct, clear and human-authored rather than AI-generated.
@@ -543,6 +560,8 @@ Limit "however" to max 2 per file. Replace vague verbs with specific ones.
 
 ---
 
+<!-- /ANCHOR:human-voice-rules-hvr -->
+<!-- ANCHOR:patterns-from-existing-readmes -->
 ## 10. PATTERNS FROM EXISTING READMES
 
 ### Effective Overview Pattern
@@ -578,6 +597,8 @@ and [key benefit 2] for [target audience].
 
 ---
 
+<!-- /ANCHOR:patterns-from-existing-readmes -->
+<!-- ANCHOR:readme-maintenance -->
 ## 11. README MAINTENANCE
 
 ### When to Update
@@ -629,6 +650,8 @@ If deprecating a project/component:
 
 ---
 
+<!-- /ANCHOR:readme-maintenance -->
+<!-- ANCHOR:yaml-frontmatter-schema -->
 ## 12. YAML FRONTMATTER SCHEMA
 
 README files that should be indexed by the Spec Kit Memory system can include YAML frontmatter at the very top of the file. This metadata enables semantic search, trigger-phrase matching and importance-based ranking.
@@ -701,6 +724,8 @@ importance_tier: "important"
 
 ---
 
+<!-- /ANCHOR:yaml-frontmatter-schema -->
+<!-- ANCHOR:anchor-templates-for-structured-retrieval -->
 ## 13. ANCHOR TEMPLATES FOR STRUCTURED RETRIEVAL
 
 Memory files and spec folder documents (including READMEs) use a standardized set of **retrieval anchors** for fine-grained context extraction. These anchors enable the memory system to pull specific sections without loading entire files.
@@ -708,9 +733,7 @@ Memory files and spec folder documents (including READMEs) use a standardized se
 ### Memory Anchor Format
 
 ```markdown
-<!-- ANCHOR: anchor-name -->
 Content for this section...
-<!-- /ANCHOR: anchor-name -->
 ```
 
 ### Standard Memory Anchors
@@ -732,42 +755,28 @@ These anchor names are recognized by `memory_search()` and `memory_context()` fo
 Use this skeleton when creating memory-indexed documents:
 
 ```markdown
-<!-- ANCHOR: summary -->
 Brief overview of this document's purpose and key content.
-<!-- /ANCHOR: summary -->
 
-<!-- ANCHOR: state -->
 Current status and implementation state.
 - Completed: [what's done]
 - Remaining: [what's left]
-<!-- /ANCHOR: state -->
 
-<!-- ANCHOR: decisions -->
 Key decisions and their rationale.
 - Decision: [what was decided]
   - Reason: [why]
   - Alternatives considered: [what else was evaluated]
-<!-- /ANCHOR: decisions -->
 
-<!-- ANCHOR: context -->
 Background information needed to understand this work.
-<!-- /ANCHOR: context -->
 
-<!-- ANCHOR: artifacts -->
 Files created or modified:
 - `path/to/file.ts` - [purpose]
-<!-- /ANCHOR: artifacts -->
 
-<!-- ANCHOR: next-steps -->
 What to do next:
 1. [First priority]
 2. [Second priority]
-<!-- /ANCHOR: next-steps -->
 
-<!-- ANCHOR: blockers -->
 Issues preventing progress:
 - [Blocker description and any known workarounds]
-<!-- /ANCHOR: blockers -->
 ```
 
 ### Anchor Rules
@@ -798,6 +807,8 @@ README files under `.opencode/skill/` are automatically indexed by the Spec Kit 
 
 ---
 
+<!-- /ANCHOR:anchor-templates-for-structured-retrieval -->
+<!-- ANCHOR:complete-template -->
 ## 14. COMPLETE TEMPLATE
 
 Copy and customize this template. Replace all `[PLACEHOLDER]` markers with actual content. Remove sections that don't apply (keep minimum: Overview, Quick Start, Troubleshooting).
@@ -1096,6 +1107,8 @@ A: [Answer with code if applicable.]
 
 ---
 
+<!-- /ANCHOR:complete-template -->
+<!-- ANCHOR:related-resources -->
 ## 15. RELATED RESOURCES
 
 ### Templates
@@ -1113,3 +1126,4 @@ A: [Answer with code if applicable.]
 
 ### Skill Reference
 - [workflows-documentation SKILL.md](../../SKILL.md) - Parent skill documentation
+<!-- /ANCHOR:related-resources -->

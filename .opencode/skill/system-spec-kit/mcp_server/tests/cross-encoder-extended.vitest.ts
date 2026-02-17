@@ -1,4 +1,8 @@
 // @ts-nocheck
+// ---------------------------------------------------------------
+// TEST: CROSS ENCODER EXTENDED
+// ---------------------------------------------------------------
+
 import { describe, it, expect, beforeEach, afterAll } from 'vitest';
 import * as crossEncoder from '../lib/search/cross-encoder';
 
@@ -52,7 +56,7 @@ function mockFetch(status: number, body: any, shouldThrow = false) {
       statusText: status === 200 ? 'OK' : 'Internal Server Error',
       json: async () => body,
       text: async () => JSON.stringify(body),
-    } as any;
+    } as unknown;
   };
 }
 
@@ -96,7 +100,7 @@ describe('Cross Encoder Extended Tests', () => {
     it('missing content treated as empty (penalty 0.9)', () => {
       const noContent = { id: 4, rerankerScore: 1.0, score: 1.0, originalRank: 0, provider: 'test', scoringMethod: 'cross-encoder' as const };
       // No 'content' property → falls back to '' → length 0 → penalty 0.9
-      const results = crossEncoder.applyLengthPenalty([noContent as any]);
+      const results = crossEncoder.applyLengthPenalty([noContent as unknown]);
       const expected = 1.0 * 0.9;
       expect(results[0].rerankerScore).toBeCloseTo(expected, 9);
     });
@@ -434,7 +438,7 @@ describe('Cross Encoder Extended Tests', () => {
           status: 200,
           statusText: 'OK',
           json: async () => ({ data: [{ index: 0, relevance_score: 0.8 }] }),
-        } as any;
+        } as unknown;
       };
 
       const docs = [{ id: 'cache-1', content: 'a'.repeat(100) }];
@@ -459,7 +463,7 @@ describe('Cross Encoder Extended Tests', () => {
           status: 200,
           statusText: 'OK',
           json: async () => ({ data: [{ index: 0, relevance_score: 0.8 }] }),
-        } as any;
+        } as unknown;
       };
 
       const docs = [{ id: 'nc-1', content: 'a'.repeat(100) }];

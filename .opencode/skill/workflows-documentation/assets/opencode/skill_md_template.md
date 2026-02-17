@@ -9,6 +9,7 @@ Templates for creating SKILL.md files with proper structure, frontmatter, and re
 
 ---
 
+<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 ### Purpose of SKILL.md Files
@@ -65,6 +66,8 @@ SKILL.md architecture follows progressive disclosure:
 
 ---
 
+<!-- /ANCHOR:overview -->
+<!-- ANCHOR:frontmatter-requirements -->
 ## 2. FRONTMATTER REQUIREMENTS
 
 ### Required Fields
@@ -97,6 +100,32 @@ version: 1.0.0
 
 ---
 
+<!-- /ANCHOR:frontmatter-requirements -->
+<!-- ANCHOR:a-retrieval-anchor-convention -->
+## 2A. RETRIEVAL ANCHOR CONVENTION
+
+Use retrieval anchors for every H2 section so section-level loading can target stable IDs.
+
+**Format**:
+- Open marker immediately before each H2: `<!-- ANCHOR:section-slug -->`
+- Close marker immediately before the next H2 (or EOF): `<!-- /ANCHOR:section-slug -->`
+- Slug rules: kebab-case from H2 text, strip numbering/emojis/punctuation
+- Duplicate slugs: append `-2`, `-3`, etc.
+
+**Example**:
+
+```markdown
+## 1. WHEN TO USE
+
+[Section content]
+
+## 2. SMART ROUTING
+```
+
+---
+
+<!-- /ANCHOR:a-retrieval-anchor-convention -->
+<!-- ANCHOR:skill-template-with-bundled-resources -->
 ## 3. SKILL TEMPLATE (WITH BUNDLED RESOURCES)
 
 **Use for**: Skills with bundled resources (references, scripts, or assets)
@@ -128,6 +157,8 @@ version: 1.0.0
 
 ---
 
+<!-- /ANCHOR:skill-template-with-bundled-resources -->
+<!-- ANCHOR:when-to-use -->
 ## 1. WHEN TO USE
 
 <!-- CRITICAL: This section contains ONLY activation triggers and use cases.
@@ -163,6 +194,8 @@ version: 1.0.0
 
 ---
 
+<!-- /ANCHOR:when-to-use -->
+<!-- ANCHOR:smart-routing -->
 ## 2. SMART ROUTING
 
 <!-- CRITICAL: This section contains:
@@ -240,6 +273,8 @@ def route_[skill_name]_resources(task):
 
 ---
 
+<!-- /ANCHOR:smart-routing -->
+<!-- ANCHOR:how-it-works -->
 ## 3. HOW IT WORKS
 
 ### [Primary Workflow] Overview
@@ -297,6 +332,8 @@ See [workflow-details.md](./references/workflow-details.md) for complete step-by
      Subsections with semantic emojis (✅ ALWAYS, ❌ NEVER, ⚠️ ESCALATE IF) are REQUIRED.
      Do NOT remove these emojis. Do NOT add horizontal dividers (---) between H3 subsections. -->
 
+<!-- /ANCHOR:how-it-works -->
+<!-- ANCHOR:rules -->
 ## 4. RULES
 
 <!-- REQUIRED SUBSECTIONS (package_skill.py validation): -->
@@ -352,6 +389,8 @@ See [workflow-details.md](./references/workflow-details.md) for complete step-by
 
 ---
 
+<!-- /ANCHOR:rules -->
+<!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
 ### [Primary Workflow] Completion Checklist
@@ -379,6 +418,8 @@ See [workflow-details.md](./references/workflow-details.md) for complete step-by
 
 ---
 
+<!-- /ANCHOR:success-criteria -->
+<!-- ANCHOR:integration-points -->
 ## 6. INTEGRATION POINTS
 
 ### [Integration System 1 - e.g., Validation Workflow]
@@ -418,6 +459,8 @@ See [workflow-details.md](./references/workflow-details.md) for complete step-by
 
 ---
 
+<!-- /ANCHOR:integration-points -->
+<!-- ANCHOR:related-resources -->
 ## 7. RELATED RESOURCES
 
 ### Reference Files
@@ -467,8 +510,11 @@ See [workflow-details.md](./references/workflow-details.md) for complete step-by
 - Skills appear as `skills_<name>` functions in OpenCode (hyphens → underscores)
 - Invoke via `Read(".opencode/skill/<name>/SKILL.md")`
 
+
 ---
 
+<!-- /ANCHOR:related-resources -->
+<!-- ANCHOR:section-by-section-content-guidance -->
 ## 4. SECTION-BY-SECTION CONTENT GUIDANCE
 
 ### Section 1: WHEN TO USE
@@ -550,6 +596,8 @@ Section 2 contains TWO subsections:
 
 **Structure**:
 
+<!-- /ANCHOR:section-by-section-content-guidance -->
+<!-- ANCHOR:smart-routing-2 -->
 ## 2. SMART ROUTING
 
 ### Activation Detection
@@ -871,6 +919,8 @@ mode_detection:
 
 ---
 
+<!-- /ANCHOR:smart-routing-2 -->
+<!-- ANCHOR:common-pitfalls -->
 ## 5. COMMON PITFALLS
 
 For the complete list of 8 common pitfalls with before/after examples, see:
@@ -894,6 +944,8 @@ For the complete list of 8 common pitfalls with before/after examples, see:
 
 ---
 
+<!-- /ANCHOR:common-pitfalls -->
+<!-- ANCHOR:quality-checklist-quick-reference -->
 ## 6. QUALITY CHECKLIST & QUICK REFERENCE
 
 ### Pre-Packaging Checklist
@@ -1002,6 +1054,8 @@ python .opencode/skill/workflows-documentation/scripts/package_skill.py .opencod
 
 ---
 
+<!-- /ANCHOR:quality-checklist-quick-reference -->
+<!-- ANCHOR:related-resources-2 -->
 ## 7. RELATED RESOURCES
 
 ### Templates
@@ -1012,3 +1066,4 @@ python .opencode/skill/workflows-documentation/scripts/package_skill.py .opencod
 ### Standards
 - [core_standards.md](../../references/core_standards.md) - Document type rules
 - [skill_creation.md](../../references/skill_creation.md) - Complete skill creation workflow
+<!-- /ANCHOR:related-resources-2 -->

@@ -31,7 +31,8 @@ class MockVectorStore extends IVectorStore {
     // Return all records sorted by cosine similarity (simplified: return all)
     const results: any[] = [];
     for (const [numId, rec] of this.records) {
-      results.push({ id: numId, title: (rec.metadata as any).title ?? null, ...rec.metadata, similarity: 1.0 });
+      const title = typeof rec.metadata.title === 'string' ? rec.metadata.title : null;
+      results.push({ id: numId, title, ...rec.metadata, similarity: 1.0 });
     }
     return results.slice(0, topK);
   }

@@ -254,8 +254,6 @@ python -m json.tool config.json
 Copy this for code review:
 
 ```markdown
-<!-- /ANCHOR:checklist-template -->
-<!-- ANCHOR:universal-code-quality-check -->
 ## Universal Code Quality Check
 
 ### P0 - HARD BLOCKERS
@@ -280,7 +278,7 @@ Copy this for code review:
 
 ---
 
-<!-- /ANCHOR:universal-code-quality-check -->
+<!-- /ANCHOR:checklist-template -->
 <!-- ANCHOR:related-resources -->
 ## 7. RELATED RESOURCES
 

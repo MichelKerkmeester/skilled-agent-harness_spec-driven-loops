@@ -1,4 +1,8 @@
 // @ts-nocheck
+// ---------------------------------------------------------------
+// TEST: INTEGRATION SAVE PIPELINE
+// ---------------------------------------------------------------
+
 import { describe, it, expect } from 'vitest';
 import * as path from 'path';
 import * as os from 'os';

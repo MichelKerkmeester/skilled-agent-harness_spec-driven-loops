@@ -206,15 +206,11 @@ README files support `<!-- ANCHOR:name -->` tags for section-level retrieval, en
 ### Anchor Format
 
 ```markdown
-<!-- ANCHOR:summary -->
 This project implements a memory indexing system that supports
 five source types for comprehensive context retrieval.
-<!-- /ANCHOR:summary -->
 
-<!-- ANCHOR:decisions -->
 - Chose SQLite + FTS5 for full-text search capability
 - README importance weights set below user work to prevent outranking
-<!-- /ANCHOR:decisions -->
 ```
 
 ### Token Savings with Anchors

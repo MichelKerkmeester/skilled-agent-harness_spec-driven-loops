@@ -54,7 +54,7 @@ require.cache[vectorIndexPath] = {
     initializeDb: () => {},
     getDb: () => mockDb,
   },
-} as any;
+} as unknown;
 
 let triggerMatcher: any;
 let memoryTypes: any;

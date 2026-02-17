@@ -1,4 +1,8 @@
 // @ts-nocheck
+// ---------------------------------------------------------------
+// TEST: BM25 INDEX
+// ---------------------------------------------------------------
+
 import { describe, it, expect, beforeEach } from 'vitest';
 import {
   BM25Index,

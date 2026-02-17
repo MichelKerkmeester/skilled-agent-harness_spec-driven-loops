@@ -1,4 +1,8 @@
 // @ts-nocheck
+// ---------------------------------------------------------------
+// TEST: COGNITIVE GAPS
+// ---------------------------------------------------------------
+
 import { describe, it, expect, beforeEach } from 'vitest';
 import Database from 'better-sqlite3';
 import * as fsrs from '../lib/cache/cognitive/fsrs-scheduler';
@@ -389,7 +393,7 @@ describe('G. cleanupOldSessions', () => {
   });
 
   it('G-03: returns 0 without db', () => {
-    wm.init(null as any);
+    wm.init(null as unknown);
     const removed = wm.cleanupOldSessions();
     expect(removed).toBe(0);
   });
@@ -456,7 +460,7 @@ describe('H. enforceMemoryLimit', () => {
   });
 
   it('H-04: returns 0 without db', () => {
-    wm.init(null as any);
+    wm.init(null as unknown);
     const removed = wm.enforceMemoryLimit('any-session');
     expect(removed).toBe(0);
   });

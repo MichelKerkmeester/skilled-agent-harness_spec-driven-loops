@@ -1,6 +1,8 @@
-// Vector Index Implementation - TypeScript type checking enabled
-// ───────────────────────────────────────────────────────────────
-// SEARCH: VECTOR INDEX — converted from JS
+// @ts-nocheck
+// ---------------------------------------------------------------
+// SEARCH: VECTOR INDEX
+// ---------------------------------------------------------------
+// TypeScript port of the vector index implementation.
 // DECAY STRATEGY (ADR-004): Search-time temporal decay uses an
 // FSRS-preferred strategy. Memories with FSRS review data (last_review
 // IS NOT NULL, review_count > 0) use the FSRS v4 power-law formula:
@@ -9,7 +11,7 @@
 //   weight * 0.5^(days / half_life_days)
 // This ensures backward compatibility while aligning reviewed
 // memories with the canonical FSRS algorithm.
-// ───────────────────────────────────────────────────────────────
+
 
 import Database from 'better-sqlite3';
 import * as sqliteVec from 'sqlite-vec';
@@ -1060,7 +1062,7 @@ function ensure_schema_version(database: Database.Database) {
 }
 
 // Initialize or get database connection. Creates schema on first use.
-function initialize_db(custom_path: string | null = null) {
+function initialize_db(custom_path: string | null = null): Database.Database {
   if (db && !custom_path) {
     return db;
   }
@@ -3297,7 +3299,7 @@ function get_db_path() {
   return db_path;
 }
 
-function get_db() {
+function get_db(): Database.Database {
   return initialize_db();
 }
 

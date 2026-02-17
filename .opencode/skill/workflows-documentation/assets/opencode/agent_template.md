@@ -4,6 +4,7 @@
 
 ---
 
+<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 Agents are specialized AI personas with defined authorities, tool permissions, and behavioral rules. Unlike skills (which provide knowledge and workflows), agents have **authority** to act and **tools** to execute.
@@ -33,6 +34,8 @@ Create an agent when you need:
 
 ---
 
+<!-- /ANCHOR:overview -->
+<!-- ANCHOR:frontmatter-reference -->
 ## 2. FRONTMATTER REFERENCE
 
 ### Required Fields (v1.1.1+ Format)
@@ -108,6 +111,8 @@ permission:                         # REQUIRED: Unified permission object (v1.1.
 
 ---
 
+<!-- /ANCHOR:frontmatter-reference -->
+<!-- ANCHOR:required-sections -->
 ## 3. REQUIRED SECTIONS
 
 Every agent file MUST include these sections in order:
@@ -248,6 +253,8 @@ Fix verification gaps first
 
 ---
 
+<!-- /ANCHOR:required-sections -->
+<!-- ANCHOR:optional-sections -->
 ## 4. OPTIONAL SECTIONS
 
 Include these sections based on agent type:
@@ -309,6 +316,8 @@ Include these sections based on agent type:
 
 ---
 
+<!-- /ANCHOR:optional-sections -->
+<!-- ANCHOR:intro-paragraph-patterns -->
 ## 5. INTRO PARAGRAPH PATTERNS
 
 After the H1 title, include 1-2 sentence description followed by critical statements:
@@ -349,6 +358,8 @@ Code review specialist with full authority over pattern validation, quality scor
 
 ---
 
+<!-- /ANCHOR:intro-paragraph-patterns -->
+<!-- ANCHOR:complete-template -->
 ## 6. COMPLETE TEMPLATE
 
 Copy this template to create a new agent:
@@ -582,6 +593,8 @@ Fix verification gaps first
 
 ---
 
+<!-- /ANCHOR:complete-template -->
+<!-- ANCHOR:production-examples -->
 ## 7. PRODUCTION EXAMPLES
 
 ### Current Production Agents
@@ -633,6 +646,8 @@ head -100 .opencode/agent/debug.md
 
 ---
 
+<!-- /ANCHOR:production-examples -->
+<!-- ANCHOR:validation-checklist -->
 ## 8. VALIDATION CHECKLIST
 
 Before deploying an agent, verify:
@@ -666,6 +681,8 @@ Before deploying an agent, verify:
 
 ---
 
+<!-- /ANCHOR:validation-checklist -->
+<!-- ANCHOR:related-resources -->
 ## 9. RELATED RESOURCES
 
 ### Templates
@@ -695,3 +712,4 @@ Before deploying an agent, verify:
 | ------------------ | ----------- | ------------------ |
 | AGENTS.md          | `AGENTS.md` | AI behavior config |
 | AGENTS.md          | `AGENTS.md` | Project guidelines |
+<!-- /ANCHOR:related-resources -->

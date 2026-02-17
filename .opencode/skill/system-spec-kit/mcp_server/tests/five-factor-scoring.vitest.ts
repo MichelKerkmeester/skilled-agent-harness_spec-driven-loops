@@ -1,4 +1,8 @@
 // @ts-nocheck
+// ---------------------------------------------------------------
+// TEST: FIVE FACTOR SCORING
+// ---------------------------------------------------------------
+
 import { describe, it, expect } from 'vitest';
 import {
   FIVE_FACTOR_WEIGHTS,
@@ -655,7 +659,6 @@ describe('Edge Cases: Importance Factor', () => {
   });
 
   it('EDGE-I06: Constitutional with high base weight capped at 1.0', () => {
-    // constitutional multiplier = 2.0, base = 1.0
     // normalized = min(1, (1.0 * 2.0) / 2.0) = min(1, 1.0) = 1.0
     const score = calculateImportanceScore('constitutional', 1.0);
     expect(score).toBe(1.0);

@@ -7,6 +7,13 @@
 import { describe, it, expect } from 'vitest';
 import * as peGate from '../lib/cache/cognitive/prediction-error-gate';
 
+const peGateModule = peGate as unknown as Record<string, unknown>;
+const peGateActions = peGate.ACTION as unknown as Record<string, unknown>;
+type ContradictionInput = Parameters<typeof peGate.detectContradiction>[0];
+type CandidateInput = Parameters<typeof peGate.evaluateMemory>[2];
+type ActionInput = Parameters<typeof peGate.getActionPriority>[0];
+type TruncateInput = Parameters<typeof peGate.truncateContent>[0];
+
 describe('Prediction Error Gate Module', () => {
   /* ─────────────────────────────────────────────────────────────
      T101-T104: Threshold Constants
@@ -152,7 +159,10 @@ describe('Prediction Error Gate Module', () => {
 
     it('T123: Null inputs handled gracefully', () => {
       // Production checks for falsy
-      const r = peGate.detectContradiction(null as any, null as any);
+      const r = peGate.detectContradiction(
+        null as unknown as ContradictionInput,
+        null as unknown as ContradictionInput
+      );
       expect(r.detected).toBe(false);
     });
 
@@ -217,7 +227,7 @@ describe('Prediction Error Gate Module', () => {
     it('T132: All ACTION constants defined', () => {
       const expectedActions = ['CREATE', 'UPDATE', 'SUPERSEDE', 'REINFORCE', 'CREATE_LINKED'];
       for (const a of expectedActions) {
-        expect((peGate.ACTION as any)[a]).toBe(a);
+        expect(peGateActions[a]).toBe(a);
       }
     });
   });
@@ -228,12 +238,12 @@ describe('Prediction Error Gate Module', () => {
 
   describe('T136-T145: Edge Cases', () => {
     it('T136: Null candidates handled', () => {
-      const r = peGate.evaluateMemory('hash', 'New', null as any);
+      const r = peGate.evaluateMemory('hash', 'New', null as unknown as CandidateInput);
       expect(r.action).toBe(peGate.ACTION.CREATE);
     });
 
     it('T137: Undefined candidates handled', () => {
-      const r = peGate.evaluateMemory('hash', 'New', undefined as any);
+      const r = peGate.evaluateMemory('hash', 'New', undefined as unknown as CandidateInput);
       expect(r.action).toBe(peGate.ACTION.CREATE);
     });
 
@@ -299,11 +309,11 @@ describe('Prediction Error Gate Module', () => {
 
     it('T150: getActionPriority order correct', () => {
       const priorities = {
-        SUPERSEDE: peGate.getActionPriority(peGate.ACTION.SUPERSEDE as any),
-        UPDATE: peGate.getActionPriority(peGate.ACTION.UPDATE as any),
-        CREATE_LINKED: peGate.getActionPriority(peGate.ACTION.CREATE_LINKED as any),
-        CREATE: peGate.getActionPriority(peGate.ACTION.CREATE as any),
-        REINFORCE: peGate.getActionPriority(peGate.ACTION.REINFORCE as any),
+        SUPERSEDE: peGate.getActionPriority(peGate.ACTION.SUPERSEDE as ActionInput),
+        UPDATE: peGate.getActionPriority(peGate.ACTION.UPDATE as ActionInput),
+        CREATE_LINKED: peGate.getActionPriority(peGate.ACTION.CREATE_LINKED as ActionInput),
+        CREATE: peGate.getActionPriority(peGate.ACTION.CREATE as ActionInput),
+        REINFORCE: peGate.getActionPriority(peGate.ACTION.REINFORCE as ActionInput),
       };
       // Production: SUPERSEDE=1, UPDATE=2, CREATE_LINKED=3, CREATE=4, REINFORCE=5
       expect(priorities.SUPERSEDE).toBeLessThan(priorities.UPDATE);
@@ -325,8 +335,8 @@ describe('Prediction Error Gate Module', () => {
     });
 
     it('T153: truncateContent handles null/undefined', () => {
-      expect(peGate.truncateContent(null as any, 100)).toBe('');
-      expect(peGate.truncateContent(undefined as any, 100)).toBe('');
+      expect(peGate.truncateContent(null as unknown as TruncateInput, 100)).toBe('');
+      expect(peGate.truncateContent(undefined as unknown as TruncateInput, 100)).toBe('');
     });
 
     it('T154: CONTRADICTION_PATTERNS populated', () => {
@@ -345,7 +355,7 @@ describe('Prediction Error Gate Module', () => {
     it('T156: formatConflictRecord creates valid record', () => {
       const contradiction = { detected: false, type: null, description: null, confidence: 0 };
       const record = peGate.formatConflictRecord(
-        peGate.ACTION.UPDATE as any, // action
+        peGate.ACTION.UPDATE as ActionInput, // action
         'hash123',                    // newMemoryHash
         1,                            // existingMemoryId
         0.92,                         // similarity
@@ -363,7 +373,7 @@ describe('Prediction Error Gate Module', () => {
     it('T157: Record has all expected fields', () => {
       const contradiction = { detected: false, type: null, description: null, confidence: 0 };
       const record = peGate.formatConflictRecord(
-        peGate.ACTION.UPDATE as any,
+        peGate.ACTION.UPDATE as ActionInput,
         'hash123',
         1,
         0.92,
@@ -384,7 +394,7 @@ describe('Prediction Error Gate Module', () => {
     it('T158: logConflict without DB does not crash', () => {
       const contradiction = { detected: false, type: null, description: null, confidence: 0 };
       const record = peGate.formatConflictRecord(
-        peGate.ACTION.UPDATE as any,
+        peGate.ACTION.UPDATE as ActionInput,
         'hash123',
         1,
         0.92,
@@ -410,7 +420,7 @@ describe('Prediction Error Gate Module', () => {
     });
 
     it('T161: init(null) does not crash', () => {
-      expect(() => (peGate as any).init(null)).not.toThrow();
+      expect(() => peGate.init(null as unknown as Parameters<typeof peGate.init>[0])).not.toThrow();
     });
   });
 
@@ -450,7 +460,7 @@ describe('Prediction Error Gate Module', () => {
       ]);
       const statFields = ['total', 'creates', 'updates', 'supersedes', 'reinforces', 'contradictions'];
       for (const f of statFields) {
-        expect(typeof (batch.stats as any)[f]).toBe('number');
+        expect(typeof (batch.stats as Record<string, unknown>)[f]).toBe('number');
       }
     });
   });
@@ -469,7 +479,7 @@ describe('Prediction Error Gate Module', () => {
     ];
 
     it.each(expectedExports)('Export: %s', (name) => {
-      expect((peGate as any)[name]).toBeDefined();
+      expect(peGateModule[name]).toBeDefined();
     });
   });
 });

@@ -1,4 +1,8 @@
 // @ts-nocheck
+// ---------------------------------------------------------------
+// TEST: TOOL CACHE
+// ---------------------------------------------------------------
+
 // Converted from: tool-cache.test.ts (node:test runner)
 import { describe, it, expect, beforeEach, afterEach } from 'vitest';
 import crypto from 'crypto';

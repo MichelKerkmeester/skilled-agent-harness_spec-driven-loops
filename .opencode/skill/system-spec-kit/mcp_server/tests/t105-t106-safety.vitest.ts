@@ -1,4 +1,8 @@
 // @ts-nocheck
+// ---------------------------------------------------------------
+// TEST: T105 T106 SAFETY
+// ---------------------------------------------------------------
+
 import { describe, it, expect } from 'vitest';
 import * as path from 'path';
 import * as fs from 'fs';

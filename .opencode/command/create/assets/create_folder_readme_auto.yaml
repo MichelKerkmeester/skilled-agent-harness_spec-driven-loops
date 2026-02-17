@@ -122,14 +122,14 @@ readme_types:
     scope: "Entire project"
     sections:
     # Canonical sections from readme_template.md §13 (omits FAQ for project scope)
-    - "📖 OVERVIEW"
-    - "🚀 QUICK START"
-    - "⚡ FEATURES"
-    - "📁 STRUCTURE"
-    - "⚙️ CONFIGURATION"
-    - "💡 USAGE EXAMPLES"
-    - "🛠️ TROUBLESHOOTING"
-    - "📚 RELATED DOCUMENTS"
+    - "OVERVIEW"
+    - "QUICK START"
+    - "FEATURES"
+    - "STRUCTURE"
+    - "CONFIGURATION"
+    - "USAGE EXAMPLES"
+    - "TROUBLESHOOTING"
+    - "RELATED DOCUMENTS"
     key_questions:
     - "What is this?"
     - "How do I install it?"
@@ -140,15 +140,15 @@ readme_types:
     scope: "Module or package"
     sections:
     # Full canonical 9-section set from readme_template.md §13
-    - "📖 OVERVIEW"
-    - "🚀 QUICK START"
-    - "⚡ FEATURES"
-    - "📁 STRUCTURE"
-    - "⚙️ CONFIGURATION"
-    - "💡 USAGE EXAMPLES"
-    - "🛠️ TROUBLESHOOTING"
-    - "❓ FAQ"
-    - "📚 RELATED DOCUMENTS"
+    - "OVERVIEW"
+    - "QUICK START"
+    - "FEATURES"
+    - "STRUCTURE"
+    - "CONFIGURATION"
+    - "USAGE EXAMPLES"
+    - "TROUBLESHOOTING"
+    - "FAQ"
+    - "RELATED DOCUMENTS"
     key_questions:
     - "What does this component do?"
     - "How do I use the API?"
@@ -158,12 +158,12 @@ readme_types:
     scope: "Specific feature"
     sections:
     # Canonical subset from readme_template.md §13 (omits STRUCTURE, FAQ, RELATED DOCUMENTS)
-    - "📖 OVERVIEW"
-    - "🚀 QUICK START"
-    - "⚡ FEATURES"
-    - "⚙️ CONFIGURATION"
-    - "💡 USAGE EXAMPLES"
-    - "🛠️ TROUBLESHOOTING"
+    - "OVERVIEW"
+    - "QUICK START"
+    - "FEATURES"
+    - "CONFIGURATION"
+    - "USAGE EXAMPLES"
+    - "TROUBLESHOOTING"
     key_questions:
     - "What does this feature do?"
     - "How do I enable it?"
@@ -173,15 +173,15 @@ readme_types:
     scope: "OpenCode skill"
     sections:
     # Full canonical 9-section set from readme_template.md §13
-    - "📖 OVERVIEW"
-    - "🚀 QUICK START"
-    - "⚡ FEATURES"
-    - "📁 STRUCTURE"
-    - "⚙️ CONFIGURATION"
-    - "💡 USAGE EXAMPLES"
-    - "🛠️ TROUBLESHOOTING"
-    - "❓ FAQ"
-    - "📚 RELATED DOCUMENTS"
+    - "OVERVIEW"
+    - "QUICK START"
+    - "FEATURES"
+    - "STRUCTURE"
+    - "CONFIGURATION"
+    - "USAGE EXAMPLES"
+    - "TROUBLESHOOTING"
+    - "FAQ"
+    - "RELATED DOCUMENTS"
     key_questions:
     - "When does this skill activate?"
     - "What commands are available?"
@@ -371,17 +371,18 @@ workflow:
       - "Tables for structured data"
       - "Code blocks with language tags"
       - "Horizontal rules between major sections"
-    emoji_conventions:
-      # Canonical 9-section emojis from readme_template.md §13
-      overview: "📖"
-      quick_start: "🚀"
-      structure: "📁"
-      features: "⚡"
-      configuration: "⚙️"
-      usage_examples: "💡"
-      troubleshooting: "🛠️"
-      faq: "❓"
-      related_documents: "📚"
+    emoji_guidance:
+      note: "Optional emoji prefix suggestions (not required in output)"
+      examples:
+        overview: "📖"
+        quick_start: "🚀"
+        structure: "📁"
+        features: "⚡"
+        configuration: "⚙️"
+        usage_examples: "💡"
+        troubleshooting: "🛠️"
+        faq: "❓"
+        related_documents: "📚"
     outputs:
     - template_selected
     - sections_planned

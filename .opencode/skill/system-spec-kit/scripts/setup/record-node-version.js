@@ -1,8 +1,6 @@
 #!/usr/bin/env node
 // ---------------------------------------------------------------
-// record-node-version.js
-// Writes .node-version-marker with current Node.js version info.
-// Called by postinstall hook and rebuild script.
+// SETUP: RECORD NODE VERSION
 // ---------------------------------------------------------------
 'use strict';
 

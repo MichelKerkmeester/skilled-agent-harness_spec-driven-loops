@@ -177,10 +177,8 @@ t124Describe('T124: buildContinueSessionData', () => {
 // imports Database type and working-memory module which trigger better-sqlite3
 
 describe('T017: generateContinueSessionMd() creates valid markdown (DB-dependent)', () => {
-  // const { generateContinueSessionMd } = require('../dist/lib/session/session-manager.js');
 
   it('T017-01: Generates valid markdown with all required sections', () => {
-    // const sessionState = {
     //   sessionId: 'test-session-t017',
     //   specFolder: 'specs/003-memory/017-test',
     //   currentTask: 'T017',
@@ -189,7 +187,6 @@ describe('T017: generateContinueSessionMd() creates valid markdown (DB-dependent
     //   pendingWork: 'Verify output structure',
     //   data: { progress: 50 },
     // };
-    // const content = generateContinueSessionMd(sessionState);
     // expect(content).toContain('# CONTINUE SESSION');
     // expect(content).toContain('## Session State');
     // expect(content).toContain('## Context Summary');
@@ -198,35 +195,28 @@ describe('T017: generateContinueSessionMd() creates valid markdown (DB-dependent
   });
 
   it('T017-02: Handles minimal session state (only sessionId)', () => {
-    // const content = generateContinueSessionMd({ sessionId: 'minimal-session' });
     // expect(content).toContain('# CONTINUE SESSION');
     // expect(content).toContain('minimal-session');
   });
 
   it('T017-03: Handles undefined sessionId gracefully', () => {
-    // const content = generateContinueSessionMd({});
     // expect(content).toContain('# CONTINUE SESSION');
     // expect(content).toContain('N/A');
   });
 
   it('T017-04: Includes horizontal rule separators between sections', () => {
-    // const content = generateContinueSessionMd({ sessionId: 'test-separators', contextSummary: 'Test content' });
-    // const hrCount = (content.match(/^---$/gm) || []).length;
     // expect(hrCount).toBeGreaterThanOrEqual(3);
   });
 });
 
 describe('T018: Session state table (DB-dependent)', () => {
-  // const { generateContinueSessionMd } = require('../dist/lib/session/session-manager.js');
 
   it('T018-01: Includes session state table with all fields', () => {
-    // const sessionState = {
     //   sessionId: 'table-test-session',
     //   specFolder: 'specs/test-folder',
     //   currentTask: 'T018',
     //   lastAction: 'Testing table generation',
     // };
-    // const content = generateContinueSessionMd(sessionState);
     // expect(content).toContain('| Field | Value |');
     // expect(content).toContain('|-------|-------|');
     // expect(content).toContain('**Session ID**');
@@ -234,28 +224,23 @@ describe('T018: Session state table (DB-dependent)', () => {
   });
 
   it('T018-02: Displays sessionId in code format', () => {
-    // const content = generateContinueSessionMd({ sessionId: 'code-format-test' });
     // expect(content).toContain('`code-format-test`');
   });
 
   it('T018-03: Shows Active as status', () => {
-    // const content = generateContinueSessionMd({ sessionId: 'status-test' });
     // expect(content).toContain('| **Status** | Active |');
   });
 
   it('T018-04: Includes ISO timestamp in Updated field', () => {
-    // const content = generateContinueSessionMd({ sessionId: 'timestamp-test' });
     // expect(content).toMatch(/\| \*\*Updated\*\* \| \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}/);
   });
 
   it('T018-05: Table values reflect provided session state', () => {
-    // const sessionState = {
     //   sessionId: 'values-test-001',
     //   specFolder: 'specs/my-spec-folder',
     //   currentTask: 'TASK-123',
     //   lastAction: 'Completed implementation',
     // };
-    // const content = generateContinueSessionMd(sessionState);
     // expect(content).toContain('values-test-001');
     // expect(content).toContain('specs/my-spec-folder');
     // expect(content).toContain('TASK-123');
@@ -264,10 +249,8 @@ describe('T018: Session state table (DB-dependent)', () => {
 });
 
 describe('T019: Context summary (DB-dependent)', () => {
-  // const { generateContinueSessionMd } = require('../dist/lib/session/session-manager.js');
 
   it('T019-01: Includes Context Summary section', () => {
-    // const content = generateContinueSessionMd({
     //   sessionId: 'context-test',
     //   contextSummary: 'Working on crash recovery implementation',
     // });
@@ -276,13 +259,11 @@ describe('T019: Context summary (DB-dependent)', () => {
   });
 
   it('T019-02: Shows placeholder when contextSummary is not provided', () => {
-    // const content = generateContinueSessionMd({ sessionId: 'no-context-test' });
     // expect(content).toContain('## Context Summary');
     // expect(content).toContain('_No context summary available._');
   });
 
   it('T019-03: Includes Pending Work section', () => {
-    // const content = generateContinueSessionMd({
     //   sessionId: 'pending-work-test',
     //   pendingWork: 'Write tests for T017-T020',
     // });
@@ -291,13 +272,11 @@ describe('T019: Context summary (DB-dependent)', () => {
   });
 
   it('T019-04: Shows placeholder when pendingWork is not provided', () => {
-    // const content = generateContinueSessionMd({ sessionId: 'no-pending-test' });
     // expect(content).toContain('## Pending Work');
     // expect(content).toContain('_No pending work recorded._');
   });
 
   it('T019-05: Includes Additional State Data section when data is provided', () => {
-    // const content = generateContinueSessionMd({
     //   sessionId: 'data-test',
     //   data: { tasksCompleted: ['T001', 'T002'], progress: 75 },
     // });
@@ -307,16 +286,13 @@ describe('T019: Context summary (DB-dependent)', () => {
   });
 
   it('T019-06: Excludes Additional State Data section when data is not provided', () => {
-    // const content = generateContinueSessionMd({ sessionId: 'no-data-test', contextSummary: 'Some context' });
     // expect(content).not.toContain('## Additional State Data');
   });
 });
 
 describe('T020: Quick resume command (DB-dependent)', () => {
-  // const { generateContinueSessionMd } = require('../dist/lib/session/session-manager.js');
 
   it('T020-01: Generates /spec_kit:resume command when specFolder is provided', () => {
-    // const content = generateContinueSessionMd({
     //   sessionId: 'resume-cmd-test',
     //   specFolder: 'specs/003-memory/020-test',
     // });
@@ -325,28 +301,21 @@ describe('T020: Quick resume command (DB-dependent)', () => {
   });
 
   it('T020-02: Generates memory_search command with sessionId when specFolder is not provided', () => {
-    // const content = generateContinueSessionMd({ sessionId: 'session-only-test' });
     // expect(content).toContain('## Quick Resume');
     // expect(content).toContain('memory_search({ sessionId: "session-only-test" })');
   });
 
   it('T020-03: Generates generic memory_search when neither specFolder nor sessionId is provided', () => {
-    // const content = generateContinueSessionMd({});
     // expect(content).toContain('## Quick Resume');
     // expect(content).toContain('memory_search({ query: "last session" })');
   });
 
   it('T020-04: Resume command is wrapped in code block', () => {
-    // const content = generateContinueSessionMd({ sessionId: 'code-block-test', specFolder: 'specs/test' });
-    // const quickResumeIndex = content.indexOf('## Quick Resume');
-    // const sectionContent = content.slice(quickResumeIndex, quickResumeIndex + 300);
-    // const backtickMatches = sectionContent.match(/```/g);
     // expect(backtickMatches).not.toBeNull();
     // expect(backtickMatches!.length).toBeGreaterThanOrEqual(2);
   });
 
   it('T020-05: specFolder takes precedence over sessionId for resume command', () => {
-    // const content = generateContinueSessionMd({
     //   sessionId: 'both-provided-session',
     //   specFolder: 'specs/priority-test',
     // });

@@ -9,6 +9,7 @@ Step-by-step guide from concept to packaged skill with validation standards and 
 
 ---
 
+<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 ### What Is This Reference?
@@ -43,6 +44,8 @@ This reference file provides Level 3 deep-dive technical guidance on skill creat
 
 ---
 
+<!-- /ANCHOR:overview -->
+<!-- ANCHOR:understanding-skills -->
 ## 2. UNDERSTANDING SKILLS
 
 ### What Skills Provide
@@ -67,6 +70,8 @@ Skills are modular, self-contained packages that transform an AI agent from a ge
 
 ---
 
+<!-- /ANCHOR:understanding-skills -->
+<!-- ANCHOR:skill-anatomy -->
 ## 3. SKILL ANATOMY
 
 Every skill consists of a required SKILL.md file and optional bundled resources:
@@ -216,6 +221,8 @@ Files used within the output the agent produces (not loaded into context).
 
 ---
 
+<!-- /ANCHOR:skill-anatomy -->
+<!-- ANCHOR:skill-creation-process -->
 ## 4. SKILL CREATION PROCESS
 
 Follow these steps in order, skipping only if there is a clear reason they are not applicable.
@@ -673,6 +680,8 @@ Iteration 3:
 
 ---
 
+<!-- /ANCHOR:skill-creation-process -->
+<!-- ANCHOR:validation-requirements -->
 ## 5. VALIDATION REQUIREMENTS
 
 ### Minimal Validation (quick_validate.py)
@@ -716,6 +725,8 @@ scripts/extract_structure.py .opencode/skill/my-skill/SKILL.md
 
 ---
 
+<!-- /ANCHOR:validation-requirements -->
+<!-- ANCHOR:skill-writing-best-practices -->
 ## 6. SKILL WRITING BEST PRACTICES
 
 ### ️ Writing Style Guidelines
@@ -809,6 +820,8 @@ See [workflows.md](./workflows.md) for detailed execution modes.
 
 ---
 
+<!-- /ANCHOR:skill-writing-best-practices -->
+<!-- ANCHOR:common-pitfalls -->
 ## 7. COMMON PITFALLS
 
 ### Pitfall 1: Generic Descriptions
@@ -1022,6 +1035,8 @@ def route_request(context):
 
 ---
 
+<!-- /ANCHOR:common-pitfalls -->
+<!-- ANCHOR:example-skills -->
 ## 8. EXAMPLE SKILLS
 
 ### Example 1: PDF Editor Skill
@@ -1107,6 +1122,8 @@ database-query/
 
 ---
 
+<!-- /ANCHOR:example-skills -->
+<!-- ANCHOR:skill-maintenance -->
 ## 9. SKILL MAINTENANCE
 
 ### When to Update Skills
@@ -1146,6 +1163,8 @@ version: 2.0.0
 
 ---
 
+<!-- /ANCHOR:skill-maintenance -->
+<!-- ANCHOR:distribution -->
 ## 10. DISTRIBUTION
 
 ### Packaging for Distribution
@@ -1179,6 +1198,8 @@ scripts/package_skill.py <path/to/skill> <output-directory>
 
 ---
 
+<!-- /ANCHOR:distribution -->
+<!-- ANCHOR:quick-reference -->
 ## 11. QUICK REFERENCE
 
 ### File Structure
@@ -1267,6 +1288,8 @@ scripts/extract_structure.py <skill-path>/SKILL.md
 
 ---
 
+<!-- /ANCHOR:quick-reference -->
+<!-- ANCHOR:script-usage -->
 ## 12. SCRIPT USAGE
 
 ### init_skill.py
@@ -1361,6 +1384,8 @@ python scripts/quick_validate.py .opencode/skill/pdf-editor
 
 ---
 
+<!-- /ANCHOR:script-usage -->
+<!-- ANCHOR:related-resources -->
 ## 13. RELATED RESOURCES
 
 ### Templates
@@ -1378,3 +1403,4 @@ python scripts/quick_validate.py .opencode/skill/pdf-editor
 ---
 
 *End of Skill Creation Workflow*
+<!-- /ANCHOR:related-resources -->

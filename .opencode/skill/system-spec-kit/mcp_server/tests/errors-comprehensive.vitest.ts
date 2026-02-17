@@ -1,4 +1,8 @@
 // @ts-nocheck
+// ---------------------------------------------------------------
+// TEST: ERRORS COMPREHENSIVE
+// ---------------------------------------------------------------
+
 import { describe, it, expect } from 'vitest';
 import {
   ErrorCodes, MemoryError, withTimeout, userFriendlyError,
@@ -349,7 +353,7 @@ describe('G. createErrorWithHint', () => {
   });
 
   it('G4: No recoveryHint when toolName is null', () => {
-    const err = createErrorWithHint('E040', 'fail', {}, null as any);
+    const err = createErrorWithHint('E040', 'fail', {}, null as unknown);
     expect(err.recoveryHint).toBeUndefined();
   });
 });
@@ -402,7 +406,7 @@ describe('I. RECOVERY_HINTS', () => {
   });
 
   it('I2: Every hint has hint, actions[], severity', () => {
-    for (const [code, hint] of Object.entries(RECOVERY_HINTS) as any) {
+    for (const [code, hint] of Object.entries(RECOVERY_HINTS) as unknown) {
       expect(typeof hint.hint).toBe('string');
       expect(Array.isArray(hint.actions)).toBe(true);
       expect(typeof hint.severity).toBe('string');
@@ -411,7 +415,7 @@ describe('I. RECOVERY_HINTS', () => {
 
   it('I3: All severities are low|medium|high|critical', () => {
     const validSeverities = new Set(['low', 'medium', 'high', 'critical']);
-    for (const [code, hint] of Object.entries(RECOVERY_HINTS) as any) {
+    for (const [code, hint] of Object.entries(RECOVERY_HINTS) as unknown) {
       expect(validSeverities.has(hint.severity)).toBe(true);
     }
   });
@@ -470,7 +474,7 @@ describe('K. TOOL_SPECIFIC_HINTS', () => {
     expect(typeof searchHints).toBe('object');
     const codes = Object.keys(searchHints);
     expect(codes.length).toBeGreaterThanOrEqual(1);
-    for (const [code, hint] of Object.entries(searchHints) as any) {
+    for (const [code, hint] of Object.entries(searchHints) as unknown) {
       expect(typeof hint.hint).toBe('string');
       expect(Array.isArray(hint.actions)).toBe(true);
     }

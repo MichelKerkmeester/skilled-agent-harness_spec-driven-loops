@@ -1,4 +1,8 @@
 // @ts-nocheck
+// ---------------------------------------------------------------
+// TEST: HANDLER HELPERS
+// ---------------------------------------------------------------
+
 import { describe, it, expect, beforeAll, vi } from 'vitest';
 import path from 'path';
 import os from 'os';
@@ -232,7 +236,7 @@ describe('CAUSAL_LINK_MAPPINGS', () => {
     if (!memorySave?.CAUSAL_LINK_MAPPINGS) return;
     const mappings = memorySave.CAUSAL_LINK_MAPPINGS;
     for (const [key, mapping] of Object.entries(mappings)) {
-      const m = mapping as any;
+      const m = mapping as unknown;
       expect(typeof m.relation).toBe('string');
       expect(typeof m.reverse).toBe('boolean');
     }
@@ -253,7 +257,7 @@ describe('CAUSAL_LINK_MAPPINGS', () => {
     const mappings = memorySave.CAUSAL_LINK_MAPPINGS;
     const validRelations = Object.values(causalEdges.RELATION_TYPES);
     for (const [key, mapping] of Object.entries(mappings)) {
-      const m = mapping as any;
+      const m = mapping as unknown;
       expect(validRelations).toContain(m.relation);
     }
   });
@@ -279,7 +283,7 @@ describe('CONTEXT_MODES', () => {
     if (!memoryContext?.CONTEXT_MODES) return;
     const modes = memoryContext.CONTEXT_MODES;
     for (const [key, mode] of Object.entries(modes)) {
-      const m = mode as any;
+      const m = mode as unknown;
       expect(typeof m.name).toBe('string');
       expect(m.name.length).toBeGreaterThan(0);
       expect(typeof m.description).toBe('string');

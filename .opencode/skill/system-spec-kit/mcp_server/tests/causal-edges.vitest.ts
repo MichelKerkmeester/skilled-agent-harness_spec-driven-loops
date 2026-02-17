@@ -1,3 +1,7 @@
+// ---------------------------------------------------------------
+// TEST: CAUSAL EDGES
+// ---------------------------------------------------------------
+
 import { describe, it, expect } from 'vitest';
 
 // DB-dependent imports (commented out - requires better-sqlite3)
@@ -8,15 +12,12 @@ describe('Causal Edges (T043-T047, T128-T141) [deferred - requires DB test fixtu
 
   describe('T044 - Relation Types', () => {
     it('should define 6 relationship types', () => {
-      // const types = causalEdges.getRelationTypes();
       // expect(types).toHaveLength(6);
       expect(true).toBe(true);
     });
 
     it('should include all expected types', () => {
       const expected = ['caused', 'enabled', 'supersedes', 'contradicts', 'derived_from', 'supports'];
-      // const types = causalEdges.getRelationTypes();
-      // for (const type of expected) {
       //   expect(types).toContain(type);
       // }
       expect(expected).toHaveLength(6);
@@ -36,7 +37,6 @@ describe('Causal Edges (T043-T047, T128-T141) [deferred - requires DB test fixtu
 
   describe('T045 - Edge Insertion', () => {
     it('should insert a basic edge', () => {
-      // const edge = causalEdges.insertEdge(db, { source_id: '1', target_id: '2', relation: 'caused', strength: 0.9, evidence: 'Test evidence' });
       // expect(edge.id).toBeTruthy();
       // expect(edge.source_id).toBe('1');
       // expect(edge.relation).toBe('caused');
@@ -71,25 +71,21 @@ describe('Causal Edges (T043-T047, T128-T141) [deferred - requires DB test fixtu
 
   describe('T045 - Edge Retrieval', () => {
     it('should get edges from a source node', () => {
-      // const fromEdges = causalEdges.getEdgesFrom(db, '100');
       // expect(fromEdges).toHaveLength(2);
       expect(true).toBe(true);
     });
 
     it('should get edges to a target node', () => {
-      // const toEdges = causalEdges.getEdgesTo(db, '100');
       // expect(toEdges).toHaveLength(1);
       expect(true).toBe(true);
     });
 
     it('should get all edges for a node', () => {
-      // const all = causalEdges.getAllEdges(db, '100');
       // expect(all.total).toBe(3);
       expect(true).toBe(true);
     });
 
     it('should filter edges by relation type', () => {
-      // const filtered = causalEdges.getEdgesFrom(db, '100', { relation: 'caused' });
       // expect(filtered).toHaveLength(1);
       expect(true).toBe(true);
     });
@@ -97,13 +93,11 @@ describe('Causal Edges (T043-T047, T128-T141) [deferred - requires DB test fixtu
 
   describe('T046 - Causal Chain Traversal', () => {
     it('should traverse chain with depth (CHK-063)', () => {
-      // const chain = causalEdges.getCausalChain(db, '200', { max_depth: 10 });
       // expect(chain.all.length).toBeGreaterThanOrEqual(3);
       expect(true).toBe(true);
     });
 
     it('should limit depth', () => {
-      // const limited = causalEdges.getCausalChain(db, '200', { max_depth: 1 });
       // expect(limited.all.filter(e => e.depth === 0).length).toBeGreaterThanOrEqual(1);
       expect(true).toBe(true);
     });
@@ -115,13 +109,10 @@ describe('Causal Edges (T043-T047, T128-T141) [deferred - requires DB test fixtu
     });
 
     it('should support direction filtering', () => {
-      // const outgoingOnly = causalEdges.getCausalChain(db, '200', { direction: 'outgoing' });
-      // const incomingOnly = causalEdges.getCausalChain(db, '203', { direction: 'incoming' });
       expect(true).toBe(true);
     });
 
     it('should handle cycles safely', () => {
-      // const cyclic = causalEdges.getCausalChain(db, '301', { max_depth: 10 });
       // expect(cyclic.all.length).toBeLessThan(100);
       expect(true).toBe(true);
     });
@@ -129,19 +120,16 @@ describe('Causal Edges (T043-T047, T128-T141) [deferred - requires DB test fixtu
 
   describe('T045 - Edge Management', () => {
     it('should update an edge', () => {
-      // const updated = causalEdges.updateEdge(db, edge.id, { strength: 0.8, evidence: 'Updated' });
       // expect(updated.updated).toBe(true);
       expect(true).toBe(true);
     });
 
     it('should delete an edge', () => {
-      // const deleted = causalEdges.deleteEdge(db, edge.id);
       // expect(deleted.deleted).toBe(true);
       expect(true).toBe(true);
     });
 
     it('should delete all edges for a memory', () => {
-      // const cleanup = causalEdges.deleteEdgesForMemory(db, '500');
       // expect(cleanup.deleted).toBe(2);
       expect(true).toBe(true);
     });
@@ -149,7 +137,6 @@ describe('Causal Edges (T043-T047, T128-T141) [deferred - requires DB test fixtu
 
   describe('CHK-065 - Graph Statistics', () => {
     it('should count total edges', () => {
-      // const stats = causalEdges.getGraphStats(db);
       // expect(stats.total_edges).toBe(3);
       expect(true).toBe(true);
     });
@@ -170,7 +157,6 @@ describe('Causal Edges (T043-T047, T128-T141) [deferred - requires DB test fixtu
     });
 
     it('should detect orphaned edges', () => {
-      // const orphaned = causalEdges.findOrphanedEdges(db);
       // expect(typeof orphaned.total_orphaned).toBe('number');
       expect(true).toBe(true);
     });
@@ -178,7 +164,6 @@ describe('Causal Edges (T043-T047, T128-T141) [deferred - requires DB test fixtu
 
   describe('T045 - Batch Insertion', () => {
     it('should insert a batch of edges', () => {
-      // const result = causalEdges.insertEdgesBatch(db, edges);
       // expect(result.total).toBe(3);
       // expect(result.inserted).toBe(3);
       expect(true).toBe(true);

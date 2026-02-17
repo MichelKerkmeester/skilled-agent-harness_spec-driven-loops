@@ -1,4 +1,8 @@
 // @ts-nocheck
+// ---------------------------------------------------------------
+// TEST: MEMORY PARSER
+// ---------------------------------------------------------------
+
 import { describe, it, expect, beforeAll } from 'vitest';
 import * as memoryParser from '../lib/parsing/memory-parser';
 

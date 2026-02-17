@@ -1,4 +1,8 @@
 // @ts-nocheck
+// ---------------------------------------------------------------
+// TEST: SEARCH EXTENDED
+// ---------------------------------------------------------------
+
 // Converted from: search-extended.test.ts (custom runner)
 import { describe, it, expect, beforeEach, afterEach } from 'vitest';
 import {

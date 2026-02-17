@@ -321,7 +321,7 @@ workflow:
     activities:
     - Read skill_reference_template.md from workflows-documentation skill
     - Extract patterns based on reference_type
-    - Note formatting requirements (emoji visual markers optional, checkpoints, code blocks)
+    - Note formatting requirements (checkpoints, code blocks)
     template_path: .opencode/skill/workflows-documentation/assets/opencode/skill_reference_template.md
     type_specific_patterns:
       workflow:
@@ -366,7 +366,7 @@ workflow:
 
         ---
 
-        ## 1. 📖 INTRODUCTION & PURPOSE
+        ## 1. INTRODUCTION & PURPOSE
 
         ### Core Principle
 
@@ -378,7 +378,7 @@ workflow:
 
         ---
 
-        ## 2. 🔄 PHASE 1: [PHASE NAME]
+        ## 2. PHASE 1: [PHASE NAME]
 
         **Purpose**: [What this phase accomplishes]
 
@@ -392,7 +392,7 @@ workflow:
 
         ---
 
-        ## N. 📋 QUICK REFERENCE
+        ## N. QUICK REFERENCE
 
         [Summary checklist]
 
@@ -434,7 +434,7 @@ workflow:
   step_5_validation:
     purpose: Quality check and SKILL.md integration
     activities:
-    - Structure validation (core principle, phases, checkpoints; emoji visual markers optional)
+    - Structure validation (core principle, phases, checkpoints)
     - Content validation (explicit reasoning, named checkpoints, links)
     - Integration (update SKILL.md Navigation Guide, SMART ROUTING)
     validation_checklist:

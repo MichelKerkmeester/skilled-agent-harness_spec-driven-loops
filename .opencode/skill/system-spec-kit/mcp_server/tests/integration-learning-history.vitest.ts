@@ -1,4 +1,8 @@
 // @ts-nocheck
+// ---------------------------------------------------------------
+// TEST: INTEGRATION LEARNING HISTORY
+// ---------------------------------------------------------------
+
 import { describe, it, expect } from 'vitest';
 import * as learningHandler from '../handlers/session-learning';
 import * as errorsModule from '../lib/errors/index';

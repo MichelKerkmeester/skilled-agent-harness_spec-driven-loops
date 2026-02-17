@@ -6,7 +6,6 @@
 
 const path = require('path');
 const fs = require('fs');
-// crypto removed (was unused)
 
 /* ─────────────────────────────────────────────────────────────
    1. CONFIGURATION

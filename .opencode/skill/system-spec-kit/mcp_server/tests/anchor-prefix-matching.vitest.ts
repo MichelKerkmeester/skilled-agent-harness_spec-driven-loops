@@ -1,4 +1,8 @@
 // @ts-nocheck
+// ---------------------------------------------------------------
+// TEST: ANCHOR PREFIX MATCHING
+// ---------------------------------------------------------------
+
 import { describe, it, expect } from 'vitest';
 import {
   formatSearchResults,

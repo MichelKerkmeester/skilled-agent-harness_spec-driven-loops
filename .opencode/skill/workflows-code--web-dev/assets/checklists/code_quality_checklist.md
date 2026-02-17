@@ -443,8 +443,6 @@ After completing validation, document the results using the appropriate template
 ### JavaScript Files
 
 ```markdown
-<!-- /ANCHOR:verification-summary-template -->
-<!-- ANCHOR:code-quality-verification-summary -->
 ## Code Quality Verification Summary
 
 **File**: [filename.js]
@@ -472,8 +470,6 @@ After completing validation, document the results using the appropriate template
 ### CSS Files
 
 ```markdown
-<!-- /ANCHOR:code-quality-verification-summary -->
-<!-- ANCHOR:code-quality-verification-summary-2 -->
 ## Code Quality Verification Summary
 
 **File**: [filename.css]
@@ -499,7 +495,7 @@ After completing validation, document the results using the appropriate template
 
 ---
 
-<!-- /ANCHOR:code-quality-verification-summary-2 -->
+<!-- /ANCHOR:verification-summary-template -->
 <!-- ANCHOR:quick-reference -->
 ## 10. QUICK REFERENCE
 

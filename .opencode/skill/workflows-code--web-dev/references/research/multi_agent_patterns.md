@@ -168,8 +168,6 @@ For complex codebase analysis, parallel agent execution provides comprehensive c
 Each agent should return:
 
 ```markdown
-<!-- /ANCHOR:coordination-pattern -->
-<!-- ANCHOR:agent-n-focus-area -->
 ## Agent N: [Focus Area]
 
 ### Key Findings
@@ -188,7 +186,7 @@ Each agent should return:
 
 ---
 
-<!-- /ANCHOR:agent-n-focus-area -->
+<!-- /ANCHOR:coordination-pattern -->
 <!-- ANCHOR:example-performance-optimization -->
 ## 6. EXAMPLE: PERFORMANCE OPTIMIZATION
 

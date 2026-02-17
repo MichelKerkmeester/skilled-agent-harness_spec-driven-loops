@@ -271,8 +271,6 @@ validate_file() {
 Copy this for code review:
 
 ```markdown
-<!-- /ANCHOR:checklist-template -->
-<!-- ANCHOR:shell-code-quality-check -->
 ## Shell Code Quality Check
 
 ### P0 - HARD BLOCKERS
@@ -305,7 +303,7 @@ Copy this for code review:
 
 ---
 
-<!-- /ANCHOR:shell-code-quality-check -->
+<!-- /ANCHOR:checklist-template -->
 <!-- ANCHOR:validation-commands -->
 ## 6. VALIDATION COMMANDS
 

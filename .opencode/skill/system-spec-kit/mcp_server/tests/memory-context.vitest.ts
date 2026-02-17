@@ -1,4 +1,8 @@
 // @ts-nocheck
+// ---------------------------------------------------------------
+// TEST: MEMORY CONTEXT
+// ---------------------------------------------------------------
+
 import { describe, it, expect } from 'vitest';
 import type { MCPResponse } from '../../shared/types';
 import { handleMemoryContext, CONTEXT_MODES, INTENT_TO_MODE, enforceTokenBudget } from '../handlers/memory-context';
