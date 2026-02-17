@@ -94,58 +94,18 @@ Routing to `@general`, `@write`, or other agents for spec documentation is a **h
 from pathlib import Path
 
 SKILL_ROOT = Path(__file__).resolve().parent
-RESOURCE_BASES = [SKILL_ROOT / "references", SKILL_ROOT / "assets"]
-
-
-def _guard_in_skill(relative_path: str) -> str:
-    """Allow markdown loads only within this skill folder."""
-    resolved = (SKILL_ROOT / relative_path).resolve()
-    resolved.relative_to(SKILL_ROOT)  # raises ValueError if out-of-scope
-    if resolved.suffix.lower() != ".md":
-        raise ValueError(f"Only markdown resources are routable: {relative_path}")
-    return resolved.relative_to(SKILL_ROOT).as_posix()
-
-
-def discover_markdown_resources() -> set[str]:
-    """Recursively discover routable markdown docs for this skill only."""
-    docs = []
-    for base in RESOURCE_BASES:
-        if base.exists():
-            docs.extend(sorted(p for p in base.rglob("*.md") if p.is_file()))
-    return {p.relative_to(SKILL_ROOT).as_posix() for p in docs}
-
+RESOURCE_BASES = (SKILL_ROOT / "references", SKILL_ROOT / "assets")
+DEFAULT_RESOURCE = "references/workflows/quick_reference.md"
 
 INTENT_SIGNALS = {
-    "PLAN": {
-        "weight": 3,
-        "keywords": ["plan", "design", "new spec", "level selection", "option b"],
-    },
-    "RESEARCH": {
-        "weight": 3,
-        "keywords": ["investigate", "explore", "analyze", "prior work", "evidence"],
-    },
-    "IMPLEMENT": {
-        "weight": 3,
-        "keywords": ["implement", "build", "execute", "phase", "workflow"],
-    },
-    "DEBUG": {
-        "weight": 4,
-        "keywords": ["stuck", "error", "not working", "failed", "debug"],
-    },
-    "COMPLETE": {
-        "weight": 4,
-        "keywords": ["done", "complete", "finish", "verify", "checklist"],
-    },
-    "MEMORY": {
-        "weight": 4,
-        "keywords": ["memory", "save context", "resume", "checkpoint", "context"],
-    },
-    "HANDOVER": {
-        "weight": 4,
-        "keywords": ["handover", "continue later", "next session", "pause"],
-    },
+    "PLAN": {"weight": 3, "keywords": ["plan", "design", "new spec", "level selection", "option b"]},
+    "RESEARCH": {"weight": 3, "keywords": ["investigate", "explore", "analyze", "prior work", "evidence"]},
+    "IMPLEMENT": {"weight": 3, "keywords": ["implement", "build", "execute", "phase", "workflow"]},
+    "DEBUG": {"weight": 4, "keywords": ["stuck", "error", "not working", "failed", "debug"]},
+    "COMPLETE": {"weight": 4, "keywords": ["done", "complete", "finish", "verify", "checklist"]},
+    "MEMORY": {"weight": 4, "keywords": ["memory", "save context", "resume", "checkpoint", "context"]},
+    "HANDOVER": {"weight": 4, "keywords": ["handover", "continue later", "next session", "pause"]},
 }
-
 
 RESOURCE_MAP = {
     "PLAN": [
@@ -177,76 +137,112 @@ RESOURCE_MAP = {
     ],
 }
 
+COMMAND_BOOSTS = {
+    "/spec_kit:plan": "PLAN",
+    "/spec_kit:research": "RESEARCH",
+    "/spec_kit:implement": "IMPLEMENT",
+    "/spec_kit:debug": "DEBUG",
+    "/spec_kit:complete": "COMPLETE",
+    "/spec_kit:handover": "HANDOVER",
+}
+
+LOADING_LEVELS = {
+    "ALWAYS": [DEFAULT_RESOURCE],
+    "ON_DEMAND_KEYWORDS": ["deep dive", "full validation", "full checklist", "full template"],
+    "ON_DEMAND": [
+        "references/validation/phase_checklists.md",
+        "references/templates/template_guide.md",
+    ],
+}
+
+def _task_text(task) -> str:
+    parts = [
+        str(getattr(task, "query", "")),
+        str(getattr(task, "text", "")),
+        " ".join(getattr(task, "keywords", []) or []),
+        str(getattr(task, "command", "")),
+    ]
+    return " ".join(parts).lower()
+
+def _guard_in_skill(relative_path: str) -> str:
+    """Allow markdown loads only within this skill folder."""
+    resolved = (SKILL_ROOT / relative_path).resolve()
+    resolved.relative_to(SKILL_ROOT)
+    if resolved.suffix.lower() != ".md":
+        raise ValueError(f"Only markdown resources are routable: {relative_path}")
+    return resolved.relative_to(SKILL_ROOT).as_posix()
+
+def discover_markdown_resources() -> set[str]:
+    """Recursively discover routable markdown docs for this skill only."""
+    docs = []
+    for base in RESOURCE_BASES:
+        if base.exists():
+            docs.extend(p for p in base.rglob("*.md") if p.is_file())
+    return {doc.relative_to(SKILL_ROOT).as_posix() for doc in docs}
 
 def score_intents(task) -> dict[str, float]:
-    """Weighted scoring from explicit flags + request text + command context."""
-    text = " ".join(
-        [
-            str(getattr(task, "query", "")),
-            str(getattr(task, "text", "")),
-            " ".join(getattr(task, "keywords", []) or []),
-            str(getattr(task, "command", "")),
-        ]
-    ).lower()
-
+    """Weighted scoring from request text, keywords, and explicit command boosts."""
+    text = _task_text(task)
     scores = {intent: 0.0 for intent in INTENT_SIGNALS}
 
     for intent, cfg in INTENT_SIGNALS.items():
-        for kw in cfg["keywords"]:
-            if kw in text:
+        for keyword in cfg["keywords"]:
+            if keyword in text:
                 scores[intent] += cfg["weight"]
 
-    # Strong explicit command boosts
     command = str(getattr(task, "command", "")).lower()
-    if command.startswith("/spec_kit:plan"):
-        scores["PLAN"] += 6
-    if command.startswith("/spec_kit:research"):
-        scores["RESEARCH"] += 6
-    if command.startswith("/spec_kit:implement"):
-        scores["IMPLEMENT"] += 6
-    if command.startswith("/spec_kit:debug"):
-        scores["DEBUG"] += 6
-    if command.startswith("/spec_kit:complete"):
-        scores["COMPLETE"] += 6
-    if command.startswith("/spec_kit:handover"):
-        scores["HANDOVER"] += 6
+    for prefix, intent in COMMAND_BOOSTS.items():
+        if command.startswith(prefix):
+            scores[intent] += 6
 
     return scores
 
-
-def select_intents(scores: dict[str, float], ambiguity_delta: float = 1.0) -> list[str]:
-    """Return top intent, plus top-2 when scores are close."""
+def select_intents(scores: dict[str, float], ambiguity_delta: float = 1.0, max_intents: int = 2) -> list[str]:
+    """Return primary intent and secondary intent when scores are close."""
     ranked = sorted(scores.items(), key=lambda item: item[1], reverse=True)
-    primary, secondary = ranked[0], ranked[1]
-
-    if primary[1] <= 0:
+    if not ranked or ranked[0][1] <= 0:
         return ["IMPLEMENT"]
 
-    selected = [primary[0]]
-    if secondary[1] > 0 and (primary[1] - secondary[1]) <= ambiguity_delta:
-        selected.append(secondary[0])
-    return selected
+    selected = [ranked[0][0]]
+    if len(ranked) > 1:
+        primary_score = ranked[0][1]
+        secondary_intent, secondary_score = ranked[1]
+        if secondary_score > 0 and (primary_score - secondary_score) <= ambiguity_delta:
+            selected.append(secondary_intent)
 
+    return selected[:max_intents]
 
 def route_speckit_resources(task):
     """Scoped, recursive, weighted, ambiguity-aware routing."""
     inventory = discover_markdown_resources()
     intents = select_intents(score_intents(task), ambiguity_delta=1.0)
     loaded = []
+    seen = set()
 
+    def load_if_available(relative_path: str) -> None:
+        guarded = _guard_in_skill(relative_path)
+        if guarded in inventory and guarded not in seen:
+            load(guarded)
+            loaded.append(guarded)
+            seen.add(guarded)
+
+    # ALWAYS: base references for every invocation
+    for relative_path in LOADING_LEVELS["ALWAYS"]:
+        load_if_available(relative_path)
+
+    # CONDITIONAL: intent-scored resources
     for intent in intents:
-        for rel in RESOURCE_MAP.get(intent, []):
-            guarded = _guard_in_skill(rel)
-            if guarded in inventory:
-                load(guarded)
-                loaded.append(guarded)
+        for relative_path in RESOURCE_MAP.get(intent, []):
+            load_if_available(relative_path)
 
-    # Fallback if no mapped resources were found
+    # ON_DEMAND: explicit deep-dive requests
+    text = _task_text(task)
+    if any(keyword in text for keyword in LOADING_LEVELS["ON_DEMAND_KEYWORDS"]):
+        for relative_path in LOADING_LEVELS["ON_DEMAND"]:
+            load_if_available(relative_path)
+
     if not loaded:
-        fallback = _guard_in_skill("references/workflows/quick_reference.md")
-        if fallback in inventory:
-            load(fallback)
-            loaded.append(fallback)
+        load_if_available(DEFAULT_RESOURCE)
 
     return {"intents": intents, "resources": loaded}
 ```
@@ -256,12 +252,8 @@ def route_speckit_resources(task):
 | Level       | When to Load               | Resources                    |
 | ----------- | -------------------------- | ---------------------------- |
 | ALWAYS      | Every skill invocation     | Shared patterns + SKILL.md   |
-| CONDITIONAL | If language keywords match | Language-specific references |
+| CONDITIONAL | If intent signals match   | Intent-mapped references     |
 | ON_DEMAND   | Only on explicit request   | Deep-dive quality standards  |
-
-### Routing Authority
-
-Intent scoring and the in-code resource map in this section are the authoritative routing source. Do not maintain separate use-case routing tables.
 
 ### Resource Domains
 
@@ -274,10 +266,6 @@ The router discovers markdown resources recursively from `references/` and `asse
 - `references/workflows/` for command workflows and worked examples.
 - `references/debugging/` for troubleshooting and root-cause methodology.
 - `references/config/` for runtime environment configuration.
-
-### Shared Modules (`shared/`)
-
-`shared/` contains TypeScript modules used by CLI scripts and the MCP server (embeddings, normalization, chunking, trigger extraction, scoring, and path utilities). Source and API details are maintained in [shared/README.md](./shared/README.md).
 
 ### Template and Script Sources of Truth
 
@@ -565,7 +553,6 @@ Context preservation across sessions via hybrid search (vector similarity + BM25
 > **Token budgets per layer:** L1:2000, L2:1500, L3:800, L4:500, L5:600, L6:1200, L7:1000 (enforced via `chars/4` approximation).
 
 **Full documentation:** See [memory_system.md](./references/memory/memory_system.md) for tool behavior, importance tiers, and configuration.
-
 
 ### Validation Workflow
 

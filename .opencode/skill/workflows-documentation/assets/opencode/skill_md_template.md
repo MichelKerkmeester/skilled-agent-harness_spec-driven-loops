@@ -27,9 +27,9 @@ This guide provides **one comprehensive SKILL template** (Section 3) that covers
 
 **The template is flexible:**
 - **Simple skills**: Use core sections only (WHEN TO USE, HOW IT WORKS, RULES)
-- **Skills with bundled resources**: Add file refs to Activation Detection flowchart and Resource Router, use references folder, assets folder, scripts folder
+- **Skills with bundled resources**: Keep router pseudocode first, then loading levels + routing authority + resource domains; use references folder, assets folder, scripts folder
 - **Multi-mode skills**: Expand WHEN TO USE and HOW IT WORKS sections by mode
-- **All skills**: MUST include Section 2 (SMART ROUTING & REFERENCES) with integrated resource catalog
+- **All skills**: MUST include Section 2 (SMART ROUTING) with integrated resource catalog
 
 **Target size**: 800-2000 lines for SKILL.md (<5k words total)
 
@@ -198,78 +198,145 @@ version: 1.0.0
 <!-- ANCHOR:smart-routing -->
 ## 2. SMART ROUTING
 
-<!-- CRITICAL: This section contains:
-     1. Activation Detection (flowchart WITH file refs inline)
-     2. Resource Router (Python pseudocode WITH descriptive comments and load() calls)
-     
-     ⚠️ ANTI-PATTERN: Do NOT create a separate "Navigation Guide" subsection 
-     listing files - this is REDUNDANT because files are already referenced
-     in the flowchart branches and Resource Router load() calls. -->
-
-### Activation Detection
-
-```
-TASK CONTEXT
-    │
-    ├─► [Condition 1 - e.g., "User needs detailed guide"]
-    │   └─► Load: references/[name].md
-    │
-    ├─► [Condition 2 - e.g., "Creating new content"]
-    │   └─► Load: assets/[template].md
-    │
-    ├─► [Condition 3 - e.g., "Automation needed"]
-    │   └─► Execute: scripts/[script].py
-    │
-    └─► [Default - e.g., "Quick task"]
-        └─► Use SKILL.md only
-```
+<!-- CRITICAL: This section starts with router pseudocode and remains the single routing authority.
+     Do NOT add Activation Detection flowcharts, navigation guides, or separate use-case tables. -->
 
 ### Resource Router
 
 ```python
+from pathlib import Path
+
+SKILL_ROOT = Path(__file__).resolve().parent
+RESOURCE_BASES = (SKILL_ROOT / "references", SKILL_ROOT / "assets")
+DEFAULT_RESOURCE = "references/workflows/quick_reference.md"
+
+INTENT_SIGNALS = {
+    "PRIMARY": {"weight": 3, "keywords": ["[primary keyword]", "[primary phrase]"]},
+    "SECONDARY": {"weight": 3, "keywords": ["[secondary keyword]", "[secondary phrase]"]},
+    "DEBUG": {"weight": 4, "keywords": ["error", "failed", "debug", "stuck"]},
+}
+
+RESOURCE_MAP = {
+    "PRIMARY": ["references/[primary-guide].md"],
+    "SECONDARY": ["references/[secondary-guide].md", "assets/[template].md"],
+    "DEBUG": ["references/[troubleshooting].md"],
+}
+
+COMMAND_BOOSTS = {
+    "/[skill]:[primary]": "PRIMARY",
+    "/[skill]:[secondary]": "SECONDARY",
+}
+
+LOADING_LEVELS = {
+    "ALWAYS": [DEFAULT_RESOURCE],
+    "ON_DEMAND_KEYWORDS": ["deep dive", "full checklist", "full template"],
+    "ON_DEMAND": ["references/[deep-dive].md"],
+}
+
+
+def _task_text(task) -> str:
+    parts = [
+        str(getattr(task, "query", "")),
+        str(getattr(task, "text", "")),
+        " ".join(getattr(task, "keywords", []) or []),
+        str(getattr(task, "command", "")),
+    ]
+    return " ".join(parts).lower()
+
+
+def _guard_in_skill(relative_path: str) -> str:
+    resolved = (SKILL_ROOT / relative_path).resolve()
+    resolved.relative_to(SKILL_ROOT)
+    if resolved.suffix.lower() != ".md":
+        raise ValueError(f"Only markdown resources are routable: {relative_path}")
+    return resolved.relative_to(SKILL_ROOT).as_posix()
+
+
+def discover_markdown_resources() -> set[str]:
+    docs = []
+    for base in RESOURCE_BASES:
+        if base.exists():
+            docs.extend(p for p in base.rglob("*.md") if p.is_file())
+    return {doc.relative_to(SKILL_ROOT).as_posix() for doc in docs}
+
+
+def score_intents(task) -> dict[str, float]:
+    text = _task_text(task)
+    scores = {intent: 0.0 for intent in INTENT_SIGNALS}
+
+    for intent, cfg in INTENT_SIGNALS.items():
+        for keyword in cfg["keywords"]:
+            if keyword in text:
+                scores[intent] += cfg["weight"]
+
+    command = str(getattr(task, "command", "")).lower()
+    for prefix, intent in COMMAND_BOOSTS.items():
+        if command.startswith(prefix):
+            scores[intent] += 6
+
+    return scores
+
+
+def select_intents(scores: dict[str, float], ambiguity_delta: float = 1.0) -> list[str]:
+    ranked = sorted(scores.items(), key=lambda item: item[1], reverse=True)
+    if not ranked or ranked[0][1] <= 0:
+        return ["PRIMARY"]
+
+    selected = [ranked[0][0]]
+    if len(ranked) > 1 and ranked[1][1] > 0 and (ranked[0][1] - ranked[1][1]) <= ambiguity_delta:
+        selected.append(ranked[1][0])
+
+    return selected[:2]
+
+
 def route_[skill_name]_resources(task):
-    """
-    Resource Router for [skill-name] skill
-    Load references based on task context
-    """
+    inventory = discover_markdown_resources()
+    intents = select_intents(score_intents(task), ambiguity_delta=1.0)
+    loaded = []
+    seen = set()
 
-    # ──────────────────────────────────────────────────────────────────
-    # [CATEGORY 1 NAME]
-    # Purpose: [One-line description of what this file provides]
-    # Key Insight: [The most important thing to know about this resource]
-    # ──────────────────────────────────────────────────────────────────
-    if task.[condition_1]:
-        return load("references/[filename].md")  # [Brief description]
+    def load_if_available(relative_path: str) -> None:
+        guarded = _guard_in_skill(relative_path)
+        if guarded in inventory and guarded not in seen:
+            load(guarded)
+            loaded.append(guarded)
+            seen.add(guarded)
 
-    # ──────────────────────────────────────────────────────────────────
-    # [CATEGORY 2 NAME]
-    # Purpose: [Description]
-    # Key Insight: [Most important thing]
-    # ──────────────────────────────────────────────────────────────────
-    if task.[condition_2]:
-        load("references/[filename].md")  # [Brief description]
-        return load("assets/[template].md")  # [Brief description]
+    for relative_path in LOADING_LEVELS["ALWAYS"]:
+        load_if_available(relative_path)
 
-    # ──────────────────────────────────────────────────────────────────
-    # [CATEGORY 3 NAME]
-    # Purpose: [Description]
-    # Key Insight: [Most important thing]
-    # ──────────────────────────────────────────────────────────────────
-    if task.[condition_3]:
-        return execute("scripts/[script].py")  # [Brief description]
+    for intent in intents:
+        for relative_path in RESOURCE_MAP.get(intent, []):
+            load_if_available(relative_path)
 
-    # quick lookup
-    if task.needs_quick_reference:
-        return load("references/quick_reference.md")  # one-page cheat sheet
+    text = _task_text(task)
+    if any(keyword in text for keyword in LOADING_LEVELS["ON_DEMAND_KEYWORDS"]):
+        for relative_path in LOADING_LEVELS["ON_DEMAND"]:
+            load_if_available(relative_path)
 
-    # Default: SKILL.md covers basic cases
+    if not loaded:
+        load_if_available(DEFAULT_RESOURCE)
 
-# ══════════════════════════════════════════════════════════════════════
-# STATIC RESOURCES (always available, not conditionally loaded)
-# ══════════════════════════════════════════════════════════════════════
-# templates/[template].md    → [Purpose description]
-# config.jsonc               → [Configuration file purpose]
+    return {"intents": intents, "resources": loaded}
 ```
+
+### Resource Loading Levels
+
+| Level       | When to Load             | Resources                    |
+| ----------- | ------------------------ | ---------------------------- |
+| ALWAYS      | Every skill invocation   | Shared patterns + SKILL.md   |
+| CONDITIONAL | If intent signals match  | Intent-mapped references     |
+| ON_DEMAND   | Only on explicit request | Deep-dive quality standards  |
+
+### Routing Authority
+
+Intent scoring and the in-code resource map in this section are the authoritative routing source. Do not maintain separate use-case routing tables.
+
+### Resource Domains
+
+- `references/[domain]/` for in-depth guidance and standards.
+- `assets/[domain]/` for templates, examples, and reusable outputs.
+- `scripts/` for optional automation entrypoints when needed.
 
 ---
 
@@ -478,7 +545,7 @@ See [workflow-details.md](./references/workflow-details.md) for complete step-by
 
 **Word Count Targets**:
 - Section 1 (WHEN TO USE): 150-200 lines
-- Section 2 (SMART ROUTING & REFERENCES): 80-200 lines (routing logic + resource catalog)
+- Section 2 (SMART ROUTING): 80-200 lines (routing logic + resource catalog)
 - Section 3 (HOW IT WORKS): 200-300 lines
 - Section 4 (RULES): 150-200 lines
 - Section 5 (SUCCESS CRITERIA): 80-120 lines
@@ -571,29 +638,28 @@ See [workflow-details.md](./references/workflow-details.md) for complete step-by
 
 ### Section 2: SMART ROUTING (Required for All Skills)
 
-**Purpose**: Provide routing logic for bundled resources with file references inline
+**Purpose**: Provide authoritative resource routing with scoped guards, recursive discovery, weighted scoring, and ambiguity handling.
 
 **Critical Rule**:
 ```
-❌ WRONG: Navigation Guide in "When to Use"
-❌ WRONG: Separate "Navigation Guide" subsection listing files
-✅ RIGHT: File references inline in Activation Detection flowchart and Resource Router
+❌ WRONG: Activation Detection flowcharts as the primary routing source
+❌ WRONG: Separate use-case routing tables or navigation guides
+✅ RIGHT: Router pseudocode first, then loading levels + routing authority + resource domains
 
-Section 2 contains TWO subsections:
-1. Activation Detection (flowchart WITH file refs inline in each branch)
-2. Resource Router (Python pseudocode WITH descriptive comments and load() calls)
-
-⚠️ ANTI-PATTERN: Do NOT create a separate "Navigation Guide" listing files - 
-   this is REDUNDANT because files are already referenced in the flowchart 
-   branches and Resource Router load() calls.
+Section 2 contains four subsections:
+1. Resource Router (pseudocode first)
+2. Resource Loading Levels
+3. Routing Authority
+4. Resource Domains
 ```
 
 **Placement**: After Section 1 (WHEN TO USE), before Section 3 (HOW IT WORKS)
 
 **Essential Content**:
-- **Activation Detection** - Flowchart with file refs inline (e.g., `└─► Load: file.md`)
-- **Resource Router** - Python pseudocode with descriptive comments and `load()` calls
-- **STATIC RESOURCES** comment section for non-conditionally loaded files
+- **Resource Router** - pseudocode with scoped path guard, recursive discovery, weighted intent scoring, and top-2 ambiguity handling
+- **Resource Loading Levels** - ALWAYS/CONDITIONAL/ON_DEMAND table aligned to in-code behavior
+- **Routing Authority** - single-source rule that points to the router code + resource map
+- **Resource Domains** - concise domain-level paths (no static file inventories)
 
 **Structure**:
 
@@ -601,66 +667,42 @@ Section 2 contains TWO subsections:
 <!-- ANCHOR:smart-routing-2 -->
 ## 2. SMART ROUTING
 
-### Activation Detection
-
-```
-TASK CONTEXT
-    │
-    ├─► Detailed guidance needed
-    │   └─► Load: references/detailed_guide.md
-    │
-    ├─► Creating new content
-    │   └─► Load: assets/output_template.md
-    │
-    └─► Quick task
-        └─► Use SKILL.md only
-```
-
 ### Resource Router
 
 ```python
-def route_request(context):
-    """
-    Resource Router for [skill-name] skill
-    Load references based on task context
-    """
-
-    # ──────────────────────────────────────────────────────────────────
-    # Detailed Guide
-    # Purpose: Complete step-by-step instructions for complex tasks
-    # Key Insight: Use when user needs comprehensive guidance
-    # ──────────────────────────────────────────────────────────────────
-    if context.needs_detailed_guide:
-        return load("references/detailed_guide.md")  # Step-by-step instructions
-
-    # ──────────────────────────────────────────────────────────────────
-    # Output Template
-    # Purpose: Starting template for content creation
-    # Key Insight: Provides consistent structure for outputs
-    # ──────────────────────────────────────────────────────────────────
-    if context.needs_template:
-        return load("assets/output_template.md")  # Content template
-
-    # Default: SKILL.md covers basic cases
-
-# ══════════════════════════════════════════════════════════════════════
-# STATIC RESOURCES (always available, not conditionally loaded)
-# ══════════════════════════════════════════════════════════════════════
-# templates/output.md    → Output format template
-# config.jsonc           → Runtime configuration
+# Pseudocode-first router (authoritative)
+# 1) Scope guard resource paths to current skill root
+# 2) Discover markdown resources recursively
+# 3) Score intents with weighted keyword + command boosts
+# 4) Select top-2 intents when scores are close
+# 5) Load ALWAYS resources, then CONDITIONAL intent resources, then ON_DEMAND resources
 ```
 
+### Resource Loading Levels
+
+| Level       | When to Load             | Resources                    |
+| ----------- | ------------------------ | ---------------------------- |
+| ALWAYS      | Every skill invocation   | Shared patterns + SKILL.md   |
+| CONDITIONAL | If intent signals match  | Intent-mapped references     |
+| ON_DEMAND   | Only on explicit request | Deep-dive quality standards  |
+
+### Routing Authority
+
+Intent scoring and the in-code resource map in this section are the authoritative routing source. Do not maintain separate use-case routing tables.
+
+### Resource Domains
+
+- `references/[domain]/` for guidance, standards, and troubleshooting.
+- `assets/[domain]/` for templates and examples.
+- `scripts/` for optional automation where needed.
+
 **Writing Tips**:
-- **Activation Detection**: Include file refs inline (e.g., `└─► Load: references/file.md`)
-- **Resource Router**: Include file refs in load() calls with brief description comments
-- **Function names**: Use descriptive names like `route_request()`, `select_resource()`
-- **Conditions**: Match skill's actual use cases and decision points
-- **Comment blocks**: Use visual separators (────) and include Purpose + Key Insight
-- **Resource paths**: Use actual file paths from the skill's bundled resources
-- **Fallback**: Always include a default comment
-- **Static Resources**: List all non-routed files (templates, configs) at the end
-- **Visual hierarchy**: Use ──── for routes, ════ for static resources section
-- **NO Navigation Guide**: File references are already in flowchart and Router - don't duplicate
+- Put router pseudocode first under SMART ROUTING.
+- Keep conditions measurable and tied to resource paths.
+- Keep `RESOURCE_MAP` and loading levels synchronized.
+- Require scoped guards and recursive discovery in every router.
+- Use top-2 ambiguity handling when intent scores are close.
+- Avoid static use-case tables and activation flowcharts.
 
 **Word Budget**: 80-200 lines
 
@@ -935,7 +977,7 @@ For the complete list of 8 common pitfalls with before/after examples, see:
 5. Second-person language → Use imperative form
 6. Platform-specific claims → Stay platform-agnostic
 7. Multiline YAML descriptions → Keep single line
-8. Redundant Navigation Guide → Inline file refs in flowchart
+8. Redundant routing tables → Keep routing authority in pseudocode
 
 ### Writing Style Quick Reference
 
@@ -964,12 +1006,12 @@ Frontmatter:
 
 Structure:
 □ H1 title with descriptive subtitle
-□ Numbered H2 sections (1. WHEN TO USE, 2. SMART ROUTING & REFERENCES, etc.)
+□ Numbered H2 sections (1. WHEN TO USE, 2. SMART ROUTING, etc.)
 □ H2 headings use ALL CAPS
 □ Section separators (---) between major sections
 □ No table of contents (forbidden in SKILL.md)
 □ Proper heading hierarchy (H1 → H2 → H3)
-□ SMART ROUTING & REFERENCES section placed after WHEN TO USE, before HOW IT WORKS
+□ SMART ROUTING section placed after WHEN TO USE, before HOW IT WORKS
 
 Content - Standard Sections:
 □ WHEN TO USE section includes use cases + anti-patterns
@@ -982,17 +1024,17 @@ Content - Standard Sections:
 
 Content - NEW Standardization (2025):
 □ Section 1 (WHEN TO USE) contains ONLY activation triggers and use cases
-□ Section 1 does NOT contain Navigation Guide or file references
+□ Section 1 does NOT contain file-path routing logic
 □ SMART ROUTING section exists (Section 2 - REQUIRED for all skills)
-□ Section 2 has TWO subsections: Activation Detection, Resource Router
-□ Section 2 does NOT have separate "Navigation Guide" (anti-pattern - redundant)
-□ File refs inline in Activation Detection flowchart (e.g., └─► Load: file.md)
-□ File refs inline in Resource Router load() calls with brief descriptions
-□ Section 2 uses structured comment blocks with Purpose + Key Insight
-□ Section 2 includes STATIC RESOURCES comment section for non-routed files
+□ Section 2 first subsection is Resource Router pseudocode
+□ Section 2 includes scoped guard + recursive discovery markers
+□ Section 2 includes weighted intent scoring + top-2 ambiguity handling
+□ Section 2 includes Resource Loading Levels table
+□ Section 2 includes Routing Authority statement
+□ Section 2 includes domain-level resource paths (not static inventories)
 □ Flowchart supplements added to complex logic blocks in Section 3 (where applicable)
 □ Python/YAML code preserved (supplements, not replacements)
-□ All ASCII diagrams use consistent style (↓, →, ───, │, [boxes])
+□ All ASCII diagrams use consistent style (when used)
 
 Quality:
 □ SKILL.md under 5k words (<3k preferred)
@@ -1003,10 +1045,7 @@ Quality:
 □ All code blocks specify language
 □ Links work correctly
 □ Section 1 contains ONLY triggers/use cases (NO file references)
-□ Section 2 Activation Detection flowchart includes file refs inline
 □ Section 2 Resource Router load() calls include file refs with descriptions
-□ Section 2 does NOT have separate "Navigation Guide" (anti-pattern)
-□ Section 2 comment blocks include Purpose and Key Insight for each resource
 
 
 ### Quick Reference Table
@@ -1019,7 +1058,7 @@ Quality:
 | **Description Voice** | Third-person               | ✅ "Use when..."  ❌ "You should..."                                                                 |
 | **H2 Format**         | Number + ALL CAPS          | ✅ `## 1. WHEN TO USE`                                                                            |
 | **TOC**               | Forbidden in SKILL.md      | ❌ No table of contents                                                                             |
-| **Sections**          | 6 required sections        | WHEN TO USE (triggers only), SMART ROUTING (flowchart + router), HOW IT WORKS, RULES, SUCCESS CRITERIA, INTEGRATION POINTS |
+| **Sections**          | 6 required sections        | WHEN TO USE (triggers only), SMART ROUTING (router-first + loading levels + authority), HOW IT WORKS, RULES, SUCCESS CRITERIA, INTEGRATION POINTS |
 | **File Size**         | <5k words (<3k preferred)  | Move details to references/                                                                        |
 | **Rules Format**      | ALWAYS, NEVER, ESCALATE IF | All caps headers, specific rules                                                                   |
 | **Examples**          | Concrete and realistic     | Show actual use cases                                                                              |

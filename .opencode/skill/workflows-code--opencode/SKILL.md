@@ -93,7 +93,6 @@ def _assert_scope(path, skill_root):
     if root not in resolved.parents and resolved != root:
         raise ValueError(f"Out-of-scope path blocked: {resolved}")
 
-
 def discover_router_docs(skill_root):
     """Scope guard + recursive markdown discovery."""
     docs = list((skill_root / "references").rglob("*.md"))
@@ -101,7 +100,6 @@ def discover_router_docs(skill_root):
     for doc in docs:
         _assert_scope(doc, skill_root)
     return docs
-
 
 def detect_language_v2(task):
     """Weighted language intent scoring with top-2 ambiguity handling."""
@@ -195,10 +193,6 @@ def route_opencode_resources(task):
 | ALWAYS      | Every skill invocation     | Shared patterns + SKILL.md   |
 | CONDITIONAL | If language keywords match | Language-specific references |
 | ON_DEMAND   | Only on explicit request   | Deep-dive quality standards  |
-
-### Routing Authority
-
-Intent scoring and the in-code resource map in this section are the authoritative routing source. Do not maintain separate use-case routing tables.
 
 ---
 

@@ -101,7 +101,6 @@ def _assert_scope(path, skill_root):
     if root not in resolved.parents and resolved != root:
         raise ValueError(f"Out-of-scope path blocked: {resolved}")
 
-
 def discover_router_docs(skill_root):
     """Recursive markdown discovery under this skill only."""
     docs = list((skill_root / "references").rglob("*.md"))
@@ -109,7 +108,6 @@ def discover_router_docs(skill_root):
     for doc in docs:
         _assert_scope(doc, skill_root)
     return docs
-
 
 def classify_intents(task_text):
     """Weighted intent scoring with ambiguity support (top-2)."""
@@ -128,7 +126,6 @@ def classify_intents(task_text):
     if (best_score - second_score) <= 0.7:
         return [best_intent, second_intent], scores
     return [best_intent], scores
-
 
 def route_frontend_resources(task):
     skill_root = Path(".opencode/skill/workflows-code--web-dev")
@@ -202,10 +199,6 @@ def route_frontend_resources(task):
 | CONDITIONAL | If task keywords match   | Domain-specific references         |
 | ON_DEMAND   | Only on explicit request | Deep-dive optimization guides      |
 
-### Routing Authority
-
-Intent scoring and the resource map in this section are the authoritative routing source. Do not maintain separate use-case routing tables.
-
 ---
 
 <!-- /ANCHOR:smart-routing -->
@@ -267,7 +260,6 @@ See: `references/research/multi_agent_patterns.md`
 - Clear requirements with known solution
 - Time-critical hotfixes
 
-
 ### Phase 1: Implementation
 
 **Implementation involves three specialized workflows:**
@@ -295,7 +287,6 @@ See: `references/research/multi_agent_patterns.md`
    - See [observer_patterns.md](./references/implementation/observer_patterns.md) for patterns
 
 See [implementation_workflows.md](./references/implementation/implementation_workflows.md) for complete workflows.
-
 
 ### Phase 1.5: Code Quality Gate
 
@@ -336,7 +327,6 @@ See [implementation_workflows.md](./references/implementation/implementation_wor
 
 See [code_style_enforcement.md](./references/standards/code_style_enforcement.md) for remediation instructions.
 
-
 ### Phase 2: Debugging
 
 **Systematic Debugging** uses a 4-phase framework: Root Cause Investigation → Pattern Analysis → Hypothesis Testing → Implementation. Key principle: Test one change at a time; if 3+ fixes fail → question approach.
@@ -344,7 +334,6 @@ See [code_style_enforcement.md](./references/standards/code_style_enforcement.md
 **Root Cause Tracing**: Trace backward from symptom → immediate cause → source. Fix at source, not symptom.
 
 See [debugging_workflows.md](./references/debugging/debugging_workflows.md) for complete workflows.
-
 
 ### Phase 3: Verification
 
@@ -373,7 +362,6 @@ See [debugging_workflows.md](./references/debugging/debugging_workflows.md) for 
 - DevTools console clear at all viewports
 
 See [verification_workflows.md](./references/verification/verification_workflows.md) for complete requirements.
-
 
 ---
 

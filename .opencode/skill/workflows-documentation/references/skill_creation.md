@@ -112,23 +112,27 @@ skill-name/
 
 **Required Sections** (enforced by markdown-document-specialist validation):
 1. WHEN TO USE (activation triggers and use cases ONLY)
-2. SMART ROUTING (phase detection flowchart + resource router pseudocode)
-3. REFERENCES (bundled resources tables)
-4. HOW IT WORKS
-5. RULES (ALWAYS/NEVER/ESCALATE IF)
+2. SMART ROUTING (router-first pseudocode with scoped guard, recursive discovery, weighted intent scoring, and ambiguity handling)
+3. HOW IT WORKS
+4. RULES (ALWAYS/NEVER/ESCALATE IF)
 
 **Recommended Sections**:
-6. SUCCESS CRITERIA
-7. INTEGRATION POINTS
+5. SUCCESS CRITERIA
+6. INTEGRATION POINTS
+7. RELATED RESOURCES
+
+### Routing Authority Standard
+
+Intent scoring and the in-code resource map in SMART ROUTING are the authoritative routing source. Do not maintain separate use-case routing tables.
 
 **Section Boundary Rules:**
 ```
-❌ WRONG: File references in "When to Use"
-❌ WRONG: Separate "Navigation Guide" subsection
-✅ RIGHT: File refs inline in Activation Detection flowchart and Resource Router
+❌ WRONG: File references or routing logic in "WHEN TO USE"
+❌ WRONG: Separate use-case routing tables or navigation guides
+✅ RIGHT: Router pseudocode first, then loading levels and domain-based resource guidance
 
-"When to Use" = WHEN (triggers, conditions, use cases)
-"Smart Routing" = WHAT (files inline in flowchart + Router load() calls)
+"WHEN TO USE" = WHEN (triggers, conditions, use cases)
+"SMART ROUTING" = HOW resources are selected and loaded (authoritative)
 ```
 
 ### Bundled Resources (Optional)
@@ -1231,35 +1235,36 @@ skill-name/
 ### Required Sections
 
 1. WHEN TO USE (activation triggers and use cases ONLY)
-2. SMART ROUTING (navigation guide + resource routing)
-3. REFERENCES (bundled resources tables)
-4. HOW IT WORKS
-5. RULES
+2. SMART ROUTING (router-first pseudocode + loading levels + resource domains)
+3. HOW IT WORKS
+4. RULES
 
 ### Section Content Rules
 
 ```
 Section 1 "WHEN TO USE" contains:
   ├─ Activation Triggers
-  ├─ Use Cases  
+  ├─ Use Cases
   ├─ When NOT to Use
   └─ Keyword Triggers (optional)
 
 Section 2 "SMART ROUTING" contains:
-  ├─ Activation Detection (flowchart WITH file refs inline)
-  └─ Resource Router (Python pseudocode WITH file refs in load() calls)
+  ├─ Resource Router (pseudocode FIRST)
+  ├─ Resource Loading Levels (ALWAYS/CONDITIONAL/ON_DEMAND)
+  ├─ Routing Authority statement
+  └─ Resource Domains (domain-level paths, no static inventories)
 
-⚠️ ANTI-PATTERN: Do NOT create a separate "Navigation Guide" subsection
-   listing files - this is REDUNDANT because files are already referenced
-   in the flowchart branches and Resource Router load() calls.
+Routing Authority Standard:
+  Intent scoring and the in-code resource map are the authoritative routing source.
+  Do not maintain separate use-case routing tables.
 ```
 
 ### Recommended Sections
 
-6. SUCCESS CRITERIA
-7. EXAMPLES
-8. INTEGRATION POINTS
-9. QUICK REFERENCE
+5. SUCCESS CRITERIA
+6. EXAMPLES
+7. INTEGRATION POINTS
+8. QUICK REFERENCE
 
 ### Commands
 
