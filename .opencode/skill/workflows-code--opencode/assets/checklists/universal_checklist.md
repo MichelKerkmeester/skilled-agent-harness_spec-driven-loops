@@ -9,7 +9,7 @@ Language-agnostic quality checks that apply to all code files in the OpenCode de
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 ### Purpose
 
@@ -25,7 +25,7 @@ Provides baseline quality requirements that apply across all languages (JavaScri
 
 ---
 
-## 2. 📌 P0 - HARD BLOCKERS
+## 2. P0 - HARD BLOCKERS
 
 These items MUST be fixed before any commit.
 
@@ -85,7 +85,7 @@ max_retries = 5
 
 ---
 
-## 3. 📌 P1 - REQUIRED
+## 3. P1 - REQUIRED
 
 These must be addressed or receive approval to defer.
 
@@ -155,7 +155,7 @@ if (items.length > MAX_ITEMS) {
 
 ---
 
-## 4. 📌 P2 - RECOMMENDED
+## 4. P2 - RECOMMENDED
 
 These improve quality but can be deferred.
 
@@ -188,7 +188,7 @@ These improve quality but can be deferred.
 
 ---
 
-## 5. 📌 VALIDATION WORKFLOW
+## 5. VALIDATION WORKFLOW
 
 ### Before Committing
 
@@ -238,7 +238,7 @@ python -m json.tool config.json
 
 ---
 
-## 6. 📋 CHECKLIST TEMPLATE
+## 6. CHECKLIST TEMPLATE
 
 Copy this for code review:
 
@@ -267,7 +267,7 @@ Copy this for code review:
 
 ---
 
-## 7. 🔗 RELATED RESOURCES
+## 7. RELATED RESOURCES
 
 ### Language-Specific Checklists
 - [javascript_checklist.md](./javascript_checklist.md)

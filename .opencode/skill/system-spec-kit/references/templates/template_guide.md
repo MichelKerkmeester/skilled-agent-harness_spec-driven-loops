@@ -9,7 +9,7 @@ Guide to template selection, copying, adaptation, and quality standards.
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 ### Progressive Enhancement Model
 
@@ -70,7 +70,7 @@ Templates in `level_N/` folders are **composed** from `core/` + `addendum/` sour
 
 ---
 
-## 2. 🎯 TEMPLATE SELECTION BY LEVEL (Progressive Enhancement)
+## 2. TEMPLATE SELECTION BY LEVEL (Progressive Enhancement)
 
 ### Level 1: Baseline Documentation (LOC guidance: <100)
 
@@ -230,7 +230,7 @@ cp .opencode/skill/system-spec-kit/templates/level_3+/decision-record.md specs/#
 
 ---
 
-## 3. 📐 TEMPLATE STRUCTURE STANDARDS
+## 3. TEMPLATE STRUCTURE STANDARDS
 
 ### 1. Numbered H2 Sections
 
@@ -238,9 +238,9 @@ cp .opencode/skill/system-spec-kit/templates/level_3+/decision-record.md specs/#
 
 **Example:**
 ```markdown
-## 1. 🎯 OBJECTIVE
-## 2. 📊 SCOPE
-## 3. 🛠️ IMPLEMENTATION
+## 1. OBJECTIVE
+## 2. SCOPE
+## 3. IMPLEMENTATION
 ```
 
 **Rules:**
@@ -321,7 +321,7 @@ submissions are duplicates.
 
 ---
 
-## 4. 🔄 TEMPLATE ADAPTATION PROCESS
+## 4. TEMPLATE ADAPTATION PROCESS
 
 ### Step-by-Step Adaptation
 
@@ -376,7 +376,7 @@ cp .opencode/skill/system-spec-kit/templates/level_N/[template].md specs/###-nam
 
 ---
 
-## 5. 📦 SUPPORTING TEMPLATES
+## 5. SUPPORTING TEMPLATES
 
 ### research.md - Comprehensive Feature Research
 
@@ -508,7 +508,7 @@ cp .opencode/skill/system-spec-kit/templates/level_3/decision-record.md specs/##
 
 ---
 
-## 6. 📋 SESSION MANAGEMENT TEMPLATES
+## 6. SESSION MANAGEMENT TEMPLATES
 
 These templates support session continuity, temporary workspaces, and context preservation.
 
@@ -691,7 +691,7 @@ node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js spe
 
 ---
 
-## 7. ✅ QUALITY STANDARDS
+## 7. QUALITY STANDARDS
 
 ### Adherence Rules
 
@@ -751,7 +751,7 @@ For manual upgrades (fallback), copy the required templates from the target leve
 
 ---
 
-## 8. ⚠️ COMMON MISTAKES
+## 8. COMMON MISTAKES
 
 ### Mistake 1: Creating from Scratch
 
@@ -850,7 +850,7 @@ spec.md and plan.md exist but don't reference each other
 
 ---
 
-## 9. 🔧 TROUBLESHOOTING
+## 9. TROUBLESHOOTING
 
 ### "I don't know what to put in this section"
 
@@ -880,7 +880,7 @@ spec.md and plan.md exist but don't reference each other
 
 ---
 
-## 10. 🗂️ USING SUB-FOLDERS FOR ORGANIZATION
+## 10. USING SUB-FOLDERS FOR ORGANIZATION
 
 There are **two distinct sub-folder systems**:
 
@@ -1066,7 +1066,7 @@ See each sub-folder's README.md for details.
 
 ---
 
-## 11. 🔗 RELATED RESOURCES
+## 11. RELATED RESOURCES
 
 ### Reference Files
 - [quick_reference.md](../workflows/quick_reference.md) - Commands, checklists, and troubleshooting

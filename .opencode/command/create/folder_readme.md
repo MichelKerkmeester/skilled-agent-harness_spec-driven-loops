@@ -166,7 +166,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
 
 ---
 
-## ✅ PHASE STATUS VERIFICATION (BLOCKING)
+## PHASE STATUS VERIFICATION (BLOCKING)
 
 **Before continuing to the workflow, verify ALL values are set:**
 
@@ -187,7 +187,7 @@ VERIFICATION CHECK:
 
 ---
 
-## ⚡ INSTRUCTIONS
+## INSTRUCTIONS
 
 After Phase 0 and Setup Phase pass, load and execute the appropriate YAML workflow:
 
@@ -214,7 +214,7 @@ This command dispatches a specialized agent at a specific workflow step (see YAM
 
 ---
 
-## ⛔ GATE 3 STATUS: EXEMPT (Self-Documenting Artifact)
+## GATE 3 STATUS: EXEMPT (Self-Documenting Artifact)
 
 **This command creates documentation files that ARE the documentation artifact.**
 
@@ -228,7 +228,7 @@ This command dispatches a specialized agent at a specific workflow step (see YAM
 
 <!-- REFERENCE ONLY -->
 
-## ⚠️ VIOLATION SELF-DETECTION (BLOCKING)
+## VIOLATION SELF-DETECTION (BLOCKING)
 
 **YOU ARE IN VIOLATION IF YOU:**
 
@@ -268,7 +268,7 @@ FOR WORKFLOW VIOLATIONS:
 
 ---
 
-## 📋 MODE BEHAVIORS
+## MODE BEHAVIORS
 
 **AUTONOMOUS (:auto):**
 - Execute all steps without approval prompts
@@ -285,7 +285,7 @@ FOR WORKFLOW VIOLATIONS:
 
 ---
 
-## 📊 WORKFLOW TRACKING
+## WORKFLOW TRACKING
 
 | STEP | NAME       | STATUS | REQUIRED OUTPUT     | VERIFICATION                |
 | ---- | ---------- | ------ | ------------------- | --------------------------- |
@@ -297,7 +297,7 @@ FOR WORKFLOW VIOLATIONS:
 
 ---
 
-## 📊 WORKFLOW DIAGRAM
+## WORKFLOW DIAGRAM
 
 ```mermaid
 flowchart TD
@@ -341,7 +341,7 @@ flowchart TD
 
 ---
 
-## ⛔ CRITICAL ENFORCEMENT RULES
+## CRITICAL ENFORCEMENT RULES
 
 ```
 STEP 2 (Discovery) REQUIREMENTS:
@@ -366,13 +366,13 @@ STEP 5 (Validation) REQUIREMENTS:
 
 ---
 
-## 1. 🎯 PURPOSE
+## 1. PURPOSE
 
 Create a comprehensive README.md following the documentation patterns from SpecKit, Memory System, and Code Environment READMEs. The README will use numbered sections with emojis, table of contents, tables for data, and proper progressive disclosure.
 
 ---
 
-## 2. 📝 CONTRACT
+## 2. CONTRACT
 
 **Inputs:** `$ARGUMENTS` — Target path with optional --type flag (project|component|feature|skill)
 **Outputs:** README.md file at target path + `STATUS=<OK|FAIL|CANCELLED>`
@@ -385,7 +385,7 @@ $ARGUMENTS
 
 ---
 
-## 3. 📌 REFERENCE (See YAML for Details)
+## 3. REFERENCE (See YAML for Details)
 
 | Section           | Location in YAML                                   |
 | ----------------- | -------------------------------------------------- |
@@ -400,7 +400,7 @@ $ARGUMENTS
 
 ---
 
-## 4. 🔍 EXAMPLES
+## 4. EXAMPLES
 
 **Example 1: Project README**
 ```
@@ -434,7 +434,7 @@ $ARGUMENTS
 
 ---
 
-## 5. 🔗 COMMAND CHAIN
+## 5. COMMAND CHAIN
 
 This command creates standalone documentation:
 
@@ -447,7 +447,7 @@ This command creates standalone documentation:
 
 ---
 
-## 6. 📌 NEXT STEPS
+## 6. NEXT STEPS
 
 After README creation completes, suggest relevant next steps:
 

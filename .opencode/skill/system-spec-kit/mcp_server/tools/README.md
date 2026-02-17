@@ -14,14 +14,14 @@ importance_tier: "normal"
 <!-- ANCHOR:table-of-contents -->
 ## TABLE OF CONTENTS
 
-- [1. 📖 OVERVIEW](#1--overview)
-- [2. 📌 IMPLEMENTED STATE](#2--implemented-state)
-- [3. 📝 HARDENING NOTES](#3--hardening-notes)
-- [4. 📚 RELATED](#4--related)
+- [1. OVERVIEW](#1--overview)
+- [2. IMPLEMENTED STATE](#2--implemented-state)
+- [3. HARDENING NOTES](#3--hardening-notes)
+- [4. RELATED](#4--related)
 
 <!-- /ANCHOR:table-of-contents -->
 <!-- ANCHOR:overview -->
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 This section provides an overview of the Tools: Dispatch Layer directory.
 
@@ -33,7 +33,7 @@ This section provides an overview of the Tools: Dispatch Layer directory.
 
 <!-- /ANCHOR:overview -->
 <!-- ANCHOR:implemented-state -->
-## 2. 📌 IMPLEMENTED STATE
+## 2. IMPLEMENTED STATE
 
 
 - Current footprint: 22 tools across 5 dispatch modules.
@@ -47,7 +47,7 @@ This section provides an overview of the Tools: Dispatch Layer directory.
 
 <!-- /ANCHOR:implemented-state -->
 <!-- ANCHOR:hardening-notes -->
-## 3. 📝 HARDENING NOTES
+## 3. HARDENING NOTES
 
 
 - Dispatch remains modular so new tools can be added without monolithic switch growth.
@@ -57,7 +57,7 @@ This section provides an overview of the Tools: Dispatch Layer directory.
 
 <!-- /ANCHOR:hardening-notes -->
 <!-- ANCHOR:related -->
-## 4. 📚 RELATED
+## 4. RELATED
 
 
 - `../handlers/README.md`

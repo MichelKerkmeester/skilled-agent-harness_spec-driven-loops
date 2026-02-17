@@ -9,7 +9,7 @@ Module organization, error handling, documentation, and security patterns for Ja
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 ### Purpose
 
@@ -23,7 +23,7 @@ Establishes module organization, error handling, documentation, and security pat
 
 ---
 
-## 2. 📦 MODULE ORGANIZATION
+## 2. MODULE ORGANIZATION
 
 ### CommonJS Pattern
 
@@ -82,7 +82,7 @@ module.exports = {
 
 ---
 
-## 3. 🚨 ERROR HANDLING
+## 3. ERROR HANDLING
 
 ### Guard Clause Pattern
 
@@ -168,7 +168,7 @@ Consistent error response structure.
 
 ---
 
-## 4. 📝 CONSOLE LOGGING
+## 4. CONSOLE LOGGING
 
 ### Bracketed Module Prefix
 
@@ -194,7 +194,7 @@ console.warn(`[config] Using default value for missing key: ${key}`);
 
 ---
 
-## 5. 📚 JSDOC DOCUMENTATION
+## 5. JSDOC DOCUMENTATION
 
 ### Function Documentation
 
@@ -267,7 +267,7 @@ class VectorIndex {
 
 ---
 
-## 6. 🔒 SECURITY PATTERNS
+## 6. SECURITY PATTERNS
 
 ### CWE-22: Path Traversal Prevention
 
@@ -341,7 +341,7 @@ function sanitizeString(input) {
 
 ---
 
-## 7. 🧪 TESTING PATTERNS
+## 7. TESTING PATTERNS
 
 ### Using Node.js Assert
 
@@ -390,7 +390,7 @@ describe('Config Module', () => {
 
 ---
 
-## 8. 💡 ASYNC PATTERNS
+## 8. ASYNC PATTERNS
 
 ### Async/Await Style
 
@@ -433,7 +433,7 @@ const posts = await fetchUserPosts(user.id);
 
 ---
 
-## 9. 🧾 TEST FILE EXEMPTION TIER
+## 9. TEST FILE EXEMPTION TIER
 
 CLI-only test runners, setup scripts, and similar utilities are exempt from certain quality standards because they are executed directly (not imported as modules) and serve a different purpose than library code.
 
@@ -482,7 +482,7 @@ console.log('PASS: All config tests passed');
 
 ---
 
-## 10. 🔗 RELATED RESOURCES
+## 10. RELATED RESOURCES
 
 - [style_guide.md](./style_guide.md) - Formatting and naming conventions
 - [quick_reference.md](./quick_reference.md) - Copy-paste templates and cheat sheets

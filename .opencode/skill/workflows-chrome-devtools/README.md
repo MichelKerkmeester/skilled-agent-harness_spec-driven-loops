@@ -15,20 +15,20 @@ importance_tier: "normal"
 ---
 
 ## TABLE OF CONTENTS
-- [📘 WORKFLOWS-CHROME-DEVTOOLS](#workflows-chrome-devtools)
-  - [📑 TABLE OF CONTENTS](#table-of-contents)
-  - [1. 📖 OVERVIEW](#1--overview)
-  - [2. 🚀 QUICK START](#2--quick-start)
-  - [3. 📁 STRUCTURE](#3--structure)
-  - [4. ⚡ FEATURES](#4--features)
-  - [5. ⚙️ CONFIGURATION](#5-️-configuration)
-  - [6. 💡 EXAMPLES](#6--examples)
-  - [7. 🛠️ TROUBLESHOOTING](#7-️-troubleshooting)
-  - [8. 📚 RELATED](#8--related)
+- [WORKFLOWS-CHROME-DEVTOOLS](#workflows-chrome-devtools)
+  - [TABLE OF CONTENTS](#table-of-contents)
+  - [1. OVERVIEW](#1--overview)
+  - [2. QUICK START](#2--quick-start)
+  - [3. STRUCTURE](#3--structure)
+  - [4. FEATURES](#4--features)
+  - [5. CONFIGURATION](#5-️-configuration)
+  - [6. EXAMPLES](#6--examples)
+  - [7. TROUBLESHOOTING](#7-️-troubleshooting)
+  - [8. RELATED](#8--related)
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 <!-- ANCHOR:overview -->
 
 This skill provides browser debugging and automation through two complementary approaches: a CLI tool (`browser-debugger-cli` / `bdg`) prioritized for speed and token efficiency, and an MCP fallback via Code Mode for multi-tool integration scenarios.
@@ -41,7 +41,7 @@ Typical use cases include screenshot capture, console log analysis, DOM inspecti
 
 ---
 
-## 2. 🚀 QUICK START
+## 2. QUICK START
 <!-- ANCHOR:quick-start -->
 
 **Check availability and install:**
@@ -72,7 +72,7 @@ bdg stop 2>&1                    # Cleanup
 
 ---
 
-## 3. 📁 STRUCTURE
+## 3. STRUCTURE
 <!-- ANCHOR:structure -->
 
 ```
@@ -95,7 +95,7 @@ workflows-chrome-devtools/
 
 ---
 
-## 4. ⚡ FEATURES
+## 4. FEATURES
 <!-- ANCHOR:features -->
 
 **Smart Routing**
@@ -124,7 +124,7 @@ workflows-chrome-devtools/
 
 ---
 
-## 5. ⚙️ CONFIGURATION
+## 5. CONFIGURATION
 <!-- ANCHOR:configuration -->
 
 **CLI**: No configuration needed beyond installation. Set `CHROME_PATH` if Chrome is not auto-detected.
@@ -159,7 +159,7 @@ Register additional instances (`chrome_devtools_2`, etc.) for parallel testing.
 
 ---
 
-## 6. 💡 EXAMPLES
+## 6. EXAMPLES
 <!-- ANCHOR:usage-examples -->
 
 **Screenshot capture (CLI):**
@@ -196,7 +196,7 @@ See `examples/` for production-ready scripts (performance baselines, animation t
 
 ---
 
-## 7. 🛠️ TROUBLESHOOTING
+## 7. TROUBLESHOOTING
 <!-- ANCHOR:troubleshooting -->
 
 | Issue                  | Solution                                                             |
@@ -214,7 +214,7 @@ For detailed troubleshooting, see `references/troubleshooting.md`.
 
 ---
 
-## 8. 📚 RELATED
+## 8. RELATED
 <!-- ANCHOR:related -->
 
 - **SKILL.md**: Full routing logic, rules (ALWAYS/NEVER), success criteria

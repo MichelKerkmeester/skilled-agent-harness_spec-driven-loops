@@ -9,7 +9,7 @@ Patterns applicable to ALL languages in OpenCode system code.
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 ### Purpose
 
@@ -37,7 +37,7 @@ This reference defines patterns that apply universally across JavaScript, TypeSc
 
 ---
 
-## 2. 🏷️ NAMING PRINCIPLES
+## 2. NAMING PRINCIPLES
 
 ### Descriptive Names
 
@@ -155,7 +155,7 @@ for (const entry of entry) { ... }  // very confusing
 
 ---
 
-## 3. 💬 COMMENTING PHILOSOPHY
+## 3. COMMENTING PHILOSOPHY
 
 ### Core Principles
 
@@ -219,7 +219,7 @@ const score = calculateDecay(baseScore, age); // weighted decay
 
 ---
 
-## 4. 📌 REFERENCE COMMENT PATTERNS
+## 4. REFERENCE COMMENT PATTERNS
 
 Reference comments create traceability between code and requirements/issues. OpenCode uses these prefixes:
 
@@ -275,7 +275,7 @@ For related tasks, use range notation:
 
 ---
 
-## 5. 📁 FILE ORGANIZATION
+## 5. FILE ORGANIZATION
 
 ### Universal Section Order
 
@@ -353,7 +353,7 @@ Use numbered section dividers to organize code:
 
 ---
 
-## 6. 🔒 SECURITY PATTERNS
+## 6. SECURITY PATTERNS
 
 ### Input Validation (All Languages)
 
@@ -408,7 +408,107 @@ const apiKey = "sk-1234567890abcdef";
 
 ---
 
-## 7. 🔗 RELATED RESOURCES
+## 7. CONTRIBUTOR COPY-PASTE ALIGNMENT EXAMPLES
+
+Use these when you need the same intent across TS, JS, Python, Shell, and JSON/JSONC.
+
+### Pattern A: Validate early, then continue
+
+**TypeScript**
+```typescript
+function searchMemories(queryText: string): string[] {
+  if (queryText.length === 0) {
+    throw new Error('queryText must not be empty');
+  }
+  return [queryText];
+}
+```
+
+**JavaScript**
+```javascript
+function searchMemories(queryText) {
+  if (!queryText || typeof queryText !== 'string') {
+    return { success: false, error: 'queryText must be a non-empty string' };
+  }
+  return { success: true, data: [queryText] };
+}
+```
+
+**Python**
+```python
+from typing import List, Tuple
+
+
+def search_memories(query_text: str) -> Tuple[bool, List[str], str]:
+    if not query_text:
+        return False, [], "query_text must not be empty"
+    return True, [query_text], ""
+```
+
+**Shell**
+```bash
+search_memories() {
+    local query_text="${1:-}"
+    if [[ -z "$query_text" ]]; then
+        printf 'ERROR: query_text must not be empty\n' >&2
+        return 1
+    fi
+    printf '%s\n' "$query_text"
+}
+```
+
+**JSON/JSONC**
+```jsonc
+{
+  "validation": {
+    "requireNonEmptyQueryText": true,
+    "maxQueryLength": 10000
+  }
+}
+```
+
+### Pattern B: Keep naming aligned across languages
+
+Use equivalent names with language-appropriate casing for the same concept.
+
+| Concept | TypeScript / JavaScript | Python / Shell | JSON/JSONC |
+|---------|--------------------------|----------------|------------|
+| Query text | `queryText` | `query_text` | `queryText` |
+| Is valid flag | `isValid` | `is_valid` | `isValid` |
+| Max results | `maxResults` | `max_results` | `maxResults` |
+
+### Pattern C: Reference comment traceability
+
+Use the same task/requirement IDs across code and config comments.
+
+**TypeScript / JavaScript**
+```typescript
+// REQ-033: Keep retry budget bounded for startup recovery
+const MAX_RETRIES = 3;
+```
+
+**Python / Shell**
+```python
+# REQ-033: Keep retry budget bounded for startup recovery
+MAX_RETRIES = 3
+```
+
+```bash
+# REQ-033: Keep retry budget bounded for startup recovery
+readonly MAX_RETRIES=3
+```
+
+**JSONC**
+```jsonc
+{
+  // REQ-033: Keep retry budget bounded for startup recovery
+  "maxRetries": 3
+}
+```
+
+---
+
+## 8. RELATED RESOURCES
 
 ### Language-Specific References
 

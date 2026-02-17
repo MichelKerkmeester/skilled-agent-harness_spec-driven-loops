@@ -1,14 +1,16 @@
-// ───────────────────────────────────────────────────────────────
-// OBSERVER-BASED WAITING PATTERNS
-// ───────────────────────────────────────────────────────────────
-// Production-ready code templates for async DOM operations
-// Uses MutationObserver and IntersectionObserver instead of polling
-// for efficient, event-driven DOM observation.
-//
-// Patterns extracted from production codebase:
-// - MutationObserver: nav_notifications.js (attribute watching)
-// - IntersectionObserver: table_of_content.js (viewport detection with RAF batching)
-// ───────────────────────────────────────────────────────────────
+/**
+ * OBSERVER-BASED WAITING PATTERNS
+ *
+ * Production-ready code templates for async DOM operations.
+ * Uses MutationObserver and IntersectionObserver instead of polling
+ * for efficient, event-driven DOM observation.
+ *
+ * Patterns extracted from production codebase:
+ * - MutationObserver: nav_notifications.js (attribute watching)
+ * - IntersectionObserver: table_of_content.js (viewport detection with RAF batching)
+ */
+
+'use strict';
 
 /* ─────────────────────────────────────────────────────────────
    1. MUTATION OBSERVER PATTERNS

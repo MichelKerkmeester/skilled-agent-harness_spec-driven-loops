@@ -9,7 +9,7 @@ React Testing Library patterns, Jest configuration, Playwright E2E tests, MSW fo
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 ### Purpose
 
@@ -31,7 +31,7 @@ Provides comprehensive guidance on testing React and Next.js applications, cover
 
 ---
 
-## 2. 📊 TESTING PYRAMID
+## 2. TESTING PYRAMID
 
 ### Test Distribution
 
@@ -70,7 +70,7 @@ Provides comprehensive guidance on testing React and Next.js applications, cover
 
 ---
 
-## 3. ⚙️ JEST CONFIGURATION
+## 3. JEST CONFIGURATION
 
 ### Next.js Jest Setup
 
@@ -169,7 +169,7 @@ afterAll(() => {
 
 ---
 
-## 4. 🧪 REACT TESTING LIBRARY
+## 4. REACT TESTING LIBRARY
 
 ### Basic Component Test
 
@@ -501,7 +501,7 @@ describe('useAuth', () => {
 
 ---
 
-## 5. 🔌 MSW (MOCK SERVICE WORKER)
+## 5. MSW (MOCK SERVICE WORKER)
 
 ### MSW Setup
 
@@ -662,7 +662,7 @@ describe('Form submission', () => {
 
 ---
 
-## 6. 🔄 INTEGRATION TESTS
+## 6. INTEGRATION TESTS
 
 ### Testing Page Components
 
@@ -808,7 +808,7 @@ describe('ContactPage', () => {
 
 ---
 
-## 7. 🎭 PLAYWRIGHT E2E TESTS
+## 7. PLAYWRIGHT E2E TESTS
 
 ### Playwright Configuration
 
@@ -1086,7 +1086,7 @@ test.describe('Visual Regression', () => {
 
 ---
 
-## 8. 🔧 TEST UTILITIES
+## 8. TEST UTILITIES
 
 ### Custom Render Function
 
@@ -1223,7 +1223,7 @@ declare global {
 
 ---
 
-## 9. 📋 QUICK REFERENCE
+## 9. QUICK REFERENCE
 
 ### Testing Cheatsheet
 
@@ -1276,7 +1276,7 @@ await waitForElementToBeRemoved(element)
 
 ---
 
-## 10. 🔗 RELATED RESOURCES
+## 10. RELATED RESOURCES
 
 ### Related References
 

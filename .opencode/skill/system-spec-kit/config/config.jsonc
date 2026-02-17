@@ -1,11 +1,9 @@
-// ╔═══════════════════════════════════════════════════════════════╗
-// ║  CONFIG: SPEC KIT SETTINGS                                   ║
-// ╠═══════════════════════════════════════════════════════════════╣
-// ║  ⚠️  IMPORTANT: Only Section 1 (lines ~12-22) is ACTIVE.      ║
-// ║  All other sections are DOCUMENTATION ONLY — changing them   ║
-// ║  has NO effect. Runtime values are hardcoded in the MCP      ║
-// ║  server modules (see per-section comments for locations).    ║
-// ╚═══════════════════════════════════════════════════════════════╝
+// ───────────────────────────────────────────────────────────────
+// CONFIG: SPEC KIT SETTINGS
+// ───────────────────────────────────────────────────────────────
+// IMPORTANT: Only Section 1 (legacy settings) is ACTIVE.
+// All other sections are DOCUMENTATION ONLY.
+// Runtime values for those sections are hardcoded in MCP modules.
 {
   // ─────────────────────────────────────────────────────────────
   // 1. LEGACY SETTINGS
@@ -66,12 +64,37 @@
   // Actual behavior hardcoded in mcp_server/lib/scoring/importance-tiers.js
   // ─────────────────────────────────────────────────────────────
   "importanceTiers": {
-    "constitutional": { "searchBoost": 3.0, "decay": false, "autoExpireDays": null, "alwaysSurface": true },
-    "critical": { "searchBoost": 2.0, "decay": false, "autoExpireDays": null },
-    "important": { "searchBoost": 1.5, "decay": false, "autoExpireDays": null },
-    "normal": { "searchBoost": 1.0, "decay": true, "autoExpireDays": null },
-    "temporary": { "searchBoost": 0.5, "decay": true, "autoExpireDays": 7 },
-    "deprecated": { "searchBoost": 0.0, "decay": false, "excludeFromSearch": true }
+    "constitutional": {
+      "searchBoost": 3.0,
+      "decay": false,
+      "autoExpireDays": null,
+      "alwaysSurface": true
+    },
+    "critical": {
+      "searchBoost": 2.0,
+      "decay": false,
+      "autoExpireDays": null
+    },
+    "important": {
+      "searchBoost": 1.5,
+      "decay": false,
+      "autoExpireDays": null
+    },
+    "normal": {
+      "searchBoost": 1.0,
+      "decay": true,
+      "autoExpireDays": null
+    },
+    "temporary": {
+      "searchBoost": 0.5,
+      "decay": true,
+      "autoExpireDays": 7
+    },
+    "deprecated": {
+      "searchBoost": 0.0,
+      "decay": false,
+      "excludeFromSearch": true
+    }
   },
 
   // ─────────────────────────────────────────────────────────────

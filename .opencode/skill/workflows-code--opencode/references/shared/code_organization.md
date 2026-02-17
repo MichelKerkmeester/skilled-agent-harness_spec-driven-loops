@@ -9,7 +9,7 @@ File structure and module organization principles for OpenCode system code.
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 ### Purpose
 
@@ -37,7 +37,7 @@ This reference defines how to organize files, structure modules, and order impor
 
 ---
 
-## 2. 📁 FILE STRUCTURE PRINCIPLES
+## 2. FILE STRUCTURE PRINCIPLES
 
 ### Header-First Convention
 
@@ -109,7 +109,7 @@ Every significant file should have numbered sections:
 
 ---
 
-## 3. 📦 MODULE ORGANIZATION
+## 3. MODULE ORGANIZATION
 
 ### Single Responsibility
 
@@ -177,7 +177,7 @@ Benefits:
 
 ---
 
-## 4. 📦 📥 IMPORT ORDERING
+## 4. IMPORT ORDERING
 
 ### Universal Import Order
 
@@ -275,7 +275,7 @@ source "${SCRIPT_DIR}/lib/output.sh"
 
 ---
 
-## 5. 💡 📤 EXPORT PATTERNS
+## 5. EXPORT PATTERNS
 
 ### JavaScript CommonJS Exports
 
@@ -361,7 +361,7 @@ __all__ = [
 
 ---
 
-## 6. 🔧 DIRECTORY CONVENTIONS
+## 6. DIRECTORY CONVENTIONS
 
 ### OpenCode Skill Structure
 
@@ -591,7 +591,7 @@ scripts/
 
 ---
 
-## 7. 🧪 TEST FILE CONVENTIONS
+## 7. TEST FILE CONVENTIONS
 
 ### Test File Naming
 
@@ -650,7 +650,7 @@ describe('functionToTest', () => {
 
 ---
 
-## 8. 🔗 RELATED RESOURCES
+## 8. RELATED RESOURCES
 
 ### Universal Patterns
 

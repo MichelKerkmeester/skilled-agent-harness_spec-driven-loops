@@ -9,7 +9,7 @@ Complete workflow documentation for professional commit practices with Conventio
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 Systematically analyze changes, determine appropriate commit strategy, and craft professional commit messages following best practices. Ensures commits are atomic, well-documented, and exclude internal development artifacts.
 
@@ -17,7 +17,7 @@ Systematically analyze changes, determine appropriate commit strategy, and craft
 
 ---
 
-## 2. 🛠️ PROCESS OVERVIEW
+## 2. PROCESS OVERVIEW
 
 1. Analyze all changed files (categorize, evaluate value, identify patterns)
 2. Filter out internal artifacts and non-conventional files
@@ -34,7 +34,7 @@ Systematically analyze changes, determine appropriate commit strategy, and craft
 
 ---
 
-## 3. 🔍 COMPLETE WORKFLOW
+## 3. COMPLETE WORKFLOW
 
 ### Step 1: Analyze Changed Files
 
@@ -280,7 +280,7 @@ git commit -m "type(scope): description" -m "Body explaining why"
 
 ---
 
-## 4. ⚖️ DECISION MATRIX
+## 4. DECISION MATRIX
 
 | Scenario | Strategy | Commit Type | Notes |
 |----------|----------|-------------|-------|
@@ -295,7 +295,7 @@ git commit -m "type(scope): description" -m "Body explaining why"
 
 ---
 
-## 5. ❌ COMMON MISTAKES
+## 5. COMMON MISTAKES
 
 **Including internal artifacts**:
 - **Problem**: Task lists, debug notes, coverage reports in commits
@@ -327,7 +327,7 @@ git commit -m "type(scope): description" -m "Body explaining why"
 
 ---
 
-## 6. 💡 EXAMPLE WORKFLOWS
+## 6. EXAMPLE WORKFLOWS
 
 ### Example 1: Single Feature Commit
 
@@ -472,7 +472,7 @@ Action Required: Please move test_helper.py to tests/ before next commit.
 
 ---
 
-## 7. 🐛 TROUBLESHOOTING
+## 7. TROUBLESHOOTING
 
 ### Cannot Determine Commit Scope
 
@@ -539,7 +539,7 @@ Clients must update to handle JSON responses.
 
 ---
 
-## 8. 🎓 SUCCESS CRITERIA
+## 8. SUCCESS CRITERIA
 
 **Commit is successful when**:
 - ✅ All changed files analyzed and categorized
@@ -561,7 +561,7 @@ Clients must update to handle JSON responses.
 
 ---
 
-## 9. 🔗 RELATED RESOURCES
+## 9. RELATED RESOURCES
 
 ### Reference Files
 - [worktree_workflows.md](./worktree_workflows.md) - Create isolated git workspaces with minimal branching

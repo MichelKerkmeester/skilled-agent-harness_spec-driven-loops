@@ -9,7 +9,7 @@ Copy-paste templates, naming cheat sheet, and common patterns for JavaScript dev
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 ### Purpose
 
@@ -19,7 +19,7 @@ Quick-access reference card for JavaScript patterns. For detailed explanations, 
 
 ---
 
-## 2. 📋 COMPLETE FILE TEMPLATE
+## 2. COMPLETE FILE TEMPLATE
 
 ```javascript
 // ╔══════════════════════════════════════════════════════════════════════════╗
@@ -96,7 +96,7 @@ module.exports = {
 
 ---
 
-## 3. 🏷️ NAMING CHEAT SHEET
+## 3. NAMING CHEAT SHEET
 
 | Element          | Convention         | Example              |
 |------------------|--------------------|----------------------|
@@ -111,7 +111,7 @@ module.exports = {
 
 ---
 
-## 4. 📌 SECTION ORDERING
+## 4. SECTION ORDERING
 
 ```
 1. IMPORTS          (Node built-ins, third-party, local)
@@ -123,7 +123,7 @@ module.exports = {
 
 ---
 
-## 5. 📚 JSDOC TEMPLATE
+## 5. JSDOC TEMPLATE
 
 ```javascript
 /**
@@ -143,7 +143,7 @@ module.exports = {
 
 ---
 
-## 6. 📋 EXPORT PATTERN TEMPLATE
+## 6. EXPORT PATTERN TEMPLATE
 
 ```javascript
 module.exports = {
@@ -165,7 +165,7 @@ module.exports = {
 
 ---
 
-## 7. 🚨 ERROR HANDLING PATTERNS
+## 7. ERROR HANDLING PATTERNS
 
 ### Guard Clause
 
@@ -201,7 +201,7 @@ class CustomError extends Error {
 
 ---
 
-## 8. 📌 COMMON ONE-LINERS
+## 8. COMMON ONE-LINERS
 
 ```javascript
 // Logging with module prefix
@@ -231,7 +231,7 @@ const resolved = path.resolve(basePath, relativePath);
 
 ---
 
-## 9. 📦 IMPORT ORDER
+## 9. IMPORT ORDER
 
 ```javascript
 // 1. Node.js built-ins
@@ -247,7 +247,7 @@ const { loadConfig } = require('./config');
 
 ---
 
-## 10. 💡 ASYNC PATTERNS
+## 10. ASYNC PATTERNS
 
 ```javascript
 // Async function
@@ -271,7 +271,7 @@ async function safeFetch() {
 
 ---
 
-## 11. 🔗 RELATED RESOURCES
+## 11. RELATED RESOURCES
 
 - [style_guide.md](./style_guide.md) - Detailed formatting rules
 - [quality_standards.md](./quality_standards.md) - Error handling, JSDoc, security

@@ -60,6 +60,11 @@ export interface CorrectionChainEntry extends CorrectionRecord {
   depth: number;
 }
 
+export interface CorrectionWithTitles extends CorrectionRecord {
+  original_title: string | null;
+  correction_title: string | null;
+}
+
 export interface CorrectionChain {
   memory_id: number;
   chain: CorrectionChainEntry[];
@@ -132,6 +137,21 @@ const MAX_CORRECTIONS_HISTORY: number = 10;
 ──────────────────────────────────────────────────────────────── */
 
 let db: Database.Database | null = null;
+
+function get_error_message(error: unknown): string {
+  if (error instanceof Error) {
+    return error.message;
+  }
+
+  if (typeof error === 'object' && error !== null && 'message' in error) {
+    const message = (error as { message?: unknown }).message;
+    if (typeof message === 'string') {
+      return message;
+    }
+  }
+
+  return String(error);
+}
 
 export function init(database: Database.Database): SchemaResult {
   if (!database) {
@@ -216,9 +236,10 @@ export function ensure_schema(): SchemaResult {
     }
 
     return { success: true };
-  } catch (error: any) {
-    console.error(`[corrections] Schema creation failed: ${error.message}`);
-    return { success: false, error: error.message };
+  } catch (error: unknown) {
+    const error_message = get_error_message(error);
+    console.error(`[corrections] Schema creation failed: ${error_message}`);
+    return { success: false, error: error_message };
   }
 }
 
@@ -237,8 +258,8 @@ function get_memory_stability(memory_id: number): number | null {
     `).get(memory_id) as { stability?: number } | undefined;
 
     return row ? (row.stability || 1.0) : null;
-  } catch (error: any) {
-    console.warn(`[corrections] Could not get stability for memory ${memory_id}: ${error.message}`);
+  } catch (error: unknown) {
+    console.warn(`[corrections] Could not get stability for memory ${memory_id}: ${get_error_message(error)}`);
     return null;
   }
 }
@@ -260,8 +281,8 @@ function set_memory_stability(memory_id: number, new_stability: number): boolean
     `).run(clamped_stability, memory_id);
 
     return result.changes > 0;
-  } catch (error: any) {
-    console.warn(`[corrections] Could not update stability for memory ${memory_id}: ${error.message}`);
+  } catch (error: unknown) {
+    console.warn(`[corrections] Could not update stability for memory ${memory_id}: ${get_error_message(error)}`);
     return false;
   }
 }
@@ -403,9 +424,9 @@ export function record_correction(params: RecordCorrectionParams): CorrectionRes
           `Correction: ${correction_type}${reason ? ' - ' + reason : ''}`
         );
       }
-    } catch (e: any) {
+    } catch (e: unknown) {
       // Causal edge creation is optional, don't fail if it errors
-      console.warn(`[corrections] Could not create causal edge: ${e.message}`);
+      console.warn(`[corrections] Could not create causal edge: ${get_error_message(e)}`);
     }
 
     return {
@@ -434,8 +455,8 @@ export function record_correction(params: RecordCorrectionParams): CorrectionRes
       success: true,
       ...result
     };
-  } catch (error: any) {
-    console.error(`[corrections] record_correction failed: ${error.message}`);
+  } catch (error: unknown) {
+    console.error(`[corrections] record_correction failed: ${get_error_message(error)}`);
     throw error;
   }
 }
@@ -506,7 +527,7 @@ export function undo_correction(correction_id: number): UndoResult {
           String(correction.original_memory_id)
         );
       }
-    } catch (e: any) {
+    } catch (e: unknown) {
       // Non-critical, causal edge may not exist
     }
 
@@ -527,8 +548,8 @@ export function undo_correction(correction_id: number): UndoResult {
       success: true,
       ...result
     };
-  } catch (error: any) {
-    console.error(`[corrections] undo_correction failed: ${error.message}`);
+  } catch (error: unknown) {
+    console.error(`[corrections] undo_correction failed: ${get_error_message(error)}`);
     throw error;
   }
 }
@@ -540,7 +561,7 @@ export function undo_correction(correction_id: number): UndoResult {
 export function get_corrections_for_memory(
   memory_id: number,
   options: { include_undone?: boolean; limit?: number } = {}
-): any[] {
+): CorrectionWithTitles[] {
   if (!db) {
     return [];
   }
@@ -568,9 +589,9 @@ export function get_corrections_for_memory(
 
     query += ' ORDER BY mc.created_at DESC LIMIT ?';
 
-    return db.prepare(query).all(memory_id, memory_id, limit);
-  } catch (error: any) {
-    console.warn(`[corrections] get_corrections_for_memory failed: ${error.message}`);
+    return db.prepare(query).all(memory_id, memory_id, limit) as CorrectionWithTitles[];
+  } catch (error: unknown) {
+    console.warn(`[corrections] get_corrections_for_memory failed: ${get_error_message(error)}`);
     return [];
   }
 }
@@ -639,9 +660,10 @@ export function get_correction_chain(
       total: chain.length,
       max_depth_reached: chain.some(c => c.depth === max_depth)
     };
-  } catch (error: any) {
-    console.warn(`[corrections] get_correction_chain failed: ${error.message}`);
-    return { memory_id, chain: [], total: 0, error: error.message };
+  } catch (error: unknown) {
+    const error_message = get_error_message(error);
+    console.warn(`[corrections] get_correction_chain failed: ${error_message}`);
+    return { memory_id, chain: [], total: 0, error: error_message };
   }
 }
 
@@ -682,15 +704,16 @@ export function get_corrections_stats(): CorrectionStats {
       undone: stats.undone || 0,
       recent_24h: stats.recent_24h || 0
     };
-  } catch (error: any) {
-    console.warn(`[corrections] get_corrections_stats failed: ${error.message}`);
+  } catch (error: unknown) {
+    const error_message = get_error_message(error);
+    console.warn(`[corrections] get_corrections_stats failed: ${error_message}`);
     return {
       enabled: ENABLE_RELATIONS,
       total: 0,
       by_type: {},
       undone: 0,
       recent_24h: 0,
-      error: error.message
+      error: error_message
     };
   }
 }
@@ -759,10 +782,10 @@ export function merge_memories(
         corrected_by: 'system'
       });
       results.push(result);
-    } catch (error: any) {
+    } catch (error: unknown) {
       results.push({
         success: false,
-        reason: error.message
+        reason: get_error_message(error)
       });
     }
   }

@@ -9,7 +9,7 @@ Code quality requirements, validation rules, and best practices for Bash scripts
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 ### Purpose
 
@@ -25,7 +25,7 @@ Establishes quality gates and validation criteria that all Bash scripts must mee
 
 ---
 
-## 2. 📌 P0 - HARD BLOCKERS
+## 2. P0 - HARD BLOCKERS
 
 These items MUST be fixed before any commit.
 
@@ -119,7 +119,7 @@ for f in *.md; do
 
 ---
 
-## 3. 📌 P1 - REQUIRED
+## 3. P1 - REQUIRED
 
 These items must be addressed or receive explicit approval to defer.
 
@@ -198,7 +198,7 @@ TODOs must include owner or ticket:
 
 ---
 
-## 4. 📌 P2 - RECOMMENDED
+## 4. P2 - RECOMMENDED
 
 These items improve quality but can be deferred.
 
@@ -260,7 +260,7 @@ shellcheck script.sh
 
 ---
 
-## 5. 💡 VALIDATION PATTERNS
+## 5. VALIDATION PATTERNS
 
 ### Input Validation Pattern
 
@@ -333,7 +333,7 @@ main "$@"
 
 ---
 
-## 6. 🚨 ERROR HANDLING
+## 6. ERROR HANDLING
 
 ### Exit Code Standards
 
@@ -378,7 +378,7 @@ TEMP_FILES+=("$TEMP_FILE")
 
 ---
 
-## 7. 📌 OUTPUT STANDARDS
+## 7. OUTPUT STANDARDS
 
 ### Message Format
 
@@ -426,7 +426,7 @@ printf "\rProgress: %d%%" "$((i * 100 / total))"
 
 ---
 
-## 8. 🔒 SECURITY CONSIDERATIONS
+## 8. SECURITY CONSIDERATIONS
 
 ### Avoid eval
 
@@ -467,7 +467,7 @@ fi
 
 ---
 
-## 9. ✅ CODE REVIEW CHECKLIST
+## 9. CODE REVIEW CHECKLIST
 
 Before submitting shell scripts for review:
 
@@ -496,7 +496,7 @@ P2 - RECOMMENDED:
 
 ---
 
-## 10. 📌 SHELLCHECK INTEGRATION
+## 10. SHELLCHECK INTEGRATION
 
 ### Running ShellCheck
 
@@ -536,7 +536,7 @@ problematic_function() {
 
 ---
 
-## 11. 🔗 RELATED RESOURCES
+## 11. RELATED RESOURCES
 
 ### Internal References
 - [style_guide.md](./style_guide.md) - Formatting and conventions

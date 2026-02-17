@@ -11,7 +11,7 @@ Guide to selecting appropriate documentation levels based on task complexity.
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 The complexity detection system automatically analyzes task descriptions to:
 - Recommend appropriate documentation levels (1, 2, 3, or 3+)
@@ -25,7 +25,7 @@ The complexity detection system automatically analyzes task descriptions to:
 
 ---
 
-## 2. 🎯 5-DIMENSION SCORING ALGORITHM
+## 2. 5-DIMENSION SCORING ALGORITHM
 
 The algorithm scores tasks across 5 weighted dimensions (0-100 scale):
 
@@ -78,7 +78,7 @@ Measures dependency complexity:
 
 ---
 
-## 3. 📊 LEVEL MAPPING
+## 3. LEVEL MAPPING
 
 | Score     | Level | Name         | Description                              |
 |-----------|-------|--------------|------------------------------------------|
@@ -98,7 +98,7 @@ Level 3+ includes everything from Level 3 plus:
 
 ---
 
-## 4. 🔧 CLI TOOL
+## 4. CLI TOOL
 
 ### spec/create.sh
 
@@ -131,7 +131,7 @@ Templates are pre-expanded and ready to use in level-specific folders:
 
 ---
 
-## 5. 📈 DYNAMIC SECTION SCALING
+## 5. DYNAMIC SECTION SCALING
 
 Sections scale based on detected complexity:
 
@@ -146,7 +146,7 @@ Sections scale based on detected complexity:
 
 ---
 
-## 6. ✅ VALIDATION RULES
+## 6. VALIDATION RULES
 
 Four validation rules ensure complexity consistency:
 
@@ -193,7 +193,7 @@ Validates level consistency across all spec files:
 
 ---
 
-## 7. ⚙️ CONFIGURATION
+## 7. CONFIGURATION
 
 Configuration file: `config/complexity-config.jsonc`
 
@@ -201,7 +201,7 @@ Configuration file: `config/complexity-config.jsonc`
 
 ---
 
-## 8. 🔗 RELATED RESOURCES
+## 8. RELATED RESOURCES
 
 ### Templates (Level-Based Organization)
 

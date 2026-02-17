@@ -9,7 +9,7 @@ CSS-first animation guide with Motion.dev integration for complex sequences and 
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 ### Purpose
 Complete animation implementation guide covering decision trees, CSS patterns, Motion.dev integration, performance optimization, and accessibility compliance.
@@ -30,7 +30,7 @@ Follow code quality standards:
 
 ---
 
-## 2. 🎯 ANIMATION DECISION TREE
+## 2. ANIMATION DECISION TREE
 
 ### Primary Decision Order
 
@@ -64,7 +64,7 @@ Need animation?
 
 ---
 
-## 3. 🎨 CSS ANIMATION PATTERNS
+## 3. CSS ANIMATION PATTERNS
 
 ### GPU-Accelerated Properties Only
 
@@ -182,7 +182,7 @@ function close_dropdown(dropdown) {
 
 ---
 
-## 4. ⚡ MOTION.DEV INTEGRATION
+## 4. MOTION.DEV INTEGRATION
 
 ### Library Loading (Global Setup)
 
@@ -364,7 +364,7 @@ animate(element, { opacity: [0, 1] }, {
 
 ---
 
-## 5. 🚀 PERFORMANCE OPTIMIZATION
+## 5. PERFORMANCE OPTIMIZATION
 
 ### Set Initial States (Prevent Flicker)
 
@@ -444,7 +444,7 @@ await animate(element, properties, {
 
 ---
 
-## 6. 🧪 TESTING AND DEBUGGING PROCEDURES
+## 6. TESTING AND DEBUGGING PROCEDURES
 
 ### Pre-Deployment Checklist
 
@@ -718,7 +718,7 @@ bdg stop 2>&1
 
 ---
 
-## 7. 🐛 COMMON ISSUES AND SOLUTIONS
+## 7. COMMON ISSUES AND SOLUTIONS
 
 ### Layout Jump on Height Animation
 
@@ -829,7 +829,7 @@ function init_animation() {
 
 ---
 
-## 8. 🔗 RELATED RESOURCES
+## 8. RELATED RESOURCES
 
 ### Reference Files
 - [implementation_workflows.md](./implementation_workflows.md) - Implementation phase guidance
@@ -851,7 +851,7 @@ function init_animation() {
 
 ---
 
-## 9. ⚡ MOTION.DEV ADVANCED PATTERNS
+## 9. MOTION.DEV ADVANCED PATTERNS
 
 ### Timeline Sequences
 

@@ -1,11 +1,13 @@
-// ───────────────────────────────────────────────────────────────
-// HLS.JS VIDEO STREAMING PATTERNS
-// ───────────────────────────────────────────────────────────────
-// Reference implementation patterns for HLS.js video streaming in Webflow.
-// Extracted from production code: src/2_javascript/video/video_background_hls_hover.js
-// @see https://github.com/video-dev/hls.js
-// Check HTML source files for current pinned version
-// ───────────────────────────────────────────────────────────────
+/**
+ * HLS.JS VIDEO STREAMING PATTERNS
+ *
+ * Reference implementation patterns for HLS.js video streaming in Webflow.
+ * Extracted from production code: src/2_javascript/video/video_background_hls_hover.js
+ * @see https://github.com/video-dev/hls.js
+ * Check HTML source files for current pinned version.
+ */
+
+'use strict';
 
 /* ─────────────────────────────────────────────────────────────
    1. CDN LOADING

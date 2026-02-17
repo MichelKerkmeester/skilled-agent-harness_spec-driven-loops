@@ -17,17 +17,17 @@ importance_tier: "normal"
 ## TABLE OF CONTENTS
 <!-- ANCHOR:table-of-contents -->
 
-- [1. 📖 OVERVIEW](#1--overview)
-- [2. 📁 STRUCTURE](#2--structure)
-- [3. ⚡ FEATURES](#3--features)
-- [4. 💡 USAGE EXAMPLES](#4--usage-examples)
-- [5. 🔗 RELATED RESOURCES](#5--related-resources)
+- [1. OVERVIEW](#1--overview)
+- [2. STRUCTURE](#2--structure)
+- [3. FEATURES](#3--features)
+- [4. USAGE EXAMPLES](#4--usage-examples)
+- [5. RELATED RESOURCES](#5--related-resources)
 
 <!-- /ANCHOR:table-of-contents -->
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 <!-- ANCHOR:overview -->
 
 The learning module tracks corrections over time and applies stability adjustments that help the system learn which entries are most reliable. Post-Spec 126 this applies to both standard memory notes and indexed spec documents, improving ranking quality for spec and decision retrieval.
@@ -45,7 +45,7 @@ The learning module tracks corrections over time and applies stability adjustmen
 
 ---
 
-## 2. 📁 STRUCTURE
+## 2. STRUCTURE
 <!-- ANCHOR:structure -->
 
 > **Note**: Source files remain locally and are also available in `@spec-kit/shared`.
@@ -68,7 +68,7 @@ learning/
 
 ---
 
-## 3. ⚡ FEATURES
+## 3. FEATURES
 <!-- ANCHOR:features -->
 
 ### Correction Types
@@ -110,7 +110,7 @@ learning/
 
 ---
 
-## 4. 💡 USAGE EXAMPLES
+## 4. USAGE EXAMPLES
 <!-- ANCHOR:usage-examples -->
 
 ### Recording a Correction
@@ -190,7 +190,7 @@ const stats = get_corrections_stats();
 
 ---
 
-## 5. 🔗 RELATED RESOURCES
+## 5. RELATED RESOURCES
 <!-- ANCHOR:related -->
 
 ### Internal Documentation

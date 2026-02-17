@@ -17,15 +17,15 @@ importance_tier: "normal"
 ## TABLE OF CONTENTS
 <!-- ANCHOR:table-of-contents -->
 
-- [1. 📖 OVERVIEW](#1--overview)
-- [2. 📁 STRUCTURE](#2--structure)
-- [3. ⚡ FEATURES](#3--features)
-- [4. 💡 USAGE EXAMPLES](#4--usage-examples)
-- [5. 🔗 RELATED RESOURCES](#5--related-resources)
+- [1. OVERVIEW](#1--overview)
+- [2. STRUCTURE](#2--structure)
+- [3. FEATURES](#3--features)
+- [4. USAGE EXAMPLES](#4--usage-examples)
+- [5. RELATED RESOURCES](#5--related-resources)
 
 <!-- /ANCHOR:table-of-contents -->
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 <!-- ANCHOR:overview -->
 
 The utils module provides foundational utilities used throughout the MCP server. These include date formatting and path traversal security (re-exported from `@spec-kit/shared`).
@@ -46,7 +46,7 @@ The utils module provides foundational utilities used throughout the MCP server.
 
 <!-- /ANCHOR:overview -->
 
-## 2. 📁 STRUCTURE
+## 2. STRUCTURE
 <!-- ANCHOR:structure -->
 
 ```
@@ -69,7 +69,7 @@ utils/
 
 <!-- /ANCHOR:structure -->
 
-## 3. ⚡ FEATURES
+## 3. FEATURES
 <!-- ANCHOR:features -->
 
 ### Format Helpers (`format-helpers.ts`)
@@ -101,7 +101,7 @@ Re-exports from `@spec-kit/shared/utils/path-security`:
 
 <!-- /ANCHOR:features -->
 
-## 4. 💡 USAGE EXAMPLES
+## 4. USAGE EXAMPLES
 <!-- ANCHOR:usage-examples -->
 
 ### Format Helpers
@@ -130,7 +130,7 @@ const escaped = escapeRegex('file.name (1)');
 
 <!-- /ANCHOR:usage-examples -->
 
-## 5. 🔗 RELATED RESOURCES
+## 5. RELATED RESOURCES
 <!-- ANCHOR:related -->
 
 ### Internal Documentation

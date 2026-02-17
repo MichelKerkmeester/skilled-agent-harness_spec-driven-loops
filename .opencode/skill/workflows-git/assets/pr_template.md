@@ -9,7 +9,7 @@ Templates for creating professional pull requests following best practices.
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 ### Purpose
 
@@ -24,7 +24,7 @@ This asset provides structured templates for pull request descriptions. Use it w
 
 ---
 
-## 2. 📋 BASIC STRUCTURE
+## 2. BASIC STRUCTURE
 
 ```markdown
 ## Summary
@@ -41,7 +41,7 @@ This asset provides structured templates for pull request descriptions. Use it w
 
 ---
 
-## 3. 📝 COMPLETE PR TEMPLATE
+## 3. COMPLETE PR TEMPLATE
 
 ```markdown
 ## Summary
@@ -86,7 +86,7 @@ Related to #<issue-number>
 
 ---
 
-## 4. 💡 EXAMPLE: FEATURE PR
+## 4. EXAMPLE: FEATURE PR
 
 ```markdown
 ## Summary
@@ -141,7 +141,7 @@ Related to #235 (SSO integration - follow-up)
 
 ---
 
-## 5. 🐛 EXAMPLE: BUG FIX PR
+## 5. EXAMPLE: BUG FIX PR
 
 ```markdown
 ## Summary
@@ -187,7 +187,7 @@ Fixes #346 (duplicate of same issue)
 
 ---
 
-## 6. 🔄 EXAMPLE: REFACTORING PR
+## 6. EXAMPLE: REFACTORING PR
 
 ```markdown
 ## Summary
@@ -240,7 +240,7 @@ No external API changes. Internal developers should use
 
 ---
 
-## 7. 📚 EXAMPLE: DOCUMENTATION PR
+## 7. EXAMPLE: DOCUMENTATION PR
 
 ```markdown
 ## Summary
@@ -276,7 +276,7 @@ Related to #234 (OAuth2 feature PR)
 
 ---
 
-## 8. 🏷️ PR TITLE GUIDELINES
+## 8. PR TITLE GUIDELINES
 
 **Format**: Follow Conventional Commits
 
@@ -295,7 +295,7 @@ chore(deps): update axios to v1.6.0
 
 ---
 
-## 9. 📝 SUMMARY SECTION GUIDELINES
+## 9. SUMMARY SECTION GUIDELINES
 
 **DO**:
 - Use bullet points for clarity
@@ -328,7 +328,7 @@ backend and frontend. Added WebSocket stuff.
 
 ---
 
-## 10. 🧪 TEST PLAN GUIDELINES
+## 10. TEST PLAN GUIDELINES
 
 **Structure**:
 - Separate manual and automated testing
@@ -367,7 +367,7 @@ backend and frontend. Added WebSocket stuff.
 
 ---
 
-## 11. 📸 SCREENSHOTS/VIDEOS GUIDELINES
+## 11. SCREENSHOTS/VIDEOS GUIDELINES
 
 **When to include**:
 - UI changes
@@ -400,7 +400,7 @@ Shows complete user flow: login → notification → mark as read
 
 ---
 
-## 12. ⚠️ BREAKING CHANGES GUIDELINES
+## 12. BREAKING CHANGES GUIDELINES
 
 **When to document**:
 - API changes that break backward compatibility
@@ -431,7 +431,7 @@ See [migration guide](./docs/migration.md) for details.
 
 ---
 
-## 13. 🔗 RELATED ISSUES GUIDELINES
+## 13. RELATED ISSUES GUIDELINES
 
 **Format**:
 ```markdown
@@ -448,7 +448,7 @@ Part of #456       # Part of larger epic
 
 ---
 
-## 14. ✅ PR CHECKLIST
+## 14. PR CHECKLIST
 
 Before submitting PR, verify:
 
@@ -466,7 +466,7 @@ Before submitting PR, verify:
 
 ---
 
-## 15. 💻 CREATING PRS PROGRAMMATICALLY
+## 15. CREATING PRS PROGRAMMATICALLY
 
 ### GitHub CLI (Preferred)
 ```bash
@@ -515,7 +515,7 @@ call_tool_chain(`github.github_create_pull_request({
 
 ---
 
-## 16. 💡 TIPS
+## 16. TIPS
 
 1. **Write PR description as you code** - Don't wait until end
 2. **Test plan first** - Know what you're testing before claiming "done"
@@ -527,7 +527,7 @@ call_tool_chain(`github.github_create_pull_request({
 
 ---
 
-## 17. 🔗 RELATED RESOURCES
+## 17. RELATED RESOURCES
 
 - [GitHub PR Best Practices](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests) - Official GitHub documentation on pull request collaboration
 - [Conventional Commits](https://www.conventionalcommits.org/) - Specification for commit message formatting

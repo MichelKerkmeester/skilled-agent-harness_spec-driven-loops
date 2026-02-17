@@ -18,21 +18,21 @@ trigger_phrases:
 ## TABLE OF CONTENTS
 <!-- ANCHOR:table-of-contents -->
 
-- [1. 📖 OVERVIEW](#1--overview)
-- [2. 📁 STRUCTURE](#2--structure)
-- [3. 🚀 QUICK START](#3--quick-start)
-- [4. ⚡ SKILL ADVISOR](#4--skill-advisor)
-- [5. ⚙️ CONFIGURATION](#5--configuration)
-- [6. 💡 USAGE EXAMPLES](#6--usage-examples)
-- [7. 🛠️ TROUBLESHOOTING](#7--troubleshooting)
-- [8. ❓ FAQ](#8--faq)
-- [9. 📚 RELATED DOCUMENTS](#9--related-documents)
+- [1. OVERVIEW](#1--overview)
+- [2. STRUCTURE](#2--structure)
+- [3. QUICK START](#3--quick-start)
+- [4. SKILL ADVISOR](#4--skill-advisor)
+- [5. CONFIGURATION](#5--configuration)
+- [6. USAGE EXAMPLES](#6--usage-examples)
+- [7. TROUBLESHOOTING](#7--troubleshooting)
+- [8. FAQ](#8--faq)
+- [9. RELATED DOCUMENTS](#9--related-documents)
 
 <!-- /ANCHOR:table-of-contents -->
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 <!-- ANCHOR:overview -->
 
 ### What is this directory?
@@ -75,7 +75,7 @@ trigger_phrases:
 
 ---
 
-## 2. 📁 STRUCTURE
+## 2. STRUCTURE
 <!-- ANCHOR:structure -->
 
 ```
@@ -105,7 +105,7 @@ trigger_phrases:
 
 ---
 
-## 3. 🚀 QUICK START
+## 3. QUICK START
 <!-- ANCHOR:quick-start -->
 
 ### 30-Second Setup
@@ -162,7 +162,7 @@ fi
 
 ---
 
-## 4. ⚡ SKILL ADVISOR
+## 4. SKILL ADVISOR
 <!-- ANCHOR:skill-advisor -->
 
 ### How It Integrates with AGENTS.md
@@ -435,7 +435,7 @@ Slash commands exposed as pseudo-skills for routing:
 
 ---
 
-## 5. ⚙️ CONFIGURATION
+## 5. CONFIGURATION
 <!-- ANCHOR:configuration -->
 
 ### Customization Points
@@ -499,7 +499,7 @@ skills["command-deploy"] = {
 
 ---
 
-## 6. 💡 USAGE EXAMPLES
+## 6. USAGE EXAMPLES
 <!-- ANCHOR:usage-examples -->
 
 ### Example 1: Git Operations
@@ -597,7 +597,7 @@ $ python skill_advisor.py "call figma api"
 
 ---
 
-## 7. 🛠️ TROUBLESHOOTING
+## 7. TROUBLESHOOTING
 <!-- ANCHOR:troubleshooting -->
 
 ### No Skills Found
@@ -679,7 +679,7 @@ python .opencode/skill/scripts/skill_advisor.py "test"
 
 ---
 
-## 8. ❓ FAQ
+## 8. FAQ
 <!-- ANCHOR:faq -->
 
 ### General Questions
@@ -736,7 +736,7 @@ A: No, the script uses word tokenization. Regex patterns will be treated as lite
 
 ---
 
-## 9. 📚 RELATED DOCUMENTS
+## 9. RELATED DOCUMENTS
 <!-- ANCHOR:related-documents -->
 
 ### Internal Documentation

@@ -17,17 +17,17 @@ importance_tier: "normal"
 ## TABLE OF CONTENTS
 <!-- ANCHOR:table-of-contents -->
 
-- [1. 📖 OVERVIEW](#1--overview)
-- [2. 📁 STRUCTURE](#2--structure)
-- [3. ⚡ FEATURES](#3--features)
-- [4. 💡 USAGE](#4--usage)
-- [5. 🔗 RELATED RESOURCES](#5--related-resources)
+- [1. OVERVIEW](#1--overview)
+- [2. STRUCTURE](#2--structure)
+- [3. FEATURES](#3--features)
+- [4. USAGE](#4--usage)
+- [5. RELATED RESOURCES](#5--related-resources)
 
 <!-- /ANCHOR:table-of-contents -->
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 <!-- ANCHOR:overview -->
 
 The response module provides a standardized envelope format for all MCP tool responses. It ensures consistent structure across tools and enables token counting. It also provides actionable hints for AI agents.
@@ -62,7 +62,7 @@ The response module provides a standardized envelope format for all MCP tool res
 
 ---
 
-## 2. 📁 STRUCTURE
+## 2. STRUCTURE
 <!-- ANCHOR:structure -->
 
 ```
@@ -81,7 +81,7 @@ response/
 
 ---
 
-## 3. ⚡ FEATURES
+## 3. FEATURES
 <!-- ANCHOR:features -->
 
 ### Core Envelope Functions
@@ -123,7 +123,7 @@ response/
 
 ---
 
-## 4. 💡 USAGE
+## 4. USAGE
 <!-- ANCHOR:usage -->
 
 ### Basic Import
@@ -194,7 +194,7 @@ const mcpResponse = createMCPResponse({
 
 ---
 
-## 5. 🔗 RELATED RESOURCES
+## 5. RELATED RESOURCES
 <!-- ANCHOR:related -->
 
 ### Internal Documentation

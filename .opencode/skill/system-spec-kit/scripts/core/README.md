@@ -14,21 +14,21 @@ importance_tier: "normal"
 <!-- ANCHOR:table-of-contents -->
 ## TABLE OF CONTENTS
 
-- [1. 📖 OVERVIEW](#1--overview)
-- [2. 📋 CURRENT INVENTORY](#2--current-inventory)
-- [3. 🧠 RUNTIME MODEL](#3--runtime-model)
-- [4. 📝 WORKFLOW NOTES](#4--workflow-notes)
-- [5. 📌 QUICK VERIFICATION](#5--quick-verification)
+- [1. OVERVIEW](#1--overview)
+- [2. CURRENT INVENTORY](#2--current-inventory)
+- [3. RUNTIME MODEL](#3--runtime-model)
+- [4. WORKFLOW NOTES](#4--workflow-notes)
+- [5. QUICK VERIFICATION](#5--quick-verification)
 
 <!-- /ANCHOR:table-of-contents -->
 <!-- ANCHOR:overview -->
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 The `core/` directory contains orchestration modules used by `dist/memory/generate-context.js`.
 
 <!-- /ANCHOR:overview -->
 <!-- ANCHOR:current-inventory -->
-## 2. 📋 CURRENT INVENTORY
+## 2. CURRENT INVENTORY
 
 
 - `workflow.ts` - main orchestration flow
@@ -43,7 +43,7 @@ The `core/` directory contains orchestration modules used by `dist/memory/genera
 
 <!-- /ANCHOR:current-inventory -->
 <!-- ANCHOR:runtime-model -->
-## 3. 🧠 RUNTIME MODEL
+## 3. RUNTIME MODEL
 
 
 - Source of truth: `core/*.ts`
@@ -57,7 +57,7 @@ cd .opencode/skill/system-spec-kit/scripts && npm run build
 
 <!-- /ANCHOR:runtime-model -->
 <!-- ANCHOR:workflow-notes -->
-## 4. 📝 WORKFLOW NOTES
+## 4. WORKFLOW NOTES
 
 
 - `workflow.ts` composes loaders, extractors, renderers, and lib utilities.
@@ -67,7 +67,7 @@ cd .opencode/skill/system-spec-kit/scripts && npm run build
 
 <!-- /ANCHOR:workflow-notes -->
 <!-- ANCHOR:quick-verification -->
-## 5. 📌 QUICK VERIFICATION
+## 5. QUICK VERIFICATION
 
 
 ```bash

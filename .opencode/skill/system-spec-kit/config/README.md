@@ -17,16 +17,16 @@ importance_tier: "normal"
 ## TABLE OF CONTENTS
 <!-- ANCHOR:table-of-contents -->
 
-- [1. 📖 OVERVIEW](#1--overview)
-- [2. ⚙️ CONFIGURATION OPTIONS]](#2--configuration-options)
-- [3. 💡 USAGE](#3--usage)
-- [4. 📚 RELATED DOCUMENTS](#4--related-documents)
+- [1. OVERVIEW](#1--overview)
+- [2. CONFIGURATION OPTIONS]](#2--configuration-options)
+- [3. USAGE](#3--usage)
+- [4. RELATED DOCUMENTS](#4--related-documents)
 
 <!-- /ANCHOR:table-of-contents -->
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 <!-- ANCHOR:overview -->
 
 This directory contains the JSON configuration files that control how the Spec Kit system operates. All files use JSONC format (JSON with comments) for maintainability. These configs are loaded by various scripts throughout the system to determine behavior for memory indexing, search ranking, complexity scoring and content quality control.
@@ -41,7 +41,7 @@ This directory contains the JSON configuration files that control how the Spec K
 
 ---
 
-## 2. ⚙️ CONFIGURATION OPTIONS
+## 2. CONFIGURATION OPTIONS
 <!-- ANCHOR:configuration -->
 
 ### config.jsonc
@@ -120,7 +120,7 @@ This directory contains the JSON configuration files that control how the Spec K
 
 ---
 
-## 3. 💡 USAGE
+## 3. USAGE
 <!-- ANCHOR:usage -->
 
 ### Loading Configs
@@ -181,7 +181,7 @@ The loader strips JSONC comments and parses JSON safely with fallback to default
 
 ---
 
-## 4. 📚 RELATED DOCUMENTS
+## 4. RELATED DOCUMENTS
 <!-- ANCHOR:related -->
 
 | Document | Purpose |

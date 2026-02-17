@@ -1,10 +1,10 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Animation Testing Script
 # Purpose: Test animation performance and visual state with assertions
 # Usage: ./animation-testing.sh [URL] [SELECTOR] [TRIGGER_CLASS]
 # Example: ./animation-testing.sh https://example.com ".hero" "animate-in"
 
-set -e  # Exit on error
+set -euo pipefail
 
 # Configuration
 URL="${1:-https://example.com}"
@@ -130,7 +130,7 @@ fi
 
 # Summary
 echo "" | tee -a "$OUTPUT_DIR/animation-report-${DATE_STAMP}.txt"
-if [ $FAIL -eq 0 ]; then
+if [ "$FAIL" -eq 0 ]; then
   echo "✅ Animation performance tests PASSED" | tee -a "$OUTPUT_DIR/animation-report-${DATE_STAMP}.txt"
 else
   echo "❌ Animation performance tests FAILED" | tee -a "$OUTPUT_DIR/animation-report-${DATE_STAMP}.txt"
@@ -144,4 +144,4 @@ cat "$OUTPUT_DIR/animation-report-${DATE_STAMP}.txt"
 echo ""
 echo "📁 Results saved to: $OUTPUT_DIR/"
 
-exit $FAIL
+exit "$FAIL"

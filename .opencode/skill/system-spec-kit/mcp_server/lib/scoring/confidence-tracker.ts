@@ -33,6 +33,13 @@ export interface ConfidenceInfo {
   promotionProgress: PromotionProgress;
 }
 
+interface MemoryConfidenceRow {
+  confidence?: number;
+  validation_count?: number;
+  validationCount?: number;
+  importance_tier?: string;
+}
+
 // ---------------------------------------------------------------
 // 2. CONSTANTS
 // ---------------------------------------------------------------
@@ -56,46 +63,40 @@ export const PROMOTION_VALIDATION_THRESHOLD: number = 5;
  */
 export function recordValidation(db: Database, memoryId: number, wasUseful: boolean): ValidationResult {
   try {
-    // Wrap entire read-modify-write operation in transaction for atomicity
-    // Prevents race conditions under concurrent access
+    // Keep read/compute/write in one transaction so concurrent updates cannot drop validations.
     return db.transaction(() => {
-      // Get current state (DB op 1: SELECT)
+      // Read first so this update derives from the latest persisted values.
       const memory = db.prepare(`
         SELECT confidence, validation_count FROM memory_index WHERE id = ?
-      `).get(memoryId) as { confidence?: number; validation_count?: number; validationCount?: number } | undefined;
+      `).get(memoryId) as MemoryConfidenceRow | undefined;
 
       if (!memory) {
         throw new Error(`Memory not found: ${memoryId}`);
       }
 
-      // Calculate new confidence
       const currentConfidence = memory.confidence ?? CONFIDENCE_BASE;
-      let new_confidence: number;
+      let newConfidence: number;
 
       if (wasUseful) {
-        // Positive validation: +0.1, capped at 1.0
-        new_confidence = Math.min(currentConfidence + CONFIDENCE_POSITIVE_INCREMENT, CONFIDENCE_MAX);
+        newConfidence = Math.min(currentConfidence + CONFIDENCE_POSITIVE_INCREMENT, CONFIDENCE_MAX);
       } else {
-        // Negative validation: -0.05, minimum 0.0
-        new_confidence = Math.max(currentConfidence - CONFIDENCE_NEGATIVE_DECREMENT, CONFIDENCE_MIN);
+        newConfidence = Math.max(currentConfidence - CONFIDENCE_NEGATIVE_DECREMENT, CONFIDENCE_MIN);
       }
 
-      // Increment validation count
-      const currentValidationCount = (memory.validationCount ?? memory.validation_count ?? 0) as number;
+      const currentValidationCount = memory.validationCount ?? memory.validation_count ?? 0;
       const newValidationCount = currentValidationCount + 1;
 
-      // Update database (DB op 2: UPDATE)
       db.prepare(`
         UPDATE memory_index
         SET confidence = ?, validation_count = ?, updated_at = ?
         WHERE id = ?
-      `).run(new_confidence, newValidationCount, new Date().toISOString(), memoryId);
+      `).run(newConfidence, newValidationCount, new Date().toISOString(), memoryId);
 
-      // Check promotion eligibility (report only, do not auto-promote)
+      // Report eligibility only; promotion is intentionally explicit and separate.
       const promotionEligible = checkPromotionEligible(db, memoryId);
 
       return {
-        confidence: new_confidence,
+        confidence: newConfidence,
         validationCount: newValidationCount,
         promotionEligible,
         wasPromoted: false,
@@ -138,22 +139,21 @@ export function getConfidenceScore(db: Database, memoryId: number): number {
  */
 export function checkPromotionEligible(db: Database, memoryId: number): boolean {
   try {
-    // DB op 4: SELECT
     const memory = db.prepare(`
       SELECT confidence, validation_count, importance_tier FROM memory_index WHERE id = ?
-    `).get(memoryId) as { confidence?: number; validation_count?: number; validationCount?: number; importance_tier?: string } | undefined;
+    `).get(memoryId) as MemoryConfidenceRow | undefined;
 
     if (!memory) {
       return false;
     }
 
-    // Already critical or constitutional (both are top tiers)
+    // Top-tier memories should not be re-promoted.
     if (memory.importance_tier === 'critical' || memory.importance_tier === 'constitutional') {
       return false;
     }
 
     const confidence = memory.confidence ?? CONFIDENCE_BASE;
-    const validationCount = (memory.validationCount ?? memory.validation_count ?? 0) as number;
+    const validationCount = memory.validationCount ?? memory.validation_count ?? 0;
 
     return confidence >= PROMOTION_CONFIDENCE_THRESHOLD &&
            validationCount >= PROMOTION_VALIDATION_THRESHOLD;
@@ -168,19 +168,17 @@ export function checkPromotionEligible(db: Database, memoryId: number): boolean 
  */
 export function promoteToCritical(db: Database, memoryId: number): boolean {
   try {
-    // Verify eligibility
     if (!checkPromotionEligible(db, memoryId)) {
-      // DB op 5: SELECT
       const memory = db.prepare(`
         SELECT confidence, validation_count, importance_tier FROM memory_index WHERE id = ?
-      `).get(memoryId) as { confidence?: number; validation_count?: number; validationCount?: number; importance_tier?: string } | undefined;
+      `).get(memoryId) as MemoryConfidenceRow | undefined;
 
       if (!memory) {
         throw new Error(`Memory not found: ${memoryId}`);
       }
 
       if (memory.importance_tier === 'critical' || memory.importance_tier === 'constitutional') {
-        return false; // Already at top tier
+        return false;
       }
 
       throw new Error(
@@ -190,8 +188,7 @@ export function promoteToCritical(db: Database, memoryId: number): boolean {
       );
     }
 
-    // Promote to critical tier (highest tier for validated memories)
-    // DB op 6: UPDATE
+    // Keep promotion explicit so tier changes always leave an auditable event.
     db.prepare(`
       UPDATE memory_index
       SET importance_tier = 'critical', updated_at = ?
@@ -212,17 +209,16 @@ export function promoteToCritical(db: Database, memoryId: number): boolean {
  */
 export function getConfidenceInfo(db: Database, memoryId: number): ConfidenceInfo {
   try {
-    // DB op 7: SELECT
     const memory = db.prepare(`
       SELECT confidence, validation_count, importance_tier FROM memory_index WHERE id = ?
-    `).get(memoryId) as { confidence?: number; validation_count?: number; validationCount?: number; importance_tier?: string } | undefined;
+    `).get(memoryId) as MemoryConfidenceRow | undefined;
 
     if (!memory) {
       throw new Error(`Memory not found: ${memoryId}`);
     }
 
     const confidence = memory.confidence ?? CONFIDENCE_BASE;
-    const validationCount = (memory.validationCount ?? memory.validation_count ?? 0) as number;
+    const validationCount = memory.validationCount ?? memory.validation_count ?? 0;
 
     return {
       memoryId,

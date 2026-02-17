@@ -9,13 +9,13 @@ How to execute spec folder operations - validation, completion checking, context
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 This document covers validation, completion checking, context saving, folder creation, and template composition operations.
 
 ---
 
-## 2. ✅ VALIDATION
+## 2. VALIDATION
 
 ### validate.sh
 
@@ -42,7 +42,7 @@ bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh --json specs/001-f
 
 ---
 
-## 3. 🏁 COMPLETION CHECKING
+## 3. COMPLETION CHECKING
 
 ### check-completion.sh
 
@@ -65,7 +65,7 @@ bash .opencode/skill/system-spec-kit/scripts/spec/check-completion.sh --json spe
 
 ---
 
-## 4. 💾 CONTEXT SAVING
+## 4. CONTEXT SAVING
 
 ### generate-context.ts
 
@@ -89,7 +89,7 @@ node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js /tm
 
 ---
 
-## 5. 📁 SPEC FOLDER CREATION
+## 5. SPEC FOLDER CREATION
 
 ### spec/create.sh
 
@@ -118,7 +118,7 @@ bash .opencode/skill/system-spec-kit/scripts/spec/create.sh --subfolder specs/00
 
 ---
 
-## 6. 📊 LEVEL RECOMMENDATION
+## 6. LEVEL RECOMMENDATION
 
 ### recommend-level.sh
 
@@ -143,7 +143,7 @@ bash .opencode/skill/system-spec-kit/scripts/spec/recommend-level.sh --auth --ap
 
 ---
 
-## 7. 📦 TEMPLATE COMPOSITION
+## 7. TEMPLATE COMPOSITION
 
 ### compose.sh
 
@@ -192,7 +192,7 @@ bash .opencode/skill/system-spec-kit/scripts/templates/compose.sh 2 3
 
 ---
 
-## 8. 🔄 MEMORY WORKFLOW (12 Steps)
+## 8. MEMORY WORKFLOW (12 Steps)
 
 The `generate-context.ts` script orchestrates a 12-step workflow via `workflow.ts`:
 
@@ -247,7 +247,7 @@ Low quality sessions (<20 score) receive a warning header in the output.
 
 ---
 
-## 9. 🔗 RELATED RESOURCES
+## 9. RELATED RESOURCES
 
 - [Validation Rules](../validation/validation_rules.md)
 - [Folder Routing](../structure/folder_routing.md)

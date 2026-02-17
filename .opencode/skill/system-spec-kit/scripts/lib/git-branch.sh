@@ -15,6 +15,9 @@
 # Compatibility: Bash 3.2+ (macOS default)
 # ───────────────────────────────────────────────────────────────
 
+# Strict mode is intentionally not set in sourced library files.
+# The caller script controls -e/-u/-o pipefail policy.
+
 # Guard against double-sourcing
 [[ -n "${_GIT_BRANCH_LOADED:-}" ]] && return 0
 _GIT_BRANCH_LOADED=1
@@ -36,7 +39,7 @@ check_existing_branches() {
 
     # Fetch all remotes to get latest branch info
     if ! git fetch --all --prune 2>/dev/null; then
-        echo "Warning: Could not fetch from remote (continuing with local branches only)" >&2
+        printf '%s\n' "Warning: Could not fetch from remote (continuing with local branches only)" >&2
     fi
 
     # Find all branches matching the pattern using git ls-remote (more reliable)
@@ -58,7 +61,7 @@ check_existing_branches() {
         while IFS= read -r dir; do
             [[ -n "$dir" ]] && spec_dirs="$spec_dirs $(basename "$dir" | sed 's/-.*//')"
         done < <(find "$SPECS_DIR" -maxdepth 1 -type d -name "[0-9]*-${short_name}" 2>/dev/null)
-        spec_dirs=$(echo "$spec_dirs" | tr ' ' '\n' | grep -v '^$' | sort -n)
+        spec_dirs=$(printf '%s\n' "$spec_dirs" | tr ' ' '\n' | grep -v '^$' | sort -n)
     fi
     
     # Combine all sources and get the highest number
@@ -70,7 +73,7 @@ check_existing_branches() {
     done
     
     # Return next number
-    echo $((max_num + 1))
+    printf '%s\n' "$((max_num + 1))"
 }
 
 # ───────────────────────────────────────────────────────────────
@@ -88,7 +91,7 @@ generate_branch_name() {
     
     # Convert to lowercase and split into words
     local clean_name
-    clean_name=$(echo "$description" | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z0-9]/ /g')
+    clean_name=$(printf '%s\n' "$description" | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z0-9]/ /g')
     
     # Filter words: remove stop words and words shorter than 3 chars (unless they're uppercase acronyms in original)
     local meaningful_words=()
@@ -97,15 +100,15 @@ generate_branch_name() {
         [[ -z "$word" ]] && continue
         
         # Keep words that are NOT stop words AND (length >= 3 OR are potential acronyms)
-        if ! echo "$word" | grep -qiE "$stop_words"; then
+        if ! printf '%s\n' "$word" | grep -qiE "$stop_words"; then
             if [[ ${#word} -ge 3 ]]; then
                 meaningful_words+=("$word")
             else
                 # Check if word appears as uppercase in original (likely acronym)
                 # Use tr for bash 3.2 compatibility (macOS default) instead of ${word^^}
                 local word_upper
-                word_upper=$(echo "$word" | tr '[:lower:]' '[:upper:]')
-                if echo "$description" | grep -qw "${word_upper}"; then
+                word_upper=$(printf '%s\n' "$word" | tr '[:lower:]' '[:upper:]')
+                if printf '%s\n' "$description" | grep -qw "${word_upper}"; then
                     # Keep short words if they appear as uppercase in original (likely acronyms)
                     meaningful_words+=("$word")
                 fi
@@ -126,9 +129,9 @@ generate_branch_name() {
             result="$result$word"
             count=$((count + 1))
         done
-        echo "$result"
+        printf '%s\n' "$result"
     else
         # Fallback to original logic if no meaningful words found
-        echo "$description" | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z0-9]/-/g' | sed 's/--*/-/g' | sed 's/^-//' | sed 's/-$//' | tr '-' '\n' | grep -v '^$' | head -3 | tr '\n' '-' | sed 's/-$//'
+        printf '%s\n' "$description" | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z0-9]/-/g' | sed 's/--*/-/g' | sed 's/^-//' | sed 's/-$//' | tr '-' '\n' | grep -v '^$' | head -3 | tr '\n' '-' | sed 's/-$//'
     fi
 }

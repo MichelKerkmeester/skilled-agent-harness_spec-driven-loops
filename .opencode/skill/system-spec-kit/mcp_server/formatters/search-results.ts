@@ -123,6 +123,7 @@ export async function formatSearchResults(
   extraData: Record<string, unknown> = {}
 ): Promise<MCPResponse> {
   const startMs = startTime || Date.now();
+  const includeContent = include_content;
 
   if (!results || results.length === 0) {
     // REQ-019: Use standardized empty response envelope
@@ -143,27 +144,27 @@ export async function formatSearchResults(
   }
 
   // Count constitutional results
-  const constitutionalCount = results.filter(r => r.isConstitutional).length;
+  const constitutionalCount = results.filter(rawResult => rawResult.isConstitutional).length;
 
-  const formatted: FormattedSearchResult[] = await Promise.all(results.map(async (r: RawSearchResult) => {
-    const result: FormattedSearchResult = {
-      id: r.id,
-      specFolder: r.spec_folder,
-      filePath: r.file_path,
-      title: r.title,
-      similarity: r.similarity || r.averageSimilarity,
-      isConstitutional: r.isConstitutional || false,
-      importanceTier: r.importance_tier,
-      triggerPhrases: Array.isArray(r.triggerPhrases) ? r.triggerPhrases :
-                      safeJsonParse<string[]>(r.triggerPhrases as string, []),
-      createdAt: r.created_at
+  const formatted: FormattedSearchResult[] = await Promise.all(results.map(async (rawResult: RawSearchResult) => {
+    const formattedResult: FormattedSearchResult = {
+      id: rawResult.id,
+      specFolder: rawResult.spec_folder,
+      filePath: rawResult.file_path,
+      title: rawResult.title,
+      similarity: rawResult.similarity || rawResult.averageSimilarity,
+      isConstitutional: rawResult.isConstitutional || false,
+      importanceTier: rawResult.importance_tier,
+      triggerPhrases: Array.isArray(rawResult.triggerPhrases) ? rawResult.triggerPhrases :
+                      safeJsonParse<string[]>(rawResult.triggerPhrases as string, []),
+      createdAt: rawResult.created_at
     };
 
     // Include file content if requested
     // SEC-002: Validate DB-stored file paths before reading (CWE-22 defense-in-depth)
-    if (include_content && r.file_path) {
+    if (includeContent && rawResult.file_path) {
       try {
-        const validatedPath = validateFilePathLocal(r.file_path);
+        const validatedPath = validateFilePathLocal(rawResult.file_path);
         let content = await fs.promises.readFile(validatedPath, 'utf-8');
 
         // SK-005: Anchor System Implementation
@@ -208,7 +209,7 @@ export async function formatSearchResults(
             const newTokens = estimateTokens(content);
             const savings = Math.round((1 - newTokens / Math.max(originalTokens, 1)) * 100);
 
-            result.tokenMetrics = {
+            formattedResult.tokenMetrics = {
               originalTokens: originalTokens,
               returnedTokens: newTokens,
               savingsPercent: savings,
@@ -218,7 +219,7 @@ export async function formatSearchResults(
           } else {
             // No anchors found - return warning
             content = `<!-- WARNING: Requested anchors not found: ${anchors.join(', ')} -->`;
-            result.tokenMetrics = {
+            formattedResult.tokenMetrics = {
               originalTokens: originalTokens,
               returnedTokens: 0,
               savingsPercent: 100,
@@ -228,12 +229,12 @@ export async function formatSearchResults(
           }
         }
 
-        result.content = content;
+        formattedResult.content = content;
       } catch (err: unknown) {
-        result.content = null;
+        formattedResult.content = null;
         const message = err instanceof Error ? err.message : String(err);
         // BUG-023 FIX: Sanitize error messages to prevent information leakage
-        result.contentError = message.includes('Access denied')
+        formattedResult.contentError = message.includes('Access denied')
           ? 'Security: Access denied'
           : message.includes('ENOENT')
             ? 'File not found'
@@ -241,7 +242,7 @@ export async function formatSearchResults(
       }
     }
 
-    return result;
+    return formattedResult;
   }));
 
   // REQ-019: Build summary based on result characteristics
@@ -251,10 +252,10 @@ export async function formatSearchResults(
 
   // REQ-019: Build hints based on context
   const hints: string[] = [];
-  if (include_content && anchors && anchors.length > 0) {
+  if (includeContent && anchors && anchors.length > 0) {
     hints.push('Anchor filtering applied for token efficiency');
   }
-  if (!include_content && formatted.length > 0) {
+  if (!includeContent && formatted.length > 0) {
     hints.push('Use includeContent: true to embed file contents in results');
   }
   if (formatted.some(r => r.contentError)) {

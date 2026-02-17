@@ -9,7 +9,7 @@ A comprehensive guide to implementing MVVM architecture with SwiftUI, including 
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 ### Purpose
 
@@ -36,7 +36,7 @@ Clear separation of concerns + testable view models + dependency injection = mai
 
 ---
 
-## 2. 🏗️ MVVM FUNDAMENTALS
+## 2. MVVM FUNDAMENTALS
 
 ### Architecture Overview
 
@@ -92,7 +92,7 @@ Features/
 
 ---
 
-## 3. 👁️ @OBSERVABLE PATTERN (iOS 17+)
+## 3. @OBSERVABLE PATTERN (iOS 17+)
 
 ### Basic @Observable ViewModel
 
@@ -331,7 +331,7 @@ struct ProductListScreen: View {
 
 ---
 
-## 4. 📦 VIEWMODEL PATTERNS
+## 4. VIEWMODEL PATTERNS
 
 ### Form ViewModel Pattern
 
@@ -572,7 +572,7 @@ class SelectableListViewModel<Item: Identifiable> {
 
 ---
 
-## 5. 💉 DEPENDENCY INJECTION
+## 5. DEPENDENCY INJECTION
 
 ### Protocol-Based Dependencies
 
@@ -767,7 +767,7 @@ struct ProductListScreen: View {
 
 ---
 
-## 6. 🧩 PROTOCOL-ORIENTED DESIGN
+## 6. PROTOCOL-ORIENTED DESIGN
 
 ### Repository Pattern
 
@@ -935,7 +935,7 @@ class ProductListViewModel {
 
 ---
 
-## 7. 🔄 COMBINE INTEGRATION
+## 7. COMBINE INTEGRATION
 
 ### ViewModel with Combine (Legacy Pattern)
 
@@ -1107,7 +1107,7 @@ class NotificationViewModel {
 
 ---
 
-## 8. 🧪 TESTING VIEWMODELS
+## 8. TESTING VIEWMODELS
 
 ### Unit Testing @Observable ViewModels
 
@@ -1252,7 +1252,7 @@ final class FormViewModelTests: XCTestCase {
 
 ---
 
-## 9. 📋 RULES
+## 9. RULES
 
 ### ALWAYS
 
@@ -1289,7 +1289,7 @@ final class FormViewModelTests: XCTestCase {
 
 ---
 
-## 10. 🔗 RELATED RESOURCES
+## 10. RELATED RESOURCES
 
 | File | Purpose |
 |------|---------|

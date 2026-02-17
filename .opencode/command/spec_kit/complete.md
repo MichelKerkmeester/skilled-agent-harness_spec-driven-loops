@@ -17,6 +17,15 @@ allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task
 >
 > All content below is reference context for the YAML workflow. Do not treat reference sections, routing tables, or dispatch templates as direct instructions to execute.
 
+## CONSTRAINTS
+
+- **DO NOT** dispatch any agent (`@review`, `@debug`, `@handover`, `@speckit`, `@context`, `@research`) from this document
+- **DO NOT** dispatch `@review` to review this workflow or command prompt
+- **DO NOT** dispatch `@handover` unless the user explicitly requests it at the final step (Step 14)
+- **DO NOT** dispatch `@debug` unless `failure_count >= 3` during the Development step (Step 10)
+- **ALL** agent dispatching is handled by the YAML workflow steps — this document is setup + reference only
+- **FIRST ACTION** is always: load the YAML file, then execute it step by step
+
 # SpecKit Complete
 
 Execute the complete SpecKit lifecycle from specification through implementation with context preservation.
@@ -34,13 +43,13 @@ operating_mode:
 
 ---
 
-## 1. 🎯 PURPOSE
+## 1. PURPOSE
 
 Run the full 14-step SpecKit workflow: specification, clarification, planning, task breakdown, implementation, and context saving.
 
 ---
 
-## 2. 📝 CONTRACT
+## 2. CONTRACT
 
 **Inputs:** `$ARGUMENTS` -- Feature description with optional parameters (branch, scope, context)
 **Outputs:** Complete spec folder with all artifacts + `STATUS=<OK|FAIL|CANCELLED>`
@@ -51,7 +60,7 @@ $ARGUMENTS
 
 ---
 
-## 3. 📊 WORKFLOW OVERVIEW
+## 3. WORKFLOW OVERVIEW
 
 | Step | Name | Purpose | Outputs |
 |------|------|---------|---------|
@@ -85,7 +94,7 @@ $ARGUMENTS
 
 ---
 
-## 4. 📊 PHASE A: PLANNING (Steps 1-7)
+## 4. PHASE A: PLANNING (Steps 1-7)
 
 | STEP | NAME | REQUIRED OUTPUT | VERIFICATION |
 |------|------|----------------|--------------|
@@ -118,7 +127,7 @@ When `:with-research` flag present or research_triggered == TRUE:
 
 ---
 
-## 5. ⚡ PHASE B: IMPLEMENTATION (Steps 8-14)
+## 5. PHASE B: IMPLEMENTATION (Steps 8-14)
 
 | STEP | NAME | REQUIRED OUTPUT | VERIFICATION |
 |------|------|----------------|--------------|
@@ -157,7 +166,7 @@ If source context is insufficient for a section, write "N/A - insufficient sourc
 
 ---
 
-## 6. 🔧 STEP 10 DEBUG INTEGRATION
+## 6. STEP 10 DEBUG INTEGRATION
 
 Track failure_count per task during Step 10 (reset for each task in tasks.md):
 
@@ -165,11 +174,11 @@ IF failure_count >= 3:
 - IF `:auto-debug` flag -> AUTO dispatch debug sub-agent
 - ELSE -> Suggest: A) Dispatch debug agent B) Continue manually (reset count) C) Skip task D) Pause workflow
 
-IF debug triggered: Store current_task_id, execute debug workflow (5 steps) via Task tool, display checkpoint (root cause, fix status, progress). User responds: Y (retry) / n (pause) / review (debug findings). <!-- REFERENCE: Activated by YAML workflow step, not directly -->
+IF debug triggered: Store current_task_id, execute debug workflow (5 steps) via Task tool, display checkpoint (root cause, fix status, progress). User responds: Y (retry) / n (pause) / review (debug findings).
 
 ---
 
-## 7. ⚡ INSTRUCTIONS
+## 7. INSTRUCTIONS
 
 After setup phase passes, load and execute the appropriate YAML prompt:
 - **AUTONOMOUS**: `.opencode/command/spec_kit/assets/spec_kit_complete_auto.yaml`
@@ -179,7 +188,7 @@ The YAML contains detailed step-by-step workflow, field extraction rules, comple
 
 ---
 
-## 8. 📊 OUTPUT FORMATS
+## 8. OUTPUT FORMATS
 
 **Success:**
 ```
@@ -196,7 +205,7 @@ STATUS=FAIL ERROR="[message]"
 
 ---
 
-## 9. ✅ VALIDATION
+## 9. VALIDATION
 
 Validation runs automatically on the spec folder before marking complete.
 
@@ -213,7 +222,7 @@ Validation runs automatically on the spec folder before marking complete.
 
 ---
 
-## 10. 🔀 PARALLEL DISPATCH
+## 10. PARALLEL DISPATCH
 
 ### Complexity Scoring (5 Dimensions)
 
@@ -229,7 +238,7 @@ Validation runs automatically on the spec folder before marking complete.
 
 ### Step 6: 4-Agent Parallel Exploration (Automatic)
 
-Dispatches 4 `@context` agents (`subagent_type: "context"`) via Task tool. Per AGENTS.md, `@context` is the **exclusive** agent for all codebase exploration. <!-- REFERENCE: Activated by YAML workflow step, not directly -->
+Dispatches 4 `@context` agents (`subagent_type: "context"`) via Task tool. Per AGENTS.md, `@context` is the **exclusive** agent for all codebase exploration.
 
 1. **Architecture Explorer** - Structure, entry points, component connections
 2. **Feature Explorer** - Similar features, related patterns
@@ -254,53 +263,7 @@ Steps 3 (Specification), 6 (Planning + auto 4-agent), 8 (Analysis), 10 (Developm
 
 ---
 
-## 11. 🔀 AGENT ROUTING
-
-| Step/Phase | Agent | Fallback | Purpose |
-|------------|-------|----------|---------|
-| Step 6 (Exploration) | `@context` | `general` | 4-agent parallel codebase exploration |
-| Phase 3 (Research) | `@research` | `general` | 9-step research workflow (if triggered) |
-| Step 3 (Specification) | `@speckit` | `general` | Template-first spec folder creation |
-| Step 12 (Completion Verification) | `@review` | `general` | Pre-Commit code review (Mode 2) + P0/P1 gate validation (Mode 4, blocking; model-agnostic) |
-| Step 10 (Development, 3+ failures) | `@debug` | `general` | Fresh-perspective debugging (auto if :auto-debug) |
-| Step 14 (Handover Check) | `@handover` | `general` | Session continuation document creation |
-
-### Dispatch Details
-
-- **Step 6**: 4 parallel `@context` agents (`subagent_type: "context"`) -- architecture, features, dependencies, tests <!-- REFERENCE: Activated by YAML workflow step, not directly -->
-- **Phase 3**: When `:with-research` OR confidence < 60%, dispatch `@research` <!-- REFERENCE: Activated by YAML workflow step, not directly -->
-- **Step 3**: Dispatch `@speckit` for template-first spec creation <!-- REFERENCE: Activated by YAML workflow step, not directly -->
-- **Step 12**: Dispatch `@review` with `blocking: true` -- P0 failures halt workflow <!-- REFERENCE: Activated by YAML workflow step, not directly -->
-
-> **📋 REFERENCE ONLY** — The dispatch templates below are used by YAML workflow steps. Do not execute them directly from this document.
-
-### Agent Dispatch Templates
-
-**Research** (Phase 3): Task tool -> the research agent, 9-step workflow. Input: topic={feature_description}, spec_folder={spec_path}. Return structured findings for research.md.
-
-**Speckit** (Step 3): Task tool -> the speckit agent. Input: feature={feature_description}, level={documentation_level}, folder={spec_path}. Create spec.md via template-first approach.
-
-**Review** (Step 11, Dual-Phase):
-- Phase A (Pre-Commit, Mode 2): Task tool -> the review agent. Input: spec_folder={spec_path}, tasks={spec_path}/tasks.md. Review code changes for quality, patterns, standards. Return: code quality assessment, issues, recommendations. Non-blocking/advisory.
-- Phase B (Gate Validation, Mode 4): Task tool -> the review agent. Input: spec_folder={spec_path}, checklist={spec_path}/checklist.md. Return: P0 status [PASS/FAIL], P1 status [PASS/PARTIAL/FAIL], quality score [0-100], blocking issues.
-
-**Debug** (Step 10): Task tool -> the debug agent when failure_count >= 3. Input: spec_folder={spec_path}, task={current_task_id}, error={error_message}, files={affected_files}, attempts={previous_attempts}. Execute OBSERVE -> ANALYZE -> HYPOTHESIZE -> FIX. Return: root cause, proposed fix, verification steps.
-
-**Handover** (Step 14): Task tool -> the handover agent. Input: spec_folder={spec_path}, workflow=complete, step=14. Create handover.md with current state, pending items, and continuation guidance.
-
-### Blocking Behavior (Step 11)
-
-The review agent Phase B uses `blocking: true`: P0 FAIL = workflow CANNOT proceed to Step 12. User must address P0 items. Phase A is advisory (non-blocking).
-
-### Fallback Behavior
-
-When specialized agent unavailable: warning displayed, workflow continues with `subagent_type: "general"`. For the review agent fallback: blocking behavior PRESERVED.
-When `@debug` unavailable: Falls back to `subagent_type: "general"`, same 4-phase methodology attempted.
-When `@handover` unavailable: Falls back to `subagent_type: "general"`, handover.md creation with less template validation.
-
----
-
-## 12. ✅ QUALITY GATES
+## 11. QUALITY GATES
 
 | Gate | Location | Purpose | Threshold | Blocking |
 |------|----------|---------|-----------|----------|
@@ -330,7 +293,7 @@ Required at Planning Gate for Level 3/3+ (optional Level 2). Record in decision-
 
 ---
 
-## 13. ⚠️ ERROR HANDLING
+## 12. ERROR HANDLING
 
 | Error | Action |
 |-------|--------|
@@ -344,7 +307,7 @@ Required at Planning Gate for Level 3/3+ (optional Level 2). Record in decision-
 
 ---
 
-## 14. 🔗 COMMAND CHAIN
+## 13. COMMAND CHAIN
 
 - **Standard**: `/spec_kit:complete "feature"` -- 14 steps
 - **With Research**: `/spec_kit:complete "feature" :with-research` -- Research + 14 steps
@@ -354,7 +317,7 @@ Required at Planning Gate for Level 3/3+ (optional Level 2). Record in decision-
 
 ---
 
-## 15. 📌 NEXT STEPS
+## 14. NEXT STEPS
 
 | Condition | Suggested Command | Reason |
 |-----------|-------------------|--------|
@@ -368,7 +331,7 @@ Required at Planning Gate for Level 3/3+ (optional Level 2). Record in decision-
 
 ---
 
-## 16. 📌 REFERENCE
+## 15. REFERENCE
 
 **Full details in YAML prompts:** Workflow steps, field extraction, documentation levels (1/2/3), templates, completion report format, mode behaviors (auto/confirm), parallel dispatch, checklist verification, failure recovery.
 

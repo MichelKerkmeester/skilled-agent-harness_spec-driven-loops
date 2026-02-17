@@ -9,7 +9,7 @@ Provider fallback chains, graceful degradation, and offline mode for reliable se
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 ### Purpose
 
@@ -31,7 +31,7 @@ The embedding resilience system ensures semantic search remains functional even 
 
 ---
 
-## 2. 🔗 PROVIDER FALLBACK CHAIN
+## 2. PROVIDER FALLBACK CHAIN
 
 The system attempts providers in order until one succeeds (REQ-029):
 
@@ -108,7 +108,7 @@ The system switches to the next provider when:
 
 ---
 
-## 3. ⚡ GRACEFUL DEGRADATION
+## 3. GRACEFUL DEGRADATION
 
 When all embedding providers fail, the system degrades to keyword-based search (REQ-030):
 
@@ -161,7 +161,7 @@ When operating in degraded mode, search results include a warning:
 
 ---
 
-## 4. 🔄 RETRY WITH BACKOFF
+## 4. RETRY WITH BACKOFF
 
 Transient failures trigger exponential backoff before provider switching (REQ-031):
 
@@ -236,7 +236,7 @@ function isPermanentError(error: unknown): boolean {
 
 ---
 
-## 5. 💾 OFFLINE MODE
+## 5. OFFLINE MODE
 
 Cached embeddings enable search without network connectivity (REQ-032):
 
@@ -317,7 +317,7 @@ Cache entries are evicted based on:
 
 ---
 
-## 6. 📊 PROVIDER HEALTH MONITORING
+## 6. PROVIDER HEALTH MONITORING
 
 Track provider reliability and preemptively switch when degraded (REQ-033):
 
@@ -441,7 +441,7 @@ async function healthCheckLoop(): Promise<void> {
 
 ---
 
-## 7. 🔗 RELATED RESOURCES
+## 7. RELATED RESOURCES
 
 ### Reference Files
 

@@ -3,7 +3,7 @@
 > **Goal:** High-impact, low-effort optimizations for Core Web Vitals (LCP/FCP).
 
 <!-- ANCHOR:applied-optimizations -->
-## ✅ Applied Optimizations
+## Applied Optimizations
 
 ### 1. Font Preloading (Previous Step)
 - Added `<link rel="preload">` for Silka Regular and Semibold.
@@ -21,7 +21,7 @@
 <!-- /ANCHOR:applied-optimizations -->
 
 <!-- ANCHOR:required-actions-webflow-designer -->
-## ⚠️ Required Actions (Webflow Designer)
+## Required Actions (Webflow Designer)
 
 I cannot perform these changes via code because they are managed inside Webflow or external settings.
 

@@ -9,7 +9,7 @@ Evaluation framework for validating significant decisions before implementation.
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 ### Core Principle
 
@@ -35,7 +35,7 @@ Every significant decision must earn its existence through five explicit checks:
 
 ---
 
-## 2. ✅ THE FIVE CHECKS
+## 2. THE FIVE CHECKS
 
 ### Check 1: Necessary?
 
@@ -180,7 +180,7 @@ HORIZON CHECK:
 
 ---
 
-## 3. 📋 EVALUATION FORMAT
+## 3. EVALUATION FORMAT
 
 ### Quick Assessment Table
 
@@ -210,7 +210,7 @@ When a check fails:
 
 ---
 
-## 4. 💡 EXAMPLES
+## 4. EXAMPLES
 
 ### Example A: Decision That Passes All Checks
 
@@ -257,7 +257,7 @@ REMEDIATION:
 
 ---
 
-## 5. 🔄 INTEGRATION WITH DECISION RECORDS
+## 5. INTEGRATION WITH DECISION RECORDS
 
 ### Placement in decision-record.md
 
@@ -296,7 +296,7 @@ For Level 3/3+ spec folders, include Five Checks in the decision record:
 
 ---
 
-## 6. ⚡ QUICK REFERENCE
+## 6. QUICK REFERENCE
 
 ```
 FIVE CHECKS QUICK ASSESSMENT:
@@ -311,7 +311,7 @@ RESULT: [X/5 PASS] -> [PROCEED/RECONSIDER]
 
 ---
 
-## 7. 🔗 RELATED RESOURCES
+## 7. RELATED RESOURCES
 
 - [Structured Gate Decision Format](./decision-format.md) - Standard format for documenting decisions
 - [Checklist Template](../../templates/level_2/checklist.md) - Level 2+ validation checklist structure

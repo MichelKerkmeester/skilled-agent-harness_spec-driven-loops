@@ -11,7 +11,7 @@ Current baseline (specs 126/127): schema v13 (`document_type`, `spec_level`), 5 
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 The Spec Kit Memory system provides context preservation across sessions through vector-based semantic search and structured memory files. This reference covers MCP tool behavior, importance tiers, decay scoring, and configuration.
 
@@ -76,7 +76,7 @@ The memory system indexes content from five distinct sources:
 
 ---
 
-## 2. 🏷️ IMPORTANCE TIERS
+## 2. IMPORTANCE TIERS
 
 Six-tier system for prioritizing memory relevance:
 
@@ -106,7 +106,7 @@ Six-tier system for prioritizing memory relevance:
 
 ---
 
-## 3. 🔧 MCP TOOLS
+## 3. MCP TOOLS
 
 > **Note:** MCP tool names use the format `spec_kit_memory_<tool_name>`. In documentation, shorthand names like `memory_search()` refer to the full `spec_kit_memory_memory_search()` tool.
 
@@ -151,7 +151,7 @@ Six-tier system for prioritizing memory relevance:
 
 ---
 
-## 4. 🔍 MEMORY_SEARCH() BEHAVIOR
+## 4. MEMORY_SEARCH() BEHAVIOR
 
 ### Parameter Requirements
 
@@ -310,7 +310,7 @@ Brief summary of the session...
 
 ---
 
-## 5. 📋 MEMORY_LIST() BEHAVIOR
+## 5. MEMORY_LIST() BEHAVIOR
 
 ### Exact Matching Behavior
 
@@ -343,7 +343,7 @@ For consistent exact matching, use the full spec folder name.
 
 ---
 
-## 6. ⏱️ DECAY SCORING
+## 6. DECAY SCORING
 
 > [VERIFIED: matches source code as of 2026-02-08]
 
@@ -408,7 +408,7 @@ memory_search({
 
 ---
 
-## 7. 🔄 REAL-TIME SYNC
+## 7. REAL-TIME SYNC
 
 ### Current Limitation
 
@@ -440,7 +440,7 @@ The `memory_index_scan` operation has a 1-minute cooldown between scans to preve
 
 ---
 
-## 8. 🔐 CONSTITUTIONAL RULES
+## 8. CONSTITUTIONAL RULES
 
 ### Purpose
 
@@ -482,7 +482,7 @@ Constitutional files are stored in:
 
 ---
 
-## 9. 🔄 SESSION DEDUPLICATION
+## 9. SESSION DEDUPLICATION
 
 > [VERIFIED: matches source code as of 2026-02-08]
 
@@ -553,7 +553,7 @@ Session deduplication (`enableDedup: true` with `sessionId`) provides significan
 
 ---
 
-## 10. 🌡️ 5-STATE MEMORY MODEL
+## 10. 5-STATE MEMORY MODEL
 
 > [VERIFIED: matches source code as of 2026-02-08]
 
@@ -642,7 +642,7 @@ The effective stability is `max(fsrs_stability, type_stability)`, ensuring new m
 
 ---
 
-## 11. 🔗 RELATED RESOURCES
+## 11. RELATED RESOURCES
 
 ### Reference Files
 - [save_workflow.md](./save_workflow.md) - Memory save workflow documentation

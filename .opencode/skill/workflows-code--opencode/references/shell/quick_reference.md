@@ -9,7 +9,7 @@ Fast lookup for Bash scripting patterns, syntax, and common structures in OpenCo
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 ### Purpose
 
@@ -19,7 +19,7 @@ Quick-access reference card for Bash patterns. For detailed explanations, see:
 
 ---
 
-## 2. 📋 FILE TEMPLATE
+## 2. FILE TEMPLATE
 
 ```bash
 #!/usr/bin/env bash
@@ -109,7 +109,7 @@ main "$@"
 
 ---
 
-## 3. 🏷️ NAMING CONVENTIONS
+## 3. NAMING CONVENTIONS
 
 | Element | Convention | Example |
 |---------|------------|---------|
@@ -121,7 +121,7 @@ main "$@"
 
 ---
 
-## 4. 📝 VARIABLE HANDLING
+## 4. VARIABLE HANDLING
 
 ### Declaration
 
@@ -166,7 +166,7 @@ done
 
 ---
 
-## 5. 📌 CONDITIONALS
+## 5. CONDITIONALS
 
 ### String Tests
 
@@ -221,7 +221,7 @@ done
 
 ---
 
-## 6. 📌 LOOPS
+## 6. LOOPS
 
 ### For Loops
 
@@ -279,7 +279,7 @@ done
 
 ---
 
-## 7. ⚡ FUNCTIONS
+## 7. FUNCTIONS
 
 ### Definition
 
@@ -323,7 +323,7 @@ value=$(get_value)
 
 ---
 
-## 8. 📋 ARGUMENT PARSING
+## 8. ARGUMENT PARSING
 
 ### Simple Positional
 
@@ -375,7 +375,7 @@ done
 
 ---
 
-## 9. 📌 STRING OPERATIONS
+## 9. STRING OPERATIONS
 
 ### Substitution
 
@@ -410,7 +410,7 @@ echo "${file##*.}"        # txt (extension)
 
 ---
 
-## 10. 💡 COMMON PATTERNS
+## 10. COMMON PATTERNS
 
 ### Safe Temp Files
 
@@ -460,7 +460,7 @@ EOF
 
 ---
 
-## 11. ✅ QUALITY CHECKLIST
+## 11. QUALITY CHECKLIST
 
 ```markdown
 P0 - Must Fix:
@@ -486,7 +486,7 @@ P2 - Recommended:
 
 ---
 
-## 12. 🔗 RELATED RESOURCES
+## 12. RELATED RESOURCES
 
 - [style_guide.md](./style_guide.md) - Detailed style documentation
 - [quality_standards.md](./quality_standards.md) - Quality requirements

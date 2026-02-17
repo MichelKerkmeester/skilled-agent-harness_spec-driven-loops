@@ -65,7 +65,7 @@ operating_mode:
 
 ---
 
-## 1. 🎯 PURPOSE
+## 1. PURPOSE
 
 > **L1 Orchestration Layer**: This command operates at the top layer of the context retrieval architecture. It orchestrates lower-level memory operations (L2: search, load, match) and provides intent-aware optimization. L1 commands combine multiple L2 operations into unified workflows with token budget management.
 
@@ -79,7 +79,7 @@ Provide a unified entry point for context retrieval that:
 
 ---
 
-## 2. 📝 CONTRACT
+## 2. CONTRACT
 
 **Inputs:** `$ARGUMENTS` — Query with optional intent override
 **Outputs:** Context with relevance scores and intent explanation
@@ -93,7 +93,7 @@ Provide a unified entry point for context retrieval that:
 
 ---
 
-## 3. 📊 INTENT TYPES AND WEIGHTS
+## 3. INTENT TYPES AND WEIGHTS
 
 ### Intent Classification
 
@@ -127,7 +127,7 @@ Intent is detected via keyword matching against the query. Keywords are phrase-b
 
 ---
 
-## 4. ⚡ WORKFLOW
+## 4. WORKFLOW
 
 ### Step 1: Parse Query and Detect Intent
 
@@ -216,7 +216,7 @@ STATUS=OK INTENT=<intent> RESULTS=<count>
 
 ---
 
-## 5. 📌 INTENT-SPECIFIC ANCHOR SELECTION
+## 5. INTENT-SPECIFIC ANCHOR SELECTION
 
 ### Anchor Mapping by Intent
 
@@ -249,7 +249,7 @@ Reasoning:
 
 ---
 
-## 6. 🔍 INTENT DETECTION EXAMPLES
+## 6. INTENT DETECTION EXAMPLES
 
 ### Example 1: Auto-Detect add_feature
 
@@ -287,7 +287,7 @@ Anchors:
 
 ---
 
-## 7. 📌 TOKEN BUDGET ENFORCEMENT
+## 7. TOKEN BUDGET ENFORCEMENT
 
 **memory_context L1 Budget:** ~2000 tokens total (mode-managed)
 
@@ -311,7 +311,7 @@ When results exceed token budget:
 
 ---
 
-## 8. 🔄 SESSION DEDUPLICATION
+## 8. SESSION DEDUPLICATION
 
 ### Purpose
 
@@ -338,7 +338,7 @@ deduplication:
 
 ---
 
-## 9. 🔧 MCP ENFORCEMENT MATRIX
+## 9. MCP ENFORCEMENT MATRIX
 
 **CRITICAL:** Use the correct MCP tools for each step.
 
@@ -387,7 +387,7 @@ spec_kit_memory_memory_search({
 
 ---
 
-## 10. ⚠️ ERROR HANDLING
+## 10. ERROR HANDLING
 
 | Condition      | Response                                  |
 | -------------- | ----------------------------------------- |
@@ -398,7 +398,7 @@ spec_kit_memory_memory_search({
 
 ---
 
-## 11. 🔍 QUICK REFERENCE
+## 11. QUICK REFERENCE
 
 | Command                                       | Result                                 |
 | --------------------------------------------- | -------------------------------------- |
@@ -412,7 +412,7 @@ spec_kit_memory_memory_search({
 
 ---
 
-## 12. 🔗 RELATED COMMANDS
+## 12. RELATED COMMANDS
 
 - `/memory:save` - Save current conversation context
 - `/memory:manage` - Database management operations

@@ -116,11 +116,11 @@ Content here.
 
 > Test description
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 Content here.
 
-## 2. 🚀 QUICK START
+## 2. QUICK START
 
 Content here.
 ```

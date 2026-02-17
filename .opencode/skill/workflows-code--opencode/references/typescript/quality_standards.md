@@ -9,7 +9,7 @@ Type system patterns, error handling, documentation, async patterns, and tsconfi
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 ### Purpose
 
@@ -23,7 +23,7 @@ Establishes type system patterns, error handling, documentation, async patterns,
 
 ---
 
-## 2. 🏷️ INTERFACE vs TYPE DECISION GUIDE
+## 2. INTERFACE vs TYPE DECISION GUIDE
 
 ### When to Use `interface`
 
@@ -93,7 +93,7 @@ type Coordinates = [x: number, y: number];
 
 ---
 
-## 3. 🔒 TYPE SAFETY POLICIES
+## 3. TYPE SAFETY POLICIES
 
 ### `unknown` Over `any`
 
@@ -187,7 +187,7 @@ function getProperty<T>(obj: T, key: string): unknown {
 
 ---
 
-## 4. 🔀 DISCRIMINATED UNIONS
+## 4. DISCRIMINATED UNIONS
 
 Use discriminated unions for state management where an object can be in one of several distinct states:
 
@@ -243,7 +243,7 @@ function getConnectionInfo(state: ConnectionState): string {
 
 ---
 
-## 5. 🧰 UTILITY TYPES
+## 5. UTILITY TYPES
 
 ### Standard TypeScript Utility Types
 
@@ -291,7 +291,7 @@ type PublicMemory = Omit<MemoryRecord, 'internalScore'>;
 
 ---
 
-## 6. 📐 RETURN TYPE ANNOTATIONS
+## 6. RETURN TYPE ANNOTATIONS
 
 ### Policy: Explicit for Public API, Inferred for Private Helpers
 
@@ -324,7 +324,7 @@ function normalizeScore(raw: number, max: number) {
 
 ---
 
-## 7. 📚 TSDOC DOCUMENTATION
+## 7. TSDOC DOCUMENTATION
 
 ### TSDoc Format
 
@@ -454,7 +454,7 @@ interface CacheEntry<T> {
 
 ---
 
-## 8. 🚨 TYPED ERROR CLASSES
+## 8. TYPED ERROR CLASSES
 
 ### Custom Error Pattern
 
@@ -533,7 +533,7 @@ try {
 
 ---
 
-## 9. 💡 ASYNC PATTERNS
+## 9. ASYNC PATTERNS
 
 ### Typed Promises
 
@@ -601,7 +601,7 @@ const result = await safeAsync(
 
 ---
 
-## 10. ⚙️ TSCONFIG BASELINE
+## 10. TSCONFIG BASELINE
 
 ### Root tsconfig.json for OpenCode Projects
 
@@ -732,7 +732,7 @@ Each workspace extends the root and declares its own composite settings:
 
 ---
 
-## 11. 📦 MODULE ORGANIZATION
+## 11. MODULE ORGANIZATION
 
 ### ES Module Source, CommonJS Output
 
@@ -779,7 +779,7 @@ export type { SearchResult, SearchOptions } from '../types';
 
 ---
 
-## 12. 🔗 RELATED RESOURCES
+## 12. RELATED RESOURCES
 
 - [style_guide.md](./style_guide.md) - Formatting and naming conventions
 - [quick_reference.md](./quick_reference.md) - Copy-paste templates and cheat sheets

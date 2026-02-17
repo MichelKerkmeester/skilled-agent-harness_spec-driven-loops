@@ -9,21 +9,21 @@ The Skill Advisor is a Python script that analyzes user requests and recommends 
 
 ## TABLE OF CONTENTS
 
-1. [📖 OVERVIEW](#1--overview)
-2. [📋 PREREQUISITES](#2--prerequisites)
-3. [✅ INSTALLATION VERIFICATION](#3--installation-verification)
-4. [⚙️ HOW IT WORKS](#4--how-it-works)
-5. [🎯 CURRENT SKILLS REFERENCE](#5--current-skills-reference)
-6. [📊 THRESHOLD TUNING GUIDE](#6--threshold-tuning-guide)
-7. [🧮 EXAMPLE CALCULATIONS](#7--example-calculations)
-8. [🔧 CUSTOMIZATION](#8--customization)
-9. [🧪 TESTING](#9--testing)
-10. [🐛 DEBUGGING](#10--debugging)
-11. [🔧 TROUBLESHOOTING](#11--troubleshooting)
+1. [OVERVIEW](#1--overview)
+2. [PREREQUISITES](#2--prerequisites)
+3. [INSTALLATION VERIFICATION](#3--installation-verification)
+4. [HOW IT WORKS](#4--how-it-works)
+5. [CURRENT SKILLS REFERENCE](#5--current-skills-reference)
+6. [THRESHOLD TUNING GUIDE](#6--threshold-tuning-guide)
+7. [EXAMPLE CALCULATIONS](#7--example-calculations)
+8. [CUSTOMIZATION](#8--customization)
+9. [TESTING](#9--testing)
+10. [DEBUGGING](#10--debugging)
+11. [TROUBLESHOOTING](#11--troubleshooting)
 
 ---
 
-## 🤖 AI SET-UP GUIDE
+## AI SET-UP GUIDE
 
 **Copy and paste this prompt to your AI assistant:**
 
@@ -52,7 +52,7 @@ Guide me through each step.
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 ### What is skill_advisor.py?
 
@@ -92,7 +92,7 @@ Gate 2 in AGENTS.md invokes the Skill Advisor:
 
 ---
 
-## 2. 📋 PREREQUISITES
+## 2. PREREQUISITES
 
 ### System Requirements
 
@@ -134,7 +134,7 @@ chmod +x .opencode/skill/scripts/skill_advisor.py
 
 ---
 
-## 3. ✅ INSTALLATION VERIFICATION
+## 3. INSTALLATION VERIFICATION
 
 ### Step 1: Verify Script Exists
 
@@ -189,7 +189,7 @@ python .opencode/skill/scripts/skill_advisor.py "save this context to memory"
 
 ---
 
-## 4. ⚙️ HOW IT WORKS
+## 4. HOW IT WORKS
 
 ### 4.1 Processing Pipeline
 
@@ -321,7 +321,7 @@ Some keywords are ambiguous and boost multiple skills:
 
 ---
 
-## 5. 🎯 CURRENT SKILLS REFERENCE
+## 5. CURRENT SKILLS REFERENCE
 
 The Skill Advisor routes to these 8 skills based on trigger keywords:
 
@@ -445,7 +445,7 @@ markdown, quality, skill, structure, style, template, validation, visualize
 
 ---
 
-## 6. 📊 THRESHOLD TUNING GUIDE
+## 6. THRESHOLD TUNING GUIDE
 
 ### Understanding the Threshold
 
@@ -490,7 +490,7 @@ Modify the threshold in your AGENTS.md Gate 2 (Skill Routing):
 
 ---
 
-## 7. 🧮 EXAMPLE CALCULATIONS
+## 7. EXAMPLE CALCULATIONS
 
 ### Example 1: High-Confidence Match (workflows-git)
 
@@ -580,7 +580,7 @@ confidence = min(0.40, 0.95) = 0.40
 
 ---
 
-## 8. 🔧 CUSTOMIZATION
+## 8. CUSTOMIZATION
 
 ### 8.1 Adding Intent Boosters
 
@@ -652,7 +652,7 @@ Boost certain skills based on project type:
 
 ---
 
-## 9. 🧪 TESTING
+## 9. TESTING
 
 ### Quick Validation Tests
 
@@ -732,7 +732,7 @@ done
 
 ---
 
-## 10. 🐛 DEBUGGING
+## 10. DEBUGGING
 
 ### Understanding Why a Skill Wasn't Triggered
 
@@ -811,7 +811,7 @@ if "--debug" in sys.argv:
 
 ---
 
-## 11. 🔧 TROUBLESHOOTING
+## 11. TROUBLESHOOTING
 
 <details>
 <summary><strong>Script not found</strong></summary>

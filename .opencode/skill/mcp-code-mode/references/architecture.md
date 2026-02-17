@@ -9,7 +9,7 @@ Understand how Code Mode UTCP achieves 98.7% token savings while providing acces
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 ### What is Code Mode UTCP?
 
@@ -19,7 +19,7 @@ Understand how Code Mode UTCP achieves 98.7% token savings while providing acces
 
 ---
 
-## 2. 🏗️ ARCHITECTURE DIAGRAM
+## 2. ARCHITECTURE DIAGRAM
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
@@ -90,7 +90,7 @@ Understand how Code Mode UTCP achieves 98.7% token savings while providing acces
 
 ---
 
-## 3. 🧱 THE "2-3 MCP SERVER WALL" PROBLEM
+## 3. THE "2-3 MCP SERVER WALL" PROBLEM
 
 ### Traditional Approach (Before Code Mode)
 
@@ -150,7 +150,7 @@ Result: 98.7% token savings, unlimited scalability
 
 ---
 
-## 4. 💰 TOKEN ECONOMICS
+## 4. TOKEN ECONOMICS
 
 | Approach                     | Tokens Consumed | Tools Visible | Tools Accessible | Usable?                   |
 | ---------------------------- | --------------- | ------------- | ---------------- | ------------------------- |
@@ -163,7 +163,7 @@ Result: 98.7% token savings, unlimited scalability
 
 ---
 
-## 5. 🔄 DATA FLOW
+## 5. DATA FLOW
 
 ### Single-Step Execution
 
@@ -275,7 +275,7 @@ Code Mode MCP
 
 ---
 
-## 6. ⚙️ EXECUTION ENVIRONMENT
+## 6. EXECUTION ENVIRONMENT
 
 ### V8 Isolate Sandbox
 
@@ -362,7 +362,7 @@ return { design, task, cms };  // All data returned
 
 ---
 
-## 7. 🔧 CONFIGURATION INTEGRATION
+## 7. CONFIGURATION INTEGRATION
 
 ### How .utcp_config.json Connects
 
@@ -406,7 +406,7 @@ await webflow.webflow_sites_list({});
 
 ---
 
-## 8. ⚡ PERFORMANCE CHARACTERISTICS
+## 8. PERFORMANCE CHARACTERISTICS
 
 ### Execution Speed
 
@@ -451,7 +451,7 @@ Usable?    ✅      ✅      ✅     ✅      ✅      ✅
 
 ---
 
-## 9. ✨ ARCHITECTURE BENEFITS
+## 9. ARCHITECTURE BENEFITS
 
 ### 1. Context Efficiency
 
@@ -485,7 +485,7 @@ Usable?    ✅      ✅      ✅     ✅      ✅      ✅
 
 ---
 
-## 10. 📝 SUMMARY
+## 10. SUMMARY
 
 **Architecture highlights:**
 
@@ -502,7 +502,7 @@ Usable?    ✅      ✅      ✅     ✅      ✅      ✅
 
 ---
 
-## 11. 🔗 RELATED RESOURCES
+## 11. RELATED RESOURCES
 
 ### Reference Files
 - [configuration.md](./configuration.md) - Complete configuration guide for .utcp_config.json

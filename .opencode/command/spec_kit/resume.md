@@ -28,7 +28,7 @@ This workflow gathers ALL inputs in ONE prompt. Mode defaults to INTERACTIVE unl
 
 ---
 
-## 1. 📊 UNIFIED SETUP PHASE
+## 1. UNIFIED SETUP PHASE
 
 **STATUS: BLOCKED**
 
@@ -62,7 +62,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    - Store: artifacts_valid = [yes/partial/no]
 
 6. Check memory files:
-   - $ ls [spec_path]/memory/*.md 2>/dev/null
+   - $ ls [spec_path]/memory/*.{md,txt} 2>/dev/null
    - Store: memory_files_exist = [yes/no], memory_count = [N]
 
 7. ASK with SINGLE prompt (include only applicable questions):
@@ -119,7 +119,7 @@ STOP HERE - Wait for user answers before continuing.
 
 ---
 
-## 2. ✅ PHASE STATUS VERIFICATION (BLOCKING)
+## 2. PHASE STATUS VERIFICATION (BLOCKING)
 
 | FIELD            | REQUIRED      | SOURCE                        |
 | ---------------- | ------------- | ----------------------------- |
@@ -133,7 +133,7 @@ ALL required fields set? → Proceed to workflow | Missing? → Re-prompt for mi
 
 ---
 
-## 3. ⚠️ VIOLATION SELF-DETECTION (BLOCKING)
+## 3. VIOLATION SELF-DETECTION (BLOCKING)
 
 **You are in violation if you:** started workflow before fields set, asked questions in multiple prompts, proceeded without validating artifacts, assumed spec folder without confirmation, didn't display progress, claimed "resumed" without continuation options.
 
@@ -147,7 +147,7 @@ Execute steps IN ORDER. Mark each ✅ ONLY after completing ALL activities and v
 
 ---
 
-## 4. 🔀 AUTO MODE (4 STEPS)
+## 4. AUTO MODE (4 STEPS)
 
 | STEP | NAME               | REQUIRED OUTPUT      | VERIFICATION            |
 | ---- | ------------------ | -------------------- | ----------------------- |
@@ -158,7 +158,7 @@ Execute steps IN ORDER. Mark each ✅ ONLY after completing ALL activities and v
 
 ---
 
-## 5. 🔀 CONFIRM MODE (5 STEPS)
+## 5. CONFIRM MODE (5 STEPS)
 
 | STEP | NAME               | REQUIRED OUTPUT      | VERIFICATION            |
 | ---- | ------------------ | -------------------- | ----------------------- |
@@ -190,13 +190,13 @@ operating_mode:
 
 ---
 
-## 6. 🎯 PURPOSE
+## 6. PURPOSE
 
 Resume work on an existing spec folder by detecting the last active session, loading context from memory files, and presenting progress with next steps. Utility workflow for session continuity.
 
 ---
 
-## 7. 📝 CONTRACT
+## 7. CONTRACT
 
 **Inputs:** `$ARGUMENTS` — Optional spec folder path with optional :auto/:confirm suffix
 **Outputs:** Resumed session context + progress display + `STATUS=<OK|FAIL|CANCELLED>`
@@ -207,7 +207,7 @@ $ARGUMENTS
 
 ---
 
-## 8. ⚡ INSTRUCTIONS
+## 8. INSTRUCTIONS
 
 After all phases pass, load and execute the appropriate YAML prompt:
 
@@ -218,25 +218,25 @@ The YAML contains detailed step-by-step workflow, output formats, and all config
 
 ---
 
-## 9. 🔀 SESSION DETECTION FLOW
+## 9. SESSION DETECTION FLOW
 
 **Priority order for finding spec folder:**
 1. Validate provided path from $ARGUMENTS
 2. `memory_match_triggers()` — fast phrase matching (<50ms)
 3. `memory_context()` — L1 unified retrieval (score > 0.6)
-4. Glob by mtime: `ls -t specs/**/memory/*.md`
+4. Glob by mtime: `ls -t specs/**/memory/*.{md,txt}`
 5. No session found → offer: /spec_kit:complete or specify path
 
 **Context loading priority (after spec_path confirmed):**
 1. handover.md (exists & <24h) → use handover context
-2. memory/*.md → `memory_context()` L1 retrieval
+2. memory/*.{md,txt} → `memory_context()` L1 retrieval
 3. checklist.md → progress state fallback
 
 **Stale session (>7 days):** Warn user, offer: A) Resume anyway, B) Fresh start, C) Review changes, D) Cancel
 
 ---
 
-## 10. 📊 OUTPUT FORMATS
+## 10. OUTPUT FORMATS
 
 **Success:**
 ```
@@ -251,7 +251,7 @@ Ready to continue. What would you like to work on?
 
 ---
 
-## 11. 📌 REFERENCE
+## 11. REFERENCE
 
 **Full details in YAML prompts:** Workflow steps, progress calculation, memory loading, session detection priority, stale handling, mode behaviors, failure recovery.
 
@@ -259,7 +259,7 @@ Ready to continue. What would you like to work on?
 
 ---
 
-## 12. 🔧 MCP TOOL USAGE
+## 12. MCP TOOL USAGE
 
 Call MCP tools directly — NEVER through Code Mode.
 
@@ -306,14 +306,14 @@ After loading context, auto-validates: missing files, broken memory anchors, unf
 
 ---
 
-## 13. 🔀 PARALLEL DISPATCH
+## 13. PARALLEL DISPATCH
 
 Resume is a **utility workflow** — no parallel dispatch. All steps sequential.
 - Auto: 4 steps | Confirm: 5 steps with user checkpoints
 
 ---
 
-## 14. 🔍 EXAMPLES
+## 14. EXAMPLES
 
 ```
 /spec_kit:resume                                          → Auto-detect from recent memory
@@ -324,7 +324,7 @@ Resume is a **utility workflow** — no parallel dispatch. All steps sequential.
 
 ---
 
-## 15. 🔗 RELATED COMMANDS
+## 15. RELATED COMMANDS
 
 | Command               | Relationship                                            |
 | --------------------- | ------------------------------------------------------- |
@@ -336,7 +336,7 @@ Resume is a **utility workflow** — no parallel dispatch. All steps sequential.
 
 ---
 
-## 16. 🔗 COMMAND CHAIN
+## 16. COMMAND CHAIN
 
 ```
 [/spec_kit:handover] → /spec_kit:resume → [Continue workflow]
@@ -346,7 +346,7 @@ Prerequisite: `/spec_kit:handover [spec-folder-path]` (creates handover.md)
 
 ---
 
-## 17. 📌 NEXT STEPS
+## 17. NEXT STEPS
 
 | Condition                  | Suggested Command                        | Reason                    |
 | -------------------------- | ---------------------------------------- | ------------------------- |

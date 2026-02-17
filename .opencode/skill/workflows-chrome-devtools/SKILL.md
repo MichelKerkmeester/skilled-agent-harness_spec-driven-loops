@@ -13,7 +13,7 @@ Browser debugging and automation through two complementary approaches: CLI (bdg)
 
 ---
 
-## 1. 🎯 WHEN TO USE
+## 1. WHEN TO USE
 
 ### Activation Triggers
 
@@ -43,7 +43,7 @@ Browser debugging and automation through two complementary approaches: CLI (bdg)
 
 ---
 
-## 2. 🧭 SMART ROUTING & REFERENCES
+## 2. SMART ROUTING & REFERENCES
 
 ### Resource Router
 
@@ -162,7 +162,7 @@ Browser debugging task received
 
 ---
 
-## 3. 🛠️ HOW IT WORKS
+## 3. HOW IT WORKS
 
 ### Tool Comparison
 
@@ -467,7 +467,7 @@ await call_tool_chain({
 
 ---
 
-## 4. 📋 RULES
+## 4. RULES
 
 ### ✅ ALWAYS Rules
 
@@ -549,7 +549,7 @@ await call_tool_chain({
 
 ---
 
-## 5. 🏆 SUCCESS CRITERIA
+## 5. SUCCESS CRITERIA
 
 ### Browser Debugging Completion Checklist
 
@@ -574,7 +574,7 @@ await call_tool_chain({
 
 ---
 
-## 6. 🔌 INTEGRATION POINTS
+## 6. INTEGRATION POINTS
 
 ### Framework Integration
 
@@ -624,7 +624,7 @@ Key integrations:
 
 ---
 
-## 7. 📝 EXAMPLES
+## 7. EXAMPLES
 
 ### Example 1: Screenshot Capture (CLI)
 
@@ -691,7 +691,7 @@ await call_tool_chain({
 
 ---
 
-## 8. 🏎️ QUICK REFERENCE
+## 8. QUICK REFERENCE
 
 ### Essential CLI Commands
 
@@ -743,7 +743,7 @@ bdg "$URL" 2>&1 || exit 1
 
 ---
 
-## 9. 🔗 RELATED RESOURCES
+## 9. RELATED RESOURCES
 
 ### references/
 

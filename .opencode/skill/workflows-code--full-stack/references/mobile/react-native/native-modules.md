@@ -9,7 +9,7 @@ A practical guide to the native integrations in a React Native/Expo app, explain
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 ### Purpose
 
@@ -577,7 +577,7 @@ const persistConfig = {
 
 ---
 
-## 13. 🔗 RELATED RESOURCES
+## 13. RELATED RESOURCES
 
 ### Related References
 - [Expo Patterns](./expo-patterns.md) - Expo-specific patterns and configuration

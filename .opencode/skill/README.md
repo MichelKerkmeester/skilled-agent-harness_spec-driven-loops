@@ -16,18 +16,18 @@ importance_tier: "normal"
 <!-- ANCHOR:table-of-contents -->
 ## TABLE OF CONTENTS
 
-- [1. 📖 OVERVIEW](#1--overview)
-- [2. 🚀 QUICK START](#2--quick-start)
-- [3. 📁 STRUCTURE](#3--structure)
-- [4. 🧩 SKILLS CATALOG](#4--skills-catalog)
-- [5. 🔀 SKILL ROUTING](#5--skill-routing)
-- [6. 🛠️ CREATING SKILLS](#6--creating-skills)
-- [7. 📚 RELATED](#7--related)
+- [1. OVERVIEW](#1--overview)
+- [2. QUICK START](#2--quick-start)
+- [3. STRUCTURE](#3--structure)
+- [4. SKILLS CATALOG](#4--skills-catalog)
+- [5. SKILL ROUTING](#5--skill-routing)
+- [6. CREATING SKILLS](#6--creating-skills)
+- [7. RELATED](#7--related)
 
 <!-- /ANCHOR:table-of-contents -->
 
 <!-- ANCHOR:overview -->
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 The Skills Library contains 9 domain-specific skills across 5 categories. Each skill provides specialized workflows for complex, multi-step tasks.
 
@@ -38,7 +38,7 @@ Skills load on-demand through Gate 2 routing via `skill_advisor.py` or through e
 <!-- /ANCHOR:overview -->
 
 <!-- ANCHOR:quick-start -->
-## 2. 🚀 QUICK START
+## 2. QUICK START
 
 Three ways to use a skill:
 
@@ -73,7 +73,7 @@ Do not re-invoke a skill already in context.
 <!-- /ANCHOR:quick-start -->
 
 <!-- ANCHOR:structure -->
-## 3. 📁 STRUCTURE
+## 3. STRUCTURE
 
 ```
 .opencode/skill/
@@ -104,7 +104,7 @@ Not every skill uses all directories. `SKILL.md` is the only required file.
 <!-- /ANCHOR:structure -->
 
 <!-- ANCHOR:skills-catalog -->
-## 4. 🧩 SKILLS CATALOG
+## 4. SKILLS CATALOG
 
 ### Core System
 
@@ -208,7 +208,7 @@ Figma design file access via MCP providing 18 tools for file retrieval, image ex
 <!-- /ANCHOR:skills-catalog -->
 
 <!-- ANCHOR:skill-routing -->
-## 5. 🔀 SKILL ROUTING
+## 5. SKILL ROUTING
 
 Gate 2 in the mandatory pre-execution gates handles skill routing. The `skill_advisor.py` script analyzes each request and returns a confidence score with a recommended skill.
 
@@ -246,7 +246,7 @@ python3 .opencode/skill/scripts/skill_advisor.py "build a new React component" -
 <!-- /ANCHOR:skill-routing -->
 
 <!-- ANCHOR:creating-skills -->
-## 6. 🛠️ CREATING SKILLS
+## 6. CREATING SKILLS
 
 To create a new skill, use the `workflows-documentation` skill with the skill creation template.
 
@@ -278,7 +278,7 @@ After creating a skill, validate its structure against the template and test inv
 <!-- /ANCHOR:creating-skills -->
 
 <!-- ANCHOR:related -->
-## 7. 📚 RELATED
+## 7. RELATED
 
 **Framework:**
 

@@ -9,7 +9,7 @@ Defines the architectural boundary between database entities and business models
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 ### Purpose
 
@@ -39,7 +39,7 @@ Level 2: Related knowledge files
 
 ---
 
-## 2. 🧠 CORE PRINCIPLES
+## 2. CORE PRINCIPLES
 
 ### What Are the Three Mandatory Principles?
 
@@ -71,7 +71,7 @@ Services, repositories, and data layers deal exclusively with entities.
 
 ---
 
-## 3. 🏗️ LAYER RESPONSIBILITIES
+## 3. LAYER RESPONSIBILITIES
 
 ### What Does Each Layer Consume and Produce?
 
@@ -96,7 +96,7 @@ Repository → Entity → Service → Entity → Business Layer → [ADAPTER] �
 
 ---
 
-## 4. 📦 ADAPTER DESIGN PATTERN
+## 4. ADAPTER DESIGN PATTERN
 
 ### How Do I Structure Adapters?
 
@@ -206,7 +206,7 @@ func (a WalletAdapter) AdaptCollection(wallets []payments_entities.Wallet) []pay
 
 ---
 
-## 5. ⚠️ ERROR HANDLING IN ADAPTERS
+## 5. ERROR HANDLING IN ADAPTERS
 
 ### How Should Adapters Handle Errors?
 
@@ -247,7 +247,7 @@ func (a BillableItemAdapter) Adapt(item payments_entities.BillableItem) (payment
 
 ---
 
-## 6. 🔧 USAGE IN BUSINESS LAYER
+## 6. USAGE IN BUSINESS LAYER
 
 ### How Do I Structure the Business Layer?
 
@@ -351,7 +351,7 @@ func (l *PaymentsBusinessLayer) GetWalletWithSubscriptions(
 
 ---
 
-## 7. 📋 RULES
+## 7. RULES
 
 ### ALWAYS
 
@@ -382,7 +382,7 @@ func (l *PaymentsBusinessLayer) GetWalletWithSubscriptions(
 
 ---
 
-## 8. 🧪 TESTING ADAPTERS
+## 8. TESTING ADAPTERS
 
 ### How Do I Test Adapters?
 
@@ -424,7 +424,7 @@ func TestWalletAdapter_AdaptCollection(t *testing.T) {
 
 ---
 
-## 9. 💡 COMPLETE FLOW EXAMPLE
+## 9. COMPLETE FLOW EXAMPLE
 
 ### How Does Data Flow Through the System?
 
@@ -475,7 +475,7 @@ func (c httpControllers) getWallet(ctx http.ServerCtx) error {
 
 ---
 
-## 10. 🔗 RELATED RESOURCES
+## 10. RELATED RESOURCES
 
 | File                                           | Purpose                                  |
 | ---------------------------------------------- | ---------------------------------------- |

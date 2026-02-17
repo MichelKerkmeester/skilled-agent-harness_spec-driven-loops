@@ -9,7 +9,7 @@ Before/after verification protocol for performance optimization work using PageS
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 Performance optimization requires measurable verification. This checklist ensures consistent baseline capture, incremental testing, and post-implementation comparison to validate improvements and catch regressions.
 
@@ -26,7 +26,7 @@ Performance optimization requires measurable verification. This checklist ensure
 
 ---
 
-## 2. 📊 PRE-IMPLEMENTATION BASELINE
+## 2. PRE-IMPLEMENTATION BASELINE
 
 ### PageSpeed Insights Capture
 
@@ -55,7 +55,7 @@ Performance optimization requires measurable verification. This checklist ensure
 
 ---
 
-## 3. 🔄 DURING IMPLEMENTATION
+## 3. DURING IMPLEMENTATION
 
 ### Incremental Testing
 
@@ -72,7 +72,7 @@ Expected messages:
 
 ---
 
-## 4. ✅ POST-IMPLEMENTATION VERIFICATION
+## 4. POST-IMPLEMENTATION VERIFICATION
 
 ### PageSpeed Re-run
 
@@ -92,7 +92,7 @@ Expected messages:
 
 ---
 
-## 5. 🧪 FUNCTIONALITY REGRESSION CHECK
+## 5. FUNCTIONALITY REGRESSION CHECK
 
 - [ ] Homepage loads correctly
 - [ ] Navigation works (desktop)
@@ -105,7 +105,7 @@ Expected messages:
 
 ---
 
-## 6. 🌐 BROWSER TESTING
+## 6. BROWSER TESTING
 
 - [ ] Chrome (latest)
 - [ ] Safari (latest)
@@ -115,7 +115,7 @@ Expected messages:
 
 ---
 
-## 7. 🔧 MAINTENANCE
+## 7. MAINTENANCE
 
 ### Periodic Re-testing
 
@@ -132,7 +132,7 @@ Consider setting up:
 
 ---
 
-## 8. 🔗 RELATED RESOURCES
+## 8. RELATED RESOURCES
 
 ### Internal References
 

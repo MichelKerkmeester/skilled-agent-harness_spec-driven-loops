@@ -17,17 +17,17 @@ importance_tier: "normal"
 ## TABLE OF CONTENTS
 <!-- ANCHOR:table-of-contents -->
 
-- [1. 📖 OVERVIEW](#1--overview)
-- [2. 🚀 QUICK START](#2--quick-start)
-- [3. 📁 STRUCTURE](#3--structure)
-- [4. ⚡ FEATURES](#4--features)
-- [5. 💡 USAGE EXAMPLES](#5--usage-examples)
-- [6. 🛠️ TROUBLESHOOTING](#6--troubleshooting)
-- [7. 📚 RELATED DOCUMENTS](#7--related-documents)
+- [1. OVERVIEW](#1--overview)
+- [2. QUICK START](#2--quick-start)
+- [3. STRUCTURE](#3--structure)
+- [4. FEATURES](#4--features)
+- [5. USAGE EXAMPLES](#5--usage-examples)
+- [6. TROUBLESHOOTING](#6--troubleshooting)
+- [7. RELATED DOCUMENTS](#7--related-documents)
 
 <!-- /ANCHOR:table-of-contents -->
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 <!-- ANCHOR:overview -->
 
 ### What are Setup Scripts?
@@ -62,7 +62,7 @@ Setup scripts validate feature-folder prerequisites before implementation begins
 
 <!-- /ANCHOR:overview -->
 
-## 2. 🚀 QUICK START
+## 2. QUICK START
 <!-- ANCHOR:quick-start -->
 
 ```bash
@@ -95,7 +95,7 @@ cd /path/to/repo
 
 <!-- /ANCHOR:quick-start -->
 
-## 3. 📁 STRUCTURE
+## 3. STRUCTURE
 <!-- ANCHOR:structure -->
 
 ```
@@ -118,7 +118,7 @@ setup/
 
 <!-- /ANCHOR:structure -->
 
-## 4. ⚡ FEATURES
+## 4. FEATURES
 <!-- ANCHOR:features -->
 
 ### Prerequisite Checker (check-prerequisites.sh)
@@ -160,7 +160,7 @@ setup/
 
 <!-- /ANCHOR:features -->
 
-## 5. 💡 USAGE EXAMPLES
+## 5. USAGE EXAMPLES
 <!-- ANCHOR:usage-examples -->
 
 ### Example 1: Validate Spec Folder Before Implementation
@@ -205,7 +205,7 @@ fi
 
 <!-- /ANCHOR:usage-examples -->
 
-## 6. 🛠️ TROUBLESHOOTING
+## 6. TROUBLESHOOTING
 <!-- ANCHOR:troubleshooting -->
 
 ### Common Issues
@@ -260,7 +260,7 @@ ls -la spec.md plan.md checklist.md
 
 <!-- /ANCHOR:troubleshooting -->
 
-## 7. 📚 RELATED DOCUMENTS
+## 7. RELATED DOCUMENTS
 <!-- ANCHOR:related -->
 
 ### Internal Documentation

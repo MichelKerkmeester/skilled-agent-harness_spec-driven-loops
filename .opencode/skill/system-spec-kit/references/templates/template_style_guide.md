@@ -9,7 +9,7 @@ Conventions and standards for system-spec-kit templates ensuring documentation c
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 ### Core Principle
 
@@ -37,7 +37,7 @@ Current templates (10 user-facing + 1 internal):
 
 ---
 
-## 2. 🏷️ METADATA FORMAT
+## 2. METADATA FORMAT
 
 ### Standard Format
 
@@ -67,7 +67,7 @@ Use bulleted list format for metadata sections in all templates:
 
 ---
 
-## 3. 🔤 PLACEHOLDER SYNTAX
+## 3. PLACEHOLDER SYNTAX
 
 ### Placeholder Types
 
@@ -107,7 +107,7 @@ Use bulleted list format for metadata sections in all templates:
 
 ---
 
-## 4. 🔢 SECTION NUMBERING
+## 4. SECTION NUMBERING
 
 ### Standard Format
 
@@ -138,7 +138,7 @@ The following templates may use Title Case for improved readability:
 
 ---
 
-## 5. 📅 DATE FORMATS
+## 5. DATE FORMATS
 
 ### Standard Format
 
@@ -160,7 +160,7 @@ Always use ISO 8601 format: `YYYY-MM-DD`
 
 ---
 
-## 6. 📄 FILE NAMING
+## 6. FILE NAMING
 
 ### Naming Convention
 
@@ -189,7 +189,7 @@ All templates should include a source marker for validation and change tracking:
 
 ---
 
-## 7. 📋 FRONTMATTER REQUIREMENTS
+## 7. FRONTMATTER REQUIREMENTS
 
 ### When Required
 
@@ -225,7 +225,7 @@ status: [Planning / In Progress / Complete]
 
 ---
 
-## 8. ✅ VALIDATION RULES
+## 8. VALIDATION RULES
 
 ### Automated Checks
 
@@ -250,7 +250,7 @@ The `validate.sh` script enforces these rules:
 
 ---
 
-## 9. 🔗 RELATED RESOURCES
+## 9. RELATED RESOURCES
 
 ### Templates
 

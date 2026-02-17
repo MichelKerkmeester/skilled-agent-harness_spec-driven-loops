@@ -8,7 +8,7 @@ allowed-tools: Read, Bash, spec_kit_memory_memory_stats, spec_kit_memory_memory_
 
 ---
 
-## 1. ✅ ARGUMENT PARSING GATE
+## 1. ARGUMENT PARSING GATE
 
 **STATUS: ☐ BLOCKED** (until argument is parsed)
 
@@ -30,7 +30,7 @@ IF required parameter missing:
 
 ---
 
-## 2. 🚨 CONDITIONAL GATES FOR DESTRUCTIVE OPERATIONS
+## 2. CONDITIONAL GATES FOR DESTRUCTIVE OPERATIONS
 
 **Gates apply to cleanup, delete, and checkpoint restore modes only. All other modes pass through immediately.**
 
@@ -96,7 +96,7 @@ operating_mode:
 
 ---
 
-## 3. 🎯 PURPOSE
+## 3. PURPOSE
 
 Provide a unified interface for memory database **management** operations:
 - Indexing new files and scanning for updates
@@ -112,7 +112,7 @@ Provide a unified interface for memory database **management** operations:
 
 ---
 
-## 4. 📝 CONTRACT
+## 4. CONTRACT
 
 **Inputs:** `$ARGUMENTS` — Mode keyword with optional parameters
 **Outputs:** `STATUS=<OK|FAIL>` with mode-specific output
@@ -149,7 +149,7 @@ Provide a unified interface for memory database **management** operations:
 
 ---
 
-## 5. 🔀 ARGUMENT ROUTING
+## 5. ARGUMENT ROUTING
 
 ```
 $ARGUMENTS
@@ -171,7 +171,7 @@ $ARGUMENTS
 
 ---
 
-## 6. 🔧 MCP ENFORCEMENT MATRIX
+## 6. MCP ENFORCEMENT MATRIX
 
 | MODE               | REQUIRED CALLS                                                             | PATTERN  | ON FAILURE      |
 | ------------------ | -------------------------------------------------------------------------- | -------- | --------------- |
@@ -218,7 +218,7 @@ spec_kit_memory_checkpoint_delete({ name: "<name>" })
 
 ---
 
-## 7. 📊 STATS DASHBOARD (No Arguments)
+## 7. STATS DASHBOARD (No Arguments)
 
 **Trigger:** `/memory:manage` with no arguments
 
@@ -244,7 +244,7 @@ User Input: Type action name (scan, cleanup, health, point, quit) to proceed
 
 ---
 
-## 8. 📦 SCAN MODE
+## 8. SCAN MODE
 
 **Trigger:** `/memory:manage scan` or `/memory:manage scan --force`
 
@@ -285,7 +285,7 @@ STATUS=OK INDEXED=<N> SKIPPED=<N> UPDATED=<N>
 
 ---
 
-## 9. 🗑️ CLEANUP MODE
+## 9. CLEANUP MODE
 
 **Trigger:** `/memory:manage cleanup` — **⚠️ GATE 1 MUST BE PASSED**
 
@@ -313,7 +313,7 @@ STATUS=OK REMOVED=<N> KEPT=<N> CHECKPOINT=<name>
 
 ---
 
-## 10. 🔧 TIER MANAGEMENT
+## 10. TIER MANAGEMENT
 
 **Trigger:** `/memory:manage tier <id> <tier>`
 
@@ -333,7 +333,7 @@ STATUS=OK ID=<id> TIER=<tier>
 
 ---
 
-## 11. 🔧 TRIGGER EDIT
+## 11. TRIGGER EDIT
 
 **Trigger:** `/memory:manage triggers <id>`
 
@@ -349,7 +349,7 @@ STATUS=OK ID=<id> TRIGGERS=<N>
 
 ---
 
-## 12. ✅ VALIDATE MODE
+## 12. VALIDATE MODE
 
 **Trigger:** `/memory:manage validate <id> useful` or `/memory:manage validate <id> not`
 
@@ -369,7 +369,7 @@ STATUS=OK ID=<id> USEFUL=<true|false>
 
 ---
 
-## 13. 🗑️ DELETE MODE
+## 13. DELETE MODE
 
 **Trigger:** `/memory:manage delete <id>`
 **⚠️ GATE 2 MUST BE PASSED**
@@ -408,7 +408,7 @@ STATUS=OK DELETED=<id>
 
 ---
 
-## 14. 🏥 HEALTH CHECK
+## 14. HEALTH CHECK
 
 **Trigger:** `/memory:manage health`
 
@@ -425,7 +425,7 @@ STATUS=OK HEALTH=<healthy|degraded|error> SCHEMA=v13
 
 ---
 
-## 15. 📸 CHECKPOINT OPERATIONS
+## 15. CHECKPOINT OPERATIONS
 
 ### Checkpoint Create
 
@@ -532,7 +532,7 @@ STATUS=OK CHECKPOINT=old-checkpoint ACTION=delete
 
 ---
 
-## 16. 🔍 QUICK REFERENCE
+## 16. QUICK REFERENCE
 
 | Command                                    | Result                 |
 | ------------------------------------------ | ---------------------- |
@@ -553,7 +553,7 @@ STATUS=OK CHECKPOINT=old-checkpoint ACTION=delete
 
 ---
 
-## 17. ⚠️ ERROR HANDLING
+## 17. ERROR HANDLING
 
 | Condition               | Response                                     |
 | ----------------------- | -------------------------------------------- |
@@ -568,7 +568,7 @@ STATUS=OK CHECKPOINT=old-checkpoint ACTION=delete
 
 ---
 
-## 18. 🔗 RELATED COMMANDS
+## 18. RELATED COMMANDS
 
 - `/memory:context` — Intent-aware context retrieval (read-only)
 - `/memory:save` — Save current conversation context
@@ -577,7 +577,7 @@ STATUS=OK CHECKPOINT=old-checkpoint ACTION=delete
 
 ---
 
-## 19. 📌 CONSTITUTIONAL TIER HANDLING
+## 19. CONSTITUTIONAL TIER HANDLING
 
 Constitutional tier memories receive special treatment across all operations:
 
@@ -592,6 +592,6 @@ Constitutional tier memories receive special treatment across all operations:
 
 ---
 
-## 20. 📌 FULL DOCUMENTATION
+## 20. FULL DOCUMENTATION
 
 For comprehensive memory system documentation: `.opencode/skill/system-spec-kit/SKILL.md`

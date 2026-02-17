@@ -9,7 +9,7 @@ Complete workflow for deploying minified JavaScript to Cloudflare R2 CDN.
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 ### Purpose
 
@@ -37,7 +37,7 @@ Version parameters are your cache-busting mechanism - increment on EVERY change,
 
 ---
 
-## 2. 🔢 VERSION MANAGEMENT
+## 2. VERSION MANAGEMENT
 
 ### Semantic Versioning Format
 
@@ -72,7 +72,7 @@ script.js?v=X.Y.Z → script.js?v=(X+1).0.0
 
 ---
 
-## 3. 📄 HTML FILE UPDATE WORKFLOW
+## 3. HTML FILE UPDATE WORKFLOW
 
 ### File Locations
 
@@ -146,7 +146,7 @@ grep -r "script_name.js?v=" src/0_html/
 
 ---
 
-## 4. ☁️ CLOUDFLARE R2 UPLOAD
+## 4. CLOUDFLARE R2 UPLOAD
 
 ### Manual Upload via Dashboard
 
@@ -179,7 +179,7 @@ grep -r "script_name.js?v=" src/0_html/
 
 ---
 
-## 5. ✅ DEPLOYMENT CHECKLIST
+## 5. DEPLOYMENT CHECKLIST
 
 ### Pre-Deployment
 
@@ -223,7 +223,7 @@ grep -r "script_name.js?v=" src/0_html/
 
 ---
 
-## 6. 📋 RULES
+## 6. RULES
 
 ### ✅ ALWAYS
 
@@ -252,7 +252,7 @@ grep -r "script_name.js?v=" src/0_html/
 
 ---
 
-## 7. 🔧 TROUBLESHOOTING
+## 7. TROUBLESHOOTING
 
 ### Old Version Still Loading
 
@@ -296,7 +296,7 @@ grep -r "script_name.js?v=" src/0_html/
 
 ---
 
-## 8. 🔗 RELATED RESOURCES
+## 8. RELATED RESOURCES
 
 ### Reference Files
 

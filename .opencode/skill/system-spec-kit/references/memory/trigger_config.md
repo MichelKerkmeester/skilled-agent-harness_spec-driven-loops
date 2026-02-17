@@ -9,7 +9,7 @@ Complete configuration guide for memory trigger phrases and the fast trigger mat
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 **Core Principle:** Trigger detection must be fast (<50ms) and reliable, using optimized phrase matching to surface relevant memories without impacting conversation flow.
 
@@ -32,7 +32,7 @@ This reference covers trigger phrase configuration, the MCP-based matching syste
 
 ---
 
-## 2. 🎯 TRIGGER PHRASES
+## 2. TRIGGER PHRASES
 
 The following phrases activate memory operations (case-insensitive matching):
 
@@ -143,7 +143,7 @@ const matches = await memory_match_triggers({
 
 ---
 
-## 3. 💾 MANUAL SAVE METHODS
+## 3. MANUAL SAVE METHODS
 
 ### Primary Method: Command
 
@@ -180,7 +180,7 @@ Include any of these phrases in your message:
 
 ---
 
-## 4. 🔧 CUSTOMIZATION
+## 4. CUSTOMIZATION
 
 ### Adding Custom Triggers
 
@@ -255,7 +255,7 @@ Override defaults in your spec folder's memory settings:
 
 ---
 
-## 5. 📊 PERFORMANCE TARGETS
+## 5. PERFORMANCE TARGETS
 
 ### Trigger Matching Performance
 
@@ -287,7 +287,7 @@ function optimizedDetection(userMessage: string): CompiledTrigger | undefined {
 
 ---
 
-## 6. ✅ BEST PRACTICES
+## 6. BEST PRACTICES
 
 ### Good vs Bad Trigger Phrases
 
@@ -342,7 +342,7 @@ Before deploying custom triggers:
 
 ---
 
-## 7. 🔗 RELATED RESOURCES
+## 7. RELATED RESOURCES
 
 ### Reference Files
 - [SKILL.md](../../SKILL.md) - Main workflow-memory skill documentation

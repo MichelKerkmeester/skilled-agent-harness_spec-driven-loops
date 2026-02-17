@@ -9,7 +9,7 @@ This plan outlines the implementation of a reusable expand/collapse component fo
 ---
 
 <!-- ANCHOR:phase-1-core-implementation -->
-## Phase 1: Core Implementation ✅
+## Phase 1: Core Implementation 
 
 ### Objectives
 - Create JavaScript component with toggle functionality
@@ -30,7 +30,7 @@ This plan outlines the implementation of a reusable expand/collapse component fo
 ---
 
 <!-- ANCHOR:phase-2-cms-integration -->
-## Phase 2: CMS Integration ✅
+## Phase 2: CMS Integration 
 
 ### Objectives
 - Enable CMS-bindable button text
@@ -47,7 +47,7 @@ This plan outlines the implementation of a reusable expand/collapse component fo
 ---
 
 <!-- ANCHOR:phase-3-webflow-integration -->
-## Phase 3: Webflow Integration ✅
+## Phase 3: Webflow Integration 
 
 ### Objectives
 - Ensure compatibility with Webflow page transitions
@@ -64,7 +64,7 @@ This plan outlines the implementation of a reusable expand/collapse component fo
 ---
 
 <!-- ANCHOR:phase-4-documentation -->
-## Phase 4: Documentation ✅
+## Phase 4: Documentation 
 
 ### Objectives
 - Create Webflow implementation guide
@@ -84,7 +84,7 @@ This plan outlines the implementation of a reusable expand/collapse component fo
 ---
 
 <!-- ANCHOR:phase-5-deployment -->
-## Phase 5: Deployment ⏳
+## Phase 5: Deployment
 
 ### Objectives
 - Minify and deploy to CDN

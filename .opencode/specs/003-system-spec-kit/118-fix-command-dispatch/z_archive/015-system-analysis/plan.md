@@ -51,7 +51,7 @@ We will re-structure the document to insert the new protocol as **Section 3**.
 
 ### Content of New Section 3
 ```markdown
-## 3. 🧠 COMMAND PATTERN REFERENCE PROTOCOL
+## 3. COMMAND PATTERN REFERENCE PROTOCOL
 
 **Philosophy**: Commands (`.opencode/command/**/*.yaml`) are high-value "Reference Patterns" containing optimized logic, not rigid laws for manual execution.
 

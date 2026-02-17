@@ -7,27 +7,28 @@
 <!-- ANCHOR:table-of-contents -->
 ## TABLE OF CONTENTS
 
-- [1. 📖 OVERVIEW](#1--overview)
+- [1. OVERVIEW](#1--overview)
+- [OVERVIEW](#overview)
+- [FILES](#files)
+- [STATUS](#status)
 
 ---
 <!-- /ANCHOR:table-of-contents -->
 
 <!-- ANCHOR:overview -->
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 This README documents the purpose and usage of this spec folder and links to the primary artifacts in this directory.
 
 ---
 <!-- /ANCHOR:overview -->
 
-<!-- ANCHOR:overview -->
-## Overview
+## OVERVIEW
 
 When `/spec_kit:complete` (and potentially other spec_kit commands) is executed, phantom dispatch text appears that instructs the AI to dispatch to wrong agents instead of following the intended YAML workflow. This spec folder documents the audit and fix of all 7 command files and 13 YAML workflow files.
-<!-- /ANCHOR:overview -->
 
 <!-- ANCHOR:files -->
-## Files
+## FILES
 
 | File | Purpose |
 |------|---------|
@@ -39,7 +40,7 @@ When `/spec_kit:complete` (and potentially other spec_kit commands) is executed,
 <!-- /ANCHOR:files -->
 
 <!-- ANCHOR:status -->
-## Status
+## STATUS
 
 **Draft** - Ready for implementation.
 <!-- /ANCHOR:status -->

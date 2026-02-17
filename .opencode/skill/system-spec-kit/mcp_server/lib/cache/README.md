@@ -17,17 +17,17 @@ importance_tier: "normal"
 ## TABLE OF CONTENTS
 <!-- ANCHOR:table-of-contents -->
 
-- [1. 📖 OVERVIEW](#1--overview)
-- [2. 📁 STRUCTURE](#2--structure)
-- [3. ⚡ FEATURES](#3--features)
-- [4. 💡 USAGE](#4--usage)
-- [5. 🔗 RELATED RESOURCES](#5--related-resources)
+- [1. OVERVIEW](#1--overview)
+- [2. STRUCTURE](#2--structure)
+- [3. FEATURES](#3--features)
+- [4. USAGE](#4--usage)
+- [5. RELATED RESOURCES](#5--related-resources)
 
 <!-- /ANCHOR:table-of-contents -->
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 <!-- ANCHOR:overview -->
 
 The cache module provides in-memory caching for MCP tool outputs to reduce redundant operations and improve response times. It uses SHA-256 hashed keys for deterministic cache lookups and supports automatic TTL-based expiration. Post-Spec 126, cache invalidation is especially important for spec document indexing and document-aware retrieval flows.
@@ -55,7 +55,7 @@ The cache module provides in-memory caching for MCP tool outputs to reduce redun
 
 ---
 
-## 2. 📁 STRUCTURE
+## 2. STRUCTURE
 <!-- ANCHOR:structure -->
 
 ```
@@ -74,7 +74,7 @@ cache/
 
 ---
 
-## 3. ⚡ FEATURES
+## 3. FEATURES
 <!-- ANCHOR:features -->
 
 ### Core Operations
@@ -137,7 +137,7 @@ await withCache(toolName, args, asyncFn, options);
 
 ---
 
-## 4. 💡 USAGE
+## 4. USAGE
 <!-- ANCHOR:usage -->
 
 ### Basic Import
@@ -196,7 +196,7 @@ const stats = getStats();
 
 ---
 
-## 5. 🔗 RELATED RESOURCES
+## 5. RELATED RESOURCES
 <!-- ANCHOR:related -->
 
 ### Internal Documentation

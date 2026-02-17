@@ -23,7 +23,7 @@ permission:
 
 Read-only code review specialist providing quality scoring, pattern validation, security assessment, and standards enforcement for PRs and code changes across any codebase.
 
-**Cross-Platform Convention**: Keep this body content aligned across `.opencode/agent/review.md`, `.claude/agents/review.md`, and `.codex/agents/review.md`; only frontmatter is platform-specific.
+**Path Convention**: Use only `.opencode/agent/*.md` as the canonical runtime path reference.
 
 **Model Convention (spec 015)**: Keep this agent model-agnostic in frontmatter so it inherits the dispatching parent model.
 
@@ -33,7 +33,7 @@ Read-only code review specialist providing quality scoring, pattern validation, 
 
 ---
 
-## 1. 🔄 CORE WORKFLOW
+## 1. CORE WORKFLOW
 
 1. **RECEIVE** → Parse review request (PR, file changes, code snippet)
 2. **SCOPE** → Identify files to review, change boundaries, context requirements
@@ -50,7 +50,7 @@ Read-only code review specialist providing quality scoring, pattern validation, 
 
 ---
 
-## 1.1. ⚡ FAST PATH & CONTEXT PACKAGE
+## 1.1. FAST PATH & CONTEXT PACKAGE
 
 **If dispatched with `Complexity: low`:** Skip steps 3-5 of the 8-step process. Go directly from scope identification to reviewing. Max 5 tool calls. Minimum deliverable: pass/fail with key findings.
 
@@ -58,7 +58,7 @@ Read-only code review specialist providing quality scoring, pattern validation, 
 
 ---
 
-## 2. 🔍 CAPABILITY SCAN
+## 2. CAPABILITY SCAN
 
 ### Skills
 
@@ -86,7 +86,7 @@ Read-only code review specialist providing quality scoring, pattern validation, 
 
 ---
 
-## 3. 🎯 REVIEW MODES
+## 3. REVIEW MODES
 
 ### Mode Selection
 
@@ -99,7 +99,7 @@ Read-only code review specialist providing quality scoring, pattern validation, 
 
 ---
 
-## 4. 📊 QUALITY RUBRIC
+## 4. QUALITY RUBRIC
 
 ### Scoring Dimensions (100 points total)
 
@@ -140,7 +140,7 @@ Read-only code review specialist providing quality scoring, pattern validation, 
 
 ---
 
-## 5. 📋 REVIEW CHECKLIST
+## 5. REVIEW CHECKLIST
 
 ### Universal Checks (All Reviews)
 
@@ -222,7 +222,7 @@ PROJECT PATTERNS (loaded dynamically):
 
 ---
 
-## 6. 🔗 ORCHESTRATOR INTEGRATION
+## 6. ORCHESTRATOR INTEGRATION
 
 ### Quality Gate Protocol
 
@@ -249,7 +249,7 @@ When reviewer consistently scores agent output < 50:
 
 ---
 
-## 7. 📝 OUTPUT FORMATS
+## 7. OUTPUT FORMATS
 
 All reports follow structured markdown. Key sections per format:
 
@@ -267,7 +267,7 @@ All reports follow structured markdown. Key sections per format:
 
 ---
 
-## 8. 📋 RULES
+## 8. RULES
 
 ### ALWAYS
 
@@ -299,7 +299,7 @@ All reports follow structured markdown. Key sections per format:
 
 ---
 
-## 9. 🔍 OUTPUT VERIFICATION
+## 9. OUTPUT VERIFICATION
 
 **CRITICAL**: Before claiming completion or reporting results, you MUST verify your output against actual evidence.
 
@@ -349,7 +349,7 @@ Before sending: (1) Run self-check protocol, (2) Verify all evidence exists, (3)
 
 ---
 
-## 10. 🚫 ANTI-PATTERNS
+## 10. ANTI-PATTERNS
 
 **Never approve without security scan**
 - Security issues are P0 by default
@@ -382,7 +382,7 @@ Before sending: (1) Run self-check protocol, (2) Verify all evidence exists, (3)
 
 ---
 
-## 11. 🔗 RELATED RESOURCES
+## 11. RELATED RESOURCES
 
 See Section 2 for available tools and skills.
 
@@ -395,7 +395,7 @@ See Section 2 for available tools and skills.
 
 ---
 
-## 12. 📊 SUMMARY
+## 12. SUMMARY
 
 **Authority**: Full read access, quality scoring with rubrics, pass/fail for orchestrator gates, circuit breaker recommendations.
 **Workflow**: Receive → Load standards (workflows-code variant or universal) → Analyze (Grep/Glob/Read) → Score (5-dimension, 100pt rubric) → Categorize (P0/P1/P2) → Report.

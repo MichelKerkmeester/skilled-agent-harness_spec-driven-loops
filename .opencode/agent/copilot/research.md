@@ -24,7 +24,7 @@ permission:
 
 Technical investigation specialist for evidence gathering, pattern analysis, and research documentation. Conducts 9-step research workflows to produce comprehensive findings before planning or implementation.
 
-**Cross-Platform Convention**: Keep this body content aligned across `.opencode/agent/research.md`, `.claude/agents/research.md`, and `.codex/agents/research.md`; only frontmatter is platform-specific.
+**Path Convention**: Use only `.opencode/agent/*.md` as the canonical runtime path reference.
 
 > ✅ **SPEC FOLDER PERMISSION:** @research has explicit permission to write `research.md` inside spec folders. This is an exception to the @speckit exclusivity rule because research documents are investigation artifacts produced by the 9-step methodology, not spec template documentation.
 
@@ -34,7 +34,7 @@ Technical investigation specialist for evidence gathering, pattern analysis, and
 
 ---
 
-## 1. 🔄 CORE WORKFLOW
+## 1. CORE WORKFLOW
 
 ### 9-Step Research Process
 
@@ -54,7 +54,7 @@ Technical investigation specialist for evidence gathering, pattern analysis, and
 
 ---
 
-## 1.1. ⚡ FAST PATH & CONTEXT PACKAGE
+## 1.1. FAST PATH & CONTEXT PACKAGE
 
 **If dispatched with `Complexity: low`:** Skip steps 4-7 of the 9-step process. Deliver findings directly with evidence. Max 5 tool calls.
 
@@ -62,7 +62,7 @@ Technical investigation specialist for evidence gathering, pattern analysis, and
 
 ---
 
-## 2. 🔍 CAPABILITY SCAN
+## 2. CAPABILITY SCAN
 
 ### Skills
 
@@ -82,7 +82,7 @@ Technical investigation specialist for evidence gathering, pattern analysis, and
 
 ---
 
-## 3. 🗺️ RESEARCH ROUTING
+## 3. RESEARCH ROUTING
 
 ```
 Research Request
@@ -102,7 +102,7 @@ Research Request
 
 ---
 
-## 4. 📑 WORKFLOW-TO-TEMPLATE ALIGNMENT
+## 4. WORKFLOW-TO-TEMPLATE ALIGNMENT
 
 The 9-step workflow maps to specific sections in the research.md template:
 
@@ -120,7 +120,7 @@ The 9-step workflow maps to specific sections in the research.md template:
 
 ---
 
-## 5. 📋 RESEARCH OUTPUT SECTIONS
+## 5. RESEARCH OUTPUT SECTIONS
 
 The generated `research.md` includes 17 sections:
 
@@ -146,7 +146,7 @@ The generated `research.md` includes 17 sections:
 
 ---
 
-## 6. 📋 RULES
+## 6. RULES
 
 ### ALWAYS
 
@@ -174,7 +174,7 @@ The generated `research.md` includes 17 sections:
 
 ---
 
-## 7. 🔧 CODE SEARCH TOOL SELECTION
+## 7. CODE SEARCH TOOL SELECTION
 
 Select the appropriate tool based on what you need to discover:
 
@@ -223,7 +223,7 @@ For comprehensive research, combine tools in sequence:
 
 ---
 
-## 8. ⚡ PARALLEL INVESTIGATION
+## 8. PARALLEL INVESTIGATION
 
 ### Complexity Scoring (5 dimensions)
 
@@ -255,7 +255,7 @@ For comprehensive research, combine tools in sequence:
 
 ---
 
-## 9. 📝 OUTPUT FORMAT
+## 9. OUTPUT FORMAT
 
 ### Research Completion Report
 
@@ -286,7 +286,7 @@ For comprehensive research, combine tools in sequence:
 
 ---
 
-## 10. ✅ OUTPUT VERIFICATION
+## 10. OUTPUT VERIFICATION
 
 ### Evidence Quality Rubric
 
@@ -412,7 +412,7 @@ If ANY gate fails → Fix first, THEN claim completion
 
 ---
 
-## 11. 🚫 ANTI-PATTERNS
+## 11. ANTI-PATTERNS
 
 | Anti-Pattern                  | Why It Fails                                                 |
 | ----------------------------- | ------------------------------------------------------------ |
@@ -424,7 +424,7 @@ If ANY gate fails → Fix first, THEN claim completion
 
 ---
 
-## 12. 🔗 RELATED RESOURCES
+## 12. RELATED RESOURCES
 
 ### Commands
 
@@ -449,7 +449,7 @@ If ANY gate fails → Fix first, THEN claim completion
 
 ---
 
-## 13. 📊 SUMMARY
+## 13. SUMMARY
 
 **Authority:** Full read access to codebase + external sources. Evidence-based, multi-option recommendations. Context preservation via memory.
 

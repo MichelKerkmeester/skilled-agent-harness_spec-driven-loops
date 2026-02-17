@@ -26,13 +26,14 @@ import sys
 import json
 import re
 from pathlib import Path
+from typing import Any, Dict, List, Tuple, Union
 
 
 # ───────────────────────────────────────────────────────────────
 # 1. VALIDATION
 # ───────────────────────────────────────────────────────────────
 
-def validate_skill(skill_path):
+def validate_skill(skill_path: Union[str, Path]) -> Tuple[bool, str, List[str]]:
     """
     Validate a skill directory.
     
@@ -40,7 +41,7 @@ def validate_skill(skill_path):
         Tuple of (is_valid: bool, message: str, warnings: list)
     """
     skill_path = Path(skill_path)
-    warnings = []
+    warnings: List[str] = []
 
     skill_md = skill_path / 'SKILL.md'
     if not skill_md.exists():
@@ -48,8 +49,8 @@ def validate_skill(skill_path):
 
     try:
         content = skill_md.read_text(encoding='utf-8')
-    except Exception as e:
-        return False, f"Failed to read SKILL.md: {str(e)}", warnings
+    except OSError as exc:
+        return False, f"Failed to read SKILL.md: {exc}", warnings
 
     if not content.startswith('---'):
         return False, "No YAML frontmatter found (file should start with ---)", warnings
@@ -107,7 +108,7 @@ def validate_skill(skill_path):
 # 2. MAIN
 # ───────────────────────────────────────────────────────────────
 
-def main():
+def main() -> None:
     json_output = '--json' in sys.argv
     args = [arg for arg in sys.argv[1:] if not arg.startswith('--')]
     
@@ -124,7 +125,7 @@ def main():
     valid, message, warnings = validate_skill(skill_path)
     
     if json_output:
-        result = {
+        result: Dict[str, Any] = {
             'valid': valid,
             'message': message,
             'warnings': warnings,

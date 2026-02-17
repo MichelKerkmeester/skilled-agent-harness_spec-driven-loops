@@ -12,7 +12,7 @@ import * as bm25Index from '../lib/search/bm25-index';
 import * as triggerMatcher from '../lib/parsing/trigger-matcher';
 import * as confidenceTracker from '../lib/scoring/confidence-tracker';
 import { checkDatabaseUpdated } from '../core';
-import { requireDb } from '../utils';
+import { requireDb, toErrorMessage } from '../utils';
 
 // REQ-019: Standardized Response Structure
 import { createMCPSuccessResponse } from '../lib/response/envelope';
@@ -157,9 +157,9 @@ async function handleCheckpointRestore(args: CheckpointRestoreArgs): Promise<MCP
     }
 
     triggerMatcher.refreshTriggerCache();
-  } catch (rebuildErr) {
+  } catch (rebuildErr: unknown) {
     // Index rebuild failure is non-fatal — indexes will self-heal on next query or restart
-    console.error('[T102] Index rebuild after checkpoint restore failed:', rebuildErr);
+    console.error('[T102] Index rebuild after checkpoint restore failed:', toErrorMessage(rebuildErr));
   }
 
   return createMCPSuccessResponse({
@@ -282,4 +282,3 @@ export {
   handle_checkpoint_delete,
   handle_memory_validate,
 };
-

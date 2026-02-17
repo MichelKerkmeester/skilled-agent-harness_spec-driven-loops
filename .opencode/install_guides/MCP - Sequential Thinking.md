@@ -9,20 +9,20 @@ Complete installation and configuration guide for the Sequential Thinking MCP se
 
 #### TABLE OF CONTENTS
 
-1. [📖 OVERVIEW](#1--overview)
-2. [📋 PREREQUISITES](#2--prerequisites)
-3. [⚙️ CONFIGURATION](#3-️-configuration)
-4. [✅ VERIFICATION](#4--verification)
-5. [🎯 WHEN TO USE](#5--when-to-use)
-6. [🚀 USAGE](#6--usage)
-7. [📝 PARAMETERS](#7--parameters)
-8. [💡 EXAMPLES](#8--examples)
-9. [🔧 TROUBLESHOOTING](#9--troubleshooting)
-10. [📚 RESOURCES](#10--resources)
+1. [OVERVIEW](#1--overview)
+2. [PREREQUISITES](#2--prerequisites)
+3. [CONFIGURATION](#3--configuration)
+4. [VERIFICATION](#4--verification)
+5. [WHEN TO USE](#5--when-to-use)
+6. [USAGE](#6--usage)
+7. [PARAMETERS](#7--parameters)
+8. [EXAMPLES](#8--examples)
+9. [TROUBLESHOOTING](#9--troubleshooting)
+10. [RESOURCES](#10--resources)
 
 ---
 
-## 🤖 AI INSTALL GUIDE
+## AI INSTALL GUIDE
 
 **Copy and paste this prompt to your AI assistant to get installation help:**
 
@@ -47,7 +47,7 @@ This is an npx package - no manual installation needed. Guide me through the con
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 Sequential Thinking is an official Model Context Protocol (MCP) server that enables dynamic, reflective problem-solving through structured thought sequences. Unlike rigid frameworks, it allows flexible thinking that can adapt and evolve as understanding deepens.
 
@@ -86,7 +86,7 @@ The tool supports:
 
 ---
 
-## 2. 📋 PREREQUISITES
+## 2. PREREQUISITES
 
 ### Required
 
@@ -109,7 +109,7 @@ No additional installation needed. The server runs via `npx` which downloads and
 
 ---
 
-## 3. ⚙️ CONFIGURATION
+## 3. CONFIGURATION
 
 Sequential Thinking MCP can be configured for different AI platforms:
 
@@ -229,7 +229,7 @@ docker build -t mcp/sequentialthinking -f src/sequentialthinking/Dockerfile .
 
 ---
 
-## 4. ✅ VERIFICATION
+## 4. VERIFICATION
 
 ### Check 1: Verify in OpenCode
 
@@ -262,7 +262,7 @@ Expected: AI should invoke the tool and show structured thinking output.
 
 ---
 
-## 5. 🎯 WHEN TO USE
+## 5. WHEN TO USE
 
 ### Use Sequential Thinking When:
 
@@ -292,7 +292,7 @@ Consider this overhead when deciding whether to invoke the tool.
 
 ---
 
-## 6. 🚀 USAGE
+## 6. USAGE
 
 ### Invocation
 
@@ -339,7 +339,7 @@ Thought 1 → Thought 2 → Branch A: Thought 3a → ...
 
 ---
 
-## 7. 📝 PARAMETERS
+## 7. PARAMETERS
 
 ### Required Parameters
 
@@ -377,7 +377,7 @@ sequential_thinking_sequentialthinking({
 
 ---
 
-## 8. 💡 EXAMPLES
+## 8. EXAMPLES
 
 ### Example 1: Basic Analysis
 
@@ -489,7 +489,7 @@ sequential_thinking_sequentialthinking({
 
 ---
 
-## 9. 🔧 TROUBLESHOOTING
+## 9. TROUBLESHOOTING
 
 ### Tool Not Appearing
 
@@ -555,7 +555,7 @@ sequential_thinking_sequentialthinking({
 
 ---
 
-## 10. 📚 RESOURCES
+## 10. RESOURCES
 
 ### Official Documentation
 

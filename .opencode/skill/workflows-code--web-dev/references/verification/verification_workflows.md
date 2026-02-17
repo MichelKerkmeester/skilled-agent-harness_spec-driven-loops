@@ -9,7 +9,7 @@ Browser verification requirements for all completion claims - no exceptions.
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 ### Purpose
 **The Iron Law**: Evidence in browser before claims, always. Claiming work is complete without browser verification is dishonesty, not efficiency. "Works on my machine" is not verification.
@@ -37,7 +37,7 @@ If you haven't opened the browser and tested in this message, you cannot claim i
 
 ---
 
-## 2. 🚪 THE GATE FUNCTION
+## 2. THE GATE FUNCTION
 
 **BEFORE claiming any status or expressing satisfaction:**
 
@@ -62,7 +62,7 @@ Skip any step = lying, not verifying.
 
 ---
 
-## 2.5. 🤖 AUTOMATED VERIFICATION OPTIONS (MCP OR CLI)
+## 2.5. AUTOMATED VERIFICATION OPTIONS (MCP OR CLI)
 
 **Automated browser testing enables faster, repeatable verification.**
 
@@ -353,7 +353,7 @@ bdg stop 2>&1
 
 ---
 
-## 3. 📋 VERIFICATION REQUIREMENTS
+## 3. VERIFICATION REQUIREMENTS
 
 ### Required For Every Claim
 
@@ -403,7 +403,7 @@ bdg stop 2>&1
 
 ---
 
-## 4. 📖 RULES
+## 4. RULES
 
 ### ✅ ALWAYS
 
@@ -466,7 +466,7 @@ bdg stop 2>&1
 
 ---
 
-## 5. 🚨 RED FLAGS - STOP
+## 5. RED FLAGS - STOP
 
 If you catch yourself thinking:
 - "Quick fix for now, test later"
@@ -483,7 +483,7 @@ If you catch yourself thinking:
 
 ---
 
-## 6. 💡 KEY PATTERNS
+## 6. KEY PATTERNS
 
 ### Pattern 1: Layout Changes
 
@@ -554,7 +554,7 @@ across all tested viewports."
 
 ---
 
-## 7. ⛔ COMMON RATIONALIZATIONS
+## 7. COMMON RATIONALIZATIONS
 
 | Excuse | Reality |
 |--------|---------|
@@ -571,7 +571,7 @@ across all tested viewports."
 
 ---
 
-## 8. 🏆 SUCCESS CRITERIA
+## 8. SUCCESS CRITERIA
 
 **Verification is successful when:**
 - ✅ Opened actual browser (not just reviewed code)
@@ -594,7 +594,7 @@ across all tested viewports."
 
 ---
 
-## 9. ✅ VERIFICATION CHECKLIST
+## 9. VERIFICATION CHECKLIST
 
 **Before claiming any work complete, verify:**
 
@@ -637,7 +637,7 @@ EVIDENCE:
 
 ---
 
-## 10. 🔗 RELATED RESOURCES
+## 10. RELATED RESOURCES
 
 ### Reference Files
 - [implementation_workflows.md](../implementation/implementation_workflows.md) - Verify implementations work correctly

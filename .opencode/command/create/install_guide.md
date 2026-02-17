@@ -158,7 +158,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
 
 ---
 
-## ✅ PHASE STATUS VERIFICATION (BLOCKING)
+## PHASE STATUS VERIFICATION (BLOCKING)
 
 **Before continuing to the workflow, verify ALL values are set:**
 
@@ -180,7 +180,7 @@ VERIFICATION CHECK:
 
 ---
 
-## ⚡ INSTRUCTIONS
+## INSTRUCTIONS
 
 After Phase 0 and Setup Phase pass, load and execute the appropriate YAML workflow:
 
@@ -231,13 +231,13 @@ operating_mode:
 
 ---
 
-## 1. 🎯 PURPOSE
+## 1. PURPOSE
 
 Create a comprehensive AI-first installation guide following the pattern in `install_guides/`. The guide includes a copy-paste AI prompt for assisted installation, clear prerequisites, platform-specific commands, and thorough troubleshooting.
 
 ---
 
-## 2. 📝 CONTRACT
+## 2. CONTRACT
 
 **Inputs:** `$ARGUMENTS` — Project name with optional --platforms flag
 **Outputs:** Installation guide at specified location + `STATUS=<OK|FAIL|CANCELLED>`
@@ -250,7 +250,7 @@ $ARGUMENTS
 
 ---
 
-## 3. ⚡ INSTRUCTIONS
+## 3. INSTRUCTIONS
 
 ### Step 4: Verify All Fields Set
 
@@ -286,7 +286,7 @@ Execute all 5 steps in sequence following the workflow definition.
 
 ---
 
-## 4. 📌 REFERENCE (See YAML for Details)
+## 4. REFERENCE (See YAML for Details)
 
 | Section             | Location in YAML                |
 | ------------------- | ------------------------------- |
@@ -303,7 +303,7 @@ Execute all 5 steps in sequence following the workflow definition.
 
 ---
 
-## 5. 🔍 EXAMPLES
+## 5. EXAMPLES
 
 **Example 1: MCP Server Guide**
 ```
@@ -337,7 +337,7 @@ Execute all 5 steps in sequence following the workflow definition.
 
 ---
 
-## 6. 🔗 COMMAND CHAIN
+## 6. COMMAND CHAIN
 
 This command creates standalone documentation:
 
@@ -350,7 +350,7 @@ This command creates standalone documentation:
 
 ---
 
-## 7. 📌 NEXT STEPS
+## 7. NEXT STEPS
 
 After install guide creation completes, suggest relevant next steps:
 

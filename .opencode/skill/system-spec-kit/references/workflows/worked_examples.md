@@ -9,7 +9,7 @@ Practical scenarios demonstrating SpecKit workflows for different documentation 
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 ### What Are Worked Examples?
 
@@ -35,7 +35,7 @@ These examples demonstrate real-world usage of the SpecKit system across differe
 
 ---
 
-## 2. 🔧 SIMPLE BUG FIX (LEVEL 1)
+## 2. SIMPLE BUG FIX (LEVEL 1)
 
 ### Scenario
 
@@ -89,7 +89,7 @@ specs/008-fix-button-alignment/
 
 ---
 
-## 3. ⚡ FEATURE IMPLEMENTATION (LEVEL 2)
+## 3. FEATURE IMPLEMENTATION (LEVEL 2)
 
 ### Scenario
 
@@ -143,7 +143,7 @@ specs/009-notification-system/
 
 ---
 
-## 4. 🏗️ ARCHITECTURE CHANGE (LEVEL 3)
+## 4. ARCHITECTURE CHANGE (LEVEL 3)
 
 ### Scenario
 
@@ -219,7 +219,7 @@ specs/010-graphql-migration/
 
 ---
 
-## 5. 🔄 RESUMING WORK
+## 5. RESUMING WORK
 
 ### Scenario
 
@@ -270,7 +270,7 @@ AI: Loading context for specs/009-notification-system/
 
 ---
 
-## 6. 🔗 RELATED RESOURCES
+## 6. RELATED RESOURCES
 
 ### Reference Files
 

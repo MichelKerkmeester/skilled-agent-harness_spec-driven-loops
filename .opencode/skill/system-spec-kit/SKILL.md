@@ -13,7 +13,7 @@ Orchestrates mandatory spec folder creation for all conversations involving file
 
 ---
 
-## 1. 🎯 WHEN TO USE
+## 1. WHEN TO USE
 
 ### What is a Spec Folder?
 
@@ -54,6 +54,7 @@ Think of it as a "project folder" for AI-assisted development - it keeps context
 - User explicitly selects Option D (skip documentation)
 
 **Rule of thumb:** If modifying ANY file content → Activate this skill.
+Status: ✅ This requirement applies immediately once file edits are requested.
 
 ### Agent Exclusivity
 
@@ -80,7 +81,7 @@ Routing to `@general`, `@write`, or other agents for spec documentation is a **h
 
 ---
 
-## 2. 🧭 SMART ROUTING
+## 2. SMART ROUTING
 
 ### Activation Detection
 
@@ -246,7 +247,7 @@ Runtime configuration for the memory system:
 
 ---
 
-## 3. 🛠️ HOW IT WORKS
+## 3. HOW IT WORKS
 
 ### Gate 3 Integration
 
@@ -589,7 +590,7 @@ Automated validation of spec folder contents via `validate.sh`.
 
 ---
 
-## 4. 📋 RULES
+## 4. RULES
 
 ### ✅ ALWAYS
 
@@ -635,7 +636,7 @@ Automated validation of spec folder contents via `validate.sh`.
 
 ---
 
-## 5. 🏆 SUCCESS CRITERIA
+## 5. SUCCESS CRITERIA
 
 ### Documentation Created
 
@@ -680,7 +681,7 @@ Automated validation of spec folder contents via `validate.sh`.
 
 ---
 
-## 6. 🔌 INTEGRATION POINTS
+## 6. INTEGRATION POINTS
 
 ### Priority System
 
@@ -718,7 +719,7 @@ Automated validation of spec folder contents via `validate.sh`.
 
 ---
 
-## 7. 🔗 RELATED RESOURCES
+## 7. RELATED RESOURCES
 
 ### Related Skills
 

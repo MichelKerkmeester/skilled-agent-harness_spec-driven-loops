@@ -7,21 +7,21 @@
 ## TABLE OF CONTENTS
 <!-- ANCHOR:table-of-contents -->
 
-- [1. 📖 OVERVIEW](#1--overview)
-- [2. 🚀 QUICK START](#2--quick-start)
-- [3. 📁 STRUCTURE](#3--structure)
-- [4. ⚡ FEATURES](#4--features)
-- [5. ⚙️ CONFIGURATION](#5--configuration)
-- [6. 💡 USAGE EXAMPLES](#6--usage-examples)
-- [7. 🛠️ TROUBLESHOOTING](#7--troubleshooting)
-- [8. ❓ FAQ](#8--faq)
-- [9. 📚 RELATED DOCUMENTS](#9--related-documents)
+- [1. OVERVIEW](#1--overview)
+- [2. QUICK START](#2--quick-start)
+- [3. STRUCTURE](#3--structure)
+- [4. FEATURES](#4--features)
+- [5. CONFIGURATION](#5--configuration)
+- [6. USAGE EXAMPLES](#6--usage-examples)
+- [7. TROUBLESHOOTING](#7--troubleshooting)
+- [8. FAQ](#8--faq)
+- [9. RELATED DOCUMENTS](#9--related-documents)
 
 <!-- /ANCHOR:table-of-contents -->
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 <!-- ANCHOR:overview -->
 
 ### What are Component Install Scripts?
@@ -59,7 +59,7 @@ These scripts automate installation and configuration of OpenCode components (MC
 
 ---
 
-## 2. 🚀 QUICK START
+## 2. QUICK START
 <!-- ANCHOR:quick-start -->
 
 ### 30-Second Setup
@@ -100,7 +100,7 @@ opencode
 
 ---
 
-## 3. 📁 STRUCTURE
+## 3. STRUCTURE
 <!-- ANCHOR:structure -->
 
 ```
@@ -131,7 +131,7 @@ install_scripts/
 
 ---
 
-## 4. ⚡ FEATURES
+## 4. FEATURES
 <!-- ANCHOR:features -->
 
 ### Available Scripts
@@ -178,7 +178,7 @@ install_scripts/
 
 ---
 
-## 5. ⚙️ CONFIGURATION
+## 5. CONFIGURATION
 <!-- ANCHOR:configuration -->
 
 ### Configuration Files
@@ -221,7 +221,7 @@ All scripts support these standard options:
 
 ---
 
-## 6. 💡 USAGE EXAMPLES
+## 6. USAGE EXAMPLES
 <!-- ANCHOR:usage-examples -->
 
 ### Example 1: Install Core MCPs
@@ -272,7 +272,7 @@ All scripts support these standard options:
 
 ---
 
-## 7. 🛠️ TROUBLESHOOTING
+## 7. TROUBLESHOOTING
 <!-- ANCHOR:troubleshooting -->
 
 ### Common Issues
@@ -363,7 +363,7 @@ bdg --version
 
 ---
 
-## 8. ❓ FAQ
+## 8. FAQ
 <!-- ANCHOR:faq -->
 
 ### General Questions
@@ -430,7 +430,7 @@ Note: The master installer (`install-all.sh`) automatically uses non-interactive
 
 ---
 
-## 9. 📚 RELATED DOCUMENTS
+## 9. RELATED DOCUMENTS
 <!-- ANCHOR:related-documents -->
 
 ### Internal Documentation

@@ -9,7 +9,7 @@ Understanding the layered architecture pattern used across all domains in backen
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 ### Purpose
 
@@ -40,7 +40,7 @@ Level 2: Related knowledge files
 
 ---
 
-## 2. 🔄 LIFECYCLE METHODS (Defer/Health/Init)
+## 2. LIFECYCLE METHODS (Defer/Health/Init)
 
 ### What Lifecycle Methods Exist?
 
@@ -167,7 +167,7 @@ func (l *PaymentsBusinessLayer) InitLayer(_ context.Context) error {
 
 ---
 
-## 3. 🏗️ LAYER HIERARCHY
+## 3. LAYER HIERARCHY
 
 ### What Is the Domain Structure?
 
@@ -236,7 +236,7 @@ Database
 
 ---
 
-## 4. 📦 GENERIC SERVICE PATTERN
+## 4. GENERIC SERVICE PATTERN
 
 ### How Does `services.Service[T]` Work?
 
@@ -284,7 +284,7 @@ func (svc Service[T]) TxNil() bool {
 
 ---
 
-## 5. 🔧 SERVICE IMPLEMENTATION
+## 5. SERVICE IMPLEMENTATION
 
 ### How Do I Structure a Service?
 
@@ -364,7 +364,7 @@ walletService.paymentsDataLayer = service.Instance.paymentsDataLayer
 
 ---
 
-## 6. 💾 TRANSACTION PATTERNS
+## 6. TRANSACTION PATTERNS
 
 ### Pattern 1: Service Method Without Transaction Requirement
 
@@ -454,7 +454,7 @@ func (s WalletService) GetAll(ctx context.Context, queryParams map[string][]stri
 
 ---
 
-## 7. 🔀 CROSS-SERVICE TRANSACTIONS
+## 7. CROSS-SERVICE TRANSACTIONS
 
 ### How Do I Coordinate Multiple Services in a Transaction?
 
@@ -501,7 +501,7 @@ func (bl PaymentsBusinessLayer) ProvidePaymentInfoConfirm(
 
 ---
 
-## 8. 🎯 ENTITY-MODEL BOUNDARY
+## 8. ENTITY-MODEL BOUNDARY
 
 ### Where Do Entities Become Models?
 
@@ -559,7 +559,7 @@ func (bl PaymentsBusinessLayer) GetWalletWithSubscriptions(
 
 ---
 
-## 9. 🔍 PIPELINE PATTERN (Query Building)
+## 9. PIPELINE PATTERN (Query Building)
 
 ### What Is the Pipeline Pattern?
 
@@ -704,7 +704,7 @@ return operators.PaginatedResult[[]payments_entities.Wallet]{
 
 ---
 
-## 10. 🗄️ DATA LAYER PATTERN
+## 10. DATA LAYER PATTERN
 
 ### How Is the Data Layer Structured?
 
@@ -773,7 +773,7 @@ func (l GenericDataLayer) Transaction(
 
 ---
 
-## 11. 💡 TRANSACTION FLOW EXAMPLES
+## 11. TRANSACTION FLOW EXAMPLES
 
 ### Example 1: Simple Service Method
 
@@ -861,7 +861,7 @@ func (s WalletService) GetWalletWithSubscriptions(
 
 ---
 
-## 12. ⚙️ STATE MACHINE PATTERN
+## 12. STATE MACHINE PATTERN
 
 ### What Is the State Machine Pattern?
 
@@ -1030,7 +1030,7 @@ Use state machines when:
 
 ---
 
-## 13. 📋 RULES
+## 13. RULES
 
 ### ALWAYS
 
@@ -1066,7 +1066,7 @@ Use state machines when:
 
 ---
 
-## 14. 🐛 DEBUGGING TRANSACTION ISSUES
+## 14. DEBUGGING TRANSACTION ISSUES
 
 ### Common Issue: "wrong call to WithTx on Service[T]"
 
@@ -1090,7 +1090,7 @@ Use state machines when:
 
 ---
 
-## 15. 🔗 RELATED RESOURCES
+## 15. RELATED RESOURCES
 
 | File                                                                       | Purpose                                      |
 | -------------------------------------------------------------------------- | -------------------------------------------- |

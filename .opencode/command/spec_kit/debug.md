@@ -23,7 +23,7 @@ This workflow uses a SINGLE consolidated prompt to gather ALL required inputs in
 
 ---
 
-## 1. 📋 UNIFIED SETUP PHASE
+## 1. UNIFIED SETUP PHASE
 
 **STATUS: BLOCKED**
 
@@ -92,7 +92,7 @@ NEVER split into multiple prompts
 
 ---
 
-## 2. 📋 GATE 3 CLARIFICATION
+## 2. GATE 3 CLARIFICATION
 
 When debugging leads to file modifications (Step 5, Option A "Apply the fix"):
 - Spec folder established in setup -> Gate 3 satisfied
@@ -103,7 +103,7 @@ When debugging leads to file modifications (Step 5, Option A "Apply the fix"):
 
 ---
 
-## 3. ✅ PHASE STATUS VERIFICATION (BLOCKING)
+## 3. PHASE STATUS VERIFICATION (BLOCKING)
 
 | FIELD            | REQUIRED      | SOURCE                     |
 | ---------------- | ------------- | -------------------------- |
@@ -117,7 +117,7 @@ All required fields set? YES -> Proceed to workflow. NO -> Re-prompt for missing
 
 ---
 
-## 4. 📊 WORKFLOW STEPS (5 STEPS)
+## 4. WORKFLOW STEPS (5 STEPS)
 
 **Execute steps IN ORDER. Mark each ONLY after completing ALL activities. DO NOT SKIP.**
 
@@ -153,14 +153,14 @@ operating_mode:
 
 ---
 
-## 5. 📝 CONTRACT
+## 5. CONTRACT
 
 **Inputs:** `$ARGUMENTS` -- Optional spec folder path
 **Outputs:** Debug resolution + `STATUS=<RESOLVED|NEEDS_REVIEW|ESCALATE>`
 
 ---
 
-## 6. 📊 WORKFLOW OVERVIEW
+## 6. WORKFLOW OVERVIEW
 
 | Step | Name               | Purpose                             | Outputs             |
 | ---- | ------------------ | ----------------------------------- | ------------------- |
@@ -185,7 +185,7 @@ operating_mode:
 
 ---
 
-## 7. ⚡ INSTRUCTIONS
+## 7. INSTRUCTIONS
 
 After all phases pass, load and execute the appropriate YAML prompt:
 
@@ -210,7 +210,7 @@ The YAML contains detailed step-by-step workflow, sub-agent prompt template, err
 
 ---
 
-## 8. 📊 OUTPUT FORMATS
+## 8. OUTPUT FORMATS
 
 ### Debug Delegation Success
 ```text
@@ -241,7 +241,7 @@ The YAML contains detailed step-by-step workflow, sub-agent prompt template, err
 
 ---
 
-## 9. 📌 REFERENCE
+## 9. REFERENCE
 
 ### Error Categories
 
@@ -272,7 +272,7 @@ Before/during debugging, validation runs automatically: FILE_EXISTS, PLACEHOLDER
 
 ---
 
-## 10. 🔀 SUB-AGENT DELEGATION
+## 10. SUB-AGENT DELEGATION
 
 Uses Task tool to dispatch the debug agent. Sub-agent runs independently with fresh perspective, returns structured findings.
 
@@ -332,7 +332,7 @@ Timeout: 2 min | Retry: max 3 re-dispatches | After 3 failed hypotheses -> ESCAL
 
 ---
 
-## 11. 🔍 EXAMPLES
+## 11. EXAMPLES
 
 ```
 /spec_kit:debug                                          # Auto-detect + conversation error
@@ -343,7 +343,7 @@ After multiple failed attempts: Creates comprehensive delegation report with all
 
 ---
 
-## 12. 🔗 RELATED COMMANDS
+## 12. RELATED COMMANDS
 
 | Command              | Relationship                                    |
 | -------------------- | ----------------------------------------------- |
@@ -353,7 +353,7 @@ After multiple failed attempts: Creates comprehensive delegation report with all
 
 ---
 
-## 13. 🔗 INTEGRATION
+## 13. INTEGRATION
 
 ### Debug Agent
 
@@ -378,7 +378,7 @@ After resolution:
 
 ---
 
-## 14. 🔗 COMMAND CHAIN
+## 14. COMMAND CHAIN
 
 ```
 [/spec_kit:implement] -> /spec_kit:debug -> [Return to original workflow]
@@ -389,7 +389,7 @@ After resolution: Return to the original workflow step that triggered debugging.
 
 ---
 
-## 15. 📌 NEXT STEPS
+## 15. NEXT STEPS
 
 | Condition                      | Suggested Command                       | Reason                          |
 | ------------------------------ | --------------------------------------- | ------------------------------- |

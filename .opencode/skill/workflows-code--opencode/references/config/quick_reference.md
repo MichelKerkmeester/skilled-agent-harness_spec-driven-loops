@@ -9,7 +9,7 @@ Fast lookup for JSON/JSONC configuration patterns and common structures in OpenC
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 ### Purpose
 
@@ -18,7 +18,7 @@ Quick-access reference card for configuration file patterns. For detailed explan
 
 ---
 
-## 2. 📋 FILE TEMPLATE
+## 2. FILE TEMPLATE
 
 ```jsonc
 // ───────────────────────────────────────────────────────────────
@@ -52,7 +52,7 @@ Quick-access reference card for configuration file patterns. For detailed explan
 
 ---
 
-## 3. 🏷️ NAMING CONVENTIONS
+## 3. NAMING CONVENTIONS
 
 | Element | Convention | Example |
 |---------|------------|---------|
@@ -63,7 +63,7 @@ Quick-access reference card for configuration file patterns. For detailed explan
 
 ---
 
-## 4. 📄 SECTION HEADERS
+## 4. SECTION HEADERS
 
 ### Standard Format
 
@@ -85,7 +85,7 @@ Quick-access reference card for configuration file patterns. For detailed explan
 
 ---
 
-## 5. 💡 COMMON PATTERNS
+## 5. COMMON PATTERNS
 
 ### Feature Toggle
 
@@ -150,7 +150,7 @@ Quick-access reference card for configuration file patterns. For detailed explan
 
 ---
 
-## 6. 🏷️ VALUE TYPES
+## 6. VALUE TYPES
 
 ### Strings
 
@@ -202,7 +202,7 @@ Quick-access reference card for configuration file patterns. For detailed explan
 
 ---
 
-## 7. 📄 COMMENTS (JSONC ONLY)
+## 7. COMMENTS (JSONC ONLY)
 
 ### Inline Comments
 
@@ -235,7 +235,7 @@ Quick-access reference card for configuration file patterns. For detailed explan
 
 ---
 
-## 8. 📌 VALIDATION RULES
+## 8. VALIDATION RULES
 
 ### P0 - Required
 
@@ -264,7 +264,7 @@ Quick-access reference card for configuration file patterns. For detailed explan
 
 ---
 
-## 9. 📐 SCHEMA REFERENCE
+## 9. SCHEMA REFERENCE
 
 ### Adding Schema
 
@@ -285,7 +285,7 @@ Quick-access reference card for configuration file patterns. For detailed explan
 
 ---
 
-## 10. 📌 FILE LOCATIONS
+## 10. FILE LOCATIONS
 
 ```
 .opencode/
@@ -301,7 +301,7 @@ Quick-access reference card for configuration file patterns. For detailed explan
 
 ---
 
-## 11. ✅ QUALITY CHECKLIST
+## 11. QUALITY CHECKLIST
 
 ```markdown
 P0 - Must Fix:
@@ -324,7 +324,7 @@ P2 - Nice to Have:
 
 ---
 
-## 12. 🔗 RELATED RESOURCES
+## 12. RELATED RESOURCES
 
 - [style_guide.md](./style_guide.md) - Detailed style documentation
 - [JSON Specification](https://www.json.org/)

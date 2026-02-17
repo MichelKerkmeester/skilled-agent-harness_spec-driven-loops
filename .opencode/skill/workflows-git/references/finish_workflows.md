@@ -9,7 +9,7 @@ Complete workflow documentation for completing development work with structured 
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 Systematically complete development work by verifying tests, presenting integration options, and executing the chosen workflow. Ensures work is properly integrated with clean branch management.
 
@@ -17,7 +17,7 @@ Systematically complete development work by verifying tests, presenting integrat
 
 ---
 
-## 2. 🛠️ PROCESS OVERVIEW
+## 2. PROCESS OVERVIEW
 
 1. Verify all tests pass (blocking gate)
 2. Determine base branch for integration
@@ -34,7 +34,7 @@ Systematically complete development work by verifying tests, presenting integrat
 
 ---
 
-## 3. ✅ COMPLETE WORKFLOW
+## 3. COMPLETE WORKFLOW
 
 ### Step 1: Verify Tests
 
@@ -315,7 +315,7 @@ echo "No worktree cleanup needed."
 
 ---
 
-## 4. ⚖️ DECISION MATRIX
+## 4. DECISION MATRIX
 
 | Scenario | Recommended Option | Rationale |
 |----------|-------------------|-----------|
@@ -330,7 +330,7 @@ echo "No worktree cleanup needed."
 
 ---
 
-## 5. ❌ COMMON MISTAKES
+## 5. COMMON MISTAKES
 
 **Skipping test verification**:
 - **Problem**: Merge broken code, create failing PR
@@ -364,7 +364,7 @@ echo "No worktree cleanup needed."
 
 ---
 
-## 6. 💡 EXAMPLE WORKFLOWS
+## 6. EXAMPLE WORKFLOWS
 
 ### Example 1: Quick Fix with Local Merge (Option 1)
 
@@ -563,7 +563,7 @@ Deleted branch experiment/alternative-approach
 
 ---
 
-## 7. 🐛 TROUBLESHOOTING
+## 7. TROUBLESHOOTING
 
 ### Tests Fail Before Options
 
@@ -790,7 +790,7 @@ Which option? (1-3)
 
 ---
 
-## 8. 🎓 SUCCESS CRITERIA
+## 8. SUCCESS CRITERIA
 
 ### Workflow Success
 
@@ -879,7 +879,7 @@ Which option? (1-3)
 
 ---
 
-## 9. 🔗 RELATED RESOURCES
+## 9. RELATED RESOURCES
 
 ### Reference Files
 - [worktree_workflows.md](./worktree_workflows.md) - Create isolated git workspaces with minimal branching

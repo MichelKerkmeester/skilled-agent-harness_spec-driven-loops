@@ -9,7 +9,7 @@ Server Components vs Client Components, composition patterns, props handling, co
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 ### Purpose
 
@@ -31,7 +31,7 @@ Provides comprehensive guidance on React component patterns including Server Com
 
 ---
 
-## 2. 🧩 SERVER COMPONENTS VS CLIENT COMPONENTS
+## 2. SERVER COMPONENTS VS CLIENT COMPONENTS
 
 ### The Mental Model
 
@@ -273,7 +273,7 @@ export function CommentSection({ postId, initialComments }: CommentSectionProps)
 
 ---
 
-## 3. 📁 COMPONENT FOLDER STRUCTURE
+## 3. COMPONENT FOLDER STRUCTURE
 
 ### Standard Component Structure
 
@@ -398,7 +398,7 @@ import { Button, Input, Modal } from '@/components/ui';
 
 ---
 
-## 4. 🔄 PROPS AND CHILDREN PATTERNS
+## 4. PROPS AND CHILDREN PATTERNS
 
 ### TypeScript Props Interface
 
@@ -568,7 +568,7 @@ interface IconProps {
 
 ---
 
-## 5. 🧩 COMPOUND COMPONENTS
+## 5. COMPOUND COMPONENTS
 
 ### Pattern Overview
 
@@ -857,7 +857,7 @@ export const Tabs = {
 
 ---
 
-## 6. 🔄 RENDER PROPS PATTERN
+## 6. RENDER PROPS PATTERN
 
 ### When to Use
 
@@ -1095,7 +1095,7 @@ const [isEnabled, setIsEnabled] = useState(false);
 
 ---
 
-## 7. 🔄 HIGHER-ORDER COMPONENTS (HOCs)
+## 7. HIGHER-ORDER COMPONENTS (HOCs)
 
 ### When to Use (Modern Approach)
 
@@ -1203,7 +1203,7 @@ const SafeChart = withErrorBoundary(
 
 ---
 
-## 8. 🔄 COMPONENT COMPOSITION PATTERNS
+## 8. COMPONENT COMPOSITION PATTERNS
 
 ### Slot Pattern
 
@@ -1401,7 +1401,7 @@ export function useCart() {
 
 ---
 
-## 9. 🔧 FORWARDREF AND IMPERATIVE HANDLE
+## 9. FORWARDREF AND IMPERATIVE HANDLE
 
 ### ForwardRef Pattern
 
@@ -1539,7 +1539,7 @@ function Page() {
 
 ---
 
-## 10. ♿ ACCESSIBILITY PATTERNS
+## 10. ACCESSIBILITY PATTERNS
 
 ### ARIA Attributes in Components
 
@@ -1652,7 +1652,7 @@ export function TrapFocus({ children, active }: TrapFocusProps) {
 
 ---
 
-## 11. 📋 QUICK REFERENCE
+## 11. QUICK REFERENCE
 
 ### Component Decision Tree
 
@@ -1702,7 +1702,7 @@ Need to access DOM?
 
 ---
 
-## 12. 🔗 RELATED RESOURCES
+## 12. RELATED RESOURCES
 
 ### Related References
 

@@ -20,6 +20,7 @@ import os
 import re
 import glob
 import argparse
+from typing import Any, Dict, List, Optional
 
 
 # ───────────────────────────────────────────────────────────────
@@ -321,10 +322,10 @@ MULTI_SKILL_BOOSTERS = {
 # 2. SKILL LOADING
 # ───────────────────────────────────────────────────────────────
 
-def parse_frontmatter(file_path):
-    """Extract name and description from SKILL.md frontmatter."""
+def parse_frontmatter(file_path: str) -> Optional[Dict[str, str]]:
+    """Extract name and description fields from SKILL.md frontmatter."""
     try:
-        with open(file_path, 'r') as f:
+        with open(file_path, 'r', encoding='utf-8') as f:
             content = f.read()
             match = re.search(r'^---\s*\n(.*?)\n---', content, re.DOTALL)
             if match:
@@ -335,14 +336,18 @@ def parse_frontmatter(file_path):
                         key, val = line.split(':', 1)
                         data[key.strip()] = val.strip().strip('"').strip("'")
                 return data
-    except Exception as e:
-        print(f"Warning: Failed to parse frontmatter from {file_path}: {e}", file=sys.stderr)
+    except Exception as exc:
+        print(
+            f"Warning: Failed to parse frontmatter from {file_path} "
+            f"({type(exc).__name__}: {exc})",
+            file=sys.stderr,
+        )
         return None
     return None
 
 
-def get_skills():
-    """Dynamically scan the skills directory and return skill configs."""
+def get_skills() -> Dict[str, Dict[str, Any]]:
+    """Scan the skills directory and return discovered skill configurations."""
     skills = {}
     
     if os.path.exists(SKILLS_DIR):
@@ -368,7 +373,7 @@ def get_skills():
     return skills
 
 
-def expand_query(prompt_tokens):
+def expand_query(prompt_tokens: List[str]) -> List[str]:
     """Expand user tokens with synonyms for better matching."""
     expanded = set(prompt_tokens)
     for token in prompt_tokens:
@@ -381,7 +386,7 @@ def expand_query(prompt_tokens):
 # 3. SCORING
 # ───────────────────────────────────────────────────────────────
 
-def calculate_confidence(score, has_intent_boost, weight=1.0):
+def calculate_confidence(score: float, has_intent_boost: bool, weight: float = 1.0) -> float:
     """
     Calculate confidence score using two-tiered formula.
 
@@ -431,7 +436,7 @@ def calculate_confidence(score, has_intent_boost, weight=1.0):
     return min(confidence * weight, 1.0)
 
 
-def calculate_uncertainty(num_matches, has_intent_boost, num_ambiguous_matches):
+def calculate_uncertainty(num_matches: int, has_intent_boost: bool, num_ambiguous_matches: int) -> float:
     """
     Calculate uncertainty score for skill recommendation.
 
@@ -481,7 +486,12 @@ def calculate_uncertainty(num_matches, has_intent_boost, num_ambiguous_matches):
     return round(uncertainty, 2)
 
 
-def passes_dual_threshold(confidence, uncertainty, conf_threshold=0.8, uncert_threshold=0.35):
+def passes_dual_threshold(
+    confidence: float,
+    uncertainty: float,
+    conf_threshold: float = 0.8,
+    uncert_threshold: float = 0.35,
+) -> bool:
     """
     Check if recommendation passes dual-threshold validation.
 
@@ -508,7 +518,7 @@ def passes_dual_threshold(confidence, uncertainty, conf_threshold=0.8, uncert_th
 # 4. ANALYSIS
 # ───────────────────────────────────────────────────────────────
 
-def analyze_request(prompt):
+def analyze_request(prompt: str) -> List[Dict[str, Any]]:
     """Analyze user request and return ranked skill recommendations."""
     if not prompt:
         return []
@@ -603,7 +613,7 @@ def analyze_request(prompt):
 # 5. DIAGNOSTICS
 # ───────────────────────────────────────────────────────────────
 
-def load_all_skills():
+def load_all_skills() -> List[Dict[str, Any]]:
     """Load all skills for diagnostics."""
     skills = []
     if os.path.exists(SKILLS_DIR):
@@ -614,7 +624,7 @@ def load_all_skills():
     return skills
 
 
-def health_check():
+def health_check() -> Dict[str, Any]:
     """Return skill count and status for diagnostics."""
     skills = load_all_skills()
     return {

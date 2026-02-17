@@ -14,20 +14,20 @@ importance_tier: "normal"
 <!-- ANCHOR:table-of-contents -->
 ## TABLE OF CONTENTS
 
-- [1. 📖 OVERVIEW](#1--overview)
-- [2. 📋 CURRENT INVENTORY](#2--current-inventory)
-- [3. 📝 NOTES](#3--notes)
-- [4. 📌 QUICK VALIDATION](#4--quick-validation)
+- [1. OVERVIEW](#1--overview)
+- [2. CURRENT INVENTORY](#2--current-inventory)
+- [3. NOTES](#3--notes)
+- [4. QUICK VALIDATION](#4--quick-validation)
 
 <!-- /ANCHOR:table-of-contents -->
 <!-- ANCHOR:overview -->
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 The `lib/` directory provides reusable helper modules for memory generation, formatting, scoring, and shell script support.
 
 <!-- /ANCHOR:overview -->
 <!-- ANCHOR:current-inventory -->
-## 2. 📋 CURRENT INVENTORY
+## 2. CURRENT INVENTORY
 
 
 TypeScript modules:
@@ -50,7 +50,7 @@ Shell helper libraries:
 
 <!-- /ANCHOR:current-inventory -->
 <!-- ANCHOR:notes -->
-## 3. 📝 NOTES
+## 3. NOTES
 
 
 - `embeddings.ts` and `trigger-extractor.ts` are wrapper/re-export style modules aligned with shared package behavior.
@@ -60,7 +60,7 @@ Shell helper libraries:
 
 <!-- /ANCHOR:notes -->
 <!-- ANCHOR:quick-validation -->
-## 4. 📌 QUICK VALIDATION
+## 4. QUICK VALIDATION
 
 
 ```bash

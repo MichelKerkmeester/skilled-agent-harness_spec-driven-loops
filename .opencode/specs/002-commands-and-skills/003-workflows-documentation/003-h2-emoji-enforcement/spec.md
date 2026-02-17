@@ -14,17 +14,17 @@ When creating documentation from templates, H2 section headers were reconstructe
 
 **Incident:** README.md created with numbered H2 sections but missing emojis:
 ```markdown
-## 1. OVERVIEW          ← Missing 📖
-## 2. QUICK START       ← Missing 🚀
-## 3. STRUCTURE         ← Missing 📁
+## 1. OVERVIEW          ← Missing
+## 2. QUICK START       ← Missing
+## 3. STRUCTURE         ← Missing
 ...
 ```
 
 **Expected format (from template):**
 ```markdown
-## 1. 📖 OVERVIEW
-## 2. 🚀 QUICK START
-## 3. 📁 STRUCTURE
+## 1. OVERVIEW
+## 2. QUICK START
+## 3. STRUCTURE
 ...
 ```
 

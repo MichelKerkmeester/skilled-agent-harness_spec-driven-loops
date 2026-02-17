@@ -12,6 +12,9 @@
 # Compatibility: Bash 3.2+ (macOS default)
 # ───────────────────────────────────────────────────────────────
 
+# Strict mode is intentionally not set in sourced library files.
+# The caller script controls -e/-u/-o pipefail policy.
+
 # Guard against double-sourcing
 [[ -n "${_SHELL_COMMON_LOADED:-}" ]] && return 0
 _SHELL_COMMON_LOADED=1
@@ -42,10 +45,13 @@ _json_escape() {
 # which uses `git rev-parse --show-toplevel` as primary strategy.
 # ───────────────────────────────────────────────────────────────
 find_repo_root() {
-    local dir="$1"
+    local dir="${1:-}"
+
+    [[ -n "$dir" ]] || return 1
+
     while [[ "$dir" != "/" ]]; do
         if [[ -d "$dir/.git" ]] || [[ -d "$dir/.specify" ]]; then
-            echo "$dir"
+            printf '%s\n' "$dir"
             return 0
         fi
         dir="$(dirname "$dir")"

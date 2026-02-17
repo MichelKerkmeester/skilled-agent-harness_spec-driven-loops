@@ -9,7 +9,7 @@ Complete architecture reference for the FilePond-to-R2 file upload pipeline, cov
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 ### Core Principle
 
@@ -36,7 +36,7 @@ Single source of truth for understanding, maintaining, and extending the file up
 
 ---
 
-## 2. 🏗️ ARCHITECTURE
+## 2. ARCHITECTURE
 
 ### Pipeline Overview
 
@@ -76,7 +76,7 @@ Browser (drag/click)
 
 ---
 
-## 3. 📋 WEBFLOW INTEGRATION
+## 3. WEBFLOW INTEGRATION
 
 ### Data Attribute Reference
 
@@ -165,7 +165,7 @@ Mobile detection uses multiple signals: user agent, viewport width (<=991px), to
 
 ---
 
-## 4. ⚙️ FILEPOND CONFIGURATION
+## 4. FILEPOND CONFIGURATION
 
 ### Plugin Registration
 
@@ -273,7 +273,7 @@ FilePond.create(input_el, {
 
 ---
 
-## 5. 🔄 STATE MACHINE
+## 5. STATE MACHINE
 
 ### States
 
@@ -342,7 +342,7 @@ State transitions always remove all state classes first, then add the appropriat
 
 ---
 
-## 6. ☁️ CLOUDFLARE WORKER PROXY
+## 6. CLOUDFLARE WORKER PROXY
 
 ### Endpoint and Purpose
 
@@ -393,7 +393,7 @@ FormData:
 
 ---
 
-## 7. 🔗 FORM INTEGRATION
+## 7. FORM INTEGRATION
 
 ### Upload URL to Formspark
 
@@ -492,7 +492,7 @@ When a form resets, the upload component cleans up:
 
 ---
 
-## 8. 🛡️ MIME TYPE REFERENCE
+## 8. MIME TYPE REFERENCE
 
 ### Accepted Types Table
 
@@ -608,7 +608,7 @@ To accept additional file types:
 
 ---
 
-## 9. 🛠️ TROUBLESHOOTING
+## 9. TROUBLESHOOTING
 
 ### "Invalid file type" Error
 
@@ -673,7 +673,7 @@ To accept additional file types:
 
 ---
 
-## 10. 📄 PAGES AND DEPLOYMENT
+## 10. PAGES AND DEPLOYMENT
 
 ### Pages Using Upload
 
@@ -729,7 +729,7 @@ window.cleanupFilepondInstances();
 
 ---
 
-## 11. 🔗 RELATED RESOURCES
+## 11. RELATED RESOURCES
 
 - **[implementation_workflows.md](./implementation_workflows.md)** — Condition-based waiting, validation patterns used by the upload connector
 - **[security_patterns.md](./security_patterns.md)** — XSS prevention relevant to file upload handling

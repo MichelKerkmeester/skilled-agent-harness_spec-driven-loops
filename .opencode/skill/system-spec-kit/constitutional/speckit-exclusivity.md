@@ -40,7 +40,7 @@ triggerPhrases:
 
 <!-- ANCHOR:speckit-exclusivity -->
 
-## ⛔ HARD RULE: @speckit Is the ONLY Agent for Spec Folder Documentation
+## HARD RULE: @speckit Is the ONLY Agent for Spec Folder Documentation
 
 **RULE:** Creating or substantively writing ANY documentation (*.md) inside a spec folder MUST use `@speckit`. No other agent (`@general`, `@write`, etc.) may create or write these files — with specific exceptions listed below.
 

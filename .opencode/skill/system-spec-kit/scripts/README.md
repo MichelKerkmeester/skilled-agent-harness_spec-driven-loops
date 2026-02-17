@@ -15,21 +15,21 @@ importance_tier: "normal"
 <!-- ANCHOR:table-of-contents -->
 ## TABLE OF CONTENTS
 
-- [1. 📖 OVERVIEW](#1--overview)
-- [2. 📋 INVENTORY SNAPSHOT](#2--inventory-snapshot)
-- [3. 📌 POST-SPEC124/128/129 WORKFLOW](#3--post-spec124128129-workflow)
-- [4. 📌 BUILD AND RUNTIME](#4--build-and-runtime)
-- [5. 📚 RELATED READMES](#5--related-readmes)
+- [1. OVERVIEW](#1--overview)
+- [2. INVENTORY SNAPSHOT](#2--inventory-snapshot)
+- [3. POST-SPEC124/128/129 WORKFLOW](#3--post-spec124128129-workflow)
+- [4. BUILD AND RUNTIME](#4--build-and-runtime)
+- [5. RELATED READMES](#5--related-readmes)
 
 <!-- /ANCHOR:table-of-contents -->
 <!-- ANCHOR:overview -->
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 This directory contains the shell and TypeScript tooling that powers spec creation, upgrades, validation, memory save, and context indexing.
 
 <!-- /ANCHOR:overview -->
 <!-- ANCHOR:inventory-snapshot -->
-## 2. 📋 INVENTORY SNAPSHOT
+## 2. INVENTORY SNAPSHOT
 
 
 Top-level files:
@@ -53,7 +53,7 @@ Primary script directories:
 
 <!-- /ANCHOR:inventory-snapshot -->
 <!-- ANCHOR:post-spec124128129-workflow -->
-## 3. 📌 POST-SPEC124/128/129 WORKFLOW
+## 3. POST-SPEC124/128/129 WORKFLOW
 
 
 For spec-level upgrades and memory-safe docs flow:
@@ -68,7 +68,7 @@ Anchor requirements introduced in this workflow are validated by `rules/check-an
 
 <!-- /ANCHOR:post-spec124128129-workflow -->
 <!-- ANCHOR:build-and-runtime -->
-## 4. 📌 BUILD AND RUNTIME
+## 4. BUILD AND RUNTIME
 
 
 TypeScript sources compile to `dist/`:
@@ -93,7 +93,7 @@ node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js /tm
 
 <!-- /ANCHOR:build-and-runtime -->
 <!-- ANCHOR:related-readmes -->
-## 5. 📚 RELATED READMES
+## 5. RELATED READMES
 
 
 - `spec/README.md`

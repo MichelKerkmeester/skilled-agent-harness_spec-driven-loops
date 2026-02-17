@@ -14,15 +14,15 @@ importance_tier: "normal"
 <!-- ANCHOR:table-of-contents -->
 ## TABLE OF CONTENTS
 
-- [1. 📖 OVERVIEW](#1--overview)
-- [2. 📌 IMPLEMENTED STATE](#2--implemented-state)
-- [3. 📝 HARDENING NOTES](#3--hardening-notes)
-- [4. 📝 OPERATIONAL NOTES](#4--operational-notes)
-- [5. 📚 RELATED](#5--related)
+- [1. OVERVIEW](#1--overview)
+- [2. IMPLEMENTED STATE](#2--implemented-state)
+- [3. HARDENING NOTES](#3--hardening-notes)
+- [4. OPERATIONAL NOTES](#4--operational-notes)
+- [5. RELATED](#5--related)
 
 <!-- /ANCHOR:table-of-contents -->
 <!-- ANCHOR:overview -->
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 This section provides an overview of the MCP Server Database Storage directory.
 
@@ -35,7 +35,7 @@ This section provides an overview of the MCP Server Database Storage directory.
 
 <!-- /ANCHOR:overview -->
 <!-- ANCHOR:implemented-state -->
-## 2. 📌 IMPLEMENTED STATE
+## 2. IMPLEMENTED STATE
 
 
 - Primary table set includes `memory_index`, `vec_memories`, `memory_fts`, `checkpoints`, and `config`.
@@ -48,7 +48,7 @@ This section provides an overview of the MCP Server Database Storage directory.
 
 <!-- /ANCHOR:implemented-state -->
 <!-- ANCHOR:hardening-notes -->
-## 3. 📝 HARDENING NOTES
+## 3. HARDENING NOTES
 
 
 - Reinit safety is handled in `core/db-state.ts` (mutex + dependency rebind).
@@ -58,7 +58,7 @@ This section provides an overview of the MCP Server Database Storage directory.
 
 <!-- /ANCHOR:hardening-notes -->
 <!-- ANCHOR:operational-notes -->
-## 4. 📝 OPERATIONAL NOTES
+## 4. OPERATIONAL NOTES
 
 
 - Database files are intentionally not committed; only control files are tracked.
@@ -70,7 +70,7 @@ This section provides an overview of the MCP Server Database Storage directory.
 
 <!-- /ANCHOR:operational-notes -->
 <!-- ANCHOR:related -->
-## 5. 📚 RELATED
+## 5. RELATED
 
 
 - `../core/README.md`

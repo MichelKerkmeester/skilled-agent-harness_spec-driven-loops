@@ -25,25 +25,25 @@ importance_tier: "normal"
 <!-- ANCHOR:table-of-contents -->
 ## TABLE OF CONTENTS
 
-- [1. 📖 OVERVIEW](#1--overview)
-- [2. 🚀 QUICK START](#2--quick-start)
-- [3. 🔍 TOOL SELECTION GUIDE](#3--tool-selection-guide)
-- [4. 🧰 MCP TOOLS (7 TOTAL)](#4--mcp-tools-7-total)
-- [5. 🏷️ NAMING CONVENTION](#5--naming-convention)
-- [6. ⚙️ CONFIGURATION](#6--configuration)
-- [7. 🏗️ ARCHITECTURE](#7--architecture)
-- [8. 📊 PERFORMANCE](#8--performance)
-- [9. 💡 USAGE PATTERNS](#9--usage-patterns)
-- [10. 🛠️ TROUBLESHOOTING](#10--troubleshooting)
-- [11. 📚 RESOURCES](#11--resources)
-- [12. 📌 QUICK REFERENCE CARD](#12--quick-reference-card)
+- [1. OVERVIEW](#1--overview)
+- [2. QUICK START](#2--quick-start)
+- [3. TOOL SELECTION GUIDE](#3--tool-selection-guide)
+- [4. MCP TOOLS (7 TOTAL)](#4--mcp-tools-7-total)
+- [5. NAMING CONVENTION](#5--naming-convention)
+- [6. CONFIGURATION](#6--configuration)
+- [7. ARCHITECTURE](#7--architecture)
+- [8. PERFORMANCE](#8--performance)
+- [9. USAGE PATTERNS](#9--usage-patterns)
+- [10. TROUBLESHOOTING](#10--troubleshooting)
+- [11. RESOURCES](#11--resources)
+- [12. QUICK REFERENCE CARD](#12--quick-reference-card)
 
 ---
 
 <!-- /ANCHOR:table-of-contents -->
 
 <!-- ANCHOR:overview -->
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 ### What It Does
 
@@ -88,7 +88,7 @@ Research from [Apple](https://machinelearning.apple.com/research/codeact), [Clou
 <!-- /ANCHOR:overview -->
 
 <!-- ANCHOR:quick-start -->
-## 2. 🚀 QUICK START
+## 2. QUICK START
 
 ### Prerequisites
 
@@ -131,7 +131,7 @@ call_tool_chain({
 <!-- /ANCHOR:quick-start -->
 
 <!-- ANCHOR:tool-selection -->
-## 3. 🔍 TOOL SELECTION GUIDE
+## 3. TOOL SELECTION GUIDE
 
 ### Tools at a Glance
 
@@ -188,7 +188,7 @@ search_tools  call_tool_   list_tools  register_   deregister_
 <!-- /ANCHOR:tool-selection -->
 
 <!-- ANCHOR:mcp-tools -->
-## 4. 🧰 MCP TOOLS (7 TOTAL)
+## 4. MCP TOOLS (7 TOTAL)
 
 ### 4.1 call_tool_chain
 
@@ -337,7 +337,7 @@ register_manual({
 <!-- /ANCHOR:mcp-tools -->
 
 <!-- ANCHOR:naming-convention -->
-## 5. 🏷️ NAMING CONVENTION
+## 5. NAMING CONVENTION
 
 ### Critical Pattern
 
@@ -388,7 +388,7 @@ tool_info({ tool_name: "webflow.webflow_sites_list" });
 <!-- /ANCHOR:naming-convention -->
 
 <!-- ANCHOR:configuration -->
-## 6. ⚙️ CONFIGURATION
+## 6. CONFIGURATION
 
 ### Configuration Files
 
@@ -463,7 +463,7 @@ tool_info({ tool_name: "webflow.webflow_sites_list" });
 <!-- /ANCHOR:configuration -->
 
 <!-- ANCHOR:architecture -->
-## 7. 🏗️ ARCHITECTURE
+## 7. ARCHITECTURE
 
 ### System Overview
 
@@ -512,7 +512,7 @@ tool_info({ tool_name: "webflow.webflow_sites_list" });
 <!-- /ANCHOR:architecture -->
 
 <!-- ANCHOR:performance -->
-## 8. 📊 PERFORMANCE
+## 8. PERFORMANCE
 
 ### Benchmark Results
 
@@ -546,7 +546,7 @@ Independent [Python benchmark study](https://github.com/imran31415/codemode_pyth
 <!-- /ANCHOR:performance -->
 
 <!-- ANCHOR:usage-patterns -->
-## 9. 💡 USAGE PATTERNS
+## 9. USAGE PATTERNS
 
 ### Pattern 1: Single Tool Call
 
@@ -624,7 +624,7 @@ call_tool_chain({
 <!-- /ANCHOR:usage-patterns -->
 
 <!-- ANCHOR:troubleshooting -->
-## 10. 🛠️ TROUBLESHOOTING
+## 10. TROUBLESHOOTING
 
 ### Common Errors
 
@@ -686,7 +686,7 @@ tool_info({ tool_name: "webflow.webflow_sites_list" });
 <!-- /ANCHOR:troubleshooting -->
 
 <!-- ANCHOR:resources -->
-## 11. 📚 RESOURCES
+## 11. RESOURCES
 
 ### Bundled Files
 
@@ -757,7 +757,7 @@ call_tool_chain({
 <!-- /ANCHOR:resources -->
 
 <!-- ANCHOR:quick-reference -->
-## 12. 📌 QUICK REFERENCE CARD
+## 12. QUICK REFERENCE CARD
 
 ### Essential Commands
 

@@ -232,13 +232,13 @@ The `<RESEARCH_TOPIC>` i
 ## 3. DETAILED CHANGES
 
 <!-- ANCHOR:implementation-phase-input-collection-status-c8d2a537-session-1767273200731-xrp6rwvxi -->
-### FEATURE: ## 🔒 PHASE 1: INPUT COLLECTION
+### FEATURE: ## PHASE 1: INPUT COLLECTION
 
 **STATUS: ☐ BLOCKED**
 
 The `<RESEARCH_TOPIC>` i
 
-## 🔒 PHASE 1: INPUT COLLECTION
+## PHASE 1: INPUT COLLECTION
 
 **STATUS: ☐ BLOCKED**
 
@@ -255,13 +255,13 @@ Please describe the subject you want me to investigate. For example:
 <!-- /ANCHOR:implementation-phase-input-collection-status-c8d2a537-session-1767273200731-xrp6rwvxi -->
 
 <!-- ANCHOR:discovery-phase-input-collection-status-a6ee9ffa-session-1767273200731-xrp6rwvxi -->
-### FEATURE: ## 🔒 PHASE 1: INPUT COLLECTION
+### FEATURE: ## PHASE 1: INPUT COLLECTION
 
 **STATUS: ✅ PASSED**
 
 `research_topic = "Analyz
 
-## 🔒 PHASE 1: INPUT COLLECTION
+## PHASE 1: INPUT COLLECTION
 
 **STATUS: ✅ PASSED**
 
@@ -269,7 +269,7 @@ Please describe the subject you want me to investigate. For example:
 
 ---
 
-## 🔒 PHASE 2: CONSOLIDATED SETUP
+## PHASE 2: CONSOLIDATED SETUP
 
 **STATUS: ✅ PASSED** (based on your explicit instructions)
 

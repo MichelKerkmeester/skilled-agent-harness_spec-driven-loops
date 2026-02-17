@@ -166,7 +166,7 @@ LAYER 3: PRE-DELIVERY GATE (Enforcement)
 **Update write.md** with mandatory validation:
 
 ```markdown
-## 1. 🔄 CORE WORKFLOW (UPDATED)
+## 1. CORE WORKFLOW (UPDATED)
 
 1. **RECEIVE** → Parse documentation request
 2. **CLASSIFY** → Determine document type

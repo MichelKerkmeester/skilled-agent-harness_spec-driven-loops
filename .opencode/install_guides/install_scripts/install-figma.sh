@@ -16,6 +16,7 @@
 #   --debug           Enable debug output
 
 set -euo pipefail
+IFS=$'\n\t'
 
 # ───────────────────────────────────────────────────────────────
 # 1. CONFIGURATION

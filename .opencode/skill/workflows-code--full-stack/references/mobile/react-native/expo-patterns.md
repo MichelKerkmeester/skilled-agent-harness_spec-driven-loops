@@ -9,7 +9,7 @@ A practical guide to working with Expo in a React Native codebase, explaining WH
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 ### Purpose
 
@@ -29,7 +29,7 @@ Type-safe configuration + environment-aware builds + feature flags = maintainabl
 
 ---
 
-## 2. 🚀 QUICK START: YOUR FIRST DAY
+## 2. QUICK START: YOUR FIRST DAY
 
 If you're new to this project, here's what you need to know:
 
@@ -40,7 +40,7 @@ If you're new to this project, here's what you need to know:
 
 ---
 
-## 3. ⚙️ UNDERSTANDING THE CONFIGURATION
+## 3. UNDERSTANDING THE CONFIGURATION
 
 ### Why Dynamic Config (`app.config.ts`)?
 
@@ -213,7 +213,7 @@ npx expo prebuild --clean
 
 ---
 
-## 4. 🏗️ BUILD PROFILES (EAS)
+## 4. BUILD PROFILES (EAS)
 
 ### When to Use Each Profile
 
@@ -256,7 +256,7 @@ eas build --profile production --platform ios
 
 ---
 
-## 5. 📁 WORKING WITH ASSETS
+## 5. WORKING WITH ASSETS
 
 ### Directory Structure Explained
 
@@ -328,7 +328,7 @@ import { generateImage } from 'assets';
 
 ---
 
-## 6. 🔀 ENVIRONMENT SWITCHING
+## 6. ENVIRONMENT SWITCHING
 
 ### How Environments Work
 
@@ -373,7 +373,7 @@ const apiUrl = getApiBaseUrl(); // Returns correct URL for current env
 
 ---
 
-## 7. 🚩 FEATURE FLAGS
+## 7. FEATURE FLAGS
 
 ### Why Feature Flags?
 
@@ -488,7 +488,7 @@ const isStatusEnabled = (status: string) => {
 
 ---
 
-## 8. 🛤️ EXPO-ROUTER BASICS
+## 8. EXPO-ROUTER BASICS
 
 ### File Structure = Routes
 
@@ -519,7 +519,7 @@ The handler in `+native-intent.tsx` parses these URLs and routes appropriately.
 
 ---
 
-## 9. 🎬 SPLASH SCREEN
+## 9. SPLASH SCREEN
 
 ### How It Works
 
@@ -547,7 +547,7 @@ const handleNavigationReady = async () => {
 
 ---
 
-## 10. 🔧 TROUBLESHOOTING GUIDE
+## 10. TROUBLESHOOTING GUIDE
 
 ### Metro Bundler Issues
 
@@ -592,7 +592,7 @@ npx expo prebuild --clean
 
 ---
 
-## 11. 📂 KEY FILES QUICK REFERENCE
+## 11. KEY FILES QUICK REFERENCE
 
 | What You Need | File Path |
 |---------------|-----------|
@@ -606,7 +606,7 @@ npx expo prebuild --clean
 
 ---
 
-## 12. ✅ DO THIS, NOT THAT
+## 12. DO THIS, NOT THAT
 
 | ❌ Don't | ✅ Do | Why |
 |----------|-------|-----|
@@ -619,7 +619,7 @@ npx expo prebuild --clean
 
 ---
 
-## 13. 🔗 RELATED RESOURCES
+## 13. RELATED RESOURCES
 
 ### Related References
 - [React Native Standards](./react-native-standards.md) - Core component conventions

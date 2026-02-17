@@ -9,7 +9,7 @@ Copy-ready `.env` template for Code Mode UTCP authentication with all supported 
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 ### Purpose
 
@@ -21,7 +21,7 @@ Copy this template to `.env` in your project root, then replace placeholder valu
 
 ---
 
-## 2. 📋 TEMPLATE
+## 2. TEMPLATE
 
 ```bash
 # Code Mode UTCP - Environment Variables Template
@@ -62,7 +62,7 @@ webflow_WEBFLOW_API_TOKEN=your_webflow_token_here
 
 ---
 
-## 3. 🔑 CREDENTIAL SOURCES
+## 3. CREDENTIAL SOURCES
 
 ### ClickUp
 
@@ -227,7 +227,7 @@ grep '_FIGMA_API_KEY' .env    # Should show: figma_FIGMA_API_KEY=...
 
 ---
 
-## 4. 🔒 SECURITY BEST PRACTICES
+## 4. SECURITY BEST PRACTICES
 
 ### .gitignore Configuration
 
@@ -277,7 +277,7 @@ grep '_FIGMA_API_KEY' .env    # Should show: figma_FIGMA_API_KEY=...
 
 ---
 
-## 5. ⚙️ CONFIGURATION REFERENCE
+## 5. CONFIGURATION REFERENCE
 
 ### Variable Syntax in .utcp_config.json
 
@@ -341,7 +341,7 @@ export CLICKUP_TEAM_ID=12345
 
 ---
 
-## 6. 🛠️ TROUBLESHOOTING
+## 6. TROUBLESHOOTING
 
 ### Variable Not Found Error
 
@@ -386,7 +386,7 @@ Error: Access denied to resource
 
 ---
 
-## 7. 🔧 TEMPLATE CUSTOMIZATION
+## 7. TEMPLATE CUSTOMIZATION
 
 ### Adding New MCP Server Credentials
 
@@ -432,7 +432,7 @@ Then reference in `.utcp_config.json`:
 
 ---
 
-## 8. ✅ VALIDATION CHECKLIST
+## 8. VALIDATION CHECKLIST
 
 **Before using Code Mode, verify:**
 
@@ -460,7 +460,7 @@ call_tool_chain({
 
 ---
 
-## 9. 🔗 RELATED RESOURCES
+## 9. RELATED RESOURCES
 
 ### Templates
 - [config_template.md](./config_template.md) - Complete .utcp_config.json configuration template

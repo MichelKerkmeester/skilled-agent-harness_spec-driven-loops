@@ -9,7 +9,7 @@ Copy-ready `.utcp_config.json` template for Code Mode UTCP with pre-configured M
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 ### Purpose
 
@@ -21,7 +21,7 @@ Copy this template to `.utcp_config.json` in your project root, then customize t
 
 ---
 
-## 2. 📋 TEMPLATE
+## 2. TEMPLATE
 
 ```json
 {
@@ -135,7 +135,7 @@ Copy this template to `.utcp_config.json` in your project root, then customize t
 
 ---
 
-## 3. ⚙️ CONFIGURATION SECTIONS
+## 3. CONFIGURATION SECTIONS
 
 ### load_variables_from
 
@@ -204,7 +204,7 @@ Copy this template to `.utcp_config.json` in your project root, then customize t
 
 ---
 
-## 4. 🔌 MCP SERVER CONFIGURATIONS
+## 4. MCP SERVER CONFIGURATIONS
 
 ### Webflow (Remote MCP)
 
@@ -331,7 +331,7 @@ Copy this template to `.utcp_config.json` in your project root, then customize t
 
 ---
 
-## 5. 🔐 ENVIRONMENT VARIABLES
+## 5. ENVIRONMENT VARIABLES
 
 **Required .env file**: Create `.env` in project root with:
 
@@ -358,7 +358,7 @@ notion_NOTION_TOKEN=ntn_your_token_here
 
 ---
 
-## 6. 🛠️ CUSTOMIZATION GUIDE
+## 6. CUSTOMIZATION GUIDE
 
 ### Adding a New MCP Server
 
@@ -418,7 +418,7 @@ GITHUB_TOKEN=ghp_your_token_here
 
 ---
 
-## 7. ✅ VALIDATION
+## 7. VALIDATION
 
 **Validate configuration:**
 
@@ -434,7 +434,7 @@ GITHUB_TOKEN=ghp_your_token_here
 
 ---
 
-## 8. 🔗 RELATED RESOURCES
+## 8. RELATED RESOURCES
 
 ### Templates
 - [env_template.md](./env_template.md) - Complete .env file template with credential sources

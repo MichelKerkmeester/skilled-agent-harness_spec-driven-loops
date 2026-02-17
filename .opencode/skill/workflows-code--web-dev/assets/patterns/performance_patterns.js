@@ -1,19 +1,21 @@
-// ───────────────────────────────────────────────────────────────
-// PERFORMANCE PATTERNS - Throttle, Debounce & Observer Utilities
-// ───────────────────────────────────────────────────────────────
-// Production-validated timing patterns for frontend performance optimization.
-// Timing constants derived from production testing (spec 019).
-//
-// KEY TIMING VALUES:
-// - 64ms throttle for pointermove (~15 Hz, perceptually smooth)
-// - 180ms form validation debounce (faster than typing, avoids lag)
-// - 200-250ms resize debounce (avoid flicker, cheaper than IntersectionObserver)
-// - 0.1 IntersectionObserver threshold (early enough for animation preparation)
-//
-// BROWSER INSIGHT:
-// - requestAnimationFrame auto-throttles to 1fps in background tabs
-// - No need for manual visibility management in RAF loops
-// ───────────────────────────────────────────────────────────────
+/**
+ * PERFORMANCE PATTERNS - THROTTLE, DEBOUNCE, AND OBSERVER UTILITIES
+ *
+ * Production-validated timing patterns for frontend performance optimization.
+ * Timing constants derived from production testing (spec 019).
+ *
+ * Key timing values:
+ * - 64ms throttle for pointermove (~15 Hz, perceptually smooth)
+ * - 180ms form validation debounce (faster than typing, avoids lag)
+ * - 200-250ms resize debounce (avoid flicker, cheaper than IntersectionObserver)
+ * - 0.1 IntersectionObserver threshold (early enough for animation preparation)
+ *
+ * Browser insight:
+ * - requestAnimationFrame auto-throttles to 1fps in background tabs
+ * - No need for manual visibility management in RAF loops
+ */
+
+'use strict';
 
 /* ─────────────────────────────────────────────────────────────
    1. TIMING CONSTANTS
@@ -318,7 +320,7 @@ function observe_autoplay(options = {}) {
     on_visible = () => {},
     on_hidden = () => {},
     root = null,
-    root_margin = "0px",
+    root_margin = '0px',
   } = options;
 
   return new IntersectionObserver(
@@ -381,7 +383,7 @@ function observe_visibility(callback, options = {}) {
     },
     {
       root: options.root || null,
-      rootMargin: options.root_margin || "0px",
+      rootMargin: options.root_margin || '0px',
       threshold: options.threshold || OBSERVER_THRESHOLD.PROGRESSIVE,
     }
   );
@@ -501,7 +503,7 @@ function create_raf_loop(callback, throttle_ms = 0) {
 ──────────────────────────────────────────────────────────────── */
 
 // Browser global export
-if (typeof window !== "undefined") {
+if (typeof window !== 'undefined') {
   window.PerformancePatterns = {
     // Constants
     THROTTLE_TIMING,
@@ -518,7 +520,7 @@ if (typeof window !== "undefined") {
 }
 
 // Module export (ES6)
-if (typeof module !== "undefined" && module.exports) {
+if (typeof module !== 'undefined' && module.exports) {
   module.exports = {
     THROTTLE_TIMING,
     DEBOUNCE_TIMING,

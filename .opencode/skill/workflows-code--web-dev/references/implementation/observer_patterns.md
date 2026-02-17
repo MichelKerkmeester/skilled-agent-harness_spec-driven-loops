@@ -9,7 +9,7 @@ Browser observer APIs for reactive DOM watching, visibility detection, and scrol
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 ### Purpose
 Production-tested patterns for MutationObserver, IntersectionObserver, and ResizeObserver in Webflow projects with proper cleanup and performance optimization.
@@ -27,7 +27,7 @@ Production-tested patterns for MutationObserver, IntersectionObserver, and Resiz
 
 ---
 
-## 2. 🔄 MUTATIONOBSERVER
+## 2. MUTATIONOBSERVER
 
 ### When to Use
 
@@ -137,7 +137,7 @@ function destroy() {
 
 ---
 
-## 3. 👁️ INTERSECTIONOBSERVER
+## 3. INTERSECTIONOBSERVER
 
 ### When to Use
 
@@ -369,7 +369,7 @@ function unobserve_element(element) {
 
 ---
 
-## 4. 📐 RESIZEOBSERVER
+## 4. RESIZEOBSERVER
 
 > **Note:** Not currently used in this codebase. Documented for reference.
 
@@ -409,7 +409,7 @@ const cleanup = observe_resize(container, debouncedResize);
 
 ---
 
-## 5. ✅ BEST PRACTICES
+## 5. BEST PRACTICES
 
 ### Always Disconnect
 
@@ -532,7 +532,7 @@ function setup_combined_observers(container) {
 
 ---
 
-## 6. 📋 QUICK REFERENCE
+## 6. QUICK REFERENCE
 
 | Observer | Events | Common Options |
 |----------|--------|----------------|
@@ -550,7 +550,7 @@ function setup_combined_observers(container) {
 
 ---
 
-## 7. 🔗 SHAREDOBSERVERS CONSOLIDATION PATTERN
+## 7. SHAREDOBSERVERS CONSOLIDATION PATTERN
 
 ### Overview
 
@@ -668,7 +668,7 @@ function create_observer() {
 
 ---
 
-## 8. 🔗 RELATED RESOURCES
+## 8. RELATED RESOURCES
 
 ### Reference Files
 - [implementation_workflows.md](./implementation_workflows.md) - Condition-based waiting patterns using observers

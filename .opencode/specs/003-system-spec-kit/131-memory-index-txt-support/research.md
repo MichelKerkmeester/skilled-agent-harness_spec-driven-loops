@@ -36,7 +36,7 @@ This research document captures technical investigation into adding `.txt` file 
 
 ### Finding 2: File Discovery Uses Extension-Based Filtering
 
-**Context**: Memory indexing discovers files via four functions: `findMemoryFiles()`, `findSkillReadmes()`, `findProjectReadmes()`, and (proposed) `findCommandReadmes()`.
+**Context**: Memory indexing discovers files via three functions: `findMemoryFiles()`, `findSkillReadmes()`, and `findProjectReadmes()` (the latter was expanded to include `.opencode/command/` paths).
 
 **Evidence**:
 ```typescript
@@ -64,8 +64,8 @@ if (file.isFile() && file.name.endsWith('.md')) {
 
 **Evidence**:
 ```typescript
-// From memory-save.ts:1029 (inferred from grep output)
-throw new Error('File must be a .md file in: specs/**/memory/, specs/**/ (spec docs), .opencode/skill/*/constitutional/, or a README.md');
+// From memory-save.ts:1029
+throw new Error('File must be a .md or .txt file in: specs/**/memory/, specs/**/ (spec docs), .opencode/skill/*/constitutional/, or README.md/README.txt paths');
 ```
 
 **Significance**: Validation currently rejects `.txt` files. Must update regex/logic to accept `.txt` from allowed paths.
@@ -187,17 +187,22 @@ if (incremental && !force) {
 **Affected Lines**:
 - `findMemoryFiles()`: ~150-200 (specs/**/memory/)
 - `findSkillReadmes()`: ~269-300 (.opencode/skill/)
-- `findProjectReadmes()`: ~306-337 (root directory)
-- `findCommandReadmes()`: NEW (~340+, .opencode/command/)
+- `findProjectReadmes()`: ~310-344 (root directory, expanded to include .opencode/command/)
+- `isReadmeFileName()`: ~50-55 (helper function using regex /^readme\.(md|txt)$/i)
 
 **Pattern**:
 ```typescript
-// Before
-if (file.isFile() && file.name.endsWith('.md')) {
+// Implementation approach: Use helper function with regex
+const README_FILE_PATTERN = /^readme\.(md|txt)$/i;
 
-// After
-const allowedExtensions = ['.md', '.txt'];
-if (file.isFile() && allowedExtensions.some(ext => file.name.endsWith(ext))) {
+function isReadmeFileName(fileName: string): boolean {
+  return README_FILE_PATTERN.test(fileName);
+}
+
+// Used in discovery functions:
+if (isReadmeFileName(entry.name)) {
+  readmes.push(fullPath);
+}
 ```
 
 ---

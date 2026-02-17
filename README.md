@@ -12,21 +12,21 @@
 
 ---
 
-## TABLE OF CONTENTS
+## 📑 TABLE OF CONTENTS
 
-- [1. OVERVIEW](#1-overview)
-- [2. QUICK START](#2-quick-start)
-- [3. STRUCTURE](#3-structure)
-- [4. FEATURES](#4-features)
-- [5. CONFIGURATION](#5-configuration)
-- [6. USAGE EXAMPLES](#6-usage-examples)
-- [7. TROUBLESHOOTING](#7-troubleshooting)
-- [8. FAQ](#8-faq)
-- [9. RELATED DOCUMENTS](#9-related-documents)
+- [🔭 1. OVERVIEW](#1--overview)
+- [🚀 2. QUICK START](#2--quick-start)
+- [📂 3. STRUCTURE](#3--structure)
+- [⚡ 4. FEATURES](#4--features)
+- [⚙️ 5. CONFIGURATION](#5-️-configuration)
+- [💡 6. USAGE EXAMPLES](#6--usage-examples)
+- [🔧 7. TROUBLESHOOTING](#7--troubleshooting)
+- [❓ 8. FAQ](#8--faq)
+- [📚 9. RELATED DOCUMENTS](#9--related-documents)
 
 ---
 
-## 1. OVERVIEW
+## 1. 🔭 OVERVIEW
 
 ### What is This?
 
@@ -104,7 +104,7 @@ Everything connects. Memory files live *inside* spec folders. Gates enforce docu
 
 ---
 
-## 2. QUICK START
+## 2. 🚀 QUICK START
 
 ### Prerequisites
 
@@ -140,7 +140,7 @@ opencode
 
 ---
 
-## 3. STRUCTURE
+## 3. 📂 STRUCTURE
 
 ```
 .opencode/
@@ -177,10 +177,10 @@ specs/                        # Spec folder documentation
 
 ---
 
-## 4. FEATURES
+## 4. ⚡ FEATURES
 
 <details open>
-<summary><strong>Spec Kit Documentation</strong>: 4 levels, 84 templates, 13 validation rules</summary>
+<summary><strong>📝 Spec Kit Documentation</strong>: 4 levels, 84 templates, 13 validation rules</summary>
 
 <br>
 
@@ -250,7 +250,7 @@ Spec Kit workflow features include `upgrade-level.sh`, the auto-populate workflo
 ---
 
 <details open>
-<summary><strong>The Memory Engine</strong>: 22 MCP tools across 7 cognitive layers</summary>
+<summary><strong>🧠 The Memory Engine</strong>: 22 MCP tools across 7 cognitive layers</summary>
 
 <br>
 
@@ -404,7 +404,7 @@ This enables traversal from high-level specs down to implementation details (and
 ---
 
 <details>
-<summary><strong>The Agent Network</strong>: 10 specialized agents with role-based routing</summary>
+<summary><strong>🤖 The Agent Network</strong>: 10 specialized agents with role-based routing</summary>
 
 <br>
 
@@ -453,7 +453,7 @@ The `@debug` agent uses a 4-phase methodology: Observe, Analyze, Hypothesize, Fi
 ---
 
 <details>
-<summary><strong>Command Architecture</strong>: 19 commands across 4 namespaces with 25 YAML assets</summary>
+<summary><strong>⌨️ Command Architecture</strong>: 19 commands across 4 namespaces with 25 YAML assets</summary>
 
 <br>
 
@@ -517,7 +517,7 @@ All support `:auto` and `:confirm` mode suffixes.
 ---
 
 <details>
-<summary><strong>Skills Library</strong>: 9 domain skills, auto-loaded by task keywords</summary>
+<summary><strong>🧩 Skills Library</strong>: 9 domain skills, auto-loaded by task keywords</summary>
 
 <br>
 
@@ -556,7 +556,7 @@ Skills are domain expertise on demand. The AI loads the right skill and already 
 ---
 
 <details>
-<summary><strong>The Gate System</strong>: 3 mandatory gates before any file change</summary>
+<summary><strong>🚧 The Gate System</strong>: 3 mandatory gates before any file change</summary>
 
 <br>
 
@@ -611,7 +611,7 @@ Six lenses applied silently to catch problems:
 ---
 
 <details>
-<summary><strong>Code Mode MCP</strong>: 7 tools for external integrations with 98.7% context savings</summary>
+<summary><strong>💻 Code Mode MCP</strong>: 7 tools for external integrations with 98.7% context savings</summary>
 
 <br>
 
@@ -659,7 +659,7 @@ call_tool_chain({ code: "await webflow.webflow_sites_list({})" })
 ---
 
 <details>
-<summary><strong>Chrome DevTools Integration</strong>: dual-mode browser debugging</summary>
+<summary><strong>🌐 Chrome DevTools Integration</strong>: dual-mode browser debugging</summary>
 
 <br>
 
@@ -689,7 +689,7 @@ CLI-first for speed and token efficiency. MCP fallback for multi-tool integratio
 ---
 
 <details>
-<summary><strong>Git Workflows</strong>: 3-phase professional git orchestration</summary>
+<summary><strong>🔀 Git Workflows</strong>: 3-phase professional git orchestration</summary>
 
 <br>
 
@@ -715,7 +715,7 @@ CLI-first for speed and token efficiency. MCP fallback for multi-tool integratio
 ---
 
 <details>
-<summary><strong>Extensibility</strong>: custom skills, agents, commands and templates</summary>
+<summary><strong>🔌 Extensibility</strong>: custom skills, agents, commands and templates</summary>
 
 <br>
 
@@ -735,7 +735,7 @@ Every component follows standardized patterns for customization:
 
 ---
 
-## 5. CONFIGURATION
+## 5. ⚙️ CONFIGURATION
 
 ### Configuration File
 
@@ -788,7 +788,7 @@ See individual install guides in [`.opencode/install_guides/`](.opencode/install
 
 ---
 
-## 6. USAGE EXAMPLES
+## 6. 💡 USAGE EXAMPLES
 
 Real workflows, not toy examples.
 
@@ -870,7 +870,7 @@ memory_index_scan({ includeSpecDocs: false })
 
 ---
 
-## 7. TROUBLESHOOTING
+## 7. 🔧 TROUBLESHOOTING
 
 Something broken? Start here.
 
@@ -942,7 +942,7 @@ cd .opencode/skill/system-spec-kit && npm run test:cli
 
 ---
 
-## 8. FAQ
+## 8. ❓ FAQ
 
 ### General Questions
 
@@ -1008,7 +1008,7 @@ A: Minimal. SQLite databases are compact. A project with 100+ memories typically
 
 ---
 
-## 9. RELATED DOCUMENTS
+## 9. 📚 RELATED DOCUMENTS
 
 ### Internal Documentation
 

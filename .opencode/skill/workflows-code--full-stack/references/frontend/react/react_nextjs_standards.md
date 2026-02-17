@@ -9,7 +9,7 @@ Next.js 14+ App Router conventions, TypeScript configuration, file naming patter
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 ### Purpose
 
@@ -31,7 +31,7 @@ Provides comprehensive guidance on Next.js 14+ patterns including App Router arc
 
 ---
 
-## 2. 📁 PROJECT STRUCTURE
+## 2. PROJECT STRUCTURE
 
 ### App Router Directory Organization
 
@@ -168,7 +168,7 @@ app/
 
 ---
 
-## 3. 📝 FILE NAMING CONVENTIONS
+## 3. FILE NAMING CONVENTIONS
 
 ### App Router Special Files
 
@@ -233,7 +233,7 @@ export function Button({ variant = 'primary', size = 'md', children }: ButtonPro
 
 ---
 
-## 4. ⚙️ TYPESCRIPT CONFIGURATION
+## 4. TYPESCRIPT CONFIGURATION
 
 ### Recommended tsconfig.json
 
@@ -381,7 +381,7 @@ function renderContent(state: ApiState<User[]>) {
 
 ---
 
-## 5. ⚙️ NEXT.JS CONFIGURATION
+## 5. NEXT.JS CONFIGURATION
 
 ### next.config.js (Recommended)
 
@@ -494,7 +494,7 @@ router.push('/settings/profile');
 
 ---
 
-## 6. 🔐 ENVIRONMENT CONFIGURATION
+## 6. ENVIRONMENT CONFIGURATION
 
 ### Environment Files
 
@@ -601,7 +601,7 @@ const publicConfig = {
 
 ---
 
-## 7. 🔄 ROUTING PATTERNS
+## 7. ROUTING PATTERNS
 
 ### Basic Routing Structure
 
@@ -733,7 +733,7 @@ export default function PhotoModal({ params }: { params: { id: string } }) {
 
 ---
 
-## 8. 🧩 LAYOUT PATTERNS
+## 8. LAYOUT PATTERNS
 
 ### Root Layout (Required)
 
@@ -831,7 +831,7 @@ export default function Template({ children }: { children: React.ReactNode }) {
 
 ---
 
-## 9. 🔧 LOADING AND ERROR STATES
+## 9. LOADING AND ERROR STATES
 
 ### Loading UI
 
@@ -941,7 +941,7 @@ export default async function Page({ params }: { params: { id: string } }) {
 
 ---
 
-## 10. 🔒 MIDDLEWARE
+## 10. MIDDLEWARE
 
 ### Middleware Configuration
 
@@ -1018,7 +1018,7 @@ export function middleware(request: NextRequest) {
 
 ---
 
-## 11. 📋 QUICK REFERENCE
+## 11. QUICK REFERENCE
 
 ### Checklist: New Feature Setup
 
@@ -1100,7 +1100,7 @@ import dynamic from 'next/dynamic';
 
 ---
 
-## 12. 🔗 RELATED RESOURCES
+## 12. RELATED RESOURCES
 
 ### Related References
 

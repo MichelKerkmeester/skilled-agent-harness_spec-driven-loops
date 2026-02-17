@@ -9,7 +9,7 @@ Universal step-by-step checklist for investigating technical issues systematical
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 ### Purpose
 

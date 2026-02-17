@@ -187,7 +187,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
 
 ---
 
-## ✅ PHASE STATUS VERIFICATION (BLOCKING)
+## PHASE STATUS VERIFICATION (BLOCKING)
 
 **Before continuing to the workflow, verify ALL values are set:**
 
@@ -212,7 +212,7 @@ VERIFICATION CHECK:
 
 ---
 
-## ⚡ INSTRUCTIONS
+## INSTRUCTIONS
 
 After Phase 0 and Setup Phase pass, load and execute the appropriate YAML workflow:
 
@@ -239,7 +239,7 @@ This command dispatches a specialized agent at a specific workflow step (see YAM
 
 ---
 
-## ⛔ GATE 3 STATUS: EXEMPT (Predefined Location)
+## GATE 3 STATUS: EXEMPT (Predefined Location)
 
 **This command creates files at a predefined location and is EXEMPT from the spec folder question.**
 
@@ -253,7 +253,7 @@ This command dispatches a specialized agent at a specific workflow step (see YAM
 
 <!-- REFERENCE ONLY -->
 
-## 📋 MODE BEHAVIORS
+## MODE BEHAVIORS
 
 **AUTONOMOUS (:auto):**
 - Execute all steps without approval prompts
@@ -270,7 +270,7 @@ This command dispatches a specialized agent at a specific workflow step (see YAM
 
 ---
 
-## ⚠️ VIOLATION SELF-DETECTION (BLOCKING)
+## VIOLATION SELF-DETECTION (BLOCKING)
 
 **YOU ARE IN VIOLATION IF YOU:**
 
@@ -295,13 +295,13 @@ This command dispatches a specialized agent at a specific workflow step (see YAM
 
 ---
 
-## 1. 🎯 PURPOSE
+## 1. PURPOSE
 
 Create a new asset file for an existing skill following the `skill_asset_template.md` structure. Asset files provide templates, lookups, examples, or guides that support skill functionality.
 
 ---
 
-## 2. 📝 CONTRACT
+## 2. CONTRACT
 
 **Inputs:** `$ARGUMENTS` — Skill name and asset type (template|lookup|example|guide)
 **Outputs:** Asset file in skill's assets/ directory + `STATUS=<OK|FAIL|CANCELLED>`
@@ -314,7 +314,7 @@ $ARGUMENTS
 
 ---
 
-## 3. 📊 WORKFLOW EXECUTION - MANDATORY TRACKING
+## 3. WORKFLOW EXECUTION - MANDATORY TRACKING
 
 **⛔ ENFORCEMENT RULE:** Execute steps IN ORDER (1→6). Mark each step ✅ ONLY after completing ALL its activities and verifying outputs. DO NOT SKIP STEPS.
 
@@ -333,7 +333,7 @@ $ARGUMENTS
 
 ---
 
-## 4. 📌 REFERENCE
+## 4. REFERENCE
 
 ### Asset Location
 - **Path**: `.opencode/skill/[skill-name]/assets/`
@@ -376,7 +376,7 @@ $ARGUMENTS
 
 ---
 
-## 5. 🔍 EXAMPLES
+## 5. EXAMPLES
 
 **Example 1: Create template asset**
 ```
@@ -416,7 +416,7 @@ $ARGUMENTS
 
 ---
 
-## 6. 🔗 COMMAND CHAIN
+## 6. COMMAND CHAIN
 
 This command is often used after skill creation:
 
@@ -430,7 +430,7 @@ This command is often used after skill creation:
 
 ---
 
-## 7. 📌 NEXT STEPS
+## 7. NEXT STEPS
 
 After asset creation completes, suggest relevant next steps:
 

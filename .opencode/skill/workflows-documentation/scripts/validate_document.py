@@ -29,10 +29,10 @@ Examples:
 
 import argparse
 import json
-import os
 import re
 import sys
 from pathlib import Path
+from typing import Any, Dict, List, Optional, Tuple
 
 
 # ───────────────────────────────────────────────────────────────
@@ -74,7 +74,7 @@ TEMPLATE_PATTERNS = [
 ]
 
 
-def should_exclude_path(file_path):
+def should_exclude_path(file_path: str) -> Tuple[bool, Optional[str]]:
     """Check if file path should be excluded from validation."""
     path_str = str(file_path)
 
@@ -100,7 +100,7 @@ def should_exclude_path(file_path):
 # 2. UTILITIES
 # ───────────────────────────────────────────────────────────────
 
-def load_template_rules(script_dir):
+def load_template_rules(script_dir: Path) -> Dict[str, Any]:
     """Load template_rules.json from assets folder."""
     rules_path = script_dir.parent / "assets" / "template_rules.json"
     if not rules_path.exists():
@@ -111,7 +111,7 @@ def load_template_rules(script_dir):
         return json.load(f)
 
 
-def detect_document_type(file_path, content, rules):
+def detect_document_type(file_path: str, content: str, rules: Dict[str, Any]) -> str:
     """Detect document type from file path or content."""
     path_lower = str(file_path).lower()
 
@@ -130,18 +130,18 @@ def detect_document_type(file_path, content, rules):
     return 'readme'
 
 
-def has_emoji(text):
+def has_emoji(text: str) -> bool:
     """Check if text contains an emoji."""
     return bool(EMOJI_PATTERN.search(text))
 
 
-def extract_first_emoji(text):
+def extract_first_emoji(text: str) -> Optional[str]:
     """Extract the first emoji from text."""
     match = EMOJI_PATTERN.search(text)
     return match.group(0) if match else None
 
 
-def normalize_section_name(name):
+def normalize_section_name(name: str) -> str:
     """Normalize section name for lookup in rules."""
     name = EMOJI_PATTERN.sub('', name)
     name = name.strip().lower().replace(' ', '_')
@@ -149,7 +149,7 @@ def normalize_section_name(name):
     return name
 
 
-def extract_section_name_text(text):
+def extract_section_name_text(text: str) -> str:
     """
     Extract the section name text after removing number prefix and emoji.
 
@@ -166,7 +166,7 @@ def extract_section_name_text(text):
     return text.strip()
 
 
-def is_uppercase_section(text):
+def is_uppercase_section(text: str) -> bool:
     """
     Check if section name is ALL CAPS.
 
@@ -188,7 +188,7 @@ def is_uppercase_section(text):
     return all(c.isupper() for c in alpha_chars)
 
 
-def make_uppercase_section(text):
+def make_uppercase_section(text: str) -> str:
     """
     Convert section name to ALL CAPS while preserving structure.
 
@@ -204,7 +204,7 @@ def make_uppercase_section(text):
 # 3. TOC VALIDATION
 # ───────────────────────────────────────────────────────────────
 
-def validate_toc(content, doc_type_rules, rules):
+def validate_toc(content: str, doc_type_rules: Dict[str, Any], rules: Dict[str, Any]) -> List[Dict[str, Any]]:
     """Validate TABLE OF CONTENTS section."""
     errors = []
 
@@ -282,7 +282,7 @@ def validate_toc(content, doc_type_rules, rules):
 # 4. HEADER VALIDATION
 # ───────────────────────────────────────────────────────────────
 
-def validate_h2_headers(content, doc_type_rules, rules):
+def validate_h2_headers(content: str, doc_type_rules: Dict[str, Any], rules: Dict[str, Any]) -> List[Dict[str, Any]]:
     """Validate H2 header format and emojis."""
     errors = []
 
@@ -376,7 +376,7 @@ def validate_h2_headers(content, doc_type_rules, rules):
 # 5. SECTION VALIDATION
 # ───────────────────────────────────────────────────────────────
 
-def validate_required_sections(content, doc_type_rules):
+def validate_required_sections(content: str, doc_type_rules: Dict[str, Any]) -> List[Dict[str, Any]]:
     """Check that required sections are present."""
     errors = []
 
@@ -438,7 +438,7 @@ def validate_required_sections(content, doc_type_rules):
 # 6. AUTO-FIX
 # ───────────────────────────────────────────────────────────────
 
-def apply_fixes(content, errors):
+def apply_fixes(content: str, errors: List[Dict[str, Any]]) -> Tuple[str, List[Dict[str, Any]]]:
     """
     Apply auto-fixes to content.
 
@@ -476,9 +476,6 @@ def apply_fixes(content, errors):
 
         # Re-validate to get updated error list with new line content
         # This allows subsequent fixes to find the modified lines
-        from io import StringIO
-        import tempfile
-
         # Re-run validation on the fixed content to get fresh errors
         script_dir = Path(__file__).parent
         rules = load_template_rules(script_dir)
@@ -503,7 +500,12 @@ def apply_fixes(content, errors):
 # 7. MAIN VALIDATION
 # ───────────────────────────────────────────────────────────────
 
-def validate_document(file_path, doc_type=None, rules=None, skip_exclusions=False):
+def validate_document(
+    file_path: str,
+    doc_type: Optional[str] = None,
+    rules: Optional[Dict[str, Any]] = None,
+    skip_exclusions: bool = False,
+) -> Dict[str, Any]:
     """
     Validate a markdown document against template rules.
 
@@ -547,10 +549,10 @@ def validate_document(file_path, doc_type=None, rules=None, skip_exclusions=Fals
             'error': f'File not found: {file_path}',
             'exit_code': 2
         }
-    except Exception as e:
+    except Exception as exc:
         return {
             'valid': False,
-            'error': f'Error reading file: {e}',
+            'error': f"Error reading file ({type(exc).__name__}): {exc}",
             'exit_code': 2
         }
 
@@ -595,7 +597,7 @@ def validate_document(file_path, doc_type=None, rules=None, skip_exclusions=Fals
 # 8. CLI ENTRY POINT
 # ───────────────────────────────────────────────────────────────
 
-def main():
+def main() -> None:
     parser = argparse.ArgumentParser(
         description='Validate markdown documentation against template rules',
         formatter_class=argparse.RawDescriptionHelpFormatter,

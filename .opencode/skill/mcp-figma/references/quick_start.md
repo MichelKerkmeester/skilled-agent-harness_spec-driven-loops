@@ -9,7 +9,7 @@ Get started with Figma MCP in 5 minutes covering prerequisites and first command
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 ### Two Options Available
 
@@ -46,7 +46,7 @@ project/
 
 ---
 
-## 2. 🚀 VERIFICATION
+## 2. VERIFICATION
 
 ### Step 1: Verify Code Mode
 
@@ -88,7 +88,7 @@ call_tool_chain({
 
 ---
 
-## 3. 🎯 FIRST COMMANDS
+## 3. FIRST COMMANDS
 
 ### Get a Figma File
 
@@ -178,7 +178,7 @@ call_tool_chain({
 
 ---
 
-## 4. 🔧 COMMON WORKFLOWS
+## 4. COMMON WORKFLOWS
 
 ### Design File Access
 
@@ -211,7 +211,7 @@ call_tool_chain({
 
 ---
 
-## 5. 🛠️ TROUBLESHOOTING
+## 5. TROUBLESHOOTING
 
 ### Tool Not Found
 
@@ -259,7 +259,7 @@ await figma.figma_get_file({...});
 
 ---
 
-## 6. 🔗 RELATED RESOURCES
+## 6. RELATED RESOURCES
 
 | Guide | When to Use |
 |-------|-------------|

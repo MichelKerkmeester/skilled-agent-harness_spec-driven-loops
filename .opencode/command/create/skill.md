@@ -166,7 +166,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
 
 ---
 
-## ✅ PHASE STATUS VERIFICATION (BLOCKING)
+## PHASE STATUS VERIFICATION (BLOCKING)
 
 **Before continuing to the workflow, verify ALL values are set:**
 
@@ -189,7 +189,7 @@ VERIFICATION CHECK:
 
 ---
 
-## ⚡ INSTRUCTIONS
+## INSTRUCTIONS
 
 After Phase 0 and Setup Phase pass, load and execute the appropriate YAML workflow:
 
@@ -218,7 +218,7 @@ This command dispatches specialized agents at specific workflow steps (see YAML 
 
 ---
 
-## 1. 📖 ROLE & PURPOSE
+## 1. ROLE & PURPOSE
 
 ```yaml
 role: Expert Skill Creator using workflows-documentation skill
@@ -239,7 +239,7 @@ Create a complete, production-ready OpenCode skill following the 9-step skill cr
 
 ---
 
-## 2. 📝 CONTRACT
+## 2. CONTRACT
 
 **Inputs:** `$ARGUMENTS` — Skill name in hyphen-case with optional output path
 **Outputs:** Complete skill folder with SKILL.md + resources + `STATUS=<OK|FAIL|CANCELLED>`
@@ -252,7 +252,7 @@ $ARGUMENTS
 
 ---
 
-## 3. 📊 WORKFLOW OVERVIEW
+## 3. WORKFLOW OVERVIEW
 
 **⛔ ENFORCEMENT RULE:** Execute steps IN ORDER (1→9). Mark each step ✅ ONLY after completing ALL its activities and verifying outputs. DO NOT SKIP STEPS.
 
@@ -270,7 +270,7 @@ $ARGUMENTS
 
 ---
 
-## 4. 🎯 MODE BEHAVIORS
+## 4. MODE BEHAVIORS
 
 **AUTONOMOUS (:auto):**
 - Execute all steps without approval prompts
@@ -287,7 +287,7 @@ $ARGUMENTS
 
 ---
 
-## 5. ⛔ CRITICAL ENFORCEMENT RULES
+## 5. CRITICAL ENFORCEMENT RULES
 
 ```
 STEP 3 (Understanding) REQUIREMENTS:
@@ -330,7 +330,7 @@ STEP 8 (Resource Routing) REQUIREMENTS:
 
 ---
 
-## 6. 📊 WORKFLOW DIAGRAM
+## 6. WORKFLOW DIAGRAM
 
 ```mermaid
 flowchart TD
@@ -403,7 +403,7 @@ flowchart TD
 
 ---
 
-## 7. ⚠️ VIOLATION SELF-DETECTION (BLOCKING)
+## 7. VIOLATION SELF-DETECTION (BLOCKING)
 
 **YOU ARE IN VIOLATION IF YOU:**
 
@@ -446,7 +446,7 @@ FOR WORKFLOW VIOLATIONS:
 
 ---
 
-## 8. 📌 REFERENCE TABLE
+## 8. REFERENCE TABLE
 
 | Section             | Location in YAML                     |
 | ------------------- | ------------------------------------ |
@@ -461,7 +461,7 @@ FOR WORKFLOW VIOLATIONS:
 
 ---
 
-## 9. 🔍 EXAMPLES
+## 9. EXAMPLES
 
 **Example 1: Basic skill creation**
 ```
@@ -502,7 +502,7 @@ python .opencode/skill/workflows-documentation/scripts/package_skill.py .opencod
 
 ---
 
-## 10. 🔗 COMMAND CHAIN
+## 10. COMMAND CHAIN
 
 This command creates skills that may need additional resources:
 
@@ -516,7 +516,7 @@ This command creates skills that may need additional resources:
 
 ---
 
-## 11. 📌 NEXT STEPS
+## 11. NEXT STEPS
 
 After skill creation completes, suggest relevant next steps:
 

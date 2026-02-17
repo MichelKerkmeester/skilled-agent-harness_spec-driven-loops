@@ -17,19 +17,19 @@ importance_tier: "normal"
 ## TABLE OF CONTENTS
 <!-- ANCHOR:table-of-contents -->
 
-- [1. 📖 OVERVIEW](#1--overview)
-- [2. 🚀 QUICK START](#2--quick-start)
-- [3. 📁 STRUCTURE](#3--structure)
-- [4. ⚡ FEATURES](#4--features)
-- [5. 💡 USAGE EXAMPLES](#5--usage-examples)
-- [6. 🛠️ TROUBLESHOOTING](#6--troubleshooting)
-- [7. 📚 RELATED DOCUMENTS](#7--related-documents)
+- [1. OVERVIEW](#1--overview)
+- [2. QUICK START](#2--quick-start)
+- [3. STRUCTURE](#3--structure)
+- [4. FEATURES](#4--features)
+- [5. USAGE EXAMPLES](#5--usage-examples)
+- [6. TROUBLESHOOTING](#6--troubleshooting)
+- [7. RELATED DOCUMENTS](#7--related-documents)
 
 <!-- /ANCHOR:table-of-contents -->
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 <!-- ANCHOR:overview -->
 
 ### What is the MCP Server Library?
@@ -72,7 +72,7 @@ The MCP Server Library provides the core functionality for the Spec Kit Memory M
 
 ---
 
-## 2. 🚀 QUICK START
+## 2. QUICK START
 <!-- ANCHOR:quick-start -->
 
 ### 30-Second Setup
@@ -113,7 +113,7 @@ console.log(`Found ${results.length} relevant memories`);
 
 ---
 
-## 3. 📁 STRUCTURE
+## 3. STRUCTURE
 <!-- ANCHOR:structure -->
 
 ```
@@ -259,7 +259,7 @@ dist/lib/                       # Compiled JavaScript + type definitions
 
 ---
 
-## 4. ⚡ FEATURES
+## 4. FEATURES
 <!-- ANCHOR:features -->
 
 ### Search and Retrieval
@@ -429,7 +429,7 @@ const matches = await parsing.triggerMatcher.match_triggers({
 
 ---
 
-## 5. 💡 USAGE EXAMPLES
+## 5. USAGE EXAMPLES
 <!-- ANCHOR:usage-examples -->
 
 ### Example 1: Semantic Memory Search
@@ -534,7 +534,7 @@ const results = await utils.process_batches(
 
 ---
 
-## 6. 🛠️ TROUBLESHOOTING
+## 6. TROUBLESHOOTING
 <!-- ANCHOR:troubleshooting -->
 
 ### Common Issues
@@ -624,7 +624,7 @@ console.log('Embedding dimensions:', embedding.length);
 
 ---
 
-## 7. 📚 RELATED DOCUMENTS
+## 7. RELATED DOCUMENTS
 <!-- ANCHOR:related -->
 
 ### Internal Documentation

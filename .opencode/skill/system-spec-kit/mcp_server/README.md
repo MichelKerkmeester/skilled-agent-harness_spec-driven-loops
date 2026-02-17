@@ -19,23 +19,23 @@ A cognitive memory system for AI assistants featuring hybrid search, FSRS-powere
 ## TABLE OF CONTENTS
 <!-- ANCHOR:table-of-contents -->
 
-- [1. 📖 OVERVIEW](#1--overview)
-- [2. 🔧 MCP TOOLS](#2--mcp-tools)
-- [3. 🧠 COGNITIVE MEMORY](#3--cognitive-memory)
-- [4. 🔍 SEARCH SYSTEM](#4--search-system)
-- [5. 📊 IMPORTANCE TIERS](#5--importance-tiers)
-- [6. 📁 STRUCTURE](#6--structure)
-- [7. 🚀 QUICK START](#7--quick-start)
-- [8. ⚙️ CONFIGURATION](#8--configuration)
-- [9. 💡 USAGE EXAMPLES](#9--usage-examples)
-- [10. 🛠️ TROUBLESHOOTING](#10--troubleshooting)
-- [11. 📚 RELATED RESOURCES](#11--related-resources)
+- [1. OVERVIEW](#1--overview)
+- [2. MCP TOOLS](#2--mcp-tools)
+- [3. COGNITIVE MEMORY](#3--cognitive-memory)
+- [4. SEARCH SYSTEM](#4--search-system)
+- [5. IMPORTANCE TIERS](#5--importance-tiers)
+- [6. STRUCTURE](#6--structure)
+- [7. QUICK START](#7--quick-start)
+- [8. CONFIGURATION](#8--configuration)
+- [9. USAGE EXAMPLES](#9--usage-examples)
+- [10. TROUBLESHOOTING](#10--troubleshooting)
+- [11. RELATED RESOURCES](#11--related-resources)
 
 ---
 
 <!-- /ANCHOR:table-of-contents -->
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 <!-- ANCHOR:overview -->
 
 ### The Problem
@@ -125,7 +125,7 @@ This MCP server gives your AI assistant persistent memory with intelligence buil
 
 <!-- /ANCHOR:overview -->
 
-## 2. 🔧 MCP TOOLS
+## 2. MCP TOOLS
 <!-- ANCHOR:mcp-tools -->
 
 ### Tool Categories
@@ -297,7 +297,7 @@ README sources are indexed with reduced importance weights so they provide usefu
 
 <!-- /ANCHOR:mcp-tools -->
 
-## 3. 🧠 COGNITIVE MEMORY
+## 3. COGNITIVE MEMORY
 <!-- ANCHOR:cognitive-memory -->
 
 This is not basic memory storage. The system implements biologically-inspired cognitive features that mirror how human memory works.
@@ -466,7 +466,7 @@ LI = (KnowledgeDelta * 0.4) + (UncertaintyReduction * 0.35) + (ContextImprovemen
 
 <!-- /ANCHOR:cognitive-memory -->
 
-## 4. 🔍 SEARCH SYSTEM
+## 4. SEARCH SYSTEM
 <!-- ANCHOR:search-system -->
 
 ### Hybrid Search Architecture
@@ -597,7 +597,7 @@ The **constitutional** tier is special. These memories ALWAYS appear at the top 
 
 <!-- /ANCHOR:search-system -->
 
-## 5. 📊 IMPORTANCE TIERS
+## 5. IMPORTANCE TIERS
 <!-- ANCHOR:importance-tiers -->
 
 ### The Six-Tier System
@@ -637,7 +637,7 @@ The indexing pipeline also assigns importance weights based on file source. This
 
 <!-- /ANCHOR:importance-tiers -->
 
-## 6. 📁 STRUCTURE
+## 6. STRUCTURE
 <!-- ANCHOR:structure -->
 
 ```
@@ -798,7 +798,7 @@ mcp_server/
 
 <!-- /ANCHOR:structure -->
 
-## 7. 🚀 QUICK START
+## 7. QUICK START
 <!-- ANCHOR:quick-start -->
 
 ### 30-Second Setup
@@ -861,7 +861,7 @@ Add to your MCP client configuration (e.g., `opencode.json`):
 
 <!-- /ANCHOR:quick-start -->
 
-## 8. ⚙️ CONFIGURATION
+## 8. CONFIGURATION
 <!-- ANCHOR:configuration -->
 
 ### Environment Variables
@@ -978,7 +978,7 @@ In this repository, `database/context-index.sqlite` is maintained as a compatibi
 
 <!-- /ANCHOR:configuration -->
 
-## 9. 💡 USAGE EXAMPLES
+## 9. USAGE EXAMPLES
 <!-- ANCHOR:usage-examples -->
 
 ### Basic Memory Search
@@ -1097,7 +1097,7 @@ checkpoint_restore({ name: "pre-cleanup" })
 
 <!-- /ANCHOR:usage-examples -->
 
-## 10. 🛠️ TROUBLESHOOTING
+## 10. TROUBLESHOOTING
 <!-- ANCHOR:troubleshooting -->
 
 ### Common Issues
@@ -1224,7 +1224,7 @@ node dist/tests/causal-edges.test.js
 
 <!-- /ANCHOR:troubleshooting -->
 
-## 11. 📚 RELATED RESOURCES
+## 11. RELATED RESOURCES
 <!-- ANCHOR:related -->
 
 ### Parent Documentation

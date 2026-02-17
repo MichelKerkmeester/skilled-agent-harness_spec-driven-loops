@@ -169,18 +169,18 @@ async function handleMemoryMatchTriggers(args: TriggerArgs): Promise<MCPResponse
 
   const {
     prompt,
-    limit: raw_limit = 3,
-    session_id,
-    turnNumber: raw_turn_number = 1,
-    include_cognitive = true
+    limit: rawLimit = 3,
+    session_id: sessionId,
+    turnNumber: rawTurnNumber = 1,
+    include_cognitive: includeCognitive = true
   } = args;
 
   // T120: Validate numeric parameters
-  const limit = (typeof raw_limit === 'number' && Number.isFinite(raw_limit) && raw_limit > 0)
-    ? Math.min(Math.floor(raw_limit), 50)
+  const limit = (typeof rawLimit === 'number' && Number.isFinite(rawLimit) && rawLimit > 0)
+    ? Math.min(Math.floor(rawLimit), 50)
     : 3;
-  const turnNumber = (typeof raw_turn_number === 'number' && Number.isFinite(raw_turn_number) && raw_turn_number >= 0)
-    ? Math.floor(raw_turn_number)
+  const turnNumber = (typeof rawTurnNumber === 'number' && Number.isFinite(rawTurnNumber) && rawTurnNumber >= 0)
+    ? Math.floor(rawTurnNumber)
     : 1;
 
   if (!prompt || typeof prompt !== 'string') {
@@ -190,8 +190,8 @@ async function handleMemoryMatchTriggers(args: TriggerArgs): Promise<MCPResponse
   const startTime = Date.now();
 
   // Check if cognitive features are enabled and requested
-  const useCognitive = include_cognitive &&
-    session_id &&
+  const useCognitive = includeCognitive &&
+    sessionId &&
     workingMemory.isEnabled() &&
     attentionDecay.getDb();
 
@@ -199,7 +199,7 @@ async function handleMemoryMatchTriggers(args: TriggerArgs): Promise<MCPResponse
   let decayStats: DecayStats | null = null;
   if (useCognitive) {
     try {
-      decayStats = { decayedCount: workingMemory.batchUpdateScores(session_id as string) };
+      decayStats = { decayedCount: workingMemory.batchUpdateScores(sessionId as string) };
     } catch (err: unknown) {
       const message = toErrorMessage(err);
       console.warn('[memory_match_triggers] Decay failed:', message);
@@ -217,7 +217,7 @@ async function handleMemoryMatchTriggers(args: TriggerArgs): Promise<MCPResponse
         matchType: useCognitive ? 'trigger-phrase-cognitive' : 'trigger-phrase',
         cognitive: useCognitive ? {
           enabled: true,
-          sessionId: session_id,
+          sessionId,
           turnNumber: turnNumber,
           decayApplied: decayStats ? decayStats.decayedCount : 0
         } : null
@@ -231,7 +231,7 @@ async function handleMemoryMatchTriggers(args: TriggerArgs): Promise<MCPResponse
   }
 
   // Step 3-6: Apply cognitive features if enabled
-  let formatted_results: FormattedResult[];
+  let formattedResults: FormattedResult[];
   let cognitiveStats: CognitiveStats | null = null;
 
   if (useCognitive) {
@@ -244,7 +244,7 @@ async function handleMemoryMatchTriggers(args: TriggerArgs): Promise<MCPResponse
       try {
         attentionDecay.activateMemory(match.memoryId);
         // T209: Wire setAttentionScore — boost matched memory to 1.0 in working memory
-        workingMemory.setAttentionScore(session_id as string, match.memoryId, 1.0);
+        workingMemory.setAttentionScore(sessionId as string, match.memoryId, 1.0);
         activatedMemories.push(match.memoryId);
       } catch (err: unknown) {
         const message = toErrorMessage(err);
@@ -255,16 +255,16 @@ async function handleMemoryMatchTriggers(args: TriggerArgs): Promise<MCPResponse
     // Step 4: CO-ACTIVATE
     const coActivatedMemories: CoActivatedMemory[] = [];
     if (coActivation.isEnabled()) {
-      for (const memory_id of activatedMemories) {
+      for (const memoryId of activatedMemories) {
         try {
-          const boosted: CoActivatedMemory[] | null = coActivation.spreadActivation([memory_id])
+          const boosted: CoActivatedMemory[] | null = coActivation.spreadActivation([memoryId])
             .map(r => ({ memoryId: r.id }));
           if (boosted && Array.isArray(boosted)) {
             coActivatedMemories.push(...boosted);
           }
         } catch (err: unknown) {
           const message = toErrorMessage(err);
-          console.warn(`[memory_match_triggers] Co-activation failed for ${memory_id}:`, message);
+          console.warn(`[memory_match_triggers] Co-activation failed for ${memoryId}:`, message);
         }
       }
     }
@@ -277,7 +277,7 @@ async function handleMemoryMatchTriggers(args: TriggerArgs): Promise<MCPResponse
     const matchedIds = results.map((m: TriggerMatch) => m.memoryId);
     const fullRecords = fetchMemoryRecords(matchedIds);
 
-    const sessionMemories: WorkingMemoryEntry[] = workingMemory.getSessionMemories(session_id as string)
+    const sessionMemories: WorkingMemoryEntry[] = workingMemory.getSessionMemories(sessionId as string)
       .map(wm => ({ memoryId: (wm.id as number) || 0, attentionScore: (wm.attention_score as number) || 1.0 }));
 
     // T208: Calculate turn-based decay factor (turnNumber=1 → 1.0, higher → more decay)
@@ -326,7 +326,7 @@ async function handleMemoryMatchTriggers(args: TriggerArgs): Promise<MCPResponse
     // Step 6: RETURN - Apply tier filtering and content depth
     const tieredResults = tierClassifier.filterAndLimitByState(enrichedResults);
 
-    formatted_results = await Promise.all(tieredResults.map(async (r: EnrichedTriggerMatch) => {
+    formattedResults = await Promise.all(tieredResults.map(async (r: EnrichedTriggerMatch) => {
       const content: string = await getTieredContent({
         filePath: r.filePath,
         title: r.title,
@@ -349,17 +349,17 @@ async function handleMemoryMatchTriggers(args: TriggerArgs): Promise<MCPResponse
 
     cognitiveStats = {
       enabled: true,
-      sessionId: session_id!,
+      sessionId: sessionId!,
       turnNumber: turnNumber,
       decayApplied: decayStats ? decayStats.decayedCount : 0,
       memoriesActivated: activatedMemories.length,
       coActivations: coActivatedMemories.length,
       tierDistribution: tierClassifier.getStateStats(enrichedResults),
-      tokenMetrics: calculateTokenMetrics(results, formatted_results)
+      tokenMetrics: calculateTokenMetrics(results, formattedResults)
     };
 
   } else {
-    formatted_results = results.slice(0, limit).map((r: TriggerMatch) => ({
+    formattedResults = results.slice(0, limit).map((r: TriggerMatch) => ({
       memoryId: r.memoryId,
       specFolder: r.specFolder,
       filePath: r.filePath,
@@ -375,11 +375,11 @@ async function handleMemoryMatchTriggers(args: TriggerArgs): Promise<MCPResponse
   }
 
   const summary = useCognitive
-    ? `Matched ${formatted_results.length} memories with cognitive features`
-    : `Matched ${formatted_results.length} memories via trigger phrases`;
+    ? `Matched ${formattedResults.length} memories with cognitive features`
+    : `Matched ${formattedResults.length} memories via trigger phrases`;
 
   const hints: string[] = [];
-  if (!useCognitive && session_id) {
+  if (!useCognitive && sessionId) {
     hints.push('Enable cognitive features with include_cognitive: true');
   }
   const coldCount = cognitiveStats?.tierDistribution?.COLD;
@@ -392,8 +392,8 @@ async function handleMemoryMatchTriggers(args: TriggerArgs): Promise<MCPResponse
     summary,
     data: {
       matchType: useCognitive ? 'trigger-phrase-cognitive' : 'trigger-phrase',
-      count: formatted_results.length,
-      results: formatted_results,
+      count: formattedResults.length,
+      results: formattedResults,
       cognitive: cognitiveStats
     },
     hints,
@@ -418,4 +418,3 @@ const handle_memory_match_triggers = handleMemoryMatchTriggers;
 export {
   handle_memory_match_triggers,
 };
-

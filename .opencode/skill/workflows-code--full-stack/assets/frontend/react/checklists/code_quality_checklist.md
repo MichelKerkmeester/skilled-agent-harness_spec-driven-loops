@@ -7,7 +7,7 @@ description: Universal validation checklist for code quality and style complianc
 
 Universal validation checklist for code quality and style compliance across TypeScript/JavaScript, Go, and Swift.
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 ### Purpose
 

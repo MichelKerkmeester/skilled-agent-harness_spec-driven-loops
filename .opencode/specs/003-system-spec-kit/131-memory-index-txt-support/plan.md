@@ -46,7 +46,7 @@ Extend the memory indexing subsystem (`memory-index.ts`, `memory-save.ts`) to di
 Layered Architecture: MCP Tool Layer → Handler Layer → File Discovery → Indexing Logic
 
 ### Key Components
-- **memory-index.ts**: File discovery functions (`findMemoryFiles()`, `findSkillReadmes()`, `findProjectReadmes()`, `findCommandReadmes()`)
+- **memory-index.ts**: File discovery functions (`findMemoryFiles()`, `findSkillReadmes()`, `findProjectReadmes()` - expanded to include `.opencode/command/` paths)
 - **memory-save.ts**: Path validation (`indexMemoryFile()` entry guard)
 - **memory-parser.ts**: Frontmatter extraction (already extension-agnostic)
 - **incremental-index.ts**: Mtime/hash tracking (already path-agnostic)
@@ -69,8 +69,7 @@ Layered Architecture: MCP Tool Layer → Handler Layer → File Discovery → In
 ### Phase 1: Discovery Functions (Core)
 - [x] Update `findMemoryFiles()`: Add `.txt` extension check for `specs/**/memory/` paths
 - [x] Update `findSkillReadmes()`: Add `.txt` support (e.g., `README.txt` in skill dirs)
-- [x] Update `findProjectReadmes()`: Add `.txt` to basename check
-- [x] Add `findCommandReadmes()`: New function for `.opencode/command/**/README.{md,txt}`
+- [x] Update `findProjectReadmes()`: Expand to discover `README.{md,txt}` including `.opencode/command/` paths
 
 ### Phase 2: Validation Update
 - [x] Update `memory-save.ts` path validation regex to accept `.txt`

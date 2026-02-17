@@ -9,13 +9,13 @@ One-page cheat sheet for git-worktrees, git-commit, and git-finish workflows.
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 This quick reference provides a one-page cheat sheet for the three git workflow phases: worktrees (workspace setup), commit (change tracking), and finish (integration).
 
 ---
 
-## 2. 🗺️ SKILL SELECTION FLOWCHART
+## 2. SKILL SELECTION FLOWCHART
 
 ```
 ┌─────────────────────────────────────┐
@@ -34,7 +34,7 @@ git-worktrees   git-commit      git-finish
 
 ---
 
-## 3. 🏗️ PHASE 1: WORKTREE SETUP (GIT-WORKTREES)
+## 3. PHASE 1: WORKTREE SETUP (GIT-WORKTREES)
 
 ### Quick Commands
 
@@ -75,7 +75,7 @@ git worktree remove .worktrees/<name>
 
 ---
 
-## 4. 📝 PHASE 2: COMMIT WORK (GIT-COMMIT)
+## 4. PHASE 2: COMMIT WORK (GIT-COMMIT)
 
 ### Quick Commands
 
@@ -133,7 +133,7 @@ Improves security and enables SSO integration.
 
 ---
 
-## 5. 🚀 PHASE 3: COMPLETE WORK (GIT-FINISH)
+## 5. PHASE 3: COMPLETE WORK (GIT-FINISH)
 
 ### Quick Commands
 
@@ -177,7 +177,7 @@ git worktree remove .worktrees/<name>
 
 ---
 
-## 6. 🔁 COMMON WORKFLOWS
+## 6. COMMON WORKFLOWS
 
 ### Workflow A: Quick Fix (Main-Focused)
 
@@ -251,7 +251,7 @@ cd ../.. && git worktree remove .worktrees/exp
 
 ---
 
-## 7. 🏎️ DECISION QUICK REFERENCE
+## 7. DECISION QUICK REFERENCE
 
 | Scenario | Worktree Strategy | Commit Strategy | Finish Option |
 |----------|-------------------|-----------------|---------------|
@@ -264,7 +264,7 @@ cd ../.. && git worktree remove .worktrees/exp
 
 ---
 
-## 8. 💻 ESSENTIAL GIT COMMANDS
+## 8. ESSENTIAL GIT COMMANDS
 
 ### Worktree
 ```bash
@@ -303,7 +303,7 @@ gh pr create                           # Create PR
 
 ---
 
-## 9. 📋 RULES
+## 9. RULES
 
 ### ALWAYS
 - Run baseline tests to completion (don't skip or timeout)
@@ -323,7 +323,7 @@ gh pr create                           # Create PR
 
 ---
 
-## 10. 🐛 TROUBLESHOOTING
+## 10. TROUBLESHOOTING
 
 | Problem | Solution |
 |---------|----------|
@@ -337,7 +337,7 @@ gh pr create                           # Create PR
 
 ---
 
-## 11. 📁 FILE STRUCTURE REFERENCE
+## 11. FILE STRUCTURE REFERENCE
 
 ```
 .worktrees/                 # Project-local worktrees (add to .gitignore)
@@ -353,7 +353,7 @@ gh pr create                           # Create PR
 
 ---
 
-## 12. ✅ CHECKLISTS
+## 12. CHECKLISTS
 
 ### Pre-Worktree Creation
 - [ ] Directory location determined
@@ -376,7 +376,7 @@ gh pr create                           # Create PR
 
 ---
 
-## 13. 💡 EXAMPLES
+## 13. EXAMPLES
 
 ### Good Commit Messages
 
@@ -407,7 +407,7 @@ refactor: restructure validation layer
 
 ---
 
-## 14. 🐙 GITHUB MCP QUICK REFERENCE
+## 14. GITHUB MCP QUICK REFERENCE
 
 ### Prerequisites
 - PAT configured in `.utcp_config.json` with appropriate scopes
@@ -460,7 +460,7 @@ call_tool_chain(`github.github_get_job_logs({ owner: 'o', repo: 'r', job_id: 123
 
 ---
 
-## 15. 🔗 RELATED RESOURCES
+## 15. RELATED RESOURCES
 
 ### Reference Files
 - [worktree_workflows.md](./worktree_workflows.md) - Complete git-worktrees workflow documentation

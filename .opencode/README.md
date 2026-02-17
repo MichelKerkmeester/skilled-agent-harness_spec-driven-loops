@@ -21,15 +21,15 @@ importance_tier: "normal"
 ## TABLE OF CONTENTS
 <!-- ANCHOR:table-of-contents -->
 
-- [1. OVERVIEW](#1-overview)
-- [2. DIRECTORY STRUCTURE](#2-directory-structure)
-- [3. AGENTS OVERVIEW](#3-agents-overview)
-- [4. SKILLS OVERVIEW](#4-skills-overview)
-- [5. COMMANDS OVERVIEW](#5-commands-overview)
-- [6. KEY CONFIGURATION FILES](#6-key-configuration-files)
-- [7. MEMORY SYSTEM](#7-memory-system)
-- [8. GATE SYSTEM](#8-gate-system)
-- [9. GETTING STARTED](#9-getting-started)
+- [1. OVERVIEW](#1--overview)
+- [2. DIRECTORY STRUCTURE](#2--directory-structure)
+- [3. AGENTS OVERVIEW](#3--agents-overview)
+- [4. SKILLS OVERVIEW](#4--skills-overview)
+- [5. COMMANDS OVERVIEW](#5--commands-overview)
+- [6. KEY CONFIGURATION FILES](#6--key-configuration-files)
+- [7. MEMORY SYSTEM](#7--memory-system)
+- [8. GATE SYSTEM](#8--gate-system)
+- [9. GETTING STARTED](#9--getting-started)
 
 <!-- /ANCHOR:table-of-contents -->
 

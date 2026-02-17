@@ -9,7 +9,7 @@ Configuration for smart parallel sub-agent dispatch based on task complexity sco
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 ### Purpose
 
@@ -24,7 +24,7 @@ Defines when and how to dispatch parallel agents for complex tasks. Use this con
 
 ---
 
-## 2. 📊 5-DIMENSION COMPLEXITY SCORING
+## 2. 5-DIMENSION COMPLEXITY SCORING
 
 | Dimension            | Weight | Scoring                                |
 | -------------------- | ------ | -------------------------------------- |
@@ -38,7 +38,7 @@ Defines when and how to dispatch parallel agents for complex tasks. Use this con
 
 ---
 
-## 3. 🎯 DECISION THRESHOLDS
+## 3. DECISION THRESHOLDS
 
 | Score            | Action                                |
 | ---------------- | ------------------------------------- |
@@ -49,7 +49,7 @@ Defines when and how to dispatch parallel agents for complex tasks. Use this con
 
 ---
 
-## 4. 🤖 4-AGENT PARALLEL EXPLORATION (Step 6 Planning)
+## 4. 4-AGENT PARALLEL EXPLORATION (Step 6 Planning)
 
 | Agent                 | Focus                            | Purpose                          |
 | --------------------- | -------------------------------- | -------------------------------- |
@@ -62,7 +62,7 @@ Defines when and how to dispatch parallel agents for complex tasks. Use this con
 
 ---
 
-## 5. 🚀 TIERED SPEC CREATION ARCHITECTURE
+## 5. TIERED SPEC CREATION ARCHITECTURE
 
 ### Workstream Notation
 
@@ -126,7 +126,7 @@ spec_creation_parallel:
 
 ---
 
-## 6. 🔧 OVERRIDE PHRASES
+## 6. OVERRIDE PHRASES
 
 | Intent                    | Phrases                                                |
 | ------------------------- | ------------------------------------------------------ |
@@ -138,7 +138,7 @@ spec_creation_parallel:
 
 ---
 
-## 7. 🔗 RELATED RESOURCES
+## 7. RELATED RESOURCES
 
 ### Asset Files
 - [template_mapping.md](./template_mapping.md) - Template routing and task mapping

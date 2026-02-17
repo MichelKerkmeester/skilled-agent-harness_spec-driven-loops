@@ -9,13 +9,13 @@ Common patterns, commands, and conventions used across all git workflows.
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 This reference consolidates common patterns, commands, and conventions used across all git workflows (worktrees, commits, and finish). Use this as a quick lookup for branch naming, git commands, Conventional Commits format, and error handling patterns.
 
 ---
 
-## 2. 🏷️ BRANCH NAMING CONVENTIONS
+## 2. BRANCH NAMING CONVENTIONS
 
 ### Temporary Branches (Main-Focused Workflow)
 
@@ -88,7 +88,7 @@ git worktree add --detach .worktrees/experiment main
 
 ---
 
-## 3. 💻 GIT COMMAND REFERENCE
+## 3. GIT COMMAND REFERENCE
 
 ### Worktree Operations
 
@@ -241,7 +241,7 @@ git remote show origin             # Show remote details
 
 ---
 
-## 4. 📝 CONVENTIONAL COMMITS FORMAT
+## 4. CONVENTIONAL COMMITS FORMAT
 
 ### Structure
 
@@ -335,7 +335,7 @@ Clients must update to handle JSON responses.
 
 ---
 
-## 5. 🔧 COMMON GIT PATTERNS
+## 5. COMMON GIT PATTERNS
 
 ### Pattern 1: Quick Fix Workflow
 
@@ -414,7 +414,7 @@ git worktree remove .worktrees/experiment
 
 ---
 
-## 6. 🐛 ERROR HANDLING PATTERNS
+## 6. ERROR HANDLING PATTERNS
 
 ### Pattern: Tests Fail After Changes
 
@@ -566,7 +566,7 @@ git worktree list
 
 ---
 
-## 7. ✅ QUALITY CHECK PATTERNS
+## 7. QUALITY CHECK PATTERNS
 
 ### Pre-Commit Checklist
 
@@ -604,7 +604,7 @@ git worktree list
 
 ---
 
-## 8. 📂 FILE TYPE PATTERNS
+## 8. FILE TYPE PATTERNS
 
 ### Files to Always Commit
 
@@ -637,7 +637,7 @@ git worktree list
 
 ---
 
-## 9. 🐙 GITHUB MCP PATTERNS
+## 9. GITHUB MCP PATTERNS
 
 GitHub MCP provides programmatic access to GitHub's remote operations via Code Mode. Use these patterns for remote collaboration tasks.
 
@@ -787,7 +787,7 @@ call_tool_chain({
 
 ---
 
-## 10. 🔗 RELATED RESOURCES
+## 10. RELATED RESOURCES
 
 ### Reference Files
 - [worktree_workflows.md](./worktree_workflows.md) - Complete git-worktrees workflow documentation

@@ -9,7 +9,7 @@ Complete reference for all 18 Figma MCP tools organized by category and priority
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 ### Core Principle
 
@@ -37,7 +37,7 @@ Figma MCP provides design file access - FILES, IMAGES, COMPONENTS, STYLES, and C
 
 ---
 
-## 2. ⭐ HIGH PRIORITY TOOLS (5 tools)
+## 2. HIGH PRIORITY TOOLS (5 tools)
 
 ### File Management
 
@@ -134,7 +134,7 @@ await figma.figma_get_file_styles({
 
 ---
 
-## 3. 📊 MEDIUM PRIORITY TOOLS (7 tools)
+## 3. MEDIUM PRIORITY TOOLS (7 tools)
 
 ### Images
 
@@ -262,7 +262,7 @@ await figma.figma_get_style({
 
 ---
 
-## 4. ⚠️ LOW PRIORITY TOOLS (6 tools)
+## 4. LOW PRIORITY TOOLS (6 tools)
 
 ### File Management
 
@@ -367,7 +367,7 @@ await figma.figma_get_team_styles({
 
 ---
 
-## 5. 🔄 TOOL SELECTION DECISION TREE
+## 5. TOOL SELECTION DECISION TREE
 
 ```
 User Request
@@ -408,7 +408,7 @@ User Request
 
 ---
 
-## 6. 🔗 RELATED RESOURCES
+## 6. RELATED RESOURCES
 
 ### Guides
 

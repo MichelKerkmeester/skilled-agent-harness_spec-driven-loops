@@ -9,7 +9,7 @@ Coding conventions and formatting standards for Python scripts in the OpenCode d
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 ### Purpose
 
@@ -31,7 +31,7 @@ Applies to all Python files in:
 
 ---
 
-## 2. 📁 FILE STRUCTURE
+## 2. FILE STRUCTURE
 
 ### Shebang Line
 
@@ -129,7 +129,7 @@ def validate_something():
 
 ---
 
-## 3. 🏷️ NAMING CONVENTIONS
+## 3. NAMING CONVENTIONS
 
 ### Functions and Variables
 
@@ -187,7 +187,7 @@ def _parse_frontmatter(content: str) -> dict:
 
 ---
 
-## 4. 🏷️ TYPE HINTS
+## 4. TYPE HINTS
 
 ### Function Signatures
 
@@ -226,7 +226,7 @@ def func() -> Dict[str, Any]:
 
 ---
 
-## 5. 📚 DOCSTRINGS
+## 5. DOCSTRINGS
 
 ### Google-Style Format
 
@@ -324,7 +324,7 @@ for item in items:
 
 ---
 
-## 6. 💡 CODE PATTERNS
+## 6. CODE PATTERNS
 
 ### Early Return Pattern
 
@@ -379,7 +379,7 @@ message = "Missing required field '%s' in frontmatter" % field
 
 ---
 
-## 7. 🚨 ERROR HANDLING
+## 7. ERROR HANDLING
 
 ### Specific Exceptions
 
@@ -415,7 +415,7 @@ return False, "Invalid name format"
 
 ---
 
-## 8. 📐 LINE LENGTH AND FORMATTING
+## 8. LINE LENGTH AND FORMATTING
 
 ### Line Length
 
@@ -453,7 +453,7 @@ REQUIRED_SECTIONS = [
 
 ---
 
-## 9. 🔗 RELATED RESOURCES
+## 9. RELATED RESOURCES
 
 ### Internal References
 - [quality_standards.md](./quality_standards.md) - Code quality requirements

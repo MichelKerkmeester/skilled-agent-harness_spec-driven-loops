@@ -9,7 +9,7 @@ Complete guide to saving conversation context, execution methods, and retrieval.
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 ### Core Principle
 
@@ -64,7 +64,7 @@ The memory system supports **2 independent execution paths**. Any method can be 
 
 ---
 
-## 2. 🎯 METHOD SELECTION
+## 2. METHOD SELECTION
 
 ### Decision Tree
 
@@ -116,7 +116,7 @@ The memory system supports **2 independent execution paths**. Any method can be 
 
 ---
 
-## 3. 💻 SLASH COMMANDS
+## 3. SLASH COMMANDS
 
 **When to Use:** Manual save with AI-powered conversation analysis
 **Requirement:** Slash command files exist in `.opencode/command/memory/`
@@ -157,7 +157,7 @@ The memory system supports **2 independent execution paths**. Any method can be 
 
 ---
 
-## 4. 📜 DIRECT SCRIPT
+## 4. DIRECT SCRIPT
 
 **When to Use:** Testing, debugging, custom workflows, CI/CD pipelines
 **Requirement:** Node.js installed
@@ -217,7 +217,7 @@ node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js \
 
 ---
 
-## 5. 📄 OUTPUT FORMAT
+## 5. OUTPUT FORMAT
 
 ### File Naming
 
@@ -265,7 +265,7 @@ specs/049-oauth-implementation/
 
 ---
 
-## 6. 📝 DOCUMENT STRUCTURE
+## 6. DOCUMENT STRUCTURE
 
 ### Primary Document Sections
 
@@ -338,7 +338,7 @@ For retrieval, `memory_context()` routes queries across 7 intents (including `fi
 
 ---
 
-## 7. 🗃️ METADATA
+## 7. METADATA
 
 ### JSON Structure
 
@@ -382,7 +382,7 @@ For retrieval, `memory_context()` routes queries across 7 intents (including `fi
 
 ---
 
-## 8. 🏷️ ANCHOR RETRIEVAL
+## 8. ANCHOR RETRIEVAL
 
 ### Token Efficiency Comparison
 
@@ -414,7 +414,7 @@ done | sort -rn
 
 ---
 
-## 9. 🔄 CONTEXT RECOVERY
+## 9. CONTEXT RECOVERY
 
 **CRITICAL:** Before implementing ANY changes in a spec folder with memory files, you MUST search for relevant anchors.
 
@@ -480,7 +480,7 @@ sed -n '/<!-- ANCHOR:decision-auth-049 -->/,/<!-- \/ANCHOR:decision-auth-049 -->
 
 ---
 
-## 10. ✅ VALIDATION CHECKLISTS
+## 10. VALIDATION CHECKLISTS
 
 ### File Naming
 
@@ -512,7 +512,7 @@ sed -n '/<!-- ANCHOR:decision-auth-049 -->/,/<!-- \/ANCHOR:decision-auth-049 -->
 
 ---
 
-## 11. 🔍 TROUBLESHOOTING
+## 11. TROUBLESHOOTING
 
 ### Common Issues
 
@@ -546,7 +546,7 @@ node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js --h
 
 ---
 
-## 12. 🔗 RELATED RESOURCES
+## 12. RELATED RESOURCES
 
 ### Reference Files
 - [SKILL.md](../../SKILL.md) - Main workflow-memory skill documentation

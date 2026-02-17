@@ -5,7 +5,7 @@
 
 ---
 
-## P0: BROKEN - Fix TODAY ✅
+## P0: BROKEN - Fix TODAY 
 
 - [x] **P0-001:** Fix Skill Advisor Python path
   - Location: `.opencode/scripts/skill_advisor.py`
@@ -24,7 +24,7 @@
 
 ---
 
-## P1: CRITICAL - Fix This Week ✅
+## P1: CRITICAL - Fix This Week 
 
 - [x] **P1-001:** Fix decay formula documentation
   - Location: `.opencode/skill/system-memory/SKILL.md`
@@ -53,7 +53,7 @@
 
 ---
 
-## P2: DATA INTEGRITY ✅
+## P2: DATA INTEGRITY 
 
 - [x] **P2-001:** Remove orphaned database entries
   - Result: Cleaned up stale entries
@@ -77,7 +77,7 @@
 
 ---
 
-## P3: ALIGNMENT ✅
+## P3: ALIGNMENT 
 
 - [x] **P3-001:** Unify Gate 4 option labels
   - Result: Standardized to A/B/C/D
@@ -105,7 +105,7 @@
 
 ---
 
-## P4: PORTABILITY ✅
+## P4: PORTABILITY 
 
 - [x] **P4-001:** Fix hardcoded MCP paths
   - Result: Converted to portable paths
@@ -121,7 +121,7 @@
 
 ---
 
-## P5: UX IMPROVEMENTS ✅
+## P5: UX IMPROVEMENTS 
 
 - [x] **P5-001:** Add quickstart to README
   - Result: 40-line quickstart at top
@@ -157,7 +157,7 @@
 
 ---
 
-## P6: ENHANCEMENTS ✅
+## P6: ENHANCEMENTS 
 
 - [x] **P6-001:** Create api-contract.md template
   - Result: Created

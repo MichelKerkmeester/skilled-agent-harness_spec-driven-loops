@@ -9,7 +9,7 @@ Quality validation checklist for JSON and JSONC configuration files in the OpenC
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 ### Purpose
 
@@ -25,7 +25,7 @@ Specific quality checks for configuration files (JSON, JSONC). Use alongside the
 
 ---
 
-## 2. 📌 P0 - HARD BLOCKERS
+## 2. P0 - HARD BLOCKERS
 
 These items MUST be fixed before any commit.
 
@@ -83,7 +83,7 @@ grep -v '^\s*//' config.jsonc | python -m json.tool
 
 ---
 
-## 3. 📌 P1 - REQUIRED
+## 3. P1 - REQUIRED
 
 These must be addressed or receive approval to defer.
 
@@ -157,7 +157,7 @@ These must be addressed or receive approval to defer.
 
 ---
 
-## 4. 📌 P2 - RECOMMENDED
+## 4. P2 - RECOMMENDED
 
 These improve quality but can be deferred.
 
@@ -227,7 +227,7 @@ These improve quality but can be deferred.
 
 ---
 
-## 5. 💡 VALIDATION PATTERNS
+## 5. VALIDATION PATTERNS
 
 ### Feature Toggle Pattern
 
@@ -267,7 +267,7 @@ These improve quality but can be deferred.
 
 ---
 
-## 6. 📋 CHECKLIST TEMPLATE
+## 6. CHECKLIST TEMPLATE
 
 Copy this for code review:
 
@@ -301,7 +301,7 @@ Copy this for code review:
 
 ---
 
-## 7. 📌 VALIDATION COMMANDS
+## 7. VALIDATION COMMANDS
 
 ```bash
 # Validate pure JSON
@@ -330,7 +330,7 @@ sed 's|//.*||' config.jsonc | python -m json.tool
 
 ---
 
-## 8. 🔗 RELATED RESOURCES
+## 8. RELATED RESOURCES
 
 ### Checklists
 - [universal_checklist.md](./universal_checklist.md) - Language-agnostic checks

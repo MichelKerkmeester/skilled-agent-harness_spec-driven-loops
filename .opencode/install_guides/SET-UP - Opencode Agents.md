@@ -13,20 +13,20 @@ The agent system enables both focused single-agent work and complex multi-agent 
 
 ## TABLE OF CONTENTS
 
-- [1. 📖 OVERVIEW](#1--overview)
-- [2. 🚀 QUICK START](#2--quick-start)
-- [3. 📁 STRUCTURE](#3--structure)
-- [4. 🤖 AVAILABLE AGENTS](#4--available-agents)
-- [5. ⚙️ AGENT ANATOMY](#5--agent-anatomy)
-- [6. 🔧 CREATING NEW AGENTS](#6--creating-new-agents)
-- [7. 🎯 AGENT VS SKILL](#7--agent-vs-skill)
-- [8. 💡 USAGE EXAMPLES](#8--usage-examples)
-- [9. 🛠️ TROUBLESHOOTING](#9--troubleshooting)
-- [10. 🔗 RELATED RESOURCES](#10--related-resources)
+- [1. OVERVIEW](#1--overview)
+- [2. QUICK START](#2--quick-start)
+- [3. STRUCTURE](#3--structure)
+- [4. AVAILABLE AGENTS](#4--available-agents)
+- [5. AGENT ANATOMY](#5--agent-anatomy)
+- [6. CREATING NEW AGENTS](#6--creating-new-agents)
+- [7. AGENT VS SKILL](#7--agent-vs-skill)
+- [8. USAGE EXAMPLES](#8--usage-examples)
+- [9. TROUBLESHOOTING](#9--troubleshooting)
+- [10. RELATED RESOURCES](#10--related-resources)
 
 ---
 
-## 🤖 AI SET-UP GUIDE
+## AI SET-UP GUIDE
 
 ### ⛔ HARD BLOCK: Write Agent Required
 
@@ -122,7 +122,7 @@ My project is at: [your project path]
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 ### What Are Agents?
 
@@ -225,7 +225,7 @@ Response Delivered
 
 ---
 
-## 2. 🚀 QUICK START
+## 2. QUICK START
 
 ### Using Primary Agents
 
@@ -306,7 +306,7 @@ ls .opencode/agent/
 
 ---
 
-## 3. 📁 STRUCTURE
+## 3. STRUCTURE
 
 ### Directory Layout
 
@@ -341,7 +341,7 @@ ls .opencode/agent/
 
 ---
 
-## 4. 🤖 AVAILABLE AGENTS
+## 4. AVAILABLE AGENTS
 
 ### Built-in Agents (OpenCode Default)
 
@@ -643,7 +643,7 @@ These are project-specific agents defined in `.opencode/agent/`:
 
 ---
 
-## 5. ⚙️ AGENT ANATOMY
+## 5. AGENT ANATOMY
 
 ### Frontmatter Fields (v1.1.1+ Format)
 
@@ -725,22 +725,22 @@ Agent files should follow this structure:
 
 ---
 
-## 1. 🔄 CORE WORKFLOW
+## 1. CORE WORKFLOW
 [Numbered steps the agent follows]
 
 ## 2-N. [DOMAIN SECTIONS]
 [Agent-specific content]
 
-## N. 🚫 ANTI-PATTERNS
+## N. ANTI-PATTERNS
 [What the agent should NEVER do]
 
-## N+1. 🔗 RELATED RESOURCES
+## N+1. RELATED RESOURCES
 [Links to skills, templates, docs]
 ```
 
 ---
 
-## 6. 🔧 CREATING NEW AGENTS
+## 6. CREATING NEW AGENTS
 
 ### Step-by-Step Guide
 
@@ -832,7 +832,7 @@ Brief description of this agent's purpose and authority.
 
 ---
 
-## 1. 🔄 CORE WORKFLOW
+## 1. CORE WORKFLOW
 
 1. **STEP 1** → Description
 2. **STEP 2** → Description
@@ -840,7 +840,7 @@ Brief description of this agent's purpose and authority.
 
 ---
 
-## 2. 📋 [DOMAIN SECTION]
+## 2. [DOMAIN SECTION]
 
 ### Subsection
 
@@ -848,7 +848,7 @@ Content...
 
 ---
 
-## 3. 🚫 ANTI-PATTERNS
+## 3. ANTI-PATTERNS
 
 ❌ **Never do X**
 - Reason
@@ -858,7 +858,7 @@ Content...
 
 ---
 
-## 4. 🔗 RELATED RESOURCES
+## 4. RELATED RESOURCES
 
 - [Skill Name](../skill/skill-name/SKILL.md)
 - [Template](../skill/workflows-documentation/assets/opencode/agent_template.md)
@@ -875,7 +875,7 @@ Content...
 
 ---
 
-## 7. 🎯 AGENT VS SKILL
+## 7. AGENT VS SKILL
 
 ### Key Differences
 
@@ -929,7 +929,7 @@ Response Delivered
 
 ---
 
-## 8. 💡 USAGE EXAMPLES
+## 8. USAGE EXAMPLES
 
 ### Example 1: Documentation Creation
 
@@ -979,7 +979,7 @@ User: "Create a new skill for API testing"
 
 ---
 
-## 9. 🛠️ TROUBLESHOOTING
+## 9. TROUBLESHOOTING
 
 ### Common Issues
 
@@ -1045,7 +1045,7 @@ python3 -c "import yaml; yaml.safe_load(open('.opencode/agent/write.md').read().
 
 ---
 
-## 10. 🔗 RELATED RESOURCES
+## 10. RELATED RESOURCES
 
 ### Internal Documentation
 

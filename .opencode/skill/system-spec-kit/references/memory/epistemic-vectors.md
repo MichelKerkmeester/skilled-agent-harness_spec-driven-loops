@@ -9,7 +9,7 @@ Framework for measuring and tracking uncertainty separate from confidence, enabl
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 ### Why Uncertainty Tracking Matters
 
@@ -38,7 +38,7 @@ But this misses a critical dimension: "How much don't I know?"
 
 ---
 
-## 2. 🧠 THE FOUR UNCERTAINTY FACTORS
+## 2. THE FOUR UNCERTAINTY FACTORS
 
 Uncertainty is computed as a weighted average of four distinct factors:
 
@@ -155,7 +155,7 @@ Even with domain knowledge, incomplete situational context can lead to incorrect
 
 ---
 
-## 3. 📊 CALCULATING UNCERTAINTY
+## 3. CALCULATING UNCERTAINTY
 
 ### Weighted Average Formula
 
@@ -180,7 +180,7 @@ Result: Uncertainty = 0.36 (MEDIUM - just over threshold)
 
 ---
 
-## 4. ⚡ THRESHOLD INTERPRETATION
+## 4. THRESHOLD INTERPRETATION
 
 ### Uncertainty Thresholds
 
@@ -211,7 +211,7 @@ Result: Uncertainty = 0.36 (MEDIUM - just over threshold)
 
 ---
 
-## 5. ⚠️ THE "CONFIDENT IGNORANCE" ANTI-PATTERN
+## 5. THE "CONFIDENT IGNORANCE" ANTI-PATTERN
 
 ### Definition
 
@@ -261,7 +261,7 @@ When detected, do NOT proceed. Instead:
 
 ---
 
-## 6. 📋 PRACTICAL ASSESSMENT GUIDE
+## 6. PRACTICAL ASSESSMENT GUIDE
 
 ### Quick Assessment Checklist
 
@@ -297,7 +297,7 @@ UNCERTAINTY ASSESSMENT:
 
 ---
 
-## 7. 🔄 INTEGRATION WITH GATES
+## 7. INTEGRATION WITH GATES
 
 ### Dual-Threshold Validation
 
@@ -377,7 +377,7 @@ DUAL-THRESHOLD CHECK:
 
 ---
 
-## 8. 🔗 RELATED RESOURCES
+## 8. RELATED RESOURCES
 
 ### AGENTS.md Reference
 - **Section 4**: Confidence & Clarification Framework (includes uncertainty tracking)

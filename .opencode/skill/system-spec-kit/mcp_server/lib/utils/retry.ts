@@ -34,6 +34,20 @@ export interface AttemptLogEntry {
   classificationReason: string;
 }
 
+type ErrorWithStatus = Error & {
+  status?: unknown;
+  response?: {
+    status?: unknown;
+  };
+};
+
+type ErrorWithCode = Error & {
+  code?: unknown;
+  cause?: {
+    code?: unknown;
+  };
+};
+
 // ---------------------------------------------------------------
 // 2. RETRY ERROR CLASS
 // ---------------------------------------------------------------
@@ -104,7 +118,7 @@ const PERMANENT_MESSAGE_PATTERNS: RegExp[] = [
  * Checks error.status, error.response?.status, then tries to parse from error.message.
  */
 export function extractStatusCode(error: Error): number | undefined {
-  const err = error as any;
+  const err = error as ErrorWithStatus;
 
   // Direct .status property
   if (typeof err.status === 'number') {
@@ -130,7 +144,7 @@ export function extractStatusCode(error: Error): number | undefined {
  * Checks error.code, then error.cause?.code.
  */
 export function extractErrorCode(error: Error): string | undefined {
-  const err = error as any;
+  const err = error as ErrorWithCode;
 
   if (typeof err.code === 'string') {
     return err.code;
@@ -343,7 +357,7 @@ export async function retryWithBackoff<T>(
 /**
  * Creates a wrapped version of fn that automatically retries using retryWithBackoff.
  */
-export function withRetry<TArgs extends any[], TReturn>(
+export function withRetry<TArgs extends unknown[], TReturn>(
   fn: (...args: TArgs) => Promise<TReturn>,
   options: RetryOptions,
 ): (...args: TArgs) => Promise<TReturn> {

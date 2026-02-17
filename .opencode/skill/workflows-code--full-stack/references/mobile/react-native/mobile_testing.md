@@ -9,7 +9,7 @@ Testing strategy and patterns for React Native/Expo projects. Currently a bluepr
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 ### Purpose
 
@@ -24,13 +24,13 @@ Provides testing guidelines, Jest/React Native Testing Library setup, and patter
 
 ---
 
-## 2. 📊 Current Status
+## 2. Current Status
 
 Most React Native projects do not currently have testing infrastructure. This document serves as a blueprint for when testing is added.
 
 ---
 
-## 3. 🚀 Quick Start: Adding Testing Infrastructure
+## 3. Quick Start: Adding Testing Infrastructure
 
 ### Step 1: Install Packages
 
@@ -116,7 +116,7 @@ Add to `package.json`:
 
 ---
 
-## 4. 📁 Where to Put Tests
+## 4. Where to Put Tests
 
 ### Option A: Co-located Tests (Recommended)
 
@@ -160,7 +160,7 @@ tests/
 
 ---
 
-## 5. 🎯 What to Test First
+## 5. What to Test First
 
 ### Priority Order
 
@@ -183,7 +183,7 @@ tests/
 
 ---
 
-## 6. 🧪 Testing Patterns
+## 6. Testing Patterns
 
 ### Testing a Utility Function
 
@@ -294,7 +294,7 @@ describe('useIsLoggedIn', () => {
 
 ---
 
-## 7. 🎭 Common Mocks You'll Need
+## 7. Common Mocks You'll Need
 
 ### Navigation Mock
 
@@ -358,7 +358,7 @@ export const getCurrentPositionAsync = jest.fn(() =>
 
 ---
 
-## 8. 💡 Tips for Good Tests
+## 8. Tips for Good Tests
 
 ### Use testID for Reliable Selection
 
@@ -408,7 +408,7 @@ it('calls onPress when clicked', () => {
 
 ---
 
-## 9. 📈 Coverage Guidelines
+## 9. Coverage Guidelines
 
 When testing is implemented, aim for:
 
@@ -423,7 +423,7 @@ When testing is implemented, aim for:
 
 ---
 
-## 10. ➡️ Next Steps
+## 10. Next Steps
 
 When you're ready to add testing:
 
@@ -434,7 +434,7 @@ When you're ready to add testing:
 
 ---
 
-## 11. 📚 Resources
+## 11. Resources
 
 - [React Native Testing Library](https://callstack.github.io/react-native-testing-library/)
 - [Jest Expo Preset](https://docs.expo.dev/develop/unit-testing/)
@@ -442,7 +442,7 @@ When you're ready to add testing:
 
 ---
 
-## 12. 🔗 RELATED RESOURCES
+## 12. RELATED RESOURCES
 
 - [react-native-standards.md](./react-native-standards.md) - Core coding conventions
 - [react-hooks-patterns.md](./react-hooks-patterns.md) - Hook testing patterns

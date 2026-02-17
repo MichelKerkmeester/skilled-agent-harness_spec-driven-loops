@@ -2,7 +2,7 @@
 name: workflows-code--web-dev
 description: "Orchestrator guiding developers through implementation, debugging, and verification phases across specialized code quality skills (project)"
 allowed-tools: [Bash, Edit, Glob, Grep, Read, Task, Write]
-version: 1.0.5.0
+version: 1.0.5.1
 ---
 
 <!-- Keywords: workflows-code, development-orchestrator, frontend-development, browser-verification, debugging-workflow, implementation-patterns, webflow-integration -->
@@ -15,7 +15,7 @@ Unified workflow guidance across 6 specialized code quality skills for frontend 
 
 ---
 
-## 1. 🎯 WHEN TO USE
+## 1. WHEN TO USE
 
 ### Activation Triggers
 
@@ -61,7 +61,7 @@ This orchestrator operates in four primary phases:
 
 ---
 
-## 2. 🧭 SMART ROUTING
+## 2. SMART ROUTING
 
 ### Resource Loading Levels
 
@@ -286,7 +286,7 @@ def route_frontend_resources(task):
 
 ---
 
-## 3. 🛠️ HOW IT WORKS
+## 3. HOW IT WORKS
 
 ### Development Lifecycle
 
@@ -453,7 +453,7 @@ See [verification_workflows.md](./references/verification/verification_workflows
 
 ---
 
-## 4. 📋 RULES
+## 4. RULES
 
 ### Phase 1: Implementation
 
@@ -541,7 +541,7 @@ See [code_quality_checklist.md](./assets/checklists/code_quality_checklist.md) a
 
 See [debugging_workflows.md](./references/debugging/debugging_workflows.md) for detailed rules.
 
-### Phase 3: Verification (MANDATORY)
+### ✅ Phase 3: Verification (MANDATORY)
 
 #### ✅ ALWAYS
 - Open actual browser to verify (not just code review)
@@ -571,7 +571,7 @@ See [error_recovery.md](./references/debugging/error_recovery.md) for CDN upload
 
 ---
 
-## 5. 🏆 SUCCESS CRITERIA
+## 5. SUCCESS CRITERIA
 
 ### Phase Completion Checklists
 
@@ -594,7 +594,7 @@ Run Lighthouse 3× in Incognito with mobile emulation, use median scores.
 
 ---
 
-## 6. 🔌 INTEGRATION POINTS
+## 6. INTEGRATION POINTS
 
 ### Framework Integration
 
@@ -628,7 +628,7 @@ Key integrations:
 
 ---
 
-## 7. 📚 EXTERNAL RESOURCES
+## 7. EXTERNAL RESOURCES
 
 ### Official Documentation
 
@@ -649,7 +649,7 @@ Key integrations:
 
 ---
 
-## 8. 🔗 RELATED RESOURCES
+## 8. RELATED RESOURCES
 
 ### Related Skills
 
@@ -679,7 +679,7 @@ Key integrations:
 
 ---
 
-## 9. 📍 WHERE AM I? (Phase Detection)
+## 9. WHERE AM I? (Phase Detection)
 
 | Phase                 | You're here if...                      | Exit criteria                      |
 | --------------------- | -------------------------------------- | ---------------------------------- |
@@ -693,7 +693,7 @@ Key integrations:
 
 ---
 
-## 10. 🏎️ QUICK REFERENCE
+## 10. QUICK REFERENCE
 
 ### Essential Timing Constants
 

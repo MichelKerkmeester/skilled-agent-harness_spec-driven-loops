@@ -9,7 +9,7 @@ Complete reference for all validation rules used by the SpecKit validation syste
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 ### What Is This Reference?
 
@@ -34,7 +34,7 @@ This document provides comprehensive documentation for every validation rule enf
 
 ---
 
-## 2. 📋 RULE SUMMARY
+## 2. RULE SUMMARY
 
 | Rule ID              | Severity | Applies To    | Description                                    |
 | -------------------- | -------- | ------------- | ---------------------------------------------- |
@@ -54,7 +54,7 @@ This document provides comprehensive documentation for every validation rule enf
 
 ---
 
-## 3. 📁 FILE_EXISTS
+## 3. FILE_EXISTS
 
 **Severity:** ERROR  
 **Description:** Validates that all required files exist for the detected documentation level.
@@ -135,7 +135,7 @@ cp .opencode/skill/system-spec-kit/templates/implementation-summary.md specs/007
 
 ---
 
-## 4. ✏️ PLACEHOLDER_FILLED
+## 4. PLACEHOLDER_FILLED
 
 **Severity:** ERROR  
 **Description:** Detects unfilled template placeholders that should be replaced with actual content.
@@ -192,7 +192,7 @@ Replace placeholder text with actual content:
 
 ---
 
-## 5. 📑 SECTIONS_PRESENT
+## 5. SECTIONS_PRESENT
 
 **Severity:** WARNING  
 **Description:** Validates that required markdown sections exist in each file type.
@@ -220,16 +220,16 @@ Replace placeholder text with actual content:
 
 ## Overview           ← Does not match "Problem Statement"
 ## What We Need       ← Does not match "Requirements"
-## Scope              ✓ Match
+## Scope Match
 ```
 
 ✅ **Pass:**
 ```markdown
 # My Spec
 
-## 1. Problem Statement    ✓
-## 2. Requirements         ✓
-## 3. Scope               ✓
+## 1. Problem Statement 
+## 2. Requirements 
+## 3. Scope 
 ```
 
 ### How to Fix
@@ -248,7 +248,7 @@ Add the missing section headers. You can use numbered prefixes:
 
 ---
 
-## 6. 🏷️ LEVEL_DECLARED
+## 6. LEVEL_DECLARED
 
 **Severity:** INFO  
 **Description:** Checks if the documentation level is explicitly declared in spec.md metadata.
@@ -292,7 +292,7 @@ Add the Level field to your spec.md metadata table:
 
 ---
 
-## 7. 🎯 PRIORITY_TAGS
+## 7. PRIORITY_TAGS
 
 **Severity:** WARNING  
 **Description:** Validates that checklist items use proper P0/P1/P2 priority tagging format.
@@ -374,7 +374,7 @@ Add priority headers or inline tags to all checklist items:
 
 ---
 
-## 8. 📎 EVIDENCE_CITED
+## 8. EVIDENCE_CITED
 
 **Severity:** WARNING  
 **Description:** Validates that non-P2 checklist items include evidence citations to support claims.
@@ -451,7 +451,7 @@ Add evidence to non-P2 items:
 
 ---
 
-## 9. ⚓ ANCHORS_VALID
+## 9. ANCHORS_VALID
 
 **Severity:** ERROR  
 **Description:** Validates that memory files use proper ANCHOR format with matching open/close pairs.
@@ -546,7 +546,7 @@ Content here...
 
 ---
 
-## 10. 📂 FOLDER_NAMING
+## 10. FOLDER_NAMING
 
 **Severity:** ERROR
 **Description:** Validates that the spec folder follows the `###-short-name` naming convention.
@@ -590,7 +590,7 @@ mv specs/Feature specs/001-feature
 
 ---
 
-## 11. 📄 FRONTMATTER_VALID
+## 11. FRONTMATTER_VALID
 
 **Severity:** WARNING
 **Description:** Validates YAML frontmatter structure in markdown files and checks for template source markers.
@@ -643,7 +643,7 @@ cp .opencode/skill/system-spec-kit/templates/level_1/spec.md specs/007-feature/
 
 ---
 
-## 12. 📊 COMPLEXITY_MATCH
+## 12. COMPLEXITY_MATCH
 
 **Severity:** WARNING
 **Description:** Validates that declared complexity level matches actual content metrics (user stories, phases, tasks).
@@ -690,7 +690,7 @@ Either adjust the declared level or modify content to match:
 
 ---
 
-## 13. 🤖 AI_PROTOCOL
+## 13. AI_PROTOCOL
 
 **Severity:** WARNING
 **Description:** Validates that Level 3 and 3+ specs include AI execution protocol sections for agent guidance.
@@ -754,7 +754,7 @@ cat .opencode/skill/system-spec-kit/templates/level_3/plan.md
 
 ---
 
-## 14. 🔗 LEVEL_MATCH
+## 14. LEVEL_MATCH
 
 **Severity:** ERROR
 **Description:** Validates that the declared level is consistent across all spec folder files and required files exist.
@@ -808,7 +808,7 @@ cp .opencode/skill/system-spec-kit/templates/level_2/checklist.md specs/007-feat
 
 ---
 
-## 15. 📈 SECTION_COUNTS
+## 15. SECTION_COUNTS
 
 **Severity:** WARNING
 **Description:** Validates that section counts are within expected ranges for the declared documentation level.
@@ -851,7 +851,7 @@ Either expand content or reduce declared level:
 
 ---
 
-## 16. ⚙️ CONFIGURATION
+## 16. CONFIGURATION
 
 ### Environment Variables
 
@@ -881,7 +881,7 @@ SPECKIT_JSON=true ./scripts/spec/validate.sh specs/007-feature/
 
 ---
 
-## 17. 🔗 RELATED RESOURCES
+## 17. RELATED RESOURCES
 
 ### Reference Files
 

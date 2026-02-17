@@ -9,13 +9,13 @@ Configuration options via environment variables for the Spec Kit system.
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 These variables control memory system behavior, token budgets, script execution, and batch processing.
 
 ---
 
-## 2. 🗄️ MEMORY SYSTEM (MCP SERVER)
+## 2. MEMORY SYSTEM (MCP SERVER)
 
 | Variable | Default | Purpose |
 |----------|---------|---------|
@@ -27,7 +27,7 @@ These variables control memory system behavior, token budgets, script execution,
 
 ---
 
-## 3. 🤖 EMBEDDING PROVIDERS
+## 3. EMBEDDING PROVIDERS
 
 The MCP server supports multiple embedding providers for semantic search. Provider selection follows this precedence:
 1. Explicit `EMBEDDINGS_PROVIDER` setting
@@ -69,7 +69,7 @@ The MCP server supports multiple embedding providers for semantic search. Provid
 
 ---
 
-## 4. 🎯 TOKEN BUDGET
+## 4. TOKEN BUDGET
 
 | Variable | Default | Purpose |
 |----------|---------|---------|
@@ -80,7 +80,7 @@ The MCP server supports multiple embedding providers for semantic search. Provid
 
 ---
 
-## 5. 📜 SCRIPTS
+## 5. SCRIPTS
 
 | Variable | Default | Purpose |
 |----------|---------|---------|
@@ -92,7 +92,7 @@ The MCP server supports multiple embedding providers for semantic search. Provid
 
 ---
 
-## 6. ⚡ BATCH PROCESSING
+## 6. BATCH PROCESSING
 
 | Variable | Default | Purpose |
 |----------|---------|---------|
@@ -101,7 +101,7 @@ The MCP server supports multiple embedding providers for semantic search. Provid
 
 ---
 
-## 7. 💡 USAGE EXAMPLES
+## 7. USAGE EXAMPLES
 
 ```bash
 # Enable debug logging
@@ -131,7 +131,7 @@ VOYAGE_EMBEDDINGS_MODEL=voyage-4-large VOYAGE_API_KEY=your-key node mcp_server/c
 
 ---
 
-## 8. 🚩 FEATURE FLAGS
+## 8. FEATURE FLAGS
 
 Feature flags control experimental and optional functionality. All flags default to production-safe values.
 
@@ -191,7 +191,7 @@ SPEC_KIT_ENABLE_TRIGGERS=false node mcp_server/context-server.ts
 
 ---
 
-## 9. 🔗 RELATED RESOURCES
+## 9. RELATED RESOURCES
 
 - [Execution Methods](../workflows/execution_methods.md)
 - [Troubleshooting](../debugging/troubleshooting.md)

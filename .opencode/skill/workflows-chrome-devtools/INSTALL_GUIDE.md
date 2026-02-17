@@ -9,20 +9,20 @@ Complete installation and configuration guide for Chrome DevTools integration, e
 
 ## Table of Contents
 
-1. [📖 OVERVIEW](#1--overview)
-2. [📋 PREREQUISITES](#2--prerequisites)
-3. [📥 CLI INSTALLATION](#3--cli-installation)
-4. [⚙️ MCP CONFIGURATION](#4-️-mcp-configuration)
-5. [✅ VERIFICATION](#5--verification)
-6. [🚀 USAGE PATTERNS](#6--usage-patterns)
-7. [🎯 BDG COMMAND REFERENCE](#7--bdg-command-reference)
-8. [🛡️ SECURITY CONSIDERATIONS](#8-️-security-considerations)
-9. [🔧 TROUBLESHOOTING](#9--troubleshooting)
-10. [📚 RESOURCES](#10--resources)
+1. [OVERVIEW](#1--overview)
+2. [PREREQUISITES](#2--prerequisites)
+3. [CLI INSTALLATION](#3--cli-installation)
+4. [MCP CONFIGURATION](#4-️-mcp-configuration)
+5. [VERIFICATION](#5--verification)
+6. [USAGE PATTERNS](#6--usage-patterns)
+7. [BDG COMMAND REFERENCE](#7--bdg-command-reference)
+8. [SECURITY CONSIDERATIONS](#8-️-security-considerations)
+9. [TROUBLESHOOTING](#9--troubleshooting)
+10. [RESOURCES](#10--resources)
 
 ---
 
-## 🤖 AI INSTALL GUIDE
+## AI INSTALL GUIDE
 
 ### Verify Success (30 seconds)
 
@@ -65,7 +65,7 @@ Guide me through each step with the exact commands needed.
 
 ---
 
-## ⚠️ IMPORTANT: Two Access Methods
+## IMPORTANT: Two Access Methods
 
 Chrome DevTools offers **two approaches** - choose based on your needs:
 
@@ -111,7 +111,7 @@ Chrome DevTools offers **two approaches** - choose based on your needs:
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 The Chrome DevTools tools provide AI assistants with browser debugging capabilities through two complementary approaches.
 
@@ -209,7 +209,7 @@ Task received → Is bdg CLI available? (command -v bdg)
 
 ---
 
-## 2. 📋 PREREQUISITES
+## 2. PREREQUISITES
 
 ### Required
 
@@ -254,7 +254,7 @@ export CHROME_PATH="/usr/bin/chromium-browser"
 
 ---
 
-## 3. 📥 CLI INSTALLATION
+## 3. CLI INSTALLATION
 
 ### Step 1: Install browser-debugger-cli
 
@@ -318,7 +318,7 @@ source ~/.zshrc
 
 ---
 
-## 4. ⚙️ MCP CONFIGURATION
+## 4. MCP CONFIGURATION
 
 > **Note:** MCP is optional. Only configure if you need multi-tool workflows or when CLI is unavailable.
 
@@ -436,7 +436,7 @@ console.log(tools.filter(t => t.includes('chrome_devtools')));
 
 ---
 
-## 5. ✅ VERIFICATION
+## 5. VERIFICATION
 
 ### One-Command Health Check
 
@@ -474,7 +474,7 @@ Expected: bdg commands executed, screenshot captured and displayed.
 
 ---
 
-## 6. 🚀 USAGE PATTERNS
+## 6. USAGE PATTERNS
 
 ### Pattern 1: Quick Screenshot (CLI)
 
@@ -576,7 +576,7 @@ call_tool_chain(`
 
 ---
 
-## 7. 🎯 BDG COMMAND REFERENCE
+## 7. BDG COMMAND REFERENCE
 
 ### Session Commands
 
@@ -629,7 +629,7 @@ bdg "$URL" 2>&1 || exit 1
 
 ---
 
-## 8. 🛡️ SECURITY CONSIDERATIONS
+## 8. SECURITY CONSIDERATIONS
 
 ### Port 9222 Exposure
 
@@ -707,7 +707,7 @@ export CHROME_FLAGS="--disable-gpu --disable-dev-shm-usage --remote-debugging-ad
 
 ---
 
-## 9. 🔧 TROUBLESHOOTING
+## 9. TROUBLESHOOTING
 
 ### CLI: Command Not Found
 
@@ -837,7 +837,7 @@ lsof -i :9222  # Should return nothing
 
 ---
 
-## 10. 📚 RESOURCES
+## 10. RESOURCES
 
 ### Related Documentation
 

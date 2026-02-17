@@ -24,7 +24,7 @@ Programmatic access to Figma design files through 18 specialized tools covering 
 
 ---
 
-## 1. 🎯 WHEN TO USE
+## 1. WHEN TO USE
 
 ### Activation Triggers
 
@@ -86,7 +86,7 @@ Programmatic access to Figma design files through 18 specialized tools covering 
 
 ---
 
-## 2. 🧭 SMART ROUTING
+## 2. SMART ROUTING
 
 ### Activation Detection
 
@@ -147,7 +147,7 @@ def route_figma_resources(task):
 
 ---
 
-## 3. 🛠️ HOW IT WORKS
+## 3. HOW IT WORKS
 
 ### Code Mode Invocation
 
@@ -229,7 +229,7 @@ https://www.figma.com/file/ABC123xyz/My-Design
 
 ---
 
-## 4. 📋 RULES
+## 4. RULES
 
 ### ✅ ALWAYS
 
@@ -287,7 +287,7 @@ https://www.figma.com/file/ABC123xyz/My-Design
 
 ---
 
-## 5. 🏆 SUCCESS CRITERIA
+## 5. SUCCESS CRITERIA
 
 ### File Access Complete
 
@@ -328,7 +328,7 @@ https://www.figma.com/file/ABC123xyz/My-Design
 
 ---
 
-## 6. 🔌 INTEGRATION POINTS
+## 6. INTEGRATION POINTS
 
 ### Prerequisites
 
@@ -434,7 +434,7 @@ const images = await figma.figma_get_image({ fileKey: "abc", ids: ["1:2"], forma
 
 ---
 
-## 7. 🏎️ QUICK REFERENCE
+## 7. QUICK REFERENCE
 
 ### Essential Commands
 
@@ -497,7 +497,7 @@ call_tool_chain({
 
 ---
 
-## 8. 🔗 RELATED RESOURCES
+## 8. RELATED RESOURCES
 
 ### references/
 

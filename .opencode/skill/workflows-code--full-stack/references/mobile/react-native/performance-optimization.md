@@ -9,7 +9,7 @@ A practical guide to keeping a React Native/Expo app fast and responsive, explai
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 ### Purpose
 
@@ -29,7 +29,7 @@ Measure first, then optimize. Most performance issues come from a small number o
 
 ---
 
-## 2. 📏 THE GOLDEN RULE: MEASURE FIRST
+## 2. THE GOLDEN RULE: MEASURE FIRST
 
 **Don't optimize prematurely.** Most performance issues come from a small number of problems:
 1. Too many re-renders
@@ -46,7 +46,7 @@ Measure first, then optimize. Most performance issues come from a small number o
 
 ---
 
-## 3. 🚀 QUICK WINS: THINGS THAT ALMOST ALWAYS HELP
+## 3. QUICK WINS: THINGS THAT ALMOST ALWAYS HELP
 
 ### Use expo-image Instead of Image
 
@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
 
 ---
 
-## 4. ⚡ FLASHLIST: HIGH-PERFORMANCE LISTS
+## 4. FLASHLIST: HIGH-PERFORMANCE LISTS
 
 For high-performance lists (chat, feed), use `@shopify/flash-list` instead of FlatList.
 
@@ -158,7 +158,7 @@ import { FlashList } from "@shopify/flash-list";
 
 ---
 
-## 5. 📋 FLATLIST OPTIMIZATION DEEP DIVE
+## 5. FLATLIST OPTIMIZATION DEEP DIVE
 
 ### The Problem
 
@@ -224,7 +224,7 @@ const renderItem = useCallback(({ item }) => (
 
 ---
 
-## 6. 🧠 WHEN TO USE REACT.MEMO, USECALLBACK, USEMEMO
+## 6. WHEN TO USE REACT.MEMO, USECALLBACK, USEMEMO
 
 ### Decision Tree
 
@@ -289,7 +289,7 @@ const fullName = useMemo(() => `${first} ${last}`, [first, last]);  // Just do i
 
 ---
 
-## 7. 🔍 PROFILING: HOW TO FIND PERFORMANCE ISSUES
+## 7. PROFILING: HOW TO FIND PERFORMANCE ISSUES
 
 ### React DevTools Profiler
 
@@ -329,7 +329,7 @@ console.log(`Operation took ${duration.toFixed(2)}ms`);
 
 ---
 
-## 8. 🌐 API LAYER OPTIMIZATIONS
+## 8. API LAYER OPTIMIZATIONS
 
 ### What's Already Built In
 
@@ -368,7 +368,7 @@ useEffect(() => {
 
 ---
 
-## 9. 🗄️ REDUX STATE: AVOIDING UNNECESSARY RE-RENDERS
+## 9. REDUX STATE: AVOIDING UNNECESSARY RE-RENDERS
 
 ### Problem: Over-selecting
 
@@ -407,7 +407,7 @@ const selectFilteredOrders = createSelector(
 
 ---
 
-## 10. 🧹 MEMORY LEAKS: PREVENTION AND DETECTION
+## 10. MEMORY LEAKS: PREVENTION AND DETECTION
 
 ### Common Causes
 
@@ -474,7 +474,7 @@ useEffect(() => {
 
 ---
 
-## 11. 🖼️ IMAGES: THE BIG PERFORMANCE WIN
+## 11. IMAGES: THE BIG PERFORMANCE WIN
 
 ### expo-image Best Practices
 
@@ -513,7 +513,7 @@ useEffect(() => {
 
 ---
 
-## 12. 🎬 ANIMATIONS: KEEP THEM SMOOTH
+## 12. ANIMATIONS: KEEP THEM SMOOTH
 
 ### Rule: Use Native Driver
 
@@ -551,7 +551,7 @@ const animatedStyle = useAnimatedStyle(() => ({
 
 ---
 
-## 13. 🐛 DEBUGGING PRODUCTION PERFORMANCE
+## 13. DEBUGGING PRODUCTION PERFORMANCE
 
 ### Disable Console Logs in Production
 
@@ -565,7 +565,7 @@ if (ENV.ENV_NAME !== 'production') {
 
 ---
 
-## 14. 📸 IMAGE PROCESSING BEFORE UPLOAD
+## 14. IMAGE PROCESSING BEFORE UPLOAD
 
 Use `expo-image-manipulator` to resize images before uploading to reduce upload time and server storage.
 
@@ -598,7 +598,7 @@ const cachedImage = await processedImage.saveAsync({
 
 ---
 
-## 15. ⏳ DEFERRING NON-CRITICAL WORK
+## 15. DEFERRING NON-CRITICAL WORK
 
 Use `InteractionManager` to defer heavy operations until animations and interactions are complete.
 
@@ -641,7 +641,7 @@ const _keyboardDidShow = () => {
 
 ---
 
-## 16. ⏱️ THROTTLE VS DEBOUNCE
+## 16. THROTTLE VS DEBOUNCE
 
 ### When to Use Which
 
@@ -725,7 +725,7 @@ Debounce (300ms): User types, pauses, types again
 
 ---
 
-## 17. ⚠️ COMMON PERFORMANCE MISTAKES
+## 17. COMMON PERFORMANCE MISTAKES
 
 | ❌ Don't | ✅ Do | Why |
 |----------|-------|-----|
@@ -739,7 +739,7 @@ Debounce (300ms): User types, pauses, types again
 
 ---
 
-## 18. 📂 KEY FILES REFERENCE
+## 18. KEY FILES REFERENCE
 
 | Purpose | Path |
 |---------|------|
@@ -753,7 +753,7 @@ Debounce (300ms): User types, pauses, types again
 
 ---
 
-## 19. 🔗 RELATED RESOURCES
+## 19. RELATED RESOURCES
 
 ### Related References
 - [React Native Standards](./react-native-standards.md) - Core component conventions

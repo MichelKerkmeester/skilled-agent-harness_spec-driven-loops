@@ -16,18 +16,18 @@ importance_tier: "normal"
 
 #### TABLE OF CONTENTS
 
-1. [📖 OVERVIEW](#1--overview)
-2. [🚀 QUICK START](#2--quick-start)
-3. [📁 STRUCTURE](#3--structure)
-4. [⚡ FEATURES](#4--features)
-5. [⚙️ CONFIGURATION](#5--configuration)
-6. [💡 EXAMPLES](#6--examples)
-7. [🛠️ TROUBLESHOOTING](#7--troubleshooting)
-8. [📚 RELATED](#8--related)
+1. [OVERVIEW](#1--overview)
+2. [QUICK START](#2--quick-start)
+3. [STRUCTURE](#3--structure)
+4. [FEATURES](#4--features)
+5. [CONFIGURATION](#5--configuration)
+6. [EXAMPLES](#6--examples)
+7. [TROUBLESHOOTING](#7--troubleshooting)
+8. [RELATED](#8--related)
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 <!-- ANCHOR:overview -->
 
 `workflows-git` is a unified orchestrator that manages the complete git development lifecycle through three phases: workspace setup (branch or worktree), commit hygiene (conventional commits) and work completion (integration plus cleanup). It provides smart routing to load only the resources relevant to the current phase.
@@ -40,7 +40,7 @@ The skill enforces workspace choice (branch vs. worktree vs. current branch) by 
 
 ---
 
-## 2. 🚀 QUICK START
+## 2. QUICK START
 <!-- ANCHOR:quick-start -->
 
 **Invoke the skill** via Gate 2 routing or directly:
@@ -62,7 +62,7 @@ skill_advisor.py "commit my changes" --threshold 0.8
 
 ---
 
-## 3. 📁 STRUCTURE
+## 3. STRUCTURE
 <!-- ANCHOR:structure -->
 
 ```
@@ -85,7 +85,7 @@ skill_advisor.py "commit my changes" --threshold 0.8
 
 ---
 
-## 4. ⚡ FEATURES
+## 4. FEATURES
 <!-- ANCHOR:features -->
 
 - **3-phase lifecycle:** Workspace Setup, Work & Commit, Complete & Integrate
@@ -102,7 +102,7 @@ skill_advisor.py "commit my changes" --threshold 0.8
 
 ---
 
-## 5. ⚙️ CONFIGURATION
+## 5. CONFIGURATION
 <!-- ANCHOR:configuration -->
 
 **Allowed tools:** `Read`, `Bash`, `mcp__code_mode__call_tool_chain`
@@ -123,7 +123,7 @@ skill_advisor.py "commit my changes" --threshold 0.8
 
 ---
 
-## 6. 💡 EXAMPLES
+## 6. EXAMPLES
 <!-- ANCHOR:usage-examples -->
 
 **New feature (full workflow):**
@@ -154,7 +154,7 @@ docs(readme): update installation steps
 
 ---
 
-## 7. 🛠️ TROUBLESHOOTING
+## 7. TROUBLESHOOTING
 <!-- ANCHOR:troubleshooting -->
 
 | Issue | Resolution |
@@ -170,7 +170,7 @@ docs(readme): update installation steps
 
 ---
 
-## 8. 📚 RELATED
+## 8. RELATED
 <!-- ANCHOR:related -->
 
 - **AGENTS.md**: Behavioral framework and gate definitions (Gate 2, Gate 3)

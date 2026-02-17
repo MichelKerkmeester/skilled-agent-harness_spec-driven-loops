@@ -17,21 +17,21 @@ importance_tier: "normal"
 <!-- ANCHOR:table-of-contents -->
 ## TABLE OF CONTENTS
 
-- [1. 📖 OVERVIEW](#1--overview)
-- [2. 🚀 QUICK START](#2--quick-start)
-- [3. 📁 STRUCTURE](#3--structure)
-- [4. ⚡ FEATURES](#4--features)
-- [5. ⚙️ CONFIGURATION](#5--configuration)
-- [6. 💡 USAGE EXAMPLES](#6--usage-examples)
-- [7. 🛠️ TROUBLESHOOTING](#7--troubleshooting)
-- [8. 📚 RELATED DOCUMENTS](#8--related-documents)
+- [1. OVERVIEW](#1--overview)
+- [2. QUICK START](#2--quick-start)
+- [3. STRUCTURE](#3--structure)
+- [4. FEATURES](#4--features)
+- [5. CONFIGURATION](#5--configuration)
+- [6. USAGE EXAMPLES](#6--usage-examples)
+- [7. TROUBLESHOOTING](#7--troubleshooting)
+- [8. RELATED DOCUMENTS](#8--related-documents)
 
 <!-- /ANCHOR:table-of-contents -->
 
 ---
 
 <!-- ANCHOR:overview -->
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 ### What is the shared/ Directory?
 
@@ -105,7 +105,7 @@ This consolidation eliminates code duplication and ensures consistent behavior a
 ---
 
 <!-- ANCHOR:quick-start -->
-## 2. 🚀 QUICK START
+## 2. QUICK START
 
 ### 30-Second Setup
 
@@ -152,7 +152,7 @@ console.log(`Embedding dimensions: ${embedding.length}`);
 ---
 
 <!-- ANCHOR:structure -->
-## 3. 📁 STRUCTURE
+## 3. STRUCTURE
 
 ```
 shared/
@@ -196,7 +196,7 @@ shared/
 ---
 
 <!-- ANCHOR:features -->
-## 4. ⚡ FEATURES
+## 4. FEATURES
 
 ### Multi-Provider Embeddings (embeddings.ts)
 
@@ -268,7 +268,7 @@ shared/
 ---
 
 <!-- ANCHOR:configuration -->
-## 5. ⚙️ CONFIGURATION
+## 5. CONFIGURATION
 
 ### Environment Variables
 
@@ -304,7 +304,7 @@ database/
 ---
 
 <!-- ANCHOR:usage-examples -->
-## 6. 💡 USAGE EXAMPLES
+## 6. USAGE EXAMPLES
 
 ### Example 1: CLI Script Usage
 
@@ -400,7 +400,7 @@ console.log(result);
 ---
 
 <!-- ANCHOR:troubleshooting -->
-## 7. 🛠️ TROUBLESHOOTING
+## 7. TROUBLESHOOTING
 
 ### Common Issues
 
@@ -476,7 +476,7 @@ node -e "console.log(require('./shared/trigger-extractor').extractTriggerPhrases
 ---
 
 <!-- ANCHOR:related -->
-## 8. 📚 RELATED DOCUMENTS
+## 8. RELATED DOCUMENTS
 
 ### Internal Documentation
 

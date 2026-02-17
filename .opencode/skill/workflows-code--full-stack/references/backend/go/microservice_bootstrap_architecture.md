@@ -9,7 +9,7 @@ Modern microservice bootstrap pattern, registry hierarchy, configuration-DI mapp
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 ### Purpose
 
@@ -44,7 +44,7 @@ microservice_bootstrap_architecture.md (this file)
 
 ---
 
-## 2. 🏗️ ARCHITECTURE PATTERNS
+## 2. ARCHITECTURE PATTERNS
 
 ### New Pattern (Standard - 10 Microservices)
 
@@ -96,7 +96,7 @@ internal/ms/ms_chat/
 
 ---
 
-## 3. 📝 REGISTRY SYSTEM
+## 3. REGISTRY SYSTEM
 
 ### How does the registry hierarchy work?
 
@@ -218,7 +218,7 @@ var (
 
 ---
 
-## 4. 📁 FILE ORGANIZATION
+## 4. FILE ORGANIZATION
 
 ### Modern Microservice Structure
 
@@ -271,7 +271,7 @@ infra/di/
 
 ---
 
-## 5. ⚙️ CONFIGURATION & DI TREE
+## 5. CONFIGURATION & DI TREE
 
 ### Critical Principle
 
@@ -319,7 +319,7 @@ func (p *MicroserviceConfiguration) LookupNode(lookupPath string) (any, error) {
 
 ---
 
-## 6. 🔄 MIGRATION GUIDE
+## 6. MIGRATION GUIDE
 
 ### How do I migrate from old to new pattern?
 
@@ -488,7 +488,7 @@ func main() {
 
 ---
 
-## 7. ⚠️ COMMON PITFALLS
+## 7. COMMON PITFALLS
 
 ### Pitfall 1: Missing Configuration Embedding
 
@@ -564,7 +564,7 @@ func (m *MicroserviceConfiguration) LookupNode(lookupPath string) (any, error) {
 
 ---
 
-## 8. 📋 RULES
+## 8. RULES
 
 ### ALWAYS
 
@@ -592,7 +592,7 @@ func (m *MicroserviceConfiguration) LookupNode(lookupPath string) (any, error) {
 
 ---
 
-## 9. 🔗 RELATED RESOURCES
+## 9. RELATED RESOURCES
 
 | Topic | Document | Section |
 |-------|----------|---------|

@@ -9,13 +9,13 @@ Systematic diagnostics and solutions for bdg CLI issues.
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 Find root cause before attempting fixes - symptom fixes create cascading failures. Always run systematic diagnostics (5-check sequence) before implementing solutions.
 
 ---
 
-## 2. 📋 PREREQUISITES
+## 2. PREREQUISITES
 
 **Foundation:** Run quick diagnostics from this guide before deeper troubleshooting:
 - **5-Check Sequence**: Installation → Version → Session → Browser → Node/npm
@@ -30,7 +30,7 @@ Find root cause before attempting fixes - symptom fixes create cascading failure
 
 ---
 
-## 3. 🏎️ QUICK DIAGNOSTICS
+## 3. QUICK DIAGNOSTICS
 
 **Run these checks first**:
 
@@ -54,7 +54,7 @@ npm --version
 
 ---
 
-## 4. 📦 INSTALLATION ISSUES
+## 4. INSTALLATION ISSUES
 
 ### Issue: bdg command not found
 
@@ -169,7 +169,7 @@ nvm use 18
 
 ---
 
-## 5. 🌐 BROWSER CONNECTION ISSUES
+## 5. BROWSER CONNECTION ISSUES
 
 ### Issue: Browser not found
 
@@ -318,7 +318,7 @@ netstat -an | grep 9222  # Default debugging port
 
 ---
 
-## 6. 🔄 SESSION MANAGEMENT ISSUES
+## 6. SESSION MANAGEMENT ISSUES
 
 ### Issue: Session won't start
 
@@ -447,7 +447,7 @@ ps aux | grep bdg
 
 ---
 
-## 7. ⚠️ CDP COMMAND ISSUES
+## 7. CDP COMMAND ISSUES
 
 ### Issue: CDP method not found
 
@@ -614,7 +614,7 @@ bdg cdp Page.captureScreenshot 2>&1 | jq -r '.result.data' | base64 -d > output.
 
 ---
 
-## 8. 🚀 PERFORMANCE ISSUES
+## 8. PERFORMANCE ISSUES
 
 ### Issue: Slow CDP command execution
 
@@ -701,7 +701,7 @@ $ ps aux | grep chrome
 
 ---
 
-## 9. 🖥️ PLATFORM-SPECIFIC ISSUES
+## 9. PLATFORM-SPECIFIC ISSUES
 
 ### macOS: Gatekeeper blocking Chrome
 
@@ -755,7 +755,7 @@ export DISPLAY=:0
 
 ---
 
-## 10. 📋 ERROR CODE REFERENCE
+## 10. ERROR CODE REFERENCE
 
 | Exit Code | Meaning | Solution |
 |-----------|---------|----------|
@@ -770,7 +770,7 @@ export DISPLAY=:0
 
 ---
 
-## 11. 🐛 DEBUG MODE
+## 11. DEBUG MODE
 
 **Enable verbose logging**:
 ```bash
@@ -787,7 +787,7 @@ bdg status 2>&1
 
 ---
 
-## 12. 💬 GETTING HELP
+## 12. GETTING HELP
 
 1. **Check documentation**: https://github.com/szymdzum/browser-debugger-cli
 2. **Search issues**: https://github.com/szymdzum/browser-debugger-cli/issues
@@ -800,7 +800,7 @@ bdg status 2>&1
 
 ---
 
-## 13. ✅ COMMON SOLUTIONS CHECKLIST
+## 13. COMMON SOLUTIONS CHECKLIST
 
 Before reporting issues, try these:
 
@@ -817,7 +817,7 @@ Before reporting issues, try these:
 
 ---
 
-## 14. 🔗 RELATED RESOURCES
+## 14. RELATED RESOURCES
 
 ### Reference Files
 - [session_management.md](./session_management.md) - Session lifecycle patterns for robust automation

@@ -177,13 +177,13 @@ The `<user_feature>` par
 ## 3. DETAILED CHANGES
 
 <!-- ANCHOR:implementation-phase-input-collection-status-9c57496b-session-1766487836383-4mqpy6w3x -->
-### FEATURE: ## 🔒 PHASE 1: INPUT COLLECTION
+### FEATURE: ## PHASE 1: INPUT COLLECTION
 
 **STATUS: ☐ BLOCKED**
 
 The `<user_feature>` par
 
-## 🔒 PHASE 1: INPUT COLLECTION
+## PHASE 1: INPUT COLLECTION
 
 **STATUS: ☐ BLOCKED**
 

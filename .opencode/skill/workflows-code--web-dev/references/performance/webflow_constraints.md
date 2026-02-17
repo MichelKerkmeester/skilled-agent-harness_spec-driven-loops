@@ -9,7 +9,7 @@ Platform-imposed limitations on performance optimization and available workaroun
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 Webflow's platform imposes specific limitations on performance optimization. Understanding these constraints prevents wasted effort on impossible optimizations and helps focus on what IS controllable.
 
@@ -22,7 +22,7 @@ Webflow's platform imposes specific limitations on performance optimization. Und
 
 ---
 
-## 2. 🔤 TYPEKIT / ADOBE FONTS
+## 2. TYPEKIT / ADOBE FONTS
 
 ### Limitation
 
@@ -50,7 +50,7 @@ Webflow's platform imposes specific limitations on performance optimization. Und
 
 ---
 
-## 3. 📜 JQUERY / WEBFLOW.JS
+## 3. JQUERY / WEBFLOW.JS
 
 ### Limitation
 
@@ -72,7 +72,7 @@ Webflow's platform imposes specific limitations on performance optimization. Und
 
 ---
 
-## 4. 🎨 CSS GENERATION
+## 4. CSS GENERATION
 
 ### Limitation
 
@@ -92,7 +92,7 @@ Webflow's platform imposes specific limitations on performance optimization. Und
 
 ---
 
-## 5. 💉 CUSTOM CODE INJECTION POINTS
+## 5. CUSTOM CODE INJECTION POINTS
 
 ### Head Code (Project Settings)
 
@@ -112,7 +112,7 @@ Webflow's platform imposes specific limitations on performance optimization. Und
 
 ---
 
-## 6. 📋 SUMMARY TABLE
+## 6. SUMMARY TABLE
 
 | Resource | Can Async? | Can Defer? | Workaround |
 |----------|------------|------------|------------|
@@ -125,7 +125,7 @@ Webflow's platform imposes specific limitations on performance optimization. Und
 
 ---
 
-## 7. ✅ WHAT IS CONTROLLABLE
+## 7. WHAT IS CONTROLLABLE
 
 Despite platform constraints, you CAN optimize:
 
@@ -138,7 +138,7 @@ Despite platform constraints, you CAN optimize:
 
 ---
 
-## 8. 🔗 RELATED RESOURCES
+## 8. RELATED RESOURCES
 
 ### Internal References
 

@@ -9,7 +9,7 @@ Quick-access cheat sheet with decision trees, code snippets, CSS patterns, and v
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 ### Purpose
 One-page reference for fast lookups during implementation, debugging, and verification workflows.
@@ -19,7 +19,7 @@ One-page reference for fast lookups during implementation, debugging, and verifi
 - Determining which workflow to use (Decision Tree)
 - Reviewing verification checklists
 
-## 2. 🗺️ NAVIGATION DECISION TREE
+## 2. NAVIGATION DECISION TREE
 
 ```
 ┌─ Need to write code? ─────────────────────────────────┐
@@ -56,7 +56,7 @@ One-page reference for fast lookups during implementation, debugging, and verifi
 
 ---
 
-## 3. 🔧 COMMON COMMANDS
+## 3. COMMON COMMANDS
 
 ### Condition-Based Waiting
 
@@ -248,7 +248,7 @@ npm install -g browser-debugger-cli@alpha
 
 ---
 
-## 4. 📋 DEBUGGING CHECKLIST
+## 4. DEBUGGING CHECKLIST
 
 ```markdown
 □ PHASE 1: ROOT CAUSE INVESTIGATION
@@ -279,7 +279,7 @@ npm install -g browser-debugger-cli@alpha
 
 ---
 
-## 5. ✅ VERIFICATION CHECKLIST
+## 5. VERIFICATION CHECKLIST
 
 ```markdown
 □ BROWSER TESTING
@@ -307,7 +307,7 @@ npm install -g browser-debugger-cli@alpha
 
 ---
 
-## 6. ⚡ CODE SNIPPETS
+## 6. CODE SNIPPETS
 
 ### waitForElement
 
@@ -355,7 +355,7 @@ const userId = validate(input, 'string', 'anonymous');
 
 ---
 
-## 7. 🔑 KEY PRINCIPLES
+## 7. KEY PRINCIPLES
 
 **Implementation:**
 - Wait for conditions, not timeouts
@@ -374,7 +374,7 @@ const userId = validate(input, 'string', 'anonymous');
 
 ---
 
-## 8. 🔗 RELATED RESOURCES
+## 8. RELATED RESOURCES
 
 ### Reference Files
 - [implementation_workflows.md](../implementation/implementation_workflows.md) - Phase 1 workflows for condition-based waiting, validation, and CDN versioning
@@ -398,7 +398,7 @@ const userId = validate(input, 'string', 'anonymous');
 
 ---
 
-## 9. 🎯 DECISION MATRIX
+## 9. DECISION MATRIX
 
 | Scenario                | Workflow                | Key Action                        |
 | ----------------------- | ----------------------- | --------------------------------- |
@@ -417,7 +417,7 @@ const userId = validate(input, 'string', 'anonymous');
 
 ---
 
-## 10. 🎨 CSS PATTERNS
+## 10. CSS PATTERNS
 
 ### Webflow Token Naming (Read-Only Reference)
 
@@ -552,7 +552,7 @@ document.addEventListener('mousedown', () => {
 
 ---
 
-## 11. 📝 COMMON ONE-LINERS
+## 11. COMMON ONE-LINERS
 
 ### MutationObserver
 

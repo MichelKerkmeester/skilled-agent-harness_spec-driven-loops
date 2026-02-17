@@ -4,7 +4,7 @@
 
   "maxTriggersPerMemory": 10,
 
-  "_note_documentTypeMultipliers": "Spec 126: Document type scoring multipliers. Applied as a final multiplier to composite scores. Canonical values are in composite-scoring.ts; this section is for reference/future configurability.",
+  "_note_documentTypeMultipliers": "Spec 126: document type scoring multipliers. Applied as a final multiplier to composite scores. Source of truth remains in composite-scoring.ts; this section is reference/future-config only.",
   "documentTypeMultipliers": {
     "spec": 1.4,
     "decision_record": 1.4,
@@ -19,14 +19,14 @@
     "scratch": 0.6
   },
 
-  "_note_smartRanking": "PARTIALLY DEAD — only read by legacy vector-index-impl.js (line 2241-2243), NOT by vector-index.ts. Will become fully dead when JS file is removed.",
+  "_note_smartRanking": "PARTIALLY DEAD CONFIG - read only by legacy vector-index-impl.js (line 2241-2243), not by vector-index.ts. Becomes fully dead when the JS file is removed.",
   "smartRanking": {
     "recencyWeight": 0.5,
     "accessWeight": 0.3,
     "relevanceWeight": 0.2
   },
 
-  "_note_rrfFusion": "DEAD CONFIG — no .ts module loads this section. rrf-fusion.ts does not exist. Audit: agent-14, 2026-02-08.",
+  "_note_rrfFusion": "DEAD CONFIG - no .ts module loads this section. rrf-fusion.ts does not exist. Audit: agent-14, 2026-02-08.",
   "rrfFusion": {
     "_comment": "Reciprocal Rank Fusion configuration (REQ-011). Set env ENABLE_RRF_FUSION=false to disable.",
     "k": 60,
@@ -34,7 +34,7 @@
     "graphWeightBoost": 1.5
   },
 
-  "_note_crossEncoder": "DEAD CONFIG — cross-encoder.ts hardcodes its own values and never reads this section. Config model differs fundamentally from code. Audit: agent-14, 2026-02-08.",
+  "_note_crossEncoder": "DEAD CONFIG - cross-encoder.ts hardcodes its own values and never reads this section. Config model differs fundamentally from code. Audit: agent-14, 2026-02-08.",
   "crossEncoder": {
     "_comment": "Cross-encoder reranking configuration (REQ-013). Set env ENABLE_CROSS_ENCODER=true to enable.",
     "maxCandidates": 20,

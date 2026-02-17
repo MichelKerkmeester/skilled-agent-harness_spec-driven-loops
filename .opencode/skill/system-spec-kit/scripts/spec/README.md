@@ -15,21 +15,21 @@ importance_tier: "normal"
 <!-- ANCHOR:table-of-contents -->
 ## TABLE OF CONTENTS
 
-- [1. 📖 OVERVIEW](#1--overview)
-- [2. 📋 CURRENT INVENTORY](#2--current-inventory)
-- [3. 📌 UPGRADE FLOW (SPEC124/128/129)](#3--upgrade-flow-spec124128129)
-- [4. 📌 COMPLETION GATE](#4--completion-gate)
-- [5. 📝 NOTES](#5--notes)
+- [1. OVERVIEW](#1--overview)
+- [2. CURRENT INVENTORY](#2--current-inventory)
+- [3. UPGRADE FLOW (SPEC124/128/129)](#3--upgrade-flow-spec124128129)
+- [4. COMPLETION GATE](#4--completion-gate)
+- [5. NOTES](#5--notes)
 
 <!-- /ANCHOR:table-of-contents -->
 <!-- ANCHOR:overview -->
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 The `scripts/spec/` directory is the shell-based spec lifecycle layer.
 
 <!-- /ANCHOR:overview -->
 <!-- ANCHOR:current-inventory -->
-## 2. 📋 CURRENT INVENTORY
+## 2. CURRENT INVENTORY
 
 
 - `create.sh` - create new spec folders from templates
@@ -44,7 +44,7 @@ The `scripts/spec/` directory is the shell-based spec lifecycle layer.
 
 <!-- /ANCHOR:current-inventory -->
 <!-- ANCHOR:upgrade-flow-spec124128129 -->
-## 3. 📌 UPGRADE FLOW (SPEC124/128/129)
+## 3. UPGRADE FLOW (SPEC124/128/129)
 
 
 Canonical flow for upgrades:
@@ -67,7 +67,7 @@ bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/003-system-s
 
 <!-- /ANCHOR:upgrade-flow-spec124128129 -->
 <!-- ANCHOR:completion-gate -->
-## 4. 📌 COMPLETION GATE
+## 4. COMPLETION GATE
 
 
 Before completion claims:
@@ -79,7 +79,7 @@ bash .opencode/skill/system-spec-kit/scripts/spec/check-completion.sh specs/003-
 
 <!-- /ANCHOR:completion-gate -->
 <!-- ANCHOR:notes -->
-## 5. 📝 NOTES
+## 5. NOTES
 
 
 - `upgrade-level.sh` supports `--dry-run`, `--json`, `--verbose`, and `--keep-backups`.

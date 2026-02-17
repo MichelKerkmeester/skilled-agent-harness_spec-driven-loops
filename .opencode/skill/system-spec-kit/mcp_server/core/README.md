@@ -14,14 +14,14 @@ importance_tier: "normal"
 <!-- ANCHOR:table-of-contents -->
 ## TABLE OF CONTENTS
 
-- [1. 📖 OVERVIEW](#1--overview)
-- [2. 📌 IMPLEMENTED STATE](#2--implemented-state)
-- [3. 📝 HARDENING NOTES](#3--hardening-notes)
-- [4. 📚 RELATED](#4--related)
+- [1. OVERVIEW](#1--overview)
+- [2. IMPLEMENTED STATE](#2--implemented-state)
+- [3. HARDENING NOTES](#3--hardening-notes)
+- [4. RELATED](#4--related)
 
 <!-- /ANCHOR:table-of-contents -->
 <!-- ANCHOR:overview -->
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 This section provides an overview of the MCP Server Core Modules directory.
 
@@ -33,7 +33,7 @@ This section provides an overview of the MCP Server Core Modules directory.
 
 <!-- /ANCHOR:overview -->
 <!-- ANCHOR:implemented-state -->
-## 2. 📌 IMPLEMENTED STATE
+## 2. IMPLEMENTED STATE
 
 
 - Input limits are centralized in `INPUT_LIMITS` and `MAX_QUERY_LENGTH`.
@@ -45,7 +45,7 @@ This section provides an overview of the MCP Server Core Modules directory.
 
 <!-- /ANCHOR:implemented-state -->
 <!-- ANCHOR:hardening-notes -->
-## 3. 📝 HARDENING NOTES
+## 3. HARDENING NOTES
 
 
 - BUG-001: external update signal support (`.db-updated`).
@@ -57,7 +57,7 @@ This section provides an overview of the MCP Server Core Modules directory.
 
 <!-- /ANCHOR:hardening-notes -->
 <!-- ANCHOR:related -->
-## 4. 📚 RELATED
+## 4. RELATED
 
 
 - `../database/README.md`

@@ -29,6 +29,8 @@
       "section_aliases": {
         "related documents": "related",
         "related resources": "related",
+        "related_documents": "related",
+        "related_resources": "related",
         "usage examples": "usage_examples",
         "quick start": "quick_start",
         "best practices": "best_practices",
@@ -67,6 +69,7 @@
         "smart routing": "smart_routing",
         "smart_routing_references": "smart_routing",
         "smart_routing_&_references": "smart_routing",
+        "smart_routing_and_references": "smart_routing",
         "smart routing & references": "smart_routing",
         "how it works": "how_it_works",
         "success criteria": "success_criteria",
@@ -119,6 +122,8 @@
       "section_aliases": {
         "example usage": "examples",
         "example output": "examples",
+        "example_usage": "examples",
+        "example_output": "examples",
         "workflow overview": "workflow",
         "related commands": "related_commands",
         "related resources": "related_resources",
@@ -207,6 +212,7 @@
       },
       "section_aliases": {
         "related resources": "related_resources",
+        "related_resources": "related_resources",
         "decision logic": "decision_logic",
         "quick troubleshooting": "quick_troubleshooting",
         "common workflow examples": "common_workflow_examples",
@@ -249,6 +255,7 @@
       },
       "section_aliases": {
         "related resources": "related_resources",
+        "related_resources": "related_resources",
         "asset types": "asset_types",
         "document structure": "document_structure",
         "standard asset structure": "standard_structure",
@@ -305,6 +312,7 @@
         "output verification": "output_verification",
         "anti patterns": "anti_patterns",
         "related resources": "related_resources",
+        "related_resources": "related_resources",
         "model preference": "model_preference",
         "output format": "output_format",
         "template mapping": "template_mapping",

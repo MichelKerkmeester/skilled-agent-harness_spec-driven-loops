@@ -10,7 +10,7 @@ Recovery procedures for common frontend deployment failures.
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 ### Purpose
 
@@ -29,7 +29,7 @@ Document → Isolate → Verify prerequisites → Retry with verbose → Escalat
 
 ---
 
-## 2. ☁️ CDN UPLOAD FAILURE RECOVERY
+## 2. CDN UPLOAD FAILURE RECOVERY
 
 **Symptoms:** Upload to Cloudflare R2 fails, file not accessible via CDN URL
 
@@ -48,7 +48,7 @@ curl -sI https://cdn.example.com/js/[filename].js | grep -E "(HTTP|content-lengt
 
 ---
 
-## 3. 📦 MINIFICATION FAILURE RECOVERY
+## 3. MINIFICATION FAILURE RECOVERY
 
 **Symptoms:** Terser fails, minified file has syntax errors, runtime breaks
 
@@ -68,7 +68,7 @@ node scripts/test-minified-runtime.mjs dist/[file].min.js
 
 ---
 
-## 4. 🔢 VERSION MISMATCH RECOVERY
+## 4. VERSION MISMATCH RECOVERY
 
 **Symptoms:** Browser loads old cached version, changes not visible
 
@@ -88,7 +88,7 @@ grep -r "v=[NEW_VERSION]" src/html/ | wc -l
 
 ---
 
-## 5. 🔄 GENERAL RECOVERY PROTOCOL
+## 5. GENERAL RECOVERY PROTOCOL
 
 When any failure occurs:
 
@@ -100,7 +100,7 @@ When any failure occurs:
 
 ---
 
-## 6. 🔗 RELATED RESOURCES
+## 6. RELATED RESOURCES
 
 - [cdn_deployment.md](../deployment/cdn_deployment.md) - CDN deployment workflow
 - [minification_guide.md](../deployment/minification_guide.md) - Minification procedures

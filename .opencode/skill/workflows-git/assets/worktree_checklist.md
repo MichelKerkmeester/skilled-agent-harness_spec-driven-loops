@@ -9,7 +9,7 @@ Step-by-step checklist for safe and reliable git worktree creation.
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 ### Purpose
 
@@ -24,7 +24,7 @@ This checklist ensures git worktrees are created safely with proper .gitignore c
 
 ---
 
-## 2. ✅ PRE-CREATION CHECKLIST
+## 2. PRE-CREATION CHECKLIST
 
 ### Step 1: Gather Information
 
@@ -89,7 +89,7 @@ This checklist ensures git worktrees are created safely with proper .gitignore c
 
 ---
 
-## 3. 🔧 CREATION CHECKLIST
+## 3. CREATION CHECKLIST
 
 ### Step 4: Create Worktree
 
@@ -221,7 +221,7 @@ Run tests to ensure worktree starts in known-good state:
 
 ---
 
-## 4. ✅ POST-CREATION CHECKLIST
+## 4. POST-CREATION CHECKLIST
 
 ### Step 7: Final Verification
 
@@ -245,7 +245,7 @@ Run tests to ensure worktree starts in known-good state:
 
 ---
 
-## 5. 📝 STATUS REPORT TEMPLATE
+## 5. STATUS REPORT TEMPLATE
 
 Provide this information to user:
 
@@ -266,7 +266,7 @@ Example:
 
 ---
 
-## 6. 🛠️ COMMON ISSUES CHECKLIST
+## 6. COMMON ISSUES CHECKLIST
 
 ### Issue: Worktree Creation Fails
 
@@ -353,7 +353,7 @@ git worktree add .worktrees/<name> -b <branch>
 
 ---
 
-## 7. 📋 QUICK REFERENCE COMMANDS
+## 7. QUICK REFERENCE COMMANDS
 
 **List all worktrees**:
 ```bash
@@ -388,7 +388,7 @@ git check-ignore -n .worktrees
 
 ---
 
-## 8. ✅ SUCCESS CRITERIA
+## 8. SUCCESS CRITERIA
 
 Worktree creation is successful when:
 
@@ -406,7 +406,7 @@ Worktree creation is successful when:
 
 ---
 
-## 9. 🔗 RELATED RESOURCES
+## 9. RELATED RESOURCES
 
 - [worktree_workflows.md](../references/worktree_workflows.md) - Complete workflow details
 - [shared_patterns.md](../references/shared_patterns.md) - Common git patterns

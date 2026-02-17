@@ -9,7 +9,7 @@ Systematic diagnosis and resolution for semantic memory issues, context retrieva
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 **Core Principle:** Systematic diagnosis before fixes. Never guess at solutions.
 
@@ -43,7 +43,7 @@ Issue Detected
 
 ---
 
-## 2. 🎯 QUICK FIXES
+## 2. QUICK FIXES
 
 | Issue | Symptom | Solution |
 |-------|---------|----------|
@@ -83,7 +83,7 @@ memory_search({ query: "test" })
 
 ---
 
-## 3. ⚠️ COMMON ERRORS
+## 3. COMMON ERRORS
 
 ### Vector Index Issues
 
@@ -184,7 +184,7 @@ Where:
 
 ---
 
-## 4. 🔧 DEBUGGING
+## 4. DEBUGGING
 
 ### Debugging Commands
 
@@ -266,7 +266,7 @@ memory_list({ limit: 3 })  // Should show recent entries
 
 ---
 
-## 5. 📋 ESCALATION
+## 5. ESCALATION
 
 ### When to Escalate
 
@@ -348,7 +348,7 @@ memory_update({ id: 123, importanceTier: "constitutional" })
 
 ---
 
-## 6. 🔄 RECOVERY PROCEDURES
+## 6. RECOVERY PROCEDURES
 
 ### Index Recovery
 
@@ -377,7 +377,7 @@ If settings are wrong:
 
 ---
 
-## 7. 📋 RECOVERY HINTS CATALOG
+## 7. RECOVERY HINTS CATALOG
 
 Quick reference for common recovery scenarios with symptoms and actions.
 
@@ -439,7 +439,7 @@ checkpoint_restore({ checkpointId: "checkpoint-###-prev" })
 
 ---
 
-## 8. 🔍 EMPTY TRIGGER PHRASES
+## 8. EMPTY TRIGGER PHRASES
 
 **Symptom:** `memory_match_triggers()` returns no results even for relevant queries.
 
@@ -457,7 +457,7 @@ memory_delete({ id: <memory_id> })
 
 ---
 
-## 9. 🔗 RELATED RESOURCES
+## 9. RELATED RESOURCES
 
 ### Reference Files
 - [SKILL.md](../../SKILL.md) - MCP tools, hybrid search, and importance tier system

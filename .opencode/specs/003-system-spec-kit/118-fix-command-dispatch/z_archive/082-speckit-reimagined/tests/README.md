@@ -7,13 +7,13 @@
 <!-- ANCHOR:table-of-contents -->
 ## TABLE OF CONTENTS
 
-- [1. 📖 OVERVIEW](#1--overview)
+- [1.  OVERVIEW]](#1--overview)
 
 ---
 <!-- /ANCHOR:table-of-contents -->
 
 <!-- ANCHOR:overview -->
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 This README documents the purpose and usage of this spec folder and links to the primary artifacts in this directory.
 

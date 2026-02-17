@@ -9,7 +9,7 @@ Templates for professional commit messages following Conventional Commits.
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 ### Purpose
 
@@ -24,7 +24,7 @@ This asset provides structured templates and examples for commit messages. Use i
 
 ---
 
-## 2. 📋 BASIC FORMAT
+## 2. BASIC FORMAT
 
 ```
 <type>(<scope>): <description>
@@ -36,7 +36,7 @@ This asset provides structured templates and examples for commit messages. Use i
 
 ---
 
-## 3. 🏷️ TYPE REFERENCE
+## 3. TYPE REFERENCE
 
 | Type | When to Use | Breaking? |
 |------|-------------|-----------|
@@ -52,7 +52,7 @@ This asset provides structured templates and examples for commit messages. Use i
 
 ---
 
-## 4. 📂 SCOPE GUIDELINES
+## 4. SCOPE GUIDELINES
 
 **What is scope?**
 The component or area of the codebase affected by the change.
@@ -70,7 +70,7 @@ The component or area of the codebase affected by the change.
 
 ---
 
-## 5. ✏️ DESCRIPTION RULES
+## 5. DESCRIPTION RULES
 
 ✅ **DO**:
 - Use imperative mood ("add" not "added" or "adds")
@@ -88,7 +88,7 @@ The component or area of the codebase affected by the change.
 
 ---
 
-## 6. 📝 BODY GUIDELINES
+## 6. BODY GUIDELINES
 
 **When to include a body**:
 - Change is complex or non-obvious
@@ -104,7 +104,7 @@ The component or area of the codebase affected by the change.
 
 ---
 
-## 7. 📎 FOOTER GUIDELINES
+## 7. FOOTER GUIDELINES
 
 ### Breaking Changes
 
@@ -137,7 +137,7 @@ Related to #789
 
 ---
 
-## 8. 💡 COMPLETE EXAMPLES
+## 8. COMPLETE EXAMPLES
 
 ### Example 1: Feature with Body
 
@@ -245,7 +245,7 @@ Related to #125
 
 ---
 
-## 9. ❌ BAD EXAMPLES
+## 9. BAD EXAMPLES
 
 ### ❌ Example 1: Vague
 
@@ -364,7 +364,7 @@ Adds documentation for new login endpoints.
 
 ---
 
-## 10. 📋 TEMPLATES FOR COMMON SCENARIOS
+## 10. TEMPLATES FOR COMMON SCENARIOS
 
 ### Feature Addition
 
@@ -416,7 +416,7 @@ chore(deps): <update/add X to version Y>
 
 ---
 
-## 11. ✅ COMMIT MESSAGE CHECKLIST
+## 11. COMMIT MESSAGE CHECKLIST
 
 Before committing, verify:
 
@@ -435,7 +435,7 @@ Before committing, verify:
 
 ---
 
-## 12. 📖 QUICK REFERENCE
+## 12. QUICK REFERENCE
 
 ### Imperative Mood Conversion
 
@@ -468,7 +468,7 @@ chore: update <dependency>
 
 ---
 
-## 13. 🔗 RELATED RESOURCES
+## 13. RELATED RESOURCES
 
 - [Conventional Commits Specification](https://www.conventionalcommits.org/) - Official specification for commit message formatting
 - [How to Write a Git Commit Message](https://chris.beams.io/posts/git-commit/) - Best practices guide by Chris Beams

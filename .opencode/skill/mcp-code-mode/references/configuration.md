@@ -9,7 +9,7 @@ Set up Code Mode UTCP with MCP servers, environment variables, and credentials.
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 ### Required Files
 
@@ -22,7 +22,7 @@ Set up Code Mode UTCP with MCP servers, environment variables, and credentials.
 
 ---
 
-## 2. 🏗️ CONFIGURATION STRUCTURE
+## 2. CONFIGURATION STRUCTURE
 
 ### Complete Example
 
@@ -94,7 +94,7 @@ Set up Code Mode UTCP with MCP servers, environment variables, and credentials.
 
 ---
 
-## 3. 🔧 CONFIGURATION ELEMENTS
+## 3. CONFIGURATION ELEMENTS
 
 ### 1. Variable Loading
 
@@ -293,7 +293,7 @@ Set up Code Mode UTCP with MCP servers, environment variables, and credentials.
 
 ---
 
-## 4. 🔐 ENVIRONMENT VARIABLES
+## 4. ENVIRONMENT VARIABLES
 
 ### Critical: Prefixed Variable Names
 
@@ -365,7 +365,7 @@ webflow_WEBFLOW_API_TOKEN=your_webflow_token_here
 
 ---
 
-## 5. ➕ ADDING MCP SERVERS
+## 5. ADDING MCP SERVERS
 
 ### Step-by-Step Guide
 
@@ -454,7 +454,7 @@ call_tool_chain({
 
 ---
 
-## 6. 📋 COMMON SERVER CONFIGURATIONS
+## 6. COMMON SERVER CONFIGURATIONS
 
 ### Webflow (Remote SSE)
 
@@ -547,7 +547,7 @@ call_tool_chain({
 
 ---
 
-## 7. 🔍 TROUBLESHOOTING
+## 7. TROUBLESHOOTING
 
 ### Problem: Variable '{manual_name}_{VAR}' Not Found
 
@@ -647,7 +647,7 @@ const tools = await list_tools();
 
 ---
 
-## 8. ✅ VALIDATION
+## 8. VALIDATION
 
 **Use validation script:**
 
@@ -668,7 +668,7 @@ python scripts/validate_config.py .utcp_config.json
 
 ---
 
-## 9. ✨ BEST PRACTICES
+## 9. BEST PRACTICES
 
 ### 1. Organize Manual Names Logically
 
@@ -735,7 +735,7 @@ python scripts/validate_config.py .utcp_config.json
 
 ---
 
-## 10. 📝 SUMMARY
+## 10. SUMMARY
 
 **Configuration checklist:**
 1. ✅ `.utcp_config.json` with all MCP servers defined
@@ -750,7 +750,7 @@ python scripts/validate_config.py .utcp_config.json
 
 ---
 
-## 11. 🔗 RELATED RESOURCES
+## 11. RELATED RESOURCES
 
 ### Reference Files
 - [architecture.md](./architecture.md) - System architecture and data flow

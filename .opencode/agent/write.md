@@ -23,13 +23,13 @@ permission:
 
 Template-first documentation specialist ensuring 100% alignment with workflows-documentation standards. Load template, create content, validate alignment, deliver DQI-compliant documentation.
 
-**Cross-Platform Convention**: Keep this body content aligned across `.opencode/agent/write.md`, `.claude/agents/write.md`, and `.codex/agents/write.md`; only frontmatter is platform-specific.
+**Path Convention**: Use only `.opencode/agent/*.md` as the canonical runtime path reference.
 
 > ⛔ **SPEC FOLDER BOUNDARY:** @write MUST NOT create or write documentation inside spec folders (`specs/[###-name]/`). Spec folder documentation is exclusive to @speckit. @write's domain is project-level documentation (READMEs, guides, skills, install guides) that lives OUTSIDE spec folders. If asked to write spec documentation, redirect to @speckit.
 
 ---
 
-## 1. 🔄 CORE WORKFLOW
+## 1. CORE WORKFLOW
 
 ### Template-First Document Creation
 
@@ -72,7 +72,7 @@ python .opencode/skill/workflows-documentation/scripts/validate_document.py <fil
 
 ---
 
-## 1.1. ⚡ FAST PATH & CONTEXT PACKAGE
+## 1.1. FAST PATH & CONTEXT PACKAGE
 
 **If dispatched with `Complexity: low`:** Skip steps 3-6 of the 10-step process. Go directly from template selection to writing. Max 5 tool calls. Minimum deliverable: the document itself.
 
@@ -80,7 +80,7 @@ python .opencode/skill/workflows-documentation/scripts/validate_document.py <fil
 
 ---
 
-## 2. 📋 TEMPLATE MAPPING
+## 2. TEMPLATE MAPPING
 
 ### Document Type → Template Lookup
 
@@ -152,7 +152,7 @@ All template files follow this consistent structure:
 
 ---
 
-## 3. 🔍 CAPABILITY SCAN
+## 3. CAPABILITY SCAN
 
 ### Skills
 
@@ -191,7 +191,7 @@ All template files follow this consistent structure:
 
 ---
 
-## 4. 🗺️ DOCUMENTATION MODES
+## 4. DOCUMENTATION MODES
 
 ### Mode Selection
 
@@ -204,7 +204,7 @@ All template files follow this consistent structure:
 
 ---
 
-## 5. 🔀 DOCUMENT ROUTING
+## 5. DOCUMENT ROUTING
 
 ### Document Type Routing
 
@@ -222,7 +222,7 @@ All template files follow this consistent structure:
 
 ---
 
-## 6. 📊 DQI SCORING SYSTEM
+## 6. DQI SCORING SYSTEM
 
 ### Components (100 points total)
 
@@ -243,7 +243,7 @@ All template files follow this consistent structure:
 
 ---
 
-## 7. 🔧 WORKFLOW PATTERNS
+## 7. WORKFLOW PATTERNS
 
 ### Document Improvement Workflow
 
@@ -264,7 +264,7 @@ All template files follow this consistent structure:
 
 ---
 
-## 8. 📝 OUTPUT FORMAT
+## 8. OUTPUT FORMAT
 
 ### For Document Improvements
 
@@ -278,7 +278,7 @@ Report must include:
 
 ---
 
-## 9. 🔍 OUTPUT VERIFICATION
+## 9. OUTPUT VERIFICATION
 
 **CRITICAL**: Before claiming completion, you MUST verify all created documentation actually exists and meets quality standards.
 
@@ -316,7 +316,7 @@ Before reporting "done": (1) Read ALL created files, (2) Run extract_structure.p
 
 ---
 
-## 10. 🚫 ANTI-PATTERNS
+## 10. ANTI-PATTERNS
 
 ### Template Violations
 
@@ -340,7 +340,7 @@ Before reporting "done": (1) Read ALL created files, (2) Run extract_structure.p
 
 ---
 
-## 11. 🔗 RELATED RESOURCES
+## 11. RELATED RESOURCES
 
 | Resource | Path |
 |---|---|

@@ -511,37 +511,7 @@ When using the orchestrate agent or Task tool for complex multi-step workflows, 
 | `@debug`       | Fresh perspective debugging, root cause analysis                                                                                                                                                                                                                                        |
 | `@handover`    | Session continuation, context preservation. ✅ Exception: may write `handover.md` inside spec folders                                                                                                                                                                                    |
 
-### Cross-Platform Agent Files
-
-Agent definitions exist across three platforms. Body content is shared; frontmatter is platform-specific.
-
-| Agent          | OpenCode (Copilot)               | Claude Code                     | Codex                          |
-| -------------- | -------------------------------- | ------------------------------- | ------------------------------ |
-| `@general`     | Built-in                         | Built-in                        | Built-in                       |
-| `@context`     | `.opencode/agent/context.md`     | `.claude/agents/context.md`     | `.codex/agents/context.md`     |
-| `@orchestrate` | `.opencode/agent/orchestrate.md` | `.claude/agents/orchestrate.md` | `.codex/agents/orchestrate.md` |
-| `@research`    | `.opencode/agent/research.md`    | `.claude/agents/research.md`    | `.codex/agents/research.md`    |
-| `@write`       | `.opencode/agent/write.md`       | `.claude/agents/write.md`       | `.codex/agents/write.md`       |
-| `@review`      | `.opencode/agent/review.md`      | `.claude/agents/review.md`      | `.codex/agents/review.md`      |
-| `@speckit`     | `.opencode/agent/speckit.md`     | `.claude/agents/speckit.md`     | `.codex/agents/speckit.md`     |
-| `@debug`       | `.opencode/agent/debug.md`       | `.claude/agents/debug.md`       | `.codex/agents/debug.md`       |
-| `@handover`    | `.opencode/agent/handover.md`    | `.claude/agents/handover.md`    | `.codex/agents/handover.md`    |
-
-### Cross-Platform Model Mapping
-
-Each platform uses its own model identifiers. Agents are grouped into tiers:
-
-| Tier          | Agents                       | OpenCode (Copilot)  | Claude Code | Codex Profile | Codex Model           |
-| ------------- | ---------------------------- | ------------------- | ----------- | ------------- | --------------------- |
-| **Fast**      | context, handover            | `claude-haiku-4.5`  | `haiku`     | `fast`        | `gpt-5.3-codex-spark` |
-| **Balanced**  | speckit, write               | `claude-sonnet-4.5` | `sonnet`    | `balanced`    | `gpt-5.3-codex`       |
-| **Powerful**  | debug, research, orchestrate | `claude-opus-4.6`   | `opus`      | `powerful`    | `gpt-5.3-codex`       |
-| **Read-only** | review                       | `claude-opus-4.6`   | `opus`      | `readonly`    | `gpt-5.3-codex`       |
-
-Codex profiles are defined in `.codex/config.toml`. Sub-agent dispatch uses the `codex-specialized-subagents` MCP server.
-
-### Agent Selection Quick Reference
-
+**Agent Selection Quick Reference:**
 - **ALL codebase exploration / file search / context loading** → `@context`
 - **Code changes needed** → `@general`
 - **Research/planning** → `@research`
@@ -551,6 +521,23 @@ Codex profiles are defined in `.codex/config.toml`. Sub-agent dispatch uses the 
 - **Documentation creation** → `@write`
 - **Multi-agent orchestration** → `@orchestrate`
 - **Session handover** → `@handover`
+
+### Agent Runtime Files
+
+Agent path references should use only `.opencode/agent/` as the canonical runtime location.
+
+| Agent          | Runtime File                     |
+| -------------- | -------------------------------- |
+| `@general`     | Built-in                         |
+| `@context`     | `.opencode/agent/context.md`     |
+| `@orchestrate` | `.opencode/agent/orchestrate.md` |
+| `@research`    | `.opencode/agent/research.md`    |
+| `@write`       | `.opencode/agent/write.md`       |
+| `@review`      | `.opencode/agent/review.md`      |
+| `@speckit`     | `.opencode/agent/speckit.md`     |
+| `@debug`       | `.opencode/agent/debug.md`       |
+| `@handover`    | `.opencode/agent/handover.md`    |
+
 
 ---
 

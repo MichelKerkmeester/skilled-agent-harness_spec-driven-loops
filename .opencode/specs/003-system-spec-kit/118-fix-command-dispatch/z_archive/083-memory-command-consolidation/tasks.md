@@ -29,7 +29,7 @@
 
 ---
 
-## Phase 1: Search → Context (P0) ✅ COMPLETE
+## Phase 1: Search → Context (P0)  COMPLETE
 
 ### T1: Audit search.md patterns ✅
 **Priority:** P0 | **Effort:** 1 hour | **Completed:** 2025-02-02
@@ -65,7 +65,7 @@ All patterns supported by `/memory:context`.
 
 ---
 
-## Phase 2: Database/Checkpoint → Manage (P0) ✅ COMPLETE
+## Phase 2: Database/Checkpoint → Manage (P0)  COMPLETE
 
 ### T4: Create manage.md from database.md ✅
 **Priority:** P0 | **Effort:** 2 hours | **Completed:** 2025-02-02
@@ -104,7 +104,7 @@ All patterns supported by `/memory:context`.
 
 ---
 
-## Phase 3: Correct → Learn (P1) ✅ COMPLETE
+## Phase 3: Correct → Learn (P1)  COMPLETE
 
 ### T7: Add subcommand routing to learn.md ✅
 **Priority:** P1 | **Effort:** 2 hours | **Completed:** 2025-02-02
@@ -144,7 +144,7 @@ All patterns supported by `/memory:context`.
 
 ---
 
-## Phase 4: Delete Why (P1) ✅ COMPLETE
+## Phase 4: Delete Why (P1)  COMPLETE
 
 ### T11: Delete why.md ✅
 **Priority:** P1 | **Effort:** 30 min | **Completed:** 2025-02-02
@@ -178,7 +178,7 @@ All patterns supported by `/memory:context`.
 
 ---
 
-## Phase 5: Cleanup (P2) ✅ COMPLETE
+## Phase 5: Cleanup (P2)  COMPLETE
 
 ### T14: Remove all deprecated files ✅
 **Priority:** P2 | **Effort:** 1 hour | **Completed:** 2025-02-02

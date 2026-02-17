@@ -132,7 +132,7 @@ Comprehensive testing of the semantic memory system after the `workflows-memory`
 
 ---
 
-## 🚨 CURRENT STATE (2025-12-17)
+## CURRENT STATE (2025-12-17)
 
 | Item | Status |
 |------|--------|

@@ -188,7 +188,7 @@ EXECUTE THIS SINGLE SETUP PHASE:
 
 ---
 
-## ✅ PHASE STATUS VERIFICATION (BLOCKING)
+## PHASE STATUS VERIFICATION (BLOCKING)
 
 **Before continuing to the workflow, verify ALL values are set:**
 
@@ -209,7 +209,7 @@ VERIFICATION CHECK:
 
 ---
 
-## ⚡ INSTRUCTIONS
+## INSTRUCTIONS
 
 After Phase 0 and Setup Phase pass, load and execute the appropriate YAML workflow:
 
@@ -238,7 +238,7 @@ This command dispatches a specialized agent at a specific workflow step (see YAM
 
 <!-- REFERENCE ONLY -->
 
-## ⛔ GATE 3 STATUS: EXEMPT (Predefined Location)
+## GATE 3 STATUS: EXEMPT (Predefined Location)
 
 **This command creates files at a predefined location and is EXEMPT from the spec folder question.**
 
@@ -250,7 +250,7 @@ This command dispatches a specialized agent at a specific workflow step (see YAM
 
 ---
 
-## 📊 WORKFLOW TRACKING
+## WORKFLOW TRACKING
 
 | STEP | NAME          | STATUS | REQUIRED OUTPUT       | VERIFICATION               |
 | ---- | ------------- | ------ | --------------------- | -------------------------- |
@@ -262,7 +262,7 @@ This command dispatches a specialized agent at a specific workflow step (see YAM
 
 ---
 
-## 📊 WORKFLOW DIAGRAM
+## WORKFLOW DIAGRAM
 
 ```mermaid
 flowchart TD
@@ -327,7 +327,7 @@ flowchart TD
 
 ---
 
-## ⛔ CRITICAL ENFORCEMENT RULES
+## CRITICAL ENFORCEMENT RULES
 
 ```
 STEP 2 (Planning) REQUIREMENTS:
@@ -351,7 +351,7 @@ STEP 5 (Validation) REQUIREMENTS:
 
 ---
 
-## ⚠️ VIOLATION SELF-DETECTION (BLOCKING)
+## VIOLATION SELF-DETECTION (BLOCKING)
 
 **YOU ARE IN VIOLATION IF YOU:**
 
@@ -376,7 +376,7 @@ STEP 5 (Validation) REQUIREMENTS:
 
 ---
 
-## 1. 🎯 PURPOSE
+## 1. PURPOSE
 
 Create a technical reference file for an existing skill following the `skill_reference_template.md` structure. Reference files provide Level 3 progressive disclosure - deep technical guidance loaded when needed for complex operations.
 
@@ -384,7 +384,7 @@ Create a technical reference file for an existing skill following the `skill_ref
 
 ---
 
-## 2. 📝 CONTRACT
+## 2. CONTRACT
 
 **Inputs:** `$ARGUMENTS` — Skill name and reference type (workflow|patterns|debugging|tools|quick_ref)
 **Outputs:** Reference file in skill's references/ directory + `STATUS=<OK|FAIL|CANCELLED>`
@@ -397,7 +397,7 @@ $ARGUMENTS
 
 ---
 
-## 3. 📌 REFERENCE (See YAML for Details)
+## 3. REFERENCE (See YAML for Details)
 
 | Section            | Location in YAML                     |
 | ------------------ | ------------------------------------ |
@@ -410,7 +410,7 @@ $ARGUMENTS
 
 ---
 
-## 4. 🔍 EXAMPLES
+## 4. EXAMPLES
 
 **Example 1: Create workflow reference**
 ```
@@ -444,7 +444,7 @@ $ARGUMENTS
 
 ---
 
-## 5. 🔗 COMMAND CHAIN
+## 5. COMMAND CHAIN
 
 This command is often used after skill creation:
 
@@ -458,7 +458,7 @@ This command is often used after skill creation:
 
 ---
 
-## 6. 📌 NEXT STEPS
+## 6. NEXT STEPS
 
 After reference creation completes, suggest relevant next steps:
 

@@ -32,8 +32,8 @@ import {
   calculatePatternScore,
   calculateCitationScore,
   FIVE_FACTOR_WEIGHTS,
-} from '../../scoring/composite-scoring';
-import type { FiveFactorWeights } from '../../scoring/composite-scoring';
+} from '../scoring/composite-scoring';
+import type { FiveFactorWeights } from '../scoring/composite-scoring';
 
 /* -------------------------------------------------------------
    2. CONFIGURATION

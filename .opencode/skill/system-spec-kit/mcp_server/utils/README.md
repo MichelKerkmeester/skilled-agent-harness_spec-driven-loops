@@ -14,14 +14,14 @@ importance_tier: "normal"
 <!-- ANCHOR:table-of-contents -->
 ## TABLE OF CONTENTS
 
-- [1. 📖 OVERVIEW](#1--overview)
-- [2. 📌 IMPLEMENTED STATE](#2--implemented-state)
-- [3. 📝 HARDENING NOTES](#3--hardening-notes)
-- [4. 📚 RELATED](#4--related)
+- [1. OVERVIEW](#1--overview)
+- [2. IMPLEMENTED STATE](#2--implemented-state)
+- [3. HARDENING NOTES](#3--hardening-notes)
+- [4. RELATED](#4--related)
 
 <!-- /ANCHOR:table-of-contents -->
 <!-- ANCHOR:overview -->
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 This section provides an overview of the MCP Server Utilities directory.
 
@@ -35,7 +35,7 @@ This section provides an overview of the MCP Server Utilities directory.
 
 <!-- /ANCHOR:overview -->
 <!-- ANCHOR:implemented-state -->
-## 2. 📌 IMPLEMENTED STATE
+## 2. IMPLEMENTED STATE
 
 
 Primary exports are camelCase (with TypeScript-first signatures):
@@ -52,7 +52,7 @@ Security and reliability behavior:
 
 <!-- /ANCHOR:implemented-state -->
 <!-- ANCHOR:hardening-notes -->
-## 3. 📝 HARDENING NOTES
+## 3. HARDENING NOTES
 
 
 - Utility APIs are now aligned with current camelCase usage across handlers.
@@ -62,7 +62,7 @@ Security and reliability behavior:
 
 <!-- /ANCHOR:hardening-notes -->
 <!-- ANCHOR:related -->
-## 4. 📚 RELATED
+## 4. RELATED
 
 
 - `../core/README.md`

@@ -12,6 +12,9 @@
 # Compatibility: Bash 3.2+ (macOS default)
 # ───────────────────────────────────────────────────────────────
 
+# Strict mode is intentionally not set in sourced library files.
+# The caller script controls -e/-u/-o pipefail policy.
+
 # Guard against double-sourcing
 [[ -n "${_TEMPLATE_UTILS_LOADED:-}" ]] && return 0
 _TEMPLATE_UTILS_LOADED=1
@@ -30,11 +33,11 @@ get_level_templates_dir() {
     local level="$1"
     local base_dir="$2"
     case "$level" in
-        1) echo "$base_dir/level_1" ;;
-        2) echo "$base_dir/level_2" ;;
-        3) echo "$base_dir/level_3" ;;
-        "3+"|4) echo "$base_dir/level_3+" ;;
-        *) echo "$base_dir/level_1" ;;  # Default fallback
+        1) printf '%s\n' "$base_dir/level_1" ;;
+        2) printf '%s\n' "$base_dir/level_2" ;;
+        3) printf '%s\n' "$base_dir/level_3" ;;
+        "3+"|4) printf '%s\n' "$base_dir/level_3+" ;;
+        *) printf '%s\n' "$base_dir/level_1" ;;  # Default fallback
     esac
 }
 
@@ -72,9 +75,9 @@ copy_template() {
 
     if [[ -f "$template_path" ]]; then
         cp "$template_path" "$dest_path"
-        echo "$dest_name"
+        printf '%s\n' "$dest_name"
     else
         touch "$dest_path"
-        echo "$dest_name (empty - template not found)"
+        printf '%s\n' "$dest_name (empty - template not found)"
     fi
 }

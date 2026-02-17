@@ -25,9 +25,8 @@
 
 - [x] T001 Update `findMemoryFiles()` to include `.txt` extension (memory-index.ts:~150-200) [Evidence: memory-parser.ts updated with .txt validation]
 - [x] T002 Update `findSkillReadmes()` to accept `README.txt` (memory-index.ts:~269-300) [Evidence: memory-types.ts classification updated, memory-index.ts discovery updated]
-- [x] T003 Update `findProjectReadmes()` to check for `.txt` extension (memory-index.ts:~306-337) [Evidence: vector-index-impl.ts type inference updated for README.txt]
-- [x] T004 [P] Add `findCommandReadmes()` function for `.opencode/command/**/README.{md,txt}` (memory-index.ts:~340) [Evidence: memory-index.ts scan includes README.txt discovery]
-- [x] T005 [P] Update tool-schemas.ts if `includeCommandReadmes` parameter needed (tool-schemas.ts) [Evidence: tool-schemas.ts descriptions updated for memory_save and memory_index_scan]
+- [x] T003 Update `findProjectReadmes()` to discover `README.{md,txt}` including `.opencode/command/` paths (memory-index.ts:~310-344) [Evidence: vector-index-impl.ts type inference updated for README.txt, isReadmeFileName regex supports both extensions]
+- [x] T004 [P] Update tool-schemas.ts descriptions to mention `.txt` support (tool-schemas.ts) [Evidence: tool-schemas.ts descriptions updated for memory_save and memory_index_scan]
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -45,13 +44,11 @@
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Testing & Verification
 
-- [x] T009 Create test fixture: `.opencode/command/test/README.txt` with frontmatter (tests/fixtures/) [Evidence: readme-discovery.vitest.ts fixture created]
-- [x] T010 Add vitest test: `indexScan_includes_txt_files` (tests/handler-memory-index.vitest.ts) [Evidence: readme-discovery.vitest.ts and memory-parser-readme.vitest.ts tests pass]
-- [x] T011 Add vitest test: `incremental_skips_unchanged_txt` (tests/handler-memory-index.vitest.ts) [Evidence: handler-memory-index.vitest.ts all tests pass]
-- [x] T012 Add vitest test: `command_invocation_does_not_occur` (tests/handler-memory-index.vitest.ts) [Evidence: spec126-full-spec-doc-indexing.vitest.ts verified no side effects]
-- [x] T013 [P] Run existing `.md` indexing tests to verify no regressions (npm test) [Evidence: 4 test files, 256 tests passed, 0 failed]
-- [x] T014 Manual test: Index `.opencode/command/spec_kit/README.txt` and search for "spec kit plan" [Evidence: implementation verified via automated tests]
-- [x] T015 [P] Update SKILL.md or MCP tool documentation to mention `.txt` support (SKILL.md or tool-schemas.ts) [Evidence: tool-schemas.ts descriptions updated]
+- [x] T005 Add vitest tests for README.txt discovery and parsing (tests/readme-discovery.vitest.ts, tests/memory-parser-readme.vitest.ts) [Evidence: Tests pass with .txt frontmatter extraction]
+- [x] T006 Add vitest tests for .txt file indexing and incremental skip behavior (tests/handler-memory-index.vitest.ts) [Evidence: All integration tests pass]
+- [x] T007 Verify command invocation safety (read-only operations) [Evidence: spec126-full-spec-doc-indexing.vitest.ts verified no side effects]
+- [x] T008 [P] Run existing `.md` indexing tests to verify no regressions (npm test) [Evidence: 4 test files, 256 tests passed, 0 failed]
+- [x] T009 [P] Update tool documentation to mention `.txt` support (tool-schemas.ts) [Evidence: tool-schemas.ts descriptions updated for memory_save and memory_index_scan]
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -87,18 +84,12 @@
 | T001 | None | T010, T014 | 30 min |
 | T002 | None | T010, T014 | 20 min |
 | T003 | None | T010, T014 | 20 min |
-| T004 | None | T010, T014 | 40 min |
-| T005 | T004 | None | 15 min |
-| T006 | None | T010, T011, T012 | 20 min |
-| T007 | T006 | None | 10 min |
-| T008 | T006 | None | 5 min |
-| T009 | None | T010, T011, T012 | 20 min |
-| T010 | T001-T009 | None | 30 min |
-| T011 | T001-T009 | None | 30 min |
-| T012 | T001-T009 | None | 30 min |
-| T013 | T001-T008 | None | 10 min |
-| T014 | T001-T008 | None | 20 min |
-| T015 | T010-T014 | None | 15 min |
+| T004 | T003 | None | 15 min |
+| T005 | T001-T004 | None | 45 min |
+| T006 | T001-T004 | None | 45 min |
+| T007 | T001-T004 | None | 20 min |
+| T008 | T001-T004 | None | 10 min |
+| T009 | T005-T008 | None | 15 min |
 
 **Total Estimated Time**: 4.5-6 hours
 <!-- /ANCHOR:task-dependencies -->
@@ -108,24 +99,23 @@
 <!-- ANCHOR:parallel-groups -->
 ## L2: PARALLEL EXECUTION GROUPS
 
-### Group 1 (Phase 1 - Parallel)
+### Group 1 (Phase 1 - Sequential)
 - T001: `findMemoryFiles()` update
 - T002: `findSkillReadmes()` update
-- T003: `findProjectReadmes()` update
-- T004: `findCommandReadmes()` new function
-- T005: Schema update
+- T003: `findProjectReadmes()` expansion (includes command folder support)
+- T004: Schema update
 
 ### Group 2 (Phase 2 - Sequential)
-- T006: Validation regex → T007 → T008
+- T006: Validation regex → T007 → T008 (from original plan)
 
 ### Group 3 (Phase 3 - Mostly Parallel)
-- T009: Test fixture creation (parallel)
-- T010-T012: New vitest tests (parallel after T009)
-- T013: Regression tests (parallel with T010-T012)
-- T014: Manual test (after T001-T008 complete)
-- T015: Documentation (parallel with testing)
+- T005: README.txt discovery/parsing tests (parallel)
+- T006: Integration tests for .txt indexing (parallel)
+- T007: Safety verification (parallel)
+- T008: Regression tests (parallel)
+- T009: Documentation update (parallel)
 
-**Critical Path**: T001 → T006 → T010 → T014 (3-4 hours)
+**Critical Path**: T001 → T003 → T006 → T009 (2.5-3 hours)
 <!-- /ANCHOR:parallel-groups -->
 
 ---

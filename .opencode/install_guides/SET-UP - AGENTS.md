@@ -9,19 +9,19 @@ Comprehensive guide for customizing the AI agent configuration file (AGENTS.md) 
 
 ## TABLE OF CONTENTS
 
-1. [📖 OVERVIEW](#1--overview)
-2. [🚦 AGENTS.md GATES REFERENCE](#2--agentsmd-gates-reference)
-3. [📝 FILE NAMING CONVENTION](#3--file-naming-convention)
-4. [🎯 PROJECT TYPE CUSTOMIZATION](#4--project-type-customization)
-5. [🔌 MCP TOOLING ALIGNMENT](#5--mcp-tooling-alignment)
-6. [🧩 SKILLS ALIGNMENT](#6--skills-alignment)
-7. [⌨️ COMMANDS REFERENCE](#7-️-commands-reference)
-8. [➕ PROJECT-SPECIFIC ADDITIONS](#8--project-specific-additions)
-9. [✅ VALIDATION CHECKLIST](#9--validation-checklist)
+1. [OVERVIEW](#1--overview)
+2. [AGENTS.md GATES REFERENCE](#2--agentsmd-gates-reference)
+3. [FILE NAMING CONVENTION](#3--file-naming-convention)
+4. [PROJECT TYPE CUSTOMIZATION](#4--project-type-customization)
+5. [MCP TOOLING ALIGNMENT](#5--mcp-tooling-alignment)
+6. [SKILLS ALIGNMENT](#6--skills-alignment)
+7. [COMMANDS REFERENCE](#7--commands-reference)
+8. [PROJECT-SPECIFIC ADDITIONS](#8--project-specific-additions)
+9. [VALIDATION CHECKLIST](#9--validation-checklist)
 
 ---
 
-## 🤖 AI-FIRST SET-UP GUIDE
+## AI-FIRST SET-UP GUIDE
 
 **Copy and paste this prompt for interactive AGENTS.md customization:**
 
@@ -74,7 +74,7 @@ My project is at: [your project path]
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 ### What is AGENTS.md?
 
@@ -114,7 +114,7 @@ The universal template (`AGENTS (Universal).md`) includes ALL possible tools, sk
 
 ---
 
-## 2. 🚦 AGENTS.md GATES REFERENCE
+## 2. AGENTS.md GATES REFERENCE
 
 Quick reference for the mandatory gates defined in AGENTS.md. Gates are checkpoints that AI agents must pass before taking actions.
 
@@ -173,7 +173,7 @@ User Message
 
 ---
 
-## 3. 📝 FILE NAMING CONVENTION
+## 3. FILE NAMING CONVENTION
 
 ### Remove "(Universal)" for Project-Specific Use
 
@@ -211,7 +211,7 @@ your-project/
 
 ---
 
-## 4. 🎯 PROJECT TYPE CUSTOMIZATION
+## 4. PROJECT TYPE CUSTOMIZATION
 
 ### 4.1 Front-end Projects (Webflow, CSS, JavaScript)
 
@@ -395,7 +395,7 @@ Concrete examples showing how to customize from Universal to project-specific.
 
 ---
 
-## 5. 🔌 MCP TOOLING ALIGNMENT
+## 5. MCP TOOLING ALIGNMENT
 
 ### 5.1 Audit Installed Components
 
@@ -589,7 +589,7 @@ Discovery: search_tools(), list_tools(), or read .utcp_config.json
 
 ---
 
-## 6. 🧩 SKILLS ALIGNMENT
+## 6. SKILLS ALIGNMENT
 
 ### 6.1 Complete Skills Reference
 
@@ -719,7 +719,7 @@ ls -la .opencode/skill/
 
 ---
 
-## 7. ⌨️ COMMANDS REFERENCE
+## 7. COMMANDS REFERENCE
 
 ### 7.1 All Available Commands (19 total)
 
@@ -799,7 +799,7 @@ Commands are slash-prefixed shortcuts for common workflows.
 
 ---
 
-## 8. ➕ PROJECT-SPECIFIC ADDITIONS
+## 8. PROJECT-SPECIFIC ADDITIONS
 
 ### 8.1 Custom Commands
 
@@ -904,7 +904,7 @@ Project standards are defined in:
 
 ---
 
-## 9. ✅ VALIDATION CHECKLIST
+## 9. VALIDATION CHECKLIST
 
 Use this checklist after customizing AGENTS.md:
 

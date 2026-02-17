@@ -22,7 +22,7 @@ import {
   LIB_DIR, DEFAULT_BASE_PATH,
   checkDatabaseUpdated, reinitializeDatabase,
   setEmbeddingModelReady, waitForEmbeddingModel, isEmbeddingModelReady,
-  init as init_db_state
+  init as initDbState
 } from './core';
 
 // T303: Tool schemas and dispatch
@@ -32,7 +32,7 @@ import { dispatchTool } from './tools';
 // Handler modules (only indexSingleFile needed directly for startup scan)
 import {
   indexSingleFile,
-  setEmbeddingModelReady as set_handler_embedding_ready
+  setEmbeddingModelReady as setHandlerEmbeddingReady
 } from './handlers';
 
 // Utils
@@ -77,13 +77,36 @@ import * as toolCache from './lib/cache/tool-cache';
    2. TYPES
 --------------------------------------------------------------- */
 
-interface IndexResult { status: string; error?: string;[key: string]: unknown; }
+interface IndexResult {
+  status: string;
+  error?: string;
+  [key: string]: unknown;
+}
 
-interface PendingRecoveryResult { found: number; processed: number; recovered: number; failed: number; results: unknown[]; }
+interface PendingRecoveryResult {
+  found: number;
+  processed: number;
+  recovered: number;
+  failed: number;
+  results: unknown[];
+}
 
-interface ApiKeyValidation { valid: boolean; provider?: string; error?: string; errorCode?: string; warning?: string; actions?: string[]; }
+interface ApiKeyValidation {
+  valid: boolean;
+  provider?: string;
+  error?: string;
+  errorCode?: string;
+  warning?: string;
+  actions?: string[];
+}
 
 interface AutoSurfaceResult { constitutional: unknown[]; triggered: unknown[]; }
+
+interface ToolCallResponse {
+  content: Array<{ type: string; text: string }>;
+  isError?: boolean;
+  [key: string]: unknown;
+}
 
 /* ---------------------------------------------------------------
    3. SERVER INITIALIZATION
@@ -106,9 +129,10 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
    5. TOOL DISPATCH (T303: routed through tools/*.ts)
 --------------------------------------------------------------- */
 
-server.setRequestHandler(CallToolRequestSchema, (async (request: { method: string; params: { name: string; arguments?: Record<string, unknown> } }, _extra: unknown) => {
-  const { name } = request.params;
-  const args: Record<string, unknown> = (request.params.arguments ?? {});
+server.setRequestHandler(CallToolRequestSchema, async (request, _extra: unknown) => {
+  const requestParams = request.params as { name: string; arguments?: Record<string, unknown> };
+  const { name } = requestParams;
+  const args: Record<string, unknown> = requestParams.arguments ?? {};
 
   try {
     // SEC-003: Validate input lengths before processing (CWE-400 mitigation)
@@ -136,7 +160,7 @@ server.setRequestHandler(CallToolRequestSchema, (async (request: { method: strin
     }
 
     // T303: Dispatch to tool modules
-    const result = await dispatchTool(name, args);
+    const result = await dispatchTool(name, args) as ToolCallResponse | null;
     if (!result) {
       throw new Error(`Unknown tool: ${name}`);
     }
@@ -184,14 +208,14 @@ server.setRequestHandler(CallToolRequestSchema, (async (request: { method: strin
           }
           result.content[0].text = JSON.stringify(envelope, null, 2);
         }
-      } catch (_) {
+      } catch (_parseErr: unknown) {
         // Non-JSON response, skip token budget injection
       }
     }
 
     // SK-004: Inject auto-surfaced context into successful responses
     if (autoSurfacedContext && result && !result.isError) {
-      (result as unknown as Record<string, unknown>).autoSurfacedContext = autoSurfacedContext;
+      result.autoSurfacedContext = autoSurfacedContext;
     }
 
     return result;
@@ -204,7 +228,7 @@ server.setRequestHandler(CallToolRequestSchema, (async (request: { method: strin
       isError: true
     };
   }
-}) as any);
+});
 
 /* ---------------------------------------------------------------
    6. STARTUP SCAN & PENDING FILE RECOVERY
@@ -282,16 +306,16 @@ async function startupScan(basePath: string): Promise<void> {
     console.error(`[context-server] Found ${files.length} memory files, checking for changes...`);
     let indexed = 0, updated = 0, unchanged = 0, failed = 0;
 
-    for (const file_path of files) {
+    for (const filePath of files) {
       try {
-        const result: IndexResult = await indexSingleFile(file_path, false);
+        const result: IndexResult = await indexSingleFile(filePath, false);
         if (result.status === 'indexed') indexed++;
         else if (result.status === 'updated') updated++;
         else unchanged++;
       } catch (error: unknown) {
         failed++;
         const message = error instanceof Error ? error.message : String(error);
-        console.error(`[context-server] Failed to index ${path.basename(file_path)}: ${message}`);
+        console.error(`[context-server] Failed to index ${path.basename(filePath)}: ${message}`);
       }
     }
 
@@ -387,7 +411,7 @@ async function main(): Promise<void> {
   // Initialize db-state module with dependencies
   // P4-12/P4-19 FIX: Pass sessionManager and incrementalIndex so db-state can
   // refresh their DB handles during reinitializeDatabase(), preventing stale refs.
-  init_db_state({ vectorIndex, checkpoints: checkpointsLib, accessTracker, hybridSearch, sessionManager, incrementalIndex });
+  initDbState({ vectorIndex, checkpoints: checkpointsLib, accessTracker, hybridSearch, sessionManager, incrementalIndex });
 
   // T087-T090: Pre-Flight API Key Validation (REQ-029)
   // Validates API key at startup to fail fast with actionable error messages
@@ -419,8 +443,8 @@ async function main(): Promise<void> {
       }
 
       console.error(`[context-server] API key validated (provider: ${validation.provider})`);
-    } catch (validation_error: unknown) {
-      const message = validation_error instanceof Error ? validation_error.message : String(validation_error);
+    } catch (validationError: unknown) {
+      const message = validationError instanceof Error ? validationError.message : String(validationError);
       console.error(`[context-server] API key validation error: ${message}`);
       console.error('[context-server] Continuing startup - validation will occur on first use');
     }
@@ -445,7 +469,7 @@ async function main(): Promise<void> {
         await embeddings.generateEmbedding('warmup test');
         warmupCompleted = true;
         setEmbeddingModelReady(true);
-        if (set_handler_embedding_ready) set_handler_embedding_ready(true);
+        if (setHandlerEmbeddingReady) setHandlerEmbeddingReady(true);
         console.error(`[context-server] Embedding model ready (${Date.now() - startTime}ms)`);
         return true;
       } catch (err: unknown) {
@@ -464,7 +488,7 @@ async function main(): Promise<void> {
           console.warn('[context-server] Warmup timeout — marking embedding as ready to avoid undefined state');
           // P1-08 FIX: Mark embedding ready even on timeout so the system is usable
           setEmbeddingModelReady(true);
-          if (set_handler_embedding_ready) set_handler_embedding_ready(true);
+          if (setHandlerEmbeddingReady) setHandlerEmbeddingReady(true);
         }
         resolve();
       }, WARMUP_TIMEOUT))
@@ -475,7 +499,7 @@ async function main(): Promise<void> {
     console.error('[context-server] Set SPECKIT_EAGER_WARMUP=true to restore eager warmup');
     // Mark embedding as "ready" since it will self-initialize on first use
     setEmbeddingModelReady(true);
-    if (set_handler_embedding_ready) set_handler_embedding_ready(true);
+    if (setHandlerEmbeddingReady) setHandlerEmbeddingReady(true);
   }
 
   // Integrity check and module initialization

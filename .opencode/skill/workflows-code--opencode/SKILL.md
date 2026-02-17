@@ -15,7 +15,7 @@ Multi-language code standards for OpenCode system code across JavaScript, TypeSc
 
 ---
 
-## 1. 🎯 WHEN TO USE
+## 1. WHEN TO USE
 
 ### Activation Triggers
 
@@ -61,7 +61,7 @@ Multi-language code standards for OpenCode system code across JavaScript, TypeSc
 
 ---
 
-## 2. 🧭 SMART ROUTING
+## 2. SMART ROUTING
 
 ### Resource Loading Levels
 
@@ -213,7 +213,7 @@ def route_opencode_resources(task):
 
 ---
 
-## 3. 🛠️ HOW IT WORKS
+## 3. HOW IT WORKS
 
 ### Standards Workflow
 
@@ -261,7 +261,7 @@ STEP 4: Apply Standards
 
 ---
 
-## 4. 📋 RULES
+## 4. RULES
 
 ### ✅ ALWAYS
 
@@ -312,7 +312,7 @@ STEP 4: Apply Standards
 
 ---
 
-## 5. 🏆 SUCCESS CRITERIA
+## 5. SUCCESS CRITERIA
 
 ### Quality Gates
 
@@ -354,7 +354,7 @@ P2 Items (Can defer):
 
 ---
 
-## 6. 🔌 INTEGRATION POINTS
+## 6. INTEGRATION POINTS
 
 ### Framework Integration
 
@@ -378,7 +378,7 @@ This skill operates within the behavioral framework defined in AGENTS.md.
 
 ---
 
-## 7. 📚 EXTERNAL RESOURCES
+## 7. EXTERNAL RESOURCES
 
 | Resource          | URL                              | Use For                     |
 | ----------------- | -------------------------------- | --------------------------- |
@@ -392,7 +392,7 @@ This skill operates within the behavioral framework defined in AGENTS.md.
 
 ---
 
-## 8. 🔗 RELATED RESOURCES
+## 8. RELATED RESOURCES
 
 ### Reference Files
 
@@ -425,7 +425,7 @@ This skill operates within the behavioral framework defined in AGENTS.md.
 
 ---
 
-## 9. 📍 WHERE AM I? (Language Detection)
+## 9. WHERE AM I? (Language Detection)
 
 | Language   | You're here if...                                   | Load these resources          |
 | ---------- | --------------------------------------------------- | ----------------------------- |
@@ -438,7 +438,7 @@ This skill operates within the behavioral framework defined in AGENTS.md.
 
 ---
 
-## 10. 🏎️ QUICK REFERENCE
+## 10. QUICK REFERENCE
 
 ### File Header Templates
 

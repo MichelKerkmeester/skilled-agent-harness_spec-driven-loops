@@ -9,7 +9,7 @@ Path-scoped validation for differentiated rules based on file location, level, a
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 Path-scoped rules enable differentiated validation based on:
 - File location (scratch/, memory/, templates/)
@@ -26,7 +26,7 @@ Path-scoped rules enable differentiated validation based on:
 
 ---
 
-## 2. 🏗️ RULE HIERARCHY
+## 2. RULE HIERARCHY
 
 ```
 GLOBAL RULES (always apply)
@@ -40,7 +40,7 @@ ENVIRONMENT OVERRIDES (runtime control)
 
 ---
 
-## 3. 📂 PATH PATTERNS
+## 3. PATH PATTERNS
 
 ### By Directory
 
@@ -61,7 +61,7 @@ ENVIRONMENT OVERRIDES (runtime control)
 
 ---
 
-## 4. ✅ VALIDATION RULES
+## 4. VALIDATION RULES
 
 ### Implemented Rules
 
@@ -92,7 +92,7 @@ ENVIRONMENT OVERRIDES (runtime control)
 
 ---
 
-## 5. 🔧 USAGE
+## 5. USAGE
 
 ### Basic Validation
 
@@ -126,7 +126,7 @@ ENVIRONMENT OVERRIDES (runtime control)
 
 ---
 
-## 6. 🔌 INTEGRATION POINTS
+## 6. INTEGRATION POINTS
 
 ### AGENTS.md Completion Verification Rule
 
@@ -142,7 +142,7 @@ Step 11 (Completion) runs validation as the first action.
 
 ---
 
-## 7. 🚀 FUTURE ENHANCEMENTS
+## 7. FUTURE ENHANCEMENTS
 
 Planned but not yet implemented:
 
@@ -150,7 +150,7 @@ Planned but not yet implemented:
 
 ---
 
-## 8. 🔗 RELATED RESOURCES
+## 8. RELATED RESOURCES
 
 ### Reference Files
 - [Validation Rules](../validation/validation_rules.md) - Detailed rule reference

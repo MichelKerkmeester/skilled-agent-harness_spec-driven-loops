@@ -21,7 +21,7 @@
 
 ### Context
 
-The memory indexing system currently discovers `.md` files via four functions: `findMemoryFiles()`, `findSkillReadmes()`, `findProjectReadmes()`, and (to be added) `findCommandReadmes()`. We need to add `.txt` file support. Two architectural approaches:
+The memory indexing system currently discovers `.md` files via three functions: `findMemoryFiles()`, `findSkillReadmes()`, and `findProjectReadmes()`. We need to add `.txt` file support. Two architectural approaches:
 
 1. **Unified Discovery**: Modify existing functions to accept both `.md` and `.txt` in a single pass
 2. **Separate Discovery**: Create parallel functions (`findMemoryFilesTxt()`, `findSkillReadmesTxt()`) for `.txt` files

@@ -9,7 +9,7 @@ Maps documentation levels to required templates with ready-to-use copy commands.
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 ### Purpose
 
@@ -24,7 +24,7 @@ This asset provides the definitive source for which templates are required at ea
 
 ---
 
-## 2. 📍 TEMPLATE LOCATION
+## 2. TEMPLATE LOCATION
 
 ### Directory Structure
 
@@ -76,7 +76,7 @@ compose.sh --verify           # Check if templates are current
 
 ---
 
-## 3. 📋 REQUIRED TEMPLATES BY LEVEL (Progressive Enhancement)
+## 3. REQUIRED TEMPLATES BY LEVEL (Progressive Enhancement)
 
 ```
 Level 1 (Baseline):     spec.md + plan.md + tasks.md + implementation-summary.md
@@ -138,7 +138,7 @@ cp .opencode/skill/system-spec-kit/templates/research.md specs/###-name/research
 
 ---
 
-## 4. 📦 OPTIONAL TEMPLATES (Level 3 Only)
+## 4. OPTIONAL TEMPLATES (Level 3 Only)
 
 These templates are OPTIONAL and only apply to Level 3 documentation:
 
@@ -152,7 +152,7 @@ These templates are OPTIONAL and only apply to Level 3 documentation:
 
 ---
 
-## 5. 🗂️ FOLDER STRUCTURE BY LEVEL (Progressive Enhancement)
+## 5. FOLDER STRUCTURE BY LEVEL (Progressive Enhancement)
 
 ### Level 1: Baseline Documentation
 
@@ -241,7 +241,7 @@ specs/046-enterprise-migration/
 
 ---
 
-## 6. 📐 TEMPLATE STRUCTURE REQUIREMENTS
+## 6. TEMPLATE STRUCTURE REQUIREMENTS
 
 All templates follow consistent structure:
 
@@ -310,7 +310,7 @@ Content that will be indexed...
 
 ---
 
-## 7. ✅ TEMPLATE ADHERENCE RULES
+## 7. TEMPLATE ADHERENCE RULES
 
 **Non-negotiable rules:**
 
@@ -329,7 +329,7 @@ Content that will be indexed...
 
 ---
 
-## 8. 🎯 STEP-BY-STEP TEMPLATE USAGE (Progressive Enhancement)
+## 8. STEP-BY-STEP TEMPLATE USAGE (Progressive Enhancement)
 
 ### Step 1: Determine Level
 Use LOC as soft guidance + complexity/risk factors
@@ -410,7 +410,7 @@ Get explicit "yes/go ahead/proceed" before ANY file changes.
 
 ---
 
-## 9. 🔗 RELATED RESOURCES
+## 9. RELATED RESOURCES
 
 ### Asset Files
 - [parallel_dispatch_config.md](./parallel_dispatch_config.md) - Complexity scoring and agent dispatch

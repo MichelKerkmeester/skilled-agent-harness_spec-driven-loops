@@ -18,7 +18,7 @@
 
 ---
 
-## Phase 1: Search → Context (P0) ✅
+## Phase 1: Search → Context (P0) 
 
 ### T1: Audit search.md patterns
 - [x] CHK-010: Dashboard mode verified in context.md
@@ -40,7 +40,7 @@
 
 ---
 
-## Phase 2: Database/Checkpoint → Manage (P0) ✅
+## Phase 2: Database/Checkpoint → Manage (P0) 
 
 ### T4: Create manage.md
 - [x] CHK-040: manage.md created at `.opencode/command/memory/manage.md`
@@ -61,7 +61,7 @@
 
 ---
 
-## Phase 3: Correct → Learn (P1) ✅
+## Phase 3: Correct → Learn (P1) 
 
 ### T7: Add subcommand routing
 - [x] CHK-070: Subcommand detection working
@@ -84,7 +84,7 @@
 
 ---
 
-## Phase 4: Delete Why (P1) ✅
+## Phase 4: Delete Why (P1) 
 
 ### T11: Delete why.md
 - [x] CHK-110: why.md deleted from command folder
@@ -107,7 +107,7 @@
 
 ---
 
-## Phase 5: Cleanup (P2) ✅
+## Phase 5: Cleanup (P2) 
 
 ### T14: Remove deprecated files
 - [x] CHK-140: search.md deleted
@@ -126,7 +126,7 @@
 
 ---
 
-## Post-Implementation Checklist ✅
+## Post-Implementation Checklist 
 
 - [x] CHK-200: Command count verified = 5
   - Evidence: `ls .opencode/command/memory/*.md` returns 5 files
@@ -169,7 +169,7 @@ grep -r "memory_drift_learn" .opencode/
 
 ---
 
-## Final Command Structure ✅
+## Final Command Structure 
 
 After consolidation, the following 5 commands exist:
 

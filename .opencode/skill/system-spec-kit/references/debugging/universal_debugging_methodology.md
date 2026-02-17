@@ -9,7 +9,7 @@ Stack-agnostic debugging framework that applies to any technology: frontend, bac
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 ### Purpose
 
@@ -28,7 +28,7 @@ Provides a universal debugging methodology that works across all technology stac
 
 ---
 
-## 2. 🔄 THE FOUR PHASES
+## 2. THE FOUR PHASES
 
 Complete each phase before proceeding to the next.
 
@@ -101,7 +101,7 @@ Complete each phase before proceeding to the next.
 
 ---
 
-## 3. ✅ VERIFICATION CHECKLIST
+## 3. VERIFICATION CHECKLIST
 
 After any debugging session:
 
@@ -116,7 +116,7 @@ After any debugging session:
 
 ---
 
-## 4. ⚠️ COMMON PITFALLS
+## 4. COMMON PITFALLS
 
 | Pitfall | Solution |
 |---------|----------|
@@ -129,7 +129,7 @@ After any debugging session:
 
 ---
 
-## 5. 🚨 WHEN TO ESCALATE
+## 5. WHEN TO ESCALATE
 
 Escalate (use `/spec_kit:debug` delegation) when:
 - Same error persists after 3+ fix attempts
@@ -139,7 +139,7 @@ Escalate (use `/spec_kit:debug` delegation) when:
 
 ---
 
-## 6. 🛠️ STACK-SPECIFIC NOTES
+## 6. STACK-SPECIFIC NOTES
 
 The 4-phase methodology is universal. Tools vary by stack:
 
@@ -157,7 +157,7 @@ The methodology stays the same: **Observe → Analyze → Hypothesize → Fix**.
 
 ---
 
-## 7. 🔗 RELATED RESOURCES
+## 7. RELATED RESOURCES
 
 ### Commands
 

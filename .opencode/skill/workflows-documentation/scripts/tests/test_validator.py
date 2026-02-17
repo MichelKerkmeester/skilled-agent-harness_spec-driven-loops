@@ -16,16 +16,16 @@ Exit Codes:
 """
 
 import json
-import os
 import subprocess
 import sys
 from pathlib import Path
+from typing import Any, Dict, List, Optional, Tuple
 
 # ───────────────────────────────────────────────────────────────
 # 1. TEST CONFIGURATION
 # ───────────────────────────────────────────────────────────────
 
-TEST_CASES = [
+TEST_CASES: List[Dict[str, Any]] = [
     {
         "file": "valid_readme.md",
         "doc_type": "readme",
@@ -78,14 +78,24 @@ TEST_CASES = [
 class TestResult:
     """Container for individual test results."""
     
-    def __init__(self, name: str, passed: bool, message: str, details: dict = None):
+    def __init__(
+        self,
+        name: str,
+        passed: bool,
+        message: str,
+        details: Optional[Dict[str, Any]] = None,
+    ) -> None:
         self.name = name
         self.passed = passed
         self.message = message
         self.details = details or {}
 
 
-def run_validator(test_file: Path, doc_type: str, validator_path: Path) -> tuple:
+def run_validator(
+    test_file: Path,
+    doc_type: str,
+    validator_path: Path,
+) -> Tuple[int, Optional[Dict[str, Any]], Optional[str]]:
     """
     Run the validator on a test file.
     
@@ -112,8 +122,12 @@ def run_validator(test_file: Path, doc_type: str, validator_path: Path) -> tuple
         if result.stdout.strip():
             try:
                 json_output = json.loads(result.stdout)
-            except json.JSONDecodeError as e:
-                return (result.returncode, None, f"JSON parse error: {e}\nStdout: {result.stdout}")
+            except json.JSONDecodeError as exc:
+                return (
+                    result.returncode,
+                    None,
+                    f"JSON parse error: {exc}\nStdout: {result.stdout}",
+                )
         else:
             json_output = None
             
@@ -121,11 +135,16 @@ def run_validator(test_file: Path, doc_type: str, validator_path: Path) -> tuple
         
     except subprocess.TimeoutExpired:
         return (-1, None, "Timeout: validator took more than 30 seconds")
-    except Exception as e:
-        return (-1, None, f"Execution error: {e}")
+    except OSError as exc:
+        return (-1, None, f"Execution error: {exc}")
 
 
-def run_test(test_case: dict, tests_dir: Path, validator_path: Path, verbose: bool = False) -> TestResult:
+def run_test(
+    test_case: Dict[str, Any],
+    tests_dir: Path,
+    validator_path: Path,
+    verbose: bool = False,
+) -> TestResult:
     """
     Run a single test case and return the result.
     """
@@ -211,7 +230,7 @@ def run_test(test_case: dict, tests_dir: Path, validator_path: Path, verbose: bo
 # 3. MAIN ENTRY POINT
 # ───────────────────────────────────────────────────────────────
 
-def main():
+def main() -> None:
     verbose = "--verbose" in sys.argv or "-v" in sys.argv
     
     # Determine paths
@@ -233,7 +252,7 @@ def main():
     print("-" * 60)
     
     # Run all tests
-    results = []
+    results: List[TestResult] = []
     for test_case in TEST_CASES:
         result = run_test(test_case, tests_dir, validator_path, verbose)
         results.append(result)

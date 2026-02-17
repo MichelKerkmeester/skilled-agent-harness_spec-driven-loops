@@ -9,20 +9,20 @@ Complete installation and configuration guide for the Spec Kit Memory MCP server
 
 #### TABLE OF CONTENTS
 
-1. [📖 OVERVIEW](#1--overview)
-2. [📋 PREREQUISITES](#2--prerequisites)
-3. [📥 INSTALLATION](#3--installation)
-4. [⚙️ CONFIGURATION](#4--configuration)
-5. [✅ VERIFICATION](#5--verification)
-6. [💾 DATABASE BACKUP AND RESTORE](#6--database-backup-and-restore)
-7. [🚀 USAGE](#7--usage)
-8. [🎯 FEATURES](#8--features)
-9. [🔧 TROUBLESHOOTING](#9--troubleshooting)
-10. [📚 RESOURCES](#10--resources)
+1. [OVERVIEW](#1--overview)
+2. [PREREQUISITES](#2--prerequisites)
+3. [INSTALLATION](#3--installation)
+4. [CONFIGURATION](#4--configuration)
+5. [VERIFICATION](#5--verification)
+6. [DATABASE BACKUP AND RESTORE](#6--database-backup-and-restore)
+7. [USAGE](#7--usage)
+8. [FEATURES](#8--features)
+9. [TROUBLESHOOTING](#9--troubleshooting)
+10. [RESOURCES](#10--resources)
 
 ---
 
-## 🤖 AI INSTALL GUIDE
+## AI INSTALL GUIDE
 
 ### Verify Success (30 seconds)
 
@@ -77,7 +77,7 @@ Guide me through each step with the exact commands and configuration needed.
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 The Spec Kit Memory MCP Server provides AI assistants with conversation memory retrieval capabilities. It enables semantic search using local vector embeddings, fast trigger phrase matching, and direct memory content loading.
 
@@ -207,7 +207,7 @@ User Request
 
 ---
 
-## 2. 📋 PREREQUISITES
+## 2. PREREQUISITES
 
 Before installing the Spec Kit Memory MCP server, ensure you have:
 
@@ -264,7 +264,7 @@ This location is within the skill folder for self-contained deployment.
 
 ---
 
-## 3. 📥 INSTALLATION
+## 3. INSTALLATION
 
 The Spec Kit Memory MCP server is bundled within the `system-spec-kit` skill folder. No external installation or file copying is required.
 
@@ -371,7 +371,7 @@ ls .opencode/skill/system-spec-kit/mcp_server/dist/context-server.js && ls .open
 
 ---
 
-## 4. ⚙️ CONFIGURATION
+## 4. CONFIGURATION
 
 ### Option A: Configure for Claude Code CLI
 
@@ -467,7 +467,7 @@ The default database path is `.opencode/skill/system-spec-kit/mcp_server/dist/da
 
 ---
 
-## 5. ✅ VERIFICATION
+## 5. VERIFICATION
 
 ### One-Command Health Check
 
@@ -559,7 +559,7 @@ ls .opencode/skill/system-spec-kit/mcp_server/dist/context-server.js && python3 
 
 ---
 
-## 6. 💾 DATABASE BACKUP AND RESTORE
+## 6. DATABASE BACKUP AND RESTORE
 
 The memory database stores all indexed memories and embeddings. Backup before risky operations.
 
@@ -637,7 +637,7 @@ ls .opencode/skill/system-spec-kit/mcp_server/database/backup-*.sqlite 2>/dev/nu
 
 ---
 
-## 7. 🚀 USAGE
+## 7. USAGE
 
 ### Pattern 1: Quick Topic Check
 
@@ -808,7 +808,7 @@ Use these commands in your AI client for common memory operations:
 
 ---
 
-## 8. 🎯 FEATURES
+## 8. FEATURES
 
 ### 8.1 memory_search
 
@@ -1276,7 +1276,7 @@ See `specs/005-memory/018-gate3-enforcement/` for a complete example:
 
 ---
 
-## 9. 🔧 TROUBLESHOOTING
+## 9. TROUBLESHOOTING
 
 ### Server Won't Start
 
@@ -1571,7 +1571,7 @@ rm -rf .opencode/skill/system-spec-kit/mcp_server/node_modules/@huggingface/tran
 
 ---
 
-## 10. 📚 RESOURCES
+## 10. RESOURCES
 
 ### File Structure
 

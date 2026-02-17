@@ -6,21 +6,21 @@ A custom Table of Contents scroll-spy implementation for Webflow that provides f
 
 ## TABLE OF CONTENTS
 
-- [1. 📖 OVERVIEW](#1--overview)
-- [2. 🚀 QUICK START](#2--quick-start)
-- [3. 📌 WEBFLOW SETUP (DETAILED)](#3--webflow-setup-detailed)
-- [4. ⚙ ️ CONFIGURATION](#4--configuration)
-- [5. 📌 STYLING THE ACTIVE STATE](#5--styling-the-active-state)
-- [6. 🛠 ️ TROUBLESHOOTING](#6--troubleshooting)
-- [7. 📌 API REFERENCE](#7--api-reference)
-- [8. 📌 SOURCE FILES](#8--source-files)
-- [9. 📌 VERSION HISTORY](#9--version-history)
-- [10. 📌 RELATED DOCUMENTATION](#10--related-documentation)
+- [1.  OVERVIEW]](#1--overview)
+- [2.  QUICK START]](#2--quick-start)
+- [3.  WEBFLOW SETUP (DETAILED)]](#3--webflow-setup-detailed)
+- [4. CONFIGURATION]](#4--configuration)
+- [5.  STYLING THE ACTIVE STATE]](#5--styling-the-active-state)
+- [6. TROUBLESHOOTING]](#6--troubleshooting)
+- [7.  API REFERENCE]](#7--api-reference)
+- [8.  SOURCE FILES]](#8--source-files)
+- [9.  VERSION HISTORY]](#9--version-history)
+- [10.  RELATED DOCUMENTATION]](#10--related-documentation)
 
 ---
 
 <!-- ANCHOR:overview -->
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 ### What It Does
 
@@ -47,7 +47,7 @@ Automatically highlights the currently visible section in your Table of Contents
 ---
 
 <!-- ANCHOR:quick-start -->
-## 2. 🚀 QUICK START
+## 2. QUICK START
 
 **Minimum setup in 3 steps:**
 
@@ -105,7 +105,7 @@ In **Project Settings > Custom Code > Head Code** (or page-level), add the CSS f
 ---
 
 <!-- ANCHOR:webflow-setup-detailed -->
-## 3. 📌 WEBFLOW SETUP (DETAILED)
+## 3. WEBFLOW SETUP (DETAILED)
 
 ### 3.1 Create TOC Navigation Structure
 
@@ -191,7 +191,7 @@ Section (or Div Block)
 ---
 
 <!-- ANCHOR:configuration -->
-## 4. ⚙ ️ CONFIGURATION
+## 4. CONFIGURATION
 
 All configuration is done via data attributes on the `data-toc-container` element.
 
@@ -247,7 +247,7 @@ data-toc-active-class="toc-active"
 ---
 
 <!-- ANCHOR:styling-the-active-state -->
-## 5. 📌 STYLING THE ACTIVE STATE
+## 5. STYLING THE ACTIVE STATE
 
 The script applies **all four** styling mechanisms simultaneously, giving you flexibility in how you style the active TOC link.
 
@@ -304,7 +304,7 @@ If you prefer using Webflow Designer's native Current state styling:
 ---
 
 <!-- ANCHOR:troubleshooting -->
-## 6. 🛠 ️ TROUBLESHOOTING
+## 6. TROUBLESHOOTING
 
 ### Active State Not Updating
 
@@ -368,7 +368,7 @@ window.__tocScrollspyCdnInit = false;
 ---
 
 <!-- ANCHOR:api-reference -->
-## 7. 📌 API REFERENCE
+## 7. API REFERENCE
 
 ### Data Attributes
 
@@ -406,7 +406,7 @@ window.__tocScrollspyCdnInit = false;
 ---
 
 <!-- ANCHOR:source-files -->
-## 8. 📌 SOURCE FILES
+## 8. SOURCE FILES
 
 | File | Location | Purpose |
 |------|----------|---------|
@@ -418,7 +418,7 @@ window.__tocScrollspyCdnInit = false;
 ---
 
 <!-- ANCHOR:version-history -->
-## 9. 📌 VERSION HISTORY
+## 9. VERSION HISTORY
 
 | Version | Date | Changes |
 |---------|------|---------|
@@ -428,7 +428,7 @@ window.__tocScrollspyCdnInit = false;
 ---
 
 <!-- ANCHOR:related-documentation -->
-## 10. 📌 RELATED DOCUMENTATION
+## 10. RELATED DOCUMENTATION
 
 - [Feature Specification](./spec.md)
 - [Implementation Plan](./plan.md)

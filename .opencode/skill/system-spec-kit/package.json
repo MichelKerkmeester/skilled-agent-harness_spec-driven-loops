@@ -14,7 +14,7 @@
   "scripts": {
     "start": "npm run start --workspace=mcp_server",
     "build": "tsc --build",
-    "typecheck": "tsc --noEmit",
+    "typecheck": "tsc --noEmit --composite false -p shared/tsconfig.json && tsc --noEmit --composite false -p mcp_server/tsconfig.json && tsc --noEmit --composite false -p scripts/tsconfig.json",
     "build:watch": "tsc --build --watch",
     "test": "npm run test:cli && npm run test:embeddings && npm run test:mcp",
     "test:mcp": "npm run test --workspace=mcp_server",

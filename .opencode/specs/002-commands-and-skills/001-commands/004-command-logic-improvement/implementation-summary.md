@@ -156,7 +156,7 @@ confidence_checkpoints:
 ### 4. What Next Sections
 
 ```markdown
-## 🔜 WHAT NEXT?
+## WHAT NEXT?
 
 | Condition | Suggested Command | Reason |
 |-----------|-------------------|--------|
@@ -167,7 +167,7 @@ confidence_checkpoints:
 ### 5. Command Chaining
 
 ```markdown
-## 🔗 COMMAND CHAIN
+## COMMAND CHAIN
 
 [research] → **plan** → [implement]
 

@@ -17,17 +17,17 @@ importance_tier: "normal"
 ## TABLE OF CONTENTS
 <!-- ANCHOR:table-of-contents -->
 
-- [1. 📖 OVERVIEW](#1--overview)
-- [2. 📁 STRUCTURE](#2--structure)
-- [3. ⚡ FEATURES](#3--features)
-- [4. 💡 USAGE EXAMPLES](#4--usage-examples)
-- [5. 🔗 RELATED RESOURCES](#5--related-resources)
+- [1. OVERVIEW](#1--overview)
+- [2. STRUCTURE](#2--structure)
+- [3. FEATURES](#3--features)
+- [4. USAGE EXAMPLES](#4--usage-examples)
+- [5. RELATED RESOURCES](#5--related-resources)
 
 <!-- /ANCHOR:table-of-contents -->
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 <!-- ANCHOR:overview -->
 
 The providers module handles embedding generation and retry logic for the Spec Kit Memory MCP server. It provides a unified abstraction layer for multiple embedding providers (Voyage AI, OpenAI) with exponential backoff retry management for reliable embedding generation.
@@ -53,7 +53,7 @@ The providers module handles embedding generation and retry logic for the Spec K
 
 ---
 
-## 2. 📁 STRUCTURE
+## 2. STRUCTURE
 <!-- ANCHOR:structure -->
 
 ```
@@ -78,7 +78,7 @@ TypeScript source files compile to `mcp_server/dist/lib/providers/` with corresp
 
 ---
 
-## 3. ⚡ FEATURES
+## 3. FEATURES
 <!-- ANCHOR:features -->
 
 ### Embeddings Provider (`embeddings.ts`)
@@ -132,7 +132,7 @@ const queryEmbedding = await generateQueryEmbedding('how to authenticate?');
 
 ---
 
-## 4. 💡 USAGE EXAMPLES
+## 4. USAGE EXAMPLES
 <!-- ANCHOR:usage-examples -->
 
 ### Example 1: Generate Embedding
@@ -187,7 +187,7 @@ stopBackgroundJob();
 
 ---
 
-## 5. 🔗 RELATED RESOURCES
+## 5. RELATED RESOURCES
 <!-- ANCHOR:related -->
 
 ### Internal Documentation

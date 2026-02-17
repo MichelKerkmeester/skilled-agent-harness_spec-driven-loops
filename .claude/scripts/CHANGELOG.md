@@ -1,1 +1,0 @@
-../../.opencode/scripts/CHANGELOG.md

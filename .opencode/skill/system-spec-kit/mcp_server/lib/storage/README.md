@@ -17,18 +17,18 @@ importance_tier: "normal"
 ## TABLE OF CONTENTS
 <!-- ANCHOR:table-of-contents -->
 
-- [1. 📖 OVERVIEW](#1--overview)
-- [2. 📁 STRUCTURE](#2--structure)
-- [3. ⚡ FEATURES](#3--features)
-- [4. 💡 USAGE EXAMPLES](#4--usage-examples)
-- [5. 🛠️ TROUBLESHOOTING](#5--troubleshooting)
-- [6. 🔗 RELATED RESOURCES](#6--related-resources)
+- [1. OVERVIEW](#1--overview)
+- [2. STRUCTURE](#2--structure)
+- [3. FEATURES](#3--features)
+- [4. USAGE EXAMPLES](#4--usage-examples)
+- [5. TROUBLESHOOTING](#5--troubleshooting)
+- [6. RELATED RESOURCES](#6--related-resources)
 
 <!-- /ANCHOR:table-of-contents -->
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 <!-- ANCHOR:overview -->
 
 The storage layer provides all persistence operations for the Spec Kit Memory MCP server. It manages memory state across sessions and tracks access patterns for relevance scoring. It also enables causal relationship mapping between memories.
@@ -55,7 +55,7 @@ The storage layer provides all persistence operations for the Spec Kit Memory MC
 
 ---
 
-## 2. 📁 STRUCTURE
+## 2. STRUCTURE
 <!-- ANCHOR:structure -->
 
 ```
@@ -86,7 +86,7 @@ storage/
 
 ---
 
-## 3. ⚡ FEATURES
+## 3. FEATURES
 <!-- ANCHOR:features -->
 
 ### Incremental Indexing (v1.2.0)
@@ -211,7 +211,7 @@ Note: Restored checkpoints do **not** include embedding vectors. Run `memory_ind
 
 ---
 
-## 4. 💡 USAGE EXAMPLES
+## 4. USAGE EXAMPLES
 <!-- ANCHOR:usage-examples -->
 
 ### Example 1: Check if File Needs Re-indexing
@@ -295,7 +295,7 @@ console.log(`Restored ${result.restored} memories, ${result.skipped} skipped`);
 
 ---
 
-## 5. 🛠️ TROUBLESHOOTING
+## 5. TROUBLESHOOTING
 <!-- ANCHOR:troubleshooting -->
 
 ### Common Issues
@@ -373,7 +373,7 @@ console.log(getUnindexedDocuments());
 
 ---
 
-## 6. 🔗 RELATED RESOURCES
+## 6. RELATED RESOURCES
 <!-- ANCHOR:related -->
 
 ### Internal Documentation

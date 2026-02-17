@@ -20,7 +20,7 @@ export function validateFilePath(filePath: string, allowedBasePaths: string[]): 
   }
 
   if (!Array.isArray(allowedBasePaths) || allowedBasePaths.length === 0) {
-    console.warn('[utils] validate_file_path called with empty allowed_base_paths');
+    console.warn('[utils] validateFilePath called with empty allowedBasePaths');
     return null;
   }
 
@@ -33,26 +33,26 @@ export function validateFilePath(filePath: string, allowedBasePaths: string[]): 
 
     const resolved = path.resolve(filePath);
 
-    // P1-07 FIX: Resolve symlinks to prevent traversal bypass (CWE-59)
+    // Compare canonical paths so symlink aliases cannot bypass containment checks.
     let realResolved: string;
     try {
       realResolved = fs.realpathSync(resolved);
     } catch {
-      // File may not exist yet — resolve parent directory instead
+      // New files may not exist yet, so we canonicalize the parent and rebuild the target path.
       try {
         const parentReal = fs.realpathSync(path.dirname(resolved));
         realResolved = path.join(parentReal, path.basename(resolved));
       } catch {
-        // Parent doesn't exist either — use the path.resolve() result
+        // Fall back to resolved path when neither target nor parent can be canonicalized.
         realResolved = resolved;
       }
     }
 
     // Security: path.relative() containment check (CWE-22)
-    const isAllowed = allowedBasePaths.some((basePath: string) => {
+    const isAllowed = allowedBasePaths.some((basePath) => {
       try {
         const normalizedBase = path.resolve(basePath);
-        // Also resolve symlinks on the base path for consistent comparison
+        // Canonicalize base paths too, otherwise realResolved and base could use different aliases.
         let realBase: string;
         try {
           realBase = fs.realpathSync(normalizedBase);

@@ -9,7 +9,7 @@ Coding conventions and formatting standards for Bash scripts in the OpenCode dev
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 ### Purpose
 
@@ -31,7 +31,7 @@ Applies to all shell files in:
 
 ---
 
-## 2. 📁 FILE STRUCTURE
+## 2. FILE STRUCTURE
 
 ### Shebang Line
 
@@ -117,7 +117,7 @@ log_info() {
 
 ---
 
-## 3. 🏷️ NAMING CONVENTIONS
+## 3. NAMING CONVENTIONS
 
 ### Functions
 
@@ -180,7 +180,7 @@ JSON_MODE=false
 
 ---
 
-## 4. 🎨 COLOR DEFINITIONS
+## 4. COLOR DEFINITIONS
 
 ### Standard Color Setup
 
@@ -217,7 +217,7 @@ printf "${YELLOW}WARNING:${NC} %s\n" "$warning"
 
 ---
 
-## 5. ⚡ LOGGING FUNCTIONS
+## 5. LOGGING FUNCTIONS
 
 ### Standard Logging Pattern
 
@@ -315,7 +315,7 @@ validate_json() {
 
 ---
 
-## 6. 📝 VARIABLE HANDLING
+## 6. VARIABLE HANDLING
 
 ### Always Quote Variables
 
@@ -368,7 +368,7 @@ required_var="${REQUIRED_VAR:?Error: REQUIRED_VAR must be set}"
 
 ---
 
-## 7. 📌 CONDITIONAL EXPRESSIONS
+## 7. CONDITIONAL EXPRESSIONS
 
 ### Use [[ ]] for Tests
 
@@ -415,7 +415,7 @@ if [[ -x "$path" ]]; then   # Is executable
 
 ---
 
-## 8. 📋 ARGUMENT PARSING
+## 8. ARGUMENT PARSING
 
 ### Simple Arguments
 
@@ -481,7 +481,7 @@ done
 
 ---
 
-## 9. ⚡ FUNCTIONS
+## 9. FUNCTIONS
 
 ### Function Definition
 
@@ -528,7 +528,7 @@ validate() {
 
 ---
 
-## 10. 🚨 ERROR HANDLING
+## 10. ERROR HANDLING
 
 ### Exit on Error
 
@@ -564,7 +564,7 @@ printf "${RED}ERROR:${NC} %s\n" "$message" >&2
 
 ---
 
-## 11. 📐 OUTPUT FORMATTING
+## 11. OUTPUT FORMATTING
 
 ### Printf vs Echo
 
@@ -593,7 +593,7 @@ fi
 
 ---
 
-## 12. 🔗 RELATED RESOURCES
+## 12. RELATED RESOURCES
 
 ### Internal References
 - [quality_standards.md](./quality_standards.md) - Quality requirements

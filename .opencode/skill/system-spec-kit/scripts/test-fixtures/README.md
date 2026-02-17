@@ -17,21 +17,21 @@ importance_tier: "normal"
 <!-- ANCHOR:table-of-contents -->
 ## TABLE OF CONTENTS
 
-- [1. 📖 OVERVIEW](#1--overview)
-- [2. 🚀 QUICK START](#2--quick-start)
-- [3. 📁 STRUCTURE](#3--structure)
-- [4. ⚡ FEATURES](#4--features)
-- [5. 💡 USAGE EXAMPLES](#5--usage-examples)
-- [6. 🛠️ TROUBLESHOOTING](#6--troubleshooting)
-- [7. 📚 RELATED DOCUMENTS](#7--related-documents)
-- [8. 📌 COGNITIVE MEMORY FIXTURES]](#8--cognitive-memory-fixtures)
+- [1. OVERVIEW](#1--overview)
+- [2. QUICK START](#2--quick-start)
+- [3. STRUCTURE](#3--structure)
+- [4. FEATURES](#4--features)
+- [5. USAGE EXAMPLES](#5--usage-examples)
+- [6. TROUBLESHOOTING](#6--troubleshooting)
+- [7. RELATED DOCUMENTS](#7--related-documents)
+- [8. COGNITIVE MEMORY FIXTURES]](#8--cognitive-memory-fixtures)
 
 ---
 
 <!-- /ANCHOR:table-of-contents -->
 
 <!-- ANCHOR:overview -->
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 ### What are Test Fixtures?
 
@@ -71,7 +71,7 @@ Test fixtures are pre-built spec folder examples that cover all validation scena
 <!-- /ANCHOR:overview -->
 
 <!-- ANCHOR:quick-start -->
-## 2. 🚀 QUICK START
+## 2. QUICK START
 
 ```bash
 # 1. Navigate to scripts directory
@@ -109,7 +109,7 @@ cd .opencode/skill/system-spec-kit/scripts
 <!-- /ANCHOR:quick-start -->
 
 <!-- ANCHOR:structure -->
-## 3. 📁 STRUCTURE
+## 3. STRUCTURE
 
 ```
 test-fixtures/
@@ -200,7 +200,7 @@ test-fixtures/
 <!-- /ANCHOR:structure -->
 
 <!-- ANCHOR:features -->
-## 4. ⚡ FEATURES
+## 4. FEATURES
 
 ### Validation Rule Coverage
 
@@ -261,7 +261,7 @@ test-fixtures/004-valid-level3/
 <!-- /ANCHOR:features -->
 
 <!-- ANCHOR:usage-examples -->
-## 5. 💡 USAGE EXAMPLES
+## 5. USAGE EXAMPLES
 
 ### Example 1: Validate Single Fixture
 
@@ -334,7 +334,7 @@ cd .opencode/skill/system-spec-kit/scripts
 <!-- /ANCHOR:usage-examples -->
 
 <!-- ANCHOR:troubleshooting -->
-## 6. 🛠️ TROUBLESHOOTING
+## 6. TROUBLESHOOTING
 
 ### Common Issues
 
@@ -443,7 +443,7 @@ ls test-fixtures/ | grep "priority"
 <!-- /ANCHOR:troubleshooting -->
 
 <!-- ANCHOR:related -->
-## 7. 📚 RELATED DOCUMENTS
+## 7. RELATED DOCUMENTS
 
 ### Internal Documentation
 
@@ -479,7 +479,7 @@ ls test-fixtures/ | grep "priority"
 <!-- /ANCHOR:related -->
 
 <!-- ANCHOR:cognitive-fixtures -->
-## 8. 📌 COGNITIVE MEMORY FIXTURES
+## 8. COGNITIVE MEMORY FIXTURES
 
 ### Overview
 

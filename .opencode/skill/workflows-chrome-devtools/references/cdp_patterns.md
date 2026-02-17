@@ -9,13 +9,13 @@ CDP command reference with domain patterns and Unix pipeline examples.
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 Progressive disclosure from discovery to execution - always explore capabilities via `bdg cdp --list`/`--describe`/`--search` before executing CDP methods. Self-documentation eliminates hardcoded method lists and ensures up-to-date access to 300+ CDP methods across 53 domains.
 
 ---
 
-## 2. 📋 PREREQUISITES
+## 2. PREREQUISITES
 
 **Foundation:** Follow session management basics from SKILL.md Section 3 for all CDP operations:
 - **Installation Verification**: Check `command -v bdg` before first use
@@ -30,7 +30,7 @@ Progressive disclosure from discovery to execution - always explore capabilities
 
 ---
 
-## 3. 🏎️ QUICK REFERENCE
+## 3. QUICK REFERENCE
 
 **Common Use Cases**:
 
@@ -46,7 +46,7 @@ Progressive disclosure from discovery to execution - always explore capabilities
 
 ---
 
-## 4. 🔧 CDP DOMAIN PATTERNS
+## 4. CDP DOMAIN PATTERNS
 
 ### Page Domain
 
@@ -315,7 +315,7 @@ bdg cdp Tracing.getCategories
 
 ---
 
-## 5. 🔄 COMPLETE WORKFLOWS
+## 5. COMPLETE WORKFLOWS
 
 ### Workflow 1: Full Page Screenshot
 
@@ -478,7 +478,7 @@ bdg stop 2>&1
 
 ---
 
-## 6. 🔗 UNIX COMPOSABILITY PATTERNS
+## 6. UNIX COMPOSABILITY PATTERNS
 
 ### Pattern 1: Pipe to jq for JSON Processing
 
@@ -578,7 +578,7 @@ bdg cdp Network.enable 2>/dev/null
 
 ---
 
-## 7. 🔍 DISCOVERY PATTERN EXAMPLES
+## 7. DISCOVERY PATTERN EXAMPLES
 
 ### Before/After: Progressive Disclosure
 
@@ -636,7 +636,7 @@ bdg cdp --search intercept
 
 ---
 
-## 8. 🚀 ADVANCED PATTERNS
+## 8. ADVANCED PATTERNS
 
 ### Multi-Session Management
 
@@ -696,7 +696,7 @@ bdg stop 2>&1
 
 ---
 
-## 9. ✅ BEST PRACTICES
+## 9. BEST PRACTICES
 
 1. **Always verify session status** before executing CDP commands
 2. **Use helpers when available** (simpler than raw CDP)
@@ -709,7 +709,7 @@ bdg stop 2>&1
 
 ---
 
-## 10. 🔗 RELATED RESOURCES
+## 10. RELATED RESOURCES
 
 ### Reference Files
 - [session_management.md](./session_management.md) - Advanced session lifecycle patterns and cleanup strategies

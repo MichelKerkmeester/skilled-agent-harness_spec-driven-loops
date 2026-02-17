@@ -15,21 +15,21 @@ importance_tier: "normal"
 <!-- ANCHOR:table-of-contents -->
 ## TABLE OF CONTENTS
 
-- [1. 📖 OVERVIEW](#1--overview)
-- [2. 📋 CURRENT INVENTORY](#2--current-inventory)
-- [3. 📌 MEMORY SAVE RULE COMMANDS](#3--memory-save-rule-commands)
-- [4. 📌 MAINTENANCE COMMANDS](#4--maintenance-commands)
-- [5. 📌 WORKFLOW ALIGNMENT](#5--workflow-alignment)
+- [1. OVERVIEW](#1--overview)
+- [2. CURRENT INVENTORY](#2--current-inventory)
+- [3. MEMORY SAVE RULE COMMANDS](#3--memory-save-rule-commands)
+- [4. MAINTENANCE COMMANDS](#4--maintenance-commands)
+- [5. WORKFLOW ALIGNMENT](#5--workflow-alignment)
 
 <!-- /ANCHOR:table-of-contents -->
 <!-- ANCHOR:overview -->
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 The `memory/` directory contains the CLI entrypoints for the Spec Kit memory pipeline.
 
 <!-- /ANCHOR:overview -->
 <!-- ANCHOR:current-inventory -->
-## 2. 📋 CURRENT INVENTORY
+## 2. CURRENT INVENTORY
 
 
 - `generate-context.ts` - generate memory output from spec folder or JSON input
@@ -41,7 +41,7 @@ Runtime files are compiled into `../dist/memory/`.
 
 <!-- /ANCHOR:current-inventory -->
 <!-- ANCHOR:memory-save-rule-commands -->
-## 3. 📌 MEMORY SAVE RULE COMMANDS
+## 3. MEMORY SAVE RULE COMMANDS
 
 
 Direct spec-folder mode:
@@ -59,7 +59,7 @@ node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js /tm
 
 <!-- /ANCHOR:memory-save-rule-commands -->
 <!-- ANCHOR:maintenance-commands -->
-## 4. 📌 MAINTENANCE COMMANDS
+## 4. MAINTENANCE COMMANDS
 
 
 ```bash
@@ -70,7 +70,7 @@ node .opencode/skill/system-spec-kit/scripts/dist/memory/cleanup-orphaned-vector
 
 <!-- /ANCHOR:maintenance-commands -->
 <!-- ANCHOR:workflow-alignment -->
-## 5. 📌 WORKFLOW ALIGNMENT
+## 5. WORKFLOW ALIGNMENT
 
 
 - Uses the modular core/extractors/loaders/renderers/lib pipeline.

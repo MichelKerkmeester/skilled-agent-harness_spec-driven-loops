@@ -166,7 +166,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
 
 ---
 
-## ✅ PHASE STATUS VERIFICATION (BLOCKING)
+## PHASE STATUS VERIFICATION (BLOCKING)
 
 **Before continuing to the workflow, verify ALL values are set:**
 
@@ -189,7 +189,7 @@ VERIFICATION CHECK:
 
 ---
 
-## ⚡ INSTRUCTIONS
+## INSTRUCTIONS
 
 After Phase 0 and Setup Phase pass, load and execute the appropriate YAML workflow:
 
@@ -218,7 +218,7 @@ This command dispatches specialized agents at specific workflow steps (see YAML 
 
 ---
 
-## 1. 📖 ROLE & PURPOSE
+## 1. ROLE & PURPOSE
 
 ```yaml
 role: Expert Agent Creator using workflows-documentation skill
@@ -238,7 +238,7 @@ Create a complete, production-ready OpenCode agent following the 6-step agent cr
 
 ---
 
-## 2. 📝 CONTRACT
+## 2. CONTRACT
 
 **Inputs:** `$ARGUMENTS` — Agent name in kebab-case with optional output path
 **Outputs:** Complete agent file with frontmatter + content + `STATUS=<OK|FAIL|CANCELLED>`
@@ -251,7 +251,7 @@ $ARGUMENTS
 
 ---
 
-## 3. 📊 AGENT STRUCTURE & FRONTMATTER REFERENCE
+## 3. AGENT STRUCTURE & FRONTMATTER REFERENCE
 
 ### Agent File Structure
 
@@ -280,26 +280,26 @@ permission:
 
 ---
 
-## 1. 🔄 CORE WORKFLOW
+## 1. CORE WORKFLOW
 
 [Numbered steps based on use cases]
 
 ---
 
-## 2. 📋 [DOMAIN SECTION]
+## 2. [DOMAIN SECTION]
 
 [Content based on purpose - e.g., "Code Review Standards" for a review agent]
 
 ---
 
-## 3. 🚫 ANTI-PATTERNS
+## 3. ANTI-PATTERNS
 
 ❌ **Never [rule from planning]**
 - [Reason]
 
 ---
 
-## 4. 🔗 RELATED RESOURCES
+## 4. RELATED RESOURCES
 
 - [Skills identified in planning]
 - [Other relevant resources]
@@ -307,7 +307,7 @@ permission:
 
 ---
 
-## 4. 🎯 AGENT MODES REFERENCE
+## 4. AGENT MODES REFERENCE
 
 | Mode     | Tab Cycle | @ Mention | Automatic Invocation | Use Case            |
 | -------- | --------- | --------- | -------------------- | ------------------- |
@@ -332,7 +332,7 @@ permission:
 
 ---
 
-## 5. 🔧 PERMISSION REFERENCE
+## 5. PERMISSION REFERENCE
 
 ### Unified Permission Format (v1.1.1+)
 
@@ -368,7 +368,7 @@ permission:
 
 ---
 
-## 6. 📋 AGENT CREATION TEMPLATES
+## 6. AGENT CREATION TEMPLATES
 
 ### Agent Template Path
 `.opencode/skill/workflows-documentation/assets/opencode/agent_template.md`
@@ -383,7 +383,7 @@ permission:
 
 ---
 
-## 7. 🔍 EXAMPLES
+## 7. EXAMPLES
 
 **Example 1: Code Review Subagent**
 ```
@@ -427,7 +427,7 @@ permission:
 
 ---
 
-## 8. ⚠️ ERROR HANDLING
+## 8. ERROR HANDLING
 
 ### Common Validation Errors
 
@@ -457,7 +457,7 @@ permission:
 
 ---
 
-## 9. 🚫 VIOLATION SELF-DETECTION (BLOCKING)
+## 9. VIOLATION SELF-DETECTION (BLOCKING)
 
 **YOU ARE IN VIOLATION IF YOU:**
 
@@ -498,7 +498,7 @@ FOR WORKFLOW VIOLATIONS:
 
 ---
 
-## 10. 🔗 RELATED RESOURCES
+## 10. RELATED RESOURCES
 
 | Resource | Path |
 |---|---|

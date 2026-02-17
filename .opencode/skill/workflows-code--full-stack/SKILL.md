@@ -2,7 +2,7 @@
 name: workflows-code--full-stack
 description: "Stack-agnostic development orchestrator guiding developers through implementation, debugging, and verification phases with automatic stack detection via marker files and bundled stack-specific knowledge."
 allowed-tools: [Bash, Edit, Glob, Grep, Read, Task, Write]
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 <!-- Keywords: workflows-code, development-orchestrator, multi-stack, stack-detection, debugging-workflow, implementation-patterns, react, nextjs, react-native, swift, go, nodejs -->
@@ -15,7 +15,7 @@ Unified workflow guidance for any technology stack: Go, React, React Native, Swi
 
 ---
 
-## 1. 🎯 WHEN TO USE
+## 1. WHEN TO USE
 
 ### Activation Triggers
 
@@ -48,7 +48,7 @@ Unified workflow guidance for any technology stack: Go, React, React Native, Swi
 
 ---
 
-## 2. 🧭 SMART ROUTING
+## 2. SMART ROUTING
 
 ### Stack Detection (Marker File Based)
 
@@ -181,7 +181,7 @@ All stacks follow the same structure:
 
 ---
 
-## 3. 🛠️ HOW IT WORKS
+## 3. HOW IT WORKS
 
 ### Development Lifecycle
 
@@ -249,7 +249,7 @@ Implementation → Debugging (if issues) → Verification (MANDATORY)
 
 ---
 
-## 4. 📋 RULES
+## 4. RULES
 
 ### Universal Rules (All Stacks)
 
@@ -320,7 +320,7 @@ Implementation → Debugging (if issues) → Verification (MANDATORY)
 | Trace backward to root cause | Fix symptoms without understanding cause          |
 | Document root cause          | Proceed with 4th fix without questioning approach |
 
-### Verification Rules
+### ✅ Verification Rules
 
 | ✅ ALWAYS                           | ❌ NEVER                               |
 | ---------------------------------- | ------------------------------------- |
@@ -330,7 +330,7 @@ Implementation → Debugging (if issues) → Verification (MANDATORY)
 
 ---
 
-## 5. 🏆 SUCCESS CRITERIA
+## 5. SUCCESS CRITERIA
 
 ### Phase Completion Checklists
 
@@ -357,7 +357,7 @@ Implementation → Debugging (if issues) → Verification (MANDATORY)
 
 ---
 
-## 6. 🔌 INTEGRATION POINTS
+## 6. INTEGRATION POINTS
 
 ### Framework Integration
 
@@ -382,7 +382,7 @@ workflows-code--full-stack/
 
 ---
 
-## 7. 📚 EXTERNAL RESOURCES
+## 7. EXTERNAL RESOURCES
 
 | Stack        | Documentation           |
 | ------------ | ----------------------- |
@@ -396,7 +396,7 @@ workflows-code--full-stack/
 
 ---
 
-## 8. 🔗 RELATED SKILLS
+## 8. RELATED SKILLS
 
 | Skill                         | Use For                              |
 | ----------------------------- | ------------------------------------ |
@@ -413,7 +413,7 @@ workflows-code--full-stack/
 
 ---
 
-## 9. 📍 WHERE AM I?
+## 9. WHERE AM I?
 
 | Phase                 | You're here if...            | Exit criteria              |
 | --------------------- | ---------------------------- | -------------------------- |
@@ -426,7 +426,7 @@ workflows-code--full-stack/
 
 ---
 
-## 10. 🏎️ QUICK REFERENCE
+## 10. QUICK REFERENCE
 
 ### Universal Workflow
 
@@ -469,7 +469,7 @@ workflows-code--full-stack/
 
 ---
 
-## 11. 📁 DIRECTORY STRUCTURE
+## 11. DIRECTORY STRUCTURE
 
 ```
 workflows-code--full-stack/

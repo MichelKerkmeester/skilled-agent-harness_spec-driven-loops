@@ -9,7 +9,7 @@ Performance optimization checklist covering animations, assets, requests, and Co
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 ### Purpose
 Comprehensive performance optimization patterns for frontend development targeting Motion.dev animations, HLS video streaming, and Webflow platform constraints.
@@ -24,7 +24,7 @@ Apply during Phase 1 (Implementation) when:
 
 ---
 
-## 2. ⚙️ PERFORMANCE CHECKLIST
+## 2. PERFORMANCE CHECKLIST
 
 ### Code Splitting & Lazy Loading
 
@@ -328,7 +328,7 @@ document.querySelectorAll('img[data-src]').forEach(img => {
 
 ---
 
-## 3. 📏 PERFORMANCE BUDGETS
+## 3. PERFORMANCE BUDGETS
 
 **Target metrics:**
 - First Contentful Paint (FCP): <1.8s
@@ -496,7 +496,7 @@ echo "✅ PASS: Animation performance budgets met"
 
 ---
 
-## 4. 🚫 ANTI-PATTERNS
+## 4. ANTI-PATTERNS
 
 **Never:**
 - ❌ Animate width/height/top/left (triggers layout)
@@ -508,7 +508,7 @@ echo "✅ PASS: Animation performance budgets met"
 
 ---
 
-## 5. 🔗 RELATED RESOURCES
+## 5. RELATED RESOURCES
 
 ### Reference Files
 - [debugging_workflows.md](../debugging/debugging_workflows.md) - Performance debugging workflows for identifying bottlenecks

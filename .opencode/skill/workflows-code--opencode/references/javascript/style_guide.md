@@ -9,7 +9,7 @@ Formatting standards and naming conventions for JavaScript files in the OpenCode
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 ### Purpose
 
@@ -23,7 +23,7 @@ Defines consistent styling rules for JavaScript files to ensure readability, mai
 
 ---
 
-## 2. 📄 FILE HEADER FORMAT
+## 2. FILE HEADER FORMAT
 
 All JavaScript files MUST begin with a boxed header identifying the module.
 
@@ -45,7 +45,7 @@ All JavaScript files MUST begin with a boxed header identifying the module.
 
 ---
 
-## 3. ⚙️ USE STRICT DIRECTIVE
+## 3. USE STRICT DIRECTIVE
 
 Every JavaScript file MUST include the strict mode directive.
 
@@ -59,7 +59,7 @@ Every JavaScript file MUST include the strict mode directive.
 
 ---
 
-## 4. 📁 SECTION ORGANIZATION
+## 4. SECTION ORGANIZATION
 
 Large files are organized using numbered section dividers.
 
@@ -85,7 +85,7 @@ Large files are organized using numbered section dividers.
 
 ---
 
-## 5. 🏷️ NAMING CONVENTIONS
+## 5. NAMING CONVENTIONS
 
 ### Function Names
 
@@ -177,7 +177,7 @@ const valid = true;          // ambiguous
 
 ---
 
-## 6. 📐 FORMATTING RULES
+## 6. FORMATTING RULES
 
 ### Indentation
 
@@ -258,7 +258,7 @@ const message = "Hello world";  // Double quotes
 
 ---
 
-## 7. 💬 COMMENTING RULES
+## 7. COMMENTING RULES
 
 ### Principles
 
@@ -386,7 +386,7 @@ Format for tracking incomplete work.
 
 ---
 
-## 8. 📦 IMPORT ORDER
+## 8. IMPORT ORDER
 
 Organize imports in three groups with blank lines between.
 
@@ -414,7 +414,7 @@ const logger = require('../utils/logger');
 
 ---
 
-## 9. 🔗 RELATED RESOURCES
+## 9. RELATED RESOURCES
 
 - [quality_standards.md](./quality_standards.md) - Error handling, JSDoc, security patterns
 - [quick_reference.md](./quick_reference.md) - Copy-paste templates and cheat sheets

@@ -79,8 +79,8 @@ describe('T209: Wire setAttentionScore for Trigger Matches', () => {
     it('T209-5: setAttentionScore called with (session_id, match.memoryId, score)', () => {
       if (!handlerSource) return; // skip if source not available
 
-      const strictPattern = /workingMemory\.setAttentionScore\(\s*session_id\s*(as\s+string)?\s*,\s*match\.memoryId\s*,\s*[\d.]+\s*\)/;
-      const relaxedPattern = /workingMemory\.setAttentionScore\([^)]*session_id/;
+      const strictPattern = /workingMemory\.setAttentionScore\(\s*(?:session_id|sessionId)\s*(as\s+string)?\s*,\s*match\.memoryId\s*,\s*[\d.]+\s*\)/;
+      const relaxedPattern = /workingMemory\.setAttentionScore\([^)]*(?:session_id|sessionId)/;
 
       const hasStrict = strictPattern.test(handlerSource);
       const hasRelaxed = relaxedPattern.test(handlerSource);

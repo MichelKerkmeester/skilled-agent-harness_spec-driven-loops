@@ -17,17 +17,17 @@ importance_tier: "normal"
 ## TABLE OF CONTENTS
 <!-- ANCHOR:table-of-contents -->
 
-- [1. 📖 OVERVIEW](#1--overview)
-- [2. 🚀 QUICK START](#2--quick-start)
-- [3. 📁 STRUCTURE](#3--structure)
-- [4. 🛠️ TROUBLESHOOTING](#4--troubleshooting)
-- [5. 📚 RELATED DOCUMENTS](#5--related-documents)
+- [1. OVERVIEW](#1--overview)
+- [2. QUICK START](#2--quick-start)
+- [3. STRUCTURE](#3--structure)
+- [4. TROUBLESHOOTING](#4--troubleshooting)
+- [5. RELATED DOCUMENTS](#5--related-documents)
 
 ---
 
 <!-- /ANCHOR:table-of-contents -->
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 <!-- ANCHOR:overview -->
 
 ### What are System Spec Kit Utilities?
@@ -68,7 +68,7 @@ The utilities folder contains reusable TypeScript modules (compiled to JavaScrip
 
 <!-- /ANCHOR:overview -->
 
-## 2. 🚀 QUICK START
+## 2. QUICK START
 <!-- ANCHOR:quick-start -->
 
 ```bash
@@ -122,7 +122,7 @@ structuredLog('info', 'Processing spec folder', { path: safePath });
 
 <!-- /ANCHOR:quick-start -->
 
-## 3. 📁 STRUCTURE
+## 3. STRUCTURE
 <!-- ANCHOR:structure -->
 
 ```
@@ -173,7 +173,7 @@ dist/utils/                    # TypeScript compilation output
 
 <!-- /ANCHOR:structure -->
 
-## 4. 🛠️ TROUBLESHOOTING
+## 4. TROUBLESHOOTING
 <!-- ANCHOR:troubleshooting -->
 
 ### Common Issues
@@ -285,7 +285,7 @@ node -e "const { validateDataStructure } = require('./dist/utils/data-validator'
 
 <!-- /ANCHOR:troubleshooting -->
 
-## 5. 📚 RELATED DOCUMENTS
+## 5. RELATED DOCUMENTS
 <!-- ANCHOR:related -->
 
 ### Internal Documentation

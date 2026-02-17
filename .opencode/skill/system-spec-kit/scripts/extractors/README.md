@@ -14,21 +14,21 @@ importance_tier: "normal"
 <!-- ANCHOR:table-of-contents -->
 ## TABLE OF CONTENTS
 
-- [1. 📖 OVERVIEW](#1--overview)
-- [2. 📋 CURRENT INVENTORY](#2--current-inventory)
-- [3. 📌 ROLE IN PIPELINE](#3--role-in-pipeline)
-- [4. 📝 NOTES](#4--notes)
-- [5. 📌 QUICK IMPORT CHECK](#5--quick-import-check)
+- [1. OVERVIEW](#1--overview)
+- [2. CURRENT INVENTORY](#2--current-inventory)
+- [3. ROLE IN PIPELINE](#3--role-in-pipeline)
+- [4. NOTES](#4--notes)
+- [5. QUICK IMPORT CHECK](#5--quick-import-check)
 
 <!-- /ANCHOR:table-of-contents -->
 <!-- ANCHOR:overview -->
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 The `extractors/` directory converts collected session input into structured data used by templates and indexing.
 
 <!-- /ANCHOR:overview -->
 <!-- ANCHOR:current-inventory -->
-## 2. 📋 CURRENT INVENTORY
+## 2. CURRENT INVENTORY
 
 
 - `collect-session-data.ts`
@@ -44,7 +44,7 @@ The `extractors/` directory converts collected session input into structured dat
 
 <!-- /ANCHOR:current-inventory -->
 <!-- ANCHOR:role-in-pipeline -->
-## 3. 📌 ROLE IN PIPELINE
+## 3. ROLE IN PIPELINE
 
 
 - Input: normalized data from `loaders/data-loader.ts`
@@ -54,7 +54,7 @@ The `extractors/` directory converts collected session input into structured dat
 
 <!-- /ANCHOR:role-in-pipeline -->
 <!-- ANCHOR:notes -->
-## 4. 📝 NOTES
+## 4. NOTES
 
 
 - Decision tree generation logic is provided by `lib/decision-tree-generator.ts` and used by extractor flow.
@@ -63,7 +63,7 @@ The `extractors/` directory converts collected session input into structured dat
 
 <!-- /ANCHOR:notes -->
 <!-- ANCHOR:quick-import-check -->
-## 5. 📌 QUICK IMPORT CHECK
+## 5. QUICK IMPORT CHECK
 
 
 ```bash

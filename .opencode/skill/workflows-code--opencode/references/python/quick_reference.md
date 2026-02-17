@@ -9,7 +9,7 @@ Fast lookup for Python coding patterns, naming conventions, and common structure
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 ### Purpose
 
@@ -19,7 +19,7 @@ Quick-access reference card for Python patterns. For detailed explanations, see:
 
 ---
 
-## 2. 📋 FILE TEMPLATE
+## 2. FILE TEMPLATE
 
 ```python
 #!/usr/bin/env python3
@@ -89,7 +89,7 @@ if __name__ == "__main__":
 
 ---
 
-## 3. 🏷️ NAMING CONVENTIONS
+## 3. NAMING CONVENTIONS
 
 | Element | Convention | Example |
 |---------|------------|---------|
@@ -102,7 +102,7 @@ if __name__ == "__main__":
 
 ---
 
-## 4. 🏷️ TYPE HINTS
+## 4. TYPE HINTS
 
 ### Common Patterns
 
@@ -137,7 +137,7 @@ def func(path: Path) -> Optional[Path]:
 
 ---
 
-## 5. 📚 DOCSTRING FORMAT
+## 5. DOCSTRING FORMAT
 
 ### Function Docstring
 
@@ -181,7 +181,7 @@ class ClassName:
 
 ---
 
-## 6. 💡 COMMON PATTERNS
+## 6. COMMON PATTERNS
 
 ### Early Return / Guard Clauses
 
@@ -256,7 +256,7 @@ def process_file(file_path: Path) -> Tuple[bool, str, Dict]:
 
 ---
 
-## 7. 📌 EXCEPTION HANDLING
+## 7. EXCEPTION HANDLING
 
 ### Specific Exceptions
 
@@ -297,7 +297,7 @@ except Exception as e:
 
 ---
 
-## 8. 📌 CONSTANTS
+## 8. CONSTANTS
 
 ### Definition Pattern
 
@@ -325,7 +325,7 @@ CONFIG = {
 
 ---
 
-## 9. 📐 STRING FORMATTING
+## 9. STRING FORMATTING
 
 ### F-Strings (Preferred)
 
@@ -349,7 +349,7 @@ message = (
 
 ---
 
-## 10. 📦 IMPORTS
+## 10. IMPORTS
 
 ### Standard Order
 
@@ -373,7 +373,7 @@ from ..common import shared_constant
 
 ---
 
-## 11. ✅ QUALITY CHECKLIST
+## 11. QUALITY CHECKLIST
 
 ```markdown
 P0 - Must Fix:
@@ -400,7 +400,7 @@ P2 - Recommended:
 
 ---
 
-## 12. 🔗 RELATED RESOURCES
+## 12. RELATED RESOURCES
 
 - [style_guide.md](./style_guide.md) - Detailed style documentation
 - [quality_standards.md](./quality_standards.md) - Quality requirements and validation

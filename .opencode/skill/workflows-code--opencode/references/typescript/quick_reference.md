@@ -9,7 +9,7 @@ Copy-paste templates, naming cheat sheet, and common patterns for TypeScript dev
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 ### Purpose
 
@@ -19,7 +19,7 @@ Quick-access reference card for TypeScript patterns. For detailed explanations, 
 
 ---
 
-## 2. 📋 COMPLETE FILE TEMPLATE
+## 2. COMPLETE FILE TEMPLATE
 
 ```typescript
 // ---------------------------------------------------------------
@@ -118,7 +118,7 @@ export type { ModuleConfig, OperationOutcome };
 
 ---
 
-## 3. 🏷️ NAMING CHEAT SHEET
+## 3. NAMING CHEAT SHEET
 
 | Element           | Convention         | Example                   |
 |-------------------|--------------------|---------------------------|
@@ -141,7 +141,7 @@ export type { ModuleConfig, OperationOutcome };
 
 ---
 
-## 4. 📌 SECTION ORDERING
+## 4. SECTION ORDERING
 
 ```
 1. IMPORTS           (Node built-ins, third-party, local, type-only)
@@ -154,7 +154,7 @@ export type { ModuleConfig, OperationOutcome };
 
 ---
 
-## 5. 📝 TYPE ANNOTATION PATTERNS
+## 5. TYPE ANNOTATION PATTERNS
 
 ### Basic Annotations
 
@@ -223,7 +223,7 @@ const pair: [string, number] = ['score', 0.95];
 
 ---
 
-## 6. 🧰 COMMON UTILITY TYPE PATTERNS
+## 6. COMMON UTILITY TYPE PATTERNS
 
 ```typescript
 // Partial — all properties optional (for updates/overrides)
@@ -257,7 +257,7 @@ type SearchReturn = ReturnType<typeof searchMemories>;
 
 ---
 
-## 7. 📦 IMPORT / EXPORT TEMPLATES
+## 7. IMPORT / EXPORT TEMPLATES
 
 ### Import Ordering
 
@@ -305,7 +305,7 @@ export type * from './types';
 
 ---
 
-## 8. 🚨 ERROR HANDLING PATTERNS
+## 8. ERROR HANDLING PATTERNS
 
 ### Typed catch
 
@@ -404,7 +404,7 @@ async function safeFetch(id: string): Promise<Result<MemoryRecord>> {
 
 ---
 
-## 9. 📚 TSDOC TEMPLATE
+## 9. TSDOC TEMPLATE
 
 ```typescript
 /**
@@ -424,7 +424,7 @@ async function safeFetch(id: string): Promise<Result<MemoryRecord>> {
 
 ---
 
-## 10. ⚙️ TSCONFIG QUICK REFERENCE
+## 10. TSCONFIG QUICK REFERENCE
 
 ### Minimum Settings for OpenCode
 
@@ -475,7 +475,7 @@ npm run test:cli
 
 ---
 
-## 11. 💡 COMMON ONE-LINERS
+## 11. COMMON ONE-LINERS
 
 ```typescript
 // Type narrowing for unknown
@@ -509,7 +509,7 @@ const element = map.get(key)!;
 
 ---
 
-## 12. 🔗 RELATED RESOURCES
+## 12. RELATED RESOURCES
 
 - [style_guide.md](./style_guide.md) - Detailed formatting rules
 - [quality_standards.md](./quality_standards.md) - Type system, TSDoc, error patterns

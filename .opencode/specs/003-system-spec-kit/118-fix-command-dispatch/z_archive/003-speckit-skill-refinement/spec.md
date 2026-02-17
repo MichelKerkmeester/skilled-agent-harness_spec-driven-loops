@@ -8,14 +8,14 @@ complexity: medium
 
 # Spec: SpecKit Skill Refinement
 
-## 1. 🎯 OBJECTIVE
+## 1. OBJECTIVE
 
 Comprehensively improve the `workflows-spec-kit` skill by reducing redundancy, improving structure, updating accuracy, enhancing clarity, and simplifying content while maintaining completeness.
 
 **Scope:** SKILL.md and all references/ files (5 files) + assets/ files (2 files)
 **Out of scope:** README.md, templates/, scripts/
 
-## 2. 📊 PROBLEM STATEMENT
+## 2. PROBLEM STATEMENT
 
 The current SpecKit skill documentation has several issues:
 
@@ -45,7 +45,7 @@ The current SpecKit skill documentation has several issues:
 - No clear "start here" path for new users
 - Asset files and reference files have significant overlap
 
-## 3. 📋 SUCCESS CRITERIA
+## 3. SUCCESS CRITERIA
 
 | Criterion | Target | Measurement |
 |-----------|--------|-------------|
@@ -55,7 +55,7 @@ The current SpecKit skill documentation has several issues:
 | Accuracy | 100% verified | All claims match actual behavior |
 | Completeness | No information loss | All useful content preserved |
 
-## 4. 🔧 PROPOSED SOLUTION
+## 4. PROPOSED SOLUTION
 
 ### 4.1 Content Consolidation Strategy
 
@@ -100,7 +100,7 @@ Use cross-references:
 - Consistent emoji usage
 - Mark experimental features explicitly
 
-## 5. 📁 FILES TO MODIFY
+## 5. FILES TO MODIFY
 
 | File | Action | Estimated Change |
 |------|--------|------------------|
@@ -115,7 +115,7 @@ Use cross-references:
 
 **Estimated total reduction:** ~1,000 lines (≈30%)
 
-## 6. ⚠️ RISKS & MITIGATIONS
+## 6. ️ RISKS & MITIGATIONS
 
 | Risk | Impact | Mitigation |
 |------|--------|------------|
@@ -123,7 +123,7 @@ Use cross-references:
 | Breaking cross-references | Medium | Update all internal links after changes |
 | Inconsistent state during refactor | Low | Complete all files before testing |
 
-## 7. 🔗 RELATED SPECS
+## 7. RELATED SPECS
 
 - `specs/004-speckit/` - Previous SpecKit work
 - `specs/005-memory/` - Memory system (referenced by SpecKit)

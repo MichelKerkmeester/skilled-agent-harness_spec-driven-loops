@@ -10,7 +10,7 @@ allowed-tools: Read, Bash, Task, spec_kit_memory_memory_save, spec_kit_memory_me
 
 ---
 
-## 1. 🚨 CRITICAL RULES
+## 1. CRITICAL RULES
 
 | Rule                       | Detail                                                          |
 | -------------------------- | --------------------------------------------------------------- |
@@ -21,7 +21,7 @@ allowed-tools: Read, Bash, Task, spec_kit_memory_memory_save, spec_kit_memory_me
 
 ---
 
-## 2. ✅ PRE-FLIGHT VALIDATION (PHASE 0)
+## 2. PRE-FLIGHT VALIDATION (PHASE 0)
 
 Execute BEFORE folder validation to prevent data quality issues. All checks must pass.
 
@@ -74,7 +74,7 @@ filename_conflict:  PASSED | RENAMED_TO=[new_name]
 
 ---
 
-## 3. ✅ SPEC FOLDER VALIDATION (PHASE 1)
+## 3. SPEC FOLDER VALIDATION (PHASE 1)
 
 ```
 IF $ARGUMENTS contains spec folder:
@@ -101,7 +101,7 @@ After Phase 1, validate the conversation topic matches the target folder:
 
 ---
 
-## 4. 📝 CONTRACT
+## 4. CONTRACT
 
 | Field   | Value                                                                                        |
 | ------- | -------------------------------------------------------------------------------------------- |
@@ -112,7 +112,7 @@ After Phase 1, validate the conversation topic matches the target folder:
 
 ---
 
-## 5. 🔧 MCP ENFORCEMENT MATRIX
+## 5. MCP ENFORCEMENT MATRIX
 
 > **Tool Restriction (Memory Save Rule - HARD BLOCK):** `Write` and `Edit` tools are intentionally excluded from this command's `allowed-tools`. Memory files MUST be created via the `generate-context.js` script to ensure proper ANCHOR tags, SESSION SUMMARY table, and MEMORY METADATA YAML block. See AGENTS.md Memory Save Rule.
 
@@ -136,7 +136,7 @@ spec_kit_memory_memory_save({
 
 ---
 
-## 6. 📊 WORKFLOW OVERVIEW
+## 6. WORKFLOW OVERVIEW
 
 | Step | Name              | Purpose                            | Output           |
 | ---- | ----------------- | ---------------------------------- | ---------------- |
@@ -149,7 +149,7 @@ spec_kit_memory_memory_save({
 
 ---
 
-## 7. ⚡ WORKFLOW INSTRUCTIONS
+## 7. WORKFLOW INSTRUCTIONS
 
 ### Step 1: Folder Detection
 
@@ -318,7 +318,7 @@ Display the completion report (see Section 10).
 
 ---
 
-## 8. 📄 FILE OUTPUT
+## 8. FILE OUTPUT
 
 ### File Naming
 
@@ -334,7 +334,7 @@ specs/{spec-folder}/memory/{timestamp}__{topic}.md
 
 ---
 
-## 9. ⚠️ ERROR HANDLING
+## 9. ERROR HANDLING
 
 | Condition              | Action                                          |
 | ---------------------- | ----------------------------------------------- |
@@ -350,7 +350,7 @@ specs/{spec-folder}/memory/{timestamp}__{topic}.md
 
 ---
 
-## 10. 📊 COMPLETION REPORT
+## 10. COMPLETION REPORT
 
 ### Structured Response Envelope
 
@@ -433,7 +433,7 @@ Current triggers:
 
 ---
 
-## 11. 📦 INDEXING OPTIONS
+## 11. INDEXING OPTIONS
 
 | Method                         | When             | Use Case                          |
 | ------------------------------ | ---------------- | --------------------------------- |
@@ -497,7 +497,7 @@ spec_kit_memory_memory_index_scan({ specFolder: "011-memory", force: true })
 
 ---
 
-## 12. 🤖 SUB-AGENT DELEGATION
+## 12. SUB-AGENT DELEGATION
 
 The save workflow delegates execution to a sub-agent for token efficiency. The main agent handles folder validation and user interaction; the sub-agent handles context analysis and file generation.
 
@@ -541,7 +541,7 @@ Fallback triggers if Task tool returns error, times out, or sub-agent returns `s
 
 ---
 
-## 13. 🔄 SESSION DEDUPLICATION
+## 13. SESSION DEDUPLICATION
 
 Prevents redundant saves of the same conversation content (accidental duplicates, post-compaction saves, database bloat).
 
@@ -560,7 +560,7 @@ Prevents redundant saves of the same conversation content (accidental duplicates
 
 ---
 
-## 14. 🔍 QUICK REFERENCE
+## 14. QUICK REFERENCE
 
 | Usage                                                  | Behavior                              |
 | ------------------------------------------------------ | ------------------------------------- |
@@ -570,7 +570,7 @@ Prevents redundant saves of the same conversation content (accidental duplicates
 
 ---
 
-## 15. ➡️ NEXT STEPS
+## 15. NEXT STEPS
 
 | Condition                    | Suggested Command                          | Reason                        |
 | ---------------------------- | ------------------------------------------ | ----------------------------- |
@@ -583,7 +583,7 @@ Prevents redundant saves of the same conversation content (accidental duplicates
 
 ---
 
-## 16. 🔗 RELATED COMMANDS
+## 16. RELATED COMMANDS
 
 - `/memory:context` — Find saved memories with intent-aware search
 - `/memory:manage` — Database management, checkpoints, cleanup

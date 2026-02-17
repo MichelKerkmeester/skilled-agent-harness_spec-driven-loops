@@ -17,17 +17,17 @@ importance_tier: "normal"
 ## TABLE OF CONTENTS
 <!-- ANCHOR:table-of-contents -->
 
-- [1. 📖 OVERVIEW](#1--overview)
-- [2. 🚀 QUICK START](#2--quick-start)
-- [3. 📁 STRUCTURE](#3--structure)
-- [4. 🛠️ TROUBLESHOOTING](#4--troubleshooting)
-- [5. 📚 RELATED DOCUMENTS](#5--related-documents)
+- [1. OVERVIEW](#1--overview)
+- [2. QUICK START](#2--quick-start)
+- [3. STRUCTURE](#3--structure)
+- [4. TROUBLESHOOTING](#4--troubleshooting)
+- [5. RELATED DOCUMENTS](#5--related-documents)
 
 <!-- /ANCHOR:table-of-contents -->
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 <!-- ANCHOR:overview -->
 
 ### What are Spec Folder Utilities?
@@ -56,7 +56,7 @@ The `scripts/spec-folder/` directory contains TypeScript modules that handle int
 
 ---
 
-## 2. 🚀 QUICK START
+## 2. QUICK START
 <!-- ANCHOR:quick-start -->
 
 ### Using in Memory Save Workflow
@@ -118,7 +118,7 @@ const topics = extractConversationTopics({
 
 ---
 
-## 3. 📁 STRUCTURE
+## 3. STRUCTURE
 <!-- ANCHOR:structure -->
 
 ```
@@ -154,7 +154,7 @@ scripts/dist/spec-folder/
 
 ---
 
-## 4. 🛠️ TROUBLESHOOTING
+## 4. TROUBLESHOOTING
 <!-- ANCHOR:troubleshooting -->
 
 ### Common Issues
@@ -230,7 +230,7 @@ node scripts/dist/memory/generate-context.js --help
 
 ---
 
-## 5. 📚 RELATED DOCUMENTS
+## 5. RELATED DOCUMENTS
 <!-- ANCHOR:related -->
 
 ### Internal Documentation

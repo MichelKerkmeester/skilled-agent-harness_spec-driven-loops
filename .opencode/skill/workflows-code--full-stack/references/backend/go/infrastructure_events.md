@@ -9,7 +9,7 @@ Event system architecture, SQS producers/consumers, message packs, and event rou
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 ### Purpose
 
@@ -37,7 +37,7 @@ infrastructure_events.md (this file)
 
 ---
 
-## 2. 🏗️ ARCHITECTURE OVERVIEW
+## 2. ARCHITECTURE OVERVIEW
 
 ### How does the event system work?
 
@@ -103,7 +103,7 @@ infrastructure_events.md (this file)
 
 ---
 
-## 3. 🔌 CORE INTERFACES
+## 3. CORE INTERFACES
 
 ### What interfaces define the event system?
 
@@ -133,7 +133,7 @@ type Consumer interface {
 
 ---
 
-## 4. 📦 EVENT WRAPPERS
+## 4. EVENT WRAPPERS
 
 ### How do I create and emit an event?
 
@@ -210,7 +210,7 @@ event.WithDelayedConsumption(10 * time.Minute).Emit(ctx)
 
 ---
 
-## 5. 📬 MESSAGE PACKS
+## 5. MESSAGE PACKS
 
 ### How are event types defined?
 
@@ -329,7 +329,7 @@ func RegisterAllPacks(factories ...*message_factory.Factory) {
 
 ---
 
-## 6. 📥 SQS CONSUMER
+## 6. SQS CONSUMER
 
 ### How do I configure an SQS consumer?
 
@@ -415,7 +415,7 @@ func (s *Consumer) requeueOrDelete(ctx context.Context, log logger.Interface, er
 
 ---
 
-## 7. 📤 PRODUCERS POOL
+## 7. PRODUCERS POOL
 
 ### How do I configure a ProducersPool?
 
@@ -489,7 +489,7 @@ func (p *ProducersPool) Produce(ctx context.Context, wrapper UntypedEventWrapper
 
 ---
 
-## 8. 🛣️ MESSAGE ROUTER
+## 8. MESSAGE ROUTER
 
 ### How do I route messages to handlers?
 
@@ -530,7 +530,7 @@ func (ms *PaymentsMicroservice) Run(ctx context.Context) error {
 
 ---
 
-## 9. ➡️ FORWARDER
+## 9. FORWARDER
 
 ### How do I use the Forwarder for simple routing?
 
@@ -563,7 +563,7 @@ err := forwarder.Forward(ctx, event1, event2)  // All must have same PayloadType
 
 ---
 
-## 10. 🧩 BUNDLES
+## 10. BUNDLES
 
 ### SQS Consumer Bundle
 
@@ -600,7 +600,7 @@ func init() {
 
 ---
 
-## 11. 💡 COMMON PATTERNS
+## 11. COMMON PATTERNS
 
 ### Emitting Events from Business Layer
 
@@ -657,7 +657,7 @@ func (ms *NotificationsMicroservice) Init(ctx context.Context) error {
 
 ---
 
-## 12. 📋 RULES
+## 12. RULES
 
 ### ALWAYS
 
@@ -685,7 +685,7 @@ func (ms *NotificationsMicroservice) Init(ctx context.Context) error {
 
 ---
 
-## 13. 🔗 RELATED RESOURCES
+## 13. RELATED RESOURCES
 
 | Topic | Document | Section |
 |-------|----------|---------|

@@ -9,13 +9,13 @@ Advanced patterns for session lifecycle, multi-session handling, and state persi
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 Always verify session state before operations - session failures cascade. Implement proper cleanup patterns (trap-based) to prevent resource leaks and orphaned browser processes.
 
 ---
 
-## 2. 📋 PREREQUISITES
+## 2. PREREQUISITES
 
 **Foundation:** Follow session basics from SKILL.md Section 3 before using advanced patterns:
 - **Session Lifecycle**: Start → Verify → Execute → Stop workflow
@@ -29,7 +29,7 @@ Always verify session state before operations - session failures cascade. Implem
 
 ---
 
-## 3. 🔄 SESSION LIFECYCLE
+## 3. SESSION LIFECYCLE
 
 ### Basic Lifecycle Pattern
 
@@ -57,7 +57,7 @@ bdg stop
 
 ---
 
-## 4. 🚀 SESSION START PATTERNS
+## 4. SESSION START PATTERNS
 
 ### Standard Start
 
@@ -146,7 +146,7 @@ start_with_timeout "https://example.com"
 
 ---
 
-## 5. ✅ SESSION STATUS VERIFICATION
+## 5. SESSION STATUS VERIFICATION
 
 ### Status Check Patterns
 
@@ -223,7 +223,7 @@ check_session_health
 
 ---
 
-## 6. 🔀 MULTI-SESSION MANAGEMENT
+## 6. MULTI-SESSION MANAGEMENT
 
 ### Concurrent Sessions Pattern
 
@@ -324,7 +324,7 @@ done
 
 ---
 
-## 7. 🔁 SESSION RESUMPTION
+## 7. SESSION RESUMPTION
 
 ### Resume Check Pattern
 
@@ -420,7 +420,7 @@ restore_session_state
 
 ---
 
-## 8. ⚠️ ERROR HANDLING
+## 8. ERROR HANDLING
 
 ### Session Error Recovery
 
@@ -496,7 +496,7 @@ capture_with_fallback "https://example.com" "output.png"
 
 ---
 
-## 9. 🧹 SESSION CLEANUP
+## 9. SESSION CLEANUP
 
 ### Before/After: Cleanup Patterns
 
@@ -575,7 +575,7 @@ stop_and_verify
 
 ---
 
-## 10. 🚀 PERFORMANCE OPTIMIZATION
+## 10. PERFORMANCE OPTIMIZATION
 
 ### Session Pooling Pattern
 
@@ -663,7 +663,7 @@ batch_operations "https://example.com" \
 
 ---
 
-## 11. ✅ BEST PRACTICES
+## 11. BEST PRACTICES
 
 1. **Always verify session state** before executing operations
 2. **Use trap for cleanup** to ensure sessions are stopped on script exit
@@ -678,7 +678,7 @@ batch_operations "https://example.com" \
 
 ---
 
-## 12. 🔗 RELATED RESOURCES
+## 12. RELATED RESOURCES
 
 ### Reference Files
 - [cdp_patterns.md](./cdp_patterns.md) - Complete CDP command examples and domain-specific patterns

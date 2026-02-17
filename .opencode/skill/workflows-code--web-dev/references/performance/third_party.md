@@ -9,7 +9,7 @@ Deferral patterns for analytics, tag managers, and consent scripts to reduce mai
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 Third-party scripts (analytics, tag managers, consent) often block the main thread and degrade Core Web Vitals. This guide covers deferral patterns to minimize their performance impact while maintaining functionality.
 
@@ -21,7 +21,7 @@ Third-party scripts (analytics, tag managers, consent) often block the main thre
 
 ---
 
-## 2. 📊 GOOGLE TAG MANAGER (GTM) DELAY
+## 2. GOOGLE TAG MANAGER (GTM) DELAY
 
 ### Problem
 
@@ -69,7 +69,7 @@ GTM loads inline in head, blocking FCP by 200-400ms.
 
 ---
 
-## 3. 📈 ANALYTICS DEFERRAL
+## 3. ANALYTICS DEFERRAL
 
 ### When to Defer
 
@@ -97,7 +97,7 @@ new PerformanceObserver((list) => {
 
 ---
 
-## 4. 🍪 CONSENT SCRIPTS
+## 4. CONSENT SCRIPTS
 
 ### Performance Impact
 
@@ -118,7 +118,7 @@ Always verify GDPR/CCPA compliance before modifying consent scripts.
 
 ---
 
-## 5. 🔤 FONT LOADING (EXTERNAL)
+## 5. FONT LOADING (EXTERNAL)
 
 ### Preconnect for Font Origins
 
@@ -145,7 +145,7 @@ Always verify GDPR/CCPA compliance before modifying consent scripts.
 
 ---
 
-## 6. 📋 PRIORITY MATRIX
+## 6. PRIORITY MATRIX
 
 | Script Type | Priority | Strategy |
 |-------------|----------|----------|
@@ -157,7 +157,7 @@ Always verify GDPR/CCPA compliance before modifying consent scripts.
 
 ---
 
-## 7. 🔗 RELATED RESOURCES
+## 7. RELATED RESOURCES
 
 ### Internal References
 

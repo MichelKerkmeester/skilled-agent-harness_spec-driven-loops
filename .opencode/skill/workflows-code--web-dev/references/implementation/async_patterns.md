@@ -9,7 +9,7 @@ Browser scheduling APIs and patterns for non-blocking code execution.
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 Modern browsers provide APIs for scheduling work efficiently without blocking the main thread. This guide covers `requestIdleCallback`, `requestAnimationFrame`, `queueMicrotask`, `scheduler.postTask`, and related patterns for optimizing JavaScript execution timing.
 
@@ -23,7 +23,7 @@ Modern browsers provide APIs for scheduling work efficiently without blocking th
 
 ---
 
-## 2. 🎬 REQUESTANIMATIONFRAME PATTERN
+## 2. REQUESTANIMATIONFRAME PATTERN
 
 ### Overview
 
@@ -117,7 +117,7 @@ function animate(timestamp) {
 
 ---
 
-## 3. ⏰ REQUESTIDLECALLBACK PATTERN
+## 3. REQUESTIDLECALLBACK PATTERN
 
 ### Overview
 
@@ -188,7 +188,7 @@ function process_in_chunks(items, process_item, on_complete) {
 
 ---
 
-## 4. ⚡ QUEUEMICROTASK PATTERN
+## 4. QUEUEMICROTASK PATTERN
 
 ### Overview
 
@@ -245,7 +245,7 @@ function bad_pattern() {
 
 ---
 
-## 5. 📋 SCHEDULER.POSTTASK PATTERN
+## 5. SCHEDULER.POSTTASK PATTERN
 
 ### Overview
 
@@ -319,7 +319,7 @@ schedule_task(function() {
 
 ---
 
-## 6. 🎯 PRIORITY & TIMING DECISION TREE
+## 6. PRIORITY & TIMING DECISION TREE
 
 ### Quick Reference Table
 
@@ -356,7 +356,7 @@ Is it a visual/animation update?
 
 ---
 
-## 7. 🌐 BROWSER COMPATIBILITY
+## 7. BROWSER COMPATIBILITY
 
 ### Support Matrix
 
@@ -399,7 +399,7 @@ const async_scheduler = {
 
 ---
 
-## 8. 🔧 WEBFLOW-SPECIFIC TIMING PATTERNS
+## 8. WEBFLOW-SPECIFIC TIMING PATTERNS
 
 ### Wait for Collection List Render
 
@@ -474,7 +474,7 @@ window.Webflow.push(function() {
 
 ---
 
-## 9. 📊 REAL EXAMPLE: GTM DELAY
+## 9. REAL EXAMPLE: GTM DELAY
 
 ```javascript
 (function() {
@@ -495,7 +495,7 @@ window.Webflow.push(function() {
 
 ---
 
-## 10. 🔗 RELATED RESOURCES
+## 10. RELATED RESOURCES
 
 ### Internal References
 

@@ -16,6 +16,7 @@
 #   --add-profile    Add CHROME_PATH to shell profile if not at default location
 
 set -euo pipefail
+IFS=$'\n\t'
 
 # ───────────────────────────────────────────────────────────────
 # 1. CONFIGURATION

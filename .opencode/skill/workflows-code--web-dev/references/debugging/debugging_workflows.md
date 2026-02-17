@@ -9,7 +9,7 @@ Systematic debugging with four-phase investigation, root cause tracing, and perf
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 ### Purpose
 Evidence-based debugging workflows for frontend issues using browser DevTools, console analysis, and performance profiling.
@@ -29,7 +29,7 @@ ALWAYS find root cause before attempting fixes. Symptom fixes are failure.
 
 ---
 
-## 2. 🔍 SYSTEMATIC DEBUGGING
+## 2. SYSTEMATIC DEBUGGING
 
 ### The Four Phases
 
@@ -493,7 +493,7 @@ Discuss with project lead before attempting more fixes.
 
 ---
 
-## 3. 🎯 ROOT CAUSE TRACING
+## 3. ROOT CAUSE TRACING
 
 **When to use**: Errors deep in call stack, event handlers fail mysteriously, animations break unexpectedly, unclear where invalid data originated
 
@@ -733,7 +733,7 @@ observer.observe(document.body, {
 
 ---
 
-## 4. 🔍 PERFORMANCE DEBUGGING
+## 4. PERFORMANCE DEBUGGING
 
 **When to use**: Slow page load, janky animations, memory leaks, high CPU usage
 
@@ -1115,7 +1115,7 @@ echo "✅ Baseline captured: $OUTPUT_DIR/"
 
 ---
 
-## 5. 📋 QUICK REFERENCE
+## 5. QUICK REFERENCE
 
 ### DevTools Keyboard Shortcuts
 
@@ -1154,7 +1154,7 @@ console.dir(object);
 
 ---
 
-## 6. 🔄 LENIS CONFLICT RESOLUTION
+## 6. LENIS CONFLICT RESOLUTION
 
 **When to use**: Anchor scrolling not working, double-scroll behavior, scroll position off by header height, smooth scroll library intercepting events
 
@@ -1372,7 +1372,7 @@ bdg stop 2>&1
 
 ---
 
-## 7. 🤖 SUB-AGENT VERIFICATION PATTERN
+## 7. SUB-AGENT VERIFICATION PATTERN
 
 **When to use**: Complex debugging tasks, verifying assumptions before implementation, when you need a second perspective on root cause analysis
 
@@ -1575,7 +1575,7 @@ FALLBACK behavior:
 
 ---
 
-## 8. 🔎 SCROLL INTERCEPTOR DEBUGGING
+## 8. SCROLL INTERCEPTOR DEBUGGING
 
 **When to use**: Double-scroll problems, scroll position inconsistencies, debugging smooth scroll library conflicts, tracing scroll event sources
 
@@ -1899,7 +1899,7 @@ bdg stop 2>&1
 
 ---
 
-## 9. 🔗 RELATED RESOURCES
+## 9. RELATED RESOURCES
 
 ### Reference Files
 - [implementation_workflows.md](../implementation/implementation_workflows.md) - Debug timing and validation issues

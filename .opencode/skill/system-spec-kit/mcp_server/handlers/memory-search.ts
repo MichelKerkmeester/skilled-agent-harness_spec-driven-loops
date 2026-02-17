@@ -455,21 +455,21 @@ async function postSearchPipeline(
     includeContent, anchors
   } = options;
 
-  const { results: state_filtered, stateStats } = filterByMemoryState(
+  const { results: stateFiltered, stateStats } = filterByMemoryState(
     results, minState, applyStateLimits
   );
 
   // P3-09 FIX: Only write testing effects when explicitly opted in
   if (trackAccess) {
     const database = requireDb();
-    applyTestingEffect(database, state_filtered);
+    applyTestingEffect(database, stateFiltered);
   }
 
   // P3-01 + P3-14 FIX: Actually apply intent weights to modify scores
-  let weightedResults = state_filtered;
+  let weightedResults = stateFiltered;
   let weightsWereApplied = false;
   if (intentWeights && detectedIntent) {
-    weightedResults = applyIntentWeightsToResults(state_filtered, intentWeights);
+    weightedResults = applyIntentWeightsToResults(stateFiltered, intentWeights);
     weightsWereApplied = true;
   }
 
@@ -507,22 +507,22 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
   const {
     query,
     concepts,
-    specFolder: spec_folder,
-    limit: raw_limit = 10,
+    specFolder,
+    limit: rawLimit = 10,
     tier,
-    contextType: contextType,
-    useDecay: use_decay = true,
-    includeContiguity: include_contiguity = false,
-    includeConstitutional: include_constitutional = true,
-    includeContent: include_content = false,
+    contextType,
+    useDecay: useDecay = true,
+    includeContiguity: includeContiguity = false,
+    includeConstitutional: includeConstitutional = true,
+    includeContent: includeContent = false,
     anchors,
-    bypassCache: bypass_cache = false,
-    sessionId: session_id,
+    bypassCache: bypassCache = false,
+    sessionId,
     enableDedup: enableDedup = true,
-    intent: explicit_intent,
-    autoDetectIntent: auto_detect_intent = true,
-    minState: min_state = 'WARM',
-    applyStateLimits: apply_state_limits = false,
+    intent: explicitIntent,
+    autoDetectIntent: autoDetectIntent = true,
+    minState: minState = 'WARM',
+    applyStateLimits: applyStateLimits = false,
     rerank = false,
     applyLengthPenalty: applyLengthPenalty = true,
     trackAccess: trackAccess = false, // P3-09: opt-in, off by default
@@ -530,8 +530,8 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
   } = args;
 
   // T120: Validate numeric limit parameter
-  const limit = (typeof raw_limit === 'number' && Number.isFinite(raw_limit) && raw_limit > 0)
-    ? Math.min(Math.floor(raw_limit), 100)
+  const limit = (typeof rawLimit === 'number' && Number.isFinite(rawLimit) && rawLimit > 0)
+    ? Math.min(Math.floor(rawLimit), 100)
     : 10;
 
   // BUG-007: Validate query first with proper error handling
@@ -539,9 +539,9 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
   if (query !== undefined) {
     try {
       normalizedQuery = validateQuery(query);
-    } catch (validation_error: unknown) {
+    } catch (validationError: unknown) {
       if (!concepts || !Array.isArray(concepts) || concepts.length < 2) {
-        const message = toErrorMessage(validation_error);
+        const message = toErrorMessage(validationError);
         return createMCPErrorResponse({
           tool: 'memory_search',
           error: message,
@@ -563,7 +563,7 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
     throw new Error('Either query (string) or concepts (array of 2-5 strings) is required');
   }
 
-  if (spec_folder !== undefined && typeof spec_folder !== 'string') {
+  if (specFolder !== undefined && typeof specFolder !== 'string') {
     throw new Error('specFolder must be a string');
   }
 
@@ -572,17 +572,17 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
   let intentConfidence = 0;
   let intentWeights: IntentWeights | null = null;
 
-  if (explicit_intent) {
-    if (intentClassifier.isValidIntent(explicit_intent)) {
-      detectedIntent = explicit_intent;
+  if (explicitIntent) {
+    if (intentClassifier.isValidIntent(explicitIntent)) {
+      detectedIntent = explicitIntent;
       intentConfidence = 1.0;
-      intentWeights = intentClassifier.getIntentWeights(explicit_intent);
+      intentWeights = intentClassifier.getIntentWeights(explicitIntent);
     } else {
-      console.warn(`[memory-search] Invalid intent '${explicit_intent}', using auto-detection`);
+      console.warn(`[memory-search] Invalid intent '${explicitIntent}', using auto-detection`);
     }
   }
 
-  if (!detectedIntent && auto_detect_intent && hasValidQuery) {
+  if (!detectedIntent && autoDetectIntent && hasValidQuery) {
     const classification: IntentClassification = intentClassifier.classifyIntent(normalizedQuery!);
     detectedIntent = classification.intent;
     intentConfidence = classification.confidence;
@@ -607,17 +607,17 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
   const cacheArgs = {
     query: normalizedQuery,
     concepts: hasValidConcepts ? concepts : undefined,
-    specFolder: spec_folder,
+    specFolder,
     limit,
     tier,
-    contextType: contextType,
-    useDecay: use_decay,
-    includeContiguity: include_contiguity,
-    includeConstitutional: include_constitutional,
-    includeContent: include_content,
+    contextType,
+    useDecay,
+    includeContiguity,
+    includeConstitutional,
+    includeContent,
     anchors,
     intent: detectedIntent,
-    minState: min_state,
+    minState,
     rerank,
     applyLengthPenalty: applyLengthPenalty,
   };
@@ -651,13 +651,13 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
         const results: MemorySearchRow[] = vectorIndex.multiConceptSearch(conceptEmbeddings, {
           minSimilarity: 0.5,
           limit,
-          specFolder: spec_folder,
+          specFolder,
           includeArchived,
         });
 
         return await postSearchPipeline(results, concepts[0], 'multi-concept', {
-          minState: min_state!,
-          applyStateLimits: apply_state_limits!,
+          minState: minState!,
+          applyStateLimits: applyStateLimits!,
           trackAccess,
           intentWeights,
           detectedIntent,
@@ -665,7 +665,7 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
           rerank,
           applyLengthPenalty,
           limit,
-          includeContent: include_content,
+          includeContent,
           anchors,
         });
       }
@@ -688,7 +688,7 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
       try {
         const hybridResults: MemorySearchRow[] = await hybridSearch.searchWithFallback(normalizedQuery!, queryEmbedding, {
           limit,
-          specFolder: spec_folder,
+          specFolder,
           includeArchived,
         }) as MemorySearchRow[];
 
@@ -701,7 +701,7 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
             filteredResults = filteredResults.filter(r => r.contextType === contextType);
           }
 
-          if (include_constitutional !== false && !tier) {
+          if (includeConstitutional !== false && !tier) {
             const existingConstitutional = filteredResults.filter(
               r => r.importance_tier === 'constitutional'
             );
@@ -714,7 +714,7 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
               // from importance-tiers already gives them priority.
               const constitutionalResults: MemorySearchRow[] = vectorIndex.vectorSearch(queryEmbedding, {
                 limit: 5,
-                specFolder: spec_folder,
+                specFolder,
                 tier: 'constitutional',
                 useDecay: false
               });
@@ -725,13 +725,13 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
               filteredResults = [...filteredResults, ...uniqueConstitutional];
             }
             // No special reordering — let the scoring pipeline handle ranking
-          } else if (include_constitutional === false) {
+          } else if (includeConstitutional === false) {
             filteredResults = filteredResults.filter(r => r.importance_tier !== 'constitutional');
           }
 
           return await postSearchPipeline(filteredResults, normalizedQuery!, 'hybrid', {
-            minState: min_state!,
-            applyStateLimits: apply_state_limits!,
+            minState: minState!,
+            applyStateLimits: applyStateLimits!,
             trackAccess,
             intentWeights,
             detectedIntent,
@@ -739,7 +739,7 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
             rerank,
             applyLengthPenalty,
             limit,
-            includeContent: include_content,
+            includeContent,
             anchors,
           });
         }
@@ -751,21 +751,21 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
       // Fallback to pure vector search
       let results: MemorySearchRow[] = vectorIndex.vectorSearch(queryEmbedding, {
         limit,
-        specFolder: spec_folder,
+        specFolder,
         tier,
-        contextType: contextType,
-        useDecay: use_decay,
+        contextType,
+        useDecay,
         includeConstitutional: false, // Handler manages constitutional separately
         includeArchived,
       });
 
-      if (!include_constitutional) {
+      if (!includeConstitutional) {
         results = results.filter(r => r.importance_tier !== 'constitutional');
       }
 
       return await postSearchPipeline(results, normalizedQuery!, 'vector', {
-        minState: min_state!,
-        applyStateLimits: apply_state_limits!,
+        minState: minState!,
+        applyStateLimits: applyStateLimits!,
         trackAccess,
         intentWeights,
         detectedIntent,
@@ -773,28 +773,28 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
         rerank,
         applyLengthPenalty,
         limit,
-        includeContent: include_content,
+        includeContent,
         anchors,
       });
     },
-    { bypassCache: bypass_cache }
+    { bypassCache }
   );
 
   // T123: Apply session deduplication AFTER cache
-  if (session_id && enableDedup && sessionManager.isEnabled()) {
+  if (sessionId && enableDedup && sessionManager.isEnabled()) {
     const resultsData = cachedResult?.content?.[0]?.text
       ? JSON.parse(cachedResult.content[0].text)
       : cachedResult;
 
     if (resultsData?.data?.results && resultsData.data.results.length > 0) {
-      const { results: deduped_results, dedupStats } = applySessionDedup(
+      const { results: dedupedResults } = applySessionDedup(
         resultsData.data.results,
-        session_id,
+        sessionId,
         enableDedup
       );
 
       const originalCount = resultsData.data.results.length;
-      const dedupedCount = deduped_results.length;
+      const dedupedCount = dedupedResults.length;
       const filteredCount = originalCount - dedupedCount;
 
       const tokensSaved = filteredCount * 200;
@@ -802,12 +802,12 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
         ? Math.round((filteredCount / originalCount) * 100)
         : 0;
 
-      resultsData.data.results = deduped_results;
+      resultsData.data.results = dedupedResults;
       resultsData.data.count = dedupedCount;
 
       resultsData.dedupStats = {
         enabled: true,
-        sessionId: session_id,
+        sessionId,
         originalCount: originalCount,
         returnedCount: dedupedCount,
         filteredCount: filteredCount,
@@ -843,4 +843,3 @@ const handle_memory_search = handleMemorySearch;
 export {
   handle_memory_search,
 };
-

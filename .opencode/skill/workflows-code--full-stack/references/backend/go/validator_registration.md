@@ -9,7 +9,7 @@ How to register validators for enum types and custom validation rules across mic
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 ### Purpose
 
@@ -37,7 +37,7 @@ validator_registration.md (this file)
 
 ---
 
-## 2. 🏗️ VALIDATION SYSTEM ARCHITECTURE
+## 2. VALIDATION SYSTEM ARCHITECTURE
 
 ### 2.1 How Validation Works
 
@@ -93,7 +93,7 @@ func RegisterValidationBundle(dictx di.Context, opts *di.RegistryOpts) (*Validat
 
 ---
 
-## 3. 🔧 REGISTERING VALIDATORS IN MICROSERVICES
+## 3. REGISTERING VALIDATORS IN MICROSERVICES
 
 ### 3.1 The Problem
 
@@ -166,7 +166,7 @@ func RegistryCoreMicroservice(dictx di.Context, opts *di.RegistryOpts) (*CoreMic
 
 ---
 
-## 4. ☁️ REGISTERING VALIDATORS IN LAMBDAS
+## 4. REGISTERING VALIDATORS IN LAMBDAS
 
 ### 4.1 Lambda Validator Registration
 
@@ -200,7 +200,7 @@ Check these files for examples:
 
 ---
 
-## 5. 🐛 DEBUGGING CHECKLIST
+## 5. DEBUGGING CHECKLIST
 
 When you encounter "Undefined validation function" errors:
 
@@ -231,7 +231,7 @@ _, err = di.Create[*bundles.ValidationsBundle](dictx, di.WithOpts(opts), di.With
 
 ---
 
-## 6. ➕ CREATING NEW VALIDATORS
+## 6. CREATING NEW VALIDATORS
 
 ### 6.1 Adding to Existing Token
 
@@ -269,7 +269,7 @@ _, err = di.Create[*bundles.ValidationsBundle](dictx, di.WithOpts(opts), di.With
 
 ---
 
-## 7. 📋 RULES
+## 7. RULES
 
 ### ALWAYS
 
@@ -292,7 +292,7 @@ _, err = di.Create[*bundles.ValidationsBundle](dictx, di.WithOpts(opts), di.With
 
 ---
 
-## 8. 🔗 RELATED RESOURCES
+## 8. RELATED RESOURCES
 
 | Topic | Location | Description |
 |-------|----------|-------------|

@@ -3,7 +3,7 @@ name: workflows-git
 description: "Git workflow orchestrator guiding developers through workspace setup, clean commits, and work completion across git-worktrees, git-commit, and git-finish skills"
 allowed-tools: [Read, Bash, mcp__code_mode__call_tool_chain]
 argument-hint: "[worktree|commit|finish]"
-version: 1.0.2.0
+version: 1.0.2.1
 ---
 
 <!-- Keywords: git-workflow, git-worktree, conventional-commits, branch-management, pull-request, commit-hygiene, workspace-isolation, version-control, github, issues, pr-review -->
@@ -14,7 +14,7 @@ Unified workflow guidance across workspace isolation, commit hygiene, and work c
 
 ---
 
-## 1. 🎯 WHEN TO USE
+## 1. WHEN TO USE
 
 ### When to Use This Orchestrator
 
@@ -35,7 +35,7 @@ Use this orchestrator when:
 
 ---
 
-## 2. 🧭 SMART ROUTING
+## 2. SMART ROUTING
 
 ### Phase Detection
 ```
@@ -124,7 +124,7 @@ def route_git_resources(task):
 
 ---
 
-## 3. 🛠️ HOW IT WORKS
+## 3. HOW IT WORKS
 
 ### Git Development Lifecycle Map
 
@@ -155,7 +155,7 @@ Git development flows through 3 phases:
 
 ---
 
-## 4. 📋 RULES
+## 4. RULES
 
 ### ✅ ALWAYS
 
@@ -189,7 +189,7 @@ Git development flows through 3 phases:
 
 ---
 
-## 5. 🏆 SUCCESS CRITERIA
+## 5. SUCCESS CRITERIA
 
 ### Workspace Setup Complete
 - ✅ Worktree created in correct directory (`.worktrees/` or user-specified)
@@ -221,7 +221,7 @@ Git development flows through 3 phases:
 
 ---
 
-## 6. 🔌 INTEGRATION POINTS
+## 6. INTEGRATION POINTS
 
 ### Framework Integration
 
@@ -255,7 +255,7 @@ memory_search({ query: "branch strategy decisions", includeContent: true })
 
 ---
 
-## 7. 🐙 GITHUB MCP INTEGRATION (REMOTE)
+## 7. GITHUB MCP INTEGRATION (REMOTE)
 
 **GitHub MCP Server** provides programmatic access to GitHub's remote operations via Code Mode (`call_tool_chain`).
 
@@ -403,7 +403,7 @@ call_tool_chain({
 
 ---
 
-## 8. 📦 REFERENCES
+## 8. REFERENCES
 
 ### Core Workflows
 | Document | Purpose | Key Insight |
@@ -423,7 +423,7 @@ call_tool_chain({
 
 ---
 
-## 9. 🚨 WORKSPACE CHOICE ENFORCEMENT
+## 9. WORKSPACE CHOICE ENFORCEMENT
 
 **MANDATORY**: The AI must NEVER autonomously decide between creating a branch or worktree.
 
@@ -462,7 +462,7 @@ Once user chooses, reuse their preference for the session unless:
 
 ---
 
-## 10. 🗺️ SKILL SELECTION DECISION TREE
+## 10. SKILL SELECTION DECISION TREE
 
 **What are you doing?**
 
@@ -514,7 +514,7 @@ git-finish (feature A) → git-finish (feature B)
 
 ---
 
-## 11. 💡 INTEGRATION EXAMPLES
+## 11. INTEGRATION EXAMPLES
 
 ### Example 1: New Authentication Feature
 
@@ -547,7 +547,7 @@ git-finish (feature A) → git-finish (feature B)
 
 ---
 
-## 12. 🔗 RELATED RESOURCES
+## 12. RELATED RESOURCES
 
 **For one-page cheat sheet**: See [quick_reference.md](./references/quick_reference.md)
 

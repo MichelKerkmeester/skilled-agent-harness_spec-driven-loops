@@ -9,7 +9,7 @@ Quality validation checklist for Bash scripts in the OpenCode development enviro
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 ### Purpose
 
@@ -25,7 +25,7 @@ Specific quality checks for Bash shell scripts. Use alongside the [universal_che
 
 ---
 
-## 2. 📌 P0 - HARD BLOCKERS
+## 2. P0 - HARD BLOCKERS
 
 These items MUST be fixed before any commit.
 
@@ -106,7 +106,7 @@ file_path=$1
 
 ---
 
-## 3. 📌 P1 - REQUIRED
+## 3. P1 - REQUIRED
 
 These must be addressed or receive approval to defer.
 
@@ -196,7 +196,7 @@ echo "Error: file not found"  # Goes to stdout
 
 ---
 
-## 4. 📌 P2 - RECOMMENDED
+## 4. P2 - RECOMMENDED
 
 These improve quality but can be deferred.
 
@@ -257,7 +257,7 @@ validate_file() {
 
 ---
 
-## 5. 📋 CHECKLIST TEMPLATE
+## 5. CHECKLIST TEMPLATE
 
 Copy this for code review:
 
@@ -294,7 +294,7 @@ Copy this for code review:
 
 ---
 
-## 6. 📌 VALIDATION COMMANDS
+## 6. VALIDATION COMMANDS
 
 ```bash
 # ShellCheck (comprehensive)
@@ -323,7 +323,7 @@ grep -n '^[^#]*\[ ' script.sh        # Old-style test
 
 ---
 
-## 7. 🔗 RELATED RESOURCES
+## 7. RELATED RESOURCES
 
 ### Checklists
 - [universal_checklist.md](./universal_checklist.md) - Language-agnostic checks

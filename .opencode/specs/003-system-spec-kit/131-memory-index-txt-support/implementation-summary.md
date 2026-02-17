@@ -42,10 +42,10 @@ Successfully extended memory indexing subsystem to support `.txt` files alongsid
 
 ### Key Implementation Details
 
-1. **Discovery Layer**: Extended file discovery to check for both `.md` and `.txt` extensions in:
+1. **Discovery Layer**: Extended file discovery to check for both `.md` and `.txt` extensions using regex-based helper `isReadmeFileName()`:
    - `specs/**/memory/` paths (memory context files)
    - `.opencode/skill/**/` paths (skill README files)
-   - `.opencode/command/**/` paths (command README files)
+   - All project paths including `.opencode/command/` (via expanded `findProjectReadmes()`)
 
 2. **Validation Layer**: Updated path validation in `memory-save.ts` to accept `.txt` from allowed directories while maintaining security boundaries.
 

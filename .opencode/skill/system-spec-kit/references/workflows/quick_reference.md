@@ -9,7 +9,7 @@ Fast lookup for spec folder commands, checklists, and troubleshooting.
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 ### Purpose
 
@@ -31,7 +31,7 @@ Level 3+ (Extended):    Level 3 + governance/AI execution content
 
 ---
 
-## 2. 🎯 LEVEL DECISION SHORTCUTS (Progressive Enhancement)
+## 2. LEVEL DECISION SHORTCUTS (Progressive Enhancement)
 
 | Situation | Level | Required Templates | Optional Templates |
 |-----------|-------|-------------------|-------------------|
@@ -48,7 +48,7 @@ Level 3+ (Extended):    Level 3 + governance/AI execution content
 
 ---
 
-## 3. 💻 TEMPLATE COPY COMMANDS (Progressive)
+## 3. TEMPLATE COPY COMMANDS (Progressive)
 
 ### Level 1: Baseline (ALL features start here)
 
@@ -100,7 +100,7 @@ cp .opencode/skill/system-spec-kit/templates/research.md specs/###-name/research
 
 ---
 
-## 4. ⚙️ ESSENTIAL COMMANDS
+## 4. ESSENTIAL COMMANDS
 
 ### Find Next Spec Number
 
@@ -158,7 +158,7 @@ Context saved to `specs/###-folder/memory/` or `memory/` (fallback).
 
 ---
 
-## 5. ✅ PRE-IMPLEMENTATION CHECKLIST (Progressive Enhancement)
+## 5. PRE-IMPLEMENTATION CHECKLIST (Progressive Enhancement)
 
 Before making ANY file changes, verify:
 
@@ -181,7 +181,7 @@ Before making ANY file changes, verify:
 
 ---
 
-## 6. 📁 FOLDER NAMING EXAMPLES
+## 6. FOLDER NAMING EXAMPLES
 
 ### Good Examples ✅
 
@@ -201,7 +201,7 @@ Before making ANY file changes, verify:
 
 ---
 
-## 7. 📌 STATUS FIELD VALUES
+## 7. STATUS FIELD VALUES
 
 | Status | Meaning | Reuse Priority |
 |--------|---------|----------------|
@@ -213,7 +213,7 @@ Before making ANY file changes, verify:
 
 ---
 
-## 8. 🔀 UPDATE VS CREATE DECISION
+## 8. UPDATE VS CREATE DECISION
 
 ### UPDATE Existing Spec When:
 
@@ -233,7 +233,7 @@ Before making ANY file changes, verify:
 
 ---
 
-## 9. 🔔 CONFIRMATION OPTIONS
+## 9. CONFIRMATION OPTIONS
 
 When workflow prompts at conversation start:
 
@@ -246,7 +246,7 @@ When workflow prompts at conversation start:
 
 ---
 
-## 10. 🔄 LEVEL MIGRATION (Progressive Enhancement)
+## 10. LEVEL MIGRATION (Progressive Enhancement)
 
 ### Script-Assisted Upgrade (Recommended)
 
@@ -288,7 +288,7 @@ Then verify placeholders are fully resolved:
 
 ---
 
-## 11. 🔧 TROUBLESHOOTING
+## 11. TROUBLESHOOTING
 
 ### "I forgot to create the spec folder"
 
@@ -360,7 +360,7 @@ Then verify placeholders are fully resolved:
 
 ---
 
-## 12. 📋 WHAT REQUIRES SPEC FOLDERS
+## 12. WHAT REQUIRES SPEC FOLDERS
 
 | File Type | Requires Spec | Examples |
 |-----------|--------------|----------|
@@ -379,7 +379,7 @@ Then verify placeholders are fully resolved:
 
 ---
 
-## 13. ⚠️ SKIP OPTION (OPTION D) USAGE
+## 13. SKIP OPTION (OPTION D) USAGE
 
 ### When Appropriate ✅
 
@@ -409,7 +409,7 @@ Skipping documentation:
 
 ---
 
-## 14. ✅ TEMPLATE ADAPTATION CHECKLIST (Progressive Enhancement)
+## 14. TEMPLATE ADAPTATION CHECKLIST (Progressive Enhancement)
 
 Before presenting documentation to user:
 
@@ -433,7 +433,7 @@ Before presenting documentation to user:
 
 ---
 
-## 15. 💾 CONTEXT SAVE & HANDOVER
+## 15. CONTEXT SAVE & HANDOVER
 
 ### Context Save
 
@@ -476,7 +476,7 @@ node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js spe
 
 ---
 
-## 16. 🤖 AGENT CRITICAL RULES (Progressive Enhancement)
+## 16. AGENT CRITICAL RULES (Progressive Enhancement)
 
 ### Absolutely Required
 
@@ -510,7 +510,7 @@ node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js spe
 
 ---
 
-## 17. ✅ CHECKLIST VERIFICATION PROTOCOL (Level 2+)
+## 17. CHECKLIST VERIFICATION PROTOCOL (Level 2+)
 
 ### When to Use
 
@@ -588,7 +588,7 @@ For each checklist item:
 
 ---
 
-## 18. 💡 Core Principle
+## 18. Core Principle
 
 **Every file change deserves documentation.**
 
@@ -604,7 +604,7 @@ When in doubt:
 
 ---
 
-## 19. 🔗 RELATED RESOURCES
+## 19. RELATED RESOURCES
 
 ### Reference Files
 - [template_guide.md](../templates/template_guide.md) - Template selection, adaptation, and quality standards

@@ -9,7 +9,7 @@ Universal checklist for verifying work before claiming completion across TypeScr
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 ### Purpose
 

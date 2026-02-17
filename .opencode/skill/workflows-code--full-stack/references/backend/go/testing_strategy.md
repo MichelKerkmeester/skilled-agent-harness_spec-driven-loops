@@ -9,7 +9,7 @@ Go testing patterns, test types, mocking, and best practices for backend systems
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 ### Purpose
 
@@ -39,7 +39,7 @@ testing_strategy.md (this file)
 
 ---
 
-## 2. 🧪 TEST TYPES
+## 2. TEST TYPES
 
 ### How do I decide which test type to write?
 
@@ -98,7 +98,7 @@ Test complete user flows against deployed environment.
 
 ---
 
-## 3. 🏗️ TEST STRUCTURE
+## 3. TEST STRUCTURE
 
 ### How do I write a table-driven test?
 
@@ -196,7 +196,7 @@ func TestUserService(t *testing.T) {
 
 ---
 
-## 4. 🎭 MOCKING PATTERNS
+## 4. MOCKING PATTERNS
 
 ### How do I create interface-based mocks?
 
@@ -323,7 +323,7 @@ func TestUserService_CreateUser(t *testing.T) {
 
 ---
 
-## 5. 🔗 INTEGRATION TESTS
+## 5. INTEGRATION TESTS
 
 ### How do I set up database tests?
 
@@ -454,7 +454,7 @@ func createTestOrder(t *testing.T, db *gorm.DB, vendorID uid.UID, title string) 
 
 ---
 
-## 6. ⚙️ SETUP & TEARDOWN
+## 6. SETUP & TEARDOWN
 
 ### How do I use test helpers?
 
@@ -522,7 +522,7 @@ func TestIntegration_ExternalAPI(t *testing.T) {
 
 ---
 
-## 7. 🏆 BEST PRACTICES
+## 7. BEST PRACTICES
 
 ### Test Design Principles
 
@@ -567,7 +567,7 @@ user := &User{
 
 ---
 
-## 8. 📊 CODE COVERAGE
+## 8. CODE COVERAGE
 
 ### How do I run tests with coverage?
 
@@ -612,7 +612,7 @@ go test -race ./...
 
 ---
 
-## 9. 📋 RULES
+## 9. RULES
 
 ### ALWAYS
 
@@ -642,7 +642,7 @@ go test -race ./...
 
 ---
 
-## 10. 🏭 E2E TEST INFRASTRUCTURE
+## 10. E2E TEST INFRASTRUCTURE
 
 End-to-end tests in this codebase use embedded infrastructure to create realistic testing environments without external dependencies. All E2E tests are located in `internal/e2e_tests/`.
 
@@ -866,7 +866,7 @@ func paymentsConfiguration(
 
 ---
 
-## 11. 🎭 E2E MOCK PATTERNS
+## 11. E2E MOCK PATTERNS
 
 ### How do I create service-level mocks for E2E tests?
 
@@ -1003,7 +1003,7 @@ func mockRegistryPaymentService(
 
 ---
 
-## 12. 🔧 E2E UTILITIES
+## 12. E2E UTILITIES
 
 ### How do I clean up embedded Postgres data?
 
@@ -1073,7 +1073,7 @@ func KillProcessOnPort(port uint32) error {
 
 ---
 
-## 13. 🏆 E2E TESTING BEST PRACTICES
+## 13. E2E TESTING BEST PRACTICES
 
 ### Test Isolation
 
@@ -1104,7 +1104,7 @@ func KillProcessOnPort(port uint32) error {
 
 ---
 
-## 14. 📋 RULES
+## 14. RULES
 
 ### ALWAYS
 
@@ -1142,7 +1142,7 @@ func KillProcessOnPort(port uint32) error {
 
 ---
 
-## 15. 🔗 RELATED RESOURCES
+## 15. RELATED RESOURCES
 
 | Topic | Document | Section |
 |-------|----------|---------|

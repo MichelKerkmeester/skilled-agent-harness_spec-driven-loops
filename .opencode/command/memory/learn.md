@@ -10,7 +10,7 @@ Capture explicit learnings as high-importance semantic memories (85% confidence,
 
 ---
 
-## 1. 🚨 ARGUMENT VALIDATION
+## 1. ARGUMENT VALIDATION
 
 **CRITICAL: For subcommands with `<required>` arguments, you MUST have explicit values.**
 
@@ -36,7 +36,7 @@ ARGUMENT VALIDATION:
 └─ OTHERWISE: Proceed to subcommand routing
 ```
 
-## 2. 🔀 SUBCOMMAND ROUTING
+## 2. SUBCOMMAND ROUTING
 
 **After validating required arguments, route based on $ARGUMENTS:**
 
@@ -50,7 +50,7 @@ $ARGUMENTS
 
 ---
 
-## 3. 📝 CONTRACT
+## 3. CONTRACT
 
 ```yaml
 role: Learning Capture Specialist
@@ -67,7 +67,7 @@ action: Classify learning, link to source, save with importance boost
 
 ---
 
-## 4. 📋 LEARNING TYPES
+## 4. LEARNING TYPES
 
 | Type           | When to Use                        | Importance Tier | Confidence | Examples                                               |
 | -------------- | ---------------------------------- | --------------- | ---------- | ------------------------------------------------------ |
@@ -89,7 +89,7 @@ action: Classify learning, link to source, save with importance boost
 
 ---
 
-## 5. 📊 CORE WORKFLOW (Phases 1-4)
+## 5. CORE WORKFLOW (Phases 1-4)
 
 ### Phase 1: Learning Extraction
 
@@ -162,7 +162,7 @@ classification_confidence: [0-100]%
 
 ---
 
-## 6. ⚡ SAVE WORKFLOW
+## 6. SAVE WORKFLOW
 
 **After all phases pass (1-4), execute save:**
 
@@ -233,7 +233,7 @@ STATUS=OK LEARNING_TYPE=<type> FOLDER=<target_spec_folder>
 
 ---
 
-## 7. 🔧 MCP ENFORCEMENT MATRIX
+## 7. MCP ENFORCEMENT MATRIX
 
 **CRITICAL:** Use the correct MCP tools for each step.
 
@@ -259,7 +259,7 @@ spec_kit_memory_memory_save({
 
 ---
 
-## 8. 🔍 EXAMPLES
+## 8. EXAMPLES
 
 ### Example 1: PATTERN Learning
 
@@ -297,7 +297,7 @@ SAVE:
 
 ---
 
-## 9. 🔍 QUICK REFERENCE
+## 9. QUICK REFERENCE
 
 | Command                                             | Result                                      |
 | --------------------------------------------------- | ------------------------------------------- |
@@ -309,7 +309,7 @@ SAVE:
 
 ---
 
-## 10. 🔧 CORRECTION SUBCOMMAND
+## 10. CORRECTION SUBCOMMAND
 
 **Trigger:** `/memory:learn correct <id> <type> [replacement-id]`
 
@@ -389,7 +389,7 @@ Learn from mistakes by marking memories as corrected, applying stability penalti
 
 ---
 
-## 11. 🔧 UNDO SUBCOMMAND
+## 11. UNDO SUBCOMMAND
 
 **Trigger:** `/memory:learn undo <id>`
 
@@ -423,7 +423,7 @@ Reverses a correction if made in error.
 
 ---
 
-## 12. 🔧 HISTORY SUBCOMMAND
+## 12. HISTORY SUBCOMMAND
 
 **Trigger:** `/memory:learn history`
 
@@ -460,7 +460,7 @@ STATUS=OK
 
 ---
 
-## 13. ⚠️ ERROR HANDLING
+## 13. ERROR HANDLING
 
 | Condition                       | Response                                          |
 | ------------------------------- | ------------------------------------------------- |
@@ -474,7 +474,7 @@ STATUS=OK
 
 ---
 
-## 14. 🔍 LEARNING RETRIEVAL
+## 14. LEARNING RETRIEVAL
 
 **How saved learnings surface in future sessions:**
 
@@ -507,7 +507,7 @@ System: Available learnings (2):
 
 ---
 
-## 15. 🔄 CONSOLIDATION PIPELINE
+## 15. CONSOLIDATION PIPELINE
 
 Learnings are processed through the memory consolidation pipeline to maintain quality and reduce redundancy.
 
@@ -537,7 +537,7 @@ When a new learning is saved:
 
 ---
 
-## 16. 🚨 CONSTITUTIONAL LEARNING CAUTION
+## 16. CONSTITUTIONAL LEARNING CAUTION
 
 **IMPORTANT:** Setting a learning to constitutional tier means it will appear in EVERY search result.
 
@@ -555,7 +555,7 @@ When a new learning is saved:
 
 ---
 
-## 17. 📌 BEST PRACTICES
+## 17. BEST PRACTICES
 
 ### When to Use `/memory:learn`
 
@@ -587,7 +587,7 @@ End-of-session with multiple learnings — list them, AI captures as separate le
 
 ---
 
-## 18. 🔗 RELATED COMMANDS
+## 18. RELATED COMMANDS
 
 - `/memory:save` — Save full conversation context (episodic memory)
 - `/memory:context` — Search and browse all memories

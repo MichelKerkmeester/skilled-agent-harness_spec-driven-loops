@@ -13,6 +13,7 @@
 #   .opencode/install_scripts/test/run-tests.sh sequential-thinking # Run specific test
 
 set -euo pipefail
+IFS=$'\n\t'
 
 # ───────────────────────────────────────────────────────────────
 # 1. CONFIGURATION

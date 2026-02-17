@@ -14,21 +14,21 @@ importance_tier: "normal"
 <!-- ANCHOR:table-of-contents -->
 ## TABLE OF CONTENTS
 
-- [1. 📖 OVERVIEW](#1--overview)
-- [2. 📋 CURRENT INVENTORY](#2--current-inventory)
-- [3. 📌 SOURCE PRIORITY](#3--source-priority)
-- [4. 🔒 SECURITY AND PATH HANDLING](#4--security-and-path-handling)
-- [5. 💡 QUICK USAGE](#5--quick-usage)
+- [1. OVERVIEW](#1--overview)
+- [2. CURRENT INVENTORY](#2--current-inventory)
+- [3. SOURCE PRIORITY](#3--source-priority)
+- [4. SECURITY AND PATH HANDLING](#4--security-and-path-handling)
+- [5. QUICK USAGE](#5--quick-usage)
 
 <!-- /ANCHOR:table-of-contents -->
 <!-- ANCHOR:overview -->
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 The `loaders/` directory provides the ingestion layer for memory generation.
 
 <!-- /ANCHOR:overview -->
 <!-- ANCHOR:current-inventory -->
-## 2. 📋 CURRENT INVENTORY
+## 2. CURRENT INVENTORY
 
 
 - `data-loader.ts` - source loading, path checks, normalization, fallback handling
@@ -37,7 +37,7 @@ The `loaders/` directory provides the ingestion layer for memory generation.
 
 <!-- /ANCHOR:current-inventory -->
 <!-- ANCHOR:source-priority -->
-## 3. 📌 SOURCE PRIORITY
+## 3. SOURCE PRIORITY
 
 
 `data-loader.ts` loads in this order:
@@ -48,7 +48,7 @@ The `loaders/` directory provides the ingestion layer for memory generation.
 
 <!-- /ANCHOR:source-priority -->
 <!-- ANCHOR:security-and-path-handling -->
-## 4. 🔒 SECURITY AND PATH HANDLING
+## 4. SECURITY AND PATH HANDLING
 
 
 - Path checks restrict data file access to expected safe base locations.
@@ -58,7 +58,7 @@ The `loaders/` directory provides the ingestion layer for memory generation.
 
 <!-- /ANCHOR:security-and-path-handling -->
 <!-- ANCHOR:quick-usage -->
-## 5. 💡 QUICK USAGE
+## 5. QUICK USAGE
 
 
 ```bash

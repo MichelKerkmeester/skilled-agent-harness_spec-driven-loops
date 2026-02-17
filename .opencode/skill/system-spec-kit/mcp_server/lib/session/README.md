@@ -17,18 +17,18 @@ importance_tier: "normal"
 ## TABLE OF CONTENTS
 <!-- ANCHOR:table-of-contents -->
 
-- [1. 📖 OVERVIEW](#1--overview)
-- [2. 📁 STRUCTURE](#2--structure)
-- [3. ⚡ FEATURES](#3--features)
-- [4. 💡 USAGE EXAMPLES](#4--usage-examples)
-- [5. 🛠️ TROUBLESHOOTING](#5--troubleshooting)
-- [6. 🔗 RELATED RESOURCES](#6--related-resources)
+- [1. OVERVIEW](#1--overview)
+- [2. STRUCTURE](#2--structure)
+- [3. FEATURES](#3--features)
+- [4. USAGE EXAMPLES](#4--usage-examples)
+- [5. TROUBLESHOOTING](#5--troubleshooting)
+- [6. RELATED RESOURCES](#6--related-resources)
 
 <!-- /ANCHOR:table-of-contents -->
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 <!-- ANCHOR:overview -->
 
 The session layer provides all session-related operations for the Spec Kit Memory MCP server. It prevents duplicate context injection (saving ~50% tokens on follow-up queries) and enables crash recovery with immediate SQLite persistence.
@@ -55,7 +55,7 @@ The session layer provides all session-related operations for the Spec Kit Memor
 
 ---
 
-## 2. 📁 STRUCTURE
+## 2. STRUCTURE
 <!-- ANCHOR:structure -->
 
 ```
@@ -74,7 +74,7 @@ session/
 
 ---
 
-## 3. ⚡ FEATURES
+## 3. FEATURES
 <!-- ANCHOR:features -->
 
 ### Session Deduplication (v1.2.0)
@@ -128,7 +128,7 @@ Generated on checkpoint with:
 
 ---
 
-## 4. 💡 USAGE EXAMPLES
+## 4. USAGE EXAMPLES
 <!-- ANCHOR:usage-examples -->
 
 ### Example 1: Filter Search Results (Primary Integration)
@@ -204,7 +204,7 @@ checkpointSession(sessionId, {
 
 ---
 
-## 5. 🛠️ TROUBLESHOOTING
+## 5. TROUBLESHOOTING
 <!-- ANCHOR:troubleshooting -->
 
 ### Common Issues
@@ -283,7 +283,7 @@ console.log(getInterruptedSessions());
 
 ---
 
-## 6. 🔗 RELATED RESOURCES
+## 6. RELATED RESOURCES
 <!-- ANCHOR:related -->
 
 ### Internal Documentation

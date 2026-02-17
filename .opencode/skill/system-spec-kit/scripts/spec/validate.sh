@@ -4,9 +4,9 @@
 # ───────────────────────────────────────────────────────────────
 # Spec Folder Validation Orchestrator - Bash 3.2+ compatible
 
-# Note: Using 'set -eo pipefail' instead of 'set -euo pipefail' due to macOS bash 3.2
-# compatibility. The -u flag triggers errors with empty arrays (${RULE_ORDER[@]} and
-# ${RULE_DETAILS[@]}) which are valid patterns in this script.
+# Strict mode baseline.
+# -u is intentionally disabled for Bash 3.2 compatibility when handling empty arrays
+# during sourced rule execution (for example: ${RULE_ORDER[@]}, ${RULE_DETAILS[@]}).
 set -eo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"

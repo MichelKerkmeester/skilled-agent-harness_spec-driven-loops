@@ -9,7 +9,7 @@ A comprehensive guide to testing Swift and SwiftUI applications including XCTest
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 ### Purpose
 
@@ -37,7 +37,7 @@ Fast feedback + isolated tests + comprehensive coverage = confidence in code qua
 
 ---
 
-## 2. 🧪 XCTEST FUNDAMENTALS
+## 2. XCTEST FUNDAMENTALS
 
 ### Test Structure
 
@@ -193,7 +193,7 @@ final class CartServiceTests: XCTestCase {
 
 ---
 
-## 3. 🔬 UNIT TESTING VIEWMODELS
+## 3. UNIT TESTING VIEWMODELS
 
 ### Testing @Observable ViewModels
 
@@ -445,7 +445,7 @@ final class CreateProductViewModelTests: XCTestCase {
 
 ---
 
-## 4. 🎭 MOCKING AND STUBBING
+## 4. MOCKING AND STUBBING
 
 ### Protocol-Based Mocks
 
@@ -695,7 +695,7 @@ extension User {
 
 ---
 
-## 5. ⚡ ASYNC TESTING
+## 5. ASYNC TESTING
 
 ### Testing Async Functions
 
@@ -849,7 +849,7 @@ final class CancellationTests: XCTestCase {
 
 ---
 
-## 6. 📱 UI TESTING WITH XCUITEST
+## 6. UI TESTING WITH XCUITEST
 
 ### Basic UI Tests
 
@@ -1066,7 +1066,7 @@ func testProductDetail_DisplaysCorrectInfo() {
 
 ---
 
-## 7. 📸 SNAPSHOT TESTING
+## 7. SNAPSHOT TESTING
 
 ### Using swift-snapshot-testing
 
@@ -1175,7 +1175,7 @@ final class ViewSnapshotTests: XCTestCase {
 
 ---
 
-## 8. 📁 TEST ORGANIZATION
+## 8. TEST ORGANIZATION
 
 ### Test Categories
 
@@ -1238,7 +1238,7 @@ func createTestContainer() -> DependencyContainer {
 
 ---
 
-## 9. 📋 RULES
+## 9. RULES
 
 ### ALWAYS
 
@@ -1275,7 +1275,7 @@ func createTestContainer() -> DependencyContainer {
 
 ---
 
-## 10. 🔗 RELATED RESOURCES
+## 10. RELATED RESOURCES
 
 | File | Purpose |
 |------|---------|

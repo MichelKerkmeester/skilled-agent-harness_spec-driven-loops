@@ -9,7 +9,7 @@ Formatting standards and naming conventions for TypeScript files in the OpenCode
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 ### Purpose
 
@@ -23,7 +23,7 @@ Defines consistent styling rules for TypeScript files to ensure readability, mai
 
 ---
 
-## 2. 📄 FILE HEADER FORMAT
+## 2. FILE HEADER FORMAT
 
 All TypeScript files MUST begin with a boxed header identifying the module.
 
@@ -61,7 +61,7 @@ import type { SearchOptions } from '../types';
 
 ---
 
-## 3. ⚙️ STRICT MODE
+## 3. STRICT MODE
 
 ### tsconfig.json Replaces 'use strict'
 
@@ -89,7 +89,7 @@ In JavaScript, every file requires `'use strict';` at the top. In TypeScript, th
 
 ---
 
-## 4. 📁 SECTION ORGANIZATION
+## 4. SECTION ORGANIZATION
 
 Large files are organized using numbered section dividers, consistent with JavaScript style.
 
@@ -155,7 +155,7 @@ enum ErrorCode {
 
 ---
 
-## 5. 🏷️ NAMING CONVENTIONS
+## 5. NAMING CONVENTIONS
 
 ### Interface Names
 
@@ -355,7 +355,7 @@ function fromRow(row: MemoryRow): MemoryRecord {
 
 ---
 
-## 6. 📐 FORMATTING RULES
+## 6. FORMATTING RULES
 
 ### Indentation
 
@@ -473,7 +473,7 @@ function search(
 
 ---
 
-## 7. 📦 IMPORT ORDERING
+## 7. IMPORT ORDERING
 
 ### Four-Group Import Order
 
@@ -530,7 +530,7 @@ export type { SearchResult, SearchOptions } from '../types';
 
 ---
 
-## 8. 💬 COMMENTING RULES
+## 8. COMMENTING RULES
 
 ### Principles (Same as JavaScript)
 
@@ -572,7 +572,7 @@ function search(query: string): void { }
 
 ---
 
-## 9. 🔀 MIXED JS/TS COEXISTENCE PATTERNS
+## 9. MIXED JS/TS COEXISTENCE PATTERNS
 
 During the transitional period where the codebase contains both JavaScript and TypeScript files, the following patterns are acceptable.
 
@@ -655,7 +655,7 @@ Set `checkJs: true` only after the majority of JS files have been migrated or ty
 
 ---
 
-## 10. 🔗 RELATED RESOURCES
+## 10. RELATED RESOURCES
 
 - [quality_standards.md](./quality_standards.md) - Type system, TSDoc, error patterns, tsconfig
 - [quick_reference.md](./quick_reference.md) - Copy-paste templates and cheat sheets

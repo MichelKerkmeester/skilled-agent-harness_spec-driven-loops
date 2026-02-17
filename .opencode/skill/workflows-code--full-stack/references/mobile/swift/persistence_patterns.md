@@ -9,7 +9,7 @@ A comprehensive guide to data persistence in iOS including SwiftData for iOS 17+
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 ### Purpose
 
@@ -39,7 +39,7 @@ Choose the right storage for the data type + handle errors gracefully + maintain
 
 ---
 
-## 2. 💾 SWIFTDATA (iOS 17+)
+## 2. SWIFTDATA (iOS 17+)
 
 ### Basic Model Definition
 
@@ -359,7 +359,7 @@ struct ContentView: View {
 
 ---
 
-## 3. 🗄️ CORE DATA (Legacy)
+## 3. CORE DATA (Legacy)
 
 ### Model Setup
 
@@ -553,7 +553,7 @@ extension UserListViewModel: NSFetchedResultsControllerDelegate {
 
 ---
 
-## 4. ⚙️ USERDEFAULTS
+## 4. USERDEFAULTS
 
 ### Basic Usage
 
@@ -688,7 +688,7 @@ struct SettingsView: View {
 
 ---
 
-## 5. 🔐 KEYCHAIN
+## 5. KEYCHAIN
 
 ### Keychain Wrapper
 
@@ -835,7 +835,7 @@ class AuthTokenManager {
 
 ---
 
-## 6. 📁 FILE SYSTEM
+## 6. FILE SYSTEM
 
 ### File Manager Operations
 
@@ -992,7 +992,7 @@ actor ImageCache {
 
 ---
 
-## 7. ☁️ CLOUDKIT BASICS
+## 7. CLOUDKIT BASICS
 
 ### CloudKit Setup
 
@@ -1123,7 +1123,7 @@ struct UserItem: Identifiable {
 
 ---
 
-## 8. 📋 RULES
+## 8. RULES
 
 ### ALWAYS
 
@@ -1160,7 +1160,7 @@ struct UserItem: Identifiable {
 
 ---
 
-## 9. 🔗 RELATED RESOURCES
+## 9. RELATED RESOURCES
 
 | File | Purpose |
 |------|---------|

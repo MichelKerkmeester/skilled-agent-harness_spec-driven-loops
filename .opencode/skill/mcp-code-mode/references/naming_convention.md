@@ -9,7 +9,7 @@ Master the critical naming pattern to avoid the #1 most common Code Mode error.
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 ### Core Pattern
 
@@ -30,7 +30,7 @@ Master the critical naming pattern to avoid the #1 most common Code Mode error.
 
 ---
 
-## 2. 🚫 COMMON MISTAKES
+## 2. COMMON MISTAKES
 
 ### Mistake 1: Missing Manual Prefix
 
@@ -125,7 +125,7 @@ await webflow_prod.webflow_prod_sites_list({});
 
 ---
 
-## 3. 📋 CONFIGURATION EXAMPLES
+## 3. CONFIGURATION EXAMPLES
 
 ### Example 1: Webflow
 
@@ -337,7 +337,7 @@ await chrome_devtools_1.chrome_devtools_1_get_console_message({});
 
 ---
 
-## 4. 🔍 TOOL DISCOVERY
+## 4. TOOL DISCOVERY
 
 **Before calling tools, discover what's available:**
 
@@ -389,7 +389,7 @@ const sites = await webflow.webflow_sites_list({});
 
 ---
 
-## 5. 🛠️ TROUBLESHOOTING GUIDE
+## 5. TROUBLESHOOTING GUIDE
 
 ### Problem: "Tool not found" Error
 
@@ -453,7 +453,7 @@ ReferenceError: webflow_prod is not defined
 
 ---
 
-## 6. 📊 QUICK REFERENCE
+## 6. QUICK REFERENCE
 
 | Manual Name         | Naming Pattern                             | Example                                        |
 | ------------------- | ------------------------------------------ | ---------------------------------------------- |
@@ -466,7 +466,7 @@ ReferenceError: webflow_prod is not defined
 
 ---
 
-## 7. ✅ BEST PRACTICES
+## 7. BEST PRACTICES
 
 ### 1. Always Use Tool Discovery First
 
@@ -528,7 +528,7 @@ cat .utcp_config.json | grep '"name"'
 
 ---
 
-## 8. 📝 SUMMARY
+## 8. SUMMARY
 
 **Golden rule:** `{manual_name}.{manual_name}_{tool_name}`
 
@@ -544,7 +544,7 @@ cat .utcp_config.json | grep '"name"'
 
 ---
 
-## 9. 🔗 RELATED RESOURCES
+## 9. RELATED RESOURCES
 
 ### Reference Files
 - [tool_catalog.md](./tool_catalog.md) - Complete list of 200+ tools organized by MCP server

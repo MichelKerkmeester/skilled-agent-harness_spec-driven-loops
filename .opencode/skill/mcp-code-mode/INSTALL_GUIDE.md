@@ -9,21 +9,21 @@ Complete installation and configuration guide for the Code Mode MCP server, enab
 
 #### TABLE OF CONTENTS
 
-1. [📖 OVERVIEW](#1--overview)
-2. [📋 PREREQUISITES](#2--prerequisites)
-3. [📥 INSTALLATION](#3--installation)
-4. [⚙️ CONFIGURATION](#4-%EF%B8%8F-configuration)
-5. [✅ VERIFICATION](#5--verification)
-6. [🚀 USAGE](#6--usage)
-7. [⏱️ TIMEOUT CALCULATION](#7-️-timeout-calculation)
-8. [🎯 FEATURES](#8--features)
-9. [💡 EXAMPLES](#9--examples)
-10. [🔧 TROUBLESHOOTING](#10--troubleshooting)
-11. [📚 RESOURCES](#11--resources)
+1. [OVERVIEW](#1--overview)
+2. [PREREQUISITES](#2--prerequisites)
+3. [INSTALLATION](#3--installation)
+4. [CONFIGURATION](#4-%EF%B8%8F-configuration)
+5. [VERIFICATION](#5--verification)
+6. [USAGE](#6--usage)
+7. [TIMEOUT CALCULATION](#7-️-timeout-calculation)
+8. [FEATURES](#8--features)
+9. [EXAMPLES](#9--examples)
+10. [TROUBLESHOOTING](#10--troubleshooting)
+11. [RESOURCES](#11--resources)
 
 ---
 
-## 🤖 AI INSTALL GUIDE
+## AI INSTALL GUIDE
 
 **Copy and paste this prompt to your AI assistant to get installation help:**
 
@@ -58,7 +58,7 @@ Guide me through each step with the exact commands and configuration needed.
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 Code Mode MCP is a TypeScript execution environment that provides unified access to **159 MCP tools across 6 manuals** through progressive disclosure. Instead of exposing all tools to your AI context (causing token exhaustion), Code Mode provides a single execution environment where tools are accessed programmatically and loaded on-demand.
 
@@ -158,7 +158,7 @@ Usable?    ✓       ✓       ✓       ✓       ✓       ✓
 
 ---
 
-## 2. 📋 PREREQUISITES
+## 2. PREREQUISITES
 
 Before installing Code Mode MCP, ensure you have:
 
@@ -208,7 +208,7 @@ node --version && [ -f .env ] && [ -f .utcp_config.json ] && echo "✅ PASS" || 
 
 ---
 
-## 3. 📥 INSTALLATION
+## 3. INSTALLATION
 
 ### Step 1: Choose Installation Location
 
@@ -321,7 +321,7 @@ grep -q '"code_mode"' opencode.json && echo "✅ PASS" || echo "❌ FAIL"
 
 ---
 
-## 4. ⚙️ CONFIGURATION
+## 4. CONFIGURATION
 
 ### Option A: Configure for Claude Code CLI
 
@@ -684,7 +684,7 @@ Add servers to `.utcp_config.json` in the `manual_call_templates` array:
 
 ---
 
-## 5. ✅ VERIFICATION
+## 5. VERIFICATION
 
 ### Check 1: Verify Configuration Files
 
@@ -760,7 +760,7 @@ echo "Run: list_tools() in OpenCode to verify"
 
 ---
 
-## 6. 🚀 USAGE
+## 6. USAGE
 
 ### CRITICAL: Naming Pattern
 
@@ -878,7 +878,7 @@ call_tool_chain({
 
 ---
 
-## 7. ⏱️ TIMEOUT CALCULATION
+## 7. TIMEOUT CALCULATION
 
 ### Formula
 
@@ -930,7 +930,7 @@ call_tool_chain({
 
 ---
 
-## 8. 🎯 FEATURES
+## 8. FEATURES
 
 ### 8.1 call_tool_chain
 
@@ -1003,7 +1003,7 @@ tool_info({
 
 ---
 
-## 9. 💡 EXAMPLES
+## 9. EXAMPLES
 
 ### Example 1: Webflow Site Management
 
@@ -1230,7 +1230,7 @@ call_tool_chain({
 
 ---
 
-## 10. 🔧 TROUBLESHOOTING
+## 10. TROUBLESHOOTING
 
 ### Error Message Quick Reference
 
@@ -1406,7 +1406,7 @@ await webflow.webflow_sites_list({});
 
 ---
 
-## 11. 📚 RESOURCES
+## 11. RESOURCES
 
 ### Documentation
 

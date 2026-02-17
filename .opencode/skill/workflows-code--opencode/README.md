@@ -28,7 +28,7 @@ importance_tier: "normal"
 ---
 
 <!-- ANCHOR:overview -->
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 This skill enforces consistent code standards across all languages used in the OpenCode system: JavaScript, TypeScript, Python, Shell and JSON/JSONC. It provides evidence-based patterns extracted from the actual OpenCode codebase with `file:line` citations, not theoretical guidelines.
 
@@ -41,7 +41,7 @@ The skill uses a smart routing system that detects the target language via file 
 ---
 
 <!-- ANCHOR:quick-start -->
-## 2. 🚀 QUICK START
+## 2. QUICK START
 
 This skill activates automatically via Gate 2 (`skill_advisor.py`) when you work on OpenCode system code. No manual invocation is needed for most tasks.
 
@@ -58,7 +58,7 @@ This skill activates automatically via Gate 2 (`skill_advisor.py`) when you work
 ---
 
 <!-- ANCHOR:structure -->
-## 3. 📁 STRUCTURE
+## 3. STRUCTURE
 
 ```
 .opencode/skill/workflows-code--opencode/
@@ -102,7 +102,7 @@ This skill activates automatically via Gate 2 (`skill_advisor.py`) when you work
 ---
 
 <!-- ANCHOR:features -->
-## 4. ⚡ FEATURES
+## 4. FEATURES
 
 - **Smart language detection**: Routes to the correct standards via file extension or keyword matching across 5 languages
 - **Three-tier resource loading**: ALWAYS (shared patterns), CONDITIONAL (language-specific), ON_DEMAND (checklists)
@@ -118,7 +118,7 @@ This skill activates automatically via Gate 2 (`skill_advisor.py`) when you work
 ---
 
 <!-- ANCHOR:configuration -->
-## 5. ⚙️ CONFIGURATION
+## 5. CONFIGURATION
 
 No configuration files are required. The skill self-configures through language detection.
 
@@ -143,7 +143,7 @@ No configuration files are required. The skill self-configures through language 
 ---
 
 <!-- ANCHOR:usage-examples -->
-## 6. 💡 EXAMPLES
+## 6. EXAMPLES
 
 **Language detection keywords:**
 
@@ -169,7 +169,7 @@ No configuration files are required. The skill self-configures through language 
 ---
 
 <!-- ANCHOR:troubleshooting -->
-## 7. 🛠️ TROUBLESHOOTING
+## 7. TROUBLESHOOTING
 
 | Issue                          | Cause                            | Fix                                              |
 | ------------------------------ | -------------------------------- | ------------------------------------------------ |
@@ -188,7 +188,7 @@ No configuration files are required. The skill self-configures through language 
 ---
 
 <!-- ANCHOR:related -->
-## 8. 📚 RELATED
+## 8. RELATED
 
 **Related skills:**
 

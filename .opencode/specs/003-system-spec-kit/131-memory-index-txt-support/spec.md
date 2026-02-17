@@ -68,7 +68,7 @@ Enable `.txt` file indexing in `memory_index_scan` to surface command documentat
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index.ts` | Modify | Add `.txt` discovery to `findMemoryFiles()`, `findSkillReadmes()`, `findProjectReadmes()`, `findCommandReadmes()` |
+| `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index.ts` | Modify | Add `.txt` discovery to `findMemoryFiles()`, `findSkillReadmes()`, `findProjectReadmes()` (expanded to include `.opencode/command/` paths) |
 | `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts` | Modify | Update path validation regex to accept `.txt` extension |
 | `.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-index.vitest.ts` | Modify | Add test coverage for `.txt` indexing |
 <!-- /ANCHOR:scope -->

@@ -131,7 +131,7 @@ triggers:
 # Memory System Overhaul - Handover
 
 <!-- ANCHOR: status -->
-## Project Status: ✅ COMPLETE
+## Project Status:  COMPLETE
 
 **Spec Folder:** `specs/003-memory-and-spec-kit/030-gate3-enforcement/`
 **Completion Date:** 2025-12-25

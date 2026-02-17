@@ -15,7 +15,10 @@
 #
 # Exit codes: 0=success, 1=validation error, 2=upgrade error, 3=backup error
 
-set -eo pipefail  # No -u for bash 3.2 compat (macOS) with empty arrays
+# Strict mode baseline.
+# -u is intentionally disabled because this script uses Bash 3.2-safe empty-array
+# and positional-argument expansion patterns across a large compatibility surface.
+set -eo pipefail
 
 # Cleanup temp files on interrupt or exit
 CLEANUP_DIR=""

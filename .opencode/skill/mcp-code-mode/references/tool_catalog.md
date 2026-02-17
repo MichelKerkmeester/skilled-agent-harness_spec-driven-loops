@@ -9,7 +9,7 @@ Reference catalog of 170+ tools across 7 MCP servers, organized by service.
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 ### Dynamic Discovery (Recommended)
 
@@ -39,7 +39,7 @@ const info = await tool_info({
 
 ---
 
-## 2. 🗂️ CONFIGURED MCP SERVERS
+## 2. CONFIGURED MCP SERVERS
 
 1. **Webflow** - 40+ tools (Site & CMS management)
 2. **ClickUp** - 20+ tools (Task & project management)
@@ -56,7 +56,7 @@ const info = await tool_info({
 
 ---
 
-## 3. 🌐 WEBFLOW (40+ TOOLS)
+## 3. WEBFLOW (40+ TOOLS)
 
 **Manual name:** `webflow`
 **Naming pattern:** `webflow.webflow_{tool_name}`
@@ -131,7 +131,7 @@ const info = await tool_info({
 
 ---
 
-## 4. ✅ CLICKUP (20+ TOOLS)
+## 4. CLICKUP (20+ TOOLS)
 
 **Manual name:** `clickup`
 **Naming pattern:** `clickup.clickup_{tool_name}`
@@ -177,7 +177,7 @@ const info = await tool_info({
 
 ---
 
-## 5. 🎨 FIGMA (15+ TOOLS)
+## 5. FIGMA (15+ TOOLS)
 
 **Manual name:** `figma`
 **Naming pattern:** `figma.figma_{tool_name}`
@@ -217,7 +217,7 @@ const info = await tool_info({
 
 ---
 
-## 6. 🔧 CHROME DEVTOOLS (52 TOOLS)
+## 6. CHROME DEVTOOLS (52 TOOLS)
 
 **Manual names:** `chrome_devtools_1`, `chrome_devtools_2`
 **Naming pattern:** `chrome_devtools_1.chrome_devtools_1_{tool_name}`
@@ -275,7 +275,7 @@ const info = await tool_info({
 
 ---
 
-## 7. 🎨 SHADCN UI (COMPONENTS)
+## 7. SHADCN UI (COMPONENTS)
 
 **Manual name:** `shadcn_ui`
 **Naming pattern:** `shadcn_ui.shadcn_ui_{tool_name}`
@@ -288,7 +288,7 @@ const info = await tool_info({
 
 ---
 
-## 8. 🖼️ IMAGICIAN (IMAGE PROCESSING)
+## 8. IMAGICIAN (IMAGE PROCESSING)
 
 **Manual name:** `imagician`
 **Naming pattern:** `imagician.imagician_{tool_name}`
@@ -304,7 +304,7 @@ const info = await tool_info({
 
 ---
 
-## 9. 🎬 VIDEO AUDIO (30+ TOOLS)
+## 9. VIDEO AUDIO (30+ TOOLS)
 
 **Manual name:** `video_audio`
 **Naming pattern:** `video_audio.video_audio_{tool_name}`
@@ -341,7 +341,7 @@ const info = await tool_info({
 
 ---
 
-## 10. 🔍 TOOL DISCOVERY EXAMPLES
+## 10. TOOL DISCOVERY EXAMPLES
 
 ### Example 1: Search by Task Description
 
@@ -397,7 +397,7 @@ console.log(info.interface);
 
 ---
 
-## 11. 📝 SUMMARY
+## 11. SUMMARY
 
 **Total Tools:** 170+ across 7 MCP servers
 
@@ -411,7 +411,7 @@ console.log(info.interface);
 
 ---
 
-## 12. 🔗 RELATED RESOURCES
+## 12. RELATED RESOURCES
 
 ### Reference Files
 - [naming_convention.md](./naming_convention.md) - Critical naming patterns for all tools in this catalog

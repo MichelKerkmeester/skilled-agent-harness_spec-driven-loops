@@ -9,7 +9,7 @@ Focus trap implementation, focus restoration, and touch detection patterns for a
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 ### Purpose
 
@@ -39,7 +39,7 @@ Apply these patterns when:
 
 ---
 
-## 2. 📋 FOCUSABLE_SELECTOR CONSTANT
+## 2. FOCUSABLE_SELECTOR CONSTANT
 
 ### The Canonical Selector
 
@@ -99,7 +99,7 @@ function get_focusable(container) {
 
 ---
 
-## 3. 🛠️ FOCUS TRAP IMPLEMENTATION
+## 3. FOCUS TRAP IMPLEMENTATION
 
 ### Pattern Overview
 
@@ -241,7 +241,7 @@ FOCUS TRAP VALIDATION:
 
 ---
 
-## 4. 🔄 FOCUS RESTORATION
+## 4. FOCUS RESTORATION
 
 ### Save Focus on Modal Open
 
@@ -348,7 +348,7 @@ FOCUS RESTORATION VALIDATION:
 
 ---
 
-## 5. 👆 TOUCH DETECTION
+## 5. TOUCH DETECTION
 
 ### Purpose
 
@@ -511,7 +511,7 @@ Detect Input Method
 
 ---
 
-## 6. ⚠️ ANTI-PATTERNS
+## 6. ANTI-PATTERNS
 
 ### Focus Trap Anti-Patterns
 
@@ -575,7 +575,7 @@ function restore_focus() {
 
 ---
 
-## 7. ✅ INTEGRATION CHECKLIST
+## 7. INTEGRATION CHECKLIST
 
 ### Before Modal Implementation
 
@@ -603,7 +603,7 @@ FOCUS MANAGEMENT CHECKLIST:
 
 ---
 
-## 8. 🔗 RELATED RESOURCES
+## 8. RELATED RESOURCES
 
 ### Reference Files
 

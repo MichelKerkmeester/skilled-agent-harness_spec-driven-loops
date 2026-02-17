@@ -9,7 +9,7 @@ Guidelines for working with databases in backend systems, covering the generic r
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 ### Purpose
 
@@ -40,7 +40,7 @@ Level 2: Related knowledge files
 
 ---
 
-## 2. 🏗️ DATA LAYER ARCHITECTURE
+## 2. DATA LAYER ARCHITECTURE
 
 ### How Do I Structure a Data Layer?
 
@@ -78,7 +78,7 @@ func NewPaymentDataLayer(_ context.Context, orm *database.Orm, layerConfig Payme
 
 ---
 
-## 3. 📦 REPOSITORY PATTERN
+## 3. REPOSITORY PATTERN
 
 ### How Do I Create a Repository?
 
@@ -158,7 +158,7 @@ func (r WalletRepository) Delete(walletID uid.UID) error {
 
 ---
 
-## 4. 💾 TRANSACTIONS
+## 4. TRANSACTIONS
 
 ### How Do I Use Data Layer Transactions?
 
@@ -258,7 +258,7 @@ if !s.TxNil() {
 
 ---
 
-## 5. 🎯 ENTITIES
+## 5. ENTITIES
 
 ### How Do I Define an Entity?
 
@@ -306,7 +306,7 @@ type WalletActivityLog struct {
 
 ---
 
-## 6. 🔍 QUERY PATTERNS
+## 6. QUERY PATTERNS
 
 ### How Do I Write Complex Queries with Joins?
 
@@ -369,7 +369,7 @@ func (r WalletRepository) GetAllThroughPipeline(ctx context.Context, pipe *pipel
 
 ---
 
-## 7. ⚠️ GORM RELATIONSHIPS AND SOFT-DELETE PITFALLS
+## 7. GORM RELATIONSHIPS AND SOFT-DELETE PITFALLS
 
 ### The Problem: Nil Pointer Relations
 
@@ -484,7 +484,7 @@ db.Model(&User{}).
 
 ---
 
-## 8. 📋 RULES
+## 8. RULES
 
 ### ALWAYS
 
@@ -520,7 +520,7 @@ db.Model(&User{}).
 
 ---
 
-## 9. 🔗 RELATED RESOURCES
+## 9. RELATED RESOURCES
 
 | File                                                                                 | Purpose                                               |
 | ------------------------------------------------------------------------------------ | ----------------------------------------------------- |

@@ -9,7 +9,7 @@ Step-by-step checklist for investigating frontend technical issues systematicall
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 ### Purpose
 
@@ -21,7 +21,7 @@ Use this checklist for ANY frontend technical issue. Complete all applicable pha
 
 ---
 
-## 2. ⚠️ BEFORE ATTEMPTING ANY FIX
+## 2. BEFORE ATTEMPTING ANY FIX
 
 □ Opened browser DevTools (F12 / Cmd+Option+I)
 □ Read complete error message without skipping
@@ -31,7 +31,7 @@ Use this checklist for ANY frontend technical issue. Complete all applicable pha
 
 ---
 
-## 3. 🔍 PHASE 1: ROOT CAUSE INVESTIGATION
+## 3. PHASE 1: ROOT CAUSE INVESTIGATION
 
 ### Error Analysis
 □ Read error message carefully
@@ -71,7 +71,7 @@ Use this checklist for ANY frontend technical issue. Complete all applicable pha
 
 ---
 
-## 4. 🔎 PHASE 2: PATTERN ANALYSIS
+## 4. PHASE 2: PATTERN ANALYSIS
 
 ### Working Examples
 □ Found similar working code in codebase
@@ -101,7 +101,7 @@ Use this checklist for ANY frontend technical issue. Complete all applicable pha
 
 ---
 
-## 5. 🧪 PHASE 3: HYPOTHESIS AND TESTING
+## 5. PHASE 3: HYPOTHESIS AND TESTING
 
 ### Hypothesis Formation
 □ Stated hypothesis clearly: "I think X causes Y because Z"
@@ -131,7 +131,7 @@ Use this checklist for ANY frontend technical issue. Complete all applicable pha
 
 ---
 
-## 6. 🔧 PHASE 4: IMPLEMENTATION
+## 6. PHASE 4: IMPLEMENTATION
 
 ### Documentation
 □ Added code comments explaining WHY
@@ -160,7 +160,7 @@ Use this checklist for ANY frontend technical issue. Complete all applicable pha
 
 ---
 
-## 7. 🎯 ROOT CAUSE TRACING CHECKLIST
+## 7. ROOT CAUSE TRACING CHECKLIST
 
 Use when errors occur deep in call stack:
 
@@ -182,7 +182,7 @@ Use when errors occur deep in call stack:
 
 ---
 
-## 8. ✅ FINAL VERIFICATION
+## 8. FINAL VERIFICATION
 
 □ Root cause identified and documented
 □ Fix addresses cause, not symptom
@@ -196,7 +196,7 @@ Use when errors occur deep in call stack:
 
 ---
 
-## 9. 🆘 IF STILL STUCK
+## 9. IF STILL STUCK
 
 **After 3 failed fixes:**
 □ Questioned if approach is fundamentally sound
@@ -217,7 +217,7 @@ Use when errors occur deep in call stack:
 
 ---
 
-## 10. 🔗 RELATED RESOURCES
+## 10. RELATED RESOURCES
 
 - [debugging_workflows.md](../../references/debugging/debugging_workflows.md) - Full debugging guide
 - See `workflows-chrome-devtools` skill for DevTools reference

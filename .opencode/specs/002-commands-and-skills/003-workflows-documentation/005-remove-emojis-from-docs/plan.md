@@ -453,7 +453,7 @@ WORKFLOW PER FILE:
 5. Strip emoji + trailing space from each
 6. Write the modified file
 
-FILES: [list of files for this phase]
+FILES: See phase-specific file inventory in Section 4 (Implementation Phases) above.
 
 VERIFICATION: After all edits, grep for remaining emoji H2 patterns. Report count.
 ```

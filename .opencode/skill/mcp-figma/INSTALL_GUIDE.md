@@ -17,21 +17,21 @@ Complete installation and configuration guide for Figma MCP, enabling programmat
 
 ## Table of Contents
 
-0. [🤖 AI INSTALL GUIDE](#-ai-install-guide)
-1. [📖 OVERVIEW](#1--overview)
-2. [📋 PREREQUISITES](#2--prerequisites)
-3. [📥 INSTALLATION](#3--installation)
-4. [⚙️ CONFIGURATION](#4-️-configuration)
-5. [✅ VERIFICATION](#5--verification)
-6. [🚀 USAGE](#6--usage)
-7. [🔧 FEATURES](#7--features)
-8. [💡 EXAMPLES](#8--examples)
-9. [🔧 TROUBLESHOOTING](#9--troubleshooting)
-10. [📚 RESOURCES](#10--resources)
+0. [AI INSTALL GUIDE](#-ai-install-guide)
+1. [OVERVIEW](#1--overview)
+2. [PREREQUISITES](#2--prerequisites)
+3. [INSTALLATION](#3--installation)
+4. [CONFIGURATION](#4-️-configuration)
+5. [VERIFICATION](#5--verification)
+6. [USAGE](#6--usage)
+7. [FEATURES](#7--features)
+8. [EXAMPLES](#8--examples)
+9. [TROUBLESHOOTING](#9--troubleshooting)
+10. [RESOURCES](#10--resources)
 
 ---
 
-## 🤖 AI INSTALL GUIDE
+## AI INSTALL GUIDE
 
 **Copy and paste this prompt to your AI assistant to get installation help:**
 
@@ -66,7 +66,7 @@ Guide me through the setup and verify it works.
 
 ---
 
-## ⚠️ IMPORTANT: Two Installation Options
+## IMPORTANT: Two Installation Options
 
 **There are TWO ways to access Figma via MCP:**
 
@@ -116,7 +116,7 @@ Guide me through the setup and verify it works.
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 Figma MCP provides programmatic access to Figma's design platform. It enables AI assistants to read design files, export images, extract components and styles, manage team projects, and handle collaborative comments.
 
@@ -186,7 +186,7 @@ Both options provide access to Figma's core capabilities:
 
 ---
 
-## 2. 📋 PREREQUISITES
+## 2. PREREQUISITES
 
 ### Option A: Official Figma MCP (Minimal Requirements)
 
@@ -241,7 +241,7 @@ node --version                    # → v18.x or higher
 
 ---
 
-## 3. 📥 INSTALLATION
+## 3. INSTALLATION
 
 Choose your installation option:
 
@@ -417,7 +417,7 @@ npx -y figma-developer-mcp --help
 
 ---
 
-## 4. ⚙️ CONFIGURATION
+## 4. CONFIGURATION
 
 Configuration varies by installation option:
 
@@ -532,7 +532,7 @@ python3 -m json.tool < .utcp_config.json > /dev/null && echo "✅ Valid JSON" ||
 
 ---
 
-## 5. ✅ VERIFICATION
+## 5. VERIFICATION
 
 Verify Figma MCP is working correctly.
 
@@ -603,7 +603,7 @@ https://www.figma.com/file/ABC123xyz/My-Design-File
 
 ---
 
-## 6. 🚀 USAGE
+## 6. USAGE
 
 Usage differs slightly between the two options:
 
@@ -694,7 +694,7 @@ https://www.figma.com/file/ABC123xyz/My-Design-File
 
 ---
 
-## 7. 🔧 FEATURES
+## 7. FEATURES
 
 ### 7.1 File Management Tools
 
@@ -910,7 +910,7 @@ await figma.figma_get_team_styles({
 
 ---
 
-## 8. 💡 EXAMPLES
+## 8. EXAMPLES
 
 ### Example 1: Get Design File Structure
 
@@ -1203,7 +1203,7 @@ call_tool_chain({
 
 ---
 
-## 9. 🔧 TROUBLESHOOTING
+## 9. TROUBLESHOOTING
 
 ### Error Quick Reference
 
@@ -1403,7 +1403,7 @@ await figma.figma_get_file({ fileKey: "abc" });
 
 ---
 
-## 10. 📚 RESOURCES
+## 10. RESOURCES
 
 ### File Locations
 

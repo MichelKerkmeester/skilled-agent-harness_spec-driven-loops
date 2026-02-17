@@ -9,7 +9,12 @@
 <!-- ANCHOR:table-of-contents -->
 ## TABLE OF CONTENTS
 
-- [1. OVERVIEW](#1-overview)
+- [1. OVERVIEW](#1--overview)
+- [PURPOSE](#purpose)
+- [SOURCE SPECS](#source-specs)
+- [DEPENDENCY GRAPH](#dependency-graph)
+- [SUBTASKS](#subtasks)
+- [RELATED DOCUMENTS](#related-documents)
 
 ---
 <!-- /ANCHOR:table-of-contents -->
@@ -22,14 +27,18 @@ This README documents the purpose and usage of this spec folder and links to the
 ---
 <!-- /ANCHOR:overview -->
 
+## OVERVIEW
+
+This specification-only umbrella produces audit and alignment specs for 11 source specs (014–016 agent system, 122–129 spec-kit system) that have been implemented but whose documentation artifacts have not been audited for cross-referential consistency. No code changes — only spec documents in this 130/ folder.
+
 <!-- ANCHOR:purpose -->
-## Purpose
+## PURPOSE
 
 This specification-only umbrella produces audit and alignment specs for 11 source specs (014–016 agent system, 122–129 spec-kit system) that have been implemented but whose documentation artifacts have not been audited for cross-referential consistency. No code changes — only spec documents in this 130/ folder.
 <!-- /ANCHOR:purpose -->
 
 <!-- ANCHOR:source-specs -->
-## Source Specs
+## SOURCE SPECS
 
 ### Agent System Track (specs 014–016)
 
@@ -62,7 +71,7 @@ This specification-only umbrella produces audit and alignment specs for 11 sourc
 <!-- /ANCHOR:source-specs -->
 
 <!-- ANCHOR:dependency-graph -->
-## Dependency Graph
+## DEPENDENCY GRAPH
 
 ```
 ┌─────────────┐  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐
@@ -98,7 +107,7 @@ This specification-only umbrella produces audit and alignment specs for 11 sourc
 <!-- /ANCHOR:dependency-graph -->
 
 <!-- ANCHOR:subtasks -->
-## Subtasks
+## SUBTASKS
 
 | # | Folder | Title | Summary | Depends On |
 |---|--------|-------|---------|------------|
@@ -112,7 +121,7 @@ This specification-only umbrella produces audit and alignment specs for 11 sourc
 <!-- /ANCHOR:subtasks -->
 
 <!-- ANCHOR:related-documents -->
-## Related Documents
+## RELATED DOCUMENTS
 
 - **Specification**: [spec.md](spec.md) — Full Level 3+ umbrella specification
 - **Changelog Reference**: [changelog-reference.md](changelog-reference.md) — Consolidated changelog from all 11 source specs

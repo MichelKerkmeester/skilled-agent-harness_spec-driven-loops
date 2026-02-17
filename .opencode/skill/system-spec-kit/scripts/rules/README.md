@@ -17,19 +17,19 @@ importance_tier: "normal"
 ## TABLE OF CONTENTS
 <!-- ANCHOR:table-of-contents -->
 
-- [1. 📖 OVERVIEW](#1--overview)
-- [2. 🚀 QUICK START](#2--quick-start)
-- [3. 📁 STRUCTURE](#3--structure)
-- [4. ⚡ FEATURES](#4--features)
-- [5. 💡 USAGE EXAMPLES](#5--usage-examples)
-- [6. 🛠️ TROUBLESHOOTING](#6--troubleshooting)
-- [7. 📚 RELATED DOCUMENTS](#7--related-documents)
+- [1. OVERVIEW](#1--overview)
+- [2. QUICK START](#2--quick-start)
+- [3. STRUCTURE](#3--structure)
+- [4. FEATURES](#4--features)
+- [5. USAGE EXAMPLES](#5--usage-examples)
+- [6. TROUBLESHOOTING](#6--troubleshooting)
+- [7. RELATED DOCUMENTS](#7--related-documents)
 
 <!-- /ANCHOR:table-of-contents -->
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 <!-- ANCHOR:overview -->
 
 ### What are Validation Rules?
@@ -65,7 +65,7 @@ Validation rules are modular shell scripts that check spec folders for structura
 
 ---
 
-## 2. 🚀 QUICK START
+## 2. QUICK START
 <!-- ANCHOR:quick-start -->
 
 ### 30-Second Setup
@@ -104,7 +104,7 @@ ls -la .opencode/skill/system-spec-kit/scripts/rules/
 
 ---
 
-## 3. 📁 STRUCTURE
+## 3. STRUCTURE
 <!-- ANCHOR:structure -->
 
 ```
@@ -143,7 +143,7 @@ rules/
 
 ---
 
-## 4. ⚡ FEATURES
+## 4. FEATURES
 <!-- ANCHOR:features -->
 
 ### Rule Interface
@@ -366,7 +366,7 @@ L3+: 10+ major sections, detailed acceptance scenarios
 
 ---
 
-## 5. 💡 USAGE EXAMPLES
+## 5. USAGE EXAMPLES
 <!-- ANCHOR:usage-examples -->
 
 ### Example 1: Basic Validation
@@ -412,7 +412,7 @@ L3+: 10+ major sections, detailed acceptance scenarios
 
 ---
 
-## 6. 🛠️ TROUBLESHOOTING
+## 6. TROUBLESHOOTING
 <!-- ANCHOR:troubleshooting -->
 
 ### Common Issues
@@ -479,7 +479,7 @@ echo "Status: $RULE_STATUS, Message: $RULE_MESSAGE"
 
 ---
 
-## 7. 📚 RELATED DOCUMENTS
+## 7. RELATED DOCUMENTS
 <!-- ANCHOR:related -->
 
 ### Internal Documentation

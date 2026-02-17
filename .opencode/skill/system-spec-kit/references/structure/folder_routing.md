@@ -9,7 +9,7 @@ Stateless spec folder routing with alignment scoring for context preservation.
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 The memory system uses a **stateless CLI-first architecture**. The spec folder path is passed directly to `generate-context.ts` as an argument, then validated with alignment scoring.
 
@@ -37,7 +37,7 @@ Spec folder is passed explicitly as a CLI argument with alignment validation to 
 
 ---
 
-## 2. 🔍 DETECTION LOGIC
+## 2. DETECTION LOGIC
 
 ### Complete Routing Flow
 
@@ -101,7 +101,7 @@ Spec folder is passed explicitly as a CLI argument with alignment validation to 
 
 ---
 
-## 3. 📊 ALIGNMENT SCORING
+## 3. ALIGNMENT SCORING
 
 When saving context, the system calculates an **alignment score** (0-100%) to determine which spec folder best matches the conversation topic.
 
@@ -146,7 +146,7 @@ Stopwords are filtered: `the`, `this`, `that`, `with`, `for`, `and`, `from`, `fi
 
 ---
 
-## 4. 🎯 THRESHOLD BEHAVIOR
+## 4. THRESHOLD BEHAVIOR
 
 | Score      | Tier     | Action                                           |
 | ---------- | -------- | ------------------------------------------------ |
@@ -172,7 +172,7 @@ const ALIGNMENT_CONFIG: AlignmentConfig = {
 
 ---
 
-## 5. 🔍 KEYWORD EXTRACTION
+## 5. KEYWORD EXTRACTION
 
 Keywords are extracted from:
 
@@ -217,7 +217,7 @@ only, own, same, so, than, too, very, just, also
 
 ---
 
-## 6. 💻 USAGE
+## 6. USAGE
 
 ### Command Format
 
@@ -249,7 +249,7 @@ When no spec folder is provided, the AI agent:
 
 ---
 
-## 7. 📂 SUB-FOLDER ROUTING
+## 7. SUB-FOLDER ROUTING
 
 ### Sub-Folder Structure Example
 
@@ -287,7 +287,7 @@ specs/122-skill-standardization/
 
 ---
 
-## 8. 💬 INTERACTIVE PROMPT
+## 8. INTERACTIVE PROMPT
 
 When alignment **< 50%**, user sees an interactive prompt:
 
@@ -316,7 +316,7 @@ Folders matching these patterns are automatically excluded:
 
 ---
 
-## 9. ⚙️ BYPASS OPTIONS
+## 9. BYPASS OPTIONS
 
 ### Environment Variable
 
@@ -344,7 +344,7 @@ Users can set preferences that persist within a session:
 
 ---
 
-## 10. 📝 USAGE EXAMPLES
+## 10. USAGE EXAMPLES
 
 Three practical examples demonstrating each alignment tier and the expected behavior.
 
@@ -445,7 +445,7 @@ Select option (1-4):
 
 ---
 
-## 11. ⚠️ EDGE CASES
+## 11. EDGE CASES
 
 ### No Spec Folder Provided
 
@@ -493,7 +493,7 @@ node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js dat
 
 ---
 
-## 12. ✅ VALIDATION CHECKPOINTS
+## 12. VALIDATION CHECKPOINTS
 
 ### Pre-Save Validation
 
@@ -534,7 +534,7 @@ test -d specs/###-name/memory/ && echo "OK" || echo "MISSING"
 
 ---
 
-## 13. 🔄 MIGRATION FROM MARKER FILES
+## 13. MIGRATION FROM MARKER FILES
 
 If migrating from a system that used `.spec-active` marker files:
 
@@ -561,7 +561,7 @@ find . -name ".spec-active*" -type f 2>/dev/null
 
 ---
 
-## 14. 🔗 RELATED RESOURCES
+## 14. RELATED RESOURCES
 
 ### Reference Files
 - [execution_methods.md](../workflows/execution_methods.md) - Save context workflows

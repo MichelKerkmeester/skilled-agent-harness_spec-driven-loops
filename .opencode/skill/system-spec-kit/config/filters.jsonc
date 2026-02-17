@@ -7,7 +7,12 @@
   // ─────────────────────────────────────────────────────────────
   "pipeline": {
     "enabled": true,
-    "stages": ["noise", "dedupe", "quality"]
+    // Execution order is intentional and consumed as declared.
+    "stages": [
+      "noise",
+      "dedupe",
+      "quality"
+    ]
   },
 
   // ─────────────────────────────────────────────────────────────
@@ -15,6 +20,7 @@
   // ─────────────────────────────────────────────────────────────
   "noise": {
     "enabled": true,
+    // Guardrail: reject very short/low-information content early.
     "minContentLength": 15,
     "minUniqueWords": 3
   },
@@ -24,6 +30,7 @@
   // ─────────────────────────────────────────────────────────────
   "dedupe": {
     "enabled": true,
+    // Hash and threshold tuned for stable near-duplicate suppression.
     "hashLength": 300,
     "similarityThreshold": 0.70
   },
@@ -33,6 +40,7 @@
   // ─────────────────────────────────────────────────────────────
   "quality": {
     "enabled": true,
+    // Warn (do not block) when the weighted quality score is low.
     "warnThreshold": 20,
     "factors": {
       "uniqueness": 0.30,

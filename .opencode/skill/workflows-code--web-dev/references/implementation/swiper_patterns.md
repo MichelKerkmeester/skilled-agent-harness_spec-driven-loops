@@ -9,7 +9,7 @@ Production-tested Swiper.js configurations for carousels and marquees with Inter
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 ### Purpose
 
@@ -39,7 +39,7 @@ Swiper carousels must pause when off-screen to conserve CPU. Use IntersectionObs
 
 ---
 
-## 2. 🎠 TIMELINE CAROUSEL PATTERN
+## 2. TIMELINE CAROUSEL PATTERN
 
 ### Configuration
 
@@ -160,7 +160,7 @@ function initTimelineSwiper() {
 
 ---
 
-## 3. 🎞️ MARQUEE PATTERN
+## 3. MARQUEE PATTERN
 
 ### Configuration
 
@@ -255,7 +255,7 @@ if (cappedRepeats > 1) {
 
 ---
 
-## 4. 👁️ INTERSECTIONOBSERVER AUTOPLAY CONTROL
+## 4. INTERSECTIONOBSERVER AUTOPLAY CONTROL
 
 ### Core Pattern
 
@@ -341,7 +341,7 @@ const visibilityObserver = createAutoplayVisibilityObserver(swiper, container);
 
 ---
 
-## 5. ♿ ACCESSIBILITY CONFIGURATION
+## 5. ACCESSIBILITY CONFIGURATION
 
 ### Interactive Carousels (a11y: enabled)
 
@@ -413,7 +413,7 @@ a11y: false,
 
 ---
 
-## 6. 🏷️ WEBFLOW CLASS NAMING
+## 6. WEBFLOW CLASS NAMING
 
 ### Custom Class Configuration
 
@@ -482,7 +482,7 @@ navigation: {
 
 ---
 
-## 7. 🚀 INITIALIZATION PATTERNS
+## 7. INITIALIZATION PATTERNS
 
 ### CDN Initialization Guard
 
@@ -558,7 +558,7 @@ if (window.Webflow?.push) {
 
 ---
 
-## 8. 📋 COMMON PATTERNS SUMMARY
+## 8. COMMON PATTERNS SUMMARY
 
 ### Configuration Templates
 
@@ -611,7 +611,7 @@ const marqueeConfig = {
 
 ---
 
-## 9. 🛠️ TROUBLESHOOTING
+## 9. TROUBLESHOOTING
 
 ### Swiper Not Initializing
 
@@ -676,7 +676,7 @@ clone.setAttribute("aria-hidden", "true");
 
 ---
 
-## 10. 🔗 RELATED RESOURCES
+## 10. RELATED RESOURCES
 
 ### Reference Files
 - [observer_patterns.md](./observer_patterns.md) - IntersectionObserver deep dive

@@ -14,20 +14,20 @@ importance_tier: "normal"
 <!-- ANCHOR:table-of-contents -->
 ## TABLE OF CONTENTS
 
-- [1. 📖 OVERVIEW](#1--overview)
-- [2. 📋 CURRENT INVENTORY](#2--current-inventory)
-- [3. 📌 BEHAVIOR](#3--behavior)
-- [4. 📌 RUNTIME](#4--runtime)
+- [1. OVERVIEW](#1--overview)
+- [2. CURRENT INVENTORY](#2--current-inventory)
+- [3. BEHAVIOR](#3--behavior)
+- [4. RUNTIME](#4--runtime)
 
 <!-- /ANCHOR:table-of-contents -->
 <!-- ANCHOR:overview -->
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 The `renderers/` directory turns extracted session data into markdown output for memory and spec-context documents.
 
 <!-- /ANCHOR:overview -->
 <!-- ANCHOR:current-inventory -->
-## 2. 📋 CURRENT INVENTORY
+## 2. CURRENT INVENTORY
 
 
 - `template-renderer.ts` - variable substitution, sections, loops, and cleanup
@@ -36,7 +36,7 @@ The `renderers/` directory turns extracted session data into markdown output for
 
 <!-- /ANCHOR:current-inventory -->
 <!-- ANCHOR:behavior -->
-## 3. 📌 BEHAVIOR
+## 3. BEHAVIOR
 
 
 - Supports Mustache-like placeholders and section blocks.
@@ -47,7 +47,7 @@ The `renderers/` directory turns extracted session data into markdown output for
 
 <!-- /ANCHOR:behavior -->
 <!-- ANCHOR:runtime -->
-## 4. 📌 RUNTIME
+## 4. RUNTIME
 
 
 Compile TypeScript and use runtime output from `dist/renderers/`.

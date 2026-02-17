@@ -6,7 +6,7 @@
 # patterns after upgrade-level.sh + auto-populate.
 # Bash 3.2+ compatible (macOS and Linux).
 
-set -eo pipefail
+set -euo pipefail
 
 VERSION="1.0.0"
 
@@ -54,13 +54,13 @@ while [[ $# -gt 0 ]]; do
         --json)     JSON_MODE=true; shift ;;
         --verbose)  VERBOSE=true; shift ;;
         --help|-h)  usage; exit 0 ;;
-        -*)         echo "Unknown option: $1"; usage; exit 2 ;;
+        -*)         echo "Unknown option: $1" >&2; usage >&2; exit 2 ;;
         *)
             if [[ -z "$FOLDER_PATH" ]]; then
                 FOLDER_PATH="$1"
             else
-                echo "Error: unexpected argument '$1'"
-                usage
+                echo "Error: unexpected argument '$1'" >&2
+                usage >&2
                 exit 2
             fi
             shift
@@ -69,8 +69,8 @@ while [[ $# -gt 0 ]]; do
 done
 
 if [[ -z "$FOLDER_PATH" ]]; then
-    echo "Error: spec folder path required"
-    usage
+    echo "Error: spec folder path required" >&2
+    usage >&2
     exit 2
 fi
 
@@ -78,7 +78,7 @@ fi
 FOLDER_PATH="${FOLDER_PATH%/}"
 
 if [[ ! -d "$FOLDER_PATH" ]]; then
-    echo "Error: folder not found: $FOLDER_PATH"
+    echo "Error: folder not found: $FOLDER_PATH" >&2
     exit 2
 fi
 

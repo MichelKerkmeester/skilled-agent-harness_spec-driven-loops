@@ -16,19 +16,19 @@ importance_tier: "normal"
 
 #### TABLE OF CONTENTS
 
-1. [📖 OVERVIEW](#1--overview)
-2. [🚀 QUICK START](#2--quick-start)
-3. [📁 STRUCTURE](#3--structure)
-4. [⚡ FEATURES](#4--features)
-5. [⚙️ CONFIGURATION](#5--configuration)
-6. [💡 EXAMPLES](#6--examples)
-7. [🛠️ TROUBLESHOOTING](#7--troubleshooting)
-8. [📚 RELATED](#8--related)
-9. [📝 CHANGELOG](#9--changelog)
+1. [OVERVIEW](#1--overview)
+2. [QUICK START](#2--quick-start)
+3. [STRUCTURE](#3--structure)
+4. [FEATURES](#4--features)
+5. [CONFIGURATION](#5--configuration)
+6. [EXAMPLES](#6--examples)
+7. [TROUBLESHOOTING](#7--troubleshooting)
+8. [RELATED](#8--related)
+9. [CHANGELOG](#9--changelog)
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 <!-- ANCHOR:overview -->
 
 This skill provides unified workflow guidance across specialized code quality domains for frontend development. It enforces a mandatory development lifecycle: Research (optional) -> Implementation -> Code Quality Gate -> Debugging (if needed) -> Verification (MANDATORY).
@@ -41,7 +41,7 @@ It covers the full frontend development spectrum including async handling, form 
 
 ---
 
-## 2. 🚀 QUICK START
+## 2. QUICK START
 <!-- ANCHOR:quick-start -->
 
 This skill activates automatically via Gate 2 skill routing when frontend development tasks are detected.
@@ -66,7 +66,7 @@ Phase 0: Research (optional) -> Phase 1: Implementation -> Phase 1.5: Code Quali
 
 ---
 
-## 3. 📁 STRUCTURE
+## 3. STRUCTURE
 <!-- ANCHOR:structure -->
 
 ```
@@ -130,7 +130,7 @@ Phase 0: Research (optional) -> Phase 1: Implementation -> Phase 1.5: Code Quali
 
 ---
 
-## 4. ⚡ FEATURES
+## 4. FEATURES
 <!-- ANCHOR:features -->
 
 - **Smart routing:** Keyword-based resource loading at multiple levels (ALWAYS, CONDITIONAL, ON_DEMAND)
@@ -147,7 +147,7 @@ Phase 0: Research (optional) -> Phase 1: Implementation -> Phase 1.5: Code Quali
 
 ---
 
-## 5. ⚙️ CONFIGURATION
+## 5. CONFIGURATION
 <!-- ANCHOR:configuration -->
 
 **Version:** 1.0.6.0
@@ -175,7 +175,7 @@ Phase 0: Research (optional) -> Phase 1: Implementation -> Phase 1.5: Code Quali
 
 ---
 
-## 6. 💡 EXAMPLES
+## 6. EXAMPLES
 <!-- ANCHOR:usage-examples -->
 
 **Common minification workflow:**
@@ -205,7 +205,7 @@ wrangler r2 object put project-cdn/js/file.min.js \
 
 ---
 
-## 7. 🛠️ TROUBLESHOOTING
+## 7. TROUBLESHOOTING
 <!-- ANCHOR:troubleshooting -->
 
 | Issue                                  | Resolution                                          |
@@ -221,7 +221,7 @@ wrangler r2 object put project-cdn/js/file.min.js \
 
 ---
 
-## 8. 📚 RELATED
+## 8. RELATED
 <!-- ANCHOR:related -->
 
 | Resource                        | Relationship                                      |
@@ -237,7 +237,7 @@ wrangler r2 object put project-cdn/js/file.min.js \
 
 ---
 
-## 9. 📝 CHANGELOG
+## 9. CHANGELOG
 <!-- ANCHOR:changelog -->
 
 ### 2026-02-14 - v1.0.6.0

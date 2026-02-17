@@ -19,22 +19,22 @@ Spec Kit is a unified documentation and memory system that makes AI-assisted dev
 ## TABLE OF CONTENTS
 <!-- ANCHOR:table-of-contents -->
 
-- [1. 📖 OVERVIEW](#1--overview)
-- [2. 🚀 QUICK START](#2--quick-start)
-- [3. 📊 DOCUMENTATION LEVELS](#3--documentation-levels)
-- [4. ⚡ COMMANDS](#4--commands)
-- [5. 💾 MEMORY SYSTEM](#5--memory-system)
-- [6. 📁 TEMPLATES](#6--templates)
-- [7. 🔧 SCRIPTS](#7--scripts)
-- [8. 🛠️ TROUBLESHOOTING](#8--troubleshooting)
-- [9. 📚 RELATED RESOURCES](#9--related-resources)
-- [10. 📋 RECENT CHANGES](#10--recent-changes)
-- [11. 📊 IN SUMMARY](#11--the-bottom-line)
+- [1. OVERVIEW](#1--overview)
+- [2. QUICK START](#2--quick-start)
+- [3. DOCUMENTATION LEVELS](#3--documentation-levels)
+- [4. COMMANDS](#4--commands)
+- [5. MEMORY SYSTEM](#5--memory-system)
+- [6. TEMPLATES](#6--templates)
+- [7. SCRIPTS](#7--scripts)
+- [8. TROUBLESHOOTING](#8--troubleshooting)
+- [9. RELATED RESOURCES](#9--related-resources)
+- [10. RECENT CHANGES](#10--recent-changes)
+- [11. IN SUMMARY](#11--the-bottom-line)
 
 ---
 
 <!-- /ANCHOR:table-of-contents -->
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 <!-- ANCHOR:overview -->
 
 ### The Problem Nobody Talks About
@@ -111,7 +111,7 @@ Spec Kit adds the missing layers: persistent memory, enforced documentation, aut
 ---
 
 <!-- /ANCHOR:overview -->
-## 2. 🚀 QUICK START
+## 2. QUICK START
 <!-- ANCHOR:quick-start -->
 
 ### 30-Second Setup
@@ -155,7 +155,7 @@ ls specs/###-user-authentication/
 ---
 
 <!-- /ANCHOR:quick-start -->
-## 3. 📊 DOCUMENTATION LEVELS
+## 3. DOCUMENTATION LEVELS
 <!-- ANCHOR:documentation-levels -->
 
 ### Progressive Enhancement
@@ -200,7 +200,7 @@ specs/042-user-authentication/
 ---
 
 <!-- /ANCHOR:documentation-levels -->
-## 4. ⚡ COMMANDS
+## 4. COMMANDS
 <!-- ANCHOR:commands -->
 
 ### Spec Kit Commands
@@ -264,7 +264,7 @@ The `/spec_kit:debug` command prompts for model selection, then dispatches to th
 ---
 
 <!-- /ANCHOR:commands -->
-## 5. 💾 MEMORY SYSTEM
+## 5. MEMORY SYSTEM
 <!-- ANCHOR:memory-system -->
 
 ### Memory Architecture
@@ -519,7 +519,7 @@ The formula: `score *= (0.5 + importance_weight)`. At equal semantic relevance, 
 ---
 
 <!-- /ANCHOR:memory-system -->
-## 6. 📁 TEMPLATES
+## 6. TEMPLATES
 <!-- ANCHOR:templates -->
 
 ### Template Overview
@@ -575,7 +575,7 @@ cp .opencode/skill/system-spec-kit/templates/handover.md specs/###-name/
 ---
 
 <!-- /ANCHOR:templates -->
-## 7. 🔧 SCRIPTS
+## 7. SCRIPTS
 <!-- ANCHOR:scripts -->
 
 ### Script Overview
@@ -633,7 +633,7 @@ node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js spe
 ---
 
 <!-- /ANCHOR:scripts -->
-## 8. 🛠️ TROUBLESHOOTING
+## 8. TROUBLESHOOTING
 <!-- ANCHOR:troubleshooting -->
 
 ### Common Issues
@@ -709,7 +709,7 @@ Every error now includes actionable recovery guidance. 49 error codes mapped to 
 ---
 
 <!-- /ANCHOR:troubleshooting -->
-## 9. 📚 RELATED RESOURCES
+## 9. RELATED RESOURCES
 <!-- ANCHOR:related -->
 
 ### Internal Documentation

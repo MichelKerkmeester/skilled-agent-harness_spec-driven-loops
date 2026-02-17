@@ -6,8 +6,6 @@
 // this file exists for plain-JS files (e.g., vector-index-impl.js)
 // that need a real class to extend at runtime.
 // ───────────────────────────────────────────────────────────────
-'use strict';
-
 /**
  * Abstract base class for vector store implementations.
  * All methods throw by default — subclasses must override them.

@@ -167,13 +167,13 @@ You are continuing a deep res
 ## 3. DETAILED CHANGES
 
 <!-- ANCHOR:implementation-phase-input-collection-status-29582e27-session-1766499184801-tq1lcssi1 -->
-### FEATURE: ## 🔒 PHASE 1: INPUT COLLECTION
+### FEATURE: ## PHASE 1: INPUT COLLECTION
 
 **STATUS: ☐ BLOCKED**
 
 The `<user_feature>` par
 
-## 🔒 PHASE 1: INPUT COLLECTION
+## PHASE 1: INPUT COLLECTION
 
 **STATUS: ☐ BLOCKED**
 
@@ -323,11 +323,11 @@ Now launching 5 comprehensive verification agents:
 <!-- /ANCHOR:implementation-now-launching-comprehensive-verification-156b95d7-session-1766499184801-tq1lcssi1 -->
 
 <!-- ANCHOR:implementation-implementation-summary-file-specs004speckit010speckitre-5fc92af0-session-1766499184801-tq1lcssi1 -->
-### FEATURE: ## ✅ Implementation Summary Created
+### FEATURE: ## Implementation Summary Created
 
 **File:** `specs/004-speckit/010-speckit-re
 
-## ✅ Implementation Summary Created
+## Implementation Summary Created
 
 **File:** `specs/004-speckit/010-speckit-refinement/implementation-summary.md`
 **Lines:** 263

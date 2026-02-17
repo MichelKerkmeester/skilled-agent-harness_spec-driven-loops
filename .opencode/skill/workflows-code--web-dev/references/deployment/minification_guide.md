@@ -9,7 +9,7 @@ Safe minification workflow for Webflow projects with verification to prevent bre
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 ### Purpose
 
@@ -47,7 +47,7 @@ Minification can break code when:
 
 ---
 
-## 2. ⚙️ TERSER CONFIGURATION
+## 2. TERSER CONFIGURATION
 
 ### Basic Command
 
@@ -91,7 +91,7 @@ wc -c src/javascript/hero/hero_video.js src/javascript/z_minified/hero/hero_vide
 
 ---
 
-## 3. 🎯 CRITICAL PATTERNS FOR WEBFLOW
+## 3. CRITICAL PATTERNS FOR WEBFLOW
 
 These patterns MUST be preserved during minification. The verification scripts check for them.
 
@@ -169,7 +169,7 @@ animate(element, { opacity: [0, 1], y: ['4rem', '0px'] });
 
 ---
 
-## 4. 🔄 SAFE MINIFICATION WORKFLOW
+## 4. SAFE MINIFICATION WORKFLOW
 
 ### Step 1: Minify with Terser
 
@@ -264,7 +264,7 @@ bdg stop
 
 ---
 
-## 5. 🔍 VERIFICATION SCRIPTS REFERENCE
+## 5. VERIFICATION SCRIPTS REFERENCE
 
 ### verify-minification.mjs
 
@@ -344,7 +344,7 @@ Summary:
 
 ---
 
-## 6. 🐛 DEBUGGING MINIFICATION ISSUES
+## 6. DEBUGGING MINIFICATION ISSUES
 
 ### Common Error: "X is not defined"
 
@@ -431,7 +431,7 @@ window['initHero'] = function() { ... };  // Bracket notation preserves name
 
 ---
 
-## 7. 📦 BATCH MINIFICATION WORKFLOW
+## 7. BATCH MINIFICATION WORKFLOW
 
 ### For All Files
 
@@ -472,7 +472,7 @@ bdg stop
 
 ---
 
-## 8. 📋 RULES
+## 8. RULES
 
 ### ✅ ALWAYS
 
@@ -501,7 +501,7 @@ bdg stop
 
 ---
 
-## 9. 🔗 RELATED RESOURCES
+## 9. RELATED RESOURCES
 
 ### Reference Files
 

@@ -17,17 +17,17 @@ importance_tier: "normal"
 ## TABLE OF CONTENTS
 <!-- ANCHOR:table-of-contents -->
 
-- [1. 📖 OVERVIEW](#1--overview)
-- [2. 📁 STRUCTURE](#2--structure)
-- [3. ⚡ FEATURES](#3--features)
-- [4. 💡 USAGE EXAMPLES](#4--usage-examples)
-- [5. 🔗 RELATED RESOURCES](#5--related-resources)
+- [1. OVERVIEW](#1--overview)
+- [2. STRUCTURE](#2--structure)
+- [3. FEATURES](#3--features)
+- [4. USAGE EXAMPLES](#4--usage-examples)
+- [5. RELATED RESOURCES](#5--related-resources)
 
 <!-- /ANCHOR:table-of-contents -->
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 <!-- ANCHOR:overview -->
 
 The embeddings module documents the embedding provider chain now sourced from `@spec-kit/shared/embeddings`. The runtime still uses three-tier fallback: primary API provider, optional local fallback, then BM25-only mode.
@@ -66,7 +66,7 @@ Text-based search only
 
 ---
 
-## 2. 📁 STRUCTURE
+## 2. STRUCTURE
 <!-- ANCHOR:structure -->
 
 > **Note**: Source files (`provider-chain.ts`, `index.ts`) were relocated to `@spec-kit/shared/embeddings` during the shared package migration. This directory retains the README for architectural reference. The `lib/providers/embeddings.ts` module re-exports from the shared package.
@@ -87,7 +87,7 @@ embeddings/
 
 ---
 
-## 3. ⚡ FEATURES
+## 3. FEATURES
 <!-- ANCHOR:features -->
 
 ### Provider Chain
@@ -151,7 +151,7 @@ const metadata = bm25.get_metadata();
 
 ---
 
-## 4. 💡 USAGE EXAMPLES
+## 4. USAGE EXAMPLES
 <!-- ANCHOR:usage-examples -->
 
 ### Example 1: Create and Use Provider Chain
@@ -234,7 +234,7 @@ console.log(JSON.stringify(status, null, 2));
 
 ---
 
-## 5. 🔗 RELATED RESOURCES
+## 5. RELATED RESOURCES
 <!-- ANCHOR:related -->
 
 ### Internal Documentation

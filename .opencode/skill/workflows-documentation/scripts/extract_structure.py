@@ -772,10 +772,12 @@ def run_checklist(doc_type: str, frontmatter_data: Dict[str, Any], headings: Lis
     }
     
     for check_id, check_name, check_fn in checklist:
+        exception_detail = None
         try:
             status = 'pass' if check_fn(fm_data, headings, content) else 'fail'
-        except Exception as e:
+        except Exception as exc:
             status = 'fail'
+            exception_detail = f"{type(exc).__name__}: {exc}"
         
         if status == 'pass':
             passed += 1
@@ -783,6 +785,8 @@ def run_checklist(doc_type: str, frontmatter_data: Dict[str, Any], headings: Lis
         else:
             failed += 1
             details = f"Check failed: {check_name}"
+            if exception_detail:
+                details = f"{details} ({exception_detail})"
         
         results.append({
             'id': check_id,
@@ -1161,8 +1165,8 @@ def extract_structure(filepath: str) -> Dict[str, Any]:
 
     try:
         content = path.read_text(encoding='utf-8')
-    except Exception as e:
-        return {'error': f"Failed to read file: {str(e)}"}
+    except Exception as exc:
+        return {'error': f"Failed to read file ({type(exc).__name__}): {exc}"}
 
     doc_type, detected_from = detect_document_type(filepath)
     parsed_fm, fm_issues, raw_fm = parse_frontmatter(content)

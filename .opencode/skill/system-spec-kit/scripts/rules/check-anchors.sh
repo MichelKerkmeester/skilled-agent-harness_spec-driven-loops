@@ -1,10 +1,11 @@
 #!/usr/bin/env bash
 # ───────────────────────────────────────────────────────────────
-# COMPONENT: Check Anchors
+# RULE: CHECK-ANCHORS
 # ───────────────────────────────────────────────────────────────
 
-# T504 FIX: Using 'set -eo pipefail' (not -u) for macOS bash 3.2 compatibility.
-# The -u flag causes failures with empty arrays and when sourced by the orchestrator.
+# Strict mode baseline for sourced rule scripts.
+# -u is intentionally disabled because this file is sourced by validate.sh and relies
+# on shared global state plus empty-array patterns across Bash 3.2 environments.
 set -eo pipefail
 
 # Rule: ANCHORS_VALID

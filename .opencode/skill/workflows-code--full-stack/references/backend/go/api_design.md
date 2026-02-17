@@ -9,7 +9,7 @@ Standards for designing HTTP controllers and endpoints in backend systems, cover
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 ### Purpose
 
@@ -39,7 +39,7 @@ Level 2: Related knowledge files
 
 ---
 
-## 2. 🏗️ HTTP CONTROLLERS STRUCTURE
+## 2. HTTP CONTROLLERS STRUCTURE
 
 ### How Do I Define a Controller?
 
@@ -68,7 +68,7 @@ func (c httpControllers) SetupHTTP() error {
 
 ---
 
-## 3. 🛣️ ROUTE DEFINITION PATTERNS
+## 3. ROUTE DEFINITION PATTERNS
 
 ### How Do I Define Route Groups?
 
@@ -98,7 +98,7 @@ func (c httpControllers) SetupHTTP() error {
 
 ---
 
-## 4. ⚠️ ROUTE PRECEDENCE (CRITICAL)
+## 4. ROUTE PRECEDENCE (CRITICAL)
 
 ### Why Does Route Order Matter?
 
@@ -194,7 +194,7 @@ When reviewing HTTP controller code, verify:
 
 ---
 
-## 5. 🔧 HANDLER IMPLEMENTATION
+## 5. HANDLER IMPLEMENTATION
 
 ### What Is the Handler Signature?
 
@@ -238,7 +238,7 @@ func (c httpControllers) postVendorProvidePaymentInfo(ctx http.ServerCtx) error 
 
 ---
 
-## 6. 📦 REQUEST/RESPONSE PATTERNS
+## 6. REQUEST/RESPONSE PATTERNS
 
 ### How Do I Define Request Models?
 
@@ -317,7 +317,7 @@ return http.Response(ctx, "payment info already provided", 208)
 
 ---
 
-## 7. 🔍 QUERY PARAMETERS
+## 7. QUERY PARAMETERS
 
 ### How Do I Parse Query Parameters?
 
@@ -362,7 +362,7 @@ func (c httpControllers) listVendorInvoices(ctx http.ServerCtx) error {
 
 ---
 
-## 8. 🔐 AUTHENTICATION & AUTHORIZATION
+## 8. AUTHENTICATION & AUTHORIZATION
 
 ### How Do I Extract JWT Data?
 
@@ -398,7 +398,7 @@ couponsPrivateGroup := c.server.Group("/coupons", c.gates.IsAuthenticated.Authen
 
 ---
 
-## 9. 📊 HTTP STATUS CODES
+## 9. HTTP STATUS CODES
 
 ### What Status Codes Are Used?
 
@@ -428,7 +428,7 @@ return http.Response(ctx, "no active main subscription", 404)
 
 ---
 
-## 10. ⚠️ ERROR HANDLING
+## 10. ERROR HANDLING
 
 ### How Do I Return Validation Errors?
 
@@ -468,7 +468,7 @@ if err != nil {
 
 ---
 
-## 11. 📋 RULES
+## 11. RULES
 
 ### ALWAYS
 
@@ -504,7 +504,7 @@ if err != nil {
 
 ---
 
-## 12. 🔗 RELATED RESOURCES
+## 12. RELATED RESOURCES
 
 | File                                                                       | Purpose                               |
 | -------------------------------------------------------------------------- | ------------------------------------- |

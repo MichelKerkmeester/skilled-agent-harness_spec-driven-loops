@@ -1,10 +1,10 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Multi-Viewport Testing Script
 # Purpose: Test page rendering and animations across multiple viewports
 # Usage: ./multi-viewport-test.sh [URL] [SELECTOR] [TRIGGER_CLASS]
 # Example: ./multi-viewport-test.sh https://example.com ".hero" "animate-in"
 
-set -e  # Exit on error
+set -euo pipefail
 
 # Configuration
 URL="${1:-https://example.com}"
@@ -165,7 +165,7 @@ echo ""
 echo "📁 Results saved to: $OUTPUT_DIR/$DATE_STAMP/"
 echo ""
 
-if [ $FAILED_TESTS -eq 0 ]; then
+if [ "$FAILED_TESTS" -eq 0 ]; then
   echo "✅ All viewport tests PASSED"
   exit 0
 else

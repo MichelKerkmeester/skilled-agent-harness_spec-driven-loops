@@ -9,7 +9,7 @@ A comprehensive guide to SwiftUI view composition, state management, navigation 
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 ### Purpose
 
@@ -36,7 +36,7 @@ Declarative UI + unidirectional data flow + composition = predictable, maintaina
 
 ---
 
-## 2. 🚀 QUICK START: CREATING A SWIFTUI VIEW
+## 2. QUICK START: CREATING A SWIFTUI VIEW
 
 ### The Checklist
 
@@ -146,7 +146,7 @@ struct ProductCardView: View {
 
 ---
 
-## 3. 🧠 STATE MANAGEMENT
+## 3. STATE MANAGEMENT
 
 ### State Property Wrappers Overview
 
@@ -436,7 +436,7 @@ struct MyApp: App {
 
 ---
 
-## 4. 🧭 NAVIGATION PATTERNS
+## 4. NAVIGATION PATTERNS
 
 ### NavigationStack (iOS 16+)
 
@@ -660,7 +660,7 @@ struct AlertExampleView: View {
 
 ---
 
-## 5. 📋 LIST AND DATA DISPLAY PATTERNS
+## 5. LIST AND DATA DISPLAY PATTERNS
 
 ### Basic List Patterns
 
@@ -907,7 +907,7 @@ struct ProductGridItem: View {
 
 ---
 
-## 6. 🔧 CUSTOM VIEW MODIFIERS
+## 6. CUSTOM VIEW MODIFIERS
 
 ### Creating Custom Modifiers
 
@@ -1072,7 +1072,7 @@ struct ShakeModifier: ViewModifier {
 
 ---
 
-## 7. ⚙️ ENVIRONMENT AND PREFERENCES
+## 7. ENVIRONMENT AND PREFERENCES
 
 ### Custom Environment Values
 
@@ -1233,7 +1233,7 @@ struct HighlightableView: View {
 
 ---
 
-## 8. 📐 GEOMETRY AND LAYOUT
+## 8. GEOMETRY AND LAYOUT
 
 ### GeometryReader
 
@@ -1404,7 +1404,7 @@ struct TagsView: View {
 
 ---
 
-## 9. 🎬 ANIMATIONS
+## 9. ANIMATIONS
 
 ### Basic Animations
 
@@ -1558,7 +1558,7 @@ struct AnimationValues {
 
 ---
 
-## 10. 📋 RULES
+## 10. RULES
 
 ### ALWAYS
 
@@ -1595,7 +1595,7 @@ struct AnimationValues {
 
 ---
 
-## 11. 🔗 RELATED RESOURCES
+## 11. RELATED RESOURCES
 
 | File | Purpose |
 |------|---------|

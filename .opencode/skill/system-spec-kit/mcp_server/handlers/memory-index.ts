@@ -221,7 +221,7 @@ interface ScanArgs {
 }
 
 /* ---------------------------------------------------------------
-   4. SHARED INDEXING LOGIC
+   5. SHARED INDEXING LOGIC
 --------------------------------------------------------------- */
 
 import { indexMemoryFile } from './memory-save';
@@ -232,7 +232,7 @@ async function indexSingleFile(filePath: string, force: boolean = false): Promis
 }
 
 /* ---------------------------------------------------------------
-   5. CONSTITUTIONAL FILE DISCOVERY
+   6. CONSTITUTIONAL FILE DISCOVERY
 --------------------------------------------------------------- */
 
 /** Discover constitutional memory files from skill constitutional directories */
@@ -297,7 +297,7 @@ function findSkillReadmes(workspacePath: string): string[] {
           results.push(fullPath);
         }
       }
-    } catch (err) {
+    } catch (_err: unknown) {
       // Skip directories we can't read
     }
   }
@@ -344,7 +344,7 @@ async function findProjectReadmes(workspaceRoot: string): Promise<string[]> {
 }
 
 /* ---------------------------------------------------------------
-   6. MEMORY INDEX SCAN HANDLER
+   7. MEMORY INDEX SCAN HANDLER
 --------------------------------------------------------------- */
 
 /** Handle memory_index_scan tool - scans and indexes memory files with incremental support */
@@ -364,8 +364,8 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
     if (profile) {
       console.error(`[memory_index_scan] Using embedding provider: ${profile.provider}, model: ${profile.model}, dimension: ${profile.dim}`);
     }
-  } catch (dim_check_error: unknown) {
-    const message = toErrorMessage(dim_check_error);
+  } catch (dimCheckError: unknown) {
+    const message = toErrorMessage(dimCheckError);
     console.warn('[memory_index_scan] Could not verify embedding dimension:', message);
   }
 
@@ -483,7 +483,7 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
     for (let i = 0; i < batchResults.length; i++) {
       const result = batchResults[i];
       const filePath = filesToIndex[i];
-      const is_constitutional = constitutionalSet.has(filePath);
+      const isConstitutional = constitutionalSet.has(filePath);
 
       if (result.error) {
         results.failed++;
@@ -509,7 +509,7 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
           successfullyIndexedFiles.push(filePath);
         }
 
-        if (is_constitutional) {
+        if (isConstitutional) {
           if (result.status === 'indexed') {
             results.constitutional.indexed++;
           } else if (result.status === 'unchanged') {
@@ -524,7 +524,7 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
             specFolder: result.specFolder,
             status: result.status,
             id: result.id,
-            isConstitutional: is_constitutional
+            isConstitutional
           });
         }
       }
@@ -656,7 +656,7 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
 }
 
 /* ---------------------------------------------------------------
-   7. EXPORTS
+   8. EXPORTS
 --------------------------------------------------------------- */
 
 export {

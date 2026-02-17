@@ -9,7 +9,7 @@ A practical guide to building components in a React Native/Expo codebase, explai
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 ### Purpose
 
@@ -29,7 +29,7 @@ Consistent patterns + type safety + scale system = maintainable, responsive Reac
 
 ---
 
-## 2. 🚀 QUICK START: CREATING YOUR FIRST COMPONENT
+## 2. QUICK START: CREATING YOUR FIRST COMPONENT
 
 ### The Checklist
 
@@ -126,7 +126,7 @@ export type { MyComponentProps } from './my-component.props';
 
 ---
 
-## 3. 📁 FILE NAMING CONVENTIONS
+## 3. FILE NAMING CONVENTIONS
 
 ### Why Kebab-Case?
 
@@ -155,7 +155,7 @@ We use `kebab-case` (lowercase with hyphens) for files because:
 
 ---
 
-## 4. 📝 TYPESCRIPT: PROPS INTERFACE PATTERNS
+## 4. TYPESCRIPT: PROPS INTERFACE PATTERNS
 
 ### Extending React Native Types
 
@@ -210,7 +210,7 @@ export interface AppButtonProps extends TouchableOpacityProps {
 
 ---
 
-## 5. 🎨 STYLING: THE SCALE SYSTEM
+## 5. STYLING: THE SCALE SYSTEM
 
 ### Why `scale()`?
 
@@ -264,7 +264,7 @@ width: '100%',  // Already relative
 
 ---
 
-## 6. 🎯 DESIGN TOKENS: COLORS & TYPOGRAPHY
+## 6. DESIGN TOKENS: COLORS & TYPOGRAPHY
 
 ### Using Colors
 
@@ -338,7 +338,7 @@ import { StyledText } from 'components/styled-text/styled-text';
 
 ---
 
-## 7. 🧩 COMPONENT PATTERNS
+## 7. COMPONENT PATTERNS
 
 ### The ScreenView Wrapper
 
@@ -418,7 +418,7 @@ return <Content data={data} />;
 
 ---
 
-## 8. ⚠️ COMMON MISTAKES AND HOW TO AVOID THEM
+## 8. COMMON MISTAKES AND HOW TO AVOID THEM
 
 ### Mistake 1: Inline Styles
 
@@ -493,7 +493,7 @@ const Button = ({ variant = 'primary' }) => {
 
 ---
 
-## 9. 📝 FORM COMPONENTS
+## 9. FORM COMPONENTS
 
 ### Using AppForm (Formik Wrapper)
 
@@ -547,7 +547,7 @@ const schema = Yup.object().shape({
 
 ---
 
-## 10. ⚡ PERFORMANCE PATTERNS
+## 10. PERFORMANCE PATTERNS
 
 ### When to Use React.memo
 
@@ -601,7 +601,7 @@ const fullName = `${firstName} ${lastName}`;
 
 ---
 
-## 11. 📱 SAFE AREA HANDLING
+## 11. SAFE AREA HANDLING
 
 ### Using Safe Area Insets
 
@@ -643,7 +643,7 @@ const MyScreen = () => {
 
 ---
 
-## 12. 📦 IMPORT ORGANIZATION
+## 12. IMPORT ORGANIZATION
 
 ### Import Order
 
@@ -695,7 +695,7 @@ import { styles } from './my-component.styles';
 
 ---
 
-## 13. 📋 QUICK REFERENCE: COMPONENT CHECKLIST
+## 13. QUICK REFERENCE: COMPONENT CHECKLIST
 
 Before submitting your component, verify:
 
@@ -711,7 +711,7 @@ Before submitting your component, verify:
 
 ---
 
-## 14. 📂 KEY FILES REFERENCE
+## 14. KEY FILES REFERENCE
 
 | Purpose | Path |
 |---------|------|
@@ -726,7 +726,7 @@ Before submitting your component, verify:
 
 ---
 
-## 15. ✅ DO THIS, NOT THAT
+## 15. DO THIS, NOT THAT
 
 | ❌ Don't | ✅ Do | Why |
 |----------|-------|-----|
@@ -740,7 +740,7 @@ Before submitting your component, verify:
 
 ---
 
-## 16. 🔗 RELATED RESOURCES
+## 16. RELATED RESOURCES
 
 ### Related References
 - [Expo Patterns](./expo-patterns.md) - Expo-specific patterns and configuration

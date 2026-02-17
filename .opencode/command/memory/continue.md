@@ -56,7 +56,7 @@ operating_mode:
 
 ---
 
-## 1. 🔧 MCP ENFORCEMENT MATRIX
+## 1. MCP ENFORCEMENT MATRIX
 
 **CRITICAL:** This command uses MCP tools directly. Native MCP only - NEVER Code Mode.
 
@@ -85,7 +85,7 @@ Read({ filePath: "<absolute_path>" })
 
 ---
 
-## 2. 🎯 PURPOSE
+## 2. PURPOSE
 
 Enable session recovery from three interruption scenarios:
 
@@ -97,7 +97,7 @@ This command restores the most recent session state, loads relevant context, and
 
 ---
 
-## 3. 🔄 CRASH RECOVERY PERSISTENCE
+## 3. CRASH RECOVERY PERSISTENCE
 
 All session state is immediately persisted to SQLite with write-ahead logging (WAL) for crash safety. State changes use IMMEDIATE transactions to survive process crashes.
 
@@ -121,14 +121,14 @@ Recovery from SQLite returns the most recent `session_state` record for the give
 
 ---
 
-## 4. 📝 CONTRACT
+## 4. CONTRACT
 
 **Inputs:** `$ARGUMENTS` - Optional recovery mode flag (`:auto` or `:manual`)
 **Outputs:** `STATUS=<OK|FAIL|CANCELLED> SCENARIO=<crash|compaction|timeout> SESSION=<spec-folder>`
 
 ---
 
-## 5. 📊 RECOVERY SCENARIOS
+## 5. RECOVERY SCENARIOS
 
 | Scenario       | Detection Signal                     | Recovery Source          | Auto-Recoverable |
 | -------------- | ------------------------------------ | ------------------------ | ---------------- |
@@ -138,7 +138,7 @@ Recovery from SQLite returns the most recent `session_state` record for the give
 
 ---
 
-## 6. ⚡ WORKFLOW: AUTO MODE
+## 6. WORKFLOW: AUTO MODE
 
 Auto mode attempts automatic recovery without user confirmation.
 
@@ -249,7 +249,7 @@ Reply with A/B/C/D
 
 ---
 
-## 7. ⚡ WORKFLOW: MANUAL MODE
+## 7. WORKFLOW: MANUAL MODE
 
 Manual mode requires user confirmation at each step.
 
@@ -308,7 +308,7 @@ Same as Auto Mode Step 5.
 
 ---
 
-## 8. 🔄 SESSION STATE STRUCTURE
+## 8. SESSION STATE STRUCTURE
 
 ### CONTINUE_SESSION.md Format
 
@@ -368,7 +368,7 @@ Context will be automatically restored. Next action: Verify command structure.
 
 ---
 
-## 9. ⚠️ FAILURE RECOVERY
+## 9. FAILURE RECOVERY
 
 | Failure Type                     | Recovery Action                        |
 | -------------------------------- | -------------------------------------- |
@@ -380,7 +380,7 @@ Context will be automatically restored. Next action: Verify command structure.
 
 ---
 
-## 10. ⚠️ ERROR HANDLING
+## 10. ERROR HANDLING
 
 | Condition                   | Action                                        |
 | --------------------------- | --------------------------------------------- |
@@ -392,7 +392,7 @@ Context will be automatically restored. Next action: Verify command structure.
 
 ---
 
-## 11. 🔍 QUICK REFERENCE
+## 11. QUICK REFERENCE
 
 | Command                    | Result                            |
 | -------------------------- | --------------------------------- |
@@ -402,7 +402,7 @@ Context will be automatically restored. Next action: Verify command structure.
 
 ---
 
-## 12. 🔍 USE CASES
+## 12. USE CASES
 
 ### Use Case 1: Crash Recovery
 
@@ -455,7 +455,7 @@ AI: 🔄 SESSION RECOVERY
 
 ---
 
-## 13. 🔗 RELATED COMMANDS
+## 13. RELATED COMMANDS
 
 - `/spec_kit:resume` - Resume work on spec folder (broader scope, includes planning)
 - `/spec_kit:handover` - Create handover for session continuity
@@ -464,7 +464,7 @@ AI: 🔄 SESSION RECOVERY
 
 ---
 
-## 14. ➡️ NEXT STEPS AFTER RECOVERY
+## 14. NEXT STEPS AFTER RECOVERY
 
 | Condition                 | Suggested Action                       |
 | ------------------------- | -------------------------------------- |
@@ -477,7 +477,7 @@ AI: 🔄 SESSION RECOVERY
 
 ---
 
-## 15. 📌 RECOVERY PRIORITIES
+## 15. RECOVERY PRIORITIES
 
 **Priority order for context sources:**
 
@@ -489,7 +489,7 @@ AI: 🔄 SESSION RECOVERY
 
 ---
 
-## 16. 🔄 SESSION ISOLATION
+## 16. SESSION ISOLATION
 
 - Each recovery session is isolated; session IDs prevent cross-session data leakage
 - CONTINUE_SESSION.md contains no secrets

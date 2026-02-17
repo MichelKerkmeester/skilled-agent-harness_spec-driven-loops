@@ -9,7 +9,7 @@ Formatting standards and conventions for JSON and JSONC configuration files in t
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 ### Purpose
 
@@ -30,7 +30,7 @@ Applies to all configuration files:
 
 ---
 
-## 2. 📁 FILE STRUCTURE
+## 2. FILE STRUCTURE
 
 ### JSONC Header
 
@@ -73,7 +73,7 @@ Organize configuration into numbered sections:
 
 ---
 
-## 3. 🏷️ NAMING CONVENTIONS
+## 3. NAMING CONVENTIONS
 
 ### Property Keys
 
@@ -135,7 +135,7 @@ Use descriptive names for nested configuration sections:
 
 ---
 
-## 4. 📄 COMMENTS (JSONC)
+## 4. COMMENTS (JSONC)
 
 ### Section Headers
 
@@ -185,7 +185,7 @@ Add documentation comments for complex settings:
 
 ---
 
-## 5. 📐 VALUE FORMATTING
+## 5. VALUE FORMATTING
 
 ### Strings
 
@@ -237,7 +237,7 @@ Use `null` for explicitly unset values:
 
 ---
 
-## 6. 📁 STRUCTURE PATTERNS
+## 6. STRUCTURE PATTERNS
 
 ### Feature Flags
 
@@ -289,7 +289,7 @@ Use `null` for explicitly unset values:
 
 ---
 
-## 7. 📐 SCHEMA REFERENCE
+## 7. SCHEMA REFERENCE
 
 ### Including Schema
 
@@ -316,7 +316,7 @@ Reference JSON Schema when available:
 
 ---
 
-## 8. 📌 INDENTATION AND SPACING
+## 8. INDENTATION AND SPACING
 
 ### Indentation
 
@@ -351,7 +351,7 @@ Use 2 spaces for indentation (consistent with JSON convention):
 
 ---
 
-## 9. 🏷️ FILE NAMING
+## 9. FILE NAMING
 
 ### Conventions
 
@@ -377,7 +377,7 @@ Use 2 spaces for indentation (consistent with JSON convention):
 
 ---
 
-## 10. 🔗 RELATED RESOURCES
+## 10. RELATED RESOURCES
 
 ### Internal References
 - [quick_reference.md](./quick_reference.md) - Quick lookup for config patterns

@@ -9,7 +9,7 @@ Complete specifications for all documentation levels using the CORE + ADDENDUM a
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 ### Template Architecture: CORE + ADDENDUM (v2.2)
 
@@ -75,7 +75,7 @@ Level 3+ (Extended):    +Enterprise governance, AI protocols (~1075 LOC)
 
 ---
 
-## 2. 🔵 LEVEL 1: BASELINE DOCUMENTATION (LOC guidance: <100)
+## 2. LEVEL 1: BASELINE DOCUMENTATION (LOC guidance: <100)
 
 ### When to Use
 
@@ -165,7 +165,7 @@ Level 3+ (Extended):    +Enterprise governance, AI protocols (~1075 LOC)
 
 ---
 
-## 3. 🟡 LEVEL 2: VERIFICATION ADDED (LOC guidance: 100-499)
+## 3. LEVEL 2: VERIFICATION ADDED (LOC guidance: 100-499)
 
 ### When to Use
 
@@ -279,7 +279,7 @@ specs/012-user-profile-api/
 
 ---
 
-## 4. 🔴 LEVEL 3: FULL DOCUMENTATION (LOC guidance: ≥500)
+## 4. LEVEL 3: FULL DOCUMENTATION (LOC guidance: ≥500)
 
 ### When to Use
 
@@ -362,7 +362,7 @@ specs/012-user-profile-api/
 
 ---
 
-## 5. 🟣 LEVEL 3+: EXTENDED DOCUMENTATION (Complexity score: 80-100)
+## 5. LEVEL 3+: EXTENDED DOCUMENTATION (Complexity score: 80-100)
 
 ### When to Use
 
@@ -504,7 +504,7 @@ Level 3+ is auto-detected via complexity scoring for highly complex tasks:
 
 ---
 
-## 6. 🔄 LEVEL MIGRATION
+## 6. LEVEL MIGRATION
 
 ### Script-Assisted Upgrade (Recommended)
 
@@ -587,7 +587,7 @@ If the script is unavailable, manually add the required files:
 
 ---
 
-## 7. 📌 STATUS FIELD CONVENTION
+## 7. STATUS FIELD CONVENTION
 
 Every spec.md should include a status field to track lifecycle:
 
@@ -629,7 +629,7 @@ active (resume)
 
 ---
 
-## 8. 🔀 RELATED SPECS: UPDATE VS CREATE
+## 8. RELATED SPECS: UPDATE VS CREATE
 
 ### When to UPDATE Existing Spec
 
@@ -704,7 +704,7 @@ Search existing specs (folder names, titles)
 
 ---
 
-## 9. 📋 CROSS-CUTTING TEMPLATES (ANY LEVEL)
+## 9. CROSS-CUTTING TEMPLATES (ANY LEVEL)
 
 Some templates are not level-specific but can be used at any documentation level. These support session management, context preservation, and work summaries.
 
@@ -751,7 +751,7 @@ Some templates are not level-specific but can be used at any documentation level
 
 ---
 
-## 10. 🔗 RELATED RESOURCES
+## 10. RELATED RESOURCES
 
 ### Reference Files
 - [quick_reference.md](../workflows/quick_reference.md) - Commands, checklists, and troubleshooting

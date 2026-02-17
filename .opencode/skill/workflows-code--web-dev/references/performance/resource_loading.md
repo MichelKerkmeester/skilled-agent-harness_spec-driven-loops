@@ -9,7 +9,7 @@ Resource hints and loading strategies for optimal performance in Webflow sites.
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 Resource loading optimization uses browser hints to prioritize critical resources and defer non-essential ones. This improves Core Web Vitals, particularly LCP (Largest Contentful Paint) and FID (First Input Delay).
 
@@ -23,7 +23,7 @@ Resource loading optimization uses browser hints to prioritize critical resource
 
 ---
 
-## 2. 🔗 PRECONNECT
+## 2. PRECONNECT
 
 ### What It Does
 
@@ -79,7 +79,7 @@ From `global.html`:
 
 ---
 
-## 3. 🌐 DNS PREFETCH
+## 3. DNS PREFETCH
 
 ### What It Does
 
@@ -107,7 +107,7 @@ Performs DNS lookup only (no TCP/TLS). Lower priority than preconnect, used for 
 
 ---
 
-## 4. ⚡ PRELOAD
+## 4. PRELOAD
 
 ### What It Does
 
@@ -161,7 +161,7 @@ Downloads high-priority resources for the current page with elevated priority. B
 
 ---
 
-## 5. 📦 PREFETCH
+## 5. PREFETCH
 
 ### What It Does
 
@@ -194,7 +194,7 @@ Downloads resources for future navigation during idle time. Lower priority than 
 
 ---
 
-## 6. 🎨 ASYNC CSS LOADING PATTERN
+## 6. ASYNC CSS LOADING PATTERN
 
 ### The Pattern
 
@@ -239,7 +239,7 @@ From `home.html`:
 
 ---
 
-## 7. 📜 SCRIPT LOADING
+## 7. SCRIPT LOADING
 
 ### defer vs async vs dynamic
 
@@ -309,7 +309,7 @@ loadScript('https://example.com/analytics.js')
 
 ---
 
-## 8. 🔒 NOSCRIPT FALLBACKS
+## 8. NOSCRIPT FALLBACKS
 
 Always provide fallbacks for JavaScript-dependent loading:
 
@@ -325,7 +325,7 @@ Always provide fallbacks for JavaScript-dependent loading:
 
 ---
 
-## 9. 📋 DECISION MATRIX
+## 9. DECISION MATRIX
 
 | Resource Type | Strategy | Reason |
 |---------------|----------|--------|
@@ -342,7 +342,7 @@ Always provide fallbacks for JavaScript-dependent loading:
 
 ---
 
-## 10. ⚠️ ANTI-PATTERNS
+## 10. ANTI-PATTERNS
 
 ### Over-Preloading
 
@@ -382,7 +382,7 @@ Always provide fallbacks for JavaScript-dependent loading:
 
 ---
 
-## 11. 🧪 TESTING RESOURCE LOADING
+## 11. TESTING RESOURCE LOADING
 
 ### Chrome DevTools
 
@@ -410,7 +410,7 @@ Use waterfall view to verify:
 
 ---
 
-## 12. 🔗 RELATED RESOURCES
+## 12. RELATED RESOURCES
 
 ### Internal References
 

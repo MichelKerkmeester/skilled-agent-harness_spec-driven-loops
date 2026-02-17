@@ -9,7 +9,7 @@ Standardized format for documenting gate decisions to ensure auditability and tr
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 The Structured Gate Decision Format provides a consistent way to document decisions made at each gate in the workflow. This format ensures:
 
@@ -20,7 +20,7 @@ The Structured Gate Decision Format provides a consistent way to document decisi
 
 ---
 
-## 2. 📋 THE FORMAT
+## 2. THE FORMAT
 
 ### Standard Gate Decision
 
@@ -44,7 +44,7 @@ GATE: [NAME] | DECISION: [PASS/BLOCK] | CONFIDENCE: [H/M/L] | EVIDENCE: [brief]
 
 ---
 
-## 3. 🧠 FIELD DEFINITIONS
+## 3. FIELD DEFINITIONS
 
 ### GATE
 
@@ -179,7 +179,7 @@ with path specs/078-new-feature/
 
 ---
 
-## 4. 💡 EXAMPLES
+## 4. EXAMPLES
 
 ### PASS Example with Full Evidence
 
@@ -244,7 +244,7 @@ ALTERNATIVE: N/A - P0 items cannot be skipped
 
 ---
 
-## 5. 📊 SESSION DECISION LOG (Level 3+)
+## 5. SESSION DECISION LOG (Level 3+)
 
 For Level 3+ spec folders, maintain a decision log table in decision-record.md:
 
@@ -276,7 +276,7 @@ For Level 3+ spec folders, maintain a decision log table in decision-record.md:
 
 ---
 
-## 6. 🔄 DUAL-THRESHOLD VALIDATION
+## 6. DUAL-THRESHOLD VALIDATION
 
 The decision format integrates with the dual-threshold validation system:
 
@@ -322,7 +322,7 @@ RESOLUTION_PATH:
 
 ---
 
-## 7. ⚡ QUICK REFERENCE
+## 7. QUICK REFERENCE
 
 ### Decision Format Template
 
@@ -350,7 +350,7 @@ Before recording a decision:
 
 ---
 
-## 8. 🔗 RELATED RESOURCES
+## 8. RELATED RESOURCES
 
 - [Five Checks Framework](./five-checks.md) - Evaluation framework for significant decisions
 - [Decision Record Template](../../templates/level_3/decision-record.md) - For Level 3/3+ spec folders

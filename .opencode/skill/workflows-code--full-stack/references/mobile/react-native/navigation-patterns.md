@@ -9,7 +9,7 @@ A practical guide to navigation in a React Native/Expo app, explaining HOW to ad
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 ### Purpose
 
@@ -28,7 +28,7 @@ Auth-based routing + typed navigation + proper cleanup = reliable app navigation
 
 ---
 
-## 2. 🚀 QUICK START: UNDERSTANDING OUR NAVIGATION
+## 2. QUICK START: UNDERSTANDING OUR NAVIGATION
 
 Before diving in, understand the **big picture**:
 
@@ -51,7 +51,7 @@ Are they logged in? (Redux auth state)
 
 ---
 
-## 3. 📱 HOW TO ADD A NEW SCREEN (STEP-BY-STEP)
+## 3. HOW TO ADD A NEW SCREEN (STEP-BY-STEP)
 
 ### Step 1: Create the Screen Files
 
@@ -162,7 +162,7 @@ navigation.navigate('my_new_screen', { userId: '123' });
 
 ---
 
-## 4. 🏗️ UNDERSTANDING THE STACK STRUCTURE
+## 4. UNDERSTANDING THE STACK STRUCTURE
 
 ### Why Multiple Stacks?
 
@@ -206,7 +206,7 @@ AppStack
 
 ---
 
-## 5. 🧭 COMMON NAVIGATION PATTERNS
+## 5. COMMON NAVIGATION PATTERNS
 
 ### Pattern 1: Simple Navigation
 
@@ -359,7 +359,7 @@ notificationManager.setPendingNavigation({
 
 ---
 
-## 6. 📝 TYPESCRIPT TYPING DEEP DIVE
+## 6. TYPESCRIPT TYPING DEEP DIVE
 
 ### Why Types Matter
 
@@ -416,7 +416,7 @@ export type TabHomeScreenProps = CompositeScreenProps<
 
 ---
 
-## 7. ⚠️ COMMON MISTAKES AND HOW TO AVOID THEM
+## 7. COMMON MISTAKES AND HOW TO AVOID THEM
 
 ### Mistake 1: Navigating Before Ready
 
@@ -489,7 +489,7 @@ export type MyParamList = {
 
 ---
 
-## 8. 🔗 DEEP LINKING
+## 8. DEEP LINKING
 
 ### How Deep Links Work
 
@@ -535,7 +535,7 @@ adb shell am start -a android.intent.action.VIEW -d "myapp://order/123"
 
 ---
 
-## 9. 🐛 DEBUGGING NAVIGATION ISSUES
+## 9. DEBUGGING NAVIGATION ISSUES
 
 ### "Navigation hasn't been initialized"
 
@@ -577,7 +577,7 @@ const { id } = route.params ?? {};
 
 ---
 
-## 10. 🏛️ ARCHITECTURE DECISION: WHY NOT JUST EXPO-ROUTER?
+## 10. ARCHITECTURE DECISION: WHY NOT JUST EXPO-ROUTER?
 
 We use **both** expo-router (for entry) and React Navigation (for the main app):
 
@@ -593,7 +593,7 @@ We use **both** expo-router (for entry) and React Navigation (for the main app):
 
 ---
 
-## 11. 📖 GLOSSARY: NAVIGATION TERMINOLOGY
+## 11. GLOSSARY: NAVIGATION TERMINOLOGY
 
 | Term | What It Means | When You'll See It |
 |------|---------------|-------------------|
@@ -628,7 +628,7 @@ We use **both** expo-router (for entry) and React Navigation (for the main app):
 
 ---
 
-## 12. 📋 QUICK REFERENCE: COMMON TASKS
+## 12. QUICK REFERENCE: COMMON TASKS
 
 | Task | How To |
 |------|--------|
@@ -643,7 +643,7 @@ We use **both** expo-router (for entry) and React Navigation (for the main app):
 
 ---
 
-## 13. 📂 KEY FILES REFERENCE
+## 13. KEY FILES REFERENCE
 
 | Purpose | Path |
 |---------|------|
@@ -660,7 +660,7 @@ We use **both** expo-router (for entry) and React Navigation (for the main app):
 
 ---
 
-## 14. 🔗 RELATED RESOURCES
+## 14. RELATED RESOURCES
 
 ### Related References
 - [React Native Standards](./react-native-standards.md) - Core component conventions

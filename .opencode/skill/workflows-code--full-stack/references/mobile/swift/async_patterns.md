@@ -9,7 +9,7 @@ A comprehensive guide to Swift concurrency including async/await, Task and TaskG
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 ### Purpose
 
@@ -37,7 +37,7 @@ Structured concurrency + async/await + actors = safe, readable, maintainable asy
 
 ---
 
-## 2. ⚡ ASYNC/AWAIT FUNDAMENTALS
+## 2. ASYNC/AWAIT FUNDAMENTALS
 
 ### Basic Async Functions
 
@@ -204,7 +204,7 @@ func fetchWithTimeout(seconds: Int) async throws -> Data {
 
 ---
 
-## 3. 🔄 TASK AND TASKGROUP
+## 3. TASK AND TASKGROUP
 
 ### Creating Tasks
 
@@ -385,7 +385,7 @@ func processImages(_ images: [UIImage], maxConcurrency: Int = 4) async -> [Proce
 
 ---
 
-## 4. 🔒 ACTOR ISOLATION
+## 4. ACTOR ISOLATION
 
 ### Basic Actor
 
@@ -570,7 +570,7 @@ final class ThreadSafeCache<Key: Hashable & Sendable, Value: Sendable>: @uncheck
 
 ---
 
-## 5. 📊 ASYNCSEQUENCE AND ASYNCSTREAM
+## 5. ASYNCSEQUENCE AND ASYNCSTREAM
 
 ### Basic AsyncSequence
 
@@ -741,7 +741,7 @@ for await chunk in someAsyncSequence.chunked(by: 10) {
 
 ---
 
-## 6. ⚠️ ERROR HANDLING
+## 6. ERROR HANDLING
 
 ### Async Error Patterns
 
@@ -900,7 +900,7 @@ func loadUserProfile(id: String) async -> UserProfile {
 
 ---
 
-## 7. 🔗 COMBINE BASICS (Legacy/Interop)
+## 7. COMBINE BASICS (Legacy/Interop)
 
 ### Publisher Basics
 
@@ -1052,7 +1052,7 @@ class SearchViewModel: ObservableObject {
 
 ---
 
-## 8. 🛠️ PRACTICAL PATTERNS
+## 8. PRACTICAL PATTERNS
 
 ### Network Layer with Async/Await
 
@@ -1215,7 +1215,7 @@ class DownloadViewModel {
 
 ---
 
-## 9. 📋 RULES
+## 9. RULES
 
 ### ALWAYS
 
@@ -1252,7 +1252,7 @@ class DownloadViewModel {
 
 ---
 
-## 10. 🔗 RELATED RESOURCES
+## 10. RELATED RESOURCES
 
 | File | Purpose |
 |------|---------|

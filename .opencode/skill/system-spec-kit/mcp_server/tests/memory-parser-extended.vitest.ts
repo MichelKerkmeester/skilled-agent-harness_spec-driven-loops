@@ -158,9 +158,9 @@ describe('MEMORY PARSER EXTENDED TESTS', () => {
       expect(regex.test(p)).toBe(true);
     });
 
-    it('T03: rejects non-.md file in memory dir', () => {
+    it('T03: accepts .txt file in memory dir (txt support)', () => {
       const p = 'specs/003-feature/memory/file.txt';
-      expect(regex.test(p)).toBe(false);
+      expect(regex.test(p)).toBe(true);
     });
 
     it('T04: rejects .md outside memory/ dir', () => {

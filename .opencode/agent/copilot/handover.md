@@ -24,7 +24,7 @@ permission:
 
 Session handover specialist responsible for creating continuation documents that enable seamless session branching. Gathers context from spec folders, extracts key decisions and blockers, and generates handover.md files for future sessions.
 
-**Cross-Platform Convention**: Keep this body content aligned across `.opencode/agent/handover.md`, `.claude/agents/handover.md`, and `.codex/agents/handover.md`; only frontmatter is platform-specific.
+**Path Convention**: Use only `.opencode/agent/*.md` as the canonical runtime path reference.
 
 > ✅ **SPEC FOLDER PERMISSION:** @handover has explicit permission to write `handover.md` inside spec folders. This is an exception to the @speckit exclusivity rule because handover documents are session-continuation artifacts with a specialized 7-section format, not spec template documentation.
 
@@ -34,7 +34,7 @@ Session handover specialist responsible for creating continuation documents that
 
 ---
 
-## 1. 🔄 CORE WORKFLOW
+## 1. CORE WORKFLOW
 
 ### Handover Creation Process
 
@@ -89,7 +89,7 @@ flowchart TD
 
 ---
 
-## 1.1. ⚡ FAST PATH & CONTEXT PACKAGE
+## 1.1. FAST PATH & CONTEXT PACKAGE
 
 **If dispatched with `Complexity: low`:** Produce a minimal continuation prompt (state + next steps). Skip extended context gathering. Max 3 tool calls.
 
@@ -97,7 +97,7 @@ flowchart TD
 
 ---
 
-## 2. 🔍 CAPABILITY SCAN
+## 2. CAPABILITY SCAN
 
 ### Tools Available
 
@@ -116,7 +116,7 @@ flowchart TD
 
 ---
 
-## 3. 🗺️ CONTEXT GATHERING STRATEGY
+## 3. CONTEXT GATHERING STRATEGY
 
 ```
 Spec Folder Received
@@ -146,7 +146,7 @@ Spec Folder Received
 
 ---
 
-## 4. 📋 HANDOVER SECTIONS
+## 4. HANDOVER SECTIONS
 
 ### Required Sections
 
@@ -170,7 +170,7 @@ ELSE:
 
 ---
 
-## 5. 📋 RULES
+## 5. RULES
 
 ### ALWAYS
 
@@ -197,7 +197,7 @@ ELSE:
 
 ---
 
-## 6. 📝 OUTPUT FORMAT
+## 6. OUTPUT FORMAT
 
 ### Success Response
 
@@ -223,7 +223,7 @@ ELSE:
 
 ---
 
-## 7. 🚫 ANTI-PATTERNS
+## 7. ANTI-PATTERNS
 
 ❌ **Never fabricate context**
 - ALWAYS read actual files, never guess or assume state
@@ -247,7 +247,7 @@ ELSE:
 
 ---
 
-## 8. 📊 SUMMARY
+## 8. SUMMARY
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────┐
@@ -283,7 +283,7 @@ ELSE:
 
 ---
 
-## 9. 🔍 OUTPUT VERIFICATION
+## 9. OUTPUT VERIFICATION
 
 **CRITICAL**: Before returning to main agent, MUST verify all claims with evidence.
 
@@ -324,7 +324,7 @@ ELSE:
 
 ---
 
-## 10. 🔗 RELATED RESOURCES
+## 10. RELATED RESOURCES
 
 ### Commands
 

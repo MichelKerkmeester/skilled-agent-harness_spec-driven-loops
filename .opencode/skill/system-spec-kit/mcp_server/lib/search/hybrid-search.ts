@@ -5,9 +5,9 @@
 
 import type Database from 'better-sqlite3';
 
-/* -----------------------------------------------------------
+/* ---------------------------------------------------------------
    1. INTERFACES
-----------------------------------------------------------------*/
+   --------------------------------------------------------------- */
 
 type VectorSearchFn = (
   embedding: Float32Array | number[],
@@ -48,17 +48,17 @@ interface HybridSearchResult {
   [key: string]: unknown;
 }
 
-/* -----------------------------------------------------------
+/* ---------------------------------------------------------------
    2. MODULE STATE
-----------------------------------------------------------------*/
+   --------------------------------------------------------------- */
 
 let db: Database.Database | null = null;
 let vectorSearchFn: VectorSearchFn | null = null;
 let graphSearchFn: GraphSearchFn | null = null;
 
-/* -----------------------------------------------------------
+/* ---------------------------------------------------------------
    3. INITIALIZATION
-----------------------------------------------------------------*/
+   --------------------------------------------------------------- */
 
 function init(
   database: Database.Database,
@@ -70,9 +70,9 @@ function init(
   graphSearchFn = graphFn;
 }
 
-/* -----------------------------------------------------------
+/* ---------------------------------------------------------------
    4. BM25 SEARCH
-----------------------------------------------------------------*/
+   --------------------------------------------------------------- */
 
 function bm25Search(
   query: string,
@@ -115,9 +115,9 @@ function isBm25Available(): boolean {
   }
 }
 
-/* -----------------------------------------------------------
+/* ---------------------------------------------------------------
    5. FTS SEARCH
-----------------------------------------------------------------*/
+   --------------------------------------------------------------- */
 
 function isFtsAvailable(): boolean {
   if (!db) return false;
@@ -179,9 +179,9 @@ function ftsSearch(
   }
 }
 
-/* -----------------------------------------------------------
+/* ---------------------------------------------------------------
    6. COMBINED LEXICAL SEARCH
-----------------------------------------------------------------*/
+   --------------------------------------------------------------- */
 
 function combinedLexicalSearch(
   query: string,
@@ -208,9 +208,9 @@ function combinedLexicalSearch(
     .slice(0, options.limit || 20);
 }
 
-/* -----------------------------------------------------------
+/* ---------------------------------------------------------------
    7. HYBRID SEARCH
-----------------------------------------------------------------*/
+   --------------------------------------------------------------- */
 
 async function hybridSearch(
   query: string,
@@ -284,9 +284,8 @@ async function hybridSearch(
     }
   }
 
-  // P3-02 FIX: Normalize scores before merging to prevent BM25 (unbounded)
-  // from always outranking vector (0-1 cosine similarity).
-  // Group results by source, then min-max normalize each group to 0-1 range.
+  // Normalize scores per source before merging so one method's raw scale
+  // does not dominate others during final ranking.
   const bySource = new Map<string, HybridSearchResult[]>();
   for (const r of results) {
     const src = r.source || 'unknown';
@@ -410,9 +409,9 @@ async function searchWithFallback(
   return [];
 }
 
-/* -----------------------------------------------------------
+/* ---------------------------------------------------------------
    8. EXPORTS
-----------------------------------------------------------------*/
+   --------------------------------------------------------------- */
 
 export {
   init,

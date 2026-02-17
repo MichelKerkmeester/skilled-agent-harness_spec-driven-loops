@@ -9,7 +9,7 @@ Quick reference for selecting documentation levels (1-3+) based on LOC guidance 
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 ### Purpose
 
@@ -27,7 +27,7 @@ This matrix helps determine the appropriate documentation level for any task. Us
 
 ---
 
-## 2. 📊 DECISION MATRIX TABLE (Progressive Enhancement)
+## 2. DECISION MATRIX TABLE (Progressive Enhancement)
 
 | Level               | LOC Guidance     | Required Files                                                      | Adds To Previous                   | Use When                             |
 | ------------------- | ---------------- | ------------------------------------------------------------------- | ---------------------------------- | ------------------------------------ |
@@ -49,7 +49,7 @@ Level 3+ (Extended):    Level 3 + AI protocols + extended checklist + sign-offs
 
 ---
 
-## 3. 🎯 LOC AS SOFT GUIDANCE (Not Enforcement)
+## 3. LOC AS SOFT GUIDANCE (Not Enforcement)
 
 **How to count:**
 - Count all files being modified
@@ -70,7 +70,7 @@ Level 3+ (Extended):    Level 3 + AI protocols + extended checklist + sign-offs
 
 ---
 
-## 4. ⚖️ SECONDARY FACTORS (CAN OVERRIDE LOC)
+## 4. SECONDARY FACTORS (CAN OVERRIDE LOC)
 
 These factors can push you to a higher level even if LOC suggests lower:
 
@@ -96,7 +96,7 @@ These factors can push you to a higher level even if LOC suggests lower:
 
 ---
 
-## 5. ⚠️ EDGE CASE GUIDANCE
+## 5. EDGE CASE GUIDANCE
 
 | Scenario                | LOC | Suggested Level | Required Files                  | Rationale                                |
 | ----------------------- | --- | --------------- | ------------------------------- | ---------------------------------------- |
@@ -112,7 +112,7 @@ These factors can push you to a higher level even if LOC suggests lower:
 
 ---
 
-## 6. 🤔 WHEN IN DOUBT
+## 6. WHEN IN DOUBT
 
 **Choose the higher level.**
 
@@ -130,7 +130,7 @@ Templates are located at `templates/level_N/` (e.g., `templates/level_1/`, `temp
 
 ---
 
-## 7. 📋 CHECKLIST QUALITY REQUIREMENTS
+## 7. CHECKLIST QUALITY REQUIREMENTS
 
 Level 2+ documentation requires `checklist.md` with specific quality standards:
 
@@ -187,7 +187,7 @@ Completed checklist items MUST include verification evidence:
 
 ---
 
-## 8. ✅ VALIDATION RULES REFERENCE
+## 8. VALIDATION RULES REFERENCE
 
 The spec validation system (`validate.sh`) checks documentation quality using these rules:
 
@@ -243,7 +243,7 @@ The spec validation system (`validate.sh`) checks documentation quality using th
 
 ---
 
-## 9. 🔄 LEVEL MIGRATION DURING IMPLEMENTATION
+## 9. LEVEL MIGRATION DURING IMPLEMENTATION
 
 If scope grows during implementation, escalate by adding the required files:
 
@@ -265,7 +265,7 @@ If scope grows during implementation, escalate by adding the required files:
 
 ---
 
-## 10. 🚀 QUICK DECISION FLOWCHART
+## 10. QUICK DECISION FLOWCHART
 
 ```
 Any file modification?
@@ -304,7 +304,7 @@ Architectural decision? ──YES──→ Level 3 (add decision-record.md)
 
 ---
 
-## 11. 📊 SPEC TRACEABILITY
+## 11. SPEC TRACEABILITY
 
 This decision matrix addresses the following spec requirements:
 
@@ -320,7 +320,7 @@ This decision matrix addresses the following spec requirements:
 
 ---
 
-## 12. 🔗 RELATED RESOURCES
+## 12. RELATED RESOURCES
 
 ### Asset Files
 - [complexity_decision_matrix.md](./complexity_decision_matrix.md) - Complexity-based level selection and scoring

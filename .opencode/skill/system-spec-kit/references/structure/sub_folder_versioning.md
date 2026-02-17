@@ -9,7 +9,7 @@ Workflow-assisted pattern for organizing iterative work within existing spec fol
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 ### Purpose
 
@@ -28,7 +28,7 @@ Sub-folder versioning is **workflow-assisted**: the AI can suggest it during Opt
 
 ---
 
-## 2. 📂 DIRECTORY STRUCTURE
+## 2. DIRECTORY STRUCTURE
 
 ```
 specs/###-name/
@@ -51,7 +51,7 @@ specs/###-name/
 
 ---
 
-## 3. 🔄 WORKFLOW STEPS
+## 3. WORKFLOW STEPS
 
 ### Step 1: Recognition
 
@@ -86,7 +86,7 @@ Spec folder path passed via CLI argument to generate-context.js (stateless - no 
 
 ---
 
-## 4. 🏷️ NAMING CONVENTION
+## 4. NAMING CONVENTION
 
 - **Sub-folder format**: `{###}-{descriptive-name}` (script-generated or manual)
 - **Numbers**: 001, 002, 003, etc. (3-digit padded, sequential)
@@ -95,7 +95,7 @@ Spec folder path passed via CLI argument to generate-context.js (stateless - no 
 
 ---
 
-## 5. 🧠 MEMORY CONTEXT ROUTING
+## 5. MEMORY CONTEXT ROUTING
 
 - Spec folder path passed explicitly via CLI argument (stateless)
 - Writes to specified sub-folder's `memory/` directory
@@ -105,7 +105,7 @@ Spec folder path passed via CLI argument to generate-context.js (stateless - no 
 
 ---
 
-## 6. 💡 EXAMPLE USE CASE
+## 6. EXAMPLE USE CASE
 
 ### Manual Sub-Folder Organization
 
@@ -153,7 +153,7 @@ Spec folder path passed via CLI argument to generate-context.js (stateless - no 
 
 ---
 
-## 7. ✅ BENEFITS
+## 7. BENEFITS
 
 - Clean separation of iterative work
 - Preserves all historical work (no data loss)
@@ -163,7 +163,7 @@ Spec folder path passed via CLI argument to generate-context.js (stateless - no 
 
 ---
 
-## 8. 🔧 generate-context.js Integration
+## 8. generate-context.js Integration
 
 When using subfolder versioning, the memory save script (`generate-context.js`) fully supports nested paths.
 
@@ -195,7 +195,7 @@ Please specify the full path: parent/child
 
 ---
 
-## 9. 🔗 RELATED RESOURCES
+## 9. RELATED RESOURCES
 
 ### Reference Files
 - [template_guide.md](../templates/template_guide.md) - Template selection, adaptation, and quality standards

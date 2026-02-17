@@ -24,7 +24,7 @@ Remove all H2 heading emojis and TOC entry emojis from 287 markdown files across
 |-------|-------|
 | **Level** | 3+ |
 | **Priority** | P1 |
-| **Status** | Complete |
+| **Status** | Implementation complete; CHK-1205/1206 blocked by pre-existing modifications |
 | **Created** | 2026-02-16 |
 | **Branch** | `main` |
 | **Predecessor** | workflows-documentation v1.0.7.0 (emoji enforcement removal) |
@@ -252,7 +252,7 @@ Strip all H2 heading emojis and TOC entry emojis from every markdown file in `.o
 |------------|----------|--------|------|
 | Spec Review | User | Approved | 2026-02-16 |
 | Phase 0 (workflows-documentation) | User | Approved | 2026-02-16 |
-| Phase 1-12 Execution | AI Swarm | Pending | |
+| Phase 1-12 Execution | AI Swarm | Complete (except CHK-1205/1206) | 2026-02-17 |
 | Final Verification | User | Pending | |
 <!-- /ANCHOR:approval-workflow -->
 

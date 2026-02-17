@@ -18,14 +18,14 @@ Examples:
 import re
 import sys
 from pathlib import Path
-from typing import Optional, Tuple
+from typing import Final, Optional
 
 
 # ───────────────────────────────────────────────────────────────
 # 1. CONFIGURATION
 # ───────────────────────────────────────────────────────────────
 
-SKILL_TEMPLATE = """---
+SKILL_TEMPLATE: Final[str] = """---
 name: {skill_name}
 description: This skill [TODO: Complete - what does it do?]. This skill should be used when [TODO: Complete - when to use it? Specific scenarios, file types, or tasks that trigger it.]
 allowed-tools: [Read, Write, Edit, Bash, Glob, Grep]
@@ -37,7 +37,7 @@ allowed-tools: [Read, Write, Edit, Bash, Glob, Grep]
 
 ---
 
-## 1. 🎯 WHEN TO USE
+## 1. WHEN TO USE
 
 **This skill should be used when**:
 - [TODO: List specific scenarios when this skill applies]
@@ -50,7 +50,7 @@ allowed-tools: [Read, Write, Edit, Bash, Glob, Grep]
 
 ---
 
-## 2. 🧭 SMART ROUTING
+## 2. SMART ROUTING
 
 ### Activation Detection
 
@@ -71,7 +71,7 @@ User Request
 
 ---
 
-## 3. 📚 REFERENCES
+## 3. REFERENCES
 
 ### Core References
 
@@ -87,7 +87,7 @@ User Request
 
 ---
 
-## 4. 🛠️ HOW IT WORKS
+## 4. HOW IT WORKS
 
 [TODO: Brief explanation of the skill's process/workflow]
 
@@ -107,7 +107,7 @@ User Request
 
 ---
 
-## 5. 📋 RULES
+## 5. RULES
 
 ### ✅ ALWAYS
 
@@ -129,7 +129,7 @@ User Request
 
 ---
 
-## 6. 🏆 SUCCESS CRITERIA
+## 6. SUCCESS CRITERIA
 
 **Task complete when**:
 - ✅ [TODO: First success criterion]
@@ -138,7 +138,7 @@ User Request
 
 ---
 
-## 7. 🔌 INTEGRATION POINTS
+## 7. INTEGRATION POINTS
 
 **Triggers**: [TODO: What activates this skill]
 
@@ -153,7 +153,7 @@ User Request
 
 ---
 
-## 8. 📋 QUICK REFERENCE
+## 8. QUICK REFERENCE
 
 [TODO: Add quick lookup information:
 - Key commands or syntax
@@ -163,7 +163,7 @@ User Request
 
 ---
 
-## 9. 📦 BUNDLED RESOURCES
+## 9. BUNDLED RESOURCES
 
 This skill includes example resource directories. Delete any you don't need:
 
@@ -191,7 +191,7 @@ Files used in output (not loaded into context).
 **Note**: Delete unneeded directories - not every skill requires all three types.
 """
 
-EXAMPLE_SCRIPT = '''#!/usr/bin/env python3
+EXAMPLE_SCRIPT: Final[str] = '''#!/usr/bin/env python3
 """
 Example helper script for {skill_name}
 
@@ -212,7 +212,7 @@ if __name__ == "__main__":
     main()
 '''
 
-EXAMPLE_REFERENCE = """# Reference Documentation for {skill_title}
+EXAMPLE_REFERENCE: Final[str] = """# Reference Documentation for {skill_title}
 
 This is a placeholder for detailed reference documentation.
 Replace with actual reference content or delete if not needed.
@@ -248,7 +248,7 @@ Reference docs are ideal for:
 - Best practices
 """
 
-EXAMPLE_ASSET = """# Example Asset File
+EXAMPLE_ASSET: Final[str] = """# Example Asset File
 
 This placeholder represents where asset files would be stored.
 Replace with actual asset files (templates, images, fonts, etc.) or delete if not needed.
@@ -279,7 +279,7 @@ Note: This is a text placeholder. Actual assets can be any file type.
 # 2. VALIDATION
 # ───────────────────────────────────────────────────────────────
 
-def validate_skill_name(skill_name: str) -> Tuple[bool, str]:
+def validate_skill_name(skill_name: str) -> tuple[bool, str]:
     """Validate skill name format (hyphen-case).
 
     Args:
@@ -346,8 +346,8 @@ def init_skill(skill_name: str, path: str) -> Optional[Path]:
     try:
         skill_dir.mkdir(parents=True, exist_ok=False)
         print(f"✅ Created skill directory: {skill_dir}")
-    except OSError as e:
-        print(f"❌ Error creating directory: {e}")
+    except OSError as exc:
+        print(f"❌ Error creating directory: {exc}")
         return None
 
     skill_title = title_case_skill_name(skill_name)
@@ -360,8 +360,8 @@ def init_skill(skill_name: str, path: str) -> Optional[Path]:
     try:
         skill_md_path.write_text(skill_content)
         print("✅ Created SKILL.md")
-    except OSError as e:
-        print(f"❌ Error creating SKILL.md: {e}")
+    except OSError as exc:
+        print(f"❌ Error creating SKILL.md: {exc}")
         return None
 
     try:
@@ -383,8 +383,8 @@ def init_skill(skill_name: str, path: str) -> Optional[Path]:
         example_asset = assets_dir / 'example_asset.txt'
         example_asset.write_text(EXAMPLE_ASSET)
         print("✅ Created assets/example_asset.txt")
-    except OSError as e:
-        print(f"❌ Error creating resource directories: {e}")
+    except OSError as exc:
+        print(f"❌ Error creating resource directories: {exc}")
         return None
 
     print(f"\n✅ Skill '{skill_name}' initialized successfully at {skill_dir}")

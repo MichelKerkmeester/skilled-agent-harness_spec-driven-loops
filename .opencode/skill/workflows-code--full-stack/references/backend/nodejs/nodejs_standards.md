@@ -9,7 +9,7 @@ Mandatory Node.js/TypeScript coding conventions for backend projects defining pr
 
 ---
 
-## 1. 🎯 OVERVIEW
+## 1. OVERVIEW
 
 ### Purpose
 
@@ -41,7 +41,7 @@ Level 2: Related knowledge files
 
 ---
 
-## 2. 📁 PROJECT STRUCTURE
+## 2. PROJECT STRUCTURE
 
 ### How Is the Project Organized?
 
@@ -171,7 +171,7 @@ src/
 
 ---
 
-## 3. 🔧 TYPESCRIPT CONFIGURATION
+## 3. TYPESCRIPT CONFIGURATION
 
 ### What Is the Recommended tsconfig.json?
 
@@ -279,7 +279,7 @@ npm install -D tsc-alias
 
 ---
 
-## 4. 🔍 ESLINT CONFIGURATION
+## 4. ESLINT CONFIGURATION
 
 ### What Is the Recommended ESLint Setup?
 
@@ -378,7 +378,7 @@ module.exports = {
 
 ---
 
-## 5. ✨ PRETTIER CONFIGURATION
+## 5. PRETTIER CONFIGURATION
 
 ### What Is the Recommended Prettier Setup?
 
@@ -427,7 +427,7 @@ coverage
 
 ---
 
-## 6. 🌍 ENVIRONMENT MANAGEMENT
+## 6. ENVIRONMENT MANAGEMENT
 
 ### How Do I Structure Environment Configuration?
 
@@ -570,7 +570,7 @@ LOG_FORMAT=pretty
 
 ---
 
-## 7. 📋 LOGGING STANDARDS
+## 7. LOGGING STANDARDS
 
 ### What Logging Library Should I Use?
 
@@ -714,7 +714,7 @@ export function requestLogger(req: Request, res: Response, next: NextFunction): 
 
 ---
 
-## 8. ⚠️ ERROR HANDLING CONVENTIONS
+## 8. ERROR HANDLING CONVENTIONS
 
 ### How Do I Define Custom Errors?
 
@@ -893,7 +893,7 @@ export async function createUser(data: CreateUserDTO): Promise<User> {
 
 ---
 
-## 9. 🏷️ NAMING CONVENTIONS
+## 9. NAMING CONVENTIONS
 
 ### What Are the File Naming Rules?
 
@@ -937,7 +937,7 @@ export async function createUser(data: CreateUserDTO): Promise<User> {
 
 ---
 
-## 10. 📦 IMPORT ORGANIZATION
+## 10. IMPORT ORGANIZATION
 
 ### How Should I Organize Imports?
 
@@ -974,7 +974,7 @@ The ESLint configuration above enforces this order automatically.
 
 ---
 
-## 11. 📏 RULES
+## 11. RULES
 
 ### ALWAYS
 
@@ -1017,7 +1017,7 @@ The ESLint configuration above enforces this order automatically.
 
 ---
 
-## 12. 🔗 RELATED RESOURCES
+## 12. RELATED RESOURCES
 
 | File                                         | Purpose                                     |
 | -------------------------------------------- | ------------------------------------------- |

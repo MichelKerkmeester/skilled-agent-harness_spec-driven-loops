@@ -17,20 +17,20 @@ importance_tier: "normal"
 ## TABLE OF CONTENTS
 <!-- ANCHOR:table-of-contents -->
 
-- [1. 📖 OVERVIEW](#1--overview)
-- [2. 🧩 KEY CONCEPTS]](#2--key-concepts)
-- [3. 📁 STRUCTURE](#3--structure)
-- [4. ⚡ FEATURES](#4--features)
-- [5. 💡 USAGE EXAMPLES](#5--usage-examples)
-- [6. 🛠️ TROUBLESHOOTING](#6--troubleshooting)
-- [7. ❓ FAQ](#7--faq)
-- [8. 🔗 RELATED RESOURCES](#8--related-resources)
+- [1. OVERVIEW](#1--overview)
+- [2. KEY CONCEPTS]](#2--key-concepts)
+- [3. STRUCTURE](#3--structure)
+- [4. FEATURES](#4--features)
+- [5. USAGE EXAMPLES](#5--usage-examples)
+- [6. TROUBLESHOOTING](#6--troubleshooting)
+- [7. FAQ](#7--faq)
+- [8. RELATED RESOURCES](#8--related-resources)
 
 <!-- /ANCHOR:table-of-contents -->
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 <!-- ANCHOR:overview -->
 
 The cognitive subsystem implements human memory principles to manage conversation context intelligently. It models how memories decay and strengthen through use, then transition between activity states based on research-validated algorithms from cognitive science and spaced repetition systems. Post-Spec 126 retrieval also consumes `documentType` and `specLevel` metadata from indexing, so cognitive scoring is applied to both memory notes and spec documents.
@@ -107,7 +107,7 @@ The cognitive subsystem is the "brain" of the memory system. It determines which
 
 ---
 
-## 2. 🧩 KEY CONCEPTS
+## 2. KEY CONCEPTS
 <!-- ANCHOR:key-concepts -->
 
 ### The FSRS Formula
@@ -237,7 +237,7 @@ half_life = 60 days → stability ≈ 4.69 days
 
 ---
 
-## 3. 📁 STRUCTURE
+## 3. STRUCTURE
 <!-- ANCHOR:structure -->
 
 ```
@@ -270,7 +270,7 @@ cognitive/                      # TypeScript source files (8 modules)
 
 ---
 
-## 4. ⚡ FEATURES
+## 4. FEATURES
 <!-- ANCHOR:features -->
 
 ### FSRS Power-Law Decay
@@ -732,7 +732,7 @@ BOOST_FACTOR: 0.15       // Maximum similarity boost for temporally adjacent mem
 
 ---
 
-## 5. 💡 USAGE EXAMPLES
+## 5. USAGE EXAMPLES
 <!-- ANCHOR:usage-examples -->
 
 ### Example 1: Initialize Cognitive System
@@ -847,7 +847,7 @@ for (const memory of activeMemories) {
 
 ---
 
-## 6. 🛠️ TROUBLESHOOTING
+## 6. TROUBLESHOOTING
 <!-- ANCHOR:troubleshooting -->
 
 ### Common Issues
@@ -954,7 +954,7 @@ console.log(`State: ${classification.state}, R: ${classification.retrievability}
 
 ---
 
-## 7. ❓ FAQ
+## 7. FAQ
 <!-- ANCHOR:faq -->
 
 ### General Questions
@@ -1013,7 +1013,7 @@ Note: `temporal-contiguity.js` in dist/ is **not** orphaned. It is compiled from
 
 ---
 
-## 8. 🔗 RELATED RESOURCES
+## 8. RELATED RESOURCES
 <!-- ANCHOR:related -->
 
 ### Internal Modules

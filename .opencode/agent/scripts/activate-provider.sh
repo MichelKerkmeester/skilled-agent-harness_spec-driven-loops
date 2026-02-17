@@ -15,6 +15,7 @@
 #   5 - Verification failed and backup restore was triggered
 
 set -euo pipefail
+IFS=$'\n\t'
 
 # ------------------------------------------------------------------------------
 # 1. CLI HELP

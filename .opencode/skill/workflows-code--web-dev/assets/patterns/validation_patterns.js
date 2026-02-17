@@ -1,9 +1,11 @@
-// ───────────────────────────────────────────────────────────────
-// DEFENSE-IN-DEPTH VALIDATION PATTERNS
-// ───────────────────────────────────────────────────────────────
-// Production-ready validation templates
-// Validates at every layer to make errors structurally impossible
-// ───────────────────────────────────────────────────────────────
+/**
+ * DEFENSE-IN-DEPTH VALIDATION PATTERNS
+ *
+ * Production-ready validation templates.
+ * Validates at every layer to make errors structurally impossible.
+ */
+
+'use strict';
 
 /* ─────────────────────────────────────────────────────────────
    1. GENERIC VALIDATION PATTERNS

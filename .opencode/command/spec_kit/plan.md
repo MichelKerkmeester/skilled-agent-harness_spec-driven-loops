@@ -23,7 +23,7 @@ This workflow gathers ALL inputs in ONE prompt. Round-trip: 1 user interaction.
 
 ---
 
-## 0. 📋 UNIFIED SETUP PHASE
+## 0. UNIFIED SETUP PHASE
 
 **FIRST MESSAGE PROTOCOL**: This prompt MUST be your FIRST response. No analysis, no tool calls — ask ALL questions immediately, then wait.
 
@@ -128,13 +128,13 @@ operating_mode:
 
 ---
 
-## 1. 🎯 PURPOSE
+## 1. PURPOSE
 
 Run the planning workflow: specification, clarification, and technical planning. Creates spec.md, plan.md, and checklists without implementation. Use when planning needs review before coding.
 
 ---
 
-## 2. 📝 CONTRACT
+## 2. CONTRACT
 
 **Inputs:** `$ARGUMENTS` — Feature description with optional parameters (branch, scope, context)
 **Outputs:** Spec folder with: spec.md, plan.md, checklist.md (Level 2+), memory/*.md
@@ -147,7 +147,7 @@ $ARGUMENTS
 
 ---
 
-## 3. 📊 WORKFLOW OVERVIEW
+## 3. WORKFLOW OVERVIEW
 
 | Step | Name             | Purpose                      | Outputs                  |
 | ---- | ---------------- | ---------------------------- | ------------------------ |
@@ -161,7 +161,7 @@ $ARGUMENTS
 
 ---
 
-## 4. ⚡ INSTRUCTIONS
+## 4. INSTRUCTIONS
 
 After all phases pass, load and execute the appropriate YAML prompt:
 
@@ -172,7 +172,7 @@ The YAML contains detailed step-by-step workflow, field extraction rules, comple
 
 ---
 
-## 5. 📊 OUTPUT FORMATS
+## 5. OUTPUT FORMATS
 
 **Success:**
 ```
@@ -191,7 +191,7 @@ STATUS=FAIL ERROR="[message]"
 
 ---
 
-## 6. 📌 REFERENCE
+## 6. REFERENCE
 
 **Full details in YAML prompts:** Workflow steps, field extraction, documentation levels (1/2/3), templates, completion report, mode behaviors, parallel dispatch config, checklist guidelines, failure recovery.
 
@@ -199,7 +199,7 @@ STATUS=FAIL ERROR="[message]"
 
 ---
 
-## 7. 🔀 PARALLEL DISPATCH
+## 7. PARALLEL DISPATCH
 
 Supports smart parallel sub-agent dispatch using 5-dimension complexity scoring.
 
@@ -238,7 +238,7 @@ After agents return, verify hypotheses by reading identified files.
 
 ---
 
-## 8. 💾 MEMORY INTEGRATION
+## 8. MEMORY INTEGRATION
 
 ### Unified Memory Retrieval
 
@@ -268,7 +268,7 @@ Use `/memory:context` with intent-aware retrieval:
 
 ---
 
-## 9. 🔀 AGENT ROUTING
+## 9. AGENT ROUTING
 
 | Step                                        | Agent      | Fallback          | Purpose                                              |
 | ------------------------------------------- | ---------- | ----------------- | ---------------------------------------------------- |
@@ -307,7 +307,7 @@ Create: handover.md with current state, planning artifacts, and implementation g
 
 ---
 
-## 10. ✅ QUALITY GATES
+## 10. QUALITY GATES
 
 | Gate Type      | Trigger Point          | Threshold | Validates                        |
 | -------------- | ---------------------- | --------- | -------------------------------- |
@@ -333,7 +333,7 @@ Record results in decision-record.md for architectural changes.
 
 ---
 
-## 11. 📌 KEY DIFFERENCES FROM /SPEC_KIT:COMPLETE
+## 11. KEY DIFFERENCES FROM /SPEC_KIT:COMPLETE
 
 - **Terminates after planning** — no task breakdown, analysis, or implementation
 - **Next step guidance** — recommends `/spec_kit:implement` when ready
@@ -341,7 +341,7 @@ Record results in decision-record.md for architectural changes.
 
 ---
 
-## 12. 🔍 EXAMPLES
+## 12. EXAMPLES
 
 ```
 /spec_kit:plan:auto Add dark mode toggle to the settings page
@@ -351,7 +351,7 @@ Record results in decision-record.md for architectural changes.
 
 ---
 
-## 13. 🔗 COMMAND CHAIN
+## 13. COMMAND CHAIN
 
 ```
 [/spec_kit:research] → /spec_kit:plan → [/spec_kit:implement]
@@ -361,7 +361,7 @@ Next step: `/spec_kit:implement [spec-folder-path]`
 
 ---
 
-## 14. 📌 NEXT STEPS
+## 14. NEXT STEPS
 
 | Condition                    | Suggested Command                        | Reason                    |
 | ---------------------------- | ---------------------------------------- | ------------------------- |

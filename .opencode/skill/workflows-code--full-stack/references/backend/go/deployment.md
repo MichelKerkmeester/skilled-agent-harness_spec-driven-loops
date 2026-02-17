@@ -9,7 +9,7 @@ CI/CD workflows, versioning strategy, and deployment patterns for backend system
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 ### Purpose
 
@@ -37,7 +37,7 @@ deployment.md (this file)
 
 ---
 
-## 2. 🔨 BUILD SYSTEM
+## 2. BUILD SYSTEM
 
 ### Makefile Targets
 
@@ -70,7 +70,7 @@ make push-cli-dockers ECR_REGISTRY=$REGISTRY
 
 ---
 
-## 3. 🚀 DEVELOPMENT WORKFLOW
+## 3. DEVELOPMENT WORKFLOW
 
 ### How do I deploy to development?
 
@@ -105,7 +105,7 @@ git push origin v1.2.3-alpha.1
 
 ---
 
-## 4. 🏭 PRODUCTION WORKFLOW
+## 4. PRODUCTION WORKFLOW
 
 ### How do I deploy to production?
 
@@ -151,7 +151,7 @@ Same as development but targets staging environment.
 
 ---
 
-## 5. 🏷️ VERSION TAGGING STRATEGY
+## 5. VERSION TAGGING STRATEGY
 
 ### Version Format
 
@@ -188,7 +188,7 @@ echo "VERSION=$VV" >> $GITHUB_ENV
 
 ---
 
-## 6. 🐳 DOCKER & CONTAINER REGISTRY
+## 6. DOCKER & CONTAINER REGISTRY
 
 ### ECR Image Naming
 
@@ -210,7 +210,7 @@ make push-cli-dockers ECR_REGISTRY=${{ steps.login-ecr.outputs.registry }}
 
 ---
 
-## 7. 📦 ARTIFACT STORAGE
+## 7. ARTIFACT STORAGE
 
 ### S3 Bucket Structure
 
@@ -233,7 +233,7 @@ aws s3 cp ./bin_arm64/lambdas/ s3://$BUCKET/$PATH/$VERSION/ --recursive
 
 ---
 
-## 8. 🔄 GITOPS DEPLOYMENT
+## 8. GITOPS DEPLOYMENT
 
 ### How does GitOps deployment work?
 
@@ -284,7 +284,7 @@ Production additionally triggers Terraform for API Gateway:
 
 ---
 
-## 9. ✅ DEPLOYMENT CHECKLIST
+## 9. DEPLOYMENT CHECKLIST
 
 ### Before Tagging Release
 
@@ -318,7 +318,7 @@ Production additionally triggers Terraform for API Gateway:
 
 ---
 
-## 10. 🔐 SECRETS & CONFIGURATION
+## 10. SECRETS & CONFIGURATION
 
 ### Required GitHub Secrets
 
@@ -338,7 +338,7 @@ Production additionally triggers Terraform for API Gateway:
 
 ---
 
-## 11. 🐛 TROUBLESHOOTING
+## 11. TROUBLESHOOTING
 
 ### Build Failures
 
@@ -376,7 +376,7 @@ Production additionally triggers Terraform for API Gateway:
 
 ---
 
-## 12. 🔧 MAINTENANCE WORKFLOWS
+## 12. MAINTENANCE WORKFLOWS
 
 ### Additional Workflows
 
@@ -404,7 +404,7 @@ go test ./...
 
 ---
 
-## 13. 📋 RULES
+## 13. RULES
 
 ### ALWAYS
 
@@ -433,7 +433,7 @@ go test ./...
 
 ---
 
-## 14. 🔗 RELATED RESOURCES
+## 14. RELATED RESOURCES
 
 | Topic | Document | Section |
 |-------|----------|---------|

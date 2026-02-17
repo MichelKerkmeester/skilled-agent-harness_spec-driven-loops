@@ -14,14 +14,14 @@ importance_tier: "normal"
 <!-- ANCHOR:table-of-contents -->
 ## TABLE OF CONTENTS
 
-- [1. 📖 OVERVIEW](#1--overview)
-- [2. 📌 IMPLEMENTED STATE](#2--implemented-state)
-- [3. 📝 HARDENING NOTES](#3--hardening-notes)
-- [4. 📚 RELATED](#4--related)
+- [1. OVERVIEW](#1--overview)
+- [2. IMPLEMENTED STATE](#2--implemented-state)
+- [3. HARDENING NOTES](#3--hardening-notes)
+- [4. RELATED](#4--related)
 
 <!-- /ANCHOR:table-of-contents -->
 <!-- ANCHOR:overview -->
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 This section provides an overview of the MCP Server Formatters directory.
 
@@ -33,7 +33,7 @@ This section provides an overview of the MCP Server Formatters directory.
 
 <!-- /ANCHOR:overview -->
 <!-- ANCHOR:implemented-state -->
-## 2. 📌 IMPLEMENTED STATE
+## 2. IMPLEMENTED STATE
 
 
 - Anchor filtering works only when `includeContent: true` and `anchors` are provided.
@@ -44,7 +44,7 @@ This section provides an overview of the MCP Server Formatters directory.
 
 <!-- /ANCHOR:implemented-state -->
 <!-- ANCHOR:hardening-notes -->
-## 3. 📝 HARDENING NOTES
+## 3. HARDENING NOTES
 
 
 - File path checks are defense-in-depth for content embedding.
@@ -54,7 +54,7 @@ This section provides an overview of the MCP Server Formatters directory.
 
 <!-- /ANCHOR:hardening-notes -->
 <!-- ANCHOR:related -->
-## 4. 📚 RELATED
+## 4. RELATED
 
 
 - `../handlers/README.md`

@@ -17,21 +17,21 @@ importance_tier: "normal"
 <!-- ANCHOR:table-of-contents -->
 ## TABLE OF CONTENTS
 
-- [1. 📖 OVERVIEW](#1--overview)
-- [2. 🚀 QUICK START](#2--quick-start)
-- [3. 📁 STRUCTURE](#3--structure)
-- [4. ⚡ FEATURES](#4--features)
-- [5. ⚙️ CONFIGURATION](#5--configuration)
-- [6. 💡 USAGE EXAMPLES](#6--usage-examples)
-- [7. 🛠️ TROUBLESHOOTING](#7--troubleshooting)
-- [8. 📚 RELATED DOCUMENTS](#8--related-documents)
+- [1. OVERVIEW](#1--overview)
+- [2. QUICK START](#2--quick-start)
+- [3. STRUCTURE](#3--structure)
+- [4. FEATURES](#4--features)
+- [5. CONFIGURATION](#5--configuration)
+- [6. USAGE EXAMPLES](#6--usage-examples)
+- [7. TROUBLESHOOTING](#7--troubleshooting)
+- [8. RELATED DOCUMENTS](#8--related-documents)
 
 <!-- /ANCHOR:table-of-contents -->
 
 ---
 
 <!-- ANCHOR:overview -->
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 ### What is the Embeddings Factory?
 
@@ -78,7 +78,7 @@ The Embeddings Factory is a multi-provider architecture for generating vector em
 ---
 
 <!-- ANCHOR:quick-start -->
-## 2. 🚀 QUICK START
+## 2. QUICK START
 
 ### 30-Second Setup
 
@@ -120,7 +120,7 @@ console.log(`Dimensions: ${embedding.length}`);
 ---
 
 <!-- ANCHOR:structure -->
-## 3. 📁 STRUCTURE
+## 3. STRUCTURE
 
 ```
 embeddings/
@@ -146,7 +146,7 @@ embeddings/
 ---
 
 <!-- ANCHOR:features -->
-## 4. ⚡ FEATURES
+## 4. FEATURES
 
 ### Per-Profile Databases
 
@@ -191,7 +191,7 @@ const { generateDocumentEmbedding, getEmbeddingDimension } = require('./embeddin
 ---
 
 <!-- ANCHOR:configuration -->
-## 5. ⚙️ CONFIGURATION
+## 5. CONFIGURATION
 
 ### Environment Variables
 
@@ -230,7 +230,7 @@ export HF_EMBEDDINGS_MODEL=nomic-ai/nomic-embed-text-v1.5
 ---
 
 <!-- ANCHOR:usage-examples -->
-## 6. 💡 USAGE EXAMPLES
+## 6. USAGE EXAMPLES
 
 ### Example 1: Generate Embeddings
 
@@ -310,7 +310,7 @@ OPENAI_API_KEY=sk-... node scripts/tests/test-embeddings-factory.js
 ---
 
 <!-- ANCHOR:troubleshooting -->
-## 7. 🛠️ TROUBLESHOOTING
+## 7. TROUBLESHOOTING
 
 ### Common Issues
 
@@ -387,7 +387,7 @@ echo "EMBEDDINGS_PROVIDER: $EMBEDDINGS_PROVIDER"
 ---
 
 <!-- ANCHOR:related -->
-## 8. 📚 RELATED DOCUMENTS
+## 8. RELATED DOCUMENTS
 
 ### Internal Documentation
 

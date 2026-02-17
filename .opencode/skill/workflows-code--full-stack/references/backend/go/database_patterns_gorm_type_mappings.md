@@ -9,7 +9,7 @@ Critical reference for Go-to-PostgreSQL type mappings in GORM entities, database
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 ### Purpose
 
@@ -41,7 +41,7 @@ database_patterns_gorm_type_mappings.md (this file)
 
 ---
 
-## 2. ⚠️ UID/UUID TYPES - CRITICAL
+## 2. UID/UUID TYPES - CRITICAL
 
 ### How do I correctly define a uid.UID field?
 
@@ -104,7 +104,7 @@ type WorkflowActivityLog struct {
 
 ---
 
-## 3. 🗂️ STANDARD TYPE MAPPINGS
+## 3. STANDARD TYPE MAPPINGS
 
 ### How do I map string types?
 
@@ -187,7 +187,7 @@ State MyEnumType `gorm:"type:my_enum_type"`
 
 ---
 
-## 4. 📦 EMBEDDED TYPES
+## 4. EMBEDDED TYPES
 
 ### How do I use SoftDeletable?
 
@@ -211,7 +211,7 @@ type MyEntity struct {
 
 ---
 
-## 5. 🔒 CONSTRAINTS & INDEXES
+## 5. CONSTRAINTS & INDEXES
 
 ### How do I define common constraints?
 
@@ -239,7 +239,7 @@ type Entity struct {
 
 ---
 
-## 6. ❓ NULLABLE FIELDS
+## 6. NULLABLE FIELDS
 
 ### How do I handle nullable vs non-nullable fields?
 
@@ -269,7 +269,7 @@ Age   sql.NullInt64  `gorm:"type:integer"`
 
 ---
 
-## 7. 🔄 MIGRATION PATTERNS
+## 7. MIGRATION PATTERNS
 
 ### How do I create a migration with correct types?
 
@@ -290,7 +290,7 @@ func (m *Migration1234567890) Up(db *gorm.DB) error {
 
 ---
 
-## 8. ✅ VALIDATION CHECKLIST
+## 8. VALIDATION CHECKLIST
 
 Before committing any entity definition, verify:
 
@@ -309,7 +309,7 @@ Before committing any entity definition, verify:
 
 ---
 
-## 9. 📊 QUICK REFERENCE TABLE
+## 9. QUICK REFERENCE TABLE
 
 | Go Type                  | GORM Tag                  | PostgreSQL Type              | Notes                       |
 | ------------------------ | ------------------------- | ---------------------------- | --------------------------- |
@@ -328,7 +328,7 @@ Before committing any entity definition, verify:
 
 ---
 
-## 10. 🐛 COMMON MISTAKES & FIXES
+## 10. COMMON MISTAKES & FIXES
 
 ### Mistake 1: Missing type:uuid
 
@@ -386,7 +386,7 @@ CreatedAt time.Time `gorm:"type:timestamptz"`
 
 ---
 
-## 11. 📋 RULES
+## 11. RULES
 
 ### ALWAYS
 
@@ -415,7 +415,7 @@ CreatedAt time.Time `gorm:"type:timestamptz"`
 
 ---
 
-## 12. 🔗 RELATED RESOURCES
+## 12. RELATED RESOURCES
 
 | Topic                        | Document                    | Section                          |
 | ---------------------------- | --------------------------- | -------------------------------- |
@@ -426,7 +426,7 @@ CreatedAt time.Time `gorm:"type:timestamptz"`
 
 ---
 
-## 13. 📚 RESOURCES
+## 13. RESOURCES
 
 ### Finding Examples
 

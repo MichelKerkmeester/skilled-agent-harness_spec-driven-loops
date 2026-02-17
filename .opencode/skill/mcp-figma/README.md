@@ -27,24 +27,24 @@ importance_tier: "normal"
 <!-- ANCHOR:table-of-contents -->
 ## TABLE OF CONTENTS
 
-- [1. 📖 OVERVIEW](#1--overview)
-- [2. 🚀 QUICK START](#2--quick-start)
-- [3. 📁 STRUCTURE](#3--structure)
-- [4. ⚡ FEATURES](#4--features)
-- [5. ⚙️ CONFIGURATION](#5--configuration)
-- [6. 🏷️ NAMING CONVENTION](#6--naming-convention)
-- [7. 💡 USAGE EXAMPLES](#7--usage-examples)
-- [8. 🧰 MCP TOOLS (18 TOTAL)](#8--mcp-tools-18-total)
-- [9. 🛠️ TROUBLESHOOTING](#9--troubleshooting)
-- [10. ❓ FAQ](#10--faq)
-- [11. 📚 RELATED DOCUMENTS](#11--related-documents)
+- [1. OVERVIEW](#1--overview)
+- [2. QUICK START](#2--quick-start)
+- [3. STRUCTURE](#3--structure)
+- [4. FEATURES](#4--features)
+- [5. CONFIGURATION](#5--configuration)
+- [6. NAMING CONVENTION](#6--naming-convention)
+- [7. USAGE EXAMPLES](#7--usage-examples)
+- [8. MCP TOOLS (18 TOTAL)](#8--mcp-tools-18-total)
+- [9. TROUBLESHOOTING](#9--troubleshooting)
+- [10. FAQ](#10--faq)
+- [11. RELATED DOCUMENTS](#11--related-documents)
 
 ---
 
 <!-- /ANCHOR:table-of-contents -->
 
 <!-- ANCHOR:overview -->
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 ### What is Figma MCP?
 
@@ -103,7 +103,7 @@ Figma MCP is an MCP server that provides AI assistants with programmatic access 
 <!-- /ANCHOR:overview -->
 
 <!-- ANCHOR:quick-start -->
-## 2. 🚀 QUICK START
+## 2. QUICK START
 
 ### Prerequisites
 
@@ -160,7 +160,7 @@ https://www.figma.com/file/ABC123xyz/My-Design-File
 <!-- /ANCHOR:quick-start -->
 
 <!-- ANCHOR:structure -->
-## 3. 📁 STRUCTURE
+## 3. STRUCTURE
 
 ```
 .opencode/skill/mcp-figma/
@@ -187,7 +187,7 @@ https://www.figma.com/file/ABC123xyz/My-Design-File
 <!-- /ANCHOR:structure -->
 
 <!-- ANCHOR:features -->
-## 4. ⚡ FEATURES
+## 4. FEATURES
 
 ### File Management
 
@@ -270,7 +270,7 @@ See [references/tool_reference.md](./references/tool_reference.md) for complete 
 <!-- /ANCHOR:features -->
 
 <!-- ANCHOR:configuration -->
-## 5. ⚙️ CONFIGURATION
+## 5. CONFIGURATION
 
 ### Code Mode Configuration
 
@@ -364,7 +364,7 @@ figma_FIGMA_API_KEY=figd_your_token_here
 <!-- /ANCHOR:configuration -->
 
 <!-- ANCHOR:naming-convention -->
-## 6. 🏷️ NAMING CONVENTION
+## 6. NAMING CONVENTION
 
 ### Critical Pattern
 
@@ -413,7 +413,7 @@ tool_info({ tool_name: "figma.figma_get_file" });
 <!-- /ANCHOR:naming-convention -->
 
 <!-- ANCHOR:usage-examples -->
-## 7. 💡 USAGE EXAMPLES
+## 7. USAGE EXAMPLES
 
 ### Example 1: Get Design File Structure
 
@@ -565,7 +565,7 @@ call_tool_chain({
 <!-- /ANCHOR:usage-examples -->
 
 <!-- ANCHOR:mcp-tools -->
-## 8. 🧰 MCP TOOLS (18 TOTAL)
+## 8. MCP TOOLS (18 TOTAL)
 
 ### Tool Priority Classification
 
@@ -615,7 +615,7 @@ See [references/tool_reference.md](./references/tool_reference.md) for complete 
 <!-- /ANCHOR:mcp-tools -->
 
 <!-- ANCHOR:troubleshooting -->
-## 9. 🛠️ TROUBLESHOOTING
+## 9. TROUBLESHOOTING
 
 ### Common Issues
 
@@ -741,7 +741,7 @@ call_tool_chain({
 <!-- /ANCHOR:troubleshooting -->
 
 <!-- ANCHOR:faq -->
-## 10. ❓ FAQ
+## 10. FAQ
 
 ### General Questions
 
@@ -797,7 +797,7 @@ A: Figma's API has rate limits that vary by endpoint. If you hit limits, wait 60
 <!-- /ANCHOR:faq -->
 
 <!-- ANCHOR:related -->
-## 11. 📚 RELATED DOCUMENTS
+## 11. RELATED DOCUMENTS
 
 ### Internal Documentation
 

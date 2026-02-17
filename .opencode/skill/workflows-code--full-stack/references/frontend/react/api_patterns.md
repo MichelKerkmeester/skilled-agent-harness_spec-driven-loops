@@ -9,7 +9,7 @@ Next.js Route handlers, tRPC integration, API design patterns, error responses, 
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 ### Purpose
 
@@ -31,7 +31,7 @@ Provides comprehensive guidance on building APIs in Next.js applications, coveri
 
 ---
 
-## 2. 🛤️ ROUTE HANDLERS
+## 2. ROUTE HANDLERS
 
 ### Basic Route Handler
 
@@ -321,7 +321,7 @@ export async function POST(request: NextRequest) {
 
 ---
 
-## 3. 📤 API RESPONSE PATTERNS
+## 3. API RESPONSE PATTERNS
 
 ### Standardized Response Format
 
@@ -537,7 +537,7 @@ export class ApiError extends Error {
 
 ---
 
-## 4. 🔐 AUTHENTICATION PATTERNS
+## 4. AUTHENTICATION PATTERNS
 
 ### Session-Based Auth
 
@@ -711,7 +711,7 @@ export function withApiKey(handler: AuthenticatedHandler): RouteHandler {
 
 ---
 
-## 5. 🔗 TRPC INTEGRATION
+## 5. TRPC INTEGRATION
 
 ### tRPC Setup
 
@@ -963,7 +963,7 @@ export function ProductList() {
 
 ---
 
-## 6. 🔒 MIDDLEWARE
+## 6. MIDDLEWARE
 
 ### Global API Middleware
 
@@ -1118,7 +1118,7 @@ export async function OPTIONS(request: NextRequest) {
 
 ---
 
-## 7. 🪝 WEBHOOKS
+## 7. WEBHOOKS
 
 ### Webhook Handler
 
@@ -1232,7 +1232,7 @@ async function handlePaymentFailed(invoice: Stripe.Invoice) {
 
 ---
 
-## 8. 📁 FILE UPLOADS
+## 8. FILE UPLOADS
 
 ### Upload Handler
 
@@ -1357,7 +1357,7 @@ export async function POST(request: NextRequest) {
 
 ---
 
-## 9. 📋 QUICK REFERENCE
+## 9. QUICK REFERENCE
 
 ### Route Handler Methods
 
@@ -1413,7 +1413,7 @@ return new NextResponse(null, { status: 204 });
 
 ---
 
-## 10. 🔗 RELATED RESOURCES
+## 10. RELATED RESOURCES
 
 ### Related References
 

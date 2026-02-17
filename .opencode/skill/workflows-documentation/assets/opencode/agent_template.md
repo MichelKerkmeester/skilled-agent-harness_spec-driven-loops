@@ -13,7 +13,7 @@ Agents are specialized AI personas with defined authorities, tool permissions, a
 | Aspect          | Agent                                   | Skill                        |
 | --------------- | --------------------------------------- | ---------------------------- |
 | **Purpose**     | Persona with authority to act           | Knowledge/workflow bundle    |
-| **Location**    | `.opencode/agent/` or `.claude/agents/` | `.opencode/skill/`           |
+| **Location**    | `.opencode/agent/`                      | `.opencode/skill/`           |
 | **Invocation**  | `@agent-name` or automatic routing      | `skill("name")` or automatic |
 | **Has Tools**   | Yes (permission object)                 | No (uses agent's tools)      |
 | **Frontmatter** | name, mode, temperature, permission     | name, allowed-tools          |

@@ -7,21 +7,21 @@ Complete guide for creating AI agent skills with native OpenCode discovery. Cove
 
 ## TABLE OF CONTENTS
 
-- [1. 🚀 QUICK START](#1--quick-start)
-- [2. 📋 PREREQUISITES](#2--prerequisites)
-- [3. 🔄 THE 6-STEP WORKFLOW](#3--the-6-step-workflow)
-- [4. 📝 SKILL.MD REFERENCE](#4--skillmd-reference)
-- [5. 📦 BUNDLED RESOURCES](#5--bundled-resources)
-- [6. ✅ VALIDATION AND TESTING](#6--validation-and-testing)
-- [7. 💡 EXAMPLES](#7--examples)
-- [8. 🛠️ TROUBLESHOOTING](#8--troubleshooting)
-- [9. 🔧 DISCOVERY MECHANICS](#9--discovery-mechanics)
-- [10. 📚 RESOURCES](#10--resources)
-- [11. ✅ FINAL CHECKLIST](#11--final-checklist)
+- [1. QUICK START](#1--quick-start)
+- [2. PREREQUISITES](#2--prerequisites)
+- [3. THE 6-STEP WORKFLOW](#3--the-6-step-workflow)
+- [4. SKILL.MD REFERENCE](#4--skillmd-reference)
+- [5. BUNDLED RESOURCES](#5--bundled-resources)
+- [6. VALIDATION AND TESTING](#6--validation-and-testing)
+- [7. EXAMPLES](#7--examples)
+- [8. TROUBLESHOOTING](#8--troubleshooting)
+- [9. DISCOVERY MECHANICS](#9--discovery-mechanics)
+- [10. RESOURCES](#10--resources)
+- [11. FINAL CHECKLIST](#11--final-checklist)
 
 ---
 
-## 🤖 AI SET-UP GUIDE
+## AI SET-UP GUIDE
 
 ### ⛔ HARD BLOCK: Write Agent Required
 
@@ -104,7 +104,7 @@ My project is at: [your project path]
 
 ---
 
-## 1. 🚀 QUICK START
+## 1. QUICK START
 
 **Time estimate: 20-30 minutes**
 
@@ -133,7 +133,7 @@ python .opencode/skill/workflows-documentation/scripts/package_skill.py .opencod
 
 ---
 
-## 2. 📋 PREREQUISITES
+## 2. PREREQUISITES
 
 ### Required Software
 
@@ -171,7 +171,7 @@ echo "Prerequisites OK (including @write agent)"
 
 ---
 
-## 3. 🔄 THE 6-STEP WORKFLOW
+## 3. THE 6-STEP WORKFLOW
 
 ### Workflow Overview
 
@@ -386,7 +386,7 @@ Fix the errors above and re-run validation.
 
 ---
 
-## 4. 📝 SKILL.MD REFERENCE
+## 4. SKILL.MD REFERENCE
 
 > **CRITICAL:** The `name` field in frontmatter **MUST match the folder name exactly** (case-sensitive, hyphen-case). This is the #1 cause of discovery failures.
 
@@ -500,7 +500,7 @@ Step-by-step execution patterns:
 
 ---
 
-## 5. 📦 BUNDLED RESOURCES
+## 5. BUNDLED RESOURCES
 
 ### When to Create Each Type
 
@@ -583,7 +583,7 @@ if __name__ == "__main__":
 
 ---
 
-## 6. ✅ VALIDATION AND TESTING
+## 6. VALIDATION AND TESTING
 
 ### Validation Commands
 
@@ -637,7 +637,7 @@ if __name__ == "__main__":
 
 ---
 
-## 7. 💡 EXAMPLES
+## 7. EXAMPLES
 
 ### Example 1: Minimal Skill (Complete)
 
@@ -721,7 +721,7 @@ cat .opencode/skill/system-spec-kit/SKILL.md | head -100
 
 ---
 
-## 8. 🛠️ TROUBLESHOOTING
+## 8. TROUBLESHOOTING
 
 ### Common Errors and Fixes
 
@@ -861,7 +861,7 @@ python .opencode/skill/workflows-documentation/scripts/extract_structure.py \
 
 ---
 
-## 9. 🔧 DISCOVERY MECHANICS
+## 9. DISCOVERY MECHANICS
 
 > This section explains internal mechanics for advanced users. Not required for basic skill creation.
 
@@ -924,7 +924,7 @@ head -10 .opencode/skill/my-skill/SKILL.md
 
 ---
 
-## 10. 📚 RESOURCES
+## 10. RESOURCES
 
 ### File Locations
 
@@ -968,7 +968,7 @@ python .opencode/skill/workflows-documentation/scripts/package_skill.py \
 
 ---
 
-## 11. ✅ FINAL CHECKLIST
+## 11. FINAL CHECKLIST
 
 - [ ] **Step 1:** Purpose and use cases defined
 - [ ] **Step 2:** Resource plan documented (scripts/references/assets needed)

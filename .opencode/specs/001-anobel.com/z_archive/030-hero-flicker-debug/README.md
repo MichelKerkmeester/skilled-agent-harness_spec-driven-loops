@@ -6,17 +6,17 @@
 
 ## TABLE OF CONTENTS
 
-- [1. 📖 OVERVIEW](#1--overview)
-- [2. 🚀 QUICK START](#2--quick-start)
-- [3. 📁 STRUCTURE](#3--structure)
-- [4. ⚡ FEATURES](#4--features)
-- [5. 🛠️ TROUBLESHOOTING](#5--troubleshooting)
-- [6. 📚 RELATED DOCUMENTS](#6--related-documents)
+- [1.  OVERVIEW]](#1--overview)
+- [2.  QUICK START]](#2--quick-start)
+- [3.  STRUCTURE]](#3--structure)
+- [4.  FEATURES]](#4--features)
+- [5. TROUBLESHOOTING]](#5--troubleshooting)
+- [6.  RELATED DOCUMENTS]](#6--related-documents)
 
 ---
 
 <!-- ANCHOR:overview -->
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 **Purpose**: Level 2 templates provide enhanced documentation for medium-sized features that require systematic validation, non-functional requirements, and explicit edge case handling.
 
@@ -57,7 +57,7 @@ Level 2 includes **5 template files**:
 ---
 
 <!-- ANCHOR:quick-start -->
-## 2. 🚀 QUICK START
+## 2. QUICK START
 
 ### 30-Second Setup
 
@@ -99,7 +99,7 @@ node .opencode/skill/system-spec-kit/scripts/validate-spec.js specs/###-feature-
 ---
 
 <!-- ANCHOR:structure -->
-## 3. 📁 STRUCTURE
+## 3. STRUCTURE
 
 Level 2 spec folder structure:
 
@@ -126,7 +126,7 @@ specs/###-feature-name/
 ---
 
 <!-- ANCHOR:features -->
-## 4. ⚡ FEATURES
+## 4. FEATURES
 
 ### Enhanced Specifications
 
@@ -156,7 +156,7 @@ Automated validation ensures all required sections and formatting standards are 
 ---
 
 <!-- ANCHOR:troubleshooting -->
-## 5. 🛠️ TROUBLESHOOTING
+## 5. TROUBLESHOOTING
 
 ### Common Issues
 
@@ -217,7 +217,7 @@ diff specs/###-feature-name/checklist.md .opencode/skill/system-spec-kit/templat
 ---
 
 <!-- ANCHOR:related-documents -->
-## 6. 📚 RELATED DOCUMENTS
+## 6. RELATED DOCUMENTS
 
 ### Internal Documentation
 

@@ -177,9 +177,9 @@
 <!-- ANCHOR:functional -->
 ## FUNCTIONAL VERIFICATION
 
-- [x] CHK-210 [P0] `.txt` files discovered from specs/**/memory/ (manual test) [Evidence: memory-parser.ts updated with .txt validation]
-- [x] CHK-211 [P0] `.txt` files discovered from .opencode/skill/ (manual test) [Evidence: memory-types.ts classification updated]
-- [x] CHK-212 [P0] `.txt` files discovered from .opencode/command/ (manual test) [Evidence: memory-index.ts discovery updated]
+- [x] CHK-210 [P0] `.txt` files discovered from specs/**/memory/ [Evidence: memory-parser.ts updated with .txt validation]
+- [x] CHK-211 [P0] `.txt` files discovered from .opencode/skill/ [Evidence: memory-types.ts classification updated]
+- [x] CHK-212 [P0] `.txt` files discovered from .opencode/command/ [Evidence: findProjectReadmes() expanded, isReadmeFileName() regex supports both extensions]
 - [x] CHK-213 [P0] `.txt` files indexed successfully (check scan results) [Evidence: All tests pass including .txt indexing]
 - [x] CHK-214 [P0] `.txt` content searchable (query returns `.txt` files) [Evidence: Test suite verifies search functionality]
 - [x] CHK-215 [P1] Trigger phrases extracted from `.txt` frontmatter (verify in search) [Evidence: Parser handles frontmatter for both .md and .txt]

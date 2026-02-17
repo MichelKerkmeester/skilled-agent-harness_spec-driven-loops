@@ -23,7 +23,7 @@ This workflow gathers ALL inputs in ONE prompt. Round-trip: 1 user interaction.
 
 ---
 
-## 0. 📋 UNIFIED SETUP PHASE
+## 0. UNIFIED SETUP PHASE
 
 **FIRST MESSAGE PROTOCOL**: This prompt MUST be your FIRST response. No analysis, no tool calls — ask ALL questions immediately, then wait.
 
@@ -109,13 +109,13 @@ operating_mode:
 
 ---
 
-## 1. 🎯 PURPOSE
+## 1. PURPOSE
 
 Run the 9-step research workflow: codebase investigation, external research, technical analysis, and documentation. Creates research.md with 17 comprehensive sections. Use when technical uncertainty exists before planning.
 
 ---
 
-## 2. 📝 CONTRACT
+## 2. CONTRACT
 
 **Inputs:** `$ARGUMENTS` -- Research topic with optional parameters (focus, scope, constraints)
 **Outputs:** Spec folder with research.md (17 sections) + `STATUS=<OK|FAIL|CANCELLED>`
@@ -126,7 +126,7 @@ $ARGUMENTS
 
 ---
 
-## 3. 📊 WORKFLOW OVERVIEW
+## 3. WORKFLOW OVERVIEW
 
 | Step | Name | Purpose | Outputs |
 |------|------|---------|---------|
@@ -159,13 +159,13 @@ $ARGUMENTS
 
 ---
 
-## 4. 📌 RESEARCH DOCUMENT SECTIONS
+## 4. RESEARCH DOCUMENT SECTIONS
 
 The generated `research.md` contains 17 sections: Metadata, Investigation Report, Executive Overview, Core Architecture, Technical Specifications, Constraints & Limitations, Integration Patterns, Implementation Guide, Code Examples, Testing & Debugging, Performance, Security, Maintenance, API Reference, Troubleshooting, Acknowledgements, Appendix & Changelog.
 
 ---
 
-## 5. ⚡ INSTRUCTIONS
+## 5. INSTRUCTIONS
 
 After setup phase passes, load and execute the appropriate YAML prompt:
 - **AUTONOMOUS**: `.opencode/command/spec_kit/assets/spec_kit_research_auto.yaml`
@@ -175,7 +175,7 @@ The YAML contains detailed step-by-step workflow, field extraction rules, comple
 
 ---
 
-## 6. 📊 OUTPUT FORMATS
+## 6. OUTPUT FORMATS
 
 **Success:**
 ```
@@ -193,7 +193,7 @@ STATUS=FAIL ERROR="[message]"
 
 ---
 
-## 7. 🔧 PARALLEL DISPATCH
+## 7. PARALLEL DISPATCH
 
 ### Complexity Scoring (5 Dimensions)
 
@@ -225,7 +225,7 @@ Format: `[W:R-{sequence}]` where sequence is a 3-digit number (001, 002, etc.)
 
 ---
 
-## 8. 💾 MEMORY INTEGRATION
+## 8. MEMORY INTEGRATION
 
 ### Before Starting Research
 
@@ -250,7 +250,7 @@ Format: `[W:R-{sequence}]` where sequence is a 3-digit number (001, 002, etc.)
 
 ---
 
-## 9. 🔀 AGENT ROUTING
+## 9. AGENT ROUTING
 
 | Step | Agent | Fallback | Purpose |
 |------|-------|----------|---------|
@@ -284,7 +284,7 @@ When `@handover` unavailable: Falls back to `subagent_type: "general"`, handover
 
 ---
 
-## 10. ✅ QUALITY GATES
+## 10. QUALITY GATES
 
 | Gate | Location | Purpose | Threshold |
 |------|----------|---------|-----------|
@@ -302,7 +302,7 @@ Score >= 70 = PASS (proceed). Score < 70 = FAIL (block, require remediation).
 
 ---
 
-## 11. ⚠️ ERROR HANDLING
+## 11. ERROR HANDLING
 
 | Error | Action |
 |-------|--------|
@@ -315,7 +315,7 @@ Score >= 70 = PASS (proceed). Score < 70 = FAIL (block, require remediation).
 
 ---
 
-## 12. 📌 KEY DIFFERENCES
+## 12. KEY DIFFERENCES
 
 - **Does NOT proceed to implementation** - Terminates after research.md
 - **Primary output is research.md** - Comprehensive technical documentation
@@ -324,7 +324,7 @@ Score >= 70 = PASS (proceed). Score < 70 = FAIL (block, require remediation).
 
 ---
 
-## 13. 🔍 EXAMPLES
+## 13. EXAMPLES
 
 ```
 /spec_kit:research:auto "Webflow CMS integration with external payment gateway and email service"
@@ -333,7 +333,7 @@ Score >= 70 = PASS (proceed). Score < 70 = FAIL (block, require remediation).
 
 ---
 
-## 14. 🔗 COMMAND CHAIN
+## 14. COMMAND CHAIN
 
 `/spec_kit:research` -> `/spec_kit:plan` -> `/spec_kit:implement`
 
@@ -341,7 +341,7 @@ Score >= 70 = PASS (proceed). Score < 70 = FAIL (block, require remediation).
 
 ---
 
-## 15. 📌 NEXT STEPS
+## 15. NEXT STEPS
 
 | Condition | Suggested Command | Reason |
 |-----------|-------------------|--------|
@@ -353,7 +353,7 @@ Score >= 70 = PASS (proceed). Score < 70 = FAIL (block, require remediation).
 
 ---
 
-## 16. 📌 REFERENCE
+## 16. REFERENCE
 
 **Full details in YAML prompts:** Workflow steps, field extraction, documentation levels (1/2/3), templates, completion report format, mode behaviors (auto/confirm), parallel dispatch, research document structure, failure recovery.
 

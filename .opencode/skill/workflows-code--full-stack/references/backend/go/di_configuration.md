@@ -9,7 +9,7 @@ DI configuration structure, JSON nesting rules, token-to-key mapping, and debugg
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 ### Purpose
 
@@ -38,7 +38,7 @@ di_configuration.md (this file)
 
 ---
 
-## 2. 🧩 THE FOUR DI FUNCTIONS
+## 2. THE FOUR DI FUNCTIONS
 
 The DI system in backend systems uses four core functions from `github.com/pixie-sh/di-go`. Understanding these is **critical** for working with the codebase.
 
@@ -176,7 +176,7 @@ The breadcrumbs tell you exactly where in the JSON hierarchy the system is looki
 
 ---
 
-## 4. 🏗️ CONFIGURATION STRUCTURE
+## 4. CONFIGURATION STRUCTURE
 
 ### 4.1 How do I map registry tokens to JSON keys?
 
@@ -311,7 +311,7 @@ func RegistryPaymentsBusinessLayer(ctx di.Context, opts *di.RegistryOpts) (*Paym
 
 ---
 
-## 5. 📦 CONFIGURATION PATTERNS
+## 5. CONFIGURATION PATTERNS
 
 ### Pattern 1: Root-Level Services (via Struct Embedding)
 
@@ -439,7 +439,7 @@ Configuration values can reference environment variables:
 
 ---
 
-## 6. 🐛 DEBUGGING CONFIGURATION ISSUES
+## 6. DEBUGGING CONFIGURATION ISSUES
 
 ### 6.1 How do I read error messages?
 
@@ -525,7 +525,7 @@ Breadcrumbs: [payments_business_layer payments_data_layer]
 
 ---
 
-## 7. 🔧 PRACTICAL GUIDE
+## 7. PRACTICAL GUIDE
 
 ### 7.1 How do I add configuration for a new service?
 
@@ -618,7 +618,7 @@ When adding a new service configuration:
 
 ---
 
-## 8. 💡 REAL-WORLD EXAMPLE: ms_payments
+## 8. REAL-WORLD EXAMPLE: ms_payments
 
 This section traces through the complete ms_payments configuration to show how all concepts connect.
 
@@ -751,7 +751,7 @@ func RegistryPaymentsBusinessLayer(ctx di.Context, opts *di.RegistryOpts) (*Paym
 
 ---
 
-## 9. 🏆 BEST PRACTICES
+## 9. BEST PRACTICES
 
 ### DO
 
@@ -773,7 +773,7 @@ func RegistryPaymentsBusinessLayer(ctx di.Context, opts *di.RegistryOpts) (*Paym
 
 ---
 
-## 10. 📋 RULES
+## 10. RULES
 
 ### ALWAYS
 
@@ -801,7 +801,7 @@ func RegistryPaymentsBusinessLayer(ctx di.Context, opts *di.RegistryOpts) (*Paym
 
 ---
 
-## 11. 🔗 RELATED RESOURCES
+## 11. RELATED RESOURCES
 
 | Topic | Location | Description |
 |-------|----------|-------------|

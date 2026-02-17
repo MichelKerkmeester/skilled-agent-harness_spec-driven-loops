@@ -1,7 +1,7 @@
 // Vector Index Implementation - TypeScript type checking enabled
 // ───────────────────────────────────────────────────────────────
 // SEARCH: VECTOR INDEX — converted from JS
-// Type checking enabled - catch blocks use `: any` annotation
+// Type checking enabled - legacy paths still use `: any` annotations
 //
 // DECAY STRATEGY (ADR-004): Search-time temporal decay uses an
 // FSRS-preferred strategy. Memories with FSRS review data (last_review
@@ -30,10 +30,23 @@ import * as embeddingsProvider from '../providers/embeddings';
 const logger = createLogger('VectorIndex');
 
 const search_weights_path = path.join(SERVER_DIR, 'configs', 'search-weights.json');
-const search_weights: any = JSON.parse(fs.readFileSync(search_weights_path, 'utf-8'));
+type SearchWeightsConfig = {
+  maxTriggersPerMemory?: number;
+  smartRanking?: {
+    recencyWeight?: number;
+    accessWeight?: number;
+    relevanceWeight?: number;
+  };
+};
+
+const search_weights = JSON.parse(
+  fs.readFileSync(search_weights_path, 'utf-8')
+) as SearchWeightsConfig;
 const MAX_TRIGGERS_PER_MEMORY = search_weights.maxTriggersPerMemory || 10;
 
-function to_embedding_buffer(embedding: any) {
+type EmbeddingInput = Float32Array | number[] | ArrayBufferView;
+
+function to_embedding_buffer(embedding: EmbeddingInput) {
   if (embedding instanceof Float32Array) {
     return Buffer.from(embedding.buffer, embedding.byteOffset, embedding.byteLength);
   }
@@ -41,6 +54,33 @@ function to_embedding_buffer(embedding: any) {
     return Buffer.from(new Float32Array(embedding).buffer);
   }
   return Buffer.from(embedding.buffer, embedding.byteOffset, embedding.byteLength);
+}
+
+
+function get_error_message(error: unknown): string {
+  if (error instanceof Error) {
+    return error.message;
+  }
+
+  if (typeof error === 'object' && error !== null && 'message' in error) {
+    const message = (error as { message?: unknown }).message;
+    if (typeof message === 'string') {
+      return message;
+    }
+  }
+
+  return String(error);
+}
+
+function get_error_code(error: unknown): string | undefined {
+  if (typeof error === 'object' && error !== null && 'code' in error) {
+    const code = (error as { code?: unknown }).code;
+    if (typeof code === 'string') {
+      return code;
+    }
+  }
+
+  return undefined;
 }
 
 /* ─────────────────────────────────────────────────────────────
@@ -71,8 +111,8 @@ function get_embedding_dim() {
     if (process.env.OPENAI_API_KEY || process.env.EMBEDDINGS_PROVIDER === 'openai') {
       return 1536;
     }
-  } catch (e: any) {
-    console.warn('[vector-index] Could not get embedding dimension from profile:', e.message);
+  } catch (e: unknown) {
+    console.warn('[vector-index] Could not get embedding dimension from profile:', get_error_message(e));
   }
   return EMBEDDING_DIM;
 }
@@ -131,9 +171,9 @@ function validate_embedding_dimension() {
     }
 
     return { valid: true, stored: stored_dim, current: current_dim };
-  } catch (e: any) {
-    console.warn('[vector-index] Dimension validation error:', e.message);
-    return { valid: true, stored: null, current: get_embedding_dim(), reason: e.message };
+  } catch (e: unknown) {
+    console.warn('[vector-index] Dimension validation error:', get_error_message(e));
+    return { valid: true, stored: null, current: get_embedding_dim(), reason: get_error_message(e) };
   }
 }
 
@@ -188,11 +228,15 @@ const ALLOWED_BASE_PATHS = [
   ...(process.env.MEMORY_ALLOWED_PATHS ? process.env.MEMORY_ALLOWED_PATHS.split(':') : [])
 ].filter(Boolean).map(p => path.resolve(p));
 
-function validate_file_path_local(file_path: any) {
+function validate_file_path_local(file_path: unknown) {
+  if (typeof file_path !== 'string') {
+    return null;
+  }
+
   return validateFilePath(file_path, ALLOWED_BASE_PATHS);
 }
 
-function safe_read_file(file_path: any) {
+function safe_read_file(file_path: unknown) {
   const valid_path = validate_file_path_local(file_path);
   if (!valid_path) {
     return '';
@@ -202,14 +246,14 @@ function safe_read_file(file_path: any) {
     if (fs.existsSync(valid_path)) {
       return fs.readFileSync(valid_path, 'utf-8');
     }
-  } catch (err: any) {
-    console.warn(`[vector-index] Could not read file ${valid_path}: ${err.message}`);
+  } catch (err: unknown) {
+    console.warn(`[vector-index] Could not read file ${valid_path}: ${get_error_message(err)}`);
   }
   return '';
 }
 
 // HIGH-004 FIX: Async version for non-blocking concurrent file reads
-async function safe_read_file_async(file_path: any) {
+async function safe_read_file_async(file_path: unknown) {
   const valid_path = validate_file_path_local(file_path);
   if (!valid_path) {
     return '';
@@ -217,17 +261,17 @@ async function safe_read_file_async(file_path: any) {
 
   try {
     return await fs.promises.readFile(valid_path, 'utf-8');
-  } catch (err: any) {
+  } catch (err: unknown) {
     // ENOENT is expected for missing files, only warn on other errors
-    if (err.code !== 'ENOENT') {
-      console.warn(`[vector-index] Could not read file ${valid_path}: ${err.message}`);
+    if (!(err instanceof Error && 'code' in err && get_error_code(err) === 'ENOENT')) {
+      console.warn(`[vector-index] Could not read file ${valid_path}: ${get_error_message(err)}`);
     }
     return '';
   }
 }
 
 // Safely parse JSON with validation (CWE-502: Deserialization mitigation)
-function safe_parse_json(json_string: any, default_value = []) {
+function safe_parse_json(json_string: unknown, default_value = []) {
   if (!json_string || typeof json_string !== 'string') {
     return default_value;
   }
@@ -253,8 +297,8 @@ function safe_parse_json(json_string: any, default_value = []) {
     }
     
     return parsed;
-  } catch (err: any) {
-    console.warn(`[vector-index] JSON parse error: ${err.message}`);
+  } catch (err: unknown) {
+    console.warn(`[vector-index] JSON parse error: ${get_error_message(err)}`);
     return default_value;
   }
 }
@@ -289,8 +333,8 @@ function is_constitutional_cache_valid() {
         return false;
       }
     }
-  } catch (e: any) {
-    console.warn('[vector-index] Cache validation error:', e instanceof Error ? e.message : String(e));
+  } catch (e: unknown) {
+    console.warn('[vector-index] Cache validation error:', get_error_message(e));
   }
 
   return true;
@@ -407,9 +451,9 @@ function run_migrations(database: any, from_version: any, to_version: any) {
       try {
         database.exec('CREATE INDEX IF NOT EXISTS idx_history_timestamp ON memory_history(timestamp DESC)');
         logger.info('Migration v2: Created idx_history_timestamp index');
-      } catch (e: any) {
-        if (!e.message.includes('already exists')) {
-          console.warn('[VectorIndex] Migration v2 warning:', e.message);
+      } catch (e: unknown) {
+        if (!get_error_message(e).includes('already exists')) {
+          console.warn('[VectorIndex] Migration v2 warning:', get_error_message(e));
         }
       }
     },
@@ -418,9 +462,9 @@ function run_migrations(database: any, from_version: any, to_version: any) {
       try {
         database.exec('ALTER TABLE memory_index ADD COLUMN related_memories TEXT');
         logger.info('Migration v3: Added related_memories column');
-      } catch (e: any) {
-        if (!e.message.includes('duplicate column')) {
-          console.warn('[VectorIndex] Migration v3 warning:', e.message);
+      } catch (e: unknown) {
+        if (!get_error_message(e).includes('duplicate column')) {
+          console.warn('[VectorIndex] Migration v3 warning:', get_error_message(e));
         }
       }
     },
@@ -438,9 +482,9 @@ function run_migrations(database: any, from_version: any, to_version: any) {
         try {
           database.exec(col.sql);
           logger.info(`Migration v4: Added ${col.name} column (FSRS)`);
-        } catch (e: any) {
-          if (!e.message.includes('duplicate column')) {
-            console.warn(`[VectorIndex] Migration v4 warning (${col.name}):`, e.message);
+        } catch (e: unknown) {
+          if (!get_error_message(e).includes('duplicate column')) {
+            console.warn(`[VectorIndex] Migration v4 warning (${col.name}):`, get_error_message(e));
           }
         }
       }
@@ -461,9 +505,9 @@ function run_migrations(database: any, from_version: any, to_version: any) {
           )
         `);
         logger.info('Migration v4: Created memory_conflicts table');
-      } catch (e: any) {
-        if (!e.message.includes('already exists')) {
-          console.warn('[VectorIndex] Migration v4 warning (memory_conflicts):', e.message);
+      } catch (e: unknown) {
+        if (!get_error_message(e).includes('already exists')) {
+          console.warn('[VectorIndex] Migration v4 warning (memory_conflicts):', get_error_message(e));
         }
       }
 
@@ -473,8 +517,8 @@ function run_migrations(database: any, from_version: any, to_version: any) {
         database.exec('CREATE INDEX IF NOT EXISTS idx_last_review ON memory_index(last_review)');
         database.exec('CREATE INDEX IF NOT EXISTS idx_fsrs_retrieval ON memory_index(stability, difficulty, last_review)');
         logger.info('Migration v4: Created FSRS indexes');
-      } catch (e: any) {
-        console.warn('[VectorIndex] Migration v4 warning (indexes):', e.message);
+      } catch (e: unknown) {
+        console.warn('[VectorIndex] Migration v4 warning (indexes):', get_error_message(e));
       }
     },
     5: () => {
@@ -491,9 +535,9 @@ function run_migrations(database: any, from_version: any, to_version: any) {
             ))
         `);
         logger.info('Migration v5: Added memory_type column');
-      } catch (e: any) {
-        if (!e.message.includes('duplicate column')) {
-          console.warn('[VectorIndex] Migration v5 warning (memory_type):', e.message);
+      } catch (e: unknown) {
+        if (!get_error_message(e).includes('duplicate column')) {
+          console.warn('[VectorIndex] Migration v5 warning (memory_type):', get_error_message(e));
         }
       }
 
@@ -501,9 +545,9 @@ function run_migrations(database: any, from_version: any, to_version: any) {
       try {
         database.exec('ALTER TABLE memory_index ADD COLUMN half_life_days REAL');
         logger.info('Migration v5: Added half_life_days column');
-      } catch (e: any) {
-        if (!e.message.includes('duplicate column')) {
-          console.warn('[VectorIndex] Migration v5 warning (half_life_days):', e.message);
+      } catch (e: unknown) {
+        if (!get_error_message(e).includes('duplicate column')) {
+          console.warn('[VectorIndex] Migration v5 warning (half_life_days):', get_error_message(e));
         }
       }
 
@@ -516,9 +560,9 @@ function run_migrations(database: any, from_version: any, to_version: any) {
             ))
         `);
         logger.info('Migration v5: Added type_inference_source column');
-      } catch (e: any) {
-        if (!e.message.includes('duplicate column')) {
-          console.warn('[VectorIndex] Migration v5 warning (type_inference_source):', e.message);
+      } catch (e: unknown) {
+        if (!get_error_message(e).includes('duplicate column')) {
+          console.warn('[VectorIndex] Migration v5 warning (type_inference_source):', get_error_message(e));
         }
       }
 
@@ -527,8 +571,8 @@ function run_migrations(database: any, from_version: any, to_version: any) {
         database.exec('CREATE INDEX IF NOT EXISTS idx_memory_type ON memory_index(memory_type)');
         database.exec('CREATE INDEX IF NOT EXISTS idx_memory_type_decay ON memory_index(memory_type, half_life_days)');
         logger.info('Migration v5: Created memory_type indexes');
-      } catch (e: any) {
-        console.warn('[VectorIndex] Migration v5 warning (indexes):', e.message);
+      } catch (e: unknown) {
+        console.warn('[VectorIndex] Migration v5 warning (indexes):', get_error_message(e));
       }
 
       // Backfill existing memories with inferred types
@@ -542,9 +586,9 @@ function run_migrations(database: any, from_version: any, to_version: any) {
       try {
         database.exec('ALTER TABLE memory_index ADD COLUMN file_mtime_ms INTEGER');
         logger.info('Migration v6: Added file_mtime_ms column for incremental indexing');
-      } catch (e: any) {
-        if (!e.message.includes('duplicate column')) {
-          console.warn('[VectorIndex] Migration v6 warning (file_mtime_ms):', e.message);
+      } catch (e: unknown) {
+        if (!get_error_message(e).includes('duplicate column')) {
+          console.warn('[VectorIndex] Migration v6 warning (file_mtime_ms):', get_error_message(e));
         }
       }
 
@@ -552,8 +596,8 @@ function run_migrations(database: any, from_version: any, to_version: any) {
       try {
         database.exec('CREATE INDEX IF NOT EXISTS idx_file_mtime ON memory_index(file_mtime_ms)');
         logger.info('Migration v6: Created file_mtime index');
-      } catch (e: any) {
-        console.warn('[VectorIndex] Migration v6 warning (idx_file_mtime):', e.message);
+      } catch (e: unknown) {
+        console.warn('[VectorIndex] Migration v6 warning (idx_file_mtime):', get_error_message(e));
       }
     },
     7: () => {
@@ -574,8 +618,8 @@ function run_migrations(database: any, from_version: any, to_version: any) {
           WHERE embedding_status IN ('pending', 'partial', 'retry')
         `);
         logger.info('Migration v7: Created idx_embedding_pending partial index');
-      } catch (e: any) {
-        console.warn('[VectorIndex] Migration v7 warning (idx_embedding_pending):', e.message);
+      } catch (e: unknown) {
+        console.warn('[VectorIndex] Migration v7 warning (idx_embedding_pending):', get_error_message(e));
       }
 
       // Add index for BM25/FTS5 fallback search on pending memories (CHK-178)
@@ -586,8 +630,8 @@ function run_migrations(database: any, from_version: any, to_version: any) {
           WHERE embedding_status IN ('pending', 'partial')
         `);
         logger.info('Migration v7: Created idx_fts_fallback index for deferred indexing');
-      } catch (e: any) {
-        console.warn('[VectorIndex] Migration v7 warning (idx_fts_fallback):', e.message);
+      } catch (e: unknown) {
+        console.warn('[VectorIndex] Migration v7 warning (idx_fts_fallback):', get_error_message(e));
       }
     },
     8: () => {
@@ -613,9 +657,9 @@ function run_migrations(database: any, from_version: any, to_version: any) {
           )
         `);
         logger.info('Migration v8: Created causal_edges table');
-      } catch (e: any) {
-        if (!e.message.includes('already exists')) {
-          console.warn('[VectorIndex] Migration v8 warning (causal_edges):', e.message);
+      } catch (e: unknown) {
+        if (!get_error_message(e).includes('already exists')) {
+          console.warn('[VectorIndex] Migration v8 warning (causal_edges):', get_error_message(e));
         }
       }
 
@@ -626,8 +670,8 @@ function run_migrations(database: any, from_version: any, to_version: any) {
         database.exec('CREATE INDEX IF NOT EXISTS idx_causal_relation ON causal_edges(relation)');
         database.exec('CREATE INDEX IF NOT EXISTS idx_causal_strength ON causal_edges(strength DESC)');
         logger.info('Migration v8: Created causal_edges indexes');
-      } catch (e: any) {
-        console.warn('[VectorIndex] Migration v8 warning (indexes):', e.message);
+      } catch (e: unknown) {
+        console.warn('[VectorIndex] Migration v8 warning (indexes):', get_error_message(e));
       }
     },
     9: () => {
@@ -675,9 +719,9 @@ function run_migrations(database: any, from_version: any, to_version: any) {
           )
         `);
         logger.info('Migration v9: Created memory_corrections table');
-      } catch (e: any) {
-        if (!e.message.includes('already exists')) {
-          console.warn('[VectorIndex] Migration v9 warning (memory_corrections):', e.message);
+      } catch (e: unknown) {
+        if (!get_error_message(e).includes('already exists')) {
+          console.warn('[VectorIndex] Migration v9 warning (memory_corrections):', get_error_message(e));
         }
       }
 
@@ -690,8 +734,8 @@ function run_migrations(database: any, from_version: any, to_version: any) {
         // Partial index for active (non-undone) corrections
         database.exec('CREATE INDEX IF NOT EXISTS idx_corrections_active ON memory_corrections(original_memory_id, is_undone) WHERE is_undone = 0');
         logger.info('Migration v9: Created memory_corrections indexes');
-      } catch (e: any) {
-        console.warn('[VectorIndex] Migration v9 warning (indexes):', e.message);
+      } catch (e: unknown) {
+        console.warn('[VectorIndex] Migration v9 warning (indexes):', get_error_message(e));
       }
     },
     12: () => {
@@ -720,8 +764,8 @@ function run_migrations(database: any, from_version: any, to_version: any) {
           )
         `);
         logger.info('Migration v12: Unified memory_conflicts table (KL-1)');
-      } catch (e: any) {
-        console.warn('[VectorIndex] Migration v12 warning (memory_conflicts):', e.message);
+      } catch (e: unknown) {
+        console.warn('[VectorIndex] Migration v12 warning (memory_conflicts):', get_error_message(e));
       }
 
       // Recreate indexes for the unified table
@@ -729,8 +773,8 @@ function run_migrations(database: any, from_version: any, to_version: any) {
         database.exec('CREATE INDEX IF NOT EXISTS idx_conflicts_memory ON memory_conflicts(existing_memory_id)');
         database.exec('CREATE INDEX IF NOT EXISTS idx_conflicts_timestamp ON memory_conflicts(timestamp DESC)');
         logger.info('Migration v12: Created memory_conflicts indexes');
-      } catch (e: any) {
-        console.warn('[VectorIndex] Migration v12 warning (indexes):', e.message);
+      } catch (e: unknown) {
+        console.warn('[VectorIndex] Migration v12 warning (indexes):', get_error_message(e));
       }
     },
     13: () => {
@@ -740,18 +784,18 @@ function run_migrations(database: any, from_version: any, to_version: any) {
       try {
         database.exec("ALTER TABLE memory_index ADD COLUMN document_type TEXT DEFAULT 'memory'");
         logger.info('Migration v13: Added document_type column');
-      } catch (e: any) {
-        if (!e.message.includes('duplicate column')) {
-          console.warn('[VectorIndex] Migration v13 warning (document_type):', e.message);
+      } catch (e: unknown) {
+        if (!get_error_message(e).includes('duplicate column')) {
+          console.warn('[VectorIndex] Migration v13 warning (document_type):', get_error_message(e));
         }
       }
 
       try {
         database.exec('ALTER TABLE memory_index ADD COLUMN spec_level INTEGER');
         logger.info('Migration v13: Added spec_level column');
-      } catch (e: any) {
-        if (!e.message.includes('duplicate column')) {
-          console.warn('[VectorIndex] Migration v13 warning (spec_level):', e.message);
+      } catch (e: unknown) {
+        if (!get_error_message(e).includes('duplicate column')) {
+          console.warn('[VectorIndex] Migration v13 warning (spec_level):', get_error_message(e));
         }
       }
 
@@ -760,8 +804,8 @@ function run_migrations(database: any, from_version: any, to_version: any) {
         database.exec('CREATE INDEX IF NOT EXISTS idx_document_type ON memory_index(document_type)');
         database.exec('CREATE INDEX IF NOT EXISTS idx_doc_type_folder ON memory_index(document_type, spec_folder)');
         logger.info('Migration v13: Created document_type indexes');
-      } catch (e: any) {
-        console.warn('[VectorIndex] Migration v13 warning (indexes):', e.message);
+      } catch (e: unknown) {
+        console.warn('[VectorIndex] Migration v13 warning (indexes):', get_error_message(e));
       }
 
       // Backfill existing rows: constitutional files -> 'constitutional', readme files -> 'readme'
@@ -780,8 +824,8 @@ function run_migrations(database: any, from_version: any, to_version: any) {
             )
         `);
         logger.info('Migration v13: Backfilled document_type for constitutional and readme files');
-      } catch (e: any) {
-        console.warn('[VectorIndex] Migration v13 warning (backfill):', e.message);
+      } catch (e: unknown) {
+        console.warn('[VectorIndex] Migration v13 warning (backfill):', get_error_message(e));
       }
     },
 
@@ -791,9 +835,9 @@ function run_migrations(database: any, from_version: any, to_version: any) {
       try {
         database.exec('ALTER TABLE memory_index ADD COLUMN content_text TEXT');
         logger.info('Migration v14: Added content_text column');
-      } catch (e: any) {
-        if (!e.message.includes('duplicate column')) {
-          console.warn('[VectorIndex] Migration v14 warning (content_text):', e.message);
+      } catch (e: unknown) {
+        if (!get_error_message(e).includes('duplicate column')) {
+          console.warn('[VectorIndex] Migration v14 warning (content_text):', get_error_message(e));
         }
       }
 
@@ -835,8 +879,8 @@ function run_migrations(database: any, from_version: any, to_version: any) {
           END
         `);
         logger.info('Migration v14: Rebuilt FTS5 table with content_text');
-      } catch (e: any) {
-        console.warn('[VectorIndex] Migration v14 warning (FTS5 rebuild):', e.message);
+      } catch (e: unknown) {
+        console.warn('[VectorIndex] Migration v14 warning (FTS5 rebuild):', get_error_message(e));
       }
 
       // 3. Backfill existing rows from disk
@@ -857,7 +901,7 @@ function run_migrations(database: any, from_version: any, to_version: any) {
               updateStmt.run(content, row.id);
               backfilled++;
             }
-          } catch (_: any) {
+          } catch (_: unknown) {
             // Skip files that can't be read
           }
         }
@@ -868,8 +912,8 @@ function run_migrations(database: any, from_version: any, to_version: any) {
         }
 
         logger.info(`Migration v14: Backfilled content_text for ${backfilled}/${rows.length} rows`);
-      } catch (e: any) {
-        console.warn('[VectorIndex] Migration v14 warning (backfill):', e.message);
+      } catch (e: unknown) {
+        console.warn('[VectorIndex] Migration v14 warning (backfill):', get_error_message(e));
       }
     }
   };
@@ -887,8 +931,8 @@ function run_migrations(database: any, from_version: any, to_version: any) {
 
   try {
     run_all_migrations();
-  } catch (err: any) {
-    console.error('[VectorIndex] Migration failed, rolled back:', err.message);
+  } catch (err: unknown) {
+    console.error('[VectorIndex] Migration failed, rolled back:', get_error_message(err));
     throw err;
   }
 }
@@ -936,9 +980,9 @@ function initialize_db(custom_path = null) {
 
   try {
     db = new Database(target_path);
-  } catch (db_error: any) {
-    const errMsg = db_error instanceof Error ? db_error.message : String(db_error);
-    const errCode = db_error?.code;
+  } catch (db_error: unknown) {
+    const errMsg = get_error_message(db_error);
+    const errCode = get_error_code(db_error);
     if (errCode === 'ERR_DLOPEN_FAILED' || errMsg.includes('NODE_MODULE_VERSION') || errMsg.includes('was compiled against a different Node.js version')) {
       console.error('[vector-index] FATAL: better-sqlite3 native module failed to load');
       console.error(`[vector-index] ${errMsg}`);
@@ -949,7 +993,7 @@ function initialize_db(custom_path = null) {
           const marker = JSON.parse(fs.readFileSync(marker_path, 'utf8'));
           console.error(`[vector-index] Marker recorded: Node ${marker.nodeVersion} (MODULE_VERSION ${marker.moduleVersion})`);
         }
-      } catch (_: any) { /* ignore marker read errors */ }
+      } catch (_: unknown) { /* ignore marker read errors */ }
       console.error('[vector-index] This usually means Node.js was updated without rebuilding native modules.');
       console.error('[vector-index] Fix: Run \'bash scripts/setup/rebuild-native-modules.sh\' from the spec-kit root');
       console.error('[vector-index] Or manually: npm rebuild better-sqlite3');
@@ -960,9 +1004,9 @@ function initialize_db(custom_path = null) {
   try {
     sqliteVec.load(db);
     sqlite_vec_available = true;
-  } catch (vec_error: any) {
+  } catch (vec_error: unknown) {
     sqlite_vec_available = false;
-    console.warn(`[vector-index] sqlite-vec extension not available: ${vec_error.message}`);
+    console.warn(`[vector-index] sqlite-vec extension not available: ${get_error_message(vec_error)}`);
     console.warn('[vector-index] Falling back to anchor-only mode (no vector search)');
     console.warn('[vector-index] Install sqlite-vec: brew install sqlite-vec (macOS)');
   }
@@ -980,8 +1024,8 @@ function initialize_db(custom_path = null) {
   if (!custom_path) {
     try {
       fs.chmodSync(target_path, DB_PERMISSIONS);
-    } catch (err: any) {
-      console.warn(`[vector-index] Could not set permissions on ${target_path}: ${err.message}`);
+    } catch (err: unknown) {
+      console.warn(`[vector-index] Could not set permissions on ${target_path}: ${get_error_message(err)}`);
     }
   }
 
@@ -997,8 +1041,8 @@ function migrate_confidence_columns(database: any) {
     try {
       database.exec(`ALTER TABLE memory_index ADD COLUMN confidence REAL DEFAULT 0.5`);
       console.warn('[vector-index] Migration: Added confidence column');
-    } catch (e: any) {
-      if (!e.message.includes('duplicate column')) throw e;
+    } catch (e: unknown) {
+      if (!get_error_message(e).includes('duplicate column')) throw e;
     }
   }
 
@@ -1006,8 +1050,8 @@ function migrate_confidence_columns(database: any) {
     try {
       database.exec(`ALTER TABLE memory_index ADD COLUMN validation_count INTEGER DEFAULT 0`);
       console.warn('[vector-index] Migration: Added validation_count column');
-    } catch (e: any) {
-      if (!e.message.includes('duplicate column')) throw e;
+    } catch (e: unknown) {
+      if (!get_error_message(e).includes('duplicate column')) throw e;
     }
   }
 
@@ -1015,13 +1059,13 @@ function migrate_confidence_columns(database: any) {
     try {
       database.exec(`ALTER TABLE memory_index ADD COLUMN importance_tier TEXT DEFAULT 'normal'`);
       console.warn('[vector-index] Migration: Added importance_tier column');
-    } catch (e: any) {
-      if (!e.message.includes('duplicate column')) throw e;
+    } catch (e: unknown) {
+      if (!get_error_message(e).includes('duplicate column')) throw e;
     }
     try {
       database.exec(`CREATE INDEX IF NOT EXISTS idx_importance_tier ON memory_index(importance_tier)`);
       console.warn('[vector-index] Migration: Created idx_importance_tier index');
-    } catch (e: any) {
+    } catch (e: unknown) {
     }
   }
 
@@ -1029,8 +1073,8 @@ function migrate_confidence_columns(database: any) {
     try {
       database.exec(`ALTER TABLE memory_index ADD COLUMN context_type TEXT DEFAULT 'general'`);
       console.warn('[vector-index] Migration: Added context_type column');
-    } catch (e: any) {
-      if (!e.message.includes('duplicate column')) throw e;
+    } catch (e: unknown) {
+      if (!get_error_message(e).includes('duplicate column')) throw e;
     }
   }
 
@@ -1038,8 +1082,8 @@ function migrate_confidence_columns(database: any) {
     try {
       database.exec(`ALTER TABLE memory_index ADD COLUMN content_hash TEXT`);
       console.warn('[vector-index] Migration: Added content_hash column');
-    } catch (e: any) {
-      if (!e.message.includes('duplicate column')) throw e;
+    } catch (e: unknown) {
+      if (!get_error_message(e).includes('duplicate column')) throw e;
     }
   }
 
@@ -1047,8 +1091,8 @@ function migrate_confidence_columns(database: any) {
     try {
       database.exec(`ALTER TABLE memory_index ADD COLUMN channel TEXT DEFAULT 'default'`);
       console.warn('[vector-index] Migration: Added channel column');
-    } catch (e: any) {
-      if (!e.message.includes('duplicate column')) throw e;
+    } catch (e: unknown) {
+      if (!get_error_message(e).includes('duplicate column')) throw e;
     }
   }
 
@@ -1056,8 +1100,8 @@ function migrate_confidence_columns(database: any) {
     try {
       database.exec(`ALTER TABLE memory_index ADD COLUMN session_id TEXT`);
       console.warn('[vector-index] Migration: Added session_id column');
-    } catch (e: any) {
-      if (!e.message.includes('duplicate column')) throw e;
+    } catch (e: unknown) {
+      if (!get_error_message(e).includes('duplicate column')) throw e;
     }
   }
 
@@ -1065,8 +1109,8 @@ function migrate_confidence_columns(database: any) {
     try {
       database.exec(`ALTER TABLE memory_index ADD COLUMN base_importance REAL DEFAULT 0.5`);
       console.warn('[vector-index] Migration: Added base_importance column');
-    } catch (e: any) {
-      if (!e.message.includes('duplicate column')) throw e;
+    } catch (e: unknown) {
+      if (!get_error_message(e).includes('duplicate column')) throw e;
     }
   }
 
@@ -1074,8 +1118,8 @@ function migrate_confidence_columns(database: any) {
     try {
       database.exec(`ALTER TABLE memory_index ADD COLUMN decay_half_life_days REAL DEFAULT 90.0`);
       console.warn('[vector-index] Migration: Added decay_half_life_days column');
-    } catch (e: any) {
-      if (!e.message.includes('duplicate column')) throw e;
+    } catch (e: unknown) {
+      if (!get_error_message(e).includes('duplicate column')) throw e;
     }
   }
 
@@ -1083,8 +1127,8 @@ function migrate_confidence_columns(database: any) {
     try {
       database.exec(`ALTER TABLE memory_index ADD COLUMN is_pinned INTEGER DEFAULT 0`);
       console.warn('[vector-index] Migration: Added is_pinned column');
-    } catch (e: any) {
-      if (!e.message.includes('duplicate column')) throw e;
+    } catch (e: unknown) {
+      if (!get_error_message(e).includes('duplicate column')) throw e;
     }
   }
 
@@ -1092,8 +1136,8 @@ function migrate_confidence_columns(database: any) {
     try {
       database.exec(`ALTER TABLE memory_index ADD COLUMN last_accessed INTEGER DEFAULT 0`);
       console.warn('[vector-index] Migration: Added last_accessed column');
-    } catch (e: any) {
-      if (!e.message.includes('duplicate column')) throw e;
+    } catch (e: unknown) {
+      if (!get_error_message(e).includes('duplicate column')) throw e;
     }
   }
 
@@ -1101,8 +1145,8 @@ function migrate_confidence_columns(database: any) {
     try {
       database.exec(`ALTER TABLE memory_index ADD COLUMN expires_at DATETIME`);
       console.warn('[vector-index] Migration: Added expires_at column');
-    } catch (e: any) {
-      if (!e.message.includes('duplicate column')) throw e;
+    } catch (e: unknown) {
+      if (!get_error_message(e).includes('duplicate column')) throw e;
     }
   }
 
@@ -1110,8 +1154,8 @@ function migrate_confidence_columns(database: any) {
     try {
       database.exec(`ALTER TABLE memory_index ADD COLUMN related_memories TEXT`);
       console.warn('[vector-index] Migration: Added related_memories column');
-    } catch (e: any) {
-      if (!e.message.includes('duplicate column')) throw e;
+    } catch (e: unknown) {
+      if (!get_error_message(e).includes('duplicate column')) throw e;
     }
   }
 
@@ -1119,8 +1163,8 @@ function migrate_confidence_columns(database: any) {
     try {
       database.exec(`ALTER TABLE memory_index ADD COLUMN stability REAL DEFAULT 1.0`);
       console.warn('[vector-index] Migration: Added stability column (FSRS)');
-    } catch (e: any) {
-      if (!e.message.includes('duplicate column')) throw e;
+    } catch (e: unknown) {
+      if (!get_error_message(e).includes('duplicate column')) throw e;
     }
   }
 
@@ -1128,8 +1172,8 @@ function migrate_confidence_columns(database: any) {
     try {
       database.exec(`ALTER TABLE memory_index ADD COLUMN difficulty REAL DEFAULT 5.0`);
       console.warn('[vector-index] Migration: Added difficulty column (FSRS)');
-    } catch (e: any) {
-      if (!e.message.includes('duplicate column')) throw e;
+    } catch (e: unknown) {
+      if (!get_error_message(e).includes('duplicate column')) throw e;
     }
   }
 
@@ -1137,8 +1181,8 @@ function migrate_confidence_columns(database: any) {
     try {
       database.exec(`ALTER TABLE memory_index ADD COLUMN last_review TEXT`);
       console.warn('[vector-index] Migration: Added last_review column (FSRS)');
-    } catch (e: any) {
-      if (!e.message.includes('duplicate column')) throw e;
+    } catch (e: unknown) {
+      if (!get_error_message(e).includes('duplicate column')) throw e;
     }
   }
 
@@ -1146,8 +1190,8 @@ function migrate_confidence_columns(database: any) {
     try {
       database.exec(`ALTER TABLE memory_index ADD COLUMN review_count INTEGER DEFAULT 0`);
       console.warn('[vector-index] Migration: Added review_count column (FSRS)');
-    } catch (e: any) {
-      if (!e.message.includes('duplicate column')) throw e;
+    } catch (e: unknown) {
+      if (!get_error_message(e).includes('duplicate column')) throw e;
     }
   }
 }
@@ -1212,28 +1256,28 @@ function create_common_indexes(database: any) {
   try {
     database.exec(`CREATE INDEX IF NOT EXISTS idx_file_path ON memory_index(file_path)`);
     logger.info('Created idx_file_path index');
-  } catch (err: any) {
+  } catch (err: unknown) {
     // Index may already exist
   }
 
   try {
     database.exec(`CREATE INDEX IF NOT EXISTS idx_content_hash ON memory_index(content_hash)`);
     logger.info('Created idx_content_hash index');
-  } catch (err: any) {
+  } catch (err: unknown) {
     // Index may already exist
   }
 
   try {
     database.exec(`CREATE INDEX IF NOT EXISTS idx_last_accessed ON memory_index(last_accessed DESC)`);
     logger.info('Created idx_last_accessed index');
-  } catch (err: any) {
+  } catch (err: unknown) {
     // Index may already exist
   }
 
   try {
     database.exec(`CREATE INDEX IF NOT EXISTS idx_importance_tier ON memory_index(importance_tier)`);
     logger.info('Created idx_importance_tier index');
-  } catch (err: any) {
+  } catch (err: unknown) {
     // Index may already exist
   }
 
@@ -1241,9 +1285,9 @@ function create_common_indexes(database: any) {
   try {
     database.exec(`CREATE INDEX IF NOT EXISTS idx_history_timestamp ON memory_history(timestamp DESC)`);
     logger.info('Created idx_history_timestamp index');
-  } catch (err: any) {
-    if (!err.message.includes('already exists')) {
-      console.warn('[vector-index] Failed to create idx_history_timestamp:', err.message);
+  } catch (err: unknown) {
+    if (!get_error_message(err).includes('already exists')) {
+      console.warn('[vector-index] Failed to create idx_history_timestamp:', get_error_message(err));
     }
   }
 }
@@ -1680,8 +1724,8 @@ function delete_memory(id: any) {
     if (sqlite_vec_available) {
       try {
         database.prepare('DELETE FROM vec_memories WHERE rowid = ?').run(BigInt(id));
-      } catch (e: any) {
-        console.warn(`[vector-index] Vector deletion failed for memory ${id}: ${e.message}`);
+      } catch (e: unknown) {
+        console.warn(`[vector-index] Vector deletion failed for memory ${id}: ${get_error_message(e)}`);
       }
     }
 
@@ -2110,7 +2154,7 @@ function extract_date(content: any, file_path: any) {
         if (!isNaN(parsed.getTime())) {
           return parsed.toISOString().split('T')[0];
         }
-      } catch (e: any) {
+      } catch (e: unknown) {
       }
     }
   }
@@ -2148,8 +2192,8 @@ async function generate_query_embedding(query: any) {
     const embeddings = embeddingsProvider;
     const embedding = await embeddings.generateQueryEmbedding(query.trim());
     return embedding;
-  } catch (error: any) {
-    console.warn(`[vector-index] Query embedding failed: ${error.message}`);
+  } catch (error: unknown) {
+    console.warn(`[vector-index] Query embedding failed: ${get_error_message(error)}`);
     return null;
   }
 }
@@ -2226,7 +2270,7 @@ function keyword_search(query: any, options: any = {}) {
     if (row.trigger_phrases) {
       try {
         row.trigger_phrases = JSON.parse(row.trigger_phrases);
-      } catch (e: any) {
+      } catch (e: unknown) {
         row.trigger_phrases = [];
       }
     }
@@ -2539,8 +2583,8 @@ function learn_from_selection(search_query: any, selected_memory_id: any) {
     memory = database.prepare(
       'SELECT trigger_phrases FROM memory_index WHERE id = ?'
     ).get(selected_memory_id);
-  } catch (e: any) {
-    console.warn(`[vector-index] learn_from_selection query error: ${e.message}`);
+  } catch (e: unknown) {
+    console.warn(`[vector-index] learn_from_selection query error: ${get_error_message(e)}`);
     return false;
   }
 
@@ -2549,7 +2593,7 @@ function learn_from_selection(search_query: any, selected_memory_id: any) {
   let existing = [];
   try {
     existing = JSON.parse(memory.trigger_phrases || '[]');
-  } catch (e: any) {
+  } catch (e: unknown) {
     existing = [];
   }
 
@@ -2581,8 +2625,8 @@ function learn_from_selection(search_query: any, selected_memory_id: any) {
       'UPDATE memory_index SET trigger_phrases = ? WHERE id = ?'
     ).run(JSON.stringify(updated), selected_memory_id);
     return true;
-  } catch (e: any) {
-    console.warn(`[vector-index] learn_from_selection update error: ${e.message}`);
+  } catch (e: unknown) {
+    console.warn(`[vector-index] learn_from_selection update error: ${get_error_message(e)}`);
     return false;
   }
 }
@@ -2744,8 +2788,8 @@ async function link_related_on_save(new_memory_id: any, content: any) {
         WHERE id = ?
       `).run(JSON.stringify(related), new_memory_id);
     }
-  } catch (error: any) {
-    console.warn(`[vector-index] Failed to link related memories for ${new_memory_id}: ${error.message}`);
+  } catch (error: unknown) {
+    console.warn(`[vector-index] Failed to link related memories for ${new_memory_id}: ${get_error_message(error)}`);
   }
 }
 
@@ -2763,8 +2807,8 @@ function record_access(memory_id: any) {
     `).run(now, memory_id);
 
     return result.changes > 0;
-  } catch (error: any) {
-    console.warn(`[vector-index] Failed to record access for memory ${memory_id}: ${error.message}`);
+  } catch (error: unknown) {
+    console.warn(`[vector-index] Failed to record access for memory ${memory_id}: ${get_error_message(error)}`);
     return false;
   }
 }
@@ -2840,8 +2884,8 @@ function get_related_memories(memory_id: any) {
       }
       return null;
     }).filter(Boolean);
-  } catch (error: any) {
-    console.warn(`[vector-index] Failed to get related memories for ${memory_id}: ${error.message}`);
+  } catch (error: unknown) {
+    console.warn(`[vector-index] Failed to get related memories for ${memory_id}: ${get_error_message(error)}`);
     return [];
   }
 }
@@ -2889,8 +2933,8 @@ function update_embedding_status(id: any, status: any) {
     `).run(status, id);
 
     return result.changes > 0;
-  } catch (error: any) {
-    console.warn(`[vector-index] Failed to update embedding status for ${id}: ${error.message}`);
+  } catch (error: unknown) {
+    console.warn(`[vector-index] Failed to update embedding status for ${id}: ${get_error_message(error)}`);
     return false;
   }
 }
@@ -2910,8 +2954,8 @@ function update_confidence(memory_id: any, confidence: any) {
     `).run(confidence, memory_id);
 
     return result.changes > 0;
-  } catch (error: any) {
-    console.warn(`[vector-index] Failed to update confidence for ${memory_id}: ${error.message}`);
+  } catch (error: unknown) {
+    console.warn(`[vector-index] Failed to update confidence for ${memory_id}: ${get_error_message(error)}`);
     return false;
   }
 }
@@ -2967,8 +3011,8 @@ function find_cleanup_candidates(options: any = {}) {
       cutoff_iso,
       limit
     );
-  } catch (e: any) {
-    console.warn(`[vector-index] find_cleanup_candidates error: ${e.message}`);
+  } catch (e: unknown) {
+    console.warn(`[vector-index] find_cleanup_candidates error: ${get_error_message(e)}`);
     return [];
   }
 
@@ -3023,8 +3067,8 @@ function delete_memories(memory_ids: any) {
         if (sqlite_vec_available) {
           try {
             database.prepare('DELETE FROM vec_memories WHERE rowid = ?').run(BigInt(id));
-          } catch (vec_error: any) {
-            console.warn(`[VectorIndex] Failed to delete vector for memory ${id}: ${vec_error.message}`);
+          } catch (vec_error: unknown) {
+            console.warn(`[VectorIndex] Failed to delete vector for memory ${id}: ${get_error_message(vec_error)}`);
           }
         }
 
@@ -3035,8 +3079,8 @@ function delete_memories(memory_ids: any) {
           failed++;
           failed_ids.push(id);
         }
-      } catch (e: any) {
-        console.warn(`[vector-index] Failed to delete memory ${id}: ${e.message}`);
+      } catch (e: unknown) {
+        console.warn(`[vector-index] Failed to delete memory ${id}: ${get_error_message(e)}`);
         failed++;
         failed_ids.push(id);
       }
@@ -3053,8 +3097,8 @@ function delete_memories(memory_ids: any) {
       clear_constitutional_cache();
       clear_search_cache();
     }
-  } catch (e: any) {
-    console.warn(`[vector-index] delete_memories transaction error: ${e.message}`);
+  } catch (e: unknown) {
+    console.warn(`[vector-index] delete_memories transaction error: ${get_error_message(e)}`);
   }
 
   return { deleted, failed };
@@ -3068,8 +3112,8 @@ function get_memory_preview(memory_id: any, max_lines = 50) {
     memory = database.prepare(`
       SELECT * FROM memory_index WHERE id = ?
     `).get(memory_id);
-  } catch (e: any) {
-    console.warn(`[vector-index] get_memory_preview query error: ${e.message}`);
+  } catch (e: unknown) {
+    console.warn(`[vector-index] get_memory_preview query error: ${get_error_message(e)}`);
     return null;
   }
 
@@ -3089,7 +3133,7 @@ function get_memory_preview(memory_id: any, max_lines = 50) {
         }
       }
     }
-  } catch (e: any) {
+  } catch (e: unknown) {
     content = '(Unable to read file content)';
   }
 
@@ -3140,8 +3184,8 @@ function verify_integrity(options: any = {}) {
         SELECT v.rowid FROM vec_memories v
         WHERE NOT EXISTS (SELECT 1 FROM memory_index m WHERE m.id = v.rowid)
       `).all().map((r: any) => r.rowid);
-    } catch (e: any) {
-      console.warn('[vector-index] Could not query orphaned vectors:', e.message);
+    } catch (e: unknown) {
+      console.warn('[vector-index] Could not query orphaned vectors:', get_error_message(e));
       return [];
     }
   };
@@ -3157,8 +3201,8 @@ function verify_integrity(options: any = {}) {
       try {
         delete_stmt.run(BigInt(rowid));
         cleaned_vectors++;
-      } catch (e: any) {
-        console.warn(`[vector-index] Failed to clean orphaned vector ${rowid}: ${e.message}`);
+      } catch (e: unknown) {
+        console.warn(`[vector-index] Failed to clean orphaned vector ${rowid}: ${get_error_message(e)}`);
       }
     }
     logger.info(`Cleaned ${cleaned_vectors} orphaned vectors`);

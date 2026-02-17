@@ -9,7 +9,7 @@ Quick reference for complexity-based level selection and feature enabling.
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 ### Purpose
 
@@ -24,7 +24,7 @@ This matrix provides quick-reference guidance for selecting the appropriate docu
 
 ---
 
-## 2. 📊 LEVEL SELECTION BY SCORE
+## 2. LEVEL SELECTION BY SCORE
 
 | Score Range | Level | Name         | Templates                                   | Features Auto-Enabled         |
 | ----------- | ----- | ------------ | ------------------------------------------- | ----------------------------- |
@@ -35,7 +35,7 @@ This matrix provides quick-reference guidance for selecting the appropriate docu
 
 ---
 
-## 3. 🎯 DIMENSION SCORING SIGNALS
+## 3. DIMENSION SCORING SIGNALS
 
 ### Scope (25% weight)
 
@@ -94,7 +94,7 @@ This matrix provides quick-reference guidance for selecting the appropriate docu
 
 ---
 
-## 4. ✅ FEATURE DECISION MATRIX
+## 4. FEATURE DECISION MATRIX
 
 | Feature               | Level 1 | Level 2 | Level 3  | Level 3+ |
 | --------------------- | ------- | ------- | -------- | -------- |
@@ -112,7 +112,7 @@ This matrix provides quick-reference guidance for selecting the appropriate docu
 
 ---
 
-## 5. 📈 CONTENT SCALING MATRIX
+## 5. CONTENT SCALING MATRIX
 
 | Content Type         | Level 1 | Level 2 | Level 3 | Level 3+ |
 | -------------------- | ------- | ------- | ------- | -------- |
@@ -125,7 +125,7 @@ This matrix provides quick-reference guidance for selecting the appropriate docu
 
 ---
 
-## 6. 🧭 QUICK DECISION GUIDE
+## 6. QUICK DECISION GUIDE
 
 ### When to Override Auto-Detection
 
@@ -168,7 +168,7 @@ Choose the appropriate template **style** based on user experience and requireme
 
 ---
 
-## 7. 💡 EXAMPLE CLASSIFICATIONS
+## 7. EXAMPLE CLASSIFICATIONS
 
 | Task Description                         | Score | Level | Key Factors                      |
 | ---------------------------------------- | ----- | ----- | -------------------------------- |
@@ -182,7 +182,7 @@ Choose the appropriate template **style** based on user experience and requireme
 
 ---
 
-## 8. ⌨️ CLI QUICK REFERENCE
+## 8. CLI QUICK REFERENCE
 
 ```bash
 # Create spec folder with Level 1 (default)
@@ -202,7 +202,7 @@ Choose the appropriate template **style** based on user experience and requireme
 
 ---
 
-## 9. 📊 SPEC TRACEABILITY
+## 9. SPEC TRACEABILITY
 
 This decision matrix addresses the following spec requirements:
 
@@ -218,7 +218,7 @@ This decision matrix addresses the following spec requirements:
 
 ---
 
-## 10. 🔗 RELATED RESOURCES
+## 10. RELATED RESOURCES
 
 ### Asset Files
 - [level_decision_matrix.md](./level_decision_matrix.md) - LOC-based level selection and progressive enhancement

@@ -9,7 +9,7 @@ description: 10-agent specialization model for comprehensive codebase analysis a
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 For complex codebase analysis, parallel agent execution provides comprehensive coverage that would take significantly longer with sequential investigation. This document describes the 10-agent specialization model proven effective in performance optimization research.
 
@@ -21,7 +21,7 @@ For complex codebase analysis, parallel agent execution provides comprehensive c
 
 ---
 
-## 2. 🎯 WHEN TO USE MULTI-AGENT RESEARCH
+## 2. WHEN TO USE MULTI-AGENT RESEARCH
 
 ### Good Candidates
 
@@ -40,7 +40,7 @@ For complex codebase analysis, parallel agent execution provides comprehensive c
 
 ---
 
-## 3. 🤖 THE 10-AGENT SPECIALIZATION MODEL
+## 3. THE 10-AGENT SPECIALIZATION MODEL
 
 ### Agent Assignments
 
@@ -59,7 +59,7 @@ For complex codebase analysis, parallel agent execution provides comprehensive c
 
 ---
 
-## 4. 🔍 AGENT FOCUS DETAILS
+## 4. AGENT FOCUS DETAILS
 
 ### Agent 1: HTML Loading Strategy
 
@@ -133,7 +133,7 @@ For complex codebase analysis, parallel agent execution provides comprehensive c
 
 ---
 
-## 5. 🔄 COORDINATION PATTERN
+## 5. COORDINATION PATTERN
 
 ### Dispatch Phase
 
@@ -177,7 +177,7 @@ Each agent should return:
 
 ---
 
-## 6. 📚 EXAMPLE: PERFORMANCE OPTIMIZATION
+## 6. EXAMPLE: PERFORMANCE OPTIMIZATION
 
 From example.com (024-performance-optimization):
 
@@ -195,7 +195,7 @@ From example.com (024-performance-optimization):
 
 ---
 
-## 7. 📊 SCALING CONSIDERATIONS
+## 7. SCALING CONSIDERATIONS
 
 | Agents | Use Case | Trade-off |
 |--------|----------|-----------|
@@ -205,7 +205,7 @@ From example.com (024-performance-optimization):
 
 ---
 
-## 8. 🧠 MODEL SELECTION
+## 8. MODEL SELECTION
 
 | Agent Type | Recommended Model | Reason |
 |------------|-------------------|--------|
@@ -215,7 +215,7 @@ From example.com (024-performance-optimization):
 
 ---
 
-## 9. 🔗 RELATED RESOURCES
+## 9. RELATED RESOURCES
 
 ### Internal References
 

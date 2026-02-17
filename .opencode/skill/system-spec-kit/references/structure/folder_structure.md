@@ -9,7 +9,7 @@ Spec folder naming conventions, level requirements, and organization patterns.
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 This document covers spec folder organization, naming conventions, and level-specific requirements for the Spec Kit system.
 
@@ -40,7 +40,7 @@ templates/
 
 ---
 
-## 2. 🏷️ NAMING CONVENTION
+## 2. NAMING CONVENTION
 
 ### Spec Folder Names
 
@@ -74,7 +74,7 @@ specs/007-feature/
 
 ---
 
-## 3. 📋 LEVEL REQUIREMENTS
+## 3. LEVEL REQUIREMENTS
 
 ### Level 1 (< 100 LOC)
 
@@ -127,7 +127,7 @@ specs/NNN-name/
 
 ---
 
-## 4. 📂 SPECIAL FOLDERS
+## 4. SPECIAL FOLDERS
 
 ### scratch/
 
@@ -173,7 +173,7 @@ triggers:
 
 ---
 
-## 5. 🗃️ ARCHIVE PATTERN
+## 5. ARCHIVE PATTERN
 
 Completed or superseded specs use the `z_archive/` prefix:
 
@@ -193,7 +193,7 @@ specs/
 
 ---
 
-## 6. 💡 EXAMPLE STRUCTURES
+## 6. EXAMPLE STRUCTURES
 
 ### Simple Feature (Level 1)
 
@@ -258,7 +258,7 @@ specs/018-api-refactor/
 
 ---
 
-## 7. 🔗 RELATED RESOURCES
+## 7. RELATED RESOURCES
 
 - [Level Specifications](../templates/level_specifications.md)
 - [Template Guide](../templates/template_guide.md)

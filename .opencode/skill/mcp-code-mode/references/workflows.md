@@ -9,7 +9,7 @@ Five patterns demonstrating multi-tool orchestration, error handling, and state 
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 This document provides five comprehensive workflow patterns for Code Mode UTCP.
 
@@ -25,7 +25,7 @@ This document provides five comprehensive workflow patterns for Code Mode UTCP.
 
 ---
 
-## 2. 🌐 WEBFLOW WORKFLOW
+## 2. WEBFLOW WORKFLOW
 
 **Scenario:** Get all Webflow sites and their CMS collections
 
@@ -117,7 +117,7 @@ call_tool_chain({
 
 ---
 
-## 3. ✅ CLICKUP WORKFLOW
+## 3. CLICKUP WORKFLOW
 
 **Scenario:** Create a task in ClickUp and immediately fetch its details for confirmation
 
@@ -195,7 +195,7 @@ call_tool_chain({
 
 ---
 
-## 4. 📝 NOTION WORKFLOW
+## 4. NOTION WORKFLOW
 
 **Scenario:** Create a page in Notion and add content blocks
 
@@ -282,7 +282,7 @@ call_tool_chain({
 
 ---
 
-## 5. 🔄 MULTI-TOOL ORCHESTRATION
+## 5. MULTI-TOOL ORCHESTRATION
 
 **Scenario:** Design-to-implementation workflow across three platforms (Figma → ClickUp → Webflow)
 
@@ -411,7 +411,7 @@ call_tool_chain({
 
 ---
 
-## 6. 🛡️ ERROR HANDLING PATTERNS
+## 6. ERROR HANDLING PATTERNS
 
 **Scenario:** Robust error handling with fallback logic and partial success
 
@@ -597,7 +597,7 @@ call_tool_chain({
 
 ---
 
-## 7. ⚡ PARALLEL EXECUTION PATTERNS
+## 7. PARALLEL EXECUTION PATTERNS
 
 ### When to Parallelize
 
@@ -781,7 +781,7 @@ call_tool_chain({
 
 ---
 
-## 8. 📊 PATTERN COMPARISON
+## 8. PATTERN COMPARISON
 
 ### Traditional Multi-Tool Approach (Without Code Mode)
 
@@ -814,7 +814,7 @@ call_tool_chain({
 
 ---
 
-## 9. ✅ BEST PRACTICES
+## 9. BEST PRACTICES
 
 ### 1. Always Use Console Logging
 
@@ -901,7 +901,7 @@ const c = await webflow.webflow_collections_list({ site_id: s.id });
 
 ---
 
-## 10. 📝 SUMMARY
+## 10. SUMMARY
 
 **Five workflow patterns demonstrated:**
 
@@ -933,7 +933,7 @@ const c = await webflow.webflow_collections_list({ site_id: s.id });
 
 ---
 
-## 11. 🔗 RELATED RESOURCES
+## 11. RELATED RESOURCES
 
 ### Reference Files
 - [naming_convention.md](./naming_convention.md) - Critical naming patterns used in all examples

@@ -3,8 +3,9 @@
 # RULE: CHECK-LEVEL
 # ───────────────────────────────────────────────────────────────
 
-# T504 FIX: Using 'set -eo pipefail' (not -u) for macOS bash 3.2 compatibility.
-# The -u flag causes failures with empty arrays and when sourced by the orchestrator.
+# Strict mode baseline for sourced rule scripts.
+# -u is intentionally disabled because this file is sourced by validate.sh and reads
+# shared global state that may be unset outside orchestrated execution.
 set -eo pipefail
 
 # Rule: LEVEL_DECLARED

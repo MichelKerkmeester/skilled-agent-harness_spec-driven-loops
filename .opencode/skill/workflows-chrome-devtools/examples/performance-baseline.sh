@@ -1,10 +1,10 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Performance Baseline Capture Script
 # Purpose: Create comprehensive performance baseline for regression testing
 # Usage: ./performance-baseline.sh [URL] [OUTPUT_DIR]
 # Example: ./performance-baseline.sh https://example.com ./baselines
 
-set -e  # Exit on error
+set -euo pipefail
 
 # Configuration
 URL="${1:-https://example.com}"

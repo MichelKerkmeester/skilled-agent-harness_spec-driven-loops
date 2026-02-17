@@ -13,7 +13,7 @@ Execute TypeScript code with direct access to 200+ MCP tools through progressive
 
 ---
 
-## 1. 🎯 WHEN TO USE
+## 1. WHEN TO USE
 
 ### Use Code Mode When
 
@@ -55,7 +55,7 @@ Execute TypeScript code with direct access to 200+ MCP tools through progressive
 
 ---
 
-## 2. 🧭 SMART ROUTING
+## 2. SMART ROUTING
 
 ### Activation Detection
 ```
@@ -139,7 +139,7 @@ def route_code_mode_resources(task):
 
 ---
 
-## 3. 🛠️ HOW IT WORKS
+## 3. HOW IT WORKS
 
 ### Critical Naming Pattern
 
@@ -254,7 +254,7 @@ call_tool_chain({
 
 ---
 
-## 4. 🏗️ PROJECT CONFIGURATION
+## 4. PROJECT CONFIGURATION
 
 ### Two MCP Configuration Systems
 
@@ -429,7 +429,7 @@ call_tool_chain({
 
 ---
 
-## 5. 📋 RULES
+## 5. RULES
 
 ### ✅ ALWAYS
 
@@ -463,7 +463,7 @@ call_tool_chain({
 
 ---
 
-## 6. 🏆 SUCCESS CRITERIA
+## 6. SUCCESS CRITERIA
 
 **Code Mode implementation complete when**:
 
@@ -480,7 +480,7 @@ call_tool_chain({
 
 ---
 
-## 7. 🔌 INTEGRATION POINTS
+## 7. INTEGRATION POINTS
 
 ### Framework Integration
 
@@ -545,7 +545,7 @@ call_tool_chain({
 
 ---
 
-## 8. 📦 REFERENCES
+## 8. REFERENCES
 
 ### Configuration
 | Document | Purpose | Key Insight |
@@ -569,7 +569,7 @@ call_tool_chain({
 
 ---
 
-## 9. 🏎️ QUICK REFERENCE
+## 9. QUICK REFERENCE
 
 ### Essential Commands
 
@@ -645,7 +645,7 @@ call_tool_chain({
 
 ---
 
-## 10. 🔗 RELATED RESOURCES
+## 10. RELATED RESOURCES
 
 ### scripts/
 

@@ -9,7 +9,7 @@ Security hardening patterns covering XSS prevention, CSRF protection, and input 
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 ### Purpose
 Frontend security checklist based on OWASP Top 10 vulnerabilities, covering input validation, injection prevention, and secure data handling.
@@ -24,7 +24,7 @@ Apply during Phase 1 (Implementation) when:
 
 ---
 
-## 2. 🛡️ SECURITY CHECKLIST
+## 2. SECURITY CHECKLIST
 
 ### Input Validation & XSS Prevention
 
@@ -253,7 +253,7 @@ document.cookie = "session=abc123";  // Accessible to XSS
 
 ---
 
-## 3. 🚨 OWASP TOP 10 COVERAGE
+## 3. OWASP TOP 10 COVERAGE
 
 1. **Broken Access Control** → Access Control checklist
 2. **Cryptographic Failures** → Data Storage Security
@@ -268,7 +268,7 @@ document.cookie = "session=abc123";  // Accessible to XSS
 
 ---
 
-## 4. 🛡️ PROTOTYPE POLLUTION PREVENTION
+## 4. PROTOTYPE POLLUTION PREVENTION
 
 Prototype pollution (CWE-1321) occurs when attackers inject properties into JavaScript object prototypes, potentially enabling property injection, denial of service, or remote code execution.
 
@@ -358,7 +358,7 @@ const isValidModalId = (id) => {
 
 ---
 
-## 5. 🔑 SECURE ID GENERATION
+## 5. SECURE ID GENERATION
 
 Using `Math.random()` for security-sensitive operations (CWE-330) can lead to predictable values. Use `crypto.getRandomValues()` for cryptographically secure randomness.
 
@@ -450,7 +450,7 @@ function badGenerateId() {
 
 ---
 
-## 6. 🔒 SAFE PROPERTY ACCESS (Object.hasOwn)
+## 6. SAFE PROPERTY ACCESS (Object.hasOwn)
 
 The `in` operator and `hasOwnProperty()` method have security and reliability issues. Use `Object.hasOwn()` for safe property checking.
 
@@ -536,7 +536,7 @@ open(id, reason) {
 
 ---
 
-## 7. 🚫 ANTI-PATTERNS
+## 7. ANTI-PATTERNS
 
 **Never:**
 - ❌ Use innerHTML with unsanitized user input
@@ -554,7 +554,7 @@ open(id, reason) {
 
 ---
 
-## 8. 🔗 RELATED RESOURCES
+## 8. RELATED RESOURCES
 
 ### Reference Files
 - [implementation_workflows.md](./implementation_workflows.md) - Defense-in-depth validation

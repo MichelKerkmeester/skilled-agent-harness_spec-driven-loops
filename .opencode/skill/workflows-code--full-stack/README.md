@@ -16,18 +16,18 @@ importance_tier: "normal"
 
 #### TABLE OF CONTENTS
 
-1. [📖 OVERVIEW](#1--overview)
-2. [🚀 QUICK START](#2--quick-start)
-3. [📁 STRUCTURE](#3--structure)
-4. [⚡ FEATURES](#4--features)
-5. [⚙️ CONFIGURATION](#5--configuration)
-6. [💡 EXAMPLES](#6--examples)
-7. [🛠️ TROUBLESHOOTING](#7--troubleshooting)
-8. [📚 RELATED](#8--related)
+1. [OVERVIEW](#1--overview)
+2. [QUICK START](#2--quick-start)
+3. [STRUCTURE](#3--structure)
+4. [FEATURES](#4--features)
+5. [CONFIGURATION](#5--configuration)
+6. [EXAMPLES](#6--examples)
+7. [TROUBLESHOOTING](#7--troubleshooting)
+8. [RELATED](#8--related)
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 <!-- ANCHOR:overview -->
 
 This skill provides a unified development workflow for any technology stack: **Go**, **Node.js**, **React/Next.js**, **React Native/Expo** and **Swift**. It automatically detects the active stack via marker files (`go.mod`, `Package.swift`, `app.json`, `package.json`, `next.config.js`) and loads the appropriate code standards and checklists along with reusable patterns.
@@ -40,7 +40,7 @@ The skill uses intelligent task classification (keywords like "implement", "debu
 
 ---
 
-## 2. 🚀 QUICK START
+## 2. QUICK START
 <!-- ANCHOR:quick-start -->
 
 1. **Activation:** The skill is invoked automatically via Gate 2 (`skill_advisor.py`) when code-related tasks are detected.
@@ -62,7 +62,7 @@ npm test && npm run lint && npm run build
 
 ---
 
-## 3. 📁 STRUCTURE
+## 3. STRUCTURE
 <!-- ANCHOR:structure -->
 
 ```
@@ -93,7 +93,7 @@ workflows-code--full-stack/
 
 ---
 
-## 4. ⚡ FEATURES
+## 4. FEATURES
 <!-- ANCHOR:features -->
 
 - **Automatic stack detection** via marker files (`go.mod`, `Package.swift`, `app.json`, `package.json`)
@@ -108,7 +108,7 @@ workflows-code--full-stack/
 
 ---
 
-## 5. ⚙️ CONFIGURATION
+## 5. CONFIGURATION
 <!-- ANCHOR:configuration -->
 
 | Setting            | Description                                   | Default         |
@@ -133,7 +133,7 @@ workflows-code--full-stack/
 
 ---
 
-## 6. 💡 EXAMPLES
+## 6. EXAMPLES
 <!-- ANCHOR:usage-examples -->
 
 **Implementing a Go API endpoint:**
@@ -165,7 +165,7 @@ Verify: swift test -> swiftlint -> swift build
 
 ---
 
-## 7. 🛠️ TROUBLESHOOTING
+## 7. TROUBLESHOOTING
 <!-- ANCHOR:troubleshooting -->
 
 | Issue                        | Cause                                          | Fix                                              |
@@ -180,7 +180,7 @@ Verify: swift test -> swiftlint -> swift build
 
 ---
 
-## 8. 📚 RELATED
+## 8. RELATED
 <!-- ANCHOR:related -->
 
 | Resource                         | Relationship                                    |

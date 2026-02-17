@@ -1,14 +1,16 @@
-// ───────────────────────────────────────────────────────────────
-// LENIS SMOOTH SCROLL PATTERNS
-// ───────────────────────────────────────────────────────────────
-// Production-tested patterns for Lenis smooth scroll integration.
-// Lenis is initialized globally by Webflow and exposed as window.lenis
-// 
-// Key integration points:
-// - Modals: Stop/start scrolling when modal opens/closes
-// - Table of Contents: Scroll to anchor with offset
-// - Form submission: Pause during async operations
-// ───────────────────────────────────────────────────────────────
+/**
+ * LENIS SMOOTH SCROLL PATTERNS
+ *
+ * Production-tested patterns for Lenis smooth scroll integration.
+ * Lenis is initialized globally by Webflow and exposed as `window.lenis`.
+ *
+ * Key integration points:
+ * - Modals: stop/start scrolling when modal opens/closes
+ * - Table of contents: scroll to anchor with offset
+ * - Form submission: pause during async operations
+ */
+
+'use strict';
 
 /* ─────────────────────────────────────────────────────────────
    1. SAFE LENIS ACCESS

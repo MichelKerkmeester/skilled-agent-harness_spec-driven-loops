@@ -13,9 +13,9 @@ import { runWorkflow } from '../core/workflow';
 import { loadCollectedData } from '../loaders';
 import { collectSessionData } from '../extractors/collect-session-data';
 
-/* -----------------------------------------------------------------
-   1. INTERFACES
-------------------------------------------------------------------*/
+// ---------------------------------------------------------------
+// 1. INTERFACES
+// ---------------------------------------------------------------
 
 export interface SpecFolderValidation {
   valid: boolean;
@@ -23,9 +23,9 @@ export interface SpecFolderValidation {
   warning?: string;
 }
 
-/* -----------------------------------------------------------------
-   2. HELP TEXT
-------------------------------------------------------------------*/
+// ---------------------------------------------------------------
+// 2. HELP TEXT
+// ---------------------------------------------------------------
 
 const HELP_TEXT = `
 Usage: node generate-context.js [options] <input>
@@ -90,9 +90,9 @@ if (process.argv.includes('--help') || process.argv.includes('-h')) {
   process.exit(0);
 }
 
-/* -----------------------------------------------------------------
-   2.1 SIGNAL HANDLERS
-------------------------------------------------------------------*/
+// ---------------------------------------------------------------
+// 2.1 SIGNAL HANDLERS
+// ---------------------------------------------------------------
 
 process.on('SIGTERM', () => {
   console.log('\nWarning: Received SIGTERM signal, shutting down gracefully...');
@@ -104,9 +104,9 @@ process.on('SIGINT', () => {
   process.exit(0);
 });
 
-/* -----------------------------------------------------------------
-   3. SPEC FOLDER VALIDATION
-------------------------------------------------------------------*/
+// ---------------------------------------------------------------
+// 3. SPEC FOLDER VALIDATION
+// ---------------------------------------------------------------
 
 function isValidSpecFolder(folderPath: string): SpecFolderValidation {
   const folderName = path.basename(folderPath);
@@ -165,23 +165,23 @@ function isValidSpecFolder(folderPath: string): SpecFolderValidation {
   return { valid: true };
 }
 
-/* -----------------------------------------------------------------
-   4. CLI ARGUMENT PARSING
-------------------------------------------------------------------*/
+// ---------------------------------------------------------------
+// 4. CLI ARGUMENT PARSING
+// ---------------------------------------------------------------
 
 function parseArguments(): void {
-  const arg1: string | undefined = process.argv[2];
-  const arg2: string | undefined = process.argv[3];
-  if (!arg1) return;
+  const primaryArg: string | undefined = process.argv[2];
+  const secondaryArg: string | undefined = process.argv[3];
+  if (!primaryArg) return;
 
-  const folderName = path.basename(arg1);
+  const folderName = path.basename(primaryArg);
 
   // --- Subfolder support: detect nested parent/child spec paths ---
   // Check if arg1 is a nested spec path (e.g., "003-parent/121-child",
   // "specs/003-parent/121-child", ".opencode/specs/003-parent/121-child")
   let resolvedNestedPath: string | null = null;
-  if (!arg1.endsWith('.json')) {
-    let cleaned = arg1;
+  if (!primaryArg.endsWith('.json')) {
+    let cleaned = primaryArg;
     // Strip known prefixes to get the relative portion
     if (cleaned.startsWith('.opencode/specs/')) {
       cleaned = cleaned.slice('.opencode/specs/'.length);
@@ -220,18 +220,18 @@ function parseArguments(): void {
   }
 
   const isSpecFolderPath: boolean = (
-    arg1.startsWith('specs/') ||
-    arg1.startsWith('.opencode/specs/') ||
+    primaryArg.startsWith('specs/') ||
+    primaryArg.startsWith('.opencode/specs/') ||
     SPEC_FOLDER_BASIC_PATTERN.test(folderName)
-  ) && !arg1.endsWith('.json');
+  ) && !primaryArg.endsWith('.json');
 
   if (isSpecFolderPath) {
-    CONFIG.SPEC_FOLDER_ARG = arg1;
+    CONFIG.SPEC_FOLDER_ARG = primaryArg;
     CONFIG.DATA_FILE = null;
     console.log('   Stateless mode: Spec folder provided directly');
   } else {
-    CONFIG.DATA_FILE = arg1;
-    CONFIG.SPEC_FOLDER_ARG = arg2 || null;
+    CONFIG.DATA_FILE = primaryArg;
+    CONFIG.SPEC_FOLDER_ARG = secondaryArg || null;
   }
 }
 
@@ -305,8 +305,8 @@ function validateArguments(): void {
           }
         }
       }
-    } catch (e: unknown) {
-      const errMsg = e instanceof Error ? e.message : String(e);
+    } catch (error: unknown) {
+      const errMsg = error instanceof Error ? error.message : String(error);
       console.error('[generate-context] Failed to list spec folders:', errMsg);
     }
   }
@@ -314,9 +314,9 @@ function validateArguments(): void {
   process.exit(1);
 }
 
-/* -----------------------------------------------------------------
-   5. MAIN ENTRY POINT
-------------------------------------------------------------------*/
+// ---------------------------------------------------------------
+// 5. MAIN ENTRY POINT
+// ---------------------------------------------------------------
 
 async function main(): Promise<void> {
   console.log('Starting memory skill...\n');
@@ -327,7 +327,7 @@ async function main(): Promise<void> {
 
     await runWorkflow({
       loadDataFn: loadCollectedData,
-      collectSessionDataFn: collectSessionData
+      collectSessionDataFn: collectSessionData,
     });
   } catch (error: unknown) {
     const errMsg = error instanceof Error ? error.message : String(error);
@@ -345,9 +345,9 @@ async function main(): Promise<void> {
   }
 }
 
-/* -----------------------------------------------------------------
-   6. EXPORTS
-------------------------------------------------------------------*/
+// ---------------------------------------------------------------
+// 6. EXPORTS
+// ---------------------------------------------------------------
 
 if (require.main === module) {
   main().catch((error: unknown) => {
