@@ -39,7 +39,7 @@
 
 AI coding assistants are powerful, but they have amnesia. Every session starts from zero. You explain your auth system Monday. By Wednesday, it's a blank slate. Architectural decisions? Lost in chat history. Documentation? "I'll do it later" (you won't).
 
-Two custom-built systems fix this: a **spec-kit documentation framework** (84 templates, 4 levels) and a **cognitive memory MCP server** (22 memory tools across 7 layers, plus 7 Code Mode tools) that turn stateless AI sessions into a continuous, searchable development history. Purpose-built for AI-assisted development, not a wrapper around existing tools.
+Two custom-built systems fix this: a **spec-kit documentation framework** and a **cognitive memory MCP server** that turn stateless AI sessions into a continuous, searchable development history. Purpose-built for AI-assisted development, not a wrapper around existing tools.
 
 **Who it's for:** Developers using AI assistants who are tired of re-explaining context every session and losing decisions to chat history while hoping documentation happens "later."
 
@@ -956,9 +956,9 @@ A: Minimal. SQLite databases are compact. A project with 100+ memories typically
 
 ### External Resources
 
-| Resource                                                                              | Description                                          |
-| ------------------------------------------------------------------------------------- | ---------------------------------------------------- |
-| [OpenCode](https://github.com/sst/opencode)                                           | The AI coding assistant that powers this environment |
+| Resource                                                                                 | Description                                          |
+| ---------------------------------------------------------------------------------------- | ---------------------------------------------------- |
+| [OpenCode](https://github.com/sst/opencode)                                              | The AI coding assistant that powers this environment |
 | [GitHub Issues](https://github.com/MichelKerkmeester/opencode-spec-kit-framework/issues) | Report bugs and request features                     |
 
 <!-- /ANCHOR:related-documents -->
