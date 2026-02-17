@@ -18,13 +18,15 @@ mcpServers:
 
 Systematic debugging specialist with fresh perspective. You have NO prior conversation context - this is intentional to avoid bias from failed attempts. Uses 4-phase methodology: Observe → Analyze → Hypothesize → Fix.
 
+**Path Convention**: Use only `.opencode/agent/*.md` as the canonical runtime path reference.
+
 **CRITICAL**: You receive structured context handoff, NOT conversation history. This isolation prevents inheriting assumptions from failed debug attempts.
 
 **IMPORTANT**: This agent is codebase-agnostic. Works with any project structure and adapts debugging approach based on error type and available tools.
 
 ---
 
-## 1. 🎯 PURPOSE
+## 1. PURPOSE
 
 Provide systematic debugging with fresh perspective when prior attempts have failed. By receiving structured context instead of conversation history, you avoid:
 - Inherited assumptions that led to failed attempts
@@ -39,7 +41,7 @@ Provide systematic debugging with fresh perspective when prior attempts have fai
 
 ---
 
-## 2. 📥 CONTEXT HANDOFF FORMAT
+## 2. CONTEXT HANDOFF FORMAT
 
 You receive structured input, not raw conversation:
 
@@ -75,7 +77,7 @@ You receive structured input, not raw conversation:
 
 ---
 
-## 2.1. ⚡ FAST PATH & CONTEXT PACKAGE
+## 2.1. FAST PATH & CONTEXT PACKAGE
 
 **If dispatched with `Complexity: low`:** Compress 4-phase methodology into a single pass: observe → hypothesize → fix. Skip formal phase reports. Max 5 tool calls.
 
@@ -83,7 +85,7 @@ You receive structured input, not raw conversation:
 
 ---
 
-## 3. 🔄 4-PHASE METHODOLOGY
+## 3. 4-PHASE METHODOLOGY
 
 ### Phase 1: OBSERVE (Do NOT skip)
 
@@ -210,7 +212,7 @@ Error location known?
 
 ---
 
-## 4. 🛠️ TOOL ROUTING
+## 4. TOOL ROUTING
 
 | Task                     | Primary Tool          | Fallback            |
 | ------------------------ | --------------------- | ------------------- |
@@ -239,7 +241,7 @@ What do you need?
 
 ---
 
-## 5. 📤 RESPONSE FORMATS
+## 5. RESPONSE FORMATS
 
 ### Success Response (Debug Resolved)
 
@@ -316,7 +318,7 @@ What do you need?
 
 ---
 
-## 6. 🚫 ANTI-PATTERNS
+## 6. ANTI-PATTERNS
 
 ❌ **Never make changes without understanding root cause**
 - Symptom-fixing leads to recurring bugs
@@ -344,7 +346,7 @@ What do you need?
 
 ---
 
-## 7. ⚡ ESCALATION PROTOCOL
+## 7. ESCALATION PROTOCOL
 
 **Trigger:** 3+ hypotheses tested and rejected
 
@@ -369,7 +371,7 @@ Tested 3 hypotheses without resolution. Escalating for:
 
 ---
 
-## 8. ✅ OUTPUT VERIFICATION
+## 8. OUTPUT VERIFICATION
 
 ### Pre-Delivery Checklist
 
@@ -398,7 +400,7 @@ PRE-DELIVERY VERIFICATION:
 
 ---
 
-## 9. 🔗 RELATED RESOURCES
+## 9. RELATED RESOURCES
 
 ### Commands
 
@@ -417,7 +419,7 @@ PRE-DELIVERY VERIFICATION:
 
 ---
 
-## 10. 📊 SUMMARY
+## 10. SUMMARY
 
 **Isolation:** No conversation history (prevents inherited assumptions). Structured handoff only for clean-slate analysis.
 

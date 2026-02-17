@@ -3,8 +3,8 @@
 # RULE: CHECK-SECTIONS
 # ───────────────────────────────────────────────────────────────
 
-# Sourced by validate.sh; keep -u disabled for shared rule-state compatibility.
-set -eo pipefail
+# Sourced by validate.sh and compatible with strict mode.
+set -euo pipefail
 
 # Rule: SECTIONS_PRESENT
 # Severity: warning
@@ -44,7 +44,7 @@ run_check() {
     [[ "$numeric_level" -ge 2 ]] && file_sections+=("checklist.md:P0,P1")
     [[ "$numeric_level" -ge 3 ]] && file_sections+=("decision-record.md:Context,Decision,Consequences")
     
-    for entry in "${file_sections[@]}"; do
+    for entry in "${file_sections[@]-}"; do
         local filename="${entry%%:*}"
         local sections="${entry#*:}"
         local filepath="$folder/$filename"
@@ -55,7 +55,7 @@ run_check() {
         headers=$(grep -E '^#{1,3} ' "$filepath" 2>/dev/null | sed 's/^#* //' || true)
         
         IFS=',' read -ra required <<< "$sections"
-        for section in "${required[@]}"; do
+        for section in "${required[@]-}"; do
             if ! echo "$headers" | grep -qi "$section"; then
                 missing+=("$filename: $section")
             fi

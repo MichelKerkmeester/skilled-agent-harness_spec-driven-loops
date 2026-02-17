@@ -86,72 +86,9 @@ Routing to `@general`, `@write`, or other agents for spec documentation is a **h
 <!-- ANCHOR:smart-routing -->
 ## 2. SMART ROUTING
 
-### Activation Detection
+### Resource Router
 
-```
-User Request
-    │
-    ├─► Contains "spec", "plan", "document", "checklist"?
-    │   └─► YES → Activate SpecKit (spec folder workflow)
-    │
-    ├─► File modification requested?
-    │   └─► Gate 3 triggered → Ask spec folder question
-    │
-    ├─► Contains "debug", "stuck", "help"?
-    │   └─► Route to /spec_kit:debug
-    │
-    ├─► Contains "continue", "resume", "pick up"?
-    │   └─► Route to /spec_kit:resume
-    │
-    ├─► Contains "save context", "save memory", "/memory:save"?
-    │   └─► Execute generate-context.js → Index to Spec Kit Memory
-    │
-    ├─► Contains "search memory", "find context", "what did we"?
-    │   └─► Use memory_search({ query: "..." }) MCP tool (query OR concepts required)
-    │
-    ├─► Contains "checkpoint", "save state", "restore"?
-    │   └─► Use checkpoint_create/restore MCP tools
-    │
-    └─► Gate enforcement triggered (file modification)?
-        └─► Constitutional memories auto-surface via memory_match_triggers()
-```
-
-### Memory System Triggers
-
-> **Note:** Tool names use the full `spec_kit_memory_*` prefix as required by OpenCode MCP integration.
-
-| Trigger Pattern                                     | Action                            | MCP Tool                                                                       |
-| --------------------------------------------------- | --------------------------------- | ------------------------------------------------------------------------------ |
-| "save context", "save memory", `/memory:save`       | Generate + index memory file      | `spec_kit_memory_memory_save()`                                                |
-| "search memory", "find prior", "what did we decide" | Semantic search across sessions   | `spec_kit_memory_memory_search({ query: "..." })` (query OR concepts required) |
-| "list memories", "show context"                     | Browse stored memories            | `spec_kit_memory_memory_list()`                                                |
-| "checkpoint", "save state"                          | Create named checkpoint           | `spec_kit_memory_checkpoint_create()`                                          |
-| "restore checkpoint", "rollback"                    | Restore from checkpoint           | `spec_kit_memory_checkpoint_restore()`                                         |
-| Gate enforcement (any file modification)            | Auto-surface constitutional rules | `spec_kit_memory_memory_match_triggers()`                                      |
-| "continue", "resume", `/memory:continue`            | Session recovery (crash/timeout)  | `spec_kit_memory_memory_search()` + state anchors                              |
-| "context", "get context", `/memory:context`         | Intent-aware context retrieval    | `spec_kit_memory_memory_context()` with intent routing                         |
-| "correct", "correction", `/memory:learn correct`    | Learn from corrections            | `spec_kit_memory_memory_update()` with penalty                                 |
-| "learn", "insight", `/memory:learn`                 | Capture session learnings         | `spec_kit_memory_memory_save()` with learning tier                             |
-| "manage", "cleanup", "database", `/memory:manage`   | Database management + checkpoints | `spec_kit_memory_memory_stats()`, `memory_health()`, `checkpoint_*()`, etc.    |
-
-### Cognitive Memory Features
-
-The `memory_match_triggers()` tool includes cognitive features: **FSRS v4 attention decay** (power-law retrievability model), **tiered content injection** (HOT=full content, WARM=summary, COLD/DORMANT/ARCHIVED=metadata only), **co-activation** (BFS spreading activation across related memories), and **working memory** (session-scoped, 7-item capacity). Uses snake_case parameters (`session_id`, `include_cognitive`) unlike other tools.
-
-**Full documentation:** See [mcp_server/README.md](./mcp_server/README.md#3--cognitive-memory) and [memory_system.md](./references/memory/memory_system.md).
-
-### README Content Discovery
-
-The memory system auto-discovers and indexes content from 5 sources during `memory_index_scan()`: spec memories (0.5 weight), constitutional rules (per-file tier), skill READMEs (0.3), project READMEs (0.4) and spec folder documents (per-type multiplier via `includeSpecDocs`). READMEs require `<!-- ANCHOR:name -->` tags for section-level retrieval. Control with `includeReadmes` parameter (default: `true`) and `includeSpecDocs` parameter (default: `true`) or `SPECKIT_INDEX_SPEC_DOCS` env var. Post-spec126 hardening enforces specFolder boundary filtering and stabilizes the incremental spec-document chain pass.
-
-**See:** [readme_indexing.md](./references/memory/readme_indexing.md) for discovery functions, exclude patterns, and weight rationale.
-
-### Resource Router (Smart Router V2)
-
-The skill keeps both routing views on purpose:
-
-- **Specific use-case tables** are fast human lookup for prompts, command choices, and navigation.
-- **Smart Router pseudocode** is the authoritative routing logic for scoped loading, weighted intent scoring, and ambiguity handling.
+**Smart Router pseudocode** is the authoritative routing logic for scoped loading, weighted intent scoring, and ambiguity handling.
 
 ```python
 from pathlib import Path
@@ -328,6 +265,53 @@ def route_speckit_resources(task):
 | **Handover**       | "stopping", "break", "continue later" | quick_reference.md                         | /spec_kit:handover  |
 | **Resume**         | "continue", "pick up", "resume"       | quick_reference.md                         | /spec_kit:resume    |
 
+### Keyword-to-Folder Quick Map
+
+This table is a quick index for humans. Smart Router V2 scoring remains the routing source of truth.
+
+| Keywords                                          | Route To                 |
+| ------------------------------------------------- | ------------------------ |
+| "memory", "save context", "MCP", "trigger"        | `references/memory/`     |
+| "embeddings", "vector", "semantic", "decay"       | `references/memory/`     |
+| "anchor", "snapshot"                              | `references/memory/`     |
+| "template", "level 1/2/3", "spec.md format"       | `references/templates/`  |
+| "validate", "rules", "checklist", "P0/P1/P2"      | `references/validation/` |
+| "folder", "naming", "structure", "versioning"     | `references/structure/`  |
+| "workflow", "example", "commands", "quick"        | `references/workflows/`  |
+| "debug", "error", "stuck", "troubleshoot"         | `references/debugging/`  |
+| "env", "environment", "configuration"             | `references/config/`     |
+| "scripts", "generate-context", "check-completion" | `scripts/`               |
+
+### Memory System Triggers
+
+> **Note:** Tool names use the full `spec_kit_memory_*` prefix as required by OpenCode MCP integration.
+
+| Trigger Pattern                                     | Action                            | MCP Tool                                                                       |
+| --------------------------------------------------- | --------------------------------- | ------------------------------------------------------------------------------ |
+| "save context", "save memory", `/memory:save`       | Generate + index memory file      | `spec_kit_memory_memory_save()`                                                |
+| "search memory", "find prior", "what did we decide" | Semantic search across sessions   | `spec_kit_memory_memory_search({ query: "..." })` (query OR concepts required) |
+| "list memories", "show context"                     | Browse stored memories            | `spec_kit_memory_memory_list()`                                                |
+| "checkpoint", "save state"                          | Create named checkpoint           | `spec_kit_memory_checkpoint_create()`                                          |
+| "restore checkpoint", "rollback"                    | Restore from checkpoint           | `spec_kit_memory_checkpoint_restore()`                                         |
+| Gate enforcement (any file modification)            | Auto-surface constitutional rules | `spec_kit_memory_memory_match_triggers()`                                      |
+| "continue", "resume", `/memory:continue`            | Session recovery (crash/timeout)  | `spec_kit_memory_memory_search()` + state anchors                              |
+| "context", "get context", `/memory:context`         | Intent-aware context retrieval    | `spec_kit_memory_memory_context()` with intent routing                         |
+| "correct", "correction", `/memory:learn correct`    | Learn from corrections            | `spec_kit_memory_memory_update()` with penalty                                 |
+| "learn", "insight", `/memory:learn`                 | Capture session learnings         | `spec_kit_memory_memory_save()` with learning tier                             |
+| "manage", "cleanup", "database", `/memory:manage`   | Database management + checkpoints | `spec_kit_memory_memory_stats()`, `memory_health()`, `checkpoint_*()`, etc.    |
+
+### Cognitive Memory Features
+
+The `memory_match_triggers()` tool includes cognitive features: **FSRS v4 attention decay** (power-law retrievability model), **tiered content injection** (HOT=full content, WARM=summary, COLD/DORMANT/ARCHIVED=metadata only), **co-activation** (BFS spreading activation across related memories), and **working memory** (session-scoped, 7-item capacity). Uses snake_case parameters (`session_id`, `include_cognitive`) unlike other tools.
+
+**Full documentation:** See [mcp_server/README.md](./mcp_server/README.md#3--cognitive-memory) and [memory_system.md](./references/memory/memory_system.md).
+
+### README Content Discovery
+
+The memory system auto-discovers and indexes content from 5 sources during `memory_index_scan()`: spec memories (0.5 weight), constitutional rules (per-file tier), skill READMEs (0.3), project READMEs (0.4) and spec folder documents (per-type multiplier via `includeSpecDocs`). READMEs require `<!-- ANCHOR:name -->` tags for section-level retrieval. Control with `includeReadmes` parameter (default: `true`) and `includeSpecDocs` parameter (default: `true`) or `SPECKIT_INDEX_SPEC_DOCS` env var. Post-spec126 hardening enforces specFolder boundary filtering and stabilizes the incremental spec-document chain pass.
+
+**See:** [readme_indexing.md](./references/memory/readme_indexing.md) for discovery functions, exclude patterns, and weight rationale.
+
 > **`/spec_kit:complete` flags:** Supports `:with-research` (runs research before verification) and `:auto-debug` (auto-dispatches debug agent on failures). Usage: `/spec_kit:complete :with-research :auto-debug`
 
 ### Agent Dispatch in Commands
@@ -355,23 +339,6 @@ Spec_kit commands dispatch these agents at specific workflow steps (added in spe
 | `workflows/`  | Usage workflows, examples       | quick_reference.md, execution_methods.md, worked_examples.md                                         |
 | `debugging/`  | Troubleshooting, debugging      | troubleshooting.md, universal_debugging_methodology.md                                               |
 | `config/`     | Configuration                   | environment_variables.md                                                                             |
-
-### Keyword-to-Folder Quick Map
-
-This table is a quick index for humans. Smart Router V2 scoring remains the routing source of truth.
-
-| Keywords                                          | Route To                 |
-| ------------------------------------------------- | ------------------------ |
-| "memory", "save context", "MCP", "trigger"        | `references/memory/`     |
-| "embeddings", "vector", "semantic", "decay"       | `references/memory/`     |
-| "anchor", "snapshot"                              | `references/memory/`     |
-| "template", "level 1/2/3", "spec.md format"       | `references/templates/`  |
-| "validate", "rules", "checklist", "P0/P1/P2"      | `references/validation/` |
-| "folder", "naming", "structure", "versioning"     | `references/structure/`  |
-| "workflow", "example", "commands", "quick"        | `references/workflows/`  |
-| "debug", "error", "stuck", "troubleshoot"         | `references/debugging/`  |
-| "env", "environment", "configuration"             | `references/config/`     |
-| "scripts", "generate-context", "check-completion" | `scripts/`               |
 
 ### Shared Modules (`shared/`)
 

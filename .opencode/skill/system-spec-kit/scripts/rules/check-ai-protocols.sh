@@ -3,8 +3,8 @@
 # RULE: CHECK-AI-PROTOCOLS
 # ───────────────────────────────────────────────────────────────
 
-# Sourced by validate.sh; keep -u disabled for shared rule-state compatibility.
-set -eo pipefail
+# Sourced by validate.sh and compatible with strict mode.
+set -euo pipefail
 
 # Rule: AI_PROTOCOL
 # Severity: warn
@@ -176,7 +176,10 @@ run_check() {
     if [[ ${#errors[@]} -gt 0 ]]; then
         RULE_STATUS="fail"
         RULE_MESSAGE="AI protocol validation errors"
-        RULE_DETAILS=("${errors[@]}" "${warnings[@]}")
+        RULE_DETAILS=("${errors[@]-}")
+        if [[ -n "${warnings[*]-}" ]]; then
+            RULE_DETAILS+=("${warnings[@]}")
+        fi
         RULE_REMEDIATION="Add AI Execution Protocol section with required components"
     elif [[ ${#warnings[@]} -gt 0 ]]; then
         RULE_STATUS="warn"

@@ -82,9 +82,9 @@ flowchart TD
 | 1        | ALL codebase exploration, file search, pattern discovery, context loading | `@context`                   | DISPATCHER | Memory tools, Glob, Grep, Read                | `"general"`   |
 | 2        | Evidence / investigation      | `@research`                  | LEAF | `system-spec-kit`                             | `"general"`   |
 | 3        | Spec folder docs              | `@speckit` ⛔ EXCLUSIVE      | LEAF | `system-spec-kit`                             | `"general"`   |
-| 4        | Code review / security        | `@review`                    | LEAF | `workflows-code--web-dev` / `workflows-code--full-stack` (if available) | `"general"`   |
+| 4        | Code review / security        | `@review`                    | LEAF | `workflows-code--*` (auto-detects available variant) | `"general"`   |
 | 5        | Documentation (non-spec)      | `@write`                     | LEAF | `workflows-documentation`                     | `"general"`   |
-| 6        | Implementation / testing      | `@general`                   | LEAF | `workflows-code--web-dev` / `workflows-code--full-stack`, `workflows-chrome-devtools` | `"general"`   |
+| 6        | Implementation / testing      | `@general`                   | LEAF | `workflows-code--*` (auto-detects available variant), `workflows-chrome-devtools` | `"general"`   |
 | 7        | Debugging (stuck, 3+ fails)   | `@debug`                     | LEAF | Code analysis tools                           | `"general"`   |
 | 8        | Session handover              | `@handover`                  | LEAF | `system-spec-kit`                             | `"general"`   |
 
@@ -137,7 +137,7 @@ Every agent is assigned exactly ONE tier that determines its dispatch authority:
 4. Sub-orchestrators inherit remaining depth budget: `remaining = max_depth - current_depth`
 5. Every dispatch MUST include `Depth: N` so the receiving agent knows its position
 
-#### Legal Nesting Chains
+#### ✅ Legal Nesting Chains
 
 ```
 LEGAL: Orchestrator(0) → @speckit(1)                          [depth 1, LEAF]
@@ -146,7 +146,7 @@ LEGAL: Orchestrator(0) → Sub-Orch(1) → @general(2)            [depth 2, LEAF
 LEGAL: Orchestrator(0) → @context(1) + @speckit(1)            [parallel at depth 1]
 ```
 
-#### Illegal Nesting Chains
+#### ❌ Illegal Nesting Chains
 
 ```
 ILLEGAL: Orch(0) → Sub-Orch(1) → @context(2) → @explore(3)   [depth 3 FORBIDDEN]
@@ -163,19 +163,19 @@ Since enforcement is instruction-based (no runtime tooling), depth is embedded i
 2. **Pre-Delegation Reasoning** (§3): `Depth` line
 3. **Agent instruction** (in the dispatch prompt): "You are at depth N. Maximum depth is 2. You MUST NOT dispatch sub-agents." (for LEAF agents) or "You are at depth N. You may dispatch LEAF agents at depth N+1." (for DISPATCHER/ORCHESTRATOR agents)
 
-#### LEAF Enforcement Instruction
+#### 🔒 LEAF Enforcement Instruction
 
 When dispatching a LEAF agent, append this to the Task prompt:
 
 > **NESTING CONSTRAINT:** You are a LEAF agent at depth [N]. You MUST NOT dispatch sub-agents or use the Task tool to create sub-tasks. Execute your work directly using your available tools. If you cannot complete the task alone, return what you have and escalate to the orchestrator.
 
-#### DISPATCHER Enforcement Instruction
+#### 🔒 DISPATCHER Enforcement Instruction
 
 When dispatching a DISPATCHER agent (currently only @context), append this:
 
 > **NESTING CONSTRAINT:** You are a DISPATCHER agent at depth [N]. You may dispatch LEAF agents at depth [N+1] only. Do NOT dispatch ORCHESTRATOR or DISPATCHER agents. Maximum depth for your sub-agents is [N+1].
 
-### Agent Loading Protocol (MANDATORY)
+### 🔒 Agent Loading Protocol (MANDATORY)
 
 **BEFORE dispatching any custom agent via the Task tool, you MUST:**
 1. **READ** the agent's definition file (see File column below)
@@ -333,7 +333,7 @@ TASK #1: Explore Toast Patterns
 TASK #2: Implement Notification System
 ├─ Scope: Build new system using patterns from Task #1
 ├─ Agent: @general
-├─ Skills: workflows-code--web-dev or workflows-code--full-stack
+├─ Skills: workflows-code--* (auto-detects available variant)
 ├─ Output: Functional notification system
 ├─ Success: Works in browser, tests pass
 └─ Depends: Task #1
@@ -456,7 +456,7 @@ The @context agent runs on Haiku for speed (~2x faster than Sonnet). Based on sp
 
 **NEVER accept sub-agent output blindly.** Every sub-agent response MUST be verified before synthesis.
 
-### Review Checklist (MANDATORY for every sub-agent response)
+### 🔒 Review Checklist (MANDATORY for every sub-agent response)
 
 ```
 □ Output matches requested scope (no scope drift or additions)
@@ -480,7 +480,7 @@ The @context agent runs on Haiku for speed (~2x faster than Sonnet). Based on sp
 | **Path Validation**      | Glob/Read                  | Confirm references are real           |
 | **Evidence Audit**       | Check citations            | Ensure sources exist and are cited    |
 
-### Rejection Criteria (MUST reject if ANY detected)
+### ❌ Rejection Criteria (MUST reject if ANY detected)
 
 | Issue                    | Example                               | Action                           |
 | ------------------------ | ------------------------------------- | -------------------------------- |
@@ -755,7 +755,7 @@ For tasks estimated at **9+ tool calls**, append this instruction to the Task di
 | Skill                       | Domain          | Use When                                                         | Key Commands/Tools         |
 | --------------------------- | --------------- | ---------------------------------------------------------------- | -------------------------- |
 | `system-spec-kit`           | Documentation   | Spec folders, memory, validation, context preservation           | `/spec_kit:*`, `/memory:*` |
-| `workflows-code--web-dev` / `workflows-code--full-stack` | Implementation  | Code changes, debugging, 3-phase lifecycle, browser verification | -                          |
+| `workflows-code--*`      | Implementation  | Code changes, debugging, 3-phase lifecycle, browser verification | -                          |
 | `workflows-git`             | Version Control | See skill for details                                            | -                          |
 | `workflows-documentation`   | Markdown        | Doc quality, DQI scoring, skill creation, flowcharts             | `/create:*`                |
 | `workflows-chrome-devtools` | Browser         | DevTools automation, screenshots, console, CDP                   | `bdg` CLI                  |
@@ -771,8 +771,7 @@ For tasks estimated at **9+ tool calls**, append this instruction to the Task di
 | `/spec_kit:research`        | 9-step investigation                     | `.opencode/command/spec_kit/research.md`     |
 | `/memory:save`              | Context preservation                     | `.opencode/command/memory/save.md`           |
 | `system-spec-kit`           | Spec folders, memory, validation         | `.opencode/skill/system-spec-kit/`           |
-| `workflows-code--web-dev`   | Web implementation lifecycle             | `.opencode/skill/workflows-code--web-dev/`   |
-| `workflows-code--full-stack`| Multi-stack implementation lifecycle     | `.opencode/skill/workflows-code--full-stack/`|
+| `workflows-code--*`        | Implementation lifecycle (auto-detects variant) | `.opencode/skill/workflows-code--*/`         |
 | `workflows-git`             | Version control workflows                | `.opencode/skill/workflows-git/`             |
 | `workflows-documentation`   | Doc quality, DQI scoring, skill creation | `.opencode/skill/workflows-documentation/`   |
 | `workflows-chrome-devtools` | Browser debugging, screenshots, CDP      | `.opencode/skill/workflows-chrome-devtools/` |

@@ -3,8 +3,8 @@
 # RULE: CHECK-ANCHORS
 # ───────────────────────────────────────────────────────────────
 
-# Sourced by validate.sh; keep -u disabled for shared rule-state compatibility.
-set -eo pipefail
+# Sourced by validate.sh and compatible with strict mode.
+set -euo pipefail
 
 # Rule: ANCHORS_VALID
 # Severity: error
@@ -40,7 +40,7 @@ run_check() {
 
     # Collect spec document files (spec 129: anchor tags in spec docs)
     local -a spec_doc_names=("spec.md" "plan.md" "tasks.md" "checklist.md" "decision-record.md" "implementation-summary.md")
-    for doc_name in "${spec_doc_names[@]}"; do
+    for doc_name in "${spec_doc_names[@]-}"; do
         local doc_path="$folder/$doc_name"
         if [[ -f "$doc_path" ]]; then
             all_files+=("$doc_path")
@@ -63,7 +63,7 @@ run_check() {
 
     # T007: Check that major spec docs have at least 1 ANCHOR tag
     local -a major_docs=("spec.md" "plan.md" "tasks.md" "checklist.md" "decision-record.md")
-    for doc_name in "${major_docs[@]}"; do
+    for doc_name in "${major_docs[@]-}"; do
         local doc_path="$folder/$doc_name"
         if [[ -f "$doc_path" ]]; then
             local anchor_count
@@ -76,7 +76,7 @@ run_check() {
         fi
     done
 
-    for file in "${all_files[@]}"; do
+    for file in "${all_files[@]-}"; do
         ((file_count++)) || true
         local filename
         filename=$(basename "$file")

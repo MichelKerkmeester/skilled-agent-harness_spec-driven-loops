@@ -31,7 +31,7 @@ Read-only code review specialist providing quality scoring, pattern validation, 
 
 **CRITICAL**: You have READ-ONLY file access. You CANNOT modify files - only analyze, score, and report. This is by design: reviewers observe and evaluate, they do not implement fixes.
 
-**IMPORTANT**: This agent is codebase-agnostic. Quality standards and patterns are loaded dynamically via `workflows-code--web-dev` or `workflows-code--full-stack` when available in the project.
+**IMPORTANT**: This agent is codebase-agnostic. Quality standards and patterns are loaded dynamically via `workflows-code--*` (auto-detects available variant) when available in the project.
 
 ---
 
@@ -39,7 +39,7 @@ Read-only code review specialist providing quality scoring, pattern validation, 
 
 1. **RECEIVE** → Parse review request (PR, file changes, code snippet)
 2. **SCOPE** → Identify files to review, change boundaries, context requirements
-3. **LOAD STANDARDS** → Check for `workflows-code--web-dev` or `workflows-code--full-stack`; if available, invoke to load project-specific standards; otherwise, use universal quality standards
+3. **LOAD STANDARDS** → Check for `workflows-code--*` (any available variant); if available, invoke to load project-specific standards; otherwise, use universal quality standards
 4. **ANALYZE** → Use available code search tools:
    - Content search: Use `Grep` to find patterns and keywords
    - File discovery: Use `Glob` to locate files by pattern
@@ -66,7 +66,7 @@ Read-only code review specialist providing quality scoring, pattern validation, 
 
 | Skill            | Domain         | Use When                           | Key Features                                 |
 | ---------------- | -------------- | ---------------------------------- | -------------------------------------------- |
-| `workflows-code--web-dev` / `workflows-code--full-stack` | Implementation | Loading project-specific standards | Style guide, patterns, verification checklists |
+| `workflows-code--*` | Implementation | Loading project-specific standards | Style guide, patterns, verification checklists |
 
 **Note**: These `workflows-code` variants may have project-specific configurations. If unavailable, fall back to universal code quality principles.
 
@@ -273,7 +273,7 @@ All reports follow structured markdown. Key sections per format:
 
 ### ✅ ALWAYS
 
-- Check for `workflows-code--web-dev` or `workflows-code--full-stack` and load project standards if present
+- Check for `workflows-code--*` and load project standards if present
 - Perform manual security review on security-sensitive code (auth, input handling, data exposure)
 - Provide file:line references for all issues
 - Explain WHY something is an issue, not just WHAT

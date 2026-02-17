@@ -66,15 +66,7 @@ Multi-language code standards for OpenCode system code across JavaScript, TypeSc
 <!-- ANCHOR:smart-routing -->
 ## 2. SMART ROUTING
 
-### Resource Loading Levels
-
-| Level       | When to Load               | Resources                    |
-| ----------- | -------------------------- | ---------------------------- |
-| ALWAYS      | Every skill invocation     | Shared patterns + SKILL.md   |
-| CONDITIONAL | If language keywords match | Language-specific references |
-| ON_DEMAND   | Only on explicit request   | Deep-dive quality standards  |
-
-### Language Detection Algorithm
+### Smart Router Pseudocode
 
 ```python
 from pathlib import Path
@@ -103,7 +95,7 @@ def _assert_scope(path, skill_root):
 
 
 def discover_router_docs(skill_root):
-    """Smart Router V2 scope guard + recursive markdown discovery."""
+    """Scope guard + recursive markdown discovery."""
     docs = list((skill_root / "references").rglob("*.md"))
     docs.extend((skill_root / "assets").rglob("*.md"))
     for doc in docs:
@@ -132,11 +124,7 @@ def detect_language_v2(task):
     if (best_score - second_score) <= 0.6:
         return [best_lang, second_lang], scores
     return [best_lang], scores
-```
 
-### Resource Router
-
-```python
 def route_opencode_resources(task):
     skill_root = Path(".opencode/skill/workflows-code--opencode")
     discover_router_docs(skill_root)
@@ -200,9 +188,17 @@ def route_opencode_resources(task):
     return list(dict.fromkeys(selected))
 ```
 
+### Resource Loading Levels
+
+| Level       | When to Load               | Resources                    |
+| ----------- | -------------------------- | ---------------------------- |
+| ALWAYS      | Every skill invocation     | Shared patterns + SKILL.md   |
+| CONDITIONAL | If language keywords match | Language-specific references |
+| ON_DEMAND   | Only on explicit request   | Deep-dive quality standards  |
+
 ### Routing Authority
 
-Smart Router V2 intent scoring and the in-code resource map in this section are the authoritative routing source. Do not maintain separate use-case routing tables.
+Intent scoring and the in-code resource map in this section are the authoritative routing source. Do not maintain separate use-case routing tables.
 
 ---
 

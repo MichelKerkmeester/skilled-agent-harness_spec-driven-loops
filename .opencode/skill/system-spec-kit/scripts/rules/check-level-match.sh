@@ -3,8 +3,8 @@
 # RULE: CHECK-LEVEL-MATCH
 # ───────────────────────────────────────────────────────────────
 
-# Sourced by validate.sh; keep -u disabled for shared rule-state compatibility.
-set -eo pipefail
+# Sourced by validate.sh and compatible with strict mode.
+set -euo pipefail
 
 # Rule: LEVEL_MATCH
 # Severity: error
@@ -186,7 +186,7 @@ run_check() {
         required_files+=("decision-record.md")
     fi
 
-    for req_file in "${required_files[@]}"; do
+    for req_file in "${required_files[@]-}"; do
         if [[ ! -f "$folder/$req_file" ]]; then
             errors+=("Required file missing for Level $primary_level: $req_file")
         fi
@@ -206,7 +206,10 @@ run_check() {
     if [[ ${#errors[@]} -gt 0 ]]; then
         RULE_STATUS="fail"
         RULE_MESSAGE="Level consistency errors"
-        RULE_DETAILS=("${errors[@]}" "${warnings[@]}")
+        RULE_DETAILS=("${errors[@]-}")
+        if [[ -n "${warnings[*]-}" ]]; then
+            RULE_DETAILS+=("${warnings[@]}")
+        fi
         RULE_REMEDIATION="Ensure all files declare consistent level and required files exist"
     elif [[ ${#warnings[@]} -gt 0 ]]; then
         RULE_STATUS="warn"

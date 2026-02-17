@@ -3,8 +3,8 @@
 # RULE: CHECK-FRONTMATTER
 # ───────────────────────────────────────────────────────────────
 
-# Sourced by validate.sh; keep -u disabled for shared rule-state compatibility.
-set -eo pipefail
+# Sourced by validate.sh and compatible with strict mode.
+set -euo pipefail
 
 # Rule: FRONTMATTER_VALID
 # Severity: warning
@@ -32,7 +32,7 @@ run_check() {
 
     local files_to_check=("spec.md" "plan.md")
     
-    for file in "${files_to_check[@]}"; do
+    for file in "${files_to_check[@]-}"; do
         local filepath="$folder/$file"
         [[ ! -f "$filepath" ]] && continue
         

@@ -3,8 +3,8 @@
 # RULE: CHECK-FOLDER-NAMING
 # ───────────────────────────────────────────────────────────────
 
-# Sourced by validate.sh; keep -u disabled for shared rule-state compatibility.
-set -eo pipefail
+# Sourced by validate.sh and compatible with strict mode.
+set -euo pipefail
 
 # Rule: FOLDER_NAMING
 # Severity: error

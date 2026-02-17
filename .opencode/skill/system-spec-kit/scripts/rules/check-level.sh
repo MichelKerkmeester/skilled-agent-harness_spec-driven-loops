@@ -3,8 +3,8 @@
 # RULE: CHECK-LEVEL
 # ───────────────────────────────────────────────────────────────
 
-# Sourced by validate.sh; keep -u disabled for shared rule-state compatibility.
-set -eo pipefail
+# Sourced by validate.sh and compatible with strict mode.
+set -euo pipefail
 
 # Rule: LEVEL_DECLARED
 # Severity: info
@@ -28,7 +28,7 @@ run_check() {
 # 2. VALIDATION LOGIC
 # ───────────────────────────────────────────────────────────────
 
-    if [[ "$LEVEL_METHOD" == "explicit" ]]; then
+    if [[ "${LEVEL_METHOD:-}" == "explicit" ]]; then
         RULE_STATUS="pass"
         RULE_MESSAGE="Level $level explicitly declared"
 

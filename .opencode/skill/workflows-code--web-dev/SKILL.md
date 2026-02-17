@@ -66,15 +66,7 @@ This orchestrator operates in four primary phases:
 <!-- ANCHOR:smart-routing -->
 ## 2. SMART ROUTING
 
-### Resource Loading Levels
-
-| Level       | When to Load             | Resources                          |
-| ----------- | ------------------------ | ---------------------------------- |
-| ALWAYS      | Every phase invocation   | Core workflow + essential patterns |
-| CONDITIONAL | If task keywords match   | Domain-specific references         |
-| ON_DEMAND   | Only on explicit request | Deep-dive optimization guides      |
-
-### Task Keyword Triggers
+### Smart Router Pseudocode
 
 ```python
 TASK_SIGNALS = {
@@ -111,7 +103,7 @@ def _assert_scope(path, skill_root):
 
 
 def discover_router_docs(skill_root):
-    """Smart Router V2: recursive markdown discovery under this skill only."""
+    """Recursive markdown discovery under this skill only."""
     docs = list((skill_root / "references").rglob("*.md"))
     docs.extend((skill_root / "assets").rglob("*.md"))
     for doc in docs:
@@ -202,9 +194,17 @@ def route_frontend_resources(task):
 # See "Code Quality Gate" in Section 3 - Phase 1.5 for style enforcement
 ```
 
+### Resource Loading Levels
+
+| Level       | When to Load             | Resources                          |
+| ----------- | ------------------------ | ---------------------------------- |
+| ALWAYS      | Every phase invocation   | Core workflow + essential patterns |
+| CONDITIONAL | If task keywords match   | Domain-specific references         |
+| ON_DEMAND   | Only on explicit request | Deep-dive optimization guides      |
+
 ### Routing Authority
 
-Smart Router V2 intent scoring and the resource map in this section are the authoritative routing source. Do not maintain separate use-case routing tables.
+Intent scoring and the resource map in this section are the authoritative routing source. Do not maintain separate use-case routing tables.
 
 ---
 
@@ -523,44 +523,8 @@ Run Lighthouse 3× in Incognito with mobile emulation, use median scores.
 ---
 
 <!-- /ANCHOR:success-criteria -->
-<!-- ANCHOR:integration-points -->
-## 6. INTEGRATION POINTS
-
-### Framework Integration
-
-This skill operates within the behavioral framework defined in [AGENTS.md](../../../AGENTS.md).
-
-Key integrations:
-- **Gate 2**: Skill routing via `skill_advisor.py`
-- **Tool Routing**: Per AGENTS.md Section 6 decision tree
-- **Memory**: Context preserved via Spec Kit Memory MCP
-
-### Code Quality Standards
-
-- [code_quality_standards.md](./references/standards/code_quality_standards.md) - Initialization, validation, async patterns
-- [code_style_guide.md](./references/standards/code_style_guide.md) - Naming, formatting, comments
-- [shared_patterns.md](./references/standards/shared_patterns.md) - Common patterns across workflows
-
-### Performance References
-
-- [cwv_remediation.md](./references/performance/cwv_remediation.md) - Core Web Vitals patterns
-- [resource_loading.md](./references/performance/resource_loading.md) - Preconnect, preload, async patterns
-- [webflow_constraints.md](./references/performance/webflow_constraints.md) - Platform limitations
-- [third_party.md](./references/performance/third_party.md) - GTM, analytics optimization
-- [performance_checklist.md](./references/verification/performance_checklist.md) - Before/after verification
-
-### External Tools
-
-| Tool                          | Purpose                                                  |
-| ----------------------------- | -------------------------------------------------------- |
-| **workflows-chrome-devtools** | Browser debugging (CLI-first via bdg, MCP fallback)      |
-| **Motion.dev**                | Animation library (CDN: jsdelivr.net/npm/motion) |
-
----
-
-<!-- /ANCHOR:integration-points -->
 <!-- ANCHOR:external-resources -->
-## 7. EXTERNAL RESOURCES
+## 6. EXTERNAL RESOURCES
 
 ### Official Documentation
 
@@ -583,7 +547,7 @@ Key integrations:
 
 <!-- /ANCHOR:external-resources -->
 <!-- ANCHOR:related-resources -->
-## 8. RELATED RESOURCES
+## 7. RELATED RESOURCES
 
 ### Related Skills
 
@@ -615,7 +579,7 @@ Key integrations:
 
 <!-- /ANCHOR:related-resources -->
 <!-- ANCHOR:where-am-i-phase-detection -->
-## 9. WHERE AM I? (Phase Detection)
+## 8. WHERE AM I? (Phase Detection)
 
 | Phase                 | You're here if...                      | Exit criteria                      |
 | --------------------- | -------------------------------------- | ---------------------------------- |
@@ -631,59 +595,7 @@ Key integrations:
 
 <!-- /ANCHOR:where-am-i-phase-detection -->
 <!-- ANCHOR:quick-reference -->
-## 10. QUICK REFERENCE
-
-### Essential Timing Constants
-
-| Constant            | Value | Use Case                                     |
-| ------------------- | ----- | -------------------------------------------- |
-| Pointer throttle    | 64ms  | `pointermove`, `mousemove` event handlers    |
-| Validation debounce | 180ms | Form input validation, search fields         |
-| Resize debounce     | 200ms | Window resize handlers, layout recalculation |
-| IO threshold        | 0.1   | IntersectionObserver for animations (10%)    |
-| RAF background      | ~1fps | Auto-throttled by browser in background tabs |
-
-### Critical Patterns
-
-```javascript
-// Condition-based waiting (NOT setTimeout)
-async function wait_for_element(selector, timeout = 5000) {
-    const start = Date.now();
-    while (Date.now() - start < timeout) {
-        const el = document.querySelector(selector);
-        if (el) return el;
-        await new Promise(r => setTimeout(r, 50));
-    }
-    throw new Error(`Timeout waiting for ${selector}`);
-}
-
-// Throttle pattern (64ms for pointer events)
-function throttle(fn, delay = 64) {
-    let last = 0;
-    return (...args) => {
-        const now = Date.now();
-        if (now - last >= delay) {
-            last = now;
-            fn(...args);
-        }
-    };
-}
-
-// Debounce pattern (180ms for validation)
-function debounce(fn, delay = 180) {
-    let timer;
-    return (...args) => {
-        clearTimeout(timer);
-        timer = setTimeout(() => fn(...args), delay);
-    };
-}
-
-// IntersectionObserver (0.1 threshold)
-const observer = new IntersectionObserver(
-    (entries) => entries.forEach(e => e.isIntersecting && handle(e)),
-    { threshold: 0.1 }
-);
-```
+## 9. QUICK REFERENCE
 
 ### CDN Version Update
 
@@ -692,23 +604,6 @@ const observer = new IntersectionObserver(
 # Pattern: src="https://cdn.example.com/js/file.js?v=X.Y.Z"
 # Increment Z for patches, Y for features, X for breaking changes
 ```
-
-### Browser Testing Matrix
-
-| Viewport | Width  | Required | Notes                     |
-| -------- | ------ | -------- | ------------------------- |
-| Mobile   | 375px  | ALWAYS   | iPhone SE baseline        |
-| Tablet   | 991px  | Standard | Webflow tablet breakpoint |
-| Desktop  | 1920px | ALWAYS   | Full HD reference         |
-
-### Performance Targets (Summary)
-
-| Metric | Target | Quick Check                      |
-| ------ | ------ | -------------------------------- |
-| FCP    | < 1.8s | Lighthouse mobile                |
-| CLS    | < 0.1  | Lighthouse mobile                |
-| FPS    | 60fps  | DevTools Performance panel       |
-| Errors | 0      | DevTools Console (all viewports) |
 
 ### Common Commands
 

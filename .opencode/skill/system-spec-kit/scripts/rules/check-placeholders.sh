@@ -3,8 +3,8 @@
 # RULE: CHECK-PLACEHOLDERS
 # ───────────────────────────────────────────────────────────────
 
-# Sourced by validate.sh; keep -u disabled for shared rule-state compatibility.
-set -eo pipefail
+# Sourced by validate.sh and compatible with strict mode.
+set -euo pipefail
 
 # Rule: PLACEHOLDER_FILLED
 # Severity: error
@@ -93,12 +93,14 @@ run_check() {
     # Deduplicate (bash 3.2 compatible)
     local -a unique_placeholders=()
     local seen_list=""
-    for item in "${found_placeholders[@]}"; do
-        if [[ "$seen_list" != *"|$item|"* ]]; then
-            seen_list="$seen_list|$item|"
-            unique_placeholders+=("$item")
-        fi
-    done
+    if [[ ${#found_placeholders[@]} -gt 0 ]]; then
+        for item in "${found_placeholders[@]}"; do
+            if [[ "$seen_list" != *"|$item|"* ]]; then
+                seen_list="$seen_list|$item|"
+                unique_placeholders+=("$item")
+            fi
+        done
+    fi
 
 # ───────────────────────────────────────────────────────────────
 # 3. RESULTS

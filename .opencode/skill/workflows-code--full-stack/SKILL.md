@@ -53,11 +53,11 @@ Unified workflow guidance for any technology stack: Go, React, React Native, Swi
 <!-- ANCHOR:smart-routing -->
 ## 2. SMART ROUTING
 
-### Stack Detection (Marker File Based)
+### Smart Router Pseudocode
 
 ```python
 def detect_stack(workspace_files, package_json_text="", app_json_text=""):
-    """Smart Router V2 stack detection with deterministic priority."""
+    """Stack detection with deterministic priority."""
     if "go.mod" in workspace_files:
         return "GO"
     if "Package.swift" in workspace_files:
@@ -151,7 +151,7 @@ def discover_markdown_files(skill_root):
 
 
 def score_intents(user_request):
-    """Weighted intent scoring (Smart Router V2)."""
+    """Weighted intent scoring."""
     text = user_request.lower()
     scores = {intent: 0.0 for intent in TASK_SIGNALS}
     for intent, weighted_terms in TASK_SIGNALS.items():

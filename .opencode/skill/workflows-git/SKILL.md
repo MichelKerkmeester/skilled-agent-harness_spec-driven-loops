@@ -40,29 +40,6 @@ Use this orchestrator when:
 <!-- ANCHOR:smart-routing -->
 ## 2. SMART ROUTING
 
-### Phase Detection
-```
-GIT WORKFLOW CONTEXT
-    │
-    ├─► Starting new work / need isolated workspace
-    │   └─► PHASE 1: Workspace Setup (git-worktrees)
-    │       └─► Load: worktree_workflows.md, worktree_checklist.md
-    │
-    ├─► Ready to commit changes
-    │   └─► PHASE 2: Commit (git-commit)
-    │       └─► Load: commit_workflows.md, commit_message_template.md
-    │
-    ├─► Work complete / ready to integrate
-    │   └─► PHASE 3: Finish (git-finish)
-    │       └─► Load: finish_workflows.md, pr_template.md
-    │
-    ├─► Need command reference / conventions
-    │   └─► Load: shared_patterns.md
-    │
-    └─► Quick overview needed
-        └─► Load: quick_reference.md
-```
-
 ### Resource Router
 ```python
 import os
@@ -189,6 +166,30 @@ def route_git_resources(task):
 # assets/commit_message_template.md → Format guide with real-world examples
 # assets/pr_template.md → Structured PR descriptions with examples
 ```
+
+### Phase Detection
+```
+GIT WORKFLOW CONTEXT
+    │
+    ├─► Starting new work / need isolated workspace
+    │   └─► PHASE 1: Workspace Setup (git-worktrees)
+    │       └─► Load: worktree_workflows.md, worktree_checklist.md
+    │
+    ├─► Ready to commit changes
+    │   └─► PHASE 2: Commit (git-commit)
+    │       └─► Load: commit_workflows.md, commit_message_template.md
+    │
+    ├─► Work complete / ready to integrate
+    │   └─► PHASE 3: Finish (git-finish)
+    │       └─► Load: finish_workflows.md, pr_template.md
+    │
+    ├─► Need command reference / conventions
+    │   └─► Load: shared_patterns.md
+    │
+    └─► Quick overview needed
+        └─► Load: quick_reference.md
+```
+
 
 ---
 

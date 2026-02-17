@@ -3,8 +3,8 @@
 # RULE: CHECK-PRIORITY-TAGS
 # ───────────────────────────────────────────────────────────────
 
-# Sourced by validate.sh; keep -u disabled for shared rule-state compatibility.
-set -eo pipefail
+# Sourced by validate.sh and compatible with strict mode.
+set -euo pipefail
 
 # Rule: PRIORITY_TAGS
 # Severity: warning

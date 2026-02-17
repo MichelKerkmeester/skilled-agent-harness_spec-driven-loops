@@ -3,8 +3,8 @@
 # RULE: CHECK-SECTION-COUNTS
 # ───────────────────────────────────────────────────────────────
 
-# Sourced by validate.sh; keep -u disabled for shared rule-state compatibility.
-set -eo pipefail
+# Sourced by validate.sh and compatible with strict mode.
+set -euo pipefail
 
 # Rule: SECTION_COUNTS
 # Severity: warn
@@ -178,7 +178,10 @@ run_check() {
     if [[ ${#errors[@]} -gt 0 ]]; then
         RULE_STATUS="fail"
         RULE_MESSAGE="Section count validation errors"
-        RULE_DETAILS=("${errors[@]}" "${warnings[@]}")
+        RULE_DETAILS=("${errors[@]-}")
+        if [[ -n "${warnings[*]-}" ]]; then
+            RULE_DETAILS+=("${warnings[@]}")
+        fi
         RULE_REMEDIATION="Add missing required files or increase section depth"
     elif [[ ${#warnings[@]} -gt 0 ]]; then
         RULE_STATUS="warn"

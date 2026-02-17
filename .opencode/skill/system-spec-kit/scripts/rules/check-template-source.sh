@@ -3,8 +3,8 @@
 # RULE: CHECK-TEMPLATE-SOURCE
 # ───────────────────────────────────────────────────────────────
 
-# Sourced by validate.sh; keep -u disabled for shared rule-state compatibility.
-set -eo pipefail
+# Sourced by validate.sh and compatible with strict mode.
+set -euo pipefail
 
 # Rule: TEMPLATE_SOURCE
 # Severity: error
@@ -33,7 +33,7 @@ run_check() {
     local -a missing_header=()
     local -a checked_files=()
 
-    for doc_name in "${spec_files[@]}"; do
+    for doc_name in "${spec_files[@]-}"; do
         local doc_path="$folder/$doc_name"
         
         # Skip if file doesn't exist
@@ -66,7 +66,7 @@ run_check() {
         RULE_STATUS="fail"
         RULE_MESSAGE="Template source header missing in ${#missing_header[@]} file(s)"
         
-        for file in "${missing_header[@]}"; do
+        for file in "${missing_header[@]-}"; do
             RULE_DETAILS+=("$file: Missing <!-- SPECKIT_TEMPLATE_SOURCE: ... --> header")
         done
         

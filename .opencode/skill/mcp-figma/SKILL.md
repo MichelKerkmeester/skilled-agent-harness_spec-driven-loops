@@ -91,34 +91,6 @@ Programmatic access to Figma design files through 18 specialized tools covering 
 <!-- ANCHOR:smart-routing -->
 ## 2. SMART ROUTING
 
-### Activation Detection
-
-```
-TASK CONTEXT
-    │
-    ├─► Need to get Figma file or nodes
-    │   └─► Tools: get_file, get_file_nodes
-    │
-    ├─► Need to export images
-    │   └─► Tools: get_image, get_image_fills
-    │
-    ├─► Need component information
-    │   └─► Tools: get_file_components, get_component, get_team_components
-    │
-    ├─► Need style/token information
-    │   └─► Tools: get_file_styles, get_style, get_team_styles
-    │
-    ├─► Need team/project navigation
-    │   └─► Tools: get_team_projects, get_project_files
-    │
-    └─► Need to manage comments
-        └─► Tools: get_comments, post_comment, delete_comment
-
-Weighted intent fallback:
-    └─► Mixed requests score file/export/component/style/team/comment intents
-        └─► Route to highest-confidence intent while preserving tool naming
-```
-
 ### Resource Router
 
 ```python

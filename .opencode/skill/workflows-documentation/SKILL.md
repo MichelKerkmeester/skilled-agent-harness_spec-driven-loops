@@ -108,115 +108,7 @@ Create and validate installation documentation for MCP servers, plugins and tool
 <!-- ANCHOR:smart-routing-references -->
 ## 2. SMART ROUTING & REFERENCES
 
-### Mode Selection
-
-```text
-TASK CONTEXT
-    │
-    ├─► Improving markdown / documentation quality
-    │   └─► MODE 1: Document Quality
-    │       ├─► README creation: readme_template.md
-    │       ├─► Knowledge files, general markdown
-    │       ├─► Frontmatter validation: frontmatter_templates.md
-    │       ├─► Quality analysis: extract_structure.py → JSON
-    │       └─► llms.txt generation (ask first)
-    │
-    ├─► Creating OpenCode components (skills, agents, commands)
-    │   └─► MODE 2: Component Creation
-    │       ├─► Skills: init_skill.py + skill_md_template.md
-    │       ├─► Agents: agent_template.md
-    │       └─► Commands: command_template.md
-    │
-    ├─► Creating ASCII flowcharts / diagrams
-    │   └─► MODE 3: Flowchart Creation
-    │       └─► Load flowchart assets by pattern type
-    │
-    ├─► Creating install guide / setup documentation
-    │   └─► MODE 4: Install Guide Creation
-    │       └─► Load: install_guide_template.md
-    │
-    └─► Quick reference / standards lookup
-        └─► Load: quick_reference.md
-```
-
-### Resource Router (Quick Reference)
-
-**Mode 1 - Document Quality:**
-
-| Condition                  | Resource                                        | Purpose                                        |
-| -------------------------- | ----------------------------------------------- | ---------------------------------------------- |
-| Checking structure         | `references/core_standards.md`                  | Filename conventions, structural violations    |
-| Optimizing content         | `references/optimization.md`                    | Question coverage, AI-friendly transformations |
-| Validating quality         | `references/validation.md`                      | DQI scoring, quality gates                     |
-| Workflow guidance          | `references/workflows.md`                       | Execution modes, enforcement patterns          |
-| **Creating README**        | `assets/documentation/readme_template.md`       | README structure (14 sections + HVR)           |
-| **Validating frontmatter** | `assets/documentation/frontmatter_templates.md` | Frontmatter validation & templates (11 types)  |
-
-**Mode 2 - OpenCode Component Creation:**
-
-| Category     | Condition          | Resource                                         | Purpose                                   |
-| ------------ | ------------------ | ------------------------------------------------ | ----------------------------------------- |
-| **Skills**   | Creating skill     | `references/skill_creation.md` + `init_skill.py` | 6-step workflow                           |
-|              | SKILL.md template  | `assets/opencode/skill_md_template.md`           | SKILL.md structure                        |
-|              | Reference template | `assets/opencode/skill_reference_template.md`    | Reference docs in references/             |
-|              | Asset template     | `assets/opencode/skill_asset_template.md`        | Bundled assets in assets/                 |
-|              | Packaging skill    | `scripts/package_skill.py`                       | Validation + zip                          |
-| **Agents**   | Creating agent     | `assets/opencode/agent_template.md`              | Agent file with frontmatter & permissions |
-| **Commands** | Creating command   | `assets/opencode/command_template.md`            | Command creation guide (19 sections)      |
-| **Shared**   | Component README   | `assets/documentation/readme_template.md`        | README for skill/agent/command folders    |
-|              | Quick validation   | `scripts/quick_validate.py`                      | Fast validation checks                    |
-
-**Mode 3 - Flowcharts:**
-
-| Pattern       | Resource                                            | Use Case         |
-| ------------- | --------------------------------------------------- | ---------------- |
-| Linear        | `assets/flowcharts/simple_workflow.md`              | Sequential steps |
-| Decision      | `assets/flowcharts/decision_tree_flow.md`           | Branching logic  |
-| Parallel      | `assets/flowcharts/parallel_execution.md`           | Concurrent tasks |
-| Nested        | `assets/flowcharts/user_onboarding.md`              | Sub-processes    |
-| Loop/Approval | `assets/flowcharts/approval_workflow_loops.md`      | Review cycles    |
-| Swimlane      | `assets/flowcharts/system_architecture_swimlane.md` | Multi-stage      |
-
-**Mode 4 - Install Guide Creation:**
-
-| Condition              | Resource                                         | Purpose              |
-| ---------------------- | ------------------------------------------------ | -------------------- |
-| Creating install guide | `assets/documentation/install_guide_template.md` | Phase-based template |
-| Need standards         | `references/install_guide_standards.md`          | Best practices       |
-| Validating guide       | `scripts/extract_structure.py`                   | Quality check        |
-
-**General Utilities:**
-
-| Condition           | Resource                                         | Purpose                                      |
-| ------------------- | ------------------------------------------------ | -------------------------------------------- |
-| Need frontmatter    | `assets/documentation/frontmatter_templates.md`  | Frontmatter validation & templates (11 secs) |
-| Generating llms.txt | `assets/documentation/llmstxt_templates.md`      | llms.txt creation with decision framework    |
-| Creating install    | `assets/documentation/install_guide_template.md` | 5-phase install guide template (14 sections) |
-| Analyzing docs      | `scripts/extract_structure.py`                   | Parse to JSON for AI analysis                |
-| Quick reference     | `references/quick_reference.md`                  | One-page cheat sheet                         |
-
-### Core References
-
-| Document                                            | Purpose                          | Key Insight                    |
-| --------------------------------------------------- | -------------------------------- | ------------------------------ |
-| [skill_creation.md](references/skill_creation.md)   | Complete skill creation workflow | Template structure, validation |
-| [validation.md](references/validation.md)           | DQI scoring criteria             | Quality gates                  |
-| [optimization.md](references/optimization.md)       | Content optimization             | AI context efficiency          |
-| [core_standards.md](references/core_standards.md)   | Structural standards             | Section ordering               |
-| [workflows.md](references/workflows.md)             | Execution modes                  | Mode selection                 |
-| [quick_reference.md](references/quick_reference.md) | Command cheat sheet              | Common operations              |
-
-### Templates
-
-| Template                                                                   | Purpose                 | Usage                 |
-| -------------------------------------------------------------------------- | ----------------------- | --------------------- |
-| [skill_md_template.md](assets/opencode/skill_md_template.md)               | SKILL.md template       | New skill creation    |
-| [skill_reference_template.md](assets/opencode/skill_reference_template.md) | Reference file template | Bundled resources     |
-| [readme_template.md](assets/documentation/readme_template.md)              | README template         | Project documentation |
-| [command_template.md](assets/opencode/command_template.md)                 | Command template        | Slash commands        |
-| [agent_template.md](assets/opencode/agent_template.md)                     | Agent template          | Custom agents         |
-
-### Resource Router (Implementation Logic)
+### Smart Router Pseudocode
 
 ```python
 import os
@@ -352,6 +244,114 @@ def route_documentation_resources(task):
 
     return _load_selected(selected)
 ```
+
+### Mode Selection
+
+```text
+TASK CONTEXT
+    │
+    ├─► Improving markdown / documentation quality
+    │   └─► MODE 1: Document Quality
+    │       ├─► README creation: readme_template.md
+    │       ├─► Knowledge files, general markdown
+    │       ├─► Frontmatter validation: frontmatter_templates.md
+    │       ├─► Quality analysis: extract_structure.py → JSON
+    │       └─► llms.txt generation (ask first)
+    │
+    ├─► Creating OpenCode components (skills, agents, commands)
+    │   └─► MODE 2: Component Creation
+    │       ├─► Skills: init_skill.py + skill_md_template.md
+    │       ├─► Agents: agent_template.md
+    │       └─► Commands: command_template.md
+    │
+    ├─► Creating ASCII flowcharts / diagrams
+    │   └─► MODE 3: Flowchart Creation
+    │       └─► Load flowchart assets by pattern type
+    │
+    ├─► Creating install guide / setup documentation
+    │   └─► MODE 4: Install Guide Creation
+    │       └─► Load: install_guide_template.md
+    │
+    └─► Quick reference / standards lookup
+        └─► Load: quick_reference.md
+```
+
+### Resource Router (Quick Reference)
+
+**Mode 1 - Document Quality:**
+
+| Condition                  | Resource                                        | Purpose                                        |
+| -------------------------- | ----------------------------------------------- | ---------------------------------------------- |
+| Checking structure         | `references/core_standards.md`                  | Filename conventions, structural violations    |
+| Optimizing content         | `references/optimization.md`                    | Question coverage, AI-friendly transformations |
+| Validating quality         | `references/validation.md`                      | DQI scoring, quality gates                     |
+| Workflow guidance          | `references/workflows.md`                       | Execution modes, enforcement patterns          |
+| **Creating README**        | `assets/documentation/readme_template.md`       | README structure (14 sections + HVR)           |
+| **Validating frontmatter** | `assets/documentation/frontmatter_templates.md` | Frontmatter validation & templates (11 types)  |
+
+**Mode 2 - OpenCode Component Creation:**
+
+| Category     | Condition          | Resource                                         | Purpose                                   |
+| ------------ | ------------------ | ------------------------------------------------ | ----------------------------------------- |
+| **Skills**   | Creating skill     | `references/skill_creation.md` + `init_skill.py` | 6-step workflow                           |
+|              | SKILL.md template  | `assets/opencode/skill_md_template.md`           | SKILL.md structure                        |
+|              | Reference template | `assets/opencode/skill_reference_template.md`    | Reference docs in references/             |
+|              | Asset template     | `assets/opencode/skill_asset_template.md`        | Bundled assets in assets/                 |
+|              | Packaging skill    | `scripts/package_skill.py`                       | Validation + zip                          |
+| **Agents**   | Creating agent     | `assets/opencode/agent_template.md`              | Agent file with frontmatter & permissions |
+| **Commands** | Creating command   | `assets/opencode/command_template.md`            | Command creation guide (19 sections)      |
+| **Shared**   | Component README   | `assets/documentation/readme_template.md`        | README for skill/agent/command folders    |
+|              | Quick validation   | `scripts/quick_validate.py`                      | Fast validation checks                    |
+
+**Mode 3 - Flowcharts:**
+
+| Pattern       | Resource                                            | Use Case         |
+| ------------- | --------------------------------------------------- | ---------------- |
+| Linear        | `assets/flowcharts/simple_workflow.md`              | Sequential steps |
+| Decision      | `assets/flowcharts/decision_tree_flow.md`           | Branching logic  |
+| Parallel      | `assets/flowcharts/parallel_execution.md`           | Concurrent tasks |
+| Nested        | `assets/flowcharts/user_onboarding.md`              | Sub-processes    |
+| Loop/Approval | `assets/flowcharts/approval_workflow_loops.md`      | Review cycles    |
+| Swimlane      | `assets/flowcharts/system_architecture_swimlane.md` | Multi-stage      |
+
+**Mode 4 - Install Guide Creation:**
+
+| Condition              | Resource                                         | Purpose              |
+| ---------------------- | ------------------------------------------------ | -------------------- |
+| Creating install guide | `assets/documentation/install_guide_template.md` | Phase-based template |
+| Need standards         | `references/install_guide_standards.md`          | Best practices       |
+| Validating guide       | `scripts/extract_structure.py`                   | Quality check        |
+
+**General Utilities:**
+
+| Condition           | Resource                                         | Purpose                                      |
+| ------------------- | ------------------------------------------------ | -------------------------------------------- |
+| Need frontmatter    | `assets/documentation/frontmatter_templates.md`  | Frontmatter validation & templates (11 secs) |
+| Generating llms.txt | `assets/documentation/llmstxt_templates.md`      | llms.txt creation with decision framework    |
+| Creating install    | `assets/documentation/install_guide_template.md` | 5-phase install guide template (14 sections) |
+| Analyzing docs      | `scripts/extract_structure.py`                   | Parse to JSON for AI analysis                |
+| Quick reference     | `references/quick_reference.md`                  | One-page cheat sheet                         |
+
+### Core References
+
+| Document                                            | Purpose                          | Key Insight                    |
+| --------------------------------------------------- | -------------------------------- | ------------------------------ |
+| [skill_creation.md](references/skill_creation.md)   | Complete skill creation workflow | Template structure, validation |
+| [validation.md](references/validation.md)           | DQI scoring criteria             | Quality gates                  |
+| [optimization.md](references/optimization.md)       | Content optimization             | AI context efficiency          |
+| [core_standards.md](references/core_standards.md)   | Structural standards             | Section ordering               |
+| [workflows.md](references/workflows.md)             | Execution modes                  | Mode selection                 |
+| [quick_reference.md](references/quick_reference.md) | Command cheat sheet              | Common operations              |
+
+### Templates
+
+| Template                                                                   | Purpose                 | Usage                 |
+| -------------------------------------------------------------------------- | ----------------------- | --------------------- |
+| [skill_md_template.md](assets/opencode/skill_md_template.md)               | SKILL.md template       | New skill creation    |
+| [skill_reference_template.md](assets/opencode/skill_reference_template.md) | Reference file template | Bundled resources     |
+| [readme_template.md](assets/documentation/readme_template.md)              | README template         | Project documentation |
+| [command_template.md](assets/opencode/command_template.md)                 | Command template        | Slash commands        |
+| [agent_template.md](assets/opencode/agent_template.md)                     | Agent template          | Custom agents         |
 
 **Key Insight**: Always run `extract_structure.py` first. It provides the structured JSON that enables accurate AI quality assessment. Without it, quality evaluation is subjective guesswork.
 

@@ -60,29 +60,6 @@ Execute TypeScript code with direct access to 200+ MCP tools through progressive
 <!-- ANCHOR:smart-routing -->
 ## 2. SMART ROUTING
 
-### Activation Detection
-```
-TASK CONTEXT
-    │
-    ├─► Task involves MCP tool calls (ClickUp, Notion, Figma, etc.)
-    │   └─► ACTIVATE Code Mode for efficient orchestration
-    │
-    ├─► Multi-tool workflow needed (chaining MCP tools)
-    │   └─► ACTIVATE Code Mode
-    │
-    ├─► User mentions "Code Mode", "UTCP", "tool chain"
-    │   └─► ACTIVATE this skill
-    │
-    ├─► External API integration via MCP servers
-    │   └─► ACTIVATE Code Mode
-    │
-    ├─► Mixed/ambiguous phrasing
-    │   └─► Score weighted intent signals, then route by top intent
-    │
-    └─► Single tool call or non-MCP task
-        └─► Use direct MCP tool call, skip Code Mode
-```
-
 ### Resource Router
 ```python
 from pathlib import Path
