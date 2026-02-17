@@ -27,11 +27,10 @@ from typing import Any, Dict, List, Optional
 # 1. CONFIGURATION
 # ───────────────────────────────────────────────────────────────
 
-# Path to skill directory (relative to project root)
-# Note: OpenCode native skills use singular "skill" folder
-SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
-PROJECT_ROOT = os.path.dirname(os.path.dirname(SCRIPT_DIR))  # Go up from scripts/ to .opencode/ to project root
-SKILLS_DIR = os.path.join(PROJECT_ROOT, ".opencode/skill")
+# Path to skill directory.
+# This script lives in .opencode/skill/scripts/, so skills are in the parent dir.
+SCRIPT_DIR = os.path.dirname(os.path.realpath(__file__))
+SKILLS_DIR = os.path.dirname(SCRIPT_DIR)
 
 # Comprehensive stop words - filtered from BOTH query AND corpus
 # These words have no semantic meaning for skill matching

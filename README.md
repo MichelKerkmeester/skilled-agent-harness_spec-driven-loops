@@ -2,9 +2,9 @@
 
 # OpenCode Dev Environment + Spec Kit w/ Cognitive Memory
 
-[![GitHub Stars](https://img.shields.io/github/stars/MichelKerkmeester/opencode-dev-environment?style=for-the-badge&logo=github&color=fce566&labelColor=222222)](https://github.com/MichelKerkmeester/opencode-dev-environment/stargazers)
-[![License](https://img.shields.io/github/license/MichelKerkmeester/opencode-dev-environment?style=for-the-badge&color=7bd88f&labelColor=222222)](LICENSE)
-[![Latest Release](https://img.shields.io/github/v/release/MichelKerkmeester/opencode-dev-environment?style=for-the-badge&color=5ad4e6&labelColor=222222)](https://github.com/MichelKerkmeester/opencode-dev-environment/releases)
+[![GitHub Stars](https://img.shields.io/github/stars/MichelKerkmeester/opencode-spec-kit-framework?style=for-the-badge&logo=github&color=fce566&labelColor=222222)](https://github.com/MichelKerkmeester/opencode-spec-kit-framework/stargazers)
+[![License](https://img.shields.io/github/license/MichelKerkmeester/opencode-spec-kit-framework?style=for-the-badge&color=7bd88f&labelColor=222222)](LICENSE)
+[![Latest Release](https://img.shields.io/github/v/release/MichelKerkmeester/opencode-spec-kit-framework?style=for-the-badge&color=5ad4e6&labelColor=222222)](https://github.com/MichelKerkmeester/opencode-spec-kit-framework/releases)
 
 </div>
 
@@ -23,14 +23,12 @@
 - [🧩 7. SKILLS LIBRARY](#7--skills-library)
 - [🚧 8. GATE SYSTEM](#8--gate-system)
 - [💻 9. CODE MODE MCP](#9--code-mode-mcp)
-- [🌐 10. CHROME DEVTOOLS](#10--chrome-devtools)
-- [🔀 11. GIT WORKFLOWS](#11--git-workflows)
-- [🔌 12. EXTENSIBILITY](#12--extensibility)
-- [⚙️ 13. CONFIGURATION](#13--configuration)
-- [💡 14. USAGE EXAMPLES](#14--usage-examples)
-- [🔧 15. TROUBLESHOOTING](#15--troubleshooting)
-- [❓ 16. FAQ](#16--faq)
-- [📚 17. RELATED DOCUMENTS](#17--related-documents)
+- [🔌 10. EXTENSIBILITY](#10--extensibility)
+- [⚙️ 11. CONFIGURATION](#11--configuration)
+- [💡 12. USAGE EXAMPLES](#12--usage-examples)
+- [🔧 13. TROUBLESHOOTING](#13--troubleshooting)
+- [❓ 14. FAQ](#14--faq)
+- [📚 15. RELATED DOCUMENTS](#15--related-documents)
 
 ---
 
@@ -89,6 +87,12 @@ Everything connects. Memory files live *inside* spec folders. Gates enforce docu
 
 **Local-first**: The Memory Engine runs on your local system with no cloud dependency. See [Embedding Providers](#embedding-providers) for optional cloud upgrades.
 
+### Recent Platform Highlights
+
+- **Indexable spec documentation is now first-class**: spec folder docs (`spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `decision-record.md`, `implementation-summary.md`, `research.md`, `handover.md`) are indexed and searchable via `find_spec` and `find_decision`.
+- **README indexing is significantly stronger**: README anchor coverage and HVR compliance updates improved retrieval precision for architecture and operational docs.
+- **Canonical runtime DB path is standardized**: `MEMORY_DB_PATH` is aligned to `mcp_server/dist/database/context-index.sqlite` across OpenCode, Claude, VSCode and Codex setup docs.
+
 ### Requirements
 
 | Requirement                                 | Minimum   | Recommended |
@@ -114,8 +118,8 @@ Everything connects. Memory files live *inside* spec folders. Gates enforce docu
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/MichelKerkmeester/opencode-dev-environment.git
-cd opencode-dev-environment
+git clone https://github.com/MichelKerkmeester/opencode-spec-kit-framework.git
+cd opencode-spec-kit-framework
 
 # 2. Install and build the Memory Engine
 cd .opencode/skill/system-spec-kit && npm install && npm run build && cd ../../..
@@ -612,63 +616,7 @@ call_tool_chain({ code: "await webflow.webflow_sites_list({})" })
 
 ---
 
-## 10. 🌐 CHROME DEVTOOLS
-<!-- ANCHOR:chrome-devtools -->
-
-Dual-mode browser debugging.
-
-CLI-first for speed and token efficiency. MCP fallback for multi-tool integration.
-
-**CLI Approach (Priority)**, `browser-debugger-cli` (bdg):
-- 300+ CDP methods across 53 Chrome DevTools domains
-- Self-documenting: `bdg cdp --list`, `--describe`, `--search`
-- Unix composability: pipe to `jq`, `grep`, standard tools
-
-**MCP Approach (Fallback)**, Chrome DevTools via Code Mode:
-- When CLI unavailable or multi-tool integration needed
-- Isolated browser instances, parallel testing
-
-**Common Operations**:
-
-| Operation      | Command                                                       |
-| -------------- | ------------------------------------------------------------- |
-| Screenshots    | `bdg dom screenshot output.png`                               |
-| Console logs   | `bdg console --list \| jq '.[] \| select(.level == "error")'` |
-| DOM queries    | `bdg dom query ".my-class"`                                   |
-| Network traces | `bdg network har trace.har`                                   |
-| JS execution   | `bdg dom eval "document.title"`                               |
-
-<!-- /ANCHOR:chrome-devtools -->
-
----
-
-## 11. 🔀 GIT WORKFLOWS
-<!-- ANCHOR:git-workflows -->
-
-3-phase professional git orchestration.
-
-**Phase 1: Workspace Setup**, git worktrees for isolated development:
-- Parallel work without branch juggling or stash chaos
-- Short-lived temp branches, automatic cleanup after merge
-- Directory isolation: `.worktrees/feature-name/`
-
-**Phase 2: Clean Commits**, Conventional Commits with artifact filtering:
-- Analyze changes, categorize by type (feat/fix/docs/refactor)
-- Filter build artifacts (coverage/, dist/, node_modules/)
-- Format: `type(scope): description` (e.g., `feat(auth): add OAuth2 login`)
-
-**Phase 3: Work Completion**, merge, PR creation and cleanup:
-- Test verification gate (MANDATORY before integration)
-- Four options: Merge locally, Create PR, Keep as-is, Discard
-- Automated cleanup: delete feature branches, remove worktrees
-
-**Integration**: GitHub MCP (via Code Mode) for remote operations. Local git commands for commits and diffs as well as merges.
-
-<!-- /ANCHOR:git-workflows -->
-
----
-
-## 12. 🔌 EXTENSIBILITY
+## 10. 🔌 EXTENSIBILITY
 <!-- ANCHOR:extensibility -->
 
 Custom skills, agents, commands and templates.
@@ -689,7 +637,7 @@ Every component follows standardized patterns for customization:
 
 ---
 
-## 13. ⚙️ CONFIGURATION
+## 11. ⚙️ CONFIGURATION
 <!-- ANCHOR:configuration -->
 
 ### Configuration File
@@ -745,7 +693,7 @@ See individual install guides in [`.opencode/install_guides/`](.opencode/install
 
 ---
 
-## 14. 💡 USAGE EXAMPLES
+## 12. 💡 USAGE EXAMPLES
 <!-- ANCHOR:usage-examples -->
 
 Real workflows, not toy examples.
@@ -830,7 +778,7 @@ memory_index_scan({ includeSpecDocs: false })
 
 ---
 
-## 15. 🔧 TROUBLESHOOTING
+## 13. 🔧 TROUBLESHOOTING
 <!-- ANCHOR:troubleshooting -->
 
 Something broken? Start here.
@@ -905,7 +853,7 @@ cd .opencode/skill/system-spec-kit && npm run test:cli
 
 ---
 
-## 16. ❓ FAQ
+## 14. ❓ FAQ
 <!-- ANCHOR:faq -->
 
 ### General Questions
@@ -974,7 +922,7 @@ A: Minimal. SQLite databases are compact. A project with 100+ memories typically
 
 ---
 
-## 17. 📚 RELATED DOCUMENTS
+## 15. 📚 RELATED DOCUMENTS
 <!-- ANCHOR:related-documents -->
 
 ### Internal Documentation
@@ -991,17 +939,17 @@ A: Minimal. SQLite databases are compact. A project with 100+ memories typically
 
 | Component                                                                           | Versions |
 | ----------------------------------------------------------------------------------- | -------- |
-| [OpenCode Environment](.opencode/changelog/00--opencode-environment/)               | 85 files |
-| [System Spec Kit](.opencode/changelog/01--system-spec-kit/)                         | 35 files |
-| [AGENTS.md](.opencode/changelog/02--agents-md/)                                     | 30 files |
-| [Agent Orchestration](.opencode/changelog/03--agent-orchestration/)                 | 25 files |
-| [Commands](.opencode/changelog/04--commands/)                                       | 30 files |
-| [Skill Advisor](.opencode/changelog/05--skill-advisor/)                             | 6 files  |
-| [Workflows: Documentation](.opencode/changelog/06--workflows-documentation/)        | 8 files  |
-| [Workflows: Code (OpenCode)](.opencode/changelog/07--workflows-code--opencode/)     | 8 files  |
-| [Workflows: Code (Web Dev)](.opencode/changelog/08--workflows-code--web-dev/)       | 8 files  |
-| [Workflows: Code (Full Stack)](.opencode/changelog/09--workflows-code--full-stack/) | 3 files  |
-| [Workflows: Git](.opencode/changelog/10--workflows-git/)                            | 5 files  |
+| [OpenCode Environment](.opencode/changelog/00--opencode-environment/)               | 90 files |
+| [System Spec Kit](.opencode/changelog/01--system-spec-kit/)                         | 45 files |
+| [AGENTS.md](.opencode/changelog/02--agents-md/)                                     | 27 files |
+| [Agent Orchestration](.opencode/changelog/03--agent-orchestration/)                 | 26 files |
+| [Commands](.opencode/changelog/04--commands/)                                       | 29 files |
+| [Skill Advisor](.opencode/changelog/05--skill-advisor/)                             | 4 files  |
+| [Workflows: Documentation](.opencode/changelog/06--workflows-documentation/)        | 9 files  |
+| [Workflows: Code (OpenCode)](.opencode/changelog/07--workflows-code--opencode/)     | 9 files  |
+| [Workflows: Code (Web Dev)](.opencode/changelog/08--workflows-code--web-dev/)       | 10 files |
+| [Workflows: Code (Full Stack)](.opencode/changelog/09--workflows-code--full-stack/) | 4 files  |
+| [Workflows: Git](.opencode/changelog/10--workflows-git/)                            | 7 files  |
 | [Workflows: Chrome DevTools](.opencode/changelog/11--workflows-chrome-devtools/)    | 4 files  |
 | [MCP: Code Mode](.opencode/changelog/12--mcp-code-mode/)                            | 7 files  |
 | [MCP: Figma](.opencode/changelog/13--mcp-figma/)                                    | 5 files  |
@@ -1011,7 +959,7 @@ A: Minimal. SQLite databases are compact. A project with 100+ memories typically
 | Resource                                                                              | Description                                          |
 | ------------------------------------------------------------------------------------- | ---------------------------------------------------- |
 | [OpenCode](https://github.com/sst/opencode)                                           | The AI coding assistant that powers this environment |
-| [GitHub Issues](https://github.com/MichelKerkmeester/opencode-dev-environment/issues) | Report bugs and request features                     |
+| [GitHub Issues](https://github.com/MichelKerkmeester/opencode-spec-kit-framework/issues) | Report bugs and request features                     |
 
 <!-- /ANCHOR:related-documents -->
 
