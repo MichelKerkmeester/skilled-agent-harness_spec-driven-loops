@@ -17,8 +17,10 @@ source "${SCRIPT_DIR}/_utils.sh"
 # ───────────────────────────────────────────────────────────────
 readonly MCP_NAME="spec_kit_memory"
 readonly MCP_DISPLAY_NAME="Spec Kit Memory"
-readonly MCP_SERVER_DIR=".opencode/skill/system-spec-kit/mcp_server"
+readonly SPEC_KIT_ROOT_DIR=".opencode/skill/system-spec-kit"
+readonly MCP_SERVER_DIR="${SPEC_KIT_ROOT_DIR}/mcp_server"
 readonly MCP_SERVER_SCRIPT="dist/context-server.js"
+readonly MCP_CANONICAL_DB_PATH="${MCP_SERVER_DIR}/dist/database/context-index.sqlite"
 readonly MIN_NODE_VERSION="18"
 SKIP_VERIFY="${SKIP_VERIFY:-false}"
 
@@ -36,14 +38,27 @@ install_mcp() {
 
     local project_root
     project_root=$(get_project_root) || exit 1
+    local spec_root="${project_root}/${SPEC_KIT_ROOT_DIR}"
     local server_dir="${project_root}/${MCP_SERVER_DIR}"
-    local workspace_root
-    workspace_root="$(dirname "${server_dir}")"
+    local server_script_path="${server_dir}/${MCP_SERVER_SCRIPT}"
+
+    # Check if spec-kit root exists
+    if [[ ! -d "${spec_root}" ]]; then
+        log_error "Spec Kit root directory not found: ${spec_root}"
+        log_info "Ensure .opencode/skill/system-spec-kit exists in your project."
+        exit 1
+    fi
 
     # Check if server directory exists
     if [[ ! -d "${server_dir}" ]]; then
         log_error "Spec Kit Memory server directory not found: ${server_dir}"
         log_info "This MCP is bundled with the project. Ensure .opencode/skill/system-spec-kit exists."
+        exit 1
+    fi
+
+    # Check if workspace package.json exists
+    if [[ ! -f "${spec_root}/package.json" ]]; then
+        log_error "package.json not found in ${spec_root}"
         exit 1
     fi
 
@@ -68,10 +83,10 @@ install_mcp() {
         fi
     done
 
-    # Install dependencies from mcp_server directory
-    log_step "Installing dependencies..."
+    # Install dependencies from workspace root (covers shared + mcp_server + scripts)
+    log_step "Installing dependencies from spec-kit root..."
     (
-        cd "${server_dir}"
+        cd "${spec_root}"
         npm install --silent 2>/dev/null || npm install
     )
 
@@ -82,47 +97,70 @@ install_mcp() {
         exit 1
     fi
 
-    # Rebuild native modules for current Node.js version
-    log_step "Rebuilding native modules..."
-    (
-        cd "${server_dir}"
-        npm rebuild 2>/dev/null || true
-    )
-
-    # Build TypeScript
-    log_step "Building TypeScript..."
-    (
-        cd "${server_dir}"
-        # Try standard build first; fall back to --noCheck for pre-existing type errors
-        npx tsc --build 2>/dev/null || npx tsc --build --noCheck --force
-    )
-
-    if [[ $? -eq 0 ]]; then
-        log_success "TypeScript build completed"
+    # Build TypeScript from workspace root; if strict build fails, use fallback
+    log_step "Building TypeScript workspace..."
+    if (
+        cd "${spec_root}"
+        npm run build
+    ); then
+        log_success "TypeScript build completed via npm run build"
     else
-        log_warn "TypeScript build had issues - checking if dist/ exists anyway"
+        log_warn "npm run build failed - retrying with fallback: npx tsc --build --noCheck --force"
+        (
+            cd "${spec_root}"
+            npx tsc --build --noCheck --force
+        )
+        log_success "TypeScript build completed via fallback"
+    fi
+
+    # Check native modules and auto-rebuild if probe reports failures
+    log_step "Checking native module health..."
+    local native_check_output
+    native_check_output="$(
+        cd "${spec_root}"
+        bash scripts/setup/check-native-modules.sh 2>&1 || true
+    )"
+    printf '%s\n' "${native_check_output}"
+
+    if [[ "${native_check_output}" == *"[FAIL]"* ]]; then
+        log_warn "Native module probe reported failures - running rebuild script"
+        (
+            cd "${spec_root}"
+            printf 'n\n' | bash scripts/setup/rebuild-native-modules.sh
+        )
+
+        local native_recheck_output
+        native_recheck_output="$(
+            cd "${spec_root}"
+            bash scripts/setup/check-native-modules.sh 2>&1 || true
+        )"
+        printf '%s\n' "${native_recheck_output}"
+
+        if [[ "${native_recheck_output}" == *"[FAIL]"* ]]; then
+            log_error "Native modules still failing after rebuild"
+            exit 1
+        fi
     fi
 
     # Verify the server script exists
-    if [[ ! -f "${server_dir}/${MCP_SERVER_SCRIPT}" ]]; then
-        log_error "Server script not found: ${server_dir}/${MCP_SERVER_SCRIPT}"
-        log_info "Try building manually: cd ${server_dir} && npx tsc --build --noCheck --force"
+    if [[ ! -f "${server_script_path}" ]]; then
+        log_error "Server script not found: ${server_script_path}"
+        log_info "Try building manually: cd ${spec_root} && npx tsc --build --noCheck --force"
         exit 1
     fi
 
     log_success "Server script verified: ${MCP_SERVER_SCRIPT}"
 
-    # Run smoke test
-    log_step "Running smoke test..."
-    (
-        cd "${server_dir}"
-        npm run test:cli 2>/dev/null
-    )
-
-    if [[ $? -eq 0 ]]; then
-        log_success "Smoke test passed"
+    # Run startup smoke test using delayed stdin close (stdio MCP pattern)
+    log_step "Running context-server startup smoke test..."
+    if (
+        cd "${spec_root}"
+        (sleep 3) | node "${server_script_path}" >/dev/null 2>&1
+    ); then
+        log_success "Context server startup smoke test passed"
     else
-        log_warn "Smoke test failed - server may still work"
+        log_error "Context server startup smoke test failed"
+        exit 1
     fi
 }
 
@@ -209,12 +247,17 @@ verify_installation() {
         return 1
     fi
     
-    # Note about database creation
-    local db_dir="${project_root}/.opencode/skill/system-spec-kit/mcp_server/database"
-    if [[ -f "${db_dir}/context-index.sqlite" ]]; then
-        log_info "Database already exists at: ${db_dir}/context-index.sqlite"
+    # Note about database creation (canonical runtime path)
+    local canonical_db_path="${project_root}/${MCP_CANONICAL_DB_PATH}"
+    if [[ -f "${canonical_db_path}" ]]; then
+        log_info "Database already exists at canonical path: ${canonical_db_path}"
     else
-        log_info "Database will be created on first use at: ${db_dir}/"
+        log_info "Database will be created on first use at: ${canonical_db_path}"
+    fi
+
+    local compatibility_db_path="${project_root}/${MCP_SERVER_DIR}/database/context-index.sqlite"
+    if [[ -L "${compatibility_db_path}" ]]; then
+        log_info "Compatibility symlink present: ${compatibility_db_path}"
     fi
 }
 
@@ -277,9 +320,10 @@ main() {
     # Prerequisites
     check_node_version "${MIN_NODE_VERSION}" || exit 1
     check_npm || exit 1
+    check_npx || exit 1
     echo ""
     
-    # Install (npm install in mcp_server directory)
+    # Install/build/recover from spec-kit workspace root
     install_mcp
     echo ""
     
