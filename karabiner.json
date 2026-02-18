@@ -4,101 +4,106 @@
             "complex_modifications": {
                 "rules": [
                     {
-                        "description": "Ctrl+Cmd+1: Type 'Continue if you have next steps, or stop and ask for clarification if you are unsure how to proceed.'",
+                        "description": "Shortcuts for AI workflows",
                         "manipulators": [
                             {
                                 "from": {
                                     "key_code": "1",
-                                    "modifiers": { "mandatory": ["left_control", "left_command"] }
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "left_command",
+                                            "left_control"
+                                        ]
+                                    }
                                 },
                                 "to": [
                                     {
-                                        "shell_command": "osascript -e 'tell application \"System Events\" to keystroke \"Continue if you have next steps, or stop and ask for clarification if you are unsure how to proceed.\"'"
+                                        "shell_command": "osascript -e 'set the clipboard to \"Think really hard about this...\"' -e 'tell application \"System Events\" to keystroke \"v\" using command down'"
                                     }
                                 ],
                                 "type": "basic"
-                            }
-                        ]
-                    },
-                    {
-                        "description": "Ctrl+Cmd+2: Type 'Fix all remaining issues'",
-                        "manipulators": [
+                            },
                             {
                                 "from": {
                                     "key_code": "2",
-                                    "modifiers": { "mandatory": ["left_control", "left_command"] }
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "left_command",
+                                            "left_control"
+                                        ]
+                                    }
                                 },
                                 "to": [
                                     {
-                                        "shell_command": "osascript -e 'tell application \"System Events\" to keystroke \"Fix all remaining issues\"'"
+                                        "shell_command": "osascript -e 'set the clipboard to \"Use Sequantial Thinking MCP\"' -e 'tell application \"System Events\" to keystroke \"v\" using command down'"
                                     }
                                 ],
                                 "type": "basic"
-                            }
-                        ]
-                    },
-                    {
-                        "description": "Ctrl+Cmd+3: Type 'Explain what you did'",
-                        "manipulators": [
+                            },
                             {
                                 "from": {
                                     "key_code": "3",
-                                    "modifiers": { "mandatory": ["left_control", "left_command"] }
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "left_command",
+                                            "left_control"
+                                        ]
+                                    }
                                 },
                                 "to": [
                                     {
-                                        "shell_command": "osascript -e 'tell application \"System Events\" to keystroke \"Explain what you did\"'"
+                                        "shell_command": "osascript -e 'set the clipboard to \"According to/.opencode/agent/orchestrate.md logic (Are you a non-copilot version Codex or GPT? Reference /.opencode/agent/chatgpt/orchestrate.md instead) (Are you CLAUDE CODE? Reference /.claude/agents/orchestrate.md instead), delegate simultaneously to up to \"' -e 'tell application \"System Events\" to keystroke \"v\" using command down'"
                                     }
                                 ],
                                 "type": "basic"
-                            }
-                        ]
-                    },
-                    {
-                        "description": "Ctrl+Cmd+4: Type 'What did we do so far?'",
-                        "manipulators": [
+                            },
                             {
                                 "from": {
                                     "key_code": "4",
-                                    "modifiers": { "mandatory": ["left_control", "left_command"] }
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "left_command",
+                                            "left_control"
+                                        ]
+                                    }
                                 },
                                 "to": [
                                     {
-                                        "shell_command": "osascript -e 'tell application \"System Events\" to keystroke \"What did we do so far?\"'"
+                                        "shell_command": "osascript -e 'set the clipboard to \"Review all code you updated or created with /.opencode/agent/review.md subagent(s) (Are you a non-copilot version Codex or GPT? Reference /.opencode/agent/chatgpt/review.md instead) (Are you CLAUDE CODE? Reference /.claude/agents/review.md instead)\"' -e 'tell application \"System Events\" to keystroke \"v\" using command down'"
                                     }
                                 ],
                                 "type": "basic"
-                            }
-                        ]
-                    },
-                    {
-                        "description": "Ctrl+Cmd+5: Type '/spec_kit:handover'",
-                        "manipulators": [
+                            },
                             {
                                 "from": {
                                     "key_code": "5",
-                                    "modifiers": { "mandatory": ["left_control", "left_command"] }
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "left_command",
+                                            "left_control"
+                                        ]
+                                    }
                                 },
                                 "to": [
                                     {
-                                        "shell_command": "osascript -e 'tell application \"System Events\" to keystroke \"/spec_kit:handover\"'"
+                                        "shell_command": "osascript -e 'set the clipboard to \"Create spec kit documentation with /.opencode/agent/speckit.md subagent(s) (Are you a non-copilot version Codex or GPT? Reference /.opencode/agent/chatgpt/speckit.md instead) (Are you CLAUDE CODE? Reference /.claude/agents/speckit.md instead)\"' -e 'tell application \"System Events\" to keystroke \"v\" using command down'"
                                     }
                                 ],
                                 "type": "basic"
-                            }
-                        ]
-                    },
-                    {
-                        "description": "Ctrl+Cmd+6: Type '/memory:save'",
-                        "manipulators": [
+                            },
                             {
                                 "from": {
                                     "key_code": "6",
-                                    "modifiers": { "mandatory": ["left_control", "left_command"] }
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "left_command",
+                                            "left_control"
+                                        ]
+                                    }
                                 },
                                 "to": [
                                     {
-                                        "shell_command": "osascript -e 'tell application \"System Events\" to keystroke \"/memory:save\"'"
+                                        "shell_command": "osascript -e 'set the clipboard to \"Create or update documentation with /.opencode/agent/write.md subagent(s) (Are you a non-copilot version Codex or GPT? Reference /.opencode/agent/chatgpt/write.md instead) (Are you CLAUDE CODE? Reference /.claude/agents/write.md instead)\"' -e 'tell application \"System Events\" to keystroke \"v\" using command down'"
                                     }
                                 ],
                                 "type": "basic"
@@ -108,7 +113,10 @@
                 ]
             },
             "name": "Default profile",
-            "selected": true
+            "selected": true,
+            "virtual_hid_keyboard": {
+                "keyboard_type_v2": "iso"
+            }
         }
     ]
 }

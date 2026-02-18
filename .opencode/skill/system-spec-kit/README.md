@@ -49,6 +49,10 @@ AI coding assistants are powerful but stateless. Every session starts from zero:
 
 Spec Kit adds the missing layers: persistent memory, enforced documentation, automated workflows and cross-session context. Documentation isn't optional. Gate 3 blocks file changes without a spec folder. Memory persists across sessions, models, projects and tools.
 
+Cross-workflow alignment is mandatory:
+- All code created or updated must fully align with `workflows-code--opencode`.
+- All documentation created or updated must fully align with `workflows-documentation`.
+
 ---
 
 ### What Makes This Different
@@ -723,6 +727,8 @@ Every error now includes actionable recovery guidance. 49 error codes mapped to 
 | [references/memory/readme_indexing.md](./references/memory/readme_indexing.md)           | 5-source indexing pipeline, README weights, discovery        |
 | [references/validation/validation_rules.md](./references/validation/validation_rules.md) | All validation rules and fixes                               |
 | [references/validation/five-checks.md](./references/validation/five-checks.md)           | Five Checks evaluation framework                             |
+| [../workflows-code--opencode/SKILL.md](../workflows-code--opencode/SKILL.md)             | Mandatory standard for all code creation and updates         |
+| [../workflows-documentation/SKILL.md](../workflows-documentation/SKILL.md)               | Mandatory standard for all documentation creation and updates |
 
 ### Directory Structure
 

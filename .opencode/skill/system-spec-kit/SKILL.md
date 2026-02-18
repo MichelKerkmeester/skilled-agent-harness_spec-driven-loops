@@ -599,6 +599,8 @@ Automated validation of spec folder contents via `validate.sh`.
 13. **Create implementation-summary.md at end of implementation phase (Level 1+)** - Document what was built
 14. **Suggest /spec_kit:handover when session-end keywords detected OR after extended work (15+ tool calls)** - Proactive context preservation
 15. **Suggest /spec_kit:debug after 3+ failed fix attempts on same error** - Do not continue without offering debug delegation
+16. **Route all code creation/updates through `workflows-code--opencode`** - Full alignment is mandatory before claiming completion
+17. **Route all documentation creation/updates through `workflows-documentation`** - Full alignment is mandatory before claiming completion
 
 ### ❌ NEVER
 
@@ -696,8 +698,8 @@ Automated validation of spec folder contents via `validate.sh`.
 
 | Workflow | Flow |
 | --- | --- |
-| **Spec → Implementation** | system-spec-kit → workflows-code → workflows-git → Spec Kit Memory |
-| **Documentation Quality** | system-spec-kit → workflows-documentation (validate, score) → Iterate if <90 |
+| **Spec → Implementation** | system-spec-kit → workflows-code--opencode (mandatory for code changes) → workflows-git → Spec Kit Memory |
+| **Documentation Quality** | system-spec-kit → workflows-documentation (mandatory for documentation changes; validate, score) → Iterate if <90 |
 | **Validation** | Implementation complete → validate.sh → Fix errors → Address warnings → Claim completion |
 
 ### Quick Reference Commands
@@ -722,9 +724,9 @@ Automated validation of spec folder contents via `validate.sh`.
 | Direction      | Skill                   | Integration                                           |
 | -------------- | ----------------------- | ----------------------------------------------------- |
 | **Upstream**   | None                    | This is the foundational workflow                     |
-| **Downstream** | workflows-code          | Uses spec folders for implementation tracking         |
+| **Downstream** | workflows-code--opencode | Mandatory alignment for all code changes              |
 | **Downstream** | workflows-git           | References spec folders in commit messages and PRs    |
-| **Downstream** | workflows-documentation | Validates spec folder documentation quality           |
+| **Downstream** | workflows-documentation | Mandatory alignment for all documentation changes     |
 | **Integrated** | Spec Kit Memory         | Context preservation via MCP (merged into this skill) |
 
 ### External Dependencies
