@@ -461,8 +461,8 @@ spec_kit_memory_memory_save({ filePath: "specs/.../memory/context.md", force: tr
 # Single file (non-blocking embedding)
 spec_kit_memory_memory_save({ filePath: "specs/.../memory/context.md", asyncEmbedding: true })
 
-# Entire folder
-spec_kit_memory_memory_index_scan({ specFolder: "011-memory", force: true })
+# Entire folder (explicitly include workflow skill references/assets)
+spec_kit_memory_memory_index_scan({ specFolder: "011-memory", force: true, includeSkillRefs: true })
 ```
 
 **Recovery Options:**
