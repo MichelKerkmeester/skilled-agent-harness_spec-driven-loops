@@ -2,7 +2,7 @@
 name: write
 description: Documentation generation and maintenance specialist using workflows-documentation skill for DQI-compliant, template-aligned output
 mode: subagent
-model: github-copilot/claude-sonnet-4-6
+model: github-copilot/claude-sonnet-4.6
 temperature: 0.1
 permission:
   read: allow
