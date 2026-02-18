@@ -62,9 +62,11 @@ export {
   handleMemoryIndexScan,
   indexSingleFile,
   findConstitutionalFiles,
+  findSkillReferenceFiles,
   handle_memory_index_scan,
   index_single_file,
   find_constitutional_files,
+  find_skill_reference_files,
 } from './memory-index';
 
 // Checkpoint handlers

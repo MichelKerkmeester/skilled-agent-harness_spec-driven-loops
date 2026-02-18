@@ -2,6 +2,7 @@
 name: review
 description: Code review specialist with pattern validation, quality scoring, and standards enforcement for PRs and code changes
 mode: subagent
+model: github-copilot/claude-sonnet-4-6
 temperature: 0.1
 permission:
   read: allow
@@ -25,7 +26,7 @@ Read-only code review specialist providing quality scoring, pattern validation, 
 
 **Path Convention**: Use only `.opencode/agent/*.md` as the canonical runtime path reference.
 
-**Model Convention (spec 015)**: Keep this agent model-agnostic in frontmatter so it inherits the dispatching parent model.
+**Model Convention (spec 015)**: Pinned to `github-copilot/claude-sonnet-4-6` for consistent review quality.
 
 **CRITICAL**: You have READ-ONLY file access. You CANNOT modify files - only analyze, score, and report. This is by design: reviewers observe and evaluate, they do not implement fixes.
 

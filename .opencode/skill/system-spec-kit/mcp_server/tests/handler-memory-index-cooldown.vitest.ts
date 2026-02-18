@@ -1,6 +1,6 @@
 // @ts-nocheck
 // ---------------------------------------------------------------
-// TEST: HANDLER MEMORY INDEX COOLDOWN
+// MODULE: Handler Memory Index Cooldown Tests
 // ---------------------------------------------------------------
 
 import { beforeEach, describe, expect, it, vi } from 'vitest';
@@ -22,6 +22,7 @@ vi.mock('../core/config', () => ({
   INDEX_SCAN_COOLDOWN: 60000,
   DEFAULT_BASE_PATH: '/tmp/mock-workspace',
   BATCH_SIZE: 5,
+  SERVER_DIR: '/tmp/mock-server',
 }));
 
 vi.mock('../utils', () => ({
@@ -39,6 +40,15 @@ vi.mock('../lib/providers/embeddings', () => ({
 
 vi.mock('../lib/parsing/trigger-matcher', () => ({
   clearCache: vi.fn(),
+}));
+
+vi.mock('../lib/config/skill-ref-config', () => ({
+  loadSkillRefConfig: vi.fn(() => ({
+    enabled: true,
+    indexedSkills: [],
+    fileExtensions: ['.md'],
+    indexDirs: ['references', 'assets'],
+  })),
 }));
 
 vi.mock('../lib/storage/incremental-index', () => ({

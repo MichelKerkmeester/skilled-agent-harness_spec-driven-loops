@@ -2,7 +2,7 @@
 name: context
 description: "Production context agent — comprehensive retrieval with memory-first exploration, structured Context Packages, and analysis dispatch"
 mode: subagent
-model: github-copilot/claude-haiku-4.5
+model: github-copilot/claude-sonnet-4-6
 temperature: 0.1
 permission:
   read: allow

@@ -2,8 +2,6 @@
 name: orchestrate
 description: Senior orchestration agent with full authority over task decomposition, delegation, quality evaluation, and unified delivery synthesis
 mode: primary
-model: openai/gpt-5.3-codex
-reasoningEffort: extra_high
 temperature: 0.1
 permission:
   read: deny
@@ -79,16 +77,16 @@ flowchart TD
 
 ### Agent Selection (Priority Order)
 
-| Priority | Task Type                     | Agent                        | Tier | Skills                                        | subagent_type |
-| -------- | ----------------------------- | ---------------------------- | ---- | --------------------------------------------- | ------------- |
-| 1        | ALL codebase exploration, file search, pattern discovery, context loading | `@context`                   | DISPATCHER | Memory tools, Glob, Grep, Read                | `"general"`   |
-| 2        | Evidence / investigation      | `@research`                  | LEAF | `system-spec-kit`                             | `"general"`   |
-| 3        | Spec folder docs              | `@speckit` ⛔ EXCLUSIVE      | LEAF | `system-spec-kit`                             | `"general"`   |
-| 4        | Code review / security        | `@review`                    | LEAF | `workflows-code--*` (auto-detects available variant) | `"general"`   |
-| 5        | Documentation (non-spec)      | `@write`                     | LEAF | `workflows-documentation`                     | `"general"`   |
-| 6        | Implementation / testing      | `@general`                   | LEAF | `workflows-code--*` (auto-detects available variant), `workflows-chrome-devtools` | `"general"`   |
-| 7        | Debugging (stuck, 3+ fails)   | `@debug`                     | LEAF | Code analysis tools                           | `"general"`   |
-| 8        | Session handover              | `@handover`                  | LEAF | `system-spec-kit`                             | `"general"`   |
+| Priority | Task Type                                                                 | Agent                  | Tier       | Skills                                                                            | subagent_type |
+| -------- | ------------------------------------------------------------------------- | ---------------------- | ---------- | --------------------------------------------------------------------------------- | ------------- |
+| 1        | ALL codebase exploration, file search, pattern discovery, context loading | `@context`             | DISPATCHER | Memory tools, Glob, Grep, Read                                                    | `"general"`   |
+| 2        | Evidence / investigation                                                  | `@research`            | LEAF       | `system-spec-kit`                                                                 | `"general"`   |
+| 3        | Spec folder docs                                                          | `@speckit` ⛔ EXCLUSIVE | LEAF       | `system-spec-kit`                                                                 | `"general"`   |
+| 4        | Code review / security                                                    | `@review`              | LEAF       | `workflows-code--*` (auto-detects available variant)                              | `"general"`   |
+| 5        | Documentation (non-spec)                                                  | `@write`               | LEAF       | `workflows-documentation`                                                         | `"general"`   |
+| 6        | Implementation / testing                                                  | `@general`             | LEAF       | `workflows-code--*` (auto-detects available variant), `workflows-chrome-devtools` | `"general"`   |
+| 7        | Debugging (stuck, 3+ fails)                                               | `@debug`               | LEAF       | Code analysis tools                                                               | `"general"`   |
+| 8        | Session handover                                                          | `@handover`            | LEAF       | `system-spec-kit`                                                                 | `"general"`   |
 
 ### Nesting Depth Protocol (NDP)
 
@@ -98,38 +96,38 @@ Sub-agents can spawn sub-agents, creating chains 5+ levels deep. Each nesting le
 
 Every agent is assigned exactly ONE tier that determines its dispatch authority:
 
-| Tier | Dispatch Authority | Who |
-| --- | --- | --- |
-| **ORCHESTRATOR** | Can dispatch ANY tier (ORCHESTRATOR, DISPATCHER, LEAF) | Top-level orchestrator, sub-orchestrators |
-| **DISPATCHER** | Can dispatch LEAF agents ONLY | @context |
-| **LEAF** | MUST NOT dispatch any sub-agents | @general, @write, @review, @speckit, @debug, @handover, @explore, @research |
+| Tier             | Dispatch Authority                                     | Who                                                                         |
+| ---------------- | ------------------------------------------------------ | --------------------------------------------------------------------------- |
+| **ORCHESTRATOR** | Can dispatch ANY tier (ORCHESTRATOR, DISPATCHER, LEAF) | Top-level orchestrator, sub-orchestrators                                   |
+| **DISPATCHER**   | Can dispatch LEAF agents ONLY                          | @context                                                                    |
+| **LEAF**         | MUST NOT dispatch any sub-agents                       | @general, @write, @review, @speckit, @debug, @handover, @explore, @research |
 
 #### Agent Tier Assignments
 
-| Agent | Tier | Rationale |
-| --- | --- | --- |
-| Orchestrator (self) | ORCHESTRATOR | Top-level task commander |
-| Sub-Orchestrator | ORCHESTRATOR | Inherits reduced depth budget from parent |
-| @context | DISPATCHER | Must dispatch @explore/@research for deep investigation |
-| @general | LEAF | Implementation agent — executes directly |
-| @write | LEAF | Documentation agent — executes directly |
-| @review | LEAF | Review agent — executes directly |
-| @speckit | LEAF | Spec documentation agent — executes directly |
-| @debug | LEAF | Debug agent — executes directly |
-| @handover | LEAF | Handover agent — executes directly |
-| @research | LEAF | Research agent — executes directly |
-| @explore | LEAF | Exploration agent — executes directly |
+| Agent               | Tier         | Rationale                                               |
+| ------------------- | ------------ | ------------------------------------------------------- |
+| Orchestrator (self) | ORCHESTRATOR | Top-level task commander                                |
+| Sub-Orchestrator    | ORCHESTRATOR | Inherits reduced depth budget from parent               |
+| @context            | DISPATCHER   | Must dispatch @explore/@research for deep investigation |
+| @general            | LEAF         | Implementation agent — executes directly                |
+| @write              | LEAF         | Documentation agent — executes directly                 |
+| @review             | LEAF         | Review agent — executes directly                        |
+| @speckit            | LEAF         | Spec documentation agent — executes directly            |
+| @debug              | LEAF         | Debug agent — executes directly                         |
+| @handover           | LEAF         | Handover agent — executes directly                      |
+| @research           | LEAF         | Research agent — executes directly                      |
+| @explore            | LEAF         | Exploration agent — executes directly                   |
 
 #### Absolute Depth Rules
 
 **Maximum depth: 3 levels** (depth counter 0, 1, 2). No agent at depth 2 may dispatch further.
 
-| Depth | Who Can Be Here | Can Dispatch? |
-| --- | --- | --- |
-| **0** | Orchestrator only | Yes — any tier |
-| **1** | Any agent dispatched by depth-0 | Yes — if ORCHESTRATOR or DISPATCHER tier |
-| **2** | Any agent dispatched by depth-1 | **NO** — all agents at depth 2 are effectively LEAF regardless of tier |
-| **3+** | **FORBIDDEN** | N/A |
+| Depth  | Who Can Be Here                 | Can Dispatch?                                                          |
+| ------ | ------------------------------- | ---------------------------------------------------------------------- |
+| **0**  | Orchestrator only               | Yes — any tier                                                         |
+| **1**  | Any agent dispatched by depth-0 | Yes — if ORCHESTRATOR or DISPATCHER tier                               |
+| **2**  | Any agent dispatched by depth-1 | **NO** — all agents at depth 2 are effectively LEAF regardless of tier |
+| **3+** | **FORBIDDEN**                   | N/A                                                                    |
 
 #### Depth Counting Rules
 
@@ -190,15 +188,15 @@ When dispatching a DISPATCHER agent (currently only @context), append this:
 
 ### Agent Files
 
-| Agent           | File                             | Notes                                                                             |
-| --------------- | -------------------------------- | --------------------------------------------------------------------------------- |
-| @context        | `.opencode/agent/context.md`     | Sub-agent with dispatch. Routes ALL exploration tasks                      |
-| @research       | `.opencode/agent/research.md`    | Sub-agent; outputs research.md                                                    |
-| @speckit        | `.opencode/agent/speckit.md`     | ⛔ ALL spec folder docs (*.md). Exceptions: memory/, scratch/, handover.md, research.md |
-| @review         | `.opencode/agent/review.md`     | Codebase-agnostic quality scoring                                                  |
-| @write          | `.opencode/agent/write.md`       | DQI standards enforcement                                                         |
-| @debug          | `.opencode/agent/debug.md`       | Isolated by design (no conversation context)                                       |
-| @handover       | `.opencode/agent/handover.md`    | Sub-agent; context preservation                                                    |
+| Agent     | File                          | Notes                                                                                  |
+| --------- | ----------------------------- | -------------------------------------------------------------------------------------- |
+| @context  | `.opencode/agent/context.md`  | Sub-agent with dispatch. Routes ALL exploration tasks                                  |
+| @research | `.opencode/agent/research.md` | Sub-agent; outputs research.md                                                         |
+| @speckit  | `.opencode/agent/speckit.md`  | ⛔ ALL spec folder docs (*.md). Exceptions: memory/, scratch/, handover.md, research.md |
+| @review   | `.opencode/agent/review.md`   | Codebase-agnostic quality scoring                                                      |
+| @write    | `.opencode/agent/write.md`    | DQI standards enforcement                                                              |
+| @debug    | `.opencode/agent/debug.md`    | Isolated by design (no conversation context)                                           |
+| @handover | `.opencode/agent/handover.md` | Sub-agent; context preservation                                                        |
 
 > **Note**: ALL exploration tasks route through `@context` exclusively. @context internally manages fast search and deep investigation sub-agents.
 
@@ -292,13 +290,13 @@ For workflows exceeding 10 tasks, or with distinct phases, or complexity > 60 ac
 
 Sub-orchestrators operate within **inherited constraints** — they CANNOT exceed parent limits:
 
-| Constraint         | Rule                                                       |
-| ------------------ | ---------------------------------------------------------- |
-| Resource Budget    | Cannot exceed parent's remaining budget                    |
-| Agent Pool         | Subset of parent's allocation                              |
-| Gate Requirements  | Must enforce all parent gates                              |
-| Quality Threshold  | Same or stricter than parent                               |
-| **Context Budget** | **MUST compress results before returning to parent (§8)**  |
+| Constraint         | Rule                                                      |
+| ------------------ | --------------------------------------------------------- |
+| Resource Budget    | Cannot exceed parent's remaining budget                   |
+| Agent Pool         | Subset of parent's allocation                             |
+| Gate Requirements  | Must enforce all parent gates                             |
+| Quality Threshold  | Same or stricter than parent                              |
+| **Context Budget** | **MUST compress results before returning to parent (§8)** |
 
 **Nesting Depth:** Governed by NDP (§2). Sub-orchestrators inherit their parent's depth + 1. A sub-orchestrator at depth 1 can only dispatch LEAF agents at depth 2. **No agent chain may exceed depth 2 (3 levels total).**
 
@@ -315,7 +313,7 @@ Enable result-dependent task routing. Add a `Branch` field to the task format:
 | Type           | Options                                                                                                                           |
 | -------------- | --------------------------------------------------------------------------------------------------------------------------------- |
 | **Conditions** | `output.confidence` (0-100), `output.type` ("success"/"error"/"partial"), `output.status`, `output.score` (0-100), `output.count` |
-| **Actions**    | `proceed to Task #N`, `dispatch Task #N-alt`, `escalate to user`, `retry with [modifications]`      |
+| **Actions**    | `proceed to Task #N`, `dispatch Task #N-alt`, `escalate to user`, `retry with [modifications]`                                    |
 
 Maximum conditional branch nesting: 3 levels deep. If deeper needed, refactor into separate tasks. (This is about IF/ELSE branch depth, not agent dispatch depth — see §2 NDP for agent nesting rules.)
 
@@ -397,12 +395,12 @@ TASK #2: Implement Notification System
 
 **DETECTION PATTERNS** (trigger violation alert):
 
-| Violation Type | Detection Signal | Correct Routing |
-|----------------|------------------|-----------------|
-| **Wrong Agent for Spec Docs** | Task creates `specs/*/spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `decision-record.md` via @general/@write | @speckit ONLY |
-| **Template Bypass** | Write tool used on spec folder paths WITHOUT prior Read from `templates/level_N/` | REJECT → Must use templates |
-| **Level Not Determined** | @speckit dispatch without explicit Level (1/2/3/3+) in task context | REJECT → Determine level first |
-| **No Validation** | @speckit completion claim without `validate.sh` output | REJECT → Run validation |
+| Violation Type                | Detection Signal                                                                                                | Correct Routing                |
+| ----------------------------- | --------------------------------------------------------------------------------------------------------------- | ------------------------------ |
+| **Wrong Agent for Spec Docs** | Task creates `specs/*/spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `decision-record.md` via @general/@write | @speckit ONLY                  |
+| **Template Bypass**           | Write tool used on spec folder paths WITHOUT prior Read from `templates/level_N/`                               | REJECT → Must use templates    |
+| **Level Not Determined**      | @speckit dispatch without explicit Level (1/2/3/3+) in task context                                             | REJECT → Determine level first |
+| **No Validation**             | @speckit completion claim without `validate.sh` output                                                          | REJECT → Run validation        |
 
 **ENFORCEMENT ACTIONS**:
 
@@ -444,11 +442,11 @@ This separation ensures implementation agents always receive comprehensive conte
 
 The @context agent runs on Haiku for speed (~2x faster than Sonnet). Based on spec 012 testing, be aware of these Haiku-specific patterns when evaluating Context Package returns:
 
-| Pattern | Detection | Action |
-|---------|-----------|--------|
-| **Missing sections** | Context Package has < 6 sections (especially Dispatched Analyses, Memory Context) | Retry with: "Return ALL 6 Context Package sections" |
-| **CSS discovery gap** | Query spans JS+CSS+HTML but findings only cover JS | Note gap in synthesis; consider separate CSS-focused follow-up |
-| **Tool call overrun** | N/A (not detectable by orchestrator) | No action needed — @context self-governs |
+| Pattern               | Detection                                                                         | Action                                                         |
+| --------------------- | --------------------------------------------------------------------------------- | -------------------------------------------------------------- |
+| **Missing sections**  | Context Package has < 6 sections (especially Dispatched Analyses, Memory Context) | Retry with: "Return ALL 6 Context Package sections"            |
+| **CSS discovery gap** | Query spans JS+CSS+HTML but findings only cover JS                                | Note gap in synthesis; consider separate CSS-focused follow-up |
+| **Tool call overrun** | N/A (not detectable by orchestrator)                                              | No action needed — @context self-governs                       |
 
 > These are tendencies, not guarantees. Haiku scores 4.0+/5 on average quality. Only the missing-sections pattern warrants automatic retry.
 
@@ -474,13 +472,13 @@ The @context agent runs on Haiku for speed (~2x faster than Sonnet). Based on sp
 
 ### Verification Actions (Execute BEFORE accepting output)
 
-| Action                   | Tool/Method                | Purpose                               |
-| ------------------------ | -------------------------- | ------------------------------------- |
-| **File Existence Check** | `@context` dispatch        | Verify claimed files exist            |
-| **Content Spot-Check**   | Read key files             | Validate quality, detect placeholders |
-| **Cross-Reference**      | Compare parallel outputs   | Detect contradictions                 |
-| **Path Validation**      | Glob/Read                  | Confirm references are real           |
-| **Evidence Audit**       | Check citations            | Ensure sources exist and are cited    |
+| Action                   | Tool/Method              | Purpose                               |
+| ------------------------ | ------------------------ | ------------------------------------- |
+| **File Existence Check** | `@context` dispatch      | Verify claimed files exist            |
+| **Content Spot-Check**   | Read key files           | Validate quality, detect placeholders |
+| **Cross-Reference**      | Compare parallel outputs | Detect contradictions                 |
+| **Path Validation**      | Glob/Read                | Confirm references are real           |
+| **Evidence Audit**       | Check citations          | Ensure sources exist and are cited    |
 
 ### ❌ Rejection Criteria (MUST reject if ANY detected)
 
@@ -592,14 +590,14 @@ After complex multi-agent workflows, save orchestration context via: `node .open
 
 #### Context Health Monitoring
 
-| Signal               | Threshold       | Action                                               |
-| -------------------- | --------------- | ---------------------------------------------------- |
-| Tool calls           | 15+             | Suggest handover                                     |
-| Files modified       | 5+              | Recommend context save                               |
-| Sub-agent failures   | 2+              | Consider debug delegation                            |
-| Session duration     | Extended        | Proactive handover prompt                            |
-| **Agent dispatches** | **5+**          | **Enforce CWB (§8), use collection patterns (§8)**   |
-| **Context pressure** | **Any warning** | **Stop dispatching, synthesize current results**     |
+| Signal               | Threshold       | Action                                             |
+| -------------------- | --------------- | -------------------------------------------------- |
+| Tool calls           | 15+             | Suggest handover                                   |
+| Files modified       | 5+              | Recommend context save                             |
+| Sub-agent failures   | 2+              | Consider debug delegation                          |
+| Session duration     | Extended        | Proactive handover prompt                          |
+| **Agent dispatches** | **5+**          | **Enforce CWB (§8), use collection patterns (§8)** |
+| **Context pressure** | **Any warning** | **Stop dispatching, synthesize current results**   |
 
 ### Command Suggestions
 
@@ -626,11 +624,11 @@ The orchestrator's context window is finite (~150K available tokens). When many 
 
 #### Scale Thresholds & Collection Patterns
 
-| Agent Count | Task Example             | Collection   | Output Constraint                                | Wave Size   | Est. Return |
-| ----------- | ------------------------ | ------------ | ------------------------------------------------ | ----------- | ----------- |
-| **1-3**     | Fact-finding, analysis   | A: Direct    | Full results (up to 8K each)                     | All at once | ~2-4K/agent |
-| **5-9**     | Complex research         | B: Summary   | Max 30 lines / ~500 tokens per agent             | All at once | ~500/agent  |
-| **10-20**   | Comprehensive investigation | C: File-based | 3-line summary; details written to file          | Waves of 5  | ~50/agent   |
+| Agent Count | Task Example                | Collection    | Output Constraint                       | Wave Size   | Est. Return |
+| ----------- | --------------------------- | ------------- | --------------------------------------- | ----------- | ----------- |
+| **1-3**     | Fact-finding, analysis      | A: Direct     | Full results (up to 8K each)            | All at once | ~2-4K/agent |
+| **5-9**     | Complex research            | B: Summary    | Max 30 lines / ~500 tokens per agent    | All at once | ~500/agent  |
+| **10-20**   | Comprehensive investigation | C: File-based | 3-line summary; details written to file | Waves of 5  | ~50/agent   |
 
 **Pre-Dispatch (MANDATORY for 5+ agents):** Count agents → look up collection mode → add Output Size + Write To constraints to every dispatch (§3).
 
@@ -654,37 +652,37 @@ Sub-agents have finite execution limits. When a single agent is given too many s
 
 #### Estimation Heuristic
 
-| Operation | Tool Calls | Example |
-| --- | --- | --- |
-| File read | 1 | `Read("src/app.ts")` |
-| File write/create | 1 | `Write("output.md")` |
-| File edit | 1 | `Edit("config.json")` |
-| Bash command | 1 | `Bash("npm test")` |
-| Grep search | 1 | `Grep("pattern")` |
-| Glob search | 1 | `Glob("**/*.md")` |
-| Verification step | 1-2 | Read + diff |
-| **Buffer** | **+30%** | Navigation, retries, errors |
+| Operation         | Tool Calls | Example                     |
+| ----------------- | ---------- | --------------------------- |
+| File read         | 1          | `Read("src/app.ts")`        |
+| File write/create | 1          | `Write("output.md")`        |
+| File edit         | 1          | `Edit("config.json")`       |
+| Bash command      | 1          | `Bash("npm test")`          |
+| Grep search       | 1          | `Grep("pattern")`           |
+| Glob search       | 1          | `Glob("**/*.md")`           |
+| Verification step | 1-2        | Read + diff                 |
+| **Buffer**        | **+30%**   | Navigation, retries, errors |
 
 **Formula:** `TCB = (reads + writes + edits + bash + grep + glob + verification) × 1.3`
 
 #### Thresholds
 
-| Est. Tool Calls | Status | Action |
-| --- | --- | --- |
-| **1-8** | ✅ SAFE | Single agent, no restrictions |
-| **9-12** | ⚠️ CAUTION | Single agent OK, but add Self-Governance Footer |
-| **13+** | 🚫 MUST SPLIT | Split into agents of ≤8 tool calls each |
+| Est. Tool Calls | Status       | Action                                          |
+| --------------- | ------------ | ----------------------------------------------- |
+| **1-8**         | ✅ SAFE       | Single agent, no restrictions                   |
+| **9-12**        | ⚠️ CAUTION    | Single agent OK, but add Self-Governance Footer |
+| **13+**         | 🚫 MUST SPLIT | Split into agents of ≤8 tool calls each         |
 
 #### Batch Sizing Rule
 
 When a task involves **N repetitive operations** on different files (e.g., "convert 8 files", "update 10 configs"):
 
-| Items | Agents | Items per Agent | Dispatch |
-| --- | --- | --- | --- |
-| 1-4 | 1 | All | Single agent |
-| 5-8 | 2 | 2-4 each | Parallel |
-| 9-12 | 3 | 3-4 each | Parallel |
-| 13+ | N/4 (rounded up) | ~4 each | Parallel waves of 3 |
+| Items | Agents           | Items per Agent | Dispatch            |
+| ----- | ---------------- | --------------- | ------------------- |
+| 1-4   | 1                | All             | Single agent        |
+| 5-8   | 2                | 2-4 each        | Parallel            |
+| 9-12  | 3                | 3-4 each        | Parallel            |
+| 13+   | N/4 (rounded up) | ~4 each         | Parallel waves of 3 |
 
 #### Agent Self-Governance Footer
 
@@ -757,7 +755,7 @@ For tasks estimated at **9+ tool calls**, append this instruction to the Task di
 | Skill                       | Domain          | Use When                                                         | Key Commands/Tools         |
 | --------------------------- | --------------- | ---------------------------------------------------------------- | -------------------------- |
 | `system-spec-kit`           | Documentation   | Spec folders, memory, validation, context preservation           | `/spec_kit:*`, `/memory:*` |
-| `workflows-code--*`      | Implementation  | Code changes, debugging, 3-phase lifecycle, browser verification | -                          |
+| `workflows-code--*`         | Implementation  | Code changes, debugging, 3-phase lifecycle, browser verification | -                          |
 | `workflows-git`             | Version Control | See skill for details                                            | -                          |
 | `workflows-documentation`   | Markdown        | Doc quality, DQI scoring, skill creation, flowcharts             | `/create:*`                |
 | `workflows-chrome-devtools` | Browser         | DevTools automation, screenshots, console, CDP                   | `bdg` CLI                  |
@@ -765,16 +763,16 @@ For tasks estimated at **9+ tool calls**, append this instruction to the Task di
 
 ### Related Resources
 
-| Resource                    | Purpose                                  | Path                                         |
-| --------------------------- | ---------------------------------------- | -------------------------------------------- |
-| `/spec_kit:debug`           | Debug delegation with model selection    | `.opencode/command/spec_kit/debug.md`        |
-| `/spec_kit:handover`        | Session continuation                     | `.opencode/command/spec_kit/handover.md`     |
-| `/spec_kit:complete`        | Verification workflow                    | `.opencode/command/spec_kit/complete.md`     |
-| `/spec_kit:research`        | 9-step investigation                     | `.opencode/command/spec_kit/research.md`     |
-| `/memory:save`              | Context preservation                     | `.opencode/command/memory/save.md`           |
-| `system-spec-kit`           | Spec folders, memory, validation         | `.opencode/skill/system-spec-kit/`           |
-| `workflows-code--*`        | Implementation lifecycle (auto-detects variant) | `.opencode/skill/workflows-code--*/`         |
-| `workflows-git`             | Version control workflows                | `.opencode/skill/workflows-git/`             |
-| `workflows-documentation`   | Doc quality, DQI scoring, skill creation | `.opencode/skill/workflows-documentation/`   |
-| `workflows-chrome-devtools` | Browser debugging, screenshots, CDP      | `.opencode/skill/workflows-chrome-devtools/` |
-| `mcp-code-mode`             | External tool integration via MCP        | `.opencode/skill/mcp-code-mode/`             |
+| Resource                    | Purpose                                         | Path                                         |
+| --------------------------- | ----------------------------------------------- | -------------------------------------------- |
+| `/spec_kit:debug`           | Debug delegation with model selection           | `.opencode/command/spec_kit/debug.md`        |
+| `/spec_kit:handover`        | Session continuation                            | `.opencode/command/spec_kit/handover.md`     |
+| `/spec_kit:complete`        | Verification workflow                           | `.opencode/command/spec_kit/complete.md`     |
+| `/spec_kit:research`        | 9-step investigation                            | `.opencode/command/spec_kit/research.md`     |
+| `/memory:save`              | Context preservation                            | `.opencode/command/memory/save.md`           |
+| `system-spec-kit`           | Spec folders, memory, validation                | `.opencode/skill/system-spec-kit/`           |
+| `workflows-code--*`         | Implementation lifecycle (auto-detects variant) | `.opencode/skill/workflows-code--*/`         |
+| `workflows-git`             | Version control workflows                       | `.opencode/skill/workflows-git/`             |
+| `workflows-documentation`   | Doc quality, DQI scoring, skill creation        | `.opencode/skill/workflows-documentation/`   |
+| `workflows-chrome-devtools` | Browser debugging, screenshots, CDP             | `.opencode/skill/workflows-chrome-devtools/` |
+| `mcp-code-mode`             | External tool integration via MCP               | `.opencode/skill/mcp-code-mode/`             |

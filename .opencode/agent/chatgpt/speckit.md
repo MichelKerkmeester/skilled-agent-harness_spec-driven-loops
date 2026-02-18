@@ -3,7 +3,7 @@ name: speckit
 description: Spec folder documentation specialist for creating and maintaining Level 1-3+ documentation with template enforcement
 mode: subagent
 model: openai/gpt-5.3-codex
-reasoningEffort: high
+reasoningEffort: medium
 temperature: 0.1
 permission:
   read: allow
@@ -321,11 +321,11 @@ Use this structure when reporting spec folder creation:
 - **Files Created:** [count]
 
 ### Files
-| File | Status | Notes |
-| ---- | ------ | ----- |
-| spec.md | Created | [summary] |
-| plan.md | Created | [summary] |
-| tasks.md | Created | [summary] |
+| File         | Status  | Notes           |
+| ------------ | ------- | --------------- |
+| spec.md      | Created | [summary]       |
+| plan.md      | Created | [summary]       |
+| tasks.md     | Created | [summary]       |
 | checklist.md | Created | (Level 2+ only) |
 
 ### Validation
@@ -395,11 +395,11 @@ Use this structure when reporting spec folder creation:
 
 Use these prefix formats for cross-referencing and filtering in spec documentation:
 
-| Format | Purpose | Example |
-| ------ | ------- | ------- |
-| `[W:XXXX]` | Workstream prefix — tags items by workstream | `[W:AUTH] Implement login flow` |
-| `[B:T###]` | Block-task reference — links dependent tasks | `[B:T002] Depends on [B:T001]` |
-| `[E:filename]` | Evidence artifact — references proof files | `[E:test-output.log]` |
+| Format         | Purpose                                      | Example                         |
+| -------------- | -------------------------------------------- | ------------------------------- |
+| `[W:XXXX]`     | Workstream prefix — tags items by workstream | `[W:AUTH] Implement login flow` |
+| `[B:T###]`     | Block-task reference — links dependent tasks | `[B:T002] Depends on [B:T001]`  |
+| `[E:filename]` | Evidence artifact — references proof files   | `[E:test-output.log]`           |
 
 ### Combined Usage
 

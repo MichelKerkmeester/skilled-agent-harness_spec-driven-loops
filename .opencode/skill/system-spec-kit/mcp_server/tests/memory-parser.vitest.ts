@@ -1,6 +1,6 @@
 // @ts-nocheck
 // ---------------------------------------------------------------
-// TEST: MEMORY PARSER
+// MODULE: Memory Parser Tests
 // ---------------------------------------------------------------
 
 import { describe, it, expect, beforeAll } from 'vitest';
@@ -291,6 +291,36 @@ Emoji: Test content
       expect(title).toBeTruthy();
       expect(typeof hash).toBe('string');
       expect(hash.length).toBe(64);
+    });
+  });
+
+  describe('Skill Reference Classification (T500-16)', () => {
+    it('T500-16a: checklists path maps to skill_checklist', () => {
+      const filePath = '/workspace/.opencode/skill/workflows-code--web-dev/references/checklists/quality.md';
+      const documentType = memoryParser.extractDocumentType(filePath);
+
+      expect(documentType).toBe('skill_checklist');
+    });
+
+    it('T500-16b: references path maps to skill_reference', () => {
+      const filePath = '/workspace/.opencode/skill/workflows-code--web-dev/references/patterns.md';
+      const documentType = memoryParser.extractDocumentType(filePath);
+
+      expect(documentType).toBe('skill_reference');
+    });
+
+    it('T500-16c: assets path maps to skill_asset', () => {
+      const filePath = '/workspace/.opencode/skill/workflows-code--web-dev/assets/templates/component.md';
+      const documentType = memoryParser.extractDocumentType(filePath);
+
+      expect(documentType).toBe('skill_asset');
+    });
+
+    it('T500-16d: skill references resolve to skill spec folder', () => {
+      const filePath = '/workspace/.opencode/skill/workflows-code--web-dev/references/checklists/quality.md';
+      const specFolder = memoryParser.extractSpecFolder(filePath);
+
+      expect(specFolder).toBe('skill:workflows-code--web-dev');
     });
   });
 });

@@ -3,7 +3,7 @@ name: speckit
 description: Spec folder documentation specialist for creating and maintaining Level 1-3+ documentation with template enforcement
 mode: subagent
 model: openai/gpt-5.3-codex
-reasoningEffort: high
+reasoningEffort: medium
 temperature: 0.1
 permission:
   read: allow
@@ -43,9 +43,21 @@ This agent is typically invoked from **Gate 3 Option B** ("Create new spec folde
 
 Before starting the workflow:
 
-1. **Check for prior work**: Search memory for existing specs on the same topic to avoid duplicates
-2. **Confirm scope**: Verify the spec folder name and level with the user
-3. **Load context**: If related specs exist, load their context for reference
+1. **Pre-Flight Validation Gate**: Verify this is a legitimate @speckit dispatch
+   - Confirm you were dispatched by orchestrator (not self-invoked)
+   - Verify task context includes spec folder path or creation request
+   - If file modification detected WITHOUT spec folder confirmation → HALT and escalate
+2. **Check for prior work**: Search memory for existing specs on the same topic to avoid duplicates
+3. **Confirm scope**: Verify the spec folder name and level with the user
+4. **Load context**: If related specs exist, load their context for reference
+
+### Pre-Flight Validation Rules
+
+**HARD STOP CONDITIONS** (must escalate to user):
+- Write/Edit tool called on spec folder path WITHOUT prior template read
+- File creation request without level determination
+- Template modification attempt (templates/ folder is read-only for spec creation)
+- Spec folder path doesn't match `specs/[###-name]/` or `.opencode/specs/[###-name]/` pattern
 
 ### Spec Folder Creation Process
 
@@ -309,11 +321,11 @@ Use this structure when reporting spec folder creation:
 - **Files Created:** [count]
 
 ### Files
-| File | Status | Notes |
-| ---- | ------ | ----- |
-| spec.md | Created | [summary] |
-| plan.md | Created | [summary] |
-| tasks.md | Created | [summary] |
+| File         | Status  | Notes           |
+| ------------ | ------- | --------------- |
+| spec.md      | Created | [summary]       |
+| plan.md      | Created | [summary]       |
+| tasks.md     | Created | [summary]       |
 | checklist.md | Created | (Level 2+ only) |
 
 ### Validation
@@ -383,11 +395,11 @@ Use this structure when reporting spec folder creation:
 
 Use these prefix formats for cross-referencing and filtering in spec documentation:
 
-| Format | Purpose | Example |
-| ------ | ------- | ------- |
-| `[W:XXXX]` | Workstream prefix — tags items by workstream | `[W:AUTH] Implement login flow` |
-| `[B:T###]` | Block-task reference — links dependent tasks | `[B:T002] Depends on [B:T001]` |
-| `[E:filename]` | Evidence artifact — references proof files | `[E:test-output.log]` |
+| Format         | Purpose                                      | Example                         |
+| -------------- | -------------------------------------------- | ------------------------------- |
+| `[W:XXXX]`     | Workstream prefix — tags items by workstream | `[W:AUTH] Implement login flow` |
+| `[B:T###]`     | Block-task reference — links dependent tasks | `[B:T002] Depends on [B:T001]`  |
+| `[E:filename]` | Evidence artifact — references proof files   | `[E:test-output.log]`           |
 
 ### Combined Usage
 

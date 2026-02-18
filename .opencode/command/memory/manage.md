@@ -30,9 +30,9 @@ IF required parameter missing:
 
 ---
 
-## 2. CONDITIONAL GATES FOR DESTRUCTIVE OPERATIONS
+## 2. CONDITIONAL GATES FOR INTERACTIVE/DESTRUCTIVE OPERATIONS
 
-**Gates apply to cleanup, delete, and checkpoint restore modes only. All other modes pass through immediately.**
+**Gates apply to scan, cleanup, delete, and checkpoint restore modes. Other modes pass through immediately.**
 
 ### 🔒 GATE 1: CLEANUP CONFIRMATION
 
@@ -78,6 +78,20 @@ If `$ARGUMENTS` contains "checkpoint restore `<name>`":
 5. Ask: `[y]es | [n]o | [v]iew diff`
 
 ⛔ HARD STOP: DO NOT restore checkpoint until user explicitly confirms
+
+### 🔒 GATE 4: SCAN SOURCE CONFIRMATION
+
+**STATUS: ⏭️ N/A** (default for non-scan modes)
+
+If `$ARGUMENTS` contains `scan`:
+1. SET STATUS: ☐ BLOCKED
+2. Ask user source scope for this run:
+   - `[a]ll` → include skill references (`includeSkillRefs: true`) **(default)**
+   - `[c]ore` → exclude skill references (`includeSkillRefs: false`)
+   - `[b]ack` → cancel and return to dashboard
+3. **WAIT for user selection** before calling `memory_index_scan`
+
+⛔ HARD STOP: DO NOT execute scan until user selects source scope for this run
 
 ---
 
@@ -155,7 +169,7 @@ Provide a unified interface for memory database **management** operations:
 $ARGUMENTS
     │
     ├─ Empty (no args)       → STATS DASHBOARD (Section 5)
-    ├─ "scan [--force]"      → SCAN MODE (Section 6)
+    ├─ "scan [--force]"      → GATE 4 → SCAN MODE (Section 8)
     ├─ "cleanup"             → GATE 1 → CLEANUP MODE (Section 7)
     ├─ "tier <id> <tier>"    → TIER MANAGEMENT (Section 8)
     ├─ "triggers <id>"       → TRIGGER EDIT (Section 9)
@@ -176,7 +190,7 @@ $ARGUMENTS
 | MODE               | REQUIRED CALLS                                                             | PATTERN  | ON FAILURE      |
 | ------------------ | -------------------------------------------------------------------------- | -------- | --------------- |
 | STATS              | `memory_stats()` + `memory_list()`                                         | PARALLEL | Show error msg  |
-| SCAN               | `memory_index_scan()`                                                      | SINGLE   | Show error msg  |
+| SCAN               | `GATE 4` → `memory_index_scan()`                                           | SEQUENCE | Show error msg  |
 | CLEANUP            | `memory_list()` → [confirm] → `checkpoint_create()` → `memory_delete()`   | SEQUENCE | Abort operation |
 | TIER CHANGE        | `memory_update()`                                                          | SINGLE   | Show error msg  |
 | TRIGGER EDIT       | `memory_update()`                                                          | SINGLE   | Show error msg  |
@@ -194,7 +208,7 @@ $ARGUMENTS
 spec_kit_memory_memory_stats({})
 spec_kit_memory_memory_list({ limit: N, sortBy: "created_at", specFolder: "optional" })
 spec_kit_memory_memory_search({ query: "<q>", limit: N, specFolder: "optional" })
-spec_kit_memory_memory_index_scan({ force, specFolder, includeReadmes, includeSpecDocs, includeConstitutional, incremental })
+spec_kit_memory_memory_index_scan({ force, specFolder, includeReadmes, includeSpecDocs, includeConstitutional, includeSkillRefs, incremental })
 spec_kit_memory_memory_validate({ id: <id>, wasUseful: <bool> })
 spec_kit_memory_memory_update({ id: <id>, importanceTier: "<tier>", triggerPhrases: [...] })
 spec_kit_memory_memory_delete({ id: <id> })
@@ -214,6 +228,7 @@ spec_kit_memory_checkpoint_delete({ name: "<name>" })
 | includeReadmes | boolean | true | Include skill + project README.md and README.txt files |
 | includeSpecDocs | boolean | true | Include spec folder documents |
 | includeConstitutional | boolean | true | Include constitutional rule files |
+| includeSkillRefs | boolean | true | Include workflow skill `references/` and `assets/` files |
 | incremental | boolean | true | Skip unchanged files (mtime check) |
 
 ---
@@ -246,13 +261,26 @@ User Input: Type action name (scan, cleanup, health, point, quit) to proceed
 
 ## 8. SCAN MODE
 
-**Trigger:** `/memory:manage scan` or `/memory:manage scan --force`
+**Trigger:** `/memory:manage scan` or `/memory:manage scan --force` — **⚠️ GATE 4 MUST BE PASSED**
 
 Normal scan skips unchanged files (mtime check). Force scan re-indexes all files regardless.
 
-### 5-Source Pipeline
+### Gate 4 Prompt (Required Every Scan)
 
-The scan discovers memory-eligible files from five sources:
+Before running `memory_index_scan`, ask:
+
+```
+SCAN SOURCE SCOPE
+[a]ll  — Include skill references/assets (default, includeSkillRefs=true)
+[c]ore — Exclude skill references/assets (includeSkillRefs=false)
+[b]ack — Cancel
+```
+
+Map selection to `includeSkillRefs` for this run.
+
+### 6-Source Pipeline
+
+The scan discovers memory-eligible files from six sources:
 
 | # | Source | Key | Location |
 |---|--------|-----|----------|
@@ -261,17 +289,19 @@ The scan discovers memory-eligible files from five sources:
 | 3 | Skill READMEs | skillReadmes | .opencode/skill/*/README.{md,txt} |
 | 4 | Project READMEs | projectReadmes | **/README.{md,txt} |
 | 5 | Spec Documents | specDocFiles | .opencode/specs/**/*.md |
+| 6 | Skill References/Assets | skillRefFiles | .opencode/skill/*/{references,assets}/**/*.md |
 
 ### Call Examples
 
 ```javascript
-spec_kit_memory_memory_index_scan({ force: false })  // Normal incremental
-spec_kit_memory_memory_index_scan({ force: true })   // Force full re-index
+spec_kit_memory_memory_index_scan({ force: false, includeSkillRefs: true })  // Normal incremental
+spec_kit_memory_memory_index_scan({ force: true, includeSkillRefs: true })   // Force full re-index
 ```
 
 **Targeted indexing examples:**
 - Spec docs only: `{ includeReadmes: false }`
 - READMEs only: `{ includeSpecDocs: false }`
+- Core sources only (no skill refs): `{ includeSkillRefs: false }`
 - Specific folder: `{ specFolder: "007-auth" }`
 - Force full re-index: `{ force: true }`
 

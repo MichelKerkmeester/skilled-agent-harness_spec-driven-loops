@@ -1,6 +1,6 @@
 // @ts-nocheck
 // ---------------------------------------------------------------
-// TEST: HANDLER MEMORY INDEX
+// MODULE: Handler Memory Index Tests
 // ---------------------------------------------------------------
 
 import { describe, it, expect, afterAll } from 'vitest';
@@ -8,7 +8,6 @@ import * as path from 'path';
 import * as fs from 'fs';
 import * as os from 'os';
 
-// DB-dependent imports - commented out for deferred test suite
 import * as handler from '../handlers/memory-index';
 
 let tempDir: string | null = null;
@@ -24,9 +23,6 @@ afterAll(() => {
 });
 
 describe('Handler Memory Index (T520) [deferred - requires DB test fixtures]', () => {
-  // DB-dependent imports would go here when unskipped
-  // import * as handler from '../handlers/memory-index';
-
   // ─────────────────────────────────────────────────────────────
   // SUITE: Exports Validation
   // ─────────────────────────────────────────────────────────────
@@ -44,11 +40,16 @@ describe('Handler Memory Index (T520) [deferred - requires DB test fixtures]', (
       expect(typeof handler.findConstitutionalFiles).toBe('function');
     });
 
-    it('T520-4: All snake_case aliases exported', () => {
+    it('T520-4: findSkillReferenceFiles exported', () => {
+      expect(typeof handler.findSkillReferenceFiles).toBe('function');
+    });
+
+    it('T520-5: All snake_case aliases exported', () => {
       const aliases = [
         'handle_memory_index_scan',
         'index_single_file',
         'find_constitutional_files',
+        'find_skill_reference_files',
       ];
       for (const alias of aliases) {
         expect(typeof handler[alias]).toBe('function');
@@ -108,11 +109,89 @@ describe('Handler Memory Index (T520) [deferred - requires DB test fixtures]', (
   });
 
   // ─────────────────────────────────────────────────────────────
+  // SUITE: findSkillReferenceFiles
+  // ─────────────────────────────────────────────────────────────
+  describe('findSkillReferenceFiles', () => {
+
+    it('T520-10: Non-existent path returns empty array', () => {
+      const result = handler.findSkillReferenceFiles('/non/existent/path');
+      expect(Array.isArray(result)).toBe(true);
+      expect(result.length).toBe(0);
+    });
+
+    it('T520-11: Finds .md files in references/ and assets/ for configured skill', () => {
+      tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'test-skill-ref-index-'));
+
+      const skillRoot = path.join(tempDir, '.opencode', 'skill', 'workflows-code--web-dev');
+      const referencesDir = path.join(skillRoot, 'references', 'checklists');
+      const assetsDir = path.join(skillRoot, 'assets', 'templates');
+
+      fs.mkdirSync(referencesDir, { recursive: true });
+      fs.mkdirSync(assetsDir, { recursive: true });
+
+      fs.writeFileSync(path.join(referencesDir, 'validation.md'), '# Validation Checklist');
+      fs.writeFileSync(path.join(skillRoot, 'references', 'guide.md'), '# Guide');
+      fs.writeFileSync(path.join(assetsDir, 'example.md'), '# Example Asset');
+      fs.writeFileSync(path.join(skillRoot, 'references', 'README.md'), '# Should Be Skipped');
+
+      const result = handler.findSkillReferenceFiles(tempDir);
+      const relativePaths = result.map((filePath: string) => path.relative(tempDir!, filePath).replace(/\\/g, '/'));
+
+      expect(relativePaths).toContain('.opencode/skill/workflows-code--web-dev/references/checklists/validation.md');
+      expect(relativePaths).toContain('.opencode/skill/workflows-code--web-dev/references/guide.md');
+      expect(relativePaths).toContain('.opencode/skill/workflows-code--web-dev/assets/templates/example.md');
+      expect(relativePaths.some((filePath: string) => filePath.endsWith('/README.md'))).toBe(false);
+    });
+
+    it('T520-12: Environment flag disables skill reference discovery', () => {
+      tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'test-skill-ref-disabled-'));
+
+      const skillRoot = path.join(tempDir, '.opencode', 'skill', 'workflows-code--web-dev', 'references');
+      fs.mkdirSync(skillRoot, { recursive: true });
+      fs.writeFileSync(path.join(skillRoot, 'guide.md'), '# Guide');
+
+      const previous = process.env.SPECKIT_INDEX_SKILL_REFS;
+      process.env.SPECKIT_INDEX_SKILL_REFS = 'false';
+
+      try {
+        const result = handler.findSkillReferenceFiles(tempDir);
+        expect(result).toEqual([]);
+      } finally {
+        if (previous === undefined) {
+          delete process.env.SPECKIT_INDEX_SKILL_REFS;
+        } else {
+          process.env.SPECKIT_INDEX_SKILL_REFS = previous;
+        }
+      }
+    });
+
+    it('T520-13: Returns sorted .md files and skips non-markdown', () => {
+      tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'test-skill-ref-sorted-'));
+
+      const referencesDir = path.join(tempDir, '.opencode', 'skill', 'workflows-code--web-dev', 'references');
+      fs.mkdirSync(referencesDir, { recursive: true });
+
+      fs.writeFileSync(path.join(referencesDir, 'zeta.md'), '# Zeta');
+      fs.writeFileSync(path.join(referencesDir, 'alpha.md'), '# Alpha');
+      fs.writeFileSync(path.join(referencesDir, 'notes.txt'), 'Not indexed');
+
+      const result = handler.findSkillReferenceFiles(tempDir);
+      const relativePaths = result.map((filePath: string) => path.relative(tempDir!, filePath).replace(/\\/g, '/'));
+
+      expect(relativePaths).toEqual([
+        '.opencode/skill/workflows-code--web-dev/references/alpha.md',
+        '.opencode/skill/workflows-code--web-dev/references/zeta.md',
+      ]);
+    });
+
+  });
+
+  // ─────────────────────────────────────────────────────────────
   // SUITE: handleMemoryIndexScan Input/Behavior
   // ─────────────────────────────────────────────────────────────
   describe('handleMemoryIndexScan Input/Behavior', () => {
 
-    it('T520-10: Empty args returns valid response', async () => {
+    it('T520-14: Empty args returns valid response', async () => {
       try {
         const result = await handler.handleMemoryIndexScan({});
         expect(result).toBeTruthy();

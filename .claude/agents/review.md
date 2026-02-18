@@ -6,7 +6,7 @@ tools:
   - Bash
   - Grep
   - Glob
-model: opus
+model: sonnet
 permissionMode: plan
 mcpServers:
   - spec_kit_memory

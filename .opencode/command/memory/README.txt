@@ -48,7 +48,7 @@ All commands interact with the memory MCP server tools (`spec_kit_memory_*`). Th
 | **context** | `/memory:context <query> [--intent:<type>]` | Intent-aware context retrieval with task-specific weight optimization |
 | **continue** | `/memory:continue [recovery-mode:auto\|manual]` | Recover session from crash, compaction, or timeout |
 | **learn** | `/memory:learn <description>` | Capture learnings, corrections, patterns, and insights |
-| **manage** | `/memory:manage <subcommand>` | Database operations (scan, cleanup, tier, health, checkpoint) |
+| **manage** | `/memory:manage <subcommand>` | Database operations (scan with source-scope prompt, cleanup, tier, health, checkpoint) |
 | **save** | `/memory:save <spec-folder>` | Save conversation context with semantic indexing |
 
 ### Intent Types for Context Command
@@ -120,7 +120,7 @@ No `assets/` folder exists for memory commands. Workflows are defined inline wit
 # View database stats
 /memory:manage stats
 
-# Scan for new memory files
+# Scan for new memory files (prompts source scope: [a]ll/[c]ore/[b]ack)
 /memory:manage scan
 
 # Force re-index all files
@@ -141,7 +141,7 @@ The `/memory:manage` command accepts these subcommands:
 | Subcommand | Arguments | Description |
 |------------|-----------|-------------|
 | `stats` | (none) | Show memory database statistics |
-| `scan` | `[--force]` | Scan workspace for new/changed memory files |
+| `scan` | `[--force]` | Scan workspace for new/changed memory files (asks source scope each run) |
 | `cleanup` | (none) | Remove orphaned or invalid entries |
 | `tier` | `<id> <tier>` | Change importance tier of a memory |
 | `triggers` | `<id>` | View trigger phrases for a memory |
@@ -161,7 +161,7 @@ The `/memory:manage` command accepts these subcommands:
 | "No results" from context | Query too narrow or no matching memories | Broaden query or try different intent |
 | Save fails | Spec folder path invalid or missing | Verify path exists under `specs/` |
 | Continue finds no session | No saved context from prior session | Use `/memory:context` with manual query instead |
-| Manage scan finds 0 files | No memory files in expected directories | Check `specs/**/memory/` and `.opencode/skill/*/constitutional/` paths |
+| Manage scan finds 0 files | No memory files in expected directories | Check `specs/**/memory/`, `.opencode/skill/*/constitutional/`, and configured `.opencode/skill/*/{references,assets}/` paths |
 | Learn correct fails | Invalid memory ID | Run `/memory:manage stats` to find valid IDs |
 
 ---

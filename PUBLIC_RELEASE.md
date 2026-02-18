@@ -172,17 +172,17 @@ gh release create vX.X.X.X \
 
 | Field              | Value                                                                                  |
 | ------------------ | -------------------------------------------------------------------------------------- |
-| **Version**        | v2.0.2.3                                                                               |
-| **Release Date**   | 2026-02-15                                                                             |
+| **Version**        | v2.1.3.0                                                                               |
+| **Release Date**   | 2026-02-18                                                                             |
 | **GitHub**         | https://github.com/MichelKerkmeester/opencode-spec-kit-framework                       |
 | **Latest Release** | https://github.com/MichelKerkmeester/opencode-spec-kit-framework/releases/latest       |
-| **Release Notes**  | https://github.com/MichelKerkmeester/opencode-spec-kit-framework/releases/tag/v2.0.2.3 |
+| **Release Notes**  | https://github.com/MichelKerkmeester/opencode-spec-kit-framework/releases/tag/v2.1.3.0 |
 
 ### Release Notes
 
 Release notes for each version are stored as individual files in `changelog/vX.X.X.X.md`, formatted per the template in Section 7. Each file's content is used directly as the `--notes-file` body for `gh release create`.
 
-**Latest**: See `.opencode/changelog/00--opencode-environment/v2.0.2.3.md`
+**Latest**: See `.opencode/changelog/00--opencode-environment/v2.1.3.0.md`
 
 ---
 
@@ -316,6 +316,10 @@ Releases use a 4-part versioning scheme: `MAJOR.MINOR.SERIES.PATCH`
 | `2.0.0.x` | 2.0.0.0-7   | JS→TS migration, Spec Kit script automation, architectural refactoring |
 | `2.0.1.x` | 2.0.1.0-5   | Documentation alignment, security fixes & optimization (specs 008, 111-118) |
 | `2.0.2.x` | 2.0.2.0-3   | Agent routing compliance + changelog reorganization (spec 014) |
+| `2.1.0.x` | 2.1.0.0     | Spec-doc indexing highlight promotion                          |
+| `2.1.1.x` | 2.1.1.0     | Aggregate unreleased framework changes                         |
+| `2.1.2.x` | 2.1.2.0     | Gate enforcement + skill reference indexing (Source #6)        |
+| `2.1.3.x` | 2.1.3.0     | Agent model upgrade to Sonnet 4.6                              |
 
 ---
 

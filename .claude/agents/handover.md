@@ -8,7 +8,7 @@ tools:
   - Bash
   - Grep
   - Glob
-model: haiku
+model: sonnet
 mcpServers:
   - spec_kit_memory
   - code_mode

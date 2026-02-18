@@ -442,7 +442,7 @@ Current triggers:
 | **memory_save MCP tool**       | On demand        | Immediate indexing of single file |
 | **memory_index_scan MCP tool** | On demand        | Bulk re-index of folder/all files |
 
-> **Note:** Since spec 126, spec folder documents are auto-indexed as the 5th source in the indexing pipeline.
+> **Note:** The indexing pipeline includes six sources: spec memories, constitutional files, skill READMEs, project READMEs, spec documents, and configured skill references/assets.
 
 ### Deferred Indexing (Graceful Degradation)
 
@@ -493,6 +493,7 @@ spec_kit_memory_memory_index_scan({ specFolder: "011-memory", force: true })
 | `includeReadmes`     | boolean | true    | Include skill + project README.md and README.txt files |
 | `includeSpecDocs`    | boolean | true    | Include spec folder documents                     |
 | `includeConstitutional` | boolean | true | Include constitutional rule files                 |
+| `includeSkillRefs`   | boolean | true    | Include configured workflow skill `references/` and `assets/` files |
 | `incremental`        | boolean | true    | Skip unchanged files (mtime check)                |
 
 ---

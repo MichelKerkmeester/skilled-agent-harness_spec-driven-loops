@@ -2,7 +2,6 @@
 name: research
 description: Technical investigation specialist with evidence gathering, pattern analysis, and research documentation capabilities
 mode: subagent
-model: github-copilot/claude-opus-4.6
 temperature: 0.1
 permission:
   read: allow

@@ -184,6 +184,9 @@ function calculateDocumentWeight(filePath: string, documentType?: string): numbe
       constitutional: 1.0,
       memory: 0.5,
       readme: 0.4,
+      skill_reference: 0.35,
+      skill_checklist: 0.35,
+      skill_asset: 0.30,
       scratch: 0.25,
     };
     const weight = DOC_TYPE_WEIGHTS[documentType];

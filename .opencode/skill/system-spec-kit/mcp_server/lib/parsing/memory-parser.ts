@@ -226,6 +226,19 @@ export function extractDocumentType(filePath: string): string {
     return 'readme';
   }
 
+  // Skill reference and asset files (Source #6)
+  if (normalizedPath.includes('/.opencode/skill/') && normalizedPath.endsWith('.md')) {
+    if (normalizedPath.includes('/checklists/')) {
+      return 'skill_checklist';
+    }
+    if (normalizedPath.includes('/references/')) {
+      return 'skill_reference';
+    }
+    if (normalizedPath.includes('/assets/')) {
+      return 'skill_asset';
+    }
+  }
+
   return 'memory';
 }
 
@@ -244,6 +257,12 @@ export function extractSpecFolder(filePath: string): string {
   const skillReadmeMatch = normalizedPath.match(/\.opencode\/skill\/([^/]+)(?:\/.*)?\/readme\.(?:md|txt)$/i);
   if (skillReadmeMatch) {
     return `skill:${skillReadmeMatch[1]}`;
+  }
+
+  // Skill reference/asset files → skill:SKILL-NAME (Source #6)
+  const skillRefMatch = normalizedPath.match(/\.opencode\/skill\/([^/]+)\/(?:references|assets)\//);
+  if (skillRefMatch) {
+    return `skill:${skillRefMatch[1]}`;
   }
 
   // Project/code-folder READMEs
@@ -575,7 +594,15 @@ export function isMemoryFile(filePath: string): boolean {
   // Project/code-folder READMEs (must check after skill README to avoid overlap)
   const isProjectRm = isProjectReadme(filePath);
 
-  return isSpecsMemory || isSpecDocument || isConstitutional || isSkillReadme || isProjectRm;
+  // Skill reference and asset files (Source #6)
+  const isSkillRef = (
+    normalizedPath.includes('/.opencode/skill/') &&
+    (normalizedPath.includes('/references/') || normalizedPath.includes('/assets/')) &&
+    normalizedPath.endsWith('.md') &&
+    !isReadmeFileName(path.basename(normalizedPath))
+  );
+
+  return isSpecsMemory || isSpecDocument || isConstitutional || isSkillReadme || isProjectRm || isSkillRef;
 }
 
 /** Set of recognized spec folder document filenames (lowercase) */

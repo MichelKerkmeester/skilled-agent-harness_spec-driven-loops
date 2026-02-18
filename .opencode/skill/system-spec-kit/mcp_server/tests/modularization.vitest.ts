@@ -1,7 +1,7 @@
-// ───────────────────────────────────────────────────────────────
-// TEST: MODULARIZATION (vitest conversion)
+// ---------------------------------------------------------------
+// MODULE: Modularization Tests
+// ---------------------------------------------------------------
 // Source: modularization.test.js (442 lines)
-// ───────────────────────────────────────────────────────────────
 // Active tests: directory structure, module line counts, context-server imports
 // Skipped tests: index exports, core/handler/formatter/utils/hooks exports,
 //   validator functions, token metrics (all require dist/ with DB dependencies)
@@ -26,7 +26,7 @@ const EXTENDED_LIMITS: Record<string, number> = {
   'handlers/memory-triggers.js': 350, // Trigger matching with cognitive features
   'handlers/memory-crud.js': 600,   // CRUD operations with validation
   'handlers/memory-save.js': 1300,  // Save logic with parsing, validation, indexing
-  'handlers/memory-index.js': 600,  // Index operations with scanning + spec document discovery (Spec 126)
+  'handlers/memory-index.js': 700,  // Index operations with scanning + spec document discovery (Spec 126) + skill reference discovery (Source #6)
 };
 
 function countLines(filePath: string): number {

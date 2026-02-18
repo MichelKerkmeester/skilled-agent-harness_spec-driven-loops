@@ -2,8 +2,8 @@
 name: context
 description: "Production context agent — comprehensive retrieval with memory-first exploration, structured Context Packages, and analysis dispatch"
 mode: subagent
-model: openai/gpt-5.3-codex-spark
-reasoningEffort: high
+model: openai/gpt-5.3-codex
+reasoningEffort: medium
 temperature: 0.1
 permission:
   read: allow
@@ -92,14 +92,14 @@ What do you need?
 
 This agent operates in **thorough mode only** — every exploration uses all 3 retrieval layers with comprehensive investigation.
 
-| Parameter        | Value                                 |
-| ---------------- | ------------------------------------- |
-| **Layers**       | All 3 (Memory + Codebase + Deep Memory) |
-| **Time Budget**  | ~5 minutes                            |
-| **Output Size**  | ~4K tokens (120 lines)                |
-| **Tool Calls**   | 10-20                                 |
-| **Dispatches**   | 2 max                                 |
-| **Use Case**     | All exploration tasks                 |
+| Parameter       | Value                                   |
+| --------------- | --------------------------------------- |
+| **Layers**      | All 3 (Memory + Codebase + Deep Memory) |
+| **Time Budget** | ~5 minutes                              |
+| **Output Size** | ~4K tokens (120 lines)                  |
+| **Tool Calls**  | 10-20                                   |
+| **Dispatches**  | 2 max                                   |
+| **Use Case**    | All exploration tasks                   |
 
 > **User Override:** The dispatch limit of 2 is a default. The user can explicitly request higher limits (e.g., "use up to 5 dispatches").
 
@@ -333,12 +333,12 @@ When the orchestrator specifies `Output Size: summary-only` or `minimal`, compre
 
 | Anti-Pattern                | Correct Behavior                                                                      |
 | --------------------------- | ------------------------------------------------------------------------------------- |
-| **Raw Dump**                | Summarize with `file:line` references, never return full file contents               |
+| **Raw Dump**                | Summarize with `file:line` references, never return full file contents                |
 | **Scope Creep**             | Report ONLY what was requested — note tangential findings briefly in Gaps if critical |
 | **Over-Reading**            | Respect tool call budget: 10-20 calls max                                             |
 | **Implementation Advice**   | Report what exists: "Current pattern uses X at file:line"                             |
 | **Verbose Returns**         | Stay within ~4K token output budget                                                   |
-| **False Confidence**        | ALWAYS include Gaps & Unknowns — what WASN'T found is valuable                       |
+| **False Confidence**        | ALWAYS include Gaps & Unknowns — what WASN'T found is valuable                        |
 | **Kitchen Sink**            | Filter by relevance — return only findings that directly answer the query             |
 | **Implementation Dispatch** | ONLY dispatch @explore and @research for ANALYSIS — never for implementation          |
 | **Missing Sections**        | ALL 6 Context Package sections must be present in every output                        |
@@ -356,8 +356,8 @@ When the orchestrator specifies `Output Size: summary-only` or `minimal`, compre
 
 ### Complementary Agents
 
-| Agent     | File                          | Relationship                                                                          |
-| --------- | ----------------------------- | ------------------------------------------------------------------------------------- |
+| Agent     | File                          | Relationship                                                                            |
+| --------- | ----------------------------- | --------------------------------------------------------------------------------------- |
 | @research | `.opencode/agent/research.md` | Deeper alternative — when @context finds complexity requiring full 9-step investigation |
 | @general  | Built-in                      | Implementation agent — uses @context's findings to write code                           |
 | @speckit  | `.opencode/agent/speckit.md`  | Spec documentation — uses @context's findings for spec folder creation                  |

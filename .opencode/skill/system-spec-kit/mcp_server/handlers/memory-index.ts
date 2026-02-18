@@ -21,6 +21,8 @@ import * as memoryParser from '../lib/parsing/memory-parser';
 import * as embeddings from '../lib/providers/embeddings';
 import * as triggerMatcher from '../lib/parsing/trigger-matcher';
 import * as incrementalIndex from '../lib/storage/incremental-index';
+import { loadSkillRefConfig } from '../lib/config/skill-ref-config';
+import type { SkillRefConfig } from '../lib/config/skill-ref-config';
 
 // REQ-019: Standardized Response Structure
 import { createMCPSuccessResponse, createMCPErrorResponse } from '../lib/response/envelope';
@@ -217,6 +219,7 @@ interface ScanArgs {
   includeConstitutional?: boolean;
   includeReadmes?: boolean;
   includeSpecDocs?: boolean;
+  includeSkillRefs?: boolean;
   incremental?: boolean;
 }
 
@@ -344,7 +347,95 @@ async function findProjectReadmes(workspaceRoot: string): Promise<string[]> {
 }
 
 /* ---------------------------------------------------------------
-   7. MEMORY INDEX SCAN HANDLER
+   7. SKILL REFERENCE FILE DISCOVERY (Source #6)
+--------------------------------------------------------------- */
+
+/**
+ * Find reference and asset files from configured workflows-code--* skills.
+ * Source #6: Skill References & Assets.
+ * Only scans skills listed in config.jsonc skillReferenceIndexing.indexedSkills.
+ */
+function findSkillReferenceFiles(workspacePath: string): string[] {
+  // Feature flag: allow opt-out
+  if (process.env.SPECKIT_INDEX_SKILL_REFS === 'false') {
+    return [];
+  }
+
+  const config: SkillRefConfig = loadSkillRefConfig();
+  if (!config.enabled || config.indexedSkills.length === 0) {
+    return [];
+  }
+
+  const results = new Set<string>();
+  const skillDir = path.join(workspacePath, '.opencode', 'skill');
+
+  if (!fs.existsSync(skillDir)) return [];
+
+  const skillRoot = path.resolve(skillDir);
+  const skillRootPrefix = `${skillRoot}${path.sep}`;
+
+  const extensionSet = new Set(config.fileExtensions.map((e: string) => e.toLowerCase()));
+
+  for (const skillName of config.indexedSkills) {
+    const skillPath = path.resolve(skillRoot, skillName);
+    if (!skillPath.startsWith(skillRootPrefix)) {
+      console.warn(`[skill-ref-index] Unsafe skill path in config ignored: ${skillName}`);
+      continue;
+    }
+
+    if (!fs.existsSync(skillPath)) {
+      console.warn(`[skill-ref-index] Configured skill not found: ${skillName}`);
+      continue;
+    }
+
+    const skillPathPrefix = `${skillPath}${path.sep}`;
+
+    for (const subDir of config.indexDirs) {
+      const targetDir = path.resolve(skillPath, subDir);
+      if (!targetDir.startsWith(skillPathPrefix)) {
+        console.warn(`[skill-ref-index] Unsafe indexDir ignored for skill ${skillName}: ${subDir}`);
+        continue;
+      }
+
+      if (!fs.existsSync(targetDir)) continue;
+
+      function walkDir(dir: string, depth: number = 0): void {
+        if (depth > 10) return;
+        try {
+          const entries = fs.readdirSync(dir, { withFileTypes: true });
+          for (const entry of entries) {
+            if (entry.isSymbolicLink()) continue;
+            const fullPath = path.join(dir, entry.name);
+            const resolvedPath = path.resolve(fullPath);
+            if (!resolvedPath.startsWith(skillPathPrefix)) continue;
+
+            if (entry.isDirectory()) {
+              if (entry.name.startsWith('.') || entry.name === 'node_modules') continue;
+              walkDir(resolvedPath, depth + 1);
+            } else if (entry.isFile()) {
+              const ext = path.extname(entry.name).toLowerCase();
+              if (extensionSet.has(ext)) {
+                // Skip README files (already handled by findSkillReadmes)
+                if (!isReadmeFileName(entry.name)) {
+                  results.add(resolvedPath);
+                }
+              }
+            }
+          }
+        } catch {
+          // Skip unreadable directories
+        }
+      }
+
+      walkDir(targetDir);
+    }
+  }
+
+  return Array.from(results).sort();
+}
+
+/* ---------------------------------------------------------------
+   8. MEMORY INDEX SCAN HANDLER
 --------------------------------------------------------------- */
 
 /** Handle memory_index_scan tool - scans and indexes memory files with incremental support */
@@ -355,6 +446,7 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
     includeConstitutional: include_constitutional = true,
     includeReadmes: include_readmes = true,
     includeSpecDocs: include_spec_docs = true,
+    includeSkillRefs: include_skill_refs = true,
     incremental = true
   } = args;
 
@@ -396,7 +488,8 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
   const readmeFiles: string[] = include_readmes ? findSkillReadmes(workspacePath) : [];
   const projectReadmeFiles: string[] = include_readmes ? await findProjectReadmes(workspacePath) : [];
   const specDocFiles: string[] = include_spec_docs ? findSpecDocuments(workspacePath, { specFolder: spec_folder }) : [];
-  const files = [...specFiles, ...constitutionalFiles, ...readmeFiles, ...projectReadmeFiles, ...specDocFiles];
+  const skillRefFiles: string[] = include_skill_refs ? findSkillReferenceFiles(workspacePath) : [];
+  const files = [...specFiles, ...constitutionalFiles, ...readmeFiles, ...projectReadmeFiles, ...specDocFiles, ...skillRefFiles];
 
   if (files.length === 0) {
     await setLastScanTime(now);
@@ -645,9 +738,11 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
         skillReadmes: readmeFiles.length,
         projectReadmes: projectReadmeFiles.length,
         specDocFiles: specDocFiles.length,
+        skillRefFiles: skillRefFiles.length,
         totalFiles: files.length,
         includeReadmes: include_readmes,
         includeSpecDocs: include_spec_docs,
+        includeSkillRefs: include_skill_refs,
         workspacePath
       }
     },
@@ -666,6 +761,7 @@ export {
   findSkillReadmes,
   findProjectReadmes,
   findSpecDocuments,
+  findSkillReferenceFiles,
   detectSpecLevel,
 };
 
@@ -676,6 +772,7 @@ const find_constitutional_files = findConstitutionalFiles;
 const find_skill_readmes = findSkillReadmes;
 const find_project_readmes = findProjectReadmes;
 const find_spec_documents = findSpecDocuments;
+const find_skill_reference_files = findSkillReferenceFiles;
 const detect_spec_level = detectSpecLevel;
 
 export {
@@ -685,5 +782,6 @@ export {
   find_skill_readmes,
   find_project_readmes,
   find_spec_documents,
+  find_skill_reference_files,
   detect_spec_level,
 };
