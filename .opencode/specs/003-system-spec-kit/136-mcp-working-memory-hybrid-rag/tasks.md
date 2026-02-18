@@ -355,6 +355,7 @@ This section maps root tasks to dedicated subfolder planning packages.
 
 Sync requirement:
 - Keep this mapping aligned with package-local `tasks.md` files in the same commit.
+- Keep requirement ownership aligned with root `plan.md` section `2.7. REQUIREMENT OWNERSHIP MATRIX (FROZEN)`; `REQ-014` and `REQ-017` are owned by package `001-foundation-phases-0-1-1-5/` and consumed by package `002-extraction-rollout-phases-2-3/`.
 <!-- /ANCHOR:phase-package-tasks -->
 
 ---

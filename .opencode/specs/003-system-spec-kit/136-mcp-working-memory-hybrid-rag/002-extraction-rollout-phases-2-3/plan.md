@@ -71,6 +71,7 @@ Implement extraction and causal ranking features, then execute controlled rollou
 ## 6. Dependencies
 
 - Requires package `../001-foundation-phases-0-1-1-5/` hard-gate success.
+- Ownership lock: `REQ-014` and `REQ-017` are accepted in package 001; this package consumes hook and calibration outputs without duplicating ownership.
 - Requires root phase alignment in `../plan.md` and `../tasks.md`.
 - Consumes quality-gate outputs from package `../003-memory-quality-qp-0-4/` when available.
 <!-- /ANCHOR:dependencies -->

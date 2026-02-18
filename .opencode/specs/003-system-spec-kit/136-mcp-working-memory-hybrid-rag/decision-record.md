@@ -81,8 +81,8 @@ Target system (Spec Kit Memory MCP) is TypeScript-based with SQLite + vec0 exten
 **Risks**:
 | Risk | Impact | Mitigation |
 |------|--------|------------|
-| SQLite CTE performance degrades at scale >10K docs | Medium | Monitor p95 latency, add causal_edges indexing, limit 2-hop depth, defer graph sub-index to Phase 3 only if measured bottleneck |
-| Missing Neo4j advanced graph algorithms (PageRank, community detection) | Low | Not required for current use case (simple 2-hop traversal sufficient), can add in Phase 3 if user research validates need |
+| SQLite CTE performance degrades at scale >10K docs | Medium | Monitor p95 latency, add causal_edges indexing, limit 2-hop depth, defer graph sub-index to a Phase 3+ follow-up spec only if measured bottleneck |
+| Missing Neo4j advanced graph algorithms (PageRank, community detection) | Low | Not required for current use case (simple 2-hop traversal sufficient), can add in a Phase 3+ follow-up spec if user research validates need |
 <!-- /ANCHOR:adr-001-consequences -->
 
 ---
@@ -96,7 +96,7 @@ Target system (Spec Kit Memory MCP) is TypeScript-based with SQLite + vec0 exten
 | 2 | **Beyond Local Maxima?** | PASS | Explored 4 alternatives (Python microservice, Neo4j+Qdrant, embedded Neo4j, TypeScript-only), evaluated trade-offs |
 | 3 | **Sufficient?** | PASS | Simplest approach that achieves goal: SQLite CTE sufficient for scale <10K, no external services needed |
 | 4 | **Fits Goal?** | PASS | On critical path: Automation goals (zero-config, embedded) require eliminating service dependencies |
-| 5 | **Open Horizons?** | PASS | Long-term aligned: Can add Phase 3 graph sub-index if measured bottleneck, TypeScript-first principle maintainable |
+| 5 | **Open Horizons?** | PASS | Long-term aligned: Can add graph sub-index in a Phase 3+ follow-up spec if measured bottleneck, TypeScript-first principle maintainable |
 
 **Checks Summary**: 5/5 PASS
 <!-- /ANCHOR:adr-001-five-checks -->
@@ -157,7 +157,7 @@ Target: Rank correlation >= 0.90 (stability), Top-5 MRR >= 0.95x baseline (no de
 
 **Summary**: Hard cap all boosts (session-attention + causal-neighbors) at 0.20 multiplier applied post-RRF fusion, enforced at code level.
 
-**Details**: Calculate combined boost `sessionBoost + causalBoost`, apply `min(combinedBoost, 0.20)` cap, compute final score `finalScore = rrfScore * (1 + boundedBoost)`. Enforcement in `memory-search.ts` after RRF fusion but before final ranking. Contract tests verify cap enforced (test case: 0.30 boost -> capped to 0.20).
+**Details**: Calculate combined boost `sessionBoost + causalBoost`, apply `min(combinedBoost, 0.20)` cap, compute final score `finalScore = result.score * (1 + boundedBoost)` where `result.score` is `FusionResult.score` from `rrf-fusion.ts`, accessed as `.score` in the handler. Enforcement in `memory-search.ts` after RRF fusion but before final ranking. Contract tests verify cap enforced (test case: 0.30 boost -> capped to 0.20).
 <!-- /ANCHOR:adr-002-decision -->
 
 ---
@@ -172,7 +172,7 @@ Target: Rank correlation >= 0.90 (stability), Top-5 MRR >= 0.95x baseline (no de
 | Configurable cap | Allows tuning per deployment, advanced users can adjust | Adds complexity (config drift risk), requires A/B testing for each value, no clear default, scope creep | 5/10 |
 | Soft cap (sigmoid) | Smooth decay prevents hard cutoff, mathematical elegance | More complex to reason about, harder to debug (non-linear), unclear how to set sigmoid parameters, over-engineering | 4/10 |
 
-**Why Chosen**: Hard cap 0.20 provides simplest, most predictable behavior while meeting stability targets (rank correlation >= 0.90). Can add configurable cap in Phase 3 if user research validates need, but YAGNI principle suggests defer until proven necessary.
+**Why Chosen**: Hard cap 0.20 provides simplest, most predictable behavior while meeting stability targets (rank correlation >= 0.90). Can add configurable cap in a Phase 3+ follow-up spec if user research validates need, but YAGNI principle suggests defer until proven necessary.
 <!-- /ANCHOR:adr-002-alternatives -->
 
 ---
@@ -189,7 +189,7 @@ Target: Rank correlation >= 0.90 (stability), Top-5 MRR >= 0.95x baseline (no de
 
 **Negative**:
 - Limits maximum boost effectiveness for recent highly-relevant items - Mitigation: 20% increase is substantial (0.70 RRF -> 0.84 final), sufficient for most cases, tune base boost values (0.15 session, 0.05/hop causal) if needed
-- May under-weight recent work in edge cases (recent item + strong causal connections capped at 0.20 combined) - Mitigation: Shadow evaluation measures impact, can adjust cap to 0.25 in Phase 3 if data shows benefit
+- May under-weight recent work in edge cases (recent item + strong causal connections capped at 0.20 combined) - Mitigation: Shadow evaluation measures impact, can adjust cap to 0.25 in a Phase 3+ follow-up spec if data shows benefit
 
 **Risks**:
 | Risk | Impact | Mitigation |
@@ -209,7 +209,7 @@ Target: Rank correlation >= 0.90 (stability), Top-5 MRR >= 0.95x baseline (no de
 | 2 | **Beyond Local Maxima?** | PASS | Explored 4 alternatives (unbounded, configurable cap, soft cap sigmoid, hard cap 0.20), evaluated trade-offs |
 | 3 | **Sufficient?** | PASS | Simplest approach: Hard cap 0.20 achieves stability goal without over-engineering (sigmoid, config system) |
 | 4 | **Fits Goal?** | PASS | On critical path: Rank stability (>= 0.90 correlation) is P0 requirement (REQ-001), cap enforces stability |
-| 5 | **Open Horizons?** | PASS | Long-term aligned: Can make configurable in Phase 3 if user research validates need, start simple per YAGNI |
+| 5 | **Open Horizons?** | PASS | Long-term aligned: Can make configurable in a Phase 3+ follow-up spec if user research validates need, start simple per YAGNI |
 
 **Checks Summary**: 5/5 PASS
 <!-- /ANCHOR:adr-002-five-checks -->
@@ -230,10 +230,10 @@ const sessionBoost = getSessionAttentionBoost(sessionId, result.id);
 const causalBoost = getCausalNeighborBoost(result.id, causalEdges);
 const combinedBoost = sessionBoost + causalBoost;
 const boundedBoost = Math.min(combinedBoost, 0.20); // Hard cap
-result.finalScore = result.rrfScore * (1 + boundedBoost);
+result.finalScore = result.score * (1 + boundedBoost);
 ```
 
-**Rollback**: Remove boost calculation calls, return `result.rrfScore` as `result.finalScore` (no multiplier), verify baseline ranking restored
+**Rollback**: Remove boost calculation calls, return `result.score` as `result.finalScore` (no multiplier), verify baseline ranking restored
 <!-- /ANCHOR:adr-002-impl -->
 <!-- /ANCHOR:adr-002 -->
 
@@ -332,7 +332,7 @@ Analysis of `opencode-working-memory` shows event-based approach enables session
 | 2 | **Beyond Local Maxima?** | PASS | Explored 4 alternatives (event-based, time-based, hybrid, fixed TTL), evaluated trade-offs, event-based best fits goal |
 | 3 | **Sufficient?** | PASS | Simplest approach that solves pause/resume: Event counter + mention boost, no complex hybrid logic |
 | 4 | **Fits Goal?** | PASS | On critical path: Session continuity (SC-005, user satisfaction >= 4.0/5.0) requires pause/resume support |
-| 5 | **Open Horizons?** | PASS | Long-term aligned: Event-based enables future multi-session context fusion (Phase 3), extensible design |
+| 5 | **Open Horizons?** | PASS | Long-term aligned: Event-based enables future multi-session context fusion in a Phase 3+ follow-up spec, extensible design |
 
 **Checks Summary**: 5/5 PASS
 <!-- /ANCHOR:adr-003-five-checks -->
@@ -426,7 +426,7 @@ Future-proof for user configuration (JSON file, environment variables) without c
 
 | Option | Pros | Cons | Score |
 |--------|------|------|-------|
-| **Schema-driven rules (CHOSEN)** | Declarative (easy to read), extensible (add rules without code changes), future-proof (JSON config in Phase 3), testable (rule matching isolated) | Schema validation overhead (~1ms per tool), debugging less obvious than if/else (mitigated by logging) | 9/10 |
+| **Schema-driven rules (CHOSEN)** | Declarative (easy to read), extensible (add rules without code changes), future-proof (JSON config in a Phase 3+ follow-up spec), testable (rule matching isolated) | Schema validation overhead (~1ms per tool), debugging less obvious than if/else (mitigated by logging) | 9/10 |
 | Hardcoded tool names | Simple if/else, obvious logic flow, no validation overhead | Brittle (breaks on tool renames), unmaintainable (20+ branches), not extensible (every new tool = code change), violates open/closed principle | 3/10 |
 | LLM-based extraction | Maximum flexibility (natural language rules), no pattern maintenance | Latency (>100ms vs <5ms for rules), non-determinism (same input -> different outputs), token cost, overkill for simple matching | 2/10 |
 | Plugin system (user code) | Ultimate extensibility (users write extraction logic) | Security risk (arbitrary code execution), testing burden (user code quality unknown), complexity overhead (plugin loader, sandboxing) | 4/10 |
@@ -441,9 +441,9 @@ Future-proof for user configuration (JSON file, environment variables) without c
 
 **Positive**:
 - Declarative rules (easy to read, self-documenting, no complex if/else chains)
-- Extensible (add rules without code changes, JSON config path in Phase 3)
+- Extensible (add rules without code changes, JSON config path in a Phase 3+ follow-up spec)
 - Testable (rule matching isolated, unit tests straightforward)
-- Future-proof (users can add custom rules via config file in Phase 3 if validated need)
+- Future-proof (users can add custom rules via config file in a Phase 3+ follow-up spec if validated need)
 
 **Negative**:
 - Schema validation overhead (~1ms per tool execution via Zod parse) - Mitigation: <5ms target acceptable (NFR-P03), validation cached after first parse, negligible vs tool execution time (Read 10ms+, Grep 50ms+, Bash 100ms+)
@@ -467,7 +467,7 @@ Future-proof for user configuration (JSON file, environment variables) without c
 | 2 | **Beyond Local Maxima?** | PASS | Explored 4 alternatives (schema-driven, hardcoded, LLM-based, plugin system), evaluated trade-offs, schema-driven best balance |
 | 3 | **Sufficient?** | PASS | Simplest approach: Declarative rules + priority matching, no LLM overhead, no plugin complexity |
 | 4 | **Fits Goal?** | PASS | On critical path: Extraction automation (REQ-007) requires pattern matching, schema enables JSON config future path |
-| 5 | **Open Horizons?** | PASS | Long-term aligned: JSON config path in Phase 3 if user research validates, extensible without breaking changes |
+| 5 | **Open Horizons?** | PASS | Long-term aligned: JSON config path in a Phase 3+ follow-up spec if user research validates, extensible without breaking changes |
 
 **Checks Summary**: 5/5 PASS
 <!-- /ANCHOR:adr-004-five-checks -->
@@ -609,7 +609,7 @@ Apply all patterns to extracted summary string. Replace each match in-place with
 | 2 | **Beyond Local Maxima?** | PASS | Explored 5 alternatives (no redaction, denylist, allowlist, LLM, external vault), denylist best balance |
 | 3 | **Sufficient?** | PASS | Simplest approach: Regex denylist covers known patterns, <2ms overhead, no new dependencies |
 | 4 | **Fits Goal?** | PASS | On critical path: Secret safety is P0 requirement (NFR-S03), gate blocks insertion pipeline |
-| 5 | **Open Horizons?** | PASS | Long-term aligned: Denylist extensible (add patterns), can add entropy-based heuristics in Phase 3 if false negative rate measured |
+| 5 | **Open Horizons?** | PASS | Long-term aligned: Denylist extensible (add patterns), can add entropy-based heuristics in a Phase 3+ follow-up spec if false negative rate measured |
 
 **Checks Summary**: 5/5 PASS
 <!-- /ANCHOR:adr-005-five-checks -->
@@ -783,7 +783,7 @@ The extraction adapter must evaluate patterns against potentially large tool out
 | # | Check | Result | Evidence |
 |---|-------|--------|----------|
 | 1 | **Necessary?** | PASS | Solving ACTUAL need NOW: Schema-driven rules (ADR-004) allow user patterns — without validation, ReDoS is real risk on large tool outputs (NFR-S04) |
-| 2 | **Beyond Local Maxima?** | PASS | Explored 5 alternatives (no validation, static only, runtime only, two-layer, disable user patterns), two-layer best coverage |
+| 2 | **Beyond Local Maxima?** | PASS | Explored 5 alternatives (no validation, static only, runtime only, two-layer, disable user patterns), selected startup static validation as best fit under TypeScript-only + no-new-dependency constraints |
 | 3 | **Sufficient?** | PASS | Simplest approach: TypeScript polynomial-time check at startup — no external dependency, no custom parser, no sandboxed eval |
 | 4 | **Fits Goal?** | PASS | On critical path: Extraction adapter (REQ-007) + schema rules (ADR-004) require safe regex validation before deployment |
 | 5 | **Open Horizons?** | PASS | Long-term aligned: Can upgrade to `safe-regex` package or Hyperscan bindings if false negative rate too high, same interface contract |

@@ -142,9 +142,9 @@
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 49 | [ ]/49 |
-| P1 Items | 76 | [ ]/76 |
-| P2 Items | 15 | [ ]/15 |
+| P0 Items | 47 | [ ]/47 |
+| P1 Items | 71 | [ ]/71 |
+| P2 Items | 16 | [ ]/16 |
 
 **Verification Date**: TBD
 <!-- /ANCHOR:summary -->
@@ -424,8 +424,8 @@
 ---
 
 <!--
-Level 3+ checklist (v1.4 — 2026-02-18) - Full verification + architecture + metrics + memory quality
-- 140 total verification items (49 P0, 76 P1, 15 P2) including all L3+ addendums and quality gates
+Level 3+ checklist (v1.5 — 2026-02-18) - Full verification + architecture + metrics + memory quality
+- 134 total verification items (47 P0, 71 P1, 16 P2) including all L3+ addendums and quality gates
 - Phase-specific sections (Phase 0: CHK-125-129, Phase 1: CHK-130-139, Phase 1.5: CHK-155-159b, Phase 2: CHK-140-154, Phase 3: CHK-160-166)
 - Success criteria mapped to CHK items (CHK-180-184 automation; CHK-203-213 quality)
 - Memory quality section (CHK-190-212): benchmark suite, validator V1-V5, contamination filter, decision fallback suppression, quality score
@@ -433,7 +433,8 @@ Level 3+ checklist (v1.4 — 2026-02-18) - Full verification + architecture + me
 - Evidence requirements explicit ([Evidence: file path])
 - Explicit P0 and P1 section headers for all major sections (SECTIONS_PRESENT compliance)
 - v1.4: Added CHK-190-212 (memory quality gates from research.md findings); updated summary counts (42→49 P0, 58→73 P1, 13→15 P2)
-- v1.4.1: Added CHK-213-216 for phase package documentation verification; updated P1 summary count 73→76
+- v1.4.1: Added CHK-213-216 for phase package documentation verification
+- v1.5: Reconciled summary totals with current checklist entries (P0/P1/P2 now 47/71/16)
 Mark [x] with evidence when verified
 P0 must complete, P1 need approval to defer
 -->

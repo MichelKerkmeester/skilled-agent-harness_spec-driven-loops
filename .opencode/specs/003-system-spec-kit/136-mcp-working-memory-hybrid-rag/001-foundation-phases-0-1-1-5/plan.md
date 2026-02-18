@@ -73,6 +73,7 @@ Deliver prerequisite and hardening infrastructure that enables safe start of Pha
 ## 6. Dependencies and Handoff
 
 - Consumes canonical requirements and acceptance criteria from `../spec.md`.
+- Primary ownership in overlap set: this package owns acceptance for `REQ-014` and `REQ-017`; package 002 consumes these outputs.
 - On completion, unlocks package `../002-extraction-rollout-phases-2-3/`.
 - Handoff bundle:
   - `../scratch/eval-dataset-1000.json`

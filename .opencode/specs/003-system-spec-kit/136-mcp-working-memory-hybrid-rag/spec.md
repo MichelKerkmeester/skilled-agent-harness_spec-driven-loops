@@ -53,7 +53,7 @@ Automate session continuity and context management through hook-based extraction
 - **Testing**: Shadow evaluation (1000 queries, expanded at Phase 1.5 hardening gate), A/B testing with rank correlation >= 0.90, pressure simulation (50 sessions), integration tests for extraction rules, redaction gate unit tests, pre-implementation redaction calibration on 50 real Bash outputs (false-positive rate <= 15%)
 
 ### Out of Scope
-- Phase 3 capabilities (graph sub-index, multi-session fusion, predictive pre-loading) - only if Phase 1+2 plateau and bottlenecks are measured
+- Phase 3+ expansion capabilities (graph sub-index, multi-session fusion, predictive pre-loading) - explicitly deferred to a follow-up spec after this spec's rollout phase completes and Phase 1+2 bottlenecks are measured
 - External service dependencies (Neo4j, Qdrant, Python runtime) - TypeScript-only rule
 - GraphRAG semantic search (already have vec0 extension) - reuse existing infrastructure
 
@@ -156,8 +156,8 @@ To split execution planning by phase while keeping one canonical spec, this fold
 
 | Subfolder | Coverage | Root Mapping | Dependency |
 |-----------|----------|--------------|------------|
-| `001-foundation-phases-0-1-1-5/` | Phase 0, Phase 1, Phase 1.5 hardening gate | REQ-001-006, REQ-009-012, REQ-014-017; tasks `T000a-T028`, `T027a-T027o`; checks `CHK-125-139`, `CHK-155-159b` | Blocks Phase 2 package until hardening gate passes |
-| `002-extraction-rollout-phases-2-3/` | Phase 2 extraction + Phase 3 rollout | REQ-007-010, REQ-013-014, REQ-017; tasks `T029-T070`; checks `CHK-140-166` | Depends on package 001 hardening sign-off |
+| `001-foundation-phases-0-1-1-5/` | Phase 0, Phase 1, Phase 1.5 hardening gate | REQ-001-006, REQ-009-012, REQ-014-017 (**primary owner for REQ-014 and REQ-017**); tasks `T000a-T028`, `T027a-T027o`; checks `CHK-125-139`, `CHK-155-159b` | Blocks Phase 2 package until hardening gate passes |
+| `002-extraction-rollout-phases-2-3/` | Phase 2 extraction + Phase 3 rollout | REQ-007-010, REQ-013 (**consumes REQ-014 and REQ-017 outputs from package 001**); tasks `T029-T070`; checks `CHK-140-166` | Depends on package 001 hardening sign-off |
 | `003-memory-quality-qp-0-4/` | Memory-quality workstream QP-0 through QP-4 | REQ-018-023; tasks `TQ001-TQ047`; checks `CHK-190-212` | Can start in parallel; QP-4 runs after QP-2/QP-3 stabilize |
 | `research/` | Source research artifacts (analysis + recommendations) | Inputs for root spec/plan and package planning; no execution task IDs | Read-only evidence input; not an implementation package |
 
@@ -167,6 +167,7 @@ Rules for this split:
 - Each phase package is Level 3+ but intentionally includes only `spec.md`, `plan.md`, `tasks.md`, and `checklist.md` (no package-local `decision-record.md` or `implementation-summary.md`).
 - `research/` stores source-analysis inputs referenced by root planning docs.
 - All packages are planning-only at this stage; implementation has not started.
+- Requirement ownership is frozen by root `plan.md` section "2.7. REQUIREMENT OWNERSHIP MATRIX (FROZEN)": one primary owner package per requirement; downstream packages consume outputs but do not duplicate acceptance ownership.
 <!-- /ANCHOR:phase-doc-map -->
 
 ---
@@ -481,6 +482,13 @@ Rules for this split:
 <!-- ANCHOR:changelog -->
 ## 16. CHANGE LOG
 
+### v1.5 (2026-02-18)
+**Planning alignment fixes (ownership + deferral + taxonomy consistency)**:
+- **Ownership freeze**: Locked single-owner requirement mapping for package overlaps; `001-foundation-phases-0-1-1-5/` is primary owner for `REQ-014` and `REQ-017`, `002-extraction-rollout-phases-2-3/` consumes those outputs (no duplicate ownership).
+- **Phase policy lock**: Resolved Phase 3 expansion ambiguity; graph sub-index, multi-session fusion, and predictive pre-loading are now explicitly deferred to a separate Phase 3+ follow-up spec.
+- **Taxonomy consistency**: Corrected evaluation dataset coverage wording to intent taxonomy (`add_feature`, `fix_bug`, `refactor`, `understand`, `find_spec`) instead of retrieval mode labels.
+- **Cross-doc sync**: Updated package mappings and synchronization rules to reference the frozen ownership matrix in root planning docs.
+
 ### v1.4 (2026-02-18)
 **Research findings incorporated — memory content quality requirements**:
 - **Research**: Added §3.5 "Research Findings" section summarizing `research.md` 50-file audit: population context (187 files, 50 sampled), quantitative rates (60% `[N/A]`, 66% generic fallback, 34% empty `trigger_phrases`), quality bands (50% C+D below production bar), root causes RC1–RC5, and prioritized recommendations (P0/P1/P2 with acceptance metrics).
@@ -547,12 +555,12 @@ Rules for this split:
 <!-- ANCHOR:questions -->
 ## 17. OPEN QUESTIONS
 
-- Should Phase 3 (graph sub-index, multi-session fusion) be explicitly deferred to separate spec folder, or kept as decision gate in this spec?
+- ~~Should Phase 3 (graph sub-index, multi-session fusion) be explicitly deferred to separate spec folder, or kept as decision gate in this spec?~~ **RESOLVED (v1.5)**: Defer all Phase 3+ expansion capabilities (graph sub-index, multi-session fusion, predictive pre-loading) to a separate follow-up spec after this spec's rollout phase completes and Phase 1+2 bottlenecks are measured.
 - ~~What is the target threshold for "acceptable" rank correlation degradation (0.90 vs 0.95)?~~ **RESOLVED**: REQ-001 specifies >= 0.90; consistent across spec, plan, and checklist.
-- ~~Should extraction rules be user-configurable via config file, or hardcoded with tuning via code changes only?~~ **RESOLVED**: ADR-004 decides schema-driven rules hardcoded in TypeScript now, JSON config path deferred to Phase 3 if validated need.
+- ~~Should extraction rules be user-configurable via config file, or hardcoded with tuning via code changes only?~~ **RESOLVED**: ADR-004 decides schema-driven rules hardcoded in TypeScript now; JSON config path is deferred to a Phase 3+ follow-up spec if validated need.
 - ~~What is the authoritative source for `call_id` in the tool dispatcher?~~ **RESOLVED**: Inspect `dispatchTool()` return signature in `tools/index.ts`; if no `call_id` returned, generate UUID at hook call site in `context-server.ts` before passing to `afterToolCallbacks`.
 - ~~Should the redaction denylist be externally configurable (per-project), or kept as a hardcoded secure default?~~ **RESOLVED**: ADR-005 decides hardcoded denylist (not user-configurable) to prevent misconfiguration.
-- ~~Evaluation dataset bootstrap: Is 1000 queries sufficient for the shadow set, and should ground-truth relevance judgments be human-labeled or derived from existing memory feedback signals?~~ **RESOLVED (v1.3)**: Staged approach adopted — Phase 0 gate uses 100 real queries from memory_search logs with derived baseline (from existing RRF ranking as proxy ground truth) plus targeted human review of ~10% sample; expansion to 1000 queries is the Phase 1.5 hardening gate. 100-query coverage sanity check verifies at least 5 queries per intent type (auto, quick, deep, focused, resume). Human labeling deferred until Phase 1.5 when more real queries are available.
+- ~~Evaluation dataset bootstrap: Is 1000 queries sufficient for the shadow set, and should ground-truth relevance judgments be human-labeled or derived from existing memory feedback signals?~~ **RESOLVED (v1.3, clarified v1.5)**: Staged approach adopted — Phase 0 gate uses 100 real queries from memory_search logs with derived baseline (from existing RRF ranking as proxy ground truth) plus targeted human review of ~10% sample; expansion to 1000 queries is the Phase 1.5 hardening gate. 100-query coverage sanity check verifies at least 5 queries per intent type (`add_feature`, `fix_bug`, `refactor`, `understand`, `find_spec`). Human labeling deferred until Phase 1.5 when more real queries are available.
 <!-- /ANCHOR:questions -->
 
 ---

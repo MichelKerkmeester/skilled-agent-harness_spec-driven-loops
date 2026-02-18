@@ -126,7 +126,27 @@ Planning notes:
 - Sync rule: when root IDs change, package docs must be updated in the same change set.
 - Package-local `decision-record.md` and `implementation-summary.md` are intentionally omitted; root-level records remain canonical.
 - `research/` subfolder is evidence input and remains outside execution task mapping.
+- Requirement ownership is frozen in section 2.7 below; overlapping requirements must not have multiple primary owners.
 <!-- /ANCHOR:phase-package-map -->
+
+---
+
+<!-- ANCHOR:req-ownership -->
+## 2.7. REQUIREMENT OWNERSHIP MATRIX (FROZEN)
+
+Single-owner rule: each requirement has one primary package owner. Other packages may consume outputs, but do not duplicate acceptance ownership.
+
+| Requirement | Primary Owner Package | Supporting Package(s) | Ownership Rule |
+|-------------|------------------------|------------------------|----------------|
+| `REQ-014` (post-dispatch hook pipeline operational) | `001-foundation-phases-0-1-1-5/` | `002-extraction-rollout-phases-2-3/` | Package 001 owns interface readiness and acceptance. Package 002 only registers extraction against the approved hook contract. |
+| `REQ-017` (redaction calibration before rollout) | `001-foundation-phases-0-1-1-5/` | `002-extraction-rollout-phases-2-3/` | Package 001 owns calibration gate and FP threshold acceptance. Package 002 consumes calibrated patterns during implementation. |
+| `REQ-013` (provenance metadata on extracted items) | `002-extraction-rollout-phases-2-3/` | None | Owned and accepted only in extraction implementation package. |
+| `REQ-018-023` (memory quality stream) | `003-memory-quality-qp-0-4/` | `002-extraction-rollout-phases-2-3/` (consumer) | Package 003 owns quality-gate behavior and KPI acceptance; rollout package consumes resulting quality signals. |
+
+Phase terminology lock:
+- **Phase 3** in this spec means rollout only (`T056-T070`).
+- Graph sub-index, multi-session fusion, and predictive pre-loading are treated as **Phase 3+ expansion** and are deferred to a separate follow-up spec after this rollout completes and metrics justify expansion.
+<!-- /ANCHOR:req-ownership -->
 
 ---
 
@@ -492,7 +512,7 @@ Phase 0 (Prerequisites) ──────────────────�
 
 **Alternatives Rejected**:
 - **Unbounded boost**: Rejected due to score instability risk, unpredictable ranking changes
-- **Configurable cap**: Rejected for initial release (adds complexity), can add in Phase 3 if needed
+- **Configurable cap**: Rejected for initial release (adds complexity), can add in a Phase 3+ follow-up spec if needed
 
 ---
 
@@ -583,7 +603,7 @@ If a task is blocked:
    - Technical: Solution implemented and unit tests pass
    - Validation: Metrics meet targets OR target adjusted with approval (document in decision-record.md)
 
-4. **Escalation threshold**: If blocked >2 days, escalate to Tech Lead for decision (defer to Phase 3, adjust scope, or allocate additional resources)
+4. **Escalation threshold**: If blocked >2 days, escalate to Tech Lead for decision (defer to a Phase 3+ follow-up spec, adjust scope, or allocate additional resources)
 
 ### Tier 1: Sequential Foundation (Planning)
 **Files**: spec.md (sections 1-9), plan.md (sections 1-3), tasks.md (phase structure)

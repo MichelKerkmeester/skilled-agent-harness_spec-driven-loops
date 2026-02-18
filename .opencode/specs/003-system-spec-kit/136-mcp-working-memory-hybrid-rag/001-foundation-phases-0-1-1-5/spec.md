@@ -52,10 +52,10 @@ Primary outcome: produce reliable go/no-go artifacts for Phase 2.
 
 | Priority | Requirement IDs | Package Interpretation |
 |----------|------------------|------------------------|
-| P0 | `REQ-001-005`, `REQ-011-012`, `REQ-016-017` | Must pass before Phase 2 can start |
-| P1 | `REQ-006`, `REQ-009-010`, `REQ-014-015` | Required unless user-approved deferral |
+| P0 | `REQ-001-005`, `REQ-011-012`, `REQ-016-017` | Must pass before Phase 2 can start; this package is primary owner for `REQ-017` |
+| P1 | `REQ-006`, `REQ-009-010`, `REQ-014-015` | Required unless user-approved deferral; this package is primary owner for `REQ-014` |
 
-This package does not redefine requirements; it scopes root requirements to foundation execution.
+This package does not redefine requirements; it scopes root requirements to foundation execution and owns acceptance for overlapping requirements `REQ-014` and `REQ-017`.
 <!-- /ANCHOR:requirements-map -->
 
 ---

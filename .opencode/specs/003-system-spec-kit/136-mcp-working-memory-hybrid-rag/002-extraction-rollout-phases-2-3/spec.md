@@ -36,7 +36,7 @@ Primary outcome: safe production rollout with measurable retrieval and stability
 ### In Scope
 - Phase 2 extraction adapter, redaction gate, causal boost, and prompt injection (`T029-T055`).
 - Phase 3 telemetry, rollout, and operations runbook (`T056-T070`).
-- Requirement slice: `REQ-007-010`, `REQ-013-014`, `REQ-017`.
+- Requirement slice: `REQ-007-010`, `REQ-013` (consumes `REQ-014` and `REQ-017` outputs from package `001-foundation-phases-0-1-1-5/`).
 
 ### Out of Scope
 - Foundation/hardening prerequisites from package 001.
@@ -51,10 +51,10 @@ Primary outcome: safe production rollout with measurable retrieval and stability
 
 | Priority | Requirement IDs | Package Interpretation |
 |----------|------------------|------------------------|
-| P0 | `REQ-007`, `REQ-008`, `REQ-010`, `REQ-013-014`, `REQ-017` | Must pass for extraction and rollout readiness |
+| P0 | `REQ-007`, `REQ-008`, `REQ-010`, `REQ-013` | Must pass for extraction and rollout readiness |
 | P1 | `REQ-009` | Evaluation and stability checks required unless deferred |
 
-This package uses the canonical requirements from root docs and scopes execution only.
+This package uses the canonical requirements from root docs and scopes execution only. Overlap requirements `REQ-014` and `REQ-017` are dependency-owned by package `001-foundation-phases-0-1-1-5/` and consumed here.
 <!-- /ANCHOR:requirements-map -->
 
 ---
@@ -90,6 +90,7 @@ This package uses the canonical requirements from root docs and scopes execution
 ## 6. Dependencies and Handoffs
 
 - Hard dependency: package `../001-foundation-phases-0-1-1-5/` must pass `T027o`.
+- Dependency ownership lock: `REQ-014` (hook pipeline operational) and `REQ-017` (redaction calibration gate) are accepted in package 001; this package consumes those outputs and does not duplicate ownership.
 - Soft dependency: package `../003-memory-quality-qp-0-4/` quality filtering should be available before full rollout.
 - Produces rollout artifacts consumed by root completion checks: telemetry outputs, runbook evidence, rollout logs.
 <!-- /ANCHOR:dependencies -->
