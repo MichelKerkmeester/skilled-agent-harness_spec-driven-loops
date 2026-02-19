@@ -2,15 +2,16 @@
 // MODULE: Working Memory
 // Session-based attention management
 // DECAY STRATEGY (ADR-004): This module handles SESSION-SCOPED decay
-// only (minute-scale linear: score * 0.95 per tick). It operates on
+// only (event-distance based: score * pow(0.85, eventsElapsed)). It operates on
 // the working_memory table, NOT memory_index. This is intentionally
 // independent of FSRS long-term decay — different time scale, different
 // domain (ephemeral session attention vs persistent memory scoring).
-// The T214 decay/delete race fix (floor=0.05, deleteThreshold=0.01)
-// ensures stable resting state for session memories.
+// The T214/T008 decay/delete separation (floor=0.05, deleteThreshold=0.01)
+// ensures stable resting state and explicit low-score eviction.
 // ---------------------------------------------------------------
 
 import type Database from 'better-sqlite3';
+import { isFeatureEnabled } from './rollout-policy';
 
 /* -------------------------------------------------------------
    1. CONFIGURATION
@@ -35,6 +36,12 @@ const WORKING_MEMORY_CONFIG: WorkingMemoryConfigType = {
   // T302: Removed dead cleanupIntervalMs (GAP 3) — was never wired to a timer
 };
 
+const EVENT_DECAY_FACTOR = 0.85;
+const MENTION_BOOST_FACTOR = 0.05;
+const DECAY_FLOOR = 0.05;
+const DELETE_THRESHOLD = 0.01;
+const EVENT_COUNTER_MODULUS = 2 ** 31;
+
 /* -------------------------------------------------------------
    2. SCHEMA SQL
 ----------------------------------------------------------------*/
@@ -48,6 +55,12 @@ const SCHEMA_SQL = `
     added_at TEXT DEFAULT CURRENT_TIMESTAMP,
     last_focused TEXT DEFAULT CURRENT_TIMESTAMP,
     focus_count INTEGER DEFAULT 1,
+    event_counter INTEGER NOT NULL DEFAULT 0,
+    mention_count INTEGER NOT NULL DEFAULT 0,
+    source_tool TEXT,
+    source_call_id TEXT,
+    extraction_rule_id TEXT,
+    redaction_applied INTEGER NOT NULL DEFAULT 0,
     UNIQUE(session_id, memory_id),
     FOREIGN KEY (memory_id) REFERENCES memory_index(id) ON DELETE CASCADE
   )
@@ -71,6 +84,22 @@ interface WorkingMemoryEntry {
   added_at: string;
   last_focused: string;
   focus_count: number;
+  event_counter: number;
+  mention_count: number;
+  source_tool?: string | null;
+  source_call_id?: string | null;
+  extraction_rule_id?: string | null;
+  redaction_applied?: number;
+}
+
+interface ExtractedEntryInput {
+  sessionId: string;
+  memoryId: number;
+  attentionScore: number;
+  sourceTool: string;
+  sourceCallId: string;
+  extractionRuleId: string;
+  redactionApplied: boolean;
 }
 
 interface SessionInfo {
@@ -88,6 +117,13 @@ interface SessionStats {
   maxAttention: number;
   minAttention: number;
   totalFocusEvents: number;
+}
+
+interface SessionPromptContextEntry {
+  memoryId: number;
+  title: string;
+  filePath: string;
+  attentionScore: number;
 }
 
 /* -------------------------------------------------------------
@@ -112,6 +148,28 @@ function ensureSchema(): void {
 
   try {
     db.exec(SCHEMA_SQL);
+    const wmColumns = (db.prepare('PRAGMA table_info(working_memory)').all() as Array<{ name: string }>)
+      .map(column => column.name);
+
+    if (!wmColumns.includes('event_counter')) {
+      db.exec('ALTER TABLE working_memory ADD COLUMN event_counter INTEGER NOT NULL DEFAULT 0');
+    }
+    if (!wmColumns.includes('mention_count')) {
+      db.exec('ALTER TABLE working_memory ADD COLUMN mention_count INTEGER NOT NULL DEFAULT 0');
+    }
+    if (!wmColumns.includes('source_tool')) {
+      db.exec('ALTER TABLE working_memory ADD COLUMN source_tool TEXT');
+    }
+    if (!wmColumns.includes('source_call_id')) {
+      db.exec('ALTER TABLE working_memory ADD COLUMN source_call_id TEXT');
+    }
+    if (!wmColumns.includes('extraction_rule_id')) {
+      db.exec('ALTER TABLE working_memory ADD COLUMN extraction_rule_id TEXT');
+    }
+    if (!wmColumns.includes('redaction_applied')) {
+      db.exec('ALTER TABLE working_memory ADD COLUMN redaction_applied INTEGER NOT NULL DEFAULT 0');
+    }
+
     db.exec(INDEX_SQL);
     schemaEnsured = true;
   } catch (error: unknown) {
@@ -206,6 +264,43 @@ function getSessionMemories(sessionId: string): Array<Record<string, unknown>> {
   }
 }
 
+function sessionExists(sessionId: string): boolean {
+  return getLatestSessionEventCounter(sessionId) !== null;
+}
+
+function getSessionEventCounter(sessionId: string): number {
+  const current = getLatestSessionEventCounter(sessionId);
+  return current === null ? 0 : current;
+}
+
+function getSessionPromptContext(sessionId: string, floor: number = DECAY_FLOOR, limit: number = 5): SessionPromptContextEntry[] {
+  if (!db) return [];
+  ensureSchema();
+
+  const safeLimit = Math.max(1, Math.min(20, Math.floor(limit)));
+  const safeFloor = Math.max(0, Math.min(1, floor));
+
+  try {
+    return (db.prepare(`
+      SELECT
+        wm.memory_id AS memoryId,
+        COALESCE(m.title, '') AS title,
+        COALESCE(m.file_path, '') AS filePath,
+        wm.attention_score AS attentionScore
+      FROM working_memory wm
+      LEFT JOIN memory_index m ON wm.memory_id = m.id
+      WHERE wm.session_id = ?
+        AND wm.attention_score > ?
+      ORDER BY wm.attention_score DESC, wm.last_focused DESC
+      LIMIT ?
+    `) as Database.Statement).all(sessionId, safeFloor, safeLimit) as SessionPromptContextEntry[];
+  } catch (error: unknown) {
+    const msg = error instanceof Error ? error.message : String(error);
+    console.warn(`[working-memory] getSessionPromptContext error: ${msg}`);
+    return [];
+  }
+}
+
 /**
  * Calculate attention tier for an entry.
  */
@@ -230,6 +325,8 @@ function setAttentionScore(
   const clampedScore = Math.max(0, Math.min(1, score));
 
   try {
+    const currentEventCounter = nextEventCounter(sessionId);
+
     const existing = (db.prepare(
       'SELECT id FROM working_memory WHERE session_id = ? AND memory_id = ?'
     ) as Database.Statement).get(sessionId, memoryId) as { id: number } | undefined;
@@ -239,17 +336,19 @@ function setAttentionScore(
         UPDATE working_memory
         SET attention_score = ?,
             last_focused = CURRENT_TIMESTAMP,
-            focus_count = focus_count + 1
+            focus_count = focus_count + 1,
+            mention_count = mention_count + 1,
+            event_counter = ?
         WHERE session_id = ? AND memory_id = ?
-      `) as Database.Statement).run(clampedScore, sessionId, memoryId);
+      `) as Database.Statement).run(clampedScore, currentEventCounter, sessionId, memoryId);
     } else {
       // Check capacity
       enforceMemoryLimit(sessionId);
 
       (db.prepare(`
-        INSERT INTO working_memory (session_id, memory_id, attention_score)
-        VALUES (?, ?, ?)
-      `) as Database.Statement).run(sessionId, memoryId, clampedScore);
+        INSERT INTO working_memory (session_id, memory_id, attention_score, event_counter, mention_count)
+        VALUES (?, ?, ?, ?, 0)
+      `) as Database.Statement).run(sessionId, memoryId, clampedScore, currentEventCounter);
     }
 
     return true;
@@ -260,8 +359,90 @@ function setAttentionScore(
   }
 }
 
+function upsertExtractedEntry(input: ExtractedEntryInput): boolean {
+  if (!db) return false;
+  ensureSchema();
+
+  const {
+    sessionId,
+    memoryId,
+    attentionScore,
+    sourceTool,
+    sourceCallId,
+    extractionRuleId,
+    redactionApplied,
+  } = input;
+
+  if (!sessionId || !sourceTool || !sourceCallId || !extractionRuleId) {
+    return false;
+  }
+
+  const clampedScore = Math.max(0, Math.min(1, attentionScore));
+
+  try {
+    const currentEventCounter = nextEventCounter(sessionId);
+    enforceMemoryLimit(sessionId);
+
+    (db.prepare(`
+      INSERT INTO working_memory (
+        session_id,
+        memory_id,
+        attention_score,
+        event_counter,
+        mention_count,
+        source_tool,
+        source_call_id,
+        extraction_rule_id,
+        redaction_applied
+      ) VALUES (?, ?, ?, ?, 0, ?, ?, ?, ?)
+      ON CONFLICT(session_id, memory_id) DO UPDATE SET
+        attention_score = CASE
+          WHEN excluded.attention_score > working_memory.attention_score THEN excluded.attention_score
+          ELSE working_memory.attention_score
+        END,
+        last_focused = CURRENT_TIMESTAMP,
+        focus_count = working_memory.focus_count + 1,
+        mention_count = working_memory.mention_count + 1,
+        event_counter = excluded.event_counter,
+        source_tool = excluded.source_tool,
+        source_call_id = excluded.source_call_id,
+        extraction_rule_id = excluded.extraction_rule_id,
+        redaction_applied = excluded.redaction_applied
+    `) as Database.Statement).run(
+      sessionId,
+      memoryId,
+      clampedScore,
+      currentEventCounter,
+      sourceTool,
+      sourceCallId,
+      extractionRuleId,
+      redactionApplied ? 1 : 0
+    );
+
+    return true;
+  } catch (error: unknown) {
+    const msg = error instanceof Error ? error.message : String(error);
+    console.warn(`[working-memory] upsertExtractedEntry error: ${msg}`);
+    return false;
+  }
+}
+
+function nextEventCounter(sessionId: string): number {
+  if (!db) return 0;
+
+  const current = getLatestSessionEventCounter(sessionId);
+  if (current === null) {
+    return 0;
+  }
+
+  return (current + 1) % EVENT_COUNTER_MODULUS;
+}
+
 /**
- * Enforce working memory capacity limit by removing lowest-attention items.
+ * Enforce working memory capacity limit by LRU eviction.
+ *
+ * LRU is defined as the least-recently focused entries first (`last_focused ASC`).
+ * `id ASC` is used as a deterministic tie-breaker when timestamps are equal.
  */
 function enforceMemoryLimit(sessionId: string): number {
   if (!db) return 0;
@@ -279,7 +460,7 @@ function enforceMemoryLimit(sessionId: string): number {
       WHERE id IN (
         SELECT id FROM working_memory
         WHERE session_id = ?
-        ORDER BY attention_score ASC
+        ORDER BY last_focused ASC, id ASC
         LIMIT ?
       )
     `) as Database.Statement).run(sessionId, excess);
@@ -307,35 +488,95 @@ function batchUpdateScores(sessionId: string): number {
   if (!db) return 0;
   ensureSchema();
 
-  const decayFloor = WORKING_MEMORY_CONFIG.minAttentionScore * 0.5;    // 0.05
-  const deleteThreshold = WORKING_MEMORY_CONFIG.minAttentionScore * 0.1; // 0.01
+  if (!isFeatureEnabled('SPECKIT_EVENT_DECAY', sessionId)) {
+    return 0;
+  }
 
   try {
-    const result = (db.prepare(`
-      UPDATE working_memory
-      SET attention_score = MAX(?, attention_score * ?)
+    const currentEventCounter = getCurrentEventCounter(sessionId);
+    const entries = (db.prepare(`
+      SELECT id, attention_score, event_counter, mention_count
+      FROM working_memory
       WHERE session_id = ?
-    `) as Database.Statement).run(
-      decayFloor,
-      WORKING_MEMORY_CONFIG.attentionDecayRate,
-      sessionId
-    );
+    `) as Database.Statement).all(sessionId) as Array<{
+      id: number;
+      attention_score: number;
+      event_counter: number;
+      mention_count: number;
+    }>;
 
-    // Only delete entries that have dropped below the delete threshold.
-    // Since decay clamps at decayFloor (0.05), normal decay alone will
-    // never reach deleteThreshold (0.01) — only explicit score changes
-    // or extended inactivity cleanup can push entries below it.
-    (db.prepare(`
+    if (entries.length === 0) {
+      return 0;
+    }
+
+    const updateStmt = db.prepare(`
+      UPDATE working_memory
+      SET attention_score = ?
+      WHERE id = ?
+    `) as Database.Statement;
+
+    const deleteStmt = db.prepare(`
       DELETE FROM working_memory
-      WHERE session_id = ? AND attention_score < ?
-    `) as Database.Statement).run(sessionId, deleteThreshold);
+      WHERE id = ?
+    `) as Database.Statement;
 
-    return (result as { changes: number }).changes;
+    let changedRows = 0;
+    for (const entry of entries) {
+      const eventsElapsed = calculateEventDistance(currentEventCounter, entry.event_counter);
+      const decayBase = entry.attention_score * Math.pow(EVENT_DECAY_FACTOR, eventsElapsed);
+      const mentionBoost = entry.mention_count * MENTION_BOOST_FACTOR;
+      const rawScore = decayBase + mentionBoost;
+
+      if (rawScore < DELETE_THRESHOLD) {
+        const deleteResult = deleteStmt.run(entry.id) as { changes: number };
+        changedRows += deleteResult.changes;
+        continue;
+      }
+
+      const nextScore = Math.max(DECAY_FLOOR, rawScore);
+      const updateResult = updateStmt.run(nextScore, entry.id) as { changes: number };
+      changedRows += updateResult.changes;
+    }
+
+    return changedRows;
   } catch (error: unknown) {
     const msg = error instanceof Error ? error.message : String(error);
     console.warn(`[working-memory] batchUpdateScores error: ${msg}`);
     return 0;
   }
+}
+
+function getCurrentEventCounter(sessionId: string): number {
+  const current = getLatestSessionEventCounter(sessionId);
+  if (current === null) {
+    return 0;
+  }
+
+  return current;
+}
+
+function getLatestSessionEventCounter(sessionId: string): number | null {
+  if (!db) return null;
+
+  const row = (db.prepare(`
+    SELECT event_counter
+    FROM working_memory
+    WHERE session_id = ?
+    ORDER BY last_focused DESC, id DESC
+    LIMIT 1
+  `) as Database.Statement).get(sessionId) as { event_counter?: number | null };
+
+  if (!row || typeof row.event_counter !== 'number' || Number.isNaN(row.event_counter)) {
+    return null;
+  }
+
+  return row.event_counter;
+}
+
+function calculateEventDistance(currentCounter: number, entryCounter: number): number {
+  const normalizedCurrent = ((currentCounter % EVENT_COUNTER_MODULUS) + EVENT_COUNTER_MODULUS) % EVENT_COUNTER_MODULUS;
+  const normalizedEntry = ((entryCounter % EVENT_COUNTER_MODULUS) + EVENT_COUNTER_MODULUS) % EVENT_COUNTER_MODULUS;
+  return (normalizedCurrent - normalizedEntry + EVENT_COUNTER_MODULUS) % EVENT_COUNTER_MODULUS;
 }
 
 /* -------------------------------------------------------------
@@ -410,10 +651,19 @@ export {
   // Working memory operations
   getWorkingMemory,
   getSessionMemories,
+  sessionExists,
+  getSessionEventCounter,
+  getSessionPromptContext,
   calculateTier,
   setAttentionScore,
+  upsertExtractedEntry,
   enforceMemoryLimit,
   batchUpdateScores,
+  DECAY_FLOOR,
+  DELETE_THRESHOLD,
+  EVENT_DECAY_FACTOR,
+  MENTION_BOOST_FACTOR,
+  EVENT_COUNTER_MODULUS,
 
   // Utilities
   isEnabled,
@@ -426,4 +676,6 @@ export type {
   WorkingMemoryEntry,
   SessionInfo,
   SessionStats,
+  SessionPromptContextEntry,
+  ExtractedEntryInput,
 };

@@ -49,6 +49,8 @@ interface MemoryIndexRow {
   related_memories?: string | null;
   document_type?: string;
   spec_level?: number | null;
+  quality_score?: number;
+  quality_flags?: string | string[] | null;
   isConstitutional?: boolean;
   similarity?: number;
   keywordScore?: number;
@@ -66,6 +68,8 @@ interface IndexMemoryParams {
   documentType?: string;
   specLevel?: number | null;
   contentText?: string | null;
+  qualityScore?: number;
+  qualityFlags?: string[];
 }
 
 interface UpdateMemoryParams {
@@ -78,6 +82,8 @@ interface UpdateMemoryParams {
   documentType?: string;
   specLevel?: number | null;
   contentText?: string | null;
+  qualityScore?: number;
+  qualityFlags?: string[];
 }
 
 interface VectorSearchOptions {

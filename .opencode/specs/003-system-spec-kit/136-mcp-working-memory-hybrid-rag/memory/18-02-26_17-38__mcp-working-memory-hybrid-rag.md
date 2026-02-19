@@ -70,17 +70,17 @@
 
 ---
 
-## Table of Contents
+## TABLE OF CONTENTS
 
-- [Continue Session](#continue-session)
-- [Project State Snapshot](#project-state-snapshot)
-- [Implementation Guide](#implementation-guide)
-- [Overview](#overview)
-- [Detailed Changes](#detailed-changes)
-- [Decisions](#decisions)
-- [Conversation](#conversation)
-- [Recovery Hints](#recovery-hints)
-- [Memory Metadata](#memory-metadata)
+- [CONTINUE SESSION](#continue-session)
+- [PROJECT STATE SNAPSHOT](#project-state-snapshot)
+- [IMPLEMENTATION GUIDE](#implementation-guide)
+- [OVERVIEW](#overview)
+- [DETAILED CHANGES](#detailed-changes)
+- [DECISIONS](#decisions)
+- [CONVERSATION](#conversation)
+- [RECOVERY HINTS](#recovery-hints)
+- [MEMORY METADATA](#memory-metadata)
 
 ---
 
@@ -570,6 +570,11 @@ child_sessions:
 embedding_model: "nomic-ai/nomic-embed-text-v1.5"
 embedding_version: "1.0"
 chunk_count: 1
+
+# Quality Signals
+quality_score: 1.00
+quality_flags:
+  []
 ```
 
 <!-- /ANCHOR:metadata -->

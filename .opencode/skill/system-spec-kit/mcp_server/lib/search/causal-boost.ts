@@ -1,0 +1,236 @@
+// ---------------------------------------------------------------
+// MODULE: Causal Boost
+// ---------------------------------------------------------------
+
+import type Database from 'better-sqlite3';
+import { isFeatureEnabled } from '../cache/cognitive/rollout-policy';
+
+const MAX_HOPS = 2;
+const MAX_BOOST_PER_HOP = 0.05;
+const MAX_COMBINED_BOOST = 0.20;
+const SEED_FRACTION = 0.25;
+const MAX_SEED_RESULTS = 5;
+
+interface RankedSearchResult extends Record<string, unknown> {
+  id: number;
+  score?: number;
+  rrfScore?: number;
+  similarity?: number;
+  sessionBoost?: number;
+}
+
+interface CausalBoostMetadata {
+  enabled: boolean;
+  applied: boolean;
+  boostedCount: number;
+  injectedCount: number;
+  maxBoostApplied: number;
+  traversalDepth: number;
+}
+
+let db: Database.Database | null = null;
+
+function isEnabled(): boolean {
+  return isFeatureEnabled('SPECKIT_CAUSAL_BOOST');
+}
+
+function init(database: Database.Database): void {
+  db = database;
+}
+
+function resolveBaseScore(result: RankedSearchResult): number {
+  if (typeof result.score === 'number' && Number.isFinite(result.score)) return result.score;
+  if (typeof result.rrfScore === 'number' && Number.isFinite(result.rrfScore)) return result.rrfScore;
+  if (typeof result.similarity === 'number' && Number.isFinite(result.similarity)) return result.similarity / 100;
+  return 0;
+}
+
+function normalizeIds(inputIds: number[]): number[] {
+  const ids = new Set<number>();
+  for (const candidate of inputIds) {
+    if (typeof candidate === 'number' && Number.isFinite(candidate)) {
+      ids.add(Math.trunc(candidate));
+    }
+  }
+  return Array.from(ids);
+}
+
+function computeBoostByHop(hopDistance: number): number {
+  if (!Number.isFinite(hopDistance) || hopDistance <= 0) return 0;
+  const rawBoost = MAX_BOOST_PER_HOP / hopDistance;
+  return Math.min(MAX_BOOST_PER_HOP, rawBoost);
+}
+
+function getNeighborBoosts(memoryIds: number[]): Map<number, number> {
+  const neighborBoosts = new Map<number, number>();
+  if (!db) return neighborBoosts;
+
+  const ids = normalizeIds(memoryIds);
+  if (ids.length === 0) return neighborBoosts;
+
+  const originIds = ids.map((value) => String(value));
+  const placeholders = originIds.map(() => '?').join(', ');
+
+  const query = `
+    WITH RECURSIVE causal_walk(origin_id, node_id, hop_distance) AS (
+      SELECT ce.source_id, ce.target_id, 1
+      FROM causal_edges ce
+      WHERE ce.source_id IN (${placeholders})
+
+      UNION
+
+      SELECT ce.target_id, ce.source_id, 1
+      FROM causal_edges ce
+      WHERE ce.target_id IN (${placeholders})
+
+      UNION ALL
+
+      SELECT cw.origin_id,
+             CASE
+               WHEN ce.source_id = cw.node_id THEN ce.target_id
+               ELSE ce.source_id
+             END,
+             cw.hop_distance + 1
+      FROM causal_walk cw
+      JOIN causal_edges ce
+        ON ce.source_id = cw.node_id OR ce.target_id = cw.node_id
+      WHERE cw.hop_distance < ?
+    )
+    SELECT node_id, MIN(hop_distance) AS min_hop
+    FROM causal_walk
+    WHERE node_id NOT IN (${placeholders})
+    GROUP BY node_id
+  `;
+
+  try {
+    const rows = (db.prepare(query) as Database.Statement).all(
+      ...originIds,
+      ...originIds,
+      MAX_HOPS,
+      ...originIds
+    ) as Array<{ node_id: string; min_hop: number }>;
+
+    for (const row of rows) {
+      const neighborId = Number.parseInt(row.node_id, 10);
+      if (!Number.isFinite(neighborId)) continue;
+      const boost = computeBoostByHop(row.min_hop);
+      if (boost <= 0) continue;
+      const current = neighborBoosts.get(neighborId) ?? 0;
+      neighborBoosts.set(neighborId, Math.max(current, boost));
+    }
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : String(error);
+    console.warn(`[causal-boost] Traversal failed: ${message}`);
+  }
+
+  return neighborBoosts;
+}
+
+function fetchNeighborRows(memoryIds: number[]): RankedSearchResult[] {
+  if (!db || memoryIds.length === 0) return [];
+
+  const placeholders = memoryIds.map(() => '?').join(', ');
+  const rows = (db.prepare(`
+    SELECT id, spec_folder, file_path, title, importance_tier, trigger_phrases, created_at
+    FROM memory_index
+    WHERE id IN (${placeholders})
+  `) as Database.Statement).all(...memoryIds) as RankedSearchResult[];
+
+  return rows;
+}
+
+function applyCausalBoost(results: RankedSearchResult[]): { results: RankedSearchResult[]; metadata: CausalBoostMetadata } {
+  const metadata: CausalBoostMetadata = {
+    enabled: isEnabled(),
+    applied: false,
+    boostedCount: 0,
+    injectedCount: 0,
+    maxBoostApplied: 0,
+    traversalDepth: MAX_HOPS,
+  };
+
+  if (!metadata.enabled || !Array.isArray(results) || results.length === 0 || !db) {
+    return { results, metadata };
+  }
+
+  const seedLimit = Math.max(1, Math.min(MAX_SEED_RESULTS, Math.ceil(results.length * SEED_FRACTION)));
+  const seedIds = results.slice(0, seedLimit).map((item) => item.id);
+  const neighborBoosts = getNeighborBoosts(seedIds);
+  if (neighborBoosts.size === 0) {
+    return { results, metadata };
+  }
+
+  const existingIds = new Set(results.map((item) => item.id));
+  const lowestScore = Math.max(0.0001, Math.min(...results.map((item) => resolveBaseScore(item))));
+
+  const boosted = results.map((item) => {
+    const causalBoost = neighborBoosts.get(item.id) ?? 0;
+    if (causalBoost <= 0) {
+      return item;
+    }
+
+    const sessionBoost = typeof item.sessionBoost === 'number' ? Math.max(0, item.sessionBoost) : 0;
+    const allowedBoost = Math.max(0, Math.min(causalBoost, MAX_COMBINED_BOOST - sessionBoost));
+    if (allowedBoost <= 0) {
+      return item;
+    }
+
+    const baseScore = resolveBaseScore(item);
+    const score = baseScore * (1 + allowedBoost);
+    metadata.boostedCount += 1;
+    metadata.maxBoostApplied = Math.max(metadata.maxBoostApplied, allowedBoost);
+    return {
+      ...item,
+      score,
+      causalBoost: allowedBoost,
+      baseScore,
+    };
+  });
+
+  const injectIds: number[] = [];
+  for (const [neighborId] of neighborBoosts) {
+    if (!existingIds.has(neighborId)) {
+      injectIds.push(neighborId);
+    }
+  }
+
+  const injectedRows = fetchNeighborRows(injectIds).map((row) => {
+    const causalBoost = neighborBoosts.get(row.id) ?? 0;
+    const baseScore = lowestScore * 0.5;
+    return {
+      ...row,
+      score: baseScore * (1 + causalBoost),
+      causalBoost,
+      baseScore,
+      injectedByCausalBoost: true,
+    };
+  });
+
+  metadata.injectedCount = injectedRows.length;
+  metadata.applied = metadata.boostedCount > 0 || metadata.injectedCount > 0;
+
+  const merged = [...boosted, ...injectedRows].sort((left, right) => {
+    const leftScore = resolveBaseScore(left);
+    const rightScore = resolveBaseScore(right);
+    if (rightScore === leftScore) {
+      return left.id - right.id;
+    }
+    return rightScore - leftScore;
+  });
+
+  return { results: merged, metadata };
+}
+
+export {
+  MAX_HOPS,
+  MAX_BOOST_PER_HOP,
+  init,
+  isEnabled,
+  getNeighborBoosts,
+  applyCausalBoost,
+};
+
+export type {
+  RankedSearchResult,
+  CausalBoostMetadata,
+};

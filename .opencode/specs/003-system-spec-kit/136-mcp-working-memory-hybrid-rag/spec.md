@@ -157,8 +157,11 @@ To split execution planning by phase while keeping one canonical spec, this fold
 | Subfolder | Coverage | Root Mapping | Dependency |
 |-----------|----------|--------------|------------|
 | `001-foundation-phases-0-1-1-5/` | Phase 0, Phase 1, Phase 1.5 hardening gate | REQ-001-006, REQ-009-012, REQ-014-017 (**primary owner for REQ-014 and REQ-017**); tasks `T000a-T028`, `T027a-T027o`; checks `CHK-125-139`, `CHK-155-159b` | Blocks Phase 2 package until hardening gate passes |
-| `002-extraction-rollout-phases-2-3/` | Phase 2 extraction + Phase 3 rollout | REQ-007-010, REQ-013 (**consumes REQ-014 and REQ-017 outputs from package 001**); tasks `T029-T070`; checks `CHK-140-166` | Depends on package 001 hardening sign-off |
+| `002-extraction-rollout-phases-2-3/` | Phase 2 extraction + Phase 3 rollout (closed execution package) | REQ-007-010, REQ-013 (**consumes REQ-014 and REQ-017 outputs from package 001**); tasks `T029-T070`; checks `CHK-140-166` | Depends on package 001 hardening sign-off; now hands off post-research backlog to Wave packages |
 | `003-memory-quality-qp-0-4/` | Memory-quality workstream QP-0 through QP-4 | REQ-018-023; tasks `TQ001-TQ047`; checks `CHK-190-212` | Can start in parallel; QP-4 runs after QP-2/QP-3 stabilize |
+| `004-post-research-wave-1-governance-foundations/` | Post-research Wave 1: governance foundations and runtime contracts | Backlog IDs `C136-08`, `C136-09`, `C136-10`, `C136-12`, `C136-01`, `C136-02`, `C136-03`; checks `CHK-217-222`, `CHK-226`; technical owners for adaptive fusion policy, typed retrieval trace envelope, and artifact-aware routing policy | Starts from post-research backlog; unblocks Wave 2 controlled delivery |
+| `005-post-research-wave-2-controlled-delivery/` | Post-research Wave 2: controlled delivery evidence | Backlog IDs `C136-04`, `C136-05`, `C136-11`; checks `CHK-223-225`; technical owners for append-only mutation ledger and production operationalization of sync/async split + deterministic tools | Depends on Wave 1 contracts + telemetry readiness |
+| `006-post-research-wave-3-outcome-confirmation/` | Post-research Wave 3: outcome confirmation and closure | Backlog IDs `C136-06`, `C136-07`; checks `CHK-227-228`; technical owner for capability truth matrix longitudinal confirmation and closure KPIs | Depends on Wave 2 rollout evidence and telemetry history |
 | `research/` | Source research artifacts (analysis + recommendations) | Inputs for root spec/plan and package planning; no execution task IDs | Read-only evidence input; not an implementation package |
 
 Rules for this split:
@@ -166,9 +169,33 @@ Rules for this split:
 - Subfolder docs are execution-focused planning packages and must stay synchronized with root IDs.
 - Each phase package is Level 3+ but intentionally includes only `spec.md`, `plan.md`, `tasks.md`, and `checklist.md` (no package-local `decision-record.md` or `implementation-summary.md`).
 - `research/` stores source-analysis inputs referenced by root planning docs.
-- All packages are planning-only at this stage; implementation has not started.
+- Packages `001` through `003` preserve historical execution evidence for delivered phases; packages `004` through `006` are the active planning surface for post-research follow-up waves.
 - Requirement ownership is frozen by root `plan.md` section "2.7. REQUIREMENT OWNERSHIP MATRIX (FROZEN)": one primary owner package per requirement; downstream packages consume outputs but do not duplicate acceptance ownership.
 <!-- /ANCHOR:phase-doc-map -->
+
+---
+
+<!-- ANCHOR:post-research-wave-framing -->
+## 3.7. POST-RESEARCH TECHNICAL WAVE FRAMING
+
+The post-research backlog is implemented as a technical-wave model (not a generic project-management split). The implementation contract is frozen to the capability set below.
+
+| Upgrade Capability | Required Technical Contract | Primary Wave Owner | Backlog IDs |
+|--------------------|-----------------------------|--------------------|-------------|
+| 1) Adaptive hybrid fusion | Dynamic weighting by request intent and document type; no fixed one-size weighting profile | Wave 1 (`004`) | `C136-08`, `C136-10` |
+| 2) Typed retrieval trace envelope | Trace stages must be typed and complete: `candidate`, `filter`, `fusion`, `rerank`, `fallback`, `final-rank` | Wave 1 (`004`) | `C136-08` |
+| 3) Artifact-aware routing policy | Retrieval strategy must branch by artifact class (`spec`, `plan`, `tasks`, `checklist`) | Wave 1 (`004`) | `C136-09` |
+| 4) Append-only mutation ledger | Ledger rows must include `reason`, `prior_hash`, `new_hash`, linked memory IDs, and decision metadata | Wave 2 (`005`) | `C136-11` |
+| 5) Strong sync/async split | Deterministic foreground response path plus durable queue/worker jobs for heavy post-response work | Wave 2 (`005`) | `C136-04`, `C136-05` |
+| 6) Typed degraded-mode contracts | Explicit failure mode, fallback mode, confidence impact, and retry recommendation contracts | Wave 1 foundation, Wave 2 operational proof | `C136-10`, `C136-04`, `C136-05` |
+| 7) Deterministic exact-operation tools | Counts/status/dependency checks must be separate deterministic tools, not mixed into semantic retrieval | Wave 2 (`005`) | `C136-04`, `C136-05` |
+| 8) Capability truth matrix | Runtime-generated matrix consumed by docs/handover with longitudinal drift confirmation | Wave 3 (`006`) | `C136-06`, `C136-07` |
+
+Wave ownership lock:
+- Wave 1 owns foundations for capabilities 1/2/3 and governance + telemetry readiness.
+- Wave 2 owns capability 4 and controlled-delivery operationalization for capabilities 5/7 (with degraded-mode contract verification from capability 6).
+- Wave 3 owns longitudinal confirmation for capability 8 and final outcome/KPI closure.
+<!-- /ANCHOR:post-research-wave-framing -->
 
 ---
 
@@ -452,17 +479,17 @@ Rules for this split:
 ## 14. COMPLIANCE CHECKPOINTS
 
 ### Security Compliance
-- [ ] SQL injection prevention verified (parameterized queries only, contract tests)
-- [ ] Config validation prevents injection via env vars (Zod type coercion)
-- [ ] No hardcoded secrets in extraction rules or config defaults
-- [ ] PII/secret redaction gate applied before every working-memory insert (REQ-011)
-- [ ] Regex safety check runs at server startup; unsafe patterns cause abort (REQ-012)
-- [ ] Provenance metadata (`source_tool`, `source_call_id`, `extraction_rule_id`, `redaction_applied`) stored with every extracted item (REQ-013)
+- [x] SQL injection prevention verified (parameterized queries only, contract tests)
+- [x] Config validation prevents injection via env vars (Zod type coercion)
+- [x] No hardcoded secrets in extraction rules or config defaults
+- [x] PII/secret redaction gate applied before every working-memory insert (REQ-011)
+- [x] Regex safety check runs at server startup; unsafe patterns cause abort (REQ-012)
+- [x] Provenance metadata (`source_tool`, `source_call_id`, `extraction_rule_id`, `redaction_applied`) stored with every extracted item (REQ-013)
 
 ### Code Compliance
-- [ ] TypeScript strict mode enabled (no implicit any, null safety)
-- [ ] ESLint passes with project rules (no disabled checks)
-- [ ] No external dependencies added (TypeScript-only rule)
+- [x] TypeScript strict mode enabled (no implicit any, null safety)
+- [x] ESLint passes with project rules (no disabled checks)
+- [x] No external dependencies added (TypeScript-only rule)
 <!-- /ANCHOR:compliance -->
 
 ---
@@ -481,6 +508,12 @@ Rules for this split:
 
 <!-- ANCHOR:changelog -->
 ## 16. CHANGE LOG
+
+### v1.6 (2026-02-19)
+**Post-research technical wave framing alignment (execution-ready handoff update)**:
+- Added explicit technical-wave framing section (`3.7`) covering capabilities 1-8: adaptive fusion, typed retrieval trace envelope, artifact-aware routing, append-only mutation ledger, sync/async split, typed degraded-mode contracts, deterministic exact-operation tools, and capability truth matrix.
+- Tightened package ownership statements in `3.6` to align each wave package with explicit technical capability ownership while preserving frozen backlog mapping (`C136-01..C136-12`).
+- Locked wave ownership semantics to the requested mapping: Wave 1 foundations (1/2/3 + governance/telemetry), Wave 2 controlled delivery (4 + 5/7 operationalization), Wave 3 longitudinal confirmation (8 + KPI closure).
 
 ### v1.5 (2026-02-18)
 **Planning alignment fixes (ownership + deferral + taxonomy consistency)**:

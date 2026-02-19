@@ -20,13 +20,6 @@ interface ConstitutionalMemory {
   importanceTier: string;
 }
 
-interface TriggeredMemory {
-  memoryId: number;
-  specFolder: string;
-  title: string;
-  matchedPhrases: string[];
-}
-
 interface AutoSurfaceResult {
   constitutional: ConstitutionalMemory[];
   triggered: {
@@ -183,4 +176,3 @@ export {
   autoSurfaceMemories,
   isMemoryAwareTool,
 };
-

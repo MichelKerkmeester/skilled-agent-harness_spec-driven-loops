@@ -116,6 +116,8 @@ After Phase 1, validate the conversation topic matches the target folder:
 
 > **Tool Restriction (Memory Save Rule - HARD BLOCK):** `Write` and `Edit` tools are intentionally excluded from this command's `allowed-tools`. Memory files MUST be created via the `generate-context.js` script to ensure proper ANCHOR tags, SESSION SUMMARY table, and MEMORY METADATA YAML block. See AGENTS.md Memory Save Rule.
 
+> **Mutation Ledger & Artifact Routing:** Every save operation is now recorded in the mutation ledger — an append-only audit trail that captures the file path, spec folder, timestamp, and indexing outcome. Artifact metadata associated with the saved memory may also be classified via artifact-class routing before indexing, ensuring consistent type tagging across the database.
+
 ```
 STEP            REQUIRED CALLS                            ON FAILURE
 ─────────────── ───────────────────────────────────────── ──────────────

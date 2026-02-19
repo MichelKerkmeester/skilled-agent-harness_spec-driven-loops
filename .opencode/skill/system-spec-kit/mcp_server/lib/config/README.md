@@ -121,6 +121,7 @@ The system infers memory type using this precedence:
 config/
 ├── memory-types.ts       # 9 memory types with half-lives and patterns (~9KB)
 ├── type-inference.ts     # Auto-detect type from path/content (~9KB)
+├── skill-ref-config.ts   # Skill reference configuration management
 └── README.md             # This file
 ```
 
@@ -132,6 +133,7 @@ config/
 |------|---------|
 | `memory-types.ts` | Type definitions, half-lives, path/keyword patterns |
 | `type-inference.ts` | Multi-source inference with confidence scoring |
+| `skill-ref-config.ts` | Skill reference configuration management |
 
 <!-- /ANCHOR:structure -->
 

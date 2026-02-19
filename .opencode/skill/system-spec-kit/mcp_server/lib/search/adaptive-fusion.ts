@@ -1,0 +1,359 @@
+// ---------------------------------------------------------------
+// MODULE: Adaptive Fusion (C136-10)
+// Intent-aware weighted RRF fusion with feature flag + fallback
+// ---------------------------------------------------------------
+
+import type { IntentType } from './intent-classifier';
+import type { RrfItem, FusionResult, RankedList } from './rrf-fusion';
+import { fuseResultsMulti } from './rrf-fusion';
+import { isFeatureEnabled } from '../cache/cognitive/rollout-policy';
+
+/* ---------------------------------------------------------------
+   1. INTERFACES
+   --------------------------------------------------------------- */
+
+export interface FusionWeights {
+  /** Weight for semantic/vector search results (0-1) */
+  semanticWeight: number;
+  /** Weight for keyword/lexical search results (0-1) */
+  keywordWeight: number;
+  /** Weight for recency-based scoring (0-1) */
+  recencyWeight: number;
+}
+
+export interface DegradedModeContract {
+  /** What failed */
+  failure_mode: string;
+  /** What was used instead */
+  fallback_mode: string;
+  /** Impact on result confidence (0-1, where 0 = no impact, 1 = total loss) */
+  confidence_impact: number;
+  /** Whether the caller should retry */
+  retry_recommendation: boolean;
+}
+
+export interface AdaptiveFusionResult {
+  results: FusionResult[];
+  weights: FusionWeights;
+  degraded?: DegradedModeContract;
+  darkRunDiff?: DarkRunDiff;
+}
+
+export interface DarkRunDiff {
+  standardCount: number;
+  adaptiveCount: number;
+  orderDifferences: number;
+  topResultChanged: boolean;
+}
+
+/* ---------------------------------------------------------------
+   2. WEIGHT PROFILES
+   --------------------------------------------------------------- */
+
+const INTENT_WEIGHT_PROFILES: Record<string, FusionWeights> = {
+  understand:   { semanticWeight: 0.7, keywordWeight: 0.2, recencyWeight: 0.1 },
+  find_spec:    { semanticWeight: 0.7, keywordWeight: 0.2, recencyWeight: 0.1 },
+  fix_bug:      { semanticWeight: 0.4, keywordWeight: 0.4, recencyWeight: 0.2 },
+  debug:        { semanticWeight: 0.4, keywordWeight: 0.4, recencyWeight: 0.2 },
+  add_feature:  { semanticWeight: 0.5, keywordWeight: 0.3, recencyWeight: 0.2 },
+  refactor:     { semanticWeight: 0.6, keywordWeight: 0.3, recencyWeight: 0.1 },
+};
+
+const DEFAULT_WEIGHTS: FusionWeights = {
+  semanticWeight: 0.5,
+  keywordWeight: 0.3,
+  recencyWeight: 0.2,
+};
+
+/* ---------------------------------------------------------------
+   3. FEATURE FLAG
+   --------------------------------------------------------------- */
+
+const FEATURE_FLAG = 'SPECKIT_ADAPTIVE_FUSION';
+
+export function isAdaptiveFusionEnabled(identity?: string): boolean {
+  return isFeatureEnabled(FEATURE_FLAG, identity);
+}
+
+/* ---------------------------------------------------------------
+   4. WEIGHT COMPUTATION
+   --------------------------------------------------------------- */
+
+/**
+ * Compute adaptive fusion weights based on intent and optional document type.
+ * Document type can shift weights: e.g., 'decision' docs favour keywords,
+ * 'implementation' docs favour recency.
+ */
+export function getAdaptiveWeights(
+  intent: IntentType | string,
+  documentType?: string
+): FusionWeights {
+  const base = INTENT_WEIGHT_PROFILES[intent] ?? { ...DEFAULT_WEIGHTS };
+  const weights: FusionWeights = { ...base };
+
+  // Document-type adjustments (small shifts, keep sum <= 1.0)
+  if (documentType) {
+    switch (documentType) {
+      case 'decision':
+        // Decisions are best found by exact keyword matches
+        weights.keywordWeight = Math.min(1.0, weights.keywordWeight + 0.1);
+        weights.semanticWeight = Math.max(0, weights.semanticWeight - 0.1);
+        break;
+      case 'implementation':
+        // Implementation docs: recency matters more
+        weights.recencyWeight = Math.min(1.0, weights.recencyWeight + 0.1);
+        weights.semanticWeight = Math.max(0, weights.semanticWeight - 0.1);
+        break;
+      case 'research':
+        // Research docs: semantic similarity is paramount
+        weights.semanticWeight = Math.min(1.0, weights.semanticWeight + 0.1);
+        weights.keywordWeight = Math.max(0, weights.keywordWeight - 0.1);
+        break;
+      // No default adjustment needed
+    }
+  }
+
+  return weights;
+}
+
+/* ---------------------------------------------------------------
+   5. ADAPTIVE FUSION
+   --------------------------------------------------------------- */
+
+/**
+ * Weighted RRF fusion. Applies FusionWeights to source lists before
+ * passing to `fuseResultsMulti`. The semanticWeight/keywordWeight map
+ * to vector/lexical list weights; recencyWeight is applied as a
+ * post-fusion boost based on item timestamps.
+ */
+export function adaptiveFuse(
+  semanticResults: RrfItem[],
+  keywordResults: RrfItem[],
+  weights: FusionWeights
+): FusionResult[] {
+  const lists: RankedList[] = [];
+
+  if (semanticResults.length > 0) {
+    lists.push({
+      source: 'vector',
+      results: semanticResults,
+      weight: weights.semanticWeight,
+    });
+  }
+
+  if (keywordResults.length > 0) {
+    lists.push({
+      source: 'keyword',
+      results: keywordResults,
+      weight: weights.keywordWeight,
+    });
+  }
+
+  if (lists.length === 0) {
+    return [];
+  }
+
+  const fused = fuseResultsMulti(lists);
+
+  // Apply recency boost if recencyWeight > 0
+  if (weights.recencyWeight > 0) {
+    applyRecencyBoost(fused, weights.recencyWeight);
+  }
+
+  // Re-sort after recency boost
+  fused.sort((a, b) => b.rrfScore - a.rrfScore);
+
+  return fused;
+}
+
+/**
+ * Apply a recency boost to fused results. Items with a `created_at`
+ * timestamp receive a bonus proportional to how recent they are.
+ * Falls back gracefully when no timestamps are present.
+ */
+function applyRecencyBoost(results: FusionResult[], recencyWeight: number): void {
+  const now = Date.now();
+  const ONE_DAY_MS = 86_400_000;
+  const MAX_AGE_DAYS = 365;
+
+  for (const r of results) {
+    const createdAt = r.created_at as string | undefined;
+    if (!createdAt) continue;
+
+    try {
+      const ts = new Date(createdAt).getTime();
+      if (Number.isNaN(ts)) continue;
+
+      const ageDays = Math.max(0, (now - ts) / ONE_DAY_MS);
+      // Exponential decay: recent items get higher boost
+      const freshness = Math.exp(-ageDays / MAX_AGE_DAYS);
+      r.rrfScore += freshness * recencyWeight * 0.1;
+    } catch {
+      // Skip items with invalid dates
+    }
+  }
+}
+
+/* ---------------------------------------------------------------
+   6. STANDARD (DETERMINISTIC) FALLBACK
+   --------------------------------------------------------------- */
+
+/**
+ * Standard RRF fusion without adaptive weighting (deterministic fallback).
+ * Uses equal weights for all sources.
+ */
+export function standardFuse(
+  semanticResults: RrfItem[],
+  keywordResults: RrfItem[]
+): FusionResult[] {
+  const lists: RankedList[] = [];
+
+  if (semanticResults.length > 0) {
+    lists.push({ source: 'vector', results: semanticResults, weight: 1.0 });
+  }
+
+  if (keywordResults.length > 0) {
+    lists.push({ source: 'keyword', results: keywordResults, weight: 1.0 });
+  }
+
+  if (lists.length === 0) return [];
+
+  return fuseResultsMulti(lists);
+}
+
+/* ---------------------------------------------------------------
+   7. DARK-RUN MODE
+   --------------------------------------------------------------- */
+
+function computeDarkRunDiff(
+  standardResults: FusionResult[],
+  adaptiveResults: FusionResult[]
+): DarkRunDiff {
+  let orderDifferences = 0;
+  const maxLen = Math.max(standardResults.length, adaptiveResults.length);
+
+  for (let i = 0; i < maxLen; i++) {
+    const stdId = standardResults[i]?.id;
+    const adpId = adaptiveResults[i]?.id;
+    if (stdId !== adpId) {
+      orderDifferences++;
+    }
+  }
+
+  const topResultChanged =
+    standardResults.length > 0 &&
+    adaptiveResults.length > 0 &&
+    standardResults[0].id !== adaptiveResults[0].id;
+
+  return {
+    standardCount: standardResults.length,
+    adaptiveCount: adaptiveResults.length,
+    orderDifferences,
+    topResultChanged,
+  };
+}
+
+/* ---------------------------------------------------------------
+   8. MAIN ENTRY POINT
+   --------------------------------------------------------------- */
+
+/**
+ * Adaptive hybrid fusion entry point.
+ *
+ * - Feature flag ON  -> use adaptive weighted fusion
+ * - Feature flag OFF -> deterministic standard RRF fallback
+ * - Dark-run mode: compute both, log diff, return standard
+ *
+ * @param semanticResults - Results from vector/semantic search
+ * @param keywordResults  - Results from keyword/lexical search
+ * @param intent          - Classified intent of the query
+ * @param options         - Optional: documentType, identity, darkRun
+ */
+export function hybridAdaptiveFuse(
+  semanticResults: RrfItem[],
+  keywordResults: RrfItem[],
+  intent: IntentType | string,
+  options: {
+    documentType?: string;
+    identity?: string;
+    darkRun?: boolean;
+  } = {}
+): AdaptiveFusionResult {
+  const { documentType, identity, darkRun = false } = options;
+  const weights = getAdaptiveWeights(intent, documentType);
+
+  // Check feature flag
+  const enabled = isAdaptiveFusionEnabled(identity);
+
+  // Standard fallback (always computed)
+  let standardResults: FusionResult[];
+  try {
+    standardResults = standardFuse(semanticResults, keywordResults);
+  } catch (error: unknown) {
+    const msg = error instanceof Error ? error.message : String(error);
+    return {
+      results: [],
+      weights,
+      degraded: {
+        failure_mode: `standard_fusion_error: ${msg}`,
+        fallback_mode: 'empty_results',
+        confidence_impact: 1.0,
+        retry_recommendation: true,
+      },
+    };
+  }
+
+  // If flag is OFF and not a dark run, return standard
+  if (!enabled && !darkRun) {
+    return {
+      results: standardResults,
+      weights: { semanticWeight: 1.0, keywordWeight: 1.0, recencyWeight: 0 },
+    };
+  }
+
+  // Compute adaptive results
+  let adaptiveResults: FusionResult[];
+  try {
+    adaptiveResults = adaptiveFuse(semanticResults, keywordResults, weights);
+  } catch (error: unknown) {
+    const msg = error instanceof Error ? error.message : String(error);
+    // Degraded mode: fall back to standard
+    return {
+      results: standardResults,
+      weights,
+      degraded: {
+        failure_mode: `adaptive_fusion_error: ${msg}`,
+        fallback_mode: 'standard_rrf',
+        confidence_impact: 0.3,
+        retry_recommendation: false,
+      },
+    };
+  }
+
+  // Dark-run mode: return standard results but include diff
+  if (darkRun && !enabled) {
+    const diff = computeDarkRunDiff(standardResults, adaptiveResults);
+    return {
+      results: standardResults,
+      weights,
+      darkRunDiff: diff,
+    };
+  }
+
+  // Adaptive enabled — return adaptive results
+  return {
+    results: adaptiveResults,
+    weights,
+  };
+}
+
+/* ---------------------------------------------------------------
+   9. EXPORTS
+   --------------------------------------------------------------- */
+
+// Named exports above via `export` keyword. Re-export for convenience:
+export {
+  INTENT_WEIGHT_PROFILES,
+  DEFAULT_WEIGHTS,
+  FEATURE_FLAG,
+};

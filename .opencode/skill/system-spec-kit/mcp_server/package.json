@@ -13,6 +13,7 @@
   },
   "scripts": {
     "start": "node dist/context-server.js",
+    "lint": "eslint . --ext .ts",
     "test": "vitest run",
     "test:watch": "vitest"
   },
@@ -32,12 +33,16 @@
     "@huggingface/transformers": "^3.8.1",
     "@modelcontextprotocol/sdk": "^1.24.3",
     "better-sqlite3": "^12.6.2",
-    "sqlite-vec": "^0.1.7-alpha.2"
+    "sqlite-vec": "^0.1.7-alpha.2",
+    "zod": "^4.1.12"
   },
   "optionalDependencies": {
     "sqlite-vec-darwin-arm64": "^0.1.7-alpha.2"
   },
   "devDependencies": {
+    "eslint": "^9.39.1",
+    "globals": "^16.4.0",
+    "typescript-eslint": "^8.46.3",
     "vitest": "^4.0.18"
   }
 }

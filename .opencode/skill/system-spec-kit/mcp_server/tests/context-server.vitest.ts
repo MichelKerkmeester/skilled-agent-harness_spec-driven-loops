@@ -3,7 +3,7 @@
 // TEST: CONTEXT SERVER
 // ---------------------------------------------------------------
 
-import { describe, it, expect, beforeAll } from 'vitest'
+import { describe, it, expect, beforeAll, afterEach, vi } from 'vitest'
 import fs from 'fs'
 import path from 'path'
 
@@ -327,6 +327,326 @@ describe('Context Server', () => {
     // T19: Unknown tools cause error
     it('T19: Unknown tool throws error', () => {
       expect(sourceCode).toMatch(/throw\s+new\s+Error\(`Unknown tool:\s*\$\{name\}`\)/)
+    })
+  })
+
+  // =================================================================
+  // GROUP 3b: After-Tool Callback Pipeline (T000a-T000d)
+  // =================================================================
+  describe('Group 3b: After-Tool Callback Pipeline', () => {
+    const RUNTIME_MOCK_MODULES = [
+      '@modelcontextprotocol/sdk/server/index.js',
+      '@modelcontextprotocol/sdk/server/stdio.js',
+      '@modelcontextprotocol/sdk/types.js',
+      '../core',
+      '../tool-schemas',
+      '../tools',
+      '../handlers',
+      '../utils',
+      '../hooks',
+      '../lib/architecture/layer-definitions',
+      '../startup-checks',
+      '../lib/search/vector-index',
+      '../lib/providers/embeddings',
+      '../lib/storage/checkpoints',
+      '../lib/storage/access-tracker',
+      '../lib/search/hybrid-search',
+      '../lib/search/bm25-index',
+      '../lib/parsing/memory-parser',
+      '../lib/cache/cognitive/working-memory',
+      '../lib/cache/cognitive/attention-decay',
+      '../lib/cache/cognitive/co-activation',
+      '../lib/cache/cognitive/archival-manager',
+      '../lib/providers/retry-manager',
+      '../lib/session/session-manager',
+      '../lib/storage/incremental-index',
+      '../lib/storage/transaction-manager',
+      '../lib/cache/tool-cache',
+      '../lib/errors',
+    ] as const
+
+    type RuntimeHarness = {
+      registerAfterToolCallback: (fn: (tool: string, callId: string, result: unknown) => Promise<void>) => void
+      dispatchToolMock: ReturnType<typeof vi.fn>
+      callToolHandler: (request: unknown, extra: unknown) => Promise<unknown>
+    }
+
+    async function loadRuntimeHarness(): Promise<RuntimeHarness> {
+      vi.resetModules()
+
+      const handlers = new Map<unknown, (request: unknown, extra: unknown) => Promise<unknown>>()
+      const dispatchToolMock = vi.fn()
+      const listToolsSchema = { name: 'ListToolsRequestSchema' }
+      const callToolSchema = { name: 'CallToolRequestSchema' }
+
+      vi.spyOn(process, 'on').mockImplementation(() => process)
+      vi.spyOn(global, 'setImmediate').mockImplementation(() => 0 as unknown as NodeJS.Immediate)
+      vi.spyOn(process, 'exit').mockImplementation(() => undefined as never)
+
+      vi.doMock('@modelcontextprotocol/sdk/server/index.js', () => ({
+        Server: class {
+          setRequestHandler(schema: unknown, handler: (request: unknown, extra: unknown) => Promise<unknown>): void {
+            handlers.set(schema, handler)
+          }
+
+          async connect(_transport: unknown): Promise<void> {
+            return
+          }
+        },
+      }))
+
+      vi.doMock('@modelcontextprotocol/sdk/server/stdio.js', () => ({
+        StdioServerTransport: class {
+          close(): void {
+            return
+          }
+        },
+      }))
+
+      vi.doMock('@modelcontextprotocol/sdk/types.js', () => ({
+        ListToolsRequestSchema: listToolsSchema,
+        CallToolRequestSchema: callToolSchema,
+      }))
+
+      vi.doMock('../core', () => ({
+        LIB_DIR: '/tmp',
+        DEFAULT_BASE_PATH: '/tmp',
+        checkDatabaseUpdated: vi.fn(),
+        reinitializeDatabase: vi.fn(),
+        setEmbeddingModelReady: vi.fn(),
+        waitForEmbeddingModel: vi.fn(async () => true),
+        isEmbeddingModelReady: vi.fn(() => true),
+        init: vi.fn(),
+      }))
+
+      vi.doMock('../tool-schemas', () => ({ TOOL_DEFINITIONS: [] }))
+      vi.doMock('../tools', () => ({ dispatchTool: dispatchToolMock }))
+
+      vi.doMock('../handlers', () => ({
+        indexSingleFile: vi.fn(async () => ({ status: 'unchanged' })),
+        setEmbeddingModelReady: vi.fn(),
+      }))
+
+      vi.doMock('../utils', () => ({ validateInputLengths: vi.fn() }))
+
+      vi.doMock('../hooks', () => ({
+        MEMORY_AWARE_TOOLS: new Set<string>(),
+        extractContextHint: vi.fn(() => null),
+        autoSurfaceMemories: vi.fn(async () => ({ constitutional: [], triggered: [] })),
+      }))
+
+      vi.doMock('../lib/architecture/layer-definitions', () => ({
+        getTokenBudget: vi.fn(() => 1000),
+      }))
+
+      vi.doMock('../startup-checks', () => ({ detectNodeVersionMismatch: vi.fn() }))
+
+      vi.doMock('../lib/search/vector-index', () => ({
+        initializeDb: vi.fn(),
+        closeDb: vi.fn(),
+        verifyIntegrity: vi.fn(() => ({ totalMemories: 0, missingVectors: 0, orphanedVectors: 0 })),
+        validateEmbeddingDimension: vi.fn(() => ({ valid: true, stored: 1536 })),
+        getDb: vi.fn(() => ({})),
+        vectorSearch: vi.fn(),
+      }))
+
+      vi.doMock('../lib/providers/embeddings', () => ({
+        validateApiKey: vi.fn(async () => ({ valid: true, provider: 'test' })),
+        shouldEagerWarmup: vi.fn(() => false),
+        generateEmbedding: vi.fn(async () => [0]),
+      }))
+
+      vi.doMock('../lib/storage/checkpoints', () => ({ init: vi.fn() }))
+      vi.doMock('../lib/storage/access-tracker', () => ({ init: vi.fn(), reset: vi.fn() }))
+      vi.doMock('../lib/search/hybrid-search', () => ({ init: vi.fn() }))
+      vi.doMock('../lib/search/bm25-index', () => ({
+        isBm25Enabled: vi.fn(() => false),
+        getIndex: vi.fn(() => ({ rebuildFromDatabase: vi.fn(() => 0) })),
+      }))
+      vi.doMock('../lib/parsing/memory-parser', () => ({ findMemoryFiles: vi.fn(() => []) }))
+      vi.doMock('../lib/cache/cognitive/working-memory', () => ({ init: vi.fn(), isEnabled: vi.fn(() => false) }))
+      vi.doMock('../lib/cache/cognitive/attention-decay', () => ({ init: vi.fn() }))
+      vi.doMock('../lib/cache/cognitive/co-activation', () => ({ init: vi.fn(), isEnabled: vi.fn(() => false) }))
+      vi.doMock('../lib/cache/cognitive/archival-manager', () => ({
+        init: vi.fn(),
+        startBackgroundJob: vi.fn(),
+        isBackgroundJobRunning: vi.fn(() => false),
+        cleanup: vi.fn(),
+      }))
+      vi.doMock('../lib/providers/retry-manager', () => ({
+        startBackgroundJob: vi.fn(() => false),
+        stopBackgroundJob: vi.fn(),
+      }))
+      vi.doMock('../lib/session/session-manager', () => ({
+        init: vi.fn(() => ({ success: true })),
+        isEnabled: vi.fn(() => false),
+        resetInterruptedSessions: vi.fn(() => ({ interruptedCount: 0 })),
+        getInterruptedSessions: vi.fn(() => ({ sessions: [] })),
+        shutdown: vi.fn(),
+      }))
+      vi.doMock('../lib/storage/incremental-index', () => ({}))
+      vi.doMock('../lib/storage/transaction-manager', () => ({
+        recoverAllPendingFiles: vi.fn(() => []),
+        getMetrics: vi.fn(() => ({ totalRecoveries: 0, totalErrors: 0, totalAtomicWrites: 0 })),
+      }))
+      vi.doMock('../lib/cache/tool-cache', () => ({ shutdown: vi.fn() }))
+      vi.doMock('../lib/errors', () => ({
+        ErrorCodes: { UNKNOWN_TOOL: 'UNKNOWN_TOOL' },
+        getRecoveryHint: vi.fn(() => ({ code: 'UNKNOWN_TOOL' })),
+        buildErrorResponse: vi.fn((_tool: string, error: Error) => ({ error: error.message })),
+      }))
+
+      const module = await import('../context-server')
+      const callToolHandler = handlers.get(callToolSchema)
+      expect(typeof callToolHandler).toBe('function')
+
+      return {
+        registerAfterToolCallback: module.registerAfterToolCallback,
+        dispatchToolMock,
+        callToolHandler: callToolHandler as (request: unknown, extra: unknown) => Promise<unknown>,
+      }
+    }
+
+    afterEach(() => {
+      for (const mockedModule of RUNTIME_MOCK_MODULES) {
+        vi.doUnmock(mockedModule)
+      }
+      vi.restoreAllMocks()
+      vi.resetModules()
+    })
+
+    it('T000a: afterToolCallbacks registry is typed', () => {
+      expect(sourceCode).toMatch(/const\s+afterToolCallbacks:\s*Array<\s*AfterToolCallback\s*>\s*=\s*\[\]/)
+      expect(sourceCode).toMatch(/type\s+AfterToolCallback\s*=\s*\(tool:\s*string,\s*callId:\s*string,\s*result:\s*unknown\)\s*=>\s*Promise<void>/)
+    })
+
+    it('T000c: registerAfterToolCallback(fn) exported', () => {
+      expect(sourceCode).toMatch(/export\s+function\s+registerAfterToolCallback\(fn:\s*AfterToolCallback\):\s*void/)
+      expect(sourceCode).toMatch(/afterToolCallbacks\.push\(fn\)/)
+    })
+
+    it('T000b: callbacks are triggered after dispatchTool and non-blocking', () => {
+      expect(sourceCode).toMatch(/const\s+result\s*=\s*await\s+dispatchTool\(name,\s*args\)/)
+      expect(sourceCode).toMatch(/runAfterToolCallbacks\(name,\s*callId,\s*result\)/)
+      expect(sourceCode).toMatch(/queueMicrotask\(\(\)\s*=>\s*\{/)
+      expect(sourceCode).not.toMatch(/await\s+runAfterToolCallbacks\(/)
+    })
+
+    it('T000b: per-callback error isolation with logging', () => {
+      expect(sourceCode).toMatch(/for\s*\(const\s+callback\s+of\s+afterToolCallbacks\)/)
+      expect(sourceCode).toMatch(/void\s+callback\(tool,\s*callId,\s*result\)\.catch\(\(error:\s*unknown\)\s*=>\s*\{/) 
+      expect(sourceCode).toMatch(/afterTool callback failed/)
+    })
+
+    it('T000d: callback runs after dispatchTool resolves', async () => {
+      const { registerAfterToolCallback, dispatchToolMock, callToolHandler } = await loadRuntimeHarness()
+      const events: string[] = []
+
+      let releaseDispatch: (() => void) | null = null
+      const toolResult = { content: [{ type: 'text', text: '{}' }] }
+
+      dispatchToolMock.mockImplementation(async () => {
+        events.push('dispatch:start')
+        await new Promise<void>((resolve) => {
+          releaseDispatch = resolve
+        })
+        events.push('dispatch:end')
+        return toolResult
+      })
+
+      const callbackSpy = vi.fn(async () => {
+        events.push('callback')
+      })
+
+      registerAfterToolCallback(callbackSpy)
+
+      const responsePromise = callToolHandler(
+        { id: 'call-1', params: { name: 'memory_search', arguments: {} } },
+        {}
+      )
+
+      await Promise.resolve()
+      expect(callbackSpy).not.toHaveBeenCalled()
+
+      expect(releaseDispatch).not.toBeNull()
+      releaseDispatch!()
+
+      await responsePromise
+      await new Promise((resolve) => setTimeout(resolve, 0))
+
+      expect(callbackSpy).toHaveBeenCalledTimes(1)
+      expect(callbackSpy).toHaveBeenCalledWith('memory_search', 'call-1', toolResult)
+      expect(events).toEqual(['dispatch:start', 'dispatch:end', 'callback'])
+    })
+
+    it('T000d: rejected callback does not block other callbacks', async () => {
+      const { registerAfterToolCallback, dispatchToolMock, callToolHandler } = await loadRuntimeHarness()
+      const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {})
+      const callbackOrder: string[] = []
+
+      dispatchToolMock.mockResolvedValue({ content: [{ type: 'text', text: '{}' }] })
+
+      registerAfterToolCallback(async () => {
+        callbackOrder.push('first')
+        throw new Error('boom')
+      })
+
+      registerAfterToolCallback(async () => {
+        callbackOrder.push('second')
+      })
+
+      await callToolHandler(
+        { id: 'call-2', params: { name: 'memory_list', arguments: {} } },
+        {}
+      )
+
+      await new Promise((resolve) => setTimeout(resolve, 0))
+
+      expect(callbackOrder).toEqual(['first', 'second'])
+      expect(
+        errorSpy.mock.calls.some((call) => String(call[0]).includes('afterTool callback failed'))
+      ).toBe(true)
+    })
+
+    it('T000d: response stays non-blocking while callback is pending', async () => {
+      const { registerAfterToolCallback, dispatchToolMock, callToolHandler } = await loadRuntimeHarness()
+
+      dispatchToolMock.mockResolvedValue({ content: [{ type: 'text', text: '{}' }] })
+
+      let callbackStarted = false
+      let callbackFinished = false
+      let releaseCallback: (() => void) | null = null
+
+      registerAfterToolCallback(async () => {
+        callbackStarted = true
+        await new Promise<void>((resolve) => {
+          releaseCallback = resolve
+        })
+        callbackFinished = true
+      })
+
+      const responsePromise = callToolHandler(
+        { id: 'call-3', params: { name: 'memory_stats', arguments: {} } },
+        {}
+      )
+
+      expect(callbackStarted).toBe(false)
+
+      const responseRace = await Promise.race([
+        responsePromise.then(() => 'resolved'),
+        new Promise<'timeout'>((resolve) => setTimeout(() => resolve('timeout'), 25)),
+      ])
+
+      expect(responseRace).toBe('resolved')
+      await new Promise((resolve) => setTimeout(resolve, 0))
+      expect(callbackStarted).toBe(true)
+      expect(callbackFinished).toBe(false)
+
+      expect(releaseCallback).not.toBeNull()
+      releaseCallback!()
+      await new Promise((resolve) => setTimeout(resolve, 0))
+
+      expect(callbackFinished).toBe(true)
     })
   })
 
@@ -1125,6 +1445,12 @@ describe('Context Server', () => {
       const budgetMatches = toolSchemasCode.match(budgetPattern)
       expect(budgetMatches).not.toBeNull()
       expect(budgetMatches!.length).toBeGreaterThanOrEqual(20)
+    })
+
+    it('T000e: memory_context supports optional tokenUsage (0.0-1.0)', () => {
+      expect(toolSchemasCode).toMatch(/name:\s*'memory_context'[\s\S]*?tokenUsage:\s*\{\s*type:\s*'number'/)
+      expect(toolSchemasCode).toMatch(/tokenUsage:[\s\S]*?minimum:\s*0\.0/)
+      expect(toolSchemasCode).toMatch(/tokenUsage:[\s\S]*?maximum:\s*1\.0/)
     })
   })
 

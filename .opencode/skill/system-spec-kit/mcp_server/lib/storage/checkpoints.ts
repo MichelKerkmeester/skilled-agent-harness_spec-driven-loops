@@ -142,7 +142,7 @@ function createCheckpoint(options: CreateCheckpointOptions = {}): CheckpointInfo
   const {
     name = `checkpoint-${Date.now()}`,
     specFolder = null,
-    includeEmbeddings = true,
+    includeEmbeddings: _includeEmbeddings = true,
     metadata = {},
   } = options;
 
@@ -373,10 +373,37 @@ function restoreCheckpoint(nameOrId: string | number, clearExisting: boolean = f
               added_at TEXT DEFAULT CURRENT_TIMESTAMP,
               last_focused TEXT DEFAULT CURRENT_TIMESTAMP,
               focus_count INTEGER DEFAULT 1,
+              event_counter INTEGER NOT NULL DEFAULT 0,
+              mention_count INTEGER NOT NULL DEFAULT 0,
+              source_tool TEXT,
+              source_call_id TEXT,
+              extraction_rule_id TEXT,
+              redaction_applied INTEGER NOT NULL DEFAULT 0,
               UNIQUE(session_id, memory_id),
               FOREIGN KEY (memory_id) REFERENCES memory_index(id) ON DELETE CASCADE
             )
           `);
+
+          const wmColumns = (database.prepare('PRAGMA table_info(working_memory)').all() as Array<{ name: string }>)
+            .map(column => column.name);
+          if (!wmColumns.includes('event_counter')) {
+            database.exec('ALTER TABLE working_memory ADD COLUMN event_counter INTEGER NOT NULL DEFAULT 0');
+          }
+          if (!wmColumns.includes('mention_count')) {
+            database.exec('ALTER TABLE working_memory ADD COLUMN mention_count INTEGER NOT NULL DEFAULT 0');
+          }
+          if (!wmColumns.includes('source_tool')) {
+            database.exec('ALTER TABLE working_memory ADD COLUMN source_tool TEXT');
+          }
+          if (!wmColumns.includes('source_call_id')) {
+            database.exec('ALTER TABLE working_memory ADD COLUMN source_call_id TEXT');
+          }
+          if (!wmColumns.includes('extraction_rule_id')) {
+            database.exec('ALTER TABLE working_memory ADD COLUMN extraction_rule_id TEXT');
+          }
+          if (!wmColumns.includes('redaction_applied')) {
+            database.exec('ALTER TABLE working_memory ADD COLUMN redaction_applied INTEGER NOT NULL DEFAULT 0');
+          }
         } catch {
           // Table may already exist with different schema — proceed anyway
         }
@@ -390,8 +417,10 @@ function restoreCheckpoint(nameOrId: string | number, clearExisting: boolean = f
             database.prepare(`
               INSERT OR REPLACE INTO working_memory (
                 id, session_id, memory_id, attention_score,
-                added_at, last_focused, focus_count
-              ) VALUES (?, ?, ?, ?, ?, ?, ?)
+                added_at, last_focused, focus_count,
+                event_counter, mention_count,
+                source_tool, source_call_id, extraction_rule_id, redaction_applied
+              ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
             `).run(
               wmEntry.id,
               wmEntry.session_id,
@@ -399,7 +428,13 @@ function restoreCheckpoint(nameOrId: string | number, clearExisting: boolean = f
               wmEntry.attention_score ?? 1.0,
               wmEntry.added_at,
               wmEntry.last_focused,
-              wmEntry.focus_count ?? 1
+              wmEntry.focus_count ?? 1,
+              wmEntry.event_counter ?? 0,
+              wmEntry.mention_count ?? 0,
+              wmEntry.source_tool ?? null,
+              wmEntry.source_call_id ?? null,
+              wmEntry.extraction_rule_id ?? null,
+              wmEntry.redaction_applied ?? 0
             );
             result.workingMemoryRestored++;
           } catch (e: unknown) {

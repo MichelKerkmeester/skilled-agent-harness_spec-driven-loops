@@ -1,0 +1,106 @@
+// @ts-nocheck
+// ---------------------------------------------------------------
+// TEST: CAUSAL BOOST (T038-T044)
+// ---------------------------------------------------------------
+
+import { afterEach, beforeEach, describe, expect, it } from 'vitest';
+import Database from 'better-sqlite3';
+import * as causalBoost from '../lib/search/causal-boost';
+
+function createDb() {
+  const db = new Database(':memory:');
+  db.exec(`
+    CREATE TABLE causal_edges (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      source_id TEXT NOT NULL,
+      target_id TEXT NOT NULL,
+      relation TEXT NOT NULL,
+      strength REAL DEFAULT 1.0,
+      evidence TEXT,
+      extracted_at TEXT DEFAULT CURRENT_TIMESTAMP
+    );
+
+    CREATE TABLE memory_index (
+      id INTEGER PRIMARY KEY,
+      spec_folder TEXT,
+      file_path TEXT,
+      title TEXT,
+      importance_tier TEXT,
+      trigger_phrases TEXT,
+      created_at TEXT DEFAULT CURRENT_TIMESTAMP
+    );
+  `);
+  causalBoost.init(db);
+  return db;
+}
+
+describe('T038-T044 causal boost', () => {
+  let db: Database.Database | null = null;
+  const previousFlag = process.env.SPECKIT_CAUSAL_BOOST;
+
+  beforeEach(() => {
+    process.env.SPECKIT_CAUSAL_BOOST = 'true';
+    db = createDb();
+    db.prepare(`
+      INSERT INTO memory_index (id, spec_folder, file_path, title, importance_tier, trigger_phrases)
+      VALUES
+      (1, 'spec', '/tmp/a.md', 'A', 'important', '[]'),
+      (2, 'spec', '/tmp/b.md', 'B', 'important', '[]'),
+      (3, 'spec', '/tmp/c.md', 'C', 'important', '[]'),
+      (4, 'spec', '/tmp/d.md', 'D', 'important', '[]')
+    `).run();
+  });
+
+  afterEach(() => {
+    if (db) db.close();
+    if (previousFlag === undefined) {
+      delete process.env.SPECKIT_CAUSAL_BOOST;
+    } else {
+      process.env.SPECKIT_CAUSAL_BOOST = previousFlag;
+    }
+  });
+
+  it('T039/T043: computes 1-hop and 2-hop neighbors from causal_edges', () => {
+    db?.prepare(`
+      INSERT INTO causal_edges (source_id, target_id, relation)
+      VALUES ('1', '2', 'caused'), ('2', '3', 'supports')
+    `).run();
+
+    const boosts = causalBoost.getNeighborBoosts([1]);
+    expect(boosts.get(2)).toBeCloseTo(0.05, 6);
+    expect(boosts.get(3)).toBeCloseTo(0.025, 6);
+  });
+
+  it('T040/T044: applies bounded boost and deduplicates existing semantic results', () => {
+    db?.prepare(`
+      INSERT INTO causal_edges (source_id, target_id, relation)
+      VALUES ('1', '2', 'caused'), ('1', '3', 'supports')
+    `).run();
+
+    const baseResults = [
+      { id: 1, score: 0.9 },
+      { id: 2, score: 0.6, sessionBoost: 0.1 },
+    ];
+
+    const { results, metadata } = causalBoost.applyCausalBoost(baseResults as any);
+    const idList = results.map((item) => item.id);
+
+    expect(metadata.applied).toBe(true);
+    expect(metadata.boostedCount).toBeGreaterThanOrEqual(1);
+    expect(idList.filter((id) => id === 2)).toHaveLength(1);
+    expect(idList.includes(3)).toBe(true);
+  });
+
+  it('T043: handles no edges and cyclic edges without duplication', () => {
+    const empty = causalBoost.getNeighborBoosts([4]);
+    expect(empty.size).toBe(0);
+
+    db?.prepare(`
+      INSERT INTO causal_edges (source_id, target_id, relation)
+      VALUES ('1', '2', 'caused'), ('2', '1', 'supports')
+    `).run();
+
+    const cycle = causalBoost.getNeighborBoosts([1]);
+    expect(cycle.get(2)).toBeCloseTo(0.05, 6);
+  });
+});

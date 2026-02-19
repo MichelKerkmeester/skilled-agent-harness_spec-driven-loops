@@ -14,15 +14,13 @@ import type { CausalChainNode, CausalEdge } from '../lib/storage/causal-edges';
 // Core utilities
 import { checkDatabaseUpdated } from '../core';
 import { toErrorMessage } from '../utils';
-
-// Error codes and recovery hints
-import { ErrorCodes, getRecoveryHint } from '../lib/errors';
+import { getRecoveryHint } from '../lib/errors';
 
 // REQ-019: Standardized Response Structure
 import { createMCPSuccessResponse, createMCPErrorResponse, createMCPEmptyResponse } from '../lib/response/envelope';
 
 // Shared handler types
-import type { Database, MCPResponse } from './types';
+import type { MCPResponse } from './types';
 
 /* ---------------------------------------------------------------
    1. TYPES
@@ -67,7 +65,9 @@ interface CausalLinkArgs {
   evidence?: string | null;
 }
 
-interface CausalStatsArgs {}
+interface CausalStatsArgs {
+  _?: never;
+}
 
 interface CausalUnlinkArgs {
   edgeId: number;
@@ -715,4 +715,3 @@ export {
   handle_memory_causal_stats,
   handle_memory_causal_unlink,
 };
-

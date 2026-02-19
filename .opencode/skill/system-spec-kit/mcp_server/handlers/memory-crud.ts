@@ -2,8 +2,6 @@
 // MODULE: Memory CRUD
 // ---------------------------------------------------------------
 
-import path from 'path';
-
 /* ---------------------------------------------------------------
    1. DEPENDENCIES
 --------------------------------------------------------------- */
@@ -61,7 +59,9 @@ interface StatsArgs {
   limit?: number;
 }
 
-interface HealthArgs {}
+interface HealthArgs {
+  _?: never;
+}
 
 interface ProviderMetadata {
   provider: string;

@@ -32,11 +32,13 @@ The `extractors/` directory converts collected session input into structured dat
 
 
 - `collect-session-data.ts`
+- `contamination-filter.ts` - Filters contamination from extraction pipeline outputs
 - `conversation-extractor.ts`
 - `decision-extractor.ts`
 - `diagram-extractor.ts`
 - `file-extractor.ts`
 - `implementation-guide-extractor.ts`
+- `quality-scorer.ts` - Scores extraction quality for validation
 - `session-extractor.ts`
 - `opencode-capture.ts`
 - `index.ts`

@@ -1,0 +1,77 @@
+# Rollback Runbook: Working Memory Automation
+
+---
+
+<!-- ANCHOR:scope -->
+## 1. Scope
+
+This runbook defines the rollback flow for the automation features introduced in spec `136-mcp-working-memory-hybrid-rag`.
+
+Rollback is required when one or more of the following occurs:
+- Rank stability regresses (`top-5 MRR < 0.95x` baseline)
+- Pressure policy causes context quality degradation
+- Extraction quality drops below precision/recall gates
+
+---
+
+<!-- /ANCHOR:scope -->
+<!-- ANCHOR:flags -->
+## 2. Disable Flags
+
+Disable all rollout-sensitive automation flags:
+
+```bash
+SPECKIT_SESSION_BOOST=false
+SPECKIT_PRESSURE_POLICY=false
+SPECKIT_EXTRACTION=false
+SPECKIT_CAUSAL_BOOST=false
+SPECKIT_AUTO_RESUME=false
+```
+
+---
+
+<!-- /ANCHOR:flags -->
+<!-- ANCHOR:smoke-tests -->
+## 3. Smoke Tests
+
+Run focused verification immediately after restart:
+
+```bash
+npm run test --workspace=mcp_server -- tests/handler-memory-context.vitest.ts tests/phase2-integration.vitest.ts tests/session-boost.vitest.ts tests/causal-boost.vitest.ts
+```
+
+Expected outcomes:
+- all selected tests pass
+- no extraction callback failures in logs
+- no pressure override warnings when `tokenUsage` is absent
+
+---
+
+<!-- /ANCHOR:smoke-tests -->
+<!-- ANCHOR:verification -->
+## 4. Baseline Verification
+
+Confirm baseline behavior before closing rollback:
+- `memory_search` response metadata shows no applied session/causal boosts
+- `memory_context` response metadata shows no pressure-mode override
+- `working_memory` receives no new extraction inserts from post-tool callbacks
+
+---
+
+<!-- /ANCHOR:verification -->
+<!-- ANCHOR:re-enable -->
+## 5. Controlled Re-Enable
+
+Re-enable features one flag at a time in this order:
+1. `SPECKIT_SESSION_BOOST`
+2. `SPECKIT_PRESSURE_POLICY`
+3. `SPECKIT_EXTRACTION`
+4. `SPECKIT_CAUSAL_BOOST`
+5. `SPECKIT_AUTO_RESUME`
+
+After each flag:
+- rerun the smoke test command
+- compare extraction precision/recall and top-5 MRR against baseline artifacts
+
+Stop re-enable if any gate fails.
+<!-- /ANCHOR:re-enable -->

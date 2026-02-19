@@ -51,6 +51,8 @@ export interface ParsedMemory {
   hasCausalLinks: boolean;
   /** Spec 126: Document structural type (spec, plan, tasks, memory, readme, etc.) */
   documentType: string;
+  qualityScore: number;
+  qualityFlags: string[];
 }
 
 /** Anchor validation result */
@@ -151,6 +153,8 @@ export function parseMemoryFile(filePath: string): ParsedMemory {
   const contextType = extractContextType(content);
   const importance_tier = extractImportanceTier(content);
   const content_hash = computeContentHash(content);
+  const qualityScore = extractQualityScore(content);
+  const qualityFlags = extractQualityFlags(content);
 
   // T125: Infer memory_type for type-specific half-lives (CHK-230)
   const typeInference: TypeInferenceResult = inferMemoryType({
@@ -187,7 +191,38 @@ export function parseMemoryFile(filePath: string): ParsedMemory {
     hasCausalLinks: hasCausalLinks(causalLinks),
     // Spec 126: Document structural type
     documentType,
+    qualityScore,
+    qualityFlags,
   };
+}
+
+function extractQualityScore(content: string): number {
+  const yamlMatch = content.match(/quality_score:\s*([0-9.]+)/i);
+  if (!yamlMatch) {
+    return 0;
+  }
+  const parsed = Number.parseFloat(yamlMatch[1]);
+  if (!Number.isFinite(parsed)) {
+    return 0;
+  }
+  return Math.max(0, Math.min(1, parsed));
+}
+
+function extractQualityFlags(content: string): string[] {
+  const blockMatch = content.match(/quality_flags:\s*\n([\s\S]*?)(?:\n\S|$)/i);
+  if (!blockMatch) {
+    return [];
+  }
+
+  const lines = blockMatch[1].split('\n');
+  const flags: string[] = [];
+  for (const line of lines) {
+    const flagMatch = line.match(/^\s*-\s*['"]?([^'"]+)['"]?\s*$/);
+    if (flagMatch) {
+      flags.push(flagMatch[1].trim());
+    }
+  }
+  return flags;
 }
 
 /**
@@ -459,7 +494,6 @@ export function extractCausalLinks(content: string): CausalLinks {
   const lines = block.split('\n');
 
   let currentKey: keyof CausalLinks | null = null;
-  const validKeys: Array<keyof CausalLinks> = ['caused_by', 'supersedes', 'derived_from', 'blocks', 'related_to'];
 
   for (const line of lines) {
     // Check for sub-key (e.g., "  caused_by:")

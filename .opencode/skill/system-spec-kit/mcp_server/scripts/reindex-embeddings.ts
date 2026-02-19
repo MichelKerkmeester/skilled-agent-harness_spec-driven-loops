@@ -14,7 +14,6 @@ import * as accessTracker from '../lib/storage/access-tracker';
 import * as hybridSearch from '../lib/search/hybrid-search';
 import { init as init_db_state, setEmbeddingModelReady } from '../core';
 import { handleMemoryIndexScan, setEmbeddingModelReady as set_handler_embedding_ready } from '../handlers';
-import { DEFAULT_BASE_PATH } from '../core/config';
 
 /* ---------------------------------------------------------------
    2. TYPES

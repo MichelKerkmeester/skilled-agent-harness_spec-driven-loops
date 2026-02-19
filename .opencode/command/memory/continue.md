@@ -190,7 +190,7 @@ Check `key_files` from memory metadata against the spec folder:
 |--------|---------|
 | `key_files` contain `.opencode/skill/` | Skill/infrastructure work |
 | `key_files` contain `.opencode/command/` | Command development work |
-| `key_files` contain `.opencode/agent/`, `.opencode/agent/chatgpt/`, or `.opencode/agent/claude/` | Agent development work |
+| `key_files` contain `.opencode/agent/`, `.opencode/agent/chatgpt/`, or `/.claude/agents` | Agent development work |
 | `spec_folder` doesn't match patterns | Likely saved to wrong folder |
 
 **On mismatch, present options:**
@@ -377,6 +377,8 @@ Context will be automatically restored. Next action: Verify command structure.
 | Multiple sessions detected       | Ask user to select                     |
 | Session state corrupt/incomplete | Reconstruct from multiple memory files |
 | Spec folder not found            | List available, ask user to select     |
+
+> **Adaptive Fusion in Recovery:** When `SPECKIT_ADAPTIVE_FUSION` is enabled, recovery context matching uses adaptive fusion weights tuned for the `resume` mode — recency and state-anchor relevance are boosted to improve hit rate on fragmented or post-compaction sessions. When `SPECKIT_EXTENDED_TELEMETRY` is enabled, recovery success metrics (match confidence, anchor hit rate, reconstruction steps) are captured and appended to the telemetry log for post-session analysis.
 
 ---
 

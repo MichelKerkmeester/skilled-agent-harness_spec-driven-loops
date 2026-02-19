@@ -83,5 +83,7 @@ This header proves files were created from official templates, not from scratch 
     fi
 }
 
-# Export for validate.sh
-run_check "$@"
+# Execute only when run directly to avoid double-run when sourced by validate.sh
+if [[ "${BASH_SOURCE[0]}" == "$0" ]]; then
+    run_check "$@"
+fi

@@ -77,6 +77,8 @@ type IndexMemoryParams = {
   documentType?: string;
   specLevel?: number | null;
   contentText?: string | null;
+  qualityScore?: number;
+  qualityFlags?: string[];
 };
 type IndexMemoryDeferredParams = Omit<IndexMemoryParams, 'embedding'> & {
   failureReason?: string | null;
@@ -91,6 +93,8 @@ type UpdateMemoryParams = {
   documentType?: string;
   specLevel?: number | null;
   contentText?: string | null;
+  qualityScore?: number;
+  qualityFlags?: string[];
 };
 type VectorSearchOptions = {
   limit?: number;
@@ -277,8 +281,6 @@ function validate_embedding_dimension() {
   }
 }
 
-let schema_initialized = false;
-
 // P1-05 FIX: Unified env var precedence — SPEC_KIT_DB_DIR (canonical) > MEMORY_DB_DIR (legacy)
 const DEFAULT_DB_DIR = process.env.SPEC_KIT_DB_DIR ||
   process.env.MEMORY_DB_DIR ||
@@ -313,7 +315,8 @@ function resolve_database_path() {
 // v12: Unified memory_conflicts DDL (KL-1 Schema Unification)
 // v13: Add document_type and spec_level columns for full spec folder document indexing (Spec 126)
 // v14: Add content_text column + FTS5 rebuild for BM25 full-text search across restarts
-const SCHEMA_VERSION = 14;
+// v15: Add quality_score and quality_flags columns for memory quality gates
+const SCHEMA_VERSION = 15;
 
 /* ─────────────────────────────────────────────────────────────
    2. SECURITY HELPERS
@@ -334,22 +337,6 @@ function validate_file_path_local(file_path: unknown) {
   }
 
   return validateFilePath(file_path, ALLOWED_BASE_PATHS);
-}
-
-function safe_read_file(file_path: unknown) {
-  const valid_path = validate_file_path_local(file_path);
-  if (!valid_path) {
-    return '';
-  }
-
-  try {
-    if (fs.existsSync(valid_path)) {
-      return fs.readFileSync(valid_path, 'utf-8');
-    }
-  } catch (err: unknown) {
-    console.warn(`[vector-index] Could not read file ${valid_path}: ${get_error_message(err)}`);
-  }
-  return '';
 }
 
 // HIGH-004 FIX: Async version for non-blocking concurrent file reads
@@ -410,14 +397,13 @@ function safe_parse_json(json_string: unknown, default_value = []) {
 let db: Database.Database | null = null;
 let db_path = DEFAULT_DB_PATH;
 let sqlite_vec_available = true;
-let shutting_down = false;
 
-let constitutional_cache = new Map<string, { data: MemoryRow[]; timestamp: number }>();
+const constitutional_cache = new Map<string, { data: MemoryRow[]; timestamp: number }>();
 const CONSTITUTIONAL_CACHE_TTL = 300000;
 
 // BUG-012 FIX: Track which cache keys are currently being loaded
 // This prevents thundering herd when multiple concurrent calls hit cache expiry
-let constitutional_cache_loading = new Map<string, boolean>();
+const constitutional_cache_loading = new Map<string, boolean>();
 
 let last_db_mod_time = 0;
 
@@ -1026,6 +1012,33 @@ function run_migrations(database: Database.Database, from_version: number, to_ve
       } catch (e: unknown) {
         console.warn('[VectorIndex] Migration v14 warning (backfill):', get_error_message(e));
       }
+    },
+
+    15: () => {
+      try {
+        database.exec('ALTER TABLE memory_index ADD COLUMN quality_score REAL DEFAULT 0');
+        logger.info('Migration v15: Added quality_score column');
+      } catch (e: unknown) {
+        if (!get_error_message(e).includes('duplicate column')) {
+          console.warn('[VectorIndex] Migration v15 warning (quality_score):', get_error_message(e));
+        }
+      }
+
+      try {
+        database.exec('ALTER TABLE memory_index ADD COLUMN quality_flags TEXT');
+        logger.info('Migration v15: Added quality_flags column');
+      } catch (e: unknown) {
+        if (!get_error_message(e).includes('duplicate column')) {
+          console.warn('[VectorIndex] Migration v15 warning (quality_flags):', get_error_message(e));
+        }
+      }
+
+      try {
+        database.exec('CREATE INDEX IF NOT EXISTS idx_quality_score ON memory_index(quality_score)');
+        logger.info('Migration v15: Created quality score index');
+      } catch (e: unknown) {
+        console.warn('[VectorIndex] Migration v15 warning (idx_quality_score):', get_error_message(e));
+      }
     }
   };
 
@@ -1176,7 +1189,7 @@ function migrate_confidence_columns(database: Database.Database) {
     try {
       database.exec(`CREATE INDEX IF NOT EXISTS idx_importance_tier ON memory_index(importance_tier)`);
       console.warn('[vector-index] Migration: Created idx_importance_tier index');
-    } catch (e: unknown) {
+    } catch (_e: unknown) {
     }
   }
 
@@ -1367,28 +1380,28 @@ function create_common_indexes(database: Database.Database) {
   try {
     database.exec(`CREATE INDEX IF NOT EXISTS idx_file_path ON memory_index(file_path)`);
     logger.info('Created idx_file_path index');
-  } catch (err: unknown) {
+  } catch (_err: unknown) {
     // Index may already exist
   }
 
   try {
     database.exec(`CREATE INDEX IF NOT EXISTS idx_content_hash ON memory_index(content_hash)`);
     logger.info('Created idx_content_hash index');
-  } catch (err: unknown) {
+  } catch (_err: unknown) {
     // Index may already exist
   }
 
   try {
     database.exec(`CREATE INDEX IF NOT EXISTS idx_last_accessed ON memory_index(last_accessed DESC)`);
     logger.info('Created idx_last_accessed index');
-  } catch (err: unknown) {
+  } catch (_err: unknown) {
     // Index may already exist
   }
 
   try {
     database.exec(`CREATE INDEX IF NOT EXISTS idx_importance_tier ON memory_index(importance_tier)`);
     logger.info('Created idx_importance_tier index');
-  } catch (err: unknown) {
+  } catch (_err: unknown) {
     // Index may already exist
   }
 
@@ -1458,6 +1471,8 @@ function create_schema(database: Database.Database) {
       document_type TEXT DEFAULT 'memory',
       spec_level INTEGER,
       content_text TEXT,
+      quality_score REAL DEFAULT 0,
+      quality_flags TEXT,
       UNIQUE(spec_folder, file_path, anchor_id)
     )
   `);
@@ -1593,6 +1608,7 @@ function create_schema(database: Database.Database) {
     CREATE INDEX IF NOT EXISTS idx_file_mtime ON memory_index(file_mtime_ms);
     CREATE INDEX IF NOT EXISTS idx_document_type ON memory_index(document_type);
     CREATE INDEX IF NOT EXISTS idx_doc_type_folder ON memory_index(document_type, spec_folder);
+    CREATE INDEX IF NOT EXISTS idx_quality_score ON memory_index(quality_score);
   `);
 
   database.exec(`
@@ -1623,7 +1639,9 @@ function index_memory(params: IndexMemoryParams) {
     embedding,
     documentType = 'memory',
     specLevel = null,
-    contentText = null
+    contentText = null,
+    qualityScore = 0,
+    qualityFlags = []
   } = params;
 
   if (!embedding) {
@@ -1650,7 +1668,9 @@ function index_memory(params: IndexMemoryParams) {
       triggerPhrases,
       importanceWeight,
       embedding,
-      contentText
+      contentText,
+      qualityScore,
+      qualityFlags,
     });
   }
 
@@ -1662,12 +1682,12 @@ function index_memory(params: IndexMemoryParams) {
         spec_folder, file_path, anchor_id, title, trigger_phrases,
         importance_weight, created_at, updated_at, embedding_model,
         embedding_generated_at, embedding_status, document_type, spec_level,
-        content_text
-      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        content_text, quality_score, quality_flags
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     `).run(
       specFolder, filePath, anchorId, title, triggers_json,
       importanceWeight, now, now, embeddingsProvider.getModelName(), now, embedding_status,
-      documentType, specLevel, contentText
+      documentType, specLevel, contentText, qualityScore, JSON.stringify(qualityFlags)
     );
 
     const row_id = BigInt(result.lastInsertRowid);
@@ -1699,7 +1719,9 @@ function index_memory_deferred(params: IndexMemoryDeferredParams) {
     failureReason = null,
     documentType = 'memory',
     specLevel = null,
-    contentText = null
+    contentText = null,
+    qualityScore = 0,
+    qualityFlags = []
   } = params;
 
   const now = new Date().toISOString();
@@ -1719,9 +1741,11 @@ function index_memory_deferred(params: IndexMemoryDeferredParams) {
           updated_at = ?,
           document_type = ?,
           spec_level = ?,
-          content_text = ?
+          content_text = ?,
+          quality_score = ?,
+          quality_flags = ?
       WHERE id = ?
-    `).run(title, triggers_json, importanceWeight, failureReason, now, documentType, specLevel, contentText, existing.id);
+    `).run(title, triggers_json, importanceWeight, failureReason, now, documentType, specLevel, contentText, qualityScore, JSON.stringify(qualityFlags), existing.id);
     return existing.id;
   }
 
@@ -1730,11 +1754,11 @@ function index_memory_deferred(params: IndexMemoryDeferredParams) {
       spec_folder, file_path, anchor_id, title, trigger_phrases,
       importance_weight, created_at, updated_at, embedding_status,
       failure_reason, retry_count, document_type, spec_level,
-      content_text
-    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, 'pending', ?, 0, ?, ?, ?)
+      content_text, quality_score, quality_flags
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, 'pending', ?, 0, ?, ?, ?, ?, ?)
   `).run(
     specFolder, filePath, anchorId, title, triggers_json,
-    importanceWeight, now, now, failureReason, documentType, specLevel, contentText
+    importanceWeight, now, now, failureReason, documentType, specLevel, contentText, qualityScore, JSON.stringify(qualityFlags)
   );
 
   const row_id = BigInt(result.lastInsertRowid);
@@ -1756,6 +1780,8 @@ function update_memory(params: UpdateMemoryParams) {
     documentType,
     specLevel,
     contentText,
+    qualityScore,
+    qualityFlags,
   } = params;
 
   const now = new Date().toISOString();
@@ -1792,6 +1818,14 @@ function update_memory(params: UpdateMemoryParams) {
     if (contentText !== undefined) {
       updates.push('content_text = ?');
       values.push(contentText);
+    }
+    if (qualityScore !== undefined) {
+      updates.push('quality_score = ?');
+      values.push(qualityScore);
+    }
+    if (qualityFlags !== undefined) {
+      updates.push('quality_flags = ?');
+      values.push(JSON.stringify(qualityFlags));
     }
     if (embedding) {
       updates.push('embedding_model = ?');
@@ -2087,7 +2121,7 @@ function multi_concept_search(
     `vec_distance_cosine(v.embedding, ?) as dist_${i}`
   ).join(', ');
 
-  const distance_filters = concept_buffers.map((_, i) =>
+  const distance_filters = concept_buffers.map((_, _i) =>
     `vec_distance_cosine(v.embedding, ?) <= ?`
   ).join(' AND ');
 
@@ -2176,7 +2210,7 @@ function extract_snippet(content: unknown, max_length = 200) {
     return '';
   }
 
-  let text = content.replace(/^---[\s\S]*?---\n*/m, '');
+  const text = content.replace(/^---[\s\S]*?---\n*/m, '');
   const lines = text.split('\n');
   const snippet_lines = [];
 
@@ -2262,7 +2296,7 @@ function extract_date(content: unknown, file_path?: string) {
         if (!isNaN(parsed.getTime())) {
           return parsed.toISOString().split('T')[0];
         }
-      } catch (e: unknown) {
+      } catch (_e: unknown) {
       }
     }
   }
@@ -2709,7 +2743,7 @@ function learn_from_selection(search_query: string, selected_memory_id: number) 
   let existing: string[] = [];
   try {
     existing = parse_trigger_phrases(memory.trigger_phrases || undefined);
-  } catch (e: unknown) {
+  } catch (_e: unknown) {
     existing = [];
   }
 
@@ -3267,7 +3301,7 @@ function get_memory_preview(memory_id: number, max_lines = 50) {
         }
       }
     }
-  } catch (e: unknown) {
+  } catch (_e: unknown) {
     content = '(Unable to read file content)';
   }
 

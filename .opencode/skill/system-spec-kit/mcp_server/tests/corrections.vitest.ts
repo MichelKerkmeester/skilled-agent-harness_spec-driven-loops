@@ -530,7 +530,7 @@ describe('CORRECTIONS MODULE TESTS (T052-T055, T142-T147)', () => {
       merged: { original: 305, correction: 306 }
     };
 
-    let results: Record<string, CorrectionResult> = {};
+    const results: Record<string, CorrectionResult> = {};
 
     beforeAll(() => {
       // Insert test memories

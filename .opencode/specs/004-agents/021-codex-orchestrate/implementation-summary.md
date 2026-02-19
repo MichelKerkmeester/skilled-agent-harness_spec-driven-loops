@@ -26,7 +26,7 @@ Completed two finalized workstreams under this spec: (1) the 8-file ChatGPT agen
 
 - Default/Copilot runtime: `.opencode/agent`
 - ChatGPT runtime: `.opencode/agent/chatgpt`
-- Claude runtime: `.opencode/agent/claude`
+- Claude runtime: `/.claude/agents`
 
 ### Files Changed
 

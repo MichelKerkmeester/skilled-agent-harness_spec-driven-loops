@@ -153,18 +153,18 @@
 
 ---
 
-## Table of Contents
+## TABLE OF CONTENTS
 
-- [Continue Session](#continue-session)
-- [Project State Snapshot](#project-state-snapshot)
-{{#HAS_IMPLEMENTATION_GUIDE}}- [Implementation Guide](#implementation-guide)
-{{/HAS_IMPLEMENTATION_GUIDE}}- [Overview](#overview)
-{{#HAS_OBSERVATIONS}}- [Detailed Changes](#detailed-changes)
-{{/HAS_OBSERVATIONS}}{{#HAS_WORKFLOW_DIAGRAM}}- [Workflow Visualization](#workflow-visualization)
-{{/HAS_WORKFLOW_DIAGRAM}}- [Decisions](#decisions)
-- [Conversation](#conversation)
-- [Recovery Hints](#recovery-hints)
-- [Memory Metadata](#memory-metadata)
+- [CONTINUE SESSION](#continue-session)
+- [PROJECT STATE SNAPSHOT](#project-state-snapshot)
+{{#HAS_IMPLEMENTATION_GUIDE}}- [IMPLEMENTATION GUIDE](#implementation-guide)
+{{/HAS_IMPLEMENTATION_GUIDE}}- [OVERVIEW](#overview)
+{{#HAS_OBSERVATIONS}}- [DETAILED CHANGES](#detailed-changes)
+{{/HAS_OBSERVATIONS}}{{#HAS_WORKFLOW_DIAGRAM}}- [WORKFLOW VISUALIZATION](#workflow-visualization)
+{{/HAS_WORKFLOW_DIAGRAM}}- [DECISIONS](#decisions)
+- [CONVERSATION](#conversation)
+- [RECOVERY HINTS](#recovery-hints)
+- [MEMORY METADATA](#memory-metadata)
 
 ---
 
@@ -515,7 +515,7 @@ Next: {{NEXT_ACTION}}
 {{/DECISIONS}}
 {{^DECISIONS}}
 
-This session did not involve significant architectural or technical decisions. The work was primarily implementation, bug fixes, documentation, or research.
+decision_count: 0
 
 ---
 {{/DECISIONS}}

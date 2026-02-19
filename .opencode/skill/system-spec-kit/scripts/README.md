@@ -44,10 +44,12 @@ Primary script directories:
 - `rules/` - 13 modular validation rules used by `spec/validate.sh`
 - `memory/` - 3 TypeScript CLIs (`generate-context.ts`, `rank-memories.ts`, `cleanup-orphaned-vectors.ts`)
 - `core/` - 8 TypeScript workflow modules
-- `extractors/` - 9 TypeScript extraction modules plus barrel export
+- `extractors/` - 11 TypeScript extraction modules plus barrel export
 - `loaders/` - 2 TypeScript loading modules plus barrel export
 - `renderers/` - 2 TypeScript rendering modules plus barrel export
 - `lib/` - 10 TypeScript libraries plus 3 shell helper libraries
+- `evals/` - 9 evaluation scripts (redaction calibration, phase1-5 shadow eval, quality backfill, performance benchmarks, closure metrics, telemetry dashboard, quality legacy remediation, dataset generation)
+- `kpi/` - shell KPI scripts (`quality-kpi.sh`)
 - `tests/` - JS, shell, and Python test suites for scripts and modules
 
 

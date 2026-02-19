@@ -25,6 +25,8 @@ Implement extraction and causal ranking features, then execute controlled rollou
 - Phase 2 and Phase 3 mapped tasks complete (`T029-T070`).
 - Extraction precision/recall and MRR thresholds are met.
 - Staged rollout evidence and rollback runbook are complete.
+- Post-research handoff mapping is published to packages `../004-post-research-wave-1-governance-foundations/`, `../005-post-research-wave-2-controlled-delivery/`, and `../006-post-research-wave-3-outcome-confirmation/`.
+- Historical handoff contract includes explicit wave ownership for technical capabilities 1-8 (adaptive fusion, typed trace, artifact routing, ledger, sync/async split, degraded-mode contracts, deterministic tools, capability truth matrix).
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -50,6 +52,7 @@ Implement extraction and causal ranking features, then execute controlled rollou
 |-----------|---------------|
 | EXR-M2 | `T055` complete and Phase 2 sign-off done |
 | EXR-M3 | `T070` complete and staged rollout evidence captured |
+| EXR-MH | Wave handoff mapping for `C136-01..C136-12` published in root and package docs with explicit capability ownership matrix |
 <!-- /ANCHOR:milestones -->
 
 ---
@@ -63,6 +66,7 @@ Implement extraction and causal ranking features, then execute controlled rollou
 | Redaction strips useful git context | Missing operational signals | Enforce SHA/UUID exclusions from hardening calibration |
 | Causal traversal cost grows unexpectedly | Search latency regression | Bound traversal to 2 hops and enforce p95 checks |
 | Rollout regressions | User-facing instability | Feature flags, dark launch, staged percentages, rollback runbook |
+| Ambiguous post-research ownership handoff | Rework and conflicting implementation scope in wave packages | Freeze `C136` ownership and capability matrix in this package and root docs |
 <!-- /ANCHOR:risk-register -->
 
 ---
@@ -74,6 +78,15 @@ Implement extraction and causal ranking features, then execute controlled rollou
 - Ownership lock: `REQ-014` and `REQ-017` are accepted in package 001; this package consumes hook and calibration outputs without duplicating ownership.
 - Requires root phase alignment in `../plan.md` and `../tasks.md`.
 - Consumes quality-gate outputs from package `../003-memory-quality-qp-0-4/` when available.
+- Hands off post-research follow-up ownership to package `../004-post-research-wave-1-governance-foundations/` (Wave 1), package `../005-post-research-wave-2-controlled-delivery/` (Wave 2), and package `../006-post-research-wave-3-outcome-confirmation/` (Wave 3).
+
+### Technical Handoff Contract (Execution Baton)
+
+| Wave | Backlog IDs | Contracted Technical Ownership |
+|------|-------------|---------------------------------|
+| Wave 1 (`004`) | `C136-08`, `C136-09`, `C136-10`, `C136-12`, `C136-01`, `C136-02`, `C136-03` | Foundations for adaptive hybrid fusion, typed retrieval trace envelope, artifact-aware routing policy, degraded-mode contracts, telemetry readiness, and governance approvals |
+| Wave 2 (`005`) | `C136-04`, `C136-05`, `C136-11` | Controlled delivery with append-only mutation ledger and operationalization of sync/async split plus deterministic exact-operation tooling |
+| Wave 3 (`006`) | `C136-06`, `C136-07` | Longitudinal capability truth matrix confirmation and final outcome/KPI closure |
 <!-- /ANCHOR:dependencies -->
 
 ---
@@ -91,5 +104,5 @@ Implement extraction and causal ranking features, then execute controlled rollou
 <!-- ANCHOR:status -->
 ## 8. Planning Status
 
-Planning-only package. No implementation has started.
+Execution-complete for Phase 2/3 scope. This package remains maintained as the closed implementation record and explicit transition/handoff source for post-research waves.
 <!-- /ANCHOR:status -->

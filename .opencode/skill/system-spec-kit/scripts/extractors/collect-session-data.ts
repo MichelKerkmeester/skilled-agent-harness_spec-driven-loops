@@ -73,27 +73,27 @@ export interface GapDescription {
 }
 
 export interface PreflightPostflightResult {
-  PREFLIGHT_KNOW_SCORE: number | string;
-  PREFLIGHT_UNCERTAINTY_SCORE: number | string;
-  PREFLIGHT_CONTEXT_SCORE: number | string;
+  PREFLIGHT_KNOW_SCORE: number | null;
+  PREFLIGHT_UNCERTAINTY_SCORE: number | null;
+  PREFLIGHT_CONTEXT_SCORE: number | null;
   PREFLIGHT_KNOW_ASSESSMENT: string;
   PREFLIGHT_UNCERTAINTY_ASSESSMENT: string;
   PREFLIGHT_CONTEXT_ASSESSMENT: string;
-  PREFLIGHT_TIMESTAMP: string;
+  PREFLIGHT_TIMESTAMP: string | null;
   PREFLIGHT_GAPS: GapDescription[];
-  PREFLIGHT_CONFIDENCE: number | string;
-  PREFLIGHT_UNCERTAINTY_RAW: number | string;
-  PREFLIGHT_READINESS: string;
-  POSTFLIGHT_KNOW_SCORE: number | string;
-  POSTFLIGHT_UNCERTAINTY_SCORE: number | string;
-  POSTFLIGHT_CONTEXT_SCORE: number | string;
-  DELTA_KNOW_SCORE: string;
-  DELTA_UNCERTAINTY_SCORE: string;
-  DELTA_CONTEXT_SCORE: string;
+  PREFLIGHT_CONFIDENCE: number | null;
+  PREFLIGHT_UNCERTAINTY_RAW: number | null;
+  PREFLIGHT_READINESS: string | null;
+  POSTFLIGHT_KNOW_SCORE: number | null;
+  POSTFLIGHT_UNCERTAINTY_SCORE: number | null;
+  POSTFLIGHT_CONTEXT_SCORE: number | null;
+  DELTA_KNOW_SCORE: string | null;
+  DELTA_UNCERTAINTY_SCORE: string | null;
+  DELTA_CONTEXT_SCORE: string | null;
   DELTA_KNOW_TREND: string;
   DELTA_UNCERTAINTY_TREND: string;
   DELTA_CONTEXT_TREND: string;
-  LEARNING_INDEX: number | string;
+  LEARNING_INDEX: number | null;
   LEARNING_SUMMARY: string;
   GAPS_CLOSED: GapDescription[];
   NEW_GAPS: GapDescription[];
@@ -142,7 +142,7 @@ export interface CollectedDataFull {
 
 function getScoreAssessment(score: number | null | undefined, metric: string): string {
   if (score === null || score === undefined || isNaN(score)) {
-    return '[Not assessed]';
+    return '';
   }
   if (metric === 'uncertainty') {
     if (score <= 20) return 'Very low uncertainty';
@@ -188,7 +188,7 @@ function extractPreflightPostflightData(collectedData: CollectedDataFull | null)
   const preflight = collectedData?.preflight;
   const postflight = collectedData?.postflight;
 
-  const DEFAULT_VALUE = '[TBD]';
+  const DEFAULT_VALUE = null;
 
   const preflightData = {
     PREFLIGHT_KNOW_SCORE: preflight?.knowledgeScore ?? DEFAULT_VALUE,
@@ -211,13 +211,13 @@ function extractPreflightPostflightData(collectedData: CollectedDataFull | null)
   };
 
   let deltaData: {
-    DELTA_KNOW_SCORE: string;
-    DELTA_UNCERTAINTY_SCORE: string;
-    DELTA_CONTEXT_SCORE: string;
+    DELTA_KNOW_SCORE: string | null;
+    DELTA_UNCERTAINTY_SCORE: string | null;
+    DELTA_CONTEXT_SCORE: string | null;
     DELTA_KNOW_TREND: string;
     DELTA_UNCERTAINTY_TREND: string;
     DELTA_CONTEXT_TREND: string;
-    LEARNING_INDEX: number | string;
+    LEARNING_INDEX: number | null;
     LEARNING_SUMMARY: string;
   } = {
     DELTA_KNOW_SCORE: DEFAULT_VALUE,

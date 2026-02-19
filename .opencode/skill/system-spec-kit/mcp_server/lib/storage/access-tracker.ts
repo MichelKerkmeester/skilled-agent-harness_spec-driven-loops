@@ -141,7 +141,7 @@ function getAccumulatorState(memoryId: number): AccumulatorState {
 function calculatePopularityScore(
   accessCount: number,
   lastAccessed: number | null,
-  createdAt: string | null
+  _createdAt: string | null
 ): number {
   if (accessCount === 0) return 0;
 

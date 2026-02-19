@@ -3,7 +3,6 @@
 // ---------------------------------------------------------------
 
 import fs from 'fs';
-import path from 'path';
 import { DB_UPDATED_FILE } from './config';
 import type { DatabaseExtended } from '../../shared/types';
 

@@ -254,7 +254,7 @@ describe('D. processReview', () => {
   });
 
   it('D-10: chaining reviews updates state', () => {
-    let params = fsrs.createInitialParams();
+    const params = fsrs.createInitialParams();
     const result1 = fsrs.processReview(params, 3);
     const result2 = fsrs.processReview(result1, 4);
     expect(result2.reviewCount).toBe(2);
@@ -436,7 +436,7 @@ describe('H. enforceMemoryLimit', () => {
     db.close();
   });
 
-  it('H-03: removes lowest-attention entry', () => {
+  it('H-03: removes least recently focused entry (LRU)', () => {
     const db = createWorkingMemoryDb();
     wm.init(db);
 
@@ -447,8 +447,10 @@ describe('H. enforceMemoryLimit', () => {
     }
 
     for (let i = 1; i <= maxCap; i++) {
-      const score = i === 1 ? 0.01 : 0.9;
-      db.exec(`INSERT INTO working_memory (session_id, memory_id, attention_score) VALUES ('s1', ${i}, ${score})`);
+      db.exec(`
+        INSERT INTO working_memory (session_id, memory_id, attention_score, last_focused)
+        VALUES ('s1', ${i}, 0.9, datetime('now', '+${i} seconds'))
+      `);
     }
 
     wm.enforceMemoryLimit('s1');

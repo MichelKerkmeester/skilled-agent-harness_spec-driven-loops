@@ -92,6 +92,11 @@ This MCP server gives your AI assistant persistent memory with intelligence buil
 | **Document-Type Scoring** | Precision ranking | 11 document types with scoring multipliers (spec: 1.4x, plan: 1.3x, constitutional: 2.0x, scratch: 0.6x) |
 | **Recovery Hints** | Self-service errors | 49 error codes with actionable guidance |
 | **Lazy Model Loading** | <500ms startup | Defer embedding init until first use |
+| **Typed Retrieval Contracts** | API safety | ContextEnvelope, RetrievalTrace, DegradedModeContract enforce structured retrieval responses |
+| **Artifact-Class Routing** | Precision targeting | 9 artifact classes with per-type retrieval strategies (spec, memory, constitutional, etc.) |
+| **Adaptive Hybrid Fusion** | Intent-aware ranking | Weighted RRF with intent-sensitive weights; activates when `SPECKIT_ADAPTIVE_FUSION=true` |
+| **Append-Only Mutation Ledger** | Tamper-proof audit | SQLite-trigger-based immutable audit trail for all memory mutations |
+| **Extended Retrieval Telemetry** | Observability | 4-dimension telemetry: latency, retrieval mode, fallback activation, quality score |
 
 ### Spec 126 Post-Implementation Hardening
 
@@ -108,7 +113,7 @@ This MCP server gives your AI assistant persistent memory with intelligence buil
 | Category | Count |
 |----------|-------|
 | **MCP Tools** | 22 |
-| **Library Modules** | 50 |
+| **Library Modules** | 63 |
 | **Handler Modules** | 11 |
 | **Embedding Providers** | 3 |
 | **Cognitive Features** | 12+ |
@@ -255,6 +260,12 @@ All handler responses include a `tokenBudget` field in the `meta` object showing
 | `minState` | string | "WARM" | Minimum memory state filter (HOT > WARM > COLD > DORMANT > ARCHIVED) |
 | `intent` | enum | - | Task intent for weight adjustments (add_feature, fix_bug, refactor, security_audit, understand) |
 | `autoDetectIntent` | boolean | true | Auto-detect intent from query if not explicitly specified |
+| `enableSessionBoost` | boolean | env default | Enable session-attention score boost using `working_memory` |
+| `enableCausalBoost` | boolean | env default | Enable 2-hop causal-neighbor boost from `causal_edges` |
+
+`memory_search` response metadata includes:
+- `applied_boosts`: applied session and causal boost details
+- `extraction_count`: extracted working-memory inserts observed since startup
 
 #### memory_context
 
@@ -269,6 +280,10 @@ All handler responses include a `tokenBudget` field in the `meta` object showing
 | `enableDedup` | boolean | true | Enable session deduplication |
 | `includeContent` | boolean | false | Include full file content in results |
 | `anchors` | string[] | - | Filter content to specific anchors (e.g., ["state", "next-steps"] for resume mode) |
+
+`memory_context` response metadata includes:
+- `pressure_level`: resolved pressure tier (`none`, `focused`, `quick`)
+- `pressurePolicy`: override decision details (original mode, override mode, warning)
 
 #### memory_index_scan
 
@@ -477,6 +492,13 @@ The default search combines three engines using Reciprocal Rank Fusion (RRF):
 Query
    |
    v
++------------------+
+|  ARTIFACT ROUTER |
+|  (9 classes)     |
+|  per-type strat  |
++--------+---------+
+         |
+         v
 +------------------+     +------------------+     +------------------+
 |   VECTOR         |     |    BM25          |     |    GRAPH         |
 |   1024d          |     |   Lexical        |     |   Causal         |
@@ -487,9 +509,9 @@ Query
                                   |
                                   v
                     +-------------+-------------+
-                    |   RRF FUSION (k=60)       |
-                    |   +10% convergence bonus  |
-                    +-------------+-------------+
+                    |   RRF FUSION (k=60)       |   <-- ADAPTIVE FUSION
+                    |   +10% convergence bonus  |       (SPECKIT_ADAPTIVE_FUSION=true:
+                    +-------------+-------------+        intent-aware weighted RRF)
                                   |
                                   v
                     +-------------+-------------+
@@ -500,6 +522,10 @@ Query
                                   v
                          Final Ranked Results
 ```
+
+**Artifact Routing:** The artifact router classifies the query and document types into one of 9 artifact classes (spec, memory, constitutional, plan, decision, research, readme, scratch, unknown) before fusion. Each class applies a per-type retrieval strategy (weight adjustments, filter rules) to improve precision.
+
+**Adaptive Fusion:** When `SPECKIT_ADAPTIVE_FUSION=true`, the standard fixed-weight RRF is replaced with intent-aware weighted RRF. Fusion weights shift dynamically based on detected query intent — for example, boosting BM25 for exact-match intents and vector for semantic intents.
 
 ---
 
@@ -665,16 +691,17 @@ mcp_server/
 │   ├── memory-context.ts   # memory_context + unified entry
 │   └── causal-graph.ts     # causal_link/unlink/stats + drift_why
 │
-├── lib/                    # Library modules (50) [TypeScript sources]
+├── lib/                    # Library modules (63) [TypeScript sources]
 │   ├── errors.ts           # Standalone error utilities
 │   │
 │   ├── architecture/       # Layer definitions (1 module)
 │   │   └── layer-definitions.ts    # MCP layer architecture
 │   │
-│   ├── cache/              # Caching (1 module)
-│   │   └── tool-cache.ts           # Tool result caching
+│   ├── cache/              # Caching (2 modules)
+│   │   ├── tool-cache.ts           # Tool result caching
+│   │   └── scoring/composite-scoring.ts # Cache-aware composite scoring
 │   │
-│   ├── cognitive/          # Cognitive memory (8 modules)
+│   ├── cognitive/          # Cognitive memory (10 modules)
 │   │   ├── fsrs-scheduler.ts       # FSRS power-law algorithm
 │   │   ├── prediction-error-gate.ts # Duplicate detection
 │   │   ├── tier-classifier.ts      # 5-state classification
@@ -682,11 +709,17 @@ mcp_server/
 │   │   ├── co-activation.ts        # Related memory boosting
 │   │   ├── working-memory.ts       # Session-scoped activation
 │   │   ├── temporal-contiguity.ts  # Temporal adjacency tracking
-│   │   └── archival-manager.ts     # 5-state archival model
+│   │   ├── archival-manager.ts     # 5-state archival model
+│   │   ├── pressure-monitor.ts     # Token-pressure monitoring
+│   │   └── rollout-policy.ts       # Staged rollout percentage gate
 │   │
-│   ├── config/             # Configuration (2 modules)
+│   ├── config/             # Configuration (3 modules)
 │   │   ├── memory-types.ts         # Memory type definitions
-│   │   └── type-inference.ts       # Type auto-detection
+│   │   ├── type-inference.ts       # Type auto-detection
+│   │   └── skill-ref-config.ts     # Skill reference configuration
+│   │
+│   ├── contracts/          # Retrieval contracts (1 module)
+│   │   └── retrieval-trace.ts      # ContextEnvelope, RetrievalTrace, DegradedModeContract
 │   │
 │   ├── errors/             # Error handling (3 modules)
 │   │   ├── core.ts                 # Core error types
@@ -718,27 +751,39 @@ mcp_server/
 │   │   ├── importance-tiers.ts     # Tier boost values
 │   │   └── folder-scoring.ts       # Spec folder ranking
 │   │
-│   ├── search/             # Search engines (8 modules)
+│   ├── extraction/         # Extraction pipeline (2 modules)
+│   │   ├── extraction-adapter.ts   # Post-tool extraction adapter
+│   │   └── redaction-gate.ts       # Secret/PII redaction before insert
+│   │
+│   ├── search/             # Search engines (12 modules)
 │   │   ├── vector-index.ts         # sqlite-vec vector search (facade)
 │   │   ├── vector-index-impl.ts    # Vector index implementation
 │   │   ├── hybrid-search.ts        # FTS5 + vector fusion with RRF
 │   │   ├── rrf-fusion.ts           # RRF fusion algorithm
-│   │   ├── bm25-index.ts          # BM25 lexical search
+│   │   ├── bm25-index.ts           # BM25 lexical search
 │   │   ├── cross-encoder.ts        # Cross-encoder reranking
 │   │   ├── reranker.ts             # Reranking utilities
-│   │   └── intent-classifier.ts    # 7 intent types
+│   │   ├── intent-classifier.ts    # 7 intent types
+│   │   ├── artifact-routing.ts     # 9 artifact classes with per-type retrieval strategies
+│   │   ├── adaptive-fusion.ts      # Intent-aware weighted RRF fusion
+│   │   ├── causal-boost.ts         # 2-hop causal-neighbor score boost
+│   │   └── session-boost.ts        # Session-attention score boost
 │   │
 │   ├── session/            # Session management (1 module)
 │   │   └── session-manager.ts      # Session deduplication
 │   │
-│   ├── storage/            # Persistence (7 modules)
+│   ├── storage/            # Persistence (8 modules)
 │   │   ├── access-tracker.ts       # Access history
 │   │   ├── checkpoints.ts          # State snapshots
 │   │   ├── causal-edges.ts         # Causal graph storage
 │   │   ├── incremental-index.ts    # Incremental indexing
 │   │   ├── transaction-manager.ts  # Transaction management
 │   │   ├── history.ts              # History tracking
-│   │   └── index-refresh.ts        # Index refresh utilities
+│   │   ├── index-refresh.ts        # Index refresh utilities
+│   │   └── mutation-ledger.ts      # Append-only tamper-proof mutation audit trail
+│   │
+│   ├── telemetry/          # Telemetry (1 module)
+│   │   └── retrieval-telemetry.ts  # 4-dimension retrieval telemetry (latency, mode, fallback, quality)
 │   │
 │   ├── utils/              # Utilities (4 modules)
 │   │   ├── format-helpers.ts       # Format utilities
@@ -917,6 +962,15 @@ In this repository, `database/context-index.sqlite` is maintained as a compatibi
 | `SPECKIT_CROSS_ENCODER` | `false` | Enable cross-encoder reranking |
 | `SPECKIT_INCREMENTAL` | `true` | Enable incremental indexing |
 | `SPECKIT_INDEX_SPEC_DOCS` | `false` | Enable spec folder document indexing (5th source) |
+| `SPECKIT_SESSION_BOOST` | `false` | Enable session-attention boost in `memory_search` |
+| `SPECKIT_PRESSURE_POLICY` | `false` | Enable token-pressure mode override in `memory_context` |
+| `SPECKIT_EVENT_DECAY` | `false` | Enable event-based working-memory decay |
+| `SPECKIT_EXTRACTION` | `false` | Enable post-tool extraction adapter pipeline |
+| `SPECKIT_CAUSAL_BOOST` | `false` | Enable causal-neighbor score boost |
+| `SPECKIT_AUTO_RESUME` | `false` | Enable session resume prompt-context injection |
+| `SPECKIT_ROLLOUT_PERCENT` | `0` | Rollout percentage gate (0,10,50,100) for staged rollout control |
+| `SPECKIT_ADAPTIVE_FUSION` | `false` | Enable intent-aware weighted RRF fusion (replaces standard fixed-weight RRF) |
+| `SPECKIT_EXTENDED_TELEMETRY` | `true` | Enable 4-dimension retrieval telemetry (latency, mode, fallback activation, quality score) |
 
 ---
 
@@ -948,6 +1002,11 @@ In this repository, `database/context-index.sqlite` is maintained as a compatibi
 | `causal_edges` | Causal relationships (6 types) |
 | `memory_corrections` | Learning from corrections |
 | `session_state` | Crash recovery state |
+
+Working-memory migration path (event decay rollout):
+- `working_memory` auto-adds `event_counter` and `mention_count` with `ALTER TABLE ... ADD COLUMN ... DEFAULT 0` when legacy rows are detected.
+- Provenance columns (`source_tool`, `source_call_id`, `extraction_rule_id`, `redaction_applied`) follow the same additive migration path.
+- Checkpoint restore applies the same additive migration guards before import, so older snapshots remain compatible.
 
 ---
 
@@ -1095,6 +1154,45 @@ checkpoint_restore({ name: "pre-cleanup" })
 
 ---
 
+### Automatic Memory Management
+
+When Phase 2+ feature flags are enabled, memory context is captured and prioritized without manual `/memory:save` calls.
+
+| Automation | Trigger | Behavior |
+|------------|---------|----------|
+| Extraction hook | Tool completion | Reads matching `spec.md`, `grep error`, and `git commit` outputs are summarized and inserted into `working_memory` |
+| Redaction gate | Before insert | Secret and PII patterns are replaced with `[REDACTED]`; provenance records `redaction_applied` |
+| Session boost | `memory_search` | Result scores are adjusted by session attention with a hard cap of `0.20` combined boost |
+| Causal boost | `memory_search` | Related memories from `causal_edges` (up to 2 hops) are boosted/injected in ranked output |
+| Pressure policy | `memory_context` | Retrieval mode shifts (`focused`/`quick`) under high token usage to reduce context overflow risk |
+
+Recommended runtime flags:
+
+```bash
+SPECKIT_EXTRACTION=true \
+SPECKIT_SESSION_BOOST=true \
+SPECKIT_CAUSAL_BOOST=true \
+SPECKIT_PRESSURE_POLICY=true \
+SPECKIT_AUTO_RESUME=true \
+node dist/context-server.js
+```
+
+### Phase 3 Telemetry Dashboard (T056)
+
+Generate the telemetry dashboard artifacts used for rollout-readiness checks:
+
+```bash
+npx tsx .opencode/skill/system-spec-kit/scripts/evals/run-phase3-telemetry-dashboard.ts .opencode/specs/003-system-spec-kit/136-mcp-working-memory-hybrid-rag
+```
+
+Artifacts are written to:
+- `.opencode/specs/003-system-spec-kit/136-mcp-working-memory-hybrid-rag/scratch/phase3-telemetry-dashboard.json`
+- `.opencode/specs/003-system-spec-kit/136-mcp-working-memory-hybrid-rag/scratch/phase3-telemetry-dashboard.md`
+
+This dashboard is a pre-rollout evaluation lane (simulation from existing benchmark artifacts), not production traffic telemetry.
+
+---
+
 <!-- /ANCHOR:usage-examples -->
 
 ## 10. TROUBLESHOOTING
@@ -1170,6 +1268,35 @@ memory_index_scan({ force: true })
 
 ---
 
+### Rollback Runbook (Feature Flags)
+
+Use this runbook when rollout metrics regress (rank instability, elevated context errors, or extraction quality drop).
+
+1. Set all automation flags to `false`:
+
+```bash
+SPECKIT_SESSION_BOOST=false
+SPECKIT_PRESSURE_POLICY=false
+SPECKIT_EXTRACTION=false
+SPECKIT_CAUSAL_BOOST=false
+SPECKIT_AUTO_RESUME=false
+```
+
+2. Restart MCP server and run smoke checks:
+
+```bash
+npm run test --workspace=mcp_server -- tests/handler-memory-context.vitest.ts tests/phase2-integration.vitest.ts
+```
+
+3. Verify baseline behavior:
+- `memory_search` metadata has no applied session/causal boosts
+- `memory_context` metadata reports no pressure override
+- no new extraction inserts in `working_memory`
+
+4. Re-enable flags one at a time only after metrics recover.
+
+---
+
 ### Recovery Hints
 
 Every error includes actionable recovery guidance:
@@ -1234,6 +1361,7 @@ node dist/tests/causal-edges.test.js
 | Skill README | `../README.md` | Complete skill documentation |
 | SKILL.md | `../SKILL.md` | Workflow instructions for AI agents |
 | Install Guide | `INSTALL_GUIDE.md` | Detailed installation |
+| Rollback Runbook | `../references/workflows/rollback-runbook.md` | Feature-flag rollback and smoke-test procedure |
 
 ### Key Module Files (TypeScript Sources)
 

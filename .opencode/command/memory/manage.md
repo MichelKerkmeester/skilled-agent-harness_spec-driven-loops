@@ -219,6 +219,8 @@ spec_kit_memory_checkpoint_list({ limit: 50, specFolder: "optional" })
 spec_kit_memory_checkpoint_delete({ name: "<name>" })
 ```
 
+> **Feature Flag Behavior:** `SPECKIT_ADAPTIVE_FUSION` affects scan and search behavior — when enabled, index scans apply adaptive weight profiles during embedding and artifact-class routing during re-indexing. `SPECKIT_EXTENDED_TELEMETRY` enables detailed per-operation metrics for scan, search, and health calls. **Mutation Ledger:** cleanup and delete operations are recorded in the append-only mutation ledger, providing a full audit trail that can be reviewed when investigating unexpected state changes.
+
 ### `memory_index_scan` Parameters
 
 | Parameter | Type | Default | Description |

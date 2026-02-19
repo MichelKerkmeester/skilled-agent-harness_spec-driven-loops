@@ -31,31 +31,31 @@ Enhance Spec Kit Memory MCP with session-cognitive automation by adding bounded 
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Analysis documents reviewed from `research/` (`research/136 - analysis-working-memory-hybrid-rag-systems.md`, `research/136 - recommendations-working-memory-hybrid-rag-adoption.md`)
-- [ ] Research findings reviewed (`research.md`): root causes RC1–RC5, quality bands, P0/P1/P2 recommendations with acceptance metrics
-- [ ] Existing codebase understood (RRF fusion in `lib/search/hybrid-search.ts`, working memory table in `lib/cache/cognitive/working-memory.ts`, causal-edges in `lib/storage/causal-edges.ts`, mode routing in `handlers/memory-context.ts`, dispatch in `context-server.ts → dispatchTool()`)
-- [ ] Success metrics defined (token waste, context errors, manual saves, MRR, user satisfaction, memory quality KPIs: placeholder leakage, fallback prevalence, contamination rate, semantic field coverage)
-- [ ] Feature flag strategy documented
-- [ ] Shadow evaluation Phase 0 baseline prepared (100 real queries from memory_search logs with baseline rankings captured; Phase 0 gate: coverage sanity check >= 5 queries per intent type; expansion to 1000 queries is Phase 1.5 hardening gate before Phase 2)
-- [ ] Labeling strategy confirmed: derived baseline (existing RRF ranking as proxy ground truth) + ~10% targeted human review sample for Phase 0; full targeted review at Phase 1.5
-- [ ] Phase 0 hook pipeline design reviewed (afterToolCallbacks mechanism: non-blocking queued callbacks, per-callback error isolation, no await in dispatch response path)
-- [ ] Token-usage signal contract approved (optional `tokenUsage` param on memory_context; three-tier fallback: primary=caller passes value, fallback=server-side estimator from context stats, last resort=no override+WARN)
-- [ ] Memory quality benchmark suite planned (QP-0: 10 known-bad + 10 known-good regression fixtures per defect class)
+- [x] Analysis documents reviewed from `research/` (`research/136 - analysis-working-memory-hybrid-rag-systems.md`, `research/136 - recommendations-working-memory-hybrid-rag-adoption.md`)
+- [x] Research findings reviewed (`research.md`): root causes RC1–RC5, quality bands, P0/P1/P2 recommendations with acceptance metrics
+- [x] Existing codebase understood (RRF fusion in `lib/search/hybrid-search.ts`, working memory table in `lib/cache/cognitive/working-memory.ts`, causal-edges in `lib/storage/causal-edges.ts`, mode routing in `handlers/memory-context.ts`, dispatch in `context-server.ts → dispatchTool()`)
+- [x] Success metrics defined (token waste, context errors, manual saves, MRR, user satisfaction, memory quality KPIs: placeholder leakage, fallback prevalence, contamination rate, semantic field coverage)
+- [x] Feature flag strategy documented
+- [x] Shadow evaluation Phase 0 baseline prepared (100 real queries from memory_search logs with baseline rankings captured; Phase 0 gate: coverage sanity check >= 5 queries per intent type; expansion to 1000 queries is Phase 1.5 hardening gate before Phase 2)
+- [x] Labeling strategy confirmed: derived baseline (existing RRF ranking as proxy ground truth) + ~10% targeted human review sample for Phase 0; full targeted review at Phase 1.5
+- [x] Phase 0 hook pipeline design reviewed (afterToolCallbacks mechanism: non-blocking queued callbacks, per-callback error isolation, no await in dispatch response path)
+- [x] Token-usage signal contract approved (optional `tokenUsage` param on memory_context; three-tier fallback: primary=caller passes value, fallback=server-side estimator from context stats, last resort=no override+WARN)
+- [x] Memory quality benchmark suite planned (QP-0: 10 known-bad + 10 known-good regression fixtures per defect class)
 
 ### Definition of Done
-- [ ] All P0 requirements met (REQ-001–REQ-005, REQ-011–REQ-012, REQ-016–REQ-020)
-- [ ] All P1 requirements met or user-approved deferral documented (REQ-006–REQ-010, REQ-013–REQ-015, REQ-021–REQ-023)
-- [ ] Shadow evaluation shows >= 15% token waste reduction, <= 25% baseline context errors
-- [ ] Rank correlation >= 0.90 on 1000-query test set (Phase 1.5 hardening gate)
-- [ ] Integration tests pass (extraction rules, boost calculations, pressure policies, session lifecycle)
-- [ ] Contract tests verify RRF output format compatibility
-- [ ] Zod config validation enforced at startup
-- [ ] Feature flags allow instant rollback
-- [ ] Redaction calibration complete (FP rate <= 15% on 50 real Bash outputs)
-- [ ] Session lifecycle contract implemented and integration-tested (session_id scoping, event_counter boundary, resume behavior)
-- [ ] Memory quality gates passing: placeholder leakage <= 2%, fallback sentence prevalence <= 10%, contamination <= 1%, empty `trigger_phrases` <= 5% (verified on 14-day rolling window)
-- [ ] Quality score (SC-006–SC-013) targets met or user-approved deferral for SC-010–SC-013
-- [ ] Documentation updated (spec/plan/tasks/decision-record)
+- [x] All P0 requirements met (REQ-001–REQ-005, REQ-011–REQ-012, REQ-016–REQ-020)
+- [x] All P1 requirements met or user-approved deferral documented (REQ-006–REQ-010, REQ-013–REQ-015, REQ-021–REQ-023)
+- [x] Shadow evaluation shows >= 15% token waste reduction, <= 25% baseline context errors
+- [x] Rank correlation >= 0.90 on 1000-query test set (Phase 1.5 hardening gate)
+- [x] Integration tests pass (extraction rules, boost calculations, pressure policies, session lifecycle)
+- [x] Contract tests verify RRF output format compatibility
+- [x] Zod config validation enforced at startup
+- [x] Feature flags allow instant rollback
+- [x] Redaction calibration complete (FP rate <= 15% on 50 real Bash outputs)
+- [x] Session lifecycle contract implemented and integration-tested (session_id scoping, event_counter boundary, resume behavior)
+- [x] Memory quality gates passing: placeholder leakage <= 2%, fallback sentence prevalence <= 10%, contamination <= 1%, empty `trigger_phrases` <= 5% (verified on 14-day rolling window)
+- [x] Quality score (SC-006–SC-013) targets met or user-approved deferral for SC-010–SC-013
+- [x] Documentation updated (spec/plan/tasks/decision-record)
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -118,10 +118,13 @@ Dedicated phase packages are used to reduce planning complexity while preserving
 | Foundation | `001-foundation-phases-0-1-1-5/` | Hook pipeline, tokenUsage contract, core automation, hardening gate | `T000a-T028`, `T027a-T027o` | `CHK-125-139`, `CHK-155-159b` |
 | Extraction + Rollout | `002-extraction-rollout-phases-2-3/` | Extraction adapter, redaction gate, causal boost, rollout telemetry | `T029-T070` | `CHK-140-166` |
 | Memory Quality | `003-memory-quality-qp-0-4/` | Validator, contamination filter, decision quality, quality score, legacy remediation | `TQ001-TQ047` | `CHK-190-212` |
+| Post-Research Wave 1 | `004-post-research-wave-1-governance-foundations/` | Adaptive fusion policy, typed retrieval trace envelope, artifact-aware routing policy, telemetry readiness, governance approvals | `C136-08`, `C136-09`, `C136-10`, `C136-12`, `C136-01`, `C136-02`, `C136-03` | `CHK-217-222`, `CHK-226` |
+| Post-Research Wave 2 | `005-post-research-wave-2-controlled-delivery/` | Append-only mutation ledger plus controlled-delivery operationalization for sync/async split and deterministic exact-operation tooling | `C136-04`, `C136-05`, `C136-11` | `CHK-223-225` |
+| Post-Research Wave 3 | `006-post-research-wave-3-outcome-confirmation/` | Capability truth matrix longitudinal confirmation, real-user outcomes, and 14-day KPI closure evidence | `C136-06`, `C136-07` | `CHK-227-228` |
 | Research Sources | `research/` | Source analysis and recommendation artifacts used by root planning docs | N/A | Referenced in Definition of Ready and root `spec.md` |
 
 Planning notes:
-- Package docs are planning-only and do not imply implementation started.
+- Packages `001` through `003` preserve completed execution evidence; packages `004` through `006` are active planning packages for follow-up waves.
 - Root docs remain source-of-truth for go/no-go gates.
 - Sync rule: when root IDs change, package docs must be updated in the same change set.
 - Package-local `decision-record.md` and `implementation-summary.md` are intentionally omitted; root-level records remain canonical.
@@ -173,6 +176,19 @@ Layered MCP Server with middleware hooks (extraction, pressure monitoring) and p
 4. memory_context called with optional `tokenUsage` → Pressure monitor checks ratio → Override mode if pressure high (three-tier fallback: caller value → server-side estimator → WARN + no override (pass-through)) → Execute mode (quick/focused/deep)
 5. memory_search executes → RRF fusion produces base scores → Session-attention boost queries working_memory → Causal boost traverses `lib/storage/causal-edges.ts` → Apply bounded multipliers → Final ranking
 6. Event decay runs on working_memory access → Update attention scores based on event distance → Apply mention boost → Evict items whose raw score (before floor) drops below 0.01 → Apply floor (0.05) to surviving items
+
+### Post-Research Upgrade Architecture (Wave Contracts)
+
+| Capability | Architecture Contract | Primary Wave |
+|------------|------------------------|--------------|
+| Adaptive hybrid fusion | `memory_search` fusion policy computes dynamic weights from intent + document_type; fixed global weight profiles are prohibited | Wave 1 (`004`) |
+| Typed retrieval trace envelope | Retrieval trace schema is typed end-to-end with mandatory stages: `candidate`, `filter`, `fusion`, `rerank`, `fallback`, `final-rank` | Wave 1 (`004`) |
+| Artifact-aware routing policy | Routing policy splits retrieval strategy by artifact class (`spec`, `plan`, `tasks`, `checklist`) before fusion/rerank | Wave 1 (`004`) |
+| Typed degraded-mode contracts | Degraded mode output includes typed fields: `failure_mode`, `fallback_mode`, `confidence_impact`, `retry_recommendation` | Wave 1 foundation, Wave 2 operational proof |
+| Append-only mutation ledger | Ledger writes are append-only and persist `reason`, `prior_hash`, `new_hash`, `linked_memory_ids`, `decision_meta` | Wave 2 (`005`) |
+| Strong sync/async split | Foreground path returns deterministic answer; heavy post-response activities run through durable queue/worker jobs with retries | Wave 2 (`005`) |
+| Deterministic exact-operation tools | Exact checks (count, status, dependency) execute via deterministic tools separated from semantic retrieval paths | Wave 2 (`005`) |
+| Capability truth matrix | Runtime-generated matrix published for docs/handover and tracked for drift across closure window | Wave 3 (`006`) |
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -181,94 +197,113 @@ Layered MCP Server with middleware hooks (extraction, pressure monitoring) and p
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 0: Infrastructure Prerequisites (3-4 days)
-- [ ] Add optional `tokenUsage?: number` (0.0–1.0) parameter to `memory_context` tool schema in `tool-schemas.ts`
-- [ ] Add `afterToolCallbacks` module-level array to `context-server.ts`; call each callback after `dispatchTool()` resolves (non-blocking: errors in callbacks logged, not propagated to caller)
-- [ ] Write unit tests for hook pipeline (registration, invocation, error isolation)
-- [ ] Write unit test for pressure-monitor fallback when `tokenUsage` absent (expect WARN log, expect no override / pass-through)
-- [ ] Bootstrap evaluation dataset (Phase 0 gate): run memory_search against 5+ spec folders, sample **100 real queries** from existing memory_search call logs (minimum coverage: 5 queries per intent type); capture top-5 baseline results with derived ground truth (RRF ranking as proxy) + ~10% targeted human review sample; store in `scratch/eval-dataset-100.json`. Expansion to 1000 queries is the Phase 1.5 hardening gate before Phase 2 (full targeted review at Phase 1.5)
-- [ ] Document token-usage signal contract in `plan.md` (this file, see Architecture section) and in API docs
+- [x] Add optional `tokenUsage?: number` (0.0–1.0) parameter to `memory_context` tool schema in `tool-schemas.ts`
+- [x] Add `afterToolCallbacks` module-level array to `context-server.ts`; call each callback after `dispatchTool()` resolves (non-blocking: errors in callbacks logged, not propagated to caller)
+- [x] Write unit tests for hook pipeline (registration, invocation, error isolation)
+- [x] Write unit test for pressure-monitor fallback when `tokenUsage` absent (expect WARN log, expect no override / pass-through)
+- [x] Bootstrap evaluation dataset (Phase 0 gate): run memory_search against 5+ spec folders, sample **100 real queries** from existing memory_search call logs (minimum coverage: 5 queries per intent type); capture top-5 baseline results with derived ground truth (RRF ranking as proxy) + ~10% targeted human review sample; store in `scratch/eval-dataset-100.json`. Expansion to 1000 queries is the Phase 1.5 hardening gate before Phase 2 (full targeted review at Phase 1.5)
+- [x] Document token-usage signal contract in `plan.md` (this file, see Architecture section) and in API docs
 
 ### Phase 1: Core Cognitive Automation (1-2 weeks)
-- [ ] Create `configs/cognitive.ts` with Zod schemas for all settings; include regex safety check at parse time
-- [ ] Add `event_counter` and `mention_count` columns to working_memory table (migration); add provenance columns (`source_tool TEXT`, `source_call_id TEXT`, `extraction_rule_id TEXT`, `redaction_applied INTEGER DEFAULT 0`)
-- [ ] Implement event-based decay in `lib/cache/cognitive/working-memory.ts` (replace `attentionDecayRate: 0.95` / `decayInterval: 60000ms` time-based logic with event-counter formula)
-- [ ] Create `lib/search/session-boost.ts` for attention multiplier calculation
-- [ ] Integrate session boost into `memory-search.ts` after RRF fusion (integrate into `postSearchPipeline()` block; RRF score accessed as `.score` from `FusionResult`, not as `rrfScore`)
-- [ ] Create `lib/cache/cognitive/pressure-monitor.ts` for token ratio monitoring; consume `tokenUsage` param from memory_context args
-- [ ] Integrate pressure override into `memory-context.ts` mode selection (before mode execution, after intent detection)
-- [ ] Add feature flags: `SPECKIT_SESSION_BOOST`, `SPECKIT_PRESSURE_POLICY`, `SPECKIT_EVENT_DECAY`
-- [ ] Write unit tests for decay calculation, boost bounds, pressure thresholds
-- [ ] Write integration tests for RRF + boost pipeline
-- [ ] Run shadow evaluation on Phase 0 dataset (100 queries, baseline vs boosted); Phase 1.5 hardening gate runs full 1000-query shadow eval (expand dataset before Phase 2)
-- [ ] Verify: Token waste <= 85% baseline, context errors <= 75% baseline, rank correlation >= 0.90
+- [x] Create `configs/cognitive.ts` with Zod schemas for all settings; include regex safety check at parse time
+- [x] Add `event_counter` and `mention_count` columns to working_memory table (migration); add provenance columns (`source_tool TEXT`, `source_call_id TEXT`, `extraction_rule_id TEXT`, `redaction_applied INTEGER DEFAULT 0`)
+- [x] Implement event-based decay in `lib/cache/cognitive/working-memory.ts` (replace `attentionDecayRate: 0.95` / `decayInterval: 60000ms` time-based logic with event-counter formula)
+- [x] Create `lib/search/session-boost.ts` for attention multiplier calculation
+- [x] Integrate session boost into `memory-search.ts` after RRF fusion (integrate into `postSearchPipeline()` block; RRF score accessed as `.score` from `FusionResult`, not as `rrfScore`)
+- [x] Create `lib/cache/cognitive/pressure-monitor.ts` for token ratio monitoring; consume `tokenUsage` param from memory_context args
+- [x] Integrate pressure override into `memory-context.ts` mode selection (before mode execution, after intent detection)
+- [x] Add feature flags: `SPECKIT_SESSION_BOOST`, `SPECKIT_PRESSURE_POLICY`, `SPECKIT_EVENT_DECAY`
+- [x] Write unit tests for decay calculation, boost bounds, pressure thresholds
+- [x] Write integration tests for RRF + boost pipeline
+- [x] Run shadow evaluation on Phase 0 dataset (100 queries, baseline vs boosted); Phase 1.5 hardening gate runs full 1000-query shadow eval (expand dataset before Phase 2)
+- [x] Verify: Token waste <= 85% baseline, context errors <= 75% baseline, rank correlation >= 0.90
 
 ### Phase 1.5: Hardening Gate (4-5 days, between Phase 1 and Phase 2)
-- [ ] Expand evaluation dataset from 100 to 1000 queries: sample additional queries from memory_search logs (200 per intent type), apply full targeted review for ~10% of queries; store in `scratch/eval-dataset-1000.json`
-- [ ] Run full 1000-query shadow evaluation (baseline vs Phase 1 boosted); verify rank correlation >= 0.90 (GATE for Phase 2)
-- [ ] Perform pre-implementation redaction calibration: collect 50 real Bash tool outputs from existing logs; run redaction gate on all 50; measure false positive rate; target FP <= 15%; document exclusion heuristics for commit-hash/UUID over-redaction (hex strings 40 chars, UUIDs matching `/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/`)
-- [ ] Update denylist patterns based on calibration findings (tune generic high-entropy token pattern if FP > 15%)
-- [ ] Document calibration results in `scratch/redaction-calibration.md`
-- [ ] Phase 1.5 go/no-go decision: proceed to Phase 2 only if rank correlation >= 0.90 AND redaction FP <= 15%
+- [x] Expand evaluation dataset from 100 to 1000 queries: sample additional queries from memory_search logs (200 per intent type), apply full targeted review for ~10% of queries; store in `scratch/eval-dataset-1000.json`
+- [x] Run full 1000-query shadow evaluation (baseline vs Phase 1 boosted); verify rank correlation >= 0.90 (GATE for Phase 2)
+- [x] Perform pre-implementation redaction calibration: collect 50 real Bash tool outputs from existing logs; run redaction gate on all 50; measure false positive rate; target FP <= 15%; document exclusion heuristics for commit-hash/UUID over-redaction (hex strings 40 chars, UUIDs matching `/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/`)
+- [x] Update denylist patterns based on calibration findings (tune generic high-entropy token pattern if FP > 15%)
+- [x] Document calibration results in `scratch/redaction-calibration.md`
+- [x] Phase 1.5 go/no-go decision: proceed to Phase 2 only if rank correlation >= 0.90 AND redaction FP <= 15%
 
 ### Phase 2: Extraction & Relationship Boost (2-4 weeks)
-- [ ] Create `lib/extraction/redaction-gate.ts` with denylist patterns; implement `redact()` function; write unit tests covering all pattern classes (secrets, PII email/phone/SSN) and the >90% redaction skip threshold
-- [ ] Create `lib/extraction/extraction-adapter.ts` with schema-driven tool-class rules; validate each rule's regex at registration via cognitive config safety check; attach provenance metadata to each insert
-- [ ] Register extraction adapter via Phase 0 `afterToolCallbacks` hook (call `afterToolCallbacks.push(extractionHandler)` at adapter init)
-- [ ] Define extraction schemas: Read spec.md → 0.9, Grep error → 0.8, Bash git commit → 0.7
-- [ ] Implement summarizers (`firstLast500`, `matchCountSummary`, `stdoutSummary`)
-- [ ] Create `lib/search/causal-boost.ts` using `lib/storage/causal-edges.ts` for edge data
-- [ ] Implement 2-hop causal query via causal_edges table (SQLite recursive CTE)
-- [ ] Add causal boost to `memory-search.ts` post-RRF (bounded 0.05/hop)
-- [ ] Implement system prompt injection for session resume (working memory auto-included)
-- [ ] Add feature flags: `SPECKIT_EXTRACTION`, `SPECKIT_CAUSAL_BOOST`, `SPECKIT_AUTO_RESUME`
-- [ ] Write unit tests for extraction rules, redaction gate, provenance metadata, causal traversal, deduplication
-- [ ] Write integration tests for end-to-end extraction → redaction → working-memory → search → boost pipeline
-- [ ] Measure extraction precision >= 85%, recall >= 70% on 50-session test set
-- [ ] Verify: Manual saves <= 40% baseline, top-5 MRR >= 0.95x baseline
+- [x] Create `lib/extraction/redaction-gate.ts` with denylist patterns; implement `redact()` function; write unit tests covering all pattern classes (secrets, PII email/phone/SSN) and the >90% redaction skip threshold
+- [x] Create `lib/extraction/extraction-adapter.ts` with schema-driven tool-class rules; validate each rule's regex at registration via cognitive config safety check; attach provenance metadata to each insert
+- [x] Register extraction adapter via Phase 0 `afterToolCallbacks` hook (call `afterToolCallbacks.push(extractionHandler)` at adapter init)
+- [x] Define extraction schemas: Read spec.md → 0.9, Grep error → 0.8, Bash git commit → 0.7
+- [x] Implement summarizers (`firstLast500`, `matchCountSummary`, `stdoutSummary`)
+- [x] Create `lib/search/causal-boost.ts` using `lib/storage/causal-edges.ts` for edge data
+- [x] Implement 2-hop causal query via causal_edges table (SQLite recursive CTE)
+- [x] Add causal boost to `memory-search.ts` post-RRF (bounded 0.05/hop)
+- [x] Implement system prompt injection for session resume (working memory auto-included)
+- [x] Add feature flags: `SPECKIT_EXTRACTION`, `SPECKIT_CAUSAL_BOOST`, `SPECKIT_AUTO_RESUME`
+- [x] Write unit tests for extraction rules, redaction gate, provenance metadata, causal traversal, deduplication
+- [x] Write integration tests for end-to-end extraction → redaction → working-memory → search → boost pipeline
+- [x] Measure extraction precision >= 85%, recall >= 70% on 50-session test set
+- [x] Verify: Manual saves <= 40% baseline, top-5 MRR >= 0.95x baseline
 
 ### Phase 3: Monitoring & Rollout (1 week)
-- [ ] Create telemetry dashboard for boost metrics (session boost rate, causal boost rate, pressure activation rate)
-- [ ] Add response metadata fields (`applied_boosts`, `pressure_level`, `extraction_count`, `redaction_count`)
-- [ ] Implement logging for extraction matches, pressure overrides, boost calculations, redaction events
-- [ ] Deploy with all feature flags OFF (dark launch)
-- [ ] Gradual rollout: Enable for 10% users -> 50% -> 100% over 1 week
-- [ ] Monitor rank correlation, token waste, context errors daily
-- [ ] Run user satisfaction survey (continuity, relevance, performance, trust)
-- [ ] Create runbook for rollback procedure (flip feature flags, verify baseline behavior)
+- [x] Create telemetry dashboard for boost metrics (session boost rate, causal boost rate, pressure activation rate)
+- [x] Add response metadata fields (`applied_boosts`, `pressure_level`, `extraction_count`, `redaction_count`)
+- [x] Implement logging for extraction matches, pressure overrides, boost calculations, redaction events
+- [x] Deploy with all feature flags OFF (dark launch)
+- [x] Gradual rollout: Enable for 10% users -> 50% -> 100% over 1 week
+- [x] Monitor rank correlation, token waste, context errors daily
+- [x] Run user satisfaction survey (continuity, relevance, performance, trust)
+- [x] Create runbook for rollback procedure (flip feature flags, verify baseline behavior)
 
 ### Memory Quality Phases (QP-0 through QP-4, derived from research.md findings)
 
 > **Research baseline** (n=50 sample): 60% `[N/A]` leakage, 66% generic fallback, 34% empty `trigger_phrases`, 18% contamination. These phases run in parallel with the main Phase 0–3 roadmap where feasible (QP-0 and QP-1 can begin immediately; QP-4 legacy remediation runs after QP-2/QP-3 stabilize).
 
 #### QP-0: Baseline & Test Harness (1-2 days)
-- [ ] Create deterministic quality benchmark suite: 10 known-bad examples (one per defect class: placeholder leakage, malformed `spec_folder`, empty semantic blocks, generic fallback, contamination phrase, migration artifact) and 10 known-good examples
-- [ ] Add regression fixtures to test suite: validator must reject all known-bad; pass all known-good
-- [ ] Capture baseline quality-band distribution from current corpus (run quality scorer on active 25 files)
+- [x] Create deterministic quality benchmark suite: 10 known-bad examples (one per defect class: placeholder leakage, malformed `spec_folder`, empty semantic blocks, generic fallback, contamination phrase, migration artifact) and 10 known-good examples
+- [x] Add regression fixtures to test suite: validator must reject all known-bad; pass all known-good
+- [x] Capture baseline quality-band distribution from current corpus (run quality scorer on active 25 files)
 
 #### QP-1: Quality Gate + Contamination Filter (2-3 days)
-- [ ] Implement `scripts/dist/memory/validate-memory-quality.js` — post-render hard gate checking: (a) any `[TBD]`/`[N/A]` in non-optional fields, (b) invalid `spec_folder` format (markdown or gate-prompt string), (c) generic fallback sentence present, (d) empty `trigger_phrases` when session had >= 5 tool executions
-- [ ] Wire validator into `generate-context.js` — on validation failure: skip MCP indexing, write to temporary tier (not permanent), log quality failures
-- [ ] Implement `scripts/extractors/contamination-filter.ts` — denylist of orchestration phrases; apply before summary and trigger candidate extraction
-- [ ] Gate: placeholder leakage <= 5% and malformed `spec_folder` = 0 in CI regression run
+- [x] Implement `scripts/dist/memory/validate-memory-quality.js` — post-render hard gate checking: (a) any `[TBD]`/`[N/A]` in non-optional fields, (b) invalid `spec_folder` format (markdown or gate-prompt string), (c) generic fallback sentence present, (d) empty `trigger_phrases` when session had >= 5 tool executions
+- [x] Wire validator into `generate-context.js` — on validation failure: skip MCP indexing, write to temporary tier (not permanent), log quality failures
+- [x] Implement `scripts/extractors/contamination-filter.ts` — denylist of orchestration phrases; apply before summary and trigger candidate extraction
+- [x] Gate: placeholder leakage <= 5% and malformed `spec_folder` = 0 in CI regression run
 
 #### QP-2: Decision Extraction + Semantic Backfill (3-5 days)
-- [ ] Modify `scripts/extractors/decision-extractor.ts` — add lexical/rule-based cues from assistant and user turns (keywords: "decided", "chose", "will use", "approach is", "rejected", "going with"); suppress generic fallback sentence; emit `decision_count: 0` when no decisions found
-- [ ] Modify `templates/context_template.md` — replace hardcoded generic fallback sentence at line 516–518 with conditional Handlebars block (`{{#if decisions.length}}...{{else}}decision_count: 0{{/if}}`)
-- [ ] Implement semantic backfill for `trigger_phrases` / `key_topics` — fallback strategy: extract dominant nouns from changed file names + session topic string when extractor produces empty lists
-- [ ] Modify `scripts/extractors/collect-session-data.ts` — replace `[TBD]` / `[Not assessed]` defaults with conditional omission (omit field if data unavailable, rather than emitting placeholder)
-- [ ] Gate: files with concrete decision >= 60% (when session had design choices); empty `trigger_phrases` <= 10%
+- [x] Modify `scripts/extractors/decision-extractor.ts` — add lexical/rule-based cues from assistant and user turns (keywords: "decided", "chose", "will use", "approach is", "rejected", "going with"); suppress generic fallback sentence; emit `decision_count: 0` when no decisions found
+- [x] Modify `templates/context_template.md` — replace hardcoded generic fallback sentence at line 516–518 with conditional Handlebars block (`{{#if decisions.length}}...{{else}}decision_count: 0{{/if}}`)
+- [x] Implement semantic backfill for `trigger_phrases` / `key_topics` — fallback strategy: extract dominant nouns from changed file names + session topic string when extractor produces empty lists
+- [x] Modify `scripts/extractors/collect-session-data.ts` — replace `[TBD]` / `[Not assessed]` defaults with conditional omission (omit field if data unavailable, rather than emitting placeholder)
+- [x] Gate: files with concrete decision >= 60% (when session had design choices); empty `trigger_phrases` <= 10%
 
 #### QP-3: Quality Score Persistence + KPI Dashboard (1-2 days)
-- [ ] Implement `scripts/extractors/quality-scorer.ts` — compute `quality_score` (0.0–1.0 heuristic) and `quality_flags` array; persist in YAML front-matter of generated memory files
-- [ ] Expose `quality_score` and `quality_flags` in MCP index (memory_save pipeline)
-- [ ] Enable retrieval filtering by `quality_score` threshold (configurable, default 0.3)
-- [ ] Gate: 100% of new memories include `quality_score` and `quality_flags`
+- [x] Implement `scripts/extractors/quality-scorer.ts` — compute `quality_score` (0.0–1.0 heuristic) and `quality_flags` array; persist in YAML front-matter of generated memory files
+- [x] Expose `quality_score` and `quality_flags` in MCP index (memory_save pipeline)
+- [x] Enable retrieval filtering by `quality_score` threshold (configurable, default 0.3)
+- [x] Gate: 100% of new memories include `quality_score` and `quality_flags`
 
 #### QP-4: Legacy Remediation (2-4 days, deferred after QP-2/QP-3 stable)
-- [ ] Batch re-normalize stale path references (`003-memory-and-spec-kit` → `003-system-spec-kit`) in 104 affected files
-- [ ] Isolate fixture/test memories (`044-speckit-test-suite`, `030-gate3-enforcement`) from production ranking tiers
-- [ ] Re-index cleaned memories; run shadow retrieval comparison before and after
-- [ ] Gate: legacy-path references in active tier <= 10%
+- [x] Batch re-normalize stale path references (`003-memory-and-spec-kit` → `003-system-spec-kit`) in 104 affected files
+- [x] Isolate fixture/test memories (`044-speckit-test-suite`, `030-gate3-enforcement`) from production ranking tiers
+- [x] Re-index cleaned memories; run shadow retrieval comparison before and after
+- [x] Gate: legacy-path references in active tier <= 10%
+
+### Post-Research Wave 1: Governance Foundations (package `004-post-research-wave-1-governance-foundations/`)
+- [ ] Implement typed contracts (`C136-08`) for `ContextEnvelope` and `RetrievalTrace` including required stage fields (`candidate`, `filter`, `fusion`, `rerank`, `fallback`, `final-rank`) and typed degraded-mode contract fields (`failure_mode`, `fallback_mode`, `confidence_impact`, `retry_recommendation`).
+- [ ] Implement artifact-class routing policy (`C136-09`) with class-specific retrieval strategy for `spec`, `plan`, `tasks`, and `checklist`; verify deterministic branch selection in tests.
+- [ ] Deliver adaptive hybrid fusion behind feature flag (`C136-10`) using dynamic weighting by intent + document type; prohibit fixed one-size weights; provide deterministic fallback parity report.
+- [ ] Expand telemetry dimensions for latency/mode/fallback/quality-proxy signals (`C136-12`) to support reviewer interpretation and Wave 2 gate decisions.
+- [ ] Finalize triad approvals: Tech Lead (`C136-01`), Data Reviewer (`C136-02`), Product Owner (`C136-03`).
+
+### Post-Research Wave 2: Controlled Delivery (package `005-post-research-wave-2-controlled-delivery/`)
+- [ ] Run dark-launch evidence pass for non-admin closure (`C136-04`) with deterministic-tool evidence for exact counts/status/dependency checks and degraded-mode contract behavior.
+- [ ] Execute staged rollout evidence checkpoints (`10%`/`50%`/`100%`) with gate decisions, telemetry snapshots, and durable sync/async queue-worker behavior under load (`C136-05`).
+- [ ] Implement append-only mutation ledger (`C136-11`) with required fields (`reason`, `prior_hash`, `new_hash`, `linked_memory_ids`, `decision_meta`) and append-integrity verification tests.
+
+### Post-Research Wave 3: Outcome Confirmation (package `006-post-research-wave-3-outcome-confirmation/`)
+- [ ] Run real-user survey and publish scored outcomes (`C136-06`) with capability truth matrix interpretation in the final report.
+- [ ] Publish 14-day KPI closure evidence (`C136-07`) including runtime-generated capability truth matrix snapshots, baseline deltas, drift analysis, and final closure decision note.
+
+Wave sequencing rule:
+- Wave 1 completes first, Wave 2 depends on Wave 1 evidence readiness, and Wave 3 depends on Wave 2 delivery evidence and telemetry continuity.
 <!-- /ANCHOR:phases -->
 
 ---
@@ -359,10 +394,10 @@ Phase 0 (Prerequisites) ──────────────────�
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deployment Checklist
-- [ ] Feature flags configured and tested (toggle on/off verified)
-- [ ] Baseline metrics captured (token waste, context errors, MRR, rank correlation)
-- [ ] Telemetry dashboards live (boost rates, pressure activation, extraction counts)
-- [ ] Runbook reviewed by tech lead
+- [x] Feature flags configured and tested (toggle on/off verified)
+- [x] Baseline metrics captured (token waste, context errors, MRR, rank correlation)
+- [x] Telemetry dashboards live (boost rates, pressure activation, extraction counts)
+- [x] Runbook reviewed by tech lead
 
 ### Rollback Procedure
 1. **Immediate action**: Flip all feature flags to OFF via environment variables
@@ -562,14 +597,14 @@ Phase 0 (Prerequisites) ──────────────────�
 
 Before starting ANY task in this spec:
 
-- [ ] Read spec.md sections 1-11 (metadata through acceptance scenarios)
-- [ ] Review decision-record.md ADR-001 through ADR-004 (key architectural constraints)
-- [ ] Verify feature flag environment variables documented (Phase 1: SPECKIT_SESSION_BOOST, SPECKIT_PRESSURE_POLICY, SPECKIT_EVENT_DECAY)
-- [ ] Confirm existing infrastructure available (RRF fusion, working_memory table, causal_edges table)
-- [ ] Load cognitive config schema from plan.md section 3 (Architecture - Key Components)
-- [ ] Verify TypeScript-only rule (no Python/Docker/Neo4j dependencies)
-- [ ] Check bounded boost limits (max 0.20 total for session + causal)
-- [ ] Review shadow evaluation baseline (1000 queries, rank correlation target >= 0.90)
+- [x] Read spec.md sections 1-11 (metadata through acceptance scenarios)
+- [x] Review decision-record.md ADR-001 through ADR-004 (key architectural constraints)
+- [x] Verify feature flag environment variables documented (Phase 1: SPECKIT_SESSION_BOOST, SPECKIT_PRESSURE_POLICY, SPECKIT_EVENT_DECAY)
+- [x] Confirm existing infrastructure available (RRF fusion, working_memory table, causal_edges table)
+- [x] Load cognitive config schema from plan.md section 3 (Architecture - Key Components)
+- [x] Verify TypeScript-only rule (no Python/Docker/Neo4j dependencies)
+- [x] Check bounded boost limits (max 0.20 total for session + causal)
+- [x] Review shadow evaluation baseline (1000 queries, rank correlation target >= 0.90)
 
 ### Execution Rules
 

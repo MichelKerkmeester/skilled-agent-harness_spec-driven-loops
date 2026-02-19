@@ -135,6 +135,7 @@ function parseSkillRefSection(rawSection: unknown): SkillRefConfig {
    3. CONFIG LOADER
    --------------------------------------------------------------- */
 
+/** In-memory process cache to avoid repeated config file reads. */
 let cachedConfig: SkillRefConfig | null = null;
 
 function getConfigPathCandidates(): string[] {

@@ -1,0 +1,252 @@
+// ---------------------------------------------------------------
+// TESTS: Mutation Ledger (C136-11)
+// Append-only audit trail with SQLite trigger enforcement
+// ---------------------------------------------------------------
+
+import { describe, it, expect, beforeEach } from 'vitest';
+import Database from 'better-sqlite3';
+import {
+  initLedger,
+  appendEntry,
+  computeHash,
+  getEntries,
+  getEntryCount,
+  getLinkedEntries,
+  verifyAppendOnly,
+} from '../lib/storage/mutation-ledger';
+import type { AppendEntryInput } from '../lib/storage/mutation-ledger';
+
+/* -------------------------------------------------------------
+   HELPERS
+----------------------------------------------------------------*/
+
+function createTestDb(): Database.Database {
+  const db = new Database(':memory:');
+  initLedger(db);
+  return db;
+}
+
+function makeEntry(overrides: Partial<AppendEntryInput> = {}): AppendEntryInput {
+  return {
+    mutation_type: 'create',
+    reason: 'test entry',
+    prior_hash: null,
+    new_hash: computeHash('test-content'),
+    linked_memory_ids: [1, 2],
+    decision_meta: { source: 'test' },
+    actor: 'test-agent',
+    session_id: 'sess-001',
+    ...overrides,
+  };
+}
+
+/* -------------------------------------------------------------
+   TESTS
+----------------------------------------------------------------*/
+
+describe('Mutation Ledger', () => {
+  let db: Database.Database;
+
+  beforeEach(() => {
+    db = createTestDb();
+  });
+
+  // 1. Table creation
+  it('creates the mutation_ledger table with correct columns', () => {
+    const columns = db.prepare('PRAGMA table_info(mutation_ledger)').all() as Array<{ name: string }>;
+    const names = columns.map(c => c.name);
+
+    expect(names).toContain('id');
+    expect(names).toContain('timestamp');
+    expect(names).toContain('mutation_type');
+    expect(names).toContain('reason');
+    expect(names).toContain('prior_hash');
+    expect(names).toContain('new_hash');
+    expect(names).toContain('linked_memory_ids');
+    expect(names).toContain('decision_meta');
+    expect(names).toContain('actor');
+    expect(names).toContain('session_id');
+  });
+
+  // 2. Append returns entry with id and timestamp
+  it('appends an entry and returns it with id and timestamp', () => {
+    const entry = appendEntry(db, makeEntry());
+
+    expect(entry.id).toBeGreaterThan(0);
+    expect(entry.timestamp).toBeTruthy();
+    expect(entry.mutation_type).toBe('create');
+    expect(entry.reason).toBe('test entry');
+    expect(entry.actor).toBe('test-agent');
+    expect(entry.session_id).toBe('sess-001');
+  });
+
+  // 3. Hash determinism
+  it('produces deterministic SHA-256 hashes', () => {
+    const hash1 = computeHash('hello world');
+    const hash2 = computeHash('hello world');
+    const hash3 = computeHash('different content');
+
+    expect(hash1).toBe(hash2);
+    expect(hash1).not.toBe(hash3);
+    expect(hash1).toHaveLength(64); // SHA-256 hex = 64 chars
+  });
+
+  // 4. UPDATE rejected
+  it('rejects UPDATE on mutation_ledger', () => {
+    appendEntry(db, makeEntry());
+
+    expect(() => {
+      db.prepare('UPDATE mutation_ledger SET reason = ? WHERE id = 1').run('modified');
+    }).toThrow('mutation_ledger is append-only');
+  });
+
+  // 5. DELETE rejected
+  it('rejects DELETE on mutation_ledger', () => {
+    appendEntry(db, makeEntry());
+
+    expect(() => {
+      db.prepare('DELETE FROM mutation_ledger WHERE id = 1').run();
+    }).toThrow('mutation_ledger is append-only');
+  });
+
+  // 6. Filter by mutation_type
+  it('filters entries by mutation_type', () => {
+    appendEntry(db, makeEntry({ mutation_type: 'create' }));
+    appendEntry(db, makeEntry({ mutation_type: 'update' }));
+    appendEntry(db, makeEntry({ mutation_type: 'delete' }));
+
+    const creates = getEntries(db, { mutation_type: 'create' });
+    expect(creates).toHaveLength(1);
+    expect(creates[0].mutation_type).toBe('create');
+
+    const updates = getEntries(db, { mutation_type: 'update' });
+    expect(updates).toHaveLength(1);
+  });
+
+  // 7. Limit and offset
+  it('respects limit and offset in queries', () => {
+    for (let i = 0; i < 5; i++) {
+      appendEntry(db, makeEntry({ reason: `entry-${i}` }));
+    }
+
+    const limited = getEntries(db, { limit: 2 });
+    expect(limited).toHaveLength(2);
+    expect(limited[0].reason).toBe('entry-0');
+
+    const offsetted = getEntries(db, { limit: 2, offset: 3 });
+    expect(offsetted).toHaveLength(2);
+    expect(offsetted[0].reason).toBe('entry-3');
+  });
+
+  // 8. Linked entries lookup
+  it('finds entries linked to a specific memory ID', () => {
+    appendEntry(db, makeEntry({ linked_memory_ids: [10, 20] }));
+    appendEntry(db, makeEntry({ linked_memory_ids: [20, 30] }));
+    appendEntry(db, makeEntry({ linked_memory_ids: [30, 40] }));
+
+    const linkedTo20 = getLinkedEntries(db, 20);
+    expect(linkedTo20).toHaveLength(2);
+
+    const linkedTo40 = getLinkedEntries(db, 40);
+    expect(linkedTo40).toHaveLength(1);
+
+    const linkedTo99 = getLinkedEntries(db, 99);
+    expect(linkedTo99).toHaveLength(0);
+  });
+
+  // 9. Append-only verification
+  it('verifies append-only triggers exist', () => {
+    expect(verifyAppendOnly(db)).toBe(true);
+  });
+
+  it('verifyAppendOnly returns false when triggers are missing', () => {
+    const rawDb = new Database(':memory:');
+    rawDb.exec(`CREATE TABLE mutation_ledger (id INTEGER PRIMARY KEY, reason TEXT)`);
+    expect(verifyAppendOnly(rawDb)).toBe(false);
+  });
+
+  // 10. Required fields present
+  it('stores all required fields correctly', () => {
+    const input = makeEntry({
+      mutation_type: 'merge',
+      reason: 'merging duplicates',
+      prior_hash: computeHash('old-state'),
+      new_hash: computeHash('new-state'),
+      linked_memory_ids: [5, 6, 7],
+      decision_meta: { confidence: 0.95, strategy: 'dedup' },
+      actor: 'merge-agent',
+      session_id: 'sess-merge-1',
+    });
+
+    const entry = appendEntry(db, input);
+
+    expect(entry.mutation_type).toBe('merge');
+    expect(entry.reason).toBe('merging duplicates');
+    expect(entry.prior_hash).toBe(computeHash('old-state'));
+    expect(entry.new_hash).toBe(computeHash('new-state'));
+    expect(entry.actor).toBe('merge-agent');
+    expect(entry.session_id).toBe('sess-merge-1');
+  });
+
+  // 11. JSON validity for linked_memory_ids and decision_meta
+  it('stores valid JSON in linked_memory_ids and decision_meta', () => {
+    const entry = appendEntry(db, makeEntry({
+      linked_memory_ids: [100, 200, 300],
+      decision_meta: { key: 'value', nested: { a: 1 } },
+    }));
+
+    const parsedIds = JSON.parse(entry.linked_memory_ids);
+    expect(parsedIds).toEqual([100, 200, 300]);
+
+    const parsedMeta = JSON.parse(entry.decision_meta);
+    expect(parsedMeta).toEqual({ key: 'value', nested: { a: 1 } });
+  });
+
+  // 12. Entry count
+  it('returns correct entry count', () => {
+    expect(getEntryCount(db)).toBe(0);
+
+    appendEntry(db, makeEntry());
+    appendEntry(db, makeEntry());
+    appendEntry(db, makeEntry());
+
+    expect(getEntryCount(db)).toBe(3);
+  });
+
+  // 13. Filter by actor
+  it('filters entries by actor', () => {
+    appendEntry(db, makeEntry({ actor: 'agent-a' }));
+    appendEntry(db, makeEntry({ actor: 'agent-b' }));
+    appendEntry(db, makeEntry({ actor: 'agent-a' }));
+
+    const agentA = getEntries(db, { actor: 'agent-a' });
+    expect(agentA).toHaveLength(2);
+  });
+
+  // 14. prior_hash null for creates
+  it('allows null prior_hash for create mutations', () => {
+    const entry = appendEntry(db, makeEntry({
+      mutation_type: 'create',
+      prior_hash: null,
+    }));
+    expect(entry.prior_hash).toBeNull();
+  });
+
+  // 15. Invalid mutation_type rejected by CHECK constraint
+  it('rejects invalid mutation_type via CHECK constraint', () => {
+    expect(() => {
+      db.prepare(`
+        INSERT INTO mutation_ledger (mutation_type, reason, new_hash, actor)
+        VALUES ('invalid_type', 'test', 'abc', 'test')
+      `).run();
+    }).toThrow();
+  });
+
+  // 16. Idempotent initLedger
+  it('is idempotent — calling initLedger twice does not error', () => {
+    expect(() => initLedger(db)).not.toThrow();
+    // Table and triggers still work after re-init
+    appendEntry(db, makeEntry());
+    expect(getEntryCount(db)).toBe(1);
+  });
+});

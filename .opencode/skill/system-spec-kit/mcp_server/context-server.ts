@@ -19,9 +19,8 @@ import { ListToolsRequestSchema, CallToolRequestSchema } from '@modelcontextprot
 
 // Core modules
 import {
-  LIB_DIR, DEFAULT_BASE_PATH,
-  checkDatabaseUpdated, reinitializeDatabase,
-  setEmbeddingModelReady, waitForEmbeddingModel, isEmbeddingModelReady,
+  DEFAULT_BASE_PATH,
+  setEmbeddingModelReady, waitForEmbeddingModel,
   init as initDbState
 } from './core';
 
@@ -53,6 +52,8 @@ import * as embeddings from './lib/providers/embeddings';
 import * as checkpointsLib from './lib/storage/checkpoints';
 import * as accessTracker from './lib/storage/access-tracker';
 import * as hybridSearch from './lib/search/hybrid-search';
+import * as sessionBoost from './lib/search/session-boost';
+import * as causalBoost from './lib/search/causal-boost';
 import * as bm25Index from './lib/search/bm25-index';
 import * as memoryParser from './lib/parsing/memory-parser';
 import * as workingMemory from './lib/cache/cognitive/working-memory';
@@ -62,7 +63,7 @@ import * as coActivation from './lib/cache/cognitive/co-activation';
 import * as archivalManager from './lib/cache/cognitive/archival-manager';
 // T099: Retry manager for background embedding retry job (REQ-031, CHK-179)
 import * as retryManager from './lib/providers/retry-manager';
-import { ErrorCodes, getRecoveryHint, buildErrorResponse } from './lib/errors';
+import { buildErrorResponse } from './lib/errors';
 // T001-T004: Session deduplication
 import * as sessionManager from './lib/session/session-manager';
 
@@ -72,6 +73,7 @@ import * as incrementalIndex from './lib/storage/incremental-index';
 import * as transactionManager from './lib/storage/transaction-manager';
 // KL-4: Tool cache cleanup on shutdown
 import * as toolCache from './lib/cache/tool-cache';
+import { initExtractionAdapter } from './lib/extraction/extraction-adapter';
 
 /* ---------------------------------------------------------------
    2. TYPES
@@ -108,6 +110,40 @@ interface ToolCallResponse {
   [key: string]: unknown;
 }
 
+type AfterToolCallback = (tool: string, callId: string, result: unknown) => Promise<void>;
+
+const afterToolCallbacks: Array<AfterToolCallback> = [];
+
+let generatedCallIdCounter = 0;
+
+function resolveToolCallId(request: { id?: unknown }): string {
+  const requestId = request.id;
+  if (typeof requestId === 'string' || typeof requestId === 'number') {
+    return String(requestId);
+  }
+  generatedCallIdCounter += 1;
+  return `generated-${generatedCallIdCounter}`;
+}
+
+function runAfterToolCallbacks(tool: string, callId: string, result: unknown): void {
+  if (afterToolCallbacks.length === 0) {
+    return;
+  }
+
+  queueMicrotask(() => {
+    for (const callback of afterToolCallbacks) {
+      void callback(tool, callId, result).catch((error: unknown) => {
+        const message = error instanceof Error ? error.message : String(error);
+        console.error(`[context-server] afterTool callback failed for '${tool}' (${callId}): ${message}`);
+      });
+    }
+  });
+}
+
+export function registerAfterToolCallback(fn: AfterToolCallback): void {
+  afterToolCallbacks.push(fn);
+}
+
 /* ---------------------------------------------------------------
    3. SERVER INITIALIZATION
 --------------------------------------------------------------- */
@@ -133,6 +169,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request, _extra: unknown)
   const requestParams = request.params as { name: string; arguments?: Record<string, unknown> };
   const { name } = requestParams;
   const args: Record<string, unknown> = requestParams.arguments ?? {};
+  const callId = resolveToolCallId(request as { id?: unknown });
 
   try {
     // SEC-003: Validate input lengths before processing (CWE-400 mitigation)
@@ -164,6 +201,8 @@ server.setRequestHandler(CallToolRequestSchema, async (request, _extra: unknown)
     if (!result) {
       throw new Error(`Unknown tool: ${name}`);
     }
+
+    runAfterToolCallbacks(name, callId, result);
 
     // Token Budget Hybrid: Inject tokenBudget into response metadata (CHK-072)
     // T205: Enforce per-layer token budgets with actual truncation
@@ -525,7 +564,9 @@ async function main(): Promise<void> {
     checkpointsLib.init(database);
     accessTracker.init(database);
     hybridSearch.init(database, vectorIndex.vectorSearch);
-    console.error('[context-server] Checkpoints, access tracker, and hybrid search initialized');
+    sessionBoost.init(database);
+    causalBoost.init(database);
+    console.error('[context-server] Checkpoints, access tracker, hybrid search, session boost, and causal boost initialized');
 
     // P3-04: Rebuild BM25 index from database on startup
     if (bm25Index.isBm25Enabled()) {
@@ -549,6 +590,14 @@ async function main(): Promise<void> {
     } catch (cognitive_err: unknown) {
       const message = cognitive_err instanceof Error ? cognitive_err.message : String(cognitive_err);
       console.warn('[context-server] Cognitive modules partially failed:', message);
+    }
+
+    try {
+      initExtractionAdapter(database, registerAfterToolCallback);
+      console.error('[context-server] Extraction adapter initialized');
+    } catch (extraction_err: unknown) {
+      const message = extraction_err instanceof Error ? extraction_err.message : String(extraction_err);
+      throw new Error(`[context-server] Extraction adapter startup failed: ${message}`);
     }
 
     // T059: Archival Manager for automatic archival of ARCHIVED state memories

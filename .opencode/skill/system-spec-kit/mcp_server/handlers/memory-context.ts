@@ -6,6 +6,7 @@
 import * as layerDefs from '../lib/architecture/layer-definitions';
 import { checkDatabaseUpdated } from '../core';
 import { toErrorMessage } from '../utils';
+import { randomUUID } from 'crypto';
 
 // Intent classifier
 import * as intentClassifier from '../lib/search/intent-classifier';
@@ -19,6 +20,15 @@ import { createMCPErrorResponse, createMCPResponse } from '../lib/response/envel
 
 // Token estimation
 import { estimateTokens } from '../formatters/token-metrics';
+import {
+  getPressureLevel,
+  type RuntimeContextStats,
+} from '../lib/cache/cognitive/pressure-monitor';
+import * as workingMemory from '../lib/cache/cognitive/working-memory';
+import { isIdentityInRollout } from '../lib/cache/cognitive/rollout-policy';
+
+// Telemetry
+import * as retrievalTelemetry from '../lib/telemetry/retrieval-telemetry';
 
 // Shared handler types
 import type { MCPResponse, IntentClassification } from './types';
@@ -43,6 +53,15 @@ interface ContextOptions {
   anchors?: string[];
 }
 
+interface SessionLifecycleMetadata {
+  sessionScope: 'caller' | 'ephemeral';
+  requestedSessionId: string | null;
+  effectiveSessionId: string;
+  resumed: boolean;
+  eventCounterStart: number;
+  resumedContextCount: number;
+}
+
 interface ContextResult extends Record<string, unknown> {
   strategy: string;
   mode: string;
@@ -61,6 +80,7 @@ interface ContextArgs {
   sessionId?: string;
   enableDedup?: boolean;
   includeContent?: boolean;
+  tokenUsage?: number;
   anchors?: string[];
 }
 
@@ -123,7 +143,7 @@ function enforceTokenBudget(result: ContextResult, budgetTokens: number): { resu
 
         // Results should already be sorted by score (highest first)
         // Remove items from the end until we fit within budget
-        let currentResults = [...innerResults];
+        const currentResults = [...innerResults];
         let currentTokens = actualTokens;
 
         while (currentResults.length > 1 && currentTokens > budgetTokens) {
@@ -173,6 +193,7 @@ function enforceTokenBudget(result: ContextResult, budgetTokens: number): { resu
     }
   };
 }
+
 
 /* ---------------------------------------------------------------
    3. CONTEXT MODE DEFINITIONS
@@ -337,6 +358,7 @@ async function handleMemoryContext(args: ContextArgs): Promise<MCPResponse> {
     sessionId: session_id,
     enableDedup: enableDedup = true,
     includeContent: include_content = false,
+    tokenUsage,
     anchors
   } = args;
 
@@ -354,16 +376,60 @@ async function handleMemoryContext(args: ContextArgs): Promise<MCPResponse> {
   }
 
   const normalizedInput = input.trim();
+  const requestedSessionId = typeof session_id === 'string' && session_id.trim().length > 0
+    ? session_id.trim()
+    : null;
+  const effectiveSessionId = requestedSessionId ?? randomUUID();
+  const resumedSession = requestedSessionId ? workingMemory.sessionExists(requestedSessionId) : false;
+  const eventCounterStart = resumedSession && requestedSessionId
+    ? workingMemory.getSessionEventCounter(requestedSessionId)
+    : 0;
+  const sessionLifecycle: SessionLifecycleMetadata = {
+    sessionScope: requestedSessionId ? 'caller' : 'ephemeral',
+    requestedSessionId,
+    effectiveSessionId,
+    resumed: resumedSession,
+    eventCounterStart,
+    resumedContextCount: 0,
+  };
 
   // Get layer info for response metadata
   const layerInfo: LayerInfo | null = layerDefs.getLayerInfo('memory_context');
-  const tokenBudget = layerInfo?.tokenBudget || 2000;
+  const tokenBudget = layerInfo?.tokenBudget ?? 2000;
+
+  const runtimeContextStats: RuntimeContextStats = {
+    tokenBudget,
+  };
+  try {
+    runtimeContextStats.tokenCount = estimateTokens(normalizedInput);
+  } catch {
+    runtimeContextStats.tokenCount = undefined;
+  }
+
+  // Resolve token pressure (caller -> estimator -> unavailable)
+  const rolloutEnabled = process.env.SPECKIT_ROLLOUT_PERCENT
+    ? isIdentityInRollout(effectiveSessionId)
+    : true;
+  const pressurePolicyEnabled = process.env.SPECKIT_PRESSURE_POLICY !== 'false' && rolloutEnabled;
+  const autoResumeEnabled = process.env.SPECKIT_AUTO_RESUME !== 'false' && rolloutEnabled;
+
+  const pressurePolicy = pressurePolicyEnabled
+    ? getPressureLevel(tokenUsage, runtimeContextStats)
+    : {
+        level: 'none' as const,
+        ratio: null,
+        source: 'unavailable' as const,
+        warning: null,
+      };
+  if (pressurePolicy.warning) {
+    console.warn(pressurePolicy.warning);
+  }
 
   // Build options object for strategy executors
   const options: ContextOptions = {
     specFolder: spec_folder,
     limit,
-    sessionId: session_id,
+    sessionId: effectiveSessionId,
     enableDedup: enableDedup,
     includeContent: include_content,
     anchors
@@ -373,6 +439,10 @@ async function handleMemoryContext(args: ContextArgs): Promise<MCPResponse> {
   let effectiveMode = requested_mode;
   let detectedIntent: string | undefined = explicit_intent;
   let intentConfidence = explicit_intent ? 1.0 : 0;
+
+  let pressureOverrideTargetMode: 'quick' | 'focused' | null = null;
+  let pressureOverrideApplied = false;
+  let pressureWarning: string | null = null;
 
   // Handle auto mode: detect intent and select mode
   if (requested_mode === 'auto') {
@@ -390,6 +460,22 @@ async function handleMemoryContext(args: ContextArgs): Promise<MCPResponse> {
 
     if (/\b(resume|continue|pick up|where was i|what's next)\b/i.test(normalizedInput)) {
       effectiveMode = 'resume';
+    }
+
+    const prePressureMode = effectiveMode;
+    if (pressurePolicy.level === 'quick') {
+      pressureOverrideTargetMode = 'quick';
+    } else if (pressurePolicy.level === 'focused') {
+      pressureOverrideTargetMode = 'focused';
+    }
+
+    if (pressureOverrideTargetMode) {
+      effectiveMode = pressureOverrideTargetMode;
+      pressureOverrideApplied = prePressureMode !== pressureOverrideTargetMode;
+
+      if (pressureOverrideApplied) {
+        pressureWarning = `Pressure policy override applied: ${pressurePolicy.level} pressure (${pressurePolicy.ratio}) forced mode ${pressureOverrideTargetMode} from ${prePressureMode}.`;
+      }
     }
   }
 
@@ -442,6 +528,20 @@ async function handleMemoryContext(args: ContextArgs): Promise<MCPResponse> {
   // T205: Enforce token budget on strategy results
   const { result: budgetedResult, enforcement } = enforceTokenBudget(result, effectiveBudget);
 
+  if (autoResumeEnabled && effectiveMode === 'resume' && requestedSessionId) {
+    const resumeContextItems = workingMemory.getSessionPromptContext(requestedSessionId, workingMemory.DECAY_FLOOR, 5);
+    if (resumeContextItems.length > 0) {
+      sessionLifecycle.resumedContextCount = resumeContextItems.length;
+      (budgetedResult as Record<string, unknown>).systemPromptContext = resumeContextItems.map((item) => ({
+        memoryId: item.memoryId,
+        title: item.title,
+        filePath: item.filePath,
+        attentionScore: item.attentionScore,
+      }));
+      (budgetedResult as Record<string, unknown>).systemPromptContextInjected = true;
+    }
+  }
+
   // Build response with layer metadata
   return createMCPResponse({
     tool: 'memory_context',
@@ -452,20 +552,46 @@ async function handleMemoryContext(args: ContextArgs): Promise<MCPResponse> {
     hints: [
       `Mode: ${CONTEXT_MODES[effectiveMode].description}`,
       `For more granular control, use L2 tools: memory_search, memory_match_triggers`,
-      `Token budget: ${effectiveBudget} (${effectiveMode} mode)`
+      `Token budget: ${effectiveBudget} (${effectiveMode} mode)`,
+      ...(pressureWarning ? [pressureWarning] : [])
     ],
     extraMeta: {
       layer: 'L1:Orchestration',
       mode: effectiveMode,
       requestedMode: requested_mode,
       strategy: budgetedResult.strategy,
+      tokenUsageSource: pressurePolicy.source,
+      tokenUsagePressure: pressurePolicy.ratio,
+      pressureLevel: pressurePolicy.level,
+      pressure_level: pressurePolicy.level,
+      pressurePolicy: {
+        applied: pressureOverrideApplied,
+        overrideMode: pressureOverrideApplied ? pressureOverrideTargetMode : null,
+        warning: pressureWarning,
+      },
+      sessionLifecycle,
       tokenBudget: effectiveBudget,
       tokenBudgetEnforcement: enforcement,
       intent: detectedIntent ? {
         type: detectedIntent,
         confidence: intentConfidence,
         source: explicit_intent ? 'explicit' : 'auto-detected'
-      } : null
+      } : null,
+      // C136-12: Retrieval telemetry at L1 orchestration level
+      ...(retrievalTelemetry.isExtendedTelemetryEnabled() ? (() => {
+        const t = retrievalTelemetry.createTelemetry();
+        retrievalTelemetry.recordMode(
+          t,
+          effectiveMode,
+          pressureOverrideApplied,
+          pressurePolicy.level,
+          pressurePolicy.ratio ?? undefined,
+        );
+        if (effectiveMode !== requested_mode && pressureOverrideApplied) {
+          retrievalTelemetry.recordFallback(t, `pressure override: ${requested_mode} -> ${effectiveMode}`);
+        }
+        return { _telemetry: retrievalTelemetry.toJSON(t) };
+      })() : {}),
     }
   });
 }
@@ -487,4 +613,3 @@ const handle_memory_context = handleMemoryContext;
 export {
   handle_memory_context,
 };
-

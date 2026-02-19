@@ -37,7 +37,7 @@ The storage layer provides all persistence operations for the Spec Kit Memory MC
 
 | Category | Count | Details |
 |----------|-------|---------|
-| Modules | 7 | Core persistence modules |
+| Modules | 8 | Core persistence modules |
 | Relationship Types | 6 | Causal edge types for decision lineage |
 
 ### Key Features
@@ -66,6 +66,7 @@ storage/
  history.ts             # Change history tracking (ADD/UPDATE/DELETE events)
  incremental-index.ts   # Mtime-based incremental indexing
  index-refresh.ts       # Embedding index freshness management
+ mutation-ledger.ts     # Append-only audit trail with SQLite BEFORE triggers, hash chains, 7 mutation types
  transaction-manager.ts # Atomic file + index operations
  README.md              # This file
 ```
@@ -80,6 +81,7 @@ storage/
 | `history.ts` | Tracks change history for memory entries (ADD, UPDATE, DELETE) with actor attribution |
 | `incremental-index.ts` | Determines which files need re-indexing via mtime fast path |
 | `index-refresh.ts` | Manages embedding index freshness: status tracking, retry logic and unindexed document querying |
+| `mutation-ledger.ts` | Append-only audit trail with SQLite BEFORE triggers, hash chains, 7 mutation types |
 | `transaction-manager.ts` | Atomic file writes (temp+rename) with pending file crash recovery |
 
 <!-- /ANCHOR:structure -->

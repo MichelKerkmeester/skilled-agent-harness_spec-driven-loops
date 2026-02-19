@@ -18,7 +18,7 @@ import { requireDb, toErrorMessage } from '../utils';
 import { createMCPSuccessResponse } from '../lib/response/envelope';
 
 // Shared handler types
-import type { Database, MCPResponse } from './types';
+import type { MCPResponse } from './types';
 
 /* ---------------------------------------------------------------
    2. TYPES

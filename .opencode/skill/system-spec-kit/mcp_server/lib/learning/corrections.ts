@@ -527,7 +527,7 @@ export function undo_correction(correction_id: number): UndoResult {
           String(correction.original_memory_id)
         );
       }
-    } catch (e: unknown) {
+    } catch (_e: unknown) {
       // Non-critical, causal edge may not exist
     }
 
@@ -608,7 +608,7 @@ export function get_correction_chain(
   const visited = new Set<number>();
   const chain: CorrectionChainEntry[] = [];
 
-  function traverse(id: number, depth: number, direction: string): void {
+  function traverse(id: number, depth: number, _direction: string): void {
     if (depth > max_depth || visited.has(id)) {
       return;
     }

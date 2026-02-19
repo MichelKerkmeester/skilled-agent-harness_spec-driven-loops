@@ -40,12 +40,12 @@ The MCP Server Library provides the core functionality for the Spec Kit Memory M
 
 | Category | Count | Details |
 |----------|-------|---------|
-| Module Categories | 15+ | search, scoring, cognitive, storage, parsing, providers, utils, session, errors, learning, architecture, embeddings, response, cache, config, validation, interfaces |
+| Module Categories | 18+ | search, scoring, cognitive, storage, parsing, providers, utils, session, errors, learning, architecture, embeddings, response, cache, config, validation, interfaces, contracts, telemetry, extraction |
 | Cognitive Features | 10+ | FSRS scheduler, attention decay, PE gating, working memory, tier classification, co-activation, temporal contiguity, archival manager, causal graph, corrections |
 | Search Intents | 7 | add_feature, fix_bug, refactor, security_audit, understand, find_spec, find_decision |
 | Index Sources | 5 | spec memories, constitutional files, skill READMEs, project READMEs, spec documents (`includeSpecDocs`) |
 | Schema Milestones | v13+ | v13 introduced `document_type` and `spec_level` for spec-doc indexing and scoring |
-| Total Modules | 50+ | Organized into domain-specific folders |
+| Total Modules | 63 | Organized into 19 domain-specific folders |
 
 ### Key Features
 
@@ -118,7 +118,7 @@ console.log(`Found ${results.length} relevant memories`);
 
 ```
 lib/                            # TypeScript source files
-├── search/                     # Search and retrieval (8 modules)
+├── search/                     # Search and retrieval (12 modules)
 │   ├── vector-index.ts         # Vector similarity search with SQLite
 │   ├── vector-index-impl.ts    # Core vector index implementation
 │   ├── hybrid-search.ts        # Combined semantic + keyword search
@@ -127,6 +127,10 @@ lib/                            # TypeScript source files
 │   ├── bm25-index.ts           # BM25 lexical indexing
 │   ├── cross-encoder.ts        # Cross-encoder reranking
 │   ├── intent-classifier.ts    # 7 intent types classification
+│   ├── artifact-routing.ts     # 9 artifact classes with per-type retrieval strategies
+│   ├── adaptive-fusion.ts      # Intent-aware weighted RRF with dark-run mode
+│   ├── causal-boost.ts         # Causal relationship boosting
+│   ├── session-boost.ts        # Session-aware relevance boosting
 │   └── README.md               # Module documentation
 │
 ├── scoring/                    # Ranking and scoring (4 modules)
@@ -136,7 +140,7 @@ lib/                            # TypeScript source files
 │   ├── confidence-tracker.ts   # Confidence tracking
 │   └── README.md               # Module documentation
 │
-├── cognitive/                  # Cognitive memory features (8 modules)
+├── cognitive/                  # Cognitive memory features (10 modules)
 │   ├── attention-decay.ts      # Multi-factor decay with type-specific half-lives
 │   ├── fsrs-scheduler.ts       # FSRS algorithm
 │   ├── prediction-error-gate.ts # PE gating for duplicates
@@ -145,9 +149,11 @@ lib/                            # TypeScript source files
 │   ├── co-activation.ts        # Related memory activation
 │   ├── temporal-contiguity.ts  # Temporal memory linking
 │   ├── archival-manager.ts     # 5-state archival model
+│   ├── pressure-monitor.ts     # Cognitive pressure monitoring
+│   ├── rollout-policy.ts       # Feature rollout policy engine
 │   └── README.md               # Module documentation
 │
-├── storage/                    # Data persistence (7 modules)
+├── storage/                    # Data persistence (8 modules)
 │   ├── access-tracker.ts       # Memory access tracking
 │   ├── checkpoints.ts          # State checkpointing
 │   ├── history.ts              # History management
@@ -155,6 +161,7 @@ lib/                            # TypeScript source files
 │   ├── causal-edges.ts         # Causal graph storage
 │   ├── incremental-index.ts    # Incremental indexing
 │   ├── transaction-manager.ts  # Transaction management
+│   ├── mutation-ledger.ts      # Append-only audit trail with SQLite triggers
 │   └── README.md               # Module documentation
 │
 ├── parsing/                    # Content parsing (3 modules)
@@ -192,13 +199,16 @@ lib/                            # TypeScript source files
 │   ├── envelope.ts             # Standardized response envelope
 │   └── README.md               # Module documentation
 │
-├── cache/                      # Caching layer (1 module)
+├── cache/                      # Caching layer (2 modules)
 │   ├── tool-cache.ts           # Tool result caching
+│   ├── scoring/
+│   │   └── composite-scoring.ts # Cache-aware composite scoring
 │   └── README.md               # Module documentation
 │
-├── config/                     # Configuration (2 modules)
+├── config/                     # Configuration (3 modules)
 │   ├── memory-types.ts         # Memory type definitions
 │   ├── type-inference.ts       # Type inference utilities
+│   ├── skill-ref-config.ts     # Skill reference configuration
 │   └── README.md               # Module documentation
 │
 ├── interfaces/                 # TypeScript interfaces (1 module)
@@ -214,6 +224,19 @@ lib/                            # TypeScript source files
 │
 ├── validation/                 # Input validation (1 module)
 │   ├── preflight.ts            # Preflight checks
+│   └── README.md               # Module documentation
+│
+├── contracts/                  # Typed retrieval pipeline contracts (1 module)
+│   ├── retrieval-trace.ts      # ContextEnvelope, RetrievalTrace, DegradedModeContract
+│   └── README.md               # Module documentation
+│
+├── telemetry/                  # Retrieval telemetry metrics (1 module)
+│   ├── retrieval-telemetry.ts  # Latency, mode, fallback and quality metrics
+│   └── README.md               # Module documentation
+│
+├── extraction/                 # Post-tool extraction pipeline
+│   ├── extraction-adapter.ts   # Extraction adapter
+│   ├── redaction-gate.ts       # Redaction gate
 │   └── README.md               # Module documentation
 │
 ├── errors.ts                   # Custom error classes (legacy)

@@ -45,6 +45,7 @@ JavaScript tests:
 - `test-retry-manager-behavioral.js`
 - `test-scripts-modules.js`
 - `test-subfolder-resolution.js`
+- `test-memory-quality-lane.js` - Tests memory quality validation lane
 - `test-template-comprehensive.js`
 - `test-template-system.js`
 - `test-utils.js`

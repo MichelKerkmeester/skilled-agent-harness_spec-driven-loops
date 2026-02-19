@@ -16,6 +16,10 @@ import * as sessionManager from '../lib/session/session-manager';
 import * as intentClassifier from '../lib/search/intent-classifier';
 import * as tierClassifier from '../lib/cache/cognitive/tier-classifier';
 import * as crossEncoder from '../lib/search/cross-encoder';
+import * as sessionBoost from '../lib/search/session-boost';
+import * as causalBoost from '../lib/search/causal-boost';
+import { getExtractionMetrics } from '../lib/extraction/extraction-adapter';
+import * as retrievalTelemetry from '../lib/telemetry/retrieval-telemetry';
 
 // Core utilities
 import { checkDatabaseUpdated, isEmbeddingModelReady, waitForEmbeddingModel } from '../core';
@@ -31,6 +35,10 @@ import { formatSearchResults } from '../formatters';
 
 // Shared handler types
 import type { Database, MCPResponse, EmbeddingProfile, IntentClassification } from './types';
+
+// Retrieval trace contracts (C136-08)
+import { createTrace, addTraceEntry } from '../lib/contracts/retrieval-trace';
+import type { RetrievalTrace } from '../lib/contracts/retrieval-trace';
 
 // Type imports for casting
 import type { IntentType, IntentWeights as IntentClassifierWeights } from '../lib/search/intent-classifier';
@@ -107,6 +115,23 @@ interface SearchArgs {
   applyLengthPenalty?: boolean;
   trackAccess?: boolean; // P3-09: opt-in access tracking (default false)
   includeArchived?: boolean; // REQ-206: include archived memories in search (default false)
+  enableSessionBoost?: boolean;
+  enableCausalBoost?: boolean;
+  minQualityScore?: number;
+  min_quality_score?: number;
+}
+
+function filterByMinQualityScore(results: MemorySearchRow[], minQualityScore?: number): MemorySearchRow[] {
+  if (typeof minQualityScore !== 'number' || !Number.isFinite(minQualityScore)) {
+    return results;
+  }
+
+  const threshold = Math.max(0, Math.min(1, minQualityScore));
+  return results.filter((result) => {
+    const rawScore = result.quality_score as number | undefined;
+    const score = typeof rawScore === 'number' && Number.isFinite(rawScore) ? rawScore : 0;
+    return score >= threshold;
+  });
 }
 
 /* ---------------------------------------------------------------
@@ -381,7 +406,6 @@ function applyIntentWeightsToResults(
   if (!results || results.length === 0 || !weights) return results;
 
   // Calculate recency score for each result (0-1, 1 = most recent)
-  const now = Date.now();
   const timestamps = results.map(r => {
     const dateStr = r.created_at || r.last_accessed as string | undefined || r.last_review;
     if (!dateStr) return 0;
@@ -445,39 +469,107 @@ async function postSearchPipeline(
     applyLengthPenalty: boolean;
     limit: number;
     includeContent: boolean;
+    sessionId?: string;
+    enableSessionBoost: boolean;
+    enableCausalBoost: boolean;
     anchors?: string[];
+    trace?: RetrievalTrace;
   }
 ): Promise<ReturnType<typeof formatSearchResults>> {
   const {
     minState, applyStateLimits, trackAccess,
     intentWeights, detectedIntent, intentConfidence,
     rerank, applyLengthPenalty, limit,
-    includeContent, anchors
+    includeContent, sessionId, enableSessionBoost, enableCausalBoost, anchors,
+    trace
   } = options;
 
+  // C136-08: Record candidate stage (input to pipeline)
+  const candidateStart = Date.now();
   const { results: stateFiltered, stateStats } = filterByMemoryState(
     results, minState, applyStateLimits
   );
+  if (trace) {
+    addTraceEntry(trace, 'filter', results.length, stateFiltered.length, Date.now() - candidateStart, { searchType, minState });
+  }
+
+  let boostedResults: MemorySearchRow[] = stateFiltered;
+  let boostMetadata: sessionBoost.SessionBoostMetadata | {
+    enabled: boolean;
+    applied: boolean;
+    reason: string;
+  } = {
+    enabled: false,
+    applied: false,
+    reason: 'session boost disabled',
+  };
+
+  if (searchType === 'hybrid' && enableSessionBoost) {
+    const boostResult = sessionBoost.applySessionBoost(
+      stateFiltered as sessionBoost.RankedSearchResult[],
+      sessionId
+    );
+    boostedResults = boostResult.results;
+    boostMetadata = boostResult.metadata;
+  }
+
+  let causallyBoostedResults: MemorySearchRow[] = boostedResults;
+  let causalMetadata: causalBoost.CausalBoostMetadata = {
+    enabled: false,
+    applied: false,
+    boostedCount: 0,
+    injectedCount: 0,
+    maxBoostApplied: 0,
+    traversalDepth: 2,
+  };
+
+  if (searchType === 'hybrid' && enableCausalBoost) {
+    const boostResult = causalBoost.applyCausalBoost(boostedResults as causalBoost.RankedSearchResult[]);
+    causallyBoostedResults = boostResult.results as MemorySearchRow[];
+    causalMetadata = boostResult.metadata;
+  }
+
+  // C136-08: Record fusion stage (session + causal boosting)
+  if (trace) {
+    addTraceEntry(trace, 'fusion', stateFiltered.length, causallyBoostedResults.length, Date.now() - candidateStart, {
+      sessionBoostApplied: boostMetadata.applied,
+      causalBoostApplied: causalMetadata.applied,
+    });
+  }
 
   // P3-09 FIX: Only write testing effects when explicitly opted in
   if (trackAccess) {
     const database = requireDb();
-    applyTestingEffect(database, stateFiltered);
+    applyTestingEffect(database, causallyBoostedResults);
   }
 
   // P3-01 + P3-14 FIX: Actually apply intent weights to modify scores
-  let weightedResults = stateFiltered;
+  let weightedResults = causallyBoostedResults;
   let weightsWereApplied = false;
   if (intentWeights && detectedIntent) {
-    weightedResults = applyIntentWeightsToResults(stateFiltered, intentWeights);
+    weightedResults = applyIntentWeightsToResults(causallyBoostedResults, intentWeights);
     weightsWereApplied = true;
   }
 
+  const rerankStart = Date.now();
   const { results: finalResults, rerankMetadata } = await applyCrossEncoderReranking(
     rerankQuery,
     weightedResults,
     { rerank, applyLengthPenalty, limit }
   );
+
+  // C136-08: Record rerank stage
+  if (trace) {
+    addTraceEntry(trace, 'rerank', weightedResults.length, finalResults.length, Date.now() - rerankStart, {
+      rerankRequested: rerank,
+      rerankApplied: rerankMetadata?.reranking_applied ?? false,
+    });
+  }
+
+  // C136-08: Record final-rank stage
+  if (trace) {
+    addTraceEntry(trace, 'final-rank', finalResults.length, finalResults.length, 0);
+  }
 
   const extraData: Record<string, unknown> = { stateStats };
   if (detectedIntent) {
@@ -492,6 +584,42 @@ async function postSearchPipeline(
   if (rerankMetadata) {
     extraData.rerankMetadata = rerankMetadata;
   }
+  const extractionMetrics = getExtractionMetrics();
+  extraData.appliedBoosts = { session: boostMetadata, causal: causalMetadata };
+  extraData.applied_boosts = extraData.appliedBoosts;
+  extraData.extractionCount = extractionMetrics.inserted;
+  extraData.extraction_count = extractionMetrics.inserted;
+  // C136-08: Include retrieval trace in response metadata
+  if (trace) {
+    extraData.retrievalTrace = trace;
+  }
+
+  // C136-12: Retrieval telemetry — latency, mode, fallback, quality-proxy
+  if (retrievalTelemetry.isExtendedTelemetryEnabled()) {
+    const t = retrievalTelemetry.createTelemetry();
+    const pipelineElapsed = Date.now() - candidateStart;
+    retrievalTelemetry.recordLatency(t, 'candidateLatencyMs', trace?.stages?.[0]?.durationMs ?? pipelineElapsed);
+    if (trace?.stages) {
+      for (const entry of trace.stages) {
+        if (entry.stage === 'fusion') retrievalTelemetry.recordLatency(t, 'fusionLatencyMs', entry.durationMs);
+        if (entry.stage === 'rerank') retrievalTelemetry.recordLatency(t, 'rerankLatencyMs', entry.durationMs);
+      }
+    }
+    const boostElapsed = (boostMetadata.applied || causalMetadata.applied)
+      ? (trace?.stages?.find((e) => e.stage === 'fusion')?.durationMs ?? 0)
+      : 0;
+    retrievalTelemetry.recordLatency(t, 'boostLatencyMs', boostElapsed);
+    retrievalTelemetry.recordMode(t, searchType, false, 'none');
+    const boostDelta = (boostMetadata as { maxBoostApplied?: number }).maxBoostApplied ?? 0;
+    retrievalTelemetry.recordQualityProxy(
+      t,
+      finalResults as Array<{ score?: number; similarity?: number }>,
+      boostDelta,
+      extractionMetrics.inserted,
+    );
+    extraData._telemetry = retrievalTelemetry.toJSON(t);
+  }
+
   return await formatSearchResults(finalResults as RawSearchResult[], searchType, includeContent, anchors, null, null, extraData);
 }
 
@@ -526,8 +654,16 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
     rerank = false,
     applyLengthPenalty: applyLengthPenalty = true,
     trackAccess: trackAccess = false, // P3-09: opt-in, off by default
-    includeArchived: includeArchived = false // REQ-206: exclude archived by default
+    includeArchived: includeArchived = false, // REQ-206: exclude archived by default
+    enableSessionBoost: enableSessionBoost = sessionBoost.isEnabled(),
+    enableCausalBoost: enableCausalBoost = causalBoost.isEnabled(),
+    minQualityScore,
+    min_quality_score,
   } = args;
+
+  const qualityThreshold = typeof minQualityScore === 'number'
+    ? minQualityScore
+    : min_quality_score;
 
   // T120: Validate numeric limit parameter
   const limit = (typeof rawLimit === 'number' && Number.isFinite(rawLimit) && rawLimit > 0)
@@ -595,6 +731,13 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
     }
   }
 
+  // C136-08: Create retrieval trace at pipeline entry
+  const trace = createTrace(
+    normalizedQuery || (concepts ? concepts.join(', ') : ''),
+    sessionId,
+    detectedIntent || undefined
+  );
+
   // P1-CODE-003: Wait for embedding model to be ready
   if (!isEmbeddingModelReady()) {
     const modelReady = await waitForEmbeddingModel(30000);
@@ -620,6 +763,9 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
     minState,
     rerank,
     applyLengthPenalty: applyLengthPenalty,
+    sessionId,
+    enableSessionBoost,
+    enableCausalBoost,
   };
 
   // T012-T015: Use cache wrapper for search execution
@@ -655,7 +801,12 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
           includeArchived,
         });
 
-        return await postSearchPipeline(results, concepts[0], 'multi-concept', {
+        const qualityFilteredResults = filterByMinQualityScore(results, qualityThreshold);
+
+        // C136-08: Record candidate stage for multi-concept search
+        addTraceEntry(trace, 'candidate', concepts.length, qualityFilteredResults.length, 0, { searchType: 'multi-concept' });
+
+        return await postSearchPipeline(qualityFilteredResults, concepts[0], 'multi-concept', {
           minState: minState!,
           applyStateLimits: applyStateLimits!,
           trackAccess,
@@ -666,7 +817,11 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
           applyLengthPenalty,
           limit,
           includeContent,
+          sessionId,
+          enableSessionBoost,
+          enableCausalBoost,
           anchors,
+          trace,
         });
       }
 
@@ -729,6 +884,11 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
             filteredResults = filteredResults.filter(r => r.importance_tier !== 'constitutional');
           }
 
+          filteredResults = filterByMinQualityScore(filteredResults, qualityThreshold);
+
+          // C136-08: Record candidate stage for hybrid search
+          addTraceEntry(trace, 'candidate', hybridResults.length, filteredResults.length, 0, { searchType: 'hybrid' });
+
           return await postSearchPipeline(filteredResults, normalizedQuery!, 'hybrid', {
             minState: minState!,
             applyStateLimits: applyStateLimits!,
@@ -740,12 +900,18 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
             applyLengthPenalty,
             limit,
             includeContent,
+            sessionId,
+            enableSessionBoost,
+            enableCausalBoost,
             anchors,
+            trace,
           });
         }
       } catch (err: unknown) {
         const message = toErrorMessage(err);
         console.warn('[memory-search] Hybrid search failed, falling back to vector:', message);
+        // C136-08: Record fallback stage when hybrid fails
+        addTraceEntry(trace, 'fallback', 0, 0, 0, { reason: message });
       }
 
       // Fallback to pure vector search
@@ -763,6 +929,11 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
         results = results.filter(r => r.importance_tier !== 'constitutional');
       }
 
+      results = filterByMinQualityScore(results, qualityThreshold);
+
+      // C136-08: Record candidate stage for vector fallback search
+      addTraceEntry(trace, 'candidate', limit, results.length, 0, { searchType: 'vector' });
+
       return await postSearchPipeline(results, normalizedQuery!, 'vector', {
         minState: minState!,
         applyStateLimits: applyStateLimits!,
@@ -774,7 +945,11 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
         applyLengthPenalty,
         limit,
         includeContent,
+        sessionId,
+        enableSessionBoost,
+        enableCausalBoost,
         anchors,
+        trace,
       });
     },
     { bypassCache }

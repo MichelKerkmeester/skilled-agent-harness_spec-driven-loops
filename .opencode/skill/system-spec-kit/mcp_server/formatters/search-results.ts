@@ -4,7 +4,6 @@
 
 // Node stdlib
 import fs from 'fs';
-import path from 'path';
 
 // Internal modules
 import { estimateTokens } from './token-metrics';

@@ -17,6 +17,38 @@ import type { CollectedDataFull } from '../extractors/collect-session-data';
    UTILITY FUNCTIONS
 ------------------------------------------------------------------*/
 
+function extractQualityScore(content: string): number {
+  const match = content.match(/quality_score:\s*([0-9.]+)/i);
+  if (!match) {
+    return 0;
+  }
+
+  const parsed = Number.parseFloat(match[1]);
+  if (!Number.isFinite(parsed)) {
+    return 0;
+  }
+
+  return Math.max(0, Math.min(1, parsed));
+}
+
+function extractQualityFlags(content: string): string[] {
+  const blockMatch = content.match(/quality_flags:\s*\n([\s\S]*?)(?:\n\S|$)/i);
+  if (!blockMatch) {
+    return [];
+  }
+
+  const lines = blockMatch[1].split('\n');
+  const flags: string[] = [];
+  for (const line of lines) {
+    const flagMatch = line.match(/^\s*-\s*['"]?([^'"]+)['"]?\s*$/);
+    if (flagMatch) {
+      flags.push(flagMatch[1].trim());
+    }
+  }
+
+  return flags;
+}
+
 function notifyDatabaseUpdated(): void {
   try {
     const dbDir = path.dirname(DB_UPDATED_FILE);
@@ -94,6 +126,8 @@ async function indexMemory(
   const anchorFactor = Math.min(anchorCount / 10, 1) * 0.3;
   const recencyFactor = 0.2;
   const importanceWeight = Math.round((lengthFactor + anchorFactor + recencyFactor + 0.2) * 100) / 100;
+  const qualityScore = extractQualityScore(content);
+  const qualityFlags = extractQualityFlags(content);
 
   const memoryId: number = vectorIndex.indexMemory({
     specFolder: specFolderName,
@@ -102,7 +136,9 @@ async function indexMemory(
     title: title,
     triggerPhrases: triggerPhrases,
     importanceWeight: importanceWeight,
-    embedding: embedding
+    embedding: embedding,
+    qualityScore,
+    qualityFlags,
   });
 
   console.log(`   Embedding generated in ${embeddingTime}ms`);

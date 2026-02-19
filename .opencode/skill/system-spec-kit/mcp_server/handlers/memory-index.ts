@@ -71,6 +71,39 @@ function findSpecDocuments(workspacePath: string, options: { specFolder?: string
 
   const results: string[] = [];
 
+  function walkSpecsDir(specsRoot: string, dir: string): void {
+    try {
+      const entries = fs.readdirSync(dir, { withFileTypes: true });
+      for (const entry of entries) {
+        if (entry.isDirectory()) {
+          // Skip excluded directories and hidden dirs
+          if (SPEC_DOC_EXCLUDE_DIRS.has(entry.name) || entry.name.startsWith('.')) {
+            continue;
+          }
+          walkSpecsDir(specsRoot, path.join(dir, entry.name));
+        } else if (entry.isFile() && SPEC_DOCUMENT_FILENAMES.has(entry.name.toLowerCase())) {
+          const fullPath = path.join(dir, entry.name);
+
+          // If specFolder filter is provided, check it matches
+          if (options.specFolder) {
+            const normalizedSpecFolder = options.specFolder.replace(/\\/g, '/').replace(/\/+$/, '');
+            const relativePath = path.relative(specsRoot, fullPath).replace(/\\/g, '/');
+            if (
+              relativePath !== normalizedSpecFolder &&
+              !relativePath.startsWith(`${normalizedSpecFolder}/`)
+            ) {
+              continue;
+            }
+          }
+
+          results.push(fullPath);
+        }
+      }
+    } catch {
+      // Skip directories we can't read
+    }
+  }
+
   // Check both possible specs locations
   const specsRoots = [
     path.join(workspacePath, '.opencode', 'specs'),
@@ -80,40 +113,7 @@ function findSpecDocuments(workspacePath: string, options: { specFolder?: string
   for (const specsRoot of specsRoots) {
     if (!fs.existsSync(specsRoot)) continue;
 
-    function walkSpecsDir(dir: string): void {
-      try {
-        const entries = fs.readdirSync(dir, { withFileTypes: true });
-        for (const entry of entries) {
-          if (entry.isDirectory()) {
-            // Skip excluded directories and hidden dirs
-            if (SPEC_DOC_EXCLUDE_DIRS.has(entry.name) || entry.name.startsWith('.')) {
-              continue;
-            }
-            walkSpecsDir(path.join(dir, entry.name));
-          } else if (entry.isFile() && SPEC_DOCUMENT_FILENAMES.has(entry.name.toLowerCase())) {
-            const fullPath = path.join(dir, entry.name);
-
-            // If specFolder filter is provided, check it matches
-            if (options.specFolder) {
-              const normalizedSpecFolder = options.specFolder.replace(/\\/g, '/').replace(/\/+$/, '');
-              const relativePath = path.relative(specsRoot, fullPath).replace(/\\/g, '/');
-              if (
-                relativePath !== normalizedSpecFolder &&
-                !relativePath.startsWith(`${normalizedSpecFolder}/`)
-              ) {
-                continue;
-              }
-            }
-
-            results.push(fullPath);
-          }
-        }
-      } catch {
-        // Skip directories we can't read
-      }
-    }
-
-    walkSpecsDir(specsRoot);
+    walkSpecsDir(specsRoot, specsRoot);
   }
 
   return results;
@@ -731,27 +731,30 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
       status: 'complete',
       batchSize: BATCH_SIZE,
       ...results,
-      // DEBUG: file source breakdown (remove after verification)
-      _debug_fileCounts: {
-        specFiles: specFiles.length,
-        constitutionalFiles: constitutionalFiles.length,
-        skillReadmes: readmeFiles.length,
-        projectReadmes: projectReadmeFiles.length,
-        specDocFiles: specDocFiles.length,
-        skillRefFiles: skillRefFiles.length,
-        totalFiles: files.length,
-        includeReadmes: include_readmes,
-        includeSpecDocs: include_spec_docs,
-        includeSkillRefs: include_skill_refs,
-        workspacePath
-      }
+      ...(process.env.SPECKIT_DEBUG_INDEX_SCAN === 'true'
+        ? {
+            _debug_fileCounts: {
+              specFiles: specFiles.length,
+              constitutionalFiles: constitutionalFiles.length,
+              skillReadmes: readmeFiles.length,
+              projectReadmes: projectReadmeFiles.length,
+              specDocFiles: specDocFiles.length,
+              skillRefFiles: skillRefFiles.length,
+              totalFiles: files.length,
+              includeReadmes: include_readmes,
+              includeSpecDocs: include_spec_docs,
+              includeSkillRefs: include_skill_refs,
+              workspacePath,
+            },
+          }
+        : {})
     },
     hints
   });
 }
 
 /* ---------------------------------------------------------------
-   8. EXPORTS
+   9. EXPORTS
 --------------------------------------------------------------- */
 
 export {

@@ -164,7 +164,7 @@ describe('T214: Decay/Delete Race Condition', () => {
       testDb.prepare('DELETE FROM working_memory WHERE session_id = ?').run(sessionId);
     });
 
-    it('T214-06: Score converges to floor after 50 cycles', () => {
+    it('T214-06: Score remains stable without new events across 50 cycles', () => {
       setScoreDirectly(sessionId, 4, 0.15);
 
       for (let i = 0; i < 50; i++) {
@@ -173,10 +173,7 @@ describe('T214: Decay/Delete Race Condition', () => {
 
       const finalScore = getScoreDirectly(sessionId, 4);
       expect(finalScore).not.toBeNull();
-
-      const config = wm.getConfig();
-      const decayFloor = config.minAttentionScore * 0.5;
-      expect(Math.abs(finalScore - decayFloor)).toBeLessThan(0.001);
+      expect(Math.abs(finalScore - 0.15)).toBeLessThan(0.001);
     });
   });
 

@@ -364,6 +364,8 @@ deduplication:
 
 > **Note:** The dedicated `spec_kit_memory_memory_context()` tool provides unified intent-aware retrieval server-side. It accepts `input`, `mode`, `intent`, `specFolder`, `limit`, `sessionId`, `enableDedup`, `includeContent`, and `anchors` params. This is the recommended unified approach. The manual orchestration below is for advanced use cases requiring fine-grained control.
 
+> **Adaptive Fusion & Telemetry:** When `SPECKIT_ADAPTIVE_FUSION` is enabled, fusion weights adapt dynamically to the detected intent — anchor boosts and context-type filters are adjusted at query time rather than using static multipliers. Search results may also be routed through artifact-class classification before scoring. When `SPECKIT_EXTENDED_TELEMETRY` is enabled, extended telemetry is captured alongside results (query timing, score distributions, fusion decisions) and written to the telemetry log.
+
 ```javascript
 // Option 1: Dedicated context tool (preferred — single call)
 spec_kit_memory_memory_context({

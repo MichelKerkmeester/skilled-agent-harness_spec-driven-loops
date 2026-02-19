@@ -1010,6 +1010,23 @@ async function testContextTemplate() {
       skip('TC-700i: context_template has learning delta sections', 'May use different structure');
     }
 
+    // Check TOC heading/link labels are uppercase to match section headings
+    const hasUppercaseToc =
+      contextTemplate.includes('## TABLE OF CONTENTS') &&
+      contextTemplate.includes('[CONTINUE SESSION](#continue-session)') &&
+      contextTemplate.includes('[PROJECT STATE SNAPSHOT](#project-state-snapshot)') &&
+      contextTemplate.includes('[OVERVIEW](#overview)') &&
+      contextTemplate.includes('[DECISIONS](#decisions)') &&
+      contextTemplate.includes('[CONVERSATION](#conversation)') &&
+      contextTemplate.includes('[RECOVERY HINTS](#recovery-hints)') &&
+      contextTemplate.includes('[MEMORY METADATA](#memory-metadata)');
+
+    if (hasUppercaseToc) {
+      pass('TC-700j: context_template TOC uses uppercase labels', 'TOC heading and required links are uppercase');
+    } else {
+      fail('TC-700j: context_template TOC uses uppercase labels', 'TOC heading/links are not all uppercase');
+    }
+
   } catch (error) {
     fail('TC-700: Context template', error.message);
   }

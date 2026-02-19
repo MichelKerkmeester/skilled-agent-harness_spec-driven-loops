@@ -4,6 +4,7 @@
 
 import path from 'path';
 import os from 'os';
+import { COGNITIVE_CONFIG as LOADED_COGNITIVE_CONFIG } from '../configs/cognitive';
 
 /* ---------------------------------------------------------------
    1. TYPES
@@ -84,5 +85,11 @@ export const ALLOWED_BASE_PATHS: string[] = [
 export const CONSTITUTIONAL_CACHE_TTL: number = 60000;
 
 /* ---------------------------------------------------------------
-   8. (ESM exports above — no CommonJS module.exports needed)
+   8. COGNITIVE CONFIGURATION
+   --------------------------------------------------------------- */
+
+export const COGNITIVE_CONFIG = LOADED_COGNITIVE_CONFIG;
+
+/* ---------------------------------------------------------------
+   9. (ESM exports above — no CommonJS module.exports needed)
    --------------------------------------------------------------- */

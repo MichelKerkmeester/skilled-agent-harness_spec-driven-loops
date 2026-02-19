@@ -30,3 +30,5 @@ export type {
 } from './implementation-guide-extractor';
 export * from './collect-session-data';
 export * from './opencode-capture';
+export * from './contamination-filter';
+export * from './quality-scorer';

@@ -35,6 +35,7 @@ The `memory/` directory contains the CLI entrypoints for the Spec Kit memory pip
 - `generate-context.ts` - generate memory output from spec folder or JSON input
 - `rank-memories.ts` - rank memory candidates by scoring rules
 - `cleanup-orphaned-vectors.ts` - remove stale vector rows not linked to active memories
+- `validate-memory-quality.ts` - validates memory entry quality against scoring thresholds
 
 Runtime files are compiled into `../dist/memory/`.
 

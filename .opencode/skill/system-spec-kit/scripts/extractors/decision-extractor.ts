@@ -21,6 +21,7 @@ export type { DecisionOption, DecisionRecord, DecisionData };
 export interface CollectedDataForDecisions {
   _manualDecisions?: Array<string | Record<string, string>>;
   SPEC_FOLDER?: string;
+  userPrompts?: Array<{ prompt?: string }>;
   observations?: Array<{
     type?: string;
     narrative?: string;
@@ -29,6 +30,77 @@ export interface CollectedDataForDecisions {
     timestamp?: string;
     files?: string[];
   }>;
+}
+
+const DECISION_CUE_REGEX = /(decided|chose|will use|approach is|going with|rejected|we'll|selected|prefer|adopt)/i;
+
+function extractSentenceAroundCue(text: string): string | null {
+  if (!text || typeof text !== 'string') {
+    return null;
+  }
+
+  const cueMatch = text.match(DECISION_CUE_REGEX);
+  if (!cueMatch || cueMatch.index === undefined) {
+    return null;
+  }
+
+  const cueIndex = cueMatch.index;
+  const before = text.slice(0, cueIndex);
+  const after = text.slice(cueIndex);
+
+  const sentenceStart = Math.max(before.lastIndexOf('.'), before.lastIndexOf('!'), before.lastIndexOf('?')) + 1;
+  const sentenceEndMatch = after.match(/[.!?]/);
+  const sentenceEnd = sentenceEndMatch && sentenceEndMatch.index !== undefined
+    ? cueIndex + sentenceEndMatch.index + 1
+    : text.length;
+
+  const sentence = text.slice(sentenceStart, sentenceEnd).trim();
+  if (!sentence) {
+    return null;
+  }
+
+  return sentence.slice(0, 200);
+}
+
+function buildLexicalDecisionObservations(collectedData: CollectedDataForDecisions): Array<{
+  type: string;
+  title: string;
+  narrative: string;
+  timestamp: string;
+  facts: string[];
+}> {
+  const candidates: Array<{
+    type: string;
+    title: string;
+    narrative: string;
+    timestamp: string;
+    facts: string[];
+  }> = [];
+
+  const addCandidate = (rawText: string, source: string, index: number): void => {
+    const sentence = extractSentenceAroundCue(rawText);
+    if (!sentence) {
+      return;
+    }
+
+    candidates.push({
+      type: 'decision',
+      title: `${source} decision ${index + 1}`,
+      narrative: sentence,
+      timestamp: new Date().toISOString(),
+      facts: [`Source: ${source} lexical cue`],
+    });
+  };
+
+  (collectedData.observations || []).forEach((observation, index) => {
+    addCandidate(observation.narrative || observation.title || '', 'observation', index);
+  });
+
+  (collectedData.userPrompts || []).forEach((prompt, index) => {
+    addCandidate(prompt.prompt || '', 'user', index);
+  });
+
+  return candidates;
 }
 
 /* -----------------------------------------------------------------
@@ -121,7 +193,15 @@ async function extractDecisions(
   const decisionObservations = (collectedData.observations || [])
     .filter((obs) => obs.type === 'decision');
 
-  const decisions: DecisionRecord[] = decisionObservations.map((obs, index) => {
+  const lexicalDecisionObservations = decisionObservations.length === 0
+    ? buildLexicalDecisionObservations(collectedData)
+    : [];
+
+  const allDecisionObservations = decisionObservations.length > 0
+    ? decisionObservations
+    : lexicalDecisionObservations;
+
+  const decisions: DecisionRecord[] = allDecisionObservations.map((obs, index) => {
     const narrative: string = obs.narrative || '';
     const facts: string[] = obs.facts || [];
 
@@ -221,8 +301,9 @@ async function extractDecisions(
         return { CAVEAT_ITEM: text };
       });
 
-    const EVIDENCE = obs.files
-      ? obs.files.map((f) => ({ EVIDENCE_ITEM: f }))
+    const observationFiles = 'files' in obs && Array.isArray(obs.files) ? obs.files : null;
+    const EVIDENCE = observationFiles
+      ? observationFiles.map((f: string) => ({ EVIDENCE_ITEM: f }))
       : facts
           .filter((f) => {
             const lower = f.toLowerCase();

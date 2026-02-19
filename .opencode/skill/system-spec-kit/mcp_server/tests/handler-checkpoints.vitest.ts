@@ -13,9 +13,9 @@ import * as bm25IndexMod from '../lib/search/bm25-index';
 import * as triggerMatcherMod from '../lib/parsing/trigger-matcher';
 
 // Track which optional modules loaded
-let vectorIndexAvailable = false;
-let bm25IndexAvailable = false;
-let triggerMatcherAvailable = false;
+const vectorIndexAvailable = false;
+const bm25IndexAvailable = false;
+const triggerMatcherAvailable = false;
 
 // ─────────────────────────────────────────────────────────────
 // HANDLER CHECKPOINTS TESTS

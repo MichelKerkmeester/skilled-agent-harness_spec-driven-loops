@@ -315,6 +315,38 @@ Add to `claude_desktop_config.json`:
 
 > **Note**: Replace `YOUR_USERNAME` and `path/to/project` with your actual paths. Find username with `whoami`.
 
+### Feature Flag Environment Variables
+
+The following environment variables control optional and experimental features. Add them to the `environment` block of any configuration option (A, B, or C above).
+
+| Variable                      | Default   | Description                                                                                      |
+| ----------------------------- | --------- | ------------------------------------------------------------------------------------------------ |
+| `SPECKIT_ADAPTIVE_FUSION`     | `false`   | Set to `true` to enable intent-aware fusion weight tuning (7 task types). Disabled by default.   |
+| `SPECKIT_EXTENDED_TELEMETRY`  | `true`    | Set to `false` to disable 4-dimension retrieval metrics (latency, mode, fallback, quality).      |
+
+**Example** (OpenCode `opencode.json`):
+
+```json
+{
+  "mcp": {
+    "spec_kit_memory": {
+      "type": "local",
+      "command": [
+        "node",
+        ".opencode/skill/system-spec-kit/mcp_server/dist/context-server.js"
+      ],
+      "environment": {
+        "EMBEDDINGS_PROVIDER": "hf-local",
+        "MEMORY_DB_PATH": ".opencode/skill/system-spec-kit/mcp_server/dist/database/context-index.sqlite",
+        "SPECKIT_ADAPTIVE_FUSION": "true",
+        "SPECKIT_EXTENDED_TELEMETRY": "false"
+      },
+      "enabled": true
+    }
+  }
+}
+```
+
 ### Validation: `phase_4_complete`
 
 ```bash
@@ -551,6 +583,65 @@ memory_stats({
   limit: 10
 })
 ```
+
+### Adaptive Hybrid Fusion
+
+**Feature flag**: `SPECKIT_ADAPTIVE_FUSION` (default: disabled)
+
+**Purpose**: Intent-aware search weight tuning. Adjusts the balance between vector similarity and keyword relevance based on detected task type, improving retrieval precision for different workflows.
+
+**Supported task types** (7 total): `add_feature`, `fix_bug`, `refactor`, `understand`, `plan`, `debug`, `resume`
+
+**Behavior**: When enabled, each task type applies a different fusion weight profile. For example, `fix_bug` boosts exact-match keyword signals; `understand` emphasizes semantic similarity.
+
+**Enable**:
+```json
+"environment": {
+  "SPECKIT_ADAPTIVE_FUSION": "true"
+}
+```
+
+### Artifact-Class Routing
+
+**Purpose**: Routes retrieval requests through per-type strategies based on the artifact class being queried. Improves result relevance by applying artifact-specific indexing and ranking rules.
+
+**Supported artifact types** (9 total): `spec`, `plan`, `checklist`, `decision-record`, `memory`, `implementation-summary`, `skill`, `readme`, `research`
+
+**Behavior**: Each artifact class has a dedicated retrieval strategy (e.g., `memory` uses recency-weighted scoring; `decision-record` boosts causal relationship edges).
+
+### Extended Telemetry
+
+**Feature flag**: `SPECKIT_EXTENDED_TELEMETRY` (default: enabled)
+
+**Purpose**: Collects 4-dimension metrics for each retrieval operation to support observability and tuning.
+
+**Dimensions**:
+- `latency`: End-to-end retrieval time per tool call (ms)
+- `mode`: Which retrieval mode was selected (`auto`, `quick`, `deep`, `focused`, `resume`)
+- `fallback`: Whether degraded-mode fallback was triggered
+- `quality`: Result quality score based on embedding confidence and match density
+
+**Disable**:
+```json
+"environment": {
+  "SPECKIT_EXTENDED_TELEMETRY": "false"
+}
+```
+
+### Append-Only Mutation Ledger
+
+**Purpose**: Maintains an immutable audit trail for all memory mutations (index, update, delete, force-reindex). Every mutation is appended as a timestamped record — no entry is ever overwritten or removed.
+
+**Use cases**: Debugging unexpected index state, auditing what was indexed during a session, understanding why a memory entry changed.
+
+### Typed Retrieval Contracts
+
+**Purpose**: Enforces schema contracts on retrieval inputs and outputs. Ensures consistent data shapes across all tool calls regardless of degraded-mode or fallback conditions.
+
+**Contract types**:
+- `ContextEnvelope`: Wraps all `memory_context()` responses with metadata (mode used, memories returned, intent detected)
+- `RetrievalTrace`: Attached to search results; records which retrieval path was taken and why
+- `DegradedModeContract`: Emitted when the server falls back to non-vector behavior; describes what capability is reduced and the recovery path
 
 ---
 

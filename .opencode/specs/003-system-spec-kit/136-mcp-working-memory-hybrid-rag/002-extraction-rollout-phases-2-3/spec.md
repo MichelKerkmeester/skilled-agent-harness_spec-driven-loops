@@ -23,9 +23,9 @@ Primary outcome: safe production rollout with measurable retrieval and stability
 | Package | `002-extraction-rollout-phases-2-3` |
 | Parent Spec | `../spec.md` |
 | Parent Plan | `../plan.md` |
-| Status | Draft (planning-only) |
-| Implementation Status | Not started |
-| Last Updated | 2026-02-18 |
+| Status | Phase 2/3 closed; post-research transition active |
+| Implementation Status | Completed for `T029-T070`; follow-up waves pending |
+| Last Updated | 2026-02-19 |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -42,6 +42,7 @@ Primary outcome: safe production rollout with measurable retrieval and stability
 - Foundation/hardening prerequisites from package 001.
 - QP memory-quality engineering from package 003.
 - Phase 3+ architectural expansion deferred in root spec.
+- Post-research follow-up backlog items `C136-01` through `C136-12`, which are now owned by packages `../004-post-research-wave-1-governance-foundations/`, `../005-post-research-wave-2-controlled-delivery/`, and `../006-post-research-wave-3-outcome-confirmation/`.
 <!-- /ANCHOR:scope -->
 
 ---
@@ -92,7 +93,19 @@ This package uses the canonical requirements from root docs and scopes execution
 - Hard dependency: package `../001-foundation-phases-0-1-1-5/` must pass `T027o`.
 - Dependency ownership lock: `REQ-014` (hook pipeline operational) and `REQ-017` (redaction calibration gate) are accepted in package 001; this package consumes those outputs and does not duplicate ownership.
 - Soft dependency: package `../003-memory-quality-qp-0-4/` quality filtering should be available before full rollout.
+- Transition handoff (Wave 1 owner): package `../004-post-research-wave-1-governance-foundations/` owns `C136-08`, `C136-09`, `C136-10`, `C136-12`, `C136-01`, `C136-02`, and `C136-03` for adaptive hybrid fusion policy, typed retrieval trace envelope, artifact-aware routing policy, degraded-mode contracts, telemetry readiness, and triad approvals.
+- Transition handoff (Wave 2 owner): package `../005-post-research-wave-2-controlled-delivery/` owns `C136-04`, `C136-05`, and `C136-11` after Wave 1 completion for controlled delivery, sync/async durable jobs operationalization, deterministic exact-operation tooling, and append-only mutation ledger.
+- Transition handoff (Wave 3 owner): package `../006-post-research-wave-3-outcome-confirmation/` owns `C136-06` and `C136-07` after Wave 2 evidence closure for capability truth matrix longitudinal confirmation and KPI closure.
 - Produces rollout artifacts consumed by root completion checks: telemetry outputs, runbook evidence, rollout logs.
+
+### Transition Contract Matrix (Historical -> Active Waves)
+
+| Capability Stream | Produced/Proven in this Package (`002`) | Primary Active Owner |
+|-------------------|-------------------------------------------|----------------------|
+| Baseline extraction + causal rollout evidence | Phase 2 and Phase 3 closure artifacts (`T029-T070`, `CHK-140-166`) | Historical only (retained as evidence) |
+| Adaptive fusion + trace + routing foundations | Baseline retrieval and rollout context for follow-up | Wave 1 (`../004-post-research-wave-1-governance-foundations/`) |
+| Ledger + controlled delivery operations | Rollout telemetry/runbook baseline used for controlled-delivery design | Wave 2 (`../005-post-research-wave-2-controlled-delivery/`) |
+| Capability truth closure | Historical KPI and survey baselines used for longitudinal comparison | Wave 3 (`../006-post-research-wave-3-outcome-confirmation/`) |
 <!-- /ANCHOR:dependencies -->
 
 ---
@@ -111,5 +124,5 @@ This package uses the canonical requirements from root docs and scopes execution
 <!-- ANCHOR:status -->
 ## 8. Status Statement
 
-Planning-only package. No implementation tasks are marked complete in this file set.
+Execution-complete package for Phase 2/3 scope (`T029-T070`). This package remains immutable historical evidence and is the explicit technical handoff source for post-research Wave 1/2/3 execution packages.
 <!-- /ANCHOR:status -->

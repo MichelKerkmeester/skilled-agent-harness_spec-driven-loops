@@ -17,7 +17,8 @@ importance_tier: "normal"
 - [1. OVERVIEW](#1--overview)
 - [2. IMPLEMENTED STATE](#2--implemented-state)
 - [3. HARDENING NOTES](#3--hardening-notes)
-- [4. RELATED](#4--related)
+- [4. TELEMETRY NOTES](#4--telemetry-notes)
+- [5. RELATED](#5--related)
 
 <!-- /ANCHOR:table-of-contents -->
 <!-- ANCHOR:overview -->
@@ -66,8 +67,17 @@ Current modules:
 
 
 <!-- /ANCHOR:hardening-notes -->
+<!-- ANCHOR:telemetry-notes -->
+## 4. TELEMETRY NOTES
+
+
+- `memory-search.ts` integrates retrieval telemetry: captures latency, mode (e.g., `hybrid`, `bm25`, `vector`), and quality signals via a `_telemetry` key on the response metadata.
+- `memory-context.ts` captures mode selection, pressure override, and fallback detection in `extraMeta._telemetry`. This allows downstream consumers to observe how the context assembly path was chosen.
+
+
+<!-- /ANCHOR:telemetry-notes -->
 <!-- ANCHOR:related -->
-## 4. RELATED
+## 5. RELATED
 
 
 - `../tools/README.md`

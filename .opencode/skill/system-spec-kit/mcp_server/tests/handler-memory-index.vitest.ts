@@ -1,4 +1,3 @@
-// @ts-nocheck
 // ---------------------------------------------------------------
 // MODULE: Handler Memory Index Tests
 // ---------------------------------------------------------------
@@ -45,7 +44,7 @@ describe('Handler Memory Index (T520) [deferred - requires DB test fixtures]', (
     });
 
     it('T520-5: All snake_case aliases exported', () => {
-      const aliases = [
+      const aliases: Array<keyof typeof handler> = [
         'handle_memory_index_scan',
         'index_single_file',
         'find_constitutional_files',
@@ -92,7 +91,7 @@ describe('Handler Memory Index (T520) [deferred - requires DB test fixtures]', (
       fs.writeFileSync(path.join(skillDir, 'README.md'), '# Readme');
 
       const result = handler.findConstitutionalFiles(tempDir!);
-      const hasReadme = result.some((f: string) => f.includes('README.md'));
+      const hasReadme = result.some((f) => f.includes('README.md'));
       expect(hasReadme).toBe(false);
     });
 
@@ -102,7 +101,7 @@ describe('Handler Memory Index (T520) [deferred - requires DB test fixtures]', (
       fs.writeFileSync(path.join(hiddenDir, 'hidden.md'), '# Hidden');
 
       const result = handler.findConstitutionalFiles(tempDir!);
-      const hasHidden = result.some((f: string) => f.includes('.hidden-skill'));
+      const hasHidden = result.some((f) => f.includes('.hidden-skill'));
       expect(hasHidden).toBe(false);
     });
 
@@ -135,12 +134,12 @@ describe('Handler Memory Index (T520) [deferred - requires DB test fixtures]', (
       fs.writeFileSync(path.join(skillRoot, 'references', 'README.md'), '# Should Be Skipped');
 
       const result = handler.findSkillReferenceFiles(tempDir);
-      const relativePaths = result.map((filePath: string) => path.relative(tempDir!, filePath).replace(/\\/g, '/'));
+      const relativePaths = result.map((filePath) => path.relative(tempDir!, filePath).replace(/\\/g, '/'));
 
       expect(relativePaths).toContain('.opencode/skill/workflows-code--web-dev/references/checklists/validation.md');
       expect(relativePaths).toContain('.opencode/skill/workflows-code--web-dev/references/guide.md');
       expect(relativePaths).toContain('.opencode/skill/workflows-code--web-dev/assets/templates/example.md');
-      expect(relativePaths.some((filePath: string) => filePath.endsWith('/README.md'))).toBe(false);
+      expect(relativePaths.some((filePath) => filePath.endsWith('/README.md'))).toBe(false);
     });
 
     it('T520-12: Environment flag disables skill reference discovery', () => {
@@ -176,7 +175,7 @@ describe('Handler Memory Index (T520) [deferred - requires DB test fixtures]', (
       fs.writeFileSync(path.join(referencesDir, 'notes.txt'), 'Not indexed');
 
       const result = handler.findSkillReferenceFiles(tempDir);
-      const relativePaths = result.map((filePath: string) => path.relative(tempDir!, filePath).replace(/\\/g, '/'));
+      const relativePaths = result.map((filePath) => path.relative(tempDir!, filePath).replace(/\\/g, '/'));
 
       expect(relativePaths).toEqual([
         '.opencode/skill/workflows-code--web-dev/references/alpha.md',
@@ -202,7 +201,8 @@ describe('Handler Memory Index (T520) [deferred - requires DB test fixtures]', (
         expect(parsed.data || parsed.summary).toBeTruthy();
       } catch (error: unknown) {
         // Server dependency errors are acceptable — skip-equivalent
-        const isServerDep = /database|getDb|Rate limited|vector_index|null|not initialized|Database/.test(error.message);
+        const message = error instanceof Error ? error.message : String(error);
+        const isServerDep = /database|getDb|Rate limited|vector_index|null|not initialized|Database/.test(message);
         if (!isServerDep) {
           throw error;
         }

@@ -34,6 +34,7 @@ export interface ContextArgs {
   sessionId?: string;
   enableDedup?: boolean;
   includeContent?: boolean;
+  tokenUsage?: number;
   anchors?: string[];
 }
 
@@ -54,6 +55,10 @@ export interface SearchArgs {
   enableDedup?: boolean;
   intent?: string;
   autoDetectIntent?: boolean;
+  enableSessionBoost?: boolean;
+  enableCausalBoost?: boolean;
+  minQualityScore?: number;
+  min_quality_score?: number;
 }
 
 export interface TriggerArgs {
@@ -94,7 +99,9 @@ export interface StatsArgs {
   limit?: number;
 }
 
-export interface HealthArgs {}
+export interface HealthArgs {
+  _?: never;
+}
 
 export interface MemoryValidateArgs {
   id: number | string;
@@ -182,7 +189,9 @@ export interface CausalLinkArgs {
   evidence?: string | null;
 }
 
-export interface CausalStatsArgs {}
+export interface CausalStatsArgs {
+  _?: never;
+}
 
 export interface CausalUnlinkArgs {
   edgeId: number;

@@ -10,53 +10,74 @@ importance_tier: "normal"
 
 # Addendum Templates
 
-Source-only files that extend core templates.
+> Source-only extension blocks that compose into final level templates during spec folder setup.
 
-## Overview
+---
+
+## TABLE OF CONTENTS
+
+- [1. 📖 OVERVIEW](#1--overview)
+- [2. 🔀 COMPOSITION MODEL](#2--composition-model)
+- [3. 📁 CONTENTS](#3--contents)
+- [4. 💡 WORKFLOW NOTES](#4--workflow-notes)
+- [5. 🔗 RELATED RESOURCES](#5--related-resources)
+
+---
+
+## 1. 📖 OVERVIEW
 <!-- ANCHOR:overview -->
 
-Addendums are not copied into spec folders directly.
-They are merged into `level_2`, `level_3`, and `level_3+` templates.
+Addendums are **not** copied into spec folders directly. They are merged into `level_2`, `level_3`, and `level_3+` templates by the composition pipeline.
+
+Each addendum adds a distinct concern layer on top of the core spec template, keeping level-specific content isolated and composable.
 
 <!-- /ANCHOR:overview -->
 
-## Composition Model
+---
+
+## 2. 🔀 COMPOSITION MODEL
 <!-- ANCHOR:composition-model -->
 
-| Level | Composition |
-|---|---|
-| 1 | Core only |
-| 2 | Core + `level2-verify` |
-| 3 | Level 2 + `level3-arch` |
-| 3+ | Level 3 + `level3plus-govern` |
+| Level | Composition                           |
+| ----- | ------------------------------------- |
+| 1     | Core only                             |
+| 2     | Core + `level2-verify`                |
+| 3     | Level 2 + `level3-arch`               |
+| 3+    | Level 3 + `level3plus-govern`         |
 
 <!-- /ANCHOR:composition-model -->
 
-## Contents
+---
+
+## 3. 📁 CONTENTS
 <!-- ANCHOR:contents -->
 
-| Folder | Adds |
-|---|---|
-| `level2-verify/` | NFRs, edge cases, verification scaffolding |
-| `level3-arch/` | architecture/risk/dependency content |
-| `level3plus-govern/` | governance, compliance, approval sections |
+| Folder                | Adds                                           |
+| --------------------- | ---------------------------------------------- |
+| `level2-verify/`      | NFRs, edge cases, verification scaffolding     |
+| `level3-arch/`        | Architecture, risk, and dependency content     |
+| `level3plus-govern/`  | Governance, compliance, and approval sections  |
 
 <!-- /ANCHOR:contents -->
 
-## Workflow Notes
+---
+
+## 4. 💡 WORKFLOW NOTES
 <!-- ANCHOR:workflow-notes -->
 
-- Copy from `../level_N/` for real specs.
-- Keep addendums aligned with current level architecture.
-- When sections move between levels, update both addendum source and affected level README.
+- Copy from `../level_N/` for real specs — never use addendum source files directly.
+- Keep addendums aligned with the current level architecture.
+- When sections move between levels, update both the addendum source and all affected level READMEs.
 
 <!-- /ANCHOR:workflow-notes -->
 
-## Related
+---
+
+## 5. 🔗 RELATED RESOURCES
 <!-- ANCHOR:related -->
 
-- `../README.md`
-- `../core/README.md`
-- `../../references/templates/template_guide.md`
+- `../README.md` — Templates root overview
+- `../core/README.md` — Core template reference
+- `../../references/templates/template_guide.md` — Full template authoring guide
 
 <!-- /ANCHOR:related -->

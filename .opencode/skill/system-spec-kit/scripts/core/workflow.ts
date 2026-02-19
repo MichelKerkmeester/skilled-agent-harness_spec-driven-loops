@@ -24,6 +24,12 @@ import { writeFilesAtomically } from './file-writer';
 import { shouldAutoSave, collectSessionData } from '../extractors/collect-session-data';
 import type { SessionData, CollectedDataFull } from '../extractors/collect-session-data';
 import type { FileChange, SemanticFileInfo } from '../extractors/file-extractor';
+import { filterContamination } from '../extractors/contamination-filter';
+import {
+  scoreMemoryQuality as scoreMemoryQualityV2,
+  type ValidationSignal,
+} from '../extractors/quality-scorer';
+import { validateMemoryQualityContent } from '../memory/validate-memory-quality';
 
 // Static imports replacing lazy require()
 import * as flowchartGen from '../lib/flowchart-generator';
@@ -79,6 +85,71 @@ export interface WorkflowState {
   specFolderName: string;
   contextDir: string;
   sessionData: SessionData | null;
+}
+
+function ensureMinSemanticTopics(existing: string[], enhancedFiles: FileChange[], specFolderName: string): string[] {
+  if (existing.length >= 1) {
+    return existing;
+  }
+
+  const topicFromFolder = specFolderName.replace(/^\d{1,3}-/, '');
+  const folderTokens = topicFromFolder
+    .split(/[-_]/)
+    .map((token) => token.trim().toLowerCase())
+    .filter((token) => token.length >= 3);
+
+  const fileTokens = enhancedFiles
+    .flatMap((file) => path.basename(file.FILE_PATH).replace(/\.[^.]+$/, '').split(/[-_]/))
+    .map((token) => token.trim().toLowerCase())
+    .filter((token) => token.length >= 3);
+
+  const combined = [...new Set([...folderTokens, ...fileTokens])];
+  return combined.length > 0 ? [combined[0]] : ['session'];
+}
+
+function ensureMinTriggerPhrases(existing: string[], enhancedFiles: FileChange[], specFolderName: string): string[] {
+  if (existing.length >= 2) {
+    return existing;
+  }
+
+  const topicFromFolder = specFolderName.replace(/^\d{1,3}-/, '');
+  const folderTokens = topicFromFolder
+    .split(/[-_]/)
+    .map((token) => token.trim().toLowerCase())
+    .filter((token) => token.length >= 3);
+
+  const fileTokens = enhancedFiles
+    .flatMap((file) => path.basename(file.FILE_PATH).replace(/\.[^.]+$/, '').split(/[-_]/))
+    .map((token) => token.trim().toLowerCase())
+    .filter((token) => token.length >= 3);
+
+  const combined = [...new Set([...existing, ...fileTokens, ...folderTokens])];
+  if (combined.length >= 2) {
+    return combined;
+  }
+
+  if (combined.length === 1) {
+    return [combined[0], topicFromFolder.replace(/-/g, ' ').toLowerCase() || 'session'];
+  }
+
+  return ['session', 'context'];
+}
+
+function injectQualityMetadata(content: string, qualityScore: number, qualityFlags: string[]): string {
+  const yamlBlockMatch = content.match(/```yaml\n([\s\S]*?)\n```/);
+  if (!yamlBlockMatch) {
+    return content;
+  }
+
+  const yamlBlock = yamlBlockMatch[1];
+  const qualityLines = [
+    `quality_score: ${qualityScore.toFixed(2)}`,
+    'quality_flags:',
+    ...(qualityFlags.length > 0 ? qualityFlags.map((flag) => `  - "${flag}"`) : ['  []']),
+  ].join('\n');
+
+  const updatedYaml = `${yamlBlock}\n\n# Quality Signals\n${qualityLines}`;
+  return content.replace(yamlBlock, updatedYaml);
 }
 
 /* -----------------------------------------------------------------
@@ -205,11 +276,18 @@ async function runWorkflow(options: WorkflowOptions = {}): Promise<WorkflowResul
   log('Step 7.5: Generating semantic summary...');
 
   const rawUserPrompts = collectedData?.userPrompts || [];
-  const allMessages = rawUserPrompts.map((m) => ({
-    prompt: m.prompt || '',
-    content: m.prompt || '',
-    timestamp: m.timestamp
-  }));
+  let hadContamination = false;
+  const allMessages = rawUserPrompts.map((m) => {
+    const filtered = filterContamination(m.prompt || '');
+    if (filtered.hadContamination) {
+      hadContamination = true;
+    }
+    return {
+      prompt: filtered.cleanedText,
+      content: filtered.cleanedText,
+      timestamp: m.timestamp
+    };
+  });
 
   // Run content through filter pipeline for quality scoring
   const filterPipeline = createFilterPipeline();
@@ -249,7 +327,8 @@ async function runWorkflow(options: WorkflowOptions = {}): Promise<WorkflowResul
   const folderBase: string = specFolderBasename.replace(/^\d+-/, '');
   const ctxFilename: string = `${sessionData.DATE}_${sessionData.TIME}__${folderBase}.md`;
 
-  const keyTopics: string[] = extractKeyTopics(sessionData.SUMMARY, decisions.DECISIONS, specFolderName);
+  const keyTopicsInitial: string[] = extractKeyTopics(sessionData.SUMMARY, decisions.DECISIONS, specFolderName);
+  const keyTopics: string[] = ensureMinSemanticTopics(keyTopicsInitial, enhancedFiles, specFolderName);
   const keyFiles = enhancedFiles.map((f) => ({ FILE_PATH: f.FILE_PATH }));
 
   // Pre-extract trigger phrases for template embedding AND later indexing
@@ -290,6 +369,7 @@ async function runWorkflow(options: WorkflowOptions = {}): Promise<WorkflowResul
       }
     }
 
+    preExtractedTriggers = ensureMinTriggerPhrases(preExtractedTriggers, enhancedFiles, specFolderName);
     log(`   Pre-extracted ${preExtractedTriggers.length} trigger phrases`);
   } catch (e: unknown) {
     const errMsg = e instanceof Error ? e.message : String(e);
@@ -393,8 +473,27 @@ async function runWorkflow(options: WorkflowOptions = {}): Promise<WorkflowResul
     log('   No HTML cleaning needed');
   }
 
-  // Step 8.6: Quality scoring
+  // Step 8.6: Quality validation + scoring
   log('Step 8.6: Quality scoring...');
+  const qualityValidation = validateMemoryQualityContent(files[ctxFilename]);
+  const qualitySignals: ValidationSignal[] = qualityValidation.ruleResults.map((rule) => ({
+    ruleId: rule.ruleId,
+    passed: rule.passed,
+  }));
+  const qualityV2 = scoreMemoryQualityV2({
+    content: files[ctxFilename],
+    validatorSignals: qualitySignals,
+    hadContamination,
+    messageCount: conversations.MESSAGES.length,
+    toolCount: sessionData.TOOL_COUNT,
+    decisionCount: decisions.DECISIONS.length,
+  });
+  files[ctxFilename] = injectQualityMetadata(files[ctxFilename], qualityV2.qualityScore, qualityV2.qualityFlags);
+
+  if (!qualityValidation.valid) {
+    warn(`QUALITY_GATE_FAIL: ${qualityValidation.failedRules.join(', ')}`);
+  }
+
   const qualityResult = scoreMemoryQuality(
     files[ctxFilename],
     preExtractedTriggers,
@@ -402,7 +501,7 @@ async function runWorkflow(options: WorkflowOptions = {}): Promise<WorkflowResul
     enhancedFiles,
     sessionData.OBSERVATIONS || []
   );
-  log(`   Memory quality score: ${qualityResult.score}/100`);
+  log(`   Memory quality score: ${qualityResult.score}/100 (legacy), ${qualityV2.qualityScore.toFixed(2)} (v2)`);
   if (qualityResult.warnings.length > 0) {
     for (const warning of qualityResult.warnings) {
       warn(`   Quality warning: ${warning}`);
@@ -438,11 +537,15 @@ async function runWorkflow(options: WorkflowOptions = {}): Promise<WorkflowResul
 
   let memoryId: number | null = null;
   try {
-    memoryId = await indexMemory(contextDir, ctxFilename, files[ctxFilename], specFolderName, collectedData, preExtractedTriggers);
-    if (memoryId) {
-      log(`   Indexed as memory #${memoryId} (${EMBEDDING_DIM} dimensions)`);
-      await updateMetadataWithEmbedding(contextDir, memoryId);
-      log('   Updated metadata.json with embedding info');
+    if (qualityValidation.valid) {
+      memoryId = await indexMemory(contextDir, ctxFilename, files[ctxFilename], specFolderName, collectedData, preExtractedTriggers);
+      if (memoryId) {
+        log(`   Indexed as memory #${memoryId} (${EMBEDDING_DIM} dimensions)`);
+        await updateMetadataWithEmbedding(contextDir, memoryId);
+        log('   Updated metadata.json with embedding info');
+      }
+    } else {
+      log('   QUALITY_GATE_FAIL: skipping production indexing for this file');
     }
   } catch (e: unknown) {
     const errMsg = e instanceof Error ? e.message : String(e);

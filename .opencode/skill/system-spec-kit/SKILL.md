@@ -512,7 +512,7 @@ Context preservation across sessions via hybrid search (vector similarity + BM25
 | Tool                            | Layer | Purpose                                           |
 | ------------------------------- | ----- | ------------------------------------------------- |
 | `memory_context()`              | L1    | Unified entry point — modes: auto, quick, deep, focused, resume |
-| `memory_search()`               | L2    | Hybrid search (vector + FTS + BM25 with RRF fusion) |
+| `memory_search()`               | L2    | Hybrid search (vector + FTS + BM25 with RRF fusion). With optional adaptive fusion (SPECKIT_ADAPTIVE_FUSION) and artifact-class routing |
 | `memory_match_triggers()`       | L2    | Trigger matching + cognitive (decay, tiers, co-activation) |
 | `memory_save()`                 | L2    | Index a memory file with pre-flight validation    |
 | `memory_list()`                 | L3    | Browse stored memories with pagination            |
@@ -549,6 +549,20 @@ Context preservation across sessions via hybrid search (vector similarity + BM25
 - **Real-time sync** — Use `memory_save` or `memory_index_scan` after creating files
 - **Checkpoints** — Gzip-compressed JSON snapshots of memory_index + working_memory; max 10 stored; transaction-wrapped restore
 - **Indexing persistence** — After `generate-context.js`, call `memory_index_scan()` or `memory_save()` for immediate MCP visibility
+- **Artifact routing** — 9 artifact classes (spec, plan, tasks, checklist, decision-record, implementation-summary, memory, research, unknown) with per-type retrieval strategies applied at query time
+- **Adaptive fusion** — Intent-aware weighted RRF with 7 task-type profiles (fix_bug, add_feature, understand, refactor, security_audit, find_spec, find_decision). Enabled via feature flag `SPECKIT_ADAPTIVE_FUSION` (default: off)
+- **Retrieval trace** — Typed ContextEnvelope wraps every retrieval response with pipeline stages and a DegradedModeContract describing fallback behavior
+- **Mutation ledger** — Append-only audit trail for all memory mutations (create, update, delete, reinforce); implemented via SQLite triggers; queryable for compliance and rollback
+- **Retrieval telemetry** — 4-dimension metrics (latency, retrieval mode, fallback activation, quality score). Enabled via feature flag `SPECKIT_EXTENDED_TELEMETRY` (default: on)
+
+**Feature Flags:**
+
+| Flag                          | Default | Effect                                                                                      |
+| ----------------------------- | ------- | ------------------------------------------------------------------------------------------- |
+| `SPECKIT_ADAPTIVE_FUSION`     | off     | Enables intent-aware weighted RRF with 7 task-type profiles in `memory_search()`            |
+| `SPECKIT_EXTENDED_TELEMETRY`  | on      | Emits 4-dimension retrieval metrics (latency, mode, fallback, quality) per search operation |
+
+Set via environment variable before starting the MCP server (e.g., `SPECKIT_ADAPTIVE_FUSION=1`).
 
 > **Token budgets per layer:** L1:2000, L2:1500, L3:800, L4:500, L5:600, L6:1200, L7:1000 (enforced via `chars/4` approximation).
 

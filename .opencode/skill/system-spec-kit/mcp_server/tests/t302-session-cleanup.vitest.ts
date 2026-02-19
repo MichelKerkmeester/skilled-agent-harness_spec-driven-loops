@@ -180,4 +180,53 @@ describe('T302: Session Cleanup Tests', () => {
       expect(configCopy).not.toHaveProperty('cleanupIntervalMs');
     });
   });
+
+  describe('T002: Working memory schema migration compatibility', () => {
+    it('adds event_counter and mention_count to legacy working_memory tables', () => {
+      const legacyDb = new BetterSqlite3(':memory:');
+      legacyDb.exec(`
+        CREATE TABLE memory_index (
+          id INTEGER PRIMARY KEY,
+          spec_folder TEXT NOT NULL,
+          file_path TEXT NOT NULL,
+          created_at TEXT NOT NULL
+        );
+
+        INSERT INTO memory_index (id, spec_folder, file_path, created_at)
+        VALUES (1, 'test-spec', '/legacy/memory.md', CURRENT_TIMESTAMP);
+
+        CREATE TABLE working_memory (
+          id INTEGER PRIMARY KEY AUTOINCREMENT,
+          session_id TEXT NOT NULL,
+          memory_id INTEGER NOT NULL,
+          attention_score REAL DEFAULT 1.0,
+          added_at TEXT DEFAULT CURRENT_TIMESTAMP,
+          last_focused TEXT DEFAULT CURRENT_TIMESTAMP,
+          focus_count INTEGER DEFAULT 1,
+          UNIQUE(session_id, memory_id),
+          FOREIGN KEY (memory_id) REFERENCES memory_index(id) ON DELETE CASCADE
+        );
+
+        INSERT INTO working_memory (session_id, memory_id, attention_score, focus_count)
+        VALUES ('legacy-session', 1, 0.75, 2);
+      `);
+
+      wm.init(legacyDb);
+
+      const columns = legacyDb.prepare('PRAGMA table_info(working_memory)').all() as Array<{ name: string }>;
+      const columnNames = columns.map(column => column.name);
+      expect(columnNames).toContain('event_counter');
+      expect(columnNames).toContain('mention_count');
+
+      const migratedRow = legacyDb.prepare(`
+        SELECT event_counter, mention_count
+        FROM working_memory
+        WHERE session_id = 'legacy-session' AND memory_id = 1
+      `).get() as { event_counter: number; mention_count: number };
+
+      expect(migratedRow.event_counter).toBe(0);
+      expect(migratedRow.mention_count).toBe(0);
+      legacyDb.close();
+    });
+  });
 });

@@ -14,7 +14,7 @@ import path from 'path';
 import { validateFilePath } from '@spec-kit/shared/utils/path-security';
 
 // Internal modules
-import { LIB_DIR, SHARED_DIR, ALLOWED_BASE_PATHS, checkDatabaseUpdated } from '../core';
+import { ALLOWED_BASE_PATHS, checkDatabaseUpdated } from '../core';
 import { createFilePathValidator } from '../utils/validators';
 import * as vectorIndex from '../lib/search/vector-index';
 import * as embeddings from '../lib/providers/embeddings';
@@ -32,7 +32,7 @@ import { createMCPSuccessResponse } from '../lib/response/envelope';
 import * as retryManager from '../lib/providers/retry-manager';
 import * as causalEdges from '../lib/storage/causal-edges';
 import { requireDb, toErrorMessage } from '../utils';
-import type { MCPResponse, DatabaseExtended as Database } from './types';
+import type { MCPResponse } from './types';
 import type BetterSqlite3 from 'better-sqlite3';
 
 // Create local path validator
@@ -57,6 +57,8 @@ interface ParsedMemory {
   causalLinks?: CausalLinks;
   /** Spec 126: Document structural type (spec, plan, tasks, memory, readme, etc.) */
   documentType?: string;
+  qualityScore?: number;
+  qualityFlags?: string[];
 }
 
 interface ValidationResult {
@@ -107,6 +109,8 @@ interface IndexResult extends Record<string, unknown> {
   message?: string;
   success?: boolean;
   error?: string;
+  qualityScore?: number;
+  qualityFlags?: string[];
 }
 
 interface CausalLinkMapping {
@@ -323,7 +327,7 @@ function markMemorySuperseded(memoryId: number): boolean {
       WHERE id = ?
     `).run(memoryId);
 
-    console.error(`[PE-Gate] Memory ${memoryId} marked as superseded`);
+    console.info(`[PE-Gate] Memory ${memoryId} marked as superseded`);
     return true;
   } catch (err: unknown) {
     const message = toErrorMessage(err);
@@ -351,6 +355,8 @@ function updateExistingMemory(memoryId: number, parsed: ParsedMemory, embedding:
     documentType: parsed.documentType || 'memory',
     specLevel,
     contentText: parsed.content,
+    qualityScore: parsed.qualityScore,
+    qualityFlags: parsed.qualityFlags,
   });
 
   const fileMetadata = incrementalIndex.getFileMetadata(parsed.filePath);
@@ -368,7 +374,9 @@ function updateExistingMemory(memoryId: number, parsed: ParsedMemory, embedding:
         file_mtime_ms = ?,
         document_type = ?,
         spec_level = ?,
-        content_text = ?
+        content_text = ?,
+        quality_score = ?,
+        quality_flags = ?
     WHERE id = ?
   `).run(
     parsed.contentHash,
@@ -379,6 +387,8 @@ function updateExistingMemory(memoryId: number, parsed: ParsedMemory, embedding:
     parsed.documentType || 'memory',
     specLevel,
     parsed.content,
+    parsed.qualityScore ?? 0,
+    JSON.stringify(parsed.qualityFlags ?? []),
     memoryId
   );
 
@@ -404,7 +414,7 @@ function logPeDecision(decision: PeDecision, contentHash: string, specFolder: st
     `).get();
 
     if (!tableExists) {
-      console.error('[PE-Gate] memory_conflicts table not yet created, skipping log');
+      console.warn('[PE-Gate] memory_conflicts table not yet created, skipping log');
       return;
     }
 
@@ -547,11 +557,11 @@ function processCausalLinks(database: BetterSqlite3.Database, memoryId: number, 
       try {
         causalEdges.insertEdge(edgeSourceId, edgeTargetId, mapping.relation, 1.0, `Auto-extracted from ${link_type} in memory file`);
         result.inserted++;
-        console.error(`[causal-links] Inserted edge: ${edgeSourceId} -[${mapping.relation}]-> ${edgeTargetId}`);
+        console.info(`[causal-links] Inserted edge: ${edgeSourceId} -[${mapping.relation}]-> ${edgeTargetId}`);
       } catch (err: unknown) {
         const message = toErrorMessage(err);
         if (message.includes('UNIQUE constraint')) {
-          console.error(`[causal-links] Edge already exists: ${edgeSourceId} -[${mapping.relation}]-> ${edgeTargetId}`);
+          console.info(`[causal-links] Edge already exists: ${edgeSourceId} -[${mapping.relation}]-> ${edgeTargetId}`);
         } else {
           result.errors.push({ type: link_type, reference, error: message });
           console.warn(`[causal-links] Failed to insert edge: ${message}`);
@@ -564,7 +574,7 @@ function processCausalLinks(database: BetterSqlite3.Database, memoryId: number, 
 }
 
 /* ---------------------------------------------------------------
-   5b. SPEC LEVEL DETECTION (Spec 126)
+   6. SPEC LEVEL DETECTION (Spec 126)
 --------------------------------------------------------------- */
 
 /**
@@ -608,7 +618,7 @@ function detectSpecLevelFromParsed(filePath: string): number | null {
 }
 
 /* ---------------------------------------------------------------
-   6. INDEX MEMORY FILE
+   7. INDEX MEMORY FILE
 --------------------------------------------------------------- */
 
 /** Parse, validate, and index a memory file with PE gating, FSRS scheduling, and causal links */
@@ -652,7 +662,7 @@ async function indexMemoryFile(filePath: string, { force = false, parsedOverride
 
   if (asyncEmbedding) {
     embeddingFailureReason = 'Deferred: async_embedding requested';
-    console.error(`[memory-save] T306: Async embedding mode - deferring embedding for ${path.basename(filePath)}`);
+    console.info(`[memory-save] T306: Async embedding mode - deferring embedding for ${path.basename(filePath)}`);
   } else {
     try {
       embedding = await embeddings.generateDocumentEmbedding(parsed.content);
@@ -704,7 +714,7 @@ async function indexMemoryFile(filePath: string, { force = false, parsedOverride
     switch (peDecision.action) {
       case predictionErrorGate.ACTION.REINFORCE: {
         const existingId = peDecision.existingMemoryId as number;
-        console.error(`[PE-Gate] REINFORCE: Duplicate detected (${peDecision.similarity.toFixed(1)}%)`);
+        console.info(`[PE-Gate] REINFORCE: Duplicate detected (${peDecision.similarity.toFixed(1)}%)`);
         const reinforced = reinforceExistingMemory(existingId, parsed);
         reinforced.pe_action = 'REINFORCE';
         reinforced.pe_reason = peDecision.reason;
@@ -715,7 +725,7 @@ async function indexMemoryFile(filePath: string, { force = false, parsedOverride
 
       case predictionErrorGate.ACTION.SUPERSEDE: {
         const existingId = peDecision.existingMemoryId as number;
-        console.error(`[PE-Gate] SUPERSEDE: Contradiction detected with memory ${existingId}`);
+        console.info(`[PE-Gate] SUPERSEDE: Contradiction detected with memory ${existingId}`);
         const superseded = markMemorySuperseded(existingId);
         if (!superseded) {
           console.warn(`[PE-Gate] Failed to mark memory ${existingId} as superseded, proceeding with CREATE anyway`);
@@ -725,7 +735,7 @@ async function indexMemoryFile(filePath: string, { force = false, parsedOverride
 
       case predictionErrorGate.ACTION.UPDATE: {
         const existingId = peDecision.existingMemoryId as number;
-        console.error(`[PE-Gate] UPDATE: High similarity (${peDecision.similarity.toFixed(1)}%), updating existing`);
+        console.info(`[PE-Gate] UPDATE: High similarity (${peDecision.similarity.toFixed(1)}%), updating existing`);
         if (!embedding) {
           console.warn(
             '[Memory Save] embedding unexpectedly null in UPDATE path, falling through to CREATE'
@@ -741,14 +751,14 @@ async function indexMemoryFile(filePath: string, { force = false, parsedOverride
       }
 
       case predictionErrorGate.ACTION.CREATE_LINKED: {
-        console.error(`[PE-Gate] CREATE_LINKED: Related content (${peDecision.similarity.toFixed(1)}%)`);
+        console.info(`[PE-Gate] CREATE_LINKED: Related content (${peDecision.similarity.toFixed(1)}%)`);
         break;
       }
 
       case predictionErrorGate.ACTION.CREATE:
       default:
         if (peDecision.similarity > 0) {
-          console.error(`[PE-Gate] CREATE: Low similarity (${peDecision.similarity.toFixed(1)}%)`);
+          console.info(`[PE-Gate] CREATE: Low similarity (${peDecision.similarity.toFixed(1)}%)`);
         }
         break;
     }
@@ -777,6 +787,8 @@ async function indexMemoryFile(filePath: string, { force = false, parsedOverride
         documentType: parsed.documentType || 'memory',
         specLevel,
         contentText: parsed.content,
+        qualityScore: parsed.qualityScore,
+        qualityFlags: parsed.qualityFlags,
       });
 
       const fileMetadata = incrementalIndex.getFileMetadata(filePath);
@@ -795,7 +807,9 @@ async function indexMemoryFile(filePath: string, { force = false, parsedOverride
             review_count = 0,
             file_mtime_ms = ?,
             document_type = ?,
-            spec_level = ?
+            spec_level = ?,
+            quality_score = ?,
+            quality_flags = ?
         WHERE id = ?
       `).run(
         parsed.contentHash,
@@ -808,6 +822,8 @@ async function indexMemoryFile(filePath: string, { force = false, parsedOverride
         fileMtimeMs,
         parsed.documentType || 'memory',
         specLevel,
+        parsed.qualityScore ?? 0,
+        JSON.stringify(parsed.qualityFlags ?? []),
         memory_id
       );
 
@@ -839,7 +855,7 @@ async function indexMemoryFile(filePath: string, { force = false, parsedOverride
 
     id = indexWithMetadata();
   } else {
-    console.error(`[memory-save] Using deferred indexing for ${path.basename(filePath)}`);
+    console.info(`[memory-save] Using deferred indexing for ${path.basename(filePath)}`);
 
     const indexDeferred = database.transaction(() => {
       // Determine importance weight based on document type (Spec 126)
@@ -855,6 +871,8 @@ async function indexMemoryFile(filePath: string, { force = false, parsedOverride
         documentType: parsed.documentType || 'memory',
         specLevel,
         contentText: parsed.content,
+        qualityScore: parsed.qualityScore,
+        qualityFlags: parsed.qualityFlags,
       });
 
       const fileMetadata = incrementalIndex.getFileMetadata(filePath);
@@ -873,7 +891,9 @@ async function indexMemoryFile(filePath: string, { force = false, parsedOverride
             review_count = 0,
             file_mtime_ms = ?,
             document_type = ?,
-            spec_level = ?
+            spec_level = ?,
+            quality_score = ?,
+            quality_flags = ?
         WHERE id = ?
       `).run(
         parsed.contentHash,
@@ -886,6 +906,8 @@ async function indexMemoryFile(filePath: string, { force = false, parsedOverride
         fileMtimeMs,
         parsed.documentType || 'memory',
         specLevel,
+        parsed.qualityScore ?? 0,
+        JSON.stringify(parsed.qualityFlags ?? []),
         memory_id
       );
 
@@ -911,10 +933,10 @@ async function indexMemoryFile(filePath: string, { force = false, parsedOverride
     try {
       causalLinksResult = processCausalLinks(database, id, parsed.causalLinks);
       if (causalLinksResult.inserted > 0) {
-        console.error(`[causal-links] Processed ${causalLinksResult.inserted} causal edges for memory #${id}`);
+        console.info(`[causal-links] Processed ${causalLinksResult.inserted} causal edges for memory #${id}`);
       }
       if (causalLinksResult.unresolved.length > 0) {
-        console.error(`[causal-links] ${causalLinksResult.unresolved.length} references could not be resolved`);
+        console.warn(`[causal-links] ${causalLinksResult.unresolved.length} references could not be resolved`);
       }
     } catch (causal_err: unknown) {
       const message = toErrorMessage(causal_err);
@@ -942,7 +964,9 @@ async function indexMemoryFile(filePath: string, { force = false, parsedOverride
     memoryType: parsed.memoryType,
     memoryTypeSource: parsed.memoryTypeSource,
     embeddingStatus: embeddingStatus,
-    warnings: validation.warnings
+    warnings: validation.warnings,
+    qualityScore: parsed.qualityScore,
+    qualityFlags: parsed.qualityFlags,
   };
 
   if (peDecision.action !== predictionErrorGate.ACTION.CREATE) {
@@ -990,7 +1014,7 @@ async function indexMemoryFile(filePath: string, { force = false, parsedOverride
 }
 
 /* ---------------------------------------------------------------
-   7. MEMORY SAVE HANDLER
+   8. MEMORY SAVE HANDLER
 --------------------------------------------------------------- */
 
 /** Handle memory_save tool - validates, indexes, and persists a memory file to the database */
@@ -1079,10 +1103,10 @@ async function handleMemorySave(args: SaveArgs): Promise<MCPResponse> {
     }
 
     if (preflightResult.warnings.length > 0) {
-      console.error(`[preflight] ${validatedPath}: ${preflightResult.warnings.length} warning(s)`);
+      console.warn(`[preflight] ${validatedPath}: ${preflightResult.warnings.length} warning(s)`);
       preflightResult.warnings.forEach((w: string | { message: string }) => {
         const msg = typeof w === 'string' ? w : w.message;
-        console.error(`[preflight]   - ${msg}`);
+        console.warn(`[preflight]   - ${msg}`);
       });
     }
   }
@@ -1114,6 +1138,8 @@ async function handleMemorySave(args: SaveArgs): Promise<MCPResponse> {
     triggerPhrases: result.triggerPhrases,
     contextType: result.contextType,
     importanceTier: result.importanceTier,
+    qualityScore: result.qualityScore,
+    qualityFlags: result.qualityFlags,
     message: `Memory ${result.status} successfully`
   };
 
@@ -1196,7 +1222,7 @@ async function handleMemorySave(args: SaveArgs): Promise<MCPResponse> {
 }
 
 /* ---------------------------------------------------------------
-   8. ATOMIC MEMORY SAVE
+   9. ATOMIC MEMORY SAVE
 --------------------------------------------------------------- */
 
 /**
@@ -1258,7 +1284,7 @@ function getAtomicityMetrics(): Record<string, unknown> {
 }
 
 /* ---------------------------------------------------------------
-   9. EXPORTS
+   10. EXPORTS
 --------------------------------------------------------------- */
 
 export {

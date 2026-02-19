@@ -23,14 +23,110 @@ export interface ToolDefinition {
 const memoryContext: ToolDefinition = {
   name: 'memory_context',
   description: '[L1:Orchestration] Unified entry point for context retrieval with intent-aware routing. START HERE for most memory operations. Automatically detects task intent (add_feature, fix_bug, refactor, security_audit, understand, find_spec, find_decision) and routes to optimal retrieval strategy. Modes: auto (default), quick (trigger-based), deep (comprehensive), focused (intent-optimized), resume (session recovery). Token Budget: 2000.',
-  inputSchema: { type: 'object', properties: { input: { type: 'string', description: 'The query, prompt, or context description (required)' }, mode: { type: 'string', enum: ['auto', 'quick', 'deep', 'focused', 'resume'], default: 'auto', description: 'Context retrieval mode: auto (detect intent), quick (fast triggers), deep (comprehensive search), focused (intent-optimized), resume (session recovery)' }, intent: { type: 'string', enum: ['add_feature', 'fix_bug', 'refactor', 'security_audit', 'understand', 'find_spec', 'find_decision'], description: 'Explicit task intent. If not provided and mode=auto, intent is auto-detected from input.' }, specFolder: { type: 'string', description: 'Limit context to specific spec folder' }, limit: { type: 'number', description: 'Maximum results (mode-specific defaults apply)' }, sessionId: { type: 'string', description: 'Session ID for deduplication' }, enableDedup: { type: 'boolean', default: true, description: 'Enable session deduplication' }, includeContent: { type: 'boolean', default: false, description: 'Include full file content in results' }, anchors: { type: 'array', items: { type: 'string' }, description: 'Filter content to specific anchors (e.g., ["state", "next-steps"] for resume mode)' } }, required: ['input'] },
+  inputSchema: { type: 'object', properties: { input: { type: 'string', description: 'The query, prompt, or context description (required)' }, mode: { type: 'string', enum: ['auto', 'quick', 'deep', 'focused', 'resume'], default: 'auto', description: 'Context retrieval mode: auto (detect intent), quick (fast triggers), deep (comprehensive search), focused (intent-optimized), resume (session recovery)' }, intent: { type: 'string', enum: ['add_feature', 'fix_bug', 'refactor', 'security_audit', 'understand', 'find_spec', 'find_decision'], description: 'Explicit task intent. If not provided and mode=auto, intent is auto-detected from input.' }, specFolder: { type: 'string', description: 'Limit context to specific spec folder' }, limit: { type: 'number', description: 'Maximum results (mode-specific defaults apply)' }, sessionId: { type: 'string', description: 'Caller-supplied session identifier. If omitted, server generates an ephemeral UUID for this call only (not persisted across requests).' }, enableDedup: { type: 'boolean', default: true, description: 'Enable session deduplication' }, includeContent: { type: 'boolean', default: false, description: 'Include full file content in results' }, tokenUsage: { type: 'number', minimum: 0.0, maximum: 1.0, description: "Optional caller token usage ratio (0.0-1.0)" }, anchors: { type: 'array', items: { type: 'string' }, description: 'Filter content to specific anchors (e.g., ["state", "next-steps"] for resume mode)' } }, required: ['input'] },
 };
 
 // L2: Core - Primary operations (Token Budget: 1500)
 const memorySearch: ToolDefinition = {
   name: 'memory_search',
   description: '[L2:Core] Search conversation memories semantically using vector similarity. Returns ranked results with similarity scores. Constitutional tier memories are ALWAYS included at the top of results (~2000 tokens max), regardless of query. Requires either query (string) OR concepts (array of 2-5 strings) for multi-concept AND search. Supports intent-aware retrieval (REQ-006) with task-specific weight adjustments. Token Budget: 1500.',
-  inputSchema: { type: 'object', properties: { query: { type: 'string', description: 'Natural language search query' }, concepts: { type: 'array', items: { type: 'string' }, description: 'Multiple concepts for AND search (requires 2-5 concepts). Results must match ALL concepts.' }, specFolder: { type: 'string', description: 'Limit search to a specific spec folder (e.g., "011-spec-kit-memory-upgrade")' }, limit: { type: 'number', default: 10, description: 'Maximum number of results to return' }, sessionId: { type: 'string', description: 'Session identifier for working memory and session deduplication (REQ-001). When provided with enableDedup=true, prevents duplicate memories from being returned in the same session (~50% token savings on follow-up queries).' }, enableDedup: { type: 'boolean', default: true, description: 'Enable session deduplication (REQ-001). When true and sessionId provided, filters out already-sent memories.' }, tier: { type: 'string', description: 'Filter by importance tier (constitutional, critical, important, normal, temporary, deprecated)' }, contextType: { type: 'string', description: 'Filter by context type (decision, implementation, research, etc.)' }, useDecay: { type: 'boolean', default: true, description: 'Apply temporal decay scoring to results' }, includeContiguity: { type: 'boolean', default: false, description: 'Include adjacent/contiguous memories in results' }, includeConstitutional: { type: 'boolean', default: true, description: 'Include constitutional tier memories at top of results (default: true)' }, includeContent: { type: 'boolean', default: false, description: 'Include full file content in results. When true, each result includes a "content" field with the memory file contents. This embeds load logic directly in search, eliminating the need for separate load calls.' }, anchors: { type: 'array', items: { type: 'string' }, description: 'Specific anchor IDs to extract from content. If provided, returned content will be filtered to only these sections. Requires includeContent: true.' }, bypassCache: { type: 'boolean', default: false, description: 'Skip the tool cache and force a fresh search. Useful when underlying data has changed since last cached result.' }, rerank: { type: 'boolean', default: false, description: 'Enable cross-encoder reranking of results. Improves relevance at the cost of additional computation.' }, applyLengthPenalty: { type: 'boolean', default: true, description: 'Apply length-based penalty during reranking. Penalizes very long memories to favor concise, focused results. Only effective when rerank is true.' }, applyStateLimits: { type: 'boolean', default: false, description: 'Apply per-tier quantity limits to results. When true, enforces maximum counts per state tier to balance result diversity.' }, minState: { type: 'string', enum: ['HOT', 'WARM', 'COLD', 'DORMANT', 'ARCHIVED'], default: 'WARM', description: 'Minimum memory state to include in results. Memories below this state are filtered out. Order: HOT > WARM > COLD > DORMANT > ARCHIVED.' }, intent: { type: 'string', enum: ['add_feature', 'fix_bug', 'refactor', 'security_audit', 'understand', 'find_spec', 'find_decision'], description: 'Task intent for weight adjustments (REQ-006). Explicitly set query intent to optimize scoring for specific tasks.' }, autoDetectIntent: { type: 'boolean', default: true, description: 'Auto-detect intent from query if not explicitly specified. When true, classifies query to apply task-specific scoring weights.' } } },
+  inputSchema: {
+    type: 'object',
+    properties: {
+      query: { type: 'string', description: 'Natural language search query' },
+      concepts: {
+        type: 'array',
+        items: { type: 'string' },
+        description: 'Multiple concepts for AND search (requires 2-5 concepts). Results must match ALL concepts.'
+      },
+      specFolder: { type: 'string', description: 'Limit search to a specific spec folder (e.g., "011-spec-kit-memory-upgrade")' },
+      limit: { type: 'number', default: 10, description: 'Maximum number of results to return' },
+      sessionId: {
+        type: 'string',
+        description: 'Session identifier for working memory and session deduplication (REQ-001). When provided with enableDedup=true, prevents duplicate memories from being returned in the same session (~50% token savings on follow-up queries).'
+      },
+      enableDedup: {
+        type: 'boolean',
+        default: true,
+        description: 'Enable session deduplication (REQ-001). When true and sessionId provided, filters out already-sent memories.'
+      },
+      tier: { type: 'string', description: 'Filter by importance tier (constitutional, critical, important, normal, temporary, deprecated)' },
+      contextType: { type: 'string', description: 'Filter by context type (decision, implementation, research, etc.)' },
+      useDecay: { type: 'boolean', default: true, description: 'Apply temporal decay scoring to results' },
+      includeContiguity: { type: 'boolean', default: false, description: 'Include adjacent/contiguous memories in results' },
+      includeConstitutional: {
+        type: 'boolean',
+        default: true,
+        description: 'Include constitutional tier memories at top of results (default: true)'
+      },
+      enableSessionBoost: {
+        type: 'boolean',
+        description: 'Enable session-based score boost from working_memory attention signals. Defaults to SPECKIT_SESSION_BOOST env flag.'
+      },
+      enableCausalBoost: {
+        type: 'boolean',
+        description: 'Enable causal-neighbor boost (2-hop traversal on causal_edges). Defaults to SPECKIT_CAUSAL_BOOST env flag.'
+      },
+      includeContent: {
+        type: 'boolean',
+        default: false,
+        description: 'Include full file content in results. When true, each result includes a "content" field with the memory file contents. This embeds load logic directly in search, eliminating the need for separate load calls.'
+      },
+      anchors: {
+        type: 'array',
+        items: { type: 'string' },
+        description: 'Specific anchor IDs to extract from content. If provided, returned content will be filtered to only these sections. Requires includeContent: true.'
+      },
+      min_quality_score: {
+        type: 'number',
+        minimum: 0,
+        maximum: 1,
+        description: 'Minimum quality score threshold (0.0-1.0). Results with lower quality_score are filtered out.'
+      },
+      minQualityScore: {
+        type: 'number',
+        minimum: 0,
+        maximum: 1,
+        description: 'Deprecated alias for min_quality_score. Prefer snake_case parameter name.'
+      },
+      bypassCache: {
+        type: 'boolean',
+        default: false,
+        description: 'Skip the tool cache and force a fresh search. Useful when underlying data has changed since last cached result.'
+      },
+      rerank: {
+        type: 'boolean',
+        default: false,
+        description: 'Enable cross-encoder reranking of results. Improves relevance at the cost of additional computation.'
+      },
+      applyLengthPenalty: {
+        type: 'boolean',
+        default: true,
+        description: 'Apply length-based penalty during reranking. Penalizes very long memories to favor concise, focused results. Only effective when rerank is true.'
+      },
+      applyStateLimits: {
+        type: 'boolean',
+        default: false,
+        description: 'Apply per-tier quantity limits to results. When true, enforces maximum counts per state tier to balance result diversity.'
+      },
+      minState: {
+        type: 'string',
+        enum: ['HOT', 'WARM', 'COLD', 'DORMANT', 'ARCHIVED'],
+        default: 'WARM',
+        description: 'Minimum memory state to include in results. Memories below this state are filtered out. Order: HOT > WARM > COLD > DORMANT > ARCHIVED.'
+      },
+      intent: {
+        type: 'string',
+        enum: ['add_feature', 'fix_bug', 'refactor', 'security_audit', 'understand', 'find_spec', 'find_decision'],
+        description: 'Task intent for weight adjustments (REQ-006). Explicitly set query intent to optimize scoring for specific tasks.'
+      },
+      autoDetectIntent: {
+        type: 'boolean',
+        default: true,
+        description: 'Auto-detect intent from query if not explicitly specified. When true, classifies query to apply task-specific scoring weights.'
+      }
+    }
+  },
 };
 
 const memoryMatchTriggers: ToolDefinition = {

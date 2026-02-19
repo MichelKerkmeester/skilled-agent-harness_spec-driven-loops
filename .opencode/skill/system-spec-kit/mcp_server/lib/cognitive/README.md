@@ -48,7 +48,7 @@ The cognitive subsystem is the "brain" of the memory system. It determines which
 | Activation     | 2       | ~700   | Working memory + spreading activation                |
 | Lifecycle      | 1       | ~395   | Archival management                                  |
 | Temporal       | 1       | ~158   | Time-based contiguity boosting and timelines         |
-| **Total**      | **8**   | ~2860  | Complete cognitive memory lifecycle                  |
+| **Total**      | **10**  | ~2860  | Complete cognitive memory lifecycle                  |
 
 ### Architecture
 
@@ -241,7 +241,7 @@ half_life = 60 days → stability ≈ 4.69 days
 <!-- ANCHOR:structure -->
 
 ```
-cognitive/                      # TypeScript source files (8 modules)
+cognitive/                      # TypeScript source files (10 modules)
 ├── fsrs-scheduler.ts           # FSRS v4 power-law decay (240 lines)
 ├── prediction-error-gate.ts    # Duplicate detection & conflict logging (510 lines)
 ├── tier-classifier.ts          # 5-state model classifier (452 lines)
@@ -250,6 +250,8 @@ cognitive/                      # TypeScript source files (8 modules)
 ├── working-memory.ts           # Session-scoped activation (410 lines)
 ├── archival-manager.ts         # 90-day archival lifecycle (395 lines)
 ├── temporal-contiguity.ts      # Time-based contiguity boosting (158 lines)
+├── pressure-monitor.ts         # Token pressure monitoring and context window management
+├── rollout-policy.ts           # Feature flag rollout control and percentage-based activation
 └── README.md                   # This file
 ```
 
@@ -265,6 +267,8 @@ cognitive/                      # TypeScript source files (8 modules)
 | `working-memory.ts`        | Session memory management  | `setAttentionScore`, `getWorkingMemory`, `batchUpdateScores`             |
 | `archival-manager.ts`      | Lifecycle management       | `runArchivalScan`, `archiveMemory`, `startBackgroundJob`                 |
 | `temporal-contiguity.ts`   | Time-based linking         | `vectorSearchWithContiguity`, `getTemporalNeighbors`, `buildTimeline`   |
+| `pressure-monitor.ts`      | Token pressure monitoring  | Context window management and pressure threshold tracking               |
+| `rollout-policy.ts`        | Feature flag rollout       | Percentage-based activation and gradual feature rollout control         |
 
 <!-- /ANCHOR:structure -->
 

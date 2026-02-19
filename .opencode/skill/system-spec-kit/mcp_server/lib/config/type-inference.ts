@@ -4,7 +4,6 @@
 
 import {
   MEMORY_TYPES,
-  EXPECTED_TYPES,
   PATH_TYPE_PATTERNS,
   KEYWORD_TYPE_MAP,
   getDefaultType,

@@ -201,8 +201,12 @@ vector-index-impl.ts     (3333 LOC)
 | `bm25-index.ts`          | ~241   | TypeScript | Pure TypeScript BM25 (REQ-028, v1.2.0)              |
 | `reranker.ts`            | -      | TypeScript | Score-based reranking utility (sort + truncate)     |
 | `rrf-fusion.ts`          | -      | TypeScript | Reciprocal Rank Fusion scoring logic                |
+| `artifact-routing.ts`    | -      | TypeScript | 9 artifact classes with per-type retrieval strategy routing |
+| `adaptive-fusion.ts`     | -      | TypeScript | Intent-aware weighted RRF with dark-run mode, feature flag SPECKIT_ADAPTIVE_FUSION |
+| `causal-boost.ts`        | -      | TypeScript | Causal-neighbor score boosting for graph traversal  |
+| `session-boost.ts`       | -      | TypeScript | Session-attention score boosting                    |
 
-**Total**: ~5,379+ LOC across 8 files (all TypeScript)
+**Total**: ~5,379+ LOC across 12 files (all TypeScript)
 
 ### Data Flow
 

@@ -43,8 +43,8 @@ The test suite validates all critical functionality of the Spec Kit Memory MCP s
 
 | Category | Count | Details |
 |----------|-------|---------|
-| Test Files | 118 | All `.vitest.ts` format |
-| Total Tests | 3,872 | Across all test files |
+| Test Files | 142 | All `.vitest.ts` format |
+| Total Tests | 3,872+ | Across all test files |
 | Test Framework | Vitest | TypeScript-native, no compilation step needed |
 | Coverage Target | 80/70/50 | Unit 80%, Integration 70%, E2E 50% |
 
@@ -53,7 +53,7 @@ The test suite validates all critical functionality of the Spec Kit Memory MCP s
 | Feature | Description |
 |---------|-------------|
 | **Vitest Framework** | Modern TypeScript-native test runner with built-in assertions |
-| **Full Coverage** | 118 test files covering cognitive, search, handlers and integration |
+| **Full Coverage** | 142 test files covering cognitive, search, handlers and integration |
 | **Category Organization** | Tests grouped by functional domain (cognitive, search, handlers, integration, unit) |
 | **Type Safety** | Full TypeScript with type checking at test level |
 | **Spec 126/127 Reality Checks** | Coverage for 5-source indexing, 7 intents, schema v13 document fields, document-type scoring and `includeSpecDocs` |
@@ -152,6 +152,11 @@ tests/
 ├── search-results-format.vitest.ts        # Search result formatting
 ├── vector-index-impl.vitest.ts            # Vector index implementation
 ├── embeddings.vitest.ts                   # Embedding pipeline
+├── causal-boost.vitest.ts                 # Causal graph score boosting
+├── session-boost.vitest.ts                # Session-recency score boosting
+├── adaptive-fusion.vitest.ts              # 15 tests for adaptive fusion
+├── retrieval-trace.vitest.ts              # 17 tests for typed retrieval-trace contracts
+├── retrieval-telemetry.vitest.ts          # 22 tests for retrieval telemetry
 │
 ├── # Session & Recovery Tests
 ├── session-manager.vitest.ts              # Session deduplication
@@ -159,6 +164,8 @@ tests/
 ├── continue-session.vitest.ts             # Session continuation
 ├── crash-recovery.vitest.ts               # Crash recovery
 ├── recovery-hints.vitest.ts               # Error code recovery hints
+├── session-lifecycle.vitest.ts            # Session open/close lifecycle
+├── working-memory-event-decay.vitest.ts   # Working memory event-driven decay
 │
 ├── # Graph & Relations Tests
 ├── causal-edges.vitest.ts                 # Causal graph edges
@@ -201,11 +208,22 @@ tests/
 ├── errors-comprehensive.vitest.ts         # Error handling coverage
 ├── entity-scope.vitest.ts                 # Entity scope
 ├── history.vitest.ts                      # History module
+├── extraction-adapter.vitest.ts           # Extraction adapter pipeline
+├── redaction-gate.vitest.ts               # Redaction/safety gate
+├── pressure-monitor.vitest.ts             # Cognitive pressure monitoring
+├── rollout-policy.vitest.ts               # Feature rollout policy
+├── config-cognitive.vitest.ts             # Cognitive configuration
+├── readme-discovery.vitest.ts             # README file discovery logic
+├── integration-readme-sources.vitest.ts   # README-source integration
+├── regression-readme-sources.vitest.ts    # README-source regression tests
+├── anchor-id-simplification.vitest.ts     # Anchor ID simplification rules
+├── anchor-prefix-matching.vitest.ts       # Anchor prefix matching logic
 │
 ├── # Memory Operations Tests
 ├── memory-context.vitest.ts               # Unified context entry
 ├── memory-parser.vitest.ts                # Memory file parsing
 ├── memory-parser-extended.vitest.ts       # Extended memory parsing
+├── memory-parser-readme.vitest.ts         # Memory parser README-source validation
 ├── memory-crud-extended.vitest.ts         # Extended CRUD operations
 ├── memory-save-extended.vitest.ts         # Extended save operations
 ├── memory-save-integration.vitest.ts      # PE gate + save handler
@@ -215,6 +233,8 @@ tests/
 ├── access-tracker-extended.vitest.ts      # Extended access tracking
 ├── checkpoints-extended.vitest.ts         # Extended checkpoints
 ├── checkpoints-storage.vitest.ts          # Checkpoint storage
+├── artifact-routing.vitest.ts             # 35 tests for artifact-class routing
+├── mutation-ledger.vitest.ts              # 16 tests for append-only mutation ledger
 │
 ├── # Trigger Tests
 ├── trigger-matcher.vitest.ts              # Trigger phrase matching
@@ -236,6 +256,7 @@ tests/
 ├── integration-search-pipeline.vitest.ts  # Search pipeline integration
 ├── integration-session-dedup.vitest.ts    # Session dedup integration
 ├── integration-trigger-pipeline.vitest.ts # Trigger pipeline integration
+├── phase2-integration.vitest.ts           # Phase 2 end-to-end integration
 │
 ├── # Targeted Bug Fix / Spec Tests
 ├── t105-t106-safety.vitest.ts             # Safety constraint tests
@@ -252,6 +273,7 @@ tests/
 ├── t302-session-cleanup.vitest.ts         # Session cleanup
 ├── t503-learning-stats-filters.vitest.ts  # Learning stats filters
 ├── spec126-full-spec-doc-indexing.vitest.ts # Spec-doc indexing, schema v13, scoring, intent expansion
+├── skill-ref-config.vitest.ts             # Skill-reference config resolution
 │
 ├── # Unit Tests (Focused Type/Logic Validation)
 ├── unit-composite-scoring-types.vitest.ts # Composite scoring types
@@ -382,8 +404,8 @@ npx vitest run
 #  PASS  tests/composite-scoring.vitest.ts (101 tests)
 #  PASS  tests/working-memory.vitest.ts (51 tests)
 #  ...
-#  Test Files  118 passed
-#  Tests       3872 passed
+#  Test Files  142 passed
+#  Tests       3872+ passed
 ```
 
 ### Example 2: Run Specific Feature Test
@@ -497,7 +519,7 @@ npx vitest --version
 
 # List test files
 ls tests/*.vitest.ts | wc -l
-# Expected: 118
+# Expected: 142
 
 # Run tests with detailed output
 npx vitest run --reporter=verbose 2>&1 | head -50
@@ -595,4 +617,4 @@ See [VERIFICATION_REPORT.md](./VERIFICATION_REPORT.md) for the complete Phase 3 
 
 <!-- /ANCHOR:related -->
 
-*Documentation version: 2.0 | Last updated: 2026-02-11*
+*Documentation version: 2.1 | Last updated: 2026-02-19*

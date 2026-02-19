@@ -28,8 +28,7 @@ Spec Kit is a unified documentation and memory system that makes AI-assisted dev
 - [7. SCRIPTS](#7--scripts)
 - [8. TROUBLESHOOTING](#8--troubleshooting)
 - [9. RELATED RESOURCES](#9--related-resources)
-- [10. RECENT CHANGES](#10--recent-changes)
-- [11. IN SUMMARY](#11--the-bottom-line)
+
 
 ---
 
@@ -520,6 +519,15 @@ The formula: `score *= (0.5 + importance_weight)`. At equal semantic relevance, 
 
 > **Full details:** See [references/memory/readme_indexing.md](./references/memory/readme_indexing.md) for discovery functions, exclude patterns, YAML frontmatter options and known limitations.
 
+### Feature Flags
+
+| Flag | Default | Purpose | Source |
+|------|---------|---------|--------|
+| `SPECKIT_ADAPTIVE_FUSION` | `false` | Enable intent-aware weighted RRF fusion (replaces standard fixed-weight RRF) | `mcp_server/lib/search/adaptive-fusion.ts` |
+| `SPECKIT_EXTENDED_TELEMETRY` | `true` | Enable 4-dimension retrieval telemetry (latency, mode, fallback activation, quality score) | `mcp_server/lib/telemetry/retrieval-telemetry.ts` |
+
+Set via environment variables before starting the MCP server. See [mcp_server/README.md](./mcp_server/README.md) for full configuration details and the [rollback runbook](./references/workflows/rollback-runbook.md) for safe flag toggling procedures.
+
 ---
 
 <!-- /ANCHOR:memory-system -->
@@ -783,6 +791,7 @@ Every error now includes actionable recovery guidance. 49 error codes mapped to 
 
 | Resource    | Purpose                             |
 | ----------- | ----------------------------------- |
-| `AGENTS.md` | Project-level AI behavior framework |
-| `AGENTS.md` | Gate definitions and enforcement    |
+| `AGENTS.md` | Project-level AI behavior framework + gate definitions and enforcement |
 | `specs/`    | Directory for all spec folders      |
+
+<!-- /ANCHOR:related -->
