@@ -474,7 +474,7 @@ Before finalizing a README, verify all applicable items:
 
 All README content must follow Human Voice Rules. The full ruleset lives in a standalone reference file. This section provides a quick reference for writing.
 
-**Full HVR Reference**: [`hvr_rules.md`](./hvr_rules.md)
+**Full HVR Reference**: [`hvr_rules.md`](../../references/hvr_rules.md)
 
 ### Quick Reference
 
@@ -506,7 +506,7 @@ All README content must follow Human Voice Rules. The full ruleset lives in a st
 | cutting-edge | latest, advanced |
 | innovative | new |
 
-For the complete banned words list, banned phrases, banned metaphors and soft deductions, see [`hvr_rules.md`](./hvr_rules.md).
+For the complete banned words list, banned phrases, banned metaphors and soft deductions, see [`hvr_rules.md`](../../references/hvr_rules.md).
 
 ---
 

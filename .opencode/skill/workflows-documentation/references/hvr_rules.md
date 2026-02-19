@@ -325,7 +325,7 @@ pre_publish_checklist:
 | Install Guide | `.opencode/skill/workflows-documentation/assets/documentation/install_guide_template.md` | Direct instructions, imperative mood |
 
 ### Standards
-- [core_standards.md](../../references/core_standards.md) - Document formatting standards
-- [workflows-documentation SKILL.md](../../SKILL.md) - Parent skill with HVR enforcement rules
+- [core_standards.md](./core_standards.md) - Document formatting standards
+- [workflows-documentation SKILL.md](../SKILL.md) - Parent skill with HVR enforcement rules
 
 <!-- /ANCHOR:related-resources -->

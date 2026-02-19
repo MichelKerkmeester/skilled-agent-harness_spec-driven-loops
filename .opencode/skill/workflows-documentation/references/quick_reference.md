@@ -163,25 +163,37 @@ python scripts/package_skill.py skill-path        # Package skill
 
 ```
 .opencode/skill/workflows-documentation/
-├── SKILL.md (overview + quick guidance)
+├── SKILL.md (overview + smart routing)
 ├── references/
 │   ├── core_standards.md (filename conventions, document types, violations)
+│   ├── hvr_rules.md (Human Voice Rules for documentation style)
 │   ├── optimization.md (content optimization patterns)
 │   ├── validation.md (quality assessment, gates, interpretation)
 │   ├── workflows.md (execution modes, validation patterns, troubleshooting)
+│   ├── install_guide_standards.md (install guide standards)
 │   ├── skill_creation.md (skill creation workflow)
 │   └── quick_reference.md (this file)
 ├── assets/
-│   ├── frontmatter_templates.md (YAML frontmatter examples)
-│   ├── command_template.md (slash command templates)
-│   ├── llmstxt_templates.md (llms.txt generation examples)
-│   ├── skill_md_template.md (SKILL.md file templates)
-│   └── flowcharts/ (ASCII flowchart examples)
+│   ├── documentation/
+│   │   ├── frontmatter_templates.md (YAML frontmatter examples)
+│   │   ├── readme_template.md (README structure and patterns)
+│   │   ├── install_guide_template.md (install guide template)
+│   │   └── llmstxt_templates.md (llms.txt generation examples)
+│   ├── opencode/
+│   │   ├── skill_md_template.md (SKILL.md file template)
+│   │   ├── skill_asset_template.md (skill asset template)
+│   │   ├── skill_reference_template.md (skill reference template)
+│   │   ├── command_template.md (slash command template)
+│   │   └── agent_template.md (agent definition template)
+│   ├── flowcharts/ (ASCII flowchart examples)
+│   └── template_rules.json (validation rule definitions)
 └── scripts/
     ├── extract_structure.py (document parsing → JSON for AI)
+    ├── validate_document.py (full document validation)
     ├── quick_validate.py (fast skill validation)
     ├── init_skill.py (skill scaffolding)
-    └── package_skill.py (skill packaging)
+    ├── package_skill.py (skill packaging)
+    └── validate_flowchart.sh (flowchart validation)
 ```
 
 ---

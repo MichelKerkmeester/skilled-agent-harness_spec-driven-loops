@@ -2,7 +2,7 @@
 
 <!-- SPECKIT_LEVEL: CORE -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/workflows-documentation/assets/documentation/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skill/workflows-documentation/references/hvr_rules.md -->
 
 ---
 
@@ -103,5 +103,5 @@ Explain what the user gains, not what files you touched.]
 <!--
 CORE TEMPLATE: Post-implementation documentation, created AFTER work completes.
 Write in human voice: active, direct, specific. No em dashes, no hedging, no AI filler.
-HVR rules: .opencode/skill/workflows-documentation/assets/documentation/hvr_rules.md
+HVR rules: .opencode/skill/workflows-documentation/references/hvr_rules.md
 -->
