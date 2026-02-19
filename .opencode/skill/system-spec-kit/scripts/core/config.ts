@@ -234,7 +234,25 @@ function findActiveSpecsDir(): string | null {
 }
 
 function getAllExistingSpecsDirs(): string[] {
-  return getSpecsDirectories().filter((dir) => fsSync.existsSync(dir));
+  const existing = getSpecsDirectories().filter((dir) => fsSync.existsSync(dir));
+  const seenRealPaths = new Set<string>();
+  const deduped: string[] = [];
+
+  for (const dir of existing) {
+    let realPath = dir;
+    try {
+      realPath = fsSync.realpathSync(dir);
+    } catch {
+      // Keep original dir if realpath resolution fails
+    }
+
+    if (!seenRealPaths.has(realPath)) {
+      seenRealPaths.add(realPath);
+      deduped.push(dir);
+    }
+  }
+
+  return deduped;
 }
 
 /* -----------------------------------------------------------------

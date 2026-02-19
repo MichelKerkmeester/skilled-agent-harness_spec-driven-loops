@@ -167,18 +167,26 @@ async function detectSpecFolder(collectedData: CollectedDataForAlignment | null 
   const specFolderFromData = getSpecFolderFromCollectedData(collectedData);
   if (specFolderFromData && collectedData) {
     const activeDir = specsDir || defaultSpecsDir;
-    const specFolderPath = path.join(activeDir, specFolderFromData);
+    const specFolderPath = path.isAbsolute(specFolderFromData)
+      ? specFolderFromData
+      : specFolderFromData.startsWith('specs/')
+        ? path.join(CONFIG.PROJECT_ROOT, specFolderFromData)
+        : specFolderFromData.startsWith('.opencode/specs/')
+          ? path.join(CONFIG.PROJECT_ROOT, specFolderFromData)
+          : path.join(activeDir, specFolderFromData);
+    const alignmentFolderName = path.basename(specFolderPath);
+    const alignmentBaseDir = path.dirname(specFolderPath);
 
     try {
       await fs.access(specFolderPath);
       console.log(`   Using spec folder from data: ${specFolderFromData}`);
-      const alignmentResult = await validateFolderAlignment(collectedData, specFolderFromData, activeDir);
+      const alignmentResult = await validateFolderAlignment(collectedData, alignmentFolderName, alignmentBaseDir);
       if (alignmentResult.proceed) {
         if (alignmentResult.useAlternative) {
           if (!alignmentResult.selectedFolder) {
             throw new Error('Expected selectedFolder to be set when useAlternative is true');
           }
-          return path.join(activeDir, alignmentResult.selectedFolder);
+          return path.join(alignmentBaseDir, alignmentResult.selectedFolder);
         }
         return specFolderPath;
       }
