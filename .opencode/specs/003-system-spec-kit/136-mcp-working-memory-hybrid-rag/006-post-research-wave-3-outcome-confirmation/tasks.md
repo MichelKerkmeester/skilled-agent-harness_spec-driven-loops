@@ -30,17 +30,19 @@
 - [x] W3-020 Publish final closure packet references for root checklist and sign-off review, including docs/handover-consumable capability matrix artifact. (Closure packaging task; scope derived from spec.md §6 dependency outputs.) [Evidence: all W3-001 through W3-010 complete]
 <!-- /ANCHOR:task-groups -->
 
+<!-- ANCHOR:evidence-requirements -->
 ## 2. Evidence Requirements
 
-<!-- ANCHOR:evidence-requirements -->
 - [x] W3-E01 Survey dataset and scored summary artifact attached with capability matrix interpretation. [Evidence: `scratch/c136-06-survey-outcomes.md`]
 - [x] W3-E02 14-day KPI comparison report and closure note attached with matrix drift analysis. [Evidence: `scratch/c136-07-kpi-closure-evidence.md`]
 - [x] W3-E03 Root synchronization evidence attached (spec/plan/tasks/checklist + handover consumption references). [Evidence: root documents reference Wave 3 closure outputs]
 <!-- /ANCHOR:evidence-requirements -->
 
-## 3. Completion Conditions
+---
 
 <!-- ANCHOR:completion-conditions -->
+## 3. Completion Conditions
+
 - [x] All W3-001, W3-010, and W3-020 completed.
 - [x] All `W3-E01` through `W3-E03` completed.
 - [x] Root mapping remains synchronized.

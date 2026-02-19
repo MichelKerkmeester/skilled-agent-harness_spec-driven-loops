@@ -5,6 +5,7 @@
 
 ---
 
+<!-- ANCHOR:notation -->
 ## Task Notation
 
 | Prefix | Meaning |
@@ -12,9 +13,11 @@
 | `[ ]` | Pending |
 | `[x]` | Completed |
 | `[B]` | Blocked by dependency |
+<!-- /ANCHOR:notation -->
 
 ---
 
+<!-- ANCHOR:package-task-groups -->
 ## 1. Package Task Groups
 
 ### Group A - Baseline Harness (QP-0)
@@ -36,13 +39,18 @@
 ### Group E - Legacy Remediation (QP-4)
 - [x] MQ-040 [B:MQ-031] Complete active-tier remediation tasks (`TQ040-TQ046`).
 - [x] MQ-041 [B:MQ-040] Complete archive-tier handling task (`TQ047`).
+<!-- /ANCHOR:package-task-groups -->
+
+<!-- ANCHOR:evidence -->
 
 ## 2. Evidence Requirements
 
 - [x] MQ-E01 Quality gate test evidence attached (known-bad fail / known-good pass).
 - [x] MQ-E02 KPI 14-day evidence attached for `SC-006-SC-013`. [Status: administratively closed per user directive; see `scratch/quality-kpi-14day.md`.]
 - [x] MQ-E03 Legacy remediation before/after retrieval comparison attached.
+<!-- /ANCHOR:evidence -->
 
+<!-- ANCHOR:completion -->
 ## 3. Completion Conditions
 
 - [x] All package tasks `MQ-001` through `MQ-041` completed.
@@ -51,3 +59,4 @@
 - [x] Root mapping remains synchronized.
 
 Tracking document synchronized with root execution state; administrative closure applied per user directive.
+<!-- /ANCHOR:completion -->

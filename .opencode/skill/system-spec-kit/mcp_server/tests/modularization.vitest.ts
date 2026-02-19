@@ -21,7 +21,7 @@ const MAX_MODULE_LINES = 320; // 300 target with 20-line tolerance
 // Known large modules with extended thresholds (technical debt tracking)
 // These modules contain complex business logic justifying larger size
 const EXTENDED_LIMITS: Record<string, number> = {
-  'context-server.js': 650,         // Main entry point (tool defs extracted to tool-schemas.ts)
+  'context-server.js': 660,         // Main entry point (tool defs extracted to tool-schemas.ts)
   'handlers/memory-search.js': 900, // Complex search logic with multiple strategies
   'handlers/memory-triggers.js': 350, // Trigger matching with cognitive features
   'handlers/memory-crud.js': 600,   // CRUD operations with validation

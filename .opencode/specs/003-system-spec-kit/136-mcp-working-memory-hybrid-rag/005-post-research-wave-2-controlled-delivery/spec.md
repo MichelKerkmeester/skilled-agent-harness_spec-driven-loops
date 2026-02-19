@@ -69,6 +69,38 @@ Full requirement definitions: `../spec.md` §4 (REQ-001 through REQ-023)
 
 ---
 
+<!-- ANCHOR:canonical-requirement-linkage -->
+## Canonical Requirement Linkage
+
+This package keeps parent requirements authoritative and references canonical IDs directly for controlled-delivery execution:
+
+- `REQ-001` - inherited from `../spec.md` section 4 and applied to stable retrieval-context behavior during rollout.
+- `REQ-002` - inherited from `../spec.md` section 4 and applied to deterministic operational gate checks.
+- `REQ-003` - inherited from `../spec.md` section 4 and applied to stage-level traceability of rollout decisions.
+- `REQ-004` - inherited from `../spec.md` section 4 and applied to deterministic fallback parity in dark-launch gates.
+- `REQ-005` - inherited from `../spec.md` section 4 and applied to rollout-safety conditions for 10/50/100 transitions.
+- `REQ-006` - inherited from `../spec.md` section 4 and applied to visibility of evidence and reviewer auditability.
+- `REQ-007` - inherited from `../spec.md` section 4 and applied to telemetry-backed gate decisions.
+- `REQ-008` - inherited from `../spec.md` section 4 and applied to lifecycle control of mutation events.
+
+All normative wording remains in `../spec.md` section 4.
+<!-- /ANCHOR:canonical-requirement-linkage -->
+
+---
+
+<!-- ANCHOR:acceptance-scenarios -->
+## Acceptance Scenarios (Wave 2 Delivery Gates)
+
+1. **Given** dark-launch validation begins, **when** non-admin closure checks run, **then** deterministic count/status/dependency outputs are captured in the gate packet.
+2. **Given** rollout starts at 10%, **when** gate criteria are evaluated, **then** promotion to 50% is blocked until defined telemetry thresholds are met.
+3. **Given** rollout is at 50%, **when** reliability and fallback behavior are reviewed, **then** promotion to 100% requires explicit pass decisions with attached evidence.
+4. **Given** mutation operations occur during rollout, **when** ledger entries are written, **then** `reason`, `prior_hash`, `new_hash`, `linked_memory_ids`, and `decision_meta` are present.
+5. **Given** async post-response jobs execute, **when** queue and worker metrics are assessed, **then** durability and retry behavior are included in rollout evidence.
+6. **Given** Wave 2 closure is requested, **when** handoff to Wave 3 is prepared, **then** dark-launch, staged-rollout, and ledger integrity artifacts are all published.
+<!-- /ANCHOR:acceptance-scenarios -->
+
+---
+
 <!-- ANCHOR:requirements-map -->
 ## 3. Requirement Mapping (Package Slice)
 
@@ -133,8 +165,8 @@ This package converts mid-wave delivery backlog items into executable, evidence-
 ## 7. Governance (Level 3+ Package Rules)
 
 - This package is Level 3+ planning documentation.
-- `decision-record.md` is intentionally not present in this package; canonical ADRs remain at `../decision-record.md`.
-- `implementation-summary.md` is intentionally not present in this package; implementation has not started.
+- `decision-record.md` present as delegation stub; canonical ADRs at `../decision-record.md`.
+- `implementation-summary.md` present as compliance normalization record; substantive summary at `../implementation-summary.md`.
 - Root documents remain source-of-truth for completion claims.
 <!-- /ANCHOR:governance -->
 

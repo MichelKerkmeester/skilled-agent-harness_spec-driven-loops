@@ -21,6 +21,68 @@ This wave consumes Wave 2 rollout evidence and Wave 1 telemetry dimensions. It m
 
 ---
 
+<!-- ANCHOR:architecture -->
+## Architecture
+
+Wave 3 consumes existing runtime outputs and focuses on evidence synthesis rather than new runtime features:
+
+- Survey outcome pipeline provides structured user-perception evidence.
+- KPI longitudinal pipeline uses telemetry and rollout artifacts as baseline inputs.
+- Capability truth matrix snapshots provide runtime-backed closure interpretation.
+- Final recommendation packet aggregates these streams for acceptance review.
+<!-- /ANCHOR:architecture -->
+
+---
+
+<!-- ANCHOR:implementation -->
+## Implementation
+
+Wave 3 execution uses two phases so evidence capture and closure analysis remain auditable.
+
+## Phase 1 - Outcome Evidence Capture
+
+- Collect survey data and produce scored outcome summaries.
+- Publish capability truth matrix interpretation notes tied to survey outcomes.
+- Validate artifact completeness before longitudinal closure analysis begins.
+
+## Phase 2 - Longitudinal Closure Analysis
+
+- Run 14-day KPI baseline comparison and closure decision evaluation.
+- Produce capability matrix drift analysis using start/mid/end snapshots.
+- Publish final closure recommendation for root checklist and sign-off.
+<!-- /ANCHOR:implementation -->
+
+---
+
+<!-- ANCHOR:ai-execution-protocol -->
+## AI Execution Protocol
+
+### Pre-Task Checklist
+
+1. Confirm Wave 2 evidence packet is complete and available.
+2. Confirm scope is limited to `C136-06` and `C136-07`.
+3. Confirm survey rubric and KPI comparison baseline are fixed before analysis.
+4. Confirm closure artifacts will be published to root-consumable locations.
+
+### Execution Rules
+
+| Rule ID | Rule |
+|---------|------|
+| TASK-SEQ-01 | Complete Phase 1 evidence capture before Phase 2 closure analysis. |
+| TASK-SCOPE-01 | Keep work limited to outcome confirmation; no new runtime feature scope. |
+| TASK-EVID-01 | Attach evidence references for every completed task and checklist claim. |
+
+### Status Reporting Format
+
+Use: `Status: <in-progress|blocked|complete> | Stream: <survey|kpi|matrix|closure> | Evidence: <path or pending> | Next: <next action>`
+
+### Blocked Task Protocol
+
+When blocked, mark item as `[B]`, record missing dependency or data gap, identify owner, and define explicit unblock criteria.
+<!-- /ANCHOR:ai-execution-protocol -->
+
+---
+
 <!-- ANCHOR:quality-gates -->
 ## 2. Quality Gates
 
@@ -89,7 +151,7 @@ This wave consumes Wave 2 rollout evidence and Wave 1 telemetry dimensions. It m
 
 - Level 3+ package planning is maintained here.
 - `decision-record.md` remains root-only at `../decision-record.md`.
-- `implementation-summary.md` is intentionally absent until implementation work exists.
+- `implementation-summary.md` present as compliance normalization record; substantive summary at `../implementation-summary.md`.
 <!-- /ANCHOR:governance -->
 
 ---

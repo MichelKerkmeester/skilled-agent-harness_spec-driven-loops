@@ -1,5 +1,7 @@
 # 136 - Technical Analysis: Working Memory + Hybrid Graph/Vector RAG Systems
 
+> **Note (2026-02-19):** Source code references in this document point to `scratch/opencode-working-memory/` and `scratch/graphrag-hybrid/` repositories that were removed after analysis per CHK-051 (scratch cleanup). Line references are historical and no longer resolvable in the repository. The analysis findings remain valid — algorithms were ported to TypeScript per ADR-001.
+
 ## Executive Summary
 
 **UX Goal**: Improve agent session continuity and reduce cognitive friction during multi-step workflows through contextually aware, pressure-responsive memory retrieval.

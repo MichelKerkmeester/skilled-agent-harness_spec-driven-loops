@@ -45,6 +45,68 @@ Waves 1–3 added the following to the MCP server:
 
 ---
 
+<!-- ANCHOR:architecture -->
+## Architecture
+
+The package follows the existing documentation architecture and updates content in place:
+
+- Top-level docs (`README.md`, `SKILL.md`, MCP `README.md`, `INSTALL_GUIDE.md`) provide primary discovery paths.
+- Folder READMEs under `mcp_server/lib/`, `mcp_server/handlers/`, `mcp_server/tests/`, and `scripts/` provide implementation-level inventory.
+- Memory command docs under `.opencode/command/memory/` define user-facing command contracts.
+- ANCHOR blocks remain stable to preserve memory indexing behavior.
+<!-- /ANCHOR:architecture -->
+
+---
+
+<!-- ANCHOR:implementation -->
+## Implementation
+
+Execution remains documentation-only and is split into two phases to keep verification deterministic.
+
+## Phase 1 - Core Documentation Alignment
+
+- Update top-level docs and subfolder READMEs with current module inventories and feature flags.
+- Add missing folder READMEs for `contracts`, `telemetry`, and `extraction`.
+- Update architecture diagrams and key capability sections where gaps were identified.
+
+## Phase 2 - Command and Script Documentation Alignment
+
+- Update memory command docs to match current MCP tool signatures and behavior notes.
+- Update scripts documentation inventories for extractors, memory tooling, and tests.
+- Run final stale-reference and evidence validation across all updated docs.
+<!-- /ANCHOR:implementation -->
+
+---
+
+<!-- ANCHOR:ai-execution-protocol -->
+## AI Execution Protocol
+
+### Pre-Task Checklist
+
+1. Confirm scope is limited to package `007-documentation-alignment` and listed in-scope files.
+2. Confirm no runtime code implementation claims are introduced in doc updates.
+3. Confirm module counts and file references are verified before checklist completion marks are kept.
+4. Confirm ANCHOR open/close pairs remain intact after each edit.
+
+### Execution Rules
+
+| Rule ID | Rule |
+|---------|------|
+| TASK-SEQ-01 | Complete Phase 1 documentation alignment before Phase 2 command/script updates. |
+| TASK-SCOPE-01 | Keep changes documentation-only and within package 007 scope. |
+| TASK-EVID-01 | Every completed P0/P1 checklist item must include explicit evidence formatting. |
+
+### Status Reporting Format
+
+Use: `Status: <in-progress|blocked|complete> | Group: <A-F> | Evidence: <path or pending> | Next: <next action>`
+
+### Blocked Task Protocol
+
+When blocked, mark item as `[B]`, describe missing source evidence, identify owner, and define clear unblock criteria before continuing.
+<!-- /ANCHOR:ai-execution-protocol -->
+
+---
+
 <!-- ANCHOR:execution-model -->
 ## 3. Execution Model
 

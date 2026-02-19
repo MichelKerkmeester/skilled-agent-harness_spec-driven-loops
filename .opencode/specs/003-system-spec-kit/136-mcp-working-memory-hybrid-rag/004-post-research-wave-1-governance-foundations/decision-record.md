@@ -24,3 +24,29 @@ Decisions relevant to this wave's scope (adaptive fusion, typed trace, artifact-
 - **Post-research wave model**: Documented in `../spec.md` §3.7 and `../plan.md` §2.7
 - **Wave 1 capability ownership**: Frozen per `../plan.md` REQUIREMENT OWNERSHIP MATRIX
 <!-- /ANCHOR:delegation -->
+
+---
+
+<!-- ANCHOR:context -->
+## Context
+
+Wave 1 exists to establish governance-safe runtime foundations before controlled delivery. The package intentionally references root ADRs so that contract, routing, and fusion decisions remain centralized in a single canonical record.
+<!-- /ANCHOR:context -->
+
+---
+
+<!-- ANCHOR:decision -->
+## Decision
+
+Maintain root-level ADR ownership in `../decision-record.md` and use this package decision record only for scoped cross-reference and wave-specific interpretation.
+<!-- /ANCHOR:decision -->
+
+---
+
+<!-- ANCHOR:consequences -->
+## Consequences
+
+- Prevents ADR drift across wave packages.
+- Requires package files to keep root references synchronized after each update.
+- Keeps review traffic concentrated in one decision source while preserving package traceability.
+<!-- /ANCHOR:consequences -->

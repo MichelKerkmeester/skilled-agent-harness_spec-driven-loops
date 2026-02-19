@@ -75,6 +75,38 @@ Full requirement definitions: `../spec.md` §4 (REQ-001 through REQ-023)
 
 ---
 
+<!-- ANCHOR:canonical-requirement-linkage -->
+## Canonical Requirement Linkage
+
+This package keeps parent requirements authoritative and references the canonical IDs directly (no package-local rewrites):
+
+- `REQ-001` - inherited from `../spec.md` section 4 and applied to Wave 1 contract hardening scope.
+- `REQ-002` - inherited from `../spec.md` section 4 and applied to typed retrieval-envelope behavior.
+- `REQ-003` - inherited from `../spec.md` section 4 and applied to deterministic trace-stage coverage.
+- `REQ-004` - inherited from `../spec.md` section 4 and applied to artifact-class routing policy.
+- `REQ-005` - inherited from `../spec.md` section 4 and applied to fallback safety expectations.
+- `REQ-006` - inherited from `../spec.md` section 4 and applied to adaptive-fusion governance controls.
+- `REQ-007` - inherited from `../spec.md` section 4 and applied to telemetry evidence expectations.
+- `REQ-008` - inherited from `../spec.md` section 4 and applied to review and closure readiness criteria.
+
+All wording and acceptance authority remains in `../spec.md` section 4.
+<!-- /ANCHOR:canonical-requirement-linkage -->
+
+---
+
+<!-- ANCHOR:acceptance-scenarios -->
+## Acceptance Scenarios (Wave 1 Readiness)
+
+1. **Given** Wave 1 implementation starts, **when** retrieval traces are emitted, **then** every trace includes `candidate`, `filter`, `fusion`, `rerank`, `fallback`, and `final-rank` stages.
+2. **Given** artifact routing policies are configured, **when** class `spec`, `plan`, `tasks`, or `checklist` is requested, **then** deterministic class policy selection is applied and test-verifiable.
+3. **Given** adaptive fusion is enabled for a supported intent, **when** scoring executes, **then** intent/document-type weighting is applied with deterministic fallback parity available.
+4. **Given** degraded-mode behavior is triggered, **when** fallback metadata is produced, **then** `failure_mode`, `fallback_mode`, `confidence_impact`, and `retry_recommendation` are present.
+5. **Given** Wave 1 telemetry collection runs, **when** evidence is exported for review, **then** latency, mode, fallback, and quality-proxy dimensions are all included.
+6. **Given** governance closure is requested, **when** triad review occurs, **then** Tech Lead, Data Reviewer, and Product Owner approval artifacts are all attached.
+<!-- /ANCHOR:acceptance-scenarios -->
+
+---
+
 <!-- ANCHOR:requirements-map -->
 ## 3. Requirement Mapping (Package Slice)
 
@@ -140,8 +172,8 @@ This package maps post-research backlog ownership from root docs without redefin
 ## 7. Governance (Level 3+ Package Rules)
 
 - This package is Level 3+ planning documentation.
-- `decision-record.md` is intentionally not present in this package; canonical ADRs remain at `../decision-record.md`.
-- `implementation-summary.md` is intentionally not present in this package; implementation has not started.
+- `decision-record.md` present as delegation stub; canonical ADRs at `../decision-record.md`.
+- `implementation-summary.md` present as compliance normalization record; substantive summary at `../implementation-summary.md`.
 - Root documents remain source-of-truth for completion claims.
 <!-- /ANCHOR:governance -->
 

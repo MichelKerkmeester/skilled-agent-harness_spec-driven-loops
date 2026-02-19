@@ -5,6 +5,7 @@
 
 ---
 
+<!-- ANCHOR:notation -->
 ## Task Notation
 
 | Prefix | Meaning |
@@ -12,9 +13,11 @@
 | `[ ]` | Pending |
 | `[x]` | Completed |
 | `[B]` | Blocked by dependency |
+<!-- /ANCHOR:notation -->
 
 ---
 
+<!-- ANCHOR:package-task-groups -->
 ## 1. Package Task Groups
 
 ### Group A - Phase 0 Prerequisites
@@ -34,19 +37,26 @@
 - [x] FDN-021 Complete redaction calibration tasks (`T027e-T027j`).
 - [x] FDN-022 Complete session lifecycle contract tasks (`T027k-T027n`).
 - [x] FDN-023 [B:FDN-020,FDN-021,FDN-022] Complete go/no-go hard gate (`T027o`).
+<!-- /ANCHOR:package-task-groups -->
 
+<!-- ANCHOR:handoff-sync -->
 ## 2. Handoff and Synchronization Tasks
 
 - [x] FDN-030 Publish handoff artifact list for package 002 (`eval-dataset-1000.json`, `phase1-5-eval-results.md`, `redaction-calibration.md`).
 - [x] FDN-031 Confirm hard-gate status and dependencies in root `../tasks.md` mapping section.
 - [x] FDN-032 Confirm package references in root `../spec.md`, `../plan.md`, and `../checklist.md` remain current.
+<!-- /ANCHOR:handoff-sync -->
+
+<!-- ANCHOR:evidence -->
 
 ## 3. Evidence Requirements
 
 - [x] FDN-E01 Correlation evidence attached (`phase1-5-eval-results.md`).
 - [x] FDN-E02 Redaction FP evidence attached (`redaction-calibration.md`).
 - [x] FDN-E03 Session lifecycle test evidence attached (integration test output).
+<!-- /ANCHOR:evidence -->
 
+<!-- ANCHOR:completion -->
 ## 4. Completion Conditions
 
 - [x] All `FDN-001` through `FDN-023` completed.
@@ -55,3 +65,4 @@
 - [x] Root mapping remains synchronized.
 
 Tracking document synchronized with root execution state; remaining open items are human/ops-gated.
+<!-- /ANCHOR:completion -->

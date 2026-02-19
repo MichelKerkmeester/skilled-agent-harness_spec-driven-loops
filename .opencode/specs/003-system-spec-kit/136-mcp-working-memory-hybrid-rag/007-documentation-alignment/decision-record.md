@@ -5,6 +5,14 @@
 
 ---
 
+<!-- ANCHOR:context -->
+## Context
+
+Documentation alignment follows completed Waves 1-3 and closes a doc-to-code drift gap. The goal is to restore accuracy of module inventories, feature flags, architecture flow descriptions, and command signatures without changing implementation behavior.
+<!-- /ANCHOR:context -->
+
+---
+
 <!-- ANCHOR:decisions -->
 ## Decisions
 
@@ -62,3 +70,13 @@
 
 **Rationale:** Memory commands are execution engines (YAML-backed workflows). Restructuring them risks breaking command behavior. The gap is informational (missing parameter docs), not structural.
 <!-- /ANCHOR:decisions -->
+
+---
+
+<!-- ANCHOR:consequences -->
+## Consequences
+
+- Documentation accuracy improves retrieval quality and onboarding confidence.
+- Existing formatting differences remain where intentional to minimize change risk.
+- Future updates should verify counts and references against repository state before marking checklist completion.
+<!-- /ANCHOR:consequences -->

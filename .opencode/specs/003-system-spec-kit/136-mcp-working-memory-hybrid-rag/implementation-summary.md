@@ -13,7 +13,7 @@
 | Spec Folder | 136-mcp-working-memory-hybrid-rag |
 | Completed | 2026-02-19 |
 | Level | 3+ |
-| Status | Complete — all features shipped and verified |
+| Status | Complete for feature scope. Current checks show one open typecheck/build blocker. |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -108,33 +108,15 @@ All features shipped behind feature flags and went through a structured rollout:
 <!-- ANCHOR:verification -->
 ## Verification
 
-### Test Results
-
 | Check | Result |
 |-------|--------|
-| Full test suite | **4,377 passed**, 72 skipped, 0 failures (138 test files) |
-| TypeScript compilation | Clean — 0 errors |
-| New module tests | 105 tests across 5 new test files, all passing |
-| Spec validator | PASS (0 errors, 0 warnings) |
+| Strict root validation | PASS, 0 errors, 0 warnings |
+| Full test suite | PASS, 138 passed test files and 4 skipped (142 total). 4377 passed tests and 72 skipped (4449 total). Duration 3.49s. |
+| Lint (`mcp_server`) | PASS, no lint errors |
+| Typecheck | FAIL, `scripts/evals/run-performance-benchmarks.ts(268,13): error TS2349: This expression is not callable. Type 'never' has no call signatures.` |
+| Build | FAIL, same TS2349 error as typecheck |
 
-### New Modules
-
-| Module | Tests | What It Does |
-|--------|-------|--------------|
-| `lib/contracts/retrieval-trace.ts` | 17 | Typed ContextEnvelope, RetrievalTrace, DegradedModeContract |
-| `lib/search/artifact-routing.ts` | 35 | 9 artifact classes with per-type retrieval strategies |
-| `lib/search/adaptive-fusion.ts` | 15 | Intent-aware weighted RRF with dark-run mode |
-| `lib/storage/mutation-ledger.ts` | 16 | Append-only audit trail with hash chains |
-| `lib/telemetry/retrieval-telemetry.ts` | 22 | 4-dimension retrieval telemetry |
-
-### Success Criteria
-
-| Criterion | Target | Observed | Status |
-|-----------|--------|----------|--------|
-| Token waste reduction | >= 15% | 19.6% reduction | PASS |
-| Context errors | <= 25% of baseline | 0% (2000 → 0) | PASS |
-| Manual saves | <= 60% of baseline | 24% of baseline | PASS |
-| Top-5 MRR | >= 0.95x baseline | 0.9811x | PASS |
+Detailed run notes are captured in `specs/003-system-spec-kit/136-mcp-working-memory-hybrid-rag/test-results.md`.
 <!-- /ANCHOR:verification -->
 
 ---
@@ -146,7 +128,7 @@ All features shipped behind feature flags and went through a structured rollout:
 2. **Telemetry outputs are evaluation-lane artifacts.** They're reproducible and useful for gating, but they reflect scripted test scenarios, not live production traffic.
 3. **Survey data is administrative.** The user satisfaction score (4.20/5.0) comes from an administrative closure process. A production survey with live respondents would strengthen this.
 4. **QP-4 archive handling uses `deprecated` tier.** The `importance_tier` enum doesn't support a literal `archived` value, so `deprecated` serves as the archival equivalent.
-5. **Pre-existing TS1343 issue.** A TypeScript error in `scripts/wrap-all-templates.ts` predates this work and is outside scope.
+5. **Open TS2349 blocker.** `npm run typecheck` and `npm run build` fail with `scripts/evals/run-performance-benchmarks.ts(268,13): error TS2349: This expression is not callable. Type 'never' has no call signatures.`
 <!-- /ANCHOR:limitations -->
 
 ---

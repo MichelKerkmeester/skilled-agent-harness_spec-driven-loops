@@ -2,6 +2,7 @@
 
 <!-- SPECKIT_LEVEL: 3 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skill/workflows-documentation/assets/documentation/hvr_rules.md -->
 
 ---
 
@@ -21,12 +22,19 @@
 
 ### Context
 
-[What is the problem or situation requiring a decision? 2-3 sentences.]
+<!-- Voice guide: State the problem directly. "We needed to choose between X and Y because Z"
+     not "A decision was required regarding the selection of an appropriate approach."
+     Write 2-4 sentences that a new team member could understand without prior context. -->
+
+[What problem or situation required this decision? What was at stake?
+Write in direct, active voice. State the forces that made this decision necessary.]
 
 ### Constraints
-- [Technical constraint]
-- [Business constraint]
-- [Time/resource constraint]
+
+<!-- Voice guide: Be specific. "API rate limit of 100 req/s" not "Performance considerations." -->
+
+- [Technical constraint with specifics]
+- [Business constraint with specifics]
 <!-- /ANCHOR:adr-001-context -->
 
 ---
@@ -34,9 +42,12 @@
 <!-- ANCHOR:adr-001-decision -->
 ### Decision
 
-**Summary**: [One-sentence description of the decision]
+<!-- Voice guide: State the decision with certainty. "We chose X" not "It was decided that X would be selected."
+     The details should explain how it works, not justify why (that comes in Alternatives). -->
 
-**Details**: [How it will be implemented, 2-3 sentences]
+**We chose**: [One-sentence description of the decision, in active voice]
+
+**How it works**: [Implementation approach in 2-3 direct sentences]
 <!-- /ANCHOR:adr-001-decision -->
 
 ---
@@ -48,9 +59,12 @@
 |--------|------|------|-------|
 | **[Chosen]** | [Advantages] | [Disadvantages] | [X/10] |
 | [Alternative A] | [Advantages] | [Disadvantages] | [Y/10] |
-| [Alternative B] | [Advantages] | [Disadvantages] | [Z/10] |
 
-**Why Chosen**: [Rationale for selection]
+<!-- Voice guide: Write the rationale like you're convincing a skeptical colleague.
+     "X scored highest because it solves our rate-limit constraint without adding latency"
+     not "X was determined to be the optimal solution based on evaluation criteria." -->
+
+**Why this one**: [Rationale in 1-2 sentences, direct and specific]
 <!-- /ANCHOR:adr-001-alternatives -->
 
 ---
@@ -58,17 +72,21 @@
 <!-- ANCHOR:adr-001-consequences -->
 ### Consequences
 
-**Positive**:
-- [Benefit 1]
-- [Benefit 2]
+<!-- Voice guide: Be honest about trade-offs. Every decision has costs.
+     "This adds ~50ms latency to cold starts" not "There may be minor performance implications." -->
 
-**Negative**:
-- [Drawback 1] - Mitigation: [How to address]
+**What improves**:
+- [Specific benefit with measurable impact where possible]
+- [Specific benefit]
+
+**What it costs**:
+- [Specific drawback] . Mitigation: [How to handle it]
 
 **Risks**:
+
 | Risk | Impact | Mitigation |
 |------|--------|------------|
-| [Risk] | [H/M/L] | [Strategy] |
+| [Risk with specifics] | [H/M/L] | [Concrete strategy] |
 <!-- /ANCHOR:adr-001-consequences -->
 
 ---
@@ -78,7 +96,7 @@
 
 | # | Check | Result | Evidence |
 |---|-------|--------|----------|
-| 1 | **Necessary?** | [PASS/FAIL] | [Is this solving an ACTUAL need NOW?] |
+| 1 | **Necessary?** | [PASS/FAIL] | [Is this solving an actual need now?] |
 | 2 | **Beyond Local Maxima?** | [PASS/FAIL] | [Were alternatives explored?] |
 | 3 | **Sufficient?** | [PASS/FAIL] | [Is this the simplest approach?] |
 | 4 | **Fits Goal?** | [PASS/FAIL] | [Is this on the critical path?] |
@@ -92,18 +110,19 @@
 <!-- ANCHOR:adr-001-impl -->
 ### Implementation
 
-**Affected Systems**:
-- [System/Component 1]
-- [System/Component 2]
+**What changes**:
+- [System/Component with specific change]
+- [System/Component with specific change]
 
-**Rollback**: [How to revert if needed]
+**How to roll back**: [Concrete revert steps, not "revert if needed"]
 <!-- /ANCHOR:adr-001-impl -->
 <!-- /ANCHOR:adr-001 -->
 
 ---
 
 <!--
-Level 3 Decision Record
-Document significant technical decisions
-One ADR per major decision
+Level 3 Decision Record: One ADR per major decision.
+Write in human voice: active, direct, specific. No em dashes, no hedging, no AI filler.
+State decisions with certainty. Be honest about trade-offs.
+HVR rules: .opencode/skill/workflows-documentation/assets/documentation/hvr_rules.md
 -->

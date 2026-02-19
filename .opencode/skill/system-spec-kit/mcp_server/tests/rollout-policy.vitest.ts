@@ -10,21 +10,31 @@ import {
   isIdentityInRollout,
 } from '../lib/cache/cognitive/rollout-policy';
 
-const originalPercent = process.env.SPECKIT_ROLLOUT_PERCENT;
-const originalFlag = process.env.SPECKIT_EXTRACTION;
+const ROLLOUT_FLAGS = [
+  'SPECKIT_ROLLOUT_PERCENT',
+  'SPECKIT_EXTRACTION',
+  'SPECKIT_SESSION_BOOST',
+  'SPECKIT_PRESSURE_POLICY',
+  'SPECKIT_EVENT_DECAY',
+  'SPECKIT_CAUSAL_BOOST',
+  'SPECKIT_AUTO_RESUME',
+  'SPECKIT_ADAPTIVE_FUSION',
+  'SPECKIT_EXTENDED_TELEMETRY',
+] as const;
+
+const originalEnv = Object.fromEntries(
+  ROLLOUT_FLAGS.map((flag) => [flag, process.env[flag]])
+) as Record<string, string | undefined>;
 
 describe('rollout policy', () => {
   afterEach(() => {
-    if (originalPercent === undefined) {
-      delete process.env.SPECKIT_ROLLOUT_PERCENT;
-    } else {
-      process.env.SPECKIT_ROLLOUT_PERCENT = originalPercent;
-    }
-
-    if (originalFlag === undefined) {
-      delete process.env.SPECKIT_EXTRACTION;
-    } else {
-      process.env.SPECKIT_EXTRACTION = originalFlag;
+    for (const flag of ROLLOUT_FLAGS) {
+      const value = originalEnv[flag];
+      if (value === undefined) {
+        delete process.env[flag];
+      } else {
+        process.env[flag] = value;
+      }
     }
   });
 
@@ -57,5 +67,25 @@ describe('rollout policy', () => {
     process.env.SPECKIT_EXTRACTION = 'true';
     process.env.SPECKIT_ROLLOUT_PERCENT = '100';
     expect(isFeatureEnabled('SPECKIT_EXTRACTION', 'session-1')).toBe(true);
+  });
+
+  it('defaults new rollout features to enabled when unset', () => {
+    delete process.env.SPECKIT_ROLLOUT_PERCENT;
+
+    const featureFlags = [
+      'SPECKIT_SESSION_BOOST',
+      'SPECKIT_PRESSURE_POLICY',
+      'SPECKIT_EVENT_DECAY',
+      'SPECKIT_EXTRACTION',
+      'SPECKIT_CAUSAL_BOOST',
+      'SPECKIT_AUTO_RESUME',
+      'SPECKIT_ADAPTIVE_FUSION',
+      'SPECKIT_EXTENDED_TELEMETRY',
+    ] as const;
+
+    for (const flag of featureFlags) {
+      delete process.env[flag];
+      expect(isFeatureEnabled(flag, 'session-default-on')).toBe(true);
+    }
   });
 });

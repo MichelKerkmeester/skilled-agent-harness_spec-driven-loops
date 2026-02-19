@@ -21,6 +21,68 @@ This wave consumes Wave 1 typed contract bundle and governance closure artifacts
 
 ---
 
+<!-- ANCHOR:architecture -->
+## Architecture
+
+Wave 2 validates production-like behavior using the existing runtime architecture plus operational controls:
+
+- Foreground request path remains deterministic and lightweight for gate checks.
+- Background queue/worker path handles heavier post-response processing and retry behavior.
+- Storage layer records append-only mutation events for traceability.
+- Telemetry and rollout evidence packets provide decision data for stage transitions.
+<!-- /ANCHOR:architecture -->
+
+---
+
+<!-- ANCHOR:implementation -->
+## Implementation
+
+Execution proceeds in two phases to separate rollout safety evidence from closure handoff.
+
+## Phase 1 - Controlled Rollout Evidence
+
+- Run dark-launch validation with deterministic gate-check artifacts.
+- Execute staged rollout at 10/50/100 with explicit pass/fail decisions.
+- Capture queue/worker durability metrics for async work reliability.
+
+## Phase 2 - Mutation Ledger and Handoff Closure
+
+- Validate append-only mutation ledger behavior and metadata completeness.
+- Consolidate rollout evidence into Wave 3 handoff packet.
+- Freeze Wave 2 outputs required for outcome-confirmation entry gates.
+<!-- /ANCHOR:implementation -->
+
+---
+
+<!-- ANCHOR:ai-execution-protocol -->
+## AI Execution Protocol
+
+### Pre-Task Checklist
+
+1. Confirm Wave 1 handoff artifacts are available and version-pinned.
+2. Confirm scope is limited to `C136-04`, `C136-05`, and `C136-11`.
+3. Confirm rollout gate thresholds are defined before execution begins.
+4. Confirm evidence destinations for dark-launch, staged rollout, and ledger verification.
+
+### Execution Rules
+
+| Rule ID | Rule |
+|---------|------|
+| TASK-SEQ-01 | Complete Phase 1 rollout evidence before Phase 2 closure handoff. |
+| TASK-SCOPE-01 | Keep work limited to Wave 2 package ownership and mapped backlog IDs. |
+| TASK-EVID-01 | Every completed checklist or task item includes an evidence reference. |
+
+### Status Reporting Format
+
+Use: `Status: <in-progress|blocked|complete> | Stage: <10|50|100|ledger> | Evidence: <path or pending> | Next: <next action>`
+
+### Blocked Task Protocol
+
+When blocked, mark item as `[B]`, record the blocked gate or dependency, assign owner, and include explicit unblock criteria before retry.
+<!-- /ANCHOR:ai-execution-protocol -->
+
+---
+
 <!-- ANCHOR:quality-gates -->
 ## 2. Quality Gates
 
@@ -99,7 +161,7 @@ Wave 3 may start only after Wave 2 publishes:
 
 - Level 3+ package planning is maintained here.
 - `decision-record.md` remains root-only at `../decision-record.md`.
-- `implementation-summary.md` is intentionally absent until implementation work exists.
+- `implementation-summary.md` present as compliance normalization record; substantive summary at `../implementation-summary.md`.
 <!-- /ANCHOR:governance -->
 
 ---

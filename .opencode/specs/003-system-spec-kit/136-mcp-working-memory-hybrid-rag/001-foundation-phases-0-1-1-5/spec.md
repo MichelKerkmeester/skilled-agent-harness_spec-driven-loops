@@ -104,8 +104,8 @@ This package does not redefine requirements; it scopes root requirements to foun
 ## 7. Governance (Level 3+ Package Rules)
 
 - This package is Level 3+ planning documentation.
-- `decision-record.md` is intentionally not present in this package; canonical ADRs remain at `../decision-record.md`.
-- `implementation-summary.md` is intentionally not present in this package; implementation has not started.
+- `decision-record.md` present as delegation stub; canonical ADRs at `../decision-record.md`.
+- `implementation-summary.md` present as compliance normalization record; substantive summary at `../implementation-summary.md`.
 - Root documents remain source-of-truth for completion claims.
 <!-- /ANCHOR:governance -->
 
@@ -116,3 +116,47 @@ This package does not redefine requirements; it scopes root requirements to foun
 
 Planning-only package. No implementation tasks are marked complete in this file set.
 <!-- /ANCHOR:status -->
+
+---
+
+<!-- ANCHOR:problem-statement -->
+## Problem Statement
+
+Package `001-foundation-phases-0-1-1-5` must produce trustworthy prerequisite and hardening evidence so package `002-extraction-rollout-phases-2-3` does not start on unstable assumptions. Without explicit foundation gates, later extraction and rollout work can inherit dataset bias, redaction over-filtering, or session-lifecycle regressions.
+<!-- /ANCHOR:problem-statement -->
+
+---
+
+<!-- ANCHOR:requirements -->
+## Requirements
+
+The package uses root requirements as binding constraints for this scope slice:
+
+- `REQ-001`: prerequisite wiring is in place before Phase 1 progression.
+- `REQ-002`: callback and lifecycle flow are stable under expected runtime conditions.
+- `REQ-003`: routing behavior remains deterministic under the defined gate sequence.
+- `REQ-004`: baseline observability and trace signals exist for prerequisite checks.
+- `REQ-005`: prerequisite completion criteria are explicit and auditable.
+- `REQ-006`: dependent package handoff boundaries are explicit.
+- `REQ-009`: shadow-evaluation gating is present before rollout work.
+- `REQ-010`: stability checks are retained across phase boundaries.
+- `REQ-011`: session behavior contract is enforced for continuation and resume.
+- `REQ-012`: pressure and safety checks are represented in package outputs.
+- `REQ-014`: hook-pipeline operational readiness is consumed by downstream package 002.
+- `REQ-015`: operational risk notes remain synchronized with root artifacts.
+- `REQ-016`: hardening gate criteria are explicit and measurable.
+- `REQ-017`: redaction calibration gate is complete before Phase 2 handoff.
+<!-- /ANCHOR:requirements -->
+
+---
+
+<!-- ANCHOR:acceptance-scenarios -->
+## Acceptance Scenarios
+
+1. **Given** Phase 0 prerequisite tasks are complete, **When** package readiness is reviewed, **Then** `T000l` sign-off evidence exists in mapped root artifacts.
+2. **Given** the 1000-query hardening dataset is generated, **When** correlation is computed, **Then** Spearman correlation is `>= 0.90` before handoff.
+3. **Given** redaction calibration output is available, **When** false-positive rate is measured on 50 real Bash outputs, **Then** the result is `<= 15%`.
+4. **Given** session lifecycle contract tests run, **When** new-session and resume paths are exercised, **Then** reset and resume-counter behavior matches package scope.
+5. **Given** package 002 requests handoff artifacts, **When** dependency checks execute, **Then** `eval-dataset-1000.json`, `phase1-5-eval-results.md`, and `redaction-calibration.md` are referenced and available.
+6. **Given** root references are synchronized, **When** this package is reviewed against `../spec.md`, `../plan.md`, `../tasks.md`, and `../checklist.md`, **Then** no conflicting ownership or gate definitions are found.
+<!-- /ANCHOR:acceptance-scenarios -->

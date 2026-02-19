@@ -114,8 +114,8 @@ This package uses the canonical requirements from root docs and scopes execution
 ## 7. Governance (Level 3+ Package Rules)
 
 - This package is Level 3+ planning documentation.
-- `decision-record.md` is intentionally not present in this package; canonical ADRs remain at `../decision-record.md`.
-- `implementation-summary.md` is intentionally not present in this package; implementation has not started.
+- `decision-record.md` present as delegation stub; canonical ADRs at `../decision-record.md`.
+- `implementation-summary.md` present as compliance normalization record; substantive summary at `../implementation-summary.md`.
 - Root documents remain source-of-truth for completion claims.
 <!-- /ANCHOR:governance -->
 
@@ -126,3 +126,42 @@ This package uses the canonical requirements from root docs and scopes execution
 
 Execution-complete package for Phase 2/3 scope (`T029-T070`). This package remains immutable historical evidence and is the explicit technical handoff source for post-research Wave 1/2/3 execution packages.
 <!-- /ANCHOR:status -->
+
+---
+
+<!-- ANCHOR:problem-statement -->
+## Problem Statement
+
+Package `002-extraction-rollout-phases-2-3` must preserve a clear historical execution record for extraction and staged rollout while handing off follow-up engineering to Waves 1-3 without changing frozen backlog ownership. If this boundary is unclear, downstream packages may duplicate work or drift from verified Phase 2/3 evidence.
+<!-- /ANCHOR:problem-statement -->
+
+---
+
+<!-- ANCHOR:requirements -->
+## Requirements
+
+Package requirements and dependency-consumption constraints are:
+
+- `REQ-007`: extraction flow remains implemented and traceable to package scope.
+- `REQ-008`: redaction flow remains integrated with extraction outputs.
+- `REQ-009`: evaluation/stability checks remain represented in package acceptance targets.
+- `REQ-010`: rollout readiness gates remain explicit and measurable.
+- `REQ-013`: rollout/operations coverage remains explicit in package artifacts.
+- `REQ-014`: foundation hook readiness is consumed from package 001 and not re-owned here.
+- `REQ-017`: redaction calibration gate is consumed from package 001 and not re-owned here.
+- `REQ-007` to `REQ-010`: historical completion evidence remains immutable in this package.
+- `REQ-013` with `REQ-014`/`REQ-017`: transition notes preserve ownership split across historical and active wave packages.
+<!-- /ANCHOR:requirements -->
+
+---
+
+<!-- ANCHOR:acceptance-scenarios -->
+## Acceptance Scenarios
+
+1. **Given** package 001 has passed `T027o`, **When** Phase 2 scope is reviewed, **Then** dependency lock is documented before any extraction-stage claims.
+2. **Given** extraction precision and recall thresholds are evaluated, **When** package acceptance is checked, **Then** targets `>= 85%` precision and `>= 70%` recall are preserved.
+3. **Given** retrieval stability is measured against baseline, **When** MRR is calculated, **Then** the package retains the `>= 0.95x` stability threshold.
+4. **Given** rollout progression is executed, **When** operational evidence is reviewed, **Then** staged sequence `10% -> 50% -> 100%` is represented with monitoring windows.
+5. **Given** historical package closure is maintained, **When** transition ownership is reviewed, **Then** Wave 1/2/3 package mapping remains explicit and unchanged.
+6. **Given** root and package references are synchronized, **When** checklist mapping is audited, **Then** `CHK-140-166` references remain consistent with root artifacts.
+<!-- /ANCHOR:acceptance-scenarios -->

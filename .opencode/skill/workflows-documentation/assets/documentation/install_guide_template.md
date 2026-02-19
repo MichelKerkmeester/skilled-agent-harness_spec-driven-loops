@@ -12,7 +12,7 @@ Templates for creating phased installation guides with validation checkpoints.
 <!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
-**Purpose**: Install guides provide step-by-step instructions for installing, configuring, and verifying software tools. They bridge the gap between "download this" and "now use it successfully."
+**Purpose**: Install guides provide step-by-step instructions for installing, configuring, and verifying software tools. They take users from "download this" to "now use it successfully."
 
 **Key Characteristics**:
 - **Phase-based**: Installation broken into clear phases with validation
@@ -433,6 +433,7 @@ A guide to installing the MCP server.
 - **Direct instructions**: "Run this command" not "You might want to run"
 - **Specific over vague**: "Python 3.9+" not "recent Python version"
 - **Test everything**: Every command you write should be copy-pasteable and work
+- **Human Voice Rules (HVR)**: Follow the full HVR ruleset in [hvr_rules.md](./hvr_rules.md). Key points: no em dashes (use commas or periods), no semicolons, no banned words (leverage, robust, seamless, utilize, holistic), active voice throughout
 
 ### Placeholder Format
 
@@ -475,6 +476,7 @@ Quality:
 □ STOP conditions after each validation
 □ Placeholders are obviously placeholders
 □ Time estimate in AI-First section
+□ HVR compliance verified (see hvr_rules.md)
 
 Integration:
 □ File in `.opencode/install_guides/` folder

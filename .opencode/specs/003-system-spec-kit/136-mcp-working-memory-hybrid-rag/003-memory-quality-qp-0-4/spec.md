@@ -23,8 +23,8 @@ Primary outcome: new memory files are high-signal, actionable, and index-safe.
 | Package | `003-memory-quality-qp-0-4` |
 | Parent Spec | `../spec.md` |
 | Research Inputs | `../research.md`, `../research/` |
-| Status | Draft (planning-only) |
-| Implementation Status | Not started |
+| Status | Complete |
+| Implementation Status | Complete (admin closure 2026-02-19) |
 | Last Updated | 2026-02-18 |
 <!-- /ANCHOR:metadata -->
 
@@ -105,8 +105,8 @@ This package operationalizes root requirements without redefining them.
 ## 7. Governance (Level 3+ Package Rules)
 
 - This package is Level 3+ planning documentation.
-- `decision-record.md` is intentionally not present in this package; canonical ADRs remain at `../decision-record.md`.
-- `implementation-summary.md` is intentionally not present in this package; implementation has not started.
+- `decision-record.md` present as delegation stub; canonical ADRs at `../decision-record.md`.
+- `implementation-summary.md` present as compliance normalization record; substantive summary at `../implementation-summary.md`.
 - Root documents remain source-of-truth for completion claims.
 <!-- /ANCHOR:governance -->
 
@@ -117,3 +117,41 @@ This package operationalizes root requirements without redefining them.
 
 Planning-only package. No implementation tasks are marked complete in this file set.
 <!-- /ANCHOR:status -->
+
+---
+
+<!-- ANCHOR:problem-statement -->
+## Problem Statement
+
+Package `003-memory-quality-qp-0-4` must convert research findings into enforceable memory-quality gates so generated memory files remain high-signal and index-safe. Without explicit quality constraints, low-quality memory artifacts can degrade retrieval trust and pollute downstream ranking behavior.
+<!-- /ANCHOR:problem-statement -->
+
+---
+
+<!-- ANCHOR:requirements -->
+## Requirements
+
+This package operationalizes the following root requirement set:
+
+- `REQ-018`: baseline fixture quality gates are established before broader rollout.
+- `REQ-019`: contamination and malformed content are blocked before indexing.
+- `REQ-020`: post-render validation enforces hard-fail conditions for invalid memory artifacts.
+- `REQ-021`: decision extraction quality is improved and measurable.
+- `REQ-022`: semantic backfill keeps key metadata fields non-empty.
+- `REQ-023`: quality scoring and flags are persisted for new memory artifacts.
+- `REQ-018` through `REQ-020`: hard gate behavior is preserved in the package acceptance path.
+- `REQ-021` through `REQ-023`: quality telemetry remains synchronized with root KPI expectations.
+<!-- /ANCHOR:requirements -->
+
+---
+
+<!-- ANCHOR:acceptance-scenarios -->
+## Acceptance Scenarios
+
+1. **Given** baseline fixtures include known-good and known-bad samples, **When** QP-0 validation runs, **Then** failing fixtures are rejected and valid fixtures pass.
+2. **Given** post-render validator rules are configured, **When** malformed memory output is detected, **Then** indexing is blocked for that artifact.
+3. **Given** contamination filter rules are active, **When** contamination phrases appear in generated output, **Then** the memory file is rejected or flagged per gate policy.
+4. **Given** decision extraction logic runs on eligible sessions, **When** quality is measured, **Then** concrete decision coverage reaches package target thresholds.
+5. **Given** quality score persistence is enabled, **When** new memory files are produced, **Then** `quality_score` and `quality_flags` fields are populated.
+6. **Given** QP-4 remediation scope is executed, **When** legacy active-tier memory is reviewed, **Then** normalization and re-index strategy follow documented package sequence.
+<!-- /ANCHOR:acceptance-scenarios -->

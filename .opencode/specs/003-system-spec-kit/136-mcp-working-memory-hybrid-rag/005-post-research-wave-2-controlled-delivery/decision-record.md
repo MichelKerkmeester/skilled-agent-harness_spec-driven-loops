@@ -25,3 +25,29 @@ Decisions relevant to this wave's scope (mutation ledger, dark-launch, staged ro
 - **Wave 2 capability ownership**: Frozen per `../plan.md` REQUIREMENT OWNERSHIP MATRIX
 - **Wave 2 entry gate**: Requires Wave 1 typed contract bundle, routing policy, and governance closure artifacts
 <!-- /ANCHOR:delegation -->
+
+---
+
+<!-- ANCHOR:context -->
+## Context
+
+Wave 2 packages controlled-delivery proof and auditability evidence. Decisions about runtime behavior remain centralized at the root decision record to avoid diverging interpretations between rollout and governance streams.
+<!-- /ANCHOR:context -->
+
+---
+
+<!-- ANCHOR:decision -->
+## Decision
+
+Treat `../decision-record.md` as the canonical ADR source and use this package record as a scoped linkage document for Wave 2 execution and handoff conditions.
+<!-- /ANCHOR:decision -->
+
+---
+
+<!-- ANCHOR:consequences -->
+## Consequences
+
+- Keeps Wave 2 rollout and ledger decisions aligned with root architecture policy.
+- Requires package updates to stay synchronized whenever root ADR wording changes.
+- Reduces documentation fragmentation while preserving wave-level traceability.
+<!-- /ANCHOR:consequences -->

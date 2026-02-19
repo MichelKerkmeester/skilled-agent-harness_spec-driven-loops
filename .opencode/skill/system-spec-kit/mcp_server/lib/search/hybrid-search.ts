@@ -4,6 +4,8 @@
 // ---------------------------------------------------------------
 
 import type Database from 'better-sqlite3';
+import { getIndex, sanitizeFTS5Query } from './bm25-index';
+import { fuseResultsMulti } from './rrf-fusion';
 
 /* ---------------------------------------------------------------
    1. INTERFACES
@@ -81,8 +83,6 @@ function bm25Search(
   const { limit = 20, specFolder } = options;
 
   try {
-    // eslint-disable-next-line @typescript-eslint/no-require-imports
-    const { getIndex } = require('./bm25-index');
     const index = getIndex();
     const results = index.search(query, limit);
 
@@ -106,8 +106,6 @@ function bm25Search(
 
 function isBm25Available(): boolean {
   try {
-    // eslint-disable-next-line @typescript-eslint/no-require-imports
-    const { getIndex } = require('./bm25-index');
     const index = getIndex();
     return index.getStats().documentCount > 0;
   } catch {
@@ -142,8 +140,6 @@ function ftsSearch(
 
   try {
     // P3-06: Comprehensive FTS5 query sanitization
-    // eslint-disable-next-line @typescript-eslint/no-require-imports
-    const { sanitizeFTS5Query } = require('./bm25-index');
     const sanitized = sanitizeFTS5Query(query)
       .split(/\s+/)
       .filter(Boolean)
@@ -330,11 +326,7 @@ async function hybridSearchEnhanced(
   embedding: Float32Array | number[] | null,
   options: HybridSearchOptions = {}
 ): Promise<HybridSearchResult[]> {
-  // Import RRF fusion
   try {
-    // eslint-disable-next-line @typescript-eslint/no-require-imports
-    const { fuseResultsMulti } = require('./rrf-fusion');
-
     const lists: Array<{
       source: string;
       results: Array<{ id: number | string; [key: string]: unknown }>;

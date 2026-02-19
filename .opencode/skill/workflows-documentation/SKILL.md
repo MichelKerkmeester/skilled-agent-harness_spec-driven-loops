@@ -143,6 +143,7 @@ INTENT_SIGNALS = {
     "AGENT_COMMAND": {"weight": 4, "keywords": ["create agent", "create command", "agent template", "command template"]},
     "FLOWCHART": {"weight": 3, "keywords": ["flowchart", "ascii diagram", "decision tree", "swimlane"]},
     "INSTALL_GUIDE": {"weight": 3, "keywords": ["install guide", "setup instructions", "prerequisite"]},
+    "HVR": {"weight": 4, "keywords": ["human voice", "hvr", "voice rules", "banned words", "writing style"]},
 }
 
 RESOURCE_MAP = {
@@ -152,6 +153,7 @@ RESOURCE_MAP = {
     "AGENT_COMMAND": ["assets/opencode/agent_template.md", "assets/opencode/command_template.md"],
     "FLOWCHART": ["assets/flowcharts/simple_workflow.md", "assets/flowcharts/decision_tree_flow.md"],
     "INSTALL_GUIDE": ["assets/documentation/install_guide_template.md", "references/install_guide_standards.md"],
+    "HVR": ["assets/documentation/hvr_rules.md"],
 }
 
 LOADING_LEVELS = {
@@ -366,7 +368,7 @@ Standard Flow:      Branch:           Parallel:         Merge:
 7. **ALWAYS validate before completion** (structure + content + style)
 8. **ALWAYS provide metrics** (before/after counts from script output)
 9. **ALWAYS run `validate_document.py` before delivery** (exit 0 required for READMEs)
-10. **ALWAYS enforce Human Voice Rules (HVR)** on all documentation output. See `readme_template.md` §9 for the full ruleset covering punctuation, banned words, voice directives and structure rules.
+10. **ALWAYS enforce Human Voice Rules (HVR)** on all documentation output. Full ruleset: [hvr_rules.md](./assets/documentation/hvr_rules.md). Quick reference: `readme_template.md` §9.
 
 #### ❌ NEVER
 
@@ -526,7 +528,7 @@ The `extract_structure.py` script computes a **DQI** (0-100) based on measurable
 | **Content**   | 30  | Word count, heading density, code examples, links |
 | **Style**     | 30  | H2 formatting, dividers, intro paragraph, HVR compliance |
 
-**HVR Compliance in DQI**: Human Voice Rules violations count against the Style component. Documents with em dashes, semicolons, banned words or banned phrases receive deductions in the Style score. Full HVR ruleset is defined in `readme_template.md` §9.
+**HVR Compliance in DQI**: Human Voice Rules violations count against the Style component. Documents with em dashes, semicolons, banned words or banned phrases receive deductions in the Style score. Full HVR ruleset: [hvr_rules.md](./assets/documentation/hvr_rules.md).
 
 **Quality Bands**:
 

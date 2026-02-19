@@ -472,91 +472,41 @@ Before finalizing a README, verify all applicable items:
 <!-- ANCHOR:human-voice-rules-hvr -->
 ## 9. HUMAN VOICE RULES (HVR)
 
-All README content must follow Human Voice Rules. These rules produce writing that reads as direct, clear and human-authored rather than AI-generated.
+All README content must follow Human Voice Rules. The full ruleset lives in a standalone reference file. This section provides a quick reference for writing.
 
-### Punctuation
+**Full HVR Reference**: [`hvr_rules.md`](./hvr_rules.md)
 
-| Rule | Action |
-|------|--------|
-| No em dashes (—) | Replace with commas, periods, or colons |
-| No semicolons (;) | Split into two sentences or use "and" |
-| No Oxford commas | Remove comma before final "and/or" in 3+ item lists |
-| Max 1 ellipsis per file | Remove excess ellipses |
+### Quick Reference
 
-### Structure Rules
+| Category | Rule | Action |
+|----------|------|--------|
+| Punctuation | No em dashes | Replace with commas, periods or colons |
+| Punctuation | No semicolons | Split into two sentences or use "and" |
+| Punctuation | No Oxford commas | Remove comma before final "and/or" in 3+ item lists |
+| Structure | No "not just X, but also Y" | Rewrite as direct statement |
+| Structure | No 3-item inline lists | Use 2, 4 or 5 items (tables and bullet lists exempt) |
+| Structure | No setup language | Remove "Let's explore", "dive in", "when it comes to" |
+| Voice | Active voice | "The script validates" not "Structure is validated" |
+| Voice | Direct address | "Run the command" not "The command should be run" |
+| Voice | Simple words | Prefer short, common words over formal ones |
+| Voice | Cut fluff | Remove unnecessary modifiers (very, really, just, basically) |
 
-| Rule | Action |
-|------|--------|
-| No "not just X, but also Y" | Rewrite as direct statement |
-| No exactly three-item inline lists | Use 2, 4, or 5 items (tables and bullet lists exempt) |
-| No setup language | Remove "Let's explore", "dive in", "when it comes to", "at its core" |
+### Banned Words (Top 10)
 
-### Banned Words
-
-Replace these words in all documentation:
-
-| Banned Word | Replacement |
-|-------------|-------------|
+| Banned | Use Instead |
+|--------|-------------|
 | leverage | use |
 | robust | strong, reliable |
 | seamless | smooth |
-| ecosystem | (remove or be specific) |
-| utilize/utilizing | use/using |
+| utilize | use |
 | holistic | complete, whole |
-| curate | select |
-| harness | use |
-| elevate | improve, raise |
-| foster | support, encourage |
 | empower | enable |
-| landscape | (remove or be specific) |
+| delve | look at, examine |
 | groundbreaking | new, first |
 | cutting-edge | latest, advanced |
-| delve | look at, examine |
-| illuminate | explain, clarify |
 | innovative | new |
-| remarkable | notable |
 
-### Banned Phrases
-
-Remove or rewrite these phrases entirely:
-- "It's important to"
-- "It's worth noting"
-- "When it comes to"
-- "Dive into"
-- "That being said"
-- "Having said that"
-- "The reality is"
-- "Here's the thing"
-- "Moving forward"
-- "At the end of the day"
-
-### Banned Metaphors
-
-| Metaphor | Replacement |
-|----------|-------------|
-| "deep dive" | detailed look |
-| "bridge the gap" | connect |
-| "at the heart of" | central to |
-| "game-changer" | (state the specific change) |
-| "pave the way" | enable |
-
-### Voice Directives
-
-- **Active voice**: Write "The script validates structure" not "Structure is validated by the script"
-- **Direct address**: Write "Run the command" not "The command should be run"
-- **Simple words**: Prefer short, common words over long, formal ones
-- **Varied sentence lengths**: Mix short and long sentences for rhythm
-- **No meta-commentary**: Remove "As mentioned above" or "In this section we will"
-- **Cut fluff**: Remove unnecessary modifiers and filler words
-
-### Soft Deductions
-
-Minimize these words (they weaken writing without adding meaning):
-- very, really, truly, absolutely, incredibly
-- just, actually, basically, simply
-- obviously, clearly
-
-Limit "however" to max 2 per file. Replace vague verbs with specific ones.
+For the complete banned words list, banned phrases, banned metaphors and soft deductions, see [`hvr_rules.md`](./hvr_rules.md).
 
 ---
 

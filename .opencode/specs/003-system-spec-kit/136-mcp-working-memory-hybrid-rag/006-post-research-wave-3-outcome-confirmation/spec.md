@@ -68,6 +68,38 @@ Full requirement definitions: `../spec.md` §4 (REQ-001 through REQ-023)
 
 ---
 
+<!-- ANCHOR:canonical-requirement-linkage -->
+## Canonical Requirement Linkage
+
+This package keeps parent requirements authoritative and references canonical IDs directly for outcome confirmation work:
+
+- `REQ-001` - inherited from `../spec.md` section 4 and applied to closure-context consistency.
+- `REQ-002` - inherited from `../spec.md` section 4 and applied to deterministic reporting inputs.
+- `REQ-003` - inherited from `../spec.md` section 4 and applied to traceable closure evidence packaging.
+- `REQ-004` - inherited from `../spec.md` section 4 and applied to fallback-aware interpretation of KPI behavior.
+- `REQ-005` - inherited from `../spec.md` section 4 and applied to stability checks across the 14-day window.
+- `REQ-006` - inherited from `../spec.md` section 4 and applied to capability-truth-matrix interpretation controls.
+- `REQ-007` - inherited from `../spec.md` section 4 and applied to telemetry-backed closure confidence.
+- `REQ-008` - inherited from `../spec.md` section 4 and applied to final recommendation traceability.
+
+All normative wording remains in `../spec.md` section 4.
+<!-- /ANCHOR:canonical-requirement-linkage -->
+
+---
+
+<!-- ANCHOR:acceptance-scenarios -->
+## Acceptance Scenarios (Wave 3 Outcome Closure)
+
+1. **Given** Wave 3 starts, **when** survey collection opens, **then** response capture includes scoring inputs required for closure interpretation.
+2. **Given** survey analysis executes, **when** outcome summaries are generated, **then** capability truth matrix interpretation notes are included.
+3. **Given** KPI observation begins, **when** day-by-day telemetry is reviewed, **then** baseline comparison remains reproducible across the full 14-day window.
+4. **Given** capability matrix snapshots are produced, **when** start, midpoint, and end states are compared, **then** drift analysis is documented with rationale.
+5. **Given** closure recommendation is drafted, **when** evidence is assembled, **then** user outcomes and KPI longitudinal results are both represented.
+6. **Given** final acceptance review occurs, **when** Wave 3 package is evaluated, **then** closure artifacts are ready for root checklist completion without adding new runtime scope.
+<!-- /ANCHOR:acceptance-scenarios -->
+
+---
+
 <!-- ANCHOR:requirements-map -->
 ## 3. Requirement Mapping (Package Slice)
 
@@ -126,8 +158,8 @@ This package closes post-research outcomes with user and KPI evidence rather tha
 ## 7. Governance (Level 3+ Package Rules)
 
 - This package is Level 3+ planning documentation.
-- `decision-record.md` is intentionally not present in this package; canonical ADRs remain at `../decision-record.md`.
-- `implementation-summary.md` is intentionally not present in this package; implementation has not started.
+- `decision-record.md` present as delegation stub; canonical ADRs at `../decision-record.md`.
+- `implementation-summary.md` present as compliance normalization record; substantive summary at `../implementation-summary.md`.
 - Root documents remain source-of-truth for completion claims.
 <!-- /ANCHOR:governance -->
 

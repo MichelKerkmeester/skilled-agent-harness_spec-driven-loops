@@ -84,7 +84,7 @@ Improve generated memory-file quality and retrieval usefulness by enforcing qual
 
 - Level 3+ package planning is maintained here.
 - `decision-record.md` remains root-only at `../decision-record.md`.
-- `implementation-summary.md` is intentionally absent until implementation work exists.
+- `implementation-summary.md` present as compliance normalization record; substantive summary at `../implementation-summary.md`.
 <!-- /ANCHOR:governance -->
 
 ---
@@ -94,3 +94,75 @@ Improve generated memory-file quality and retrieval usefulness by enforcing qual
 
 Planning-only package. No implementation has started.
 <!-- /ANCHOR:status -->
+
+---
+
+<!-- ANCHOR:technical-context -->
+## Technical Context
+
+| Context Item | Current State | Package Implication |
+|--------------|---------------|---------------------|
+| Research baseline | Defined in `../research.md` and `../research/` | QP sequence must stay traceable to documented research findings |
+| Root quality requirements | Defined as `REQ-018-023` and `SC-006-SC-013` | Package owns implementation planning for memory-quality controls |
+| Downstream rollout confidence | Package 002 consumes quality outcomes | Quality gates must be explicit and testable before rollout confidence claims |
+| Legacy memory inventory | Existing indexed artifacts include mixed quality | QP-4 remediation sequencing must avoid unsafe archival or ranking regressions |
+<!-- /ANCHOR:technical-context -->
+
+---
+
+<!-- ANCHOR:architecture -->
+## Architecture
+
+The architecture is a quality pipeline layered across validation, filtering, semantic enrichment, and KPI persistence. It is intentionally phased to establish baseline correctness first, then improve semantic quality, then stabilize historical memory quality through remediation.
+<!-- /ANCHOR:architecture -->
+
+---
+
+<!-- ANCHOR:implementation -->
+## Implementation
+
+Implementation proceeds as QP phases with explicit gates so quality controls can be introduced incrementally without claiming unsupported production outcomes.
+<!-- /ANCHOR:implementation -->
+
+---
+
+## Phase QP-0/QP-1 - Baseline and Validation Gate
+
+Deliver fixture harnesses and post-render hard-fail validation controls that block malformed or contaminated memory artifacts before indexing.
+
+## Phase QP-2/QP-3 - Semantic Quality and KPI Persistence
+
+Deliver decision extraction improvements, semantic backfill quality, and persistent quality-scoring telemetry for new memory artifacts.
+
+## Phase QP-4 - Legacy Remediation and Re-index
+
+Deliver controlled normalization of active-tier legacy artifacts with safe re-index workflow and rollback-safe sequencing.
+
+---
+
+<!-- ANCHOR:ai-execution-protocol -->
+## AI Execution Protocol
+
+### Pre-Task Checklist
+
+- Confirm `../research.md` and `../research/` references still represent current baseline findings.
+- Confirm requirement mapping to `REQ-018-023` and `SC-006-SC-013` remains unchanged.
+- Confirm package boundaries versus package 001 and package 002 remain explicit.
+- Confirm quality thresholds in this package remain synchronized with root artifacts.
+
+### Execution Rules
+
+| Rule | Description | Trigger | Action |
+|------|-------------|---------|--------|
+| MQ-ER-001 | Preserve hard validation gates | Any gate-rule update | Maintain hard-fail behavior for malformed/contaminated artifacts |
+| MQ-ER-002 | Preserve research traceability | Any requirement or task mapping edit | Keep links to `../research.md` and `../research/` explicit |
+| MQ-ER-003 | Preserve KPI comparability | Any threshold edit | Keep thresholds aligned with root `SC-006-SC-013` expectations |
+
+### Status Reporting Format
+
+Use: `Status: <Planned|In Progress|Blocked|Complete> | Phase: <QP-0..QP-4> | Scope: <task IDs> | Evidence: <artifact paths> | Next: <next action>`.
+
+### Blocked Task Protocol
+
+If blocked, record `BLOCKED` status with blocker class (validation, data quality, or dependency), impacted QP tasks, and explicit unblock condition before proceeding.
+<!-- /ANCHOR:ai-execution-protocol -->

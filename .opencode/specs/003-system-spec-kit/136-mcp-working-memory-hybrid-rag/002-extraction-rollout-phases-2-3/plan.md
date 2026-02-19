@@ -96,7 +96,7 @@ Implement extraction and causal ranking features, then execute controlled rollou
 
 - Level 3+ package planning is maintained here.
 - `decision-record.md` remains root-only at `../decision-record.md`.
-- `implementation-summary.md` is intentionally absent until implementation work exists.
+- `implementation-summary.md` present as compliance normalization record; substantive summary at `../implementation-summary.md`.
 <!-- /ANCHOR:governance -->
 
 ---
@@ -106,3 +106,71 @@ Implement extraction and causal ranking features, then execute controlled rollou
 
 Execution-complete for Phase 2/3 scope. This package remains maintained as the closed implementation record and explicit transition/handoff source for post-research waves.
 <!-- /ANCHOR:status -->
+
+---
+
+<!-- ANCHOR:technical-context -->
+## Technical Context
+
+| Context Item | Current State | Package Implication |
+|--------------|---------------|---------------------|
+| Upstream hard gate | Package `../001-foundation-phases-0-1-1-5/` owns prerequisite acceptance | Package 002 consumes outputs and cannot redefine prerequisite acceptance |
+| Historical execution record | `T029-T070` is complete in this package | Package remains historical evidence while follow-up delivery moves to waves |
+| Transition ownership | Wave 1/2/3 packages own active follow-up backlog | Handoff matrix must remain explicit and stable |
+| Root synchronization | Root scope and checklist are canonical | Package references must remain aligned with root artifacts |
+<!-- /ANCHOR:technical-context -->
+
+---
+
+<!-- ANCHOR:architecture -->
+## Architecture
+
+The package architecture is a closed-execution ledger with explicit transition contracts: extraction and rollout evidence remains frozen in this package, while active technical ownership transitions to Wave 1/2/3 packages through the documented contract matrix.
+<!-- /ANCHOR:architecture -->
+
+---
+
+<!-- ANCHOR:implementation -->
+## Implementation
+
+Implementation sequencing is preserved as historical record and represented through explicit phase headings so downstream teams can consume the package without reinterpreting closed scope.
+<!-- /ANCHOR:implementation -->
+
+---
+
+## Phase 2 - Extraction and Integration Delivery
+
+Closed scope for `T029-T055`, including extraction adapter, redaction gate, causal boost, and integration validation as package-owned historical evidence.
+
+## Phase 3 - Rollout and Operations Delivery
+
+Closed scope for `T056-T070`, including telemetry, staged rollout, and rollback controls retained as operational baseline for follow-up wave work.
+
+---
+
+<!-- ANCHOR:ai-execution-protocol -->
+## AI Execution Protocol
+
+### Pre-Task Checklist
+
+- Confirm package 001 dependency gate remains unchanged before referencing Phase 2 readiness.
+- Confirm closed-scope boundaries for `T029-T070` remain immutable.
+- Confirm wave ownership mapping (`004`, `005`, `006`) matches root documents.
+- Confirm acceptance thresholds in this package remain synchronized with root references.
+
+### Execution Rules
+
+| Rule | Description | Trigger | Action |
+|------|-------------|---------|--------|
+| EXR-ER-001 | Preserve historical closure | Any package update | Do not reopen or re-own completed `T029-T070` execution scope |
+| EXR-ER-002 | Preserve handoff clarity | Any transition-note edit | Keep wave ownership matrix explicit for `004`, `005`, `006` |
+| EXR-ER-003 | Preserve dependency locks | Any requirement mapping edit | Keep `REQ-014` and `REQ-017` dependency-consumed from package 001 |
+
+### Status Reporting Format
+
+Use: `Status: <Historical|Transition-Active|Blocked> | Scope: <task/check IDs> | Evidence: <file paths> | Owner: <historical or wave package> | Next: <handoff action>`.
+
+### Blocked Task Protocol
+
+If transition work is blocked, record `BLOCKED` status with dependency source (001, 004, 005, or 006), impacted contract items, and unblock condition; do not alter closed historical evidence to bypass blockers.
+<!-- /ANCHOR:ai-execution-protocol -->

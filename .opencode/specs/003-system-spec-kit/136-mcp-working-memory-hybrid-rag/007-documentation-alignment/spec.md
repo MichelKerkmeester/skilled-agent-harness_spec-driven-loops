@@ -103,6 +103,38 @@ This creates a documentation-reality gap that undermines the framework's core va
 
 ---
 
+<!-- ANCHOR:canonical-requirement-linkage -->
+## 3.1 Canonical Requirement Linkage
+
+This package keeps root requirements authoritative and links documentation alignment work to canonical requirement IDs:
+
+- `REQ-001` - inherited from `../spec.md` section 4 and applied to accurate retrieval documentation context.
+- `REQ-002` - inherited from `../spec.md` section 4 and applied to deterministic tool and command documentation.
+- `REQ-003` - inherited from `../spec.md` section 4 and applied to traceability of module-count statements.
+- `REQ-004` - inherited from `../spec.md` section 4 and applied to fallback and routing behavior documentation accuracy.
+- `REQ-005` - inherited from `../spec.md` section 4 and applied to quality-safe rollout documentation semantics.
+- `REQ-006` - inherited from `../spec.md` section 4 and applied to policy and governance documentation consistency.
+- `REQ-007` - inherited from `../spec.md` section 4 and applied to telemetry documentation completeness.
+- `REQ-008` - inherited from `../spec.md` section 4 and applied to auditability of doc-to-code alignment decisions.
+
+All normative requirement wording remains in `../spec.md` section 4.
+<!-- /ANCHOR:canonical-requirement-linkage -->
+
+---
+
+<!-- ANCHOR:acceptance-scenarios -->
+## 3.2 Acceptance Scenarios
+
+1. **Given** module counts are updated in top-level docs, **when** counts are cross-checked with repository inventory, **then** each documented count matches actual files.
+2. **Given** Wave 1 modules are documented, **when** readers inspect top-level and folder READMEs, **then** contracts, artifact routing, adaptive fusion, mutation ledger, and telemetry modules are all visible.
+3. **Given** feature flag documentation is reviewed, **when** `SPECKIT_ADAPTIVE_FUSION` and `SPECKIT_EXTENDED_TELEMETRY` are inspected, **then** default values and behavior summaries are present.
+4. **Given** architecture diagrams are updated, **when** search pipeline flow is reviewed, **then** artifact routing and adaptive fusion stages are represented.
+5. **Given** memory command docs are checked, **when** tool signatures are compared to runtime schemas, **then** parameters and behavior notes align with current implementation.
+6. **Given** final verification runs, **when** stale references are scanned, **then** referenced files and folders resolve to existing paths.
+<!-- /ANCHOR:acceptance-scenarios -->
+
+---
+
 <!-- ANCHOR:dependencies -->
 ## 4. Dependencies and Handoffs
 

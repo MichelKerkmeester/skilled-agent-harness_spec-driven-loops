@@ -5,6 +5,7 @@
 
 ---
 
+<!-- ANCHOR:notation -->
 ## Task Notation
 
 | Prefix | Meaning |
@@ -12,9 +13,11 @@
 | `[ ]` | Pending |
 | `[x]` | Completed |
 | `[B]` | Blocked by dependency |
+<!-- /ANCHOR:notation -->
 
 ---
 
+<!-- ANCHOR:package-task-groups -->
 ## 1. Package Task Groups
 
 ### Group A - Phase 2 Extraction and Redaction
@@ -27,26 +30,35 @@
 - [x] EXR-010 Complete telemetry and logging tasks (`T056-T060`).
 - [x] EXR-011 [B:EXR-010] Complete staged rollout tasks (`T061-T066`). [Status: administratively closed per user directive.]
 - [x] EXR-012 [B:EXR-011] Complete runbook and documentation tasks (`T067-T070`). [Status: administratively closed per user directive.]
+<!-- /ANCHOR:package-task-groups -->
 
+<!-- ANCHOR:dependency-sync -->
 ## 2. Dependency and Sync Tasks
 
 - [x] EXR-020 Confirm package 001 hard-gate completion before `EXR-001` starts.
 - [x] EXR-021 Confirm package 003 quality signals are available before full rollout.
 - [x] EXR-022 Confirm root mappings remain synchronized in `../tasks.md` and `../checklist.md`.
+<!-- /ANCHOR:dependency-sync -->
+
+<!-- ANCHOR:evidence -->
 
 ## 3. Evidence Requirements
 
 - [x] EXR-E01 Extraction metrics evidence attached (precision/recall).
 - [x] EXR-E02 Retrieval stability evidence attached (MRR comparison).
 - [x] EXR-E03 Rollout and rollback evidence attached (telemetry logs and runbook output).
+<!-- /ANCHOR:evidence -->
 
+<!-- ANCHOR:completion -->
 ## 4. Completion Conditions
 
 - [x] All `EXR-001` through `EXR-012` completed.
 - [x] All `EXR-E01` through `EXR-E03` completed.
 - [x] Staged rollout evidence and rollback readiness documented.
 - [x] Root mapping remains synchronized.
+<!-- /ANCHOR:completion -->
 
+<!-- ANCHOR:post-research-transition -->
 ## 5. Post-Research Wave Transition
 
 - [x] EXR-030 Publish Wave 1 ownership handoff (`C136-08`, `C136-09`, `C136-10`, `C136-12`, `C136-01`, `C136-02`, `C136-03`) to package `../004-post-research-wave-1-governance-foundations/`, including explicit ownership for adaptive fusion, typed trace envelope, artifact-aware routing, and degraded-mode contract readiness.
@@ -57,3 +69,4 @@
 - [x] EXR-035 Preserve historical evidence while appending transition context (no deletion of Phase 2/3 completion records).
 
 Tracking document synchronized with root execution state; historical execution closure retained and post-research wave transition mapping recorded.
+<!-- /ANCHOR:post-research-transition -->

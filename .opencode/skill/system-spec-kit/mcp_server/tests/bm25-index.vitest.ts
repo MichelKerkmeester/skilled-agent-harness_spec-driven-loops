@@ -444,10 +444,7 @@ describe('BM25 Index Tests (T031-T039)', () => {
       expect(typeof hybridSearch.hybridSearchEnhanced).toBe('function');
     });
 
-    // [deferred] T038.4-T038.5: hybrid-search uses require() for bm25-index, creating a separate
-    // module instance from the ESM import in tests. BM25 index populated here isn't visible
-    // to hybrid-search functions. Needs hybrid-search.ts migration to ESM imports.
-    it.skip('T038.4: isBm25Available() true when index populated [deferred - CJS/ESM boundary]', () => {
+    it('T038.4: isBm25Available() true when index populated', () => {
       resetIndex();
       const bm25idx = getIndex();
       bm25idx.addDocument('int1', 'memory retrieval search testing document indexing vector semantic hybrid integration');
@@ -460,7 +457,7 @@ describe('BM25 Index Tests (T031-T039)', () => {
       }
     });
 
-    it.skip('T038.5: bm25Search returns results via hybrid-search [deferred - CJS/ESM boundary]', () => {
+    it('T038.5: bm25Search returns results via hybrid-search', () => {
       resetIndex();
       const bm25idx = getIndex();
       bm25idx.addDocument('int1', 'memory retrieval search testing document indexing vector semantic hybrid integration');
@@ -491,9 +488,7 @@ describe('BM25 Index Tests (T031-T039)', () => {
       expect(Array.isArray(results)).toBe(true);
     });
 
-    // [deferred] T039.3-T039.6: Same CJS/ESM boundary issue as T038.4-T038.5.
-    // hybrid-search.ts uses require('./bm25-index') which gets a different singleton.
-    it.skip('T039.3: combinedLexicalSearch returns BM25 results [deferred - CJS/ESM boundary]', () => {
+    it('T039.3: combinedLexicalSearch returns BM25 results', () => {
       resetIndex();
       const bm25comb = getIndex();
       bm25comb.addDocument('comb1', 'memory retrieval search testing document indexing vector semantic hybrid combined');
@@ -502,7 +497,7 @@ describe('BM25 Index Tests (T031-T039)', () => {
       expect(results.length).toBeGreaterThan(0);
     });
 
-    it.skip('T039.4: Results include score [deferred - CJS/ESM boundary]', () => {
+    it('T039.4: Results include score', () => {
       resetIndex();
       const bm25 = getIndex();
       bm25.addDocument('comb1', 'memory retrieval search testing document indexing vector semantic hybrid combined');
@@ -511,7 +506,7 @@ describe('BM25 Index Tests (T031-T039)', () => {
       expect(typeof results[0].score).toBe('number');
     });
 
-    it.skip('T039.5: Results include source or bm25 score [deferred - CJS/ESM boundary]', () => {
+    it('T039.5: Results include source or bm25 score', () => {
       resetIndex();
       const bm25 = getIndex();
       bm25.addDocument('comb1', 'memory retrieval search testing document indexing vector semantic hybrid combined');
@@ -522,7 +517,7 @@ describe('BM25 Index Tests (T031-T039)', () => {
       expect(hasSource || hasBm25Score).toBe(true);
     });
 
-    it.skip('T039.6: Results include combined or bm25 score [deferred - CJS/ESM boundary]', () => {
+    it('T039.6: Results include combined or bm25 score', () => {
       resetIndex();
       const bm25 = getIndex();
       bm25.addDocument('comb1', 'memory retrieval search testing document indexing vector semantic hybrid combined');

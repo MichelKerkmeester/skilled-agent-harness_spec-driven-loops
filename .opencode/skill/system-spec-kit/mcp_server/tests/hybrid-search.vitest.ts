@@ -134,10 +134,7 @@ describe('Hybrid Search Unit Tests (T031+)', () => {
       expect(available).toBe(false);
     });
 
-    // [deferred] CJS/ESM boundary: hybrid-search.ts uses require('./bm25-index') which gets
-    // a different module singleton than the ESM import used here. Index populated via ESM
-    // isn't visible to hybrid-search functions.
-    it.skip('T031-BM25-02: is_bm25_available() returns true when populated [deferred - CJS/ESM boundary]', () => {
+    it('T031-BM25-02: is_bm25_available() returns true when populated', () => {
       const bm25 = bm25Index.getIndex();
       for (const doc of MOCK_DOCS) {
         bm25.addDocument(String(doc.id), doc.content);
@@ -146,7 +143,7 @@ describe('Hybrid Search Unit Tests (T031+)', () => {
       expect(available).toBe(true);
     });
 
-    it.skip('T031-BM25-03: bm25_search() returns results [deferred - CJS/ESM boundary]', () => {
+    it('T031-BM25-03: bm25_search() returns results', () => {
       const bm25 = bm25Index.getIndex();
       for (const doc of MOCK_DOCS) {
         bm25.addDocument(String(doc.id), doc.content);
@@ -200,7 +197,7 @@ describe('Hybrid Search Unit Tests (T031+)', () => {
       }
     });
 
-    it.skip('T031-LEX-01: combined_lexical_search() returns results [deferred - CJS/ESM boundary]', () => {
+    it('T031-LEX-01: combined_lexical_search() returns results', () => {
       const results = hybridSearch.combinedLexicalSearch('authentication', { limit: 10 });
       expect(results).toBeDefined();
       expect(results.length).toBeGreaterThan(0);
