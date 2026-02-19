@@ -21,12 +21,10 @@
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-<!-- Voice guide: Tell the story of what changed. Lead with impact, not file names.
-     Write "Users can now do X" not "X functionality was implemented."
-     Reference style: specs/003-system-spec-kit/136-mcp-working-memory-hybrid-rag/implementation-summary.md -->
+<!-- Voice guide: Lead with impact, not file names. 2-3 sentences on what changed.
+     "Users can now do X" not "X functionality was implemented." -->
 
-[Describe what was built in 2-3 sentences. Focus on what changed for the user
-or the system. Write in active voice.]
+[What changed and why it matters. 2-3 sentences in active voice.]
 
 ### Files Changed
 
@@ -42,7 +40,7 @@ or the system. Write in active voice.]
 
 | Decision | Why |
 |----------|-----|
-| [What was decided] | [Why, in active voice] |
+| [What was decided] | [Active-voice rationale] |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -52,7 +50,7 @@ or the system. Write in active voice.]
 
 | Check | Result |
 |-------|--------|
-| [Validation, lint, tests, manual check] | [PASS/FAIL with brief specifics] |
+| [Validation, lint, tests, manual check] | [PASS/FAIL with specifics] |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -60,13 +58,13 @@ or the system. Write in active voice.]
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-[List concrete limitations, or "None identified."]
+[Specific limitations, or "None identified."]
 <!-- /ANCHOR:limitations -->
 
 ---
 
 <!--
-CORE TEMPLATE: Post-implementation documentation, created AFTER work completes.
+Level 1: Compact post-implementation summary. No "How It Was Delivered" section.
 Write in human voice: active, direct, specific. No em dashes, no hedging, no AI filler.
 HVR rules: .opencode/skill/workflows-documentation/assets/documentation/hvr_rules.md
 -->

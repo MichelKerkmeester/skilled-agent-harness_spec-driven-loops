@@ -21,14 +21,13 @@
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-<!-- Voice guide: Tell the story of what changed. Lead with impact, not file names.
-     Write "Users can now do X" not "X functionality was implemented."
-     Use subsections for distinct features. Explain WHY each one matters.
-     Reference style: specs/003-system-spec-kit/136-mcp-working-memory-hybrid-rag/implementation-summary.md -->
+<!-- Voice guide:
+     Open with a hook: what changed and why it matters.
+     Use ### subsections for distinct features if more than one.
+     "You can now inspect the trace" not "Trace inspection was implemented."
+     Reference: specs/003-system-spec-kit/136-mcp-working-memory-hybrid-rag/implementation-summary.md -->
 
-[Describe what was built in 2-4 paragraphs. Focus on capabilities and outcomes.
-Organize by feature, not by file. For each major piece of work, explain what it does
-and why it exists. Write in active voice with direct address where appropriate.]
+[Opening hook: 2-3 sentences on what changed and why it matters.]
 
 ### Files Changed
 
@@ -42,11 +41,10 @@ and why it exists. Write in active voice with direct address where appropriate.]
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-<!-- Voice guide: Describe your testing and delivery approach. What gave you confidence?
-     "All features shipped behind feature flags" not "Feature flags were used for deployment." -->
+<!-- Voice guide: What gave you confidence this works?
+     "All tests pass with zero regressions" not "Testing was performed." -->
 
-[How was this work tested, verified and shipped? What was the rollout approach?
-What checks gave you confidence this works correctly?]
+[How was this tested, verified and shipped?]
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -56,7 +54,7 @@ What checks gave you confidence this works correctly?]
 
 | Decision | Why |
 |----------|-----|
-| [What was decided] | [Why, in active voice: "Chose X because Y" not "X was selected due to Y"] |
+| [What was decided] | [Active-voice rationale with specific reasoning] |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -64,9 +62,11 @@ What checks gave you confidence this works correctly?]
 <!-- ANCHOR:verification -->
 ## Verification
 
+<!-- Voice guide: Be honest. Show failures alongside passes. -->
+
 | Check | Result |
 |-------|--------|
-| [Validation, lint, tests, manual check] | [PASS/FAIL with brief specifics] |
+| [Validation, lint, tests, manual check] | [PASS/FAIL with specifics] |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -74,15 +74,15 @@ What checks gave you confidence this works correctly?]
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-<!-- Voice guide: Be specific and honest. "Adaptive fusion defaults to off" not "Some features may require configuration." Write "None identified" if nothing applies. -->
+<!-- Voice guide: Be specific and actionable. Number them for larger lists. -->
 
-[List concrete limitations with enough detail to act on them. Include workarounds if they exist.]
+[Specific limitations with workarounds, or "None identified."]
 <!-- /ANCHOR:limitations -->
 
 ---
 
 <!--
-CORE TEMPLATE: Post-implementation documentation, created AFTER work completes.
+Level 2: Full post-implementation summary with delivery narrative.
 Write in human voice: active, direct, specific. No em dashes, no hedging, no AI filler.
 HVR rules: .opencode/skill/workflows-documentation/assets/documentation/hvr_rules.md
 -->

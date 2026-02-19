@@ -21,16 +21,24 @@
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-<!-- Voice guide: Tell the story of what changed. Lead with impact, not file names.
-     Write "Users can now do X" not "X functionality was implemented."
-     Use subsections for distinct features. Explain WHY each one matters.
-     Reference style: specs/003-system-spec-kit/136-mcp-working-memory-hybrid-rag/implementation-summary.md -->
+<!-- Voice guide:
+     Open with a hook: what changed and why it matters. One paragraph, impact first.
+     Then use ### subsections per feature. Each subsection: what it does + why it exists.
+     Write "You can now inspect the trace" not "Trace inspection was implemented."
+     NO "Files Changed" table for Level 3/3+. The narrative IS the summary.
+     For Level 1-2, a Files Changed table after the narrative is fine.
+     Reference: specs/003-system-spec-kit/136-mcp-working-memory-hybrid-rag/implementation-summary.md -->
 
-[Describe what was built in 2-4 paragraphs. Focus on capabilities and outcomes.
-Organize by feature, not by file. For each major piece of work, explain what it does
-and why it exists. Write in active voice with direct address where appropriate.]
+[Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
+
+### [Feature Name]
+
+[What this feature does and why it exists. 1-2 paragraphs. Use direct address.
+Explain what the user gains, not what files you touched.]
 
 ### Files Changed
+
+<!-- Include for Level 1-2. Omit for Level 3/3+ where the narrative carries. -->
 
 | File | Action | Purpose |
 |------|--------|---------|
@@ -42,12 +50,13 @@ and why it exists. Write in active voice with direct address where appropriate.]
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-<!-- Voice guide: Describe your testing and delivery approach. What gave you confidence?
-     "All features shipped behind feature flags" not "Feature flags were used for deployment." -->
+<!-- Voice guide:
+     Tell the delivery story. What gave you confidence this works?
+     "All features shipped behind feature flags" not "Feature flags were used."
+     For Level 1: a single sentence is enough.
+     For Level 3+: describe stages (testing, rollout, verification). -->
 
-[How was this work tested, verified and shipped? What was the rollout approach?
-What checks gave you confidence this works correctly?
-For Level 1 (simple changes), a single sentence is enough.]
+[How was this tested, verified and shipped? What was the rollout approach?]
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -55,9 +64,12 @@ For Level 1 (simple changes), a single sentence is enough.]
 <!-- ANCHOR:decisions -->
 ## Key Decisions
 
+<!-- Voice guide: "Why" column should read like you're explaining to a colleague.
+     "Chose X because Y" not "X was selected due to Y." -->
+
 | Decision | Why |
 |----------|-----|
-| [What was decided] | [Why, in active voice: "Chose X because Y" not "X was selected due to Y"] |
+| [What was decided] | [Active-voice rationale with specific reasoning] |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -65,9 +77,12 @@ For Level 1 (simple changes), a single sentence is enough.]
 <!-- ANCHOR:verification -->
 ## Verification
 
+<!-- Voice guide: Be honest. Show failures alongside passes.
+     "FAIL, TS2349 error in benchmarks.ts" not "Minor issues detected." -->
+
 | Check | Result |
 |-------|--------|
-| [Validation, lint, tests, manual check] | [PASS/FAIL with brief specifics] |
+| [Validation, lint, tests, manual check] | [PASS/FAIL with specifics] |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -75,9 +90,12 @@ For Level 1 (simple changes), a single sentence is enough.]
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-<!-- Voice guide: Be specific and honest. "Adaptive fusion defaults to off" not "Some features may require configuration." Write "None identified" if nothing applies. -->
+<!-- Voice guide: Number them. Be specific and actionable.
+     "Adaptive fusion defaults to off. Set SPECKIT_ADAPTIVE_FUSION=true to enable."
+     not "Some features may require configuration."
+     Write "None identified." if nothing applies. -->
 
-[List concrete limitations with enough detail to act on them. Include workarounds if they exist.]
+1. **[Limitation]** [Specific detail with workaround if one exists.]
 <!-- /ANCHOR:limitations -->
 
 ---
