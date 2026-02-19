@@ -161,9 +161,12 @@ cd ~/your-project/
 git tag -a vX.X.X.X -m "Release description"
 git push origin vX.X.X.X
 
+# Extract GitHub release body from changelog (exclude local wrapper)
+awk 'f;/^## \[\*\*/{f=1}' .opencode/changelog/00--opencode-environment/vX.X.X.X.md > /tmp/release-notes.md
+
 gh release create vX.X.X.X \
   --title "vX.X.X.X - Release Title" \
-  --notes-file changelog/vX.X.X.X.md
+  --notes-file /tmp/release-notes.md
 ```
 
 ---
@@ -180,7 +183,7 @@ gh release create vX.X.X.X \
 
 ### Release Notes
 
-Release notes for each version are stored as individual files in `changelog/vX.X.X.X.md`, formatted per the template in Section 7. Each file's content is used directly as the `--notes-file` body for `gh release create`.
+Release notes for each version are stored as individual files in `.opencode/changelog/00--opencode-environment/vX.X.X.X.md`, formatted per the template in Section 7. For GitHub publishing, use an extracted body that excludes the local changelog wrapper (`# v...`, `> Part of ...`, `## [**x.x.x.x**] - date`).
 
 **Latest**: See `.opencode/changelog/00--opencode-environment/v2.1.3.3.md`
 
@@ -256,6 +259,13 @@ Or for simple patches: "No action required. Pull latest to get [description]."
 - `## Files Changed` section listing affected files
 - `## Upgrade` section (always last)
 
+**GitHub release body hygiene:**
+- Never include local changelog wrapper lines in GitHub release notes:
+  - `# vX.X.X.X`
+  - `> Part of ...`
+  - `## [**X.X.X.X**] - YYYY-MM-DD`
+- GitHub release notes must start with the summary paragraph and then `## Highlights`
+
 **Category vocabulary for H3 headers:**
 - `Fixes` - repairs, patches
 - `Architecture` - structure changes
@@ -275,6 +285,7 @@ Or for simple patches: "No action required. Pull latest to get [description]."
 
 Before publishing:
 - [ ] 1-2 sentence summary with **bold** key stats
+- [ ] GitHub notes body excludes local changelog wrapper header block
 - [ ] `## Highlights` H2 section present
 - [ ] `### Category: <Title>` H3 headers for categories
 - [ ] Bullet points use **bold label**: description format
