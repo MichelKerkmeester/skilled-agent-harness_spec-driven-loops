@@ -240,7 +240,7 @@ workflow:
     gate_type: SOFT_BLOCK
     enforcement: "Warn if similar skill exists, allow user override"
     agent_availability:
-      agent_file: ".opencode/agent/context.md"
+      agent_file: "[runtime_agent_path]/context.md"
       rule_reference: "AGENTS.md Rule 4 — exploration"
       condition: "ONLY when this step is actively executing"
       fallback: "general (with warning: bypasses memory checks)"
@@ -280,7 +280,7 @@ workflow:
       - Use selected spec_path
     - "Dispatch @speckit for spec.md and plan.md creation (AGENTS.md Rule 5)"
     agent_availability:
-      agent_file: ".opencode/agent/speckit.md"
+      agent_file: "[runtime_agent_path]/speckit.md"
       rule_reference: "AGENTS.md Rule 5 — spec folder docs"
       condition: "ONLY when this step is actively executing"
       fallback: "general (with warning: bypasses template enforcement)"
@@ -638,7 +638,7 @@ workflow:
   step_8b_quality_review:
     purpose: Quality-score the created skill artifact
     agent_availability:
-      agent_file: ".opencode/agent/review.md"
+      agent_file: "[runtime_agent_path]/review.md"
       rule_reference: "AGENTS.md §3 — quality scoring"
       condition: "ONLY when this step is actively executing"
       blocking: false

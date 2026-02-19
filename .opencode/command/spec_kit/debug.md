@@ -26,6 +26,14 @@ allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task
 - **ALL** agent dispatching is handled by the YAML workflow steps — this document is setup + reference only
 - **FIRST ACTION** is always: load the YAML file, then execute it step by step
 
+## RUNTIME AGENT PATH RESOLUTION
+
+Use `[runtime_agent_path]` based on the active runtime profile:
+
+- Default/Copilot: `.opencode/agent`
+- ChatGPT: `.opencode/agent/chatgpt`
+- Claude: `.opencode/agent/claude`
+
 # SINGLE CONSOLIDATED PROMPT - ONE USER INTERACTION
 
 This workflow uses a SINGLE consolidated prompt to gather ALL required inputs in ONE user interaction. Dispatch mode selection is MANDATORY.
@@ -277,7 +285,7 @@ After multiple failed attempts: Creates comprehensive delegation report with all
 
 ### Debug Agent
 
-Agent file: `.opencode/agent/debug.md`
+Agent file: `[runtime_agent_path]/debug.md`
 - 4-phase methodology: Observe -> Analyze -> Hypothesize -> Fix
 - Codebase-agnostic, isolation by design, structured responses
 

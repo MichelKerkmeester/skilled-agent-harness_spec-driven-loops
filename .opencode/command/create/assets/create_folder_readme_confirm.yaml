@@ -480,7 +480,7 @@ workflow:
   step_5b_quality_review:
     purpose: Quality-score the created README artifact
     agent_availability:
-      agent_file: ".opencode/agent/review.md"
+      agent_file: "[runtime_agent_path]/review.md"
       rule_reference: "AGENTS.md §3 — quality scoring"
       condition: "ONLY when this step is actively executing"
       blocking: false

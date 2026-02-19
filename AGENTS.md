@@ -168,6 +168,7 @@
 - `scratch/` subdirectory → Temporary workspace, any agent permitted
 - `handover.md` → @handover agent exclusively
 - `research.md` → @research agent exclusively
+- `debug-delegation.md` → @debug agent exclusively
 
 **DETECTION**: If @general, @write, or other non-@speckit agent attempts to create/modify spec template files → VIOLATION
 
@@ -195,7 +196,7 @@
 │   1. If NO folder AND Gate 3 was never answered → HARD BLOCK → Ask user     │
 │   2. If folder provided → Validate alignment with conversation topic        │
 │                                                                             │
-│ EXECUTION (script: .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js):
+│ EXECUTION (script: .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js):│
 │   Mode 1 (JSON): Write JSON to /tmp/save-context-data.json, pass as arg     │
 │            node [script] /tmp/save-context-data.json                        │
 │   Mode 2 (Direct): Pass spec folder path directly                           │
@@ -442,19 +443,31 @@ Execute → Implement with minimal complexity
 
 When using the orchestrate agent or Task tool for complex multi-step workflows, route to specialized agents:
 
+### Runtime Agent Directory Resolution
+
+Use the agent directory that matches the active runtime/provider profile:
+
+| Runtime / Profile | Agent Directory | Usage Rule |
+| ----------------- | --------------- | ---------- |
+| **Copilot (default OpenCode profile)** | `.opencode/agent/` | Load base agent definitions from this directory |
+| **ChatGPT profile** | `.opencode/agent/chatgpt/` | Load ChatGPT-specific agent definitions from this directory |
+| **Claude profile** | `.claude/agents/` | Load Claude-specific agent definitions from this directory |
+
+**Resolution rule:** pick one directory by runtime and stay consistent for that workflow phase.
+
 ### Agent Definitions
 
-| Agent          | Use When                                                                                                                                                                                                                                                                                |
-| -------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `@general`     | Implementation, complex tasks                                                                                                                                                                                                                                                           |
-| `@context`     | ALL codebase exploration, file search, pattern discovery, context loading. Internally dispatches sub-agents for fast search and deep investigation.                                                                                                                                     |
-| `@orchestrate` | Multi-agent coordination, complex workflows                                                                                                                                                                                                                                             |
-| `@research`    | Evidence gathering, planning, Gate 3 Option B. ✅ Exception: may write `research.md` inside spec folders                                                                                                                                                                                 |
-| `@write`       | Creating READMEs, Skills, Guides                                                                                                                                                                                                                                                        |
-| `@review`      | Code review, PRs, quality gates (READ-ONLY)                                                                                                                                                                                                                                             |
-| `@speckit`     | Spec folder creation Level 1-3+ ⛔ **EXCLUSIVE: Only agent permitted to create/write ANY documentation (*.md) inside spec folders. Exceptions: `memory/` (uses generate-context.js), `scratch/` (temporary, any agent), `handover.md` (@handover only), `research.md` (@research only)** |
-| `@debug`       | Fresh perspective debugging, root cause analysis                                                                                                                                                                                                                                        |
-| `@handover`    | Session continuation, context preservation. ✅ Exception: may write `handover.md` inside spec folders                                                                                                                                                                                    |
+| Agent          | Use When                                                                                                                                                                                                                                                                                                                     |
+| -------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `@general`     | Implementation, complex tasks                                                                                                                                                                                                                                                                                                |
+| `@context`     | ALL codebase exploration, file search, pattern discovery, context loading. Internally dispatches sub-agents for fast search and deep investigation.                                                                                                                                                                          |
+| `@orchestrate` | Multi-agent coordination, complex workflows                                                                                                                                                                                                                                                                                  |
+| `@research`    | Evidence gathering, planning, Gate 3 Option B. ✅ Exception: may write `research.md` inside spec folders                                                                                                                                                                                                                      |
+| `@write`       | Creating READMEs, Skills, Guides                                                                                                                                                                                                                                                                                             |
+| `@review`      | Code review, PRs, quality gates (READ-ONLY)                                                                                                                                                                                                                                                                                  |
+| `@speckit`     | Spec folder creation Level 1-3+ ⛔ **EXCLUSIVE: Only agent permitted to create/write ANY documentation (*.md) inside spec folders. Exceptions: `memory/` (uses generate-context.js), `scratch/` (temporary, any agent), `handover.md` (@handover only), `research.md` (@research only), `debug-delegation.md` (@debug only)** |
+| `@debug`       | Fresh perspective debugging, root cause analysis. ✅ Exception: may write `debug-delegation.md` inside spec folders                                                                                                                                                                                                           |
+| `@handover`    | Session continuation, context preservation. ✅ Exception: may write `handover.md` inside spec folders                                                                                                                                                                                                                         |
 
 ---
 

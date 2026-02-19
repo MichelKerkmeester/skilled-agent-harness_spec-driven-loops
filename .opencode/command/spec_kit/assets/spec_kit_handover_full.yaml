@@ -155,7 +155,7 @@ agent_availability:
   handover:
     available_at_step: 3
     condition: "ONLY dispatch when Step 3 (Create Handover) is actively executing"
-    agent_file: ".opencode/agent/handover.md"
+    agent_file: "[runtime_agent_path]/handover.md"
     model: sonnet
     fallback: "general"
     not_for: "automatic handover, pre-step context saving, or premature session ending"

@@ -107,14 +107,14 @@ agent_availability:
   speckit:
     available_at_step: 2
     condition: "ONLY dispatch when Step 2 is actively executing to create debug-delegation.md"
-    agent_file: ".opencode/agent/speckit.md"
+    agent_file: "[runtime_agent_path]/speckit.md"
     purpose: "debug-delegation.md is spec folder documentation"
     fallback: "general"
     not_for: "reviewing this workflow, pre-step activity, or any other documentation"
   review:
     available_at_step: 5
     condition: "ONLY dispatch when Step 5 is actively executing AND user chose Option A (Apply fix)"
-    agent_file: ".opencode/agent/review.md"
+    agent_file: "[runtime_agent_path]/review.md"
     purpose: "Post-fix code quality validation"
     fallback: "general"
     blocking: false
@@ -178,7 +178,7 @@ workflow:
   step_3_dispatch_subagent:
     purpose: Dispatch @debug agent with structured handoff via Task tool
     agent: "@debug"
-    agent_file: ".opencode/agent/debug.md"
+    agent_file: "[runtime_agent_path]/debug.md"
     task_parameters: { description: "Debug: [brief error summary - max 50 chars]", subagent_type: "debug", prompt: "[sub_agent_prompt_template]" }
     # AGENT AVAILABILITY (conditional) — routing metadata, not dispatch instructions
     sub_agent_prompt_template: |

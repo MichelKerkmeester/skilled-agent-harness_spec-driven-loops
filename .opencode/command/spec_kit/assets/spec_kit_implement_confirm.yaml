@@ -168,7 +168,7 @@ agent_availability:
   review:
     available_at_step: 7
     condition: "ONLY dispatch when Step 7 is actively executing and all prior steps are completed"
-    agent_file: ".opencode/agent/review.md"
+    agent_file: "[runtime_agent_path]/review.md"
     fallback: "general"
     blocking: true
     on_block: "P0 items incomplete. Address before completion."
@@ -179,7 +179,7 @@ agent_availability:
   debug:
     available_at_step: 6
     condition: "ONLY dispatch when failure_count >= 3 during Step 6 development"
-    agent_file: ".opencode/agent/debug.md"
+    agent_file: "[runtime_agent_path]/debug.md"
     fallback: "general-purpose"
     failure_tracking: { counter: "task_failure_count", reset_on: "new_task", threshold: 3 }
     on_threshold: "Suggest: A) Dispatch debug B) Continue manually C) Skip task D) Pause"
@@ -187,7 +187,7 @@ agent_availability:
   handover:
     available_at_step: 9
     condition: "ONLY dispatch when user explicitly requests handover at Step 9"
-    agent_file: ".opencode/agent/handover.md"
+    agent_file: "[runtime_agent_path]/handover.md"
     fallback: "general"
     not_for: "automatic handover, pre-step context saving, or premature session ending"
 

@@ -190,7 +190,7 @@ Check `key_files` from memory metadata against the spec folder:
 |--------|---------|
 | `key_files` contain `.opencode/skill/` | Skill/infrastructure work |
 | `key_files` contain `.opencode/command/` | Command development work |
-| `key_files` contain `.opencode/agent/` | Agent development work |
+| `key_files` contain `.opencode/agent/`, `.opencode/agent/chatgpt/`, or `.opencode/agent/claude/` | Agent development work |
 | `spec_folder` doesn't match patterns | Likely saved to wrong folder |
 
 **On mismatch, present options:**

@@ -56,7 +56,7 @@ SELF-CHECK: Are you operating as the @write agent?
     │   │ To proceed, restart with:                                  │
     │   │   @write /create:skill [skill-name]                        │
     │   │                                                            │
-    │   │ Reference: .opencode/agent/write.md                        │
+    │   │ Reference: [runtime_agent_path]/write.md                   │
     │   └────────────────────────────────────────────────────────────┘
     │
     └─ RETURN: STATUS=FAIL ERROR="Write agent required"
@@ -210,6 +210,16 @@ The YAML contains: detailed step activities, checkpoints, confidence scoring, er
 - **DO NOT** dispatch `@review` to review this workflow or command prompt
 - **ALL** agent dispatching is handled by the YAML workflow steps — this document is setup + reference only
 - **FIRST ACTION** is always: run Phase 0, then Setup Phase, then load the YAML file
+
+---
+
+## RUNTIME AGENT PATH RESOLUTION
+
+Use `[runtime_agent_path]` based on the active runtime profile:
+
+- Default/Copilot: `.opencode/agent`
+- ChatGPT: `.opencode/agent/chatgpt`
+- Claude: `.opencode/agent/claude`
 
 ---
 

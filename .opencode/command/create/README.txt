@@ -142,7 +142,7 @@ The `--chained` flag on `skill_asset` and `skill_reference` indicates the comman
 
 | Problem | Cause | Fix |
 |---------|-------|-----|
-| Phase 0 fails | @write agent not available | Verify agent files exist in `.opencode/agent/` |
+| Phase 0 fails | @write agent not available | Verify agent files exist in the runtime path (`.opencode/agent/`, `.opencode/agent/chatgpt/`, or `.opencode/agent/claude/`) |
 | YAML workflow not found | Missing asset file | Check `assets/` contains the matching YAML for your mode |
 | Skill not found for asset/reference | Wrong skill name | Use the exact folder name from `.opencode/skill/` |
 | `--chained` has no effect | Only meaningful during skill creation pipeline | Remove flag when running standalone |

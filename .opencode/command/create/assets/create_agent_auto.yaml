@@ -98,7 +98,7 @@ user_inputs:
 
   agent_path: |
     [AGENT_PATH]
-    Output directory. Default: .opencode/agent/
+    Output directory. Default: [runtime_agent_path]/
     FROM UNIFIED SETUP PHASE (--path flag or default).
 
   spec_path: |
@@ -125,7 +125,7 @@ field_handling:
     note: "Determines how agent is invoked and appears in UI"
 
   defaults:
-    agent_path_local: ".opencode/agent/"
+    agent_path_local: "[runtime_agent_path]/"
     agent_path_global: "~/.config/opencode/agent/"
     temperature: 0.1
     spec_path_from_phase: "FROM USER CHOICE IN SETUP PHASE"
@@ -218,7 +218,7 @@ workflow:
     gate_type: SOFT_BLOCK
     enforcement: "Warn if similar agent exists, allow user override"
     agent_availability:
-      agent_file: ".opencode/agent/context.md"
+      agent_file: "[runtime_agent_path]/context.md"
       rule_reference: "AGENTS.md Rule 4 — exploration"
       condition: "ONLY when this step is actively executing"
       fallback: "general (with warning: bypasses memory checks)"
@@ -249,7 +249,7 @@ workflow:
       - Use selected spec_path
     - "Dispatch @speckit for spec.md and plan.md creation (AGENTS.md Rule 5)"
     agent_availability:
-      agent_file: ".opencode/agent/speckit.md"
+      agent_file: "[runtime_agent_path]/speckit.md"
       rule_reference: "AGENTS.md Rule 5 — spec folder docs"
       condition: "ONLY when this step is actively executing"
       fallback: "general (with warning: bypasses template enforcement)"
@@ -471,7 +471,7 @@ workflow:
   step_5b_quality_review:
     purpose: Quality-score the created agent artifact
     agent_availability:
-      agent_file: ".opencode/agent/review.md"
+      agent_file: "[runtime_agent_path]/review.md"
       rule_reference: "AGENTS.md §3 — quality scoring"
       condition: "ONLY when this step is actively executing"
       blocking: false

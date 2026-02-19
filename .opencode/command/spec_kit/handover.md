@@ -22,6 +22,14 @@ allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task
 - **ALL** agent dispatching is handled by the YAML workflow steps — this document is setup + reference only
 - **FIRST ACTION** is always: load the YAML file (`assets/spec_kit_handover_full.yaml`), then execute it step by step
 
+## RUNTIME AGENT PATH RESOLUTION
+
+Use `[runtime_agent_path]` based on the active runtime profile:
+
+- Default/Copilot: `.opencode/agent`
+- ChatGPT: `.opencode/agent/chatgpt`
+- Claude: `.opencode/agent/claude`
+
 # SINGLE CONSOLIDATED PROMPT - ONE USER INTERACTION
 
 This workflow uses a SINGLE consolidated prompt to gather ALL required inputs in ONE user interaction.
@@ -262,7 +270,7 @@ Show created file path and continuation instructions.
 
 | File                                                            | Purpose            |
 | --------------------------------------------------------------- | ------------------ |
-| `.opencode/agent/handover.md`                                   | Agent definition   |
+| `[runtime_agent_path]/handover.md`                               | Agent definition   |
 | `.opencode/command/spec_kit/assets/spec_kit_handover_full.yaml` | YAML configuration |
 | `.opencode/skill/system-spec-kit/templates/handover.md`         | Output template    |
 
