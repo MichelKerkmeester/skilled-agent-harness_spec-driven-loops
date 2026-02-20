@@ -1,4 +1,9 @@
 // @ts-nocheck
+// ---------------------------------------------------------------
+// TEST: Graph Search Feature Flags
+// Strict opt-in flag verification (=== 'true' only)
+// ---------------------------------------------------------------
+
 import { describe, it, expect, beforeEach, afterEach } from 'vitest';
 import {
   isGraphUnifiedEnabled,
