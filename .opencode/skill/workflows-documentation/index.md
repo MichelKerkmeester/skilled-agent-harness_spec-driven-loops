@@ -9,6 +9,8 @@ version: 1.1.1.0
 
 Orchestrates document quality enforcement, component scaffolding, and flowchart generation across OpenCode skill graphs, READMEs, and structured markdown.
 
+> **Navigation note:** This is a supplemental deep-dive index. `SKILL.md` remains the primary entrypoint for activation rules, routing logic, and core behavior. Use this index for focused content on specific topics.
+
 ## Map of Content (MOC)
 
 ### Foundation

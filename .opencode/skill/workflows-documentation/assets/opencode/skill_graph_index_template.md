@@ -29,6 +29,8 @@ version: {major.minor.patch.graph}
 
 {1-2 sentence summary of what this skill does and when it activates.}
 
+> **Navigation note:** This is a supplemental deep-dive index. `SKILL.md` remains the primary entrypoint for activation rules, routing logic, and core behavior. Use this index for focused content on specific topics.
+
 ## Map of Content (MOC)
 
 ### Foundation

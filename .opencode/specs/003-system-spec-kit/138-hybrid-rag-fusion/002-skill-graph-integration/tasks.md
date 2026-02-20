@@ -83,7 +83,7 @@
   - Verification: author a sample node from the template and validate frontmatter + section presence without ad-hoc fixes.
   - Dependency Chain: depends on TASK-307; supports remaining six skill migrations.
 - [x] TASK-309: Update `workflows-documentation/SKILL.md` with Skill Graph system guidance and links.
-  - Inputs: standards and template asset paths, compatibility entrypoint requirements.
+  - Inputs: standards and template asset paths, Graph Status header requirements.
   - Outputs: updated `SKILL.md` routing guidance for graph-first authoring.
   - Completion Criteria: standards and template assets are discoverable in one hop from entrypoint content.
   - Verification: open `workflows-documentation/SKILL.md` and follow links to both artifacts directly.
@@ -110,7 +110,7 @@
   - Dependency Chain: depends on template conventions and global link-check readiness.
 - [x] TASK-313: Complete node graph coverage for `workflows-git`.
   - Inputs: existing `workflows-git/SKILL.md`, node template, standards doc, matrix status row.
-  - Outputs: `index.md`, node set (`setup`, `commit/PR`, `safeguards`, `finish`), compatibility entrypoint routing.
+  - Outputs: `index.md`, node set (`setup`, `commit/PR`, `safeguards`, `finish`), Graph Status header in SKILL.md.
   - Completion Criteria: all required domains represented and linked from index; no orphan nodes.
   - Verification: `bash .opencode/skill/system-spec-kit/scripts/check-links.sh .opencode/skill` + manual traversal over four domain paths.
   - Dependency Chain: depends on TASK-105 governance and Phase 1 tooling; unblocks CHK-012 progress.

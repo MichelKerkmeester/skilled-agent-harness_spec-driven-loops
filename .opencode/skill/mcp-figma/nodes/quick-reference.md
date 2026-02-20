@@ -65,6 +65,6 @@ call_tool_chain({
 | Empty components list | File may not have published components                      |
 
 ## Cross References
-- [[how-it-works]] —Detailed invocation workflow and examples
-- [[rules]] —Mandatory rules for tool usage
-- [[success-criteria]] —How to verify each operation succeeded
+- [[how-it-works]] — Detailed invocation workflow and examples
+- [[rules]] — Mandatory rules for tool usage
+- [[success-criteria]] — How to verify each operation succeeded

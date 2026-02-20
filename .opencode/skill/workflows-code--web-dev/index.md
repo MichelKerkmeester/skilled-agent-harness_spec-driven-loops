@@ -9,6 +9,8 @@ version: 1.0.8.0
 
 Orchestrates frontend development workflows across implementation, debugging, and verification phases, routing each request to the right phase node and quality gate.
 
+> **Navigation note:** This is a supplemental deep-dive index. `SKILL.md` remains the primary entrypoint for activation rules, routing logic, and core behavior. Use this index for focused content on specific topics.
+
 ## Map of Content (MOC)
 
 ### Foundation

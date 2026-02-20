@@ -33,5 +33,5 @@ Pointers to all reference material, bundled assets, external documentation, and 
 - [Install Guide](../INSTALL_GUIDE.md) -- Installation and configuration
 
 ## Cross References
-- [[integration-points]] -- How Figma connects to Code Mode
-- [[smart-routing]] -- How resources are loaded on demand
+- [[integration-points]] — How Figma connects to Code Mode
+- [[smart-routing]] — How resources are loaded on demand

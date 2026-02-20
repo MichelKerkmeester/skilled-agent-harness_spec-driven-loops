@@ -944,8 +944,8 @@ Large skills eventually outgrow one `SKILL.md` file. Skill graphs solve this by 
 
 ```
 skill-name/
-├── SKILL.md                # Lightweight entrypoint for compatibility
-├── index.md                # Primary graph entrypoint for traversal
+├── SKILL.md                # Primary entrypoint (activation rules, routing, core behavior)
+├── index.md                # Supplemental deep-dive index for graph traversal
 ├── nodes/
 │   ├── topic-a.md
 │   ├── topic-b.md

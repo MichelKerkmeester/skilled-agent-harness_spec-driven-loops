@@ -116,5 +116,5 @@ def route_figma_resources(task):
 ```
 
 ## Cross References
-- [[when-to-use]] —Activation triggers that feed into intent scoring
-- [[related-resources]] —The resources loaded by this router
+- [[when-to-use]] — Activation triggers that feed into intent scoring
+- [[related-resources]] — The resources loaded by this router

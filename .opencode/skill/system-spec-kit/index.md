@@ -9,6 +9,8 @@ version: 2.2.26.0
 
 Orchestrates mandatory spec folder creation for all conversations involving file modifications. Ensures proper documentation level selection (1-3+), template usage, and context preservation through AGENTS.md-enforced workflows.
 
+> **Navigation note:** This is a supplemental deep-dive index. `SKILL.md` remains the primary entrypoint for activation rules, routing logic, and core behavior. Use this index for focused content on specific topics.
+
 ## Map of Content (MOC)
 
 ### Foundation

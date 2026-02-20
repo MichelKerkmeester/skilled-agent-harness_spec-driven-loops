@@ -9,6 +9,8 @@ version: 1.0.8.0
 
 Multi-language code standards and quality workflows for OpenCode system code, covering language detection routing, universal patterns, and completion checklists across JavaScript, TypeScript, Python, Shell, and JSON/JSONC.
 
+> **Navigation note:** This is a supplemental deep-dive index. `SKILL.md` remains the primary entrypoint for activation rules, routing logic, and core behavior. Use this index for focused content on specific topics.
+
 ## Map of Content (MOC)
 
 ### Foundation

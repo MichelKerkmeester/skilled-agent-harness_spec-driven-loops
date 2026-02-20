@@ -17,7 +17,7 @@
 | **Testing** | Bash Link Checker + SGQS compatibility checks |
 
 ### Overview
-This plan details the process of decomposing **every available OpenCode skill** into an interconnected Skill Graph and integrating graph semantics into the `system-spec-kit` memory architecture. It defines tooling setup (link validation + Graph-Lite query layer), pilot migration, per-skill node completion across all 9 skills, and final verification of token efficiency, cross-skill traversal, and backward compatibility with existing memory tools.
+This plan details the process of adding supplemental Skill Graph layers to **every available OpenCode skill** and integrating graph semantics into the `system-spec-kit` memory architecture. It defines tooling setup (link validation + Graph-Lite query layer), pilot migration, per-skill node completion across all 9 skills, and final verification of token efficiency, cross-skill traversal, and backward compatibility with existing memory tools.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -40,7 +40,7 @@ This plan details the process of decomposing **every available OpenCode skill** 
   - Deliverable: global link report artifact with zero unresolved wikilinks.
   - Validation: `bash check-links.sh .opencode/skill` exits successfully.
 - [ ] **All** skills converted to graph architecture
-  - Deliverable: all 9 skills have index + node graph + compatible `SKILL.md` entrypoint.
+  - Deliverable: all 9 skills have index + node graph + primary `SKILL.md` entrypoint with supplemental graph layers.
   - Validation: node coverage matrix marks all rows complete with references.
 - [ ] `workflows-documentation` includes Skill Graph standards reference, node template asset, and updated `SKILL.md`
   - Deliverable: standards doc, template asset, and entrypoint guidance linked together.
@@ -86,7 +86,7 @@ Agent reads `index.md` -> resolves YAML intent metadata -> follows relevant `[[l
   - Dependencies: none; hard prerequisite for Phase 5 verification confidence.
 - [ ] Establish graph directory and metadata conventions for all skills.
   - Inputs: existing skill folder inventory and node/frontmatter conventions from completed pilot work.
-  - Execution guidance: standardize `index.md` + `nodes/*.md` layout, frontmatter key contract, and compatibility-entrypoint expectations.
+  - Execution guidance: standardize `index.md` + `nodes/*.md` layout, frontmatter key contract, and Graph Status header expectations.
   - Exit criteria: conventions are explicit and reusable across all remaining six pending skills without per-skill reinterpretation.
   - Verification artifacts: structure audit notes and standards references linked from planning docs.
   - Dependencies: alignment with current skill authoring patterns.
@@ -105,12 +105,12 @@ Agent reads `index.md` -> resolves YAML intent metadata -> follows relevant `[[l
 
 ### Phase 2: Pilot Migration (`system-spec-kit`)
 - [ ] Execute pilot node decomposition for `system-spec-kit`.
-  - Inputs: current monolithic `SKILL.md` domains (routing, memory, validation, workflows).
+  - Inputs: current `SKILL.md` domains (routing, memory, validation, workflows).
   - Execution guidance: split by stable conceptual domains, prevent overlap, and keep each node independently useful.
   - Exit criteria: every pilot domain is reachable from `index.md` with no orphan content.
   - Verification artifacts: traversal notes showing entrypoint -> index -> node coverage across all core domains.
   - Dependencies: Phase 1 link tooling and conventions.
-- [ ] Build deterministic pilot index and compatibility entrypoint.
+- [ ] Build deterministic pilot index and add Graph Status header to SKILL.md.
   - Inputs: decomposed pilot nodes and backward-compatibility requirement for skill loading.
   - Execution guidance: create deterministic first-hop ordering in `index.md`; keep `SKILL.md` concise and routing-focused.
   - Exit criteria: legacy invocation behavior remains intact while deep guidance is served from graph nodes.
@@ -185,7 +185,7 @@ Agent reads `index.md` -> resolves YAML intent metadata -> follows relevant `[[l
 
 ### Phase Acceptance Summary (Execution Gate)
 - **Phase 1 gate**: tooling and conventions are stable enough for repeatable migration with auditable outputs.
-- **Phase 2 gate**: pilot proves graph decomposition + compatibility entrypoint + metadata viability.
+- **Phase 2 gate**: pilot proves graph decomposition + primary SKILL.md with graph layer + metadata viability.
 - **Phase 3 gate**: all nine skills reach complete matrix state with synchronized task/checklist evidence.
 - **Phase 4 gate**: SGQS works in-process and preserves memory-tool contracts without Neo4j dependencies.
 - **Phase 5 gate**: link integrity, traversal behavior, and SGQS scenario results are all artifact-backed and reproducible.
@@ -219,7 +219,7 @@ Agent reads `index.md` -> resolves YAML intent metadata -> follows relevant `[[l
 - **Trigger**: Agents fail to navigate the new graph structure.
 - **Procedure**:
   1. Revert migration commits that introduced graph nodes for affected skills.
-  2. Restore prior monolithic `SKILL.md` content for impacted directories.
+  2. Remove graph status headers from `SKILL.md` for impacted directories.
   3. Re-run link and traversal checks to confirm baseline behavior is recovered.
   4. Log root cause and remediation plan before reattempting rollout.
 <!-- /ANCHOR:rollback -->

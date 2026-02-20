@@ -9,6 +9,8 @@ version: 1.0.7.0
 
 Orchestrates browser debugging workflows by routing between the CLI (`bdg`) and MCP (Code Mode) approaches based on task complexity, token efficiency, and multi-tool integration requirements.
 
+> **Navigation note:** This is a supplemental deep-dive index. `SKILL.md` remains the primary entrypoint for activation rules, routing logic, and core behavior. Use this index for focused content on specific topics.
+
 ## Map of Content (MOC)
 
 ### Foundation

@@ -10,6 +10,8 @@ version: 1.0.8.0
 
 Orchestrates the full git development lifecycle — from workspace setup through clean commits to PR creation and branch cleanup — using structured, phase-driven workflows.
 
+> **Navigation note:** This is a supplemental deep-dive index. `SKILL.md` remains the primary entrypoint for activation rules, routing logic, and core behavior. Use this index for focused content on specific topics.
+
 ## Map of Content (MOC)
 
 ### Foundation

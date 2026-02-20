@@ -9,6 +9,8 @@ version: 1.1.0.0
 
 Stack-agnostic skill that guides developers through implementation, testing, and verification phases. Automatically detects the active stack via marker files and routes to the appropriate bundled knowledge and tooling.
 
+> **Navigation note:** This is a supplemental deep-dive index. `SKILL.md` remains the primary entrypoint for activation rules, routing logic, and core behavior. Use this index for focused content on specific topics.
+
 ## Map of Content (MOC)
 
 ### Foundation

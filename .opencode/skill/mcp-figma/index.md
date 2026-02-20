@@ -9,6 +9,8 @@ version: 1.0.7.0
 
 Enables token-efficient access to Figma files, components, styles, and comments through 18 Code Mode tools. Use this skill whenever a task requires reading or exporting design data from Figma.
 
+> **Navigation note:** This is a supplemental deep-dive index. `SKILL.md` remains the primary entrypoint for activation rules, routing logic, and core behavior. Use this index for focused content on specific topics.
+
 ## Map of Content (MOC)
 
 ### Foundation

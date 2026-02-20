@@ -569,8 +569,8 @@ See [workflow-details.md](./references/workflow-details.md) for complete step-by
 **Graph Mode Structure** (for skills that benefit from node decomposition):
 ```
 .opencode/skill/skill-name/
-├── SKILL.md              - Lightweight compatibility entrypoint
-├── index.md              - Graph entrypoint with Map of Content + wikilinks
+├── SKILL.md              - Primary entrypoint (activation rules, routing, core behavior)
+├── index.md              - Supplemental deep-dive index with Map of Content + wikilinks
 ├── nodes/
 │   ├── when-to-use.md    - Activation triggers (required)
 │   ├── rules.md          - ALWAYS/NEVER/ESCALATE (required)

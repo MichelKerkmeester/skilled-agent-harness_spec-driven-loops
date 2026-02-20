@@ -117,6 +117,6 @@ const images = await figma.figma_get_image({ fileKey: "abc", ids: ["1:2"], forma
 ```
 
 ## Cross References
-- [[how-it-works]] -- Core invocation workflow using Code Mode
-- [[rules]] -- Authentication and naming rules
-- [[related-resources]] -- Install guide and external documentation
+- [[how-it-works]] — Core invocation workflow using Code Mode
+- [[rules]] — Authentication and naming rules
+- [[related-resources]] — Install guide and external documentation

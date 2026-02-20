@@ -60,6 +60,6 @@ Non-negotiable behavioral rules for every Figma MCP interaction.
    - Reduce request frequency
 
 ## Cross References
-- [[how-it-works]] -- Correct invocation patterns
-- [[success-criteria]] -- How to verify operations succeeded
-- [[integration-points]] -- Authentication and configuration details
+- [[how-it-works]] — Correct invocation patterns
+- [[success-criteria]] — How to verify operations succeeded
+- [[integration-points]] — Authentication and configuration details

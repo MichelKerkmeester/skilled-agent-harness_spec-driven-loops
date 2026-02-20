@@ -64,5 +64,5 @@ Identifies when to invoke Figma MCP and when to use other tools instead.
 - Design prototyping -- Use Figma's prototyping tools
 
 ## Cross References
-- [[how-it-works]] -- Core workflow for invoking Figma tools
-- [[rules]] -- Mandatory rules when using this skill
+- [[how-it-works]] — Core workflow for invoking Figma tools
+- [[rules]] — Mandatory rules when using this skill

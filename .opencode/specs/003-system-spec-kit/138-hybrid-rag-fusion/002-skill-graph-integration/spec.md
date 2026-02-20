@@ -7,13 +7,13 @@
 
 <!-- ANCHOR:executive-summary -->
 ## EXECUTIVE SUMMARY
-The OpenCode skill system currently uses monolithic `SKILL.md` files which exhaust token windows and restrict multi-domain synthesis. This specification outlines the transition to a Skill Graph Architecture across **all available skills**, which uses small, composable markdown nodes connected by wikilinks. It also adds a lightweight Neo4j-style graph scripting/query layer integrated into the `system-spec-kit` memory system so graph traversal can run on top of existing Spec Kit Memory data and tools. This progressive disclosure approach will improve token efficiency, agent cognition, context loading speed, and graph-aware retrieval precision.
+The OpenCode skill system currently uses monolithic `SKILL.md` files which exhaust token windows and restrict multi-domain synthesis. This specification outlines the addition of a Skill Graph Architecture as a supplemental navigation and discovery layer across **all available skills**, which uses small, composable markdown nodes connected by wikilinks. It also adds a lightweight Neo4j-style graph scripting/query layer integrated into the `system-spec-kit` memory system so graph traversal can run on top of existing Spec Kit Memory data and tools. This progressive disclosure approach will improve token efficiency, agent cognition, context loading speed, and graph-aware retrieval precision.
 
 **Key Decisions**: 
 - Adopt wikilinks `[[node]]` for semantic traversal in prose across all skills.
 - Require YAML frontmatter with `description` fields on all nodes.
-- Deprecate monolithic python-based Smart Routing in favor of Maps of Content (MOCs).
-- Keep `SKILL.md` as a lightweight compatibility entrypoint during migration, routing users to `index.md` and node-based content.
+- Add Maps of Content (MOCs) as supplemental navigation alongside existing Smart Routing.
+- Preserve `SKILL.md` as the primary skill entrypoint. The graph layer provides supplemental deep-dive navigation via `index.md` and node-based content.
 - Implement `Skill Graph-Lite Query Script` (SGQS) using a Neo4j-style syntax subset inside existing Spec Kit Memory architecture.
 - Do **not** introduce external Neo4j infrastructure, client libraries, or network dependencies.
 
@@ -52,7 +52,7 @@ Implement a traversable Skill Graph architecture for **every available skill** u
 ## 3. SCOPE
 
 ### In Scope
-- Conversion of **all existing skills** (including `system-spec-kit`, `workflows-documentation`, `workflows-code`, etc.) from monolithic `SKILL.md` format to Skill Graphs.
+- Addition of Skill Graph navigation layers for **all existing skills** (including `system-spec-kit`, `workflows-documentation`, `workflows-code`, etc.), supplementing existing `SKILL.md` entrypoints.
 - Definition of YAML frontmatter standards for skill nodes.
 - Implementation of a link-validation script (`check-links.sh`) supporting cross-skill node linking.
 - Updates to agent instructions to natively support wikilink `[[...]]` traversal.
@@ -70,7 +70,7 @@ Implement a traversable Skill Graph architecture for **every available skill** u
 ### Files to Change
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skill/*/SKILL.md` | Refactor | Convert to lightweight graph entrypoints and routing content |
+| `.opencode/skill/*/SKILL.md` | Update | Add Skill Graph Status header pointing to supplemental index.md and nodes/ |
 | `.opencode/skill/*/nodes/*.md` | Create | Extracted modular skill files |
 | `scripts/check-links.sh` | Create | Global link validation utility |
 | `.opencode/skill/workflows-documentation/references/skill_graph_standards.md` | Create | Skill Graph authoring standards |
@@ -108,7 +108,7 @@ Implement a traversable Skill Graph architecture for **every available skill** u
 ## 5. SUCCESS CRITERIA
 - **SC-001**: Agent successfully traverses multiple skill graphs to retrieve specific nested information without loading entire contents.
 - **SC-002**: Token usage for initial invocation of any skill drops by at least 70%.
-- **SC-003**: All existing skills have been fully migrated to the node-based architecture.
+- **SC-003**: All existing skills have supplemental node-based navigation layers alongside their primary SKILL.md files.
 - **SC-004**: SGQS runs graph-style traversal queries against Skill Graph metadata through existing Spec Kit Memory architecture.
 - **SC-005**: SGQS adoption requires zero external Neo4j infrastructure changes.
 <!-- /ANCHOR:success-criteria -->
@@ -170,8 +170,8 @@ Implement a traversable Skill Graph architecture for **every available skill** u
 |---------|-------------|--------|------------|------------|
 | R-001 | Agents fail to follow links | High | Medium | Add clear instructions in the root index file explaining how to traverse. |
 | R-002 | Link rot over time | Med | High | Strict enforcement of `check-links.sh`. |
-| R-003 | Lost functionality | High | Low | QA each skill conversion thoroughly before deleting `SKILL.md`. |
-| R-004 | Loader compatibility breakage | High | Medium | Keep `SKILL.md` present as compatibility wrappers during transition. |
+| R-003 | Lost functionality | High | Low | SKILL.md is never deleted; it remains the primary entrypoint. QA each skill's graph layer thoroughly. |
+| R-004 | Loader compatibility breakage | High | Medium | SKILL.md remains the permanent primary entrypoint; graph layer is purely supplemental. |
 <!-- /ANCHOR:risk-matrix -->
 
 ---

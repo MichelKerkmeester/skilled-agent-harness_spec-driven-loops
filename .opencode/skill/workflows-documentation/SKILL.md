@@ -65,7 +65,7 @@ Create and manage OpenCode components (skills, agents, commands). Each component
 - **Commands** (.opencode/command/) - Slash commands for user invocation → [command_template.md](./assets/opencode/command_template.md)
 
 **Skill Graph Authoring** - Use graph resources when:
-- Converting large monolithic `SKILL.md` files to node-based graphs
+- Adding supplemental node-based graph layers to large `SKILL.md` files
 - Creating `index.md` + `nodes/*.md` structures for progressive disclosure
 - Defining wikilink traversal paths across skills
 
@@ -300,7 +300,7 @@ scripts/extract_structure.py path/to/document.md
 2. Create `index.md` using [skill_graph_index_template.md](./assets/opencode/skill_graph_index_template.md) as the entrypoint and map of content
 3. Create focused `nodes/*.md` files with YAML frontmatter
 4. Use [skill_graph_node_template.md](./assets/opencode/skill_graph_node_template.md) to keep node structure consistent
-5. Keep `SKILL.md` as a lightweight compatibility entrypoint during migration
+5. Retain `SKILL.md` as the primary entrypoint; add a Graph Status header pointing to the supplemental `index.md`
 
 **After packaging**: Run `extract_structure.py` on SKILL.md for final quality review.
 
