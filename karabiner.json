@@ -52,7 +52,7 @@
                                 },
                                 "to": [
                                     {
-                                        "shell_command": "osascript -e 'set the clipboard to \"According to/.opencode/agent/orchestrate.md logic (Are you a non-copilot version Codex or GPT? Reference /.opencode/agent/chatgpt/orchestrate.md instead) (Are you CLAUDE CODE? Reference /.claude/agents/orchestrate.md instead), delegate simultaneously to up to \"' -e 'tell application \"System Events\" to keystroke \"v\" using command down'"
+                                        "shell_command": "osascript -e 'set the clipboard to \"According to [runtime_agent_path]/orchestrate.md logic (resolve [runtime_agent_path] per AGENTS.md §7), delegate simultaneously to up to \"' -e 'tell application \"System Events\" to keystroke \"v\" using command down'"
                                     }
                                 ],
                                 "type": "basic"
@@ -69,7 +69,7 @@
                                 },
                                 "to": [
                                     {
-                                        "shell_command": "osascript -e 'set the clipboard to \"Review all code you updated or created with /.opencode/agent/review.md subagent(s) (Are you a non-copilot version Codex or GPT? Reference /.opencode/agent/chatgpt/review.md instead) (Are you CLAUDE CODE? Reference /.claude/agents/review.md instead)\"' -e 'tell application \"System Events\" to keystroke \"v\" using command down'"
+                                        "shell_command": "osascript -e 'set the clipboard to \"Follow [runtime_agent_path]/orchestrate.md §6 Compaction Recovery + §8 Self-Protection Rules to prevent context overload (resolve [runtime_agent_path] per AGENTS.md §7)\"' -e 'tell application \"System Events\" to keystroke \"v\" using command down'"
                                     }
                                 ],
                                 "type": "basic"
@@ -86,7 +86,7 @@
                                 },
                                 "to": [
                                     {
-                                        "shell_command": "osascript -e 'set the clipboard to \"Create spec kit documentation with /.opencode/agent/speckit.md subagent(s) (Are you a non-copilot version Codex or GPT? Reference /.opencode/agent/chatgpt/speckit.md instead) (Are you CLAUDE CODE? Reference /.claude/agents/speckit.md instead)\"' -e 'tell application \"System Events\" to keystroke \"v\" using command down'"
+                                        "shell_command": "osascript -e 'set the clipboard to \"Review all code you updated or created with [runtime_agent_path]/review.md subagent(s) (resolve [runtime_agent_path] per AGENTS.md §7)\"' -e 'tell application \"System Events\" to keystroke \"v\" using command down'"
                                     }
                                 ],
                                 "type": "basic"
@@ -103,7 +103,7 @@
                                 },
                                 "to": [
                                     {
-                                        "shell_command": "osascript -e 'set the clipboard to \"Create or update documentation with /.opencode/agent/write.md subagent(s) (Are you a non-copilot version Codex or GPT? Reference /.opencode/agent/chatgpt/write.md instead) (Are you CLAUDE CODE? Reference /.claude/agents/write.md instead)\"' -e 'tell application \"System Events\" to keystroke \"v\" using command down'"
+                                        "shell_command": "osascript -e 'set the clipboard to \"Create or update documentation with [runtime_agent_path]/write.md subagent(s) (resolve [runtime_agent_path] per AGENTS.md §7)\"' -e 'tell application \"System Events\" to keystroke \"v\" using command down'"
                                     }
                                 ],
                                 "type": "basic"
