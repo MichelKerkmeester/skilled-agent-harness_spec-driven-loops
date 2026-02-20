@@ -1,0 +1,4 @@
+description = "Full end-to-end SpecKit workflow (14+ steps) - supports :auto, :confirm, :with-research, and :auto-debug modes"
+prompt = """@{../../.opencode/command/spec_kit/complete.md}
+
+User request: {{args}}"""

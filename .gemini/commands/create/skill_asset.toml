@@ -1,0 +1,4 @@
+description = "Create an asset file for an existing skill - templates, lookups, examples, or guides - supports :auto and :confirm modes"
+prompt = """@{../../.opencode/command/create/skill_asset.md}
+
+User request: {{args}}"""

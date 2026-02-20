@@ -1,0 +1,4 @@
+description = "Create session handover document for continuing work in a new conversation"
+prompt = """@{../../.opencode/command/spec_kit/handover.md}
+
+User request: {{args}}"""

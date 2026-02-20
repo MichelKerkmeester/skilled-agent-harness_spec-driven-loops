@@ -1,0 +1,4 @@
+description = "Retrieve context with intent awareness - combines search + load with task-specific weights"
+prompt = """@{../../.opencode/command/memory/context.md}
+
+User request: {{args}}"""

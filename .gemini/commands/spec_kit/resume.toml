@@ -1,0 +1,4 @@
+description = "Resume work on an existing spec folder - loads context, shows progress, and continues from last state"
+prompt = """@{../../.opencode/command/spec_kit/resume.md}
+
+User request: {{args}}"""

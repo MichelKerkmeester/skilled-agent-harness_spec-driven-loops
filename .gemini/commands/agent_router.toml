@@ -1,0 +1,4 @@
+description = "Route requests to AI Systems with full System Prompt identity adoption"
+prompt = """@{../.opencode/command/agent_router.md}
+
+User request: {{args}}"""

@@ -1,0 +1,4 @@
+description = "Implementation workflow (9 steps) - execute pre-planned work. Requires existing plan.md. Supports :auto and :confirm modes"
+prompt = """@{../../.opencode/command/spec_kit/implement.md}
+
+User request: {{args}}"""

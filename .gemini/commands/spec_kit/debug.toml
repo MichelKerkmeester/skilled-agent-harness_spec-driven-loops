@@ -1,0 +1,4 @@
+description = "Delegate debugging to a specialized sub-agent with full context handoff."
+prompt = """@{../../.opencode/command/spec_kit/debug.md}
+
+User request: {{args}}"""

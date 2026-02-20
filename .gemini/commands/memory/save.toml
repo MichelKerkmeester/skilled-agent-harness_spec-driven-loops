@@ -1,0 +1,4 @@
+description = "Save current conversation context to memory with semantic indexing"
+prompt = """@{../../.opencode/command/memory/save.md}
+
+User request: {{args}}"""

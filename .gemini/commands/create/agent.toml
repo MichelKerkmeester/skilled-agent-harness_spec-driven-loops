@@ -1,0 +1,4 @@
+description = "Create a new OpenCode agent with proper frontmatter, tool permissions, and behavioral rules - supports :auto and :confirm modes"
+prompt = """@{../../.opencode/command/create/agent.md}
+
+User request: {{args}}"""

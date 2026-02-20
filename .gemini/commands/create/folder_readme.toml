@@ -1,0 +1,4 @@
+description = "Create an AI-optimized README.md file with proper structure, table of contents, and comprehensive documentation - supports :auto and :confirm modes"
+prompt = """@{../../.opencode/command/create/folder_readme.md}
+
+User request: {{args}}"""

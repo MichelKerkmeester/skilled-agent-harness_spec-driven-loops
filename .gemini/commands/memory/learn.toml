@@ -1,0 +1,4 @@
+description = "Capture explicit learning from session - patterns, mistakes, insights, optimizations, constraints. Also provides correction, undo, and history subcommands."
+prompt = """@{../../.opencode/command/memory/learn.md}
+
+User request: {{args}}"""

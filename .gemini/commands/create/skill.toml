@@ -1,0 +1,4 @@
+description = "Create a new skill with SKILL.md, references, assets, and scripts - supports :auto and :confirm modes"
+prompt = """@{../../.opencode/command/create/skill.md}
+
+User request: {{args}}"""

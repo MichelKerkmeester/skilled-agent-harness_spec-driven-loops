@@ -1,0 +1,4 @@
+description = "Planning workflow (7 steps) - spec through plan only, no implementation. Supports :auto and :confirm modes"
+prompt = """@{../../.opencode/command/spec_kit/plan.md}
+
+User request: {{args}}"""

@@ -1,0 +1,4 @@
+description = "Create a comprehensive AI-first installation guide with step-by-step setup instructions, requirements, and troubleshooting - supports :auto and :confirm modes"
+prompt = """@{../../.opencode/command/create/install_guide.md}
+
+User request: {{args}}"""

@@ -1,0 +1,4 @@
+description = "Manage memory database - stats, scan, cleanup, tier, triggers, validate, delete, health, and checkpoint operations"
+prompt = """@{../../.opencode/command/memory/manage.md}
+
+User request: {{args}}"""

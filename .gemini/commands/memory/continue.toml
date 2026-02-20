@@ -1,0 +1,4 @@
+description = "Recover session from crash, compaction, or timeout - resume interrupted work"
+prompt = """@{../../.opencode/command/memory/continue.md}
+
+User request: {{args}}"""

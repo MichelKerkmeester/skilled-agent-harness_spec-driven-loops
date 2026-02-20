@@ -15,6 +15,8 @@ Public Repo (source of truth)
      scripts/
      specs/                     ← Project specs (subfolders gitignored per-project)
      ...
+  .claude/                      ← Claude Code runtime adapter (agents, mcp.json)
+  .gemini/                      ← Gemini CLI runtime adapter (agents, commands, skills, settings.json)
 
 your-project.com (consumer project)
   .opencode -> Public/.opencode  ← SYMLINK (entire framework + specs)
@@ -175,17 +177,17 @@ gh release create vX.X.X.X \
 
 | Field              | Value                                                                                  |
 | ------------------ | -------------------------------------------------------------------------------------- |
-| **Version**        | v2.2.1.0                                                                               |
+| **Version**        | v2.3.0.0                                                                               |
 | **Release Date**   | 2026-02-20                                                                             |
 | **GitHub**         | https://github.com/MichelKerkmeester/opencode-spec-kit-framework                       |
 | **Latest Release** | https://github.com/MichelKerkmeester/opencode-spec-kit-framework/releases/latest       |
-| **Release Notes**  | https://github.com/MichelKerkmeester/opencode-spec-kit-framework/releases/tag/v2.2.1.0 |
+| **Release Notes**  | https://github.com/MichelKerkmeester/opencode-spec-kit-framework/releases/tag/v2.3.0.0 |
 
 ### Release Notes
 
 Release notes for each version are stored as individual files in `.opencode/changelog/00--opencode-environment/vX.X.X.X.md`, formatted per the template in Section 7. For GitHub publishing, use an extracted body that excludes the local changelog wrapper (`# v...`, `> Part of ...`, `## [**x.x.x.x**] - date`).
 
-**Latest**: See `.opencode/changelog/00--opencode-environment/v2.2.1.0.md`
+**Latest**: See `.opencode/changelog/00--opencode-environment/v2.3.0.0.md`
 
 ---
 
@@ -334,6 +336,8 @@ Releases use a 4-part versioning scheme: `MAJOR.MINOR.SERIES.PATCH`
 | `2.1.4.x` | 2.1.4.0     | HVR integration across documentation templates                                          |
 | `2.2.0.x` | 2.2.0.0-2   | System Spec Kit verification hardening + release-doc refresh (deferred-suite activation, CHK-336 closure, README/metadata sync) |
 | `2.2.1.x` | 2.2.1.0     | Context overload prevention for orchestrator agents                                     |
+| `2.2.2.x` | 2.2.2.0     | Gemini CLI agent fleet + TOML commands + MCP server config                              |
+| `2.3.0.x` | 2.3.0.0     | Gemini CLI full provider integration (4th runtime: agents, commands, skills, MCP)        |
 
 ---
 

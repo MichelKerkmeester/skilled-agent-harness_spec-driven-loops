@@ -1,0 +1,4 @@
+description = "Research workflow (9 steps) - technical investigation and documentation. Supports :auto and :confirm modes"
+prompt = """@{../../.opencode/command/spec_kit/research.md}
+
+User request: {{args}}"""
