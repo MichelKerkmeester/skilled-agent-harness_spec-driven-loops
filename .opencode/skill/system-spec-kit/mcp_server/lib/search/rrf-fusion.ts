@@ -129,9 +129,10 @@ function fuseResultsMulti(
   lists: RankedList[],
   options: FuseMultiOptions = {}
 ): FusionResult[] {
-  const k = options.k || DEFAULT_K;
-  const convergenceBonus = options.convergenceBonus || CONVERGENCE_BONUS;
-  const graphWeightBoost = options.graphWeightBoost || GRAPH_WEIGHT_BOOST;
+  // Use ?? (not ||) so callers can explicitly pass 0 without falling back to defaults
+  const k = options.k ?? DEFAULT_K;
+  const convergenceBonus = options.convergenceBonus ?? CONVERGENCE_BONUS;
+  const graphWeightBoost = options.graphWeightBoost ?? GRAPH_WEIGHT_BOOST;
 
   const scoreMap = new Map<number | string, FusionResult>();
 
@@ -237,6 +238,81 @@ async function unifiedSearch(
 }
 
 /**
+ * C138-P3: Cross-Variant RRF Fusion for multi-query RAG.
+ *
+ * Accepts multi-dimensional arrays (one RankedList[] per query variant),
+ * groups identical memory IDs across variants, and applies a +0.10
+ * cross-variant convergence bonus when the same ID appears in results
+ * from different query variants.
+ *
+ * @param variantLists - Array of variant result sets, each containing
+ *                       multiple RankedLists (e.g., vector + fts per variant)
+ * @param options - Standard fusion options
+ * @returns Fused results with cross-variant convergence bonuses
+ */
+function fuseResultsCrossVariant(
+  variantLists: RankedList[][],
+  options: FuseMultiOptions = {}
+): FusionResult[] {
+  const convergenceBonusPerVariant = options.convergenceBonus || CONVERGENCE_BONUS;
+
+  if (variantLists.length === 0) return [];
+
+  // Step 1: Fuse each variant's lists independently
+  const perVariantFused: FusionResult[][] = variantLists.map(lists =>
+    fuseResultsMulti(lists, options)
+  );
+
+  // Step 2: Track which variants each ID appeared in
+  const variantAppearances = new Map<number | string, Set<number>>();
+  for (let vi = 0; vi < perVariantFused.length; vi++) {
+    for (const result of perVariantFused[vi]) {
+      let variants = variantAppearances.get(result.id);
+      if (!variants) {
+        variants = new Set<number>();
+        variantAppearances.set(result.id, variants);
+      }
+      variants.add(vi);
+    }
+  }
+
+  // Step 3: Merge all variant results, accumulating RRF scores
+  const mergedMap = new Map<number | string, FusionResult>();
+  for (const variantResults of perVariantFused) {
+    for (const result of variantResults) {
+      const existing = mergedMap.get(result.id);
+      if (existing) {
+        // Accumulate scores from additional variants
+        existing.rrfScore += result.rrfScore;
+        for (const src of result.sources) {
+          if (!existing.sources.includes(src)) {
+            existing.sources.push(src);
+          }
+        }
+        for (const [key, val] of Object.entries(result.sourceScores)) {
+          existing.sourceScores[key] = (existing.sourceScores[key] || 0) + val;
+        }
+      } else {
+        mergedMap.set(result.id, { ...result });
+      }
+    }
+  }
+
+  // Step 4: Apply cross-variant convergence bonus
+  for (const [id, result] of mergedMap) {
+    const variantCount = variantAppearances.get(id)?.size || 1;
+    if (variantCount >= 2) {
+      const crossVariantBonus = convergenceBonusPerVariant * (variantCount - 1);
+      result.convergenceBonus += crossVariantBonus;
+      result.rrfScore += crossVariantBonus;
+    }
+  }
+
+  return Array.from(mergedMap.values())
+    .sort((a, b) => b.rrfScore - a.rrfScore);
+}
+
+/**
  * Check if RRF fusion is enabled.
  */
 function isRrfEnabled(): boolean {
@@ -255,6 +331,7 @@ export {
 
   fuseResults,
   fuseResultsMulti,
+  fuseResultsCrossVariant,
   fuseScoresAdvanced,
   countOriginalTermMatches,
   unifiedSearch,

@@ -1,0 +1,143 @@
+// ---------------------------------------------------------------
+// MODULE: SQLite FTS5 BM25 Search (C138-P2)
+// Weighted BM25 scoring for FTS5 full-text search.
+// Extracted from hybrid-search.ts ftsSearch() for independent
+// testing and future delegation.
+// ---------------------------------------------------------------
+
+import type Database from 'better-sqlite3';
+import { sanitizeFTS5Query } from './bm25-index';
+
+/* ---------------------------------------------------------------
+   1. CONSTANTS
+   --------------------------------------------------------------- */
+
+/**
+ * C138-P2: FTS5 bm25() column weight arguments.
+ * Passed positionally to bm25(memory_fts, w0, w1, w2, w3)
+ * matching the FTS5 table column order:
+ *   col 0 = title           -> 10.0
+ *   col 1 = trigger_phrases ->  5.0
+ *   col 2 = content_text    ->  1.0
+ *   col 3 = file_path       ->  2.0
+ *
+ * Note: bm25() returns NEGATIVE scores (lower = better match),
+ * so we negate to produce positive scores for ranking.
+ */
+const FTS5_BM25_WEIGHTS = [10.0, 5.0, 1.0, 2.0] as const;
+
+/* ---------------------------------------------------------------
+   2. INTERFACES
+   --------------------------------------------------------------- */
+
+interface FtsBm25Result {
+  id: number;
+  fts_score: number;
+  [key: string]: unknown;
+}
+
+interface FtsBm25Options {
+  limit?: number;
+  specFolder?: string;
+  includeArchived?: boolean;
+}
+
+/* ---------------------------------------------------------------
+   3. CORE FUNCTION
+   --------------------------------------------------------------- */
+
+/**
+ * Execute a weighted BM25 FTS5 search against memory_fts.
+ *
+ * Uses SQLite FTS5's built-in bm25() ranking function with
+ * per-column weights instead of the default `rank` pseudo-column.
+ * This gives title matches 10x weight, trigger_phrases 5x, etc.
+ *
+ * @param db - SQLite database connection
+ * @param query - Raw search query (will be sanitized)
+ * @param options - Search options (limit, specFolder, includeArchived)
+ * @returns Array of results with BM25 scores (higher = better)
+ */
+function fts5Bm25Search(
+  db: Database.Database,
+  query: string,
+  options: FtsBm25Options = {}
+): FtsBm25Result[] {
+  const { limit = 20, specFolder, includeArchived = false } = options;
+
+  // Sanitize and build OR-joined query for recall
+  const sanitized = sanitizeFTS5Query(query)
+    .split(/\s+/)
+    .filter(Boolean)
+    .join(' OR ');
+
+  if (!sanitized) return [];
+
+  const folderFilter = specFolder ? 'AND m.spec_folder = ?' : '';
+  const archivalFilter = !includeArchived
+    ? 'AND (m.is_archived IS NULL OR m.is_archived = 0)'
+    : '';
+
+  const params: (string | number)[] = specFolder
+    ? [sanitized, specFolder, limit]
+    : [sanitized, limit];
+
+  // bm25() returns negative scores (lower = better), so we negate
+  // to produce positive scores where higher = better match.
+  const [w0, w1, w2, w3] = FTS5_BM25_WEIGHTS;
+  const sql = `
+    SELECT m.*, -bm25(memory_fts, ${w0}, ${w1}, ${w2}, ${w3}) AS fts_score
+    FROM memory_fts
+    JOIN memory_index m ON m.id = memory_fts.rowid
+    WHERE memory_fts MATCH ?
+      ${folderFilter}
+      ${archivalFilter}
+    ORDER BY fts_score DESC
+    LIMIT ?
+  `;
+
+  try {
+    const rows = (db.prepare(sql) as Database.Statement).all(
+      ...params
+    ) as Array<Record<string, unknown>>;
+
+    return rows.map(row => ({
+      ...row,
+      id: row.id as number,
+      fts_score: (row.fts_score as number) || 0,
+    }));
+  } catch (error: unknown) {
+    const msg = error instanceof Error ? error.message : String(error);
+    console.warn(`[sqlite-fts] BM25 FTS5 search failed: ${msg}`);
+    return [];
+  }
+}
+
+/**
+ * Check if the memory_fts FTS5 table exists in the database.
+ */
+function isFts5Available(db: Database.Database): boolean {
+  try {
+    const result = (db.prepare(
+      `SELECT name FROM sqlite_master WHERE type='table' AND name='memory_fts'`
+    ) as Database.Statement).get() as { name: string } | undefined;
+    return !!result;
+  } catch {
+    return false;
+  }
+}
+
+/* ---------------------------------------------------------------
+   4. EXPORTS
+   --------------------------------------------------------------- */
+
+export {
+  FTS5_BM25_WEIGHTS,
+  fts5Bm25Search,
+  isFts5Available,
+};
+
+export type {
+  FtsBm25Result,
+  FtsBm25Options,
+};

@@ -303,7 +303,7 @@ Before starting any task, verify:
 - [x] All feature flags (`SPECKIT_GRAPH_UNIFIED`, `SPECKIT_GRAPH_MMR`, `SPECKIT_GRAPH_AUTHORITY`) default to `false` and are documented — graph-flags.ts strict `=== 'true'` check
 - [x] `checklist.md` fully verified with evidence markers — 50/54 verified (21/21 P0, 26/26 P1, 3/7 P2; 4 P2 deferred)
 - [x] All ADRs in `decision-record.md` have status: Accepted — ADR-001, ADR-002, ADR-003 all Accepted
-- [ ] `implementation-summary.md` completed after all phases done
+- [x] `implementation-summary.md` completed after all phases done — Level 3+ template, all sections filled
 
 <!-- /ANCHOR:completion -->
 

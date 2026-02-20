@@ -11,6 +11,20 @@ const MAX_COMBINED_BOOST = 0.20;
 const SEED_FRACTION = 0.25;
 const MAX_SEED_RESULTS = 5;
 
+/**
+ * C138-P2: Relation-type weight multipliers for causal edge traversal.
+ * Applied during CTE accumulation so stronger relation types (supersedes)
+ * amplify the boost while weaker ones (contradicts) attenuate it.
+ */
+const RELATION_WEIGHT_MULTIPLIERS: Record<string, number> = {
+  supersedes: 1.5,
+  contradicts: 0.8,
+  caused: 1.0,
+  enabled: 1.0,
+  derived_from: 1.0,
+  supports: 1.0,
+};
+
 interface RankedSearchResult extends Record<string, unknown> {
   id: number;
   score?: number;
@@ -71,15 +85,24 @@ function getNeighborBoosts(memoryIds: number[]): Map<number, number> {
   const originIds = ids.map((value) => String(value));
   const placeholders = originIds.map(() => '?').join(', ');
 
+  // C138-P2: Relation-weighted CTE — accumulates score with multiplier
+  // based on edge relation type and edge strength column.
+  // 'supersedes' edges get 1.5x, 'contradicts' 0.8x, others 1.0x.
   const query = `
-    WITH RECURSIVE causal_walk(origin_id, node_id, hop_distance) AS (
-      SELECT ce.source_id, ce.target_id, 1
+    WITH RECURSIVE causal_walk(origin_id, node_id, hop_distance, walk_score) AS (
+      SELECT ce.source_id, ce.target_id, 1,
+             (CASE WHEN ce.relation = 'supersedes' THEN 1.5
+                   WHEN ce.relation = 'contradicts' THEN 0.8
+                   ELSE 1.0 END * COALESCE(ce.strength, 1.0))
       FROM causal_edges ce
       WHERE ce.source_id IN (${placeholders})
 
       UNION
 
-      SELECT ce.target_id, ce.source_id, 1
+      SELECT ce.target_id, ce.source_id, 1,
+             (CASE WHEN ce.relation = 'supersedes' THEN 1.5
+                   WHEN ce.relation = 'contradicts' THEN 0.8
+                   ELSE 1.0 END * COALESCE(ce.strength, 1.0))
       FROM causal_edges ce
       WHERE ce.target_id IN (${placeholders})
 
@@ -90,13 +113,16 @@ function getNeighborBoosts(memoryIds: number[]): Map<number, number> {
                WHEN ce.source_id = cw.node_id THEN ce.target_id
                ELSE ce.source_id
              END,
-             cw.hop_distance + 1
+             cw.hop_distance + 1,
+             (cw.walk_score * CASE WHEN ce.relation = 'supersedes' THEN 1.5
+                                   WHEN ce.relation = 'contradicts' THEN 0.8
+                                   ELSE 1.0 END * COALESCE(ce.strength, 1.0))
       FROM causal_walk cw
       JOIN causal_edges ce
         ON ce.source_id = cw.node_id OR ce.target_id = cw.node_id
       WHERE cw.hop_distance < ?
     )
-    SELECT node_id, MIN(hop_distance) AS min_hop
+    SELECT node_id, MIN(hop_distance) AS min_hop, MAX(walk_score) AS max_walk_score
     FROM causal_walk
     WHERE node_id NOT IN (${placeholders})
     GROUP BY node_id
@@ -108,12 +134,17 @@ function getNeighborBoosts(memoryIds: number[]): Map<number, number> {
       ...originIds,
       MAX_HOPS,
       ...originIds
-    ) as Array<{ node_id: string; min_hop: number }>;
+    ) as Array<{ node_id: string; min_hop: number; max_walk_score: number }>;
 
     for (const row of rows) {
       const neighborId = Number.parseInt(row.node_id, 10);
       if (!Number.isFinite(neighborId)) continue;
-      const boost = computeBoostByHop(row.min_hop);
+      // C138-P2: Combine hop-distance decay with relation-weighted walk score
+      const hopBoost = computeBoostByHop(row.min_hop);
+      const walkMultiplier = typeof row.max_walk_score === 'number' && Number.isFinite(row.max_walk_score)
+        ? Math.max(0.1, Math.min(2.0, row.max_walk_score))
+        : 1.0;
+      const boost = hopBoost * walkMultiplier;
       if (boost <= 0) continue;
       const current = neighborBoosts.get(neighborId) ?? 0;
       neighborBoosts.set(neighborId, Math.max(current, boost));
@@ -224,6 +255,7 @@ function applyCausalBoost(results: RankedSearchResult[]): { results: RankedSearc
 export {
   MAX_HOPS,
   MAX_BOOST_PER_HOP,
+  RELATION_WEIGHT_MULTIPLIERS,
   init,
   isEnabled,
   getNeighborBoosts,
