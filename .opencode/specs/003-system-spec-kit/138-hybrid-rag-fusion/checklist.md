@@ -186,7 +186,7 @@ This is the **root checklist** for the 138-hybrid-rag-fusion spec folder. It tra
 - CHK-124: Deployment runbook peer review (deferred — single-contributor project)
 
 **Last Updated**: 2026-02-26
-**Completion**: 94% (49/52 items verified — **all P0 and P1 complete**)
+**Completion**: 98% (51/52 items verified — **all P0 and P1 complete**)
 
 **Workstream Progress:**
 - [W:RAG] — All P0/P1 complete. 1 task deferred (T016 embedding centroids, requires embedding model)
