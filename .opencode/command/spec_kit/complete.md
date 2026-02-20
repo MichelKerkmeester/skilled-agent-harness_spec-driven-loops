@@ -64,7 +64,7 @@ When `--phase-folder=<path>` is provided or spec folder selection includes a pha
 - **Option E) Phase folder** — complete a specific phase child (e.g., `specs/NNN-name/001-phase/`)
 - Auto-resolve `spec_path` to the phase child folder; validate path matches `specs/[###]-*/[0-9][0-9][0-9]-*/`
 - Show parent context: "Phase folder: `<path>` (parent: `<parent-folder>`)"
-- **Phase lifecycle validation:** If spec folder is a phase child, verify predecessor phase is complete before proceeding. Check that the previous numbered phase folder (e.g., `001-*` before `002-*`) has a completed `implementation-summary.md` or all tasks marked `[x]` in `tasks.md`.
+- **Phase lifecycle validation:** If spec folder is a phase child, verify predecessor phase is complete before proceeding. For the first phase (`001-*`), skip predecessor validation (no predecessor exists). For subsequent phases, check that the previous numbered phase folder (e.g., `001-*` before `002-*`) satisfies **either** condition (OR logic): (a) `implementation-summary.md` exists, OR (b) all tasks marked `[x]` in `tasks.md`. Either condition alone is sufficient to consider the predecessor complete.
 
 ---
 

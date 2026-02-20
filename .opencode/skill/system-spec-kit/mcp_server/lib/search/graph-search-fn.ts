@@ -57,7 +57,7 @@ function getSubgraphWeights(intent?: string): SubgraphWeights {
 /**
  * Split a query string into lowercase keyword tokens.
  */
-function tokenize(query: string): string[] {
+function splitQueryTokens(query: string): string[] {
   return query
     .toLowerCase()
     .split(/\s+/)
@@ -106,12 +106,7 @@ const AUTHORITY_TYPE_MULTIPLIERS: Record<string, number> = {
 /** Fallback multiplier when a node carries no recognised label. */
 const AUTHORITY_DEFAULT_MULTIPLIER = 1.0;
 
-/**
- * Module-level authority map, populated whenever a new SkillGraph snapshot
- * arrives.  Stored at module scope so it is computed once per cache warm
- * rather than once per query.
- */
-let cachedAuthorityMap: Map<string, number> | null = null;
+// Authority map is scoped inside createUnifiedGraphSearchFn closure (see below).
 
 /**
  * Compute a structural authority score for every node in the graph.
@@ -156,7 +151,9 @@ export function computeAuthorityScores(graph: SkillGraph): Map<string, number> {
 
     const rawInDegree = inDegreeMap.get(nodeId) ?? 0;
     const normInDegree = maxInDegree > 0 ? rawInDegree / maxInDegree : 0;
-    authorityMap.set(nodeId, multiplier * normInDegree);
+    // Floor: leaf nodes (zero in-degree) still get 10% of their type multiplier
+    // so they are not invisible to graph-guided scoring.
+    authorityMap.set(nodeId, multiplier * (0.1 + 0.9 * normInDegree));
   }
 
   return authorityMap;
@@ -171,14 +168,15 @@ function queryCausalEdges(
   query: string,
   limit: number
 ): Array<Record<string, unknown>> {
-  const likeParam = `%${query}%`;
+  const escaped = query.replace(/[%_]/g, '\\$&');
+  const likeParam = `%${escaped}%`;
 
   try {
     const rows = (database.prepare(`
       SELECT ce.id, ce.source_id, ce.target_id, ce.relation, ce.strength
       FROM causal_edges ce
-      WHERE ce.source_id IN (SELECT id FROM memories WHERE content LIKE ?)
-         OR ce.target_id IN (SELECT id FROM memories WHERE content LIKE ?)
+      WHERE ce.source_id IN (SELECT id FROM memories WHERE content LIKE ? ESCAPE '\\')
+         OR ce.target_id IN (SELECT id FROM memories WHERE content LIKE ? ESCAPE '\\')
       ORDER BY ce.strength DESC
       LIMIT ?
     `) as Database.Statement).all(likeParam, likeParam, limit) as CausalEdgeRow[];
@@ -206,9 +204,10 @@ function queryCausalEdges(
 function querySkillGraph(
   graph: SkillGraph,
   query: string,
-  limit: number
+  limit: number,
+  authorityMap: Map<string, number> | null = null
 ): Array<Record<string, unknown>> {
-  const tokens = tokenize(query);
+  const tokens = splitQueryTokens(query);
   if (tokens.length === 0) return [];
 
   const scored: Array<{ node: GraphNode; score: number }> = [];
@@ -222,18 +221,18 @@ function querySkillGraph(
 
   // T013: When Structural Authority Propagation is enabled, multiply each
   // result's keyword-match score by its precomputed authority score.
-  // The authority map is computed once per cache warm (module-level variable),
-  // so this lookup is O(1) per node.  When the flag is off or no map exists,
-  // scores are used unchanged.
-  const useAuthority = isGraphAuthorityEnabled() && cachedAuthorityMap !== null;
+  // The authority map is computed once per cache warm and passed in from
+  // the closure, so this lookup is O(1) per node.  When the flag is off
+  // or no map exists, scores are used unchanged.
+  const useAuthority = isGraphAuthorityEnabled() && authorityMap !== null;
 
   return scored
     .sort((a, b) => b.score - a.score)
     .slice(0, limit)
     .map(({ node, score }) => {
-      // WHY: useAuthority guard at L227 ensures cachedAuthorityMap is non-null before this path
+      // WHY: useAuthority guard ensures authorityMap is non-null before this path
       const finalScore = useAuthority
-        ? score * (cachedAuthorityMap!.get(node.id) ?? 1)
+        ? score * (authorityMap!.get(node.id) ?? 1)
         : score;
       return {
         id: `skill:${node.path}`,
@@ -276,14 +275,24 @@ function createUnifiedGraphSearchFn(
   // blocking the synchronous return path.
   let cachedGraph: SkillGraph | null = null;
 
+  // Authority map, scoped per factory instance so multiple createUnifiedGraphSearchFn
+  // invocations do not share mutable state.
+  let cachedAuthorityMap: Map<string, number> | null = null;
+
+  // Guard to prevent firing multiple concurrent background refreshes.
+  let isRefreshing = false;
+
   // Kick off an initial warm load in the background immediately.
   // Also pre-compute the authority map so T013 scores are available on first query.
+  isRefreshing = true;
   skillGraphCache.get(skillRoot).then(graph => {
     cachedGraph = graph;
     cachedAuthorityMap = computeAuthorityScores(graph);
   }).catch((err: unknown) => {
     const msg = err instanceof Error ? err.message : String(err);
     console.warn(`[graph-search-fn] Initial SGQS warm load failed: ${msg}`);
+  }).finally(() => {
+    isRefreshing = false;
   });
 
   return function unifiedGraphSearch(
@@ -302,18 +311,24 @@ function createUnifiedGraphSearchFn(
     // --- SGQS skill graph channel (use best-effort snapshot) ---
     let sgqsResults: Array<Record<string, unknown>> = [];
     if (cachedGraph !== null) {
-      sgqsResults = querySkillGraph(cachedGraph, query, limit);
+      sgqsResults = querySkillGraph(cachedGraph, query, limit, cachedAuthorityMap);
     }
 
     // Trigger a background refresh for the next invocation.
     // Update authority map alongside the graph snapshot so T013 stays in sync.
-    skillGraphCache.get(skillRoot).then(graph => {
-      cachedGraph = graph;
-      cachedAuthorityMap = computeAuthorityScores(graph);
-    }).catch((err: unknown) => {
-      const msg = err instanceof Error ? err.message : String(err);
-      console.warn(`[graph-search-fn] SGQS background refresh failed: ${msg}`);
-    });
+    // Guard: skip if a refresh is already in-flight to prevent promise proliferation.
+    if (!isRefreshing) {
+      isRefreshing = true;
+      skillGraphCache.get(skillRoot).then(graph => {
+        cachedGraph = graph;
+        cachedAuthorityMap = computeAuthorityScores(graph);
+      }).catch((err: unknown) => {
+        const msg = err instanceof Error ? err.message : String(err);
+        console.warn(`[graph-search-fn] SGQS background refresh failed: ${msg}`);
+      }).finally(() => {
+        isRefreshing = false;
+      });
+    }
 
     // --- Merge results with intent-based weighting ---
     const weighted = [

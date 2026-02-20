@@ -143,6 +143,18 @@ SUGGESTED_PHASE_COUNT=0
 # 3. HELPER FUNCTIONS
 # ───────────────────────────────────────────────────────────────
 
+# _json_escape(string)
+# Escape characters that would break JSON string values
+_json_escape() {
+  local s="$1"
+  s="${s//\\/\\\\}"
+  s="${s//\"/\\\"}"
+  s="${s//$'\n'/\\n}"
+  s="${s//$'\r'/\\r}"
+  s="${s//$'\t'/\\t}"
+  printf '%s' "$s"
+}
+
 # show_help()
 # Display usage information
 show_help() {
@@ -563,7 +575,7 @@ output_json() {
   "confidence": ${CONFIDENCE},
   "recommended_phases": ${PHASE_RECOMMENDED},
   "phase_score": ${PHASE_SCORE},
-  "phase_reason": "${PHASE_REASON}",
+  "phase_reason": "$(_json_escape "${PHASE_REASON}")",
   "suggested_phase_count": ${SUGGESTED_PHASE_COUNT},
   "inputs": {
     "loc": ${LOC},

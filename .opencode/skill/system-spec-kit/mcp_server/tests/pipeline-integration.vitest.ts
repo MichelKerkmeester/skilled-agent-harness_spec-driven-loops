@@ -66,12 +66,13 @@ vi.mock('../lib/search/skill-graph-cache', () => ({
         }],
       ]),
       edges: [],
+      edgeById: new Map(),
       outbound: new Map(),
       inbound: new Map(),
     }),
   },
   SkillGraphCacheManager: class {
-    get = vi.fn().mockResolvedValue({ nodes: new Map(), edges: [], outbound: new Map(), inbound: new Map() });
+    get = vi.fn().mockResolvedValue({ nodes: new Map(), edges: [], edgeById: new Map(), outbound: new Map(), inbound: new Map() });
     invalidate = vi.fn();
     isWarm = vi.fn(() => false);
   },

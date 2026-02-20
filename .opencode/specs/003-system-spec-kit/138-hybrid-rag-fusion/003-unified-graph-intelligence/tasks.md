@@ -69,11 +69,11 @@ Before starting any task, verify:
 | Workstream | Scope | Files |
 |------------|-------|-------|
 | W-INFRA | Graph cache and composite search function | `mcp_server/lib/search/skill-graph-cache.ts`, `mcp_server/lib/search/graph-search-fn.ts` |
-| W-WIRE | Wiring graph channel into existing pipeline | `mcp_server/context-server.ts`, `mcp_server/db-state.ts`, `mcp_server/config/flags.ts` |
+| W-WIRE | Wiring graph channel into existing pipeline | `mcp_server/context-server.ts`, `mcp_server/db-state.ts`, `mcp_server/lib/search/graph-flags.ts` |
 | W-ADAPT | Adaptive fusion weight profiles | `mcp_server/lib/search/adaptive-fusion.ts` |
 | W-FIX | Bug fixes in existing search pipeline | `mcp_server/lib/search/hybrid-search.ts` |
 | W-INTEL | Intelligence amplification patterns | `mcp_server/lib/search/mmr-reranker.ts`, `mcp_server/lib/search/query-expander.ts`, `mcp_server/lib/search/evidence-gap-detector.ts`, `mcp_server/lib/search/context-budget.ts`, `mcp_server/lib/search/fsrs.ts` |
-| W-TEST | Test coverage for all new components | `mcp_server/lib/search/*.test.ts` |
+| W-TEST | Test coverage for all new components | `mcp_server/tests/*.vitest.ts` |
 
 <!-- /ANCHOR:workstreams -->
 
@@ -241,19 +241,19 @@ Before starting any task, verify:
 
 ### Unit Tests (W-TEST)
 
-- [x] T017 [W-TEST] [P] Unit tests for `graph-search-fn.ts` (`mcp_server/lib/search/graph-search-fn.test.ts`) [45m] {deps: T002}
+- [x] T017 [W-TEST] [P] Unit tests for `graph-search-fn.ts` (`mcp_server/tests/graph-search-fn.vitest.ts`) [45m] {deps: T002}
   - Test causal graph query path returns correctly shaped results
   - Test SGQS skill graph query path returns correctly shaped results
   - Test score normalization produces values in [0, 1]
   - Test namespace ID prefixing: `mem:{id}` and `skill:{path}` applied correctly
   - Test graceful handling: empty results from one channel, empty from both
 
-- [x] T018 [W-TEST] [P] Unit tests for `SkillGraphCacheManager` (`mcp_server/lib/search/skill-graph-cache.test.ts`) [30m] {deps: T001}
+- [x] T018 [W-TEST] [P] Unit tests for `SkillGraphCacheManager` (`mcp_server/tests/skill-graph-cache.vitest.ts`) [30m] {deps: T001}
   - Test TTL expiration triggers rebuild on next access
   - Test `invalidate()` forces immediate rebuild
   - Test concurrent access does not cause duplicate builds (single in-flight guard)
 
-- [x] T019 [W-TEST] [P] Unit tests for adaptive-fusion `graphWeight` profiles (`mcp_server/lib/search/adaptive-fusion.test.ts`) [25m] {deps: T006}
+- [x] T019 [W-TEST] [P] Unit tests for adaptive-fusion `graphWeight` profiles (`mcp_server/tests/adaptive-fusion.vitest.ts`) [25m] {deps: T006}
   - Test all 6 intent profiles contain `graphWeight` field
   - Test all 6 intent profiles contain `graphCausalBias` field
   - Test `find_decision` routes with causal bias ≥ 0.8
@@ -302,7 +302,7 @@ Before starting any task, verify:
 - [x] Graph hit rate > 0% confirmed by metrics (T008) — GraphChannelMetrics API verified, getGraphMetrics() tracks all counters
 - [x] All feature flags (`SPECKIT_GRAPH_UNIFIED`, `SPECKIT_GRAPH_MMR`, `SPECKIT_GRAPH_AUTHORITY`) default to `false` and are documented — graph-flags.ts strict `=== 'true'` check
 - [x] `checklist.md` fully verified with evidence markers — 50/54 verified (21/21 P0, 26/26 P1, 3/7 P2; 4 P2 deferred)
-- [x] All ADRs in `decision-record.md` have status: Accepted — ADR-001, ADR-002, ADR-003 all Accepted
+- [x] All ADRs in `decision-record.md` have status: Accepted — ADR-001, ADR-002, ADR-003, ADR-004, ADR-005 all Accepted
 - [x] `implementation-summary.md` completed after all phases done — Level 3+ template, all sections filled
 
 <!-- /ANCHOR:completion -->

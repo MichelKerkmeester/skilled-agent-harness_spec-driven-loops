@@ -33,9 +33,9 @@ Enforce markdown structure, optimize content for AI assistants, validate quality
 Create and manage OpenCode components (skills, agents, commands). Each component type has templates and validation with quality standards.
 
 **Component Types:**
-- **Skills** (.opencode/skill/) - Knowledge bundles with workflows → [skill_creation.md](./references/skill_creation.md)
-- **Agents** (.opencode/agent/) - AI personas with tool permissions → [agent_template.md](./assets/opencode/agent_template.md)
-- **Commands** (.opencode/command/) - Slash commands for user invocation → [command_template.md](./assets/opencode/command_template.md)
+- **Skills** (.opencode/skill/) - Knowledge bundles with workflows → [skill_creation.md](../references/skill_creation.md)
+- **Agents** (.opencode/agent/) - AI personas with tool permissions → [agent_template.md](../assets/opencode/agent_template.md)
+- **Commands** (.opencode/command/) - Slash commands for user invocation → [command_template.md](../assets/opencode/command_template.md)
 
 **Use when**:
 - User requests skill creation ("create a skill", "make a new skill")
@@ -61,7 +61,7 @@ Create ASCII flowcharts for visualizing workflows, user journeys and decision tr
 - Showing parallel execution with sync points
 - Visualizing approval gates and revision cycles
 
-**See**: [assets/flowcharts/](./assets/flowcharts/)
+**See**: [assets/flowcharts/](../assets/flowcharts/)
 
 ### Use Case: Install Guide Creation
 
@@ -75,7 +75,7 @@ Create and validate installation documentation for MCP servers, plugins and tool
 
 **5-Phase Process**: Overview → Prerequisites → Installation → Configuration → Verification
 
-**See**: [install_guide_standards.md](./references/install_guide_standards.md)
+**See**: [install_guide_standards.md](../references/install_guide_standards.md)
 
 ### When NOT to Use (All Modes)
 

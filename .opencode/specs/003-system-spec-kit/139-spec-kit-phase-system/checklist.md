@@ -85,15 +85,13 @@
 | Category | Total | Verified |
 |----------|-------|----------|
 | P0 Items | 26 | 0/26 |
-| P1 Items | 44 | 0/44 |
-| P2 Items | 12 | 0/12 |
+| P1 Items | 45 | 0/45 |
+| P2 Items | 14 | 0/14 |
 
 **Verification Date**: [YYYY-MM-DD]
 <!-- /ANCHOR:summary -->
 
 ---
-
-<!-- Append to Level 2 checklist.md -->
 
 ---
 

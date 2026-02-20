@@ -148,6 +148,7 @@ function getNeighborBoosts(memoryIds: number[]): Map<number, number> {
       JOIN causal_edges ce
         ON ce.source_id = cw.node_id OR ce.target_id = cw.node_id
       WHERE cw.hop_distance < ?
+        AND (CASE WHEN ce.source_id = cw.node_id THEN ce.target_id ELSE ce.source_id END) != cw.origin_id
     )
     SELECT node_id, MIN(hop_distance) AS min_hop, MAX(walk_score) AS max_walk_score
     FROM causal_walk

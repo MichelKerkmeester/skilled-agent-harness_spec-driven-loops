@@ -36,25 +36,25 @@ This plan covers the integration of Workstream A (RAG Fusion / `001-system-speck
   - Evidence: Workstream B SGQS graph confirmed available; `hybridSearch.init()` third-arg signature confirmed present but unused; v15 schema confirmed stable.
 
 ### Definition of Done
-- [ ] `graph-search-fn.ts` created and unit-tested
-  - Deliverable: File at `system-spec-kit/scripts/dist/memory/graph-search-fn.ts`, vitest suite passing.
+- [x] `graph-search-fn.ts` created and unit-tested
+  - Deliverable: File at `mcp_server/lib/search/graph-search-fn.ts`, vitest suite passing.
   - Validation: Unit tests cover empty-result path (flag=false), normal path (both graph sources), and namespace-collision guard.
-- [ ] `SkillGraphCacheManager` implemented with 5-min TTL
+- [x] `SkillGraphCacheManager` implemented with 5-min TTL
   - Deliverable: Singleton class wrapping `buildSkillGraph()`, cache hit/miss metrics logged.
   - Validation: Cache hit does not re-read 72 markdown files; cold miss completes within 150ms.
-- [ ] Graph channel wired in `context-server.ts:566` and `db-state.ts:140`
+- [x] Graph channel wired in `context-server.ts`, `db-state.ts`, and `reindex-embeddings.ts`
   - Deliverable: `createUnifiedGraphSearchFn(database, skillRoot)` passed as third argument to `hybridSearch.init()`.
   - Validation: Integration test with `SPECKIT_GRAPH_UNIFIED=true` returns non-empty graph results for known test queries.
-- [ ] `graphWeight` and `graphCausalBias` added to all 6 adaptive fusion profiles
+- [x] `graphWeight` and `graphCausalBias` added to all 6 adaptive fusion profiles
   - Deliverable: Updated `FusionWeights` interface in `adaptive-fusion.ts` with graph-specific fields.
   - Validation: All existing fusion profile tests pass; new weights readable per intent class.
-- [ ] Co-activation spreading result captured (not discarded) at `hybrid-search.ts:406-416`
+- [x] Co-activation spreading result captured (not discarded) at `hybrid-search.ts`
   - Deliverable: Return value stored and forwarded into the fusion merge step.
   - Validation: Test confirms spreading affects final ranked output when graph channel active.
-- [ ] Feature flags `SPECKIT_GRAPH_UNIFIED`, `SPECKIT_GRAPH_MMR`, `SPECKIT_GRAPH_AUTHORITY` defined
-  - Deliverable: Env-var flags with documented default (`false`) in config.
+- [x] Feature flags `SPECKIT_GRAPH_UNIFIED`, `SPECKIT_GRAPH_MMR`, `SPECKIT_GRAPH_AUTHORITY` defined
+  - Deliverable: Env-var flags with documented default (`false`) in `graph-flags.ts`.
   - Validation: All tests pass with flags set to `false` (regression baseline preserved).
-- [ ] p95 latency with graph channel active <= 120ms
+- [x] p95 latency with graph channel active <= 120ms
   - Deliverable: vitest performance suite output.
   - Validation: 50-query benchmark run against realistic corpus; p95 recorded and <= 120ms.
 <!-- /ANCHOR:quality-gates -->
@@ -111,29 +111,33 @@ The graph channel and the two existing channels operate in parallel. The fusion 
 
 This phase delivers the foundational graph channel. Nothing in Phase 1+ or Phase 2+ is meaningful without it.
 
-- [ ] **[W:GRAPH] Create `graph-search-fn.ts`** (~130 LOC)
+- [x] **[W:GRAPH] Create `graph-search-fn.ts`** (~130 LOC)
   - Inputs: `database` (SQLite connection), `skillRoot` (path to `.opencode/skill/`), `query` string, `intentClass` string.
   - Implementation: Factory function `createUnifiedGraphSearchFn(db, skillRoot)` returns a `GraphSearchFn` async callable. Internally runs SGQS query via cached graph and causal edge CTE against SQLite in parallel via `Promise.all`. Merges results, prefixes IDs with `mem:` or `skill:` namespace.
   - Exit criteria: Unit tests pass for empty-result path (flag off), normal merge path, and namespace guard.
-  - Artifact: `system-spec-kit/scripts/dist/memory/graph-search-fn.ts`
+  - Artifact: `mcp_server/lib/search/graph-search-fn.ts`
 
-- [ ] **[W:CACHE] Implement `SkillGraphCacheManager`** (~80 LOC)
+- [x] **[W:CACHE] Implement `SkillGraphCacheManager`** (~80 LOC)
   - Inputs: `buildSkillGraph()` (existing), TTL config (default 5 minutes), `skillRoot` path.
   - Implementation: Singleton class. `get()` method returns cached graph if TTL not expired, else calls `buildSkillGraph()` and stores result with timestamp. `invalidate()` method for explicit cache clear on server restart.
   - Exit criteria: Cache hit does not invoke `buildSkillGraph()`; cold miss completes within 150ms; memory footprint < 300KB per cached graph.
-  - Artifact: `system-spec-kit/scripts/dist/memory/skill-graph-cache-manager.ts`
+  - Artifact: `mcp_server/lib/search/skill-graph-cache.ts`
 
-- [ ] **[W:WIRE] Wire `context-server.ts:566`** (4 lines changed)
+- [x] **[W:WIRE] Wire `context-server.ts`** (4 lines changed)
   - Inputs: Existing `hybridSearch.init(db, config)` call; new `createUnifiedGraphSearchFn` import.
   - Implementation: Import factory from `graph-search-fn.ts`; pass `createUnifiedGraphSearchFn(database, skillRoot)` as third argument. Guard with `SPECKIT_GRAPH_UNIFIED` env check — pass `null` when flag is off.
   - Exit criteria: Server starts without error; integration test with flag=true returns graph results.
-  - Files: `context-server.ts` (line 566), import addition near top of file.
+  - Files: `mcp_server/context-server.ts`, import addition near top of file.
 
-- [ ] **[W:WIRE] Wire `db-state.ts:140`** (4 lines changed)
-  - Same change as `context-server.ts:566` for the `db-state` initialisation path.
+- [x] **[W:WIRE] Wire `db-state.ts`** (4 lines changed)
+  - Same change as `context-server.ts` for the `db-state` initialisation path.
   - Exit criteria: Same integration test as above via the db-state code path.
 
-- [ ] **[W:FUSION] Add `graphWeight` and `graphCausalBias` to `adaptive-fusion.ts`**
+- [x] **[W:WIRE] Wire `reindex-embeddings.ts`** (4 lines changed)
+  - Same change as `context-server.ts` for the `reindex-embeddings` initialisation path.
+  - Exit criteria: Same integration test as above via the reindex code path.
+
+- [x] **[W:FUSION] Add `graphWeight` and `graphCausalBias` to `adaptive-fusion.ts`**
   - Inputs: Existing `FusionWeights` interface; 6 intent profile objects.
   - Implementation: Add two optional numeric fields to `FusionWeights`. Set calibrated defaults per intent profile:
     - `find_decision`: `graphCausalBias: 0.35`, `graphWeight: 0.20`
@@ -144,7 +148,7 @@ This phase delivers the foundational graph channel. Nothing in Phase 1+ or Phase
     - `general`: `graphWeight: 0.15`, `graphCausalBias: 0.10`
   - Exit criteria: All 6 profiles have both fields; existing fusion tests pass unchanged.
 
-- [ ] **[W:SPREADING] Capture co-activation spreading result at `hybrid-search.ts:406-416`**
+- [x] **[W:SPREADING] Capture co-activation spreading result at `hybrid-search.ts`**
   - Inputs: Existing co-activation call that currently discards its return value.
   - Implementation: Assign return value to `spreadingBoosts`; merge into RRF score accumulator when `SPECKIT_GRAPH_UNIFIED=true`.
   - Exit criteria: Test confirms final ranked output differs from baseline when spreading boosts are applied.
@@ -153,16 +157,16 @@ This phase delivers the foundational graph channel. Nothing in Phase 1+ or Phase
 
 Conditioned on Phase 0+ complete. Purpose: gather empirical evidence before committing to Phase 2+ complexity.
 
-- [ ] **[W:METRICS] Add graph channel observability**
+- [x] **[W:METRICS] Add graph channel observability**
   - Implement: `graphChannelHitRate` counter (ratio of queries where graph channel returns > 0 results), `graphOnlyResults` counter (results present in graph but not vector/BM25), average graph channel latency per intent class.
   - Output: Metrics logged per query in structured JSON to existing telemetry sink.
   - Gate: If `graphChannelHitRate < 0.15` across a 50-query benchmark, Phase 2+ is deferred.
 
-- [ ] **[W:ROUTING] Intent-to-Subgraph Routing (Pattern 3)**
+- [x] **[W:ROUTING] Intent-to-Subgraph Routing (Pattern 3)**
   - Implementation: Intent classification output (`find_decision`, `find_spec`, etc.) routes to the appropriate graph source before graph channel executes: `find_decision` → causal graph only; `find_spec` → skill graph only; others → both in parallel.
   - Exit criteria: Routing decisions logged; unit test covers all 6 intent classes.
 
-- [ ] **[W:BRIDGE] Semantic Bridge Discovery (Pattern 4)**
+- [x] **[W:BRIDGE] Semantic Bridge Discovery (Pattern 4)**
   - Implementation: Wikilink paths from SGQS graph used as synonym dictionaries. When query terms match a node title, adjacent node titles are added as synonym expansions into the BM25 query string.
   - Exit criteria: Integration test shows BM25 results change when synonym bridge is active for a known wikilink-connected pair.
 
@@ -170,15 +174,15 @@ Conditioned on Phase 0+ complete. Purpose: gather empirical evidence before comm
 
 All Phase 2+ work is conditional on Phase 1 metrics showing `graphChannelHitRate >= 0.15`. Each pattern is independently flag-gated and can be parallelised once Phase 1 is validated.
 
-- [ ] **[W:MMR] Graph-Guided MMR (Pattern 1)** — flag `SPECKIT_GRAPH_MMR`
+- [x] **[W:MMR] Graph-Guided MMR (Pattern 1)** — flag `SPECKIT_GRAPH_MMR`
   - Implementation: Diversification pass uses causal edge distances and SGQS skill graph adjacency to penalise structurally similar candidates during MMR iteration. `sqlite-vec` cosine similarity already available.
   - Complexity: High. Requires careful tuning of structural penalty weight vs semantic similarity weight.
 
-- [ ] **[W:AUTHORITY] Structural Authority Propagation (Pattern 2)** — flag `SPECKIT_GRAPH_AUTHORITY`
+- [x] **[W:AUTHORITY] Structural Authority Propagation (Pattern 2)** — flag `SPECKIT_GRAPH_AUTHORITY`
   - Implementation: Node in-degree from causal edges and SGQS graph contributes a log-scaled authority boost to RRF scores. High-degree nodes (e.g., `memory` node linked from 40+ spec files) receive a persistent score premium.
   - Complexity: Medium. Authority scores pre-computed at cache warm time.
 
-- [ ] **[W:BUDGET] Context Budget Optimizer (Pattern 6)** — integrated with MMR pass
+- [x] **[W:BUDGET] Context Budget Optimizer (Pattern 6)** — integrated with MMR pass
   - Implementation: After MMR, trim result set to fit within a configurable token budget. Graph distance between retained results used to prefer structurally diverse survivors when budget forces cuts.
   - Complexity: Medium. Token counting via existing utility.
 <!-- /ANCHOR:phases -->

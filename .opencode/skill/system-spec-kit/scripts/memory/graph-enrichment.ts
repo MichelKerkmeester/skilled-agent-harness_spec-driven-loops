@@ -30,14 +30,14 @@ export interface GraphEnrichmentResult {
   skillsFound: string[];
 }
 
-/** Empty result returned when enrichment is skipped or fails */
-const EMPTY_RESULT: GraphEnrichmentResult = {
-  triggerPhrases: [],
+/** Empty result returned when enrichment is skipped or fails (frozen to prevent mutation) */
+const EMPTY_RESULT: Readonly<GraphEnrichmentResult> = Object.freeze({
+  triggerPhrases: Object.freeze([]) as unknown as string[],
   graphContext: '',
   nodeCount: 0,
   edgeCount: 0,
-  skillsFound: [],
-};
+  skillsFound: Object.freeze([]) as unknown as string[],
+});
 
 /* -----------------------------------------------------------------
    TRIGGER PHRASE EXTRACTION
@@ -99,7 +99,7 @@ function extractEdgePhrases(graph: SkillGraph): string[] {
 
     // Target node ID has shape "skill-name/path/to/node"
     const parts = edge.target.split('/');
-    if (parts.length >= 1) {
+    if (parts.length >= 2) {
       const skillName = parts[0];
       if (skillName.length >= 3) {
         // Add skill name tokens

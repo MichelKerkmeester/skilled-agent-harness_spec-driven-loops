@@ -125,11 +125,15 @@ export function computeCosine(
   a: Float32Array | number[],
   b: Float32Array | number[],
 ): number {
+  // P1-4 FIX: Use minimum length to prevent undefined access when vectors differ in size
+  const len = Math.min(a.length, b.length);
+  if (len === 0) return 0;
+
   let dot = 0;
   let normA = 0;
   let normB = 0;
 
-  for (let i = 0; i < a.length; i++) {
+  for (let i = 0; i < len; i++) {
     dot += a[i] * b[i];
     normA += a[i] * a[i];
     normB += b[i] * b[i];

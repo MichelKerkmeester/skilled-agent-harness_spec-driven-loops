@@ -1,10 +1,10 @@
 ---
 description: Create and manage phase decomposition for complex spec folders
 argument-hint: "[feature-description] [--phases N] [--phase-names list] [--parent specs/NNN-name/] [:auto|:confirm]"
-allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task
+allowed-tools: Read, Write, Edit, Bash, Grep, Glob, memory_context, memory_search
 ---
 
-> **EXECUTION PROTOCOL -- READ FIRST**
+> ⚠️ **EXECUTION PROTOCOL — READ FIRST**
 >
 > This command runs a structured YAML workflow. Do NOT dispatch agents from this document.
 >
@@ -19,9 +19,9 @@ allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task
 
 ## CONSTRAINTS
 
-- **DO NOT** dispatch any agent from this document
-- **ALL** agent dispatching is handled by the YAML workflow steps -- this document is setup + reference only
+- **DO NOT** dispatch any agent from this document -- the YAML workflow handles all agent dispatching
 - **FIRST ACTION** is always: load the YAML file, then execute it step by step
+- **YAML steps** may dispatch `@speckit` for folder creation and `@general` for script execution -- this is controlled by the YAML, not this document
 
 > **Format:** `/spec_kit:phase [feature-description] [--phases N] [--phase-names list] [--parent specs/NNN-name/] [:auto|:confirm]`
 > Examples: `/spec_kit:phase:auto Build hybrid RAG search system --phases 3` | `/spec_kit:phase "Large analytics feature" --phase-names "data-layer,api,ui"`
@@ -152,15 +152,15 @@ $ARGUMENTS
 
 ## 3. WORKFLOW OVERVIEW
 
-| Step | Name                     | Purpose                                  | Outputs                        |
-| ---- | ------------------------ | ---------------------------------------- | ------------------------------ |
-| 1    | Analyze Scope            | Evaluate complexity, recommend phases    | phase_recommendation           |
-| 2    | Decomposition Proposal   | Define phase structure and boundaries    | phase_plan                     |
-| 3    | Create Folders           | Create parent + child spec folders       | parent_folder, child_folders   |
-| 4    | Populate Parent          | Fill Phase Documentation Map             | parent spec.md updated         |
-| 5    | Populate Children        | Fill child specs with scope boundaries   | child specs updated            |
-| 6    | Save Context             | Save conversation context                | memory/*.md                    |
-| 7    | Next Steps               | Present continuation options             | next_steps_presented           |
+| Step | Name                   | Purpose                                | Outputs                      |
+| ---- | ---------------------- | -------------------------------------- | ---------------------------- |
+| 1    | Analyze Scope          | Evaluate complexity, recommend phases  | phase_recommendation         |
+| 2    | Decomposition Proposal | Define phase structure and boundaries  | phase_plan                   |
+| 3    | Create Folders         | Create parent + child spec folders     | parent_folder, child_folders |
+| 4    | Populate Parent        | Fill Phase Documentation Map           | parent spec.md updated       |
+| 5    | Populate Children      | Fill child specs with scope boundaries | child specs updated          |
+| 6    | Save Context           | Save conversation context              | memory/*.md                  |
+| 7    | Next Steps             | Present continuation options           | next_steps_presented         |
 
 ---
 
@@ -198,14 +198,14 @@ STATUS=FAIL ERROR="[message]"
 
 ## 6. NEXT STEPS
 
-| Condition                      | Suggested Command                                           | Reason                           |
-| ------------------------------ | ----------------------------------------------------------- | -------------------------------- |
-| Plan first phase               | `/spec_kit:plan specs/NNN-name/001-phase/`                  | Create detailed plan per phase   |
-| Plan all phases sequentially   | `/spec_kit:plan` for each child                             | Comprehensive planning           |
-| Implement after planning       | `/spec_kit:implement specs/NNN-name/001-phase/`             | Execute phase implementation     |
-| Review decomposition           | Read parent `spec.md` Phase Documentation Map               | Verify phase boundaries          |
-| Validate structure             | `validate.sh --recursive specs/NNN-name/`                   | Verify folder integrity          |
-| Save context                   | `/memory:save [parent-spec-path]`                           | Preserve decomposition decisions |
+| Condition                    | Suggested Command                               | Reason                           |
+| ---------------------------- | ----------------------------------------------- | -------------------------------- |
+| Plan first phase             | `/spec_kit:plan specs/NNN-name/001-phase/`      | Create detailed plan per phase   |
+| Plan all phases sequentially | `/spec_kit:plan` for each child                 | Comprehensive planning           |
+| Implement after planning     | `/spec_kit:implement specs/NNN-name/001-phase/` | Execute phase implementation     |
+| Review decomposition         | Read parent `spec.md` Phase Documentation Map   | Verify phase boundaries          |
+| Validate structure           | `validate.sh --recursive specs/NNN-name/`       | Verify folder integrity          |
+| Save context                 | `/memory:save [parent-spec-path]`               | Preserve decomposition decisions |
 
 **ALWAYS** end with: "What would you like to do next?"
 

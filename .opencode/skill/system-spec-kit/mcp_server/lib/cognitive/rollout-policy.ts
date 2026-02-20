@@ -34,7 +34,7 @@ function isIdentityInRollout(identity: string): boolean {
 }
 
 function isFeatureEnabled(flagName: string, identity?: string): boolean {
-  const rawFlag = process.env[flagName];
+  const rawFlag = process.env[flagName]?.toLowerCase();
   if (rawFlag === 'false') return false;
 
   const flagEnabled = rawFlag === undefined || rawFlag.trim().length === 0 || rawFlag === 'true';

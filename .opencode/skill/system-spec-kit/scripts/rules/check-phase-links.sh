@@ -45,7 +45,7 @@ run_check() {
         return 0
     fi
 
-    local issues=()
+    local -a issues=()
 
     # Check 1: Parent spec.md has Phase Documentation Map
     if [[ -f "$folder/spec.md" ]]; then
@@ -63,18 +63,18 @@ run_check() {
         local child_spec="$phase_dir/spec.md"
 
         if [[ -f "$child_spec" ]]; then
-            # Check for parent reference (../spec.md pattern)
-            if ! grep -q '\.\./spec\.md' "$child_spec" 2>/dev/null; then
-                issues+=("$phase_name/spec.md missing parent back-reference (../spec.md)")
+            # Check for parent reference: ../spec.md in table row OR parent: field in YAML
+            if ! grep -q '\.\./spec\.md' "$child_spec" 2>/dev/null && \
+               ! grep -qi '^| \*\*Parent Spec\*\*' "$child_spec" 2>/dev/null && \
+               ! grep -qi '^parent:' "$child_spec" 2>/dev/null; then
+                issues+=("$phase_name/spec.md missing parent back-reference (expected: '| **Parent Spec** | ../spec.md |' or 'parent:' field)")
             fi
         else
             issues+=("$phase_name/ missing spec.md")
         fi
     done
 
-    # Check 3: Predecessor/successor consistency
-    # Each child (except first) should reference its predecessor
-    # Each child (except last) should reference its successor
+    # Check 3: Predecessor references (each child except first should reference predecessor)
     local prev_name=""
     for phase_dir in "${phase_dirs[@]}"; do
         local phase_name
@@ -82,13 +82,30 @@ run_check() {
         local child_spec="$phase_dir/spec.md"
 
         if [[ -n "$prev_name" && -f "$child_spec" ]]; then
-            # Current phase should reference predecessor
-            if ! grep -q "$prev_name" "$child_spec" 2>/dev/null; then
+            if ! grep -qF "$prev_name" "$child_spec" 2>/dev/null; then
                 issues+=("$phase_name/spec.md missing predecessor reference ($prev_name)")
             fi
         fi
 
         prev_name="$phase_name"
+    done
+
+    # Check 4: Successor references (each child except last should reference successor)
+    local total_phases=${#phase_dirs[@]}
+    for (( _idx=0; _idx<total_phases-1; _idx++ )); do
+        local current_dir="${phase_dirs[$_idx]}"
+        local next_dir="${phase_dirs[$((_idx + 1))]}"
+        local current_name
+        current_name=$(basename "$current_dir")
+        local next_name
+        next_name=$(basename "$next_dir")
+        local current_spec="$current_dir/spec.md"
+
+        if [[ -f "$current_spec" ]]; then
+            if ! grep -qF "$next_name" "$current_spec" 2>/dev/null; then
+                issues+=("$current_name/spec.md missing successor reference ($next_name)")
+            fi
+        fi
     done
 
 # ───────────────────────────────────────────────────────────────
@@ -102,6 +119,6 @@ run_check() {
         RULE_STATUS="fail"
         RULE_MESSAGE="${#issues[@]} phase link issue(s) found"
         RULE_DETAILS=("${issues[@]}")
-        RULE_REMEDIATION="Fix phase back-references. Each child spec.md needs '| **Parent Spec** | ../spec.md |' in metadata. Parent spec.md needs a 'PHASE DOCUMENTATION MAP' section."
+        RULE_REMEDIATION="Fix phase back-references. Each child spec.md needs one of: '| **Parent Spec** | ../spec.md |' table row, 'parent:' YAML field, or '../spec.md' text reference. Parent spec.md needs a 'PHASE DOCUMENTATION MAP' section."
     fi
 }

@@ -1,23 +1,24 @@
 <!-- SPECKIT_ADDENDUM: Phase - Child Header -->
 <!-- Inject into child spec.md METADATA table (append rows after core metadata) -->
+<!-- PARENT_FOLDER: Replaced with ".." (relative path from child to parent folder) by create.sh -->
 
-| **Parent Spec** | [PARENT_FOLDER]/spec.md |
-| **Parent Plan** | [PARENT_FOLDER]/plan.md |
-| **Phase** | [PHASE_NUMBER] of [TOTAL_PHASES] |
-| **Predecessor** | [PREDECESSOR_FOLDER] |
-| **Successor** | [SUCCESSOR_FOLDER] |
-| **Handoff Criteria** | [To be defined during planning] |
+| **Parent Spec** | [YOUR_VALUE_HERE: PARENT_FOLDER]/spec.md |
+| **Parent Plan** | [YOUR_VALUE_HERE: PARENT_FOLDER]/plan.md |
+| **Phase** | [YOUR_VALUE_HERE: PHASE_NUMBER] of [YOUR_VALUE_HERE: TOTAL_PHASES] |
+| **Predecessor** | [YOUR_VALUE_HERE: PREDECESSOR_FOLDER] |
+| **Successor** | [YOUR_VALUE_HERE: SUCCESSOR_FOLDER] |
+| **Handoff Criteria** | [YOUR_VALUE_HERE: handoff criteria] |
 
 <!-- ANCHOR:phase-context -->
 ### Phase Context
 
-This is **Phase [PHASE_NUMBER]** of the [PARENT_SPEC_NAME] specification.
+This is **Phase [YOUR_VALUE_HERE: PHASE_NUMBER]** of the [YOUR_VALUE_HERE: PARENT_SPEC_NAME] specification.
 
-**Scope Boundary**: [PHASE_SCOPE_DESCRIPTION]
+**Scope Boundary**: [YOUR_VALUE_HERE: phase scope description]
 
 **Dependencies**:
-- [PREDECESSOR_DEPENDENCIES]
+- [YOUR_VALUE_HERE: predecessor dependencies]
 
 **Deliverables**:
-- [PHASE_DELIVERABLES]
+- [YOUR_VALUE_HERE: phase deliverables]
 <!-- /ANCHOR:phase-context -->

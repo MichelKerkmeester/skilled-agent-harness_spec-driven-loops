@@ -527,33 +527,7 @@ Phases 1 and 2 can be partially parallelized (scoring is independent of template
 
 ## L3: ARCHITECTURE DECISION RECORD
 
-### ADR-001: Behavioral Layer, Not New Documentation Level
-
-**Status**: Accepted
-
-**Context**: Large specs (136: 7 phases, 138: 3 workstreams) evolved phase decomposition organically. The question was whether to formalize phases as a new Level tier (Level 4) or as a behavioral overlay on existing levels.
-
-**Decision**: Implement phases as a **cross-cutting behavioral layer** — a flag-gated capability that any level can use, rather than a new level tier.
-
-**Consequences**:
-- Positive: No new template tier needed; all existing level templates remain valid for child phases
-- Positive: Additive only — all flags optional, existing flat specs completely unaffected
-- Positive: Parent can be any level; children can be any level (L3+ parent + L1 children is valid)
-- Negative: Phase detection is a separate scoring path from level detection — two scoring systems to maintain
-
-**Alternatives Rejected**:
-- **Level 4 (new tier)**: Rejected — would require new templates, force all complex specs to upgrade, and conflate documentation depth with execution decomposition
-- **Manual sub-folders only**: Rejected — inconsistent naming, no tooling support, no AI routing, no validation
-
-### ADR-002: Constitution Check (Five Checks)
-
-| # | Check | Pass | Rationale |
-|---|-------|------|-----------|
-| 1 | **Necessary?** | Yes | Large specs (136: 7 phases, 138: 3 workstreams) evolved this pattern organically. Formalizing prevents inconsistency and enables AI assistance. |
-| 2 | **Beyond Local Max?** | Yes | Considered: (A) Keep manual sub-folders, (B) New level tier "Level 4", (C) Behavioral layer on existing levels. Option C chosen — lightest touch, maximum reuse. |
-| 3 | **Sufficient?** | Yes | Adds detection, creation, validation, and routing. No simpler approach achieves all four. |
-| 4 | **Fits Goal?** | Yes | Directly addresses pain point of unwieldy monolithic specs for complex tasks. |
-| 5 | **Open Horizons?** | Yes | Phase system is additive (all flags optional). No lock-in; existing specs unaffected. |
+> **Note:** This section summarizes key architectural decisions. The authoritative source is [decision-record.md](./decision-record.md) which contains full ADR detail including context, constraints, alternatives analysis, consequences, and Five Checks evaluations. See ADR-001 and ADR-002 in that document for complete records.
 
 ---
 

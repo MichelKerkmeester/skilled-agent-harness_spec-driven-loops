@@ -255,7 +255,8 @@ describe('T013: Structural Authority (computeAuthorityScores)', () => {
     const inbound = new Map<string, string[]>(Object.entries(inboundMap));
     const outbound = new Map<string, string[]>();
     const edges: any[] = [];
-    return { nodes, edges, outbound, inbound };
+    const edgeById = new Map();
+    return { nodes, edges, edgeById, outbound, inbound };
   }
 
   beforeEach(async () => {
@@ -341,8 +342,10 @@ describe('T013: Structural Authority (computeAuthorityScores)', () => {
     expect(hubScore).toBeGreaterThan(leafScore);
   });
 
-  it('node with zero in-degree has authority score of 0', () => {
+  it('node with zero in-degree has authority score at the 10% floor', () => {
     // maxInDegree from the other node = 2; this node has 0
+    // Leaf nodes get 10% of their type multiplier as a floor so they
+    // are not invisible to graph-guided scoring.
     const graph = makeSkillGraph(
       [
         { id: 'no-edges', labels: [':Node'] },
@@ -357,7 +360,8 @@ describe('T013: Structural Authority (computeAuthorityScores)', () => {
     const scores = computeAuthorityScores(graph);
     const zeroScore = scores.get('no-edges') ?? -1;
 
-    expect(zeroScore).toBe(0);
+    // :Node multiplier is 1.0, floor is 0.1 + 0.9 * 0 = 0.1
+    expect(zeroScore).toBeCloseTo(0.1);
   });
 
   it(':Entrypoint label gets 2.5x multiplier, which is between :Index (3.0) and :Node (1.0)', () => {

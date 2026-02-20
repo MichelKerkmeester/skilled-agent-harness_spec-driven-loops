@@ -27,6 +27,9 @@ export class SkillGraphCacheManager {
   private timestamp: number = 0;
   private inflight: Promise<SkillGraph> | null = null;
   private readonly ttlMs: number;
+  /** Monotonic counter incremented on invalidate(); prevents stale inflight
+   *  promises from overwriting a freshly cleared cache (P1-1 race fix). */
+  private epoch: number = 0;
 
   constructor(ttlMs: number = DEFAULT_TTL_MS) {
     this.ttlMs = ttlMs;
@@ -54,13 +57,20 @@ export class SkillGraphCacheManager {
       return this.inflight;
     }
 
+    const buildEpoch = this.epoch;
     this.inflight = Promise.resolve().then(() => {
       const graph = buildSkillGraph(skillRoot);
-      this.graph = graph;
-      this.cachedRoot = skillRoot;
-      this.timestamp = Date.now();
+      // Only update cache if no invalidation occurred during the build
+      if (this.epoch === buildEpoch) {
+        this.graph = graph;
+        this.cachedRoot = skillRoot;
+        this.timestamp = Date.now();
+      }
       this.inflight = null;
       return graph;
+    }).catch((err: unknown) => {
+      this.inflight = null;
+      throw err;
     });
 
     return this.inflight;
@@ -69,8 +79,10 @@ export class SkillGraphCacheManager {
   /**
    * Clear the cached graph and timestamp immediately.
    * Call this on server restart or when a forced refresh is needed.
+   * Bumps the epoch to prevent any in-flight build from overwriting.
    */
   invalidate(): void {
+    this.epoch++;
     this.graph = null;
     this.cachedRoot = null;
     this.timestamp = 0;

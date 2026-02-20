@@ -3,9 +3,9 @@ title: Phase Definitions
 description: Phase decomposition system for complex multi-session specifications, providing parallel work stream organization as a behavioral overlay on existing documentation levels.
 ---
 
-# Phase Definitions - Phase Decomposition for Complex Specifications
+# Phase Definitions
 
-Phase decomposition system for organizing complex, multi-session specifications into parallel work streams with independent tracking and validation.
+This document defines the phase decomposition taxonomy, detection scoring, folder structure conventions, lifecycle transitions, and validation rules. Phases are a behavioral overlay on existing documentation levels (not a new level tier), enabling complex multi-session specifications to be split into independently trackable and validatable child spec folders.
 
 ---
 
@@ -50,8 +50,10 @@ Phase decomposition is triggered when a specification's complexity score meets t
 
 Phase decomposition is suggested when BOTH conditions are met:
 
-- **Score threshold:** complexity score >= 25
-- **Level threshold:** documentation level >= 3
+- **Phase score threshold:** phase complexity score >= 25 (out of 50-point maximum, scored above)
+- **Level threshold:** documentation level >= 3 (from `recommend-level.sh` 100-point level scoring)
+
+> **Scoring systems clarification:** The 50-point phase complexity score (this section) is separate from the 100-point level recommendation score used by `recommend-level.sh`. The level score determines documentation depth (L1/L2/L3/L3+); the phase score determines whether to decompose into child folders. Both thresholds must be met independently.
 
 If only one condition is met, the specification proceeds as a standard (non-phased) spec folder.
 
@@ -238,6 +240,5 @@ This validates:
 - [validation_rules.md](../validation/validation_rules.md) - Validation rules including PHASE_LINKS
 
 ### Related Skills
-- `system-spec-kit` - Spec folder workflow orchestrator
-- `system-spec-kit` - Context preservation with semantic memory
+- `system-spec-kit` - Spec folder workflow orchestrator (includes phase commands, validation, and semantic memory context preservation)
 <!-- /ANCHOR:related-resources -->

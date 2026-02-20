@@ -22,6 +22,7 @@ export function buildSkillGraph(skillRoot: string): SkillGraph {
   const graph: SkillGraph = {
     nodes: new Map(),
     edges: [],
+    edgeById: new Map(),
     outbound: new Map(),
     inbound: new Map(),
   };
@@ -469,8 +470,11 @@ function resolveMarkdownLinkTarget(
   if (cleaned.startsWith('../')) {
     // Cross-skill reference: ../other-skill/file
     const parts = cleaned.split('/');
-    // Remove leading '..' segments
-    const upCount = parts.filter(p => p === '..').length;
+    // Only count leading contiguous '..' segments (not scattered ones)
+    let upCount = 0;
+    while (upCount < parts.length && parts[upCount] === '..') {
+      upCount++;
+    }
     const remaining = parts.slice(upCount);
 
     if (remaining.length >= 1) {
@@ -534,11 +538,11 @@ function generateStructuralEdges(graph: SkillGraph, skillName: string): void {
 
 /** Add an edge to the graph and update adjacency indexes */
 function addEdge(graph: SkillGraph, edge: GraphEdge): void {
-  // Deduplicate by edge ID
-  const existing = graph.edges.find(e => e.id === edge.id);
-  if (existing) return;
+  // Deduplicate by edge ID — O(1) via edgeById Map
+  if (graph.edgeById.has(edge.id)) return;
 
   graph.edges.push(edge);
+  graph.edgeById.set(edge.id, edge);
 
   // Update outbound index
   if (!graph.outbound.has(edge.source)) {
@@ -567,11 +571,14 @@ function removeDanglingEdges(graph: SkillGraph): void {
   if (validEdges.length !== graph.edges.length) {
     graph.edges = validEdges;
 
-    // Rebuild adjacency indexes
+    // Rebuild all edge indexes
+    graph.edgeById.clear();
     graph.outbound.clear();
     graph.inbound.clear();
 
     for (const edge of graph.edges) {
+      graph.edgeById.set(edge.id, edge);
+
       if (!graph.outbound.has(edge.source)) {
         graph.outbound.set(edge.source, []);
       }

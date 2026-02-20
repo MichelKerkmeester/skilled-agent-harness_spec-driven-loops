@@ -58,12 +58,13 @@ export interface DarkRunDiff {
    --------------------------------------------------------------- */
 
 const INTENT_WEIGHT_PROFILES: Record<string, FusionWeights> = {
-  understand:   { semanticWeight: 0.7, keywordWeight: 0.2, recencyWeight: 0.1, graphWeight: 0.15, graphCausalBias: 0.10 },
-  find_spec:    { semanticWeight: 0.7, keywordWeight: 0.2, recencyWeight: 0.1, graphWeight: 0.30, graphCausalBias: 0.10 },
-  fix_bug:      { semanticWeight: 0.4, keywordWeight: 0.4, recencyWeight: 0.2, graphWeight: 0.10, graphCausalBias: 0.15 },
-  debug:        { semanticWeight: 0.4, keywordWeight: 0.4, recencyWeight: 0.2, graphWeight: 0.10, graphCausalBias: 0.20 },
-  add_feature:  { semanticWeight: 0.5, keywordWeight: 0.3, recencyWeight: 0.2, graphWeight: 0.20, graphCausalBias: 0.15 },
-  refactor:     { semanticWeight: 0.6, keywordWeight: 0.3, recencyWeight: 0.1, graphWeight: 0.15, graphCausalBias: 0.10 },
+  understand:      { semanticWeight: 0.7, keywordWeight: 0.2, recencyWeight: 0.1, graphWeight: 0.15, graphCausalBias: 0.10 },
+  find_spec:       { semanticWeight: 0.7, keywordWeight: 0.2, recencyWeight: 0.1, graphWeight: 0.30, graphCausalBias: 0.10 },
+  fix_bug:         { semanticWeight: 0.4, keywordWeight: 0.4, recencyWeight: 0.2, graphWeight: 0.10, graphCausalBias: 0.15 },
+  add_feature:     { semanticWeight: 0.5, keywordWeight: 0.3, recencyWeight: 0.2, graphWeight: 0.20, graphCausalBias: 0.15 },
+  refactor:        { semanticWeight: 0.6, keywordWeight: 0.3, recencyWeight: 0.1, graphWeight: 0.15, graphCausalBias: 0.10 },
+  security_audit:  { semanticWeight: 0.3, keywordWeight: 0.5, recencyWeight: 0.2, graphWeight: 0.15, graphCausalBias: 0.10 },
+  find_decision:   { semanticWeight: 0.3, keywordWeight: 0.2, recencyWeight: 0.1, graphWeight: 0.50, graphCausalBias: 0.15 },
 };
 
 const DEFAULT_WEIGHTS: FusionWeights = {
@@ -346,11 +347,11 @@ export function hybridAdaptiveFuse(
     };
   }
 
-  // Dark-run mode: return standard results but include diff
-  if (darkRun && !enabled) {
+  // Dark-run mode: always compute diff when darkRun is true
+  if (darkRun) {
     const diff = computeDarkRunDiff(standardResults, adaptiveResults);
     return {
-      results: standardResults,
+      results: enabled ? adaptiveResults : standardResults,
       weights,
       darkRunDiff: diff,
     };

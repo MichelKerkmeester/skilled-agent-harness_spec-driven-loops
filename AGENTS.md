@@ -129,7 +129,7 @@
 │                                                                             │
 │ ⚠️ HARD BLOCK OVERRIDES SOFT BLOCKS: If file modification detected,           │
 │    Gate 3 question MUST be asked BEFORE Gates 1-2 analysis/tool calls.      │
-│    Sequence: Detect intent → Ask Gate 3 → Wait for A/B/C/D → Then analyze.  │
+│    Sequence: Detect intent → Ask Gate 3 → Wait for A/B/C/D/E → Then analyze.│
 │                                                                             │
 │ FILE MODIFICATION TRIGGERS (if ANY match → Q1 REQUIRED):                    │
 │   □ "rename", "move", "delete", "create", "add", "remove"                   │
@@ -139,8 +139,10 @@
 │                                                                             │
 │ Q1: SPEC FOLDER - If file modification triggers detected                      │
 │     Options: A) Existing | B) New | C) Update related | D) Skip             │
+│              E) Phase folder — target a specific phase child                 │
+│                 (e.g., specs/NNN-name/001-phase/)                           │
 │     ❌ DO NOT use Read/Edit/Write/Bash (except Gate Actions) before asking  │
-│     ✅ ASK FIRST, wait for A/B/C/D response, THEN proceed                   │
+│     ✅ ASK FIRST, wait for A/B/C/D/E response, THEN proceed                 │
 │                                                                             │
 │ BENEFIT: Better planning, reduced rework, consistent documentation          │
 │ SKIP: User can say "skip research" to bypass Research task dispatch         │
@@ -238,7 +240,7 @@
 │ Action:                                                                     │
 │   1. STOP immediately                                                       │
 │   2. STATE: "Before I proceed, I need to ask about documentation:"          │
-│   3. ASK the applicable Gate 3 question (spec folder A/B/C/D)               │
+│   3. ASK the applicable Gate 3 question (spec folder A/B/C/D/E)             │
 │   4. WAIT for response, then continue                                       │
 │                                                                             │
 │ Self-Check (run before ANY tool-using response):                            │
@@ -252,9 +254,7 @@
 
 ---
 
-## 3. ⚡ OPERATIONAL PROTOCOLS
-
-### Consolidated Question Protocol
+## 3. ⚡ CONSOLIDATED QUESTION PROTOCOL
 
 **🚨 ONE USER INTERACTION - Ask ALL questions together, wait ONCE**
 

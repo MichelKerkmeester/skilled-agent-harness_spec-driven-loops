@@ -85,25 +85,18 @@ describe('Hybrid Search Unit Tests (T031+)', () => {
   describe('Initialization Tests', () => {
 
     it('T031-INIT-01: init() accepts null database', () => {
-      // init() accepts null database (no validation in TS version)
-      try {
+      // init() does no validation — null db is accepted (graceful degradation)
+      expect(() => {
         hybridSearch.init(null, mockVectorSearch);
-        // No error thrown means null db accepted
-      } catch (e: unknown) {
-        // Throws error means it validates - also acceptable
-        expect(e).toBeDefined();
-      }
+      }).not.toThrow();
     });
 
     it('T031-INIT-02: init() accepts null vectorSearch', () => {
       const mockDb = createMockDb();
-      try {
+      // init() does no validation — null vectorSearch is accepted (graceful degradation)
+      expect(() => {
         hybridSearch.init(mockDb, null);
-        // No error thrown means null accepted
-      } catch (e: unknown) {
-        // Throws error means it validates - also acceptable
-        expect(e).toBeDefined();
-      }
+      }).not.toThrow();
     });
 
     it('T031-INIT-03: init() accepts optional graph search function', () => {
@@ -294,29 +287,33 @@ describe('Hybrid Search Unit Tests (T031+)', () => {
       }
     });
 
-    it('T031-HYB-06: hybridSearchEnhanced() has source tracking', () => {
-      // Results have 'source' field (string), not in_vector/in_fts/in_graph flags
-      expect(() => {
-        hybridSearch.hybridSearchEnhanced('authentication', mockEmbedding, { limit: 5 });
-      }).not.toThrow();
+    it('T031-HYB-06: hybridSearchEnhanced() has source tracking', async () => {
+      const results = await hybridSearch.hybridSearchEnhanced('authentication', mockEmbedding, { limit: 5 });
+      expect(results).toBeDefined();
+      expect(Array.isArray(results)).toBe(true);
+      // Verify results have source field when non-empty
+      if (results.length > 0) {
+        expect(typeof results[0].source).toBe('string');
+      }
     });
 
-    it('T031-HYB-07: hybridSearchEnhanced() respects limit option', () => {
-      expect(() => {
-        hybridSearch.hybridSearchEnhanced('authentication', mockEmbedding, { limit: 3 });
-      }).not.toThrow();
+    it('T031-HYB-07: hybridSearchEnhanced() respects limit option', async () => {
+      const results = await hybridSearch.hybridSearchEnhanced('authentication', mockEmbedding, { limit: 3 });
+      expect(results).toBeDefined();
+      expect(Array.isArray(results)).toBe(true);
+      expect(results.length).toBeLessThanOrEqual(3);
     });
 
-    it('T031-HYB-08: hybridSearchEnhanced() accepts specFolder filter', () => {
-      expect(() => {
-        hybridSearch.hybridSearchEnhanced('module', mockEmbedding, { limit: 10, specFolder: 'specs/auth' });
-      }).not.toThrow();
+    it('T031-HYB-08: hybridSearchEnhanced() accepts specFolder filter', async () => {
+      const results = await hybridSearch.hybridSearchEnhanced('module', mockEmbedding, { limit: 10, specFolder: 'specs/auth' });
+      expect(results).toBeDefined();
+      expect(Array.isArray(results)).toBe(true);
     });
 
-    it('T031-HYB-09: hybridSearchEnhanced() accepts query string', () => {
-      expect(() => {
-        hybridSearch.hybridSearchEnhanced('test query', mockEmbedding, { limit: 5 });
-      }).not.toThrow();
+    it('T031-HYB-09: hybridSearchEnhanced() accepts query string', async () => {
+      const results = await hybridSearch.hybridSearchEnhanced('test query', mockEmbedding, { limit: 5 });
+      expect(results).toBeDefined();
+      expect(Array.isArray(results)).toBe(true);
     });
 
     it('T031-HYB-10: hybridSearchEnhanced() works with null embedding', () => {

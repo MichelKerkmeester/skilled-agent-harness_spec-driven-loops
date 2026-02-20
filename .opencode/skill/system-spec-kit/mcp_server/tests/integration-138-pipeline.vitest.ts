@@ -313,11 +313,11 @@ describe('C138 Stage: Adaptive Fusion Weights', () => {
     expect(unknown.keywordWeight).toBe(DEFAULT_WEIGHTS.keywordWeight);
   });
 
-  it('all 6 intent profiles include graphWeight and graphCausalBias', async () => {
+  it('all 7 intent profiles include graphWeight and graphCausalBias', async () => {
     const { INTENT_WEIGHT_PROFILES } = await import('../lib/search/adaptive-fusion');
     const intents = Object.keys(INTENT_WEIGHT_PROFILES);
 
-    expect(intents.length).toBe(6);
+    expect(intents.length).toBe(7);
     for (const intent of intents) {
       const profile = INTENT_WEIGHT_PROFILES[intent];
       expect(typeof profile.graphWeight).toBe('number');
@@ -404,8 +404,8 @@ describe('C138 Stage: Evidence Gap Detector Production', () => {
 
   it('detectEvidenceGap handles all identical scores', () => {
     const identical = detectEvidenceGap([0.3, 0.3, 0.3, 0.3]);
-    // stdDev=0, zScore=0 → gap detected
-    expect(identical.gapDetected).toBe(true);
+    // stdDev=0, all scores (0.3) above MIN_ABSOLUTE_SCORE → no gap
+    expect(identical.gapDetected).toBe(false);
     expect(identical.stdDev).toBe(0);
   });
 });

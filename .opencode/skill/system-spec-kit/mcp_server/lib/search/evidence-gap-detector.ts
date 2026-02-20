@@ -169,7 +169,11 @@ export function detectEvidenceGap(rrfScores: number[]): TRMResult {
   // Avoid division by zero when all scores are identical (stdDev === 0 → Z = 0).
   const zScore = stdDev === 0 ? 0 : (topScore - mean) / stdDev;
 
-  const gapDetected = zScore < Z_SCORE_THRESHOLD || topScore < MIN_ABSOLUTE_SCORE;
+  // When stdDev===0 all scores are identical; Z-score is meaningless.
+  // Only flag a gap if the uniform score is below the absolute threshold.
+  const gapDetected = stdDev === 0
+    ? topScore < MIN_ABSOLUTE_SCORE
+    : zScore < Z_SCORE_THRESHOLD || topScore < MIN_ABSOLUTE_SCORE;
 
   return { gapDetected, zScore, mean, stdDev };
 }

@@ -24,6 +24,7 @@ source "${SCRIPT_DIR}/../lib/shell-common.sh"
 FOLDER_PATH="" DETECTED_LEVEL=1 LEVEL_METHOD="inferred" CONFIG_FILE_PATH=""
 JSON_MODE=false STRICT_MODE=false VERBOSE=false QUIET_MODE=false RECURSIVE=false
 ERRORS=0 WARNINGS=0 INFOS=0 RESULTS=""
+PHASE_RESULTS="" PHASE_COUNT=0
 
 # Rule execution order (empty = alphabetical)
 RULE_ORDER=()
@@ -442,17 +443,12 @@ run_recursive_validation() {
         [[ -n "$phase_results" ]] && phase_results+=","
         phase_results+="{\"name\":\"$(_json_escape "$phase_name")\",\"level\":$json_level,\"errors\":$ERRORS,\"warnings\":$WARNINGS,\"passed\":$child_passed,\"results\":[$RESULTS]}"
 
-        # Restore and merge with parent state
+        # Restore parent state — child results stored in phases[] JSON only (not top-level results[])
         DETECTED_LEVEL="$parent_level"
         ERRORS=$((parent_errors + ERRORS))
         WARNINGS=$((parent_warnings + WARNINGS))
         INFOS=$((parent_infos + INFOS))
-        if [[ -n "$parent_results" && -n "$RESULTS" ]]; then
-            RESULTS="${parent_results},${RESULTS}"
-        elif [[ -n "$parent_results" ]]; then
-            RESULTS="$parent_results"
-        fi
-        # else RESULTS keeps its current (child) value
+        RESULTS="$parent_results"
     done
 
     # Store phase results for JSON output

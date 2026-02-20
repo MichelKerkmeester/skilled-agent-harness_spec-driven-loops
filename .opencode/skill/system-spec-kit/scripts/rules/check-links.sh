@@ -41,9 +41,8 @@ main() {
     while IFS= read -r file; do
         dir=$(dirname "$file")
         
-        # Use perl to extract wikilinks - better compatibility than grep -P on macOS
-        # Extracts content inside [[ ]] across the file
-        links=$(perl -ne 'while (/\[\[(.*?)\]\]/g) { print "$1\n" }' "$file")
+        # Strip fenced code blocks and inline code, then extract wikilinks (P1-5 fix)
+        links=$(perl -0777 -pe 's/```[\s\S]*?```//g; s/`[^`]+`//g' "$file" | perl -ne 'while (/\[\[(.*?)\]\]/g) { print "$1\n" }')
         
         if [[ -z "$links" ]]; then
             continue
@@ -76,9 +75,16 @@ main() {
                 target="${target}.md"
             fi
             
-            # Check if file exists relative to current file's directory
-            # or relative to the global SKILL_DIR
-            if [[ ! -f "$dir/$target" ]] && [[ ! -f "$SKILL_DIR/$target" ]]; then
+            # Determine the skill subdirectory for this file (P1-6: consistent resolution)
+            local skill_subdir=""
+            skill_subdir=$(echo "$file" | sed -n "s|^\(${SKILL_DIR}/[^/]*\)/.*|\1|p")
+
+            # Check if file exists relative to:
+            # 1. current file's directory
+            # 2. the global SKILL_DIR
+            # 3. the file's skill subdirectory (matches graph-builder resolution)
+            if [[ ! -f "$dir/$target" ]] && [[ ! -f "$SKILL_DIR/$target" ]] && \
+               { [[ -z "$skill_subdir" ]] || [[ ! -f "$skill_subdir/$target" ]]; }; then
                 echo "File: $file - Broken link: [[$inner]] (Target not found: $target)" >> "$TEMP_FILE"
                 has_errors=1
             fi

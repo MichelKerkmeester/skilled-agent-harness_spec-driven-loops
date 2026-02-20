@@ -24,10 +24,11 @@
 |--------|---------|
 | `[ ]` | Pending |
 | `[x]` | Completed |
-| `[P]` | Parallelizable |
+| `[P]` | Parallelizable (can run in parallel with other `[P]` tasks at same level) |
 | `[B]` | Blocked |
+| `[P0]`/`[P1]`/`[P2]` | Priority level (distinct from `[P]` parallelism marker) |
 
-**Task Format**: `T### [P?] Description (file path)`
+**Task Format**: `T### [priority] [P?] Description (file path)` — Priority (e.g., `[P0]`) and parallelism (`[P]`) are independent markers.
 <!-- /ANCHOR:notation -->
 
 ---
@@ -83,7 +84,7 @@
 - [x] T024 [P0] [P] Add `--recursive` flag to `validate.sh` with child folder discovery (`scripts/spec/validate.sh`)
 - [x] T025 [P0] Implement per-phase validation aggregation and combined exit codes [B: T024] (`scripts/spec/validate.sh`)
 - [x] T026 [P1] Extend JSON output with `"phases": [...]` array [B: T024] (`scripts/spec/validate.sh`)
-- [x] T027 [P1] Create `check-phase-links.sh` validation rule script [B: T024] (`scripts/spec/check-phase-links.sh`)
+- [x] T027 [P1] Create `check-phase-links.sh` validation rule script [B: T024] (`scripts/rules/check-phase-links.sh`)
 - [ ] T028 [P1] Create 6 test fixtures: flat, 1-phase, 3-phase, mixed levels, empty child, broken links [B: T024-T027]
 - [x] T029 [P1] [P] Create `references/structure/phase_definitions.md` (`references/structure/phase_definitions.md`)
 - [x] T030 [P1] Update `sub_folder_versioning.md`, `level_specifications.md`, `template_guide.md`, `quick_reference.md`, `validation_rules.md` [B: T029]

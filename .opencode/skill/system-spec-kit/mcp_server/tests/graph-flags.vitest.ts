@@ -110,10 +110,10 @@ describe('Graph Feature Flags', () => {
   // ---------------------------------------------------------------
   // 4. Returns false for non-exact truthy strings (strict equality)
   // ---------------------------------------------------------------
-  describe("returns false for 'TRUE', '1', and 'yes' (strict string equality enforced)", () => {
-    it("isGraphUnifiedEnabled returns false when SPECKIT_GRAPH_UNIFIED is 'TRUE' (uppercase)", () => {
+  describe("returns false for '1' and 'yes' (non-boolean strings rejected)", () => {
+    it("isGraphUnifiedEnabled returns true when SPECKIT_GRAPH_UNIFIED is 'TRUE' (case-insensitive via .toLowerCase())", () => {
       process.env.SPECKIT_GRAPH_UNIFIED = 'TRUE';
-      expect(isGraphUnifiedEnabled()).toBe(false);
+      expect(isGraphUnifiedEnabled()).toBe(true);
     });
 
     it("isGraphMMREnabled returns false when SPECKIT_GRAPH_MMR is '1'", () => {

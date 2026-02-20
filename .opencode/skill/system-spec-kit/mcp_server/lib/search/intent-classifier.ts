@@ -279,7 +279,7 @@ function detectIntent(query: string): IntentResult {
  * Get weight adjustments for an intent.
  */
 function getIntentWeights(intent: IntentType): IntentWeights {
-  return INTENT_WEIGHT_ADJUSTMENTS[intent] || INTENT_WEIGHT_ADJUSTMENTS.understand;
+  return INTENT_WEIGHT_ADJUSTMENTS[intent] ?? INTENT_WEIGHT_ADJUSTMENTS.understand;
 }
 
 /**

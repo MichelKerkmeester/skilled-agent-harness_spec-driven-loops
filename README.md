@@ -71,7 +71,9 @@ Two custom-built systems fix this: a **spec-kit documentation framework** and a 
          ▼                            ▼
 ┌──────────────────────────────────────────────────────────────┐
 │  MEMORY ENGINE (29 MCP tools: 22 memory + 7 code mode)       │
-│  Cognitive tiers ─ Causal graphs ─ Hybrid search             │
+│  Cognitive tiers ─ Causal graphs ─ Unified Context Engine    │
+│  4-channel hybrid: Vector + BM25 + FTS5 + Skill Graph (RRF)  │
+│  MMR diversity ─ TRM confidence gating ─ query expansion     │
 │  Sources: spec memory + constitutional + skill READMEs +     │
 │           project READMEs + spec documents                   │
 │  Embeddings: Voyage | OpenAI | HuggingFace Local (free)      │
@@ -90,6 +92,8 @@ Everything connects. Memory files live *inside* spec folders. Gates enforce docu
 
 ### Recent Platform Highlights
 
+- **Hybrid RAG Fusion (spec 138)**: The memory engine now activates all three retrieval channels simultaneously (Vector, BM25, FTS5) and fuses results via Reciprocal Rank Fusion. A 4th channel (Skill Graph / SGQS) adds graph traversal results. MMR diversity pruning, Transparent Reasoning Module confidence gating, multi-query expansion, and AST-based section extraction complete the Unified Context Engine.
+- **Skill Graph decomposition (spec 138)**: All 9 monolithic SKILL.md files decomposed into wikilink-connected node files with YAML frontmatter. An in-process SGQS query layer (Neo4j-style) resolves `[[node]]` wikilinks and returns traversal subgraphs without any external database dependency.
 - **Gemini CLI is the 4th runtime**: 8 agents, 19 TOML command wrappers, 10 skill symlinks and 3 MCP servers. Agents optimized for gemini-3.1-pro within a 400K effective token window.
 - **Spec documents are indexed and searchable**: spec folder docs (`spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `decision-record.md`, `implementation-summary.md`, `research.md`, `handover.md`) surface via `find_spec` and `find_decision` intents.
 - **473 anchor tags across 74 READMEs**: section-level retrieval with ~93% token savings over loading full files.
@@ -216,7 +220,7 @@ Exit code 0 = pass. Exit code 2 = must fix.
 
 > *Remember everything. Surface what matters. Keep it private.*
 
-Your AI assistant forgets everything between sessions. The Memory Engine fixes this with 22 MCP tools across 7 architectural layers: 5-source indexing, 7-intent retrieval routing, schema v13 metadata (`document_type`, `spec_level`), and document-type scoring.
+Your AI assistant forgets everything between sessions. The Memory Engine fixes this with 22 MCP tools across 7 architectural layers: 5-source indexing, 7-intent retrieval routing, schema v15 metadata (`document_type`, `spec_level`), and document-type scoring. The Unified Context Engine (spec 138) adds a 4-channel hybrid retrieval pipeline with RRF fusion, MMR diversity pruning, confidence gating, and in-process Skill Graph traversal.
 
 ### 5-Source Discovery Pipeline
 
@@ -278,15 +282,20 @@ Two additional subsystems: **FSRS Scheduler** (spaced repetition for review inte
 
 ### Hybrid Search Architecture
 
-Three search engines fuse via Reciprocal Rank Fusion (RRF):
+Four retrieval channels fuse via Reciprocal Rank Fusion (RRF) in the Unified Context Engine (spec 138):
 
-| Engine      | Method                           | Strength                                  |
-| ----------- | -------------------------------- | ----------------------------------------- |
-| **Vector**  | Semantic similarity (embeddings) | Conceptual matching, paraphrase detection |
-| **Keyword** | BM25 term frequency              | Technical terms, code identifiers         |
-| **Trigger** | Exact phrase matching            | Precise recall for known patterns         |
+| Channel           | Method                                | Strength                                          |
+| ----------------- | ------------------------------------- | ------------------------------------------------- |
+| **Vector**        | Semantic similarity (embeddings)      | Conceptual matching, paraphrase detection         |
+| **BM25 Keyword**  | Term frequency / inverse document     | Technical terms, code identifiers, exact phrases  |
+| **FTS5 Full-Text**| SQLite full-text search               | Exact substring matching, structured queries      |
+| **Skill Graph**   | SGQS wikilink traversal (in-process)  | Procedure-level skill context, graph subgraphs    |
 
-Plus: FTS5 for exact substrings, cross-encoder reranking, 4 embedding providers (Voyage AI, OpenAI, HuggingFace Local, auto-detection), schema v13 document metadata, and intent-aware scoring.
+**Post-fusion processing**: MMR diversity pruning (reduces redundant results by >= 30%), Transparent Reasoning Module confidence gating (blocks results below `confidence_threshold=0.65`, never returns empty set), multi-query expansion (>= 3 query variants for vocabulary mismatch resolution), and AST-based document section extraction.
+
+**Latency target**: p95 <= 120ms with all four channels active on the v15 SQLite schema. Zero schema migrations required.
+
+**4 embedding providers**: Voyage AI, OpenAI, HuggingFace Local (free, default), auto-detection.
 
 **Spec126 Hardening**: import-path fixes, `specFolder` filtering, metadata preservation, vector metadata plumbing, and stable causal edge semantics.
 
@@ -498,17 +507,17 @@ Skills are domain expertise on demand. The AI loads the right skill and already 
 
 ### All Skills
 
-| Skill                        | Domain        | Purpose                                                                 |
-| ---------------------------- | ------------- | ----------------------------------------------------------------------- |
-| `mcp-code-mode`              | Integrations  | External tools via Code Mode (Figma, GitHub, ClickUp)                   |
-| `mcp-figma`                  | Design        | Figma file access, components, styles, comments                         |
-| `system-spec-kit`            | Documentation | Spec folders, templates, memory integration, context preservation       |
-| `workflows-chrome-devtools`  | Browser       | DevTools automation, screenshots, debugging                             |
-| `workflows-code--full-stack` | Multi-Stack   | Go, Node.js, React, React Native, Swift, auto-detected via marker files |
-| `workflows-code--opencode`   | System Code   | TypeScript, Python, Shell for MCP servers and scripts                   |
-| `workflows-code--web-dev`    | Web Dev       | Webflow, vanilla JS: implementation, debugging, verification            |
-| `workflows-documentation`    | Docs          | Document quality scoring, skill creation, install guides                |
-| `workflows-git`              | Git           | Commits, branches, PRs, worktrees                                       |
+| Skill                        | Domain        | Purpose                                                                                    |
+| ---------------------------- | ------------- | ------------------------------------------------------------------------------------------ |
+| `mcp-code-mode`              | Integrations  | External tools via Code Mode (Figma, GitHub, ClickUp)                                      |
+| `mcp-figma`                  | Design        | Figma file access, components, styles, comments                                            |
+| `system-spec-kit`            | Documentation | Spec folders, templates, memory integration, context preservation. Skill Graph node files with SGQS traversal (spec 138) |
+| `workflows-chrome-devtools`  | Browser       | DevTools automation, screenshots, debugging                                                |
+| `workflows-code--full-stack` | Multi-Stack   | Go, Node.js, React, React Native, Swift, auto-detected via marker files                    |
+| `workflows-code--opencode`   | System Code   | TypeScript, Python, Shell for MCP servers and scripts                                      |
+| `workflows-code--web-dev`    | Web Dev       | Webflow, vanilla JS: implementation, debugging, verification                               |
+| `workflows-documentation`    | Docs          | Document quality scoring, skill creation, install guides. Skill Graph node authoring       |
+| `workflows-git`              | Git           | Commits, branches, PRs, worktrees                                                          |
 
 ### Auto-Detection
 
