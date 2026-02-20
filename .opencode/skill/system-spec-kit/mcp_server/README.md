@@ -63,40 +63,40 @@ This MCP server gives your AI assistant persistent memory with intelligence buil
 
 ### What Makes This Different
 
-| Capability | Basic RAG | This MCP Server |
-|------------|-----------|-----------------|
-| **"Why" queries** | Impossible | Causal graph traversal (6 relationship types) |
-| **Recovery** | Hope | Crash recovery with zero data loss |
-| **Sessions** | None | Deduplication with -50% tokens on follow-up |
-| **Context** | Full documents | ANCHOR-based section retrieval (~473 anchors, 93% token savings) |
-| **Search** | Vector only | Hybrid FTS5 + vector + BM25 with RRF fusion |
-| **State** | Stateless | 5-state cognitive model (HOT/WARM/COLD/DORMANT/ARCHIVED) |
-| **Tiers** | None | 6-tier importance with configurable boosts |
-| **Decay** | None or exponential | FSRS power-law (validated on 100M+ users) |
-| **Duplicates** | Index everything | Prediction Error Gating (4-tier thresholds) |
-| **Learning** | None | Corrections tracking with confidence adjustment |
+| Capability        | Basic RAG           | This MCP Server                                                  |
+| ----------------- | ------------------- | ---------------------------------------------------------------- |
+| **"Why" queries** | Impossible          | Causal graph traversal (6 relationship types)                    |
+| **Recovery**      | Hope                | Crash recovery with zero data loss                               |
+| **Sessions**      | None                | Deduplication with -50% tokens on follow-up                      |
+| **Context**       | Full documents      | ANCHOR-based section retrieval (~473 anchors, 93% token savings) |
+| **Search**        | Vector only         | Hybrid FTS5 + vector + BM25 with RRF fusion                      |
+| **State**         | Stateless           | 5-state cognitive model (HOT/WARM/COLD/DORMANT/ARCHIVED)         |
+| **Tiers**         | None                | 6-tier importance with configurable boosts                       |
+| **Decay**         | None or exponential | FSRS power-law (validated on 100M+ users)                        |
+| **Duplicates**    | Index everything    | Prediction Error Gating (4-tier thresholds)                      |
+| **Learning**      | None                | Corrections tracking with confidence adjustment                  |
 
 ---
 
 ### Key Innovations
 
-| Innovation | Impact | Description |
-|------------|--------|-------------|
-| **Causal Memory Graph** | Answer "why" | 6 relationship types (caused, supersedes, etc.) |
-| **Session Deduplication** | -50% tokens | Hash-based tracking prevents re-sending same content |
-| **ANCHOR Retrieval** | 93% token savings | ~473 anchors across 74 READMEs for section-level extraction |
-| **RRF Search Fusion** | +40-50% relevance | Combines vector + BM25 + graph with k=60, 10% convergence bonus |
-| **Type-Specific Half-Lives** | Smarter decay | 9 memory types decay at different rates |
-| **Incremental Indexing** | 10-100x faster | Content hash + mtime diff updates |
-| **5-Source Pipeline** | Broader knowledge | Indexes spec files, constitutional, skill READMEs, project READMEs and spec documents |
-| **Document-Type Scoring** | Precision ranking | 11 document types with scoring multipliers (spec: 1.4x, plan: 1.3x, constitutional: 2.0x, scratch: 0.6x) |
-| **Recovery Hints** | Self-service errors | 49 error codes with actionable guidance |
-| **Lazy Model Loading** | <500ms startup | Defer embedding init until first use |
-| **Typed Retrieval Contracts** | API safety | ContextEnvelope, RetrievalTrace, DegradedModeContract enforce structured retrieval responses |
-| **Artifact-Class Routing** | Precision targeting | 9 artifact classes with per-type retrieval strategies (spec, memory, constitutional, etc.) |
-| **Adaptive Hybrid Fusion** | Intent-aware ranking | Weighted RRF with intent-sensitive weights; activates when `SPECKIT_ADAPTIVE_FUSION=true` |
-| **Append-Only Mutation Ledger** | Tamper-proof audit | SQLite-trigger-based immutable audit trail for all memory mutations |
-| **Extended Retrieval Telemetry** | Observability | 4-dimension telemetry: latency, retrieval mode, fallback activation, quality score |
+| Innovation                       | Impact               | Description                                                                                              |
+| -------------------------------- | -------------------- | -------------------------------------------------------------------------------------------------------- |
+| **Causal Memory Graph**          | Answer "why"         | 6 relationship types (caused, supersedes, etc.)                                                          |
+| **Session Deduplication**        | -50% tokens          | Hash-based tracking prevents re-sending same content                                                     |
+| **ANCHOR Retrieval**             | 93% token savings    | ~473 anchors across 74 READMEs for section-level extraction                                              |
+| **RRF Search Fusion**            | +40-50% relevance    | Combines vector + BM25 + graph with k=60, 10% convergence bonus                                          |
+| **Type-Specific Half-Lives**     | Smarter decay        | 9 memory types decay at different rates                                                                  |
+| **Incremental Indexing**         | 10-100x faster       | Content hash + mtime diff updates                                                                        |
+| **5-Source Pipeline**            | Broader knowledge    | Indexes spec files, constitutional, skill READMEs, project READMEs and spec documents                    |
+| **Document-Type Scoring**        | Precision ranking    | 11 document types with scoring multipliers (spec: 1.4x, plan: 1.3x, constitutional: 2.0x, scratch: 0.6x) |
+| **Recovery Hints**               | Self-service errors  | 49 error codes with actionable guidance                                                                  |
+| **Lazy Model Loading**           | <500ms startup       | Defer embedding init until first use                                                                     |
+| **Typed Retrieval Contracts**    | API safety           | ContextEnvelope, RetrievalTrace, DegradedModeContract enforce structured retrieval responses             |
+| **Artifact-Class Routing**       | Precision targeting  | 9 artifact classes with per-type retrieval strategies (spec, memory, constitutional, etc.)               |
+| **Adaptive Hybrid Fusion**       | Intent-aware ranking | Weighted RRF with intent-sensitive weights; activates when `SPECKIT_ADAPTIVE_FUSION=true`                |
+| **Append-Only Mutation Ledger**  | Tamper-proof audit   | SQLite-trigger-based immutable audit trail for all memory mutations                                      |
+| **Extended Retrieval Telemetry** | Observability        | 4-dimension telemetry: latency, retrieval mode, fallback activation, quality score                       |
 
 ### Spec 126 Post-Implementation Hardening
 
@@ -110,22 +110,22 @@ This MCP server gives your AI assistant persistent memory with intelligence buil
 
 ### By The Numbers
 
-| Category | Count |
-|----------|-------|
-| **MCP Tools** | 22 |
-| **Library Modules** | 63 |
-| **Handler Modules** | 11 |
-| **Embedding Providers** | 3 |
-| **Cognitive Features** | 12+ |
-| **Test Coverage** | 4,415 tests across 142 files (latest all-features run) |
-| **Last Verified** | 2026-02-20 (module counts revalidated via Glob) |
+| Category                | Count                                                  |
+| ----------------------- | ------------------------------------------------------ |
+| **MCP Tools**           | 22                                                     |
+| **Library Modules**     | 63                                                     |
+| **Handler Modules**     | 11                                                     |
+| **Embedding Providers** | 3                                                      |
+| **Cognitive Features**  | 12+                                                    |
+| **Test Coverage**       | 4,415 tests across 142 files (latest all-features run) |
+| **Last Verified**       | 2026-02-20 (module counts revalidated via Glob)        |
 
 ### Requirements
 
 | Requirement | Minimum | Recommended |
-|-------------|---------|-------------|
-| Node.js | 18.0.0 | 20+ |
-| npm | 9+ | 10+ |
+| ----------- | ------- | ----------- |
+| Node.js     | 18.0.0  | 20+         |
+| npm         | 9+      | 10+         |
 
 ---
 
@@ -136,68 +136,68 @@ This MCP server gives your AI assistant persistent memory with intelligence buil
 
 ### Tool Categories
 
-| Category | Tools | Purpose |
-|----------|-------|---------|
-| **Search & Retrieval** | 4 | Find and match memories |
-| **CRUD Operations** | 5 | Create, update, delete, validate |
-| **Checkpoints** | 4 | State snapshots for recovery |
-| **Session Learning** | 3 | Knowledge tracking across tasks |
-| **Causal & Drift** | 5 | Causal graph and intent-aware search |
-| **System** | 1 | Health monitoring |
+| Category               | Tools | Purpose                              |
+| ---------------------- | ----- | ------------------------------------ |
+| **Search & Retrieval** | 4     | Find and match memories              |
+| **CRUD Operations**    | 5     | Create, update, delete, validate     |
+| **Checkpoints**        | 4     | State snapshots for recovery         |
+| **Session Learning**   | 3     | Knowledge tracking across tasks      |
+| **Causal & Drift**     | 5     | Causal graph and intent-aware search |
+| **System**             | 1     | Health monitoring                    |
 
 ### Search & Retrieval Tools
 
-| Tool | Purpose | Latency |
-|------|---------|---------|
-| `memory_search` | Semantic vector search with hybrid FTS5 + BM25 + RRF fusion | ~500ms |
-| `memory_match_triggers` | Fast trigger phrase matching with cognitive features | <50ms |
-| `memory_list` | Browse memories with pagination | <50ms |
-| `memory_stats` | System statistics and folder rankings | <10ms |
+| Tool                    | Purpose                                                     | Latency |
+| ----------------------- | ----------------------------------------------------------- | ------- |
+| `memory_search`         | Semantic vector search with hybrid FTS5 + BM25 + RRF fusion | ~500ms  |
+| `memory_match_triggers` | Fast trigger phrase matching with cognitive features        | <50ms   |
+| `memory_list`           | Browse memories with pagination                             | <50ms   |
+| `memory_stats`          | System statistics and folder rankings                       | <10ms   |
 
 ### CRUD Tools
 
-| Tool | Purpose | Latency |
-|------|---------|---------|
-| `memory_save` | Index a single memory file | ~1s |
-| `memory_index_scan` | Bulk scan and index workspace (5-source pipeline, incremental) | varies |
-| `memory_update` | Update metadata/tier/triggers | <50ms* |
-| `memory_delete` | Delete by ID or spec folder | <50ms |
-| `memory_validate` | Record validation feedback | <50ms |
+| Tool                | Purpose                                                        | Latency |
+| ------------------- | -------------------------------------------------------------- | ------- |
+| `memory_save`       | Index a single memory file                                     | ~1s     |
+| `memory_index_scan` | Bulk scan and index workspace (5-source pipeline, incremental) | varies  |
+| `memory_update`     | Update metadata/tier/triggers                                  | <50ms*  |
+| `memory_delete`     | Delete by ID or spec folder                                    | <50ms   |
+| `memory_validate`   | Record validation feedback                                     | <50ms   |
 
 *+~400ms if title changed (triggers embedding regeneration)
 
 ### Checkpoint Tools
 
-| Tool | Purpose | Latency |
-|------|---------|---------|
-| `checkpoint_create` | Create named state snapshot | <100ms |
-| `checkpoint_list` | List available checkpoints | <50ms |
-| `checkpoint_restore` | Restore from checkpoint | varies |
-| `checkpoint_delete` | Delete a checkpoint | <50ms |
+| Tool                 | Purpose                     | Latency |
+| -------------------- | --------------------------- | ------- |
+| `checkpoint_create`  | Create named state snapshot | <100ms  |
+| `checkpoint_list`    | List available checkpoints  | <50ms   |
+| `checkpoint_restore` | Restore from checkpoint     | varies  |
+| `checkpoint_delete`  | Delete a checkpoint         | <50ms   |
 
 ### Session Learning Tools
 
-| Tool | Purpose | Latency |
-|------|---------|---------|
-| `task_preflight` | Capture epistemic baseline before task | <50ms |
-| `task_postflight` | Capture state after task, calculate learning delta | <50ms |
-| `memory_get_learning_history` | Get learning history with trends | <50ms |
+| Tool                          | Purpose                                            | Latency |
+| ----------------------------- | -------------------------------------------------- | ------- |
+| `task_preflight`              | Capture epistemic baseline before task             | <50ms   |
+| `task_postflight`             | Capture state after task, calculate learning delta | <50ms   |
+| `memory_get_learning_history` | Get learning history with trends                   | <50ms   |
 
 ### Causal & Drift Tools
 
-| Tool | Purpose | Latency |
-|------|---------|---------|
-| `memory_drift_why` | Trace causal chain for decision lineage | varies |
-| `memory_causal_link` | Create causal relationships between memories | <50ms |
-| `memory_causal_stats` | Graph statistics and coverage metrics | <50ms |
-| `memory_causal_unlink` | Remove causal relationships | <50ms |
-| `memory_context` | Unified entry with intent awareness | ~500ms |
+| Tool                   | Purpose                                      | Latency |
+| ---------------------- | -------------------------------------------- | ------- |
+| `memory_drift_why`     | Trace causal chain for decision lineage      | varies  |
+| `memory_causal_link`   | Create causal relationships between memories | <50ms   |
+| `memory_causal_stats`  | Graph statistics and coverage metrics        | <50ms   |
+| `memory_causal_unlink` | Remove causal relationships                  | <50ms   |
+| `memory_context`       | Unified entry with intent awareness          | ~500ms  |
 
 ### System Tools
 
-| Tool | Purpose | Latency |
-|------|---------|---------|
-| `memory_health` | Check health status of the memory system | <10ms |
+| Tool            | Purpose                                  | Latency |
+| --------------- | ---------------------------------------- | ------- |
+| `memory_health` | Check health status of the memory system | <10ms   |
 
 ---
 
@@ -205,14 +205,14 @@ This MCP server gives your AI assistant persistent memory with intelligence buil
 
 The causal graph supports 6 relationship types for decision archaeology:
 
-| Relation | Meaning |
-|----------|---------|
-| `caused` | A directly led to B |
-| `enabled` | A made B possible without directly causing it |
-| `supersedes` | A replaces B as the current truth |
-| `contradicts` | A and B are mutually incompatible |
-| `derived_from` | A was built upon or derived from B |
-| `supports` | A provides evidence or support for B |
+| Relation       | Meaning                                       |
+| -------------- | --------------------------------------------- |
+| `caused`       | A directly led to B                           |
+| `enabled`      | A made B possible without directly causing it |
+| `supersedes`   | A replaces B as the current truth             |
+| `contradicts`  | A and B are mutually incompatible             |
+| `derived_from` | A was built upon or derived from B            |
+| `supports`     | A provides evidence or support for B          |
 
 **Example:**
 ```typescript
@@ -239,30 +239,30 @@ All handler responses include a `tokenBudget` field in the `meta` object showing
 
 #### memory_search
 
-| Parameter | Type | Default | Description |
-|-----------|------|---------|-------------|
-| `query` | string | - | Natural language search query |
-| `concepts` | string[] | - | Multi-concept AND search (2-5 concepts, results must match ALL) |
-| `specFolder` | string | - | Limit search to specific spec folder |
-| `limit` | number | 10 | Maximum number of results to return |
-| `sessionId` | string | - | Session identifier for working memory and session deduplication (~50% token savings on follow-up queries) |
-| `enableDedup` | boolean | true | Enable session deduplication (requires `sessionId`) |
-| `tier` | string | - | Filter by importance tier (constitutional, critical, important, normal, temporary, deprecated) |
-| `contextType` | string | - | Filter by context type (decision, implementation, research, etc.) |
-| `useDecay` | boolean | true | Apply temporal decay scoring to results |
-| `includeContiguity` | boolean | false | Include adjacent/contiguous memories in results |
-| `includeConstitutional` | boolean | **true** | Include constitutional tier memories at top of results |
-| `includeContent` | boolean | false | Include full file content in results (embeds load logic directly in search) |
-| `anchors` | string[] | - | Specific anchor IDs to extract from content (requires `includeContent: true`) |
-| `bypassCache` | boolean | false | Skip tool cache and force a fresh search |
-| `rerank` | boolean | false | Enable cross-encoder reranking of results (improves relevance, adds computation) |
-| `applyLengthPenalty` | boolean | true | Apply length-based penalty during reranking (only effective when `rerank` is true) |
-| `applyStateLimits` | boolean | false | Apply per-tier quantity limits to balance result diversity |
-| `minState` | string | "WARM" | Minimum memory state filter (HOT > WARM > COLD > DORMANT > ARCHIVED) |
-| `intent` | enum | - | Task intent for weight adjustments (add_feature, fix_bug, refactor, security_audit, understand) |
-| `autoDetectIntent` | boolean | true | Auto-detect intent from query if not explicitly specified |
-| `enableSessionBoost` | boolean | env default | Enable session-attention score boost using `working_memory` |
-| `enableCausalBoost` | boolean | env default | Enable 2-hop causal-neighbor boost from `causal_edges` |
+| Parameter               | Type     | Default     | Description                                                                                               |
+| ----------------------- | -------- | ----------- | --------------------------------------------------------------------------------------------------------- |
+| `query`                 | string   | -           | Natural language search query                                                                             |
+| `concepts`              | string[] | -           | Multi-concept AND search (2-5 concepts, results must match ALL)                                           |
+| `specFolder`            | string   | -           | Limit search to specific spec folder                                                                      |
+| `limit`                 | number   | 10          | Maximum number of results to return                                                                       |
+| `sessionId`             | string   | -           | Session identifier for working memory and session deduplication (~50% token savings on follow-up queries) |
+| `enableDedup`           | boolean  | true        | Enable session deduplication (requires `sessionId`)                                                       |
+| `tier`                  | string   | -           | Filter by importance tier (constitutional, critical, important, normal, temporary, deprecated)            |
+| `contextType`           | string   | -           | Filter by context type (decision, implementation, research, etc.)                                         |
+| `useDecay`              | boolean  | true        | Apply temporal decay scoring to results                                                                   |
+| `includeContiguity`     | boolean  | false       | Include adjacent/contiguous memories in results                                                           |
+| `includeConstitutional` | boolean  | **true**    | Include constitutional tier memories at top of results                                                    |
+| `includeContent`        | boolean  | false       | Include full file content in results (embeds load logic directly in search)                               |
+| `anchors`               | string[] | -           | Specific anchor IDs to extract from content (requires `includeContent: true`)                             |
+| `bypassCache`           | boolean  | false       | Skip tool cache and force a fresh search                                                                  |
+| `rerank`                | boolean  | false       | Enable cross-encoder reranking of results (improves relevance, adds computation)                          |
+| `applyLengthPenalty`    | boolean  | true        | Apply length-based penalty during reranking (only effective when `rerank` is true)                        |
+| `applyStateLimits`      | boolean  | false       | Apply per-tier quantity limits to balance result diversity                                                |
+| `minState`              | string   | "WARM"      | Minimum memory state filter (HOT > WARM > COLD > DORMANT > ARCHIVED)                                      |
+| `intent`                | enum     | -           | Task intent for weight adjustments (add_feature, fix_bug, refactor, security_audit, understand)           |
+| `autoDetectIntent`      | boolean  | true        | Auto-detect intent from query if not explicitly specified                                                 |
+| `enableSessionBoost`    | boolean  | env default | Enable session-attention score boost using `working_memory`                                               |
+| `enableCausalBoost`     | boolean  | env default | Enable 2-hop causal-neighbor boost from `causal_edges`                                                    |
 
 `memory_search` response metadata includes:
 - `applied_boosts`: applied session and causal boost details
@@ -270,17 +270,17 @@ All handler responses include a `tokenBudget` field in the `meta` object showing
 
 #### memory_context
 
-| Parameter | Type | Default | Description |
-|-----------|------|---------|-------------|
-| `input` | string | **Required** | The query, prompt, or context description |
-| `mode` | string | "auto" | auto, quick, deep, focused, resume |
-| `intent` | string | - | Task intent (auto-detected if not provided) |
-| `specFolder` | string | - | Limit to specific spec folder |
-| `limit` | number | 10 | Maximum results |
-| `sessionId` | string | - | Session ID for deduplication |
-| `enableDedup` | boolean | true | Enable session deduplication |
-| `includeContent` | boolean | false | Include full file content in results |
-| `anchors` | string[] | - | Filter content to specific anchors (e.g., ["state", "next-steps"] for resume mode) |
+| Parameter        | Type     | Default      | Description                                                                        |
+| ---------------- | -------- | ------------ | ---------------------------------------------------------------------------------- |
+| `input`          | string   | **Required** | The query, prompt, or context description                                          |
+| `mode`           | string   | "auto"       | auto, quick, deep, focused, resume                                                 |
+| `intent`         | string   | -            | Task intent (auto-detected if not provided)                                        |
+| `specFolder`     | string   | -            | Limit to specific spec folder                                                      |
+| `limit`          | number   | 10           | Maximum results                                                                    |
+| `sessionId`      | string   | -            | Session ID for deduplication                                                       |
+| `enableDedup`    | boolean  | true         | Enable session deduplication                                                       |
+| `includeContent` | boolean  | false        | Include full file content in results                                               |
+| `anchors`        | string[] | -            | Filter content to specific anchors (e.g., ["state", "next-steps"] for resume mode) |
 
 `memory_context` response metadata includes:
 - `pressure_level`: resolved pressure tier (`none`, `focused`, `quick`)
@@ -288,24 +288,24 @@ All handler responses include a `tokenBudget` field in the `meta` object showing
 
 #### memory_index_scan
 
-| Parameter | Type | Default | Description |
-|-----------|------|---------|-------------|
-| `specFolder` | string | - | Limit scan to specific spec folder |
-| `force` | boolean | false | Force re-index all files (ignore content hash) |
-| `incremental` | boolean | true | Skip unchanged files (mtime + hash check) |
-| `includeConstitutional` | boolean | true | Scan `.opencode/skill/*/constitutional/` directories |
-| `includeReadmes` | boolean | **true** | Include README.md and README.txt files from skill and project directories |
-| `includeSpecDocs` | boolean | **true** | Include spec folder documents (specs, plans, tasks, etc.) from `.opencode/specs/` |
+| Parameter               | Type    | Default  | Description                                                                       |
+| ----------------------- | ------- | -------- | --------------------------------------------------------------------------------- |
+| `specFolder`            | string  | -        | Limit scan to specific spec folder                                                |
+| `force`                 | boolean | false    | Force re-index all files (ignore content hash)                                    |
+| `incremental`           | boolean | true     | Skip unchanged files (mtime + hash check)                                         |
+| `includeConstitutional` | boolean | true     | Scan `.opencode/skill/*/constitutional/` directories                              |
+| `includeReadmes`        | boolean | **true** | Include README.md and README.txt files from skill and project directories         |
+| `includeSpecDocs`       | boolean | **true** | Include spec folder documents (specs, plans, tasks, etc.) from `.opencode/specs/` |
 
 **5-Source Pipeline:** When `memory_index_scan` runs, it categorizes discovered files into five sources:
 
-| Source | Path Pattern | Importance Weight | Description |
-|--------|-------------|-------------------|-------------|
-| `constitutionalFiles` | `.opencode/skill/*/constitutional/*.md` | Per-file metadata | Constitutional tier files (never decay, always surface) |
-| `specDocuments` | `.opencode/specs/**/*.md` | Per-type multiplier | Spec folder documents (specs, plans, decisions) with document-type scoring |
-| `specFiles` | `specs/**/memory/*.{md,txt}` | 0.5 | Memory files from spec folders |
-| `projectReadmes` | `**/README.{md,txt}` (excl. node_modules, .git, etc.) | 0.4 | Project documentation providing codebase context |
-| `skillReadmes` | `.opencode/skill/*/README.{md,txt}` | 0.3 | Skill documentation (lower weight to never outrank user work) |
+| Source                | Path Pattern                                          | Importance Weight   | Description                                                                |
+| --------------------- | ----------------------------------------------------- | ------------------- | -------------------------------------------------------------------------- |
+| `constitutionalFiles` | `.opencode/skill/*/constitutional/*.md`               | Per-file metadata   | Constitutional tier files (never decay, always surface)                    |
+| `specDocuments`       | `.opencode/specs/**/*.md`                             | Per-type multiplier | Spec folder documents (specs, plans, decisions) with document-type scoring |
+| `specFiles`           | `specs/**/memory/*.{md,txt}`                          | 0.5                 | Memory files from spec folders                                             |
+| `projectReadmes`      | `**/README.{md,txt}` (excl. node_modules, .git, etc.) | 0.4                 | Project documentation providing codebase context                           |
+| `skillReadmes`        | `.opencode/skill/*/README.{md,txt}`                   | 0.3                 | Skill documentation (lower weight to never outrank user work)              |
 
 README sources are indexed with reduced importance weights so they provide useful background context during search without outranking user-authored memories. README.md and README.txt documents follow consistent formatting and anchor conventions (specs 111/113), which improves embedding quality and anchor-based retrieval accuracy. Set `includeReadmes: false` for backward-compatible behavior that excludes README sources. Spec documents are controlled by `includeSpecDocs` (default: `true`) or the `SPECKIT_INDEX_SPEC_DOCS` environment variable, and use document-type scoring multipliers (11 types).
 
@@ -339,13 +339,13 @@ Where:
 
 Memories transition between states based on their retrievability score:
 
-| State | Retrievability | Content Returned | Max Items | Behavior |
-|-------|----------------|------------------|-----------|----------|
-| **HOT** | R >= 0.80 | Full content | 5 | Active working memory, top priority |
-| **WARM** | 0.25 <= R < 0.80 | Summary only | 10 | Accessible background context |
-| **COLD** | 0.05 <= R < 0.25 | None | - | Inactive but retrievable on demand |
-| **DORMANT** | 0.02 <= R < 0.05 | None | - | Very weak, needs explicit revival |
-| **ARCHIVED** | R < 0.02 or 90d+ | None | - | Time-based archival, effectively forgotten |
+| State        | Retrievability   | Content Returned | Max Items | Behavior                                   |
+| ------------ | ---------------- | ---------------- | --------- | ------------------------------------------ |
+| **HOT**      | R >= 0.80        | Full content     | 5         | Active working memory, top priority        |
+| **WARM**     | 0.25 <= R < 0.80 | Summary only     | 10        | Accessible background context              |
+| **COLD**     | 0.05 <= R < 0.25 | None             | -         | Inactive but retrievable on demand         |
+| **DORMANT**  | 0.02 <= R < 0.05 | None             | -         | Very weak, needs explicit revival          |
+| **ARCHIVED** | R < 0.02 or 90d+ | None             | -         | Time-based archival, effectively forgotten |
 
 ---
 
@@ -353,17 +353,17 @@ Memories transition between states based on their retrievability score:
 
 Different memory types decay at different rates. Procedural knowledge lasts longer than episodic memories:
 
-| Memory Type | Half-Life | Example |
-|-------------|-----------|---------|
-| **constitutional** | Never | "Never edit without reading first" |
-| **procedural** | 90+ days | "How to deploy to production" |
-| **semantic** | 60 days | "RRF stands for Reciprocal Rank Fusion" |
-| **contextual** | 30 days | "Auth module uses JWT" |
-| **episodic** | 14 days | "Fixed bug XYZ on Tuesday" |
-| **working** | 1 day | "Currently debugging auth flow" |
-| **temporary** | 4 hours | "Testing this config" |
-| **debug** | 1 hour | "Stack trace from crash" |
-| **scratch** | Session | "Rough notes" |
+| Memory Type        | Half-Life | Example                                 |
+| ------------------ | --------- | --------------------------------------- |
+| **constitutional** | Never     | "Never edit without reading first"      |
+| **procedural**     | 90+ days  | "How to deploy to production"           |
+| **semantic**       | 60 days   | "RRF stands for Reciprocal Rank Fusion" |
+| **contextual**     | 30 days   | "Auth module uses JWT"                  |
+| **episodic**       | 14 days   | "Fixed bug XYZ on Tuesday"              |
+| **working**        | 1 day     | "Currently debugging auth flow"         |
+| **temporary**      | 4 hours   | "Testing this config"                   |
+| **debug**          | 1 hour    | "Stack trace from crash"                |
+| **scratch**        | Session   | "Rough notes"                           |
 
 **Auto-detection:** Memory type is inferred from file path and frontmatter.
 
@@ -373,13 +373,13 @@ Different memory types decay at different rates. Procedural knowledge lasts long
 
 Decay score is computed from 5 factors, not time elapsed alone:
 
-| Factor | Weight | Description |
-|--------|--------|-------------|
-| **Temporal** | Base | FSRS formula based on stability |
-| **Usage** | Up to 1.5x | Access count boost (capped) |
-| **Importance** | 1.0-3.0x | Tier-based anchor |
-| **Pattern** | +20% | Alignment with current task |
-| **Citation** | +10% | Recently cited boost |
+| Factor         | Weight     | Description                     |
+| -------------- | ---------- | ------------------------------- |
+| **Temporal**   | Base       | FSRS formula based on stability |
+| **Usage**      | Up to 1.5x | Access count boost (capped)     |
+| **Importance** | 1.0-3.0x   | Tier-based anchor               |
+| **Pattern**    | +20%       | Alignment with current task     |
+| **Citation**   | +10%       | Recently cited boost            |
 
 **Formula:** `composite_score = temporal x usage x importance x pattern x citation`
 
@@ -389,13 +389,13 @@ Decay score is computed from 5 factors, not time elapsed alone:
 
 Prevents duplicate memories from polluting the index:
 
-| Similarity | Category | Action |
-|------------|----------|--------|
-| >= 0.95 | **DUPLICATE** | Block save, reinforce existing |
-| 0.90-0.94 | **HIGH_MATCH** | Check for contradiction. UPDATE or SUPERSEDE |
-| 0.70-0.89 | **MEDIUM_MATCH** | Create with link to related memory |
-| 0.50-0.69 | **LOW_MATCH** | Create new, note similarity |
-| < 0.50 | **UNIQUE** | Create new memory normally |
+| Similarity | Category         | Action                                       |
+| ---------- | ---------------- | -------------------------------------------- |
+| >= 0.95    | **DUPLICATE**    | Block save, reinforce existing               |
+| 0.90-0.94  | **HIGH_MATCH**   | Check for contradiction. UPDATE or SUPERSEDE |
+| 0.70-0.89  | **MEDIUM_MATCH** | Create with link to related memory           |
+| 0.50-0.69  | **LOW_MATCH**    | Create new, note similarity                  |
+| < 0.50     | **UNIQUE**       | Create new memory normally                   |
 
 ---
 
@@ -404,11 +404,11 @@ Prevents duplicate memories from polluting the index:
 Accessing memories strengthens them. The harder the recall, the greater the benefit:
 
 | Retrievability at Access | Stability Boost |
-|--------------------------|-----------------|
-| R >= 0.90 (easy recall) | +5% |
-| R = 0.70 (moderate) | +10% |
-| R = 0.50 (challenging) | +15% |
-| R < 0.30 (hard recall) | +20% |
+| ------------------------ | --------------- |
+| R >= 0.90 (easy recall)  | +5%             |
+| R = 0.70 (moderate)      | +10%            |
+| R = 0.50 (challenging)   | +15%            |
+| R < 0.30 (hard recall)   | +20%            |
 
 ---
 
@@ -416,13 +416,13 @@ Accessing memories strengthens them. The harder the recall, the greater the bene
 
 When one memory is retrieved, related memories get a boost:
 
-| Relationship | Boost |
-|--------------|-------|
-| Same spec folder | +0.2 |
-| Temporal proximity | +0.15 |
-| Shared entities | +0.1 |
-| Semantic similarity | +0.05 |
-| **Causal link** | **+0.25** |
+| Relationship        | Boost     |
+| ------------------- | --------- |
+| Same spec folder    | +0.2      |
+| Temporal proximity  | +0.15     |
+| Shared entities     | +0.1      |
+| Semantic similarity | +0.05     |
+| **Causal link**     | **+0.25** |
 
 **Working Memory Capacity:** Limited to ~7 active items (Miller's Law) + 10 WARM items.
 
@@ -532,12 +532,12 @@ Query
 
 ### Why Hybrid Beats Single-Engine
 
-| Query Type | Vector | BM25 | Graph | Winner |
-|------------|--------|------|-------|--------|
-| "how does auth work" | Best match | - | - | Vector |
-| "TODO BUG-123" | Poor | **Exact match** | - | BM25 |
-| "why JWT not cookies" | Good | Good | **Traces decision** | Graph |
-| "authentication security" | Good | Good | - | **Hybrid** |
+| Query Type                | Vector     | BM25            | Graph               | Winner     |
+| ------------------------- | ---------- | --------------- | ------------------- | ---------- |
+| "how does auth work"      | Best match | -               | -                   | Vector     |
+| "TODO BUG-123"            | Poor       | **Exact match** | -                   | BM25       |
+| "why JWT not cookies"     | Good       | Good            | **Traces decision** | Graph      |
+| "authentication security" | Good       | Good            | -                   | **Hybrid** |
 
 ---
 
@@ -547,13 +547,13 @@ Query
 RRF_score = sum(weight / (k + rank_i)) * convergence_bonus
 ```
 
-| Parameter | Value | Description |
-|-----------|-------|-------------|
-| **k** | 60 | Fusion constant (industry standard) |
-| **Vector weight** | 1.0x | Semantic similarity |
-| **BM25 weight** | 1.0x | Keyword matching |
-| **Graph weight** | 1.5x | Causal relationships get boost |
-| **Convergence bonus** | +10% | Results found by multiple engines |
+| Parameter             | Value | Description                         |
+| --------------------- | ----- | ----------------------------------- |
+| **k**                 | 60    | Fusion constant (industry standard) |
+| **Vector weight**     | 1.0x  | Semantic similarity                 |
+| **BM25 weight**       | 1.0x  | Keyword matching                    |
+| **Graph weight**      | 1.5x  | Causal relationships get boost      |
+| **Convergence bonus** | +10%  | Results found by multiple engines   |
 
 ---
 
@@ -561,15 +561,15 @@ RRF_score = sum(weight / (k + rank_i)) * convergence_bonus
 
 The system detects query intent and applies task-specific search weights:
 
-| Intent | Weight Adjustments | Example Query |
-|--------|-------------------|---------------|
-| **add_feature** | +procedural, +architectural | "implement user auth" |
-| **fix_bug** | +error logs, +debug, +recent | "fix login crash" |
-| **refactor** | +patterns, +structure | "improve auth module" |
-| **security_audit** | +security, +vulnerabilities | "check auth security" |
-| **understand** | +semantic, +explanatory | "how does auth work" |
-| **find_spec** | +spec documents, +plans, +decision records | "find the spec for auth" |
-| **find_decision** | +decision records, +architectural context | "why did we choose JWT" |
+| Intent             | Weight Adjustments                         | Example Query            |
+| ------------------ | ------------------------------------------ | ------------------------ |
+| **add_feature**    | +procedural, +architectural                | "implement user auth"    |
+| **fix_bug**        | +error logs, +debug, +recent               | "fix login crash"        |
+| **refactor**       | +patterns, +structure                      | "improve auth module"    |
+| **security_audit** | +security, +vulnerabilities                | "check auth security"    |
+| **understand**     | +semantic, +explanatory                    | "how does auth work"     |
+| **find_spec**      | +spec documents, +plans, +decision records | "find the spec for auth" |
+| **find_decision**  | +decision records, +architectural context  | "why did we choose JWT"  |
 
 ---
 
@@ -599,12 +599,12 @@ We chose JWT with refresh tokens because:
 
 ### Compression Tiers
 
-| Level | ~Tokens | Fields Included | Use Case |
-|-------|---------|-----------------|----------|
-| **minimal** | ~100 | id, title, tier | Quick context check |
-| **compact** | ~200 | + summary | Resume prior work |
-| **standard** | ~400 | + anchors | Active development |
-| **full** | Complete | All | Deep investigation |
+| Level        | ~Tokens  | Fields Included | Use Case            |
+| ------------ | -------- | --------------- | ------------------- |
+| **minimal**  | ~100     | id, title, tier | Quick context check |
+| **compact**  | ~200     | + summary       | Resume prior work   |
+| **standard** | ~400     | + anchors       | Active development  |
+| **full**     | Complete | All             | Deep investigation  |
 
 ---
 
@@ -612,13 +612,13 @@ We chose JWT with refresh tokens because:
 
 The **constitutional** tier is special. These memories ALWAYS appear at the top of search results:
 
-| Behavior | Description |
-|----------|-------------|
-| **Always surfaces** | Included at top of every search by default |
+| Behavior             | Description                                         |
+| -------------------- | --------------------------------------------------- |
+| **Always surfaces**  | Included at top of every search by default          |
 | **Fixed similarity** | Returns `similarity: 100` regardless of query match |
-| **Token budget** | ~2000 tokens max for constitutional memories |
-| **Use cases** | Project rules, coding standards, critical context |
-| **Control** | Set `includeConstitutional: false` to disable |
+| **Token budget**     | ~2000 tokens max for constitutional memories        |
+| **Use cases**        | Project rules, coding standards, critical context   |
+| **Control**          | Set `includeConstitutional: false` to disable       |
 
 ---
 
@@ -629,36 +629,36 @@ The **constitutional** tier is special. These memories ALWAYS appear at the top 
 
 ### The Six-Tier System
 
-| Tier | Boost | Decay Rate | Auto-Clean | Use Case |
-|------|-------|------------|------------|----------|
-| **constitutional** | 3.0x | Never | Never | Project rules, always-surface |
-| **critical** | 2.0x | Never | Never | Architecture decisions |
-| **important** | 1.5x | Never | Never | Key implementations |
-| **normal** | 1.0x | 0.80/turn | 90 days | Standard context (default) |
-| **temporary** | 0.5x | 0.60/turn | 7 days | Debug sessions |
-| **deprecated** | 0.0x | Never | Manual | Outdated info |
+| Tier               | Boost | Decay Rate | Auto-Clean | Use Case                      |
+| ------------------ | ----- | ---------- | ---------- | ----------------------------- |
+| **constitutional** | 3.0x  | Never      | Never      | Project rules, always-surface |
+| **critical**       | 2.0x  | Never      | Never      | Architecture decisions        |
+| **important**      | 1.5x  | Never      | Never      | Key implementations           |
+| **normal**         | 1.0x  | 0.80/turn  | 90 days    | Standard context (default)    |
+| **temporary**      | 0.5x  | 0.60/turn  | 7 days     | Debug sessions                |
+| **deprecated**     | 0.0x  | Never      | Manual     | Outdated info                 |
 
 ### Tier Selection Guide
 
-| Content Type | Recommended Tier |
-|--------------|------------------|
-| Coding standards, project rules | `constitutional` |
-| Breaking changes, migration docs | `critical` |
-| Feature specs, architecture ADRs | `important` |
-| Implementation notes | `normal` (default) |
-| Debug logs, experiments | `temporary` |
-| Replaced/outdated docs | `deprecated` |
+| Content Type                     | Recommended Tier   |
+| -------------------------------- | ------------------ |
+| Coding standards, project rules  | `constitutional`   |
+| Breaking changes, migration docs | `critical`         |
+| Feature specs, architecture ADRs | `important`        |
+| Implementation notes             | `normal` (default) |
+| Debug logs, experiments          | `temporary`        |
+| Replaced/outdated docs           | `deprecated`       |
 
 ### Source-Type Importance Weighting
 
 The indexing pipeline also assigns importance weights based on file source. This ensures auto-indexed content (like READMEs) never outranks user-authored memories:
 
-| Source Type | Weight | Rationale |
-|-------------|--------|-----------|
-| User memory files | Per-file metadata | Full importance from frontmatter |
-| Constitutional files | Per-file metadata | Highest priority (tier boost 3.0x) |
-| Skill READMEs | 0.3 | Background reference, not user work |
-| Project READMEs | 0.4 | Codebase context, slightly higher than skill docs |
+| Source Type          | Weight            | Rationale                                         |
+| -------------------- | ----------------- | ------------------------------------------------- |
+| User memory files    | Per-file metadata | Full importance from frontmatter                  |
+| Constitutional files | Per-file metadata | Highest priority (tier boost 3.0x)                |
+| Skill READMEs        | 0.3               | Background reference, not user work               |
+| Project READMEs      | 0.4               | Codebase context, slightly higher than skill docs |
 
 ---
 
@@ -914,31 +914,31 @@ Add to your MCP client configuration (e.g., `opencode.json`):
 
 #### Core Configuration
 
-| Variable | Default | Description |
-|----------|---------|-------------|
-| `MEMORY_DB_PATH` | `./dist/database/context-index.sqlite` | Database location |
-| `MEMORY_BASE_PATH` | CWD | Workspace root for memory files |
-| `DEBUG_TRIGGER_MATCHER` | `false` | Enable verbose trigger logs |
+| Variable                | Default                                | Description                     |
+| ----------------------- | -------------------------------------- | ------------------------------- |
+| `MEMORY_DB_PATH`        | `./dist/database/context-index.sqlite` | Database location               |
+| `MEMORY_BASE_PATH`      | CWD                                    | Workspace root for memory files |
+| `DEBUG_TRIGGER_MATCHER` | `false`                                | Enable verbose trigger logs     |
 
 In this repository, `database/context-index.sqlite` is maintained as a compatibility symlink to the canonical runtime path `dist/database/context-index.sqlite`.
 
 #### Embedding Providers
 
-| Variable | Required | Description |
-|----------|----------|-------------|
-| `EMBEDDINGS_PROVIDER` | No | Force: `voyage`, `openai` or `hf-local` |
-| `VOYAGE_API_KEY` | For Voyage | Voyage AI API key |
-| `OPENAI_API_KEY` | For OpenAI | OpenAI API key |
+| Variable              | Required   | Description                             |
+| --------------------- | ---------- | --------------------------------------- |
+| `EMBEDDINGS_PROVIDER` | No         | Force: `voyage`, `openai` or `hf-local` |
+| `VOYAGE_API_KEY`      | For Voyage | Voyage AI API key                       |
+| `OPENAI_API_KEY`      | For OpenAI | OpenAI API key                          |
 
 ---
 
 ### Embedding Provider Options
 
-| Provider | Dimensions | Speed | Quality | Privacy | Best For |
-|----------|------------|-------|---------|---------|----------|
-| **Voyage AI** | 1024 | Fast | Excellent | Cloud | Production (recommended) |
-| **OpenAI** | 1536/3072 | Fast | Very Good | Cloud | Alternative cloud option |
-| **HF Local** | 768 | Slow* | Good | **Local** | Privacy, offline |
+| Provider      | Dimensions | Speed | Quality   | Privacy   | Best For                 |
+| ------------- | ---------- | ----- | --------- | --------- | ------------------------ |
+| **Voyage AI** | 1024       | Fast  | Excellent | Cloud     | Production (recommended) |
+| **OpenAI**    | 1536/3072  | Fast  | Very Good | Cloud     | Alternative cloud option |
+| **HF Local**  | 768        | Slow* | Good      | **Local** | Privacy, offline         |
 
 *First run downloads model (~400MB), subsequent runs faster
 
@@ -952,57 +952,57 @@ In this repository, `database/context-index.sqlite` is maintained as a compatibi
 
 ### Feature Flags
 
-| Flag | Default | Description |
-|------|---------|-------------|
-| `SPECKIT_RRF` | `true` | Enable RRF search fusion |
-| `SPECKIT_BM25` | `true` | Enable BM25 lexical search |
-| `SPECKIT_SESSION_DEDUP` | `true` | Enable session deduplication |
-| `SPECKIT_LAZY_LOAD` | `true` | Defer embedding model init |
-| `SPECKIT_TYPE_DECAY` | `true` | Enable type-specific half-lives |
-| `SPECKIT_RELATIONS` | `true` | Enable causal memory graph |
-| `SPECKIT_CROSS_ENCODER` | `false` | Enable cross-encoder reranking |
-| `SPECKIT_INCREMENTAL` | `true` | Enable incremental indexing |
-| `SPECKIT_INDEX_SPEC_DOCS` | `true` | Enable spec folder document indexing (5th source) |
-| `SPECKIT_SESSION_BOOST` | `false` | Enable session-attention boost in `memory_search` |
-| `SPECKIT_PRESSURE_POLICY` | `false` | Enable token-pressure mode override in `memory_context` |
-| `SPECKIT_EVENT_DECAY` | `false` | Enable event-based working-memory decay |
-| `SPECKIT_EXTRACTION` | `false` | Enable post-tool extraction adapter pipeline |
-| `SPECKIT_CAUSAL_BOOST` | `false` | Enable causal-neighbor score boost |
-| `SPECKIT_AUTO_RESUME` | `false` | Enable session resume prompt-context injection |
-| `SPECKIT_ROLLOUT_PERCENT` | `0` | Rollout percentage gate (0,10,50,100) for staged rollout control |
-| `SPECKIT_ADAPTIVE_FUSION` | `false` | Enable intent-aware weighted RRF fusion (replaces standard fixed-weight RRF) |
-| `SPECKIT_EXTENDED_TELEMETRY` | `true` | Enable 4-dimension retrieval telemetry (latency, mode, fallback activation, quality score) |
+| Flag                         | Default | Description                                                                                |
+| ---------------------------- | ------- | ------------------------------------------------------------------------------------------ |
+| `SPECKIT_RRF`                | `true`  | Enable RRF search fusion                                                                   |
+| `SPECKIT_BM25`               | `true`  | Enable BM25 lexical search                                                                 |
+| `SPECKIT_SESSION_DEDUP`      | `true`  | Enable session deduplication                                                               |
+| `SPECKIT_LAZY_LOAD`          | `true`  | Defer embedding model init                                                                 |
+| `SPECKIT_TYPE_DECAY`         | `true`  | Enable type-specific half-lives                                                            |
+| `SPECKIT_RELATIONS`          | `true`  | Enable causal memory graph                                                                 |
+| `SPECKIT_CROSS_ENCODER`      | `false` | Enable cross-encoder reranking                                                             |
+| `SPECKIT_INCREMENTAL`        | `true`  | Enable incremental indexing                                                                |
+| `SPECKIT_INDEX_SPEC_DOCS`    | `true`  | Enable spec folder document indexing (5th source)                                          |
+| `SPECKIT_SESSION_BOOST`      | `false` | Enable session-attention boost in `memory_search`                                          |
+| `SPECKIT_PRESSURE_POLICY`    | `false` | Enable token-pressure mode override in `memory_context`                                    |
+| `SPECKIT_EVENT_DECAY`        | `false` | Enable event-based working-memory decay                                                    |
+| `SPECKIT_EXTRACTION`         | `false` | Enable post-tool extraction adapter pipeline                                               |
+| `SPECKIT_CAUSAL_BOOST`       | `false` | Enable causal-neighbor score boost                                                         |
+| `SPECKIT_AUTO_RESUME`        | `false` | Enable session resume prompt-context injection                                             |
+| `SPECKIT_ROLLOUT_PERCENT`    | `0`     | Rollout percentage gate (0,10,50,100) for staged rollout control                           |
+| `SPECKIT_ADAPTIVE_FUSION`    | `false` | Enable intent-aware weighted RRF fusion (replaces standard fixed-weight RRF)               |
+| `SPECKIT_EXTENDED_TELEMETRY` | `true`  | Enable 4-dimension retrieval telemetry (latency, mode, fallback activation, quality score) |
 
 ---
 
 ### Cognitive Memory Thresholds
 
-| Variable | Default | Description |
-|----------|---------|-------------|
-| `HOT_THRESHOLD` | 0.80 | Retrievability threshold for HOT |
-| `WARM_THRESHOLD` | 0.25 | Retrievability threshold for WARM |
-| `COLD_THRESHOLD` | 0.05 | Retrievability threshold for COLD |
-| `DORMANT_THRESHOLD` | 0.02 | Retrievability threshold for DORMANT |
-| `MAX_HOT_MEMORIES` | 5 | Maximum HOT tier memories |
-| `MAX_WARM_MEMORIES` | 10 | Maximum WARM tier memories |
+| Variable            | Default | Description                          |
+| ------------------- | ------- | ------------------------------------ |
+| `HOT_THRESHOLD`     | 0.80    | Retrievability threshold for HOT     |
+| `WARM_THRESHOLD`    | 0.25    | Retrievability threshold for WARM    |
+| `COLD_THRESHOLD`    | 0.05    | Retrievability threshold for COLD    |
+| `DORMANT_THRESHOLD` | 0.02    | Retrievability threshold for DORMANT |
+| `MAX_HOT_MEMORIES`  | 5       | Maximum HOT tier memories            |
+| `MAX_WARM_MEMORIES` | 10      | Maximum WARM tier memories           |
 
 ---
 
 ### Database Schema
 
-| Table | Purpose |
-|-------|---------|
-| `memory_index` | Memory metadata (title, tier, triggers, document_type, spec_level per schema v13) |
-| `vec_memories` | Vector embeddings (sqlite-vec) |
-| `memory_fts` | Full-text search index (FTS5) |
-| `checkpoints` | State snapshots |
-| `memory_history` | Access and modification history |
-| `learning_records` | Session learning preflight/postflight |
-| `working_memory` | Session-scoped attention scores |
-| `memory_conflicts` | PE gating decisions (audit trail) |
-| `causal_edges` | Causal relationships (6 types) |
-| `memory_corrections` | Learning from corrections |
-| `session_state` | Crash recovery state |
+| Table                | Purpose                                                                           |
+| -------------------- | --------------------------------------------------------------------------------- |
+| `memory_index`       | Memory metadata (title, tier, triggers, document_type, spec_level per schema v13) |
+| `vec_memories`       | Vector embeddings (sqlite-vec)                                                    |
+| `memory_fts`         | Full-text search index (FTS5)                                                     |
+| `checkpoints`        | State snapshots                                                                   |
+| `memory_history`     | Access and modification history                                                   |
+| `learning_records`   | Session learning preflight/postflight                                             |
+| `working_memory`     | Session-scoped attention scores                                                   |
+| `memory_conflicts`   | PE gating decisions (audit trail)                                                 |
+| `causal_edges`       | Causal relationships (6 types)                                                    |
+| `memory_corrections` | Learning from corrections                                                         |
+| `session_state`      | Crash recovery state                                                              |
 
 Working-memory migration path (event decay rollout):
 - `working_memory` auto-adds `event_counter` and `mention_count` with `ALTER TABLE ... ADD COLUMN ... DEFAULT 0` when legacy rows are detected.
@@ -1013,26 +1013,26 @@ Working-memory migration path (event decay rollout):
 
 ### 7-Layer MCP Architecture
 
-| Layer | Name | Budget | Tools |
-|-------|------|--------|-------|
-| L1 | Orchestration | 2000 | `memory_context` |
-| L2 | Core | 1500 | `memory_search`, `memory_match_triggers`, `memory_save` |
-| L3 | Discovery | 800 | `memory_list`, `memory_stats`, `memory_health` |
-| L4 | Mutation | 500 | `memory_delete`, `memory_update`, `memory_validate` |
-| L5 | Lifecycle | 600 | `checkpoint_create`, `checkpoint_list`, `checkpoint_restore`, `checkpoint_delete` |
-| L6 | Analysis | 1200 | `task_preflight`, `task_postflight`, `memory_drift_why`, `memory_causal_link`, `memory_causal_stats`, `memory_causal_unlink` |
-| L7 | Maintenance | 1000 | `memory_index_scan`, `memory_get_learning_history` |
+| Layer | Name          | Budget | Tools                                                                                                                        |
+| ----- | ------------- | ------ | ---------------------------------------------------------------------------------------------------------------------------- |
+| L1    | Orchestration | 2000   | `memory_context`                                                                                                             |
+| L2    | Core          | 1500   | `memory_search`, `memory_match_triggers`, `memory_save`                                                                      |
+| L3    | Discovery     | 800    | `memory_list`, `memory_stats`, `memory_health`                                                                               |
+| L4    | Mutation      | 500    | `memory_delete`, `memory_update`, `memory_validate`                                                                          |
+| L5    | Lifecycle     | 600    | `checkpoint_create`, `checkpoint_list`, `checkpoint_restore`, `checkpoint_delete`                                            |
+| L6    | Analysis      | 1200   | `task_preflight`, `task_postflight`, `memory_drift_why`, `memory_causal_link`, `memory_causal_stats`, `memory_causal_unlink` |
+| L7    | Maintenance   | 1000   | `memory_index_scan`, `memory_get_learning_history`                                                                           |
 
 ---
 
 ### Dependencies
 
-| Dependency | Version | Purpose |
-|------------|---------|---------|
-| `@modelcontextprotocol/sdk` | ^1.24.3 | MCP protocol |
-| `@huggingface/transformers` | ^3.8.1 | Local embeddings |
-| `better-sqlite3` | ^12.6.2 | SQLite database |
-| `sqlite-vec` | ^0.1.7-alpha.2 | Vector similarity search |
+| Dependency                  | Version        | Purpose                  |
+| --------------------------- | -------------- | ------------------------ |
+| `@modelcontextprotocol/sdk` | ^1.24.3        | MCP protocol             |
+| `@huggingface/transformers` | ^3.8.1         | Local embeddings         |
+| `better-sqlite3`            | ^12.6.2        | SQLite database          |
+| `sqlite-vec`                | ^0.1.7-alpha.2 | Vector similarity search |
 
 ---
 
@@ -1143,15 +1143,15 @@ checkpoint_restore({ name: "pre-cleanup" })
 
 ### Common Patterns
 
-| Pattern | Tool Call | When to Use |
-|---------|-----------|-------------|
-| Find related context | `memory_search({ query: "..." })` | Before starting work |
-| Token-efficient retrieval | `memory_search({ anchors: ['summary'] })` | Large context, limited budget |
-| Intent-aware context | `memory_context({ input: "...", intent: "fix_bug" })` | Task-specific context |
-| Decision archaeology | `memory_drift_why({ memoryId: "..." })` | Understanding past decisions |
-| Track learning | `task_preflight` -> work -> `task_postflight` | Implementation tasks |
-| Check system health | `memory_health({})` | Debugging issues |
-| Recover from error | `checkpoint_restore({ name: "..." })` | After mistakes |
+| Pattern                   | Tool Call                                             | When to Use                   |
+| ------------------------- | ----------------------------------------------------- | ----------------------------- |
+| Find related context      | `memory_search({ query: "..." })`                     | Before starting work          |
+| Token-efficient retrieval | `memory_search({ anchors: ['summary'] })`             | Large context, limited budget |
+| Intent-aware context      | `memory_context({ input: "...", intent: "fix_bug" })` | Task-specific context         |
+| Decision archaeology      | `memory_drift_why({ memoryId: "..." })`               | Understanding past decisions  |
+| Track learning            | `task_preflight` -> work -> `task_postflight`         | Implementation tasks          |
+| Check system health       | `memory_health({})`                                   | Debugging issues              |
+| Recover from error        | `checkpoint_restore({ name: "..." })`                 | After mistakes                |
 
 ---
 
@@ -1159,13 +1159,13 @@ checkpoint_restore({ name: "pre-cleanup" })
 
 When Phase 2+ feature flags are enabled, memory context is captured and prioritized without manual `/memory:save` calls.
 
-| Automation | Trigger | Behavior |
-|------------|---------|----------|
-| Extraction hook | Tool completion | Reads matching `spec.md`, `grep error`, and `git commit` outputs are summarized and inserted into `working_memory` |
-| Redaction gate | Before insert | Secret and PII patterns are replaced with `[REDACTED]`; provenance records `redaction_applied` |
-| Session boost | `memory_search` | Result scores are adjusted by session attention with a hard cap of `0.20` combined boost |
-| Causal boost | `memory_search` | Related memories from `causal_edges` (up to 2 hops) are boosted/injected in ranked output |
-| Pressure policy | `memory_context` | Retrieval mode shifts (`focused`/`quick`) under high token usage to reduce context overflow risk |
+| Automation      | Trigger          | Behavior                                                                                                           |
+| --------------- | ---------------- | ------------------------------------------------------------------------------------------------------------------ |
+| Extraction hook | Tool completion  | Reads matching `spec.md`, `grep error`, and `git commit` outputs are summarized and inserted into `working_memory` |
+| Redaction gate  | Before insert    | Secret and PII patterns are replaced with `[REDACTED]`; provenance records `redaction_applied`                     |
+| Session boost   | `memory_search`  | Result scores are adjusted by session attention with a hard cap of `0.20` combined boost                           |
+| Causal boost    | `memory_search`  | Related memories from `causal_edges` (up to 2 hops) are boosted/injected in ranked output                          |
+| Pressure policy | `memory_context` | Retrieval mode shifts (`focused`/`quick`) under high token usage to reduce context overflow risk                   |
 
 Recommended runtime flags:
 
@@ -1257,15 +1257,15 @@ memory_index_scan({ force: true })
 
 ### Quick Fixes
 
-| Problem | Quick Fix |
-|---------|-----------|
-| Empty search results | `memory_index_scan({ force: true })` |
-| Slow embeddings | Set `VOYAGE_API_KEY` for faster API embeddings |
-| Missing constitutional | Check files in `constitutional/` directory |
-| Learning not tracked | Ensure `specFolder` and `taskId` match exactly |
-| Duplicate detection | Check `memory_conflicts` table for decisions |
-| Causal graph empty | Use `memory_causal_link` to create relationships |
-| Session not deduplicating | Ensure `session_id` is consistent |
+| Problem                   | Quick Fix                                        |
+| ------------------------- | ------------------------------------------------ |
+| Empty search results      | `memory_index_scan({ force: true })`             |
+| Slow embeddings           | Set `VOYAGE_API_KEY` for faster API embeddings   |
+| Missing constitutional    | Check files in `constitutional/` directory       |
+| Learning not tracked      | Ensure `specFolder` and `taskId` match exactly   |
+| Duplicate detection       | Check `memory_conflicts` table for decisions     |
+| Causal graph empty        | Use `memory_causal_link` to create relationships |
+| Session not deduplicating | Ensure `session_id` is consistent                |
 
 ---
 
@@ -1302,15 +1302,15 @@ npm run test --workspace=mcp_server -- tests/handler-memory-context.vitest.ts te
 
 Every error includes actionable recovery guidance:
 
-| Error Code | Recovery Hint |
-|------------|---------------|
-| `E041` | Run `memory_index_scan` to rebuild vector index |
-| `E001` | Check embedding API key or set `SPECKIT_LOCAL_EMBEDDINGS=true` |
-| `E040` | Query too long, reduce to < 10000 characters |
-| `timeout` | Increase `SPECKIT_SEARCH_TIMEOUT` or simplify query |
-| `corrupted` | Delete checkpoint and recreate |
-| `not_found` | List available checkpoints with `checkpoint_list()` |
-| `duplicate` | Memory exists. Use `memory_update()` for modifications |
+| Error Code  | Recovery Hint                                                  |
+| ----------- | -------------------------------------------------------------- |
+| `E041`      | Run `memory_index_scan` to rebuild vector index                |
+| `E001`      | Check embedding API key or set `SPECKIT_LOCAL_EMBEDDINGS=true` |
+| `E040`      | Query too long, reduce to < 10000 characters                   |
+| `timeout`   | Increase `SPECKIT_SEARCH_TIMEOUT` or simplify query            |
+| `corrupted` | Delete checkpoint and recreate                                 |
+| `not_found` | List available checkpoints with `checkpoint_list()`            |
+| `duplicate` | Memory exists. Use `memory_update()` for modifications         |
 
 ---
 
@@ -1357,39 +1357,39 @@ node dist/tests/causal-edges.test.js
 
 ### Parent Documentation
 
-| Document | Location | Purpose |
-|----------|----------|---------|
-| Skill README | `../README.md` | Complete skill documentation |
-| SKILL.md | `../SKILL.md` | Workflow instructions for AI agents |
-| Install Guide | `INSTALL_GUIDE.md` | Detailed installation |
+| Document         | Location                                      | Purpose                                        |
+| ---------------- | --------------------------------------------- | ---------------------------------------------- |
+| Skill README     | `../README.md`                                | Complete skill documentation                   |
+| SKILL.md         | `../SKILL.md`                                 | Workflow instructions for AI agents            |
+| Install Guide    | `INSTALL_GUIDE.md`                            | Detailed installation                          |
 | Rollback Runbook | `../references/workflows/rollback-runbook.md` | Feature-flag rollback and smoke-test procedure |
 
 ### Key Module Files (TypeScript Sources)
 
-| Module | Purpose |
-|--------|---------|
-| `lib/cognitive/fsrs-scheduler.ts` | FSRS power-law decay algorithm |
-| `lib/cognitive/tier-classifier.ts` | 5-state memory classification |
-| `lib/cognitive/prediction-error-gate.ts` | Duplicate detection |
-| `lib/scoring/composite-scoring.ts` | Multi-factor ranking |
-| `lib/search/hybrid-search.ts` | FTS5 + vector fusion with RRF |
-| `lib/search/bm25-index.ts` | BM25 lexical search |
-| `lib/search/intent-classifier.ts` | 7 intent types |
-| `lib/storage/causal-edges.ts` | Causal graph storage |
-| `lib/session/session-manager.ts` | Session deduplication |
-| `lib/errors/recovery-hints.ts` | 49 error codes |
-| `lib/providers/retry-manager.ts` | Embedding provider retry logic |
-| `handlers/causal-graph.ts` | Causal link/unlink/stats/why |
+| Module                                   | Purpose                        |
+| ---------------------------------------- | ------------------------------ |
+| `lib/cognitive/fsrs-scheduler.ts`        | FSRS power-law decay algorithm |
+| `lib/cognitive/tier-classifier.ts`       | 5-state memory classification  |
+| `lib/cognitive/prediction-error-gate.ts` | Duplicate detection            |
+| `lib/scoring/composite-scoring.ts`       | Multi-factor ranking           |
+| `lib/search/hybrid-search.ts`            | FTS5 + vector fusion with RRF  |
+| `lib/search/bm25-index.ts`               | BM25 lexical search            |
+| `lib/search/intent-classifier.ts`        | 7 intent types                 |
+| `lib/storage/causal-edges.ts`            | Causal graph storage           |
+| `lib/session/session-manager.ts`         | Session deduplication          |
+| `lib/errors/recovery-hints.ts`           | 49 error codes                 |
+| `lib/providers/retry-manager.ts`         | Embedding provider retry logic |
+| `handlers/causal-graph.ts`               | Causal link/unlink/stats/why   |
 
 ### External Resources
 
-| Resource | URL |
-|----------|-----|
-| MCP Protocol Spec | https://modelcontextprotocol.io/ |
-| FSRS Algorithm | https://github.com/open-spaced-repetition/fsrs4anki/wiki |
-| sqlite-vec | https://github.com/asg017/sqlite-vec |
-| Voyage AI | https://www.voyageai.com/ |
-| FTS5 Docs | https://www.sqlite.org/fts5.html |
-| RRF Paper | https://plg.uwaterloo.ca/~gvcormac/cormacksigir09-rrf.pdf |
+| Resource          | URL                                                       |
+| ----------------- | --------------------------------------------------------- |
+| MCP Protocol Spec | https://modelcontextprotocol.io/                          |
+| FSRS Algorithm    | https://github.com/open-spaced-repetition/fsrs4anki/wiki  |
+| sqlite-vec        | https://github.com/asg017/sqlite-vec                      |
+| Voyage AI         | https://www.voyageai.com/                                 |
+| FTS5 Docs         | https://www.sqlite.org/fts5.html                          |
+| RRF Paper         | https://plg.uwaterloo.ca/~gvcormac/cormacksigir09-rrf.pdf |
 
 <!-- /ANCHOR:related -->
