@@ -285,4 +285,57 @@ describe('C136-10 Adaptive Fusion', () => {
       }
     });
   });
+
+  // ---- T019: graphWeight and graphCausalBias field validation ----
+
+  describe('T019: graphWeight and graphCausalBias profiles', () => {
+    const PROFILE_NAMES = ['understand', 'find_spec', 'fix_bug', 'debug', 'add_feature', 'refactor'] as const;
+
+    it('T019-1: all 6 profiles have a numeric graphWeight field', () => {
+      for (const name of PROFILE_NAMES) {
+        const profile = INTENT_WEIGHT_PROFILES[name];
+        expect(profile, `Profile "${name}" must exist`).toBeDefined();
+        expect(typeof profile.graphWeight, `Profile "${name}" graphWeight must be a number`).toBe('number');
+      }
+    });
+
+    it('T019-2: all 6 profiles have a numeric graphCausalBias field', () => {
+      for (const name of PROFILE_NAMES) {
+        const profile = INTENT_WEIGHT_PROFILES[name];
+        expect(profile, `Profile "${name}" must exist`).toBeDefined();
+        expect(typeof profile.graphCausalBias, `Profile "${name}" graphCausalBias must be a number`).toBe('number');
+      }
+    });
+
+    it('T019-3: all graphWeight and graphCausalBias values are in range [0, 1]', () => {
+      const allProfiles = { ...INTENT_WEIGHT_PROFILES, default: DEFAULT_WEIGHTS };
+      for (const [name, profile] of Object.entries(allProfiles)) {
+        const gw = profile.graphWeight!;
+        const gcb = profile.graphCausalBias!;
+        expect(gw, `Profile "${name}" graphWeight (${gw}) must be >= 0`).toBeGreaterThanOrEqual(0);
+        expect(gw, `Profile "${name}" graphWeight (${gw}) must be <= 1`).toBeLessThanOrEqual(1.0);
+        expect(gcb, `Profile "${name}" graphCausalBias (${gcb}) must be >= 0`).toBeGreaterThanOrEqual(0);
+        expect(gcb, `Profile "${name}" graphCausalBias (${gcb}) must be <= 1`).toBeLessThanOrEqual(1.0);
+      }
+    });
+
+    it('T019-4: find_spec has high graphWeight (>= 0.25) for graph-heavy spec lookups', () => {
+      const profile = INTENT_WEIGHT_PROFILES['find_spec'];
+      expect(profile.graphWeight, `find_spec.graphWeight (${profile.graphWeight}) must be >= 0.25`).toBeGreaterThanOrEqual(0.25);
+    });
+
+    it('T019-5: debug has graphCausalBias >= 0.15 for causal-heavy debugging', () => {
+      const profile = INTENT_WEIGHT_PROFILES['debug'];
+      expect(profile.graphCausalBias, `debug.graphCausalBias (${profile.graphCausalBias}) must be >= 0.15`).toBeGreaterThanOrEqual(0.15);
+    });
+
+    it('T019-6: DEFAULT_WEIGHTS includes both graphWeight and graphCausalBias as numbers', () => {
+      expect(typeof DEFAULT_WEIGHTS.graphWeight).toBe('number');
+      expect(typeof DEFAULT_WEIGHTS.graphCausalBias).toBe('number');
+      expect(DEFAULT_WEIGHTS.graphWeight!).toBeGreaterThanOrEqual(0);
+      expect(DEFAULT_WEIGHTS.graphWeight!).toBeLessThanOrEqual(1.0);
+      expect(DEFAULT_WEIGHTS.graphCausalBias!).toBeGreaterThanOrEqual(0);
+      expect(DEFAULT_WEIGHTS.graphCausalBias!).toBeLessThanOrEqual(1.0);
+    });
+  });
 });

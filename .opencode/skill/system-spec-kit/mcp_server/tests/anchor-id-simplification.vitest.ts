@@ -34,6 +34,7 @@ const EXPECTED_ANCHORS = [
   'recovery-hints',
   'postflight',
   'metadata',
+  'graph-context',
 ];
 
 /**

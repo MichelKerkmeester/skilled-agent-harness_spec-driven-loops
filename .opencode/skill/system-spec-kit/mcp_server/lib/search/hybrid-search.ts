@@ -8,6 +8,7 @@ import { getIndex, sanitizeFTS5Query } from './bm25-index';
 import { fuseResultsMulti } from './rrf-fusion';
 import { hybridAdaptiveFuse } from './adaptive-fusion';
 import { spreadActivation } from '../cognitive/co-activation';
+import type { SpreadResult } from '../cognitive/co-activation';
 import { applyMMR } from './mmr-reranker';
 import type { MMRCandidate } from './mmr-reranker';
 
@@ -20,7 +21,7 @@ type VectorSearchFn = (
   options: Record<string, unknown>
 ) => Array<Record<string, unknown>>;
 
-type GraphSearchFn = (
+export type GraphSearchFn = (
   query: string,
   options: Record<string, unknown>
 ) => Array<Record<string, unknown>>;
@@ -61,6 +62,44 @@ interface HybridSearchResult {
 let db: Database.Database | null = null;
 let vectorSearchFn: VectorSearchFn | null = null;
 let graphSearchFn: GraphSearchFn | null = null;
+
+/* ---------------------------------------------------------------
+   2b. GRAPH CHANNEL METRICS (T008)
+   --------------------------------------------------------------- */
+
+interface GraphChannelMetrics {
+  totalQueries: number;
+  graphHits: number;
+  graphOnlyResults: number;
+  multiSourceResults: number;
+}
+
+const graphMetrics: GraphChannelMetrics = {
+  totalQueries: 0,
+  graphHits: 0,
+  graphOnlyResults: 0,
+  multiSourceResults: 0,
+};
+
+/**
+ * Return current graph channel metrics for health check reporting.
+ * graphHitRate is computed as graphHits / totalQueries.
+ */
+function getGraphMetrics(): GraphChannelMetrics & { graphHitRate: number } {
+  return {
+    ...graphMetrics,
+    graphHitRate: graphMetrics.totalQueries > 0
+      ? graphMetrics.graphHits / graphMetrics.totalQueries
+      : 0,
+  };
+}
+
+function resetGraphMetrics(): void {
+  graphMetrics.totalQueries = 0;
+  graphMetrics.graphHits = 0;
+  graphMetrics.graphOnlyResults = 0;
+  graphMetrics.multiSourceResults = 0;
+}
 
 /* ---------------------------------------------------------------
    3. INITIALIZATION
@@ -375,7 +414,42 @@ async function hybridSearchEnhanced(
       lists.push({ source: 'bm25', results: bm25Results, weight: 0.6 });
     }
 
+    // T008: Graph channel metrics collection
+    const useGraph = (options.useGraph !== false);
+    if (useGraph && graphSearchFn) {
+      graphMetrics.totalQueries++;
+      try {
+        const graphResults = graphSearchFn(query, {
+          limit: options.limit || 20,
+          specFolder: options.specFolder,
+          intent: (options as HybridSearchOptions & { intent?: string }).intent,
+        });
+        if (graphResults.length > 0) {
+          graphMetrics.graphHits++;
+          lists.push({ source: 'graph', results: graphResults.map(r => ({
+            ...r,
+            id: r.id as number | string,
+          })), weight: 0.5 });
+        }
+      } catch {
+        // Non-critical — graph channel failure does not block pipeline
+      }
+    }
+
     if (lists.length > 0) {
+      // T008: Track multi-source and graph-only results
+      const sourceMap = new Map<number | string, Set<string>>();
+      for (const list of lists) {
+        for (const r of list.results) {
+          if (!sourceMap.has(r.id)) sourceMap.set(r.id, new Set());
+          sourceMap.get(r.id)!.add(list.source);
+        }
+      }
+      for (const [, sources] of sourceMap) {
+        if (sources.size > 1) graphMetrics.multiSourceResults++;
+        if (sources.size === 1 && sources.has('graph')) graphMetrics.graphOnlyResults++;
+      }
+
       // C138: Use adaptive fusion to get intent-aware weights replacing hardcoded [1.0, 0.8, 0.6]
       const intent = (options as HybridSearchOptions & { intent?: string }).intent || 'understand';
       const adaptiveResult = hybridAdaptiveFuse(semanticResults, keywordResults, intent);
@@ -409,7 +483,18 @@ async function hybridSearchEnhanced(
         .filter((id): id is number => typeof id === 'number');
       if (topIds.length > 0) {
         try {
-          spreadActivation(topIds);
+          const spreadResults: SpreadResult[] = spreadActivation(topIds);
+          // Boost scores of results that appear in co-activation graph
+          if (spreadResults.length > 0) {
+            const spreadMap = new Map(spreadResults.map(sr => [sr.id, sr.score]));
+            for (const result of reranked) {
+              const boost = spreadMap.get(result.id as number);
+              if (boost !== undefined) {
+                (result as Record<string, unknown>).score =
+                  ((result.score as number) ?? 0) + boost * 0.1;
+              }
+            }
+          }
         } catch {
           // Non-critical enrichment — ignore failures
         }
@@ -467,6 +552,8 @@ export {
   hybridSearch,
   hybridSearchEnhanced,
   searchWithFallback,
+  getGraphMetrics,
+  resetGraphMetrics,
 };
 
 export type {

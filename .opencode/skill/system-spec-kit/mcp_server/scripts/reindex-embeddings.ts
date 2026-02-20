@@ -7,13 +7,16 @@
    1. MODULE SETUP
 --------------------------------------------------------------- */
 
+import path from 'path';
 import * as vectorIndex from '../lib/search/vector-index';
 import * as embeddings from '../lib/providers/embeddings';
 import * as checkpointsLib from '../lib/storage/checkpoints';
 import * as accessTracker from '../lib/storage/access-tracker';
 import * as hybridSearch from '../lib/search/hybrid-search';
-import { init as init_db_state, setEmbeddingModelReady } from '../core';
+import { init as init_db_state, setEmbeddingModelReady, DEFAULT_BASE_PATH } from '../core';
 import { handleMemoryIndexScan, setEmbeddingModelReady as set_handler_embedding_ready } from '../handlers';
+import { createUnifiedGraphSearchFn } from '../lib/search/graph-search-fn';
+import { isGraphUnifiedEnabled } from '../lib/search/graph-flags';
 
 /* ---------------------------------------------------------------
    2. TYPES
@@ -77,7 +80,12 @@ async function reindex(): Promise<void> {
     process.exit(1);
   }
   checkpointsLib.init(database);  accessTracker.init(database);
-  hybridSearch.init(database, vectorIndex.vectorSearch);
+  const skillRoot = path.resolve(DEFAULT_BASE_PATH, '..', 'skill');
+  hybridSearch.init(
+    database,
+    vectorIndex.vectorSearch,
+    isGraphUnifiedEnabled() ? createUnifiedGraphSearchFn(database, skillRoot) : undefined
+  );
 
   console.log('[5/5] Force reindexing all memory files...');
   console.log('');

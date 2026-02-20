@@ -24,6 +24,7 @@ This plan coordinates two workstreams that together upgrade the system-spec-kit 
 See sub-plans for phase details:
 - `001-system-speckit-hybrid-rag-fusion/plan.md` — Workstream A phases 0–5
 - `002-skill-graph-integration/plan.md` — Workstream B phases 1–5
+- `003-unified-graph-intelligence/plan.md` — Workstream C: Integration phases 0+, 1+, 2+
 <!-- /ANCHOR:summary -->
 
 ---
@@ -40,6 +41,7 @@ See sub-plans for phase details:
 
 ### Definition of Done
 - [ ] All Workstream A phases (0–5) implemented and passing
+- [ ] Workstream C (003) Phase 0+ complete — graphSearchFn wired and returning results
 - [ ] Feature flags togglable without code changes
 - [ ] vitest suite green with ≥80% coverage on modified modules
 - [ ] No regression in existing memory_search / memory_context behaviour
@@ -63,6 +65,7 @@ Pipeline + Feature-Flag Dark Launch — a staged retrieval pipeline where each e
 - **adaptive-fusion.ts**: Dormant `useGraph:true` path and adaptive-fusion weight tuning. Phase 0 activates existing code; Phase 1 adds TRM confidence gating.
 - **co-activation.ts**: Dormant co-activation scoring. Phase 0 enables; Phase 4 adds PageRank authority and entity linking.
 - **SGQS metadata (Workstream B output)**: Structured skill-graph edge data in SQLite, consumed by the graph channel in hybrid-search.ts.
+- **Unified Graph Adapter (Workstream C output)**: Composite `graphSearchFn` wiring both Causal Edge and SGQS Skill Graph systems into the graph channel slot. See `003-unified-graph-intelligence/plan.md`.
 - **Feature flag layer**: `process.env.SPECKIT_MMR`, `SPECKIT_TRM`, `SPECKIT_MULTI_QUERY` guard each enhancement independently.
 
 ### Data Flow
@@ -72,7 +75,7 @@ Query Input
     │
     ├─► [FTS5 BM25 channel]  ←── SQLite CTEs with edge-weight multipliers (Phase 2)
     ├─► [Vector channel]      ←── embeddings (unchanged)
-    └─► [Graph channel]       ←── SGQS-enriched edge data (Phase 0 + WS-B output)
+    └─► [Graph channel]       ←── Unified Graph Adapter (WS-C: causal edges + SGQS skill graph)
            │
            ▼
     RRF Fusion (rrf-fusion.ts)

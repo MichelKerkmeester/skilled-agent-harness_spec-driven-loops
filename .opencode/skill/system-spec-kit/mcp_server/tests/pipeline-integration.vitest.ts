@@ -1,0 +1,368 @@
+// @ts-nocheck
+// ---------------------------------------------------------------
+// TEST: End-to-End Pipeline Integration
+// Validates the full search pipeline works with the graph channel
+// by testing the PUBLIC API surface without requiring a real DB.
+// ---------------------------------------------------------------
+
+import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
+
+/* ─────────────────────────────────────────────────────────────
+   MOCKS — declared before any module imports so vi.mock hoisting
+   picks them up correctly.
+──────────────────────────────────────────────────────────────── */
+
+// Mock the BM25 index so no filesystem reads are attempted.
+vi.mock('../lib/search/bm25-index', () => ({
+  getIndex: vi.fn(() => ({
+    search: vi.fn(() => []),
+    getStats: vi.fn(() => ({ documentCount: 0 })),
+  })),
+  sanitizeFTS5Query: vi.fn((q: string) => q),
+}));
+
+// Mock the RRF fusion so we can control its output.
+vi.mock('../lib/search/rrf-fusion', () => ({
+  fuseResultsMulti: vi.fn((lists) => {
+    // Flatten all results from all lists, deduplicate by id, return sorted.
+    const seen = new Map();
+    for (const list of lists) {
+      for (const r of list.results) {
+        if (!seen.has(r.id)) {
+          seen.set(r.id, { ...r, score: (r.score as number) ?? 0.5, source: list.source });
+        }
+      }
+    }
+    return Array.from(seen.values()).sort((a, b) => b.score - a.score);
+  }),
+}));
+
+// Mock adaptive fusion to return fixed weights.
+vi.mock('../lib/search/adaptive-fusion', () => ({
+  hybridAdaptiveFuse: vi.fn(() => ({
+    results: [],
+    weights: { semanticWeight: 1.0, keywordWeight: 0.8 },
+    intent: 'understand',
+  })),
+}));
+
+// Mock co-activation spreading so it never touches the DB.
+vi.mock('../lib/cognitive/co-activation', () => ({
+  spreadActivation: vi.fn(() => []),
+}));
+
+// Mock skill-graph-cache so createUnifiedGraphSearchFn background warm-load
+// does not hit the filesystem.
+vi.mock('../lib/search/skill-graph-cache', () => ({
+  skillGraphCache: {
+    get: vi.fn().mockResolvedValue({
+      nodes: new Map([
+        ['test-skill/node-a', {
+          id: 'test-skill/node-a',
+          labels: [':Node'],
+          properties: { name: 'Node A' },
+          skill: 'test-skill',
+          path: 'test-skill/node-a',
+        }],
+      ]),
+      edges: [],
+      outbound: new Map(),
+      inbound: new Map(),
+    }),
+  },
+  SkillGraphCacheManager: class {
+    get = vi.fn().mockResolvedValue({ nodes: new Map(), edges: [], outbound: new Map(), inbound: new Map() });
+    invalidate = vi.fn();
+    isWarm = vi.fn(() => false);
+  },
+}));
+
+/* ─────────────────────────────────────────────────────────────
+   MINIMAL MOCK DATABASE
+──────────────────────────────────────────────────────────────── */
+
+const mockDb = {
+  prepare: () => ({ all: () => [], get: () => undefined }),
+} as any;
+
+/* ─────────────────────────────────────────────────────────────
+   FAKE GRAPH RESULTS (3 results as specified in T021)
+──────────────────────────────────────────────────────────────── */
+
+const FAKE_GRAPH_RESULTS = [
+  { id: 'graph-001', score: 0.9, source: 'graph', title: 'Graph Result Alpha' },
+  { id: 'graph-002', score: 0.7, source: 'graph', title: 'Graph Result Beta' },
+  { id: 'graph-003', score: 0.5, source: 'graph', title: 'Graph Result Gamma' },
+];
+
+const mockGraphFn = vi.fn(() => FAKE_GRAPH_RESULTS);
+
+/* ─────────────────────────────────────────────────────────────
+   ENV HELPERS
+──────────────────────────────────────────────────────────────── */
+
+function saveEnv() {
+  return {
+    SPECKIT_GRAPH_UNIFIED: process.env.SPECKIT_GRAPH_UNIFIED,
+    SPECKIT_GRAPH_MMR: process.env.SPECKIT_GRAPH_MMR,
+    SPECKIT_GRAPH_AUTHORITY: process.env.SPECKIT_GRAPH_AUTHORITY,
+  };
+}
+
+function restoreEnv(saved: ReturnType<typeof saveEnv>) {
+  for (const [key, val] of Object.entries(saved)) {
+    if (val === undefined) {
+      delete process.env[key];
+    } else {
+      process.env[key] = val;
+    }
+  }
+}
+
+// ================================================================
+// SUITE 1: MODULE WIRING VERIFICATION
+// All exported symbols must be accessible from their source modules.
+// ================================================================
+
+describe('Suite 1 — Module wiring: all exports are accessible', () => {
+
+  it('hybrid-search exports: init, hybridSearch, hybridSearchEnhanced, searchWithFallback, getGraphMetrics, resetGraphMetrics', async () => {
+    const mod = await import('../lib/search/hybrid-search');
+    expect(typeof mod.init).toBe('function');
+    expect(typeof mod.hybridSearch).toBe('function');
+    expect(typeof mod.hybridSearchEnhanced).toBe('function');
+    expect(typeof mod.searchWithFallback).toBe('function');
+    expect(typeof mod.getGraphMetrics).toBe('function');
+    expect(typeof mod.resetGraphMetrics).toBe('function');
+  });
+
+  it('graph-search-fn exports: createUnifiedGraphSearchFn, getSubgraphWeights, computeAuthorityScores', async () => {
+    const mod = await import('../lib/search/graph-search-fn');
+    expect(typeof mod.createUnifiedGraphSearchFn).toBe('function');
+    expect(typeof mod.getSubgraphWeights).toBe('function');
+    expect(typeof mod.computeAuthorityScores).toBe('function');
+  });
+
+  it('graph-flags exports: isGraphUnifiedEnabled, isGraphMMREnabled, isGraphAuthorityEnabled', async () => {
+    const mod = await import('../lib/search/graph-flags');
+    expect(typeof mod.isGraphUnifiedEnabled).toBe('function');
+    expect(typeof mod.isGraphMMREnabled).toBe('function');
+    expect(typeof mod.isGraphAuthorityEnabled).toBe('function');
+  });
+
+  it('skill-graph-cache exports: SkillGraphCacheManager, skillGraphCache', async () => {
+    const mod = await import('../lib/search/skill-graph-cache');
+    expect(typeof mod.SkillGraphCacheManager).toBe('function');
+    expect(mod.skillGraphCache).toBeDefined();
+    expect(typeof mod.skillGraphCache.get).toBe('function');
+  });
+
+  it('query-expander exports: expandQuery, buildSemanticBridgeMap, expandQueryWithBridges', async () => {
+    const mod = await import('../lib/search/query-expander');
+    expect(typeof mod.expandQuery).toBe('function');
+    expect(typeof mod.buildSemanticBridgeMap).toBe('function');
+    expect(typeof mod.expandQueryWithBridges).toBe('function');
+  });
+
+  it('evidence-gap-detector exports: detectEvidenceGap, predictGraphCoverage', async () => {
+    const mod = await import('../lib/search/evidence-gap-detector');
+    expect(typeof mod.detectEvidenceGap).toBe('function');
+    expect(typeof mod.predictGraphCoverage).toBe('function');
+  });
+
+  it('context-budget exports: optimizeContextBudget, estimateTokens', async () => {
+    const mod = await import('../lib/search/context-budget');
+    expect(typeof mod.optimizeContextBudget).toBe('function');
+    expect(typeof mod.estimateTokens).toBe('function');
+  });
+
+  it('fsrs exports: computeStructuralFreshness, computeGraphCentrality', async () => {
+    const mod = await import('../lib/search/fsrs');
+    expect(typeof mod.computeStructuralFreshness).toBe('function');
+    expect(typeof mod.computeGraphCentrality).toBe('function');
+  });
+
+  it('mmr-reranker exports: applyMMR, computeCosine', async () => {
+    const mod = await import('../lib/search/mmr-reranker');
+    expect(typeof mod.applyMMR).toBe('function');
+    expect(typeof mod.computeCosine).toBe('function');
+  });
+});
+
+// ================================================================
+// SUITE 2: PIPELINE CONTRACT TESTS
+// Wire mock graph fn via init(), call hybridSearch(), verify graph
+// channel inclusion/exclusion and metric tracking.
+// ================================================================
+
+describe('Suite 2 — Pipeline contract tests', () => {
+  let init: typeof import('../lib/search/hybrid-search').init;
+  let hybridSearch: typeof import('../lib/search/hybrid-search').hybridSearch;
+  let hybridSearchEnhanced: typeof import('../lib/search/hybrid-search').hybridSearchEnhanced;
+  let getGraphMetrics: typeof import('../lib/search/hybrid-search').getGraphMetrics;
+  let resetGraphMetrics: typeof import('../lib/search/hybrid-search').resetGraphMetrics;
+
+  beforeEach(async () => {
+    vi.clearAllMocks();
+    const mod = await import('../lib/search/hybrid-search');
+    init = mod.init;
+    hybridSearch = mod.hybridSearch;
+    hybridSearchEnhanced = mod.hybridSearchEnhanced;
+    getGraphMetrics = mod.getGraphMetrics;
+    resetGraphMetrics = mod.resetGraphMetrics;
+
+    // Wire mock graph function into the module.
+    init(mockDb, null, mockGraphFn);
+  });
+
+  it('hybridSearch with useGraph:true calls the graphSearchFn and returns graph results', async () => {
+    const results = await hybridSearch('test query', null, { useGraph: true });
+
+    expect(mockGraphFn).toHaveBeenCalledTimes(1);
+    const graphResults = results.filter(r => r.source === 'graph');
+    expect(graphResults.length).toBeGreaterThan(0);
+  });
+
+  it('hybridSearch with useGraph:false does NOT call the graphSearchFn', async () => {
+    await hybridSearch('test query', null, { useGraph: false });
+
+    expect(mockGraphFn).not.toHaveBeenCalled();
+  });
+
+  it('hybridSearch with useGraph:false returns NO graph-sourced results', async () => {
+    const results = await hybridSearch('test query', null, { useGraph: false });
+
+    const graphResults = results.filter(r => r.source === 'graph');
+    expect(graphResults.length).toBe(0);
+  });
+
+  it('hybridSearchEnhanced runs without throwing', async () => {
+    await expect(
+      hybridSearchEnhanced('test query', null, {})
+    ).resolves.toBeDefined();
+  });
+
+  it('getGraphMetrics().totalQueries increases after hybridSearchEnhanced calls', async () => {
+    resetGraphMetrics();
+    const before = getGraphMetrics().totalQueries;
+
+    // hybridSearchEnhanced tracks metrics (it checks useGraph flag internally).
+    await hybridSearchEnhanced('test query', null, { useGraph: true });
+
+    const after = getGraphMetrics().totalQueries;
+    expect(after).toBeGreaterThan(before);
+  });
+
+  it('resetGraphMetrics zeroes all counters', async () => {
+    // Run one enhanced search to accumulate a non-zero count.
+    await hybridSearchEnhanced('test query', null, { useGraph: true });
+
+    resetGraphMetrics();
+
+    const metrics = getGraphMetrics();
+    expect(metrics.totalQueries).toBe(0);
+    expect(metrics.graphHits).toBe(0);
+    expect(metrics.graphOnlyResults).toBe(0);
+    expect(metrics.multiSourceResults).toBe(0);
+  });
+});
+
+// ================================================================
+// SUITE 3: FEATURE FLAG CONTRACT
+// All 3 flags default to false; enabling SPECKIT_GRAPH_UNIFIED
+// flips isGraphUnifiedEnabled() to true.
+// ================================================================
+
+describe('Suite 3 — Feature flag contract', () => {
+  let savedEnv: ReturnType<typeof saveEnv>;
+
+  beforeEach(() => {
+    savedEnv = saveEnv();
+    // Ensure all flags are unset at the start of each test.
+    delete process.env.SPECKIT_GRAPH_UNIFIED;
+    delete process.env.SPECKIT_GRAPH_MMR;
+    delete process.env.SPECKIT_GRAPH_AUTHORITY;
+  });
+
+  afterEach(() => {
+    restoreEnv(savedEnv);
+  });
+
+  it('isGraphUnifiedEnabled defaults to false when SPECKIT_GRAPH_UNIFIED is unset', async () => {
+    const { isGraphUnifiedEnabled } = await import('../lib/search/graph-flags');
+    expect(isGraphUnifiedEnabled()).toBe(false);
+  });
+
+  it('isGraphMMREnabled defaults to false when SPECKIT_GRAPH_MMR is unset', async () => {
+    const { isGraphMMREnabled } = await import('../lib/search/graph-flags');
+    expect(isGraphMMREnabled()).toBe(false);
+  });
+
+  it('isGraphAuthorityEnabled defaults to false when SPECKIT_GRAPH_AUTHORITY is unset', async () => {
+    const { isGraphAuthorityEnabled } = await import('../lib/search/graph-flags');
+    expect(isGraphAuthorityEnabled()).toBe(false);
+  });
+
+  it('setting SPECKIT_GRAPH_UNIFIED=true enables the graph channel flag', async () => {
+    process.env.SPECKIT_GRAPH_UNIFIED = 'true';
+    const { isGraphUnifiedEnabled } = await import('../lib/search/graph-flags');
+    expect(isGraphUnifiedEnabled()).toBe(true);
+  });
+});
+
+// ================================================================
+// SUITE 4: RESULT SHAPE CONTRACT
+// All hybridSearch results must have id, score, source fields.
+// Graph-sourced results must carry source='graph'.
+// Scores must be non-negative numbers.
+// ================================================================
+
+describe('Suite 4 — Result shape contract', () => {
+  let init: typeof import('../lib/search/hybrid-search').init;
+  let hybridSearch: typeof import('../lib/search/hybrid-search').hybridSearch;
+
+  beforeEach(async () => {
+    vi.clearAllMocks();
+    const mod = await import('../lib/search/hybrid-search');
+    init = mod.init;
+    hybridSearch = mod.hybridSearch;
+    init(mockDb, null, mockGraphFn);
+  });
+
+  it('all results have id, score, and source fields', async () => {
+    const results = await hybridSearch('test query', null, { useGraph: true });
+
+    for (const r of results) {
+      expect(r).toHaveProperty('id');
+      expect(r).toHaveProperty('score');
+      expect(r).toHaveProperty('source');
+    }
+  });
+
+  it('graph results have source === "graph"', async () => {
+    const results = await hybridSearch('test query', null, { useGraph: true });
+
+    const graphResults = results.filter(r => r.source === 'graph');
+    // We injected 3 fake graph results, so we expect to find at least some of them.
+    expect(graphResults.length).toBeGreaterThan(0);
+    for (const r of graphResults) {
+      expect(r.source).toBe('graph');
+    }
+  });
+
+  it('all score values are non-negative numbers', async () => {
+    const results = await hybridSearch('test query', null, { useGraph: true });
+
+    for (const r of results) {
+      expect(typeof r.score).toBe('number');
+      expect(r.score).toBeGreaterThanOrEqual(0);
+    }
+  });
+
+  it('hybridSearch respects the limit option', async () => {
+    const limit = 2;
+    const results = await hybridSearch('test query', null, { useGraph: true, limit });
+
+    expect(results.length).toBeLessThanOrEqual(limit);
+  });
+});

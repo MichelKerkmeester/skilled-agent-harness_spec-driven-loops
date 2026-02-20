@@ -31,8 +31,10 @@ This specification governs the transformation of the system-spec-kit from a basi
 | **Parent Spec** | `.opencode/specs/003-system-spec-kit/` |
 | **Workstream A Sub-Spec** | `001-system-speckit-hybrid-rag-fusion/spec.md` |
 | **Workstream B Sub-Spec** | `002-skill-graph-integration/spec.md` |
+| **Workstream C Sub-Spec** | `003-unified-graph-intelligence/spec.md` |
 | **Workstream A Status** | Research + Planning COMPLETE — Implementation NOT started |
 | **Workstream B Status** | ALL tasks COMPLETE |
+| **Workstream C Status** | Spec + Planning COMPLETE — Implementation NOT started |
 | **Complexity Score** | 92/100 |
 <!-- /ANCHOR:metadata -->
 
@@ -76,6 +78,9 @@ Deliver a unified intelligent context engine where hybrid retrieval with confide
 - SGQS graph traversal results feeding into Workstream A's Graph Intelligence retrieval channel
 - Skill Graph metadata enriching scatter-gather graph traversal during hybrid search
 - Shared MCP server surface exposing unified `memory_context()` entry point
+- Unified Graph Adapter connecting both Causal Edge and SGQS Skill Graph systems into a single `graphSearchFn`
+- 7 Intelligence Amplification Patterns leveraging graph topology for diversity, authority, and routing
+- See `003-unified-graph-intelligence/spec.md` for complete integration architecture
 
 ### Out of Scope
 
@@ -347,6 +352,9 @@ Deliver a unified intelligent context engine where hybrid retrieval with confide
 <!-- ANCHOR:changelog -->
 ## 15. CHANGE LOG
 
+### v1.1 (2026-02-20)
+**Added Workstream C (003-unified-graph-intelligence) covering the merge of Skill Graph topology with RAG Fusion pipeline through a Unified Graph Adapter. Spec, plan, tasks, checklist, and decision-record created.**
+
 ### v1.0 (2026-02-20)
 **Initial unified specification**
 - Established Level 3+ parent spec covering Workstream A (Hybrid RAG Fusion) and Workstream B (Skill Graph Integration)
@@ -371,6 +379,7 @@ Deliver a unified intelligent context engine where hybrid retrieval with confide
 
 - **Workstream A Sub-Spec**: `001-system-speckit-hybrid-rag-fusion/spec.md`
 - **Workstream B Sub-Spec**: `002-skill-graph-integration/spec.md`
+- **Workstream C Sub-Spec**: `003-unified-graph-intelligence/spec.md`
 - **Implementation Plan**: See `plan.md`
 - **Task Breakdown**: See `tasks.md`
 - **Verification Checklist**: See `checklist.md`

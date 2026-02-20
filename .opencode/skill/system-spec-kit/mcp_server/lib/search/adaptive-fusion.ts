@@ -19,6 +19,10 @@ export interface FusionWeights {
   keywordWeight: number;
   /** Weight for recency-based scoring (0-1) */
   recencyWeight: number;
+  /** Weight for graph channel results (0-1). Only used when graph channel active. */
+  graphWeight?: number;
+  /** Bias toward causal edges vs skill graph (0-1, where 1.0 = full causal bias). */
+  graphCausalBias?: number;
 }
 
 export interface DegradedModeContract {
@@ -51,18 +55,20 @@ export interface DarkRunDiff {
    --------------------------------------------------------------- */
 
 const INTENT_WEIGHT_PROFILES: Record<string, FusionWeights> = {
-  understand:   { semanticWeight: 0.7, keywordWeight: 0.2, recencyWeight: 0.1 },
-  find_spec:    { semanticWeight: 0.7, keywordWeight: 0.2, recencyWeight: 0.1 },
-  fix_bug:      { semanticWeight: 0.4, keywordWeight: 0.4, recencyWeight: 0.2 },
-  debug:        { semanticWeight: 0.4, keywordWeight: 0.4, recencyWeight: 0.2 },
-  add_feature:  { semanticWeight: 0.5, keywordWeight: 0.3, recencyWeight: 0.2 },
-  refactor:     { semanticWeight: 0.6, keywordWeight: 0.3, recencyWeight: 0.1 },
+  understand:   { semanticWeight: 0.7, keywordWeight: 0.2, recencyWeight: 0.1, graphWeight: 0.15, graphCausalBias: 0.10 },
+  find_spec:    { semanticWeight: 0.7, keywordWeight: 0.2, recencyWeight: 0.1, graphWeight: 0.30, graphCausalBias: 0.10 },
+  fix_bug:      { semanticWeight: 0.4, keywordWeight: 0.4, recencyWeight: 0.2, graphWeight: 0.10, graphCausalBias: 0.15 },
+  debug:        { semanticWeight: 0.4, keywordWeight: 0.4, recencyWeight: 0.2, graphWeight: 0.10, graphCausalBias: 0.20 },
+  add_feature:  { semanticWeight: 0.5, keywordWeight: 0.3, recencyWeight: 0.2, graphWeight: 0.20, graphCausalBias: 0.15 },
+  refactor:     { semanticWeight: 0.6, keywordWeight: 0.3, recencyWeight: 0.1, graphWeight: 0.15, graphCausalBias: 0.10 },
 };
 
 const DEFAULT_WEIGHTS: FusionWeights = {
   semanticWeight: 0.5,
   keywordWeight: 0.3,
   recencyWeight: 0.2,
+  graphWeight: 0.15,
+  graphCausalBias: 0.10,
 };
 
 /* ---------------------------------------------------------------

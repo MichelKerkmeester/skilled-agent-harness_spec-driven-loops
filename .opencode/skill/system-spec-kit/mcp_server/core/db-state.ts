@@ -33,7 +33,7 @@ export interface AccessTrackerLike {
 
 /** Hybrid search module interface */
 export interface HybridSearchLike {
-  init(database: DatabaseLike, vectorSearch: unknown): void;
+  init(database: DatabaseLike, vectorSearch: unknown, graphSearch?: unknown): void;
 }
 
 /** Session manager module interface */
@@ -54,6 +54,7 @@ export interface DbStateDeps {
   hybridSearch?: HybridSearchLike;
   sessionManager?: SessionManagerLike;
   incrementalIndex?: IncrementalIndexLike;
+  graphSearchFn?: unknown;
 }
 
 /* ---------------------------------------------------------------
@@ -76,6 +77,7 @@ let accessTracker: AccessTrackerLike | null = null;
 let hybridSearch: HybridSearchLike | null = null;
 let sessionManagerRef: SessionManagerLike | null = null;
 let incrementalIndexRef: IncrementalIndexLike | null = null;
+let graphSearchFnRef: unknown = undefined;
 
 export function init(deps: DbStateDeps): void {
   if (deps.vectorIndex) vectorIndex = deps.vectorIndex;
@@ -84,6 +86,7 @@ export function init(deps: DbStateDeps): void {
   if (deps.hybridSearch) hybridSearch = deps.hybridSearch;
   if (deps.sessionManager) sessionManagerRef = deps.sessionManager;
   if (deps.incrementalIndex) incrementalIndexRef = deps.incrementalIndex;
+  if (deps.graphSearchFn !== undefined) graphSearchFnRef = deps.graphSearchFn;
 }
 
 /* ---------------------------------------------------------------
@@ -137,7 +140,7 @@ export async function reinitializeDatabase(): Promise<void> {
     if (database) {
       if (checkpoints) checkpoints.init(database);
       if (accessTracker) accessTracker.init(database);
-      if (hybridSearch) hybridSearch.init(database, vectorIndex.vectorSearch);
+      if (hybridSearch) hybridSearch.init(database, vectorIndex.vectorSearch, graphSearchFnRef);
       // P4-12, P4-19 FIX: Refresh stale DB handles in session-manager and incremental-index
       if (sessionManagerRef) sessionManagerRef.init(database as DatabaseLike);
       if (incrementalIndexRef) incrementalIndexRef.init(database as DatabaseLike);

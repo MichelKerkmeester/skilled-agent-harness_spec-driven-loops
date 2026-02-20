@@ -23,10 +23,12 @@ This is the **root checklist** for the 138-hybrid-rag-fusion spec folder. It tra
 | `[W:RAG]` | Hybrid RAG Fusion (Workstream A) | `001-system-speckit-hybrid-rag-fusion/` |
 | `[W:GRAPH]` | Skill Graph Integration (Workstream B) | `002-skill-graph-integration/` |
 | `[W:INTEG]` | Cross-workstream integration | Both |
+| `[W:UGRAPH]` | Unified Graph Intelligence (Workstream C) | `003-unified-graph-intelligence/` |
 
 **Sub-checklists:**
 - Workstream A detail: `001-system-speckit-hybrid-rag-fusion/checklist.md`
 - Workstream B detail: `002-skill-graph-integration/checklist.md`
+- Workstream C detail: `003-unified-graph-intelligence/checklist.md`
 <!-- /ANCHOR:protocol -->
 
 ---
@@ -81,6 +83,24 @@ This is the **root checklist** for the 138-hybrid-rag-fusion spec folder. It tra
 - [ ] CHK-022 [P2] [W:INTEG] Benchmark data collected for pre/post retrieval quality — precision@5 and recall@10 measured before and after hybrid search
   - *Deferral note (if skipped): [Reason + follow-up spec reference]*
 <!-- /ANCHOR:p2-optional -->
+
+---
+
+<!-- ANCHOR:workstream-c -->
+## Workstream C: Unified Graph Intelligence (003)
+
+> Cross-ref: `003-unified-graph-intelligence/checklist.md` for detailed verification items
+
+- [ ] CHK-C01 [P0] graphSearchFn wired at context-server.ts:566 (receives 3 arguments)
+- [ ] CHK-C02 [P0] createUnifiedGraphSearchFn() queries both Causal + SGQS graphs
+- [ ] CHK-C03 [P0] SkillGraphCacheManager prevents per-query filesystem rebuild
+- [ ] CHK-C04 [P0] graphWeight added to FusionWeights in adaptive-fusion.ts
+- [ ] CHK-C05 [P0] Feature flag SPECKIT_GRAPH_UNIFIED gates new code paths
+- [ ] CHK-C06 [P0] Pipeline latency p95 ≤ 120ms with graph channel active
+- [ ] CHK-C07 [P1] Intent-to-Subgraph Routing implemented (Pattern 3)
+- [ ] CHK-C08 [P1] Graph channel metrics exposed via memory_stats
+- [ ] CHK-C09 [P2] ≥3 of 7 Intelligence Amplification Patterns operational
+<!-- /ANCHOR:workstream-c -->
 
 ---
 

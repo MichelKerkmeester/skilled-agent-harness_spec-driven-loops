@@ -20,6 +20,7 @@
 > **Scope note:** This root `tasks.md` tracks high-level tasks and cross-workstream integration. Detailed per-task tracking lives in sub-folder task files:
 > - Workstream A: `001-system-speckit-hybrid-rag-fusion/tasks.md`
 > - Workstream B: `002-skill-graph-integration/tasks.md`
+> - Workstream C: `003-unified-graph-intelligence/tasks.md`
 <!-- /ANCHOR:notation -->
 
 ---
@@ -32,8 +33,9 @@
 | [W:RAG] Hybrid RAG Fusion | `001-system-speckit-hybrid-rag-fusion/` | In progress | 0 / 6 phases |
 | [W:GRAPH] Skill Graph Integration | `002-skill-graph-integration/` | Complete | 5 / 5 phases |
 | [W:INTEG] Global Integration | (root-level tasks) | Pending | 0 / 5 tasks |
+| [W:INTEG-GRAPH] Unified Graph Intelligence | `003-unified-graph-intelligence/` | Spec complete | 0 / 4 phases |
 
-**Overall completion**: Workstream B done. Workstream A implementation not started. Integration tasks pending.
+**Overall completion**: Workstream B done. Workstream A implementation not started. Workstream C (Unified Graph Intelligence) spec complete, implementation pending.
 <!-- /ANCHOR:overview -->
 
 ---
@@ -116,6 +118,41 @@
 
 ---
 
+<!-- ANCHOR:workstream-c -->
+## Workstream C: Unified Graph Intelligence [W:INTEG-GRAPH]
+
+> Details: `003-unified-graph-intelligence/tasks.md`
+
+### Phase 0+: Wire Graph Channel
+- [ ] [W:INTEG-P0+] T301 Create SkillGraphCacheManager singleton (graph-search cache)
+- [ ] [W:INTEG-P0+] T302 Create createUnifiedGraphSearchFn() composite function
+- [ ] [W:INTEG-P0+] T303 Wire graphSearchFn into hybridSearch.init() at context-server.ts:566
+- [ ] [W:INTEG-P0+] T304 Add graphWeight to FusionWeights in adaptive-fusion.ts
+- [ ] [W:INTEG-P0+] T305 Bind co-activation spreading return value (line 406-416)
+- [ ] [W:INTEG-P0+] T306 Add SPECKIT_GRAPH_UNIFIED feature flag
+
+### Phase 1+: Validation & Intent Routing
+- [ ] [W:INTEG-P1+] T307 Add graph channel metrics collection
+- [ ] [W:INTEG-P1+] T308 Implement Intent-to-Subgraph Routing (Pattern 3)
+- [ ] [W:INTEG-P1+] T309 Implement Semantic Bridge Discovery (Pattern 4)
+- [ ] [W:INTEG-P1+] T310 Validate with 50-query benchmark
+
+### Phase 2+: Intelligence Amplification
+- [ ] [W:INTEG-P2+] T311 [P] Graph-Guided MMR (Pattern 1)
+- [ ] [W:INTEG-P2+] T312 [P] Structural Authority Propagation (Pattern 2)
+- [ ] [W:INTEG-P2+] T313 [P] Evidence Gap Prevention (Pattern 5)
+- [ ] [W:INTEG-P2+] T314 [P] Context Budget Optimization (Pattern 6)
+- [ ] [W:INTEG-P2+] T315 [P] Temporal-Structural Coherence (Pattern 7)
+
+### Phase 3: Test Coverage
+- [ ] [W:INTEG-P3] T316 [P] Unit tests for graph-search-fn.ts
+- [ ] [W:INTEG-P3] T317 [P] Unit tests for SkillGraphCacheManager
+- [ ] [W:INTEG-P3] T318 [P] Integration test: full pipeline with graph channel
+- [ ] [W:INTEG-P3] T319 Regression test: flag=false baseline unchanged
+<!-- /ANCHOR:workstream-c -->
+
+---
+
 <!-- ANCHOR:global-integration -->
 ## Global Integration Tasks [W:INTEG]
 
@@ -176,4 +213,5 @@ These tasks require both workstreams to be sufficiently complete before executio
 - **Checklist**: See `checklist.md`
 - **Workstream A Tasks**: `001-system-speckit-hybrid-rag-fusion/tasks.md`
 - **Workstream B Tasks**: `002-skill-graph-integration/tasks.md`
+- **Workstream C Tasks**: `003-unified-graph-intelligence/tasks.md`
 <!-- /ANCHOR:cross-refs -->

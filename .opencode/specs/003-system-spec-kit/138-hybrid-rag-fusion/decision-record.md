@@ -510,8 +510,22 @@ Two distinct workstreams (RAG Fusion and Skill Graph) need independent task trac
 **Sub-folder decision records**:
 - Workstream A (RAG Fusion): `.opencode/specs/003-system-spec-kit/138-hybrid-rag-fusion/001-rag-fusion/decision-record.md`
 - Workstream B (Skill Graph): `.opencode/specs/003-system-spec-kit/138-hybrid-rag-fusion/002-skill-graph/decision-record.md`
+- Workstream C (Unified Graph Intelligence): `.opencode/specs/003-system-spec-kit/138-hybrid-rag-fusion/003-unified-graph-intelligence/decision-record.md`
 
 <!-- /ANCHOR:adr-index -->
+
+---
+
+<!-- ANCHOR:workstream-c-adrs -->
+## Workstream C Decision Records
+
+> Full Workstream C (Unified Graph Intelligence) ADRs are maintained in `003-unified-graph-intelligence/decision-record.md` and include:
+> - ADR-001: Virtual Graph Adapter over SQLite-Only Merge
+> - ADR-002: Cache-First SGQS over Per-Call Filesystem Rebuild
+> - ADR-003: Composite graphSearchFn over Separate Graph Channels
+> - ADR-004: Phased Feature-Flag Rollout over Big-Bang Activation
+> - ADR-005: Namespace-Prefixed Unified IDs over Shared ID Space
+<!-- /ANCHOR:workstream-c-adrs -->
 
 ---
 
