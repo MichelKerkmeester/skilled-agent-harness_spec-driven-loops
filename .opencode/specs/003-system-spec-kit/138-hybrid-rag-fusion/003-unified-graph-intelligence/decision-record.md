@@ -100,9 +100,9 @@ Two disconnected graph systems exist inside the MCP server with no bridge betwee
 ### Implementation
 
 **What changes**:
-- New file: `mcp_server/lib/search/unified-graph-adapter.ts` — composite function with namespace prefixing and score normalization
+- New file: `mcp_server/lib/search/graph-search-fn.ts` — composite function with namespace prefixing and score normalization
 - Edit: `mcp_server/context-server.ts` — wire `createUnifiedGraphSearchFn()` into the `graphSearchFn` parameter of `hybridSearchEnhanced()`
-- Edit: `mcp_server/lib/search/rrf-fusion.ts` — add convergence-bonus detection for cross-graph ID pairs (`mem:X` + `skill:Y` targeting the same conceptual result)
+- Note: convergence bonus implemented in `mcp_server/lib/search/graph-search-fn.ts` (not rrf-fusion.ts)
 
 **How to roll back**: Set `graphSearchFn: null` in the `hybridSearchEnhanced()` call. This restores the pre-integration production behavior — the graph channel returning null was already the default. No database changes to revert.
 <!-- /ANCHOR:adr-001-impl -->
@@ -205,11 +205,11 @@ Two disconnected graph systems exist inside the MCP server with no bridge betwee
 ### Implementation
 
 **What changes**:
-- New file: `scripts/sgqs/cache-manager.ts` — `SkillGraphCacheManager` singleton with `getGraph()`, `invalidate()`, and TTL logic
-- Edit: `scripts/sgqs/index.ts:50-55` — replace direct `buildSkillGraph(skillRoot)` call with `SkillGraphCacheManager.getGraph(skillRoot)`
+- New file: `mcp_server/lib/search/skill-graph-cache.ts` — `SkillGraphCacheManager` singleton with `getGraph()`, `invalidate()`, and TTL logic
+- Note: Cache integrated via `createUnifiedGraphSearchFn` in `mcp_server/lib/search/graph-search-fn.ts`
 - Edit: `mcp_server/context-server.ts` (initialization block) — call `SkillGraphCacheManager.getGraph(skillRoot)` during server startup to warm the cache
 
-**How to roll back**: Revert `scripts/sgqs/index.ts:50-55` to call `buildSkillGraph(skillRoot)` directly. The cache manager can remain in the codebase but becomes unreferenced. No configuration changes required.
+**How to roll back**: Remove `SkillGraphCacheManager` usage from `graph-search-fn.ts`. The cache manager can remain in the codebase but becomes unreferenced. No configuration changes required.
 <!-- /ANCHOR:adr-002-impl -->
 <!-- /ANCHOR:adr-002 -->
 
@@ -307,9 +307,9 @@ Two disconnected graph systems exist inside the MCP server with no bridge betwee
 ### Implementation
 
 **What changes**:
-- New file: `mcp_server/lib/search/unified-graph-adapter.ts` — implements `createUnifiedGraphSearchFn()` with parallel dispatch, fail-soft error handling, and per-graph result cap (shared artifact with ADR-001)
+- New file: `mcp_server/lib/search/graph-search-fn.ts` — implements `createUnifiedGraphSearchFn()` with parallel dispatch, fail-soft error handling, and per-graph result cap (shared artifact with ADR-001)
 - Edit: `mcp_server/context-server.ts` — replace `graphSearchFn: null` with `graphSearchFn: createUnifiedGraphSearchFn({ causalEdgeDb: db, sgqsCache: SkillGraphCacheManager })`
-- New test: `mcp_server/tests/unified-graph-adapter.vitest.ts` — asserts composite output shape, ID prefixing, fail-soft behavior, and result cap enforcement
+- New test: `mcp_server/tests/graph-search-fn.vitest.ts` — asserts composite output shape, ID prefixing, fail-soft behavior, and result cap enforcement
 
 **How to roll back**: Set `graphSearchFn: null` in `context-server.ts`. The composite function module can remain but becomes unreferenced. All pipeline behavior reverts to the pre-integration baseline in one line change.
 <!-- /ANCHOR:adr-003-impl -->

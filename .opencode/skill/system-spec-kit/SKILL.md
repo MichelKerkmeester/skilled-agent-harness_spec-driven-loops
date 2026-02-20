@@ -151,7 +151,7 @@ INTENT_SIGNALS = {
     "COMPLETE": {"weight": 4, "keywords": ["done", "complete", "finish", "verify", "checklist"]},
     "MEMORY": {"weight": 4, "keywords": ["memory", "save context", "resume", "checkpoint", "context"]},
     "HANDOVER": {"weight": 4, "keywords": ["handover", "continue later", "next session", "pause"]},
-    "PHASE": {"weight": 3, "keywords": ["phase", "decompose", "split", "workstream", "multi-phase", "phased approach", "phased", "multi-session"]},
+    "PHASE": {"weight": 4, "keywords": ["phase", "decompose", "split", "workstream", "multi-phase", "phased approach", "phased", "multi-session"]},
 }
 
 RESOURCE_MAP = {
@@ -173,7 +173,6 @@ RESOURCE_MAP = {
     ],
     "COMPLETE": [
         "references/validation/validation_rules.md",
-        "references/validation/phase_checklists.md",
     ],
     "MEMORY": [
         "references/memory/memory_system.md",
@@ -185,6 +184,7 @@ RESOURCE_MAP = {
     "PHASE": [
         "references/structure/phase_definitions.md",
         "references/structure/sub_folder_versioning.md",
+        "references/validation/phase_checklists.md",
     ],
 }
 

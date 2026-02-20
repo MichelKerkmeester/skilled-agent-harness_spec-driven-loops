@@ -258,8 +258,9 @@ When workflow prompts at conversation start:
 **Option B:** Create new spec folder with suggested number
 **Option C:** Update one of the related specs shown
 **Option D:** Skip spec folder creation (**WARNING:** Technical debt!)
+**Option E:** Add phase to existing spec — target a specific phase child (e.g., `specs/NNN-name/001-phase/`). Only shown when existing spec has high complexity or phased content.
 
-**AI Agent Rule:** NEVER decide autonomously - ask user to choose (A/B/C/D)
+**AI Agent Rule:** NEVER decide autonomously - ask user to choose (A/B/C/D/E)
 
 ---
 

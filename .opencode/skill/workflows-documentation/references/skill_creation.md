@@ -980,7 +980,7 @@ Use this operating pattern:
 - Validate links after changes using:
 
 ```bash
-.opencode/skill/system-spec-kit/scripts/check-links.sh
+.opencode/skill/system-spec-kit/scripts/rules/check-links.sh
 ```
 
 ### Templates

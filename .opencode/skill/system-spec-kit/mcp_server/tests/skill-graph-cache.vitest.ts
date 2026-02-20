@@ -12,6 +12,7 @@ vi.mock('../../scripts/sgqs/graph-builder', () => ({
   buildSkillGraph: vi.fn(() => ({
     nodes: new Map(),
     edges: [],
+    edgeById: new Map(),
     outbound: new Map(),
     inbound: new Map(),
   })),
@@ -58,14 +59,14 @@ describe('SkillGraphCacheManager', () => {
   // 2. TTL EXPIRATION
   // ------------------------------------------------------------------
   it('rebuilds the graph after the TTL has expired', async () => {
-    // Use a very short TTL so we can expire it with a fake timer advance
+    // Use fake timers from the start so timestamps are consistent (P1 race fix)
+    vi.useFakeTimers();
     const cache = makeCache(100); // 100 ms TTL
 
     await cache.get(SKILL_ROOT);
     expect(buildSkillGraph).toHaveBeenCalledTimes(1);
 
-    // Advance time past TTL using fake timers
-    vi.useFakeTimers();
+    // Advance time past TTL
     vi.advanceTimersByTime(200); // 200 ms > 100 ms TTL
 
     await cache.get(SKILL_ROOT);

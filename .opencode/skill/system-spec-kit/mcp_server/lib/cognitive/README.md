@@ -18,7 +18,7 @@ importance_tier: "normal"
 <!-- ANCHOR:table-of-contents -->
 
 - [1. OVERVIEW](#1--overview)
-- [2. KEY CONCEPTS]](#2--key-concepts)
+- [2. KEY CONCEPTS](#2--key-concepts)
 - [3. STRUCTURE](#3--structure)
 - [4. FEATURES](#4--features)
 - [5. USAGE EXAMPLES](#5--usage-examples)
@@ -41,14 +41,14 @@ The cognitive subsystem is the "brain" of the memory system. It determines which
 
 ### Key Statistics
 
-| Component      | Modules | Lines  | Purpose                                              |
-| -------------- | ------- | ------ | ---------------------------------------------------- |
-| Decay          | 2       | ~650   | Memory forgetting curves (FSRS, attention)           |
-| Classification | 2       | ~960   | 5-state memory model + duplicate detection           |
-| Activation     | 2       | ~700   | Working memory + spreading activation                |
-| Lifecycle      | 1       | ~395   | Archival management                                  |
-| Temporal       | 1       | ~158   | Time-based contiguity boosting and timelines         |
-| **Total**      | **10**  | ~2860  | Complete cognitive memory lifecycle                  |
+| Component      | Modules | Lines | Purpose                                      |
+| -------------- | ------- | ----- | -------------------------------------------- |
+| Decay          | 2       | ~650  | Memory forgetting curves (FSRS, attention)   |
+| Classification | 2       | ~960  | 5-state memory model + duplicate detection   |
+| Activation     | 2       | ~700  | Working memory + spreading activation        |
+| Lifecycle      | 1       | ~395  | Archival management                          |
+| Temporal       | 1       | ~158  | Time-based contiguity boosting and timelines |
+| **Total**      | **10**  | ~2860 | Complete cognitive memory lifecycle          |
 
 ### Architecture
 
@@ -67,7 +67,7 @@ The cognitive subsystem is the "brain" of the memory system. It determines which
 │       ↓                                                         │
 │  [Time Passes]                                                  │
 │       ↓                                                         │
-│  Attention Decay ───→ R(t,S) = (1 + (19/81) × t/S)^(-0.5)        │
+│  Attention Decay ───→ R(t,S) = (1 + (19/81) × t/S)^(-0.5)       │
 │       ↓                                                         │
 │  Tier Classifier ───→ State = WARM → COLD → DORMANT              │
 │       ↓                                                         │
@@ -84,16 +84,16 @@ The cognitive subsystem is the "brain" of the memory system. It determines which
 
 ### Key Features
 
-| Feature                    | Implementation                                                    | Benefit                              |
-| -------------------------- | ----------------------------------------------------------------- | ------------------------------------ |
-| **Power-Law Decay**        | FSRS v4 formula validated on 100M+ users                          | More accurate than exponential decay |
-| **5-State Model**          | HOT/WARM/COLD/DORMANT/ARCHIVED with thresholds                    | Progressive memory transitions       |
-| **Duplicate Prevention**   | 4-tier similarity detection (95/85/70/50%)                        | Prevents redundant context           |
-| **Spreading Activation**   | Boost related memories (+0.15 on access)                          | Maintains semantic coherence         |
-| **Type-Specific Decay**    | Constitutional (none), Critical (none), Normal (0.80/turn)        | Memory importance = retention time   |
-| **Testing Effect**         | Low retrievability = greater boost on success                     | Harder recalls strengthen more       |
-| **Automatic Archival**     | 90-day threshold with background job (2hr interval)               | Lifecycle management                 |
-| **Document-Aware Retrieval** | Uses indexed doc metadata (`spec`, `plan`, `decision_record`, etc.) in ranking inputs | Better relevance for spec workflows |
+| Feature                      | Implementation                                                                        | Benefit                              |
+| ---------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------ |
+| **Power-Law Decay**          | FSRS v4 formula validated on 100M+ users                                              | More accurate than exponential decay |
+| **5-State Model**            | HOT/WARM/COLD/DORMANT/ARCHIVED with thresholds                                        | Progressive memory transitions       |
+| **Duplicate Prevention**     | 4-tier similarity detection (95/85/70/50%)                                            | Prevents redundant context           |
+| **Spreading Activation**     | Boost related memories (+0.15 on access)                                              | Maintains semantic coherence         |
+| **Type-Specific Decay**      | Constitutional (none), Critical (none), Normal (0.80/turn)                            | Memory importance = retention time   |
+| **Testing Effect**           | Low retrievability = greater boost on success                                         | Harder recalls strengthen more       |
+| **Automatic Archival**       | 90-day threshold with background job (2hr interval)                                   | Lifecycle management                 |
+| **Document-Aware Retrieval** | Uses indexed doc metadata (`spec`, `plan`, `decision_record`, etc.) in ranking inputs | Better relevance for spec workflows  |
 
 ### Requirements
 
@@ -168,12 +168,12 @@ NEW MEMORY → HOT (R = 1.0)
 
 Prevents duplicate memories using similarity thresholds:
 
-| Threshold    | Action                      | Logic                             |
-| ------------ | --------------------------- | --------------------------------- |
-| >= 0.95 (95%) | **REINFORCE**               | Exact duplicate, boost existing   |
-| >= 0.85 (85%) | **UPDATE** or **SUPERSEDE** | High match, check contradiction   |
-| >= 0.70 (70%) | **CREATE_LINKED**           | Medium match, new with relations  |
-| < 0.50 (50%) | **CREATE**                  | Low match, fully new memory       |
+| Threshold     | Action                      | Logic                            |
+| ------------- | --------------------------- | -------------------------------- |
+| >= 0.95 (95%) | **REINFORCE**               | Exact duplicate, boost existing  |
+| >= 0.85 (85%) | **UPDATE** or **SUPERSEDE** | High match, check contradiction  |
+| >= 0.70 (70%) | **CREATE_LINKED**           | Medium match, new with relations |
+| < 0.50 (50%)  | **CREATE**                  | Low match, fully new memory      |
 
 **Contradiction Detection:**
 - Pattern types: negation, replacement, deprecation, correction, clarification, prohibition, obsolescence, explicit
@@ -257,18 +257,18 @@ cognitive/                      # TypeScript source files (10 modules)
 
 ### Key Modules
 
-| Module                     | Purpose                    | Key Exports                                                              |
-| -------------------------- | -------------------------- | ------------------------------------------------------------------------ |
-| `fsrs-scheduler.ts`        | FSRS v4 implementation     | `calculateRetrievability`, `updateStability`, `processReview`            |
-| `tier-classifier.ts`       | State classification       | `classifyState`, `classifyTier`, `getStateContent`, `filterAndLimitByState` |
-| `attention-decay.ts`       | Multi-factor decay         | `applyFsrsDecay`, `calculateCompositeAttention`, `getAttentionBreakdown` |
-| `prediction-error-gate.ts` | Conflict detection         | `evaluateMemory`, `detectContradiction`, `logConflict`                   |
-| `co-activation.ts`         | Semantic spreading         | `spreadActivation`, `populateRelatedMemories`, `boostScore`              |
-| `working-memory.ts`        | Session memory management  | `setAttentionScore`, `getWorkingMemory`, `batchUpdateScores`             |
-| `archival-manager.ts`      | Lifecycle management       | `runArchivalScan`, `archiveMemory`, `startBackgroundJob`                 |
-| `temporal-contiguity.ts`   | Time-based linking         | `vectorSearchWithContiguity`, `getTemporalNeighbors`, `buildTimeline`   |
-| `pressure-monitor.ts`      | Token pressure monitoring  | Context window management and pressure threshold tracking               |
-| `rollout-policy.ts`        | Feature flag rollout       | Percentage-based activation and gradual feature rollout control         |
+| Module                     | Purpose                   | Key Exports                                                                 |
+| -------------------------- | ------------------------- | --------------------------------------------------------------------------- |
+| `fsrs-scheduler.ts`        | FSRS v4 implementation    | `calculateRetrievability`, `updateStability`, `processReview`               |
+| `tier-classifier.ts`       | State classification      | `classifyState`, `classifyTier`, `getStateContent`, `filterAndLimitByState` |
+| `attention-decay.ts`       | Multi-factor decay        | `applyFsrsDecay`, `calculateCompositeAttention`, `getAttentionBreakdown`    |
+| `prediction-error-gate.ts` | Conflict detection        | `evaluateMemory`, `detectContradiction`, `logConflict`                      |
+| `co-activation.ts`         | Semantic spreading        | `spreadActivation`, `populateRelatedMemories`, `boostScore`                 |
+| `working-memory.ts`        | Session memory management | `setAttentionScore`, `getWorkingMemory`, `batchUpdateScores`                |
+| `archival-manager.ts`      | Lifecycle management      | `runArchivalScan`, `archiveMemory`, `startBackgroundJob`                    |
+| `temporal-contiguity.ts`   | Time-based linking        | `vectorSearchWithContiguity`, `getTemporalNeighbors`, `buildTimeline`       |
+| `pressure-monitor.ts`      | Token pressure monitoring | Context window management and pressure threshold tracking                   |
+| `rollout-policy.ts`        | Feature flag rollout      | Percentage-based activation and gradual feature rollout control             |
 
 <!-- /ANCHOR:structure -->
 
@@ -839,13 +839,13 @@ for (const memory of activeMemories) {
 
 ### Common Patterns
 
-| Pattern           | Use Case                             | Key Functions                                        |
-| ----------------- | ------------------------------------ | ---------------------------------------------------- |
-| **Memory Save**   | New memory → Check duplicates → Save | `evaluateMemory`, `activateMemoryWithFsrs`           |
-| **Memory Access** | Search hit → Boost + spread          | `activateMemoryWithFsrs`, `spreadActivation`         |
-| **Session Decay** | Turn end → Apply decay               | `applyFsrsDecay`, `batchUpdateScores`                |
-| **State Check**   | Context selection → Filter by state  | `classifyState`, `filterAndLimitByState`             |
-| **Nightly Jobs**  | Background → Archive                 | `runArchivalScan`, `startBackgroundJob`              |
+| Pattern           | Use Case                             | Key Functions                                |
+| ----------------- | ------------------------------------ | -------------------------------------------- |
+| **Memory Save**   | New memory → Check duplicates → Save | `evaluateMemory`, `activateMemoryWithFsrs`   |
+| **Memory Access** | Search hit → Boost + spread          | `activateMemoryWithFsrs`, `spreadActivation` |
+| **Session Decay** | Turn end → Apply decay               | `applyFsrsDecay`, `batchUpdateScores`        |
+| **State Check**   | Context selection → Filter by state  | `classifyState`, `filterAndLimitByState`     |
+| **Nightly Jobs**  | Background → Archive                 | `runArchivalScan`, `startBackgroundJob`      |
 
 <!-- /ANCHOR:usage-examples -->
 
@@ -946,13 +946,13 @@ console.log(`State: ${classification.state}, R: ${classification.retrievability}
 
 ### Quick Fixes
 
-| Problem              | Quick Fix                                                         |
-| -------------------- | ----------------------------------------------------------------- |
-| Decay not working    | Call `applyFsrsDecay(memory, score)` at turn boundaries           |
-| Memory leak          | Enable archival: `archival.startBackgroundJob()`                  |
-| Duplicate prevention | Use `gate.evaluateMemory()` before save                          |
-| State always COLD    | Use `activateMemoryWithFsrs()` (updates last_review)             |
-| Slow queries         | `CREATE INDEX idx_memory_state ON memory_index(memory_type)`      |
+| Problem              | Quick Fix                                                    |
+| -------------------- | ------------------------------------------------------------ |
+| Decay not working    | Call `applyFsrsDecay(memory, score)` at turn boundaries      |
+| Memory leak          | Enable archival: `archival.startBackgroundJob()`             |
+| Duplicate prevention | Use `gate.evaluateMemory()` before save                      |
+| State always COLD    | Use `activateMemoryWithFsrs()` (updates last_review)         |
+| Slow queries         | `CREATE INDEX idx_memory_state ON memory_index(memory_type)` |
 
 <!-- /ANCHOR:troubleshooting -->
 
@@ -1031,23 +1031,23 @@ Note: `temporal-contiguity.js` in dist/ is **not** orphaned. It is compiled from
 
 ### External Research
 
-| Resource                                                                        | Description                                                   |
-| ------------------------------------------------------------------------------- | ------------------------------------------------------------- |
-| [FSRS Paper](https://github.com/open-spaced-repetition/fsrs4anki)               | Free Spaced Repetition Scheduler algorithm                    |
-| [Anki Research](https://faqs.ankiweb.net/what-spaced-repetition-algorithm.html) | Spaced repetition validation dataset                          |
-| [ACT-R](http://act-r.psy.cmu.edu/)                                              | Adaptive Control of Thought, Rational cognitive architecture  |
+| Resource                                                                        | Description                                                  |
+| ------------------------------------------------------------------------------- | ------------------------------------------------------------ |
+| [FSRS Paper](https://github.com/open-spaced-repetition/fsrs4anki)               | Free Spaced Repetition Scheduler algorithm                   |
+| [Anki Research](https://faqs.ankiweb.net/what-spaced-repetition-algorithm.html) | Spaced repetition validation dataset                         |
+| [ACT-R](http://act-r.psy.cmu.edu/)                                              | Adaptive Control of Thought, Rational cognitive architecture |
 
 ### Configuration Reference
 
-| Environment Variable       | Default   | Purpose                                   |
-| -------------------------- | --------- | ----------------------------------------- |
-| `HOT_THRESHOLD`            | 0.80      | Retrievability threshold for HOT state    |
-| `WARM_THRESHOLD`           | 0.25      | Retrievability threshold for WARM state   |
-| `COLD_THRESHOLD`           | 0.05      | Retrievability threshold for COLD state   |
-| `ARCHIVED_DAYS_THRESHOLD`  | 90        | Days inactive before archival             |
-| `SPECKIT_COACTIVATION`     | true      | Enable spreading activation               |
-| `SPECKIT_ARCHIVAL`         | true      | Enable background archival job            |
-| `SPECKIT_WORKING_MEMORY`   | true      | Enable working memory sessions            |
+| Environment Variable      | Default | Purpose                                 |
+| ------------------------- | ------- | --------------------------------------- |
+| `HOT_THRESHOLD`           | 0.80    | Retrievability threshold for HOT state  |
+| `WARM_THRESHOLD`          | 0.25    | Retrievability threshold for WARM state |
+| `COLD_THRESHOLD`          | 0.05    | Retrievability threshold for COLD state |
+| `ARCHIVED_DAYS_THRESHOLD` | 90      | Days inactive before archival           |
+| `SPECKIT_COACTIVATION`    | true    | Enable spreading activation             |
+| `SPECKIT_ARCHIVAL`        | true    | Enable background archival job          |
+| `SPECKIT_WORKING_MEMORY`  | true    | Enable working memory sessions          |
 
 <!-- /ANCHOR:related -->
 

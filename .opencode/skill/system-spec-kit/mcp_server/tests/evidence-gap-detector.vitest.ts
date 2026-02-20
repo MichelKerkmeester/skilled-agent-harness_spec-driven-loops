@@ -40,12 +40,14 @@ describe('C138-P1 Evidence Gap Detector (TRM)', () => {
     expect(result.zScore).toBeLessThan(Z_SCORE_THRESHOLD);
   });
 
-  // ---- T3: All identical scores → gap detected ----
-  it('T3: identical scores return zScore=0 and gapDetected=true', () => {
+  // ---- T3: All identical scores above threshold → no gap ----
+  it('T3: identical scores above MIN_ABSOLUTE_SCORE return gapDetected=false', () => {
     const scores = [0.30, 0.30, 0.30, 0.30];
     const result = detectEvidenceGap(scores);
 
-    expect(result.gapDetected).toBe(true);
+    // stdDev=0 but all scores (0.30) are above MIN_ABSOLUTE_SCORE (0.015) →
+    // uniform strong results, not an evidence gap.
+    expect(result.gapDetected).toBe(false);
     expect(result.zScore).toBe(0);
     expect(result.stdDev).toBe(0);
   });

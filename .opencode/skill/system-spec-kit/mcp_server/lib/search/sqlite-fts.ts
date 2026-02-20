@@ -19,13 +19,13 @@ import type Database from 'better-sqlite3';
  * matching the FTS5 table column order:
  *   col 0 = title           -> 10.0
  *   col 1 = trigger_phrases ->  5.0
- *   col 2 = content_text    ->  1.0
- *   col 3 = file_path       ->  2.0
+ *   col 2 = file_path       ->  2.0
+ *   col 3 = content_text    ->  1.0
  *
  * Note: bm25() returns NEGATIVE scores (lower = better match),
  * so we negate to produce positive scores for ranking.
  */
-const FTS5_BM25_WEIGHTS = [10.0, 5.0, 1.0, 2.0] as const;
+const FTS5_BM25_WEIGHTS = [10.0, 5.0, 2.0, 1.0] as const;
 
 /* ---------------------------------------------------------------
    2. INTERFACES

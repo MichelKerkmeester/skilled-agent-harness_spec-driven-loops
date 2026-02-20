@@ -13,7 +13,7 @@ The `extract_structure.py` script computes a **DQI** (0-100) based on measurable
 | **Content**   | 30  | Word count, heading density, code examples, links        |
 | **Style**     | 30  | H2 formatting, dividers, intro paragraph, HVR compliance |
 
-**HVR Compliance in DQI**: Human Voice Rules violations count against the Style component. Documents with em dashes, semicolons, banned words or banned phrases receive deductions in the Style score. Full HVR ruleset: [hvr_rules.md](./references/hvr_rules.md).
+**HVR Compliance in DQI**: Human Voice Rules violations count against the Style component. Documents with em dashes, semicolons, banned words or banned phrases receive deductions in the Style score. Full HVR ruleset: [hvr_rules.md](../references/hvr_rules.md).
 
 **Quality Bands**:
 

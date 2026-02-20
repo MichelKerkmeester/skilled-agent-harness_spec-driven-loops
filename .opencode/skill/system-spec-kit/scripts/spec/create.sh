@@ -401,7 +401,72 @@ if [[ "$SUBFOLDER_MODE" = true ]]; then
 fi
 
 # ───────────────────────────────────────────────────────────────
-# 3b. PHASE MODE
+# 3b. SHARED: Branch Name Generation & Git Branch Creation
+# ───────────────────────────────────────────────────────────────
+# Extracted to avoid duplication between phase mode and normal mode.
+# Sets: BRANCH_SUFFIX, BRANCH_NUMBER, FEATURE_NUM, BRANCH_NAME
+# Creates git branch unless SKIP_BRANCH=true or no git.
+
+resolve_branch_name() {
+    if [[ -n "$SHORT_NAME" ]]; then
+        BRANCH_SUFFIX=$(echo "$SHORT_NAME" | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z0-9]/-/g' | sed 's/--*/-/g' | sed 's/^-//' | sed 's/-$//')
+    else
+        BRANCH_SUFFIX=$(generate_branch_name "$FEATURE_DESCRIPTION")
+    fi
+
+    if [[ -z "$BRANCH_NUMBER" ]]; then
+        if [[ "$HAS_GIT" = true ]]; then
+            BRANCH_NUMBER=$(check_existing_branches "$BRANCH_SUFFIX")
+        else
+            local highest=0
+            if [[ -d "$SPECS_DIR" ]]; then
+                for dir in "$SPECS_DIR"/*; do
+                    [[ -d "$dir" ]] || continue
+                    local dirname
+                    dirname=$(basename "$dir")
+                    local number
+                    number=$(echo "$dirname" | grep -o '^[0-9]\+' || echo "0")
+                    number=$((10#$number))
+                    if [[ "$number" -gt "$highest" ]]; then highest=$number; fi
+                done
+            fi
+            BRANCH_NUMBER=$((highest + 1))
+        fi
+    fi
+
+    FEATURE_NUM=$(printf "%03d" "$((10#$BRANCH_NUMBER))")
+    BRANCH_NAME="${FEATURE_NUM}-${BRANCH_SUFFIX}"
+
+    # GitHub enforces 244-byte branch name limit
+    local max_branch_length=244
+    if [[ ${#BRANCH_NAME} -gt $max_branch_length ]]; then
+        local max_suffix_length=$((max_branch_length - 4))
+        local truncated_suffix
+        truncated_suffix=$(echo "$BRANCH_SUFFIX" | cut -c1-$max_suffix_length | sed 's/-$//')
+        >&2 echo "[speckit] Warning: Branch name exceeded GitHub's 244-byte limit"
+        >&2 echo "[speckit] Original: $BRANCH_NAME (${#BRANCH_NAME} bytes)"
+        BRANCH_NAME="${FEATURE_NUM}-${truncated_suffix}"
+        >&2 echo "[speckit] Truncated to: $BRANCH_NAME (${#BRANCH_NAME} bytes)"
+    fi
+}
+
+create_git_branch() {
+    if [[ "$SKIP_BRANCH" = true ]]; then
+        >&2 echo "[speckit] Skipping branch creation (--skip-branch)"
+    elif [[ "$HAS_GIT" = true ]]; then
+        if git show-ref --verify --quiet "refs/heads/$BRANCH_NAME" 2>/dev/null; then
+            >&2 echo "[speckit] Warning: Branch '$BRANCH_NAME' already exists, switching to it"
+            git checkout "$BRANCH_NAME"
+        else
+            git checkout -b "$BRANCH_NAME"
+        fi
+    else
+        >&2 echo "[speckit] Warning: Git repository not detected; skipped branch creation for $BRANCH_NAME"
+    fi
+}
+
+# ───────────────────────────────────────────────────────────────
+# 3c. PHASE MODE
 # ───────────────────────────────────────────────────────────────
 
 if [[ "$PHASE_MODE" = true ]]; then
@@ -410,7 +475,12 @@ if [[ "$PHASE_MODE" = true ]]; then
     # Each child gets level 1 templates + parent back-reference injection
 
     TEMPLATES_BASE="$REPO_ROOT/.opencode/skill/system-spec-kit/templates"
-    PHASE_ADDENDUM_DIR="$TEMPLATES_BASE/addendum/phase"
+    readonly PHASE_ADDENDUM_DIR="$TEMPLATES_BASE/addendum/phase"
+
+    # Trap for temp file cleanup on error exit
+    PHASE_TMP_FILES=()
+    _phase_cleanup() { for _f in "${PHASE_TMP_FILES[@]}"; do rm -f "$_f"; done; }
+    trap _phase_cleanup EXIT
 
     # Validate addendum templates exist
     if [[ ! -f "$PHASE_ADDENDUM_DIR/phase-parent-section.md" ]]; then
@@ -433,45 +503,15 @@ if [[ "$PHASE_MODE" = true ]]; then
             PHASE_NAME_ARRAY+=("$_slugified")
         done
         # If --phase-names provided, override PHASE_COUNT with actual count
+        if [[ "$PHASE_COUNT" -ne 1 ]] && [[ "$PHASE_COUNT" -ne ${#PHASE_NAME_ARRAY[@]} ]]; then
+            >&2 echo "[speckit] Warning: --phases $PHASE_COUNT overridden by --phase-names (${#PHASE_NAME_ARRAY[@]} names provided)"
+        fi
         PHASE_COUNT=${#PHASE_NAME_ARRAY[@]}
     fi
 
-    # ── Branch name generation (reuse normal mode logic) ──
-    if [[ -n "$SHORT_NAME" ]]; then
-        BRANCH_SUFFIX=$(echo "$SHORT_NAME" | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z0-9]/-/g' | sed 's/--*/-/g' | sed 's/^-//' | sed 's/-$//')
-    else
-        BRANCH_SUFFIX=$(generate_branch_name "$FEATURE_DESCRIPTION")
-    fi
-
-    if [[ -z "$BRANCH_NUMBER" ]]; then
-        if [[ "$HAS_GIT" = true ]]; then
-            BRANCH_NUMBER=$(check_existing_branches "$BRANCH_SUFFIX")
-        else
-            HIGHEST=0
-            if [[ -d "$SPECS_DIR" ]]; then
-                for dir in "$SPECS_DIR"/*; do
-                    [[ -d "$dir" ]] || continue
-                    dirname=$(basename "$dir")
-                    number=$(echo "$dirname" | grep -o '^[0-9]\+' || echo "0")
-                    number=$((10#$number))
-                    if [[ "$number" -gt "$HIGHEST" ]]; then HIGHEST=$number; fi
-                done
-            fi
-            BRANCH_NUMBER=$((HIGHEST + 1))
-        fi
-    fi
-
-    FEATURE_NUM=$(printf "%03d" "$((10#$BRANCH_NUMBER))")
-    BRANCH_NAME="${FEATURE_NUM}-${BRANCH_SUFFIX}"
-
-    # Create git branch (unless skipped or no git)
-    if [[ "$SKIP_BRANCH" = true ]]; then
-        >&2 echo "[speckit] Skipping branch creation (--skip-branch)"
-    elif [[ "$HAS_GIT" = true ]]; then
-        git checkout -b "$BRANCH_NAME"
-    else
-        >&2 echo "[speckit] Warning: Git repository not detected; skipped branch creation for $BRANCH_NAME"
-    fi
+    # ── Branch name generation (shared function) ──
+    resolve_branch_name
+    create_git_branch
 
     # ── Create parent spec folder ──
     FEATURE_DIR="$SPECS_DIR/$BRANCH_NAME"
@@ -497,7 +537,7 @@ if [[ "$PHASE_MODE" = true ]]; then
 
     # ── Build child folder name list ──
     CHILD_FOLDERS=()
-    for _i in $(seq 1 "$PHASE_COUNT"); do
+    for (( _i=1; _i<=PHASE_COUNT; _i++ )); do
         _child_num=$(printf "%03d" "$_i")
         if [[ ${#PHASE_NAME_ARRAY[@]} -ge $_i ]]; then
             _child_slug="${PHASE_NAME_ARRAY[$((_i - 1))]}"
@@ -515,7 +555,7 @@ if [[ "$PHASE_MODE" = true ]]; then
 
         # Build phase table rows
         PHASE_ROWS=""
-        for _i in $(seq 1 "$PHASE_COUNT"); do
+        for (( _i=1; _i<=PHASE_COUNT; _i++ )); do
             _folder="${CHILD_FOLDERS[$((_i - 1))]}"
             if [[ -n "$PHASE_ROWS" ]]; then
                 PHASE_ROWS="${PHASE_ROWS}"$'\n'
@@ -525,7 +565,7 @@ if [[ "$PHASE_MODE" = true ]]; then
 
         # Build handoff criteria rows
         HANDOFF_ROWS=""
-        for _i in $(seq 1 "$PHASE_COUNT"); do
+        for (( _i=1; _i<=PHASE_COUNT; _i++ )); do
             if [[ $_i -lt $PHASE_COUNT ]]; then
                 _from="${CHILD_FOLDERS[$((_i - 1))]}"
                 _to="${CHILD_FOLDERS[$_i]}"
@@ -539,12 +579,13 @@ if [[ "$PHASE_MODE" = true ]]; then
         # Replace placeholders in template
         # Use a temp file for sed replacements (avoids in-place issues)
         _tmp_phase_section=$(mktemp)
+        PHASE_TMP_FILES+=("$_tmp_phase_section")
 
         # Write the template, replacing [PHASE_ROW] and [HANDOFF_ROW] line placeholders
         while IFS= read -r _line; do
-            if [[ "$_line" == *"[PHASE_ROW]"* ]]; then
+            if [[ "$_line" == *"[YOUR_VALUE_HERE: PHASE_ROW]"* ]]; then
                 printf '%s\n' "$PHASE_ROWS"
-            elif [[ "$_line" == *"[HANDOFF_ROW]"* ]]; then
+            elif [[ "$_line" == *"[YOUR_VALUE_HERE: HANDOFF_ROW]"* ]]; then
                 if [[ -n "$HANDOFF_ROWS" ]]; then
                     printf '%s\n' "$HANDOFF_ROWS"
                 else
@@ -565,7 +606,7 @@ if [[ "$PHASE_MODE" = true ]]; then
     CHILD_LEVEL_DIR=$(get_level_templates_dir "1" "$TEMPLATES_BASE")
     CHILDREN_INFO=()   # For JSON output
 
-    for _i in $(seq 1 "$PHASE_COUNT"); do
+    for (( _i=1; _i<=PHASE_COUNT; _i++ )); do
         _child_folder="${CHILD_FOLDERS[$((_i - 1))]}"
         _child_path="$FEATURE_DIR/$_child_folder"
         _child_created_files=()
@@ -600,20 +641,22 @@ if [[ "$PHASE_MODE" = true ]]; then
                 _successor="${CHILD_FOLDERS[$_i]}"
             fi
 
-            # Replace placeholders
+            # Replace placeholders (YOUR_VALUE_HERE format for validation detection)
             _child_header="$_child_header_template"
-            _child_header="${_child_header//\[PARENT_FOLDER\]/..}"
-            _child_header="${_child_header//\[PHASE_NUMBER\]/$_i}"
-            _child_header="${_child_header//\[TOTAL_PHASES\]/$PHASE_COUNT}"
-            _child_header="${_child_header//\[PREDECESSOR_FOLDER\]/$_predecessor}"
-            _child_header="${_child_header//\[SUCCESSOR_FOLDER\]/$_successor}"
-            _child_header="${_child_header//\[PARENT_SPEC_NAME\]/$FEATURE_DESCRIPTION}"
-            _child_header="${_child_header//\[PHASE_SCOPE_DESCRIPTION\]/[To be defined during planning]}"
-            _child_header="${_child_header//\[PREDECESSOR_DEPENDENCIES\]/[To be defined during planning]}"
-            _child_header="${_child_header//\[PHASE_DELIVERABLES\]/[To be defined during planning]}"
+            _child_header="${_child_header//\[YOUR_VALUE_HERE: PARENT_FOLDER\]/..}"
+            _child_header="${_child_header//\[YOUR_VALUE_HERE: PHASE_NUMBER\]/$_i}"
+            _child_header="${_child_header//\[YOUR_VALUE_HERE: TOTAL_PHASES\]/$PHASE_COUNT}"
+            _child_header="${_child_header//\[YOUR_VALUE_HERE: PREDECESSOR_FOLDER\]/$_predecessor}"
+            _child_header="${_child_header//\[YOUR_VALUE_HERE: SUCCESSOR_FOLDER\]/$_successor}"
+            _child_header="${_child_header//\[YOUR_VALUE_HERE: PARENT_SPEC_NAME\]/$FEATURE_DESCRIPTION}"
+            _child_header="${_child_header//\[YOUR_VALUE_HERE: phase scope description\]/[To be defined during planning]}"
+            _child_header="${_child_header//\[YOUR_VALUE_HERE: predecessor dependencies\]/[To be defined during planning]}"
+            _child_header="${_child_header//\[YOUR_VALUE_HERE: phase deliverables\]/[To be defined during planning]}"
+            _child_header="${_child_header//\[YOUR_VALUE_HERE: handoff criteria\]/[To be defined during planning]}"
 
             # Prepend back-reference block to child spec.md
             _tmp_child_spec=$(mktemp)
+            PHASE_TMP_FILES+=("$_tmp_child_spec")
             printf '%s\n\n' "$_child_header" > "$_tmp_child_spec"
             cat "$_child_spec" >> "$_tmp_child_spec"
             mv "$_tmp_child_spec" "$_child_spec"
@@ -647,7 +690,11 @@ if [[ "$PHASE_MODE" = true ]]; then
         done
 
         # Build parent files JSON
-        parent_files_json=$(printf '"%s",' "${PARENT_CREATED_FILES[@]}" | sed 's/,$//')
+        parent_files_json=""
+        for _pf in "${PARENT_CREATED_FILES[@]}"; do
+            [[ -n "$parent_files_json" ]] && parent_files_json="${parent_files_json},"
+            parent_files_json="${parent_files_json}\"$(_json_escape "$_pf")\""
+        done
 
         printf '{"BRANCH_NAME":"%s","SPEC_FILE":"%s","FEATURE_NUM":"%s","DOC_LEVEL":"%s","PHASE_MODE":true,"PHASE_COUNT":%d,"PARENT_FILES":[%s],"CHILDREN":[%s]}\n' \
             "$(_json_escape "$BRANCH_NAME")" "$(_json_escape "$SPEC_FILE")" "$FEATURE_NUM" "$DOC_LEVEL" "$PHASE_COUNT" "$parent_files_json" "$children_json"
@@ -668,7 +715,7 @@ if [[ "$PHASE_MODE" = true ]]; then
         for file in "${PARENT_CREATED_FILES[@]}"; do
             echo "      ├── $file"
         done
-        for _ci in $(seq 1 "$PHASE_COUNT"); do
+        for (( _ci=1; _ci<=PHASE_COUNT; _ci++ )); do
             _cf="${CHILD_FOLDERS[$((_ci - 1))]}"
             _info="${CHILDREN_INFO[$((_ci - 1))]}"
             _files="${_info#*|}"
@@ -703,62 +750,11 @@ if [[ "$PHASE_MODE" = true ]]; then
 fi
 
 # ───────────────────────────────────────────────────────────────
-# 4. BRANCH NAME GENERATION
+# 4. BRANCH NAME GENERATION (shared function)
 # ───────────────────────────────────────────────────────────────
 
-if [[ -n "$SHORT_NAME" ]]; then
-    BRANCH_SUFFIX=$(echo "$SHORT_NAME" | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z0-9]/-/g' | sed 's/--*/-/g' | sed 's/^-//' | sed 's/-$//')
-else
-    BRANCH_SUFFIX=$(generate_branch_name "$FEATURE_DESCRIPTION")
-fi
-
-if [[ -z "$BRANCH_NUMBER" ]]; then
-    if [[ "$HAS_GIT" = true ]]; then
-        # Check existing branches on remotes
-        BRANCH_NUMBER=$(check_existing_branches "$BRANCH_SUFFIX")
-    else
-        # Fall back to local directory check
-        HIGHEST=0
-        if [[ -d "$SPECS_DIR" ]]; then
-            for dir in "$SPECS_DIR"/*; do
-                [[ -d "$dir" ]] || continue
-                # P1-02 FIX: Removed 'local' keyword — this code runs outside a function body
-                dirname=$(basename "$dir")
-                number=$(echo "$dirname" | grep -o '^[0-9]\+' || echo "0")
-                number=$((10#$number))
-                if [[ "$number" -gt "$HIGHEST" ]]; then HIGHEST=$number; fi
-            done
-        fi
-        BRANCH_NUMBER=$((HIGHEST + 1))
-    fi
-fi
-
-# Force base-10 interpretation (prevents octal issues with leading zeros)
-FEATURE_NUM=$(printf "%03d" "$((10#$BRANCH_NUMBER))")
-BRANCH_NAME="${FEATURE_NUM}-${BRANCH_SUFFIX}"
-
-# GitHub enforces 244-byte branch name limit
-MAX_BRANCH_LENGTH=244
-if [[ ${#BRANCH_NAME} -gt $MAX_BRANCH_LENGTH ]]; then
-    # Account for: feature number (3) + hyphen (1) = 4 chars
-    MAX_SUFFIX_LENGTH=$((MAX_BRANCH_LENGTH - 4))
-    TRUNCATED_SUFFIX=$(echo "$BRANCH_SUFFIX" | cut -c1-$MAX_SUFFIX_LENGTH | sed 's/-$//')
-    ORIGINAL_BRANCH_NAME="$BRANCH_NAME"
-    BRANCH_NAME="${FEATURE_NUM}-${TRUNCATED_SUFFIX}"
-    
-    >&2 echo "[specify] Warning: Branch name exceeded GitHub's 244-byte limit"
-    >&2 echo "[specify] Original: $ORIGINAL_BRANCH_NAME (${#ORIGINAL_BRANCH_NAME} bytes)"
-    >&2 echo "[specify] Truncated to: $BRANCH_NAME (${#BRANCH_NAME} bytes)"
-fi
-
-# Create git branch (unless skipped or no git)
-if [[ "$SKIP_BRANCH" = true ]]; then
-    >&2 echo "[speckit] Skipping branch creation (--skip-branch)"
-elif [[ "$HAS_GIT" = true ]]; then
-    git checkout -b "$BRANCH_NAME"
-else
-    >&2 echo "[speckit] Warning: Git repository not detected; skipped branch creation for $BRANCH_NAME"
-fi
+resolve_branch_name
+create_git_branch
 
 # ───────────────────────────────────────────────────────────────
 # 5. CREATE SPEC FOLDER STRUCTURE

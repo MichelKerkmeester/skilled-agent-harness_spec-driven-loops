@@ -10,18 +10,18 @@
 
 | Phase | Folder | Scope | Dependencies | Status |
 |-------|--------|-------|--------------|--------|
-| [PHASE_ROW] |
+<!-- [YOUR_VALUE_HERE: PHASE_ROW] — Replaced by create.sh with full 5-column table rows (e.g., "| 1 | 001-name/ | [scope] | [deps] | Pending |") -->
 
 ### Phase Transition Rules
 
 - Each phase MUST pass `validate.sh` independently before the next phase begins
 - Parent spec tracks aggregate progress via this map
-- Use `/spec_kit:resume [PARENT_FOLDER]/[NNN-phase]/` to resume a specific phase
+- Use `/spec_kit:resume [parent-folder]/[NNN-phase]/` to resume a specific phase
 - Run `validate.sh --recursive` on parent to validate all phases as integrated unit
 
 ### Phase Handoff Criteria
 
 | From | To | Criteria | Verification |
 |------|-----|----------|--------------|
-| [HANDOFF_ROW] |
+<!-- [YOUR_VALUE_HERE: HANDOFF_ROW] — Replaced by create.sh with full 4-column table rows (e.g., "| 001-name | 002-name | [criteria] | [verification] |") -->
 <!-- /ANCHOR:phase-map -->

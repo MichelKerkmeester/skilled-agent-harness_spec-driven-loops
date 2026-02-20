@@ -83,7 +83,9 @@ interface SearchFunction {
 function fuseResults(
   listA: RrfItem[],
   listB: RrfItem[],
-  k: number = DEFAULT_K
+  k: number = DEFAULT_K,
+  sourceA: string = SOURCE_TYPES.VECTOR,
+  sourceB: string = SOURCE_TYPES.FTS,
 ): FusionResult[] {
   const scoreMap = new Map<number | string, FusionResult>();
 
@@ -94,12 +96,12 @@ function fuseResults(
     const existing = scoreMap.get(item.id);
     if (existing) {
       existing.rrfScore += rrfScore;
-      existing.sources.push(SOURCE_TYPES.VECTOR);
+      existing.sources.push(sourceA);
     } else {
       scoreMap.set(item.id, {
         ...item,
         rrfScore,
-        sources: [SOURCE_TYPES.VECTOR],
+        sources: [sourceA],
         sourceScores: {},
         convergenceBonus: 0,
       });
@@ -113,14 +115,14 @@ function fuseResults(
     const existing = scoreMap.get(item.id);
     if (existing) {
       existing.rrfScore += rrfScore;
-      existing.sources.push(SOURCE_TYPES.FTS);
+      existing.sources.push(sourceB);
       existing.convergenceBonus = CONVERGENCE_BONUS;
       existing.rrfScore += CONVERGENCE_BONUS;
     } else {
       scoreMap.set(item.id, {
         ...item,
         rrfScore,
-        sources: [SOURCE_TYPES.FTS],
+        sources: [sourceB],
         sourceScores: {},
         convergenceBonus: 0,
       });

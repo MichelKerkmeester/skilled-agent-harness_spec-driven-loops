@@ -71,9 +71,9 @@ describe('T022: Graph Channel Feature Flag Regression', () => {
       expect(isGraphUnifiedEnabled()).toBe(true);
     });
 
-    it('T022-5a: Strict equality — "TRUE" (uppercase) does NOT enable flag', () => {
+    it('T022-5a: Case-insensitive — "TRUE" (uppercase) enables flag', () => {
       process.env.SPECKIT_GRAPH_UNIFIED = 'TRUE';
-      expect(isGraphUnifiedEnabled()).toBe(false);
+      expect(isGraphUnifiedEnabled()).toBe(true);
     });
 
     it('T022-5b: Strict equality — "1" does NOT enable flag', () => {
@@ -86,9 +86,9 @@ describe('T022: Graph Channel Feature Flag Regression', () => {
       expect(isGraphUnifiedEnabled()).toBe(false);
     });
 
-    it('T022-5d: Strict equality — "True" (mixed case) does NOT enable flag', () => {
+    it('T022-5d: Case-insensitive — "True" (mixed case) enables flag', () => {
       process.env.SPECKIT_GRAPH_UNIFIED = 'True';
-      expect(isGraphUnifiedEnabled()).toBe(false);
+      expect(isGraphUnifiedEnabled()).toBe(true);
     });
 
     it('T022-5e: Empty string keeps flag enabled (rollout-policy treats empty as unset)', () => {

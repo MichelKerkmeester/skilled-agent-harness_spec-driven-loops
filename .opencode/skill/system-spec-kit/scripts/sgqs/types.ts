@@ -57,6 +57,9 @@ export interface SkillGraph {
   /** All edges in the graph */
   edges: GraphEdge[];
 
+  /** Edge lookup by ID for O(1) access (avoids linear scans) */
+  edgeById: Map<string, GraphEdge>;
+
   /** Adjacency index: node ID -> outbound edge IDs */
   outbound: Map<string, string[]>;
 

@@ -66,6 +66,7 @@ let reinitializeMutex: Promise<void> | null = null;
 let embeddingModelReady: boolean = false;
 let constitutionalCache: unknown = null;
 let constitutionalCacheTime: number = 0;
+let configTableCreated: boolean = false;
 
 /* ---------------------------------------------------------------
    3. MODULE REFERENCES
@@ -163,6 +164,13 @@ export async function reinitializeDatabase(): Promise<void> {
    5. PERSISTENT RATE LIMITING
    --------------------------------------------------------------- */
 
+/** Ensure the config table exists (idempotent, runs DDL at most once per process). */
+function ensureConfigTable(db: DatabaseLike): void {
+  if (configTableCreated) return;
+  db.exec(`CREATE TABLE IF NOT EXISTS config (key TEXT PRIMARY KEY, value TEXT)`);
+  configTableCreated = true;
+}
+
 /** Retrieve the timestamp of the last index scan from the config table. */
 export async function getLastScanTime(): Promise<number> {
   if (!vectorIndex) {
@@ -173,12 +181,7 @@ export async function getLastScanTime(): Promise<number> {
     const db = vectorIndex.getDb();
     if (!db) return 0;
 
-    db.exec(`
-      CREATE TABLE IF NOT EXISTS config (
-        key TEXT PRIMARY KEY,
-        value TEXT
-      )
-    `);
+    ensureConfigTable(db);
     const row = db.prepare('SELECT value FROM config WHERE key = ?').get('last_index_scan') as { value: string } | undefined;
     return row ? parseInt(row.value, 10) : 0;
   } catch (e: unknown) {
@@ -198,12 +201,7 @@ export async function setLastScanTime(time: number): Promise<void> {
     const db = vectorIndex.getDb();
     if (!db) return;
 
-    db.exec(`
-      CREATE TABLE IF NOT EXISTS config (
-        key TEXT PRIMARY KEY,
-        value TEXT
-      )
-    `);
+    ensureConfigTable(db);
     db.prepare('INSERT OR REPLACE INTO config (key, value) VALUES (?, ?)').run('last_index_scan', time.toString());
   } catch (e: unknown) {
     const message = e instanceof Error ? e.message : String(e);

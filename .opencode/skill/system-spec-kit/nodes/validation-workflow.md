@@ -21,4 +21,4 @@ Automated validation of spec folder contents via `validate.sh`.
 3. Exit 1 → ADDRESS warnings or document reason
 4. Exit 0 → Proceed with completion claim
 
-**Full documentation:** See [validation_rules.md](./references/validation/validation_rules.md) for all rules, configuration, and troubleshooting.
+**Full documentation:** See [validation_rules.md](../references/validation/validation_rules.md) for all rules, configuration, and troubleshooting.

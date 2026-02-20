@@ -40,7 +40,7 @@ description: "Mandatory rules (ALWAYS, NEVER, ESCALATE) for using the system-spe
    - Read all existing spec files (spec.md, plan.md, tasks.md, implementation-summary.md) for context
    - Replace every placeholder marker pattern in newly injected sections with content derived from that context
    - For sections without sufficient source context, write "N/A — insufficient source context" instead of fabricating content
-   - Run `check-placeholders.sh <spec-folder>` to verify zero placeholders remain (see [level_specifications.md](./references/templates/level_specifications.md) for the full procedure)
+   - Run `check-placeholders.sh <spec-folder>` to verify zero placeholders remain (see [level_specifications.md](../references/templates/level_specifications.md) for the full procedure)
    - Document the level change in changelog
 2. **Uncertainty about level <80%** - Present level options to user, default to higher
 3. **Template doesn't fit requirements** - Adapt closest template, document modifications

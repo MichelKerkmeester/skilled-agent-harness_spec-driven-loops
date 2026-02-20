@@ -238,10 +238,10 @@ server.setRequestHandler(CallToolRequestSchema, async (request, _extra: unknown)
               // Results are typically sorted by score (highest first)
               // Remove from end (lowest-scored) until within budget
               while (innerResults.length > 1) {
-                const removedItem = innerResults.pop();
-                const removedSize = JSON.stringify(removedItem).length;
-                // Rough estimate: CHARS_PER_TOKEN_ESTIMATE chars ≈ 1 token
-                envelope.meta.tokenCount -= Math.ceil(removedSize / CHARS_PER_TOKEN_ESTIMATE);
+                innerResults.pop();
+                // P1-06 FIX: Recalculate token count from actual remaining content
+                // instead of decrementing, to avoid drift from the rough estimate
+                envelope.meta.tokenCount = Math.ceil(JSON.stringify(innerResults).length / CHARS_PER_TOKEN_ESTIMATE);
                 if (envelope.meta.tokenCount <= budget) break;
               }
               if (envelope.data.count !== undefined) {
@@ -402,10 +402,11 @@ let transport: StdioServerTransport | null = null;
 // P1-11 FIX: Module-level guard to avoid redundant initializeDb() calls per tool invocation
 let dbInitialized = false;
 
-process.on('SIGTERM', () => {
+/** P2-06 FIX: Shared graceful shutdown logic for signal handlers. */
+function gracefulShutdown(signal: string): void {
   if (shuttingDown) return;
   shuttingDown = true;
-  console.error('[context-server] Received SIGTERM, shutting down...');
+  console.error(`[context-server] Received ${signal}, shutting down...`);
   sessionManager.shutdown(); // T302: Clear session cleanup intervals (GAP 1)
   archivalManager.cleanup(); // T059: Stop archival background job
   retryManager.stopBackgroundJob(); // T099: Stop retry background job
@@ -415,22 +416,10 @@ process.on('SIGTERM', () => {
   // P1-09 FIX: Close MCP transport on shutdown
   if (transport) { try { transport.close(); } catch { /* ignore */ } }
   process.exit(0);
-});
+}
 
-process.on('SIGINT', () => {
-  if (shuttingDown) return;
-  shuttingDown = true;
-  console.error('[context-server] Received SIGINT, shutting down...');
-  sessionManager.shutdown(); // T302: Clear session cleanup intervals (GAP 1)
-  archivalManager.cleanup(); // T059: Stop archival background job
-  retryManager.stopBackgroundJob(); // T099: Stop retry background job
-  accessTracker.reset();
-  toolCache.shutdown(); // KL-4: Stop cleanup interval and clear cache
-  vectorIndex.closeDb();
-  // P1-09 FIX: Close MCP transport on shutdown
-  if (transport) { try { transport.close(); } catch { /* ignore */ } }
-  process.exit(0);
-});
+process.on('SIGTERM', () => gracefulShutdown('SIGTERM'));
+process.on('SIGINT', () => gracefulShutdown('SIGINT'));
 
 process.on('uncaughtException', (err: Error) => {
   console.error('[context-server] Uncaught exception:', err);

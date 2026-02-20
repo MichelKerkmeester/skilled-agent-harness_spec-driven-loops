@@ -288,9 +288,9 @@ describe('C136-10 Adaptive Fusion', () => {
   // ---- T019: graphWeight and graphCausalBias field validation ----
 
   describe('T019: graphWeight and graphCausalBias profiles', () => {
-    const PROFILE_NAMES = ['understand', 'find_spec', 'fix_bug', 'debug', 'add_feature', 'refactor'] as const;
+    const PROFILE_NAMES = ['understand', 'find_spec', 'fix_bug', 'add_feature', 'refactor'] as const;
 
-    it('T019-1: all 6 profiles have a numeric graphWeight field', () => {
+    it('T019-1: all 5 profiles have a numeric graphWeight field', () => {
       for (const name of PROFILE_NAMES) {
         const profile = INTENT_WEIGHT_PROFILES[name];
         expect(profile, `Profile "${name}" must exist`).toBeDefined();
@@ -298,7 +298,7 @@ describe('C136-10 Adaptive Fusion', () => {
       }
     });
 
-    it('T019-2: all 6 profiles have a numeric graphCausalBias field', () => {
+    it('T019-2: all 5 profiles have a numeric graphCausalBias field', () => {
       for (const name of PROFILE_NAMES) {
         const profile = INTENT_WEIGHT_PROFILES[name];
         expect(profile, `Profile "${name}" must exist`).toBeDefined();
@@ -323,10 +323,8 @@ describe('C136-10 Adaptive Fusion', () => {
       expect(profile.graphWeight, `find_spec.graphWeight (${profile.graphWeight}) must be >= 0.25`).toBeGreaterThanOrEqual(0.25);
     });
 
-    it('T019-5: debug has graphCausalBias >= 0.15 for causal-heavy debugging', () => {
-      const profile = INTENT_WEIGHT_PROFILES['debug'];
-      expect(profile.graphCausalBias, `debug.graphCausalBias (${profile.graphCausalBias}) must be >= 0.15`).toBeGreaterThanOrEqual(0.15);
-    });
+    // T019-5: Removed — 'debug' is not a valid IntentType.
+    // The debug profile was erroneously included and has been removed from INTENT_WEIGHT_PROFILES.
 
     it('T019-6: DEFAULT_WEIGHTS includes both graphWeight and graphCausalBias as numbers', () => {
       expect(typeof DEFAULT_WEIGHTS.graphWeight).toBe('number');

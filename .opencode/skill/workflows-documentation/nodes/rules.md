@@ -16,7 +16,7 @@ description: "Mandatory rules (ALWAYS, NEVER, ESCALATE) separated by modes (Qual
 7. **ALWAYS validate before completion** (structure + content + style)
 8. **ALWAYS provide metrics** (before/after counts from script output)
 9. **ALWAYS run `validate_document.py` before delivery** (exit 0 required for READMEs)
-10. **ALWAYS enforce Human Voice Rules (HVR)** on all documentation output. Full ruleset: [hvr_rules.md](./references/hvr_rules.md). Quick reference: `readme_template.md` §9.
+10. **ALWAYS enforce Human Voice Rules (HVR)** on all documentation output. Full ruleset: [hvr_rules.md](../references/hvr_rules.md). Quick reference: `readme_template.md` §9.
 
 #### ❌ NEVER
 

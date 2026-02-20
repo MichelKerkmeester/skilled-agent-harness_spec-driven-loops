@@ -88,6 +88,9 @@ function executePattern(
     for (const nodeBindings of firstMatches) {
       // Process remaining rel-chain pairs
       let currentSets: Bindings[] = [nodeBindings];
+      // Track the binding name of the most recently matched node in THIS pattern
+      // so matchRelChain resolves the correct source node (P0-3 fix).
+      let prevNodeBinding = firstNode.binding;
       let i = 1;
 
       while (i < elements.length) {
@@ -97,10 +100,11 @@ function executePattern(
 
         const nextSets: Bindings[] = [];
         for (const bs of currentSets) {
-          const expanded = matchRelChain(relPattern, nextNodePattern, graph, bs);
+          const expanded = matchRelChain(relPattern, nextNodePattern, graph, bs, prevNodeBinding);
           nextSets.push(...expanded);
         }
         currentSets = nextSets;
+        prevNodeBinding = nextNodePattern.binding;
       }
 
       results.push(...currentSets);
@@ -171,9 +175,20 @@ function matchRelChain(
   nextNodePattern: NodePatternNode,
   graph: SkillGraph,
   bindings: Bindings,
+  sourceBinding: string | null = null,
 ): Bindings[] {
-  // Find the source node (the most recently bound node before this rel)
-  const sourceNode = findPreviousNode(bindings);
+  // Resolve source node: prefer explicit binding from the current pattern chain,
+  // fall back to scanning bindings for backwards compatibility (P0-3 fix).
+  let sourceNode: GraphNode | null = null;
+  if (sourceBinding) {
+    const bound = bindings.get(sourceBinding);
+    if (bound && isGraphNode(bound)) {
+      sourceNode = bound as GraphNode;
+    }
+  }
+  if (!sourceNode) {
+    sourceNode = findPreviousNode(bindings);
+  }
   if (!sourceNode) return [];
 
   if (relPattern.range) {
@@ -324,7 +339,7 @@ function matchVariableLengthPath(
   return results;
 }
 
-/** Get edges respecting direction */
+/** Get edges respecting direction — O(1) per edge via edgeById index */
 function getDirectedEdges(
   nodeId: string,
   direction: 'OUT' | 'IN' | 'BOTH',
@@ -335,7 +350,7 @@ function getDirectedEdges(
   if (direction === 'OUT' || direction === 'BOTH') {
     const outIds = graph.outbound.get(nodeId) || [];
     for (const edgeId of outIds) {
-      const edge = graph.edges.find(e => e.id === edgeId);
+      const edge = graph.edgeById.get(edgeId);
       if (edge) edges.push(edge);
     }
   }
@@ -343,7 +358,7 @@ function getDirectedEdges(
   if (direction === 'IN' || direction === 'BOTH') {
     const inIds = graph.inbound.get(nodeId) || [];
     for (const edgeId of inIds) {
-      const edge = graph.edges.find(e => e.id === edgeId);
+      const edge = graph.edgeById.get(edgeId);
       if (edge) edges.push(edge);
     }
   }
@@ -719,12 +734,12 @@ function literalToValue(lit: LiteralNode): unknown {
 // 7. HELPERS
 // ---------------------------------------------------------------
 
-/** Type guard for GraphNode */
+/** Type guard for GraphNode — checks for labels (nodes) and absence of source/target (edges) */
 function isGraphNode(entity: unknown): entity is GraphNode {
+  const obj = entity as Record<string, unknown>;
   return entity !== null && typeof entity === 'object' &&
-    'id' in (entity as Record<string, unknown>) &&
-    'labels' in (entity as Record<string, unknown>) &&
-    'skill' in (entity as Record<string, unknown>);
+    'id' in obj && 'labels' in obj && 'skill' in obj &&
+    !('source' in obj) && !('target' in obj);
 }
 
 /** Type guard for GraphEdge */

@@ -34,6 +34,7 @@ const MOCK_GRAPH: SkillGraph = {
     }],
   ]),
   edges: [],
+  edgeById: new Map(),
   outbound: new Map(),
   inbound: new Map(),
 };
@@ -109,7 +110,7 @@ describe('createUnifiedGraphSearchFn', () => {
     const searchFn = createUnifiedGraphSearchFn(mockDb, '/skills');
 
     // Let the warm-load promise settle so cachedGraph is populated
-    await new Promise(r => setTimeout(r, 10));
+    await new Promise(r => setTimeout(r, 0));
 
     const results = searchFn('nonexistent-query-zzz', { limit: 5 });
     const causalResult = results.find(r => String(r['id']).startsWith('mem:'));
@@ -129,7 +130,7 @@ describe('createUnifiedGraphSearchFn', () => {
     const searchFn = createUnifiedGraphSearchFn(mockDb, '/skills');
 
     // Allow warm-load to populate cachedGraph
-    await new Promise(r => setTimeout(r, 10));
+    await new Promise(r => setTimeout(r, 0));
 
     const results = searchFn('memory system', { limit: 10 });
     const skillResult = results.find(r => String(r['id']).startsWith('skill:'));
@@ -147,7 +148,7 @@ describe('createUnifiedGraphSearchFn', () => {
     mockAll.mockReturnValue([causalRow]);
 
     const searchFn = createUnifiedGraphSearchFn(mockDb, '/skills');
-    await new Promise(r => setTimeout(r, 10));
+    await new Promise(r => setTimeout(r, 0));
 
     // "memory" matches the SGQS node with score 1.0 (single token, exact match in id)
     const results = searchFn('memory', { limit: 10 });
@@ -177,7 +178,7 @@ describe('createUnifiedGraphSearchFn', () => {
     });
 
     const searchFn = createUnifiedGraphSearchFn(mockDb, '/skills');
-    await new Promise(r => setTimeout(r, 10));
+    await new Promise(r => setTimeout(r, 0));
 
     const results = searchFn('memory', { limit: 10 });
 
@@ -193,7 +194,7 @@ describe('createUnifiedGraphSearchFn', () => {
     mockAll.mockReturnValue([]);
 
     const searchFn = createUnifiedGraphSearchFn(mockDb, '/skills');
-    await new Promise(r => setTimeout(r, 10));
+    await new Promise(r => setTimeout(r, 0));
 
     // Query that matches no node IDs or names
     const results = searchFn('zzz-no-match-xyz', { limit: 10 });
@@ -214,7 +215,7 @@ describe('createUnifiedGraphSearchFn', () => {
     mockAll.mockReturnValue(rows);
 
     const searchFn = createUnifiedGraphSearchFn(mockDb, '/skills');
-    await new Promise(r => setTimeout(r, 10));
+    await new Promise(r => setTimeout(r, 0));
 
     const results = searchFn('memory', { limit: 20 });
 
@@ -234,7 +235,7 @@ describe('createUnifiedGraphSearchFn', () => {
     mockAll.mockReturnValue([row]);
 
     const searchFn = createUnifiedGraphSearchFn(mockDb, '/skills');
-    await new Promise(r => setTimeout(r, 10));
+    await new Promise(r => setTimeout(r, 0));
 
     // "checklist" matches skill node "system-spec-kit/checklist"
     const results = searchFn('checklist memory', { limit: 20 });

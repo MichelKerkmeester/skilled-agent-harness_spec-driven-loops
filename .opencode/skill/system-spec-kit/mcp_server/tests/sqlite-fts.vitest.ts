@@ -74,8 +74,8 @@ describe('C138-P2 SQLite FTS5 BM25 Search', () => {
   it('T2: FTS5_BM25_WEIGHTS has correct values', () => {
     expect(FTS5_BM25_WEIGHTS[0]).toBe(10.0); // title
     expect(FTS5_BM25_WEIGHTS[1]).toBe(5.0);  // trigger_phrases
-    expect(FTS5_BM25_WEIGHTS[2]).toBe(1.0);  // content_text
-    expect(FTS5_BM25_WEIGHTS[3]).toBe(2.0);  // file_path
+    expect(FTS5_BM25_WEIGHTS[2]).toBe(2.0);  // file_path
+    expect(FTS5_BM25_WEIGHTS[3]).toBe(1.0);  // content_text
   });
 
   // ---- T3: Basic BM25 search returns results ----

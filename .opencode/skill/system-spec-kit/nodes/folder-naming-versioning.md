@@ -45,4 +45,4 @@ specs/007-auth-system/
     └── memory/
 ```
 
-**Full documentation:** See [sub_folder_versioning.md](./references/structure/sub_folder_versioning.md)
+**Full documentation:** See [sub_folder_versioning.md](../references/structure/sub_folder_versioning.md)

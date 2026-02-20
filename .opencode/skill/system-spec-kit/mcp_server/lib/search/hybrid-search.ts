@@ -9,7 +9,7 @@ import { fuseResultsMulti } from './rrf-fusion';
 import { hybridAdaptiveFuse } from './adaptive-fusion';
 import { spreadActivation } from '../cognitive/co-activation';
 import { applyMMR } from './mmr-reranker';
-import { INTENT_LAMBDA_MAP } from './intent-classifier';
+import { INTENT_LAMBDA_MAP, classifyIntent } from './intent-classifier';
 import { fts5Bm25Search } from './sqlite-fts';
 
 // Type-only
@@ -211,8 +211,8 @@ function ftsSearch(
 
   try {
     // C138-P2: Delegate to weighted BM25 FTS5 search from sqlite-fts.ts
-    // Uses bm25(memory_fts, 10.0, 5.0, 1.0, 2.0) for per-column weighting
-    // (title 10x, trigger_phrases 5x, content 1x, file_path 2x)
+    // Uses bm25(memory_fts, 10.0, 5.0, 2.0, 1.0) for per-column weighting
+    // (title 10x, trigger_phrases 5x, file_path 2x, content 1x)
     // Filters: is_archived exclusion and spec_folder matching handled by fts5Bm25Search
     const bm25Results = fts5Bm25Search(db, query, { limit, specFolder, includeArchived });
 
@@ -325,7 +325,7 @@ async function hybridSearch(
       for (const r of graphResults) {
         results.push({
           ...r,
-          id: r.id as number,
+          id: r.id,
           score: (r.score as number) || 0,
           source: 'graph',
         });
@@ -349,8 +349,12 @@ async function hybridSearch(
   for (const [, group] of bySource) {
     if (group.length === 0) continue;
     const scores = group.map(r => r.score);
-    const min = Math.min(...scores);
-    const max = Math.max(...scores);
+    let min = Infinity;
+    let max = -Infinity;
+    for (const s of scores) {
+      if (s < min) min = s;
+      if (s > max) max = s;
+    }
     const range = max - min;
     for (const r of group) {
       normalized.push({
@@ -361,6 +365,10 @@ async function hybridSearch(
   }
 
   // Deduplicate by ID (keep highest normalized score)
+  // LIMITATION (P1-1): When a result appears in multiple sources (e.g., vector + fts),
+  // only the highest-scoring entry's `source` is preserved. Multi-source provenance
+  // is lost here. To fix properly, HybridSearchResult would need a `sources: string[]`
+  // field and downstream consumers would need to be updated accordingly.
   const deduped = new Map<number | string, HybridSearchResult>();
   for (const r of normalized) {
     const existing = deduped.get(r.id);
@@ -464,7 +472,7 @@ async function hybridSearchEnhanced(
       }
 
       // C138: Use adaptive fusion to get intent-aware weights replacing hardcoded [1.0, 0.8, 0.6]
-      const intent = options.intent || 'understand';
+      const intent = options.intent || classifyIntent(query).intent;
       const adaptiveResult = hybridAdaptiveFuse(semanticResults, keywordResults, intent);
       const { semanticWeight, keywordWeight } = adaptiveResult.weights;
 
@@ -479,19 +487,56 @@ async function hybridSearchEnhanced(
       const fused = fuseResultsMulti(lists);
       const limit = options.limit || DEFAULT_LIMIT;
 
-      // C138: MMR reranking — only apply when results have embeddings for diversity pruning
+      // C138: MMR reranking — retrieve embeddings from vec_memories for diversity pruning.
+      // Fused results don't carry embeddings through RRF, so we look them up from the
+      // vec0 virtual table for the top-N numeric-ID results before running MMR.
       let reranked = fused.slice(0, limit);
-      const mmrCandidates = reranked.filter(
-        (r): r is typeof r & { embedding: Float32Array } =>
-          (r as Record<string, unknown>).embedding instanceof Float32Array
-      ) as MMRCandidate[];
+      if (db) {
+        const numericIds = reranked
+          .map(r => r.id)
+          .filter((id): id is number => typeof id === 'number');
 
-      if (mmrCandidates.length >= MMR_MIN_CANDIDATES) {
-        // C138: Intent-driven lambda — use INTENT_LAMBDA_MAP for per-intent diversity tuning
-        const mmrLambda = INTENT_LAMBDA_MAP[intent] ?? MMR_DEFAULT_LAMBDA;
-        const diversified = applyMMR(mmrCandidates as MMRCandidate[], { lambda: mmrLambda, limit });
-        // WHY: MMRCandidate and reranked item share structural overlap (id + score fields); double-cast bridges incompatible nominal types
-        reranked = diversified.map(c => reranked.find(r => r.id === c.id) ?? c as unknown as typeof reranked[0]);
+        if (numericIds.length >= MMR_MIN_CANDIDATES) {
+          try {
+            const placeholders = numericIds.map(() => '?').join(', ');
+            const embRows = (db.prepare(
+              `SELECT rowid, embedding FROM vec_memories WHERE rowid IN (${placeholders})`
+            ) as Database.Statement).all(...numericIds) as Array<{ rowid: number; embedding: Buffer }>;
+
+            const embeddingMap = new Map<number, Float32Array>();
+            for (const row of embRows) {
+              if (Buffer.isBuffer(row.embedding)) {
+                embeddingMap.set(
+                  row.rowid,
+                  new Float32Array(row.embedding.buffer, row.embedding.byteOffset, row.embedding.byteLength / 4)
+                );
+              }
+            }
+
+            const mmrCandidates: MMRCandidate[] = [];
+            for (const r of reranked) {
+              const emb = embeddingMap.get(r.id as number);
+              if (emb) {
+                mmrCandidates.push({
+                  id: r.id as number,
+                  score: (r.score as number) ?? 0,
+                  embedding: emb,
+                });
+              }
+            }
+
+            if (mmrCandidates.length >= MMR_MIN_CANDIDATES) {
+              const mmrLambda = INTENT_LAMBDA_MAP[intent] ?? MMR_DEFAULT_LAMBDA;
+              const diversified = applyMMR(mmrCandidates, { lambda: mmrLambda, limit });
+              reranked = diversified.map(c =>
+                reranked.find(r => r.id === c.id) ?? (c as typeof reranked[0]),
+              );
+            }
+          } catch (embErr: unknown) {
+            const msg = embErr instanceof Error ? embErr.message : String(embErr);
+            console.warn(`[hybrid-search] MMR embedding retrieval failed: ${msg}`);
+          }
+        }
       }
 
       // C138: Co-activation spreading — enrich with temporal neighbors
@@ -504,7 +549,7 @@ async function hybridSearchEnhanced(
           const spreadResults: SpreadResult[] = spreadActivation(topIds);
           // Boost scores of results that appear in co-activation graph
           if (spreadResults.length > 0) {
-            const spreadMap = new Map(spreadResults.map(sr => [sr.id, sr.score]));
+            const spreadMap = new Map(spreadResults.map(sr => [sr.id, sr.activationScore]));
             for (const result of reranked) {
               const boost = spreadMap.get(result.id as number);
               if (boost !== undefined) {
@@ -513,6 +558,9 @@ async function hybridSearchEnhanced(
               }
             }
           }
+          // P1-2 FIX: Re-sort after co-activation boost to ensure boosted results
+          // are promoted to their correct position in the ranking
+          reranked.sort((a, b) => ((b.score as number) ?? 0) - ((a.score as number) ?? 0));
         } catch {
           // Non-critical enrichment — ignore failures
         }
@@ -524,8 +572,9 @@ async function hybridSearchEnhanced(
         source: (r.source as string) || 'hybrid'
       }));
     }
-  } catch {
-    // Fall back to simple hybrid search
+  } catch (error: unknown) {
+    const msg = error instanceof Error ? error.message : String(error);
+    console.warn(`[hybrid-search] Enhanced search failed, falling back: ${msg}`);
   }
 
   return hybridSearch(query, embedding, options);

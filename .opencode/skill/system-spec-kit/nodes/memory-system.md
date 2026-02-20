@@ -9,7 +9,7 @@ Context preservation across sessions via hybrid search (vector similarity + BM25
 
 **Server:** `@spec-kit/mcp-server` v1.7.2 — `context-server.ts` (~903 lines) with 11 handler files, 17 lib subdirectories, and 22 MCP tools across 7 layers.
 
-**MCP Tools (8 most-used of 22 total — see [memory_system.md](./references/memory/memory_system.md) for full reference):**
+**MCP Tools (8 most-used of 22 total — see [memory_system.md](../references/memory/memory_system.md) for full reference):**
 
 | Tool                      | Layer | Purpose                                                                                                                                 |
 | ------------------------- | ----- | --------------------------------------------------------------------------------------------------------------------------------------- |
@@ -37,9 +37,9 @@ Context preservation across sessions via hybrid search (vector similarity + BM25
 - **REQUIRED:** `query` (string) OR `concepts` (2-5 strings). `specFolder` alone causes E040 error.
 - Use `anchors` with `includeContent: true` for token-efficient section retrieval (~90% savings).
 - Intent weights auto-adjust scoring: `fix_bug` boosts recency, `security_audit` boosts importance, `refactor`/`understand` boost similarity.
-- **Full parameter reference:** See [memory_system.md](./references/memory/memory_system.md)
+- **Full parameter reference:** See [memory_system.md](../references/memory/memory_system.md)
 
-**Epistemic Learning:** Use `task_preflight()` before and `task_postflight()` after implementation to measure knowledge gains. Learning Index: `LI = (KnowledgeDelta × 0.4) + (UncertaintyReduction × 0.35) + (ContextImprovement × 0.25)`. Review trends via `memory_get_learning_history()`. See [epistemic-vectors.md](./references/memory/epistemic-vectors.md).
+**Epistemic Learning:** Use `task_preflight()` before and `task_postflight()` after implementation to measure knowledge gains. Learning Index: `LI = (KnowledgeDelta × 0.4) + (UncertaintyReduction × 0.35) + (ContextImprovement × 0.25)`. Review trends via `memory_get_learning_history()`. See [epistemic-vectors.md](../references/memory/epistemic-vectors.md).
 
 **Key Concepts:**
 - **Constitutional tier** — 3.0x search boost + 2.0x importance multiplier; merged into normal scoring pipeline
@@ -68,4 +68,4 @@ Set via environment variable before starting the MCP server (e.g., `SPECKIT_ADAP
 
 > **Token budgets per layer:** L1:2000, L2:1500, L3:800, L4:500, L5:600, L6:1200, L7:1000 (enforced via `chars/4` approximation).
 
-**Full documentation:** See [memory_system.md](./references/memory/memory_system.md) for tool behavior, importance tiers, and configuration.
+**Full documentation:** See [memory_system.md](../references/memory/memory_system.md) for tool behavior, importance tiers, and configuration.
