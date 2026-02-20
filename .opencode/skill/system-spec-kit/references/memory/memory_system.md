@@ -115,7 +115,7 @@ Six-tier system for prioritizing memory relevance:
 
 > **Note:** MCP tool names use the format `spec_kit_memory_<tool_name>`. In documentation, shorthand names like `memory_search()` refer to the full `spec_kit_memory_memory_search()` tool.
 
-### Tool Reference (22 tools)
+### Tool Reference (23 tools)
 
 | Layer | Tool | Purpose | Example Use |
 |-------|------|---------|-------------|
@@ -139,6 +139,7 @@ Six-tier system for prioritizing memory relevance:
 | L6: Analysis | `memory_causal_link()` | Create causal relationship between two memories | Link decision to its cause |
 | L6: Analysis | `memory_causal_stats()` | Get statistics about the causal memory graph | Check causal coverage |
 | L6: Analysis | `memory_causal_unlink()` | Remove a causal relationship by edge ID | Clean up incorrect links |
+| L6: Analysis | `memory_skill_graph_query()` | Query the SGQS skill graph for node relationships and structure | Explore skill graph topology |
 | L7: Maintenance | `memory_index_scan()` | Bulk scan and index memory files | After creating multiple files |
 
 ### memory_index_scan() Parameters

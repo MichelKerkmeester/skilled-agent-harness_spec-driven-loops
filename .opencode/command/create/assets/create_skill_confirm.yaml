@@ -411,6 +411,12 @@ workflow:
     - Verify directory structure created
     - Check SKILL.md template exists
     - Verify resource directories exist (scripts/, references/, assets/)
+    - IF skill_graph == B (add graph layer):
+      - Create supplemental graph structure alongside base SKILL.md
+      - "Command: mkdir -p [skill-path]/nodes/"
+      - Create index.md from graph index template
+      - "Template: .opencode/skill/workflows-documentation/assets/opencode/skill_graph_index_template.md"
+      - "Note: SKILL.md + assets/ + references/ are ALWAYS created; graph layer is additive"
     script_execution:
       command: "python3 .opencode/skill/workflows-documentation/scripts/init_skill.py [skill-name] --path [skill_path]"
       fallback: "Create directories manually if script fails"
@@ -419,6 +425,9 @@ workflow:
     - "[skill-name]/scripts/"
     - "[skill-name]/references/"
     - "[skill-name]/assets/"
+    graph_mode_additional_outputs:
+    - "[skill-name]/index.md"
+    - "[skill-name]/nodes/"
     outputs:
     - skill_scaffolded: true
     - directories_created: list
@@ -442,6 +451,15 @@ workflow:
     - "Write Section 8 - BUNDLED RESOURCES (optional)"
     - Create bundled resources from Step 4 plan
     - Delete unused example/placeholder files
+    - IF skill_graph == B (add graph layer):
+      - Additionally scaffold index.md using skill_graph_index_template.md
+      - Create initial nodes based on the skill's topics from Step 3
+      - "Each topic area → one nodes/*.md file using skill_graph_node_template.md"
+      - "Update SKILL.md Smart Routing to also reference index.md for graph navigation"
+      - "Note: Graph layer supplements SKILL.md — it does not replace it"
+    graph_mode_templates:
+      index: .opencode/skill/workflows-documentation/assets/opencode/skill_graph_index_template.md
+      node: .opencode/skill/workflows-documentation/assets/opencode/skill_graph_node_template.md
     section_boundary_rules:
       critical_distinction: |
         WRONG: Navigation Guide in "When to Use"
@@ -578,6 +596,13 @@ workflow:
       - trigger: "Step-by-step instructions needed"
         recommendation: "guide asset"
         command: "/create:skill_asset [skill-name] guide --chained"
+      - trigger: "Large skill with multi-domain content (5+ topics, complex routing)"
+        recommendation: "supplemental graph layer"
+        action: "Prompt user to add graph navigation layer (index.md + nodes/*.md) alongside base SKILL.md"
+        templates:
+          index: .opencode/skill/workflows-documentation/assets/opencode/skill_graph_index_template.md
+          node: .opencode/skill/workflows-documentation/assets/opencode/skill_graph_node_template.md
+        note: "Graph mode: check if [skill_path]/index.md exists to detect existing graph skills"
     presentation_format: |
       ┌────────────────────────────────────────────────────────────┐
       │ 📚 Resource Recommendations for [skill-name]               │

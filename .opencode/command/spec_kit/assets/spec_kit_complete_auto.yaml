@@ -82,9 +82,12 @@ user_inputs:
 # ─────────────────────────────────────────────────────────────────
 field_handling:
   spec_id:
-    derive_from: "spec_folder path using pattern specs/{NNN} or specs/{NNN-name}"
+    derive_from: "spec_folder path using pattern specs/{NNN}, specs/{NNN-name}, or specs/{NNN-parent}/{NNN-phase} (phase child — use parent NNN as spec_id)"
     fallback: "Extract numeric portion or use timestamp if extraction fails"
   defaults: { spec_folder_empty: "Auto-create specs/{NNN} from highest +001", context_empty: "Infer from [REQUEST], [STAGING LINK], and codebase exploration", issues_empty: "Investigate and discover during workflow", environment_empty: "Skip browser testing steps", scope_empty: "Use scope_policy.default" }
+  phase_folder_awareness:
+    note: "[SPEC_FOLDER] may be a phase child path (e.g., specs/003-name/001-phase/). When Option E is selected or --phase-folder is provided, spec_id derives from the parent folder NNN, not the child NNN. Predecessor validation required for non-first phases."
+    path_pattern: "specs/{NNN-parent}/{NNN-phase}/"
   scope_policy: { default: "specs/**", rule: "Limit file operations to scope when provided" }
 
 # ─────────────────────────────────────────────────────────────────
@@ -363,6 +366,12 @@ workflow:
     - Verify or create spec folder structure
     - Check for existing artifacts
     - Establish development scope
+    phase_predecessor_validation:
+      trigger: "If [SPEC_FOLDER] path matches specs/{NNN-parent}/{NNN-phase}/ (phase child)"
+      skip_if: "First phase (001-*) — no predecessor to check"
+      check: "Find previous numbered phase folder (e.g., for 002-*, check 001-*). Predecessor is complete if: implementation-summary.md exists OR all tasks marked [x] in tasks.md"
+      on_fail: "HARD BLOCK — predecessor phase not complete. Report status and halt."
+      on_pass: "Continue with step_1 activities"
     confidence_checkpoint:
       evaluate_at: "After analyzing all inputs"
       scoring_factors: ["Requirements clarity (0.40)", "Scope definition (0.30)", "Context availability (0.30)"]
@@ -752,6 +761,13 @@ workflow:
     outputs: [checklist_verification_report, evidence_documentation]
     validation: all_p0_complete
 
+  step_11_5_postflight:
+    name: "POSTFLIGHT Capture"
+    purpose: "Capture learning delta after implementation"
+    tool: "task_postflight"
+    parameters: "specFolder, taskId, knowledgeScore, uncertaintyScore, contextScore"
+    skip_conditions: ["Less than 10 LOC change", "No PREFLIGHT was captured"]
+
   step_12_completion:
     purpose: Generate implementation summary and verify completion
     activities:
@@ -777,13 +793,6 @@ workflow:
         VERIFY: implementation-summary.md exists with all required sections → THEN mark complete
       required_file: "[SPEC_FOLDER]/implementation-summary.md"
       failure_action: "Create implementation-summary.md before proceeding"
-
-  step_11_5_postflight:
-    name: "POSTFLIGHT Capture"
-    purpose: "Capture learning delta after implementation"
-    tool: "task_postflight"
-    parameters: "specFolder, taskId, knowledgeScore, uncertaintyScore, contextScore"
-    skip_conditions: ["Less than 10 LOC change", "No PREFLIGHT was captured"]
 
   step_13_save_context:
     purpose: Save conversation context for documentation and team sharing

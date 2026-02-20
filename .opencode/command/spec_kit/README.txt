@@ -9,6 +9,7 @@ trigger_phrases:
   - "spec kit debug"
   - "spec kit handover"
   - "spec kit resume"
+  - "spec kit phase"
   - "spec kit complete"
 ---
 
@@ -54,6 +55,7 @@ Each command loads a YAML workflow from `assets/` and executes it step by step. 
 | **debug** | `/spec_kit:debug [spec-folder]` | varies | Delegate debugging to a specialized sub-agent |
 | **handover** | `/spec_kit:handover [spec-folder]` | varies | Create session handover document for continuation |
 | **resume** | `/spec_kit:resume [spec-folder] [:auto\|:confirm]` | varies | Resume work on an existing spec folder |
+| **phase** | `/spec_kit:phase [description] [--phases N] [--phase-names list] [--parent specs/NNN-name/] [:auto\|:confirm]` | varies | Create and manage phase decomposition for complex spec folders |
 | **complete** | `/spec_kit:complete <description> [:auto\|:confirm] [:with-research] [:auto-debug]` | 14+ | Full end-to-end workflow combining all phases |
 
 ### Command Dependencies
@@ -66,6 +68,7 @@ Each command loads a YAML workflow from `assets/` and executes it step by step. 
 | `debug` | Existing spec folder with failing task |
 | `handover` | Existing spec folder with work history |
 | `resume` | Existing spec folder with saved state |
+| `phase` | Nothing (creates parent + phase child spec folders) |
 | `complete` | Nothing (runs full lifecycle) |
 
 ---
@@ -82,6 +85,7 @@ spec_kit/
 ├── implement.md      # /spec_kit:implement - Execute planned work
 ├── plan.md           # /spec_kit:plan - Planning only
 ├── research.md       # /spec_kit:research - Technical investigation
+├── phase.md          # /spec_kit:phase - Phase decomposition
 ├── resume.md         # /spec_kit:resume - Resume existing work
 └── assets/           # YAML workflow definitions
     ├── spec_kit_complete_auto.yaml
@@ -91,6 +95,8 @@ spec_kit/
     ├── spec_kit_handover_full.yaml
     ├── spec_kit_implement_auto.yaml
     ├── spec_kit_implement_confirm.yaml
+    ├── spec_kit_phase_auto.yaml
+    ├── spec_kit_phase_confirm.yaml
     ├── spec_kit_plan_auto.yaml
     ├── spec_kit_plan_confirm.yaml
     ├── spec_kit_research_auto.yaml
@@ -112,6 +118,9 @@ research (optional)
     |
     v
 plan (create spec folder + plan.md)
+    |
+    v
+phase (optional: decompose into phase children)
     |
     v
 implement (execute plan.md tasks)
@@ -138,6 +147,7 @@ The `complete` command combines research, plan, and implement into a single invo
 | debug | @debug (fresh perspective analysis) |
 | handover | @handover (context preservation) |
 | resume | Loads memory context, continues from last state |
+| phase | @speckit (folder creation), @general (script execution) |
 | complete | @research, @speckit, @general as needed |
 
 ---
@@ -179,6 +189,9 @@ Each mode maps to a YAML workflow file in `assets/`:
 # Research a topic before planning
 /spec_kit:research "OAuth 2.0 token refresh patterns" :auto
 
+# Decompose a complex feature into phases
+/spec_kit:phase "Build hybrid RAG search system" --phases 3 :auto
+
 # Delegate debugging after repeated failures
 /spec_kit:debug specs/012-rate-limiting
 
@@ -205,6 +218,7 @@ Each mode maps to a YAML workflow file in `assets/`:
 | Debug produces no result | No clear failing task to debug | Provide specific error context in the spec folder |
 | YAML workflow not found | Missing asset file | Verify `assets/` contains matching YAML for your mode |
 | Handover doc is empty | No significant work in session | Ensure you have completed tasks before handover |
+| Phase creates wrong structure | Incorrect --phases or --phase-names | Verify parent spec folder exists, re-run with correct arguments |
 | Complete takes too long | Full lifecycle runs all phases | Use specific commands (plan, implement) for faster execution |
 
 ---

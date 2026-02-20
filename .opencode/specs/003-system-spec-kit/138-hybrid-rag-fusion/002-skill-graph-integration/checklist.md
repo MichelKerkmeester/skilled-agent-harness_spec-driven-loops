@@ -66,8 +66,8 @@
     2. Confirm exit status is success.
     3. Confirm output states no unresolved links.
   - Evidence expected: full link-check command output with timestamp and success summary.
-- [x] CHK-012 [P0] All existing skills migrated to node architecture with lightweight `SKILL.md` graph entrypoints
-  - Deliverable: all 9 skills have compatibility `SKILL.md`, `index.md`, and sufficient `nodes/` coverage.
+- [x] CHK-012 [P0] All existing skills have supplemental graph navigation layers alongside their primary `SKILL.md` entrypoints
+  - Deliverable: all 9 skills retain their primary `SKILL.md` with Graph Status headers, `index.md`, and sufficient `nodes/` coverage.
   - How to verify:
     1. Audit all skill directories for required graph artifacts.
     2. Cross-check matrix states against TASK-310..TASK-318.

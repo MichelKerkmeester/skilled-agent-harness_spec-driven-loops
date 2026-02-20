@@ -94,7 +94,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
 
 8. Parse response and store ALL results:
    - feature_description = [from Q0 or $ARGUMENTS]
-   - spec_choice = [A/B/C/D from Q1]
+   - spec_choice = [A/B/C/D/E from Q1]
    - spec_path = [derived path or null if D]
    - execution_mode = [AUTONOMOUS/INTERACTIVE from suffix or Q2]
    - dispatch_mode = [single/multi_small/multi_large from Q3]

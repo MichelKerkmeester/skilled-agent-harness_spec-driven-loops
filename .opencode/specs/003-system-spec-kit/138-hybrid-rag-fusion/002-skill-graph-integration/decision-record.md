@@ -21,7 +21,7 @@
 
 Currently, our `skills` architecture relies on monolithic markdown files (`SKILL.md`) that contain massive amounts of context. As skills grow in complexity (e.g., adding comprehensive cognitive behavioral therapy concepts or extensive programming knowledge), a single skill file becomes unwieldy. It hits attention limits and token boundaries, and lacks composability.
 
-We need a way to break down large monolithic skills into smaller, composable pieces that reference each other, forming a "skill graph". This allows progressive disclosure of information: the agent reads an index, understands the topology, and traverses links dynamically as context requires.
+We need a way to break down large monolithic skills into smaller, composable pieces that reference each other, forming a "skill graph". This allows progressive disclosure of information: the agent reads an index, understands the topology, and traverses links dynamically as context requires. SKILL.md files remain the primary entrypoint and authoritative source. The graph supplements them with optional deep-dive navigation.
 <!-- /ANCHOR:context -->
 
 ---

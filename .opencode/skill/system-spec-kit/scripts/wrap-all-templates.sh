@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Wraps all level_1-3+ template files with ANCHOR tags
 # Uses Node.js script with anchor-generator function
 

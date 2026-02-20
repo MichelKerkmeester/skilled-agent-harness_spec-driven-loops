@@ -348,10 +348,16 @@ STEP 4 (Content) REQUIREMENTS:
 └─ MUST NOT leave placeholder content
 
 STEP 5 (Validation) REQUIREMENTS:
-├─ MUST update SKILL.md Navigation Guide
-├─ MUST add routing rules to SMART ROUTING section
+├─ DETECT graph mode: check if [skill_path]/index.md exists
+│   ├─ IF index.md exists (graph-mode skill):
+│   │   ├─ Integration target is the relevant index.md or nodes/*.md file
+│   │   ├─ MUST update the appropriate nodes/*.md Navigation section
+│   │   └─ MUST add routing rules to the relevant graph node(s)
+│   └─ IF no index.md (monolithic skill — default):
+│       ├─ MUST update SKILL.md Navigation Guide
+│       └─ MUST add routing rules to SMART ROUTING section
 ├─ MUST verify all sections are complete
-└─ MUST NOT claim "complete" without SKILL.md update
+└─ MUST NOT claim "complete" without integration update
 ```
 
 ---

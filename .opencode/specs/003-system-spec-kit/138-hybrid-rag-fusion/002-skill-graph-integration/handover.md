@@ -1,4 +1,4 @@
-# Session Handover: Skill Graphs Migration
+# Session Handover: Skill Graph Layer Addition
 
 **Spec Folder**: `.opencode/specs/003-system-spec-kit/138-hybrid-rag-fusion/002-skill-graph-integration/`
 **Created**: 2026-02-20
@@ -8,7 +8,7 @@
 
 ## 1. Session Summary
 
-**Objective**: Complete the Skill Graphs Migration — migrate all 9 skills to composable graph architecture, implement SGQS parser/executor, and clean up documentation artifacts.
+**Objective**: Complete the Skill Graph Layer Addition — add supplemental graph navigation layers to all 9 skills, implement SGQS parser/executor, and clean up documentation artifacts.
 **Progress**: 95%
 
 ### Key Accomplishments
@@ -66,7 +66,7 @@
 - `.opencode/specs/.../002-skill-graph-integration/scratch/traversal-report.md`
 
 ### Files Modified
-- 6 SKILL.md files converted to compatibility entrypoints (graph status section added)
+- 6 SKILL.md files updated with Graph Status headers (graph status section added)
 - `.opencode/skill/workflows-documentation/index.md` - Updated graph resources reference
 - `.opencode/skill/workflows-documentation/assets/opencode/skill_md_template.md` - Added graph mode guidance
 - `.opencode/skill/workflows-documentation/references/skill_creation.md` - Trimmed sections 1-2 and 6 bloat

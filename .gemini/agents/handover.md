@@ -9,7 +9,7 @@ timeout_mins: 5
 tools:
   - read_file
   - write_file
-  - edit_file
+  - replace
   - grep_search
   - list_directory
 ---

@@ -1,43 +1,41 @@
 # Chrome DevTools Installation Guide
 
-Complete installation and configuration guide for Chrome DevTools integration, enabling browser debugging and automation for AI agents. Covers both **CLI approach** (bdg command - primary, faster, token-efficient) and **MCP fallback** (Code Mode provider) for multi-tool integration scenarios. Provides screenshot capture, DOM inspection, console access, network monitoring, CSS debugging, and JavaScript execution capabilities.
+> **Part of OpenCode Installation.** See the [Master Installation Guide](../README.md) for complete setup.
+> **Package:** `browser-debugger-cli@alpha` | **Dependencies:** Node.js 18+, Chrome/Chromium
 
-> **Part of OpenCode Installation** - See [Master Installation Guide](../README.md) for complete setup.
-> **Package**: `browser-debugger-cli@alpha` | **Dependencies**: Node.js 18+, Chrome/Chromium
+**Version:** 2.1.0 | **Updated:** 2026-02-20 | **Protocol:** Chrome DevTools Protocol (CDP)
+
+---
+
+## Version History
+
+| Version | Date       | Changes                                                   |
+| ------- | ---------- | --------------------------------------------------------- |
+| 2.1.0   | 2026-02-20 | HVR compliance rewrite, formal checkpoints, STOP blocks   |
+| 2.0.0   | 2025-10-01 | Two-approach architecture, MCP fallback, security section |
+| 1.0.0   | 2025-06-01 | Initial CLI guide                                         |
 
 ---
 
 ## Table of Contents
 
-1. [OVERVIEW](#1--overview)
-2. [PREREQUISITES](#2--prerequisites)
-3. [CLI INSTALLATION](#3--cli-installation)
-4. [MCP CONFIGURATION](#4-️-mcp-configuration)
-5. [VERIFICATION](#5--verification)
-6. [USAGE PATTERNS](#6--usage-patterns)
-7. [BDG COMMAND REFERENCE](#7--bdg-command-reference)
-8. [SECURITY CONSIDERATIONS](#8-️-security-considerations)
-9. [TROUBLESHOOTING](#9--troubleshooting)
-10. [RESOURCES](#10--resources)
+0. [AI-First Install Guide](#0-ai-first-install-guide)
+1. [Overview](#1-overview)
+2. [Prerequisites](#2-prerequisites)
+3. [Installation](#3-installation)
+4. [Configuration](#4-configuration)
+5. [Verification](#5-verification)
+6. [Usage](#6-usage)
+7. [Features](#7-features)
+8. [Examples](#8-examples)
+9. [Troubleshooting](#9-troubleshooting)
+10. [Resources](#10-resources)
 
 ---
 
-## AI INSTALL GUIDE
+## 0. AI-First Install Guide
 
-### Verify Success (30 seconds)
-
-After installation, test immediately:
-
-1. Open terminal and run: `bdg --version`
-2. See version output = CLI SUCCESS
-3. In Claude Code, ask: "Take a screenshot of example.com"
-4. Screenshot captured = FULL SUCCESS
-
-Not working? Jump to [Troubleshooting](#9--troubleshooting).
-
----
-
-**Copy and paste this prompt to your AI assistant to get installation help:**
+Copy and paste this prompt to your AI assistant to get installation help:
 
 ```
 I want to install the Chrome DevTools CLI (bdg) for browser debugging.
@@ -54,66 +52,31 @@ My platform is: [macOS / Linux / Windows with WSL]
 Guide me through each step with the exact commands needed.
 ```
 
-**What the AI will do:**
+The AI will:
 - Verify Node.js 18+ is available on your system
 - Install `browser-debugger-cli` globally
 - Test Chrome/Chromium availability
-- Run basic screenshot test to verify installation
-- Configure MCP fallback if multi-tool workflows needed
+- Run a basic screenshot test to confirm installation
+- Configure MCP fallback if you need multi-tool workflows
 
-**Expected setup time:** 3-5 minutes
+**Expected setup time:** 3 to 5 minutes
 
----
+### Quick Success Check (30 seconds)
 
-## IMPORTANT: Two Access Methods
+After installation, run these two tests immediately:
 
-Chrome DevTools offers **two approaches** - choose based on your needs:
+1. Open your terminal and run: `bdg --version`
+2. Version output appears: CLI is working
+3. In Claude Code, ask: "Take a screenshot of example.com"
+4. Screenshot captured: full system is working
 
-| Approach           | Configuration                               | Best For                                | Code Mode Required? |
-| ------------------ | ------------------------------------------- | --------------------------------------- | ------------------- |
-| **CLI (Primary)**  | `npm install -g browser-debugger-cli@alpha` | Quick debugging, single browser         | ❌ No                |
-| **MCP (Fallback)** | `.utcp_config.json`                         | Multi-tool workflows, parallel browsers | ✅ Yes               |
-
-### MCP Approach = Code Mode Provider
-
-**When using MCP, Chrome DevTools is accessed through Code Mode, not called directly.**
-
-| Aspect             | What This Means                                                                          |
-| ------------------ | ---------------------------------------------------------------------------------------- |
-| **Configuration**  | Chrome DevTools is configured in `.utcp_config.json`, NOT `opencode.json`                |
-| **Access Method**  | Tools accessed via Code Mode's `call_tool_chain()`                                       |
-| **Prerequisite**   | Code Mode MCP must be installed first (see [INSTALL_GUIDE.md](./INSTALL_GUIDE.md) §4) |
-| **Context Cost**   | AI sees only 4 Code Mode tools (~1.6k tokens), not 26 Chrome DevTools tools              |
-| **Naming Pattern** | `chrome_devtools_1.chrome_devtools_1_{tool_name}`                                        |
-
-**Why Code Mode for MCP?** Chrome DevTools' 26 MCP tools would consume ~78k tokens if exposed natively. Code Mode provides on-demand access with 98% context reduction.
-
-```
-┌─────────────────────────────────────────────────────────────────┐
-│  Your AI Client (Claude Code, OpenCode, VS Code)                │
-│  └─► CLI: bdg command (direct, standalone, no Code Mode)        │
-│  └─► MCP: 4 Code Mode tools → chrome_devtools_1.*               │
-└──────────────────────────┬──────────────────────────────────────┘
-                           │ (MCP only)
-                           ▼
-┌─────────────────────────────────────────────────────────────────┐
-│  Code Mode MCP (configured in opencode.json)                     │
-│  └─► Reads .utcp_config.json for Chrome DevTools provider        │
-└──────────────────────────┬──────────────────────────────────────┘
-                           ▼
-┌─────────────────────────────────────────────────────────────────┐
-│  Chrome DevTools Provider (configured in .utcp_config.json)       │
-│  └─► 26 tools via chrome_devtools_1.chrome_devtools_1_{tool}    │
-└─────────────────────────────────────────────────────────────────┘
-```
-
-> **Recommendation**: Start with CLI (`bdg`). Only use MCP if you need multi-tool orchestration or parallel browser testing.
+Not working? Go to [Troubleshooting](#9-troubleshooting).
 
 ---
 
-## 1. OVERVIEW
+## 1. Overview
 
-The Chrome DevTools tools provide AI assistants with browser debugging capabilities through two complementary approaches.
+Chrome DevTools gives AI assistants browser debugging capabilities through two approaches. The CLI (`bdg`) is the primary method: direct, fast and token-efficient. The MCP fallback runs through Code Mode and suits multi-tool orchestration or parallel browser testing.
 
 ### Source Repository
 
@@ -125,16 +88,17 @@ The Chrome DevTools tools provide AI assistants with browser debugging capabilit
 | **npm (MCP)**    | `chrome-devtools-mcp@latest`                                                                |
 | **License**      | MIT / Apache-2.0                                                                            |
 
-## Two Approaches
+### Two Approaches
 
 | Approach            | Package                      | When to Use                             | Token Cost |
 | ------------------- | ---------------------------- | --------------------------------------- | ---------- |
-| **CLI (bdg)**       | `browser-debugger-cli@alpha` | Single browser, quick tasks, debugging  | **Lowest** |
+| **CLI (bdg)**       | `browser-debugger-cli@alpha` | Single browser, quick tasks, debugging  | Lowest     |
 | **MCP (Code Mode)** | `chrome-devtools-mcp@latest` | Multi-tool workflows, parallel browsers | Higher     |
 
-> **Default to CLI.** Use MCP only when CLI is insufficient.
+Default to CLI. Use MCP only when CLI is not sufficient.
 
-**Decision flowchart:**
+### Decision Flowchart
+
 ```
 Task received → Is bdg CLI available? (command -v bdg)
                       │
@@ -152,21 +116,11 @@ Task received → Is bdg CLI available? (command -v bdg)
                    (fallback)      npm i -g browser-debugger-cli@alpha
 ```
 
-### Key Features
-
-| Feature            | CLI (bdg)                                   | MCP (Code Mode)                         |
-| ------------------ | ------------------------------------------- | --------------------------------------- |
-| **Installation**   | `npm install -g browser-debugger-cli@alpha` | Code Mode + UTCP config                 |
-| **Token Cost**     | Lowest                                      | Medium                                  |
-| **CDP Access**     | All 644 methods                             | MCP-exposed subset (26 tools)           |
-| **Self-Discovery** | `--list`, `--describe`, `--search`          | `search_tools()`                        |
-| **Best For**       | Quick debugging, inspection                 | Multi-tool workflows, parallel browsers |
-
-### Architecture
+### Architecture Diagram
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│                    AI Client (Claude/OpenCode)              │
+│                    AI Client (Claude/OpenCode)               │
 └─────────────────────────────┬───────────────────────────────┘
                               │
               ┌───────────────┴───────────────┐
@@ -197,6 +151,31 @@ Task received → Is bdg CLI available? (command -v bdg)
               └─────────────────────────────┘
 ```
 
+### MCP Architecture Detail
+
+When using MCP, Chrome DevTools routes through Code Mode, not directly to your AI client:
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│  Your AI Client (Claude Code, OpenCode, VS Code)                │
+│  - CLI: bdg command (direct, standalone, no Code Mode)          │
+│  - MCP: 4 Code Mode tools → chrome_devtools_1.*                 │
+└──────────────────────────┬──────────────────────────────────────┘
+                           │ (MCP only)
+                           ▼
+┌─────────────────────────────────────────────────────────────────┐
+│  Code Mode MCP (configured in opencode.json)                    │
+│  - Reads .utcp_config.json for Chrome DevTools provider         │
+└──────────────────────────┬──────────────────────────────────────┘
+                           ▼
+┌─────────────────────────────────────────────────────────────────┐
+│  Chrome DevTools Provider (configured in .utcp_config.json)     │
+│  - 26 tools via chrome_devtools_1.chrome_devtools_1_{tool}      │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+Chrome DevTools' 26 MCP tools would consume roughly 78k tokens if exposed natively. Code Mode provides on-demand access with 98% context reduction.
+
 ### Performance Targets
 
 | Operation             | Target | Typical |
@@ -209,9 +188,9 @@ Task received → Is bdg CLI available? (command -v bdg)
 
 ---
 
-## 2. PREREQUISITES
+## 2. Prerequisites
 
-### Required
+### Required Tools
 
 - **Node.js 18 or higher**
   ```bash
@@ -224,7 +203,7 @@ Task received → Is bdg CLI available? (command -v bdg)
   npm --version
   ```
 
-- **Chrome/Chromium Browser** (one of):
+- **Chrome/Chromium Browser**, one of:
   - Google Chrome (recommended)
   - Chromium
   - Microsoft Edge (Chromium-based)
@@ -234,8 +213,8 @@ Task received → Is bdg CLI available? (command -v bdg)
 | Platform    | Status         | Notes                             |
 | ----------- | -------------- | --------------------------------- |
 | **macOS**   | Native support | Recommended                       |
-| **Linux**   | Native support | May need sandbox config           |
-| **Windows** | WSL only       | PowerShell/Git Bash NOT supported |
+| **Linux**   | Native support | May need sandbox configuration    |
+| **Windows** | WSL only       | PowerShell and Git Bash not supported |
 
 ### Common Setup Issues
 
@@ -250,11 +229,11 @@ export CHROME_PATH="/usr/bin/google-chrome"
 export CHROME_PATH="/usr/bin/chromium-browser"
 ```
 
-**Windows users:** WSL required. Install first: `wsl --install`
+**Windows users:** WSL is required. Install it first with: `wsl --install`
 
 ---
 
-## 3. CLI INSTALLATION
+## 3. Installation
 
 ### Step 1: Install browser-debugger-cli
 
@@ -262,10 +241,10 @@ export CHROME_PATH="/usr/bin/chromium-browser"
 npm install -g browser-debugger-cli@alpha
 ```
 
-### Step 2: Verify Installation
+### Step 2: Verify the binary
 
 ```bash
-# Check installation
+# Confirm installation
 command -v bdg || echo "Installation failed"
 
 # Check version
@@ -275,26 +254,26 @@ bdg --version
 bdg --list
 ```
 
-### Step 3: Test Basic Operation
+### Step 3: Test basic operation
 
 ```bash
 # Start a session
 bdg https://example.com 2>&1
 
-# Take screenshot
+# Take a screenshot
 bdg screenshot test.png 2>&1
 
 # Check console logs
 bdg console logs 2>&1
 
-# Stop session
+# Stop the session
 bdg stop 2>&1
 
-# Verify screenshot created
+# Confirm screenshot was created
 ls -la test.png
 ```
 
-### Step 4: Configure Chrome Path (if needed)
+### Step 4: Configure Chrome path if needed
 
 ```bash
 # macOS
@@ -303,64 +282,65 @@ export CHROME_PATH="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome
 # Linux
 export CHROME_PATH="/usr/bin/google-chrome"
 
-# Add to shell profile for persistence
+# Add to your shell profile for persistence
 echo 'export CHROME_PATH="/path/to/chrome"' >> ~/.zshrc
 source ~/.zshrc
 ```
 
-### Validation Checkpoint: CLI
+### Validation: `phase_1_complete`
 
-| Check         | Command                 | Expected                     |
-| ------------- | ----------------------- | ---------------------------- |
-| CLI installed | `command -v bdg`        | Path to bdg binary           |
-| Version       | `bdg --version`         | `browser-debugger-cli@x.x.x` |
-| CDP domains   | `bdg --list \| head -5` | `Page, DOM, Network...`      |
+Run these checks to confirm prerequisites are met:
 
----
+| Check         | Command                  | Expected                     |
+| ------------- | ------------------------ | ---------------------------- |
+| CLI installed | `command -v bdg`         | Path to bdg binary           |
+| Version       | `bdg --version`          | `browser-debugger-cli@x.x.x` |
+| CDP domains   | `bdg --list \| head -5`  | `Page, DOM, Network...`      |
 
-## 4. MCP CONFIGURATION
+STOP if any check fails. Fix the issue before continuing.
 
-> **Note:** MCP is optional. Only configure if you need multi-tool workflows or when CLI is unavailable.
+### Validation: `phase_2_complete`
 
----
+Confirm CLI installation is complete:
 
-### ⚠️ Code Mode Provider (MCP Approach)
+| Check          | Command                             | Expected          |
+| -------------- | ----------------------------------- | ----------------- |
+| Session starts | `bdg https://example.com 2>&1`      | No errors         |
+| Screenshot     | `bdg screenshot /tmp/test.png 2>&1` | File created      |
+| Session stops  | `bdg stop 2>&1`                     | Clean exit        |
 
-**When using MCP, Chrome DevTools is a Code Mode provider, NOT a standalone MCP server.**
-
-| Aspect             | What This Means                                                                          |
-| ------------------ | ---------------------------------------------------------------------------------------- |
-| **Configuration**  | Chrome DevTools is configured in `.utcp_config.json`, NOT `opencode.json`                |
-| **Access Method**  | Tools accessed via Code Mode's `call_tool_chain()`                                       |
-| **Prerequisite**   | Code Mode MCP must be installed first (see [INSTALL_GUIDE.md](./INSTALL_GUIDE.md) §4) |
-| **Context Cost**   | AI sees only 4 Code Mode tools (~1.6k tokens), not 26 Chrome DevTools tools              |
-| **Naming Pattern** | `chrome_devtools_1.chrome_devtools_1_{tool_name}`                                        |
-
-**Why Code Mode for MCP?** Chrome DevTools' 26 MCP tools would consume ~78k tokens if exposed natively. Code Mode provides on-demand access with 98% context reduction.
-
-```
-┌─────────────────────────────────────────────────────────────────┐
-│  Your AI Client (Claude Code, OpenCode, VS Code)                │
-│  └─► CLI: bdg command (direct, no Code Mode needed)             │
-│  └─► MCP: 4 Code Mode tools → chrome_devtools_1.chrome_devtools_1_* │
-└─────────────────────────────────────────────────────────────────┘
-```
-
-> **CLI vs MCP**: The CLI approach (`bdg` command) is standalone and doesn't require Code Mode. Only the MCP approach requires Code Mode.
+STOP if validation fails. Review [Troubleshooting](#9-troubleshooting) before continuing.
 
 ---
+
+## 4. Configuration
+
+MCP is optional. Configure it only if you need multi-tool workflows or when CLI is not available.
+
+### MCP Approach: Code Mode Provider
+
+When using MCP, Chrome DevTools is a Code Mode provider, not a standalone MCP server.
+
+| Aspect             | What This Means                                                                |
+| ------------------ | ------------------------------------------------------------------------------ |
+| **Configuration**  | Chrome DevTools goes in `.utcp_config.json`, not `opencode.json`               |
+| **Access Method**  | Tools are accessed via Code Mode's `call_tool_chain()`                         |
+| **Prerequisite**   | Code Mode MCP must be installed first. See [Code Mode INSTALL_GUIDE.md](../mcp-code-mode/INSTALL_GUIDE.md) section 4 |
+| **Context Cost**   | Your AI sees only 4 Code Mode tools (~1.6k tokens), not 26 Chrome DevTools tools |
+| **Naming Pattern** | `chrome_devtools_1.chrome_devtools_1_{tool_name}`                              |
 
 ### When to Use MCP
 
-- Already using Code Mode for other tools (Webflow, Figma, etc.)
+Use MCP when you:
+- Already use Code Mode for other tools such as Webflow or Figma
 - Need to chain browser operations with other MCP tools
-- **Parallel browser testing** - compare multiple sites simultaneously
-- Complex multi-step automation in TypeScript
-- Type-safe tool invocation required
+- Require parallel browser testing to compare multiple sites at once
+- Need complex multi-step automation in TypeScript
+- Require type-safe tool invocation
 
 ### Step 1: Verify Code Mode
 
-Ensure Code Mode is configured in your MCP settings (`.mcp.json` for Claude Code, or `opencode.json` for OpenCode):
+Confirm Code Mode is configured in your MCP settings. Use `.mcp.json` for Claude Code or `opencode.json` for OpenCode:
 
 ```json
 {
@@ -378,7 +358,7 @@ Ensure Code Mode is configured in your MCP settings (`.mcp.json` for Claude Code
 
 ### Step 2: Add Chrome DevTools to UTCP Config
 
-Add to `.utcp_config.json` with `--isolated=true` for independent browser instances:
+Add the following to `.utcp_config.json`. Use `--isolated=true` to give each instance its own independent browser:
 
 ```json
 {
@@ -415,28 +395,98 @@ Add to `.utcp_config.json` with `--isolated=true` for independent browser instan
 }
 ```
 
-**Note:** Register multiple instances for parallel testing. Each with `--isolated=true`.
+Register multiple instances for parallel testing. Each needs `--isolated=true`.
 
-### Step 3: Verify MCP Tools
+### Step 3: Verify MCP tools
 
 ```typescript
 // In Code Mode context
 const tools = await list_tools();
 console.log(tools.filter(t => t.includes('chrome_devtools')));
-// Should show: chrome_devtools_1_navigate_page, chrome_devtools_1_take_screenshot, etc.
+// Expected: chrome_devtools_1_navigate_page, chrome_devtools_1_take_screenshot, etc.
 ```
 
-### Validation Checkpoint: MCP
+### Validation: `phase_3_complete`
 
 | Check            | Method                  | Expected                |
 | ---------------- | ----------------------- | ----------------------- |
 | Config exists    | `cat .utcp_config.json` | chrome_devtools entry   |
 | Tools registered | `list_tools()`          | chrome_devtools_* tools |
-| Server starts    | Navigate to URL         | No connection errors    |
+| Server starts    | Navigate to a URL       | No connection errors    |
+
+STOP if validation fails. Review your UTCP config and restart your AI client session.
+
+### Security Considerations
+
+Port 9222 runs the Chrome DevTools Protocol for remote debugging. It grants full browser control.
+
+**Risks:**
+- Full browser control to anyone with port access
+- Cookie and session theft
+- JavaScript injection
+- Local file system access via browser
+
+**Mitigations:**
+
+| Mitigation             | Implementation                             |
+| ---------------------- | ------------------------------------------ |
+| Bind to localhost only | `--remote-debugging-address=127.0.0.1`     |
+| Firewall rules         | Block port 9222 from external access       |
+| Development only       | Never expose on production networks        |
+| Network isolation      | Use in CI/CD with isolated networking      |
+
+```bash
+# Verify the port is localhost-only
+lsof -i :9222
+# Should show 127.0.0.1:9222, not *:9222
+```
+
+**Linux sandbox security:**
+
+Chrome's sandbox provides process isolation. Avoid disabling it unless necessary.
+
+| Option                     | Security Level | When to Use               |
+| -------------------------- | -------------- | ------------------------- |
+| Default sandbox            | Best           | Standard installations    |
+| `--disable-setuid-sandbox` | Medium         | When user namespaces work |
+| `--no-sandbox`             | Poor           | Last resort only          |
+
+**Preferred approach, from most to least secure:**
+
+1. Run in a container with proper permissions:
+   ```bash
+   docker run --cap-add=SYS_ADMIN chromium
+   ```
+
+2. Enable user namespaces:
+   ```bash
+   sudo sysctl -w kernel.unprivileged_userns_clone=1
+   ```
+
+3. Disable setuid sandbox only:
+   ```bash
+   export CHROME_FLAGS="--disable-setuid-sandbox"
+   ```
+
+4. No-sandbox as a last resort:
+   ```bash
+   export CHROME_FLAGS="--no-sandbox"
+   ```
+
+**CI/CD security flags:**
+```bash
+export CHROME_FLAGS="--disable-gpu --disable-dev-shm-usage --remote-debugging-address=127.0.0.1"
+```
+
+| Flag                                   | Purpose                        |
+| -------------------------------------- | ------------------------------ |
+| `--disable-gpu`                        | Prevent GPU issues in headless |
+| `--disable-dev-shm-usage`              | Avoid shared memory issues     |
+| `--remote-debugging-address=127.0.0.1` | Localhost binding only         |
 
 ---
 
-## 5. VERIFICATION
+## 5. Verification
 
 ### One-Command Health Check
 
@@ -456,25 +506,35 @@ bdg --version 2>&1 && \
 | #   | Check          | Command                             | Expected Result                 |
 | --- | -------------- | ----------------------------------- | ------------------------------- |
 | 1   | CLI installed  | `command -v bdg`                    | `/usr/local/bin/bdg` or similar |
-| 2   | Version        | `bdg --version`                     | `browser-debugger-cli@x.x.x`    |
+| 2   | Version        | `bdg --version`                     | `browser-debugger-cli@x.x.x`   |
 | 3   | CDP domains    | `bdg --list \| wc -l`               | 53+ domains                     |
 | 4   | Session start  | `bdg https://example.com 2>&1`      | No errors                       |
 | 5   | Session status | `bdg status 2>&1`                   | `{"state": "active"}`           |
 | 6   | Screenshot     | `bdg screenshot /tmp/test.png 2>&1` | File created                    |
 | 7   | Session stop   | `bdg stop 2>&1`                     | Clean exit                      |
 
-### Verify in AI Client
+### Verify in Your AI Client
 
-In Claude Code or OpenCode:
+In Claude Code or OpenCode, run:
 ```
 > Take a screenshot of https://example.com
 ```
 
-Expected: bdg commands executed, screenshot captured and displayed.
+Expected result: bdg commands execute and a screenshot is captured and displayed.
+
+### Validation: `phase_4_complete`
+
+All 7 checklist items above pass with no errors.
+
+STOP if any item fails. The system is not ready for use until all checks pass.
+
+### Validation: `phase_5_complete`
+
+Your AI client successfully captures a screenshot on request. The system is operational.
 
 ---
 
-## 6. USAGE PATTERNS
+## 6. Usage
 
 ### Pattern 1: Quick Screenshot (CLI)
 
@@ -497,7 +557,7 @@ bdg stop 2>&1
 ```bash
 bdg https://example.com 2>&1
 bdg cdp Network.enable 2>&1
-sleep 5  # Wait for network activity
+sleep 5
 bdg har export network-trace.har 2>&1
 bdg stop 2>&1
 
@@ -514,7 +574,7 @@ bdg cdp Network.enable 2>&1
 # Get cookies
 bdg network cookies 2>&1
 
-# Set cookie
+# Set a cookie
 bdg cdp Network.setCookie '{
   "name": "auth_token",
   "value": "secret-123",
@@ -527,7 +587,7 @@ bdg stop 2>&1
 
 ### Pattern 5: Single Instance (MCP Fallback)
 
-When CLI is insufficient, use Code Mode:
+When CLI is not sufficient, use Code Mode:
 
 ```typescript
 call_tool_chain(`
@@ -540,7 +600,7 @@ call_tool_chain(`
 
 ### Pattern 6: Parallel Instances (MCP)
 
-Compare multiple sites simultaneously:
+Compare multiple sites at the same time:
 
 ```typescript
 call_tool_chain(`
@@ -549,7 +609,7 @@ call_tool_chain(`
     url: "https://production.example.com"
   });
 
-  // Instance 2: Staging (parallel - isolated browser)
+  // Instance 2: Staging (isolated browser)
   await chrome_devtools_2.chrome_devtools_2_navigate_page({
     url: "https://staging.example.com"
   });
@@ -568,25 +628,23 @@ call_tool_chain(`
 | ------------------------ | ---- | --------------------------- |
 | Quick screenshot         | CLI  | Fastest, lowest tokens      |
 | Console log check        | CLI  | Pipe to jq for filtering    |
-| Network trace            | CLI  | HAR export built-in         |
+| Network trace            | CLI  | HAR export built in         |
 | Cookie manipulation      | CLI  | Full CDP access             |
 | Multi-tool workflow      | MCP  | Chain with other tools      |
 | Parallel browser testing | MCP  | Multiple isolated instances |
 | CDP method discovery     | CLI  | `--list`, `--describe`      |
 
----
+### bdg Command Reference
 
-## 7. BDG COMMAND REFERENCE
-
-### Session Commands
+**Session Commands**
 
 | Command      | Description                     | Example                        |
 | ------------ | ------------------------------- | ------------------------------ |
 | `bdg <url>`  | Open URL, start browser session | `bdg https://example.com 2>&1` |
 | `bdg status` | Check session status            | `bdg status 2>&1`              |
-| `bdg stop`   | Stop browser, cleanup session   | `bdg stop 2>&1`                |
+| `bdg stop`   | Stop browser, clean up session  | `bdg stop 2>&1`                |
 
-### Helper Commands
+**Helper Commands**
 
 | Command                      | Description             | Example                             |
 | ---------------------------- | ----------------------- | ----------------------------------- |
@@ -597,7 +655,7 @@ call_tool_chain(`
 | `bdg js "<expression>"`      | Execute JavaScript      | `bdg js "document.title" 2>&1`      |
 | `bdg har export <path>`      | Export network as HAR   | `bdg har export trace.har 2>&1`     |
 
-### Discovery Commands
+**Discovery Commands**
 
 | Command                   | Description               | Example                                 |
 | ------------------------- | ------------------------- | --------------------------------------- |
@@ -607,16 +665,16 @@ call_tool_chain(`
 | `bdg --describe <method>` | Show method signature     | `bdg --describe Page.captureScreenshot` |
 | `bdg --search <term>`     | Search CDP methods        | `bdg --search screenshot`               |
 
-### Raw CDP Commands
+**Raw CDP Commands**
 
 | Command                     | Description         | Example                                                     |
 | --------------------------- | ------------------- | ----------------------------------------------------------- |
 | `bdg cdp <method>`          | Execute CDP method  | `bdg cdp Page.reload 2>&1`                                  |
 | `bdg cdp <method> '<json>'` | CDP with parameters | `bdg cdp Network.setCookie '{"name":"x","value":"y"}' 2>&1` |
 
-### Error Handling Pattern
+**Error Handling Pattern**
 
-> **Always use `2>&1`** to capture stderr for error handling.
+Always use `2>&1` to capture stderr for error handling:
 
 ```bash
 #!/bin/bash
@@ -624,101 +682,190 @@ trap "bdg stop 2>&1" EXIT INT TERM
 command -v bdg || { echo "Install bdg first"; exit 1; }
 bdg "$URL" 2>&1 || exit 1
 # ... operations ...
-# Cleanup automatic on exit
+# Cleanup runs automatically on exit
 ```
 
 ---
 
-## 8. SECURITY CONSIDERATIONS
+## 7. Features
 
-### Port 9222 Exposure
+| Feature            | CLI (bdg)                                   | MCP (Code Mode)                         |
+| ------------------ | ------------------------------------------- | --------------------------------------- |
+| **Installation**   | `npm install -g browser-debugger-cli@alpha` | Code Mode + UTCP config                 |
+| **Token Cost**     | Lowest                                      | Medium                                  |
+| **CDP Access**     | All 644 methods                             | MCP-exposed subset (26 tools)           |
+| **Self-Discovery** | `--list`, `--describe`, `--search`          | `search_tools()`                        |
+| **Best For**       | Quick debugging, inspection                 | Multi-tool workflows, parallel browsers |
 
-The Chrome DevTools Protocol uses **port 9222** for remote debugging. This port grants full browser control.
-
-**Risks:**
-- Full browser control to anyone with port access
-- Cookie/session theft
-- JavaScript injection
-- Local file system access via browser
-
-**Mitigations:**
-
-| Mitigation             | Implementation                             |
-| ---------------------- | ------------------------------------------ |
-| Bind to localhost only | `--remote-debugging-address=127.0.0.1`     |
-| Firewall rules         | Block port 9222 from external access       |
-| Development only       | Never expose on production/public networks |
-| Network isolation      | Use in CI/CD with isolated networking      |
-
-```bash
-# Verify port is localhost-only
-lsof -i :9222
-# Should show 127.0.0.1:9222, NOT *:9222
-```
-
-### Linux Sandbox Security
-
-Chrome's sandbox provides process isolation. Disabling it reduces security.
-
-| Option                     | Security Level | When to Use               |
-| -------------------------- | -------------- | ------------------------- |
-| Default sandbox            | **Best**       | Standard installations    |
-| `--disable-setuid-sandbox` | Medium         | When user namespaces work |
-| `--no-sandbox`             | **Poor**       | Last resort only          |
-
-**Preferred approach (most to least secure):**
-
-1. **Run in container with proper permissions**
-   ```bash
-   # Docker with appropriate caps
-   docker run --cap-add=SYS_ADMIN chromium
-   ```
-
-2. **Enable user namespaces**
-   ```bash
-   sudo sysctl -w kernel.unprivileged_userns_clone=1
-   ```
-
-3. **Use disable-setuid-sandbox first**
-   ```bash
-   export CHROME_FLAGS="--disable-setuid-sandbox"
-   ```
-
-4. **no-sandbox as last resort**
-   ```bash
-   # Only if nothing else works
-   export CHROME_FLAGS="--no-sandbox"
-   ```
-
-### CI/CD Security
-
-For automated testing environments:
-
-```bash
-# Recommended CI/CD flags
-export CHROME_FLAGS="--disable-gpu --disable-dev-shm-usage --remote-debugging-address=127.0.0.1"
-```
-
-| Flag                                   | Purpose                        |
-| -------------------------------------- | ------------------------------ |
-| `--disable-gpu`                        | Prevent GPU issues in headless |
-| `--disable-dev-shm-usage`              | Avoid shared memory issues     |
-| `--remote-debugging-address=127.0.0.1` | Localhost binding only         |
+**Core capabilities available through both approaches:**
+- Screenshot capture
+- DOM inspection and querying
+- Console log access
+- Network monitoring and HAR export
+- CSS debugging
+- JavaScript execution
+- Cookie management
+- Full Chrome DevTools Protocol access
 
 ---
 
-## 9. TROUBLESHOOTING
+## 8. Examples
+
+### Example 1: Full Debug Session
+
+```bash
+#!/bin/bash
+# Complete debug session with error handling
+trap "bdg stop 2>&1" EXIT INT TERM
+
+# Verify CLI is available
+command -v bdg || { echo "Install: npm install -g browser-debugger-cli@alpha"; exit 1; }
+
+# Start session
+bdg https://example.com 2>&1 || exit 1
+
+# Capture initial state
+bdg screenshot before.png 2>&1
+bdg console logs 2>&1 > console-before.json
+
+# Enable network monitoring
+bdg cdp Network.enable 2>&1
+sleep 3
+
+# Export network trace
+bdg har export session.har 2>&1
+bdg screenshot after.png 2>&1
+
+echo "Debug session complete. Files: before.png, after.png, session.har, console-before.json"
+```
+
+### Example 2: JavaScript Execution
+
+```bash
+bdg https://example.com 2>&1
+
+# Get page title
+bdg js "document.title" 2>&1
+
+# Count links on page
+bdg js "document.querySelectorAll('a').length" 2>&1
+
+# Get all link hrefs
+bdg js "Array.from(document.querySelectorAll('a')).map(a => a.href)" 2>&1
+
+bdg stop 2>&1
+```
+
+### Example 3: DOM Query and Interaction
+
+```bash
+bdg https://example.com 2>&1
+
+# Query elements by class
+bdg dom query ".nav-link" 2>&1
+
+# Click a button via JavaScript
+bdg js "document.querySelector('#submit-btn').click()" 2>&1
+
+# Check result after click
+bdg screenshot post-click.png 2>&1
+bdg console logs 2>&1
+
+bdg stop 2>&1
+```
+
+### Example 4: Network Analysis
+
+```bash
+bdg https://example.com 2>&1
+bdg cdp Network.enable 2>&1
+
+# Wait for full page load activity
+sleep 5
+bdg har export network-trace.har 2>&1
+bdg stop 2>&1
+
+# Find slow requests (over 1 second)
+jq '.log.entries[] | select(.time > 1000) | {url: .request.url, time}' network-trace.har
+
+# Find failed requests
+jq '.log.entries[] | select(.response.status >= 400) | {url: .request.url, status: .response.status}' network-trace.har
+```
+
+### Example 5: Parallel Comparison (MCP)
+
+```typescript
+// Compare production and staging side by side
+call_tool_chain(`
+  await chrome_devtools_1.chrome_devtools_1_navigate_page({
+    url: "https://production.example.com"
+  });
+  await chrome_devtools_2.chrome_devtools_2_navigate_page({
+    url: "https://staging.example.com"
+  });
+
+  const prodScreenshot = await chrome_devtools_1.chrome_devtools_1_take_screenshot({});
+  const stagingScreenshot = await chrome_devtools_2.chrome_devtools_2_take_screenshot({});
+  const prodLogs = await chrome_devtools_1.chrome_devtools_1_list_console_messages({});
+  const stagingLogs = await chrome_devtools_2.chrome_devtools_2_list_console_messages({});
+
+  return {
+    production: { screenshot: prodScreenshot, logs: prodLogs },
+    staging: { screenshot: stagingScreenshot, logs: stagingLogs }
+  };
+`)
+```
+
+### Example 6: Cookie Session Management
+
+```bash
+bdg https://example.com 2>&1
+bdg cdp Network.enable 2>&1
+
+# Export current cookies
+bdg network cookies 2>&1 > cookies.json
+
+# Inject an auth token
+bdg cdp Network.setCookie '{
+  "name": "auth_token",
+  "value": "test-session-token",
+  "domain": "example.com",
+  "path": "/",
+  "secure": true,
+  "httpOnly": true
+}' 2>&1
+
+# Reload to test authenticated state
+bdg cdp Page.reload 2>&1
+bdg screenshot authenticated.png 2>&1
+
+bdg stop 2>&1
+```
+
+---
+
+## 9. Troubleshooting
+
+### Error/Cause/Fix Reference
+
+| Error | Cause | Fix |
+| ----- | ----- | --- |
+| `command not found: bdg` | CLI not installed or not in PATH | Run `npm install -g browser-debugger-cli@alpha`. Check PATH with `npm config get prefix` |
+| `Error: Could not find Chrome` | Chrome path not set or binary missing | Set `CHROME_PATH` env var. See path examples below |
+| `Error: No active session` | Session not started or crashed | Run `bdg stop 2>&1` then retry `bdg <url> 2>&1` |
+| `Failed to move to new namespace` | Linux sandbox restriction | Enable user namespaces or set `CHROME_FLAGS`. See Linux sandbox section |
+| `bdg fails on Windows` | Native Windows not supported | Install WSL with `wsl --install`, then install bdg inside WSL |
+| Chrome DevTools tools missing in Code Mode | UTCP config missing or disabled | Check `.utcp_config.json`, confirm `disabled: false`, restart your session |
+| MCP server fails to start | Port conflict or config error | Run `lsof -i :9222` and kill conflicting processes |
+| `EADDRINUSE: address already in use :::9222` | Port 9222 already taken | Run `kill -9 $(lsof -t -i :9222)` to free the port |
 
 ### CLI: Command Not Found
 
-**Problem:** `command not found: bdg`
-
-**Fix:**
 ```bash
 # Install bdg
 npm install -g browser-debugger-cli@alpha
 
-# Or check npm global path
+# Or fix PATH
 npm config get prefix
 export PATH="$(npm config get prefix)/bin:$PATH"
 
@@ -728,9 +875,6 @@ command -v bdg
 
 ### CLI: Chrome Not Found
 
-**Problem:** `Error: Could not find Chrome`
-
-**Fix:**
 ```bash
 # macOS
 export CHROME_PATH="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
@@ -738,23 +882,20 @@ export CHROME_PATH="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome
 # Linux
 export CHROME_PATH="/usr/bin/google-chrome"
 
-# Verify Chrome exists
+# Confirm Chrome exists at the path
 ls -la "$CHROME_PATH"
 
-# Add to profile
+# Add to your shell profile
 echo 'export CHROME_PATH="/path/to/chrome"' >> ~/.zshrc
 ```
 
 ### CLI: Session Won't Start
 
-**Problem:** `Error: No active session` or session stuck
-
-**Fix:**
 ```bash
-# Force stop existing sessions
+# Force stop any existing sessions
 bdg stop 2>&1
 
-# Check for zombie Chrome processes
+# Find zombie Chrome processes
 ps aux | grep -i chrome | grep -i debug
 
 # Kill zombie processes
@@ -766,9 +907,8 @@ bdg https://example.com 2>&1
 
 ### CLI: Sandbox Errors (Linux)
 
-**Problem:** `Failed to move to new namespace`
+Fix in order of preference:
 
-**Fix (in order of preference):**
 ```bash
 # Option 1: Enable user namespaces (preferred)
 sudo sysctl -w kernel.unprivileged_userns_clone=1
@@ -782,9 +922,6 @@ export CHROME_FLAGS="--no-sandbox"
 
 ### CLI: Windows Not Supported
 
-**Problem:** bdg fails on Windows PowerShell or Git Bash
-
-**Fix:**
 ```bash
 # Install WSL
 wsl --install
@@ -795,49 +932,41 @@ npm install -g browser-debugger-cli@alpha
 
 ### MCP: Tool Not Found
 
-**Problem:** Chrome DevTools tools not appearing in Code Mode
-
-**Fix:**
-1. Verify `.utcp_config.json` has chrome_devtools entry
-2. Check `disabled: false` in config
-3. Restart Claude Code/OpenCode session
-4. Run `list_tools()` to verify
+1. Open `.utcp_config.json` and confirm the chrome_devtools entry exists
+2. Check that `disabled` is not set to `true`
+3. Restart your Claude Code or OpenCode session
+4. Run `list_tools()` and look for chrome_devtools_* entries
 
 ### MCP: Connection Failed
 
-**Problem:** MCP server fails to start
-
-**Fix:**
 ```bash
-# Test MCP server directly
+# Test the MCP server directly
 npx chrome-devtools-mcp@latest --version
 
 # Check for port conflicts
 lsof -i :9222
 
-# Kill conflicting processes
+# Kill any conflicting processes
 kill $(lsof -t -i :9222)
 ```
 
 ### MCP: Port Already in Use
 
-**Problem:** `Error: listen EADDRINUSE: address already in use :::9222`
-
-**Fix:**
 ```bash
-# Find process using port
+# Find the process using port 9222
 lsof -i :9222
 
 # Kill it
 kill -9 $(lsof -t -i :9222)
 
-# Verify port is free
-lsof -i :9222  # Should return nothing
+# Confirm the port is free
+lsof -i :9222
+# Should return nothing
 ```
 
 ---
 
-## 10. RESOURCES
+## 10. Resources
 
 ### Related Documentation
 
@@ -847,6 +976,7 @@ lsof -i :9222  # Should return nothing
 | CDP Patterns    | `.opencode/skill/workflows-chrome-devtools/references/cdp_patterns.md`    | Domain patterns      |
 | Troubleshooting | `.opencode/skill/workflows-chrome-devtools/references/troubleshooting.md` | Detailed fixes       |
 | Examples        | `.opencode/skill/workflows-chrome-devtools/examples/README.md`            | Production templates |
+| Code Mode Guide | `.opencode/skill/mcp-code-mode/INSTALL_GUIDE.md`                          | Code Mode setup      |
 
 ### Configuration Paths
 
@@ -874,42 +1004,50 @@ lsof -i :9222  # Should return nothing
 // Example invocations
 chrome_devtools_1.chrome_devtools_1_navigate_page({ url: "..." })
 chrome_devtools_1.chrome_devtools_1_take_screenshot({})
-chrome_devtools_2.chrome_devtools_2_navigate_page({ url: "..." })  // parallel
+chrome_devtools_2.chrome_devtools_2_navigate_page({ url: "..." })  // parallel instance
 ```
 
 ---
 
 ## Quick Reference Card
 
-### Essential CLI Commands
+### Installation
 
 ```bash
-# Installation
 npm install -g browser-debugger-cli@alpha
+```
 
-# Discovery
-bdg --list                    # List domains
-bdg --describe Page           # Domain methods
-bdg --search screenshot       # Find methods
+### Discovery
 
-# Session
-bdg <url>                     # Start
-bdg status                    # Check
-bdg stop                      # Stop
+```bash
+bdg --list                    # List all CDP domains
+bdg --describe Page           # Show domain methods
+bdg --search screenshot       # Find methods by keyword
+```
 
-# Common operations
-bdg screenshot <path>         # Screenshot
-bdg console logs              # Console
-bdg network cookies           # Cookies
-bdg dom query "<selector>"    # DOM query
-bdg js "<expression>"         # Execute JS
-bdg har export <path>         # HAR export
+### Session Control
+
+```bash
+bdg <url>                     # Start session
+bdg status                    # Check session state
+bdg stop                      # Stop session
+```
+
+### Common Operations
+
+```bash
+bdg screenshot <path>         # Capture screenshot
+bdg console logs              # Get console messages
+bdg network cookies           # Get all cookies
+bdg dom query "<selector>"    # Query DOM
+bdg js "<expression>"         # Execute JavaScript
+bdg har export <path>         # Export HAR file
 ```
 
 ### MCP Quick Start
 
 ```typescript
-// When CLI is insufficient, use Code Mode:
+// When CLI is not sufficient, use Code Mode:
 call_tool_chain(`
   await chrome_devtools_1.chrome_devtools_1_navigate_page({ url: "https://example.com" });
   const screenshot = await chrome_devtools_1.chrome_devtools_1_take_screenshot({});
@@ -922,13 +1060,19 @@ call_tool_chain(`
 ```bash
 # Add to ~/.zshrc or ~/.bashrc
 export CHROME_PATH="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
-# For Linux: export CHROME_PATH="/usr/bin/google-chrome"
+# Linux: export CHROME_PATH="/usr/bin/google-chrome"
 ```
+
+### Validation Checkpoints Summary
+
+| Checkpoint          | Meaning                              |
+| ------------------- | ------------------------------------ |
+| `phase_1_complete`  | Prerequisites validated              |
+| `phase_2_complete`  | CLI installation complete            |
+| `phase_3_complete`  | Configuration complete               |
+| `phase_4_complete`  | Verification complete                |
+| `phase_5_complete`  | System operational                   |
 
 ---
 
-**Version:** 2.1.0  
-**Protocol:** Chrome DevTools Protocol (CDP)  
-**Status:** Production Ready
-
-**Need help?** See [Troubleshooting](#9--troubleshooting) or load the `workflows-chrome-devtools` skill for detailed workflows.
+**Need help?** See [Troubleshooting](#9-troubleshooting) or load the `workflows-chrome-devtools` skill for detailed workflows.

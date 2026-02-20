@@ -77,7 +77,7 @@ The architecture comprises five primitives:
 1. Identify a large existing skill (e.g., `system-spec-kit`).
 2. Extract distinct concepts into separate markdown files in an `assets/` or `nodes/` directory.
 3. Add YAML frontmatter with a `description` to each file.
-4. Replace the monolithic `SKILL.md` with an `index.md` containing Maps of Content (MOCs).
+4. Supplement the existing `SKILL.md` with an `index.md` containing Maps of Content (MOCs).
 5. Use prose to embed wikilinks to the extracted nodes.
 6. Instruct the agent to "Follow wikilinks relevant to the current task to build context."
 <!-- /ANCHOR:implementation_guide -->

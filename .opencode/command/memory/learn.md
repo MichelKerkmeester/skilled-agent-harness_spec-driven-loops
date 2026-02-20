@@ -532,7 +532,7 @@ System: Available learnings (2):
 
 Learnings are processed through the memory consolidation pipeline to maintain quality and reduce redundancy.
 
-> **Mutation Ledger & Adaptive Fusion:** All learning captures and corrections (including `correct`, `undo`, and tier changes) are recorded in the append-only mutation ledger for auditability. During consolidation deduplication, similarity scoring may be influenced by adaptive fusion weight profiles when `SPECKIT_ADAPTIVE_FUSION` is enabled — learnings of different types (pattern vs. insight) can receive differentiated boost factors, reducing false-positive merges across orthogonal learning categories.
+> **Mutation Ledger & Adaptive Fusion:** All learning captures and corrections (including `correct`, `undo`, and tier changes) are recorded in the append-only mutation ledger for auditability. During consolidation deduplication, similarity scoring may be influenced by adaptive fusion weight profiles when `SPECKIT_ADAPTIVE_FUSION` is enabled — learnings of different types (pattern vs. insight) can receive differentiated boost factors, reducing false-positive merges across orthogonal learning categories. When `SPECKIT_GRAPH_UNIFIED` is also enabled, the same `memory_search` used for deduplication runs as 3-channel hybrid search (vector + BM25 + graph): the graph channel surfaces structurally connected learnings that may be semantically distant, improving deduplication quality by catching near-duplicate learnings that vector similarity alone would miss (e.g., a `pattern` and a `constraint` about the same system component).
 
 ### Deduplication
 

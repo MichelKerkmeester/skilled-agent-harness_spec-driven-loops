@@ -46,7 +46,7 @@ All commands run Phase 0 (@write agent self-verification) before gathering input
 |---------|------------|-------------|
 | **agent** | `/create:agent <name> [description] [:auto\|:confirm]` | Create a new OpenCode agent with frontmatter, tool permissions, and behavioral rules |
 | **folder_readme** | `/create:folder_readme <path> [--type <type>] [:auto\|:confirm]` | Create an AI-optimized README.md with TOC, structure, and comprehensive documentation |
-| **install_guide** | `/create:install_guide <name> [--platforms <list>] [:auto\|:confirm]` | Create a phase-based installation guide with requirements and troubleshooting |
+| **install_guide** | `/create:install_guide <name> [--platforms <list>] [:auto\|:confirm]` | Create a comprehensive installation guide with step-by-step setup, requirements, and troubleshooting |
 | **skill** | `/create:skill <name> [description] [:auto\|:confirm]` | Create a new skill with SKILL.md, references, assets, and scripts |
 | **skill_asset** | `/create:skill_asset <skill> <type> [--chained] [:auto\|:confirm]` | Create an asset file (templates, lookups, examples, guides) for an existing skill |
 | **skill_reference** | `/create:skill_reference <skill> <type> [--chained] [:auto\|:confirm]` | Create a reference file (deep-dive technical docs, patterns, debugging guides) for an existing skill |

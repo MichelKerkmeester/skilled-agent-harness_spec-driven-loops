@@ -14,10 +14,12 @@ Multi-language code standards for OpenCode system code across JavaScript, TypeSc
 **Core Principle**: Consistency within language + Clarity across languages = maintainable system code.
 
 ### Skill Graph Status
-This skill is running in graph mode.
-- Primary graph entrypoint: `index.md`
-- Node content: `nodes/*.md`
-- Compatibility entrypoint: `SKILL.md`
+This skill has a supplemental graph navigation layer for deep-dive topics.
+- Primary entrypoint: `SKILL.md` (this file -- activation rules, routing, core behavior)
+- Supplemental navigation: `index.md` (optional deep-dive into specific topics)
+- Topic nodes: `nodes/*.md` (detailed content per topic)
+
+Use `SKILL.md` for activation, rules, and routing. Optionally traverse `index.md` for focused deep-dive content on specific topics.
 
 ---
 

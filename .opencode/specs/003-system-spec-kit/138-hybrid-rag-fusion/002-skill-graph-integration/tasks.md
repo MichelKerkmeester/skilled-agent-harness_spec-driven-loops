@@ -38,7 +38,7 @@
   - Dependency Chain: depends on completion criteria definition; supports CHK-017 and all rollout reporting.
 
 ## Phase 2: Pilot Migration (`system-spec-kit`)
-- [x] TASK-201: Break down `system-spec-kit/SKILL.md` into primary MOCs/nodes.
+- [x] TASK-201: Create supplemental MOCs/nodes for `system-spec-kit`.
   - Inputs: monolithic `system-spec-kit/SKILL.md`, target domains (routing, memory, validation, workflows).
   - Outputs: `index.md` and domain nodes with stable semantic boundaries.
   - Completion Criteria: every core domain is reachable from index navigation with no orphan node files.
@@ -50,7 +50,7 @@
   - Completion Criteria: each pilot node begins with valid YAML frontmatter and required keys are present.
   - Verification: `rg -n "^---$|^title:|^intent:|^owner:|^updated:" .opencode/skill/system-spec-kit --glob "**/nodes/*.md"` plus spot-check of delimiter balance.
   - Dependency Chain: depends on TASK-201 decomposition; enables metadata mapping in TASK-204.
-- [x] TASK-203: Convert `SKILL.md` into a lightweight compatibility entrypoint that routes to `index.md`.
+- [x] TASK-203: Add Skill Graph Status header to `SKILL.md` pointing to supplemental `index.md`.
   - Inputs: pilot `index.md`, legacy invocation expectations, compatibility constraints.
   - Outputs: concise routing entrypoint preserving existing discovery semantics.
   - Completion Criteria: legacy readers reach equivalent conceptual content via `index.md` with no broken navigation.

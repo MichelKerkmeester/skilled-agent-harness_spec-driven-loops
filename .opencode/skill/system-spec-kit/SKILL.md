@@ -12,14 +12,12 @@ version: 2.2.26.0
 Orchestrates mandatory spec folder creation for all conversations involving file modifications. Ensures proper documentation level selection (1-3+), template usage, and context preservation through AGENTS.md-enforced workflows.
 
 ### Skill Graph Status
+This skill has a supplemental graph navigation layer for deep-dive topics.
+- Primary entrypoint: `SKILL.md` (this file -- activation rules, routing, core behavior)
+- Supplemental navigation: `index.md` (optional deep-dive into specific topics)
+- Topic nodes: `nodes/*.md` (detailed content per topic)
 
-This skill is running in graph mode.
-
-- Primary graph entrypoint: `index.md`
-- Node content: `nodes/*.md`
-- Compatibility entrypoint: `SKILL.md` (kept for routing and legacy loaders)
-
-Use `SKILL.md` for activation/rules, then traverse `index.md` for task-specific deep content.
+Use `SKILL.md` for activation, rules, and routing. Optionally traverse `index.md` for focused deep-dive content on specific topics.
 
 ---
 
@@ -521,9 +519,9 @@ Memory files are always saved to the child folder's `memory/` directory (e.g., `
 
 Context preservation across sessions via hybrid search (vector similarity + BM25 + FTS with Reciprocal Rank Fusion).
 
-**Server:** `@spec-kit/mcp-server` v1.7.2 — `context-server.ts` (~903 lines) with 11 handler files, 17 lib subdirectories, and 22 MCP tools across 7 layers.
+**Server:** `@spec-kit/mcp-server` v1.7.2 — `context-server.ts` (~682 lines) with 12 handler files, 20 lib subdirectories, and 23 MCP tools across 7 layers.
 
-**MCP Tools (8 most-used of 22 total — see [memory_system.md](./references/memory/memory_system.md) for full reference):**
+**MCP Tools (8 most-used of 23 total — see [memory_system.md](./references/memory/memory_system.md) for full reference):**
 
 | Tool                            | Layer | Purpose                                           |
 | ------------------------------- | ----- | ------------------------------------------------- |
@@ -536,7 +534,7 @@ Context preservation across sessions via hybrid search (vector similarity + BM25
 | `checkpoint_create()`           | L5    | Create gzip-compressed checkpoint snapshot        |
 | `checkpoint_restore()`          | L5    | Transaction-wrapped restore with rollback         |
 
-> Other tools: `memory_stats()` (L3), `memory_health()` (L3), `memory_update()` (L4), `memory_validate()` (L4), `checkpoint_list/delete()` (L5), `task_preflight/postflight()` (L6), `memory_drift_why/causal_link/causal_stats/causal_unlink()` (L6), `memory_index_scan()` (L7), `memory_get_learning_history()` (L7). Full tool names use `spec_kit_memory_` prefix.
+> Other tools: `memory_stats()` (L3), `memory_health()` (L3), `memory_update()` (L4), `memory_validate()` (L4), `checkpoint_list/delete()` (L5), `task_preflight/postflight()` (L6), `memory_drift_why/causal_link/causal_stats/causal_unlink()` (L6), `memory_skill_graph_query()` (L6), `memory_index_scan()` (L7), `memory_get_learning_history()` (L7). Full tool names use `spec_kit_memory_` prefix.
 
 **memory_context() — Mode Routing:**
 
@@ -557,7 +555,7 @@ Context preservation across sessions via hybrid search (vector similarity + BM25
 
 **Key Concepts:**
 - **Constitutional tier** — 3.0x search boost + 2.0x importance multiplier; merged into normal scoring pipeline
-- **Document-type scoring** — 11 document types with multipliers: spec (1.4x), plan (1.3x), constitutional (2.0x), memory (1.0x), readme (0.8x), scratch (0.6x). 7 intent types including `find_spec` and `find_decision` for spec document retrieval
+- **Document-type scoring** — 11 document types with multipliers: spec (1.4x), plan (1.3x), constitutional (2.0x), decision_record (1.4x), tasks (1.1x), implementation_summary (1.1x), memory (1.0x), checklist (1.0x), handover (1.0x), readme (0.8x), scratch (0.6x). 7 intent types including `find_spec` and `find_decision` for spec document retrieval
 - **Decay scoring** — FSRS v4 power-law model; recent memories rank higher
 - **Import-path hardening** - Spec 126 fixed MCP import-path regressions in memory runtime modules (including context server + attention decay wiring)
 - **Metadata preservation pipeline** - `memory_save` update/reinforce paths preserve `document_type` and `spec_level`, and vector-index metadata updates stay in sync
@@ -577,10 +575,14 @@ Context preservation across sessions via hybrid search (vector similarity + BM25
 | ----------------------------- | ------- | ------------------------------------------------------------------------------------------- |
 | `SPECKIT_ADAPTIVE_FUSION`     | off     | Enables intent-aware weighted RRF with 7 task-type profiles in `memory_search()`            |
 | `SPECKIT_EXTENDED_TELEMETRY`  | on      | Emits 4-dimension retrieval metrics (latency, mode, fallback, quality) per search operation |
+| `SPECKIT_GRAPH_UNIFIED`       | on      | Gates the entire unified graph channel in hybrid search. When enabled, both causal edge (SQLite CTE) and SGQS skill graph sources participate in RRF fusion. Set `SPECKIT_GRAPH_UNIFIED=false` to disable. |
+| `SPECKIT_GRAPH_MMR`           | on      | Gates Graph-Guided MMR diversity reranking. When enabled, pairwise diversity includes BFS shortest-path graph distance alongside cosine distance. Set `SPECKIT_GRAPH_MMR=false` to disable. |
+| `SPECKIT_GRAPH_AUTHORITY`     | on      | Gates Structural Authority Propagation scoring. When enabled, node type multipliers (Index 3.0x, Entrypoint 2.5x, Concept 1.5x, Reference 1.0x, Asset 0.3x) boost search results by topological importance. Set `SPECKIT_GRAPH_AUTHORITY=false` to disable. |
+| `SPECKIT_INDEX_SPEC_DOCS`    | on      | Gates spec document indexing in `memory_index_scan()`. When enabled, discovers and indexes spec folder documents (specs, plans, tasks, etc.) with document-type scoring multipliers. Set `SPECKIT_INDEX_SPEC_DOCS=false` to disable. |
 
 Set via environment variable before starting the MCP server (e.g., `SPECKIT_ADAPTIVE_FUSION=1`).
 
-> **Token budgets per layer:** L1:2000, L2:1500, L3:800, L4:500, L5:600, L6:1200, L7:1000 (enforced via `chars/4` approximation).
+> **Token budgets per layer:** L1:2000, L2:1500, L3:800, L4:500, L5:600, L6:1200, L7:1000 (enforced via `chars/3.5` approximation).
 
 **Full documentation:** See [memory_system.md](./references/memory/memory_system.md) for tool behavior, importance tiers, and configuration.
 
@@ -617,7 +619,7 @@ Automated validation of spec folder contents via `validate.sh`.
 1. **Determine level (1/2/3/3+) before ANY file changes** - Count LOC, assess complexity/risk
 2. **Copy templates from `templates/level_N/`** - Use level folders, NEVER create from scratch
 3. **Fill ALL placeholders** - Remove placeholder markers and sample content
-4. **Ask A/B/C/D when file modification detected** - Present options, wait for selection
+4. **Ask A/B/C/D/E when file modification detected** - Present options, wait for selection
 5. **Check for related specs before creating new folders** - Search keywords, review status
 6. **Get explicit user approval before changes** - Show level, path, templates, approach
 7. **Use consistent folder naming** - `specs/###-short-name/` format
@@ -641,7 +643,7 @@ Automated validation of spec folder contents via `validate.sh`.
 4. **Leave placeholders in final docs** - All must be replaced
 5. **Decide autonomously update vs create** - Always ask user
 6. **Claim done without checklist verification** - Level 2+ requirement
-7. **Proceed without spec folder confirmation** - Wait for A/B/C/D
+7. **Proceed without spec folder confirmation** - Wait for A/B/C/D/E
 8. **Skip validation before completion** - Completion Verification hard block
 
 ### ⚠️ ESCALATE IF
@@ -768,7 +770,7 @@ Automated validation of spec folder contents via `validate.sh`.
 | Validation        | `scripts/spec/validate.sh`                                                 | Automated validation              |
 | Gates             | `AGENTS.md` Section 2                                                      | Gate definitions                  |
 | Memory gen        | `scripts/memory/generate-context.ts` → `scripts/dist/`                     | Memory file creation              |
-| MCP Server        | `mcp_server/context-server.ts`                                             | Spec Kit Memory MCP (~903 lines)  |
+| MCP Server        | `mcp_server/context-server.ts`                                             | Spec Kit Memory MCP (~682 lines)  |
 | Database          | `mcp_server/dist/database/context-index.sqlite`                            | Vector search index (canonical runtime path) |
 | Constitutional    | `constitutional/`                                                          | Always-surface rules              |
 

@@ -22,14 +22,14 @@ operating_mode:
 gate_3_compliance:
   status: ENFORCED_VIA_PHASES
   mechanism: "Phase 1-3 blocking gates in implement.md"
-  standard_question: "Spec Folder (required): A) Existing | B) New | C) Update related | D) Skip"
+  standard_question: "Spec Folder (required): A) Existing | B) New | C) Update related | D) Skip | E) Phase folder"
   first_message_protocol: "If FIRST message requests implementation, ask spec folder FIRST"
   failure_pattern_19:
     triggers: ["comprehensive", "fix all", "15 agents", "implement everything"]
-    action: "STOP → Ask spec folder question → Wait for A/B/C/D"
+    action: "STOP → Ask spec folder question → Wait for A/B/C/D/E"
   self_verification: |
     □ File modification detected? Did I ask spec folder question?
-    □ Did I wait for user's A/B/C/D response before using project tools?
+    □ Did I wait for user's A/B/C/D/E response before using project tools?
 
 implementation_philosophy:
   principle: "Correctness first, elegance second"
@@ -52,9 +52,12 @@ user_inputs:
 # ─────────────────────────────────────────────────────────────────
 field_handling:
   spec_id:
-    derive_from: "specs/{NNN} or specs/{NNN-name}"
+    derive_from: "specs/{NNN}, specs/{NNN-name}, or specs/{NNN-parent}/{NNN-phase} (phase child — use parent NNN as spec_id)"
     fallback: "numeric portion or timestamp"
   defaults: { spec_folder_empty: "REQUIRED", context_empty: "Infer from REQUEST + codebase", issues_empty: "Use planning phase issues", environment_empty: "Skip browser testing", scope_empty: "specs/**" }
+  phase_folder_awareness:
+    note: "[SPEC_FOLDER] may be a phase child path (e.g., specs/003-name/001-phase/). When Option E is selected or --phase-folder is provided, spec_id derives from the parent folder NNN, not the child NNN. Also load parent spec.md for cross-reference context."
+    path_pattern: "specs/{NNN-parent}/{NNN-phase}/"
   scope_policy: { default: "specs/**", rule: "Limit file operations to scope when provided" }
 
 # ─────────────────────────────────────────────────────────────────

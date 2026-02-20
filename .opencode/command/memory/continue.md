@@ -364,7 +364,7 @@ Context will be automatically restored. Next action: Verify command structure.
 | Session state corrupt/incomplete | Reconstruct from multiple memory files |
 | Spec folder not found            | List available, ask user to select     |
 
-> **Adaptive Fusion in Recovery:** When `SPECKIT_ADAPTIVE_FUSION` is enabled, recovery context matching uses adaptive fusion weights tuned for the `resume` mode — recency and state-anchor relevance are boosted to improve hit rate on fragmented or post-compaction sessions. When `SPECKIT_EXTENDED_TELEMETRY` is enabled, recovery success metrics (match confidence, anchor hit rate, reconstruction steps) are captured and appended to the telemetry log for post-session analysis.
+> **Adaptive Fusion in Recovery:** When `SPECKIT_ADAPTIVE_FUSION` is enabled, recovery context matching uses adaptive fusion weights tuned for the `resume` mode — recency and state-anchor relevance are boosted to improve hit rate on fragmented or post-compaction sessions. When `SPECKIT_GRAPH_UNIFIED` is also enabled, fusion becomes 3-channel (vector + BM25 + graph), with graph traversal helping surface structurally connected session memories even when semantic similarity is low (common after compaction). The two flags are independent: `SPECKIT_ADAPTIVE_FUSION` controls weight adaptation; `SPECKIT_GRAPH_UNIFIED` controls whether the graph channel participates. Both can be enabled simultaneously for maximum recovery fidelity. When `SPECKIT_EXTENDED_TELEMETRY` is enabled, recovery success metrics (match confidence, anchor hit rate, reconstruction steps) are captured and appended to the telemetry log for post-session analysis.
 
 ---
 

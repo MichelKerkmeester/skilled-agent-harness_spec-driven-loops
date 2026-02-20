@@ -1,6 +1,6 @@
 ---
 description: Research workflow (9 steps) - technical investigation and documentation. Supports :auto and :confirm modes
-argument-hint: "<research-topic> [:auto|:confirm]"
+argument-hint: "<research-topic> [:auto|:confirm] [--phase-folder=<path>]"
 allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task, webfetch, memory_context, memory_search
 ---
 
@@ -45,6 +45,13 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    ├─ ":confirm" → execution_mode = "INTERACTIVE" (omit Q2)
    └─ No suffix  → execution_mode = "ASK" (include Q2)
 
+1b. CHECK --phase-folder flag:
+   ├─ --phase-folder=<path> provided → auto-resolve spec_path to that child folder path
+   │   Set spec_choice = "E", spec_path = <path>, omit Q1
+   │   Validate path matches pattern: specs/[###]-*/[0-9][0-9][0-9]-*/
+   │   Show parent context: "Phase folder: <path> (parent: <parent-folder>)"
+   └─ Not provided → continue normally
+
 2. CHECK $ARGUMENTS for research topic:
    ├─ Has content (ignoring :auto/:confirm) → research_topic = $ARGUMENTS, omit Q0
    └─ Empty → include Q0
@@ -63,6 +70,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    Q1. Spec Folder (required):
      A) Use existing [suggest if found]  B) Create new: specs/[###]-[slug]/
      C) Update related [if match found]  D) Skip documentation
+     E) Phase folder — target a specific phase child (e.g., specs/NNN-name/001-phase/)
 
    Q2. Execution Mode (if no suffix):
      A) Autonomous - all 9 steps without approval
@@ -77,7 +85,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
 
 7. Parse response and store ALL results:
    - research_topic = [from Q0 or $ARGUMENTS]
-   - spec_choice = [A/B/C/D from Q1]
+   - spec_choice = [A/B/C/D/E from Q1]
    - spec_path = [derived path or null if D]
    - execution_mode = [AUTONOMOUS/INTERACTIVE from suffix or Q2]
    - dispatch_mode = [single/multi_small/multi_large from Q3]

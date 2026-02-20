@@ -164,6 +164,12 @@ Feature flags control experimental and optional functionality. All flags default
 | `SPEC_KIT_OFFLINE_MODE` | `false` | Offline-first operation (no external API calls) |
 | `SPEC_KIT_LAZY_EMBEDDING` | `true` | Lazy embedding model loading (reduces startup time) |
 | `SPEC_KIT_PROVIDER_FALLBACK` | `true` | Auto-switch embedding providers on failure |
+| `SPECKIT_ADAPTIVE_FUSION` | `false` | Enables intent-aware weighted RRF with 7 task-type profiles in `memory_search()` |
+| `SPECKIT_EXTENDED_TELEMETRY` | `true` | Emits 4-dimension retrieval metrics (latency, mode, fallback, quality) per search operation |
+| `SPECKIT_GRAPH_UNIFIED` | `true` | Gates the entire unified graph channel in hybrid search (causal edge + SGQS skill graph in RRF fusion) |
+| `SPECKIT_GRAPH_MMR` | `true` | Gates Graph-Guided MMR diversity reranking (BFS shortest-path graph distance alongside cosine distance) |
+| `SPECKIT_GRAPH_AUTHORITY` | `true` | Gates Structural Authority Propagation scoring (node type multipliers boost search results by topological importance) |
+| `SPECKIT_INDEX_SPEC_DOCS` | `true` | Gates spec document indexing in `memory_index_scan()` (discovers and indexes spec folder documents with document-type scoring multipliers) |
 
 ### Usage Examples
 
@@ -182,6 +188,15 @@ SPEC_KIT_OFFLINE_MODE=true EMBEDDINGS_PROVIDER=hf-local node mcp_server/context-
 
 # Disable trigger matching
 SPEC_KIT_ENABLE_TRIGGERS=false node mcp_server/context-server.ts
+
+# Enable adaptive fusion (intent-aware search weighting)
+SPECKIT_ADAPTIVE_FUSION=true node mcp_server/context-server.ts
+
+# Disable graph-guided features
+SPECKIT_GRAPH_UNIFIED=false SPECKIT_GRAPH_MMR=false node mcp_server/context-server.ts
+
+# Disable spec document indexing
+SPECKIT_INDEX_SPEC_DOCS=false node mcp_server/context-server.ts
 ```
 
 ### Production Recommendations

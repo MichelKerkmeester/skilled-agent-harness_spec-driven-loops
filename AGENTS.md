@@ -53,6 +53,7 @@
 | **CDN deployment**       | Minify → Verify → Update HTML versions → Upload to R2 → Browser test                                                               |
 | **JavaScript minify**    | `minify-webflow.mjs` → `verify-minification.mjs` → `test-minified-runtime.mjs` → Browser test                                      |
 | **Learn from mistakes**  | `/memory:learn correct` → Document what went wrong → Stability penalty applied → Pattern extracted                                 |
+| **Phase workflow**       | `/spec_kit:phase` → Decompose → `create.sh --phase` → Populate parent/children → `validate.sh --recursive`                         |
 | **Database maintenance** | `/memory:manage` → stats, health, cleanup, checkpoint operations                                                                   |
 
 ### Coding Analysis Lenses 
@@ -135,6 +136,7 @@
 │   □ "rename", "move", "delete", "create", "add", "remove"                   │
 │   □ "update", "change", "modify", "edit", "fix", "refactor"                  │
 │   □ "implement", "build", "write", "generate", "configure", "analyze"        │
+│   □ "decompose", "phased", "multi-phase", "phase"                           │
 │   □ Any task that will result in file changes                                │
 │                                                                             │
 │ Q1: SPEC FOLDER - If file modification triggers detected                      │

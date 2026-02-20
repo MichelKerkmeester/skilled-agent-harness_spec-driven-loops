@@ -127,7 +127,12 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    │    B) Load all recent files, up to 3                            │
    │    C) Skip (start fresh)                                       │
    │                                                                │
-   │ Reply with answers, e.g.: "B, A, C" or "pdf-editor, B, A, C"   │
+   │ **Q4. Graph Structure** — Add graph navigation layer?           │
+   │    A) No (default — SKILL.md + assets/ + references/ only)    │
+   │    B) Yes — also add index.md + nodes/*.md graph layer         │
+   │       (recommended for complex skills, 5+ topics)              │
+   │                                                                │
+   │ Reply with answers, e.g.: "B, A, C, A" or "pdf-editor, B, A"   │
    └────────────────────────────────────────────────────────────────┘
 
 6. WAIT for user response (DO NOT PROCEED)
@@ -139,6 +144,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    - spec_path = [derived path or null if D]
    - execution_mode = [AUTONOMOUS/INTERACTIVE from suffix or Q2]
    - memory_choice = [A/B/C from Q3, or N/A if not applicable]
+   - skill_graph = [A=no, B=yes from Q4, default A — graph layer is supplemental to SKILL.md]
 
 8. Execute background operations based on choices:
    - IF spec_choice == B: Find next number and create: specs/[NNN]-[skill-name]/
@@ -163,6 +169,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
 - `spec_choice = ___` | `spec_path = ________________`
 - `execution_mode = ________________`
 - `memory_loaded = ________________`
+- `skill_graph = ________________`
 
 ---
 
@@ -179,6 +186,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
 | spec_path            | ○ Conditional | ______     | Derived from Q1        |
 | execution_mode       | ✅ Yes         | ______     | Suffix or Q2           |
 | memory_loaded        | ○ Conditional | ______     | Q3 (if existing spec)  |
+| skill_graph          | ✅ Yes         | ______     | Q4 (default: A)        |
 
 ```
 VERIFICATION CHECK:

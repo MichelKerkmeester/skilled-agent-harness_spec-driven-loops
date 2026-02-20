@@ -40,6 +40,11 @@ field_handling:
   spec_id:
     derive_from: "Next available spec number from existing folders"
     fallback: "Extract highest NNN from specs/*/ and add 1"
+  parent_level_mapping:
+    A: "3+"
+    B: "3"
+    C: "2"
+    note: "Map Q3 letter answer to level string before passing to create.sh --level"
   defaults:
     phases_empty: "Default to 3, refine during scope analysis"
     phase_names_empty: "Auto-generate from feature decomposition"
@@ -173,7 +178,8 @@ workflow:
       - Verify template files present in parent and all children
     tool_invocation:
       command: "bash .opencode/skill/system-spec-kit/scripts/spec/create.sh \"{feature_description}\" --phase --phases {phase_count} --phase-names \"{phase_names}\" --level {parent_level}"
-      note: "create.sh handles folder creation, template copying, and basic structure"
+      command_with_parent: "bash .opencode/skill/system-spec-kit/scripts/spec/create.sh \"{feature_description}\" --phase --phases {phase_count} --phase-names \"{phase_names}\" --level {parent_level} --parent \"{parent_spec}\""
+      note: "Use command_with_parent when --parent flag was provided (adding phases to existing spec). create.sh handles folder creation, template copying, and basic structure."
     outputs: { parent_folder: path, child_folders: list_of_paths }
     validation: folders_created
 

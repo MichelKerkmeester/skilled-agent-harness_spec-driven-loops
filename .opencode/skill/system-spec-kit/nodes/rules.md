@@ -8,7 +8,7 @@ description: "Mandatory rules (ALWAYS, NEVER, ESCALATE) for using the system-spe
 1. **Determine level (1/2/3/3+) before ANY file changes** - Count LOC, assess complexity/risk
 2. **Copy templates from `templates/level_N/`** - Use level folders, NEVER create from scratch
 3. **Fill ALL placeholders** - Remove placeholder markers and sample content
-4. **Ask A/B/C/D when file modification detected** - Present options, wait for selection
+4. **Ask A/B/C/D/E when file modification detected** - Present options, wait for selection
 5. **Check for related specs before creating new folders** - Search keywords, review status
 6. **Get explicit user approval before changes** - Show level, path, templates, approach
 7. **Use consistent folder naming** - `specs/###-short-name/` format
@@ -20,8 +20,9 @@ description: "Mandatory rules (ALWAYS, NEVER, ESCALATE) for using the system-spe
 13. **Create implementation-summary.md at end of implementation phase (Level 1+)** - Document what was built
 14. **Suggest /spec_kit:handover when session-end keywords detected OR after extended work (15+ tool calls)** - Proactive context preservation
 15. **Suggest /spec_kit:debug after 3+ failed fix attempts on same error** - Do not continue without offering debug delegation
-16. **Route all code creation/updates through `workflows-code--opencode`** - Full alignment is mandatory before claiming completion
-17. **Route all documentation creation/updates through `workflows-documentation`** - Full alignment is mandatory before claiming completion
+16. **Suggest /spec_kit:phase when task requires multi-phase decomposition** - Complex specs spanning multiple sessions or workstreams
+17. **Route all code creation/updates through `workflows-code--opencode`** - Full alignment is mandatory before claiming completion
+18. **Route all documentation creation/updates through `workflows-documentation`** - Full alignment is mandatory before claiming completion
 
 ### ❌ NEVER
 
@@ -31,7 +32,7 @@ description: "Mandatory rules (ALWAYS, NEVER, ESCALATE) for using the system-spe
 4. **Leave placeholders in final docs** - All must be replaced
 5. **Decide autonomously update vs create** - Always ask user
 6. **Claim done without checklist verification** - Level 2+ requirement
-7. **Proceed without spec folder confirmation** - Wait for A/B/C/D
+7. **Proceed without spec folder confirmation** - Wait for A/B/C/D/E
 8. **Skip validation before completion** - Completion Verification hard block
 
 ### ⚠️ ESCALATE IF

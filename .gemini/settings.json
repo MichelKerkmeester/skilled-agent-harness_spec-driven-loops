@@ -11,17 +11,25 @@
     "enabled": true
   },
   "context": {
-    "fileName": ["GEMINI.md", "AGENTS.md"]
+    "fileName": [
+      "GEMINI.md",
+      "AGENTS.md"
+    ]
   },
   "mcpServers": {
     "sequential_thinking": {
       "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-sequential-thinking"],
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-sequential-thinking"
+      ],
       "trust": true
     },
     "spec_kit_memory": {
       "command": "node",
-      "args": [".opencode/skill/system-spec-kit/mcp_server/dist/context-server.js"],
+      "args": [
+        ".opencode/skill/system-spec-kit/mcp_server/dist/context-server.js"
+      ],
       "env": {
         "EMBEDDINGS_PROVIDER": "auto",
         "MEMORY_DB_PATH": ".opencode/skill/system-spec-kit/mcp_server/dist/database/context-index.sqlite"
@@ -30,11 +38,26 @@
     },
     "code_mode": {
       "command": "node",
-      "args": [".opencode/skill/mcp-code-mode/mcp_server/dist/index.js"],
+      "args": [
+        ".opencode/skill/mcp-code-mode/mcp_server/dist/index.js"
+      ],
       "env": {
         "UTCP_CONFIG_FILE": ".utcp_config.json"
       },
       "trust": true
+    }
+  },
+  "agents": {
+    "overrides": {
+      "codebase_investigator": {
+        "enabled": true,
+        "runConfig": {
+          "maxTurns": 20
+        },
+        "modelConfig": {
+          "model": "gemini-2.5-pro"
+        }
+      }
     }
   }
 }

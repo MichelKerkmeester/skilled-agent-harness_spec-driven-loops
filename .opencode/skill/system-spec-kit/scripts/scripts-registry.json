@@ -36,7 +36,7 @@
       "outputs": ["Pass/warn/fail status", "JSON report (with --json)"],
       "gate": "Completion Verification",
       "version": "2.0.0",
-      "dependencies": ["rules/*.sh", "lib/common.sh"]
+      "dependencies": ["rules/*.sh", "lib/shell-common.sh"]
     },
     {
       "name": "check-completion",
@@ -188,7 +188,7 @@
     },
     {
       "name": "cleanup-orphaned-vectors",
-      "path": "scripts/memory/cleanup-orphaned-vectors.js",
+      "path": "scripts/dist/memory/cleanup-orphaned-vectors.js",
       "type": "node",
       "description": "Remove orphaned vector entries from the SQLite database",
       "trigger": ["cleanup vectors", "database cleanup"],
@@ -350,75 +350,84 @@
       "severity": "error",
       "essential": true,
       "version": "1.0.0"
+    },
+    {
+      "name": "check-phase-links",
+      "path": "scripts/rules/check-phase-links.sh",
+      "type": "bash",
+      "description": "PHASE_LINKS rule - validates phase folder cross-references and link integrity",
+      "severity": "warning",
+      "essential": false,
+      "version": "1.0.0"
     }
   ],
   "libraries": {
     "shell": [
       {
-        "name": "common",
-        "path": "scripts/lib/common.sh",
-        "description": "Validation utilities (colors, logging, result tracking)"
+        "name": "shell-common",
+        "path": "scripts/lib/shell-common.sh",
+        "description": "Shared shell utilities (colors, logging, result tracking)"
       },
       {
-        "name": "config",
-        "path": "scripts/lib/config.sh",
-        "description": "Configuration loading"
+        "name": "git-branch",
+        "path": "scripts/lib/git-branch.sh",
+        "description": "Git branch utilities"
       },
       {
-        "name": "output",
-        "path": "scripts/lib/output.sh",
-        "description": "Formatted output helpers"
+        "name": "template-utils",
+        "path": "scripts/lib/template-utils.sh",
+        "description": "Template processing helpers"
       }
     ],
     "javascript": [
       {
         "name": "embeddings",
-        "path": "scripts/lib/embeddings.js",
+        "path": "scripts/dist/lib/embeddings.js",
         "description": "Re-exports from ../../shared/embeddings"
       },
       {
         "name": "trigger-extractor",
-        "path": "scripts/lib/trigger-extractor.js",
+        "path": "scripts/dist/lib/trigger-extractor.js",
         "description": "Re-exports from ../../shared/trigger-extractor"
       },
       {
         "name": "semantic-summarizer",
-        "path": "scripts/lib/semantic-summarizer.js",
+        "path": "scripts/dist/lib/semantic-summarizer.js",
         "description": "Message classification"
       },
       {
         "name": "opencode-capture",
-        "path": "scripts/extractors/opencode-capture.js",
+        "path": "scripts/dist/extractors/opencode-capture.js",
         "description": "OpenCode session capture"
       },
       {
         "name": "content-filter",
-        "path": "scripts/lib/content-filter.js",
+        "path": "scripts/dist/lib/content-filter.js",
         "description": "Three-stage content filtering"
       },
       {
         "name": "anchor-generator",
-        "path": "scripts/lib/anchor-generator.js",
+        "path": "scripts/dist/lib/anchor-generator.js",
         "description": "ANCHOR ID generation"
       },
       {
         "name": "flowchart-generator",
-        "path": "scripts/lib/flowchart-generator.js",
+        "path": "scripts/dist/lib/flowchart-generator.js",
         "description": "ASCII flowcharts"
       },
       {
         "name": "ascii-boxes",
-        "path": "scripts/lib/ascii-boxes.js",
+        "path": "scripts/dist/lib/ascii-boxes.js",
         "description": "ASCII box drawing"
       },
       {
         "name": "simulation-factory",
-        "path": "scripts/lib/simulation-factory.js",
+        "path": "scripts/dist/lib/simulation-factory.js",
         "description": "Fallback data generation"
       },
       {
         "name": "retry-manager",
-        "path": "scripts/lib/retry-manager.js",
+        "path": "scripts/dist/lib/retry-manager.js",
         "description": "Embedding retry logic"
       }
     ]
@@ -427,7 +436,7 @@
     "totalScripts": 13,
     "essentialScripts": 7,
     "optionalScripts": 6,
-    "totalRules": 13,
+    "totalRules": 14,
     "essentialRules": 3,
     "totalLibraries": 13,
     "categories": {

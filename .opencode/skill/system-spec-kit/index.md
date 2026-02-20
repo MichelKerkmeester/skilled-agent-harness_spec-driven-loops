@@ -2,7 +2,7 @@
 name: system-spec-kit
 description: "Unified documentation and context preservation: spec folder workflow (levels 1-3+), CORE + ADDENDUM template architecture (v2.2), validation, and Spec Kit Memory for context preservation. Mandatory for all file modifications."
 allowed-tools: [Bash, Edit, Glob, Grep, Read, Task, Write]
-version: 2.2.24.0
+version: 2.2.26.0
 ---
 
 # Spec Kit - Mandatory Conversation Documentation

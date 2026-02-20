@@ -1,7 +1,7 @@
 // ---------------------------------------------------------------
 // MODULE: Tool Schemas
 // ---------------------------------------------------------------
-// All 22 MCP tool definitions (names, descriptions, input schemas).
+// All 23 MCP tool definitions (names, descriptions, input schemas).
 // Extracted from context-server.ts for maintainability (T303).
 // ---------------------------------------------------------------
 

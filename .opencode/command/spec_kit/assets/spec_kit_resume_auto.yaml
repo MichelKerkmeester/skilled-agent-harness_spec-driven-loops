@@ -45,6 +45,11 @@ session_detection:
     tier_4_mtime:
       method: "glob {.opencode/,}specs/**/memory/*.md | sort by mtime | head -1"
       fallback: "report no session"
+  phase_folder_detection:
+    trigger: "After spec folder resolved, check if it contains [0-9][0-9][0-9]-*/ child directories"
+    action: "If phase children found → list them with per-child tasks.md completion status → present phase selection UI before proceeding"
+    skip: "If --phase-folder was provided in $ARGUMENTS, skip detection and use the specified child directly"
+    detection_method_value: "phase-folder"
   fallback: { on_no_memory: "Report no active session, suggest /spec_kit:complete" }
 
 # ─────────────────────────────────────────────────────────────────

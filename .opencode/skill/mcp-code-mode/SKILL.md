@@ -12,14 +12,12 @@ version: 1.0.7.0
 Execute TypeScript code with direct access to 200+ MCP tools through progressive disclosure. Code Mode eliminates context overhead by loading tools on-demand, enabling complex multi-tool workflows in a single execution with state persistence and built-in error handling.
 
 ### Skill Graph Status
+This skill has a supplemental graph navigation layer for deep-dive topics.
+- Primary entrypoint: `SKILL.md` (this file -- activation rules, routing, core behavior)
+- Supplemental navigation: `index.md` (optional deep-dive into specific topics)
+- Topic nodes: `nodes/*.md` (detailed content per topic)
 
-This skill is running in graph mode.
-
-- Primary graph entrypoint: `index.md`
-- Node content: `nodes/*.md`
-- Compatibility entrypoint: `SKILL.md` (kept for routing and legacy loaders)
-
-Use `SKILL.md` for activation/rules, then traverse `index.md` for task-specific deep content.
+Use `SKILL.md` for activation, rules, and routing. Optionally traverse `index.md` for focused deep-dive content on specific topics.
 
 ---
 

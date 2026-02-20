@@ -16,14 +16,12 @@ Unified specialist providing: (1) Document quality pipeline with structure enfor
 **Architecture**: Scripts handle deterministic parsing/metrics. AI handles quality judgment and recommendations.
 
 ### Skill Graph Status
+This skill has a supplemental graph navigation layer for deep-dive topics.
+- Primary entrypoint: `SKILL.md` (this file -- activation rules, routing, core behavior)
+- Supplemental navigation: `index.md` (optional deep-dive into specific topics)
+- Topic nodes: `nodes/*.md` (detailed content per topic)
 
-This skill is running in graph mode.
-
-- Primary graph entrypoint: `index.md`
-- Node content: `nodes/*.md`
-- Compatibility entrypoint: `SKILL.md` (kept for routing and legacy loaders)
-
-Use `SKILL.md` for activation/rules, then traverse `index.md` for task-specific deep content.
+Use `SKILL.md` for activation, rules, and routing. Optionally traverse `index.md` for focused deep-dive content on specific topics.
 
 **Skill Graph Authoring**: Large skills can now be authored as node-based graphs. Use [skill_creation.md](./references/skill_creation.md) (Section 9) for structure and AI traversal logic, [skill_graph_index_template.md](./assets/opencode/skill_graph_index_template.md) for the index.md entrypoint, and [skill_graph_node_template.md](./assets/opencode/skill_graph_node_template.md) to scaffold new nodes.
 

@@ -108,7 +108,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
 
 3. CHECK if $ARGUMENTS contains skill name and asset type:
    ├─ IF $ARGUMENTS has skill_name → omit Q0
-   ├─ IF $ARGUMENTS has valid asset_type (template/lookup/example/guide) → omit Q1
+   ├─ IF $ARGUMENTS has valid asset_type (template/lookup/example/guide/graph_node) → omit Q1
    └─ IF $ARGUMENTS is empty or incomplete → include applicable questions
 
 4. List available skills:
@@ -128,6 +128,8 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    │    B) Lookup - Lookup tables, decisions                        │
    │    C) Example - Working code examples                          │
    │    D) Guide - Step-by-step how-tos                             │
+   │    E) Graph Node - New nodes/*.md file with YAML frontmatter    │
+   │       and wikilinks (for graph-mode skills only)               │
    │                                                                │
    │ **Q2. Execution Mode** (if no :auto/:confirm suffix):            │
    │    A) Interactive - Confirm at each step (Recommended)          │
@@ -140,7 +142,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
 
 7. Parse response and store ALL results:
    - skill_name = [from Q0 or $ARGUMENTS]
-   - asset_type = [A=template, B=lookup, C=example, D=guide from Q1 or $ARGUMENTS]
+   - asset_type = [A=template, B=lookup, C=example, D=guide, E=graph_node from Q1 or $ARGUMENTS]
    - execution_mode = [AUTONOMOUS/INTERACTIVE from suffix or Q2]
 
 8. Verify skill exists (inline check, not separate phase):
@@ -191,13 +193,13 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
 
 **Before continuing to the workflow, verify ALL values are set:**
 
-| FIELD          | REQUIRED | YOUR VALUE | SOURCE                  |
-| -------------- | -------- | ---------- | ----------------------- |
-| write_agent_verified | ✅ Yes         | ______     | Automatic check        |
-| skill_name     | ✅ Yes    | ______     | Q0 or $ARGUMENTS        |
-| asset_type     | ✅ Yes    | ______     | Q1 or $ARGUMENTS        |
-| skill_path     | ✅ Yes    | ______     | Derived from skill_name |
-| execution_mode | ✅ Yes    | ______     | Suffix or Q2            |
+| FIELD                | REQUIRED | YOUR VALUE | SOURCE                  |
+| -------------------- | -------- | ---------- | ----------------------- |
+| write_agent_verified | ✅ Yes    | ______     | Automatic check         |
+| skill_name           | ✅ Yes    | ______     | Q0 or $ARGUMENTS        |
+| asset_type           | ✅ Yes    | ______     | Q1 or $ARGUMENTS        |
+| skill_path           | ✅ Yes    | ______     | Derived from skill_name |
+| execution_mode       | ✅ Yes    | ______     | Suffix or Q2            |
 
 ```
 VERIFICATION CHECK:
@@ -325,14 +327,18 @@ $ARGUMENTS
 
 ## WORKFLOW TRACKING
 
-| STEP | NAME          | STATUS | REQUIRED OUTPUT        | VERIFICATION               |
-| ---- | ------------- | ------ | ---------------------- | -------------------------- |
-| 1    | Analysis      | ☐      | Skill path, asset type | Skill verified, type valid |
-| 2    | Planning      | ☐      | Filename, sections     | File spec determined       |
-| 3    | Template Load | ☐      | Structure patterns     | Template loaded            |
-| 4    | Content       | ☐      | [asset_name].md        | Asset file created         |
-| 5    | Validation    | ☐      | Updated SKILL.md       | Integration complete       |
-| 6    | Save Context  | ☐      | Memory file            | Context preserved          |
+| STEP | NAME          | STATUS | REQUIRED OUTPUT                | VERIFICATION                       |
+| ---- | ------------- | ------ | ------------------------------ | ---------------------------------- |
+| 1    | Analysis      | ☐      | Skill path, asset type         | Skill verified, type valid         |
+| 2    | Planning      | ☐      | Filename, sections             | File spec determined               |
+| 3    | Template Load | ☐      | Structure patterns             | Template loaded                    |
+| 4    | Content       | ☐      | [asset_name].md                | Asset file created                 |
+| 5    | Validation    | ☐      | Updated SKILL.md or graph node | Integration complete (graph-aware) |
+| 6    | Save Context  | ☐      | Memory file                    | Context preserved                  |
+
+**Step 5 graph-mode detection:** Before updating SKILL.md, check if `[skill_path]/index.md` exists.
+- If `index.md` exists (graph-mode skill): integration target is the relevant `index.md` or `nodes/*.md` file, not SKILL.md
+- If no `index.md` (monolithic skill — default): existing behavior — update SKILL.md Navigation Guide and SMART ROUTING
 
 ---
 
@@ -344,12 +350,13 @@ $ARGUMENTS
 
 ### Asset Types & Naming Conventions
 
-| Type      | Naming Pattern           | Example                    | Purpose                    |
-| --------- | ------------------------ | -------------------------- | -------------------------- |
-| Template  | `[content]_templates.md` | `frontmatter_templates.md` | Copy-paste starting points |
-| Reference | `[topic]_reference.md`   | `status_reference.md`      | Lookup tables, decisions   |
-| Example   | `[topic]_examples.md`    | `optimization_examples.md` | Working code examples      |
-| Guide     | `[process]_guide.md`     | `packaging_guide.md`       | Step-by-step how-tos       |
+| Type       | Naming Pattern           | Example                    | Purpose                                                                 |
+| ---------- | ------------------------ | -------------------------- | ----------------------------------------------------------------------- |
+| Template   | `[content]_templates.md` | `frontmatter_templates.md` | Copy-paste starting points                                              |
+| Reference  | `[topic]_reference.md`   | `status_reference.md`      | Lookup tables, decisions                                                |
+| Example    | `[topic]_examples.md`    | `optimization_examples.md` | Working code examples                                                   |
+| Guide      | `[process]_guide.md`     | `packaging_guide.md`       | Step-by-step how-tos                                                    |
+| Graph Node | `nodes/[topic].md`       | `nodes/rag_fusion.md`      | Graph node with YAML frontmatter and wikilinks (graph-mode skills only) |
 
 ### When to Create Assets
 - Templates users apply repeatedly

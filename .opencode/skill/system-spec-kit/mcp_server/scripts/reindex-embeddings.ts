@@ -8,6 +8,7 @@
 --------------------------------------------------------------- */
 
 import path from 'path';
+
 import * as vectorIndex from '../lib/search/vector-index';
 import * as embeddings from '../lib/providers/embeddings';
 import * as checkpointsLib from '../lib/storage/checkpoints';

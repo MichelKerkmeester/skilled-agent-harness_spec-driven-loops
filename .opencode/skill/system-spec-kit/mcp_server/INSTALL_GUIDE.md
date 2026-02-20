@@ -1,12 +1,30 @@
-# Spec Kit Memory MCP Server Installation Guide
+# Spec Kit Memory MCP Server: Installation Guide
 
-Complete installation and configuration guide for the Spec Kit Memory MCP server, enabling AI-powered context retrieval and conversation memory. Provides semantic search across documentation (markdown files, spec folders, skill references), trigger-based memory surfacing, intent-aware context loading, and causal relationship tracking. Post-update recovery workflows address native module mismatches, workspace dependency failures, and database path confusion.
+> Version 3.0.0 | 2026-02-20
+
+Complete installation and configuration guide for the Spec Kit Memory MCP server. This guide enables AI-powered context retrieval and conversation memory across your project. The system indexes markdown documentation, spec folders and skill references to surface relevant information during AI interactions. It provides semantic search, trigger-based memory surfacing, intent-aware context loading, causal relationship tracking and a skill graph for cross-domain knowledge enrichment.
 
 ---
 
-## AI-FIRST INSTALL GUIDE
+## TABLE OF CONTENTS
 
-**Copy and paste this prompt to your AI assistant to get installation help:**
+0. [AI-First Install Guide](#0-ai-first-install-guide)
+1. [Overview](#1-overview)
+2. [Prerequisites](#2-prerequisites)
+3. [Installation](#3-installation)
+4. [Configuration](#4-configuration)
+5. [Verification](#5-verification)
+6. [Usage](#6-usage)
+7. [Features](#7-features)
+8. [Examples](#8-examples)
+9. [Troubleshooting](#9-troubleshooting)
+10. [Resources](#10-resources)
+
+---
+
+## 0. AI-First Install Guide
+
+Copy and paste this prompt to your AI assistant to get installation help:
 
 ```
 I want to install Spec Kit Memory MCP server from .opencode/skill/system-spec-kit/mcp_server
@@ -23,7 +41,7 @@ My project is located at: [your project path]
 Guide me through each step with the exact commands I need to run.
 ```
 
-**What the AI will do:**
+Your AI assistant will:
 - Verify Node.js and npm are available
 - Install Spec Kit Memory dependencies
 - Build the MCP server via `npm run build`
@@ -35,132 +53,106 @@ Guide me through each step with the exact commands I need to run.
 
 ---
 
-## TABLE OF CONTENTS
+## 1. Overview
 
-0. [AI-FIRST INSTALL GUIDE](#ai-first-install-guide)
-1. [OVERVIEW](#1--overview)
-2. [PREREQUISITES](#2--prerequisites)
-3. [INSTALLATION](#3--installation)
-4. [CONFIGURATION](#4--configuration)
-5. [VERIFICATION](#5--verification)
-6. [USAGE](#6--usage)
-7. [FEATURES](#7--features)
-8. [EXAMPLES](#8--examples)
-9. [TROUBLESHOOTING](#9--troubleshooting)
-10. [RESOURCES](#10--resources)
-
----
-
-## 1. 📖 OVERVIEW
-
-Spec Kit Memory is an MCP server that provides AI assistants with semantic memory and context retrieval capabilities. It indexes markdown documentation, conversation memories, and project context to surface relevant information during AI interactions.
+Spec Kit Memory is an MCP (Model Context Protocol) server that gives AI assistants semantic memory and context retrieval. It indexes markdown documentation and conversation memories to surface relevant information during AI interactions.
 
 ### Core Principle
 
-> **Install once, verify at each step.** Each phase has a validation checkpoint - do not proceed until the checkpoint passes.
+> Install once, verify at each step. Each phase has a validation checkpoint. Do not proceed until the checkpoint passes.
 
-### Key Features
-
-| Feature                        | Description                                                                       |
-| ------------------------------ | --------------------------------------------------------------------------------- |
-| **Semantic Search**            | Vector-based similarity search across all indexed markdown                        |
-| **Trigger Phrases**            | Fast keyword-based memory surfacing (sub-50ms)                                    |
-| **Intent-Aware Context**       | Automatically loads relevant context based on task type (implement, debug, plan)  |
-| **Causal Relationships**       | Track decision lineage with "why was this decided?" queries                       |
-| **Multi-Tier Importance**      | Constitutional, critical, important, normal, temporary, deprecated classification |
-| **Session Deduplication**      | Prevents re-sending the same memories (50% token savings on follow-up queries)    |
-| **Post-Update Recovery**       | Handles native module ABI mismatches, workspace dependency issues                 |
-| **Database Path Transparency** | Canonical runtime path with compatibility symlink                                 |
-
-### Architecture Overview
+### Architecture
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
-│                    CLI AI Agents (OpenCode)                     │
+│              AI Clients (OpenCode, Claude Code, Claude Desktop)  │
 └─────────────────────────────────┬───────────────────────────────┘
                                   │ MCP stdio
                                   ▼
 ┌─────────────────────────────────────────────────────────────────┐
 │              Spec Kit Memory MCP Server (Node.js)               │
-│  - Context indexing, semantic search, trigger matching          │
-│  - SQLite + sqlite-vec for vector storage                       │
-│  - Canonical DB: mcp_server/dist/database/context-index.sqlite  │
-└─────────────────────────────────────────────────────────────────┘
-                                  │
-                                  ▼
-┌─────────────────────────────────────────────────────────────────┐
-│                    Markdown Documentation                       │
-│  specs/**/memory/, .opencode/skill/**/references/, README.md    │
-└─────────────────────────────────────────────────────────────────┘
+│                                                                 │
+│  Context indexing    Semantic search    Trigger matching        │
+│  Skill Graph (SGQS)  Adaptive fusion    Extended telemetry      │
+│                                                                 │
+│  SQLite + sqlite-vec for vector storage                         │
+│  Canonical DB: mcp_server/dist/database/context-index.sqlite    │
+└────────────────────┬────────────────────────────────────────────┘
+                     │
+          ┌──────────┴──────────┐
+          ▼                     ▼
+┌─────────────────┐   ┌────────────────────────────────┐
+│ Markdown Docs   │   │ Skill Graph (72 nodes, 9 skills)│
+│ specs/**/memory │   │ nodes/*.md with YAML frontmatter│
+│ skill references│   │ Wikilinks as graph edges        │
+│ README files    │   │ 5-min TTL cache, SGQS engine    │
+└─────────────────┘   └────────────────────────────────┘
 ```
 
-### What This Guide Solves
+### What This Guide Covers
 
-This guide focuses on failures users report after major updates:
+This guide addresses the full installation lifecycle and common failures after major updates:
 
 - `Error: Cannot find module ...`
 - `Cannot find module '@spec-kit/shared/...'`
 - `ERR_DLOPEN_FAILED` or `NODE_MODULE_VERSION` mismatch
 - sqlite extension load issues (`sqlite-vec unavailable`)
-- Server starts but search returns empty/stale results
+- Server starts but search returns empty or stale results
 
 ### Current Runtime Paths (Canonical)
 
-- **MCP entry script**: `.opencode/skill/system-spec-kit/mcp_server/dist/context-server.js`
-- **Canonical database**: `.opencode/skill/system-spec-kit/mcp_server/dist/database/context-index.sqlite`
-- **Compatibility symlink**: `.opencode/skill/system-spec-kit/mcp_server/database/context-index.sqlite` → `dist/database/`
+| Path | Purpose |
+|---|---|
+| `.opencode/skill/system-spec-kit/mcp_server/dist/context-server.js` | MCP entry script |
+| `.opencode/skill/system-spec-kit/mcp_server/dist/database/context-index.sqlite` | Canonical database |
+| `.opencode/skill/system-spec-kit/mcp_server/database/context-index.sqlite` | Compatibility symlink to dist/database/ |
 
-> **Note**: If documentation references `mcp_server/database/...`, treat that as a compatibility view. The canonical runtime storage is `mcp_server/dist/database/`.
+If documentation references `mcp_server/database/...`, treat that as a compatibility view. The canonical runtime storage is `mcp_server/dist/database/`.
 
 ---
 
-## 2. ⚙️ PREREQUISITES
+## 2. Prerequisites
 
-**Phase 1** focuses on verifying required software dependencies.
+Phase 1 verifies the required software on your machine.
 
 ### Required Software
 
-1. **Node.js** (`>=18`)
+1. **Node.js** (version 18 or higher)
    ```bash
    node --version
-   # Should show v18.0.0 or higher
+   # Must show v18.0.0 or higher
    ```
 
-2. **npm** (comes with Node.js)
+2. **npm** (bundled with Node.js)
    ```bash
    npm --version
-   # Should show version number
+   # Must show a version number
    ```
 
-3. **MCP client** (OpenCode or Claude Code)
-   - OpenCode: AI-powered CLI client
-   - Claude Code: VS Code extension
+3. **MCP client**: OpenCode, Claude Code or Claude Desktop
 
-### Actions
-
-No additional dependencies required beyond Node.js and npm.
+No additional system dependencies are required beyond Node.js and npm.
 
 ### Validation: `phase_1_complete`
 
 ```bash
-# All commands should succeed:
-node --version    # → v18.0.0 or higher
-npm --version     # → 9.0.0 or higher
+node --version    # v18.0.0 or higher
+npm --version     # 9.0.0 or higher
 ```
 
-**Checklist:**
-- [ ] `node --version` returns v18 or higher?
-- [ ] `npm --version` returns a version number?
+Checklist:
+- [ ] `node --version` returns v18 or higher
+- [ ] `npm --version` returns a version number
 
-❌ **STOP if validation fails** - Install Node.js from https://nodejs.org/ before continuing.
+**STOP if validation fails.** Install Node.js from https://nodejs.org/ before continuing.
 
 ---
 
-## 3. 🛠️ INSTALLATION
+## 3. Installation
 
-This section covers **Phase 2 (Install)** and **Phase 3 (Initialize)**.
+This section covers Phase 2 (install) and Phase 3 (initialize).
 
-### Step 1: Navigate to Skill Directory
+### Step 1: Navigate to the Skill Directory
 
 ```bash
 cd .opencode/skill/system-spec-kit
@@ -175,7 +167,7 @@ npm install
 This installs:
 - `better-sqlite3` (SQLite with native bindings)
 - `sqlite-vec` (vector extension for semantic search)
-- Workspace dependencies (`@spec-kit/shared`)
+- Workspace dependencies including `@spec-kit/shared`
 
 ### Step 3: Build the MCP Server
 
@@ -183,32 +175,35 @@ This installs:
 npm run build
 ```
 
-> **Note**: If workspace type errors occur and you only need a runtime build, use: `npx tsc --build --noCheck --force`
+If workspace type errors occur and you only need a runtime build, use:
+
+```bash
+npx tsc --build --noCheck --force
+```
 
 ### Validation: `phase_2_complete`
 
 ```bash
-# Verify artifacts exist:
 ls mcp_server/dist/context-server.js
-# → should show the file
+# Must show the file
 
 ls mcp_server/node_modules/better-sqlite3
-# → should show the directory
+# Must show the directory
 ```
 
-**Checklist:**
-- [ ] `mcp_server/dist/context-server.js` exists?
-- [ ] `mcp_server/node_modules/better-sqlite3` exists?
+Checklist:
+- [ ] `mcp_server/dist/context-server.js` exists
+- [ ] `mcp_server/node_modules/better-sqlite3` exists
 
-❌ **STOP if validation fails** - Check installation output for errors.
+**STOP if validation fails.** Check the installation output for errors before continuing.
 
-### Step 4: Verify Native Modules (Optional but Recommended)
+### Step 4: Verify Native Modules (Recommended)
 
 ```bash
 bash scripts/setup/check-native-modules.sh
 ```
 
-If native check reports mismatch/failure:
+If the native check reports a mismatch or failure, run:
 
 ```bash
 bash scripts/setup/rebuild-native-modules.sh
@@ -217,27 +212,27 @@ bash scripts/setup/rebuild-native-modules.sh
 ### Validation: `phase_3_complete`
 
 ```bash
-# Smoke test: server should start without crash
+# Smoke test: server should start without crashing
 node mcp_server/dist/context-server.js
-# → Process starts and waits for MCP stdio input
+# Process starts and waits for MCP stdio input
 # Press Ctrl+C to exit
 ```
 
-**Checklist:**
-- [ ] Server starts without immediate crash?
-- [ ] No `ERR_DLOPEN_FAILED` errors?
+Checklist:
+- [ ] Server starts without immediate crash
+- [ ] No `ERR_DLOPEN_FAILED` errors in output
 
-❌ **STOP if validation fails** - Run native module rebuild (see Troubleshooting).
+**STOP if validation fails.** Run native module rebuild and see the Troubleshooting section.
 
 ---
 
-## 4. ⚙️ CONFIGURATION
+## 4. Configuration
 
-Connect Spec Kit Memory to your AI assistant (Phase 4).
+Phase 4 connects Spec Kit Memory to your AI assistant.
 
-### Option A: Configure for OpenCode
+### Option A: OpenCode
 
-Add to `opencode.json` in your project root:
+Add the following to `opencode.json` in your project root:
 
 ```json
 {
@@ -258,11 +253,12 @@ Add to `opencode.json` in your project root:
 }
 ```
 
-> **Note**: Paths are relative to project root. Use absolute paths if needed: `/Users/YOUR_USERNAME/path/to/project/.opencode/skill/...`
+Paths are relative to the project root. Use absolute paths if your client requires them:
+`/Users/YOUR_USERNAME/path/to/project/.opencode/skill/...`
 
-### Option B: Configure for Claude Code CLI
+### Option B: Claude Code CLI
 
-Add to `.mcp.json` in your project root:
+Add the following to `.mcp.json` in your project root:
 
 ```json
 {
@@ -281,7 +277,7 @@ Add to `.mcp.json` in your project root:
 }
 ```
 
-**Also add to** `settings.local.json`:
+Also add the following to `settings.local.json`:
 
 ```json
 {
@@ -289,13 +285,13 @@ Add to `.mcp.json` in your project root:
 }
 ```
 
-### Option C: Configure for Claude Desktop
+### Option C: Claude Desktop
 
-Add to `claude_desktop_config.json`:
-
-**Location**:
+Config file location:
 - macOS: `~/Library/Application Support/Claude/claude_desktop_config.json`
 - Windows: `%APPDATA%\Claude\claude_desktop_config.json`
+
+Add the following to that file:
 
 ```json
 {
@@ -313,18 +309,21 @@ Add to `claude_desktop_config.json`:
 }
 ```
 
-> **Note**: Replace `YOUR_USERNAME` and `path/to/project` with your actual paths. Find username with `whoami`.
+Replace `YOUR_USERNAME` and `path/to/project` with your actual values. Find your username with `whoami`.
 
 ### Feature Flag Environment Variables
 
-The following environment variables control optional and experimental features. Add them to the `environment` block of any configuration option (A, B, or C above).
+Add these flags to the `environment` (or `env`) block of any configuration option above. All flags use an opt-out pattern: they are enabled by default unless you set them to `false`.
 
-| Variable                      | Default   | Description                                                                                      |
-| ----------------------------- | --------- | ------------------------------------------------------------------------------------------------ |
-| `SPECKIT_ADAPTIVE_FUSION`     | `false`   | Set to `true` to enable intent-aware fusion weight tuning (7 task types). Disabled by default.   |
-| `SPECKIT_EXTENDED_TELEMETRY`  | `true`    | Set to `false` to disable 4-dimension retrieval metrics (latency, mode, fallback, quality).      |
+| Variable | Default | Description |
+|---|---|---|
+| `SPECKIT_GRAPH_UNIFIED` | `true` | Controls the entire graph channel. Set to `false` to disable all graph enrichment. |
+| `SPECKIT_GRAPH_MMR` | `true` | Controls Graph-Guided MMR reranking. Set to `false` to disable MMR on graph results. |
+| `SPECKIT_GRAPH_AUTHORITY` | `true` | Controls Structural Authority Propagation. Set to `false` to disable authority score boosts. |
+| `SPECKIT_ADAPTIVE_FUSION` | `false` | Controls adaptive intent-based fusion weights. Set to `true` to enable (7 task types). |
+| `SPECKIT_EXTENDED_TELEMETRY` | `true` | Controls 4-dimension per-retrieval telemetry. Set to `false` to disable metrics collection. |
 
-**Example** (OpenCode `opencode.json`):
+**Example** (OpenCode with all flags explicit):
 
 ```json
 {
@@ -338,8 +337,11 @@ The following environment variables control optional and experimental features. 
       "environment": {
         "EMBEDDINGS_PROVIDER": "hf-local",
         "MEMORY_DB_PATH": ".opencode/skill/system-spec-kit/mcp_server/dist/database/context-index.sqlite",
+        "SPECKIT_GRAPH_UNIFIED": "true",
+        "SPECKIT_GRAPH_MMR": "true",
+        "SPECKIT_GRAPH_AUTHORITY": "true",
         "SPECKIT_ADAPTIVE_FUSION": "true",
-        "SPECKIT_EXTENDED_TELEMETRY": "false"
+        "SPECKIT_EXTENDED_TELEMETRY": "true"
       },
       "enabled": true
     }
@@ -352,103 +354,105 @@ The following environment variables control optional and experimental features. 
 ```bash
 # Verify JSON syntax is valid
 python3 -m json.tool < opencode.json > /dev/null
-# OR for Claude Code:
+# Or for Claude Code:
 python3 -m json.tool < .mcp.json > /dev/null
 
-# Verify binary path exists
+# Verify the binary path exists
 ls -la .opencode/skill/system-spec-kit/mcp_server/dist/context-server.js
 ```
 
-**Checklist:**
-- [ ] Configuration file has valid JSON syntax?
-- [ ] Binary path in config exists?
-- [ ] Username replaced with actual username (if using absolute paths)?
+Checklist:
+- [ ] Configuration file has valid JSON syntax
+- [ ] Binary path in config exists on disk
+- [ ] Your actual username replaces `YOUR_USERNAME` (for absolute paths)
 
-❌ **STOP if validation fails** - Fix configuration syntax or paths.
+**STOP if validation fails.** Fix configuration syntax or paths before continuing.
 
 ---
 
-## 5. ✅ VERIFICATION
+## 5. Verification
 
-Verify end-to-end connection in your AI assistant.
+Phase 5 verifies the end-to-end connection inside your AI assistant.
 
 ### Step 1: Restart Your AI Client
 
 ```bash
-# For OpenCode:
+# OpenCode:
 opencode
 
-# For Claude Code: Restart VS Code
-# For Claude Desktop: Quit and reopen application
+# Claude Code: Restart VS Code
+# Claude Desktop: Quit and reopen the application
 ```
 
-### Step 2: Check MCP Server Is Loaded
+### Step 2: Check That the MCP Server Is Loaded
 
 Ask your AI assistant:
+
 ```
 What MCP tools are available?
 ```
 
-Expected: Should list `spec_kit_memory` tools including:
+You should see `spec_kit_memory` tools listed, including:
 - `memory_context` (unified context retrieval)
 - `memory_search` (semantic search)
 - `memory_match_triggers` (fast trigger matching)
 - `memory_save` (index new memories)
+- `memory_index_scan` (bulk indexing)
+- `memory_stats` (system statistics)
 
-### Step 3: Test with a Query
+### Step 3: Run a Test Query
 
 Ask your AI assistant:
+
 ```
 Search memory for documentation about Gate 3
 ```
 
-Expected: Should return relevant memories about Gate 3 (spec folder question) from AGENTS.md or related documentation.
+You should get relevant memories about Gate 3 (the spec folder question) from AGENTS.md or related documentation.
 
-### Success Criteria (`phase_5_complete`)
+### Validation: `phase_5_complete`
 
-- [ ] ✅ MCP server appears in tool list
-- [ ] ✅ `memory_search()` returns results (or empty if no memories indexed yet)
-- [ ] ✅ No connection errors in responses
-- [ ] ✅ No `ERR_DLOPEN_FAILED` or module resolution errors
+Checklist:
+- [ ] MCP server appears in the tool list
+- [ ] `memory_search()` returns results (or empty if no memories are indexed yet)
+- [ ] No connection errors in responses
+- [ ] No `ERR_DLOPEN_FAILED` or module resolution errors
 
-❌ **STOP if validation fails** - Check MCP configuration, restart client, see Troubleshooting.
+**STOP if validation fails.** Check your MCP configuration, restart the client and consult the Troubleshooting section.
 
 ---
 
-## 6. 💼 USAGE
+## 6. Usage
 
 ### Daily Workflow
 
-The MCP server starts automatically when your AI client launches. No manual start required.
+The MCP server starts automatically when your AI client launches. No manual start is required.
 
 ```bash
-# Start your AI client - MCP starts automatically
+# Start your AI client; the MCP server starts in the background
 opencode
-
-# MCP server runs in background, handling memory queries from AI
 ```
 
 ### Common Operations
 
-**Index new memories**:
-```bash
-# Via AI assistant:
+**Index new memories:**
+```
+# Ask your AI assistant:
 "Scan for new memory files and index them"
-
 # This calls memory_index_scan() internally
 ```
 
-**Search for context**:
-```bash
-# Via AI assistant:
+**Search for context:**
+```
+# Ask your AI assistant:
 "Search memory for [topic]"
 "What do we remember about [feature]?"
 "Find documentation related to [keyword]"
 ```
 
-**Resume previous work**:
-```bash
-# Via AI assistant:
+**Resume previous work:**
+```
+# Ask your AI assistant:
 "Load context from spec folder 005-memory"
 "Continue work on the authentication feature"
 ```
@@ -456,8 +460,8 @@ opencode
 ### When to Rebuild
 
 Rebuild after:
-- Updating Node.js version
-- Pulling updates that modify `mcp_server/` code
+- Updating your Node.js version
+- Pulling updates that change `mcp_server/` code
 - Experiencing module resolution errors
 
 ```bash
@@ -467,211 +471,162 @@ npm run build
 bash scripts/setup/rebuild-native-modules.sh
 ```
 
+### Phase System Support
+
+The server supports phase folders for multi-phase spec work. Phase folders follow the pattern `specs/NNN-name/001-phase/`. Use the `--recursive` flag in `validate.sh` to validate all phases in a spec folder at once. The `recommend-level.sh` script applies phase detection scoring automatically.
+
 ---
 
-## 7. 🎯 FEATURES
+## 7. Features
 
-### Memory Context (Unified Entry Point)
+### memory_context: Unified Context Retrieval
 
-**Tool**: `memory_context()`
+`memory_context()` is the primary entry point for context loading. It detects task intent and routes to the optimal retrieval strategy automatically.
 
-**Purpose**: Unified context retrieval with intent-aware routing. Automatically detects task intent and surfaces relevant memories.
-
-**Modes**:
+**Modes:**
 - `auto` (default): Detect intent and route optimally
 - `quick`: Fast trigger-based matching
-- `deep`: Comprehensive semantic search
+- `deep`: Comprehensive semantic search with query expansion
 - `focused`: Intent-optimized retrieval
-- `resume`: Session recovery (load previous state)
+- `resume`: Session recovery (loads previous state)
 
-**Example**:
-```typescript
-memory_context({
-  input: "I want to implement authentication",
-  mode: "auto"
-})
-// Returns relevant memories about auth, implementation patterns, related specs
-```
+**Parameters:**
+- `input`: Your query or task description
+- `mode`: Retrieval mode (see above)
+- `tokenUsage`: Optional float (0.0-1.0) to override pressure-aware mode selection
 
-### Memory Search (Semantic)
+Query expansion activates automatically when you use `mode="deep"`.
 
-**Tool**: `memory_search()`
+### memory_search: Semantic Search
 
-**Purpose**: Vector-based semantic search across all indexed memories.
+`memory_search()` runs vector-based similarity search across all indexed memories.
 
-**Key Parameters**:
+**Key parameters:**
 - `query`: Natural language search query
 - `limit`: Max results (default 10)
 - `minState`: Minimum memory state (HOT, WARM, COLD, DORMANT, ARCHIVED)
 - `intent`: Task intent for weight adjustments (add_feature, fix_bug, refactor, etc.)
 - `includeContent`: Embed full file content in results
 
-**Example**:
-```typescript
-memory_search({
-  query: "How do we handle Gate 3 validation?",
-  limit: 5,
-  minState: "WARM",
-  intent: "understand"
-})
-```
+### memory_match_triggers: Fast Keyword Lookup
 
-### Memory Match Triggers (Fast Lookup)
+`memory_match_triggers()` provides sub-50ms keyword-based matching. Use it for immediate context surfacing at the start of a conversation.
 
-**Tool**: `memory_match_triggers()`
+### memory_save: Index a Memory File
 
-**Purpose**: Fast keyword-based matching (sub-50ms). Used for immediate context surfacing.
+`memory_save()` indexes a single new or updated memory file into the database. After saving, graph enrichment fires automatically (Step 7.6 in the workflow). For bulk indexing, use `memory_index_scan()` instead.
 
-**Example**:
-```typescript
-memory_match_triggers({
-  prompt: "User wants to modify a file",
-  limit: 3
-})
-// Returns memories with trigger phrases matching "modify file", "file modification", etc.
-```
+### memory_index_scan: Bulk Indexing
 
-### Memory Save (Indexing)
+`memory_index_scan()` scans the workspace for new or changed memory files and indexes them.
 
-**Tool**: `memory_save()`
-
-**Purpose**: Index new or updated memory files into the database.
-
-**Example**:
-```typescript
-memory_save({
-  filePath: "specs/005-memory/memory/session-001.md",
-  force: false
-})
-```
-
-> **Note**: For bulk indexing, use `memory_index_scan()` instead.
-
-### Memory Index Scan (Bulk)
-
-**Tool**: `memory_index_scan()`
-
-**Purpose**: Scan workspace for new/changed memory files and index them.
-
-**Options**:
-- `force`: Re-index all files (ignore content hash)
-- `specFolder`: Limit scan to specific folder
+**Options:**
+- `force`: Re-index all files, ignoring content hash
+- `specFolder`: Limit scan to a specific folder
 - `includeConstitutional`: Include `.opencode/skill/*/constitutional/`
 - `includeSpecDocs`: Include spec folder documents (spec.md, plan.md, etc.)
 - `includeReadmes`: Include README.md files
 
-**Example**:
-```typescript
-memory_index_scan({
-  force: false,
-  includeSpecDocs: true,
-  includeReadmes: true
-})
-```
+### memory_stats: System Statistics
 
-### Memory Stats
+`memory_stats()` returns counts, dates and top-ranked folders for the memory system. Use it to confirm indexing is working and to inspect database health.
 
-**Tool**: `memory_stats()`
+### Skill Graph System
 
-**Purpose**: Get statistics about the memory system (counts, dates, top folders).
+The skill graph provides in-process, cross-domain knowledge enrichment. It requires no external database.
 
-**Example**:
-```typescript
-memory_stats({
-  folderRanking: "composite",
-  includeScores: true,
-  limit: 10
-})
-```
+**Structure:**
+- 72 graph nodes across 9 skills
+- Each node lives in a `nodes/*.md` file with YAML frontmatter (`description:`, `tags:`, `links:`)
+- Wikilinks (`[[node-name]]`) serve as graph edges between nodes
+- Graph enrichment fires on every `memory_save` call (Step 7.6 in workflow.ts)
+
+**Performance:**
+- Cold start query: 100-150ms
+- Cache hit: under 1ms
+- TTL: 5 minutes per skill graph query
+
+**SGQS (Skill Graph-Lite Query Script):** Provides in-process Cypher-like queries, no external database required.
+
+**Link validation:** Run `check-links.sh` to validate all wikilinks across skill folders.
+
+### Graph Channel (Enabled by Default)
+
+The causal graph channel now participates in every search query. Previously it was disabled. Three flags control graph behavior:
+
+- `SPECKIT_GRAPH_UNIFIED`: Master switch for the entire graph channel
+- `SPECKIT_GRAPH_MMR`: Graph-Guided MMR (Maximal Marginal Relevance) reranking, which diversifies results by penalizing near-duplicate entries
+- `SPECKIT_GRAPH_AUTHORITY`: Structural Authority Propagation, which boosts scores for nodes that many other nodes link to
 
 ### Adaptive Hybrid Fusion
 
-**Feature flag**: `SPECKIT_ADAPTIVE_FUSION` (default: disabled)
+**Flag:** `SPECKIT_ADAPTIVE_FUSION` (default: off)
 
-**Purpose**: Intent-aware search weight tuning. Adjusts the balance between vector similarity and keyword relevance based on detected task type, improving retrieval precision for different workflows.
+When enabled, this feature adjusts the balance between vector similarity and keyword relevance based on the detected task type. It supports 7 task types: `add_feature`, `fix_bug`, `refactor`, `understand`, `plan`, `debug` and `resume`. For example, `fix_bug` boosts exact-match keyword signals while `understand` emphasizes semantic similarity.
 
-**Supported task types** (7 total): `add_feature`, `fix_bug`, `refactor`, `understand`, `plan`, `debug`, `resume`
+### Cross-Encoder Reranking
 
-**Behavior**: When enabled, each task type applies a different fusion weight profile. For example, `fix_bug` boosts exact-match keyword signals; `understand` emphasizes semantic similarity.
+Cross-encoder reranking is now enabled by default. It was previously disabled. The reranker applies a second-pass scoring pass over the top-K candidates returned by the initial retrieval, improving result ordering for ambiguous queries.
 
-**Enable**:
-```json
-"environment": {
-  "SPECKIT_ADAPTIVE_FUSION": "true"
-}
-```
+### Evidence Gap Warnings
 
-### Artifact-Class Routing
-
-**Purpose**: Routes retrieval requests through per-type strategies based on the artifact class being queried. Improves result relevance by applying artifact-specific indexing and ranking rules.
-
-**Supported artifact types** (9 total): `spec`, `plan`, `checklist`, `decision-record`, `memory`, `implementation-summary`, `skill`, `readme`, `research`
-
-**Behavior**: Each artifact class has a dedicated retrieval strategy (e.g., `memory` uses recency-weighted scoring; `decision-record` boosts causal relationship edges).
+When Z-score analysis signals low-confidence retrieval (insufficient signal in the indexed corpus), the server prepends an evidence gap warning to the LLM payload. This tells the AI assistant that results may be incomplete rather than letting it treat sparse results as authoritative.
 
 ### Extended Telemetry
 
-**Feature flag**: `SPECKIT_EXTENDED_TELEMETRY` (default: enabled)
+**Flag:** `SPECKIT_EXTENDED_TELEMETRY` (default: on)
 
-**Purpose**: Collects 4-dimension metrics for each retrieval operation to support observability and tuning.
-
-**Dimensions**:
-- `latency`: End-to-end retrieval time per tool call (ms)
-- `mode`: Which retrieval mode was selected (`auto`, `quick`, `deep`, `focused`, `resume`)
-- `fallback`: Whether degraded-mode fallback was triggered
+Collects 4-dimension metrics per retrieval operation:
+- `latency`: End-to-end retrieval time (ms)
+- `mode`: Which retrieval mode was selected
+- `fallback`: Whether degraded-mode fallback triggered
 - `quality`: Result quality score based on embedding confidence and match density
 
-**Disable**:
-```json
-"environment": {
-  "SPECKIT_EXTENDED_TELEMETRY": "false"
-}
-```
+Disable by setting `SPECKIT_EXTENDED_TELEMETRY: "false"`.
+
+### Artifact-Class Routing
+
+Routes retrieval requests through per-type strategies based on the artifact being queried. Supports 9 artifact types: `spec`, `plan`, `checklist`, `decision-record`, `memory`, `implementation-summary`, `skill`, `readme` and `research`. Each type applies its own indexing and ranking rules (for example, `memory` uses recency-weighted scoring while `decision-record` boosts causal edges).
 
 ### Append-Only Mutation Ledger
 
-**Purpose**: Maintains an immutable audit trail for all memory mutations (index, update, delete, force-reindex). Every mutation is appended as a timestamped record — no entry is ever overwritten or removed.
-
-**Use cases**: Debugging unexpected index state, auditing what was indexed during a session, understanding why a memory entry changed.
+Every memory mutation (index, update, delete, force-reindex) appends a timestamped record to an immutable audit trail. No entry is ever overwritten or removed. Use the ledger to debug unexpected index state or audit what changed during a session.
 
 ### Typed Retrieval Contracts
 
-**Purpose**: Enforces schema contracts on retrieval inputs and outputs. Ensures consistent data shapes across all tool calls regardless of degraded-mode or fallback conditions.
-
-**Contract types**:
+Enforces schema contracts on retrieval inputs and outputs. Three contract types apply:
 - `ContextEnvelope`: Wraps all `memory_context()` responses with metadata (mode used, memories returned, intent detected)
-- `RetrievalTrace`: Attached to search results; records which retrieval path was taken and why
-- `DegradedModeContract`: Emitted when the server falls back to non-vector behavior; describes what capability is reduced and the recovery path
+- `RetrievalTrace`: Attached to search results, records which retrieval path was taken and why
+- `DegradedModeContract`: Emitted when the server falls back to non-vector behavior, describes what capability is reduced and the recovery path
 
 ---
 
-## 8. 💡 EXAMPLES
+## 8. Examples
 
 ### Example 1: Fresh Install and First Search
 
 ```bash
-# 1. Install
+# Install
 cd .opencode/skill/system-spec-kit
 npm install
 npm run build
 
-# 2. Configure (add to opencode.json)
+# Add config to opencode.json (see Configuration section)
 
-# 3. Restart OpenCode
+# Restart OpenCode
 opencode
 
-# 4. Ask AI:
+# Ask your AI:
 "Search memory for documentation about spec folders"
 ```
 
-**Expected**: Returns memories from AGENTS.md, system-spec-kit about spec folder creation.
+**Expected result:** Memories from AGENTS.md and system-spec-kit about spec folder creation.
 
 ### Example 2: Post-Update Recovery
 
 ```bash
-# Symptoms: Server won't start, module errors
+# Symptom: Server won't start, module errors
 
-# Fix:
 cd .opencode/skill/system-spec-kit
 npm install
 npm run build
@@ -679,78 +634,130 @@ bash scripts/setup/rebuild-native-modules.sh
 
 # Verify:
 node mcp_server/dist/context-server.js
-# Should start without errors (Ctrl+C to exit)
+# Must start without errors (Ctrl+C to exit)
 
-# Restart AI client
+# Restart your AI client
 ```
 
 ### Example 3: Resume Previous Work
 
-```bash
-# Ask AI:
-"Load context from spec folder 012-authentication and show me what we were working on"
+Ask your AI assistant:
+
+```
+Load context from spec folder 012-authentication and show me what we were working on
 ```
 
-**Expected**: AI calls `memory_context()` with `mode: "resume"` and `anchors: ["state", "next-steps"]`, returns previous session state.
+**Behind the scenes:** The AI calls `memory_context()` with `mode: "resume"` and `anchors: ["state", "next-steps"]`, then returns the previous session state.
 
 ### Example 4: Intent-Aware Context Loading
 
-```bash
-# Ask AI:
-"I need to add a new feature for user profiles"
+Ask your AI assistant:
+
+```
+I need to add a new feature for user profiles
 ```
 
-**Behind the scenes**: 
-- AI calls `memory_context({ input: "add user profiles", mode: "auto" })`
-- Intent detected: `add_feature`
-- Returns memories about feature implementation patterns, related code, similar features
+**Behind the scenes:**
+1. AI calls `memory_context({ input: "add user profiles", mode: "auto" })`
+2. Intent detected: `add_feature`
+3. Returns memories about feature implementation patterns, related code and similar features
 
 ### Example 5: Bulk Indexing After Creating Memories
 
 ```bash
 # After creating multiple memory files in specs/*/memory/
 
-# Ask AI:
+# Ask your AI:
 "Scan for new memory files and index them"
 ```
 
-**Behind the scenes**:
-- AI calls `memory_index_scan({ force: false })`
-- Server scans `specs/**/memory/`, `.opencode/skill/**/constitutional/`, README files
-- Indexes changed/new files (skips unchanged based on content hash)
+**Behind the scenes:**
+1. AI calls `memory_index_scan({ force: false })`
+2. Server scans `specs/**/memory/`, `.opencode/skill/**/constitutional/` and README files
+3. Indexes changed or new files, skipping unchanged ones based on content hash
 
-### Example 6: Troubleshooting Empty Search Results
+### Example 6: Enabling Adaptive Fusion for a Debug Session
+
+Add to your config and restart:
+
+```json
+"environment": {
+  "SPECKIT_ADAPTIVE_FUSION": "true"
+}
+```
+
+Then ask your AI:
+
+```
+Search memory for why we chose SQLite over PostgreSQL
+```
+
+**Behind the scenes:** Intent is classified as `understand`. Adaptive fusion applies a semantic-heavy weight profile, improving recall for conceptual queries over exact keyword matches.
+
+### Example 7: Troubleshooting Empty Search Results
 
 ```bash
 # Symptom: Search returns no results
 
-# Check database:
-sqlite3 .opencode/skill/system-spec-kit/mcp_server/dist/database/context-index.sqlite "SELECT COUNT(*) FROM memory_index"
-# → Shows memory count
+# Check the database:
+sqlite3 .opencode/skill/system-spec-kit/mcp_server/dist/database/context-index.sqlite \
+  "SELECT COUNT(*) FROM memory_index"
+# Shows the memory count
 
-# If 0 or low:
-# Ask AI: "Index all memory files"
+# If 0 or very low:
+# Ask your AI: "Index all memory files"
 
-# Restart AI client after indexing
+# Restart your AI client after indexing completes
+```
+
+### Example 8: Validating Skill Graph Links
+
+```bash
+# From the skill root:
+bash .opencode/skill/system-spec-kit/scripts/check-links.sh
+# Reports any broken wikilinks across all skill node files
+```
+
+### Example 9: Phase Folder Validation
+
+```bash
+# Validate all phases in a spec folder recursively:
+bash .opencode/skill/system-spec-kit/scripts/validate.sh \
+  specs/012-authentication --recursive
 ```
 
 ---
 
-## 9. 🛠️ TROUBLESHOOTING
+## 9. Troubleshooting
 
-### Common Errors
+### Error Reference Table
 
-**❌ "Cannot find module '@spec-kit/shared/...'** or similar
+| Error | Cause | Fix |
+|---|---|---|
+| `Cannot find module '@spec-kit/shared/...'` | Workspace dependency state is incomplete or stale | Run `npm install && npm run build` from the skill root |
+| `ERR_DLOPEN_FAILED` | Native module compiled for a different Node.js ABI | Run `bash scripts/setup/rebuild-native-modules.sh` |
+| `NODE_MODULE_VERSION mismatch` | Node.js was updated after native modules were compiled | Run `bash scripts/setup/rebuild-native-modules.sh` |
+| `sqlite-vec unavailable` | Optional platform package missing or failed to load | Run `npm install && npm rebuild` inside `mcp_server/` |
+| Server starts but returns no memories | No indexed memories yet, or embeddings are pending | Run `memory_index_scan({ force: true })` via your AI |
+| Database appears stale after restore | Client still uses old MCP process with in-memory state | Fully restart OpenCode or Claude Code |
+| MCP server not in tools list | Configuration file error or path is wrong | Validate JSON syntax and verify binary path (see below) |
+| Graph enrichment not firing | `SPECKIT_GRAPH_UNIFIED` set to `false` | Remove the flag or set it to `true` in your config |
+| MMR not diversifying results | `SPECKIT_GRAPH_MMR` set to `false` | Remove the flag or set it to `true` |
+| Wikilink validation fails | Broken `[[node-name]]` reference in a skill node file | Run `check-links.sh` and fix the reported broken links |
 
-- **Cause**: Workspace dependency state is incomplete or stale.
-- **Fix**: 
-  ```bash
-  cd .opencode/skill/system-spec-kit
-  npm install
-  npm run build
-  ```
+### Detailed Fixes
 
-If still failing, remove local workspace installs and reinstall:
+**"Cannot find module '@spec-kit/shared/...'"**
+
+Run from the skill root:
+
+```bash
+cd .opencode/skill/system-spec-kit
+npm install
+npm run build
+```
+
+If still failing, remove and reinstall all local workspace modules:
 
 ```bash
 rm -rf .opencode/skill/system-spec-kit/node_modules
@@ -761,104 +768,82 @@ npm install
 npm run build
 ```
 
-**❌ "ERR_DLOPEN_FAILED" / "NODE_MODULE_VERSION" mismatch**
+**`ERR_DLOPEN_FAILED` or `NODE_MODULE_VERSION` mismatch**
 
-- **Cause**: Native module compiled for a different Node.js ABI.
-- **Fix**:
-  ```bash
-  cd .opencode/skill/system-spec-kit
-  bash scripts/setup/rebuild-native-modules.sh
-  bash scripts/setup/check-native-modules.sh
-  ```
+```bash
+cd .opencode/skill/system-spec-kit
+bash scripts/setup/rebuild-native-modules.sh
+bash scripts/setup/check-native-modules.sh
+```
 
-You can also inspect runtime/module versions:
+Inspect runtime and module versions:
 
 ```bash
 node -e "console.log('Node', process.version, 'MODULE_VERSION', process.versions.modules)"
 ```
 
-**❌ "sqlite-vec unavailable" warning**
+**`sqlite-vec unavailable`**
 
-- **Cause**: Optional platform package missing or load failed.
-- **Fix**:
-  ```bash
-  cd .opencode/skill/system-spec-kit/mcp_server
-  npm install
-  npm rebuild
-  ```
+```bash
+cd .opencode/skill/system-spec-kit/mcp_server
+npm install
+npm rebuild
+```
 
-> **Note**: The server degrades gracefully to non-vector behavior, but semantic similarity quality drops until fixed.
+The server degrades to non-vector behavior when sqlite-vec is unavailable. Semantic similarity quality drops until you fix the extension.
 
-**❌ Server runs but no memories found**
+**Server runs but returns no memories**
 
-- **Cause**: No indexed memories yet, or embeddings are pending/failed.
-- **Checks**:
-  ```bash
-  sqlite3 .opencode/skill/system-spec-kit/mcp_server/dist/database/context-index.sqlite "SELECT COUNT(*) FROM memory_index"
-  
-  sqlite3 .opencode/skill/system-spec-kit/mcp_server/dist/database/context-index.sqlite "SELECT embedding_status, COUNT(*) FROM memory_index GROUP BY embedding_status"
-  ```
+Check the database:
 
-- **Recovery**:
-  - Ask AI: "Index all memory files" (calls `memory_index_scan({ force: true })`)
-  - Restart MCP client after manual DB operations
+```bash
+sqlite3 .opencode/skill/system-spec-kit/mcp_server/dist/database/context-index.sqlite \
+  "SELECT COUNT(*) FROM memory_index"
 
-**❌ Database appears stale after restore/reset**
+sqlite3 .opencode/skill/system-spec-kit/mcp_server/dist/database/context-index.sqlite \
+  "SELECT embedding_status, COUNT(*) FROM memory_index GROUP BY embedding_status"
+```
 
-- **Cause**: Client still using an old MCP server process with in-memory state.
-- **Fix**: Fully restart OpenCode/Claude Code.
+Recovery: ask your AI "Index all memory files" (calls `memory_index_scan({ force: true })`). Restart your MCP client after manual database operations.
 
-**❌ MCP server not appearing in tools**
+**MCP server not appearing in tools**
 
-- **Cause**: Configuration file issue or path incorrect.
-- **Fix**:
-  1. Check config syntax:
-     ```bash
-     python3 -m json.tool < opencode.json
-     ```
-  2. Verify binary path exists:
-     ```bash
-     ls -la .opencode/skill/system-spec-kit/mcp_server/dist/context-server.js
-     ```
-  3. Restart AI client completely.
+1. Validate config syntax:
+   ```bash
+   python3 -m json.tool < opencode.json
+   ```
+2. Verify the binary path exists:
+   ```bash
+   ls -la .opencode/skill/system-spec-kit/mcp_server/dist/context-server.js
+   ```
+3. Restart your AI client completely.
 
 ### Root Cause Summary (Post-Update Failures)
 
-**Was node_modules relocation the root cause?**
+The four most common failure modes after a major update:
 
-Partly. It is a contributing factor, not the only cause:
-- The relocation to nested workspace dependencies (`install-strategy=nested`) changed where packages are expected.
-- If local environments still follow pre-relocation assumptions, module resolution and native module loading can fail.
-
-**Most common actual failure modes**:
-
-1. **Install/build run from wrong place**
-   - Running partial installs can leave workspace links unresolved (notably `@spec-kit/shared`).
-
-2. **Native module ABI mismatch after Node update**
-   - `better-sqlite3`/`sqlite-vec` compiled for an older `MODULE_VERSION`.
-
-3. **Stale build output after dependency changes**
-   - `dist/` not rebuilt, or rebuilt without required workspace state.
-
-4. **Database path confusion**
-   - Users inspect `mcp_server/database/...` while runtime writes to `dist/database/...`.
+1. **Install or build run from wrong directory.** Partial installs leave workspace links unresolved, particularly `@spec-kit/shared`.
+2. **Native module ABI mismatch after a Node.js update.** `better-sqlite3` and `sqlite-vec` were compiled for an older `MODULE_VERSION`.
+3. **Stale build output after dependency changes.** The `dist/` folder was not rebuilt, or was rebuilt without the required workspace state.
+4. **Database path confusion.** Users inspect `mcp_server/database/...` while the runtime writes to `dist/database/...`. These point to the same data via a symlink, but direct file system tools may see different apparent paths.
 
 ---
 
-## 10. 📚 RESOURCES
+## 10. Resources
 
 ### File Locations
 
-| Path                                                                                    | Purpose                                   |
-| --------------------------------------------------------------------------------------- | ----------------------------------------- |
-| `.opencode/skill/system-spec-kit/mcp_server/dist/context-server.js`                    | MCP server entry point                    |
-| `.opencode/skill/system-spec-kit/mcp_server/dist/database/context-index.sqlite`        | Canonical database (runtime)              |
-| `.opencode/skill/system-spec-kit/mcp_server/database/context-index.sqlite`             | Compatibility symlink                     |
-| `.opencode/skill/system-spec-kit/scripts/setup/check-native-modules.sh`                | Native module diagnostics                 |
-| `.opencode/skill/system-spec-kit/scripts/setup/rebuild-native-modules.sh`              | Native module rebuild                     |
-| `.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-impl.ts`           | Vector index implementation               |
-| `.opencode/skill/system-spec-kit/mcp_server/database/README.md`                        | Database path notes                       |
+| Path | Purpose |
+|---|---|
+| `.opencode/skill/system-spec-kit/mcp_server/dist/context-server.js` | MCP server entry point |
+| `.opencode/skill/system-spec-kit/mcp_server/dist/database/context-index.sqlite` | Canonical database (runtime) |
+| `.opencode/skill/system-spec-kit/mcp_server/database/context-index.sqlite` | Compatibility symlink |
+| `.opencode/skill/system-spec-kit/scripts/setup/check-native-modules.sh` | Native module diagnostics |
+| `.opencode/skill/system-spec-kit/scripts/setup/rebuild-native-modules.sh` | Native module rebuild |
+| `.opencode/skill/system-spec-kit/scripts/check-links.sh` | Skill graph wikilink validator |
+| `.opencode/skill/system-spec-kit/scripts/validate.sh` | Spec folder validator (supports --recursive) |
+| `.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-impl.ts` | Vector index implementation |
+| `.opencode/skill/system-spec-kit/mcp_server/database/README.md` | Database path notes |
 
 ### CLI Command Reference
 
@@ -879,51 +864,57 @@ node mcp_server/dist/context-server.js
 python3 -m json.tool < opencode.json > /dev/null
 
 # Database inspection
-sqlite3 mcp_server/dist/database/context-index.sqlite "SELECT COUNT(*) FROM memory_index"
-sqlite3 mcp_server/dist/database/context-index.sqlite "SELECT embedding_status, COUNT(*) FROM memory_index GROUP BY embedding_status"
+sqlite3 mcp_server/dist/database/context-index.sqlite \
+  "SELECT COUNT(*) FROM memory_index"
+
+sqlite3 mcp_server/dist/database/context-index.sqlite \
+  "SELECT embedding_status, COUNT(*) FROM memory_index GROUP BY embedding_status"
 
 # Backup database
 cp mcp_server/dist/database/context-index.sqlite \
   mcp_server/dist/database/backup-$(date +%Y%m%d-%H%M%S).sqlite
 
-# Verify backup
-sqlite3 mcp_server/dist/database/backup-YYYYMMDD-HHMMSS.sqlite "SELECT COUNT(*) FROM memory_index"
+# Validate skill graph wikilinks
+bash .opencode/skill/system-spec-kit/scripts/check-links.sh
+
+# Validate spec folder phases recursively
+bash .opencode/skill/system-spec-kit/scripts/validate.sh specs/NNN-name --recursive
+```
+
+### Quick Reference Card
+
+```
+INSTALL:      cd .opencode/skill/system-spec-kit && npm install && npm run build
+NATIVE CHECK: bash scripts/setup/check-native-modules.sh
+NATIVE FIX:   bash scripts/setup/rebuild-native-modules.sh
+SMOKE TEST:   node mcp_server/dist/context-server.js
+DB PATH:      mcp_server/dist/database/context-index.sqlite
+GRAPH LINKS:  bash scripts/check-links.sh
+PHASE VALID:  bash scripts/validate.sh specs/NNN-name --recursive
+
+FEATURE FLAGS (env vars):
+  SPECKIT_GRAPH_UNIFIED     default: true  (false = disable all graph)
+  SPECKIT_GRAPH_MMR         default: true  (false = disable MMR reranking)
+  SPECKIT_GRAPH_AUTHORITY   default: true  (false = disable authority boosts)
+  SPECKIT_ADAPTIVE_FUSION   default: false (true = enable intent-based fusion)
+  SPECKIT_EXTENDED_TELEMETRY default: true (false = disable metrics)
+
+MCP TOOLS: memory_context, memory_search, memory_match_triggers,
+           memory_save, memory_index_scan, memory_stats
 ```
 
 ### External Resources
 
-- **GitHub Repository**: `.opencode/skill/system-spec-kit/`
-- **MCP Package**: `.opencode/skill/system-spec-kit/mcp_server/package.json`
-- **Documentation**: See skill README and memory/ directories in spec folders
+- MCP package manifest: `.opencode/skill/system-spec-kit/mcp_server/package.json`
+- Skill README: `.opencode/skill/system-spec-kit/README.md`
+- Memory context in spec folders: `specs/*/memory/`
 
 ---
 
-## Quick Start Summary
+## Version History
 
-```bash
-# 1. Prerequisites
-node --version  # v18+
-npm --version
-
-# 2. Install
-cd .opencode/skill/system-spec-kit
-npm install
-npm run build
-
-# 3. Verify native modules
-bash scripts/setup/check-native-modules.sh
-
-# 4. Configure MCP (add to opencode.json)
-# See Configuration section above
-
-# 5. Restart AI client and start using!
-opencode
-```
-
----
-
-**Installation Complete!**
-
-You now have Spec Kit Memory installed and configured. Ask your AI assistant to search memory, load context, or index new documentation.
-
----
+| Version | Date | Summary |
+|---|---|---|
+| v3.0.0 | 2026-02-20 | Skill Graph System (72 nodes, 9 skills, SGQS engine). Graph channel enabled by default. Cross-encoder reranking enabled by default. Co-activation score boost fix. Query expansion on deep mode. Evidence gap warnings. MMR reranking with intent-mapped lambda. Phase system support (recursive validation, phase detection scoring). Five new feature flags. `memory_context` tokenUsage parameter. |
+| v2.x | 2025 | Adaptive fusion, extended telemetry, artifact-class routing, append-only mutation ledger, typed retrieval contracts. |
+| v1.x | 2024 | Initial release. Semantic search, trigger matching, intent-aware context, session deduplication. |

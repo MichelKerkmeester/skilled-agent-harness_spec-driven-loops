@@ -1,34 +1,18 @@
-# MCP Code Mode Installation Guide
+# MCP Code Mode Installation Guide v2.0.0
 
-Complete installation and configuration guide for the Code Mode MCP server, enabling TypeScript-based orchestration of external MCP tools. Provides unified access to Webflow, Figma, ClickUp, GitHub, Chrome DevTools, Narsil, and other MCP servers through a single `call_tool_chain()` interface. Delivers 98.7% context reduction and 60% faster execution compared to individual tool calls, with type-safe invocation and automatic tool discovery.
+Complete installation and configuration guide for the Code Mode MCP server. This enables TypeScript-based orchestration of external MCP tools, giving you unified access to Webflow, Figma, ClickUp, GitHub, Chrome DevTools and other MCP servers through a single `call_tool_chain()` interface. It delivers 98.7% context reduction and 60% faster execution compared to individual tool calls, with type-safe invocation and automatic tool discovery.
 
-> **Part of OpenCode Installation** - See [Master Installation Guide](../README.md) for complete setup.
+> **Part of OpenCode Installation.** See the [Master Installation Guide](../README.md) for complete setup.
 > **Package**: `@utcp/code-mode-mcp` | **Dependencies**: Node.js 18+, .utcp_config.json
 
 ---
 
-#### TABLE OF CONTENTS
-
-1. [OVERVIEW](#1--overview)
-2. [PREREQUISITES](#2--prerequisites)
-3. [INSTALLATION](#3--installation)
-4. [CONFIGURATION](#4-%EF%B8%8F-configuration)
-5. [VERIFICATION](#5--verification)
-6. [USAGE](#6--usage)
-7. [TIMEOUT CALCULATION](#7-️-timeout-calculation)
-8. [FEATURES](#8--features)
-9. [EXAMPLES](#9--examples)
-10. [TROUBLESHOOTING](#10--troubleshooting)
-11. [RESOURCES](#11--resources)
-
----
-
-## AI INSTALL GUIDE
+## 0. AI-First Install Guide
 
 **Copy and paste this prompt to your AI assistant to get installation help:**
 
 ```
-I want to install the MCP Code Mode server for TypeScript tool orchestration
+I want to install the MCP Code Mode server for TypeScript tool orchestration.
 
 Please help me:
 1. Check if I have Node.js 18+ installed
@@ -51,16 +35,31 @@ Guide me through each step with the exact commands and configuration needed.
 - Configure Code Mode for your specific AI platform
 - Add MCP server definitions for your preferred tools
 - Test the four available tools: `call_tool_chain`, `search_tools`, `list_tools`, `tool_info`
-- Show you the **critical naming convention**: `{manual_name}.{manual_name}_{tool_name}`
+- Show you the critical naming convention: `{manual_name}.{manual_name}_{tool_name}`
 - Demonstrate progressive tool discovery
 
 **Expected setup time:** 10-15 minutes
 
 ---
 
-## 1. OVERVIEW
+#### TABLE OF CONTENTS
 
-Code Mode MCP is a TypeScript execution environment that provides unified access to **159 MCP tools across 6 manuals** through progressive disclosure. Instead of exposing all tools to your AI context (causing token exhaustion), Code Mode provides a single execution environment where tools are accessed programmatically and loaded on-demand.
+1. [Overview](#1-overview)
+2. [Prerequisites](#2-prerequisites)
+3. [Installation](#3-installation)
+4. [Configuration](#4-configuration)
+5. [Verification](#5-verification)
+6. [Usage](#6-usage)
+7. [Features](#7-features)
+8. [Examples](#8-examples)
+9. [Troubleshooting](#9-troubleshooting)
+10. [Resources](#10-resources)
+
+---
+
+## 1. Overview
+
+Code Mode MCP is a TypeScript execution environment that provides unified access to 159 MCP tools across 6 manuals through progressive disclosure. Instead of exposing all tools to your AI context (causing token exhaustion), Code Mode provides a single execution environment where tools are accessed programmatically and loaded on-demand.
 
 ### Source Repository
 
@@ -86,34 +85,25 @@ Code Mode MCP is a TypeScript execution environment that provides unified access
 | **webflow**           | 42      | `mcp-remote` (SSE)                      |
 | **Total**             | **159** | **6 manuals**                           |
 
-### Key Features
-
-- **67-88% Faster Execution**: Benchmarked performance improvement vs traditional tool calling
-- **98.7% Context Reduction**: Access 159+ tools with only ~1.6k tokens (vs ~141k traditional)
-- **Single Code Block**: Replaces multiple API calls with one TypeScript execution
-- **Progressive Discovery**: Tools loaded on-demand via `searchTools()`, zero upfront cost
-- **TypeScript Execution**: Full TypeScript/JavaScript support with async/await
-- **State Persistence**: Data flows naturally between operations
-- **Multi-Tool Orchestration**: Execute complex workflows in single call
-- **Type Safety**: Full TypeScript interfaces with autocomplete
-- **Sandboxed Execution**: Secure V8 isolate with timeout protection
-- **Multi-Protocol Support**: MCP, HTTP, File, and CLI protocols supported
-
 ### The "2-3 MCP Server Wall" Problem
+
+Traditional tool exposure breaks at scale. Each additional server costs context tokens:
 
 **Traditional Approach:**
 ```
 Tools:     10      20      30      47      100     200
 Tokens:    30k     60k     90k    141k    300k    600k
-Usable?    ✓       ✓       ✗       ✗       ✗       ✗
+Usable?    yes     yes     no      no      no      no
 ```
 
 **Code Mode Solution:**
 ```
 Tools:     10      20      30      47      100     200+
 Tokens:    1.6k    1.6k    1.6k    1.6k    1.6k    1.6k
-Usable?    ✓       ✓       ✓       ✓       ✓       ✓
+Usable?    yes     yes     yes     yes     yes     yes
 ```
+
+Code Mode keeps your context flat at ~1.6k tokens regardless of how many servers you add.
 
 ### Architecture Overview
 
@@ -140,7 +130,7 @@ Usable?    ✓       ✓       ✓       ✓       ✓       ✓
                            │ Tool Calls
                            ▼
 ┌─────────────────────────────────────────────────────────────┐
-│  MCP Servers: Webflow, ClickUp, Figma, GitHub, Chrome, etc.  │
+│  MCP Servers: Webflow, ClickUp, Figma, GitHub, Chrome, etc. │
 │  (159 tools accessible via Code Mode)                       │
 └─────────────────────────────────────────────────────────────┘
 ```
@@ -158,9 +148,9 @@ Usable?    ✓       ✓       ✓       ✓       ✓       ✓
 
 ---
 
-## 2. PREREQUISITES
+## 2. Prerequisites
 
-Before installing Code Mode MCP, ensure you have:
+Before installing Code Mode MCP, ensure you have the following.
 
 ### Required
 
@@ -184,15 +174,15 @@ Before installing Code Mode MCP, ensure you have:
 
 ### Optional but Recommended
 
-- **API Keys** for MCP servers you want to use:
-  - ClickUp: API key + Team ID (Settings → Apps)
-  - Figma: Personal Access Token (Settings → Access Tokens)
-  - GitHub: Personal Access Token (Settings → Developer settings)
+- **API Keys** for the MCP servers you want to use:
+  - ClickUp: API key + Team ID (Settings > Apps)
+  - Figma: Personal Access Token (Settings > Access Tokens)
+  - GitHub: Personal Access Token (Settings > Developer settings)
   - Webflow: OAuth (configured in Webflow dashboard)
 
 - **Git** for version control
 
-### Validation: `prerequisites_complete`
+### Validation: `phase_1_complete`
 
 **Checklist:**
 - [ ] Node.js 18+ installed
@@ -201,14 +191,14 @@ Before installing Code Mode MCP, ensure you have:
 
 **Quick Verification:**
 ```bash
-node --version && [ -f .env ] && [ -f .utcp_config.json ] && echo "✅ PASS" || echo "❌ FAIL"
+node --version && [ -f .env ] && [ -f .utcp_config.json ] && echo "PASS" || echo "FAIL"
 ```
 
-❌ **STOP if validation fails** - Fix before continuing.
+STOP if validation fails. Fix before continuing.
 
 ---
 
-## 3. INSTALLATION
+## 3. Installation
 
 ### Step 1: Choose Installation Location
 
@@ -225,7 +215,7 @@ cd ~/CloudStorage/MCP\ Servers
 ### Step 2: Create Configuration Directory Structure
 
 ```bash
-# Create directory structure (optional - for local config files)
+# Create directory structure (optional, for local config files)
 mkdir -p .opencode/mcp-code-mode
 ```
 
@@ -255,7 +245,7 @@ EOF
 
 ### Step 4: Create .env File
 
-Create environment file for secrets:
+Create an environment file for secrets:
 
 ```bash
 cat > .env << 'EOF'
@@ -289,7 +279,7 @@ cat > .env << 'EOF'
 EOF
 ```
 
-**Important:** Add `.env` to `.gitignore`:
+**Add `.env` to `.gitignore`:**
 
 ```bash
 echo ".env" >> .gitignore
@@ -305,7 +295,7 @@ ls -la .utcp_config.json .env
 # -rw-r--r--  .env
 ```
 
-### Validation: `installation_complete`
+### Validation: `phase_2_complete`
 
 **Checklist:**
 - [ ] code_mode entry in opencode.json
@@ -314,14 +304,14 @@ ls -la .utcp_config.json .env
 
 **Quick Verification:**
 ```bash
-grep -q '"code_mode"' opencode.json && echo "✅ PASS" || echo "❌ FAIL"
+grep -q '"code_mode"' opencode.json && echo "PASS" || echo "FAIL"
 ```
 
-❌ **STOP if validation fails** - Fix before continuing.
+STOP if validation fails. Fix before continuing.
 
 ---
 
-## 4. CONFIGURATION
+## 4. Configuration
 
 ### Option A: Configure for Claude Code CLI
 
@@ -343,7 +333,7 @@ Add to `.mcp.json` in your project root:
 
 ### Option B: Configure for OpenCode
 
-Add to `opencode.json` in your project root:
+Add to `opencode.json` in your project root.
 
 **Option B1: NPM Package (Recommended for most users)**
 ```json
@@ -366,7 +356,7 @@ Add to `opencode.json` in your project root:
 
 **Option B2: Embedded Source (For bundled projects)**
 
-If the Code Mode source is embedded in your project at `.opencode/skill/mcp-code-mode/mcp_server/`:
+Use this if the Code Mode source is embedded in your project at `.opencode/skill/mcp-code-mode/mcp_server/`:
 
 ```json
 {
@@ -407,16 +397,15 @@ Add to `.vscode/mcp.json`:
 
 ### Package Name Note
 
-> **Note**: The package `@utcp/code-mode-mcp` is the official UTCP Code Mode MCP server. Some older documentation may reference `utcp-mcp` - both should work, but `@utcp/code-mode-mcp` is the current recommended package.
-```
+The package `@utcp/code-mode-mcp` is the official UTCP Code Mode MCP server. Some older documentation may reference `utcp-mcp`. Both should work, but `@utcp/code-mode-mcp` is the current recommended package.
 
 ---
 
 ### SECURITY WARNING
 
-> **CRITICAL**: Never hardcode API keys directly in `.utcp_config.json`. Always use environment variable references.
+Never hardcode API keys directly in `.utcp_config.json`. Always use environment variable references.
 
-**WRONG (Security Risk):**
+**Wrong (Security Risk):**
 ```json
 {
   "env": {
@@ -425,7 +414,7 @@ Add to `.vscode/mcp.json`:
 }
 ```
 
-**CORRECT (Secure):**
+**Correct (Secure):**
 ```json
 {
   "env": {
@@ -434,30 +423,30 @@ Add to `.vscode/mcp.json`:
 }
 ```
 
-Then define the actual value in `.env` **with the manual name prefix**:
+Define the actual value in `.env` with the manual name prefix:
 ```bash
-# ⚠️ Code Mode requires prefixed variable names: {manual_name}_{VAR}
+# Code Mode requires prefixed variable names: {manual_name}_{VAR}
 # If your manual name is "clickup", use:
 clickup_CLICKUP_API_KEY=pk_224591351_your_actual_key
 ```
 
-> **See the "CRITICAL: Prefixed Environment Variables" section below for full details.**
+See the "CRITICAL: Prefixed Environment Variables" section below for full details.
 
 **Security Checklist:**
 ```
-□ .env file is in .gitignore
-□ No hardcoded API keys in .utcp_config.json
-□ All secrets use ${VARIABLE_NAME} syntax
-□ .env file permissions are restricted (chmod 600 .env)
+[ ] .env file is in .gitignore
+[ ] No hardcoded API keys in .utcp_config.json
+[ ] All secrets use ${VARIABLE_NAME} syntax
+[ ] .env file permissions are restricted (chmod 600 .env)
 ```
 
 ---
 
-### ⚠️ CRITICAL: Prefixed Environment Variables
+### CRITICAL: Prefixed Environment Variables
 
-> **Code Mode requires PREFIXED environment variables.** This is the #1 cause of "Variable not found" errors.
+Code Mode requires PREFIXED environment variables. This is the number one cause of "Variable not found" errors.
 
-When Code Mode loads a manual configuration, it looks for environment variables with the **manual name as a prefix**. For example:
+When Code Mode loads a manual configuration, it looks for environment variables with the manual name as a prefix. For example:
 
 | Manual Name | Config Variable | Required .env Variable |
 |-------------|-----------------|------------------------|
@@ -468,11 +457,11 @@ When Code Mode loads a manual configuration, it looks for environment variables 
 
 **Error you'll see without prefixed variables:**
 ```
-Error during batch registration for manual 'figma': Variable 'figma_FIGMA_API_KEY' 
+Error during batch registration for manual 'figma': Variable 'figma_FIGMA_API_KEY'
 referenced in call template configuration not found.
 ```
 
-**Solution:** Add BOTH unprefixed AND prefixed versions to your `.env`:
+**Solution:** Add both unprefixed and prefixed versions to your `.env`:
 
 ```bash
 # Standard variables (for other tools)
@@ -682,9 +671,19 @@ Add servers to `.utcp_config.json` in the `manual_call_templates` array:
 }
 ```
 
+### Validation: `phase_3_complete`
+
+**Checklist:**
+- [ ] Platform config file updated (`.mcp.json`, `opencode.json`, or `.vscode/mcp.json`)
+- [ ] .utcp_config.json populated with MCP servers
+- [ ] Prefixed env vars added for each manual
+- [ ] .env added to .gitignore
+
+STOP if validation fails. Fix before continuing.
+
 ---
 
-## 5. VERIFICATION
+## 5. Verification
 
 ### Check 1: Verify Configuration Files
 
@@ -725,13 +724,13 @@ opencode
 Use search_tools to find tools related to "webflow sites"
 ```
 
-Expected response should show available Webflow tools.
+The response should show available Webflow tools.
 
 ### Check 4: Test a Basic Call
 
 ```typescript
 // In your AI chat:
-Use call_tool_chain to list all available tools:
+// Use call_tool_chain to list all available tools:
 
 call_tool_chain({
   code: `
@@ -743,7 +742,7 @@ call_tool_chain({
 });
 ```
 
-### Validation: `verification_complete`
+### Validation: `phase_4_complete`
 
 **Checklist:**
 - [ ] list_tools() returns tools
@@ -756,22 +755,22 @@ call_tool_chain({
 echo "Run: list_tools() in OpenCode to verify"
 ```
 
-❌ **STOP if validation fails** - Fix before continuing.
+STOP if validation fails. Fix before continuing.
 
 ---
 
-## 6. USAGE
+## 6. Usage
 
 ### CRITICAL: Naming Pattern
 
-> **THE #1 MOST COMMON ERROR** is using the wrong function names. This is the source of most "Tool not found" errors.
+The number one most common error is using the wrong function names. Wrong names produce "Tool not found" errors.
 
 **Pattern:**
 ```
 {manual_name}.{manual_name}_{tool_name}
 ```
 
-All tool calls MUST follow this exact pattern with a **dot** after the manual name and an **underscore** before the tool name.
+All tool calls must follow this exact pattern with a dot after the manual name and an underscore before the tool name.
 
 **Examples:**
 
@@ -797,14 +796,14 @@ All tool calls MUST follow this exact pattern with a **dot** after the manual na
 The naming follows the `.utcp_config.json` structure:
 ```json
 {
-  "name": "webflow",           // ← First part (manual name)
+  "name": "webflow",           // First part (manual name)
   "config": {
     "mcpServers": {
-      "webflow": { ... }       // ← Second part (server name, joined with underscore to tool)
+      "webflow": { ... }       // Second part (server name, joined with underscore to tool)
     }
   }
 }
-// Tool name comes from the MCP server → Combined with underscore
+// Tool name comes from the MCP server, combined with underscore
 // Result: webflow.webflow_sites_list
 ```
 
@@ -849,7 +848,7 @@ call_tool_chain({
 ### Multi-Tool Orchestration
 
 ```typescript
-// State persists across all operations in single execution
+// State persists across all operations in a single execution
 call_tool_chain({
   code: `
     // Step 1: Get Figma design
@@ -876,17 +875,15 @@ call_tool_chain({
 });
 ```
 
----
+### Timeout Calculation
 
-## 7. TIMEOUT CALCULATION
-
-### Formula
+Use this formula to calculate the right timeout for your workflow:
 
 ```
 timeout = base_overhead + (num_tools × tool_avg) + safety_margin
 ```
 
-### Default Values
+**Default Values:**
 
 | Component       | Value    | Description                     |
 | --------------- | -------- | ------------------------------- |
@@ -894,18 +891,18 @@ timeout = base_overhead + (num_tools × tool_avg) + safety_margin
 | `tool_avg`      | 3,000ms  | Average per-tool execution time |
 | `safety_margin` | 10,000ms | Buffer for network variability  |
 
-### Calculation Examples
+**Calculation Examples:**
 
 | Tools         | Calculation                | Result   | Recommended   |
 | ------------- | -------------------------- | -------- | ------------- |
-| **1 tool**    | 5000 + (1 × 3000) + 10000  | 18,000ms | **30,000ms**  |
-| **2 tools**   | 5000 + (2 × 3000) + 10000  | 21,000ms | **30,000ms**  |
-| **4 tools**   | 5000 + (4 × 3000) + 10000  | 27,000ms | **60,000ms**  |
-| **6 tools**   | 5000 + (6 × 3000) + 10000  | 33,000ms | **60,000ms**  |
-| **10 tools**  | 5000 + (10 × 3000) + 10000 | 45,000ms | **120,000ms** |
-| **15+ tools** | 5000 + (15 × 3000) + 10000 | 60,000ms | **120,000ms** |
+| **1 tool**    | 5000 + (1 x 3000) + 10000  | 18,000ms | **30,000ms**  |
+| **2 tools**   | 5000 + (2 x 3000) + 10000  | 21,000ms | **30,000ms**  |
+| **4 tools**   | 5000 + (4 x 3000) + 10000  | 27,000ms | **60,000ms**  |
+| **6 tools**   | 5000 + (6 x 3000) + 10000  | 33,000ms | **60,000ms**  |
+| **10 tools**  | 5000 + (10 x 3000) + 10000 | 45,000ms | **120,000ms** |
+| **15+ tools** | 5000 + (15 x 3000) + 10000 | 60,000ms | **120,000ms** |
 
-### Quick Reference
+**Quick Reference:**
 
 | Complexity             | Timeout  | Use Case                    |
 | ---------------------- | -------- | --------------------------- |
@@ -913,7 +910,7 @@ timeout = base_overhead + (num_tools × tool_avg) + safety_margin
 | **Medium** (3-5 tools) | `60000`  | Create task + update CMS    |
 | **Complex** (6+ tools) | `120000` | Full design-to-dev pipeline |
 
-### Usage
+**Usage:**
 
 ```typescript
 call_tool_chain({
@@ -924,22 +921,32 @@ call_tool_chain({
     const task = await clickup.clickup_create_task({ name: "Review collections" });
     return { sites, collections, task };
   `,
-  timeout: 60000  // 3 tools → use 60000ms
+  timeout: 60000  // 3 tools, use 60000ms
 });
 ```
 
+### Validation: `phase_5_complete`
+
+**Checklist:**
+- [ ] Naming pattern applied correctly
+- [ ] Timeout calculated for workflow complexity
+- [ ] Tool discovery working via search_tools
+- [ ] At least one call_tool_chain execution succeeded
+
+STOP if validation fails. Fix before continuing.
+
 ---
 
-## 8. FEATURES
+## 7. Features
 
-### 8.1 call_tool_chain
+### 7.1 call_tool_chain
 
 **Purpose**: Execute TypeScript code with direct access to all configured MCP tools.
 
 **Parameters**:
-- `code` (string, required) - TypeScript code to execute
-- `timeout` (number, optional) - Timeout in milliseconds (default: 30000)
-- `max_output_size` (number, optional) - Max output characters (default: 200000)
+- `code` (string, required): TypeScript code to execute
+- `timeout` (number, optional): Timeout in milliseconds (default: 30000)
+- `max_output_size` (number, optional): Max output characters (default: 200000)
 
 **Example**:
 ```typescript
@@ -954,13 +961,13 @@ call_tool_chain({
 
 **Returns**: `{ result: any, logs: string[] }`
 
-### 8.2 search_tools
+### 7.2 search_tools
 
-**Purpose**: Progressive discovery - search for tools by task description.
+**Purpose**: Progressive discovery. Search for tools by task description.
 
 **Parameters**:
-- `task_description` (string, required) - Natural language description of task
-- `limit` (number, optional) - Maximum results to return (default: 10)
+- `task_description` (string, required): Natural language description of task
+- `limit` (number, optional): Maximum results to return (default: 10)
 
 **Example**:
 ```typescript
@@ -972,7 +979,7 @@ search_tools({
 
 **Returns**: Array of tool names with descriptions (minimal tokens)
 
-### 8.3 list_tools
+### 7.3 list_tools
 
 **Purpose**: List all available tools from all configured MCP servers.
 
@@ -983,14 +990,14 @@ search_tools({
 list_tools();
 ```
 
-**Returns**: `{ tools: string[] }` - All available tool names
+**Returns**: `{ tools: string[] }` containing all available tool names
 
-### 8.4 tool_info
+### 7.4 tool_info
 
 **Purpose**: Get complete TypeScript interface for a specific tool.
 
 **Parameters**:
-- `tool_name` (string, required) - Full tool name (e.g., "webflow.webflow_sites_list")
+- `tool_name` (string, required): Full tool name (e.g., "webflow.webflow_sites_list")
 
 **Example**:
 ```typescript
@@ -1003,7 +1010,7 @@ tool_info({
 
 ---
 
-## 9. EXAMPLES
+## 8. Examples
 
 ### Example 1: Webflow Site Management
 
@@ -1085,7 +1092,7 @@ call_tool_chain({
 
 ### Example 4: Multi-Tool Workflow
 
-**Scenario**: Figma → GitHub → Webflow pipeline
+**Scenario**: Figma to GitHub to Webflow pipeline
 
 ```typescript
 call_tool_chain({
@@ -1143,7 +1150,7 @@ call_tool_chain({
 
 ### Example 5: Chrome DevTools Automation
 
-**Scenario**: Take screenshot and check console errors
+**Scenario**: Take a screenshot and check console errors
 
 ```typescript
 call_tool_chain({
@@ -1187,7 +1194,7 @@ call_tool_chain({
 
 ### Example 6: Error Handling Pattern
 
-**Scenario**: Robust workflow with fallbacks
+**Scenario**: Resilient workflow with fallbacks
 
 ```typescript
 call_tool_chain({
@@ -1230,7 +1237,7 @@ call_tool_chain({
 
 ---
 
-## 10. TROUBLESHOOTING
+## 9. Troubleshooting
 
 ### Error Message Quick Reference
 
@@ -1241,7 +1248,7 @@ call_tool_chain({
 | `Execution timeout exceeded`                 | Complex operation            | Increase `timeout` parameter              |
 | `UTCP_CONFIG_FILE not set`                   | Missing environment variable | Set path to `.utcp_config.json`           |
 | `Environment variable X not found`           | Missing in .env              | Add variable to `.env` file               |
-| `Variable 'manual_VAR' not found`            | Missing prefixed variable    | Add `{manual}_{VAR}` to `.env` (see below)|
+| `Variable 'manual_VAR' not found`            | Missing prefixed variable    | Add `{manual}_{VAR}` to `.env`            |
 | `TypeError: X is not a function`             | Wrong naming pattern         | Check exact tool name with `search_tools` |
 | `Failed to start MCP server`                 | Package or auth issue        | Test command manually in terminal         |
 | `Invalid JSON`                               | Config syntax error          | Validate with `python3 -m json.tool`      |
@@ -1258,13 +1265,13 @@ call_tool_chain({
    ```bash
    # For error: Variable 'figma_FIGMA_API_KEY' not found
    figma_FIGMA_API_KEY=figd_your-figma-key
-   
+
    # For error: Variable 'github_GITHUB_PERSONAL_ACCESS_TOKEN' not found
    github_GITHUB_PERSONAL_ACCESS_TOKEN=ghp_your-github-token
    ```
 3. Restart OpenCode/Code Mode after updating `.env`
 
-See the [Prefixed Environment Variables](#️-critical-prefixed-environment-variables) section for the complete list.
+See the [Prefixed Environment Variables](#critical-prefixed-environment-variables) section for the complete list.
 
 ### Tool Not Found Error
 
@@ -1275,13 +1282,13 @@ See the [Prefixed Environment Variables](#️-critical-prefixed-environment-vari
 **Solution**:
 1. Use correct naming pattern: `{manual_name}.{manual_name}_{tool_name}`
    ```typescript
-   // WRONG - Missing second part
+   // Wrong: missing second part
    await webflow.sites_list({});
 
-   // WRONG - Dot instead of underscore
+   // Wrong: dot instead of underscore
    await webflow.webflow.sites_list({});
 
-   // CORRECT
+   // Correct
    await webflow.webflow_sites_list({});
    ```
 
@@ -1301,7 +1308,7 @@ See the [Prefixed Environment Variables](#️-critical-prefixed-environment-vari
 **Solutions**:
 1. Check `.env` file exists in same directory as `.utcp_config.json`
 
-2. Verify variable is defined (not commented out):
+2. Verify the variable is defined (not commented out):
    ```bash
    cat .env | grep CLICKUP_API_KEY
    # Should show: CLICKUP_API_KEY=pk_...
@@ -1324,7 +1331,7 @@ See the [Prefixed Environment Variables](#️-critical-prefixed-environment-vari
 **Problem**: `Error: Failed to start MCP server: webflow`
 
 **Solutions**:
-1. Test command manually:
+1. Test the command manually:
    ```bash
    npx mcp-remote https://mcp.webflow.com/sse
    ```
@@ -1334,7 +1341,7 @@ See the [Prefixed Environment Variables](#️-critical-prefixed-environment-vari
    which npx
    ```
 
-3. Install package directly if cached version fails:
+3. Install the package directly if the cached version fails:
    ```bash
    npm install -g @taazkareem/clickup-mcp-server
    ```
@@ -1348,7 +1355,7 @@ See the [Prefixed Environment Variables](#️-critical-prefixed-environment-vari
 **Solutions**:
 1. Verify MCP servers are configured in `.utcp_config.json`
 
-2. Check manual names don't have invalid characters:
+2. Check manual names do not have invalid characters:
    ```json
    // Good
    "name": "webflow"
@@ -1397,16 +1404,16 @@ See the [Prefixed Environment Variables](#️-critical-prefixed-environment-vari
 
 **Solution**: Add the tool name after the second part:
 ```typescript
-// WRONG - Missing tool name
+// Wrong: missing tool name
 await webflow.webflow();
 
-// CORRECT - Include tool name
+// Correct: include tool name
 await webflow.webflow_sites_list({});
 ```
 
 ---
 
-## 11. RESOURCES
+## 10. Resources
 
 ### Documentation
 
@@ -1462,16 +1469,16 @@ cat .utcp_config.json | grep '"name"'
 your-project/
 ├── .utcp_config.json     # MCP server definitions
 ├── .env                   # API keys (gitignored)
-├── .env.example          # Template for team
-├── .mcp.json             # Claude Code config (optional)
-├── opencode.json         # OpenCode config (optional)
+├── .env.example           # Template for team
+├── .mcp.json              # Claude Code config (optional)
+├── opencode.json          # OpenCode config (optional)
 └── .vscode/
-    └── mcp.json          # VS Code config (optional)
+    └── mcp.json           # VS Code config (optional)
 ```
 
 ---
 
-## Quick Reference
+## Quick Reference Card
 
 ### Essential Commands
 
@@ -1495,7 +1502,7 @@ python3 -m json.tool < .utcp_config.json
 env | grep -E "(CLICKUP|FIGMA|GITHUB)"
 ```
 
-### NAMING PATTERN (Memorize This!)
+### NAMING PATTERN
 
 ```typescript
 // Pattern: {manual_name}.{manual_name}_{tool_name}
@@ -1514,20 +1521,20 @@ chrome_devtools_1.chrome_devtools_1_new_page({});
 
 ### Common Workflows
 
-**Tool Discovery**:
+**Tool Discovery:**
 ```typescript
 const tools = await search_tools({ task_description: "webflow cms", limit: 10 });
 console.log(tools.map(t => t.name));
 ```
 
-**Single Tool Call**:
+**Single Tool Call:**
 ```typescript
 call_tool_chain({
   code: `await webflow.webflow_sites_list({})`
 });
 ```
 
-**Multi-Tool with Error Handling**:
+**Multi-Tool with Error Handling:**
 ```typescript
 call_tool_chain({
   code: `
@@ -1547,36 +1554,27 @@ call_tool_chain({
 
 **Installation:**
 ```
-□ Node.js 18+ installed
-□ .utcp_config.json created and valid
-□ .env created with required keys
-□ .env in .gitignore
-□ AI client configured
-□ Code Mode tools visible
+[ ] Node.js 18+ installed
+[ ] .utcp_config.json created and valid
+[ ] .env created with required keys
+[ ] .env in .gitignore
+[ ] AI client configured
+[ ] Code Mode tools visible
 ```
 
 **Before Each Session:**
 ```
-□ Correct naming pattern: {manual_name}.{manual_name}_{tool_name}
-□ Timeout calculated for complexity
-□ Error handling in place
-□ API keys not expired
+[ ] Correct naming pattern: {manual_name}.{manual_name}_{tool_name}
+[ ] Timeout calculated for complexity
+[ ] Error handling in place
+[ ] API keys not expired
 ```
 
 ---
 
-**Installation Complete!**
+## Version History
 
-You now have Code Mode MCP installed and configured. Use it to orchestrate 159+ tools with 98.7% less context overhead and execute complex multi-tool workflows in single TypeScript executions.
-
-Start using Code Mode by asking your AI assistant:
-```
-Use search_tools to find tools for [your task]
-```
-
-**Remember the naming pattern:**
-```
-{manual_name}.{manual_name}_{tool_name}
-```
-
-For more information, refer to the MCP Protocol documentation and the skill documentation in `.opencode/skill/mcp-code-mode/`.
+| Version | Date       | Changes                                                                 |
+| ------- | ---------- | ----------------------------------------------------------------------- |
+| v2.0.0  | 2026-02-20 | HVR compliance rewrite, standardized phase_N_complete validation naming, TOC moved after AI-First Install Guide, Quick Reference Card added to Resources |
+| v1.0.0  | 2025-01-01 | Initial release                                                         |
