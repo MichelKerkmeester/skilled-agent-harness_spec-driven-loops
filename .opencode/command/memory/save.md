@@ -397,20 +397,26 @@ specs/{spec-folder}/memory/{timestamp}__{topic}.md
 ### Human-Friendly Display
 
 ```
-MEMORY SAVED
-────────────────────────────────────────────────────
-Spec folder: <spec_folder>
-File: <file_path>
-Memory ID: #<memory_id>
-Indexing: <indexing_status>
+MEMORY:SAVE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-Anchors created:
-  - <anchor1>
-  - <anchor2>
+  Folder      <spec_folder>
+  File        <file_path>
+  Memory ID   #<memory_id>
+  Indexing    <indexing_status>
 
-Trigger phrases: <phrase1>, <phrase2>, <phrase3>, ...
-────────────────────────────────────────────────────
-STATUS=<status> PATH=<file_path> ANCHORS=<count>
+→ Anchors ─────────────────────────────────── <count> created
+  <anchor1>
+  <anchor2>
+  <anchor3>
+
+→ Triggers ──────────────────────────────────────────
+  <phrase1> · <phrase2> · <phrase3> · ...
+
+─────────────────────────────────────────────────────
+[t] edit triggers    [d] done
+
+STATUS=OK PATH=<file_path> ANCHORS=<count>
 ```
 
 ### Post-Save Actions
@@ -423,14 +429,20 @@ STATUS=<status> PATH=<file_path> ANCHORS=<count>
 ### Trigger Edit (if selected)
 
 ```
-EDIT TRIGGERS: "<memory_title>"
-────────────────────────────────────────────────────
-Current triggers:
+MEMORY:TRIGGERS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  Memory      #<id> "<memory_title>"
+
+→ Current Triggers ─────────────────────────────────
   1) <phrase1>
   2) <phrase2>
   3) <phrase3>
 
-[a]dd trigger | [r]emove # | [s]ave | [d]one
+─────────────────────────────────────────────────────
+[a] add    [r] remove #    [s] save    [d] done
+
+STATUS=OK ID=<id> TRIGGERS=<count>
 ```
 
 ---

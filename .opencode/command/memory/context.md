@@ -180,36 +180,27 @@ memory_search({
 
 ```
 Format response:
-    ┌────────────────────────────────────────────────┐
-    │ CONTEXT RETRIEVAL                              │
-    ├────────────────────────────────────────────────┤
-    │ Query: "<query>"                               │
-    │ Intent: <detected-intent> (auto-detected)      │
-    │ Weight Adjustments: <weights-applied>          │
-    │                                                │
-    │ ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━   │
-    │                                                │
-    │ MEMORY #<id>: <title>                          │
-    │   Score: <score>% (boosted: +<boost>%)         │
-    │   Spec Folder: <folder>                        │
-    │   Type: <context_type>                         │
-    │                                                │
-    │   <content-preview>                            │
-    │                                                │
-    │ ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━   │
-    │                                                │
-    │ <additional memories...>                       │
-    │                                                │
-    ├────────────────────────────────────────────────┤
-    │ Relevance Explanation:                         │
-    │   Intent '<intent>' prioritized:               │
-    │     - <anchor1> anchors (1.5x weight)          │
-    │     - <anchor2> context (1.3x weight)          │
-    │     - <anchor3> content (1.2x weight)          │
-    │                                                │
-    │ Total Results: <N> memories                    │
-    │ Token Budget: ~<tokens> tokens                 │
-    └────────────────────────────────────────────────┘
+
+MEMORY:CONTEXT
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  Query       "<query>"
+  Intent      <detected-intent> (auto)
+  Weights     <anchor1> ×1.5 · <anchor2> ×1.3 · <anchor3> ×1.2
+
+→ Results ──────────────────────────────── <N> found
+
+  #<id>  <title>
+         █████████░  <score>%  ·  <spec-folder>  ·  <context_type>
+         <content-preview>
+
+  #<id>  <title>
+         ███████░░░  <score>%  ·  <spec-folder>  ·  <context_type>
+         <content-preview>
+
+→ Token Budget ──────────────────────────────────────
+
+  ████████████░░░░░░░░  <used> / <budget> tokens (<percentage>%)
 
 STATUS=OK INTENT=<intent> RESULTS=<count>
 ```

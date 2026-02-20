@@ -242,17 +242,28 @@ spec_kit_memory_checkpoint_delete({ name: "<name>" })
 Call `memory_stats()` and `memory_list({ limit: 10, sortBy: "updated_at" })` in parallel. Display:
 
 ```
-MEMORY DATABASE STATS
-Total: <N>  |  Size: <size>  |  Last Indexed: <date>
-Tiers: ★constitutional:<N> ◆critical:<N> ◇important:<N> ○normal:<N> ◌temporary:<N> ✗deprecated:<N>
-Top Folders: <folder-1>:<N> | <folder-2>:<N> | <folder-3>:<N>
+MEMORY:STATS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-Available Actions
-scan — Index new/changed memory files
-cleanup — Remove old or deprecated memories (with confirmation)
-health — Run system health diagnostics
-checkpoint — Checkpoint operations (create, restore, list, delete)
-quit — Exit
+  Total       <N>
+  Size        <size>
+  Indexed     <date>
+
+→ Tier Distribution ────────────────────────────────
+  constitutional  ██░░░░░░░░  <N>
+  critical        ████░░░░░░  <N>
+  important       ██████░░░░  <N>
+  normal          █████████░  <N>
+  temporary       ██░░░░░░░░  <N>
+  deprecated      █░░░░░░░░░  <N>
+
+→ Top Folders ──────────────────────────────────────
+  <folder-1>  █████████░  <N>
+  <folder-2>  ██████░░░░  <N>
+  <folder-3>  ████░░░░░░  <N>
+
+─────────────────────────────────────────────────────
+[scan] index    [cleanup] remove    [health] check    [checkpoint] ops
 
 STATUS=OK
 ```
@@ -272,10 +283,13 @@ Normal scan skips unchanged files (mtime check). Force scan re-indexes all files
 Before running `memory_index_scan`, ask:
 
 ```
-SCAN SOURCE SCOPE
-[a]ll  — Include skill references/assets (default, includeSkillRefs=true)
-[c]ore — Exclude skill references/assets (includeSkillRefs=false)
-[b]ack — Cancel
+MEMORY:SCAN
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+→ Source Scope ─────────────────────────────────────
+  [a] all     include skill references (default)
+  [c] core    exclude skill references
+  [b] back    cancel
 ```
 
 Map selection to `includeSkillRefs` for this run.
@@ -310,8 +324,15 @@ spec_kit_memory_memory_index_scan({ force: true, includeSkillRefs: true })   // 
 ### Output
 
 ```
-SCAN COMPLETE — Mode: <normal|force>
-Indexed: <N>  |  Skipped: <N>  |  Updated: <N>  |  Errors: <N>
+MEMORY:SCAN
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  Mode        <normal|force>
+  Indexed     <N>
+  Skipped     <N>
+  Updated     <N>
+  Errors      <N>
+
 STATUS=OK INDEXED=<N> SKIPPED=<N> UPDATED=<N>
 ```
 
@@ -327,19 +348,33 @@ STATUS=OK INDEXED=<N> SKIPPED=<N> UPDATED=<N>
 2. **Identify:** `memory_list({ limit: 50, sortBy: "created_at" })`, filter by Gate 1 tier eligibility rules
 3. **Display candidates:**
 ```
-CLEANUP MODE — Found <N> candidates:
-| ID  | Tier       | Title                  | Age      | Accesses |
-| --- | ---------- | ---------------------- | -------- | -------- |
-| 42  | deprecated | Early hero experiments | 4 months | 1        |
-Protected: constitutional:<N> | critical:<N> | important:<N>
-[a]ll remove | [r]eview each | [n]one keep | [b]ack | [q]uit
+MEMORY:CLEANUP
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+→ Candidates ───────────────────────────── <N> found
+
+  ID    Tier          Title                   Age       Accesses
+  42    deprecated    Early hero experiments   4 months  1
+  38    temporary     Debug session notes      2 months  0
+
+→ Protected ────────────────────────────────────────
+  constitutional <N>  ·  critical <N>  ·  important <N>
+
+─────────────────────────────────────────────────────
+[a] remove all    [r] review each    [n] keep all    [b] back
 ```
 4. **Actions:** `a`→checkpoint+delete all, `r`→step through each, `n`→cancel, `b`→back, `q`→exit
 5. **Completion:**
 ```
-CLEANUP COMPLETE — Checkpoint: pre-cleanup-{timestamp}
-Removed: <N> | Kept: <N>
-To undo: /memory:manage checkpoint restore pre-cleanup-{timestamp}
+MEMORY:CLEANUP
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  Checkpoint  pre-cleanup-<timestamp>
+  Removed     <N>
+  Kept        <N>
+
+  Undo: /memory:manage checkpoint restore pre-cleanup-<timestamp>
+
 STATUS=OK REMOVED=<N> KEPT=<N> CHECKPOINT=<name>
 ```
 
@@ -357,9 +392,13 @@ STATUS=OK REMOVED=<N> KEPT=<N> CHECKPOINT=<name>
 4. **Confirm:**
 
 ```
-TIER CHANGED
-Memory #<id>: "<title>"
-Old tier: <old_tier> → New tier: <new_tier>
+MEMORY:TIER
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  Memory      #<id> "<title>"
+  Old Tier    <old_tier>
+  New Tier    <new_tier>
+
 STATUS=OK ID=<id> TIER=<tier>
 ```
 
@@ -374,8 +413,19 @@ STATUS=OK ID=<id> TIER=<tier>
 3. **Edit:** `a`→prompt for new phrase, `r`→prompt for number to remove, `s`→save via `memory_update({ triggerPhrases: [...] })`, `b`→back (discard)
 4. **Confirm:**
 ```
-TRIGGERS UPDATED — Memory #<id>: "<title>"
-Triggers: 1) oauth  2) token refresh  3) authentication flow ← NEW
+MEMORY:TRIGGERS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  Memory      #<id> "<title>"
+
+→ Current Triggers ─────────────────────────────────
+  1) <phrase1>
+  2) <phrase2>
+  3) <phrase3>
+
+─────────────────────────────────────────────────────
+[a] add    [r] remove #    [s] save    [b] back
+
 STATUS=OK ID=<id> TRIGGERS=<N>
 ```
 
@@ -392,10 +442,13 @@ STATUS=OK ID=<id> TRIGGERS=<N>
 3. Confirm:
 
 ```
-VALIDATION RECORDED
-Memory #<id>: "<title>"
-Feedback: <useful|not useful>
-Confidence updated: <old>% → <new>%
+MEMORY:VALIDATE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  Memory      #<id> "<title>"
+  Feedback    <useful|not useful>
+  Confidence  <old>% → <new>%
+
 STATUS=OK ID=<id> USEFUL=<true|false>
 ```
 
@@ -414,16 +467,28 @@ spec_kit_memory_memory_list({ limit: 100, sortBy: "created_at" })
 
 For protected tiers (constitutional, critical):
 ```
-⚠️ WARNING: PROTECTED MEMORY
-Memory #<id>: "<title>"  |  Tier: <tier>  |  Created: <date>
-Type 'DELETE <title>' to confirm, or [b]ack to cancel
+MEMORY:DELETE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  WARN  Protected memory
+  Memory      #<id> "<title>"
+  Tier        <tier>
+  Created     <date>
+
+  Type 'DELETE <title>' to confirm, or [b] back
 ```
 
 For other tiers:
 ```
-DELETE MEMORY
-Memory #<id>: "<title>"  |  Tier: <tier>  |  Created: <date>
-Delete this memory? [y]es | [n]o
+MEMORY:DELETE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  Memory      #<id> "<title>"
+  Tier        <tier>
+  Created     <date>
+
+─────────────────────────────────────────────────────
+[y] delete    [n] cancel
 ```
 
 ### Step 2: Execute and Confirm
@@ -433,8 +498,11 @@ spec_kit_memory_memory_delete({ id: <id> })
 ```
 
 ```
-MEMORY DELETED
-Removed: #<id> "<title>"
+MEMORY:DELETE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  Removed     #<id> "<title>"
+
 STATUS=OK DELETED=<id>
 ```
 
@@ -447,11 +515,31 @@ STATUS=OK DELETED=<id>
 Execute `spec_kit_memory_memory_health({})`. Display:
 
 ```
-MEMORY SYSTEM HEALTH
-Status: ✓ Healthy  |  Size: <size>  |  Schema: v13  |  Total: <N>
-Tables: ✓ memory_index (v13) ✓ causal_edges ✓ memory_corrections ✓ session_state ✓ checkpoints
-Checks: ✓ DB accessible ✓ Embeddings valid ✓ No orphans ✓ No duplicate IDs
-Warnings: ⚠ <N> no trigger phrases  ⚠ <N> older than 90 days
+MEMORY:HEALTH
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  Status      <healthy|degraded|error>
+  Size        <size>
+  Schema      v13
+  Total       <N>
+
+→ Tables ───────────────────────────────────────────
+  PASS  memory_index (v13)
+  PASS  causal_edges
+  PASS  memory_corrections
+  PASS  session_state
+  PASS  checkpoints
+
+→ Checks ───────────────────────────────────────────
+  PASS  DB accessible
+  PASS  Embeddings valid
+  PASS  No orphans
+  PASS  No duplicate IDs
+
+→ Warnings ─────────────────────────────────────────
+  WARN  <N> memories without trigger phrases
+  WARN  <N> memories older than 90 days
+
 STATUS=OK HEALTH=<healthy|degraded|error> SCHEMA=v13
 ```
 
@@ -472,9 +560,14 @@ spec_kit_memory_checkpoint_create({
 ```
 
 ```
-✅ Checkpoint Created
-Name: before-refactor  |  Memories: 47  |  Spec folders: 5
-STATUS=OK CHECKPOINT=before-refactor ACTION=create
+MEMORY:CHECKPOINT
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  Name        <checkpoint_name>
+  Memories    <N>
+  Folders     <N>
+
+STATUS=OK CHECKPOINT=<name> ACTION=create
 ```
 
 **Limits:** Max 10 checkpoints. Auto-cleanup: checkpoints older than 30 days.
@@ -496,27 +589,43 @@ STATUS=OK CHECKPOINT=before-refactor ACTION=create
 
 **Output (Success):**
 ```
-✅ Checkpoint Restored
-Name: before-refactor  |  Removed: 12  |  Recovered: 3
-STATUS=OK CHECKPOINT=before-refactor ACTION=restore
+MEMORY:CHECKPOINT
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  Restored    <checkpoint_name>
+  Removed     <N>
+  Recovered   <N>
+
+STATUS=OK CHECKPOINT=<name> ACTION=restore
 ```
 
 **Output (Failure):**
 ```
-❌ Checkpoint Restore Failed
-Target: before-refactor  |  Error: <reason>
-Rollback: ✓ Successful — Database rolled back to pre-restore state
-STATUS=FAIL CHECKPOINT=before-refactor ACTION=restore ROLLBACK=success
+MEMORY:CHECKPOINT
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  FAIL  Restore failed
+  Target      <checkpoint_name>
+  Error       <reason>
+  Rollback    <successful|failed>
+
+STATUS=FAIL CHECKPOINT=<name> ACTION=restore ROLLBACK=<status>
 ```
 
 **Output (Failure + Rollback Failed):**
 ```
-❌ Checkpoint Restore Failed
-Target: before-refactor  |  Error: <reason>
-Rollback: ✗ Failed — Manual intervention required
-Recovery: Pre-restore snapshot available as 'pre-restore-{timestamp}'
-Run: /memory:manage checkpoint restore "pre-restore-{timestamp}"
-STATUS=FAIL CHECKPOINT=before-refactor ACTION=restore ROLLBACK=failed
+MEMORY:CHECKPOINT
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  FAIL  Restore failed
+  Target      <checkpoint_name>
+  Error       <reason>
+  Rollback    FAIL — manual intervention required
+  Recovery    pre-restore-<timestamp>
+
+  Run: /memory:manage checkpoint restore "pre-restore-<timestamp>"
+
+STATUS=FAIL CHECKPOINT=<name> ACTION=restore ROLLBACK=failed
 ```
 
 **Caution:**
@@ -535,13 +644,17 @@ spec_kit_memory_checkpoint_list({ limit: 50, specFolder: "<folder>" })
 ```
 
 ```
-Available Checkpoints
-| Name            | Created         | Memories | Size    |
-| --------------- | --------------- | -------- | ------- |
-| before-refactor | Dec 8, 10:30 AM | 47       | 12.4 KB |
-| feature-auth    | Dec 7, 3:15 PM  | 42       | 10.8 KB |
+MEMORY:CHECKPOINT
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-Total: 2 checkpoints (23.2 KB)
+→ Available ────────────────────────────── <N> checkpoints
+
+  Name              Created          Memories  Size
+  before-refactor   Dec 8, 10:30 AM  47        12.4 KB
+  feature-auth      Dec 7, 3:15 PM   42        10.8 KB
+
+  Total: <N> checkpoints (<size>)
+
 STATUS=OK ACTION=list
 ```
 
@@ -557,9 +670,12 @@ spec_kit_memory_checkpoint_delete({ name: "<checkpoint_name>" })
 
 Confirmation required before deleting. Output:
 ```
-✅ Checkpoint Deleted
-Name: old-checkpoint
-STATUS=OK CHECKPOINT=old-checkpoint ACTION=delete
+MEMORY:CHECKPOINT
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  Deleted     <checkpoint_name>
+
+STATUS=OK CHECKPOINT=<name> ACTION=delete
 ```
 
 ---

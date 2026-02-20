@@ -201,33 +201,32 @@ Check `key_files` from memory metadata against the spec folder:
 ### Step 4: Display Recovery Summary
 
 ```
-╭─────────────────────────────────────────────────────────────╮
-│ 🔄 SESSION RECOVERY                                         │
-├─────────────────────────────────────────────────────────────┤
-│ Scenario: Crash recovery (MCP restart detected)            │
-│ Spec: specs/082-speckit-reimagined/                        │
-│ Last Activity: 15 minutes ago                               │
-│                                                             │
-│ LAST ACTION:                                                │
-│   Created /memory:continue command file                     │
-│                                                             │
-│ NEXT STEPS:                                                 │
-│   1. Verify command structure                               │
-│   2. Test recovery scenarios                                │
-│   3. Update tasks.md                                        │
-│                                                             │
-│ PROGRESS: 47% (118/250 tasks)                               │
-│ BLOCKERS: None                                              │
-│                                                             │
-│ KEY FILES:                                                  │
-│   • .opencode/skill/system-spec-kit/scripts/...             │
-│   • .opencode/command/memory/continue.md                    │
-│   (showing first 3 of N files)                              │
-├─────────────────────────────────────────────────────────────┤
-│ ✅ Context restored. Ready to continue.                     │
-╰─────────────────────────────────────────────────────────────╯
+MEMORY:CONTINUE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-STATUS=OK SCENARIO=crash SESSION=specs/082-speckit-reimagined/
+  Scenario    <scenario> (<detection detail>)
+  Spec        <spec-folder>
+  Activity    <time ago>
+
+→ Last Action ──────────────────────────────────────
+  <last action description>
+
+→ Next Steps ───────────────────────────────────────
+  1. <step 1>
+  2. <step 2>
+  3. <step 3>
+
+→ Progress ─────────────────────────────────────────
+  █████████░░░░░░░░░░░  47% (118/250 tasks)
+
+  Blockers    none
+
+→ Key Files ────────────────────────────────────────
+  <file-path-1>
+  <file-path-2>
+  (showing first 3 of N files)
+
+STATUS=OK SCENARIO=<scenario> SESSION=<spec-folder>
 ```
 
 **IMPORTANT**: Always display key files in the recovery summary so the user can verify that the spec folder makes sense for the work that was done.
@@ -237,14 +236,9 @@ STATUS=OK SCENARIO=crash SESSION=specs/082-speckit-reimagined/
 In auto mode, immediately present continuation options:
 
 ```
-What would you like to do?
-
-  A) Continue from last action - Resume where you left off
-  B) Review session state - See full context before continuing
-  C) Change direction - Different task in this spec folder
-  D) Cancel - Exit recovery
-
-Reply with A/B/C/D
+─────────────────────────────────────────────────────
+[a] continue from last action    [b] review session state
+[c] change direction             [d] cancel recovery
 ```
 
 ---
@@ -411,13 +405,21 @@ Context will be automatically restored. Next action: Verify command structure.
 ```
 User: /memory:continue
 
-AI: 🔄 SESSION RECOVERY
-    Scenario: Crash recovery (MCP restart detected)
-    Spec: specs/082-speckit-reimagined/
-    Last Action: Created /memory:continue command file
-    Next Steps: Verify structure, test scenarios
+AI: MEMORY:CONTINUE
+    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-    ✅ Context restored. Ready to continue.
+      Scenario    crash (MCP restart detected)
+      Spec        specs/082-speckit-reimagined/
+      Activity    15 minutes ago
+
+    → Last Action ──────────────────────────────────────
+      Created /memory:continue command file
+
+    → Next Steps ───────────────────────────────────────
+      1. Verify structure
+      2. Test scenarios
+
+    STATUS=OK SCENARIO=crash SESSION=specs/082-speckit-reimagined/
 ```
 
 ### Use Case 2: Compaction Recovery
@@ -425,13 +427,14 @@ AI: 🔄 SESSION RECOVERY
 ```
 User: [System message: "Please continue from where we left off..."]
 
-AI: ⚠️ CONTEXT COMPACTION DETECTED
+AI: MEMORY:CONTINUE
+    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-    Detected active session:
-      Spec: specs/082-speckit-reimagined/
-      Last Activity: 30 minutes ago
+      Scenario    compaction (context compressed)
+      Spec        specs/082-speckit-reimagined/
+      Activity    30 minutes ago
 
-    Run /memory:continue to restore context and continue.
+    Run /memory:continue to restore context.
 
 User: /memory:continue
 
@@ -443,16 +446,17 @@ AI: [Loads state from memory file, presents continuation options]
 ```
 User: /memory:continue
 
-AI: 🔄 SESSION RECOVERY
-    Scenario: Session timeout (returned after 4 hours)
-    Spec: specs/082-speckit-reimagined/
-    Last Action: Created /memory:continue command file
+AI: MEMORY:CONTINUE
+    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-    ⚠️ Note: Codebase may have changed since last session.
+      Scenario    timeout (returned after 4 hours)
+      Spec        specs/082-speckit-reimagined/
+      Activity    4 hours ago
 
-    A) Continue from last action
-    B) Review changes first
-    C) Fresh start
+      WARN  Codebase may have changed since last session
+
+    ─────────────────────────────────────────────────────
+    [a] continue    [b] review changes    [c] fresh start
 ```
 
 ---

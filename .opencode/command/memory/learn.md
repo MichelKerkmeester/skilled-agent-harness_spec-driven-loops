@@ -210,23 +210,22 @@ spec_kit_memory_memory_save({
 ### Step 3: Display Confirmation
 
 ```
-Learning Captured
+MEMORY:LEARN
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-   Title: <learning_title>
-   Type: <learning_type>
-   Tier: <importance_tier>
-   Confidence: 85%
-   Folder: <target_spec_folder>
+  Title       <learning_title>
+  Type        <learning_type>
+  Tier        <importance_tier>
+  Confidence  █████████░  85%
+  Folder      <target_spec_folder>
 
-   Trigger phrases:
-   - <phrase1>
-   - <phrase2>
-   - <phrase3>
+→ Triggers ──────────────────────────────────────────
+  <phrase1> · <phrase2> · <phrase3>
 
-   This learning will surface when:
-   - Searching for related topics
-   - Working in <target_spec_folder>
-   - Trigger phrases mentioned in conversation
+→ Surfaces When ────────────────────────────────────
+  Searching for related topics
+  Working in <target_spec_folder>
+  Trigger phrases mentioned in conversation
 
 STATUS=OK LEARNING_TYPE=<type> FOLDER=<target_spec_folder>
 ```
@@ -338,21 +337,25 @@ Learn from mistakes by marking memories as corrected, applying stability penalti
 
 3. **Show Correction Preview**
    ```
-   CORRECTION PREVIEW
-   ──────────────────────────────────────
-   Original Memory: #42
-     Title: OAuth token handling
-     Tier: important | Stability: 85%
+   MEMORY:CORRECT
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-   Correction Type: superseded
-     Penalty: 0.5x stability (85% → 42%)
-     New tier: normal (downgrade)
+   → Original ─────────────────────────────────────────
+     Memory      #<id> "<title>"
+     Tier        <tier>
+     Stability   █████████░  <stability>%
 
-   Replacement Memory: #67
-     Title: OAuth2 PKCE flow implementation
-     Boost: 1.2x stability (75% → 90%)
-   ──────────────────────────────────────
-   Confirm? [y]es, [n]o, [e]dit
+   → Correction ───────────────────────────────────────
+     Type        <correction_type>
+     Penalty     <penalty>x stability (<old>% → <new>%)
+     New Tier    <new_tier>
+
+   → Replacement ──────────────────────────────────────
+     Memory      #<replacement_id> "<replacement_title>"
+     Boost       <boost>x stability (<old>% → <new>%)
+
+   ─────────────────────────────────────────────────────
+   [y] confirm    [n] cancel    [e] edit
    ```
 
 4. **Apply Correction (on confirmation)**
@@ -372,10 +375,13 @@ Learn from mistakes by marking memories as corrected, applying stability penalti
 
 5. **Display Result**
    ```
-   Correction Applied
-      Original: #42 → superseded (tier: normal)
-      Replacement: #67 → boosted (tier: critical)
-   STATUS=OK CORRECTED=42 TYPE=superseded REPLACED_BY=67
+   MEMORY:CORRECT
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+     Original    #<id> → <correction_type> (tier: <new_tier>)
+     Replacement #<replacement_id> → boosted (tier: <new_tier>)
+
+   STATUS=OK CORRECTED=<id> TYPE=<type> REPLACED_BY=<replacement_id>
    ```
 
 ### Examples
@@ -400,12 +406,16 @@ Reverses a correction if made in error.
 1. **Load Correction Metadata** via `memory_list` — find memory, check for correction metadata
 2. **Show Undo Preview**
    ```
-   UNDO CORRECTION
-   ──────────────────────────────────────
-   Memory: #42
-     Current tier: normal → Original tier: important
-     Stability restored: 42% → 85%
-   Confirm undo? [y]es, [n]o
+   MEMORY:UNDO
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+     Memory      #<id>
+     Current     <current_tier>
+     Restore To  <original_tier>
+     Stability   <current>% → <restored>%
+
+   ─────────────────────────────────────────────────────
+   [y] confirm undo    [n] cancel
    ```
 3. **Apply Reversal**
    ```javascript
@@ -416,9 +426,12 @@ Reverses a correction if made in error.
    ```
 4. **Display Result**
    ```
-   Correction Undone
-      Memory: #42 — Tier restored: normal → important
-   STATUS=OK UNDONE=42
+   MEMORY:UNDO
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+     Memory      #<id> — tier restored: <old_tier> → <new_tier>
+
+   STATUS=OK UNDONE=<id>
    ```
 
 ---
@@ -434,27 +447,35 @@ View all corrections applied to memories.
 1. **Load Records** via `memory_list({ limit: 100, sortBy: "updated_at" })` — filter for memories with correction metadata
 2. **Display Timeline**
    ```
-   CORRECTION HISTORY
-   ──────────────────────────────────────
+   MEMORY:HISTORY
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-   Memory #42: OAuth token handling
-     Dec 10, 2:30 PM - Marked as superseded
-       Replaced by: #67 (OAuth2 PKCE flow)
-       Penalty: 0.5x stability
+   → Corrections ──────────────────────────── <N> total
 
-   Memory #38: Session management
-     Dec 9, 11:00 AM - Marked as refined
-       Clarified by: #65 (JWT session storage)
-       Penalty: 0.7x stability
+     #<id>  <title>
+            <date> — marked as <type>
+            Replaced by: #<replacement_id> (<replacement_title>)
+            Penalty: <penalty>x stability
 
-   ──────────────────────────────────────
-   Total: 2 corrections (2 active, 0 undone)
+     #<id>  <title>
+            <date> — marked as <type>
+            Clarified by: #<replacement_id> (<replacement_title>)
+            Penalty: <penalty>x stability
+
+     Active <N>  ·  Undone <N>
+
+   STATUS=OK
    ```
 
 When no corrections exist:
 ```
-No corrections recorded yet.
-Use '/memory:learn correct <id> <type>' to mark a memory as corrected.
+MEMORY:HISTORY
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  (no corrections recorded)
+
+  Use: /memory:learn correct <id> <type>
+
 STATUS=OK
 ```
 
