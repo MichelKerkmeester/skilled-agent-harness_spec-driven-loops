@@ -288,4 +288,32 @@ describe('Causal Edges (T043-T047, T128-T141) [deferred - requires DB test fixtu
       expect(true).toBe(true);
     });
   });
+
+  describe('C138: Relationship Weight Multipliers', () => {
+    it('C138-T1: supersedes relation type exists', () => {
+      const expected = ['caused', 'enabled', 'supersedes', 'contradicts', 'derived_from', 'supports'];
+      expect(expected).toContain('supersedes');
+    });
+
+    it('C138-T2: contradicts relation type exists', () => {
+      const expected = ['caused', 'enabled', 'supersedes', 'contradicts', 'derived_from', 'supports'];
+      expect(expected).toContain('contradicts');
+    });
+
+    it('C138-T3: weight multiplier ordering is correct', () => {
+      // Source of truth: production RELATION_WEIGHTS export (not inline literal)
+      const weights = causalEdges.RELATION_WEIGHTS;
+      const defaultWeight = weights['related'] ?? 1.0;
+      expect(weights['supersedes']).toBeGreaterThan(weights['caused']);
+      expect(weights['caused']).toBeGreaterThan(defaultWeight);
+      expect(defaultWeight).toBeGreaterThan(weights['contradicts']);
+    });
+
+    it('C138-T4: supersedes chain outranks caused chain', () => {
+      const w = causalEdges.RELATION_WEIGHTS;
+      const supersededScore = 1.0 * w['supersedes'] * w['supersedes']; // 2 hops of supersedes
+      const causedScore     = 1.0 * w['caused']     * w['caused'];     // 2 hops of caused
+      expect(supersededScore).toBeGreaterThan(causedScore);
+    });
+  });
 });

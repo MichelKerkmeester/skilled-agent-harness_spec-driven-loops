@@ -37,4 +37,3 @@ The `checklist.md` is an **ACTIVE VERIFICATION TOOL**, not passive documentation
 - [x] Unit tests added [File: tests/auth.test.ts - 8 new tests]
 - [ ] Documentation updated [DEFERRED: Will complete in follow-up PR]
 ```
-

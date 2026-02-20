@@ -11,27 +11,27 @@ Context preservation across sessions via hybrid search (vector similarity + BM25
 
 **MCP Tools (8 most-used of 22 total — see [memory_system.md](./references/memory/memory_system.md) for full reference):**
 
-| Tool                            | Layer | Purpose                                           |
-| ------------------------------- | ----- | ------------------------------------------------- |
-| `memory_context()`              | L1    | Unified entry point — modes: auto, quick, deep, focused, resume |
-| `memory_search()`               | L2    | Hybrid search (vector + FTS + BM25 with RRF fusion). With optional adaptive fusion (SPECKIT_ADAPTIVE_FUSION) and artifact-class routing |
-| `memory_match_triggers()`       | L2    | Trigger matching + cognitive (decay, tiers, co-activation) |
-| `memory_save()`                 | L2    | Index a memory file with pre-flight validation    |
-| `memory_list()`                 | L3    | Browse stored memories with pagination            |
-| `memory_delete()`               | L4    | Delete memories by ID or spec folder              |
-| `checkpoint_create()`           | L5    | Create gzip-compressed checkpoint snapshot        |
-| `checkpoint_restore()`          | L5    | Transaction-wrapped restore with rollback         |
+| Tool                      | Layer | Purpose                                                                                                                                 |
+| ------------------------- | ----- | --------------------------------------------------------------------------------------------------------------------------------------- |
+| `memory_context()`        | L1    | Unified entry point — modes: auto, quick, deep, focused, resume                                                                         |
+| `memory_search()`         | L2    | Hybrid search (vector + FTS + BM25 with RRF fusion). With optional adaptive fusion (SPECKIT_ADAPTIVE_FUSION) and artifact-class routing |
+| `memory_match_triggers()` | L2    | Trigger matching + cognitive (decay, tiers, co-activation)                                                                              |
+| `memory_save()`           | L2    | Index a memory file with pre-flight validation                                                                                          |
+| `memory_list()`           | L3    | Browse stored memories with pagination                                                                                                  |
+| `memory_delete()`         | L4    | Delete memories by ID or spec folder                                                                                                    |
+| `checkpoint_create()`     | L5    | Create gzip-compressed checkpoint snapshot                                                                                              |
+| `checkpoint_restore()`    | L5    | Transaction-wrapped restore with rollback                                                                                               |
 
 > Other tools: `memory_stats()` (L3), `memory_health()` (L3), `memory_update()` (L4), `memory_validate()` (L4), `checkpoint_list/delete()` (L5), `task_preflight/postflight()` (L6), `memory_drift_why/causal_link/causal_stats/causal_unlink()` (L6), `memory_index_scan()` (L7), `memory_get_learning_history()` (L7). Full tool names use `spec_kit_memory_` prefix.
 
 **memory_context() — Mode Routing:**
 
-| Mode | Token Budget | When `mode=auto`: Intent Routing |
-| --- | --- | --- |
-| `quick` | 800 | — |
-| `deep` | 2000 | `add_feature`, `refactor`, `security_audit` |
-| `focused` | 1500 | `fix_bug`, `understand` |
-| `resume` | 1200 | — |
+| Mode      | Token Budget | When `mode=auto`: Intent Routing            |
+| --------- | ------------ | ------------------------------------------- |
+| `quick`   | 800          | —                                           |
+| `deep`    | 2000         | `add_feature`, `refactor`, `security_audit` |
+| `focused` | 1500         | `fix_bug`, `understand`                     |
+| `resume`  | 1200         | —                                           |
 
 **memory_search() — Key Rules:**
 - **REQUIRED:** `query` (string) OR `concepts` (2-5 strings). `specFolder` alone causes E040 error.
@@ -59,14 +59,13 @@ Context preservation across sessions via hybrid search (vector similarity + BM25
 
 **Feature Flags:**
 
-| Flag                          | Default | Effect                                                                                      |
-| ----------------------------- | ------- | ------------------------------------------------------------------------------------------- |
-| `SPECKIT_ADAPTIVE_FUSION`     | off     | Enables intent-aware weighted RRF with 7 task-type profiles in `memory_search()`            |
-| `SPECKIT_EXTENDED_TELEMETRY`  | on      | Emits 4-dimension retrieval metrics (latency, mode, fallback, quality) per search operation |
+| Flag                         | Default | Effect                                                                                      |
+| ---------------------------- | ------- | ------------------------------------------------------------------------------------------- |
+| `SPECKIT_ADAPTIVE_FUSION`    | off     | Enables intent-aware weighted RRF with 7 task-type profiles in `memory_search()`            |
+| `SPECKIT_EXTENDED_TELEMETRY` | on      | Emits 4-dimension retrieval metrics (latency, mode, fallback, quality) per search operation |
 
 Set via environment variable before starting the MCP server (e.g., `SPECKIT_ADAPTIVE_FUSION=1`).
 
 > **Token budgets per layer:** L1:2000, L2:1500, L3:800, L4:500, L5:600, L6:1200, L7:1000 (enforced via `chars/4` approximation).
 
 **Full documentation:** See [memory_system.md](./references/memory/memory_system.md) for tool behavior, importance tiers, and configuration.
-

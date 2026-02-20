@@ -232,6 +232,20 @@ const FSRS_CONSTANTS = {
   MIN_STABILITY,
 } as const;
 
+/**
+ * C138: Tier-based decay multipliers for long-term memory stability.
+ * Each tier modifies how quickly memories decay relative to the base FSRS schedule.
+ * constitutional = slowest decay (most persistent), scratch = fastest decay (ephemeral).
+ */
+const TIER_MULTIPLIER: Readonly<Record<string, number>> = {
+  constitutional: 0.1,
+  critical: 0.3,
+  important: 0.5,
+  normal: 1.0,
+  temporary: 2.0,
+  scratch: 3.0,
+} as const;
+
 export {
   // Constants
   FSRS_FACTOR,
@@ -247,6 +261,7 @@ export {
   MAX_DIFFICULTY,
   MIN_STABILITY,
   FSRS_CONSTANTS,
+  TIER_MULTIPLIER,
 
   // Core functions
   calculateRetrievability,

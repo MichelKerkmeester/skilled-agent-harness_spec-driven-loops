@@ -46,4 +46,3 @@ specs/007-auth-system/
 ```
 
 **Full documentation:** See [sub_folder_versioning.md](./references/structure/sub_folder_versioning.md)
-

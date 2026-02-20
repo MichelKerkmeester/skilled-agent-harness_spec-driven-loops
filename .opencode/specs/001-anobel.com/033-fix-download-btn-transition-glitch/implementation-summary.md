@@ -1,3 +1,5 @@
+<!-- SPECKIT_TEMPLATE_SOURCE: legacy-normalized | v2.2 -->
+
 # Implementation Summary
 
 ## Change

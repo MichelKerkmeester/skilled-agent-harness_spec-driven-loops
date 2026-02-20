@@ -6,6 +6,10 @@
 import type Database from 'better-sqlite3';
 import { getIndex, sanitizeFTS5Query } from './bm25-index';
 import { fuseResultsMulti } from './rrf-fusion';
+import { hybridAdaptiveFuse } from './adaptive-fusion';
+import { spreadActivation } from '../cognitive/co-activation';
+import { applyMMR } from './mmr-reranker';
+import type { MMRCandidate } from './mmr-reranker';
 
 /* ---------------------------------------------------------------
    1. INTERFACES
@@ -220,7 +224,7 @@ async function hybridSearch(
     useBm25 = true,
     useFts = true,
     useVector = true,
-    useGraph = false,
+    useGraph = true,
     includeArchived = false,
   } = options;
 
@@ -333,6 +337,10 @@ async function hybridSearchEnhanced(
       weight?: number;
     }> = [];
 
+    // Gather semantic (vector) and keyword results for adaptive fusion
+    let semanticResults: Array<{ id: number | string; source: string; [key: string]: unknown }> = [];
+    let keywordResults: Array<{ id: number | string; source: string; [key: string]: unknown }> = [];
+
     if (embedding && vectorSearchFn) {
       try {
         const vectorResults = vectorSearchFn(embedding, {
@@ -344,12 +352,12 @@ async function hybridSearchEnhanced(
         });
         // P3-15 FIX: Tag individual results with correct source type
         // so RRF fusion preserves the source provenance
-        const taggedVectorResults = vectorResults.map((r: Record<string, unknown>): { id: number | string; source: string; [key: string]: unknown } => ({
+        semanticResults = vectorResults.map((r: Record<string, unknown>): { id: number | string; source: string; [key: string]: unknown } => ({
           ...r,
           id: r.id as number | string,
           source: 'vector',
         }));
-        lists.push({ source: 'vector', results: taggedVectorResults, weight: 1.0 });
+        lists.push({ source: 'vector', results: semanticResults, weight: 1.0 });
       } catch {
         // Skip on failure
       }
@@ -357,17 +365,57 @@ async function hybridSearchEnhanced(
 
     const ftsResults = ftsSearch(query, options);
     if (ftsResults.length > 0) {
+      keywordResults = [...keywordResults, ...ftsResults];
       lists.push({ source: 'fts', results: ftsResults, weight: 0.8 });
     }
 
     const bm25Results = bm25Search(query, options);
     if (bm25Results.length > 0) {
+      keywordResults = [...keywordResults, ...bm25Results];
       lists.push({ source: 'bm25', results: bm25Results, weight: 0.6 });
     }
 
     if (lists.length > 0) {
+      // C138: Use adaptive fusion to get intent-aware weights replacing hardcoded [1.0, 0.8, 0.6]
+      const intent = (options as HybridSearchOptions & { intent?: string }).intent || 'understand';
+      const adaptiveResult = hybridAdaptiveFuse(semanticResults, keywordResults, intent);
+      const { semanticWeight, keywordWeight } = adaptiveResult.weights;
+
+      // Apply adaptive weights to the fusion lists (update in place)
+      for (const list of lists) {
+        if (list.source === 'vector') list.weight = semanticWeight;
+        else if (list.source === 'fts' || list.source === 'bm25') list.weight = keywordWeight;
+      }
+
       const fused = fuseResultsMulti(lists);
-      return fused.slice(0, options.limit || 20).map(r => ({
+      const limit = options.limit || 20;
+
+      // C138: MMR reranking — only apply when results have embeddings for diversity pruning
+      let reranked = fused.slice(0, limit);
+      const mmrCandidates = reranked.filter(
+        (r): r is typeof r & { embedding: Float32Array } =>
+          (r as Record<string, unknown>).embedding instanceof Float32Array
+      ) as MMRCandidate[];
+
+      if (mmrCandidates.length >= 2) {
+        const diversified = applyMMR(mmrCandidates as MMRCandidate[], { lambda: 0.7, limit });
+        reranked = diversified.map(c => reranked.find(r => r.id === c.id) ?? c as unknown as typeof reranked[0]);
+      }
+
+      // C138: Co-activation spreading — enrich with temporal neighbors
+      const topIds = reranked
+        .slice(0, 5)
+        .map(r => r.id)
+        .filter((id): id is number => typeof id === 'number');
+      if (topIds.length > 0) {
+        try {
+          spreadActivation(topIds);
+        } catch {
+          // Non-critical enrichment — ignore failures
+        }
+      }
+
+      return reranked.map(r => ({
         ...r,
         score: r.score as number,
         source: (r.source as string) || 'hybrid'

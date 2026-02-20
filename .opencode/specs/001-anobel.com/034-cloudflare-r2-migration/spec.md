@@ -1,3 +1,7 @@
+<!-- SPECKIT_LEVEL: 1 -->
+
+<!-- SPECKIT_TEMPLATE_SOURCE: legacy-normalized | v2.2 -->
+
 # Spec: Cloudflare R2 + Worker Migration
 
 **Created:** 2026-02-14

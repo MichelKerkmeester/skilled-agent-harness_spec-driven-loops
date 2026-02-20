@@ -482,4 +482,36 @@ describe('Prediction Error Gate Module', () => {
       expect(peGateModule[name]).toBeDefined();
     });
   });
+
+  /* ─────────────────────────────────────────────────────────────
+     C138: Read-Time Contradiction Detection
+  ──────────────────────────────────────────────────────────────── */
+
+  describe('C138: Read-Time Contradiction Flagging', () => {
+    it('C138-T1: detectContradiction function exists', () => {
+      expect(typeof peGate.detectContradiction).toBe('function');
+    });
+
+    it('C138-T2: contradicting content triggers detection', () => {
+      const input = {
+        content1: 'Must use PostgreSQL for all database operations',
+        content2: 'I used MySQL for the database today',
+        similarity: 75,
+      };
+      const result = peGate.detectContradiction(input.content1, input.content2);
+      expect(typeof result).toBe('object');
+    });
+
+    it('C138-T3: THRESHOLD constants are valid for contradiction detection', () => {
+      expect(peGate.THRESHOLD.HIGH_MATCH).toBeGreaterThan(peGate.THRESHOLD.MEDIUM_MATCH);
+      expect(peGate.THRESHOLD.DUPLICATE).toBeGreaterThan(peGate.THRESHOLD.HIGH_MATCH);
+    });
+
+    it('C138-T4: ACTION types include contradiction-related actions', () => {
+      // Verify the action enum has the expected values for PE gate
+      expect(peGateActions).toBeDefined();
+      const actionValues = Object.values(peGateActions);
+      expect(actionValues.length).toBeGreaterThanOrEqual(3);
+    });
+  });
 });

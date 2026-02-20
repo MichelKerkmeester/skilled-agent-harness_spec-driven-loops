@@ -11,6 +11,12 @@ version: 1.0.7.0
 
 Browser debugging and automation through two complementary approaches: CLI (bdg) for speed and token efficiency, MCP for multi-tool integration.
 
+### Skill Graph Status
+This skill is running in graph mode.
+- Primary graph entrypoint: `index.md`
+- Node content: `nodes/*.md`
+- Compatibility entrypoint: `SKILL.md`
+
 ---
 
 <!-- ANCHOR:when-to-use -->

@@ -34,7 +34,7 @@
 | Spec Folder | 003-system-spec-kit/138-hybrid-rag-fusion |
 | Channel | main |
 | Importance Tier | normal |
-| Context Type | general |
+| Context Type | research |
 | Total Messages | 1 |
 | Tool Executions | 0 |
 | Decisions Made | 3 |
@@ -53,9 +53,9 @@
 
 | Metric | Value | Assessment |
 |--------|-------|------------|
-| Knowledge Score | /100 |  |
-| Uncertainty Score | /100 |  |
-| Context Score | /100 |  |
+| Knowledge Score | N/A | Auto-generated session |
+| Uncertainty Score | N/A | Auto-generated session |
+| Context Score | N/A | Auto-generated session |
 | Timestamp |  | Session start |
 
 **Initial Gaps Identified:**
@@ -132,7 +132,7 @@ Next: Continue implementation
 
 **Key Context to Review:**
 
-- Files modified: specs/.../context/reddit_post_1.md, specs/.../context/reddit_post_2.md, specs/.../research/001 - analysis-hybrid-rag-patterns.md
+- Files modified: specs/003-system-spec-kit/138-hybrid-rag-fusion/context/reddit_post_1.md, specs/003-system-spec-kit/138-hybrid-rag-fusion/context/reddit_post_2.md, specs/003-system-spec-kit/138-hybrid-rag-fusion/research/001 - analysis-hybrid-rag-patterns.md
 
 - Last: Hybrid RAG comparative analysis was completed for system-spec-kit memory MCP by 
 
@@ -147,7 +147,7 @@ Next: Continue implementation
 | Field | Value |
 |-------|-------|
 | Phase | RESEARCH |
-| Active File | specs/.../context/reddit_post_1.md |
+| Active File | specs/003-system-spec-kit/138-hybrid-rag-fusion/context/reddit_post_1.md |
 | Last Action | Technical Implementation Details |
 | Next Action | Continue implementation |
 | Blockers | None |
@@ -169,13 +169,13 @@ Next: Continue implementation
 
 **Key Files and Their Roles**:
 
-- `specs/.../context/reddit_post_1.md` - Documentation
+- `specs/003-system-spec-kit/138-hybrid-rag-fusion/context/reddit_post_1.md` - Documentation
 
-- `specs/.../context/reddit_post_2.md` - Documentation
+- `specs/003-system-spec-kit/138-hybrid-rag-fusion/context/reddit_post_2.md` - Documentation
 
-- `specs/.../research/001 - analysis-hybrid-rag-patterns.md` - Documentation
+- `specs/003-system-spec-kit/138-hybrid-rag-fusion/research/001 - analysis-hybrid-rag-patterns.md` - Documentation
 
-- `specs/.../research/002 - recommendations-system-spec-kit-memory-mcp.md` - Documentation
+- `specs/003-system-spec-kit/138-hybrid-rag-fusion/research/002 - recommendations-system-spec-kit-memory-mcp.md` - Documentation
 
 **How to Extend**:
 
@@ -211,10 +211,10 @@ Hybrid RAG comparative analysis was completed for system-spec-kit memory MCP by 
 
 | **File** | **Description** |
 |:---------|:----------------|
-| `specs/.../context/reddit_post_1.md` | File modified (description pending) |
-| `specs/.../context/reddit_post_2.md` | File modified (description pending) |
-| `specs/.../research/001 - analysis-hybrid-rag-patterns.md` | File modified (description pending) |
-| `specs/.../research/002 - recommendations-system-spec-kit-memory-mcp.md` | File modified (description pending) |
+| `specs/003-system-spec-kit/138-hybrid-rag-fusion/context/reddit_post_1.md` | File modified (description pending) |
+| `specs/003-system-spec-kit/138-hybrid-rag-fusion/context/reddit_post_2.md` | File modified (description pending) |
+| `specs/003-system-spec-kit/138-hybrid-rag-fusion/research/001 - analysis-hybrid-rag-patterns.md` | File modified (description pending) |
+| `specs/003-system-spec-kit/138-hybrid-rag-fusion/research/002 - recommendations-system-spec-kit-memory-mcp.md` | File modified (description pending) |
 
 <!-- /ANCHOR:summary -->
 
@@ -269,9 +269,9 @@ rootCause: Need stronger hybrid retrieval guidance for memory MCP evolution with
 ## 4. DECISIONS
 
 <!-- ANCHOR:decision-autonomous-single-1865cfda -->
-### Decision 1: Decision: Use autonomous single
+### Decision 1: Use autonomous single-agent execution for uninterrupted research
 
-**Context**: agent execution in spec folder 138 because uninterrupted end-to-end research and drafting were required.
+**Context**: Agent execution in spec folder 138 because uninterrupted end-to-end research and drafting were required.
 
 **Timestamp**: 2026-02-20T07:32:30Z
 
@@ -296,9 +296,9 @@ rootCause: Need stronger hybrid retrieval guidance for memory MCP evolution with
 ---
 
 <!-- ANCHOR:decision-compare-current-memory-mcp-f562d274 -->
-### Decision 2: Decision: Compare current memory MCP internals with graphrag_mcp, WiredBrain
+### Decision 2: Compare current memory MCP internals with graphrag_mcp, WiredBrain Hierarchical-Rag, and ragflow
 
-**Context**: Hierarchical-Rag, and ragflow to extract actionable architecture patterns rather than generic RAG theory.
+**Context**: Extract actionable architecture patterns rather than generic RAG theory.
 
 **Timestamp**: 2026-02-20T07:32:30Z
 
@@ -323,9 +323,9 @@ rootCause: Need stronger hybrid retrieval guidance for memory MCP evolution with
 ---
 
 <!-- ANCHOR:decision-produce-two-deliverables-deep-82addbae -->
-### Decision 3: Decision: Produce two deliverables (deep analysis plus recommendations) with explicit tradeoffs and code references so adoption paths are implementation
+### Decision 3: Produce two deliverables (deep analysis plus recommendations) with implementation-ready adoption paths
 
-**Context**: ready.
+**Context**: Explicit tradeoffs and code references so adoption paths are implementation-ready.
 
 **Timestamp**: 2026-02-20T07:32:30Z
 
@@ -494,14 +494,14 @@ channel: "main"
 
 # Classification
 importance_tier: "normal"  # constitutional|critical|important|normal|temporary|deprecated
-context_type: "general"        # research|implementation|decision|discovery|general
+context_type: "research"        # research|implementation|decision|discovery|general
 
 # Memory Classification (v2.2)
 memory_classification:
-  memory_type: ""         # episodic|procedural|semantic|constitutional
-  half_life_days:      # decay half-life in days (0 = never decays)
+  memory_type: "episodic"         # episodic|procedural|semantic|constitutional
+  half_life_days: 90      # decay half-life in days (0 = never decays)
   decay_factors:
-    base_decay_rate:            # 0.0-1.0, daily decay multiplier
+    base_decay_rate: 0.3            # 0.0-1.0, daily decay multiplier
     access_boost_factor:    # boost per access (default 0.1)
     recency_weight:              # weight for recent accesses (default 0.5)
     importance_multiplier:  # tier-based multiplier
@@ -606,10 +606,10 @@ trigger_phrases:
   - "fusion"
 
 key_files:
-  - "specs/.../context/reddit_post_1.md"
-  - "specs/.../context/reddit_post_2.md"
-  - "specs/.../research/001 - analysis-hybrid-rag-patterns.md"
-  - "specs/.../research/002 - recommendations-system-spec-kit-memory-mcp.md"
+  - "specs/003-system-spec-kit/138-hybrid-rag-fusion/context/reddit_post_1.md"
+  - "specs/003-system-spec-kit/138-hybrid-rag-fusion/context/reddit_post_2.md"
+  - "specs/003-system-spec-kit/138-hybrid-rag-fusion/research/001 - analysis-hybrid-rag-patterns.md"
+  - "specs/003-system-spec-kit/138-hybrid-rag-fusion/research/002 - recommendations-system-spec-kit-memory-mcp.md"
 
 # Relationships
 related_sessions:

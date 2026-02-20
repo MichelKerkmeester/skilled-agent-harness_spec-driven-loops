@@ -31,6 +31,24 @@ interface BM25Stats {
 const DEFAULT_K1 = 1.2;
 const DEFAULT_B = 0.75;
 
+/**
+ * C138: Field weight multipliers for weighted BM25 scoring.
+ * When indexing a document composed of multiple fields, multiply
+ * each field's token scores by the appropriate weight before
+ * accumulating the total document score.
+ *
+ * title:           10.0 — exact title matches are the strongest signal
+ * trigger_phrases:  5.0 — curated keywords next most important
+ * content_generic:  2.0 — generic textual content (file_path, tags, etc.)
+ * body:             1.0 — baseline weight for full body / content_text
+ */
+const BM25_FIELD_WEIGHTS: Record<string, number> = {
+  title:           10.0,
+  trigger_phrases:  5.0,
+  content_generic:  2.0,
+  body:             1.0,
+};
+
 function isBm25Enabled(): boolean {
   return process.env.ENABLE_BM25 !== 'false';
 }
@@ -304,6 +322,7 @@ export {
   sanitizeFTS5Query,
   DEFAULT_K1,
   DEFAULT_B,
+  BM25_FIELD_WEIGHTS,
 };
 
 export type {

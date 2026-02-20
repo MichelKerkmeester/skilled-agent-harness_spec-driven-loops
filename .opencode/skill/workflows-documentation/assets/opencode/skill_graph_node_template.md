@@ -9,8 +9,8 @@ Use this template when adding a new node under `nodes/`.
 
 ---
 
-<!-- ANCHOR:overview -->
-## 1. OVERVIEW
+<!-- ANCHOR:template -->
+## Template
 
 Copy the structure below into a new file and replace placeholders with real content.
 
@@ -40,4 +40,4 @@ Checklist before saving:
 
 ---
 
-<!-- /ANCHOR:overview -->
+<!-- /ANCHOR:template -->

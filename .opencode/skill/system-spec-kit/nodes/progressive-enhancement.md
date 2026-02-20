@@ -41,4 +41,3 @@ Level 3+ (Extended):    +Enterprise governance, AI protocols (~1075 LOC)
 - Integration vs unit test requirements
 
 **Decision rule:** When in doubt → choose higher level. Better to over-document than under-document.
-

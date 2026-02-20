@@ -186,4 +186,31 @@ describe('Co-Activation Module', () => {
       expect(result).toBe(0);
     });
   });
+
+  /* ─────────────────────────────────────────────────────────────
+     C138: Pipeline Integration Tests
+  ──────────────────────────────────────────────────────────────── */
+
+  describe('C138: Post-RRF Pipeline Integration', () => {
+    it('C138-T1: spreadActivation export is a function', () => {
+      expect(typeof coActivation.spreadActivation).toBe('function');
+    });
+
+    it('C138-T2: CO_ACTIVATION_CONFIG has required pipeline fields', () => {
+      const config = coActivation.CO_ACTIVATION_CONFIG;
+      expect(config).toHaveProperty('boostFactor');
+      expect(config).toHaveProperty('maxRelated');
+      expect(config).toHaveProperty('decayPerHop');
+      expect(config).toHaveProperty('maxHops');
+      expect(config.maxHops).toBeGreaterThanOrEqual(1);
+    });
+
+    it('C138-T3: boostScore with max related and high similarity gives meaningful boost', () => {
+      const base = 0.5;
+      const boosted = coActivation.boostScore(base, 5, 95);
+      expect(boosted).toBeGreaterThan(base);
+      // Boost should be proportional: boostFactor * (5/5) * (95/100) = 0.15 * 1.0 * 0.95 = 0.1425
+      expect(boosted).toBeCloseTo(base + 0.1425, 2);
+    });
+  });
 });

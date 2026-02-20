@@ -3,8 +3,6 @@ description: "How validate.sh automates the validation of spec folder contents."
 ---
 # Validation Workflow
 
-### Validation Workflow
-
 Automated validation of spec folder contents via `validate.sh`.
 
 **Usage:** `.opencode/skill/system-spec-kit/scripts/spec/validate.sh <spec-folder>`

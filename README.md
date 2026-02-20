@@ -89,9 +89,10 @@ Everything connects. Memory files live *inside* spec folders. Gates enforce docu
 
 ### Recent Platform Highlights
 
-- **Indexable spec documentation is now first-class**: spec folder docs (`spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `decision-record.md`, `implementation-summary.md`, `research.md`, `handover.md`) are indexed and searchable via `find_spec` and `find_decision`.
-- **README indexing is significantly stronger**: README anchor coverage and HVR compliance updates improved retrieval precision for architecture and operational docs.
-- **Canonical runtime DB path is standardized**: `MEMORY_DB_PATH` is aligned to `mcp_server/dist/database/context-index.sqlite` across OpenCode, Claude, VSCode and Codex setup docs.
+- **Gemini CLI is the 4th runtime**: 8 agents, 19 TOML command wrappers, 10 skill symlinks and 3 MCP servers. Agents optimized for gemini-3.1-pro within a 400K effective token window.
+- **Spec documents are indexed and searchable**: spec folder docs (`spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `decision-record.md`, `implementation-summary.md`, `research.md`, `handover.md`) surface via `find_spec` and `find_decision` intents.
+- **473 anchor tags across 74 READMEs**: section-level retrieval with ~93% token savings over loading full files.
+- **Runtime DB path standardized**: `MEMORY_DB_PATH` aligned to `mcp_server/dist/database/context-index.sqlite` across all runtime configurations.
 
 ### Requirements
 
@@ -368,7 +369,7 @@ This enables traversal from high-level specs down to implementation details (and
 
 Ten specialized agents prevent AI assistants from making assumptions, skipping documentation, creating technical debt and drifting from scope. Two are built into OpenCode. Eight are custom agents in `.opencode/agent/`.
 
-This is a 10 specialized agents / 3-platform model (OpenCode, Claude Code, Codex) with aligned role definitions.
+10 specialized agents across 4 runtime platforms (OpenCode, Claude Code, ChatGPT, Gemini CLI) with aligned role definitions.
 
 ### All Agents
 
@@ -397,6 +398,19 @@ The `@orchestrate` agent implements distributed-systems patterns:
 - **Checkpointing**: recovery snapshots every 5 tasks or 10 tool calls
 - **Conditional Branching**: IF/THEN/ELSE logic with 3-level nesting
 - **Sub-Orchestrator Pattern**: delegates complex sub-workflows to nested orchestrators
+
+### Runtime Platforms
+
+Each runtime gets its own agent adapter directory. Agent bodies share the same OpenCode source content. Frontmatter adapts to what each platform expects.
+
+| Runtime        | Agent Directory            | Config File             | Model            |
+| -------------- | -------------------------- | ----------------------- | ---------------- |
+| **OpenCode**   | `.opencode/agent/`         | `opencode.json`         | Provider default |
+| **Claude Code**| `.claude/agents/`          | `.claude/mcp.json`      | claude-sonnet/opus/haiku |
+| **ChatGPT**    | `.opencode/agent/chatgpt/` | n/a                     | gpt-4.1          |
+| **Gemini CLI** | `.gemini/agents/`          | `.gemini/settings.json` | gemini-3.1-pro   |
+
+OpenCode is the source of truth. Claude, ChatGPT and Gemini directories are runtime adapters that reference or mirror the same agent definitions. Edit `.opencode/agent/` and all runtimes stay in sync.
 
 ### How Agents Get Chosen
 

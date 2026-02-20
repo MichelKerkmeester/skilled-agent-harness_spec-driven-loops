@@ -3,8 +3,6 @@ description: "The architecture of the UTCP TypeScript execution environment."
 ---
 # How It Works
 
-## 3. HOW IT WORKS
-
 ### Critical Naming Pattern
 
 **The #1 most common error** when using Code Mode is using wrong function names. All MCP tool calls MUST follow this pattern:
@@ -115,6 +113,3 @@ call_tool_chain({
   timeout: 60000  // Extended timeout for complex workflow
 });
 ```
-
----
-

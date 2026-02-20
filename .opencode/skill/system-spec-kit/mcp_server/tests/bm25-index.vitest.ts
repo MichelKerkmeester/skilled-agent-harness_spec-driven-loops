@@ -552,3 +552,38 @@ describe('BM25 Index Tests (T031-T039)', () => {
     });
   });
 });
+
+describe('C138: Weighted BM25 FTS5 Enhancements', () => {
+  it('C138-T1: BM25 index exports getIndex function', () => {
+    expect(typeof getIndex).toBe('function');
+  });
+
+  it('C138-T2: DEFAULT_K1 is standard BM25 constant', () => {
+    expect(DEFAULT_K1).toBeGreaterThan(0);
+    expect(DEFAULT_K1).toBeLessThanOrEqual(3.0);
+  });
+
+  it('C138-T3: DEFAULT_B is standard BM25 constant', () => {
+    expect(DEFAULT_B).toBeGreaterThan(0);
+    expect(DEFAULT_B).toBeLessThanOrEqual(1.0);
+  });
+
+  it('C138-T4: tokenize handles multi-field input', () => {
+    const titleTokens = tokenize('AuthGuard Module');
+    const bodyTokens = tokenize('The AuthGuard module handles authentication for the application system');
+
+    // Title has fewer tokens than body
+    expect(titleTokens.length).toBeLessThan(bodyTokens.length);
+    // Both contain the key term
+    expect(titleTokens.some(t => t.includes('authguard') || t.includes('auth'))).toBe(true);
+    expect(bodyTokens.some(t => t.includes('authguard') || t.includes('auth'))).toBe(true);
+  });
+
+  it('C138-T5: term frequencies computed correctly', () => {
+    const tokens = tokenize('auth auth auth login login');
+    const tf = getTermFrequencies(tokens);
+    // 'auth' appears 3 times, 'login' 2 times
+    expect(tf.get('auth') || 0).toBe(3);
+    expect(tf.get('login') || 0).toBe(2);
+  });
+});

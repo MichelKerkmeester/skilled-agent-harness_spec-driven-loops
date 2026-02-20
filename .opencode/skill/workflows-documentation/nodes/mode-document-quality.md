@@ -29,4 +29,3 @@ scripts/extract_structure.py path/to/document.md
 | Command   | Strict      | Required    | Must be executable               |
 | Spec      | Loose       | Optional    | Working docs. Avoid blocking.    |
 | Generic   | Flexible    | Optional    | Best-effort structure            |
-

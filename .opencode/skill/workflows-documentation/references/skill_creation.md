@@ -12,67 +12,25 @@ Step-by-step guide from concept to packaged skill with validation standards and 
 <!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
-### What Is This Reference?
+Level 3 reference for the full skill lifecycle: creation, validation, and distribution.
 
-This reference provides complete guidance for creating, validating, and distributing AI agent skills. It covers the full lifecycle from initial concept through packaging and maintenance.
+**Core Principle**: Progressive disclosure maximizes value, minimizes cost.
 
-**Core Purpose**:
-- **Skill architecture** - Progressive disclosure design with 3-level loading
-- **Creation workflow** - Step-by-step process from concept to packaged skill
-- **Validation standards** - Quality requirements and automated checks
-- **Best practices** - Writing style, resource organization, common pitfalls
-
-**Progressive Disclosure Context**:
 ```
-Level 1: SKILL.md metadata (name + description)
-         └─ Always in context (~100 words)
-            ↓
-Level 2: SKILL.md body
-         └─ When skill triggers (<5k words)
-            ↓
-Level 3: Reference files (this document)
-         └─ Loaded as needed for creation details
+Level 1: SKILL.md metadata (name + description) — Always in context (~100 words)
+Level 2: SKILL.md body — When skill triggers (<5k words)
+Level 3: Bundled resources (this document) — Loaded as needed
 ```
 
-This reference file provides Level 3 deep-dive technical guidance on skill creation, validation, and distribution.
+Skills are modular packages that extend an AI agent with specialized workflows, tool integrations, domain expertise, and bundled resources (scripts, references, assets).
 
-**See also**: [SET-UP - Skill Creation.md](../../../install_guides/SET-UP%20-%20Skill%20Creation.md) for interactive AI-first creation workflow with detailed time estimates.
-
-### Core Principle
-
-**"Progressive disclosure maximizes value, minimizes cost"** - Keep metadata always-loaded, SKILL.md concise (<5k words), move details to references, extract logic to scripts, store output assets separately.
+**See also**: [SET-UP - Skill Creation.md](../../../install_guides/SET-UP%20-%20Skill%20Creation.md) for interactive creation workflow.
 
 ---
 
 <!-- /ANCHOR:overview -->
-<!-- ANCHOR:understanding-skills -->
-## 2. UNDERSTANDING SKILLS
-
-### What Skills Provide
-
-Skills are modular, self-contained packages that transform an AI agent from a general-purpose assistant into a specialized agent equipped with procedural knowledge.
-
-**Core Value Propositions**:
-1. **Specialized workflows** - Multi-step procedures for specific domains
-2. **Tool integrations** - Instructions for working with specific file formats or APIs
-3. **Domain expertise** - Company-specific knowledge, schemas, business logic
-4. **Bundled resources** - Scripts, references, and assets for complex tasks
-
-### ️ Skill Architecture Philosophy
-
-**Progressive Disclosure Design**: Skills use a three-level loading system for context efficiency:
-
-1. **Metadata (name + description)** - Always in context (~100 words)
-2. **SKILL.md body** - When skill triggers (<5k words)
-3. **Bundled resources** - As needed by the agent (Unlimited*)
-
-*Unlimited because scripts can be executed without reading into context window.
-
----
-
-<!-- /ANCHOR:understanding-skills -->
 <!-- ANCHOR:skill-anatomy -->
-## 3. SKILL ANATOMY
+## 2. SKILL ANATOMY
 
 Every skill consists of a required SKILL.md file and optional bundled resources:
 
@@ -176,13 +134,6 @@ Documentation loaded as needed to inform the agent's process and thinking.
 - `references/policies.md` - Company policies and guidelines
 - `references/workflows.md` - Detailed workflow documentation
 
-**Use cases**:
-- Database schemas
-- API docs
-- Domain knowledge
-- Company policies
-- Technical specifications
-
 **Benefits**:
 - Keeps SKILL.md lean
 - Loaded only when needed
@@ -210,14 +161,6 @@ Files used within the output the agent produces (not loaded into context).
 - `assets/font.ttf` - Custom font
 - `assets/frontmatter_templates.md` - YAML frontmatter examples
 
-**Use cases**:
-- Templates
-- Images
-- Icons
-- Boilerplate code
-- Fonts
-- Configuration files
-
 **Benefits**:
 - Separates output resources from documentation
 - Keeps context window clean
@@ -227,7 +170,7 @@ Files used within the output the agent produces (not loaded into context).
 
 <!-- /ANCHOR:skill-anatomy -->
 <!-- ANCHOR:skill-creation-process -->
-## 4. SKILL CREATION PROCESS
+## 3. SKILL CREATION PROCESS
 
 Follow these steps in order, skipping only if there is a clear reason they are not applicable.
 
@@ -319,82 +262,7 @@ scripts/init_skill.py <skill-name> --path <output-directory>
 3. Creates example resource directories: `scripts/`, `references/`, `assets/`
 4. Adds example files that can be customized or deleted
 
-**Generated SKILL.md Template**:
-```yaml
----
-name: skill-name
-description: [TODO: Complete description]
----
-
-# Skill Name
-
-## 1. WHEN TO USE
-[TODO: Activation triggers and use cases ONLY - NO file references here]
-
-### Activation Triggers
-[TODO: When this skill should activate]
-
-### Use Cases
-[TODO: What problems this skill solves]
-
-### When NOT to Use
-[TODO: Exclusions and boundaries]
-
-## 2. SMART ROUTING
-
-### [Primary Detection Signal]
-```bash
-[ -f "go.mod" ] && STACK="GO"
-[ -f "package.json" ] && STACK="NODEJS"
-```
-
-### Phase Detection
-```text
-TASK CONTEXT
-    |
-    +- STEP 0: Detect [project/stack/mode]
-    +- STEP 1: Score intents (top-2 on ambiguity)
-    +- Phase 1: Implementation
-    +- Phase 2: Testing/Debugging
-    +- Phase 3: Verification
-```
-
-### Resource Domains
-```text
-references/[domain]/...
-assets/[domain]/...
-```
-
-### Resource Loading Levels
-| Level       | When to Load             | Resources                    |
-| ----------- | ------------------------ | ---------------------------- |
-| ALWAYS      | Every skill invocation   | Baseline references          |
-| CONDITIONAL | If intent signals match  | Intent-mapped references     |
-| ON_DEMAND   | Only on explicit request | Deep-dive standards/templates|
-
-### Smart Router Pseudocode
-```python
-def route_request(user_request, task=None):
-    # 1) Discover markdown resources recursively under this skill
-    # 2) Apply scoped guard for in-skill loading only
-    # 3) Score intents with weighted signals
-    # 4) Select top-2 intents when ambiguity delta is small
-    # 5) Load ALWAYS -> CONDITIONAL -> ON_DEMAND resources
-    return {"intents": intents, "resources": loaded}
-```
-
-## 3. HOW IT WORKS
-[TODO: Explain how the skill works]
-
-## 4. RULES
-[TODO: Add ALWAYS/NEVER/ESCALATE IF rules]
-
-## 5. SUCCESS CRITERIA
-[TODO: Define success criteria]
-
-## 6. INTEGRATION POINTS
-[TODO: Describe integration points]
-```
+**Generated SKILL.md**: `init_skill.py` generates a SKILL.md with TODO placeholders for all required sections (WHEN TO USE, SMART ROUTING, HOW IT WORKS, RULES, SUCCESS CRITERIA, INTEGRATION POINTS).
 
 **After initialization**: Customize or remove generated files as needed.
 
@@ -483,47 +351,8 @@ Answer these questions in SKILL.md:
 
 3. **How should the agent route to the right resources?**
    - Section 2: SMART ROUTING
-   - **Contains FIVE routing subsections (recommended order):**
-     1. **Primary Detection Signal** (project/stack/mode)
-     2. **Phase Detection** (execution flow)
-     3. **Resource Domains** (includes folder mapping)
-     4. **Resource Loading Levels**
-     5. **Smart Router Pseudocode** (single authoritative router block)
+   - Follow the SMART ROUTING template generated in Step 3. Populate the five subsections: Primary Detection Signal, Phase Detection, Resource Domains, Resource Loading Levels, and Smart Router Pseudocode.
    - **Anti-pattern**: Do NOT duplicate routing logic in separate lookup tables
-   - Example content:
-      ```markdown
-      ## 2. SMART ROUTING
-      
-      ### [Primary Detection Signal]
-      ```bash
-      [ -f "go.mod" ] && STACK="GO"
-      [ -f "package.json" ] && STACK="NODEJS"
-      ```
-
-      ### Resource Domains
-      ```text
-      references/[domain]/...
-      assets/[domain]/...
-      ```
-
-      ### Resource Loading Levels
-      | Level       | When to Load             | Resources                    |
-      | ----------- | ------------------------ | ---------------------------- |
-      | ALWAYS      | Every skill invocation   | Baseline references          |
-      | CONDITIONAL | If intent signals match  | Intent-mapped references     |
-      | ON_DEMAND   | Only on explicit request | Deep-dive standards/templates|
-
-      ### Smart Router Pseudocode
-      ```python
-      def route_request(user_request, task=None):
-          # 1) Discover markdown resources recursively
-          # 2) Apply scoped guard (in-skill only)
-          # 3) Score intents (weighted)
-          # 4) Handle ambiguity with top-2 intent routing
-          # 5) Load by ALWAYS -> CONDITIONAL -> ON_DEMAND
-          return {"intents": intents, "resources": loaded}
-      ```
-      ```
 
 4. **How should bundled resources be organized for routing clarity?**
    - Keep domain structure explicit (for example `references/backend/go/`)
@@ -549,12 +378,12 @@ Answer these questions in SKILL.md:
 
 **Frontmatter Completion**:
 
-| Field | Required | Quick Note |
-|-------|----------|------------|
-| `name` | ✅ | Must match folder name, lowercase-with-hyphens |
-| `description` | ✅ | Single line, specific about capabilities |
-| `allowed-tools` | ✅ | Comma-separated tool list |
-| `version` | ⚪ | Semantic versioning (e.g., `1.0.0`) |
+| Field           | Required | Quick Note                                     |
+| --------------- | -------- | ---------------------------------------------- |
+| `name`          | ✅        | Must match folder name, lowercase-with-hyphens |
+| `description`   | ✅        | Single line, specific about capabilities       |
+| `allowed-tools` | ✅        | Comma-separated tool list                      |
+| `version`       | ⚪        | Semantic versioning (e.g., `1.0.0`)            |
 
 ```yaml
 ---
@@ -686,7 +515,7 @@ Iteration 3:
 
 <!-- /ANCHOR:skill-creation-process -->
 <!-- ANCHOR:validation-requirements -->
-## 5. VALIDATION REQUIREMENTS
+## 4. VALIDATION REQUIREMENTS
 
 ### Minimal Validation (quick_validate.py)
 
@@ -730,103 +559,8 @@ scripts/extract_structure.py .opencode/skill/my-skill/SKILL.md
 ---
 
 <!-- /ANCHOR:validation-requirements -->
-<!-- ANCHOR:skill-writing-best-practices -->
-## 6. SKILL WRITING BEST PRACTICES
-
-### ️ Writing Style Guidelines
-
-**Voice and Tone**:
-- Third-person in descriptions
-- Imperative/infinitive form in instructions
-- Objective, instructional language
-- Professional but approachable
-
-**Structure**:
-- Keep SKILL.md under 5k words
-- Use progressive disclosure (SKILL.md → references → scripts)
-- Clear section hierarchy with numbered H2 headers
-- Consistent formatting
-
-**Clarity**:
-- Be specific, not generic
-- Provide concrete examples
-- Reference bundled resources explicitly
-- Explain why, not just what
-
-### Description Quality
-
-**Good Descriptions** (specific, action-oriented):
-- "Complete document quality pipeline with structure enforcement, content optimization (AI-friendly), and style guide compliance"
-- "Browser automation, debugging, and performance analysis using Puppeteer CLI scripts"
-- "Professional Git commit workflow - analyze changes, determine commit strategy, and write high-quality commit messages"
-
-**Bad Descriptions** (generic, vague):
-- "Helps with markdown files"
-- "This skill optimizes documents"
-- "Use this for commits"
-
-**Description Checklist**:
-- ✅ Specific about what skill does
-- ✅ Mentions key capabilities
-- ✅ Uses third-person form
-- ✅ Includes when to use context
-- ✅ No angle brackets or placeholders
-- ❌ Avoids generic phrases
-- ❌ Not just TODO placeholder
-
-### Resource Organization
-
-**SKILL.md Content** (always loaded):
-- High-level workflow
-- When to use / when not to use
-- Quick reference
-- Pointers to references
-
-**references/ Content** (loaded as needed):
-- Detailed documentation
-- API specifications
-- Schema definitions
-- Extended examples
-- Policy documentation
-
-**scripts/ Content** (executed, not loaded):
-- Deterministic operations
-- Repeatedly needed code
-- Performance-critical logic
-- Complex algorithms
-
-**assets/ Content** (used in output):
-- Templates
-- Images
-- Boilerplate code
-- Configuration files
-
-**Anti-Pattern**: Duplicating information between SKILL.md and references/
-
-**Best Practice**: Mention in SKILL.md, detail in references/
-
-**Example**:
-```markdown
-<!-- In SKILL.md -->
-## 4. HOW IT WORKS
-
-See [workflows.md](./workflows.md) for detailed execution modes.
-
-<!-- In references/workflows.md -->
-## EXECUTION MODES
-
-### Workflow: Script-Assisted Review
-[Detailed explanation with examples...]
-
-### Workflow: Structure Checks
-[Detailed explanation with examples...]
-```
-
----
-
-<!-- /ANCHOR:skill-writing-best-practices -->
 <!-- ANCHOR:common-pitfalls -->
-## 7. COMMON PITFALLS
+## 5. COMMON PITFALLS
 
 ### Pitfall 1: Generic Descriptions
 
@@ -989,8 +723,8 @@ See `references/guide.md` for details...
 ## 2. SMART ROUTING
 
 ### Routing Table
-| Intent | Path |
-|--------|------|
+| Intent     | Path                           |
+| ---------- | ------------------------------ |
 | Validation | `references/core_standards.md` |
 
 ### Smart Router Pseudocode
@@ -1037,7 +771,7 @@ def route_request(context):
 
 <!-- /ANCHOR:common-pitfalls -->
 <!-- ANCHOR:example-skills -->
-## 8. EXAMPLE SKILLS
+## 6. EXAMPLE SKILLS
 
 ### Example 1: PDF Editor Skill
 
@@ -1124,7 +858,7 @@ database-query/
 
 <!-- /ANCHOR:example-skills -->
 <!-- ANCHOR:skill-maintenance -->
-## 9. SKILL MAINTENANCE
+## 7. SKILL MAINTENANCE
 
 ### When to Update Skills
 
@@ -1165,7 +899,7 @@ version: 2.0.0
 
 <!-- /ANCHOR:skill-maintenance -->
 <!-- ANCHOR:distribution -->
-## 10. DISTRIBUTION
+## 8. DISTRIBUTION
 
 ### Packaging for Distribution
 
@@ -1199,201 +933,74 @@ scripts/package_skill.py <path/to/skill> <output-directory>
 ---
 
 <!-- /ANCHOR:distribution -->
-<!-- ANCHOR:quick-reference -->
-## 11. QUICK REFERENCE
+<!-- ANCHOR:skill-graph-system -->
+## 9. SKILL GRAPH SYSTEM
 
-### File Structure
+### Why Skill Graphs
+
+Large skills eventually outgrow one `SKILL.md` file. Skill graphs solve this by splitting knowledge into focused nodes and letting the agent traverse only what is relevant.
+
+### Core Structure
 
 ```
 skill-name/
-├── SKILL.md (required)
-│   ├── YAML frontmatter (name, description, allowed-tools, version)
-│   └── Markdown content (<5k words)
-├── scripts/ (optional)
-│   └── *.py, *.sh
-├── references/ (optional, flat or domain subfolders)
-│   └── [domain]/... or *.md
-└── assets/ (optional, subfolders OK)
-    ├── opencode/     - OpenCode component templates
-    ├── documentation/ - Document templates
-    └── *.*
+├── SKILL.md                # Lightweight entrypoint for compatibility
+├── index.md                # Primary graph entrypoint for traversal
+├── nodes/
+│   ├── topic-a.md
+│   ├── topic-b.md
+│   └── topic-c.md
+├── references/
+└── assets/
 ```
 
-**Organization**: Use flat `references/` for small skills; use domain subfolders for medium/complex skills. `assets/` can use subfolders to group related files.
+### Design Logic
 
-### ️ Writing Style
+1. **Index first**: Start at `index.md` to map the domain.
+2. **Description scan**: Use YAML `description` fields on nodes to decide what to read.
+3. **Semantic traversal**: Follow wikilinks only when they match the active task.
+4. **Progressive disclosure**: Load minimal context first, then deepen as needed.
 
-- **Third-person**: "This skill should be used when..."
-- **Imperative form**: "Validate file before processing"
-- **Objective tone**: Instructional, not conversational
-- **Concise**: SKILL.md < 5k words
+### How AI Should Use Skill Graphs
 
-### Required Sections
+Use this operating pattern:
 
-1. WHEN TO USE (activation triggers and use cases ONLY)
-2. SMART ROUTING (detection + resource domains/mapping + loading levels + authoritative pseudocode)
-3. HOW IT WORKS
-4. RULES
+1. Read `SKILL.md` for trigger and routing rules.
+2. Jump to `index.md` for graph topology.
+3. Read one node at a time and summarize locally.
+4. Follow outbound links only when they advance the current objective.
+5. Stop traversal when confidence is high and required information is complete.
 
-### Section Content Rules
+### Authoring Rules
 
-```
-Section 1 "WHEN TO USE" contains:
-  ├─ Activation Triggers
-  ├─ Use Cases
-  ├─ When NOT to Use
-  └─ Keyword Triggers (optional)
+- Keep each node scoped to one complete concept.
+- Keep node content concise and practical.
+- Add one-line YAML `description` to every node.
+- Put links inside meaningful prose, not isolated link dumps.
+- Validate links after changes using:
 
-Section 2 "SMART ROUTING" contains:
-  ├─ Primary Detection Signal
-  ├─ Phase Detection
-  ├─ Resource Domains (includes folder mapping)
-  ├─ Resource Loading Levels (ALWAYS/CONDITIONAL/ON_DEMAND)
-  └─ Smart Router Pseudocode (single authoritative router block)
-
-Routing Authority Standard:
-  Keep one authoritative pseudocode block in Section 2.
-  Do not maintain separate routing lookup tables.
-```
-
-### Recommended Sections
-
-5. SUCCESS CRITERIA
-6. EXAMPLES
-7. INTEGRATION POINTS
-8. QUICK REFERENCE
-
-### Commands
-
-**Initialize**:
 ```bash
-scripts/init_skill.py <skill-name> --path <output-dir>
+.opencode/skill/system-spec-kit/scripts/check-links.sh
 ```
 
-**Package**:
-```bash
-scripts/package_skill.py <skill-path> <output-dir>
-```
+### Templates
 
-**Validate**:
-```bash
-scripts/extract_structure.py <skill-path>/SKILL.md
-# AI evaluates the JSON output
-```
-
-### Quality Targets
-
-- Checklist: No failures (strict enforcement)
-- Content: Highly AI-friendly
-- Style: Exemplary compliance
-- Overall: Production-ready (no critical gaps)
+Use these templates when authoring skill graphs:
+- Index template: `../assets/opencode/skill_graph_index_template.md`
+- Node template: `../assets/opencode/skill_graph_node_template.md`
 
 ---
 
-<!-- /ANCHOR:quick-reference -->
-<!-- ANCHOR:script-usage -->
-## 12. SCRIPT USAGE
-
-### init_skill.py
-
-**Purpose**: Generate skill directory structure with templates.
-
-**Usage**:
-```bash
-python scripts/init_skill.py <skill-name> [--path <output-directory>]
-```
-
-**Arguments**:
-- `skill-name` (required): Name in hyphen-case (e.g., `markdown-optimizer`)
-- `--path` (optional): Output directory (default: current directory)
-
-**Output**:
-- Creates `<output-directory>/<skill-name>/` folder
-- Generates SKILL.md with TODO placeholders
-- Creates example `scripts/`, `references/`, `assets/` directories
-
-**Example**:
-```bash
-python scripts/init_skill.py pdf-editor --path .opencode/skill
-
-# Creates:
-# .opencode/skill/pdf-editor/
-# ├── SKILL.md
-# ├── scripts/example_script.py
-# ├── references/example_reference.md
-# └── assets/example_asset.txt
-```
-
-
-### package_skill.py
-
-**Purpose**: Validate and package skill into distributable zip file.
-
-**Usage**:
-```bash
-python scripts/package_skill.py <skill-path> [output-directory]
-```
-
-**Arguments**:
-- `skill-path` (required): Path to skill folder
-- `output-directory` (optional): Where to create zip file (default: skill parent directory)
-
-**Validation** (automatic):
-- Frontmatter format and required fields
-- Naming conventions
-- Description quality
-- File structure
-
-**Output**:
-- `<skill-name>.zip` file
-- Validation report
-
-**Example**:
-```bash
-python scripts/package_skill.py .opencode/skill/pdf-editor ./dist
-
-# Creates: ./dist/pdf-editor.zip
-```
-
-
-### quick_validate.py
-
-**Purpose**: Minimal validation for essential requirements.
-
-**Usage**:
-```bash
-python scripts/quick_validate.py <skill-path>
-```
-
-**Checks**:
-- SKILL.md exists
-- Frontmatter valid
-- Required fields present
-- Name format correct
-- No angle brackets in description
-
-**Output**: Pass/fail with specific error messages
-
-**Example**:
-```bash
-python scripts/quick_validate.py .opencode/skill/pdf-editor
-
-# Output:
-# Validation passed
-# OR
-# Validation failed: Missing required field 'description'
-```
-
----
-
-<!-- /ANCHOR:script-usage -->
+<!-- /ANCHOR:skill-graph-system -->
 <!-- ANCHOR:related-resources -->
-## 13. RELATED RESOURCES
+## 10. RELATED RESOURCES
 
 ### Templates
 - [skill_md_template.md](../assets/opencode/skill_md_template.md) - SKILL.md file templates
 - [skill_reference_template.md](../assets/opencode/skill_reference_template.md) - Reference file templates
 - [skill_asset_template.md](../assets/opencode/skill_asset_template.md) - Asset file templates
+- [skill_graph_index_template.md](../assets/opencode/skill_graph_index_template.md) - Skill graph index.md entrypoint template
+- [skill_graph_node_template.md](../assets/opencode/skill_graph_node_template.md) - Skill graph node template
 - [frontmatter_templates.md](../assets/documentation/frontmatter_templates.md) - Frontmatter by document type
 
 ### Reference Files

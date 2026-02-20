@@ -3,8 +3,6 @@ description: "Mandatory rules (ALWAYS, NEVER, ESCALATE) separated by modes (Qual
 ---
 # Workflows Documentation Rules
 
-## 4. RULES
-
 ### ✅ Mode 1: Document Quality
 
 #### ✅ ALWAYS
@@ -161,6 +159,3 @@ description: "Mandatory rules (ALWAYS, NEVER, ESCALATE) separated by modes (Qual
 1. Multi-platform complexity requires testing
 2. External dependencies unavailable
 3. Installation requires special permissions
-
----
-

@@ -1,3 +1,7 @@
+<!-- SPECKIT_LEVEL: 1 -->
+
+<!-- SPECKIT_TEMPLATE_SOURCE: legacy-normalized | v2.2 -->
+
 # Spec: Fix Download Button Transition Glitch
 
 <!-- ANCHOR:problem -->

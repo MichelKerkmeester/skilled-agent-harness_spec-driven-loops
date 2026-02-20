@@ -11,6 +11,16 @@ version: 2.2.26.0
 
 Orchestrates mandatory spec folder creation for all conversations involving file modifications. Ensures proper documentation level selection (1-3+), template usage, and context preservation through AGENTS.md-enforced workflows.
 
+### Skill Graph Status
+
+This skill is running in graph mode.
+
+- Primary graph entrypoint: `index.md`
+- Node content: `nodes/*.md`
+- Compatibility entrypoint: `SKILL.md` (kept for routing and legacy loaders)
+
+Use `SKILL.md` for activation/rules, then traverse `index.md` for task-specific deep content.
+
 ---
 
 <!-- ANCHOR:when-to-use -->

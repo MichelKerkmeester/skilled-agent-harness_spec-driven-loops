@@ -196,3 +196,7 @@ export interface CausalStatsArgs {
 export interface CausalUnlinkArgs {
   edgeId: number;
 }
+
+export interface SgqsQueryArgs {
+  queryString: string;
+}

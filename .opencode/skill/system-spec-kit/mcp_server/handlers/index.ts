@@ -10,6 +10,7 @@ import * as memoryIndex from './memory-index';
 import * as checkpoints from './checkpoints';
 import * as sessionLearning from './session-learning';
 import * as causalGraph from './causal-graph';
+import * as sgqsQuery from './sgqs-query';
 // T061: L1 Orchestration - unified entry point
 import * as memoryContext from './memory-context';
 
@@ -105,6 +106,11 @@ export {
   handle_memory_causal_unlink,
 } from './causal-graph';
 
+// SGQS Query handler
+export {
+  handleMemorySkillGraphQuery,
+} from './sgqs-query';
+
 // T061: L1 Orchestration handler
 export {
   handleMemoryContext,
@@ -124,6 +130,7 @@ export {
   checkpoints,
   sessionLearning,
   causalGraph,
+  sgqsQuery,
   memoryContext,
 };
 

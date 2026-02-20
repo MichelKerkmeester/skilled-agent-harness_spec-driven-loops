@@ -155,6 +155,16 @@ version: 1.0.0
 
 [One-sentence tagline followed by key capabilities overview]
 
+<!-- OPTIONAL: Include this block if skill uses graph mode (node-based architecture).
+     See skill_creation.md Section 9 for graph authoring rules. -->
+<!-- Remove comment markers to activate:
+### Skill Graph Status
+This skill is running in graph mode.
+- Primary graph entrypoint: `index.md`
+- Node content: `nodes/*.md`
+- Compatibility entrypoint: `SKILL.md`
+-->
+
 ---
 
 <!-- /ANCHOR:skill-template-with-bundled-resources -->
@@ -542,7 +552,7 @@ See [workflow-details.md](./references/workflow-details.md) for complete step-by
 - Section 5 (SUCCESS CRITERIA): 80-120 lines
 - Section 6 (INTEGRATION POINTS): 100-150 lines
 
-**Bundled Resources Structure**:
+**Bundled Resources Structure (Monolithic)**:
 ```
 .opencode/skill/skill-name/       # Note: .opencode/skill/ (singular, NOT skills)
 ├── SKILL.md (800-1000 lines)
@@ -553,6 +563,30 @@ See [workflow-details.md](./references/workflow-details.md) for complete step-by
         ├── opencode/     - OpenCode component templates (skills, agents, commands)
         └── documentation/ - Document templates (README, install guides)
 ```
+
+**Graph Mode Structure** (for skills that benefit from node decomposition):
+```
+.opencode/skill/skill-name/
+├── SKILL.md              - Lightweight compatibility entrypoint
+├── index.md              - Graph entrypoint with Map of Content + wikilinks
+├── nodes/
+│   ├── when-to-use.md    - Activation triggers (required)
+│   ├── rules.md          - ALWAYS/NEVER/ESCALATE (required)
+│   ├── success-criteria.md - Completion gates (required)
+│   ├── how-it-works.md   - Workflow and architecture
+│   ├── smart-routing.md  - Intent scoring and resource routing
+│   └── [domain].md       - Skill-specific topic nodes
+├── references/
+└── assets/
+```
+
+**When to use graph mode**: When SKILL.md exceeds ~3k words or covers multiple distinct domains that benefit from independent traversal. See `skill_creation.md` Section 9 for full graph authoring rules. Use `skill_graph_index_template.md` for the index entrypoint and `skill_graph_node_template.md` for individual nodes.
+
+**Node file requirements**:
+- YAML frontmatter with `description:` field on every node
+- Wikilinks for cross-references: `[​[sibling-node]]` within nodes/, `[​[nodes/name|Label]]` from index.md
+- Each node scoped to one complete concept
+- Required nodes: `when-to-use.md`, `rules.md`, `success-criteria.md`
 
 **Folder Organization Principle**:
 - **references/** = flat for small skills, domain subfolders for medium/complex skills
@@ -984,7 +1018,7 @@ mode_detection:
 ## 5. COMMON PITFALLS
 
 For the complete list of 8 common pitfalls with before/after examples, see:
-→ **[skill_creation.md § 7. COMMON PITFALLS](../../references/skill_creation.md#7--common-pitfalls)**
+→ **[skill_creation.md § 5. COMMON PITFALLS](../../references/skill_creation.md#5-common-pitfalls)**
 
 **Quick Summary:**
 1. Generic descriptions → Be specific about capabilities
@@ -1121,6 +1155,8 @@ python .opencode/skill/workflows-documentation/scripts/package_skill.py .opencod
 - [frontmatter_templates.md](../documentation/frontmatter_templates.md) - Frontmatter by document type
 - [skill_asset_template.md](./skill_asset_template.md) - Asset file creation guide
 - [skill_reference_template.md](./skill_reference_template.md) - Reference file templates
+- [skill_graph_index_template.md](./skill_graph_index_template.md) - Skill graph index.md entrypoint template
+- [skill_graph_node_template.md](./skill_graph_node_template.md) - Skill graph node template
 
 ### Standards
 - [core_standards.md](../../references/core_standards.md) - Document type rules

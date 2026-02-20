@@ -3,8 +3,6 @@ description: "Definition of done for a successful Code Mode invocation."
 ---
 # Success Criteria
 
-## 6. SUCCESS CRITERIA
-
 **Code Mode implementation complete when**:
 
 - ✅ All MCP tool calls use `call_tool_chain` (no direct tool calls)
@@ -17,6 +15,3 @@ description: "Definition of done for a successful Code Mode invocation."
 - ✅ Configuration validated (`.utcp_config.json` and `.env` correct)
 - ✅ Type safety verified (no TypeScript errors)
 - ✅ Multi-tool workflows execute atomically (all succeed or all fail)
-
----
-

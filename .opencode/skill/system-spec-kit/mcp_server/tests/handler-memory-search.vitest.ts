@@ -67,3 +67,16 @@ describe('Handler Memory Search (T516) [deferred - requires DB test fixtures]', 
     });
   });
 });
+
+describe('C138: Evidence Gap Warning Injection', () => {
+  it('C138-T1: evidence gap warning format is valid markdown blockquote', () => {
+    const warning = '> **⚠️ EVIDENCE GAP DETECTED:** Retrieved context has low mathematical confidence. Consider first principles.';
+    expect(warning).toMatch(/^> \*\*/);
+    expect(warning).toContain('EVIDENCE GAP DETECTED');
+  });
+
+  it('C138-T2: warning contains actionable guidance', () => {
+    const warning = '> **⚠️ EVIDENCE GAP DETECTED:** Retrieved context has low mathematical confidence. Consider first principles.';
+    expect(warning).toContain('first principles');
+  });
+});

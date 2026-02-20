@@ -3,8 +3,6 @@ description: "When to trigger Code Mode and when to use native MCP instead."
 ---
 # When To Use Code Mode
 
-## 1. WHEN TO USE
-
 ### Use Code Mode When
 
 **MANDATORY for ALL MCP tool calls**:
@@ -42,7 +40,3 @@ description: "When to trigger Code Mode and when to use native MCP instead."
 | **Browser automation**       | Chrome DevTools MCP for testing/screenshots                             | Sandboxed, reliable         |
 | **Design-to-implementation** | Fetch Figma design → Create task → Update CMS                           | Atomic workflow             |
 | **External API access**      | Any MCP server (Notion, GitHub, etc.)                                   | Progressive tool loading    |
-
----
-
-<!-- /ANCHOR:when-to-use -->

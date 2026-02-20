@@ -1,5 +1,6 @@
 # Analysis: Hybrid RAG Patterns for system-spec-kit Memory MCP
 
+<!-- ANCHOR:research-scope-and-framing-138 -->
 ## Scope and framing
 
 This analysis focuses on concrete retrieval architecture and implementation behavior in the current system-spec-kit memory MCP, then compares it with patterns from the provided context notes and external codebases. It intentionally avoids broad RAG primer material unless it changes an implementation decision.
@@ -7,7 +8,9 @@ This analysis focuses on concrete retrieval architecture and implementation beha
 [Assumes: "memory MCP/database" in this spec means `.opencode/skill/system-spec-kit/mcp_server` retrieval handlers, search modules, and SQLite-backed index implementation, rather than a separate external datastore project.]
 
 [Assumes: the target optimization axis is practical retrieval quality under bounded latency and operational complexity, not maximizing benchmark metrics at any cost.]
+<!-- /ANCHOR:research-scope-and-framing-138 -->
 
+<!-- ANCHOR:research-current-system-baseline-what-already-exists-and-is-strong-138 -->
 ## Current system baseline (what already exists and is strong)
 
 The current pipeline is already more mature than a simple vector-only retriever. In `memory_search`, the flow includes intent detection, state filtering, optional session and causal boosts, optional reranking, quality thresholding, and session deduplication [Source: `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:706-730`], [Source: `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:457-624`], [Source: `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:958-999`].
@@ -17,7 +20,9 @@ On retrieval methods, the handler prefers hybrid search with fallback to pure ve
 At the storage layer, the vector index has meaningful operational engineering: dynamic embedding-dimension handling and mismatch validation, schema migration discipline (versioned migrations), deferred indexing for non-blocking availability, and FSRS-aware temporal decay in SQL ranking [Source: `.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-impl.ts:201-235`], [Source: `.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-impl.ts:242-275`], [Source: `.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-impl.ts:307-320`], [Source: `.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-impl.ts:1708-1767`], [Source: `.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-impl.ts:1990-2005`].
 
 The practical implication: system-spec-kit is not at "basic RAG" stage. It is at "optimize an already layered retrieval stack" stage.
+<!-- /ANCHOR:research-current-system-baseline-what-already-exists-and-is-strong-138 -->
 
+<!-- ANCHOR:research-what-the-context-notes-add-and-where-they-match-current-gaps-138 -->
 ## What the context notes add (and where they match current gaps)
 
 The first context note emphasizes tri-hybrid retrieval, not just dense+sparse: SQL filtering for structure, vectors for semantics, sparse for exact/domain terms, and then rank fusion [Source: `.opencode/specs/003-system-spec-kit/138-hybrid-rag-fusion/context/reddit_post_1.md:64-73`]. It specifically calls out strict/structured constraints as a weak spot for dense-only approaches [Source: `.opencode/specs/003-system-spec-kit/138-hybrid-rag-fusion/context/reddit_post_1.md:32-33`], and precision improvements from sparse signals for IDs/codes/version-like terms [Source: `.opencode/specs/003-system-spec-kit/138-hybrid-rag-fusion/context/reddit_post_1.md:34-49`].
@@ -29,7 +34,9 @@ The strongest overlap with system-spec-kit today:
 - Fusion exists, but multi-query orchestration does not exist in the runtime retrieval path.
 - SQL filtering exists as metadata predicates, but there is no explicit "candidate narrowing stage" independent of retrieval engines.
 - Sparse exists (FTS/BM25), but behavior and filtering parity across methods is not yet fully aligned.
+<!-- /ANCHOR:research-what-the-context-notes-add-and-where-they-match-current-gaps-138 -->
 
+<!-- ANCHOR:research-code-level-findings-and-tradeoffs-in-current-implementation-138 -->
 ## Code-level findings and tradeoffs in current implementation
 
 ### 1) Fusion quality is good, but some scoring constants are high-risk
@@ -81,7 +88,9 @@ Several robust patterns should be preserved:
 - Security hardening around allowed paths and JSON parsing [Source: `.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-impl.ts:325-340`], [Source: `.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-impl.ts:360-391`].
 
 This is not a component to replace. It is a component to make more query-planner-driven.
+<!-- /ANCHOR:research-code-level-findings-and-tradeoffs-in-current-implementation-138 -->
 
+<!-- ANCHOR:research-patterns-from-external-repos-that-are-directly-applicable-138 -->
 ## Patterns from external repos that are directly applicable
 
 ### GraphRAG MCP: selective context expansion as a first-class runtime toggle
@@ -118,7 +127,9 @@ Why it matters:
 
 - Explicit fallback policy improves recall without opening floodgates.
 - Backend-specific score semantics are handled intentionally; system-spec-kit can similarly formalize score normalization contracts across vector/FTS/BM25.
+<!-- /ANCHOR:research-patterns-from-external-repos-that-are-directly-applicable-138 -->
 
+<!-- ANCHOR:research-architecture-implications-for-system-spec-kit-138 -->
 ## Architecture implications for system-spec-kit
 
 ### The core architectural shift: from "method fallback" to "query planning"
@@ -160,7 +171,9 @@ The analysis suggests activating adaptive fusion in shadow mode first, compare o
 ### Retrieval trace and telemetry are strategic assets
 
 The handler already emits retrieval traces and telemetry signals [Source: `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:734-739`], [Source: `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:597-621`]. Those should be used as the primary control loop for rollout decisions, not anecdotal answer quality.
+<!-- /ANCHOR:research-architecture-implications-for-system-spec-kit-138 -->
 
+<!-- ANCHOR:research-decision-table-practical-adoption-impact-138 -->
 ## Decision table: practical adoption impact
 
 | Pattern | Expected latency impact | Complexity impact | Maintainability impact | Net value |
@@ -170,7 +183,9 @@ The handler already emits retrieval traces and telemetry signals [Source: `.open
 | Activate adaptive fusion with dark-run first | Minimal in dark-run, small in active mode | Medium | Positive if it replaces ad hoc constants over time | High |
 | Uniform filter parity across vector/FTS/BM25 | Low | Low-medium | Strong positive (predictable behavior) | High |
 | Full graph expansion by default | High cost | High | Negative unless tightly scoped | Low-medium |
+<!-- /ANCHOR:research-decision-table-practical-adoption-impact-138 -->
 
+<!-- ANCHOR:research-detailed-implementation-blueprint-code-level-138 -->
 ## Detailed implementation blueprint (code-level)
 
 ### A) Planner contract and stage budgets
@@ -229,14 +244,18 @@ The vector index has important reliability behavior that should not be disturbed
 - schema migration transaction safety [Source: `.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-impl.ts:1045-1061`].
 
 Any planner work that increases reliance on sparse fallbacks should include operational dashboards for deferred/pending embedding rows so retrieval quality issues are diagnosed as indexing state, not only ranker quality.
+<!-- /ANCHOR:research-detailed-implementation-blueprint-code-level-138 -->
 
+<!-- ANCHOR:research-failure-modes-to-design-around-138 -->
 ## Failure modes to design around
 
 - **Latency amplification from multi-query fan-out.** Mitigate with hard rewrite caps and per-path budget cancellations.
 - **Cache pollution from under-specified keys.** Mitigate by including all retrieval-semantic toggles in key args and validating with differential tests [Source: `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:750-775`].
 - **Ranking instability from mixed additive boosts.** Mitigate by defining one score composition policy and tracking rank deltas in telemetry.
 - **Operational drift between dense and sparse quality.** Mitigate with parity tests and controlled fallback relaxation similar to RAGFlow's retry pattern [Source: `.opencode/specs/003-system-spec-kit/138-hybrid-rag-fusion/scratch/ext-repos/ragflow/rag/nlp/search.py:135-147`].
+<!-- /ANCHOR:research-failure-modes-to-design-around-138 -->
 
+<!-- ANCHOR:research-bottom-line-138 -->
 ## Bottom line
 
 The strongest hybrid-RAG pattern for this codebase is **not** "add more retrieval methods." It is **planner-led orchestration over existing methods**:
@@ -248,3 +267,5 @@ The strongest hybrid-RAG pattern for this codebase is **not** "add more retrieva
 5. drive changes by retrieval traces/latency/error telemetry already present.
 
 That path preserves the existing engineering strengths while directly addressing recall, precision, and observability gaps highlighted by both context notes and external implementations.
+<!-- /ANCHOR:research-bottom-line-138 -->
+

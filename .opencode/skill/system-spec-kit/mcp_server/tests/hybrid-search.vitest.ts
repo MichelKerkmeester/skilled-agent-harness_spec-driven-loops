@@ -506,3 +506,29 @@ describe('Hybrid Search Unit Tests (T031+)', () => {
     });
   });
 });
+
+describe('C138: Hybrid Search Pipeline Enhancements', () => {
+  it('C138-T1: hybridSearch module exports hybridSearchEnhanced (pipeline entry)', () => {
+    expect(typeof hybridSearch.hybridSearchEnhanced).toBe('function');
+  });
+
+  it('C138-T2: hybridSearch module exports init function', () => {
+    expect(typeof hybridSearch.init).toBe('function');
+  });
+
+  it('C138-T3: graph source type is defined in rrf-fusion', () => {
+    expect(rrfFusion.SOURCE_TYPES.GRAPH).toBe('graph');
+  });
+
+  it('C138-T4: RRF fusion accepts graph as a valid source', () => {
+    const graphResults = [
+      { id: 'g1', title: 'Graph Result 1' },
+      { id: 'g2', title: 'Graph Result 2' },
+    ];
+    const fused = rrfFusion.fuseResultsMulti([
+      { source: rrfFusion.SOURCE_TYPES.GRAPH, results: graphResults },
+    ]);
+    expect(fused).toHaveLength(2);
+    expect(fused[0].sources).toContain('graph');
+  });
+});

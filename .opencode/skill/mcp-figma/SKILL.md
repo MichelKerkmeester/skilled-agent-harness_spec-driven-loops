@@ -22,6 +22,12 @@ Programmatic access to Figma design files through 18 specialized tools covering 
 
 **Recommendation:** Start with **Option A** (Official) - zero installation, OAuth login, works immediately. See [Install Guide](./INSTALL_GUIDE.md) for setup details.
 
+### Skill Graph Status
+This skill is running in graph mode.
+- Primary graph entrypoint: `index.md`
+- Node content: `nodes/*.md`
+- Compatibility entrypoint: `SKILL.md`
+
 ---
 
 <!-- ANCHOR:when-to-use -->

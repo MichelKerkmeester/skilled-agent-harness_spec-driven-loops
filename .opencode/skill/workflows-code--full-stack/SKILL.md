@@ -13,6 +13,12 @@ Unified workflow guidance for any technology stack: Go, Node.js, React/Next.js, 
 
 **Core principle**: Implementation -> Testing/Debugging -> Verification (MANDATORY) = reliable, production-ready code.
 
+### Skill Graph Status
+This skill is running in graph mode.
+- Primary graph entrypoint: `index.md`
+- Node content: `nodes/*.md`
+- Compatibility entrypoint: `SKILL.md`
+
 ---
 
 <!-- ANCHOR:when-to-use -->

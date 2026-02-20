@@ -12,6 +12,11 @@ description: "Workflows for creating Skills, Agents, and Commands in OpenCode."
 2. SKILL.md body - When skill triggers (<5k words)
 3. Bundled resources - As needed (unlimited)
 
+**Skill Graph Authoring** (for large skills):
+- Index template: `assets/opencode/skill_graph_index_template.md`
+- Node template: `assets/opencode/skill_graph_node_template.md`
+- Standards: `references/skill_creation.md` (Section 9)
+
 **After packaging**: Run `extract_structure.py` on SKILL.md for final quality review.
 
 **Typical Workflow**:
@@ -53,4 +58,3 @@ scripts/extract_structure.py .opencode/skill/my-skill/SKILL.md
 4. Create execution logic and examples
 5. Add to command registry
 6. Test invocation
-

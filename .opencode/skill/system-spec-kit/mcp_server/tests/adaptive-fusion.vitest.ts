@@ -247,4 +247,42 @@ describe('C136-10 Adaptive Fusion', () => {
     expect(wFindSpec.keywordWeight).toBe(wUnderstand.keywordWeight);
     expect(wFindSpec.recencyWeight).toBe(wUnderstand.recencyWeight);
   });
+
+  // ---- C138 ADDITIONS: Intent-Weighted RRF Activation ----
+
+  describe('C138: Intent-Weighted RRF Activation', () => {
+    it('C138-T1: find_spec intent heavily weights FTS5/keyword', () => {
+      const w = getAdaptiveWeights('find_spec');
+      // find_spec should lean toward keyword matching
+      expect(w.keywordWeight).toBeGreaterThanOrEqual(0.2);
+    });
+
+    it('C138-T2: explore/understand intent balances evenly', () => {
+      const w = getAdaptiveWeights('understand');
+      // understand should favor semantic
+      expect(w.semanticWeight).toBeGreaterThan(w.keywordWeight);
+    });
+
+    it('C138-T3: hybridAdaptiveFuse produces different rankings per intent', () => {
+      setEnv(FEATURE_FLAG, 'true');
+      const semantic = makeItems(5, 'sem');
+      const keyword = makeItems(5, 'kw');
+
+      const understandResult = hybridAdaptiveFuse(semantic, keyword, 'understand');
+      const fixBugResult = hybridAdaptiveFuse(semantic, keyword, 'fix_bug');
+
+      // Different intents → different weight distributions
+      expect(understandResult.weights.semanticWeight).not.toBe(fixBugResult.weights.semanticWeight);
+    });
+
+    it('C138-T4: all 7 intent types produce valid weight profiles', () => {
+      const intents = ['understand', 'find_spec', 'find_decision', 'fix_bug', 'add_feature', 'refactor', 'debug'];
+      for (const intent of intents) {
+        const w = getAdaptiveWeights(intent as any);
+        const sum = w.semanticWeight + w.keywordWeight + w.recencyWeight;
+        expect(sum, `${intent} weights sum to ${sum}`).toBeLessThanOrEqual(1.0 + 1e-9);
+        expect(sum).toBeGreaterThan(0);
+      }
+    });
+  });
 });

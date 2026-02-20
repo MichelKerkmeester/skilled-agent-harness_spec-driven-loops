@@ -1,5 +1,6 @@
 // @ts-nocheck
 import { describe, it, expect, beforeAll } from 'vitest';
+import { TIER_MULTIPLIER } from '../lib/cache/cognitive/fsrs-scheduler';
 
 // ───────────────────────────────────────────────────────────────
 // TEST: FSRS SCHEDULER (Vitest)
@@ -618,4 +619,50 @@ describe('PE Gate Module Exports', () => {
       expect(predictionErrorGate[name]).toBeDefined();
     });
   }
+});
+
+describe('C138: Tier Decay Modulation', () => {
+
+  it('C138-T1: constitutional tier has minimal decay multiplier', () => {
+    expect(TIER_MULTIPLIER.constitutional).toBe(0.1);
+    expect(TIER_MULTIPLIER.constitutional).toBeLessThan(TIER_MULTIPLIER.normal);
+  });
+
+  it('C138-T2: scratch tier has maximum decay multiplier', () => {
+    expect(TIER_MULTIPLIER.scratch).toBe(3.0);
+    expect(TIER_MULTIPLIER.scratch).toBeGreaterThan(TIER_MULTIPLIER.normal);
+  });
+
+  it('C138-T3: tier multipliers are ordered correctly', () => {
+    expect(TIER_MULTIPLIER.constitutional).toBeLessThan(TIER_MULTIPLIER.critical);
+    expect(TIER_MULTIPLIER.critical).toBeLessThan(TIER_MULTIPLIER.important);
+    expect(TIER_MULTIPLIER.important).toBeLessThan(TIER_MULTIPLIER.normal);
+    expect(TIER_MULTIPLIER.normal).toBeLessThan(TIER_MULTIPLIER.temporary);
+    expect(TIER_MULTIPLIER.temporary).toBeLessThan(TIER_MULTIPLIER.scratch);
+  });
+
+  it('C138-T4: tier decay formula produces expected stability', () => {
+    const oldStability = 10.0;
+    const decayRate = 0.5;
+
+    // constitutional: barely decays
+    const constStab = oldStability * (1.0 - (decayRate * TIER_MULTIPLIER.constitutional));
+    expect(constStab).toBeCloseTo(9.5, 1);
+
+    // scratch: rapid decay
+    const scratchStab = oldStability * (1.0 - (decayRate * TIER_MULTIPLIER.scratch));
+    expect(scratchStab).toBeLessThan(0); // negative → clamped to min in production
+
+    expect(constStab).toBeGreaterThan(scratchStab);
+  });
+
+  it('C138-T5: constitutional memory retains stability over 30 days', () => {
+    if (!fsrsScheduler) return;
+    // If calculateRetrievability is available, test it
+    if (typeof fsrsScheduler.calculateRetrievability === 'function') {
+      const r = fsrsScheduler.calculateRetrievability(30, 10);
+      expect(r).toBeGreaterThan(0);
+      expect(r).toBeLessThanOrEqual(1);
+    }
+  });
 });

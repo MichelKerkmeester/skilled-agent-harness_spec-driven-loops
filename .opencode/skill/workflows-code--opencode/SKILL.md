@@ -13,6 +13,12 @@ Multi-language code standards for OpenCode system code across JavaScript, TypeSc
 
 **Core Principle**: Consistency within language + Clarity across languages = maintainable system code.
 
+### Skill Graph Status
+This skill is running in graph mode.
+- Primary graph entrypoint: `index.md`
+- Node content: `nodes/*.md`
+- Compatibility entrypoint: `SKILL.md`
+
 ---
 
 <!-- ANCHOR:when-to-use -->

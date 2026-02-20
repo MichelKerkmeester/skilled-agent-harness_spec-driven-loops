@@ -20,6 +20,20 @@ const RELATION_TYPES = Object.freeze({
 
 type RelationType = typeof RELATION_TYPES[keyof typeof RELATION_TYPES];
 
+/**
+ * C138: Relation weight multipliers applied during traversal scoring.
+ * Higher values amplify the propagated strength; values < 1.0 dampen it.
+ */
+const RELATION_WEIGHTS: Record<string, number> = {
+  supersedes:   1.5,  // Strongest signal — new info replaces old
+  caused:       1.3,  // Strong causal link
+  enabled:      1.1,  // Weak causal link
+  supports:     1.0,  // Neutral / default
+  derived_from: 1.0,  // Neutral / default
+  related:      1.0,  // Explicit default for open-ended relations
+  contradicts:  0.8,  // Dampened — conflicting signals lower confidence
+};
+
 const DEFAULT_MAX_DEPTH = 3;
 const MAX_EDGES_LIMIT = 100;
 
@@ -230,12 +244,16 @@ function getCausalChain(
 
       visited.add(nextId);
 
+      // C138: apply relation weight multiplier, then re-clamp to [0, 1]
+      const weight = RELATION_WEIGHTS[edge.relation] ?? 1.0;
+      const weightedStrength = Math.min(1, edge.strength * weight);
+
       const child: CausalChainNode = {
         id: nextId,
         edgeId: edge.id,               // T202: preserve edge ID for unlink workflow
         depth: depth + 1,
         relation: edge.relation,
-        strength: edge.strength,
+        strength: weightedStrength,
         children: [],
       };
 
@@ -425,6 +443,7 @@ function createSpecDocumentChain(documentIds: Record<string, number>): { inserte
 
 export {
   RELATION_TYPES,
+  RELATION_WEIGHTS,
   DEFAULT_MAX_DEPTH,
   MAX_EDGES_LIMIT,
 

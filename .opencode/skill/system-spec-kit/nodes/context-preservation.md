@@ -3,8 +3,6 @@ description: "How generate-context.js preserves conversation state into memory/ 
 ---
 # Context Preservation
 
-### Context Preservation
-
 **Manual context save (MANDATORY workflow):**
 - Trigger: `/memory:save`, "save context", or "save memory"
 - **MUST use:** `node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js [spec-folder-path]`
@@ -48,4 +46,3 @@ Memory files are always saved to the child folder's `memory/` directory (e.g., `
 - Modified: src/middleware/auth.ts
 - Created: src/utils/jwt.ts
 ```
-

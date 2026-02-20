@@ -4,6 +4,8 @@
 
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 
+<!-- ANCHOR:spec-overview -->
+
 ## EXECUTIVE SUMMARY
 
 When `upgrade-level.sh` upgrades a spec folder (e.g., L1 → L3+), it injects template scaffolding with placeholder text like `[Response time target]`, `[Low/Med/High]`, `[Component A]`. These placeholders provide no value until manually filled in. The AI agent performing the upgrade should automatically populate these scaffolds with context-aware content derived from the existing spec folder documents.
@@ -101,3 +103,5 @@ This could be integrated into:
 - **Upgrade script**: `.opencode/skill/system-spec-kit/scripts/spec/upgrade-level.sh`
 - **Templates**: `.opencode/skill/system-spec-kit/templates/addendum/`
 - **Script bug found**: `EXECUTIVE SUMMARY` false positive skips L2→L3 spec.md injection (separate fix needed)
+
+<!-- /ANCHOR:spec-overview -->

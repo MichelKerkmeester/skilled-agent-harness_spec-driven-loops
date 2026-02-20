@@ -243,6 +243,12 @@ const memoryCausalUnlink: ToolDefinition = {
   inputSchema: { type: 'object', properties: { edgeId: { type: 'number', description: 'Edge ID to delete (required)' } }, required: ['edgeId'] },
 };
 
+const memorySkillGraphQuery: ToolDefinition = {
+  name: 'memory_skill_graph_query',
+  description: '[L6:Analysis] Query the skill graph dynamically using SGQS (Skill Graph Query System). Use this tool to discover skill dependencies, find templates, or explore node attributes in the system-spec-kit graph using a Cypher-lite syntax (MATCH/WHERE/RETURN). Example: `MATCH (n:Node) RETURN n.name, n.description`',
+  inputSchema: { type: 'object', properties: { queryString: { type: 'string', description: 'SGQS query string (Cypher-like)' } }, required: ['queryString'] },
+};
+
 // L7: Maintenance - Indexing and system operations (Token Budget: 1000)
 const memoryIndexScan: ToolDefinition = {
   name: 'memory_index_scan',
@@ -287,6 +293,7 @@ export const TOOL_DEFINITIONS: ToolDefinition[] = [
   memoryCausalLink,
   memoryCausalStats,
   memoryCausalUnlink,
+  memorySkillGraphQuery,
   // L7: Maintenance
   memoryIndexScan,
   memoryGetLearningHistory,

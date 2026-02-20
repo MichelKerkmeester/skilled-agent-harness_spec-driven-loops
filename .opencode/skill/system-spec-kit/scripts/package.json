@@ -4,6 +4,9 @@
   "description": "CLI tools for spec-kit context generation and memory management",
   "type": "commonjs",
   "main": "dist/memory/generate-context.js",
+  "scripts": {
+    "build": "tsc --build"
+  },
   "dependencies": {
     "better-sqlite3": "^12.6.2",
     "sqlite-vec": "^0.1.7-alpha.2"

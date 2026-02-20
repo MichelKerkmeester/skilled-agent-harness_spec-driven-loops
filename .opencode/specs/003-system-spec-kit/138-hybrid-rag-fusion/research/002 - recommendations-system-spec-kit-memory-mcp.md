@@ -6,6 +6,7 @@ This document proposes a practical rollout to improve retrieval quality and resi
 
 [Assumes: SQLite + sqlite-vec + FTS5 remain the storage/search foundation in the near term.]
 
+<!-- ANCHOR:decision-what-to-adopt-138 -->
 ## What to Adopt
 
 ### 1) Add a lightweight retrieval planner before search execution
@@ -48,7 +49,9 @@ This should eventually replace reliance on static bonus tuning in baseline RRF (
 Every rollout stage should require retrieval trace and telemetry validation before promotion. The current handler already records stage-level traces and telemetry fields; use these as rollout gates [Source: `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:734-739`], [Source: `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:597-621`].
 
 Additionally, copy GraphRAG's explicit introspection pattern by exposing retrieval-mode and index-health resources alongside search tools [Source: `.opencode/specs/003-system-spec-kit/138-hybrid-rag-fusion/scratch/ext-repos/graphrag_mcp/server.py:42-83`], [Source: `.opencode/specs/003-system-spec-kit/138-hybrid-rag-fusion/scratch/ext-repos/graphrag_mcp/server.py:85-118`].
+<!-- /ANCHOR:decision-what-to-adopt-138 -->
 
+<!-- ANCHOR:decision-what-to-avoid-138 -->
 ## What to Avoid
 
 - **Avoid a big-bang retrieval rewrite.** Current memory search already has a stable fallback and post-processing stack; replacing it wholesale increases regression risk with limited upside [Source: `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:842-953`].
@@ -56,7 +59,9 @@ Additionally, copy GraphRAG's explicit introspection pattern by exposing retriev
 - **Avoid hidden filter divergence across retrievers.** If one path excludes archives and another does not, ranking output becomes non-deterministic and harder to trust [Source: `.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:150-152`], [Source: `.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:260-262`].
 - **Avoid score-weight tuning without telemetry.** RAGFlow uses explicit fusion weights and retries, making tuning inspectable; emulate that explicitness [Source: `.opencode/specs/003-system-spec-kit/138-hybrid-rag-fusion/scratch/ext-repos/ragflow/rag/nlp/search.py:127-129`], [Source: `.opencode/specs/003-system-spec-kit/138-hybrid-rag-fusion/scratch/ext-repos/ragflow/rag/nlp/search.py:135-147`].
 - **Avoid expensive graph/context expansion by default.** WiredBrain and GraphRAG both imply context expansion should be explicit or stage-gated, not automatic for every query [Source: `.opencode/specs/003-system-spec-kit/138-hybrid-rag-fusion/scratch/ext-repos/WiredBrain-Hierarchical-Rag/src/retrieval/hybrid_retriever_v2.py:456-490`], [Source: `.opencode/specs/003-system-spec-kit/138-hybrid-rag-fusion/scratch/ext-repos/graphrag_mcp/server.py:27-40`].
+<!-- /ANCHOR:decision-what-to-avoid-138 -->
 
+<!-- ANCHOR:decision-phased-plan-138 -->
 ## Phased Plan
 
 ### Phase 0: Safety and measurement baseline (1 week)
@@ -123,7 +128,9 @@ Risk mitigation:
 
 - Weekly rollback drills for feature flags.
 - Canary by spec-folder subsets before global rollout.
+<!-- /ANCHOR:decision-phased-plan-138 -->
 
+<!-- ANCHOR:decision-validation-metrics-138 -->
 ## Validation Metrics
 
 Use both quality and operational metrics. Promotion between phases requires passing all P0 metrics and at least two P1 metrics.
@@ -143,10 +150,14 @@ Use both quality and operational metrics. Promotion between phases requires pass
 [Assumes: a representative eval set exists across at least these intent buckets: `understand`, `find_spec`, `fix_bug`, `refactor`, `add_feature`.]
 
 [Assumes: latency is measured end-to-end at tool boundary, including embedding generation and reranking when enabled.]
+<!-- /ANCHOR:decision-validation-metrics-138 -->
 
+<!-- ANCHOR:decision-recommended-success-criteria-for-this-spec-138 -->
 ## Recommended success criteria for this spec
 
 - Hybrid planner and filter parity are fully shipped behind flags with no P0 regressions.
 - Adaptive fusion is integrated in dark-run and enabled for at least one intent with documented gains.
 - Multi-query branch is selective, budgeted, and demonstrably improves ambiguous-query recall.
 - Operational runbook and telemetry dashboards are in place so tuning is repeatable, not tribal knowledge.
+<!-- /ANCHOR:decision-recommended-success-criteria-for-this-spec-138 -->
+

@@ -1,3 +1,5 @@
+<!-- SPECKIT_TEMPLATE_SOURCE: legacy-normalized | v2.2 -->
+
 # Verification Checklist: Task 05 — Changelog Creation
 
 <!-- SPECKIT_LEVEL: 3+ -->

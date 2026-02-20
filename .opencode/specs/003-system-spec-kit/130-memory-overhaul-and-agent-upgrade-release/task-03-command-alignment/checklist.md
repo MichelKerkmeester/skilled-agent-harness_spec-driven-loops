@@ -1,3 +1,5 @@
+<!-- SPECKIT_TEMPLATE_SOURCE: legacy-normalized | v2.2 -->
+
 # Verification Checklist: Task 03 — Command Configs Audit
 
 <!-- SPECKIT_LEVEL: 3+ -->

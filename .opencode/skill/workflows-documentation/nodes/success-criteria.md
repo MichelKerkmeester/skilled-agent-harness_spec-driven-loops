@@ -3,16 +3,14 @@ description: "Definition of Document Quality Index (DQI), and checklists for com
 ---
 # Success Criteria
 
-## 5. SUCCESS CRITERIA
-
 ### Document Quality Index (DQI)
 
 The `extract_structure.py` script computes a **DQI** (0-100) based on measurable attributes:
 
-| Component     | Max | Measures                                          |
-| ------------- | --- | ------------------------------------------------- |
-| **Structure** | 40  | Checklist pass rate (type-specific)               |
-| **Content**   | 30  | Word count, heading density, code examples, links |
+| Component     | Max | Measures                                                 |
+| ------------- | --- | -------------------------------------------------------- |
+| **Structure** | 40  | Checklist pass rate (type-specific)                      |
+| **Content**   | 30  | Word count, heading density, code examples, links        |
 | **Style**     | 30  | H2 formatting, dividers, intro paragraph, HVR compliance |
 
 **HVR Compliance in DQI**: Human Voice Rules violations count against the Style component. Documents with em dashes, semicolons, banned words or banned phrases receive deductions in the Style score. Full HVR ruleset: [hvr_rules.md](./references/hvr_rules.md).
@@ -92,6 +90,3 @@ The `extract_structure.py` script computes a **DQI** (0-100) based on measurable
 | SKILL.md  | Strict (no failures)    | High AI-friendliness | Frontmatter, WHEN/HOW/RULES |
 | README.md | Flexible                | High AI-friendliness | Quick Start, examples       |
 | Knowledge | Strict (no frontmatter) | Good AI-friendliness | Numbered H2s                |
-
----
-

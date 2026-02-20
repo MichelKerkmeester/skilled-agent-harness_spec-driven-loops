@@ -83,7 +83,7 @@ main() {
                 has_errors=1
             fi
         done <<< "$links"
-    done < <(find "$SKILL_DIR" -type d -name "node_modules" -prune -o -name "*.md" -type f -print)
+    done < <(find "$SKILL_DIR" \( -type d -name "node_modules" -o -type d -name "assets" \) -prune -o -name "*.md" -type f -print)
 
     if [[ $has_errors -eq 0 ]]; then
         printf "${GREEN}✅ All wikilinks are valid.${NC}\n"

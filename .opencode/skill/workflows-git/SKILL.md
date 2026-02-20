@@ -12,6 +12,12 @@ version: 1.0.8.0
 
 Unified workflow guidance across workspace isolation, commit hygiene, and work completion.
 
+### Skill Graph Status
+This skill is running in graph mode.
+- Primary graph entrypoint: `index.md`
+- Node content: `nodes/*.md`
+- Compatibility entrypoint: `SKILL.md`
+
 ---
 
 <!-- ANCHOR:when-to-use -->

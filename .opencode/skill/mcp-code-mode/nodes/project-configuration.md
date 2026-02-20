@@ -3,8 +3,6 @@ description: "How to configure .utcp_config.json for external MCP tools."
 ---
 # Project Configuration
 
-## 4. PROJECT CONFIGURATION
-
 ### Two MCP Configuration Systems
 
 **IMPORTANT**: Code Mode only accesses tools in `.utcp_config.json`. Native MCP tools are NOT accessed through Code Mode.
@@ -105,11 +103,11 @@ const info = await tool_info({
 
 **Quick Reference:**
 
-| Manual Name | Config Reference | .env Variable |
-|-------------|-----------------|---------------|
-| `clickup` | `${CLICKUP_API_KEY}` | `clickup_CLICKUP_API_KEY` |
-| `figma` | `${FIGMA_API_KEY}` | `figma_FIGMA_API_KEY` |
-| `notion` | `${NOTION_TOKEN}` | `notion_NOTION_TOKEN` |
+| Manual Name | Config Reference     | .env Variable             |
+| ----------- | -------------------- | ------------------------- |
+| `clickup`   | `${CLICKUP_API_KEY}` | `clickup_CLICKUP_API_KEY` |
+| `figma`     | `${FIGMA_API_KEY}`   | `figma_FIGMA_API_KEY`     |
+| `notion`    | `${NOTION_TOKEN}`    | `notion_NOTION_TOKEN`     |
 
 See [env_template.md](assets/env_template.md) for complete examples.
 
@@ -185,6 +183,3 @@ call_tool_chain({
   `
 });
 ```
-
----
-

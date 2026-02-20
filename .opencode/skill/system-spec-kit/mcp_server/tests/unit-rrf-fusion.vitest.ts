@@ -150,3 +150,50 @@ describe('RRF Fusion (T001-T006)', () => {
     expect(shared.sourceScores[SOURCE_TYPES.BM25]).toEqual(expect.any(Number));
   });
 });
+
+describe('C138: Cross-Variant RRF (Multi-Query)', () => {
+  it('C138-T1: multi-source fusion with 3+ sources works', () => {
+    const vectorResults = [{ id: 'shared', title: 'Shared' }, { id: 'v-only', title: 'V' }];
+    const bm25Results = [{ id: 'shared', title: 'Shared' }, { id: 'b-only', title: 'B' }];
+    const graphResults = [{ id: 'shared', title: 'Shared' }, { id: 'g-only', title: 'G' }];
+
+    const fused = fuseResultsMulti([
+      { source: SOURCE_TYPES.VECTOR, results: vectorResults },
+      { source: SOURCE_TYPES.BM25, results: bm25Results },
+      { source: 'graph', results: graphResults },
+    ]);
+
+    const shared = fused.find(r => r.id === 'shared');
+    expect(shared).toBeDefined();
+    expect(shared.sources).toHaveLength(3);
+    // 3-source convergence should give bonus
+    expect(shared.convergenceBonus).toBeGreaterThan(0);
+  });
+
+  it('C138-T2: convergence bonus is exactly 0.10 per additional source', () => {
+    const resultsA = [{ id: 'x', title: 'X' }];
+    const resultsB = [{ id: 'x', title: 'X' }];
+
+    const fused = fuseResultsMulti([
+      { source: SOURCE_TYPES.VECTOR, results: resultsA },
+      { source: SOURCE_TYPES.BM25, results: resultsB },
+    ]);
+
+    const x = fused.find(r => r.id === 'x');
+    expect(x.convergenceBonus).toBeCloseTo(0.10, 2);
+  });
+
+  it('C138-T3: single-variant input behaves identically to standard', () => {
+    const results = [{ id: 'a', title: 'A' }, { id: 'b', title: 'B' }];
+
+    const fused = fuseResultsMulti([
+      { source: SOURCE_TYPES.VECTOR, results },
+    ]);
+
+    const standard = fuseResults(results, []);
+    // Single-source: no convergence bonus
+    for (const r of fused) {
+      expect(r.convergenceBonus).toBe(0);
+    }
+  });
+});

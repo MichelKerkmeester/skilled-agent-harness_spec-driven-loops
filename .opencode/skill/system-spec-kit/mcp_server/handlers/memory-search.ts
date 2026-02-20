@@ -20,6 +20,10 @@ import * as sessionBoost from '../lib/search/session-boost';
 import * as causalBoost from '../lib/search/causal-boost';
 import { getExtractionMetrics } from '../lib/extraction/extraction-adapter';
 import * as retrievalTelemetry from '../lib/telemetry/retrieval-telemetry';
+// C138-P1: Evidence gap detection (TRM — Z-score confidence check on RRF scores)
+import { detectEvidenceGap, formatEvidenceGapWarning } from '../lib/search/evidence-gap-detector';
+// C138-P3: Query expansion for mode="deep" multi-query RAG
+import { expandQuery } from '../lib/search/query-expander';
 
 // Core utilities
 import { checkDatabaseUpdated, isEmbeddingModelReady, waitForEmbeddingModel } from '../core';
@@ -119,6 +123,7 @@ interface SearchArgs {
   enableCausalBoost?: boolean;
   minQualityScore?: number;
   min_quality_score?: number;
+  mode?: string; // C138-P3: "deep" mode enables query expansion for multi-query RAG
 }
 
 function filterByMinQualityScore(results: MemorySearchRow[], minQualityScore?: number): MemorySearchRow[] {
@@ -571,7 +576,24 @@ async function postSearchPipeline(
     addTraceEntry(trace, 'final-rank', finalResults.length, finalResults.length, 0);
   }
 
+  // C138-P1: Evidence gap detection — Z-score confidence check on RRF scores
+  const rrfScores = finalResults.map(r => {
+    const score = (r as Record<string, unknown>).rrfScore as number | undefined;
+    if (typeof score === 'number' && Number.isFinite(score)) return score;
+    // Fallback to generic score/similarity when rrfScore is absent (vector-only path)
+    const fallback = (r as Record<string, unknown>).score as number | undefined
+      ?? (r as Record<string, unknown>).similarity as number | undefined;
+    return typeof fallback === 'number' && Number.isFinite(fallback) ? fallback : 0;
+  });
+  const trmResult = detectEvidenceGap(rrfScores);
+  const evidenceGapWarning = trmResult.gapDetected ? formatEvidenceGapWarning(trmResult) : null;
+
   const extraData: Record<string, unknown> = { stateStats };
+  if (evidenceGapWarning) {
+    // Surface the warning in the response metadata so consumers can act on it
+    extraData.evidenceGapWarning = evidenceGapWarning;
+    extraData.evidenceGapTRM = trmResult;
+  }
   if (detectedIntent) {
     // P3-10 FIX: Report actual weightsApplied state
     extraData.intent = {
@@ -620,7 +642,22 @@ async function postSearchPipeline(
     extraData._telemetry = retrievalTelemetry.toJSON(t);
   }
 
-  return await formatSearchResults(finalResults as RawSearchResult[], searchType, includeContent, anchors, null, null, extraData);
+  const formatted = await formatSearchResults(finalResults as RawSearchResult[], searchType, includeContent, anchors, null, null, extraData);
+
+  // C138-P1: Prepend evidence gap warning to the markdown payload (summary field)
+  if (evidenceGapWarning && formatted?.content?.[0]?.text) {
+    try {
+      const parsed = JSON.parse(formatted.content[0].text) as Record<string, unknown>;
+      if (typeof parsed.summary === 'string') {
+        parsed.summary = `${evidenceGapWarning}\n\n${parsed.summary}`;
+        formatted.content[0].text = JSON.stringify(parsed, null, 2);
+      }
+    } catch {
+      // Non-fatal: warning already present in extraData.evidenceGapWarning
+    }
+  }
+
+  return formatted;
 }
 
 /* ---------------------------------------------------------------
@@ -651,7 +688,7 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
     autoDetectIntent: autoDetectIntent = true,
     minState: minState = 'WARM',
     applyStateLimits: applyStateLimits = false,
-    rerank = false,
+    rerank = true, // C138-P2: Enable reranking by default for better result quality
     applyLengthPenalty: applyLengthPenalty = true,
     trackAccess: trackAccess = false, // P3-09: opt-in, off by default
     includeArchived: includeArchived = false, // REQ-206: exclude archived by default
@@ -659,6 +696,7 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
     enableCausalBoost: enableCausalBoost = causalBoost.isEnabled(),
     minQualityScore,
     min_quality_score,
+    mode,
   } = args;
 
   const qualityThreshold = typeof minQualityScore === 'number'
@@ -826,6 +864,12 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
       }
 
       // Single query search
+
+      // C138-P3: Query expansion for mode="deep" — generate variant queries before embedding
+      const queryVariants: string[] = mode === 'deep'
+        ? expandQuery(normalizedQuery!)
+        : [normalizedQuery!];
+
       const queryEmbedding = await embeddings.generateQueryEmbedding(normalizedQuery!);
       if (!queryEmbedding) {
         throw new Error('Failed to generate embedding for query');
@@ -839,13 +883,49 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
         throw new Error(`Invalid embedding dimension: expected ${expectedDim}, got ${queryEmbedding.length}`);
       }
 
+      // C138-P3: For mode="deep", run a hybrid search for each query variant and merge
+      // deduplicated results before entering the standard pipeline.
+      let deepExpandedResults: MemorySearchRow[] | null = null;
+      if (mode === 'deep' && queryVariants.length > 1) {
+        try {
+          const variantResultSets: MemorySearchRow[][] = await Promise.all(
+            queryVariants.map(async (variant) => {
+              const variantEmbedding = await embeddings.generateQueryEmbedding(variant);
+              if (!variantEmbedding) return [];
+              return await hybridSearch.searchWithFallback(variant, variantEmbedding, {
+                limit,
+                specFolder,
+                includeArchived,
+              }) as MemorySearchRow[];
+            })
+          );
+          // Merge variant results, deduplicate by id, preserve order of first occurrence
+          const seenIds = new Set<number>();
+          const merged: MemorySearchRow[] = [];
+          for (const variantResults of variantResultSets) {
+            for (const row of variantResults) {
+              if (!seenIds.has(row.id)) {
+                seenIds.add(row.id);
+                merged.push(row);
+              }
+            }
+          }
+          deepExpandedResults = merged;
+        } catch (expandErr: unknown) {
+          const expandMsg = toErrorMessage(expandErr);
+          console.warn('[memory-search] Deep query expansion failed, falling back to single query:', expandMsg);
+        }
+      }
+
       // Try hybrid search first
       try {
-        const hybridResults: MemorySearchRow[] = await hybridSearch.searchWithFallback(normalizedQuery!, queryEmbedding, {
-          limit,
-          specFolder,
-          includeArchived,
-        }) as MemorySearchRow[];
+        const hybridResults: MemorySearchRow[] = deepExpandedResults !== null
+          ? deepExpandedResults
+          : await hybridSearch.searchWithFallback(normalizedQuery!, queryEmbedding, {
+              limit,
+              specFolder,
+              includeArchived,
+            }) as MemorySearchRow[];
 
         if (hybridResults && hybridResults.length > 0) {
           let filteredResults = hybridResults;

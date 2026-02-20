@@ -3,8 +3,6 @@ description: "Mandatory rules (ALWAYS, NEVER) for writing Code Mode scripts."
 ---
 # Code Mode Rules
 
-## 5. RULES
-
 ### ✅ ALWAYS
 
 - **Use Code Mode for ALL MCP tool calls** - Mandatory for ClickUp, Notion, Figma, Webflow, Chrome DevTools, etc.
@@ -34,6 +32,3 @@ description: "Mandatory rules (ALWAYS, NEVER) for writing Code Mode scripts."
 - **Tools not discovered** - Verify manual name matches configuration
 - **Execution timeout** - Increase timeout or break into smaller operations
 - **Need to add new MCP server** - Follow guide in [configuration.md](references/configuration.md)
-
----
-

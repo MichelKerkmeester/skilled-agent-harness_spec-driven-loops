@@ -340,11 +340,28 @@ function getIntentDescription(intent: IntentType): string {
    4. EXPORTS
 ----------------------------------------------------------------*/
 
+/**
+ * C138: Intent-to-MMR-lambda mapping.
+ * Controls the trade-off between relevance and diversity for each intent.
+ * Lower lambda → more diversity. Higher lambda → more relevance.
+ * Per spec: understand→0.5 (diversity), fix_bug→0.85 (relevance).
+ */
+const INTENT_LAMBDA_MAP: Readonly<Record<string, number>> = {
+  understand: 0.5,
+  fix_bug: 0.85,
+  find_spec: 0.5,
+  find_decision: 0.5,
+  add_feature: 0.7,
+  refactor: 0.6,
+  security_audit: 0.75,
+} as const;
+
 export {
   INTENT_TYPES,
   INTENT_KEYWORDS,
   INTENT_PATTERNS,
   INTENT_WEIGHT_ADJUSTMENTS,
+  INTENT_LAMBDA_MAP,
 
   // Scoring
   calculateKeywordScore,

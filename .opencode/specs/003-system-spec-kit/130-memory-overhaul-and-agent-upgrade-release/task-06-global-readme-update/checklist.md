@@ -1,3 +1,5 @@
+<!-- SPECKIT_TEMPLATE_SOURCE: legacy-normalized | v2.2 -->
+
 # Verification Checklist: Task 06 — Root README Update
 
 <!-- SPECKIT_LEVEL: 3+ -->

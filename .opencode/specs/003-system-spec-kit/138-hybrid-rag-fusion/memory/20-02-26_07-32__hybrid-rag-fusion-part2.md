@@ -34,7 +34,7 @@
 | Spec Folder | 003-system-spec-kit/138-hybrid-rag-fusion |
 | Channel | main |
 | Importance Tier | normal |
-| Context Type | general |
+| Context Type | research |
 | Total Messages | 1 |
 | Tool Executions | 0 |
 | Decisions Made | 3 |
@@ -53,9 +53,9 @@
 
 | Metric | Value | Assessment |
 |--------|-------|------------|
-| Knowledge Score | /100 |  |
-| Uncertainty Score | /100 |  |
-| Context Score | /100 |  |
+| Knowledge Score | N/A | Auto-generated session |
+| Uncertainty Score | N/A | Auto-generated session |
+| Context Score | N/A | Auto-generated session |
 | Timestamp |  | Session start |
 
 **Initial Gaps Identified:**
@@ -132,7 +132,7 @@ Next: Continue implementation
 
 **Key Context to Review:**
 
-- Files modified: specs/.../research/001 - analysis-hybrid-rag-patterns.md, specs/.../research/002 - recommendations-system-spec-kit-memory-mcp.md
+- Files modified: specs/003-system-spec-kit/138-hybrid-rag-fusion/research/001 - analysis-hybrid-rag-patterns.md, specs/003-system-spec-kit/138-hybrid-rag-fusion/research/002 - recommendations-system-spec-kit-memory-mcp.md
 
 - Last: Deliverables were finalized in the target research folder and the memory-save wo
 
@@ -147,7 +147,7 @@ Next: Continue implementation
 | Field | Value |
 |-------|-------|
 | Phase | RESEARCH |
-| Active File | specs/.../research/001 - analysis-hybrid-rag-patterns.md |
+| Active File | specs/003-system-spec-kit/138-hybrid-rag-fusion/research/001 - analysis-hybrid-rag-patterns.md |
 | Last Action | Technical Implementation Details |
 | Next Action | Continue implementation |
 | Blockers | None |
@@ -169,9 +169,9 @@ Next: Continue implementation
 
 **Key Files and Their Roles**:
 
-- `specs/.../research/001 - analysis-hybrid-rag-patterns.md` - Documentation
+- `specs/003-system-spec-kit/138-hybrid-rag-fusion/research/001 - analysis-hybrid-rag-patterns.md` - Documentation
 
-- `specs/.../research/002 - recommendations-system-spec-kit-memory-mcp.md` - Documentation
+- `specs/003-system-spec-kit/138-hybrid-rag-fusion/research/002 - recommendations-system-spec-kit-memory-mcp.md` - Documentation
 
 **How to Extend**:
 
@@ -205,8 +205,8 @@ Deliverables were finalized in the target research folder and the memory-save wo
 
 | **File** | **Description** |
 |:---------|:----------------|
-| `specs/.../research/001 - analysis-hybrid-rag-patterns.md` | File modified (description pending) |
-| `specs/.../research/002 - recommendations-system-spec-kit-memory-mcp.md` | File modified (description pending) |
+| `specs/003-system-spec-kit/138-hybrid-rag-fusion/research/001 - analysis-hybrid-rag-patterns.md` | File modified (description pending) |
+| `specs/003-system-spec-kit/138-hybrid-rag-fusion/research/002 - recommendations-system-spec-kit-memory-mcp.md` | File modified (description pending) |
 
 <!-- /ANCHOR:summary -->
 
@@ -261,9 +261,9 @@ rootCause: Need durable session handoff with high signal and low noise for later
 ## 4. DECISIONS
 
 <!-- ANCHOR:decision-speckit-spec-687983d6 -->
-### Decision 1: Decision: Use @speckit for spec
+### Decision 1: Use @speckit for spec folder markdown output to stay compliant with documentation authority constraints
 
-**Context**: folder markdown output to stay compliant with documentation authority constraints.
+**Context**: Spec folder markdown output must stay compliant with documentation authority constraints.
 
 **Timestamp**: 2026-02-20T07:32:31Z
 
@@ -272,13 +272,13 @@ rootCause: Need durable session handoff with high signal and low noise for later
 #### Options Considered
 
 1. **Chosen Approach**
-   Decision: Use @speckit for spec
+   Use @speckit for spec folder markdown output to stay compliant with documentation authority constraints
 
 #### Chosen Approach
 
 **Selected**: Chosen Approach
 
-**Rationale**: folder markdown output to stay compliant with documentation authority constraints.
+**Rationale**: Spec folder markdown output must use @speckit to stay compliant with documentation authority constraints.
 
 #### Trade-offs
 
@@ -288,9 +288,9 @@ rootCause: Need durable session handoff with high signal and low noise for later
 ---
 
 <!-- ANCHOR:decision-split-memory-save-because-16f189a7 -->
-### Decision 2: Decision: Split memory save because estimated conversation size exceeded the large
+### Decision 2: Split memory save because estimated conversation size exceeded the large context threshold
 
-**Context**: context threshold and would reduce retrieval quality if saved as one blob.
+**Context**: Estimated conversation size exceeded the large context threshold and would reduce retrieval quality if saved as one blob.
 
 **Timestamp**: 2026-02-20T07:32:31Z
 
@@ -299,13 +299,13 @@ rootCause: Need durable session handoff with high signal and low noise for later
 #### Options Considered
 
 1. **Chosen Approach**
-   Decision: Split memory save because estimated conversation size exceeded the large
+   Split memory save because estimated conversation size exceeded the large context threshold
 
 #### Chosen Approach
 
 **Selected**: Chosen Approach
 
-**Rationale**: context threshold and would reduce retrieval quality if saved as one blob.
+**Rationale**: Estimated conversation size exceeded the large context threshold and would reduce retrieval quality if saved as one blob.
 
 #### Trade-offs
 
@@ -315,9 +315,9 @@ rootCause: Need durable session handoff with high signal and low noise for later
 ---
 
 <!-- ANCHOR:decision-keep-recommendations-phased-feature-9bdd2064 -->
-### Decision 3: Decision: Keep recommendations phased with feature flags, dark
+### Decision 3: Keep recommendations phased with feature flags, dark-run comparison, and measurable quality/latency criteria before broad enablement
 
-**Context**: run comparison, and measurable quality/latency criteria before broad enablement.
+**Context**: Recommendations should be phased with feature flags, dark-run comparison, and measurable quality/latency criteria before broad enablement.
 
 **Timestamp**: 2026-02-20T07:32:31Z
 
@@ -326,13 +326,13 @@ rootCause: Need durable session handoff with high signal and low noise for later
 #### Options Considered
 
 1. **Chosen Approach**
-   Decision: Keep recommendations phased with feature flags, dark
+   Keep recommendations phased with feature flags, dark-run comparison, and measurable quality/latency criteria before broad enablement
 
 #### Chosen Approach
 
 **Selected**: Chosen Approach
 
-**Rationale**: run comparison, and measurable quality/latency criteria before broad enablement.
+**Rationale**: Recommendations should be phased with feature flags, dark-run comparison, and measurable quality/latency criteria before broad enablement.
 
 #### Trade-offs
 
@@ -487,14 +487,14 @@ channel: "main"
 
 # Classification
 importance_tier: "normal"  # constitutional|critical|important|normal|temporary|deprecated
-context_type: "general"        # research|implementation|decision|discovery|general
+context_type: "research"        # research|implementation|decision|discovery|general
 
 # Memory Classification (v2.2)
 memory_classification:
-  memory_type: ""         # episodic|procedural|semantic|constitutional
-  half_life_days:      # decay half-life in days (0 = never decays)
+  memory_type: "episodic"         # episodic|procedural|semantic|constitutional
+  half_life_days: 90      # decay half-life in days (0 = never decays)
   decay_factors:
-    base_decay_rate:            # 0.0-1.0, daily decay multiplier
+    base_decay_rate: 0.3            # 0.0-1.0, daily decay multiplier
     access_boost_factor:    # boost per access (default 0.1)
     recency_weight:              # weight for recent accesses (default 0.5)
     importance_multiplier:  # tier-based multiplier
@@ -599,8 +599,8 @@ trigger_phrases:
   - "fusion"
 
 key_files:
-  - "specs/.../research/001 - analysis-hybrid-rag-patterns.md"
-  - "specs/.../research/002 - recommendations-system-spec-kit-memory-mcp.md"
+  - "specs/003-system-spec-kit/138-hybrid-rag-fusion/research/001 - analysis-hybrid-rag-patterns.md"
+  - "specs/003-system-spec-kit/138-hybrid-rag-fusion/research/002 - recommendations-system-spec-kit-memory-mcp.md"
 
 # Relationships
 related_sessions:

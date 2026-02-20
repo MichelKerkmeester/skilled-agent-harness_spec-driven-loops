@@ -35,6 +35,3 @@ Standard Flow:      Branch:           Parallel:         Merge:
 | 7: Pipeline          | Sequential stages with gates   | `system_architecture_swimlane.md` |
 
 **Workflow**: Select pattern → Build with components → Validate (`validate_flowchart.sh`) → Document
-
----
-

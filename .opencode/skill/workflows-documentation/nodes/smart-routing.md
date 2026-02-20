@@ -3,8 +3,6 @@ description: "Intent scoring and resource loading logic for the documentation wo
 ---
 # Smart Routing
 
-## 2. SMART ROUTING
-
 ### Resource Domains
 
 The router discovers markdown resources recursively from `references/` and `assets/` and then applies intent scoring from `RESOURCE_MAP`. Keep this section domain-focused rather than static file inventories.
@@ -16,11 +14,11 @@ The router discovers markdown resources recursively from `references/` and `asse
 
 ### Resource Loading Levels
 
-| Level       | When to Load             | Resources                   |
-| ----------- | ------------------------ | --------------------------- |
-| ALWAYS      | Every skill invocation   | Quick reference baseline    |
-| CONDITIONAL | If intent signals match  | Mode-specific docs/templates|
-| ON_DEMAND   | Only on explicit request | Extended standards/template |
+| Level       | When to Load             | Resources                    |
+| ----------- | ------------------------ | ---------------------------- |
+| ALWAYS      | Every skill invocation   | Quick reference baseline     |
+| CONDITIONAL | If intent signals match  | Mode-specific docs/templates |
+| ON_DEMAND   | Only on explicit request | Extended standards/template  |
 
 ### Smart Router Pseudocode
 
@@ -128,6 +126,3 @@ def route_documentation_resources(task):
 
     return {"intents": intents, "resources": loaded}
 ```
-
----
-

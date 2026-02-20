@@ -3,8 +3,6 @@ description: "Mandatory rules (ALWAYS, NEVER, ESCALATE) for using the system-spe
 ---
 # System-Spec-Kit Rules
 
-## 4. RULES
-
 ### ✅ ALWAYS
 
 1. **Determine level (1/2/3/3+) before ANY file changes** - Count LOC, assess complexity/risk
@@ -48,6 +46,3 @@ description: "Mandatory rules (ALWAYS, NEVER, ESCALATE) for using the system-spe
 3. **Template doesn't fit requirements** - Adapt closest template, document modifications
 4. **User requests skip (Option D)** - Warn about tech debt, explain debugging challenges, confirm consent
 5. **Validation fails with errors** - Report specific failures, provide fix guidance, re-run after fixes
-
----
-

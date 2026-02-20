@@ -1,67 +1,25 @@
 ---
 name: workflows-documentation
-description: "Unified markdown and OpenCode component specialist providing document quality enforcement, content optimization, component creation workflows, ASCII flowcharts and install guides."
-allowed-tools: [Bash, Edit, Glob, Grep, Read, Write]
-version: 1.6.0
+description: "Unified markdown and OpenCode component specialist providing document quality enforcement, content optimization, component creation workflows (skills, agents, commands), ASCII flowcharts and install guides."
+allowed-tools: [Bash, Edit, Glob, Grep, Read, Task, Write]
+version: 1.1.1.0
 ---
 
-# Documentation Creation Specialist - Index
+# Documentation Creation Specialist
 
-Entry point for the workflows-documentation skill graph.
+Orchestrates document quality enforcement, component scaffolding, and flowchart generation across OpenCode skill graphs, READMEs, and structured markdown.
 
----
-
-<!-- ANCHOR:table-of-contents -->
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. MAP OF CONTENT](#2--map-of-content)
-- [3. SKILL GRAPH RESOURCES](#3--skill-graph-resources)
-- [4. ROUTING](#4--routing)
-
----
-
-<!-- /ANCHOR:table-of-contents -->
-<!-- ANCHOR:overview -->
-## 1. OVERVIEW
-
-This index routes requests to the right node, reference or template.
-
-Use this file first. Then follow only the links that match the current task.
-
----
-
-<!-- /ANCHOR:overview -->
-<!-- ANCHOR:map-of-content -->
-## 2. MAP OF CONTENT
+## Map of Content (MOC)
 
 ### Foundation
-- [[nodes/when-to-use|When To Use]]
-- [[nodes/rules|Rules]]
-- [[nodes/success-criteria|Success Criteria]]
+- [[nodes/when-to-use|When to Use]] — Triggers for document validation, README creation, component scaffolding, and flowchart generation.
+- [[nodes/rules|Rules]] — Mandatory rules (ALWAYS, NEVER, ESCALATE) separated by modes (Quality, Skills, Flowcharts, etc.).
+- [[nodes/success-criteria|Success Criteria]] — Definition of Document Quality Index (DQI), and checklists for completing documentation tasks.
+
+### Workflow & Routing
+- [[nodes/smart-routing|Smart Routing]] — Intent scoring and resource loading logic for the documentation workflows.
 
 ### Workflows by Mode
-- [[nodes/mode-document-quality|Mode 1: Document Quality]]
-- [[nodes/mode-component-creation|Mode 2: Component Creation]]
-- [[nodes/mode-flowchart-creation|Mode 3: Flowchart Creation]]
-
----
-
-<!-- /ANCHOR:map-of-content -->
-<!-- ANCHOR:skill-graph-resources -->
-## 3. SKILL GRAPH RESOURCES
-
-- [[references/skill_graph_standards|Skill Graph Standards]]
-- Template file: `assets/opencode/skill_graph_node_template.md`
-
----
-
-<!-- /ANCHOR:skill-graph-resources -->
-<!-- ANCHOR:routing -->
-## 4. ROUTING
-
-- [[nodes/smart-routing|Smart Routing]]
-
----
-
-<!-- /ANCHOR:routing -->
+- [[nodes/mode-document-quality|Mode 1: Document Quality]] — How the Document Quality Index (DQI) pipeline uses extract_structure.py to evaluate READMEs, specs, and knowledge docs.
+- [[nodes/mode-component-creation|Mode 2: Component Creation]] — Workflows for creating Skills, Agents, and Commands in OpenCode.
+- [[nodes/mode-flowchart-creation|Mode 3: Flowchart Creation]] — Patterns and syntax for generating ASCII flowcharts for workflows and decision trees.

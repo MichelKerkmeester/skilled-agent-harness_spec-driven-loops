@@ -325,6 +325,14 @@ Next: {{NEXT_ACTION}}
 {{/HAS_FILES}}
 <!-- /ANCHOR:summary -->
 
+{{#HAS_GRAPH_CONTEXT}}
+---
+
+<!-- ANCHOR:graph-context -->
+{{GRAPH_CONTEXT}}
+<!-- /ANCHOR:graph-context -->
+{{/HAS_GRAPH_CONTEXT}}
+
 ---
 {{#HAS_OBSERVATIONS}}
 

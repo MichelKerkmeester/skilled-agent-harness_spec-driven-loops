@@ -13,6 +13,12 @@ Unified workflow guidance across 6 specialized code quality skills for frontend 
 
 **Core Principle**: Implementation → Debugging (if needed) → Verification (MANDATORY) = reliable frontend code.
 
+### Skill Graph Status
+This skill is running in graph mode.
+- Primary graph entrypoint: `index.md`
+- Node content: `nodes/*.md`
+- Compatibility entrypoint: `SKILL.md`
+
 ---
 
 <!-- ANCHOR:when-to-use -->

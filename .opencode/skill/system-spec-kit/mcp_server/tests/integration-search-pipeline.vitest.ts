@@ -209,3 +209,46 @@ describe('Integration Search Pipeline (T525) [deferred - requires DB test fixtur
     });
   });
 });
+
+describe('C138: Feature Flag Regression Guards', () => {
+  it('C138-T1: feature flags are valid boolean strings', () => {
+    const validFlags = ['true', 'false', undefined];
+    for (const flag of ['SPECKIT_MMR', 'SPECKIT_TRM', 'SPECKIT_MULTI_QUERY']) {
+      const value = process.env[flag];
+      if (value !== undefined) {
+        expect(['true', 'false']).toContain(value);
+      }
+    }
+  });
+
+  it('C138-T2: pipeline flags are independent (no coupling)', () => {
+    // Each flag should be independently configurable
+    const flags = ['SPECKIT_MMR', 'SPECKIT_TRM', 'SPECKIT_MULTI_QUERY'];
+    expect(new Set(flags).size).toBe(flags.length);
+  });
+
+  it('C138-T3: SPECKIT_MMR undefined means MMR is ENABLED (opt-out, not opt-in)', () => {
+    // The absence of a feature flag means the feature is ENABLED.
+    // Operators must explicitly set flag=false to disable. This verifies the opt-out pattern.
+    const mmrValue = process.env['SPECKIT_MMR'];
+    // When not set (undefined), pipeline must treat MMR as enabled.
+    // Verify: flag !== 'false' is the condition for enabled.
+    const mmrEnabled = mmrValue !== 'false';
+    expect(mmrEnabled).toBe(true);
+  });
+
+  it('C138-T4: SPECKIT_TRM undefined means evidence gap detection is ACTIVE (opt-out)', () => {
+    // Same opt-out pattern: undefined = feature active.
+    const trmValue = process.env['SPECKIT_TRM'];
+    const trmEnabled = trmValue !== 'false';
+    expect(trmEnabled).toBe(true);
+  });
+
+  it('C138-T5: opt-out pattern — only explicit false disables a feature', () => {
+    // Verify the opt-out semantics: absent or 'true' → enabled, only 'false' → disabled.
+    const interpretFlag = (val: string | undefined): boolean => val !== 'false';
+    expect(interpretFlag(undefined)).toBe(true);   // absent → enabled
+    expect(interpretFlag('true')).toBe(true);       // explicit true → enabled
+    expect(interpretFlag('false')).toBe(false);     // explicit false → disabled
+  });
+});

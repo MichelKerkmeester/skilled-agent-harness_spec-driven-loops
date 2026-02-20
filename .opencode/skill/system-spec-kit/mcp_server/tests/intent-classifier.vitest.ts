@@ -5,6 +5,7 @@
 
 import { describe, it, expect } from 'vitest';
 import * as intentClassifier from '../lib/search/intent-classifier';
+import { INTENT_LAMBDA_MAP } from '../lib/search/intent-classifier';
 
 /* ─────────────────────────────────────────────────────────────
    TEST CONFIGURATION
@@ -572,5 +573,55 @@ describe('T060: 80% Overall Detection Accuracy Target', () => {
       const accuracy = correct / queries.length;
       expect(accuracy).toBeGreaterThanOrEqual(0.60);
     }
+  });
+});
+
+describe('C138: Centroid-Based Classification & Lambda Mapping', () => {
+  it('C138-T1: classifyIntent returns one of 7 valid intent types', () => {
+    const validIntents = ['add_feature', 'fix_bug', 'refactor', 'security_audit', 'understand', 'find_spec', 'find_decision'];
+    const result = intentClassifier.classifyIntent('fix the login error');
+    expect(validIntents).toContain(result.intent);
+  });
+
+  it('C138-T2: classifyIntent returns confidence between 0 and 1', () => {
+    const result = intentClassifier.classifyIntent('explain the architecture');
+    expect(result.confidence).toBeGreaterThanOrEqual(0);
+    expect(result.confidence).toBeLessThanOrEqual(1);
+  });
+
+  it('C138-T3: all 7 intent types are classifiable', () => {
+    const queries = {
+      add_feature: 'add a new feature',
+      fix_bug: 'fix the broken login',
+      refactor: 'refactor the module',
+      security_audit: 'check security vulnerabilities',
+      understand: 'explain how this works',
+      find_spec: 'find the spec for auth',
+      find_decision: 'find the decision about database',
+    };
+
+    for (const [expectedIntent, query] of Object.entries(queries)) {
+      const result = intentClassifier.classifyIntent(query);
+      expect(result.intent).toBe(expectedIntent);
+    }
+  });
+
+  it('C138-T4: scores object contains all 7 intent types', () => {
+    const result = intentClassifier.classifyIntent('test query');
+    const expectedKeys = ['add_feature', 'fix_bug', 'refactor', 'security_audit', 'understand', 'find_spec', 'find_decision'];
+    for (const key of expectedKeys) {
+      expect(result.scores).toHaveProperty(key);
+    }
+  });
+
+  it('C138-T5: intent-to-lambda mapping covers required intents', () => {
+    // Per spec: understand→0.5 (diversity), fix_bug→0.85 (relevance)
+    expect(INTENT_LAMBDA_MAP).toBeDefined();
+    expect(INTENT_LAMBDA_MAP.understand).toBeLessThan(INTENT_LAMBDA_MAP.fix_bug);
+    expect(INTENT_LAMBDA_MAP.fix_bug).toBeGreaterThan(0.8);
+    expect(INTENT_LAMBDA_MAP.understand).toBeLessThanOrEqual(0.5);
+    expect(typeof INTENT_LAMBDA_MAP.add_feature).toBe('number');
+    expect(typeof INTENT_LAMBDA_MAP.refactor).toBe('number');
+    expect(typeof INTENT_LAMBDA_MAP.find_spec).toBe('number');
   });
 });

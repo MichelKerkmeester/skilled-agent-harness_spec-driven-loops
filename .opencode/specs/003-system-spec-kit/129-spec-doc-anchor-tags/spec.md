@@ -23,7 +23,7 @@
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-Spec 126 made all spec documents searchable by indexing them as whole documents. But unlike Memory files and READMEs — which use `<!-- ANCHOR:name -->` tags for section-level retrieval with 85-93% token savings — spec documents have no anchors. An agent searching for "what's the scope of spec 126?" must load the entire 2000-token spec.md instead of retrieving just the ~150-token scope section.
+Spec 126 made all spec documents searchable by indexing them as whole documents. But unlike Memory files and READMEs — which use `&lt;!-- ANCHOR:name --&gt;` tags for section-level retrieval with 85-93% token savings — spec documents have no anchors. An agent searching for "what's the scope of spec 126?" must load the entire 2000-token spec.md instead of retrieving just the ~150-token scope section.
 
 ### Purpose
 All spec kit templates gain anchor tags around their sections, enabling token-efficient section-level retrieval identical to Memory files and READMEs.
@@ -35,7 +35,7 @@ All spec kit templates gain anchor tags around their sections, enabling token-ef
 ## 3. SCOPE
 
 ### In Scope
-- Add `<!-- ANCHOR:name -->` / `<!-- /ANCHOR:name -->` tags to all CORE templates (4 files)
+- Add `&lt;!-- ANCHOR:name --&gt;` / `&lt;!-- /ANCHOR:name --&gt;` tags to all CORE templates (4 files)
 - Add anchor tags to all addendum templates (7+ files)
 - Propagate anchors to all composed level templates (level_1/ through level_3+/, ~21 files)
 - Update `check-anchors.sh` validation to scan spec document files (not just memory/)

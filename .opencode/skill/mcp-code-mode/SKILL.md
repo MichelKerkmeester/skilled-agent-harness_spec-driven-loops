@@ -11,6 +11,16 @@ version: 1.0.7.0
 
 Execute TypeScript code with direct access to 200+ MCP tools through progressive disclosure. Code Mode eliminates context overhead by loading tools on-demand, enabling complex multi-tool workflows in a single execution with state persistence and built-in error handling.
 
+### Skill Graph Status
+
+This skill is running in graph mode.
+
+- Primary graph entrypoint: `index.md`
+- Node content: `nodes/*.md`
+- Compatibility entrypoint: `SKILL.md` (kept for routing and legacy loaders)
+
+Use `SKILL.md` for activation/rules, then traverse `index.md` for task-specific deep content.
+
 ---
 
 <!-- ANCHOR:when-to-use -->

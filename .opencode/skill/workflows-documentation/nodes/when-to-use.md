@@ -3,8 +3,6 @@ description: "Triggers for document validation, README creation, component scaff
 ---
 # When To Use Workflows Documentation
 
-## 1. WHEN TO USE
-
 ### Use Case: Document Quality Management
 
 Enforce markdown structure, optimize content for AI assistants, validate quality through script-assisted AI analysis.
@@ -86,6 +84,3 @@ Create and validate installation documentation for MCP servers, plugins and tool
 - Internal notes or drafts
 - Auto-generated API docs
 - Short 2-3 step processes (use bullet points)
-
----
-
