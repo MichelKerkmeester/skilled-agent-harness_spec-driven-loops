@@ -1,14 +1,22 @@
 // ---------------------------------------------------------------
 // MODULE: Causal Boost
+// Graph-traversal score boosting via causal edge relationships.
+// Walks the causal_edges graph up to MAX_HOPS, amplifying scores
+// for results related to top seed results via weighted CTE.
 // ---------------------------------------------------------------
 
 import type Database from 'better-sqlite3';
 import { isFeatureEnabled } from '../cache/cognitive/rollout-policy';
 
+/** Maximum graph traversal depth. Beyond 2 hops, signal degrades and queries become expensive. */
 const MAX_HOPS = 2;
+/** Per-hop boost cap. 0.05 keeps causal nudge subtle relative to semantic scores (~0.5–1.0). */
 const MAX_BOOST_PER_HOP = 0.05;
+/** Combined causal + session boost ceiling to prevent runaway amplification. */
 const MAX_COMBINED_BOOST = 0.20;
+/** Top fraction of result set used as graph walk seed nodes. */
 const SEED_FRACTION = 0.25;
+/** Absolute cap on seed nodes regardless of result set size. */
 const MAX_SEED_RESULTS = 5;
 
 /**
@@ -52,6 +60,10 @@ function init(database: Database.Database): void {
   db = database;
 }
 
+/**
+ * Resolve the primary numeric score from a result, checking score, rrfScore,
+ * and similarity (normalized to 0–1) in precedence order. Returns 0 if none present.
+ */
 function resolveBaseScore(result: RankedSearchResult): number {
   if (typeof result.score === 'number' && Number.isFinite(result.score)) return result.score;
   if (typeof result.rrfScore === 'number' && Number.isFinite(result.rrfScore)) return result.rrfScore;
@@ -59,6 +71,10 @@ function resolveBaseScore(result: RankedSearchResult): number {
   return 0;
 }
 
+/**
+ * Deduplicate and validate a list of numeric IDs, truncating to integers
+ * and dropping non-finite values to guard against DB query injection.
+ */
 function normalizeIds(inputIds: number[]): number[] {
   const ids = new Set<number>();
   for (const candidate of inputIds) {
@@ -69,6 +85,10 @@ function normalizeIds(inputIds: number[]): number[] {
   return Array.from(ids);
 }
 
+/**
+ * Compute the hop-distance decay boost: MAX_BOOST_PER_HOP / hopDistance,
+ * capped at MAX_BOOST_PER_HOP so closer neighbors get the full signal.
+ */
 function computeBoostByHop(hopDistance: number): number {
   if (!Number.isFinite(hopDistance) || hopDistance <= 0) return 0;
   const rawBoost = MAX_BOOST_PER_HOP / hopDistance;

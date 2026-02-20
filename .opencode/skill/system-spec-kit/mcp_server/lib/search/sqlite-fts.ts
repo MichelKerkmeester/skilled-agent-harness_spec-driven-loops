@@ -114,7 +114,13 @@ function fts5Bm25Search(
 }
 
 /**
- * Check if the memory_fts FTS5 table exists in the database.
+ * Check if the memory_fts FTS5 virtual table exists in the database.
+ *
+ * Used as a feature-detect before calling fts5Bm25Search, since FTS5
+ * may be absent on older SQLite builds or freshly-created databases.
+ *
+ * @param db - SQLite database connection to check
+ * @returns true if memory_fts exists and is queryable
  */
 function isFts5Available(db: Database.Database): boolean {
   try {

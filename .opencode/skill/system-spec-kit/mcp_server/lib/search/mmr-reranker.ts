@@ -157,12 +157,16 @@ export function applyMMR(
   config: MMRConfig,
 ): MMRCandidate[] {
   const {
-    lambda,
+    lambda: rawLambda,
     limit,
     maxCandidates = DEFAULT_MAX_CANDIDATES,
     graphDistanceFn,
     graphAlpha = 0.5,
   } = config;
+
+  // Clamp lambda to [0, 1] to guard against caller mistakes.
+  // Values outside this range invert relevance or diversity weighting.
+  const lambda = Math.max(0, Math.min(1, rawLambda));
 
   // Determine whether graph-guided MMR diversity is active.
   // Both the feature flag AND the caller-supplied distance function are required.
