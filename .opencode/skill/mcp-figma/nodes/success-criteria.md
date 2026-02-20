@@ -43,5 +43,5 @@ Defines when each type of Figma MCP operation is considered complete, with speci
 | `export_working`   | `get_image()` returns URLs           |
 
 ## Cross References
-- [[rules]] -- Mandatory rules that must be followed during validation
-- [[quick-reference]] -- Commands to run for each checkpoint
+- [[rules]] —Mandatory rules that must be followed during validation
+- [[quick-reference]] —Commands to run for each checkpoint

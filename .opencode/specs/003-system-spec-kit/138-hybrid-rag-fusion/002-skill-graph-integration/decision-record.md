@@ -29,7 +29,7 @@ We need a way to break down large monolithic skills into smaller, composable pie
 <!-- ANCHOR:decision -->
 ## Decision
 
-We will implement a **Skill Graph Architecture** for the OpenCode skill system. 
+We will implement a **Skill Graph Architecture** as a supplemental layer for the OpenCode skill system, enhancing the existing SKILL.md-based system.
 
 The architecture consists of:
 1. **Nodes**: Small, composable Markdown files representing single complete thoughts, techniques, or claims.
@@ -62,7 +62,7 @@ The architecture consists of:
 <!-- ANCHOR:alternatives -->
 ## Alternatives Considered
 
-1. **Keep Monolithic Files**: Continue adding to `SKILL.md`. Rejected because it scales poorly and leads to token exhaustion and attention decay for complex domains.
+1. **Keep Monolithic Files Only**: Rely solely on `SKILL.md` without a supplemental graph layer. Rejected because graph navigation improves token efficiency for deep-dive content. SKILL.md is retained as the primary entrypoint.
 2. **Hardcoded Context Servers (RAG)**: Pure vector search. Rejected because vector search loses the semantic relationships and author-intended structure that wikilinks in prose provide. 
 3. **Programmatic Dispatch (Code Mode)**: Using MCP Code Mode to dynamically fetch pieces. While Code Mode is great for execution, Skill Graphs provide a better declarative, knowledge-first approach for domain expertise.
 <!-- /ANCHOR:alternatives -->

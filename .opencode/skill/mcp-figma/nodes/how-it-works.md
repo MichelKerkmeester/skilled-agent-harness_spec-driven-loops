@@ -82,6 +82,6 @@ https://www.figma.com/file/ABC123xyz/My-Design
 ```
 
 ## Cross References
-- [[integration-points]] -- Code Mode dependency and configuration details
-- [[quick-reference]] -- Ready-to-use command table and common patterns
-- [[rules]] -- Mandatory rules for tool invocation
+- [[integration-points]] —Code Mode dependency and configuration details
+- [[quick-reference]] —Ready-to-use command table and common patterns
+- [[rules]] —Mandatory rules for tool invocation
