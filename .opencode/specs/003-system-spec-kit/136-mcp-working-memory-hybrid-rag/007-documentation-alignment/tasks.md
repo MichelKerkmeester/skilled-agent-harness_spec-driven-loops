@@ -148,6 +148,14 @@
 
 - [x] T043 Update `scripts/tests/README.md`:
   - Add test-memory-quality-lane.js to test inventory
+
+### Group F — Post-Completion Drift Addendum (P1)
+
+- [x] T050 Record embedding-provider legacy drift in spec docs:
+  - Capture lifecycle evidence (`v1.2.0.0` add, `v1.3.3.0` present, TS migration removal in `63a1b338416e563f6ceb869106da14fb00b4ef1e`)
+  - Capture current replacement architecture (`shared/types.ts`, provider implementations, provider factory, T085 interface coverage)
+  - Update root spec docs and package-007 closure docs with relevance classification and follow-up direction
+  - Resolution note: drift closed after `mcp_server/tests/embeddings.vitest.ts` rewrite to current shared architecture (old deferred marker removed)
 <!-- /ANCHOR:task-groups -->
 
 ---
@@ -172,6 +180,7 @@
 - [x] All Group C tasks (T020–T022) completed
 - [x] All Group D tasks (T030–T034) completed
 - [x] All Group E tasks (T040–T043) completed
+- [x] Group F addendum task (T050) completed
 - [x] All evidence requirements (E01–E05) met
 - [x] Root task/checklist mapping synchronized
 <!-- /ANCHOR:completion-conditions -->

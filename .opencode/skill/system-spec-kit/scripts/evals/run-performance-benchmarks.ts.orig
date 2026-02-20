@@ -242,7 +242,7 @@ async function measureExtractionHookLatency(db: Database.Database): Promise<{ st
     callback = fn;
   });
 
-  const extractionCallback = callback as ((tool: string, callId: string, result: unknown) => Promise<void>) | null;
+  const extractionCallback = callback as NonNullable<typeof callback>;
 
   if (!extractionCallback) {
     throw new Error('Extraction callback registration failed');

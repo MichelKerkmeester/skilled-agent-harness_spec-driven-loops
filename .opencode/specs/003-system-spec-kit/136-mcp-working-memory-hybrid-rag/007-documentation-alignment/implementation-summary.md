@@ -13,6 +13,7 @@
 | **Spec Folder** | 007-documentation-alignment |
 | **Completed** | 2026-02-19 |
 | **Level** | 3 |
+| **Addendum Updated** | 2026-02-20 |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -28,8 +29,18 @@ This compliance update adds the required implementation summary and keeps the ex
 
 | File | Action | Purpose |
 |------|--------|---------|
-| implementation-summary.md | Created | Add required implementation summary for Level 3 package compliance |
-| checklist.md | Modified | Replace literal orphan-triggering anchor text with plain description |
+| implementation-summary.md | Modified | Add post-completion drift addendum and resolved-status note |
+| decision-record.md | Modified | Add ADR-007-005 and closure note for legacy embedding-provider drift item |
+| tasks.md | Modified | Add T050 post-completion drift addendum task and resolution note |
+| checklist.md | Modified | Add CHK-328 evidence links and resolved-status reference |
+
+### Post-Completion Addendum
+
+Follow-up investigation had recorded a documentation/runtime drift item: `tests/embeddings.vitest.ts` referenced missing module path `lib/interfaces/embedding-provider` as a deferred placeholder, while current provider architecture already lived in shared paths.
+
+That drift item is now resolved in root spec 136 documentation: `tests/embeddings.vitest.ts` was rewritten to current shared architecture and the deferred `describe.skip` marker was removed (`npm run test --workspace=mcp_server -- tests/embeddings.vitest.ts` -> 1 file passed, 13 tests passed, 0 skipped).
+
+This package remains complete for its original scope. The addendum now serves as historical traceability plus explicit closure linkage to root spec 136 evidence updates.
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -41,6 +52,7 @@ This compliance update adds the required implementation summary and keeps the ex
 |----------|-----------|
 | Keep checklist content and completion state intact while removing validator-breaking literal anchor text | Resolve anchor-validation error without changing task intent or evidence claims |
 | Keep this pass limited to compliance fixes only | Avoid scope creep outside requested error-level remediation |
+| Record embedding-provider drift as an addendum, not a package reopen | Preserve completed package scope while documenting the drift lifecycle and later closure |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -50,7 +62,7 @@ This compliance update adds the required implementation summary and keeps the ex
 
 | Test Type | Status | Notes |
 |-----------|--------|-------|
-| Manual | Pass | Required implementation-summary.md added and anchor mismatch remediated |
+| Manual | Pass | Post-completion addendum recorded in decision/task/checklist/summary docs |
 | Unit | Skip | Documentation-only compliance update |
 | Integration | Skip | Documentation-only compliance update |
 <!-- /ANCHOR:verification -->

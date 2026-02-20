@@ -27,6 +27,6 @@ Latest all-flags verification passes for the full suite, rewritten embedding cov
 <!-- ANCHOR: blockers -->
 ## Open Blocker
 
-- No runtime test or build blockers in this all-flags verification pass.
+- No runtime test blockers in this all-flags verification pass.
 - Remaining skipped suites are known deferred items with explicit skip reasons.
 <!-- /ANCHOR: blockers -->

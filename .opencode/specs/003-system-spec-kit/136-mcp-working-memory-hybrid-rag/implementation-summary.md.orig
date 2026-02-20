@@ -120,9 +120,9 @@ All features shipped behind feature flags and went through a structured rollout:
 | Full test suite (all flags enabled) | PASS, 139 passed test files and 3 skipped (142 total). 4400 passed tests and 43 skipped (4443 total). Duration 3.48s. |
 | Rewritten embeddings suite (architecture-aligned) | PASS, 1 passed file and 0 skipped. 13 passed tests (13 total). |
 | BM25-focused verification (all flags enabled) | PASS, 3 passed files and 0 skipped. 189 passed tests (189 total). Duration 137ms. |
-| Lint (`mcp_server`) | PASS, no lint errors |
-| Typecheck | PASS, 0 errors (TS2349 fixed) |
-| Build | PASS, compiled successfully |
+| Lint (`mcp_server`) | Not re-run in this verification update |
+| Typecheck | Not re-run in this verification update |
+| Build | Not re-run in this verification update |
 
 Detailed run notes are captured in `specs/003-system-spec-kit/136-mcp-working-memory-hybrid-rag/test-results.md`.
 <!-- /ANCHOR:verification -->

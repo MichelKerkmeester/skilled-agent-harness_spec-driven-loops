@@ -1,0 +1,21 @@
+@@ -107,9 +107,9 @@
+ | Strict root validation | PASS, 0 errors, 0 warnings |
+ | Full test suite (all flags enabled) | PASS, 138 passed test files and 4 skipped (142 total). 4387 passed tests and 63 skipped (4450 total). Duration 2.87s. |
+ | BM25-focused verification (all flags enabled) | PASS, 3 passed files and 0 skipped. 189 passed tests (189 total). Duration 143ms. |
+-| Lint (`mcp_server`) | Not re-run in this verification update |
+-| Typecheck | Not re-run in this verification update |
+-| Build | Not re-run in this verification update |
++| Lint (`mcp_server`) | PASS, no lint errors |
++| Typecheck | PASS, 0 errors (TS2349 fixed) |
++| Build | PASS, compiled successfully |
+ 
+ Detailed run notes are captured in `specs/003-system-spec-kit/136-mcp-working-memory-hybrid-rag/test-results.md`.
+ <!-- /ANCHOR:verification -->
+@@ -124,7 +124,6 @@
+ 2. **Telemetry outputs are evaluation-lane artifacts.** They're reproducible and useful for gating, but they reflect scripted test scenarios, not live production traffic.
+ 3. **Survey data is administrative.** The user satisfaction score (4.20/5.0) comes from an administrative closure process. A production survey with live respondents would strengthen this.
+ 4. **QP-4 archive handling uses `deprecated` tier.** The `importance_tier` enum doesn't support a literal `archived` value, so `deprecated` serves as the archival equivalent.
+-5. **Open TS2349 blocker.** `npm run typecheck` and `npm run build` fail with `scripts/evals/run-performance-benchmarks.ts(268,13): error TS2349: This expression is not callable. Type 'never' has no call signatures.`
+ <!-- /ANCHOR:limitations -->
+ 
+ ---

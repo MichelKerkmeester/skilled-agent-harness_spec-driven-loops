@@ -367,7 +367,11 @@ async function hybridSearchEnhanced(
 
     if (lists.length > 0) {
       const fused = fuseResultsMulti(lists);
-      return fused.slice(0, options.limit || 20);
+      return fused.slice(0, options.limit || 20).map(r => ({
+        ...r,
+        score: r.score as number,
+        source: (r.source as string) || 'hybrid'
+      }));
     }
   } catch {
     // Fall back to simple hybrid search
