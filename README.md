@@ -6,9 +6,10 @@
 [![License](https://img.shields.io/github/license/MichelKerkmeester/opencode-spec-kit-framework?style=for-the-badge&color=7bd88f&labelColor=222222)](LICENSE)
 [![Latest Release](https://img.shields.io/github/v/release/MichelKerkmeester/opencode-spec-kit-framework?style=for-the-badge&color=5ad4e6&labelColor=222222)](https://github.com/MichelKerkmeester/opencode-spec-kit-framework/releases)
 
-</div>
+> - 99.999% of people won't try this system. Beat the odds?
+> - Don't reward me with unwanted coffee: https://buymeacoffee.com/michelkerkmeester
 
-> Your AI forgets everything between sessions. This one doesn't. A universal framework with spec-driven documentation, cognitive memory, multi-agent orchestration and automated validation. Purpose-built for AI-assisted development.
+</div>
 
 ---
 
@@ -403,12 +404,12 @@ The `@orchestrate` agent implements distributed-systems patterns:
 
 Each runtime gets its own agent adapter directory. Agent bodies share the same OpenCode source content. Frontmatter adapts to what each platform expects.
 
-| Runtime        | Agent Directory            | Config File             | Model            |
-| -------------- | -------------------------- | ----------------------- | ---------------- |
-| **OpenCode**   | `.opencode/agent/`         | `opencode.json`         | Provider default |
-| **Claude Code**| `.claude/agents/`          | `.claude/mcp.json`      | claude-sonnet/opus/haiku |
-| **ChatGPT**    | `.opencode/agent/chatgpt/` | n/a                     | gpt-4.1          |
-| **Gemini CLI** | `.gemini/agents/`          | `.gemini/settings.json` | gemini-3.1-pro   |
+| Runtime         | Agent Directory            | Config File             | Model                    |
+| --------------- | -------------------------- | ----------------------- | ------------------------ |
+| **OpenCode**    | `.opencode/agent/`         | `opencode.json`         | Provider default         |
+| **Claude Code** | `.claude/agents/`          | `.claude/mcp.json`      | claude-sonnet/opus/haiku |
+| **ChatGPT**     | `.opencode/agent/chatgpt/` | n/a                     | gpt-4.1                  |
+| **Gemini CLI**  | `.gemini/agents/`          | `.gemini/settings.json` | gemini-3.1-pro           |
 
 OpenCode is the source of truth. Claude, ChatGPT and Gemini directories are runtime adapters that reference or mirror the same agent definitions. Edit `.opencode/agent/` and all runtimes stay in sync.
 
