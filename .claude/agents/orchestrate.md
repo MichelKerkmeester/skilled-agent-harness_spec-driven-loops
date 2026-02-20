@@ -510,6 +510,19 @@ Isolate failures to prevent cascading issues. States: CLOSED (normal) → OPEN (
 | Context budget exceeded      | Stop dispatching, synthesize current results, report to user (§8)                                |
 | Context pressure detected    | Stop new dispatches → synthesize completed results → suggest file-based collection for remainder |
 
+### Compaction Recovery Protocol
+
+**If context compaction occurs:**
+1. **STOP** — take no action, use no tools
+2. Re-read CLAUDE.md and MEMORY.md completely
+3. Summarize: current task, last instruction, modified files, errors, git state
+4. **WAIT** for user confirmation before proceeding
+5. Do NOT assume the compacted summary's next steps are correct
+
+**After 2+ compactions in one session:**
+- Recommend `/clear` and a fresh start
+- Use `@handover` to create a continuation document first
+
 ### Timeout Handling
 
 | Situation                     | Action                                                    |
@@ -536,6 +549,13 @@ I've enhanced the validation [implemented by @general] to include RFC 5322 compl
 The documentation has been updated with DQI score 95/100 [by @write].
 ```
 
+### Output Discipline
+
+- Keep responses concise. No walls of text.
+- Summarize tool results — never echo full output back into conversation.
+- If a tool returns >50 lines, summarize key findings in 3-5 bullet points.
+- When synthesizing multi-agent results: produce ONE unified response, not assembled fragments.
+
 ### Context Preservation & Handover
 
 **Trigger:** 15+ tool calls, 5+ files modified, user says "stopping"/"continue later", or session approaching context limits.
@@ -553,6 +573,15 @@ After complex multi-agent workflows, save orchestration context via: `node .open
 | Session duration     | Extended        | Proactive handover prompt                          |
 | **Agent dispatches** | **5+**          | **Enforce CWB (§8), use collection patterns (§8)** |
 | **Context pressure** | **Any warning** | **Stop dispatching, synthesize current results**   |
+
+#### Context Pressure Response Protocol
+
+When ANY context pressure signal fires:
+
+1. **PAUSE** — do not dispatch another agent
+2. **ANNOUNCE** — tell the user: "Context pressure detected — recommend `/compact` focused on [current task]"
+3. **WAIT** — for user confirmation before continuing
+4. If user does not compact: synthesize completed results and suggest `/spec_kit:handover`
 
 ### Command Suggestions
 
@@ -668,6 +697,15 @@ For tasks estimated at **9+ tool calls**, append this instruction to the Task di
 
 **Rule**: Before dispatching, calculate `total_expected_results = agent_count × result_size_per_agent`. If this exceeds available budget, use file-based collection (Pattern C above).
 
+#### Orchestrator Self-Protection Rules
+
+The orchestrator's own behavior can cause context overload. Follow these rules:
+
+- **Targeted reads only**: Use `offset` and `limit` on files over 200 lines. Never load entire large files into main context.
+- **No accumulation**: Do NOT read 3+ large files back-to-back in the main thread. Delegate to `@context` instead.
+- **Write, don't hold**: For intermediate results, write to a scratch file and reference the path — do not keep large content blocks in conversation context.
+- **Batch tool calls**: Combine independent calls into a single message to reduce round-trip context growth.
+
 #### Threshold Actions
 
 | Level  | Status   | Action                                         |
@@ -700,6 +738,15 @@ For tasks estimated at **9+ tool calls**, append this instruction to the Task di
 
 ❌ **Never let LEAF agents dispatch sub-agents**
 - LEAF agents (@context, @general, @write, @review, @speckit, @debug, @handover, @explore, @research) execute work directly. If a LEAF agent spawns a sub-agent, it violates NDP. When dispatching LEAF agents, ALWAYS include the LEAF Enforcement Instruction (§2).
+
+❌ **Never read 3+ large files back-to-back in main context**
+- Loading multiple large files floods the orchestrator's context window. Delegate bulk file reads to `@context` and receive summarized Context Packages. See §8 Self-Protection Rules.
+
+❌ **Never echo full tool output (>50 lines) into conversation**
+- Raw tool output accumulates rapidly. Always summarize to 3-5 bullet points. See §7 Output Discipline.
+
+❌ **Never continue after compaction without user confirmation**
+- Compaction loses nuance. Stop, re-read CLAUDE.md, summarize state, and wait for confirmation before proceeding. See §6 Compaction Recovery Protocol.
 
 ---
 
