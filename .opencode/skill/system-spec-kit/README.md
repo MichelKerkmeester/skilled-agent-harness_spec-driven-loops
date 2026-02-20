@@ -79,6 +79,11 @@ Cross-workflow alignment is mandatory:
 | **Document-Type Scoring**    | Precision ranking       | 11 document types with scoring multipliers (spec: 1.4x, constitutional: 2.0x, scratch: 0.6x) |
 | **BM25 Hybrid Search**       | +40-50% relevance       | Pure JS BM25 combined with vector via RRF fusion                                             |
 | **Cross-Encoder Reranking**  | Precision retrieval     | Voyage/Cohere/local providers with length penalty                                            |
+| **Typed Retrieval Contracts**| API safety              | `ContextEnvelope`, `RetrievalTrace`, and degraded-mode contracts for structured responses     |
+| **Artifact-Class Routing**   | Precision targeting     | 9 artifact classes with per-type retrieval strategies                                         |
+| **Adaptive Hybrid Fusion**   | Intent-aware ranking    | Weighted RRF with intent-sensitive profiles behind `SPECKIT_ADAPTIVE_FUSION`                |
+| **Mutation Ledger**          | Tamper-evident audit    | Append-only SQLite trigger pipeline for memory mutations                                      |
+| **Extended Telemetry**       | Retrieval observability | Latency, mode, fallback, and quality-proxy dimensions across search/context flows            |
 | **5-State Memory Model**     | Automatic lifecycle     | HOT/WARM/COLD/DORMANT/ARCHIVED with threshold transitions                                    |
 | **Type-Specific Half-Lives** | +20% decay accuracy     | 9 memory types with distinct decay rates                                                     |
 | **Multi-Factor Decay**       | +30-40% relevance       | 5 factors: temporal, usage, importance, pattern, citation                                    |
@@ -94,13 +99,13 @@ Cross-workflow alignment is mandatory:
 | --------------------- | ---------------------------------------------------------------------- |
 | **MCP Tools**         | 22 (memory, checkpoint, causal, drift, learning)                       |
 | **Templates**         | 10 (specs, plans, research, decisions)                                 |
-| **Scripts**           | 90 (44 TS + 18 JS + 27 shell + 1 Python)                               |
+| **Scripts**           | 121 source scripts (61 TS + 20 JS + 38 shell + 1 mjs + 1 Python)      |
 | **Commands**          | 12 (7 spec_kit + 5 memory), all ≤600 lines, full agent routing (19/19) |
 | **Importance Tiers**  | 6 (constitutional -> deprecated)                                       |
 | **Memory Types**      | 9 (working, episodic, procedural, semantic, etc.)                      |
-| **ANCHOR Coverage**   | ~473 anchors across 74 READMEs for precise memory retrieval            |
+| **ANCHOR Coverage**   | 533 anchors across 78 skill READMEs for precise memory retrieval       |
 | **README Compliance** | 75 READMEs styled per readme_template.md (7 rules)                     |
-| **Test Coverage**     | 3,988 tests across 118 test files                                      |
+| **Test Coverage**     | 4,415 tests across 142 files (latest all-features run)                 |
 | **Last Verified**     | 2026-02-20 (module/file counts revalidated via Glob)                  |
 
 ### Requirements

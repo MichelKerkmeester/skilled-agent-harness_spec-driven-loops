@@ -117,7 +117,7 @@ This MCP server gives your AI assistant persistent memory with intelligence buil
 | **Handler Modules** | 11 |
 | **Embedding Providers** | 3 |
 | **Cognitive Features** | 12+ |
-| **Test Coverage** | 3,800+ tests across 114 test files (incl. 58/58 MCP integration tests at 100%) |
+| **Test Coverage** | 4,415 tests across 142 files (latest all-features run) |
 | **Last Verified** | 2026-02-20 (module counts revalidated via Glob) |
 
 ### Requirements
@@ -962,7 +962,7 @@ In this repository, `database/context-index.sqlite` is maintained as a compatibi
 | `SPECKIT_RELATIONS` | `true` | Enable causal memory graph |
 | `SPECKIT_CROSS_ENCODER` | `false` | Enable cross-encoder reranking |
 | `SPECKIT_INCREMENTAL` | `true` | Enable incremental indexing |
-| `SPECKIT_INDEX_SPEC_DOCS` | `false` | Enable spec folder document indexing (5th source) |
+| `SPECKIT_INDEX_SPEC_DOCS` | `true` | Enable spec folder document indexing (5th source) |
 | `SPECKIT_SESSION_BOOST` | `false` | Enable session-attention boost in `memory_search` |
 | `SPECKIT_PRESSURE_POLICY` | `false` | Enable token-pressure mode override in `memory_context` |
 | `SPECKIT_EVENT_DECAY` | `false` | Enable event-based working-memory decay |

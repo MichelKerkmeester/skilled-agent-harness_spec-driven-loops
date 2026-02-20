@@ -56,9 +56,10 @@ Together, these systems enable context-aware development with traceability, hard
 | Agents | 10 | 8 custom + 2 built-in (`@general`, `@explore`) |
 | Skills | 9 | Skill modules in `.opencode/skill/` |
 | Commands | 19 | `spec_kit`, `memory`, `create`, `agent_router` |
-| Templates | 84 | Spec Kit CORE + ADDENDUM templates |
+| Templates | 79 | Spec Kit CORE + ADDENDUM templates |
 | YAML assets | 25 | Command execution YAML files |
 | Validation rules | 13 | Spec folder validation scripts |
+| Last Verified | 2026-02-20 | Counts refreshed during spec 136 release pass |
 
 <!-- /ANCHOR:overview -->
 
@@ -225,7 +226,7 @@ The Spec Kit Memory MCP provides persistent context across sessions:
 - **Architecture:** 7-layer tool hierarchy (L1 Orchestration to L7 Maintenance)
 - **Indexing:** 5 sources (spec memories, constitutional files, skill READMEs, project READMEs, spec documents) with `includeSpecDocs: true` default
 - **Schema:** v13 adds `document_type` and `spec_level` columns for document-type scoring and filtering
-- **Features:** Constitutional tier, session deduplication, causal lineage tracking, temporal decay, learning analytics and spec-document causal chains
+- **Features:** Constitutional tier, session deduplication, causal lineage tracking, temporal decay, learning analytics, typed retrieval contracts, artifact-class routing, adaptive fusion, append-only mutation ledger and extended retrieval telemetry
 - **Hardening (Spec126):** import-path fixes, `specFolder` filtering, metadata preservation, vector metadata plumbing, and stable causal edge semantics
 
 **Spec Kit workflow features:** `upgrade-level.sh`, auto-populate workflow, `check-placeholders.sh`, and anchor tags.
