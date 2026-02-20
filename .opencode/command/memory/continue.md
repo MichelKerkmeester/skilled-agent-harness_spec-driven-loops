@@ -56,23 +56,27 @@ operating_mode:
 
 ---
 
-## 1. MCP ENFORCEMENT MATRIX
+## 1. PURPOSE
+
+Enable session recovery from three interruption scenarios:
+
+1. **Crash Recovery**: MCP server crashed or restarted mid-session
+2. **Compaction Recovery**: Conversation context was compressed due to length
+3. **Session Timeout**: User returned after break (hours or days)
+
+This command restores the most recent session state, loads relevant context, and presents continuation options.
+
+---
+
+## 2. MCP ENFORCEMENT MATRIX
 
 **CRITICAL:** This command uses MCP tools directly. Native MCP only - NEVER Code Mode.
 
-```
-┌─────────────────┬─────────────────────────────────────────────────────────┬──────────┬─────────────────┐
-│ SCREEN          │ REQUIRED MCP CALLS                                      │ MODE     │ ON FAILURE      │
-├─────────────────┼─────────────────────────────────────────────────────────┼──────────┼─────────────────┤
-│ DETECTION       │ spec_kit_memory_memory_context({ input: "session",      │ SINGLE   │ Fall back to    │
-│                 │   mode: "resume", includeContent: false })              │          │ memory_search   │
-├─────────────────┼─────────────────────────────────────────────────────────┼──────────┼─────────────────┤
-│ STATE LOAD      │ spec_kit_memory_memory_context({ input: "[session       │ SINGLE   │ Use CONTINUE.md │
-│                 │   query]", mode: "resume", includeContent: true })      │          │                 │
-├─────────────────┼─────────────────────────────────────────────────────────┼──────────┼─────────────────┤
-│ STATS           │ spec_kit_memory_memory_stats                            │ SINGLE   │ Show error msg  │
-└─────────────────┴─────────────────────────────────────────────────────────┴──────────┴─────────────────┘
-```
+| SCREEN     | REQUIRED MCP CALLS                                                                          | MODE   | ON FAILURE          |
+| ---------- | ------------------------------------------------------------------------------------------- | ------ | ------------------- |
+| DETECTION  | `spec_kit_memory_memory_context({ input: "session", mode: "resume", includeContent: false })` | SINGLE | Fall back to memory_search |
+| STATE LOAD | `spec_kit_memory_memory_context({ input: "[query]", mode: "resume", includeContent: true })` | SINGLE | Use CONTINUE.md     |
+| STATS      | `spec_kit_memory_memory_stats`                                                               | SINGLE | Show error msg      |
 
 **Tool Call Format:**
 ```
@@ -82,18 +86,6 @@ spec_kit_memory_memory_list({ limit: 5, sortBy: "updated_at" })
 spec_kit_memory_memory_stats({ includeScores: true })
 Read({ filePath: "<absolute_path>" })
 ```
-
----
-
-## 2. PURPOSE
-
-Enable session recovery from three interruption scenarios:
-
-1. **Crash Recovery**: MCP server crashed or restarted mid-session
-2. **Compaction Recovery**: Conversation context was compressed due to length
-3. **Session Timeout**: User returned after break (hours or days)
-
-This command restores the most recent session state, loads relevant context, and presents continuation options.
 
 ---
 

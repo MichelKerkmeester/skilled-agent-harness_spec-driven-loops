@@ -4,24 +4,40 @@ argument-hint: "<spec-folder>"
 allowed-tools: Read, Bash, Task, spec_kit_memory_memory_save, spec_kit_memory_memory_index_scan, spec_kit_memory_memory_stats, spec_kit_memory_memory_update
 ---
 
+# 🚨 MANDATORY FIRST ACTION - DO NOT SKIP
+
+**BEFORE READING ANYTHING ELSE IN THIS FILE, CHECK `$ARGUMENTS`:**
+
+```
+IF $ARGUMENTS is empty, undefined, or contains only whitespace:
+    → STOP IMMEDIATELY
+    → List recent/related spec folders
+    → ASK: "Which spec folder should this context be saved to?"
+    → WAIT for user response
+    → Use their response as target_folder
+    → Only THEN continue with this workflow
+
+IF $ARGUMENTS contains a spec folder path:
+    → Validate folder exists
+    → Store as target_folder
+    → Continue reading this file
+```
+
+**CRITICAL RULES:**
+- **DO NOT** infer spec folder from conversation context or open files
+- **DO NOT** assume which folder the user wants based on recent work
+- **DO NOT** proceed past this point without an explicit spec folder from the user
+- The spec folder MUST come from `$ARGUMENTS` or user's answer above
+
+---
+
 # /memory:save
 
 > Save current conversation context to a spec folder's memory directory with semantic indexing.
 
 ---
 
-## 1. CRITICAL RULES
-
-| Rule                       | Detail                                                          |
-| -------------------------- | --------------------------------------------------------------- |
-| **CHECK $ARGUMENTS FIRST** | If empty → STOP and ask user for spec folder                    |
-| **NEVER ASSUME**           | Do NOT infer folder from previous conversation                  |
-| **VALIDATE**               | Folder must exist in `specs/`; memory subdir must exist/be creatable |
-| **BLOCK ON FAILURE**       | If validation fails → `STATUS=FAIL ERROR="..."`, do not proceed |
-
----
-
-## 2. PRE-FLIGHT VALIDATION (PHASE 0)
+## 1. PRE-FLIGHT VALIDATION (PHASE 0)
 
 Execute BEFORE folder validation to prevent data quality issues. All checks must pass.
 
@@ -74,7 +90,7 @@ filename_conflict:  PASSED | RENAMED_TO=[new_name]
 
 ---
 
-## 3. SPEC FOLDER VALIDATION (PHASE 1)
+## 2. SPEC FOLDER VALIDATION (PHASE 1)
 
 ```
 IF $ARGUMENTS contains spec folder:
@@ -101,7 +117,7 @@ After Phase 1, validate the conversation topic matches the target folder:
 
 ---
 
-## 4. CONTRACT
+## 3. CONTRACT
 
 | Field   | Value                                                                                        |
 | ------- | -------------------------------------------------------------------------------------------- |
@@ -112,7 +128,7 @@ After Phase 1, validate the conversation topic matches the target folder:
 
 ---
 
-## 5. MCP ENFORCEMENT MATRIX
+## 4. MCP ENFORCEMENT MATRIX
 
 > **Tool Restriction (Memory Save Rule - HARD BLOCK):** `Write` and `Edit` tools are intentionally excluded from this command's `allowed-tools`. Memory files MUST be created via the `generate-context.js` script to ensure proper ANCHOR tags, SESSION SUMMARY table, and MEMORY METADATA YAML block. See AGENTS.md Memory Save Rule.
 
@@ -138,7 +154,7 @@ spec_kit_memory_memory_save({
 
 ---
 
-## 6. WORKFLOW OVERVIEW
+## 5. WORKFLOW OVERVIEW
 
 | Step | Name              | Purpose                            | Output           |
 | ---- | ----------------- | ---------------------------------- | ---------------- |
@@ -151,7 +167,7 @@ spec_kit_memory_memory_save({
 
 ---
 
-## 7. WORKFLOW INSTRUCTIONS
+## 6. WORKFLOW INSTRUCTIONS
 
 ### Step 1: Folder Detection
 
@@ -320,7 +336,7 @@ Display the completion report (see Section 10).
 
 ---
 
-## 8. FILE OUTPUT
+## 7. FILE OUTPUT
 
 ### File Naming
 
@@ -336,7 +352,7 @@ specs/{spec-folder}/memory/{timestamp}__{topic}.md
 
 ---
 
-## 9. ERROR HANDLING
+## 8. ERROR HANDLING
 
 | Condition              | Action                                          |
 | ---------------------- | ----------------------------------------------- |
@@ -352,7 +368,7 @@ specs/{spec-folder}/memory/{timestamp}__{topic}.md
 
 ---
 
-## 10. COMPLETION REPORT
+## 9. COMPLETION REPORT
 
 ### Structured Response Envelope
 
@@ -447,7 +463,7 @@ STATUS=OK ID=<id> TRIGGERS=<count>
 
 ---
 
-## 11. INDEXING OPTIONS
+## 10. INDEXING OPTIONS
 
 | Method                         | When             | Use Case                          |
 | ------------------------------ | ---------------- | --------------------------------- |
@@ -512,7 +528,7 @@ spec_kit_memory_memory_index_scan({ specFolder: "011-memory", force: true, inclu
 
 ---
 
-## 12. SUB-AGENT DELEGATION
+## 11. SUB-AGENT DELEGATION
 
 The save workflow delegates execution to a sub-agent for token efficiency. The main agent handles folder validation and user interaction; the sub-agent handles context analysis and file generation.
 
@@ -556,7 +572,7 @@ Fallback triggers if Task tool returns error, times out, or sub-agent returns `s
 
 ---
 
-## 13. SESSION DEDUPLICATION
+## 12. SESSION DEDUPLICATION
 
 Prevents redundant saves of the same conversation content (accidental duplicates, post-compaction saves, database bloat).
 
@@ -575,7 +591,7 @@ Prevents redundant saves of the same conversation content (accidental duplicates
 
 ---
 
-## 14. QUICK REFERENCE
+## 13. QUICK REFERENCE
 
 | Usage                                                  | Behavior                              |
 | ------------------------------------------------------ | ------------------------------------- |
@@ -585,7 +601,7 @@ Prevents redundant saves of the same conversation content (accidental duplicates
 
 ---
 
-## 15. NEXT STEPS
+## 14. NEXT STEPS
 
 | Condition                    | Suggested Command                          | Reason                        |
 | ---------------------------- | ------------------------------------------ | ----------------------------- |
@@ -598,7 +614,7 @@ Prevents redundant saves of the same conversation content (accidental duplicates
 
 ---
 
-## 16. RELATED COMMANDS
+## 15. RELATED COMMANDS
 
 - `/memory:context` — Find saved memories with intent-aware search
 - `/memory:manage` — Database management, checkpoints, cleanup

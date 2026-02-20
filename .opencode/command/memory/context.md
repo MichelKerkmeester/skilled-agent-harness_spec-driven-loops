@@ -178,9 +178,9 @@ memory_search({
 
 ### Step 4: Return Context with Explanation
 
-```
 Format response:
 
+```
 MEMORY:CONTEXT
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
@@ -333,23 +333,12 @@ deduplication:
 
 **CRITICAL:** Use the correct MCP tools for each step.
 
-```
-┌─────────────────┬─────────────────────────────────────────────────────────┬──────────┬─────────────────┐
-│ STEP            │ REQUIRED CALLS                                          │ PATTERN  │ ON FAILURE      │
-├─────────────────┼─────────────────────────────────────────────────────────┼──────────┼─────────────────┤
-│ INTENT DETECT   │ Parse query, match keywords                             │ LOCAL    │ Default to      │
-│                 │                                                         │          │ 'understand'    │
-├─────────────────┼─────────────────────────────────────────────────────────┼──────────┼─────────────────┤
-│ CONTEXT (PREF)  │ spec_kit_memory_memory_context({ input, ... })          │ SINGLE   │ Fall back to    │
-│                 │                                                         │          │ manual search   │
-├─────────────────┼─────────────────────────────────────────────────────────┼──────────┼─────────────────┤
-│ TRIGGER CHECK   │ spec_kit_memory_memory_match_triggers({ prompt: query })│ OPTIONAL │ Continue        │
-│                 │                                                         │          │ without         │
-├─────────────────┼─────────────────────────────────────────────────────────┼──────────┼─────────────────┤
-│ SEARCH (MANUAL) │ spec_kit_memory_memory_search({ query, anchors,         │ SINGLE   │ Show error msg  │
-│                 │   includeContent: true })                               │          │                 │
-└─────────────────┴─────────────────────────────────────────────────────────┴──────────┴─────────────────┘
-```
+| STEP            | REQUIRED CALLS                                           | PATTERN  | ON FAILURE                |
+| --------------- | -------------------------------------------------------- | -------- | ------------------------- |
+| INTENT DETECT   | Parse query, match keywords                              | LOCAL    | Default to 'understand'   |
+| CONTEXT (PREF)  | `spec_kit_memory_memory_context({ input, ... })`         | SINGLE   | Fall back to manual search |
+| TRIGGER CHECK   | `spec_kit_memory_memory_match_triggers({ prompt: query })`| OPTIONAL | Continue without          |
+| SEARCH (MANUAL) | `spec_kit_memory_memory_search({ query, anchors, includeContent: true })` | SINGLE | Show error msg |
 
 ### MCP Tool Signature
 

@@ -10,7 +10,7 @@ allowed-tools: Read, Bash, spec_kit_memory_memory_stats, spec_kit_memory_memory_
 
 ## 1. ARGUMENT PARSING GATE
 
-**STATUS: ☐ BLOCKED** (until argument is parsed)
+**STATUS: BLOCKED** (until argument is parsed)
 
 ```
 BEFORE executing ANY workflow:
@@ -34,12 +34,12 @@ IF required parameter missing:
 
 **Gates apply to scan, cleanup, delete, and checkpoint restore modes. Other modes pass through immediately.**
 
-### 🔒 GATE 1: CLEANUP CONFIRMATION
+### GATE 1: CLEANUP CONFIRMATION
 
-**STATUS: ⏭️ N/A** (default for non-cleanup modes)
+**STATUS: N/A** (default for non-cleanup modes)
 
 If `$ARGUMENTS` contains "cleanup":
-1. SET STATUS: ☐ BLOCKED
+1. SET STATUS: BLOCKED
 2. Execute `memory_list({ limit: 50, sortBy: "created_at" })`
 3. Filter by tier eligibility:
    - `deprecated` → Always include
@@ -50,48 +50,48 @@ If `$ARGUMENTS` contains "cleanup":
 5. If candidates found: Display with `[a]ll | [r]eview | [n]one | [b]ack` options
 6. **WAIT for user selection** before proceeding
 
-⛔ HARD STOP: DO NOT delete any memories until user explicitly chooses [a]ll or [y]es per item
+HARD STOP: DO NOT delete any memories until user explicitly chooses [a]ll or [y]es per item
 
-### 🔒 GATE 2: DELETE CONFIRMATION
+### GATE 2: DELETE CONFIRMATION
 
-**STATUS: ⏭️ N/A** (default for non-delete modes)
+**STATUS: N/A** (default for non-delete modes)
 
 If `$ARGUMENTS` contains "delete `<id>`":
-1. SET STATUS: ☐ BLOCKED
+1. SET STATUS: BLOCKED
 2. Retrieve memory details via `memory_list`
 3. If ID not found → `STATUS=FAIL ERROR="Memory #<id> not found"`
 4. If tier is `constitutional` or `critical`:
    - Show warning, require typing `DELETE <title>` to confirm
 5. If other tier: Ask `[y]es | [n]o`
 
-⛔ HARD STOP: DO NOT delete any memory until user explicitly confirms
+HARD STOP: DO NOT delete any memory until user explicitly confirms
 
-### 🔒 GATE 3: CHECKPOINT RESTORE CONFIRMATION
+### GATE 3: CHECKPOINT RESTORE CONFIRMATION
 
-**STATUS: ⏭️ N/A** (default for non-restore modes)
+**STATUS: N/A** (default for non-restore modes)
 
 If `$ARGUMENTS` contains "checkpoint restore `<name>`":
-1. SET STATUS: ☐ BLOCKED
+1. SET STATUS: BLOCKED
 2. Verify checkpoint exists via `checkpoint_list`
 3. If not found → `STATUS=FAIL ERROR="Checkpoint '<name>' not found"`
 4. Show diff summary: memories added since checkpoint (will be removed)
 5. Ask: `[y]es | [n]o | [v]iew diff`
 
-⛔ HARD STOP: DO NOT restore checkpoint until user explicitly confirms
+HARD STOP: DO NOT restore checkpoint until user explicitly confirms
 
-### 🔒 GATE 4: SCAN SOURCE CONFIRMATION
+### GATE 4: SCAN SOURCE CONFIRMATION
 
-**STATUS: ⏭️ N/A** (default for non-scan modes)
+**STATUS: N/A** (default for non-scan modes)
 
 If `$ARGUMENTS` contains `scan`:
-1. SET STATUS: ☐ BLOCKED
+1. SET STATUS: BLOCKED
 2. Ask user source scope for this run:
    - `[a]ll` → include skill references (`includeSkillRefs: true`) **(default)**
    - `[c]ore` → exclude skill references (`includeSkillRefs: false`)
    - `[b]ack` → cancel and return to dashboard
 3. **WAIT for user selection** before calling `memory_index_scan`
 
-⛔ HARD STOP: DO NOT execute scan until user selects source scope for this run
+HARD STOP: DO NOT execute scan until user selects source scope for this run
 
 ---
 
