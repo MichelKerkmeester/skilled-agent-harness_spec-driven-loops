@@ -11,6 +11,8 @@ import { spreadActivation } from '../cognitive/co-activation';
 import type { SpreadResult } from '../cognitive/co-activation';
 import { applyMMR } from './mmr-reranker';
 import type { MMRCandidate } from './mmr-reranker';
+import { INTENT_LAMBDA_MAP } from './intent-classifier';
+import { fts5Bm25Search } from './sqlite-fts';
 
 /* ---------------------------------------------------------------
    1. INTERFACES
@@ -35,6 +37,8 @@ interface HybridSearchOptions {
   useVector?: boolean;
   useGraph?: boolean;
   includeArchived?: boolean;
+  /** Classified query intent for adaptive fusion weight selection (e.g. 'understand', 'fix_bug'). */
+  intent?: string;
 }
 
 interface HybridSearchResult {
@@ -182,33 +186,15 @@ function ftsSearch(
   const { limit = 20, specFolder, includeArchived = false } = options;
 
   try {
-    // P3-06: Comprehensive FTS5 query sanitization
-    const sanitized = sanitizeFTS5Query(query)
-      .split(/\s+/)
-      .filter(Boolean)
-      .join(' OR ');
+    // C138-P2: Delegate to weighted BM25 FTS5 search from sqlite-fts.ts
+    // Uses bm25(memory_fts, 10.0, 5.0, 1.0, 2.0) for per-column weighting
+    // (title 10x, trigger_phrases 5x, content 1x, file_path 2x)
+    const bm25Results = fts5Bm25Search(db, query, { limit, specFolder, includeArchived });
 
-    if (!sanitized) return [];
-
-    const folderFilter = specFolder ? 'AND m.spec_folder = ?' : '';
-    const archivalFilter = !includeArchived ? 'AND (m.is_archived IS NULL OR m.is_archived = 0)' : '';
-    const params: (string | number)[] = specFolder ? [sanitized, specFolder, limit] : [sanitized, limit];
-
-    const rows = (db.prepare(`
-      SELECT m.*, rank
-      FROM memory_fts f
-      JOIN memory_index m ON f.rowid = m.id
-      WHERE memory_fts MATCH ?
-        ${folderFilter}
-        ${archivalFilter}
-      ORDER BY rank
-      LIMIT ?
-    `) as Database.Statement).all(...params) as Array<Record<string, unknown>>;
-
-    return rows.map(row => ({
+    return bm25Results.map(row => ({
       ...row,
       id: row.id as number,
-      score: Math.abs((row.rank as number) || 0),
+      score: row.fts_score || 0,
       source: 'fts',
     }));
   } catch (error: unknown) {
@@ -329,7 +315,7 @@ async function hybridSearch(
   for (const r of results) {
     const src = r.source || 'unknown';
     if (!bySource.has(src)) bySource.set(src, []);
-    bySource.get(src)!.push(r);
+    bySource.get(src)!.push(r); // non-null safe: has() guard above guarantees entry exists
   }
 
   const normalized: HybridSearchResult[] = [];
@@ -422,7 +408,7 @@ async function hybridSearchEnhanced(
         const graphResults = graphSearchFn(query, {
           limit: options.limit || 20,
           specFolder: options.specFolder,
-          intent: (options as HybridSearchOptions & { intent?: string }).intent,
+          intent: options.intent,
         });
         if (graphResults.length > 0) {
           graphMetrics.graphHits++;
@@ -442,7 +428,7 @@ async function hybridSearchEnhanced(
       for (const list of lists) {
         for (const r of list.results) {
           if (!sourceMap.has(r.id)) sourceMap.set(r.id, new Set());
-          sourceMap.get(r.id)!.add(list.source);
+          sourceMap.get(r.id)!.add(list.source); // non-null safe: has() guard above guarantees entry exists
         }
       }
       for (const [, sources] of sourceMap) {
@@ -451,14 +437,16 @@ async function hybridSearchEnhanced(
       }
 
       // C138: Use adaptive fusion to get intent-aware weights replacing hardcoded [1.0, 0.8, 0.6]
-      const intent = (options as HybridSearchOptions & { intent?: string }).intent || 'understand';
+      const intent = options.intent || 'understand';
       const adaptiveResult = hybridAdaptiveFuse(semanticResults, keywordResults, intent);
       const { semanticWeight, keywordWeight } = adaptiveResult.weights;
 
       // Apply adaptive weights to the fusion lists (update in place)
+      const { graphWeight: adaptiveGraphWeight } = adaptiveResult.weights;
       for (const list of lists) {
         if (list.source === 'vector') list.weight = semanticWeight;
         else if (list.source === 'fts' || list.source === 'bm25') list.weight = keywordWeight;
+        else if (list.source === 'graph' && typeof adaptiveGraphWeight === 'number') list.weight = adaptiveGraphWeight;
       }
 
       const fused = fuseResultsMulti(lists);
@@ -472,7 +460,9 @@ async function hybridSearchEnhanced(
       ) as MMRCandidate[];
 
       if (mmrCandidates.length >= 2) {
-        const diversified = applyMMR(mmrCandidates as MMRCandidate[], { lambda: 0.7, limit });
+        // C138: Intent-driven lambda — use INTENT_LAMBDA_MAP for per-intent diversity tuning
+        const mmrLambda = INTENT_LAMBDA_MAP[intent] ?? 0.7;
+        const diversified = applyMMR(mmrCandidates as MMRCandidate[], { lambda: mmrLambda, limit });
         reranked = diversified.map(c => reranked.find(r => r.id === c.id) ?? c as unknown as typeof reranked[0]);
       }
 
@@ -515,15 +505,34 @@ async function hybridSearchEnhanced(
 
 /**
  * Search with automatic fallback chain.
+ * C138-P0: Two-pass adaptive fallback — if primary scatter at min_similarity=0.3
+ * returns 0 results, retry at 0.17 with metadata.fallbackRetry=true.
  */
 async function searchWithFallback(
   query: string,
   embedding: Float32Array | number[] | null,
   options: HybridSearchOptions = {}
 ): Promise<HybridSearchResult[]> {
+  const PRIMARY_THRESHOLD = 0.3;
+  const FALLBACK_THRESHOLD = 0.17;
+
   // P3-03 FIX: Use hybridSearchEnhanced (with RRF fusion) instead of
   // the naive hybridSearch that merges raw scores
-  const results = await hybridSearchEnhanced(query, embedding, options);
+  const primaryOptions = { ...options, minSimilarity: options.minSimilarity ?? PRIMARY_THRESHOLD };
+  let results = await hybridSearchEnhanced(query, embedding, primaryOptions);
+
+  // C138-P0: Two-pass adaptive fallback
+  if (results.length === 0 && (primaryOptions.minSimilarity ?? PRIMARY_THRESHOLD) >= FALLBACK_THRESHOLD) {
+    const fallbackOptions = { ...options, minSimilarity: FALLBACK_THRESHOLD };
+    results = await hybridSearchEnhanced(query, embedding, fallbackOptions);
+    if (results.length > 0) {
+      // Tag results with fallback metadata
+      for (const r of results) {
+        (r as Record<string, unknown>).fallbackRetry = true;
+      }
+    }
+  }
+
   if (results.length > 0) return results;
 
   // Fallback to FTS only

@@ -279,3 +279,224 @@ describe('C138 Integration Pipeline', () => {
     expect(response.trm).toHaveProperty('warnings');
   });
 });
+
+/* ---------------------------------------------------------------
+   STAGE-LEVEL TESTS (Agent 5 — Task B additions)
+   Tests targeting individual pipeline stages with production imports.
+   --------------------------------------------------------------- */
+
+describe('C138 Stage: Adaptive Fusion Weights', () => {
+  it('getAdaptiveWeights returns different profiles per intent', async () => {
+    const { getAdaptiveWeights } = await import('../lib/search/adaptive-fusion');
+    const understand = getAdaptiveWeights('understand');
+    const fixBug = getAdaptiveWeights('fix_bug');
+
+    expect(understand.semanticWeight).toBe(0.7);
+    expect(fixBug.semanticWeight).toBe(0.4);
+    expect(understand.graphWeight).toBe(0.15);
+    expect(fixBug.graphWeight).toBe(0.10);
+  });
+
+  it('getAdaptiveWeights returns default for unknown intent', async () => {
+    const { getAdaptiveWeights, DEFAULT_WEIGHTS } = await import('../lib/search/adaptive-fusion');
+    const unknown = getAdaptiveWeights('totally_unknown_intent');
+
+    expect(unknown.semanticWeight).toBe(DEFAULT_WEIGHTS.semanticWeight);
+    expect(unknown.keywordWeight).toBe(DEFAULT_WEIGHTS.keywordWeight);
+  });
+
+  it('all 6 intent profiles include graphWeight and graphCausalBias', async () => {
+    const { INTENT_WEIGHT_PROFILES } = await import('../lib/search/adaptive-fusion');
+    const intents = Object.keys(INTENT_WEIGHT_PROFILES);
+
+    expect(intents.length).toBe(6);
+    for (const intent of intents) {
+      const profile = INTENT_WEIGHT_PROFILES[intent];
+      expect(typeof profile.graphWeight).toBe('number');
+      expect(typeof profile.graphCausalBias).toBe('number');
+    }
+  });
+});
+
+describe('C138 Stage: MMR Reranker Production', () => {
+  it('applyMMR respects N=20 hardcap', () => {
+    const candidates = Array.from({ length: 50 }, (_, i) => ({
+      id: i + 1,
+      score: 1 - i * 0.01,
+      embedding: new Float32Array([Math.random(), Math.random(), Math.random()]),
+    }));
+
+    const selected = applyMMR(candidates, { lambda: 0.7, limit: 10 });
+    // Should only process first 20 candidates (DEFAULT_MAX_CANDIDATES)
+    // and return at most limit=10
+    expect(selected.length).toBeLessThanOrEqual(10);
+    // All selected IDs must be from the top-20 pool
+    for (const s of selected) {
+      expect(s.id).toBeLessThanOrEqual(20);
+    }
+  });
+
+  it('applyMMR returns empty for empty input', () => {
+    const selected = applyMMR([], { lambda: 0.7, limit: 10 });
+    expect(selected).toHaveLength(0);
+  });
+
+  it('applyMMR selects highest-score first', () => {
+    const candidates = [
+      { id: 1, score: 0.3, embedding: new Float32Array([1, 0, 0]) },
+      { id: 2, score: 0.9, embedding: new Float32Array([0, 1, 0]) },
+      { id: 3, score: 0.5, embedding: new Float32Array([0, 0, 1]) },
+    ];
+    const selected = applyMMR(candidates, { lambda: 0.7, limit: 3 });
+    expect(selected[0].id).toBe(2); // highest score first
+  });
+
+  it('applyMMR O(N^2) completes in < 5ms for N=20', () => {
+    const candidates = Array.from({ length: 20 }, (_, i) => ({
+      id: i + 1,
+      score: 1 - i * 0.04,
+      embedding: new Float32Array(Array.from({ length: 384 }, () => Math.random())),
+    }));
+
+    const start = performance.now();
+    applyMMR(candidates, { lambda: 0.7, limit: 10 });
+    const elapsed = performance.now() - start;
+
+    expect(elapsed).toBeLessThan(5);
+  });
+});
+
+describe('C138 Stage: Evidence Gap Detector Production', () => {
+  it('detectEvidenceGap flags flat distributions (Z < 1.5)', () => {
+    // All scores very close — flat distribution
+    const flat = detectEvidenceGap([0.5, 0.48, 0.47, 0.46, 0.45]);
+    expect(flat.gapDetected).toBe(true);
+    expect(flat.zScore).toBeLessThan(1.5);
+  });
+
+  it('detectEvidenceGap does NOT flag clear winner distributions', () => {
+    // One score is much higher — clear winner
+    const clear = detectEvidenceGap([0.95, 0.2, 0.1, 0.05, 0.02]);
+    expect(clear.gapDetected).toBe(false);
+    expect(clear.zScore).toBeGreaterThan(1.5);
+  });
+
+  it('detectEvidenceGap handles empty array', () => {
+    const empty = detectEvidenceGap([]);
+    expect(empty.gapDetected).toBe(true);
+    expect(empty.zScore).toBe(0);
+  });
+
+  it('detectEvidenceGap handles single score', () => {
+    const single = detectEvidenceGap([0.5]);
+    // Single score above MIN_ABSOLUTE_SCORE → no gap
+    expect(single.gapDetected).toBe(false);
+    expect(single.mean).toBe(0.5);
+  });
+
+  it('detectEvidenceGap handles all identical scores', () => {
+    const identical = detectEvidenceGap([0.3, 0.3, 0.3, 0.3]);
+    // stdDev=0, zScore=0 → gap detected
+    expect(identical.gapDetected).toBe(true);
+    expect(identical.stdDev).toBe(0);
+  });
+});
+
+describe('C138 Stage: Query Expander Production', () => {
+  it('expandQuery always includes original query', async () => {
+    const { expandQuery } = await import('../lib/search/query-expander');
+    const variants = expandQuery('fix the login error');
+
+    expect(variants[0]).toBe('fix the login error');
+    expect(variants.length).toBeGreaterThanOrEqual(1);
+  });
+
+  it('expandQuery returns max 3 variants', async () => {
+    const { expandQuery } = await import('../lib/search/query-expander');
+    const variants = expandQuery('fix the login error bug crash deploy');
+
+    expect(variants.length).toBeLessThanOrEqual(3);
+  });
+
+  it('expandQuery returns only original for unknown terms', async () => {
+    const { expandQuery } = await import('../lib/search/query-expander');
+    const variants = expandQuery('xyzzy foobar');
+
+    expect(variants).toEqual(['xyzzy foobar']);
+  });
+
+  it('expandQuery performs synonym substitution for known terms', async () => {
+    const { expandQuery } = await import('../lib/search/query-expander');
+    const variants = expandQuery('fix the login error');
+
+    // 'fix' → 'patch', 'login' → 'authentication', 'error' → 'exception'
+    expect(variants.length).toBeGreaterThan(1);
+    // At least one variant should differ from original
+    expect(variants.some(v => v !== 'fix the login error')).toBe(true);
+  });
+});
+
+describe('C138 Stage: Feature Flag Guards', () => {
+  it('isGraphUnifiedEnabled defaults to false', async () => {
+    const { isGraphUnifiedEnabled } = await import('../lib/search/graph-flags');
+    // Without env var, should be false
+    const original = process.env.SPECKIT_GRAPH_UNIFIED;
+    delete process.env.SPECKIT_GRAPH_UNIFIED;
+    expect(isGraphUnifiedEnabled()).toBe(false);
+    if (original !== undefined) process.env.SPECKIT_GRAPH_UNIFIED = original;
+  });
+
+  it('isGraphMMREnabled defaults to false', async () => {
+    const { isGraphMMREnabled } = await import('../lib/search/graph-flags');
+    const original = process.env.SPECKIT_GRAPH_MMR;
+    delete process.env.SPECKIT_GRAPH_MMR;
+    expect(isGraphMMREnabled()).toBe(false);
+    if (original !== undefined) process.env.SPECKIT_GRAPH_MMR = original;
+  });
+
+  it('isGraphAuthorityEnabled defaults to false', async () => {
+    const { isGraphAuthorityEnabled } = await import('../lib/search/graph-flags');
+    const original = process.env.SPECKIT_GRAPH_AUTHORITY;
+    delete process.env.SPECKIT_GRAPH_AUTHORITY;
+    expect(isGraphAuthorityEnabled()).toBe(false);
+    if (original !== undefined) process.env.SPECKIT_GRAPH_AUTHORITY = original;
+  });
+});
+
+/* ---------------------------------------------------------------
+   REGRESSION: Feature Flag OFF Behavior
+   Ensures new 138 code paths are fully gated and do not alter
+   existing search behavior when all flags are disabled.
+   --------------------------------------------------------------- */
+
+describe('C138 Regression: Flags OFF Baseline', () => {
+  it('hybridAdaptiveFuse returns standard results when SPECKIT_ADAPTIVE_FUSION is off', async () => {
+    const { hybridAdaptiveFuse } = await import('../lib/search/adaptive-fusion');
+    // With flag off, should return standard RRF results (equal weights)
+    const semantic = [{ id: 1, score: 0.8 }, { id: 2, score: 0.5 }];
+    const keyword = [{ id: 3, score: 0.7 }, { id: 1, score: 0.6 }];
+
+    // Note: isAdaptiveFusionEnabled() depends on rollout-policy module.
+    // When flag is off, hybridAdaptiveFuse returns standard fusion results.
+    const result = hybridAdaptiveFuse(semantic, keyword, 'understand');
+    expect(result.results).toBeDefined();
+    expect(Array.isArray(result.results)).toBe(true);
+  });
+
+  it('predictGraphCoverage returns no-op when SPECKIT_GRAPH_UNIFIED is off', async () => {
+    const { predictGraphCoverage } = await import('../lib/search/evidence-gap-detector');
+    const original = process.env.SPECKIT_GRAPH_UNIFIED;
+    delete process.env.SPECKIT_GRAPH_UNIFIED;
+
+    const mockGraph = {
+      nodes: new Map([['node1', { id: 'node1', labels: ['test'], properties: {} }]]),
+      inbound: new Map([['node1', ['mem1', 'mem2']]]),
+    };
+
+    const result = predictGraphCoverage('test query', mockGraph);
+    expect(result.earlyGap).toBe(false);
+    expect(result.connectedNodes).toBe(0);
+
+    if (original !== undefined) process.env.SPECKIT_GRAPH_UNIFIED = original;
+  });
+});

@@ -31,11 +31,11 @@
 | Workstream | Folder | Status | Progress |
 |------------|--------|--------|----------|
 | [W:RAG] Hybrid RAG Fusion | `001-system-speckit-hybrid-rag-fusion/` | In progress | 0 / 6 phases |
-| [W:GRAPH] Skill Graph Integration | `002-skill-graph-integration/` | Complete | 5 / 5 phases |
-| [W:INTEG] Global Integration | (root-level tasks) | Pending | 0 / 5 tasks |
-| [W:INTEG-GRAPH] Unified Graph Intelligence | `003-unified-graph-intelligence/` | Spec complete | 0 / 4 phases |
+| [W:GRAPH] Skill Graph Integration | `002-skill-graph-integration/` | **Complete** | 5 / 5 phases |
+| [W:INTEG] Global Integration | (root-level tasks) | Blocked on W:RAG | 0 / 5 tasks |
+| [W:INTEG-GRAPH] Unified Graph Intelligence | `003-unified-graph-intelligence/` | **Complete** | 4 / 4 phases |
 
-**Overall completion**: Workstream B done. Workstream A implementation not started. Workstream C (Unified Graph Intelligence) spec complete, implementation pending.
+**Overall completion**: Workstream B done. Workstream C (Unified Graph Intelligence) done (22 tasks, 4725 tests, 50/54 checklist). Workstream A (Hybrid RAG Fusion) partially done — modules created but not wired. Global integration blocked on W:RAG.
 <!-- /ANCHOR:overview -->
 
 ---
@@ -123,32 +123,32 @@
 
 > Details: `003-unified-graph-intelligence/tasks.md`
 
-### Phase 0+: Wire Graph Channel
-- [ ] [W:INTEG-P0+] T301 Create SkillGraphCacheManager singleton (graph-search cache)
-- [ ] [W:INTEG-P0+] T302 Create createUnifiedGraphSearchFn() composite function
-- [ ] [W:INTEG-P0+] T303 Wire graphSearchFn into hybridSearch.init() at context-server.ts:566
-- [ ] [W:INTEG-P0+] T304 Add graphWeight to FusionWeights in adaptive-fusion.ts
-- [ ] [W:INTEG-P0+] T305 Bind co-activation spreading return value (line 406-416)
-- [ ] [W:INTEG-P0+] T306 Add SPECKIT_GRAPH_UNIFIED feature flag
+### Phase 0+: Wire Graph Channel — COMPLETE
+- [x] [W:INTEG-P0+] T301 Create SkillGraphCacheManager singleton (graph-search cache) — maps to 003/T001
+- [x] [W:INTEG-P0+] T302 Create createUnifiedGraphSearchFn() composite function — maps to 003/T002
+- [x] [W:INTEG-P0+] T303 Wire graphSearchFn into hybridSearch.init() at context-server.ts:566 — maps to 003/T004+T005
+- [x] [W:INTEG-P0+] T304 Add graphWeight to FusionWeights in adaptive-fusion.ts — maps to 003/T006
+- [x] [W:INTEG-P0+] T305 Bind co-activation spreading return value (line 406-416) — maps to 003/T007
+- [x] [W:INTEG-P0+] T306 Add SPECKIT_GRAPH_UNIFIED feature flag — maps to 003/T003
 
-### Phase 1+: Validation & Intent Routing
-- [ ] [W:INTEG-P1+] T307 Add graph channel metrics collection
-- [ ] [W:INTEG-P1+] T308 Implement Intent-to-Subgraph Routing (Pattern 3)
-- [ ] [W:INTEG-P1+] T309 Implement Semantic Bridge Discovery (Pattern 4)
-- [ ] [W:INTEG-P1+] T310 Validate with 50-query benchmark
+### Phase 1+: Validation & Intent Routing — COMPLETE
+- [x] [W:INTEG-P1+] T307 Add graph channel metrics collection — maps to 003/T008
+- [x] [W:INTEG-P1+] T308 Implement Intent-to-Subgraph Routing (Pattern 3) — maps to 003/T009
+- [x] [W:INTEG-P1+] T309 Implement Semantic Bridge Discovery (Pattern 4) — maps to 003/T010
+- [x] [W:INTEG-P1+] T310 Validate with 50-query benchmark — maps to 003/T011
 
-### Phase 2+: Intelligence Amplification
-- [ ] [W:INTEG-P2+] T311 [P] Graph-Guided MMR (Pattern 1)
-- [ ] [W:INTEG-P2+] T312 [P] Structural Authority Propagation (Pattern 2)
-- [ ] [W:INTEG-P2+] T313 [P] Evidence Gap Prevention (Pattern 5)
-- [ ] [W:INTEG-P2+] T314 [P] Context Budget Optimization (Pattern 6)
-- [ ] [W:INTEG-P2+] T315 [P] Temporal-Structural Coherence (Pattern 7)
+### Phase 2+: Intelligence Amplification — COMPLETE
+- [x] [W:INTEG-P2+] T311 [P] Graph-Guided MMR (Pattern 1) — maps to 003/T012
+- [x] [W:INTEG-P2+] T312 [P] Structural Authority Propagation (Pattern 2) — maps to 003/T013
+- [x] [W:INTEG-P2+] T313 [P] Evidence Gap Prevention (Pattern 5) — maps to 003/T014
+- [x] [W:INTEG-P2+] T314 [P] Context Budget Optimization (Pattern 6) — maps to 003/T015
+- [x] [W:INTEG-P2+] T315 [P] Temporal-Structural Coherence (Pattern 7) — maps to 003/T016
 
-### Phase 3: Test Coverage
-- [ ] [W:INTEG-P3] T316 [P] Unit tests for graph-search-fn.ts
-- [ ] [W:INTEG-P3] T317 [P] Unit tests for SkillGraphCacheManager
-- [ ] [W:INTEG-P3] T318 [P] Integration test: full pipeline with graph channel
-- [ ] [W:INTEG-P3] T319 Regression test: flag=false baseline unchanged
+### Phase 3: Test Coverage — COMPLETE
+- [x] [W:INTEG-P3] T316 [P] Unit tests for graph-search-fn.ts — maps to 003/T017
+- [x] [W:INTEG-P3] T317 [P] Unit tests for SkillGraphCacheManager — maps to 003/T018
+- [x] [W:INTEG-P3] T318 [P] Integration test: full pipeline with graph channel — maps to 003/T021
+- [x] [W:INTEG-P3] T319 Regression test: flag=false baseline unchanged — maps to 003/T022
 <!-- /ANCHOR:workstream-c -->
 
 ---
@@ -185,7 +185,8 @@ These tasks require both workstreams to be sufficiently complete before executio
 | M3: Advanced Retrieval | [W:RAG] | P3 + P4 complete, multi-query + indexing quality | [ ] |
 | M4: Test Coverage | [W:RAG] | P5 complete, all unit + integration tests passing | [ ] |
 | M5: Skill Graph Done | [W:GRAPH] | All phases complete, SGQS verified | [x] |
-| M6: Integration Verified | [W:INTEG] | TASK-G001 through TASK-G005 complete | [ ] |
+| M5b: Unified Graph Done | [W:INTEG-GRAPH] | All 4 phases complete (T301-T319), 4725 tests | [x] |
+| M6: Integration Verified | [W:INTEG] | TASK-G001 through TASK-G005 complete | [ ] (blocked on W:RAG) |
 | M7: Production Ready | All | M4 + M6 complete, sign-off received | [ ] |
 <!-- /ANCHOR:milestones -->
 

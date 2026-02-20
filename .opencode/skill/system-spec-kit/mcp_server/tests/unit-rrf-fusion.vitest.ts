@@ -1,11 +1,11 @@
-// @ts-nocheck
-// ───────────────────────────────────────────────────────────────
-// TEST: RRF FUSION (vitest migration POC)
+// ---------------------------------------------------------------
+// TEST: RRF Fusion (C138-P3) — Cross-Variant Multi-Query Fusion
 // Converted from: unit-rrf-fusion.test.ts (custom runner)
-// ───────────────────────────────────────────────────────────────
+// ---------------------------------------------------------------
 
 import { describe, it, expect } from 'vitest';
-import { fuseResults, fuseResultsMulti, SOURCE_TYPES } from '../lib/search/rrf-fusion';
+import type { FusionResult } from '../lib/search/rrf-fusion';
+import { fuseResults, fuseResultsMulti, fuseResultsCrossVariant, SOURCE_TYPES } from '../lib/search/rrf-fusion';
 
 describe('RRF Fusion (T001-T006)', () => {
   it('T001: Fuses results from multiple sources', () => {
@@ -26,7 +26,7 @@ describe('RRF Fusion (T001-T006)', () => {
     ]);
 
     expect(fused).toBeInstanceOf(Array);
-    const ids = fused.map((r: any) => r.id).sort();
+    const ids = fused.map((r: FusionResult) => r.id).sort();
     expect(ids).toHaveLength(4);
     expect(ids).toEqual([1, 2, 3, 4]);
 
@@ -71,9 +71,9 @@ describe('RRF Fusion (T001-T006)', () => {
       { source: SOURCE_TYPES.BM25, results: bm25Results },
     ]);
 
-    const shared = fused.find((r: any) => r.id === 'shared');
-    const vectorOnly = fused.find((r: any) => r.id === 'vector-only');
-    const bm25Only = fused.find((r: any) => r.id === 'bm25-only');
+    const shared = fused.find((r: FusionResult) => r.id === 'shared');
+    const vectorOnly = fused.find((r: FusionResult) => r.id === 'vector-only');
+    const bm25Only = fused.find((r: FusionResult) => r.id === 'bm25-only');
 
     expect(shared).toBeDefined();
     expect(vectorOnly).toBeDefined();
@@ -134,15 +134,15 @@ describe('RRF Fusion (T001-T006)', () => {
       { source: SOURCE_TYPES.BM25, results: bm25Results },
     ]);
 
-    const v1 = fused.find((r: any) => r.id === 'v1');
+    const v1 = fused.find((r: FusionResult) => r.id === 'v1');
     expect(v1.sources).toContain(SOURCE_TYPES.VECTOR);
     expect(v1.sources).toHaveLength(1);
 
-    const b1 = fused.find((r: any) => r.id === 'b1');
+    const b1 = fused.find((r: FusionResult) => r.id === 'b1');
     expect(b1.sources).toContain(SOURCE_TYPES.BM25);
     expect(b1.sources).toHaveLength(1);
 
-    const shared = fused.find((r: any) => r.id === 'shared');
+    const shared = fused.find((r: FusionResult) => r.id === 'shared');
     expect(shared.sources).toContain(SOURCE_TYPES.VECTOR);
     expect(shared.sources).toContain(SOURCE_TYPES.BM25);
     expect(shared.sources).toHaveLength(2);
@@ -194,6 +194,98 @@ describe('C138: Cross-Variant RRF (Multi-Query)', () => {
     // Single-source: no convergence bonus
     for (const r of fused) {
       expect(r.convergenceBonus).toBe(0);
+    }
+  });
+});
+
+describe('C138-P3: fuseResultsCrossVariant', () => {
+  it('C138-CV1: empty variant list returns empty', () => {
+    const fused = fuseResultsCrossVariant([]);
+    expect(fused).toEqual([]);
+  });
+
+  it('C138-CV2: single variant behaves like fuseResultsMulti', () => {
+    const variant0 = [
+      { source: SOURCE_TYPES.VECTOR, results: [{ id: 'a', title: 'A' }, { id: 'b', title: 'B' }] },
+      { source: SOURCE_TYPES.BM25, results: [{ id: 'b', title: 'B' }] },
+    ];
+
+    const crossVariant = fuseResultsCrossVariant([variant0]);
+    const standard = fuseResultsMulti(variant0);
+
+    // Same IDs, same scores (no cross-variant bonus with 1 variant)
+    expect(crossVariant.map(r => r.id).sort()).toEqual(standard.map(r => r.id).sort());
+  });
+
+  it('C138-CV3: ID appearing in 2 variants gets +0.10 cross-variant bonus', () => {
+    const variant0 = [
+      { source: SOURCE_TYPES.VECTOR, results: [{ id: 'shared', title: 'Shared' }, { id: 'v0-only', title: 'V0' }] },
+    ];
+    const variant1 = [
+      { source: SOURCE_TYPES.VECTOR, results: [{ id: 'shared', title: 'Shared' }, { id: 'v1-only', title: 'V1' }] },
+    ];
+
+    const fused = fuseResultsCrossVariant([variant0, variant1]);
+
+    const shared = fused.find(r => r.id === 'shared');
+    const v0Only = fused.find(r => r.id === 'v0-only');
+
+    expect(shared).toBeDefined();
+    expect(v0Only).toBeDefined();
+    // Shared gets cross-variant bonus, v0-only does not
+    expect(shared.convergenceBonus).toBeGreaterThanOrEqual(0.10);
+    expect(shared.rrfScore).toBeGreaterThan(v0Only.rrfScore);
+  });
+
+  it('C138-CV4: ID appearing in 3 variants gets +0.20 cross-variant bonus', () => {
+    const mkVariant = (ids: string[]) => [
+      { source: SOURCE_TYPES.VECTOR, results: ids.map(id => ({ id, title: id })) },
+    ];
+
+    const fused = fuseResultsCrossVariant([
+      mkVariant(['shared', 'a']),
+      mkVariant(['shared', 'b']),
+      mkVariant(['shared', 'c']),
+    ]);
+
+    const shared = fused.find(r => r.id === 'shared');
+    // 3 variants - 1 = 2 => 2 * 0.10 = 0.20 cross-variant bonus
+    expect(shared.convergenceBonus).toBeCloseTo(0.20, 2);
+  });
+
+  it('C138-CV5: unique IDs from different variants are all included', () => {
+    const variant0 = [
+      { source: SOURCE_TYPES.VECTOR, results: [{ id: 'a', title: 'A' }] },
+    ];
+    const variant1 = [
+      { source: SOURCE_TYPES.VECTOR, results: [{ id: 'b', title: 'B' }] },
+    ];
+    const variant2 = [
+      { source: SOURCE_TYPES.VECTOR, results: [{ id: 'c', title: 'C' }] },
+    ];
+
+    const fused = fuseResultsCrossVariant([variant0, variant1, variant2]);
+    const ids = fused.map(r => r.id).sort();
+    expect(ids).toEqual(['a', 'b', 'c']);
+  });
+
+  it('C138-CV6: results are sorted by rrfScore descending', () => {
+    const variant0 = [
+      { source: SOURCE_TYPES.VECTOR, results: [
+        { id: 'shared', title: 'Shared' },
+        { id: 'a', title: 'A' },
+      ]},
+    ];
+    const variant1 = [
+      { source: SOURCE_TYPES.BM25, results: [
+        { id: 'shared', title: 'Shared' },
+        { id: 'b', title: 'B' },
+      ]},
+    ];
+
+    const fused = fuseResultsCrossVariant([variant0, variant1]);
+    for (let i = 0; i < fused.length - 1; i++) {
+      expect(fused[i].rrfScore).toBeGreaterThanOrEqual(fused[i + 1].rrfScore);
     }
   });
 });

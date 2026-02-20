@@ -198,7 +198,7 @@ function queryCausalEdges(
 }
 
 // ---------------------------------------------------------------
-// 6. SGQS SKILL GRAPH CHANNEL
+// 5b. SGQS SKILL GRAPH CHANNEL
 // ---------------------------------------------------------------
 
 function querySkillGraph(
@@ -246,7 +246,7 @@ function querySkillGraph(
 }
 
 // ---------------------------------------------------------------
-// 6. FACTORY FUNCTION
+// 6. FACTORY FUNCTION (createUnifiedGraphSearchFn)
 // ---------------------------------------------------------------
 
 /**
@@ -274,8 +274,10 @@ function createUnifiedGraphSearchFn(
   let cachedGraph: SkillGraph | null = null;
 
   // Kick off an initial warm load in the background immediately.
+  // Also pre-compute the authority map so T013 scores are available on first query.
   skillGraphCache.get(skillRoot).then(graph => {
     cachedGraph = graph;
+    cachedAuthorityMap = computeAuthorityScores(graph);
   }).catch((err: unknown) => {
     const msg = err instanceof Error ? err.message : String(err);
     console.warn(`[graph-search-fn] Initial SGQS warm load failed: ${msg}`);
@@ -301,8 +303,10 @@ function createUnifiedGraphSearchFn(
     }
 
     // Trigger a background refresh for the next invocation.
+    // Update authority map alongside the graph snapshot so T013 stays in sync.
     skillGraphCache.get(skillRoot).then(graph => {
       cachedGraph = graph;
+      cachedAuthorityMap = computeAuthorityScores(graph);
     }).catch((err: unknown) => {
       const msg = err instanceof Error ? err.message : String(err);
       console.warn(`[graph-search-fn] SGQS background refresh failed: ${msg}`);
