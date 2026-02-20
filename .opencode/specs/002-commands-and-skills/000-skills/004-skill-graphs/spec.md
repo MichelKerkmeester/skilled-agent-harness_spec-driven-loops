@@ -13,6 +13,7 @@ The OpenCode skill system currently uses monolithic `SKILL.md` files which exhau
 - Adopt wikilinks `[[node]]` for semantic traversal in prose across all skills.
 - Require YAML frontmatter with `description` fields on all nodes.
 - Deprecate monolithic python-based Smart Routing in favor of Maps of Content (MOCs).
+- Keep `SKILL.md` as a lightweight compatibility entrypoint during migration, routing users to `index.md` and node-based content.
 
 **Critical Dependencies**: Completion of a link validation script to ensure graph integrity across the entire `.opencode/skill/` directory.
 <!-- /ANCHOR:executive-summary -->
@@ -53,6 +54,8 @@ Implement a traversable Skill Graph architecture for **every available skill** u
 - Definition of YAML frontmatter standards for skill nodes.
 - Implementation of a link-validation script (`check-links.sh`) supporting cross-skill node linking.
 - Updates to agent instructions to natively support wikilink `[[...]]` traversal.
+- Add Skill Graph authoring docs to `workflows-documentation` (reference + template asset).
+- Update `workflows-documentation/SKILL.md` to describe and route Skill Graph workflows.
 
 ### Out of Scope
 - Advanced automated vectorization of skill graphs (relying on standard `Read` and `Glob` tools for now).
@@ -61,9 +64,11 @@ Implement a traversable Skill Graph architecture for **every available skill** u
 ### Files to Change
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skill/*/SKILL.md` | Delete/Replace | Replace with index.md and nodes across all skills |
+| `.opencode/skill/*/SKILL.md` | Refactor | Convert to lightweight graph entrypoints and routing content |
 | `.opencode/skill/*/nodes/*.md` | Create | Extracted modular skill files |
 | `scripts/check-links.sh` | Create | Global link validation utility |
+| `.opencode/skill/workflows-documentation/references/skill_graph_standards.md` | Create | Skill Graph authoring standards |
+| `.opencode/skill/workflows-documentation/assets/opencode/skill_graph_node_template.md` | Create | Reusable template for graph node authoring |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -83,6 +88,7 @@ Implement a traversable Skill Graph architecture for **every available skill** u
 |----|-------------|---------------------|
 | REQ-004 | MOC Organization | Sub-topics in large skills must be clustered using Maps of Content (MOCs). |
 | REQ-005 | Cross-Skill Linking | Nodes should be able to reference other skills' nodes directly using paths or global MOCs. |
+| REQ-006 | Documentation Enablement | `workflows-documentation` includes a Skill Graph reference and template asset, and `SKILL.md` documents graph-first authoring workflow. |
 <!-- /ANCHOR:requirements -->
 
 ---
@@ -148,6 +154,7 @@ Implement a traversable Skill Graph architecture for **every available skill** u
 | R-001 | Agents fail to follow links | High | Medium | Add clear instructions in the root index file explaining how to traverse. |
 | R-002 | Link rot over time | Med | High | Strict enforcement of `check-links.sh`. |
 | R-003 | Lost functionality | High | Low | QA each skill conversion thoroughly before deleting `SKILL.md`. |
+| R-004 | Loader compatibility breakage | High | Medium | Keep `SKILL.md` present as compatibility wrappers during transition. |
 <!-- /ANCHOR:risk-matrix -->
 
 ---
@@ -193,6 +200,9 @@ Implement a traversable Skill Graph architecture for **every available skill** u
 
 <!-- ANCHOR:changelog -->
 ## 15. CHANGE LOG
+### v1.2 (2026-02-20)
+**Added planned work for `workflows-documentation` Skill Graph standards asset/reference and `SKILL.md` graph routing updates.**
+
 ### v1.1 (2026-02-20)
 **Updated scope to include all OpenCode skills.**
 

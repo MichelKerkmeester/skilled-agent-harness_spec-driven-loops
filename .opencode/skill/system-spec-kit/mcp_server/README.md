@@ -20,16 +20,17 @@ A cognitive memory system for AI assistants featuring hybrid search, FSRS-powere
 <!-- ANCHOR:table-of-contents -->
 
 - [1. OVERVIEW](#1--overview)
-- [2. MCP TOOLS](#2--mcp-tools)
-- [3. COGNITIVE MEMORY](#3--cognitive-memory)
-- [4. SEARCH SYSTEM](#4--search-system)
-- [5. IMPORTANCE TIERS](#5--importance-tiers)
-- [6. STRUCTURE](#6--structure)
-- [7. QUICK START](#7--quick-start)
+- [2. QUICK START](#2--quick-start)
+- [3. MCP TOOLS](#3--mcp-tools)
+- [4. COGNITIVE MEMORY](#4--cognitive-memory)
+- [5. SEARCH SYSTEM](#5--search-system)
+- [6. IMPORTANCE TIERS](#6--importance-tiers)
+- [7. STRUCTURE](#7--structure)
 - [8. CONFIGURATION](#8--configuration)
 - [9. USAGE EXAMPLES](#9--usage-examples)
 - [10. TROUBLESHOOTING](#10--troubleshooting)
-- [11. RELATED RESOURCES](#11--related-resources)
+- [11. FAQ](#11--faq)
+- [12. RELATED RESOURCES](#12--related-resources)
 
 ---
 
@@ -68,7 +69,7 @@ This MCP server gives your AI assistant persistent memory with intelligence buil
 | **"Why" queries** | Impossible          | Causal graph traversal (6 relationship types)                    |
 | **Recovery**      | Hope                | Crash recovery with zero data loss                               |
 | **Sessions**      | None                | Deduplication with -50% tokens on follow-up                      |
-| **Context**       | Full documents      | ANCHOR-based section retrieval (~473 anchors, 93% token savings) |
+| **Context**       | Full documents      | ANCHOR-based section retrieval (533 anchors, 93% token savings) |
 | **Search**        | Vector only         | Hybrid FTS5 + vector + BM25 with RRF fusion                      |
 | **State**         | Stateless           | 5-state cognitive model (HOT/WARM/COLD/DORMANT/ARCHIVED)         |
 | **Tiers**         | None                | 6-tier importance with configurable boosts                       |
@@ -84,7 +85,7 @@ This MCP server gives your AI assistant persistent memory with intelligence buil
 | -------------------------------- | -------------------- | -------------------------------------------------------------------------------------------------------- |
 | **Causal Memory Graph**          | Answer "why"         | 6 relationship types (caused, supersedes, etc.)                                                          |
 | **Session Deduplication**        | -50% tokens          | Hash-based tracking prevents re-sending same content                                                     |
-| **ANCHOR Retrieval**             | 93% token savings    | ~473 anchors across 74 READMEs for section-level extraction                                              |
+| **ANCHOR Retrieval**             | 93% token savings    | 533 anchors across 78 skill READMEs for section-level extraction                                          |
 | **RRF Search Fusion**            | +40-50% relevance    | Combines vector + BM25 + graph with k=60, 10% convergence bonus                                          |
 | **Type-Specific Half-Lives**     | Smarter decay        | 9 memory types decay at different rates                                                                  |
 | **Incremental Indexing**         | 10-100x faster       | Content hash + mtime diff updates                                                                        |
@@ -94,7 +95,7 @@ This MCP server gives your AI assistant persistent memory with intelligence buil
 | **Lazy Model Loading**           | <500ms startup       | Defer embedding init until first use                                                                     |
 | **Typed Retrieval Contracts**    | API safety           | ContextEnvelope, RetrievalTrace, DegradedModeContract enforce structured retrieval responses             |
 | **Artifact-Class Routing**       | Precision targeting  | 9 artifact classes with per-type retrieval strategies (spec, memory, constitutional, etc.)               |
-| **Adaptive Hybrid Fusion**       | Intent-aware ranking | Weighted RRF with intent-sensitive weights; activates when `SPECKIT_ADAPTIVE_FUSION=true`                |
+| **Adaptive Hybrid Fusion**       | Intent-aware ranking | Weighted RRF with intent-sensitive weights, active when `SPECKIT_ADAPTIVE_FUSION=true`                    |
 | **Append-Only Mutation Ledger**  | Tamper-proof audit   | SQLite-trigger-based immutable audit trail for all memory mutations                                      |
 | **Extended Retrieval Telemetry** | Observability        | 4-dimension telemetry: latency, retrieval mode, fallback activation, quality score                       |
 
@@ -131,7 +132,70 @@ This MCP server gives your AI assistant persistent memory with intelligence buil
 
 <!-- /ANCHOR:overview -->
 
-## 2. MCP TOOLS
+## 2. QUICK START
+<!-- ANCHOR:quick-start -->
+
+### 30-Second Setup
+
+The server is typically started via MCP configuration, not manually.
+
+```bash
+# 1. Navigate to mcp_server directory
+cd .opencode/skill/system-spec-kit/mcp_server
+
+# 2. Install dependencies
+npm install
+
+# 3. Compile TypeScript to JavaScript
+tsc
+# Outputs compiled .js files to dist/
+
+# 4. Start server (for testing)
+npm start
+# Runs: node dist/context-server.js
+```
+
+### Verify Installation
+
+```bash
+# Check Node.js version
+node --version
+# Expected: v18.0.0 or higher
+
+# Check dependencies installed
+ls node_modules/@modelcontextprotocol/sdk
+
+# Verify TypeScript compilation
+ls dist/context-server.js
+# Expected: File exists after running tsc
+
+# Run test suite
+npm test
+# Expected: 4,415 tests passing across 142 files (latest all-features run)
+```
+
+### MCP Configuration
+
+Add to your MCP client configuration (e.g., `opencode.json`):
+
+```json
+{
+  "mcpServers": {
+    "spec_kit_memory": {
+      "command": "node",
+      "args": [".opencode/skill/system-spec-kit/mcp_server/dist/context-server.js"],
+      "cwd": "${workspaceFolder}",
+      "_note": "Executes compiled JS from dist/; source is context-server.ts"
+    }
+  }
+}
+```
+
+---
+
+<!-- /ANCHOR:quick-start -->
+
+## 3. MCP TOOLS
 <!-- ANCHOR:mcp-tools -->
 
 ### Tool Categories
@@ -313,7 +377,7 @@ README sources are indexed with reduced importance weights so they provide usefu
 
 <!-- /ANCHOR:mcp-tools -->
 
-## 3. COGNITIVE MEMORY
+## 4. COGNITIVE MEMORY
 <!-- ANCHOR:cognitive-memory -->
 
 This is not basic memory storage. The system implements biologically-inspired cognitive features that mirror how human memory works.
@@ -482,7 +546,7 @@ LI = (KnowledgeDelta * 0.4) + (UncertaintyReduction * 0.35) + (ContextImprovemen
 
 <!-- /ANCHOR:cognitive-memory -->
 
-## 4. SEARCH SYSTEM
+## 5. SEARCH SYSTEM
 <!-- ANCHOR:search-system -->
 
 ### Hybrid Search Architecture
@@ -526,7 +590,7 @@ Query
 
 **Artifact Routing:** The artifact router classifies the query and document types into one of 9 artifact classes (spec, memory, constitutional, plan, decision, research, readme, scratch, unknown) before fusion. Each class applies a per-type retrieval strategy (weight adjustments, filter rules) to improve precision.
 
-**Adaptive Fusion:** When `SPECKIT_ADAPTIVE_FUSION=true`, the standard fixed-weight RRF is replaced with intent-aware weighted RRF. Fusion weights shift dynamically based on detected query intent — for example, boosting BM25 for exact-match intents and vector for semantic intents.
+**Adaptive Fusion:** When `SPECKIT_ADAPTIVE_FUSION=true`, the standard fixed-weight RRF is replaced with intent-aware weighted RRF. Fusion weights shift dynamically based on detected query intent. For example, the system boosts BM25 for exact-match intents and vector for semantic intents.
 
 ---
 
@@ -588,7 +652,7 @@ We chose JWT with refresh tokens because:
 
 **Common Anchors:** `summary`, `decisions`, `context`, `state`, `artifacts`, `blockers`, `next-steps`, `metadata`
 
-**Coverage:** ~473 anchor tags deployed across 74 READMEs (specs 111/113), providing fine-grained section-level retrieval targets for the `anchors` parameter on `memory_search` and `memory_context`.
+**Coverage:** 533 anchor tags deployed across 78 skill READMEs, providing fine-grained section-level retrieval targets for the `anchors` parameter on `memory_search` and `memory_context`.
 
 **Token Savings:**
 - Full document: ~3000 tokens
@@ -624,7 +688,7 @@ The **constitutional** tier is special. These memories ALWAYS appear at the top 
 
 <!-- /ANCHOR:search-system -->
 
-## 5. IMPORTANCE TIERS
+## 6. IMPORTANCE TIERS
 <!-- ANCHOR:importance-tiers -->
 
 ### The Six-Tier System
@@ -664,7 +728,7 @@ The indexing pipeline also assigns importance weights based on file source. This
 
 <!-- /ANCHOR:importance-tiers -->
 
-## 6. STRUCTURE
+## 7. STRUCTURE
 <!-- ANCHOR:structure -->
 
 ```
@@ -827,7 +891,7 @@ mcp_server/
 ├── tool-schemas.ts         # Tool schema definitions
 ├── vitest.config.ts        # Vitest test configuration
 │
-├── tests/                  # Test suite (3,800+ tests across 114 files; 58/58 MCP integration tests pass)
+├── tests/                  # Test suite (4,415 tests across 142 files in latest all-features run)
 │
 ├── database/               # SQLite database storage
 │   └── context-index.sqlite
@@ -843,69 +907,6 @@ mcp_server/
 ---
 
 <!-- /ANCHOR:structure -->
-
-## 7. QUICK START
-<!-- ANCHOR:quick-start -->
-
-### 30-Second Setup
-
-The server is typically started via MCP configuration, not manually.
-
-```bash
-# 1. Navigate to mcp_server directory
-cd .opencode/skill/system-spec-kit/mcp_server
-
-# 2. Install dependencies
-npm install
-
-# 3. Compile TypeScript to JavaScript
-tsc
-# Outputs compiled .js files to dist/
-
-# 4. Start server (for testing)
-npm start
-# Runs: node dist/context-server.js
-```
-
-### Verify Installation
-
-```bash
-# Check Node.js version
-node --version
-# Expected: v18.0.0 or higher
-
-# Check dependencies installed
-ls node_modules/@modelcontextprotocol/sdk
-
-# Verify TypeScript compilation
-ls dist/context-server.js
-# Expected: File exists after running tsc
-
-# Run test suite
-npm test
-# Expected: 3,800+ tests passing
-```
-
-### MCP Configuration
-
-Add to your MCP client configuration (e.g., `opencode.json`):
-
-```json
-{
-  "mcpServers": {
-    "spec_kit_memory": {
-      "command": "node",
-      "args": [".opencode/skill/system-spec-kit/mcp_server/dist/context-server.js"],
-      "cwd": "${workspaceFolder}",
-      "_note": "Executes compiled JS from dist/; source is context-server.ts"
-    }
-  }
-}
-```
-
----
-
-<!-- /ANCHOR:quick-start -->
 
 ## 8. CONFIGURATION
 <!-- ANCHOR:configuration -->
@@ -1162,7 +1163,7 @@ When Phase 2+ feature flags are enabled, memory context is captured and prioriti
 | Automation      | Trigger          | Behavior                                                                                                           |
 | --------------- | ---------------- | ------------------------------------------------------------------------------------------------------------------ |
 | Extraction hook | Tool completion  | Reads matching `spec.md`, `grep error`, and `git commit` outputs are summarized and inserted into `working_memory` |
-| Redaction gate  | Before insert    | Secret and PII patterns are replaced with `[REDACTED]`; provenance records `redaction_applied`                     |
+| Redaction gate  | Before insert    | Secret and PII patterns are replaced with `[REDACTED]`, and provenance records `redaction_applied`                 |
 | Session boost   | `memory_search`  | Result scores are adjusted by session attention with a hard cap of `0.20` combined boost                           |
 | Causal boost    | `memory_search`  | Related memories from `causal_edges` (up to 2 hops) are boosted/injected in ranked output                          |
 | Pressure policy | `memory_context` | Retrieval mode shifts (`focused`/`quick`) under high token usage to reduce context overflow risk                   |
@@ -1316,6 +1317,10 @@ Every error includes actionable recovery guidance:
 
 ### Diagnostic Commands
 
+> **Shell Safety (zsh):** When using `sqlite3` from zsh, avoid `!=` — zsh
+> interprets it as a glob negation. Use SQL's `<>` operator instead.
+> Prefer MCP tools (`memory_stats`, `memory_health`) over raw SQL when possible.
+
 ```bash
 # Check database status
 sqlite3 database/context-index.sqlite "SELECT COUNT(*) FROM memory_index;"
@@ -1352,7 +1357,32 @@ node dist/tests/causal-edges.test.js
 
 <!-- /ANCHOR:troubleshooting -->
 
-## 11. RELATED RESOURCES
+## 11. FAQ
+<!-- ANCHOR:faq -->
+
+### Common Questions
+
+**Q: Which tool should I call first for most retrieval tasks?**
+
+A: Start with `memory_context`. It routes by intent and picks the best retrieval path for the query.
+
+**Q: When should I use `memory_search` instead of `memory_match_triggers`?**
+
+A: Use `memory_search` for semantic retrieval and ranked results. Use `memory_match_triggers` for fast phrase matching when you already know likely trigger terms.
+
+**Q: How do I reduce token usage in responses?**
+
+A: Request focused anchors like `state` and `next-steps`, keep `includeContent` off unless needed and use session deduplication with a stable `sessionId`.
+
+**Q: Do I need a cloud embedding API key to run this server?**
+
+A: No. The server can fall back to local Hugging Face embeddings when cloud keys are not configured.
+
+---
+
+<!-- /ANCHOR:faq -->
+
+## 12. RELATED RESOURCES
 <!-- ANCHOR:related -->
 
 ### Parent Documentation

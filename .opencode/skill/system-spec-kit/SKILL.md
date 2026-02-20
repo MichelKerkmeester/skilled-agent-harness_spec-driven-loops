@@ -1,0 +1,761 @@
+---
+name: system-spec-kit
+description: "Unified documentation and context preservation: spec folder workflow (levels 1-3+), CORE + ADDENDUM template architecture (v2.2), validation, and Spec Kit Memory for context preservation. Mandatory for all file modifications."
+allowed-tools: [Bash, Edit, Glob, Grep, Read, Task, Write]
+version: 2.2.26.0
+---
+
+<!-- Keywords: spec-kit, speckit, documentation-workflow, spec-folder, template-enforcement, context-preservation, progressive-documentation, validation, spec-kit-memory, vector-search, hybrid-search, bm25, rrf-fusion, fsrs-decay, constitutional-tier, checkpoint, importance-tiers, cognitive-memory, co-activation, tiered-injection -->
+
+# Spec Kit - Mandatory Conversation Documentation
+
+Orchestrates mandatory spec folder creation for all conversations involving file modifications. Ensures proper documentation level selection (1-3+), template usage, and context preservation through AGENTS.md-enforced workflows.
+
+---
+
+<!-- ANCHOR:when-to-use -->
+## 1. WHEN TO USE
+
+### What is a Spec Folder?
+
+A **spec folder** is a numbered directory (e.g., `specs/007-auth-feature/`) that contains all documentation for a single feature or task:
+
+- **Purpose**: Track specifications, plans, tasks, and decisions for one unit of work
+- **Location**: Always under `specs/` directory with format `###-short-name/`
+- **Contents**: Markdown files (spec.md, plan.md, tasks.md) plus optional memory/ and scratch/ subdirectories
+
+Think of it as a "project folder" for AI-assisted development - it keeps context organized and enables session continuity.
+
+### Activation Triggers
+
+**MANDATORY for ALL file modifications:**
+- Code files: JS, TS, Python, CSS, HTML
+- Documentation: Markdown, README, guides
+- Configuration: JSON, YAML, TOML, env templates
+- Templates, knowledge base, build/tooling files
+
+**Request patterns that trigger activation:**
+- "Add/implement/create [feature]"
+- "Fix/update/refactor [code]"
+- "Modify/change [configuration]"
+- Any keyword: add, implement, fix, update, create, modify, rename, delete, configure, analyze
+
+**Example triggers:**
+- "Add email validation to the signup form" → Level 1-2
+- "Refactor the authentication module" → Level 2-3
+- "Fix the button alignment bug" → Level 1
+- "Implement user dashboard with analytics" → Level 3
+
+### When NOT to Use
+
+- Pure exploration/reading (no file modifications)
+- Single typo fixes (<5 characters in one file)
+- Whitespace-only changes
+- Auto-generated file updates (package-lock.json)
+- User explicitly selects Option D (skip documentation)
+
+**Rule of thumb:** If modifying ANY file content → Activate this skill.
+Status: ✅ This requirement applies immediately once file edits are requested.
+
+### Agent Exclusivity
+
+**⛔ CRITICAL:** `@speckit` is the ONLY agent permitted to create or substantively write spec folder documentation (*.md files).
+
+- **Requires @speckit:** spec.md, plan.md, tasks.md, checklist.md, decision-record.md, implementation-summary.md, and any other *.md in spec folders
+- **Exceptions:**
+  - `memory/` → uses generate-context.js script
+  - `scratch/` → temporary workspace, any agent
+  - `handover.md` → @handover agent only
+  - `research.md` → @research agent only
+  - `debug-delegation.md` → @debug agent only
+
+Routing to `@general`, `@write`, or other agents for spec documentation is a **hard violation**. See constitutional memory: `speckit-exclusivity.md`
+
+### Utility Template Triggers
+
+| Template              | Trigger Keywords                                                                                                              | Action                    |
+| --------------------- | ----------------------------------------------------------------------------------------------------------------------------- | ------------------------- |
+| `handover.md`         | "handover", "next session", "continue later", "pass context", "ending session", "save state", "multi-session", "for next AI"  | Suggest creating handover |
+| `debug-delegation.md` | "stuck", "can't fix", "tried everything", "same error", "fresh eyes", "hours on this", "still failing", "need help debugging" | Suggest `/spec_kit:debug` |
+
+**Rule:** When detected, proactively suggest the appropriate action.
+
+---
+
+<!-- /ANCHOR:when-to-use -->
+<!-- ANCHOR:smart-routing -->
+## 2. SMART ROUTING
+
+### Resource Domains
+
+The router discovers markdown resources recursively from `references/` and `assets/` and then applies intent scoring from `RESOURCE_MAP`. Keep this section domain-focused rather than static file inventories.
+
+- `references/memory/` for context retrieval, save workflows, trigger behavior, and indexing.
+- `references/templates/` for level selection, template composition, and structure guides.
+- `references/validation/` for checklist policy, verification rules, and decision formats.
+- `references/structure/` for folder organization and sub-folder versioning.
+- `references/workflows/` for command workflows and worked examples.
+- `references/debugging/` for troubleshooting and root-cause methodology.
+- `references/config/` for runtime environment configuration.
+
+### Template and Script Sources of Truth
+
+- Level definitions and template size guidance: [level_specifications.md](./references/templates/level_specifications.md)
+- Template usage and composition rules: [template_guide.md](./references/templates/template_guide.md)
+- Use `templates/level_N/` for operational templates; `core/` and `addendum/` remain composition inputs.
+- Script architecture, build outputs, and runtime entrypoints: [scripts/README.md](./scripts/README.md)
+- Memory save JSON schema and workflow contracts: [save_workflow.md](./references/memory/save_workflow.md)
+
+Primary operational scripts:
+- `spec/validate.sh`
+- `spec/create.sh`
+- `spec/archive.sh`
+- `spec/check-completion.sh`
+- `spec/recommend-level.sh`
+- `templates/compose.sh`
+
+### Resource Loading Levels
+
+| Level       | When to Load               | Resources                    |
+| ----------- | -------------------------- | ---------------------------- |
+| ALWAYS      | Every skill invocation     | Shared patterns + SKILL.md   |
+| CONDITIONAL | If intent signals match   | Intent-mapped references     |
+| ON_DEMAND   | Only on explicit request   | Deep-dive quality standards  |
+
+### Smart Router Pseudocode
+
+The authoritative routing logic for scoped loading, weighted intent scoring, and ambiguity handling.
+
+```python
+from pathlib import Path
+
+SKILL_ROOT = Path(__file__).resolve().parent
+RESOURCE_BASES = (SKILL_ROOT / "references", SKILL_ROOT / "assets")
+DEFAULT_RESOURCE = "references/workflows/quick_reference.md"
+
+INTENT_SIGNALS = {
+    "PLAN": {"weight": 3, "keywords": ["plan", "design", "new spec", "level selection", "option b"]},
+    "RESEARCH": {"weight": 3, "keywords": ["investigate", "explore", "analyze", "prior work", "evidence"]},
+    "IMPLEMENT": {"weight": 3, "keywords": ["implement", "build", "execute", "phase", "workflow"]},
+    "DEBUG": {"weight": 4, "keywords": ["stuck", "error", "not working", "failed", "debug"]},
+    "COMPLETE": {"weight": 4, "keywords": ["done", "complete", "finish", "verify", "checklist"]},
+    "MEMORY": {"weight": 4, "keywords": ["memory", "save context", "resume", "checkpoint", "context"]},
+    "HANDOVER": {"weight": 4, "keywords": ["handover", "continue later", "next session", "pause"]},
+}
+
+RESOURCE_MAP = {
+    "PLAN": [
+        "references/templates/level_specifications.md",
+        "references/templates/template_guide.md",
+    ],
+    "RESEARCH": [
+        "references/workflows/quick_reference.md",
+        "references/workflows/worked_examples.md",
+    ],
+    "IMPLEMENT": [
+        "references/validation/validation_rules.md",
+        "references/templates/template_guide.md",
+    ],
+    "DEBUG": [
+        "references/debugging/troubleshooting.md",
+        "references/workflows/quick_reference.md",
+    ],
+    "COMPLETE": [
+        "references/validation/validation_rules.md",
+        "references/validation/phase_checklists.md",
+    ],
+    "MEMORY": [
+        "references/memory/memory_system.md",
+        "references/memory/save_workflow.md",
+    ],
+    "HANDOVER": [
+        "references/workflows/quick_reference.md",
+    ],
+}
+
+COMMAND_BOOSTS = {
+    "/spec_kit:plan": "PLAN",
+    "/spec_kit:research": "RESEARCH",
+    "/spec_kit:implement": "IMPLEMENT",
+    "/spec_kit:debug": "DEBUG",
+    "/spec_kit:complete": "COMPLETE",
+    "/spec_kit:handover": "HANDOVER",
+}
+
+LOADING_LEVELS = {
+    "ALWAYS": [DEFAULT_RESOURCE],
+    "ON_DEMAND_KEYWORDS": ["deep dive", "full validation", "full checklist", "full template"],
+    "ON_DEMAND": [
+        "references/validation/phase_checklists.md",
+        "references/templates/template_guide.md",
+    ],
+}
+
+def _task_text(task) -> str:
+    parts = [
+        str(getattr(task, "query", "")),
+        str(getattr(task, "text", "")),
+        " ".join(getattr(task, "keywords", []) or []),
+        str(getattr(task, "command", "")),
+    ]
+    return " ".join(parts).lower()
+
+def _guard_in_skill(relative_path: str) -> str:
+    """Allow markdown loads only within this skill folder."""
+    resolved = (SKILL_ROOT / relative_path).resolve()
+    resolved.relative_to(SKILL_ROOT)
+    if resolved.suffix.lower() != ".md":
+        raise ValueError(f"Only markdown resources are routable: {relative_path}")
+    return resolved.relative_to(SKILL_ROOT).as_posix()
+
+def discover_markdown_resources() -> set[str]:
+    """Recursively discover routable markdown docs for this skill only."""
+    docs = []
+    for base in RESOURCE_BASES:
+        if base.exists():
+            docs.extend(p for p in base.rglob("*.md") if p.is_file())
+    return {doc.relative_to(SKILL_ROOT).as_posix() for doc in docs}
+
+def score_intents(task) -> dict[str, float]:
+    """Weighted scoring from request text, keywords, and explicit command boosts."""
+    text = _task_text(task)
+    scores = {intent: 0.0 for intent in INTENT_SIGNALS}
+
+    for intent, cfg in INTENT_SIGNALS.items():
+        for keyword in cfg["keywords"]:
+            if keyword in text:
+                scores[intent] += cfg["weight"]
+
+    command = str(getattr(task, "command", "")).lower()
+    for prefix, intent in COMMAND_BOOSTS.items():
+        if command.startswith(prefix):
+            scores[intent] += 6
+
+    return scores
+
+def select_intents(scores: dict[str, float], ambiguity_delta: float = 1.0, max_intents: int = 2) -> list[str]:
+    """Return primary intent and secondary intent when scores are close."""
+    ranked = sorted(scores.items(), key=lambda item: item[1], reverse=True)
+    if not ranked or ranked[0][1] <= 0:
+        return ["IMPLEMENT"]
+
+    selected = [ranked[0][0]]
+    if len(ranked) > 1:
+        primary_score = ranked[0][1]
+        secondary_intent, secondary_score = ranked[1]
+        if secondary_score > 0 and (primary_score - secondary_score) <= ambiguity_delta:
+            selected.append(secondary_intent)
+
+    return selected[:max_intents]
+
+def route_speckit_resources(task):
+    """Scoped, recursive, weighted, ambiguity-aware routing."""
+    inventory = discover_markdown_resources()
+    intents = select_intents(score_intents(task), ambiguity_delta=1.0)
+    loaded = []
+    seen = set()
+
+    def load_if_available(relative_path: str) -> None:
+        guarded = _guard_in_skill(relative_path)
+        if guarded in inventory and guarded not in seen:
+            load(guarded)
+            loaded.append(guarded)
+            seen.add(guarded)
+
+    # ALWAYS: base references for every invocation
+    for relative_path in LOADING_LEVELS["ALWAYS"]:
+        load_if_available(relative_path)
+
+    # CONDITIONAL: intent-scored resources
+    for intent in intents:
+        for relative_path in RESOURCE_MAP.get(intent, []):
+            load_if_available(relative_path)
+
+    # ON_DEMAND: explicit deep-dive requests
+    text = _task_text(task)
+    if any(keyword in text for keyword in LOADING_LEVELS["ON_DEMAND_KEYWORDS"]):
+        for relative_path in LOADING_LEVELS["ON_DEMAND"]:
+            load_if_available(relative_path)
+
+    if not loaded:
+        load_if_available(DEFAULT_RESOURCE)
+
+    return {"intents": intents, "resources": loaded}
+```
+
+---
+
+<!-- /ANCHOR:smart-routing -->
+<!-- ANCHOR:how-it-works -->
+## 3. HOW IT WORKS
+
+### Gate 3 Integration
+
+> **See AGENTS.md Section 2** for the complete Gate 3 flow. This skill implements that gate.
+
+When file modification detected, AI MUST ask:
+
+```
+**Spec Folder** (required): A) Existing | B) New | C) Update related | D) Skip
+```
+
+| Option          | Description                        | Best For                        |
+| --------------- | ---------------------------------- | ------------------------------- |
+| **A) Existing** | Continue in related spec folder    | Iterative work, related changes |
+| **B) New**      | Create `specs/###-name/`           | New features, unrelated work    |
+| **C) Update**   | Add to existing documentation      | Extending existing docs         |
+| **D) Skip**     | No spec folder (creates tech debt) | Trivial changes only            |
+
+**Enforcement:** Constitutional-tier memory surfaces automatically via `memory_match_triggers()`.
+
+### Complexity Detection (Option B Flow)
+
+When user selects **B) New**, AI estimates complexity and recommends a level:
+
+1. Estimate LOC, files affected, risk factors
+2. Recommend level (1, 2, 3, or 3+) with rationale
+3. User accepts or overrides
+4. Run `./scripts/spec/create.sh --level N`
+
+**Level Guidelines:**
+
+| LOC     | Level | Template Folder       |
+| ------- | ----- | --------------------- |
+| <100    | 1     | `templates/level_1/`  |
+| 100-499 | 2     | `templates/level_2/`  |
+| ≥500    | 3     | `templates/level_3/`  |
+| Complex | 3+    | `templates/level_3+/` |
+
+**See:** [quick_reference.md](./references/workflows/quick_reference.md) for detailed examples.
+
+**CLI Tool:**
+```bash
+# Create spec folder with level 2 templates
+./scripts/spec/create.sh "Add OAuth2 with MFA" --level 2
+
+# Create spec folder with level 3+ (extended) templates
+./scripts/spec/create.sh "Major platform migration" --level 3+
+```
+
+### 3-Level Progressive Enhancement (CORE + ADDENDUM v2.2)
+
+Higher levels ADD VALUE, not just length. Each level builds on the previous:
+
+```
+Level 1 (Core):         Essential what/why/how (~455 LOC)
+         ↓ +Verify
+Level 2 (Verification): +Quality gates, NFRs, edge cases (~875 LOC)
+         ↓ +Arch
+Level 3 (Full):         +Architecture decisions, ADRs, risk matrix (~1090 LOC)
+         ↓ +Govern
+Level 3+ (Extended):    +Enterprise governance, AI protocols (~1075 LOC)
+```
+
+| Level  | LOC Guidance | Required Files                                        | What It ADDS                                |
+| ------ | ------------ | ----------------------------------------------------- | ------------------------------------------- |
+| **1**  | <100         | spec.md, plan.md, tasks.md, implementation-summary.md | Essential what/why/how                      |
+| **2**  | 100-499      | Level 1 + checklist.md                                | Quality gates, verification, NFRs           |
+| **3**  | ≥500         | Level 2 + decision-record.md                          | Architecture decisions, ADRs                |
+| **3+** | Complex      | Level 3 + extended content                            | Governance, approval workflow, AI protocols |
+
+**Level Selection Examples:**
+
+| Task                 | LOC Est. | Level | Rationale                      |
+| -------------------- | -------- | ----- | ------------------------------ |
+| Fix CSS alignment    | 10       | 1     | Simple, low risk               |
+| Add form validation  | 80       | 1-2   | Borderline, low complexity     |
+| Modal component      | 200      | 2     | Multiple files, needs QA       |
+| Auth system refactor | 600      | 3     | Architecture change, high risk |
+| Database migration   | 150      | 3     | High risk overrides LOC        |
+
+**Override Factors (can push to higher level):**
+- High complexity or architectural changes
+- Risk (security, config cascades, authentication)
+- Multiple systems affected (>5 files)
+- Integration vs unit test requirements
+
+**Decision rule:** When in doubt → choose higher level. Better to over-document than under-document.
+
+### Checklist as Verification Tool (Level 2+)
+
+The `checklist.md` is an **ACTIVE VERIFICATION TOOL**, not passive documentation:
+
+| Priority | Meaning      | Deferral Rules                          |
+| -------- | ------------ | --------------------------------------- |
+| **P0**   | HARD BLOCKER | MUST complete, cannot defer             |
+| **P1**   | Required     | MUST complete OR user-approved deferral |
+| **P2**   | Optional     | Can defer without approval              |
+
+**AI Workflow:**
+1. Load checklist.md at completion phase
+2. Verify items in order: P0 → P1 → P2
+3. Mark `[x]` with evidence for each verified item
+4. Cannot claim "done" until all P0/P1 items verified
+
+**Evidence formats:**
+- `[Test: npm test - all passing]`
+- `[File: src/auth.ts:45-67]`
+- `[Commit: abc1234]`
+- `[Screenshot: evidence/login-works.png]`
+- `(verified by manual testing)`
+- `(confirmed in browser console)`
+
+**Example checklist entry:**
+```markdown
+## P0 - Blockers
+- [x] Auth flow working [Test: npm run test:auth - 12/12 passing]
+- [x] No console errors [Screenshot: evidence/console-clean.png]
+
+## P1 - Required  
+- [x] Unit tests added [File: tests/auth.test.ts - 8 new tests]
+- [ ] Documentation updated [DEFERRED: Will complete in follow-up PR]
+```
+
+### Folder Naming Convention
+
+**Format:** `specs/###-short-name/`
+
+**Rules:**
+- 2-3 words (shorter is better)
+- Lowercase, hyphen-separated
+- Action-noun structure
+- 3-digit padding: `001`, `042`, `099` (no padding past 999)
+
+**Good examples:** `fix-typo`, `add-auth`, `mcp-code-mode`, `cli-codex`
+**Bad examples:** `new-feature-implementation`, `UpdateUserAuthSystem`, `fix_bug`
+
+**Find next number:**
+```bash
+ls -d specs/[0-9]*/ | sed 's/.*\/\([0-9]*\)-.*/\1/' | sort -n | tail -1
+```
+
+### Sub-Folder Versioning
+
+When reusing spec folders with existing content:
+- Trigger: Option A selected + root-level content exists
+- Pattern: `001-original/`, `002-new-work/`, `003-another/`
+- Memory: Each sub-folder has independent `memory/` directory
+- Tracking: Spec folder path passed via CLI argument (stateless)
+
+**Example structure:**
+```
+specs/007-auth-system/
+├── 001-initial-implementation/
+│   ├── spec.md
+│   ├── plan.md
+│   └── memory/
+├── 002-oauth-addition/
+│   ├── spec.md
+│   ├── plan.md
+│   └── memory/
+└── 003-security-audit/
+    ├── spec.md
+    └── memory/
+```
+
+**Full documentation:** See [sub_folder_versioning.md](./references/structure/sub_folder_versioning.md)
+
+### Context Preservation
+
+**Manual context save (MANDATORY workflow):**
+- Trigger: `/memory:save`, "save context", or "save memory"
+- **MUST use:** `node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js [spec-folder-path]`
+- **NEVER:** Create memory files manually via Write/Edit (AGENTS.md Memory Save Rule)
+- Location: `specs/###-folder/memory/`
+- Filename: `DD-MM-YY_HH-MM__topic.md` (auto-generated by script)
+- Content includes: PROJECT STATE SNAPSHOT with Phase, Last Action, Next Action, Blockers
+
+**Subfolder Support:**
+
+The generate-context script supports nested spec folder paths (parent/child format):
+
+```bash
+# Full nested path (parent/child)
+node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js 003-system-spec-kit/121-script-audit
+
+# Bare child name (auto-searches all parents for unique match)
+node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js 121-script-audit
+
+# With specs/ prefix
+node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js specs/003-system-spec-kit/121-script-audit
+
+# Flat folder (existing behavior, unchanged)
+node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js 003-system-spec-kit
+```
+
+Memory files are always saved to the child folder's `memory/` directory (e.g., `specs/003-system-spec-kit/121-script-audit/memory/`). If a bare child name matches multiple parents, the script reports an error and requires the full `parent/child` path.
+
+**Memory File Structure:**
+```markdown
+## Project Context
+[Auto-generated summary of conversation and decisions]
+
+## Project State Snapshot
+- Phase: Implementation
+- Last Action: Completed auth middleware
+- Next Action: Add unit tests for login flow
+- Blockers: None
+
+## Key Artifacts
+- Modified: src/middleware/auth.ts
+- Created: src/utils/jwt.ts
+```
+
+### Spec Kit Memory System (Integrated)
+
+Context preservation across sessions via hybrid search (vector similarity + BM25 + FTS with Reciprocal Rank Fusion).
+
+**Server:** `@spec-kit/mcp-server` v1.7.2 — `context-server.ts` (~903 lines) with 11 handler files, 17 lib subdirectories, and 22 MCP tools across 7 layers.
+
+**MCP Tools (8 most-used of 22 total — see [memory_system.md](./references/memory/memory_system.md) for full reference):**
+
+| Tool                            | Layer | Purpose                                           |
+| ------------------------------- | ----- | ------------------------------------------------- |
+| `memory_context()`              | L1    | Unified entry point — modes: auto, quick, deep, focused, resume |
+| `memory_search()`               | L2    | Hybrid search (vector + FTS + BM25 with RRF fusion). With optional adaptive fusion (SPECKIT_ADAPTIVE_FUSION) and artifact-class routing |
+| `memory_match_triggers()`       | L2    | Trigger matching + cognitive (decay, tiers, co-activation) |
+| `memory_save()`                 | L2    | Index a memory file with pre-flight validation    |
+| `memory_list()`                 | L3    | Browse stored memories with pagination            |
+| `memory_delete()`               | L4    | Delete memories by ID or spec folder              |
+| `checkpoint_create()`           | L5    | Create gzip-compressed checkpoint snapshot        |
+| `checkpoint_restore()`          | L5    | Transaction-wrapped restore with rollback         |
+
+> Other tools: `memory_stats()` (L3), `memory_health()` (L3), `memory_update()` (L4), `memory_validate()` (L4), `checkpoint_list/delete()` (L5), `task_preflight/postflight()` (L6), `memory_drift_why/causal_link/causal_stats/causal_unlink()` (L6), `memory_index_scan()` (L7), `memory_get_learning_history()` (L7). Full tool names use `spec_kit_memory_` prefix.
+
+**memory_context() — Mode Routing:**
+
+| Mode | Token Budget | When `mode=auto`: Intent Routing |
+| --- | --- | --- |
+| `quick` | 800 | — |
+| `deep` | 2000 | `add_feature`, `refactor`, `security_audit` |
+| `focused` | 1500 | `fix_bug`, `understand` |
+| `resume` | 1200 | — |
+
+**memory_search() — Key Rules:**
+- **REQUIRED:** `query` (string) OR `concepts` (2-5 strings). `specFolder` alone causes E040 error.
+- Use `anchors` with `includeContent: true` for token-efficient section retrieval (~90% savings).
+- Intent weights auto-adjust scoring: `fix_bug` boosts recency, `security_audit` boosts importance, `refactor`/`understand` boost similarity.
+- **Full parameter reference:** See [memory_system.md](./references/memory/memory_system.md)
+
+**Epistemic Learning:** Use `task_preflight()` before and `task_postflight()` after implementation to measure knowledge gains. Learning Index: `LI = (KnowledgeDelta × 0.4) + (UncertaintyReduction × 0.35) + (ContextImprovement × 0.25)`. Review trends via `memory_get_learning_history()`. See [epistemic-vectors.md](./references/memory/epistemic-vectors.md).
+
+**Key Concepts:**
+- **Constitutional tier** — 3.0x search boost + 2.0x importance multiplier; merged into normal scoring pipeline
+- **Document-type scoring** — 11 document types with multipliers: spec (1.4x), plan (1.3x), constitutional (2.0x), memory (1.0x), readme (0.8x), scratch (0.6x). 7 intent types including `find_spec` and `find_decision` for spec document retrieval
+- **Decay scoring** — FSRS v4 power-law model; recent memories rank higher
+- **Import-path hardening** - Spec 126 fixed MCP import-path regressions in memory runtime modules (including context server + attention decay wiring)
+- **Metadata preservation pipeline** - `memory_save` update/reinforce paths preserve `document_type` and `spec_level`, and vector-index metadata updates stay in sync
+- **Causal edge stability** - conflict-update semantics keep causal edge IDs stable during re-link and graph maintenance operations
+- **Real-time sync** — Use `memory_save` or `memory_index_scan` after creating files
+- **Checkpoints** — Gzip-compressed JSON snapshots of memory_index + working_memory; max 10 stored; transaction-wrapped restore
+- **Indexing persistence** — After `generate-context.js`, call `memory_index_scan()` or `memory_save()` for immediate MCP visibility
+- **Artifact routing** — 9 artifact classes (spec, plan, tasks, checklist, decision-record, implementation-summary, memory, research, unknown) with per-type retrieval strategies applied at query time
+- **Adaptive fusion** — Intent-aware weighted RRF with 7 task-type profiles (fix_bug, add_feature, understand, refactor, security_audit, find_spec, find_decision). Enabled via feature flag `SPECKIT_ADAPTIVE_FUSION` (default: off)
+- **Retrieval trace** — Typed ContextEnvelope wraps every retrieval response with pipeline stages and a DegradedModeContract describing fallback behavior
+- **Mutation ledger** — Append-only audit trail for all memory mutations (create, update, delete, reinforce); implemented via SQLite triggers; queryable for compliance and rollback
+- **Retrieval telemetry** — 4-dimension metrics (latency, retrieval mode, fallback activation, quality score). Enabled via feature flag `SPECKIT_EXTENDED_TELEMETRY` (default: on)
+
+**Feature Flags:**
+
+| Flag                          | Default | Effect                                                                                      |
+| ----------------------------- | ------- | ------------------------------------------------------------------------------------------- |
+| `SPECKIT_ADAPTIVE_FUSION`     | off     | Enables intent-aware weighted RRF with 7 task-type profiles in `memory_search()`            |
+| `SPECKIT_EXTENDED_TELEMETRY`  | on      | Emits 4-dimension retrieval metrics (latency, mode, fallback, quality) per search operation |
+
+Set via environment variable before starting the MCP server (e.g., `SPECKIT_ADAPTIVE_FUSION=1`).
+
+> **Token budgets per layer:** L1:2000, L2:1500, L3:800, L4:500, L5:600, L6:1200, L7:1000 (enforced via `chars/4` approximation).
+
+**Full documentation:** See [memory_system.md](./references/memory/memory_system.md) for tool behavior, importance tiers, and configuration.
+
+### Validation Workflow
+
+Automated validation of spec folder contents via `validate.sh`.
+
+**Usage:** `.opencode/skill/system-spec-kit/scripts/spec/validate.sh <spec-folder>`
+
+**Exit Codes:**
+
+| Code | Meaning                         | Action                       |
+| ---- | ------------------------------- | ---------------------------- |
+| 0    | Passed (no errors, no warnings) | Proceed with completion      |
+| 1    | Passed with warnings            | Address or document warnings |
+| 2    | Failed (errors found)           | MUST fix before completion   |
+
+**Completion Verification:**
+1. Run validation: `./scripts/spec/validate.sh <spec-folder>`
+2. Exit 2 → FIX errors
+3. Exit 1 → ADDRESS warnings or document reason
+4. Exit 0 → Proceed with completion claim
+
+**Full documentation:** See [validation_rules.md](./references/validation/validation_rules.md) for all rules, configuration, and troubleshooting.
+
+---
+
+<!-- /ANCHOR:how-it-works -->
+<!-- ANCHOR:rules -->
+## 4. RULES
+
+### ✅ ALWAYS
+
+1. **Determine level (1/2/3/3+) before ANY file changes** - Count LOC, assess complexity/risk
+2. **Copy templates from `templates/level_N/`** - Use level folders, NEVER create from scratch
+3. **Fill ALL placeholders** - Remove placeholder markers and sample content
+4. **Ask A/B/C/D when file modification detected** - Present options, wait for selection
+5. **Check for related specs before creating new folders** - Search keywords, review status
+6. **Get explicit user approval before changes** - Show level, path, templates, approach
+7. **Use consistent folder naming** - `specs/###-short-name/` format
+8. **Use checklist.md to verify (Level 2+)** - Load before claiming done
+9. **Mark items `[x]` with evidence** - Include links, test outputs, screenshots
+10. **Complete P0/P1 before claiming done** - No exceptions
+11. **Suggest handover.md on session-end keywords** - "continue later", "next session"
+12. **Run validate.sh before completion** - Completion Verification requirement
+13. **Create implementation-summary.md at end of implementation phase (Level 1+)** - Document what was built
+14. **Suggest /spec_kit:handover when session-end keywords detected OR after extended work (15+ tool calls)** - Proactive context preservation
+15. **Suggest /spec_kit:debug after 3+ failed fix attempts on same error** - Do not continue without offering debug delegation
+16. **Route all code creation/updates through `workflows-code--opencode`** - Full alignment is mandatory before claiming completion
+17. **Route all documentation creation/updates through `workflows-documentation`** - Full alignment is mandatory before claiming completion
+
+### ❌ NEVER
+
+1. **Create documentation from scratch** - Use templates only
+2. **Skip spec folder creation** - Unless user explicitly selects D
+3. **Make changes before spec + approval** - Spec folder is prerequisite
+4. **Leave placeholders in final docs** - All must be replaced
+5. **Decide autonomously update vs create** - Always ask user
+6. **Claim done without checklist verification** - Level 2+ requirement
+7. **Proceed without spec folder confirmation** - Wait for A/B/C/D
+8. **Skip validation before completion** - Completion Verification hard block
+
+### ⚠️ ESCALATE IF
+
+1. **Scope grows during implementation** - Run `upgrade-level.sh` to add higher-level templates (recommended), then auto-populate all placeholder content:
+   - Read all existing spec files (spec.md, plan.md, tasks.md, implementation-summary.md) for context
+   - Replace every placeholder marker pattern in newly injected sections with content derived from that context
+   - For sections without sufficient source context, write "N/A — insufficient source context" instead of fabricating content
+   - Run `check-placeholders.sh <spec-folder>` to verify zero placeholders remain (see [level_specifications.md](./references/templates/level_specifications.md) for the full procedure)
+   - Document the level change in changelog
+2. **Uncertainty about level <80%** - Present level options to user, default to higher
+3. **Template doesn't fit requirements** - Adapt closest template, document modifications
+4. **User requests skip (Option D)** - Warn about tech debt, explain debugging challenges, confirm consent
+5. **Validation fails with errors** - Report specific failures, provide fix guidance, re-run after fixes
+
+---
+
+<!-- /ANCHOR:rules -->
+<!-- ANCHOR:success-criteria -->
+## 5. SUCCESS CRITERIA
+
+### Documentation Created
+
+- [ ] Spec folder exists at `specs/###-short-name/`
+- [ ] Folder name follows convention (2-3 words, lowercase, hyphen-separated)
+- [ ] Number is sequential (no gaps or duplicates)
+- [ ] Correct level templates copied (not created from scratch)
+- [ ] All placeholders replaced with actual content
+- [ ] Sample content and instructional comments removed
+- [ ] Cross-references to sibling documents work (spec.md ↔ plan.md ↔ tasks.md)
+
+### User Approval
+
+- [ ] Asked user for A/B/C/D choice when file modification detected
+- [ ] Documentation level presented with rationale
+- [ ] Spec folder path shown before creation
+- [ ] Templates to be used listed
+- [ ] Explicit approval ("yes", "go ahead", "proceed") received before file changes
+
+### Context Preservation
+
+- [ ] Context saved via `generate-context.js` script (NEVER manual Write/Edit)
+- [ ] Memory files contain PROJECT STATE SNAPSHOT section
+- [ ] Manual saves triggered via `/memory:save` or keywords
+- [ ] Anchor pairs properly formatted and closed
+
+### Checklist Verification (Level 2+)
+
+- [ ] Loaded checklist.md before claiming completion
+- [ ] Verified items in priority order (P0 → P1 → P2)
+- [ ] All P0 items marked `[x]` with evidence
+- [ ] All P1 items marked `[x]` with evidence
+- [ ] P2 items either verified or deferred with documented reason
+- [ ] No unchecked P0/P1 items remain
+
+### Validation Passed
+
+- [ ] Ran `validate.sh` on spec folder
+- [ ] Exit code is 0 (pass) or 1 (warnings only)
+- [ ] All ERROR-level issues resolved
+- [ ] WARNING-level issues addressed or documented
+
+---
+
+<!-- /ANCHOR:success-criteria -->
+<!-- ANCHOR:integration-points -->
+## 6. INTEGRATION POINTS
+
+### Priority System
+
+| Priority | Level    | Deferral                                 |
+| -------- | -------- | ---------------------------------------- |
+| **P0**   | Blocker  | Cannot proceed without resolution        |
+| **P1**   | Warning  | Must address or defer with user approval |
+| **P2**   | Optional | Can defer without approval               |
+
+### Validation Triggers
+
+- **AGENTS.md Gate 3** → Validates spec folder existence and template completeness
+- **AGENTS.md Completion Verification** → Runs validate.sh before completion claims
+- **Manual `/memory:save`** → Context preservation on demand
+- **Template validation** → Checks placeholder removal and required field completion
+
+### Cross-Skill Workflows
+
+| Workflow | Flow |
+| --- | --- |
+| **Spec → Implementation** | system-spec-kit → workflows-code--opencode (mandatory for code changes) → workflows-git → Spec Kit Memory |
+| **Documentation Quality** | system-spec-kit → workflows-documentation (mandatory for documentation changes; validate, score) → Iterate if <90 |
+| **Validation** | Implementation complete → validate.sh → Fix errors → Address warnings → Claim completion |
+
+### Quick Reference Commands
+
+| Command | Usage |
+| --- | --- |
+| Create spec folder | `./scripts/spec/create.sh "Description" --short-name name --level 2` |
+| Validate | `.opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/007-feature/` |
+| Save context | `node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js specs/007-feature/` |
+| Next spec number | `ls -d specs/[0-9]*/ \| sed 's/.*\/\([0-9]*\)-.*/\1/' \| sort -n \| tail -1` |
+| Upgrade level | `bash .opencode/skill/system-spec-kit/scripts/spec/upgrade-level.sh specs/007-feature/ --to 2` |
+| Completeness | `.opencode/skill/system-spec-kit/scripts/spec/calculate-completeness.sh specs/007-feature/` |
+
+---
+
+<!-- /ANCHOR:integration-points -->
+<!-- ANCHOR:related-resources -->
+## 7. RELATED RESOURCES
+
+### Related Skills
+
+| Direction      | Skill                   | Integration                                           |
+| -------------- | ----------------------- | ----------------------------------------------------- |
+| **Upstream**   | None                    | This is the foundational workflow                     |
+| **Downstream** | workflows-code--opencode | Mandatory alignment for all code changes              |
+| **Downstream** | workflows-git           | References spec folders in commit messages and PRs    |
+| **Downstream** | workflows-documentation | Mandatory alignment for all documentation changes     |
+| **Integrated** | Spec Kit Memory         | Context preservation via MCP (merged into this skill) |
+
+### External Dependencies
+
+| Resource          | Location                                                                   | Purpose                           |
+| ----------------- | -------------------------------------------------------------------------- | --------------------------------- |
+| Templates         | `templates/level_1/` through `level_3+/` (see Resource Inventory above)    | Pre-merged level templates        |
+| Validation        | `scripts/spec/validate.sh`                                                 | Automated validation              |
+| Gates             | `AGENTS.md` Section 2                                                      | Gate definitions                  |
+| Memory gen        | `scripts/memory/generate-context.ts` → `scripts/dist/`                     | Memory file creation              |
+| MCP Server        | `mcp_server/context-server.ts`                                             | Spec Kit Memory MCP (~903 lines)  |
+| Database          | `mcp_server/dist/database/context-index.sqlite`                            | Vector search index (canonical runtime path) |
+| Constitutional    | `constitutional/`                                                          | Always-surface rules              |
+
+---
+
+**Remember**: This skill is the foundational documentation orchestrator. It enforces structure, template usage, context preservation, and validation for all file modifications. Every conversation that modifies files MUST have a spec folder.
+<!-- /ANCHOR:related-resources -->

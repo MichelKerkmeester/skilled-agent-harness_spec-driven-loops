@@ -2,7 +2,7 @@
 name: workflows-documentation
 description: "Unified markdown and OpenCode component specialist providing document quality enforcement, content optimization, component creation workflows (skills, agents, commands), ASCII flowcharts and install guides."
 allowed-tools: [Bash, Edit, Glob, Grep, Read, Task, Write]
-version: 1.0.9.0
+version: 1.1.0.0
 ---
 
 <!-- Keywords: workflows-documentation, markdown-quality, skill-creation, document-validation, ascii-flowchart, llms-txt, content-optimization, extract-structure -->
@@ -14,6 +14,8 @@ Unified specialist providing: (1) Document quality pipeline with structure enfor
 **Core Principle**: Structure first, then content, then quality.
 
 **Architecture**: Scripts handle deterministic parsing/metrics. AI handles quality judgment and recommendations.
+
+**Skill Graph Support**: Large skills can now be authored as node-based graphs. Use [skill_graph_standards.md](./references/skill_graph_standards.md) for structure rules and [skill_graph_node_template.md](./assets/opencode/skill_graph_node_template.md) to scaffold new nodes.
 
 ---
 
@@ -53,6 +55,14 @@ Create and manage OpenCode components (skills, agents, commands). Each component
 - **Skills** (.opencode/skill/) - Knowledge bundles with workflows → [skill_creation.md](./references/skill_creation.md)
 - **Agents** (.opencode/agent/) - AI personas with tool permissions → [agent_template.md](./assets/opencode/agent_template.md)
 - **Commands** (.opencode/command/) - Slash commands for user invocation → [command_template.md](./assets/opencode/command_template.md)
+
+**Skill Graph Authoring** - Use graph resources when:
+- Converting large monolithic `SKILL.md` files to node-based graphs
+- Creating `index.md` + `nodes/*.md` structures for progressive disclosure
+- Defining wikilink traversal paths across skills
+
+Start with: [skill_graph_standards.md](./references/skill_graph_standards.md)
+Template: [skill_graph_node_template.md](./assets/opencode/skill_graph_node_template.md)
 
 **Use when**:
 - User requests skill creation ("create a skill", "make a new skill")
@@ -140,6 +150,7 @@ INTENT_SIGNALS = {
     "DOC_QUALITY": {"weight": 4, "keywords": ["dqi", "quality", "validate", "extract_structure"]},
     "OPTIMIZATION": {"weight": 3, "keywords": ["optimize", "llms.txt", "ai context"]},
     "SKILL_CREATION": {"weight": 4, "keywords": ["skill creation", "new skill", "init_skill", "package_skill"]},
+    "SKILL_GRAPH": {"weight": 4, "keywords": ["skill graph", "wikilink", "index.md", "moc", "nodes"]},
     "AGENT_COMMAND": {"weight": 4, "keywords": ["create agent", "create command", "agent template", "command template"]},
     "FLOWCHART": {"weight": 3, "keywords": ["flowchart", "ascii diagram", "decision tree", "swimlane"]},
     "INSTALL_GUIDE": {"weight": 3, "keywords": ["install guide", "setup instructions", "prerequisite"]},
@@ -150,6 +161,7 @@ RESOURCE_MAP = {
     "DOC_QUALITY": ["references/validation.md", "references/workflows.md", "references/core_standards.md"],
     "OPTIMIZATION": ["references/optimization.md", "assets/documentation/llmstxt_templates.md"],
     "SKILL_CREATION": ["references/skill_creation.md", "assets/opencode/skill_md_template.md", "assets/opencode/skill_reference_template.md"],
+    "SKILL_GRAPH": ["references/skill_graph_standards.md", "assets/opencode/skill_graph_node_template.md"],
     "AGENT_COMMAND": ["assets/opencode/agent_template.md", "assets/opencode/command_template.md"],
     "FLOWCHART": ["assets/flowcharts/simple_workflow.md", "assets/flowcharts/decision_tree_flow.md"],
     "INSTALL_GUIDE": ["assets/documentation/install_guide_template.md", "references/install_guide_standards.md"],
@@ -273,6 +285,13 @@ scripts/extract_structure.py path/to/document.md
 1. Metadata (name + description) - Always in context (~100 words)
 2. SKILL.md body - When skill triggers (<5k words)
 3. Bundled resources - As needed (unlimited)
+
+**Skill Graph Workflow** (for large skills):
+1. Define scope using [skill_graph_standards.md](./references/skill_graph_standards.md)
+2. Create `index.md` as the entrypoint and map of content
+3. Create focused `nodes/*.md` files with YAML frontmatter
+4. Use [skill_graph_node_template.md](./assets/opencode/skill_graph_node_template.md) to keep node structure consistent
+5. Keep `SKILL.md` as a lightweight compatibility entrypoint during migration
 
 **After packaging**: Run `extract_structure.py` on SKILL.md for final quality review.
 
@@ -401,6 +420,8 @@ Standard Flow:      Branch:           Parallel:         Merge:
 6. **ALWAYS delete unused examples** (keep lean)
 7. **ALWAYS validate before packaging**
 8. **ALWAYS recommend final review** (run `extract_structure.py`)
+9. **ALWAYS apply skill graph standards** when creating or refactoring large skills
+10. **ALWAYS keep SKILL.md as an entrypoint** when migrating to `index.md` + `nodes/`
 
 ##### ❌ NEVER
 
@@ -686,8 +707,10 @@ Key integrations:
 
 1. Read Sections 3-6 (When/How/Rules/Success)
 2. Navigate: [skill_creation.md](./references/skill_creation.md) for workflow
-3. Use Scripts: `init_skill.py` → edit → `package_skill.py`
-4. Validate: Run Document Quality validation on SKILL.md
+3. For graph-based skills, use [skill_graph_standards.md](./references/skill_graph_standards.md)
+4. For graph node authoring, start from [skill_graph_node_template.md](./assets/opencode/skill_graph_node_template.md)
+5. Use Scripts: `init_skill.py` → edit → `package_skill.py`
+6. Validate: Run Document Quality validation on SKILL.md
 
 ### Quick Reference
 

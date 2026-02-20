@@ -6,6 +6,8 @@
    1. DEPENDENCIES
 --------------------------------------------------------------- */
 
+import * as fs from 'fs';
+
 import { checkDatabaseUpdated } from '../core';
 import * as vectorIndex from '../lib/search/vector-index';
 import type { UpdateMemoryParams } from '../lib/search/vector-index';
@@ -386,6 +388,8 @@ async function handleMemoryStats(args: StatsArgs | null): Promise<MCPResponse> {
   let dates: Record<string, unknown> = { oldest: null, newest: null };
   let triggerCount = 0;
   let top_folders: Record<string, unknown>[];
+  let tierBreakdown: Record<string, number> = {};
+  let lastIndexedAt: string | null = null;
 
   try {
     const totalResult = database.prepare('SELECT COUNT(*) as count FROM memory_index').get() as Record<string, unknown>;
@@ -394,11 +398,31 @@ async function handleMemoryStats(args: StatsArgs | null): Promise<MCPResponse> {
     dates = (database.prepare('SELECT MIN(created_at) as oldest, MAX(created_at) as newest FROM memory_index').get() || { oldest: null, newest: null }) as Record<string, unknown>;
     const triggerResult = database.prepare("SELECT SUM(json_array_length(trigger_phrases)) as count FROM memory_index WHERE trigger_phrases IS NOT NULL AND trigger_phrases != '[]'").get() as Record<string, unknown>;
     triggerCount = (triggerResult && typeof triggerResult.count === 'number') ? triggerResult.count : 0;
+
+    const tierRows = database.prepare(
+      'SELECT importance_tier, COUNT(*) as count FROM memory_index GROUP BY importance_tier'
+    ).all() as { importance_tier: string; count: number }[];
+    for (const row of tierRows) {
+      tierBreakdown[row.importance_tier || 'normal'] = row.count;
+    }
+
+    const lastIndexedRow = database.prepare(
+      'SELECT MAX(updated_at) as last_indexed FROM memory_index'
+    ).get() as { last_indexed: string | null } | undefined;
+    lastIndexedAt = lastIndexedRow?.last_indexed || null;
   } catch (dbErr: unknown) {
     const message = toErrorMessage(dbErr);
     console.error(`[memory-stats] Database query failed (aggregate stats): ${message}`);
     return createMCPErrorResponse({ tool: 'memory_stats', error: `Database query failed: ${message}`, code: 'E021', startTime });
   }
+
+  let databaseSizeBytes: number | null = null;
+  try {
+    const dbPath = vectorIndex.getDbPath();
+    if (dbPath) {
+      databaseSizeBytes = fs.statSync(dbPath).size;
+    }
+  } catch { /* non-fatal */ }
 
   try {
     if (folder_ranking === 'count') {
@@ -515,7 +539,10 @@ async function handleMemoryStats(args: StatsArgs | null): Promise<MCPResponse> {
       totalTriggerPhrases: triggerCount,
       sqliteVecAvailable: vectorIndex.isVectorSearchAvailable(),
       vectorSearchEnabled: vectorIndex.isVectorSearchAvailable(),
-      folderRanking: folder_ranking
+      folderRanking: folder_ranking,
+      tierBreakdown,
+      databaseSizeBytes,
+      lastIndexedAt
     },
     hints
   });

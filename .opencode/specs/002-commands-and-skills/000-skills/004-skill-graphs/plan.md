@@ -33,6 +33,7 @@ This plan details the process of decomposing **every available OpenCode skill** 
 - [ ] All acceptance criteria met
 - [ ] `check-links.sh` passing across `.opencode/skill/`
 - [ ] **All** skills converted to graph architecture
+- [ ] `workflows-documentation` includes Skill Graph standards reference, node template asset, and updated `SKILL.md`
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -63,10 +64,13 @@ Agent reads `index.md` -> reads YAML descriptions -> determines relevant `[[link
 ### Phase 2: Pilot Migration (`system-spec-kit`)
 - [ ] Extract Validation logic, Memory systems, and Document Levels to nodes.
 - [ ] Create `index.md` pointing to these nodes via wikilinks.
-- [ ] Delete monolithic `SKILL.md` for the pilot.
+- [ ] Convert `SKILL.md` to a lightweight graph entrypoint for backward compatibility.
 
 ### Phase 3: Broad Migration (All Other Skills)
 - [ ] Decompose `workflows-documentation` into a Skill Graph.
+- [ ] Add `workflows-documentation/references/skill_graph_standards.md`.
+- [ ] Add `workflows-documentation/assets/opencode/skill_graph_node_template.md`.
+- [ ] Update `workflows-documentation/SKILL.md` to document graph-first authoring and route to new references.
 - [ ] Decompose `workflows-code` (and variations) into Skill Graphs.
 - [ ] Decompose `mcp-code-mode` into a Skill Graph.
 - [ ] Decompose `workflows-chrome-devtools` into a Skill Graph.
@@ -176,7 +180,7 @@ Phase 1 (Tooling) ────► Phase 2 (Pilot) ────► Phase 3 (Broad
 |-----------|-------------|------------------|--------|
 | M1 | Tooling Ready | `check-links.sh` works | Phase 1 |
 | M2 | Pilot Done | `system-spec-kit` graph verified | Phase 2 |
-| M3 | Global Rollout | All skills migrated | Phase 3 |
+| M3 | Global Rollout | All skills migrated + docs standards added | Phase 3 |
 | M4 | Verified | Zero broken links globally | Phase 4 |
 <!-- /ANCHOR:milestones -->
 

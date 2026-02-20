@@ -27,7 +27,8 @@ Spec Kit is a unified documentation and memory system that makes AI-assisted dev
 - [6. TEMPLATES](#6--templates)
 - [7. SCRIPTS](#7--scripts)
 - [8. TROUBLESHOOTING](#8--troubleshooting)
-- [9. RELATED RESOURCES](#9--related-resources)
+- [9. FAQ](#9--faq)
+- [10. RELATED RESOURCES](#10--related-resources)
 
 
 ---
@@ -430,7 +431,7 @@ Hash-based Set tracks `sentMemories` per session. State persists to SQLite for c
 
 ### ANCHOR Format (93% Token Savings)
 
-Memory files use ANCHOR markers for section-level retrieval. As of spec 111, **~473 anchor tags** span **74 READMEs** across the skill system, enabling precise section-level memory retrieval without loading full files.
+Memory files use ANCHOR markers for section-level retrieval. Current coverage is **533 anchor tags** across **78 skill READMEs**, which enables precise section-level memory retrieval without loading full files.
 
 ```markdown
 <!-- ANCHOR: decision-auth-flow -->
@@ -728,7 +729,33 @@ Every error now includes actionable recovery guidance. 49 error codes mapped to 
 ---
 
 <!-- /ANCHOR:troubleshooting -->
-## 9. RELATED RESOURCES
+
+## 9. FAQ
+<!-- ANCHOR:faq -->
+
+### Common Questions
+
+**Q: Do I need a spec folder for every file change?**
+
+A: Yes for non-trivial file changes. Tiny typo fixes under five characters in one file and whitespace-only edits are exempt.
+
+**Q: When should I choose Level 2 instead of Level 1?**
+
+A: Use Level 2 when a change spans multiple files or needs verification evidence in `checklist.md`.
+
+**Q: How do I recover context after a crash or compaction?**
+
+A: Start with `/memory:continue`. If you need focused context, call `memory_search` with anchors such as `state` and `next-steps`.
+
+**Q: Can I write memory files manually?**
+
+A: No. Use `node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js <spec-folder>` so format and indexing stay consistent.
+
+---
+
+<!-- /ANCHOR:faq -->
+
+## 10. RELATED RESOURCES
 <!-- ANCHOR:related -->
 
 ### Internal Documentation

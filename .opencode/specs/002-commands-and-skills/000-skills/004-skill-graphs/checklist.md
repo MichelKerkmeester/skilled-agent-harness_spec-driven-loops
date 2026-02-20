@@ -31,9 +31,10 @@
 ## Code Quality
 
 - [ ] CHK-010 [P0] YAML frontmatter exists on all nodes
-- [ ] CHK-011 [P0] No broken wikilinks globally across `.opencode/skill/`
-- [ ] CHK-012 [P0] All existing skills migrated to node architecture (no massive `SKILL.md` orchestrators remain)
-- [ ] CHK-013 [P1] Code follows project patterns for scripts (`check-links.sh`)
+- [x] CHK-011 [P0] No broken wikilinks globally across `.opencode/skill/`
+- [ ] CHK-012 [P0] All existing skills migrated to node architecture with lightweight `SKILL.md` graph entrypoints
+- [x] CHK-013 [P1] Code follows project patterns for scripts (`check-links.sh`)
+- [x] CHK-014 [P1] `workflows-documentation` includes skill graph standards reference + node template asset + updated `SKILL.md`
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -71,8 +72,8 @@
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 7 | 2/7 |
-| P1 Items | 5 | 1/5 |
+| P0 Items | 7 | 3/7 |
+| P1 Items | 6 | 3/6 |
 | P2 Items | 2 | 0/2 |
 
 **Verification Date**: 2026-02-20

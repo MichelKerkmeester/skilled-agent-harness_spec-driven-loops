@@ -36,5 +36,7 @@ Since we are relying on wikilinks across our entire skill ecosystem, broken link
 
 1. Build the `check-links.sh` tool to keep the graphs safe.
 2. Pilot the extraction process on `system-spec-kit`.
-3. Roll out the extraction process to all other skills (e.g., `workflows-documentation`, `workflows-code`, etc.).
-4. Verify the agent can navigate seamlessly between them.
+3. Add Skill Graph authoring docs to `workflows-documentation` (standards reference and node template).
+4. Update `workflows-documentation/SKILL.md` so it teaches graph-first skill authoring.
+5. Roll out the extraction process to all other skills (e.g., `workflows-code`, `mcp-code-mode`, etc.).
+6. Verify the agent can navigate seamlessly between them.
