@@ -1136,6 +1136,7 @@ function initialize_db(custom_path: string | null = null): Database.Database {
   }
 
   db.pragma('journal_mode = WAL');
+  db.pragma('busy_timeout = 10000');
   db.pragma('foreign_keys = ON');
   db.pragma('cache_size = -64000');
   db.pragma('mmap_size = 268435456');
