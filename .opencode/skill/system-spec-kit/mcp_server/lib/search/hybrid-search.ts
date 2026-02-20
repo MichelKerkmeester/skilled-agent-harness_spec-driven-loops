@@ -189,6 +189,7 @@ function ftsSearch(
     // C138-P2: Delegate to weighted BM25 FTS5 search from sqlite-fts.ts
     // Uses bm25(memory_fts, 10.0, 5.0, 1.0, 2.0) for per-column weighting
     // (title 10x, trigger_phrases 5x, content 1x, file_path 2x)
+    // Filters: is_archived exclusion and spec_folder matching handled by fts5Bm25Search
     const bm25Results = fts5Bm25Search(db, query, { limit, specFolder, includeArchived });
 
     return bm25Results.map(row => ({

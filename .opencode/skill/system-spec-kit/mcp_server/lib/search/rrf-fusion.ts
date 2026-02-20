@@ -137,7 +137,8 @@ function fuseResultsMulti(
   const scoreMap = new Map<number | string, FusionResult>();
 
   for (const list of lists) {
-    const weight = list.weight || (list.source === SOURCE_TYPES.GRAPH ? graphWeightBoost : 1.0);
+    // Use ?? so explicit weight=0 is honoured; graph source gets a boost when no weight is given
+    const weight = list.weight ?? (list.source === SOURCE_TYPES.GRAPH ? graphWeightBoost : 1.0);
     for (let i = 0; i < list.results.length; i++) {
       const item = list.results[i];
       const rrfScore = weight * (1 / (k + i + 1));
@@ -254,7 +255,8 @@ function fuseResultsCrossVariant(
   variantLists: RankedList[][],
   options: FuseMultiOptions = {}
 ): FusionResult[] {
-  const convergenceBonusPerVariant = options.convergenceBonus || CONVERGENCE_BONUS;
+  // Use ?? so callers can explicitly pass 0 convergence bonus without falling back to default
+  const convergenceBonusPerVariant = options.convergenceBonus ?? CONVERGENCE_BONUS;
 
   if (variantLists.length === 0) return [];
 
