@@ -1,4 +1,3 @@
-// @ts-nocheck
 // ---------------------------------------------------------------
 // TEST: Integration Pipeline (C138 End-to-End)
 // Full scatter→fuse→co-activate→TRM→MMR→serialize pipeline.
@@ -106,7 +105,13 @@ function applyMMRLocal(results: SearchResult[], lambda: number, limit: number): 
   // Re-merge metadata from original results
   return selected.map(sel => {
     const orig = results.find(r => r.id === sel.id);
-    return orig ?? { ...sel, metadata: { title: String(sel.id), spec_folder: '', importance_tier: 'normal' } };
+    // WHY: `sel.content` is optional in MMRCandidate; coerce to string so the
+    // fallback satisfies SearchResult.content (required string).
+    return orig ?? {
+      ...sel,
+      content: sel.content ?? '',
+      metadata: { title: String(sel.id), spec_folder: '', importance_tier: 'normal' },
+    };
   });
 }
 
@@ -218,12 +223,15 @@ describe('C138 Integration Pipeline', () => {
   });
 
   // ---- T5: Evidence gap warning appears when gap detected ----
-  it('T5: evidence gap warning appears in payload when gap is detected', () => {
-    // Use a query that produces uniform scores (gap detected)
+  it('T5: evidence gap warning in payload iff trm.evidenceGapDetected is true', () => {
     const response = hybridSearchEnhanced('bake bread recipe', 'auto', ALL_FLAGS_ON);
 
+    // WHY: Assert both directions so the test cannot silently pass regardless
+    // of whether a gap was detected — an unconditional check avoids vacuous truths.
     if (response.trm.evidenceGapDetected) {
       expect(response.payload).toContain('EVIDENCE GAP DETECTED');
+    } else {
+      expect(response.payload).not.toContain('EVIDENCE GAP DETECTED');
     }
   });
 
@@ -368,8 +376,8 @@ describe('C138 Stage: MMR Reranker Production', () => {
 
 describe('C138 Stage: Evidence Gap Detector Production', () => {
   it('detectEvidenceGap flags flat distributions (Z < 1.5)', () => {
-    // All scores very close — flat distribution
-    const flat = detectEvidenceGap([0.5, 0.48, 0.47, 0.46, 0.45]);
+    // All scores very close — flat distribution (Z ≈ 1.07 < 1.5 threshold)
+    const flat = detectEvidenceGap([0.50, 0.50, 0.49, 0.49, 0.48]);
     expect(flat.gapDetected).toBe(true);
     expect(flat.zScore).toBeLessThan(1.5);
   });
