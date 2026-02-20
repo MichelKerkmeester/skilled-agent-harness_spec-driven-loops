@@ -1,6 +1,6 @@
 # Session Handover: Skill Graphs Migration
 
-**Spec Folder**: `.opencode/specs/002-commands-and-skills/036-skill-graphs/`
+**Spec Folder**: `.opencode/specs/003-system-spec-kit/138-hybrid-rag-fusion/002-skill-graph-integration/`
 **Created**: 2026-02-20
 **CONTINUATION - Attempt 1**
 
@@ -27,7 +27,7 @@
 | Field | Value |
 |-------|-------|
 | Phase | IMPLEMENTATION (near-complete) |
-| Active File | `.opencode/specs/002-commands-and-skills/036-skill-graphs/checklist.md` |
+| Active File | `.opencode/specs/003-system-spec-kit/138-hybrid-rag-fusion/002-skill-graph-integration/checklist.md` |
 | Last Action | Updated spec artifacts (tasks.md, checklist.md, implementation-summary.md) with SGQS completion |
 | System State | All tasks complete; minor P1/P2 checklist items remain open |
 
@@ -61,18 +61,18 @@
 - `.opencode/skill/system-spec-kit/scripts/sgqs/executor.ts` (772 lines)
 - `.opencode/skill/system-spec-kit/scripts/sgqs/index.ts` (169 lines)
 - `index.md` + `nodes/*.md` for 6 migrated skills (~60 files total)
-- `.opencode/specs/.../036-skill-graphs/scratch/sgqs-grammar.md` (802 lines)
-- `.opencode/specs/.../036-skill-graphs/scratch/metadata-mapping.md` (808 lines)
-- `.opencode/specs/.../036-skill-graphs/scratch/traversal-report.md`
+- `.opencode/specs/.../002-skill-graph-integration/scratch/sgqs-grammar.md` (802 lines)
+- `.opencode/specs/.../002-skill-graph-integration/scratch/metadata-mapping.md` (808 lines)
+- `.opencode/specs/.../002-skill-graph-integration/scratch/traversal-report.md`
 
 ### Files Modified
 - 6 SKILL.md files converted to compatibility entrypoints (graph status section added)
 - `.opencode/skill/workflows-documentation/index.md` - Updated graph resources reference
 - `.opencode/skill/workflows-documentation/assets/opencode/skill_md_template.md` - Added graph mode guidance
 - `.opencode/skill/workflows-documentation/references/skill_creation.md` - Trimmed sections 1-2 and 6 bloat
-- `.opencode/specs/.../036-skill-graphs/tasks.md` - All tasks marked complete
-- `.opencode/specs/.../036-skill-graphs/checklist.md` - 9/10 P0, 6/8 P1 verified
-- `.opencode/specs/.../036-skill-graphs/implementation-summary.md` - Updated with SGQS completion
+- `.opencode/specs/.../002-skill-graph-integration/tasks.md` - All tasks marked complete
+- `.opencode/specs/.../002-skill-graph-integration/checklist.md` - 9/10 P0, 6/8 P1 verified
+- `.opencode/specs/.../002-skill-graph-integration/implementation-summary.md` - Updated with SGQS completion
 
 ### Files Deleted
 - `.opencode/skill/workflows-documentation/references/skill_graph_standards.md` (redundant redirect)
@@ -128,7 +128,7 @@ None
 
 ### To Resume
 ```
-/spec_kit:resume .opencode/specs/002-commands-and-skills/036-skill-graphs/
+/spec_kit:resume .opencode/specs/003-system-spec-kit/138-hybrid-rag-fusion/002-skill-graph-integration/
 ```
 
 ### Files to Review First
@@ -140,7 +140,7 @@ None
 - [ ] Load this handover document
 - [ ] Review remaining P1/P2 checklist items (CHK-050/051/042/052)
 - [ ] Clean scratch/ directory (retain sgqs-grammar.md and metadata-mapping.md as reference)
-- [ ] Run `node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js .opencode/specs/002-commands-and-skills/036-skill-graphs`
+- [ ] Run `node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js .opencode/specs/003-system-spec-kit/138-hybrid-rag-fusion/002-skill-graph-integration`
 - [ ] Consider git commit for all changes
 - [ ] TASK-204 (metadata integration) is the main remaining architectural work
 

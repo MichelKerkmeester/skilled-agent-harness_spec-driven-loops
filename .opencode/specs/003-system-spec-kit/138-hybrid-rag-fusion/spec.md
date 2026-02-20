@@ -1,110 +1,386 @@
-# Spec: 138-hybrid-rag-fusion (Unified Context Engine)
+<!-- SPECKIT_LEVEL: 3+ -->
+# Feature Specification: 138 — Intelligent Context Architecture (Unified RAG Fusion + Skill Graphs)
 
-<!-- ANCHOR: spec-summary-138 -->
-## 1. Executive Summary
-This specification details the Level 3+ architectural upgrade of the `system-speckit` memory Model Context Protocol (MCP) server. The goal is to transform the server from a collection of isolated retrieval engines into a cohesive **Unified Context Engine**. Based on an exhaustive 6-round multi-agent research sprint covering modern RAG paradigms (RAGFlow, GraphRAG, WiredBrain), the MCP server will activate its dormant Tri-Hybrid capabilities (Vector, BM25, FTS5) and fuse them via Reciprocal Rank Fusion (RRF). 
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify + level3-arch + level3plus-govern | v2.2 -->
 
-To strictly enforce token budgets and prevent LLM hallucination, the system introduces Maximal Marginal Relevance (MMR) pruning for payload diversity, and a Transparent Reasoning Module (TRM) to gate low-confidence contexts. Crucially, this massive capability upgrade requires **zero schema migrations**; all logic executes natively on the existing v15 SQLite schema via TypeScript orchestration.
-<!-- /ANCHOR: spec-summary-138 -->
+---
 
-<!-- ANCHOR: spec-background-138 -->
-## 2. Background and Problem Statement
-Currently, `system-speckit`'s `memory_context` and `memory_search` tools rely predominantly on flat vector similarity (`sqlite-vec`) and unweighted FTS5 `MATCH` queries. 
-*   **The "Lost in the Middle" Problem:** Returning large payloads of semantically identical chunks (e.g., 5 versions of the same implementation summary) wastes the strict 2000-token limit and dilutes LLM attention.
-*   **Integration Fragmentation:** Advanced modules like `adaptive-fusion.ts` (for intent-weighted RRF) and `co-activation.ts` (for spreading graph activation) exist fully implemented in the codebase but are physically disconnected from the primary `hybridSearchEnhanced()` pipeline.
-*   **Silent Failure:** If a niche technical query returns low-quality nearest neighbors, the LLM hallucinates an answer based on noise because the MCP server provides no metadata indicating low confidence.
-<!-- /ANCHOR: spec-background-138 -->
+<!-- ANCHOR:executive-summary -->
+## EXECUTIVE SUMMARY
 
-<!-- ANCHOR: spec-requirements-138 -->
-## 3. Core Requirements
-### 3.1 Hard Constraints
-*   **Zero Schema Migrations:** All capabilities MUST execute on the existing v15 SQLite schema (`memories`, `memory_fts`, `causal_edges`, `memory_index`). No external databases (Pinecone, Neo4j) are permitted.
-*   **Token Efficiency:** Context payloads MUST strictly respect the 2000-token limit (approximately 8,000 ASCII characters). If MMR cannot prune sufficiently, the array must be forcibly truncated.
-*   **Dependency Minimization:** The upgrade must only rely on `sqlite-vec`, `sqlite3`, and standard Node.js libraries. `remark` and `remark-gfm` are permitted exclusively for Phase 4 ingest-time AST parsing.
+This specification governs the transformation of the system-spec-kit from a basic retrieval system into an intelligent context engine through two complementary workstreams: Hybrid RAG Fusion (Workstream A) activates dormant tri-hybrid retrieval capabilities with fusion ranking and confidence gating, while Skill Graph Integration (Workstream B) decomposes monolithic skill files into a traversable knowledge graph that enriches the retrieval pipeline. Together they establish a zero-external-dependency, <120ms context delivery architecture on the existing v15 SQLite schema, eliminating the vocabulary mismatch and flat retrieval failures that currently degrade AI agent context quality.
 
-### 3.2 Performance Budget (120ms Limit for `mode="auto"`)
-The entire `hybridSearchEnhanced()` pipeline must execute within 120ms to prevent blocking the MCP protocol or causing LLM timeout warnings.
-| Stage | Operation | Latency Budget |
-| :--- | :--- | :--- |
-| **L0** | Intent Classification (Centroid Dot Product) | 2ms |
-| **L1** | Parallel Scatter (`Promise.all`) | 60ms |
-| | - Vector Search (`sqlite-vec`) | *35ms* |
-| | - FTS5 Search (Weighted BM25) | *15ms* |
-| | - Graph Search (Recursive CTE) | *45ms* |
-| **L2** | Adaptive RRF Fusion | 5ms |
-| **L3** | Post-Fusion MMR Reranking | 8ms |
-| **L4** | TRM Z-Score Confidence Check | 1ms |
-| **L5** | Markdown Serialization & Metadata formatting | 5ms |
-| **Total** | | **~81ms** (39ms buffer) |
+**Key Decisions**: Reciprocal Rank Fusion over learned rerankers (latency vs. accuracy trade-off); in-process SGQS graph layer over Neo4j (zero external dependency constraint).
 
-### 3.3 Functional Requirements
-*   **Orchestrated Retrieval:** The pipeline MUST fuse Vector, FTS5, BM25, and Causal Graph traversals into a single unified RRF ranking.
-*   **Semantic Diversity:** The system MUST implement Cosine Maximal Marginal Relevance (MMR) post-fusion to penalize duplicate information.
-*   **Fallback Safety:** The LLM MUST receive explicit `[EVIDENCE GAP DETECTED]` warnings when the Gaussian distribution of RRF scores falls below a critical Z-score threshold.
-<!-- /ANCHOR: spec-requirements-138 -->
+**Critical Dependencies**: Existing v15 SQLite schema must remain unchanged; BM25/FTS5 tokenizer behavior on current corpus must be validated before RRF weight tuning.
+<!-- /ANCHOR:executive-summary -->
 
-<!-- ANCHOR: spec-scope-138 -->
-## 4. Scope Boundaries
+---
 
-### In-Scope (4 Implementation Phases)
-*   **Phase 0:** Activation of dormant logic (`adaptive-fusion`, `co-activation`, `useGraph`).
-*   **Phase 1:** Implementation of post-fusion Cosine MMR and Gaussian Confidence Checks (TRM).
-*   **Phase 2:** Modification of FTS5 queries for multi-field weighting (Title vs. Body) and CTEs for edge-strength multipliers.
-*   **Phase 3:** Server-side rule-based query expansion exclusively for `mode="deep"`.
-*   **Phase 4:** Deep document parsing (`remark`), automated entity linking, and query-independent PageRank authority scoring.
+<!-- ANCHOR:metadata -->
+## 1. METADATA
 
-### Cognitive Layer Enhancements (In-Scope)
-*   Transitioning `intent-classifier.ts` from regex to embedding centroid matching.
-*   Running `prediction-error-gate.ts` on read-time retrieved payloads to flag contradictions.
-*   Modulating FSRS tier decay (Constitutional memories decay at 0.1x, Scratch at 3.0x).
+| Field | Value |
+|-------|-------|
+| **Spec Number** | 138 |
+| **Level** | 3+ |
+| **Priority** | P0 |
+| **Status** | In Progress |
+| **Created** | 2026-02-20 |
+| **Branch** | `138-hybrid-rag-fusion` |
+| **Parent Spec** | `.opencode/specs/003-system-spec-kit/` |
+| **Workstream A Sub-Spec** | `001-system-speckit-hybrid-rag-fusion/spec.md` |
+| **Workstream B Sub-Spec** | `002-skill-graph-integration/spec.md` |
+| **Workstream A Status** | Research + Planning COMPLETE — Implementation NOT started |
+| **Workstream B Status** | ALL tasks COMPLETE |
+| **Complexity Score** | 92/100 |
+<!-- /ANCHOR:metadata -->
 
-### Out-of-Scope
-*   Migration to dedicated vector databases (e.g., Pinecone, Qdrant) or Graph databases (Neo4j).
-*   Client-side LLM query expansion (latency prohibitive due to the LLM-in-MCP paradox).
-*   Any modification to the `causal_links` or `memories` table schemas.
-<!-- /ANCHOR: spec-scope-138 -->
+---
 
-<!-- ANCHOR: spec-architecture-138 -->
-## 5. Target Architecture & Data Contracts
+<!-- ANCHOR:problem -->
+## 2. PROBLEM & PURPOSE
 
-### 5.1 Orchestration Flow
-The execution flow within `lib/search/hybrid-search.ts` will transition from a linear flow to a scatter-gather orchestrator:
-1.  **Intent Classification:** Identify user goal (e.g., `bug_fix` vs `exploration`).
-2.  **Scatter:** Execute Vector, Weighted FTS5, and Graph Traversal (`useGraph: true`) concurrently via `Promise.all`.
-3.  **Gather & Fuse:** Pipe all returned chunks into `adaptive-fusion.ts` utilizing RRF with intent-specific weights.
-4.  **Evaluate (TRM):** Check Z-scores of the RRF distribution. If low, flag the metadata array.
-5.  **Prune (MMR):** Filter the top-20 RRF results down to the top-5 most *diverse* memories using `lambda`.
+### Problem Statement
 
-### 5.2 TypeScript Interfaces
-```typescript
-interface SearchResult {
-  id: number;
-  score: number; // The final fused RRF score
-  content: string;
-  embedding: Float32Array; // Passed through for O(N^2) MMR calculation
-  metadata: {
-    title: string;
-    spec_folder: string;
-    importance_tier: string;
-  };
-}
+The system-spec-kit memory MCP operates three retrieval engines (Vector similarity, BM25 keyword, FTS5 full-text) in isolation, discarding the fusion signal that would emerge from combining their rankings. Simultaneously, skill knowledge is locked inside monolithic SKILL.md files with no graph traversal, forcing agents to load entire skill documents when only a subgraph of nodes is relevant. These two architectural gaps cause vocabulary-mismatch retrieval failures, low result diversity, and context payloads that are either too large (full skill files) or too shallow (single retrieval channel).
 
-interface TRMMetadata {
-  evidenceGapDetected: boolean;
-  zScore: number;
-  mean: number;
-  stdDev: number;
-  warnings: string[]; // E.g., ["[EVIDENCE GAP: Low confidence match. Synthesize from first principles.]"]
-}
+### Purpose
 
-interface EnhancedMCPResponse {
-  payload: string; // The markdown string fed to the LLM
-  trm: TRMMetadata;
-  metrics: {
-    latencyMs: number;
-    tokensConsumed: number;
-    sourcesHit: string[];
-  };
-}
-```
-<!-- /ANCHOR: spec-architecture-138 -->
+Deliver a unified intelligent context engine where hybrid retrieval with confidence gating and traversable skill graphs work together to provide AI agents with precise, diverse, and computationally affordable context within a 120ms latency ceiling — without any schema migrations or external database dependencies.
+<!-- /ANCHOR:problem -->
+
+---
+
+<!-- ANCHOR:scope -->
+## 3. SCOPE
+
+### In Scope
+
+**Workstream A — Hybrid RAG Fusion** (sub-spec: `001-system-speckit-hybrid-rag-fusion/spec.md`)
+- Unified Context Engine compositing Vector + BM25 + FTS5 channels via Reciprocal Rank Fusion (RRF)
+- Maximal Marginal Relevance (MMR) diversity pruning on fused result sets
+- Transparent Reasoning Module (TRM) with Z-score anomaly detection and confidence gating
+- Multi-query expansion for vocabulary mismatch resolution (synonym + paraphrase variants)
+- AST-based document parsing for structured section extraction
+- PageRank authority scoring on the memory graph for result re-ranking
+
+**Workstream B — Skill Graph Integration** (sub-spec: `002-skill-graph-integration/spec.md`)
+- Decomposition of all 9 monolithic SKILL.md files into wikilink-connected Skill Graph nodes
+- YAML frontmatter on all node files (id, title, type, tags, links)
+- SGQS (Skill Graph-Lite Query Script) — Neo4j-style query layer implemented in-process on existing memory architecture
+- Progressive disclosure traversal via `[[node]]` wikilinks
+- Migration of: system-spec-kit, workflows-documentation, mcp-code-mode, workflows-git, workflows-chrome-devtools, mcp-figma, workflows-code--full-stack, workflows-code--opencode, workflows-code--web-dev
+
+**Integration Layer**
+- SGQS graph traversal results feeding into Workstream A's Graph Intelligence retrieval channel
+- Skill Graph metadata enriching scatter-gather graph traversal during hybrid search
+- Shared MCP server surface exposing unified `memory_context()` entry point
+
+### Out of Scope
+
+- External Neo4j or graph database deployment — in-process SGQS is the chosen approach; external graph DBs introduce operational overhead incompatible with the zero-external-dependency constraint
+- Schema migrations on the v15 SQLite database — hard constraint; all enhancements must work within the existing schema
+- Learned neural rerankers (cross-encoders, ColBERT) — latency cost exceeds the 120ms budget; RRF is the chosen fusion strategy
+- New MCP tool surface beyond the existing `memory_*` namespace — all capability surfaced through existing tools
+- Skills beyond the 9 listed in Workstream B scope
+
+### Files to Change
+
+| File Path | Change Type | Description |
+|-----------|-------------|-------------|
+| `scripts/dist/memory/search.js` | Modify | Activate tri-hybrid retrieval channels and RRF fusion |
+| `scripts/dist/memory/unified-engine.js` | Create | Unified Context Engine orchestrating all retrieval channels |
+| `scripts/dist/memory/mmr.js` | Create | MMR diversity pruning module |
+| `scripts/dist/memory/trm.js` | Create | Transparent Reasoning Module with Z-score confidence gating |
+| `scripts/dist/memory/query-expand.js` | Create | Multi-query expansion for vocabulary mismatch |
+| `scripts/dist/memory/ast-parser.js` | Create | AST-based document section extractor |
+| `scripts/dist/memory/pagerank.js` | Create | PageRank authority scoring for memory graph |
+| `scripts/dist/memory/sgqs.js` | Create | Skill Graph-Lite Query Script (in-process Neo4j-style layer) |
+| `skill/*/nodes/*.md` | Create | Decomposed skill graph node files (9 skills, N nodes each) |
+| `skill/*/SKILL.md` | Modify | Add wikilink index pointing to decomposed node files |
+
+*See sub-specs for full per-file change tables.*
+<!-- /ANCHOR:scope -->
+
+---
+
+<!-- ANCHOR:requirements -->
+## 4. REQUIREMENTS
+
+### P0 — Blockers (MUST complete)
+
+| ID | Workstream | Requirement | Acceptance Criteria |
+|----|-----------|-------------|---------------------|
+| REQ-001 | A | Activate all three retrieval channels (Vector, BM25, FTS5) and fuse results using Reciprocal Rank Fusion | `memory_search()` returns results from all three channels; RRF-ranked list passes unit tests against known fixture corpus |
+| REQ-002 | A | Transparent Reasoning Module must gate results below confidence threshold and surface Z-score outliers | TRM blocks results below `confidence_threshold=0.65`; Z-score anomalies flagged in response metadata |
+| REQ-003 | A | End-to-end hybrid search latency ≤ 120ms at p95 on the production corpus | Benchmark harness reports p95 ≤ 120ms across 100 consecutive queries on v15 SQLite |
+| REQ-004 | A | Zero schema migrations — all changes work on existing v15 SQLite schema | `sqlite3 .check` on db file shows no schema diff before/after implementation |
+| REQ-005 | B | All 9 SKILL.md files decomposed into wikilink-connected node files with YAML frontmatter | Each skill directory contains `nodes/` subdirectory; all nodes parse without error via SGQS loader |
+| REQ-006 | B | SGQS query layer resolves `[[node]]` wikilinks and returns traversal subgraphs | SGQS unit tests pass for depth-1 and depth-2 traversal on all 9 skill graphs |
+| REQ-007 | Integration | SGQS graph traversal results available as a named channel in Unified Context Engine | `unified-engine.js` accepts `channels: ['vector', 'bm25', 'fts5', 'skill-graph']` configuration; skill-graph channel returns SGQS results |
+
+### P1 — Required (complete OR user-approved deferral)
+
+| ID | Workstream | Requirement | Acceptance Criteria |
+|----|-----------|-------------|---------------------|
+| REQ-008 | A | MMR diversity pruning reduces redundant results by ≥ 30% vs. naive top-K | A/B test on 50 multi-topic queries; MMR variant has ≥ 30% lower semantic similarity between returned documents |
+| REQ-009 | A | Multi-query expansion generates ≥ 3 query variants and deduplicates results | Query expansion module produces ≥ 3 variants; deduplication keeps unique documents only |
+| REQ-010 | A | AST-based parser extracts structured sections (h2, h3, code blocks) from memory documents | Parser correctly segments 95%+ of existing memory files in test suite |
+| REQ-011 | A | PageRank authority scores computed on memory graph and incorporated into final ranking | PageRank scores present in result metadata; high-authority documents rank higher on authority-correlated test fixtures |
+| REQ-012 | B | Progressive disclosure: SGQS returns minimal subgraph (depth-1) by default, expandable to depth-N | Default SGQS call returns depth-1 subgraph; `depth` parameter increases traversal radius |
+
+### P2 — Optional (can defer without approval)
+
+| ID | Workstream | Requirement | Acceptance Criteria |
+|----|-----------|-------------|---------------------|
+| REQ-013 | A | RRF weight parameters exposed as runtime configuration (not hardcoded) | `unified-engine.js` accepts `weights: { vector, bm25, fts5, skill_graph }` override parameter |
+| REQ-014 | A | TRM reasoning traces persisted to scratch/ for debugging sessions | When `debug_mode=true`, TRM writes confidence breakdown to `scratch/trm-trace-{timestamp}.json` |
+| REQ-015 | B | SGQS `MATCH` query syntax supports property filters (`WHERE node.type = 'procedure'`) | SGQS parser handles `WHERE` clauses on YAML frontmatter properties |
+<!-- /ANCHOR:requirements -->
+
+---
+
+<!-- ANCHOR:success-criteria -->
+## 5. SUCCESS CRITERIA
+
+- **SC-001**: p95 hybrid search latency ≤ 120ms on v15 SQLite production corpus, measured by benchmark harness over 100 queries
+- **SC-002**: All three retrieval channels (Vector, BM25, FTS5) contribute to every fused result set; no channel silently returns empty
+- **SC-003**: TRM correctly gates results below `confidence_threshold=0.65` in ≥ 99% of test cases
+- **SC-004**: All 9 SKILL.md skills successfully decomposed; SGQS loader parses all node files without errors
+- **SC-005**: SGQS depth-1 and depth-2 traversal unit tests pass for all 9 skill graphs
+- **SC-006**: Integration channel (`skill-graph`) returns SGQS results through Unified Context Engine with no latency regression beyond the 120ms budget
+- **SC-007**: Zero schema changes to v15 SQLite — confirmed by schema diff before/after
+- **SC-008**: Workstream B sub-tasks remain COMPLETE (no regressions from integration work)
+<!-- /ANCHOR:success-criteria -->
+
+---
+
+<!-- ANCHOR:risks -->
+## 6. RISKS & DEPENDENCIES
+
+| Type | Item | Impact | Mitigation |
+|------|------|--------|------------|
+| Dependency | v15 SQLite schema | Blocking — all retrieval channels depend on existing FTS5 virtual tables and vector columns being present and populated | Run schema validation script before any search module work begins |
+| Dependency | BM25/FTS5 tokenizer behaviour on existing corpus | RRF weight tuning depends on channel signal quality; untested tokenizer edge cases could skew fusion | Validate tokenizer output on 50 representative memory documents before setting RRF weights |
+| Dependency | Workstream B SGQS (REQ-006) | Graph Intelligence channel in Unified Context Engine cannot be wired until SGQS is stable | SGQS is already COMPLETE (Workstream B done); dependency is integration wiring only |
+| Risk | 120ms latency budget exceeded by multi-query expansion | Generating 3+ query variants and running them in parallel adds wall-clock time | Expand queries in parallel goroutines / Promise.all; cache expansion results keyed by query hash |
+| Risk | PageRank convergence time on large memory graphs | If memory graph is dense, PageRank may not converge within latency budget | Pre-compute PageRank scores at index time and cache; recompute incrementally on memory_save events |
+| Risk | AST parser fails on non-standard markdown | Memory files use varied heading structures; parser may miss sections | Use robust markdown-it AST with fallback to regex for heading extraction; log parse failures to scratch/ |
+| Risk | Wikilink resolution failures after skill graph decomposition | Broken `[[node]]` links cause SGQS traversal to silently drop nodes | SGQS loader validates all wikilinks at startup; broken links logged as warnings, not hard errors |
+| Risk | Integration channel increases payload size beyond agent context limits | Skill graph subgraph results added to existing hybrid results could bloat context | MMR and TRM act as gatekeepers; enforce per-channel result cap (default 3 per channel) |
+<!-- /ANCHOR:risks -->
+
+---
+
+<!-- ANCHOR:nfr -->
+## 7. NON-FUNCTIONAL REQUIREMENTS
+
+### Performance
+- **NFR-P01**: p95 hybrid search latency ≤ 120ms on v15 SQLite with all four channels active (Vector, BM25, FTS5, Skill Graph)
+- **NFR-P02**: Multi-query expansion must not increase total query time by more than 40ms (all variants run in parallel)
+- **NFR-P03**: PageRank scores must be pre-computed and cached; recomputation must not block search path
+- **NFR-P04**: Memory footprint of in-process SGQS graph must not exceed 50MB resident for the 9-skill corpus
+
+### Reliability
+- **NFR-R01**: If any single retrieval channel fails, the Unified Context Engine must degrade gracefully and return results from remaining channels (no total failure)
+- **NFR-R02**: TRM must never block ALL results — if confidence gating would eliminate 100% of results, return top-1 with a low-confidence flag
+- **NFR-R03**: SGQS wikilink resolution failures must be non-fatal; broken links are logged and skipped
+
+### Maintainability
+- **NFR-M01**: All new modules (unified-engine.js, mmr.js, trm.js, query-expand.js, sgqs.js) must have corresponding unit test files
+- **NFR-M02**: RRF fusion weights must be documented in code comments with rationale for chosen defaults
+- **NFR-M03**: Skill graph node files must follow the documented YAML frontmatter schema; SGQS loader must reject malformed nodes with a clear error message
+
+### Security & Privacy
+- **NFR-S01**: No memory content transmitted outside the local process — all retrieval is in-process; no external API calls for search
+- **NFR-S02**: Debug traces written to scratch/ must be excluded from git commits (covered by existing .gitignore patterns)
+<!-- /ANCHOR:nfr -->
+
+---
+
+<!-- ANCHOR:edge-cases -->
+## 8. EDGE CASES
+
+### Retrieval Boundaries
+- **Empty corpus**: If the memory database has no documents, all channels return empty; Unified Context Engine returns empty result set with a `corpus_empty` flag — no crash
+- **Single-channel availability**: If FTS5 virtual table is absent (fresh install), engine falls back to Vector + BM25 only; logs warning on startup
+- **Query too short**: Single-character or empty queries bypass multi-query expansion and route directly to BM25 exact match
+
+### RRF & Fusion
+- **All channels return identical results**: MMR diversity pruning is a no-op; result set returned as-is with a `diversity_not_applicable` metadata flag
+- **RRF ties**: Documents with identical RRF scores are broken by PageRank authority, then by recency (last_modified timestamp)
+- **Confidence gating eliminates all results**: TRM returns top-1 result with `low_confidence: true` flag regardless of threshold; never returns empty set
+
+### Skill Graph
+- **Circular wikilinks**: SGQS traversal tracks visited nodes in a set; circular references are detected and traversal terminates without error
+- **Missing node file**: If a `[[node]]` wikilink points to a non-existent file, SGQS logs a warning and continues traversal from other edges
+- **Depth-N traversal on disconnected graph**: Disconnected skill graph components are returned as separate subgraph fragments in the response
+
+### Integration
+- **SGQS not yet initialized**: If Workstream A integration wiring runs before SGQS loader completes, the skill-graph channel returns empty with a `channel_not_ready` flag — fusion proceeds with 3 remaining channels
+<!-- /ANCHOR:edge-cases -->
+
+---
+
+<!-- ANCHOR:complexity -->
+## 9. COMPLEXITY ASSESSMENT
+
+| Dimension | Score | Triggers |
+|-----------|-------|----------|
+| Scope | 23/25 | Files: 10+ new/modified, LOC: ~1,500+ net new, Systems: memory MCP + all 9 skill directories |
+| Risk | 22/25 | Core infrastructure change (search path), latency-critical (120ms budget), no schema fallback |
+| Research | 18/20 | RRF weight calibration requires corpus analysis; MMR lambda tuning; PageRank convergence validation on real data |
+| Multi-Agent | 14/15 | Two parallel workstreams (A: implementation pending, B: complete); integration coordination required |
+| Coordination | 15/15 | Cross-workstream dependency (SGQS feeds hybrid engine); shared SQLite schema; shared MCP server surface |
+| **Total** | **92/100** | **Level 3+ — Enterprise governance required** |
+
+**Complexity Justification**: This specification governs core retrieval infrastructure changes that affect every AI agent using the memory MCP. Workstream A is not yet implemented, creating real execution risk. The latency constraint is hard (user-facing), the schema constraint is hard (data integrity), and the cross-workstream integration creates coordination overhead that justifies Level 3+ governance.
+<!-- /ANCHOR:complexity -->
+
+---
+
+<!-- ANCHOR:risk-matrix -->
+## 10. RISK MATRIX
+
+| Risk ID | Description | Impact | Likelihood | Mitigation |
+|---------|-------------|--------|------------|------------|
+| R-001 | Hybrid search p95 latency exceeds 120ms due to multi-channel overhead | High | Medium | Parallel channel execution; PageRank pre-computation; profiling harness before release |
+| R-002 | RRF weights produce worse retrieval quality than single-channel baseline | High | Low | A/B test against baseline on fixed evaluation set before switching default; easy rollback via config flag |
+| R-003 | AST parser regression on production memory files | Medium | Medium | Validate parser on full existing corpus in CI before deployment; keep regex fallback path |
+| R-004 | Workstream A integration breaks Workstream B's COMPLETE status | High | Low | Integration work isolated to new `unified-engine.js`; SGQS module is read-only from Workstream A's perspective |
+| R-005 | TRM confidence threshold miscalibrated on real corpus | Medium | Medium | Expose threshold as runtime configuration; default 0.65 derived from Z-score analysis on 200 sample queries |
+| R-006 | Skill graph node decomposition introduces maintenance burden | Low | High | Node files generated from SKILL.md structure; update procedure documented in sub-spec |
+| R-007 | PageRank pre-computation adds unacceptable startup latency | Medium | Low | Compute incrementally; cache to disk between sessions; skip on cold start if cache valid |
+<!-- /ANCHOR:risk-matrix -->
+
+---
+
+<!-- ANCHOR:user-stories -->
+## 11. USER STORIES
+
+### US-001: Precise Multi-Topic Context Retrieval (Priority: P0)
+
+**As an** AI agent performing a complex, multi-topic research task, **I want** hybrid retrieval that draws on keyword, semantic, and full-text signals simultaneously, **so that** I receive a diverse, high-quality result set even when my query terms don't exactly match stored document vocabulary.
+
+**Acceptance Criteria**:
+1. Given a query with vocabulary mismatch (synonyms used in query not in documents), When `memory_search()` is called, Then BM25 and Vector channels compensate for each other and the correct document appears in the top-5 RRF result
+2. Given a multi-topic query, When MMR pruning is applied, Then adjacent results have semantic similarity < 0.85 (diversity guaranteed)
+
+### US-002: Skill-Specific Context Without Full File Load (Priority: P0)
+
+**As an** AI agent needing guidance on a specific sub-procedure within a skill, **I want** the context engine to return only the relevant skill graph nodes, **so that** I don't have to process the entire monolithic SKILL.md and can stay within my context window budget.
+
+**Acceptance Criteria**:
+1. Given a query matching a specific skill procedure, When SGQS depth-1 traversal runs, Then only the matched node and its direct neighbours are returned (not the full SKILL.md)
+2. Given a traversal request with depth=2, When SGQS executes, Then second-order linked nodes are included and circular links do not cause infinite loops
+
+### US-003: Confidence-Gated Result Quality (Priority: P0)
+
+**As an** AI agent acting on retrieved context, **I want** the Transparent Reasoning Module to flag low-confidence results, **so that** I can apply appropriate scepticism to uncertain context rather than acting on it as ground truth.
+
+**Acceptance Criteria**:
+1. Given a query that returns ambiguous or low-similarity results, When TRM evaluates confidence scores, Then results below `confidence_threshold=0.65` are flagged with `low_confidence: true` in metadata
+2. Given a pathological corpus where all results are below threshold, When TRM runs, Then at least 1 result is returned (never empty set), with `low_confidence: true`
+
+### US-004: Infrastructure Stability Under Integration (Priority: P1)
+
+**As the** system-spec-kit maintainer, **I want** Workstream A's hybrid engine to integrate with Workstream B's SGQS without regressing any existing functionality, **so that** the 9 already-completed skill graph migrations remain stable and operational.
+
+**Acceptance Criteria**:
+1. Given the integration of SGQS into the Unified Context Engine, When all existing Workstream B tests are re-run, Then 100% pass (zero regressions)
+2. Given a failure in the skill-graph channel, When the Unified Context Engine runs, Then it degrades to 3-channel mode and returns results normally
+<!-- /ANCHOR:user-stories -->
+
+---
+
+<!-- ANCHOR:approval-workflow -->
+## 12. APPROVAL WORKFLOW
+
+| Checkpoint | Approver | Status | Date |
+|------------|----------|--------|------|
+| Spec Review (unified parent) | Project Owner | Pending | — |
+| Workstream B Completion Review | Project Owner | Approved | 2026-02-20 |
+| Workstream A Design Review | Project Owner | Pending | — |
+| Workstream A Implementation Review | Project Owner | Pending | — |
+| Integration Review (A + B unified) | Project Owner | Pending | — |
+| Launch Approval | Project Owner | Pending | — |
+<!-- /ANCHOR:approval-workflow -->
+
+---
+
+<!-- ANCHOR:compliance -->
+## 13. COMPLIANCE CHECKPOINTS
+
+### Architecture Compliance
+- [x] Zero external database dependencies confirmed (SGQS is in-process)
+- [x] Zero schema migrations required — v15 SQLite schema unchanged
+- [ ] Latency budget validated on production corpus (p95 ≤ 120ms)
+- [ ] Benchmark harness reviewed and approved
+
+### Code Compliance
+- [ ] All new modules have unit test coverage
+- [ ] RRF weight defaults documented with calibration rationale
+- [ ] SGQS query syntax documented for future skill authors
+- [x] Coding standards followed (existing codebase patterns)
+- [x] No external license dependencies introduced (in-process implementations only)
+
+### Integration Compliance
+- [x] Workstream B SGQS stable and COMPLETE before integration wiring begins
+- [ ] Integration channel tested in isolation before being enabled by default
+- [ ] Graceful degradation tested (single channel failure scenarios)
+<!-- /ANCHOR:compliance -->
+
+---
+
+<!-- ANCHOR:stakeholders -->
+## 14. STAKEHOLDER MATRIX
+
+| Stakeholder | Role | Interest | Communication |
+|-------------|------|----------|---------------|
+| Project Owner (michelkerkmeester) | Decision maker, sole implementer | High — core infrastructure change affects all daily AI agent workflows | Spec approval at each checkpoint; async review of implementation PRs |
+| AI Agents (daily users) | Context consumers via memory MCP | High — retrieval quality directly impacts task accuracy | Validated via benchmark and test harness output; no human communication channel |
+<!-- /ANCHOR:stakeholders -->
+
+---
+
+<!-- ANCHOR:changelog -->
+## 15. CHANGE LOG
+
+### v1.0 (2026-02-20)
+**Initial unified specification**
+- Established Level 3+ parent spec covering Workstream A (Hybrid RAG Fusion) and Workstream B (Skill Graph Integration)
+- Documented cross-workstream integration architecture and shared constraints
+- Recorded Workstream B status as COMPLETE; Workstream A as Research + Planning COMPLETE, Implementation NOT started
+- Defined 92/100 complexity score and Level 3+ governance rationale
+<!-- /ANCHOR:changelog -->
+
+---
+
+<!-- ANCHOR:questions -->
+## 16. OPEN QUESTIONS
+
+- **Q1**: Should RRF weights be tuned per-query-type (e.g., code queries vs. prose queries) or kept uniform across all query types? Uniform weights are simpler; per-type weights require query classification overhead.
+- **Q2**: PageRank pre-computation frequency — should it trigger on every `memory_save` event or only on a scheduled interval (e.g., every 10 saves)? Every save is safest for freshness; interval reduces compute cost on bulk import sessions.
+- **Q3**: Should the SGQS skill-graph channel be enabled by default in the Unified Context Engine, or opt-in via configuration? Default-on is simpler for users; opt-in allows incremental rollout and easier A/B testing.
+<!-- /ANCHOR:questions -->
+
+---
+
+## RELATED DOCUMENTS
+
+- **Workstream A Sub-Spec**: `001-system-speckit-hybrid-rag-fusion/spec.md`
+- **Workstream B Sub-Spec**: `002-skill-graph-integration/spec.md`
+- **Implementation Plan**: See `plan.md`
+- **Task Breakdown**: See `tasks.md`
+- **Verification Checklist**: See `checklist.md`
+- **Decision Records**: See `decision-record.md`
+- **Research Archive**: See `research/` directory (13 analysis + recommendation documents)
+
+---
+
+<!--
+LEVEL 3+ SPEC — 138: Intelligent Context Architecture
+Parent spec governing two workstreams. Sub-specs hold detailed requirements.
+Complexity: 92/100 | Status: In Progress | Schema constraint: v15 SQLite, zero migrations
+-->

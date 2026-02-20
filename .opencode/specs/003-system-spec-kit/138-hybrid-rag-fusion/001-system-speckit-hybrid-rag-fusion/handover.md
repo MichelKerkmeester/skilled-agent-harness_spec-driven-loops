@@ -1,7 +1,7 @@
 # Session Handover: 138-hybrid-rag-fusion (Unified Context Engine)
 
 **CONTINUATION - Attempt 2**
-**Spec Folder**: specs/003-system-spec-kit/138-hybrid-rag-fusion
+**Spec Folder**: specs/003-system-spec-kit/138-hybrid-rag-fusion/001-system-speckit-hybrid-rag-fusion
 **Created**: 2026-02-20
 **Session Duration**: ~2 hours
 
@@ -134,12 +134,12 @@ None.
 
 ### To Resume
 ```
-/spec_kit:resume specs/003-system-spec-kit/138-hybrid-rag-fusion
+/spec_kit:resume specs/003-system-spec-kit/138-hybrid-rag-fusion/001-system-speckit-hybrid-rag-fusion
 ```
 
 ### Files to Review First
-1. `specs/003-system-spec-kit/138-hybrid-rag-fusion/tasks.md` -- Phase 0 tasks for immediate implementation
-2. `specs/003-system-spec-kit/138-hybrid-rag-fusion/checklist.md` -- Phase 0 + Phase 5 validation criteria
+1. `specs/003-system-spec-kit/138-hybrid-rag-fusion/001-system-speckit-hybrid-rag-fusion/tasks.md` -- Phase 0 tasks for immediate implementation
+2. `specs/003-system-spec-kit/138-hybrid-rag-fusion/001-system-speckit-hybrid-rag-fusion/checklist.md` -- Phase 0 + Phase 5 validation criteria
 3. `mcp_server/tests/integration-138-pipeline.vitest.ts` -- End-to-end behavioral spec for the full pipeline
 
 ### Quick-Start Checklist

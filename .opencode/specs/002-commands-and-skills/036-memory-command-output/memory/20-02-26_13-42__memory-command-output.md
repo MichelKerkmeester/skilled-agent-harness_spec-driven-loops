@@ -30,18 +30,18 @@
 | **Meta Data** | **Value** |
 |:--------------|:----------|
 | Session Date | 2026-02-20 |
-| Session ID | session-1771587148773-1xvdpdld7 |
-| Spec Folder | 003-system-spec-kit/138-hybrid-rag-fusion |
+| Session ID | session-1771591363489-jfkp7j3kv |
+| Spec Folder | 002-commands-and-skills/036-memory-command-output |
 | Channel | main |
-| Importance Tier | critical |
+| Importance Tier | normal |
 | Context Type | general |
-| Total Messages | 4 |
-| Tool Executions | 20 |
-| Decisions Made | 0 |
+| Total Messages | 1 |
+| Tool Executions | 0 |
+| Decisions Made | 6 |
 | Follow-up Items Recorded | 0 |
 | Created At | 2026-02-20 |
-| Created At (Epoch) | 1771587148 |
-| Last Accessed (Epoch) | 1771587148 |
+| Created At (Epoch) | 1771591363 |
+| Last Accessed (Epoch) | 1771591363 |
 | Access Count | 1 |
 
 ---
@@ -95,9 +95,9 @@
 
 | Field | Value |
 |-------|-------|
-| Session Status | IN_PROGRESS |
-| Completion % | 30% |
-| Last Activity | 2026-02-20T11:27:19.723Z |
+| Session Status | BLOCKED |
+| Completion % | 5% |
+| Last Activity | 2026-02-20T12:42:43.480Z |
 | Time in Session | 0m |
 | Continuation Count | 1 |
 
@@ -105,9 +105,11 @@
 
 **Phase:** RESEARCH
 
-**Recent:** Tool: read, Tool: read, Tool: read
+**Recent:** Decision: Standardize all status lines to STATUS=<OK|FAIL> [KEY=value]., Decision: Level 2 documentation because scope is 5 files with ~150-200 LOC of te, Technical Implementation Details
 
-**Summary:** Based on an analysis of the `036-skill-graphs` implementation and its associated scripts, the Skill Graph system and its memory integration consist of an elegant, entirely in-memory graph database (SG...
+**Decisions:** 6 decisions recorded
+
+**Summary:** Planned a Memory Dashboard Visual Design System to unify visual output across all 5 memory commands (context, save, manage, learn, continue). Deep analysis revealed 5 different visual languages with i...
 
 ### Pending Work
 
@@ -117,22 +119,24 @@
 
 **To continue this work, use:**
 ```
-/spec_kit:resume 003-system-spec-kit/138-hybrid-rag-fusion
+/spec_kit:resume 002-commands-and-skills/036-memory-command-output
 ```
 
 **Or paste this continuation prompt:**
 ```
 CONTINUATION - Attempt 2
-Spec: 003-system-spec-kit/138-hybrid-rag-fusion
-Last: Tool: read
+Spec: 002-commands-and-skills/036-memory-command-output
+Last: Technical Implementation Details
 Next: Continue implementation
 ```
 
 **Key Context to Review:**
 
-- Files modified: specs/.../036-skill-graphs/implementation-summary.md, .opencode/.../memory/graph-enrichment.ts, .opencode/skill/system-spec-kit/scripts
+- Files modified: .opencode/.../036-memory-command-output/spec.md, .opencode/.../036-memory-command-output/plan.md
 
-- Last: Here is a review of the work completed according to the `implementation-summary.
+- Check: plan.md
+
+- Last: Planned a Memory Dashboard Visual Design System to unify visual output across al
 
 <!-- /ANCHOR:continue-session -->
 
@@ -145,12 +149,23 @@ Next: Continue implementation
 | Field | Value |
 |-------|-------|
 | Phase | RESEARCH |
-| Active File | /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/sgqs/graph-builder.ts |
-| Last Action | Tool: read |
+| Active File | .opencode/.../036-memory-command-output/spec.md |
+| Last Action | Technical Implementation Details |
 | Next Action | Continue implementation |
-| Blockers | None |
+| Blockers | ], [FAIL], [--], [.. |
 
-**Key Topics:** `system` | `memory` | `skill graph` | `system spec kit/138 hybrid rag fusion` | `skill` | `graph` | `spec` | `kit/138` | `hybrid` | `rag` | `fusion` | `sgqs` | 
+### File Progress
+
+| File | Status |
+|------|--------|
+| spec.md | EXISTS |
+| plan.md | EXISTS |
+
+**Related Documentation:**
+- [`spec.md`](./spec.md) - Requirements specification
+- [`plan.md`](./plan.md) - Implementation plan
+
+**Key Topics:** `decision` | `because` | `command` | `memory` | `output` | `all` | `status` | `commands` | `level` | `box` | `emoji ascii` | `key value` | 
 
 ---
 
@@ -161,33 +176,23 @@ Next: Continue implementation
 
 **What Was Built**:
 
-- **Here is a review of the work completed according to the `implementation-summary.** - Here is a review of the work completed according to the `implementation-summary.
+- **Planned a Memory Dashboard Visual Design System to unify visual output across all 5 memory commands...** - Planned a Memory Dashboard Visual Design System to unify visual output across all 5 memory commands (context, save, manage, learn, continue).
 
-- **Based on an analysis of the `036-skill-graphs` implementation and its associated** - Based on an analysis of the 036-skill-graphs implementation and its associated scripts, the Skill Graph system and its memory integration consist of an elegant, entirely in-memory graph database (SGQS) that enriches the existing semantic memory pipeline without requiring external infrastructure like Neo4j.
+- **Technical Implementation Details** - rootCause: Each of the 5 memory commands was developed independently with its own visual output styl
 
 **Key Files and Their Roles**:
 
-- `specs/.../036-skill-graphs/implementation-summary.md` - Documentation
+- `.opencode/.../036-memory-command-output/spec.md` - Documentation
 
-- `.opencode/.../memory/graph-enrichment.ts` - Core graph enrichment
-
-- `.opencode/skill/system-spec-kit/scripts` - Core scripts
-
-- `.opencode/skill/system-spec-kit/scripts/core/workflow.ts` - Core workflow
-
-- `.opencode/skill/system-spec-kit/scripts/sgqs/types.ts` - Type definitions
-
-- `.opencode/skill/system-spec-kit/scripts/sgqs/executor.ts` - Core executor
-
-- `.opencode/.../sgqs/graph-builder.ts` - Core graph builder
+- `.opencode/.../036-memory-command-output/plan.md` - Documentation
 
 **How to Extend**:
 
-- Add new modules following the existing file structure patterns
+- Use established template patterns for new outputs
 
 **Common Patterns**:
 
-- **Filter Pipeline**: Chain filters for data transformation
+- **Template Pattern**: Use templates with placeholder substitution
 
 <!-- /ANCHOR:task-guide -->
 
@@ -198,38 +203,48 @@ Next: Continue implementation
 
 ## 2. OVERVIEW
 
-Based on an analysis of the `036-skill-graphs` implementation and its associated scripts, the Skill Graph system and its memory integration consist of an elegant, entirely in-memory graph database (SGQS) that enriches the existing semantic memory pipeline without requiring external infrastructure like Neo4j.
-
-Here is an analysis of how the scripts and the Memory MCP integration work:
-
-### 1. The Skill Graph Query System (SGQS)
-The core of the skill graph relies on an in-memory engine (SGQS - Ski
+Planned a Memory Dashboard Visual Design System to unify visual output across all 5 memory commands (context, save, manage, learn, continue). Deep analysis revealed 5 different visual languages with inconsistent headers (ALL CAPS vs Title Case), dividers (heavy vs light vs none), box-drawing (square vs rounded vs none), status line formats, and icon usage (emoji vs ASCII vs none). Defined a 12-component design system: COMMAND HEADER, SECTION HEADER, KEY-VALUE PAIR, DATA TABLE, RESULT ITEM, STATUS BAR, METRIC ROW, ACTION MENU, INDICATOR SYSTEM, PROGRESS/TIER DISPLAY, BOX FRAME, EMPTY STATE. Created spec.md (Level 2) and plan.md with 3-phase implementation approach. Spec folder: .opencode/specs/002-commands-and-skills/036-memory-command-output/
 
 **Key Outcomes**:
-- Here is a review of the work completed according to the `implementation-summary.
-- Based on an analysis of the `036-skill-graphs` implementation and its associated
-- Tool: read
-- Tool: glob
-- Tool: glob
-- Tool: read
-- Tool: glob
-- Tool: glob
-- Tool: read
-- Tool: glob
+- Planned a Memory Dashboard Visual Design System to unify visual output across all 5 memory commands...
+- Decision: Use double-line divider (════) for COMMAND HEADER because it creates c
+- Decision: Use em-dash section headers (── Name ──────) because they provide cons
+- Decision: Replace all emoji with ASCII indicators ([ok], [!
+- Decision: Use square box-drawing only (┌┐└┘), no rounded corners (╭╮╰╯), because
+- Decision: Standardize all status lines to STATUS=<OK|FAIL> [KEY=value].
+- Decision: Level 2 documentation because scope is 5 files with ~150-200 LOC of te
+- Technical Implementation Details
 
 **Key Files:**
 
 | **File** | **Description** |
 |:---------|:----------------|
-| `specs/.../036-skill-graphs/implementation-summary.md` | Updated implementation summary |
-| `.opencode/.../memory/graph-enrichment.ts` | Updated graph enrichment |
-| `.opencode/skill/system-spec-kit/scripts` | Updated scripts |
-| `.opencode/skill/system-spec-kit/scripts/core/workflow.ts` | Updated workflow |
-| `.opencode/skill/system-spec-kit/scripts/sgqs/types.ts` | Updated types |
-| `.opencode/skill/system-spec-kit/scripts/sgqs/executor.ts` | Updated executor |
-| `.opencode/.../sgqs/graph-builder.ts` | Updated graph builder |
+| `.opencode/.../036-memory-command-output/spec.md` | 3-phase implementation approach |
+| `.opencode/.../036-memory-command-output/plan.md` | 3-phase implementation approach |
 
 <!-- /ANCHOR:summary -->
+
+---
+
+<!-- ANCHOR:graph-context -->
+## Skill Graph Context
+
+Nodes: 412 | Edges: 627 | Skills: 9
+
+**Skill breakdown:**
+- mcp-code-mode: 19 nodes
+- mcp-figma: 16 nodes
+- system-spec-kit: 160 nodes
+- workflows-chrome-devtools: 19 nodes
+- workflows-code--full-stack: 62 nodes
+- workflows-code--opencode: 35 nodes
+- workflows-code--web-dev: 44 nodes
+- workflows-documentation: 36 nodes
+- workflows-git: 21 nodes
+
+**Node types:** :Asset(51), :Document(133), :Entrypoint(9), :Index(9), :Node(72), :Reference(129), :Skill(9)
+
+<!-- /ANCHOR:graph-context -->
 
 ---
 
@@ -238,101 +253,20 @@ The core of the skill graph relies on an in-memory engine (SGQS - Ski
 
 ## 3. DETAILED CHANGES
 
-<!-- ANCHOR:implementation-here-review-work-completed-69e258fb -->
-### FEATURE: Here is a review of the work completed according to the `implementation-summary.
+<!-- ANCHOR:implementation-planned-memory-dashboard-visual-4c12bf27 -->
+### FEATURE: Planned a Memory Dashboard Visual Design System to unify visual output across all 5 memory commands...
 
-Here is a review of the work completed according to the `implementation-summary.md` for the `036-skill-graphs` spec:
+Planned a Memory Dashboard Visual Design System to unify visual output across all 5 memory commands (context, save, manage, learn, continue). Deep analysis revealed 5 different visual languages with inconsistent headers (ALL CAPS vs Title Case), dividers (heavy vs light vs none), box-drawing (square vs rounded vs none), status line formats, and icon usage (emoji vs ASCII vs none). Defined a 12-component design system: COMMAND HEADER, SECTION HEADER, KEY-VALUE PAIR, DATA TABLE, RESULT ITEM, STATUS BAR, METRIC ROW, ACTION MENU, INDICATOR SYSTEM, PROGRESS/TIER DISPLAY, BOX FRAME, EMPTY STATE. Created spec.md (Level 2) and plan.md with 3-phase implementation approach. Spec folder: .opencode/specs/002-commands-and-skills/036-memory-command-output/
 
-### Overview
-The `036-skill-graphs` migration is **100% complete** (9/9 tasks done). The project successfully migrated all 9 skills to a new composable graph architecture while establishing the SGQS (Skill Graph Query System) specifications and parser/executor implementations.
+**Details:** memory command output | dashboard visual | visual design system | output template | consistent formatting | box-drawing | status line format | command header | section header | indicator system | memory context save manage learn continue
+<!-- /ANCHOR:implementation-planned-memory-dashboard-visual-4c12bf27 -->
 
-### 1. Skill Graph Migration (9/9 Skills Complete)
-A total of **72 nodes** were created across all 9 sk
+<!-- ANCHOR:implementation-technical-implementation-details-29d999da -->
+### IMPLEMENTATION: Technical Implementation Details
 
-<!-- /ANCHOR:implementation-here-review-work-completed-69e258fb -->
+rootCause: Each of the 5 memory commands was developed independently with its own visual output style, creating 5 different visual languages with no shared component system; solution: Define a 12-component visual design system reference and apply it consistently across all 5 command files; patterns: Component-based design system approach: define reusable output primitives (headers, dividers, tables, status bars, indicators) then compose them per-command
 
-<!-- ANCHOR:implementation-based-analysis-036skillgraphs-implementation-110d071b -->
-### FEATURE: Based on an analysis of the `036-skill-graphs` implementation and its associated
-
-Based on an analysis of the `036-skill-graphs` implementation and its associated scripts, the Skill Graph system and its memory integration consist of an elegant, entirely in-memory graph database (SGQS) that enriches the existing semantic memory pipeline without requiring external infrastructure like Neo4j.
-
-Here is an analysis of how the scripts and the Memory MCP integration work:
-
-### 1. The Skill Graph Query System (SGQS)
-The core of the skill graph relies on an in-memory engine (SGQS - Ski
-
-<!-- /ANCHOR:implementation-based-analysis-036skillgraphs-implementation-110d071b -->
-
-<!-- ANCHOR:implementation-tool-read-59faf6ca -->
-### OBSERVATION: Tool: read
-
-specs/002-commands-and-skills/036-skill-graphs/implementation-summary.md
-
-**Files:** /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/specs/002-commands-and-skills/036-skill-graphs/implementation-summary.md
-**Details:** Tool: read | Status: completed
-<!-- /ANCHOR:implementation-tool-read-59faf6ca -->
-
-<!-- ANCHOR:implementation-tool-glob-ff67e8ac -->
-### OBSERVATION: Tool: glob
-
-Executed glob (repeated 4 times)
-
-**Details:** Tool: glob | Status: completed
-<!-- /ANCHOR:implementation-tool-glob-ff67e8ac -->
-
-<!-- ANCHOR:implementation-tool-read-59faf6ca-2 -->
-### OBSERVATION: Tool: read
-
-.opencode/skill/system-spec-kit/scripts/memory/graph-enrichment.ts
-
-**Files:** /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/memory/graph-enrichment.ts
-**Details:** Tool: read | Status: completed
-<!-- /ANCHOR:implementation-tool-read-59faf6ca-2 -->
-
-<!-- ANCHOR:implementation-tool-glob-ff67e8ac-2 -->
-### OBSERVATION: Tool: glob
-
-.opencode/skill/system-spec-kit/scripts
-
-**Files:** /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts
-**Details:** Tool: glob | Status: completed
-<!-- /ANCHOR:implementation-tool-glob-ff67e8ac-2 -->
-
-<!-- ANCHOR:implementation-tool-read-59faf6ca-3 -->
-### OBSERVATION: Tool: read
-
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts
-
-**Files:** /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts
-**Details:** Tool: read | Status: completed
-<!-- /ANCHOR:implementation-tool-read-59faf6ca-3 -->
-
-<!-- ANCHOR:implementation-tool-read-59faf6ca-4 -->
-### OBSERVATION: Tool: read
-
-.opencode/skill/system-spec-kit/scripts/sgqs/types.ts
-
-**Files:** /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/sgqs/types.ts
-**Details:** Tool: read | Status: completed
-<!-- /ANCHOR:implementation-tool-read-59faf6ca-4 -->
-
-<!-- ANCHOR:implementation-tool-read-59faf6ca-5 -->
-### OBSERVATION: Tool: read
-
-.opencode/skill/system-spec-kit/scripts/sgqs/executor.ts
-
-**Files:** /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/sgqs/executor.ts
-**Details:** Tool: read | Status: completed
-<!-- /ANCHOR:implementation-tool-read-59faf6ca-5 -->
-
-<!-- ANCHOR:implementation-tool-read-59faf6ca-6 -->
-### OBSERVATION: Tool: read
-
-.opencode/skill/system-spec-kit/scripts/sgqs/graph-builder.ts
-
-**Files:** /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/sgqs/graph-builder.ts
-**Details:** Tool: read | Status: completed
-<!-- /ANCHOR:implementation-tool-read-59faf6ca-6 -->
+<!-- /ANCHOR:implementation-technical-implementation-details-29d999da -->
 
 <!-- /ANCHOR:detailed-changes -->
 
@@ -362,7 +296,165 @@ Executed glob (repeated 4 times)
 -->
 ## 4. DECISIONS
 
-decision_count: 0
+<!-- ANCHOR:decision-double-ae7875b0 -->
+### Decision 1: Decision: Use double
+
+**Context**: line divider (════) for COMMAND HEADER because it creates clear visual hierarchy and distinguishes command-level headers from section-level headers
+
+**Timestamp**: 2026-02-20T13:42:43Z
+
+**Importance**: medium
+
+#### Options Considered
+
+1. **Chosen Approach**
+   Decision: Use double
+
+#### Chosen Approach
+
+**Selected**: Chosen Approach
+
+**Rationale**: line divider (════) for COMMAND HEADER because it creates clear visual hierarchy and distinguishes command-level headers from section-level headers
+
+#### Trade-offs
+
+**Confidence**: 80%
+<!-- /ANCHOR:decision-double-ae7875b0 -->
+
+---
+
+<!-- ANCHOR:decision-unnamed-2426510a -->
+### Decision 2: Decision: Use em
+
+**Context**: dash section headers (── Name ──────) because they provide consistent section separation without heavy box-drawing overhead
+
+**Timestamp**: 2026-02-20T13:42:43Z
+
+**Importance**: medium
+
+#### Options Considered
+
+1. **Chosen Approach**
+   Decision: Use em
+
+#### Chosen Approach
+
+**Selected**: Chosen Approach
+
+**Rationale**: dash section headers (── Name ──────) because they provide consistent section separation without heavy box-drawing overhead
+
+#### Trade-offs
+
+**Confidence**: 80%
+<!-- /ANCHOR:decision-unnamed-2426510a -->
+
+---
+
+<!-- ANCHOR:decision-replace-all-emoji-ascii-cffacb35 -->
+### Decision 3: Decision: Replace all emoji with ASCII indicators ([ok], [!!], [FAIL], [
+
+**Context**: -], [..]) because project rules prohibit emoji and ASCII indicators are more terminal-compatible
+
+**Timestamp**: 2026-02-20T13:42:43Z
+
+**Importance**: medium
+
+#### Options Considered
+
+1. **Chosen Approach**
+   Decision: Replace all emoji with ASCII indicators ([ok], [!!], [FAIL], [
+
+#### Chosen Approach
+
+**Selected**: Chosen Approach
+
+**Rationale**: -], [..]) because project rules prohibit emoji and ASCII indicators are more terminal-compatible
+
+#### Trade-offs
+
+**Confidence**: 80%
+<!-- /ANCHOR:decision-replace-all-emoji-ascii-cffacb35 -->
+
+---
+
+<!-- ANCHOR:decision-square-box-2a699148 -->
+### Decision 4: Decision: Use square box
+
+**Context**: drawing only (┌┐└┘), no rounded corners (╭╮╰╯), because consistency requires a single style and square is more universally supported
+
+**Timestamp**: 2026-02-20T13:42:43Z
+
+**Importance**: medium
+
+#### Options Considered
+
+1. **Chosen Approach**
+   Decision: Use square box
+
+#### Chosen Approach
+
+**Selected**: Chosen Approach
+
+**Rationale**: drawing only (┌┐└┘), no rounded corners (╭╮╰╯), because consistency requires a single style and square is more universally supported
+
+#### Trade-offs
+
+**Confidence**: 80%
+<!-- /ANCHOR:decision-square-box-2a699148 -->
+
+---
+
+<!-- ANCHOR:decision-standardize-all-status-lines-11404f7d -->
+### Decision 5: Decision: Standardize all status lines to STATUS=<OK|FAIL> [KEY=value]... format because machine
+
+**Context**: readable output needs consistent parsing patterns
+
+**Timestamp**: 2026-02-20T13:42:43Z
+
+**Importance**: medium
+
+#### Options Considered
+
+1. **Chosen Approach**
+   Decision: Standardize all status lines to STATUS=<OK|FAIL> [KEY=value]... format because machine
+
+#### Chosen Approach
+
+**Selected**: Chosen Approach
+
+**Rationale**: readable output needs consistent parsing patterns
+
+#### Trade-offs
+
+**Confidence**: 80%
+<!-- /ANCHOR:decision-standardize-all-status-lines-11404f7d -->
+
+---
+
+<!-- ANCHOR:decision-level-documentation-because-scope-9022e58c -->
+### Decision 6: Decision: Level 2 documentation because scope is 5 files with ~150
+
+**Context**: 200 LOC of template changes, moderate complexity but no runtime code changes
+
+**Timestamp**: 2026-02-20T13:42:43Z
+
+**Importance**: medium
+
+#### Options Considered
+
+1. **Chosen Approach**
+   Decision: Level 2 documentation because scope is 5 files with ~150
+
+#### Chosen Approach
+
+**Selected**: Chosen Approach
+
+**Rationale**: 200 LOC of template changes, moderate complexity but no runtime code changes
+
+#### Trade-offs
+
+**Confidence**: 80%
+<!-- /ANCHOR:decision-level-documentation-because-scope-9022e58c -->
 
 ---
 
@@ -380,103 +472,19 @@ decision_count: 0
 
 Complete timestamped dialogue capturing all user interactions, AI responses, tool executions, and code changes during the session.
 
-This session followed a **Linear Sequential** conversation pattern with **1** distinct phases.
+This session followed a **Linear Sequential** conversation pattern with **0** distinct phases.
 
 ##### Conversation Phases
-- **Discussion** - 2 actions
-- **Research** - 11 actions
+- **Planning** - 2 actions
+- **Discussion** - 6 actions
 
 ---
 
 ### Message Timeline
 
-> **User** | 2026-02-20 @ 12:26:36
+> **User** | 2026-02-20 @ 13:42:43
 
-User initiated conversation
-
----
-
-> **Assistant** | 2026-02-20 @ 12:26:36
-
-User initiated conversation → Here is a review of the work completed according to the `implementation-summary. md` for the `036-skill-graphs` spec:
-
-### Overview
-The `036-skill-graphs` migration is **100% complete** (9/9 tasks done). Used tools: read, glob, glob and 8 more.
-
-**Tool: read**
-Tool: read
-
-**Tool: glob**
-Tool: glob
-
-**Tool: glob**
-Tool: glob
-
-**Tool: read**
-Tool: read
-
-**Tool: glob**
-Tool: glob
-
-**Tool: glob**
-Tool: glob
-
-**Tool: read**
-Tool: read
-
-**Tool: glob**
-Tool: glob
-
-**Tool: read**
-Tool: read
-
-**Tool: read**
-Tool: read
-
----
-
-> **Assistant** | 2026-02-20 @ 12:26:36
-
-User initiated conversation → Here is a review of the work completed according to the `implementation-summary. md` for the `036-skill-graphs` spec:
-
-### Overview
-The `036-skill-graphs` migration is **100% complete** (9/9 tasks done). Used tools: read, glob, glob and 8 more.
-
-**Tool: read**
-Tool: read
-
-**Tool: glob**
-Tool: glob
-
-**Tool: glob**
-Tool: glob
-
-**Tool: read**
-Tool: read
-
-**Tool: glob**
-Tool: glob
-
-**Tool: glob**
-Tool: glob
-
-**Tool: read**
-Tool: read
-
-**Tool: glob**
-Tool: glob
-
-**Tool: read**
-Tool: read
-
-**Tool: read**
-Tool: read
-
----
-
-> **User** | 2026-02-20 @ 12:27:19
-
-User initiated conversation
+Planned a Memory Dashboard Visual Design System to unify visual output across all 5 memory commands (context, save, manage, learn, continue). Deep analysis revealed 5 different visual languages with inconsistent headers (ALL CAPS vs Title Case), dividers (heavy vs light vs none), box-drawing (square vs rounded vs none), status line formats, and icon usage (emoji vs ASCII vs none). Defined a 12-component design system: COMMAND HEADER, SECTION HEADER, KEY-VALUE PAIR, DATA TABLE, RESULT ITEM, STATUS BAR, METRIC ROW, ACTION MENU, INDICATOR SYSTEM, PROGRESS/TIER DISPLAY, BOX FRAME, EMPTY STATE. Created spec.md (Level 2) and plan.md with 3-phase implementation approach. Spec folder: .opencode/specs/002-commands-and-skills/036-memory-command-output/
 
 ---
 
@@ -495,9 +503,9 @@ User initiated conversation
 
 | Scenario | Symptoms | Recovery Action |
 |----------|----------|-----------------|
-| Context Loss | Agent doesn't remember prior work | Run `/spec_kit:resume 003-system-spec-kit/138-hybrid-rag-fusion` |
+| Context Loss | Agent doesn't remember prior work | Run `/spec_kit:resume 002-commands-and-skills/036-memory-command-output` |
 | State Mismatch | Files don't match expected state | Verify with `git status` and `git diff` |
-| Memory Not Found | Search returns no results | Check `memory_search({ specFolder: "003-system-spec-kit/138-hybrid-rag-fusion" })` |
+| Memory Not Found | Search returns no results | Check `memory_search({ specFolder: "002-commands-and-skills/036-memory-command-output" })` |
 | Stale Context | Information seems outdated | Check `last_accessed_epoch` vs current time |
 | Incomplete Handover | Missing continuation context | Review CONTINUE SESSION section above |
 | Dedup Collision | Wrong memory surfaced | Check `fingerprint_hash` for conflicts |
@@ -509,16 +517,16 @@ User initiated conversation
 node .opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts --status
 
 # List memories for this spec folder
-memory_search({ specFolder: "003-system-spec-kit/138-hybrid-rag-fusion", limit: 10 })
+memory_search({ specFolder: "002-commands-and-skills/036-memory-command-output", limit: 10 })
 
 # Verify memory file integrity
-ls -la 003-system-spec-kit/138-hybrid-rag-fusion/memory/
+ls -la 002-commands-and-skills/036-memory-command-output/memory/
 
 # Check for orphaned memories
 memory_search({ query: "orphaned", anchors: ["state"] })
 
 # Force re-index of this spec folder
-node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js 003-system-spec-kit/138-hybrid-rag-fusion --force
+node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js 002-commands-and-skills/036-memory-command-output --force
 ```
 
 ### Recovery Priority
@@ -590,12 +598,12 @@ Learning metrics will be calculated when both preflight and postflight data are 
 
 ```yaml
 # Core Identifiers
-session_id: "session-1771587148773-1xvdpdld7"
-spec_folder: "003-system-spec-kit/138-hybrid-rag-fusion"
+session_id: "session-1771591363489-jfkp7j3kv"
+spec_folder: "002-commands-and-skills/036-memory-command-output"
 channel: "main"
 
 # Classification
-importance_tier: "critical"  # constitutional|critical|important|normal|temporary|deprecated
+importance_tier: "normal"  # constitutional|critical|important|normal|temporary|deprecated
 context_type: "general"        # research|implementation|decision|discovery|general
 
 # Memory Classification (v2.2)
@@ -641,15 +649,15 @@ causal_links:
 
 # Timestamps (for decay calculations)
 created_at: "2026-02-20"
-created_at_epoch: 1771587148
-last_accessed_epoch: 1771587148
-expires_at_epoch: 0  # 0 for critical (never expires)
+created_at_epoch: 1771591363
+last_accessed_epoch: 1771591363
+expires_at_epoch: 1779367363  # 0 for critical (never expires)
 
 # Session Metrics
-message_count: 4
-decision_count: 0
-tool_count: 20
-file_count: 7
+message_count: 1
+decision_count: 6
+tool_count: 0
+file_count: 2
 followup_count: 0
 
 # Access Analytics
@@ -659,67 +667,153 @@ relevance_boost: 1  # 1.0 default, increased by access patterns
 
 # Content Indexing
 key_topics:
-  - "system"
+  - "decision"
+  - "because"
+  - "command"
   - "memory"
-  - "skill graph"
-  - "system spec kit/138 hybrid rag fusion"
-  - "skill"
-  - "graph"
-  - "spec"
-  - "kit/138"
-  - "hybrid"
-  - "rag"
-  - "fusion"
-  - "sgqs"
+  - "output"
+  - "all"
+  - "status"
+  - "commands"
+  - "level"
+  - "box"
+  - "emoji ascii"
+  - "key value"
 
 # Trigger Phrases (auto-extracted for fast <50ms matching)
 trigger_phrases:
-  - "system spec kit/138 hybrid rag fusion"
-  - "skill graphs"
-  - "in memory"
-  - "implementation summary"
-  - "based analysis implementation associated"
-  - "analysis implementation associated scripts"
-  - "implementation associated scripts skill"
-  - "associated scripts skill graph"
-  - "scripts skill graph system"
-  - "skill graph system memory"
-  - "graph system memory integration"
-  - "system memory integration consist"
-  - "memory integration consist elegant"
-  - "integration consist elegant entirely"
-  - "consist elegant entirely in-memory"
-  - "elegant entirely in-memory graph"
-  - "entirely in-memory graph database"
-  - "in-memory graph database sgqs"
-  - "graph database sgqs enriches"
-  - "database sgqs enriches existing"
-  - "sgqs enriches existing semantic"
-  - "enriches existing semantic memory"
-  - "existing semantic memory pipeline"
-  - "semantic memory pipeline without"
-  - "memory pipeline without requiring"
-  - "pipeline without requiring external"
+  - "commands and skills/036 memory command output"
+  - "only"
+  - "key value"
+  - "commands and skills"
+  - "command level"
+  - "section level"
+  - "terminal compatible"
+  - "line divider command header"
+  - "divider command header creates"
+  - "command header creates clear"
+  - "header creates clear visual"
+  - "creates clear visual hierarchy"
+  - "clear visual hierarchy distinguishes"
+  - "visual hierarchy distinguishes command-level"
+  - "hierarchy distinguishes command-level headers"
+  - "distinguishes command-level headers section-level"
+  - "command-level headers section-level headers"
+  - "chosen approach decision use"
+  - "dash headers name provide"
+  - "headers name provide consistent"
+  - "name provide consistent separation"
+  - "provide consistent separation without"
+  - "consistent separation without heavy"
+  - "separation without heavy box-drawing"
+  - "without heavy box-drawing overhead"
+  - "project rules prohibit emoji"
+  - "commands"
+  - "and"
+  - "skills/036"
+  - "memory"
+  - "command"
+  - "output"
+  - "mcp-code-mode"
+  - "skill"
+  - "mcp"
+  - "code"
+  - "mode"
+  - "install_guide"
+  - "mcp code mode installation guide"
+  - "document"
+  - "readme"
+  - "code mode mcp - typescript tool execution"
+  - "mcp orchestration via typescript execution for efficient multi-tool workflows with 98.7% context reduction and 60% faster execution."
+  - "mcp code mode"
+  - "mcp orchestration via typescript execution for efficient multi-tool workflows. use code mode for all mcp tool calls (clickup, notion, figma, webflow, chrome devtools, etc.). provides 98.7% context reduction, 60% faster execution, and type-safe invocation. mandatory for external tool integration."
+  - "entrypoint"
+  - "config_template"
+  - "configuration template"
+  - "complete .utcp_config.json template for code mode utcp setup with multiple mcp servers."
+  - "asset"
+  - "env_template"
+  - "environment variables template"
+  - "complete .env file template with placeholders for all mcp server credentials and api tokens."
+  - "mcp code mode orchestrator"
+  - "index"
+  - "how-it-works"
+  - "how it works"
+  - "the architecture of the utcp typescript execution environment."
+  - "node"
+  - "project-configuration"
+  - "project configuration"
+  - "how to configure .utcp_config.json for external mcp tools."
+  - "quick-reference"
+  - "quick reference"
+  - "code snippets and templates for code mode invocations."
+  - "rules"
+  - "code mode rules"
+  - "mandatory rules (always, never) for writing code mode scripts."
+  - "success-criteria"
+  - "success criteria"
+  - "definition of done for a successful code mode invocation."
+  - "when-to-use"
+  - "when to use code mode"
+  - "when to trigger code mode and when to use native mcp instead."
+  - "architecture"
+  - "system architecture - code mode utcp"
+  - "architecture, data flow, and execution environment for code mode utcp."
+  - "reference"
+  - "configuration"
+  - "configuration guide - .utcp_config.json and environment setup"
+  - "configure mcp servers, environment variables, and credentials for code mode utcp."
+  - "naming_convention"
+  - "tool naming convention - complete guide"
+  - "critical naming pattern for mcp tool calls with troubleshooting guide."
+  - "tool_catalog"
+  - "tool catalog - complete list of available mcp tools"
+  - "reference catalog of 170+ tools across 7 mcp servers."
+  - "workflows"
+  - "workflow examples - complex multi-tool patterns"
+  - "five workflow patterns for multi-tool orchestration, error handling, and state persistence."
+  - "mcp-figma"
+  - "figma"
+  - "figma mcp installation guide"
+  - "figma mcp"
+  - "programmatic access to figma design files through 18 specialized tools via code mode for token-efficient workflows."
+  - "figma mcp - design file access"
+  - "figma design file access via mcp providing 18 tools for file retrieval, image export, component/style extraction, team management, and collaborative commenting. accessed via code mode for token-efficient workflows."
+  - "tool_categories"
+  - "tool categories - priority classification"
+  - "categorization of all 18 figma mcp tools with priority levels for efficient usage."
+  - "core workflow for invoking figma tools via code mode, including naming conventions and examples."
+  - "integration-points"
+  - "integration points"
+  - "prerequisites, code mode dependency, configuration, and cross-tool workflow patterns."
+  - "essential commands, common patterns, and troubleshooting for figma mcp tools."
+  - "related-resources"
+  - "related resources"
+  - "reference documents, assets, external links, and related skills for figma mcp."
+  - "mandatory always, never, and escalate rules for using figma mcp tools."
+  - "smart-routing"
+  - "smart routing"
+  - "intent-based resource routing logic for loading figma skill references on demand."
+  - "completion gates and validation checkpoints for figma mcp operations."
+  - "when to use"
+  - "activation triggers, use cases, and when not to use the figma mcp skill."
+  - "quick_start"
+  - "quick start - figma mcp"
+  - "get started with figma mcp in 5 minutes covering prerequisites, verification, and first commands."
+  - "tool_reference"
+  - "figma tool reference - complete guide"
+  - "complete documentation for all 18 figma mcp tools, organized by category with priority levels and usage guidance."
+  - "system-spec-kit"
   - "system"
   - "spec"
-  - "kit/138"
-  - "hybrid"
-  - "rag"
-  - "fusion"
-  - "system-spec-kit"
-  - "skill"
   - "kit"
-  - "readme"
   - "spec kit framework"
   - "unified documentation and memory system that makes ai-assisted development sustainable with enforced documentation and persistent context."
-  - "document"
   - "spec kit - mandatory conversation documentation"
   - "unified documentation and context preservation: spec folder workflow (levels 1-3+), core + addendum template architecture (v2.2), validation, and spec kit memory for context preservation. mandatory for all file modifications."
-  - "entrypoint"
   - "complexity_decision_matrix"
   - "complexity decision matrix"
   - "quick reference for complexity-based level selection and feature enabling."
-  - "asset"
   - "level_decision_matrix"
   - "level decision matrix"
   - "quick reference for selecting the appropriate documentation level using progressive enhancement."
@@ -737,8 +831,6 @@ trigger_phrases:
   - "gate enforcement - edge cases & cross-reference"
   - "speckit-exclusivity"
   - "spec documentation agent exclusivity - @speckit only"
-  - "index"
-  - "install_guide"
   - "spec kit memory mcp server installation guide"
   - "spec kit memory mcp server"
   - "cognitive memory system for ai assistants featuring hybrid search, fsrs-powered decay, causal graphs and session deduplication."
@@ -803,7 +895,6 @@ trigger_phrases:
   - "checklist-verification"
   - "checklist verification"
   - "how the checklist acts as an active verification tool for level 2+ specs."
-  - "node"
   - "context-preservation"
   - "context preservation"
   - "how generate-context.js preserves conversation state into memory/ folders."
@@ -819,19 +910,16 @@ trigger_phrases:
   - "progressive-enhancement"
   - "progressive enhancement levels"
   - "how the 3-level documentation system (core + addendum) scales based on code complexity."
-  - "rules"
   - "system-spec-kit rules"
   - "mandatory rules (always, never, escalate) for using the system-spec-kit workflow."
   - "validation-workflow"
   - "validation workflow"
   - "how validate.sh automates the validation of spec folder contents."
-  - "when-to-use"
   - "when to use spec kit"
   - "triggers and conditions for when to use the spec kit workflow, including folder requirements and agent exclusivity."
   - "environment_variables"
   - "environment variables reference"
   - "configuration options via environment variables for the spec kit system"
-  - "reference"
   - "troubleshooting"
   - "troubleshooting reference"
   - "systematic diagnosis and resolution for semantic memory issues, context retrieval failures, and mcp tool problems."
@@ -896,7 +984,6 @@ trigger_phrases:
   - "execution methods reference"
   - "how to execute spec folder operations - validation, completion checking, context saving, and template composition"
   - "quick_reference"
-  - "quick reference"
   - "fast lookup for commands, checklists, and troubleshooting using the progressive enhancement model."
   - "rollback-runbook"
   - "rollback runbook: working memory automation"
@@ -936,6 +1023,7 @@ trigger_phrases:
   - "core templates"
   - "shared base templates used by all documentation levels."
   - "impl-summary-core"
+  - "implementation summary"
   - "plan-core"
   - "implementation plan: [name]"
   - "spec-core"
@@ -964,7 +1052,6 @@ trigger_phrases:
   - "architecture-oriented templates for large or high-risk implementation work."
   - "level 3+ templates"
   - "governance-heavy templates for high-complexity or regulated work."
-  - "memory"
   - "memory workflow rules for generated context files in spec folders."
   - "research"
   - "feature research: [your_value_here: feature-name] - comprehensive technical investigation"
@@ -975,87 +1062,10 @@ trigger_phrases:
   - "02-requirements"
   - "requirements"
   - "03-architecture"
-  - "architecture"
   - "04-testing"
   - "testing strategy"
   - "spec-index"
   - "[feature name] - specification index"
-  - "mcp-code-mode"
-  - "mcp"
-  - "code"
-  - "mode"
-  - "mcp code mode installation guide"
-  - "code mode mcp - typescript tool execution"
-  - "mcp orchestration via typescript execution for efficient multi-tool workflows with 98.7% context reduction and 60% faster execution."
-  - "mcp code mode"
-  - "mcp orchestration via typescript execution for efficient multi-tool workflows. use code mode for all mcp tool calls (clickup, notion, figma, webflow, chrome devtools, etc.). provides 98.7% context reduction, 60% faster execution, and type-safe invocation. mandatory for external tool integration."
-  - "config_template"
-  - "configuration template"
-  - "complete .utcp_config.json template for code mode utcp setup with multiple mcp servers."
-  - "env_template"
-  - "environment variables template"
-  - "complete .env file template with placeholders for all mcp server credentials and api tokens."
-  - "mcp code mode orchestrator"
-  - "how-it-works"
-  - "how it works"
-  - "the architecture of the utcp typescript execution environment."
-  - "project-configuration"
-  - "project configuration"
-  - "how to configure .utcp_config.json for external mcp tools."
-  - "quick-reference"
-  - "code snippets and templates for code mode invocations."
-  - "code mode rules"
-  - "mandatory rules (always, never) for writing code mode scripts."
-  - "success-criteria"
-  - "success criteria"
-  - "definition of done for a successful code mode invocation."
-  - "when to use code mode"
-  - "when to trigger code mode and when to use native mcp instead."
-  - "system architecture - code mode utcp"
-  - "architecture, data flow, and execution environment for code mode utcp."
-  - "configuration"
-  - "configuration guide - .utcp_config.json and environment setup"
-  - "configure mcp servers, environment variables, and credentials for code mode utcp."
-  - "naming_convention"
-  - "tool naming convention - complete guide"
-  - "critical naming pattern for mcp tool calls with troubleshooting guide."
-  - "tool_catalog"
-  - "tool catalog - complete list of available mcp tools"
-  - "reference catalog of 170+ tools across 7 mcp servers."
-  - "workflows"
-  - "workflow examples - complex multi-tool patterns"
-  - "five workflow patterns for multi-tool orchestration, error handling, and state persistence."
-  - "mcp-figma"
-  - "figma"
-  - "figma mcp installation guide"
-  - "figma mcp"
-  - "programmatic access to figma design files through 18 specialized tools via code mode for token-efficient workflows."
-  - "figma mcp - design file access"
-  - "figma design file access via mcp providing 18 tools for file retrieval, image export, component/style extraction, team management, and collaborative commenting. accessed via code mode for token-efficient workflows."
-  - "tool_categories"
-  - "tool categories - priority classification"
-  - "categorization of all 18 figma mcp tools with priority levels for efficient usage."
-  - "core workflow for invoking figma tools via code mode, including naming conventions and examples."
-  - "integration-points"
-  - "integration points"
-  - "prerequisites, code mode dependency, configuration, and cross-tool workflow patterns."
-  - "essential commands, common patterns, and troubleshooting for figma mcp tools."
-  - "related-resources"
-  - "related resources"
-  - "reference documents, assets, external links, and related skills for figma mcp."
-  - "mandatory always, never, and escalate rules for using figma mcp tools."
-  - "smart-routing"
-  - "smart routing"
-  - "intent-based resource routing logic for loading figma skill references on demand."
-  - "completion gates and validation checkpoints for figma mcp operations."
-  - "when to use"
-  - "activation triggers, use cases, and when not to use the figma mcp skill."
-  - "quick_start"
-  - "quick start - figma mcp"
-  - "get started with figma mcp in 5 minutes covering prerequisites, verification, and first commands."
-  - "tool_reference"
-  - "figma tool reference - complete guide"
-  - "complete documentation for all 18 figma mcp tools, organized by category with priority levels and usage guidance."
   - "workflows-chrome-devtools"
   - "chrome"
   - "devtools"
@@ -1644,20 +1654,15 @@ trigger_phrases:
   - "pr_template.md"
 
 key_files:
-  - "specs/.../036-skill-graphs/implementation-summary.md"
-  - ".opencode/.../memory/graph-enrichment.ts"
-  - ".opencode/skill/system-spec-kit/scripts"
-  - ".opencode/skill/system-spec-kit/scripts/core/workflow.ts"
-  - ".opencode/skill/system-spec-kit/scripts/sgqs/types.ts"
-  - ".opencode/skill/system-spec-kit/scripts/sgqs/executor.ts"
-  - ".opencode/.../sgqs/graph-builder.ts"
+  - ".opencode/.../036-memory-command-output/spec.md"
+  - ".opencode/.../036-memory-command-output/plan.md"
 
 # Relationships
 related_sessions:
 
   []
 
-parent_spec: "003-system-spec-kit/138-hybrid-rag-fusion"
+parent_spec: "002-commands-and-skills/036-memory-command-output"
 child_sessions:
 
   []

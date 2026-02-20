@@ -30,7 +30,7 @@
 | **Meta Data** | **Value** |
 |:--------------|:----------|
 | Session Date | 2026-02-20 |
-| Session ID | session-1771569150826-e72g94i4l |
+| Session ID | session-1771569151399-jpbd7m3a5 |
 | Spec Folder | 003-system-spec-kit/138-hybrid-rag-fusion |
 | Channel | main |
 | Importance Tier | normal |
@@ -40,8 +40,8 @@
 | Decisions Made | 3 |
 | Follow-up Items Recorded | 0 |
 | Created At | 2026-02-20 |
-| Created At (Epoch) | 1771569150 |
-| Last Accessed (Epoch) | 1771569150 |
+| Created At (Epoch) | 1771569151 |
+| Last Accessed (Epoch) | 1771569151 |
 | Access Count | 1 |
 
 ---
@@ -97,7 +97,7 @@
 |-------|-------|
 | Session Status | IN_PROGRESS |
 | Completion % | 20% |
-| Last Activity | 2026-02-20T06:32:30.820Z |
+| Last Activity | 2026-02-20T06:32:31.394Z |
 | Time in Session | 0m |
 | Continuation Count | 1 |
 
@@ -105,11 +105,11 @@
 
 **Phase:** RESEARCH
 
-**Recent:** Decision: Compare current memory MCP internals with graphrag_mcp, WiredBrain-Hie, Decision: Produce two deliverables (deep analysis plus recommendations) with exp, Technical Implementation Details
+**Recent:** Decision: Split memory save because estimated conversation size exceeded the lar, Decision: Keep recommendations phased with feature flags, dark-run comparison, a, Technical Implementation Details
 
 **Decisions:** 3 decisions recorded
 
-**Summary:** Hybrid RAG comparative analysis was completed for system-spec-kit memory MCP by reading local context artifacts, inspecting current retrieval internals, and analyzing three external implementations. T...
+**Summary:** Deliverables were finalized in the target research folder and the memory-save workflow was prepared with strict preflight checks. Because the conversation footprint was large, context preservation was...
 
 ### Pending Work
 
@@ -132,9 +132,9 @@ Next: Continue implementation
 
 **Key Context to Review:**
 
-- Files modified: specs/003-system-spec-kit/138-hybrid-rag-fusion/context/reddit_post_1.md, specs/003-system-spec-kit/138-hybrid-rag-fusion/context/reddit_post_2.md, specs/003-system-spec-kit/138-hybrid-rag-fusion/research/001 - analysis-hybrid-rag-patterns.md
+- Files modified: specs/003-system-spec-kit/138-hybrid-rag-fusion/research/001 - analysis-hybrid-rag-patterns.md, specs/003-system-spec-kit/138-hybrid-rag-fusion/research/002 - recommendations-system-spec-kit-memory-mcp.md
 
-- Last: Hybrid RAG comparative analysis was completed for system-spec-kit memory MCP by 
+- Last: Deliverables were finalized in the target research folder and the memory-save wo
 
 <!-- /ANCHOR:continue-session -->
 
@@ -147,12 +147,12 @@ Next: Continue implementation
 | Field | Value |
 |-------|-------|
 | Phase | RESEARCH |
-| Active File | specs/003-system-spec-kit/138-hybrid-rag-fusion/context/reddit_post_1.md |
+| Active File | specs/003-system-spec-kit/138-hybrid-rag-fusion/research/001 - analysis-hybrid-rag-patterns.md |
 | Last Action | Technical Implementation Details |
 | Next Action | Continue implementation |
 | Blockers | None |
 
-**Key Topics:** `rag` | `decision` | `spec` | `memory mcp` | `system` | `hybrid` | `fusion` | `system spec kit/138 hybrid rag fusion` | `kit/138` | `decision autonomous` | `autonomous single` | `current` | 
+**Key Topics:** `decision` | `spec` | `memory save` | `system spec kit/138 hybrid rag fusion` | `memory` | `system` | `kit/138` | `hybrid` | `rag` | `fusion` | `decision speckit` | `speckit spec` | 
 
 ---
 
@@ -163,15 +163,11 @@ Next: Continue implementation
 
 **What Was Built**:
 
-- **Hybrid RAG comparative analysis was completed for system-spec-kit memory MCP by reading local...** - Hybrid RAG comparative analysis was completed for system-spec-kit memory MCP by reading local context artifacts, inspecting current retrieval internals, and analyzing three external implementations.
+- **Deliverables were finalized in the target research folder and the memory-save workflow was prepared...** - Deliverables were finalized in the target research folder and the memory-save workflow was prepared with strict preflight checks.
 
-- **Technical Implementation Details** - rootCause: Need stronger hybrid retrieval guidance for memory MCP evolution with practical evidence from comparable systems.
+- **Technical Implementation Details** - rootCause: Need durable session handoff with high signal and low noise for later retrieval.
 
 **Key Files and Their Roles**:
-
-- `specs/003-system-spec-kit/138-hybrid-rag-fusion/context/reddit_post_1.md` - Documentation
-
-- `specs/003-system-spec-kit/138-hybrid-rag-fusion/context/reddit_post_2.md` - Documentation
 
 - `specs/003-system-spec-kit/138-hybrid-rag-fusion/research/001 - analysis-hybrid-rag-patterns.md` - Documentation
 
@@ -179,13 +175,11 @@ Next: Continue implementation
 
 **How to Extend**:
 
-- Reference existing implementations as patterns for new features
+- Apply validation patterns to new input handling
 
 **Common Patterns**:
 
-- **Filter Pipeline**: Chain filters for data transformation
-
-- **Graceful Fallback**: Provide sensible defaults when primary method fails
+- **Validation**: Input validation before processing
 
 - **Functional Transforms**: Use functional methods for data transformation
 
@@ -198,21 +192,19 @@ Next: Continue implementation
 
 ## 2. OVERVIEW
 
-Hybrid RAG comparative analysis was completed for system-spec-kit memory MCP by reading local context artifacts, inspecting current retrieval internals, and analyzing three external implementations. The work produced code-grounded findings on fusion, ranking, filtering, and retrieval orchestration behavior, then converted those findings into implementation-focused guidance for this codebase.
+Deliverables were finalized in the target research folder and the memory-save workflow was prepared with strict preflight checks. Because the conversation footprint was large, context preservation was intentionally split to improve future retrieval precision and keep saved memory focused by theme.
 
 **Key Outcomes**:
-- Hybrid RAG comparative analysis was completed for system-spec-kit memory MCP by reading local...
-- Decision: Use autonomous single-agent execution in spec folder 138 because unint
-- Decision: Compare current memory MCP internals with graphrag_mcp, WiredBrain-Hie
-- Decision: Produce two deliverables (deep analysis plus recommendations) with exp
+- Deliverables were finalized in the target research folder and the memory-save workflow was prepared...
+- Decision: Use @speckit for spec-folder markdown output to stay compliant with do
+- Decision: Split memory save because estimated conversation size exceeded the lar
+- Decision: Keep recommendations phased with feature flags, dark-run comparison, a
 - Technical Implementation Details
 
 **Key Files:**
 
 | **File** | **Description** |
 |:---------|:----------------|
-| `specs/003-system-spec-kit/138-hybrid-rag-fusion/context/reddit_post_1.md` | File modified (description pending) |
-| `specs/003-system-spec-kit/138-hybrid-rag-fusion/context/reddit_post_2.md` | File modified (description pending) |
 | `specs/003-system-spec-kit/138-hybrid-rag-fusion/research/001 - analysis-hybrid-rag-patterns.md` | File modified (description pending) |
 | `specs/003-system-spec-kit/138-hybrid-rag-fusion/research/002 - recommendations-system-spec-kit-memory-mcp.md` | File modified (description pending) |
 
@@ -225,20 +217,20 @@ Hybrid RAG comparative analysis was completed for system-spec-kit memory MCP by 
 
 ## 3. DETAILED CHANGES
 
-<!-- ANCHOR:implementation-hybrid-rag-comparative-analysis-4d2fb731 -->
-### FEATURE: Hybrid RAG comparative analysis was completed for system-spec-kit memory MCP by reading local...
+<!-- ANCHOR:architecture-deliverables-finalized-target-folder-7dc7f302 -->
+### FEATURE: Deliverables were finalized in the target research folder and the memory-save workflow was prepared...
 
-Hybrid RAG comparative analysis was completed for system-spec-kit memory MCP by reading local context artifacts, inspecting current retrieval internals, and analyzing three external implementations. The work produced code-grounded findings on fusion, ranking, filtering, and retrieval orchestration behavior, then converted those findings into implementation-focused guidance for this codebase.
+Deliverables were finalized in the target research folder and the memory-save workflow was prepared with strict preflight checks. Because the conversation footprint was large, context preservation was intentionally split to improve future retrieval precision and keep saved memory focused by theme.
 
-**Details:** hybrid rag fusion | memory mcp search pipeline | rrf weighted fusion | bm25 fts vector | adaptive fusion feature flag | intent aware retrieval | ragflow weighted_sum | graphrag context expansion
-<!-- /ANCHOR:implementation-hybrid-rag-comparative-analysis-4d2fb731 -->
+**Details:** memory save split | spec folder 138 | phased retrieval rollout | dark run adaptive fusion | retrieval validation metrics | token budget guardrail | context preservation | system spec kit memory
+<!-- /ANCHOR:architecture-deliverables-finalized-target-folder-7dc7f302 -->
 
-<!-- ANCHOR:implementation-technical-implementation-details-8cbb7406 -->
+<!-- ANCHOR:implementation-technical-implementation-details-3bc30dcd -->
 ### IMPLEMENTATION: Technical Implementation Details
 
-rootCause: Need stronger hybrid retrieval guidance for memory MCP evolution with practical evidence from comparable systems.; solution: Performed comparative code-level analysis across local and external repos, then synthesized concrete recommendations and phased rollout guidance.; patterns: Vector plus lexical fusion, intent-weighted scoring, staged retrieval fallback, graph/context expansion, and telemetry-gated rollout.
+rootCause: Need durable session handoff with high signal and low noise for later retrieval.; solution: Saved context in split entries under the same spec folder to separate technical findings from execution workflow metadata.; patterns: Preflight validation, explicit trigger phrases, structured decisions, and indexed memory artifacts for semantic recall.
 
-<!-- /ANCHOR:implementation-technical-implementation-details-8cbb7406 -->
+<!-- /ANCHOR:implementation-technical-implementation-details-3bc30dcd -->
 
 <!-- /ANCHOR:detailed-changes -->
 
@@ -268,84 +260,84 @@ rootCause: Need stronger hybrid retrieval guidance for memory MCP evolution with
 -->
 ## 4. DECISIONS
 
-<!-- ANCHOR:decision-autonomous-single-1865cfda -->
-### Decision 1: Use autonomous single-agent execution for uninterrupted research
+<!-- ANCHOR:decision-speckit-spec-687983d6 -->
+### Decision 1: Use @speckit for spec folder markdown output to stay compliant with documentation authority constraints
 
-**Context**: Agent execution in spec folder 138 because uninterrupted end-to-end research and drafting were required.
+**Context**: Spec folder markdown output must stay compliant with documentation authority constraints.
 
-**Timestamp**: 2026-02-20T07:32:30Z
+**Timestamp**: 2026-02-20T07:32:31Z
 
 **Importance**: medium
 
 #### Options Considered
 
 1. **Chosen Approach**
-   Decision: Use autonomous single
+   Use @speckit for spec folder markdown output to stay compliant with documentation authority constraints
 
 #### Chosen Approach
 
 **Selected**: Chosen Approach
 
-**Rationale**: agent execution in spec folder 138 because uninterrupted end-to-end research and drafting were required.
+**Rationale**: Spec folder markdown output must use @speckit to stay compliant with documentation authority constraints.
 
 #### Trade-offs
 
 **Confidence**: 80%
-<!-- /ANCHOR:decision-autonomous-single-1865cfda -->
+<!-- /ANCHOR:decision-speckit-spec-687983d6 -->
 
 ---
 
-<!-- ANCHOR:decision-compare-current-memory-mcp-f562d274 -->
-### Decision 2: Compare current memory MCP internals with graphrag_mcp, WiredBrain Hierarchical-Rag, and ragflow
+<!-- ANCHOR:decision-split-memory-save-because-16f189a7 -->
+### Decision 2: Split memory save because estimated conversation size exceeded the large context threshold
 
-**Context**: Extract actionable architecture patterns rather than generic RAG theory.
+**Context**: Estimated conversation size exceeded the large context threshold and would reduce retrieval quality if saved as one blob.
 
-**Timestamp**: 2026-02-20T07:32:30Z
+**Timestamp**: 2026-02-20T07:32:31Z
 
 **Importance**: medium
 
 #### Options Considered
 
 1. **Chosen Approach**
-   Decision: Compare current memory MCP internals with graphrag_mcp, WiredBrain
+   Split memory save because estimated conversation size exceeded the large context threshold
 
 #### Chosen Approach
 
 **Selected**: Chosen Approach
 
-**Rationale**: Hierarchical-Rag, and ragflow to extract actionable architecture patterns rather than generic RAG theory.
+**Rationale**: Estimated conversation size exceeded the large context threshold and would reduce retrieval quality if saved as one blob.
 
 #### Trade-offs
 
 **Confidence**: 80%
-<!-- /ANCHOR:decision-compare-current-memory-mcp-f562d274 -->
+<!-- /ANCHOR:decision-split-memory-save-because-16f189a7 -->
 
 ---
 
-<!-- ANCHOR:decision-produce-two-deliverables-deep-82addbae -->
-### Decision 3: Produce two deliverables (deep analysis plus recommendations) with implementation-ready adoption paths
+<!-- ANCHOR:decision-keep-recommendations-phased-feature-9bdd2064 -->
+### Decision 3: Keep recommendations phased with feature flags, dark-run comparison, and measurable quality/latency criteria before broad enablement
 
-**Context**: Explicit tradeoffs and code references so adoption paths are implementation-ready.
+**Context**: Recommendations should be phased with feature flags, dark-run comparison, and measurable quality/latency criteria before broad enablement.
 
-**Timestamp**: 2026-02-20T07:32:30Z
+**Timestamp**: 2026-02-20T07:32:31Z
 
 **Importance**: medium
 
 #### Options Considered
 
 1. **Chosen Approach**
-   Decision: Produce two deliverables (deep analysis plus recommendations) with explicit tradeoffs and code references so adoption paths are implementation
+   Keep recommendations phased with feature flags, dark-run comparison, and measurable quality/latency criteria before broad enablement
 
 #### Chosen Approach
 
 **Selected**: Chosen Approach
 
-**Rationale**: ready.
+**Rationale**: Recommendations should be phased with feature flags, dark-run comparison, and measurable quality/latency criteria before broad enablement.
 
 #### Trade-offs
 
 **Confidence**: 80%
-<!-- /ANCHOR:decision-produce-two-deliverables-deep-82addbae -->
+<!-- /ANCHOR:decision-keep-recommendations-phased-feature-9bdd2064 -->
 
 ---
 
@@ -366,15 +358,16 @@ Complete timestamped dialogue capturing all user interactions, AI responses, too
 This session followed a **Linear Sequential** conversation pattern with **0** distinct phases.
 
 ##### Conversation Phases
-- **Discussion** - 5 actions
+- **Verification** - 1 actions
+- **Discussion** - 4 actions
 
 ---
 
 ### Message Timeline
 
-> **User** | 2026-02-20 @ 07:32:30
+> **User** | 2026-02-20 @ 07:32:31
 
-Hybrid RAG comparative analysis was completed for system-spec-kit memory MCP by reading local context artifacts, inspecting current retrieval internals, and analyzing three external implementations. The work produced code-grounded findings on fusion, ranking, filtering, and retrieval orchestration behavior, then converted those findings into implementation-focused guidance for this codebase.
+Deliverables were finalized in the target research folder and the memory-save workflow was prepared with strict preflight checks. Because the conversation footprint was large, context preservation was intentionally split to improve future retrieval precision and keep saved memory focused by theme.
 
 ---
 
@@ -395,7 +388,7 @@ Hybrid RAG comparative analysis was completed for system-spec-kit memory MCP by 
 |----------|----------|-----------------|
 | Context Loss | Agent doesn't remember prior work | Run `/spec_kit:resume 003-system-spec-kit/138-hybrid-rag-fusion` |
 | State Mismatch | Files don't match expected state | Verify with `git status` and `git diff` |
-| Memory Not Found | Search returns no results | Check `memory_search({ specFolder: "003-system-spec-kit/138-hybrid-rag-fusion" })` |
+| Memory Not Found | Search returns no results | Check `memory_search({ specFolder: "003-system-spec-kit/138-hybrid-rag-fusion/001-system-speckit-hybrid-rag-fusion" })` |
 | Stale Context | Information seems outdated | Check `last_accessed_epoch` vs current time |
 | Incomplete Handover | Missing continuation context | Review CONTINUE SESSION section above |
 | Dedup Collision | Wrong memory surfaced | Check `fingerprint_hash` for conflicts |
@@ -407,7 +400,7 @@ Hybrid RAG comparative analysis was completed for system-spec-kit memory MCP by 
 node .opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts --status
 
 # List memories for this spec folder
-memory_search({ specFolder: "003-system-spec-kit/138-hybrid-rag-fusion", limit: 10 })
+memory_search({ specFolder: "003-system-spec-kit/138-hybrid-rag-fusion/001-system-speckit-hybrid-rag-fusion", limit: 10 })
 
 # Verify memory file integrity
 ls -la 003-system-spec-kit/138-hybrid-rag-fusion/memory/
@@ -488,8 +481,8 @@ Learning metrics will be calculated when both preflight and postflight data are 
 
 ```yaml
 # Core Identifiers
-session_id: "session-1771569150826-e72g94i4l"
-spec_folder: "003-system-spec-kit/138-hybrid-rag-fusion"
+session_id: "session-1771569151399-jpbd7m3a5"
+spec_folder: "003-system-spec-kit/138-hybrid-rag-fusion/001-system-speckit-hybrid-rag-fusion"
 channel: "main"
 
 # Classification
@@ -539,15 +532,15 @@ causal_links:
 
 # Timestamps (for decay calculations)
 created_at: "2026-02-20"
-created_at_epoch: 1771569150
-last_accessed_epoch: 1771569150
-expires_at_epoch: 1779345150  # 0 for critical (never expires)
+created_at_epoch: 1771569151
+last_accessed_epoch: 1771569151
+expires_at_epoch: 1779345151  # 0 for critical (never expires)
 
 # Session Metrics
 message_count: 1
 decision_count: 3
 tool_count: 0
-file_count: 4
+file_count: 2
 followup_count: 0
 
 # Access Analytics
@@ -557,47 +550,47 @@ relevance_boost: 1  # 1.0 default, increased by access patterns
 
 # Content Indexing
 key_topics:
-  - "rag"
   - "decision"
   - "spec"
-  - "memory mcp"
-  - "system"
-  - "hybrid"
-  - "fusion"
+  - "memory save"
   - "system spec kit/138 hybrid rag fusion"
+  - "memory"
+  - "system"
   - "kit/138"
-  - "decision autonomous"
-  - "autonomous single"
-  - "current"
+  - "hybrid"
+  - "rag"
+  - "fusion"
+  - "decision speckit"
+  - "speckit spec"
 
 # Trigger Phrases (auto-extracted for fast <50ms matching)
 trigger_phrases:
   - "system spec kit/138 hybrid rag fusion"
-  - "code grounded"
-  - "implementation focused"
-  - "end to end"
-  - "hierarchical rag"
   - "analysis hybrid rag patterns"
   - "recommendations system spec kit memory mcp"
-  - "agent execution spec folder"
-  - "execution spec folder uninterrupted"
-  - "spec folder uninterrupted end-to-end"
-  - "folder uninterrupted end-to-end research"
-  - "uninterrupted end-to-end research drafting"
-  - "end-to-end research drafting required"
-  - "hierarchical-rag ragflow extract actionable"
-  - "ragflow extract actionable architecture"
-  - "extract actionable architecture patterns"
-  - "actionable architecture patterns rather"
-  - "architecture patterns rather generic"
-  - "patterns rather generic rag"
-  - "rather generic rag theory"
-  - "context artifacts"
-  - "completed for system"
-  - "hybrid rag comparative analysis"
-  - "rag comparative analysis completed"
-  - "comparative analysis completed system-spec-kit"
-  - "analysis completed system-spec-kit memory"
+  - "folder markdown output stay"
+  - "markdown output stay compliant"
+  - "output stay compliant documentation"
+  - "stay compliant documentation authority"
+  - "compliant documentation authority constraints"
+  - "threshold reduce retrieval quality"
+  - "reduce retrieval quality saved"
+  - "retrieval quality saved one"
+  - "quality saved one blob"
+  - "run comparison measurable quality/latency"
+  - "comparison measurable quality/latency criteria"
+  - "measurable quality/latency criteria broad"
+  - "quality/latency criteria broad enablement"
+  - "workflow was"
+  - "context preservation"
+  - "context threshold"
+  - "deliverables finalized research folder"
+  - "finalized research folder memory-save"
+  - "research folder memory-save workflow"
+  - "folder memory-save workflow prepared"
+  - "memory-save workflow prepared strict"
+  - "workflow prepared strict preflight"
+  - "prepared strict preflight checks"
   - "system"
   - "spec"
   - "kit/138"
@@ -606,8 +599,6 @@ trigger_phrases:
   - "fusion"
 
 key_files:
-  - "specs/003-system-spec-kit/138-hybrid-rag-fusion/context/reddit_post_1.md"
-  - "specs/003-system-spec-kit/138-hybrid-rag-fusion/context/reddit_post_2.md"
   - "specs/003-system-spec-kit/138-hybrid-rag-fusion/research/001 - analysis-hybrid-rag-patterns.md"
   - "specs/003-system-spec-kit/138-hybrid-rag-fusion/research/002 - recommendations-system-spec-kit-memory-mcp.md"
 
@@ -616,7 +607,7 @@ related_sessions:
 
   []
 
-parent_spec: "003-system-spec-kit/138-hybrid-rag-fusion"
+parent_spec: "003-system-spec-kit/138-hybrid-rag-fusion/001-system-speckit-hybrid-rag-fusion"
 child_sessions:
 
   []

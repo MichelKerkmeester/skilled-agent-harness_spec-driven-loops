@@ -665,7 +665,7 @@ User initiated conversation
 |----------|----------|-----------------|
 | Context Loss | Agent doesn't remember prior work | Run `/spec_kit:resume 003-system-spec-kit/138-hybrid-rag-fusion` |
 | State Mismatch | Files don't match expected state | Verify with `git status` and `git diff` |
-| Memory Not Found | Search returns no results | Check `memory_search({ specFolder: "003-system-spec-kit/138-hybrid-rag-fusion" })` |
+| Memory Not Found | Search returns no results | Check `memory_search({ specFolder: "003-system-spec-kit/138-hybrid-rag-fusion/001-system-speckit-hybrid-rag-fusion" })` |
 | Stale Context | Information seems outdated | Check `last_accessed_epoch` vs current time |
 | Incomplete Handover | Missing continuation context | Review CONTINUE SESSION section above |
 | Dedup Collision | Wrong memory surfaced | Check `fingerprint_hash` for conflicts |
@@ -677,7 +677,7 @@ User initiated conversation
 node .opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts --status
 
 # List memories for this spec folder
-memory_search({ specFolder: "003-system-spec-kit/138-hybrid-rag-fusion", limit: 10 })
+memory_search({ specFolder: "003-system-spec-kit/138-hybrid-rag-fusion/001-system-speckit-hybrid-rag-fusion", limit: 10 })
 
 # Verify memory file integrity
 ls -la 003-system-spec-kit/138-hybrid-rag-fusion/memory/
@@ -759,7 +759,7 @@ Learning metrics will be calculated when both preflight and postflight data are 
 ```yaml
 # Core Identifiers
 session_id: "session-1771577256512-m7tkr1aou"
-spec_folder: "003-system-spec-kit/138-hybrid-rag-fusion"
+spec_folder: "003-system-spec-kit/138-hybrid-rag-fusion/001-system-speckit-hybrid-rag-fusion"
 channel: "main"
 
 # Classification
@@ -854,7 +854,7 @@ trigger_phrases:
   - "analysis unified hybrid rag fusion"
   - "recommendations unified speckit memory mcp"
   - "memory saved spec folder"
-  - "saved spec folder 003-system-spec-kit/138-hybrid-rag-fusion"
+  - "saved spec folder 003-system-spec-kit/138-hybrid-rag-fusion/001-system-speckit-hybrid-rag-fusion"
   - "spec folder 003-system-spec-kit/138-hybrid-rag-fusion file"
   - "folder 003-system-spec-kit/138-hybrid-rag-fusion file specs/003-system-spec-kit/138-hybrid-rag-fusion/memory/20-02-26"
   - "003-system-spec-kit/138-hybrid-rag-fusion file specs/003-system-spec-kit/138-hybrid-rag-fusion/memory/20-02-26 hybrid-rag-fusion.md"
@@ -862,9 +862,9 @@ trigger_phrases:
   - "specs/003-system-spec-kit/138-hybrid-rag-fusion/memory/20-02-26 hybrid-rag-fusion.md memory indexing"
   - "hybrid-rag-fusion.md memory indexing indexed"
   - "memory indexing indexed anchors"
-  - "indexing indexed anchors summary-138-hybrid-rag-fusion"
-  - "indexed anchors summary-138-hybrid-rag-fusion decision-tri-hybrid-search-138-hybrid-rag-fusion"
-  - "anchors summary-138-hybrid-rag-fusion decision-tri-hybrid-search-138-hybrid-rag-fusion files-138-hybrid-rag-fusion"
+  - "indexing indexed anchors summary-138-hybrid-rag-fusion/001-system-speckit-hybrid-rag-fusion"
+  - "indexed anchors summary-138-hybrid-rag-fusion decision-tri-hybrid-search-138-hybrid-rag-fusion/001-system-speckit-hybrid-rag-fusion"
+  - "anchors summary-138-hybrid-rag-fusion decision-tri-hybrid-search-138-hybrid-rag-fusion files-138-hybrid-rag-fusion/001-system-speckit-hybrid-rag-fusion"
   - "summary-138-hybrid-rag-fusion decision-tri-hybrid-search-138-hybrid-rag-fusion files-138-hybrid-rag-fusion trigger"
   - "decision-tri-hybrid-search-138-hybrid-rag-fusion files-138-hybrid-rag-fusion trigger phrases"
   - "files-138-hybrid-rag-fusion trigger phrases hybrid"
@@ -892,7 +892,7 @@ related_sessions:
 
   []
 
-parent_spec: "003-system-spec-kit/138-hybrid-rag-fusion"
+parent_spec: "003-system-spec-kit/138-hybrid-rag-fusion/001-system-speckit-hybrid-rag-fusion"
 child_sessions:
 
   []

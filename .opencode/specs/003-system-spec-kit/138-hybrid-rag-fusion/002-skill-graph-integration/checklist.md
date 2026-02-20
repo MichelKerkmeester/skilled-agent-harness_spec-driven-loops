@@ -197,7 +197,7 @@
 - [x] CHK-052 [P2] Findings saved to memory/
   - Deliverable: continuation context is generated via the approved memory script when future handoff value exists.
   - How to verify:
-    1. Run `node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js .opencode/specs/002-commands-and-skills/036-skill-graphs`.
+    1. Run `node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js .opencode/specs/003-system-spec-kit/138-hybrid-rag-fusion/002-skill-graph-integration`.
     2. Confirm a memory file is generated in the spec memory path.
     3. Confirm script output includes index confirmation.
   - Evidence expected: generated memory file path and script index message.

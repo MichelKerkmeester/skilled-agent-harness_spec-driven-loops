@@ -35,7 +35,7 @@
     "status": "indexed",
     "model": "nomic-ai/nomic-embed-text-v1.5",
     "dimensions": 768,
-    "memoryId": 59,
-    "generatedAt": "2026-02-20T12:38:48.571Z"
+    "memoryId": 58,
+    "generatedAt": "2026-02-20T12:38:46.864Z"
   }
 }

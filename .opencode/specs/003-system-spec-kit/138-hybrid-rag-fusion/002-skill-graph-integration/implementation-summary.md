@@ -11,7 +11,7 @@
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `.opencode/specs/002-commands-and-skills/036-skill-graphs` |
+| **Spec Folder** | `.opencode/specs/003-system-spec-kit/138-hybrid-rag-fusion/002-skill-graph-integration` |
 | **Updated** | 2026-02-20 |
 | **Level** | 3+ |
 | **Migration Progress** | 9/9 complete (all tasks done) |
