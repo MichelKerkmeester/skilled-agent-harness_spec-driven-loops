@@ -350,7 +350,7 @@ describe('Response Envelope (T148-T155)', () => {
     it('should measure latency in empty responses', async () => {
       const startTime = Date.now();
 
-      await new Promise(resolve => setTimeout(resolve, 20));
+      await new Promise(resolve => setTimeout(resolve, 30));
 
       const envelope = createEmptyResponse({
         tool: 'memory_search',

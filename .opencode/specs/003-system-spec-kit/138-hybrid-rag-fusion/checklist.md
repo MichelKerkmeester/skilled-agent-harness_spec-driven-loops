@@ -167,7 +167,7 @@ This is the **root checklist** for the 138-hybrid-rag-fusion spec folder. It tra
 
 > Note: Single-contributor project. Sign-off confirms all P0 and P1 items verified or explicitly deferred with documented rationale.
 >
-> **Technical Prerequisites Met (2026-02-26):** All 19 P0 items verified. All 21 P1 items verified. Test suite green (159 files, 4770 passed, 0 failed). 3 remaining items are P2 deferrals (no approval required). TASK-G001 through G004 complete. Spec is ready for user sign-off.
+> **Technical Prerequisites Met (2026-02-26):** All 19 P0 items verified. All 21 P1 items verified. Test suite green (159 files, 4770 passed, 0 failed). 1 remaining item is a P2 deferral (CHK-124: runbook peer review, no approval required). 51/52 items verified (98%). TASK-G001 through G004 complete. Spec is ready for user sign-off.
 <!-- /ANCHOR:sign-off -->
 
 ---

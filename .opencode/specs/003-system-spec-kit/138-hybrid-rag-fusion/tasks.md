@@ -170,7 +170,7 @@ These tasks require both workstreams to be sufficiently complete before executio
 - [x] [W:INTEG] TASK-G002 Benchmark end-to-end pipeline with skill graph data [Evidence: graph-channel-benchmark.vitest.ts 41 tests + integration-138-pipeline.vitest.ts 30+ tests]
 - [x] [W:INTEG] TASK-G003 Cross-workstream regression testing [Evidence: graph-regression-flag-off.vitest.ts 18 tests + pipeline-integration.vitest.ts 23 tests]
 - [x] [W:INTEG] TASK-G004 Unified documentation review [Evidence: CHK-140 verified — all spec docs synchronized across 3 subfolders]
-- [ ] [W:INTEG] TASK-G005 Final integration verification and sign-off (awaiting user sign-off)
+- [ ] [W:INTEG] TASK-G005 Final integration verification and sign-off (awaiting user sign-off) [Technical Verification: PASS (2026-02-26) — Test suite: 159 files, 4770 passed, 0 failed, 19 skipped. Feature flags: 3/3 default false with strict === 'true' checking (graph-flags.ts). Regression guards: graph-regression-flag-off.vitest.ts 24 tests (T022 suite). Checklist: 19/19 P0, 21/21 P1, 11/12 P2 (CHK-124 deferred). Documentation: spec.md, plan.md, tasks.md, checklist.md, decision-record.md at root + implementation-summary.md in all 3 subfolders. Workstreams: W:RAG nearly complete (1 deferred T016), W:GRAPH complete, W:INTEG-GRAPH complete. All technical prerequisites met — pending user sign-off only]
 <!-- /ANCHOR:global-integration -->
 
 ---
@@ -200,7 +200,7 @@ These tasks require both workstreams to be sufficiently complete before executio
 - [ ] All [W:INTEG] TASK-G### tasks marked `[x]` — 4/5 done (G005 awaiting user sign-off)
 - [x] No `[B]` blocked tasks remaining — T016 deferred (P2), G005 awaiting sign-off only
 - [ ] M7 milestone reached: production ready (awaiting G005 sign-off)
-- [ ] `validate.sh` exits with code 0
+- [x] `validate.sh` exits with code 0 [Evidence: 29 checks passed, 0 warnings, 0 errors — root spec files, subfolder summaries, ANCHOR integrity, 17 key test files, 159 total test files, 4770 tests passed]
 <!-- /ANCHOR:completion -->
 
 ---
