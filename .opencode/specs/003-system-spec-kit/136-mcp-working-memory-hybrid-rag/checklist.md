@@ -62,8 +62,8 @@
 ### P0
 
 - [x] CHK-020 [P0] All acceptance criteria met (REQ-001 through REQ-023 verified — P0: REQ-001–005, REQ-011–012, REQ-016–020; P1: REQ-006–010, REQ-013–015, REQ-021–023) [Evidence: CHK-032/033 and CHK-110/111/112/113/114 closed in TASK #60; `npm run test --workspace=mcp_server -- tests/config-cognitive.vitest.ts tests/working-memory-event-decay.vitest.ts tests/cognitive-gaps.vitest.ts` (PASS); `npx tsx .opencode/skill/system-spec-kit/scripts/evals/run-performance-benchmarks.ts .opencode/specs/003-system-spec-kit/136-mcp-working-memory-hybrid-rag`]
-- [x] CHK-021 [P0] Unit tests pass (decay, boost bounds, pressure thresholds, rule matching) [Evidence: `npm run test:mcp` — 127 passed, 0 failed, 4 skipped; `node scripts/tests/test-memory-quality-lane.js` — PASS]
-- [x] CHK-022 [P0] Integration tests pass (RRF + boost, extraction -> search, causal traversal) [Evidence: `npm run test:mcp` — 4248 passed, 0 failed, 72 skipped]
+- [x] CHK-021 [P0] Unit tests pass (decay, boost bounds, pressure thresholds, rule matching) [Evidence: `npm run test:mcp` — 127 passed, 0 failed, 4 skipped; `node scripts/tests/test-memory-quality-lane.js` — PASS; targeted activation run for `tests/api-key-validation.vitest.ts`, `tests/api-validation.vitest.ts`, `tests/lazy-loading.vitest.ts` — 3 files passed, 15 tests passed, 0 skipped]
+- [x] CHK-022 [P0] Integration tests pass (RRF + boost, extraction -> search, causal traversal) [Evidence: `npm run test:mcp` — 4248 passed, 0 failed, 72 skipped; `SPECKIT_ROLLOUT_PERCENT=100 SPECKIT_SESSION_BOOST=true SPECKIT_PRESSURE_POLICY=true SPECKIT_EXTRACTION=true SPECKIT_EVENT_DECAY=true SPECKIT_CAUSAL_BOOST=true SPECKIT_AUTO_RESUME=true SPECKIT_ADAPTIVE_FUSION=true SPECKIT_EXTENDED_TELEMETRY=true npm test` — 142 passed files (142 total), 4415 passed tests, 19 skipped]
 
 ### P1
 

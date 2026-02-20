@@ -46,6 +46,7 @@ The MCP Server Library provides the core functionality for the Spec Kit Memory M
 | Index Sources | 5 | spec memories, constitutional files, skill READMEs, project READMEs, spec documents (`includeSpecDocs`) |
 | Schema Milestones | v13+ | v13 introduced `document_type` and `spec_level` for spec-doc indexing and scoring |
 | Total Modules | 63 | Organized into 19 domain-specific folders |
+| Last Verified | 2026-02-20 | Module category and total counts revalidated via Glob |
 
 ### Key Features
 

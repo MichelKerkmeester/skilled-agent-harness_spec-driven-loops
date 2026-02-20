@@ -13,7 +13,7 @@
 | Spec Folder | 136-mcp-working-memory-hybrid-rag |
 | Completed | 2026-02-19 |
 | Level | 3+ |
-| Status | Complete for feature scope. This update records that the legacy embedding test drift is now resolved by rewriting `embeddings.vitest.ts` to the current shared architecture. |
+| Status | Complete for feature scope. This update records closure of legacy deferred test drift: `embeddings.vitest.ts` rewrite plus activation of `api-key-validation`, `api-validation`, and `lazy-loading` suites. |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -75,6 +75,8 @@ Cognitive config parsing moved from a custom parser to Zod schema validation —
 Investigation confirms `mcp_server/lib/interfaces/embedding-provider` is no longer part of the runtime architecture. `mcp_server/lib/interfaces` now contains only `vector-store.ts` and `README.md`, while provider contracts and implementations live in shared paths (`shared/types.ts`, shared provider classes, and shared factory).
 
 The old deferred placeholder marker in `mcp_server/tests/embeddings.vitest.ts` was removed, and the suite was rewritten to align with the current shared embedding architecture. Targeted verification now passes: `npm run test --workspace=mcp_server -- tests/embeddings.vitest.ts` -> 1 file passed, 13 tests passed, 0 skipped.
+
+The remaining deferred test drift is also closed: `mcp_server/tests/api-key-validation.vitest.ts`, `mcp_server/tests/api-validation.vitest.ts`, and `mcp_server/tests/lazy-loading.vitest.ts` were converted to active coverage. Targeted verification for those three suites passes with 3 files passed, 15 tests passed, 0 skipped.
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -117,7 +119,8 @@ All features shipped behind feature flags and went through a structured rollout:
 | Check | Result |
 |-------|--------|
 | Strict root validation | PASS, 0 errors, 0 warnings |
-| Full test suite (all flags enabled) | PASS, 139 passed test files and 3 skipped (142 total). 4400 passed tests and 43 skipped (4443 total). Duration 3.48s. |
+| Full test suite (all flags enabled) | PASS, 142 passed test files (142 total). 4415 passed tests and 19 skipped (4434 total). |
+| Previously deferred suites now active (`api-key-validation`, `api-validation`, `lazy-loading`) | PASS, 3 passed files and 0 skipped. 15 passed tests (15 total). |
 | Rewritten embeddings suite (architecture-aligned) | PASS, 1 passed file and 0 skipped. 13 passed tests (13 total). |
 | BM25-focused verification (all flags enabled) | PASS, 3 passed files and 0 skipped. 189 passed tests (189 total). Duration 137ms. |
 | Lint (`mcp_server`) | PASS, no lint errors |

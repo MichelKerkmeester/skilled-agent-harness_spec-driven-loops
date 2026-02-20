@@ -1,78 +1,82 @@
-import { describe, it } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it } from 'vitest';
+import {
+  VALIDATION_TIMEOUT_MS,
+  validateApiKey,
+} from '../../shared/embeddings/factory';
 
-// ───────────────────────────────────────────────────────────────
+// ---------------------------------------------------------------
 // TEST: API Key Validation (T087-T090)
-// ───────────────────────────────────────────────────────────────
+// ---------------------------------------------------------------
 // REQ-029: Pre-Flight API Key Validation
-// Tests for validate_api_key() function in embedding provider factory
-//
-// Original: api-key-validation.test.js
-// Deferred: requires ../../shared/dist/embeddings/factory (external API)
+// Architecture-aligned replacement for legacy deferred placeholder.
 
-describe.skip('API Key Validation (T087-T090) [deferred - requires external API/startup fixtures]', () => {
-  const ORIGINAL_ENV = { ...process.env };
+const ENV_KEYS = [
+  'EMBEDDINGS_PROVIDER',
+  'VOYAGE_API_KEY',
+  'OPENAI_API_KEY',
+] as const;
 
-  function resetEnv(): void {
-    Object.keys(process.env).forEach((key) => {
-      if (!(key in ORIGINAL_ENV)) {
-        delete process.env[key];
-      }
-    });
-    Object.assign(process.env, ORIGINAL_ENV);
+const ORIGINAL_ENV = Object.fromEntries(
+  ENV_KEYS.map((key) => [key, process.env[key]])
+) as Record<string, string | undefined>;
+
+function resetEnv(): void {
+  for (const key of ENV_KEYS) {
+    const value = ORIGINAL_ENV[key];
+    if (value === undefined) {
+      delete process.env[key];
+    } else {
+      process.env[key] = value;
+    }
   }
+}
 
-  describe('VALIDATION_TIMEOUT_MS constant', () => {
-    it('should be 5000ms (CHK-170)', () => {
-    });
+describe('API Key Validation (T087-T090)', () => {
+  beforeEach(() => {
+    resetEnv();
   });
 
-  describe('Local provider', () => {
-    it('should skip API key validation for hf-local', async () => {
-      delete process.env.VOYAGE_API_KEY;
-      delete process.env.OPENAI_API_KEY;
-      process.env.EMBEDDINGS_PROVIDER = 'hf-local';
-
-      try {
-      } finally {
-        resetEnv();
-      }
-    });
+  afterEach(() => {
+    resetEnv();
   });
 
-  describe('Missing API key', () => {
-    it('should return E050 error (CHK-168)', async () => {
-      delete process.env.VOYAGE_API_KEY;
-      delete process.env.OPENAI_API_KEY;
-      process.env.EMBEDDINGS_PROVIDER = 'voyage';
-
-      try {
-      } finally {
-        resetEnv();
-      }
-    });
+  it('T087: exposes VALIDATION_TIMEOUT_MS as 5000ms (CHK-170)', () => {
+    expect(VALIDATION_TIMEOUT_MS).toBe(5000);
   });
 
-  describe('Actionable guidance (CHK-169)', () => {
-    it('should include actionable guidance in validation errors', async () => {
-      delete process.env.VOYAGE_API_KEY;
-      delete process.env.OPENAI_API_KEY;
-      process.env.EMBEDDINGS_PROVIDER = 'openai';
+  it('T088: skips API key validation for local provider', async () => {
+    process.env.EMBEDDINGS_PROVIDER = 'hf-local';
+    delete process.env.VOYAGE_API_KEY;
+    delete process.env.OPENAI_API_KEY;
 
-      try {
-      } finally {
-        resetEnv();
-      }
-    });
+    const result = await validateApiKey();
+    expect(result.valid).toBe(true);
+    expect(result.provider).toBe('hf-local');
+    expect(result.reason).toContain('Local provider');
   });
 
-  describe('Valid API key (CHK-167)', () => {
-    it('should return success when API key is valid', async () => {
-      // Only meaningful with a real API key configured
-    });
+  it('T089: returns E050 when remote provider key is missing', async () => {
+    process.env.EMBEDDINGS_PROVIDER = 'voyage';
+    delete process.env.VOYAGE_API_KEY;
+    delete process.env.OPENAI_API_KEY;
+
+    const result = await validateApiKey();
+    expect(result.valid).toBe(false);
+    expect(result.provider).toBe('voyage');
+    expect(result.errorCode).toBe('E050');
+    expect(result.actions?.join(' ')).toContain('EMBEDDINGS_PROVIDER=hf-local');
   });
 
-  describe('Timeout (CHK-170)', () => {
-    it('should respect the configured timeout', async () => {
-    });
+  it('T090: returns actionable guidance for missing OpenAI key', async () => {
+    process.env.EMBEDDINGS_PROVIDER = 'openai';
+    delete process.env.OPENAI_API_KEY;
+    delete process.env.VOYAGE_API_KEY;
+
+    const result = await validateApiKey();
+    expect(result.valid).toBe(false);
+    expect(result.provider).toBe('openai');
+    expect(result.errorCode).toBe('E050');
+    expect(result.actions?.join(' ')).toContain('OPENAI_API_KEY');
+    expect(result.actions?.join(' ')).toContain('platform.openai.com/api-keys');
   });
 });

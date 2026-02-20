@@ -156,6 +156,7 @@
   - Capture current replacement architecture (`shared/types.ts`, provider implementations, provider factory, T085 interface coverage)
   - Update root spec docs and package-007 closure docs with relevance classification and follow-up direction
   - Resolution note: drift closed after `mcp_server/tests/embeddings.vitest.ts` rewrite to current shared architecture (old deferred marker removed)
+  - Resolution extension: `tests/api-key-validation.vitest.ts`, `tests/api-validation.vitest.ts`, and `tests/lazy-loading.vitest.ts` converted from deferred/skipped to active coverage (targeted run: 3 files passed, 15 tests passed, 0 skipped; reflected in root `test-results.md` and `implementation-summary.md`)
 <!-- /ANCHOR:task-groups -->
 
 ---

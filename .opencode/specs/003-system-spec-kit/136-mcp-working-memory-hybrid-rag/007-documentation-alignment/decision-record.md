@@ -77,13 +77,13 @@ Documentation alignment follows completed Waves 1-3 and closes a doc-to-code dri
 **Status:** Accepted, resolved
 **Date:** 2026-02-19
 
-**Context:** Follow-up investigation found a legacy placeholder suite in `mcp_server/tests/embeddings.vitest.ts` still references `lib/interfaces/embedding-provider`, but that module path was removed during TS migration. Current provider contracts now live in shared paths.
+**Context:** Follow-up investigation found a legacy placeholder suite in `mcp_server/tests/embeddings.vitest.ts` still references `lib/interfaces/embedding-provider`, but that module path was removed during TS migration. Current provider contracts now live in shared paths. A related drift class also remained in three deferred suites (`api-key-validation`, `api-validation`, `lazy-loading`) that were still excluded from active coverage.
 
-**Decision:** Record this as a post-completion documentation/runtime drift addendum in parent spec 136 root docs and this package's closure artifacts (`tasks.md`, `checklist.md`, `implementation-summary.md`). Do not reopen package 007 implementation scope. Mark the addendum closed once an architecture-aligned rewrite of `tests/embeddings.vitest.ts` lands.
+**Decision:** Record this as a post-completion documentation/runtime drift addendum in parent spec 136 root docs and this package's closure artifacts (`tasks.md`, `checklist.md`, `implementation-summary.md`). Do not reopen package 007 implementation scope. Mark the addendum closed once the architecture-aligned rewrite of `tests/embeddings.vitest.ts` lands and the deferred API/startup suites are converted to active tests.
 
 **Rationale:** Package 007 remains complete for its original scope. The newly discovered drift item was factual and relevant to alignment quality, so it was documented without rewriting completed task groups.
 
-**Consequences:** Closure artifacts include both the drift record and resolution state. `tests/embeddings.vitest.ts` was rewritten to current shared embedding architecture, old deferred marker removed, and targeted verification now passes (1 file passed, 13 tests passed, 0 skipped).
+**Consequences:** Closure artifacts include both the drift record and resolution state. `tests/embeddings.vitest.ts` was rewritten to current shared embedding architecture, old deferred marker removed, and targeted verification now passes (1 file passed, 13 tests passed, 0 skipped). The three previously deferred suites are now active and pass in targeted verification (3 files passed, 15 tests passed, 0 skipped), with root all-features totals updated to 142 passed test files and 4415 passed tests (19 skipped).
 <!-- /ANCHOR:decisions -->
 
 ---

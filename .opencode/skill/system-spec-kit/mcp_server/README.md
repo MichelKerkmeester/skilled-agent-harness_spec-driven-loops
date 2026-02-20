@@ -118,6 +118,7 @@ This MCP server gives your AI assistant persistent memory with intelligence buil
 | **Embedding Providers** | 3 |
 | **Cognitive Features** | 12+ |
 | **Test Coverage** | 3,800+ tests across 114 test files (incl. 58/58 MCP integration tests at 100%) |
+| **Last Verified** | 2026-02-20 (module counts revalidated via Glob) |
 
 ### Requirements
 

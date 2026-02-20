@@ -51,7 +51,7 @@
 - [x] CHK-325 Memory command `continue.md` documents recovery context changes [EVIDENCE: `.opencode/command/memory/continue.md`]
 - [x] CHK-326 All ANCHOR tags preserved in every edited file (broken closing related anchor tag in Skill README fixed) [EVIDENCE: ANCHOR validation and remediation notes in `tasks.md` and `plan.md`]
 - [x] CHK-327 No stale references — all file paths verified by Glob [EVIDENCE: verification method documented in `spec.md` and checklist Evidence section]
-- [x] CHK-328 Post-completion drift addendum closed: legacy `embedding-provider` path remains historical-only and deferred placeholder suite is now rewritten to current architecture [EVIDENCE: `../dead-code-unused-analysis.md`, `../test-results.md`, `../implementation-summary.md`, `decision-record.md` ADR-007-005, `tasks.md` T050]
+- [x] CHK-328 Post-completion drift addendum closed: legacy `embedding-provider` path remains historical-only, deferred placeholder suite is rewritten to current architecture, and three deferred API/startup suites are now active [EVIDENCE: `../dead-code-unused-analysis.md`, `../test-results.md`, `../implementation-summary.md`, `decision-record.md` ADR-007-005, `tasks.md` T050]
 <!-- /ANCHOR:p1-required -->
 
 ---
@@ -65,7 +65,7 @@
 - [x] CHK-333 `scripts/tests/README.md` lists test-memory-quality-lane.js
 - [x] CHK-334 `mcp_server/handlers/README.md` notes telemetry integration
 - [x] CHK-335 `mcp_server/hooks/README.md` verified current (no changes needed)
-- [ ] CHK-336 "Last verified" dates added to module count tables (deferred — P2 optimization)
+- [x] CHK-336 "Last verified" dates added to module count tables in skill, MCP server, and lib statistics docs [EVIDENCE: `.opencode/skill/system-spec-kit/README.md` (By The Numbers), `.opencode/skill/system-spec-kit/mcp_server/README.md` (By The Numbers), `.opencode/skill/system-spec-kit/mcp_server/lib/README.md` (Key Statistics)]
 <!-- /ANCHOR:p2-optional -->
 
 ---
@@ -79,7 +79,8 @@
 - Gap analysis: performed 2026-02-19 via 5 parallel research agents
 - Implementation: 10 write agents dispatched 2026-02-19 (all completed)
 - Remediation: 3 fixes applied post-verification (module counts, feature flags in Skill README, broken ANCHOR tag)
-- Post-completion addendum: embedding-provider lifecycle captured with root + package evidence links, and drift closure recorded after `embeddings.vitest.ts` rewrite
+- Post-completion addendum: embedding-provider lifecycle captured with root + package evidence links, drift closure recorded after `embeddings.vitest.ts` rewrite, and deferred API/startup suites closure synced to root verification totals
+- CHK-336 closure: "Last Verified" rows are now present in all required module-count/stat tables (`.opencode/skill/system-spec-kit/README.md`, `.opencode/skill/system-spec-kit/mcp_server/README.md`, `.opencode/skill/system-spec-kit/mcp_server/lib/README.md`)
 - Final verification: automated pass confirmed all P0 and P1 items pass
 - Verification method: Glob file counts vs README stated counts
 <!-- /ANCHOR:evidence -->

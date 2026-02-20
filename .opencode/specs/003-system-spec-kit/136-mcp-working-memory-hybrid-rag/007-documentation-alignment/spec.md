@@ -43,7 +43,7 @@ This creates a documentation-reality gap that undermines the framework's core va
 | Parent Plan | `../plan.md` |
 | Status | Complete |
 | Implementation Status | Complete |
-| Last Updated | 2026-02-19 |
+| Last Updated | 2026-02-20 |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -159,5 +159,5 @@ All normative requirement wording remains in `../spec.md` section 4.
 <!-- ANCHOR:status -->
 ## 6. Status Statement
 
-Complete. All 26 tasks implemented, 6/6 P0 pass, 18/18 P1 pass, 6/7 P2 pass (CHK-336 deferred).
+Complete. All 26 tasks implemented, 6/6 P0 pass, 18/18 P1 pass, 7/7 P2 pass (CHK-336 closed with README table evidence updates).
 <!-- /ANCHOR:status -->

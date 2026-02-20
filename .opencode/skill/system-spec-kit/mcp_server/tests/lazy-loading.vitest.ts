@@ -1,41 +1,86 @@
-import { describe, it, expect } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
-// ───────────────────────────────────────────────────────────────
-// TEST: Lazy Loading Startup Time (T016-T019)
-// ───────────────────────────────────────────────────────────────
-// Tests the lazy loading implementation by measuring:
-// 1. Module import time (should be <100ms)
-// 2. Provider initialization time (deferred until first use)
-// 3. First embedding generation time
-//
-// Success Criteria:
-// - CHK-020: Startup time < 500ms
-// - CHK-021: Deferred initialization pattern
-// - CHK-022: getEmbeddingProvider creates instance only on first call
-// - CHK-023: 50-70% faster startup
-// - CHK-024: SPECKIT_EAGER_WARMUP fallback works
-//
+// ---------------------------------------------------------------
+// TEST: Lazy Loading Startup Behavior (T016-T019)
+// ---------------------------------------------------------------
+// Architecture-aligned replacement for legacy deferred placeholder.
 
-describe.skip('Lazy Loading Startup Time (T016-T019) [deferred - requires external API/startup fixtures]', () => {
-  describe('Lazy loading mode', () => {
-    it('should import module in under 500ms (CHK-020)', () => {
-    });
+const ENV_KEYS = [
+  'EMBEDDINGS_PROVIDER',
+  'SPECKIT_EAGER_WARMUP',
+  'SPECKIT_LAZY_LOADING',
+  'VOYAGE_API_KEY',
+  'OPENAI_API_KEY',
+] as const;
 
-    it('should NOT initialize provider on import (CHK-021)', () => {
-    });
+const ORIGINAL_ENV = Object.fromEntries(
+  ENV_KEYS.map((key) => [key, process.env[key]])
+) as Record<string, string | undefined>;
 
-    it('should initialize provider on first embedding call (CHK-022)', async () => {
-    });
+function resetEnv(): void {
+  for (const key of ENV_KEYS) {
+    const value = ORIGINAL_ENV[key];
+    if (value === undefined) {
+      delete process.env[key];
+    } else {
+      process.env[key] = value;
+    }
+  }
+}
 
-    it('should be faster on second embedding (no re-init)', async () => {
-    });
+async function loadEmbeddingsModule() {
+  vi.resetModules();
+  return import('../../shared/embeddings');
+}
 
-    it('should report lazy loading stats after initialization', async () => {
-    });
+describe('Lazy Loading Startup Behavior (T016-T019)', () => {
+  beforeEach(() => {
+    resetEnv();
+    process.env.EMBEDDINGS_PROVIDER = 'hf-local';
   });
 
-  describe('Eager warmup check (CHK-024)', () => {
-    it('should have shouldEagerWarmup() return false by default', () => {
-    });
+  afterEach(() => {
+    resetEnv();
+  });
+
+  it('T016: shouldEagerWarmup() is false by default', async () => {
+    delete process.env.SPECKIT_EAGER_WARMUP;
+    delete process.env.SPECKIT_LAZY_LOADING;
+
+    const embeddings = await loadEmbeddingsModule();
+    expect(embeddings.shouldEagerWarmup()).toBe(false);
+  });
+
+  it('T017: env flags can force eager warmup', async () => {
+    process.env.SPECKIT_EAGER_WARMUP = 'true';
+    let embeddings = await loadEmbeddingsModule();
+    expect(embeddings.shouldEagerWarmup()).toBe(true);
+
+    delete process.env.SPECKIT_EAGER_WARMUP;
+    process.env.SPECKIT_LAZY_LOADING = 'false';
+    embeddings = await loadEmbeddingsModule();
+    expect(embeddings.shouldEagerWarmup()).toBe(true);
+  });
+
+  it('T018: empty inputs return null without triggering provider init', async () => {
+    const embeddings = await loadEmbeddingsModule();
+
+    expect(embeddings.isProviderInitialized()).toBe(false);
+    expect(await embeddings.generateDocumentEmbedding('')).toBeNull();
+    expect(await embeddings.generateQueryEmbedding('   ')).toBeNull();
+    expect(embeddings.isProviderInitialized()).toBe(false);
+  });
+
+  it('T019: provider initializes lazily on first provider-dependent call', async () => {
+    const embeddings = await loadEmbeddingsModule();
+
+    expect(embeddings.isProviderInitialized()).toBe(false);
+    await embeddings.getEmbeddingProfileAsync();
+
+    const stats = embeddings.getLazyLoadingStats();
+    expect(embeddings.isProviderInitialized()).toBe(true);
+    expect(stats.isInitialized).toBe(true);
+    expect(stats.initStartTime).not.toBeNull();
+    expect(stats.initCompleteTime).not.toBeNull();
   });
 });

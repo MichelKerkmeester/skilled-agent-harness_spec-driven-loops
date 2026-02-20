@@ -40,6 +40,8 @@ Follow-up investigation had recorded a documentation/runtime drift item: `tests/
 
 That drift item is now resolved in root spec 136 documentation: `tests/embeddings.vitest.ts` was rewritten to current shared architecture and the deferred `describe.skip` marker was removed (`npm run test --workspace=mcp_server -- tests/embeddings.vitest.ts` -> 1 file passed, 13 tests passed, 0 skipped).
 
+Closure now also captures skip-reduction evidence for three additional suites that had been previously deferred: `tests/api-key-validation.vitest.ts`, `tests/api-validation.vitest.ts`, and `tests/lazy-loading.vitest.ts` now run as active tests (targeted run: 3 files passed, 15 tests passed, 0 skipped). Root all-features verification reflects current totals: 142 passed test files (142 total), 4415 passed tests, 19 skipped (4434 total).
+
 This package remains complete for its original scope. The addendum now serves as historical traceability plus explicit closure linkage to root spec 136 evidence updates.
 <!-- /ANCHOR:what-built -->
 
@@ -62,7 +64,7 @@ This package remains complete for its original scope. The addendum now serves as
 
 | Test Type | Status | Notes |
 |-----------|--------|-------|
-| Manual | Pass | Post-completion addendum recorded in decision/task/checklist/summary docs |
+| Manual | Pass | Post-completion addendum recorded in decision/task/checklist/summary docs, including deferred-suite activation evidence sync |
 | Unit | Skip | Documentation-only compliance update |
 | Integration | Skip | Documentation-only compliance update |
 <!-- /ANCHOR:verification -->

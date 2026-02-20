@@ -1,193 +1,162 @@
-import { describe, it, expect, beforeEach, afterEach } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it } from 'vitest';
+import { validateApiKey } from '../../shared/embeddings/factory';
 
-// ───────────────────────────────────────────────────────────────
+// ---------------------------------------------------------------
 // TEST: API Validation (T177-T184)
-// ───────────────────────────────────────────────────────────────
-// REQ-029: Pre-Flight API Key Validation
-// Tests for validate_api_key() function with HTTP mocking
-//
+// ---------------------------------------------------------------
+// REQ-029: Pre-Flight API Key Validation with HTTP mocking
 
-describe.skip('API Validation (T177-T184) [deferred - requires external API/startup fixtures]', () => {
-  const ORIGINAL_ENV = { ...process.env };
-  const originalFetch = globalThis.fetch;
+const ENV_KEYS = [
+  'EMBEDDINGS_PROVIDER',
+  'VOYAGE_API_KEY',
+  'OPENAI_API_KEY',
+  'OPENAI_BASE_URL',
+  'VOYAGE_EMBEDDINGS_MODEL',
+  'OPENAI_EMBEDDINGS_MODEL',
+] as const;
 
-  function resetEnv(): void {
-    Object.keys(process.env).forEach((key) => {
-      if (!(key in ORIGINAL_ENV)) {
-        delete process.env[key];
-      }
-    });
-    Object.assign(process.env, ORIGINAL_ENV);
+const ORIGINAL_ENV = Object.fromEntries(
+  ENV_KEYS.map((key) => [key, process.env[key]])
+) as Record<string, string | undefined>;
+
+const originalFetch = globalThis.fetch;
+
+function resetEnv(): void {
+  for (const key of ENV_KEYS) {
+    const value = ORIGINAL_ENV[key];
+    if (value === undefined) {
+      delete process.env[key];
+    } else {
+      process.env[key] = value;
+    }
   }
+}
 
-  function restoreFetch(): void {
-    globalThis.fetch = originalFetch;
-  }
+function restoreFetch(): void {
+  globalThis.fetch = originalFetch;
+}
 
-  function getStatusText(status: number): string {
-    const statusTexts: Record<number, string> = {
-      200: 'OK',
-      401: 'Unauthorized',
-      403: 'Forbidden',
-      429: 'Too Many Requests',
-      500: 'Internal Server Error',
-      502: 'Bad Gateway',
-      503: 'Service Unavailable',
-    };
-    return statusTexts[status] || 'Unknown';
-  }
+function mockFetch(status: number, body: Record<string, unknown>, options: { delay?: number } = {}): void {
+  globalThis.fetch = (async (_url: RequestInfo | URL, fetchOptions?: RequestInit) => {
+    if (fetchOptions?.signal?.aborted) {
+      const error = new Error('The operation was aborted');
+      error.name = 'AbortError';
+      throw error;
+    }
 
-  function mockFetch(status: number, body: Record<string, unknown>, options: { delay?: number } = {}): void {
-    globalThis.fetch = (async (_url: RequestInfo | URL, fetchOptions?: RequestInit) => {
-      if (fetchOptions?.signal?.aborted) {
-        const error = new Error('The operation was aborted');
-        error.name = 'AbortError';
-        throw error;
-      }
+    if (options.delay) {
+      await new Promise<void>((resolve, reject) => {
+        const timeoutId = setTimeout(resolve, options.delay);
+        if (fetchOptions?.signal) {
+          fetchOptions.signal.addEventListener('abort', () => {
+            clearTimeout(timeoutId);
+            const error = new Error('The operation was aborted');
+            error.name = 'AbortError';
+            reject(error);
+          });
+        }
+      });
+    }
 
-      if (options.delay) {
-        await new Promise<void>((resolve, reject) => {
-          const timeout = setTimeout(resolve, options.delay);
-          if (fetchOptions?.signal) {
-            fetchOptions.signal.addEventListener('abort', () => {
-              clearTimeout(timeout);
-              const error = new Error('The operation was aborted');
-              error.name = 'AbortError';
-              reject(error);
-            });
-          }
-        });
-      }
+    return {
+      ok: status >= 200 && status < 300,
+      status,
+      statusText: `HTTP ${status}`,
+      json: async () => body,
+    } as Response;
+  }) as typeof fetch;
+}
 
-      return {
-        ok: status >= 200 && status < 300,
-        status,
-        statusText: getStatusText(status),
-        json: async () => body,
-      };
-    }) as typeof fetch;
-  }
+describe('API Validation (T177-T184)', () => {
+  beforeEach(() => {
+    resetEnv();
+    restoreFetch();
+  });
 
   afterEach(() => {
     resetEnv();
     restoreFetch();
   });
 
-  describe('T177: Voyage provider', () => {
-    it('should validate successfully with valid API key', async () => {
-      delete process.env.OPENAI_API_KEY;
-      process.env.VOYAGE_API_KEY = 'test-voyage-key';
-      process.env.EMBEDDINGS_PROVIDER = 'voyage';
+  it('T177: validates Voyage API key on 200 response', async () => {
+    process.env.EMBEDDINGS_PROVIDER = 'voyage';
+    process.env.VOYAGE_API_KEY = 'test-voyage-key';
+    mockFetch(200, { data: [{ embedding: [0.1, 0.2, 0.3] }] });
 
-      mockFetch(200, {
-        data: [{ embedding: [0.1, 0.2, 0.3] }],
-        model: 'voyage-4',
-      });
-
-    });
+    const result = await validateApiKey({ timeout: 100 });
+    expect(result.valid).toBe(true);
+    expect(result.provider).toBe('voyage');
+    expect(result.reason).toContain('validated successfully');
   });
 
-  describe('T178: OpenAI provider', () => {
-    it('should validate successfully with valid API key', async () => {
-      delete process.env.VOYAGE_API_KEY;
-      process.env.OPENAI_API_KEY = 'test-openai-key';
-      process.env.EMBEDDINGS_PROVIDER = 'openai';
+  it('T178: validates OpenAI API key on 200 response', async () => {
+    process.env.EMBEDDINGS_PROVIDER = 'openai';
+    process.env.OPENAI_API_KEY = 'test-openai-key';
+    mockFetch(200, { data: [{ embedding: [0.1, 0.2, 0.3] }] });
 
-      mockFetch(200, {
-        data: [{ embedding: [0.1, 0.2, 0.3] }],
-        model: 'text-embedding-3-small',
-      });
-
-    });
+    const result = await validateApiKey({ timeout: 100 });
+    expect(result.valid).toBe(true);
+    expect(result.provider).toBe('openai');
+    expect(result.reason).toContain('validated successfully');
   });
 
-  describe('T179: Local providers (hf-local, ollama)', () => {
-    it('should skip API validation for hf-local', async () => {
-      delete process.env.VOYAGE_API_KEY;
-      delete process.env.OPENAI_API_KEY;
-      process.env.EMBEDDINGS_PROVIDER = 'hf-local';
+  it('T180: returns E053 on timeout', async () => {
+    process.env.EMBEDDINGS_PROVIDER = 'voyage';
+    process.env.VOYAGE_API_KEY = 'test-voyage-key';
+    mockFetch(200, {}, { delay: 60 });
 
-    });
-
-    it('should skip API validation for ollama', async () => {
-      delete process.env.VOYAGE_API_KEY;
-      delete process.env.OPENAI_API_KEY;
-      process.env.EMBEDDINGS_PROVIDER = 'ollama';
-
-    });
+    const result = await validateApiKey({ timeout: 10 });
+    expect(result.valid).toBe(false);
+    expect(result.provider).toBe('voyage');
+    expect(result.errorCode).toBe('E053');
+    expect(result.error).toContain('timed out');
   });
 
-  describe('T180: Validation timeout', () => {
-    it('should have VALIDATION_TIMEOUT_MS of 5000ms', () => {
-    });
+  it('T181: maps 401 to E050 auth error', async () => {
+    process.env.EMBEDDINGS_PROVIDER = 'voyage';
+    process.env.VOYAGE_API_KEY = 'invalid-key';
+    mockFetch(401, { error: { message: 'Invalid API key' } });
 
-    it('should time out with E053 when response exceeds timeout', async () => {
-      delete process.env.OPENAI_API_KEY;
-      process.env.VOYAGE_API_KEY = 'test-key';
-      process.env.EMBEDDINGS_PROVIDER = 'voyage';
-
-      mockFetch(200, {}, { delay: 6000 });
-
-    });
+    const result = await validateApiKey({ timeout: 100 });
+    expect(result.valid).toBe(false);
+    expect(result.provider).toBe('voyage');
+    expect(result.errorCode).toBe('E050');
+    expect(result.httpStatus).toBe(401);
   });
 
-  describe('T181: Auth error detection (401, 403)', () => {
-    it('should detect 401 Unauthorized as E050', async () => {
-      delete process.env.OPENAI_API_KEY;
-      process.env.VOYAGE_API_KEY = 'invalid-key';
-      process.env.EMBEDDINGS_PROVIDER = 'voyage';
+  it('T181b: maps 403 to E050 auth error', async () => {
+    process.env.EMBEDDINGS_PROVIDER = 'voyage';
+    process.env.VOYAGE_API_KEY = 'invalid-key';
+    mockFetch(403, { error: { message: 'Access forbidden' } });
 
-      mockFetch(401, { error: { message: 'Invalid API key' } });
-
-    });
-
-    it('should detect 403 Forbidden as E050', async () => {
-      delete process.env.OPENAI_API_KEY;
-      process.env.VOYAGE_API_KEY = 'invalid-key';
-      process.env.EMBEDDINGS_PROVIDER = 'voyage';
-
-      mockFetch(403, { error: { message: 'Access forbidden' } });
-
-    });
+    const result = await validateApiKey({ timeout: 100 });
+    expect(result.valid).toBe(false);
+    expect(result.provider).toBe('voyage');
+    expect(result.errorCode).toBe('E050');
+    expect(result.httpStatus).toBe(403);
   });
 
-  describe('T182: Rate limit detection (429)', () => {
-    it('should treat 429 as valid with warning (key works, rate limited)', async () => {
-      delete process.env.OPENAI_API_KEY;
-      process.env.VOYAGE_API_KEY = 'test-key';
-      process.env.EMBEDDINGS_PROVIDER = 'voyage';
+  it('T182: treats 429 as valid with warning', async () => {
+    process.env.EMBEDDINGS_PROVIDER = 'voyage';
+    process.env.VOYAGE_API_KEY = 'test-voyage-key';
+    mockFetch(429, { error: { message: 'Rate limit exceeded' } });
 
-      mockFetch(429, { error: { message: 'Rate limit exceeded' } });
-
-    });
+    const result = await validateApiKey({ timeout: 100 });
+    expect(result.valid).toBe(true);
+    expect(result.provider).toBe('voyage');
+    expect(result.warning).toContain('rate limited');
+    expect(result.httpStatus).toBe(429);
   });
 
-  describe('T183: Service error detection (5xx)', () => {
-    it('should treat 500 as valid with warning (service issue, not key issue)', async () => {
-      delete process.env.OPENAI_API_KEY;
-      process.env.VOYAGE_API_KEY = 'test-key';
-      process.env.EMBEDDINGS_PROVIDER = 'voyage';
+  it('T183: treats 5xx as valid with warning', async () => {
+    process.env.EMBEDDINGS_PROVIDER = 'openai';
+    process.env.OPENAI_API_KEY = 'test-openai-key';
+    mockFetch(503, { error: { message: 'Service unavailable' } });
 
-      mockFetch(500, { error: { message: 'Internal server error' } });
-
-    });
-
-    it('should treat 503 as valid with warning', async () => {
-      delete process.env.OPENAI_API_KEY;
-      process.env.VOYAGE_API_KEY = 'test-key';
-      process.env.EMBEDDINGS_PROVIDER = 'voyage';
-
-      mockFetch(503, { error: { message: 'Service unavailable' } });
-
-    });
-  });
-
-  describe('T184: Skip validation flag', () => {
-    it('should bypass API validation for local providers (current mechanism)', async () => {
-      delete process.env.VOYAGE_API_KEY;
-      delete process.env.OPENAI_API_KEY;
-      process.env.EMBEDDINGS_PROVIDER = 'hf-local';
-
-    });
+    const result = await validateApiKey({ timeout: 100 });
+    expect(result.valid).toBe(true);
+    expect(result.provider).toBe('openai');
+    expect(result.warning).toContain('Service returned error');
+    expect(result.httpStatus).toBe(503);
   });
 });

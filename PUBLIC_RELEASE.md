@@ -175,17 +175,17 @@ gh release create vX.X.X.X \
 
 | Field              | Value                                                                                  |
 | ------------------ | -------------------------------------------------------------------------------------- |
-| **Version**        | v2.1.4.0                                                                               |
+| **Version**        | v2.2.0.0                                                                               |
 | **Release Date**   | 2026-02-20                                                                             |
 | **GitHub**         | https://github.com/MichelKerkmeester/opencode-spec-kit-framework                       |
 | **Latest Release** | https://github.com/MichelKerkmeester/opencode-spec-kit-framework/releases/latest       |
-| **Release Notes**  | https://github.com/MichelKerkmeester/opencode-spec-kit-framework/releases/tag/v2.1.4.0 |
+| **Release Notes**  | https://github.com/MichelKerkmeester/opencode-spec-kit-framework/releases/tag/v2.2.0.0 |
 
 ### Release Notes
 
 Release notes for each version are stored as individual files in `.opencode/changelog/00--opencode-environment/vX.X.X.X.md`, formatted per the template in Section 7. For GitHub publishing, use an extracted body that excludes the local changelog wrapper (`# v...`, `> Part of ...`, `## [**x.x.x.x**] - date`).
 
-**Latest**: See `.opencode/changelog/00--opencode-environment/v2.1.4.0.md`
+**Latest**: See `.opencode/changelog/00--opencode-environment/v2.2.0.0.md`
 
 ---
 
@@ -332,6 +332,7 @@ Releases use a 4-part versioning scheme: `MAJOR.MINOR.SERIES.PATCH`
 | `2.1.2.x` | 2.1.2.0     | Gate enforcement + skill reference indexing (Source #6)        |
 | `2.1.3.x` | 2.1.3.0-6   | Agent model upgrade to Sonnet 4.6 + MCP recovery hardening + release-doc clarifications |
 | `2.1.4.x` | 2.1.4.0     | HVR integration across documentation templates                                          |
+| `2.2.0.x` | 2.2.0.0     | System Spec Kit verification hardening (deferred-suite activation + CHK-336 closure)   |
 
 ---
 

@@ -101,6 +101,7 @@ Cross-workflow alignment is mandatory:
 | **ANCHOR Coverage**   | ~473 anchors across 74 READMEs for precise memory retrieval            |
 | **README Compliance** | 75 READMEs styled per readme_template.md (7 rules)                     |
 | **Test Coverage**     | 3,988 tests across 118 test files                                      |
+| **Last Verified**     | 2026-02-20 (module/file counts revalidated via Glob)                  |
 
 ### Requirements
 

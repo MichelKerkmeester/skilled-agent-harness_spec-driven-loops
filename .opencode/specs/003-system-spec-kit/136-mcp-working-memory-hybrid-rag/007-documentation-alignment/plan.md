@@ -198,5 +198,5 @@ Work is organized into 6 groups. Groups A–C are high priority (user-facing doc
 <!-- ANCHOR:status -->
 ## 9. Planning Status
 
-Complete. All 26 tasks implemented, verified, and remediated. CHK-336 (P2) deferred.
+Complete. All 26 tasks implemented, verified, and remediated. CHK-336 (P2) closed with evidence in the updated "Last Verified" rows across skill, MCP server, and lib README tables.
 <!-- /ANCHOR:status -->
