@@ -1,4 +1,4 @@
-// @ts-nocheck
+// @ts-nocheck -- Mock database and search functions use simplified shapes incompatible with full Database.Database type
 // ---------------------------------------------------------------
 // TEST: HYBRID SEARCH
 // ---------------------------------------------------------------
@@ -22,7 +22,7 @@ const MOCK_DOCS = [
 ];
 
 // Mock vector search function
-function mockVectorSearch(queryEmbedding: any, options = {}) {
+function mockVectorSearch(queryEmbedding: unknown, options: Record<string, unknown> = {}) {
   const { limit = 10, spec_folder = null } = options;
   let results = [...MOCK_DOCS];
   if (spec_folder) {
@@ -35,7 +35,7 @@ function mockVectorSearch(queryEmbedding: any, options = {}) {
 }
 
 // Mock graph search function
-function mockGraphSearch(memory_id: any, options = {}) {
+function mockGraphSearch(memory_id: unknown, options: Record<string, unknown> = {}) {
   const { limit = 10 } = options;
   return MOCK_DOCS.filter(d => d.id !== memory_id).slice(0, limit).map((doc, i) => ({
     ...doc,
@@ -46,7 +46,7 @@ function mockGraphSearch(memory_id: any, options = {}) {
 // Mock database with FTS5 table
 function createMockDb() {
   return {
-    prepare: function(sql: any) {
+    prepare: function(sql: string) {
       return {
         get: function() {
           if (sql.includes('memory_fts')) {
@@ -54,7 +54,7 @@ function createMockDb() {
           }
           return null;
         },
-        all: function(...params: any[]) {
+        all: function(...params: unknown[]) {
           let docs = [...MOCK_DOCS];
           if (params.length >= 2 && typeof params[1] === 'string' && params[1].startsWith('specs/')) {
             const spec_folder = params[1];
@@ -159,7 +159,7 @@ describe('Hybrid Search Unit Tests (T031+)', () => {
         bm25.addDocument(String(doc.id), doc.content);
       }
       const results = hybridSearch.bm25Search('authentication', { limit: 5 });
-      const hasScores = results.every((r: any) => typeof r.score === 'number');
+      const hasScores = results.every((r: Record<string, unknown>) => typeof r.score === 'number');
       expect(hasScores).toBe(true);
     });
 
@@ -178,7 +178,7 @@ describe('Hybrid Search Unit Tests (T031+)', () => {
         bm25.addDocument(String(doc.id), doc.content);
       }
       const results = hybridSearch.bm25Search('module', { limit: 10, specFolder: 'specs/auth' });
-      const allMatch = results.every((r: any) => !r.id || String(r.id).includes('specs/auth'));
+      const allMatch = results.every((r: Record<string, unknown>) => !r.id || String(r.id).includes('specs/auth'));
       expect(allMatch).toBe(true);
     });
   });
@@ -205,13 +205,13 @@ describe('Hybrid Search Unit Tests (T031+)', () => {
 
     it('T031-LEX-02: combined_lexical_search() results have score field', () => {
       const results = hybridSearch.combinedLexicalSearch('authentication', { limit: 10 });
-      const hasScores = results.every((r: any) => typeof r.score === 'number');
+      const hasScores = results.every((r: Record<string, unknown>) => typeof r.score === 'number');
       expect(hasScores).toBe(true);
     });
 
     it('T031-LEX-03: combined_lexical_search() handles source tracking', () => {
       const results = hybridSearch.combinedLexicalSearch('authentication', { limit: 10 });
-      const valid = results.every((r: any) =>
+      const valid = results.every((r: Record<string, unknown>) =>
         ['fts5', 'bm25', 'both'].includes(r.source) ||
         typeof r.bm25Score === 'number' ||
         typeof r.fts_score === 'number'
@@ -221,7 +221,7 @@ describe('Hybrid Search Unit Tests (T031+)', () => {
 
     it('T031-LEX-04: combined_lexical_search() deduplicates by ID', () => {
       const results = hybridSearch.combinedLexicalSearch('authentication module', { limit: 10 });
-      const ids = results.map((r: any) => r.id);
+      const ids = results.map((r: Record<string, unknown>) => r.id);
       const uniqueIds = Array.from(new Set(ids));
       expect(ids.length).toBe(uniqueIds.length);
     });
@@ -433,7 +433,7 @@ describe('Hybrid Search Unit Tests (T031+)', () => {
     it('T031-FTS-03: fts_search() results have fts_score', () => {
       const results = hybridSearch.ftsSearch('authentication', { limit: 5 });
       if (results.length > 0) {
-        const hasScores = results.every((r: any) => typeof r.fts_score === 'number');
+        const hasScores = results.every((r: Record<string, unknown>) => typeof r.fts_score === 'number');
         expect(hasScores).toBe(true);
       }
       // No results is acceptable too
@@ -539,7 +539,7 @@ describe('C138-P0: useGraph:true Default Routing', () => {
 
   beforeEach(() => {
     graphSearchCallCount = 0;
-    const trackingGraphSearch = (query: any, options: any) => {
+    const trackingGraphSearch = (query: string, options: Record<string, unknown>) => {
       graphSearchCallCount++;
       return MOCK_DOCS.slice(0, 2).map((doc, i) => ({
         ...doc,

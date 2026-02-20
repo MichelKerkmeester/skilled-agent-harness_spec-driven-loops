@@ -1,14 +1,25 @@
-<!-- SPECKIT_LEVEL: 3+ -->
-# Technical Plan: SpecKit Phase System
+# Implementation Plan: SpecKit Phase System
 
+<!-- SPECKIT_LEVEL: 3+ -->
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core + level2-verify + level3-arch + level3plus-govern | v2.2 -->
 
 ---
 
-<!-- ANCHOR:technical-context -->
-## 1. TECHNICAL CONTEXT
+<!-- ANCHOR:summary -->
+## 1. SUMMARY
 
-### Current Architecture
+### Technical Context
+
+| Aspect | Value |
+|--------|-------|
+| **Language/Stack** | Bash/Shell |
+| **Framework** | SpecKit CLI |
+| **Storage** | None |
+| **Testing** | Shell test fixtures |
+
+### Overview
+
+This plan covers formalizing the organic phase decomposition pattern that emerged from specs 136 and 138 into a first-class SpecKit behavioral layer. The technical approach adds phase detection to `recommend-level.sh`, structured creation to `create.sh`, a new `/spec_kit:phase` command, and recursive validation to `validate.sh` — all as additive changes that leave existing flat specs unaffected.
 
 The system-spec-kit skill manages spec folder lifecycle through 6 interconnected subsystems:
 
@@ -37,26 +48,39 @@ The system-spec-kit skill manages spec folder lifecycle through 6 interconnected
 - Each child has `Parent Spec: ../spec.md` and `Parent Plan: ../plan.md` back-references
 - Children are independently executable with own memory/, scratch/, full doc set
 - Phase numbering encodes dependency order (138's 003 depends on 001+002)
-<!-- /ANCHOR:technical-context -->
+<!-- /ANCHOR:summary -->
 
 ---
 
-<!-- ANCHOR:constitution-check -->
-## 2. CONSTITUTION CHECK (FIVE CHECKS)
+<!-- ANCHOR:quality-gates -->
+## 2. QUALITY GATES
 
-| # | Check | Pass | Rationale |
-|---|-------|------|-----------|
-| 1 | **Necessary?** | Yes | Large specs (136: 7 phases, 138: 3 workstreams) evolved this pattern organically. Formalizing prevents inconsistency and enables AI assistance. |
-| 2 | **Beyond Local Max?** | Yes | Considered: (A) Keep manual sub-folders, (B) New level tier "Level 4", (C) Behavioral layer on existing levels. Option C chosen — lightest touch, maximum reuse. |
-| 3 | **Sufficient?** | Yes | Adds detection, creation, validation, and routing. No simpler approach achieves all four. |
-| 4 | **Fits Goal?** | Yes | Directly addresses pain point of unwieldy monolithic specs for complex tasks. |
-| 5 | **Open Horizons?** | Yes | Phase system is additive (all flags optional). No lock-in; existing specs unaffected. |
-<!-- /ANCHOR:constitution-check -->
+### Definition of Ready
+- [x] Problem statement clear and scope documented (spec.md complete)
+- [x] Success criteria measurable (metrics defined in §6)
+- [x] Dependencies identified (all 6 internal dependencies confirmed working)
+- [x] Organic pattern analyzed (136 and 138 profiles documented)
+- [x] Constitution check passed (Five Checks all green)
+
+### Definition of Done
+- [ ] All P0 acceptance criteria met (see checklist.md)
+- [ ] Phase detection: recommend-level.sh with --recommend-phases, 5 fixtures passing
+- [ ] Phase creation: create.sh --phase + template addendum + parent+child structures
+- [ ] Phase routing: /spec_kit:phase command + 4 modified commands
+- [ ] Phase validation: validate.sh --recursive + check-phase-links.sh rule
+- [ ] Docs updated: all 6 reference documents + phase-system.md node + CLAUDE.md
+- [ ] Backward compatibility: 51/51 existing fixtures pass with --recursive flag
+- [ ] Phase detection precision >= 80% (retroactive check against 136/138 profiles)
+<!-- /ANCHOR:quality-gates -->
 
 ---
 
-<!-- ANCHOR:approach -->
-## 3. TECHNICAL APPROACH
+<!-- ANCHOR:architecture -->
+## 3. ARCHITECTURE
+
+### Pattern
+
+Behavioral Layer (cross-cutting additive overlay on existing Level taxonomy)
 
 ### Design Decision: Behavioral Layer, Not New Level
 
@@ -78,7 +102,15 @@ This means:
 - Phase detection is separate from level recommendation
 - No new template tier needed — phases use existing level templates + a small linkage addendum
 
-### Architecture Overview
+### Key Components
+
+- **recommend-level.sh**: Extended with phase scoring dimension and --recommend-phases flag
+- **create.sh**: Extended with --phase / --phases / --phase-names flags for structured creation
+- **/spec_kit:phase command**: New command with auto + confirm YAML workflows
+- **validate.sh**: Extended with --recursive flag and check-phase-links.sh rule
+- **Template addendum**: New phase/ addendum for parent Phase Documentation Map and child back-references
+
+### Data Flow
 
 ```
 User Request → Gate 3 (enhanced with Option E)
@@ -105,11 +137,11 @@ User Request → Gate 3 (enhanced with Option E)
                                        ↓
                               Per-phase + aggregated results
 ```
-<!-- /ANCHOR:approach -->
+<!-- /ANCHOR:architecture -->
 
 ---
 
-<!-- ANCHOR:implementation-phases -->
+<!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Detection & Scoring (recommend-level.sh enhancement)
@@ -298,14 +330,12 @@ Update: `index.md` — add `[[nodes/phase-system|Phase System]]` to Workflow & R
 - Gate 3: Add Option E "Add phase to existing spec" with contextual display rules
 - Quick Reference table: Add phase workflow row
 - Gate 3 triggers: Add "decompose", "phased", "multi-phase" to file modification triggers
-<!-- /ANCHOR:implementation-phases -->
+<!-- /ANCHOR:phases -->
 
 ---
 
-<!-- ANCHOR:testing-strategy -->
+<!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
-
-### Test Categories
 
 | Category | Tool | Coverage Target |
 |----------|------|----------------|
@@ -320,12 +350,8 @@ Update: `index.md` — add `[[nodes/phase-system|Phase System]]` to Workflow & R
 ### Backward Compatibility Tests
 
 Run ALL existing 51 test fixtures with `--recursive` flag to verify no regression. Expected: identical results (no phase children = no additional output).
-<!-- /ANCHOR:testing-strategy -->
 
----
-
-<!-- ANCHOR:success-metrics -->
-## 6. SUCCESS METRICS
+### Success Metrics
 
 | Metric | Target | Measurement |
 |--------|--------|-------------|
@@ -335,38 +361,41 @@ Run ALL existing 51 test fixtures with `--recursive` flag to verify no regressio
 | Zero backward compatibility regressions | 51/51 existing fixtures pass | test-validation.sh suite |
 | Command resolution success rate | 100% | All modified commands resolve phase sub-folder paths |
 | Reference doc consistency | 0 broken cross-references | Manual review of all modified docs |
-<!-- /ANCHOR:success-metrics -->
-
----
-
-<!-- ANCHOR:risk-import -->
-## 7. RISK MATRIX (Imported from Spec)
-
-See [spec.md §10 Risk Matrix](./spec.md#risk-matrix) for full risk assessment.
-
-**Top 3 risks for implementation:**
-1. **R-02**: Context window overflow — mitigate with L1/L2 child defaults + sharded loading
-2. **R-03**: Path resolution failures — mitigate with generate-context.js path resolver reuse
-3. **R-01**: Over-suggestion — mitigate with conservative thresholds + always-decline option
-<!-- /ANCHOR:risk-import -->
+<!-- /ANCHOR:testing -->
 
 ---
 
 <!-- ANCHOR:dependencies -->
-## 8. DEPENDENCIES
+## 6. DEPENDENCIES
 
-### Internal Dependencies
+| Dependency | Type | Phase | Status | Impact if Blocked |
+|------------|------|-------|--------|-------------------|
+| create.sh --subfolder infrastructure | Internal | Phase 2 | Working (tested) | Blocks --phase flag design |
+| recommend-level.sh scoring framework | Internal | Phase 1 | Working (4-dimension scoring) | Blocks phase dimension addition |
+| validate.sh plugin architecture | Internal | Phase 4 | Working (14 rules, source-execute pattern) | Blocks --recursive and check-phase-links.sh |
+| Command md + 2 YAML pattern | Internal | Phase 3 | Working (7 existing commands) | Blocks /spec_kit:phase creation |
+| SKILL.md data-driven router | Internal | Phase 3 | Working (dict-based, extensible) | Blocks PHASE intent addition |
+| CORE + ADDENDUM template system | Internal | Phase 2 | Working (compose.sh v2.2) | Blocks phase/ addendum creation |
+<!-- /ANCHOR:dependencies -->
 
-| Dependency | Phase | Status |
-|------------|-------|--------|
-| create.sh --subfolder infrastructure | Phase 2 | Working (tested) |
-| recommend-level.sh scoring framework | Phase 1 | Working (4-dimension scoring) |
-| validate.sh plugin architecture | Phase 4 | Working (14 rules, source-execute pattern) |
-| Command md + 2 YAML pattern | Phase 3 | Working (7 existing commands) |
-| SKILL.md data-driven router | Phase 3 | Working (dict-based, extensible) |
-| CORE + ADDENDUM template system | Phase 2 | Working (compose.sh v2.2) |
+---
 
-### Phase Dependencies
+<!-- ANCHOR:rollback -->
+## 7. ROLLBACK PLAN
+
+- **Trigger**: Phase scoring produces excessive false positives (>20% error rate), path resolution failures occur in modified commands, or backward compatibility regressions are detected in the 51-fixture suite.
+- **Procedure**: All changes are additive with new flags (--recommend-phases, --phase, --recursive). Rollback is `git revert` of the relevant commits per phase. Existing specs are unaffected — no data migrations involved. Feature flags (new CLI flags) can be simply not invoked.
+
+**Risk-linked rollback triggers** (from spec.md Risk Matrix):
+- R-01 (Over-suggestion): Raise --phase-threshold from 25 to 35+ to reduce false positives without reverting
+- R-02 (Context overflow): Revert child-level defaults to L1 only (remove --child-level option)
+- R-03 (Path resolution failures): Revert command modifications for the affected command only
+<!-- /ANCHOR:rollback -->
+
+---
+
+<!-- ANCHOR:phase-deps -->
+## L2: PHASE DEPENDENCIES
 
 ```
 Phase 1: Detection & Scoring ──→ Phase 2: Templates & Creation
@@ -379,27 +408,179 @@ Phase 1: Detection & Scoring ──→ Phase 2: Templates & Creation
 ```
 
 Phases 1 and 2 can be partially parallelized (scoring is independent of template creation). Phases 3 and 4 depend on 1+2 being complete.
-<!-- /ANCHOR:dependencies -->
+
+| Phase | Depends On | Blocks |
+|-------|------------|--------|
+| Phase 1: Detection & Scoring | None | Phase 2 (partial), Phase 3 |
+| Phase 2: Templates & Creation | Phase 1 (partial) | Phase 3, Phase 4 |
+| Phase 3: Commands & Router | Phase 1, Phase 2 | Phase 4 |
+| Phase 4: Validation, Docs & Nodes | Phase 1, Phase 2, Phase 3 | None |
+<!-- /ANCHOR:phase-deps -->
+
+---
+
+<!-- ANCHOR:effort -->
+## L2: EFFORT ESTIMATION
+
+| Phase | Complexity | Estimated Effort |
+|-------|------------|------------------|
+| Phase 1: Detection & Scoring | Medium | 3-5 hours (scoring logic + 5 test fixtures) |
+| Phase 2: Templates & Creation | High | 6-10 hours (create.sh flags + template addendum + 4 test fixtures) |
+| Phase 3: Commands & Router | Medium | 4-7 hours (new command + 4 modified commands + SKILL.md) |
+| Phase 4: Validation, Docs & Nodes | High | 6-10 hours (validate.sh + 6 docs + 3 test fixtures + node) |
+| **Total** | | **19-32 hours** |
+<!-- /ANCHOR:effort -->
+
+---
+
+<!-- ANCHOR:enhanced-rollback -->
+## L2: ENHANCED ROLLBACK
+
+### Pre-deployment Checklist
+- [ ] All 51 existing test fixtures confirmed passing before any changes
+- [ ] Git branch created for each implementation phase
+- [ ] Phase scoring thresholds documented (default: 25) for reference
+- [ ] Baseline benchmarks recorded (create.sh timing, validate.sh timing)
+
+### Rollback Procedure
+1. **Immediate**: Stop using new CLI flags (--recommend-phases, --phase, --recursive) — all changes are flag-gated
+2. **Per-phase revert**: `git revert` commits from the affected phase only (phases are independently committable)
+3. **Verify rollback**: Run full 51-fixture regression suite — expected: identical output to pre-change baseline
+4. **Notify**: Document rollback reason in spec memory file for future reference
+
+### Data Reversal
+- **Has data migrations?** No
+- **Reversal procedure**: N/A — all changes are script/template/documentation only; no persistent state affected
+<!-- /ANCHOR:enhanced-rollback -->
+
+---
+
+<!-- ANCHOR:dependency-graph -->
+## L3: DEPENDENCY GRAPH
+
+```
+┌──────────────────────────┐
+│  Phase 1                 │
+│  Detection & Scoring     │─────────────────────────────┐
+│  (recommend-level.sh)    │──────┐                       │
+└──────────────────────────┘      │                       │
+                                  ▼                       ▼
+                    ┌──────────────────────────┐   ┌──────────────────────────┐
+                    │  Phase 2                 │   │  Phase 3                 │
+                    │  Templates & Creation    │──►│  Commands & Router       │
+                    │  (create.sh + addendum)  │   │  (SKILL.md + commands)   │
+                    └──────────────────────────┘   └──────────────────────────┘
+                                  │                       │
+                                  └───────────┬───────────┘
+                                              ▼
+                                ┌──────────────────────────┐
+                                │  Phase 4                 │
+                                │  Validation, Docs &      │
+                                │  Nodes                   │
+                                └──────────────────────────┘
+```
+
+### Dependency Matrix
+
+| Component | Depends On | Produces | Blocks |
+|-----------|------------|----------|--------|
+| recommend-level.sh (phase scoring) | None | Phase score JSON, --recommend-phases output | create.sh --phase design, SKILL.md PHASE intent |
+| create.sh --phase | Phase 1 (partial) | Parent+child folder structures, template addendum | All command modifications, validate.sh |
+| /spec_kit:phase command | Phase 1, Phase 2 | New command + YAML assets | Phase 4 docs (command documented there) |
+| Modified commands (plan/implement/complete/resume) | Phase 2 | Phase-aware path resolution | Phase 4 docs |
+| validate.sh --recursive | Phase 1, Phase 2, Phase 3 | Per-phase + aggregated validation output | Reference doc updates |
+| check-phase-links.sh | Phase 2 (template format) | Link validation rule | validate.sh --recursive |
+| Reference docs + node | All prior phases | Updated documentation | M4 milestone |
+<!-- /ANCHOR:dependency-graph -->
+
+---
+
+<!-- ANCHOR:critical-path -->
+## L3: CRITICAL PATH
+
+1. **Phase 1: Detection & Scoring** — 3-5 hours — CRITICAL (unblocks all downstream)
+2. **Phase 2: Templates & Creation** — 6-10 hours — CRITICAL (unblocks commands + validation)
+3. **Phase 3: Commands & Router** — 4-7 hours — CRITICAL (required before Phase 4 docs)
+4. **Phase 4: Validation, Docs & Nodes** — 6-10 hours — CRITICAL (final integration)
+
+**Total Critical Path**: 19-32 hours sequential
+
+**Parallel Opportunities**:
+- Phase 1 (scoring logic) and Phase 2 (template addendum design) can run simultaneously — scoring output shape is independent of template structure
+- Within Phase 4: validate.sh changes, reference doc updates, and phase-system.md node creation are all independent and can be parallelized across agents
+<!-- /ANCHOR:critical-path -->
 
 ---
 
 <!-- ANCHOR:milestones -->
-## 9. MILESTONES
+## L3: MILESTONES
 
-| Milestone | Deliverable | Verification |
-|-----------|-------------|--------------|
-| M1: Phase Detection Ready | recommend-level.sh with --recommend-phases, 5 test fixtures passing | Run scoring against 136/138 profiles |
-| M2: Phase Creation Ready | create.sh --phase, template addendum, parent+child structures | Create 3-phase test structure, validate |
-| M3: Commands Phase-Aware | /spec_kit:phase + 4 modified commands | End-to-end /spec_kit:phase workflow |
-| M4: Validation & Docs Complete | validate.sh --recursive, all reference docs updated, phase-system.md node | Full test suite + 51 fixture regression |
+| Milestone | Deliverable | Verification | Target |
+|-----------|-------------|--------------|--------|
+| M1: Phase Detection Ready | recommend-level.sh with --recommend-phases, 5 test fixtures passing | Run scoring against 136/138 profiles — both should trigger phases=true | End of Phase 1 |
+| M2: Phase Creation Ready | create.sh --phase, template addendum, parent+child structures | Create 3-phase test structure, validate with existing validate.sh | End of Phase 2 |
+| M3: Commands Phase-Aware | /spec_kit:phase + 4 modified commands + SKILL.md PHASE intent | End-to-end /spec_kit:phase workflow, all modified commands resolve nested paths | End of Phase 3 |
+| M4: Validation & Docs Complete | validate.sh --recursive, all 6 reference docs updated, phase-system.md node, CLAUDE.md updated | Full test suite (18 new fixtures) + 51 fixture regression (0 regressions) | End of Phase 4 |
 <!-- /ANCHOR:milestones -->
 
 ---
 
-<!-- ANCHOR:ai-execution -->
-## 10. AI EXECUTION PROTOCOL
+## L3: ARCHITECTURE DECISION RECORD
 
-### Agent Routing for Implementation
+### ADR-001: Behavioral Layer, Not New Documentation Level
+
+**Status**: Accepted
+
+**Context**: Large specs (136: 7 phases, 138: 3 workstreams) evolved phase decomposition organically. The question was whether to formalize phases as a new Level tier (Level 4) or as a behavioral overlay on existing levels.
+
+**Decision**: Implement phases as a **cross-cutting behavioral layer** — a flag-gated capability that any level can use, rather than a new level tier.
+
+**Consequences**:
+- Positive: No new template tier needed; all existing level templates remain valid for child phases
+- Positive: Additive only — all flags optional, existing flat specs completely unaffected
+- Positive: Parent can be any level; children can be any level (L3+ parent + L1 children is valid)
+- Negative: Phase detection is a separate scoring path from level detection — two scoring systems to maintain
+
+**Alternatives Rejected**:
+- **Level 4 (new tier)**: Rejected — would require new templates, force all complex specs to upgrade, and conflate documentation depth with execution decomposition
+- **Manual sub-folders only**: Rejected — inconsistent naming, no tooling support, no AI routing, no validation
+
+### ADR-002: Constitution Check (Five Checks)
+
+| # | Check | Pass | Rationale |
+|---|-------|------|-----------|
+| 1 | **Necessary?** | Yes | Large specs (136: 7 phases, 138: 3 workstreams) evolved this pattern organically. Formalizing prevents inconsistency and enables AI assistance. |
+| 2 | **Beyond Local Max?** | Yes | Considered: (A) Keep manual sub-folders, (B) New level tier "Level 4", (C) Behavioral layer on existing levels. Option C chosen — lightest touch, maximum reuse. |
+| 3 | **Sufficient?** | Yes | Adds detection, creation, validation, and routing. No simpler approach achieves all four. |
+| 4 | **Fits Goal?** | Yes | Directly addresses pain point of unwieldy monolithic specs for complex tasks. |
+| 5 | **Open Horizons?** | Yes | Phase system is additive (all flags optional). No lock-in; existing specs unaffected. |
+
+---
+
+<!-- ANCHOR:ai-execution -->
+## L3+: AI EXECUTION FRAMEWORK
+
+### Tier 1: Sequential Foundation (Phase 1)
+**Files**: recommend-level.sh (scoring logic), 5 new test fixtures
+**Duration**: ~3-5 hours
+**Agent**: @general (Sonnet) — script modification, straightforward scoring logic
+
+### Tier 2: Parallel Execution (Phase 2 + Phase 3 partial)
+
+| Agent | Focus | Files |
+|-------|-------|-------|
+| @speckit | Template addendum creation (phase-parent-section.md, phase-child-header.md) | templates/addendum/phase/ |
+| @general | create.sh --phase flag implementation | scripts/spec/create.sh |
+| @general | SKILL.md PHASE intent addition | SKILL.md |
+
+**Duration**: ~6-10 hours (parallel between @speckit and @general)
+
+### Tier 3: Integration (Phase 3 + Phase 4)
+**Agent**: @general (Sonnet) for commands/validation; @speckit (Opus) for reference docs and node
+**Task**: Wire phase command system, implement validate.sh --recursive, update all reference docs
+**Duration**: ~10-17 hours
+
+### Agent Routing Summary
 
 | Phase | Recommended Agent | Model | Rationale |
 |-------|-------------------|-------|-----------|
@@ -407,11 +588,6 @@ Phases 1 and 2 can be partially parallelized (scoring is independent of template
 | Phase 2 | @speckit + @general | Opus (spec) + Sonnet (script) | Template creation needs @speckit exclusivity; create.sh needs @general |
 | Phase 3 | @general | Sonnet | Command system modifications, well-defined patterns |
 | Phase 4 | @speckit + @general | Opus (docs) + Sonnet (validation) | Reference docs need @speckit; validate.sh needs @general |
-
-### Parallel Dispatch Opportunities
-
-- Phase 1 (scoring) and Phase 2 (templates) — template addendum design is independent of scoring logic
-- Within Phase 4: validate.sh changes, reference doc updates, and node creation are independent
 
 ### Context Protection
 
@@ -422,10 +598,40 @@ Phases 1 and 2 can be partially parallelized (scoring is independent of template
 
 ---
 
-<!-- ANCHOR:governance -->
-## 11. APPROVAL & GOVERNANCE
+<!-- ANCHOR:workstreams -->
+## L3+: WORKSTREAM COORDINATION
 
-### Gate Structure
+### Workstream Definition
+
+| ID | Name | Owner | Files | Status |
+|----|------|-------|-------|--------|
+| W-A | Detection & Scoring | @general | scripts/spec/recommend-level.sh, test fixtures (5) | Pending |
+| W-B | Templates & Creation | @speckit + @general | scripts/spec/create.sh, templates/addendum/phase/* | Pending (after W-A) |
+| W-C | Commands & Router | @general | command/spec_kit/phase.md, assets/spec_kit_phase_*.yaml, SKILL.md, plan.md, implement.md, complete.md, resume.md | Pending (after W-A, W-B) |
+| W-D | Validation, Docs & Nodes | @speckit + @general | scripts/spec/validate.sh, scripts/rules/check-phase-links.sh, 6 reference docs, nodes/phase-system.md, index.md, CLAUDE.md | Pending (after W-A, W-B, W-C) |
+
+### Sync Points
+
+| Sync ID | Trigger | Participants | Output |
+|---------|---------|--------------|--------|
+| SYNC-001 | W-A complete (Phase 1 done) | @general | Phase scoring JSON schema locked; W-B and W-C can begin |
+| SYNC-002 | W-B complete (Phase 2 done) | @speckit + @general | Template addendum format locked; W-C and W-D can proceed |
+| SYNC-003 | W-C complete (Phase 3 done) | @general | All command path patterns documented; W-D docs can reference them |
+| SYNC-004 | W-D complete (Phase 4 done) | All agents | Full test suite run; 51 regression fixtures verified; M4 milestone |
+
+### File Ownership Rules
+- Each file owned by ONE workstream
+- Cross-workstream changes require SYNC before proceeding
+- @speckit has exclusive authority over all template and reference doc files
+- @general handles all script (.sh) files
+<!-- /ANCHOR:workstreams -->
+
+---
+
+<!-- ANCHOR:communication -->
+## L3+: COMMUNICATION PLAN
+
+### Checkpoints
 
 | Gate | Trigger | Required Artifacts | Approver |
 |------|---------|-------------------|----------|
@@ -439,7 +645,12 @@ Phases 1 and 2 can be partially parallelized (scoring is independent of template
 ### Change Control
 
 Changes to spec scope (new P0 requirements, architectural shifts) require re-approval at G1 gate. Implementation-level adjustments within approved scope proceed autonomously.
-<!-- /ANCHOR:governance -->
+
+### Escalation Path
+1. Technical blockers (script failures, path resolution issues) → Document in scratch/ + raise in next session with full error context
+2. Scope changes (new phase system requirements discovered during implementation) → Re-evaluate spec.md → Re-approve at G1
+3. Backward compatibility regressions → Halt Phase 4 → Investigate in Phase 1-3 changes → Fix before proceeding
+<!-- /ANCHOR:communication -->
 
 ---
 
@@ -449,3 +660,13 @@ Changes to spec scope (new P0 requirements, architectural shifts) require re-app
 - [Tasks](./tasks.md)
 - [Checklist](./checklist.md)
 - [Decision Record](./decision-record.md)
+- [Risk Matrix](./spec.md#risk-matrix)
+
+---
+
+<!--
+LEVEL 3+ PLAN (~340 lines)
+- Core + L2 + L3 + L3+ addendums
+- Behavioral layer architecture, full phase implementation design
+- AI execution framework, workstream coordination, communication plan
+-->

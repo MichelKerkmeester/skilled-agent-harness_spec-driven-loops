@@ -1,6 +1,6 @@
 ---
 description: Planning workflow (7 steps) - spec through plan only, no implementation. Supports :auto and :confirm modes
-argument-hint: "<feature-description> [:auto|:confirm]"
+argument-hint: "<feature-description> [:auto|:confirm] [--phase-folder=<path>]"
 allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task, memory_context, memory_search
 ---
 
@@ -45,6 +45,13 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    ├─ ":confirm" → execution_mode = "INTERACTIVE" (omit Q2)
    └─ No suffix  → execution_mode = "ASK" (include Q2)
 
+1b. CHECK --phase-folder flag:
+   ├─ --phase-folder=<path> provided → auto-resolve spec_path to that child folder path
+   │   Set spec_choice = "E", spec_path = <path>, omit Q1
+   │   Validate path matches pattern: specs/[###]-*/[0-9][0-9][0-9]-*/
+   │   Show parent context: "Phase folder: <path> (parent: <parent-folder>)"
+   └─ Not provided → continue normally
+
 2. CHECK $ARGUMENTS for feature description:
    ├─ Has content (ignoring :auto/:confirm) → feature_description = $ARGUMENTS, omit Q0
    └─ Empty → include Q0
@@ -66,6 +73,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    Q1. Spec Folder (required):
      A) Use existing [suggest if found]  B) Create new: specs/[###]-[slug]/
      C) Update related [if match found]  D) Skip documentation
+     E) Phase folder — target a specific phase child (e.g., specs/NNN-name/001-phase/)
 
    Q2. Execution Mode (if no suffix):
      A) Autonomous - all 7 steps without approval

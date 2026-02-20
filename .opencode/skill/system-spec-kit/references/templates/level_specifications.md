@@ -769,8 +769,44 @@ Some templates are not level-specific but can be used at any documentation level
 ---
 
 <!-- /ANCHOR:cross-cutting-templates-any-level -->
+<!-- ANCHOR:phase-aware-specifications -->
+## 10. PHASE-AWARE SPECIFICATIONS
+
+### Phases as a Behavioral Overlay
+
+Phases are a **behavioral overlay** on the existing level system, not a new level tier. Any documentation level can technically use phases, though Level 3 and Level 3+ specifications are the most common candidates due to their inherent complexity.
+
+### How Phases Interact with Levels
+
+| Level | Phase Usage | Typical Scenario |
+|-------|-------------|-----------------|
+| Level 1 | Rare | Simple tasks rarely need decomposition |
+| Level 2 | Uncommon | Moderate complexity usually fits one folder |
+| Level 3 | Common | Complex features benefit from parallel work streams |
+| Level 3+ | Very common | Enterprise-scale work often requires phase decomposition |
+
+### Phase Detection Thresholds
+
+Phase decomposition is suggested when BOTH conditions are met:
+- Complexity score >= 25 (from 5-dimension scoring)
+- Documentation level >= 3
+
+### What Phases Add to a Level
+
+Phases do not change the documentation requirements for a given level. Each phase child folder independently follows the level requirements:
+- A Level 3 parent with phases produces Level 3 child folders (each with spec.md, plan.md, tasks.md, checklist.md, decision-record.md)
+- The parent folder adds a **Phase Documentation Map** section to its spec.md
+- Child folders add a **parent back-reference** to their spec.md metadata
+
+### Full Documentation
+
+See [phase_definitions.md](../structure/phase_definitions.md) for complete phase system documentation including scoring dimensions, folder structure, lifecycle, and validation rules.
+
+---
+
+<!-- /ANCHOR:phase-aware-specifications -->
 <!-- ANCHOR:related-resources -->
-## 10. RELATED RESOURCES
+## 11. RELATED RESOURCES
 
 ### Reference Files
 - [quick_reference.md](../workflows/quick_reference.md) - Commands, checklists, and troubleshooting

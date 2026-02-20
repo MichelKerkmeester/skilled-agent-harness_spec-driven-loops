@@ -5,6 +5,7 @@
 // ---------------------------------------------------------------
 
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
+import type Database from 'better-sqlite3';
 import type { GraphSearchFn } from '../lib/search/hybrid-search';
 import { isGraphUnifiedEnabled } from '../lib/search/graph-flags';
 import { init, hybridSearch, hybridSearchEnhanced, getGraphMetrics, resetGraphMetrics } from '../lib/search/hybrid-search';
@@ -45,9 +46,9 @@ describe('T022: Graph Channel Feature Flag Regression', () => {
       delete process.env.SPECKIT_GRAPH_UNIFIED;
     });
 
-    it('T022-1: Flag returns false when env var is absent (default)', () => {
+    it('T022-1: Flag returns true when env var is absent (enabled by default)', () => {
       delete process.env.SPECKIT_GRAPH_UNIFIED;
-      expect(isGraphUnifiedEnabled()).toBe(false);
+      expect(isGraphUnifiedEnabled()).toBe(true);
     });
 
     // NOTE: T022-2 covers the hybridSearch graphFn=null behavior and lives in the
@@ -61,13 +62,13 @@ describe('T022: Graph Channel Feature Flag Regression', () => {
     it('T022-4: Flag reads from process.env.SPECKIT_GRAPH_UNIFIED exclusively', () => {
       // Verify the function observes live env mutations — no caching
       delete process.env.SPECKIT_GRAPH_UNIFIED;
-      expect(isGraphUnifiedEnabled()).toBe(false);
-
-      process.env.SPECKIT_GRAPH_UNIFIED = 'true';
       expect(isGraphUnifiedEnabled()).toBe(true);
 
-      delete process.env.SPECKIT_GRAPH_UNIFIED;
+      process.env.SPECKIT_GRAPH_UNIFIED = 'false';
       expect(isGraphUnifiedEnabled()).toBe(false);
+
+      delete process.env.SPECKIT_GRAPH_UNIFIED;
+      expect(isGraphUnifiedEnabled()).toBe(true);
     });
 
     it('T022-5a: Strict equality — "TRUE" (uppercase) does NOT enable flag', () => {
@@ -90,9 +91,9 @@ describe('T022: Graph Channel Feature Flag Regression', () => {
       expect(isGraphUnifiedEnabled()).toBe(false);
     });
 
-    it('T022-5e: Strict equality — empty string does NOT enable flag', () => {
+    it('T022-5e: Empty string keeps flag enabled (rollout-policy treats empty as unset)', () => {
       process.env.SPECKIT_GRAPH_UNIFIED = '';
-      expect(isGraphUnifiedEnabled()).toBe(false);
+      expect(isGraphUnifiedEnabled()).toBe(true);
     });
 
     it('T022-5f: Strict equality — "false" does NOT enable flag', () => {
@@ -115,7 +116,7 @@ describe('T022: Graph Channel Feature Flag Regression', () => {
 
       // Flag-off wiring: pass null as graphFn (mirroring context-server.ts behaviour)
       const stubDb = buildStubDb();
-      init(stubDb as any, null, null);
+      init(stubDb as unknown as Database.Database, null, null);
     });
 
     afterEach(() => {
@@ -126,7 +127,7 @@ describe('T022: Graph Channel Feature Flag Regression', () => {
     it('T022-2a: hybridSearch does not invoke graph search fn when init receives null graphFn', async () => {
       // Reinitialise with the spy to confirm it stays uncalled
       const stubDb = buildStubDb();
-      init(stubDb as any, null, null);
+      init(stubDb as unknown as Database.Database, null, null);
 
       await hybridSearch('test query', null, { useGraph: true });
 
@@ -137,7 +138,7 @@ describe('T022: Graph Channel Feature Flag Regression', () => {
 
     it('T022-2b: hybridSearch with useGraph=true and null graphFn returns result without graph source', async () => {
       const stubDb = buildStubDb();
-      init(stubDb as any, null, null);
+      init(stubDb as unknown as Database.Database, null, null);
 
       const results = await hybridSearch('test query', null, { useGraph: true });
 
@@ -150,7 +151,7 @@ describe('T022: Graph Channel Feature Flag Regression', () => {
     it('T022-2c: hybridSearch with useGraph=false and a real graphFn — graphFn NOT called', async () => {
       // Even if a graphFn were provided, useGraph=false should block it
       const stubDb = buildStubDb();
-      init(stubDb as any, null, graphFnSpy as unknown as GraphSearchFn);
+      init(stubDb as unknown as Database.Database, null, graphFnSpy as unknown as GraphSearchFn);
 
       await hybridSearch('test query', null, { useGraph: false });
 
@@ -160,7 +161,7 @@ describe('T022: Graph Channel Feature Flag Regression', () => {
     it('T022-2d: hybridSearch with useGraph=true and a real graphFn — graphFn IS called', async () => {
       // Positive control: verify the graph path DOES fire when correctly wired
       const stubDb = buildStubDb();
-      init(stubDb as any, null, graphFnSpy as unknown as GraphSearchFn);
+      init(stubDb as unknown as Database.Database, null, graphFnSpy as unknown as GraphSearchFn);
 
       await hybridSearch('test query', null, { useGraph: true });
 
@@ -188,7 +189,7 @@ describe('T022: Graph Channel Feature Flag Regression', () => {
 
     it('T022-2e-null: hybridSearchEnhanced with null graphFn — spy never called', async () => {
       const stubDb = buildStubDb();
-      init(stubDb as any, null, null);
+      init(stubDb as unknown as Database.Database, null, null);
 
       await hybridSearchEnhanced('test query', null, { useGraph: true });
 
@@ -198,7 +199,7 @@ describe('T022: Graph Channel Feature Flag Regression', () => {
     it('T022-2e-wired: hybridSearchEnhanced with real graphFn — spy called when useGraph=true', async () => {
       // Positive control for hybridSearchEnhanced code path
       const stubDb = buildStubDb();
-      init(stubDb as any, null, graphFnSpy as unknown as GraphSearchFn);
+      init(stubDb as unknown as Database.Database, null, graphFnSpy as unknown as GraphSearchFn);
 
       await hybridSearchEnhanced('test query', null, { useGraph: true });
 
@@ -209,7 +210,7 @@ describe('T022: Graph Channel Feature Flag Regression', () => {
 
     it('T022-2e-off: hybridSearchEnhanced with real graphFn — spy NOT called when useGraph=false', async () => {
       const stubDb = buildStubDb();
-      init(stubDb as any, null, graphFnSpy as unknown as GraphSearchFn);
+      init(stubDb as unknown as Database.Database, null, graphFnSpy as unknown as GraphSearchFn);
 
       await hybridSearchEnhanced('test query', null, { useGraph: false });
 
@@ -248,7 +249,7 @@ describe('T022: Graph Channel Feature Flag Regression', () => {
           run: vi.fn().mockReturnValue({ changes: 0, lastInsertRowid: 0 }),
         }),
       };
-      init(stubDb as any, null, graphFnSpy as unknown as GraphSearchFn);
+      init(stubDb as unknown as Database.Database, null, graphFnSpy as unknown as GraphSearchFn);
 
       await hybridSearchEnhanced('probe query', null, { useGraph: true });
 
@@ -287,7 +288,7 @@ describe('T022: Graph Channel Feature Flag Regression', () => {
     });
 
     it('T022-wire-off: When flag is false, undefined/null graphFn is the correct arg to init()', () => {
-      delete process.env.SPECKIT_GRAPH_UNIFIED;
+      process.env.SPECKIT_GRAPH_UNIFIED = 'false';
 
       // Simulate the wiring decision in context-server.ts:
       //   isGraphUnifiedEnabled() ? createUnifiedGraphSearchFn(...) : undefined
@@ -311,13 +312,13 @@ describe('T022: Graph Channel Feature Flag Regression', () => {
     });
 
     it('T022-wire-init-null: init() called with undefined graphFn stores null internally (search skips graph)', async () => {
-      delete process.env.SPECKIT_GRAPH_UNIFIED;
+      process.env.SPECKIT_GRAPH_UNIFIED = 'false';
 
       const graphFn = isGraphUnifiedEnabled() ? vi.fn().mockReturnValue([]) : undefined;
 
       const stubDb = buildStubDb();
       // undefined coerces to null default parameter in init(db, vectorFn, graphFn = null)
-      init(stubDb as any, null, graphFn ?? null);
+      init(stubDb as unknown as Database.Database, null, graphFn ?? null);
 
       const results = await hybridSearch('probe query', null, { useGraph: true });
       const graphSources = results.filter(r => r.source === 'graph');

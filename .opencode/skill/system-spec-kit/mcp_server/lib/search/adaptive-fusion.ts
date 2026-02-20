@@ -3,10 +3,13 @@
 // Intent-aware weighted RRF fusion with feature flag + fallback
 // ---------------------------------------------------------------
 
-import type { IntentType } from './intent-classifier';
-import type { RrfItem, FusionResult, RankedList } from './rrf-fusion';
+// Local
 import { fuseResultsMulti } from './rrf-fusion';
 import { isFeatureEnabled } from '../cache/cognitive/rollout-policy';
+
+// Type-only
+import type { IntentType } from './intent-classifier';
+import type { RrfItem, FusionResult, RankedList } from './rrf-fusion';
 
 /* ---------------------------------------------------------------
    1. INTERFACES
@@ -77,6 +80,13 @@ const DEFAULT_WEIGHTS: FusionWeights = {
 
 const FEATURE_FLAG = 'SPECKIT_ADAPTIVE_FUSION';
 
+/** Small weight shift applied per document type to fine-tune intent weights. */
+const DOC_TYPE_WEIGHT_SHIFT = 0.1;
+
+/** Scaling factor applied to recency freshness before adding to RRF score. */
+const RECENCY_BOOST_SCALE = 0.1;
+
+/** Check whether adaptive fusion is enabled via the feature flag and rollout policy. */
 export function isAdaptiveFusionEnabled(identity?: string): boolean {
   return isFeatureEnabled(FEATURE_FLAG, identity);
 }
@@ -102,18 +112,18 @@ export function getAdaptiveWeights(
     switch (documentType) {
       case 'decision':
         // Decisions are best found by exact keyword matches
-        weights.keywordWeight = Math.min(1.0, weights.keywordWeight + 0.1);
-        weights.semanticWeight = Math.max(0, weights.semanticWeight - 0.1);
+        weights.keywordWeight = Math.min(1.0, weights.keywordWeight + DOC_TYPE_WEIGHT_SHIFT);
+        weights.semanticWeight = Math.max(0, weights.semanticWeight - DOC_TYPE_WEIGHT_SHIFT);
         break;
       case 'implementation':
         // Implementation docs: recency matters more
-        weights.recencyWeight = Math.min(1.0, weights.recencyWeight + 0.1);
-        weights.semanticWeight = Math.max(0, weights.semanticWeight - 0.1);
+        weights.recencyWeight = Math.min(1.0, weights.recencyWeight + DOC_TYPE_WEIGHT_SHIFT);
+        weights.semanticWeight = Math.max(0, weights.semanticWeight - DOC_TYPE_WEIGHT_SHIFT);
         break;
       case 'research':
         // Research docs: semantic similarity is paramount
-        weights.semanticWeight = Math.min(1.0, weights.semanticWeight + 0.1);
-        weights.keywordWeight = Math.max(0, weights.keywordWeight - 0.1);
+        weights.semanticWeight = Math.min(1.0, weights.semanticWeight + DOC_TYPE_WEIGHT_SHIFT);
+        weights.keywordWeight = Math.max(0, weights.keywordWeight - DOC_TYPE_WEIGHT_SHIFT);
         break;
       // No default adjustment needed
     }
@@ -193,7 +203,7 @@ function applyRecencyBoost(results: FusionResult[], recencyWeight: number): void
       const ageDays = Math.max(0, (now - ts) / ONE_DAY_MS);
       // Exponential decay: recent items get higher boost
       const freshness = Math.exp(-ageDays / MAX_AGE_DAYS);
-      r.rrfScore += freshness * recencyWeight * 0.1;
+      r.rrfScore += freshness * recencyWeight * RECENCY_BOOST_SCALE;
     } catch {
       // Skip items with invalid dates
     }

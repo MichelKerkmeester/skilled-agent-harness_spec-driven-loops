@@ -432,10 +432,14 @@ describe('T014: Evidence Gap Prevention (predictGraphCoverage)', () => {
     vi.resetModules();
   });
 
-  it('returns safe default { earlyGap: false, connectedNodes: 0 } when flag is off', () => {
-    // SPECKIT_GRAPH_UNIFIED not set → flag off
+  it('returns safe default { earlyGap: false, connectedNodes: 0 } when flag is off', async () => {
+    // Explicitly disable the flag (default is now enabled)
+    process.env.SPECKIT_GRAPH_UNIFIED = 'false';
+    vi.resetModules();
+    const freshMod = await import('../lib/search/evidence-gap-detector');
+    const fn = freshMod.predictGraphCoverage;
     const graph = makeEvidenceGraph([{ id: 'alpha', labels: [':Node'] }]);
-    const result = predictGraphCoverage('alpha query', graph);
+    const result = fn('alpha query', graph);
     expect(result).toEqual({ earlyGap: false, connectedNodes: 0 });
   });
 

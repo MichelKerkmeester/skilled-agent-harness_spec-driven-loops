@@ -79,6 +79,7 @@ let sessionManagerRef: SessionManagerLike | null = null;
 let incrementalIndexRef: IncrementalIndexLike | null = null;
 let graphSearchFnRef: unknown = undefined;
 
+/** Initialize db-state with module dependencies for database lifecycle management. */
 export function init(deps: DbStateDeps): void {
   if (deps.vectorIndex) vectorIndex = deps.vectorIndex;
   if (deps.checkpoints) checkpoints = deps.checkpoints;
@@ -93,6 +94,7 @@ export function init(deps: DbStateDeps): void {
    4. DATABASE CHANGE NOTIFICATION
    --------------------------------------------------------------- */
 
+/** Check if the database was updated externally and reinitialize if needed. */
 export async function checkDatabaseUpdated(): Promise<boolean> {
   try {
     if (fs.existsSync(DB_UPDATED_FILE)) {
@@ -110,6 +112,7 @@ export async function checkDatabaseUpdated(): Promise<boolean> {
   return false;
 }
 
+/** Close and reinitialize the database connection, refreshing all dependent module handles. */
 export async function reinitializeDatabase(): Promise<void> {
   if (!vectorIndex) {
     throw new Error('db-state not initialized: vector_index is null');
@@ -122,9 +125,9 @@ export async function reinitializeDatabase(): Promise<void> {
     return;
   }
 
-  let resolve_mutex: () => void;
+  let resolveMutex: () => void;
   reinitializeMutex = new Promise<void>(resolve => {
-    resolve_mutex = resolve;
+    resolveMutex = resolve;
   });
 
   try {
@@ -150,7 +153,8 @@ export async function reinitializeDatabase(): Promise<void> {
     // P4-13 FIX: Resolve the mutex BEFORE clearing the reference.
     // If we set reinitializeMutex = null first, a concurrent caller could
     // see null and start a new reinitialization before resolve is called.
-    resolve_mutex!();
+    // WHY non-null: resolveMutex is always assigned in the Promise constructor callback above (synchronous)
+    resolveMutex!();
     reinitializeMutex = null;
   }
 }
@@ -159,6 +163,7 @@ export async function reinitializeDatabase(): Promise<void> {
    5. PERSISTENT RATE LIMITING
    --------------------------------------------------------------- */
 
+/** Retrieve the timestamp of the last index scan from the config table. */
 export async function getLastScanTime(): Promise<number> {
   if (!vectorIndex) {
     throw new Error('db-state not initialized: vector_index is null');
@@ -183,6 +188,7 @@ export async function getLastScanTime(): Promise<number> {
   }
 }
 
+/** Persist the timestamp of the last index scan to the config table. */
 export async function setLastScanTime(time: number): Promise<void> {
   if (!vectorIndex) {
     throw new Error('db-state not initialized: vector_index is null');
@@ -209,14 +215,17 @@ export async function setLastScanTime(time: number): Promise<void> {
    6. EMBEDDING MODEL READINESS
    --------------------------------------------------------------- */
 
+/** Return whether the embedding model has been marked as ready. */
 export function isEmbeddingModelReady(): boolean {
   return embeddingModelReady;
 }
 
+/** Set the embedding model readiness flag. */
 export function setEmbeddingModelReady(ready: boolean): void {
   embeddingModelReady = ready;
 }
 
+/** Poll until the embedding model is ready, returning false on timeout. */
 export async function waitForEmbeddingModel(timeoutMs: number = 30000): Promise<boolean> {
   const startTime = Date.now();
   const checkInterval = 500;
@@ -235,19 +244,23 @@ export async function waitForEmbeddingModel(timeoutMs: number = 30000): Promise<
    7. CONSTITUTIONAL CACHE ACCESSORS
    --------------------------------------------------------------- */
 
+/** Return the cached constitutional memory entries, or null if not cached. */
 export function getConstitutionalCache(): unknown {
   return constitutionalCache;
 }
 
+/** Update the constitutional memory cache and record the current timestamp. */
 export function setConstitutionalCache(cache: unknown): void {
   constitutionalCache = cache;
   constitutionalCacheTime = Date.now();
 }
 
+/** Return the timestamp when the constitutional cache was last populated. */
 export function getConstitutionalCacheTime(): number {
   return constitutionalCacheTime;
 }
 
+/** Invalidate the constitutional cache, forcing a fresh fetch on next access. */
 export function clearConstitutionalCache(): void {
   constitutionalCache = null;
   constitutionalCacheTime = 0;

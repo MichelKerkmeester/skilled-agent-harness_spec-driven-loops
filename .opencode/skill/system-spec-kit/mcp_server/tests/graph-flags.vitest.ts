@@ -1,7 +1,6 @@
-// @ts-nocheck
 // ---------------------------------------------------------------
 // TEST: Graph Search Feature Flags
-// Strict opt-in flag verification (=== 'true' only)
+// Default-enabled flag verification via rollout-policy
 // ---------------------------------------------------------------
 
 import { describe, it, expect, beforeEach, afterEach } from 'vitest';
@@ -49,42 +48,42 @@ describe('Graph Feature Flags', () => {
   });
 
   // ---------------------------------------------------------------
-  // 1. Returns false when env var is undefined
+  // 1. Returns true when env var is undefined (enabled by default)
   // ---------------------------------------------------------------
-  describe('returns false when env var is undefined', () => {
-    it('isGraphUnifiedEnabled returns false when SPECKIT_GRAPH_UNIFIED is undefined', () => {
+  describe('returns true when env var is undefined (enabled by default)', () => {
+    it('isGraphUnifiedEnabled returns true when SPECKIT_GRAPH_UNIFIED is undefined', () => {
       delete process.env.SPECKIT_GRAPH_UNIFIED;
-      expect(isGraphUnifiedEnabled()).toBe(false);
+      expect(isGraphUnifiedEnabled()).toBe(true);
     });
 
-    it('isGraphMMREnabled returns false when SPECKIT_GRAPH_MMR is undefined', () => {
+    it('isGraphMMREnabled returns true when SPECKIT_GRAPH_MMR is undefined', () => {
       delete process.env.SPECKIT_GRAPH_MMR;
-      expect(isGraphMMREnabled()).toBe(false);
+      expect(isGraphMMREnabled()).toBe(true);
     });
 
-    it('isGraphAuthorityEnabled returns false when SPECKIT_GRAPH_AUTHORITY is undefined', () => {
+    it('isGraphAuthorityEnabled returns true when SPECKIT_GRAPH_AUTHORITY is undefined', () => {
       delete process.env.SPECKIT_GRAPH_AUTHORITY;
-      expect(isGraphAuthorityEnabled()).toBe(false);
+      expect(isGraphAuthorityEnabled()).toBe(true);
     });
   });
 
   // ---------------------------------------------------------------
-  // 2. Returns false when env var is an empty string
+  // 2. Returns true when env var is an empty string (enabled by default)
   // ---------------------------------------------------------------
-  describe('returns false when env var is an empty string', () => {
-    it('isGraphUnifiedEnabled returns false when SPECKIT_GRAPH_UNIFIED is empty string', () => {
+  describe('returns true when env var is an empty string (enabled by default)', () => {
+    it('isGraphUnifiedEnabled returns true when SPECKIT_GRAPH_UNIFIED is empty string', () => {
       process.env.SPECKIT_GRAPH_UNIFIED = '';
-      expect(isGraphUnifiedEnabled()).toBe(false);
+      expect(isGraphUnifiedEnabled()).toBe(true);
     });
 
-    it('isGraphMMREnabled returns false when SPECKIT_GRAPH_MMR is empty string', () => {
+    it('isGraphMMREnabled returns true when SPECKIT_GRAPH_MMR is empty string', () => {
       process.env.SPECKIT_GRAPH_MMR = '';
-      expect(isGraphMMREnabled()).toBe(false);
+      expect(isGraphMMREnabled()).toBe(true);
     });
 
-    it('isGraphAuthorityEnabled returns false when SPECKIT_GRAPH_AUTHORITY is empty string', () => {
+    it('isGraphAuthorityEnabled returns true when SPECKIT_GRAPH_AUTHORITY is empty string', () => {
       process.env.SPECKIT_GRAPH_AUTHORITY = '';
-      expect(isGraphAuthorityEnabled()).toBe(false);
+      expect(isGraphAuthorityEnabled()).toBe(true);
     });
   });
 

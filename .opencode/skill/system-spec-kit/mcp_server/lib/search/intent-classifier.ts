@@ -149,6 +149,7 @@ const INTENT_WEIGHT_ADJUSTMENTS: Record<IntentType, IntentWeights> = {
    2. SCORING FUNCTIONS
 ----------------------------------------------------------------*/
 
+/** Score a query against an intent's keyword list, returning normalized score and matched keywords. */
 function calculateKeywordScore(query: string, intent: IntentType): { score: number; matches: string[] } {
   const lower = query.toLowerCase();
   const keywords = INTENT_KEYWORDS[intent];
@@ -175,6 +176,7 @@ function calculateKeywordScore(query: string, intent: IntentType): { score: numb
   };
 }
 
+/** Score a query against an intent's regex patterns, returning fraction of patterns matched. */
 function calculatePatternScore(query: string, intent: IntentType): number {
   const patterns = INTENT_PATTERNS[intent];
   let matches = 0;
@@ -192,6 +194,7 @@ function calculatePatternScore(query: string, intent: IntentType): number {
    3. CLASSIFICATION
 ----------------------------------------------------------------*/
 
+/** Classify a query string into one of 7 intent types with confidence and keyword evidence. */
 function classifyIntent(query: string): IntentResult {
   if (!query || typeof query !== 'string') {
     return {

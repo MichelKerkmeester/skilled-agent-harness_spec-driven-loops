@@ -3,16 +3,19 @@
 // Combines vector, FTS, and BM25 search with fallback
 // ---------------------------------------------------------------
 
-import type Database from 'better-sqlite3';
+// Local
 import { getIndex, sanitizeFTS5Query } from './bm25-index';
 import { fuseResultsMulti } from './rrf-fusion';
 import { hybridAdaptiveFuse } from './adaptive-fusion';
 import { spreadActivation } from '../cognitive/co-activation';
-import type { SpreadResult } from '../cognitive/co-activation';
 import { applyMMR } from './mmr-reranker';
-import type { MMRCandidate } from './mmr-reranker';
 import { INTENT_LAMBDA_MAP } from './intent-classifier';
 import { fts5Bm25Search } from './sqlite-fts';
+
+// Type-only
+import type Database from 'better-sqlite3';
+import type { SpreadResult } from '../cognitive/co-activation';
+import type { MMRCandidate } from './mmr-reranker';
 
 /* ---------------------------------------------------------------
    1. INTERFACES
@@ -63,6 +66,21 @@ interface HybridSearchResult {
    2. MODULE STATE
    --------------------------------------------------------------- */
 
+/** Default result limit when none is specified by the caller. */
+const DEFAULT_LIMIT = 20;
+
+/** Minimum MMR candidates required for diversity reranking to be worthwhile. */
+const MMR_MIN_CANDIDATES = 2;
+
+/** Fallback lambda (diversity vs relevance) when intent is not in INTENT_LAMBDA_MAP. */
+const MMR_DEFAULT_LAMBDA = 0.7;
+
+/** Number of top results used as seeds for co-activation spreading. */
+const SPREAD_ACTIVATION_TOP_N = 5;
+
+/** Multiplier applied to co-activation boost scores before adding to result scores. */
+const CO_ACTIVATION_BOOST_FACTOR = 0.1;
+
 let db: Database.Database | null = null;
 let vectorSearchFn: VectorSearchFn | null = null;
 let graphSearchFn: GraphSearchFn | null = null;
@@ -98,6 +116,7 @@ function getGraphMetrics(): GraphChannelMetrics & { graphHitRate: number } {
   };
 }
 
+/** Reset all graph channel metrics counters to zero. */
 function resetGraphMetrics(): void {
   graphMetrics.totalQueries = 0;
   graphMetrics.graphHits = 0;
@@ -109,6 +128,7 @@ function resetGraphMetrics(): void {
    3. INITIALIZATION
    --------------------------------------------------------------- */
 
+/** Initialize hybrid search with database, vector search, and optional graph search dependencies. */
 function init(
   database: Database.Database,
   vectorFn: VectorSearchFn | null = null,
@@ -123,11 +143,12 @@ function init(
    4. BM25 SEARCH
    --------------------------------------------------------------- */
 
+/** Search the BM25 index with optional spec folder filtering. */
 function bm25Search(
   query: string,
   options: { limit?: number; specFolder?: string } = {}
 ): HybridSearchResult[] {
-  const { limit = 20, specFolder } = options;
+  const { limit = DEFAULT_LIMIT, specFolder } = options;
 
   try {
     const index = getIndex();
@@ -151,6 +172,7 @@ function bm25Search(
   }
 }
 
+/** Check whether the BM25 index is populated and available for search. */
 function isBm25Available(): boolean {
   try {
     const index = getIndex();
@@ -164,6 +186,7 @@ function isBm25Available(): boolean {
    5. FTS SEARCH
    --------------------------------------------------------------- */
 
+/** Check whether the FTS5 full-text search table exists in the database. */
 function isFtsAvailable(): boolean {
   if (!db) return false;
 
@@ -177,13 +200,14 @@ function isFtsAvailable(): boolean {
   }
 }
 
+/** Run FTS5 full-text search with weighted BM25 scoring and optional spec folder filtering. */
 function ftsSearch(
   query: string,
   options: { limit?: number; specFolder?: string; includeArchived?: boolean } = {}
 ): HybridSearchResult[] {
   if (!db || !isFtsAvailable()) return [];
 
-  const { limit = 20, specFolder, includeArchived = false } = options;
+  const { limit = DEFAULT_LIMIT, specFolder, includeArchived = false } = options;
 
   try {
     // C138-P2: Delegate to weighted BM25 FTS5 search from sqlite-fts.ts
@@ -209,6 +233,7 @@ function ftsSearch(
    6. COMBINED LEXICAL SEARCH
    --------------------------------------------------------------- */
 
+/** Merge FTS and BM25 search results, deduplicating by ID and preferring FTS scores. */
 function combinedLexicalSearch(
   query: string,
   options: { limit?: number; specFolder?: string; includeArchived?: boolean } = {}
@@ -231,20 +256,21 @@ function combinedLexicalSearch(
 
   return Array.from(merged.values())
     .sort((a, b) => b.score - a.score)
-    .slice(0, options.limit || 20);
+    .slice(0, options.limit || DEFAULT_LIMIT);
 }
 
 /* ---------------------------------------------------------------
    7. HYBRID SEARCH
    --------------------------------------------------------------- */
 
+/** Run multi-channel hybrid search combining vector, FTS, BM25, and graph results with per-source normalization. */
 async function hybridSearch(
   query: string,
   embedding: Float32Array | number[] | null,
   options: HybridSearchOptions = {}
 ): Promise<HybridSearchResult[]> {
   const {
-    limit = 20,
+    limit = DEFAULT_LIMIT,
     specFolder,
     minSimilarity = 0,
     useBm25 = true,
@@ -370,7 +396,7 @@ async function hybridSearchEnhanced(
     if (embedding && vectorSearchFn) {
       try {
         const vectorResults = vectorSearchFn(embedding, {
-          limit: options.limit || 20,
+          limit: options.limit || DEFAULT_LIMIT,
           specFolder: options.specFolder,
           minSimilarity: options.minSimilarity || 0,
           includeConstitutional: false, // Handler manages constitutional separately
@@ -407,7 +433,7 @@ async function hybridSearchEnhanced(
       graphMetrics.totalQueries++;
       try {
         const graphResults = graphSearchFn(query, {
-          limit: options.limit || 20,
+          limit: options.limit || DEFAULT_LIMIT,
           specFolder: options.specFolder,
           intent: options.intent,
         });
@@ -451,7 +477,7 @@ async function hybridSearchEnhanced(
       }
 
       const fused = fuseResultsMulti(lists);
-      const limit = options.limit || 20;
+      const limit = options.limit || DEFAULT_LIMIT;
 
       // C138: MMR reranking — only apply when results have embeddings for diversity pruning
       let reranked = fused.slice(0, limit);
@@ -460,16 +486,17 @@ async function hybridSearchEnhanced(
           (r as Record<string, unknown>).embedding instanceof Float32Array
       ) as MMRCandidate[];
 
-      if (mmrCandidates.length >= 2) {
+      if (mmrCandidates.length >= MMR_MIN_CANDIDATES) {
         // C138: Intent-driven lambda — use INTENT_LAMBDA_MAP for per-intent diversity tuning
-        const mmrLambda = INTENT_LAMBDA_MAP[intent] ?? 0.7;
+        const mmrLambda = INTENT_LAMBDA_MAP[intent] ?? MMR_DEFAULT_LAMBDA;
         const diversified = applyMMR(mmrCandidates as MMRCandidate[], { lambda: mmrLambda, limit });
+        // WHY: MMRCandidate and reranked item share structural overlap (id + score fields); double-cast bridges incompatible nominal types
         reranked = diversified.map(c => reranked.find(r => r.id === c.id) ?? c as unknown as typeof reranked[0]);
       }
 
       // C138: Co-activation spreading — enrich with temporal neighbors
       const topIds = reranked
-        .slice(0, 5)
+        .slice(0, SPREAD_ACTIVATION_TOP_N)
         .map(r => r.id)
         .filter((id): id is number => typeof id === 'number');
       if (topIds.length > 0) {
@@ -482,7 +509,7 @@ async function hybridSearchEnhanced(
               const boost = spreadMap.get(result.id as number);
               if (boost !== undefined) {
                 (result as Record<string, unknown>).score =
-                  ((result.score as number) ?? 0) + boost * 0.1;
+                  ((result.score as number) ?? 0) + boost * CO_ACTIVATION_BOOST_FACTOR;
               }
             }
           }

@@ -1,6 +1,5 @@
-// @ts-nocheck
 // ---------------------------------------------------------------
-// T011: Graph Channel Benchmark — 50-query validation suite
+// TEST: Graph Channel Benchmark — 50-query validation suite
 // Validates intent routing, semantic bridge coverage, metrics
 // structure, and performance characteristics of the graph channel.
 // ---------------------------------------------------------------

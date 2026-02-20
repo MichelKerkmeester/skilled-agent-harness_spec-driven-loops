@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { describe, it, expect, beforeAll } from 'vitest';
 import { TIER_MULTIPLIER } from '../lib/cache/cognitive/fsrs-scheduler';
 
@@ -7,8 +6,11 @@ import { TIER_MULTIPLIER } from '../lib/cache/cognitive/fsrs-scheduler';
 // Covers: T016-T020, T034-T037, T048-T050
 // ───────────────────────────────────────────────────────────────
 
-let fsrsScheduler: any = null;
-let predictionErrorGate: any = null;
+type FsrsSchedulerModule = typeof import('../lib/cache/cognitive/fsrs-scheduler');
+type PredictionErrorGateModule = typeof import('../lib/cache/cognitive/prediction-error-gate');
+
+let fsrsScheduler: FsrsSchedulerModule | null = null;
+let predictionErrorGate: PredictionErrorGateModule | null = null;
 
 beforeAll(async () => {
   try {
@@ -140,8 +142,8 @@ describe('FSRS Input Validation', () => {
     // Accepts NaN, valid number, or thrown error as valid defensive behavior
     let handled = false;
     try {
-      const rNull = calc(null, 5);
-      const rUndef = calc(1.0, undefined);
+      const rNull = calc(null as unknown as number, 5);
+      const rUndef = calc(1.0, undefined as unknown as number);
       // If we get here without throwing, values should be numbers (NaN is acceptable for typed params)
       expect(typeof rNull).toBe('number');
       expect(typeof rUndef).toBe('number');

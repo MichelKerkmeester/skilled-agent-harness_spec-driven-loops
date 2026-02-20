@@ -177,8 +177,30 @@ Spec folder path passed via CLI argument to generate-context.js (stateless - no 
 ---
 
 <!-- /ANCHOR:benefits -->
+<!-- ANCHOR:phases-vs-versions -->
+## 8. PHASES VS VERSIONS
+
+Sub-folder versioning and phases serve distinct purposes:
+
+| Aspect | Sub-Folder Versioning | Phase Decomposition |
+|--------|----------------------|---------------------|
+| **Purpose** | Sequential iterations of the same work | Parallel decomposition of different work streams |
+| **Relationship** | Each version builds on or replaces the previous | Each phase addresses a distinct part of the whole |
+| **Naming** | `001-original/`, `002-iteration/` | `001-foundation/`, `002-api-layer/` |
+| **Trigger** | Option A reuse with existing content | Complexity score >= 25 AND level >= 3 |
+| **Workflow** | One active version at a time | Multiple phases may be active simultaneously |
+| **Parent spec** | Optional (root docs may exist) | Required (Phase Documentation Map in parent spec.md) |
+| **Back-reference** | Not required | Child spec.md references parent via `parent:` metadata |
+
+**Key distinction:** Versions are **temporal** (this work, then that work). Phases are **spatial** (this part and that part, potentially in parallel).
+
+Both systems use the same `###-name/` naming convention for child folders and both support independent `memory/` directories per child.
+
+---
+
+<!-- /ANCHOR:phases-vs-versions -->
 <!-- ANCHOR:generate-context-js-integration -->
-## 8. generate-context.js Integration
+## 9. generate-context.js Integration
 
 When using subfolder versioning, the memory save script (`generate-context.js`) fully supports nested paths.
 
@@ -212,7 +234,7 @@ Please specify the full path: parent/child
 
 <!-- /ANCHOR:generate-context-js-integration -->
 <!-- ANCHOR:related-resources -->
-## 9. RELATED RESOURCES
+## 10. RELATED RESOURCES
 
 ### Reference Files
 - [template_guide.md](../templates/template_guide.md) - Template selection, adaptation, and quality standards

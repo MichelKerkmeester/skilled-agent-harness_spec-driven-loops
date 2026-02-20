@@ -1,4 +1,4 @@
-// @ts-nocheck
+// @ts-nocheck -- Heavy vi.mock() dynamic typing requires runtime-only validation
 // ---------------------------------------------------------------
 // TEST: End-to-End Pipeline Integration
 // Validates the full search pipeline works with the graph channel
@@ -83,7 +83,7 @@ vi.mock('../lib/search/skill-graph-cache', () => ({
 
 const mockDb = {
   prepare: () => ({ all: () => [], get: () => undefined }),
-} as any;
+} as unknown as Record<string, unknown>;
 
 /* ─────────────────────────────────────────────────────────────
    FAKE GRAPH RESULTS (3 results as specified in T021)
@@ -288,19 +288,19 @@ describe('Suite 3 — Feature flag contract', () => {
     restoreEnv(savedEnv);
   });
 
-  it('isGraphUnifiedEnabled defaults to false when SPECKIT_GRAPH_UNIFIED is unset', async () => {
+  it('isGraphUnifiedEnabled defaults to true when SPECKIT_GRAPH_UNIFIED is unset', async () => {
     const { isGraphUnifiedEnabled } = await import('../lib/search/graph-flags');
-    expect(isGraphUnifiedEnabled()).toBe(false);
+    expect(isGraphUnifiedEnabled()).toBe(true);
   });
 
-  it('isGraphMMREnabled defaults to false when SPECKIT_GRAPH_MMR is unset', async () => {
+  it('isGraphMMREnabled defaults to true when SPECKIT_GRAPH_MMR is unset', async () => {
     const { isGraphMMREnabled } = await import('../lib/search/graph-flags');
-    expect(isGraphMMREnabled()).toBe(false);
+    expect(isGraphMMREnabled()).toBe(true);
   });
 
-  it('isGraphAuthorityEnabled defaults to false when SPECKIT_GRAPH_AUTHORITY is unset', async () => {
+  it('isGraphAuthorityEnabled defaults to true when SPECKIT_GRAPH_AUTHORITY is unset', async () => {
     const { isGraphAuthorityEnabled } = await import('../lib/search/graph-flags');
-    expect(isGraphAuthorityEnabled()).toBe(false);
+    expect(isGraphAuthorityEnabled()).toBe(true);
   });
 
   it('setting SPECKIT_GRAPH_UNIFIED=true enables the graph channel flag', async () => {

@@ -1,4 +1,4 @@
-// @ts-nocheck
+// @ts-nocheck -- Intentional null/invalid-type arguments test runtime defensive guards
 // ---------------------------------------------------------------
 // TEST: INTENT CLASSIFIER
 // ---------------------------------------------------------------
@@ -90,7 +90,7 @@ describe('T036: Intent Types', () => {
     for (const intent of Object.values(intentClassifier.INTENT_TYPES)) {
       const patterns = intentClassifier.INTENT_PATTERNS[intent as string];
       expect(patterns && patterns.length > 0).toBe(true);
-      expect(patterns.every((p: any) => p instanceof RegExp)).toBe(true);
+      expect(patterns.every((p: unknown) => p instanceof RegExp)).toBe(true);
     }
   });
 });

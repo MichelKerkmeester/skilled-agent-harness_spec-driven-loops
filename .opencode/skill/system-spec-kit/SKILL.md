@@ -146,11 +146,12 @@ DEFAULT_RESOURCE = "references/workflows/quick_reference.md"
 INTENT_SIGNALS = {
     "PLAN": {"weight": 3, "keywords": ["plan", "design", "new spec", "level selection", "option b"]},
     "RESEARCH": {"weight": 3, "keywords": ["investigate", "explore", "analyze", "prior work", "evidence"]},
-    "IMPLEMENT": {"weight": 3, "keywords": ["implement", "build", "execute", "phase", "workflow"]},
+    "IMPLEMENT": {"weight": 3, "keywords": ["implement", "build", "execute", "workflow"]},
     "DEBUG": {"weight": 4, "keywords": ["stuck", "error", "not working", "failed", "debug"]},
     "COMPLETE": {"weight": 4, "keywords": ["done", "complete", "finish", "verify", "checklist"]},
     "MEMORY": {"weight": 4, "keywords": ["memory", "save context", "resume", "checkpoint", "context"]},
     "HANDOVER": {"weight": 4, "keywords": ["handover", "continue later", "next session", "pause"]},
+    "PHASE": {"weight": 3, "keywords": ["phase", "decompose", "split", "workstream", "multi-phase", "phased approach", "phased", "multi-session"]},
 }
 
 RESOURCE_MAP = {
@@ -181,6 +182,10 @@ RESOURCE_MAP = {
     "HANDOVER": [
         "references/workflows/quick_reference.md",
     ],
+    "PHASE": [
+        "references/structure/phase_definitions.md",
+        "references/structure/sub_folder_versioning.md",
+    ],
 }
 
 COMMAND_BOOSTS = {
@@ -190,6 +195,7 @@ COMMAND_BOOSTS = {
     "/spec_kit:debug": "DEBUG",
     "/spec_kit:complete": "COMPLETE",
     "/spec_kit:handover": "HANDOVER",
+    "/spec_kit:phase": "PHASE",
 }
 
 LOADING_LEVELS = {
@@ -623,8 +629,9 @@ Automated validation of spec folder contents via `validate.sh`.
 13. **Create implementation-summary.md at end of implementation phase (Level 1+)** - Document what was built
 14. **Suggest /spec_kit:handover when session-end keywords detected OR after extended work (15+ tool calls)** - Proactive context preservation
 15. **Suggest /spec_kit:debug after 3+ failed fix attempts on same error** - Do not continue without offering debug delegation
-16. **Route all code creation/updates through `workflows-code--opencode`** - Full alignment is mandatory before claiming completion
-17. **Route all documentation creation/updates through `workflows-documentation`** - Full alignment is mandatory before claiming completion
+16. **Suggest /spec_kit:phase when task requires multi-phase decomposition** - Complex specs spanning multiple sessions or workstreams
+17. **Route all code creation/updates through `workflows-code--opencode`** - Full alignment is mandatory before claiming completion
+18. **Route all documentation creation/updates through `workflows-documentation`** - Full alignment is mandatory before claiming completion
 
 ### ❌ NEVER
 

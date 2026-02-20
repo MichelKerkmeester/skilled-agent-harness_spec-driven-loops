@@ -37,6 +37,9 @@ SUBFOLDER_MODE=false  # Enable versioned sub-folder creation
 SUBFOLDER_BASE=""     # Base folder for sub-folder mode
 SUBFOLDER_TOPIC=""    # Topic name for the sub-folder
 TEMPLATE_STYLE="minimal"  # Only minimal templates supported
+PHASE_MODE=false        # Enable phase decomposition mode
+PHASE_COUNT=1           # Number of child phases to create
+PHASE_NAMES=""          # Comma-separated phase names (optional)
 
 # Initialize variables used in JSON output (prevents "unbound variable" errors with set -u)
 DETECTED_LEVEL=""
@@ -102,6 +105,39 @@ while [[ $i -le $# ]]; do
             fi
             SUBFOLDER_TOPIC="$next_arg"
             ;;
+        --phase)
+            PHASE_MODE=true
+            ;;
+        --phases)
+            if [[ $((i + 1)) -gt $# ]]; then
+                echo 'Error: --phases requires a positive integer' >&2
+                exit 1
+            fi
+            i=$((i + 1))
+            next_arg="${!i}"
+            if [[ "$next_arg" == --* ]]; then
+                echo 'Error: --phases requires a positive integer' >&2
+                exit 1
+            fi
+            if ! [[ "$next_arg" =~ ^[1-9][0-9]*$ ]]; then
+                echo 'Error: --phases must be a positive integer (got: '"$next_arg"')' >&2
+                exit 1
+            fi
+            PHASE_COUNT="$next_arg"
+            ;;
+        --phase-names)
+            if [[ $((i + 1)) -gt $# ]]; then
+                echo 'Error: --phase-names requires a comma-separated list' >&2
+                exit 1
+            fi
+            i=$((i + 1))
+            next_arg="${!i}"
+            if [[ "$next_arg" == --* ]]; then
+                echo 'Error: --phase-names requires a comma-separated list' >&2
+                exit 1
+            fi
+            PHASE_NAMES="$next_arg"
+            ;;
         --short-name)
             if [[ $((i + 1)) -gt $# ]]; then
                 echo 'Error: --short-name requires a value' >&2
@@ -145,6 +181,11 @@ while [[ $i -le $# ]]; do
             echo "                      Auto-increments version (001, 002, etc.)"
             echo "  --topic <name>      Topic name for sub-folder (used with --subfolder)"
             echo "                      If not provided, uses feature_description"
+            echo "  --phase             Create phased spec (parent + child folders)"
+            echo "                      Mutually exclusive with --subfolder"
+            echo "  --phases <N>        Number of initial child phases (default: 1)"
+            echo "  --phase-names <list>  Comma-separated names for child phases"
+            echo "                      Example: --phase-names \"foundation,implementation,integration\""
             echo "  --short-name <name> Provide a custom short name (2-4 words) for the branch"
             echo "  --number N          Specify branch number manually (overrides auto-detection)"
             echo "  --skip-branch       Create spec folder only, don't create git branch"
@@ -183,6 +224,16 @@ while [[ $i -le $# ]]; do
             echo ""
             echo "  Creates: specs/005-memory/001-initial-implementation/"
             echo "           specs/005-memory/002-refactor/"
+            echo ""
+            echo "Phase Mode Examples:"
+            echo "  $0 --phase 'Large platform migration'"
+            echo "  $0 --phase --phases 3 'OAuth2 implementation'"
+            echo "  $0 --phase --phases 3 --phase-names 'foundation,implementation,integration' 'OAuth2 flow'"
+            echo ""
+            echo "  Creates: specs/042-oauth2-flow/"
+            echo "           specs/042-oauth2-flow/001-foundation/"
+            echo "           specs/042-oauth2-flow/002-implementation/"
+            echo "           specs/042-oauth2-flow/003-integration/"
             exit 0
             ;;
         *)
@@ -195,6 +246,12 @@ done
 FEATURE_DESCRIPTION="${ARGS[*]:-}"
 if [[ -z "$FEATURE_DESCRIPTION" ]]; then
     echo "Usage: $0 [--json] [--short-name <name>] [--number N] <feature_description>" >&2
+    exit 1
+fi
+
+# Mutual exclusivity check: --phase and --subfolder cannot be combined
+if [[ "$PHASE_MODE" = true ]] && [[ "$SUBFOLDER_MODE" = true ]]; then
+    echo "Error: --phase and --subfolder are mutually exclusive" >&2
     exit 1
 fi
 
@@ -340,6 +397,308 @@ if [[ "$SUBFOLDER_MODE" = true ]]; then
         echo "───────────────────────────────────────────────────────────────────"
     fi
     
+    exit 0
+fi
+
+# ───────────────────────────────────────────────────────────────
+# 3b. PHASE MODE
+# ───────────────────────────────────────────────────────────────
+
+if [[ "$PHASE_MODE" = true ]]; then
+    # Phase mode creates: parent spec folder + N child phase folders
+    # Parent gets level templates + Phase Documentation Map injection
+    # Each child gets level 1 templates + parent back-reference injection
+
+    TEMPLATES_BASE="$REPO_ROOT/.opencode/skill/system-spec-kit/templates"
+    PHASE_ADDENDUM_DIR="$TEMPLATES_BASE/addendum/phase"
+
+    # Validate addendum templates exist
+    if [[ ! -f "$PHASE_ADDENDUM_DIR/phase-parent-section.md" ]]; then
+        echo "Error: Phase parent template not found at $PHASE_ADDENDUM_DIR/phase-parent-section.md" >&2
+        exit 1
+    fi
+    if [[ ! -f "$PHASE_ADDENDUM_DIR/phase-child-header.md" ]]; then
+        echo "Error: Phase child template not found at $PHASE_ADDENDUM_DIR/phase-child-header.md" >&2
+        exit 1
+    fi
+
+    # ── Parse PHASE_NAMES into array ──
+    PHASE_NAME_ARRAY=()
+    if [[ -n "$PHASE_NAMES" ]]; then
+        IFS=',' read -ra _raw_names <<< "$PHASE_NAMES"
+        for _name in "${_raw_names[@]}"; do
+            # Trim whitespace and slugify
+            _trimmed=$(echo "$_name" | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
+            _slugified=$(echo "$_trimmed" | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z0-9]/-/g' | sed 's/--*/-/g' | sed 's/^-//' | sed 's/-$//')
+            PHASE_NAME_ARRAY+=("$_slugified")
+        done
+        # If --phase-names provided, override PHASE_COUNT with actual count
+        PHASE_COUNT=${#PHASE_NAME_ARRAY[@]}
+    fi
+
+    # ── Branch name generation (reuse normal mode logic) ──
+    if [[ -n "$SHORT_NAME" ]]; then
+        BRANCH_SUFFIX=$(echo "$SHORT_NAME" | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z0-9]/-/g' | sed 's/--*/-/g' | sed 's/^-//' | sed 's/-$//')
+    else
+        BRANCH_SUFFIX=$(generate_branch_name "$FEATURE_DESCRIPTION")
+    fi
+
+    if [[ -z "$BRANCH_NUMBER" ]]; then
+        if [[ "$HAS_GIT" = true ]]; then
+            BRANCH_NUMBER=$(check_existing_branches "$BRANCH_SUFFIX")
+        else
+            HIGHEST=0
+            if [[ -d "$SPECS_DIR" ]]; then
+                for dir in "$SPECS_DIR"/*; do
+                    [[ -d "$dir" ]] || continue
+                    dirname=$(basename "$dir")
+                    number=$(echo "$dirname" | grep -o '^[0-9]\+' || echo "0")
+                    number=$((10#$number))
+                    if [[ "$number" -gt "$HIGHEST" ]]; then HIGHEST=$number; fi
+                done
+            fi
+            BRANCH_NUMBER=$((HIGHEST + 1))
+        fi
+    fi
+
+    FEATURE_NUM=$(printf "%03d" "$((10#$BRANCH_NUMBER))")
+    BRANCH_NAME="${FEATURE_NUM}-${BRANCH_SUFFIX}"
+
+    # Create git branch (unless skipped or no git)
+    if [[ "$SKIP_BRANCH" = true ]]; then
+        >&2 echo "[speckit] Skipping branch creation (--skip-branch)"
+    elif [[ "$HAS_GIT" = true ]]; then
+        git checkout -b "$BRANCH_NAME"
+    else
+        >&2 echo "[speckit] Warning: Git repository not detected; skipped branch creation for $BRANCH_NAME"
+    fi
+
+    # ── Create parent spec folder ──
+    FEATURE_DIR="$SPECS_DIR/$BRANCH_NAME"
+    mkdir -p "$FEATURE_DIR" "$FEATURE_DIR/scratch" "$FEATURE_DIR/memory"
+    touch "$FEATURE_DIR/scratch/.gitkeep" "$FEATURE_DIR/memory/.gitkeep"
+
+    # Copy parent templates based on documentation level
+    DOC_LEVEL_NUM="${DOC_LEVEL/+/}"
+    LEVEL_TEMPLATES_DIR=$(get_level_templates_dir "$DOC_LEVEL" "$TEMPLATES_BASE")
+    PARENT_CREATED_FILES=()
+
+    if [[ ! -d "$LEVEL_TEMPLATES_DIR" ]]; then
+        >&2 echo "[speckit] Warning: Level folder not found at $LEVEL_TEMPLATES_DIR, using base templates"
+        LEVEL_TEMPLATES_DIR="$TEMPLATES_BASE"
+    fi
+
+    for template_file in "$LEVEL_TEMPLATES_DIR"/*.md; do
+        if [[ -f "$template_file" ]]; then
+            template_name=$(basename "$template_file")
+            PARENT_CREATED_FILES+=("$(copy_template "$template_name" "$FEATURE_DIR" "$LEVEL_TEMPLATES_DIR" "$TEMPLATES_BASE")")
+        fi
+    done
+
+    # ── Build child folder name list ──
+    CHILD_FOLDERS=()
+    for _i in $(seq 1 "$PHASE_COUNT"); do
+        _child_num=$(printf "%03d" "$_i")
+        if [[ ${#PHASE_NAME_ARRAY[@]} -ge $_i ]]; then
+            _child_slug="${PHASE_NAME_ARRAY[$((_i - 1))]}"
+        else
+            _child_slug="phase-${_i}"
+        fi
+        CHILD_FOLDERS+=("${_child_num}-${_child_slug}")
+    done
+
+    # ── Inject Phase Documentation Map into parent spec.md ──
+    PARENT_SPEC="$FEATURE_DIR/spec.md"
+    if [[ -f "$PARENT_SPEC" ]]; then
+        # Read the parent section template
+        PHASE_PARENT_TEMPLATE=$(< "$PHASE_ADDENDUM_DIR/phase-parent-section.md")
+
+        # Build phase table rows
+        PHASE_ROWS=""
+        for _i in $(seq 1 "$PHASE_COUNT"); do
+            _folder="${CHILD_FOLDERS[$((_i - 1))]}"
+            if [[ -n "$PHASE_ROWS" ]]; then
+                PHASE_ROWS="${PHASE_ROWS}"$'\n'
+            fi
+            PHASE_ROWS="${PHASE_ROWS}| ${_i} | ${_folder}/ | [Phase ${_i} scope] | [deps] | Pending |"
+        done
+
+        # Build handoff criteria rows
+        HANDOFF_ROWS=""
+        for _i in $(seq 1 "$PHASE_COUNT"); do
+            if [[ $_i -lt $PHASE_COUNT ]]; then
+                _from="${CHILD_FOLDERS[$((_i - 1))]}"
+                _to="${CHILD_FOLDERS[$_i]}"
+                if [[ -n "$HANDOFF_ROWS" ]]; then
+                    HANDOFF_ROWS="${HANDOFF_ROWS}"$'\n'
+                fi
+                HANDOFF_ROWS="${HANDOFF_ROWS}| ${_from} | ${_to} | [Criteria TBD] | [Verification TBD] |"
+            fi
+        done
+
+        # Replace placeholders in template
+        # Use a temp file for sed replacements (avoids in-place issues)
+        _tmp_phase_section=$(mktemp)
+
+        # Write the template, replacing [PHASE_ROW] and [HANDOFF_ROW] line placeholders
+        while IFS= read -r _line; do
+            if [[ "$_line" == *"[PHASE_ROW]"* ]]; then
+                printf '%s\n' "$PHASE_ROWS"
+            elif [[ "$_line" == *"[HANDOFF_ROW]"* ]]; then
+                if [[ -n "$HANDOFF_ROWS" ]]; then
+                    printf '%s\n' "$HANDOFF_ROWS"
+                else
+                    printf '%s\n' "| (single phase - no handoffs) | | | |"
+                fi
+            else
+                printf '%s\n' "$_line"
+            fi
+        done <<< "$PHASE_PARENT_TEMPLATE" > "$_tmp_phase_section"
+
+        # Append phase section to parent spec.md
+        printf '\n' >> "$PARENT_SPEC"
+        cat "$_tmp_phase_section" >> "$PARENT_SPEC"
+        rm -f "$_tmp_phase_section"
+    fi
+
+    # ── Create child phase folders ──
+    CHILD_LEVEL_DIR=$(get_level_templates_dir "1" "$TEMPLATES_BASE")
+    CHILDREN_INFO=()   # For JSON output
+
+    for _i in $(seq 1 "$PHASE_COUNT"); do
+        _child_folder="${CHILD_FOLDERS[$((_i - 1))]}"
+        _child_path="$FEATURE_DIR/$_child_folder"
+        _child_created_files=()
+
+        # Create child directory structure
+        mkdir -p "$_child_path" "$_child_path/memory" "$_child_path/scratch"
+        touch "$_child_path/memory/.gitkeep" "$_child_path/scratch/.gitkeep"
+
+        # Copy Level 1 templates to child folder
+        for template_file in "$CHILD_LEVEL_DIR"/*.md; do
+            if [[ -f "$template_file" ]]; then
+                template_name=$(basename "$template_file")
+                _child_created_files+=("$(copy_template "$template_name" "$_child_path" "$CHILD_LEVEL_DIR" "$TEMPLATES_BASE")")
+            fi
+        done
+
+        # Inject parent back-reference into child spec.md
+        _child_spec="$_child_path/spec.md"
+        if [[ -f "$_child_spec" ]]; then
+            # Read child header template
+            _child_header_template=$(< "$PHASE_ADDENDUM_DIR/phase-child-header.md")
+
+            # Determine predecessor and successor
+            if [[ $_i -eq 1 ]]; then
+                _predecessor="None"
+            else
+                _predecessor="${CHILD_FOLDERS[$((_i - 2))]}"
+            fi
+            if [[ $_i -eq $PHASE_COUNT ]]; then
+                _successor="None"
+            else
+                _successor="${CHILD_FOLDERS[$_i]}"
+            fi
+
+            # Replace placeholders
+            _child_header="$_child_header_template"
+            _child_header="${_child_header//\[PARENT_FOLDER\]/..}"
+            _child_header="${_child_header//\[PHASE_NUMBER\]/$_i}"
+            _child_header="${_child_header//\[TOTAL_PHASES\]/$PHASE_COUNT}"
+            _child_header="${_child_header//\[PREDECESSOR_FOLDER\]/$_predecessor}"
+            _child_header="${_child_header//\[SUCCESSOR_FOLDER\]/$_successor}"
+            _child_header="${_child_header//\[PARENT_SPEC_NAME\]/$FEATURE_DESCRIPTION}"
+            _child_header="${_child_header//\[PHASE_SCOPE_DESCRIPTION\]/[To be defined during planning]}"
+            _child_header="${_child_header//\[PREDECESSOR_DEPENDENCIES\]/[To be defined during planning]}"
+            _child_header="${_child_header//\[PHASE_DELIVERABLES\]/[To be defined during planning]}"
+
+            # Prepend back-reference block to child spec.md
+            _tmp_child_spec=$(mktemp)
+            printf '%s\n\n' "$_child_header" > "$_tmp_child_spec"
+            cat "$_child_spec" >> "$_tmp_child_spec"
+            mv "$_tmp_child_spec" "$_child_spec"
+        fi
+
+        # Collect child info for output
+        _child_files_str=$(printf '%s,' "${_child_created_files[@]}" | sed 's/,$//')
+        CHILDREN_INFO+=("${_child_folder}|${_child_files_str}")
+    done
+
+    # ── Output ──
+    SPEC_FILE="$FEATURE_DIR/spec.md"
+    export SPECIFY_FEATURE="$BRANCH_NAME"
+
+    if $JSON_MODE; then
+        # Build children JSON array
+        children_json=""
+        for _info in "${CHILDREN_INFO[@]}"; do
+            _folder="${_info%%|*}"
+            _files="${_info#*|}"
+            # Build files array
+            _files_json=""
+            IFS=',' read -ra _file_arr <<< "$_files"
+            for _f in "${_file_arr[@]}"; do
+                [[ -z "$_f" ]] && continue
+                if [[ -n "$_files_json" ]]; then _files_json="${_files_json},"; fi
+                _files_json="${_files_json}\"$(_json_escape "$_f")\""
+            done
+            if [[ -n "$children_json" ]]; then children_json="${children_json},"; fi
+            children_json="${children_json}{\"FOLDER\":\"$(_json_escape "$_folder")\",\"FILES\":[${_files_json}]}"
+        done
+
+        # Build parent files JSON
+        parent_files_json=$(printf '"%s",' "${PARENT_CREATED_FILES[@]}" | sed 's/,$//')
+
+        printf '{"BRANCH_NAME":"%s","SPEC_FILE":"%s","FEATURE_NUM":"%s","DOC_LEVEL":"%s","PHASE_MODE":true,"PHASE_COUNT":%d,"PARENT_FILES":[%s],"CHILDREN":[%s]}\n' \
+            "$(_json_escape "$BRANCH_NAME")" "$(_json_escape "$SPEC_FILE")" "$FEATURE_NUM" "$DOC_LEVEL" "$PHASE_COUNT" "$parent_files_json" "$children_json"
+    else
+        echo ""
+        echo "───────────────────────────────────────────────────────────────────"
+        echo "  SpecKit: Phase Spec Created Successfully"
+        echo "───────────────────────────────────────────────────────────────────"
+        echo ""
+        echo "  BRANCH_NAME:  $BRANCH_NAME"
+        echo "  FEATURE_NUM:  $FEATURE_NUM"
+        echo "  DOC_LEVEL:    Level $DOC_LEVEL (parent)"
+        echo "  PHASE_COUNT:  $PHASE_COUNT"
+        echo "  SPEC_FOLDER:  $FEATURE_DIR"
+        echo ""
+        echo "  Created Structure:"
+        echo "  └── $BRANCH_NAME/"
+        for file in "${PARENT_CREATED_FILES[@]}"; do
+            echo "      ├── $file"
+        done
+        for _ci in $(seq 1 "$PHASE_COUNT"); do
+            _cf="${CHILD_FOLDERS[$((_ci - 1))]}"
+            _info="${CHILDREN_INFO[$((_ci - 1))]}"
+            _files="${_info#*|}"
+            echo "      ├── $_cf/"
+            IFS=',' read -ra _file_arr <<< "$_files"
+            for _f in "${_file_arr[@]}"; do
+                [[ -z "$_f" ]] && continue
+                echo "      │   ├── $_f"
+            done
+            echo "      │   ├── scratch/"
+            echo "      │   │   └── .gitkeep"
+            echo "      │   └── memory/"
+            echo "      │       └── .gitkeep"
+        done
+        echo "      ├── scratch/          (git-ignored working files)"
+        echo "      │   └── .gitkeep"
+        echo "      └── memory/           (context preservation)"
+        echo "          └── .gitkeep"
+        echo ""
+        echo "  Phase Documentation Map injected into parent spec.md"
+        echo "  Parent back-references injected into each child spec.md"
+        echo ""
+        echo "  Next steps:"
+        echo "    1. Define phase scopes in parent spec.md Phase Documentation Map"
+        echo "    2. Fill out each child spec.md with phase-specific requirements"
+        echo "    3. Use /spec_kit:plan on each phase folder for detailed planning"
+        echo ""
+        echo "───────────────────────────────────────────────────────────────────"
+    fi
+
     exit 0
 fi
 

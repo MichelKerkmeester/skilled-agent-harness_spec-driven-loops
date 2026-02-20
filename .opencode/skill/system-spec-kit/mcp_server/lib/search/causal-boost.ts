@@ -5,8 +5,9 @@
 // for results related to top seed results via weighted CTE.
 // ---------------------------------------------------------------
 
-import type Database from 'better-sqlite3';
 import { isFeatureEnabled } from '../cache/cognitive/rollout-policy';
+
+import type Database from 'better-sqlite3';
 
 /** Maximum graph traversal depth. Beyond 2 hops, signal degrades and queries become expensive. */
 const MAX_HOPS = 2;
@@ -52,10 +53,12 @@ interface CausalBoostMetadata {
 
 let db: Database.Database | null = null;
 
+/** Check whether the causal boost feature flag is enabled. */
 function isEnabled(): boolean {
   return isFeatureEnabled('SPECKIT_CAUSAL_BOOST');
 }
 
+/** Store the database reference used by causal edge traversal queries. */
 function init(database: Database.Database): void {
   db = database;
 }
@@ -95,6 +98,10 @@ function computeBoostByHop(hopDistance: number): number {
   return Math.min(MAX_BOOST_PER_HOP, rawBoost);
 }
 
+/**
+ * Walk causal edges up to MAX_HOPS from the given seed memory IDs,
+ * returning a map of neighbor ID to boost score.
+ */
 function getNeighborBoosts(memoryIds: number[]): Map<number, number> {
   const neighborBoosts = new Map<number, number>();
   if (!db) return neighborBoosts;
@@ -190,6 +197,10 @@ function fetchNeighborRows(memoryIds: number[]): RankedSearchResult[] {
   return rows;
 }
 
+/**
+ * Apply causal graph boost to ranked search results, injecting
+ * graph-discovered neighbors and amplifying scores for connected nodes.
+ */
 function applyCausalBoost(results: RankedSearchResult[]): { results: RankedSearchResult[]; metadata: CausalBoostMetadata } {
   const metadata: CausalBoostMetadata = {
     enabled: isEnabled(),

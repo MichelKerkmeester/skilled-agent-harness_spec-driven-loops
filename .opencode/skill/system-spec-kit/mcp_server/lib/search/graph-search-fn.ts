@@ -3,11 +3,12 @@
 // Composite graph search across causal edges and SGQS skill graph
 // ---------------------------------------------------------------
 
-import type Database from 'better-sqlite3';
 import { skillGraphCache } from './skill-graph-cache';
+import { isGraphAuthorityEnabled } from './graph-flags';
+
+import type Database from 'better-sqlite3';
 import type { SkillGraph, GraphNode } from '../../../scripts/sgqs/types';
 import type { GraphSearchFn } from './hybrid-search';
-import { isGraphAuthorityEnabled } from './graph-flags';
 
 // ---------------------------------------------------------------
 // 1. TYPES
@@ -147,6 +148,7 @@ export function computeAuthorityScores(graph: SkillGraph): Map<string, number> {
     for (const label of node.labels) {
       const normalised = label.startsWith(':') ? label : `:${label}`;
       if (normalised in AUTHORITY_TYPE_MULTIPLIERS) {
+        // WHY: `in` guard on preceding line guarantees key exists in AUTHORITY_TYPE_MULTIPLIERS
         multiplier = AUTHORITY_TYPE_MULTIPLIERS[normalised]!;
         break;
       }
@@ -229,6 +231,7 @@ function querySkillGraph(
     .sort((a, b) => b.score - a.score)
     .slice(0, limit)
     .map(({ node, score }) => {
+      // WHY: useAuthority guard at L227 ensures cachedAuthorityMap is non-null before this path
       const finalScore = useAuthority
         ? score * (cachedAuthorityMap!.get(node.id) ?? 1)
         : score;

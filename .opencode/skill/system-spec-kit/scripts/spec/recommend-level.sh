@@ -20,6 +20,8 @@
 #   --api                Task involves API changes
 #   --db                 Task involves database changes
 #   --architectural      Task involves architectural changes
+#   --recommend-phases   Include phase scoring in output
+#   --phase-threshold <N> Override phase score threshold (default 25)
 #   --json, -j           Output in JSON format
 #   --help, -h           Show this help message
 #
@@ -28,6 +30,7 @@
 #   recommend-level.sh --loc 200 --files 5 --api --db
 #   recommend-level.sh --loc 500 --files 15 --auth --api --db --architectural
 #   recommend-level.sh --loc 100 --files 3 --json
+#   recommend-level.sh --loc 1000 --files 20 --architectural --api --db --recommend-phases
 #
 # SCORING ALGORITHM:
 #   LOC Factor:        35% weight (0-35 points)
@@ -40,6 +43,20 @@
 #   25-44       -> Level 1 (Baseline)
 #   45-69       -> Level 2 (Verification)
 #   70+         -> Level 3 (Full)
+#
+# PHASE SCORING (separate from level, enabled via --recommend-phases):
+#   Architectural flag:     +15 points
+#   Files > 15:             +10 points
+#   LOC > 800:              +10 points
+#   Risk flags >= 2:        +10 points
+#   Extreme scale bonus:    +5 points (Files > 30 OR LOC > 2000)
+#   Max phase score: 50
+#
+# PHASE RECOMMENDATION:
+#   Score >= 25 AND Level >= 3 -> phases recommended
+#   Score 25-34: 2 phases suggested
+#   Score 35-44: 3 phases suggested
+#   Score 45+:   4+ phases suggested
 #
 
 set -euo pipefail
@@ -61,6 +78,16 @@ readonly POINTS_DB=7
 
 # Complexity points (within WEIGHT_COMPLEXITY budget)
 readonly POINTS_ARCHITECTURAL=20
+
+# Phase signal scoring (separate from level scoring)
+# Max phase score = 50 (15+10+10+10+5)
+readonly PHASE_POINTS_ARCHITECTURAL=15
+readonly PHASE_POINTS_MANY_FILES=10      # Files > 15
+readonly PHASE_POINTS_LARGE_LOC=10       # LOC > 800
+readonly PHASE_POINTS_MULTI_RISK=10      # Risk flags >= 2
+readonly PHASE_POINTS_EXTREME_SCALE=5    # Files > 30 OR LOC > 2000
+readonly PHASE_MAX_SCORE=50
+readonly PHASE_DEFAULT_THRESHOLD=25
 
 # LOC thresholds for scoring
 readonly LOC_THRESHOLD_LOW=50
@@ -92,6 +119,10 @@ HAS_DB=false
 HAS_ARCHITECTURAL=false
 JSON_OUTPUT=false
 
+# Phase recommendation flags
+RECOMMEND_PHASES=false
+PHASE_THRESHOLD=$PHASE_DEFAULT_THRESHOLD
+
 # Calculated scores
 SCORE_LOC=0
 SCORE_FILES=0
@@ -101,6 +132,12 @@ TOTAL_SCORE=0
 RECOMMENDED_LEVEL=0
 LEVEL_NAME=""
 CONFIDENCE=0
+
+# Phase scoring results
+PHASE_SCORE=0
+PHASE_RECOMMENDED=false
+PHASE_REASON=""
+SUGGESTED_PHASE_COUNT=0
 
 # ───────────────────────────────────────────────────────────────
 # 3. HELPER FUNCTIONS
@@ -124,6 +161,8 @@ OPTIONS:
   --api                Task involves API changes
   --db                 Task involves database changes
   --architectural      Task involves architectural changes
+  --recommend-phases   Include phase scoring in output
+  --phase-threshold <N> Override phase score threshold (default 25)
   --json, -j           Output in JSON format
   --help, -h           Show this help message
 
@@ -136,6 +175,9 @@ EXAMPLES:
 
   # Complex full-stack feature
   recommend-level.sh --loc 500 --files 15 --auth --api --db --architectural
+
+  # With phase recommendation
+  recommend-level.sh --loc 1000 --files 20 --architectural --api --db --recommend-phases
 
   # JSON output for scripting
   recommend-level.sh --loc 100 --files 3 --json
@@ -287,6 +329,104 @@ determine_level() {
   fi
 }
 
+# determine_phasing()
+# Calculate phase recommendation score and suggested phase count.
+# Phase scoring is SEPARATE from level scoring — uses its own 5 signal
+# dimensions (max 50 points). Phase is recommended when:
+#   - Phase score >= PHASE_THRESHOLD (default 25)
+#   - AND RECOMMENDED_LEVEL >= 3
+# Must be called AFTER determine_level() since it references RECOMMENDED_LEVEL.
+determine_phasing() {
+  PHASE_SCORE=0
+  PHASE_REASON=""
+  PHASE_RECOMMENDED=false
+  SUGGESTED_PHASE_COUNT=0
+
+  local reasons=""
+  local risk_flag_count=0
+
+  # Signal 1: Architectural flag (+15)
+  if [[ "$HAS_ARCHITECTURAL" = true ]]; then
+    PHASE_SCORE=$((PHASE_SCORE + PHASE_POINTS_ARCHITECTURAL))
+    reasons="Architectural change"
+  fi
+
+  # Signal 2: Many files (+10) — Files > 15
+  if [[ "$FILES" -gt 15 ]]; then
+    PHASE_SCORE=$((PHASE_SCORE + PHASE_POINTS_MANY_FILES))
+    if [[ -n "$reasons" ]]; then
+      reasons="${reasons} + ${FILES} files"
+    else
+      reasons="${FILES} files"
+    fi
+  fi
+
+  # Signal 3: Large LOC (+10) — LOC > 800
+  if [[ "$LOC" -gt 800 ]]; then
+    PHASE_SCORE=$((PHASE_SCORE + PHASE_POINTS_LARGE_LOC))
+    if [[ -n "$reasons" ]]; then
+      reasons="${reasons} + ${LOC} LOC"
+    else
+      reasons="${LOC} LOC"
+    fi
+  fi
+
+  # Signal 4: Multi-domain risk (+10) — 2+ risk flags
+  if [[ "$HAS_AUTH" = true ]]; then risk_flag_count=$((risk_flag_count + 1)); fi
+  if [[ "$HAS_API" = true ]]; then risk_flag_count=$((risk_flag_count + 1)); fi
+  if [[ "$HAS_DB" = true ]]; then risk_flag_count=$((risk_flag_count + 1)); fi
+
+  if [[ "$risk_flag_count" -ge 2 ]]; then
+    PHASE_SCORE=$((PHASE_SCORE + PHASE_POINTS_MULTI_RISK))
+    # Build risk factor description
+    local risk_names=""
+    if [[ "$HAS_AUTH" = true ]]; then risk_names="Auth"; fi
+    if [[ "$HAS_API" = true ]]; then
+      if [[ -n "$risk_names" ]]; then risk_names="${risk_names} + API"; else risk_names="API"; fi
+    fi
+    if [[ "$HAS_DB" = true ]]; then
+      if [[ -n "$risk_names" ]]; then risk_names="${risk_names} + DB"; else risk_names="DB"; fi
+    fi
+    if [[ -n "$reasons" ]]; then
+      reasons="${reasons} + ${risk_names} risk factors"
+    else
+      reasons="${risk_names} risk factors"
+    fi
+  fi
+
+  # Signal 5: Extreme scale bonus (+5) — Files > 30 OR LOC > 2000
+  if [[ "$FILES" -gt 30 ]] || [[ "$LOC" -gt 2000 ]]; then
+    PHASE_SCORE=$((PHASE_SCORE + PHASE_POINTS_EXTREME_SCALE))
+    if [[ -n "$reasons" ]]; then
+      reasons="${reasons} + extreme scale"
+    else
+      reasons="Extreme scale"
+    fi
+  fi
+
+  # Cap at max score
+  if [[ "$PHASE_SCORE" -gt "$PHASE_MAX_SCORE" ]]; then
+    PHASE_SCORE=$PHASE_MAX_SCORE
+  fi
+
+  PHASE_REASON="$reasons"
+
+  # Phase recommendation requires BOTH score threshold AND level >= 3
+  if [[ "$PHASE_SCORE" -ge "$PHASE_THRESHOLD" ]] && [[ "$RECOMMENDED_LEVEL" -ge 3 ]]; then
+    PHASE_RECOMMENDED=true
+
+    # Determine suggested phase count based on score ranges
+    if [[ "$PHASE_SCORE" -ge 45 ]]; then
+      SUGGESTED_PHASE_COUNT=4
+    elif [[ "$PHASE_SCORE" -ge 35 ]]; then
+      SUGGESTED_PHASE_COUNT=3
+    else
+      # Score 25-34
+      SUGGESTED_PHASE_COUNT=2
+    fi
+  fi
+}
+
 # calculate_confidence()
 # Calculate confidence percentage based on input completeness
 calculate_confidence() {
@@ -380,6 +520,23 @@ output_text() {
     echo "+0 points"
   fi
   echo ""
+
+  # Phase recommendation section (only when --recommend-phases is used)
+  if [[ "$RECOMMEND_PHASES" = true ]]; then
+    echo "Phase Recommendation:"
+    echo "- Phase Score: ${PHASE_SCORE}/${PHASE_MAX_SCORE} (threshold: ${PHASE_THRESHOLD})"
+    if [[ "$PHASE_RECOMMENDED" = true ]]; then
+      echo "- Recommended: YES"
+      echo "- Suggested Phases: ${SUGGESTED_PHASE_COUNT}"
+      echo "- Reason: ${PHASE_REASON}"
+    else
+      echo "- Recommended: NO"
+      if [[ -n "$PHASE_REASON" ]]; then
+        echo "- Factors: ${PHASE_REASON}"
+      fi
+    fi
+    echo ""
+  fi
 }
 
 # output_json()
@@ -395,7 +552,48 @@ output_json() {
   if [[ "$HAS_DB" = true ]]; then db_points=$POINTS_DB; fi
   if [[ "$HAS_ARCHITECTURAL" = true ]]; then arch_points=$POINTS_ARCHITECTURAL; fi
 
-  cat << EOF
+  # Build JSON output — phase fields conditionally included
+  if [[ "$RECOMMEND_PHASES" = true ]]; then
+    cat << EOF
+{
+  "recommended_level": ${RECOMMENDED_LEVEL},
+  "level_name": "${LEVEL_NAME}",
+  "total_score": ${TOTAL_SCORE},
+  "max_score": 100,
+  "confidence": ${CONFIDENCE},
+  "recommended_phases": ${PHASE_RECOMMENDED},
+  "phase_score": ${PHASE_SCORE},
+  "phase_reason": "${PHASE_REASON}",
+  "suggested_phase_count": ${SUGGESTED_PHASE_COUNT},
+  "inputs": {
+    "loc": ${LOC},
+    "files": ${FILES},
+    "auth": ${HAS_AUTH},
+    "api": ${HAS_API},
+    "db": ${HAS_DB},
+    "architectural": ${HAS_ARCHITECTURAL}
+  },
+  "breakdown": {
+    "loc_score": ${SCORE_LOC},
+    "files_score": ${SCORE_FILES},
+    "risk_score": ${SCORE_RISK},
+    "complexity_score": ${SCORE_COMPLEXITY},
+    "details": {
+      "auth_points": ${auth_points},
+      "api_points": ${api_points},
+      "db_points": ${db_points},
+      "architectural_points": ${arch_points}
+    }
+  },
+  "thresholds": {
+    "level_0_max": ${LEVEL_0_MAX},
+    "level_1_max": ${LEVEL_1_MAX},
+    "level_2_max": ${LEVEL_2_MAX}
+  }
+}
+EOF
+  else
+    cat << EOF
 {
   "recommended_level": ${RECOMMENDED_LEVEL},
   "level_name": "${LEVEL_NAME}",
@@ -429,6 +627,7 @@ output_json() {
   }
 }
 EOF
+  fi
 }
 
 # ───────────────────────────────────────────────────────────────
@@ -470,6 +669,18 @@ while [[ $# -gt 0 ]]; do
       HAS_ARCHITECTURAL=true
       shift
       ;;
+    --recommend-phases)
+      RECOMMEND_PHASES=true
+      shift
+      ;;
+    --phase-threshold)
+      if [[ -z "${2:-}" ]] || [[ "$2" =~ ^-- ]]; then
+        echo "ERROR: --phase-threshold requires a numeric value" >&2
+        exit 1
+      fi
+      PHASE_THRESHOLD="$2"
+      shift 2
+      ;;
     --json|-j)
       JSON_OUTPUT=true
       shift
@@ -496,6 +707,11 @@ if ! [[ "$FILES" =~ ^[0-9]+$ ]]; then
   exit 1
 fi
 
+if ! [[ "$PHASE_THRESHOLD" =~ ^[0-9]+$ ]]; then
+  echo "ERROR: --phase-threshold must be a positive integer" >&2
+  exit 1
+fi
+
 # Validate required inputs
 if [[ "$LOC" -eq 0 ]] && [[ "$FILES" -eq 0 ]]; then
   echo "ERROR: At least --loc or --files must be provided" >&2
@@ -519,6 +735,11 @@ determine_level "$TOTAL_SCORE"
 
 # Calculate confidence
 calculate_confidence
+
+# Calculate phase recommendation (only when requested)
+if [[ "$RECOMMEND_PHASES" = true ]]; then
+  determine_phasing
+fi
 
 # ───────────────────────────────────────────────────────────────
 # 7. OUTPUT RESULTS

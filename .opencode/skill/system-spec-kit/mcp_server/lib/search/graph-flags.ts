@@ -3,26 +3,28 @@
 // Feature flags for graph-enhanced search channel
 // ---------------------------------------------------------------
 
+import { isFeatureEnabled } from '../cognitive/rollout-policy';
+
 /**
  * Check if the unified graph search channel is enabled.
- * Default: FALSE (opt-in). Set SPECKIT_GRAPH_UNIFIED=true to enable.
+ * Default: TRUE (enabled). Set SPECKIT_GRAPH_UNIFIED=false to disable.
  */
 export function isGraphUnifiedEnabled(): boolean {
-  return process.env.SPECKIT_GRAPH_UNIFIED === 'true';
+  return isFeatureEnabled('SPECKIT_GRAPH_UNIFIED');
 }
 
 /**
  * Check if Graph-Guided MMR diversity is enabled (Phase 2+).
- * Default: FALSE (opt-in). Set SPECKIT_GRAPH_MMR=true to enable.
+ * Default: TRUE (enabled). Set SPECKIT_GRAPH_MMR=false to disable.
  */
 export function isGraphMMREnabled(): boolean {
-  return process.env.SPECKIT_GRAPH_MMR === 'true';
+  return isFeatureEnabled('SPECKIT_GRAPH_MMR');
 }
 
 /**
  * Check if Structural Authority Propagation is enabled (Phase 2+).
- * Default: FALSE (opt-in). Set SPECKIT_GRAPH_AUTHORITY=true to enable.
+ * Default: TRUE (enabled). Set SPECKIT_GRAPH_AUTHORITY=false to disable.
  */
 export function isGraphAuthorityEnabled(): boolean {
-  return process.env.SPECKIT_GRAPH_AUTHORITY === 'true';
+  return isFeatureEnabled('SPECKIT_GRAPH_AUTHORITY');
 }

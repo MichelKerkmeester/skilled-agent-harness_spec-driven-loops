@@ -1,4 +1,3 @@
-// @ts-nocheck
 // ---------------------------------------------------------------
 // TEST: Semantic Bridge Discovery (C138 T010 — Pattern 4)
 // buildSemanticBridgeMap and expandQueryWithBridges from query-expander

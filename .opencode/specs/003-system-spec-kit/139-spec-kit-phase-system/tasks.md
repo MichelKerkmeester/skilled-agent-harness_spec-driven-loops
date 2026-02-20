@@ -1,5 +1,5 @@
 <!-- SPECKIT_LEVEL: 3+ -->
-# Task Breakdown: SpecKit Phase System
+# Tasks: SpecKit Phase System
 
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
 
@@ -10,85 +10,138 @@
 | Phase | Tasks | Est. LOC | Priority |
 |-------|-------|----------|----------|
 | Phase 1: Detection & Scoring | T001-T005 | ~150 | P0 |
-| Phase 2: Templates & Creation | T006-T012 | ~250 | P0 |
-| Phase 3: Commands & Router | T013-T020 | ~400 | P0/P1 |
-| Phase 4: Validation, Docs & Nodes | T021-T032 | ~500 | P0/P1 |
-| **Total** | **32 tasks** | **~1300** | |
+| Phase 2: Templates & Creation | T006-T012, T033 | ~250 | P0 |
+| Phase 3: Commands & Router | T013-T023 | ~400 | P0/P1 |
+| Phase 4: Validation, Docs & Nodes | T024-T032, T034 | ~500 | P0/P1 |
+| **Total** | **34 tasks** | **~1300** | |
 
 ---
 
+<!-- ANCHOR:notation -->
+## Task Notation
+
+| Prefix | Meaning |
+|--------|---------|
+| `[ ]` | Pending |
+| `[x]` | Completed |
+| `[P]` | Parallelizable |
+| `[B]` | Blocked |
+
+**Task Format**: `T### [P?] Description (file path)`
+<!-- /ANCHOR:notation -->
+
+---
+
+<!-- ANCHOR:phase-1 -->
 ## Phase 1: Detection & Scoring
 
-| ID | Task | Priority | Status | Dependencies |
-|----|------|----------|--------|-------------|
-| T001 | Add `determine_phasing()` function to `recommend-level.sh` with 5 phase signal scoring dimensions | P0 | Pending | None |
-| T002 | Add `--recommend-phases` CLI flag to include phase scoring in output | P0 | Pending | T001 |
-| T003 | Add `--phase-threshold <N>` CLI flag for threshold override (default 25) | P1 | Pending | T001 |
-| T004 | Extend JSON output with `recommended_phases`, `phase_score`, `phase_reason`, `suggested_phase_count` | P0 | Pending | T001, T002 |
-| T005 | Create 5 test fixtures: below threshold, at boundary, above threshold, extreme scale, no risk factors | P1 | Pending | T001-T004 |
-
-## Phase 2: Templates & Creation
-
-| ID | Task | Priority | Status | Dependencies |
-|----|------|----------|--------|-------------|
-| T006 | Create `templates/addendum/phase/phase-parent-section.md` (Phase Documentation Map template) | P0 | Pending | None |
-| T007 | Create `templates/addendum/phase/phase-child-header.md` (parent back-reference metadata block) | P0 | Pending | None |
-| T008 | Add `--phase` flag to `create.sh` (mutually exclusive with `--subfolder`) | P0 | Pending | T006, T007 |
-| T009 | Add `--phases <N>` flag for multi-child creation with auto-numbering | P1 | Pending | T008 |
-| T010 | Add `--phase-names <list>` flag for descriptive child folder naming | P1 | Pending | T008 |
-| T011 | Implement Phase Documentation Map injection into parent spec.md | P0 | Pending | T006, T008 |
-| T012 | Implement parent back-reference injection into child spec.md | P0 | Pending | T007, T008 |
-
-## Phase 3: Commands & Router
-
-| ID | Task | Priority | Status | Dependencies |
-|----|------|----------|--------|-------------|
-| T013 | Add PHASE intent to SKILL.md `INTENT_SIGNALS` dict | P0 | Pending | None |
-| T014 | Add PHASE → `phase_definitions.md` to SKILL.md `RESOURCE_MAP` | P0 | Pending | T013 |
-| T015 | Add `/spec_kit:phase` → PHASE to SKILL.md `COMMAND_BOOSTS` | P0 | Pending | T013 |
-| T016 | Remove `"phase"` from IMPLEMENT keywords in SKILL.md | P1 | Pending | T013 |
-| T017 | Create `command/spec_kit/phase.md` command entry point | P0 | Pending | None |
-| T018 | Create `assets/spec_kit_phase_auto.yaml` (7-step autonomous workflow) | P0 | Pending | T017 |
-| T019 | Create `assets/spec_kit_phase_confirm.yaml` (7-step interactive workflow) | P1 | Pending | T017 |
-| T020 | Update `/spec_kit:plan` with Gate 3 Option E and `--phase-folder` argument | P1 | Pending | Phase 2 |
-| T021 | Update `/spec_kit:implement` for nested phase path resolution | P1 | Pending | Phase 2 |
-| T022 | Update `/spec_kit:complete` with phase lifecycle validation step | P1 | Pending | Phase 2 |
-| T023 | Update `/spec_kit:resume` with phase folder detection and selection | P1 | Pending | Phase 2 |
-
-## Phase 4: Validation, Docs & Nodes
-
-| ID | Task | Priority | Status | Dependencies |
-|----|------|----------|--------|-------------|
-| T024 | Add `--recursive` flag to `validate.sh` with child folder discovery | P0 | Pending | None |
-| T025 | Implement per-phase validation aggregation and combined exit codes | P0 | Pending | T024 |
-| T026 | Extend JSON output with `"phases": [...]` array | P1 | Pending | T024 |
-| T027 | Create `check-phase-links.sh` validation rule script | P1 | Pending | T024 |
-| T028 | Create 6 test fixtures: flat, 1-phase, 3-phase, mixed levels, empty child, broken links | P1 | Pending | T024-T027 |
-| T029 | Create `references/structure/phase_definitions.md` | P1 | Pending | None |
-| T030 | Update `sub_folder_versioning.md`, `level_specifications.md`, `template_guide.md`, `quick_reference.md`, `validation_rules.md` | P1 | Pending | T029 |
-| T031 | Create `nodes/phase-system.md` graph mode node | P1 | Pending | None |
-| T032 | Update `index.md` MOC with phase-system node link | P1 | Pending | T031 |
+- [x] T001 [P0] Add `determine_phasing()` function to `recommend-level.sh` with 5 phase signal scoring dimensions (`scripts/spec/recommend-level.sh`)
+- [x] T002 [P0] Add `--recommend-phases` CLI flag to include phase scoring in output [B: T001] (`scripts/spec/recommend-level.sh`)
+- [x] T003 [P1] Add `--phase-threshold <N>` CLI flag for threshold override (default 25) [B: T001] (`scripts/spec/recommend-level.sh`)
+- [x] T004 [P0] Extend JSON output with `recommended_phases`, `phase_score`, `phase_reason`, `suggested_phase_count` [B: T001, T002] (`scripts/spec/recommend-level.sh`)
+- [ ] T005 [P1] Create 5 test fixtures: below threshold, at boundary, above threshold, extreme scale, no risk factors [B: T001-T004]
+<!-- /ANCHOR:phase-1 -->
 
 ---
 
-## Dependency Graph
+<!-- ANCHOR:phase-2 -->
+## Phase 2: Templates & Creation
 
-```
-T001 ──→ T002 ──→ T004 ──→ T005
-  │       │
-  └──→ T003
+- [x] T006 [P0] [P] Create `templates/addendum/phase/phase-parent-section.md` (Phase Documentation Map template) (`templates/addendum/phase/phase-parent-section.md`)
+- [x] T007 [P0] [P] Create `templates/addendum/phase/phase-child-header.md` (parent back-reference metadata block) (`templates/addendum/phase/phase-child-header.md`)
+- [x] T008 [P0] Add `--phase` flag to `create.sh` (mutually exclusive with `--subfolder`) [B: T006, T007] (`scripts/spec/create.sh`)
+- [x] T009 [P1] Add `--phases <N>` flag for multi-child creation with auto-numbering [B: T008] (`scripts/spec/create.sh`)
+- [x] T010 [P1] Add `--phase-names <list>` flag for descriptive child folder naming [B: T008] (`scripts/spec/create.sh`)
+- [x] T011 [P0] Implement Phase Documentation Map injection into parent spec.md [B: T006, T008] (`scripts/spec/create.sh`)
+- [x] T012 [P0] Implement parent back-reference injection into child spec.md [B: T007, T008] (`scripts/spec/create.sh`)
+- [ ] T033 [P1] Create 4 test fixtures for Phase 2: single phase, multi-phase, with names, error cases [B: T008-T012] (`tests/fixtures/phase-2/`)
+<!-- /ANCHOR:phase-2 -->
 
-T006 ──→ T008 ──→ T009
-T007 ──→ T008 ──→ T010
-T006 + T008 ──→ T011
-T007 + T008 ──→ T012
+---
 
-T013 ──→ T014, T015, T016
-T017 ──→ T018, T019
-Phase 2 ──→ T020, T021, T022, T023
+<!-- ANCHOR:phase-3 -->
+## Phase 3: Commands & Router
 
-T024 ──→ T025 ──→ T026
-T024 ──→ T027 ──→ T028
-T029 ──→ T030
-T031 ──→ T032
-```
+- [x] T013 [P0] [P] Add PHASE intent to SKILL.md `INTENT_SIGNALS` dict (`SKILL.md`)
+- [x] T014 [P0] Add PHASE → `phase_definitions.md` to SKILL.md `RESOURCE_MAP` [B: T013] (`SKILL.md`)
+- [x] T015 [P0] Add `/spec_kit:phase` → PHASE to SKILL.md `COMMAND_BOOSTS` [B: T013] (`SKILL.md`)
+- [x] T016 [P1] Remove `"phase"` from IMPLEMENT keywords in SKILL.md [B: T013] (`SKILL.md`)
+- [x] T017 [P0] [P] Create `command/spec_kit/phase.md` command entry point (`command/spec_kit/phase.md`)
+- [x] T018 [P0] Create `assets/spec_kit_phase_auto.yaml` (7-step autonomous workflow) [B: T017] (`assets/spec_kit_phase_auto.yaml`)
+- [x] T019 [P1] Create `assets/spec_kit_phase_confirm.yaml` (7-step interactive workflow) [B: T017] (`assets/spec_kit_phase_confirm.yaml`)
+- [x] T020 [P1] Update `/spec_kit:plan` with Gate 3 Option E and `--phase-folder` argument [B: Phase 2] (`command/spec_kit/plan.md`)
+- [x] T021 [P1] Update `/spec_kit:implement` for nested phase path resolution [B: Phase 2] (`command/spec_kit/implement.md`)
+- [x] T022 [P1] Update `/spec_kit:complete` with phase lifecycle validation step [B: Phase 2] (`command/spec_kit/complete.md`)
+- [x] T023 [P1] Update `/spec_kit:resume` with phase folder detection and selection [B: Phase 2] (`command/spec_kit/resume.md`)
+<!-- /ANCHOR:phase-3 -->
+
+---
+
+<!-- ANCHOR:phase-4 -->
+## Phase 4: Validation, Docs & Nodes
+
+- [x] T024 [P0] [P] Add `--recursive` flag to `validate.sh` with child folder discovery (`scripts/spec/validate.sh`)
+- [x] T025 [P0] Implement per-phase validation aggregation and combined exit codes [B: T024] (`scripts/spec/validate.sh`)
+- [x] T026 [P1] Extend JSON output with `"phases": [...]` array [B: T024] (`scripts/spec/validate.sh`)
+- [x] T027 [P1] Create `check-phase-links.sh` validation rule script [B: T024] (`scripts/spec/check-phase-links.sh`)
+- [ ] T028 [P1] Create 6 test fixtures: flat, 1-phase, 3-phase, mixed levels, empty child, broken links [B: T024-T027]
+- [x] T029 [P1] [P] Create `references/structure/phase_definitions.md` (`references/structure/phase_definitions.md`)
+- [x] T030 [P1] Update `sub_folder_versioning.md`, `level_specifications.md`, `template_guide.md`, `quick_reference.md`, `validation_rules.md` [B: T029]
+- [x] T031 [P1] [P] Create `nodes/phase-system.md` graph mode node (`nodes/phase-system.md`)
+- [x] T032 [P1] Update `index.md` MOC with phase-system node link [B: T031] (`index.md`)
+- [x] T034 [P1] Update `CLAUDE.md` Gate 3 with Option E (phase folder) [B: T017, T020] (`CLAUDE.md`)
+<!-- /ANCHOR:phase-4 -->
+
+---
+
+<!-- ANCHOR:completion -->
+## Completion Criteria
+
+- [ ] All tasks marked `[x]`
+- [ ] No `[B]` blocked tasks remaining
+- [ ] Manual verification passed
+- [ ] `validate.sh --recursive` passes on spec folder
+- [ ] All 4 phases delivered and integrated
+<!-- /ANCHOR:completion -->
+
+---
+
+<!-- ANCHOR:cross-refs -->
+## Cross-References
+
+- **Specification**: See `spec.md`
+- **Plan**: See `plan.md`
+- **Dependency Graph**:
+  ```
+  T001 ──→ T002 ──→ T004 ──→ T005
+    │       │
+    └──→ T003
+
+  T006 ──→ T008 ──→ T009
+  T007 ──→ T008 ──→ T010
+  T006 + T008 ──→ T011
+  T007 + T008 ──→ T012
+  T008-T012 ──→ T033
+
+  T013 ──→ T014, T015, T016
+  T017 ──→ T018, T019
+  Phase 2 ──→ T020, T021, T022, T023
+
+  T024 ──→ T025 ──→ T026
+  T024 ──→ T027 ──→ T028
+  T029 ──→ T030
+  T031 ──→ T032
+  T017 + T020 ──→ T034
+  ```
+<!-- /ANCHOR:cross-refs -->
+
+---
+
+<!--
+L3+ TEMPLATE (~100 lines)
+- 4 phases: Detection & Scoring, Templates & Creation, Commands & Router, Validation, Docs & Nodes
+- 34 tasks with priority (P0/P1), dependency notation ([B: Txx]), and parallelism ([P]) markers
+- T033: Phase 2 test fixtures (single phase, multi-phase, with names, error cases)
+- T034: CLAUDE.md Gate 3 Option E update
+- Dependency graph preserved in cross-refs
+-->

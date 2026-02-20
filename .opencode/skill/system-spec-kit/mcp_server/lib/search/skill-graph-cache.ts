@@ -4,6 +4,7 @@
 // ---------------------------------------------------------------
 
 import { buildSkillGraph } from '../../../scripts/sgqs/graph-builder';
+
 import type { SkillGraph } from '../../../scripts/sgqs/types';
 
 // ---------------------------------------------------------------

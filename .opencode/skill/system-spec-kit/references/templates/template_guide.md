@@ -1086,8 +1086,55 @@ See each sub-folder's README.md for details.
 ---
 
 <!-- /ANCHOR:using-sub-folders-for-organization -->
+<!-- ANCHOR:phase-organization -->
+## 11. PHASE ORGANIZATION
+
+### Phase Template Addendums
+
+When a specification is decomposed into phases, templates are applied at two levels:
+
+**Parent folder:** Uses standard templates for its declared level, plus a Phase Documentation Map section added to `spec.md`. This map tracks all child phases, their status, and their descriptions.
+
+**Child phase folders:** Each child uses standard templates for its declared level (typically matching the parent level). Child `spec.md` files include an additional metadata field (`parent:`) that back-references the parent folder.
+
+### Phase-Specific Template Additions
+
+| Template | Phase Addition | Location |
+|----------|---------------|----------|
+| `spec.md` (parent) | Phase Documentation Map table | New section in parent spec |
+| `spec.md` (child) | `parent:` and `phase:` metadata fields | YAML frontmatter or metadata block |
+| `plan.md` (parent) | Phase Dependencies section | Documents cross-phase dependencies |
+
+### Creating Phase Folders
+
+```bash
+# Create phase child folder with templates
+.opencode/skill/system-spec-kit/scripts/spec/create.sh \
+  --phase specs/###-parent-feature \
+  --topic foundation \
+  --level 3 \
+  "Phase 1: Core data models"
+```
+
+### Phase Validation
+
+Validate all phases recursively from the parent:
+
+```bash
+./scripts/spec/validate.sh specs/###-parent-feature/ --recursive
+```
+
+This validates the parent and each child phase folder independently, plus checks cross-references (PHASE_LINKS rule).
+
+### Full Documentation
+
+See [phase_definitions.md](../structure/phase_definitions.md) for complete phase system documentation.
+
+---
+
+<!-- /ANCHOR:phase-organization -->
 <!-- ANCHOR:related-resources -->
-## 11. RELATED RESOURCES
+## 12. RELATED RESOURCES
 
 ### Reference Files
 - [quick_reference.md](../workflows/quick_reference.md) - Commands, checklists, and troubleshooting

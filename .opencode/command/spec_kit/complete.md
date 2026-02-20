@@ -1,6 +1,6 @@
 ---
 description: Full end-to-end SpecKit workflow (14+ steps) - supports :auto, :confirm, :with-research, and :auto-debug modes
-argument-hint: "<feature-description> [:auto|:confirm] [:with-research] [:auto-debug]"
+argument-hint: "<feature-description> [:auto|:confirm] [:with-research] [:auto-debug] [--phase-folder=<path>]"
 allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task
 ---
 
@@ -57,6 +57,14 @@ Run the full 14-step SpecKit workflow: specification, clarification, planning, t
 ```text
 $ARGUMENTS
 ```
+
+### Phase Folder Support
+
+When `--phase-folder=<path>` is provided or spec folder selection includes a phase child:
+- **Option E) Phase folder** — complete a specific phase child (e.g., `specs/NNN-name/001-phase/`)
+- Auto-resolve `spec_path` to the phase child folder; validate path matches `specs/[###]-*/[0-9][0-9][0-9]-*/`
+- Show parent context: "Phase folder: `<path>` (parent: `<parent-folder>`)"
+- **Phase lifecycle validation:** If spec folder is a phase child, verify predecessor phase is complete before proceeding. Check that the previous numbered phase folder (e.g., `001-*` before `002-*`) has a completed `implementation-summary.md` or all tasks marked `[x]` in `tasks.md`.
 
 ---
 

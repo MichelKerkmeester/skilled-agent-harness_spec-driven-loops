@@ -21,7 +21,7 @@
 | **Global Tasks** | G001-G004 complete, G005 awaiting sign-off |
 | **Test Suite** | 159 files, 4,770 tests passed, 0 failed |
 | **Schema Changes** | Zero — v15 SQLite schema unchanged |
-| **Code Review** | 5 Sonnet review agents, workflow-code compliance verified |
+| **Code Review** | 5 Sonnet review agents (R-Wave) + 5 Opus agents (D-Wave), workflows-code--opencode compliance verified |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -42,7 +42,7 @@ Five new production modules and six surgical modifications to existing files tra
 - **PageRank** (`pagerank.ts`): Iterative authority scoring with convergence detection. Damping factor 0.85, 10 iterations, early termination at delta < 1e-6. Created and tested but not yet wired into the ingest pipeline.
 - **Structure-Aware Chunker** (`structure-aware-chunker.ts`): AST-based markdown parsing that keeps code blocks and tables atomic. Created and tested but not yet wired into `generate-context.js`.
 
-**Pipeline activations:** Graph channel default changed to `true`. Intent-weighted adaptive fusion replaced hardcoded weight vectors. Co-activation spreading now runs post-RRF on the top-5 result IDs. Cross-encoder reranking enabled by default. All features use the opt-out flag pattern: missing environment variables activate features, explicit `'false'` disables them.
+**Pipeline activations:** All features enabled by default. Intent-weighted adaptive fusion replaced hardcoded weight vectors. Co-activation spreading now runs post-RRF on the top-5 result IDs. Cross-encoder reranking enabled by default. All features use the opt-out flag pattern: missing environment variables activate features, explicit `'false'` disables them.
 
 > Full details: `001-system-speckit-hybrid-rag-fusion/implementation-summary.md`
 
@@ -65,7 +65,7 @@ The missing link between Workstreams A and B. Before this work, `hybridSearch.in
 **Core infrastructure:**
 - **Unified Graph Search Function** (`graph-search-fn.ts`): `createUnifiedGraphSearchFn()` queries both graph sources in a single synchronous call. Results merge with intent-aware weighting: decision/cause queries favor causal edges (0.8), spec/procedure queries favor SGQS (0.8), everything else gets balanced 0.5/0.5 routing. Namespace-prefixed IDs (`mem:{id}`, `skill:{path}`) prevent collisions.
 - **SkillGraphCacheManager** (`skill-graph-cache.ts`): 5-minute TTL cache with single-flight async guard. Brings repeat graph lookups from ~100-150ms to under 1ms.
-- **Feature Flag System** (`graph-flags.ts`): Three independent flags (`SPECKIT_GRAPH_UNIFIED`, `SPECKIT_GRAPH_MMR`, `SPECKIT_GRAPH_AUTHORITY`). All default to `false` with strict `=== 'true'` checking.
+- **Feature Flag System** (`graph-flags.ts`): Three independent flags (`SPECKIT_GRAPH_UNIFIED`, `SPECKIT_GRAPH_MMR`, `SPECKIT_GRAPH_AUTHORITY`). All default to enabled via rollout-policy (`isFeatureEnabled()`). Set `SPECKIT_GRAPH_*=false` to disable.
 
 **Seven Intelligence Amplification Patterns:** Graph-Guided MMR (BFS shortest-path augments cosine diversity), Structural Authority Propagation (type multipliers: Index 3.0x, Entrypoint 2.5x, Asset 0.3x), Semantic Bridge Discovery (wikilinks as synonym dictionaries), Intent-to-Subgraph Routing, Evidence Gap Prevention (graph node coverage checks), Context Budget Optimization (greedy token-budget-aware selection), and Temporal-Structural Coherence (FSRS stability times graph centrality).
 
@@ -85,7 +85,7 @@ Implementation proceeded across three workstreams using wave-based parallel orch
 
 **Workstream C** implemented in 4 phases across 22 tasks with wave-based delegation. Phase 0+: core infrastructure and call-site wiring. Phase 1+: metrics, intent routing, semantic bridges. Phase 2+: all 7 intelligence amplification patterns. Phase 3: full test coverage. Four sync checkpoints (SYNC-001 through SYNC-004) tracked test suite growth from 4,554 to 4,725 tests.
 
-**Code quality** was verified against the `workflows-code--opencode` TypeScript checklist by 5 Sonnet review agents. Every production module has JSDoc on all exported functions, named constants with no magic numbers, proper error handling with edge case guards, and no `@ts-nocheck` directives.
+**Code quality** was verified in two passes. First, 5 Sonnet review agents (R-Wave) fixed falsy-zero `||` bugs, dead code, unsafe type casts, missing box headers, and `@ts-nocheck` removal from 2 test files. Second, 5 Opus agents (D-Wave) performed a thorough compliance audit of all 43 files (17 source + 26 test) against the full `workflows-code--opencode` TypeScript checklist: TSDoc on all exported functions, magic numbers extracted to named constants, non-null assertions justified, `catch (error: unknown)` with narrowing, import order standardized, 11 `@ts-nocheck` directives removed from test files, and 30+ `any` occurrences in test files replaced with typed alternatives. Zero source files contain `any` in the final state.
 
 The zero schema migration constraint (spec section 3.1) was maintained throughout all three workstreams. All changes are TypeScript orchestration on top of the existing v15 SQLite schema. No new tables, no new columns, no data migrations, no external dependencies added.
 <!-- /ANCHOR:how-delivered -->
@@ -98,8 +98,7 @@ The zero schema migration constraint (spec section 3.1) was maintained throughou
 | Decision | Why |
 |----------|-----|
 | Three independent workstreams with a root coordination spec | Complexity score 92/100 justified Level 3+ governance. Separating RAG fusion, skill graphs, and their integration allowed parallel execution without cross-workstream file conflicts. |
-| Opt-out flag pattern (disabled by flag, not enabled by flag) for Workstream A features | Missing env vars in local dev should activate features, not silently disable them. Explicit `'false'` disables; undefined enables. Prevents accidental degradation from incomplete environment setup. |
-| Strict opt-in `=== 'true'` flag pattern for Workstream C features | Workstream C connects two previously independent systems. Strict opt-in prevents accidental activation from typos and allows incremental rollout. |
+| Opt-out flag pattern for all features (A and C) | Missing env vars in local dev should activate features, not silently disable them. Explicit `'false'` disables; undefined enables. Prevents accidental degradation from incomplete environment setup. All features now use `isFeatureEnabled()` from rollout-policy for consistent behavior. |
 | In-process SGQS over external Neo4j | Zero external dependency constraint. Existing SQLite `causal_edges` table plus in-memory SGQS from filesystem provides sufficient graph data without operational overhead. |
 | Rule-based query expansion over LLM-based expansion | An LLM call inside the MCP server at read-time would cause cascading timeouts (LLM-in-MCP paradox). Static vocabulary maps are deterministic, sub-millisecond, and have zero failure modes. |
 | Virtual Graph Adapter (no real graph database) | Zero schema migrations, zero external dependencies. Both graph sources (causal edges from SQLite, skill graph from filesystem) are queried through a single adapter function. |
@@ -153,7 +152,18 @@ The zero schema migration constraint (spec section 3.1) was maintained throughou
 | Regression (flag-off) | PASS — 18 tests confirm graph channel fully bypassed when flags disabled |
 | Integration (flag-on) | PASS — 23 tests with mock graphSearchFn wired end-to-end |
 | Component benchmarks | PASS — all under 15ms budget per component |
-| Feature flag isolation | PASS — all 3 flags default false, no cross-flag leakage |
+| Feature flag isolation | PASS — all 3 flags default enabled via rollout-policy, no cross-flag leakage |
+
+### D-Wave Code Quality Review
+
+| Check | Result |
+|-------|--------|
+| Source files: zero `any` | PASS — 0 type-level `any` across 17 source files |
+| TSDoc on all exports | PASS — 35+ exported functions documented |
+| Non-null assertions justified | PASS — all `!` have preceding justification comment |
+| Magic numbers extracted | PASS — 12+ constants extracted to named UPPER_SNAKE values |
+| `@ts-nocheck` in test files | 11 removed, 4 kept with justification comments |
+| `any` in test files | 30+ `any` replaced with typed alternatives |
 
 ### Root Checklist Summary
 
@@ -162,6 +172,8 @@ The zero schema migration constraint (spec section 3.1) was maintained throughou
 | P0 | 10 | 10 |
 | P1 | 8 | 8 |
 | P2 | 3 | 3 |
+
+Detailed run notes are captured in `specs/003-system-spec-kit/138-hybrid-rag-fusion/test-results.md`.
 <!-- /ANCHOR:verification -->
 
 ---
@@ -188,15 +200,15 @@ The zero schema migration constraint (spec section 3.1) was maintained throughou
 
 The system is production-ready with the following caveats:
 
-1. **Workstream A features are active by default.** The opt-out flag pattern means all RAG fusion capabilities (adaptive fusion, MMR, evidence gap detection, co-activation, cross-encoder reranking) are enabled on any deployment with undefined environment variables. Set `SPECKIT_MMR_DISABLED=true` or similar flags to disable individual features.
+1. **All features are active by default.** All 7 feature flags (RRF, Causal Boost, Adaptive Fusion, Session Boost, Graph Unified, Graph MMR, Graph Authority) default to enabled via `isFeatureEnabled()` from rollout-policy. Missing environment variables activate features. Set `SPECKIT_<FEATURE>=false` to disable any individual feature.
 
-2. **Workstream C features require explicit opt-in.** Set `SPECKIT_GRAPH_UNIFIED=true` to activate the unified graph channel. `SPECKIT_GRAPH_MMR=true` and `SPECKIT_GRAPH_AUTHORITY=true` are independent additional flags. This two-tier approach (A defaults on, C defaults off) reflects the maturity difference: Workstream A activates existing tested infrastructure, while Workstream C connects two previously independent systems.
+2. **All P0 and P1 checklist items verified.** 10/10 P0 hard blockers complete. 8/8 P1 required items complete. 3/3 P2 optional items complete.
 
-3. **All P0 and P1 checklist items verified.** 10/10 P0 hard blockers complete. 8/8 P1 required items complete. 3/3 P2 optional items complete.
+3. **Test coverage is comprehensive.** 159 test files with 4,770 passing tests and 0 failures provide strong regression protection. Each workstream maintains independent test suites that were validated at sync checkpoints throughout delivery.
 
-4. **Test coverage is comprehensive.** 159 test files with 4,770 passing tests and 0 failures provide strong regression protection. Each workstream maintains independent test suites that were validated at sync checkpoints throughout delivery.
+4. **Rollback is instant.** Set any `SPECKIT_<FEATURE>=false` to disable individual features. No data migrations to reverse.
 
-5. **Rollback is instant.** Workstream A: set any `SPECKIT_*_DISABLED=true` flag and restart. Workstream C: unset `SPECKIT_GRAPH_UNIFIED` (or set to any non-`'true'` value) and restart. No data migrations to reverse.
+5. **Code quality verified.** Two review waves (R-Wave Sonnet + D-Wave Opus) audited all 43 files against `workflows-code--opencode` TypeScript standards. Zero `any` in source files. All non-null assertions justified. All exported functions have TSDoc and explicit return types.
 <!-- /ANCHOR:production-readiness -->
 
 ---
@@ -215,7 +227,7 @@ The system is production-ready with the following caveats:
 | `scripts/lib/structure-aware-chunker.ts` | A | AST-aware markdown chunking (not yet wired) |
 | `mcp_server/lib/search/graph-search-fn.ts` | C | Unified graph search: causal + SGQS + authority |
 | `mcp_server/lib/search/skill-graph-cache.ts` | C | SkillGraphCacheManager singleton, 5-min TTL |
-| `mcp_server/lib/search/graph-flags.ts` | C | 3 feature flags, strict opt-in |
+| `mcp_server/lib/search/graph-flags.ts` | C | 3 feature flags, enabled by default via rollout-policy |
 | `mcp_server/lib/search/context-budget.ts` | C | Token-budget-aware result selection |
 | `mcp_server/lib/search/fsrs.ts` | C | Temporal-structural coherence weighting |
 | `skill/*/nodes/*.md` (72 files across 9 skills) | B | Decomposed skill graph node files |

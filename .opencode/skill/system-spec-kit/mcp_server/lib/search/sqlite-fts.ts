@@ -5,8 +5,9 @@
 // testing and future delegation.
 // ---------------------------------------------------------------
 
-import type Database from 'better-sqlite3';
 import { sanitizeFTS5Query } from './bm25-index';
+
+import type Database from 'better-sqlite3';
 
 /* ---------------------------------------------------------------
    1. CONSTANTS

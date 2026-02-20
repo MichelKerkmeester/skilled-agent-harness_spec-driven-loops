@@ -1,11 +1,10 @@
-// @ts-nocheck
 // ---------------------------------------------------------------
 // TEST: Adaptive Fusion (C136-10)
 // 15 tests: weight profiles, sum<=1, deterministic output,
 // flag ON/OFF, dark-run, degraded contract, fallback, intent impact
 // ---------------------------------------------------------------
 
-import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import {
   getAdaptiveWeights,
   adaptiveFuse,
@@ -96,7 +95,7 @@ describe('C136-10 Adaptive Fusion', () => {
   });
 
   it('T5: returns default weights for unknown intent', () => {
-    const w = getAdaptiveWeights('unknown_intent_xyz' as any);
+    const w = getAdaptiveWeights('unknown_intent_xyz' as string);
     expect(w.semanticWeight).toBe(DEFAULT_WEIGHTS.semanticWeight);
     expect(w.keywordWeight).toBe(DEFAULT_WEIGHTS.keywordWeight);
     expect(w.recencyWeight).toBe(DEFAULT_WEIGHTS.recencyWeight);
@@ -278,7 +277,7 @@ describe('C136-10 Adaptive Fusion', () => {
     it('C138-T4: all 7 intent types produce valid weight profiles', () => {
       const intents = ['understand', 'find_spec', 'find_decision', 'fix_bug', 'add_feature', 'refactor', 'debug'];
       for (const intent of intents) {
-        const w = getAdaptiveWeights(intent as any);
+        const w = getAdaptiveWeights(intent as string);
         const sum = w.semanticWeight + w.keywordWeight + w.recencyWeight;
         expect(sum, `${intent} weights sum to ${sum}`).toBeLessThanOrEqual(1.0 + 1e-9);
         expect(sum).toBeGreaterThan(0);

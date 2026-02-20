@@ -295,7 +295,7 @@ describe('Prediction Error Gate Module', () => {
         { id: 3, similarity: 75 },
       ]);
       expect(filtered).toHaveLength(2);
-      expect(filtered.every((c: any) => c.similarity >= 50)).toBe(true);
+      expect(filtered.every((c: unknown) => (c as { similarity: number }).similarity >= 50)).toBe(true);
     });
 
     it('T149: filterRelevantCandidates sorted desc', () => {
@@ -342,7 +342,10 @@ describe('Prediction Error Gate Module', () => {
     it('T154: CONTRADICTION_PATTERNS populated', () => {
       expect(Array.isArray(peGate.CONTRADICTION_PATTERNS)).toBe(true);
       expect(peGate.CONTRADICTION_PATTERNS.length).toBeGreaterThan(0);
-      const hasRequired = peGate.CONTRADICTION_PATTERNS.every((p: any) => p.pattern && p.type && p.description);
+      type PatternEntry = { pattern: unknown; type: unknown; description: unknown };
+      const hasRequired = peGate.CONTRADICTION_PATTERNS.every(
+        (p: unknown) => (p as PatternEntry).pattern && (p as PatternEntry).type && (p as PatternEntry).description
+      );
       expect(hasRequired).toBe(true);
     });
   });

@@ -506,8 +506,50 @@ node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js spe
 ---
 
 <!-- /ANCHOR:context-save-handover -->
+<!-- ANCHOR:phase-workflow-shortcuts -->
+## 16. PHASE WORKFLOW SHORTCUTS
+
+### Phase Commands
+
+| Command | Description |
+|---------|-------------|
+| `/spec_kit:phase` | Trigger phase decomposition assessment for current spec |
+| `create.sh --phase <parent> --topic <name>` | Create a new phase child folder under a parent spec |
+| `validate.sh <parent> --recursive` | Validate parent and all child phase folders |
+
+### Phase Quick Reference
+
+**Detection:** Complexity score >= 25 AND level >= 3
+
+**Scoring dimensions:** Architectural (10) + Files>15 (10) + LOC>800 (10) + Risk>=2 (10) + Extreme scale (10)
+
+**Suggested phase counts:**
+- Score 25-34: 2 phases
+- Score 35-44: 3 phases
+- Score 45+: 4 phases
+
+### Phase Folder Pattern
+
+```
+specs/###-parent/
+├── spec.md           # Phase Documentation Map
+├── 001-phase-one/    # Independent child spec folder
+├── 002-phase-two/
+└── 003-phase-three/
+```
+
+### Phase vs Version Sub-Folders
+
+- **Phases:** Parallel decomposition of different work streams
+- **Versions:** Sequential iterations of the same work
+
+**Full documentation:** See [phase_definitions.md](../structure/phase_definitions.md)
+
+---
+
+<!-- /ANCHOR:phase-workflow-shortcuts -->
 <!-- ANCHOR:agent-critical-rules-progressive-enhancement -->
-## 16. AGENT CRITICAL RULES (Progressive Enhancement)
+## 17. AGENT CRITICAL RULES (Progressive Enhancement)
 
 ### Absolutely Required
 
@@ -543,7 +585,7 @@ node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js spe
 
 <!-- /ANCHOR:agent-critical-rules-progressive-enhancement -->
 <!-- ANCHOR:checklist-verification-protocol-level-2 -->
-## 17. CHECKLIST VERIFICATION PROTOCOL (Level 2+)
+## 18. CHECKLIST VERIFICATION PROTOCOL (Level 2+)
 
 ### When to Use
 
@@ -623,7 +665,7 @@ For each checklist item:
 
 <!-- /ANCHOR:checklist-verification-protocol-level-2 -->
 <!-- ANCHOR:core-principle -->
-## 18. Core Principle
+## 19. Core Principle
 
 **Every file change deserves documentation.**
 
@@ -641,7 +683,7 @@ When in doubt:
 
 <!-- /ANCHOR:core-principle -->
 <!-- ANCHOR:related-resources -->
-## 19. RELATED RESOURCES
+## 20. RELATED RESOURCES
 
 ### Reference Files
 - [template_guide.md](../templates/template_guide.md) - Template selection, adaptation, and quality standards

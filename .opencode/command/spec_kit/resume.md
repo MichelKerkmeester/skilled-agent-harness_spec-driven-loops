@@ -1,6 +1,6 @@
 ---
 description: Resume work on an existing spec folder - loads context, shows progress, and continues from last state
-argument-hint: "[spec-folder-path] [:auto|:confirm]"
+argument-hint: "[spec-folder-path] [:auto|:confirm] [--phase-folder=<path>]"
 allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task, memory_context, memory_search, memory_match_triggers, memory_list, memory_stats, memory_delete, memory_update, memory_validate, memory_index_scan, memory_health, checkpoint_create, checkpoint_list, checkpoint_restore, checkpoint_delete
 ---
 
@@ -55,6 +55,17 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    - Found → spec_path = extracted, detection_method = "recent"
    - Not found → detection_method = "none" (include Q0)
 
+3b. CHECK --phase-folder flag OR detect phase parent:
+   - IF --phase-folder=<path> provided → auto-resolve spec_path to that child folder
+     Set spec_path = <path>, detection_method = "phase-folder"
+     Validate path matches pattern: specs/[###]-*/[0-9][0-9][0-9]-*/
+   - IF spec_path is a parent phase folder (contains numbered child folders like 001-*, 002-*):
+     List child phases with completion status:
+       $ ls -d [spec_path]/[0-9][0-9][0-9]-*/ 2>/dev/null
+     For each child: check tasks.md completion %, show status (not started / in progress / complete)
+     Present phase selection to user so they can choose which phase to resume
+   - ELSE → continue normally
+
 4. Check for "CONTINUATION - Attempt" handoff pattern in recent messages:
    - Detected → continuation_detected = TRUE, parse Last/Next
    - Not detected → continuation_detected = FALSE
@@ -76,6 +87,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    Q0. Spec Folder (if not detected/provided):
      No active session detected. Available spec folders: [list]
      A) List and select  B) Start new with /spec_kit:complete  C) Cancel
+     E) Phase folder — resume a specific phase child (e.g., specs/NNN-name/001-phase/)
 
    Q1. Confirm Detected Session (if auto-detected):
      Detected: [spec_path] (last activity: [date])

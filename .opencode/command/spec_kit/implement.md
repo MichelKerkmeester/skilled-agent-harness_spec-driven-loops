@@ -1,6 +1,6 @@
 ---
 description: Implementation workflow (9 steps) - execute pre-planned work. Requires existing plan.md. Supports :auto and :confirm modes
-argument-hint: "<spec-folder> [:auto|:confirm]"
+argument-hint: "<spec-folder> [:auto|:confirm] [--phase-folder=<path>]"
 allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task, memory_context, memory_search
 ---
 
@@ -48,6 +48,15 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    - IF has path -> spec_folder_input = $ARGUMENTS
    - IF empty -> include Q0 with available folders
 
+2b. CHECK --phase-folder flag OR auto-detect phase child:
+   - IF --phase-folder=<path> provided → auto-resolve spec_path to that child folder
+     Set spec_path = <path>, omit Q0/Q1
+     Validate path matches pattern: specs/[###]-*/[0-9][0-9][0-9]-*/
+   - IF spec_folder_input path contains /[0-9][0-9][0-9]-*/ → auto-detect as phase child
+     Show parent context: "Phase child detected: <path> (parent: <parent-folder>)"
+     Load parent spec.md for cross-reference context
+   - ELSE → continue normally
+
 3. Search for available spec folders with plan.md:
    $ ls -d specs/*/ 2>/dev/null | tail -10
    Check each for: spec.md, plan.md (required), checklist.md (optional)
@@ -68,6 +77,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    Q0. Spec Folder (if not provided):
       Available folders with plan.md: [list with status]
       Enter folder path or number
+      E) Phase folder — target a specific phase child (e.g., specs/NNN-name/001-phase/)
 
    Q1. Confirm Spec Folder (if path provided):
       Folder: [path] | spec.md [Y/N] | plan.md [Y/N] | checklist.md [Y/N/optional]

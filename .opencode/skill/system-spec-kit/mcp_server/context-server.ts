@@ -116,6 +116,18 @@ type AfterToolCallback = (tool: string, callId: string, result: unknown) => Prom
 
 const afterToolCallbacks: Array<AfterToolCallback> = [];
 
+/** Timeout (ms) for waiting on embedding model readiness during startup scan. */
+const EMBEDDING_MODEL_TIMEOUT_MS = 30_000;
+
+/** Timeout (ms) for API key validation during startup. */
+const API_KEY_VALIDATION_TIMEOUT_MS = 5_000;
+
+/** Short delay (ms) before process.exit to allow stderr to flush. */
+const EXIT_FLUSH_DELAY_MS = 100;
+
+/** Rough estimate: 4 characters per token for token budget truncation. */
+const CHARS_PER_TOKEN_ESTIMATE = 4;
+
 let generatedCallIdCounter = 0;
 
 function resolveToolCallId(request: { id?: unknown }): string {
@@ -142,6 +154,7 @@ function runAfterToolCallbacks(tool: string, callId: string, result: unknown): v
   });
 }
 
+/** Register a callback to be invoked asynchronously after each tool call completes. */
 export function registerAfterToolCallback(fn: AfterToolCallback): void {
   afterToolCallbacks.push(fn);
 }
@@ -227,8 +240,8 @@ server.setRequestHandler(CallToolRequestSchema, async (request, _extra: unknown)
               while (innerResults.length > 1) {
                 const removedItem = innerResults.pop();
                 const removedSize = JSON.stringify(removedItem).length;
-                // Rough estimate: 4 chars ≈ 1 token
-                envelope.meta.tokenCount -= Math.ceil(removedSize / 4);
+                // Rough estimate: CHARS_PER_TOKEN_ESTIMATE chars ≈ 1 token
+                envelope.meta.tokenCount -= Math.ceil(removedSize / CHARS_PER_TOKEN_ESTIMATE);
                 if (envelope.meta.tokenCount <= budget) break;
               }
               if (envelope.data.count !== undefined) {
@@ -326,7 +339,7 @@ async function startupScan(basePath: string): Promise<void> {
   startupScanInProgress = true;
   try {
     console.error('[context-server] Waiting for embedding model to be ready...');
-    const modelReady: boolean = await waitForEmbeddingModel(30000);
+    const modelReady: boolean = await waitForEmbeddingModel(EMBEDDING_MODEL_TIMEOUT_MS);
 
     if (!modelReady) {
       console.error('[context-server] Startup scan skipped: embedding model not ready');
@@ -433,7 +446,8 @@ process.on('uncaughtException', (err: Error) => {
 process.on('unhandledRejection', (reason: unknown, promise: Promise<unknown>) => {
   console.error('[context-server] Unhandled rejection at:', promise, 'reason:', reason);
   // P1-10 FIX: Exit after flush to avoid running in undefined state
-  setTimeout(() => process.exit(1), 100);
+  // WHY: Short delay allows pending stderr writes to flush before exit
+  setTimeout(() => process.exit(1), EXIT_FLUSH_DELAY_MS);
 });
 
 /* ---------------------------------------------------------------
@@ -460,7 +474,7 @@ async function main(): Promise<void> {
   if (process.env.SPECKIT_SKIP_API_VALIDATION !== 'true') {
     console.error('[context-server] Validating embedding API key...');
     try {
-      const validation: ApiKeyValidation = await embeddings.validateApiKey({ timeout: 5000 });
+      const validation: ApiKeyValidation = await embeddings.validateApiKey({ timeout: API_KEY_VALIDATION_TIMEOUT_MS });
 
       if (!validation.valid) {
         console.error('[context-server] ===== API KEY VALIDATION FAILED =====');
@@ -580,8 +594,8 @@ async function main(): Promise<void> {
         const bm25 = bm25Index.getIndex();
         const count = bm25.rebuildFromDatabase(database);
         console.error(`[context-server] BM25 index rebuilt from database: ${count} documents`);
-      } catch (bm25_err: unknown) {
-        const message = bm25_err instanceof Error ? bm25_err.message : String(bm25_err);
+      } catch (bm25Err: unknown) {
+        const message = bm25Err instanceof Error ? bm25Err.message : String(bm25Err);
         console.warn('[context-server] BM25 index rebuild failed:', message);
       }
     }
@@ -593,16 +607,16 @@ async function main(): Promise<void> {
       coActivation.init(database);
       console.error('[context-server] Cognitive memory modules initialized');
       console.error(`[context-server] Working memory: ${workingMemory.isEnabled()}, Co-activation: ${coActivation.isEnabled()}`);
-    } catch (cognitive_err: unknown) {
-      const message = cognitive_err instanceof Error ? cognitive_err.message : String(cognitive_err);
+    } catch (cognitiveErr: unknown) {
+      const message = cognitiveErr instanceof Error ? cognitiveErr.message : String(cognitiveErr);
       console.warn('[context-server] Cognitive modules partially failed:', message);
     }
 
     try {
       initExtractionAdapter(database, registerAfterToolCallback);
       console.error('[context-server] Extraction adapter initialized');
-    } catch (extraction_err: unknown) {
-      const message = extraction_err instanceof Error ? extraction_err.message : String(extraction_err);
+    } catch (extractionErr: unknown) {
+      const message = extractionErr instanceof Error ? extractionErr.message : String(extractionErr);
       throw new Error(`[context-server] Extraction adapter startup failed: ${message}`);
     }
 
@@ -616,8 +630,8 @@ async function main(): Promise<void> {
       } else {
         console.error(`[context-server] Archival manager initialized (background job: not started)`);
       }
-    } catch (archival_err: unknown) {
-      const message = archival_err instanceof Error ? archival_err.message : String(archival_err);
+    } catch (archivalErr: unknown) {
+      const message = archivalErr instanceof Error ? archivalErr.message : String(archivalErr);
       console.warn('[context-server] Archival manager failed:', message);
     }
 
@@ -633,8 +647,8 @@ async function main(): Promise<void> {
       } else {
         console.error('[context-server] Background retry job already running or disabled');
       }
-    } catch (retry_err: unknown) {
-      const message = retry_err instanceof Error ? retry_err.message : String(retry_err);
+    } catch (retryErr: unknown) {
+      const message = retryErr instanceof Error ? retryErr.message : String(retryErr);
       console.warn('[context-server] Background retry job failed to start:', message);
     }
 
@@ -658,8 +672,8 @@ async function main(): Promise<void> {
       } else {
         console.warn('[context-server] Session manager initialization returned:', sessionResult.error);
       }
-    } catch (session_err: unknown) {
-      const message = session_err instanceof Error ? session_err.message : String(session_err);
+    } catch (sessionErr: unknown) {
+      const message = sessionErr instanceof Error ? sessionErr.message : String(sessionErr);
       console.warn('[context-server] Session manager failed:', message);
     }
   } catch (err: unknown) {

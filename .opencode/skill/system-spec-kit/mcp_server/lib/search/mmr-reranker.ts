@@ -96,6 +96,7 @@ export function computeGraphDistance(
   visited.add(idA);
 
   while (queue.length > 0) {
+    // Non-null safe: loop condition guarantees queue.length > 0 before shift()
     const current = queue.shift()!;
     if (current.depth >= MAX_DIST) continue;
 
@@ -208,6 +209,7 @@ export function applyMMR(
         let sim: number;
         if (useGraphMMR) {
           const cosineSim = computeCosine(pool[i].embedding, sel.embedding);
+          // Non-null safe: useGraphMMR is true only when graphDistanceFn is a function (checked above)
           const dist = graphDistanceFn!(pool[i].id, sel.id);
           const normDist = Math.min(dist, MAX_DIST) / MAX_DIST;
           sim = graphAlpha * cosineSim + (1 - graphAlpha) * (1 - normDist);

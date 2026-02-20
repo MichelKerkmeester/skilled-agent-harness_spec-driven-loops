@@ -445,28 +445,28 @@ describe('C138 Stage: Query Expander Production', () => {
 });
 
 describe('C138 Stage: Feature Flag Guards', () => {
-  it('isGraphUnifiedEnabled defaults to false', async () => {
+  it('isGraphUnifiedEnabled defaults to true (enabled by default)', async () => {
     const { isGraphUnifiedEnabled } = await import('../lib/search/graph-flags');
-    // Without env var, should be false
+    // Without env var, should be true (enabled by default via rollout-policy)
     const original = process.env.SPECKIT_GRAPH_UNIFIED;
     delete process.env.SPECKIT_GRAPH_UNIFIED;
-    expect(isGraphUnifiedEnabled()).toBe(false);
+    expect(isGraphUnifiedEnabled()).toBe(true);
     if (original !== undefined) process.env.SPECKIT_GRAPH_UNIFIED = original;
   });
 
-  it('isGraphMMREnabled defaults to false', async () => {
+  it('isGraphMMREnabled defaults to true (enabled by default)', async () => {
     const { isGraphMMREnabled } = await import('../lib/search/graph-flags');
     const original = process.env.SPECKIT_GRAPH_MMR;
     delete process.env.SPECKIT_GRAPH_MMR;
-    expect(isGraphMMREnabled()).toBe(false);
+    expect(isGraphMMREnabled()).toBe(true);
     if (original !== undefined) process.env.SPECKIT_GRAPH_MMR = original;
   });
 
-  it('isGraphAuthorityEnabled defaults to false', async () => {
+  it('isGraphAuthorityEnabled defaults to true (enabled by default)', async () => {
     const { isGraphAuthorityEnabled } = await import('../lib/search/graph-flags');
     const original = process.env.SPECKIT_GRAPH_AUTHORITY;
     delete process.env.SPECKIT_GRAPH_AUTHORITY;
-    expect(isGraphAuthorityEnabled()).toBe(false);
+    expect(isGraphAuthorityEnabled()).toBe(true);
     if (original !== undefined) process.env.SPECKIT_GRAPH_AUTHORITY = original;
   });
 });
@@ -494,7 +494,7 @@ describe('C138 Regression: Flags OFF Baseline', () => {
   it('predictGraphCoverage returns no-op when SPECKIT_GRAPH_UNIFIED is off', async () => {
     const { predictGraphCoverage } = await import('../lib/search/evidence-gap-detector');
     const original = process.env.SPECKIT_GRAPH_UNIFIED;
-    delete process.env.SPECKIT_GRAPH_UNIFIED;
+    process.env.SPECKIT_GRAPH_UNIFIED = 'false';
 
     const mockGraph = {
       nodes: new Map([['node1', { id: 'node1', labels: ['test'], properties: {} }]]),
@@ -506,5 +506,6 @@ describe('C138 Regression: Flags OFF Baseline', () => {
     expect(result.connectedNodes).toBe(0);
 
     if (original !== undefined) process.env.SPECKIT_GRAPH_UNIFIED = original;
+    else delete process.env.SPECKIT_GRAPH_UNIFIED;
   });
 });

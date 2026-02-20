@@ -1,4 +1,3 @@
-// @ts-nocheck
 // ---------------------------------------------------------------
 // TEST: CAUSAL BOOST (T038-T044)
 // ---------------------------------------------------------------
@@ -6,6 +5,7 @@
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import Database from 'better-sqlite3';
 import * as causalBoost from '../lib/search/causal-boost';
+import type { RankedSearchResult } from '../lib/search/causal-boost';
 
 function createDb() {
   const db = new Database(':memory:');
@@ -82,7 +82,7 @@ describe('T038-T044 causal boost', () => {
       { id: 2, score: 0.6, sessionBoost: 0.1 },
     ];
 
-    const { results, metadata } = causalBoost.applyCausalBoost(baseResults as any);
+    const { results, metadata } = causalBoost.applyCausalBoost(baseResults as unknown as RankedSearchResult[]);
     const idList = results.map((item) => item.id);
 
     expect(metadata.applied).toBe(true);

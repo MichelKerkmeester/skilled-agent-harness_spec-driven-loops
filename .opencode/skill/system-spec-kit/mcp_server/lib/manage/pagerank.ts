@@ -88,6 +88,7 @@ export function computePageRank(
     if (!inLinks.has(node.id)) inLinks.set(node.id, []);
     for (const targetId of node.outLinks) {
       if (!inLinks.has(targetId)) inLinks.set(targetId, []);
+      // WHY: inLinks.set(targetId, []) on the preceding line guarantees the key exists
       inLinks.get(targetId)!.push(node.id);
     }
   }

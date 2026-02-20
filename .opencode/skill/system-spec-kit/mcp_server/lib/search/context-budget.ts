@@ -10,6 +10,9 @@
 /** Default token budget when none is supplied by the caller. */
 const DEFAULT_BUDGET_TOKENS = 2000;
 
+/** Approximate number of characters per token (widely accepted heuristic). */
+const CHARS_PER_TOKEN = 4;
+
 /**
  * Threshold: a result from an already-seen graph region is only
  * preferred over an unseen-region result when the seen-region result's
@@ -59,7 +62,7 @@ export interface BudgetResult {
  */
 export function estimateTokens(content: string | undefined): number {
   if (!content || content.length === 0) return 0;
-  return Math.ceil(content.length / 4);
+  return Math.ceil(content.length / CHARS_PER_TOKEN);
 }
 
 /* ---------------------------------------------------------------

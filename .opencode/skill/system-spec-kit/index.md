@@ -21,6 +21,7 @@ Orchestrates mandatory spec folder creation for all conversations involving file
 - [[nodes/validation-workflow|Validation Workflow]] — Using `validate.sh` to ensure documentation completeness.
 
 ### Spec Folder Operations
+- [[nodes/phase-system|Phase System]] — Phase decomposition for complex multi-session specifications.
 - [[nodes/folder-naming-versioning|Folder Naming & Versioning]] — Naming conventions and sub-folder versioning for iterative work.
 - [[nodes/checklist-verification|Checklist Verification]] — Using the checklist as an active, evidence-based verification tool for Level 2+ tasks.
 

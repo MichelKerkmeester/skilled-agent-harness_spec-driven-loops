@@ -13,8 +13,8 @@ import * as embeddings from '../lib/providers/embeddings';
 import * as checkpointsLib from '../lib/storage/checkpoints';
 import * as accessTracker from '../lib/storage/access-tracker';
 import * as hybridSearch from '../lib/search/hybrid-search';
-import { init as init_db_state, setEmbeddingModelReady, DEFAULT_BASE_PATH } from '../core';
-import { handleMemoryIndexScan, setEmbeddingModelReady as set_handler_embedding_ready } from '../handlers';
+import { init as initDbState, setEmbeddingModelReady, DEFAULT_BASE_PATH } from '../core';
+import { handleMemoryIndexScan, setEmbeddingModelReady as setHandlerEmbeddingReady } from '../handlers';
 import { createUnifiedGraphSearchFn } from '../lib/search/graph-search-fn';
 import { isGraphUnifiedEnabled } from '../lib/search/graph-flags';
 
@@ -54,7 +54,7 @@ async function reindex(): Promise<void> {
   vectorIndex.initializeDb();
 
   console.log('[2/5] Initializing db-state module...');
-  init_db_state({ vectorIndex, checkpoints: checkpointsLib, accessTracker, hybridSearch });
+  initDbState({ vectorIndex, checkpoints: checkpointsLib, accessTracker, hybridSearch });
 
   console.log('[3/5] Warming up embedding model...');
   try {
@@ -62,7 +62,7 @@ async function reindex(): Promise<void> {
     await embeddings.generateEmbedding('warmup test');
     const elapsed = Date.now() - start;
     setEmbeddingModelReady(true);
-    if (set_handler_embedding_ready) set_handler_embedding_ready(true);
+    if (setHandlerEmbeddingReady) setHandlerEmbeddingReady(true);
     console.log(`    Embedding model ready (${elapsed}ms)`);
 
     const profile = embeddings.getEmbeddingProfile() as EmbeddingProfile | null;

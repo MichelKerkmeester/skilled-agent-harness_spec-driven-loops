@@ -1,4 +1,4 @@
-// @ts-nocheck
+// @ts-nocheck — intentional: tests pass invalid arg types (empty object, wrong field types) to verify runtime input validation
 // ---------------------------------------------------------------
 // TEST: HANDLER MEMORY SEARCH
 // ---------------------------------------------------------------

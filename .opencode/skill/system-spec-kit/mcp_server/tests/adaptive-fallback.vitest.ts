@@ -1,4 +1,3 @@
-// @ts-nocheck
 // ---------------------------------------------------------------
 // TEST: Adaptive Fallback (C138-P0)
 // Two-pass fallback when primary scatter returns 0 results.

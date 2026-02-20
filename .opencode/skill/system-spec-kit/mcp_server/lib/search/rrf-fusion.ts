@@ -20,15 +20,20 @@ const DEFAULT_K = 60;
 const CONVERGENCE_BONUS = 0.10;
 const GRAPH_WEIGHT_BOOST = 1.5;
 
+/** Minimum character length for a query term to be considered for term matching. */
+const MIN_QUERY_TERM_LENGTH = 2;
+
 /* ---------------------------------------------------------------
    2. INTERFACES
    --------------------------------------------------------------- */
 
+/** A single item from a ranked retrieval list, identified by its unique ID. */
 interface RrfItem {
   id: number | string;
   [key: string]: unknown;
 }
 
+/** Result of RRF fusion: an RrfItem augmented with fused score, source tracking, and convergence bonus. */
 interface FusionResult extends RrfItem {
   /**
    * Reciprocal Rank Fusion score. Combines rankings from multiple retrieval
@@ -42,22 +47,26 @@ interface FusionResult extends RrfItem {
   convergenceBonus: number;
 }
 
+/** A ranked result list from a single retrieval source (e.g., vector, BM25, graph). */
 interface RankedList {
   source: string;
   results: RrfItem[];
   weight?: number;
 }
 
+/** Configuration options for multi-list RRF fusion. */
 interface FuseMultiOptions {
   k?: number;
   convergenceBonus?: number;
   graphWeightBoost?: number;
 }
 
+/** Configuration options for advanced score fusion with term matching. */
 interface FuseAdvancedOptions {
   termMatchBonus?: number;
 }
 
+/** A search function descriptor: source label, async retrieval function, and optional weight. */
 interface SearchFunction {
   source: string;
   fn: () => Promise<RrfItem[]>;
@@ -181,7 +190,7 @@ function fuseScoresAdvanced(
   options: FuseAdvancedOptions = {}
 ): Array<FusionResult & { termMatches: number }> {
   const termMatchBonus = options.termMatchBonus || 0.05;
-  const queryTerms = query.toLowerCase().split(/\s+/).filter(t => t.length >= 2);
+  const queryTerms = query.toLowerCase().split(/\s+/).filter(t => t.length >= MIN_QUERY_TERM_LENGTH);
 
   return results.map(r => {
     const termMatches = countOriginalTermMatches(r, queryTerms);

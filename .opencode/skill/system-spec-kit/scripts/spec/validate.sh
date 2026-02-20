@@ -22,7 +22,7 @@ source "${SCRIPT_DIR}/../lib/shell-common.sh"
 
 # State
 FOLDER_PATH="" DETECTED_LEVEL=1 LEVEL_METHOD="inferred" CONFIG_FILE_PATH=""
-JSON_MODE=false STRICT_MODE=false VERBOSE=false QUIET_MODE=false
+JSON_MODE=false STRICT_MODE=false VERBOSE=false QUIET_MODE=false RECURSIVE=false
 ERRORS=0 WARNINGS=0 INFOS=0 RESULTS=""
 
 # Rule execution order (empty = alphabetical)
@@ -69,11 +69,12 @@ OPTIONS:
     --help, -h     Show help     --version, -v  Show version
     --json         JSON output   --strict       Warnings as errors
     --verbose      Detailed      --quiet, -q    Results only
+    --recursive    Validate parent + all [0-9][0-9][0-9]-*/ child phase folders
 
 EXIT CODES: 0=pass, 1=warnings, 2=errors
 
 RULES: FILE_EXISTS, PLACEHOLDER_FILLED, SECTIONS_PRESENT, LEVEL_DECLARED,
-       PRIORITY_TAGS, EVIDENCE_CITED, ANCHORS_VALID
+       PRIORITY_TAGS, EVIDENCE_CITED, ANCHORS_VALID, PHASE_LINKS
 
 LEVELS: 1=spec+plan+tasks+impl-summary*, 2=+checklist, 3=+decision-record
         *impl-summary required after tasks completed
@@ -89,6 +90,7 @@ parse_args() {
             --strict) STRICT_MODE=true; shift ;;
             --verbose) VERBOSE=true; shift ;;
             --quiet|-q) QUIET_MODE=true; shift ;;
+            --recursive) RECURSIVE=true; shift ;;
             -*) echo "ERROR: Unknown option '$1'" >&2; exit 2 ;;
             *) [[ -z "$FOLDER_PATH" ]] && FOLDER_PATH="$1" || { echo "ERROR: Multiple paths" >&2; exit 2; }; shift ;;
         esac
@@ -242,7 +244,7 @@ log_detail() { ! $JSON_MODE && ! $QUIET_MODE && printf "    - %s\n" "$1"; true; 
 get_rule_severity() {
     case "$1" in
         FILE_EXISTS|FILES|PLACEHOLDER_FILLED|PLACEHOLDERS|ANCHORS_VALID|ANCHORS) echo "error" ;;
-        SECTIONS_PRESENT|SECTIONS|PRIORITY_TAGS|EVIDENCE_CITED|EVIDENCE|PRIORITY) echo "warn" ;;
+        SECTIONS_PRESENT|SECTIONS|PRIORITY_TAGS|EVIDENCE_CITED|EVIDENCE|PRIORITY|PHASE_LINKS) echo "warn" ;;
         LEVEL_DECLARED|LEVEL) echo "info" ;;
         *) echo "error" ;;
     esac
@@ -260,6 +262,7 @@ rule_name_to_script() {
         PRIORITY_TAGS) echo "priority-tags" ;;
         EVIDENCE_CITED) echo "evidence" ;;
         ANCHORS_VALID) echo "anchors" ;;
+        PHASE_LINKS) echo "phase-links" ;;
         *) echo "" ;;
     esac
 }
@@ -368,7 +371,95 @@ generate_json() {
     [[ $WARNINGS -gt 0 ]] && $STRICT_MODE && passed="false"
     local cfg="null"; [[ -n "$CONFIG_FILE_PATH" ]] && cfg="\"$(_json_escape "$CONFIG_FILE_PATH")\""
     local folder_escaped="$(_json_escape "$FOLDER_PATH")"
-    echo "{\"version\":\"$VERSION\",\"folder\":\"$folder_escaped\",\"level\":$DETECTED_LEVEL,\"levelMethod\":\"$LEVEL_METHOD\",\"config\":$cfg,\"results\":[$RESULTS],\"summary\":{\"errors\":$ERRORS,\"warnings\":$WARNINGS,\"info\":$INFOS},\"passed\":$passed,\"strict\":$STRICT_MODE}"
+    # JSON-safe level: quote if non-numeric (e.g. "3+")
+    local json_level="$DETECTED_LEVEL"
+    if [[ "$json_level" =~ [^0-9] ]]; then
+        json_level="\"$(_json_escape "$json_level")\""
+    fi
+    local phases_json=""
+    if $RECURSIVE && [[ -n "$PHASE_RESULTS" ]]; then
+        phases_json=",\"phases\":[$PHASE_RESULTS],\"phaseCount\":$PHASE_COUNT"
+    fi
+    echo "{\"version\":\"$VERSION\",\"folder\":\"$folder_escaped\",\"level\":$json_level,\"levelMethod\":\"$LEVEL_METHOD\",\"config\":$cfg,\"results\":[$RESULTS]${phases_json},\"summary\":{\"errors\":$ERRORS,\"warnings\":$WARNINGS,\"info\":$INFOS},\"passed\":$passed,\"strict\":$STRICT_MODE}"
+}
+
+# Recursive phase validation - validates parent + all [0-9][0-9][0-9]-*/ child folders
+run_recursive_validation() {
+    local parent_folder="$1"
+    local child_errors=0
+    local child_warnings=0
+    local phase_results=""
+
+    # Discover child phase folders (NNN-* pattern)
+    local phase_dirs=()
+    for phase_dir in "$parent_folder"/[0-9][0-9][0-9]-*/; do
+        [[ -d "$phase_dir" ]] && phase_dirs+=("${phase_dir%/}")
+    done
+
+    if [[ ${#phase_dirs[@]} -eq 0 ]]; then
+        # No phase children found - just validate parent normally
+        ! $JSON_MODE && ! $QUIET_MODE && echo -e "\n  ${BLUE}No phase folders found. Validating parent only.${NC}" || true
+        return 0
+    fi
+
+    ! $JSON_MODE && ! $QUIET_MODE && echo -e "\n${BLUE}───────────────────────────────────────────────────────────────${NC}" || true
+    ! $JSON_MODE && ! $QUIET_MODE && echo -e "${BLUE}  Recursive Phase Validation (${#phase_dirs[@]} phases found)${NC}" || true
+    ! $JSON_MODE && ! $QUIET_MODE && echo -e "${BLUE}───────────────────────────────────────────────────────────────${NC}" || true
+
+    for phase_dir in "${phase_dirs[@]}"; do
+        local phase_name
+        phase_name=$(basename "$phase_dir")
+
+        # Save parent state
+        local parent_errors=$ERRORS
+        local parent_warnings=$WARNINGS
+        local parent_infos=$INFOS
+        local parent_results="$RESULTS"
+        local parent_level="$DETECTED_LEVEL"
+
+        # Reset counters for child
+        ERRORS=0 WARNINGS=0 INFOS=0 RESULTS=""
+
+        ! $JSON_MODE && ! $QUIET_MODE && echo -e "\n  ${BOLD}Phase: $phase_name${NC}" || true
+
+        # Detect child level and validate
+        detect_level "$phase_dir"
+        run_all_rules "$phase_dir" "$DETECTED_LEVEL"
+
+        # Accumulate child results
+        child_errors=$((child_errors + ERRORS))
+        child_warnings=$((child_warnings + WARNINGS))
+
+        # Build phase JSON entry
+        local child_passed="true"
+        [[ $ERRORS -gt 0 ]] && child_passed="false" || true
+        [[ $WARNINGS -gt 0 ]] && $STRICT_MODE && child_passed="false" || true
+        # JSON-safe level: quote if non-numeric (e.g. "3+")
+        local json_level="$DETECTED_LEVEL"
+        if [[ "$json_level" =~ [^0-9] ]]; then
+            json_level="\"$(_json_escape "$json_level")\""
+        fi
+        [[ -n "$phase_results" ]] && phase_results+=","
+        phase_results+="{\"name\":\"$(_json_escape "$phase_name")\",\"level\":$json_level,\"errors\":$ERRORS,\"warnings\":$WARNINGS,\"passed\":$child_passed,\"results\":[$RESULTS]}"
+
+        # Restore and merge with parent state
+        DETECTED_LEVEL="$parent_level"
+        ERRORS=$((parent_errors + ERRORS))
+        WARNINGS=$((parent_warnings + WARNINGS))
+        INFOS=$((parent_infos + INFOS))
+        if [[ -n "$parent_results" && -n "$RESULTS" ]]; then
+            RESULTS="${parent_results},${RESULTS}"
+        elif [[ -n "$parent_results" ]]; then
+            RESULTS="$parent_results"
+        fi
+        # else RESULTS keeps its current (child) value
+    done
+
+    # Store phase results for JSON output
+    PHASE_RESULTS="$phase_results"
+    PHASE_COUNT=${#phase_dirs[@]}
+
+    ! $JSON_MODE && ! $QUIET_MODE && echo -e "\n  ${BOLD}Phase Summary:${NC} ${#phase_dirs[@]} phases, $child_errors errors, $child_warnings warnings" || true
 }
 
 main() {
@@ -379,6 +470,13 @@ main() {
     validate_template_hashes "$FOLDER_PATH"
     print_header
     run_all_rules "$FOLDER_PATH" "$DETECTED_LEVEL"
+
+    # Recursive phase validation
+    PHASE_RESULTS="" PHASE_COUNT=0
+    if $RECURSIVE; then
+        run_recursive_validation "$FOLDER_PATH"
+    fi
+
     if $JSON_MODE; then generate_json; else print_summary; fi
     if [[ $ERRORS -gt 0 ]]; then exit 2; fi
     if [[ $WARNINGS -gt 0 ]] && $STRICT_MODE; then exit 2; fi

@@ -54,6 +54,7 @@ This document provides comprehensive documentation for every validation rule enf
 | `AI_PROTOCOL`        | WARNING  | Level 3/3+    | AI execution protocols present                 |
 | `LEVEL_MATCH`        | ERROR    | All files     | Level consistent across all spec files         |
 | `SECTION_COUNTS`     | WARNING  | All levels    | Section counts within expected ranges          |
+| `PHASE_LINKS`        | WARNING  | Phased specs  | Parent-child phase references valid            |
 
 ---
 
@@ -869,8 +870,87 @@ Either expand content or reduce declared level:
 ---
 
 <!-- /ANCHOR:section-counts -->
+<!-- ANCHOR:phase-links -->
+## 16. PHASE_LINKS
+
+**Severity:** WARNING
+**Description:** Validates the integrity of parent-child phase relationships in phase-decomposed spec folders.
+
+### When Active
+
+This rule only applies when a spec folder contains numbered child folders (matching `[0-9][0-9][0-9]-*/` pattern) that represent phases. Standard (non-phased) spec folders skip this rule entirely.
+
+### Checks Performed
+
+| Check | Severity | Description |
+|-------|----------|-------------|
+| Phase Documentation Map | WARNING | Parent spec.md should contain a Phase Documentation Map section |
+| Child back-reference | WARNING | Child spec.md should include `parent:` metadata referencing the parent folder |
+| Child folder naming | ERROR | Phase child folders must follow `###-name/` naming convention |
+| Status consistency | WARNING | Phase status in parent map should match child spec.md status |
+
+### Examples
+
+**Pass (complete phase links):**
+```
+specs/042-payment-system/
+├── spec.md                     # Contains Phase Documentation Map
+│                                 with entries for 001 and 002
+├── 001-data-models/
+│   └── spec.md                 # parent: specs/042-payment-system/
+└── 002-api-endpoints/
+    └── spec.md                 # parent: specs/042-payment-system/
+```
+
+**Warning (missing map):**
+```
+specs/042-payment-system/
+├── spec.md                     # No Phase Documentation Map section
+├── 001-data-models/            ← WARNING: parent has no phase map
+└── 002-api-endpoints/
+```
+
+**Warning (missing back-reference):**
+```
+specs/042-payment-system/001-data-models/
+└── spec.md                     # No parent: field in metadata
+                                  ← WARNING: no parent back-reference
+```
+
+### How to Fix
+
+**Add Phase Documentation Map to parent spec.md:**
+```markdown
+## Phase Documentation Map
+
+| Phase | Folder | Status | Description |
+|-------|--------|--------|-------------|
+| 1 | `001-data-models/` | active | Core data models and schema |
+| 2 | `002-api-endpoints/` | draft | REST API endpoint definitions |
+```
+
+**Add parent back-reference to child spec.md:**
+```markdown
+---
+title: Data Models Phase
+parent: specs/042-payment-system/
+phase: 1 of 2
+---
+```
+
+### Recursive Validation
+
+To validate phase links across parent and all children:
+
+```bash
+./scripts/spec/validate.sh specs/042-payment-system/ --recursive
+```
+
+---
+
+<!-- /ANCHOR:phase-links -->
 <!-- ANCHOR:configuration -->
-## 16. CONFIGURATION
+## 17. CONFIGURATION
 
 ### Environment Variables
 
@@ -902,13 +982,14 @@ SPECKIT_JSON=true ./scripts/spec/validate.sh specs/007-feature/
 
 <!-- /ANCHOR:configuration -->
 <!-- ANCHOR:related-resources -->
-## 17. RELATED RESOURCES
+## 18. RELATED RESOURCES
 
 ### Reference Files
 
 - [level_specifications.md](../templates/level_specifications.md) - Documentation level requirements
 - [template_guide.md](../templates/template_guide.md) - Template usage guide
 - [path_scoped_rules.md](../validation/path_scoped_rules.md) - Path scoping overview
+- [phase_definitions.md](../structure/phase_definitions.md) - Phase decomposition system
 
 ### Scripts
 
