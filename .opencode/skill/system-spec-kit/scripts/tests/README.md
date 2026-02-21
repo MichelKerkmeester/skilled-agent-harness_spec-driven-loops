@@ -41,7 +41,9 @@ JavaScript tests:
 - `test-five-checks.js`
 - `test-folder-detector-functional.js`
 - `test-integration.js`
+- `test-ast-parser.js`
 - `test-naming-migration.js`
+- `test-phase-validation.js`
 - `test-retry-manager-behavioral.js`
 - `test-scripts-modules.js`
 - `test-subfolder-resolution.js`
@@ -61,6 +63,7 @@ Python tests:
 - `test_dual_threshold.py`
 
 Fixtures and cache:
+- `fixtures/` - phase-system fixture inputs for level recommendation/create/validate tests
 - `test-fixtures/`
 - `.pytest_cache/`
 
@@ -77,6 +80,7 @@ npm run build
 cd tests
 node test-scripts-modules.js
 bash test-phase-system.sh
+node test-phase-validation.js
 node test-extractors-loaders.js
 node test-integration.js
 bash test-upgrade-level.sh

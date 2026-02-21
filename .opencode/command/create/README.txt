@@ -32,7 +32,7 @@ trigger_phrases:
 <!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
-The `create` command group scaffolds OpenCode components using templates from the `workflows-documentation` skill. Each command follows a structured YAML workflow and supports `:auto` (no approval prompts) and `:confirm` (pause at each step) execution modes.
+The `create` command group scaffolds OpenCode components using templates from the `sk-documentation` skill. Each command follows a structured YAML workflow and supports `:auto` (no approval prompts) and `:confirm` (pause at each step) execution modes.
 
 All commands run Phase 0 (@write agent self-verification) before gathering inputs.
 
@@ -156,8 +156,8 @@ The `--chained` flag on `skill_asset` and `skill_reference` indicates the comman
 | Document | Purpose |
 |----------|---------|
 | [Parent: OpenCode Commands](../README.txt) | Overview of all command groups |
-| [workflows-documentation SKILL.md](../../skill/workflows-documentation/SKILL.md) | Templates and standards used by create commands |
-| [agent_template.md](../../skill/workflows-documentation/assets/opencode/agent_template.md) | Agent creation template |
-| [command_template.md](../../skill/workflows-documentation/assets/opencode/command_template.md) | Command creation template |
-| [skill_creation.md](../../skill/workflows-documentation/references/skill_creation.md) | Skill creation workflow reference |
+| [sk-documentation SKILL.md](../../skill/sk-documentation/SKILL.md) | Templates and standards used by create commands |
+| [agent_template.md](../../skill/sk-documentation/assets/opencode/agent_template.md) | Agent creation template |
+| [command_template.md](../../skill/sk-documentation/assets/opencode/command_template.md) | Command creation template |
+| [skill_creation.md](../../skill/sk-documentation/references/skill_creation.md) | Skill creation workflow reference |
 <!-- /ANCHOR:related-documents -->

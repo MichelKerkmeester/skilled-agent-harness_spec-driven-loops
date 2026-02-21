@@ -26,7 +26,7 @@ Waves 1–3 added the following to the MCP server:
 - `lib/telemetry/retrieval-telemetry.ts` — 4-dimension retrieval telemetry
 
 **New feature flags (2):**
-- `SPECKIT_ADAPTIVE_FUSION` (default: off) — enables adaptive fusion
+- `SPECKIT_ADAPTIVE_FUSION` (opt-out: unset/empty/`true` = enabled, `false` = disabled) — controls adaptive fusion
 - `SPECKIT_EXTENDED_TELEMETRY` (default: on) — enables extended telemetry
 
 **Handler integration:**

@@ -92,9 +92,9 @@ trigger_phrases:
 └── skill/
     ├── scripts/
     │   └── skill_advisor.py     ← This directory
-    ├── workflows-git/
+    ├── sk-git/
     │   └── SKILL.md         # Parsed for name/description
-    ├── workflows-code--web-dev/
+    ├── sk-code--web/
     │   └── SKILL.md
     ├── system-spec-kit/
     │   └── SKILL.md
@@ -121,7 +121,7 @@ python3 .opencode/skill/scripts/skill_advisor.py "test"
 
 # 3. Analyze a real request
 python3 .opencode/skill/scripts/skill_advisor.py "help me commit my changes"
-# Expected: JSON with workflows-git at ~0.92 confidence
+# Expected: JSON with sk-git at ~0.92 confidence
 ```
 
 ### Verify Installation
@@ -133,7 +133,7 @@ python3 .opencode/skill/scripts/skill_advisor.py "help me commit my changes"
 # Expected output:
 # [
 #   {
-#     "skill": "workflows-git",
+#     "skill": "sk-git",
 #     "confidence": 0.92,
 #     "reason": "Matched: !commit, git(name)"
 #   }
@@ -184,7 +184,7 @@ fi
 │  ┌─────────────────────────────────────────┐                     │
 │  │ [                                       │                     │
 │  │   {                                     │                     │
-│  │     "skill": "workflows-git",           │                      │
+│  │     "skill": "sk-git",           │                      │
 │  │     "confidence": 0.92,                 │                      │
 │  │     "reason": "Matched: !commit, git"   │                     │
 │  │   }                                     │                     │
@@ -278,7 +278,7 @@ User Input: "help me fix the authentication bug"
 │              devtools (+0.5)        │
 │                                     │
 │    Pre-calculated boost for         │
-│    workflows-chrome-devtools: 0.5    │
+│    mcp-chrome-devtools: 0.5    │
 └────────────────┬────────────────────┘
                  │
                  ▼
@@ -353,7 +353,7 @@ for skill_file in glob.glob(os.path.join(SKILLS_DIR, "*/SKILL.md")):
 **SKILL.md Frontmatter Format:**
 ```yaml
 ---
-name: workflows-git
+name: sk-git
 description: Git workflow orchestrator guiding developers through workspace setup, clean commits, and work completion
 ---
 ```
@@ -376,10 +376,10 @@ High-confidence keywords that directly map to specific skills:
 
 | Keyword | Skill | Boost |
 |---------|-------|-------|
-| `worktree` | workflows-git | +1.2 |
-| `devtools` | workflows-chrome-devtools | +1.0 |
-| `rebase` | workflows-git | +0.8 |
-| `flowchart` | workflows-documentation | +0.7 |
+| `worktree` | sk-git | +1.2 |
+| `devtools` | mcp-chrome-devtools | +1.0 |
+| `rebase` | sk-git | +0.8 |
+| `flowchart` | sk-documentation | +0.7 |
 | `checkpoint` | system-spec-kit | +0.6 |
 
 ### Multi-Skill Boosters
@@ -389,7 +389,7 @@ For ambiguous keywords that could apply to multiple skills:
 ```python
 MULTI_SKILL_BOOSTERS = {
     "code": [("workflows-code", 0.2)],
-    "changes": [("workflows-git", 0.4), ("system-spec-kit", 0.2)],
+    "changes": [("sk-git", 0.4), ("system-spec-kit", 0.2)],
     ...
 }
 ```
@@ -509,7 +509,7 @@ $ python skill_advisor.py "help me commit my changes and push to remote"
 
 [
   {
-    "skill": "workflows-git",
+    "skill": "sk-git",
     "confidence": 0.92,
     "reason": "Matched: !commit, !push, git(name), changes"
   }
@@ -523,7 +523,7 @@ $ python skill_advisor.py "create a flowchart for the authentication process"
 
 [
   {
-    "skill": "workflows-documentation",
+    "skill": "sk-documentation",
     "confidence": 0.88,
     "reason": "Matched: !flowchart, documentation(name), create"
   }
@@ -585,9 +585,9 @@ $ python skill_advisor.py "call figma api"
 
 | User Intent | Expected Skill | Key Terms |
 |-------------|----------------|-----------|
-| Git operations | workflows-git | commit, push, branch, merge, worktree, github, pr, issue |
-| Browser debugging | workflows-chrome-devtools | devtools, chrome, browser, debug, console |
-| Documentation | workflows-documentation | markdown, flowchart, diagram, readme |
+| Git operations | sk-git | commit, push, branch, merge, worktree, github, pr, issue |
+| Browser debugging | mcp-chrome-devtools | devtools, chrome, browser, debug, console |
+| Documentation | sk-documentation | markdown, flowchart, diagram, readme |
 | Code implementation | workflows-code | implement, fix, bug, refactor, verification |
 | Memory/context | system-spec-kit | remember, save, context, checkpoint |
 | Specifications | system-spec-kit | spec, checklist, plan, specification |
@@ -618,10 +618,10 @@ ls -la .opencode/skill/
 find .opencode/skill -name "SKILL.md"
 
 # Check frontmatter format
-head -10 .opencode/skill/workflows-git/SKILL.md
+head -10 .opencode/skill/sk-git/SKILL.md
 # Should show:
 # ---
-# name: workflows-git
+# name: sk-git
 # description: ...
 # ---
 ```
@@ -754,6 +754,6 @@ A: No, the script uses word tokenization. Regex patterns will be treated as lite
 |----------|---------|
 | `.opencode/skill/*/SKILL.md` | Individual skill definitions parsed by the advisor |
 | [system-spec-kit README](../skill/system-spec-kit/README.md) | Documentation and memory framework |
-| [workflows-documentation SKILL.md](../skill/workflows-documentation/SKILL.md) | Documentation standards and templates |
+| [sk-documentation SKILL.md](../skill/sk-documentation/SKILL.md) | Documentation standards and templates |
 
 <!-- /ANCHOR:related-documents -->

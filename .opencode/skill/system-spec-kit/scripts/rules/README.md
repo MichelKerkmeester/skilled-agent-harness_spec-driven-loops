@@ -40,7 +40,7 @@ Validation rules are modular shell scripts that check spec folders for structura
 
 | Category             | Count | Details                                       |
 | -------------------- | ----- | --------------------------------------------- |
-| Rules                | 13    | Modular validation scripts                    |
+| Rules                | 16    | Modular validation scripts                    |
 | Severity Levels      | 3     | error, warn, info                             |
 | Documentation Levels | 4     | L1, L2, L3, L3+ with progressive requirements |
 
@@ -86,7 +86,7 @@ cd specs/003-memory-and-spec-kit/046-post-release-refinement-1/
 # Check that rules are executable
 ls -la .opencode/skill/system-spec-kit/scripts/rules/
 
-# Expected: 13 .sh files with execute permissions
+# Expected: 16 .sh files with execute permissions
 # -rwxr-xr-x check-files.sh
 # -rwxr-xr-x check-priority-tags.sh
 # -rwxr-xr-x check-complexity.sh
@@ -118,10 +118,13 @@ rules/
 ├── check-frontmatter.sh    # FRONTMATTER_VALID - YAML frontmatter validation
 ├── check-level.sh          # LEVEL_DECLARED - Explicit vs inferred level
 ├── check-level-match.sh    # LEVEL_MATCH - Required files match declared level
+├── check-links.sh          # LINKS_VALID - Cross-skill wikilink validation (opt-in)
+├── check-phase-links.sh    # PHASE_LINKS - Parent/child phase-link consistency
 ├── check-placeholders.sh   # PLACEHOLDER_FILLED - Unfilled placeholders
 ├── check-priority-tags.sh  # PRIORITY_TAGS - Checklist priority context
 ├── check-section-counts.sh # SECTION_COUNTS - Section count validation
 ├── check-sections.sh       # SECTIONS_PRESENT - Required markdown sections
+├── check-template-source.sh# TEMPLATE_SOURCE - Template provenance marker checks
 └── README.md               # This file
 ```
 
@@ -138,6 +141,11 @@ rules/
 | `check-frontmatter.sh`    | Metadata validation: validates YAML frontmatter structure                 |
 | `check-priority-tags.sh`  | Quality validation: ensures checklist items have P0/P1/P2 context         |
 | `check-evidence.sh`       | Completion validation: ensures completed items cite evidence              |
+| `check-links.sh`          | Link validation: validates wikilinks across skill markdown trees          |
+| `check-phase-links.sh`    | Phase validation: checks parent/child phase chain references              |
+| `check-template-source.sh`| Provenance validation: checks template-source metadata markers            |
+
+`check-links.sh` runs as `LINKS_VALID` only when `SPECKIT_VALIDATE_LINKS=true` to avoid expensive repository-wide scans during routine per-spec validation.
 
 <!-- /ANCHOR:structure -->
 

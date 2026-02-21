@@ -96,7 +96,7 @@ const memorySearch: ToolDefinition = {
       },
       rerank: {
         type: 'boolean',
-        default: false,
+        default: true,
         description: 'Enable cross-encoder reranking of results. Improves relevance at the cost of additional computation.'
       },
       applyLengthPenalty: {

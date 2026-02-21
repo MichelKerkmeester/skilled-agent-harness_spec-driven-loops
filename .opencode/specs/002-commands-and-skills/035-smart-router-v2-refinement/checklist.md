@@ -49,7 +49,7 @@
 
 ### P1 - Required (or user-approved deferral)
 - [x] CHK-012 [P1] SKILL.md files follow ANCHOR tag conventions  
-  **Evidence**: Updated SKILL.md files in workflows-code--full-stack, workflows-code--web-dev, workflows-code--opencode, workflows-git
+  **Evidence**: Updated SKILL.md files in sk-code--full-stack, workflows-code--web-dev, workflows-code--opencode, workflows-git
 
 - [x] CHK-013 [P1] Documentation follows template structure (spec-core + level3-arch)  
   **Evidence**: spec.md includes executive summary, risk matrix, user stories per template
@@ -71,10 +71,10 @@
   **Evidence**: router-rules.json updated with synonym mappings for all target terms
 
 - [x] CHK-023 [P0] UNKNOWN fallback checklist documented in 4 skills  
-  **Evidence**: UNKNOWN fallback sections added to workflows-code--full-stack, workflows-code--web-dev, workflows-code--opencode, workflows-git
+  **Evidence**: UNKNOWN fallback sections added to sk-code--full-stack, workflows-code--web-dev, workflows-code--opencode, workflows-git
 
 - [x] CHK-024 [P0] Verification command disambiguation prevents React/RN collision  
-  **Evidence**: Verification command disambiguation documented in workflows-code--full-stack/SKILL.md
+  **Evidence**: Verification command disambiguation documented in sk-code--full-stack/SKILL.md
 
 - [x] CHK-025 [P0] Test suite includes pseudocode validation and heading parser safety  
   **Evidence**: run-smart-router-tests.mjs enhanced with validation assertions
@@ -121,7 +121,7 @@
   **Evidence**: T021-T023 completion: all spec documents reviewed and synchronized
 
 - [x] CHK-041 [P1] Top-N methodology rationale documented  
-  **Evidence**: Top-N methodology documented in workflows-code--full-stack/SKILL.md and decision-record.md ADR-001
+  **Evidence**: Top-N methodology documented in sk-code--full-stack/SKILL.md and decision-record.md ADR-001
 
 - [x] CHK-042 [P1] Synonym addition process documented for future maintenance  
   **Evidence**: decision-record.md ADR-002 documents synonym lexicon maintenance workflow

@@ -125,12 +125,12 @@ Skills are specialized, on-demand capabilities invoked for complex workflows:
 | Skill | Description |
 |-------|-------------|
 | `system-spec-kit` | Spec folders, memory system, context preservation with CORE + ADDENDUM v2.2 architecture |
-| `workflows-documentation` | Markdown quality enforcement, DQI scoring, templates, validation (v5.2) |
-| `workflows-git` | Git workflow orchestrator for worktrees, commits, PRs with read-only enforcement (v1.5) |
-| `workflows-code--web-dev` | Frontend development lifecycle: implementation, debugging, verification (v1.0.9) |
-| `workflows-code--full-stack` | Multi-stack development with auto-detection (Go, Node.js, React, React Native, Swift) (v1.0) |
+| `sk-documentation` | Markdown quality enforcement, DQI scoring, templates, validation (v5.2) |
+| `sk-git` | Git workflow orchestrator for worktrees, commits, PRs with read-only enforcement (v1.5) |
+| `sk-code--web` | Frontend development lifecycle: implementation, debugging, verification (v1.0.9) |
+| `sk-code--full-stack` | Multi-stack development with auto-detection (Go, Node.js, React, React Native, Swift) (v1.0) |
 | `workflows-code--opencode` | OpenCode system code standards for JS, TS, Python, Shell with language routing (v1.3.2) |
-| `workflows-chrome-devtools` | Chrome DevTools orchestrator with CLI (bdg) and MCP (Code Mode) routing (v2.1) |
+| `mcp-chrome-devtools` | Chrome DevTools orchestrator with CLI (bdg) and MCP (Code Mode) routing (v2.1) |
 | `mcp-code-mode` | MCP orchestration via TypeScript execution for external tools (ClickUp, Figma, etc.) (v1.1) |
 | `mcp-figma` | Figma design file access with 18 tools for components, styles, exports (v1.1) |
 
@@ -283,7 +283,7 @@ All AI interactions pass through 3 mandatory gates to ensure quality and traceab
 
 **Invoking Skills:**
 - Automatic: Gate 2 auto-routes based on `skill_advisor.py` confidence scores
-- Manual: Reference skill name in request (e.g., "Use workflows-documentation to create README")
+- Manual: Reference skill name in request (e.g., "Use sk-documentation to create README")
 
 **Running Commands:**
 - Type `/command_name` in chat interface (e.g., `/spec_kit:plan`, `/memory:save`)

@@ -43,7 +43,7 @@ Previously, vector, keyword and trigger search results were fused with fixed wei
 
 Debugging a bug? Error history and debugging context get boosted. Adding a feature? Implementation patterns and existing architecture get priority. The system detects intent automatically from your query.
 
-Ships behind the `SPECKIT_ADAPTIVE_FUSION` feature flag (default: off). When disabled, the system falls back to the existing deterministic fusion — no behavior change, no risk. A dark-run mode lets you compare adaptive vs. standard results side-by-side without affecting actual retrieval.
+Ships behind the `SPECKIT_ADAPTIVE_FUSION` feature flag with opt-out semantics. Unset, empty, or `true` keeps adaptive fusion enabled; explicit `false` disables it. When disabled, the system falls back to the existing deterministic fusion with no behavior change.
 
 ### Append-Only Mutation Ledger
 
@@ -102,7 +102,7 @@ All features shipped behind feature flags and went through a structured rollout:
 
 | Decision | Why |
 |----------|-----|
-| Feature flags default to OFF for new capabilities | Existing behavior stays stable. You opt in explicitly. Adaptive fusion and extended telemetry can be enabled independently. |
+| Adaptive fusion uses opt-out flag semantics | Runtime behavior follows rollout policy: unset, empty, or `true` enables adaptive fusion; explicit `false` disables it and keeps deterministic fallback. |
 | Bounded causal seed input (top-ranked only) | Reduces ranking noise. Causal expansion stays aligned with high-signal inputs instead of amplifying weak matches. |
 | Append-only ledger uses SQLite BEFORE triggers | Database-level enforcement is stronger than application-level checks. You can't bypass it even with raw SQL. |
 | Artifact routing uses deterministic weight tables | No ML-based routing. Weights are transparent, auditable and predictable. You can inspect exactly why a search behaved the way it did. |
@@ -135,7 +135,7 @@ Detailed run notes are captured in `specs/003-system-spec-kit/136-mcp-working-me
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Adaptive fusion is off by default.** Set `SPECKIT_ADAPTIVE_FUSION=true` to enable it. The deterministic fallback is the current production path.
+1. **Adaptive fusion is opt-out, not opt-in.** `SPECKIT_ADAPTIVE_FUSION` is enabled when unset, empty, or `true`; set it to `false` to force deterministic fallback.
 2. **Telemetry outputs are evaluation-lane artifacts.** They're reproducible and useful for gating, but they reflect scripted test scenarios, not live production traffic.
 3. **Survey data is administrative.** The user satisfaction score (4.20/5.0) comes from an administrative closure process. A production survey with live respondents would strengthen this.
 4. **QP-4 archive handling uses `deprecated` tier.** The `importance_tier` enum doesn't support a literal `archived` value, so `deprecated` serves as the archival equivalent.

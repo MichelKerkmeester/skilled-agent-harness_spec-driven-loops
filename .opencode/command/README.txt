@@ -85,7 +85,7 @@ command/
 
 ### Create Commands
 
-Scaffold OpenCode components using the `workflows-documentation` skill. Each command supports `:auto` and `:confirm` execution modes with corresponding YAML workflow files in `create/assets/`.
+Scaffold OpenCode components using the `sk-documentation` skill. Each command supports `:auto` and `:confirm` execution modes with corresponding YAML workflow files in `create/assets/`.
 
 | Command | Invocation | Purpose |
 |---------|------------|---------|
@@ -203,6 +203,6 @@ The `spec_kit:complete` command supports two additional modes:
 | Document | Purpose |
 |----------|---------|
 | [AGENTS.md](../../AGENTS.md) | Framework defining gates, protocols, agent routing |
-| [workflows-documentation SKILL.md](../.opencode/skill/workflows-documentation/SKILL.md) | Documentation standards and component creation |
+| [sk-documentation SKILL.md](../.opencode/skill/sk-documentation/SKILL.md) | Documentation standards and component creation |
 | [system-spec-kit SKILL.md](../.opencode/skill/system-spec-kit/SKILL.md) | Spec folder workflow and memory system |
 <!-- /ANCHOR:related-documents -->

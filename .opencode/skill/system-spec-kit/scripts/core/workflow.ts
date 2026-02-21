@@ -80,14 +80,6 @@ export interface WorkflowResult {
   };
 }
 
-export interface WorkflowState {
-  collectedData: CollectedDataFull | null;
-  specFolder: string;
-  specFolderName: string;
-  contextDir: string;
-  sessionData: SessionData | null;
-}
-
 function ensureMinSemanticTopics(existing: string[], enhancedFiles: FileChange[], specFolderName: string): string[] {
   if (existing.length >= 1) {
     return existing;

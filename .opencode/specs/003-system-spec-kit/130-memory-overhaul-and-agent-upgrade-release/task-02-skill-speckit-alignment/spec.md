@@ -44,9 +44,9 @@ Audit all SKILL.md files (9 total) and system-spec-kit reference files to ensure
 | `.opencode/skill/workflows-documentation/SKILL.md` | Version number, cross-references |
 | `.opencode/skill/workflows-code--opencode/SKILL.md` | Version number, cross-references |
 | `.opencode/skill/workflows-code--web-dev/SKILL.md` | Version number, cross-references |
-| `.opencode/skill/workflows-code--full-stack/SKILL.md` | Version number, cross-references |
+| `.opencode/skill/sk-code--full-stack/SKILL.md` | Version number, cross-references |
 | `.opencode/skill/workflows-git/SKILL.md` | Version number, cross-references |
-| `.opencode/skill/workflows-chrome-devtools/SKILL.md` | Version number, cross-references |
+| `.opencode/skill/mcp-chrome-devtools/SKILL.md` | Version number, cross-references |
 | `.opencode/skill/mcp-code-mode/SKILL.md` | Version number, cross-references |
 | `.opencode/skill/mcp-figma/SKILL.md` | Version number, cross-references |
 

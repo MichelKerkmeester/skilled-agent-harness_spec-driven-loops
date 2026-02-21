@@ -1,0 +1,5 @@
+{
+  "phases": 3,
+  "phase_names": ["foundation", "implementation", "stabilization"],
+  "expect_folders": ["001-foundation", "002-implementation", "003-stabilization"]
+}

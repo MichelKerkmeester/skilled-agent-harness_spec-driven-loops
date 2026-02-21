@@ -18,6 +18,7 @@ import * as tierClassifier from '../lib/cache/cognitive/tier-classifier';
 import * as crossEncoder from '../lib/search/cross-encoder';
 import * as sessionBoost from '../lib/search/session-boost';
 import * as causalBoost from '../lib/search/causal-boost';
+import { isMultiQueryEnabled, isTRMEnabled } from '../lib/search/search-flags';
 import { getExtractionMetrics } from '../lib/extraction/extraction-adapter';
 import * as retrievalTelemetry from '../lib/telemetry/retrieval-telemetry';
 // C138-P1: Evidence gap detection (TRM — Z-score confidence check on RRF scores)
@@ -635,11 +636,12 @@ async function postSearchPipeline(
       ?? (r as Record<string, unknown>).similarity as number | undefined;
     return typeof fallback === 'number' && Number.isFinite(fallback) ? fallback : 0;
   });
-  const trmResult = detectEvidenceGap(rrfScores);
-  const evidenceGapWarning = trmResult.gapDetected ? formatEvidenceGapWarning(trmResult) : null;
+  const trmEnabled = isTRMEnabled();
+  const trmResult = trmEnabled ? detectEvidenceGap(rrfScores) : null;
+  const evidenceGapWarning = trmResult?.gapDetected ? formatEvidenceGapWarning(trmResult) : null;
 
   const extraData: Record<string, unknown> = { stateStats };
-  if (evidenceGapWarning) {
+  if (evidenceGapWarning && trmResult) {
     // Surface the warning in the response metadata so consumers can act on it
     extraData.evidenceGapWarning = evidenceGapWarning;
     extraData.evidenceGapTRM = trmResult;
@@ -674,6 +676,10 @@ async function postSearchPipeline(
   extraData.applied_boosts = extraData.appliedBoosts;
   extraData.extractionCount = extractionMetrics.inserted;
   extraData.extraction_count = extractionMetrics.inserted;
+  extraData.featureFlags = {
+    trm: trmEnabled,
+    multiQuery: isMultiQueryEnabled(),
+  };
   // C136-08: Include retrieval trace in response metadata
   if (trace) {
     extraData.retrievalTrace = trace;
@@ -934,7 +940,7 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
       // Single query search
 
       // C138-P3: Query expansion for mode="deep" — generate variant queries before embedding
-      const queryVariants: string[] = mode === 'deep'
+      const queryVariants: string[] = mode === 'deep' && isMultiQueryEnabled()
         ? expandQuery(normalizedQuery!)
         : [normalizedQuery!];
 

@@ -194,13 +194,13 @@ No configuration files are required. The skill self-configures through language 
 
 | Skill                         | Relationship                                      |
 | ----------------------------- | ------------------------------------------------- |
-| `workflows-code--web-dev`     | Web/frontend code (DOM, CSS, browser testing)     |
-| `workflows-code--full-stack`  | Multi-stack projects (Go, React, Swift, etc.)     |
+| `sk-code--web`                | Web/frontend code (DOM, CSS, browser testing)     |
+| `sk-code--full-stack`  | Multi-stack projects (Go, React, Swift, etc.)     |
 | `mcp-code-mode`               | TypeScript orchestration for external MCP tools    |
-| `workflows-documentation`     | Markdown docs, skill creation, DQI validation     |
+| `sk-documentation`     | Markdown docs, skill creation, DQI validation     |
 | `system-spec-kit`             | Spec folders, memory, context preservation        |
-| `workflows-git`               | Git workflows, commits, PR creation               |
+| `sk-git`               | Git workflows, commits, PR creation               |
 
-**Key distinction:** This skill covers system/backend code standards only. For frontend/browser work, use `workflows-code--web-dev`. For multi-stack projects with Go, React or Swift, use `workflows-code--full-stack`.
+**Key distinction:** This skill covers system/backend code standards only. For frontend/browser work, use `sk-code--web`. For multi-stack projects with Go, React or Swift, use `sk-code--full-stack`.
 
 <!-- /ANCHOR:related -->

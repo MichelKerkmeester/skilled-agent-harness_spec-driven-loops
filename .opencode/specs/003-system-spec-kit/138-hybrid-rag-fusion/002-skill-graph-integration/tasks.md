@@ -114,7 +114,7 @@
   - Completion Criteria: all required domains represented and linked from index; no orphan nodes.
   - Verification: `bash .opencode/skill/system-spec-kit/scripts/check-links.sh .opencode/skill` + manual traversal over four domain paths.
   - Dependency Chain: depends on TASK-105 governance and Phase 1 tooling; unblocks CHK-012 progress.
-- [x] TASK-314: Complete node graph coverage for `workflows-chrome-devtools`.
+- [x] TASK-314: Complete node graph coverage for `mcp-chrome-devtools`.
   - Inputs: CLI-vs-MCP routing logic, fallback pathways, template conventions.
   - Outputs: graph nodes for route selection, debug flow, and fallback decision paths.
   - Completion Criteria: route-selection prompts resolve through node links to the correct operational branch.
@@ -126,7 +126,7 @@
   - Completion Criteria: each capability area has at least one canonical node path from entrypoint.
   - Verification: link-check pass and walkthrough across all capability partitions.
   - Dependency Chain: depends on frontmatter schema consistency and link-check tooling.
-- [x] TASK-316: Complete node graph coverage for `workflows-code--full-stack`.
+- [x] TASK-316: Complete node graph coverage for `sk-code--full-stack`.
   - Inputs: full-stack workflow phases, stack-detection logic, standards/template constraints.
   - Outputs: phased node graph with explicit transitions (`implementation` -> `testing` -> `verification`) and detection guidance.
   - Completion Criteria: traversal covers all phases and stack-detection branch paths with no dead ends.

@@ -813,12 +813,12 @@ Skills are automatically discovered from:
 | mcp-code-mode              | v1.0.4.0   | External tool orchestration                          |
 | mcp-figma                  | v1.0.2.0   | Figma design file access and integration             |
 | system-spec-kit            | v2.2.9.0   | Spec folder + template system + context preservation |
-| workflows-chrome-devtools  | v1.0.1.0   | Browser debugging                                    |
-| workflows-code--full-stack | v1.0.0     | Full-stack implementation orchestrator               |
+| mcp-chrome-devtools  | v1.0.1.0   | Browser debugging                                    |
+| sk-code--full-stack | v1.0.0     | Full-stack implementation orchestrator               |
 | workflows-code--opencode   | v1.0.5.0   | OpenCode system code standards                       |
-| workflows-code--web-dev    | v1.0.5.0   | Web development implementation orchestrator          |
-| workflows-documentation    | v1.0.6.0   | Unified markdown and skill management                |
-| workflows-git              | v1.0.2.0   | Git workflow orchestrator                            |
+| sk-code--web    | v1.0.5.0   | Web development implementation orchestrator          |
+| sk-documentation    | v1.0.6.0   | Unified markdown and skill management                |
+| sk-git              | v1.0.2.0   | Git workflow orchestrator                            |
 
 **How it works:**
 - OpenCode scans skill folders on startup
@@ -1127,8 +1127,8 @@ The `AGENTS (Universal).md` file is a template for AI agent behavior. Customize 
 
 | Project Type | Primary Tools                   | Primary Skills                           | Remove/De-emphasize           |
 | ------------ | ------------------------------- | ---------------------------------------- | ----------------------------- |
-| Front-end    | Chrome DevTools, Webflow, Figma | workflows-chrome-devtools, workflows-code--web-dev | Database tools, API patterns  |
-| Back-end     | API testing, Database tools     | workflows-code--full-stack               | Browser tools, Webflow, Figma |
+| Front-end    | Chrome DevTools, Webflow, Figma | mcp-chrome-devtools, sk-code--web | Database tools, API patterns  |
+| Back-end     | API testing, Database tools     | sk-code--full-stack               | Browser tools, Webflow, Figma |
 | Full-stack   | All tools                       | All skills                               | Nothing                       |
 
 **Detailed Guide**: [SET-UP - AGENTS.md](./SET-UP%20-%20AGENTS.md)
@@ -1152,10 +1152,10 @@ Create custom skills to extend AI agent capabilities:
 
 ```bash
 # Initialize new skill
-python .opencode/skill/workflows-documentation/scripts/init_skill.py my-skill --path .opencode/skill
+python .opencode/skill/sk-documentation/scripts/init_skill.py my-skill --path .opencode/skill
 
 # Validate skill
-python .opencode/skill/workflows-documentation/scripts/package_skill.py .opencode/skill/my-skill
+python .opencode/skill/sk-documentation/scripts/package_skill.py .opencode/skill/my-skill
 ```
 
 **Detailed Guide**: [SET-UP - Skill Creation.md](./SET-UP%20-%20Skill%20Creation.md)
@@ -1217,9 +1217,9 @@ You have completed the installation. Here is your roadmap for getting started.
 | ------------------------ | ----------------------------- | --------------------------------------------------------- |
 | **Context Preservation** | Spec Kit Memory               | `/memory:save`, `memory_search()`                         |
 | **Browser Debugging**    | Chrome DevTools CLI           | `bdg screenshot --url https://example.com`                |
-| **Documentation**        | workflows-documentation skill | Invoke skill for doc structure                            |
-| **Git Operations**       | workflows-git skill           | Commit, PR creation workflows                             |
-| **Implementation**       | workflows-code--web-dev or workflows-code--full-stack | 3-phase implementation lifecycle                          |
+| **Documentation**        | sk-documentation skill | Invoke skill for doc structure                            |
+| **Git Operations**       | sk-git skill           | Commit, PR creation workflows                             |
+| **Implementation**       | sk-code--web or sk-code--full-stack | 3-phase implementation lifecycle                          |
 
 ### 16.3 Available Commands (19 total)
 
@@ -1235,9 +1235,9 @@ You have completed the installation. Here is your roadmap for getting started.
 | ------------- | ------------------------------------------ | ----------------------------- |
 | OpenCode Docs | https://opencode.ai/docs                   | Official documentation        |
 | Memory Skill  | `.opencode/skill/system-spec-kit/SKILL.md` | Context preservation          |
-| Code Skill    | `.opencode/skill/workflows-code--web-dev/SKILL.md` | Frontend implementation patterns |
-| Code Skill    | `.opencode/skill/workflows-code--full-stack/SKILL.md` | Multi-stack implementation patterns |
-| Git Skill     | `.opencode/skill/workflows-git/SKILL.md`   | Git workflows                 |
+| Code Skill    | `.opencode/skill/sk-code--web/SKILL.md` | Frontend implementation patterns |
+| Code Skill    | `.opencode/skill/sk-code--full-stack/SKILL.md` | Multi-stack implementation patterns |
+| Git Skill     | `.opencode/skill/sk-git/SKILL.md`   | Git workflows                 |
 | AGENTS.md     | `AGENTS.md`                                | AI agent behavior reference   |
 | Agent System  | `.opencode/install_guides/SET-UP - Opencode Agents.md` | Agent creation & usage |
 
@@ -1416,7 +1416,7 @@ sudo chown -R $(whoami) /usr/local/lib/node_modules
 | Category           | Count | Items                                                                                                                    |
 | ------------------ | ----- | ------------------------------------------------------------------------------------------------------------------------ |
 | Native MCP Servers | 3     | code_mode, spec_kit_memory, sequential_thinking                                                                          |
-| Skills             | 9     | mcp-code-mode, mcp-figma, system-spec-kit, workflows-chrome-devtools, workflows-code--full-stack, workflows-code--opencode, workflows-code--web-dev, workflows-documentation, workflows-git |
+| Skills             | 9     | mcp-code-mode, mcp-figma, system-spec-kit, mcp-chrome-devtools, sk-code--full-stack, workflows-code--opencode, sk-code--web, sk-documentation, sk-git |
 | Commands           | 19    | /create:* (6), /memory:* (5), /spec_kit:* (7), agent_router (1)                                                         |
 | CLI Tools          | 1     | Chrome DevTools (bdg)                                                                                                    |
 | Plugins            | 2     | Antigravity Auth, OpenAI Codex Auth                                                                                      |
@@ -1433,7 +1433,7 @@ sudo chown -R $(whoami) /usr/local/lib/node_modules
 |----------|---------|
 | [AGENTS.md](../../AGENTS.md) | AI agent behavior configuration and mandatory gates |
 | [Spec Kit Framework](../.opencode/skill/system-spec-kit/README.md) | Spec folder and memory system documentation |
-| [workflows-documentation SKILL.md](../skill/workflows-documentation/SKILL.md) | Document creation standards and templates |
+| [sk-documentation SKILL.md](../skill/sk-documentation/SKILL.md) | Document creation standards and templates |
 
 ### External Resources
 

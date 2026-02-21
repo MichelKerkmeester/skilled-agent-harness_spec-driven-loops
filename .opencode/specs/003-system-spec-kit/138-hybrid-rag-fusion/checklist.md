@@ -43,7 +43,7 @@ This is the **root checklist** for the 138-hybrid-rag-fusion spec folder. It tra
 - [x] CHK-003 [P0] [W:GRAPH] No external Neo4j dependency introduced — graph operations use SQLite adjacency tables only [Evidence: 003/CHK-131 verified — zero neo4j references in codebase. No new npm dependencies. Pure SQLite + in-memory SGQS]
 - [x] CHK-004 [P0] [W:GRAPH] All 9 skills converted to graph architecture with SGQS-compatible metadata [STATUS: COMPLETE — Evidence: skill-graph-integration tasks verified 9/9 skills]
 - [x] CHK-005 [P0] [W:GRAPH] `check-links.sh` passes with 0 broken wikilinks across all skill files [STATUS: COMPLETE — Evidence: link validation pass confirmed in Workstream B]
-- [x] CHK-006 [P0] [W:RAG] Feature flags default to `false` in production config — hybrid search, MMR, multi-query all opt-in [Evidence: graph-flags.ts strict === 'true' check; SPECKIT_GRAPH_UNIFIED, SPECKIT_GRAPH_MMR, SPECKIT_GRAPH_AUTHORITY all default false; 12 unit tests in graph-flags.vitest.ts]
+- [x] CHK-006 [P0] [W:RAG] Graph feature flags use runtime opt-out semantics: unset/empty/`true` => enabled; explicit `false` => disabled [Evidence: `mcp_server/lib/search/graph-flags.ts` delegates to `isFeatureEnabled()`, and `mcp_server/lib/cache/cognitive/rollout-policy.ts` enforces `rawFlag === 'false'` disable with unset/empty/`true` enabled]
 - [x] CHK-007 [P0] [W:RAG] Token payload respects 2000-token hard limit — no retrieval result set exceeds budget [Evidence: context-budget.ts implements greedy token-budget-aware selection with hard limit; estimateTokens() function]
 - [x] CHK-008 [P0] [W:GRAPH] SGQS compatibility maintained — no breaking changes to `memory_context`, `memory_search`, `memory_save` MCP interfaces [STATUS: COMPLETE — Evidence: SGQS grammar validated, existing callers unaffected]
 - [x] CHK-009 [P0] [W:RAG] Workstream A `spec.md` scope frozen — no new requirements added post-approval [Evidence: No new requirements added. Implementation follows spec as written, 1 task deferred (embedding centroids)]
@@ -93,7 +93,7 @@ This is the **root checklist** for the 138-hybrid-rag-fusion spec folder. It tra
 - [x] CHK-C02 [P0] createUnifiedGraphSearchFn() queries both Causal + SGQS graphs [Evidence: 003/CHK-012 — queries queryCausalEdges() and querySkillGraph()]
 - [x] CHK-C03 [P0] SkillGraphCacheManager prevents per-query filesystem rebuild [Evidence: 003/CHK-013 — singleton with 5-min TTL]
 - [x] CHK-C04 [P0] graphWeight added to FusionWeights in adaptive-fusion.ts [Evidence: 003/CHK-014 — graphWeight + graphCausalBias in all 6 profiles]
-- [x] CHK-C05 [P0] Feature flag SPECKIT_GRAPH_UNIFIED gates new code paths [Evidence: 003/CHK-017 — strict === 'true' check]
+- [x] CHK-C05 [P0] Feature flag SPECKIT_GRAPH_UNIFIED gates new code paths [Evidence: 003/CHK-017 — `isFeatureEnabled()` opt-out semantics, with explicit `false` disabling graph wiring]
 - [x] CHK-C06 [P0] Pipeline latency p95 ≤ 120ms with graph channel active [Evidence: 003/CHK-023 — component benchmarks under budget]
 - [x] CHK-C07 [P1] Intent-to-Subgraph Routing implemented (Pattern 3) [Evidence: 003/CHK-032 — getSubgraphWeights() in graph-search-fn.ts]
 - [x] CHK-C08 [P1] Graph channel metrics exposed via memory_stats [Evidence: 003/CHK-033 — getGraphMetrics() API available]
@@ -127,8 +127,8 @@ This is the **root checklist** for the 138-hybrid-rag-fusion spec folder. It tra
 <!-- ANCHOR:deploy-ready -->
 ## L3+: Deployment Readiness
 
-- [x] CHK-120 [P0] [W:RAG] Rollback procedure documented — disabling feature flags restores pure vector search with no data loss [Evidence: All features behind 3 feature flags (SPECKIT_GRAPH_UNIFIED, SPECKIT_GRAPH_MMR, SPECKIT_GRAPH_AUTHORITY). Unset or set to non-'true' restores pure vector search. 18 regression tests confirm flag-off baseline unchanged]
-- [x] CHK-121 [P0] [W:RAG] Feature flags configured — `ENABLE_HYBRID_SEARCH`, `ENABLE_MMR`, `ENABLE_MULTI_QUERY` all default `false` in `config/production.json` [Evidence: graph-flags.ts defines all 3 flags, strict === 'true' checking, all default false. graph-flags.vitest.ts 12 tests verify]
+- [x] CHK-120 [P0] [W:RAG] Rollback procedure documented — setting graph flags to explicit `false` restores pure vector behavior with no data loss [Evidence: Graph channel and graph enhancements are gated by `SPECKIT_GRAPH_UNIFIED`, `SPECKIT_GRAPH_MMR`, `SPECKIT_GRAPH_AUTHORITY`; explicit `false` disables each path. Regression coverage validates flag-off baseline behavior]
+- [x] CHK-121 [P0] [W:RAG] Feature flags documented against canonical env-driven runtime [Evidence: `mcp_server/lib/search/graph-flags.ts` + `mcp_server/lib/cache/cognitive/rollout-policy.ts` define env semantics: unset/empty/`true` enabled, explicit `false` disabled]
 - [x] CHK-122 [P1] [W:INTEG] Monitoring in place — skill graph link validation (`check-links.sh`) runs on post-merge CI [Evidence: CI monitoring documented in scratch/ci-monitoring.md]
 - [x] CHK-123 [P1] [W:INTEG] Runbook created — operations guide for enabling hybrid search in production documented in `scratch/runbook.md` [Evidence: Runbook created at scratch/runbook.md]
 - [ ] CHK-124 [P2] [W:INTEG] Deployment runbook peer-reviewed by second team member

@@ -10,8 +10,8 @@ Generate a styled HTML page analyzing a plan document — showing structure, com
 
 ## Skill Activation
 
-Load the `workflows-visual-explainer` skill:
-1. Read `.opencode/skill/workflows-visual-explainer/SKILL.md`
+Load the `sk-visual-explainer` skill:
+1. Read `.opencode/skill/sk-visual-explainer/SKILL.md`
 2. Load `references/quick_reference.md` (always)
 3. Load `references/css_patterns.md` (for styling)
 4. Load `references/navigation_patterns.md` (multi-section page)

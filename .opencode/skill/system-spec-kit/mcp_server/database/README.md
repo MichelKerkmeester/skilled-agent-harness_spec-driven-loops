@@ -65,7 +65,7 @@ This section provides an overview of the MCP Server Database Storage directory.
 - Single-database policy (this environment): use `dist/database/context-index.sqlite` as the only authoritative SQLite file.
 - Source-path compatibility remains available through `database/context-index.sqlite` (symlink to canonical path).
 - Use MCP tools (`memory_stats`, `memory_health`, `memory_index_scan`) for normal operations.
-- Use `scripts/reindex-embeddings.ts` for forced rebuild workflows.
+- Use `scripts/memory/reindex-embeddings.ts` (compiled to `scripts/dist/memory/reindex-embeddings.js`) for forced rebuild workflows.
 
 
 <!-- /ANCHOR:operational-notes -->

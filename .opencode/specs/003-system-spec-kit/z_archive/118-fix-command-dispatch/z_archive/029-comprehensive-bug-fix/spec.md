@@ -59,7 +59,7 @@ A systematic analysis using **15 parallel agents** followed by targeted fixes:
 - `system-spec-kit/SKILL.md` - Gate alignment, terminology
 - `workflows-code/SKILL.md` - Broken anchors, phase transitions
 - `workflows-git/SKILL.md` - Missing tools, error handling
-- `workflows-chrome-devtools/SKILL.md` - Tool naming, session cleanup
+- `mcp-chrome-devtools/SKILL.md` - Tool naming, session cleanup
 
 ### Reference Files (3 files)
 - `system-memory/references/troubleshooting.md` - MCP syntax fix

@@ -30,7 +30,7 @@ importance_tier: "normal"
 ## 1. OVERVIEW
 <!-- ANCHOR:overview -->
 
-`scripts/` contains standalone executable scripts for database maintenance and embedding management. Scripts initialize the full runtime module stack (vector index, embeddings, checkpoints, hybrid search, access tracker), then invoke the appropriate handler to perform the operation.
+`scripts/` contains compatibility wrappers for operational scripts that now live in the central `scripts/memory/` workspace.
 
 <!-- /ANCHOR:overview -->
 
@@ -41,7 +41,7 @@ importance_tier: "normal"
 
 ```
 scripts/
-+-- reindex-embeddings.ts    # Forced full embedding reindex via handleMemoryIndexScan [spec 138]
++-- reindex-embeddings.ts    # Compatibility wrapper -> ../../scripts/dist/memory/reindex-embeddings.js
 +-- README.md                # This file
 ```
 
@@ -49,7 +49,7 @@ scripts/
 
 | File                      | Purpose                                                                     | Key Behavior                                                       | Spec     |
 | ------------------------- | --------------------------------------------------------------------------- | ------------------------------------------------------------------ | -------- |
-| `reindex-embeddings.ts`   | Forced full scan: warms embeddings and reindexes all memory + spec docs     | Calls `handleMemoryIndexScan({ force: true, includeConstitutional: true })` | Spec 138 |
+| `reindex-embeddings.ts`   | Backward-compatible entry point for legacy `mcp_server/scripts` path         | Delegates to `scripts/dist/memory/reindex-embeddings.js` | Spec 138 |
 
 <!-- /ANCHOR:structure -->
 
@@ -58,7 +58,7 @@ scripts/
 ## 3. IMPLEMENTED STATE
 <!-- ANCHOR:implemented-state -->
 
-- Reindex path runs through current handlers (not a separate indexing implementation).
+- Reindex implementation lives in `scripts/memory/reindex-embeddings.ts` and runs through current handlers (not a separate indexing implementation).
 - Indexed scope follows current scan behavior, including README and spec-doc discovery defaults.
 - Script prints a concise progress summary on stdout and exits non-zero on fatal startup failures.
 - Spec 138: graph-unified search flag (`isGraphUnifiedEnabled`) is checked at startup. When enabled, a unified graph search function is created and registered before the scan begins.
@@ -73,7 +73,7 @@ scripts/
 
 ```bash
 npm run build
-node mcp_server/dist/scripts/reindex-embeddings.js
+node scripts/dist/memory/reindex-embeddings.js
 ```
 
 The script exits 0 on success. Any fatal startup error (missing DB, failed embedding warm-up) exits non-zero with an error message on stderr.
@@ -85,6 +85,7 @@ The script exits 0 on success. Any fatal startup error (missing DB, failed embed
 ## 5. RELATED
 <!-- ANCHOR:related -->
 
+- `../../scripts/memory/reindex-embeddings.ts`
 - `../handlers/memory-index.ts`
 - `../handlers/memory-save.ts`
 - `../core/README.md`

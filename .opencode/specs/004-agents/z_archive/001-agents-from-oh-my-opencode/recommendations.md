@@ -194,11 +194,11 @@ Read(".opencode/skill/workflows-documentation/SKILL.md")
 
 ```yaml
 name: Front-end Debug Agent
-description: Browser-based debugging using workflows-chrome-devtools skill
+description: Browser-based debugging using mcp-chrome-devtools skill
 mode: subagent
 
 skills:
-  - workflows-chrome-devtools
+  - mcp-chrome-devtools
 
 tools:
   chrome_devtools: true  # both instances
@@ -244,9 +244,9 @@ You are the Front-end Debug Agent, specialized in browser-based debugging.
 - Report findings with actionable recommendations
 
 ## Skill Integration
-You MUST invoke the workflows-chrome-devtools skill:
+You MUST invoke the mcp-chrome-devtools skill:
 ```
-Read(".opencode/skill/workflows-chrome-devtools/SKILL.md")
+Read(".opencode/skill/mcp-chrome-devtools/SKILL.md")
 ```
 
 ## Approach Priority

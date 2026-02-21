@@ -716,7 +716,7 @@ tool_info({ tool_name: "webflow.webflow_sites_list" });
 |-------|---------|----------|
 | **[system-spec-kit](../system-spec-kit/README.md)** | Context preservation | Native MCP |
 | **[mcp-figma](../mcp-figma/README.md)** | Figma design file retrieval and export | Code Mode MCP |
-| **[workflows-chrome-devtools](../workflows-chrome-devtools/README.md)** | Browser automation with CLI-first fallback to MCP | Hybrid (CLI + Code Mode MCP) |
+| **[mcp-chrome-devtools](../mcp-chrome-devtools/README.md)** | Browser automation with CLI-first fallback to MCP | Hybrid (CLI + Code Mode MCP) |
 
 ### Cross-Skill Workflow
 

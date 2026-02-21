@@ -1,0 +1,7 @@
+{
+  "scenario": "phased",
+  "phase_names": ["001-foundation", "002-implementation", "003-stabilization"],
+  "mixed_levels": false,
+  "broken_links": false,
+  "empty_child": false
+}

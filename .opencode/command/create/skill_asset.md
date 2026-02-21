@@ -51,7 +51,7 @@ SELF-CHECK: Are you operating as the @write agent?
     │   │ This command requires the @write agent for:                │
     │   │   • Template-first workflow (loads before creating)          │
     │   │   • DQI scoring (target: 75+ Good)                         │
-    │   │   • workflows-documentation skill integration               │
+    │   │   • sk-documentation skill integration               │
     │   │                                                            │
     │   │ To proceed, restart with:                                  │
     │   │   @write /create:skill_asset [skill-name] [type]           │
@@ -382,7 +382,7 @@ $ARGUMENTS
 | Completion Report  | `completion_report_template`       |
 
 ### Template Reference
-- **Template location**: `.opencode/skill/workflows-documentation/assets/opencode/skill_asset_template.md`
+- **Template location**: `.opencode/skill/sk-documentation/assets/opencode/skill_asset_template.md`
 
 ---
 
@@ -390,15 +390,15 @@ $ARGUMENTS
 
 **Example 1: Create template asset**
 ```
-/documentation:create_asset workflows-git template
+/documentation:create_asset sk-git template
 ```
-→ Creates `.opencode/skill/workflows-git/assets/[name]_templates.md`
+→ Creates `.opencode/skill/sk-git/assets/[name]_templates.md`
 
 **Example 2: Create lookup asset**
 ```
-/documentation:create_asset workflows-documentation lookup
+/documentation:create_asset sk-documentation lookup
 ```
-→ Creates `.opencode/skill/workflows-documentation/assets/[name]_reference.md`
+→ Creates `.opencode/skill/sk-documentation/assets/[name]_reference.md`
 
 **Example 3: Create example asset**
 ```
@@ -414,13 +414,13 @@ $ARGUMENTS
 
 **Example 5: Auto mode (no prompts)**
 ```
-/create:skill_asset workflows-git template :auto
+/create:skill_asset sk-git template :auto
 ```
 → Creates asset without approval prompts, only stops for errors
 
 **Example 6: Confirm mode (step-by-step approval)**
 ```
-/create:skill_asset workflows-documentation lookup :confirm
+/create:skill_asset sk-documentation lookup :confirm
 ```
 → Pauses at each step for user confirmation
 

@@ -270,8 +270,8 @@ describe('Suite 2 — Pipeline contract tests', () => {
 
 // ================================================================
 // SUITE 3: FEATURE FLAG CONTRACT
-// All 3 flags default to false; enabling SPECKIT_GRAPH_UNIFIED
-// flips isGraphUnifiedEnabled() to true.
+// All 3 flags default to true when unset; setting SPECKIT_GRAPH_UNIFIED=true
+// keeps isGraphUnifiedEnabled() enabled.
 // ================================================================
 
 describe('Suite 3 — Feature flag contract', () => {

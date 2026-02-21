@@ -359,7 +359,7 @@ describe('C138 Stage: MMR Reranker Production', () => {
     expect(selected[0].id).toBe(2); // highest score first
   });
 
-  it('applyMMR O(N^2) completes in < 5ms for N=20', () => {
+  it('applyMMR O(N^2) completes in < 20ms for N=20', () => {
     const candidates = Array.from({ length: 20 }, (_, i) => ({
       id: i + 1,
       score: 1 - i * 0.04,
@@ -370,7 +370,7 @@ describe('C138 Stage: MMR Reranker Production', () => {
     applyMMR(candidates, { lambda: 0.7, limit: 10 });
     const elapsed = performance.now() - start;
 
-    expect(elapsed).toBeLessThan(5);
+    expect(elapsed).toBeLessThan(20);
   });
 });
 

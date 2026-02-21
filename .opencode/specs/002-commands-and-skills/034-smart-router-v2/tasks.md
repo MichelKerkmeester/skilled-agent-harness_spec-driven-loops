@@ -38,8 +38,8 @@
 
 - [x] T007 Update `.opencode/skill/mcp-code-mode/SKILL.md` with Smart Routing pseudocode-first layout + weighted routing + banned phrase cleanup
 - [x] T008 Update `.opencode/skill/mcp-figma/SKILL.md` with Smart Routing pseudocode-first layout + weighted routing + banned phrase cleanup
-- [x] T009 Update `.opencode/skill/workflows-chrome-devtools/SKILL.md` with Smart Routing pseudocode-first layout + weighted priorities + banned phrase cleanup
-- [x] T010 Update `.opencode/skill/workflows-code--full-stack/SKILL.md` with stack-aware weighted routing + scoped guard + recursive discovery
+- [x] T009 Update `.opencode/skill/mcp-chrome-devtools/SKILL.md` with Smart Routing pseudocode-first layout + weighted priorities + banned phrase cleanup
+- [x] T010 Update `.opencode/skill/sk-code--full-stack/SKILL.md` with stack-aware weighted routing + scoped guard + recursive discovery
 - [x] T011 Update `.opencode/skill/workflows-code--opencode/SKILL.md` with language-aware weighted routing + scoped guard + recursive discovery
 - [x] T012 Update `.opencode/skill/workflows-code--web-dev/SKILL.md` with stack-aware weighted routing + scoped guard + recursive discovery
 - [x] T013 [P] Update `.opencode/skill/workflows-documentation/SKILL.md` with recursive discovery + weighted intent mapping + ambiguity handling

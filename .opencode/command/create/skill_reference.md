@@ -51,7 +51,7 @@ SELF-CHECK: Are you operating as the @write agent?
     │   │ This command requires the @write agent for:                │
     │   │   • Template-first workflow (loads before creating)          │
     │   │   • DQI scoring (target: 75+ Good)                         │
-    │   │   • workflows-documentation skill integration               │
+    │   │   • sk-documentation skill integration               │
     │   │                                                            │
     │   │ To proceed, restart with:                                  │
     │   │   @write /create:skill_reference [skill-name] [type]       │
@@ -389,7 +389,7 @@ STEP 5 (Validation) REQUIREMENTS:
 
 Create a technical reference file for an existing skill following the `skill_reference_template.md` structure. Reference files provide Level 3 progressive disclosure - deep technical guidance loaded when needed for complex operations.
 
-**Template Location:** `.opencode/skill/workflows-documentation/assets/opencode/skill_reference_template.md`
+**Template Location:** `.opencode/skill/sk-documentation/assets/opencode/skill_reference_template.md`
 
 ---
 
@@ -429,13 +429,13 @@ $ARGUMENTS
 
 **Example 2: Create patterns reference**
 ```
-/create:skill_reference workflows-documentation patterns
+/create:skill_reference sk-documentation patterns
 ```
 → Creates before/after code pattern library
 
 **Example 3: Create debugging reference**
 ```
-/create:skill_reference workflows-chrome-devtools debugging
+/create:skill_reference mcp-chrome-devtools debugging
 ```
 → Creates systematic troubleshooting guide
 
@@ -447,7 +447,7 @@ $ARGUMENTS
 
 **Example 5: Confirm mode (step-by-step approval)**
 ```
-/create:skill_reference workflows-documentation patterns :confirm
+/create:skill_reference sk-documentation patterns :confirm
 ```
 → Pauses at each step for user confirmation
 

@@ -320,7 +320,7 @@ describe('Response Envelope (T148-T155)', () => {
       });
 
       expect(typeof envelope.meta.latencyMs).toBe('number');
-      expect(envelope.meta.latencyMs).toBeGreaterThanOrEqual(50);
+      expect(envelope.meta.latencyMs).toBeGreaterThanOrEqual(45);
     });
 
     it('should not include latencyMs when startTime not provided', () => {

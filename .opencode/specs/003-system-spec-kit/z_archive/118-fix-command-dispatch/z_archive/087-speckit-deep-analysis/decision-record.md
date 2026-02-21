@@ -79,7 +79,7 @@ Three different documentation sources give conflicting template file counts and 
 
 ### Context
 
-The "debug" keyword in skill_advisor.py routes to workflows-chrome-devtools with a boost of 1.0, but AGENTS.md Failure Pattern #17 says "3+ failed attempts -> /spec_kit:debug". These conflict: an agent asking for help debugging would be routed to chrome devtools instead of the spec-kit debug delegation workflow.
+The "debug" keyword in skill_advisor.py routes to mcp-chrome-devtools with a boost of 1.0, but AGENTS.md Failure Pattern #17 says "3+ failed attempts -> /spec_kit:debug". These conflict: an agent asking for help debugging would be routed to chrome devtools instead of the spec-kit debug delegation workflow.
 
 ### Constraints
 - INTENT_BOOSTERS match on individual words (no compound phrase support)

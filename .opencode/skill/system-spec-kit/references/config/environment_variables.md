@@ -164,7 +164,7 @@ Feature flags control experimental and optional functionality. All flags default
 | `SPEC_KIT_OFFLINE_MODE` | `false` | Offline-first operation (no external API calls) |
 | `SPEC_KIT_LAZY_EMBEDDING` | `true` | Lazy embedding model loading (reduces startup time) |
 | `SPEC_KIT_PROVIDER_FALLBACK` | `true` | Auto-switch embedding providers on failure |
-| `SPECKIT_ADAPTIVE_FUSION` | `false` | Enables intent-aware weighted RRF with 7 task-type profiles in `memory_search()` |
+| `SPECKIT_ADAPTIVE_FUSION` | `true` | Enables intent-aware weighted RRF with 7 task-type profiles in `memory_search()` (set `false` to disable) |
 | `SPECKIT_EXTENDED_TELEMETRY` | `true` | Emits 4-dimension retrieval metrics (latency, mode, fallback, quality) per search operation |
 | `SPECKIT_GRAPH_UNIFIED` | `true` | Gates the entire unified graph channel in hybrid search (causal edge + SGQS skill graph in RRF fusion) |
 | `SPECKIT_GRAPH_MMR` | `true` | Gates Graph-Guided MMR diversity reranking (BFS shortest-path graph distance alongside cosine distance) |

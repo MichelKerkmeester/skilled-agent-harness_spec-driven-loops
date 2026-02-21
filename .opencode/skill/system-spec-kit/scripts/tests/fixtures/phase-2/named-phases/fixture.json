@@ -1,0 +1,5 @@
+{
+  "phases": 2,
+  "phase_names": ["planning", "delivery"],
+  "expect_folders": ["001-planning", "002-delivery"]
+}

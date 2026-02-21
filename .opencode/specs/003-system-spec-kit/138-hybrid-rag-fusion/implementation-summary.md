@@ -50,7 +50,7 @@ Five new production modules and six surgical modifications to existing files tra
 
 All 9 monolithic SKILL.md files decomposed into a composable graph architecture with 72 total nodes. Each skill now has `index.md` (graph entrypoint), `nodes/*.md` (focused topic files with YAML frontmatter), and `SKILL.md` (compatibility entrypoint).
 
-**Skills converted:** system-spec-kit (9 nodes), workflows-documentation (7), mcp-code-mode (6), workflows-git (9), workflows-chrome-devtools (10), mcp-figma (8), workflows-code--full-stack (6), workflows-code--opencode (8), workflows-code--web-dev (9).
+**Skills converted:** system-spec-kit (9 nodes), workflows-documentation (7), mcp-code-mode (6), workflows-git (9), mcp-chrome-devtools (10), mcp-figma (8), sk-code--full-stack (6), workflows-code--opencode (8), workflows-code--web-dev (9).
 
 **SGQS specifications delivered:** Grammar specification (802 lines) with MATCH/WHERE/RETURN clauses, BNF grammar, AST targets, and error taxonomy. Metadata mapping model (808 lines) covering source-to-graph entity mapping and extraction pipeline. Parser/executor implementation (3,197 lines across 7 TypeScript modules) validated against 411-node graph with 8 query scenarios.
 

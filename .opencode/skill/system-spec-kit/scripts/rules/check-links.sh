@@ -1,13 +1,16 @@
 #!/usr/bin/env bash
 # ───────────────────────────────────────────────────────────────
-# COMPONENT: check-links.sh
+# RULE: CHECK-LINKS
 # ───────────────────────────────────────────────────────────────
-# Validate wikilinks within markdown files.
-# It checks both [[link]] and [[link|alias]] formats, ignoring code blocks.
+# Validates wikilinks across skill markdown files.
+# Compatible with validate.sh (sourced run_check) and standalone execution.
+#
+# Exit Codes (standalone mode):
+#   0 - All wikilinks resolve
+#   1 - Missing skill directory or broken wikilinks found
 
 set -euo pipefail
 
-# Standard colors
 RED='\033[0;31m'
 GREEN='\033[0;32m'
 BOLD='\033[1m'
@@ -17,45 +20,31 @@ if [[ ! -t 1 ]]; then
     RED='' GREEN='' BOLD='' NC=''
 fi
 
-SKILL_DIR=".opencode/skill"
+DEFAULT_SKILL_DIR=".opencode/skill"
 
-# Temporary file to store results
-TEMP_FILE=$(mktemp)
-trap 'rm -f "$TEMP_FILE"' EXIT
-
-main() {
-    if [[ ! -d "$SKILL_DIR" ]]; then
-        printf "${RED}ERROR:${NC} Skill directory not found at %s\n" "$SKILL_DIR" >&2
-        exit 1
-    fi
-
+scan_wikilinks() {
+    local skill_dir="$1"
+    local output_file="$2"
     local has_errors=0
+
     local file=""
     local dir=""
     local links=""
     local inner=""
     local target=""
+    local skill_subdir=""
 
-    # Using process substitution with find to avoid subshell variable scope issues
-    # Find all markdown files, explicitly ignoring node_modules directories
     while IFS= read -r file; do
         dir=$(dirname "$file")
-        
-        # Strip fenced code blocks and inline code, then extract wikilinks (P1-5 fix)
+
+        # Strip fenced code blocks and inline code before extracting wikilinks.
         links=$(perl -0777 -pe 's/```[\s\S]*?```//g; s/`[^`]+`//g' "$file" | perl -ne 'while (/\[\[(.*?)\]\]/g) { print "$1\n" }')
-        
-        if [[ -z "$links" ]]; then
-            continue
-        fi
-        
-        # Read links line by line
+        [[ -z "$links" ]] && continue
+
         while IFS= read -r inner; do
-            if [[ -z "$inner" ]]; then
-                continue
-            fi
-            
-            # Heuristics to ignore bash conditional tests and Next.js route patterns
-            # e.g. [[ -f "$file" ]] or [[...slug]]
+            [[ -z "$inner" ]] && continue
+
+            # Ignore shell-test and route-pattern false positives.
             if [[ "$inner" =~ ^\ +.* ]] || \
                [[ "$inner" =~ \ -[a-z]\  ]] || \
                [[ "$inner" =~ \ ==\  ]] || \
@@ -66,39 +55,91 @@ main() {
                [[ "$inner" =~ \ \|\|\  ]]; then
                continue
             fi
-            
-            # Handle aliases: extract target from [[target|alias]]
-            target=$(echo "$inner" | cut -d'|' -f1)
-            
-            # Auto-resolve .md extension if missing
-            if [[ "$target" != *.md ]]; then
-                target="${target}.md"
-            fi
-            
-            # Determine the skill subdirectory for this file (P1-6: consistent resolution)
-            local skill_subdir=""
-            skill_subdir=$(echo "$file" | sed -n "s|^\(${SKILL_DIR}/[^/]*\)/.*|\1|p")
 
-            # Check if file exists relative to:
-            # 1. current file's directory
-            # 2. the global SKILL_DIR
-            # 3. the file's skill subdirectory (matches graph-builder resolution)
-            if [[ ! -f "$dir/$target" ]] && [[ ! -f "$SKILL_DIR/$target" ]] && \
+            target=$(echo "$inner" | cut -d'|' -f1)
+            [[ "$target" != *.md ]] && target="${target}.md"
+
+            # Resolve references within the local skill first.
+            skill_subdir=$(echo "$file" | sed -n "s|^\(${skill_dir}/[^/]*\)/.*|\1|p")
+
+            if [[ ! -f "$dir/$target" ]] && [[ ! -f "$skill_dir/$target" ]] && \
                { [[ -z "$skill_subdir" ]] || [[ ! -f "$skill_subdir/$target" ]]; }; then
-                echo "File: $file - Broken link: [[$inner]] (Target not found: $target)" >> "$TEMP_FILE"
+                echo "File: $file - Broken link: [[$inner]] (Target not found: $target)" >> "$output_file"
                 has_errors=1
             fi
         done <<< "$links"
-    done < <(find "$SKILL_DIR" \( -type d -name "node_modules" -o -type d -name "assets" \) -prune -o -name "*.md" -type f -print)
+    done < <(find "$skill_dir" \( -type d -name "node_modules" -o -type d -name "assets" \) -prune -o -name "*.md" -type f -print)
 
-    if [[ $has_errors -eq 0 ]]; then
-        printf "${GREEN}✅ All wikilinks are valid.${NC}\n"
-        exit 0
-    else
-        printf "${RED}❌ Broken wikilinks found:${NC}\n"
-        cat "$TEMP_FILE"
-        exit 1
-    fi
+    return "$has_errors"
 }
 
-main "$@"
+run_check() {
+    local _folder="$1"
+    local _level="$2"
+
+    RULE_NAME="LINKS_VALID"
+    RULE_STATUS="pass"
+    RULE_MESSAGE=""
+    RULE_DETAILS=()
+    RULE_REMEDIATION=""
+
+    local skill_dir="${SPECKIT_LINKS_SKILL_DIR:-$DEFAULT_SKILL_DIR}"
+    if [[ "${SPECKIT_VALIDATE_LINKS:-false}" != "true" ]]; then
+        RULE_STATUS="pass"
+        RULE_MESSAGE="Wikilink validation skipped (set SPECKIT_VALIDATE_LINKS=true to enable)"
+        return 0
+    fi
+
+    if [[ ! -d "$skill_dir" ]]; then
+        RULE_STATUS="pass"
+        RULE_MESSAGE="Wikilink validation skipped (missing directory: $skill_dir)"
+        return 0
+    fi
+
+    local temp_file
+    temp_file=$(mktemp)
+    if scan_wikilinks "$skill_dir" "$temp_file"; then
+        RULE_STATUS="pass"
+        RULE_MESSAGE="All wikilinks are valid"
+    else
+        RULE_STATUS="fail"
+        RULE_MESSAGE="Broken wikilinks found in skill markdown files"
+
+        local line_count=0
+        while IFS= read -r line; do
+            RULE_DETAILS+=("$line")
+            line_count=$((line_count + 1))
+            [[ $line_count -ge 20 ]] && break
+        done < "$temp_file"
+
+        RULE_REMEDIATION="Fix broken [[links]] or add the missing target markdown files."
+    fi
+    rm -f "$temp_file"
+    return 0
+}
+
+main() {
+    local skill_dir="${1:-$DEFAULT_SKILL_DIR}"
+
+    if [[ ! -d "$skill_dir" ]]; then
+        printf "${RED}ERROR:${NC} Skill directory not found at %s\n" "$skill_dir" >&2
+        exit 1
+    fi
+
+    local temp_file
+    temp_file=$(mktemp)
+    trap 'rm -f "$temp_file"' EXIT
+
+    if scan_wikilinks "$skill_dir" "$temp_file"; then
+        printf "${GREEN}✅ All wikilinks are valid.${NC}\n"
+        exit 0
+    fi
+
+    printf "${RED}❌ Broken wikilinks found:${NC}\n"
+    cat "$temp_file"
+    exit 1
+}
+
+if [[ "${BASH_SOURCE[0]}" == "$0" ]]; then
+    main "$@"
+fi

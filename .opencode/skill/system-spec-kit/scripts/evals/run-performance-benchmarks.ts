@@ -418,8 +418,17 @@ async function main(): Promise<void> {
       chk110: sessionBoostStats.p95Ms < NFR_P01_P95_MS ? 'PASS' as const : 'FAIL' as const,
       chk111: causalBoostStats.p95Ms < NFR_P02_P95_MS ? 'PASS' as const : 'FAIL' as const,
       chk112: extraction.stats.p95Ms < NFR_P03_P95_MS ? 'PASS' as const : 'FAIL' as const,
-      chk113: load.totalRequests >= LOAD_TEST_CONCURRENCY ? 'PASS' as const : 'FAIL' as const,
-      chk114: 'PASS' as const,
+      chk113: (
+        load.perRequest.samples === LOAD_TEST_CONCURRENCY &&
+        Number.isFinite(load.wallClockMs) &&
+        Number.isFinite(load.perRequest.p95Ms)
+      ) ? 'PASS' as const : 'FAIL' as const,
+      chk114: (
+        baselineVsBoosted.baseline.samples === BASELINE_COMPARE_SAMPLES &&
+        baselineVsBoosted.boosted.samples === BASELINE_COMPARE_SAMPLES &&
+        Number.isFinite(baselineVsBoosted.p95DeltaMs) &&
+        Number.isFinite(baselineVsBoosted.p95DeltaPercent)
+      ) ? 'PASS' as const : 'FAIL' as const,
     };
 
     const report: PerfReport = {

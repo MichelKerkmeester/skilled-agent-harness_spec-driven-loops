@@ -1,6 +1,19 @@
+// ---------------------------------------------------------------
+// MODULE: SGQS Query Handler
+// ---------------------------------------------------------------
+
+/* ---------------------------------------------------------------
+   1. DEPENDENCIES
+--------------------------------------------------------------- */
+
 import * as path from 'path';
+
 import { DEFAULT_BASE_PATH } from '../core';
 import { skillGraphCache } from '../lib/search/skill-graph-cache';
+
+/* ---------------------------------------------------------------
+   2. TYPES
+--------------------------------------------------------------- */
 
 /** Maximum query string length to prevent abuse / accidental huge payloads. */
 const MAX_QUERY_LENGTH = 4096;
@@ -8,6 +21,10 @@ const MAX_QUERY_LENGTH = 4096;
 export interface SgqsQueryArgs {
   queryString: string;
 }
+
+/* ---------------------------------------------------------------
+   3. HANDLER
+--------------------------------------------------------------- */
 
 export async function handleMemorySkillGraphQuery(args: SgqsQueryArgs) {
   try {

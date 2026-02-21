@@ -80,12 +80,12 @@ Do not re-invoke a skill already in context.
 ├── mcp-code-mode/
 ├── mcp-figma/
 ├── system-spec-kit/
-├── workflows-chrome-devtools/
-├── workflows-code--full-stack/
+├── mcp-chrome-devtools/
+├── sk-code--full-stack/
 ├── workflows-code--opencode/
-├── workflows-code--web-dev/
-├── workflows-documentation/
-├── workflows-git/
+├── sk-code--web/
+├── sk-documentation/
+├── sk-git/
 └── README.md              ← this file
 ```
 
@@ -121,7 +121,7 @@ Unified documentation and context preservation. Spec folder workflow (levels 1-3
 
 ### Code Workflows
 
-#### `workflows-code--full-stack` (v1.0.0.0)
+#### `sk-code--full-stack` (v1.0.0.0)
 
 Stack-agnostic development orchestrator. Auto-detects Go, Node.js, React, React Native and Swift via marker files. Implementation, Debugging and Verification lifecycle.
 
@@ -130,7 +130,7 @@ Stack-agnostic development orchestrator. Auto-detects Go, Node.js, React, React 
 - Stack-specific coding standards and testing patterns
 - Language-aware linting and build verification
 
-#### `workflows-code--web-dev` (v1.0.5.0)
+#### `sk-code--web` (v1.0.5.0)
 
 Frontend development orchestrator with Webflow integration. Implementation, Debugging and Verification across 6 specialized code quality sub-skills.
 
@@ -152,7 +152,7 @@ Multi-language code standards for OpenCode system code (JavaScript, TypeScript, 
 
 ### Development Ops
 
-#### `workflows-git` (v1.0.2.0)
+#### `sk-git` (v1.0.2.0)
 
 Git development orchestrator guiding workspace setup (worktrees), clean commits (Conventional Commits) and work completion (merge, PR and cleanup).
 
@@ -161,7 +161,7 @@ Git development orchestrator guiding workspace setup (worktrees), clean commits 
 - PR creation and merge workflows
 - Branch cleanup and workspace teardown
 
-#### `workflows-chrome-devtools` (v1.0.1.0)
+#### `mcp-chrome-devtools` (v1.0.1.0)
 
 Chrome DevTools orchestrator with CLI (bdg) and MCP approaches. Browser debugging, screenshots, HAR files, console logs and network inspection.
 
@@ -174,7 +174,7 @@ Chrome DevTools orchestrator with CLI (bdg) and MCP approaches. Browser debuggin
 
 ### Documentation
 
-#### `workflows-documentation` (v1.0.6.0)
+#### `sk-documentation` (v1.0.6.0)
 
 Document quality enforcement and content optimization. Component creation workflows for skills, agents and commands. ASCII flowcharts and install guides.
 
@@ -232,10 +232,10 @@ For code workflow skills, the advisor also checks marker files in the project ro
 
 | Marker File      | Detected Stack  | Routed Skill                  |
 | ---------------- | --------------- | ----------------------------- |
-| `package.json`   | Node.js / React | `workflows-code--web-dev`     |
-| `go.mod`         | Go              | `workflows-code--full-stack`  |
-| `Podfile`        | iOS / Swift     | `workflows-code--full-stack`  |
-| `Package.swift`  | Swift           | `workflows-code--full-stack`  |
+| `package.json`   | Node.js / React | `sk-code--web`     |
+| `go.mod`         | Go              | `sk-code--full-stack`  |
+| `Podfile`        | iOS / Swift     | `sk-code--full-stack`  |
+| `Package.swift`  | Swift           | `sk-code--full-stack`  |
 
 **Running the advisor manually:**
 
@@ -248,20 +248,20 @@ python3 .opencode/skill/scripts/skill_advisor.py "build a new React component" -
 <!-- ANCHOR:creating-skills -->
 ## 6. CREATING SKILLS
 
-To create a new skill, use the `workflows-documentation` skill with the skill creation template.
+To create a new skill, use the `sk-documentation` skill with the skill creation template.
 
 **Template location:**
 
 ```
-.opencode/skill/workflows-documentation/references/skill_creation.md
+.opencode/skill/sk-documentation/references/skill_creation.md
 ```
 
 **Asset templates:**
 
 ```
-.opencode/skill/workflows-documentation/assets/opencode/skill_md_template.md
-.opencode/skill/workflows-documentation/assets/opencode/skill_reference_template.md
-.opencode/skill/workflows-documentation/assets/opencode/skill_asset_template.md
+.opencode/skill/sk-documentation/assets/opencode/skill_md_template.md
+.opencode/skill/sk-documentation/assets/opencode/skill_reference_template.md
+.opencode/skill/sk-documentation/assets/opencode/skill_asset_template.md
 ```
 
 **Key files in every skill:**
@@ -289,12 +289,12 @@ After creating a skill, validate its structure against the template and test inv
 **Individual skill READMEs:**
 
 - [system-spec-kit](system-spec-kit/)
-- [workflows-code--full-stack](workflows-code--full-stack/)
-- [workflows-code--web-dev](workflows-code--web-dev/)
+- [sk-code--full-stack](sk-code--full-stack/)
+- [sk-code--web](sk-code--web/)
 - [workflows-code--opencode](workflows-code--opencode/)
-- [workflows-git](workflows-git/)
-- [workflows-chrome-devtools](workflows-chrome-devtools/)
-- [workflows-documentation](workflows-documentation/)
+- [sk-git](sk-git/)
+- [mcp-chrome-devtools](mcp-chrome-devtools/)
+- [sk-documentation](sk-documentation/)
 - [mcp-code-mode](mcp-code-mode/)
 - [mcp-figma](mcp-figma/)
 

@@ -23,7 +23,7 @@
 | Virtual Graph Adapter (ADR-001) | No schema migrations, no external databases; queries both graphs in parallel with namespace-prefixed IDs | `graph-search-fn.ts` (new), `context-server.ts:566` |
 | Cache-first SGQS via SkillGraphCacheManager (ADR-002) | Eliminates per-query filesystem rebuild (~100-150ms); 5-min TTL, ~300KB memory | `skill-graph-cache.ts` (new) |
 | Composite graphSearchFn fills existing NULL slot (ADR-003) | Single slot at `context-server.ts:566`; unified function covers both Causal Edge SQLite and SGQS graphs | `context-server.ts:566`, `db-state.ts:140`, `reindex-embeddings.ts` |
-| Three independent feature flags | `SPECKIT_GRAPH_UNIFIED`, `SPECKIT_GRAPH_MMR`, `SPECKIT_GRAPH_AUTHORITY` — all strict `=== 'true'`, all default false | `graph-flags.ts` (new) |
+| Three independent feature flags | `SPECKIT_GRAPH_UNIFIED`, `SPECKIT_GRAPH_MMR`, `SPECKIT_GRAPH_AUTHORITY` — default enabled (opt-out); set to `false` to disable | `graph-flags.ts` (new), `rollout-policy.ts` |
 | Namespace-prefixed IDs | `mem:{id}` for causal, `skill:{path}` for SGQS — prevents collision in unified results | `graph-search-fn.ts` |
 | Background-refresh pattern | GraphSearchFn must be synchronous but SkillGraphCacheManager is async; local snapshot updated in background | `graph-search-fn.ts`, `skill-graph-cache.ts` |
 | Three call sites (not two) | `reindex-embeddings.ts` discovered as 3rd `hybridSearch.init()` call site during implementation | All 3 consistently wired |
@@ -43,7 +43,7 @@
 |------|----------------|--------|
 | `lib/search/skill-graph-cache.ts` | Created (~85 LOC) — SkillGraphCacheManager singleton, 5-min TTL | COMPLETE |
 | `lib/search/graph-search-fn.ts` | Created (~335 LOC) — Unified graph search: causal + SGQS + authority + intent routing | COMPLETE |
-| `lib/search/graph-flags.ts` | Created (~29 LOC) — 3 feature flags, strict opt-in | COMPLETE |
+| `lib/search/graph-flags.ts` | Created (~29 LOC) — 3 feature flags with runtime opt-out semantics (default enabled) | COMPLETE |
 | `lib/search/context-budget.ts` | Created (~147 LOC) — Token-budget-aware result selection | COMPLETE |
 | `lib/search/fsrs.ts` | Created (~78 LOC) — Temporal-structural coherence weighting | COMPLETE |
 | `lib/search/adaptive-fusion.ts` | Modified — `graphWeight` + `graphCausalBias` in FusionWeights + all 6 profiles | COMPLETE |
@@ -100,7 +100,7 @@ Before handover, verify:
 
 - [x] All in-progress work committed or stashed — all implementation complete, tests passing
 - [x] Memory file saved with current context — memory #67 indexed via generate-context.js
-- [x] No breaking changes left mid-implementation — all features behind feature flags (default false)
+- [x] No breaking changes left mid-implementation — graph features can be disabled via feature flags (`false` opt-out; defaults enabled)
 - [x] Tests passing — 158 test files, 4725 tests, 19 skipped, 0 failures
 - [x] Checklist verified — 003: 50/54 (all P0+P1 done), root 138: 32/55
 - [x] Root 138 synced — tasks.md and checklist.md updated with 002+003 completion evidence

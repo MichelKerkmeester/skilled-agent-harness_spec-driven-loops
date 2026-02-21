@@ -12,7 +12,7 @@
 **Progress**: 95%
 
 ### Key Accomplishments
-- Migrated all 6 remaining skills to graph architecture (workflows-git, workflows-chrome-devtools, mcp-figma, workflows-code--full-stack, workflows-code--opencode, workflows-code--web-dev) — 8 parallel agents
+- Migrated all 6 remaining skills to graph architecture (workflows-git, mcp-chrome-devtools, mcp-figma, sk-code--full-stack, workflows-code--opencode, workflows-code--web-dev) — 8 parallel agents
 - Implemented SGQS parser/executor: 7 TypeScript modules, 3,197 lines in `.opencode/skill/system-spec-kit/scripts/sgqs/`
 - Completed SGQS grammar spec (TASK-103, 802 lines) and metadata mapping model (TASK-104, 808 lines)
 - Validated 8 SGQS query scenarios against live skill graph (411 nodes, 621 edges)
@@ -40,9 +40,9 @@
 - [x] TASK-104 - Metadata mapping model (808 lines, entity mapping, data model, extraction pipeline)
 - [x] TASK-105 - Coverage matrix verified (9/9 skills, 72 nodes)
 - [x] TASK-313 - workflows-git migration (9 nodes)
-- [x] TASK-314 - workflows-chrome-devtools migration (10 nodes)
+- [x] TASK-314 - mcp-chrome-devtools migration (10 nodes)
 - [x] TASK-315 - mcp-figma migration (8 nodes)
-- [x] TASK-316 - workflows-code--full-stack migration (6 nodes)
+- [x] TASK-316 - sk-code--full-stack migration (6 nodes)
 - [x] TASK-317 - workflows-code--opencode migration (8 nodes)
 - [x] TASK-318 - workflows-code--web-dev migration (9 nodes)
 - [x] TASK-401 - SGQS parser/executor implementation (7 modules, 3,197 lines)

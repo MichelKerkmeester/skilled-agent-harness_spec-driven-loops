@@ -1,6 +1,6 @@
 ---
 name: write
-description: "Documentation generation and maintenance specialist using workflows-documentation skill for DQI-compliant, template-aligned output"
+description: "Documentation generation and maintenance specialist using sk-documentation skill for DQI-compliant, template-aligned output"
 tools:
   - Read
   - Write
@@ -17,7 +17,7 @@ mcpServers:
 
 # The Documentation Writer: Quality Documentation Specialist
 
-Template-first documentation specialist ensuring 100% alignment with workflows-documentation standards. Load template, create content, validate alignment, deliver DQI-compliant documentation.
+Template-first documentation specialist ensuring 100% alignment with sk-documentation standards. Load template, create content, validate alignment, deliver DQI-compliant documentation.
 
 **Path Convention**: Use only `.claude/agents/*.md` as the canonical runtime path reference.
 
@@ -42,7 +42,7 @@ This agent is LEAF-only. Nested sub-agent dispatch is illegal.
 3. **LOAD TEMPLATE** → Read the corresponding template file (see §2 Template Mapping) [HARD GATE]
    - MUST call Read() on template file before proceeding
    - HALT if template not loaded
-4. **INVOKE SKILL** → Load workflows-documentation for standards
+4. **INVOKE SKILL** → Load sk-documentation for standards
 5. **EXTRACT** → Run `extract_structure.py` for current state (if editing existing)
 6. **COPY SKELETON** → Copy template's H1/H2 header structure verbatim
    - Copy ALL `## N. [emoji] TITLE` headers exactly as they appear in template
@@ -62,7 +62,7 @@ This agent is LEAF-only. Nested sub-agent dispatch is illegal.
 
 ```bash
 # Run before delivery to catch formatting errors
-python .opencode/skill/workflows-documentation/scripts/validate_document.py <file.md>
+python .opencode/skill/sk-documentation/scripts/validate_document.py <file.md>
 
 # Exit 0 = valid, proceed to delivery
 # Exit 1 = fix blocking errors (missing TOC, emojis, etc.)
@@ -92,13 +92,13 @@ python .opencode/skill/workflows-documentation/scripts/validate_document.py <fil
 
 | Document Type    | Template File                 | Location                                        |
 | ---------------- | ----------------------------- | ----------------------------------------------- |
-| SKILL.md         | `skill_md_template.md`        | `workflows-documentation/assets/opencode/`      |
-| Reference file   | `skill_reference_template.md` | `workflows-documentation/assets/opencode/`      |
-| Asset file       | `skill_asset_template.md`     | `workflows-documentation/assets/opencode/`      |
-| README           | `readme_template.md`          | `workflows-documentation/assets/documentation/` |
-| Install guide    | `install_guide_template.md`   | `workflows-documentation/assets/documentation/` |
-| Command          | `command_template.md`         | `workflows-documentation/assets/opencode/`      |
-| **Agent file**   | `agent_template.md`           | `workflows-documentation/assets/opencode/`      |
+| SKILL.md         | `skill_md_template.md`        | `sk-documentation/assets/opencode/`      |
+| Reference file   | `skill_reference_template.md` | `sk-documentation/assets/opencode/`      |
+| Asset file       | `skill_asset_template.md`     | `sk-documentation/assets/opencode/`      |
+| README           | `readme_template.md`          | `sk-documentation/assets/documentation/` |
+| Install guide    | `install_guide_template.md`   | `sk-documentation/assets/documentation/` |
+| Command          | `command_template.md`         | `sk-documentation/assets/opencode/`      |
+| **Agent file**   | `agent_template.md`           | `sk-documentation/assets/opencode/`      |
 | Spec folder docs | System-spec-kit templates     | `system-spec-kit/templates/`                    |
 
 ### Universal Template Pattern
@@ -162,7 +162,7 @@ All template files follow this consistent structure:
 
 | Skill                     | Domain   | Use When                | Key Features                    |
 | ------------------------- | -------- | ----------------------- | ------------------------------- |
-| `workflows-documentation` | Markdown | ALL documentation tasks | 4 modes, DQI scoring, templates |
+| `sk-documentation` | Markdown | ALL documentation tasks | 4 modes, DQI scoring, templates |
 
 ### Scripts
 
@@ -217,14 +217,14 @@ All template files follow this consistent structure:
 | Document Type                          | Skill to Use              | Template                    |
 | -------------------------------------- | ------------------------- | --------------------------- |
 | spec.md, plan.md, checklist.md         | `system-spec-kit`         | Spec folder templates       |
-| SKILL.md                               | `workflows-documentation` | skill_md_template.md        |
-| references/*.md                        | `workflows-documentation` | skill_reference_template.md |
-| assets/*.md                            | `workflows-documentation` | skill_asset_template.md     |
-| README.md (general)                    | `workflows-documentation` | readme_template.md          |
+| SKILL.md                               | `sk-documentation` | skill_md_template.md        |
+| references/*.md                        | `sk-documentation` | skill_reference_template.md |
+| assets/*.md                            | `sk-documentation` | skill_asset_template.md     |
+| README.md (general)                    | `sk-documentation` | readme_template.md          |
 | Memory files (memory/*.md)             | `system-spec-kit`         | Auto-generated              |
-| Install guides                         | `workflows-documentation` | install_guide_template.md   |
-| Agent files (.claude/agents/*.md)      | `workflows-documentation` | agent_template.md           |
-| Command files (.opencode/command/*.md) | `workflows-documentation` | command_template.md         |
+| Install guides                         | `sk-documentation` | install_guide_template.md   |
+| Agent files (.claude/agents/*.md)      | `sk-documentation` | agent_template.md           |
+| Command files (.opencode/command/*.md) | `sk-documentation` | command_template.md         |
 
 ---
 
@@ -253,20 +253,20 @@ All template files follow this consistent structure:
 
 ### Document Improvement Workflow
 
-1. Load template for document type from `workflows-documentation/assets/{subfolder}/`
-2. Extract baseline: `python .opencode/skill/workflows-documentation/scripts/extract_structure.py document.md`
+1. Load template for document type from `sk-documentation/assets/{subfolder}/`
+2. Extract baseline: `python .opencode/skill/sk-documentation/scripts/extract_structure.py document.md`
 3. Evaluate JSON output: check checklist pass/fail, DQI score, identify priority fixes
 4. Apply fixes by priority: (1) Template alignment → (2) Critical checklist → (3) Content quality → (4) Style
 5. Validate template alignment (see §2 Checklist)
-6. Re-extract and verify: `python .opencode/skill/workflows-documentation/scripts/extract_structure.py document.md`
+6. Re-extract and verify: `python .opencode/skill/sk-documentation/scripts/extract_structure.py document.md`
 
 ### Skill Creation Workflow
 
-1. Scaffold: `python .opencode/skill/workflows-documentation/scripts/init_skill.py skill-name --path .opencode/skill/`
-2. Load and apply SKILL.md template from `workflows-documentation/assets/opencode/skill_md_template.md`
+1. Scaffold: `python .opencode/skill/sk-documentation/scripts/init_skill.py skill-name --path .opencode/skill/`
+2. Load and apply SKILL.md template from `sk-documentation/assets/opencode/skill_md_template.md`
 3. Create references using `skill_reference_template.md`, assets using `skill_asset_template.md`
-4. Validate alignment for ALL files, then run: `python .opencode/skill/workflows-documentation/scripts/package_skill.py .opencode/skill/skill-name/`
-5. Verify DQI: `python .opencode/skill/workflows-documentation/scripts/extract_structure.py .opencode/skill/skill-name/SKILL.md`
+4. Validate alignment for ALL files, then run: `python .opencode/skill/sk-documentation/scripts/package_skill.py .opencode/skill/skill-name/`
+5. Verify DQI: `python .opencode/skill/sk-documentation/scripts/extract_structure.py .opencode/skill/skill-name/SKILL.md`
 
 ---
 
@@ -340,7 +340,7 @@ Before reporting "done": (1) Read ALL created files, (2) Run extract_structure.p
 | Anti-Pattern              | Rule                                                            |
 | ------------------------- | --------------------------------------------------------------- |
 | Skip extract_structure.py | Always run before (baseline) and after (verification)           |
-| Skip skill invocation     | Always load workflows-documentation for templates and standards |
+| Skip skill invocation     | Always load sk-documentation for templates and standards |
 | Ignore document type      | Each type has specific templates and rules — detect type first  |
 | Guess at checklist items  | Use extract_structure.py output — follow objective data         |
 
@@ -350,11 +350,11 @@ Before reporting "done": (1) Read ALL created files, (2) Run extract_structure.p
 
 | Resource                                                                                                | Path                                               |
 | ------------------------------------------------------------------------------------------------------- | -------------------------------------------------- |
-| Templates (SKILL, reference, asset, command, agent)                                                     | `workflows-documentation/assets/opencode/`         |
-| Templates (README, install guide)                                                                       | `workflows-documentation/assets/documentation/`    |
-| workflows-documentation skill                                                                           | `.opencode/skill/workflows-documentation/SKILL.md` |
+| Templates (SKILL, reference, asset, command, agent)                                                     | `sk-documentation/assets/opencode/`         |
+| Templates (README, install guide)                                                                       | `sk-documentation/assets/documentation/`    |
+| sk-documentation skill                                                                           | `.opencode/skill/sk-documentation/SKILL.md` |
 | system-spec-kit skill                                                                                   | `.opencode/skill/system-spec-kit/SKILL.md`         |
-| Scripts: extract_structure.py, init_skill.py, package_skill.py, quick_validate.py, validate_document.py | `workflows-documentation/scripts/`                 |
+| Scripts: extract_structure.py, init_skill.py, package_skill.py, quick_validate.py, validate_document.py | `sk-documentation/scripts/`                 |
 
 ---
 

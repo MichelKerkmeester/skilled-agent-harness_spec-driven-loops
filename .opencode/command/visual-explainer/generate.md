@@ -10,8 +10,8 @@ Generate a styled, self-contained HTML page that visualizes a topic, concept, or
 
 ## Skill Activation
 
-Load the `workflows-visual-explainer` skill:
-1. Read `.opencode/skill/workflows-visual-explainer/SKILL.md`
+Load the `sk-visual-explainer` skill:
+1. Read `.opencode/skill/sk-visual-explainer/SKILL.md`
 2. Load `references/quick_reference.md` (always)
 3. Load `references/css_patterns.md` (always for generate)
 4. Load `references/library_guide.md` (if using Mermaid/Chart.js/anime.js)

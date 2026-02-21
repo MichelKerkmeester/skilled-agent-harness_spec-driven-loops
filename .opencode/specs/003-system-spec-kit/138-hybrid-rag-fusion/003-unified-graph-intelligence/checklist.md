@@ -34,8 +34,8 @@
   - **Evidence**: Both 001 and 002 sibling specs analyzed; integration surfaces documented in spec.md
 - [x] CHK-003 [P0] Integration surface identified: `context-server.ts:566` and `db-state.ts:140` confirmed as wire points for `graphSearchFn` injection
   - **Evidence**: Three wire points confirmed: context-server.ts:566, db-state.ts:140, reindex-embeddings.ts:80
-- [x] CHK-004 [P1] Feature flag `SPECKIT_GRAPH_UNIFIED` defined and defaulted to `false` before any implementation begins
-  - **Evidence**: graph-flags.ts created with SPECKIT_GRAPH_UNIFIED defaulting to false (strict opt-in === 'true')
+- [x] CHK-004 [P1] Feature flag `SPECKIT_GRAPH_UNIFIED` documented with runtime opt-out semantics before implementation proceeds
+  - **Evidence**: `graph-flags.ts` delegates to `isFeatureEnabled()` in rollout policy: unset/empty/`true` enabled; explicit `false` disabled
 - [~] CHK-005 [P1] TypeScript interfaces drafted: `UnifiedNodeId`, `GraphSearchResult`, `UnifiedEdge` in a new interface file before writing implementation code
   - **Evidence**: Interfaces defined inline in implementation files: CausalEdgeRow (graph-search-fn.ts:16-22), SubgraphWeights (graph-search-fn.ts:28-31), GraphChannelMetrics (hybrid-search.ts), SkillGraphLike/GraphNodeLike/GraphEdgeLike (query-expander.ts:9-20). GraphSearchFn type exported from hybrid-search.ts. Formal UnifiedNodeId/UnifiedEdge not created as separate types — implementation uses namespace-prefixed string IDs (`mem:{id}`, `skill:{path}`) and Record<string, unknown> per existing GraphSearchFn contract. (PARTIAL: Types used inline rather than as formal exported interfaces)
 - [ ] CHK-006 [P1] Baseline benchmark recorded: pipeline latency p95 without graph channel, over 100 queries, saved to scratch/
@@ -90,8 +90,8 @@
   - **Evidence**: graph-search-fn.vitest.ts (7 tests) covers causal edge path, SGQS path, merged/sorted output, single-channel failure, empty both, namespace prefixing. All pass.
 - [x] CHK-021 [P0] Integration test: full pipeline with `SPECKIT_GRAPH_UNIFIED=true` executes end-to-end and returns non-empty results for at least one real query
   - **Evidence**: T021 pipeline-integration.vitest.ts (23 tests): mock graphSearchFn wired via init(), graph results verified present with useGraph:true. Module wiring (9), pipeline contract (6), feature flag contract (4), result shape (4). All pass.
-- [x] CHK-022 [P0] Regression test: `SPECKIT_GRAPH_UNIFIED=false` produces output within statistical noise of pre-change baseline (same query set, ±2% score tolerance)
-  - **Evidence**: T022 graph-regression-flag-off.vitest.ts (18 tests): flag contract (strict === 'true'), graphFn null when off, useGraph=false bypass, metrics zeroed, wiring simulation. Graph channel completely bypassed when disabled — zero interference with existing pipeline.
+- [x] CHK-022 [P0] Regression test: explicit `SPECKIT_GRAPH_UNIFIED=false` produces output within statistical noise of pre-change baseline (same query set, +/-2% score tolerance)
+  - **Evidence**: T022 graph-regression-flag-off.vitest.ts (18 tests): flag contract (explicit `false` disables), graphFn null when off, useGraph=false bypass, metrics zeroed, wiring simulation. Graph channel completely bypassed when disabled — zero interference with existing pipeline.
 - [~] CHK-023 [P0] Pipeline latency benchmark: p95 ≤ 120ms with graph channel active, measured over 100 queries with realistic query mix
   - **Evidence**: T011 graph-channel-benchmark.vitest.ts (41 tests) — component benchmarks: getSubgraphWeights 1000 calls < 500ms, buildSemanticBridgeMap < 5ms, expandQueryWithBridges 200 calls < 10ms, metrics 500 iterations < 20ms. All graph-channel components well within 15ms individual budgets. Full pipeline p95 requires live DB — deferred to production validation. (PARTIAL: Component-level benchmarks only; full pipeline p95 requires live DB)
 - [x] CHK-034 [P1] Benchmark results documented in scratch/ — includes raw data table, p50/p95/p99 breakdown, and comparison to baseline
@@ -181,13 +181,13 @@
 ## L3+: Deployment Readiness
 
 - [x] CHK-120 [P0] Feature flag `SPECKIT_GRAPH_UNIFIED=false` immediately and completely disables the graph channel — verified by integration test that confirms output matches baseline
-  - **Evidence**: When SPECKIT_GRAPH_UNIFIED !== 'true', context-server.ts passes undefined as 3rd arg → graph channel completely bypassed. Verified: all 4554 tests pass with default (false) flag state
+  - **Evidence**: `rollout-policy.ts` disables only on explicit `false`; context-server.ts passes undefined as 3rd arg when disabled → graph channel completely bypassed. Regression suite validates flag-off baseline behavior.
 - [x] CHK-121 [P0] Rollback requires zero database changes — confirmed by schema diff showing v15 SQLite unchanged before and after integration
   - **Evidence**: Zero schema migrations — no new tables, columns, or ALTER statements. SQLite v15 schema unchanged.
 - [x] CHK-122 [P1] Monitoring via `memory_stats` reports graph channel health: result count, cache hit rate, and average latency contribution per invocation
   - **Evidence**: getGraphMetrics() in hybrid-search.ts provides: totalQueries, graphHits, graphOnlyResults, multiSourceResults, graphHitRate (computed). SkillGraphCacheManager.isWarm() for cache status. memory_stats tool integration deferred — API surface ready for consumption.
 - [~] CHK-123 [P1] Runbook documents the flag flip procedure: where to set `SPECKIT_GRAPH_UNIFIED`, how to verify the flip took effect, and expected observable changes
-  - **Evidence**: Flag flip: set `SPECKIT_GRAPH_UNIFIED=true` in environment (process.env). Verification: call getGraphMetrics() — totalQueries should increment after queries. Observable changes: graph channel results appear in RRF fusion (source='graph'), getSubgraphWeights routing active, SGQS cache warming logged. Rollback: unset env var or set to any value !== 'true'. Additional flags: SPECKIT_GRAPH_MMR, SPECKIT_GRAPH_AUTHORITY (independent, also default false). (PARTIAL: Procedure documented inline; no separate runbook document created)
+  - **Evidence**: Flag flip: set `SPECKIT_GRAPH_UNIFIED=false` to disable, or unset/set `true` to enable under runtime policy. Verification: call getGraphMetrics() — totalQueries should increment after queries when enabled. Observable changes: graph channel results appear in RRF fusion (source='graph'), getSubgraphWeights routing active, SGQS cache warming logged. Additional flags: SPECKIT_GRAPH_MMR, SPECKIT_GRAPH_AUTHORITY (same opt-out semantics). (PARTIAL: Procedure documented inline; no separate runbook document created)
 
 <!-- /ANCHOR:deploy-ready -->
 

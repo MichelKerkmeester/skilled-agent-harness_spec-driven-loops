@@ -45,7 +45,7 @@ Before starting any task, verify:
 3. [ ] Task dependencies satisfied
 4. [ ] Relevant P0/P1 checklist items identified
 5. [ ] No blocking issues in decision-record.md
-6. [ ] `SPECKIT_GRAPH_UNIFIED` feature flag state confirmed (default: false)
+6. [ ] `SPECKIT_GRAPH_UNIFIED` feature flag state confirmed against runtime semantics (unset/empty/`true` enabled; explicit `false` disabled)
 7. [ ] Previous session context reviewed (if applicable)
 
 ### Execution Rules
@@ -105,9 +105,9 @@ Before starting any task, verify:
 
 ### Wiring (W-WIRE)
 
-- [x] T003 [W-WIRE] Add feature flag `SPECKIT_GRAPH_UNIFIED` defaulting to `false` (`mcp_server/config/flags.ts`) [~5 LOC, 10m]
+- [x] T003 [W-WIRE] Add feature flag `SPECKIT_GRAPH_UNIFIED` wiring in canonical runtime path (`mcp_server/lib/search/graph-flags.ts`) [~5 LOC, 10m]
   - Guards all T002/T003 graph-channel execution paths
-  - Read from environment variable `SPECKIT_GRAPH_UNIFIED=true` to enable
+  - Runtime contract: unset/empty/`true` enables; explicit `false` disables
 
 - [x] T004 [W-WIRE] Wire `graphSearchFn` into `hybridSearch.init()` in context-server.ts (`mcp_server/context-server.ts` line ~566) [~4 LOC, 20m] {deps: T002, T003}
   - Change: `hybridSearch.init(database, vectorIndex.vectorSearch)`
@@ -273,13 +273,13 @@ Before starting any task, verify:
   - 23 tests: module wiring (9), pipeline contract (6), feature flag contract (4), result shape (4)
   - Verifies all exports accessible from all 9 search modules
   - Mock graphSearchFn wired via init() — graph results appear with useGraph:true, absent with false
-  - Metrics increment/reset validated, all 3 feature flags default false
+  - Metrics increment/reset validated; graph flag behavior follows rollout-policy opt-out contract
   - Result shape: id/score/source present, graph source='graph', scores non-negative
 
 ### Regression Tests (W-TEST)
 
 - [x] T022 [W-TEST] Regression test: flag-off behavior unchanged (`mcp_server/tests/graph-regression-flag-off.vitest.ts`) [30m] {deps: T003}
-  - Tests: flag contract (strict === 'true'), graphFn null when flag off, useGraph=false bypass, metrics zeroed
+  - Tests: flag contract (explicit `false` disables), graphFn null when flag off, useGraph=false bypass, metrics zeroed
   - 18 test cases covering env-var contract, hybridSearch/hybridSearchEnhanced graph bypass, metrics collection, wiring simulation
   - Confirms graph channel code does not pollute the existing pipeline when disabled
 
@@ -300,7 +300,7 @@ Before starting any task, verify:
 - [x] p95 latency ≤ 120ms verified by integration test (T021) — component benchmarks all under budget; T011 41 tests pass
 - [x] `SPECKIT_GRAPH_UNIFIED=false` regression test passes (T022) — 18 tests pass, graph channel fully bypassed when off
 - [x] Graph hit rate > 0% confirmed by metrics (T008) — GraphChannelMetrics API verified, getGraphMetrics() tracks all counters
-- [x] All feature flags (`SPECKIT_GRAPH_UNIFIED`, `SPECKIT_GRAPH_MMR`, `SPECKIT_GRAPH_AUTHORITY`) default to `false` and are documented — graph-flags.ts strict `=== 'true'` check
+- [x] All feature flags (`SPECKIT_GRAPH_UNIFIED`, `SPECKIT_GRAPH_MMR`, `SPECKIT_GRAPH_AUTHORITY`) are documented with runtime opt-out semantics — unset/empty/`true` enabled, explicit `false` disabled
 - [x] `checklist.md` fully verified with evidence markers — 50/54 verified (21/21 P0, 26/26 P1, 3/7 P2; 4 P2 deferred)
 - [x] All ADRs in `decision-record.md` have status: Accepted — ADR-001, ADR-002, ADR-003, ADR-004, ADR-005 all Accepted
 - [x] `implementation-summary.md` completed after all phases done — Level 3+ template, all sections filled
@@ -323,7 +323,7 @@ Before starting any task, verify:
 - **Implemented**:
   - T001: `mcp_server/lib/search/skill-graph-cache.ts` (~85 LOC) — SkillGraphCacheManager singleton, 5-min TTL, single-flight async guard, `invalidate()`, `isWarm()`
   - T002: `mcp_server/lib/search/graph-search-fn.ts` (~210 LOC) — `createUnifiedGraphSearchFn()` querying causal edges (SQLite) + SGQS skill graph; namespace-prefixed IDs (`mem:{id}`, `skill:{path}`); background-refresh pattern
-  - T003: `mcp_server/lib/search/graph-flags.ts` (~29 LOC) — `isGraphUnifiedEnabled`, `isGraphMMREnabled`, `isGraphAuthorityEnabled`; strict opt-in (`=== 'true'`), all default FALSE
+  - T003: `mcp_server/lib/search/graph-flags.ts` (~29 LOC) — `isGraphUnifiedEnabled`, `isGraphMMREnabled`, `isGraphAuthorityEnabled`; each delegates to rollout-policy opt-out semantics (`false` disables; unset/empty/`true` enables)
   - T004: `mcp_server/context-server.ts` — `graphSearchFn` wired as conditional 3rd arg to `hybridSearch.init()`
   - T005: `mcp_server/core/db-state.ts` — `graphSearchFn` added to `DbStateDeps`, module state, `init()`, `reinitializeDatabase()`; also wired `mcp_server/scripts/reindex-embeddings.ts` (3rd call site discovered)
   - T006: `mcp_server/lib/search/adaptive-fusion.ts` — `graphWeight` and `graphCausalBias` added to `FusionWeights` interface and all 6 intent profiles + `DEFAULT_WEIGHTS`

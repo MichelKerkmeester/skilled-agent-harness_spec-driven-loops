@@ -36,14 +36,14 @@ The agent system enables both focused single-agent work and complex multi-agent 
 - Loads `agent_template.md` BEFORE creating (template-first workflow)
 - Validates frontmatter format (YAML syntax, required fields)
 - Ensures proper tool permissions and behavioral rules
-- Invokes `workflows-documentation` skill for documentation standards
+- Invokes `sk-documentation` skill for documentation standards
 - Validates template alignment AFTER creating
 
-**Template Location:** `.opencode/skill/workflows-documentation/assets/opencode/agent_template.md`
+**Template Location:** `.opencode/skill/sk-documentation/assets/opencode/agent_template.md`
 
 **Verification (MUST pass before proceeding):**
 - [ ] Write agent exists: `ls .opencode/agent/write.md`
-- [ ] Agent template exists: `ls .opencode/skill/workflows-documentation/assets/opencode/agent_template.md`
+- [ ] Agent template exists: `ls .opencode/skill/sk-documentation/assets/opencode/agent_template.md`
 - [ ] Use `@write` prefix when invoking the prompt below
 
 **❌ DO NOT** create agents without the @write agent — manual creation bypasses quality gates and frontmatter validation.
@@ -59,7 +59,7 @@ The agent system enables both focused single-agent work and complex multi-agent 
 
 **PREREQUISITE CHECK (you MUST verify before proceeding):**
 - [ ] You are operating as the @write agent
-- [ ] workflows-documentation skill is accessible
+- [ ] sk-documentation skill is accessible
 
 ⚠️ If you are NOT the @write agent: STOP immediately and instruct the user to restart with the "@write" prefix. Do NOT proceed with agent creation.
 
@@ -861,7 +861,7 @@ Content...
 ## 4. RELATED RESOURCES
 
 - [Skill Name](../skill/skill-name/SKILL.md)
-- [Template](../skill/workflows-documentation/assets/opencode/agent_template.md)
+- [Template](../skill/sk-documentation/assets/opencode/agent_template.md)
 ```
 
 #### Step 5: Test the Agent
@@ -899,10 +899,10 @@ Content...
 | Need domain knowledge/workflows | ❌                | ✅                           |
 | Need templates and standards    | ❌                | ✅                           |
 | Need behavioral constraints     | ✅                | ✅                           |
-| Creating documentation          | ✅ `@write`       | ✅ `workflows-documentation` |
+| Creating documentation          | ✅ `@write`       | ✅ `sk-documentation` |
 | Complex multi-step task         | ✅ `@orchestrate` | ❌                           |
 | Code quality standards          | ❌                | ✅ `workflows-code`          |
-| Git workflows                   | ❌                | ✅ `workflows-git`           |
+| Git workflows                   | ❌                | ✅ `sk-git`           |
 
 ### How They Work Together
 
@@ -915,7 +915,7 @@ Agent Selected (based on task type)
     ▼
 Agent Invokes Skills (for domain expertise)
     │
-    ├─► workflows-documentation (for doc standards)
+    ├─► sk-documentation (for doc standards)
     ├─► workflows-code (for code standards)
     ├─► system-spec-kit (for spec folders)
     └─► etc.
@@ -966,7 +966,7 @@ User: "@orchestrate analyze this codebase and create a refactoring plan"
 User: "Create a new skill for API testing"
 
 → Routes to @write agent
-→ Agent invokes workflows-documentation skill
+→ Agent invokes sk-documentation skill
 → Skill provides:
    - skill_md_template.md
    - skill_reference_template.md
@@ -1072,18 +1072,18 @@ python3 -c "import yaml; yaml.safe_load(open('.opencode/agent/write.md').read().
 
 | Skill                   | Location                            | Purpose                 |
 | ----------------------- | ----------------------------------- | ----------------------- |
-| workflows-documentation | `../skill/workflows-documentation/` | Documentation standards |
+| sk-documentation | `../skill/sk-documentation/` | Documentation standards |
 | workflows-code          | `../skill/workflows-code/`          | Code quality standards  |
 | system-spec-kit         | `../skill/system-spec-kit/`         | Spec folder management  |
-| workflows-git           | `../skill/workflows-git/`           | Git workflows           |
+| sk-git           | `../skill/sk-git/`           | Git workflows           |
 
 ### Templates
 
 | Template                 | Location                                                      | Purpose                  |
 | ------------------------ | ------------------------------------------------------------- | ------------------------ |
-| skill_md_template        | `../skill/workflows-documentation/assets/opencode/` | SKILL.md structure       |
-| skill_reference_template | `../skill/workflows-documentation/assets/opencode/` | Reference file structure |
-| skill_asset_template     | `../skill/workflows-documentation/assets/opencode/` | Asset file structure     |
+| skill_md_template        | `../skill/sk-documentation/assets/opencode/` | SKILL.md structure       |
+| skill_reference_template | `../skill/sk-documentation/assets/opencode/` | Reference file structure |
+| skill_asset_template     | `../skill/sk-documentation/assets/opencode/` | Asset file structure     |
 
 ---
 

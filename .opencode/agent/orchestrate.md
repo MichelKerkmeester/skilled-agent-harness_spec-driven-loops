@@ -94,8 +94,8 @@ flowchart TD
 | 2        | Evidence / investigation                                                  | `@research`            | LEAF | `system-spec-kit`                                                                 | `"general"`   |
 | 3        | Spec folder docs                                                          | `@speckit` ⛔ EXCLUSIVE | LEAF | `system-spec-kit`                                                                 | `"general"`   |
 | 4        | Code review / security                                                    | `@review`              | LEAF | `workflows-code--*` (auto-detects available variant)                              | `"general"`   |
-| 5        | Documentation (non-spec)                                                  | `@write`               | LEAF | `workflows-documentation`                                                         | `"general"`   |
-| 6        | Implementation / testing                                                  | `@general`             | LEAF | `workflows-code--*` (auto-detects available variant), `workflows-chrome-devtools` | `"general"`   |
+| 5        | Documentation (non-spec)                                                  | `@write`               | LEAF | `sk-documentation`                                                         | `"general"`   |
+| 6        | Implementation / testing                                                  | `@general`             | LEAF | `workflows-code--*` (auto-detects available variant), `mcp-chrome-devtools` | `"general"`   |
 | 7        | Debugging (stuck, 3+ fails)                                               | `@debug`               | LEAF | Code analysis tools                                                               | `"general"`   |
 | 8        | Session handover                                                          | `@handover`            | LEAF | `system-spec-kit`                                                                 | `"general"`   |
 
@@ -763,9 +763,9 @@ The orchestrator's own behavior can cause context overload. Follow these rules:
 | --------------------------- | --------------- | ---------------------------------------------------------------- | -------------------------- |
 | `system-spec-kit`           | Documentation   | Spec folders, memory, validation, context preservation           | `/spec_kit:*`, `/memory:*` |
 | `workflows-code--*`         | Implementation  | Code changes, debugging, 3-phase lifecycle, browser verification | -                          |
-| `workflows-git`             | Version Control | See skill for details                                            | -                          |
-| `workflows-documentation`   | Markdown        | Doc quality, DQI scoring, skill creation, flowcharts             | `/create:*`                |
-| `workflows-chrome-devtools` | Browser         | DevTools automation, screenshots, console, CDP                   | `bdg` CLI                  |
+| `sk-git`             | Version Control | See skill for details                                            | -                          |
+| `sk-documentation`   | Markdown        | Doc quality, DQI scoring, skill creation, flowcharts             | `/create:*`                |
+| `mcp-chrome-devtools` | Browser         | DevTools automation, screenshots, console, CDP                   | `bdg` CLI                  |
 | `mcp-code-mode`             | External Tools  | Webflow, Figma, ClickUp, Chrome DevTools via MCP                 | `call_tool_chain()`        |
 
 ### Related Resources
@@ -779,9 +779,9 @@ The orchestrator's own behavior can cause context overload. Follow these rules:
 | `/memory:save`              | Context preservation                            | `.opencode/command/memory/save.md`           |
 | `system-spec-kit`           | Spec folders, memory, validation                | `.opencode/skill/system-spec-kit/`           |
 | `workflows-code--*`         | Implementation lifecycle (auto-detects variant) | `.opencode/skill/workflows-code--*/`         |
-| `workflows-git`             | Version control workflows                       | `.opencode/skill/workflows-git/`             |
-| `workflows-documentation`   | Doc quality, DQI scoring, skill creation        | `.opencode/skill/workflows-documentation/`   |
-| `workflows-chrome-devtools` | Browser debugging, screenshots, CDP             | `.opencode/skill/workflows-chrome-devtools/` |
+| `sk-git`             | Version control workflows                       | `.opencode/skill/sk-git/`             |
+| `sk-documentation`   | Doc quality, DQI scoring, skill creation        | `.opencode/skill/sk-documentation/`   |
+| `mcp-chrome-devtools` | Browser debugging, screenshots, CDP             | `.opencode/skill/mcp-chrome-devtools/` |
 | `mcp-code-mode`             | External tool integration via MCP               | `.opencode/skill/mcp-code-mode/`             |
 
 ---

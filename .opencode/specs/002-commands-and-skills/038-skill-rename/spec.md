@@ -33,7 +33,7 @@ Rename 7 skills from legacy `workflows-*` prefix to cleaner `sk-*`/`mcp-*` conve
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-The current skill naming convention uses `workflows-*` prefix which is verbose and doesn't clearly distinguish between skill categories (code skills, documentation skills, MCP integrations). The `workflows-chrome-devtools` skill is actually an MCP integration but uses the `workflows-` prefix, creating confusion about its nature.
+The current skill naming convention uses `workflows-*` prefix which is verbose and doesn't clearly distinguish between skill categories (code skills, documentation skills, MCP integrations). The `mcp-chrome-devtools` skill is actually an MCP integration but uses the `workflows-` prefix, creating confusion about its nature.
 
 ### Purpose
 Rename 7 skills to a cleaner naming convention: `sk-*` for standard skills and `mcp-*` for MCP-based integrations, updating all references system-wide while preserving functionality.
@@ -68,11 +68,11 @@ Rename 7 skills to a cleaner naming convention: `sk-*` for standard skills and `
 |---|---|
 | `workflows-code--opencode` | `sk-code--opencode` |
 | `workflows-code--web-dev` | `sk-code--web` |
-| `workflows-code--full-stack` | `sk-code--full-stack` |
+| `sk-code--full-stack` | `sk-code--full-stack` |
 | `workflows-documentation` | `sk-documentation` |
 | `workflows-git` | `sk-git` |
 | `workflows-visual-explainer` | `sk-visual-explainer` |
-| `workflows-chrome-devtools` | `mcp-chrome-devtools` |
+| `mcp-chrome-devtools` | `mcp-chrome-devtools` |
 
 ### Wildcard Pattern Updates
 
@@ -107,11 +107,11 @@ Rename 7 skills to a cleaner naming convention: `sk-*` for standard skills and `
 |-------|--------|-------|--------------|--------|
 | 1 | 001-sk-code--opencode/ | Rename `workflows-code--opencode` → `sk-code--opencode` (35 internal, 13 external files) | None | Pending |
 | 2 | 002-sk-code--web/ | Rename `workflows-code--web-dev` → `sk-code--web` (51 internal, 17 external files) | None | Pending |
-| 3 | 003-sk-code--full-stack/ | Rename `workflows-code--full-stack` → `sk-code--full-stack` (88 internal, 11 external files) | None | Pending |
+| 3 | 003-sk-code--full-stack/ | Rename `sk-code--full-stack` → `sk-code--full-stack` (88 internal, 11 external files) | None | Pending |
 | 4 | 004-sk-documentation/ | Rename `workflows-documentation` → `sk-documentation` (49 internal, 52 external files) | None | Pending |
 | 5 | 005-sk-git/ | Rename `workflows-git` → `sk-git` (20 internal, 39 external files) | None | Pending |
 | 6 | 006-sk-visual-explainer/ | Rename `workflows-visual-explainer` → `sk-visual-explainer` (22 internal, 6 external files) | None | Pending |
-| 7 | 007-mcp-chrome-devtools/ | Rename `workflows-chrome-devtools` → `mcp-chrome-devtools` (21 internal, 36 external files) | None | Pending |
+| 7 | 007-mcp-chrome-devtools/ | Rename `mcp-chrome-devtools` → `mcp-chrome-devtools` (21 internal, 36 external files) | None | Pending |
 
 ### Phase Transition Rules
 
@@ -124,10 +124,10 @@ Rename 7 skills to a cleaner naming convention: `sk-*` for standard skills and `
 
 | From | To | Criteria | Verification |
 |------|-----|----------|--------------|
-| 003-sk-code--full-stack | 001-sk-code--opencode | All `workflows-code--full-stack` refs replaced | `grep -r "workflows-code--full-stack"` = 0 |
+| 003-sk-code--full-stack | 001-sk-code--opencode | All `sk-code--full-stack` refs replaced | `grep -r "sk-code--full-stack"` = 0 |
 | 001-sk-code--opencode | 002-sk-code--web | All `workflows-code--opencode` refs replaced | `grep -r "workflows-code--opencode"` = 0 |
 | 002-sk-code--web | 007-mcp-chrome-devtools | All `workflows-code--web-dev` refs replaced | `grep -r "workflows-code--web-dev"` = 0 |
-| 007-mcp-chrome-devtools | 004-sk-documentation | All `workflows-chrome-devtools` refs replaced | `grep -r "workflows-chrome-devtools"` = 0 |
+| 007-mcp-chrome-devtools | 004-sk-documentation | All `mcp-chrome-devtools` refs replaced | `grep -r "mcp-chrome-devtools"` = 0 |
 | 004-sk-documentation | 006-sk-visual-explainer | All `workflows-documentation` refs replaced | `grep -r "workflows-documentation"` = 0 |
 | 006-sk-visual-explainer | 005-sk-git | All `workflows-visual-explainer` refs replaced | `grep -r "workflows-visual-explainer"` = 0 |
 <!-- /ANCHOR:phase-map -->
@@ -143,7 +143,7 @@ Rename 7 skills to a cleaner naming convention: `sk-*` for standard skills and `
 |----|-------------|---------------------|
 | REQ-001 | Rename all 7 skill folders on disk | `ls .opencode/skill/sk-*` and `ls .opencode/skill/mcp-chrome-devtools` show correct folders |
 | REQ-002 | Update skill_advisor.py with new names | `python3 skill_advisor.py "git commit"` returns `sk-git` not `workflows-git` |
-| REQ-003 | Zero remaining references to old names in active files | `grep -r "workflows-code--\|workflows-documentation\|workflows-git\|workflows-visual-explainer\|workflows-chrome-devtools" .opencode/skill/ .opencode/command/ .opencode/agent/ .opencode/install_guides/ .claude/ .gemini/ README.md AGENTS.md CLAUDE.md` returns 0 results (excluding changelog content, specs/memory, archives) |
+| REQ-003 | Zero remaining references to old names in active files | `grep -r "workflows-code--\|workflows-documentation\|workflows-git\|workflows-visual-explainer\|mcp-chrome-devtools" .opencode/skill/ .opencode/command/ .opencode/agent/ .opencode/install_guides/ .claude/ .gemini/ README.md AGENTS.md CLAUDE.md` returns 0 results (excluding changelog content, specs/memory, archives) |
 | REQ-004 | Update all agent files across 4 runtimes | All orchestrate.md, review.md, write.md files use new names |
 | REQ-005 | Update wildcard patterns `workflows-code--*` → `sk-code--*` | All agent files use `sk-code--*` pattern |
 
@@ -237,11 +237,113 @@ Rename 7 skills to a cleaner naming convention: `sk-*` for standard skills and `
 
 ---
 
+<!-- ANCHOR:risk-matrix -->
+## 10. RISK MATRIX
+
+| Risk ID | Description | Impact | Likelihood | Mitigation |
+|---------|-------------|--------|------------|------------|
+| R-001 | `sk-code--opencode` rename breaks opencode skill loading | H | L | grep verification + smoke test |
+| R-002 | `sk-code--web` shortening from `web-dev` breaks exact-match logic | M | M | Verify skill_advisor.py handles shortened name |
+| R-003 | `sk-code--full-stack` has 88 internal files — high volume | M | L | Mechanical replacement, batch processing |
+| R-004 | `sk-documentation` has 52 external refs — most cross-cutting | H | M | Careful per-file verification, dedicated high-effort phase |
+| R-005 | `sk-git` has 28 skill_advisor lines — dense routing changes | M | L | Test all routing queries post-rename |
+| R-006 | `sk-visual-explainer` references in command files | L | L | Low reference count, straightforward |
+| R-007 | `mcp-chrome-devtools` prefix change (`workflows-` to `mcp-`) is non-standard | M | L | Explicit MCP categorization is the goal |
+<!-- /ANCHOR:risk-matrix -->
+
+---
+
+<!-- ANCHOR:user-stories -->
+## 11. USER STORIES
+
+### US-001: Intuitive Skill Naming (Priority: P0)
+
+**As a** developer using the OpenCode framework, **I want** skill names to use `sk-*` prefix for standard skills and `mcp-*` for MCP integrations, **so that** I can distinguish skill categories at a glance.
+
+**Acceptance Criteria**:
+1. Given a skill folder listing, When I see `sk-` prefix, Then I know it is a standard skill
+2. Given a skill folder listing, When I see `mcp-` prefix, Then I know it is an MCP integration
+
+### US-002: Consistent Cross-References (Priority: P1)
+
+**As a** system maintainer, **I want** all skill references updated atomically per skill, **so that** no broken references exist after any phase completes.
+
+**Acceptance Criteria**:
+1. Given a completed phase, When I grep for the old name, Then zero matches appear in active files
+<!-- /ANCHOR:user-stories -->
+
+---
+
+<!-- ANCHOR:approval-workflow -->
+## 12. APPROVAL WORKFLOW
+
+| Checkpoint | Approver | Status | Date |
+|------------|----------|--------|------|
+| Phase 001 Complete (sk-code--opencode) | User | Pending | |
+| Phase 002 Complete (sk-code--web) | User | Pending | |
+| Phase 003 Complete (sk-code--full-stack) | User | Pending | |
+| Phase 004 Complete (sk-documentation) | User | Pending | |
+| Phase 005 Complete (sk-git) | User | Pending | |
+| Phase 006 Complete (sk-visual-explainer) | User | Pending | |
+| Phase 007 Complete (mcp-chrome-devtools) | User | Pending | |
+<!-- /ANCHOR:approval-workflow -->
+
+---
+
+<!-- ANCHOR:compliance -->
+## 13. COMPLIANCE CHECKPOINTS
+
+### Naming Consistency
+- [ ] All 7 skill folders use `sk-*` or `mcp-*` prefix
+- [ ] skill_advisor.py entries match folder names exactly
+- [ ] Agent files across 4 runtimes are consistent
+
+### Cross-Reference Integrity
+- [ ] Zero grep matches for old names in active files
+- [ ] All relative paths between skills resolve correctly
+- [ ] Install guides reference correct skill names
+<!-- /ANCHOR:compliance -->
+
+---
+
+<!-- ANCHOR:stakeholders -->
+## 14. STAKEHOLDER MATRIX
+
+| Stakeholder | Role | Interest | Communication |
+|-------------|------|----------|---------------|
+| Developer | Skill consumer | High — uses skill names daily | Per-phase completion notice |
+| System Maintainer | Infrastructure | High — maintains skill_advisor.py and agent files | Phase 3-4 review |
+| Documentation Author | Content | Medium — references skills in guides | Post-rename doc review |
+<!-- /ANCHOR:stakeholders -->
+
+---
+
+<!-- ANCHOR:changelog -->
+## 15. CHANGE LOG
+
+### v2.0 (2026-02-21)
+**Upgraded to Level 3+**: Added executive summary, risk matrix, user stories, approval workflow, compliance checkpoints, stakeholder matrix, phase documentation map. Decomposed into 7 phase child folders.
+
+### v1.0 (2026-02-21)
+**Initial Level 2 specification**: Problem statement, scope, requirements, rename mapping, reference catalog.
+<!-- /ANCHOR:changelog -->
+
+---
+
 <!-- ANCHOR:questions -->
-## 10. OPEN QUESTIONS
+## 16. OPEN QUESTIONS
 
 - None — all requirements clear from user specification
 <!-- /ANCHOR:questions -->
+
+---
+
+## RELATED DOCUMENTS
+
+- **Implementation Plan**: See `plan.md`
+- **Task Breakdown**: See `tasks.md`
+- **Verification Checklist**: See `checklist.md`
+- **Decision Records**: See `decision-record.md`
 
 ---
 

@@ -156,10 +156,6 @@ async function autoSurfaceMemories(contextHint: string): Promise<AutoSurfaceResu
   }
 }
 
-function isMemoryAwareTool(toolName: string): boolean {
-  return MEMORY_AWARE_TOOLS.has(toolName);
-}
-
 /* ---------------------------------------------------------------
    6. EXPORTS
 --------------------------------------------------------------- */
@@ -174,5 +170,4 @@ export {
   getConstitutionalMemories,
   clearConstitutionalCache,
   autoSurfaceMemories,
-  isMemoryAwareTool,
 };

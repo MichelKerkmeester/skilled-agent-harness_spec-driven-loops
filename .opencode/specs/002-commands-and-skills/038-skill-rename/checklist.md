@@ -1,6 +1,6 @@
 # Verification Checklist: Skill Rename — workflows-* to sk-*/mcp-*
 
-<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_LEVEL: 3+ -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->
 
 ---
@@ -32,11 +32,11 @@
 
 - [ ] CHK-010 [P0] `workflows-code--opencode` → `sk-code--opencode` renamed
 - [ ] CHK-011 [P0] `workflows-code--web-dev` → `sk-code--web` renamed
-- [ ] CHK-012 [P0] `workflows-code--full-stack` → `sk-code--full-stack` renamed
+- [ ] CHK-012 [P0] `sk-code--full-stack` → `sk-code--full-stack` renamed
 - [ ] CHK-013 [P0] `workflows-documentation` → `sk-documentation` renamed
 - [ ] CHK-014 [P0] `workflows-git` → `sk-git` renamed
 - [ ] CHK-015 [P0] `workflows-visual-explainer` → `sk-visual-explainer` renamed
-- [ ] CHK-016 [P0] `workflows-chrome-devtools` → `mcp-chrome-devtools` renamed
+- [ ] CHK-016 [P0] `mcp-chrome-devtools` → `mcp-chrome-devtools` renamed
 - [ ] CHK-017 [P0] No old `workflows-*` folders remain under `.opencode/skill/`
 <!-- /ANCHOR:filesystem -->
 
@@ -87,14 +87,80 @@
 
 ---
 
+<!-- ANCHOR:arch-verify -->
+## L3+: ARCHITECTURE VERIFICATION
+
+- [ ] CHK-100 [P0] Architecture decisions documented in decision-record.md
+- [ ] CHK-101 [P1] ADR-001 (per-skill phase decomposition) has Accepted status
+- [ ] CHK-102 [P1] Alternatives documented with rejection rationale
+- [ ] CHK-103 [P2] Phase execution order documented (longest-match-first)
+<!-- /ANCHOR:arch-verify -->
+
+---
+
+<!-- ANCHOR:perf-verify -->
+## L3+: PERFORMANCE VERIFICATION
+
+- [ ] CHK-110 [P1] All 7 phases complete within expected effort estimates
+- [ ] CHK-111 [P1] No regression in skill_advisor.py response time
+- [ ] CHK-112 [P2] Batch replacement efficiency documented
+<!-- /ANCHOR:perf-verify -->
+
+---
+
+<!-- ANCHOR:deploy-ready -->
+## L3+: DEPLOYMENT READINESS
+
+- [ ] CHK-120 [P0] Rollback procedure documented and tested (`git checkout -- .`)
+- [ ] CHK-121 [P1] Pre-deployment clean git state confirmed
+- [ ] CHK-122 [P1] No concurrent sessions using old skill names
+- [ ] CHK-123 [P2] Post-deployment monitoring plan documented
+<!-- /ANCHOR:deploy-ready -->
+
+---
+
+<!-- ANCHOR:compliance-verify -->
+## L3+: COMPLIANCE VERIFICATION
+
+- [ ] CHK-130 [P1] Naming consistency verified (all folders use sk-*/mcp-* prefix)
+- [ ] CHK-131 [P1] skill_advisor.py entries match folder names exactly
+- [ ] CHK-132 [P1] Agent files consistent across 4 runtimes
+- [ ] CHK-133 [P2] Install guide skill registries updated
+<!-- /ANCHOR:compliance-verify -->
+
+---
+
+<!-- ANCHOR:docs-verify -->
+## L3+: DOCUMENTATION VERIFICATION
+
+- [ ] CHK-140 [P1] All 7 phase spec folders complete (spec.md, plan.md, tasks.md, checklist.md)
+- [ ] CHK-141 [P1] Parent spec.md Phase Documentation Map updated with completion status
+- [ ] CHK-142 [P1] Root docs (README.md, CLAUDE.md, .opencode/README.md) use new names
+- [ ] CHK-143 [P2] Memory saved for each completed phase
+<!-- /ANCHOR:docs-verify -->
+
+---
+
+<!-- ANCHOR:sign-off -->
+## L3+: SIGN-OFF
+
+| Approver | Role | Status | Date |
+|----------|------|--------|------|
+| User | Project Owner | [ ] Approved | |
+| System | Automated Grep Verification | [ ] Approved | |
+| System | skill_advisor.py Smoke Test | [ ] Approved | |
+<!-- /ANCHOR:sign-off -->
+
+---
+
 <!-- ANCHOR:summary -->
 ## Verification Summary
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 16 | 0/16 |
-| P1 Items | 13 | 0/13 |
-| P2 Items | 2 | 0/2 |
+| P0 Items | 20 | 0/20 |
+| P1 Items | 20 | 0/20 |
+| P2 Items | 6 | 0/6 |
 
 **Verification Date**: [pending]
 <!-- /ANCHOR:summary -->
@@ -102,7 +168,7 @@
 ---
 
 <!--
-Level 2 checklist - Verification focus
+Level 3+ checklist - Architecture + governance verification
 Mark [x] with evidence when verified
 P0 must complete, P1 need approval to defer
 -->

@@ -476,7 +476,7 @@ python3 scripts/dist/skill/validate-skill-anchors.py \
 **Focus Skills** (manual improvement):
 1. `system-spec-kit` (most critical)
 2. `workflows-documentation` (template source)
-3. `workflows-code--full-stack` (complex multi-mode)
+3. `sk-code--full-stack` (complex multi-mode)
 
 **Deliverable**: Key skills at ≥90% coverage with high-quality anchor placement
 

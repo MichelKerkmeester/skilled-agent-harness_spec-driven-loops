@@ -18,12 +18,12 @@ const MOCK_GRAPH: SkillGraph = {
       skill: 'system-spec-kit',
       path: 'system-spec-kit/memory',
     }],
-    ['workflows-git/commit', {
-      id: 'workflows-git/commit',
+    ['sk-git/commit', {
+      id: 'sk-git/commit',
       labels: [':Node'],
       properties: { name: 'Git Commit' },
-      skill: 'workflows-git',
-      path: 'workflows-git/commit',
+      skill: 'sk-git',
+      path: 'sk-git/commit',
     }],
     ['system-spec-kit/checklist', {
       id: 'system-spec-kit/checklist',

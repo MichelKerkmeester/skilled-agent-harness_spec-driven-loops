@@ -38,7 +38,7 @@ Added 7 semantic emojis aligned with context.md and workflows-documentation conv
 
 ### Phase 4: Skill Reference Wildcard
 
-Replaced all `workflows-code--web-dev` / `workflows-code--full-stack` specific references with `workflows-code--*` wildcard pattern for auto-detection of any available variant. Applied across 6 agent files (3 orchestrate.md + 3 review.md variants).
+Replaced all `workflows-code--web-dev` / `sk-code--full-stack` specific references with `workflows-code--*` wildcard pattern for auto-detection of any available variant. Applied across 6 agent files (3 orchestrate.md + 3 review.md variants).
 
 ### Phase 5: Claude Code Agent Sync
 

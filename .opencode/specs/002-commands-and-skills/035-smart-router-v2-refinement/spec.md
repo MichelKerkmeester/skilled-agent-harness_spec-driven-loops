@@ -54,7 +54,7 @@ Refine Smart Router V2 with adaptive intent selection, expanded synonym lexicon,
 - Smart router test suite alignment: new assertions for required Smart Router pseudocode, code-fence-safe heading parsing (already in progress)
 - Ambiguity-focused test scenario fixtures: dedicated test cases for close-score and multi-symptom prompts
 - Optional benchmark harness: hidden-resource discovery time, ambiguity resilience scoring with report generation
-- Documentation updates in affected SKILL.md files (workflows-code--full-stack, workflows-code--web-dev, workflows-code--opencode, workflows-git)
+- Documentation updates in affected SKILL.md files (sk-code--full-stack, workflows-code--web-dev, workflows-code--opencode, workflows-git)
 
 ### Out of Scope
 - Cross-skill routing (each skill remains self-contained, no change from V2 baseline)
@@ -67,7 +67,7 @@ Refine Smart Router V2 with adaptive intent selection, expanded synonym lexicon,
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skill/workflows-code--full-stack/SKILL.md` | Modify | Add top-N adaptive logic, synonym lexicon, UNKNOWN fallback, verification command disambiguation |
+| `.opencode/skill/sk-code--full-stack/SKILL.md` | Modify | Add top-N adaptive logic, synonym lexicon, UNKNOWN fallback, verification command disambiguation |
 | `.opencode/skill/workflows-code--web-dev/SKILL.md` | Modify | Add synonym lexicon, UNKNOWN fallback checklist |
 | `.opencode/skill/workflows-code--opencode/SKILL.md` | Modify | Add synonym lexicon, language detection disambiguation for Python/Shell edge cases |
 | `.opencode/skill/workflows-git/SKILL.md` | Modify | Add synonym lexicon for "dirty workspace", "uncommitted changes" ambiguity |
@@ -86,10 +86,10 @@ Refine Smart Router V2 with adaptive intent selection, expanded synonym lexicon,
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | Adaptive top-N intent selection (2→3 when delta <0.15) | workflows-code--full-stack documents top-N logic with score delta threshold; test fixtures verify top-3 selection when delta <0.15 |
+| REQ-001 | Adaptive top-N intent selection (2→3 when delta <0.15) | sk-code--full-stack documents top-N logic with score delta threshold; test fixtures verify top-3 selection when delta <0.15 |
 | REQ-002 | Expanded synonym lexicon for 7+ noisy terms | router-rules.json contains synonym mappings for "unstable", "janky", "freeze", "dirty workspace", "flaky", "intermittent", "wonky" |
 | REQ-003 | Strong UNKNOWN fallback bundles with disambiguation checklist | Skills document fallback checklist when aggregate score <0.5 (e.g., ask user for stack, show candidate routes) |
-| REQ-004 | Candidate verification command sets for ambiguous stacks | workflows-code--full-stack documents verification disambiguation for React + React Native marker collisions |
+| REQ-004 | Candidate verification command sets for ambiguous stacks | sk-code--full-stack documents verification disambiguation for React + React Native marker collisions |
 | REQ-005 | Test suite alignment with pseudocode validation and heading parser safety | run-smart-router-tests.mjs includes assertions for required Smart Router pseudocode blocks, code-fence-safe heading parsing (no regex injection) |
 
 ### P1 - Required (complete OR user-approved deferral)
@@ -98,7 +98,7 @@ Refine Smart Router V2 with adaptive intent selection, expanded synonym lexicon,
 |----|-------------|---------------------|
 | REQ-006 | Ambiguity-focused test scenario fixtures | fixtures/ includes dedicated test cases for close-score (delta <0.15), multi-symptom prompts (3+ noisy terms) |
 | REQ-007 | Optional benchmark harness for efficiency reporting | benchmark-harness.mjs exists with hidden-resource discovery timing, ambiguity resilience scoring, JSON report output |
-| REQ-008 | Documentation of top-N adaptive methodology | workflows-code--full-stack includes rationale for 0.15 delta threshold and multi-symptom detection logic |
+| REQ-008 | Documentation of top-N adaptive methodology | sk-code--full-stack includes rationale for 0.15 delta threshold and multi-symptom detection logic |
 <!-- /ANCHOR:requirements -->
 
 ---
@@ -108,8 +108,8 @@ Refine Smart Router V2 with adaptive intent selection, expanded synonym lexicon,
 
 - **SC-001**: Adaptive top-N selection verified: test fixtures with delta <0.15 produce top-3 routing (not top-1 premature selection)
 - **SC-002**: Synonym lexicon coverage: 7+ noisy terms mapped in router-rules.json with verified synonym expansion in test assertions
-- **SC-003**: UNKNOWN fallback checklist documented in 4 skills (workflows-code--full-stack, web-dev, opencode, git) with disambiguation steps
-- **SC-004**: Verification command disambiguation prevents React/React Native marker collisions: workflows-code--full-stack documents priority order and fallback commands
+- **SC-003**: UNKNOWN fallback checklist documented in 4 skills (sk-code--full-stack, web-dev, opencode, git) with disambiguation steps
+- **SC-004**: Verification command disambiguation prevents React/React Native marker collisions: sk-code--full-stack documents priority order and fallback commands
 - **SC-005**: Test suite includes pseudocode validation and heading parser safety: run-smart-router-tests.mjs passes with new assertions enabled
 - **SC-006**: Ambiguity routing accuracy improvement measurable: 60%+ success rate on new ambiguity fixtures (baseline <40% from V2)
 - **SC-007**: Optional benchmark harness generates report: benchmark-harness.mjs produces JSON report with timing and resilience scores
@@ -156,7 +156,7 @@ Refine Smart Router V2 with adaptive intent selection, expanded synonym lexicon,
 
 ### Data Boundaries
 - Score delta exactly 0.15: Inclusive trigger for top-3 expansion (>=0.15 stays top-2, <0.15 expands to top-3)
-- All scores tied (delta 0.0): Expand to top-3, document priority order in workflows-code--full-stack
+- All scores tied (delta 0.0): Expand to top-3, document priority order in sk-code--full-stack
 - Single candidate route: Skip top-N logic entirely, proceed with single route (no overhead)
 - Empty synonym lexicon lookup: Fallback to original term without error (graceful degradation)
 - Missing verification command for detected stack: Fallback to generic verification ("run existing tests") with warning logged
@@ -242,7 +242,7 @@ Refine Smart Router V2 with adaptive intent selection, expanded synonym lexicon,
 **As a** code workflow skill, **I want** verification command disambiguation for ambiguous stack scenarios (e.g., React + React Native markers present), **so that** verification phase selects correct stack-specific commands instead of failing.
 
 **Acceptance Criteria**:
-1. Given project with both package.json (react + react-native deps) and app.json (Expo), When stack detection runs, Then priority order documented in workflows-code--full-stack determines primary stack (React Native > React for this collision)
+1. Given project with both package.json (react + react-native deps) and app.json (Expo), When stack detection runs, Then priority order documented in sk-code--full-stack determines primary stack (React Native > React for this collision)
 2. Given ambiguous stack detection, When verification commands are selected, Then skill provides both primary + fallback commands with clear labeling
 3. Given verification fails with primary stack commands, When fallback is available, Then skill suggests fallback commands explicitly (e.g., "If React Native commands fail, try React verification: npm test")
 
@@ -326,7 +326,7 @@ Refine Smart Router V2 with adaptive intent selection, expanded synonym lexicon,
 **And** V2 baseline test cases continue passing without changes
 
 ### AS-007: Pseudocode Validation in Test Suite
-**Given** SKILL.md file for workflows-code--full-stack  
+**Given** SKILL.md file for sk-code--full-stack  
 **When** run-smart-router-tests.mjs executes  
 **Then** assertions verify Smart Router pseudocode block presence  
 **And** required sections detected: stack detection, phase detection, resource domains  

@@ -5,6 +5,7 @@
 
 import { skillGraphCache } from './skill-graph-cache';
 import { isGraphAuthorityEnabled } from './graph-flags';
+import { computePageRank } from '../manage/pagerank';
 
 import type Database from 'better-sqlite3';
 import type { SkillGraph, GraphNode } from '../../../scripts/sgqs/types';
@@ -213,7 +214,8 @@ function querySkillGraph(
   graph: SkillGraph,
   query: string,
   limit: number,
-  authorityMap: Map<string, number> | null = null
+  authorityMap: Map<string, number> | null = null,
+  pageRankMap: Map<string, number> | null = null,
 ): Array<Record<string, unknown>> {
   const tokens = splitQueryTokens(query);
   if (tokens.length === 0) return [];
@@ -239,9 +241,13 @@ function querySkillGraph(
     .slice(0, limit)
     .map(({ node, score }) => {
       // WHY: useAuthority guard ensures authorityMap is non-null before this path
-      const finalScore = useAuthority
+      const authorityAdjustedScore = useAuthority
         ? score * (authorityMap!.get(node.id) ?? 1)
         : score;
+      // C138-P4: Blend in precomputed graph authority from PageRank.
+      // Keep boost bounded so graph scores remain in [0, 1].
+      const pageRankBoost = pageRankMap?.get(node.id) ?? 0;
+      const finalScore = Math.min(1, authorityAdjustedScore * (1 + pageRankBoost * 0.1));
       return {
         id: `skill:${node.path}`,
         score: finalScore,
@@ -253,6 +259,50 @@ function querySkillGraph(
         labels: node.labels,
       };
     });
+}
+
+function computeSkillGraphPageRankScores(graph: SkillGraph): Map<string, number> {
+  const nodeIds = Array.from(graph.nodes.keys());
+  if (nodeIds.length === 0) {
+    return new Map();
+  }
+
+  const nodeIdToNumber = new Map<string, number>();
+  nodeIds.forEach((nodeId, index) => {
+    nodeIdToNumber.set(nodeId, index + 1);
+  });
+
+  const numericNodes = nodeIds.map((nodeId) => {
+    const numericId = nodeIdToNumber.get(nodeId) ?? 0;
+    const outboundEdgeIds = graph.outbound.get(nodeId) ?? [];
+    const outLinks: number[] = [];
+    for (const edgeId of outboundEdgeIds) {
+      const edge = graph.edgeById.get(edgeId);
+      if (!edge) {
+        continue;
+      }
+      const target = nodeIdToNumber.get(edge.target);
+      if (typeof target === 'number') {
+        outLinks.push(target);
+      }
+    }
+    return {
+      id: numericId,
+      outLinks,
+    };
+  });
+
+  const pageRankResult = computePageRank(numericNodes);
+  const scores = Array.from(pageRankResult.scores.values());
+  const maxScore = scores.length > 0 ? Math.max(...scores) : 0;
+  const normalized = new Map<string, number>();
+
+  for (const [nodeId, numericId] of nodeIdToNumber.entries()) {
+    const rawScore = pageRankResult.scores.get(numericId) ?? 0;
+    normalized.set(nodeId, maxScore > 0 ? rawScore / maxScore : 0);
+  }
+
+  return normalized;
 }
 
 // ---------------------------------------------------------------
@@ -286,6 +336,7 @@ function createUnifiedGraphSearchFn(
   // Authority map, scoped per factory instance so multiple createUnifiedGraphSearchFn
   // invocations do not share mutable state.
   let cachedAuthorityMap: Map<string, number> | null = null;
+  let cachedPageRankMap: Map<string, number> | null = null;
 
   // Guard to prevent firing multiple concurrent background refreshes.
   let isRefreshing = false;
@@ -296,6 +347,7 @@ function createUnifiedGraphSearchFn(
   skillGraphCache.get(skillRoot).then(graph => {
     cachedGraph = graph;
     cachedAuthorityMap = computeAuthorityScores(graph);
+    cachedPageRankMap = computeSkillGraphPageRankScores(graph);
   }).catch((err: unknown) => {
     const msg = err instanceof Error ? err.message : String(err);
     console.warn(`[graph-search-fn] Initial SGQS warm load failed: ${msg}`);
@@ -319,7 +371,7 @@ function createUnifiedGraphSearchFn(
     // --- SGQS skill graph channel (use best-effort snapshot) ---
     let sgqsResults: Array<Record<string, unknown>> = [];
     if (cachedGraph !== null) {
-      sgqsResults = querySkillGraph(cachedGraph, query, limit, cachedAuthorityMap);
+      sgqsResults = querySkillGraph(cachedGraph, query, limit, cachedAuthorityMap, cachedPageRankMap);
     }
 
     // Trigger a background refresh for the next invocation.
@@ -330,6 +382,7 @@ function createUnifiedGraphSearchFn(
       skillGraphCache.get(skillRoot).then(graph => {
         cachedGraph = graph;
         cachedAuthorityMap = computeAuthorityScores(graph);
+        cachedPageRankMap = computeSkillGraphPageRankScores(graph);
       }).catch((err: unknown) => {
         const msg = err instanceof Error ? err.message : String(err);
         console.warn(`[graph-search-fn] SGQS background refresh failed: ${msg}`);

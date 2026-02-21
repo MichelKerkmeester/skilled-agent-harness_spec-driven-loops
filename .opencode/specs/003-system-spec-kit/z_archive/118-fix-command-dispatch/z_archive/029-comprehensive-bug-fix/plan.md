@@ -32,7 +32,7 @@ Agent Allocation:
 │
 └── Group 4: Workflow Skills (2 agents)
     ├── Agent 14: workflows-documentation, workflows-code
-    └── Agent 15: workflows-git, workflows-chrome-devtools
+    └── Agent 15: workflows-git, mcp-chrome-devtools
 ```
 
 ### Bug Categories Analyzed

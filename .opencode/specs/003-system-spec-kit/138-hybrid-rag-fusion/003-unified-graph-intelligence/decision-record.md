@@ -350,7 +350,7 @@ Wiring the unified graph channel touches the critical path that every `memory_se
 
 **We chose**: A three-phase dark launch controlled by environment variable flags.
 
-**How it works**: Phase 0+ ships the complete implementation with `SPECKIT_GRAPH_UNIFIED` defaulting to `false`. The unified graph adapter is wired but the `graphSearchFn` parameter is only populated when the flag is `true`. Phase 0+ validates the implementation in a local environment without any production traffic change. Phase 1+ sets `SPECKIT_GRAPH_UNIFIED=true` and collects latency and result-quality metrics for 24 hours. If P50/P95 latency stays under 120ms and result quality scores improve, Phase 1+ is declared stable. Phase 2+ enables the individual intelligence enhancement flags (`SPECKIT_GRAPH_MMR`, `SPECKIT_GRAPH_AUTHORITY`) one at a time, each validated independently.
+**How it works**: Runtime flag evaluation is centralized in `isFeatureEnabled()`, which treats unset, empty, or `true` as enabled and explicit `false` as disabled. Phase 0+ validates the implementation with graph flags explicitly set to `false` to preserve baseline behavior. Phase 1+ removes that override (or sets `true`) and collects latency and result-quality metrics for 24 hours. If P50/P95 latency stays under 120ms and result quality scores improve, Phase 1+ is declared stable. Phase 2+ enables the individual intelligence enhancement flags (`SPECKIT_GRAPH_MMR`, `SPECKIT_GRAPH_AUTHORITY`) one at a time, each validated independently.
 <!-- /ANCHOR:adr-004-decision -->
 
 ---
@@ -386,7 +386,7 @@ Wiring the unified graph channel touches the critical path that every `memory_se
 | Risk | Impact | Mitigation |
 |------|--------|------------|
 | Phase 1+ shows latency regression but metrics are not checked before Phase 2+ | H | Gate: Phase 2+ activation requires explicit latency sign-off in `checklist.md` with measured P95 value |
-| Flag values forgotten in environment after extended testing period | L | Document flag defaults in `references/environment_variables.md` with "production default = false" annotation |
+| Flag values forgotten in environment after extended testing period | L | Document the explicit-disable rule (`false` disables; unset/empty/`true` enables) in `references/environment_variables.md` |
 | Two developers enable conflicting flag combinations in the same environment | M | Flags are documented in `.env.example` with phase labels; Phase 2+ flags depend on Phase 1+ being stable — this dependency is documented |
 <!-- /ANCHOR:adr-004-consequences -->
 
@@ -412,8 +412,8 @@ Wiring the unified graph channel touches the critical path that every `memory_se
 ### Implementation
 
 **What changes**:
-- Edit: `mcp_server/context-server.ts` — read `SPECKIT_GRAPH_UNIFIED`, `SPECKIT_GRAPH_MMR`, `SPECKIT_GRAPH_AUTHORITY` from `process.env` at startup; store as boolean constants; wire `graphSearchFn` only when `SPECKIT_GRAPH_UNIFIED === true`
-- Edit: `.env.example` — add the three flag variables with `false` defaults and phase labels (`# Phase 1+`, `# Phase 2+`)
+- Edit: `mcp_server/context-server.ts` — wire `graphSearchFn` through `isGraphUnifiedEnabled()` so runtime uses shared rollout semantics
+- Edit: `.env.example` — document explicit disable examples (`SPECKIT_GRAPH_*=false`) and phase labels (`# Phase 1+`, `# Phase 2+`)
 - Edit: `references/environment_variables.md` — document flag semantics, default values, and phase dependencies
 
 **How to roll back**: Set `SPECKIT_GRAPH_UNIFIED=false` in the environment and restart the MCP server. Server returns to pre-integration baseline. No code changes, no database changes. Phase 2+ flags have no effect when Phase 1+ flag is false.

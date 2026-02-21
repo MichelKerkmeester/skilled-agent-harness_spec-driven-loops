@@ -53,7 +53,6 @@ function filterContamination(
 }
 
 export {
-  DEFAULT_DENYLIST,
   filterContamination,
 };
 

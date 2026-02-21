@@ -47,8 +47,8 @@
 ### Other Skills Documentation (11 files)
 - [x] T011 Improve mcp-code-mode README.md
 - [x] T012 Improve mcp-figma README.md
-- [x] T013 Improve workflows-chrome-devtools README.md
-- [x] T014 Improve workflows-code--full-stack README.md
+- [x] T013 Improve mcp-chrome-devtools README.md
+- [x] T014 Improve sk-code--full-stack README.md
 - [x] T015 Improve workflows-code--opencode README.md
 - [x] T016 Improve workflows-code--web-dev README.md
 - [x] T017 Improve workflows-documentation README.md

@@ -34,28 +34,28 @@
   **Estimate**: 1-2 hours  
   **Completed**: 2026-02-17
 
-- [x] **T002** [W:SYNONYM] [P] Document synonym expander preprocessing logic in workflows-code--full-stack  
-  **File**: `.opencode/skill/workflows-code--full-stack/SKILL.md`  
+- [x] **T002** [W:SYNONYM] [P] Document synonym expander preprocessing logic in sk-code--full-stack  
+  **File**: `.opencode/skill/sk-code--full-stack/SKILL.md`  
   **Details**: Add section explaining synonym lookup process, canonical keyword mapping, skill-specific context hints  
-  **Verify**: `grep -A 5 "Synonym Expander" .opencode/skill/workflows-code--full-stack/SKILL.md`  
+  **Verify**: `grep -A 5 "Synonym Expander" .opencode/skill/sk-code--full-stack/SKILL.md`  
   **Dependencies**: T001  
   **Estimate**: 1 hour  
   **Completed**: 2026-02-17
 
 ### Workstream: TOPN
 
-- [x] **T003** [W:TOPN] Implement top-N adaptive selector logic in workflows-code--full-stack  
-  **File**: `.opencode/skill/workflows-code--full-stack/SKILL.md`  
+- [x] **T003** [W:TOPN] Implement top-N adaptive selector logic in sk-code--full-stack  
+  **File**: `.opencode/skill/sk-code--full-stack/SKILL.md`  
   **Details**: Document delta <0.15 threshold, multi-symptom detection trigger, lazy evaluation approach  
-  **Verify**: `grep -A 10 "top-N adaptive" .opencode/skill/workflows-code--full-stack/SKILL.md | grep "delta.*0.15"`  
+  **Verify**: `grep -A 10 "top-N adaptive" .opencode/skill/sk-code--full-stack/SKILL.md | grep "delta.*0.15"`  
   **Dependencies**: T001 (synonym expansion feeds into top-N)  
   **Estimate**: 2-3 hours  
   **Completed**: 2026-02-17
 
 - [x] **T004** [W:TOPN] [P] Document top-N methodology rationale (0.15 threshold justification)  
-  **File**: `.opencode/skill/workflows-code--full-stack/SKILL.md`  
+  **File**: `.opencode/skill/sk-code--full-stack/SKILL.md`  
   **Details**: Add section explaining threshold selection, user testing results, overhead measurements  
-  **Verify**: `grep -A 8 "Top-N Methodology" .opencode/skill/workflows-code--full-stack/SKILL.md`  
+  **Verify**: `grep -A 8 "Top-N Methodology" .opencode/skill/sk-code--full-stack/SKILL.md`  
   **Dependencies**: T003  
   **Estimate**: 1 hour  
   **Completed**: 2026-02-17
@@ -76,10 +76,10 @@
   **Estimate**: 1-2 hours  
   **Completed**: 2026-02-17
 
-- [x] **T006** [W:UNKNOWN] Implement UNKNOWN fallback in workflows-code--full-stack  
-  **File**: `.opencode/skill/workflows-code--full-stack/SKILL.md`  
+- [x] **T006** [W:UNKNOWN] Implement UNKNOWN fallback in sk-code--full-stack  
+  **File**: `.opencode/skill/sk-code--full-stack/SKILL.md`  
   **Details**: Add UNKNOWN fallback section with disambiguation checklist, aggregate score <0.5 trigger, graceful degradation docs  
-  **Verify**: `grep -A 15 "UNKNOWN Fallback" .opencode/skill/workflows-code--full-stack/SKILL.md | grep "aggregate score < 0.5"`  
+  **Verify**: `grep -A 15 "UNKNOWN Fallback" .opencode/skill/sk-code--full-stack/SKILL.md | grep "aggregate score < 0.5"`  
   **Dependencies**: T005  
   **Estimate**: 1.5 hours  
   **Completed**: 2026-02-17
@@ -111,17 +111,17 @@
 ### Workstream: VERIFY
 
 - [x] **T010** [W:VERIFY] Document verification command disambiguation for React/React Native collision  
-  **File**: `.opencode/skill/workflows-code--full-stack/SKILL.md`  
+  **File**: `.opencode/skill/sk-code--full-stack/SKILL.md`  
   **Details**: Add priority order (React Native > React when both app.json + package.json present), fallback commands, explicit labeling  
-  **Verify**: `grep -A 12 "Verification Command Disambiguation" .opencode/skill/workflows-code--full-stack/SKILL.md | grep "React Native > React"`  
+  **Verify**: `grep -A 12 "Verification Command Disambiguation" .opencode/skill/sk-code--full-stack/SKILL.md | grep "React Native > React"`  
   **Dependencies**: None (parallel to UNKNOWN workstream)  
   **Estimate**: 1.5 hours  
   **Completed**: 2026-02-17
 
-- [x] **T011** [W:VERIFY] Implement verification command disambiguation in workflows-code--full-stack  
-  **File**: `.opencode/skill/workflows-code--full-stack/SKILL.md`  
+- [x] **T011** [W:VERIFY] Implement verification command disambiguation in sk-code--full-stack  
+  **File**: `.opencode/skill/sk-code--full-stack/SKILL.md`  
   **Details**: Update stack detection logic to resolve React/RN marker collision using priority order  
-  **Verify**: `grep -A 20 "Stack Detection" .opencode/skill/workflows-code--full-stack/SKILL.md | grep -E "React Native.*React.*priority"`  
+  **Verify**: `grep -A 20 "Stack Detection" .opencode/skill/sk-code--full-stack/SKILL.md | grep -E "React Native.*React.*priority"`  
   **Dependencies**: T010  
   **Estimate**: 1.5 hours  
   **Completed**: 2026-02-17

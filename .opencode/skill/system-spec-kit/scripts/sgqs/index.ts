@@ -39,7 +39,7 @@ import { SGQSError } from './errors';
  * @example
  * ```typescript
  * const result = query(
- *   'MATCH (n:Node {skill: "workflows-git"}) RETURN n.name, n.description',
+ *   'MATCH (n:Node {skill: "sk-git"}) RETURN n.name, n.description',
  *   '/path/to/.opencode/skill'
  * );
  * for (const row of result.rows) {
@@ -145,7 +145,7 @@ Arguments:
 
 Examples:
   node sgqs/index.js 'MATCH (n:Node) RETURN n.name'
-  node sgqs/index.js 'MATCH (n:Node {skill: "workflows-git"}) RETURN n.name, n.description'
+  node sgqs/index.js 'MATCH (n:Node {skill: "sk-git"}) RETURN n.name, n.description'
   node sgqs/index.js 'MATCH (n:Node)-[:LINKS_TO]->(m) RETURN n.name, m.name' /path/to/.opencode/skill
   node sgqs/index.js 'MATCH (n:Node) RETURN n.skill, COUNT(n) AS count'
 

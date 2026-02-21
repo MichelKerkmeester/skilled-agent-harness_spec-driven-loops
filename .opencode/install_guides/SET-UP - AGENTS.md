@@ -231,7 +231,7 @@ Front-end projects emphasize visual development, browser tools, and design integ
 
 | Skill                       | Purpose                                           |
 | --------------------------- | ------------------------------------------------- |
-| `workflows-chrome-devtools` | Browser debugging, visual testing, DOM inspection |
+| `mcp-chrome-devtools` | Browser debugging, visual testing, DOM inspection |
 | `mcp-code-mode`             | Webflow, Figma integration via Code Mode          |
 
 #### Confidence Weight Adjustments
@@ -363,10 +363,10 @@ Concrete examples showing how to customize from Universal to project-specific.
 | Component             | Status | Items                     | Reason                          |
 | --------------------- | ------ | ------------------------- | ------------------------------- |
 | **Skills - Keep**     | ✅      | system-spec-kit           | Context preservation needed     |
-|                       | ✅      | workflows-chrome-devtools | Browser debugging essential     |
+|                       | ✅      | mcp-chrome-devtools | Browser debugging essential     |
 |                       | ✅      | workflows-code            | Implementation workflow         |
 |                       | ✅      | mcp-code-mode             | Webflow/Figma integration       |
-| **Skills - Remove**   | ❌      | workflows-git             | Optional for solo projects      |
+| **Skills - Remove**   | ❌      | sk-git             | Optional for solo projects      |
 | **MCP - Keep**        | ✅      | spec_kit_memory           | Required for spec-kit skill     |
 |                       | ✅      | code_mode                 | External tool access            |
 | **MCP - Remove**      | ❌      | sequential_thinking       | Overkill for frontend           |
@@ -386,8 +386,8 @@ Concrete examples showing how to customize from Universal to project-specific.
 | ------------------- | ------ | ------------------------- | ---------------------------------------- |
 | **Skills - Keep**   | ✅      | system-spec-kit           | Research context preservation            |
 |                     | ✅      | workflows-code            | Implementation lifecycle                 |
-|                     | ✅      | workflows-git             | PR/commit workflows                      |
-| **Skills - Remove** | ❌      | workflows-chrome-devtools | No browser UI                            |
+|                     | ✅      | sk-git             | PR/commit workflows                      |
+| **Skills - Remove** | ❌      | mcp-chrome-devtools | No browser UI                            |
 |                     | ❌      | mcp-code-mode             | No Webflow/Figma needed                  |
 | **MCP - Keep**      | ✅      | spec_kit_memory           | Context preservation                     |
 |                     | ✅      | sequential_thinking       | Complex reasoning                        |
@@ -434,9 +434,9 @@ ls -la .opencode/skill/
 # mcp-code-mode/
 # mcp-figma/
 # system-spec-kit/
-# workflows-chrome-devtools/
+# mcp-chrome-devtools/
 # workflows-code/
-# workflows-git/
+# sk-git/
 ```
 
 </details>
@@ -466,7 +466,7 @@ Research/prior work? → memory_search() [NATIVE MCP]
 Text pattern? → Grep()
 File structure? → Glob()
 Complex reasoning? → sequential_thinking_sequentialthinking() [NATIVE MCP]
-Browser debugging? → workflows-chrome-devtools skill
+Browser debugging? → mcp-chrome-devtools skill
 External MCP tools? → call_tool_chain() [Webflow, Figma, ClickUp]
 Multi-step workflow? → Read skill SKILL.md [see §7 Skills]
 ```
@@ -483,7 +483,7 @@ Known file path? → Read()
 Research/prior work? → memory_search() [NATIVE MCP]
 Text pattern? → Grep()
 File structure? → Glob()
-Browser debugging? → workflows-chrome-devtools skill
+Browser debugging? → mcp-chrome-devtools skill
 External MCP tools? → call_tool_chain() [Webflow, Figma]
 Multi-step workflow? → Read skill SKILL.md [see §7 Skills]
 ```
@@ -600,12 +600,12 @@ Discovery: search_tools(), list_tools(), or read .utcp_config.json
 | `mcp-figma`                 | v1.0.0   | "Figma", "design", "component", "style"                          | Figma design tool integration                         |
 | `mcp-code-mode`             | v1.2.0   | "ClickUp", "Figma", "Webflow", "external tool"                   | MCP orchestration for external tools                  |
 | `system-spec-kit`           | v2.2.0   | "save context", "/memory:save", "spec folder", "plan"            | Context preservation and spec workflow                |
-| `workflows-chrome-devtools` | v2.1.0   | "screenshot", "bdg", "browser debug", "DOM"                      | Chrome DevTools Protocol debugging                    |
-| `workflows-code--full-stack`| v1.0.0   | "implement", "debug", "verify", "refactor" (full-stack)          | Full-stack implementation lifecycle orchestrator      |
+| `mcp-chrome-devtools` | v2.1.0   | "screenshot", "bdg", "browser debug", "DOM"                      | Chrome DevTools Protocol debugging                    |
+| `sk-code--full-stack`| v1.0.0   | "implement", "debug", "verify", "refactor" (full-stack)          | Full-stack implementation lifecycle orchestrator      |
 | `workflows-code--opencode`  | v1.3.2   | "opencode code", "system code", "TypeScript", "Python"           | OpenCode system code standards                        |
-| `workflows-code--web-dev`   | v1.0.9   | "implement", "debug", "verify", "refactor" (frontend)            | Web development implementation lifecycle              |
-| `workflows-documentation`   | v5.2.0   | "skill", "markdown", "flowchart", "documentation"                | Unified markdown and skill management                 |
-| `workflows-git`             | v1.5.0   | "commit", "branch", "PR", "push", "git"                          | Git workflow orchestration                            |
+| `sk-code--web`   | v1.0.9   | "implement", "debug", "verify", "refactor" (frontend)            | Web development implementation lifecycle              |
+| `sk-documentation`   | v5.2.0   | "skill", "markdown", "flowchart", "documentation"                | Unified markdown and skill management                 |
+| `sk-git`             | v1.5.0   | "commit", "branch", "PR", "push", "git"                          | Git workflow orchestration                            |
 
 ### 6.2 Skill Routing Table
 
@@ -616,15 +616,15 @@ When Gate 2 runs `skill_advisor.py`, it maps user intent to skills:
 | "save this context"               | system-spec-kit           | 0.95       |
 | "/memory:save"                    | system-spec-kit           | 0.98       |
 | "remember this decision"          | system-spec-kit           | 0.85       |
-| "take a screenshot"               | workflows-chrome-devtools | 0.95       |
-| "debug in browser"                | workflows-chrome-devtools | 0.88       |
-| "check the DOM"                   | workflows-chrome-devtools | 0.82       |
+| "take a screenshot"               | mcp-chrome-devtools | 0.95       |
+| "debug in browser"                | mcp-chrome-devtools | 0.88       |
+| "check the DOM"                   | mcp-chrome-devtools | 0.82       |
 | "implement the login feature"     | workflows-code            | 0.90       |
 | "help me debug this error"        | workflows-code            | 0.85       |
 | "verify the changes work"         | workflows-code            | 0.82       |
-| "create a commit"                 | workflows-git             | 0.95       |
-| "open a PR"                       | workflows-git             | 0.92       |
-| "push to remote"                  | workflows-git             | 0.90       |
+| "create a commit"                 | sk-git             | 0.95       |
+| "open a PR"                       | sk-git             | 0.92       |
+| "push to remote"                  | sk-git             | 0.90       |
 | "get Webflow site data"           | mcp-code-mode             | 0.90       |
 | "update Figma component"          | mcp-code-mode             | 0.88       |
 | "check ClickUp tasks"             | mcp-code-mode             | 0.85       |
@@ -676,11 +676,11 @@ For a front-end project, you would typically have these skills in `.opencode/ski
 | Skill                       | Purpose                                             |
 | --------------------------- | --------------------------------------------------- |
 | `mcp-code-mode`             | MCP orchestration for Webflow and Figma integration |
-| `workflows-chrome-devtools` | Browser debugging via Chrome DevTools Protocol      |
+| `mcp-chrome-devtools` | Browser debugging via Chrome DevTools Protocol      |
 | `system-spec-kit`           | Context preservation across sessions                |
 
 **Skills to consider removing:**
-- `workflows-git` - Optional for solo/simple projects
+- `sk-git` - Optional for solo/simple projects
 
 **Verify your skills:**
 ```bash
@@ -702,10 +702,10 @@ For a backend/API project, you would typically have these skills in `.opencode/s
 | ----------------- | ------------------------------------------------------------------------------------ |
 | `workflows-code`  | Implementation lifecycle orchestrator for complex multi-file changes and refactoring |
 | `system-spec-kit` | Context preservation for research tasks and finding prior architectural decisions    |
-| `workflows-git`   | Git workflow for PRs, commits, branches                                              |
+| `sk-git`   | Git workflow for PRs, commits, branches                                              |
 
 **Skills to consider removing:**
-- `workflows-chrome-devtools` - No browser UI to debug
+- `mcp-chrome-devtools` - No browser UI to debug
 - `mcp-code-mode` - No Webflow/Figma integration needed
 
 **Verify your skills:**
@@ -1017,7 +1017,7 @@ ls .opencode/commands/
 
 | Category        | Count | Items                                                                                                                                                     |
 | --------------- | ----- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Skills**      | 9     | mcp-figma, mcp-code-mode, system-spec-kit, workflows-chrome-devtools, workflows-code--full-stack, workflows-code--opencode, workflows-code--web-dev, workflows-documentation, workflows-git |
+| **Skills**      | 9     | mcp-figma, mcp-code-mode, system-spec-kit, mcp-chrome-devtools, sk-code--full-stack, workflows-code--opencode, sk-code--web, sk-documentation, sk-git |
 | **MCP Servers** | 3     | sequential-thinking, spec-kit-memory, code-mode                                                                                                           |
 | **Commands**    | 19    | /create:* (6), /memory:* (5), /spec_kit:* (7), agent_router (1)                                                                                           |
 | **Gates + Rules** | 3 + 3 | Gate 1-3 (Understanding, Skill Routing, Spec Folder) + Behavioral Rules (Memory Context Loading, Memory Save Rule, Completion Verification)               |

@@ -963,5 +963,5 @@ const c = await webflow.webflow_collections_list({ site_id: s.id });
 - [configuration.md](./configuration.md) - Configuration setup for MCP servers used in examples
 
 ### Related Skills
-- `workflows-chrome-devtools` - Browser automation workflows via bdg CLI
+- `mcp-chrome-devtools` - Browser automation workflows via bdg CLI
 <!-- /ANCHOR:related-resources -->

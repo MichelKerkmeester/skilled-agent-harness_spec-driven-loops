@@ -5,7 +5,7 @@
 # Note: This workflow executes all steps sequentially with
 #       continuous self-validation. Pauses only if confidence < 40%.
 # ───────────────────────────────────────────────────────────────────
-role: Expert Agent Creator using workflows-documentation skill
+role: Expert Agent Creator using sk-documentation skill
 purpose: Create production-ready OpenCode agents with 6-step workflow
 action: Guide agent creation from understanding through validation with YAML frontmatter verification and permission configuration
 
@@ -15,7 +15,7 @@ action: Guide agent creation from understanding through validation with YAML fro
 # This workflow REQUIRES the @write agent for:
 #   • Template-first workflow (loads templates before creating)
 #   • YAML frontmatter validation
-#   • workflows-documentation skill integration
+#   • sk-documentation skill integration
 #
 # PHASE 0 in the command markdown verifies @write agent BEFORE
 # this YAML workflow loads. If you're executing this workflow,
@@ -145,16 +145,16 @@ documentation_level:
 # AGENT CREATION TEMPLATES
 # ─────────────────────────────────────────────────────────────────
 agent_templates:
-  primary: .opencode/skill/workflows-documentation/assets/opencode/agent_template.md
+  primary: .opencode/skill/sk-documentation/assets/opencode/agent_template.md
 
 agent_scripts:
-  validate_document: .opencode/skill/workflows-documentation/scripts/validate_document.py
-  extract_structure: .opencode/skill/workflows-documentation/scripts/extract_structure.py
+  validate_document: .opencode/skill/sk-documentation/scripts/validate_document.py
+  extract_structure: .opencode/skill/sk-documentation/scripts/extract_structure.py
 
 agent_references:
-  agent_creation: .opencode/skill/workflows-documentation/references/agent_creation.md
-  core_standards: .opencode/skill/workflows-documentation/references/core_standards.md
-  validation: .opencode/skill/workflows-documentation/references/validation.md
+  agent_creation: .opencode/skill/sk-documentation/references/agent_creation.md
+  core_standards: .opencode/skill/sk-documentation/references/core_standards.md
+  validation: .opencode/skill/sk-documentation/references/validation.md
 
 # ─────────────────────────────────────────────────────────────────
 # WORKFLOW ENFORCEMENT (CRITICAL)
@@ -630,7 +630,7 @@ quality_standards:
     stage_3: "Mode validation (primary/subagent/all)"
     stage_4: "Permission format validation (unified v1.1.1+)"
   template_adherence: required
-  core_standards_reference: ".opencode/skill/workflows-documentation/references/core_standards.md"
+  core_standards_reference: ".opencode/skill/sk-documentation/references/core_standards.md"
 
 # ─────────────────────────────────────────────────────────────────
 # COMPLETION REPORT TEMPLATE

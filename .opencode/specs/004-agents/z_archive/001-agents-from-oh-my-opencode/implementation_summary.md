@@ -57,7 +57,7 @@ This document summarizes the implementation of the 4-agent system based on analy
 | Agent | Role | Skills Used | Triggers |
 |-------|------|-------------|----------|
 | **Research** | Evidence-based planning | system-spec-kit, mcp-leann | research, find, explore, prior, pattern |
-| **Front-end Debug** | Browser debugging | workflows-chrome-devtools | debug, console, error, inspect |
+| **Front-end Debug** | Browser debugging | mcp-chrome-devtools | debug, console, error, inspect |
 | **Documentation Writer** | Documentation generation | workflows-documentation | document, readme, skill, guide |
 | **Webflow MCP** | Webflow operations | (direct MCP) | webflow, cms, collection, site |
 
@@ -95,7 +95,7 @@ This document summarizes the implementation of the 4-agent system based on analy
 
 **Implementation:**
 - Documentation Writer → invokes `workflows-documentation`
-- Front-end Debug → invokes `workflows-chrome-devtools`
+- Front-end Debug → invokes `mcp-chrome-devtools`
 - Research → invokes `system-spec-kit`, `mcp-leann`
 
 ### 3. Research-First Planning
@@ -237,7 +237,7 @@ python3 .opencode/scripts/agent_advisor.py "$USER_REQUEST"
 | Skill | Agent Integration |
 |-------|-------------------|
 | `workflows-documentation` | Documentation Writer invokes for all doc tasks |
-| `workflows-chrome-devtools` | Front-end Debug invokes for browser debugging |
+| `mcp-chrome-devtools` | Front-end Debug invokes for browser debugging |
 | `system-spec-kit` | Research uses for memory search |
 | `mcp-leann` | Research uses for semantic code search |
 | `mcp-code-mode` | Webflow MCP uses for Webflow API access |

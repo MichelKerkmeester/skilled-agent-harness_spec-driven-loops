@@ -40,8 +40,8 @@ Gemini CLI users can now access the full agent, command, and skill system that C
 | `.gemini/skills/mcp-code-mode` | Created (symlink) | Resolves to `../../.opencode/skill/mcp-code-mode` |
 | `.gemini/skills/mcp-figma` | Created (symlink) | Resolves to `../../.opencode/skill/mcp-figma` |
 | `.gemini/skills/system-spec-kit` | Created (symlink) | Resolves to `../../.opencode/skill/system-spec-kit` |
-| `.gemini/skills/workflows-chrome-devtools` | Created (symlink) | Resolves to `../../.opencode/skill/workflows-chrome-devtools` |
-| `.gemini/skills/workflows-code--full-stack` | Created (symlink) | Resolves to `../../.opencode/skill/workflows-code--full-stack` |
+| `.gemini/skills/mcp-chrome-devtools` | Created (symlink) | Resolves to `../../.opencode/skill/mcp-chrome-devtools` |
+| `.gemini/skills/sk-code--full-stack` | Created (symlink) | Resolves to `../../.opencode/skill/sk-code--full-stack` |
 | `.gemini/skills/workflows-code--opencode` | Created (symlink) | Resolves to `../../.opencode/skill/workflows-code--opencode` |
 | `.gemini/skills/workflows-code--web-dev` | Created (symlink) | Resolves to `../../.opencode/skill/workflows-code--web-dev` |
 | `.gemini/skills/workflows-documentation` | Created (symlink) | Resolves to `../../.opencode/skill/workflows-documentation` |

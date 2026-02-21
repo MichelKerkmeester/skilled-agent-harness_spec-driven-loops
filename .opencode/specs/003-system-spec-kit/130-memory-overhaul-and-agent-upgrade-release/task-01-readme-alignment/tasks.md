@@ -66,9 +66,9 @@
 - [ ] T053 Audit `workflows-documentation/README.md`
 - [ ] T054 Audit `workflows-code--opencode/README.md`
 - [ ] T055 Audit `workflows-code--web-dev/README.md`
-- [ ] T056 Audit `workflows-code--full-stack/README.md`
+- [ ] T056 Audit `sk-code--full-stack/README.md`
 - [ ] T057 Audit `workflows-git/README.md`
-- [ ] T058 Audit `workflows-chrome-devtools/README.md`
+- [ ] T058 Audit `mcp-chrome-devtools/README.md`
 
 ### MCP skill READMEs (2 files)
 - [ ] T059 Audit `mcp-code-mode/README.md`

@@ -6,7 +6,7 @@
 #       continuous self-validation. Pauses only if confidence < 40%.
 #       When invoked with --chained flag, parameters come from parent.
 # ───────────────────────────────────────────────────────────────────
-role: Expert Asset Creator using workflows-documentation skill
+role: Expert Asset Creator using sk-documentation skill
 purpose: Create asset files for existing skills (templates, lookups, examples, guides)
 action: Generate properly structured asset files with validation
 
@@ -16,7 +16,7 @@ action: Generate properly structured asset files with validation
 # This workflow REQUIRES the @write agent for:
 #   • Template-first workflow (loads templates before creating)
 #   • DQI scoring (target: 75+ Good)
-#   • workflows-documentation skill integration
+#   • sk-documentation skill integration
 #
 # STANDALONE MODE: PHASE 0 in the command markdown verifies @write
 # agent BEFORE this YAML workflow loads.
@@ -207,7 +207,7 @@ asset_types:
     naming: "[topic].md"
     purpose: "Graph node with YAML frontmatter and wikilinks (graph-mode skills only)"
     prerequisite: "Skill must have index.md — check with: ls [skill_path]/index.md 2>/dev/null"
-    template: .opencode/skill/workflows-documentation/assets/opencode/skill_graph_node_template.md
+    template: .opencode/skill/sk-documentation/assets/opencode/skill_graph_node_template.md
     structure:
     - "YAML frontmatter (id, title, tags, related)"
     - "Purpose section"
@@ -284,10 +284,10 @@ workflow:
   step_3_template_loading:
     purpose: Load skill_asset_template.md structure
     activities:
-    - Read skill_asset_template.md from workflows-documentation skill
+    - Read skill_asset_template.md from sk-documentation skill
     - Extract structure patterns for asset type
     - Note formatting requirements
-    template_path: .opencode/skill/workflows-documentation/assets/opencode/skill_asset_template.md
+    template_path: .opencode/skill/sk-documentation/assets/opencode/skill_asset_template.md
     key_structure_elements:
     - "Title with descriptive subtitle"
     - "Introduction paragraph (1-2 sentences)"
@@ -473,10 +473,10 @@ quality_standards:
   dqi_minimum: 75
   dqi_enforcement: HARD_BLOCK
   validation_pipeline:
-    stage_1: "python3 .opencode/skill/workflows-documentation/scripts/validate_document.py [file]"
-    stage_2: "python3 .opencode/skill/workflows-documentation/scripts/extract_structure.py [file]"
+    stage_1: "python3 .opencode/skill/sk-documentation/scripts/validate_document.py [file]"
+    stage_2: "python3 .opencode/skill/sk-documentation/scripts/extract_structure.py [file]"
   template_adherence: required
-  core_standards_reference: ".opencode/skill/workflows-documentation/references/core_standards.md"
+  core_standards_reference: ".opencode/skill/sk-documentation/references/core_standards.md"
 
 # ─────────────────────────────────────────────────────────────────
 # ASSET FILE TEMPLATE
@@ -557,7 +557,7 @@ error_recovery:
     action: "Skill may be malformed, offer to fix"
     options: ["Fix skill structure", "Cancel"]
   template_not_found:
-    action: "Check template path, verify workflows-documentation skill exists"
+    action: "Check template path, verify sk-documentation skill exists"
     fallback: "Use inline minimal template"
   validation_failure:
     action: "Show specific errors, guide fixes, re-validate"
@@ -589,8 +589,8 @@ termination:
 # REFERENCE TEMPLATES
 # ─────────────────────────────────────────────────────────────────
 reference_templates:
-  skill_asset: .opencode/skill/workflows-documentation/assets/opencode/skill_asset_template.md
-  core_standards: .opencode/skill/workflows-documentation/references/core_standards.md
+  skill_asset: .opencode/skill/sk-documentation/assets/opencode/skill_asset_template.md
+  core_standards: .opencode/skill/sk-documentation/references/core_standards.md
 
 # ─────────────────────────────────────────────────────────────────
 # RULES

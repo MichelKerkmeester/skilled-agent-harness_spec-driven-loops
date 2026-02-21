@@ -75,9 +75,9 @@ Given the manual approach deviation, the planned 4-phase timeline was collapsed:
 - ✅ `system-spec-kit/` - SKILL.md + 30 references + 6 assets
 - ✅ `workflows-documentation/` - SKILL.md + 15 references + 3 assets
 - ✅ `workflows-code--web-dev/` - SKILL.md + 42 references + 18 assets
-- ✅ `workflows-code--full-stack/` - SKILL.md + 8 references + 5 assets
+- ✅ `sk-code--full-stack/` - SKILL.md + 8 references + 5 assets
 - ✅ `workflows-git/` - SKILL.md + 12 references + 7 assets
-- ✅ `workflows-chrome-devtools/` - SKILL.md + 6 references + 4 assets
+- ✅ `mcp-chrome-devtools/` - SKILL.md + 6 references + 4 assets
 - ✅ `workflows-code--opencode/` - SKILL.md + 8 references + 3 assets
 - ✅ `mcp-code-mode/` - SKILL.md + 3 references + 2 assets
 - ✅ `mcp-figma/` - SKILL.md + 2 references + 1 asset
@@ -323,9 +323,9 @@ Applied consistent interpretation:
 - `system-spec-kit/`: 37 files anchored (SKILL + 30 refs + 6 assets)
 - `workflows-documentation/`: 19 files anchored (SKILL + 15 refs + 3 assets)
 - `workflows-code--web-dev/`: 61 files anchored (SKILL + 42 refs + 18 assets)
-- `workflows-code--full-stack/`: 14 files anchored (SKILL + 8 refs + 5 assets)
+- `sk-code--full-stack/`: 14 files anchored (SKILL + 8 refs + 5 assets)
 - `workflows-git/`: 20 files anchored (SKILL + 12 refs + 7 assets)
-- `workflows-chrome-devtools/`: 11 files anchored (SKILL + 6 refs + 4 assets)
+- `mcp-chrome-devtools/`: 11 files anchored (SKILL + 6 refs + 4 assets)
 - `workflows-code--opencode/`: 12 files anchored (SKILL + 8 refs + 3 assets)
 - `mcp-code-mode/`: 6 files anchored (SKILL + 3 refs + 2 assets)
 - `mcp-figma/`: 4 files anchored (SKILL + 2 refs + 1 asset)

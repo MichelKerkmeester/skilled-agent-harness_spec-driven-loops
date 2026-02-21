@@ -821,7 +821,7 @@ A: Figma's API has rate limits that vary by endpoint. If you hit limits, wait 60
 | Skill | Purpose |
 |-------|---------|
 | [mcp-code-mode](../mcp-code-mode/README.md) | Tool orchestration via TypeScript execution |
-| [workflows-chrome-devtools](../workflows-chrome-devtools/README.md) | Browser-side validation for design implementation |
+| [mcp-chrome-devtools](../mcp-chrome-devtools/README.md) | Browser-side validation for design implementation |
 
 ### Install Guide
 

@@ -577,7 +577,7 @@ Both timeout and other Botpoison errors silently return null without logging.
 - **Priority:** P2 MEDIUM
 - **Effort:** 30m
 - **Files:**
-  - `.opencode/skill/workflows-chrome-devtools/SKILL.md`
+  - `.opencode/skill/mcp-chrome-devtools/SKILL.md`
   - `.opencode/skill/workflows-git/SKILL.md`
 - **Dependencies:** None
 

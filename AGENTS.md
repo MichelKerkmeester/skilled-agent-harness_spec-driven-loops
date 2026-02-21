@@ -49,7 +49,7 @@
 | **End session**          | `/spec_kit:handover` → Save context → Provide continuation prompt                                                                  |
 | **New spec folder**      | Option B (Gate 3) → Research via Task tool → Evidence-based plan → Approval → Implement                                            |
 | **Complex multi-step**   | Task tool → Decompose → Delegate → Synthesize                                                                                      |
-| **Documentation**        | workflows-documentation skill → Classify → Load template → Fill → Validate (`validate_document.py`) → DQI score → Verify           |
+| **Documentation**        | sk-documentation skill → Classify → Load template → Fill → Validate (`validate_document.py`) → DQI score → Verify           |
 | **CDN deployment**       | Minify → Verify → Update HTML versions → Upload to R2 → Browser test                                                               |
 | **JavaScript minify**    | `minify-webflow.mjs` → `verify-minification.mjs` → `test-minified-runtime.mjs` → Browser test                                      |
 | **Learn from mistakes**  | `/memory:learn correct` → Document what went wrong → Stability penalty applied → Pattern extracted                                 |

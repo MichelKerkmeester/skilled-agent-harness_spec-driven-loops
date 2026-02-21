@@ -93,7 +93,7 @@
 
 - [x] CHK-040 [P0] SGQS CLI smoke test: 5 previously-failing spec 006 scenarios now score ≥3.0 [E:manual SGQS CLI run — scenarios: git-commit, css-layout, typescript-debug, spec-folder, memory-save all score ≥3.5]
 - [x] CHK-041 [P0] SGQS CLI regression: 5 previously-passing spec 006 scenarios still score ≥3.0 [E:manual SGQS CLI run — no regressions observed]
-- [x] CHK-042 [P1] MULTI_SKILL_BOOSTERS produce multi-skill output for full-stack query [E:skill_advisor.py "full stack typescript api" returns both workflows-code--full-stack and workflows-code--opencode]
+- [x] CHK-042 [P1] MULTI_SKILL_BOOSTERS produce multi-skill output for full-stack query [E:skill_advisor.py "full stack typescript api" returns both sk-code--full-stack and workflows-code--opencode]
 <!-- /ANCHOR:testing -->
 
 ---

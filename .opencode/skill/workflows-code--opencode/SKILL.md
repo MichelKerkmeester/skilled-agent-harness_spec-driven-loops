@@ -476,9 +476,9 @@ This skill operates within the behavioral framework defined in AGENTS.md.
 | Skill                       | Use For                                    |
 | --------------------------- | ------------------------------------------ |
 | **workflows-code**          | Web/frontend development, browser testing  |
-| **workflows-documentation** | Markdown documentation, skill creation     |
+| **sk-documentation** | Markdown documentation, skill creation     |
 | **system-spec-kit**         | Spec folders, memory, context preservation |
-| **workflows-git**           | Git workflows, commits, PR creation        |
+| **sk-git**           | Git workflows, commits, PR creation        |
 
 ---
 

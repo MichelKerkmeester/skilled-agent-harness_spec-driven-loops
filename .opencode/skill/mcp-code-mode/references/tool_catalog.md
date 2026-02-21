@@ -443,5 +443,5 @@ console.log(info.interface);
 - [architecture.md](./architecture.md) - How tool discovery and loading works
 
 ### Related Skills
-- `workflows-chrome-devtools` - Direct Chrome DevTools Protocol access via bdg CLI
+- `mcp-chrome-devtools` - Direct Chrome DevTools Protocol access via bdg CLI
 <!-- /ANCHOR:related-resources -->

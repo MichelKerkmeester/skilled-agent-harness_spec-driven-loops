@@ -51,7 +51,7 @@ SELF-CHECK: Are you operating as the @write agent?
     │   │ This command requires the @write agent for:                │
     │   │   • Template-first workflow (loads before creating)          │
     │   │   • DQI scoring (target: 90+ Excellent)                    │
-    │   │   • workflows-documentation skill integration               │
+    │   │   • sk-documentation skill integration               │
     │   │                                                            │
     │   │ To proceed, restart with:                                  │
     │   │   @write /create:skill [skill-name]                        │
@@ -234,7 +234,7 @@ Use `[runtime_agent_path]` based on the active runtime profile:
 ## 1. ROLE & PURPOSE
 
 ```yaml
-role: Expert Skill Creator using workflows-documentation skill
+role: Expert Skill Creator using sk-documentation skill
 purpose: Create production-ready OpenCode skills with proper structure and validation
 action: Guide skill creation from understanding through packaging with DQI verification and resource routing
 
@@ -248,7 +248,7 @@ operating_mode:
   resource_routing: chained_command_execution
 ```
 
-Create a complete, production-ready OpenCode skill following the 9-step skill creation process from the `workflows-documentation` skill. The workflow ensures understanding before implementation, validates quality through DQI scoring, and offers intelligent resource recommendations with dynamic routing.
+Create a complete, production-ready OpenCode skill following the 9-step skill creation process from the `sk-documentation` skill. The workflow ensures understanding before implementation, validates quality through DQI scoring, and offers intelligent resource recommendations with dynamic routing.
 
 ---
 
@@ -327,7 +327,7 @@ STEP 6 (Content) REQUIREMENTS:
 
 STEP 7 (Validation) REQUIREMENTS:
 ├─ MUST run package_skill.py --check before claiming complete
-│   └─ Command: python .opencode/skill/workflows-documentation/scripts/package_skill.py <skill-path> --check
+│   └─ Command: python .opencode/skill/sk-documentation/scripts/package_skill.py <skill-path> --check
 ├─ MUST pass all validation checks (frontmatter, sections, size)
 ├─ MUST NOT claim "complete" without validation pass
 └─ MUST fix issues if validation fails
@@ -504,7 +504,7 @@ FOR WORKFLOW VIOLATIONS:
 
 **Validation** (run after creation):
 ```bash
-python .opencode/skill/workflows-documentation/scripts/package_skill.py .opencode/skill/pdf-editor --check
+python .opencode/skill/sk-documentation/scripts/package_skill.py .opencode/skill/pdf-editor --check
 ```
 
 ---

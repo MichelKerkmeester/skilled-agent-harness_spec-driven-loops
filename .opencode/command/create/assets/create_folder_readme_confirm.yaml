@@ -9,7 +9,7 @@
 # auto-indexed by memory_index_scan with importance_weight 0.3 (skill) or 0.4 (project).
 # Add YAML frontmatter (title, description, trigger_phrases) for enhanced memory indexing.
 # ───────────────────────────────────────────────────────────────────
-role: Expert README Creator using workflows-documentation skill
+role: Expert README Creator using sk-documentation skill
 purpose: Create comprehensive README files with proper structure and AI-optimization
 action: Generate scannable, well-organized README with table of contents
 
@@ -19,7 +19,7 @@ action: Generate scannable, well-organized README with table of contents
 # This workflow REQUIRES the @write agent for:
 #   • Template-first workflow (loads templates before creating)
 #   • DQI scoring (target: 70+ Acceptable)
-#   • workflows-documentation skill integration
+#   • sk-documentation skill integration
 #
 # PHASE 0 in the command markdown verifies @write agent BEFORE
 # this YAML workflow loads. If you're executing this workflow,
@@ -218,10 +218,10 @@ ai_optimization:
 # REFERENCE TEMPLATES
 # ─────────────────────────────────────────────────────────────────
 reference_templates:
-  readme_template: .opencode/skill/workflows-documentation/assets/documentation/readme_template.md
+  readme_template: .opencode/skill/sk-documentation/assets/documentation/readme_template.md
   speckit_readme: .opencode/skill/system-spec-kit/README.md
   memory_readme: .opencode/skill/system-spec-kit/README.md
-  core_standards: .opencode/skill/workflows-documentation/references/core_standards.md
+  core_standards: .opencode/skill/sk-documentation/references/core_standards.md
 
 # ─────────────────────────────────────────────────────────────────
 # TEMPLATE EVOLUTION REFERENCES
@@ -602,19 +602,19 @@ templates:
   project_readme: |
     # Reference: See readme_template.md §13 (Complete Template) for the canonical 9-section scaffold.
     # Adapt sections per readme_types.project.sections above.
-    # Template path: .opencode/skill/workflows-documentation/assets/documentation/readme_template.md
+    # Template path: .opencode/skill/sk-documentation/assets/documentation/readme_template.md
   component_readme: |
     # Reference: See readme_template.md §13 (Complete Template) for the canonical 9-section scaffold.
     # Adapt sections per readme_types.component.sections above.
-    # Template path: .opencode/skill/workflows-documentation/assets/documentation/readme_template.md
+    # Template path: .opencode/skill/sk-documentation/assets/documentation/readme_template.md
   feature_readme: |
     # Reference: See readme_template.md §13 (Complete Template) for the canonical 9-section scaffold.
     # Adapt sections per readme_types.feature.sections above (subset of 9 sections).
-    # Template path: .opencode/skill/workflows-documentation/assets/documentation/readme_template.md
+    # Template path: .opencode/skill/sk-documentation/assets/documentation/readme_template.md
   skill_readme: |
     # Reference: See readme_template.md §13 (Complete Template) for the canonical 9-section scaffold.
     # Adapt sections per readme_types.skill.sections above.
-    # Template path: .opencode/skill/workflows-documentation/assets/documentation/readme_template.md
+    # Template path: .opencode/skill/sk-documentation/assets/documentation/readme_template.md
 
 # ─────────────────────────────────────────────────────────────────
 # COMPLETION REPORT TEMPLATE
@@ -667,14 +667,14 @@ quality_standards:
     stage_1: "Structural check (title, TOC, sections, separators)"
     stage_2: "Content check (code blocks, tables, no placeholders)"
   template_adherence: required
-  core_standards_reference: ".opencode/skill/workflows-documentation/references/core_standards.md"
+  core_standards_reference: ".opencode/skill/sk-documentation/references/core_standards.md"
 
 # ─────────────────────────────────────────────────────────────────
 # ERROR RECOVERY
 # ─────────────────────────────────────────────────────────────────
 error_recovery:
   template_not_found:
-    action: "Check template paths, verify workflows-documentation skill exists"
+    action: "Check template paths, verify sk-documentation skill exists"
     fallback: "Use inline minimal template structure"
   validation_failure:
     action: "Show specific validation errors, guide fixes"

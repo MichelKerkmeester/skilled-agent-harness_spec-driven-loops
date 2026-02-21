@@ -1,0 +1,4 @@
+{
+  "invalid_args": ["--phase", "--subfolder", "--skip-branch", "Invalid flags"],
+  "expect_non_zero": true
+}

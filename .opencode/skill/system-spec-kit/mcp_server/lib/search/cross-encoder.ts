@@ -21,6 +21,8 @@
    1. CONFIGURATION
 ----------------------------------------------------------------*/
 
+import { isCrossEncoderEnabled } from './search-flags';
+
 interface ProviderConfigEntry {
   name: string;
   model: string;
@@ -123,6 +125,10 @@ let activeProvider: string | null = null;
 ----------------------------------------------------------------*/
 
 function resolveProvider(): string | null {
+  if (!isCrossEncoderEnabled()) {
+    return null;
+  }
+
   if (activeProvider) return activeProvider;
 
   // Check API keys in priority order

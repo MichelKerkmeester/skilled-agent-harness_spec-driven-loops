@@ -159,9 +159,9 @@
   - [x] ✅ system-spec-kit ✅
   - [x] ✅ workflows-documentation ✅
   - [x] ✅ workflows-code--web-dev ✅
-  - [x] ✅ workflows-code--full-stack ✅
+  - [x] ✅ sk-code--full-stack ✅
   - [x] ✅ workflows-git ✅
-  - [x] ✅ workflows-chrome-devtools ✅
+  - [x] ✅ mcp-chrome-devtools ✅
   - [x] ✅ workflows-code--opencode ✅
   - [x] ✅ mcp-code-mode ✅
   - [x] ✅ mcp-figma ✅
@@ -228,7 +228,7 @@
 - [x] ✅ **Key skills verified** [E:system-spec-kit-workflows-docs-validated]
   - [x] ✅ system-spec-kit: 100% coverage
   - [x] ✅ workflows-documentation: 100% coverage
-  - [x] ✅ workflows-code--full-stack: 100% coverage
+  - [x] ✅ sk-code--full-stack: 100% coverage
 - [x] ✅ **Anchored content verified readable** [E:manual-inspection]
 - [x] ✅ **No malformed anchors** [E:validation-clean]
 

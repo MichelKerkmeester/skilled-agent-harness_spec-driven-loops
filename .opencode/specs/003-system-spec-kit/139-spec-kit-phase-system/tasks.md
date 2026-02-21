@@ -98,11 +98,11 @@
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
-- [ ] `validate.sh --recursive` passes on spec folder
-- [ ] All 4 phases delivered and integrated
+- [ ] All tasks marked `[x]` (31/34 complete; remaining: T005, T028, T033)
+- [x] No `[B]` blocked tasks remaining
+- [ ] Manual verification passed (pending fixture backlog closure)
+- [ ] `validate.sh --recursive` passes on spec folder with full fixture coverage evidence
+- [ ] All 4 phases delivered and integrated with verification artifacts
 <!-- /ANCHOR:completion -->
 
 ---

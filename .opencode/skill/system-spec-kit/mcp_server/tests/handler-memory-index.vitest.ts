@@ -121,7 +121,7 @@ describe('Handler Memory Index (T520) [deferred - requires DB test fixtures]', (
     it('T520-11: Finds .md files in references/ and assets/ for configured skill', () => {
       tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'test-skill-ref-index-'));
 
-      const skillRoot = path.join(tempDir, '.opencode', 'skill', 'workflows-code--web-dev');
+      const skillRoot = path.join(tempDir, '.opencode', 'skill', 'sk-code--web');
       const referencesDir = path.join(skillRoot, 'references', 'checklists');
       const assetsDir = path.join(skillRoot, 'assets', 'templates');
 
@@ -136,16 +136,16 @@ describe('Handler Memory Index (T520) [deferred - requires DB test fixtures]', (
       const result = handler.findSkillReferenceFiles(tempDir);
       const relativePaths = result.map((filePath) => path.relative(tempDir!, filePath).replace(/\\/g, '/'));
 
-      expect(relativePaths).toContain('.opencode/skill/workflows-code--web-dev/references/checklists/validation.md');
-      expect(relativePaths).toContain('.opencode/skill/workflows-code--web-dev/references/guide.md');
-      expect(relativePaths).toContain('.opencode/skill/workflows-code--web-dev/assets/templates/example.md');
+      expect(relativePaths).toContain('.opencode/skill/sk-code--web/references/checklists/validation.md');
+      expect(relativePaths).toContain('.opencode/skill/sk-code--web/references/guide.md');
+      expect(relativePaths).toContain('.opencode/skill/sk-code--web/assets/templates/example.md');
       expect(relativePaths.some((filePath) => filePath.endsWith('/README.md'))).toBe(false);
     });
 
     it('T520-12: Environment flag disables skill reference discovery', () => {
       tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'test-skill-ref-disabled-'));
 
-      const skillRoot = path.join(tempDir, '.opencode', 'skill', 'workflows-code--web-dev', 'references');
+      const skillRoot = path.join(tempDir, '.opencode', 'skill', 'sk-code--web', 'references');
       fs.mkdirSync(skillRoot, { recursive: true });
       fs.writeFileSync(path.join(skillRoot, 'guide.md'), '# Guide');
 
@@ -167,7 +167,7 @@ describe('Handler Memory Index (T520) [deferred - requires DB test fixtures]', (
     it('T520-13: Returns sorted .md files and skips non-markdown', () => {
       tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'test-skill-ref-sorted-'));
 
-      const referencesDir = path.join(tempDir, '.opencode', 'skill', 'workflows-code--web-dev', 'references');
+      const referencesDir = path.join(tempDir, '.opencode', 'skill', 'sk-code--web', 'references');
       fs.mkdirSync(referencesDir, { recursive: true });
 
       fs.writeFileSync(path.join(referencesDir, 'zeta.md'), '# Zeta');
@@ -178,8 +178,8 @@ describe('Handler Memory Index (T520) [deferred - requires DB test fixtures]', (
       const relativePaths = result.map((filePath) => path.relative(tempDir!, filePath).replace(/\\/g, '/'));
 
       expect(relativePaths).toEqual([
-        '.opencode/skill/workflows-code--web-dev/references/alpha.md',
-        '.opencode/skill/workflows-code--web-dev/references/zeta.md',
+        '.opencode/skill/sk-code--web/references/alpha.md',
+        '.opencode/skill/sk-code--web/references/zeta.md',
       ]);
     });
 

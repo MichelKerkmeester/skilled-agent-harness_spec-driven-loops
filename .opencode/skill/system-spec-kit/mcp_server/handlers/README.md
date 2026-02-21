@@ -33,11 +33,20 @@ Current modules:
 - `memory-search.ts`
 - `memory-triggers.ts`
 - `memory-save.ts`
-- `memory-crud.ts`
+- `memory-crud.ts` (stable facade + snake_case aliases)
+- `memory-crud-delete.ts`
+- `memory-crud-update.ts`
+- `memory-crud-list.ts`
+- `memory-crud-stats.ts`
+- `memory-crud-health.ts`
+- `memory-crud-state.ts`
+- `memory-crud-types.ts`
+- `memory-crud-utils.ts`
 - `memory-index.ts`
 - `checkpoints.ts`
 - `session-learning.ts`
 - `causal-graph.ts`
+- `sgqs-query.ts`
 - `types.ts`
 - `index.ts`
 
@@ -47,6 +56,7 @@ Current modules:
 
 
 - Handlers export camelCase primary APIs and snake_case compatibility aliases.
+- CRUD handlers are split into focused modules while keeping `memory-crud.ts` as the stable entry point.
 - Tool domains cover L1-L7 behavior through the dispatch layer in `tools/`.
 - Core persistence uses `memory_index` (not `memories`) with FTS/vector/checkpoint support.
 - Spec 126 alignment:

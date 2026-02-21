@@ -11,6 +11,7 @@ import { spreadActivation } from '../cognitive/co-activation';
 import { applyMMR } from './mmr-reranker';
 import { INTENT_LAMBDA_MAP, classifyIntent } from './intent-classifier';
 import { fts5Bm25Search } from './sqlite-fts';
+import { isMMREnabled } from './search-flags';
 
 // Type-only
 import type Database from 'better-sqlite3';
@@ -491,7 +492,7 @@ async function hybridSearchEnhanced(
       // Fused results don't carry embeddings through RRF, so we look them up from the
       // vec0 virtual table for the top-N numeric-ID results before running MMR.
       let reranked = fused.slice(0, limit);
-      if (db) {
+      if (db && isMMREnabled()) {
         const numericIds = reranked
           .map(r => r.id)
           .filter((id): id is number => typeof id === 'number');

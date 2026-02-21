@@ -54,7 +54,7 @@ All four install guides are rewritten to match the latest `install_guide_templat
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
 | `.opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md` | Modify | Major update: new feature flags, skill graph, graph enrichment, HVR rewrite |
-| `.opencode/skill/workflows-chrome-devtools/INSTALL_GUIDE.md` | Modify | HVR rewrite, fix broken Code Mode cross-reference link |
+| `.opencode/skill/mcp-chrome-devtools/INSTALL_GUIDE.md` | Modify | HVR rewrite, fix broken Code Mode cross-reference link |
 | `.opencode/skill/mcp-code-mode/INSTALL_GUIDE.md` | Modify | HVR rewrite, add version number, template alignment |
 | `.opencode/skill/mcp-figma/INSTALL_GUIDE.md` | Modify | HVR rewrite, fix outdated cross-references, template alignment |
 <!-- /ANCHOR:scope -->

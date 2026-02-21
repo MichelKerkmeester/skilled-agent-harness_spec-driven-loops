@@ -14,8 +14,8 @@ Snapshot date: 2026-02-20
 | `mcp-figma` | Yes | No | 0 | No | Not started |
 | `system-spec-kit` | Yes | Yes | 9 | Yes | Complete |
 | `workflows-documentation` | Yes | Yes | 7 | No | Complete |
-| `workflows-chrome-devtools` | Yes | No | 0 | No | Not started |
-| `workflows-code--full-stack` | Yes | No | 0 | No | Not started |
+| `mcp-chrome-devtools` | Yes | No | 0 | No | Not started |
+| `sk-code--full-stack` | Yes | No | 0 | No | Not started |
 | `workflows-code--opencode` | Yes | No | 0 | No | Not started |
 | `workflows-code--web-dev` | Yes | No | 0 | No | Not started |
 | `workflows-git` | Yes | No | 0 | No | Not started |
@@ -47,7 +47,7 @@ Snapshot date: 2026-02-20
 
 ## Next Steps
 
-1. Migrate remaining skills in this order: `workflows-git`, `workflows-chrome-devtools`, `mcp-figma`, then `workflows-code--*` variants.
+1. Migrate remaining skills in this order: `workflows-git`, `mcp-chrome-devtools`, `mcp-figma`, then `workflows-code--*` variants.
 2. For each skill: create `index.md`, create focused nodes, then keep `SKILL.md` as compatibility wrapper.
 3. Run global `check-links.sh` after each skill migration batch.
 4. Add a manual traversal test pass across multiple skills to validate real agent navigation, not just link existence.

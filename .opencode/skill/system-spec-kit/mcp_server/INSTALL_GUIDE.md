@@ -320,7 +320,7 @@ Add these flags to the `environment` (or `env`) block of any configuration optio
 | `SPECKIT_GRAPH_UNIFIED` | `true` | Controls the entire graph channel. Set to `false` to disable all graph enrichment. |
 | `SPECKIT_GRAPH_MMR` | `true` | Controls Graph-Guided MMR reranking. Set to `false` to disable MMR on graph results. |
 | `SPECKIT_GRAPH_AUTHORITY` | `true` | Controls Structural Authority Propagation. Set to `false` to disable authority score boosts. |
-| `SPECKIT_ADAPTIVE_FUSION` | `false` | Controls adaptive intent-based fusion weights. Set to `true` to enable (7 task types). |
+| `SPECKIT_ADAPTIVE_FUSION` | `true` | Controls adaptive intent-based fusion weights. Set to `false` to disable (7 task types). |
 | `SPECKIT_EXTENDED_TELEMETRY` | `true` | Controls 4-dimension per-retrieval telemetry. Set to `false` to disable metrics collection. |
 
 **Example** (OpenCode with all flags explicit):
@@ -560,7 +560,7 @@ The causal graph channel now participates in every search query. Previously it w
 
 ### Adaptive Hybrid Fusion
 
-**Flag:** `SPECKIT_ADAPTIVE_FUSION` (default: off)
+**Flag:** `SPECKIT_ADAPTIVE_FUSION` (default: on)
 
 When enabled, this feature adjusts the balance between vector similarity and keyword relevance based on the detected task type. It supports 7 task types: `add_feature`, `fix_bug`, `refactor`, `understand`, `plan`, `debug` and `resume`. For example, `fix_bug` boosts exact-match keyword signals while `understand` emphasizes semantic similarity.
 
@@ -896,7 +896,7 @@ FEATURE FLAGS (env vars):
   SPECKIT_GRAPH_UNIFIED     default: true  (false = disable all graph)
   SPECKIT_GRAPH_MMR         default: true  (false = disable MMR reranking)
   SPECKIT_GRAPH_AUTHORITY   default: true  (false = disable authority boosts)
-  SPECKIT_ADAPTIVE_FUSION   default: false (true = enable intent-based fusion)
+  SPECKIT_ADAPTIVE_FUSION   default: true  (false = disable intent-based fusion)
   SPECKIT_EXTENDED_TELEMETRY default: true (false = disable metrics)
 
 MCP TOOLS: memory_context, memory_search, memory_match_triggers,

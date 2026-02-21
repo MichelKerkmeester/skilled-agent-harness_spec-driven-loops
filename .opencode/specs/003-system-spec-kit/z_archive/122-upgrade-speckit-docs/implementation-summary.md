@@ -40,7 +40,7 @@ Systematic documentation quality upgrade across 85 OpenCode system files, applyi
 | `.opencode/skill/workflows-documentation/assets/templates/readme_template.md` | Modified | Template restructure (+191/-71 lines, +120 net for HVR ruleset) |
 | `.opencode/opencode.json` | Modified | Remove Antigravity config (-78 lines) |
 | `package.json`, `bun.lock` | Modified | Dependency updates from config changes |
-| `.opencode/skill/*/CHANGELOG.md` (10 files) | Created | Version tracking for workflows-code--full-stack, workflows-code--web-dev, workflows-documentation, workflows-git, mcp-code-mode, mcp-figma, system-spec-kit, workflows-chrome-devtools (8 skills) |
+| `.opencode/skill/*/CHANGELOG.md` (10 files) | Created | Version tracking for sk-code--full-stack, workflows-code--web-dev, workflows-documentation, workflows-git, mcp-code-mode, mcp-figma, system-spec-kit, mcp-chrome-devtools (8 skills) |
 
 **Total**: ~85 modified files + 13 new files = ~98 total files affected
 **LOC Stats**: ~4,864 total LOC changed (+2,649/−2,215, net +434 increase)

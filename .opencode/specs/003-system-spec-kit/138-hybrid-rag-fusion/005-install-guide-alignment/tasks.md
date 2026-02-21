@@ -45,7 +45,7 @@
   - Template alignment (11 sections)
   - Add version number v3.0.0
 
-- [x] T007 [P] Rewrite Chrome DevTools INSTALL_GUIDE.md (`.opencode/skill/workflows-chrome-devtools/INSTALL_GUIDE.md`)
+- [x] T007 [P] Rewrite Chrome DevTools INSTALL_GUIDE.md (`.opencode/skill/mcp-chrome-devtools/INSTALL_GUIDE.md`)
   - Fix broken Code Mode cross-reference link
   - HVR compliance rewrite
   - Template alignment (11 sections)

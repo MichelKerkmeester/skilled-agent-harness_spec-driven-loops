@@ -167,8 +167,8 @@ Create 10 relative symlinks from `.gemini/skills/` to `.opencode/skill/`:
 - [ ] `.gemini/skills/mcp-code-mode` → `../../.opencode/skill/mcp-code-mode`
 - [ ] `.gemini/skills/mcp-figma` → `../../.opencode/skill/mcp-figma`
 - [ ] `.gemini/skills/system-spec-kit` → `../../.opencode/skill/system-spec-kit`
-- [ ] `.gemini/skills/workflows-chrome-devtools` → `../../.opencode/skill/workflows-chrome-devtools`
-- [ ] `.gemini/skills/workflows-code--full-stack` → `../../.opencode/skill/workflows-code--full-stack`
+- [ ] `.gemini/skills/mcp-chrome-devtools` → `../../.opencode/skill/mcp-chrome-devtools`
+- [ ] `.gemini/skills/sk-code--full-stack` → `../../.opencode/skill/sk-code--full-stack`
 - [ ] `.gemini/skills/workflows-code--opencode` → `../../.opencode/skill/workflows-code--opencode`
 - [ ] `.gemini/skills/workflows-code--web-dev` → `../../.opencode/skill/workflows-code--web-dev`
 - [ ] `.gemini/skills/workflows-documentation` → `../../.opencode/skill/workflows-documentation`

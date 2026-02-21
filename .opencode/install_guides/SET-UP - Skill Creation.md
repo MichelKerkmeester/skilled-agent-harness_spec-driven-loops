@@ -31,7 +31,7 @@ Complete guide for creating AI agent skills with native OpenCode discovery. Cove
 - Loads `skill_md_template.md` BEFORE creating (template-first workflow)
 - Validates template alignment AFTER creating
 - Runs DQI scoring (target: 90+ Excellent)
-- Invokes `workflows-documentation` skill for standards
+- Invokes `sk-documentation` skill for standards
 - Ensures proper use of `init_skill.py` and `package_skill.py`
 
 **Verification (MUST pass before proceeding):**
@@ -51,7 +51,7 @@ Complete guide for creating AI agent skills with native OpenCode discovery. Cove
 
 **PREREQUISITE CHECK (you MUST verify before proceeding):**
 - [ ] You are operating as the @write agent (Mode 2: Skill Creation)
-- [ ] workflows-documentation skill is accessible
+- [ ] sk-documentation skill is accessible
 
 ⚠️ If you are NOT the @write agent: STOP immediately and instruct the user to restart with the "@write" prefix. Do NOT proceed with skill creation.
 
@@ -82,10 +82,10 @@ Complete guide for creating AI agent skills with native OpenCode discovery. Cove
 
 **After gathering my answers, please:**
 
-1. Run: `python .opencode/skill/workflows-documentation/scripts/init_skill.py <skill-name> --path .opencode/skill`
+1. Run: `python .opencode/skill/sk-documentation/scripts/init_skill.py <skill-name> --path .opencode/skill`
 2. Help me populate the SKILL.md template with my answers
 3. Guide me through creating any bundled resources
-4. Run: `python .opencode/skill/workflows-documentation/scripts/package_skill.py .opencode/skill/<skill-name>` to validate
+4. Run: `python .opencode/skill/sk-documentation/scripts/package_skill.py .opencode/skill/<skill-name>` to validate
 5. Help me test the skill with a real example
 6. Iterate and refine based on testing
 
@@ -110,7 +110,7 @@ My project is at: [your project path]
 
 ```bash
 # Step 1: Initialize skill structure (~2 min)
-python .opencode/skill/workflows-documentation/scripts/init_skill.py my-skill --path .opencode/skill
+python .opencode/skill/sk-documentation/scripts/init_skill.py my-skill --path .opencode/skill
 
 # Step 2: Edit SKILL.md with your content (~15 min)
 # Required: name (must match folder), description
@@ -121,10 +121,10 @@ python .opencode/skill/workflows-documentation/scripts/init_skill.py my-skill --
 # scripts/ → automation, references/ → documentation, assets/ → templates
 
 # Step 4: Validate (~1 min)
-python .opencode/skill/workflows-documentation/scripts/package_skill.py .opencode/skill/my-skill --check
+python .opencode/skill/sk-documentation/scripts/package_skill.py .opencode/skill/my-skill --check
 
 # Step 5: Package (~1 min)
-python .opencode/skill/workflows-documentation/scripts/package_skill.py .opencode/skill/my-skill
+python .opencode/skill/sk-documentation/scripts/package_skill.py .opencode/skill/my-skill
 
 # Step 6: Test - restart OpenCode, skill appears as skills_my_skill
 ```
@@ -140,7 +140,7 @@ python .opencode/skill/workflows-documentation/scripts/package_skill.py .opencod
 | Software                      | Version   | Verification Command                          |
 | ----------------------------- | --------- | --------------------------------------------- |
 | Python                        | 3.10+     | `python3 --version`                           |
-| workflows-documentation skill | Latest    | `ls .opencode/skill/workflows-documentation/` |
+| sk-documentation skill | Latest    | `ls .opencode/skill/sk-documentation/` |
 | OpenCode                      | v1.0.190+ | Native skill discovery built-in               |
 | **@write agent**              | -         | `ls .opencode/agent/write.md`                 |
 
@@ -156,14 +156,14 @@ python .opencode/skill/workflows-documentation/scripts/package_skill.py .opencod
 
 ```bash
 python3 --version && \
-ls .opencode/skill/workflows-documentation/scripts/init_skill.py && \
+ls .opencode/skill/sk-documentation/scripts/init_skill.py && \
 ls .opencode/agent/write.md && \
 echo "Prerequisites OK (including @write agent)"
 ```
 
 **Checklist:**
 - [ ] Python 3.10+ installed?
-- [ ] workflows-documentation skill exists?
+- [ ] sk-documentation skill exists?
 - [ ] init_skill.py and package_skill.py accessible?
 - [ ] **@write agent exists (.opencode/agent/write.md)?**
 
@@ -253,12 +253,12 @@ Triggers: "flowchart", "diagram", "visualize", "ASCII art"
 
 **Command:**
 ```bash
-python .opencode/skill/workflows-documentation/scripts/init_skill.py <skill-name> --path .opencode/skill
+python .opencode/skill/sk-documentation/scripts/init_skill.py <skill-name> --path .opencode/skill
 ```
 
 **Example:**
 ```bash
-python .opencode/skill/workflows-documentation/scripts/init_skill.py my-flowchart-skill --path .opencode/skill
+python .opencode/skill/sk-documentation/scripts/init_skill.py my-flowchart-skill --path .opencode/skill
 ```
 
 **Expected Output:**
@@ -324,12 +324,12 @@ See [Section 4: SKILL.md Reference](#4--skillmd-reference) for the canonical tem
 
 **Quick Validation (check mode):**
 ```bash
-python .opencode/skill/workflows-documentation/scripts/package_skill.py .opencode/skill/my-skill --check
+python .opencode/skill/sk-documentation/scripts/package_skill.py .opencode/skill/my-skill --check
 ```
 
 **Full Packaging:**
 ```bash
-python .opencode/skill/workflows-documentation/scripts/package_skill.py .opencode/skill/my-skill
+python .opencode/skill/sk-documentation/scripts/package_skill.py .opencode/skill/my-skill
 ```
 
 **Expected Output (Success):**
@@ -849,7 +849,7 @@ description: "Create ASCII flowcharts and diagrams. Use when visualizing workflo
 
 Run diagnostics:
 ```bash
-python .opencode/skill/workflows-documentation/scripts/extract_structure.py \
+python .opencode/skill/sk-documentation/scripts/extract_structure.py \
   .opencode/skill/my-skill/SKILL.md
 ```
 
@@ -931,23 +931,23 @@ head -10 .opencode/skill/my-skill/SKILL.md
 | Path                                                                  | Purpose              |
 | --------------------------------------------------------------------- | -------------------- |
 | `.opencode/skill/`                                                    | Skills directory     |
-| `.opencode/skill/workflows-documentation/scripts/init_skill.py`       | Initialize skill     |
-| `.opencode/skill/workflows-documentation/scripts/package_skill.py`    | Validate and package |
-| `.opencode/skill/workflows-documentation/assets/opencode/skill_md_template.md` | SKILL.md template |
+| `.opencode/skill/sk-documentation/scripts/init_skill.py`       | Initialize skill     |
+| `.opencode/skill/sk-documentation/scripts/package_skill.py`    | Validate and package |
+| `.opencode/skill/sk-documentation/assets/opencode/skill_md_template.md` | SKILL.md template |
 
 ### Scripts Reference
 
 ```bash
 # Initialize new skill
-python .opencode/skill/workflows-documentation/scripts/init_skill.py \
+python .opencode/skill/sk-documentation/scripts/init_skill.py \
   <skill-name> --path .opencode/skill
 
 # Validation only (check mode)
-python .opencode/skill/workflows-documentation/scripts/package_skill.py \
+python .opencode/skill/sk-documentation/scripts/package_skill.py \
   <skill-path> --check
 
 # Full packaging and validation
-python .opencode/skill/workflows-documentation/scripts/package_skill.py \
+python .opencode/skill/sk-documentation/scripts/package_skill.py \
   <skill-path>
 ```
 

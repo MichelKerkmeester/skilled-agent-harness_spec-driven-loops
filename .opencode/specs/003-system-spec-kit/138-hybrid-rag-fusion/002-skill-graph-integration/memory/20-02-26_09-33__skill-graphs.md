@@ -183,7 +183,7 @@ Next: Continue implementation
 
 - `.opencode/skill/workflows-git/SKILL.md` - Documentation
 
-- `.opencode/skill/workflows-chrome-devtools/SKILL.md` - Documentation
+- `.opencode/skill/mcp-chrome-devtools/SKILL.md` - Documentation
 
 **How to Extend**:
 
@@ -227,9 +227,9 @@ Expanded the Skill Graph migration specification to include integration with Spe
 | `.opencode/.../036-skill-graphs/decision-record.md` | File modified (description pending) |
 | `.opencode/.../036-skill-graphs/implementation-summary.md` | Updated implementation summary |
 | `.opencode/skill/workflows-git/SKILL.md` | File modified (description pending) |
-| `.opencode/skill/workflows-chrome-devtools/SKILL.md` | File modified (description pending) |
+| `.opencode/skill/mcp-chrome-devtools/SKILL.md` | File modified (description pending) |
 | `.opencode/skill/mcp-figma/SKILL.md` | File modified (description pending) |
-| `.opencode/skill/workflows-code--full-stack/SKILL.md` | File modified (description pending) |
+| `.opencode/skill/sk-code--full-stack/SKILL.md` | File modified (description pending) |
 
 <!-- /ANCHOR:summary -->
 
@@ -658,9 +658,9 @@ key_files:
   - ".opencode/.../036-skill-graphs/decision-record.md"
   - ".opencode/.../036-skill-graphs/implementation-summary.md"
   - ".opencode/skill/workflows-git/SKILL.md"
-  - ".opencode/skill/workflows-chrome-devtools/SKILL.md"
+  - ".opencode/skill/mcp-chrome-devtools/SKILL.md"
   - ".opencode/skill/mcp-figma/SKILL.md"
-  - ".opencode/skill/workflows-code--full-stack/SKILL.md"
+  - ".opencode/skill/sk-code--full-stack/SKILL.md"
 
 # Relationships
 related_sessions:

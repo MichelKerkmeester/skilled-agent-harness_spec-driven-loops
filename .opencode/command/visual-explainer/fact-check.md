@@ -10,8 +10,8 @@ Verify the accuracy of an existing visual-explainer HTML output file, correct an
 
 ## Skill Activation
 
-Load the `workflows-visual-explainer` skill:
-1. Read `.opencode/skill/workflows-visual-explainer/SKILL.md`
+Load the `sk-visual-explainer` skill:
+1. Read `.opencode/skill/sk-visual-explainer/SKILL.md`
 2. Load `references/quality_checklist.md` (detailed verification)
 
 ## Argument Parsing

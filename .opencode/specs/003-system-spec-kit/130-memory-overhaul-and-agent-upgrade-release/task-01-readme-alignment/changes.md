@@ -23,12 +23,12 @@
   - mcp-code-mode: v1.0.4.0
   - mcp-figma: v1.0.2.0
   - system-spec-kit: v2.2.9.0
-  - workflows-chrome-devtools: v1.0.1.0
+  - mcp-chrome-devtools: v1.0.1.0
   - workflows-code--opencode: v1.0.5.0
   - workflows-code--web-dev: v1.0.5.0
   - workflows-documentation: v1.0.6.0
   - workflows-git: v1.0.2.0
-- Replaced stale `workflows-code` references with `workflows-code--web-dev` and `workflows-code--full-stack`
+- Replaced stale `workflows-code` references with `workflows-code--web-dev` and `sk-code--full-stack`
 
 ### 2. `.opencode/install_guides/install_scripts/README.md`
 **Priority**: P1
@@ -203,9 +203,9 @@
 - `.opencode/skill/workflows-documentation/README.md`
 - `.opencode/skill/workflows-code--opencode/README.md`
 - `.opencode/skill/workflows-code--web-dev/README.md`
-- `.opencode/skill/workflows-code--full-stack/README.md`
+- `.opencode/skill/sk-code--full-stack/README.md`
 - `.opencode/skill/workflows-git/README.md`
-- `.opencode/skill/workflows-chrome-devtools/README.md`
+- `.opencode/skill/mcp-chrome-devtools/README.md`
 - `.opencode/skill/mcp-code-mode/README.md`
 - `.opencode/skill/mcp-figma/README.md`
 

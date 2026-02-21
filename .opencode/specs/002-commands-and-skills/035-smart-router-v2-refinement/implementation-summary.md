@@ -26,7 +26,7 @@ Smart Router V2 Refinement implemented adaptive top-N intent selection (expandin
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/skill/workflows-code--full-stack/SKILL.md` | Modified | Added top-N adaptive logic, synonym expansion, UNKNOWN fallback, verification disambiguation |
+| `.opencode/skill/sk-code--full-stack/SKILL.md` | Modified | Added top-N adaptive logic, synonym expansion, UNKNOWN fallback, verification disambiguation |
 | `.opencode/skill/workflows-code--web-dev/SKILL.md` | Modified | Added synonym expansion and UNKNOWN fallback |
 | `.opencode/skill/workflows-code--opencode/SKILL.md` | Modified | Added synonym expansion and UNKNOWN fallback with Python/Shell edge cases |
 | `.opencode/skill/workflows-git/SKILL.md` | Modified | Added synonym expansion for "dirty workspace" context |

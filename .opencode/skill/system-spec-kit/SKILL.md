@@ -564,7 +564,7 @@ Context preservation across sessions via hybrid search (vector similarity + BM25
 - **Checkpoints** — Gzip-compressed JSON snapshots of memory_index + working_memory; max 10 stored; transaction-wrapped restore
 - **Indexing persistence** — After `generate-context.js`, call `memory_index_scan()` or `memory_save()` for immediate MCP visibility
 - **Artifact routing** — 9 artifact classes (spec, plan, tasks, checklist, decision-record, implementation-summary, memory, research, unknown) with per-type retrieval strategies applied at query time
-- **Adaptive fusion** — Intent-aware weighted RRF with 7 task-type profiles (fix_bug, add_feature, understand, refactor, security_audit, find_spec, find_decision). Enabled via feature flag `SPECKIT_ADAPTIVE_FUSION` (default: off)
+- **Adaptive fusion** — Intent-aware weighted RRF with 7 task-type profiles (fix_bug, add_feature, understand, refactor, security_audit, find_spec, find_decision). Enabled by default via feature flag `SPECKIT_ADAPTIVE_FUSION` (set `false` to disable)
 - **Retrieval trace** — Typed ContextEnvelope wraps every retrieval response with pipeline stages and a DegradedModeContract describing fallback behavior
 - **Mutation ledger** — Append-only audit trail for all memory mutations (create, update, delete, reinforce); implemented via SQLite triggers; queryable for compliance and rollback
 - **Retrieval telemetry** — 4-dimension metrics (latency, retrieval mode, fallback activation, quality score). Enabled via feature flag `SPECKIT_EXTENDED_TELEMETRY` (default: on)
@@ -573,7 +573,7 @@ Context preservation across sessions via hybrid search (vector similarity + BM25
 
 | Flag                          | Default | Effect                                                                                      |
 | ----------------------------- | ------- | ------------------------------------------------------------------------------------------- |
-| `SPECKIT_ADAPTIVE_FUSION`     | off     | Enables intent-aware weighted RRF with 7 task-type profiles in `memory_search()`            |
+| `SPECKIT_ADAPTIVE_FUSION`     | on      | Enables intent-aware weighted RRF with 7 task-type profiles in `memory_search()` (set `false` to disable) |
 | `SPECKIT_EXTENDED_TELEMETRY`  | on      | Emits 4-dimension retrieval metrics (latency, mode, fallback, quality) per search operation |
 | `SPECKIT_GRAPH_UNIFIED`       | on      | Gates the entire unified graph channel in hybrid search. When enabled, both causal edge (SQLite CTE) and SGQS skill graph sources participate in RRF fusion. Set `SPECKIT_GRAPH_UNIFIED=false` to disable. |
 | `SPECKIT_GRAPH_MMR`           | on      | Gates Graph-Guided MMR diversity reranking. When enabled, pairwise diversity includes BFS shortest-path graph distance alongside cosine distance. Set `SPECKIT_GRAPH_MMR=false` to disable. |
@@ -633,7 +633,7 @@ Automated validation of spec folder contents via `validate.sh`.
 15. **Suggest /spec_kit:debug after 3+ failed fix attempts on same error** - Do not continue without offering debug delegation
 16. **Suggest /spec_kit:phase when task requires multi-phase decomposition** - Complex specs spanning multiple sessions or workstreams
 17. **Route all code creation/updates through `workflows-code--opencode`** - Full alignment is mandatory before claiming completion
-18. **Route all documentation creation/updates through `workflows-documentation`** - Full alignment is mandatory before claiming completion
+18. **Route all documentation creation/updates through `sk-documentation`** - Full alignment is mandatory before claiming completion
 
 ### ❌ NEVER
 
@@ -731,8 +731,8 @@ Automated validation of spec folder contents via `validate.sh`.
 
 | Workflow | Flow |
 | --- | --- |
-| **Spec → Implementation** | system-spec-kit → workflows-code--opencode (mandatory for code changes) → workflows-git → Spec Kit Memory |
-| **Documentation Quality** | system-spec-kit → workflows-documentation (mandatory for documentation changes; validate, score) → Iterate if <90 |
+| **Spec → Implementation** | system-spec-kit → workflows-code--opencode (mandatory for code changes) → sk-git → Spec Kit Memory |
+| **Documentation Quality** | system-spec-kit → sk-documentation (mandatory for documentation changes; validate, score) → Iterate if <90 |
 | **Validation** | Implementation complete → validate.sh → Fix errors → Address warnings → Claim completion |
 
 ### Quick Reference Commands
@@ -758,8 +758,8 @@ Automated validation of spec folder contents via `validate.sh`.
 | -------------- | ----------------------- | ----------------------------------------------------- |
 | **Upstream**   | None                    | This is the foundational workflow                     |
 | **Downstream** | workflows-code--opencode | Mandatory alignment for all code changes              |
-| **Downstream** | workflows-git           | References spec folders in commit messages and PRs    |
-| **Downstream** | workflows-documentation | Mandatory alignment for all documentation changes     |
+| **Downstream** | sk-git           | References spec folders in commit messages and PRs    |
+| **Downstream** | sk-documentation | Mandatory alignment for all documentation changes     |
 | **Integrated** | Spec Kit Memory         | Context preservation via MCP (merged into this skill) |
 
 ### External Dependencies

@@ -238,7 +238,7 @@
 - [x] **P2** implement.md YAML shows `sequential_9_step`
 
 ### CHK-M2: allowed-tools Frontmatter
-- [x] **P2** workflows-chrome-devtools uses tool names, not skill names
+- [x] **P2** mcp-chrome-devtools uses tool names, not skill names
 - [x] **P2** workflows-git uses tool names, not skill names
 
 ### CHK-M3: INTENT_BOOSTERS Reachability
@@ -376,7 +376,7 @@ CHK-H10: 2025-12-26 CODE form_submission.js logs Botpoison errors
 ### Phase 3 Evidence
 ```
 CHK-M1: 2025-12-26 CODE implement.md fixed to show sequential_9_step
-CHK-M2: 2025-12-26 CODE workflows-chrome-devtools and workflows-git allowed-tools updated
+CHK-M2: 2025-12-26 CODE mcp-chrome-devtools and workflows-git allowed-tools updated
 CHK-M3: 2025-12-26 CODE skill_advisor.py updated with non-hyphenated INTENT_BOOSTERS
 CHK-M4: 2025-12-26 CODE search/index.md uses platform detection for cross-platform
 CHK-M5: 2025-12-26 CODE vector-index.js LRUCache class added with O(1) eviction

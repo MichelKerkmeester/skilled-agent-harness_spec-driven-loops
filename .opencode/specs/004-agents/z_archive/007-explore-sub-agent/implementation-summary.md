@@ -114,10 +114,10 @@ RECEIVE → MEMORY (Layer 1) → CODEBASE (Layer 2) → DISPATCH (if needed) →
 No changes needed in:
 - `.opencode/skill/system-spec-kit/`
 - `.opencode/skill/workflows-code--web-dev/`
-- `.opencode/skill/workflows-code--full-stack/`
+- `.opencode/skill/sk-code--full-stack/`
 - `.opencode/skill/workflows-code--opencode/`
 - `.opencode/skill/workflows-git/`
-- `.opencode/skill/workflows-chrome-devtools/`
+- `.opencode/skill/mcp-chrome-devtools/`
 - `.opencode/skill/mcp-code-mode/`
 - `.opencode/skill/mcp-figma/`
 

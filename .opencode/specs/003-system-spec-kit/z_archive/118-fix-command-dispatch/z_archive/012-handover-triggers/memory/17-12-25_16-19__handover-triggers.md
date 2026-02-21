@@ -106,7 +106,7 @@ This session was migrated from an older format to v2.2. Review the OVERVIEW and 
 
 - `.opencode/.../system-memory/SKILL.md - Removed redundant Navigation Guide (-47 lines)` - Core skill
 
-- `.opencode/.../workflows-chrome-devtools/SKILL.md - Removed redundant Navigation Guide (-15 lines)` - Core skill
+- `.opencode/.../mcp-chrome-devtools/SKILL.md - Removed redundant Navigation Guide (-15 lines)` - Core skill
 
 - `.opencode/.../references/skill_creation.md - Updated with anti-Navigation Guide pattern` - Core skill creation
 
@@ -150,7 +150,7 @@ Implemented handover trigger keywords in SpecKit skill, reduced SKILL.md bloat f
 | `.opencode/.../references/sub_folder_versioning.md - NEW: Extracted versioning pattern` | Modified during session |
 | `.opencode/.../assets/parallel_dispatch_config.md - NEW: Extracted dispatch config` | Modified during session |
 | `.opencode/.../system-memory/SKILL.md - Removed redundant Navigation Guide (-47 lines)` | Modified during session |
-| `.opencode/.../workflows-chrome-devtools/SKILL.md - Removed redundant Navigation Guide (-15 lines)` | Modified during session |
+| `.opencode/.../mcp-chrome-devtools/SKILL.md - Removed redundant Navigation Guide (-15 lines)` | Modified during session |
 | `.opencode/.../references/skill_creation.md - Updated with anti-Navigation Guide pattern` | Modified during session |
 | `.opencode/.../assets/skill_md_template.md - Updated templates with correct structure` | Modified during session |
 | `specs/.../007-handover-triggers/ - Created spec folder with Level 2 docs` | Modified during session |
@@ -439,7 +439,7 @@ key_files:
   - ".opencode/.../references/sub_folder_versioning.md - NEW: Extracted versioning pattern"
   - ".opencode/.../assets/parallel_dispatch_config.md - NEW: Extracted dispatch config"
   - ".opencode/.../system-memory/SKILL.md - Removed redundant Navigation Guide (-47 lines)"
-  - ".opencode/.../workflows-chrome-devtools/SKILL.md - Removed redundant Navigation Guide (-15 lines)"
+  - ".opencode/.../mcp-chrome-devtools/SKILL.md - Removed redundant Navigation Guide (-15 lines)"
   - ".opencode/.../references/skill_creation.md - Updated with anti-Navigation Guide pattern"
   - ".opencode/.../assets/skill_md_template.md - Updated templates with correct structure"
   - "specs/.../007-handover-triggers/ - Created spec folder with Level 2 docs"

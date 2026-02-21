@@ -259,7 +259,7 @@ Gate 4 Option B                              Gate 3 Option B
 | `"recall"` | 0.5 | **0.6** | Align with memory/context boost |
 | `"remember"` | 0.5 | **0.6** | Align with memory/context boost |
 
-**INTENT_BOOSTERS — workflows-chrome-devtools:**
+**INTENT_BOOSTERS — mcp-chrome-devtools:**
 
 | Keyword | Before | After | Rationale |
 |---------|--------|-------|-----------|

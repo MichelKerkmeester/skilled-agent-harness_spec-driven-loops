@@ -5,7 +5,7 @@
 # Note: This workflow executes all steps sequentially with
 #       continuous self-validation. Pauses only if confidence < 40%.
 # ───────────────────────────────────────────────────────────────────
-role: Expert Skill Creator using workflows-documentation skill
+role: Expert Skill Creator using sk-documentation skill
 purpose: Create production-ready OpenCode skills with 9-step workflow
 action: Guide skill creation from understanding through packaging with DQI verification and resource routing
 
@@ -15,7 +15,7 @@ action: Guide skill creation from understanding through packaging with DQI verif
 # This workflow REQUIRES the @write agent for:
 #   • Template-first workflow (loads templates before creating)
 #   • DQI scoring (target: 90+ Excellent)
-#   • workflows-documentation skill integration
+#   • sk-documentation skill integration
 #
 # PHASE 0 in the command markdown verifies @write agent BEFORE
 # this YAML workflow loads. If you're executing this workflow,
@@ -138,20 +138,20 @@ documentation_level:
 # SKILL CREATION TEMPLATES
 # ─────────────────────────────────────────────────────────────────
 skill_templates:
-  skill_md: .opencode/skill/workflows-documentation/assets/opencode/skill_md_template.md
-  skill_asset: .opencode/skill/workflows-documentation/assets/opencode/skill_asset_template.md
-  skill_reference: .opencode/skill/workflows-documentation/assets/opencode/skill_reference_template.md
+  skill_md: .opencode/skill/sk-documentation/assets/opencode/skill_md_template.md
+  skill_asset: .opencode/skill/sk-documentation/assets/opencode/skill_asset_template.md
+  skill_reference: .opencode/skill/sk-documentation/assets/opencode/skill_reference_template.md
 
 skill_scripts:
-  init_skill: .opencode/skill/workflows-documentation/scripts/init_skill.py
-  quick_validate: .opencode/skill/workflows-documentation/scripts/quick_validate.py
-  extract_structure: .opencode/skill/workflows-documentation/scripts/extract_structure.py
-  package_skill: .opencode/skill/workflows-documentation/scripts/package_skill.py
+  init_skill: .opencode/skill/sk-documentation/scripts/init_skill.py
+  quick_validate: .opencode/skill/sk-documentation/scripts/quick_validate.py
+  extract_structure: .opencode/skill/sk-documentation/scripts/extract_structure.py
+  package_skill: .opencode/skill/sk-documentation/scripts/package_skill.py
 
 skill_references:
-  skill_creation: .opencode/skill/workflows-documentation/references/skill_creation.md
-  core_standards: .opencode/skill/workflows-documentation/references/core_standards.md
-  validation: .opencode/skill/workflows-documentation/references/validation.md
+  skill_creation: .opencode/skill/sk-documentation/references/skill_creation.md
+  core_standards: .opencode/skill/sk-documentation/references/core_standards.md
+  validation: .opencode/skill/sk-documentation/references/validation.md
 
 # ─────────────────────────────────────────────────────────────────
 # WORKFLOW ENFORCEMENT (CRITICAL)
@@ -367,10 +367,10 @@ workflow:
       - Create supplemental graph structure alongside base SKILL.md
       - "Command: mkdir -p [skill-path]/nodes/"
       - Create index.md from graph index template
-      - "Template: .opencode/skill/workflows-documentation/assets/opencode/skill_graph_index_template.md"
+      - "Template: .opencode/skill/sk-documentation/assets/opencode/skill_graph_index_template.md"
       - "Note: SKILL.md + assets/ + references/ are ALWAYS created; graph layer is additive"
     script_execution:
-      command: "python3 .opencode/skill/workflows-documentation/scripts/init_skill.py [skill-name] --path [skill_path]"
+      command: "python3 .opencode/skill/sk-documentation/scripts/init_skill.py [skill-name] --path [skill_path]"
       fallback: "Create directories manually if script fails"
     expected_outputs:
     - "[skill-name]/SKILL.md"
@@ -407,8 +407,8 @@ workflow:
       - "Update SKILL.md Smart Routing to also reference index.md for graph navigation"
       - "Note: Graph layer supplements SKILL.md — it does not replace it"
     graph_mode_templates:
-      index: .opencode/skill/workflows-documentation/assets/opencode/skill_graph_index_template.md
-      node: .opencode/skill/workflows-documentation/assets/opencode/skill_graph_node_template.md
+      index: .opencode/skill/sk-documentation/assets/opencode/skill_graph_index_template.md
+      node: .opencode/skill/sk-documentation/assets/opencode/skill_graph_node_template.md
     section_boundary_rules:
       critical_distinction: |
         WRONG: Navigation Guide in "When to Use"
@@ -466,10 +466,10 @@ workflow:
     - Repeat until passing
     script_executions:
       quick_validate:
-        command: "python3 .opencode/skill/workflows-documentation/scripts/quick_validate.py [skill-path] --json"
+        command: "python3 .opencode/skill/sk-documentation/scripts/quick_validate.py [skill-path] --json"
         expect: "Validation passed"
       extract_structure:
-        command: "python3 .opencode/skill/workflows-documentation/scripts/extract_structure.py [skill-path]/SKILL.md"
+        command: "python3 .opencode/skill/sk-documentation/scripts/extract_structure.py [skill-path]/SKILL.md"
         expect: "DQI >= 75"
     quality_gates:
       quick_validate: "must pass (no errors)"
@@ -531,8 +531,8 @@ workflow:
         recommendation: "supplemental graph layer"
         action: "Prompt user to add graph navigation layer (index.md + nodes/*.md) alongside base SKILL.md"
         templates:
-          index: .opencode/skill/workflows-documentation/assets/opencode/skill_graph_index_template.md
-          node: .opencode/skill/workflows-documentation/assets/opencode/skill_graph_node_template.md
+          index: .opencode/skill/sk-documentation/assets/opencode/skill_graph_index_template.md
+          node: .opencode/skill/sk-documentation/assets/opencode/skill_graph_node_template.md
         note: "Graph mode: check if [skill_path]/index.md exists to detect existing graph skills"
     auto_selection:
       mode: "confidence-based"
@@ -698,10 +698,10 @@ quality_standards:
   dqi_minimum: 75
   dqi_enforcement: HARD_BLOCK
   validation_pipeline:
-    stage_1: "python3 .opencode/skill/workflows-documentation/scripts/validate_document.py [file]"
-    stage_2: "python3 .opencode/skill/workflows-documentation/scripts/extract_structure.py [file]"
+    stage_1: "python3 .opencode/skill/sk-documentation/scripts/validate_document.py [file]"
+    stage_2: "python3 .opencode/skill/sk-documentation/scripts/extract_structure.py [file]"
   template_adherence: required
-  core_standards_reference: ".opencode/skill/workflows-documentation/references/core_standards.md"
+  core_standards_reference: ".opencode/skill/sk-documentation/references/core_standards.md"
 
 # ─────────────────────────────────────────────────────────────────
 # COMPLETION REPORT TEMPLATE

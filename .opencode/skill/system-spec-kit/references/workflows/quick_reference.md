@@ -730,5 +730,5 @@ When in doubt:
 ### Related Skills
 - `workflows-code` - Implementation, debugging, and verification lifecycle
 - `system-spec-kit` - Context preservation with semantic memory
-- `workflows-git` - Git workspace setup and clean commits
+- `sk-git` - Git workspace setup and clean commits
 <!-- /ANCHOR:related-resources -->

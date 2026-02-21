@@ -165,7 +165,7 @@
   "skillReferenceIndexing": {
     "enabled": true,
     "indexedSkills": [
-      "workflows-code--web-dev",
+      "sk-code--web",
       "workflows-code--opencode"
     ],
     "fileExtensions": [".md"],

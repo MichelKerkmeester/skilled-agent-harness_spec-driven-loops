@@ -475,5 +475,5 @@ Get explicit "yes/go ahead/proceed" before ANY file changes.
 
 ### Related Skills
 - `system-spec-kit` - Spec folder workflow orchestrator
-- `workflows-documentation` - Document quality and skill creation<!-- /ANCHOR:related-resources -->
+- `sk-documentation` - Document quality and skill creation<!-- /ANCHOR:related-resources -->
 <!-- /ANCHOR:related-resources -->

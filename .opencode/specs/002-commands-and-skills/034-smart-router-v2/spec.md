@@ -84,8 +84,8 @@ Implement weighted keyword intent classification with recursive discovery and st
 |-----------|-------------|-------------|
 | `.opencode/skill/mcp-code-mode/SKILL.md` | Modify | Add weighted keyword classification, recursive discovery |
 | `.opencode/skill/mcp-figma/SKILL.md` | Modify | Add weighted keyword classification, recursive discovery |
-| `.opencode/skill/workflows-chrome-devtools/SKILL.md` | Modify | Add weighted keyword classification, CLI vs MCP routing weights |
-| `.opencode/skill/workflows-code--full-stack/SKILL.md` | Modify | Add weighted classification + stack detection (Go/Node/React/RN/Swift) |
+| `.opencode/skill/mcp-chrome-devtools/SKILL.md` | Modify | Add weighted keyword classification, CLI vs MCP routing weights |
+| `.opencode/skill/sk-code--full-stack/SKILL.md` | Modify | Add weighted classification + stack detection (Go/Node/React/RN/Swift) |
 | `.opencode/skill/workflows-code--opencode/SKILL.md` | Modify | Add weighted classification + language detection (JS/TS/Python/Shell) |
 | `.opencode/skill/workflows-code--web-dev/SKILL.md` | Modify | Add weighted classification + stack detection (Webflow/vanilla JS) |
 | `.opencode/skill/workflows-documentation/SKILL.md` | Modify | Add weighted classification, recursive discovery for templates |
@@ -138,7 +138,7 @@ Implement weighted keyword intent classification with recursive discovery and st
 ### AS-001: Weighted Priority Wins
 **Given** a user request with mixed intent terms ("debug React component performance"),
 **When** weighted keyword classification runs,
-**Then** the highest aggregate weighted intent route is selected (workflows-code--full-stack with React stack detection).
+**Then** the highest aggregate weighted intent route is selected (sk-code--full-stack with React stack detection).
 
 ### AS-002: Low Confidence Fallback
 **Given** all candidate intent scores are below threshold (all < 0.5),
@@ -252,7 +252,7 @@ Implement weighted keyword intent classification with recursive discovery and st
 **As a** skill consumer (agent or user), **I want** intent classification to use weighted keyword scoring, **so that** routing decisions prioritize high-relevance keywords over incidental matches.
 
 **Acceptance Criteria**:
-1. Given a user request "debug React component", When the workflows-code--full-stack skill classifies intent, Then keywords "debug" (0.9) and "React" (0.8) score higher than "component" (0.3)
+1. Given a user request "debug React component", When the sk-code--full-stack skill classifies intent, Then keywords "debug" (0.9) and "React" (0.8) score higher than "component" (0.3)
 2. Given multiple keyword matches, When classification aggregates scores, Then the highest-scoring intent wins (not first-hit)
 3. Given no high-confidence matches (all <0.5), When classification completes, Then fallback to generic routing without errors
 
@@ -274,7 +274,7 @@ Implement weighted keyword intent classification with recursive discovery and st
 **As a** code workflow skill, **I want** automatic stack/language detection via marker files, **so that** routing prioritizes stack-specific patterns and verification commands.
 
 **Acceptance Criteria**:
-1. Given a project with `go.mod`, When workflows-code--full-stack detects stack, Then Go-specific patterns load from `references/backend/go/`
+1. Given a project with `go.mod`, When sk-code--full-stack detects stack, Then Go-specific patterns load from `references/backend/go/`
 2. Given multiple marker files (go.mod + package.json), When detection runs, Then priority order (documented per skill) determines primary stack
 3. Given no recognized markers, When detection completes, Then generic code routing applies without blocking
 

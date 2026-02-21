@@ -155,7 +155,7 @@
 - 8/9 skills contained zero named agent references — completely clean
 - 1 skill (`workflows-documentation`) had 2 outdated agent tables in `assets/opencode/agent_template.md`
 - Zero stale `@explore` references found anywhere in skills directory
-- Skills searched: system-spec-kit, workflows-code--web-dev, workflows-code--full-stack, workflows-code--opencode, workflows-git, workflows-documentation, workflows-chrome-devtools, mcp-code-mode, mcp-figma
+- Skills searched: system-spec-kit, workflows-code--web-dev, sk-code--full-stack, workflows-code--opencode, workflows-git, workflows-documentation, mcp-chrome-devtools, mcp-code-mode, mcp-figma
 
 ### T11b: Fix agent_template.md ✅
 

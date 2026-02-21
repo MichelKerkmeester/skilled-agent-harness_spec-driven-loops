@@ -257,8 +257,8 @@ Nodes: 435 | Edges: 655 | Skills: 10
 - mcp-code-mode: 19 nodes
 - mcp-figma: 16 nodes
 - system-spec-kit: 165 nodes
-- workflows-chrome-devtools: 19 nodes
-- workflows-code--full-stack: 62 nodes
+- mcp-chrome-devtools: 19 nodes
+- sk-code--full-stack: 62 nodes
 - workflows-code--opencode: 35 nodes
 - workflows-code--web-dev: 44 nodes
 - workflows-documentation: 36 nodes
@@ -1261,7 +1261,7 @@ trigger_phrases:
   - "testing strategy"
   - "spec-index"
   - "[feature name] - specification index"
-  - "workflows-chrome-devtools"
+  - "mcp-chrome-devtools"
   - "chrome"
   - "devtools"
   - "chrome devtools installation guide"
@@ -1295,7 +1295,7 @@ trigger_phrases:
   - "patterns for browser session lifecycle, concurrency, resumption, and state persistence with bdg."
   - "troubleshooting guide"
   - "error resolution guide for common bdg issues with diagnostic steps and solutions."
-  - "workflows-code--full-stack"
+  - "sk-code--full-stack"
   - "full"
   - "stack"
   - "changelog"

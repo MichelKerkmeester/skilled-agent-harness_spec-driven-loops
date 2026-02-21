@@ -228,9 +228,9 @@ Tasks use `[B:T###]` notation to indicate blocking dependencies.
 1. [x] ✅ `system-spec-kit/` - Anchored
 2. [x] ✅ `workflows-documentation/` - Anchored
 3. [x] ✅ `workflows-code--web-dev/` - Anchored
-4. [x] ✅ `workflows-code--full-stack/` - Anchored
+4. [x] ✅ `sk-code--full-stack/` - Anchored
 5. [x] ✅ `workflows-git/` - Anchored
-6. [x] ✅ `workflows-chrome-devtools/` - Anchored
+6. [x] ✅ `mcp-chrome-devtools/` - Anchored
 7. [x] ✅ `workflows-code--opencode/` - Anchored
 8. [x] ✅ `mcp-code-mode/` - Anchored
 9. [x] ✅ `mcp-figma/` - Anchored

@@ -123,11 +123,11 @@ chmod +x .opencode/skill/scripts/skill_advisor.py
 │   ├── mcp-code-mode/
 │   ├── mcp-figma/
 │   ├── system-spec-kit/
-│   ├── workflows-chrome-devtools/
-│   ├── workflows-code--full-stack/
-│   ├── workflows-code--web-dev/
-│   ├── workflows-documentation/
-│   └── workflows-git/
+│   ├── mcp-chrome-devtools/
+│   ├── sk-code--full-stack/
+│   ├── sk-code--web/
+│   ├── sk-documentation/
+│   └── sk-git/
 └── install_guides/
     └── SET-UP - Skill Advisor.md
 ```
@@ -158,7 +158,7 @@ python .opencode/skill/scripts/skill_advisor.py "how does authentication work"
 ```json
 [
   {
-    "skill": "workflows-git",
+    "skill": "sk-git",
     "confidence": 0.92,
     "reason": "Matched: !commit, git(name)"
   }
@@ -170,7 +170,7 @@ python .opencode/skill/scripts/skill_advisor.py "how does authentication work"
 Test that key phrases trigger their expected skills above 0.8 threshold:
 
 ```bash
-# Should return workflows-git with confidence > 0.8
+# Should return sk-git with confidence > 0.8
 python .opencode/skill/scripts/skill_advisor.py "create a pull request for my changes"
 
 # Should return system-spec-kit with confidence > 0.8
@@ -289,7 +289,7 @@ def calculate_confidence(score, has_intent_boost):
 | Match Type                 | Points    | Example                          |
 | -------------------------- | --------- | -------------------------------- |
 | Intent Booster             | 0.3 - 2.5 | "figma" → +2.5 for mcp-code-mode |
-| Skill Name Match           | +1.5      | "git" matches "workflows-git"    |
+| Skill Name Match           | +1.5      | "git" matches "sk-git"    |
 | Description Match          | +1.0      | "browser" in skill description   |
 | Substring Match (4+ chars) | +0.5      | "authen~" partial match          |
 
@@ -305,9 +305,9 @@ Example boost values:
 | ---------------- | ------------------------- | ----- |
 | `figma`          | mcp-code-mode             | +2.5  |
 | `webflow`        | mcp-code-mode             | +2.5  |
-| `github`         | workflows-git             | +2.0  |
-| `worktree`       | workflows-git             | +1.2  |
-| `browser`        | workflows-chrome-devtools | +1.2  |
+| `github`         | sk-git             | +2.0  |
+| `worktree`       | sk-git             | +1.2  |
+| `browser`        | mcp-chrome-devtools | +1.2  |
 
 ### 4.5 Multi-Skill Boosters
 
@@ -360,7 +360,7 @@ checkpoint, history, memory, recall, remember, restore, spec, template
 
 ---
 
-### 5.3 workflows-chrome-devtools
+### 5.3 mcp-chrome-devtools
 
 **Purpose**: Browser debugging and Chrome DevTools integration
 
@@ -393,7 +393,7 @@ figma, design, component, export, frame, node
 
 ---
 
-### 5.5 workflows-code--web-dev / workflows-code--full-stack
+### 5.5 sk-code--web / sk-code--full-stack
 
 **Purpose**: Implementation, debugging, and verification lifecycle for web development and full-stack projects
 
@@ -409,7 +409,7 @@ bug, implement, refactor, verification, error
 
 ---
 
-### 5.6 workflows-git
+### 5.6 sk-git
 
 **Purpose**: Git operations, branching, and GitHub integration
 
@@ -426,7 +426,7 @@ pr, pull, push, rebase, repo, review, stash, worktree
 
 ---
 
-### 5.7 workflows-documentation
+### 5.7 sk-documentation
 
 **Purpose**: Unified markdown and skill management - document quality enforcement, skill creation workflow, flowchart creation, and install guide creation
 
@@ -492,7 +492,7 @@ Modify the threshold in your AGENTS.md Gate 2 (Skill Routing):
 
 ## 7. EXAMPLE CALCULATIONS
 
-### Example 1: High-Confidence Match (workflows-git)
+### Example 1: High-Confidence Match (sk-git)
 
 **Request**: `"create a pull request for my changes"`
 
@@ -503,12 +503,12 @@ Tokens: ["create", "a", "pull", "request", "for", "my", "changes"]
 
 **Step 2: Intent Boosters (before stop word filter)**
 ```
-"pull" → workflows-git +0.5
+"pull" → sk-git +0.5
 "changes" → MULTI_SKILL_BOOSTERS:
-  - workflows-git +0.4
+  - sk-git +0.4
   - system-spec-kit +0.2
 ─────────────────────────────
-workflows-git total: 0.9
+sk-git total: 0.9
 ```
 
 **Step 3: Stop Word Filter**
@@ -525,7 +525,7 @@ confidence = min(0.50 + 2.4 * 0.15, 0.95)
 confidence = min(0.86, 0.95) = 0.86
 ```
 
-**Result**: `workflows-git` with **0.86 confidence** ✅ (> 0.8 threshold)
+**Result**: `sk-git` with **0.86 confidence** ✅ (> 0.8 threshold)
 
 ---
 
@@ -556,7 +556,7 @@ Filtered: ["write", "documentation", "api"]
 Final search terms: ["write", "documentation", "api", "create", "generate"]
 ```
 
-**Step 5: Skill Matching (for workflows-documentation)**
+**Step 5: Skill Matching (for sk-documentation)**
 ```
 Intent boost: 0 (no boosters matched)
 "documentation" in description: +1.0
@@ -573,7 +573,7 @@ confidence = min(0.25 + 1.0 * 0.15, 0.95)
 confidence = min(0.40, 0.95) = 0.40
 ```
 
-**Result**: `workflows-documentation` with **0.40 confidence** ❌ (below 0.8)
+**Result**: `sk-documentation` with **0.40 confidence** ❌ (below 0.8)
 
 **Why?** No intent boosters matched. To improve, add "document" keyword:
 - `"help me document the API"` → "document" triggers +0.5 boost
@@ -627,7 +627,7 @@ MULTI_SKILL_BOOSTERS = {
     
     "deploy": [
         ("workflows-code", 0.4),
-        ("workflows-git", 0.3),
+        ("sk-git", 0.3),
     ],
 }
 ```
@@ -638,9 +638,9 @@ Boost certain skills based on project type:
 
 **Frontend Projects** (add to INTENT_BOOSTERS):
 ```python
-"responsive": ("workflows-chrome-devtools", 0.5),
-"mobile": ("workflows-chrome-devtools", 0.5),
-"css": ("workflows-chrome-devtools", 0.4),
+"responsive": ("mcp-chrome-devtools", 0.5),
+"mobile": ("mcp-chrome-devtools", 0.5),
+"css": ("mcp-chrome-devtools", 0.4),
 ```
 
 **Backend Projects**:
@@ -667,19 +667,19 @@ python .opencode/skill/scripts/skill_advisor.py "fetch the Figma design"
 python .opencode/skill/scripts/skill_advisor.py "save this context to memory"
 python .opencode/skill/scripts/skill_advisor.py "restore the previous checkpoint"
 
-# workflows-chrome-devtools - should return > 0.8
+# mcp-chrome-devtools - should return > 0.8
 python .opencode/skill/scripts/skill_advisor.py "debug in chrome browser"
 python .opencode/skill/scripts/skill_advisor.py "take a screenshot of the page"
 
-# workflows-code--web-dev or workflows-code--full-stack - should return > 0.8
+# sk-code--web or sk-code--full-stack - should return > 0.8
 python .opencode/skill/scripts/skill_advisor.py "implement the new feature"
 python .opencode/skill/scripts/skill_advisor.py "fix the bug and verify"
 
-# workflows-git - should return > 0.8
+# sk-git - should return > 0.8
 python .opencode/skill/scripts/skill_advisor.py "create a pull request on github"
 python .opencode/skill/scripts/skill_advisor.py "commit my changes and push"
 
-# workflows-documentation - should return > 0.8
+# sk-documentation - should return > 0.8
 python .opencode/skill/scripts/skill_advisor.py "create a skill for my workflow"
 python .opencode/skill/scripts/skill_advisor.py "validate the markdown structure"
 
@@ -698,11 +698,11 @@ TESTS=(
     "get webflow sites|mcp-code-mode"
     "get the figma design|mcp-figma"
     "save context to memory|system-spec-kit"
-    "debug in chrome|workflows-chrome-devtools"
+    "debug in chrome|mcp-chrome-devtools"
     "implement the feature|workflows-code"
-    "create pull request github|workflows-git"
-    "create a skill for workflow|workflows-documentation"
-    "validate markdown structure|workflows-documentation"
+    "create pull request github|sk-git"
+    "create a skill for workflow|sk-documentation"
+    "validate markdown structure|sk-documentation"
 )
 
 echo "=== Skill Advisor Batch Test ==="

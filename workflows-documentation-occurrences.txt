@@ -1,0 +1,364 @@
+SPEC_FILES: 134
+Specs (non-memory) matches:
+  .opencode/specs/002-commands-and-skills/033-anchor-implementation/README.md: 277, 295
+  .opencode/specs/002-commands-and-skills/033-anchor-implementation/checklist.md: 75, 76, 77, 160, 230, 261, 495
+  .opencode/specs/002-commands-and-skills/033-anchor-implementation/decision-record.md: 95, 211
+  .opencode/specs/002-commands-and-skills/033-anchor-implementation/implementation-summary.md: 65, 66, 67, 76, 324, 594
+  .opencode/specs/002-commands-and-skills/033-anchor-implementation/plan.md: 70, 472, 478, 501, 507, 1000, 1232
+  .opencode/specs/002-commands-and-skills/033-anchor-implementation/spec.md: 48, 97, 237, 459, 476
+  .opencode/specs/002-commands-and-skills/033-anchor-implementation/tasks.md: 90, 96, 124, 129, 156, 161, 229
+  .opencode/specs/002-commands-and-skills/034-smart-router-v2/spec.md: 91
+  .opencode/specs/002-commands-and-skills/034-smart-router-v2/tasks.md: 45
+  .opencode/specs/002-commands-and-skills/037-reverse-engineer-visual-explainer/decision-record.md: 5, 131, 165
+  .opencode/specs/002-commands-and-skills/037-reverse-engineer-visual-explainer/implementation-summary.md: 5, 61, 107
+  .opencode/specs/002-commands-and-skills/038-skill-rename/004-sk-documentation/checklist.md: 1, 33, 115
+  .opencode/specs/002-commands-and-skills/038-skill-rename/004-sk-documentation/implementation-summary.md: 1, 24, 72, 73, 77
+  .opencode/specs/002-commands-and-skills/038-skill-rename/004-sk-documentation/plan.md: 1, 21, 36, 68, 98, 103, 108, 109, 121, 122
+  .opencode/specs/002-commands-and-skills/038-skill-rename/004-sk-documentation/spec.md: 1, 25, 35, 56, 59, 68, 75, 86, 114, 127, 149, 190, 194
+  .opencode/specs/002-commands-and-skills/038-skill-rename/004-sk-documentation/tasks.md: 1, 26, 116, 117, 125, 134, 135
+  .opencode/specs/002-commands-and-skills/038-skill-rename/checklist.md: 36
+  .opencode/specs/002-commands-and-skills/038-skill-rename/decision-record.md: 5, 116
+  .opencode/specs/002-commands-and-skills/038-skill-rename/plan.md: 54, 72, 94, 106, 115, 166, 172, 256, 431, 481
+  .opencode/specs/002-commands-and-skills/038-skill-rename/spec.md: 72, 111, 131, 146, 214
+  .opencode/specs/002-commands-and-skills/038-skill-rename/tasks.md: 49
+  .opencode/specs/002-commands-and-skills/z_archive/003-command-document-refinment/plan.md: 84
+  .opencode/specs/002-commands-and-skills/z_archive/003-command-document-refinment/spec.md: 24
+  .opencode/specs/002-commands-and-skills/z_archive/003-command-document-refinment/tasks.md: 36
+  .opencode/specs/002-commands-and-skills/z_archive/006-debug-stack-agnostic/implementation-summary.md: 8
+  .opencode/specs/002-commands-and-skills/z_archive/009-create-yaml-architecture/checklist.md: 26
+  .opencode/specs/002-commands-and-skills/z_archive/009-create-yaml-architecture/plan.md: 22, 36, 138
+  .opencode/specs/002-commands-and-skills/z_archive/009-create-yaml-architecture/spec.md: 11, 15, 57, 140
+  .opencode/specs/002-commands-and-skills/z_archive/013-initial-creation/plan.md: 14, 242
+  .opencode/specs/002-commands-and-skills/z_archive/013-initial-creation/spec.md: 62, 143
+  .opencode/specs/002-commands-and-skills/z_archive/013-initial-creation/tasks.md: 377
+  .opencode/specs/002-commands-and-skills/z_archive/016-skill-rename/plan.md: 3, 7, 51
+  .opencode/specs/002-commands-and-skills/z_archive/016-skill-rename/spec.md: 5, 7, 12, 48, 49, 58, 59
+  .opencode/specs/002-commands-and-skills/z_archive/016-skill-rename/tasks.md: 3, 63, 64, 66, 67
+  .opencode/specs/002-commands-and-skills/z_archive/017-h2-emoji-enforcement/checklist.md: 61
+  .opencode/specs/002-commands-and-skills/z_archive/017-h2-emoji-enforcement/implementation-summary.md: 41, 65, 71, 120, 121, 122
+  .opencode/specs/002-commands-and-skills/z_archive/017-h2-emoji-enforcement/plan.md: 191
+  .opencode/specs/002-commands-and-skills/z_archive/017-h2-emoji-enforcement/spec.md: 58, 130, 131, 132
+  .opencode/specs/002-commands-and-skills/z_archive/017-h2-emoji-enforcement/tasks.md: 129, 160, 176, 192, 215, 226
+  .opencode/specs/002-commands-and-skills/z_archive/018-style-enforcement/checklist.md: 107, 110, 113, 116
+  .opencode/specs/002-commands-and-skills/z_archive/018-style-enforcement/implementation-summary.md: 14, 25, 143, 144, 166, 170, 173, 199, 214
+  .opencode/specs/002-commands-and-skills/z_archive/018-style-enforcement/plan.md: 215, 248, 425
+  .opencode/specs/002-commands-and-skills/z_archive/018-style-enforcement/spec.md: 14, 45
+  .opencode/specs/002-commands-and-skills/z_archive/018-style-enforcement/tasks.md: 19, 31, 119, 239, 258, 292
+  .opencode/specs/002-commands-and-skills/z_archive/019-remove-emojis-from-docs/checklist.md: 23, 173
+  .opencode/specs/002-commands-and-skills/z_archive/019-remove-emojis-from-docs/decision-record.md: 40
+  .opencode/specs/002-commands-and-skills/z_archive/019-remove-emojis-from-docs/implementation-summary.md: 17, 29, 33, 35, 55, 86, 115, 142, 239, 252
+  .opencode/specs/002-commands-and-skills/z_archive/019-remove-emojis-from-docs/plan.md: 16, 33, 78, 87, 89, 341, 407
+  .opencode/specs/002-commands-and-skills/z_archive/019-remove-emojis-from-docs/spec.md: 11, 15, 30, 31, 41, 66, 147, 254, 265, 285, 313
+  .opencode/specs/002-commands-and-skills/z_archive/019-remove-emojis-from-docs/tasks.md: 24, 228
+  .opencode/specs/002-commands-and-skills/z_archive/028-rename-to-web-dev/plan.md: 80
+  .opencode/specs/002-commands-and-skills/z_archive/028-rename-to-web-dev/spec.md: 98
+  .opencode/specs/002-commands-and-skills/z_archive/028-rename-to-web-dev/tasks.md: 83
+  .opencode/specs/002-commands-and-skills/z_archive/030-initial-set-up/spec.md: 460
+  .opencode/specs/002-commands-and-skills/z_archive/031-opencode-codebase-alignment/implementation-summary.md: 75, 76, 79
+  .opencode/specs/003-system-spec-kit/130-memory-overhaul-and-agent-upgrade-release/task-01-readme-alignment/changes.md: 29, 203
+  .opencode/specs/003-system-spec-kit/130-memory-overhaul-and-agent-upgrade-release/task-01-readme-alignment/spec.md: 70
+  .opencode/specs/003-system-spec-kit/130-memory-overhaul-and-agent-upgrade-release/task-01-readme-alignment/tasks.md: 66
+  .opencode/specs/003-system-spec-kit/130-memory-overhaul-and-agent-upgrade-release/task-02-skill-speckit-alignment/spec.md: 44
+  .opencode/specs/003-system-spec-kit/135-mcp-issues-after-update/checklist.md: 41
+  .opencode/specs/003-system-spec-kit/135-mcp-issues-after-update/implementation-summary.md: 30, 61, 81
+  .opencode/specs/003-system-spec-kit/135-mcp-issues-after-update/plan.md: 155
+  .opencode/specs/003-system-spec-kit/135-mcp-issues-after-update/spec.md: 55
+  .opencode/specs/003-system-spec-kit/135-mcp-issues-after-update/tasks.md: 40
+  .opencode/specs/003-system-spec-kit/137-readme-and-summary-with-hvr/checklist.md: 38
+  .opencode/specs/003-system-spec-kit/137-readme-and-summary-with-hvr/decision-record.md: 24, 31, 40, 42, 57, 104, 210
+  .opencode/specs/003-system-spec-kit/137-readme-and-summary-with-hvr/implementation-summary.md: 5, 34, 63, 69, 78, 79, 80, 144
+  .opencode/specs/003-system-spec-kit/137-readme-and-summary-with-hvr/plan.md: 16, 22, 57, 77
+  .opencode/specs/003-system-spec-kit/137-readme-and-summary-with-hvr/spec.md: 11, 15, 40, 54, 57, 58, 72, 79, 80, 92
+  .opencode/specs/003-system-spec-kit/137-readme-and-summary-with-hvr/tasks.md: 77, 127, 129
+  .opencode/specs/003-system-spec-kit/138-hybrid-rag-fusion/001-system-speckit-hybrid-rag-fusion/implementation-summary.md: 5, 370
+  .opencode/specs/003-system-spec-kit/138-hybrid-rag-fusion/002-skill-graph-integration/README.md: 16, 25, 32
+  .opencode/specs/003-system-spec-kit/138-hybrid-rag-fusion/002-skill-graph-integration/checklist.md: 99, 103
+  .opencode/specs/003-system-spec-kit/138-hybrid-rag-fusion/002-skill-graph-integration/handover.md: 70, 71, 72, 78
+  .opencode/specs/003-system-spec-kit/138-hybrid-rag-fusion/002-skill-graph-integration/implementation-summary.md: 5, 42, 66, 166, 213, 229, 254
+  .opencode/specs/003-system-spec-kit/138-hybrid-rag-fusion/002-skill-graph-integration/plan.md: 45, 127, 130
+  .opencode/specs/003-system-spec-kit/138-hybrid-rag-fusion/002-skill-graph-integration/spec.md: 43, 55, 59, 60, 76, 77, 101, 102, 224
+  .opencode/specs/003-system-spec-kit/138-hybrid-rag-fusion/002-skill-graph-integration/tasks.md: 67, 73, 79, 85, 89, 99
+  .opencode/specs/003-system-spec-kit/138-hybrid-rag-fusion/003-unified-graph-intelligence/decision-record.md: 5, 537
+  .opencode/specs/003-system-spec-kit/138-hybrid-rag-fusion/003-unified-graph-intelligence/implementation-summary.md: 5, 335
+  .opencode/specs/003-system-spec-kit/138-hybrid-rag-fusion/005-install-guide-alignment/implementation-summary.md: 103
+  .opencode/specs/003-system-spec-kit/138-hybrid-rag-fusion/005-install-guide-alignment/plan.md: 16
+  .opencode/specs/003-system-spec-kit/138-hybrid-rag-fusion/007-skill-graph-improvement/checklist.md: 63
+  .opencode/specs/003-system-spec-kit/138-hybrid-rag-fusion/007-skill-graph-improvement/implementation-summary.md: 5, 32, 56, 57, 58, 120
+  .opencode/specs/003-system-spec-kit/138-hybrid-rag-fusion/007-skill-graph-improvement/plan.md: 82
+  .opencode/specs/003-system-spec-kit/138-hybrid-rag-fusion/007-skill-graph-improvement/spec.md: 61
+  .opencode/specs/003-system-spec-kit/138-hybrid-rag-fusion/007-skill-graph-improvement/tasks.md: 59, 61, 62, 63
+  .opencode/specs/003-system-spec-kit/138-hybrid-rag-fusion/checklist.md: 66, 155
+  .opencode/specs/003-system-spec-kit/138-hybrid-rag-fusion/decision-record.md: 5, 536
+  .opencode/specs/003-system-spec-kit/138-hybrid-rag-fusion/implementation-summary.md: 5, 53, 289
+  .opencode/specs/003-system-spec-kit/138-hybrid-rag-fusion/spec.md: 75
+  .opencode/specs/003-system-spec-kit/139-spec-kit-phase-system/decision-record.md: 5, 532
+  .opencode/specs/003-system-spec-kit/139-spec-kit-phase-system/implementation-summary.md: 5
+  .opencode/specs/003-system-spec-kit/140-fix-constitutional-tier/implementation-summary.md: 5, 75
+  .opencode/specs/003-system-spec-kit/z_archive/118-fix-command-dispatch/implementation-summary.md: 24, 150, 152
+  .opencode/specs/003-system-spec-kit/z_archive/118-fix-command-dispatch/z_archive/005-speckit-consolidation/checklist.md: 106, 107
+  .opencode/specs/003-system-spec-kit/z_archive/118-fix-command-dispatch/z_archive/005-speckit-consolidation/plan.md: 205
+  .opencode/specs/003-system-spec-kit/z_archive/118-fix-command-dispatch/z_archive/005-speckit-consolidation/spec.md: 44, 122, 304
+  .opencode/specs/003-system-spec-kit/z_archive/118-fix-command-dispatch/z_archive/005-speckit-consolidation/tasks.md: 194
+  .opencode/specs/003-system-spec-kit/z_archive/118-fix-command-dispatch/z_archive/007-system-spec-kit-rename/checklist.md: 69
+  .opencode/specs/003-system-spec-kit/z_archive/118-fix-command-dispatch/z_archive/007-system-spec-kit-rename/plan.md: 39, 216, 217, 218
+  .opencode/specs/003-system-spec-kit/z_archive/118-fix-command-dispatch/z_archive/007-system-spec-kit-rename/spec.md: 82, 133
+  .opencode/specs/003-system-spec-kit/z_archive/118-fix-command-dispatch/z_archive/007-system-spec-kit-rename/tasks.md: 216
+  .opencode/specs/003-system-spec-kit/z_archive/118-fix-command-dispatch/z_archive/025-system-memory-rename/checklist.md: 96
+  .opencode/specs/003-system-spec-kit/z_archive/118-fix-command-dispatch/z_archive/025-system-memory-rename/plan.md: 265, 381
+  .opencode/specs/003-system-spec-kit/z_archive/118-fix-command-dispatch/z_archive/025-system-memory-rename/spec.md: 113, 114, 115, 116, 182, 229
+  .opencode/specs/003-system-spec-kit/z_archive/118-fix-command-dispatch/z_archive/025-system-memory-rename/tasks.md: 173, 174, 175, 176
+  .opencode/specs/003-system-spec-kit/z_archive/118-fix-command-dispatch/z_archive/029-comprehensive-bug-fix/plan.md: 34
+  .opencode/specs/003-system-spec-kit/z_archive/118-fix-command-dispatch/z_archive/035-memory-speckit-merger/checklist.md: 182
+  .opencode/specs/003-system-spec-kit/z_archive/118-fix-command-dispatch/z_archive/040-mcp-server-rename/checklist.md: 27
+  .opencode/specs/003-system-spec-kit/z_archive/118-fix-command-dispatch/z_archive/042-post-merge-refinement-5/spec.md: 74, 287
+  .opencode/specs/003-system-spec-kit/z_archive/118-fix-command-dispatch/z_archive/046-post-release-refinement-1/checklist.md: 400
+  .opencode/specs/003-system-spec-kit/z_archive/118-fix-command-dispatch/z_archive/049-system-analysis-bugs/research.md: 305
+  .opencode/specs/003-system-spec-kit/z_archive/118-fix-command-dispatch/z_archive/083-memory-command-consolidation/checklist.md: 223
+  .opencode/specs/003-system-spec-kit/z_archive/118-fix-command-dispatch/z_archive/083-memory-command-consolidation/implementation-summary.md: 296
+  .opencode/specs/003-system-spec-kit/z_archive/122-upgrade-speckit-docs/checklist.md: 48
+  .opencode/specs/003-system-spec-kit/z_archive/122-upgrade-speckit-docs/implementation-summary.md: 40, 43
+  .opencode/specs/003-system-spec-kit/z_archive/122-upgrade-speckit-docs/plan.md: 21, 38, 54, 78
+  .opencode/specs/003-system-spec-kit/z_archive/122-upgrade-speckit-docs/spec.md: 43, 88, 109
+  .opencode/specs/003-system-spec-kit/z_archive/122-upgrade-speckit-docs/tasks.md: 54, 63, 74
+  .opencode/specs/004-agents/019-incorrect-sub-agent-nesting/implementation-summary.md: 34
+  .opencode/specs/004-agents/022-context-overload-prevention/implementation-summary.md: 5, 113
+  .opencode/specs/004-agents/023-gemini-cli-compatibility/checklist.md: 56
+  .opencode/specs/004-agents/023-gemini-cli-compatibility/implementation-summary.md: 5, 47, 145
+  .opencode/specs/004-agents/023-gemini-cli-compatibility/plan.md: 65, 174
+  .opencode/specs/004-agents/z_archive/001-agents-from-oh-my-opencode/analysis.md: 462, 532, 534
+  .opencode/specs/004-agents/z_archive/001-agents-from-oh-my-opencode/implementation_summary.md: 61, 97, 239
+  .opencode/specs/004-agents/z_archive/001-agents-from-oh-my-opencode/recommendations.md: 105, 109, 155, 157
+  .opencode/specs/004-agents/z_archive/001-agents-from-oh-my-opencode/testing_suite.md: 333
+  .opencode/specs/004-agents/z_archive/002-write-agent-enforcement/spec.md: 17
+  .opencode/specs/004-agents/z_archive/005-agent-system-improvements/001-analysis-agent-system-architecture.md: 113
+  .opencode/specs/004-agents/z_archive/007-explore-sub-agent/checklist.md: 80, 81
+  .opencode/specs/004-agents/z_archive/007-explore-sub-agent/implementation-summary.md: 76
+  .opencode/specs/004-agents/z_archive/007-explore-sub-agent/tasks.md: 26, 156, 158, 162
+
+MEMORY_DIRECTORIES: 225
+Memory directory matches:
+  .claude/specs/002-commands-and-skills/036-memory-command-output/memory/20-02-26_13-42__memory-command-output.md: 242, 1404, 1558
+  .claude/specs/002-commands-and-skills/036-memory-command-output/memory/20-02-26_14-44__memory-command-output.md: 220, 261, 278, 280, 479, 1395, 1548
+  .claude/specs/002-commands-and-skills/037-reverse-engineer-visual-explainer/memory/21-02-26_08-48__reverse-engineer-visual-explainer.md: 112, 185, 222, 260, 278, 280, 286, 453, 1383, 1568
+  .claude/specs/002-commands-and-skills/038-skill-rename/memory/21-02-26_09-39__skill-rename.md: 264, 1600, 1788
+  .claude/specs/002-commands-and-skills/z_archive/016-skill-rename/memory/17-12-24_skill-rename-complete.md: 122, 127, 136, 143, 159, 160, 161, 162, 201, 236, 237, 238, 239
+  .claude/specs/002-commands-and-skills/z_archive/017-h2-emoji-enforcement/memory/01-01-26_14-53__h2-emoji-enforcement.md: 155, 172, 198, 224, 586
+  .claude/specs/002-commands-and-skills/z_archive/018-style-enforcement/memory/03-02-26_17-30__validate-document-rename.md: 232
+  .claude/specs/002-commands-and-skills/z_archive/021-reference-structure-qa/memory/22-12-25_09-50__reference-structure-qa.md: 117, 173, 307, 316, 317, 336, 629, 631, 663, 665, 1172, 1208, 1244, 1728
+  .claude/specs/003-system-spec-kit/137-readme-and-summary-with-hvr/memory/20-02-26_07-05__readme-and-summary-with-hvr.md: 135, 193, 226, 242, 264, 266, 466, 701
+  .claude/specs/003-system-spec-kit/138-hybrid-rag-fusion/001-system-speckit-hybrid-rag-fusion/memory/20-02-26_11-54__hybrid-rag-fusion.md: 2053, 2208
+  .claude/specs/003-system-spec-kit/138-hybrid-rag-fusion/001-system-speckit-hybrid-rag-fusion/memory/20-02-26_12-27__hybrid-rag-fusion.md: 135, 174, 220, 239, 1434, 1587, 1687
+  .claude/specs/003-system-spec-kit/138-hybrid-rag-fusion/001-system-speckit-hybrid-rag-fusion/memory/20-02-26_12-32__hybrid-rag-fusion.md: 1394, 1548
+  .claude/specs/003-system-spec-kit/138-hybrid-rag-fusion/001-system-speckit-hybrid-rag-fusion/memory/20-02-26_13-38__system-speckit-hybrid-rag-fusion.md: 264, 1591, 1745
+  .claude/specs/003-system-spec-kit/138-hybrid-rag-fusion/001-system-speckit-hybrid-rag-fusion/memory/20-02-26_16-12__system-speckit-hybrid-rag-fusion.md: 264, 1591, 1745
+  .claude/specs/003-system-spec-kit/138-hybrid-rag-fusion/002-skill-graph-integration/memory/20-02-26_11-50__skill-graphs.md: 1992, 2144
+  .claude/specs/003-system-spec-kit/138-hybrid-rag-fusion/002-skill-graph-integration/memory/20-02-26_13-05__skill-graphs.md: 264, 1589, 1743
+  .claude/specs/003-system-spec-kit/138-hybrid-rag-fusion/002-skill-graph-integration/memory/20-02-26_13-38__skill-graph-integration.md: 264, 1591, 1745
+  .claude/specs/003-system-spec-kit/138-hybrid-rag-fusion/002-skill-graph-integration/memory/20-02-26_13-59__skill-graph-integration.md: 264, 1591, 1745
+  .claude/specs/003-system-spec-kit/138-hybrid-rag-fusion/002-skill-graph-integration/memory/20-02-26_22-29__skill-graph-integration.md: 264, 1601, 1756
+  .claude/specs/003-system-spec-kit/138-hybrid-rag-fusion/003-unified-graph-intelligence/memory/20-02-26_14-16__unified-graph-intelligence.md: 264, 1592, 1746
+  .claude/specs/003-system-spec-kit/138-hybrid-rag-fusion/003-unified-graph-intelligence/memory/20-02-26_14-30__unified-graph-intelligence.md: 264, 1592, 1746
+  .claude/specs/003-system-spec-kit/138-hybrid-rag-fusion/003-unified-graph-intelligence/memory/20-02-26_14-53__unified-graph-intelligence.md: 264, 1592, 1746
+  .claude/specs/003-system-spec-kit/138-hybrid-rag-fusion/003-unified-graph-intelligence/memory/20-02-26_15-32__unified-graph-intelligence.md: 264, 1592, 1746
+  .claude/specs/003-system-spec-kit/138-hybrid-rag-fusion/003-unified-graph-intelligence/memory/20-02-26_15-44__unified-graph-intelligence.md: 264, 1592, 1746
+  .claude/specs/003-system-spec-kit/138-hybrid-rag-fusion/004-command-alignment/memory/20-02-26_21-18__command-alignment.md: 264, 1601, 1756
+  .claude/specs/003-system-spec-kit/138-hybrid-rag-fusion/004-command-alignment/memory/20-02-26_21-58__command-alignment.md: 269, 1469, 1624
+  .claude/specs/003-system-spec-kit/138-hybrid-rag-fusion/005-install-guide-alignment/memory/20-02-26_21-18__install-guide-alignment.md: 264, 1602, 1757
+  .claude/specs/003-system-spec-kit/138-hybrid-rag-fusion/006-skill-graph-utilization/memory/20-02-26_22-32__skill-graph-utilization.md: 264, 1601, 1756
+  .claude/specs/003-system-spec-kit/138-hybrid-rag-fusion/007-skill-graph-improvement/memory/21-02-26_07-41__skill-graph-improvement.md: 264, 1603, 1786
+  .claude/specs/003-system-spec-kit/138-hybrid-rag-fusion/memory/20-02-26_13-38__hybrid-rag-fusion.md: 264, 1589, 1743
+  .claude/specs/003-system-spec-kit/138-hybrid-rag-fusion/memory/20-02-26_14-16__hybrid-rag-fusion.md: 264, 1589, 1743
+  .claude/specs/003-system-spec-kit/138-hybrid-rag-fusion/memory/20-02-26_16-12__hybrid-rag-fusion.md: 264, 1589, 1743
+  .claude/specs/003-system-spec-kit/138-hybrid-rag-fusion/memory/20-02-26_16-57__hybrid-rag-fusion.md: 263, 1399, 1553
+  .claude/specs/003-system-spec-kit/138-hybrid-rag-fusion/memory/20-02-26_18-23__hybrid-rag-fusion.md: 262, 1404, 1558
+  .claude/specs/003-system-spec-kit/139-spec-kit-phase-system/memory/20-02-26_16-42__spec-kit-phase-system.md: 264, 1587, 1741
+  .claude/specs/003-system-spec-kit/139-spec-kit-phase-system/memory/20-02-26_17-45__spec-kit-phase-system.md: 264, 1595, 1749
+  .claude/specs/003-system-spec-kit/139-spec-kit-phase-system/memory/20-02-26_18-04__spec-kit-phase-system.md: 275, 1471, 1625
+  .claude/specs/003-system-spec-kit/z_archive/118-fix-command-dispatch/z_archive/005-speckit-consolidation/memory/17-12-25_speckit-consolidation-complete.md: 207
+  .claude/specs/003-system-spec-kit/z_archive/118-fix-command-dispatch/z_archive/017-stateless-spec-passing/memory/22-12-25_09-51__stateless-spec-passing.md: 117, 173, 307, 316, 317, 336, 620, 622, 654, 656, 1172, 1208, 1244, 1728
+  .claude/specs/003-system-spec-kit/z_archive/118-fix-command-dispatch/z_archive/023-path-scoped-rules/002-modular-architecture/memory/24-12-25_15-36__modular-architecture.md: 145, 155, 197, 219, 221, 228, 230, 254, 256, 263, 265, 272, 274, 281, 283, 290, 292, 299, 301, 328, 346, 571
+  .claude/specs/003-system-spec-kit/z_archive/118-fix-command-dispatch/z_archive/025-system-memory-rename/memory/17-12-24__rename-complete.md: 167
+  .claude/specs/003-system-spec-kit/z_archive/118-fix-command-dispatch/z_archive/026-docs-alignment/memory/001-docs-alignment-complete.md: 166, 195
+  .claude/specs/003-system-spec-kit/z_archive/118-fix-command-dispatch/z_archive/035-memory-speckit-merger/memory/2024-12-25_memory-system-merger.md: 264, 310, 311, 356, 357
+  .claude/specs/004-agents/023-gemini-cli-compatibility/memory/20-02-26_12-13__gemini-cli-compatibility.md: 2085, 2239
+  .claude/specs/004-agents/z_archive/011-context-model-optimization/memory/14-02-26_11-57__context-model-optimization.md: 174, 277, 361, 635, 732
+  .codex/specs/002-commands-and-skills/036-memory-command-output/memory/20-02-26_13-42__memory-command-output.md: 242, 1404, 1558
+  .codex/specs/002-commands-and-skills/036-memory-command-output/memory/20-02-26_14-44__memory-command-output.md: 220, 261, 278, 280, 479, 1395, 1548
+  .codex/specs/002-commands-and-skills/037-reverse-engineer-visual-explainer/memory/21-02-26_08-48__reverse-engineer-visual-explainer.md: 112, 185, 222, 260, 278, 280, 286, 453, 1383, 1568
+  .codex/specs/002-commands-and-skills/038-skill-rename/memory/21-02-26_09-39__skill-rename.md: 264, 1600, 1788
+  .codex/specs/002-commands-and-skills/z_archive/016-skill-rename/memory/17-12-24_skill-rename-complete.md: 122, 127, 136, 143, 159, 160, 161, 162, 201, 236, 237, 238, 239
+  .codex/specs/002-commands-and-skills/z_archive/017-h2-emoji-enforcement/memory/01-01-26_14-53__h2-emoji-enforcement.md: 155, 172, 198, 224, 586
+  .codex/specs/002-commands-and-skills/z_archive/018-style-enforcement/memory/03-02-26_17-30__validate-document-rename.md: 232
+  .codex/specs/002-commands-and-skills/z_archive/021-reference-structure-qa/memory/22-12-25_09-50__reference-structure-qa.md: 117, 173, 307, 316, 317, 336, 629, 631, 663, 665, 1172, 1208, 1244, 1728
+  .codex/specs/003-system-spec-kit/137-readme-and-summary-with-hvr/memory/20-02-26_07-05__readme-and-summary-with-hvr.md: 135, 193, 226, 242, 264, 266, 466, 701
+  .codex/specs/003-system-spec-kit/138-hybrid-rag-fusion/001-system-speckit-hybrid-rag-fusion/memory/20-02-26_11-54__hybrid-rag-fusion.md: 2053, 2208
+  .codex/specs/003-system-spec-kit/138-hybrid-rag-fusion/001-system-speckit-hybrid-rag-fusion/memory/20-02-26_12-27__hybrid-rag-fusion.md: 135, 174, 220, 239, 1434, 1587, 1687
+  .codex/specs/003-system-spec-kit/138-hybrid-rag-fusion/001-system-speckit-hybrid-rag-fusion/memory/20-02-26_12-32__hybrid-rag-fusion.md: 1394, 1548
+  .codex/specs/003-system-spec-kit/138-hybrid-rag-fusion/001-system-speckit-hybrid-rag-fusion/memory/20-02-26_13-38__system-speckit-hybrid-rag-fusion.md: 264, 1591, 1745
+  .codex/specs/003-system-spec-kit/138-hybrid-rag-fusion/001-system-speckit-hybrid-rag-fusion/memory/20-02-26_16-12__system-speckit-hybrid-rag-fusion.md: 264, 1591, 1745
+  .codex/specs/003-system-spec-kit/138-hybrid-rag-fusion/002-skill-graph-integration/memory/20-02-26_11-50__skill-graphs.md: 1992, 2144
+  .codex/specs/003-system-spec-kit/138-hybrid-rag-fusion/002-skill-graph-integration/memory/20-02-26_13-05__skill-graphs.md: 264, 1589, 1743
+  .codex/specs/003-system-spec-kit/138-hybrid-rag-fusion/002-skill-graph-integration/memory/20-02-26_13-38__skill-graph-integration.md: 264, 1591, 1745
+  .codex/specs/003-system-spec-kit/138-hybrid-rag-fusion/002-skill-graph-integration/memory/20-02-26_13-59__skill-graph-integration.md: 264, 1591, 1745
+  .codex/specs/003-system-spec-kit/138-hybrid-rag-fusion/002-skill-graph-integration/memory/20-02-26_22-29__skill-graph-integration.md: 264, 1601, 1756
+  .codex/specs/003-system-spec-kit/138-hybrid-rag-fusion/003-unified-graph-intelligence/memory/20-02-26_14-16__unified-graph-intelligence.md: 264, 1592, 1746
+  .codex/specs/003-system-spec-kit/138-hybrid-rag-fusion/003-unified-graph-intelligence/memory/20-02-26_14-30__unified-graph-intelligence.md: 264, 1592, 1746
+  .codex/specs/003-system-spec-kit/138-hybrid-rag-fusion/003-unified-graph-intelligence/memory/20-02-26_14-53__unified-graph-intelligence.md: 264, 1592, 1746
+  .codex/specs/003-system-spec-kit/138-hybrid-rag-fusion/003-unified-graph-intelligence/memory/20-02-26_15-32__unified-graph-intelligence.md: 264, 1592, 1746
+  .codex/specs/003-system-spec-kit/138-hybrid-rag-fusion/003-unified-graph-intelligence/memory/20-02-26_15-44__unified-graph-intelligence.md: 264, 1592, 1746
+  .codex/specs/003-system-spec-kit/138-hybrid-rag-fusion/004-command-alignment/memory/20-02-26_21-18__command-alignment.md: 264, 1601, 1756
+  .codex/specs/003-system-spec-kit/138-hybrid-rag-fusion/004-command-alignment/memory/20-02-26_21-58__command-alignment.md: 269, 1469, 1624
+  .codex/specs/003-system-spec-kit/138-hybrid-rag-fusion/005-install-guide-alignment/memory/20-02-26_21-18__install-guide-alignment.md: 264, 1602, 1757
+  .codex/specs/003-system-spec-kit/138-hybrid-rag-fusion/006-skill-graph-utilization/memory/20-02-26_22-32__skill-graph-utilization.md: 264, 1601, 1756
+  .codex/specs/003-system-spec-kit/138-hybrid-rag-fusion/007-skill-graph-improvement/memory/21-02-26_07-41__skill-graph-improvement.md: 264, 1603, 1786
+  .codex/specs/003-system-spec-kit/138-hybrid-rag-fusion/memory/20-02-26_13-38__hybrid-rag-fusion.md: 264, 1589, 1743
+  .codex/specs/003-system-spec-kit/138-hybrid-rag-fusion/memory/20-02-26_14-16__hybrid-rag-fusion.md: 264, 1589, 1743
+  .codex/specs/003-system-spec-kit/138-hybrid-rag-fusion/memory/20-02-26_16-12__hybrid-rag-fusion.md: 264, 1589, 1743
+  .codex/specs/003-system-spec-kit/138-hybrid-rag-fusion/memory/20-02-26_16-57__hybrid-rag-fusion.md: 263, 1399, 1553
+  .codex/specs/003-system-spec-kit/138-hybrid-rag-fusion/memory/20-02-26_18-23__hybrid-rag-fusion.md: 262, 1404, 1558
+  .codex/specs/003-system-spec-kit/139-spec-kit-phase-system/memory/20-02-26_16-42__spec-kit-phase-system.md: 264, 1587, 1741
+  .codex/specs/003-system-spec-kit/139-spec-kit-phase-system/memory/20-02-26_17-45__spec-kit-phase-system.md: 264, 1595, 1749
+  .codex/specs/003-system-spec-kit/139-spec-kit-phase-system/memory/20-02-26_18-04__spec-kit-phase-system.md: 275, 1471, 1625
+  .codex/specs/003-system-spec-kit/z_archive/118-fix-command-dispatch/z_archive/005-speckit-consolidation/memory/17-12-25_speckit-consolidation-complete.md: 207
+  .codex/specs/003-system-spec-kit/z_archive/118-fix-command-dispatch/z_archive/017-stateless-spec-passing/memory/22-12-25_09-51__stateless-spec-passing.md: 117, 173, 307, 316, 317, 336, 620, 622, 654, 656, 1172, 1208, 1244, 1728
+  .codex/specs/003-system-spec-kit/z_archive/118-fix-command-dispatch/z_archive/023-path-scoped-rules/002-modular-architecture/memory/24-12-25_15-36__modular-architecture.md: 145, 155, 197, 219, 221, 228, 230, 254, 256, 263, 265, 272, 274, 281, 283, 290, 292, 299, 301, 328, 346, 571
+  .codex/specs/003-system-spec-kit/z_archive/118-fix-command-dispatch/z_archive/025-system-memory-rename/memory/17-12-24__rename-complete.md: 167
+  .codex/specs/003-system-spec-kit/z_archive/118-fix-command-dispatch/z_archive/026-docs-alignment/memory/001-docs-alignment-complete.md: 166, 195
+  .codex/specs/003-system-spec-kit/z_archive/118-fix-command-dispatch/z_archive/035-memory-speckit-merger/memory/2024-12-25_memory-system-merger.md: 264, 310, 311, 356, 357
+  .codex/specs/004-agents/023-gemini-cli-compatibility/memory/20-02-26_12-13__gemini-cli-compatibility.md: 2085, 2239
+  .codex/specs/004-agents/z_archive/011-context-model-optimization/memory/14-02-26_11-57__context-model-optimization.md: 174, 277, 361, 635, 732
+  .gemini/specs/002-commands-and-skills/036-memory-command-output/memory/20-02-26_13-42__memory-command-output.md: 242, 1404, 1558
+  .gemini/specs/002-commands-and-skills/036-memory-command-output/memory/20-02-26_14-44__memory-command-output.md: 220, 261, 278, 280, 479, 1395, 1548
+  .gemini/specs/002-commands-and-skills/037-reverse-engineer-visual-explainer/memory/21-02-26_08-48__reverse-engineer-visual-explainer.md: 112, 185, 222, 260, 278, 280, 286, 453, 1383, 1568
+  .gemini/specs/002-commands-and-skills/038-skill-rename/memory/21-02-26_09-39__skill-rename.md: 264, 1600, 1788
+  .gemini/specs/002-commands-and-skills/z_archive/016-skill-rename/memory/17-12-24_skill-rename-complete.md: 122, 127, 136, 143, 159, 160, 161, 162, 201, 236, 237, 238, 239
+  .gemini/specs/002-commands-and-skills/z_archive/017-h2-emoji-enforcement/memory/01-01-26_14-53__h2-emoji-enforcement.md: 155, 172, 198, 224, 586
+  .gemini/specs/002-commands-and-skills/z_archive/018-style-enforcement/memory/03-02-26_17-30__validate-document-rename.md: 232
+  .gemini/specs/002-commands-and-skills/z_archive/021-reference-structure-qa/memory/22-12-25_09-50__reference-structure-qa.md: 117, 173, 307, 316, 317, 336, 629, 631, 663, 665, 1172, 1208, 1244, 1728
+  .gemini/specs/003-system-spec-kit/137-readme-and-summary-with-hvr/memory/20-02-26_07-05__readme-and-summary-with-hvr.md: 135, 193, 226, 242, 264, 266, 466, 701
+  .gemini/specs/003-system-spec-kit/138-hybrid-rag-fusion/001-system-speckit-hybrid-rag-fusion/memory/20-02-26_11-54__hybrid-rag-fusion.md: 2053, 2208
+  .gemini/specs/003-system-spec-kit/138-hybrid-rag-fusion/001-system-speckit-hybrid-rag-fusion/memory/20-02-26_12-27__hybrid-rag-fusion.md: 135, 174, 220, 239, 1434, 1587, 1687
+  .gemini/specs/003-system-spec-kit/138-hybrid-rag-fusion/001-system-speckit-hybrid-rag-fusion/memory/20-02-26_12-32__hybrid-rag-fusion.md: 1394, 1548
+  .gemini/specs/003-system-spec-kit/138-hybrid-rag-fusion/001-system-speckit-hybrid-rag-fusion/memory/20-02-26_13-38__system-speckit-hybrid-rag-fusion.md: 264, 1591, 1745
+  .gemini/specs/003-system-spec-kit/138-hybrid-rag-fusion/001-system-speckit-hybrid-rag-fusion/memory/20-02-26_16-12__system-speckit-hybrid-rag-fusion.md: 264, 1591, 1745
+  .gemini/specs/003-system-spec-kit/138-hybrid-rag-fusion/002-skill-graph-integration/memory/20-02-26_11-50__skill-graphs.md: 1992, 2144
+  .gemini/specs/003-system-spec-kit/138-hybrid-rag-fusion/002-skill-graph-integration/memory/20-02-26_13-05__skill-graphs.md: 264, 1589, 1743
+  .gemini/specs/003-system-spec-kit/138-hybrid-rag-fusion/002-skill-graph-integration/memory/20-02-26_13-38__skill-graph-integration.md: 264, 1591, 1745
+  .gemini/specs/003-system-spec-kit/138-hybrid-rag-fusion/002-skill-graph-integration/memory/20-02-26_13-59__skill-graph-integration.md: 264, 1591, 1745
+  .gemini/specs/003-system-spec-kit/138-hybrid-rag-fusion/002-skill-graph-integration/memory/20-02-26_22-29__skill-graph-integration.md: 264, 1601, 1756
+  .gemini/specs/003-system-spec-kit/138-hybrid-rag-fusion/003-unified-graph-intelligence/memory/20-02-26_14-16__unified-graph-intelligence.md: 264, 1592, 1746
+  .gemini/specs/003-system-spec-kit/138-hybrid-rag-fusion/003-unified-graph-intelligence/memory/20-02-26_14-30__unified-graph-intelligence.md: 264, 1592, 1746
+  .gemini/specs/003-system-spec-kit/138-hybrid-rag-fusion/003-unified-graph-intelligence/memory/20-02-26_14-53__unified-graph-intelligence.md: 264, 1592, 1746
+  .gemini/specs/003-system-spec-kit/138-hybrid-rag-fusion/003-unified-graph-intelligence/memory/20-02-26_15-32__unified-graph-intelligence.md: 264, 1592, 1746
+  .gemini/specs/003-system-spec-kit/138-hybrid-rag-fusion/003-unified-graph-intelligence/memory/20-02-26_15-44__unified-graph-intelligence.md: 264, 1592, 1746
+  .gemini/specs/003-system-spec-kit/138-hybrid-rag-fusion/004-command-alignment/memory/20-02-26_21-18__command-alignment.md: 264, 1601, 1756
+  .gemini/specs/003-system-spec-kit/138-hybrid-rag-fusion/004-command-alignment/memory/20-02-26_21-58__command-alignment.md: 269, 1469, 1624
+  .gemini/specs/003-system-spec-kit/138-hybrid-rag-fusion/005-install-guide-alignment/memory/20-02-26_21-18__install-guide-alignment.md: 264, 1602, 1757
+  .gemini/specs/003-system-spec-kit/138-hybrid-rag-fusion/006-skill-graph-utilization/memory/20-02-26_22-32__skill-graph-utilization.md: 264, 1601, 1756
+  .gemini/specs/003-system-spec-kit/138-hybrid-rag-fusion/007-skill-graph-improvement/memory/21-02-26_07-41__skill-graph-improvement.md: 264, 1603, 1786
+  .gemini/specs/003-system-spec-kit/138-hybrid-rag-fusion/memory/20-02-26_13-38__hybrid-rag-fusion.md: 264, 1589, 1743
+  .gemini/specs/003-system-spec-kit/138-hybrid-rag-fusion/memory/20-02-26_14-16__hybrid-rag-fusion.md: 264, 1589, 1743
+  .gemini/specs/003-system-spec-kit/138-hybrid-rag-fusion/memory/20-02-26_16-12__hybrid-rag-fusion.md: 264, 1589, 1743
+  .gemini/specs/003-system-spec-kit/138-hybrid-rag-fusion/memory/20-02-26_16-57__hybrid-rag-fusion.md: 263, 1399, 1553
+  .gemini/specs/003-system-spec-kit/138-hybrid-rag-fusion/memory/20-02-26_18-23__hybrid-rag-fusion.md: 262, 1404, 1558
+  .gemini/specs/003-system-spec-kit/139-spec-kit-phase-system/memory/20-02-26_16-42__spec-kit-phase-system.md: 264, 1587, 1741
+  .gemini/specs/003-system-spec-kit/139-spec-kit-phase-system/memory/20-02-26_17-45__spec-kit-phase-system.md: 264, 1595, 1749
+  .gemini/specs/003-system-spec-kit/139-spec-kit-phase-system/memory/20-02-26_18-04__spec-kit-phase-system.md: 275, 1471, 1625
+  .gemini/specs/003-system-spec-kit/z_archive/118-fix-command-dispatch/z_archive/005-speckit-consolidation/memory/17-12-25_speckit-consolidation-complete.md: 207
+  .gemini/specs/003-system-spec-kit/z_archive/118-fix-command-dispatch/z_archive/017-stateless-spec-passing/memory/22-12-25_09-51__stateless-spec-passing.md: 117, 173, 307, 316, 317, 336, 620, 622, 654, 656, 1172, 1208, 1244, 1728
+  .gemini/specs/003-system-spec-kit/z_archive/118-fix-command-dispatch/z_archive/023-path-scoped-rules/002-modular-architecture/memory/24-12-25_15-36__modular-architecture.md: 145, 155, 197, 219, 221, 228, 230, 254, 256, 263, 265, 272, 274, 281, 283, 290, 292, 299, 301, 328, 346, 571
+  .gemini/specs/003-system-spec-kit/z_archive/118-fix-command-dispatch/z_archive/025-system-memory-rename/memory/17-12-24__rename-complete.md: 167
+  .gemini/specs/003-system-spec-kit/z_archive/118-fix-command-dispatch/z_archive/026-docs-alignment/memory/001-docs-alignment-complete.md: 166, 195
+  .gemini/specs/003-system-spec-kit/z_archive/118-fix-command-dispatch/z_archive/035-memory-speckit-merger/memory/2024-12-25_memory-system-merger.md: 264, 310, 311, 356, 357
+  .gemini/specs/004-agents/023-gemini-cli-compatibility/memory/20-02-26_12-13__gemini-cli-compatibility.md: 2085, 2239
+  .gemini/specs/004-agents/z_archive/011-context-model-optimization/memory/14-02-26_11-57__context-model-optimization.md: 174, 277, 361, 635, 732
+  .opencode/specs/002-commands-and-skills/036-memory-command-output/memory/20-02-26_13-42__memory-command-output.md: 242, 1404, 1558
+  .opencode/specs/002-commands-and-skills/036-memory-command-output/memory/20-02-26_14-44__memory-command-output.md: 220, 261, 278, 280, 479, 1395, 1548
+  .opencode/specs/002-commands-and-skills/037-reverse-engineer-visual-explainer/memory/21-02-26_08-48__reverse-engineer-visual-explainer.md: 112, 185, 222, 260, 278, 280, 286, 453, 1383, 1568
+  .opencode/specs/002-commands-and-skills/038-skill-rename/memory/21-02-26_09-39__skill-rename.md: 264, 1600, 1788
+  .opencode/specs/002-commands-and-skills/z_archive/016-skill-rename/memory/17-12-24_skill-rename-complete.md: 122, 127, 136, 143, 159, 160, 161, 162, 201, 236, 237, 238, 239
+  .opencode/specs/002-commands-and-skills/z_archive/017-h2-emoji-enforcement/memory/01-01-26_14-53__h2-emoji-enforcement.md: 155, 172, 198, 224, 586
+  .opencode/specs/002-commands-and-skills/z_archive/018-style-enforcement/memory/03-02-26_17-30__validate-document-rename.md: 232
+  .opencode/specs/002-commands-and-skills/z_archive/021-reference-structure-qa/memory/22-12-25_09-50__reference-structure-qa.md: 117, 173, 307, 316, 317, 336, 629, 631, 663, 665, 1172, 1208, 1244, 1728
+  .opencode/specs/003-system-spec-kit/137-readme-and-summary-with-hvr/memory/20-02-26_07-05__readme-and-summary-with-hvr.md: 135, 193, 226, 242, 264, 266, 466, 701
+  .opencode/specs/003-system-spec-kit/138-hybrid-rag-fusion/001-system-speckit-hybrid-rag-fusion/memory/20-02-26_11-54__hybrid-rag-fusion.md: 2053, 2208
+  .opencode/specs/003-system-spec-kit/138-hybrid-rag-fusion/001-system-speckit-hybrid-rag-fusion/memory/20-02-26_12-27__hybrid-rag-fusion.md: 135, 174, 220, 239, 1434, 1587, 1687
+  .opencode/specs/003-system-spec-kit/138-hybrid-rag-fusion/001-system-speckit-hybrid-rag-fusion/memory/20-02-26_12-32__hybrid-rag-fusion.md: 1394, 1548
+  .opencode/specs/003-system-spec-kit/138-hybrid-rag-fusion/001-system-speckit-hybrid-rag-fusion/memory/20-02-26_13-38__system-speckit-hybrid-rag-fusion.md: 264, 1591, 1745
+  .opencode/specs/003-system-spec-kit/138-hybrid-rag-fusion/001-system-speckit-hybrid-rag-fusion/memory/20-02-26_16-12__system-speckit-hybrid-rag-fusion.md: 264, 1591, 1745
+  .opencode/specs/003-system-spec-kit/138-hybrid-rag-fusion/002-skill-graph-integration/memory/20-02-26_11-50__skill-graphs.md: 1992, 2144
+  .opencode/specs/003-system-spec-kit/138-hybrid-rag-fusion/002-skill-graph-integration/memory/20-02-26_13-05__skill-graphs.md: 264, 1589, 1743
+  .opencode/specs/003-system-spec-kit/138-hybrid-rag-fusion/002-skill-graph-integration/memory/20-02-26_13-38__skill-graph-integration.md: 264, 1591, 1745
+  .opencode/specs/003-system-spec-kit/138-hybrid-rag-fusion/002-skill-graph-integration/memory/20-02-26_13-59__skill-graph-integration.md: 264, 1591, 1745
+  .opencode/specs/003-system-spec-kit/138-hybrid-rag-fusion/002-skill-graph-integration/memory/20-02-26_22-29__skill-graph-integration.md: 264, 1601, 1756
+  .opencode/specs/003-system-spec-kit/138-hybrid-rag-fusion/003-unified-graph-intelligence/memory/20-02-26_14-16__unified-graph-intelligence.md: 264, 1592, 1746
+  .opencode/specs/003-system-spec-kit/138-hybrid-rag-fusion/003-unified-graph-intelligence/memory/20-02-26_14-30__unified-graph-intelligence.md: 264, 1592, 1746
+  .opencode/specs/003-system-spec-kit/138-hybrid-rag-fusion/003-unified-graph-intelligence/memory/20-02-26_14-53__unified-graph-intelligence.md: 264, 1592, 1746
+  .opencode/specs/003-system-spec-kit/138-hybrid-rag-fusion/003-unified-graph-intelligence/memory/20-02-26_15-32__unified-graph-intelligence.md: 264, 1592, 1746
+  .opencode/specs/003-system-spec-kit/138-hybrid-rag-fusion/003-unified-graph-intelligence/memory/20-02-26_15-44__unified-graph-intelligence.md: 264, 1592, 1746
+  .opencode/specs/003-system-spec-kit/138-hybrid-rag-fusion/004-command-alignment/memory/20-02-26_21-18__command-alignment.md: 264, 1601, 1756
+  .opencode/specs/003-system-spec-kit/138-hybrid-rag-fusion/004-command-alignment/memory/20-02-26_21-58__command-alignment.md: 269, 1469, 1624
+  .opencode/specs/003-system-spec-kit/138-hybrid-rag-fusion/005-install-guide-alignment/memory/20-02-26_21-18__install-guide-alignment.md: 264, 1602, 1757
+  .opencode/specs/003-system-spec-kit/138-hybrid-rag-fusion/006-skill-graph-utilization/memory/20-02-26_22-32__skill-graph-utilization.md: 264, 1601, 1756
+  .opencode/specs/003-system-spec-kit/138-hybrid-rag-fusion/007-skill-graph-improvement/memory/21-02-26_07-41__skill-graph-improvement.md: 264, 1603, 1786
+  .opencode/specs/003-system-spec-kit/138-hybrid-rag-fusion/memory/20-02-26_13-38__hybrid-rag-fusion.md: 264, 1589, 1743
+  .opencode/specs/003-system-spec-kit/138-hybrid-rag-fusion/memory/20-02-26_14-16__hybrid-rag-fusion.md: 264, 1589, 1743
+  .opencode/specs/003-system-spec-kit/138-hybrid-rag-fusion/memory/20-02-26_16-12__hybrid-rag-fusion.md: 264, 1589, 1743
+  .opencode/specs/003-system-spec-kit/138-hybrid-rag-fusion/memory/20-02-26_16-57__hybrid-rag-fusion.md: 263, 1399, 1553
+  .opencode/specs/003-system-spec-kit/138-hybrid-rag-fusion/memory/20-02-26_18-23__hybrid-rag-fusion.md: 262, 1404, 1558
+  .opencode/specs/003-system-spec-kit/139-spec-kit-phase-system/memory/20-02-26_16-42__spec-kit-phase-system.md: 264, 1587, 1741
+  .opencode/specs/003-system-spec-kit/139-spec-kit-phase-system/memory/20-02-26_17-45__spec-kit-phase-system.md: 264, 1595, 1749
+  .opencode/specs/003-system-spec-kit/139-spec-kit-phase-system/memory/20-02-26_18-04__spec-kit-phase-system.md: 275, 1471, 1625
+  .opencode/specs/003-system-spec-kit/z_archive/118-fix-command-dispatch/z_archive/005-speckit-consolidation/memory/17-12-25_speckit-consolidation-complete.md: 207
+  .opencode/specs/003-system-spec-kit/z_archive/118-fix-command-dispatch/z_archive/017-stateless-spec-passing/memory/22-12-25_09-51__stateless-spec-passing.md: 117, 173, 307, 316, 317, 336, 620, 622, 654, 656, 1172, 1208, 1244, 1728
+  .opencode/specs/003-system-spec-kit/z_archive/118-fix-command-dispatch/z_archive/023-path-scoped-rules/002-modular-architecture/memory/24-12-25_15-36__modular-architecture.md: 145, 155, 197, 219, 221, 228, 230, 254, 256, 263, 265, 272, 274, 281, 283, 290, 292, 299, 301, 328, 346, 571
+  .opencode/specs/003-system-spec-kit/z_archive/118-fix-command-dispatch/z_archive/025-system-memory-rename/memory/17-12-24__rename-complete.md: 167
+  .opencode/specs/003-system-spec-kit/z_archive/118-fix-command-dispatch/z_archive/026-docs-alignment/memory/001-docs-alignment-complete.md: 166, 195
+  .opencode/specs/003-system-spec-kit/z_archive/118-fix-command-dispatch/z_archive/035-memory-speckit-merger/memory/2024-12-25_memory-system-merger.md: 264, 310, 311, 356, 357
+  .opencode/specs/004-agents/023-gemini-cli-compatibility/memory/20-02-26_12-13__gemini-cli-compatibility.md: 2085, 2239
+  .opencode/specs/004-agents/z_archive/011-context-model-optimization/memory/14-02-26_11-57__context-model-optimization.md: 174, 277, 361, 635, 732
+  specs/002-commands-and-skills/036-memory-command-output/memory/20-02-26_13-42__memory-command-output.md: 242, 1404, 1558
+  specs/002-commands-and-skills/036-memory-command-output/memory/20-02-26_14-44__memory-command-output.md: 220, 261, 278, 280, 479, 1395, 1548
+  specs/002-commands-and-skills/037-reverse-engineer-visual-explainer/memory/21-02-26_08-48__reverse-engineer-visual-explainer.md: 112, 185, 222, 260, 278, 280, 286, 453, 1383, 1568
+  specs/002-commands-and-skills/038-skill-rename/memory/21-02-26_09-39__skill-rename.md: 264, 1600, 1788
+  specs/002-commands-and-skills/z_archive/016-skill-rename/memory/17-12-24_skill-rename-complete.md: 122, 127, 136, 143, 159, 160, 161, 162, 201, 236, 237, 238, 239
+  specs/002-commands-and-skills/z_archive/017-h2-emoji-enforcement/memory/01-01-26_14-53__h2-emoji-enforcement.md: 155, 172, 198, 224, 586
+  specs/002-commands-and-skills/z_archive/018-style-enforcement/memory/03-02-26_17-30__validate-document-rename.md: 232
+  specs/002-commands-and-skills/z_archive/021-reference-structure-qa/memory/22-12-25_09-50__reference-structure-qa.md: 117, 173, 307, 316, 317, 336, 629, 631, 663, 665, 1172, 1208, 1244, 1728
+  specs/003-system-spec-kit/137-readme-and-summary-with-hvr/memory/20-02-26_07-05__readme-and-summary-with-hvr.md: 135, 193, 226, 242, 264, 266, 466, 701
+  specs/003-system-spec-kit/138-hybrid-rag-fusion/001-system-speckit-hybrid-rag-fusion/memory/20-02-26_11-54__hybrid-rag-fusion.md: 2053, 2208
+  specs/003-system-spec-kit/138-hybrid-rag-fusion/001-system-speckit-hybrid-rag-fusion/memory/20-02-26_12-27__hybrid-rag-fusion.md: 135, 174, 220, 239, 1434, 1587, 1687
+  specs/003-system-spec-kit/138-hybrid-rag-fusion/001-system-speckit-hybrid-rag-fusion/memory/20-02-26_12-32__hybrid-rag-fusion.md: 1394, 1548
+  specs/003-system-spec-kit/138-hybrid-rag-fusion/001-system-speckit-hybrid-rag-fusion/memory/20-02-26_13-38__system-speckit-hybrid-rag-fusion.md: 264, 1591, 1745
+  specs/003-system-spec-kit/138-hybrid-rag-fusion/001-system-speckit-hybrid-rag-fusion/memory/20-02-26_16-12__system-speckit-hybrid-rag-fusion.md: 264, 1591, 1745
+  specs/003-system-spec-kit/138-hybrid-rag-fusion/002-skill-graph-integration/memory/20-02-26_11-50__skill-graphs.md: 1992, 2144
+  specs/003-system-spec-kit/138-hybrid-rag-fusion/002-skill-graph-integration/memory/20-02-26_13-05__skill-graphs.md: 264, 1589, 1743
+  specs/003-system-spec-kit/138-hybrid-rag-fusion/002-skill-graph-integration/memory/20-02-26_13-38__skill-graph-integration.md: 264, 1591, 1745
+  specs/003-system-spec-kit/138-hybrid-rag-fusion/002-skill-graph-integration/memory/20-02-26_13-59__skill-graph-integration.md: 264, 1591, 1745
+  specs/003-system-spec-kit/138-hybrid-rag-fusion/002-skill-graph-integration/memory/20-02-26_22-29__skill-graph-integration.md: 264, 1601, 1756
+  specs/003-system-spec-kit/138-hybrid-rag-fusion/003-unified-graph-intelligence/memory/20-02-26_14-16__unified-graph-intelligence.md: 264, 1592, 1746
+  specs/003-system-spec-kit/138-hybrid-rag-fusion/003-unified-graph-intelligence/memory/20-02-26_14-30__unified-graph-intelligence.md: 264, 1592, 1746
+  specs/003-system-spec-kit/138-hybrid-rag-fusion/003-unified-graph-intelligence/memory/20-02-26_14-53__unified-graph-intelligence.md: 264, 1592, 1746
+  specs/003-system-spec-kit/138-hybrid-rag-fusion/003-unified-graph-intelligence/memory/20-02-26_15-32__unified-graph-intelligence.md: 264, 1592, 1746
+  specs/003-system-spec-kit/138-hybrid-rag-fusion/003-unified-graph-intelligence/memory/20-02-26_15-44__unified-graph-intelligence.md: 264, 1592, 1746
+  specs/003-system-spec-kit/138-hybrid-rag-fusion/004-command-alignment/memory/20-02-26_21-18__command-alignment.md: 264, 1601, 1756
+  specs/003-system-spec-kit/138-hybrid-rag-fusion/004-command-alignment/memory/20-02-26_21-58__command-alignment.md: 269, 1469, 1624
+  specs/003-system-spec-kit/138-hybrid-rag-fusion/005-install-guide-alignment/memory/20-02-26_21-18__install-guide-alignment.md: 264, 1602, 1757
+  specs/003-system-spec-kit/138-hybrid-rag-fusion/006-skill-graph-utilization/memory/20-02-26_22-32__skill-graph-utilization.md: 264, 1601, 1756
+  specs/003-system-spec-kit/138-hybrid-rag-fusion/007-skill-graph-improvement/memory/21-02-26_07-41__skill-graph-improvement.md: 264, 1603, 1786
+  specs/003-system-spec-kit/138-hybrid-rag-fusion/memory/20-02-26_13-38__hybrid-rag-fusion.md: 264, 1589, 1743
+  specs/003-system-spec-kit/138-hybrid-rag-fusion/memory/20-02-26_14-16__hybrid-rag-fusion.md: 264, 1589, 1743
+  specs/003-system-spec-kit/138-hybrid-rag-fusion/memory/20-02-26_16-12__hybrid-rag-fusion.md: 264, 1589, 1743
+  specs/003-system-spec-kit/138-hybrid-rag-fusion/memory/20-02-26_16-57__hybrid-rag-fusion.md: 263, 1399, 1553
+  specs/003-system-spec-kit/138-hybrid-rag-fusion/memory/20-02-26_18-23__hybrid-rag-fusion.md: 262, 1404, 1558
+  specs/003-system-spec-kit/139-spec-kit-phase-system/memory/20-02-26_16-42__spec-kit-phase-system.md: 264, 1587, 1741
+  specs/003-system-spec-kit/139-spec-kit-phase-system/memory/20-02-26_17-45__spec-kit-phase-system.md: 264, 1595, 1749
+  specs/003-system-spec-kit/139-spec-kit-phase-system/memory/20-02-26_18-04__spec-kit-phase-system.md: 275, 1471, 1625
+  specs/003-system-spec-kit/z_archive/118-fix-command-dispatch/z_archive/005-speckit-consolidation/memory/17-12-25_speckit-consolidation-complete.md: 207
+  specs/003-system-spec-kit/z_archive/118-fix-command-dispatch/z_archive/017-stateless-spec-passing/memory/22-12-25_09-51__stateless-spec-passing.md: 117, 173, 307, 316, 317, 336, 620, 622, 654, 656, 1172, 1208, 1244, 1728
+  specs/003-system-spec-kit/z_archive/118-fix-command-dispatch/z_archive/023-path-scoped-rules/002-modular-architecture/memory/24-12-25_15-36__modular-architecture.md: 145, 155, 197, 219, 221, 228, 230, 254, 256, 263, 265, 272, 274, 281, 283, 290, 292, 299, 301, 328, 346, 571
+  specs/003-system-spec-kit/z_archive/118-fix-command-dispatch/z_archive/025-system-memory-rename/memory/17-12-24__rename-complete.md: 167
+  specs/003-system-spec-kit/z_archive/118-fix-command-dispatch/z_archive/026-docs-alignment/memory/001-docs-alignment-complete.md: 166, 195
+  specs/003-system-spec-kit/z_archive/118-fix-command-dispatch/z_archive/035-memory-speckit-merger/memory/2024-12-25_memory-system-merger.md: 264, 310, 311, 356, 357
+  specs/004-agents/023-gemini-cli-compatibility/memory/20-02-26_12-13__gemini-cli-compatibility.md: 2085, 2239
+  specs/004-agents/z_archive/011-context-model-optimization/memory/14-02-26_11-57__context-model-optimization.md: 174, 277, 361, 635, 732

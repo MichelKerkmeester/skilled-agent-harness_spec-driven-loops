@@ -460,7 +460,7 @@ Agents leverage existing commands rather than duplicating functionality:
 | Skill | Purpose | Agent Integration |
 |-------|---------|-------------------|
 | **workflows-documentation** | 4 modes: Document Quality, Skill Creation, Flowcharts, Install Guides | Documentation Writer invokes this |
-| **workflows-chrome-devtools** | CLI (bdg) + MCP browser debugging | Front-end Debug Agent invokes this |
+| **mcp-chrome-devtools** | CLI (bdg) + MCP browser debugging | Front-end Debug Agent invokes this |
 | **system-spec-kit** | Spec folders, memory, templates | Librarian uses for planning |
 | **mcp-leann** | Semantic code search | Librarian uses for research |
 | **mcp-narsil** | Structural queries, security scanning | Front-end Debug Agent uses for analysis |
@@ -565,9 +565,9 @@ const sites = await call_tool_chain([
 
 #### Agent 3: Front-end Debug Agent
 
-**Purpose:** Browser-based debugging using workflows-chrome-devtools skill
+**Purpose:** Browser-based debugging using mcp-chrome-devtools skill
 
-**Skills:** `workflows-chrome-devtools`
+**Skills:** `mcp-chrome-devtools`
 
 **Tools:**
 - Chrome DevTools MCP (both instances)

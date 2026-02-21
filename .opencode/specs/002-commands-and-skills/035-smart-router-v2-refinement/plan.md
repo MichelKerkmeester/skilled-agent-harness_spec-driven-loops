@@ -82,15 +82,15 @@ Final Routing Decision
 
 ### Phase 1: Synonym Lexicon & Top-N Adaptive Logic
 - [ ] 1.1: Add synonym mappings to router-rules.json (7+ noisy terms: "unstable", "janky", "freeze", "dirty workspace", "flaky", "intermittent", "wonky")
-- [ ] 1.2: Implement synonym expander preprocessing in workflows-code--full-stack SKILL.md (document lookup logic)
+- [ ] 1.2: Implement synonym expander preprocessing in sk-code--full-stack SKILL.md (document lookup logic)
 - [ ] 1.3: Implement top-N adaptive selector logic (delta <0.15 threshold, multi-symptom detection)
-- [ ] 1.4: Document top-N methodology in workflows-code--full-stack (rationale for 0.15 threshold)
+- [ ] 1.4: Document top-N methodology in sk-code--full-stack (rationale for 0.15 threshold)
 
 ### Phase 2: UNKNOWN Fallback & Verification Disambiguation
 - [ ] 2.1: Design UNKNOWN fallback disambiguation checklist (3-5 items: stack? files? error message?)
-- [ ] 2.2: Implement UNKNOWN fallback in 4 skills (workflows-code--full-stack, web-dev, opencode, git)
+- [ ] 2.2: Implement UNKNOWN fallback in 4 skills (sk-code--full-stack, web-dev, opencode, git)
 - [ ] 2.3: Document verification command disambiguation for React/React Native collision (priority order)
-- [ ] 2.4: Implement verification command disambiguation in workflows-code--full-stack
+- [ ] 2.4: Implement verification command disambiguation in sk-code--full-stack
 
 ### Phase 3: Test Suite Enhancements
 - [ ] 3.1: Add pseudocode validation assertions to run-smart-router-tests.mjs (check for Smart Router blocks)

@@ -512,18 +512,18 @@ Skills are domain expertise on demand. The AI loads the right skill and already 
 | `mcp-code-mode`              | Integrations  | External tools via Code Mode (Figma, GitHub, ClickUp)                                      |
 | `mcp-figma`                  | Design        | Figma file access, components, styles, comments                                            |
 | `system-spec-kit`            | Documentation | Spec folders, templates, memory integration, context preservation. Skill Graph node files with SGQS traversal (spec 138) |
-| `workflows-chrome-devtools`  | Browser       | DevTools automation, screenshots, debugging                                                |
-| `workflows-code--full-stack` | Multi-Stack   | Go, Node.js, React, React Native, Swift, auto-detected via marker files                    |
+| `mcp-chrome-devtools`  | Browser       | DevTools automation, screenshots, debugging                                                |
+| `sk-code--full-stack` | Multi-Stack   | Go, Node.js, React, React Native, Swift, auto-detected via marker files                    |
 | `workflows-code--opencode`   | System Code   | TypeScript, Python, Shell for MCP servers and scripts                                      |
-| `workflows-code--web-dev`    | Web Dev       | Webflow, vanilla JS: implementation, debugging, verification                               |
-| `workflows-documentation`    | Docs          | Document quality scoring, skill creation, install guides. Skill Graph node authoring       |
-| `workflows-git`              | Git           | Commits, branches, PRs, worktrees                                                          |
+| `sk-code--web`    | Web Dev       | Webflow, vanilla JS: implementation, debugging, verification                               |
+| `sk-documentation`    | Docs          | Document quality scoring, skill creation, install guides. Skill Graph node authoring       |
+| `sk-git`              | Git           | Commits, branches, PRs, worktrees                                                          |
 
 ### Auto-Detection
 
 `skill_advisor.py` analyzes your request keywords. Confidence >= 0.8 = skill auto-loads.
 
-**Multi-Stack Auto-Detection** (`workflows-code--full-stack`):
+**Multi-Stack Auto-Detection** (`sk-code--full-stack`):
 
 | Stack            | Category | Detection Marker                                | Example Patterns                  |
 | ---------------- | -------- | ----------------------------------------------- | --------------------------------- |
@@ -844,7 +844,7 @@ cd .opencode/skill/system-spec-kit && npm run build
 opencode --version
 
 # Manually invoke a skill if needed
-# Ask: "Load the workflows-git skill"
+# Ask: "Load the sk-git skill"
 ```
 
 ### Quick Fixes
@@ -931,7 +931,7 @@ A: Each provider uses a separate database, so switching is safe. Your old embedd
 A: Run `/create:skill my-skill-name` or use the init script:
 
 ```bash
-python3 .opencode/skill/workflows-documentation/scripts/init_skill.py my-skill
+python3 .opencode/skill/sk-documentation/scripts/init_skill.py my-skill
 ```
 
 Skills are auto-discovered from `.opencode/skill/*/SKILL.md`. No plugin registration needed.
@@ -969,12 +969,12 @@ A: Minimal. SQLite databases are compact. A project with 100+ memories typically
 | [Agent Orchestration](.opencode/changelog/03--agent-orchestration/)                 | 26 files |
 | [Commands](.opencode/changelog/04--commands/)                                       | 29 files |
 | [Skill Advisor](.opencode/changelog/05--skill-advisor/)                             | 4 files  |
-| [Workflows: Documentation](.opencode/changelog/06--workflows-documentation/)        | 9 files  |
+| [Workflows: Documentation](.opencode/changelog/06--sk-documentation/)        | 9 files  |
 | [Workflows: Code (OpenCode)](.opencode/changelog/07--workflows-code--opencode/)     | 9 files  |
-| [Workflows: Code (Web Dev)](.opencode/changelog/08--workflows-code--web-dev/)       | 10 files |
-| [Workflows: Code (Full Stack)](.opencode/changelog/09--workflows-code--full-stack/) | 4 files  |
-| [Workflows: Git](.opencode/changelog/10--workflows-git/)                            | 7 files  |
-| [Workflows: Chrome DevTools](.opencode/changelog/11--workflows-chrome-devtools/)    | 4 files  |
+| [Workflows: Code (Web Dev)](.opencode/changelog/08--sk-code--web/)       | 10 files |
+| [Workflows: Code (Full Stack)](.opencode/changelog/09--sk-code--full-stack/) | 4 files  |
+| [Workflows: Git](.opencode/changelog/10--sk-git/)                            | 7 files  |
+| [Workflows: Chrome DevTools](.opencode/changelog/11--mcp-chrome-devtools/)    | 4 files  |
 | [MCP: Code Mode](.opencode/changelog/12--mcp-code-mode/)                            | 7 files  |
 | [MCP: Figma](.opencode/changelog/13--mcp-figma/)                                    | 5 files  |
 

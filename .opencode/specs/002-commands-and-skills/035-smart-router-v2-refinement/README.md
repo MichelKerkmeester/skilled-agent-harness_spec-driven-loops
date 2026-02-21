@@ -133,7 +133,7 @@ This spec documents refinements to Smart Router V2 (baseline: 034-smart-router-v
 ## Implementation Targets
 
 ### Skills Affected (4 files)
-- `.opencode/skill/workflows-code--full-stack/SKILL.md` (primary implementation)
+- `.opencode/skill/sk-code--full-stack/SKILL.md` (primary implementation)
 - `.opencode/skill/workflows-code--web-dev/SKILL.md` (synonym + UNKNOWN fallback)
 - `.opencode/skill/workflows-code--opencode/SKILL.md` (synonym + UNKNOWN fallback)
 - `.opencode/skill/workflows-git/SKILL.md` (synonym + UNKNOWN fallback)

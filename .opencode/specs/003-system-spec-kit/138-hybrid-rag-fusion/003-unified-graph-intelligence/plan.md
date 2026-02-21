@@ -52,7 +52,7 @@ This plan covers the integration of Workstream A (RAG Fusion / `001-system-speck
   - Deliverable: Return value stored and forwarded into the fusion merge step.
   - Validation: Test confirms spreading affects final ranked output when graph channel active.
 - [x] Feature flags `SPECKIT_GRAPH_UNIFIED`, `SPECKIT_GRAPH_MMR`, `SPECKIT_GRAPH_AUTHORITY` defined
-  - Deliverable: Env-var flags with documented default (`false`) in `graph-flags.ts`.
+  - Deliverable: Env-var flags documented in `graph-flags.ts` with rollout-policy opt-out semantics (unset/empty/`true` enabled; explicit `false` disabled).
   - Validation: All tests pass with flags set to `false` (regression baseline preserved).
 - [x] p95 latency with graph channel active <= 120ms
   - Deliverable: vitest performance suite output.
@@ -75,7 +75,7 @@ Scatter-Gather Pipeline with Graph Channel Extension. The existing pipeline is a
 - **`adaptive-fusion.ts`** (MODIFY): Adds `graphWeight: number` and `graphCausalBias: number` fields to the `FusionWeights` interface and provides calibrated default values per each of the 6 intent profiles (e.g., `find_decision` gets higher `graphCausalBias`; `find_spec` gets higher `graphWeight`).
 - **`hybrid-search.ts:406-416`** (MODIFY): Captures the return value of co-activation spreading (currently called but result discarded). Forwarded into the RRF merge step when graph channel active.
 - **`context-server.ts:566`** and **`db-state.ts:140`** (MODIFY): Pass `createUnifiedGraphSearchFn(database, skillRoot)` as the third argument to `hybridSearch.init()`. Both files require the same 4-line change.
-- **Feature Flag Layer** (NEW): Environment variables `SPECKIT_GRAPH_UNIFIED`, `SPECKIT_GRAPH_MMR`, and `SPECKIT_GRAPH_AUTHORITY` guard Phase 0+, Phase 2+ MMR, and Phase 2+ Authority respectively. Defaulting all to `false` means zero runtime behaviour change before opt-in.
+- **Feature Flag Layer** (NEW): Environment variables `SPECKIT_GRAPH_UNIFIED`, `SPECKIT_GRAPH_MMR`, and `SPECKIT_GRAPH_AUTHORITY` guard Phase 0+, Phase 2+ MMR, and Phase 2+ Authority respectively. Runtime semantics are opt-out: unset/empty/`true` enables, explicit `false` disables.
 
 ### Data Flow
 
@@ -277,7 +277,7 @@ Phase 0+ (Core Wiring) ───────────────────
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deployment Checklist
-- [ ] Feature flag `SPECKIT_GRAPH_UNIFIED` confirmed defaulting to `false` in all environments
+- [ ] Feature flag `SPECKIT_GRAPH_UNIFIED` behavior confirmed against rollout policy (unset/empty/`true` enabled; explicit `false` disabled) in all environments
 - [ ] Regression baseline captured: full vitest suite green with flag off before any Phase 0+ changes land
 - [ ] p95 baseline recorded: 50-query benchmark run against current two-channel pipeline (for comparison post-integration)
 - [ ] `SkillGraphCacheManager.invalidate()` documented in server restart runbook

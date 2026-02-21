@@ -22,6 +22,24 @@
       "dependencies": ["lib/embeddings.js", "lib/anchor-generator.js", "lib/content-filter.js"]
     },
     {
+      "name": "reindex-embeddings",
+      "path": "scripts/dist/memory/reindex-embeddings.js",
+      "type": "node",
+      "description": "Force full embedding reindex across memory docs, specs, and constitutional files",
+      "trigger": ["reindex embeddings", "force reindex", "memory index rebuild"],
+      "calledBy": ["Developer", "Maintenance", "Compatibility wrapper"],
+      "essential": false,
+      "inputs": {},
+      "outputs": ["Scan summary", "Indexed/updated counts", "Per-file status"],
+      "gate": null,
+      "version": "1.0.0",
+      "dependencies": [
+        "mcp_server/lib/search/vector-index.ts",
+        "mcp_server/handlers/memory-index.ts",
+        "mcp_server/lib/search/graph-search-fn.ts"
+      ]
+    },
+    {
       "name": "validate-spec",
       "path": "scripts/spec/validate.sh",
       "type": "bash",

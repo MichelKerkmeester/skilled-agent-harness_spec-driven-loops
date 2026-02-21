@@ -521,18 +521,27 @@ mcp_server/
 │   ├── config.ts           # Path resolution (SERVER_DIR, LIB_DIR, SHARED_DIR)
 │   └── db-state.ts         # Database connection state
 │
-├── handlers/               # MCP tool handlers (9 functional + 2 infra)
+├── handlers/               # MCP tool handlers (CRUD split into focused modules)
 │   ├── index.ts            # Handler aggregator
 │   ├── types.ts            # Shared handler types
 │   ├── memory-search.ts    # memory_search + Testing Effect
 │   ├── memory-triggers.ts  # memory_match_triggers + cognitive
 │   ├── memory-save.ts      # memory_save + PE gating
-│   ├── memory-crud.ts      # update/delete/list/stats/health/validate
+│   ├── memory-crud.ts      # stable CRUD facade + compatibility aliases
+│   ├── memory-crud-delete.ts # memory_delete
+│   ├── memory-crud-update.ts # memory_update
+│   ├── memory-crud-list.ts   # memory_list
+│   ├── memory-crud-stats.ts  # memory_stats
+│   ├── memory-crud-health.ts # memory_health
+│   ├── memory-crud-utils.ts  # CRUD shared helper utilities
+│   ├── memory-crud-types.ts  # CRUD argument and helper types
+│   ├── memory-crud-state.ts  # CRUD module state
 │   ├── memory-index.ts     # memory_index_scan + 5-source pipeline
 │   ├── checkpoints.ts      # checkpoint_create/list/restore/delete
 │   ├── session-learning.ts # preflight/postflight/learning history
 │   ├── memory-context.ts   # memory_context + unified entry
-│   └── causal-graph.ts     # causal_link/unlink/stats/drift_why
+│   ├── causal-graph.ts     # causal_link/unlink/stats/drift_why
+│   └── sgqs-query.ts       # memory_skill_graph_query
 │
 ├── lib/                    # Library modules (63 total)
 │   ├── cognitive/          # FSRS, PE gating, 5-state model, co-activation (10)
@@ -622,7 +631,7 @@ All flags are evaluated via `isFeatureEnabled()`. After spec 138, the flags belo
 | `SPECKIT_GRAPH_MMR` | `true` | MMR diversity reranking for graph results |
 | `SPECKIT_GRAPH_AUTHORITY` | `true` | Authority scoring in graph traversal |
 | `SPECKIT_PRESSURE_POLICY` | `false` | Enable token-pressure mode override in `memory_context` |
-| `SPECKIT_CROSS_ENCODER` | `false` | Enable cross-encoder reranking (opt-in, adds latency) |
+| `SPECKIT_CROSS_ENCODER` | `true` | Enable cross-encoder reranking by default when a provider is configured (set `false` to disable) |
 
 ### Database Schema
 
@@ -907,7 +916,7 @@ A: No. The server falls back to local HuggingFace embeddings when cloud keys are
 
 **Q: Are all feature flags enabled by default after spec 138?**
 
-A: All flags listed in the Configuration section under "default: true" are enabled via `isFeatureEnabled()`. `SPECKIT_PRESSURE_POLICY` and `SPECKIT_CROSS_ENCODER` remain opt-in.
+A: All flags listed in the Configuration section under "default: true" are enabled via `isFeatureEnabled()`. `SPECKIT_PRESSURE_POLICY` remains opt-in; `SPECKIT_CROSS_ENCODER` is default-on but only active when a reranker provider is configured.
 
 ---
 

@@ -57,7 +57,7 @@ The strategy utilizes **"Dark Launching"** via Feature Flags (e.g., `SPECKIT_MMR
 ## 3. Rollout and Rollback Strategy (Runbook)
 
 ### Step 1: Commit Phase (Dark Launch)
-1. Merge PRs with all feature flags explicitly set to `false` in `config/flags.ts`.
+1. Merge PRs with all feature flags explicitly set to `false` in the deployment environment.
    * `SPECKIT_MMR: false`
    * `SPECKIT_TRM: false`
    * `SPECKIT_MULTI_QUERY: false`
@@ -70,18 +70,16 @@ The strategy utilizes **"Dark Launching"** via Feature Flags (e.g., `SPECKIT_MMR
 4. Profile the Node.js event loop during MMR execution using `console.time('MMR_O(N^2)')`. Ensure the timer remains under `10ms` for N=20 candidates.
 
 ### Step 3: Default Phase
-1. Flip `SPECKIT_MMR` and `SPECKIT_TRM` to `true` in production `config/flags.ts`.
+1. Flip `SPECKIT_MMR` and `SPECKIT_TRM` to `true` in the production environment.
 2. Push cache invalidation signal: Force `bypassCache=true` on the MCP client's next startup to wipe the old static-weight cache entries.
 
 ### Step 4: Emergency Rollback
 If `memory_stats` latency exceeds 150ms average for `mode="auto"`, or if LLMs complain about missing context:
-1. Revert `config/flags.ts` instantly:
-   ```typescript
-   export const FLAGS = {
-       SPECKIT_MMR: false,
-       SPECKIT_TRM: false,
-       SPECKIT_MULTI_QUERY: false,
-   };
+1. Revert environment variables instantly:
+   ```bash
+   export SPECKIT_MMR=false
+   export SPECKIT_TRM=false
+   export SPECKIT_MULTI_QUERY=false
    ```
 2. Restart the MCP server. Zero database/schema changes are required, ensuring instant, safe rollbacks.
 <!-- /ANCHOR: plan-rollout-138 -->

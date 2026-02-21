@@ -455,7 +455,7 @@ export interface ExtractionResult {
  *   - handlers/types.ts (loose: string type, optional isError)
  *   - tools/types.ts (loose + autoSurfacedContext)
  *   - tests/memory-context.test.ts (local, missing isError)
- *   - scripts/reindex-embeddings.ts (local, optional isError)
+ *   - scripts/memory/reindex-embeddings.ts (local, optional isError)
  *
  * Consolidated per REC-010 (Spec 103 audit).
  */

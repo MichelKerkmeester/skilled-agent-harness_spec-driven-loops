@@ -29,7 +29,7 @@
 **Changes**:
 - Added explicit cross-platform body-sync convention (OpenCode/Claude/Codex parity)
 - Frontmatter remains platform-specific
-- Aligned review.md and orchestrate.md references from legacy workflows-code to current workflows-code--web-dev and workflows-code--full-stack
+- Aligned review.md and orchestrate.md references from legacy workflows-code to current workflows-code--web-dev and sk-code--full-stack
 - Added explicit spec-015 note in review.md that frontmatter stays model-agnostic for parent-model inheritance
 - Removed stale WebSearch tool mention from research.md
 

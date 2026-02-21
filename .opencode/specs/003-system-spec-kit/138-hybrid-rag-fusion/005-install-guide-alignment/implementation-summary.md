@@ -19,7 +19,7 @@ All 4 INSTALL_GUIDE.md files across the OpenCode skill system were rewritten to 
 | File | Change Type | Description |
 |------|-------------|-------------|
 | `.opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md` | Major rewrite | v3.0.0: New feature flags, skill graph system, graph enrichment, behavior changes, HVR compliance, template alignment |
-| `.opencode/skill/workflows-chrome-devtools/INSTALL_GUIDE.md` | Moderate rewrite | v2.1.0 update: Fixed broken Code Mode cross-reference, HVR compliance, template alignment, added formal validation checkpoints |
+| `.opencode/skill/mcp-chrome-devtools/INSTALL_GUIDE.md` | Moderate rewrite | v2.1.0 update: Fixed broken Code Mode cross-reference, HVR compliance, template alignment, added formal validation checkpoints |
 | `.opencode/skill/mcp-code-mode/INSTALL_GUIDE.md` | Moderate rewrite | v2.0.0: HVR compliance, template alignment, added version number, standardized checkpoints |
 | `.opencode/skill/mcp-figma/INSTALL_GUIDE.md` | Moderate rewrite | v2.0.0 update: Fixed outdated cross-references (removed broken Narsil link), HVR compliance, template alignment |
 

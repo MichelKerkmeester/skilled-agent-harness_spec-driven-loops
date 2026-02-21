@@ -70,9 +70,9 @@ Workflow skill READMEs (6 files):
 - `.opencode/skill/workflows-documentation/README.md`
 - `.opencode/skill/workflows-code--opencode/README.md`
 - `.opencode/skill/workflows-code--web-dev/README.md`
-- `.opencode/skill/workflows-code--full-stack/README.md`
+- `.opencode/skill/sk-code--full-stack/README.md`
 - `.opencode/skill/workflows-git/README.md`
-- `.opencode/skill/workflows-chrome-devtools/README.md`
+- `.opencode/skill/mcp-chrome-devtools/README.md`
 
 MCP skill READMEs (2 files):
 - `.opencode/skill/mcp-code-mode/README.md`

@@ -124,7 +124,7 @@ Enable users to update the SpecKit functionality by updating a single skill fold
 | cli-gemini | 2 | Command refs |
 
 **Skills with NO speckit references:**
-- workflows-chrome-devtools, workflows-code, workflows-git
+- mcp-chrome-devtools, workflows-code, workflows-git
 - mcp-code-mode, mcp-semantic-search
 
 #### Agent 6: Command References

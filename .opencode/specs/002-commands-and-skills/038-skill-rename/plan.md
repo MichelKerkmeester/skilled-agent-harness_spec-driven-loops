@@ -1,6 +1,6 @@
 # Implementation Plan: Skill Rename — workflows-* to sk-*/mcp-*
 
-<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_LEVEL: 3+ -->
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 
 ---
@@ -68,11 +68,11 @@ No data flow changes. Skills are loaded by name from filesystem paths. Renaming 
 ### Phase 1: Filesystem Renames (7 operations)
 - [ ] `mv .opencode/skill/workflows-code--opencode → sk-code--opencode`
 - [ ] `mv .opencode/skill/workflows-code--web-dev → sk-code--web`
-- [ ] `mv .opencode/skill/workflows-code--full-stack → sk-code--full-stack`
+- [ ] `mv .opencode/skill/sk-code--full-stack → sk-code--full-stack`
 - [ ] `mv .opencode/skill/workflows-documentation → sk-documentation`
 - [ ] `mv .opencode/skill/workflows-git → sk-git`
 - [ ] `mv .opencode/skill/workflows-visual-explainer → sk-visual-explainer`
-- [ ] `mv .opencode/skill/workflows-chrome-devtools → mcp-chrome-devtools`
+- [ ] `mv .opencode/skill/mcp-chrome-devtools → mcp-chrome-devtools`
 
 ### Phase 2: Update Internal Skill References (~290 files)
 For each renamed skill folder, update all internal files:
@@ -90,11 +90,11 @@ For each renamed skill folder, update all internal files:
 |----------|----------|-------------------|
 | `workflows-code--opencode` | `sk-code--opencode` | `.opencode/skill/workflows-code--opencode/` → `.opencode/skill/sk-code--opencode/` |
 | `workflows-code--web-dev` | `sk-code--web` | `.opencode/skill/workflows-code--web-dev/` → `.opencode/skill/sk-code--web/` |
-| `workflows-code--full-stack` | `sk-code--full-stack` | `.opencode/skill/workflows-code--full-stack/` → `.opencode/skill/sk-code--full-stack/` |
+| `sk-code--full-stack` | `sk-code--full-stack` | `.opencode/skill/sk-code--full-stack/` → `.opencode/skill/sk-code--full-stack/` |
 | `workflows-documentation` | `sk-documentation` | `.opencode/skill/workflows-documentation/` → `.opencode/skill/sk-documentation/` |
 | `workflows-git` | `sk-git` | `.opencode/skill/workflows-git/` → `.opencode/skill/sk-git/` |
 | `workflows-visual-explainer` | `sk-visual-explainer` | `.opencode/skill/workflows-visual-explainer/` → `.opencode/skill/sk-visual-explainer/` |
-| `workflows-chrome-devtools` | `mcp-chrome-devtools` | `.opencode/skill/workflows-chrome-devtools/` → `.opencode/skill/mcp-chrome-devtools/` |
+| `mcp-chrome-devtools` | `mcp-chrome-devtools` | `.opencode/skill/mcp-chrome-devtools/` → `.opencode/skill/mcp-chrome-devtools/` |
 
 **Special cases:**
 - Bare `workflows-code` → `sk-code--web` (default variant)
@@ -102,12 +102,12 @@ For each renamed skill folder, update all internal files:
 
 ### Phase 3: Update skill_advisor.py (~100+ lines)
 - [ ] Update all `workflows-git` entries in INTENT_BOOSTERS → `sk-git`
-- [ ] Update all `workflows-chrome-devtools` entries → `mcp-chrome-devtools`
+- [ ] Update all `mcp-chrome-devtools` entries → `mcp-chrome-devtools`
 - [ ] Update all `workflows-documentation` entries → `sk-documentation`
 - [ ] Update all `workflows-visual-explainer` entries → `sk-visual-explainer`
 - [ ] Update all `workflows-code--web-dev` entries → `sk-code--web`
 - [ ] Update all `workflows-code--opencode` entries → `sk-code--opencode`
-- [ ] Update all `workflows-code--full-stack` entries in MULTI_SKILL_BOOSTERS → `sk-code--full-stack`
+- [ ] Update all `sk-code--full-stack` entries in MULTI_SKILL_BOOSTERS → `sk-code--full-stack`
 
 ### Phase 4: Update Agent Files (12 files × 4 runtimes)
 - [ ] `.opencode/agent/orchestrate.md` — skill tables, routing tables, path references
@@ -162,14 +162,14 @@ For each renamed skill folder, update all internal files:
 ### Phase 9: Rename Changelog Directories (7 renames)
 - [ ] `mv .opencode/changelog/07--workflows-code--opencode → 07--sk-code--opencode`
 - [ ] `mv .opencode/changelog/08--workflows-code--web-dev → 08--sk-code--web`
-- [ ] `mv .opencode/changelog/09--workflows-code--full-stack → 09--sk-code--full-stack`
+- [ ] `mv .opencode/changelog/09--sk-code--full-stack → 09--sk-code--full-stack`
 - [ ] `mv .opencode/changelog/06--workflows-documentation → 06--sk-documentation`
 - [ ] `mv .opencode/changelog/10--workflows-git → 10--sk-git`
-- [ ] `mv .opencode/changelog/11--workflows-chrome-devtools → 11--mcp-chrome-devtools`
+- [ ] `mv .opencode/changelog/11--mcp-chrome-devtools → 11--mcp-chrome-devtools`
 - [ ] Verify: `workflows-visual-explainer` changelog dir existence
 
 ### Phase 10: Verification
-- [ ] Run: `grep -r "workflows-code--\|workflows-documentation\|workflows-git\|workflows-visual-explainer\|workflows-chrome-devtools" .opencode/skill/ .opencode/command/ .opencode/agent/ .opencode/install_guides/ .claude/ .gemini/ README.md CLAUDE.md AGENTS.md .opencode/README.md`
+- [ ] Run: `grep -r "workflows-code--\|workflows-documentation\|workflows-git\|workflows-visual-explainer\|mcp-chrome-devtools" .opencode/skill/ .opencode/command/ .opencode/agent/ .opencode/install_guides/ .claude/ .gemini/ README.md CLAUDE.md AGENTS.md .opencode/README.md`
 - [ ] Expected: 0 results (excluding changelog content, specs/memory, archives)
 - [ ] Run: `python3 .opencode/skill/scripts/skill_advisor.py "git commit"` → verify returns `sk-git`
 - [ ] Run: `python3 .opencode/skill/scripts/skill_advisor.py "implement feature"` → verify returns `sk-code--web`
@@ -283,6 +283,188 @@ Phase 1 (Filesystem Renames) ──┐
 
 ---
 
+<!-- ANCHOR:dependency-graph -->
+## L3: DEPENDENCY GRAPH
+
+```
+┌──────────────────────────┐
+│  Phase 3 (Full-Stack)    │──► longest match first
+└────────────┬─────────────┘
+             ▼
+┌──────────────────────────┐
+│  Phase 1 (Opencode)      │
+└────────────┬─────────────┘
+             ▼
+┌──────────────────────────┐
+│  Phase 2 (Web)           │
+└────────────┬─────────────┘
+             ▼
+┌──────────────────────────┐
+│  Phase 7 (Chrome DT)     │
+└────────────┬─────────────┘
+             ▼
+┌──────────────────────────┐
+│  Phase 4 (Documentation) │──► highest external refs
+└────────────┬─────────────┘
+             ▼
+┌──────────────────────────┐
+│  Phase 6 (Visual Expl.)  │
+└────────────┬─────────────┘
+             ▼
+┌──────────────────────────┐
+│  Phase 5 (Git)           │──► shortest match last
+└──────────────────────────┘
+```
+
+### Dependency Matrix
+
+| Component | Depends On | Produces | Blocks |
+|-----------|------------|----------|--------|
+| Phase 3 (full-stack) | None | Renamed `sk-code--full-stack` | Phase 1 |
+| Phase 1 (opencode) | Phase 3 | Renamed `sk-code--opencode` | Phase 2 |
+| Phase 2 (web) | Phase 1 | Renamed `sk-code--web` | Phase 7 |
+| Phase 7 (chrome-devtools) | Phase 2 | Renamed `mcp-chrome-devtools` | Phase 4 |
+| Phase 4 (documentation) | Phase 7 | Renamed `sk-documentation` | Phase 6 |
+| Phase 6 (visual-explainer) | Phase 4 | Renamed `sk-visual-explainer` | Phase 5 |
+| Phase 5 (git) | Phase 6 | Renamed `sk-git` | None |
+<!-- /ANCHOR:dependency-graph -->
+
+---
+
+<!-- ANCHOR:critical-path -->
+## L3: CRITICAL PATH
+
+1. **Phase 3: sk-code--full-stack** — 88 internal + 11 external files — CRITICAL (longest match)
+2. **Phase 1: sk-code--opencode** — 35 internal + 13 external files — CRITICAL
+3. **Phase 2: sk-code--web** — 51 internal + 17 external files — CRITICAL
+4. **Phase 7: mcp-chrome-devtools** — 21 internal + 36 external files — CRITICAL
+5. **Phase 4: sk-documentation** — 49 internal + 52 external files — CRITICAL (most external refs)
+6. **Phase 6: sk-visual-explainer** — 22 internal + 6 external files — CRITICAL
+7. **Phase 5: sk-git** — 20 internal + 39 external files — CRITICAL (shortest match last)
+
+**Total Critical Path**: All 7 phases sequential (~370 unique files)
+
+**Parallel Opportunities**:
+- Phase documentation (spec folders) can be created in parallel
+- Actual implementation phases must be sequential to avoid shared file conflicts
+<!-- /ANCHOR:critical-path -->
+
+---
+
+<!-- ANCHOR:milestones -->
+## L3: MILESTONES
+
+| Milestone | Description | Success Criteria | Target |
+|-----------|-------------|------------------|--------|
+| M1 | Phase documentation complete | All 7 phase folders have L2 spec/plan/tasks/checklist | Phase 0 |
+| M2 | Phase 3 complete (full-stack) | `grep "sk-code--full-stack"` = 0 in active files | Phase 3 |
+| M3 | Phases 1-2 complete (code skills) | All `workflows-code--*` variants renamed | Phases 1-2 |
+| M4 | Phase 7 complete (chrome-devtools) | `grep "mcp-chrome-devtools"` = 0 | Phase 7 |
+| M5 | Phase 4 complete (documentation) | 52 external refs updated, HVR templates fixed | Phase 4 |
+| M6 | Phases 5-6 complete (git + visual) | All `workflows-*` names eliminated | Phases 5-6 |
+| M7 | Full verification | `grep -r "workflows-"` = 0 in all active files, all smoke tests pass | Final |
+<!-- /ANCHOR:milestones -->
+
+---
+
+## L3: ARCHITECTURE DECISION RECORD
+
+### ADR-001: Per-Skill Phase Decomposition
+
+**Status**: Accepted
+
+**Context**: Renaming 7 skills across ~370 files requires careful sequencing. Shared files (agent/orchestrate.md, install guides, root docs) are referenced by multiple skills, creating potential merge conflicts.
+
+**Decision**: Decompose the rename into 7 independent phases, one per skill. Each phase handles ALL changes for ONE skill rename, including its entries in shared files.
+
+**Consequences**:
+- Positive: Each phase is independently verifiable via grep
+- Positive: Phases can be planned in parallel (spec/plan/tasks)
+- Negative: Shared files are touched by multiple phases sequentially, requiring execution order discipline
+
+**Alternatives Rejected**:
+- Monolithic: All 7 renames in one pass — rejected because too complex to verify incrementally
+- By-file-type: Group by file type (all agent files, all install guides) — rejected because hard to verify per-skill completeness
+
+---
+
+<!-- ANCHOR:ai-execution -->
+## L3+: AI EXECUTION FRAMEWORK
+
+### Tier 1: Sequential Foundation
+**Files**: Parent spec.md upgrade (L2 → L3+)
+**Duration**: ~120s
+**Agent**: Primary speckit agent
+
+### Tier 2: Parallel Documentation
+| Agent | Focus | Files |
+|-------|-------|-------|
+| Phase 1 Agent | 001-sk-code--opencode/ | spec.md, plan.md, tasks.md, checklist.md |
+| Phase 2 Agent | 002-sk-code--web/ | spec.md, plan.md, tasks.md, checklist.md |
+| Phase 3 Agent | 003-sk-code--full-stack/ | spec.md, plan.md, tasks.md, checklist.md |
+| Phase 4 Agent | 004-sk-documentation/ | spec.md, plan.md, tasks.md, checklist.md |
+| Phase 5 Agent | 005-sk-git/ | spec.md, plan.md, tasks.md, checklist.md |
+| Phase 6 Agent | 006-sk-visual-explainer/ | spec.md, plan.md, tasks.md, checklist.md |
+| Phase 7 Agent | 007-mcp-chrome-devtools/ | spec.md, plan.md, tasks.md, checklist.md |
+
+**Duration**: ~180s (parallel)
+
+### Tier 3: Verification
+**Agent**: Primary
+**Task**: Verify all phase folders, validate cross-references
+**Duration**: ~60s
+<!-- /ANCHOR:ai-execution -->
+
+---
+
+<!-- ANCHOR:workstreams -->
+## L3+: WORKSTREAM COORDINATION
+
+### Workstream Definition
+
+| ID | Name | Owner | Files | Status |
+|----|------|-------|-------|--------|
+| W-A | Phase 3: Full-Stack | Impl Agent | `.opencode/skill/sk-code--full-stack/` | Pending |
+| W-B | Phase 1: Opencode | Impl Agent | `.opencode/skill/workflows-code--opencode/` | Pending |
+| W-C | Phase 2: Web | Impl Agent | `.opencode/skill/workflows-code--web-dev/` | Pending |
+| W-D | Phase 7: Chrome DT | Impl Agent | `.opencode/skill/mcp-chrome-devtools/` | Pending |
+| W-E | Phase 4: Documentation | Impl Agent | `.opencode/skill/workflows-documentation/` | Pending |
+| W-F | Phase 6: Visual Expl. | Impl Agent | `.opencode/skill/workflows-visual-explainer/` | Pending |
+| W-G | Phase 5: Git | Impl Agent | `.opencode/skill/workflows-git/` | Pending |
+
+### Sync Points
+
+| Sync ID | Trigger | Participants | Output |
+|---------|---------|--------------|--------|
+| SYNC-001 | Phases 1-3 complete | W-A, W-B, W-C | All `sk-code--*` variants verified |
+| SYNC-002 | Phase 7 complete | W-D | MCP prefix verified |
+| SYNC-003 | All phases complete | All | Full grep verification: 0 matches |
+
+### File Ownership Rules
+- Each skill folder owned by its phase's workstream
+- Shared files (orchestrate.md, install guides, root docs): each phase updates ONLY its skill's references
+- Phases execute sequentially to avoid shared file conflicts
+- skill_advisor.py: each phase updates ONLY its skill's entries
+<!-- /ANCHOR:workstreams -->
+
+---
+
+<!-- ANCHOR:communication -->
+## L3+: COMMUNICATION PLAN
+
+### Checkpoints
+- **Per Phase**: Grep verification report (0 matches for old name)
+- **Per Milestone**: Cumulative verification across completed phases
+- **Final**: Full system grep + skill_advisor.py smoke tests
+
+### Escalation Path
+1. Partial replacement found post-phase → Re-execute phase with missed files
+2. Shared file conflict → Review execution order, ensure longest-match-first
+3. skill_advisor.py routing failure → Debug with test queries
+<!-- /ANCHOR:communication -->
+
+---
+
 ## IMPLEMENTATION NOTES
 
 ### Recommended Implementation Strategy
@@ -292,10 +474,10 @@ Given the massive number of files (~370), the implementation should use **batch 
 1. **Phase 1**: Use `git mv` for folder renames (preserves git history)
 2. **Phases 2-9**: For each old→new name pair, use recursive find-replace across all relevant directories:
    - Process replacements in order from most specific to least specific to avoid partial matches:
-     1. `workflows-code--full-stack` → `sk-code--full-stack` (longest first)
+     1. `sk-code--full-stack` → `sk-code--full-stack` (longest first)
      2. `workflows-code--opencode` → `sk-code--opencode`
      3. `workflows-code--web-dev` → `sk-code--web`
-     4. `workflows-chrome-devtools` → `mcp-chrome-devtools`
+     4. `mcp-chrome-devtools` → `mcp-chrome-devtools`
      5. `workflows-documentation` → `sk-documentation`
      6. `workflows-visual-explainer` → `sk-visual-explainer`
      7. `workflows-git` → `sk-git`

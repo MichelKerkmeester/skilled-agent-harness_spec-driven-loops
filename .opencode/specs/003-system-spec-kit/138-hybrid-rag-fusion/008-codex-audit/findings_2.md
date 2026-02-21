@@ -23,13 +23,13 @@ Primary evidence:
 
 ## 2) Dead code / underwired modules
 
-### Open findings
+### Status after reconciliation (2026-02-21)
 
 | Area | Finding | File paths |
 |---|---|---|
-| 136 dead/unused | Unreachable benchmark checks + unused exports/types still present | `.opencode/skill/system-spec-kit/scripts/evals/run-performance-benchmarks.ts`, `.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts`, `.opencode/skill/system-spec-kit/scripts/core/workflow.ts`, `.opencode/skill/system-spec-kit/scripts/extractors/contamination-filter.ts` |
-| 138 underwired | Artifact routing + mutation ledger still reported as underwired in runtime integration paths | `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts`, `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts`, `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud.ts`, `.opencode/skill/system-spec-kit/mcp_server/lib/search/artifact-routing.ts`, `.opencode/skill/system-spec-kit/mcp_server/lib/storage/mutation-ledger.ts` |
-| 138 deferred integration | Graph metrics API exists but not surfaced via `memory_stats` handler path | `.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts`, `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud.ts` |
+| 136 dead/unused | **Resolved (2026-02-21)** - unreachable benchmark checks and unused exports/types cleanup completed | `.opencode/skill/system-spec-kit/scripts/evals/run-performance-benchmarks.ts`, `.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts`, `.opencode/skill/system-spec-kit/scripts/core/workflow.ts`, `.opencode/skill/system-spec-kit/scripts/extractors/contamination-filter.ts` |
+| 138 underwired | **Resolved (2026-02-21)** - artifact routing and mutation ledger are wired in runtime handler paths; targeted tests pass (`artifact-routing`, `memory-search-quality-filter`, `handler-memory-save`, `memory-save-extended`, `handler-memory-crud`, `memory-crud-extended`) | `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts`, `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts`, `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud.ts`, `.opencode/skill/system-spec-kit/mcp_server/lib/search/artifact-routing.ts`, `.opencode/skill/system-spec-kit/mcp_server/lib/storage/mutation-ledger.ts` |
+| 138 deferred integration | **Resolved (2026-02-21)** - graph metrics are now surfaced via `memory_stats` handler path | `.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts`, `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud.ts` |
 
 ## 3) Test coverage gaps and misplaced tests
 
@@ -52,7 +52,7 @@ Primary evidence:
 |---|---|---|
 | Install script path references (`install_scripts` vs `install_guides/install_scripts`) | Fixed in codex audit | `.opencode/install_guides/install_scripts/test/run-tests.sh` |
 | Validation test script canonical location mismatch | Fixed with compatibility wrapper + docs update | `.opencode/skill/system-spec-kit/scripts/spec/test-validation.sh`, `.opencode/skill/system-spec-kit/scripts/spec/README.md` |
-| 138 docs still reference non-canonical/non-existent config paths (`config/flags.ts`, `config/production.json`) and strict-true semantics | **Open** | `specs/003-system-spec-kit/138-hybrid-rag-fusion/checklist.md`, `specs/003-system-spec-kit/138-hybrid-rag-fusion/tasks.md`, `specs/003-system-spec-kit/138-hybrid-rag-fusion/003-unified-graph-intelligence/tasks.md` |
+| 138 docs still reference non-canonical/non-existent config paths (`config/flags.ts`, `config/production.json`) and strict-true semantics | **Resolved (2026-02-21 reconciliation)** | `specs/003-system-spec-kit/138-hybrid-rag-fusion/checklist.md`, `specs/003-system-spec-kit/138-hybrid-rag-fusion/tasks.md`, `specs/003-system-spec-kit/138-hybrid-rag-fusion/003-unified-graph-intelligence/tasks.md`, `specs/003-system-spec-kit/138-hybrid-rag-fusion/001-system-speckit-hybrid-rag-fusion/plan.md` |
 
 ## 5) Bugs/misalignments vs workflows-code--opencode
 
@@ -68,21 +68,21 @@ Primary evidence:
 
 ### Remaining alignment gaps
 
-- Spec/docs drift (especially 138/139) conflicts with implementation truth and weakens standards compliance.
-- Contradictory test comments vs assertions (default false comment while assertions verify default true):
+- Residual spec/docs drift narrowed after 136/138/139 reconciliation pass; remaining gaps are outside this documentation-only scope.
+- **Resolved (2026-02-21)** - comment/assertion drift fixed in pipeline integration test:
   - `.opencode/skill/system-spec-kit/mcp_server/tests/pipeline-integration.vitest.ts`
 
 ## 6) Prioritized remediation plan (P0/P1/P2)
 
 | Priority | Action | Concrete file paths |
 |---|---|---|
-| **P0** | Reconcile feature-flag default semantics across 136/138 docs and verification artifacts to match runtime truth (or explicitly change runtime if docs are source of truth). | `specs/003-system-spec-kit/136-mcp-working-memory-hybrid-rag/implementation-summary.md`, `specs/003-system-spec-kit/138-hybrid-rag-fusion/checklist.md`, `specs/003-system-spec-kit/138-hybrid-rag-fusion/tasks.md`, `specs/003-system-spec-kit/138-hybrid-rag-fusion/003-unified-graph-intelligence/tasks.md`, `.opencode/skill/system-spec-kit/mcp_server/lib/search/graph-flags.ts`, `.opencode/skill/system-spec-kit/mcp_server/lib/cache/cognitive/rollout-policy.ts` |
-| **P0** | Close Spec 139 verification drift: synchronize checklist with completed tasks and add missing completion artifact. | `specs/003-system-spec-kit/139-spec-kit-phase-system/checklist.md`, `specs/003-system-spec-kit/139-spec-kit-phase-system/tasks.md`, `specs/003-system-spec-kit/139-spec-kit-phase-system/implementation-summary.md` |
-| **P1** | Finish underwired runtime integrations (artifact routing + mutation ledger coverage in real handler paths; expose graph metrics via `memory_stats`). | `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts`, `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts`, `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud.ts`, `.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts` |
-| **P1** | Remove or justify proven dead/unused symbols and unreachable checks from 136 analysis set. | `.opencode/skill/system-spec-kit/scripts/evals/run-performance-benchmarks.ts`, `.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts`, `.opencode/skill/system-spec-kit/scripts/core/workflow.ts`, `.opencode/skill/system-spec-kit/scripts/extractors/contamination-filter.ts` |
-| **P2** | Clean residual wording/comment drift and run full-repo regression sweep once working tree stabilizes. | `.opencode/skill/system-spec-kit/mcp_server/tests/pipeline-integration.vitest.ts`, `specs/003-system-spec-kit/138-hybrid-rag-fusion/implementation-summary.md`, `specs/003-system-spec-kit/139-spec-kit-phase-system/checklist.md` |
+| **P0** | Reconcile feature-flag default semantics across 136/138 docs and verification artifacts to match runtime truth (or explicitly change runtime if docs are source of truth). | **Completed (2026-02-21)** — `specs/003-system-spec-kit/136-mcp-working-memory-hybrid-rag/implementation-summary.md`, `specs/003-system-spec-kit/136-mcp-working-memory-hybrid-rag/007-documentation-alignment/plan.md`, `specs/003-system-spec-kit/138-hybrid-rag-fusion/checklist.md`, `specs/003-system-spec-kit/138-hybrid-rag-fusion/tasks.md`, `specs/003-system-spec-kit/138-hybrid-rag-fusion/003-unified-graph-intelligence/{tasks.md,checklist.md,plan.md,decision-record.md}` |
+| **P0** | Close Spec 139 verification drift: synchronize checklist with completed tasks and add missing completion artifact. | **Completed (2026-02-21)** — `specs/003-system-spec-kit/139-spec-kit-phase-system/checklist.md`, `specs/003-system-spec-kit/139-spec-kit-phase-system/tasks.md`, `specs/003-system-spec-kit/139-spec-kit-phase-system/implementation-summary.md` |
+| **P1** | Expose graph metrics via `memory_stats` in runtime integration path. | **Completed (2026-02-21)** — `.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts`, `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud.ts` |
+| **P1** | Remove or justify proven dead/unused symbols and unreachable checks from 136 analysis set. | **Completed (2026-02-21)** — `.opencode/skill/system-spec-kit/scripts/evals/run-performance-benchmarks.ts`, `.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts`, `.opencode/skill/system-spec-kit/scripts/core/workflow.ts`, `.opencode/skill/system-spec-kit/scripts/extractors/contamination-filter.ts` |
+| **P2** | Clean residual wording/comment drift and run full-repo regression sweep once working tree stabilizes. | **Partially completed (2026-02-21)** — comment drift fix completed in `.opencode/skill/system-spec-kit/mcp_server/tests/pipeline-integration.vitest.ts`; full-repo regression sweep remains pending on dirty tree. |
 
 ## 7) Current confidence
 
 - High confidence on fixed items listed in codex audit baseline and targeted test evidence.
-- Medium confidence on residual underwiring/drift areas until P0/P1 remediation is completed.
+- Medium confidence on residual underwiring/regression-risk areas until full-repo sweep is completed on a clean/stable tree.

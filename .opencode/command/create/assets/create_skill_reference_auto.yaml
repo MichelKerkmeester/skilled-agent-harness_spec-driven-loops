@@ -5,7 +5,7 @@
 # Note: This workflow executes all steps sequentially with
 #       continuous self-validation. Pauses only if confidence < 40%.
 # ───────────────────────────────────────────────────────────────────
-role: Expert Reference Creator using workflows-documentation skill
+role: Expert Reference Creator using sk-documentation skill
 purpose: Create reference files for existing skills (Level 3 progressive disclosure)
 action: Generate workflow, patterns, debugging, or tool integration documentation
 
@@ -15,7 +15,7 @@ action: Generate workflow, patterns, debugging, or tool integration documentatio
 # This workflow REQUIRES the @write agent for:
 #   • Template-first workflow (loads templates before creating)
 #   • DQI scoring (target: 75+ Good)
-#   • workflows-documentation skill integration
+#   • sk-documentation skill integration
 #
 # STANDALONE MODE: PHASE 0 in the command markdown verifies @write
 # agent BEFORE this YAML workflow loads.
@@ -255,10 +255,10 @@ quality_standards:
   dqi_minimum: 75
   dqi_enforcement: HARD_BLOCK
   validation_pipeline:
-    stage_1: "python3 .opencode/skill/workflows-documentation/scripts/validate_document.py [file]"
-    stage_2: "python3 .opencode/skill/workflows-documentation/scripts/extract_structure.py [file]"
+    stage_1: "python3 .opencode/skill/sk-documentation/scripts/validate_document.py [file]"
+    stage_2: "python3 .opencode/skill/sk-documentation/scripts/extract_structure.py [file]"
   template_adherence: required
-  core_standards_reference: ".opencode/skill/workflows-documentation/references/core_standards.md"
+  core_standards_reference: ".opencode/skill/sk-documentation/references/core_standards.md"
 
 # ─────────────────────────────────────────────────────────────────
 # WORKFLOW (6 STEPS WITH CHECKPOINTS)
@@ -319,10 +319,10 @@ workflow:
   step_3_template_loading:
     purpose: Load skill_reference_template.md and extract type-specific patterns
     activities:
-    - Read skill_reference_template.md from workflows-documentation skill
+    - Read skill_reference_template.md from sk-documentation skill
     - Extract patterns based on reference_type
     - Note formatting requirements (checkpoints, code blocks)
-    template_path: .opencode/skill/workflows-documentation/assets/opencode/skill_reference_template.md
+    template_path: .opencode/skill/sk-documentation/assets/opencode/skill_reference_template.md
     type_specific_patterns:
       workflow:
       - "Core Principle Statements"
@@ -600,7 +600,7 @@ completion_report:
 # ─────────────────────────────────────────────────────────────────
 error_recovery:
   template_not_found:
-    action: "Report template path, verify workflows-documentation skill exists"
+    action: "Report template path, verify sk-documentation skill exists"
     fallback: "Use minimal structure based on reference type"
   skill_not_found:
     action: "List available skills, prompt for selection"
@@ -628,8 +628,8 @@ error_recovery:
 # REFERENCE TEMPLATES
 # ─────────────────────────────────────────────────────────────────
 reference_templates:
-  skill_reference: .opencode/skill/workflows-documentation/assets/opencode/skill_reference_template.md
-  core_standards: .opencode/skill/workflows-documentation/references/core_standards.md
+  skill_reference: .opencode/skill/sk-documentation/assets/opencode/skill_reference_template.md
+  core_standards: .opencode/skill/sk-documentation/references/core_standards.md
 
 # ─────────────────────────────────────────────────────────────────
 # TERMINATION

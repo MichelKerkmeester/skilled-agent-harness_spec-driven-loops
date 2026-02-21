@@ -822,6 +822,18 @@ describe('handleMemoryStats - Happy Path', () => {
     expect(parsed?.data).toBeDefined();
   });
 
+  it('EXT-S8: Stats exposes graph channel metrics from hybrid-search', async () => {
+    if (!handler?.handleMemoryStats || !vectorIndex) return;
+    installStatsMocks({});
+    const hybridSearch = await import('../lib/search/hybrid-search');
+
+    const result = await handler.handleMemoryStats({});
+    const parsed = parseResponse(result);
+
+    expect(parsed?.data?.graphChannelMetrics).toEqual(hybridSearch.getGraphMetrics());
+    expect(typeof parsed?.data?.graphChannelMetrics?.graphHitRate).toBe('number');
+  });
+
   it('EXT-S7: No DB returns error response', async () => {
     if (!handler?.handleMemoryStats || !vectorIndex) return;
     vi.mocked(vectorIndex.getDb).mockImplementation(() => null);

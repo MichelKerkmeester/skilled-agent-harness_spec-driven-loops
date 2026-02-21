@@ -1,6 +1,6 @@
 ---
 title: "Memory Scripts"
-description: "TypeScript CLIs for memory context generation, ranking, and vector cleanup."
+description: "TypeScript CLIs for memory context generation, enrichment, ranking, quality checks, and index maintenance."
 trigger_phrases:
   - "memory scripts"
   - "generate context"
@@ -35,7 +35,10 @@ The `memory/` directory contains the CLI entrypoints for the Spec Kit memory pip
 - `generate-context.ts` - generate memory output from spec folder or JSON input
 - `rank-memories.ts` - rank memory candidates by scoring rules
 - `cleanup-orphaned-vectors.ts` - remove stale vector rows not linked to active memories
+- `graph-enrichment.ts` - compute and attach graph-derived enrichment signals
 - `validate-memory-quality.ts` - validates memory entry quality against scoring thresholds
+- `reindex-embeddings.ts` - force full embedding reindex across memory/spec documents
+- `ast-parser.ts` - parse markdown into heading/code/table-aware sections
 
 Runtime files are compiled into `../dist/memory/`.
 
@@ -66,6 +69,7 @@ node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js /tm
 ```bash
 node .opencode/skill/system-spec-kit/scripts/dist/memory/rank-memories.js /tmp/memories.json
 node .opencode/skill/system-spec-kit/scripts/dist/memory/cleanup-orphaned-vectors.js
+node .opencode/skill/system-spec-kit/scripts/dist/memory/reindex-embeddings.js
 ```
 
 

@@ -1179,5 +1179,5 @@ Templates are now organized in level folders for pre-expanded, level-appropriate
 ### Related Skills
 - `workflows-code` - Implementation, debugging, and verification lifecycle
 - `system-spec-kit` - Context preservation with semantic memory
-- `workflows-git` - Git workspace setup and clean commits
+- `sk-git` - Git workspace setup and clean commits
 <!-- /ANCHOR:related-resources -->

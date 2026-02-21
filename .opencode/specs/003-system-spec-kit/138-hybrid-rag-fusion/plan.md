@@ -373,7 +373,7 @@ Phase 1 (MMR + TRM)                          Phase 2 (BM25 + Graph edge weights)
 
 **Context**: Workstream A introduces five distinct retrieval enhancements. Rolling back a single enhancement after a combined deploy is costly.
 
-**Decision**: Each enhancement is gated behind a dedicated environment variable. All flags default to `false`, preserving current behaviour on deploy. Flags are activated per-environment after smoke testing.
+**Decision**: Each enhancement is gated behind a dedicated environment variable. Runtime flag behavior follows rollout-policy semantics (unset/empty/`true` enabled, explicit `false` disabled), and rollout control uses explicit `false` during dark-launch phases where baseline behavior must be preserved.
 
 **Consequences**:
 - Positive: Each phase is independently reversible in seconds without a code deploy.
