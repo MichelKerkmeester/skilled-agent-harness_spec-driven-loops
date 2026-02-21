@@ -3,40 +3,44 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SQLite vs libSQL Pros and Cons</title>
+<title>SQLite vs libSQL: Feature-Based Decision Comparison</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
-    --ve-bg: #f6f7f3;
-    --ve-surface: #ffffff;
-    --ve-surface-alt: #eef1e8;
-    --ve-border: rgba(26, 33, 24, 0.12);
-    --ve-border-strong: rgba(26, 33, 24, 0.22);
-    --ve-text: #1f271c;
-    --ve-text-dim: #5f6958;
-    --ve-accent: #0f766e;
-    --ve-accent-dim: rgba(15, 118, 110, 0.1);
-    --ve-accent-2: #9a3412;
-    --ve-shadow: 0 14px 40px rgba(18, 24, 16, 0.08);
-    --ve-font-body: 'Bricolage Grotesque', system-ui, sans-serif;
+    --ve-font-display: 'Instrument Serif', Georgia, serif;
     --ve-font-mono: 'JetBrains Mono', 'SF Mono', Consolas, monospace;
+    --ve-bg: #fff5f5;
+    --ve-surface: #ffffff;
+    --ve-surface-2: #fef0ee;
+    --ve-border: rgba(0,0,0,0.08);
+    --ve-border-strong: rgba(0,0,0,0.16);
+    --ve-text: #201917;
+    --ve-text-dim: #7b6f69;
+    --ve-accent: #be123c;
+    --ve-accent-dim: rgba(190,18,60,0.09);
+    --ve-pass: #16a34a;
+    --ve-warn: #d97706;
+    --ve-gap: #dc2626;
+    --ve-shadow: 0 16px 36px rgba(38, 20, 26, 0.08);
   }
 
   @media (prefers-color-scheme: dark) {
     :root {
-      --ve-bg: #121713;
-      --ve-surface: #1a231b;
-      --ve-surface-alt: #212c22;
-      --ve-border: rgba(226, 239, 224, 0.12);
-      --ve-border-strong: rgba(226, 239, 224, 0.24);
-      --ve-text: #e6efe0;
-      --ve-text-dim: #a6b8a1;
-      --ve-accent: #5eead4;
-      --ve-accent-dim: rgba(94, 234, 212, 0.12);
-      --ve-accent-2: #fdba74;
-      --ve-shadow: 0 16px 44px rgba(0, 0, 0, 0.35);
+      --ve-bg: #1a0d0d;
+      --ve-surface: #241616;
+      --ve-surface-2: #2f1d1d;
+      --ve-border: rgba(255,255,255,0.08);
+      --ve-border-strong: rgba(255,255,255,0.16);
+      --ve-text: #ffe8e8;
+      --ve-text-dim: #c6aaa8;
+      --ve-accent: #fb7185;
+      --ve-accent-dim: rgba(251,113,133,0.14);
+      --ve-pass: #4ade80;
+      --ve-warn: #fbbf24;
+      --ve-gap: #f87171;
+      --ve-shadow: 0 20px 44px rgba(0,0,0,0.35);
     }
   }
 
@@ -44,286 +48,196 @@
 
   body {
     margin: 0;
-    padding: 36px 22px 80px;
+    padding: 34px 20px 72px;
     color: var(--ve-text);
-    font-family: var(--ve-font-body);
-    background:
-      radial-gradient(1200px 600px at -10% -10%, var(--ve-accent-dim), transparent 65%),
-      radial-gradient(900px 500px at 110% 110%, color-mix(in srgb, var(--ve-accent-2) 16%, transparent), transparent 60%),
-      var(--ve-bg);
+    font-family: system-ui, -apple-system, sans-serif;
+    background-color: var(--ve-bg);
+    background-image: radial-gradient(1000px 560px at 8% 0%, var(--ve-accent-dim), transparent 64%), radial-gradient(900px 500px at 92% 100%, color-mix(in srgb, var(--ve-pass) 14%, transparent), transparent 62%);
   }
 
-  .page {
-    width: min(1200px, 100%);
+  .wrap {
+    width: min(1160px, 100%);
     margin: 0 auto;
-    display: grid;
-    grid-template-columns: 270px minmax(0, 1fr);
-    gap: 22px;
     min-width: 0;
   }
 
-  .side,
-  .main {
-    min-width: 0;
-  }
-
-  .panel {
+  .hero,
+  .content {
     background: var(--ve-surface);
     border: 1px solid var(--ve-border);
-    border-radius: 16px;
+    border-radius: 12px;
     box-shadow: var(--ve-shadow);
   }
 
-  .side {
-    position: sticky;
-    top: 20px;
-    align-self: start;
-    padding: 18px;
-  }
-
-  .eyebrow {
-    font-family: var(--ve-font-mono);
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 1.3px;
-    color: var(--ve-accent);
-    margin-bottom: 8px;
-  }
-
-  .doc-title {
-    font-size: 20px;
-    line-height: 1.22;
-    margin: 0 0 8px;
-  }
-
-  .doc-meta {
-    margin: 0 0 18px;
-    color: var(--ve-text-dim);
-    font-size: 12px;
-    line-height: 1.45;
-    font-family: var(--ve-font-mono);
-    overflow-wrap: break-word;
-  }
-
-  .toc-title {
-    font-family: var(--ve-font-mono);
-    text-transform: uppercase;
-    letter-spacing: 1.1px;
-    font-size: 11px;
-    color: var(--ve-text-dim);
-    margin: 0 0 10px;
-  }
-
-  .toc-list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: grid;
-    gap: 8px;
-  }
-
-  .toc-list a {
-    display: block;
-    color: var(--ve-text);
-    text-decoration: none;
-    border: 1px solid var(--ve-border);
-    background: var(--ve-surface-alt);
-    border-radius: 10px;
-    padding: 8px 10px;
-    font-size: 12px;
-    line-height: 1.35;
-    transition: border-color 0.15s ease, background-color 0.15s ease;
-    overflow-wrap: break-word;
-  }
-
-  .toc-list a:hover {
-    border-color: var(--ve-border-strong);
-    background: var(--ve-accent-dim);
-  }
-
-  .toc-list .toc-h3 {
-    margin-left: 12px;
-    font-size: 11px;
-  }
-
-  .main {
-    padding: 28px 34px 34px;
-  }
-
   .hero {
-    padding-bottom: 18px;
-    border-bottom: 1px solid var(--ve-border);
-    margin-bottom: 22px;
+    padding: 24px 26px;
+    margin-bottom: 16px;
   }
 
   .hero h1 {
-    margin: 0 0 10px;
-    font-size: clamp(30px, 4vw, 46px);
+    margin: 0 0 8px;
+    font-family: var(--ve-font-display);
+    font-size: clamp(32px, 4vw, 44px);
+    font-weight: 400;
     line-height: 1.05;
     letter-spacing: -0.02em;
-    text-wrap: balance;
   }
 
   .hero p {
     margin: 0;
-    color: var(--ve-text-dim);
     font-family: var(--ve-font-mono);
     font-size: 12px;
-    line-height: 1.5;
+    color: var(--ve-text-dim);
   }
 
-  .content :is(h1, h2, h3, h4) {
-    scroll-margin-top: 24px;
+  .kpi {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+    margin-top: 14px;
   }
 
-  .content > h1:first-child {
-    display: none;
-  }
-
-  .content h2 {
-    margin: 26px 0 10px;
-    font-size: 26px;
-    line-height: 1.2;
-    border-left: 4px solid var(--ve-accent);
-    padding-left: 10px;
-  }
-
-  .content h3 {
-    margin: 20px 0 8px;
-    font-size: 20px;
-    line-height: 1.28;
-  }
-
-  .content h4 {
-    margin: 16px 0 8px;
-    font-size: 16px;
-    line-height: 1.35;
-  }
-
-  .content p {
-    margin: 10px 0;
-    line-height: 1.72;
-    color: var(--ve-text);
-    overflow-wrap: break-word;
-  }
-
-  .content ul,
-  .content ol {
-    margin: 8px 0 12px 22px;
-    padding: 0;
-  }
-
-  .content li {
-    margin: 6px 0;
-    line-height: 1.6;
-    overflow-wrap: break-word;
-  }
-
-  .content code {
-    font-family: var(--ve-font-mono);
-    font-size: 0.86em;
-    background: var(--ve-accent-dim);
-    color: var(--ve-accent);
-    padding: 2px 6px;
-    border-radius: 6px;
-    overflow-wrap: break-word;
-  }
-
-  .content pre {
-    background: var(--ve-surface-alt);
+  .kpi .card {
+    min-width: 0;
     border: 1px solid var(--ve-border);
-    border-radius: 12px;
-    padding: 14px;
-    overflow-x: auto;
-  }
-
-  .content pre code {
-    background: transparent;
-    padding: 0;
-    color: inherit;
-  }
-
-  .table-scroll {
-    margin: 14px 0 18px;
-    overflow-x: auto;
-    border: 1px solid var(--ve-border);
-    border-radius: 12px;
-    background: var(--ve-surface);
-  }
-
-  .content table {
-    width: 100%;
-    border-collapse: collapse;
-    min-width: 760px;
-  }
-
-  .content th,
-  .content td {
-    vertical-align: top;
-    text-align: left;
+    border-radius: 10px;
+    background: var(--ve-surface-2);
     padding: 10px 12px;
-    border-bottom: 1px solid var(--ve-border);
-    line-height: 1.5;
-    overflow-wrap: break-word;
   }
 
-  .content thead th {
-    position: sticky;
-    top: 0;
-    z-index: 1;
-    background: var(--ve-surface-alt);
+  .kpi .label {
+    margin: 0 0 3px;
     font-family: var(--ve-font-mono);
-    font-size: 11px;
-    letter-spacing: 0.06em;
+    font-size: 10px;
+    letter-spacing: 1px;
     text-transform: uppercase;
     color: var(--ve-text-dim);
   }
 
-  .content tr:last-child td {
-    border-bottom: 0;
-  }
-
-  .content blockquote {
-    margin: 14px 0;
-    padding: 10px 14px;
-    background: var(--ve-surface-alt);
-    border-left: 3px solid var(--ve-accent-2);
-    border-radius: 0 10px 10px 0;
-  }
-
-  .content a {
+  .kpi .value {
+    margin: 0;
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1.1;
     color: var(--ve-accent);
-    text-decoration-thickness: 1px;
-    text-underline-offset: 2px;
   }
 
-  .content hr {
-    border: 0;
-    border-top: 1px solid var(--ve-border);
-    margin: 24px 0;
+  .content {
+    padding: 20px 24px 26px;
+    min-width: 0;
   }
 
-  .animate {
+  #content > h1:first-child { display: none; }
+
+  #content h2 {
+    margin: 22px 0 10px;
+    padding: 7px 11px;
+    border-left: 4px solid var(--ve-accent);
+    background: var(--ve-surface-2);
+    border-radius: 0 8px 8px 0;
+    font-size: 24px;
+    line-height: 1.2;
+  }
+
+  #content h3 {
+    margin: 16px 0 8px;
+    font-size: 19px;
+    line-height: 1.28;
+  }
+
+  #content p,
+  #content li {
+    line-height: 1.72;
+    font-size: 14px;
+    overflow-wrap: break-word;
+  }
+
+  #content ul,
+  #content ol {
+    margin: 8px 0 12px 22px;
+    padding: 0;
+  }
+
+  #content code {
+    font-family: var(--ve-font-mono);
+    background: var(--ve-accent-dim);
+    color: var(--ve-accent);
+    padding: 2px 6px;
+    border-radius: 5px;
+    font-size: 0.84em;
+  }
+
+  .table-scroll {
+    margin: 12px 0 16px;
+    border: 1px solid var(--ve-border);
+    border-radius: 10px;
+    overflow-x: auto;
+    background: var(--ve-surface);
+  }
+
+  #content table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 900px;
+  }
+
+  #content th,
+  #content td {
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--ve-border);
+    text-align: left;
+    vertical-align: top;
+    font-size: 13px;
+    line-height: 1.55;
+    overflow-wrap: break-word;
+  }
+
+  #content thead th {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background: var(--ve-surface-2);
+    font-family: var(--ve-font-mono);
+    font-size: 10px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--ve-text-dim);
+  }
+
+  #content tr:nth-child(even) td {
+    background: color-mix(in srgb, var(--ve-surface) 84%, var(--ve-accent-dim));
+  }
+
+  #content tr:last-child td { border-bottom: 0; }
+
+  .status {
+    display: inline-flex;
+    align-items: center;
+    padding: 2px 8px;
+    border-radius: 6px;
+    font-family: var(--ve-font-mono);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: .3px;
+  }
+
+  .status.ok { color: var(--ve-pass); background: color-mix(in srgb, var(--ve-pass) 16%, transparent); }
+  .status.warn { color: var(--ve-warn); background: color-mix(in srgb, var(--ve-warn) 16%, transparent); }
+  .status.gap { color: var(--ve-gap); background: color-mix(in srgb, var(--ve-gap) 16%, transparent); }
+
+  .anim {
     opacity: 0;
     transform: translateY(8px);
-    animation: fadeUp 0.36s ease forwards;
+    animation: fadeUp .36s ease forwards;
     animation-delay: calc(var(--i, 0) * 0.04s);
   }
 
   @keyframes fadeUp {
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    to { opacity: 1; transform: translateY(0); }
   }
 
-  @media (max-width: 980px) {
-    .page {
-      grid-template-columns: 1fr;
-    }
-    .side {
-      position: static;
-    }
+  @media (max-width: 900px) {
+    .kpi { grid-template-columns: 1fr; }
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -338,20 +252,19 @@
 </style>
 </head>
 <body>
-  <div class="page">
-    <aside class="side panel">
-      <p class="eyebrow">Visual Explainer</p>
-      <h2 class="doc-title">SQLite vs libSQL Pros and Cons</h2>
-      <p class="doc-meta">Source: research/sqlite-vs-libsql-pros-cons.md<br>Generated: 20260221-185304</p>
-      <h3 class="toc-title">Contents</h3>
-      <ul id="toc" class="toc-list"></ul>
-    </aside>
-    <main class="main panel">
-      <header class="hero">
-        <h1>SQLite vs libSQL Pros and Cons</h1>
-        <p>Source: research/sqlite-vs-libsql-pros-cons.md</p>
-      </header>
-      <article id="content" class="content">
+<div class="wrap">
+  <header class="hero">
+    <h1>SQLite vs libSQL: Feature-Based Decision Comparison</h1>
+    <p>Pros/cons matrix visual | Generated: 2026-02-21 19:18:06</p>
+    <div class="kpi" aria-label="document summary">
+      <div class="card"><p class="label">Sections</p><p id="kpi-sections" class="value">0</p></div>
+      <div class="card"><p class="label">Tables</p><p id="kpi-tables" class="value">0</p></div>
+      <div class="card"><p class="label">References</p><p id="kpi-refs" class="value">0</p></div>
+    </div>
+  </header>
+
+  <main class="content">
+    <article id="content">
 <h1>SQLite vs libSQL: Feature-Based Decision Comparison</h1>
 <p>Audience: Engineering decision-makers
 Source validation date: February 21, 2026</p>
@@ -527,58 +440,51 @@ Selection caveat: validate driver feature parity and protocol support for your p
 <li><a href="https://docs.turso.tech">https://docs.turso.tech</a></li>
 </ul>
 
-      </article>
-    </main>
-  </div>
+    </article>
+  </main>
+</div>
 
 <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.2/lib/anime.min.js"></script>
 <script>
 (function () {
   const content = document.getElementById('content');
-  const toc = document.getElementById('toc');
-  if (!content || !toc) return;
-
-  const slugify = (text) => text
-    .toLowerCase()
-    .replace(/`/g, '')
-    .replace(/[^a-z0-9\s-]/g, '')
-    .trim()
-    .replace(/\s+/g, '-');
-
-  const headings = content.querySelectorAll('h2, h3');
-  const seen = new Map();
-
-  headings.forEach((heading) => {
-    let id = heading.id || slugify(heading.textContent || 'section');
-    const count = seen.get(id) || 0;
-    seen.set(id, count + 1);
-    if (count > 0) id = `${id}-${count + 1}`;
-    heading.id = id;
-
-    const li = document.createElement('li');
-    const a = document.createElement('a');
-    if (heading.tagName.toLowerCase() === 'h3') a.classList.add('toc-h3');
-    a.href = `#${id}`;
-    a.textContent = heading.textContent || id;
-    li.appendChild(a);
-    toc.appendChild(li);
-  });
+  if (!content) return;
 
   content.querySelectorAll('table').forEach((table) => {
-    const wrapper = document.createElement('div');
-    wrapper.className = 'table-scroll';
-    table.parentNode.insertBefore(wrapper, table);
-    wrapper.appendChild(table);
+    const wrap = document.createElement('div');
+    wrap.className = 'table-scroll';
+    table.parentNode.insertBefore(wrap, table);
+    wrap.appendChild(table);
   });
 
-  content.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach((a) => {
-    a.setAttribute('target', '_blank');
-    a.setAttribute('rel', 'noopener noreferrer');
+  // Lightweight badge mapping for decision-oriented wording in table cells.
+  content.querySelectorAll('td').forEach((td) => {
+    const text = td.textContent || '';
+    if (/\b(choose|default|low risk|pass|compatible|portable)\b/i.test(text)) {
+      const badge = document.createElement('span');
+      badge.className = 'status ok';
+      badge.textContent = 'Strong';
+      td.prepend(badge, document.createTextNode(' '));
+    } else if (/\b(uncertain|caveat|depends|validate|can vary)\b/i.test(text)) {
+      const badge = document.createElement('span');
+      badge.className = 'status warn';
+      badge.textContent = 'Verify';
+      td.prepend(badge, document.createTextNode(' '));
+    } else if (/\b(blocker|risk|overhead|not possible|forbidden)\b/i.test(text)) {
+      const badge = document.createElement('span');
+      badge.className = 'status gap';
+      badge.textContent = 'Risk';
+      td.prepend(badge, document.createTextNode(' '));
+    }
   });
 
-  const animated = content.querySelectorAll('h2, h3, p, ul, ol, blockquote, pre, .table-scroll');
-  animated.forEach((el, i) => {
-    el.classList.add('animate');
+  document.getElementById('kpi-sections').textContent = String(content.querySelectorAll('h2').length);
+  document.getElementById('kpi-tables').textContent = String(content.querySelectorAll('table').length);
+  document.getElementById('kpi-refs').textContent = String(content.querySelectorAll('a, code').length);
+
+  const targets = content.querySelectorAll('h2, h3, p, ul, ol, .table-scroll, blockquote');
+  targets.forEach((el, i) => {
+    el.classList.add('anim');
     el.style.setProperty('--i', String(i));
   });
 })();

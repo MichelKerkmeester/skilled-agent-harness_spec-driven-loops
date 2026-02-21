@@ -3,40 +3,40 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Analysis: System Spec Kit MCP SQLite vs libSQL</title>
+<title>Analysis: System Spec Kit MCP SQLite vs libSQL/Turso</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --ve-bg: #f6f7f3;
+    --ve-font-body: 'IBM Plex Sans', system-ui, sans-serif;
+    --ve-font-mono: 'IBM Plex Mono', 'SF Mono', Consolas, monospace;
+    --ve-bg: #faf7f5;
     --ve-surface: #ffffff;
-    --ve-surface-alt: #eef1e8;
-    --ve-border: rgba(26, 33, 24, 0.12);
-    --ve-border-strong: rgba(26, 33, 24, 0.22);
-    --ve-text: #1f271c;
-    --ve-text-dim: #5f6958;
-    --ve-accent: #0f766e;
-    --ve-accent-dim: rgba(15, 118, 110, 0.1);
-    --ve-accent-2: #9a3412;
-    --ve-shadow: 0 14px 40px rgba(18, 24, 16, 0.08);
-    --ve-font-body: 'Bricolage Grotesque', system-ui, sans-serif;
-    --ve-font-mono: 'JetBrains Mono', 'SF Mono', Consolas, monospace;
+    --ve-surface-2: #f5f0ec;
+    --ve-border: rgba(0, 0, 0, 0.08);
+    --ve-border-strong: rgba(0, 0, 0, 0.16);
+    --ve-text: #2a1f17;
+    --ve-text-dim: #7e7062;
+    --ve-accent: #c2410c;
+    --ve-accent-dim: rgba(194, 65, 12, 0.09);
+    --ve-accent-2: #4d7c0f;
+    --ve-shadow: 0 16px 36px rgba(41, 32, 23, 0.08);
   }
 
   @media (prefers-color-scheme: dark) {
     :root {
-      --ve-bg: #121713;
-      --ve-surface: #1a231b;
-      --ve-surface-alt: #212c22;
-      --ve-border: rgba(226, 239, 224, 0.12);
-      --ve-border-strong: rgba(226, 239, 224, 0.24);
-      --ve-text: #e6efe0;
-      --ve-text-dim: #a6b8a1;
-      --ve-accent: #5eead4;
-      --ve-accent-dim: rgba(94, 234, 212, 0.12);
-      --ve-accent-2: #fdba74;
-      --ve-shadow: 0 16px 44px rgba(0, 0, 0, 0.35);
+      --ve-bg: #191411;
+      --ve-surface: #241d19;
+      --ve-surface-2: #2f2621;
+      --ve-border: rgba(255, 255, 255, 0.08);
+      --ve-border-strong: rgba(255, 255, 255, 0.16);
+      --ve-text: #f0e8df;
+      --ve-text-dim: #b39f8d;
+      --ve-accent: #fb923c;
+      --ve-accent-dim: rgba(251, 146, 60, 0.15);
+      --ve-accent-2: #bef264;
+      --ve-shadow: 0 20px 44px rgba(0, 0, 0, 0.35);
     }
   }
 
@@ -44,286 +44,263 @@
 
   body {
     margin: 0;
-    padding: 36px 22px 80px;
+    padding: 34px 20px 72px;
     color: var(--ve-text);
     font-family: var(--ve-font-body);
-    background:
-      radial-gradient(1200px 600px at -10% -10%, var(--ve-accent-dim), transparent 65%),
-      radial-gradient(900px 500px at 110% 110%, color-mix(in srgb, var(--ve-accent-2) 16%, transparent), transparent 60%),
-      var(--ve-bg);
+    background-color: var(--ve-bg);
+    background-image: radial-gradient(1100px 560px at 5% 0%, var(--ve-accent-dim), transparent 62%), radial-gradient(900px 460px at 96% 100%, color-mix(in srgb, var(--ve-accent-2) 15%, transparent), transparent 60%);
   }
 
-  .page {
-    width: min(1200px, 100%);
+  .layout {
+    width: min(1240px, 100%);
     margin: 0 auto;
     display: grid;
-    grid-template-columns: 270px minmax(0, 1fr);
+    grid-template-columns: 280px minmax(0, 1fr);
     gap: 22px;
-    min-width: 0;
-  }
-
-  .side,
-  .main {
-    min-width: 0;
   }
 
   .panel {
+    min-width: 0;
     background: var(--ve-surface);
     border: 1px solid var(--ve-border);
-    border-radius: 16px;
+    border-radius: 14px;
     box-shadow: var(--ve-shadow);
   }
 
-  .side {
+  .sidebar {
     position: sticky;
-    top: 20px;
+    top: 16px;
     align-self: start;
-    padding: 18px;
+    padding: 16px;
   }
 
-  .eyebrow {
+  .tag {
     font-family: var(--ve-font-mono);
     font-size: 11px;
+    letter-spacing: 1.2px;
     text-transform: uppercase;
-    letter-spacing: 1.3px;
     color: var(--ve-accent);
-    margin-bottom: 8px;
-  }
-
-  .doc-title {
-    font-size: 20px;
-    line-height: 1.22;
     margin: 0 0 8px;
   }
 
-  .doc-meta {
-    margin: 0 0 18px;
-    color: var(--ve-text-dim);
-    font-size: 12px;
-    line-height: 1.45;
+  .sidebar h2 {
+    margin: 0 0 8px;
+    font-size: 20px;
+    line-height: 1.24;
+  }
+
+  .meta {
     font-family: var(--ve-font-mono);
-    overflow-wrap: break-word;
+    font-size: 11px;
+    line-height: 1.45;
+    color: var(--ve-text-dim);
+    margin: 0 0 16px;
   }
 
   .toc-title {
+    margin: 0 0 8px;
     font-family: var(--ve-font-mono);
-    text-transform: uppercase;
-    letter-spacing: 1.1px;
     font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
     color: var(--ve-text-dim);
-    margin: 0 0 10px;
   }
 
-  .toc-list {
+  .toc {
     list-style: none;
     margin: 0;
     padding: 0;
     display: grid;
     gap: 8px;
+    min-width: 0;
   }
 
-  .toc-list a {
+  .toc a {
     display: block;
-    color: var(--ve-text);
     text-decoration: none;
+    color: var(--ve-text);
     border: 1px solid var(--ve-border);
-    background: var(--ve-surface-alt);
-    border-radius: 10px;
-    padding: 8px 10px;
+    background: var(--ve-surface-2);
+    border-radius: 8px;
+    padding: 7px 10px;
     font-size: 12px;
     line-height: 1.35;
-    transition: border-color 0.15s ease, background-color 0.15s ease;
+    min-width: 0;
     overflow-wrap: break-word;
+    transition: background-color 0.15s ease, border-color 0.15s ease;
   }
 
-  .toc-list a:hover {
-    border-color: var(--ve-border-strong);
+  .toc a:hover {
     background: var(--ve-accent-dim);
+    border-color: var(--ve-border-strong);
   }
 
-  .toc-list .toc-h3 {
-    margin-left: 12px;
+  .toc a.h3 {
+    margin-left: 10px;
     font-size: 11px;
   }
 
-  .main {
-    padding: 28px 34px 34px;
+  .content-wrap {
+    padding: 26px 30px 32px;
+    min-width: 0;
   }
 
   .hero {
-    padding-bottom: 18px;
-    border-bottom: 1px solid var(--ve-border);
-    margin-bottom: 22px;
+    margin-bottom: 18px;
+    padding: 20px 22px;
+    border: 1px solid var(--ve-border);
+    border-left: 4px solid var(--ve-accent);
+    border-radius: 10px;
+    background: color-mix(in srgb, var(--ve-surface) 72%, var(--ve-accent-dim));
   }
 
   .hero h1 {
-    margin: 0 0 10px;
-    font-size: clamp(30px, 4vw, 46px);
-    line-height: 1.05;
+    margin: 0 0 8px;
+    font-size: clamp(31px, 3.2vw, 42px);
+    line-height: 1.08;
     letter-spacing: -0.02em;
     text-wrap: balance;
   }
 
   .hero p {
     margin: 0;
-    color: var(--ve-text-dim);
     font-family: var(--ve-font-mono);
     font-size: 12px;
-    line-height: 1.5;
+    color: var(--ve-text-dim);
   }
 
-  .content :is(h1, h2, h3, h4) {
-    scroll-margin-top: 24px;
-  }
+  #content > h1:first-child { display: none; }
 
-  .content > h1:first-child {
-    display: none;
-  }
-
-  .content h2 {
+  #content h2 {
     margin: 26px 0 10px;
-    font-size: 26px;
-    line-height: 1.2;
+    padding: 8px 12px;
+    border: 1px solid var(--ve-border);
     border-left: 4px solid var(--ve-accent);
-    padding-left: 10px;
+    border-radius: 8px;
+    background: var(--ve-surface-2);
+    font-size: 24px;
+    line-height: 1.2;
+    text-wrap: balance;
   }
 
-  .content h3 {
+  #content h3 {
     margin: 20px 0 8px;
-    font-size: 20px;
-    line-height: 1.28;
+    font-size: 19px;
+    line-height: 1.3;
   }
 
-  .content h4 {
+  #content h4 {
     margin: 16px 0 8px;
-    font-size: 16px;
+    font-size: 15px;
     line-height: 1.35;
   }
 
-  .content p {
-    margin: 10px 0;
+  #content p,
+  #content li {
+    font-size: 14px;
     line-height: 1.72;
-    color: var(--ve-text);
     overflow-wrap: break-word;
   }
 
-  .content ul,
-  .content ol {
+  #content ul,
+  #content ol {
     margin: 8px 0 12px 22px;
     padding: 0;
   }
 
-  .content li {
-    margin: 6px 0;
-    line-height: 1.6;
-    overflow-wrap: break-word;
-  }
-
-  .content code {
+  #content code {
     font-family: var(--ve-font-mono);
-    font-size: 0.86em;
+    font-size: 0.84em;
     background: var(--ve-accent-dim);
     color: var(--ve-accent);
     padding: 2px 6px;
-    border-radius: 6px;
+    border-radius: 5px;
     overflow-wrap: break-word;
   }
 
-  .content pre {
-    background: var(--ve-surface-alt);
+  #content pre {
+    margin: 12px 0;
+    padding: 13px;
     border: 1px solid var(--ve-border);
-    border-radius: 12px;
-    padding: 14px;
+    border-radius: 10px;
+    background: var(--ve-surface-2);
     overflow-x: auto;
   }
 
-  .content pre code {
+  #content pre code {
     background: transparent;
-    padding: 0;
     color: inherit;
+    padding: 0;
   }
 
   .table-scroll {
-    margin: 14px 0 18px;
-    overflow-x: auto;
+    margin: 12px 0 16px;
     border: 1px solid var(--ve-border);
-    border-radius: 12px;
+    border-radius: 10px;
+    overflow-x: auto;
     background: var(--ve-surface);
   }
 
-  .content table {
+  #content table {
     width: 100%;
     border-collapse: collapse;
-    min-width: 760px;
+    min-width: 860px;
   }
 
-  .content th,
-  .content td {
-    vertical-align: top;
-    text-align: left;
-    padding: 10px 12px;
+  #content th,
+  #content td {
     border-bottom: 1px solid var(--ve-border);
-    line-height: 1.5;
+    text-align: left;
+    vertical-align: top;
+    padding: 10px 12px;
+    font-size: 13px;
+    line-height: 1.55;
     overflow-wrap: break-word;
   }
 
-  .content thead th {
+  #content thead th {
     position: sticky;
     top: 0;
     z-index: 1;
-    background: var(--ve-surface-alt);
-    font-family: var(--ve-font-mono);
-    font-size: 11px;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
+    background: var(--ve-surface-2);
     color: var(--ve-text-dim);
+    font-family: var(--ve-font-mono);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 10px;
   }
 
-  .content tr:last-child td {
-    border-bottom: 0;
-  }
+  #content tr:last-child td { border-bottom: 0; }
 
-  .content blockquote {
-    margin: 14px 0;
-    padding: 10px 14px;
-    background: var(--ve-surface-alt);
+  #content blockquote {
+    margin: 12px 0;
+    padding: 10px 12px;
     border-left: 3px solid var(--ve-accent-2);
-    border-radius: 0 10px 10px 0;
+    border-radius: 0 8px 8px 0;
+    background: var(--ve-surface-2);
   }
 
-  .content a {
+  #content a {
     color: var(--ve-accent);
-    text-decoration-thickness: 1px;
     text-underline-offset: 2px;
+    text-decoration-thickness: 1px;
+    overflow-wrap: break-word;
   }
 
-  .content hr {
-    border: 0;
-    border-top: 1px solid var(--ve-border);
-    margin: 24px 0;
-  }
-
-  .animate {
+  .anim {
     opacity: 0;
     transform: translateY(8px);
-    animation: fadeUp 0.36s ease forwards;
+    animation: fadeUp 0.38s ease forwards;
     animation-delay: calc(var(--i, 0) * 0.04s);
   }
 
   @keyframes fadeUp {
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    to { opacity: 1; transform: translateY(0); }
   }
 
   @media (max-width: 980px) {
-    .page {
-      grid-template-columns: 1fr;
-    }
-    .side {
-      position: static;
-    }
+    .layout { grid-template-columns: 1fr; }
+    .sidebar { position: static; }
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -338,20 +315,20 @@
 </style>
 </head>
 <body>
-  <div class="page">
-    <aside class="side panel">
-      <p class="eyebrow">Visual Explainer</p>
-      <h2 class="doc-title">Analysis: System Spec Kit MCP SQLite vs libSQL</h2>
-      <p class="doc-meta">Source: research/analysis-system-speckit-mcp-sqlite-vs-libsql.md<br>Generated: 20260221-185304</p>
-      <h3 class="toc-title">Contents</h3>
-      <ul id="toc" class="toc-list"></ul>
-    </aside>
-    <main class="main panel">
-      <header class="hero">
-        <h1>Analysis: System Spec Kit MCP SQLite vs libSQL</h1>
-        <p>Source: research/analysis-system-speckit-mcp-sqlite-vs-libsql.md</p>
-      </header>
-      <article id="content" class="content">
+<div class="layout">
+  <aside class="sidebar panel">
+    <p class="tag">Visual Explainer</p>
+    <h2>Analysis: System Spec Kit MCP SQLite vs libSQL/Turso</h2>
+    <p class="meta">Architecture-grade research visual<br>Generated: 2026-02-21 19:18:05</p>
+    <p class="toc-title">Sections</p>
+    <ul id="toc" class="toc"></ul>
+  </aside>
+  <main class="content-wrap panel">
+    <header class="hero">
+      <h1>Analysis: System Spec Kit MCP SQLite vs libSQL/Turso</h1>
+      <p>Architecture-grade research visual</p>
+    </header>
+    <article id="content">
 <h1>Analysis: System Spec Kit MCP SQLite vs libSQL/Turso</h1>
 <p>Index: Companion recommendation document at <a href="specs/003-system-spec-kit/140-sqlite-to-libsql/recommendation-sqlite-vs-libsql-decision.md"><code>specs/003-system-spec-kit/140-sqlite-to-libsql/recommendation-sqlite-vs-libsql-decision.md</code></a>.</p>
 <h2>1) Executive Summary (Dated Context)</h2>
@@ -758,10 +735,9 @@ CLI (spec-kit-cli)
 <li>CLI plan usage visibility: <code>https://docs.turso.tech/cli/plan/show</code></li>
 </ul>
 
-      </article>
-    </main>
-  </div>
-
+    </article>
+  </main>
+</div>
 <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.2/lib/anime.min.js"></script>
 <script>
 (function () {
@@ -769,47 +745,41 @@ CLI (spec-kit-cli)
   const toc = document.getElementById('toc');
   if (!content || !toc) return;
 
-  const slugify = (text) => text
-    .toLowerCase()
-    .replace(/`/g, '')
-    .replace(/[^a-z0-9\s-]/g, '')
-    .trim()
-    .replace(/\s+/g, '-');
-
-  const headings = content.querySelectorAll('h2, h3');
+  const slug = (t) => t.toLowerCase().replace(/`/g, '').replace(/[^a-z0-9\s-]/g, '').trim().replace(/\s+/g, '-');
   const seen = new Map();
+  const headings = content.querySelectorAll('h2, h3');
 
-  headings.forEach((heading) => {
-    let id = heading.id || slugify(heading.textContent || 'section');
-    const count = seen.get(id) || 0;
-    seen.set(id, count + 1);
-    if (count > 0) id = `${id}-${count + 1}`;
-    heading.id = id;
+  headings.forEach((h) => {
+    let id = h.id || slug(h.textContent || 'section');
+    const n = seen.get(id) || 0;
+    seen.set(id, n + 1);
+    if (n > 0) id = `${id}-${n + 1}`;
+    h.id = id;
 
     const li = document.createElement('li');
     const a = document.createElement('a');
-    if (heading.tagName.toLowerCase() === 'h3') a.classList.add('toc-h3');
+    if (h.tagName.toLowerCase() === 'h3') a.classList.add('h3');
     a.href = `#${id}`;
-    a.textContent = heading.textContent || id;
+    a.textContent = h.textContent || id;
     li.appendChild(a);
     toc.appendChild(li);
   });
 
   content.querySelectorAll('table').forEach((table) => {
-    const wrapper = document.createElement('div');
-    wrapper.className = 'table-scroll';
-    table.parentNode.insertBefore(wrapper, table);
-    wrapper.appendChild(table);
+    const wrap = document.createElement('div');
+    wrap.className = 'table-scroll';
+    table.parentNode.insertBefore(wrap, table);
+    wrap.appendChild(table);
   });
 
   content.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach((a) => {
-    a.setAttribute('target', '_blank');
-    a.setAttribute('rel', 'noopener noreferrer');
+    a.target = '_blank';
+    a.rel = 'noopener noreferrer';
   });
 
-  const animated = content.querySelectorAll('h2, h3, p, ul, ol, blockquote, pre, .table-scroll');
-  animated.forEach((el, i) => {
-    el.classList.add('animate');
+  const animTargets = content.querySelectorAll('h2, h3, p, ul, ol, pre, blockquote, .table-scroll');
+  animTargets.forEach((el, i) => {
+    el.classList.add('anim');
     el.style.setProperty('--i', String(i));
   });
 })();
