@@ -1,4 +1,4 @@
-# Verification Checklist: Phase 003 — Rename workflows-code--full-stack to sk-code--full-stack
+# Verification Checklist: Phase 003 — Rename legacy full-stack skill identifier to sk-code--full-stack
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->
@@ -17,6 +17,18 @@
 
 ---
 
+<!-- ANCHOR:priority-map -->
+## P0
+
+P0 blocker checks are distributed across sections below and must all be complete.
+
+## P1
+
+P1 required checks are distributed across sections below and must all be complete for completion claims.
+<!-- /ANCHOR:priority-map -->
+
+---
+
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
@@ -30,7 +42,7 @@
 <!-- ANCHOR:filesystem -->
 ## Filesystem Rename
 
-- [x] CHK-010 [P0] `workflows-code--full-stack` renamed to `sk-code--full-stack` [Evidence: EV-01]
+- [x] CHK-010 [P0] `legacy full-stack skill identifier` renamed to `sk-code--full-stack` [Evidence: EV-01]
 - [x] CHK-011 [P0] No old folder remains [Evidence: EV-01]
 - [x] CHK-012 [P0] All 88 internal files present in new folder [Evidence: EV-02]
 <!-- /ANCHOR:filesystem -->
@@ -73,7 +85,7 @@
 <!-- ANCHOR:verification -->
 ## Verification
 
-- [x] CHK-050 [P0] grep: 0 matches for `workflows-code--full-stack` [Evidence: EV-09]
+- [x] CHK-050 [P0] grep: 0 matches for `legacy full-stack skill identifier` [Evidence: EV-09]
 - [x] CHK-051 [P0] skill_advisor.py correct [Evidence: EV-04, EV-05]
 - [x] CHK-052 [P0] Folder exists with all contents [Evidence: EV-01, EV-02]
 <!-- /ANCHOR:verification -->
@@ -84,7 +96,7 @@
 ## Documentation
 
 - [x] CHK-060 [P1] Spec/plan/tasks synchronized [Evidence: all four phase docs + implementation-summary synchronized on 2026-02-21]
-- [ ] CHK-061 [P2] Memory saved
+- [x] CHK-061 [P2] Memory saved [Evidence: phase 003 included in `generate-context.js` indexed batch `#87-#93`]
 <!-- /ANCHOR:docs -->
 
 ---
@@ -96,7 +108,7 @@
 |----------|-------|----------|
 | P0 Items | 13 | 13/13 |
 | P1 Items | 9 | 9/9 |
-| P2 Items | 1 | 0/1 |
+| P2 Items | 1 | 1/1 |
 
 **Verification Date**: 2026-02-21
 <!-- /ANCHOR:summary -->

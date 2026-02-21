@@ -212,7 +212,7 @@ python3 .opencode/skill/sk-documentation/scripts/validate_document.py README.md
 
 - **system-spec-kit** - Spec folder documentation structure and validation
 - **sk-git** - Uses documentation quality for commit/PR descriptions
-- **workflows-code--opencode** - System code standards and cross-language checklists
+- **sk-code--opencode** - System code standards and cross-language checklists
 - **sk-code--web** - Code implementation lifecycle (pairs with documentation for verification)
 - **sk-code--full-stack** - Multi-stack implementation lifecycle and stack-aware verification
 - [CommonMark specification](https://spec.commonmark.org/) - Markdown rendering standard

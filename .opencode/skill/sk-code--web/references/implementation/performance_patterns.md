@@ -529,5 +529,5 @@ echo "✅ PASS: Animation performance budgets met"
 - `mcp-chrome-devtools` - Automated performance budget enforcement via CLI for regression detection
 
 ### Standards
-- **Integration with workflows-code**: Apply during Phase 1 (Implementation checklist), Phase 2 (Performance debugging), Phase 3 (Lighthouse verification)
+- **Integration with sk-code--web**: Apply during Phase 1 (Implementation checklist), Phase 2 (Performance debugging), Phase 3 (Lighthouse verification)
 <!-- /ANCHOR:related-resources -->

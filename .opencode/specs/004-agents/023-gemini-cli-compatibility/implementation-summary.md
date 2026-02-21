@@ -2,7 +2,7 @@
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/workflows-documentation/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skill/sk-documentation/references/hvr_rules.md -->
 
 ---
 
@@ -42,10 +42,10 @@ Gemini CLI users can now access the full agent, command, and skill system that C
 | `.gemini/skills/system-spec-kit` | Created (symlink) | Resolves to `../../.opencode/skill/system-spec-kit` |
 | `.gemini/skills/mcp-chrome-devtools` | Created (symlink) | Resolves to `../../.opencode/skill/mcp-chrome-devtools` |
 | `.gemini/skills/sk-code--full-stack` | Created (symlink) | Resolves to `../../.opencode/skill/sk-code--full-stack` |
-| `.gemini/skills/workflows-code--opencode` | Created (symlink) | Resolves to `../../.opencode/skill/workflows-code--opencode` |
+| `.gemini/skills/sk-code--opencode` | Created (symlink) | Resolves to `../../.opencode/skill/sk-code--opencode` |
 | `.gemini/skills/workflows-code--web-dev` | Created (symlink) | Resolves to `../../.opencode/skill/workflows-code--web-dev` |
-| `.gemini/skills/workflows-documentation` | Created (symlink) | Resolves to `../../.opencode/skill/workflows-documentation` |
-| `.gemini/skills/workflows-git` | Created (symlink) | Resolves to `../../.opencode/skill/workflows-git` |
+| `.gemini/skills/sk-documentation` | Created (symlink) | Resolves to `../../.opencode/skill/sk-documentation` |
+| `.gemini/skills/sk-git` | Created (symlink) | Resolves to `../../.opencode/skill/sk-git` |
 | `.gemini/skills/scripts` | Created (symlink) | Resolves to `../../.opencode/skill/scripts` |
 | `.gemini/specs` | Created (symlink) | Resolves to `../.opencode/specs` |
 | `.gemini/commands/spec_kit/plan.toml` | Created | TOML wrapper injecting `spec_kit/plan.md` content |
@@ -142,5 +142,5 @@ SC-006 (`.opencode/agent/gemini/` directory) was reconsidered during implementat
 <!--
 Level 2: Full post-implementation summary with delivery narrative.
 Write in human voice: active, direct, specific. No em dashes, no hedging, no AI filler.
-HVR rules: .opencode/skill/workflows-documentation/references/hvr_rules.md
+HVR rules: .opencode/skill/sk-documentation/references/hvr_rules.md
 -->

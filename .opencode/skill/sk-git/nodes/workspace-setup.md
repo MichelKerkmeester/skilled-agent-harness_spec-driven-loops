@@ -1,5 +1,5 @@
 ---
-description: "Git worktree setup, workspace choice enforcement, and branch management"
+description: "Git worktree setup, workspace choice enforcement, branch management, and conflict-safe cross-skill handoff to implementation and validation workflows"
 ---
 # Workspace Setup
 
@@ -52,3 +52,5 @@ Key outcomes:
 - [[how-it-works]] - Phase 1 in the lifecycle
 - [[rules]] - Branch naming and worktree cleanup rules
 - [[work-completion]] - Worktree cleanup after merge
+- [Web Implementation Workflow](../../sk-code--web/nodes/implementation-workflow.md) - Handoff from workspace setup to feature implementation
+- [Validation Workflow](../../system-spec-kit/nodes/validation-workflow.md) - Completion and quality gate before merge

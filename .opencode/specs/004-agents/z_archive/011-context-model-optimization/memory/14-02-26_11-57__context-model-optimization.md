@@ -171,7 +171,7 @@ Next: Continue implementation
 
 Fix a **command dispatch vulnerability** across ALL command files in Op** - ## Goal
 
-Fix a command dispatch vulnerability across ALL command files in OpenCode (started with spec_kit commands in Spec 118, now evaluating create commands), align styles with workflows-documentation standards, and publish releases on GitHub main.
+Fix a command dispatch vulnerability across ALL command files in OpenCode (started with spec_kit commands in Spec 118, now evaluating create commands), align styles with sk-documentation standards, and publish releases on GitHub main.
 
 - **Let me pick up where we left off. The next step is to **complete the systemati** - Let me pick up where we left off.
 
@@ -274,7 +274,7 @@ Fix a **command dispatch vulnerability** across ALL command files in Op
 
 ## Goal
 
-Fix a **command dispatch vulnerability** across ALL command files in OpenCode (started with spec_kit commands in Spec 118, now evaluating create commands), **align styles** with workflows-documentation standards, and **publish releases** on GitHub main.
+Fix a **command dispatch vulnerability** across ALL command files in OpenCode (started with spec_kit commands in Spec 118, now evaluating create commands), **align styles** with sk-documentation standards, and **publish releases** on GitHub main.
 
 ## Instructions
 
@@ -358,7 +358,7 @@ Fix **command dispatch vulnerabilities** across ALL command files in th
 
 ## Goal
 
-Fix **command dispatch vulnerabilities** across ALL command files in the OpenCode framework, **align styles** with workflows-documentation standards, and **publish releases** on GitHub main. This is a multi-spec effort:
+Fix **command dispatch vulnerabilities** across ALL command files in the OpenCode framework, **align styles** with sk-documentation standards, and **publish releases** on GitHub main. This is a multi-spec effort:
 
 1. **Spec 118** (v2.0.1.1) — Fixed 7 spec_kit commands ✅ COMPLETE (prior session)
 2. **Spec 008** (v2.0.1.2) — Fixed 6 create commands ✅ COMPLETE (this session)
@@ -632,7 +632,7 @@ Create command updates and new spec folder setup
 
 Quick thoughtful confirmation → Let me read all 6 create command files and their YAML assets in parallel: ## Goal
 
-Fix a **command dispatch vulnerability** across ALL command files in OpenCode (started with spec_kit commands in Spec 118, now evaluating create commands), **align styles** with workflows-documentation standards, and **publish releases** on GitHub main. 
+Fix a **command dispatch vulnerability** across ALL command files in OpenCode (started with spec_kit commands in Spec 118, now evaluating create commands), **align styles** with sk-documentation standards, and **publish releases** on GitHub main. 
 
 ## Instructions
 
@@ -729,7 +729,7 @@ User initiated conversation
 
 Convert create commands YAMLs to workflows → ## Goal
 
-Fix **command dispatch vulnerabilities** across ALL command files in the OpenCode framework, **align styles** with workflows-documentation standards, and **publish releases** on GitHub main.  This is a multi-spec effort:
+Fix **command dispatch vulnerabilities** across ALL command files in the OpenCode framework, **align styles** with sk-documentation standards, and **publish releases** on GitHub main.  This is a multi-spec effort:
 
 1.
 

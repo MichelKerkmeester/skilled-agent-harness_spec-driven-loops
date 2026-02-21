@@ -360,5 +360,5 @@ This decision matrix addresses the following spec requirements:
 
 ### Related Skills
 - `system-spec-kit` - Spec folder workflow orchestrator
-- `workflows-code` - Implementation, debugging, and verification lifecycle<!-- /ANCHOR:related-resources -->
+- `sk-code--web` - Implementation, debugging, and verification lifecycle<!-- /ANCHOR:related-resources -->
 <!-- /ANCHOR:related-resources -->

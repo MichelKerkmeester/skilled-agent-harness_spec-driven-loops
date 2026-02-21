@@ -2,7 +2,7 @@
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/workflows-documentation/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skill/sk-documentation/references/hvr_rules.md -->
 
 ---
 
@@ -110,5 +110,5 @@ No automated tests apply (markdown agent definitions). Verification was structur
 <!--
 Level 2: Full post-implementation summary with delivery narrative.
 Write in human voice: active, direct, specific. No em dashes, no hedging, no AI filler.
-HVR rules: .opencode/skill/workflows-documentation/references/hvr_rules.md
+HVR rules: .opencode/skill/sk-documentation/references/hvr_rules.md
 -->

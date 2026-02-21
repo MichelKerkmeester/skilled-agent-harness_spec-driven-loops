@@ -87,7 +87,7 @@ The agent system enables both focused single-agent work and complex multi-agent 
    (e.g., "ALWAYS run tests before approving", "NEVER modify production files")
 
 5. **Skills Integration**: What skills should this agent invoke?
-   (e.g., "workflows-code for code standards", "system-spec-kit for documentation")
+   (e.g., "sk-code--web for code standards", "system-spec-kit for documentation")
 
 6. **Agent Name**: What should we name this agent?
    (Format: lowercase, single word or hyphenated, e.g., "review", "security-audit")
@@ -901,7 +901,7 @@ Content...
 | Need behavioral constraints     | ✅                | ✅                           |
 | Creating documentation          | ✅ `@write`       | ✅ `sk-documentation` |
 | Complex multi-step task         | ✅ `@orchestrate` | ❌                           |
-| Code quality standards          | ❌                | ✅ `workflows-code`          |
+| Code quality standards          | ❌                | ✅ `sk-code--web`          |
 | Git workflows                   | ❌                | ✅ `sk-git`           |
 
 ### How They Work Together
@@ -916,7 +916,7 @@ Agent Selected (based on task type)
 Agent Invokes Skills (for domain expertise)
     │
     ├─► sk-documentation (for doc standards)
-    ├─► workflows-code (for code standards)
+    ├─► sk-code--web (for code standards)
     ├─► system-spec-kit (for spec folders)
     └─► etc.
     │
@@ -1073,7 +1073,7 @@ python3 -c "import yaml; yaml.safe_load(open('.opencode/agent/write.md').read().
 | Skill                   | Location                            | Purpose                 |
 | ----------------------- | ----------------------------------- | ----------------------- |
 | sk-documentation | `../skill/sk-documentation/` | Documentation standards |
-| workflows-code          | `../skill/workflows-code/`          | Code quality standards  |
+| sk-code--web          | `../skill/sk-code--web/`          | Code quality standards  |
 | system-spec-kit         | `../skill/system-spec-kit/`         | Spec folder management  |
 | sk-git           | `../skill/sk-git/`           | Git workflows           |
 

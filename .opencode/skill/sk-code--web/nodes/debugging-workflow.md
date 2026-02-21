@@ -1,5 +1,5 @@
 ---
-description: "Phase 2 systematic debugging framework with root cause tracing and error recovery"
+description: "Phase 2 systematic debugging framework with root cause tracing, CSS/layout animation debugging, API/network tracing, and accessibility (ARIA) error recovery"
 ---
 # Debugging Workflow
 
@@ -38,3 +38,6 @@ See `references/debugging/debugging_workflows.md` for complete workflows.
 - [[rules]] - ALWAYS/NEVER/ESCALATE rules for debugging
 - [[verification-workflow]] - Phase 3 that follows successful debugging
 - [[implementation-workflow]] - Phase 1 if missing code is discovered during debugging
+- [Document Quality Mode](../../sk-documentation/nodes/mode-document-quality.md) - Documentation quality checks for debugging writeups
+- [Language Detection](../../sk-code--opencode/nodes/language-detection.md) - TypeScript/Python/Shell context detection
+- [Validation Workflow](../../system-spec-kit/nodes/validation-workflow.md) - Spec-level validation and quality gates

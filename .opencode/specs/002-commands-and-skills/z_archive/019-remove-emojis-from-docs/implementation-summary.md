@@ -14,7 +14,7 @@
 | **Completed** | 2026-02-16 |
 | **Level** | 3+ |
 | **Total Files Modified** | 345 |
-| **Version Bumps** | 9 skills (system-spec-kit, mcp-code-mode, mcp-figma, workflows-code--opencode, mcp-chrome-devtools, sk-code--full-stack, workflows-code--web-dev, workflows-git, workflows-documentation) |
+| **Version Bumps** | 9 skills (system-spec-kit, mcp-code-mode, mcp-figma, sk-code--opencode, mcp-chrome-devtools, sk-code--full-stack, workflows-code--web-dev, sk-git, sk-documentation) |
 | **Phases Complete** | Phase 0, Phase 6 (sk-code--full-stack), plus 7 additional component groups |
 | **Status** | Implementation complete; CHK-1205/1206 blocked by pre-existing root file modifications |
 <!-- /ANCHOR:metadata -->
@@ -26,13 +26,13 @@
 
 ### Scope Summary
 
-Removed all emoji decorators from H2 headings across 345 markdown files in the `.opencode/` directory, standardizing documentation format to the workflows-documentation v1.0.7.0 standard. Transformation pattern: `## N. EMOJI TITLE` → `## N. TITLE`.
+Removed all emoji decorators from H2 headings across 345 markdown files in the `.opencode/` directory, standardizing documentation format to the sk-documentation v1.0.7.0 standard. Transformation pattern: `## N. EMOJI TITLE` → `## N. TITLE`.
 
 ### Implementation Waves
 
-**Phase 0: Foundation (workflows-documentation skill)**
+**Phase 0: Foundation (sk-documentation skill)**
 - Updated validation engine to remove emoji enforcement
-- Stripped emojis from 30+ files within workflows-documentation skill
+- Stripped emojis from 30+ files within sk-documentation skill
 - Test suite validation: 6/6 tests passing
 
 **Phase 6: sk-code--full-stack (50 files)**
@@ -44,15 +44,15 @@ Removed all emoji decorators from H2 headings across 345 markdown files in the `
 **Additional Component Groups (295 files)**
 - system-spec-kit skill (117 files): SKILL.md, MCP server docs, scripts, references, assets
 - workflows-code--web-dev skill (38 files): Implementation, performance, standards references
-- workflows-code--opencode skill (24 files): Language-specific references and checklists
+- sk-code--opencode skill (24 files): Language-specific references and checklists
 - mcp-code-mode skill (12 files): SKILL.md, references, assets, config templates
-- workflows-git skill (10 files): SKILL.md, references, workflow guides
+- sk-git skill (10 files): SKILL.md, references, workflow guides
 - mcp-chrome-devtools skill (10 files): SKILL.md, references, examples
 - mcp-figma skill (6 files): SKILL.md, references, tool categories
 - Agent files (24 files): Root agents + copilot + chatgpt provider variants
 - Command files (12 files): spec_kit, memory, create command definitions
 - Shared/top-level READMEs (4 files): .opencode/README.md, skill/README.md, scripts READMEs
-- workflows-documentation (7 files): Post-Phase 0 cleanup and test fixtures
+- sk-documentation (7 files): Post-Phase 0 cleanup and test fixtures
 - Spec folder archives (8 files): Historical spec documentation updates
 
 ### Files Changed by Class
@@ -79,11 +79,11 @@ All modified skills received version increments following semantic versioning:
 | system-spec-kit | See frontmatter | Documentation format update |
 | mcp-code-mode | See frontmatter | H2 heading cleanup |
 | mcp-figma | See frontmatter | H2 heading cleanup |
-| workflows-code--opencode | See frontmatter | Documentation standardization |
+| sk-code--opencode | See frontmatter | Documentation standardization |
 | mcp-chrome-devtools | See frontmatter | H2 heading cleanup |
 | workflows-code--web-dev | See frontmatter | Documentation format update |
-| workflows-git | See frontmatter | H2 heading cleanup |
-| workflows-documentation | 1.0.7.0 | Completed in Phase 0 |
+| sk-git | See frontmatter | H2 heading cleanup |
+| sk-documentation | 1.0.7.0 | Completed in Phase 0 |
 
 <!-- /ANCHOR:what-built -->
 
@@ -112,7 +112,7 @@ All modified skills received version increments following semantic versioning:
 
 | Test Type | Status | Evidence |
 |-----------|--------|----------|
-| workflows-documentation test suite | ✅ Pass | CHK-1207: 6/6 tests passing |
+| sk-documentation test suite | ✅ Pass | CHK-1207: 6/6 tests passing |
 | validate_document.py on README files | ✅ Pass | CHK-1201: All tested files exit 0 |
 | Global emoji H2 verification | ✅ Pass | CHK-1200: Zero emoji H2 headings across `.opencode/` |
 | extract_structure.py on SKILL files | ✅ Pass | CHK-1202: No emoji style issues |
@@ -139,7 +139,7 @@ grep -rn '^## [0-9]*\. .*emoji' .opencode/skill/sk-code--full-stack/ --include="
 # Result: 0 matches
 
 # Sample validation
-python3 .opencode/skill/workflows-documentation/scripts/validate_document.py \
+python3 .opencode/skill/sk-documentation/scripts/validate_document.py \
   --type readme .opencode/skill/sk-code--full-stack/README.md
 # Result: ✅ VALID, 0 issues
 ```
@@ -236,7 +236,7 @@ Version bump verification:
 
 - [ ] Watch for new files created with emoji H2 format (should be blocked by validation)
 - [ ] Verify future template usage follows v1.0.7.0 standard (no emoji enforcement)
-- [ ] Confirm no regressions in workflows-documentation test suite on future changes
+- [ ] Confirm no regressions in sk-documentation test suite on future changes
 
 <!-- /ANCHOR:follow-up -->
 
@@ -249,4 +249,4 @@ Version bump verification:
 - **Tasks**: See `tasks.md` for task-level breakdown (T001-T1207)
 - **Checklist**: See `checklist.md` for verification gates (CHK-001 to CHK-1209)
 - **Decision Record**: See `decision-record.md` for architectural decisions
-- **Predecessor Changelog**: `.opencode/changelog/06--workflows-documentation/v1.0.7.0.md`
+- **Predecessor Changelog**: `.opencode/changelog/06--sk-documentation/v1.0.7.0.md`

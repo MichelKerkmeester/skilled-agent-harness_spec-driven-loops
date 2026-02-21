@@ -93,7 +93,7 @@ These items must be addressed OR explicitly deferred with user approval.
   - Evidence: ✅ All 19 commands verified (3 memory, 5 spec_kit, 5 create, 4 CLI, 2 other)
 
 - [x] **P1-8:** Other skills updated (13 refs)
-  - Skills: cli-codex, cli-gemini, workflows-documentation, system-spec-kit
+  - Skills: cli-codex, cli-gemini, sk-documentation, system-spec-kit
   - Evidence: ✅ All 10 SKILL.md files verified
 
 - [x] **P1-9:** Orchestrator agent updated (4 refs)

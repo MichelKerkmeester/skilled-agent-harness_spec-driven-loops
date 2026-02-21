@@ -22,7 +22,7 @@
 
 - [x] CHK-001 [P0] Requirements documented in spec.md
 - [x] CHK-002 [P0] Technical approach defined in plan.md
-- [x] CHK-003 [P1] Dependencies identified (workflows-code--opencode)
+- [x] CHK-003 [P1] Dependencies identified (sk-code--opencode)
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -57,7 +57,7 @@
 
 ## Review & Alignment (Phase 3)
 
-- [x] CHK-040 [P0] workflows-code--opencode standards loaded — Referenced in all review shards
+- [x] CHK-040 [P0] sk-code--opencode standards loaded — Referenced in all review shards
 - [x] CHK-041 [P0] Standards comparison completed — 10 review shards complete
 - [x] CHK-042 [P1] Misalignment inventory created with examples — See review-agent-*-.md files
 - [x] CHK-043 [P1] Anti-patterns identified and documented — Findings categorized P0/P1/P2
@@ -158,7 +158,7 @@
 
 ## L3+: STANDARDS ALIGNMENT
 
-- [x] CHK-140 [P1] workflows-code--opencode standards referenced with file paths — All review shards reference standards
+- [x] CHK-140 [P1] sk-code--opencode standards referenced with file paths — All review shards reference standards
 - [x] CHK-141 [P1] Specific misalignment examples provided — File:line citations in context reports
 - [x] CHK-142 [P2] Alignment scoring methodology documented — Review agents use 5-dimension scoring (Correctness/Security/Patterns/Maintainability/Performance)
 - [x] CHK-143 [P2] Patterns vs anti-patterns comparison matrix created — See context-agent-10-alignment-matrix.md

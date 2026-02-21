@@ -73,7 +73,7 @@ RECEIVE → MEMORY (Layer 1) → CODEBASE (Layer 2) → DISPATCH (if needed) →
 | 3 | `AGENTS.md` (Public) | Updated | Added @context_loader row + quick reference |
 | 4 | `AGENTS.md` (anobel.com) | Updated | Added @context_loader row + quick reference |
 | 5 | `AGENTS.md` (Barter/coder) | Updated | Added @context_loader row + quick reference |
-| 6 | `agent_template.md` (workflows-documentation) | Updated | Added @context_loader, @general, @handover to both agent tables |
+| 6 | `agent_template.md` (sk-documentation) | Updated | Added @context_loader, @general, @handover to both agent tables |
 | 7 | `SET-UP - Opencode Agents.md` | Updated | 16 changes across 2 passes (8+8) |
 | 8 | `.claude/agents/context_loader.md` | Created | Symlink → `../../.opencode/agent/context_loader.md` |
 
@@ -115,8 +115,8 @@ No changes needed in:
 - `.opencode/skill/system-spec-kit/`
 - `.opencode/skill/workflows-code--web-dev/`
 - `.opencode/skill/sk-code--full-stack/`
-- `.opencode/skill/workflows-code--opencode/`
-- `.opencode/skill/workflows-git/`
+- `.opencode/skill/sk-code--opencode/`
+- `.opencode/skill/sk-git/`
 - `.opencode/skill/mcp-chrome-devtools/`
 - `.opencode/skill/mcp-code-mode/`
 - `.opencode/skill/mcp-figma/`

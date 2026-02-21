@@ -199,7 +199,7 @@ Phase 1 (Research) ──► Phase 2 (Skill Graph Core) ──► Phase 3 (Refer
 - [x] Monitoring alerts set (N/A - no runtime monitoring for skills)
 
 ### Rollback Procedure
-1. Remove `.opencode/skill/workflows-visual-explainer/` directory (22 files)
+1. Remove `.opencode/skill/sk-visual-explainer/` directory (22 files)
 2. Remove `.opencode/command/visual-explainer/` directory (5 files)
 3. Revert skill_advisor.py to pre-change state (remove INTENT_BOOSTERS and MULTI_SKILL_BOOSTERS entries)
 4. Verify skill_advisor.py still routes existing skills correctly

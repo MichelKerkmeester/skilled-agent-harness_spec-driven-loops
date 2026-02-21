@@ -37,10 +37,10 @@ Systematic documentation quality upgrade across 85 OpenCode system files, applyi
 | `.opencode/skill/system-spec-kit/SKILL.md` | Modified | Version bump to 1.0.6.0 + quality improvements |
 | `.opencode/skill/system-spec-kit/references/sub_folder_versioning.md` | Modified | Versioning documentation tightening |
 | `.opencode/skill/system-spec-kit/references/code_organization.md` | Modified | Organization documentation quality |
-| `.opencode/skill/workflows-documentation/assets/templates/readme_template.md` | Modified | Template restructure (+191/-71 lines, +120 net for HVR ruleset) |
+| `.opencode/skill/sk-documentation/assets/templates/readme_template.md` | Modified | Template restructure (+191/-71 lines, +120 net for HVR ruleset) |
 | `.opencode/opencode.json` | Modified | Remove Antigravity config (-78 lines) |
 | `package.json`, `bun.lock` | Modified | Dependency updates from config changes |
-| `.opencode/skill/*/CHANGELOG.md` (10 files) | Created | Version tracking for sk-code--full-stack, workflows-code--web-dev, workflows-documentation, workflows-git, mcp-code-mode, mcp-figma, system-spec-kit, mcp-chrome-devtools (8 skills) |
+| `.opencode/skill/*/CHANGELOG.md` (10 files) | Created | Version tracking for sk-code--full-stack, workflows-code--web-dev, sk-documentation, sk-git, mcp-code-mode, mcp-figma, system-spec-kit, mcp-chrome-devtools (8 skills) |
 
 **Total**: ~85 modified files + 13 new files = ~98 total files affected
 **LOC Stats**: ~4,864 total LOC changed (+2,649/−2,215, net +434 increase)

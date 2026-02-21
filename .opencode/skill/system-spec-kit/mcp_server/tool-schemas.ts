@@ -180,6 +180,12 @@ const memoryValidate: ToolDefinition = {
   inputSchema: { type: 'object', properties: { id: { type: 'number', description: 'Memory ID to validate' }, wasUseful: { type: 'boolean', description: 'Whether the memory was useful (true increases confidence, false decreases it)' } }, required: ['id', 'wasUseful'] },
 };
 
+const memoryBulkDelete: ToolDefinition = {
+  name: 'memory_bulk_delete',
+  description: '[L4:Mutation] Bulk delete memories by importance tier. Use to clean up deprecated or temporary memories at scale. Auto-creates checkpoint before deletion for safety. Refuses unscoped deletion of constitutional/critical tiers. Token Budget: 500.',
+  inputSchema: { type: 'object', properties: { tier: { type: 'string', enum: ['constitutional', 'critical', 'important', 'normal', 'temporary', 'deprecated'], description: 'Importance tier to delete (required)' }, specFolder: { type: 'string', description: 'Optional: scope deletion to a specific spec folder' }, confirm: { type: 'boolean', description: 'Required safety gate: must be true to proceed' }, olderThanDays: { type: 'number', description: 'Optional: only delete memories older than this many days' } }, required: ['tier', 'confirm'] },
+};
+
 // L5: Lifecycle - Checkpoints and versioning (Token Budget: 600)
 const checkpointCreate: ToolDefinition = {
   name: 'checkpoint_create',
@@ -253,7 +259,7 @@ const memorySkillGraphQuery: ToolDefinition = {
 const memoryIndexScan: ToolDefinition = {
   name: 'memory_index_scan',
   description: '[L7:Maintenance] Scan workspace for new/changed memory files and index them. Useful for bulk indexing after creating multiple memory files. Token Budget: 1000.',
-  inputSchema: { type: 'object', properties: { specFolder: { type: 'string', description: 'Limit scan to specific spec folder (e.g., "005-memory")' }, force: { type: 'boolean', default: false, description: 'Force re-index all files (ignore content hash)' }, includeConstitutional: { type: 'boolean', default: true, description: 'Whether to scan .opencode/skill/*/constitutional/ directories' }, includeReadmes: { type: 'boolean', default: true, description: 'Whether to scan for README.md and README.txt files (default: true). README files are indexed with reduced importance (0.3) to never outrank user work memories.' }, includeSpecDocs: { type: 'boolean', default: true, description: 'Whether to scan .opencode/specs/ directories for spec folder documents (spec.md, plan.md, tasks.md, checklist.md, decision-record.md, implementation-summary.md, research.md, handover.md). These are indexed with higher priority than regular memories. Set SPECKIT_INDEX_SPEC_DOCS=false env var to disable globally.' }, includeSkillRefs: { type: 'boolean', default: true, description: 'Whether to scan configured workflows-code--* skill references/ and assets/ directories. Skills to scan are configured in config.jsonc skillReferenceIndexing.indexedSkills. Set SPECKIT_INDEX_SKILL_REFS=false env var to disable globally.' }, incremental: { type: 'boolean', default: true, description: 'Enable incremental indexing. When true (default), skips files whose mtime and content hash are unchanged since last index. Set to false to re-evaluate all files regardless of change detection.' } }, required: [] },
+  inputSchema: { type: 'object', properties: { specFolder: { type: 'string', description: 'Limit scan to specific spec folder (e.g., "005-memory")' }, force: { type: 'boolean', default: false, description: 'Force re-index all files (ignore content hash)' }, includeConstitutional: { type: 'boolean', default: true, description: 'Whether to scan .opencode/skill/*/constitutional/ directories' }, includeReadmes: { type: 'boolean', default: true, description: 'Whether to scan for README.md and README.txt files (default: true). README files are indexed with reduced importance (0.3) to never outrank user work memories.' }, includeSpecDocs: { type: 'boolean', default: true, description: 'Whether to scan .opencode/specs/ directories for spec folder documents (spec.md, plan.md, tasks.md, checklist.md, decision-record.md, implementation-summary.md, research.md, handover.md). These are indexed with higher priority than regular memories. Set SPECKIT_INDEX_SPEC_DOCS=false env var to disable globally.' }, includeSkillRefs: { type: 'boolean', default: true, description: 'Whether to scan configured sk-code--* skill references/ and assets/ directories. Skills to scan are configured in config.jsonc skillReferenceIndexing.indexedSkills. Set SPECKIT_INDEX_SKILL_REFS=false env var to disable globally.' }, incremental: { type: 'boolean', default: true, description: 'Enable incremental indexing. When true (default), skips files whose mtime and content hash are unchanged since last index. Set to false to re-evaluate all files regardless of change detection.' } }, required: [] },
 };
 
 const memoryGetLearningHistory: ToolDefinition = {
@@ -281,6 +287,7 @@ export const TOOL_DEFINITIONS: ToolDefinition[] = [
   memoryDelete,
   memoryUpdate,
   memoryValidate,
+  memoryBulkDelete,
   // L5: Lifecycle
   checkpointCreate,
   checkpointList,

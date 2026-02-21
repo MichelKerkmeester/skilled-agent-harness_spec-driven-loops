@@ -5,7 +5,7 @@ allowed-tools: [Bash, Edit, Glob, Grep, Read, Task, Write]
 version: 1.1.0.0
 ---
 
-<!-- Keywords: workflows-code, development-orchestrator, multi-stack, stack-detection, debugging-workflow, implementation-patterns, react, nextjs, react-native, swift, go, nodejs -->
+<!-- Keywords: sk-code--web, development-orchestrator, multi-stack, stack-detection, debugging-workflow, implementation-patterns, react, nextjs, react-native, swift, go, nodejs -->
 
 # Code Workflows - Stack-Agnostic Development Orchestrator
 

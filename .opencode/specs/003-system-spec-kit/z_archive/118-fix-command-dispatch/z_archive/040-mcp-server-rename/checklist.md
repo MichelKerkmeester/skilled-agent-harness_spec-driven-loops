@@ -24,7 +24,7 @@
 - [x] P1: mcp-code-mode skill updated (6 replacements)
 - [x] P1: orchestrator.md updated (1 replacement)
 - [x] P1: SET-UP - AGENTS.md updated (4 replacements)
-- [x] P1: workflows-documentation templates updated (3 replacements)
+- [x] P1: sk-documentation templates updated (3 replacements)
 - [x] P1: MCP - Sequential Thinking.md updated (1 replacement)
 - [x] P1: command/create/install_guide.md updated (1 replacement)
 

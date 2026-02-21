@@ -20,7 +20,7 @@
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [x] CHK-001 [P0] workflows-documentation v1.0.7.0 merged (emoji enforcement removed)
+- [x] CHK-001 [P0] sk-documentation v1.0.7.0 merged (emoji enforcement removed)
 - [x] CHK-002 [P0] `template_rules.json` has `h2_emoji_required: false` for all types
 - [x] CHK-003 [P0] `validate_document.py` no longer checks for H2 emojis
 - [x] CHK-004 [P0] `extract_structure.py` no longer flags missing H2 emojis
@@ -70,10 +70,10 @@
 ---
 
 <!-- ANCHOR:phase-4-verify -->
-## Phase 4: workflows-code--opencode (22 files)
+## Phase 4: sk-code--opencode (22 files)
 
 - [x] CHK-400 [P0] All 22 files have zero emoji H2 headings
-- [x] CHK-401 [P0] `grep -rn '^## .*[emoji]' workflows-code--opencode/` returns zero
+- [x] CHK-401 [P0] `grep -rn '^## .*[emoji]' sk-code--opencode/` returns zero
 - [x] CHK-402 [P1] Checklists and references cleaned
 - [x] CHK-403 [P1] Semantic H3 emojis preserved in RULES sections
 <!-- /ANCHOR:phase-4-verify -->
@@ -116,10 +116,10 @@
 ---
 
 <!-- ANCHOR:phase-8-verify -->
-## Phase 8: workflows-git (10 files)
+## Phase 8: sk-git (10 files)
 
 - [x] CHK-800 [P0] All 10 files have zero emoji H2 headings
-- [x] CHK-801 [P0] `grep -rn '^## .*[emoji]' workflows-git/` returns zero
+- [x] CHK-801 [P0] `grep -rn '^## .*[emoji]' sk-git/` returns zero
 - [x] CHK-802 [P1] Asset template files cleaned
 <!-- /ANCHOR:phase-8-verify -->
 
@@ -170,7 +170,7 @@
 - [x] CHK-1204 [P0] Body-text emojis still present (status indicators, bullet markers) [Evidence: inline emojis untouched by H2 pattern targeting]
 - [ ] CHK-1205 [P0] AGENTS.md at repo root is UNCHANGED — **BLOCKED**: File modified in working tree prior to this verification run; was not edited during emoji removal work
 - [ ] CHK-1206 [P0] README.md at repo root is UNCHANGED — **BLOCKED**: File modified in working tree prior to this verification run; was not edited during emoji removal work
-- [x] CHK-1207 [P1] All workflows-documentation test fixtures still pass (6/6) [Evidence: test suite verification completed]
+- [x] CHK-1207 [P1] All sk-documentation test fixtures still pass (6/6) [Evidence: test suite verification completed]
 - [x] CHK-1208 [P1] Total files modified count matches or exceeds 287 [Evidence: 345 files processed across all phases]
 - [x] CHK-1209 [P2] Changelog entries created for modified skills [Evidence: version bumps applied to 9 skills]
 <!-- /ANCHOR:global-verify -->

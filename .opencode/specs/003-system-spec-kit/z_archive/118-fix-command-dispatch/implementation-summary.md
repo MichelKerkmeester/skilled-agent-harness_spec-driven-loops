@@ -21,7 +21,7 @@
 <!-- ANCHOR:what-built -->
 ## Overview
 
-Fixed a command dispatch vulnerability where OpenCode's Go runtime injected phantom dispatch instructions at render time, causing wrong agent dispatch instead of following structured YAML workflows. Applied 5 systematic fixes across 7 command files and 11 YAML workflow files. Additionally aligned all 7 command files with workflows-documentation style standards (H2 emojis, decimal step renumbering).
+Fixed a command dispatch vulnerability where OpenCode's Go runtime injected phantom dispatch instructions at render time, causing wrong agent dispatch instead of following structured YAML workflows. Applied 5 systematic fixes across 7 command files and 11 YAML workflow files. Additionally aligned all 7 command files with sk-documentation style standards (H2 emojis, decimal step renumbering).
 
 ### Root Cause
 
@@ -147,9 +147,9 @@ Five fix types applied in four implementation waves, followed by style alignment
 
 ---
 
-## Style Alignment (workflows-documentation)
+## Style Alignment (sk-documentation)
 
-After the 5 core fixes, all 7 command files were audited against `workflows-documentation` standards (command template reference). Pre-fix style score: **76/100**.
+After the 5 core fixes, all 7 command files were audited against `sk-documentation` standards (command template reference). Pre-fix style score: **76/100**.
 
 ### Style Fixes Applied
 

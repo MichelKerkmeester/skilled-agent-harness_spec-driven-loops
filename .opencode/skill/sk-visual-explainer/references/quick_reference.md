@@ -1,5 +1,5 @@
 ---
-description: "Command cheat sheet, CDN snippets, and font pairings for quick access during visual-explainer generation"
+description: "Command cheat sheet, CDN snippets, and font pairings for quick access during sk-visual-explainer generation"
 ---
 
 # Visual Explainer — Quick Reference

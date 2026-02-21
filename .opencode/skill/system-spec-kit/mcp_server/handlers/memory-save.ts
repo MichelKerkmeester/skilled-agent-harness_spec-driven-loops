@@ -33,6 +33,7 @@ import { createMCPSuccessResponse } from '../lib/response/envelope';
 import * as retryManager from '../lib/providers/retry-manager';
 import * as causalEdges from '../lib/storage/causal-edges';
 import { requireDb, toErrorMessage } from '../utils';
+import { needsChunking, chunkLargeFile } from '../lib/chunking/anchor-chunker';
 import type { MCPResponse } from './types';
 import type BetterSqlite3 from 'better-sqlite3';
 
@@ -670,7 +671,284 @@ function detectSpecLevelFromParsed(filePath: string): number | null {
 }
 
 /* ---------------------------------------------------------------
-   7. INDEX MEMORY FILE
+   7. CHUNKED INDEXING FOR LARGE FILES
+--------------------------------------------------------------- */
+
+/**
+ * Index a large memory file by splitting it into chunks.
+ * Creates a parent record (metadata only, no embedding) and child records
+ * (each with its own embedding) for each chunk.
+ *
+ * Parent record: embedding_status='partial', content_text=summary
+ * Child records: embedding_status='success'|'pending', parent_id=parent.id
+ */
+async function indexChunkedMemoryFile(
+  filePath: string,
+  parsed: ParsedMemory,
+  { force = false }: { force?: boolean } = {}
+): Promise<IndexResult> {
+  const database = requireDb();
+
+  const chunkResult = chunkLargeFile(parsed.content);
+  console.info(`[memory-save] Chunking ${filePath}: ${chunkResult.strategy} strategy, ${chunkResult.chunks.length} chunks`);
+
+  // Check if parent already exists
+  const existing = database.prepare(`
+    SELECT id FROM memory_index WHERE file_path = ? AND parent_id IS NULL
+  `).get(filePath) as { id: number } | undefined;
+
+  let parentId: number;
+
+  if (existing && !force) {
+    parentId = existing.id;
+
+    // Delete existing children to re-index
+    database.prepare(`DELETE FROM memory_index WHERE parent_id = ?`).run(parentId);
+
+    // Update parent metadata
+    const importanceWeight = calculateDocumentWeight(filePath, parsed.documentType);
+    const specLevel = isSpecDocumentType(parsed.documentType)
+      ? detectSpecLevelFromParsed(filePath)
+      : null;
+    const fileMetadata = incrementalIndex.getFileMetadata(filePath);
+    const fileMtimeMs = fileMetadata ? fileMetadata.mtime : null;
+
+    database.prepare(`
+      UPDATE memory_index
+      SET content_hash = ?,
+          context_type = ?,
+          importance_tier = ?,
+          importance_weight = ?,
+          embedding_status = 'partial',
+          content_text = ?,
+          updated_at = datetime('now'),
+          file_mtime_ms = ?,
+          document_type = ?,
+          spec_level = ?,
+          quality_score = ?,
+          quality_flags = ?
+      WHERE id = ?
+    `).run(
+      parsed.contentHash,
+      parsed.contextType,
+      parsed.importanceTier,
+      importanceWeight,
+      chunkResult.parentSummary,
+      fileMtimeMs,
+      parsed.documentType || 'memory',
+      specLevel,
+      parsed.qualityScore ?? 0,
+      JSON.stringify(parsed.qualityFlags ?? []),
+      parentId
+    );
+  } else {
+    // Delete old parent+children if force re-indexing
+    if (existing && force) {
+      database.prepare(`DELETE FROM memory_index WHERE parent_id = ?`).run(existing.id);
+      database.prepare(`DELETE FROM memory_index WHERE id = ?`).run(existing.id);
+    }
+
+    // Create parent record (no embedding)
+    const importanceWeight = calculateDocumentWeight(filePath, parsed.documentType);
+    const specLevel = isSpecDocumentType(parsed.documentType)
+      ? detectSpecLevelFromParsed(filePath)
+      : null;
+
+    parentId = vectorIndex.indexMemoryDeferred({
+      specFolder: parsed.specFolder,
+      filePath,
+      title: parsed.title,
+      triggerPhrases: parsed.triggerPhrases,
+      importanceWeight,
+      failureReason: 'Chunked parent: embedding in children',
+      documentType: parsed.documentType || 'memory',
+      specLevel,
+      contentText: chunkResult.parentSummary,
+      qualityScore: parsed.qualityScore,
+      qualityFlags: parsed.qualityFlags,
+    });
+
+    const fileMetadata = incrementalIndex.getFileMetadata(filePath);
+    const fileMtimeMs = fileMetadata ? fileMetadata.mtime : null;
+
+    database.prepare(`
+      UPDATE memory_index
+      SET content_hash = ?,
+          context_type = ?,
+          importance_tier = ?,
+          memory_type = ?,
+          type_inference_source = ?,
+          stability = ?,
+          difficulty = ?,
+          last_review = datetime('now'),
+          review_count = 0,
+          file_mtime_ms = ?,
+          embedding_status = 'partial',
+          quality_score = ?,
+          quality_flags = ?
+      WHERE id = ?
+    `).run(
+      parsed.contentHash,
+      parsed.contextType,
+      parsed.importanceTier,
+      parsed.memoryType,
+      parsed.memoryTypeSource,
+      fsrsScheduler.DEFAULT_INITIAL_STABILITY,
+      fsrsScheduler.DEFAULT_INITIAL_DIFFICULTY,
+      fileMtimeMs,
+      parsed.qualityScore ?? 0,
+      JSON.stringify(parsed.qualityFlags ?? []),
+      parentId
+    );
+  }
+
+  // Index BM25 for parent with summary
+  if (bm25Index.isBm25Enabled()) {
+    try {
+      const bm25 = bm25Index.getIndex();
+      bm25.addDocument(String(parentId), chunkResult.parentSummary);
+    } catch (bm25_err: unknown) {
+      const message = toErrorMessage(bm25_err);
+      console.warn(`[memory-save] BM25 indexing failed for parent: ${message}`);
+    }
+  }
+
+  // Index each chunk as a child record
+  let successCount = 0;
+  let failedCount = 0;
+  const childIds: number[] = [];
+
+  for (let i = 0; i < chunkResult.chunks.length; i++) {
+    const chunk = chunkResult.chunks[i];
+    const chunkTitle = `${parsed.title || 'Untitled'} [chunk ${i + 1}/${chunkResult.chunks.length}]`;
+
+    try {
+      // Generate embedding for this chunk
+      let chunkEmbedding: Float32Array | null = null;
+      let chunkEmbeddingStatus = 'pending';
+
+      try {
+        chunkEmbedding = await embeddings.generateDocumentEmbedding(chunk.content);
+        if (chunkEmbedding) {
+          chunkEmbeddingStatus = 'success';
+        }
+      } catch (embErr: unknown) {
+        const message = toErrorMessage(embErr);
+        console.warn(`[memory-save] Chunk ${i + 1} embedding failed: ${message}`);
+      }
+
+      let childId: number;
+      const importanceWeight = calculateDocumentWeight(filePath, parsed.documentType);
+
+      if (chunkEmbedding) {
+        childId = vectorIndex.indexMemory({
+          specFolder: parsed.specFolder,
+          filePath,
+          anchorId: chunk.label,
+          title: chunkTitle,
+          triggerPhrases: [],
+          importanceWeight,
+          embedding: chunkEmbedding,
+          documentType: parsed.documentType || 'memory',
+          contentText: chunk.content,
+        });
+      } else {
+        childId = vectorIndex.indexMemoryDeferred({
+          specFolder: parsed.specFolder,
+          filePath,
+          title: chunkTitle,
+          triggerPhrases: [],
+          importanceWeight,
+          failureReason: 'Chunk embedding failed',
+          documentType: parsed.documentType || 'memory',
+          contentText: chunk.content,
+        });
+      }
+
+      // Set parent_id, chunk_index, chunk_label on the child
+      database.prepare(`
+        UPDATE memory_index
+        SET parent_id = ?,
+            chunk_index = ?,
+            chunk_label = ?,
+            content_hash = ?,
+            context_type = ?,
+            importance_tier = ?,
+            embedding_status = ?,
+            stability = ?,
+            difficulty = ?,
+            last_review = datetime('now'),
+            review_count = 0
+        WHERE id = ?
+      `).run(
+        parentId,
+        i,
+        chunk.label,
+        parsed.contentHash,
+        parsed.contextType,
+        parsed.importanceTier,
+        chunkEmbeddingStatus,
+        fsrsScheduler.DEFAULT_INITIAL_STABILITY,
+        fsrsScheduler.DEFAULT_INITIAL_DIFFICULTY,
+        childId
+      );
+
+      childIds.push(childId);
+
+      // BM25 index the chunk
+      if (bm25Index.isBm25Enabled()) {
+        try {
+          const bm25 = bm25Index.getIndex();
+          bm25.addDocument(String(childId), chunk.content);
+        } catch (bm25_err: unknown) {
+          const message = toErrorMessage(bm25_err);
+          console.warn(`[memory-save] BM25 indexing failed for chunk ${i + 1}: ${message}`);
+        }
+      }
+
+      successCount++;
+    } catch (chunkErr: unknown) {
+      failedCount++;
+      const message = toErrorMessage(chunkErr);
+      console.error(`[memory-save] Failed to index chunk ${i + 1}: ${message}`);
+    }
+  }
+
+  // Mutation ledger
+  appendMutationLedgerSafe(database, {
+    mutationType: existing ? 'update' : 'create',
+    reason: `memory_save: chunked indexing (${chunkResult.strategy}, ${chunkResult.chunks.length} chunks)`,
+    priorHash: null,
+    newHash: parsed.contentHash,
+    linkedMemoryIds: [parentId, ...childIds],
+    decisionMeta: {
+      tool: 'memory_save',
+      status: 'chunked',
+      chunkStrategy: chunkResult.strategy,
+      chunkCount: chunkResult.chunks.length,
+      successCount,
+      failedCount,
+      specFolder: parsed.specFolder,
+      filePath,
+    },
+    actor: 'mcp:memory_save',
+  });
+
+  return {
+    status: existing ? 'updated' : 'indexed',
+    id: parentId,
+    specFolder: parsed.specFolder,
+    title: parsed.title,
+    triggerPhrases: parsed.triggerPhrases,
+    contextType: parsed.contextType,
+    importanceTier: parsed.importanceTier,
+    embeddingStatus: 'partial',
+    message: `Chunked: ${successCount}/${chunkResult.chunks.length} chunks indexed (${chunkResult.strategy} strategy)`,
+  };
+}
+
+/* ---------------------------------------------------------------
+   8. INDEX MEMORY FILE
 --------------------------------------------------------------- */
 
 /** Parse, validate, and index a memory file with PE gating, FSRS scheduling, and causal links */
@@ -686,6 +964,12 @@ async function indexMemoryFile(filePath: string, { force = false, parsedOverride
   if (validation.warnings && validation.warnings.length > 0) {
     console.warn(`[memory] Warning for ${path.basename(filePath)}:`);
     validation.warnings.forEach((w: string) => console.warn(`[memory]   - ${w}`));
+  }
+
+  // CHUNKING BRANCH: Large files get split into parent + child records
+  if (needsChunking(parsed.content)) {
+    console.info(`[memory-save] File exceeds chunking threshold (${parsed.content.length} chars), using chunked indexing`);
+    return indexChunkedMemoryFile(filePath, parsed, { force });
   }
 
   const database = requireDb();
@@ -1130,7 +1414,7 @@ async function indexMemoryFile(filePath: string, { force = false, parsedOverride
 }
 
 /* ---------------------------------------------------------------
-   8. MEMORY SAVE HANDLER
+   9. MEMORY SAVE HANDLER
 --------------------------------------------------------------- */
 
 /** Handle memory_save tool - validates, indexes, and persists a memory file to the database */
@@ -1292,6 +1576,9 @@ async function handleMemorySave(args: SaveArgs): Promise<MCPResponse> {
       if (result.embeddingFailureReason) {
         response.embeddingFailureReason = result.embeddingFailureReason;
       }
+    } else if (result.embeddingStatus === 'partial') {
+      // Chunked indexing result
+      response.message = result.message || `${response.message} (chunked indexing)`;
     }
   }
 
@@ -1311,6 +1598,9 @@ async function handleMemorySave(args: SaveArgs): Promise<MCPResponse> {
     if (asyncEmbedding) {
       hints.push('Async embedding mode: immediate background attempt triggered, background retry manager as safety net');
     }
+  }
+  if (result.embeddingStatus === 'partial') {
+    hints.push('Large file indexed via chunking: parent record + individual chunk records with embeddings');
   }
   if (result.causalLinks) {
     response.causalLinks = result.causalLinks;
@@ -1338,7 +1628,7 @@ async function handleMemorySave(args: SaveArgs): Promise<MCPResponse> {
 }
 
 /* ---------------------------------------------------------------
-   9. ATOMIC MEMORY SAVE
+   10. ATOMIC MEMORY SAVE
 --------------------------------------------------------------- */
 
 /**
@@ -1400,12 +1690,13 @@ function getAtomicityMetrics(): Record<string, unknown> {
 }
 
 /* ---------------------------------------------------------------
-   10. EXPORTS
+   11. EXPORTS
 --------------------------------------------------------------- */
 
 export {
   // Primary exports
   indexMemoryFile,
+  indexChunkedMemoryFile,
   handleMemorySave,
   atomicSaveMemory,
   getAtomicityMetrics,

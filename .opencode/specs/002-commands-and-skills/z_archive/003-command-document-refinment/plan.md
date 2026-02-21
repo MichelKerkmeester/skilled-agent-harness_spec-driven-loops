@@ -81,7 +81,7 @@ Standards defined based on analysis of all 21 files:
 
 **Status**: ✅ COMPLETE
 
-Updated `.opencode/skill/workflows-documentation/assets/command_template.md`:
+Updated `.opencode/skill/sk-documentation/assets/command_template.md`:
 1. ✅ Added emoji vocabulary table (Section 6)
 2. ✅ Added step numbering rules (Section 5)
 3. ✅ Added structure templates for workflow, search, and simple commands (Section 17)

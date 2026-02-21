@@ -728,7 +728,7 @@ Test across all Webflow breakpoints:
 ---
 
 <!-- /ANCHOR:testing-checklist -->
-<!-- ANCHOR:integration-with-workflows-code -->
+<!-- ANCHOR:integration-with-sk-code--web -->
 ## 7. INTEGRATION WITH WORKFLOWS-CODE
 
 ### Phase 1: Implementation
@@ -761,7 +761,7 @@ When verifying Webflow implementations:
 
 ---
 
-<!-- /ANCHOR:integration-with-workflows-code -->
+<!-- /ANCHOR:integration-with-sk-code--web -->
 <!-- ANCHOR:finsweet-custom-select-bridge-pattern -->
 ## 8. FINSWEET CUSTOM SELECT BRIDGE PATTERN
 

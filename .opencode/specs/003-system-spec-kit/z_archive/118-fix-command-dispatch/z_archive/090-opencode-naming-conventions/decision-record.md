@@ -19,7 +19,7 @@
 
 ### Context
 
-The `workflows-code--opencode` skill enforces `snake_case` for JavaScript functions, parameters, and exports. This is non-standard for JS — MDN, Airbnb style guide, Node.js core, and virtually all JS libraries use `camelCase`. The current convention creates friction when reading/writing code and contradicts what every JS developer expects.
+The `sk-code--opencode` skill enforces `snake_case` for JavaScript functions, parameters, and exports. This is non-standard for JS — MDN, Airbnb style guide, Node.js core, and virtually all JS libraries use `camelCase`. The current convention creates friction when reading/writing code and contradicts what every JS developer expects.
 
 ### Constraints
 - ~206 JS files need migration (large blast radius)

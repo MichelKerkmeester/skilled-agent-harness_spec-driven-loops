@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# cleanup-output.sh — Remove old visual-explainer output files
+# cleanup-output.sh — Remove old sk-visual-explainer output files
 # Usage: ./cleanup-output.sh [--force] [--days N] [--dir PATH]
 # Default: dry-run mode — shows what would be deleted without deleting anything
 # --force: actually delete files
@@ -47,7 +47,7 @@ while [[ $# -gt 0 ]]; do
       ;;
     -h|--help)
       echo ""
-      echo -e "${BOLD}cleanup-output.sh${RESET} — Remove old visual-explainer output files"
+      echo -e "${BOLD}cleanup-output.sh${RESET} — Remove old sk-visual-explainer output files"
       echo ""
       echo "Usage: $0 [options]"
       echo ""

@@ -86,11 +86,11 @@ Implement weighted keyword intent classification with recursive discovery and st
 | `.opencode/skill/mcp-figma/SKILL.md` | Modify | Add weighted keyword classification, recursive discovery |
 | `.opencode/skill/mcp-chrome-devtools/SKILL.md` | Modify | Add weighted keyword classification, CLI vs MCP routing weights |
 | `.opencode/skill/sk-code--full-stack/SKILL.md` | Modify | Add weighted classification + stack detection (Go/Node/React/RN/Swift) |
-| `.opencode/skill/workflows-code--opencode/SKILL.md` | Modify | Add weighted classification + language detection (JS/TS/Python/Shell) |
+| `.opencode/skill/sk-code--opencode/SKILL.md` | Modify | Add weighted classification + language detection (JS/TS/Python/Shell) |
 | `.opencode/skill/workflows-code--web-dev/SKILL.md` | Modify | Add weighted classification + stack detection (Webflow/vanilla JS) |
-| `.opencode/skill/workflows-documentation/SKILL.md` | Modify | Add weighted classification, recursive discovery for templates |
-| `.opencode/skill/workflows-git/SKILL.md` | Modify | Add weighted classification, read-only enforcement weights |
-| `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Barter/coder/.opencode/skill/workflows-git/SKILL.md` | Modify | Add weighted classification (Barter-specific) |
+| `.opencode/skill/sk-documentation/SKILL.md` | Modify | Add weighted classification, recursive discovery for templates |
+| `.opencode/skill/sk-git/SKILL.md` | Modify | Add weighted classification, read-only enforcement weights |
+| `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Barter/coder/.opencode/skill/sk-git/SKILL.md` | Modify | Add weighted classification (Barter-specific) |
 | `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Barter/coder/.opencode/skill/workflows-code/SKILL.md` | Modify | Add weighted classification + stack detection (Barter-specific) |
 <!-- /ANCHOR:scope -->
 
@@ -287,7 +287,7 @@ Implement weighted keyword intent classification with recursive discovery and st
 **Acceptance Criteria**:
 1. Given existing skill invocation via AGENTS.md, When Smart Router V2 deploys, Then all agent routing continues working without changes
 2. Given user commands (e.g., `/spec_kit:plan`), When commands execute, Then skill routing behavior matches pre-upgrade expectations
-3. Given skill-specific constraints (e.g., workflows-git read-only), When new routing applies, Then existing constraints remain enforced
+3. Given skill-specific constraints (e.g., sk-git read-only), When new routing applies, Then existing constraints remain enforced
 
 ---
 

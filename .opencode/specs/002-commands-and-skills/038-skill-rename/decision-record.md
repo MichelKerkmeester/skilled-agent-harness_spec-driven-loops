@@ -2,7 +2,7 @@
 
 <!-- SPECKIT_LEVEL: 3+ -->
 <!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/workflows-documentation/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skill/sk-documentation/references/hvr_rules.md -->
 
 ---
 
@@ -113,5 +113,5 @@ We needed to rename 7 skills across ~370 files, touching 10+ directories and sha
 Level 3+ Decision Record: One ADR per major decision.
 Write in human voice: active, direct, specific. No em dashes, no hedging, no AI filler.
 State decisions with certainty. Be honest about trade-offs.
-HVR rules: .opencode/skill/workflows-documentation/references/hvr_rules.md
+HVR rules: .opencode/skill/sk-documentation/references/hvr_rules.md
 -->

@@ -212,7 +212,7 @@ python validate_document.py document.md --fix
 # - Fix section numbering
 ```
 
-### Phase 5: Integration with workflows-documentation (P2 - Medium)
+### Phase 5: Integration with sk-documentation (P2 - Medium)
 
 **Update SKILL.md Section 4 (RULES):**
 
@@ -245,7 +245,7 @@ Before claiming completion:
 | `scripts/validate_document.py` | CREATE | P0 |
 | `assets/template_rules.json` | CREATE | P0 |
 | `write.md` (agent) | UPDATE | P1 |
-| `SKILL.md` (workflows-documentation) | UPDATE | P2 |
+| `SKILL.md` (sk-documentation) | UPDATE | P2 |
 | `readme_template.md` | NO CHANGE | - |
 
 <!-- /ANCHOR:dependencies -->
@@ -422,7 +422,7 @@ python validate_document.py tests/fixable.md --fix
 
 ### Phase 2: Agent Integration (Next Session)
 1. Update write.md with validation gates
-2. Update workflows-documentation SKILL.md
+2. Update sk-documentation SKILL.md
 3. Test end-to-end flow
 
 ### Phase 3: Monitoring (Ongoing)

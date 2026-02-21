@@ -2,7 +2,7 @@
 
 <!-- SPECKIT_LEVEL: 3+ -->
 <!-- SPECKIT_TEMPLATE_SOURCE: implementation-summary | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/workflows-documentation/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skill/sk-documentation/references/hvr_rules.md -->
 
 <!-- ANCHOR:implementation-summary-138-root -->
 
@@ -21,7 +21,7 @@
 | **Global Tasks** | G001-G004 complete, G005 awaiting sign-off |
 | **Test Suite** | 159 files, 4,770 tests passed, 0 failed |
 | **Schema Changes** | Zero — v15 SQLite schema unchanged |
-| **Code Review** | 5 Sonnet review agents (R-Wave) + 5 Opus agents (D-Wave), workflows-code--opencode compliance verified |
+| **Code Review** | 5 Sonnet review agents (R-Wave) + 5 Opus agents (D-Wave), sk-code--opencode compliance verified |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -50,7 +50,7 @@ Five new production modules and six surgical modifications to existing files tra
 
 All 9 monolithic SKILL.md files decomposed into a composable graph architecture with 72 total nodes. Each skill now has `index.md` (graph entrypoint), `nodes/*.md` (focused topic files with YAML frontmatter), and `SKILL.md` (compatibility entrypoint).
 
-**Skills converted:** system-spec-kit (9 nodes), workflows-documentation (7), mcp-code-mode (6), workflows-git (9), mcp-chrome-devtools (10), mcp-figma (8), sk-code--full-stack (6), workflows-code--opencode (8), workflows-code--web-dev (9).
+**Skills converted:** system-spec-kit (9 nodes), sk-documentation (7), mcp-code-mode (6), sk-git (9), mcp-chrome-devtools (10), mcp-figma (8), sk-code--full-stack (6), sk-code--opencode (8), workflows-code--web-dev (9).
 
 **SGQS specifications delivered:** Grammar specification (802 lines) with MATCH/WHERE/RETURN clauses, BNF grammar, AST targets, and error taxonomy. Metadata mapping model (808 lines) covering source-to-graph entity mapping and extraction pipeline. Parser/executor implementation (3,197 lines across 7 TypeScript modules) validated against 411-node graph with 8 query scenarios.
 
@@ -85,7 +85,7 @@ Implementation proceeded across three workstreams using wave-based parallel orch
 
 **Workstream C** implemented in 4 phases across 22 tasks with wave-based delegation. Phase 0+: core infrastructure and call-site wiring. Phase 1+: metrics, intent routing, semantic bridges. Phase 2+: all 7 intelligence amplification patterns. Phase 3: full test coverage. Four sync checkpoints (SYNC-001 through SYNC-004) tracked test suite growth from 4,554 to 4,725 tests.
 
-**Code quality** was verified in two passes. First, 5 Sonnet review agents (R-Wave) fixed falsy-zero `||` bugs, dead code, unsafe type casts, missing box headers, and `@ts-nocheck` removal from 2 test files. Second, 5 Opus agents (D-Wave) performed a thorough compliance audit of all 43 files (17 source + 26 test) against the full `workflows-code--opencode` TypeScript checklist: TSDoc on all exported functions, magic numbers extracted to named constants, non-null assertions justified, `catch (error: unknown)` with narrowing, import order standardized, 11 `@ts-nocheck` directives removed from test files, and 30+ `any` occurrences in test files replaced with typed alternatives. Zero source files contain `any` in the final state.
+**Code quality** was verified in two passes. First, 5 Sonnet review agents (R-Wave) fixed falsy-zero `||` bugs, dead code, unsafe type casts, missing box headers, and `@ts-nocheck` removal from 2 test files. Second, 5 Opus agents (D-Wave) performed a thorough compliance audit of all 43 files (17 source + 26 test) against the full `sk-code--opencode` TypeScript checklist: TSDoc on all exported functions, magic numbers extracted to named constants, non-null assertions justified, `catch (error: unknown)` with narrowing, import order standardized, 11 `@ts-nocheck` directives removed from test files, and 30+ `any` occurrences in test files replaced with typed alternatives. Zero source files contain `any` in the final state.
 
 The zero schema migration constraint (spec section 3.1) was maintained throughout all three workstreams. All changes are TypeScript orchestration on top of the existing v15 SQLite schema. No new tables, no new columns, no data migrations, no external dependencies added.
 <!-- /ANCHOR:how-delivered -->
@@ -131,7 +131,7 @@ The zero schema migration constraint (spec section 3.1) was maintained throughou
 | New module tests (5 modules) | PASS — mmr-reranker 11/11, evidence-gap-detector 12/12, query-expander 11/11, pagerank 10/10, structure-aware-chunker 9/9 |
 | Pipeline wiring tests | PASS — hybrid-search 56/56, adaptive-fusion 19/19, co-activation 28/28, handler-memory-search 10/10 |
 | Integration tests | PASS — opt-out default-enabled pattern verified, production adapter wrappers validated |
-| Code quality (workflows-code--opencode checklist) | PASS — all 5 new modules verified: proper types, JSDoc, named constants, no magic numbers |
+| Code quality (sk-code--opencode checklist) | PASS — all 5 new modules verified: proper types, JSDoc, named constants, no magic numbers |
 
 ### Workstream B Verification
 
@@ -208,7 +208,7 @@ The system is production-ready with the following caveats:
 
 4. **Rollback is instant.** Set any `SPECKIT_<FEATURE>=false` to disable individual features. No data migrations to reverse.
 
-5. **Code quality verified.** Two review waves (R-Wave Sonnet + D-Wave Opus) audited all 43 files against `workflows-code--opencode` TypeScript standards. Zero `any` in source files. All non-null assertions justified. All exported functions have TSDoc and explicit return types.
+5. **Code quality verified.** Two review waves (R-Wave Sonnet + D-Wave Opus) audited all 43 files against `sk-code--opencode` TypeScript standards. Zero `any` in source files. All non-null assertions justified. All exported functions have TSDoc and explicit return types.
 <!-- /ANCHOR:production-readiness -->
 
 ---
@@ -286,7 +286,7 @@ Level 3+: Root-level implementation summary synthesizing 3 workstreams.
 Spec 138: Intelligent Context Architecture (Unified RAG Fusion + Skill Graphs)
 Complexity: 92/100 | 3 workstreams | 159 test files | 4,770 tests | 0 failures
 Written in human voice: active, direct, specific. No em dashes, no hedging, no AI filler.
-HVR rules: .opencode/skill/workflows-documentation/references/hvr_rules.md
+HVR rules: .opencode/skill/sk-documentation/references/hvr_rules.md
 -->
 
 <!-- /ANCHOR:implementation-summary-138-root -->

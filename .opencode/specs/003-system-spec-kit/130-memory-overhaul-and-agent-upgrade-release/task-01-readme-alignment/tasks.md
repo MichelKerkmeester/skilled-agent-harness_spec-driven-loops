@@ -63,11 +63,11 @@
 - [ ] T052 Audit `.opencode/install_guides/README.md` (Node modules relocation spec 120)
 
 ### Workflow skill READMEs (6 files)
-- [ ] T053 Audit `workflows-documentation/README.md`
-- [ ] T054 Audit `workflows-code--opencode/README.md`
+- [ ] T053 Audit `sk-documentation/README.md`
+- [ ] T054 Audit `sk-code--opencode/README.md`
 - [ ] T055 Audit `workflows-code--web-dev/README.md`
 - [ ] T056 Audit `sk-code--full-stack/README.md`
-- [ ] T057 Audit `workflows-git/README.md`
+- [ ] T057 Audit `sk-git/README.md`
 - [ ] T058 Audit `mcp-chrome-devtools/README.md`
 
 ### MCP skill READMEs (2 files)

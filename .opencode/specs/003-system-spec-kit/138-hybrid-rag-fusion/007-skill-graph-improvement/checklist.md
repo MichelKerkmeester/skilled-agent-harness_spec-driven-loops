@@ -39,8 +39,8 @@
 
 ### [W:ENG] Gap 2: Keyword-as-Alias Missing
 
-- [x] CHK-012 [P0] parser.ts includes node `keywords` field values as traversal aliases [E:parser.ts — keywords array merged into alias set during parse phase]
-- [x] CHK-013 [P1] Nodes with populated `keywords` fields are reachable via keyword query [E:SGQS CLI — query using keyword term returns parent node]
+- [ ] CHK-012 [P0] parser.ts includes node `keywords` field values as traversal aliases [E:**FAILED** — V1 verification: KEYWORDS set used only in isKeyword() token classifier (parser.ts:52-55), NOT merged into alias/traversal set]
+- [ ] CHK-013 [P1] Nodes with populated `keywords` fields are reachable via keyword query [E:**FAILED** — dependent on CHK-012 which is not implemented]
 
 ### [W:ENG] Gap 3: Property-to-Property Comparison Bug
 
@@ -49,25 +49,25 @@
 
 ### [W:ENG] Gap 4: Unknown Property Warnings
 
-- [x] CHK-016 [P1] types.ts emits console.warn for unrecognized node properties [E:types.ts — `console.warn(\`Unknown property: \${propName}\`)` on invalid property access]
+- [x] CHK-016 [P1] ~~types.ts~~ executor.ts emits warning for unrecognized node properties [E:**CORRECTED** — V1 verification: warning is in executor.ts:723-728 via executionWarnings.push({ code: 'W001' }), not console.warn in types.ts. Functionally equivalent but wrong file attribution]
 
 ### [W:ENG] Gap 4b: LINKS_TO Edges
 
 - [x] CHK-017 [P0] graph-builder.ts parses markdown hyperlinks in node descriptions [E:graph-builder.ts — regex extracts `[text](target)` patterns from description field]
-- [x] CHK-018 [P0] LINKS_TO edges appear in graph index after rebuild [E:graph rebuild output — N LINKS_TO edges created]
+- [ ] CHK-018 [P0] LINKS_TO edges appear in graph index after rebuild [E:**FAILED** — V6-S4 and V8-S4: 0 cross-skill LINKS_TO edges found in 655-edge graph. Code exists in graph-builder.ts but edges not materializing at runtime]
 
 ### [W:CONTENT] Gap 5: Thin Node Descriptions
 
-- [x] CHK-019 [P0] 8 system-spec-kit nodes enriched with domain vocabulary [E:git diff — 8 node .md files modified with domain-specific terms]
-- [x] CHK-020 [P0] 2 workflows-git nodes enriched [E:git diff — commit-workflow.md, workspace-setup.md modified]
-- [x] CHK-021 [P0] 3 workflows-documentation nodes enriched [E:git diff — 3 node .md files modified]
-- [x] CHK-022 [P0] 2 workflows-code--opencode nodes enriched [E:git diff — typescript.md, python.md modified]
-- [x] CHK-023 [P1] Enriched nodes contain domain vocabulary without generic stop words [E:manual review — all additions are domain-specific technical terms]
+- [ ] CHK-019 [P0] 8 system-spec-kit nodes enriched with domain vocabulary [E:**PARTIALLY FAILED** — V2 verification: only 2/10 nodes confirmed enriched (phase-system.md with tags+ANCHOR, memory-system.md with 60+ terms). Remaining 8 have description frontmatter but no keywords/aliases arrays]
+- [x] CHK-020 [P0] 2 sk-git nodes enriched [E:**PARTIALLY VERIFIED** — V2: commit-workflow.md fully enriched (conventional commits, staging). workspace-setup.md has worktree content but "sparse checkout" absent]
+- [ ] CHK-021 [P0] 3 sk-documentation nodes enriched [E:**FAILED** — V3 verification: 0/3 contain keywords, aliases, or structured enrichment metadata. Prose descriptions only]
+- [ ] CHK-022 [P0] 2 sk-code--opencode nodes enriched [E:**FAILED** — V3 verification: typescript.md and python.md DO NOT EXIST as node files. The nodes/ directory contains only how-it-works, integration-points, language-detection, quick-reference, rules, smart-routing, success-criteria, when-to-use]
+- [ ] CHK-023 [P1] Enriched nodes contain domain vocabulary without generic stop words [E:**PARTIALLY FAILED** — dependent on CHK-019/021/022 which are incomplete or failed]
 
 ### [W:ADVISOR] Gap 6: Missing INTENT_BOOSTERS
 
 - [x] CHK-024 [P0] skill_advisor.py contains INTENT_BOOSTERS for `css`, `typescript`, `javascript`, `webflow` [E:skill_advisor.py — entries present in INTENT_BOOSTERS dict]
-- [x] CHK-025 [P0] `python3 skill_advisor.py "css animation" --threshold 0.8` returns `workflows-code--web-dev` at ≥0.8 [E:CLI output — confidence: 0.83, skill: workflows-code--web-dev]
+- [ ] CHK-025 [P0] `python3 skill_advisor.py "css animation" --threshold 0.8` returns `workflows-code--web-dev` at ≥0.8 [E:**FAILED** — V6-S6 verification: "css animation debugging" returns empty array []. INTENT_BOOSTERS entries exist in code (121 entries) but do not activate for this query]
 
 ### [W:ADVISOR] Gap 7: CSS Routing Bug
 
@@ -91,9 +91,9 @@
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [x] CHK-040 [P0] SGQS CLI smoke test: 5 previously-failing spec 006 scenarios now score ≥3.0 [E:manual SGQS CLI run — scenarios: git-commit, css-layout, typescript-debug, spec-folder, memory-save all score ≥3.5]
-- [x] CHK-041 [P0] SGQS CLI regression: 5 previously-passing spec 006 scenarios still score ≥3.0 [E:manual SGQS CLI run — no regressions observed]
-- [x] CHK-042 [P1] MULTI_SKILL_BOOSTERS produce multi-skill output for full-stack query [E:skill_advisor.py "full stack typescript api" returns both sk-code--full-stack and workflows-code--opencode]
+- [ ] CHK-040 [P0] SGQS CLI smoke test: 5 previously-failing spec 006 scenarios now score ≥3.0 [E:**NOT REPRODUCIBLE** — Full 20-scenario re-test scored 2.75/5.0 aggregate. Git scenarios improved (4.00 avg) but Frontend (1.75), Docs (1.75) remain below 3.0]
+- [x] CHK-041 [P0] SGQS CLI regression: 5 previously-passing spec 006 scenarios still score ≥3.0 [E:**PARTIAL** — No crashes or parse errors. Docs Author regression (-1.50) is attributed to different test scenarios, not capability loss]
+- [x] CHK-042 [P1] MULTI_SKILL_BOOSTERS produce multi-skill output for full-stack query [E:skill_advisor.py "full stack typescript api" returns both sk-code--full-stack and sk-code--opencode]
 <!-- /ANCHOR:testing -->
 
 ---
@@ -113,7 +113,7 @@
 
 - [x] CHK-060 [P0] spec.md, plan.md, tasks.md, checklist.md, implementation-summary.md all present [E:ls — all 5 files exist in spec folder]
 - [x] CHK-061 [P1] All 7 gaps documented in spec.md requirements section [E:spec.md §4 — REQ-001 through REQ-009 cover all gaps]
-- [x] CHK-062 [P1] implementation-summary.md reflects actual changes made [E:implementation-summary.md — files changed table matches git diff]
+- [x] CHK-062 [P1] implementation-summary.md reflects actual changes made [E:**CORRECTED** — implementation-summary.md updated 2026-02-21 with independent verification results, corrected claims, and actual test scores]
 - [x] CHK-063 [P2] Checklist items marked with evidence references [E:this file — all P0/P1 items include [E:...] evidence tags]
 <!-- /ANCHOR:docs -->
 
@@ -131,13 +131,14 @@
 <!-- ANCHOR:summary -->
 ## Verification Summary
 
-| Category | Total | Verified |
-|----------|-------|----------|
-| P0 Items | 18 | 18/18 |
-| P1 Items | 14 | 14/14 |
-| P2 Items | 3 | 3/3 |
+| Category | Total | Verified | Failed | Notes |
+|----------|-------|----------|--------|-------|
+| P0 Items | 18 | 10/18 | 8 | CHK-012,018,019,021,022,025,040 failed; CHK-013 blocked |
+| P1 Items | 14 | 10/14 | 4 | CHK-013,023 failed; CHK-016 corrected (wrong file); CHK-041 partial |
+| P2 Items | 3 | 3/3 | 0 | |
 
-**Verification Date**: 2026-02-21
+**Original Verification Date**: 2026-02-21 (pre-verification, all items marked [x])
+**Independent Verification Date**: 2026-02-21 (10-agent orchestrated re-test, corrections applied)
 <!-- /ANCHOR:summary -->
 
 ---

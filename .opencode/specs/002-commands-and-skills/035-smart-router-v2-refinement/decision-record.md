@@ -103,13 +103,13 @@ Smart Router V2 baseline uses top-2 intent selection (highest two candidate rout
 **Affected Systems**:
 - `.opencode/skill/sk-code--full-stack/SKILL.md` (primary implementation docs)
 - `.opencode/skill/workflows-code--web-dev/SKILL.md` (top-N logic reference)
-- `.opencode/skill/workflows-code--opencode/SKILL.md` (top-N logic reference)
+- `.opencode/skill/sk-code--opencode/SKILL.md` (top-N logic reference)
 - `.opencode/specs/002-commands-and-skills/034-smart-router-v2/scratch/smart-router-tests/router-rules.json` (threshold configuration)
 
 **Rollback**: Set environment variable `ROUTER_TOP_N_ADAPTIVE=false` to disable top-N expansion, reverting to V2 baseline top-2 behavior. If full rollback needed, revert SKILL.md changes to V2 baseline versions via Git.
 
 **Implementation Notes (2026-02-17)**:
-- Top-N adaptive logic documented in sk-code--full-stack, workflows-code--web-dev, workflows-code--opencode
+- Top-N adaptive logic documented in sk-code--full-stack, workflows-code--web-dev, sk-code--opencode
 - Test fixtures created: ambiguity-close-score.json, ambiguity-multi-symptom.json
 - All 78 test cases passing with backward compatibility
 - Benchmark confirms 100% coverage on ambiguity scenarios
@@ -226,8 +226,8 @@ Skills document synonym expansion logic in their respective SKILL.md files, refe
 - `.opencode/specs/002-commands-and-skills/034-smart-router-v2/scratch/smart-router-tests/router-rules.json` (lexicon storage)
 - `.opencode/skill/sk-code--full-stack/SKILL.md` (synonym expander docs)
 - `.opencode/skill/workflows-code--web-dev/SKILL.md` (synonym expander reference)
-- `.opencode/skill/workflows-code--opencode/SKILL.md` (synonym expander reference)
-- `.opencode/skill/workflows-git/SKILL.md` (Git-specific synonym context docs)
+- `.opencode/skill/sk-code--opencode/SKILL.md` (synonym expander reference)
+- `.opencode/skill/sk-git/SKILL.md` (Git-specific synonym context docs)
 
 **Synonym Addition Process** (lightweight, no spec folder):
 1. Add entry to router-rules.json: `{ "term": "wonky", "canonical": "unstable", "weight": 0.7, "context": "all" }`
@@ -238,7 +238,7 @@ Skills document synonym expansion logic in their respective SKILL.md files, refe
 
 **Implementation Notes (2026-02-17)**:
 - Centralized synonym lexicon added to router-rules.json with 7+ noisy terms
-- Synonym expansion documented in all affected skills (sk-code--full-stack, workflows-code--web-dev, workflows-code--opencode, workflows-git)
+- Synonym expansion documented in all affected skills (sk-code--full-stack, workflows-code--web-dev, sk-code--opencode, sk-git)
 - Context hints field enables skill-specific interpretation (e.g., "dirty workspace" → Git context)
 - Lightweight addition process validated through test suite
 <!-- /ANCHOR:adr-002-impl -->
@@ -351,8 +351,8 @@ User can answer any subset (skip irrelevant items). If user provides no answers 
 **Affected Systems**:
 - `.opencode/skill/sk-code--full-stack/SKILL.md` (primary UNKNOWN fallback docs + checklist)
 - `.opencode/skill/workflows-code--web-dev/SKILL.md` (UNKNOWN fallback reference)
-- `.opencode/skill/workflows-code--opencode/SKILL.md` (UNKNOWN fallback reference, Python/Shell context)
-- `.opencode/skill/workflows-git/SKILL.md` (UNKNOWN fallback reference, Git-specific context)
+- `.opencode/skill/sk-code--opencode/SKILL.md` (UNKNOWN fallback reference, Python/Shell context)
+- `.opencode/skill/sk-git/SKILL.md` (UNKNOWN fallback reference, Git-specific context)
 
 **Checklist Presentation Format** (Markdown-friendly):
 ```

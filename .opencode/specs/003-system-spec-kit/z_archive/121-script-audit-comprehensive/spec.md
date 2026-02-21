@@ -8,11 +8,11 @@
 <!-- ANCHOR:executive-summary -->
 ## EXECUTIVE SUMMARY
 
-Comprehensive audit of all system-spec-kit scripts to identify bugs, broken features, and misalignments with workflows-code--opencode standards. Investigation excludes issues solely caused by ongoing node_modules relocation into mcp_server.
+Comprehensive audit of all system-spec-kit scripts to identify bugs, broken features, and misalignments with sk-code--opencode standards. Investigation excludes issues solely caused by ongoing node_modules relocation into mcp_server.
 
 **Key Decisions**: Shard-based audit strategy (context → build → review), exclusion of node_modules relocation issues
 
-**Critical Dependencies**: workflows-code--opencode standards documentation
+**Critical Dependencies**: sk-code--opencode standards documentation
 <!-- /ANCHOR:executive-summary -->
 
 ---
@@ -35,7 +35,7 @@ Comprehensive audit of all system-spec-kit scripts to identify bugs, broken feat
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-System-spec-kit contains multiple script directories (scripts/, shared/, mcp_server/) with complex interdependencies. Current state may contain bugs, broken features, and deviations from workflows-code--opencode standards that impact reliability and maintainability.
+System-spec-kit contains multiple script directories (scripts/, shared/, mcp_server/) with complex interdependencies. Current state may contain bugs, broken features, and deviations from sk-code--opencode standards that impact reliability and maintainability.
 
 ### Purpose
 Identify and document all script issues excluding those caused solely by ongoing node_modules relocation, creating a comprehensive remediation roadmap.
@@ -50,7 +50,7 @@ Identify and document all script issues excluding those caused solely by ongoing
 - Audit all scripts in system-spec-kit/scripts/
 - Audit all scripts in system-spec-kit/shared/
 - Audit all scripts in system-spec-kit/mcp_server/
-- Compare against workflows-code--opencode standards
+- Compare against sk-code--opencode standards
 - Document bugs, broken features, and misalignments
 - Exclude node_modules relocation-related issues
 
@@ -59,7 +59,7 @@ Identify and document all script issues excluding those caused solely by ongoing
 - `/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/scripts`
 - `/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/shared`
 - `/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/mcp_server`
-- Comparison target: `/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/workflows-code--opencode`
+- Comparison target: `/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/sk-code--opencode`
 
 ### Out of Scope
 - Issues caused SOLELY by ongoing node_modules relocation into mcp_server - excluded per requirements
@@ -86,7 +86,7 @@ Identify and document all script issues excluding those caused solely by ongoing
 |----|-------------|---------------------|
 | REQ-001 | Identify all bugs in scripts/, shared/, mcp_server/ | Complete bug inventory documented |
 | REQ-002 | Identify all broken features | Feature functionality status verified |
-| REQ-003 | Compare against workflows-code--opencode standards | Misalignment inventory created |
+| REQ-003 | Compare against sk-code--opencode standards | Misalignment inventory created |
 | REQ-004 | Exclude node_modules relocation issues | Issues filtered and marked as excluded |
 
 ### P1 - Required (complete OR user-approved deferral)
@@ -104,7 +104,7 @@ Identify and document all script issues excluding those caused solely by ongoing
 
 - **SC-001**: All scripts in scope audited with findings documented
 - **SC-002**: Node_modules relocation issues identified and excluded
-- **SC-003**: Comparison matrix against workflows-code--opencode completed
+- **SC-003**: Comparison matrix against sk-code--opencode completed
 - **SC-004**: Remediation roadmap created with prioritized action items
 <!-- /ANCHOR:success-criteria -->
 
@@ -115,7 +115,7 @@ Identify and document all script issues excluding those caused solely by ongoing
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | workflows-code--opencode standards | Cannot validate alignment | Document as is, validate later |
+| Dependency | sk-code--opencode standards | Cannot validate alignment | Document as is, validate later |
 | Risk | False positives from node_modules relocation | Wasted effort | Strict exclusion filter |
 | Risk | Scope creep into fixes | Delays audit completion | Document only, no fixes |
 <!-- /ANCHOR:risks -->
@@ -193,10 +193,10 @@ Identify and document all script issues excluding those caused solely by ongoing
 
 ### US-002: Standards Alignment Check (Priority: P0)
 
-**As a** maintainer, **I want** scripts compared against workflows-code--opencode, **so that** deviations are identified.
+**As a** maintainer, **I want** scripts compared against sk-code--opencode, **so that** deviations are identified.
 
 **Acceptance Criteria**:
-1. Given workflows-code--opencode standards, When comparing scripts, Then misalignments are documented with specific examples
+1. Given sk-code--opencode standards, When comparing scripts, Then misalignments are documented with specific examples
 <!-- /ANCHOR:user-stories -->
 
 ---
@@ -205,7 +205,7 @@ Identify and document all script issues excluding those caused solely by ongoing
 ## 12. OPEN QUESTIONS
 
 - What is the exact scope of "node_modules relocation issues" to exclude?
-- Are there specific workflows-code--opencode standards documents to reference?
+- Are there specific sk-code--opencode standards documents to reference?
 - Should findings be categorized by remediation effort estimate?
 <!-- /ANCHOR:questions -->
 

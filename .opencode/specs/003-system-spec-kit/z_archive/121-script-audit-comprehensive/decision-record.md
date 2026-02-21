@@ -26,7 +26,7 @@ System-spec-kit contains ~50+ scripts across 3 directories (scripts/, shared/, m
 ### Constraints
 - Must exclude issues caused solely by ongoing node_modules relocation
 - Cannot implement fixes (documentation only)
-- Must compare against workflows-code--opencode standards
+- Must compare against sk-code--opencode standards
 - Time-bound investigation (15-24 hours estimated)
 <!-- /ANCHOR:adr-001-context -->
 

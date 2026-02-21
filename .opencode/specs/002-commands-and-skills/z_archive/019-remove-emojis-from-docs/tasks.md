@@ -21,7 +21,7 @@
 ---
 
 <!-- ANCHOR:phase-0 -->
-## Phase 0: Validation Engine & workflows-documentation (COMPLETED)
+## Phase 0: Validation Engine & sk-documentation (COMPLETED)
 
 - [x] T001 Set `h2_emoji_required: false` for all 7 document types in `template_rules.json`
 - [x] T002 Remove `missing_h2_emoji` and `toc_missing_emoji` from blocking errors in `template_rules.json`
@@ -95,10 +95,10 @@
 ---
 
 <!-- ANCHOR:phase-4 -->
-## Phase 4: workflows-code--opencode Skill (22 files)
+## Phase 4: sk-code--opencode Skill (22 files)
 
-- [x] T400 [P] Strip emojis from `workflows-code--opencode/SKILL.md`
-- [x] T401 [P] Strip emojis from `workflows-code--opencode/README.md`
+- [x] T400 [P] Strip emojis from `sk-code--opencode/SKILL.md`
+- [x] T401 [P] Strip emojis from `sk-code--opencode/README.md`
 - [x] T402 [P] Strip emojis from 3 `references/python/*.md` files
 - [x] T403 [P] Strip emojis from 3 `references/typescript/*.md` files
 - [x] T404 [P] Strip emojis from 3 `references/javascript/*.md` files
@@ -106,7 +106,7 @@
 - [x] T406 [P] Strip emojis from `references/config/quick_reference.md`
 - [x] T407 [P] Strip emojis from `references/shared/code_organization.md`
 - [x] T408 [P] Strip emojis from 6 `assets/checklists/*.md` files
-- [x] T409 Verify: zero emoji H2 headings in `workflows-code--opencode/`
+- [x] T409 Verify: zero emoji H2 headings in `sk-code--opencode/`
 - [x] T410 [P] Update SKILL.md version in frontmatter
 <!-- /ANCHOR:phase-4 -->
 
@@ -161,13 +161,13 @@
 ---
 
 <!-- ANCHOR:phase-8 -->
-## Phase 8: workflows-git Skill (10 files)
+## Phase 8: sk-git Skill (10 files)
 
-- [x] T800 [P] Strip emojis from `workflows-git/SKILL.md`
-- [x] T801 [P] Strip emojis from `workflows-git/README.md`
+- [x] T800 [P] Strip emojis from `sk-git/SKILL.md`
+- [x] T801 [P] Strip emojis from `sk-git/README.md`
 - [x] T802 [P] Strip emojis from 5 `references/*.md` files
 - [x] T803 [P] Strip emojis from 3 `assets/*.md` files
-- [x] T804 Verify: zero emoji H2 headings in `workflows-git/`
+- [x] T804 Verify: zero emoji H2 headings in `sk-git/`
 - [x] T805 [P] Update SKILL.md version in frontmatter
 <!-- /ANCHOR:phase-8 -->
 
@@ -225,7 +225,7 @@
 - [x] T1206 Generate final summary report with file counts
   > **Note**: T1206 (task) is summary report generation (complete). CHK-1206 (checklist item) is root README unchanged verification (blocked).
 - [x] T1207 Create changelog entries for all modified skills
-- [x] T1208 Verify workflows-documentation test suite passing
+- [x] T1208 Verify sk-documentation test suite passing
 - [x] T1209 Verify file count matches or exceeds target (287+ files)
 <!-- /ANCHOR:phase-12 -->
 

@@ -8,11 +8,11 @@
 <!-- ANCHOR:executive-summary -->
 ## EXECUTIVE SUMMARY
 
-AI-generated documentation has a tell: it reads like AI wrote it. This spec fixes that. The Human Voice Rules (HVR), currently locked inside a Barter-specific document, get extracted into a standalone, system-agnostic asset and embedded into four core documentation templates — two in SpecKit and two in the workflows-documentation skill. The result is that every implementation summary, decision record, README and install guide produced from these templates will read like a knowledgeable human wrote it, not a language model trying to sound professional.
+AI-generated documentation has a tell: it reads like AI wrote it. This spec fixes that. The Human Voice Rules (HVR), currently locked inside a Barter-specific document, get extracted into a standalone, system-agnostic asset and embedded into four core documentation templates — two in SpecKit and two in the sk-documentation skill. The result is that every implementation summary, decision record, README and install guide produced from these templates will read like a knowledgeable human wrote it, not a language model trying to sound professional.
 
 **Key Decisions**: HVR as a standalone skill asset (not inline YAML); annotation-based embedding in templates (not mandatory enforcement scripts).
 
-**Critical Dependencies**: Access to both template locations (SpecKit and workflows-documentation skill folders) and the source HVR document at `context/Rules - Human Voice - v0.101.md`.
+**Critical Dependencies**: Access to both template locations (SpecKit and sk-documentation skill folders) and the source HVR document at `context/Rules - Human Voice - v0.101.md`.
 <!-- /ANCHOR:executive-summary -->
 
 ---
@@ -37,7 +37,7 @@ AI-generated documentation has a tell: it reads like AI wrote it. This spec fixe
 
 ### Problem Statement
 
-Documentation generated from existing SpecKit and workflows-documentation templates reads like AI output. The current implementation-summary, decision-record, README and install-guide templates give no guidance on voice or tone. Writers fill them in, and what comes out carries the hallmarks of AI-generated text: hedging language, filler phrases, passive constructions, and that peculiar habit of listing exactly three things. The HVR document that solves this problem exists but is buried inside a Barter-specific context file, inaccessible to the broader toolchain.
+Documentation generated from existing SpecKit and sk-documentation templates reads like AI output. The current implementation-summary, decision-record, README and install-guide templates give no guidance on voice or tone. Writers fill them in, and what comes out carries the hallmarks of AI-generated text: hedging language, filler phrases, passive constructions, and that peculiar habit of listing exactly three things. The HVR document that solves this problem exists but is buried inside a Barter-specific context file, inaccessible to the broader toolchain.
 
 ### Purpose
 
@@ -51,11 +51,11 @@ Extract the Human Voice Rules into a reusable skill asset and integrate HVR guid
 
 ### In Scope
 
-- Extract and refactor `context/Rules - Human Voice - v0.101.md` into a system-agnostic `hvr_rules.md` at `.opencode/skill/workflows-documentation/assets/documentation/`
+- Extract and refactor `context/Rules - Human Voice - v0.101.md` into a system-agnostic `hvr_rules.md` at `.opencode/skill/sk-documentation/assets/documentation/`
 - Update the SpecKit `implementation-summary` template (all levels: 1, 2, 3, 3+) with HVR guidance
 - Update the SpecKit `decision-record` template (levels 3 and 3+) with HVR guidance
-- Update the workflows-documentation `readme_template.md` with HVR guidance
-- Update the workflows-documentation `install_guide_template.md` with HVR guidance
+- Update the sk-documentation `readme_template.md` with HVR guidance
+- Update the sk-documentation `install_guide_template.md` with HVR guidance
 - Update this spec folder's own documentation to demonstrate the style it promotes
 
 ### Out of Scope
@@ -69,15 +69,15 @@ Extract the Human Voice Rules into a reusable skill asset and integrate HVR guid
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skill/workflows-documentation/assets/documentation/hvr_rules.md` | Create | Standalone, system-agnostic HVR extracted from context source |
+| `.opencode/skill/sk-documentation/assets/documentation/hvr_rules.md` | Create | Standalone, system-agnostic HVR extracted from context source |
 | `.opencode/skill/system-spec-kit/templates/level_1/implementation-summary.md` | Modify | Add HVR annotation block and style guidance |
 | `.opencode/skill/system-spec-kit/templates/level_2/implementation-summary.md` | Modify | Add HVR annotation block and style guidance |
 | `.opencode/skill/system-spec-kit/templates/level_3/implementation-summary.md` | Modify | Add HVR annotation block and style guidance |
 | `.opencode/skill/system-spec-kit/templates/level_3+/implementation-summary.md` | Modify | Add HVR annotation block and style guidance |
 | `.opencode/skill/system-spec-kit/templates/level_3/decision-record.md` | Modify | Add HVR annotation block and style guidance |
 | `.opencode/skill/system-spec-kit/templates/level_3+/decision-record.md` | Modify | Add HVR annotation block and style guidance |
-| `.opencode/skill/workflows-documentation/assets/documentation/readme_template.md` | Modify | Add HVR annotation block and style guidance |
-| `.opencode/skill/workflows-documentation/assets/documentation/install_guide_template.md` | Modify | Add HVR annotation block and style guidance |
+| `.opencode/skill/sk-documentation/assets/documentation/readme_template.md` | Modify | Add HVR annotation block and style guidance |
+| `.opencode/skill/sk-documentation/assets/documentation/install_guide_template.md` | Modify | Add HVR annotation block and style guidance |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -89,7 +89,7 @@ Extract the Human Voice Rules into a reusable skill asset and integrate HVR guid
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | HVR standalone asset created at the canonical path | File exists at `.opencode/skill/workflows-documentation/assets/documentation/hvr_rules.md`, contains all sections from source, no Barter-specific references remain |
+| REQ-001 | HVR standalone asset created at the canonical path | File exists at `.opencode/skill/sk-documentation/assets/documentation/hvr_rules.md`, contains all sections from source, no Barter-specific references remain |
 | REQ-002 | All four templates updated with HVR annotation | Each template file contains an HVR guidance block with reference to `hvr_rules.md` and inline key rules |
 | REQ-003 | SpecKit implementation-summary templates updated at all four levels | Level 1, 2, 3 and 3+ templates all carry HVR guidance |
 | REQ-004 | SpecKit decision-record templates updated at levels 3 and 3+ | Both decision-record templates carry HVR guidance |

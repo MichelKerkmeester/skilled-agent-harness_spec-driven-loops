@@ -1,10 +1,10 @@
 <!-- SPECKIT_TEMPLATE_SOURCE: legacy-normalized | v2.2 -->
 
-# Plan: workflows-documentation Skill Functional Testing
+# Plan: sk-documentation Skill Functional Testing
 
 | Field | Value |
 |-------|-------|
-| Spec | `008-workflows-documentation-test` |
+| Spec | `008-sk-documentation-test` |
 | Level | 1 (Baseline) |
 | LOC | N/A (testing, not implementation) |
 | Risk | Low |
@@ -48,7 +48,7 @@ Parallel execution of 8 test agents, each validating a specific component:
 ### File Paths
 
 ```
-.opencode/skills/workflows-documentation/
+.opencode/skills/sk-documentation/
 ├── SKILL.md                          # Main skill file
 ├── markdown-document-specialist      # CLI executable
 ├── scripts/

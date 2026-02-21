@@ -2,7 +2,7 @@
 
 <!-- SPECKIT_LEVEL: 3+ -->
 <!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/workflows-documentation/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skill/sk-documentation/references/hvr_rules.md -->
 
 ---
 
@@ -533,5 +533,5 @@ Two distinct workstreams (RAG Fusion and Skill Graph) need independent task trac
 Level 3+ Decision Record: Five ADRs covering unified architecture, schema constraint, dark launch strategy, SGQS in-process execution, and sub-folder versioning.
 Active voice throughout. No hedging. Trade-offs documented honestly.
 Sub-folder references included for workstream-specific detail.
-HVR rules: .opencode/skill/workflows-documentation/references/hvr_rules.md
+HVR rules: .opencode/skill/sk-documentation/references/hvr_rules.md
 -->

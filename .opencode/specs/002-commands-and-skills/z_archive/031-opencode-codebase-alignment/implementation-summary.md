@@ -72,11 +72,11 @@ Level 3+ spec artifacts were created and refined, baseline audit was completed, 
 
 #### Python (`.py`)
 - `.opencode/skill/scripts/skill_advisor.py`
-- `.opencode/skill/workflows-documentation/scripts/validate_document.py`
-- `.opencode/skill/workflows-documentation/scripts/extract_structure.py`
+- `.opencode/skill/sk-documentation/scripts/validate_document.py`
+- `.opencode/skill/sk-documentation/scripts/extract_structure.py`
 
 #### Config (`.json` / `.jsonc`)
-- `.opencode/skill/workflows-documentation/assets/template_rules.json`
+- `.opencode/skill/sk-documentation/assets/template_rules.json`
 - `.opencode/skill/system-spec-kit/mcp_server/configs/search-weights.json`
 - `.opencode/skill/system-spec-kit/config/filters.jsonc`
 - `.opencode/skill/system-spec-kit/package.json`
@@ -87,7 +87,7 @@ Level 3+ spec artifacts were created and refined, baseline audit was completed, 
 <!-- ANCHOR:why -->
 ## Why These Changes
 
-- Align touched code to `workflows-code--opencode` standards while preserving runtime behavior and public contracts.
+- Align touched code to `sk-code--opencode` standards while preserving runtime behavior and public contracts.
 - Remove known drift in core TS search/context/memory flow, utility patterns, and script/config consistency.
 - Fix correctness blockers found during alignment (import-path bridge issue, TS build/typecheck regressions, and targeted test expectation drift).
 - Keep change scope narrow (alignment plus in-scope defect correction only), consistent with REQ-001/REQ-002/REQ-008/REQ-012.

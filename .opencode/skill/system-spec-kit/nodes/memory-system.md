@@ -1,5 +1,5 @@
 ---
-description: "Details on the integrated Spec Kit Memory MCP server (vector search, tiers, chunking) including audit tools and handler architecture."
+description: "Details on the integrated Spec Kit Memory MCP server (vector search, tiers, chunking), including memory save workflows, audit tools, and handler architecture."
 ---
 # Spec Kit Memory System
 
@@ -73,3 +73,9 @@ Set via environment variable before starting the MCP server (e.g., `SPECKIT_ADAP
 > **Token budgets per layer:** L1:2000, L2:1500, L3:800, L4:500, L5:600, L6:1200, L7:1000 (enforced via `chars/3.5` approximation).
 
 **Full documentation:** See [memory_system.md](../references/memory/memory_system.md) for tool behavior, importance tiers, and configuration.
+
+## Cross-Skill Bridges
+
+- [Validation Workflow](../../system-spec-kit/nodes/validation-workflow.md) - Completion checks before memory save and handover
+- [Document Quality Mode](../../sk-documentation/nodes/mode-document-quality.md) - Quality validation for memory-facing documentation
+- [OpenCode Quick Reference](../../sk-code--opencode/nodes/quick-reference.md) - Script and config hygiene for memory tooling

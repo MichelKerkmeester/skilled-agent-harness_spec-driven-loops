@@ -407,5 +407,5 @@ DUAL-THRESHOLD CHECK:
 
 ### Related Skills
 - `system-spec-kit` - Parent skill using uncertainty tracking in gates
-- `workflows-code` - Implementation skill with verification gates
+- `sk-code--web` - Implementation skill with verification gates
 <!-- /ANCHOR:related-resources -->

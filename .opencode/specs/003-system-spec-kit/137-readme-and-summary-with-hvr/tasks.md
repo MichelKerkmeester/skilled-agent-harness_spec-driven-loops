@@ -74,7 +74,7 @@ These tasks extract the Human Voice Rules from the Barter-specific source docume
 - [ ] T002 Identify all Barter-specific references: proper nouns, system names (MEQT, DEAL, CONTENT), project-specific scoring integrations
 - [ ] T003 Rewrite loading condition from Barter-scoped to general ("Always active for documentation generation tasks")
 - [ ] T004 Rewrite scope statement from "6 Barter content systems" to system-agnostic language
-- [ ] T005 Write cleaned document to `.opencode/skill/workflows-documentation/assets/documentation/hvr_rules.md`
+- [ ] T005 Write cleaned document to `.opencode/skill/sk-documentation/assets/documentation/hvr_rules.md`
 - [ ] T006 Grep for "Barter", "MEQT", "DEAL", "CONTENT", "LinkedIn" — confirm zero results in hvr_rules.md
 <!-- /ANCHOR:phase-1 -->
 
@@ -124,9 +124,9 @@ Six template files across four levels. Read each in full before editing. Preserv
 
 Two files. Same approach: read first, insert block, verify structure.
 
-- [ ] T026 Read `.opencode/skill/workflows-documentation/assets/documentation/readme_template.md` in full
+- [ ] T026 Read `.opencode/skill/sk-documentation/assets/documentation/readme_template.md` in full
 - [ ] T027 Insert README HVR block after template headers in readme_template.md
-- [ ] T028 Read `.opencode/skill/workflows-documentation/assets/documentation/install_guide_template.md` in full
+- [ ] T028 Read `.opencode/skill/sk-documentation/assets/documentation/install_guide_template.md` in full
 - [ ] T029 Insert install-guide HVR block after template headers in install_guide_template.md
 - [ ] T030 Verify both workflows-doc files retain their existing structure and frontmatter
 <!-- /ANCHOR:phase-4 -->

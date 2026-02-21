@@ -904,7 +904,7 @@ Step 4: AVAILABILITY
 Folder: .opencode/skill/mcp-code-mode/
     → Function: skills_mcp_code_mode()
 
-Folder: .opencode/skill/workflows-code/
+Folder: .opencode/skill/sk-code--web/
     → Function: skills_workflows_code()
 
 Folder: .opencode/skill/system-spec-kit/

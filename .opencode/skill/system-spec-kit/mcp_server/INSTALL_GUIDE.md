@@ -4,21 +4,7 @@
 
 Complete installation and configuration guide for the Spec Kit Memory MCP server. This guide enables AI-powered context retrieval and conversation memory across your project. The system indexes markdown documentation, spec folders and skill references to surface relevant information during AI interactions. It provides semantic search, trigger-based memory surfacing, intent-aware context loading, causal relationship tracking and a skill graph for cross-domain knowledge enrichment.
 
----
-
-## TABLE OF CONTENTS
-
-0. [AI-First Install Guide](#0-ai-first-install-guide)
-1. [Overview](#1-overview)
-2. [Prerequisites](#2-prerequisites)
-3. [Installation](#3-installation)
-4. [Configuration](#4-configuration)
-5. [Verification](#5-verification)
-6. [Usage](#6-usage)
-7. [Features](#7-features)
-8. [Examples](#8-examples)
-9. [Troubleshooting](#9-troubleshooting)
-10. [Resources](#10-resources)
+> **Part of OpenCode Installation.** See the [Master Installation Guide](../README.md) for complete setup.
 
 ---
 
@@ -50,6 +36,22 @@ Your AI assistant will:
 - Troubleshoot native module issues if needed
 
 **Expected setup time:** 3-5 minutes (clean install), 2-5 minutes (recovery)
+
+---
+
+## TABLE OF CONTENTS
+
+0. [AI-First Install Guide](#0-ai-first-install-guide)
+1. [Overview](#1-overview)
+2. [Prerequisites](#2-prerequisites)
+3. [Installation](#3-installation)
+4. [Configuration](#4-configuration)
+5. [Verification](#5-verification)
+6. [Usage](#6-usage)
+7. [Features](#7-features)
+8. [Examples](#8-examples)
+9. [Troubleshooting](#9-troubleshooting)
+10. [Resources](#10-resources)
 
 ---
 
@@ -144,7 +146,7 @@ Checklist:
 - [ ] `node --version` returns v18 or higher
 - [ ] `npm --version` returns a version number
 
-**STOP if validation fails.** Install Node.js from https://nodejs.org/ before continuing.
+❌ **STOP if validation fails.** Install Node.js from https://nodejs.org/ before continuing.
 
 ---
 
@@ -195,7 +197,7 @@ Checklist:
 - [ ] `mcp_server/dist/context-server.js` exists
 - [ ] `mcp_server/node_modules/better-sqlite3` exists
 
-**STOP if validation fails.** Check the installation output for errors before continuing.
+❌ **STOP if validation fails.** Check the installation output for errors before continuing.
 
 ### Step 4: Verify Native Modules (Recommended)
 
@@ -222,7 +224,7 @@ Checklist:
 - [ ] Server starts without immediate crash
 - [ ] No `ERR_DLOPEN_FAILED` errors in output
 
-**STOP if validation fails.** Run native module rebuild and see the Troubleshooting section.
+❌ **STOP if validation fails.** Run native module rebuild and see the Troubleshooting section.
 
 ---
 
@@ -366,7 +368,7 @@ Checklist:
 - [ ] Binary path in config exists on disk
 - [ ] Your actual username replaces `YOUR_USERNAME` (for absolute paths)
 
-**STOP if validation fails.** Fix configuration syntax or paths before continuing.
+❌ **STOP if validation fails.** Fix configuration syntax or paths before continuing.
 
 ---
 
@@ -418,7 +420,7 @@ Checklist:
 - [ ] No connection errors in responses
 - [ ] No `ERR_DLOPEN_FAILED` or module resolution errors
 
-**STOP if validation fails.** Check your MCP configuration, restart the client and consult the Troubleshooting section.
+❌ **STOP if validation fails.** Check your MCP configuration, restart the client and consult the Troubleshooting section.
 
 ---
 

@@ -64,29 +64,29 @@
   - Dependency Chain: depends on TASK-104; feeds SGQS execution work in Phase 4.
 
 ## Phase 3: Broad Migration (All Other Skills)
-- [x] TASK-301: Convert `workflows-documentation` to a Skill Graph.
+- [x] TASK-301: Convert `sk-documentation` to a Skill Graph.
   - Inputs: monolithic documentation workflow guidance, pilot migration pattern from Phase 2.
   - Outputs: graph index + nodes + stable wikilink traversal paths for documentation flow.
   - Completion Criteria: prompts that require docs workflow routing complete without monolithic-only fallback.
   - Verification: manual traversal across authoring and validation pathways confirms path completeness.
   - Dependency Chain: depends on pilot-proven decomposition and link-check workflow.
-- [x] TASK-307: Add `workflows-documentation/references/skill_graph_standards.md`.
+- [x] TASK-307: Add `sk-documentation/references/skill_graph_standards.md`.
   - Inputs: frontmatter schema, node naming norms, link authoring expectations from pilot outcomes.
   - Outputs: single standards reference consumed by graph authors.
   - Completion Criteria: migrated nodes can be validated against one canonical standards document.
   - Verification: inspect references from graph docs to standards file and confirm no conflicting local conventions remain.
   - Dependency Chain: derives from TASK-201/TASK-202 conventions; required by TASK-308/TASK-309.
-- [x] TASK-308: Add `workflows-documentation/assets/opencode/skill_graph_node_template.md`.
+- [x] TASK-308: Add `sk-documentation/assets/opencode/skill_graph_node_template.md`.
   - Inputs: standards rules from TASK-307 and expected node anatomy from completed migrations.
   - Outputs: reusable template enabling consistent node creation.
   - Completion Criteria: template-generated node includes required sections/frontmatter and passes structural review.
   - Verification: author a sample node from the template and validate frontmatter + section presence without ad-hoc fixes.
   - Dependency Chain: depends on TASK-307; supports remaining six skill migrations.
-- [x] TASK-309: Update `workflows-documentation/SKILL.md` with Skill Graph system guidance and links.
+- [x] TASK-309: Update `sk-documentation/SKILL.md` with Skill Graph system guidance and links.
   - Inputs: standards and template asset paths, Graph Status header requirements.
   - Outputs: updated `SKILL.md` routing guidance for graph-first authoring.
   - Completion Criteria: standards and template assets are discoverable in one hop from entrypoint content.
-  - Verification: open `workflows-documentation/SKILL.md` and follow links to both artifacts directly.
+  - Verification: open `sk-documentation/SKILL.md` and follow links to both artifacts directly.
   - Dependency Chain: depends on TASK-307/TASK-308; closes CHK-014 evidence path.
 
 ### Per-Skill Node Completion (9 Total Skills)
@@ -96,7 +96,7 @@
   - Completion Criteria: matrix row remains complete only when index, node coverage, and links all pass.
   - Verification: run global link check plus targeted traversal from entrypoint through core domains.
   - Dependency Chain: depends on Phase 2; baseline reference for other skills.
-- [x] TASK-311: Complete node graph coverage for `workflows-documentation`.
+- [x] TASK-311: Complete node graph coverage for `sk-documentation`.
   - Inputs: migration artifacts from TASK-301 and standards/template assets.
   - Outputs: complete graph conforming to published authoring standards.
   - Completion Criteria: matrix row complete with no missing required node categories.
@@ -108,8 +108,8 @@
   - Completion Criteria: users can traverse from entrypoint to each domain without hidden monolithic dependencies.
   - Verification: run manual traversal scenarios and confirm matrix complete state is evidence-backed.
   - Dependency Chain: depends on template conventions and global link-check readiness.
-- [x] TASK-313: Complete node graph coverage for `workflows-git`.
-  - Inputs: existing `workflows-git/SKILL.md`, node template, standards doc, matrix status row.
+- [x] TASK-313: Complete node graph coverage for `sk-git`.
+  - Inputs: existing `sk-git/SKILL.md`, node template, standards doc, matrix status row.
   - Outputs: `index.md`, node set (`setup`, `commit/PR`, `safeguards`, `finish`), Graph Status header in SKILL.md.
   - Completion Criteria: all required domains represented and linked from index; no orphan nodes.
   - Verification: `bash .opencode/skill/system-spec-kit/scripts/check-links.sh .opencode/skill` + manual traversal over four domain paths.
@@ -132,7 +132,7 @@
   - Completion Criteria: traversal covers all phases and stack-detection branch paths with no dead ends.
   - Verification: manual hop test from entrypoint to each phase node and back to index contexts.
   - Dependency Chain: depends on TASK-105 matrix tracking and template conformance.
-- [x] TASK-317: Complete node graph coverage for `workflows-code--opencode`.
+- [x] TASK-317: Complete node graph coverage for `sk-code--opencode`.
   - Inputs: language standards sections and quality checklist branches from current skill content.
   - Outputs: node graph that maps language branches to canonical index routes.
   - Completion Criteria: every language branch is reachable and mapped without ambiguous routing.

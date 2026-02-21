@@ -63,7 +63,7 @@ This is the **root checklist** for the 138-hybrid-rag-fusion spec folder. It tra
 - [x] CHK-014 [P1] [W:RAG] FTS5 BM25 weights balanced with RRF (Reciprocal Rank Fusion) — keyword and vector channel scores normalize correctly [Evidence: sqlite-fts.ts bm25(10.0, 5.0, 1.0, 2.0) wired into ftsSearch() in hybrid-search.ts; rrf-fusion.ts cross-variant RRF with convergence bonus; sqlite-fts.vitest.ts + unit-rrf-fusion.vitest.ts]
 - [x] CHK-015 [P1] [W:GRAPH] SGQS grammar supports MATCH / REL / WHERE / RETURN clauses [STATUS: COMPLETE — Evidence: grammar spec documented in Workstream B spec.md]
 - [x] CHK-016 [P1] [W:GRAPH] Per-skill node coverage matrix complete — 9/9 skills have graph metadata [STATUS: COMPLETE — Evidence: coverage matrix verified in Workstream B tasks.md]
-- [x] CHK-017 [P1] [W:GRAPH] workflows-documentation Skill Graph standards published — schema and conventions documented [STATUS: COMPLETE — Evidence: standards documented in Workstream B]
+- [x] CHK-017 [P1] [W:GRAPH] sk-documentation Skill Graph standards published — schema and conventions documented [STATUS: COMPLETE — Evidence: standards documented in Workstream B]
 - [x] CHK-018 [P1] [W:INTEG] Skill Graph metadata feeds the graph channel in hybrid search pipeline — `[W:RAG]` retrieval uses `[W:GRAPH]` node data [Evidence: 003 — createUnifiedGraphSearchFn() queries SGQS skill graph via SkillGraphCacheManager. Skill graph nodes feed into RRF pipeline as graph channel results with `skill:{path}` namespace]
 <!-- /ANCHOR:p1-required -->
 
@@ -152,7 +152,7 @@ This is the **root checklist** for the 138-hybrid-rag-fusion spec folder. It tra
 
 - [x] CHK-140 [P1] All spec documents synchronized — `spec.md`, `plan.md`, `tasks.md`, `decision-record.md` reflect final implemented state [Evidence: spec.md, plan.md, tasks.md, decision-record.md all reflect implemented state. implementation-summary.md exists in all 3 subfolders]
 - [x] CHK-141 [P1] [W:GRAPH] SGQS grammar spec published — grammar reference available in Workstream B spec or as standalone reference [Evidence: 002 — SGQS grammar documented in spec.md, grammar spec in scratch/sgqs-grammar.md, TASK-103 complete]
-- [x] CHK-142 [P1] [W:GRAPH] User-facing skill graph standards documented — `workflows-documentation` skill updated with graph conventions [STATUS: COMPLETE]
+- [x] CHK-142 [P1] [W:GRAPH] User-facing skill graph standards documented — `sk-documentation` skill updated with graph conventions [STATUS: COMPLETE]
 - [x] CHK-143 [P2] Knowledge transfer documented — `implementation-summary.md` written at root and in each sub-folder [Evidence: implementation-summary.md exists in all 3 subfolders: 001 (Phase 0-3,5 partial), 002 (9/9 skills), 003 (full Level 3+ template)]
 <!-- /ANCHOR:docs-verify -->
 

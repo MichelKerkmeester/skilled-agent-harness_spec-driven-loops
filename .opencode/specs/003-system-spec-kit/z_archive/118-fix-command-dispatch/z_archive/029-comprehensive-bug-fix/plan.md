@@ -31,8 +31,8 @@ Agent Allocation:
 │   └── Agent 13: Security review
 │
 └── Group 4: Workflow Skills (2 agents)
-    ├── Agent 14: workflows-documentation, workflows-code
-    └── Agent 15: workflows-git, mcp-chrome-devtools
+    ├── Agent 14: sk-documentation, workflows-code
+    └── Agent 15: sk-git, mcp-chrome-devtools
 ```
 
 ### Bug Categories Analyzed
@@ -68,7 +68,7 @@ Each agent owns specific files to avoid conflicts:
 | 12 | mcp-code-mode/SKILL.md | Duplicate, context param |
 | 13 | system-spec-kit/SKILL.md | Gate alignment |
 | 14 | workflows-code/SKILL.md | Broken anchors |
-| 15 | workflows-git, chrome-devtools | Missing tools, cleanup |
+| 15 | sk-git, chrome-devtools | Missing tools, cleanup |
 
 ---
 

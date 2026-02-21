@@ -142,7 +142,7 @@ This session was migrated from an older format to v2.2. Review the OVERVIEW and 
 
 - **I'll start by reading the three files to understand the current state and then m** - I'll start by reading the three files to understand the current state and then make the necessary fixes.
 
-- **Tool: edit** - .opencode/skill/workflows-documentation/assets/install_guide_template.md
+- **Tool: edit** - .opencode/skill/sk-documentation/assets/install_guide_template.md
 
 **Key Files and Their Roles**:
 
@@ -152,7 +152,7 @@ This session was migrated from an older format to v2.2. Review the OVERVIEW and 
 
 - `.opencode/command/create/install_guide.md` - Documentation
 
-- `.opencode/skill/workflows-documentation` - Core workflows documentation
+- `.opencode/skill/sk-documentation` - Core workflows documentation
 
 - `.opencode/command/create` - Core create
 
@@ -194,7 +194,7 @@ I'll start by reading the three files to understand the current state and then m
 | `.opencode/.../assets/install_guide_template.md` | Updated install guide template |
 | `.opencode/.../references/install_guide_standards.md` | Updated install guide standards |
 | `.opencode/command/create/install_guide.md` | Updated install guide |
-| `.opencode/skill/workflows-documentation` | Updated workflows documentation |
+| `.opencode/skill/sk-documentation` | Updated workflows documentation |
 | `.opencode/command/create` | Updated create |
 
 <!-- /ANCHOR:summary-session-1766587002097-m8ok253l5-004-speckit/012-path-scoped-rules/002-modular-architecture -->
@@ -216,18 +216,18 @@ I'll start by reading the three files to understand the current state and then m
 <!-- ANCHOR:implementation-tool-read-d087270b-session-1766587002097-m8ok253l5 -->
 ### OBSERVATION: Tool: read
 
-.opencode/skill/workflows-documentation/assets/install_guide_template.md
+.opencode/skill/sk-documentation/assets/install_guide_template.md
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/workflows-documentation/assets/install_guide_template.md
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/sk-documentation/assets/install_guide_template.md
 **Details:** Tool: read | Status: completed
 <!-- /ANCHOR:implementation-tool-read-d087270b-session-1766587002097-m8ok253l5 -->
 
 <!-- ANCHOR:implementation-tool-read-92418d9f-session-1766587002097-m8ok253l5 -->
 ### OBSERVATION: Tool: read
 
-.opencode/skill/workflows-documentation/references/install_guide_standards.md
+.opencode/skill/sk-documentation/references/install_guide_standards.md
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/workflows-documentation/references/install_guide_standards.md
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/sk-documentation/references/install_guide_standards.md
 **Details:** Tool: read | Status: completed
 <!-- /ANCHOR:implementation-tool-read-92418d9f-session-1766587002097-m8ok253l5 -->
 
@@ -251,54 +251,54 @@ Executed glob
 <!-- ANCHOR:implementation-tool-edit-987f241b-session-1766587002097-m8ok253l5 -->
 ### IMPLEMENTATION: Tool: edit
 
-.opencode/skill/workflows-documentation/assets/install_guide_template.md
+.opencode/skill/sk-documentation/assets/install_guide_template.md
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/workflows-documentation/assets/install_guide_template.md
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/sk-documentation/assets/install_guide_template.md
 **Details:** Tool: edit | Status: completed
 <!-- /ANCHOR:implementation-tool-edit-987f241b-session-1766587002097-m8ok253l5 -->
 
 <!-- ANCHOR:implementation-tool-edit-987f241b-2-session-1766587002097-m8ok253l5 -->
 ### IMPLEMENTATION: Tool: edit
 
-.opencode/skill/workflows-documentation/assets/install_guide_template.md
+.opencode/skill/sk-documentation/assets/install_guide_template.md
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/workflows-documentation/assets/install_guide_template.md
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/sk-documentation/assets/install_guide_template.md
 **Details:** Tool: edit | Status: completed
 <!-- /ANCHOR:implementation-tool-edit-987f241b-2-session-1766587002097-m8ok253l5 -->
 
 <!-- ANCHOR:implementation-tool-edit-987f241b-3-session-1766587002097-m8ok253l5 -->
 ### IMPLEMENTATION: Tool: edit
 
-.opencode/skill/workflows-documentation/assets/install_guide_template.md
+.opencode/skill/sk-documentation/assets/install_guide_template.md
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/workflows-documentation/assets/install_guide_template.md
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/sk-documentation/assets/install_guide_template.md
 **Details:** Tool: edit | Status: completed
 <!-- /ANCHOR:implementation-tool-edit-987f241b-3-session-1766587002097-m8ok253l5 -->
 
 <!-- ANCHOR:implementation-tool-edit-987f241b-4-session-1766587002097-m8ok253l5 -->
 ### IMPLEMENTATION: Tool: edit
 
-.opencode/skill/workflows-documentation/assets/install_guide_template.md
+.opencode/skill/sk-documentation/assets/install_guide_template.md
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/workflows-documentation/assets/install_guide_template.md
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/sk-documentation/assets/install_guide_template.md
 **Details:** Tool: edit | Status: completed
 <!-- /ANCHOR:implementation-tool-edit-987f241b-4-session-1766587002097-m8ok253l5 -->
 
 <!-- ANCHOR:implementation-tool-edit-987f241b-5-session-1766587002097-m8ok253l5 -->
 ### IMPLEMENTATION: Tool: edit
 
-.opencode/skill/workflows-documentation/references/install_guide_standards.md
+.opencode/skill/sk-documentation/references/install_guide_standards.md
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/workflows-documentation/references/install_guide_standards.md
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/sk-documentation/references/install_guide_standards.md
 **Details:** Tool: edit | Status: completed
 <!-- /ANCHOR:implementation-tool-edit-987f241b-5-session-1766587002097-m8ok253l5 -->
 
 <!-- ANCHOR:implementation-tool-edit-987f241b-6-session-1766587002097-m8ok253l5 -->
 ### IMPLEMENTATION: Tool: edit
 
-.opencode/skill/workflows-documentation/references/install_guide_standards.md
+.opencode/skill/sk-documentation/references/install_guide_standards.md
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/workflows-documentation/references/install_guide_standards.md
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/sk-documentation/references/install_guide_standards.md
 **Details:** Tool: edit | Status: completed
 <!-- /ANCHOR:implementation-tool-edit-987f241b-6-session-1766587002097-m8ok253l5 -->
 
@@ -325,7 +325,7 @@ Executed glob
 
 10.*(section|required)
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/workflows-documentation
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/sk-documentation
 **Details:** Tool: grep | Status: completed
 <!-- /ANCHOR:implementation-tool-grep-e6bf2993-session-1766587002097-m8ok253l5 -->
 
@@ -343,7 +343,7 @@ Executed glob
 
 "type":\s*"stdio"
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/workflows-documentation
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/sk-documentation
 **Details:** Tool: grep | Status: completed
 <!-- /ANCHOR:implementation-tool-grep-e6bf2993-3-session-1766587002097-m8ok253l5 -->
 
@@ -568,7 +568,7 @@ key_files:
   - ".opencode/.../assets/install_guide_template.md"
   - ".opencode/.../references/install_guide_standards.md"
   - ".opencode/command/create/install_guide.md"
-  - ".opencode/skill/workflows-documentation"
+  - ".opencode/skill/sk-documentation"
   - ".opencode/command/create"
 
 # Relationships

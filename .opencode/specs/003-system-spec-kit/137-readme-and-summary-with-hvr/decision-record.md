@@ -21,14 +21,14 @@
 <!-- ANCHOR:adr-001-context -->
 ### Context
 
-The Human Voice Rules exist in a single file at `context/Rules - Human Voice - v0.101.md`, written for the Barter project. Multiple documentation templates across two separate skills (SpecKit and workflows-documentation) need access to these rules. The question is how to make them available: copy them into every template, reference the original file, or create a new canonical home.
+The Human Voice Rules exist in a single file at `context/Rules - Human Voice - v0.101.md`, written for the Barter project. Multiple documentation templates across two separate skills (SpecKit and sk-documentation) need access to these rules. The question is how to make them available: copy them into every template, reference the original file, or create a new canonical home.
 
 The original file is Barter-specific in its framing. Its loading condition reads "Always active for any content generation, editing or review task across all Barter AI systems." Its scope section names six Barter content systems. If templates reference it directly, they inherit that framing, which breaks the system-agnostic intent.
 
 ### Constraints
 
 - The rules themselves are already well-written and system-agnostic in their actual content; only the framing is project-specific
-- The workflows-documentation skill already has an `assets/documentation/` directory for exactly this kind of reference material
+- The sk-documentation skill already has an `assets/documentation/` directory for exactly this kind of reference material
 - Templates get copied when writers use them; any referenced file must live at a stable, predictable path
 <!-- /ANCHOR:adr-001-context -->
 
@@ -37,9 +37,9 @@ The original file is Barter-specific in its framing. Its loading condition reads
 <!-- ANCHOR:adr-001-decision -->
 ### Decision
 
-**Summary**: Create a standalone `hvr_rules.md` at `.opencode/skill/workflows-documentation/assets/documentation/hvr_rules.md`, extracted from the source document with Barter-specific framing replaced by system-agnostic language.
+**Summary**: Create a standalone `hvr_rules.md` at `.opencode/skill/sk-documentation/assets/documentation/hvr_rules.md`, extracted from the source document with Barter-specific framing replaced by system-agnostic language.
 
-**Details**: The source content (all 10 sections, all rules) transfers intact. Only the introductory framing, loading condition, and scope statement change. The resulting file lives in the workflows-documentation skill's assets directory, which is the most logical home for a cross-skill writing standard. Template annotation blocks reference this canonical path.
+**Details**: The source content (all 10 sections, all rules) transfers intact. Only the introductory framing, loading condition, and scope statement change. The resulting file lives in the sk-documentation skill's assets directory, which is the most logical home for a cross-skill writing standard. Template annotation blocks reference this canonical path.
 <!-- /ANCHOR:adr-001-decision -->
 
 ---
@@ -54,7 +54,7 @@ The original file is Barter-specific in its framing. Its loading condition reads
 | Reference original context/ file directly | Zero extraction work | File is Barter-specific, path is spec-folder-specific (fragile), context/ is not a stable skill asset location | 1/10 |
 | Separate hvr_rules.md per skill | Each skill owns its copy | Still duplication, still diverges over time | 4/10 |
 
-**Why Chosen**: The workflows-documentation skill's assets directory is where this kind of foundational reference material belongs. It's stable, discoverable, and already structured for exactly this pattern. The extraction work is minimal (framing changes only). The alternative — inline duplication — creates a maintenance problem that compounds with every HVR update.
+**Why Chosen**: The sk-documentation skill's assets directory is where this kind of foundational reference material belongs. It's stable, discoverable, and already structured for exactly this pattern. The extraction work is minimal (framing changes only). The alternative — inline duplication — creates a maintenance problem that compounds with every HVR update.
 <!-- /ANCHOR:adr-001-alternatives -->
 
 ---
@@ -101,7 +101,7 @@ The original file is Barter-specific in its framing. Its loading condition reads
 
 **Affected Systems**:
 - `context/Rules - Human Voice - v0.101.md` (read-only source)
-- `.opencode/skill/workflows-documentation/assets/documentation/hvr_rules.md` (new file)
+- `.opencode/skill/sk-documentation/assets/documentation/hvr_rules.md` (new file)
 
 **Rollback**: Delete `hvr_rules.md`. No other files depend on it until annotation blocks are added to templates.
 <!-- /ANCHOR:adr-001-impl -->
@@ -207,7 +207,7 @@ The HVR document is detailed and specific — it lists hard-blocker words, phras
 
 **Affected Systems**:
 - Six SpecKit template files
-- Two workflows-documentation template files
+- Two sk-documentation template files
 
 **Rollback**: Remove inserted annotation blocks. Original template content is unchanged. Git revert handles this cleanly — the diff will show only additions, making rollback exact and safe.
 <!-- /ANCHOR:adr-002-impl -->

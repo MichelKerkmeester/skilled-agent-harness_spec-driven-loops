@@ -262,7 +262,7 @@ All path references to `workflows-memory` → `system-memory`
 |-------|------|------|
 | cli-codex | SKILL.md | 1 |
 | cli-gemini | SKILL.md | 1 |
-| workflows-documentation | SKILL.md, quick_reference.md, assets | 3 |
+| sk-documentation | SKILL.md, quick_reference.md, assets | 3 |
 | system-spec-kit | SKILL.md, README.md, references | 6 |
 
 ### Agent 3H: Orchestrator Agent
@@ -378,5 +378,5 @@ If critical failures occur:
 ## Related Documentation
 
 - Previous successful rename: `specs/008-system-spec-kit-rename/`
-- Skill rename pattern: `specs/002-skills/001-workflows-documentation/001-skill-rename/`
+- Skill rename pattern: `specs/002-skills/001-sk-documentation/001-skill-rename/`
 - Current skill documentation: `.opencode/skills/workflows-memory/SKILL.md`

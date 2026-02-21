@@ -37,7 +37,7 @@ The system-spec-kit skill and associated commands contained multiple bugs and in
 - Cross-consistency verification across all files
 
 ### Out of Scope
-- Other skills (workflows-code, workflows-git, etc.)
+- Other skills (workflows-code, sk-git, etc.)
 - MCP server configurations
 - Unrelated spec folders
 

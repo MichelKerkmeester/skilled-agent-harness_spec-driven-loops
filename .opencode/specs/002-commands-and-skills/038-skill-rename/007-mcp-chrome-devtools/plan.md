@@ -1,4 +1,4 @@
-# Implementation Plan: Phase 007 — Rename mcp-chrome-devtools to mcp-chrome-devtools
+# Implementation Plan: Phase 007 — Finalize mcp-chrome-devtools Rename
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
@@ -15,10 +15,10 @@
 | **Language/Stack** | Markdown, Python, Shell |
 | **Framework** | OpenCode skill system |
 | **Storage** | Filesystem |
-| **Testing** | grep verification, skill_advisor.py smoke test |
+| **Testing** | grep verification, skill_advisor.py smoke tests |
 
 ### Overview
-Rename `mcp-chrome-devtools` to `mcp-chrome-devtools` across 57 files (21 internal + 36 external). Uses `mcp-` prefix (not `sk-`) to categorize as MCP integration, aligning with `mcp-figma` and `mcp-code-mode`.
+Phase implementation and verification are complete for the rename and reference updates across the targeted 57 files (21 internal + 36 external), including smoke tests for both `take screenshot` and `devtools`.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -32,10 +32,10 @@ Rename `mcp-chrome-devtools` to `mcp-chrome-devtools` across 57 files (21 intern
 - [x] Dependencies identified
 
 ### Definition of Done
-- [ ] Folder renamed to `mcp-chrome-devtools`
-- [ ] Zero grep matches
-- [ ] MCP categorization correct
-- [ ] skill_advisor.py correct
+- [x] Folder renamed to `mcp-chrome-devtools`
+- [x] Zero old-name grep matches in active targets
+- [x] MCP categorization correct for `devtools`
+- [x] Phrase smoke test: `python3 skill_advisor.py "take screenshot"` returns `mcp-chrome-devtools`
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -53,6 +53,9 @@ Mechanical find-and-replace with prefix change. No architectural changes.
 - **Install guides**: 4 files
 - **Root docs**: 3 files
 - **system-spec-kit**: 2 files
+
+### Data Flow
+No changes.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -61,26 +64,27 @@ Mechanical find-and-replace with prefix change. No architectural changes.
 ## 4. IMPLEMENTATION PHASES
 
 ### Step 1: Filesystem Rename
-- [ ] `git mv .opencode/skill/mcp-chrome-devtools .opencode/skill/mcp-chrome-devtools`
+- [x] Verify target folder `.opencode/skill/mcp-chrome-devtools` exists and legacy workflows-prefixed folder is absent
 
 ### Step 2: Internal File Updates (21 files)
-- [ ] SKILL.md, index.md, nodes/, references/, assets/, scripts/
+- [x] SKILL.md, index.md, nodes/, references/, assets/, scripts/
 
 ### Step 3: External Reference Updates (36 files)
-- [ ] skill_advisor.py (20 lines)
-- [ ] orchestrate.md (4 runtimes)
-- [ ] Install guides (4 files)
-- [ ] Root docs (3 files)
-- [ ] system-spec-kit (2 files)
-- [ ] Other external refs
+- [x] skill_advisor.py (20 lines)
+- [x] orchestrate.md (4 runtimes)
+- [x] Install guides (4 files)
+- [x] Root docs (3 files)
+- [x] system-spec-kit (2 files)
+- [x] Other external refs
 
 ### Step 4: Changelog
-- [ ] `git mv .opencode/changelog/11--mcp-chrome-devtools .opencode/changelog/11--mcp-chrome-devtools`
+- [x] Verify target changelog folder `11--mcp-chrome-devtools` exists and legacy workflows-prefixed changelog folder is absent
 
 ### Step 5: Verification
-- [ ] grep: 0 matches
-- [ ] skill_advisor.py smoke test
-- [ ] MCP alignment check
+- [x] grep: 0 matches for `workflows-.*chrome-devtools` in active targets
+- [x] skill_advisor.py phrase smoke test for `take screenshot` (`mcp-chrome-devtools`, confidence `0.95`)
+- [x] skill_advisor.py generic smoke test for `devtools` (`mcp-chrome-devtools`)
+- [x] MCP alignment check (`mcp-chrome-devtools`, `mcp-figma`, `mcp-code-mode`)
 <!-- /ANCHOR:phases -->
 
 ---
@@ -90,10 +94,10 @@ Mechanical find-and-replace with prefix change. No architectural changes.
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Grep | All active files | `grep -r "mcp-chrome-devtools"` |
-| Smoke test | skill_advisor.py | `python3 skill_advisor.py "take screenshot"` |
+| Grep | Active files | `rg -n "workflows-.*chrome-devtools" ...` |
+| Smoke test | skill_advisor.py | `python3 skill_advisor.py "take screenshot"` + `"devtools"` |
 | MCP check | Naming | Verify alignment with mcp-figma, mcp-code-mode |
-| Directory | Filesystem | `ls -d` |
+| Directory | Filesystem | `ls -d`, `find ... | wc -l` |
 <!-- /ANCHOR:testing -->
 
 ---
@@ -103,7 +107,7 @@ Mechanical find-and-replace with prefix change. No architectural changes.
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| Phases 3, 1, 2 complete | Internal | Pending | Must execute 4th |
+| Phases 3, 1, 2 complete | Internal | Complete | Unblocked |
 <!-- /ANCHOR:dependencies -->
 
 ---
@@ -148,8 +152,8 @@ Phase 2 ──► Phase 7 (This Phase) ──► Phase 4
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deployment Checklist
-- [ ] Phases 3, 1, 2 confirmed complete
-- [ ] Clean git state
+- [x] Phases 3, 1, 2 confirmed complete
+- [x] Clean git state
 
 ### Rollback Procedure
 1. `git checkout -- .`

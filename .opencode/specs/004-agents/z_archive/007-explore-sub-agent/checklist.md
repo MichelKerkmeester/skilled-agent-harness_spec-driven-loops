@@ -77,8 +77,8 @@
 
 - [x] **P1** All 9 skill directories searched for agent references (10 agents dispatched in parallel)
 - [x] **P1** 8/9 skills confirmed clean (zero named agent references)
-- [x] **P1** `workflows-documentation/assets/opencode/agent_template.md` Table 1: Added @context_loader, @general, @handover
-- [x] **P1** `workflows-documentation/assets/opencode/agent_template.md` Table 2: Added context_loader, general, handover
+- [x] **P1** `sk-documentation/assets/opencode/agent_template.md` Table 1: Added @context_loader, @general, @handover
+- [x] **P1** `sk-documentation/assets/opencode/agent_template.md` Table 2: Added context_loader, general, handover
 - [x] **P1** Both tables verified: all 9 agents present, no placeholders, formatting correct
 - [x] **P1** Zero stale `@explore` references found in any skill directory
 

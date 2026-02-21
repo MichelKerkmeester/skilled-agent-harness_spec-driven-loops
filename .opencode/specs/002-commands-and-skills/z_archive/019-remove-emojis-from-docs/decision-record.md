@@ -37,7 +37,7 @@ H2 heading emojis were originally enforced as blocking validation errors across 
 
 **Summary**: Remove emoji enforcement from the validation engine and strip emojis from all existing H2 headings across the codebase.
 
-**Details**: The implementation follows a two-stage approach: (1) Update the workflows-documentation skill to stop enforcing emojis (Phase 0, completed), then (2) deploy an AI swarm to strip emojis from all 287 remaining files organized into 12 parallel workstreams by component group. The `section_emojis` lookup data is preserved in `template_rules.json` as reference data (not enforcement).
+**Details**: The implementation follows a two-stage approach: (1) Update the sk-documentation skill to stop enforcing emojis (Phase 0, completed), then (2) deploy an AI swarm to strip emojis from all 287 remaining files organized into 12 parallel workstreams by component group. The `section_emojis` lookup data is preserved in `template_rules.json` as reference data (not enforcement).
 <!-- /ANCHOR:adr-001-decision -->
 
 ---

@@ -23,7 +23,7 @@
 
 - [ ] CHK-001 [P0] Requirements documented in spec.md
 - [ ] CHK-002 [P0] Technical approach defined in plan.md
-- [ ] CHK-003 [P1] Dependencies identified and available (spec_kit reference, workflows-documentation skill)
+- [ ] CHK-003 [P1] Dependencies identified and available (spec_kit reference, sk-documentation skill)
 - [ ] CHK-004 [P1] Golden reference pattern (spec_kit commands) reviewed and understood
 
 <!-- /ANCHOR:pre-impl -->

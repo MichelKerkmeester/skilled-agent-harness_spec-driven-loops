@@ -2,7 +2,7 @@
 // MODULE: Skill Reference Config
 // ---------------------------------------------------------------
 // Loads section 12 (skillReferenceIndexing) from config.jsonc.
-// Controls which workflows-code--* skill references/assets are indexed.
+// Controls which sk-code--* skill references/assets are indexed.
 // ---------------------------------------------------------------
 
 import fs from 'fs';

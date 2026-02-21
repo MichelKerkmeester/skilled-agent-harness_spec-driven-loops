@@ -96,8 +96,8 @@ This MCP server gives your AI assistant persistent memory with intelligence buil
 | **Handler Modules** | 11 |
 | **Embedding Providers** | 3 |
 | **Feature Flags** | 17 (all default enabled after spec 138) |
-| **Test Coverage** | 4,770 tests across 159 files |
-| **Last Verified** | 2026-02-20 |
+| **Test Coverage** | 4,791 tests across 163 files |
+| **Last Verified** | 2026-02-21 |
 
 ### Requirements
 
@@ -149,7 +149,7 @@ ls dist/context-server.js
 
 # Run full test suite
 npx vitest run
-# Expected: 4,770 tests passing across 159 files
+# Expected: 4,791 tests passing across 163 files
 ```
 
 ### MCP Configuration
@@ -219,7 +219,7 @@ dist/context-server.js     (compiled output — executed at runtime by node)
 | `core/` | Initialization, config, database state |
 | `formatters/` | Search result and token-metric formatting |
 | `scripts/` | CLI utilities |
-| `tests/` | 159 test files, 4,770 tests |
+| `tests/` | 163 test files, 4,791 tests |
 | `dist/` | Compiled JavaScript output (runtime target) |
 
 ---
@@ -573,7 +573,7 @@ mcp_server/
 │   ├── search-results.ts   # Format search results
 │   └── token-metrics.ts    # Token estimation
 │
-├── tests/                  # Test suite (4,770 tests across 159 files)
+├── tests/                  # Test suite (4,791 tests across 163 files)
 ├── dist/                   # Compiled JavaScript output (generated via tsc)
 │   └── context-server.js   # Runtime entry point
 ├── database/               # SQLite database storage
@@ -879,7 +879,7 @@ sqlite3 database/context-index.sqlite "SELECT relation, COUNT(*) FROM causal_edg
 ```bash
 # Run full test suite (from mcp_server directory)
 npx vitest run
-# Expected: 4,770 tests passing across 159 files
+# Expected: 4,791 tests passing across 163 files
 
 # Run specific test file
 npx vitest run tests/fsrs-scheduler.vitest.ts

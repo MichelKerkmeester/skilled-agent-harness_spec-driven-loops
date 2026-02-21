@@ -24,10 +24,10 @@
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-The skill directory `.opencode/skill/workflows-code` has a generic name that implies it handles all code workflows universally. In reality, this skill is specifically tailored for the anobel.com Webflow web development project -- it contains Webflow-specific patterns, CDN deployment guides, minification workflows, and browser verification steps that are not applicable to general-purpose code workflows. The sibling skill `workflows-code--opencode` already follows the `--suffix` naming convention for its specialization.
+The skill directory `.opencode/skill/workflows-code` has a generic name that implies it handles all code workflows universally. In reality, this skill is specifically tailored for the anobel.com Webflow web development project -- it contains Webflow-specific patterns, CDN deployment guides, minification workflows, and browser verification steps that are not applicable to general-purpose code workflows. The sibling skill `sk-code--opencode` already follows the `--suffix` naming convention for its specialization.
 
 ### Purpose
-Rename the skill directory from `workflows-code` to `workflows-code--web-dev` so the name accurately reflects its web development specialization, aligning with the existing `--suffix` naming convention used by `workflows-code--opencode`.
+Rename the skill directory from `workflows-code` to `workflows-code--web-dev` so the name accurately reflects its web development specialization, aligning with the existing `--suffix` naming convention used by `sk-code--opencode`.
 
 <!-- /ANCHOR:problem -->
 
@@ -45,7 +45,7 @@ Rename the skill directory from `workflows-code` to `workflows-code--web-dev` so
 - Archived spec folders (`z_archive/`) - Historical records should not be rewritten
 - Completed spec memory files - These are historical snapshots
 - Functional changes to the skill itself - This is a rename only, no behavior changes
-- Renaming `workflows-code--opencode` - Already correctly named
+- Renaming `sk-code--opencode` - Already correctly named
 
 ### Files to Change
 
@@ -84,7 +84,7 @@ Rename the skill directory from `workflows-code` to `workflows-code--web-dev` so
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skill/workflows-code--opencode/SKILL.md` | Modify | Update references to sibling skill |
+| `.opencode/skill/sk-code--opencode/SKILL.md` | Modify | Update references to sibling skill |
 | `.opencode/skill/mcp-chrome-devtools/SKILL.md` | Modify | Update references to workflows-code |
 | `.opencode/skill/mcp-chrome-devtools/examples/README.md` | Modify | Update references |
 | `.opencode/skill/system-spec-kit/SKILL.md` | Modify | Update references |
@@ -95,7 +95,7 @@ Rename the skill directory from `workflows-code` to `workflows-code--web-dev` so
 | `.opencode/skill/system-spec-kit/references/validation/phase_checklists.md` | Modify | Update references |
 | `.opencode/skill/system-spec-kit/references/memory/epistemic-vectors.md` | Modify | Update references |
 | `.opencode/skill/system-spec-kit/mcp_server/tests/README.md` | Modify | Update references |
-| `.opencode/skill/workflows-documentation/assets/opencode/skill_md_template.md` | Modify | Update references |
+| `.opencode/skill/sk-documentation/assets/opencode/skill_md_template.md` | Modify | Update references |
 
 **Category 5: NOT changing (archived / historical)**
 
@@ -113,7 +113,7 @@ Archived specs in `z_archive/` folders and completed spec memory files will NOT 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
 | REQ-001 | Rename `.opencode/skill/workflows-code/` to `.opencode/skill/workflows-code--web-dev/` | Directory exists at new path, old path does not exist |
-| REQ-002 | Update AGENTS.md references | All `workflows-code` references (excluding `workflows-code--opencode`) point to `workflows-code--web-dev` |
+| REQ-002 | Update AGENTS.md references | All `workflows-code` references (excluding `sk-code--opencode`) point to `workflows-code--web-dev` |
 | REQ-003 | Update AGENTS.md references | All skill routing references updated |
 | REQ-004 | Update skill_advisor.py | Skill advisor returns correct new name |
 
@@ -132,7 +132,7 @@ Archived specs in `z_archive/` folders and completed spec memory files will NOT 
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: `grep -r "workflows-code" .opencode/skill/ .opencode/agent/ .opencode/scripts/ .opencode/command/ AGENTS.md AGENTS.md` returns zero matches for the bare `workflows-code` name (excluding `workflows-code--opencode` and `workflows-code--web-dev`)
+- **SC-001**: `grep -r "workflows-code" .opencode/skill/ .opencode/agent/ .opencode/scripts/ .opencode/command/ AGENTS.md AGENTS.md` returns zero matches for the bare `workflows-code` name (excluding `sk-code--opencode` and `workflows-code--web-dev`)
 - **SC-002**: `skill_advisor.py` correctly maps web development tasks to `workflows-code--web-dev`
 
 <!-- /ANCHOR:success-criteria -->
@@ -145,7 +145,7 @@ Archived specs in `z_archive/` folders and completed spec memory files will NOT 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
 | Risk | Missed reference in an obscure file | Broken skill routing until discovered | Run comprehensive grep before and after rename |
-| Risk | `workflows-code--opencode` references to sibling | Could break if references are path-based | Check all references in `workflows-code--opencode/SKILL.md` |
+| Risk | `sk-code--opencode` references to sibling | Could break if references are path-based | Check all references in `sk-code--opencode/SKILL.md` |
 | Dependency | No active branches using `workflows-code` path | Merge conflicts if other work in progress | Coordinate timing of rename |
 
 <!-- /ANCHOR:risks -->

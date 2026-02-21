@@ -198,7 +198,7 @@ async deleteMemory(id) {
 |------|-------------|-------|--------|
 | M2 | Fix allowed-tools in skill frontmatter | 2 SKILL.md files | 30m |
 | M3 | Fix unreachable INTENT_BOOSTERS | skill_advisor.py | 1h |
-| M8 | Remove outdated Docker requirement | workflows-git/SKILL.md | 30m |
+| M8 | Remove outdated Docker requirement | sk-git/SKILL.md | 30m |
 | M20 | Add Code Mode tools to mcp-narsil | mcp-narsil/SKILL.md | 30m |
 
 **Implementation Details:**

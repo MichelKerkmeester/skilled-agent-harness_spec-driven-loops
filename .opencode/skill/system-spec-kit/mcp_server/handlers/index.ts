@@ -7,6 +7,7 @@ import * as memoryTriggers from './memory-triggers';
 import * as memorySave from './memory-save';
 import * as memoryCrud from './memory-crud';
 import * as memoryIndex from './memory-index';
+import * as memoryBulkDelete from './memory-bulk-delete';
 import * as checkpoints from './checkpoints';
 import * as sessionLearning from './session-learning';
 import * as causalGraph from './causal-graph';
@@ -70,6 +71,11 @@ export {
   find_skill_reference_files,
 } from './memory-index';
 
+// Memory bulk delete handler
+export {
+  handleMemoryBulkDelete,
+} from './memory-bulk-delete';
+
 // Checkpoint handlers
 export {
   handleCheckpointCreate,
@@ -127,6 +133,7 @@ export {
   memorySave,
   memoryCrud,
   memoryIndex,
+  memoryBulkDelete,
   checkpoints,
   sessionLearning,
   causalGraph,

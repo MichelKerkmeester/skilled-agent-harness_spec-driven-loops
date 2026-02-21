@@ -72,7 +72,7 @@ Deliver a unified intelligent context engine where hybrid retrieval with confide
 - YAML frontmatter on all node files (id, title, type, tags, links)
 - SGQS (Skill Graph-Lite Query Script) — Neo4j-style query layer implemented in-process on existing memory architecture
 - Progressive disclosure traversal via `[[node]]` wikilinks
-- Migration of: system-spec-kit, workflows-documentation, mcp-code-mode, workflows-git, mcp-chrome-devtools, mcp-figma, sk-code--full-stack, workflows-code--opencode, workflows-code--web-dev
+- Migration of: system-spec-kit, sk-documentation, mcp-code-mode, sk-git, mcp-chrome-devtools, mcp-figma, sk-code--full-stack, sk-code--opencode, workflows-code--web-dev
 
 **Integration Layer**
 - SGQS graph traversal results feeding into Workstream A's Graph Intelligence retrieval channel

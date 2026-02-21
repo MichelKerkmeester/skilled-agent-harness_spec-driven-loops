@@ -274,7 +274,7 @@ User Input: "help me fix the authentication bug"
                  ▼
 ┌─────────────────────────────────────┐
 │ 4. APPLY INTENT BOOSTERS            │
-│    "debug" → workflows-chrome-       │
+│    "debug" → mcp-chrome-             │
 │              devtools (+0.5)        │
 │                                     │
 │    Pre-calculated boost for         │
@@ -316,7 +316,7 @@ User Input: "help me fix the authentication bug"
 │ 7. RETURN SORTED RECOMMENDATIONS    │
 │                                     │
 │    [                                │
-│      { "skill": "workflows-code",    │
+│      { "skill": "sk-code--web",    │
 │        "confidence": 0.85,           │
 │        "reason": "Matched: debug,   │
 │                   code, fix" }       │
@@ -388,7 +388,7 @@ For ambiguous keywords that could apply to multiple skills:
 
 ```python
 MULTI_SKILL_BOOSTERS = {
-    "code": [("workflows-code", 0.2)],
+    "code": [("sk-code--web", 0.2)],
     "changes": [("sk-git", 0.4), ("system-spec-kit", 0.2)],
     ...
 }
@@ -537,7 +537,7 @@ $ python skill_advisor.py "search for how authentication works in the codebase"
 
 [
   {
-    "skill": "workflows-code",
+    "skill": "sk-code--web",
     "confidence": 0.72,
     "reason": "Matched: !implement, code(multi)"
   }
@@ -588,7 +588,7 @@ $ python skill_advisor.py "call figma api"
 | Git operations | sk-git | commit, push, branch, merge, worktree, github, pr, issue |
 | Browser debugging | mcp-chrome-devtools | devtools, chrome, browser, debug, console |
 | Documentation | sk-documentation | markdown, flowchart, diagram, readme |
-| Code implementation | workflows-code | implement, fix, bug, refactor, verification |
+| Code implementation | sk-code--web | implement, fix, bug, refactor, verification |
 | Memory/context | system-spec-kit | remember, save, context, checkpoint |
 | Specifications | system-spec-kit | spec, checklist, plan, specification |
 | External MCP tools | mcp-code-mode | webflow, figma, clickup, notion |

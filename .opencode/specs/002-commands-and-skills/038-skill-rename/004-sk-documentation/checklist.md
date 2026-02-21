@@ -1,4 +1,4 @@
-# Verification Checklist: Phase 004 — Rename workflows-documentation to sk-documentation
+# Verification Checklist: Phase 004 — Finalize Rename to sk-documentation
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->
@@ -30,7 +30,7 @@
 <!-- ANCHOR:filesystem -->
 ## Filesystem Rename
 
-- [x] CHK-010 [P0] `workflows-documentation` renamed to `sk-documentation` — Evidence: `NEW_SKILL_DIR:yes`
+- [x] CHK-010 [P0] Documentation skill folder migrated to `sk-documentation` — Evidence: `NEW_SKILL_DIR:yes`
 - [x] CHK-011 [P0] No old folder remains — Evidence: `OLD_SKILL_DIR:no`
 - [x] CHK-012 [P0] All 49 internal files present — Evidence: `SK_DOC_FILE_COUNT:49`
 <!-- /ANCHOR:filesystem -->
@@ -74,8 +74,8 @@
 <!-- ANCHOR:spec-kit -->
 ## system-spec-kit Updates
 
-- [x] CHK-045 [P1] HVR_REFERENCE paths updated in implementation-summary templates (8 files) — Evidence: `rg -n "HVR_REFERENCE.*workflows-documentation"` returns 0 matches (`EXIT:1`)
-- [x] CHK-046 [P1] HVR_REFERENCE paths updated in decision-record templates (3 files) — Evidence: `rg -n "HVR_REFERENCE.*workflows-documentation"` returns 0 matches (`EXIT:1`)
+- [x] CHK-045 [P1] Legacy HVR_REFERENCE paths removed in implementation-summary templates (8 files) — Evidence: legacy-name HVR grep returns 0 matches (`EXIT:1`)
+- [x] CHK-046 [P1] Legacy HVR_REFERENCE paths removed in decision-record templates (3 files) — Evidence: legacy-name HVR grep returns 0 matches (`EXIT:1`)
 - [x] CHK-047 [P1] Core template HVR path updated — Evidence: 8 `HVR_REFERENCE: ...sk-documentation` matches found in template set
 - [x] CHK-048 [P1] system-spec-kit SKILL.md and README.md updated — Evidence: active-target old-name grep returns 0 matches (`EXIT:1`)
 <!-- /ANCHOR:spec-kit -->
@@ -95,7 +95,7 @@
 ## skill_advisor.py
 
 - [x] CHK-055 [P0] INTENT_BOOSTERS updated — Evidence: `rg -n "sk-documentation" .opencode/skill/scripts/skill_advisor.py` -> 8 matches
-- [x] CHK-056 [P0] MULTI_SKILL_BOOSTERS updated — Evidence: `rg -n "workflows-documentation" .opencode/skill/scripts/skill_advisor.py` -> 0 matches (`EXIT:1`)
+- [x] CHK-056 [P0] Legacy-name MULTI_SKILL_BOOSTERS entries removed — Evidence: legacy-name grep in `.opencode/skill/scripts/skill_advisor.py` -> 0 matches (`EXIT:1`)
 <!-- /ANCHOR:skill-advisor -->
 
 ---
@@ -112,12 +112,12 @@
 <!-- ANCHOR:verification -->
 ## Verification
 
-- [x] CHK-070 [P0] grep: 0 matches for `workflows-documentation` in active files — Evidence: `rg ...` returned `EXIT:1`
-- [x] CHK-071 [P0] grep: 0 HVR_REFERENCE paths with old name — Evidence: `rg -n "HVR_REFERENCE.*workflows-documentation" ...` returned `EXIT:1`
+- [x] CHK-070 [P0] grep: 0 matches for legacy name in active files — Evidence: `rg ...` returned `EXIT:1`
+- [x] CHK-071 [P0] grep: 0 HVR_REFERENCE paths with old name — Evidence: legacy-name HVR grep returned `EXIT:1`
 - [x] CHK-072 [P0] skill_advisor.py returns `sk-documentation` — Evidence: `TOP_SKILL:sk-documentation` for `"create documentation" --threshold 0.8`
 - [x] CHK-073 [P0] Folder exists with all contents — Evidence: new directories present, old directories absent, 49 files in skill folder
 - [x] CHK-074 [P1] No broken relative paths — Evidence: old-name grep across active targets returned 0 matches (`EXIT:1`)
-- [x] CHK-075 [P0] Phase validator reports no errors — Evidence: `.opencode/skill/system-spec-kit/scripts/spec/validate.sh` run recorded below
+- [x] CHK-075 [P0] Phase validator reports no errors — Evidence: validator summary `Errors: 0, Warnings: 3, EXIT:1`
 <!-- /ANCHOR:verification -->
 
 ---
@@ -126,7 +126,7 @@
 ## Documentation
 
 - [x] CHK-080 [P1] Spec/plan/tasks synchronized — Evidence: phase docs updated to completion state with aligned verification date
-- [ ] CHK-081 [P2] Memory saved — Deferred: not requested in this phase handoff
+- [x] CHK-081 [P2] Memory saved — Evidence: phase 004 included in `generate-context.js` indexed batch `#87-#93`
 <!-- /ANCHOR:docs -->
 
 ---
@@ -136,9 +136,9 @@
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 19 | 19/19 |
+| P0 Items | 20 | 20/20 |
 | P1 Items | 16 | 16/16 |
-| P2 Items | 1 | 0/1 |
+| P2 Items | 1 | 1/1 |
 
 **Verification Date**: 2026-02-21
 <!-- /ANCHOR:summary -->

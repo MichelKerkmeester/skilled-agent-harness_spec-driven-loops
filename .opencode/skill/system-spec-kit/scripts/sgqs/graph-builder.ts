@@ -323,7 +323,7 @@ function parseYamlValue(raw: string): string | string[] | number | boolean | nul
 const WIKILINK_RE = /\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g;
 
 /** Regex for standard markdown links to local .md files */
-const MDLINK_RE = /\[([^\]]+)\]\((\.[^)]+\.md)\)/g;
+const MDLINK_RE = /\[([^\]]+)\]\(([^)\s]+\.md(?:#[^)]+)?)\)/g;
 
 /**
  * Extract edges from file body content.
@@ -346,8 +346,9 @@ function extractEdges(
     const targetPath = match[1].trim();
     const displayLabel = match[2]?.trim() || '';
 
-    // Resolve target: wikilinks are relative to current skill
-    const targetId = resolveWikilinkTarget(targetPath, skillName);
+    // Resolve target: wikilinks are relative to the current source node path.
+    const targetId = resolveWikilinkTarget(targetPath, sourceNode, skillName, graph);
+    if (!targetId) continue;
 
     // Create LINKS_TO edge
     const linksToId = `${sourceNode.id}--LINKS_TO--${targetId}`;
@@ -365,7 +366,7 @@ function extractEdges(
     }
 
     // CONTAINS: if source is Index and target is in nodes/
-    if (sourceNode.labels.includes(':Index') && targetPath.startsWith('nodes/')) {
+    if (sourceNode.labels.includes(':Index') && targetId.includes('/nodes/')) {
       const containsId = `${sourceNode.id}--CONTAINS--${targetId}`;
       if (!seenEdgeIds.has(containsId)) {
         seenEdgeIds.add(containsId);
@@ -404,7 +405,7 @@ function extractEdges(
     const relativePath = match[2].trim();
 
     // Resolve relative path from source file location
-    const targetId = resolveMarkdownLinkTarget(relativePath, sourceNode, skillName);
+    const targetId = resolveMarkdownLinkTarget(relativePath, sourceNode, skillName, graph);
     if (!targetId) continue;
 
     // Create REFERENCES edge
@@ -458,16 +459,44 @@ function extractEdges(
 }
 
 /** Resolve a wikilink target path to a full node ID */
-function resolveWikilinkTarget(targetPath: string, skillName: string): string {
-  // If target already includes a skill prefix (contains /), check if it crosses skills
-  // Wikilinks are relative to current skill directory
-  const cleaned = targetPath.replace(/\.md$/, '');
-  if (cleaned.includes('/') && !cleaned.startsWith('nodes/') &&
-      !cleaned.startsWith('references/') && !cleaned.startsWith('assets/')) {
-    // Might be a cross-skill reference like "other-skill/nodes/foo"
-    return cleaned;
+function resolveWikilinkTarget(
+  targetPath: string,
+  sourceNode: GraphNode,
+  skillName: string,
+  graph: SkillGraph,
+): string | null {
+  const cleaned = normalizeLinkPath(targetPath);
+  if (!cleaned) return null;
+
+  const rootRelative = cleaned.startsWith('/') ? cleaned.slice(1) : cleaned;
+
+  // Explicit cross-skill form: other-skill/nodes/...
+  const [firstSegment] = rootRelative.split('/');
+  if (firstSegment && isSkillId(firstSegment, graph)) {
+    return rootRelative;
   }
-  return `${skillName}/${cleaned}`;
+
+  // Explicit current-skill content roots
+  if (rootRelative.startsWith('nodes/') ||
+      rootRelative.startsWith('references/') ||
+      rootRelative.startsWith('assets/')) {
+    return `${skillName}/${rootRelative}`;
+  }
+
+  // Resolve relative to source path directory
+  const resolved = resolveFromSourcePath(sourceNode.path, rootRelative);
+  if (resolved) {
+    return resolved;
+  }
+
+  // Root-level shorthand links from SKILL.md often target nodes/*.md
+  const nodeFallback = `${skillName}/nodes/${rootRelative}`;
+  if (graph.nodes.has(nodeFallback)) {
+    return nodeFallback;
+  }
+
+  // Last-resort same-skill root
+  return `${skillName}/${rootRelative}`;
 }
 
 /** Resolve a markdown link relative path to a node ID */
@@ -475,47 +504,51 @@ function resolveMarkdownLinkTarget(
   relativePath: string,
   sourceNode: GraphNode,
   skillName: string,
+  graph: SkillGraph,
 ): string | null {
-  // Remove .md extension
-  let cleaned = relativePath.replace(/\.md$/, '');
+  const cleaned = normalizeLinkPath(relativePath);
+  if (!cleaned) return null;
 
-  // Handle relative paths
-  if (cleaned.startsWith('./')) {
-    cleaned = cleaned.slice(2);
+  const rootRelative = cleaned.startsWith('/') ? cleaned.slice(1) : cleaned;
+  const [firstSegment] = rootRelative.split('/');
+  if (firstSegment && isSkillId(firstSegment, graph)) {
+    return rootRelative;
   }
 
-  if (cleaned.startsWith('../')) {
-    // Cross-skill reference: ../other-skill/file
-    const parts = cleaned.split('/');
-    // Only count leading contiguous '..' segments (not scattered ones)
-    let upCount = 0;
-    while (upCount < parts.length && parts[upCount] === '..') {
-      upCount++;
-    }
-    const remaining = parts.slice(upCount);
+  const resolved = resolveFromSourcePath(sourceNode.path, rootRelative);
+  if (resolved) {
+    return resolved;
+  }
 
-    if (remaining.length >= 1) {
-      return remaining.join('/');
-    }
+  return `${skillName}/${rootRelative}`;
+}
+
+function normalizeLinkPath(rawPath: string): string | null {
+  const trimmed = rawPath.trim();
+  if (!trimmed || /^https?:\/\//i.test(trimmed) || /^mailto:/i.test(trimmed)) {
     return null;
   }
 
-  // Same-skill relative path
-  // Determine source directory context
-  const sourceParts = sourceNode.path.replace(/\\/g, '/').split('/');
-  // The source path is like "skill-name/nodes/file.md" or "skill-name/SKILL.md"
-  if (sourceParts.length >= 2) {
-    // If source is at skill root (SKILL.md, index.md), resolve from skill root
-    if (sourceParts.length === 2) {
-      return `${skillName}/${cleaned}`;
-    }
-    // If source is in a subdirectory, resolve from that directory
-    const sourceDir = sourceParts.slice(0, -1).join('/');
-    // But sourceDir already includes skillName, so use it directly
-    return `${sourceDir}/${cleaned}`.replace(/\\/g, '/');
+  const withoutFragment = trimmed.split('#')[0].split('?')[0];
+  if (!withoutFragment.endsWith('.md')) {
+    return null;
   }
 
-  return `${skillName}/${cleaned}`;
+  return withoutFragment.replace(/\.md$/, '');
+}
+
+function resolveFromSourcePath(sourcePath: string, targetPath: string): string | null {
+  const sourceDir = path.posix.dirname(sourcePath.replace(/\\/g, '/'));
+  const resolved = path.posix.normalize(path.posix.join(sourceDir, targetPath));
+  if (resolved.startsWith('..')) {
+    return null;
+  }
+  return resolved;
+}
+
+function isSkillId(segment: string, graph: SkillGraph): boolean {
+  const maybeSkill = graph.nodes.get(segment);
+  return Boolean(maybeSkill && maybeSkill.labels.includes(':Skill'));
 }
 
 // ---------------------------------------------------------------

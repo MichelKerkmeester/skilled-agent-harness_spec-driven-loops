@@ -188,7 +188,7 @@ if doc_type == 'skill':
 
 **Goal:** Clearly document emoji requirements per document type.
 
-### 3.1 Update workflows-documentation SKILL.md
+### 3.1 Update sk-documentation SKILL.md
 
 **Add after Emoji Usage Rules table (line ~543):**
 ```markdown

@@ -578,7 +578,7 @@ Both timeout and other Botpoison errors silently return null without logging.
 - **Effort:** 30m
 - **Files:**
   - `.opencode/skill/mcp-chrome-devtools/SKILL.md`
-  - `.opencode/skill/workflows-git/SKILL.md`
+  - `.opencode/skill/sk-git/SKILL.md`
 - **Dependencies:** None
 
 **Task:** Replace `mcp-code-mode` (skill name) with actual tool names like `call_tool_chain`.
@@ -680,8 +680,8 @@ fi
 - **Priority:** P2 MEDIUM
 - **Effort:** 30m
 - **Files:**
-  - `.opencode/skill/workflows-git/SKILL.md:39, 128`
-  - `.opencode/skill/workflows-git/references/finish_workflows.md:198`
+  - `.opencode/skill/sk-git/SKILL.md:39, 128`
+  - `.opencode/skill/sk-git/references/finish_workflows.md:198`
 - **Dependencies:** None
 
 **Task:** Remove/update references to Docker requirement for GitHub MCP (uses npx).

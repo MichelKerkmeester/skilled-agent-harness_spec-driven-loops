@@ -92,7 +92,7 @@ Need to choose anchor tag format that is:
 - **Phase 1**: Automated script with anchor mapping patterns (section detection)
 - **Phase 2**: Dry-run review to identify edge cases
 - **Phase 3**: Batch migration with backups
-- **Phase 4**: Manual refinement of key skills (system-spec-kit, workflows-documentation)
+- **Phase 4**: Manual refinement of key skills (system-spec-kit, sk-documentation)
 
 **Consequences**:
 - ✅ 80% time savings vs fully manual
@@ -208,7 +208,7 @@ Need to define quality targets for % of sections anchored. Balance between thoro
 - [ ] ≥80% SKILL.md sections anchored (validation script confirms)
 - [ ] ≥60% reference doc sections anchored
 - [ ] ≥40% asset doc sections anchored (where applicable)
-- [ ] Key skills (system-spec-kit, workflows-documentation) at ≥90%
+- [ ] Key skills (system-spec-kit, sk-documentation) at ≥90%
 
 ---
 

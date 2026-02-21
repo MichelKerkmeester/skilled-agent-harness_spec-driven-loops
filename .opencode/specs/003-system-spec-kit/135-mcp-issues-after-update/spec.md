@@ -52,7 +52,7 @@ Investigate and identify the root cause of post-update MCP server failures, then
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/install_guides/MCP - Spec Kit Memory.md` | Modified | Rewritten via workflows-documentation skill - recovery-first approach with troubleshooting sections |
+| `.opencode/install_guides/MCP - Spec Kit Memory.md` | Modified | Rewritten via sk-documentation skill - recovery-first approach with troubleshooting sections |
 | `.opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md` | Modified | Canonical source backing the install guide |
 | `.opencode/install_guides/install_scripts/install-spec-kit-memory.sh` | Modified | Aligned installer script with recovery-first flow |
 <!-- /ANCHOR:scope -->

@@ -38,7 +38,7 @@
 
 ### Documentation Quality
 
-- [x] CHK-020 [P0] Install guide updated with debugging section [Evidence: `.opencode/install_guides/MCP - Spec Kit Memory.md` rewritten via workflows-documentation skill]
+- [x] CHK-020 [P0] Install guide updated with debugging section [Evidence: `.opencode/install_guides/MCP - Spec Kit Memory.md` rewritten via sk-documentation skill]
 - [x] CHK-021 [P0] Recovery procedures written for each identified failure mode [Evidence: Build fallback, native module troubleshooting, startup verification procedures documented]
 
 ### Testing & Verification

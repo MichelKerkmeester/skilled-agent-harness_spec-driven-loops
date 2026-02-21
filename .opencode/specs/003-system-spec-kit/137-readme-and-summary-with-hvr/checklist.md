@@ -35,7 +35,7 @@
 <!-- ANCHOR:hvr-asset -->
 ## HVR Standalone Asset
 
-- [ ] CHK-010 [P0] `hvr_rules.md` created at `.opencode/skill/workflows-documentation/assets/documentation/hvr_rules.md`
+- [ ] CHK-010 [P0] `hvr_rules.md` created at `.opencode/skill/sk-documentation/assets/documentation/hvr_rules.md`
 - [ ] CHK-011 [P0] Zero occurrences of "Barter", "MEQT", "DEAL", "CONTENT" in hvr_rules.md [Evidence: grep output]
 - [ ] CHK-012 [P0] Loading condition updated to system-agnostic language
 - [ ] CHK-013 [P0] All 10 HVR sections present in standalone file (0-9 from source)

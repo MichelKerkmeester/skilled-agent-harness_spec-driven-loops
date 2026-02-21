@@ -815,7 +815,7 @@ Skills are automatically discovered from:
 | system-spec-kit            | v2.2.9.0   | Spec folder + template system + context preservation |
 | mcp-chrome-devtools  | v1.0.1.0   | Browser debugging                                    |
 | sk-code--full-stack | v1.0.0     | Full-stack implementation orchestrator               |
-| workflows-code--opencode   | v1.0.5.0   | OpenCode system code standards                       |
+| sk-code--opencode   | v1.0.5.0   | OpenCode system code standards                       |
 | sk-code--web    | v1.0.5.0   | Web development implementation orchestrator          |
 | sk-documentation    | v1.0.6.0   | Unified markdown and skill management                |
 | sk-git              | v1.0.2.0   | Git workflow orchestrator                            |
@@ -1416,7 +1416,7 @@ sudo chown -R $(whoami) /usr/local/lib/node_modules
 | Category           | Count | Items                                                                                                                    |
 | ------------------ | ----- | ------------------------------------------------------------------------------------------------------------------------ |
 | Native MCP Servers | 3     | code_mode, spec_kit_memory, sequential_thinking                                                                          |
-| Skills             | 9     | mcp-code-mode, mcp-figma, system-spec-kit, mcp-chrome-devtools, sk-code--full-stack, workflows-code--opencode, sk-code--web, sk-documentation, sk-git |
+| Skills             | 9     | mcp-code-mode, mcp-figma, system-spec-kit, mcp-chrome-devtools, sk-code--full-stack, sk-code--opencode, sk-code--web, sk-documentation, sk-git |
 | Commands           | 19    | /create:* (6), /memory:* (5), /spec_kit:* (7), agent_router (1)                                                         |
 | CLI Tools          | 1     | Chrome DevTools (bdg)                                                                                                    |
 | Plugins            | 2     | Antigravity Auth, OpenAI Codex Auth                                                                                      |

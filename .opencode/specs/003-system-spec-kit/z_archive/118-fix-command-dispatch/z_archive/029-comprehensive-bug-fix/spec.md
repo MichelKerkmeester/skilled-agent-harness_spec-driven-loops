@@ -58,7 +58,7 @@ A systematic analysis using **15 parallel agents** followed by targeted fixes:
 - `mcp-code-mode/SKILL.md` - Duplicate line, context param
 - `system-spec-kit/SKILL.md` - Gate alignment, terminology
 - `workflows-code/SKILL.md` - Broken anchors, phase transitions
-- `workflows-git/SKILL.md` - Missing tools, error handling
+- `sk-git/SKILL.md` - Missing tools, error handling
 - `mcp-chrome-devtools/SKILL.md` - Tool naming, session cleanup
 
 ### Reference Files (3 files)

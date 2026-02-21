@@ -186,7 +186,7 @@ Verify: swift test -> swiftlint -> swift build
 | Resource                         | Relationship                                    |
 | -------------------------------- | ----------------------------------------------- |
 | `sk-code--web`                   | Single-stack variant for Webflow/vanilla JS     |
-| `workflows-code--opencode`       | OpenCode system code standards for core tooling  |
+| `sk-code--opencode`       | OpenCode system code standards for core tooling  |
 | `sk-documentation`        | Documentation creation and skill authoring      |
 | `sk-git`                  | Git commit hygiene and branch workflows         |
 | `mcp-chrome-devtools`      | Browser debugging (CLI-first via bdg)           |

@@ -1,4 +1,4 @@
-# Tasks: Phase 003 — Rename workflows-code--full-stack to sk-code--full-stack
+# Tasks: Phase 003 — Rename legacy full-stack skill identifier to sk-code--full-stack
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
@@ -23,7 +23,7 @@
 <!-- ANCHOR:phase-1 -->
 ## Step 1: Filesystem Rename
 
-- [x] T001 `git mv .opencode/skill/workflows-code--full-stack .opencode/skill/sk-code--full-stack` [Evidence: EV-01]
+- [x] T001 `git mv .opencode/skill/legacy full-stack skill identifier .opencode/skill/sk-code--full-stack` [Evidence: EV-01]
 - [x] T002 Verify new folder exists with all 88 files intact [Evidence: EV-02]
 <!-- /ANCHOR:phase-1 -->
 
@@ -46,7 +46,7 @@
 ## Step 3: External Reference Updates (11 files)
 
 ### skill_advisor.py (8 lines)
-- [x] T009 Update MULTI_SKILL_BOOSTERS entries for `workflows-code--full-stack` → `sk-code--full-stack` [Evidence: EV-04, EV-05]
+- [x] T009 Update MULTI_SKILL_BOOSTERS entries for `legacy full-stack skill identifier` → `sk-code--full-stack` [Evidence: EV-04, EV-05]
 
 ### Agent Files (4 runtimes)
 - [x] T010 [P] Update .opencode/agent/orchestrate.md [Evidence: EV-07]
@@ -67,7 +67,7 @@
 <!-- ANCHOR:phase-4 -->
 ## Step 4: Changelog & Cross-References
 
-- [x] T017 `git mv .opencode/changelog/09--workflows-code--full-stack .opencode/changelog/09--sk-code--full-stack` [Evidence: EV-10]
+- [x] T017 `git mv .opencode/changelog/09--legacy full-stack skill identifier .opencode/changelog/09--sk-code--full-stack` [Evidence: EV-10]
 - [x] T018 Update cross-references in other skill folders [Evidence: EV-08]
 <!-- /ANCHOR:phase-4 -->
 
@@ -76,7 +76,7 @@
 <!-- ANCHOR:phase-5 -->
 ## Step 5: Verification
 
-- [x] T019 `grep -r "workflows-code--full-stack"` in active dirs — expect 0 [Evidence: EV-09]
+- [x] T019 `grep -r "legacy full-stack skill identifier"` in active dirs — expect 0 [Evidence: EV-09]
 - [x] T020 skill_advisor.py smoke test [Evidence: EV-04, EV-05]
 - [x] T021 Verify `sk-code--full-stack/` exists [Evidence: EV-01]
 - [x] T022 Verify no old folder remains [Evidence: EV-01]

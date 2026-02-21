@@ -1,5 +1,5 @@
 ---
-description: "Full contracts for all 5 visual-explainer slash commands including argument parsing, data gathering, section architecture, and output specs"
+description: "Full contracts for all 5 sk-visual-explainer slash commands including argument parsing, data gathering, section architecture, and output specs"
 ---
 # Commands
 

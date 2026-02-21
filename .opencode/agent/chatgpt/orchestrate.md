@@ -108,9 +108,9 @@ This variant is optimized for Codex/ChatGPT context capacity and stronger single
 | 1        | ALL codebase exploration, file search, pattern discovery, context loading | `@context`             | LEAF | Memory tools, Glob, Grep, Read                                                    | `"general"`   |
 | 2        | Evidence / investigation                                                  | `@research`            | LEAF | `system-spec-kit`                                                                 | `"general"`   |
 | 3        | Spec folder docs                                                          | `@speckit` ⛔ EXCLUSIVE | LEAF | `system-spec-kit`                                                                 | `"general"`   |
-| 4        | Code review / security                                                    | `@review`              | LEAF | `workflows-code--*` (auto-detects available variant)                              | `"general"`   |
+| 4        | Code review / security                                                    | `@review`              | LEAF | `sk-code--*` (auto-detects available variant)                              | `"general"`   |
 | 5        | Documentation (non-spec)                                                  | `@write`               | LEAF | `sk-documentation`                                                         | `"general"`   |
-| 6        | Implementation / testing                                                  | `@general`             | LEAF | `workflows-code--*` (auto-detects available variant), `mcp-chrome-devtools` | `"general"`   |
+| 6        | Implementation / testing                                                  | `@general`             | LEAF | `sk-code--*` (auto-detects available variant), `mcp-chrome-devtools` | `"general"`   |
 | 7        | Debugging (stuck, 3+ fails)                                               | `@debug`               | LEAF | Code analysis tools                                                               | `"general"`   |
 | 8        | Session handover                                                          | `@handover`            | LEAF | `system-spec-kit`                                                                 | `"general"`   |
 
@@ -324,7 +324,7 @@ TASK #1: Explore Toast Patterns
 TASK #2: Implement Notification System
 ├─ Scope: Build new system using patterns from Task #1
 ├─ Agent: @general
-├─ Skills: workflows-code--* (auto-detects available variant)
+├─ Skills: sk-code--* (auto-detects available variant)
 ├─ Output: Functional notification system
 ├─ Success: Works in browser, tests pass
 └─ Depends: Task #1
@@ -794,7 +794,7 @@ The orchestrator's own behavior can cause context overload. Follow these rules:
 | Skill                       | Domain          | Use When                                                         | Key Commands/Tools         |
 | --------------------------- | --------------- | ---------------------------------------------------------------- | -------------------------- |
 | `system-spec-kit`           | Documentation   | Spec folders, memory, validation, context preservation           | `/spec_kit:*`, `/memory:*` |
-| `workflows-code--*`         | Implementation  | Code changes, debugging, 3-phase lifecycle, browser verification | -                          |
+| `sk-code--*`         | Implementation  | Code changes, debugging, 3-phase lifecycle, browser verification | -                          |
 | `sk-git`             | Version Control | See skill for details                                            | -                          |
 | `sk-documentation`   | Markdown        | Doc quality, DQI scoring, skill creation, flowcharts             | `/create:*`                |
 | `mcp-chrome-devtools` | Browser         | DevTools automation, screenshots, console, CDP                   | `bdg` CLI                  |
@@ -810,7 +810,7 @@ The orchestrator's own behavior can cause context overload. Follow these rules:
 | `/spec_kit:research`        | 9-step investigation                            | `.opencode/command/spec_kit/research.md`     |
 | `/memory:save`              | Context preservation                            | `.opencode/command/memory/save.md`           |
 | `system-spec-kit`           | Spec folders, memory, validation                | `.opencode/skill/system-spec-kit/`           |
-| `workflows-code--*`         | Implementation lifecycle (auto-detects variant) | `.opencode/skill/workflows-code--*/`         |
+| `sk-code--*`         | Implementation lifecycle (auto-detects variant) | `.opencode/skill/sk-code--*/`         |
 | `sk-git`             | Version control workflows                       | `.opencode/skill/sk-git/`             |
 | `sk-documentation`   | Doc quality, DQI scoring, skill creation        | `.opencode/skill/sk-documentation/`   |
 | `mcp-chrome-devtools` | Browser debugging, screenshots, CDP             | `.opencode/skill/mcp-chrome-devtools/` |

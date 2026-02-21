@@ -16,7 +16,7 @@
 | T003 | Test validator against existing READMEs | P0 | Pending | T002 |
 | T004 | Add auto-fix capability | P1 | Pending | T002 |
 | T005 | Update write.md agent | P1 | Pending | T002 |
-| T006 | Update workflows-documentation SKILL.md | P2 | Pending | T005 |
+| T006 | Update sk-documentation SKILL.md | P2 | Pending | T005 |
 | T007 | Create test suite | P2 | Pending | T002 |
 
 <!-- /ANCHOR:notation -->
@@ -28,7 +28,7 @@
 
 ### T001: Create `template_rules.json`
 
-**Location:** `.opencode/skill/workflows-documentation/assets/template_rules.json`
+**Location:** `.opencode/skill/sk-documentation/assets/template_rules.json`
 
 **Content:**
 ```json
@@ -116,7 +116,7 @@
 
 ### T002: Create `validate_document.py`
 
-**Location:** `.opencode/skill/workflows-documentation/scripts/validate_document.py`
+**Location:** `.opencode/skill/sk-documentation/scripts/validate_document.py`
 
 **Features:**
 1. Load and parse template_rules.json
@@ -236,7 +236,7 @@ python validate_document.py <file.md> --fix --dry-run
 
 Before claiming completion, run:
 \`\`\`bash
-python .opencode/skill/workflows-documentation/scripts/validate_document.py <file>
+python .opencode/skill/sk-documentation/scripts/validate_document.py <file>
 \`\`\`
 
 - Exit 0 = proceed to delivery
@@ -255,7 +255,7 @@ python .opencode/skill/workflows-documentation/scripts/validate_document.py <fil
 <!-- ANCHOR:phase-3 -->
 ## P2 Tasks (Medium Priority)
 
-### T006: Update workflows-documentation SKILL.md
+### T006: Update sk-documentation SKILL.md
 
 **Changes:**
 
@@ -289,7 +289,7 @@ python .opencode/skill/workflows-documentation/scripts/validate_document.py <fil
 
 ### T007: Create Test Suite
 
-**Location:** `.opencode/skill/workflows-documentation/scripts/tests/`
+**Location:** `.opencode/skill/sk-documentation/scripts/tests/`
 
 **Test Files:**
 ```

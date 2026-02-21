@@ -45,7 +45,7 @@ describe('Skill Reference Config Loader', () => {
       JSON.stringify({
         skillReferenceIndexing: {
           enabled: true,
-          indexedSkills: ['sk-code--web', '../escape', 'workflows-code--opencode', 'bad/name'],
+          indexedSkills: ['sk-code--web', '../escape', 'sk-code--opencode', 'bad/name'],
           fileExtensions: ['MD', '.TXT', '', '../md', ' .rst '],
           indexDirs: ['references', 'assets/', './tmp', '../outside', '/abs', 'docs/templates'],
         },
@@ -55,7 +55,7 @@ describe('Skill Reference Config Loader', () => {
     const config = loadSkillRefConfig();
 
     expect(config.enabled).toBe(true);
-    expect(config.indexedSkills).toEqual(['sk-code--web', 'workflows-code--opencode']);
+    expect(config.indexedSkills).toEqual(['sk-code--web', 'sk-code--opencode']);
     expect(config.fileExtensions).toEqual(['.md', '.txt', '.rst']);
     expect(config.indexDirs).toEqual(['references', 'assets', 'docs/templates']);
   });
@@ -105,7 +105,7 @@ describe('Skill Reference Config Loader', () => {
         JSON.stringify({
           skillReferenceIndexing: {
             enabled: true,
-            indexedSkills: ['workflows-code--opencode'],
+            indexedSkills: ['sk-code--opencode'],
             fileExtensions: ['.md'],
             indexDirs: ['references', 'assets'],
           },
@@ -115,7 +115,7 @@ describe('Skill Reference Config Loader', () => {
     const config = loadSkillRefConfig();
 
     expect(config.enabled).toBe(true);
-    expect(config.indexedSkills).toEqual(['workflows-code--opencode']);
+    expect(config.indexedSkills).toEqual(['sk-code--opencode']);
     expect(fsMock.readFileSync).toHaveBeenCalledTimes(2);
   });
 

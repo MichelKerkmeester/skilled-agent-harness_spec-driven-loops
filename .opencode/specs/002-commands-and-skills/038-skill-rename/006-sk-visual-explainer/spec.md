@@ -1,4 +1,4 @@
-# Feature Specification: Phase 006 — Rename workflows-visual-explainer to sk-visual-explainer
+# Feature Specification: Phase 006 — Rename sk-visual-explainer to sk-visual-explainer
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core + phase-child-header | v2.2 -->
@@ -12,15 +12,17 @@
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P0 |
-| **Status** | Draft |
+| **Status** | Completed |
 | **Created** | 2026-02-21 |
+| **Completed** | 2026-02-21 |
+| **Verified** | 2026-02-21 |
 | **Branch** | `038-skill-rename` |
 | **Parent Spec** | ../spec.md |
 | **Parent Plan** | ../plan.md |
 | **Phase** | 6 of 7 |
 | **Predecessor** | 004-sk-documentation |
 | **Successor** | 005-sk-git |
-| **Handoff Criteria** | `grep -r "workflows-visual-explainer"` returns 0 matches in active files |
+| **Handoff Criteria** | `grep -r "sk-visual-explainer"` returns 0 matches in active files |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -30,7 +32,7 @@
 
 This is **Phase 6** of the Skill Rename (038) specification. It has the FEWEST external references (6 files), making it the lowest-effort phase.
 
-**Scope Boundary**: ALL changes for `workflows-visual-explainer` → `sk-visual-explainer`.
+**Scope Boundary**: ALL changes for `sk-visual-explainer` → `sk-visual-explainer`.
 
 **Dependencies**:
 - Phases 3, 1, 2, 7, 4 must complete first
@@ -49,10 +51,10 @@ This is **Phase 6** of the Skill Rename (038) specification. It has the FEWEST e
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-The skill `workflows-visual-explainer` uses the legacy `workflows-*` naming convention. It has relatively few external references (6) but moderate skill_advisor.py density (16 lines).
+The skill `sk-visual-explainer` uses the legacy `workflows-*` naming convention. It has relatively few external references (6) but moderate skill_advisor.py density (16 lines).
 
 ### Purpose
-Rename `workflows-visual-explainer` to `sk-visual-explainer` across all references.
+Rename `sk-visual-explainer` to `sk-visual-explainer` across all references.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -61,7 +63,7 @@ Rename `workflows-visual-explainer` to `sk-visual-explainer` across all referenc
 ## 3. SCOPE
 
 ### In Scope
-- Filesystem rename: `git mv .opencode/skill/workflows-visual-explainer .opencode/skill/sk-visual-explainer`
+- Filesystem rename: `git mv .opencode/skill/sk-visual-explainer .opencode/skill/sk-visual-explainer`
 - Update all 22 internal files
 - Update 6 external files
 - Update 16 lines in skill_advisor.py
@@ -75,7 +77,7 @@ Rename `workflows-visual-explainer` to `sk-visual-explainer` across all referenc
 
 | Category | File Path | Change Type | Ref Count |
 |----------|-----------|-------------|-----------|
-| Folder | `.opencode/skill/workflows-visual-explainer/` | Rename | — |
+| Folder | `.opencode/skill/sk-visual-explainer/` | Rename | — |
 | Internal | `sk-visual-explainer/SKILL.md` | Modify | ~5 |
 | Internal | `sk-visual-explainer/index.md` | Modify | ~3 |
 | Internal | `sk-visual-explainer/nodes/*.md` (~4 files) | Modify | ~10 |
@@ -117,9 +119,12 @@ Rename `workflows-visual-explainer` to `sk-visual-explainer` across all referenc
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: `grep -r "workflows-visual-explainer"` in active files returns 0
+- **SC-001**: `grep -r "sk-visual-explainer"` in active files returns 0
 - **SC-002**: Folder `.opencode/skill/sk-visual-explainer/` exists
 - **SC-003**: skill_advisor.py routes correctly
+- **SC-001 Status**: PASS (`rg -n "sk-visual-explainer"` legacy-name checks returned exit `1` on active targets)
+- **SC-002 Status**: PASS (`test -d .opencode/skill/sk-visual-explainer` and file count check returned `22`)
+- **SC-003 Status**: PASS (`python3 .opencode/skill/scripts/skill_advisor.py "create visual explainer" --threshold 0.8` routes to `sk-visual-explainer`)
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -177,5 +182,5 @@ Rename `workflows-visual-explainer` to `sk-visual-explainer` across all referenc
 <!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
-- Verify existence of changelog directory for `workflows-visual-explainer`
+- Verify existence of changelog directory for `sk-visual-explainer`
 <!-- /ANCHOR:questions -->

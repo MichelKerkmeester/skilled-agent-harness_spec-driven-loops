@@ -110,10 +110,10 @@ The `workflows-memory` skill needs to be renamed to `system-memory` to align wit
 |------|------------|-------|
 | `cli-codex/SKILL.md` | 1 | 589 |
 | `cli-gemini/SKILL.md` | 1 | 483 |
-| `workflows-documentation/SKILL.md` | 1 | 448 |
-| `workflows-documentation/references/quick_reference.md` | 1 | 187 |
-| `workflows-documentation/assets/frontmatter_templates.md` | 1 | 25 |
-| `workflows-documentation/assets/skill_md_template.md` | 1 | 987 |
+| `sk-documentation/SKILL.md` | 1 | 448 |
+| `sk-documentation/references/quick_reference.md` | 1 | 187 |
+| `sk-documentation/assets/frontmatter_templates.md` | 1 | 25 |
+| `sk-documentation/assets/skill_md_template.md` | 1 | 987 |
 | `system-spec-kit/SKILL.md` | 3 | 460, 804, 812 |
 | `system-spec-kit/README.md` | 1 | 961 |
 | `system-spec-kit/references/quick_reference.md` | 1 | 535 |
@@ -179,7 +179,7 @@ The `workflows-memory` skill needs to be renamed to `system-memory` to align wit
 
 ## References
 
-- Previous rename: `specs/002-skills/001-workflows-documentation/001-skill-rename/`
+- Previous rename: `specs/002-skills/001-sk-documentation/001-skill-rename/`
 - Previous rename: `specs/008-system-spec-kit-rename/`
 - Current skill: `.opencode/skills/system-memory/`
 
@@ -226,7 +226,7 @@ The `workflows-memory` skill needs to be renamed to `system-memory` to align wit
 - Agent 3G: spec_kit plan+research YAMLs (14 refs)
 - Agent 3H: create commands (11 refs)
 - Agent 3I: system-spec-kit skill (5 refs)
-- Agent 3J: workflows-documentation skill (4 refs)
+- Agent 3J: sk-documentation skill (4 refs)
 - Agent 3K: CLI skills (2 refs)
 
 ### Verification Results

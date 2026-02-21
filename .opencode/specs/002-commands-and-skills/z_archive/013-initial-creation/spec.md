@@ -59,7 +59,7 @@ Currently, Figma MCP is configured in `.utcp_config.json` but has no:
 
 | ID | Requirement | Priority |
 |----|-------------|----------|
-| FR-1 | Install guide follows 11-section template from workflows-documentation | P0 |
+| FR-1 | Install guide follows 11-section template from sk-documentation | P0 |
 | FR-2 | SKILL.md follows mcp-narsil/mcp-code-mode pattern | P0 |
 | FR-3 | All 18 Figma tools documented with TypeScript interfaces | P0 |
 | FR-4 | Naming pattern `figma.figma_{tool_name}` documented correctly | P0 |
@@ -140,7 +140,7 @@ Currently, Figma MCP is configured in `.utcp_config.json` but has no:
 |------------|------|--------|
 | mcp-code-mode skill | Required | ✅ Exists |
 | .utcp_config.json with Figma | Required | ✅ Configured |
-| workflows-documentation skill | Template source | ✅ Exists |
+| sk-documentation skill | Template source | ✅ Exists |
 | mcp-narsil skill | Pattern reference | ✅ Exists |
 
 ---

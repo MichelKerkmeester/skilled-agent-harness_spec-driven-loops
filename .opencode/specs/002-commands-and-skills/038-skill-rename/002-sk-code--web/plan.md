@@ -32,10 +32,10 @@ Rename the `workflows-code--web-dev` skill folder to `sk-code--web` and update a
 - [x] Dependencies identified (Phases 1 and 3 must complete first)
 
 ### Definition of Done
-- [ ] Folder renamed to `sk-code--web`
-- [ ] Zero grep matches for `workflows-code--web-dev` in active files
-- [ ] Bare `workflows-code` references resolved
-- [ ] skill_advisor.py returns correct name
+- [x] Folder renamed to `sk-code--web`
+- [x] Zero grep matches for `workflows-code--web-dev` in active files
+- [x] Bare `workflows-code` references resolved
+- [x] skill_advisor.py returns correct name
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -63,36 +63,36 @@ No data flow changes.
 ## 4. IMPLEMENTATION PHASES
 
 ### Step 1: Filesystem Rename
-- [ ] `git mv .opencode/skill/workflows-code--web-dev .opencode/skill/sk-code--web`
-- [ ] Verify new folder exists with all contents
+- [x] `git mv .opencode/skill/workflows-code--web-dev .opencode/skill/sk-code--web`
+- [x] Verify new folder exists with all contents
 
 ### Step 2: Internal File Updates (51 files)
-- [ ] Update SKILL.md: name field, title, paths
-- [ ] Update index.md: name, description
-- [ ] Update all nodes/*.md (~8 files): self-refs, cross-skill refs
-- [ ] Update all references/*.md (~8 files): hard-coded paths
-- [ ] Update all assets/*.md (~25 files): template paths, examples
-- [ ] Update all scripts/*.{sh,mjs} (~5 files): paths
+- [x] Update SKILL.md: name field, title, paths
+- [x] Update index.md: name, description
+- [x] Update all nodes/*.md (~8 files): self-refs, cross-skill refs
+- [x] Update all references/*.md (~8 files): hard-coded paths
+- [x] Update all assets/*.md (~25 files): template paths, examples
+- [x] Update all scripts/*.{sh,mjs} (~5 files): paths
 
 ### Step 3: External Reference Updates (17 files)
-- [ ] Update skill_advisor.py (25 lines)
-- [ ] Update agent/orchestrate.md (4 runtimes)
-- [ ] Update agent/review.md (4 runtimes)
-- [ ] Update install guides (2 files)
-- [ ] Update root docs (CLAUDE.md, .opencode/README.md)
+- [x] Update skill_advisor.py (25 lines)
+- [x] Update agent/orchestrate.md (4 runtimes)
+- [x] Update agent/review.md (4 runtimes)
+- [x] Update install guides (2 files)
+- [x] Update root docs (CLAUDE.md, .opencode/README.md)
 
 ### Step 4: Bare Reference Resolution
-- [ ] Find all bare `workflows-code` references (not followed by `--`)
-- [ ] Map each to `sk-code--web` (default variant)
+- [x] Find all bare `workflows-code` references (not followed by `--`)
+- [x] Map each to `sk-code--web` (default variant)
 
 ### Step 5: Changelog & Cross-References
-- [ ] `git mv .opencode/changelog/08--workflows-code--web-dev .opencode/changelog/08--sk-code--web`
-- [ ] Update cross-references in other skill folders
+- [x] `git mv .opencode/changelog/08--workflows-code--web-dev .opencode/changelog/08--sk-code--web`
+- [x] Update cross-references in other skill folders
 
 ### Step 6: Verification
-- [ ] `grep -r "workflows-code--web-dev" ...` → 0 results
-- [ ] `grep -r "workflows-code[^-]" ...` → 0 bare references
-- [ ] `python3 skill_advisor.py "implement feature"` → `sk-code--web`
+- [x] `grep -r "workflows-code--web-dev" ...` → 0 results
+- [x] `grep -r "workflows-code[^-]" ...` → 0 bare references
+- [x] `python3 skill_advisor.py "implement feature"` → `sk-code--web`
 <!-- /ANCHOR:phases -->
 
 ---
@@ -115,8 +115,8 @@ No data flow changes.
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| Phase 3 (full-stack) complete | Internal | Pending | Longest match must go first |
-| Phase 1 (opencode) complete | Internal | Pending | Avoid partial `workflows-code--` match |
+| Phase 3 (full-stack) complete | Internal | Complete | Longest match must go first |
+| Phase 1 (opencode) complete | Internal | Complete | Avoid partial `workflows-code--` match |
 <!-- /ANCHOR:dependencies -->
 
 ---
@@ -168,8 +168,8 @@ Phase 3 ──► Phase 1 ──► Phase 2 (This Phase) ──► Phase 7
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deployment Checklist
-- [ ] Phases 1 and 3 confirmed complete
-- [ ] Clean git state
+- [x] Phases 1 and 3 confirmed complete
+- [x] Clean git state
 
 ### Rollback Procedure
 1. `git checkout -- .` to restore all files

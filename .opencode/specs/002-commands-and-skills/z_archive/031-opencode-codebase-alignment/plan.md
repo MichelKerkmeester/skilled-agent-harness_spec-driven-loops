@@ -16,7 +16,7 @@ This phase maps to implementation controls and verification closure in `## 5. VA
 <!-- ANCHOR:summary -->
 ## 1. SUMMARY
 
-This plan executes full alignment of OpenCode TypeScript, JavaScript, Python, Shell, JSON, and JSONC files to `.opencode/skill/workflows-code--opencode` with behavior preservation as the non-negotiable constraint. The delivery model is `audit -> batch implementation -> verification`, with strict batch boundaries, deterministic command execution, and rollback-safe merge units.
+This plan executes full alignment of OpenCode TypeScript, JavaScript, Python, Shell, JSON, and JSONC files to `.opencode/skill/sk-code--opencode` with behavior preservation as the non-negotiable constraint. The delivery model is `audit -> batch implementation -> verification`, with strict batch boundaries, deterministic command execution, and rollback-safe merge units.
 
 ### Delivery Outcomes
 - Standards-aligned touched files across all target languages and config formats.
@@ -87,7 +87,7 @@ Every batch must include:
 | WS-4 Python Utilities | `.py` scripts and validators | Align typing/docstring/error conventions | WS-0 complete | Compile/lint/test checks pass |
 | WS-5 Shell Scripts | `.sh` automation/install/validation | Align strict-mode/quoting/exit-code behavior | WS-0 complete | Shell syntax + scenario tests pass |
 | WS-6 Config Surface | `.json/.jsonc` | Align key/style/structure without schema drift | WS-0 complete | Parse/schema/consumer checks pass |
-| WS-7 Standards Reconciliation | `.opencode/skill/workflows-code--opencode/**/*` (if required) | Resolve proven standards-vs-runtime mismatches | Triggered by evidence from WS-1..WS-6 | Reconciled guidance with explicit rationale |
+| WS-7 Standards Reconciliation | `.opencode/skill/sk-code--opencode/**/*` (if required) | Resolve proven standards-vs-runtime mismatches | Triggered by evidence from WS-1..WS-6 | Reconciled guidance with explicit rationale |
 
 ### 3.2 Dependency and Sequence Rules
 - Hard order: `WS-0 -> WS-1 -> WS-2` for TS dependency safety.
@@ -309,4 +309,4 @@ This plan is complete when all conditions are true:
 ## RELATED DOCUMENTS
 
 - **Specification**: `spec.md`
-- **Skill Standard Source**: `.opencode/skill/workflows-code--opencode/SKILL.md`
+- **Skill Standard Source**: `.opencode/skill/sk-code--opencode/SKILL.md`

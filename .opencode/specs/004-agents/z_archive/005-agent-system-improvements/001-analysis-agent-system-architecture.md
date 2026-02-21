@@ -110,7 +110,7 @@ Deep analysis of the current OpenCode system reveals it's already well-architect
 |-------|---------|------------------|
 | workflows-code | Best | Yes - cleanest structure |
 | system-spec-kit | Good | No - description too long |
-| workflows-documentation | Good | No - has redundant closing |
+| sk-documentation | Good | No - has redundant closing |
 
 **workflows-code is the model** because:
 - Concise 15-word description (vs 48 words)

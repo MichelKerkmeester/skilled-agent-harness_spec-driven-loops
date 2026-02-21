@@ -1,5 +1,5 @@
 ---
-description: "How validate.sh automates the audit and validation of spec folder contents."
+description: "How validate.sh automates spec folder validation, quality gates, template level checks, memory save readiness, and configuration safety."
 ---
 # Validation Workflow
 
@@ -22,3 +22,9 @@ Automated validation of spec folder contents via `validate.sh`.
 4. Exit 0 → Proceed with completion claim
 
 **Full documentation:** See [validation_rules.md](../references/validation/validation_rules.md) for all rules, configuration, and troubleshooting.
+
+## Cross-Skill Bridges
+
+- [Document Quality Mode](../../sk-documentation/nodes/mode-document-quality.md) - DQI and markdown quality verification
+- [OpenCode Quick Reference](../../sk-code--opencode/nodes/quick-reference.md) - TypeScript/Python/Shell config and standards
+- [Web Implementation Workflow](../../sk-code--web/nodes/implementation-workflow.md) - Frontend verification and rollout checks

@@ -15,22 +15,6 @@ Complete installation and configuration guide for Figma MCP, enabling programmat
 
 ---
 
-## Table of Contents
-
-0. [AI-First Install Guide](#0-ai-first-install-guide)
-1. [Overview](#1-overview)
-2. [Prerequisites](#2-prerequisites)
-3. [Installation](#3-installation)
-4. [Configuration](#4-configuration)
-5. [Verification](#5-verification)
-6. [Usage](#6-usage)
-7. [Features](#7-features)
-8. [Examples](#8-examples)
-9. [Troubleshooting](#9-troubleshooting)
-10. [Resources](#10-resources)
-
----
-
 ## 0. AI-First Install Guide
 
 Copy and paste this prompt to your AI assistant to get installation help:
@@ -63,6 +47,22 @@ Guide me through the setup and verify it works.
 - Test the installation by fetching a Figma file
 
 **Expected setup time:** 5-10 minutes (Option A) | 10-15 minutes (Option B)
+
+---
+
+## Table of Contents
+
+0. [AI-First Install Guide](#0-ai-first-install-guide)
+1. [Overview](#1-overview)
+2. [Prerequisites](#2-prerequisites)
+3. [Installation](#3-installation)
+4. [Configuration](#4-configuration)
+5. [Verification](#5-verification)
+6. [Usage](#6-usage)
+7. [Features](#7-features)
+8. [Examples](#8-examples)
+9. [Troubleshooting](#9-troubleshooting)
+10. [Resources](#10-resources)
 
 ---
 
@@ -187,7 +187,7 @@ node --version    # -> v18.x or higher
 - [ ] **Option A:** Figma account ready? Browser available?
 - [ ] **Option B:** Node.js 18+ installed? Figma API Key obtained?
 
-STOP if validation fails. Fix prerequisites before continuing.
+❌ **STOP if validation fails.** Fix prerequisites before continuing.
 
 ---
 
@@ -363,7 +363,7 @@ npx -y figma-developer-mcp --help
 - [ ] **Option B:** API key configured (inline or via env var)?
 - [ ] **Option B:** `.env` is in `.gitignore` (if using env var)?
 
-STOP if validation fails. Check configuration syntax and paths.
+❌ **STOP if validation fails.** Check configuration syntax and paths.
 
 ---
 
@@ -478,7 +478,7 @@ python3 -m json.tool < .utcp_config.json > /dev/null && echo "Valid JSON" || ech
 - [ ] **Option B:** API key configured securely (env var, not hardcoded)?
 - [ ] **Option B:** `.env` is in `.gitignore`?
 
-STOP if validation fails. Fix configuration syntax or paths.
+❌ **STOP if validation fails.** Fix configuration syntax or paths.
 
 ---
 
@@ -549,7 +549,7 @@ https://www.figma.com/file/ABC123xyz/My-Design-File
 - [ ] `figma.figma_get_file()` returns file data?
 - [ ] No authentication errors?
 
-STOP if validation fails. Check configuration and API key.
+❌ **STOP if validation fails.** Check configuration and API key.
 
 ---
 

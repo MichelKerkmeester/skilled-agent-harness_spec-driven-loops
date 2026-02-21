@@ -6,7 +6,7 @@ description: "Detailed pass/fail verification procedure for all 9 pre-delivery q
 
 > LOAD PRIORITY: ON_DEMAND — load when verifying completed HTML output or debugging quality issues.
 
-Detailed pass/fail criteria for all 9 quality checks. Run every check before delivering any visual-explainer output.
+Detailed pass/fail criteria for all 9 quality checks. Run every check before delivering any sk-visual-explainer output.
 
 ---
 

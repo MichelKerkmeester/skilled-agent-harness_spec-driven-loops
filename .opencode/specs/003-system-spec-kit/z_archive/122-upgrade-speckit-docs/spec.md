@@ -40,7 +40,7 @@ Systematically improve documentation quality across the OpenCode system through 
 - Prose tightening: Remove superlatives, marketing language, unnecessary words
 - Conciseness: Reduce verbosity while preserving technical content
 - Style consistency: Apply uniform patterns (Oxford comma removal, em dash reduction, terminology standardization)
-- Version management: Bump workflows-documentation SKILL.md version to 1.0.6.0
+- Version management: Bump sk-documentation SKILL.md version to 1.0.6.0
 - Template improvement: Restructure readme_template.md for better documentation patterns
 - Config cleanup: Remove unused Antigravity plugin/provider configuration
 
@@ -85,7 +85,7 @@ Systematically improve documentation quality across the OpenCode system through 
 |----|-------------|---------------------|
 | REQ-001 | All 85 files modified with quality improvements | Each file contains tightened prose with no superlatives or marketing language |
 | REQ-002 | Technical content preserved in all modifications | No loss of technical accuracy, instructions, or critical information |
-| REQ-003 | Version bump applied to workflows-documentation | SKILL.md version changed from 1.0.5.0 to 1.0.6.0 |
+| REQ-003 | Version bump applied to sk-documentation | SKILL.md version changed from 1.0.5.0 to 1.0.6.0 |
 
 ### P1 - Required (complete OR user-approved deferral)
 
@@ -106,7 +106,7 @@ Systematically improve documentation quality across the OpenCode system through 
 - **SC-001**: All 85 files contain improved prose quality with no superlatives or marketing language
 - **SC-002**: Total LOC changes accurately tracked (~4,864 total, +2,649/−2,215, net +434) while preserving 100% of technical content
 - **SC-003**: Style patterns applied consistently across all modified files
-- **SC-004**: Version 1.0.6.0 applied to workflows-documentation SKILL.md
+- **SC-004**: Version 1.0.6.0 applied to sk-documentation SKILL.md
 - **SC-005**: All modified files pass validation checks (no broken links, proper formatting)
 
 <!-- /ANCHOR:success-criteria -->

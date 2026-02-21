@@ -8,7 +8,7 @@
 <!-- ANCHOR:executive-summary -->
 ## EXECUTIVE SUMMARY
 
-Align OpenCode implementation files in TypeScript, JavaScript, Python, Shell, JSON, and JSONC to the standards defined by `.opencode/skill/workflows-code--opencode` with a behavior-preserving, KISS-first approach. The work is intentionally limited to consistency, correctness, and bug fixes discovered during alignment, with no feature expansion.
+Align OpenCode implementation files in TypeScript, JavaScript, Python, Shell, JSON, and JSONC to the standards defined by `.opencode/skill/sk-code--opencode` with a behavior-preserving, KISS-first approach. The work is intentionally limited to consistency, correctness, and bug fixes discovered during alignment, with no feature expansion.
 
 **Key Decisions**:
 - Keep runtime behavior unchanged; style and structure changes must be non-semantic.
@@ -16,7 +16,7 @@ Align OpenCode implementation files in TypeScript, JavaScript, Python, Shell, JS
 - Prioritize the smallest safe change set per file before any broader cleanup.
 
 **Critical Dependencies**:
-- `.opencode/skill/workflows-code--opencode` as the normative standard.
+- `.opencode/skill/sk-code--opencode` as the normative standard.
 - Existing test and validation commands for each language stack.
 - Maintainer review for any standard-vs-reality mismatch before changing skill guidance.
 <!-- /ANCHOR:executive-summary -->
@@ -51,7 +51,7 @@ OpenCode scripts and runtime code were built over time across multiple languages
 Deliver one standards-aligned codebase surface for TypeScript, JavaScript, Python, Shell, JSON, and JSONC that preserves behavior, removes consistency debt, and fixes bugs discovered in-scope during alignment.
 
 ### Objectives
-1. Reach enforceable consistency with `.opencode/skill/workflows-code--opencode` for touched files.
+1. Reach enforceable consistency with `.opencode/skill/sk-code--opencode` for touched files.
 2. Preserve runtime behavior and external contracts for all modified components.
 3. Resolve in-scope defects found during alignment without introducing side work.
 4. Keep implementation simple, local, and easy to review.
@@ -84,7 +84,7 @@ Deliver one standards-aligned codebase surface for TypeScript, JavaScript, Pytho
 | `.opencode/**/*.sh` | Modify | Standards alignment + behavior-preserving cleanup + in-scope bug fixes |
 | `.opencode/**/*.json` | Modify | Config alignment and key/style normalization where safe |
 | `.opencode/**/*.jsonc` | Modify | Config alignment and comment/section normalization where safe |
-| `.opencode/skill/workflows-code--opencode/**/*` | Modify (only if needed) | Correct standard docs when verified code reality conflicts |
+| `.opencode/skill/sk-code--opencode/**/*` | Modify (only if needed) | Correct standard docs when verified code reality conflicts |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -144,7 +144,7 @@ Deliver one standards-aligned codebase surface for TypeScript, JavaScript, Pytho
 
 2. **Language-Specific Standards Alignment Validation**
    - **Given** one touched file in each language group (`.ts/.js/.py/.sh/.json/.jsonc`),
-   - When each file is reviewed against `.opencode/skill/workflows-code--opencode` standards,
+   - When each file is reviewed against `.opencode/skill/sk-code--opencode` standards,
    - Then naming, structure, error-handling style, strictness/config conventions, and documentation patterns match the language-specific rules.
 
 3. **Bug-Fix Safety in Alignment Scope**
@@ -175,7 +175,7 @@ Deliver one standards-aligned codebase surface for TypeScript, JavaScript, Pytho
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | Standards source (`workflows-code--opencode`) | High | Use as baseline and log any conflict before changing docs |
+| Dependency | Standards source (`sk-code--opencode`) | High | Use as baseline and log any conflict before changing docs |
 | Dependency | Existing test/verification commands | High | Run per impacted area before completion claim |
 | Dependency | Maintainer review availability | Medium | Keep batches small and independently verifiable |
 | Risk | Hidden semantic drift during style edits | High | Restrict to local edits, compare behavior, run targeted checks |
@@ -297,7 +297,7 @@ Deliver one standards-aligned codebase surface for TypeScript, JavaScript, Pytho
 ### Autonomous Execution Model (Level 3+)
 - Default operating mode is **autonomous execution** within the approved scope, with no pause required for notify-only checkpoints.
 - All changes must remain behavior-preserving, KISS-first, and restricted to alignment plus in-scope defect correction.
-- If a proven standards error is found, update `.opencode/skill/workflows-code--opencode` docs in the same governed flow with explicit rationale.
+- If a proven standards error is found, update `.opencode/skill/sk-code--opencode` docs in the same governed flow with explicit rationale.
 - Autonomous execution may continue in parallel streams only while each stream remains independently testable and independently revertible.
 
 ### Workstream Boundaries (Parallel-Allowed)
@@ -308,7 +308,7 @@ Deliver one standards-aligned codebase surface for TypeScript, JavaScript, Pytho
 | WS-PY | `.opencode/**/*.py` | API contract rewrites or shared behavior changes outside touched files | Impacted Python lint/test/command checks |
 | WS-SH | `.opencode/**/*.sh` | Command behavior redesign, shell framework swaps | Script execution checks with strict-mode and failure-path validation |
 | WS-CONFIG | `.opencode/**/*.json`, `.opencode/**/*.jsonc` | Key schema redesign or unrelated config migration | Consumer parse/load checks for each touched config |
-| WS-STANDARDS | `.opencode/skill/workflows-code--opencode/**/*` (only when fundamental mismatch is proven) | Policy expansion unrelated to validated mismatch | Cross-check doc rule against validated production behavior |
+| WS-STANDARDS | `.opencode/skill/sk-code--opencode/**/*` (only when fundamental mismatch is proven) | Policy expansion unrelated to validated mismatch | Cross-check doc rule against validated production behavior |
 
 ### Workstream Alias Map (Compact)
 

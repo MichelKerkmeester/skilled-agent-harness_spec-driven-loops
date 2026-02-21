@@ -175,7 +175,7 @@ docs(readme): update installation steps
 
 - **AGENTS.md**: Behavioral framework and gate definitions (Gate 2, Gate 3)
 - **system-spec-kit**: Spec folder creation and documentation workflows
-- **workflows-code--opencode**: System code standards that pair with commit quality checks
+- **sk-code--opencode**: System code standards that pair with commit quality checks
 - **sk-code--web**: Code implementation lifecycle (pairs with git workflow for full dev cycle)
 - **sk-code--full-stack**: Multi-stack implementation (stack-specific verification before git-finish)
 

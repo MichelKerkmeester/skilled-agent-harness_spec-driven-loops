@@ -18,7 +18,7 @@
 | **Testing** | Manual verification, standards comparison |
 
 ### Overview
-Shard-based audit of system-spec-kit scripts across three directories (scripts/, shared/, mcp_server/) using 30 discrete shards: 10 context shards for discovery, 10 build verification shards for functionality testing, and 10 review shards for standards comparison against workflows-code--opencode.
+Shard-based audit of system-spec-kit scripts across three directories (scripts/, shared/, mcp_server/) using 30 discrete shards: 10 context shards for discovery, 10 build verification shards for functionality testing, and 10 review shards for standards comparison against sk-code--opencode.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -29,7 +29,7 @@ Shard-based audit of system-spec-kit scripts across three directories (scripts/,
 ### Definition of Ready
 - [x] Problem statement clear and scope documented in spec.md
 - [x] Success criteria measurable (all shards documented)
-- [x] Dependencies identified (workflows-code--opencode standards)
+- [x] Dependencies identified (sk-code--opencode standards)
 
 ### Definition of Done
 - [ ] All 30 shards completed with findings documented
@@ -85,7 +85,7 @@ Context shards discover scripts → Build shards test functionality → Review s
 - [ ] Shard 20: Document broken features
 
 ### Phase 3: Review & Alignment (Shards 21-30)
-- [ ] Shard 21: Load workflows-code--opencode standards
+- [ ] Shard 21: Load sk-code--opencode standards
 - [ ] Shard 22: Compare error handling patterns
 - [ ] Shard 23: Compare async/await usage
 - [ ] Shard 24: Compare TypeScript conventions
@@ -113,7 +113,7 @@ Context shards discover scripts → Build shards test functionality → Review s
 |-----------|-------|-------|
 | Syntax | All TypeScript/JavaScript files | tsc, node --check |
 | Runtime | Script execution paths | Manual execution with test inputs |
-| Standards | Pattern comparison | Manual review against workflows-code--opencode |
+| Standards | Pattern comparison | Manual review against sk-code--opencode |
 <!-- /ANCHOR:testing -->
 
 ---
@@ -123,7 +123,7 @@ Context shards discover scripts → Build shards test functionality → Review s
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| workflows-code--opencode standards | Internal | Green | Proceed with best-practices baseline |
+| sk-code--opencode standards | Internal | Green | Proceed with best-practices baseline |
 | Node_modules relocation status | Internal | In Progress | Must exclude from findings |
 <!-- /ANCHOR:dependencies -->
 

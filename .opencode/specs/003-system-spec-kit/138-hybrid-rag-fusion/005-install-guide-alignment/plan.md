@@ -13,7 +13,7 @@
 | Aspect | Value |
 |--------|-------|
 | **Language/Stack** | Markdown documentation |
-| **Framework** | workflows-documentation install_guide_template.md |
+| **Framework** | sk-documentation install_guide_template.md |
 | **Storage** | N/A |
 | **Testing** | HVR compliance check, cross-reference validation |
 

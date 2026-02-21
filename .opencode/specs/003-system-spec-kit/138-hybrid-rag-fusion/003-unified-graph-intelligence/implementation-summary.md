@@ -2,7 +2,7 @@
 
 <!-- SPECKIT_LEVEL: 3+ -->
 <!-- SPECKIT_TEMPLATE_SOURCE: implementation-summary | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/workflows-documentation/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skill/sk-documentation/references/hvr_rules.md -->
 
 <!-- ANCHOR:implementation-summary-003-wsc -->
 
@@ -159,7 +159,7 @@ Wave 2 dispatched 2 parallel Sonnet agents. Agent 1 delivered 61 pattern unit te
 
 **Code Quality Review**
 
-Two review passes ran after SYNC-004. R-Wave (5 Sonnet agents) handled falsy-zero `||` bugs, dead code removal, unsafe type casts, missing box headers, and initial `@ts-nocheck` removal. D-Wave (5 Opus agents) performed a full `workflows-code--opencode` compliance audit across all files touched by this workstream:
+Two review passes ran after SYNC-004. R-Wave (5 Sonnet agents) handled falsy-zero `||` bugs, dead code removal, unsafe type casts, missing box headers, and initial `@ts-nocheck` removal. D-Wave (5 Opus agents) performed a full `sk-code--opencode` compliance audit across all files touched by this workstream:
 
 - D3 agent: `graph-search-fn.ts` import order corrected, non-null assertion on `cachedAuthorityMap!` and `AUTHORITY_TYPE_MULTIPLIERS!` justified with preceding guard comments
 - D3 agent: `skill-graph-cache.ts`, `sqlite-fts.ts`, `causal-boost.ts`, `intent-classifier.ts` import order corrected
@@ -240,7 +240,7 @@ P2 items deferred: `memory_stats` tool wiring to graph metrics, architecture dia
 | Magic numbers extracted | PASS — `DEFAULT_TTL_MS`, `MAX_DIST`, `AUTHORITY_TYPE_MULTIPLIERS` all named constants |
 | `@ts-nocheck` in test files | 4 removed, 0 kept |
 | `as any` in test files | 11 replaced with typed alternatives |
-| Import order | PASS — all imports follow `workflows-code--opencode` ordering standard |
+| Import order | PASS — all imports follow `sk-code--opencode` ordering standard |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -332,7 +332,7 @@ Test counts: 158 files / 4,725 tests at SYNC-004. Final global: 159 files / 4,77
 Feature flags: all 3 default to ENABLED via isFeatureEnabled() from rollout-policy.
 Set SPECKIT_GRAPH_*=false to disable. Prior state (strict === 'true') was incorrect and is superseded.
 Written in human voice: active, direct, specific. No em dashes, no hedging, no AI filler.
-HVR rules: .opencode/skill/workflows-documentation/references/hvr_rules.md
+HVR rules: .opencode/skill/sk-documentation/references/hvr_rules.md
 -->
 
 <!-- /ANCHOR:implementation-summary-003-wsc -->

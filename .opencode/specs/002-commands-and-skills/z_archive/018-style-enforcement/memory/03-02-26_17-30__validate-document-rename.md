@@ -229,7 +229,7 @@ Completed the rename of validate_readme.py to validate_document.py across the en
 
 Completed the rename of validate_readme.py to validate_document.py across the entire codebase. The rename was necessary because the script validates 5 document types (readme, skill, reference, asset, agent), not just READMEs - the original name was misleading. Updated all references in: the script's internal docstring, spec folder documentation (tasks.md, plan.md), and three AGENTS.md files (anobel.com, Barter/coder, Public). Verified all 6 tests pass and no remaining validate_readme references exist in the codebase.
 
-**Details:** validate_document | validate_readme rename | documentation validator | style enforcement | workflows-documentation | AGENTS.md update | script rename | format validation | TOC validation | H2 emoji validation
+**Details:** validate_document | validate_readme rename | documentation validator | style enforcement | sk-documentation | AGENTS.md update | script rename | format validation | TOC validation | H2 emoji validation
 <!-- /ANCHOR:files-completed-rename-validatereadmepy-validatedocumentpy-dc7f4c74-session-1770136207570-co50n1c6d -->
 
 <!-- ANCHOR:implementation-technical-implementation-details-55fa8164-session-1770136207570-co50n1c6d -->

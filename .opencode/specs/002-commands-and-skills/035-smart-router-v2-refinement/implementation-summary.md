@@ -28,8 +28,8 @@ Smart Router V2 Refinement implemented adaptive top-N intent selection (expandin
 |------|--------|---------|
 | `.opencode/skill/sk-code--full-stack/SKILL.md` | Modified | Added top-N adaptive logic, synonym expansion, UNKNOWN fallback, verification disambiguation |
 | `.opencode/skill/workflows-code--web-dev/SKILL.md` | Modified | Added synonym expansion and UNKNOWN fallback |
-| `.opencode/skill/workflows-code--opencode/SKILL.md` | Modified | Added synonym expansion and UNKNOWN fallback with Python/Shell edge cases |
-| `.opencode/skill/workflows-git/SKILL.md` | Modified | Added synonym expansion for "dirty workspace" context |
+| `.opencode/skill/sk-code--opencode/SKILL.md` | Modified | Added synonym expansion and UNKNOWN fallback with Python/Shell edge cases |
+| `.opencode/skill/sk-git/SKILL.md` | Modified | Added synonym expansion for "dirty workspace" context |
 | `Barter/coder/.opencode/skill/workflows-code/SKILL.md` | Modified | Added router refinements for Barter repository |
 | `.../034-smart-router-v2/scratch/smart-router-tests/router-rules.json` | Modified | Added synonym mappings and top-N thresholds |
 | `.../fixtures/ambiguity-close-score.json` | Created | Test cases for close score delta <0.15 scenarios |

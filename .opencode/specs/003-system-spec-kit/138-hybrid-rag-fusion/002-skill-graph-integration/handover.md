@@ -12,7 +12,7 @@
 **Progress**: 95%
 
 ### Key Accomplishments
-- Migrated all 6 remaining skills to graph architecture (workflows-git, mcp-chrome-devtools, mcp-figma, sk-code--full-stack, workflows-code--opencode, workflows-code--web-dev) — 8 parallel agents
+- Migrated all 6 remaining skills to graph architecture (sk-git, mcp-chrome-devtools, mcp-figma, sk-code--full-stack, sk-code--opencode, workflows-code--web-dev) — 8 parallel agents
 - Implemented SGQS parser/executor: 7 TypeScript modules, 3,197 lines in `.opencode/skill/system-spec-kit/scripts/sgqs/`
 - Completed SGQS grammar spec (TASK-103, 802 lines) and metadata mapping model (TASK-104, 808 lines)
 - Validated 8 SGQS query scenarios against live skill graph (411 nodes, 621 edges)
@@ -39,11 +39,11 @@
 - [x] TASK-103 - SGQS grammar specification (802 lines, BNF grammar, AST targets, error taxonomy)
 - [x] TASK-104 - Metadata mapping model (808 lines, entity mapping, data model, extraction pipeline)
 - [x] TASK-105 - Coverage matrix verified (9/9 skills, 72 nodes)
-- [x] TASK-313 - workflows-git migration (9 nodes)
+- [x] TASK-313 - sk-git migration (9 nodes)
 - [x] TASK-314 - mcp-chrome-devtools migration (10 nodes)
 - [x] TASK-315 - mcp-figma migration (8 nodes)
 - [x] TASK-316 - sk-code--full-stack migration (6 nodes)
-- [x] TASK-317 - workflows-code--opencode migration (8 nodes)
+- [x] TASK-317 - sk-code--opencode migration (8 nodes)
 - [x] TASK-318 - workflows-code--web-dev migration (9 nodes)
 - [x] TASK-401 - SGQS parser/executor implementation (7 modules, 3,197 lines)
 - [x] TASK-402 - SGQS compatibility verification (zero memory script modifications)
@@ -67,15 +67,15 @@
 
 ### Files Modified
 - 6 SKILL.md files updated with Graph Status headers (graph status section added)
-- `.opencode/skill/workflows-documentation/index.md` - Updated graph resources reference
-- `.opencode/skill/workflows-documentation/assets/opencode/skill_md_template.md` - Added graph mode guidance
-- `.opencode/skill/workflows-documentation/references/skill_creation.md` - Trimmed sections 1-2 and 6 bloat
+- `.opencode/skill/sk-documentation/index.md` - Updated graph resources reference
+- `.opencode/skill/sk-documentation/assets/opencode/skill_md_template.md` - Added graph mode guidance
+- `.opencode/skill/sk-documentation/references/skill_creation.md` - Trimmed sections 1-2 and 6 bloat
 - `.opencode/specs/.../002-skill-graph-integration/tasks.md` - All tasks marked complete
 - `.opencode/specs/.../002-skill-graph-integration/checklist.md` - 9/10 P0, 6/8 P1 verified
 - `.opencode/specs/.../002-skill-graph-integration/implementation-summary.md` - Updated with SGQS completion
 
 ### Files Deleted
-- `.opencode/skill/workflows-documentation/references/skill_graph_standards.md` (redundant redirect)
+- `.opencode/skill/sk-documentation/references/skill_graph_standards.md` (redundant redirect)
 
 ---
 

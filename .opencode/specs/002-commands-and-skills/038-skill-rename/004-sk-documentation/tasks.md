@@ -1,4 +1,4 @@
-# Tasks: Phase 004 — Rename workflows-documentation to sk-documentation
+# Tasks: Phase 004 — Finalize Rename to sk-documentation
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
@@ -23,7 +23,7 @@
 <!-- ANCHOR:phase-1 -->
 ## Step 1: Filesystem Rename
 
-- [x] T001 `git mv .opencode/skill/workflows-documentation .opencode/skill/sk-documentation`
+- [x] T001 Rename skill folder from legacy path to `.opencode/skill/sk-documentation/`
 - [x] T002 Verify new folder with all 49 files (`SK_DOC_FILE_COUNT:49`)
 <!-- /ANCHOR:phase-1 -->
 
@@ -113,8 +113,8 @@
 <!-- ANCHOR:phase-7 -->
 ## Step 7: skill_advisor.py (8 lines)
 
-- [x] T043 Update INTENT_BOOSTERS for `workflows-documentation` → `sk-documentation`
-- [x] T044 Update MULTI_SKILL_BOOSTERS for `workflows-documentation` → `sk-documentation`
+- [x] T043 Update INTENT_BOOSTERS from legacy name to `sk-documentation`
+- [x] T044 Remove legacy-name MULTI_SKILL_BOOSTERS entries and align remaining mappings
 <!-- /ANCHOR:phase-7 -->
 
 ---
@@ -122,7 +122,7 @@
 <!-- ANCHOR:phase-8 -->
 ## Step 8: Changelog & Cross-References
 
-- [x] T045 `git mv .opencode/changelog/06--workflows-documentation .opencode/changelog/06--sk-documentation`
+- [x] T045 Rename changelog directory from legacy path to `.opencode/changelog/06--sk-documentation/`
 - [x] T046 Update cross-refs in other skill folders
 <!-- /ANCHOR:phase-8 -->
 
@@ -131,12 +131,12 @@
 <!-- ANCHOR:phase-9 -->
 ## Step 9: Verification
 
-- [x] T047 `grep -r "workflows-documentation"` — expect 0 in active files (validated with `rg`, `EXIT:1`)
-- [x] T048 `grep -r "HVR_REFERENCE.*workflows-documentation"` in spec-kit templates — expect 0 (`EXIT:1`)
+- [x] T047 Run legacy-name grep across active files — expect 0 (validated with `rg`, `EXIT:1`)
+- [x] T048 Run legacy-name HVR_REFERENCE grep in spec-kit templates — expect 0 (`EXIT:1`)
 - [x] T049 `python3 skill_advisor.py "create documentation" --threshold 0.8` → `TOP_SKILL:sk-documentation`
 - [x] T050 Verify folder exists (`NEW_SKILL_DIR:yes`, `NEW_CHANGELOG_DIR:yes`)
 - [x] T051 Verify no old folder remains (`OLD_SKILL_DIR:no`, `OLD_CHANGELOG_DIR:no`)
-- [x] T052 Run phase validator (`.opencode/skill/system-spec-kit/scripts/spec/validate.sh .../004-sk-documentation`) — result recorded in checklist/implementation summary
+- [x] T052 Run phase validator (`.opencode/skill/system-spec-kit/scripts/spec/validate.sh .../004-sk-documentation`) — `Errors: 0, Warnings: 3, EXIT:1`
 <!-- /ANCHOR:phase-9 -->
 
 ---

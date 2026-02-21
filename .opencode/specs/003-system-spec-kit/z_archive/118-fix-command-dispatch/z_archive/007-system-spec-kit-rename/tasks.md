@@ -213,7 +213,7 @@
 - **References**: 6
 - **Status**: [ ] Pending
 
-### Task 3.17: Update workflows-documentation files
+### Task 3.17: Update sk-documentation files
 - **Files**:
   - `SKILL.md` (line 449)
   - `references/quick_reference.md` (line 188)

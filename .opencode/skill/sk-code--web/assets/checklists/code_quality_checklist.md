@@ -541,5 +541,5 @@ After completing validation, document the results using the appropriate template
 
 ### Parent Skill
 
-- [SKILL.md](../../SKILL.md) - workflows-code skill (Phase 1.5: Code Quality Gate)
+- [SKILL.md](../../SKILL.md) - sk-code--web skill (Phase 1.5: Code Quality Gate)
 <!-- /ANCHOR:related-resources -->

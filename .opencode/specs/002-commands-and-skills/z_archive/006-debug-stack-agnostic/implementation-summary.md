@@ -5,7 +5,7 @@
 <!-- ANCHOR:metadata -->
 ## Overview
 
-Made the `/spec_kit:debug` command inherently universal by removing frontend-specific references and creating a stack-agnostic debugging methodology in the system-spec-kit skill. Additionally, refactored the command structure to align with workflows-documentation standards (phases at top in .md, workflow steps in YAML).
+Made the `/spec_kit:debug` command inherently universal by removing frontend-specific references and creating a stack-agnostic debugging methodology in the system-spec-kit skill. Additionally, refactored the command structure to align with sk-documentation standards (phases at top in .md, workflow steps in YAML).
 <!-- /ANCHOR:metadata -->
 
 ---

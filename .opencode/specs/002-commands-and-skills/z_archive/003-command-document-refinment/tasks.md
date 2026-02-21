@@ -33,7 +33,7 @@
 
 ### T4: Update command_template.md
 
-**Location**: `.opencode/skill/workflows-documentation/assets/command_template.md`
+**Location**: `.opencode/skill/sk-documentation/assets/command_template.md`
 
 **Changes Required**:
 1. Add "Step Numbering Rules" section

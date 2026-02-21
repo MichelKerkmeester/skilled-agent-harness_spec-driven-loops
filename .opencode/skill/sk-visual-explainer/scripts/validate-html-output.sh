@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# validate-html-output.sh — Static analysis checks for visual-explainer HTML output
+# validate-html-output.sh — Static analysis checks for sk-visual-explainer HTML output
 # Usage: ./validate-html-output.sh <html-file>
 # Exit codes: 0=pass, 1=warnings only, 2=errors (one or more checks failed)
 
@@ -90,7 +90,7 @@ if echo "$HEAD_CONTENT" | grep -qi '<!DOCTYPE html'; then
   pass "<!DOCTYPE html> found at top of file"
 else
   fail "Missing <!DOCTYPE html> declaration (must be first line)"
-  info "Every visual-explainer page must begin with <!DOCTYPE html>"
+  info "Every sk-visual-explainer page must begin with <!DOCTYPE html>"
 fi
 
 # ── CHECK 3: File size ────────────────────────────────────────────────────────
@@ -272,7 +272,7 @@ if grep -qi 'prefers-color-scheme' "$HTML_FILE"; then
   fi
 else
   fail "No prefers-color-scheme media query found"
-  info "All visual-explainer pages must support both light and dark themes"
+  info "All sk-visual-explainer pages must support both light and dark themes"
   info "Add: @media (prefers-color-scheme: dark) { :root { --ve-bg: ...; } }"
 fi
 

@@ -239,7 +239,7 @@
 
 ### CHK-M2: allowed-tools Frontmatter
 - [x] **P2** mcp-chrome-devtools uses tool names, not skill names
-- [x] **P2** workflows-git uses tool names, not skill names
+- [x] **P2** sk-git uses tool names, not skill names
 
 ### CHK-M3: INTENT_BOOSTERS Reachability
 - [x] **P1** `deadcode` query routes to mcp-narsil
@@ -376,13 +376,13 @@ CHK-H10: 2025-12-26 CODE form_submission.js logs Botpoison errors
 ### Phase 3 Evidence
 ```
 CHK-M1: 2025-12-26 CODE implement.md fixed to show sequential_9_step
-CHK-M2: 2025-12-26 CODE mcp-chrome-devtools and workflows-git allowed-tools updated
+CHK-M2: 2025-12-26 CODE mcp-chrome-devtools and sk-git allowed-tools updated
 CHK-M3: 2025-12-26 CODE skill_advisor.py updated with non-hyphenated INTENT_BOOSTERS
 CHK-M4: 2025-12-26 CODE search/index.md uses platform detection for cross-platform
 CHK-M5: 2025-12-26 CODE vector-index.js LRUCache class added with O(1) eviction
 CHK-M6: 2025-12-26 CODE generate-context.js cleans up .tmp files in finally block
 CHK-M7: 2025-12-26 CODE check-priority-tags.sh recognizes **P0** bold format
-CHK-M8: 2025-12-26 DOC workflows-git references updated, Docker removed
+CHK-M8: 2025-12-26 DOC sk-git references updated, Docker removed
 CHK-M10: 2025-12-26 CODE vector-index.js clears constitutional cache on tier change/delete
 CHK-M11: 2025-12-26 CODE context-server.js handles checkpoint creation failure gracefully
 CHK-M13: 2025-12-26 CODE generate-context.js validates JSON input schema
@@ -397,5 +397,5 @@ CHK-M20: 2025-12-26 DOC mcp-narsil/SKILL.md frontmatter updated with Code Mode t
 ```
 CHK-L-DOCS: 2025-12-26 DOC scripts/rules/README.md created (DQI 99/100 Excellent)
 CHK-L-DOCS: 2025-12-26 DOC mcp_server/lib/README.md created (DQI 99/100 Excellent)
-CHK-L-DOCS: 2025-12-26 DOC Both READMEs follow workflows-documentation template standards
+CHK-L-DOCS: 2025-12-26 DOC Both READMEs follow sk-documentation template standards
 ```

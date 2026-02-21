@@ -259,10 +259,10 @@ Nodes: 417 | Edges: 633 | Skills: 9
 - system-spec-kit: 165 nodes
 - mcp-chrome-devtools: 19 nodes
 - sk-code--full-stack: 62 nodes
-- workflows-code--opencode: 35 nodes
+- sk-code--opencode: 35 nodes
 - workflows-code--web-dev: 44 nodes
-- workflows-documentation: 36 nodes
-- workflows-git: 21 nodes
+- sk-documentation: 36 nodes
+- sk-git: 21 nodes
 
 **Node types:** :Asset(51), :Document(136), :Entrypoint(9), :Index(9), :Node(73), :Reference(130), :Skill(9)
 
@@ -1422,7 +1422,7 @@ trigger_phrases:
   - "swiftui patterns"
   - "a comprehensive guide to swiftui view composition, state management, navigation patterns, custom modifiers, and modern ios 17+ swiftui features for building production-ready ios applications."
   - "a comprehensive guide to testing swift and swiftui applications including xctest fundamentals, unit testing viewmodels, ui testing with xcuitest, mocking and stubbing patterns, test doubles, and snapshot testing."
-  - "workflows-code--opencode"
+  - "sk-code--opencode"
   - "opencode"
   - "multi-language code standards for opencode system code (javascript, typescript, python, shell, json/jsonc) with language detection routing, universal patterns and quality checklists"
   - "code standards - opencode system code"
@@ -1599,7 +1599,7 @@ trigger_phrases:
   - "verification_workflows"
   - "verification workflows - phase 3 (mandatory)"
   - "browser verification requirements for all completion claims - no exceptions."
-  - "workflows-documentation"
+  - "sk-documentation"
   - "documentation"
   - "workflows documentation"
   - "unified markdown and opencode component specialist providing document quality enforcement, content optimization, component creation workflows, ascii flowcharts and install guides"
@@ -1686,7 +1686,7 @@ trigger_phrases:
   - "quality gates, dqi scoring, and improvement recommendations for markdown documentation."
   - "document quality workflows - mode 1 reference"
   - "execution modes, validation patterns, and phase interactions for mode 1 document quality workflows."
-  - "workflows-git"
+  - "sk-git"
   - "git"
   - "git workflow orchestrator guiding developers through workspace setup, clean commits, and work completion across git-worktrees, git-commit, and git-finish skills"
   - "git workflows - git development orchestrator"
@@ -1710,7 +1710,7 @@ trigger_phrases:
   - "always/never/escalate rules governing git workflow behavior"
   - "intent routing logic with weighted scoring, resource loading levels, and disambiguation"
   - "completion gates and quality checks for workspace setup, commits, and integration"
-  - "activation triggers, use cases, and when not to use the workflows-git skill"
+  - "activation triggers, use cases, and when not to use the sk-git skill"
   - "work-completion"
   - "work completion"
   - "pr creation, branch cleanup, merge strategies, and finish workflow"
@@ -1753,8 +1753,8 @@ trigger_phrases:
   - "references/validation/validation_rules.md"
   - "references/validation/five-checks.md"
   - "references/workflows/rollback-runbook.md"
-  - "../workflows-code--opencode/skill.md"
-  - "../workflows-documentation/skill.md"
+  - "../sk-code--opencode/skill.md"
+  - "../sk-documentation/skill.md"
   - "level_specifications.md"
   - "template_guide.md"
   - "save_workflow.md"

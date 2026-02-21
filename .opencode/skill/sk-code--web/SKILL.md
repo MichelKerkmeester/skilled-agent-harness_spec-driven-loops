@@ -5,7 +5,7 @@ allowed-tools: [Bash, Edit, Glob, Grep, Read, Task, Write]
 version: 1.0.8.0
 ---
 
-<!-- Keywords: workflows-code, development-orchestrator, frontend-development, browser-verification, debugging-workflow, implementation-patterns, webflow-integration -->
+<!-- Keywords: sk-code--web, development-orchestrator, frontend-development, browser-verification, debugging-workflow, implementation-patterns, webflow-integration -->
 
 # Code Workflows - Development Orchestrator
 

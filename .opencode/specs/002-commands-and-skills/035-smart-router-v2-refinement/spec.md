@@ -54,7 +54,7 @@ Refine Smart Router V2 with adaptive intent selection, expanded synonym lexicon,
 - Smart router test suite alignment: new assertions for required Smart Router pseudocode, code-fence-safe heading parsing (already in progress)
 - Ambiguity-focused test scenario fixtures: dedicated test cases for close-score and multi-symptom prompts
 - Optional benchmark harness: hidden-resource discovery time, ambiguity resilience scoring with report generation
-- Documentation updates in affected SKILL.md files (sk-code--full-stack, workflows-code--web-dev, workflows-code--opencode, workflows-git)
+- Documentation updates in affected SKILL.md files (sk-code--full-stack, workflows-code--web-dev, sk-code--opencode, sk-git)
 
 ### Out of Scope
 - Cross-skill routing (each skill remains self-contained, no change from V2 baseline)
@@ -69,8 +69,8 @@ Refine Smart Router V2 with adaptive intent selection, expanded synonym lexicon,
 |-----------|-------------|-------------|
 | `.opencode/skill/sk-code--full-stack/SKILL.md` | Modify | Add top-N adaptive logic, synonym lexicon, UNKNOWN fallback, verification command disambiguation |
 | `.opencode/skill/workflows-code--web-dev/SKILL.md` | Modify | Add synonym lexicon, UNKNOWN fallback checklist |
-| `.opencode/skill/workflows-code--opencode/SKILL.md` | Modify | Add synonym lexicon, language detection disambiguation for Python/Shell edge cases |
-| `.opencode/skill/workflows-git/SKILL.md` | Modify | Add synonym lexicon for "dirty workspace", "uncommitted changes" ambiguity |
+| `.opencode/skill/sk-code--opencode/SKILL.md` | Modify | Add synonym lexicon, language detection disambiguation for Python/Shell edge cases |
+| `.opencode/skill/sk-git/SKILL.md` | Modify | Add synonym lexicon for "dirty workspace", "uncommitted changes" ambiguity |
 | `.opencode/specs/002-commands-and-skills/034-smart-router-v2/scratch/smart-router-tests/router-rules.json` | Modify | Add synonym rules, top-N adaptive thresholds |
 | `.opencode/specs/002-commands-and-skills/034-smart-router-v2/scratch/smart-router-tests/fixtures/` | Create | New fixture files for ambiguity scenarios (close-score, multi-symptom) |
 | `.opencode/specs/002-commands-and-skills/034-smart-router-v2/scratch/smart-router-tests/run-smart-router-tests.mjs` | Modify | Add pseudocode validation assertions, heading parser safety checks (already in progress) |

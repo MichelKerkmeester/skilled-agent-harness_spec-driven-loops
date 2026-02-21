@@ -129,7 +129,7 @@ Skills are specialized, on-demand capabilities invoked for complex workflows:
 | `sk-git` | Git workflow orchestrator for worktrees, commits, PRs with read-only enforcement (v1.5) |
 | `sk-code--web` | Frontend development lifecycle: implementation, debugging, verification (v1.0.9) |
 | `sk-code--full-stack` | Multi-stack development with auto-detection (Go, Node.js, React, React Native, Swift) (v1.0) |
-| `workflows-code--opencode` | OpenCode system code standards for JS, TS, Python, Shell with language routing (v1.3.2) |
+| `sk-code--opencode` | OpenCode system code standards for JS, TS, Python, Shell with language routing (v1.3.2) |
 | `mcp-chrome-devtools` | Chrome DevTools orchestrator with CLI (bdg) and MCP (Code Mode) routing (v2.1) |
 | `mcp-code-mode` | MCP orchestration via TypeScript execution for external tools (ClickUp, Figma, etc.) (v1.1) |
 | `mcp-figma` | Figma design file access with 18 tools for components, styles, exports (v1.1) |

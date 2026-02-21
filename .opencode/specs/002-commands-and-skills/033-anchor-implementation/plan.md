@@ -67,7 +67,7 @@
 ```
 .opencode/skill/
 │
-├── workflows-documentation/
+├── sk-documentation/
 │   └── assets/opencode/
 │       ├── skill_md_template.md         [UPDATED: anchor examples]
 │       ├── skill_reference_template.md  [UPDATED: anchor examples]
@@ -469,13 +469,13 @@ python3 scripts/dist/skill/validate-skill-anchors.py \
 
 #### Task 3.4: Manual Review and Refinement (5 hours)
 - Review validation warnings (low coverage, suboptimal anchor placement)
-- Manually improve anchor coverage for key skills (system-spec-kit, workflows-documentation)
+- Manually improve anchor coverage for key skills (system-spec-kit, sk-documentation)
 - Add anchors to sections missed by automated mapping
 - Verify readability of anchored content in isolation
 
 **Focus Skills** (manual improvement):
 1. `system-spec-kit` (most critical)
-2. `workflows-documentation` (template source)
+2. `sk-documentation` (template source)
 3. `sk-code--full-stack` (complex multi-mode)
 
 **Deliverable**: Key skills at ≥90% coverage with high-quality anchor placement
@@ -498,13 +498,13 @@ python3 scripts/dist/skill/validate-skill-anchors.py \
 
 **Deliverable**: Complete migration guide for future use
 
-#### Task 4.2: Update workflows-documentation Skill (3 hours)
+#### Task 4.2: Update sk-documentation Skill (3 hours)
 - Add "Anchor Usage Guidelines" section to SKILL.md
 - Document anchor taxonomy with examples
 - Add validation instructions
 - Update quick reference with anchor commands
 
-**Deliverable**: workflows-documentation skill includes comprehensive anchor guidance
+**Deliverable**: sk-documentation skill includes comprehensive anchor guidance
 
 #### Task 4.3: Create Anchor Usage Examples (2 hours)
 **File**: `specs/002-commands-and-skills/033-anchor-implementation/examples/`
@@ -997,7 +997,7 @@ def test_migrate_all_skills(tmp_path):
 
 **Step 6: Manual Review** (Quality Enhancement)
 - Review validation warnings (low coverage files)
-- Manually improve key skills (system-spec-kit, workflows-documentation)
+- Manually improve key skills (system-spec-kit, sk-documentation)
 - Re-run validation to verify improvements
 
 **Step 7: Commit and Push** (Finalization)
@@ -1229,7 +1229,7 @@ Content here.
 
 ### Internal Documents
 - Memory ANCHOR format specification (reference: `specs/003-system-spec-kit/` memory files)
-- Skill template documentation (source: `.opencode/skill/workflows-documentation/assets/opencode/`)
+- Skill template documentation (source: `.opencode/skill/sk-documentation/assets/opencode/`)
 - 5-state memory model (reference: `system-spec-kit` constitutional docs)
 
 ### External Standards

@@ -6,7 +6,7 @@ description: "Deep-dive reference for Mermaid.js v11, Chart.js v4, and anime.js 
 
 > LOAD PRIORITY: ON_DEMAND — load when deep-diving into Mermaid, Chart.js, or anime.js behavior.
 
-Detailed reference for all external JavaScript libraries used in visual-explainer HTML output.
+Detailed reference for all external JavaScript libraries used in sk-visual-explainer HTML output.
 
 ---
 

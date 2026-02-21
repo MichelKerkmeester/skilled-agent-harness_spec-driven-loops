@@ -45,7 +45,7 @@
 
 ## Version Management
 
-- [x] CHK-020 [P0] workflows-documentation SKILL.md version bumped to 1.0.6.0 (Verified: File shows version 1.0.6.0 in metadata block)
+- [x] CHK-020 [P0] sk-documentation SKILL.md version bumped to 1.0.6.0 (Verified: File shows version 1.0.6.0 in metadata block)
 - [x] CHK-021 [P1] Version change properly documented
 - [x] CHK-022 [P2] Version follows semantic versioning pattern
 

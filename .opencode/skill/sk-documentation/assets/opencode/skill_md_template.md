@@ -83,7 +83,7 @@ SKILL.md architecture follows progressive disclosure:
 
 ```yaml
 ---
-name: workflows-example
+name: sk-example
 description: Example workflow skill demonstrating proper frontmatter format with specific capabilities, use cases, and key differentiators for AI agent discovery.
 allowed-tools: [Read, Write, Edit, Bash, Glob, Grep]
 version: 1.0.0
@@ -1127,7 +1127,7 @@ Quality:
 | **Total Lines**       | 400-800                   | 800-2000                         | 2000-5000                           |
 | **SKILL.md Lines**    | 400-800                   | 800-1000                         | <3000                               |
 | **Sections**          | 6 core                    | 6 core + navigation              | 6 core per mode + overview          |
-| **Example Skills**    | mcp-chrome-devtools | system-spec-kit, workflows-code | sk-documentation, sk-git |
+| **Example Skills**    | mcp-chrome-devtools | system-spec-kit, sk-code--web | sk-documentation, sk-git |
 
 ### Validation Command Reference
 

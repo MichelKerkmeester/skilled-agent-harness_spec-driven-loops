@@ -2,7 +2,7 @@
 
 <!-- SPECKIT_LEVEL: 3 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/workflows-documentation/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skill/sk-documentation/references/hvr_rules.md -->
 
 ---
 
@@ -21,11 +21,11 @@
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-The OpenCode framework now has a full `workflows-visual-explainer` skill — a Skill Graph architecture with 10 interconnected nodes — reverse-engineered from nicobailon/visual-explainer v0.1.1. A subsequent gap remediation phase closed 30 additional gaps (4 Critical, 15 Medium, 11 Low) identified through systematic comparison of the source repository against the initial implementation, hardening the skill's CSS pattern library, library guide, and navigation patterns with modern CSS and accessibility coverage.
+The OpenCode framework now has a full `sk-visual-explainer` skill — a Skill Graph architecture with 10 interconnected nodes — reverse-engineered from nicobailon/visual-explainer v0.1.1. A subsequent gap remediation phase closed 30 additional gaps (4 Critical, 15 Medium, 11 Low) identified through systematic comparison of the source repository against the initial implementation, hardening the skill's CSS pattern library, library guide, and navigation patterns with modern CSS and accessibility coverage.
 
 ### Phase 1: Original Implementation
 
-You can invoke the visual-explainer skill to generate production-quality HTML diagrams, review code diffs visually, recap project state, and verify claims — all from a single Smart Router that loads only the context it needs. The skill routes queries at 0.95 confidence via skill_advisor.py and stays at 1,682 words, well under the 5,000-word package_skill.py limit.
+You can invoke the sk-visual-explainer skill to generate production-quality HTML diagrams, review code diffs visually, recap project state, and verify claims — all from a single Smart Router that loads only the context it needs. The skill routes queries at 0.95 confidence via skill_advisor.py and stays at 1,682 words, well under the 5,000-word package_skill.py limit.
 
 The architecture decomposes the original 700-line single-file prompt into 10 node files organized by the 4-phase workflow (Think > Structure > Style > Deliver). SKILL.md acts as a lean router; index.md provides a Map of Content with wikilinks to all 10 nodes. References follow a 3-tier progressive loading strategy: quick_reference.md loads always, css_patterns.md and navigation_patterns.md load conditionally for CSS-heavy tasks, and library_guide.md and quality_checklist.md load on demand only.
 
@@ -58,7 +58,7 @@ Confidence that the skill is correct and complete comes from three sources: auto
 | Decision | Why |
 |----------|-----|
 | Skill Graph architecture over monolithic SKILL.md | Content exceeds 10,000 words total; monolithic approach would fail the 5,000-word hard limit enforced by package_skill.py |
-| `workflows-` prefix | Skill defines a multi-phase process (Think > Structure > Style > Deliver), matching the convention used by workflows-documentation, workflows-git |
+| `workflows-` prefix | Skill defines a multi-phase process (Think > Structure > Style > Deliver), matching the convention used by sk-documentation, sk-git |
 | 3-tier progressive loading | Loading all 46KB of references on every invocation wastes context; ALWAYS/CONDITIONAL/ON_DEMAND tiers reduce initial load by ~31KB |
 | MULTI_SKILL_BOOSTERS for conflicting keywords | 5 keywords (diagram, flowchart, review, architecture, data) already mapped in skill_advisor.py; MULTI_SKILL_BOOSTERS preserves existing routing |
 | 9 quality checks (2 added) | Original 7 checks miss accessibility (color contrast, semantic HTML) and reduced-motion support; both are standard web requirements |
@@ -104,6 +104,6 @@ Confidence that the skill is correct and complete comes from three sources: auto
 <!--
 Level 3: Narrative post-implementation summary. Feature subsections replace file tables.
 Write in human voice: active, direct, specific. No em dashes, no hedging, no AI filler.
-HVR rules: .opencode/skill/workflows-documentation/references/hvr_rules.md
+HVR rules: .opencode/skill/sk-documentation/references/hvr_rules.md
 Two phases documented: Phase 1 (original, 27 files + 1 modified, 42 tasks) and Phase 2 (gap remediation, 30 gaps fixed across 7 files, 5 tasks).
 -->

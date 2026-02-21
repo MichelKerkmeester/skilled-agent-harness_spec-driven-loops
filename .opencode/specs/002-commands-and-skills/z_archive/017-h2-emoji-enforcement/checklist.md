@@ -58,7 +58,7 @@
 
 ### Regression Testing
 
-- [x] CHK-R-01 [P1] Existing compliant SKILL.md files pass | Evidence: workflows-documentation/SKILL.md returns DQI=99 (excellent), 0 style issues, 100% pass rate
+- [x] CHK-R-01 [P1] Existing compliant SKILL.md files pass | Evidence: sk-documentation/SKILL.md returns DQI=99 (excellent), 0 style issues, 100% pass rate
 - [x] CHK-R-02 [P1] Existing compliant README files pass | Evidence: install_scripts/README.md returns DQI=95 (excellent), 100% checklist pass rate
 
 ---

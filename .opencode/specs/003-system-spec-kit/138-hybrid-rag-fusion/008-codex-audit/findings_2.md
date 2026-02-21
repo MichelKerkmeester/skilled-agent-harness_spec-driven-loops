@@ -54,13 +54,13 @@ Primary evidence:
 | Validation test script canonical location mismatch | Fixed with compatibility wrapper + docs update | `.opencode/skill/system-spec-kit/scripts/spec/test-validation.sh`, `.opencode/skill/system-spec-kit/scripts/spec/README.md` |
 | 138 docs still reference non-canonical/non-existent config paths (`config/flags.ts`, `config/production.json`) and strict-true semantics | **Resolved (2026-02-21 reconciliation)** | `specs/003-system-spec-kit/138-hybrid-rag-fusion/checklist.md`, `specs/003-system-spec-kit/138-hybrid-rag-fusion/tasks.md`, `specs/003-system-spec-kit/138-hybrid-rag-fusion/003-unified-graph-intelligence/tasks.md`, `specs/003-system-spec-kit/138-hybrid-rag-fusion/001-system-speckit-hybrid-rag-fusion/plan.md` |
 
-## 5) Bugs/misalignments vs workflows-code--opencode
+## 5) Bugs/misalignments vs sk-code--opencode
 
 ### Fixed during audit
 
-- Shebang/env consistency fixes in visual-explainer scripts:
-  - `.opencode/skill/workflows-visual-explainer/scripts/validate-html-output.sh`
-  - `.opencode/skill/workflows-visual-explainer/scripts/cleanup-output.sh`
+- Shebang/env consistency fixes in sk-visual-explainer scripts:
+  - `.opencode/skill/sk-visual-explainer/scripts/validate-html-output.sh`
+  - `.opencode/skill/sk-visual-explainer/scripts/cleanup-output.sh`
 - Dead-import/module-header cleanup:
   - `.opencode/skill/mcp-code-mode/mcp_server/index.ts`
 - Runtime bug fix (`candidateStart` undefined telemetry path):

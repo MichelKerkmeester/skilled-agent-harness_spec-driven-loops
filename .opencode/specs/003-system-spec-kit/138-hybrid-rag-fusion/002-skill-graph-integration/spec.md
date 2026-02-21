@@ -40,7 +40,7 @@ The OpenCode skill system currently uses monolithic `SKILL.md` files which exhau
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-Monolithic skill files (e.g., `system-spec-kit`, `workflows-documentation`) are becoming unmaintainable. They hit attention limits, cost excessive tokens, and force agents to read 1,500+ lines of context even for simple queries.
+Monolithic skill files (e.g., `system-spec-kit`, `sk-documentation`) are becoming unmaintainable. They hit attention limits, cost excessive tokens, and force agents to read 1,500+ lines of context even for simple queries.
 
 ### Purpose
 Implement a traversable Skill Graph architecture for **every available skill** utilizing progressive disclosure, so agents can dynamically build their context window by following relevant semantic links.
@@ -52,12 +52,12 @@ Implement a traversable Skill Graph architecture for **every available skill** u
 ## 3. SCOPE
 
 ### In Scope
-- Addition of Skill Graph navigation layers for **all existing skills** (including `system-spec-kit`, `workflows-documentation`, `workflows-code`, etc.), supplementing existing `SKILL.md` entrypoints.
+- Addition of Skill Graph navigation layers for **all existing skills** (including `system-spec-kit`, `sk-documentation`, `workflows-code`, etc.), supplementing existing `SKILL.md` entrypoints.
 - Definition of YAML frontmatter standards for skill nodes.
 - Implementation of a link-validation script (`check-links.sh`) supporting cross-skill node linking.
 - Updates to agent instructions to natively support wikilink `[[...]]` traversal.
-- Add Skill Graph authoring docs to `workflows-documentation` (reference + template asset).
-- Update `workflows-documentation/SKILL.md` to describe and route Skill Graph workflows.
+- Add Skill Graph authoring docs to `sk-documentation` (reference + template asset).
+- Update `sk-documentation/SKILL.md` to describe and route Skill Graph workflows.
 - Integrate Skill Graph node/edge metadata into `system-spec-kit` memory indexing and retrieval flow.
 - Add SGQS (`Skill Graph-Lite Query Script`) parser + executor for graph-style traversal over existing Spec Kit Memory data.
 - Track and complete per-skill node coverage for 9 available skills, with explicit completion status per skill.
@@ -73,8 +73,8 @@ Implement a traversable Skill Graph architecture for **every available skill** u
 | `.opencode/skill/*/SKILL.md` | Update | Add Skill Graph Status header pointing to supplemental index.md and nodes/ |
 | `.opencode/skill/*/nodes/*.md` | Create | Extracted modular skill files |
 | `scripts/check-links.sh` | Create | Global link validation utility |
-| `.opencode/skill/workflows-documentation/references/skill_graph_standards.md` | Create | Skill Graph authoring standards |
-| `.opencode/skill/workflows-documentation/assets/opencode/skill_graph_node_template.md` | Create | Reusable template for graph node authoring |
+| `.opencode/skill/sk-documentation/references/skill_graph_standards.md` | Create | Skill Graph authoring standards |
+| `.opencode/skill/sk-documentation/assets/opencode/skill_graph_node_template.md` | Create | Reusable template for graph node authoring |
 | `.opencode/skill/system-spec-kit/scripts/dist/memory/*` | Update | Add graph metadata mapping + SGQS parser/executor compatible with existing memory DB/tool contracts |
 <!-- /ANCHOR:scope -->
 
@@ -98,8 +98,8 @@ Implement a traversable Skill Graph architecture for **every available skill** u
 |----|-------------|---------------------|
 | REQ-004 | MOC Organization | Sub-topics in large skills must be clustered using Maps of Content (MOCs). |
 | REQ-005 | Cross-Skill Linking | Nodes should be able to reference other skills' nodes directly using paths or global MOCs. |
-| REQ-006 | Documentation Enablement | `workflows-documentation` includes a Skill Graph reference and template asset, and `SKILL.md` documents graph-first authoring workflow. |
-| REQ-010 | Per-Skill Node Coverage Matrix | Node coverage tracked for all 9 skills; first 3 (`system-spec-kit`, `workflows-documentation`, `mcp-code-mode`) marked complete and remaining 6 tracked with completion tasks. |
+| REQ-006 | Documentation Enablement | `sk-documentation` includes a Skill Graph reference and template asset, and `SKILL.md` documents graph-first authoring workflow. |
+| REQ-010 | Per-Skill Node Coverage Matrix | Node coverage tracked for all 9 skills; first 3 (`system-spec-kit`, `sk-documentation`, `mcp-code-mode`) marked complete and remaining 6 tracked with completion tasks. |
 <!-- /ANCHOR:requirements -->
 
 ---
@@ -221,7 +221,7 @@ Implement a traversable Skill Graph architecture for **every available skill** u
 **Expanded scope to integrate Skill Graph metadata into `system-spec-kit` memory architecture and add SGQS (Neo4j-style, in-process, no external Neo4j dependency) plus explicit 9-skill node coverage tracking.**
 
 ### v1.2 (2026-02-20)
-**Added planned work for `workflows-documentation` Skill Graph standards asset/reference and `SKILL.md` graph routing updates.**
+**Added planned work for `sk-documentation` Skill Graph standards asset/reference and `SKILL.md` graph routing updates.**
 
 ### v1.1 (2026-02-20)
 **Updated scope to include all OpenCode skills.**

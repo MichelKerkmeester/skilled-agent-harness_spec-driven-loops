@@ -42,13 +42,13 @@
 <!-- ANCHOR:phase-exec -->
 ## Phase Execution (Sequential — Longest Match First)
 
-- [ ] T013 Execute Phase 3: `sk-code--full-stack` → `sk-code--full-stack` (003-sk-code--full-stack/)
-- [ ] T014 Execute Phase 1: `workflows-code--opencode` → `sk-code--opencode` (001-sk-code--opencode/)
-- [ ] T015 Execute Phase 2: `workflows-code--web-dev` → `sk-code--web` (002-sk-code--web/)
-- [ ] T016 Execute Phase 7: `mcp-chrome-devtools` → `mcp-chrome-devtools` (007-mcp-chrome-devtools/)
-- [ ] T017 Execute Phase 4: `workflows-documentation` → `sk-documentation` (004-sk-documentation/)
-- [ ] T018 Execute Phase 6: `workflows-visual-explainer` → `sk-visual-explainer` (006-sk-visual-explainer/)
-- [ ] T019 Execute Phase 5: `workflows-git` → `sk-git` (005-sk-git/)
+- [x] T013 Execute Phase 3: `sk-code--full-stack` → `sk-code--full-stack` (003-sk-code--full-stack/)
+- [x] T014 Execute Phase 1: `sk-code--opencode` → `sk-code--opencode` (001-sk-code--opencode/)
+- [x] T015 Execute Phase 2: `workflows-code--web-dev` → `sk-code--web` (002-sk-code--web/)
+- [x] T016 Execute Phase 7: `mcp-chrome-devtools` → `mcp-chrome-devtools` (007-mcp-chrome-devtools/)
+- [x] T017 Execute Phase 4: `sk-documentation` → `sk-documentation` (004-sk-documentation/)
+- [x] T018 Execute Phase 6: `sk-visual-explainer` → `sk-visual-explainer` (006-sk-visual-explainer/)
+- [x] T019 Execute Phase 5: `sk-git` → `sk-git` (005-sk-git/)
 <!-- /ANCHOR:phase-exec -->
 
 ---
@@ -56,12 +56,12 @@
 <!-- ANCHOR:verification -->
 ## Final Verification
 
-- [ ] T020 Run full grep verification: 0 matches for all old names
-- [ ] T021 Run skill_advisor.py smoke tests (4 queries)
-- [ ] T022 Verify all 7 new folders exist
-- [ ] T023 Verify no old folders remain
-- [ ] T024 Update parent Phase Documentation Map with completion status
-- [ ] T025 Save memory context
+- [x] T020 Run full grep verification: 0 matches for all old names
+- [x] T021 Run skill_advisor.py smoke tests (4 queries)
+- [x] T022 Verify all 7 new folders exist
+- [x] T023 Verify no old folders remain
+- [x] T024 Update parent Phase Documentation Map with completion status
+- [x] T025 Save memory context
 <!-- /ANCHOR:verification -->
 
 ---
@@ -69,10 +69,10 @@
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Full grep verification passed (T020)
-- [ ] skill_advisor.py smoke tests passed (T021)
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Full grep verification passed (T020)
+- [x] skill_advisor.py smoke tests passed (T021)
 <!-- /ANCHOR:completion -->
 
 ---

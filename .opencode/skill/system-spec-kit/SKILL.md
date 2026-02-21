@@ -632,7 +632,7 @@ Automated validation of spec folder contents via `validate.sh`.
 14. **Suggest /spec_kit:handover when session-end keywords detected OR after extended work (15+ tool calls)** - Proactive context preservation
 15. **Suggest /spec_kit:debug after 3+ failed fix attempts on same error** - Do not continue without offering debug delegation
 16. **Suggest /spec_kit:phase when task requires multi-phase decomposition** - Complex specs spanning multiple sessions or workstreams
-17. **Route all code creation/updates through `workflows-code--opencode`** - Full alignment is mandatory before claiming completion
+17. **Route all code creation/updates through `sk-code--opencode`** - Full alignment is mandatory before claiming completion
 18. **Route all documentation creation/updates through `sk-documentation`** - Full alignment is mandatory before claiming completion
 
 ### ❌ NEVER
@@ -731,7 +731,7 @@ Automated validation of spec folder contents via `validate.sh`.
 
 | Workflow | Flow |
 | --- | --- |
-| **Spec → Implementation** | system-spec-kit → workflows-code--opencode (mandatory for code changes) → sk-git → Spec Kit Memory |
+| **Spec → Implementation** | system-spec-kit → sk-code--opencode (mandatory for code changes) → sk-git → Spec Kit Memory |
 | **Documentation Quality** | system-spec-kit → sk-documentation (mandatory for documentation changes; validate, score) → Iterate if <90 |
 | **Validation** | Implementation complete → validate.sh → Fix errors → Address warnings → Claim completion |
 
@@ -757,7 +757,7 @@ Automated validation of spec folder contents via `validate.sh`.
 | Direction      | Skill                   | Integration                                           |
 | -------------- | ----------------------- | ----------------------------------------------------- |
 | **Upstream**   | None                    | This is the foundational workflow                     |
-| **Downstream** | workflows-code--opencode | Mandatory alignment for all code changes              |
+| **Downstream** | sk-code--opencode | Mandatory alignment for all code changes              |
 | **Downstream** | sk-git           | References spec folders in commit messages and PRs    |
 | **Downstream** | sk-documentation | Mandatory alignment for all documentation changes     |
 | **Integrated** | Spec Kit Memory         | Context preservation via MCP (merged into this skill) |

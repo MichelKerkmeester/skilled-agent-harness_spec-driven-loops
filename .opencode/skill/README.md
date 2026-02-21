@@ -82,7 +82,7 @@ Do not re-invoke a skill already in context.
 ├── system-spec-kit/
 ├── mcp-chrome-devtools/
 ├── sk-code--full-stack/
-├── workflows-code--opencode/
+├── sk-code--opencode/
 ├── sk-code--web/
 ├── sk-documentation/
 ├── sk-git/
@@ -139,7 +139,7 @@ Frontend development orchestrator with Webflow integration. Implementation, Debu
 - Async handling, validation and error boundary patterns
 - Browser verification at multiple viewports (mandatory before completion)
 
-#### `workflows-code--opencode` (v1.0.5.0)
+#### `sk-code--opencode` (v1.0.5.0)
 
 Multi-language code standards for OpenCode system code (JavaScript, TypeScript, Python, Shell and JSON/JSONC) with language detection routing and universal patterns.
 
@@ -291,7 +291,7 @@ After creating a skill, validate its structure against the template and test inv
 - [system-spec-kit](system-spec-kit/)
 - [sk-code--full-stack](sk-code--full-stack/)
 - [sk-code--web](sk-code--web/)
-- [workflows-code--opencode](workflows-code--opencode/)
+- [sk-code--opencode](sk-code--opencode/)
 - [sk-git](sk-git/)
 - [mcp-chrome-devtools](mcp-chrome-devtools/)
 - [sk-documentation](sk-documentation/)

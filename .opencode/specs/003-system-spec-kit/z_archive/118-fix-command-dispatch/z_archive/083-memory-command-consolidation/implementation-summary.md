@@ -293,6 +293,6 @@ Each agent searched for these 7 legacy patterns:
 ## References
 
 - **Spec 082:** `.opencode/skill/system-spec-kit/` - Original design recommendations
-- **Template:** `.opencode/skill/workflows-documentation/assets/opencode/command_template.md`
+- **Template:** `.opencode/skill/sk-documentation/assets/opencode/command_template.md`
 - **Commands:** `.opencode/command/memory/` - Final 5 command files
 - **This spec:** `specs/003-memory-and-spec-kit/083-memory-command-consolidation/`

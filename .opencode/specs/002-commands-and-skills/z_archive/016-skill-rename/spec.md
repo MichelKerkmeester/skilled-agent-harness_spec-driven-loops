@@ -2,14 +2,14 @@
 
 <!-- SPECKIT_TEMPLATE_SOURCE: legacy-normalized | v2.2 -->
 
-# Spec: workflows-documentation Skill Functional Testing
+# Spec: sk-documentation Skill Functional Testing
 
-> Comprehensive functional testing of the renamed `workflows-documentation` skill (formerly `create-documentation`) to verify all features work correctly after the rename.
+> Comprehensive functional testing of the renamed `sk-documentation` skill (formerly `create-documentation`) to verify all features work correctly after the rename.
 
 <!-- ANCHOR:metadata -->
 ## Context
 
-The `create-documentation` skill was renamed to `workflows-documentation` to align with the naming convention of other workflow skills. This spec documents the testing effort to verify all features still function correctly.
+The `create-documentation` skill was renamed to `sk-documentation` to align with the naming convention of other workflow skills. This spec documents the testing effort to verify all features still function correctly.
 
 <!-- /ANCHOR:metadata -->
 
@@ -45,8 +45,8 @@ As a developer, I want all templates and references to be accessible so that the
 As a developer, I want the skill to be invocable via the skills system so that AI agents can use it.
 
 **Acceptance Criteria:**
-- [ ] Skill name in SKILL.md is "workflows-documentation"
-- [ ] Keywords include "workflows-documentation"
+- [ ] Skill name in SKILL.md is "sk-documentation"
+- [ ] Keywords include "sk-documentation"
 - [ ] Skill loads via openskills system
 
 <!-- /ANCHOR:user-stories -->
@@ -55,8 +55,8 @@ As a developer, I want the skill to be invocable via the skills system so that A
 
 | Requirement | Description |
 |-------------|-------------|
-| Skill Path | `.opencode/skills/workflows-documentation/` |
-| Test Output | `specs/008-workflows-documentation-test/scratch/` |
+| Skill Path | `.opencode/skills/sk-documentation/` |
+| Test Output | `specs/008-sk-documentation-test/scratch/` |
 | Scripts | Python 3.x required |
 | CLI | Executable permissions on markdown-document-specialist |
 

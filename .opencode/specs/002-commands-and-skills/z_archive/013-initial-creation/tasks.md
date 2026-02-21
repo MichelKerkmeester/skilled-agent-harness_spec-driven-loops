@@ -374,7 +374,7 @@ Validate install guide meets DQI standards.
 
 **Command:**
 ```bash
-python3 .opencode/skill/workflows-documentation/scripts/extract_structure.py \
+python3 .opencode/skill/sk-documentation/scripts/extract_structure.py \
   ".opencode/install_guides/MCP/MCP - Figma.md"
 ```
 

@@ -13,7 +13,7 @@
 | Aspect | Value |
 |--------|-------|
 | **Language/Stack** | Markdown files, Python validation scripts |
-| **Framework** | workflows-documentation v1.0.7.0 |
+| **Framework** | sk-documentation v1.0.7.0 |
 | **Storage** | Local filesystem (.opencode/ directory) |
 | **Testing** | validate_document.py, extract_structure.py, grep verification |
 
@@ -30,7 +30,7 @@ This plan executes a 12-phase AI swarm operation to strip emojis from H2 heading
 ### Definition of Ready
 - [x] Problem statement clear and scope documented
 - [x] Success criteria measurable (zero emoji H2 headings)
-- [x] Dependencies identified (workflows-documentation v1.0.7.0 merged)
+- [x] Dependencies identified (sk-documentation v1.0.7.0 merged)
 - [x] File inventory complete (287 files across 12 groups)
 - [x] Regex pattern validated on Phase 0 files
 
@@ -75,7 +75,7 @@ For each file in phase:
 ### Exempt Files (NEVER modify)
 - `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/AGENTS.md`
 - `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/README.md`
-- All files in `.opencode/skill/workflows-documentation/` (already done)
+- All files in `.opencode/skill/sk-documentation/` (already done)
 - All files in `node_modules/`, `.git/`, `__pycache__/`, `venv/`
 <!-- /ANCHOR:architecture -->
 
@@ -84,9 +84,9 @@ For each file in phase:
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
-### Phase 0: Validation Engine & workflows-documentation (COMPLETED)
+### Phase 0: Validation Engine & sk-documentation (COMPLETED)
 **Status**: Complete (2026-02-16)
-**Files**: ~30 files in `.opencode/skill/workflows-documentation/`
+**Files**: ~30 files in `.opencode/skill/sk-documentation/`
 **Summary**: Updated template_rules.json, validate_document.py, extract_structure.py. Stripped emojis from all templates, references, core docs and test fixtures. All 6/6 tests pass.
 
 ---
@@ -152,9 +152,9 @@ For each file in phase:
 
 ---
 
-### Phase 4: workflows-code--opencode Skill (~22 files)
+### Phase 4: sk-code--opencode Skill (~22 files)
 
-**Target**: `.opencode/skill/workflows-code--opencode/`
+**Target**: `.opencode/skill/sk-code--opencode/`
 **Agent Assignment**: Agent 4
 
 | Sub-phase | Files | Description |
@@ -163,7 +163,7 @@ For each file in phase:
 | 4b | 12 | `references/**/*.md` - All reference files (python, typescript, javascript, shell, config, shared) |
 | 4c | 6 | `assets/checklists/*.md` - All checklist files |
 
-**Verification**: Zero emoji H2 headings in `.opencode/skill/workflows-code--opencode/`.
+**Verification**: Zero emoji H2 headings in `.opencode/skill/sk-code--opencode/`.
 
 ---
 
@@ -224,9 +224,9 @@ For each file in phase:
 
 ---
 
-### Phase 8: workflows-git Skill (~10 files)
+### Phase 8: sk-git Skill (~10 files)
 
-**Target**: `.opencode/skill/workflows-git/`
+**Target**: `.opencode/skill/sk-git/`
 **Agent Assignment**: Agent 8
 
 | File | Type |
@@ -242,7 +242,7 @@ For each file in phase:
 | `assets/worktree_checklist.md` | Asset |
 | `assets/commit_message_template.md` | Asset |
 
-**Verification**: Zero emoji H2 headings in `.opencode/skill/workflows-git/`.
+**Verification**: Zero emoji H2 headings in `.opencode/skill/sk-git/`.
 
 ---
 
@@ -338,7 +338,7 @@ For each file in phase:
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| workflows-documentation v1.0.7.0 | Internal | Green (merged) | Cannot validate without updated rules |
+| sk-documentation v1.0.7.0 | Internal | Green (merged) | Cannot validate without updated rules |
 | validate_document.py | Internal | Green (updated) | Cannot verify README compliance |
 | extract_structure.py | Internal | Green (updated) | Cannot verify SKILL compliance |
 | template_rules.json | Internal | Green (updated) | Validation would still enforce emojis |
@@ -382,11 +382,11 @@ Phase 0 (Complete) ──┐
 |-------|------------|------------------|
 | Phase 1 (system-spec-kit) | High | ~10 minutes (84 files) |
 | Phase 2-3 (mcp-figma, mcp-code-mode) | Low | ~2 minutes each |
-| Phase 4 (workflows-code--opencode) | Medium | ~5 minutes |
+| Phase 4 (sk-code--opencode) | Medium | ~5 minutes |
 | Phase 5 (mcp-chrome-devtools) | Low | ~2 minutes |
 | Phase 6 (sk-code--full-stack) | Medium | ~5 minutes |
 | Phase 7 (workflows-code--web-dev) | Medium | ~5 minutes |
-| Phase 8 (workflows-git) | Low | ~2 minutes |
+| Phase 8 (sk-git) | Low | ~2 minutes |
 | Phase 9 (agents) | Medium | ~5 minutes |
 | Phase 10 (commands + READMEs) | Medium | ~5 minutes |
 | Phase 11 (spec archives) | Low | ~3 minutes |
@@ -404,7 +404,7 @@ Phase 0 (Complete) ──┐
 **Phase**: 0
 **Duration**: Completed
 **Agent**: Primary
-**Output**: Updated validation engine and workflows-documentation skill
+**Output**: Updated validation engine and sk-documentation skill
 
 ### Tier 2: Parallel Execution
 | Agent | Phase | Focus | File Count |
@@ -412,11 +412,11 @@ Phase 0 (Complete) ──┐
 | Agent 1 | Phase 1 | system-spec-kit | 84 |
 | Agent 2 | Phase 2 | mcp-figma | 6 |
 | Agent 3 | Phase 3 | mcp-code-mode | 10 |
-| Agent 4 | Phase 4 | workflows-code--opencode | 22 |
+| Agent 4 | Phase 4 | sk-code--opencode | 22 |
 | Agent 5 | Phase 5 | mcp-chrome-devtools | 7 |
 | Agent 6 | Phase 6 | sk-code--full-stack | 33 |
 | Agent 7 | Phase 7 | workflows-code--web-dev | 29 |
-| Agent 8 | Phase 8 | workflows-git | 10 |
+| Agent 8 | Phase 8 | sk-git | 10 |
 | Agent 9 | Phase 9 | agent files | 32 |
 | Agent 10 | Phase 10 | commands + READMEs | 24 |
 | Agent 11 | Phase 11 | spec archives | 25 |
@@ -471,11 +471,11 @@ VERIFICATION: After all edits, grep for remaining emoji H2 patterns. Report coun
 | W-01 | system-spec-kit | Agent 1 | 84 files | Pending |
 | W-02 | mcp-figma | Agent 2 | 6 files | Pending |
 | W-03 | mcp-code-mode | Agent 3 | 10 files | Pending |
-| W-04 | workflows-code--opencode | Agent 4 | 22 files | Pending |
+| W-04 | sk-code--opencode | Agent 4 | 22 files | Pending |
 | W-05 | mcp-chrome-devtools | Agent 5 | 7 files | Pending |
 | W-06 | sk-code--full-stack | Agent 6 | 33 files | Pending |
 | W-07 | workflows-code--web-dev | Agent 7 | 29 files | Pending |
-| W-08 | workflows-git | Agent 8 | 10 files | Pending |
+| W-08 | sk-git | Agent 8 | 10 files | Pending |
 | W-09 | agent files | Agent 9 | 32 files | Pending |
 | W-10 | commands + READMEs | Agent 10 | 24 files | Pending |
 | W-11 | spec archives | Agent 11 | 25 files | Pending |

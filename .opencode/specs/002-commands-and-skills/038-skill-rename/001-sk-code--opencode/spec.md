@@ -1,4 +1,4 @@
-# Feature Specification: Phase 001 — Rename workflows-code--opencode to sk-code--opencode
+# Feature Specification: Phase 001 — Rename legacy workflow-prefixed skill to `sk-code--opencode`
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core + phase-child-header | v2.2 -->
@@ -12,15 +12,17 @@
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P0 |
-| **Status** | Draft |
+| **Status** | Completed |
 | **Created** | 2026-02-21 |
+| **Completed** | 2026-02-21 |
+| **Verified** | 2026-02-21 |
 | **Branch** | `038-skill-rename` |
 | **Parent Spec** | ../spec.md |
 | **Parent Plan** | ../plan.md |
 | **Phase** | 1 of 7 |
 | **Predecessor** | 003-sk-code--full-stack (dependency satisfied; not blocking this phase) |
 | **Successor** | 002-sk-code--web |
-| **Handoff Criteria** | `grep -r "workflows-code--opencode"` returns 0 matches in active files |
+| **Handoff Criteria** | Legacy-token scan returns 0 matches in active files |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -30,17 +32,17 @@
 
 This is **Phase 1** of the Skill Rename (038) specification.
 
-**Scope Boundary**: ALL changes required to rename `workflows-code--opencode` to `sk-code--opencode`, including filesystem rename, internal file updates, external reference updates, and verification.
+**Scope Boundary**: ALL changes required to finalize rename of the legacy workflow-prefixed skill to `sk-code--opencode`, including filesystem transition, internal file updates, external reference updates, and verification.
 
 **Dependencies**:
 - Phase 3 (sk-code--full-stack) is satisfied for this phase and is not a blocker
 
 **Deliverables**:
-- Renamed skill folder: `.opencode/skill/sk-code--opencode/`
+- Canonical skill folder path: `.opencode/skill/sk-code--opencode/`
 - All internal references updated (35 files)
 - All active-path external references updated (12 files)
 - skill_advisor.py entries updated (19 lines)
-- grep verification: 0 matches for old name
+- Legacy-token verification: 0 matches for the legacy workflow-prefixed token
 <!-- /ANCHOR:phase-context -->
 
 ---
@@ -49,10 +51,10 @@ This is **Phase 1** of the Skill Rename (038) specification.
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-The skill `workflows-code--opencode` uses the legacy `workflows-*` naming convention. This is verbose, doesn't distinguish skill categories, and is inconsistent with the target `sk-*` convention for standard skills.
+This phase addresses a legacy workflow-prefixed naming artifact. The workflow prefix is verbose, does not distinguish skill categories well, and is inconsistent with the target `sk-*` convention for standard skills.
 
 ### Purpose
-Rename `workflows-code--opencode` to `sk-code--opencode` across all references, maintaining full functionality while adopting the cleaner naming convention.
+Rename the legacy workflow-prefixed skill identifier to `sk-code--opencode` across all references, maintaining full functionality while adopting the cleaner naming convention.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -61,11 +63,11 @@ Rename `workflows-code--opencode` to `sk-code--opencode` across all references, 
 ## 3. SCOPE
 
 ### In Scope
-- Filesystem rename: `git mv .opencode/skill/workflows-code--opencode .opencode/skill/sk-code--opencode`
+- Filesystem rename from the legacy workflow-prefixed folder name to `.opencode/skill/sk-code--opencode/`
 - Update all 35 internal files within the skill folder
 - Update active-path external files that reference this skill (12 files)
 - Update 19 lines in skill_advisor.py
-- Rename changelog directory: `07--workflows-code--opencode` → `07--sk-code--opencode`
+- Rename changelog directory from legacy workflow-prefixed form to `07--sk-code--opencode`
 - Update cross-references to this skill within other skill folders
 
 ### Out of Scope
@@ -78,13 +80,13 @@ Rename `workflows-code--opencode` to `sk-code--opencode` across all references, 
 
 | Category | File Path | Change Type | Description |
 |----------|-----------|-------------|-------------|
-| Folder rename | `.opencode/skill/workflows-code--opencode/` | Rename | `git mv` to `sk-code--opencode/` |
-| Internal | `sk-code--opencode/SKILL.md` | Modify | Update name, title, self-references |
-| Internal | `sk-code--opencode/index.md` | Modify | Update name, description |
-| Internal | `sk-code--opencode/nodes/*.md` (~6 files) | Modify | Update cross-references, self-references |
-| Internal | `sk-code--opencode/references/*.md` (~5 files) | Modify | Update paths, cross-refs |
-| Internal | `sk-code--opencode/assets/*.md` (~15 files) | Modify | Update template paths, examples |
-| Internal | `sk-code--opencode/scripts/*.sh` (~3 files) | Modify | Update hard-coded paths |
+| Folder rename | `.opencode/skill/sk-code--opencode/` | Rename | Move legacy workflow-prefixed folder to canonical `sk-*` path |
+| Internal | `.opencode/skill/sk-code--opencode/SKILL.md` | Modify | Update name, title, self-references |
+| Internal | `.opencode/skill/sk-code--opencode/index.md` | Modify | Update name, description |
+| Internal | `.opencode/skill/sk-code--opencode/nodes/*.md` (~6 files) | Modify | Update cross-references, self-references |
+| Internal | `.opencode/skill/sk-code--opencode/references/*.md` (~5 files) | Modify | Update paths, cross-refs |
+| Internal | `.opencode/skill/sk-code--opencode/assets/*.md` (~15 files) | Modify | Update template paths, examples |
+| Internal | `.opencode/skill/sk-code--opencode/scripts/*.sh` (~3 files) | Modify | Update hard-coded paths |
 | skill_advisor | `.opencode/skill/scripts/skill_advisor.py` | Modify | Update 19 lines in INTENT_BOOSTERS/MULTI_SKILL_BOOSTERS |
 | Skill Registry | `.opencode/skill/README.md` | Modify | Update skill listing and links |
 | Skill Cross-Ref | `.opencode/skill/sk-code--full-stack/README.md` | Modify | Update cross-skill reference |
@@ -97,7 +99,7 @@ Rename `workflows-code--opencode` to `sk-code--opencode` across all references, 
 | Skill Test | `.opencode/skill/system-spec-kit/mcp_server/tests/skill-ref-config.vitest.ts` | Modify | Update indexed skill fixtures/assertions |
 | Install | `.opencode/install_guides/README.md` | Modify | Update skill registry |
 | Install | `.opencode/install_guides/SET-UP - AGENTS.md` | Modify | Update skill references |
-| Changelog | `.opencode/changelog/07--workflows-code--opencode/` | Rename | Rename directory |
+| Changelog | `.opencode/changelog/07--sk-code--opencode/` | Rename | Rename directory |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -110,7 +112,7 @@ Rename `workflows-code--opencode` to `sk-code--opencode` across all references, 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
 | REQ-001 | Rename skill folder on disk | `ls .opencode/skill/sk-code--opencode/` exists |
-| REQ-002 | Update all internal references | `grep -r "workflows-code--opencode" .opencode/skill/sk-code--opencode/` = 0 |
+| REQ-002 | Update all internal references | Legacy-token scan in `.opencode/skill/sk-code--opencode/` returns 0 matches |
 | REQ-003 | Update skill_advisor.py | `python3 skill_advisor.py "opencode standards"` returns `sk-code--opencode` |
 | REQ-004 | Update active-path external references | All listed active-path files use `sk-code--opencode` |
 
@@ -118,7 +120,7 @@ Rename `workflows-code--opencode` to `sk-code--opencode` across all references, 
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-005 | Rename changelog directory | `ls .opencode/changelog/07--sk-code--opencode/` exists |
+| REQ-005 | Rename changelog directory | `ls .opencode/changelog/07--sk-code--opencode/` exists and legacy workflow-prefixed alias is absent |
 | REQ-006 | Update cross-refs in active-path skills | sk-code--full-stack/sk-documentation/sk-git/system-spec-kit references use new name |
 <!-- /ANCHOR:requirements -->
 
@@ -127,7 +129,7 @@ Rename `workflows-code--opencode` to `sk-code--opencode` across all references, 
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: `rg -n "workflows-code--opencode" .opencode/skill/sk-code--opencode/ .opencode/skill/scripts/skill_advisor.py .opencode/skill/README.md .opencode/skill/sk-code--full-stack/README.md .opencode/skill/sk-documentation/README.md .opencode/skill/sk-git/README.md .opencode/skill/system-spec-kit/README.md .opencode/skill/system-spec-kit/SKILL.md .opencode/skill/system-spec-kit/nodes/rules.md .opencode/skill/system-spec-kit/config/config.jsonc .opencode/skill/system-spec-kit/mcp_server/tests/skill-ref-config.vitest.ts .opencode/install_guides/README.md ".opencode/install_guides/SET-UP - AGENTS.md"` returns 0 matches
+- **SC-001**: Legacy-token scan across the active-path target set returns 0 matches
 - **SC-002**: `python3 .opencode/skill/scripts/skill_advisor.py "opencode standards"` returns `sk-code--opencode`
 - **SC-003**: Folder `.opencode/skill/sk-code--opencode/` exists with all files intact and changelog directory is `07--sk-code--opencode`
 <!-- /ANCHOR:success-criteria -->
@@ -154,7 +156,7 @@ Rename `workflows-code--opencode` to `sk-code--opencode` across all references, 
 - **NFR-C02**: All active-path external references listed in Scope must resolve to `sk-code--opencode`
 
 ### Completeness
-- **NFR-CP01**: Every file referencing old name must be updated — no partial renames
+- **NFR-CP01**: Every file referencing the legacy workflow-prefixed token must be updated; no partial renames
 <!-- /ANCHOR:nfr -->
 
 ---
@@ -163,12 +165,12 @@ Rename `workflows-code--opencode` to `sk-code--opencode` across all references, 
 ## L2: EDGE CASES
 
 ### Naming Patterns
-- Path segments: `.opencode/skill/workflows-code--opencode/` → `.opencode/skill/sk-code--opencode/`
-- Bare mention in prose: `workflows-code--opencode` → `sk-code--opencode`
-- Backtick-quoted: `` `workflows-code--opencode` `` → `` `sk-code--opencode` ``
+- Path segments: legacy workflow-prefixed folder path -> `.opencode/skill/sk-code--opencode/`
+- Bare mention in prose: legacy workflow-prefixed token -> `sk-code--opencode`
+- Backtick-quoted: legacy workflow-prefixed token in backticks -> `` `sk-code--opencode` ``
 
 ### Cross-References
-- Other skills may reference `workflows-code--opencode` in their nodes/ files
+- Other skills may reference the legacy workflow-prefixed token in their `nodes/` files
 - These should be updated by this phase (owns the reference target)
 <!-- /ANCHOR:edge-cases -->
 

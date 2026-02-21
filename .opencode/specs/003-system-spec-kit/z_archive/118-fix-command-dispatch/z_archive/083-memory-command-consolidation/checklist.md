@@ -220,7 +220,7 @@ After consolidation, the following 5 commands exist:
 | Updated README.md | `.opencode/skill/system-spec-kit/README.md` |
 | Updated CHANGELOG.md | `.opencode/skill/system-spec-kit/CHANGELOG.md` |
 | Updated MCP README | `.opencode/skill/system-spec-kit/mcp_server/README.md` |
-| Template reference | `.opencode/skill/workflows-documentation/assets/opencode/command_template.md` |
+| Template reference | `.opencode/skill/sk-documentation/assets/opencode/command_template.md` |
 | This spec folder | `specs/003-memory-and-spec-kit/083-memory-command-consolidation/` |
 
 ---

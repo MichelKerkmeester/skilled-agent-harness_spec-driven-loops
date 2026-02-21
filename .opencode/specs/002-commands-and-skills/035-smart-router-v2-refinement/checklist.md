@@ -49,7 +49,7 @@
 
 ### P1 - Required (or user-approved deferral)
 - [x] CHK-012 [P1] SKILL.md files follow ANCHOR tag conventions  
-  **Evidence**: Updated SKILL.md files in sk-code--full-stack, workflows-code--web-dev, workflows-code--opencode, workflows-git
+  **Evidence**: Updated SKILL.md files in sk-code--full-stack, workflows-code--web-dev, sk-code--opencode, sk-git
 
 - [x] CHK-013 [P1] Documentation follows template structure (spec-core + level3-arch)  
   **Evidence**: spec.md includes executive summary, risk matrix, user stories per template
@@ -71,7 +71,7 @@
   **Evidence**: router-rules.json updated with synonym mappings for all target terms
 
 - [x] CHK-023 [P0] UNKNOWN fallback checklist documented in 4 skills  
-  **Evidence**: UNKNOWN fallback sections added to sk-code--full-stack, workflows-code--web-dev, workflows-code--opencode, workflows-git
+  **Evidence**: UNKNOWN fallback sections added to sk-code--full-stack, workflows-code--web-dev, sk-code--opencode, sk-git
 
 - [x] CHK-024 [P0] Verification command disambiguation prevents React/RN collision  
   **Evidence**: Verification command disambiguation documented in sk-code--full-stack/SKILL.md

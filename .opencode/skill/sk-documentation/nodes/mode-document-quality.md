@@ -1,5 +1,5 @@
 ---
-description: "How the Document Quality Index (DQI) pipeline uses extract_structure.py to evaluate READMEs, specs, and knowledge docs."
+description: "How the Document Quality Index (DQI) pipeline evaluates templates, levels, validation quality, save guidance, and configuration clarity across READMEs/specs/knowledge docs."
 ---
 # Document Quality Mode
 
@@ -29,3 +29,9 @@ scripts/extract_structure.py path/to/document.md
 | Command   | Strict      | Required    | Must be executable               |
 | Spec      | Loose       | Optional    | Working docs. Avoid blocking.    |
 | Generic   | Flexible    | Optional    | Best-effort structure            |
+
+## Cross-Skill Bridges
+
+- [Validation Workflow](../../system-spec-kit/nodes/validation-workflow.md) - Gate-driven completion and checklist validation
+- [Progressive Enhancement Levels](../../system-spec-kit/nodes/progressive-enhancement.md) - Level/template selection strategy
+- [OpenCode Quick Reference](../../sk-code--opencode/nodes/quick-reference.md) - Config-aware technical writing and standards

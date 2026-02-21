@@ -1,5 +1,5 @@
 ---
-description: "Commit creation process: staging, artifact filtering, and Conventional Commits formatting"
+description: "Commit creation process: staging, artifact filtering, Conventional Commits formatting, and merge-conflict recovery with validation context"
 ---
 # Commit Workflow
 
@@ -53,3 +53,5 @@ Before staging, exclude:
 - [[rules]] - Commit formatting rules (ALWAYS section)
 - [[success-criteria]] - Pre-commit quality gate
 - [[how-it-works]] - Phase 2 in the lifecycle
+- [Validation Workflow](../../system-spec-kit/nodes/validation-workflow.md) - Spec quality and completion verification gates
+- [OpenCode Quick Reference](../../sk-code--opencode/nodes/quick-reference.md) - Code/config standards linked to commit quality

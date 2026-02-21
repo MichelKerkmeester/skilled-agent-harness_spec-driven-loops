@@ -92,18 +92,18 @@
   **Estimate**: 1 hour  
   **Completed**: 2026-02-17
 
-- [x] **T008** [W:UNKNOWN] [P] Implement UNKNOWN fallback in workflows-code--opencode  
-  **File**: `.opencode/skill/workflows-code--opencode/SKILL.md`  
+- [x] **T008** [W:UNKNOWN] [P] Implement UNKNOWN fallback in sk-code--opencode  
+  **File**: `.opencode/skill/sk-code--opencode/SKILL.md`  
   **Details**: Add UNKNOWN fallback section (Python/Shell language detection edge cases)  
-  **Verify**: `grep -A 10 "UNKNOWN Fallback" .opencode/skill/workflows-code--opencode/SKILL.md`  
+  **Verify**: `grep -A 10 "UNKNOWN Fallback" .opencode/skill/sk-code--opencode/SKILL.md`  
   **Dependencies**: T005  
   **Estimate**: 1 hour  
   **Completed**: 2026-02-17
 
-- [x] **T009** [W:UNKNOWN] [P] Implement UNKNOWN fallback in workflows-git  
-  **File**: `.opencode/skill/workflows-git/SKILL.md`  
+- [x] **T009** [W:UNKNOWN] [P] Implement UNKNOWN fallback in sk-git  
+  **File**: `.opencode/skill/sk-git/SKILL.md`  
   **Details**: Add UNKNOWN fallback section ("dirty workspace" synonym context for Git workflows)  
-  **Verify**: `grep -A 10 "UNKNOWN Fallback" .opencode/skill/workflows-git/SKILL.md`  
+  **Verify**: `grep -A 10 "UNKNOWN Fallback" .opencode/skill/sk-git/SKILL.md`  
   **Dependencies**: T005  
   **Estimate**: 1 hour  
   **Completed**: 2026-02-17

@@ -536,12 +536,26 @@ export function validateContentSize(content: string, options: {
   }
 
   if (content.length > maxLength) {
-    result.valid = false;
-    result.errors.push({
-      code: PreflightErrorCodes.CONTENT_TOO_LARGE,
-      message: `Content too large: ${content.length} chars (max: ${maxLength})`,
-      suggestion: `Reduce content by ${content.length - maxLength} characters or split into multiple memories`,
-    });
+    // 010-index-large-files: Files above the limit but eligible for chunking
+    // are downgraded to a warning instead of an error. The chunking pipeline
+    // in memory-save.ts handles splitting them automatically.
+    const CHUNKING_THRESHOLD = 50000;
+    if (content.length >= CHUNKING_THRESHOLD) {
+      // Will be chunked automatically — emit warning, not error
+      result.errors.push({
+        code: PreflightErrorCodes.CONTENT_TOO_LARGE,
+        message: `Content is large (${content.length} chars) — will be chunked automatically into smaller records`,
+        suggestion: 'No action needed: chunked indexing handles large files',
+      });
+      // Mark valid=true to let it through (the chunking pipeline handles it)
+    } else {
+      result.valid = false;
+      result.errors.push({
+        code: PreflightErrorCodes.CONTENT_TOO_LARGE,
+        message: `Content too large: ${content.length} chars (max: ${maxLength})`,
+        suggestion: `Reduce content by ${content.length - maxLength} characters or split into multiple memories`,
+      });
+    }
   }
 
   return result;
@@ -589,14 +603,23 @@ export function runPreflight(params: PreflightParams, options: PreflightOptions 
     result.details[name] = check_result;
   };
 
+  // 010-index-large-files: Detect if content is chunk-eligible
+  const CHUNKING_THRESHOLD = 50000;
+  const isChunkEligible = content && content.length >= CHUNKING_THRESHOLD;
+
   // 1. Content size validation (fast, do first)
   if (check_size) {
     const sizeResult = validateContentSize(content);
     addCheck('content_size', sizeResult);
 
     if (!sizeResult.valid) {
-      result.pass = false;
-      result.errors.push(...sizeResult.errors);
+      if (isChunkEligible) {
+        // Large files will be chunked — convert errors to warnings
+        result.warnings.push(...sizeResult.errors);
+      } else {
+        result.pass = false;
+        result.errors.push(...sizeResult.errors);
+      }
     }
   }
 
@@ -625,8 +648,13 @@ export function runPreflight(params: PreflightParams, options: PreflightOptions 
     addCheck('token_budget', tokenResult);
 
     if (!tokenResult.within_budget) {
-      result.pass = false;
-      result.errors.push(...tokenResult.errors);
+      if (isChunkEligible) {
+        // Large files will be chunked — convert to warning
+        result.warnings.push(...tokenResult.errors);
+      } else {
+        result.pass = false;
+        result.errors.push(...tokenResult.errors);
+      }
     }
     if (tokenResult.warnings.length > 0) {
       result.warnings.push(...tokenResult.warnings);

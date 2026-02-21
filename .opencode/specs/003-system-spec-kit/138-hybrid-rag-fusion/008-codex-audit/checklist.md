@@ -51,7 +51,7 @@
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [x] CHK-020 [P0] All acceptance criteria met [EVIDENCE: requirements REQ-001 through REQ-006 satisfied in this spec set]
+- [x] CHK-020 [P0] All acceptance criteria met [EVIDENCE: requirements REQ-001 through REQ-008 satisfied in this spec set]
 - [x] CHK-021 [P0] Manual testing complete [EVIDENCE: audit reconciliation against `findings_1.md` and `findings_2.md`]
 - [x] CHK-022 [P1] Edge cases tested [EVIDENCE: flaky timing edges stabilized in envelope and MMR integration tests]
 - [x] CHK-023 [P1] Error scenarios validated [EVIDENCE: full suite execution confirms no regression in handler paths]
@@ -96,7 +96,7 @@
 |----------|-------|----------|
 | P0 Items | 11 | 11/11 |
 | P1 Items | 20 | 20/20 |
-| P2 Items | 10 | 9/10 |
+| P2 Items | 10 | 6/10 |
 
 **Verification Date**: 2026-02-21
 <!-- /ANCHOR:summary -->

@@ -52,7 +52,7 @@ Capture the completed remediation work as a Level 3 retrospective record that is
 - Stabilize flaky timing assertions in targeted tests and record final validation status.
 
 ### Out of Scope
-- Broad test-directory `workflows-code--opencode` module-header alignment debt (pre-existing).
+- Broad test-directory `sk-code--opencode` module-header alignment debt (pre-existing).
 - Full-repo structural lint cleanup beyond codex audit remediation files.
 
 ### Files to Change

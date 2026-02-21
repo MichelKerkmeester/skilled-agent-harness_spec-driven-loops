@@ -330,7 +330,7 @@ Research Findings document
 **Test:** Verify agents invoke skills correctly
 
 1. Dispatch Documentation Writer: "Create README for notification system"
-2. **Expected:** Agent invokes workflows-documentation skill
+2. **Expected:** Agent invokes sk-documentation skill
 3. **Expected:** Output follows DQI standards
 
 ---

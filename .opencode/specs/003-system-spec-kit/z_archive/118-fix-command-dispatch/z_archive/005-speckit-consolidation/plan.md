@@ -202,7 +202,7 @@ Same patterns as AGENTS.md, plus fix inconsistency at line 339 (missing `.openco
 | SKILL.md | Update Related Skills table (skill name, no path change) |
 | references/*.md | Update Related Skills references |
 
-#### 4.3 workflows-documentation (3 refs)
+#### 4.3 sk-documentation (3 refs)
 
 | File | Action |
 |------|--------|

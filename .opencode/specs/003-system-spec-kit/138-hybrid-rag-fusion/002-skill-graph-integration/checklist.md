@@ -96,11 +96,11 @@
     2. Validate behavior for valid path, missing path, and broken-link cases.
     3. Confirm non-zero exit on unresolved links.
   - Evidence expected: script pattern review notes + command run outputs for pass/fail conditions.
-- [x] CHK-014 [P1] `workflows-documentation` includes skill graph standards reference + node template asset + updated `SKILL.md`
+- [x] CHK-014 [P1] `sk-documentation` includes skill graph standards reference + node template asset + updated `SKILL.md`
   - Deliverable: standards reference, node template asset, and routing entrypoint are all present and linked.
   - How to verify:
     1. Confirm artifact file paths exist.
-    2. Open `workflows-documentation/SKILL.md` and follow links to both artifacts in one hop.
+    2. Open `sk-documentation/SKILL.md` and follow links to both artifacts in one hop.
     3. Confirm links are valid via global link-check run.
   - Evidence expected: path verification notes + traversal log showing one-hop discovery.
 - [x] CHK-017 [P1] Per-skill node matrix includes all 9 skills with first three marked complete and remaining six tracked

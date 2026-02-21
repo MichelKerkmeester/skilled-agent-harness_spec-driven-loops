@@ -78,7 +78,7 @@
 ## Documentation
 
 - [x] CHK-050 [P1] Spec/plan/tasks synchronized [EVIDENCE: all three files updated with completion status]
-- [ ] CHK-051 [P2] Findings saved to memory/ [DEFERRED: will be saved as part of Step 13]
+- [x] CHK-051 [P2] Findings saved to memory/ [EVIDENCE: memory #86 indexed via generate-context.js, 1929 lines, quality 89/100]
 <!-- /ANCHOR:docs -->
 
 ---

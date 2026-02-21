@@ -16,7 +16,7 @@ Migrated all JavaScript code in `.opencode/skill/system-spec-kit/` from `snake_c
 
 ### Part A: Skill Documentation (9 files)
 
-All files in `.opencode/skill/workflows-code--opencode/`:
+All files in `.opencode/skill/sk-code--opencode/`:
 
 | File | Changes |
 |------|---------|
@@ -118,6 +118,6 @@ Fixed cross-directory import mismatches and remaining string-embedded function n
 
 ## Files Modified
 
-**Documentation**: 8 files in `workflows-code--opencode/`
+**Documentation**: 8 files in `sk-code--opencode/`
 **JS Code**: 163+ files in `system-spec-kit/` (mcp_server/, scripts/, shared/)
 **Spec Folder**: 6 files in `specs/003-memory-and-spec-kit/090-opencode-naming-conventions/`

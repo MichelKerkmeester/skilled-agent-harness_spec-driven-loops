@@ -1,4 +1,4 @@
-# Feature Specification: Phase 005 — Rename workflows-git to sk-git
+# Feature Specification: Phase 005 - Finalize sk-git Rename
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core + phase-child-header | v2.2 -->
@@ -12,15 +12,17 @@
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P0 |
-| **Status** | Draft |
+| **Status** | Completed |
 | **Created** | 2026-02-21 |
+| **Completed** | 2026-02-21 |
+| **Verified** | 2026-02-21 |
 | **Branch** | `038-skill-rename` |
 | **Parent Spec** | ../spec.md |
 | **Parent Plan** | ../plan.md |
 | **Phase** | 5 of 7 |
 | **Predecessor** | 006-sk-visual-explainer |
 | **Successor** | None (last phase) |
-| **Handoff Criteria** | `grep -r "workflows-git"` returns 0 matches in active files |
+| **Handoff Criteria** | Active-target binary-safe `rg` check for legacy git skill token returns `0` output lines |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -28,19 +30,20 @@
 <!-- ANCHOR:phase-context -->
 ### Phase Context
 
-This is **Phase 5** of the Skill Rename (038) specification. It executes LAST because `workflows-git` is the shortest old name. It has the highest skill_advisor.py line count (28 lines).
+This is **Phase 5** of the Skill Rename (038) specification. It executes last because the legacy git skill name was the shortest old token, avoiding substring-collision risk while other `workflows-*` renames completed first.
 
-**Scope Boundary**: ALL changes required to rename `workflows-git` to `sk-git`.
+**Scope Boundary**: all rename closure and reference updates for the git skill now named `sk-git`.
 
 **Dependencies**:
-- All other phases (1-4, 6-7) must complete first
+- All other phases complete first
 
 **Deliverables**:
 - Renamed skill folder: `.opencode/skill/sk-git/`
-- All internal references updated (20 files)
-- All external references updated (39 files)
-- skill_advisor.py entries updated (28 lines — highest)
-- grep verification: 0 matches for old name
+- Renamed changelog folder: `.opencode/changelog/10--sk-git/`
+- Internal reference updates across 20 skill files
+- External reference updates across agent/install/root files
+- `skill_advisor.py` entries updated (28 lines)
+- Active-target binary-safe `rg` verification: `0` output lines
 <!-- /ANCHOR:phase-context -->
 
 ---
@@ -49,10 +52,10 @@ This is **Phase 5** of the Skill Rename (038) specification. It executes LAST be
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-The skill `workflows-git` uses the legacy `workflows-*` naming convention. With 28 skill_advisor.py lines, it has the densest routing configuration of all skills being renamed.
+The git workflow skill used the legacy `workflows-*` naming convention and had the highest `skill_advisor.py` density in this rename set (28 lines).
 
 ### Purpose
-Rename `workflows-git` to `sk-git` across all references, executing last as the shortest name to prevent substring collisions.
+Finalize migration to `sk-git` across active files and routing definitions while preserving behavior.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -61,20 +64,22 @@ Rename `workflows-git` to `sk-git` across all references, executing last as the 
 ## 3. SCOPE
 
 ### In Scope
-- Filesystem rename: `git mv .opencode/skill/workflows-git .opencode/skill/sk-git`
-- Update all 20 internal files
-- Update 39 external files
-- Update 28 lines in skill_advisor.py (highest count)
-- Rename changelog directory: `10--workflows-git` → `10--sk-git`
+- Filesystem rename completed for the git skill folder to `.opencode/skill/sk-git/`
+- Update all internal references in `sk-git/` (20 files)
+- Update external references (agents, install guides, root docs, cross-skill refs)
+- Update `skill_advisor.py` mappings (28 lines)
+- Changelog directory migrated to `10--sk-git`
 
 ### Out of Scope
-- Renaming other skills, functional changes, memory files, changelog content
+- Renaming other skills
+- Functional behavior changes outside naming
+- Editing memory files or historical changelog content
 
 ### Files to Change
 
 | Category | File Path | Change Type | Ref Count |
 |----------|-----------|-------------|-----------|
-| Folder | `.opencode/skill/workflows-git/` | Rename | — |
+| Folder | `Legacy git skill folder` | Rename | - |
 | Internal | `sk-git/SKILL.md` | Modify | ~5 |
 | Internal | `sk-git/index.md` | Modify | ~3 |
 | Internal | `sk-git/nodes/*.md` (~5 files) | Modify | ~15 |
@@ -93,7 +98,7 @@ Rename `workflows-git` to `sk-git` across all references, executing last as the 
 | Root | `CLAUDE.md` | Modify | ~3 refs |
 | Root | `README.md` | Modify | ~3 refs |
 | Root | `.opencode/README.md` | Modify | ~3 refs |
-| Changelog | `.opencode/changelog/10--workflows-git/` | Rename | — |
+| Changelog | `Legacy git changelog folder` | Rename | - |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -105,19 +110,19 @@ Rename `workflows-git` to `sk-git` across all references, executing last as the 
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | Rename skill folder | `ls .opencode/skill/sk-git/` exists |
-| REQ-002 | Update all internal refs | grep = 0 within sk-git/ |
-| REQ-003 | Update skill_advisor.py (28 lines) | `python3 skill_advisor.py "git commit"` returns `sk-git` |
-| REQ-004 | Update agent files | All 4 runtime orchestrate.md use `sk-git` |
+| REQ-001 | Rename skill folder | `.opencode/skill/sk-git/` exists and legacy git folder path is absent |
+| REQ-002 | Remove old-name references in active targets | Active-target binary-safe `rg` check returns `0` output lines |
+| REQ-003 | Update skill_advisor.py entries (28 lines) | `rg -n "sk-git" .opencode/skill/scripts/skill_advisor.py | wc -l` returns `28` and old-name count returns `0` |
+| REQ-004 | Keep git-routing behavior | `skill_advisor.py` resolves `git commit`, `push changes`, and `create branch` to `sk-git` |
 
 ### P1 - Required
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-005 | Update install guides (4 files) | All updated |
-| REQ-006 | Update root docs (3 files) | All updated |
-| REQ-007 | Rename changelog dir | `10--sk-git` exists |
-| REQ-008 | Update cross-refs in other skills | All updated |
+| REQ-005 | Update install guides (4 files) | Old-name active-target `rg` output line count remains `0` |
+| REQ-006 | Update root docs (3 files) | Old-name active-target `rg` output line count remains `0` |
+| REQ-007 | Rename changelog dir | `.opencode/changelog/10--sk-git/` exists and old dir is absent |
+| REQ-008 | Update cross-refs in other skills | Old-name active-target `rg` output line count remains `0` |
 <!-- /ANCHOR:requirements -->
 
 ---
@@ -125,9 +130,21 @@ Rename `workflows-git` to `sk-git` across all references, executing last as the 
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: `grep -r "workflows-git" .opencode/skill/ .opencode/command/ .opencode/agent/ .opencode/install_guides/ .claude/ .gemini/ CLAUDE.md README.md` returns 0
-- **SC-002**: `python3 skill_advisor.py "git commit"` returns `sk-git`
-- **SC-003**: Folder `.opencode/skill/sk-git/` exists
+### Verification Status
+
+| ID | Criterion | Status | Evidence |
+|----|-----------|--------|----------|
+| SC-001 | Old name has `0` output lines in active-target binary-safe `rg` check | Complete | EV-06 |
+| SC-002 | `skill_advisor.py` resolves git smoke queries to `sk-git` | Complete | EV-03, EV-04, EV-05 |
+| SC-003 | Skill folder exists with expected file count | Complete | EV-01, EV-02 |
+| SC-004 | Changelog directory is renamed and old dir is absent | Complete | EV-01 |
+
+### Acceptance Scenarios
+
+1. **Given** current active files, **when** running the generated binary-safe `rg` old-name check, **then** output line count is `0`.
+2. **Given** skill routing definitions, **when** running `skill_advisor.py` for `git commit`, `push changes`, and `create branch`, **then** the top skill is `sk-git`.
+3. **Given** filesystem state, **when** checking skill/changelog directories, **then** new `sk-git` paths exist and legacy git paths are absent.
+4. **Given** `skill_advisor.py` routing definitions, **when** counting `sk-git` and legacy-token occurrences, **then** counts are `28` and `0` respectively.
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -137,10 +154,10 @@ Rename `workflows-git` to `sk-git` across all references, executing last as the 
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Risk | 28 skill_advisor lines — highest density | M | Careful line-by-line verification |
-| Risk | Shortest name — must execute last | L | Execution order enforced |
-| Risk | 39 external files — moderate cross-cutting | M | Per-file checklist |
-| Dependency | All other phases complete | Must be last | Execution order |
+| Risk | 28 `skill_advisor.py` lines (highest density) | M | Verified with line-count and smoke tests |
+| Risk | Shortest old name; phase had to run last | L | Execution order preserved |
+| Risk | 39 external files touched | M | Active-target binary-safe `rg` closure check |
+| Dependency | All other phases complete before phase 5 | Complete | Confirmed during implementation |
 <!-- /ANCHOR:risks -->
 
 ---
@@ -149,8 +166,9 @@ Rename `workflows-git` to `sk-git` across all references, executing last as the 
 ## L2: NON-FUNCTIONAL REQUIREMENTS
 
 ### Consistency
-- **NFR-C01**: skill_advisor.py entries (28) must exactly match `sk-git`
-- **NFR-C02**: Agent files consistent across 4 runtimes
+- **NFR-C01**: `skill_advisor.py` entries map to `sk-git` (28 lines)
+- **NFR-C02**: Agent references are consistent across 4 runtimes
+- **NFR-C03**: Verification commands are binary-safe and scoped to active files
 <!-- /ANCHOR:nfr -->
 
 ---
@@ -158,13 +176,11 @@ Rename `workflows-git` to `sk-git` across all references, executing last as the 
 <!-- ANCHOR:edge-cases -->
 ## L2: EDGE CASES
 
-### Substring Risk
-- `workflows-git` is a substring of no other skill name, but being shortest it executes last for safety
-- Must not match `workflows-git-*` patterns (none exist, but verify)
+### Substring Ordering
+- The legacy git skill name was intentionally executed last to avoid accidental partial replacement during broader `workflows-*` migration.
 
-### Routing Density
-- 28 skill_advisor.py lines makes this the densest routing update
-- INTENT_BOOSTERS likely has git-specific keywords: "commit", "push", "branch", "merge", etc.
+### Verification Scope
+- Historical text in `.opencode/specs/**` and `.opencode/changelog/**` is intentionally excluded from active-file acceptance scans.
 <!-- /ANCHOR:edge-cases -->
 
 ---
@@ -175,9 +191,9 @@ Rename `workflows-git` to `sk-git` across all references, executing last as the 
 | Dimension | Score | Notes |
 |-----------|-------|-------|
 | Scope | 15/25 | 20 internal + 39 external |
-| Risk | 12/25 | High skill_advisor density (28 lines) |
-| Research | 18/20 | All references cataloged |
-| **Total** | **45/70** | **Level 2 — Medium-High** |
+| Risk | 12/25 | Highest `skill_advisor.py` density in rename set |
+| Research | 18/20 | Reference set fully enumerated and verified |
+| **Total** | **45/70** | **Level 2 - Medium-High** |
 <!-- /ANCHOR:complexity -->
 
 ---

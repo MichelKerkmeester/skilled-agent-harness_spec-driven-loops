@@ -1,6 +1,6 @@
 <!-- SPECKIT_TEMPLATE_SOURCE: legacy-normalized | v2.2 -->
 
-# Tasks: workflows-documentation Skill Functional Testing
+# Tasks: sk-documentation Skill Functional Testing
 
 <!-- ANCHOR:notation -->
 ## Task Notation
@@ -60,11 +60,11 @@
 <!-- ANCHOR:phase-4 -->
 ## US4: Skill Invocation
 
-- [x] TSK-010: Verify SKILL.md name is "workflows-documentation"
-  - Verified: Line 2 contains `name: workflows-documentation`
+- [x] TSK-010: Verify SKILL.md name is "sk-documentation"
+  - Verified: Line 2 contains `name: sk-documentation`
 
-- [x] TSK-011: Verify keywords include "workflows-documentation"
-  - Verified: Line 8 keywords include `workflows-documentation`
+- [x] TSK-011: Verify keywords include "sk-documentation"
+  - Verified: Line 8 keywords include `sk-documentation`
 
 <!-- /ANCHOR:phase-4 -->
 

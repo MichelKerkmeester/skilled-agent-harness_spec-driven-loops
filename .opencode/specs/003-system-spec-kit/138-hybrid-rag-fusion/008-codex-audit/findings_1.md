@@ -4,7 +4,7 @@ Generated: 2026-02-21
 
 ## Skill Routing
 
-- `workflows-code--opencode` (confidence `0.95`, uncertainty `0.35`)
+- `sk-code--opencode` (confidence `0.95`, uncertainty `0.35`)
 
 ## Delegated Audit (5 Parallel Codex Agents)
 
@@ -12,7 +12,7 @@ Generated: 2026-02-21
 - Spec 138 feature/default/test mapping
 - Spec 139 phase-system mapping
 - Test coverage matrix across `system-spec-kit` + `mcp_server`
-- Script location + `workflows-code--opencode` alignment scan
+- Script location + `sk-code--opencode` alignment scan
 
 ## Scope
 
@@ -68,12 +68,12 @@ Generated: 2026-02-21
      - `.opencode/skill/system-spec-kit/scripts/spec/test-validation.sh`
      - `.opencode/skill/system-spec-kit/scripts/spec/README.md`
 
-7. `workflows-code--opencode` alignment fixes
-   - visual-explainer scripts now use canonical env-based shebang
+7. `sk-code--opencode` alignment fixes
+   - sk-visual-explainer scripts now use canonical env-based shebang
    - mcp-code-mode entrypoint cleaned up for dead imports + clearer module header
    - Files:
-     - `.opencode/skill/workflows-visual-explainer/scripts/validate-html-output.sh`
-     - `.opencode/skill/workflows-visual-explainer/scripts/cleanup-output.sh`
+     - `.opencode/skill/sk-visual-explainer/scripts/validate-html-output.sh`
+     - `.opencode/skill/sk-visual-explainer/scripts/cleanup-output.sh`
      - `.opencode/skill/mcp-code-mode/mcp_server/index.ts`
 
 8. Python test import path reliability

@@ -31,7 +31,7 @@ Restructured all three orchestrate.md variants from 27 scattered sections into 1
 
 ### Phase 3: Semantic Emoji Alignment
 
-Added 7 semantic emojis aligned with context.md and workflows-documentation conventions:
+Added 7 semantic emojis aligned with context.md and sk-documentation conventions:
 - `#### ✅ Legal Nesting Chains` / `#### ❌ Illegal Nesting Chains`
 - `### 🔒 Agent Loading Protocol (MANDATORY)` / `#### 🔒 LEAF Enforcement Instruction` / `#### 🔒 DISPATCHER Enforcement Instruction`
 - `### 🔒 Review Checklist (MANDATORY)` / `### ❌ Rejection Criteria`

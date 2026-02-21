@@ -66,7 +66,7 @@
 ### External References - Other Skills
 - [x] P1: workflows-memory/SKILL.md - 1 reference updated - Agent 3.8: 1 replacement
 - [x] P1: workflows-memory/references/* - 7 references updated - Agent 3.8: 7 replacements (spec_folder_detection: 3, others: 4)
-- [x] P1: workflows-documentation files - 3 references updated - Agent 3.8: 3 replacements
+- [x] P1: sk-documentation files - 3 references updated - Agent 3.8: 3 replacements
 - [x] P1: cli-codex/SKILL.md - 1 reference updated - Agent 3.8: 1 replacement
 - [x] P1: cli-gemini/SKILL.md - 1 reference updated - Agent 3.8: 1 replacement
 

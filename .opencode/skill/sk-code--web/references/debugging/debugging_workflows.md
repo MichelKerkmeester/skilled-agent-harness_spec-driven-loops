@@ -1379,7 +1379,7 @@ bdg stop 2>&1
 - Assume `stopPropagation()` alone will block Lenis
 - Forget to restart Lenis after modal/overlay closes
 
-**See also:** `.opencode/skill/workflows-code/assets/integrations/lenis_patterns.js` for complete Lenis integration patterns
+**See also:** `.opencode/skill/sk-code--web/assets/integrations/lenis_patterns.js` for complete Lenis integration patterns
 
 ---
 

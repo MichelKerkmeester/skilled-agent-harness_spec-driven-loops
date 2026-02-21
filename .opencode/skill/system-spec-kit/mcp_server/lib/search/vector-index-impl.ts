@@ -316,7 +316,8 @@ function resolve_database_path() {
 // v13: Add document_type and spec_level columns for full spec folder document indexing (Spec 126)
 // v14: Add content_text column + FTS5 rebuild for BM25 full-text search across restarts
 // v15: Add quality_score and quality_flags columns for memory quality gates
-const SCHEMA_VERSION = 15;
+// v16: Add parent_id column for chunked indexing of large files (010-index-large-files)
+const SCHEMA_VERSION = 16;
 
 /* ─────────────────────────────────────────────────────────────
    2. SECURITY HELPERS
@@ -1039,6 +1040,51 @@ function run_migrations(database: Database.Database, from_version: number, to_ve
       } catch (e: unknown) {
         console.warn('[VectorIndex] Migration v15 warning (idx_quality_score):', get_error_message(e));
       }
+    },
+
+    16: () => {
+      // v15 -> v16: Add parent_id column for chunked indexing of large files (010-index-large-files)
+      // When a file exceeds the size threshold (~50K chars), it is split into chunks.
+      // A parent record holds metadata (no embedding), children hold chunk embeddings.
+      // parent_id is NULL for standalone memories and parent records,
+      // set to the parent's id for chunk children.
+      try {
+        database.exec('ALTER TABLE memory_index ADD COLUMN parent_id INTEGER REFERENCES memory_index(id) ON DELETE CASCADE');
+        logger.info('Migration v16: Added parent_id column for chunked indexing');
+      } catch (e: unknown) {
+        if (!get_error_message(e).includes('duplicate column')) {
+          console.warn('[VectorIndex] Migration v16 warning (parent_id):', get_error_message(e));
+        }
+      }
+
+      // Add chunk_index for ordering chunks within a parent
+      try {
+        database.exec('ALTER TABLE memory_index ADD COLUMN chunk_index INTEGER');
+        logger.info('Migration v16: Added chunk_index column');
+      } catch (e: unknown) {
+        if (!get_error_message(e).includes('duplicate column')) {
+          console.warn('[VectorIndex] Migration v16 warning (chunk_index):', get_error_message(e));
+        }
+      }
+
+      // Add chunk_label for human-readable chunk identification (e.g. anchor IDs)
+      try {
+        database.exec('ALTER TABLE memory_index ADD COLUMN chunk_label TEXT');
+        logger.info('Migration v16: Added chunk_label column');
+      } catch (e: unknown) {
+        if (!get_error_message(e).includes('duplicate column')) {
+          console.warn('[VectorIndex] Migration v16 warning (chunk_label):', get_error_message(e));
+        }
+      }
+
+      // Create indexes for parent-child queries
+      try {
+        database.exec('CREATE INDEX IF NOT EXISTS idx_parent_id ON memory_index(parent_id)');
+        database.exec('CREATE INDEX IF NOT EXISTS idx_parent_chunk ON memory_index(parent_id, chunk_index)');
+        logger.info('Migration v16: Created parent_id indexes');
+      } catch (e: unknown) {
+        console.warn('[VectorIndex] Migration v16 warning (indexes):', get_error_message(e));
+      }
     }
   };
 
@@ -1541,6 +1587,9 @@ function create_schema(database: Database.Database) {
       content_text TEXT,
       quality_score REAL DEFAULT 0,
       quality_flags TEXT,
+      parent_id INTEGER REFERENCES memory_index(id) ON DELETE CASCADE,
+      chunk_index INTEGER,
+      chunk_label TEXT,
       UNIQUE(spec_folder, file_path, anchor_id)
     )
   `);

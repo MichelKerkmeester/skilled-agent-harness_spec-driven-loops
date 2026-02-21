@@ -1,5 +1,5 @@
 ---
-description: "Common commands, CDN version workflow, deployment steps, external documentation links, and related skills"
+description: "Common commands, CDN/version workflow, CSS/layout/animation and API/network debugging references, accessibility audit cues, and related skills"
 ---
 # Quick Reference
 
@@ -81,3 +81,6 @@ grep -n "v=" src/html/global.html | head -5
 - [[when-to-use]] - When to activate this skill
 - [[how-it-works]] - Full development lifecycle
 - [[success-criteria]] - Performance targets and completion gates
+- [Language Detection](../../sk-code--opencode/nodes/language-detection.md) - Route config and TypeScript/Python requests
+- [Validation Workflow](../../system-spec-kit/nodes/validation-workflow.md) - Spec validation, quality, and completion checks
+- [Document Quality Mode](../../sk-documentation/nodes/mode-document-quality.md) - DQI and markdown quality enforcement

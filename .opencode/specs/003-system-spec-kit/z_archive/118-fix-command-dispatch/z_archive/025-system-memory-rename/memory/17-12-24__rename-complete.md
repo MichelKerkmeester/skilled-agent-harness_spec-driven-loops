@@ -164,7 +164,7 @@ Successfully renamed the `workflows-memory` skill to `system-memory` to align wi
 - All memory commands (save, search, checkpoint)
 - SpecKit command YAMLs (8 files)
 - Create command YAMLs (5 files)
-- Other skills (cli-codex, cli-gemini, workflows-documentation, system-spec-kit)
+- Other skills (cli-codex, cli-gemini, sk-documentation, system-spec-kit)
 - Orchestrator agent
 
 ## Remediation

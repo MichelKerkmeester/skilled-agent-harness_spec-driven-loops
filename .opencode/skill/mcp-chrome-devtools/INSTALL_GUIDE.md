@@ -1,35 +1,11 @@
 # Chrome DevTools Installation Guide
 
+Complete installation and configuration guide for Chrome DevTools browser debugging, providing AI assistants with browser control through two approaches. The CLI tool (bdg) offers direct, fast, token-efficient browser debugging. The MCP fallback runs through Code Mode for multi-tool orchestration and parallel browser testing. Covers screenshot capture, DOM inspection, console evaluation, network monitoring and performance profiling.
+
 > **Part of OpenCode Installation.** See the [Master Installation Guide](../README.md) for complete setup.
 > **Package:** `browser-debugger-cli@alpha` | **Dependencies:** Node.js 18+, Chrome/Chromium
 
 **Version:** 2.1.0 | **Updated:** 2026-02-20 | **Protocol:** Chrome DevTools Protocol (CDP)
-
----
-
-## Version History
-
-| Version | Date       | Changes                                                   |
-| ------- | ---------- | --------------------------------------------------------- |
-| 2.1.0   | 2026-02-20 | HVR compliance rewrite, formal checkpoints, STOP blocks   |
-| 2.0.0   | 2025-10-01 | Two-approach architecture, MCP fallback, security section |
-| 1.0.0   | 2025-06-01 | Initial CLI guide                                         |
-
----
-
-## Table of Contents
-
-0. [AI-First Install Guide](#0-ai-first-install-guide)
-1. [Overview](#1-overview)
-2. [Prerequisites](#2-prerequisites)
-3. [Installation](#3-installation)
-4. [Configuration](#4-configuration)
-5. [Verification](#5-verification)
-6. [Usage](#6-usage)
-7. [Features](#7-features)
-8. [Examples](#8-examples)
-9. [Troubleshooting](#9-troubleshooting)
-10. [Resources](#10-resources)
 
 ---
 
@@ -71,6 +47,22 @@ After installation, run these two tests immediately:
 4. Screenshot captured: full system is working
 
 Not working? Go to [Troubleshooting](#9-troubleshooting).
+
+---
+
+## Table of Contents
+
+0. [AI-First Install Guide](#0-ai-first-install-guide)
+1. [Overview](#1-overview)
+2. [Prerequisites](#2-prerequisites)
+3. [Installation](#3-installation)
+4. [Configuration](#4-configuration)
+5. [Verification](#5-verification)
+6. [Usage](#6-usage)
+7. [Features](#7-features)
+8. [Examples](#8-examples)
+9. [Troubleshooting](#9-troubleshooting)
+10. [Resources](#10-resources)
 
 ---
 
@@ -297,7 +289,7 @@ Run these checks to confirm prerequisites are met:
 | Version       | `bdg --version`          | `browser-debugger-cli@x.x.x` |
 | CDP domains   | `bdg --list \| head -5`  | `Page, DOM, Network...`      |
 
-STOP if any check fails. Fix the issue before continuing.
+❌ **STOP if validation fails.** Fix the issue before continuing.
 
 ### Validation: `phase_2_complete`
 
@@ -309,7 +301,7 @@ Confirm CLI installation is complete:
 | Screenshot     | `bdg screenshot /tmp/test.png 2>&1` | File created      |
 | Session stops  | `bdg stop 2>&1`                     | Clean exit        |
 
-STOP if validation fails. Review [Troubleshooting](#9-troubleshooting) before continuing.
+❌ **STOP if validation fails.** Review [Troubleshooting](#9-troubleshooting) before continuing.
 
 ---
 
@@ -414,7 +406,7 @@ console.log(tools.filter(t => t.includes('chrome_devtools')));
 | Tools registered | `list_tools()`          | chrome_devtools_* tools |
 | Server starts    | Navigate to a URL       | No connection errors    |
 
-STOP if validation fails. Review your UTCP config and restart your AI client session.
+❌ **STOP if validation fails.** Review your UTCP config and restart your AI client session.
 
 ### Security Considerations
 
@@ -526,7 +518,7 @@ Expected result: bdg commands execute and a screenshot is captured and displayed
 
 All 7 checklist items above pass with no errors.
 
-STOP if any item fails. The system is not ready for use until all checks pass.
+❌ **STOP if validation fails.** The system is not ready for use until all checks pass.
 
 ### Validation: `phase_5_complete`
 
@@ -1072,6 +1064,16 @@ export CHROME_PATH="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome
 | `phase_3_complete`  | Configuration complete               |
 | `phase_4_complete`  | Verification complete                |
 | `phase_5_complete`  | System operational                   |
+
+---
+
+## Version History
+
+| Version | Date       | Changes                                                   |
+| ------- | ---------- | --------------------------------------------------------- |
+| 2.1.0   | 2026-02-20 | HVR compliance rewrite, formal checkpoints, STOP blocks   |
+| 2.0.0   | 2025-10-01 | Two-approach architecture, MCP fallback, security section |
+| 1.0.0   | 2025-06-01 | Initial CLI guide                                         |
 
 ---
 

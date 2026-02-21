@@ -160,7 +160,7 @@ The mission spans multiple languages and script-heavy operational surfaces. Full
 
 ### Context
 
-The mission treats `.opencode/skill/workflows-code--opencode` as the normative standard source. However, some runtime constraints may reveal cases where literal rule application is unsafe or incorrect. Updating standards without strong evidence risks policy churn and inconsistent guidance.
+The mission treats `.opencode/skill/sk-code--opencode` as the normative standard source. However, some runtime constraints may reveal cases where literal rule application is unsafe or incorrect. Updating standards without strong evidence risks policy churn and inconsistent guidance.
 
 ### Constraints
 - Standards updates are allowed only when mismatch evidence is concrete and reproducible.

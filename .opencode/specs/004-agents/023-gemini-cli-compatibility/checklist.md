@@ -53,7 +53,7 @@
 <!-- ANCHOR:skill-symlinks -->
 ## Skill Symlinks (Phase 3)
 
-- [ ] CHK-030 [P0] 9 skill symlinks created in `.gemini/skills/` (mcp-code-mode, mcp-figma, system-spec-kit, mcp-chrome-devtools, sk-code--full-stack, workflows-code--opencode, workflows-code--web-dev, workflows-documentation, workflows-git)
+- [ ] CHK-030 [P0] 9 skill symlinks created in `.gemini/skills/` (mcp-code-mode, mcp-figma, system-spec-kit, mcp-chrome-devtools, sk-code--full-stack, sk-code--opencode, workflows-code--web-dev, sk-documentation, sk-git)
 - [ ] CHK-031 [P0] All skill symlinks resolve correctly — no broken links (`find .gemini/skills -type l -exec test -e {} \;`)
 - [ ] CHK-032 [P1] `scripts/` directory symlinked at `.gemini/skills/scripts`
 <!-- /ANCHOR:skill-symlinks -->

@@ -8,7 +8,7 @@
 <!-- ANCHOR:executive-summary -->
 ## EXECUTIVE SUMMARY
 
-Reverse-engineer the open-source `nicobailon/visual-explainer` GitHub repo (v0.1.1, MIT license) into a full OpenCode skill called `workflows-visual-explainer`. The skill transforms complex technical concepts into production-quality HTML visual explainers with diagrams, data tables, and styled layouts using a Skill Graph architecture (10 nodes, 5 commands, 3 HTML templates).
+Reverse-engineer the open-source `nicobailon/visual-explainer` GitHub repo (v0.1.1, MIT license) into a full OpenCode skill called `sk-visual-explainer`. The skill transforms complex technical concepts into production-quality HTML visual explainers with diagrams, data tables, and styled layouts using a Skill Graph architecture (10 nodes, 5 commands, 3 HTML templates).
 
 **Key Decisions**: Skill Graph architecture over monolithic SKILL.md; `workflows-` prefix following process-oriented skill conventions; progressive disclosure via 3-tier loading (ALWAYS/CONDITIONAL/ON_DEMAND)
 
@@ -65,28 +65,28 @@ Transform the external visual-explainer repo into a fully integrated OpenCode sk
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skill/workflows-visual-explainer/SKILL.md` | Create | Lean router entrypoint (~1,683 words) |
-| `.opencode/skill/workflows-visual-explainer/index.md` | Create | Skill Graph MOC with 4 groups, 10 wikilinks |
-| `.opencode/skill/workflows-visual-explainer/nodes/when-to-use.md` | Create | 5 command overview, decision matrix |
-| `.opencode/skill/workflows-visual-explainer/nodes/rules.md` | Create | 9 ALWAYS, 7 NEVER, 4 ESCALATE IF rules |
-| `.opencode/skill/workflows-visual-explainer/nodes/success-criteria.md` | Create | 9 quality checks |
-| `.opencode/skill/workflows-visual-explainer/nodes/how-it-works.md` | Create | 4-phase workflow (Think > Structure > Style > Deliver) |
-| `.opencode/skill/workflows-visual-explainer/nodes/smart-routing.md` | Create | Python pseudocode for intent classification |
-| `.opencode/skill/workflows-visual-explainer/nodes/commands.md` | Create | Full contracts for 5 commands |
-| `.opencode/skill/workflows-visual-explainer/nodes/diagram-types.md` | Create | 11 types with decision tree |
-| `.opencode/skill/workflows-visual-explainer/nodes/aesthetics.md` | Create | 9 profiles, CSS variables, 11x9 compatibility matrix |
-| `.opencode/skill/workflows-visual-explainer/nodes/integration-points.md` | Create | CDN libraries, cross-skill integration |
-| `.opencode/skill/workflows-visual-explainer/nodes/related-resources.md` | Create | Master index |
-| `.opencode/skill/workflows-visual-explainer/references/quick_reference.md` | Create | ALWAYS-loaded cheat sheet |
-| `.opencode/skill/workflows-visual-explainer/references/css_patterns.md` | Create | CONDITIONAL CSS pattern library (~15KB) |
-| `.opencode/skill/workflows-visual-explainer/references/library_guide.md` | Create | ON_DEMAND library guide (~16KB) |
-| `.opencode/skill/workflows-visual-explainer/references/navigation_patterns.md` | Create | CONDITIONAL nav patterns |
-| `.opencode/skill/workflows-visual-explainer/references/quality_checklist.md` | Create | ON_DEMAND verification checklist |
-| `.opencode/skill/workflows-visual-explainer/assets/templates/architecture.html` | Create | Terracotta/sage template (~17KB) |
-| `.opencode/skill/workflows-visual-explainer/assets/templates/mermaid-flowchart.html` | Create | Teal/cyan Mermaid template (~13KB) |
-| `.opencode/skill/workflows-visual-explainer/assets/templates/data-table.html` | Create | Rose/cranberry data table template (~16KB) |
-| `.opencode/skill/workflows-visual-explainer/scripts/validate-html-output.sh` | Create | 10-check static HTML validator |
-| `.opencode/skill/workflows-visual-explainer/scripts/cleanup-output.sh` | Create | Output directory maintenance |
+| `.opencode/skill/sk-visual-explainer/SKILL.md` | Create | Lean router entrypoint (~1,683 words) |
+| `.opencode/skill/sk-visual-explainer/index.md` | Create | Skill Graph MOC with 4 groups, 10 wikilinks |
+| `.opencode/skill/sk-visual-explainer/nodes/when-to-use.md` | Create | 5 command overview, decision matrix |
+| `.opencode/skill/sk-visual-explainer/nodes/rules.md` | Create | 9 ALWAYS, 7 NEVER, 4 ESCALATE IF rules |
+| `.opencode/skill/sk-visual-explainer/nodes/success-criteria.md` | Create | 9 quality checks |
+| `.opencode/skill/sk-visual-explainer/nodes/how-it-works.md` | Create | 4-phase workflow (Think > Structure > Style > Deliver) |
+| `.opencode/skill/sk-visual-explainer/nodes/smart-routing.md` | Create | Python pseudocode for intent classification |
+| `.opencode/skill/sk-visual-explainer/nodes/commands.md` | Create | Full contracts for 5 commands |
+| `.opencode/skill/sk-visual-explainer/nodes/diagram-types.md` | Create | 11 types with decision tree |
+| `.opencode/skill/sk-visual-explainer/nodes/aesthetics.md` | Create | 9 profiles, CSS variables, 11x9 compatibility matrix |
+| `.opencode/skill/sk-visual-explainer/nodes/integration-points.md` | Create | CDN libraries, cross-skill integration |
+| `.opencode/skill/sk-visual-explainer/nodes/related-resources.md` | Create | Master index |
+| `.opencode/skill/sk-visual-explainer/references/quick_reference.md` | Create | ALWAYS-loaded cheat sheet |
+| `.opencode/skill/sk-visual-explainer/references/css_patterns.md` | Create | CONDITIONAL CSS pattern library (~15KB) |
+| `.opencode/skill/sk-visual-explainer/references/library_guide.md` | Create | ON_DEMAND library guide (~16KB) |
+| `.opencode/skill/sk-visual-explainer/references/navigation_patterns.md` | Create | CONDITIONAL nav patterns |
+| `.opencode/skill/sk-visual-explainer/references/quality_checklist.md` | Create | ON_DEMAND verification checklist |
+| `.opencode/skill/sk-visual-explainer/assets/templates/architecture.html` | Create | Terracotta/sage template (~17KB) |
+| `.opencode/skill/sk-visual-explainer/assets/templates/mermaid-flowchart.html` | Create | Teal/cyan Mermaid template (~13KB) |
+| `.opencode/skill/sk-visual-explainer/assets/templates/data-table.html` | Create | Rose/cranberry data table template (~16KB) |
+| `.opencode/skill/sk-visual-explainer/scripts/validate-html-output.sh` | Create | 10-check static HTML validator |
+| `.opencode/skill/sk-visual-explainer/scripts/cleanup-output.sh` | Create | Output directory maintenance |
 | `.opencode/command/visual-explainer/generate.md` | Create | Generate command definition |
 | `.opencode/command/visual-explainer/diff-review.md` | Create | Diff review command definition |
 | `.opencode/command/visual-explainer/plan-review.md` | Create | Plan review command definition |
@@ -106,7 +106,7 @@ Transform the external visual-explainer repo into a fully integrated OpenCode sk
 |----|-------------|---------------------|
 | REQ-001 | SKILL.md lean router under 5,000-word limit | Word count verified < 5,000 (actual: 1,683) |
 | REQ-002 | Skill Graph with index.md MOC and 10 node files | All 10 wikilinks in index.md resolve to existing files |
-| REQ-003 | skill_advisor.py routes to workflows-visual-explainer at >= 0.90 confidence | Tested: 0.95 confidence for "create visual explainer" |
+| REQ-003 | skill_advisor.py routes to sk-visual-explainer at >= 0.90 confidence | Tested: 0.95 confidence for "create visual explainer" |
 | REQ-004 | package_skill.py validation passes | PASS with at most non-blocking warnings |
 | REQ-005 | 5 slash commands registered in `.opencode/command/visual-explainer/` | All 5 command .md files exist and follow command template |
 
@@ -218,10 +218,10 @@ Transform the external visual-explainer repo into a fully integrated OpenCode sk
 
 ### US-001: Discover Visual Explainer via Skill Routing (Priority: P0)
 
-**As a** user asking an AI agent to create a diagram or visual explanation, **I want** the skill_advisor.py to automatically route to workflows-visual-explainer, **so that** I get the specialized visual explanation workflow without knowing the skill name.
+**As a** user asking an AI agent to create a diagram or visual explanation, **I want** the skill_advisor.py to automatically route to sk-visual-explainer, **so that** I get the specialized visual explanation workflow without knowing the skill name.
 
 **Acceptance Criteria**:
-1. Given a query "create a visual explainer for my API architecture", When skill_advisor.py processes it, Then it returns workflows-visual-explainer with >= 0.90 confidence
+1. Given a query "create a visual explainer for my API architecture", When skill_advisor.py processes it, Then it returns sk-visual-explainer with >= 0.90 confidence
 
 ---
 
@@ -293,6 +293,6 @@ Transform the external visual-explainer repo into a fully integrated OpenCode sk
 
 <!--
 LEVEL 3 SPEC - Retroactive documentation
-Reverse-engineered workflows-visual-explainer skill
+Reverse-engineered sk-visual-explainer skill
 27 files created + 1 modified, ~2,500+ LOC
 -->

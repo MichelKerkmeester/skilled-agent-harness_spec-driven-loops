@@ -71,7 +71,7 @@
 |--------|----|------|--------------|---------------------|
 | [x] | T018 [C] | Detect and log standards-vs-runtime mismatches requiring WS-7 | T013 | Mismatch log includes concrete code evidence and why current guidance cannot be applied safely. Evidence: N/A - not triggered; no proven fundamental standards-vs-runtime mismatch requiring WS-7 updates. |
 | [x] | T019 [C] | Review mismatch evidence and decide reconcile path (`docs update` or `documented exception`) | T018 | Decision note exists per mismatch with rationale, impact, and approved safe path. Evidence: N/A - not triggered; no proven fundamental standards-vs-runtime mismatch requiring WS-7 updates. |
-| [x] | T020 [C] | Apply approved WS-7 updates to `.opencode/skill/workflows-code--opencode/**/*` | T019 | Updated standards text matches validated runtime constraints and remains consistent across related guidance. Evidence: N/A - not triggered; no proven fundamental standards-vs-runtime mismatch requiring WS-7 updates. |
+| [x] | T020 [C] | Apply approved WS-7 updates to `.opencode/skill/sk-code--opencode/**/*` | T019 | Updated standards text matches validated runtime constraints and remains consistent across related guidance. Evidence: N/A - not triggered; no proven fundamental standards-vs-runtime mismatch requiring WS-7 updates. |
 | [x] | T021 [C] | Re-verify affected streams after WS-7 updates | T020 | Impacted checks re-run successfully; reconciliation does not introduce behavior or policy conflicts. Evidence: N/A - not triggered; no proven fundamental standards-vs-runtime mismatch requiring WS-7 updates. |
 <!-- /ANCHOR:phase-4 -->
 

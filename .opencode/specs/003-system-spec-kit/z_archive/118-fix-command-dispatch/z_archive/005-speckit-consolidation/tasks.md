@@ -191,7 +191,7 @@ PROJECT_ROOT="$SCRIPT_DIR/../../../.."
 - [ ] `references/alignment_scoring.md` - verify Related Skills (4 refs)
 - [ ] `mcp_server/README.md` - verify any speckit refs (1 ref)
 
-### Task 4.8: Update workflows-documentation references
+### Task 4.8: Update sk-documentation references
 - [ ] `assets/command_template.md` - update template path (1 ref)
 
 ### Task 4.9: Verify cli-codex and cli-gemini

@@ -72,15 +72,15 @@
 - [ ] Update `.opencode/scripts/README.md`
 
 **Ring 5 - Cross-skill references:**
-- [ ] Update `.opencode/skill/workflows-code--opencode/SKILL.md`
+- [ ] Update `.opencode/skill/sk-code--opencode/SKILL.md`
 - [ ] Update `.opencode/skill/mcp-chrome-devtools/SKILL.md`
 - [ ] Update `.opencode/skill/mcp-chrome-devtools/examples/README.md`
 - [ ] Update `.opencode/skill/system-spec-kit/SKILL.md`
 - [ ] Update all system-spec-kit reference files that mention `workflows-code`
-- [ ] Update `.opencode/skill/workflows-documentation/assets/opencode/skill_md_template.md`
+- [ ] Update `.opencode/skill/sk-documentation/assets/opencode/skill_md_template.md`
 
 ### Phase 4: Verification
-- [ ] Run grep to verify no stale `workflows-code` references remain in active files (excluding `workflows-code--opencode`, `workflows-code--web-dev`, and `z_archive/`)
+- [ ] Run grep to verify no stale `workflows-code` references remain in active files (excluding `sk-code--opencode`, `workflows-code--web-dev`, and `z_archive/`)
 - [ ] Verify `skill_advisor.py` functions correctly with new name
 - [ ] Spot-check 3-5 updated files to confirm replacements are correct
 
@@ -118,8 +118,8 @@ When replacing references, use these rules to avoid false positives:
 |---------|-------------|-------|
 | `workflows-code/` (with trailing slash) | `workflows-code--web-dev/` | Directory paths |
 | `workflows-code` (standalone word, not followed by `--`) | `workflows-code--web-dev` | Name references |
-| `workflows-code--opencode` | DO NOT CHANGE | Different skill |
+| `sk-code--opencode` | DO NOT CHANGE | Different skill |
 
-**Key exclusion**: Any occurrence of `workflows-code--` (with double dash) is either `workflows-code--opencode` or the new `workflows-code--web-dev` and should not be double-replaced.
+**Key exclusion**: Any occurrence of `workflows-code--` (with double dash) is either `sk-code--opencode` or the new `workflows-code--web-dev` and should not be double-replaced.
 
 ---

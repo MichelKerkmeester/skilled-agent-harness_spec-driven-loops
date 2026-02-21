@@ -27,7 +27,7 @@ Resolved MCP server failure issues after system updates through comprehensive in
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/install_guides/MCP - Spec Kit Memory.md` | Rewritten | Complete rewrite using workflows-documentation skill to provide recovery-first troubleshooting guidance |
+| `.opencode/install_guides/MCP - Spec Kit Memory.md` | Rewritten | Complete rewrite using sk-documentation skill to provide recovery-first troubleshooting guidance |
 | `.opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md` | Modified | Canonical source backing the install guide with aligned content |
 | `.opencode/install_guides/install_scripts/install-spec-kit-memory.sh` | Modified | Aligned installer script with recovery-first flow and validation checks |
 
@@ -58,7 +58,7 @@ Resolved MCP server failure issues after system updates through comprehensive in
 
 | Decision | Rationale |
 |----------|-----------|
-| Complete install guide rewrite via workflows-documentation skill | Ensured consistent quality, proper structure, and comprehensive coverage rather than incremental patches |
+| Complete install guide rewrite via sk-documentation skill | Ensured consistent quality, proper structure, and comprehensive coverage rather than incremental patches |
 | Recovery-first approach over prevention | Users needed immediate solutions for existing failures; prevention can be addressed in future work |
 | Canonical DB path documentation | Clarified the authoritative database location (`mcp_server/dist/database/context-index.sqlite`) while noting compatibility symlink |
 | Fallback build awareness | Documented that builds may fallback to alternative strategies rather than fail hard, improving resilience |
@@ -78,7 +78,7 @@ Resolved MCP server failure issues after system updates through comprehensive in
 | Startup Smoke Test | ✅ Passed | `mcp_server/dist/context-server.js` starts without errors |
 | Installer End-to-End | ✅ Passed | Full installer script run completed successfully with all validation checks |
 | Database Path Validation | ✅ Passed | Canonical DB path `mcp_server/dist/database/context-index.sqlite` verified, compatibility symlink noted |
-| Documentation Quality | ✅ Passed | Install guide rewritten via workflows-documentation skill with recovery-first structure |
+| Documentation Quality | ✅ Passed | Install guide rewritten via sk-documentation skill with recovery-first structure |
 <!-- /ANCHOR:verification -->
 
 ---

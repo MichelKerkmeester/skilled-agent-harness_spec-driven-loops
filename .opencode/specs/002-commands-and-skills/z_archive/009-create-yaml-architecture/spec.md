@@ -8,11 +8,11 @@
 <!-- ANCHOR:executive-summary -->
 ## EXECUTIVE SUMMARY
 
-Architectural refactor of all 6 create commands (`.opencode/command/create/`) to align with the spec_kit YAML-first workflow pattern. The current create commands use an inverted workflow model where `.md` files contain inline workflows and YAML is supplementary, whereas spec_kit commands correctly use YAML as the primary workflow engine. This refactor standardizes the architecture, fixes broken auto mode, eliminates phantom dispatch vulnerabilities, and aligns with workflows-documentation standards.
+Architectural refactor of all 6 create commands (`.opencode/command/create/`) to align with the spec_kit YAML-first workflow pattern. The current create commands use an inverted workflow model where `.md` files contain inline workflows and YAML is supplementary, whereas spec_kit commands correctly use YAML as the primary workflow engine. This refactor standardizes the architecture, fixes broken auto mode, eliminates phantom dispatch vulnerabilities, and aligns with sk-documentation standards.
 
 **Key Decisions**: Golden reference strategy (refactor skill.md first, replicate to others), Keep setup phase in .md (complex setup stays pre-YAML), Dual YAML mode (auto + confirm)
 
-**Critical Dependencies**: Existing spec_kit commands as architectural reference, workflows-documentation skill for DQI enforcement
+**Critical Dependencies**: Existing spec_kit commands as architectural reference, sk-documentation skill for DQI enforcement
 
 <!-- /ANCHOR:executive-summary -->
 
@@ -54,7 +54,7 @@ Refactor all 6 create commands to use YAML-first architecture matching the spec_
 - Renaming 6 existing YAML files to `_confirm` variants
 - Creating 6 new `_auto` YAML variants (12 YAMLs total)
 - Adding missing structural sections to all YAMLs (circuit_breaker, workflow_enforcement, etc.)
-- Aligning with workflows-documentation standards (DQI enforcement, validate_document.py, canonical templates)
+- Aligning with sk-documentation standards (DQI enforcement, validate_document.py, canonical templates)
 - Fixing bugs: step count metadata, orphaned create_agent.yaml, missing auto mode support
 
 ### Out of Scope
@@ -137,7 +137,7 @@ Refactor all 6 create commands to use YAML-first architecture matching the spec_
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
 | Dependency | spec_kit commands as reference architecture | Pattern to replicate | Already implemented and stable |
-| Dependency | workflows-documentation skill | DQI templates and validate_document.py | Already available |
+| Dependency | sk-documentation skill | DQI templates and validate_document.py | Already available |
 | Risk | Regression in existing commands | High | Phase 1 bug fixes first; test each command after refactor |
 | Risk | agent.md complexity (670 lines inline) | Medium | Refactor skill.md first as golden reference; apply pattern |
 | Risk | Large scope (24-30 files) | Medium | 4-phase approach; session boundaries at phase completion |

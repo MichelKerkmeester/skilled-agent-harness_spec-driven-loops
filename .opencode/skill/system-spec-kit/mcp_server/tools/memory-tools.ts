@@ -15,6 +15,7 @@ import {
   handleMemoryDelete,
   handleMemoryUpdate,
   handleMemoryValidate,
+  handleMemoryBulkDelete,
 } from '../handlers';
 
 import {
@@ -22,6 +23,7 @@ import {
   SearchArgs, TriggerArgs, SaveArgs,
   ListArgs, StatsArgs, HealthArgs,
   DeleteArgs, UpdateArgs, MemoryValidateArgs,
+  BulkDeleteArgs,
 } from './types';
 
 /** Tool names handled by this module */
@@ -35,6 +37,7 @@ export const TOOL_NAMES = new Set([
   'memory_delete',
   'memory_update',
   'memory_validate',
+  'memory_bulk_delete',
 ]);
 
 /** Dispatch a tool call. Returns null if tool name not handled. */
@@ -49,6 +52,7 @@ export async function handleTool(name: string, args: Record<string, unknown>): P
     case 'memory_delete':         return handleMemoryDelete(parseArgs<DeleteArgs>(args));
     case 'memory_update':         return handleMemoryUpdate(parseArgs<UpdateArgs>(args));
     case 'memory_validate':       return handleMemoryValidate(parseArgs<MemoryValidateArgs>(args));
+    case 'memory_bulk_delete':    return handleMemoryBulkDelete(parseArgs<BulkDeleteArgs>(args));
     default: return null;
   }
 }

@@ -34,7 +34,7 @@
 - [x] CHK-011 [P0] All modified YAML files have valid syntax/indentation [EVIDENCE: 6 YAML files edited with matching indentation; agents verified structure]
 - [x] CHK-012 [P0] Auto/confirm YAML pairs contain identical content changes [EVIDENCE: Agent confirmed identical changes for skill, skill_reference, skill_asset auto/confirm pairs]
 - [x] CHK-013 [P1] Graph-mode detection logic is clear and documented [EVIDENCE: All commands use `ls [skill_path]/index.md` detection with if/else branching]
-- [x] CHK-014 [P1] Feature flag defaults match actual implementation (all 3 default to ENABLED) [EVIDENCE: SKILL.md:580-582 shows all 3 flags with `on` default matching graph-flags.ts]
+- [x] CHK-014 [P1] Feature flag defaults match actual implementation (all 3 default to ENABLED) [EVIDENCE: SKILL.md:578-580 shows all 3 flags with `on` default matching graph-flags.ts]
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -47,7 +47,7 @@
 - [x] CHK-022 [P0] `/create:skill_asset` detects graph-mode + graph node type (REQ-003) [EVIDENCE: skill_asset.md Step 5 + option E) Graph Node added; both YAMLs updated with graph_node type]
 - [x] CHK-023 [P0] `/memory:context` has graph weight dimension (REQ-004) [EVIDENCE: context.md intent table extended with Graph Weight and Graph Causal Bias columns]
 - [x] CHK-024 [P0] `/memory:manage` has SPECKIT_GRAPH_* flags (REQ-005) [EVIDENCE: manage.md Sections 6/7/14 updated with graph flags, stats, and health info]
-- [x] CHK-025 [P0] `SKILL.md` flag table has all 3 graph flags (REQ-006) [EVIDENCE: SKILL.md:580-582 — SPECKIT_GRAPH_UNIFIED, SPECKIT_GRAPH_MMR, SPECKIT_GRAPH_AUTHORITY]
+- [x] CHK-025 [P0] `SKILL.md` flag table has all 3 graph flags (REQ-006) [EVIDENCE: SKILL.md:578-580 — SPECKIT_GRAPH_UNIFIED, SPECKIT_GRAPH_MMR, SPECKIT_GRAPH_AUTHORITY]
 - [x] CHK-026 [P1] `/memory:continue` reflects 3-channel fusion (REQ-007) [EVIDENCE: continue.md adaptive fusion note updated to 3-channel (vector + BM25 + graph)]
 - [x] CHK-027 [P1] `/memory:learn` reflects graph in consolidation (REQ-008) [EVIDENCE: learn.md consolidation pipeline note extended with graph channel dedup]
 - [x] CHK-028 [P1] All YAML auto/confirm pairs match (REQ-009) [EVIDENCE: Agent verified identical content changes across all 3 auto/confirm pairs]
@@ -59,7 +59,7 @@
 ## Documentation
 
 - [x] CHK-040 [P1] Spec/plan/tasks synchronized [EVIDENCE: All 4 spec files exist and reference same 16 tasks, 14 files]
-- [x] CHK-041 [P2] implementation-summary.md created at completion [EVIDENCE: Pending Step 12]
+- [x] CHK-041 [P2] implementation-summary.md created at completion [EVIDENCE: implementation-summary.md exists (121 lines, all sections populated)]
 <!-- /ANCHOR:docs -->
 
 ---
@@ -69,7 +69,7 @@
 
 - [x] CHK-050 [P1] Temp files in scratch/ only [EVIDENCE: No temp files created outside scratch/]
 - [x] CHK-051 [P1] scratch/ cleaned before completion [EVIDENCE: scratch/ directory is empty]
-- [ ] CHK-052 [P2] Findings saved to memory/ [EVIDENCE: Pending Step 13]
+- [x] CHK-052 [P2] Findings saved to memory/ [EVIDENCE: memory/ contains 2 context files (21-18 + 21-58) + metadata.json, all generated via generate-context.js with v2.2 headers]
 <!-- /ANCHOR:file-org -->
 
 ---
@@ -81,7 +81,7 @@
 |----------|-------|----------|
 | P0 Items | 8 | 8/8 |
 | P1 Items | 7 | 7/7 |
-| P2 Items | 2 | 1/2 |
+| P2 Items | 2 | 2/2 |
 
 **Verification Date**: 2026-02-20
 <!-- /ANCHOR:summary -->

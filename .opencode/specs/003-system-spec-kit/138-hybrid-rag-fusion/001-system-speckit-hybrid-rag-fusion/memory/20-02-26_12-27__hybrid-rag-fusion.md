@@ -132,7 +132,7 @@ Next: Continue implementation
 
 **Key Context to Review:**
 
-- Files modified: .opencode/.../references/skill_creation.md, .opencode/skill/workflows-documentation/SKILL.md, .opencode/.../nodes/mode-component-creation.md
+- Files modified: .opencode/.../references/skill_creation.md, .opencode/skill/sk-documentation/SKILL.md, .opencode/.../nodes/mode-component-creation.md
 
 - Last: Trimmed 373 lines of redundant content from skill_creation.md (1,387 to 1,014 li
 
@@ -171,7 +171,7 @@ Next: Continue implementation
 
 - `.opencode/.../references/skill_creation.md` - Documentation
 
-- `.opencode/skill/workflows-documentation/SKILL.md` - Documentation
+- `.opencode/skill/sk-documentation/SKILL.md` - Documentation
 
 - `.opencode/.../nodes/mode-component-creation.md` - Documentation
 
@@ -217,7 +217,7 @@ Trimmed 373 lines of redundant content from skill_creation.md (1,387 to 1,014 li
 | **File** | **Description** |
 |:---------|:----------------|
 | `.opencode/.../references/skill_creation.md` | One-line summaries |
-| `.opencode/skill/workflows-documentation/SKILL.md` | Mode-component-creation |
+| `.opencode/skill/sk-documentation/SKILL.md` | Mode-component-creation |
 | `.opencode/.../nodes/mode-component-creation.md` | Updated mode component creation |
 | `.opencode/.../opencode/skill_md_template.md` | Updated skill md template |
 | `.opencode/.../037-trim-skill-creation-bloat/implementation-summary.md` | File modified (description pending) |
@@ -236,7 +236,7 @@ Trimmed 373 lines of redundant content from skill_creation.md (1,387 to 1,014 li
 
 Trimmed 373 lines of redundant content from skill_creation.md (1,387 to 1,014 lines, 27% reduction). Removed three entirely redundant sections (Quick Reference, Script Usage, Writing Best Practices), replaced two template dumps with one-line summaries, removed duplicate 'Use cases' sub-lists, fixed an empty Section 2 gap, renumbered all sections sequentially (1-10), and updated external references in SKILL.md, mode-component-creation.md and skill_md_template.md. Created a detailed HVR-compliant implementation summary documenting all changes, decisions and verification results.
 
-**Details:** skill_creation.md | trim bloat | redundant sections | section renumbering | Section 13 to Section 9 | Quick Reference removal | Script Usage removal | Writing Best Practices removal | template dump trimming | workflows-documentation references | HVR compliance | implementation summary
+**Details:** skill_creation.md | trim bloat | redundant sections | section renumbering | Section 13 to Section 9 | Quick Reference removal | Script Usage removal | Writing Best Practices removal | template dump trimming | sk-documentation references | HVR compliance | implementation summary
 <!-- /ANCHOR:implementation-trimmed-373-lines-redundant-33843d5f -->
 
 <!-- ANCHOR:implementation-technical-implementation-details-5a5adf02 -->
@@ -1254,7 +1254,7 @@ trigger_phrases:
   - "swiftui patterns"
   - "a comprehensive guide to swiftui view composition, state management, navigation patterns, custom modifiers, and modern ios 17+ swiftui features for building production-ready ios applications."
   - "a comprehensive guide to testing swift and swiftui applications including xctest fundamentals, unit testing viewmodels, ui testing with xcuitest, mocking and stubbing patterns, test doubles, and snapshot testing."
-  - "workflows-code--opencode"
+  - "sk-code--opencode"
   - "opencode"
   - "multi-language code standards for opencode system code (javascript, typescript, python, shell, json/jsonc) with language detection routing, universal patterns and quality checklists"
   - "code standards - opencode system code"
@@ -1431,7 +1431,7 @@ trigger_phrases:
   - "verification_workflows"
   - "verification workflows - phase 3 (mandatory)"
   - "browser verification requirements for all completion claims - no exceptions."
-  - "workflows-documentation"
+  - "sk-documentation"
   - "documentation"
   - "unified markdown and opencode component specialist providing document quality enforcement, content optimization, component creation workflows, ascii flowcharts and install guides"
   - "documentation creation specialist - unified markdown & component management"
@@ -1517,7 +1517,7 @@ trigger_phrases:
   - "quality gates, dqi scoring, and improvement recommendations for markdown documentation."
   - "document quality workflows - mode 1 reference"
   - "execution modes, validation patterns, and phase interactions for mode 1 document quality workflows."
-  - "workflows-git"
+  - "sk-git"
   - "git"
   - "git workflow orchestrator guiding developers through workspace setup, clean commits, and work completion across git-worktrees, git-commit, and git-finish skills"
   - "git workflows - git development orchestrator"
@@ -1541,7 +1541,7 @@ trigger_phrases:
   - "always/never/escalate rules governing git workflow behavior"
   - "intent routing logic with weighted scoring, resource loading levels, and disambiguation"
   - "completion gates and quality checks for workspace setup, commits, and integration"
-  - "activation triggers, use cases, and when not to use the workflows-git skill"
+  - "activation triggers, use cases, and when not to use the sk-git skill"
   - "work-completion"
   - "work completion"
   - "pr creation, branch cleanup, merge strategies, and finish workflow"
@@ -1583,8 +1583,8 @@ trigger_phrases:
   - "references/memory/memory_system.md"
   - "references/validation/validation_rules.md"
   - "references/validation/five-checks.md"
-  - "../workflows-code--opencode/skill.md"
-  - "../workflows-documentation/skill.md"
+  - "../sk-code--opencode/skill.md"
+  - "../sk-documentation/skill.md"
   - "level_specifications.md"
   - "template_guide.md"
   - "save_workflow.md"
@@ -1684,7 +1684,7 @@ trigger_phrases:
 
 key_files:
   - ".opencode/.../references/skill_creation.md"
-  - ".opencode/skill/workflows-documentation/SKILL.md"
+  - ".opencode/skill/sk-documentation/SKILL.md"
   - ".opencode/.../nodes/mode-component-creation.md"
   - ".opencode/.../opencode/skill_md_template.md"
   - ".opencode/.../037-trim-skill-creation-bloat/implementation-summary.md"

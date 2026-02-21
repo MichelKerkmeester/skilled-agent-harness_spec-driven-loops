@@ -179,7 +179,7 @@ _Implementation notes and deviations from original plan:_
    Database reduced from 324 to 109 valid entries.
 
 4. ANCHOR FORMAT FIX: Fixed old anchor format in 
-   specs/002-commands-and-skills/003-workflows-documentation/002-skill-rename/memory/
+   specs/002-commands-and-skills/003-sk-documentation/002-skill-rename/memory/
    Updated from <!-- anchor: name --> to <!-- ANCHOR:name --> with closing tags.
 
 5. P2.1 DEFERRED: Old system-memory skill was replaced rather than archived.

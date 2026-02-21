@@ -11,7 +11,7 @@
 
 ### 1. Template Rules File (`template_rules.json`)
 
-**Location:** `.opencode/skill/workflows-documentation/assets/template_rules.json`
+**Location:** `.opencode/skill/sk-documentation/assets/template_rules.json`
 
 **Features:**
 - 5 document types: readme, skill, reference, asset, agent
@@ -22,7 +22,7 @@
 
 ### 2. Validation Script (`validate_document.py`)
 
-**Location:** `.opencode/skill/workflows-documentation/scripts/validate_document.py`
+**Location:** `.opencode/skill/sk-documentation/scripts/validate_document.py`
 
 **CLI Interface:**
 ```bash
@@ -140,8 +140,8 @@ $ python validate_document.py no_emoji.md
 
 | File | Action | Path |
 |------|--------|------|
-| `template_rules.json` | CREATED | `.opencode/skill/workflows-documentation/assets/` |
-| `validate_document.py` | CREATED | `.opencode/skill/workflows-documentation/scripts/` |
+| `template_rules.json` | CREATED | `.opencode/skill/sk-documentation/assets/` |
+| `validate_document.py` | CREATED | `.opencode/skill/sk-documentation/scripts/` |
 | `write.md` | MODIFIED | `.opencode/agent/` |
 | `architecture/README.md` | FIXED | `.opencode/skill/system-spec-kit/mcp_server/lib/` |
 | `scripts/README.md` | FIXED | `.opencode/skill/system-spec-kit/mcp_server/` |
@@ -163,14 +163,14 @@ $ python validate_document.py no_emoji.md
 
 ```bash
 # Validate single file
-python .opencode/skill/workflows-documentation/scripts/validate_document.py README.md
+python .opencode/skill/sk-documentation/scripts/validate_document.py README.md
 
 # Batch validate (exclude node_modules)
 find .opencode/skill/system-spec-kit -name "README.md" -not -path "*/node_modules/*" \
-  -exec python .opencode/skill/workflows-documentation/scripts/validate_document.py {} \;
+  -exec python .opencode/skill/sk-documentation/scripts/validate_document.py {} \;
 
 # Auto-fix safe issues
-python .opencode/skill/workflows-documentation/scripts/validate_document.py README.md --fix
+python .opencode/skill/sk-documentation/scripts/validate_document.py README.md --fix
 ```
 
 <!-- /ANCHOR:decisions -->
@@ -196,7 +196,7 @@ The `validate_document.py` script was enhanced to auto-fix missing TOC emojis:
 
 ### Test Suite Created
 
-**Location:** `.opencode/skill/workflows-documentation/scripts/tests/`
+**Location:** `.opencode/skill/sk-documentation/scripts/tests/`
 
 | File | Purpose | Expected Result |
 |------|---------|-----------------|
@@ -211,7 +211,7 @@ The `validate_document.py` script was enhanced to auto-fix missing TOC emojis:
 
 ```bash
 # Run all tests
-python .opencode/skill/workflows-documentation/scripts/tests/test_validator.py --verbose
+python .opencode/skill/sk-documentation/scripts/tests/test_validator.py --verbose
 
 # Result: 6/6 tests passed
 ```

@@ -1,5 +1,5 @@
 ---
-description: "How the 3-level documentation system (CORE + ADDENDUM) scales based on code complexity."
+description: "How the 3-level documentation system (CORE + ADDENDUM) scales by complexity using template levels, quality validation, and configuration-aware rollout gates."
 ---
 # Progressive Enhancement Levels
 
@@ -41,3 +41,9 @@ Level 3+ (Extended):    +Enterprise governance, AI protocols (~1075 LOC)
 - Integration vs unit test requirements
 
 **Decision rule:** When in doubt → choose higher level. Better to over-document than under-document.
+
+## Cross-Skill Bridges
+
+- [Document Quality Mode](../../sk-documentation/nodes/mode-document-quality.md) - Quality and DQI workflows by document type
+- [Language Detection](../../sk-code--opencode/nodes/language-detection.md) - TypeScript/Python config detection for implementation context
+- [Web Quick Reference](../../sk-code--web/nodes/quick-reference.md) - CSS/layout/API verification and deployment cues

@@ -1,4 +1,4 @@
-# Implementation Summary: Phase 004 — Rename workflows-documentation to sk-documentation
+# Implementation Summary: Phase 004 — Finalize Rename to sk-documentation
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
@@ -21,7 +21,7 @@
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Phase 004 completed the highest-volume rename in the skill-rename program: `workflows-documentation` is now `sk-documentation`, with the skill folder, changelog folder, cross-runtime agent references, command references, install-guide references, and system-spec-kit HVR paths aligned to the new name.
+Phase 004 completed the highest-volume rename in the skill-rename program, migrating from the legacy documentation-skill name to `sk-documentation`, with the skill folder, changelog folder, cross-runtime agent references, command references, install-guide references, and system-spec-kit HVR paths aligned to the new name.
 
 ### Files Changed
 
@@ -69,14 +69,14 @@ Delivery used a mechanical rename-and-verify workflow: rename paths, update inte
 
 | Check | Result |
 |-------|--------|
-| `rg -n --hidden --glob '!*.sqlite' --glob '!*.sqlite*' "workflows-documentation" .opencode/skill/ .opencode/command/ .opencode/agent/ .opencode/install_guides/ .claude/ .gemini/ CLAUDE.md README.md` | PASS - no matches (`EXIT:1`) |
-| `rg -n "HVR_REFERENCE.*workflows-documentation" .opencode/skill/system-spec-kit/templates/` | PASS - no matches (`EXIT:1`) |
+| `rg -n --hidden --glob '!*.sqlite' --glob '!*.sqlite*' "<legacy-documentation-skill-name>" .opencode/skill/ .opencode/command/ .opencode/agent/ .opencode/install_guides/ .claude/ .gemini/ CLAUDE.md README.md` | PASS - no matches (`EXIT:1`) |
+| `rg -n "HVR_REFERENCE.*<legacy-documentation-skill-name>" .opencode/skill/system-spec-kit/templates/` | PASS - no matches (`EXIT:1`) |
 | Directory checks for new/old paths and file count | PASS - `NEW_SKILL_DIR:yes`, `OLD_SKILL_DIR:no`, `NEW_CHANGELOG_DIR:yes`, `OLD_CHANGELOG_DIR:no`, `SK_DOC_FILE_COUNT:49` |
 | Agent reference coverage check | PASS - `rg -n "sk-documentation"` across 8 runtime agent files returned 135 matches; old-name search returned none (`EXIT:1`) |
 | Command template coverage check | PASS - 6/6 files under `.opencode/command/create/` contain `sk-documentation` |
-| skill_advisor mapping check | PASS - `.opencode/skill/scripts/skill_advisor.py` has 8 `sk-documentation` entries and 0 `workflows-documentation` entries |
+| skill_advisor mapping check | PASS - `.opencode/skill/scripts/skill_advisor.py` has 8 `sk-documentation` entries and 0 legacy-name entries |
 | skill_advisor smoke test | PASS - `python3 .opencode/skill/scripts/skill_advisor.py "create documentation" --threshold 0.8` produced `TOP_SKILL:sk-documentation` (`TOP_CONFIDENCE:0.81`) |
-| Phase spec validator | Pending update after final validation run |
+| Phase spec validator | PASS WITH WARNINGS - `.opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/002-commands-and-skills/038-skill-rename/004-sk-documentation` returned `Errors: 0, Warnings: 3, EXIT:1` |
 <!-- /ANCHOR:verification -->
 
 ---

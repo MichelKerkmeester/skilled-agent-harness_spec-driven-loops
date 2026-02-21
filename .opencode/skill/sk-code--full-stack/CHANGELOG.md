@@ -3,7 +3,7 @@
 ## 2026-02-17
 
 ### Updated
-- Realigned `SKILL.md` structure to closely match the Barter `workflows-code` flow while keeping Public content anonymized and stack-domain based.
+- Realigned `SKILL.md` structure to closely match the Barter `sk-code--web` flow while keeping Public content anonymized and stack-domain based.
 - Consolidated sections to a 9-section layout: `WHEN TO USE` through `QUICK REFERENCE`.
 - Reworked `SMART ROUTING` to emphasize stack-first routing with weighted intent scoring, ambiguity handling, scoped resource guards, and recursive markdown discovery.
 - Strengthened stack detection and explicit verification command mapping for `GO`, `NODEJS`, `REACT`, `REACT_NATIVE`, and `SWIFT`.

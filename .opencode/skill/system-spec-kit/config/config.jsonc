@@ -166,7 +166,7 @@
     "enabled": true,
     "indexedSkills": [
       "sk-code--web",
-      "workflows-code--opencode"
+      "sk-code--opencode"
     ],
     "fileExtensions": [".md"],
     "indexDirs": ["references", "assets"]

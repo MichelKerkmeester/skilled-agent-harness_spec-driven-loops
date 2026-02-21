@@ -1,5 +1,5 @@
 ---
-description: "Activation triggers, 5 command overview, and decision matrix for when to use visual-explainer"
+description: "Activation triggers, 5 command overview, and decision matrix for when to use sk-visual-explainer"
 ---
 # When To Use
 

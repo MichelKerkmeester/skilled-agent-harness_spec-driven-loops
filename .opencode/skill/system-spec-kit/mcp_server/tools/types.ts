@@ -197,6 +197,13 @@ export interface CausalUnlinkArgs {
   edgeId: number;
 }
 
+export interface BulkDeleteArgs {
+  tier: string;
+  specFolder?: string;
+  confirm: boolean;
+  olderThanDays?: number;
+}
+
 export interface SgqsQueryArgs {
   queryString: string;
 }

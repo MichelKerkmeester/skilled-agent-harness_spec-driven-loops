@@ -100,7 +100,7 @@ All 4 INSTALL_GUIDE.md files across the OpenCode skill system were rewritten to 
 
 1. **Phase 4 items**: When PageRank and structure-aware chunker are wired (requiring `remark`/`remark-gfm`), update Spec Kit Memory guide again
 2. **Browser testing**: Verify install procedures work end-to-end for each guide
-3. **Skill graph node**: Consider adding an `install-guides.md` node to the workflows-documentation skill graph
+3. **Skill graph node**: Consider adding an `install-guides.md` node to the sk-documentation skill graph
 <!-- /ANCHOR:next-steps -->
 
 ---

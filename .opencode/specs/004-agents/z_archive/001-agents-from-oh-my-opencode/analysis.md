@@ -459,7 +459,7 @@ Agents leverage existing commands rather than duplicating functionality:
 
 | Skill | Purpose | Agent Integration |
 |-------|---------|-------------------|
-| **workflows-documentation** | 4 modes: Document Quality, Skill Creation, Flowcharts, Install Guides | Documentation Writer invokes this |
+| **sk-documentation** | 4 modes: Document Quality, Skill Creation, Flowcharts, Install Guides | Documentation Writer invokes this |
 | **mcp-chrome-devtools** | CLI (bdg) + MCP browser debugging | Front-end Debug Agent invokes this |
 | **system-spec-kit** | Spec folders, memory, templates | Librarian uses for planning |
 | **mcp-leann** | Semantic code search | Librarian uses for research |
@@ -529,9 +529,9 @@ const sites = await call_tool_chain([
 
 #### Agent 2: Documentation Writer
 
-**Purpose:** Generate and maintain documentation using workflows-documentation skill
+**Purpose:** Generate and maintain documentation using sk-documentation skill
 
-**Skills:** `workflows-documentation`
+**Skills:** `sk-documentation`
 
 **Tools:**
 - Read, Write, Edit

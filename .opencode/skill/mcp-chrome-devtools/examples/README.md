@@ -385,7 +385,7 @@ bdg stop 2>&1
 
 ### Workflow Integration
 
-**workflows-code References**:
+**sk-code--web References**:
 - `debugging_workflows.md` - Systematic debugging patterns
 - `animation_workflows.md` - Animation performance validation
 - `performance_patterns.md` - Performance optimization strategies
@@ -394,7 +394,7 @@ bdg stop 2>&1
 
 ### Related Skills
 
-- **workflows-code** - Development workflow orchestration
+- **sk-code--web** - Development workflow orchestration
 - **sk-documentation** - Documentation creation and validation
 
 <!-- /ANCHOR:related -->

@@ -283,7 +283,7 @@ Backend projects emphasize data integrity, security, and API design.
 
 | Skill            | Purpose                                                      |
 | ---------------- | ------------------------------------------------------------ |
-| `workflows-code` | Implementation, debugging, verification lifecycle            |
+| `sk-code--web` | Implementation, debugging, verification lifecycle            |
 
 #### Confidence Weight Adjustments
 
@@ -364,7 +364,7 @@ Concrete examples showing how to customize from Universal to project-specific.
 | --------------------- | ------ | ------------------------- | ------------------------------- |
 | **Skills - Keep**     | ✅      | system-spec-kit           | Context preservation needed     |
 |                       | ✅      | mcp-chrome-devtools | Browser debugging essential     |
-|                       | ✅      | workflows-code            | Implementation workflow         |
+|                       | ✅      | sk-code--web            | Implementation workflow         |
 |                       | ✅      | mcp-code-mode             | Webflow/Figma integration       |
 | **Skills - Remove**   | ❌      | sk-git             | Optional for solo projects      |
 | **MCP - Keep**        | ✅      | spec_kit_memory           | Required for spec-kit skill     |
@@ -385,7 +385,7 @@ Concrete examples showing how to customize from Universal to project-specific.
 | Component           | Status | Items                     | Reason                                   |
 | ------------------- | ------ | ------------------------- | ---------------------------------------- |
 | **Skills - Keep**   | ✅      | system-spec-kit           | Research context preservation            |
-|                     | ✅      | workflows-code            | Implementation lifecycle                 |
+|                     | ✅      | sk-code--web            | Implementation lifecycle                 |
 |                     | ✅      | sk-git             | PR/commit workflows                      |
 | **Skills - Remove** | ❌      | mcp-chrome-devtools | No browser UI                            |
 |                     | ❌      | mcp-code-mode             | No Webflow/Figma needed                  |
@@ -435,7 +435,7 @@ ls -la .opencode/skill/
 # mcp-figma/
 # system-spec-kit/
 # mcp-chrome-devtools/
-# workflows-code/
+# sk-code--web/
 # sk-git/
 ```
 
@@ -602,7 +602,7 @@ Discovery: search_tools(), list_tools(), or read .utcp_config.json
 | `system-spec-kit`           | v2.2.0   | "save context", "/memory:save", "spec folder", "plan"            | Context preservation and spec workflow                |
 | `mcp-chrome-devtools` | v2.1.0   | "screenshot", "bdg", "browser debug", "DOM"                      | Chrome DevTools Protocol debugging                    |
 | `sk-code--full-stack`| v1.0.0   | "implement", "debug", "verify", "refactor" (full-stack)          | Full-stack implementation lifecycle orchestrator      |
-| `workflows-code--opencode`  | v1.3.2   | "opencode code", "system code", "TypeScript", "Python"           | OpenCode system code standards                        |
+| `sk-code--opencode`  | v1.3.2   | "opencode code", "system code", "TypeScript", "Python"           | OpenCode system code standards                        |
 | `sk-code--web`   | v1.0.9   | "implement", "debug", "verify", "refactor" (frontend)            | Web development implementation lifecycle              |
 | `sk-documentation`   | v5.2.0   | "skill", "markdown", "flowchart", "documentation"                | Unified markdown and skill management                 |
 | `sk-git`             | v1.5.0   | "commit", "branch", "PR", "push", "git"                          | Git workflow orchestration                            |
@@ -619,9 +619,9 @@ When Gate 2 runs `skill_advisor.py`, it maps user intent to skills:
 | "take a screenshot"               | mcp-chrome-devtools | 0.95       |
 | "debug in browser"                | mcp-chrome-devtools | 0.88       |
 | "check the DOM"                   | mcp-chrome-devtools | 0.82       |
-| "implement the login feature"     | workflows-code            | 0.90       |
-| "help me debug this error"        | workflows-code            | 0.85       |
-| "verify the changes work"         | workflows-code            | 0.82       |
+| "implement the login feature"     | sk-code--web            | 0.90       |
+| "help me debug this error"        | sk-code--web            | 0.85       |
+| "verify the changes work"         | sk-code--web            | 0.82       |
 | "create a commit"                 | sk-git             | 0.95       |
 | "open a PR"                       | sk-git             | 0.92       |
 | "push to remote"                  | sk-git             | 0.90       |
@@ -700,7 +700,7 @@ For a backend/API project, you would typically have these skills in `.opencode/s
 
 | Skill             | Purpose                                                                              |
 | ----------------- | ------------------------------------------------------------------------------------ |
-| `workflows-code`  | Implementation lifecycle orchestrator for complex multi-file changes and refactoring |
+| `sk-code--web`  | Implementation lifecycle orchestrator for complex multi-file changes and refactoring |
 | `system-spec-kit` | Context preservation for research tasks and finding prior architectural decisions    |
 | `sk-git`   | Git workflow for PRs, commits, branches                                              |
 
@@ -1017,7 +1017,7 @@ ls .opencode/commands/
 
 | Category        | Count | Items                                                                                                                                                     |
 | --------------- | ----- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Skills**      | 9     | mcp-figma, mcp-code-mode, system-spec-kit, mcp-chrome-devtools, sk-code--full-stack, workflows-code--opencode, sk-code--web, sk-documentation, sk-git |
+| **Skills**      | 9     | mcp-figma, mcp-code-mode, system-spec-kit, mcp-chrome-devtools, sk-code--full-stack, sk-code--opencode, sk-code--web, sk-documentation, sk-git |
 | **MCP Servers** | 3     | sequential-thinking, spec-kit-memory, code-mode                                                                                                           |
 | **Commands**    | 19    | /create:* (6), /memory:* (5), /spec_kit:* (7), agent_router (1)                                                                                           |
 | **Gates + Rules** | 3 + 3 | Gate 1-3 (Understanding, Skill Routing, Spec Folder) + Behavioral Rules (Memory Context Loading, Memory Save Rule, Completion Verification)               |

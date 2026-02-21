@@ -86,5 +86,5 @@ Successfully removed all git branch management logic from 8 spec_kit YAML comman
 <!-- ANCHOR:limitations -->
 ## Impact
 
-SpecKit workflows now focus exclusively on spec folder management. Git branch creation/management should be handled separately through workflows-git skill if needed.
+SpecKit workflows now focus exclusively on spec folder management. Git branch creation/management should be handled separately through sk-git skill if needed.
 <!-- /ANCHOR:limitations -->

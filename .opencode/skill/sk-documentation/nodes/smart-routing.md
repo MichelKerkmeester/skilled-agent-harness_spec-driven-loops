@@ -39,6 +39,7 @@ INTENT_SIGNALS = {
     "FLOWCHART": {"weight": 3, "keywords": ["flowchart", "ascii diagram", "decision tree", "swimlane"]},
     "INSTALL_GUIDE": {"weight": 3, "keywords": ["install guide", "setup instructions", "prerequisite"]},
     "HVR": {"weight": 4, "keywords": ["human voice", "hvr", "voice rules", "banned words", "writing style"]},
+    "SKILL_GRAPH": {"weight": 4, "keywords": ["skill graph", "wikilink", "index.md", "moc", "nodes"]},
 }
 
 RESOURCE_MAP = {
@@ -49,6 +50,7 @@ RESOURCE_MAP = {
     "FLOWCHART": ["assets/flowcharts/simple_workflow.md", "assets/flowcharts/decision_tree_flow.md"],
     "INSTALL_GUIDE": ["assets/documentation/install_guide_template.md", "references/install_guide_standards.md"],
     "HVR": ["references/hvr_rules.md"],
+    "SKILL_GRAPH": ["references/skill_creation.md", "assets/opencode/skill_graph_index_template.md", "assets/opencode/skill_graph_node_template.md"],
 }
 
 LOADING_LEVELS = {

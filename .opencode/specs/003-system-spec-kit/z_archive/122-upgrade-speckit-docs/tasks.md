@@ -49,10 +49,10 @@
 - [x] T012 Improve mcp-figma README.md
 - [x] T013 Improve mcp-chrome-devtools README.md
 - [x] T014 Improve sk-code--full-stack README.md
-- [x] T015 Improve workflows-code--opencode README.md
+- [x] T015 Improve sk-code--opencode README.md
 - [x] T016 Improve workflows-code--web-dev README.md
-- [x] T017 Improve workflows-documentation README.md
-- [x] T018 Improve workflows-git README.md
+- [x] T017 Improve sk-documentation README.md
+- [x] T018 Improve sk-git README.md
 
 ### Core Documentation (6 files)
 - [x] T019 Tighten .opencode/README.md
@@ -60,7 +60,7 @@
 - [x] T021 Tighten install_guides/install_scripts/README.md
 - [x] T022 Tighten .opencode/scripts/README.md
 - [x] T023 Tighten root README.md
-- [x] T024 Improve workflows-documentation/SKILL.md
+- [x] T024 Improve sk-documentation/SKILL.md
 
 **NOTE**: Covered 63% of documentation scope (81/127 files). Uncovered files (46) include:
 - 8 agent definition files (.opencode/agent/*.md)
@@ -71,7 +71,7 @@
 These represent future work for comprehensive documentation quality.
 
 ### Version & Template Management
-- [x] T025 Bump workflows-documentation SKILL.md version to 1.0.6.0
+- [x] T025 Bump sk-documentation SKILL.md version to 1.0.6.0
 - [x] T026 Restructure readme_template.md (+191 lines of improvements)
 
 ### Configuration Cleanup

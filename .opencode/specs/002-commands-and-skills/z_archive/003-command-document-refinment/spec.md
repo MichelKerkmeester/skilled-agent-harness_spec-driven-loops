@@ -21,7 +21,7 @@ The 21 command documentation files in `.opencode/command/` have accumulated inco
 
 ### In Scope
 - All 21 .md files in `.opencode/command/` and subdirectories
-- The command template at `.opencode/skill/workflows-documentation/assets/command_template.md`
+- The command template at `.opencode/skill/sk-documentation/assets/command_template.md`
 - Step numbering standardization
 - Emoji vocabulary unification
 - Layout/structure consistency

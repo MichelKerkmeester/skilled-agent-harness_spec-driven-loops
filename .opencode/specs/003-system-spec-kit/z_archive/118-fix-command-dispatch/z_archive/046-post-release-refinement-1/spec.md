@@ -167,7 +167,7 @@ Systematically address all bugs, misalignments, and technical debt identified du
 
 #### FR-004.3: Allowed-Tools Accuracy
 - **Requirement:** Skill frontmatter MUST list tool names, not skill names
-- **Location:** `mcp-chrome-devtools/SKILL.md`, `workflows-git/SKILL.md`
+- **Location:** `mcp-chrome-devtools/SKILL.md`, `sk-git/SKILL.md`
 - **Issue:** Lists `mcp-code-mode` (skill) instead of `call_tool_chain` (tool)
 
 ### FR-005: Database Integrity

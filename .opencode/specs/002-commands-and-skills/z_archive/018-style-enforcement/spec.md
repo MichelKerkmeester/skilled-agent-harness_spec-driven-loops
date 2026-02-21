@@ -11,7 +11,7 @@
 <!-- ANCHOR:problem -->
 ## Problem Statement
 
-Despite having comprehensive templates (`readme_template.md`, `skill_md_template.md`) and detailed guidelines (workflows-documentation skill, write agent), documentation is still created with formatting errors:
+Despite having comprehensive templates (`readme_template.md`, `skill_md_template.md`) and detailed guidelines (sk-documentation skill, write agent), documentation is still created with formatting errors:
 
 - Missing TOC sections
 - TOC without emojis
@@ -42,7 +42,7 @@ Despite having comprehensive templates (`readme_template.md`, `skill_md_template
 1. **Validation Script** - Pre-delivery automated checking
 2. **Template Enforcement** - Machine-readable template rules
 3. **Write Agent Updates** - Mandatory validation gates
-4. **workflows-documentation Updates** - Enforcement integration
+4. **sk-documentation Updates** - Enforcement integration
 
 ### Out of Scope
 

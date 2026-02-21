@@ -42,7 +42,7 @@ This plan details the process of adding supplemental Skill Graph layers to **eve
 - [ ] **All** skills converted to graph architecture
   - Deliverable: all 9 skills have index + node graph + primary `SKILL.md` entrypoint with supplemental graph layers.
   - Validation: node coverage matrix marks all rows complete with references.
-- [ ] `workflows-documentation` includes Skill Graph standards reference, node template asset, and updated `SKILL.md`
+- [ ] `sk-documentation` includes Skill Graph standards reference, node template asset, and updated `SKILL.md`
   - Deliverable: standards doc, template asset, and entrypoint guidance linked together.
   - Validation: direct file checks plus traversal from `SKILL.md` to both artifacts.
 - [ ] SGQS implemented as an in-process graph-style query layer inside Spec Kit Memory architecture
@@ -124,10 +124,10 @@ Agent reads `index.md` -> resolves YAML intent metadata -> follows relevant `[[l
   - Dependencies: SGQS grammar/mapping definitions and compatibility boundaries.
 
 ### Phase 3: Broad Migration (All Other Skills)
-- [ ] Migrate and verify `workflows-documentation` as standards-producing exemplar.
+- [ ] Migrate and verify `sk-documentation` as standards-producing exemplar.
   - Inputs: pilot migration approach, existing documentation skill corpus.
   - Execution guidance: keep graph navigation explicit and publish reusable standards/template artifacts as part of migration.
-  - Exit criteria: `workflows-documentation` supports graph-first authoring and one-hop discoverability of standards/template assets.
+  - Exit criteria: `sk-documentation` supports graph-first authoring and one-hop discoverability of standards/template assets.
   - Verification artifacts: traversal transcript + direct file checks for standards/template presence.
   - Dependencies: pilot patterns and authoring conventions.
 - [ ] Roll out remaining six pending skills with matrix-driven governance.

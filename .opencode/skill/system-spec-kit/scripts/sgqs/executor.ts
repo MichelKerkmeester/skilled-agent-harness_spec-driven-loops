@@ -167,8 +167,9 @@ function matchNodePattern(
 function nodeMatchesPattern(node: GraphNode, pattern: NodePatternNode): boolean {
   // Check label
   if (pattern.label) {
-    const requiredLabel = ':' + pattern.label;
-    if (!node.labels.includes(requiredLabel)) {
+    const requiredLabel = ':' + pattern.label.toLowerCase();
+    const hasLabel = node.labels.some(label => label.toLowerCase() === requiredLabel);
+    if (!hasLabel) {
       return false;
     }
   }
@@ -178,7 +179,7 @@ function nodeMatchesPattern(node: GraphNode, pattern: NodePatternNode): boolean 
     for (const entry of pattern.properties.entries) {
       const nodeValue = getNodeProperty(node, entry.key);
       const patternValue = literalToValue(entry.value);
-      if (nodeValue !== patternValue) {
+      if (!patternPropertyMatches(nodeValue, patternValue)) {
         return false;
       }
     }
@@ -707,17 +708,36 @@ function resolveVariableRef(ref: VariableRefNode, bindings: Bindings): unknown {
 
 /** Get a property from a GraphNode, checking both direct fields and properties map */
 function getNodeProperty(node: GraphNode, property: string): unknown {
+  const normalizedProperty = property.toLowerCase();
+
   // Check direct fields first
-  switch (property) {
+  switch (normalizedProperty) {
     case 'id': return node.id;
     case 'labels': return node.labels;
     case 'skill': return node.skill;
     case 'path': return node.path;
   }
 
-  // Check properties map
-  if (property in node.properties) {
-    return node.properties[property];
+  // Query aliases as a first-class search surface.
+  if (normalizedProperty === 'aliases') {
+    const aliasTokens = buildAliasTokens(node);
+    if (aliasTokens.length > 0) {
+      return aliasTokens;
+    }
+  }
+
+  // Check properties map (case-insensitive)
+  const directValue = getCaseInsensitiveProperty(node.properties, normalizedProperty);
+  if (directValue !== undefined) {
+    return directValue;
+  }
+
+  // keywords fallback to aliases when explicit keywords are missing
+  if (normalizedProperty === 'keywords') {
+    const aliasTokens = buildAliasTokens(node);
+    if (aliasTokens.length > 0) {
+      return aliasTokens;
+    }
   }
 
   // Property not found -- emit W001 warning and return null (NULL semantics)
@@ -730,15 +750,18 @@ function getNodeProperty(node: GraphNode, property: string): unknown {
 
 /** Get a property from a GraphEdge */
 function getEdgeProperty(edge: GraphEdge, property: string): unknown {
-  switch (property) {
+  const normalizedProperty = property.toLowerCase();
+
+  switch (normalizedProperty) {
     case 'id': return edge.id;
     case 'type': return edge.type;
     case 'source': return edge.source;
     case 'target': return edge.target;
   }
 
-  if (property in edge.properties) {
-    return edge.properties[property];
+  const directValue = getCaseInsensitiveProperty(edge.properties, normalizedProperty);
+  if (directValue !== undefined) {
+    return directValue;
   }
 
   return null;
@@ -808,4 +831,80 @@ function deduplicateRows(rows: Record<string, unknown>[]): Record<string, unknow
     seen.add(key);
     return true;
   });
+}
+
+function patternPropertyMatches(nodeValue: unknown, patternValue: unknown): boolean {
+  if (Array.isArray(nodeValue)) {
+    if (Array.isArray(patternValue)) {
+      return patternValue.every(item => valueArrayContains(nodeValue, item));
+    }
+    return valueArrayContains(nodeValue, patternValue);
+  }
+
+  if (typeof nodeValue === 'string' && typeof patternValue === 'string') {
+    return nodeValue.toLowerCase() === patternValue.toLowerCase();
+  }
+
+  return nodeValue === patternValue;
+}
+
+function valueArrayContains(values: unknown[], target: unknown): boolean {
+  if (typeof target === 'string') {
+    const normalizedTarget = target.toLowerCase();
+    return values.some(value =>
+      typeof value === 'string' && value.toLowerCase() === normalizedTarget
+    );
+  }
+  return values.some(value => value === target);
+}
+
+function getCaseInsensitiveProperty(
+  properties: Record<string, unknown>,
+  targetKey: string,
+): unknown {
+  for (const [key, value] of Object.entries(properties)) {
+    if (key.toLowerCase() === targetKey) {
+      return value;
+    }
+  }
+  return undefined;
+}
+
+function buildAliasTokens(node: GraphNode): string[] {
+  const rawSources: unknown[] = [];
+
+  if (typeof node.properties.name === 'string') rawSources.push(node.properties.name);
+  if (typeof node.properties.title === 'string') rawSources.push(node.properties.title);
+  if (typeof node.properties.description === 'string') rawSources.push(node.properties.description);
+
+  const aliases = getCaseInsensitiveProperty(node.properties, 'aliases');
+  const keywords = getCaseInsensitiveProperty(node.properties, 'keywords');
+  rawSources.push(aliases, keywords);
+
+  const deduped = new Set<string>();
+  const addTokens = (value: string): void => {
+    deduped.add(value);
+    const parts = value.toLowerCase().split(/[^a-z0-9_]+/);
+    for (const part of parts) {
+      if (part.length >= 3) {
+        deduped.add(part);
+      }
+    }
+  };
+
+  for (const source of rawSources) {
+    if (typeof source === 'string') {
+      addTokens(source);
+      continue;
+    }
+    if (Array.isArray(source)) {
+      for (const item of source) {
+        if (typeof item === 'string') {
+          addTokens(item);
+        }
+      }
+    }
+  }
+
+  return Array.from(deduped);
 }

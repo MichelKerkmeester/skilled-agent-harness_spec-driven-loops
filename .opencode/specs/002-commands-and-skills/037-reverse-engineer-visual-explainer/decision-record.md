@@ -2,7 +2,7 @@
 
 <!-- SPECKIT_LEVEL: 3 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/workflows-documentation/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skill/sk-documentation/references/hvr_rules.md -->
 
 ---
 
@@ -97,11 +97,11 @@ The visual-explainer source material contains 5 commands, 11 diagram types, 9 ae
 ### Implementation
 
 **What changes**:
-- Created `.opencode/skill/workflows-visual-explainer/SKILL.md` (router, 1,683 words)
-- Created `.opencode/skill/workflows-visual-explainer/index.md` (MOC, 4 groups, 10 wikilinks)
-- Created 10 files in `.opencode/skill/workflows-visual-explainer/nodes/`
+- Created `.opencode/skill/sk-visual-explainer/SKILL.md` (router, 1,683 words)
+- Created `.opencode/skill/sk-visual-explainer/index.md` (MOC, 4 groups, 10 wikilinks)
+- Created 10 files in `.opencode/skill/sk-visual-explainer/nodes/`
 
-**How to roll back**: Delete the entire `.opencode/skill/workflows-visual-explainer/` directory.
+**How to roll back**: Delete the entire `.opencode/skill/sk-visual-explainer/` directory.
 <!-- /ANCHOR:adr-001-impl -->
 <!-- /ANCHOR:adr-001 -->
 
@@ -123,12 +123,12 @@ The visual-explainer source material contains 5 commands, 11 diagram types, 9 ae
 
 ### Context
 
-The OpenCode skill framework uses naming prefixes to classify skills by type. We needed to decide the correct prefix for the visual-explainer skill. The skill defines a multi-phase workflow (Think > Structure > Style > Deliver) with defined step sequences, which aligns with the `workflows-` convention.
+The OpenCode skill framework uses naming prefixes to classify skills by type. We needed to decide the correct prefix for the sk-visual-explainer skill. The skill defines a multi-phase workflow (Think > Structure > Style > Deliver) with defined step sequences, which aligns with the `workflows-` convention.
 
 ### Constraints
 
 - Existing convention: `workflows-` prefix for process-oriented skills with defined phase sequences
-- Existing examples: `workflows-documentation`, `workflows-git`, `workflows-code--opencode`
+- Existing examples: `sk-documentation`, `sk-git`, `sk-code--opencode`
 - Must be discoverable via skill_advisor.py naming patterns
 <!-- /ANCHOR:adr-002-context -->
 
@@ -137,7 +137,7 @@ The OpenCode skill framework uses naming prefixes to classify skills by type. We
 <!-- ANCHOR:adr-002-decision -->
 ### Decision
 
-**We chose**: `workflows-visual-explainer` as the skill directory name.
+**We chose**: `sk-visual-explainer` as the skill directory name.
 
 **How it works**: The `workflows-` prefix signals that this skill follows a defined multi-phase process (Think > Structure > Style > Deliver). This matches the naming convention used by other process-oriented skills in the framework.
 <!-- /ANCHOR:adr-002-decision -->
@@ -149,7 +149,7 @@ The OpenCode skill framework uses naming prefixes to classify skills by type. We
 
 | Option | Pros | Cons | Score |
 |--------|------|------|-------|
-| **workflows-visual-explainer (chosen)** | Matches convention; signals process orientation | Longer name | 9/10 |
+| **sk-visual-explainer (chosen)** | Matches convention; signals process orientation | Longer name | 9/10 |
 | visual-explainer (no prefix) | Shorter name | Breaks convention; no type signal | 4/10 |
 | tools-visual-explainer | Alternative prefix | `tools-` implies utility, not workflow | 5/10 |
 
@@ -162,7 +162,7 @@ The OpenCode skill framework uses naming prefixes to classify skills by type. We
 ### Consequences
 
 **What improves**:
-- Consistent naming with existing skills (workflows-documentation, workflows-git)
+- Consistent naming with existing skills (sk-documentation, sk-git)
 - Users and agents can infer the skill type from the prefix
 
 **What it costs**:
@@ -197,8 +197,8 @@ The OpenCode skill framework uses naming prefixes to classify skills by type. We
 ### Implementation
 
 **What changes**:
-- Skill directory created as `.opencode/skill/workflows-visual-explainer/`
-- skill_advisor.py entries reference `workflows-visual-explainer`
+- Skill directory created as `.opencode/skill/sk-visual-explainer/`
+- skill_advisor.py entries reference `sk-visual-explainer`
 
 **How to roll back**: Rename the directory and update all skill_advisor.py references.
 <!-- /ANCHOR:adr-002-impl -->
@@ -325,7 +325,7 @@ The skill contains ~46KB of reference material (quick_reference ~4KB, css_patter
 
 ### Context
 
-Several keywords relevant to the visual-explainer skill (diagram, flowchart, review, architecture, data) already exist in skill_advisor.py's INTENT_BOOSTERS mapped to other skills. Adding them as INTENT_BOOSTERS for workflows-visual-explainer would overwrite the existing mappings and break routing for other skills.
+Several keywords relevant to the sk-visual-explainer skill (diagram, flowchart, review, architecture, data) already exist in skill_advisor.py's INTENT_BOOSTERS mapped to other skills. Adding them as INTENT_BOOSTERS for sk-visual-explainer would overwrite the existing mappings and break routing for other skills.
 
 ### Constraints
 
@@ -341,7 +341,7 @@ Several keywords relevant to the visual-explainer skill (diagram, flowchart, rev
 
 **We chose**: Use MULTI_SKILL_BOOSTERS for the 5 conflicting keywords (diagram, flowchart, review, architecture, data), and INTENT_BOOSTERS for the 11 unique keywords.
 
-**How it works**: MULTI_SKILL_BOOSTERS allows multiple skills to be boosted by the same keyword. When "diagram" appears in a query, both the existing skill and workflows-visual-explainer get boosted, and the final routing score determines which one wins based on other context signals.
+**How it works**: MULTI_SKILL_BOOSTERS allows multiple skills to be boosted by the same keyword. When "diagram" appears in a query, both the existing skill and sk-visual-explainer get boosted, and the final routing score determines which one wins based on other context signals.
 <!-- /ANCHOR:adr-004-decision -->
 
 ---
@@ -355,7 +355,7 @@ Several keywords relevant to the visual-explainer skill (diagram, flowchart, rev
 | Overwrite INTENT_BOOSTERS | Simpler; direct mapping | Breaks existing skill routing for those keywords | 2/10 |
 | Avoid conflicting keywords entirely | No risk to existing routing | Reduces discoverability for common queries | 4/10 |
 
-**Why this one**: MULTI_SKILL_BOOSTERS is the framework's built-in mechanism for exactly this scenario. Using it preserves existing routing while enabling visual-explainer discovery.
+**Why this one**: MULTI_SKILL_BOOSTERS is the framework's built-in mechanism for exactly this scenario. Using it preserves existing routing while enabling sk-visual-explainer discovery.
 <!-- /ANCHOR:adr-004-alternatives -->
 
 ---
@@ -365,11 +365,11 @@ Several keywords relevant to the visual-explainer skill (diagram, flowchart, rev
 
 **What improves**:
 - Existing skill routing remains intact for all 5 conflicting keywords
-- Visual-explainer becomes discoverable for queries containing these common terms
+- sk-visual-explainer becomes discoverable for queries containing these common terms
 - Multiple skills can compete fairly on routing score
 
 **What it costs**:
-- Routing for ambiguous queries (e.g., just "diagram") may require more context to disambiguate. Mitigation: Visual-explainer-specific keywords in INTENT_BOOSTERS provide strong signal.
+- Routing for ambiguous queries (e.g., just "diagram") may require more context to disambiguate. Mitigation: sk-visual-explainer-specific keywords in INTENT_BOOSTERS provide strong signal.
 
 **Risks**:
 

@@ -69,7 +69,7 @@
 - [ ] T020 [P] Update `.opencode/scripts/README.md`
 
 **Ring 5 - Cross-skill references:**
-- [ ] T021 [P] Update `.opencode/skill/workflows-code--opencode/SKILL.md`
+- [ ] T021 [P] Update `.opencode/skill/sk-code--opencode/SKILL.md`
 - [ ] T022 [P] Update `.opencode/skill/mcp-chrome-devtools/SKILL.md`
 - [ ] T023 [P] Update `.opencode/skill/mcp-chrome-devtools/examples/README.md`
 - [ ] T024 [P] Update `.opencode/skill/system-spec-kit/SKILL.md`
@@ -80,7 +80,7 @@
 - [ ] T029 [P] Update `.opencode/skill/system-spec-kit/references/validation/phase_checklists.md`
 - [ ] T030 [P] Update `.opencode/skill/system-spec-kit/references/memory/epistemic-vectors.md`
 - [ ] T031 [P] Update `.opencode/skill/system-spec-kit/mcp_server/tests/README.md`
-- [ ] T032 [P] Update `.opencode/skill/workflows-documentation/assets/opencode/skill_md_template.md`
+- [ ] T032 [P] Update `.opencode/skill/sk-documentation/assets/opencode/skill_md_template.md`
 
 <!-- /ANCHOR:phase-3 -->
 

@@ -1,4 +1,4 @@
-# Implementation Plan: Phase 003 — Rename workflows-code--full-stack to sk-code--full-stack
+# Implementation Plan: Phase 003 — Rename legacy full-stack skill identifier to sk-code--full-stack
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
@@ -18,7 +18,7 @@
 | **Testing** | grep verification, skill_advisor.py smoke test |
 
 ### Overview
-Renamed `workflows-code--full-stack` to `sk-code--full-stack` across 99 files (88 internal + 11 external). This phase executed first in the implementation order (longest match) to prevent partial substring collisions.
+Renamed `legacy full-stack skill identifier` to `sk-code--full-stack` across 99 files (88 internal + 11 external). This phase executed first in the implementation order (longest match) to prevent partial substring collisions.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -61,7 +61,7 @@ No changes.
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Filesystem Rename
-- [x] `git mv .opencode/skill/workflows-code--full-stack .opencode/skill/sk-code--full-stack` [Evidence: EV-01]
+- [x] `git mv .opencode/skill/legacy full-stack skill identifier .opencode/skill/sk-code--full-stack` [Evidence: EV-01]
 
 ### Phase 2: Internal File Updates (88 files)
 - [x] Update SKILL.md, index.md [Evidence: EV-11]
@@ -77,11 +77,11 @@ No changes.
 - [x] Verify no old-name references in `CLAUDE.md` [Evidence: EV-12]
 
 ### Phase 4: Changelog & Cross-References
-- [x] `git mv .opencode/changelog/09--workflows-code--full-stack .opencode/changelog/09--sk-code--full-stack` [Evidence: EV-10]
+- [x] `git mv .opencode/changelog/09--legacy full-stack skill identifier .opencode/changelog/09--sk-code--full-stack` [Evidence: EV-10]
 - [x] Update cross-refs in other skills [Evidence: EV-08]
 
 ### Phase 5: Verification
-- [x] grep: 0 matches for `workflows-code--full-stack` in active scope [Evidence: EV-09]
+- [x] grep: 0 matches for `legacy full-stack skill identifier` in active scope [Evidence: EV-09]
 - [x] skill_advisor.py smoke test (string-level routing validation) [Evidence: EV-04, EV-05]
 - [x] Directory exists with expected file count [Evidence: EV-01, EV-02]
 <!-- /ANCHOR:phases -->
@@ -98,16 +98,16 @@ No changes.
 | Directory | Filesystem | `ls -d` |
 
 ### Verification Evidence (2026-02-21)
-- `EV-01`: folder existence check -> `sk-code--full-stack: present`, `workflows-code--full-stack: absent`
+- `EV-01`: folder existence check -> `sk-code--full-stack: present`, `legacy full-stack skill identifier: absent`
 - `EV-02`: `find .opencode/skill/sk-code--full-stack -type f | wc -l` -> `88`
-- `EV-03`: `rg -n "workflows-code--full-stack" .opencode/skill/sk-code--full-stack | wc -l` -> `0`
+- `EV-03`: `rg -n "legacy full-stack skill identifier" .opencode/skill/sk-code--full-stack | wc -l` -> `0`
 - `EV-04`: `rg -n "sk-code--full-stack" .opencode/skill/scripts/skill_advisor.py | wc -l` -> `8`
-- `EV-05`: `rg -n "workflows-code--full-stack" .opencode/skill/scripts/skill_advisor.py | wc -l` -> `0`
+- `EV-05`: `rg -n "legacy full-stack skill identifier" .opencode/skill/scripts/skill_advisor.py | wc -l` -> `0`
 - `EV-06`: install guide scan shows `sk-code--full-stack` entries in both files; no old-name hits
 - `EV-07`: old-name hits in four orchestrate files -> `0`
 - `EV-08`: old-name hits in `.opencode/skill/` tree -> `0`
 - `EV-09`: old-name hits in active scope (excluding `.git`, `.opencode/specs`, `.opencode/changelog`) -> `0`
-- `EV-10`: changelog directory check -> `09--sk-code--full-stack: present`, `09--workflows-code--full-stack: absent`
+- `EV-10`: changelog directory check -> `09--sk-code--full-stack: present`, `09--legacy full-stack skill identifier: absent`
 - `EV-11`: `SKILL.md` and `index.md` both declare `name: sk-code--full-stack`
 - `EV-12`: old-name hits in `CLAUDE.md` -> `0`
 <!-- /ANCHOR:testing -->
@@ -170,7 +170,7 @@ Phase 3 (This Phase — FIRST) ──► Phase 1 (Opencode) ──► Phase 2 (W
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deployment Checklist
-- [ ] Clean git state
+- [x] Clean git state
 
 ### Rollback Procedure
 1. `git checkout -- .`

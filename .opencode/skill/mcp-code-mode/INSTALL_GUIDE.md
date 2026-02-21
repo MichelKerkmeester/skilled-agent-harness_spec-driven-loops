@@ -1,7 +1,8 @@
-# MCP Code Mode Installation Guide v2.0.0
+# MCP Code Mode Installation Guide
 
 Complete installation and configuration guide for the Code Mode MCP server. This enables TypeScript-based orchestration of external MCP tools, giving you unified access to Webflow, Figma, ClickUp, GitHub, Chrome DevTools and other MCP servers through a single `call_tool_chain()` interface. It delivers 98.7% context reduction and 60% faster execution compared to individual tool calls, with type-safe invocation and automatic tool discovery.
 
+> **Version:** 2.0.0
 > **Part of OpenCode Installation.** See the [Master Installation Guide](../README.md) for complete setup.
 > **Package**: `@utcp/code-mode-mcp` | **Dependencies**: Node.js 18+, .utcp_config.json
 
@@ -42,8 +43,9 @@ Guide me through each step with the exact commands and configuration needed.
 
 ---
 
-#### TABLE OF CONTENTS
+## Table of Contents
 
+0. [AI-First Install Guide](#0-ai-first-install-guide)
 1. [Overview](#1-overview)
 2. [Prerequisites](#2-prerequisites)
 3. [Installation](#3-installation)
@@ -194,7 +196,7 @@ Before installing Code Mode MCP, ensure you have the following.
 node --version && [ -f .env ] && [ -f .utcp_config.json ] && echo "PASS" || echo "FAIL"
 ```
 
-STOP if validation fails. Fix before continuing.
+❌ **STOP if validation fails.** Fix before continuing.
 
 ---
 
@@ -307,7 +309,7 @@ ls -la .utcp_config.json .env
 grep -q '"code_mode"' opencode.json && echo "PASS" || echo "FAIL"
 ```
 
-STOP if validation fails. Fix before continuing.
+❌ **STOP if validation fails.** Fix before continuing.
 
 ---
 
@@ -679,7 +681,7 @@ Add servers to `.utcp_config.json` in the `manual_call_templates` array:
 - [ ] Prefixed env vars added for each manual
 - [ ] .env added to .gitignore
 
-STOP if validation fails. Fix before continuing.
+❌ **STOP if validation fails.** Fix before continuing.
 
 ---
 
@@ -755,7 +757,7 @@ call_tool_chain({
 echo "Run: list_tools() in OpenCode to verify"
 ```
 
-STOP if validation fails. Fix before continuing.
+❌ **STOP if validation fails.** Fix before continuing.
 
 ---
 
@@ -933,7 +935,7 @@ call_tool_chain({
 - [ ] Tool discovery working via search_tools
 - [ ] At least one call_tool_chain execution succeeded
 
-STOP if validation fails. Fix before continuing.
+❌ **STOP if validation fails.** Fix before continuing.
 
 ---
 

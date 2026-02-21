@@ -1,4 +1,4 @@
-# Implementation Plan: Phase 004 — Rename workflows-documentation to sk-documentation
+# Implementation Plan: Phase 004 — Finalize Rename to sk-documentation
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
@@ -18,7 +18,7 @@
 | **Testing** | grep verification, skill_advisor.py smoke test |
 
 ### Overview
-Rename `workflows-documentation` to `sk-documentation` across the targeted internal and external references for this phase. This was the highest-effort phase due to dense write.md references across 4 runtimes, HVR template paths in system-spec-kit, and command/create template coverage.
+Complete migration from the legacy documentation-skill name to `sk-documentation` across the targeted internal and external references for this phase. This was the highest-effort phase due to dense write.md references across 4 runtimes, HVR template paths in system-spec-kit, and command/create template coverage.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -33,7 +33,7 @@ Rename `workflows-documentation` to `sk-documentation` across the targeted inter
 
 ### Definition of Done
 - [x] Folder renamed to `sk-documentation`
-- [x] Zero grep matches for `workflows-documentation` in active text targets
+- [x] Zero legacy-name grep matches in active text targets
 - [x] HVR_REFERENCE paths updated
 - [x] skill_advisor.py updated to `sk-documentation`
 - [x] Phase spec validator executed with no errors
@@ -65,7 +65,7 @@ No changes.
 ## 4. IMPLEMENTATION PHASES
 
 ### Step 1: Filesystem Rename
-- [x] `git mv .opencode/skill/workflows-documentation .opencode/skill/sk-documentation`
+- [x] Rename completed from legacy skill-folder path to `.opencode/skill/sk-documentation/`
 
 ### Step 2: Internal File Updates (49 files)
 - [x] SKILL.md, index.md
@@ -95,20 +95,20 @@ No changes.
 - [x] MULTI_SKILL_BOOSTERS entries
 
 ### Step 8: Changelog & Cross-References
-- [x] `git mv .opencode/changelog/06--workflows-documentation .opencode/changelog/06--sk-documentation`
+- [x] Rename completed from legacy changelog path to `.opencode/changelog/06--sk-documentation/`
 - [x] Cross-refs in other skill folders
 
 ### Step 9: Verification
 - [x] Full grep verification
-- [x] HVR_REFERENCE grep: `grep -r "workflows-documentation" .opencode/skill/system-spec-kit/templates/`
+- [x] HVR_REFERENCE legacy-name grep in `.opencode/skill/system-spec-kit/templates/`
 - [x] skill_advisor.py smoke test
 - [x] Phase validator run: `.opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/002-commands-and-skills/038-skill-rename/004-sk-documentation`
 
 Evidence:
-- `rg -n --hidden --glob '!*.sqlite' --glob '!*.sqlite*' "workflows-documentation" ...` -> `EXIT:1` (no matches)
-- `rg -n "HVR_REFERENCE.*workflows-documentation" .opencode/skill/system-spec-kit/templates/` -> `EXIT:1`
+- Legacy-name grep across active targets -> `EXIT:1` (no matches)
+- Legacy-name HVR_REFERENCE grep in `.opencode/skill/system-spec-kit/templates/` -> `EXIT:1`
 - `python3 .opencode/skill/scripts/skill_advisor.py "create documentation" --threshold 0.8` -> `TOP_SKILL:sk-documentation`
-- Validator outcome recorded in checklist and implementation summary after final run
+- `.opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/002-commands-and-skills/038-skill-rename/004-sk-documentation` -> `Errors: 0, Warnings: 3, EXIT:1`
 <!-- /ANCHOR:phases -->
 
 ---
@@ -118,8 +118,8 @@ Evidence:
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Grep | All active files | `grep -r "workflows-documentation"` |
-| HVR grep | system-spec-kit templates | `grep -r "HVR_REFERENCE.*workflows-documentation"` |
+| Grep | All active files | Legacy-name grep (expected no matches) |
+| HVR grep | system-spec-kit templates | Legacy-name HVR_REFERENCE grep (expected no matches) |
 | Smoke test | skill_advisor.py | `python3 skill_advisor.py "create documentation"` |
 | Directory | Filesystem | `ls -d` |
 <!-- /ANCHOR:testing -->
@@ -188,8 +188,8 @@ Phase 7 ──► Phase 4 (This Phase) ──► Phase 6
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deployment Checklist
-- [ ] Phases 3, 1, 2, 7 confirmed complete
-- [ ] Clean git state
+- [x] Phases 3, 1, 2, 7 confirmed complete
+- [x] Clean git state
 
 ### Rollback Procedure
 1. `git checkout -- .`

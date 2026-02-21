@@ -1,5 +1,5 @@
 ---
-description: "ALWAYS/NEVER/ESCALATE IF behavioral rules for visual-explainer outputs"
+description: "ALWAYS/NEVER/ESCALATE IF behavioral rules for sk-visual-explainer outputs"
 ---
 # Rules
 

@@ -21,7 +21,7 @@ description: "Mandatory rules (ALWAYS, NEVER, ESCALATE) for using the system-spe
 14. **Suggest /spec_kit:handover when session-end keywords detected OR after extended work (15+ tool calls)** - Proactive context preservation
 15. **Suggest /spec_kit:debug after 3+ failed fix attempts on same error** - Do not continue without offering debug delegation
 16. **Suggest /spec_kit:phase when task requires multi-phase decomposition** - Complex specs spanning multiple sessions or workstreams
-17. **Route all code creation/updates through `workflows-code--opencode`** - Full alignment is mandatory before claiming completion
+17. **Route all code creation/updates through `sk-code--opencode`** - Full alignment is mandatory before claiming completion
 18. **Route all documentation creation/updates through `sk-documentation`** - Full alignment is mandatory before claiming completion
 
 ### ❌ NEVER

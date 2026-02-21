@@ -514,7 +514,7 @@ Skills are domain expertise on demand. The AI loads the right skill and already 
 | `system-spec-kit`            | Documentation | Spec folders, templates, memory integration, context preservation. Skill Graph node files with SGQS traversal (spec 138) |
 | `mcp-chrome-devtools`  | Browser       | DevTools automation, screenshots, debugging                                                |
 | `sk-code--full-stack` | Multi-Stack   | Go, Node.js, React, React Native, Swift, auto-detected via marker files                    |
-| `workflows-code--opencode`   | System Code   | TypeScript, Python, Shell for MCP servers and scripts                                      |
+| `sk-code--opencode`   | System Code   | TypeScript, Python, Shell for MCP servers and scripts                                      |
 | `sk-code--web`    | Web Dev       | Webflow, vanilla JS: implementation, debugging, verification                               |
 | `sk-documentation`    | Docs          | Document quality scoring, skill creation, install guides. Skill Graph node authoring       |
 | `sk-git`              | Git           | Commits, branches, PRs, worktrees                                                          |
@@ -970,7 +970,7 @@ A: Minimal. SQLite databases are compact. A project with 100+ memories typically
 | [Commands](.opencode/changelog/04--commands/)                                       | 29 files |
 | [Skill Advisor](.opencode/changelog/05--skill-advisor/)                             | 4 files  |
 | [Workflows: Documentation](.opencode/changelog/06--sk-documentation/)        | 9 files  |
-| [Workflows: Code (OpenCode)](.opencode/changelog/07--workflows-code--opencode/)     | 9 files  |
+| [Workflows: Code (OpenCode)](.opencode/changelog/07--sk-code--opencode/)     | 9 files  |
 | [Workflows: Code (Web Dev)](.opencode/changelog/08--sk-code--web/)       | 10 files |
 | [Workflows: Code (Full Stack)](.opencode/changelog/09--sk-code--full-stack/) | 4 files  |
 | [Workflows: Git](.opencode/changelog/10--sk-git/)                            | 7 files  |

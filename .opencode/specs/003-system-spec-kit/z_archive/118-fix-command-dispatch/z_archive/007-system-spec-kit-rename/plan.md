@@ -36,7 +36,7 @@ Phase 3: External References (PARALLEL - 8 agents)
     ├─► Agent 5: spec_kit_research_*.yaml (~20 refs)
     ├─► Agent 6: spec_kit_implement_*.yaml + resume_*.yaml (~12 refs)
     ├─► Agent 7: create_*.yaml + install guide (~4 refs)
-    └─► Agent 8: Other skills (workflows-memory, workflows-documentation, cli-*) (~17 refs)
+    └─► Agent 8: Other skills (workflows-memory, sk-documentation, cli-*) (~17 refs)
     │
     ▼
 Phase 4: Verification (PARALLEL - 8 agents)
@@ -213,9 +213,9 @@ Pattern: `.opencode/skills/workflows-spec-kit/templates/` → `.opencode/skills/
 - `.opencode/skills/workflows-memory/references/semantic_memory.md` (1 ref)
 - `.opencode/skills/workflows-memory/references/alignment_scoring.md` (1 ref)
 - `.opencode/skills/workflows-memory/references/troubleshooting.md` (1 ref)
-- `.opencode/skills/workflows-documentation/SKILL.md` (1 ref)
-- `.opencode/skills/workflows-documentation/references/quick_reference.md` (1 ref)
-- `.opencode/skills/workflows-documentation/assets/command_template.md` (1 ref)
+- `.opencode/skills/sk-documentation/SKILL.md` (1 ref)
+- `.opencode/skills/sk-documentation/references/quick_reference.md` (1 ref)
+- `.opencode/skills/sk-documentation/assets/command_template.md` (1 ref)
 - `.opencode/skills/cli-codex/SKILL.md` (2 refs)
 - `.opencode/skills/cli-gemini/SKILL.md` (2 refs)
 

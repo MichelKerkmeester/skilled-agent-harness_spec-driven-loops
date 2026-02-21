@@ -2,7 +2,7 @@
 
 <!-- SPECKIT_LEVEL: 3+ -->
 <!-- SPECKIT_TEMPLATE_SOURCE: implementation-summary | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/workflows-documentation/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skill/sk-documentation/references/hvr_rules.md -->
 
 <!-- ANCHOR:implementation-summary-138-workstream-b -->
 
@@ -29,7 +29,7 @@
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Skills in the OpenCode system use markdown files (`SKILL.md`) as their primary entrypoints. A single `SKILL.md` contains everything: routing rules, examples, configuration, verification checklists, and domain knowledge. As skills grew in complexity, loading entire files became expensive regardless of which section was relevant. This approach hit scaling limits: token budget exhaustion, attention decay on long files, and limited composability between skills. If an agent needed to know how to create a spec folder, it loaded all of system-spec-kit. If it needed to understand git commit conventions, it loaded all of workflows-git. The cost was paid every time.
+Skills in the OpenCode system use markdown files (`SKILL.md`) as their primary entrypoints. A single `SKILL.md` contains everything: routing rules, examples, configuration, verification checklists, and domain knowledge. As skills grew in complexity, loading entire files became expensive regardless of which section was relevant. This approach hit scaling limits: token budget exhaustion, attention decay on long files, and limited composability between skills. If an agent needed to know how to create a spec folder, it loaded all of system-spec-kit. If it needed to understand git commit conventions, it loaded all of sk-git. The cost was paid every time.
 
 This workstream added a composable graph navigation layer with 72 nodes across all 9 skills, supplementing the existing SKILL.md entrypoints. Each skill now has three structural components: `index.md` (the supplemental graph entrypoint, containing description-only summaries for progressive disclosure), `nodes/*.md` (focused topic files with YAML frontmatter for machine-readable metadata and wikilinks as graph edges), and `SKILL.md` (the primary entrypoint for activation rules, routing, and core behavior). Agents can optionally traverse the graph layer to load only the nodes they need, while SKILL.md continues to serve as the primary entrypoint. The graph structure enables traversal: a node can link to related nodes across skill boundaries, letting an agent follow a reasoning path rather than bulk-loading entire domains.
 
@@ -39,11 +39,11 @@ Three parallel tracks ran throughout delivery: migration execution (decomposing 
 
 **system-spec-kit** (9 nodes, TASK-310) was the pilot migration. It established every pattern that the remaining 8 skills followed. Nine focused nodes were added as a supplemental navigation layer: spec-folder-workflow (the core creation process), memory-system (ANCHOR tag format, generate-context.js usage), checklist-verification (P0/P1/P2 priority system with evidence requirements), templates (CORE + ADDENDUM v2.2 architecture), validation (validate.sh exit codes and fix procedures), routing (level selection decision tree), phase-system (sub-folder versioning and phase boundaries), handover (session continuation protocol), and debugging (3-failed-attempts escalation pattern). Each node has YAML frontmatter with `description:`, `tags:`, and `links:` fields. The pilot surfaced two structural decisions that held for all subsequent migrations: retain `SKILL.md` as the primary skill entrypoint, adding a Graph Status header, and write `index.md` with description-only summaries so agents see a map before committing to a traversal path.
 
-**workflows-documentation** (7 nodes, TASK-311) covers the documentation quality system used by the entire framework. The 7 nodes address DQI scoring (the document quality index algorithm), template enforcement (how templates are selected and validated), HVR rules (human voice requirements prohibiting em dashes, hedging, and AI filler), ASCII flowcharts (the diagramming convention used throughout spec folders), component creation (the step-by-step process for building new documentation components), install guides (skill installation and configuration), and validation (the validate_document.py workflow). Migrating this skill first after the pilot was intentional: `workflows-documentation/SKILL.md` is also the home for graph-first authoring guidance, so completing this migration let graph authoring instructions be added immediately.
+**sk-documentation** (7 nodes, TASK-311) covers the documentation quality system used by the entire framework. The 7 nodes address DQI scoring (the document quality index algorithm), template enforcement (how templates are selected and validated), HVR rules (human voice requirements prohibiting em dashes, hedging, and AI filler), ASCII flowcharts (the diagramming convention used throughout spec folders), component creation (the step-by-step process for building new documentation components), install guides (skill installation and configuration), and validation (the validate_document.py workflow). Migrating this skill first after the pilot was intentional: `sk-documentation/SKILL.md` is also the home for graph-first authoring guidance, so completing this migration let graph authoring instructions be added immediately.
 
 **mcp-code-mode** (6 nodes, TASK-312) covers the MCP Code Mode execution environment used for external tool access. The 6 nodes address tool discovery (search_tools and list_tools patterns), TypeScript execution (sandboxed execution model and constraints), chaining patterns (how to compose multi-step tool sequences), integration workflows (connecting Code Mode to external services), error handling (timeout management and retry logic), and performance (call batching and latency budgets). This skill had the most concentrated content per node of all 9 migrations because Code Mode usage is procedural: agents either know the pattern or they do not.
 
-**workflows-git** (9 nodes, TASK-313) is the most operationally dense skill in the graph. The 9 nodes cover workspace setup (repository initialization and remote configuration), worktrees (parallel branch management without stashing), commit conventions (type prefixes, scope format, body requirements), PR creation (gh command patterns, title constraints, body templates), branch management (naming conventions, lifecycle policies), hooks (pre-commit validation, skip conditions), safeguards (force-push blockers, destructive command guards), finish workflows (the complete commit-and-cleanup sequence), and conflict resolution (merge conflict detection and resolution strategies). The safeguards node specifically captures the Four Laws from CLAUDE.md in a form an agent can retrieve without loading the full framework document.
+**sk-git** (9 nodes, TASK-313) is the most operationally dense skill in the graph. The 9 nodes cover workspace setup (repository initialization and remote configuration), worktrees (parallel branch management without stashing), commit conventions (type prefixes, scope format, body requirements), PR creation (gh command patterns, title constraints, body templates), branch management (naming conventions, lifecycle policies), hooks (pre-commit validation, skip conditions), safeguards (force-push blockers, destructive command guards), finish workflows (the complete commit-and-cleanup sequence), and conflict resolution (merge conflict detection and resolution strategies). The safeguards node specifically captures the Four Laws from CLAUDE.md in a form an agent can retrieve without loading the full framework document.
 
 **mcp-chrome-devtools** (10 nodes, TASK-314) is the largest skill in the graph by node count. The 10 nodes address CLI vs MCP routing (when to use each interface), debug flow (systematic problem diagnosis sequence), network inspection (request/response capture and HAR export), console API (command patterns for interactive debugging), performance profiling (flame chart interpretation and bottleneck identification), DOM manipulation (element selection and modification without page reload), fallback pathways (what to do when Chrome DevTools connection fails), screenshot capture (full-page and element-specific capture), accessibility (ARIA audit and axe integration), and storage (cookie, localStorage, and IndexedDB inspection). The CLI vs MCP routing node is the most-linked node in the skill because every other node references it as a prerequisite decision.
 
@@ -51,7 +51,7 @@ Three parallel tracks ran throughout delivery: migration execution (decomposing 
 
 **sk-code--full-stack** (6 nodes, TASK-316) addresses full-stack implementation patterns. The 6 nodes cover stack detection (identifying the technology stack from project structure), implementation phase (the ordered sequence for building features across layers), testing phase (unit, integration, and end-to-end test patterns), verification phase (lint, type check, and test execution in sequence), deployment (environment-specific deployment procedures), and configuration (environment variable management and secrets handling). This skill produced the fewest supplemental nodes: the SKILL.md had already been more focused than the others, so the graph layer was naturally compact.
 
-**workflows-code--opencode** (8 nodes, TASK-317) is the language-standards skill used for all code quality decisions in the system-spec-kit codebase itself. The 8 nodes cover TypeScript standards (strict typing, no-any rule, TSDoc requirements), JavaScript standards (CommonJS vs ESM decisions, require patterns), Python standards (type hints, docstrings, virtual environment conventions), Shell standards (shebang requirements, error handling with set -e, quoting rules), JSON/JSONC standards (schema validation, comment conventions), quality checklists (the complete pre-commit verification sequence), language detection (how to identify which standard applies to a given file), and universal patterns (conventions that apply regardless of language: named constants, no magic numbers, explicit return types). The quality checklists node is the highest-value node in this skill because it is the final gate before any completion claim.
+**sk-code--opencode** (8 nodes, TASK-317) is the language-standards skill used for all code quality decisions in the system-spec-kit codebase itself. The 8 nodes cover TypeScript standards (strict typing, no-any rule, TSDoc requirements), JavaScript standards (CommonJS vs ESM decisions, require patterns), Python standards (type hints, docstrings, virtual environment conventions), Shell standards (shebang requirements, error handling with set -e, quoting rules), JSON/JSONC standards (schema validation, comment conventions), quality checklists (the complete pre-commit verification sequence), language detection (how to identify which standard applies to a given file), and universal patterns (conventions that apply regardless of language: named constants, no magic numbers, explicit return types). The quality checklists node is the highest-value node in this skill because it is the final gate before any completion claim.
 
 **workflows-code--web-dev** (9 nodes, TASK-318) covers web-specific development patterns for frontend and integration work. The 9 nodes address implementation orchestration (the web development workflow entry point), debugging flow (browser-specific diagnosis sequence), verification phase (cross-browser and device testing), CSS/styling (specificity management, custom property conventions), responsive design (breakpoint strategy and fluid typography), accessibility (WCAG 2.1 AA requirements and keyboard navigation), performance optimization (Core Web Vitals targets and measurement), SEO (meta tag requirements and structured data), and integration testing (API contract validation and mock strategies). The implementation orchestration node explicitly references the CLI vs MCP routing node in mcp-chrome-devtools, making this one of two cross-skill wikilinks in the graph.
 
@@ -63,7 +63,7 @@ The skill graph produces value only if contributors can add nodes correctly. Thr
 
 `skill_graph_node_template.md` is the copy-paste starting point for any new node. It contains pre-populated frontmatter fields with instructional comments, section headers matching the conventions established in the migration, and a wikilink block at the bottom for cross-references. A contributor can create a new node by copying this template, filling in the frontmatter, and writing content. The template removes any ambiguity about required vs optional fields.
 
-`workflows-documentation/SKILL.md` was updated with graph-first authoring guidance. This means the most common entry point for documentation questions now surfaces the graph architecture as the default path. An agent loading this skill for the first time encounters graph conventions alongside established skill conventions.
+`sk-documentation/SKILL.md` was updated with graph-first authoring guidance. This means the most common entry point for documentation questions now surfaces the graph architecture as the default path. An agent loading this skill for the first time encounters graph conventions alongside established skill conventions.
 
 ### SGQS Specifications (3 Deliverables)
 
@@ -163,7 +163,7 @@ Delivery proceeded through 5 phases with two concurrent tracks running from Phas
 |-------|--------|
 | skill_graph_standards.md published | PASS — node structure, frontmatter schema, linking conventions documented |
 | skill_graph_node_template.md published | PASS — copy-paste template with instructional comments |
-| workflows-documentation/SKILL.md updated | PASS — graph-first authoring guidance discoverable from legacy entrypoint |
+| sk-documentation/SKILL.md updated | PASS — graph-first authoring guidance discoverable from legacy entrypoint |
 
 ### Checklist Summary
 
@@ -210,13 +210,13 @@ Delivery proceeded through 5 phases with two concurrent tracks running from Phas
 | `system-spec-kit/nodes/phase-system.md` | Sub-folder versioning |
 | `system-spec-kit/nodes/handover.md` | Session continuation protocol |
 | `system-spec-kit/nodes/debugging.md` | Escalation pattern |
-| `workflows-documentation/index.md` + 7 `nodes/*.md` | DQI, templates, HVR, flowcharts, components, install, validation |
+| `sk-documentation/index.md` + 7 `nodes/*.md` | DQI, templates, HVR, flowcharts, components, install, validation |
 | `mcp-code-mode/index.md` + 6 `nodes/*.md` | Tool discovery, TypeScript execution, chaining, integration, error handling, performance |
-| `workflows-git/index.md` + 9 `nodes/*.md` | Workspace, worktrees, commits, PRs, branches, hooks, safeguards, finish, conflicts |
+| `sk-git/index.md` + 9 `nodes/*.md` | Workspace, worktrees, commits, PRs, branches, hooks, safeguards, finish, conflicts |
 | `mcp-chrome-devtools/index.md` + 10 `nodes/*.md` | CLI/MCP routing, debug, network, console, performance, DOM, fallback, screenshots, a11y, storage |
 | `mcp-figma/index.md` + 8 `nodes/*.md` | File retrieval, image export, components, styles, teams, comments, versions, plugins |
 | `sk-code--full-stack/index.md` + 6 `nodes/*.md` | Stack detection, implementation, testing, verification, deployment, configuration |
-| `workflows-code--opencode/index.md` + 8 `nodes/*.md` | TypeScript, JavaScript, Python, Shell, JSON, quality checklists, detection, universal patterns |
+| `sk-code--opencode/index.md` + 8 `nodes/*.md` | TypeScript, JavaScript, Python, Shell, JSON, quality checklists, detection, universal patterns |
 | `workflows-code--web-dev/index.md` + 9 `nodes/*.md` | Orchestration, debug, verification, CSS, responsive, a11y, performance, SEO, integration |
 | `scripts/graph-enrichment.ts` | Memory indexing integration (287 lines), Step 7.6 in workflow.ts |
 | `sgqs/` module (7 TypeScript files) | Parser/executor: lexer, parser, validator, graph builder, executor, formatter, API |
@@ -226,13 +226,13 @@ Delivery proceeded through 5 phases with two concurrent tracks running from Phas
 | File | Change |
 |------|--------|
 | `system-spec-kit/SKILL.md` | Added Skill Graph Status header pointing to supplemental graph navigation |
-| `workflows-documentation/SKILL.md` | Added Skill Graph Status header pointing to supplemental graph navigation; graph-first authoring guidance added |
+| `sk-documentation/SKILL.md` | Added Skill Graph Status header pointing to supplemental graph navigation; graph-first authoring guidance added |
 | `mcp-code-mode/SKILL.md` | Added Skill Graph Status header pointing to supplemental graph navigation |
-| `workflows-git/SKILL.md` | Added Skill Graph Status header pointing to supplemental graph navigation |
+| `sk-git/SKILL.md` | Added Skill Graph Status header pointing to supplemental graph navigation |
 | `mcp-chrome-devtools/SKILL.md` | Added Skill Graph Status header pointing to supplemental graph navigation |
 | `mcp-figma/SKILL.md` | Added Skill Graph Status header pointing to supplemental graph navigation |
 | `sk-code--full-stack/SKILL.md` | Added Skill Graph Status header pointing to supplemental graph navigation |
-| `workflows-code--opencode/SKILL.md` | Added Skill Graph Status header pointing to supplemental graph navigation |
+| `sk-code--opencode/SKILL.md` | Added Skill Graph Status header pointing to supplemental graph navigation |
 | `workflows-code--web-dev/SKILL.md` | Added Skill Graph Status header pointing to supplemental graph navigation |
 | `scripts/workflow.ts` | Step 7.6 graph enrichment integration added |
 <!-- /ANCHOR:file-inventory -->
@@ -251,7 +251,7 @@ None. All 16/16 tasks are complete. CHK-042 (skill READMEs) was deferred because
 Level 3+: Workstream B implementation summary for 138-hybrid-rag-fusion.
 16/16 tasks complete. 9/9 skills migrated. 72 nodes. Global link check passing.
 Written in human voice: active, direct, specific. No em dashes, no hedging, no AI filler.
-HVR rules: .opencode/skill/workflows-documentation/references/hvr_rules.md
+HVR rules: .opencode/skill/sk-documentation/references/hvr_rules.md
 -->
 
 <!-- /ANCHOR:implementation-summary-138-workstream-b -->

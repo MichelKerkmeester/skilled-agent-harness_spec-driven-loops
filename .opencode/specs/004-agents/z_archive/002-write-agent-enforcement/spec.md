@@ -14,7 +14,7 @@ Enforce `@write` agent requirement for all `/create` commands to ensure template
 The 5 `/create` commands in `.opencode/command/create/` lack enforcement of the `@write` agent requirement. This means:
 - Commands can be executed without proper template loading
 - DQI scoring may not be applied
-- Quality gates from workflows-documentation skill may be bypassed
+- Quality gates from sk-documentation skill may be bypassed
 
 <!-- /ANCHOR:problem-statement -->
 

@@ -95,7 +95,7 @@ Delivery followed audit-to-remediation sequencing: first decompose the handler w
 <!-- ANCHOR:limitations -->
 ## Known Limitations / Deferred Items
 
-1. **Pre-existing alignment debt remains** in parts of the tests directory (`workflows-code--opencode` module-header convention gaps).
+1. **Pre-existing alignment debt remains** in parts of the tests directory (`sk-code--opencode` module-header convention gaps).
 2. **Deferred by scope**: no broad test-directory hygiene sweep was executed as part of this codex remediation closure.
 3. **Potential follow-up risk**: additional legacy comments/headers outside the touched files may still fail strict alignment checks in future global passes.
 <!-- /ANCHOR:limitations -->

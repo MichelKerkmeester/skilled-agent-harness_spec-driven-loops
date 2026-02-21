@@ -12,8 +12,10 @@
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P0 |
-| **Status** | Draft |
+| **Status** | Completed |
 | **Created** | 2026-02-21 |
+| **Completed** | 2026-02-21 |
+| **Verified** | 2026-02-21 |
 | **Branch** | `038-skill-rename` |
 | **Parent Spec** | ../spec.md |
 | **Parent Plan** | ../plan.md |
@@ -138,6 +140,10 @@ Rename `workflows-code--web-dev` to `sk-code--web` across all references, shorte
 - **SC-002**: `python3 .opencode/skill/scripts/skill_advisor.py "implement feature"` returns `sk-code--web`
 - **SC-003**: Folder `.opencode/skill/sk-code--web/` exists with all files intact
 - **SC-004**: No remaining bare `workflows-code` references (without suffix) in active files
+- **SC-001 Status**: PASS (`rg -n "workflows-code--web-dev"` on active targets returned exit `1`)
+- **SC-002 Status**: PASS (`python3 .opencode/skill/scripts/skill_advisor.py "implement feature" --threshold 0.8` -> `sk-code--web`, confidence `0.80`)
+- **SC-003 Status**: PASS (`rg --files .opencode/skill/sk-code--web | wc -l` -> `51`)
+- **SC-004 Status**: PASS (`rg -nP "\\bworkflows-code\\b(?!--)"` on active targets returned exit `1`)
 <!-- /ANCHOR:success-criteria -->
 
 ---

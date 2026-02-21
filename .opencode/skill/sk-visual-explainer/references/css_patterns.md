@@ -6,7 +6,7 @@ description: "Comprehensive CSS pattern library covering all 9 aesthetic profile
 
 > LOAD PRIORITY: CONDITIONAL — load when generating any HTML output.
 
-A comprehensive CSS pattern library for visual-explainer HTML pages. Copy-paste these patterns as the foundation for generated pages.
+A comprehensive CSS pattern library for sk-visual-explainer HTML pages. Copy-paste these patterns as the foundation for generated pages.
 
 ---
 

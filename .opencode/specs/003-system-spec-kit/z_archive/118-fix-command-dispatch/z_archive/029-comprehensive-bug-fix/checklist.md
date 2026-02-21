@@ -62,7 +62,7 @@
 - [x] **MED-016**: Add context parameter documentation
 - [x] **MED-017**: Add tool name translation note
 - [x] **MED-018**: Fix broken anchor links in workflows-code
-- [x] **MED-019**: Add missing GitHub tools to workflows-git
+- [x] **MED-019**: Add missing GitHub tools to sk-git
 - [x] **MED-020**: Add missing DevTools tools documentation
 - [x] **MED-021**: Add session cleanup section
 
@@ -82,7 +82,7 @@
 - [x] **LOW-007**: Add Two-Stage Flow clarification note
 - [x] **LOW-008**: Add script count clarification
 - [x] **LOW-009**: Add Phase Transitions section
-- [x] **LOW-010**: Add Error Handling section to workflows-git
+- [x] **LOW-010**: Add Error Handling section to sk-git
 - [x] **LOW-011**: Add allowed-tools update for mcp-code-mode
 - [x] **LOW-012**: Add troubleshooting section to mcp-code-context
 

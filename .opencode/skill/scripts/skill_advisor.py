@@ -283,33 +283,39 @@ INTENT_BOOSTERS = {
     # ─────────────────────────────────────────────────────────────────
     "a11y": ("sk-code--web", 0.6),
     "accessibility": ("sk-code--web", 0.6),
+    "animation": ("sk-code--web", 0.8),
     "aria": ("sk-code--web", 0.6),
     "bug": ("sk-code--web", 0.5),
+    "css": ("sk-code--web", 0.9),
+    "debugging": ("sk-code--web", 0.7),
     "error": ("sk-code--web", 0.4),
     "frontend": ("sk-code--web", 0.5),
     "implement": ("sk-code--web", 0.6),
     "layout": ("sk-code--web", 0.6),
+    "networking": ("sk-code--web", 0.5),
     "refactor": ("sk-code--web", 0.5),
+    "responsive": ("sk-code--web", 0.6),
+    "tracing": ("sk-code--web", 0.5),
     "verification": ("sk-code--web", 0.5),
     "wcag": ("sk-code--web", 0.5),
 
     # ─────────────────────────────────────────────────────────────────
-    # WORKFLOWS-CODE--OPENCODE: OpenCode system code standards
+    # SK-CODE--OPENCODE: OpenCode system code standards
     # (JavaScript MCP, Python scripts, Shell scripts, JSONC configs)
     # ─────────────────────────────────────────────────────────────────
-    "opencode": ("workflows-code--opencode", 2.0),
-    "mcp": ("workflows-code--opencode", 1.5),
-    "python": ("workflows-code--opencode", 1.0),
-    "shell": ("workflows-code--opencode", 1.0),
-    "bash": ("workflows-code--opencode", 1.0),
-    "jsonc": ("workflows-code--opencode", 1.5),
-    "shebang": ("workflows-code--opencode", 1.2),
-    "snake_case": ("workflows-code--opencode", 1.0),
-    "docstring": ("workflows-code--opencode", 0.8),
-    "jsdoc": ("workflows-code--opencode", 0.8),
-    "commonjs": ("workflows-code--opencode", 1.0),
-    "require": ("workflows-code--opencode", 0.6),
-    "strict": ("workflows-code--opencode", 0.5),
+    "opencode": ("sk-code--opencode", 2.0),
+    "mcp": ("sk-code--opencode", 1.5),
+    "python": ("sk-code--opencode", 1.0),
+    "shell": ("sk-code--opencode", 1.0),
+    "bash": ("sk-code--opencode", 1.0),
+    "jsonc": ("sk-code--opencode", 1.5),
+    "shebang": ("sk-code--opencode", 1.2),
+    "snake_case": ("sk-code--opencode", 1.0),
+    "docstring": ("sk-code--opencode", 0.8),
+    "jsdoc": ("sk-code--opencode", 0.8),
+    "commonjs": ("sk-code--opencode", 1.0),
+    "require": ("sk-code--opencode", 0.6),
+    "strict": ("sk-code--opencode", 0.5),
 
     # ─────────────────────────────────────────────────────────────────
     # MCP-CODE-MODE: External tool integration
@@ -318,14 +324,14 @@ INTENT_BOOSTERS = {
     "cms": ("mcp-code-mode", 0.5),
     "component": ("mcp-code-mode", 0.4),
     "external": ("mcp-code-mode", 0.4),
-    "figma": ("mcp-code-mode", 2.5),
+    "figma": ("mcp-figma", 2.2),
     "notion": ("mcp-code-mode", 2.5),
     "page": ("mcp-code-mode", 0.4),
     "pages": ("mcp-code-mode", 0.4),
     "site": ("mcp-code-mode", 0.6),
     "sites": ("mcp-code-mode", 0.6),
     "toolchain": ("mcp-code-mode", 0.6),
-    "typescript": ("mcp-code-mode", 0.4),
+    "typescript": ("sk-code--opencode", 0.8),
     "utcp": ("mcp-code-mode", 0.8),
     "webflow": ("mcp-code-mode", 2.5),
 }
@@ -333,27 +339,27 @@ INTENT_BOOSTERS = {
 # Ambiguous keywords that should boost MULTIPLE skills
 # Format: keyword -> list of (skill_name, boost_amount)
 MULTI_SKILL_BOOSTERS = {
-    "api": [("mcp-code-mode", 0.3), ("sk-code--web", 0.3), ("sk-code--full-stack", 0.3)],
+    "api": [("mcp-code-mode", 0.2), ("sk-code--web", 0.5), ("sk-code--full-stack", 0.4)],
     "audit": [("system-spec-kit", 0.3), ("mcp-chrome-devtools", 0.3), ("sk-code--web", 0.2)],
     "chain": [("mcp-code-mode", 0.3)],
     "changes": [("sk-git", 0.4), ("system-spec-kit", 0.2)],
-    "css": [("sk-code--web", 0.4), ("mcp-chrome-devtools", 0.3)],
-    "code": [("sk-code--web", 0.2), ("sk-code--full-stack", 0.2), ("workflows-code--opencode", 0.1)],
+    "css": [("sk-code--web", 0.6), ("mcp-chrome-devtools", 0.3)],
+    "code": [("sk-code--web", 0.2), ("sk-code--full-stack", 0.2), ("sk-code--opencode", 0.1)],
     "context": [("system-spec-kit", 0.4)],
     "deployment": [("sk-code--web", 0.4), ("sk-git", 0.3)],
     "export": [("mcp-figma", 0.3), ("mcp-chrome-devtools", 0.2)],
     "fix": [("sk-code--web", 0.3), ("sk-code--full-stack", 0.3), ("sk-git", 0.1)],
     "handler": [("sk-code--web", 0.3), ("mcp-code-mode", 0.2)],
-    "layout": [("sk-code--web", 0.4), ("mcp-chrome-devtools", 0.2)],
+    "layout": [("sk-code--web", 0.5), ("mcp-chrome-devtools", 0.2)],
     "mobile": [("sk-code--web", 0.3), ("mcp-chrome-devtools", 0.2)],
-    "mcp": [("mcp-code-mode", 0.3), ("workflows-code--opencode", 0.4)],
+    "mcp": [("mcp-code-mode", 0.3), ("sk-code--opencode", 0.4)],
     "plan": [("system-spec-kit", 0.3), ("sk-code--web", 0.2), ("sk-code--full-stack", 0.2)],
     "save": [("system-spec-kit", 0.4), ("sk-git", 0.2)],
-    "script": [("workflows-code--opencode", 0.4)],
-    "server": [("workflows-code--opencode", 0.3), ("mcp-code-mode", 0.2)],
+    "script": [("sk-code--opencode", 0.4)],
+    "server": [("sk-code--opencode", 0.3), ("mcp-code-mode", 0.2)],
     "session": [("system-spec-kit", 0.5)],
-    "standards": [("workflows-code--opencode", 0.4), ("sk-code--web", 0.2), ("sk-code--full-stack", 0.2)],
-    "style": [("workflows-code--opencode", 0.3), ("sk-code--web", 0.2), ("sk-code--full-stack", 0.2)],
+    "standards": [("sk-code--opencode", 0.4), ("sk-code--web", 0.2), ("sk-code--full-stack", 0.2)],
+    "style": [("sk-code--opencode", 0.2), ("sk-code--web", 0.4), ("sk-code--full-stack", 0.3)],
     "task": [("system-spec-kit", 0.3)],
     "test": [("sk-code--web", 0.3), ("sk-code--full-stack", 0.3), ("mcp-chrome-devtools", 0.2)],
     "update": [("mcp-code-mode", 0.3), ("sk-git", 0.2), ("sk-code--web", 0.2), ("sk-code--full-stack", 0.2)],
@@ -362,6 +368,18 @@ MULTI_SKILL_BOOSTERS = {
     "generate": [("sk-visual-explainer", 0.4)],
     "table": [("sk-visual-explainer", 0.3)],
     "review": [("sk-visual-explainer", 0.3)],
+}
+
+# Phrase-level intent boosters for high-signal multi-token requests
+# Format: phrase -> list of (skill_name, boost_amount)
+PHRASE_INTENT_BOOSTERS = {
+    "create documentation": [("sk-documentation", 0.6)],
+    "implement feature": [("sk-code--web", 0.9)],
+    "css animation": [("sk-code--web", 0.8)],
+    "api network": [("sk-code--web", 0.7), ("mcp-chrome-devtools", 0.4)],
+    "template level validation": [("system-spec-kit", 0.8)],
+    "figma css": [("mcp-figma", 0.8), ("sk-code--web", 0.4)],
+    "full stack typescript": [("sk-code--full-stack", 0.8), ("sk-code--opencode", 0.4)],
 }
 
 
@@ -517,9 +535,9 @@ def calculate_uncertainty(num_matches: int, has_intent_boost: bool, num_ambiguou
     if num_matches >= 5:
         base_uncertainty = 0.15
     elif num_matches >= 3:
-        base_uncertainty = 0.25
+        base_uncertainty = 0.20
     elif num_matches >= 1:
-        base_uncertainty = 0.40
+        base_uncertainty = 0.30
     else:
         base_uncertainty = 0.70
 
@@ -527,7 +545,7 @@ def calculate_uncertainty(num_matches: int, has_intent_boost: bool, num_ambiguou
     intent_penalty = 0.0 if has_intent_boost else 0.15
 
     # Ambiguous matches increase uncertainty (competing interpretations)
-    ambiguity_penalty = min(num_ambiguous_matches * 0.10, 0.30)
+    ambiguity_penalty = min(num_ambiguous_matches * 0.08, 0.24)
 
     uncertainty = min(base_uncertainty + intent_penalty + ambiguity_penalty, 1.0)
     return round(uncertainty, 2)
@@ -591,6 +609,14 @@ def analyze_request(prompt: str) -> List[Dict[str, Any]]:
                 if skill not in boost_reasons:
                     boost_reasons[skill] = []
                 boost_reasons[skill].append(f"!{token}(multi)")
+
+    for phrase, boosts in PHRASE_INTENT_BOOSTERS.items():
+        if phrase in prompt_lower:
+            for skill, boost in boosts:
+                skill_boosts[skill] = skill_boosts.get(skill, 0) + boost
+                if skill not in boost_reasons:
+                    boost_reasons[skill] = []
+                boost_reasons[skill].append(f"!{phrase}(phrase)")
 
     # Stop words filtered for corpus matching only
     tokens = [t for t in all_tokens if t not in STOP_WORDS and len(t) > 2]

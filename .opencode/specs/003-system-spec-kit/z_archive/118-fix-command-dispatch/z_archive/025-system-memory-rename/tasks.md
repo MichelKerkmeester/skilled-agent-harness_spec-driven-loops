@@ -170,10 +170,10 @@
 - **Changes:**
   - [x] cli-codex/SKILL.md: Line 589
   - [x] cli-gemini/SKILL.md: Line 483
-  - [x] workflows-documentation/SKILL.md: Line 448
-  - [x] workflows-documentation/references/quick_reference.md: Line 187
-  - [x] workflows-documentation/assets/frontmatter_templates.md: Line 25
-  - [x] workflows-documentation/assets/skill_md_template.md: Line 987
+  - [x] sk-documentation/SKILL.md: Line 448
+  - [x] sk-documentation/references/quick_reference.md: Line 187
+  - [x] sk-documentation/assets/frontmatter_templates.md: Line 25
+  - [x] sk-documentation/assets/skill_md_template.md: Line 987
   - [x] system-spec-kit/SKILL.md: Lines 460, 804, 812
   - [x] system-spec-kit/README.md: Line 961
   - [x] system-spec-kit/references/quick_reference.md: Line 535

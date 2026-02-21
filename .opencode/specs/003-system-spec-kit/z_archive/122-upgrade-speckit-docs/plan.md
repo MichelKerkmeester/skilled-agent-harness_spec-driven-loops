@@ -18,7 +18,7 @@
 | **Testing** | Manual review, validation scripts |
 
 ### Overview
-Systematic documentation quality improvement across the OpenCode system. Applied prose tightening, conciseness improvements, and style consistency patterns to ~4,864 total LOC changed (+2,649/−2,215, net +434) while preserving all technical content. Updated workflows-documentation to version 1.0.6.0, restructured readme_template.md, and removed unused Antigravity configuration.
+Systematic documentation quality improvement across the OpenCode system. Applied prose tightening, conciseness improvements, and style consistency patterns to ~4,864 total LOC changed (+2,649/−2,215, net +434) while preserving all technical content. Updated sk-documentation to version 1.0.6.0, restructured readme_template.md, and removed unused Antigravity configuration.
 
 <!-- /ANCHOR:summary -->
 
@@ -35,7 +35,7 @@ Systematic documentation quality improvement across the OpenCode system. Applied
 ### Definition of Done
 - [x] ~85 modified + 13 untracked files completed with quality improvements
 - [x] Technical content preserved in all changes
-- [x] Version bumped to 1.0.6.0 in workflows-documentation
+- [x] Version bumped to 1.0.6.0 in sk-documentation
 - [x] ~4,864 total LOC changed (+2,649/−2,215, net +434) — implementation complete, awaiting commit
 - [x] All files pass validation (proper formatting, no broken structure)
 
@@ -51,7 +51,7 @@ Documentation as Code - systematic quality improvements applied to markdown and 
 
 ### Key Components
 - **Documentation Files (~81 modified docs + 10 new changelogs)**: README.md files across skills, guides, scripts, templates
-- **Skill Definitions (1)**: workflows-documentation SKILL.md with version management
+- **Skill Definitions (1)**: sk-documentation SKILL.md with version management
 - **Templates (1)**: readme_template.md providing documentation patterns
 - **Configuration (3)**: opencode.json, package.json, bun.lock for system config
 
@@ -75,7 +75,7 @@ File-by-file editing workflow: Read original → Apply quality patterns → Veri
 - [x] Apply quality improvements to 9 non-spec-kit skill READMEs
 - [x] Improve other documentation files (main docs, guides, scripts)
 - [x] Create 10 new CHANGELOG.md files for versioned skills
-- [x] Bump workflows-documentation version to 1.0.6.0
+- [x] Bump sk-documentation version to 1.0.6.0
 - [x] Restructure readme_template.md (+191 lines of improvements)
 - [x] Remove Antigravity config from opencode.json (-78 lines)
 - [x] Update package.json and bun.lock for config changes

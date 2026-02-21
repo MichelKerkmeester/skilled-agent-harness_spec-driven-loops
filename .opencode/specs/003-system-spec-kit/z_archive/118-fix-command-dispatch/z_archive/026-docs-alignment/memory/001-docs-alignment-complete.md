@@ -163,7 +163,7 @@ Completed alignment of memory system documentation with version-neutral policy f
 | 460 | Path `skills/workflows-memory/` | Changed to `.opencode/skills/system-memory/` |
 | 464 | MCP server path `memory/mcp server/` | Changed to `skills/workflows-memory/mcp_server/` |
 | 513-514 | Skills table: `workflows-spec-kit`, `workflows-memory` | Changed to `system-spec-kit`, `system-memory` |
-| 522 | Skills table: `create-documentation` | Changed to `workflows-documentation` |
+| 522 | Skills table: `create-documentation` | Changed to `sk-documentation` |
 
 #### AI Systems/README.md (1 fix)
 | Line | Issue | Fix |
@@ -192,7 +192,7 @@ Completed alignment of memory system documentation with version-neutral policy f
 
 The source skill folders in `AI Systems/Code Environment/skills/` still use old names:
 - `workflows-memory/` should be renamed to `system-memory/`
-- `create-documentation/` should be renamed to `workflows-documentation/`
+- `create-documentation/` should be renamed to `sk-documentation/`
 
 This is a larger refactoring task for a future session.
 

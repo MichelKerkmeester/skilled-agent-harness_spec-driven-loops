@@ -129,8 +129,8 @@ describe('MEMORY PARSER - README INDEXING', () => {
     });
 
     it('R24: returns skill:SKILL-NAME for nested skill README', () => {
-      const result = mod.extractSpecFolder('/project/.opencode/skill/workflows-code/references/README.md');
-      expect(result).toBe('skill:workflows-code');
+      const result = mod.extractSpecFolder('/project/.opencode/skill/sk-code--web/references/README.md');
+      expect(result).toBe('skill:sk-code--web');
     });
 
     it('R25: returns skill:SKILL-NAME with Windows backslashes', () => {

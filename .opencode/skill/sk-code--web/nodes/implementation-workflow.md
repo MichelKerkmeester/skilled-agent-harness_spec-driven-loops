@@ -1,5 +1,5 @@
 ---
-description: "Phase 1 implementation patterns for CSS, layout, accessibility (ARIA), and event handler development with Phase 1.5 code quality gate for frontend development"
+description: "Phase 1 implementation patterns for CSS/layout/animation, accessibility (ARIA), API/network handlers, and responsive frontend delivery with a Phase 1.5 quality gate"
 ---
 # Implementation Workflow
 
@@ -87,3 +87,6 @@ See `references/standards/code_style_enforcement.md` for remediation instruction
 - [[rules]] - ALWAYS/NEVER/ESCALATE rules for implementation
 - [[verification-workflow]] - Phase 3 that follows implementation
 - [[debugging-workflow]] - Phase 2 if issues arise during implementation
+- [Document Quality Mode](../../sk-documentation/nodes/mode-document-quality.md) - Quality review workflow for implementation docs
+- [OpenCode Quick Reference](../../sk-code--opencode/nodes/quick-reference.md) - TypeScript/Python/Shell standards alignment
+- [Progressive Enhancement Levels](../../system-spec-kit/nodes/progressive-enhancement.md) - Spec level and template guidance

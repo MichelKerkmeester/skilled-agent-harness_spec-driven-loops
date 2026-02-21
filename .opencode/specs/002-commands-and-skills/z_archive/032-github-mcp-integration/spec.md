@@ -2,12 +2,12 @@
 
 <!-- SPECKIT_TEMPLATE_SOURCE: legacy-normalized | v2.2 -->
 
-# GitHub MCP Integration for workflows-git Skill
+# GitHub MCP Integration for sk-git Skill
 
 <!-- ANCHOR:metadata -->
 ## Overview
 
-Integrate the GitHub MCP server (configured in `.utcp_config.json`) into the workflows-git skill documentation, providing correct syntax for Code Mode access and comprehensive tool coverage.
+Integrate the GitHub MCP server (configured in `.utcp_config.json`) into the sk-git skill documentation, providing correct syntax for Code Mode access and comprehensive tool coverage.
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -15,7 +15,7 @@ Integrate the GitHub MCP server (configured in `.utcp_config.json`) into the wor
 <!-- ANCHOR:problem -->
 ## Problem Statement
 
-The workflows-git skill currently has:
+The sk-git skill currently has:
 1. **Incorrect syntax** in SKILL.md Section 1.1 for GitHub MCP tool calls
 2. **Incomplete tool coverage** - only mentions a few tools
 3. **Missing patterns** in shared_patterns.md for GitHub remote operations

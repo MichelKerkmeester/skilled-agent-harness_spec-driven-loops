@@ -8,11 +8,11 @@
 <!-- ANCHOR:executive-summary -->
 ## EXECUTIVE SUMMARY
 
-Remove all H2 heading emojis and TOC entry emojis from 287 markdown files across the `.opencode/` directory, aligning the entire codebase with the updated workflows-documentation v1.0.7.0 standard which no longer enforces emoji usage. The workflows-documentation skill itself was already updated (Phase 0). This spec covers every remaining skill, agent, command, README and reference file.
+Remove all H2 heading emojis and TOC entry emojis from 287 markdown files across the `.opencode/` directory, aligning the entire codebase with the updated sk-documentation v1.0.7.0 standard which no longer enforces emoji usage. The sk-documentation skill itself was already updated (Phase 0). This spec covers every remaining skill, agent, command, README and reference file.
 
 **Key Decisions**: Regex-based batch stripping via parallel AI agents organized by component group. Semantic H3 emojis (RULES sections) preserved. AGENTS.md and repo root README.md exempt.
 
-**Critical Dependencies**: workflows-documentation v1.0.7.0 must be merged first (completed). Validation engine already updated to not enforce emojis.
+**Critical Dependencies**: sk-documentation v1.0.7.0 must be merged first (completed). Validation engine already updated to not enforce emojis.
 <!-- /ANCHOR:executive-summary -->
 
 ---
@@ -27,8 +27,8 @@ Remove all H2 heading emojis and TOC entry emojis from 287 markdown files across
 | **Status** | Implementation complete; CHK-1205/1206 blocked by pre-existing modifications |
 | **Created** | 2026-02-16 |
 | **Branch** | `main` |
-| **Predecessor** | workflows-documentation v1.0.7.0 (emoji enforcement removal) |
-| **Changelog** | `.opencode/changelog/06--workflows-documentation/v1.0.7.0.md` |
+| **Predecessor** | sk-documentation v1.0.7.0 (emoji enforcement removal) |
+| **Changelog** | `.opencode/changelog/06--sk-documentation/v1.0.7.0.md` |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -38,7 +38,7 @@ Remove all H2 heading emojis and TOC entry emojis from 287 markdown files across
 
 ### Problem Statement
 
-The workflows-documentation skill (v1.0.7.0) no longer enforces emojis in H2 headings. However, 287 files across the `.opencode/` directory still contain emoji H2 headings (pattern: `## N. EMOJI TITLE`) from the previous standard. This creates inconsistency: new documents are created without emojis while existing documents retain them. Additionally, emojis consume tokens in AI context windows without adding semantic value to section headings.
+The sk-documentation skill (v1.0.7.0) no longer enforces emojis in H2 headings. However, 287 files across the `.opencode/` directory still contain emoji H2 headings (pattern: `## N. EMOJI TITLE`) from the previous standard. This creates inconsistency: new documents are created without emojis while existing documents retain them. Additionally, emojis consume tokens in AI context windows without adding semantic value to section headings.
 
 ### Purpose
 
@@ -63,7 +63,7 @@ Strip all H2 heading emojis and TOC entry emojis from every markdown file in `.o
 
 - `AGENTS.md` at repo root (exempt, keeps emojis)
 - `README.md` at repo root (exempt, keeps emojis)
-- `workflows-documentation` skill folder (already completed in v1.0.7.0)
+- `sk-documentation` skill folder (already completed in v1.0.7.0)
 - Body-text emojis (status indicators, bullet markers, inline decorators)
 - H3/H4/H5/H6 heading emojis outside of the `## N. EMOJI` pattern
 - Files inside `node_modules/`, `.git/`, `__pycache__/`, `venv/`
@@ -76,11 +76,11 @@ Strip all H2 heading emojis and TOC entry emojis from every markdown file in `.o
 | system-spec-kit skill | 84 | Modify | SKILL.md, READMEs, references, assets, MCP server docs |
 | mcp-figma skill | 6 | Modify | SKILL.md, README, INSTALL_GUIDE, references, assets |
 | mcp-code-mode skill | 10 | Modify | SKILL.md, README, INSTALL_GUIDE, references, assets |
-| workflows-code--opencode skill | 22 | Modify | SKILL.md, README, references, checklists |
+| sk-code--opencode skill | 22 | Modify | SKILL.md, README, references, checklists |
 | mcp-chrome-devtools skill | 7 | Modify | SKILL.md, README, INSTALL_GUIDE, references, examples |
 | sk-code--full-stack skill | 33 | Modify | SKILL.md, README, all reference and checklist files |
 | workflows-code--web-dev skill | 29 | Modify | SKILL.md, README, all reference and checklist files |
-| workflows-git skill | 10 | Modify | SKILL.md, README, references, assets |
+| sk-git skill | 10 | Modify | SKILL.md, README, references, assets |
 | Agent files | 32 | Modify | All agent definition files across provider folders |
 | Command files | 19 | Modify | All command definition files |
 | Top-level and shared READMEs | 5 | Modify | .opencode/README.md, skill/README.md, etc. |
@@ -144,7 +144,7 @@ Strip all H2 heading emojis and TOC entry emojis from every markdown file in `.o
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | workflows-documentation v1.0.7.0 merged | Validation would fail without updated rules | Already completed |
+| Dependency | sk-documentation v1.0.7.0 merged | Validation would fail without updated rules | Already completed |
 | Risk | Accidental removal of semantic H3 emojis | RULES sections lose functional signaling | Regex targets only `## N. EMOJI` pattern, not `### EMOJI` |
 | Risk | Body-text emojis removed | Status indicators and decorators lost | Regex scoped to H2 heading lines only |
 | Risk | TOC anchor slugs break after emoji removal | Internal navigation broken | Anchors use slugified text without emojis already |
@@ -251,7 +251,7 @@ Strip all H2 heading emojis and TOC entry emojis from every markdown file in `.o
 | Checkpoint | Approver | Status | Date |
 |------------|----------|--------|------|
 | Spec Review | User | Approved | 2026-02-16 |
-| Phase 0 (workflows-documentation) | User | Approved | 2026-02-16 |
+| Phase 0 (sk-documentation) | User | Approved | 2026-02-16 |
 | Phase 1-12 Execution | AI Swarm | Complete (except CHK-1205/1206) | 2026-02-17 |
 | Final Verification | User | Pending | |
 <!-- /ANCHOR:approval-workflow -->
@@ -262,7 +262,7 @@ Strip all H2 heading emojis and TOC entry emojis from every markdown file in `.o
 ## 13. COMPLIANCE CHECKPOINTS
 
 ### Documentation Compliance
-- [ ] All files follow workflows-documentation v1.0.7.0 standard
+- [ ] All files follow sk-documentation v1.0.7.0 standard
 - [ ] No emoji H2 headings remain (except exempt files)
 - [ ] Semantic H3 emojis preserved in RULES sections
 - [ ] TOC entries match their corresponding H2 headings
@@ -282,7 +282,7 @@ Strip all H2 heading emojis and TOC entry emojis from every markdown file in `.o
 |-------------|------|----------|---------------|
 | User | Owner | High | Direct approval at each phase |
 | AI Swarm | Executor | High | Task-level reporting |
-| workflows-documentation | Standard | High | Source of truth for format rules |
+| sk-documentation | Standard | High | Source of truth for format rules |
 <!-- /ANCHOR:stakeholders -->
 
 ---
@@ -310,4 +310,4 @@ Strip all H2 heading emojis and TOC entry emojis from every markdown file in `.o
 - **Task Breakdown**: See `tasks.md`
 - **Verification Checklist**: See `checklist.md`
 - **Decision Records**: See `decision-record.md`
-- **Predecessor Changelog**: `.opencode/changelog/06--workflows-documentation/v1.0.7.0.md`
+- **Predecessor Changelog**: `.opencode/changelog/06--sk-documentation/v1.0.7.0.md`

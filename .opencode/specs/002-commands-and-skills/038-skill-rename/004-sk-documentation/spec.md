@@ -1,4 +1,4 @@
-# Feature Specification: Phase 004 — Rename workflows-documentation to sk-documentation
+# Feature Specification: Phase 004 — Finalize Rename to sk-documentation
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core + phase-child-header | v2.2 -->
@@ -12,17 +12,18 @@
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P0 |
-| **Status** | Complete |
+| **Status** | Completed |
 | **Created** | 2026-02-21 |
 | **Completed** | 2026-02-21 |
 | **Verified** | 2026-02-21 |
+| **Validation** | 2026-02-21 (`errors: 0`, `warnings: 3`) |
 | **Branch** | `038-skill-rename` |
 | **Parent Spec** | ../spec.md |
 | **Parent Plan** | ../plan.md |
 | **Phase** | 4 of 7 |
 | **Predecessor** | 007-mcp-chrome-devtools |
 | **Successor** | 006-sk-visual-explainer |
-| **Handoff Criteria** | `grep -r "workflows-documentation"` returns 0 matches in active files |
+| **Handoff Criteria** | Legacy-name grep returns 0 matches in active files; target-name coverage checks pass |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -32,7 +33,7 @@
 
 This is **Phase 4** of the Skill Rename (038) specification. It has the HIGHEST external reference count (52 files) making it the most cross-cutting rename.
 
-**Scope Boundary**: ALL changes required to rename `workflows-documentation` to `sk-documentation`, including extensive write.md agent updates, HVR template paths in system-spec-kit, and command file references.
+**Scope Boundary**: ALL changes required to complete migration from the legacy documentation-skill name to `sk-documentation`, including extensive write.md agent updates, HVR template paths in system-spec-kit, and command file references.
 
 **Dependencies**:
 - Phases 3, 1, 2, and 7 must complete first (execution order)
@@ -53,10 +54,10 @@ This is **Phase 4** of the Skill Rename (038) specification. It has the HIGHEST 
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-The skill `workflows-documentation` uses the legacy `workflows-*` naming convention and is the most heavily cross-referenced skill in the system. With 52 external files referencing it, this rename requires the most careful coordination.
+The documentation skill previously used a legacy `workflows-*` naming convention and is the most heavily cross-referenced skill in the system. With 52 external files referencing it, this rename requires the most careful coordination.
 
 ### Purpose
-Rename `workflows-documentation` to `sk-documentation` across all 101 files (49 internal + 52 external), ensuring zero missed references in the most cross-cutting rename of the set.
+Complete migration from the legacy documentation-skill name to `sk-documentation` across all 101 files (49 internal + 52 external), ensuring zero missed references in the most cross-cutting rename of the set.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -65,14 +66,14 @@ Rename `workflows-documentation` to `sk-documentation` across all 101 files (49 
 ## 3. SCOPE
 
 ### In Scope
-- Filesystem rename: `git mv .opencode/skill/workflows-documentation .opencode/skill/sk-documentation`
+- Filesystem rename completed to target folder `.opencode/skill/sk-documentation/` from the prior legacy path
 - Update all 49 internal files
 - Update 52 external files (highest count)
 - Update 8 lines in skill_advisor.py
 - Update write.md across 4 runtimes (~30 refs per file = ~120 replacements)
 - Update 8 HVR_REFERENCE template paths in system-spec-kit
 - Update 9 command files in `.opencode/command/create/`
-- Rename changelog directory: `06--workflows-documentation` → `06--sk-documentation`
+- Rename changelog directory to `06--sk-documentation` from the prior legacy name
 
 ### Out of Scope
 - Renaming other skills
@@ -83,7 +84,7 @@ Rename `workflows-documentation` to `sk-documentation` across all 101 files (49 
 
 | Category | File Path | Change Type | Ref Count |
 |----------|-----------|-------------|-----------|
-| Folder rename | `.opencode/skill/workflows-documentation/` | Rename | — |
+| Folder rename | `legacy path -> .opencode/skill/sk-documentation/` | Rename | — |
 | Internal | `sk-documentation/SKILL.md` | Modify | ~5 |
 | Internal | `sk-documentation/index.md` | Modify | ~3 |
 | Internal | `sk-documentation/nodes/*.md` (~8 files) | Modify | ~20 |
@@ -111,7 +112,7 @@ Rename `workflows-documentation` to `sk-documentation` across all 101 files (49 
 | spec-kit | `system-spec-kit/templates/*/implementation-summary.md` (8 files) | Modify | HVR_REFERENCE path |
 | spec-kit | `system-spec-kit/templates/*/decision-record.md` (3 files) | Modify | HVR_REFERENCE path |
 | spec-kit | `system-spec-kit/templates/core/impl-summary-core.md` | Modify | HVR_REFERENCE path |
-| Changelog | `.opencode/changelog/06--workflows-documentation/` | Rename | — |
+| Changelog | `legacy path -> .opencode/changelog/06--sk-documentation/` | Rename | — |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -124,7 +125,7 @@ Rename `workflows-documentation` to `sk-documentation` across all 101 files (49 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
 | REQ-001 | Rename skill folder | `ls .opencode/skill/sk-documentation/` exists |
-| REQ-002 | Update all internal refs | `grep -r "workflows-documentation" .opencode/skill/sk-documentation/` = 0 |
+| REQ-002 | Update all internal refs | Legacy-name grep in `.opencode/skill/sk-documentation/` = 0 |
 | REQ-003 | Update skill_advisor.py | `python3 skill_advisor.py "create documentation"` returns `sk-documentation` |
 | REQ-004 | Update write.md agent files | All 4 runtime write.md files use `sk-documentation` (~120 replacements) |
 | REQ-005 | Update orchestrate.md | All 4 runtime orchestrate.md files updated |
@@ -146,7 +147,7 @@ Rename `workflows-documentation` to `sk-documentation` across all 101 files (49 
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: `grep -r "workflows-documentation" .opencode/skill/ .opencode/command/ .opencode/agent/ .opencode/install_guides/ .claude/ .gemini/ CLAUDE.md README.md` returns 0
+- **SC-001**: Legacy-name grep across `.opencode/skill/`, `.opencode/command/`, `.opencode/agent/`, `.opencode/install_guides/`, `.claude/`, `.gemini/`, `CLAUDE.md`, and `README.md` returns 0
 - **SC-002**: `python3 skill_advisor.py "create documentation"` returns `sk-documentation`
 - **SC-003**: All HVR_REFERENCE paths in system-spec-kit templates point to `sk-documentation`
 - **SC-004**: Folder `.opencode/skill/sk-documentation/` exists with all files
@@ -187,11 +188,11 @@ Rename `workflows-documentation` to `sk-documentation` across all 101 files (49 
 
 ### High-Volume Targets
 - write.md files: ~30 refs each across 4 runtimes — must batch-replace carefully
-- HVR_REFERENCE comments: `<!-- HVR_REFERENCE: .opencode/skill/workflows-documentation/... -->`
+- HVR_REFERENCE comments: `<!-- HVR_REFERENCE: .opencode/skill/sk-documentation/... -->`
 - Command YAML files: `skill:` field values
 
 ### Cross-References
-- Multiple other skills reference `workflows-documentation` in their nodes/
+- Multiple other skills reference `sk-documentation` in their nodes/
 - system-spec-kit templates embed paths to this skill
 <!-- /ANCHOR:edge-cases -->
 

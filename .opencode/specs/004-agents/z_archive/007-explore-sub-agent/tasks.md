@@ -23,7 +23,7 @@
 | T10 | Update spec folder tasks.md + checklist.md | ✅ Done | Orchestrator | P1 | T5-T9 |
 | T11 | Final verification grep | ✅ Done | Orchestrator | P1 | T10 |
 | T11a | Audit all 9 skill directories for agent references | ✅ Done | Orchestrator | P1 | T10 |
-| T11b | Fix agent_template.md in workflows-documentation (add 3 missing agents) | ✅ Done | @general | P1 | T11a |
+| T11b | Fix agent_template.md in sk-documentation (add 3 missing agents) | ✅ Done | @general | P1 | T11a |
 | T11c | Audit all 38 command/YAML files for agent references | ✅ Done | Orchestrator | P1 | T10 |
 | T11d | Fix SET-UP - Opencode Agents.md install guide (16 changes) | ✅ Done | @general | P1 | T11c |
 | T11e | Create symlink at .claude/agents/context_loader.md | ✅ Done | @general | P1 | T4 |
@@ -153,13 +153,13 @@
 **Method**: 10 agents dispatched in parallel (1 discovery + 9 skill-specific searches)
 **Findings**:
 - 8/9 skills contained zero named agent references — completely clean
-- 1 skill (`workflows-documentation`) had 2 outdated agent tables in `assets/opencode/agent_template.md`
+- 1 skill (`sk-documentation`) had 2 outdated agent tables in `assets/opencode/agent_template.md`
 - Zero stale `@explore` references found anywhere in skills directory
-- Skills searched: system-spec-kit, workflows-code--web-dev, sk-code--full-stack, workflows-code--opencode, workflows-git, workflows-documentation, mcp-chrome-devtools, mcp-code-mode, mcp-figma
+- Skills searched: system-spec-kit, workflows-code--web-dev, sk-code--full-stack, sk-code--opencode, sk-git, sk-documentation, mcp-chrome-devtools, mcp-code-mode, mcp-figma
 
 ### T11b: Fix agent_template.md ✅
 
-**Objective**: Add 3 missing agents to both agent tables in `workflows-documentation/assets/opencode/agent_template.md`
+**Objective**: Add 3 missing agents to both agent tables in `sk-documentation/assets/opencode/agent_template.md`
 **Changes**:
 - Table 1 (Current Production Agents, ~line 589): Added @context_loader, @general, @handover (6→9 rows)
 - Table 2 (Agent Files, ~line 680): Added context_loader, general, handover (6→9 rows)

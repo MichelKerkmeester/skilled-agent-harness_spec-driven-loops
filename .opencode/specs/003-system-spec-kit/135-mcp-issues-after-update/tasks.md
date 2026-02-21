@@ -37,7 +37,7 @@
 ## Phase 2: Documentation Update
 
 - [x] T007 Read current install guide thoroughly (`.opencode/install_guides/MCP - Spec Kit Memory.md`) [Evidence: Complete rewrite executed]
-- [x] T008 Design structure for new debugging section [Evidence: Recovery-first workflow via workflows-documentation]
+- [x] T008 Design structure for new debugging section [Evidence: Recovery-first workflow via sk-documentation]
 - [x] T009 Write error message reference table with common failures [Evidence: Troubleshooting section added]
 - [x] T010 Document recovery procedure for node_modules issues [Evidence: Build fallback procedures in guide]
 - [x] T011 Document recovery procedures for other identified causes [Evidence: Native module checks, path validation]

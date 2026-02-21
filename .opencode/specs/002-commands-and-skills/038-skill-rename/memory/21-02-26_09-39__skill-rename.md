@@ -259,11 +259,11 @@ Nodes: 435 | Edges: 655 | Skills: 10
 - system-spec-kit: 165 nodes
 - mcp-chrome-devtools: 19 nodes
 - sk-code--full-stack: 62 nodes
-- workflows-code--opencode: 35 nodes
+- sk-code--opencode: 35 nodes
 - workflows-code--web-dev: 44 nodes
-- workflows-documentation: 36 nodes
-- workflows-git: 21 nodes
-- workflows-visual-explainer: 18 nodes
+- sk-documentation: 36 nodes
+- sk-git: 21 nodes
+- sk-visual-explainer: 18 nodes
 
 **Node types:** :Asset(51), :Document(136), :Entrypoint(10), :Index(10), :Node(83), :Reference(135), :Skill(10)
 
@@ -1419,7 +1419,7 @@ trigger_phrases:
   - "swiftui patterns"
   - "a comprehensive guide to swiftui view composition, state management, navigation patterns, custom modifiers, and modern ios 17+ swiftui features for building production-ready ios applications."
   - "a comprehensive guide to testing swift and swiftui applications including xctest fundamentals, unit testing viewmodels, ui testing with xcuitest, mocking and stubbing patterns, test doubles, and snapshot testing."
-  - "workflows-code--opencode"
+  - "sk-code--opencode"
   - "opencode"
   - "multi-language code standards for opencode system code (javascript, typescript, python, shell, json/jsonc) with language detection routing, universal patterns and quality checklists"
   - "code standards - opencode system code"
@@ -1597,7 +1597,7 @@ trigger_phrases:
   - "verification_workflows"
   - "verification workflows - phase 3 (mandatory)"
   - "browser verification requirements for all completion claims - no exceptions."
-  - "workflows-documentation"
+  - "sk-documentation"
   - "documentation"
   - "workflows documentation"
   - "unified markdown and opencode component specialist providing document quality enforcement, content optimization, component creation workflows, ascii flowcharts and install guides"
@@ -1684,7 +1684,7 @@ trigger_phrases:
   - "quality gates, dqi scoring, and improvement recommendations for markdown documentation."
   - "document quality workflows - mode 1 reference"
   - "execution modes, validation patterns, and phase interactions for mode 1 document quality workflows."
-  - "workflows-git"
+  - "sk-git"
   - "git"
   - "git workflow orchestrator guiding developers through workspace setup, clean commits, and work completion across git-worktrees, git-commit, and git-finish skills"
   - "git workflows - git development orchestrator"
@@ -1708,7 +1708,7 @@ trigger_phrases:
   - "always/never/escalate rules governing git workflow behavior"
   - "intent routing logic with weighted scoring, resource loading levels, and disambiguation"
   - "completion gates and quality checks for workspace setup, commits, and integration"
-  - "activation triggers, use cases, and when not to use the workflows-git skill"
+  - "activation triggers, use cases, and when not to use the sk-git skill"
   - "work-completion"
   - "work completion"
   - "pr creation, conflict resolution, branch cleanup, merge strategies, deployment, and finish workflow"
@@ -1728,26 +1728,26 @@ trigger_phrases:
   - "worktree_workflows"
   - "git worktrees - detailed workflow reference"
   - "complete workflow documentation for creating isolated git workspaces with minimal branching."
-  - "workflows-visual-explainer"
+  - "sk-visual-explainer"
   - "visual"
   - "explainer"
-  - "workflows-visual-explainer — styled html diagram generator"
+  - "sk-visual-explainer — styled html diagram generator"
   - "converts complex terminal output and technical concepts into styled, self-contained html pages with diagrams, tables, and visualizations through a 4-phase think-structure-style-deliver workflow."
   - "visual explainer — styled html diagram generator"
   - "converts complex terminal output and technical concepts into styled, self-contained html pages with diagrams, tables, and visualizations."
   - "aesthetics"
   - "9 aesthetic profiles with css variable values, font pairings, background atmosphere, and a compatibility matrix with diagram types"
-  - "full contracts for all 5 visual-explainer slash commands including argument parsing, data gathering, section architecture, and output specs"
+  - "full contracts for all 5 sk-visual-explainer slash commands including argument parsing, data gathering, section architecture, and output specs"
   - "diagram-types"
   - "diagram types"
   - "all 11 diagram types with rendering approach, best-fit scenarios, constraints, and a decision tree for selection"
   - "4-phase think > structure > style > deliver workflow with sub-steps and decision points"
-  - "cdn libraries, cross-skill integration, output conventions, and google fonts pairings for visual-explainer"
-  - "index of all reference files, asset files, template files, and related skills for the workflows-visual-explainer skill"
-  - "always/never/escalate if behavioral rules for visual-explainer outputs"
+  - "cdn libraries, cross-skill integration, output conventions, and google fonts pairings for sk-visual-explainer"
+  - "index of all reference files, asset files, template files, and related skills for the sk-visual-explainer skill"
+  - "always/never/escalate if behavioral rules for sk-visual-explainer outputs"
   - "intent scoring pseudocode and resource loading strategy for routing user requests to the correct command and resources"
-  - "9 pre-delivery quality checks for visual-explainer html output"
-  - "activation triggers, 5 command overview, and decision matrix for when to use visual-explainer"
+  - "9 pre-delivery quality checks for sk-visual-explainer html output"
+  - "activation triggers, 5 command overview, and decision matrix for when to use sk-visual-explainer"
   - "visual explainer — css patterns"
   - "comprehensive css pattern library covering all 9 aesthetic profiles with custom properties, depth tiers, backgrounds, and animations"
   - "library_guide"
@@ -1760,7 +1760,7 @@ trigger_phrases:
   - "visual explainer — quality checklist"
   - "detailed pass/fail verification procedure for all 9 pre-delivery quality checks with step-by-step instructions"
   - "visual explainer — quick reference"
-  - "command cheat sheet, cdn snippets, and font pairings for quick access during visual-explainer generation"
+  - "command cheat sheet, cdn snippets, and font pairings for quick access during sk-visual-explainer generation"
   - "skill.md"
   - "env_template.md"
   - "config_template.md"
@@ -1784,8 +1784,8 @@ trigger_phrases:
   - "references/validation/validation_rules.md"
   - "references/validation/five-checks.md"
   - "references/workflows/rollback-runbook.md"
-  - "../workflows-code--opencode/skill.md"
-  - "../workflows-documentation/skill.md"
+  - "../sk-code--opencode/skill.md"
+  - "../sk-documentation/skill.md"
   - "level_specifications.md"
   - "template_guide.md"
   - "save_workflow.md"

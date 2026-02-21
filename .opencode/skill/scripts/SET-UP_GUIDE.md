@@ -315,9 +315,9 @@ Some keywords are ambiguous and boost multiple skills:
 
 | Keyword   | Skills Boosted                                |
 | --------- | --------------------------------------------- |
-| `code`    | workflows-code (+0.2)                         |
+| `code`    | sk-code--web (+0.2)                         |
 | `context` | system-spec-kit (+0.3)                        |
-| `plan`    | system-spec-kit (+0.3), workflows-code (+0.2) |
+| `plan`    | system-spec-kit (+0.3), sk-code--web (+0.2) |
 
 ---
 
@@ -591,9 +591,9 @@ INTENT_BOOSTERS = {
     # Existing entries...
     
     # Add your custom boosters:
-    "deploy": ("workflows-code", 0.8),
-    "staging": ("workflows-code", 0.6),
-    "production": ("workflows-code", 0.7),
+    "deploy": ("sk-code--web", 0.8),
+    "staging": ("sk-code--web", 0.6),
+    "production": ("sk-code--web", 0.7),
 }
 ```
 
@@ -626,7 +626,7 @@ MULTI_SKILL_BOOSTERS = {
     # Existing entries...
     
     "deploy": [
-        ("workflows-code", 0.4),
+        ("sk-code--web", 0.4),
         ("sk-git", 0.3),
     ],
 }
@@ -645,9 +645,9 @@ Boost certain skills based on project type:
 
 **Backend Projects**:
 ```python
-"database": ("workflows-code", 0.5),
-"endpoint": ("workflows-code", 0.5),
-"migration": ("workflows-code", 0.6),
+"database": ("sk-code--web", 0.5),
+"endpoint": ("sk-code--web", 0.5),
+"migration": ("sk-code--web", 0.6),
 ```
 
 ---
@@ -699,7 +699,7 @@ TESTS=(
     "get the figma design|mcp-figma"
     "save context to memory|system-spec-kit"
     "debug in chrome|mcp-chrome-devtools"
-    "implement the feature|workflows-code"
+    "implement the feature|sk-code--web"
     "create pull request github|sk-git"
     "create a skill for workflow|sk-documentation"
     "validate markdown structure|sk-documentation"
@@ -747,7 +747,7 @@ python .opencode/skill/scripts/skill_advisor.py "your query here"
 The output shows which patterns matched:
 ```json
 {
-  "skill": "workflows-code",
+  "skill": "sk-code--web",
   "confidence": 0.65,
   "reason": "Matched: !implement, code(name)"
 }
@@ -777,11 +777,11 @@ grep "'your_word'" .opencode/skill/scripts/skill_advisor.py | head -5
 
 ### Common Debugging Scenarios
 
-**Scenario: "fix the login bug" not routing to workflows-code**
+**Scenario: "fix the login bug" not routing to sk-code--web**
 
 Check:
-1. "fix" is in `MULTI_SKILL_BOOSTERS` → workflows-code +0.3
-2. "bug" is in `INTENT_BOOSTERS` → workflows-code +0.5
+1. "fix" is in `MULTI_SKILL_BOOSTERS` → sk-code--web +0.3
+2. "bug" is in `INTENT_BOOSTERS` → sk-code--web +0.5
 3. "login" may boost other skills (may compete)
 4. Total: depends on accumulated boosts per skill
 
@@ -858,7 +858,7 @@ ls -la .opencode/skill/scripts/skill_advisor.py
 <summary><strong>Wrong skill recommended</strong></summary>
 
 **Symptoms:**
-- Script recommends an unexpected skill when you wanted `workflows-code`
+- Script recommends an unexpected skill when you wanted `sk-code--web`
 
 **Solution:**
 1. Check intent booster values for competing skills
@@ -866,9 +866,9 @@ ls -la .opencode/skill/scripts/skill_advisor.py
 3. Increase boost values for target skill
 
 ```python
-# Example: Make "implement" stronger for workflows-code
+# Example: Make "implement" stronger for sk-code--web
 INTENT_BOOSTERS = {
-    "implement": ("workflows-code", 1.2),  # Increased from 0.6
+    "implement": ("sk-code--web", 1.2),  # Increased from 0.6
 }
 ```
 
@@ -892,8 +892,8 @@ or very low confidence scores
 ```python
 # Add boosters for your common queries
 INTENT_BOOSTERS = {
-    "deploy": ("workflows-code", 0.8),
-    "release": ("workflows-code", 0.7),
+    "deploy": ("sk-code--web", 0.8),
+    "release": ("sk-code--web", 0.7),
 }
 ```
 

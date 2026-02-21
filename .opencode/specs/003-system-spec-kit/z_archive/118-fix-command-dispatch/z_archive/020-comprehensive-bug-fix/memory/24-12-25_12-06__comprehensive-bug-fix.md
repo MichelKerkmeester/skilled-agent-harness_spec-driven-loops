@@ -354,7 +354,7 @@ Fix workflows-code SKILL.md
 <!-- ANCHOR:implementation-tool-task-c399128b-13-session-1766574390511-x7g9mx2j8 -->
 ### BUGFIX: Tool: task
 
-Fix workflows-git and chrome-devtools
+Fix sk-git and chrome-devtools
 
 **Details:** Tool: task | Status: completed
 <!-- /ANCHOR:implementation-tool-task-c399128b-13-session-1766574390511-x7g9mx2j8 -->

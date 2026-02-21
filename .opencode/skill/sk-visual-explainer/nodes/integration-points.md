@@ -1,5 +1,5 @@
 ---
-description: "CDN libraries, cross-skill integration, output conventions, and Google Fonts pairings for visual-explainer"
+description: "CDN libraries, cross-skill integration, output conventions, and Google Fonts pairings for sk-visual-explainer"
 ---
 # Integration Points
 
@@ -359,7 +359,7 @@ rm /tmp/ve-img.png
 // In recap: load all memory entries from the time window
 // In plan-review: load most recent memory entry for the spec folder
 // Memory files live at: .opencode/specs/{folder}/memory/*.md
-// Do not write to memory — visual-explainer is read-only for spec-kit memory
+// Do not write to memory — sk-visual-explainer is read-only for spec-kit memory
 ```
 
 **NEVER:** Write to or modify `system-spec-kit` memory files. Read only.

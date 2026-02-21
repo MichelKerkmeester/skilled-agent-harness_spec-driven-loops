@@ -1,5 +1,5 @@
 ---
-description: "9 pre-delivery quality checks for visual-explainer HTML output"
+description: "9 pre-delivery quality checks for sk-visual-explainer HTML output"
 ---
 # Success Criteria
 

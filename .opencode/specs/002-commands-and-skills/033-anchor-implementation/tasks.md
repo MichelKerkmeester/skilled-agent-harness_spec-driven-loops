@@ -87,13 +87,13 @@ Tasks use `[B:T###]` notation to indicate blocking dependencies.
 **Description**: Update main SKILL.md template with anchor examples and usage guidelines.
 
 **Deliverables**:
-- [x] ✅ Updated `.opencode/skill/workflows-documentation/assets/opencode/skill_md_template.md`
+- [x] ✅ Updated `.opencode/skill/sk-documentation/assets/opencode/skill_md_template.md`
 - [x] ✅ Anchor examples integrated throughout template
 - [x] ✅ Anchor usage demonstrated in context
 - [x] ✅ File size: 36,481 bytes (updated 2026-02-17 07:50)
 
 **Evidence**:
-- [E:file-path] `.opencode/skill/workflows-documentation/assets/opencode/skill_md_template.md`
+- [E:file-path] `.opencode/skill/sk-documentation/assets/opencode/skill_md_template.md`
 - [E:file-size] 36,481 bytes (increased from baseline)
 - [E:timestamp] Modified 2026-02-17 07:50
 - [E:anchor-examples] Template now includes anchor tag examples in multiple sections
@@ -121,12 +121,12 @@ Tasks use `[B:T###]` notation to indicate blocking dependencies.
 **Description**: Update reference document template with anchor examples for multi-section documents.
 
 **Deliverables**:
-- [x] ✅ Updated `.opencode/skill/workflows-documentation/assets/opencode/skill_reference_template.md`
+- [x] ✅ Updated `.opencode/skill/sk-documentation/assets/opencode/skill_reference_template.md`
 - [x] ✅ Multi-anchor pattern examples demonstrated
 - [x] ✅ File size: 30,531 bytes (updated 2026-02-17 07:50)
 
 **Evidence**:
-- [E:file-path] `.opencode/skill/workflows-documentation/assets/opencode/skill_reference_template.md`
+- [E:file-path] `.opencode/skill/sk-documentation/assets/opencode/skill_reference_template.md`
 - [E:file-size] 30,531 bytes
 - [E:timestamp] Modified 2026-02-17 07:50
 - [E:anchor-examples] Reference template includes anchor tag demonstrations
@@ -153,12 +153,12 @@ Tasks use `[B:T###]` notation to indicate blocking dependencies.
 **Description**: Update asset template with anchor examples for checklists, workflows, and patterns.
 
 **Deliverables**:
-- [x] ✅ Updated `.opencode/skill/workflows-documentation/assets/opencode/skill_asset_template.md`
+- [x] ✅ Updated `.opencode/skill/sk-documentation/assets/opencode/skill_asset_template.md`
 - [x] ✅ Anchor examples for asset-specific patterns
 - [x] ✅ File size: 27,116 bytes (updated 2026-02-17 07:50)
 
 **Evidence**:
-- [E:file-path] `.opencode/skill/workflows-documentation/assets/opencode/skill_asset_template.md`
+- [E:file-path] `.opencode/skill/sk-documentation/assets/opencode/skill_asset_template.md`
 - [E:file-size] 27,116 bytes
 - [E:timestamp] Modified 2026-02-17 07:50
 - [E:anchor-examples] Asset template includes anchor usage examples
@@ -226,12 +226,12 @@ Tasks use `[B:T###]` notation to indicate blocking dependencies.
 
 **Skills Migrated** (10 skill folders):
 1. [x] ✅ `system-spec-kit/` - Anchored
-2. [x] ✅ `workflows-documentation/` - Anchored
+2. [x] ✅ `sk-documentation/` - Anchored
 3. [x] ✅ `workflows-code--web-dev/` - Anchored
 4. [x] ✅ `sk-code--full-stack/` - Anchored
-5. [x] ✅ `workflows-git/` - Anchored
+5. [x] ✅ `sk-git/` - Anchored
 6. [x] ✅ `mcp-chrome-devtools/` - Anchored
-7. [x] ✅ `workflows-code--opencode/` - Anchored
+7. [x] ✅ `sk-code--opencode/` - Anchored
 8. [x] ✅ `mcp-code-mode/` - Anchored
 9. [x] ✅ `mcp-figma/` - Anchored
 10. [x] ✅ Additional skill folder(s) - Anchored

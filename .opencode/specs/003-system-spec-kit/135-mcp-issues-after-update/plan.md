@@ -152,7 +152,7 @@ Phase 1 (Investigation) ──► Phase 2 (Documentation) ──► Phase 3 (Ver
 
 ### Pre-deployment Checklist
 - [x] Current install guide backed up [Evidence: Git version control]
-- [x] Changes reviewed for accuracy and clarity [Evidence: workflows-documentation skill validation]
+- [x] Changes reviewed for accuracy and clarity [Evidence: sk-documentation skill validation]
 - [x] At least one test user validates procedures work [Evidence: Developer testing completed]
 
 ### Rollback Procedure

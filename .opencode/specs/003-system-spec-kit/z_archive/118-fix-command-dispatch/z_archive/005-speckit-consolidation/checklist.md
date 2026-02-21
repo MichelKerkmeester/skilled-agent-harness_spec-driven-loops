@@ -103,8 +103,8 @@ Quality assurance checklist for verifying the SpecKit consolidation migration.
 ### Cross-Skill References
 - [x] **CHK-036**: workflows-memory references verified
   - *Evidence: 0 matches for .opencode/speckit/ in workflows-memory*
-- [x] **CHK-037**: workflows-documentation references verified
-  - *Evidence: 0 matches for .opencode/speckit/ in workflows-documentation*
+- [x] **CHK-037**: sk-documentation references verified
+  - *Evidence: 0 matches for .opencode/speckit/ in sk-documentation*
 - [x] **CHK-038**: cli-codex command references verified
   - *Evidence: 0 matches for .opencode/speckit/ in cli-codex*
 - [x] **CHK-039**: cli-gemini command references verified

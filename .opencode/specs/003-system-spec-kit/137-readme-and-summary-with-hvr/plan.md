@@ -13,13 +13,13 @@
 | Aspect | Value |
 |--------|-------|
 | **Language/Stack** | Markdown, YAML (within HVR source) |
-| **Framework** | SpecKit template system, workflows-documentation skill |
+| **Framework** | SpecKit template system, sk-documentation skill |
 | **Storage** | File system only — no database changes |
 | **Testing** | Manual review: grep for hard-blocker words, visual inspection of template structure |
 
 ### Overview
 
-This plan covers two categories of work. First, extracting the Human Voice Rules from a Barter-specific context document into a standalone, system-agnostic file at the canonical workflows-documentation skill path. Second, annotating four documentation templates across two skill systems with a concise HVR guidance block. No code changes. No automation. The work is file editing with discipline.
+This plan covers two categories of work. First, extracting the Human Voice Rules from a Barter-specific context document into a standalone, system-agnostic file at the canonical sk-documentation skill path. Second, annotating four documentation templates across two skill systems with a concise HVR guidance block. No code changes. No automation. The work is file editing with discipline.
 
 The approach is annotation-based: each template gets an HVR block early in the file that writers will see before they start filling in sections. The block references the full standalone rules and includes the most critical inline guidance — hard-blocker words and top structural patterns to avoid.
 <!-- /ANCHOR:summary -->
@@ -54,7 +54,7 @@ Single-source-of-truth with embedded guidance. The canonical `hvr_rules.md` hold
 
 ### Key Components
 
-- **`hvr_rules.md`**: The standalone skill asset. Lives at `.opencode/skill/workflows-documentation/assets/documentation/hvr_rules.md`. Contains the full HVR document with Barter-specific references removed and the loading condition generalised.
+- **`hvr_rules.md`**: The standalone skill asset. Lives at `.opencode/skill/sk-documentation/assets/documentation/hvr_rules.md`. Contains the full HVR document with Barter-specific references removed and the loading condition generalised.
 - **HVR annotation block**: A 20-25 line Markdown comment block added to each target template. Contains: a reference to `hvr_rules.md`, the top 10 hard-blocker words to avoid, the 4 structural patterns most common in AI output, and 2 specific guidance lines for the template's content type.
 - **Four target templates**: `implementation-summary.md` (4 SpecKit levels) and `decision-record.md` (2 SpecKit levels), `readme_template.md` and `install_guide_template.md` (both workflows-doc).
 
@@ -74,7 +74,7 @@ Writer opens template → Sees HVR block at top → Reads guidance before writin
 - [ ] Identify and remove all Barter-specific references (proper nouns, system names, project-specific scoring integrations)
 - [ ] Update the loading condition from Barter-scoped to general ("Always active for documentation generation tasks")
 - [ ] Update the scope statement from "6 Barter content systems" to system-agnostic language
-- [ ] Write the cleaned document to `.opencode/skill/workflows-documentation/assets/documentation/hvr_rules.md`
+- [ ] Write the cleaned document to `.opencode/skill/sk-documentation/assets/documentation/hvr_rules.md`
 - [ ] Grep for "Barter", "MEQT", "DEAL", "CONTENT", "LinkedIn" to verify no references remain
 
 ### Phase 2: Draft the HVR Annotation Block

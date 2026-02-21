@@ -351,7 +351,7 @@ async function findProjectReadmes(workspaceRoot: string): Promise<string[]> {
 --------------------------------------------------------------- */
 
 /**
- * Find reference and asset files from configured workflows-code--* skills.
+ * Find reference and asset files from configured sk-code--* skills.
  * Source #6: Skill References & Assets.
  * Only scans skills listed in config.jsonc skillReferenceIndexing.indexedSkills.
  */

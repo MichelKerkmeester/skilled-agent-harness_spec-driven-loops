@@ -62,9 +62,9 @@ Given the manual approach deviation, the planned 4-phase timeline was collapsed:
 ### Files Modified
 
 **Templates Updated** [E:template-updates]:
-- ✅ `.opencode/skill/workflows-documentation/assets/opencode/skill_md_template.md` (36,481 bytes, modified 2026-02-17 07:50)
-- ✅ `.opencode/skill/workflows-documentation/assets/opencode/skill_reference_template.md` (30,531 bytes, modified 2026-02-17 07:50)
-- ✅ `.opencode/skill/workflows-documentation/assets/opencode/skill_asset_template.md` (27,116 bytes, modified 2026-02-17 07:50)
+- ✅ `.opencode/skill/sk-documentation/assets/opencode/skill_md_template.md` (36,481 bytes, modified 2026-02-17 07:50)
+- ✅ `.opencode/skill/sk-documentation/assets/opencode/skill_reference_template.md` (30,531 bytes, modified 2026-02-17 07:50)
+- ✅ `.opencode/skill/sk-documentation/assets/opencode/skill_asset_template.md` (27,116 bytes, modified 2026-02-17 07:50)
 
 **Scripts Created** [DEVIATION: None created - manual approach used]:
 - ❌ `.opencode/skill/system-spec-kit/scripts/dist/skill/add-anchors-to-skills.py` (not created)
@@ -73,12 +73,12 @@ Given the manual approach deviation, the planned 4-phase timeline was collapsed:
 
 **Skills Migrated** [E:skill-coverage] (10 total):
 - ✅ `system-spec-kit/` - SKILL.md + 30 references + 6 assets
-- ✅ `workflows-documentation/` - SKILL.md + 15 references + 3 assets
+- ✅ `sk-documentation/` - SKILL.md + 15 references + 3 assets
 - ✅ `workflows-code--web-dev/` - SKILL.md + 42 references + 18 assets
 - ✅ `sk-code--full-stack/` - SKILL.md + 8 references + 5 assets
-- ✅ `workflows-git/` - SKILL.md + 12 references + 7 assets
+- ✅ `sk-git/` - SKILL.md + 12 references + 7 assets
 - ✅ `mcp-chrome-devtools/` - SKILL.md + 6 references + 4 assets
-- ✅ `workflows-code--opencode/` - SKILL.md + 8 references + 3 assets
+- ✅ `sk-code--opencode/` - SKILL.md + 8 references + 3 assets
 - ✅ `mcp-code-mode/` - SKILL.md + 3 references + 2 assets
 - ✅ `mcp-figma/` - SKILL.md + 2 references + 1 asset
 - ✅ `mcp-chrome-devtools/` - 1 reference (no SKILL.md)
@@ -321,12 +321,12 @@ Applied consistent interpretation:
 
 **Coverage Distribution by Skill**:
 - `system-spec-kit/`: 37 files anchored (SKILL + 30 refs + 6 assets)
-- `workflows-documentation/`: 19 files anchored (SKILL + 15 refs + 3 assets)
+- `sk-documentation/`: 19 files anchored (SKILL + 15 refs + 3 assets)
 - `workflows-code--web-dev/`: 61 files anchored (SKILL + 42 refs + 18 assets)
 - `sk-code--full-stack/`: 14 files anchored (SKILL + 8 refs + 5 assets)
-- `workflows-git/`: 20 files anchored (SKILL + 12 refs + 7 assets)
+- `sk-git/`: 20 files anchored (SKILL + 12 refs + 7 assets)
 - `mcp-chrome-devtools/`: 11 files anchored (SKILL + 6 refs + 4 assets)
-- `workflows-code--opencode/`: 12 files anchored (SKILL + 8 refs + 3 assets)
+- `sk-code--opencode/`: 12 files anchored (SKILL + 8 refs + 3 assets)
 - `mcp-code-mode/`: 6 files anchored (SKILL + 3 refs + 2 assets)
 - `mcp-figma/`: 4 files anchored (SKILL + 2 refs + 1 asset)
 - `mcp-chrome-devtools/`: 1 file anchored (1 ref, no SKILL.md)
@@ -591,7 +591,7 @@ Given the manual approach, the original 4-gate approval process was adapted:
   - Status: Pending after spec documentation complete
 
 - ⏳ **Update skill creation workflows** [Priority: Medium]
-  - Update workflows-documentation skill references to mention anchors
+  - Update sk-documentation skill references to mention anchors
   - Add anchor examples to skill creation guides
   - Update skill_creation.md with anchor requirements
   - Status: Not started

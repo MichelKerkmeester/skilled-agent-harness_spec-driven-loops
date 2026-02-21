@@ -132,7 +132,7 @@ Next: Continue implementation
 
 **Key Context to Review:**
 
-- Files modified: .opencode/.../references/hvr_rules.md, .opencode/skill/workflows-documentation/SKILL.md, .opencode/.../documentation/install_guide_template.md
+- Files modified: .opencode/.../references/hvr_rules.md, .opencode/skill/sk-documentation/SKILL.md, .opencode/.../documentation/install_guide_template.md
 
 - Check: plan.md, tasks.md, checklist.md
 
@@ -190,7 +190,7 @@ Next: Continue implementation
 
 - `.opencode/.../references/hvr_rules.md` - Documentation
 
-- `.opencode/skill/workflows-documentation/SKILL.md` - Documentation
+- `.opencode/skill/sk-documentation/SKILL.md` - Documentation
 
 - `.opencode/.../documentation/install_guide_template.md` - Template file
 
@@ -223,7 +223,7 @@ Next: Continue implementation
 
 ## 2. OVERVIEW
 
-Completed the HVR integration work by relocating hvr_rules.md from assets/documentation/ to references/ (it is loaded into agent context, not used as an output template). Updated 19 path references across 13 files: SKILL.md (3 lines), install_guide_template.md (1 line), readme_template.md (2 lines), hvr_rules.md internal links (2 lines), and 8 SpecKit templates (2 lines each for HVR_REFERENCE comment + footer). Fixed the outdated quick_reference.md Section 7 file tree which had wrong subdirectory structure and was missing 10 files. Ran full audits: 7 reference files (0/7 mention HVR, noted as future gap), 6 scripts + test suite (all UP TO DATE), 8 YAML create workflows (all clean), 5 opencode templates (all clean). Created changelogs for workflows-documentation v1.0.9.0 and system-spec-kit v2.2.23.0. Bumped SKILL.md versions. Created environment changelog v2.1.4.0, updated PUBLIC_RELEASE.md, committed, tagged, and published GitHub release v2.1.4.0.
+Completed the HVR integration work by relocating hvr_rules.md from assets/documentation/ to references/ (it is loaded into agent context, not used as an output template). Updated 19 path references across 13 files: SKILL.md (3 lines), install_guide_template.md (1 line), readme_template.md (2 lines), hvr_rules.md internal links (2 lines), and 8 SpecKit templates (2 lines each for HVR_REFERENCE comment + footer). Fixed the outdated quick_reference.md Section 7 file tree which had wrong subdirectory structure and was missing 10 files. Ran full audits: 7 reference files (0/7 mention HVR, noted as future gap), 6 scripts + test suite (all UP TO DATE), 8 YAML create workflows (all clean), 5 opencode templates (all clean). Created changelogs for sk-documentation v1.0.9.0 and system-spec-kit v2.2.23.0. Bumped SKILL.md versions. Created environment changelog v2.1.4.0, updated PUBLIC_RELEASE.md, committed, tagged, and published GitHub release v2.1.4.0.
 
 **Key Outcomes**:
 - Completed the HVR integration work by relocating hvr_rules.md from assets/documentation/ to...
@@ -239,7 +239,7 @@ Completed the HVR integration work by relocating hvr_rules.md from assets/docume
 | **File** | **Description** |
 |:---------|:----------------|
 | `.opencode/.../references/hvr_rules.md` | SKILL.md (3 lines) |
-| `.opencode/skill/workflows-documentation/SKILL.md` | HVR_REFERENCE comment + footer) |
+| `.opencode/skill/sk-documentation/SKILL.md` | HVR_REFERENCE comment + footer) |
 | `.opencode/.../documentation/install_guide_template.md` | HVR_REFERENCE comment + footer) |
 | `.opencode/.../documentation/readme_template.md` | HVR_REFERENCE comment + footer) |
 | `.opencode/.../references/quick_reference.md` | HVR_REFERENCE comment + footer) |
@@ -261,9 +261,9 @@ Completed the HVR integration work by relocating hvr_rules.md from assets/docume
 <!-- ANCHOR:implementation-completed-hvr-integration-work-861f2d2d -->
 ### FEATURE: Completed the HVR integration work by relocating hvr_rules.md from assets/documentation/ to...
 
-Completed the HVR integration work by relocating hvr_rules.md from assets/documentation/ to references/ (it is loaded into agent context, not used as an output template). Updated 19 path references across 13 files: SKILL.md (3 lines), install_guide_template.md (1 line), readme_template.md (2 lines), hvr_rules.md internal links (2 lines), and 8 SpecKit templates (2 lines each for HVR_REFERENCE comment + footer). Fixed the outdated quick_reference.md Section 7 file tree which had wrong subdirectory structure and was missing 10 files. Ran full audits: 7 reference files (0/7 mention HVR, noted as future gap), 6 scripts + test suite (all UP TO DATE), 8 YAML create workflows (all clean), 5 opencode templates (all clean). Created changelogs for workflows-documentation v1.0.9.0 and system-spec-kit v2.2.23.0. Bumped SKILL.md versions. Created environment changelog v2.1.4.0, updated PUBLIC_RELEASE.md, committed, tagged, and published GitHub release v2.1.4.0.
+Completed the HVR integration work by relocating hvr_rules.md from assets/documentation/ to references/ (it is loaded into agent context, not used as an output template). Updated 19 path references across 13 files: SKILL.md (3 lines), install_guide_template.md (1 line), readme_template.md (2 lines), hvr_rules.md internal links (2 lines), and 8 SpecKit templates (2 lines each for HVR_REFERENCE comment + footer). Fixed the outdated quick_reference.md Section 7 file tree which had wrong subdirectory structure and was missing 10 files. Ran full audits: 7 reference files (0/7 mention HVR, noted as future gap), 6 scripts + test suite (all UP TO DATE), 8 YAML create workflows (all clean), 5 opencode templates (all clean). Created changelogs for sk-documentation v1.0.9.0 and system-spec-kit v2.2.23.0. Bumped SKILL.md versions. Created environment changelog v2.1.4.0, updated PUBLIC_RELEASE.md, committed, tagged, and published GitHub release v2.1.4.0.
 
-**Details:** hvr_rules.md relocation | move assets to references | HVR path update | quick_reference file tree | implementation-summary template | version bump workflows-documentation | version bump system-spec-kit | GitHub release v2.1.4.0 | reference audit | create command audit | script audit workflows-documentation
+**Details:** hvr_rules.md relocation | move assets to references | HVR path update | quick_reference file tree | implementation-summary template | version bump sk-documentation | version bump system-spec-kit | GitHub release v2.1.4.0 | reference audit | create command audit | script audit sk-documentation
 <!-- /ANCHOR:implementation-completed-hvr-integration-work-861f2d2d -->
 
 <!-- ANCHOR:implementation-technical-implementation-details-b38918d8 -->
@@ -463,7 +463,7 @@ This session followed a **Linear Sequential** conversation pattern with **0** di
 
 > **User** | 2026-02-20 @ 07:05:25
 
-Completed the HVR integration work by relocating hvr_rules.md from assets/documentation/ to references/ (it is loaded into agent context, not used as an output template). Updated 19 path references across 13 files: SKILL.md (3 lines), install_guide_template.md (1 line), readme_template.md (2 lines), hvr_rules.md internal links (2 lines), and 8 SpecKit templates (2 lines each for HVR_REFERENCE comment + footer). Fixed the outdated quick_reference.md Section 7 file tree which had wrong subdirectory structure and was missing 10 files. Ran full audits: 7 reference files (0/7 mention HVR, noted as future gap), 6 scripts + test suite (all UP TO DATE), 8 YAML create workflows (all clean), 5 opencode templates (all clean). Created changelogs for workflows-documentation v1.0.9.0 and system-spec-kit v2.2.23.0. Bumped SKILL.md versions. Created environment changelog v2.1.4.0, updated PUBLIC_RELEASE.md, committed, tagged, and published GitHub release v2.1.4.0.
+Completed the HVR integration work by relocating hvr_rules.md from assets/documentation/ to references/ (it is loaded into agent context, not used as an output template). Updated 19 path references across 13 files: SKILL.md (3 lines), install_guide_template.md (1 line), readme_template.md (2 lines), hvr_rules.md internal links (2 lines), and 8 SpecKit templates (2 lines each for HVR_REFERENCE comment + footer). Fixed the outdated quick_reference.md Section 7 file tree which had wrong subdirectory structure and was missing 10 files. Ran full audits: 7 reference files (0/7 mention HVR, noted as future gap), 6 scripts + test suite (all UP TO DATE), 8 YAML create workflows (all clean), 5 opencode templates (all clean). Created changelogs for sk-documentation v1.0.9.0 and system-spec-kit v2.2.23.0. Bumped SKILL.md versions. Created environment changelog v2.1.4.0, updated PUBLIC_RELEASE.md, committed, tagged, and published GitHub release v2.1.4.0.
 
 ---
 
@@ -698,7 +698,7 @@ trigger_phrases:
 
 key_files:
   - ".opencode/.../references/hvr_rules.md"
-  - ".opencode/skill/workflows-documentation/SKILL.md"
+  - ".opencode/skill/sk-documentation/SKILL.md"
   - ".opencode/.../documentation/install_guide_template.md"
   - ".opencode/.../documentation/readme_template.md"
   - ".opencode/.../references/quick_reference.md"

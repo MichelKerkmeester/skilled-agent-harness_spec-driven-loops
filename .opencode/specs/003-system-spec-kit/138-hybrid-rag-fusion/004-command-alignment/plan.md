@@ -32,10 +32,10 @@ This implements documentation-only updates to 14 command/skill files to align th
 - [x] Dependencies identified (spec 138 phases 001-003 complete)
 
 ### Definition of Done
-- [ ] All acceptance criteria met (REQ-001 through REQ-009)
-- [ ] YAML structure valid (indentation, syntax)
-- [ ] Auto/confirm pairs consistent
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All acceptance criteria met (REQ-001 through REQ-009)
+- [x] YAML structure valid (indentation, syntax)
+- [x] Auto/confirm pairs consistent
+- [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -61,24 +61,24 @@ No data flow changes. Commands read templates and produce files. The graph-mode 
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Create Command Updates
-- [ ] Update `create/skill.md` with graph architecture decision gate
-- [ ] Update `create_skill_auto.yaml` Steps 5/6/8 with graph scaffolding
-- [ ] Update `create_skill_confirm.yaml` Steps 5/6/8 with graph scaffolding
-- [ ] Update `create/skill_reference.md` Step 5 for graph-mode detection
-- [ ] Update `create_skill_reference_auto.yaml` + `create_skill_reference_confirm.yaml`
-- [ ] Update `create/skill_asset.md` Step 5 + graph node type
-- [ ] Update `create_skill_asset_auto.yaml` + `create_skill_asset_confirm.yaml`
+- [x] Update `create/skill.md` with graph architecture decision gate
+- [x] Update `create_skill_auto.yaml` Steps 5/6/8 with graph scaffolding
+- [x] Update `create_skill_confirm.yaml` Steps 5/6/8 with graph scaffolding
+- [x] Update `create/skill_reference.md` Step 5 for graph-mode detection
+- [x] Update `create_skill_reference_auto.yaml` + `create_skill_reference_confirm.yaml`
+- [x] Update `create/skill_asset.md` Step 5 + graph node type
+- [x] Update `create_skill_asset_auto.yaml` + `create_skill_asset_confirm.yaml`
 
 ### Phase 2: Memory Command Updates
-- [ ] Update `memory/context.md` with graph weight dimension and flags
-- [ ] Update `memory/manage.md` with SPECKIT_GRAPH_* flags and graph health/stats
-- [ ] Update `memory/continue.md` adaptive fusion from 2→3 channel
-- [ ] Update `memory/learn.md` consolidation pipeline graph note
+- [x] Update `memory/context.md` with graph weight dimension and flags
+- [x] Update `memory/manage.md` with SPECKIT_GRAPH_* flags and graph health/stats
+- [x] Update `memory/continue.md` adaptive fusion from 2→3 channel
+- [x] Update `memory/learn.md` consolidation pipeline graph note
 
 ### Phase 3: System Config + Verification
-- [ ] Update `system-spec-kit/SKILL.md` feature flag table with 3 SPECKIT_GRAPH_* flags
-- [ ] Verify all auto/confirm pairs are consistent
-- [ ] Verify no broken markdown structure
+- [x] Update `system-spec-kit/SKILL.md` feature flag table with 3 SPECKIT_GRAPH_* flags
+- [x] Verify all auto/confirm pairs are consistent
+- [x] Verify no broken markdown structure
 <!-- /ANCHOR:phases -->
 
 ---

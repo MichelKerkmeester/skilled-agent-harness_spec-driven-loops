@@ -2,7 +2,7 @@
 
 <!-- SPECKIT_LEVEL: 3+ -->
 <!-- SPECKIT_TEMPLATE_SOURCE: implementation-summary | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/workflows-documentation/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skill/sk-documentation/references/hvr_rules.md -->
 
 <!-- ANCHOR:implementation-summary-001-workstream-a -->
 
@@ -21,7 +21,7 @@
 | **Schema Changes** | Zero — v15 SQLite schema unchanged |
 | **Test Suite** | 4,770 tests across 159 files (final global count, post-Workstreams B and C) |
 | **Workstream A Baseline** | 4,532 tests, 149 files at Workstream A completion |
-| **Code Review** | R-Wave (5 Sonnet agents) + D-Wave (5 Opus agents), workflows-code--opencode compliance verified |
+| **Code Review** | R-Wave (5 Sonnet agents) + D-Wave (5 Opus agents), sk-code--opencode compliance verified |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -159,7 +159,7 @@ The full test suite was run after Wave 2 completion to confirm zero regressions 
 
 **Code quality — R-Wave (5 Sonnet agents).** The R-Wave review pass fixed falsy-zero `||` bugs, removed dead code, corrected unsafe type casts, added missing module box headers, and removed `@ts-nocheck` directives from 2 test files. This pass ran across all Wave 1 and Wave 2 output before the D-Wave pass.
 
-**Code quality — D-Wave (5 Opus agents).** The D-Wave compliance audit covered all files against the full `workflows-code--opencode` TypeScript checklist:
+**Code quality — D-Wave (5 Opus agents).** The D-Wave compliance audit covered all files against the full `sk-code--opencode` TypeScript checklist:
 
 - D1 agent: `hybrid-search.ts` (6 magic numbers extracted as UPPER_SNAKE constants, TSDoc added to 8 exports, double-cast justification comments added), `adaptive-fusion.ts` (2 constants extracted), `context-server.ts` (4 constants, 6 snake_case variable renames to camelCase), `db-state.ts` (TSDoc on 12 exports, 1 variable rename), `reindex-embeddings.ts` (2 renames), and 3 test files (`@ts-nocheck` removed from 2, 11 `any` occurrences replaced with typed alternatives).
 
@@ -231,13 +231,13 @@ The zero schema migration constraint (spec §3.1) was maintained throughout. All
 
 | Check | Result |
 |-------|--------|
-| `workflows-code--opencode` TypeScript checklist (5 new modules) | PASS — proper types, TSDoc on all exports, named constants, camelCase/PascalCase/UPPER_SNAKE conventions, WHY comments, edge case guards, no unused imports, no `@ts-nocheck` in production files. |
+| `sk-code--opencode` TypeScript checklist (5 new modules) | PASS — proper types, TSDoc on all exports, named constants, camelCase/PascalCase/UPPER_SNAKE conventions, WHY comments, edge case guards, no unused imports, no `@ts-nocheck` in production files. |
 | Source files: zero `any` | PASS — 0 type-level `any` across all source files after D-Wave review. |
 | TSDoc on all exports | PASS — all exported functions and types documented with param/return descriptions. |
 | Non-null assertions justified | PASS — all `!` operators have preceding justification comment. |
 | Magic numbers extracted | PASS — 6+ constants extracted in `hybrid-search.ts` alone; all new modules use named constants. |
 | `@ts-nocheck` directives | PASS — removed from 2 test files by R-Wave; 0 in production files. |
-| D-Wave compliance (5 Opus agents) | PASS — full audit across all files against workflows-code--opencode checklist. |
+| D-Wave compliance (5 Opus agents) | PASS — full audit across all files against sk-code--opencode checklist. |
 | Zero schema migration constraint (spec §3.1) | PASS — v15 SQLite schema unchanged. No new tables, columns, or data migrations. |
 | Zero new external dependencies | PASS — package.json unchanged. |
 
@@ -367,7 +367,7 @@ Level 3+: Workstream A implementation summary — Hybrid RAG Fusion Pipeline.
 23/24 tasks complete. 5 new production modules, 6 modified source files, 11 test files.
 Final global test count: 4,770 tests, 0 failed, 159 files.
 Written in human voice: active, direct, specific. No em dashes, no hedging, no AI filler.
-HVR rules: .opencode/skill/workflows-documentation/references/hvr_rules.md
+HVR rules: .opencode/skill/sk-documentation/references/hvr_rules.md
 -->
 
 <!-- /ANCHOR:implementation-summary-001-workstream-a -->

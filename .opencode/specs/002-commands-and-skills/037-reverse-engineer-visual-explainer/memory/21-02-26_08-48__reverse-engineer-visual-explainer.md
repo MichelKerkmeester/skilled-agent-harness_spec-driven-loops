@@ -109,7 +109,7 @@
 
 **Decisions:** 4 decisions recorded
 
-**Summary:** Audited and fixed 7 compliance gaps in the workflows-visual-explainer skill against workflows-documentation standards. The skill (22 files, 10 nodes) was reverse-engineered from nicobailon/visual-expl...
+**Summary:** Audited and fixed 7 compliance gaps in the sk-visual-explainer skill against sk-documentation standards. The skill (22 files, 10 nodes) was reverse-engineered from nicobailon/visual-expl...
 
 ### Pending Work
 
@@ -132,11 +132,11 @@ Next: Continue implementation
 
 **Key Context to Review:**
 
-- Files modified: .opencode/skill/workflows-visual-explainer/SKILL.md, .opencode/.../references/quick_reference.md, .opencode/.../references/css_patterns.md
+- Files modified: .opencode/skill/sk-visual-explainer/SKILL.md, .opencode/.../references/quick_reference.md, .opencode/.../references/css_patterns.md
 
 - Check: plan.md, tasks.md, checklist.md
 
-- Last: Audited and fixed 7 compliance gaps in the workflows-visual-explainer skill agai
+- Last: Audited and fixed 7 compliance gaps in the sk-visual-explainer skill agai
 
 <!-- /ANCHOR:continue-session -->
 
@@ -149,7 +149,7 @@ Next: Continue implementation
 | Field | Value |
 |-------|-------|
 | Phase | RESEARCH |
-| Active File | .opencode/skill/workflows-visual-explainer/SKILL.md |
+| Active File | .opencode/skill/sk-visual-explainer/SKILL.md |
 | Last Action | Technical Implementation Details |
 | Next Action | Continue implementation |
 | Blockers | Fixed: GAP-1 (H1 missing subtitle), GAP-2 (3 missing SMART ROUTING subsections), GAP-3 (RULES bold t |
@@ -182,13 +182,13 @@ Next: Continue implementation
 
 **What Was Built**:
 
-- **Audited and fixed 7 compliance gaps in the workflows-visual-explainer skill against...** - Audited and fixed 7 compliance gaps in the workflows-visual-explainer skill against workflows-documentation standards.
+- **Audited and fixed 7 compliance gaps in the sk-visual-explainer skill against...** - Audited and fixed 7 compliance gaps in the sk-visual-explainer skill against sk-documentation standards.
 
 - **Technical Implementation Details** - rootCause: Skill was reverse-engineered from external source and had not been validated against the
 
 **Key Files and Their Roles**:
 
-- `.opencode/skill/workflows-visual-explainer/SKILL.md` - Documentation
+- `.opencode/skill/sk-visual-explainer/SKILL.md` - Documentation
 
 - `.opencode/.../references/quick_reference.md` - Documentation
 
@@ -219,10 +219,10 @@ Next: Continue implementation
 
 ## 2. OVERVIEW
 
-Audited and fixed 7 compliance gaps in the workflows-visual-explainer skill against workflows-documentation standards. The skill (22 files, 10 nodes) was reverse-engineered from nicobailon/visual-explainer and needed structural fixes to match canonical skill templates. Fixed: GAP-1 (H1 missing subtitle), GAP-2 (3 missing SMART ROUTING subsections), GAP-3 (RULES bold text instead of H3 headings), GAP-4 (5 reference files missing YAML frontmatter), GAP-5 (Section 7 duplicate routing table merged into Section 6), GAP-6 (bare code block without language tag), GAP-7 (orphaned Skill Graph Status content outside ANCHOR blocks). All 7 gaps fixed across 6 files with verification confirming compliance.
+Audited and fixed 7 compliance gaps in the sk-visual-explainer skill against sk-documentation standards. The skill (22 files, 10 nodes) was reverse-engineered from nicobailon/visual-explainer and needed structural fixes to match canonical skill templates. Fixed: GAP-1 (H1 missing subtitle), GAP-2 (3 missing SMART ROUTING subsections), GAP-3 (RULES bold text instead of H3 headings), GAP-4 (5 reference files missing YAML frontmatter), GAP-5 (Section 7 duplicate routing table merged into Section 6), GAP-6 (bare code block without language tag), GAP-7 (orphaned Skill Graph Status content outside ANCHOR blocks). All 7 gaps fixed across 6 files with verification confirming compliance.
 
 **Key Outcomes**:
-- Audited and fixed 7 compliance gaps in the workflows-visual-explainer skill against...
+- Audited and fixed 7 compliance gaps in the sk-visual-explainer skill against...
 - Merged Section 7 REFERENCES into Section 6 INTEGRATION POINTS as a ### Resources
 - Added 3 new SMART ROUTING subsections (Primary Detection Signal, Phase Detection
 - Converted bold text rules (ALWAYS/NEVER/ESCALATE IF) to H3 headings with emoji p
@@ -233,7 +233,7 @@ Audited and fixed 7 compliance gaps in the workflows-visual-explainer skill agai
 
 | **File** | **Description** |
 |:---------|:----------------|
-| `.opencode/skill/workflows-visual-explainer/SKILL.md` | File modified (description pending) |
+| `.opencode/skill/sk-visual-explainer/SKILL.md` | File modified (description pending) |
 | `.opencode/.../references/quick_reference.md` | File modified (description pending) |
 | `.opencode/.../references/css_patterns.md` | File modified (description pending) |
 | `.opencode/.../references/library_guide.md` | File modified (description pending) |
@@ -255,11 +255,11 @@ Nodes: 435 | Edges: 655 | Skills: 10
 - system-spec-kit: 165 nodes
 - mcp-chrome-devtools: 19 nodes
 - sk-code--full-stack: 62 nodes
-- workflows-code--opencode: 35 nodes
+- sk-code--opencode: 35 nodes
 - workflows-code--web-dev: 44 nodes
-- workflows-documentation: 36 nodes
-- workflows-git: 21 nodes
-- workflows-visual-explainer: 18 nodes
+- sk-documentation: 36 nodes
+- sk-git: 21 nodes
+- sk-visual-explainer: 18 nodes
 
 **Node types:** :Asset(51), :Document(136), :Entrypoint(10), :Index(10), :Node(83), :Reference(135), :Skill(10)
 
@@ -273,17 +273,17 @@ Nodes: 435 | Edges: 655 | Skills: 10
 ## 3. DETAILED CHANGES
 
 <!-- ANCHOR:architecture-audited-compliance-gaps-workflowsvisualexplainer-1e2f9e35 -->
-### FEATURE: Audited and fixed 7 compliance gaps in the workflows-visual-explainer skill against...
+### FEATURE: Audited and fixed 7 compliance gaps in the sk-visual-explainer skill against...
 
-Audited and fixed 7 compliance gaps in the workflows-visual-explainer skill against workflows-documentation standards. The skill (22 files, 10 nodes) was reverse-engineered from nicobailon/visual-explainer and needed structural fixes to match canonical skill templates. Fixed: GAP-1 (H1 missing subtitle), GAP-2 (3 missing SMART ROUTING subsections), GAP-3 (RULES bold text instead of H3 headings), GAP-4 (5 reference files missing YAML frontmatter), GAP-5 (Section 7 duplicate routing table merged into Section 6), GAP-6 (bare code block without language tag), GAP-7 (orphaned Skill Graph Status content outside ANCHOR blocks). All 7 gaps fixed across 6 files with verification confirming compliance.
+Audited and fixed 7 compliance gaps in the sk-visual-explainer skill against sk-documentation standards. The skill (22 files, 10 nodes) was reverse-engineered from nicobailon/visual-explainer and needed structural fixes to match canonical skill templates. Fixed: GAP-1 (H1 missing subtitle), GAP-2 (3 missing SMART ROUTING subsections), GAP-3 (RULES bold text instead of H3 headings), GAP-4 (5 reference files missing YAML frontmatter), GAP-5 (Section 7 duplicate routing table merged into Section 6), GAP-6 (bare code block without language tag), GAP-7 (orphaned Skill Graph Status content outside ANCHOR blocks). All 7 gaps fixed across 6 files with verification confirming compliance.
 
-**Details:** visual-explainer audit | skill compliance | workflows-documentation standards | SKILL.md structure | SMART ROUTING subsections | reference file frontmatter | YAML frontmatter | skill template validation | reverse-engineer visual-explainer | gap analysis skill
+**Details:** visual-explainer audit | skill compliance | sk-documentation standards | SKILL.md structure | SMART ROUTING subsections | reference file frontmatter | YAML frontmatter | skill template validation | reverse-engineer visual-explainer | gap analysis skill
 <!-- /ANCHOR:architecture-audited-compliance-gaps-workflowsvisualexplainer-1e2f9e35 -->
 
 <!-- ANCHOR:implementation-technical-implementation-details-49fa6cac -->
 ### IMPLEMENTATION: Technical Implementation Details
 
-rootCause: Skill was reverse-engineered from external source and had not been validated against the canonical workflows-documentation skill template structure; solution: Systematic 7-gap audit with precise edits: H1 subtitle, 3 new SMART ROUTING subsections, RULES H3 headings with emoji, Section 7 merge into Section 6, code block language tag, orphaned content removal, and YAML frontmatter for all 5 reference files; patterns: Used Edit tool with unique string matching for non-overlapping edits on same file, batch-processed 5 reference file edits in parallel, verified all changes with Grep-based structural checks
+rootCause: Skill was reverse-engineered from external source and had not been validated against the canonical sk-documentation skill template structure; solution: Systematic 7-gap audit with precise edits: H1 subtitle, 3 new SMART ROUTING subsections, RULES H3 headings with emoji, Section 7 merge into Section 6, code block language tag, orphaned content removal, and YAML frontmatter for all 5 reference files; patterns: Used Edit tool with unique string matching for non-overlapping edits on same file, batch-processed 5 reference file edits in parallel, verified all changes with Grep-based structural checks
 
 <!-- /ANCHOR:implementation-technical-implementation-details-49fa6cac -->
 
@@ -450,7 +450,7 @@ This session followed a **Linear Sequential** conversation pattern with **0** di
 
 > **User** | 2026-02-21 @ 08:48:10
 
-Audited and fixed 7 compliance gaps in the workflows-visual-explainer skill against workflows-documentation standards. The skill (22 files, 10 nodes) was reverse-engineered from nicobailon/visual-explainer and needed structural fixes to match canonical skill templates. Fixed: GAP-1 (H1 missing subtitle), GAP-2 (3 missing SMART ROUTING subsections), GAP-3 (RULES bold text instead of H3 headings), GAP-4 (5 reference files missing YAML frontmatter), GAP-5 (Section 7 duplicate routing table merged into Section 6), GAP-6 (bare code block without language tag), GAP-7 (orphaned Skill Graph Status content outside ANCHOR blocks). All 7 gaps fixed across 6 files with verification confirming compliance.
+Audited and fixed 7 compliance gaps in the sk-visual-explainer skill against sk-documentation standards. The skill (22 files, 10 nodes) was reverse-engineered from nicobailon/visual-explainer and needed structural fixes to match canonical skill templates. Fixed: GAP-1 (H1 missing subtitle), GAP-2 (3 missing SMART ROUTING subsections), GAP-3 (RULES bold text instead of H3 headings), GAP-4 (5 reference files missing YAML frontmatter), GAP-5 (Section 7 duplicate routing table merged into Section 6), GAP-6 (bare code block without language tag), GAP-7 (orphaned Skill Graph Status content outside ANCHOR blocks). All 7 gaps fixed across 6 files with verification confirming compliance.
 
 ---
 
@@ -1202,7 +1202,7 @@ trigger_phrases:
   - "swiftui patterns"
   - "a comprehensive guide to swiftui view composition, state management, navigation patterns, custom modifiers, and modern ios 17+ swiftui features for building production-ready ios applications."
   - "a comprehensive guide to testing swift and swiftui applications including xctest fundamentals, unit testing viewmodels, ui testing with xcuitest, mocking and stubbing patterns, test doubles, and snapshot testing."
-  - "workflows-code--opencode"
+  - "sk-code--opencode"
   - "opencode"
   - "multi-language code standards for opencode system code (javascript, typescript, python, shell, json/jsonc) with language detection routing, universal patterns and quality checklists"
   - "code standards - opencode system code"
@@ -1380,7 +1380,7 @@ trigger_phrases:
   - "verification_workflows"
   - "verification workflows - phase 3 (mandatory)"
   - "browser verification requirements for all completion claims - no exceptions."
-  - "workflows-documentation"
+  - "sk-documentation"
   - "documentation"
   - "unified markdown and opencode component specialist providing document quality enforcement, content optimization, component creation workflows, ascii flowcharts and install guides"
   - "documentation creation specialist - unified markdown & component management"
@@ -1466,7 +1466,7 @@ trigger_phrases:
   - "quality gates, dqi scoring, and improvement recommendations for markdown documentation."
   - "document quality workflows - mode 1 reference"
   - "execution modes, validation patterns, and phase interactions for mode 1 document quality workflows."
-  - "workflows-git"
+  - "sk-git"
   - "git"
   - "git workflow orchestrator guiding developers through workspace setup, clean commits, and work completion across git-worktrees, git-commit, and git-finish skills"
   - "git workflows - git development orchestrator"
@@ -1490,7 +1490,7 @@ trigger_phrases:
   - "always/never/escalate rules governing git workflow behavior"
   - "intent routing logic with weighted scoring, resource loading levels, and disambiguation"
   - "completion gates and quality checks for workspace setup, commits, and integration"
-  - "activation triggers, use cases, and when not to use the workflows-git skill"
+  - "activation triggers, use cases, and when not to use the sk-git skill"
   - "work-completion"
   - "work completion"
   - "pr creation, conflict resolution, branch cleanup, merge strategies, deployment, and finish workflow"
@@ -1510,24 +1510,24 @@ trigger_phrases:
   - "worktree_workflows"
   - "git worktrees - detailed workflow reference"
   - "complete workflow documentation for creating isolated git workspaces with minimal branching."
-  - "workflows-visual-explainer"
-  - "workflows-visual-explainer — styled html diagram generator"
+  - "sk-visual-explainer"
+  - "sk-visual-explainer — styled html diagram generator"
   - "converts complex terminal output and technical concepts into styled, self-contained html pages with diagrams, tables, and visualizations through a 4-phase think-structure-style-deliver workflow."
   - "visual explainer — styled html diagram generator"
   - "converts complex terminal output and technical concepts into styled, self-contained html pages with diagrams, tables, and visualizations."
   - "aesthetics"
   - "9 aesthetic profiles with css variable values, font pairings, background atmosphere, and a compatibility matrix with diagram types"
-  - "full contracts for all 5 visual-explainer slash commands including argument parsing, data gathering, section architecture, and output specs"
+  - "full contracts for all 5 sk-visual-explainer slash commands including argument parsing, data gathering, section architecture, and output specs"
   - "diagram-types"
   - "diagram types"
   - "all 11 diagram types with rendering approach, best-fit scenarios, constraints, and a decision tree for selection"
   - "4-phase think > structure > style > deliver workflow with sub-steps and decision points"
-  - "cdn libraries, cross-skill integration, output conventions, and google fonts pairings for visual-explainer"
-  - "index of all reference files, asset files, template files, and related skills for the workflows-visual-explainer skill"
-  - "always/never/escalate if behavioral rules for visual-explainer outputs"
+  - "cdn libraries, cross-skill integration, output conventions, and google fonts pairings for sk-visual-explainer"
+  - "index of all reference files, asset files, template files, and related skills for the sk-visual-explainer skill"
+  - "always/never/escalate if behavioral rules for sk-visual-explainer outputs"
   - "intent scoring pseudocode and resource loading strategy for routing user requests to the correct command and resources"
-  - "9 pre-delivery quality checks for visual-explainer html output"
-  - "activation triggers, 5 command overview, and decision matrix for when to use visual-explainer"
+  - "9 pre-delivery quality checks for sk-visual-explainer html output"
+  - "activation triggers, 5 command overview, and decision matrix for when to use sk-visual-explainer"
   - "visual explainer — css patterns"
   - "comprehensive css pattern library covering all 9 aesthetic profiles with custom properties, depth tiers, backgrounds, and animations"
   - "library_guide"
@@ -1540,7 +1540,7 @@ trigger_phrases:
   - "visual explainer — quality checklist"
   - "detailed pass/fail verification procedure for all 9 pre-delivery quality checks with step-by-step instructions"
   - "visual explainer — quick reference"
-  - "command cheat sheet, cdn snippets, and font pairings for quick access during visual-explainer generation"
+  - "command cheat sheet, cdn snippets, and font pairings for quick access during sk-visual-explainer generation"
   - "skill.md"
   - "env_template.md"
   - "config_template.md"
@@ -1564,8 +1564,8 @@ trigger_phrases:
   - "references/validation/validation_rules.md"
   - "references/validation/five-checks.md"
   - "references/workflows/rollback-runbook.md"
-  - "../workflows-code--opencode/skill.md"
-  - "../workflows-documentation/skill.md"
+  - "../sk-code--opencode/skill.md"
+  - "../sk-documentation/skill.md"
   - "level_specifications.md"
   - "template_guide.md"
   - "save_workflow.md"
@@ -1664,7 +1664,7 @@ trigger_phrases:
   - "pr_template.md"
 
 key_files:
-  - ".opencode/skill/workflows-visual-explainer/SKILL.md"
+  - ".opencode/skill/sk-visual-explainer/SKILL.md"
   - ".opencode/.../references/quick_reference.md"
   - ".opencode/.../references/css_patterns.md"
   - ".opencode/.../references/library_guide.md"

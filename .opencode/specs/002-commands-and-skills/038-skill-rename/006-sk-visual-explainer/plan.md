@@ -1,4 +1,4 @@
-# Implementation Plan: Phase 006 — Rename workflows-visual-explainer to sk-visual-explainer
+# Implementation Plan: Phase 006 — Rename sk-visual-explainer to sk-visual-explainer
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
@@ -18,7 +18,7 @@
 | **Testing** | grep verification, skill_advisor.py smoke test |
 
 ### Overview
-Rename `workflows-visual-explainer` to `sk-visual-explainer` across 28 files (22 internal + 6 external). Lowest-effort phase with fewest external references.
+Rename `sk-visual-explainer` to `sk-visual-explainer` across 28 files (22 internal + 6 external). Lowest-effort phase with fewest external references.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -32,9 +32,9 @@ Rename `workflows-visual-explainer` to `sk-visual-explainer` across 28 files (22
 - [x] Dependencies identified
 
 ### Definition of Done
-- [ ] Folder renamed to `sk-visual-explainer`
-- [ ] Zero grep matches
-- [ ] skill_advisor.py correct
+- [x] Folder renamed to `sk-visual-explainer`
+- [x] Zero grep matches
+- [x] skill_advisor.py correct
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -58,22 +58,22 @@ Mechanical find-and-replace. No architectural changes.
 ## 4. IMPLEMENTATION PHASES
 
 ### Step 1: Filesystem Rename
-- [ ] `git mv .opencode/skill/workflows-visual-explainer .opencode/skill/sk-visual-explainer`
+- [x] `git mv .opencode/skill/sk-visual-explainer .opencode/skill/sk-visual-explainer`
 
 ### Step 2: Internal File Updates (22 files)
-- [ ] SKILL.md, index.md, nodes/, references/, assets/, scripts/
+- [x] SKILL.md, index.md, nodes/, references/, assets/, scripts/
 
 ### Step 3: External Reference Updates (6 files)
-- [ ] skill_advisor.py (16 lines)
-- [ ] orchestrate.md (2 runtimes)
-- [ ] visual-explainer command files (3 files)
+- [x] skill_advisor.py (16 lines)
+- [x] orchestrate.md (2 runtimes)
+- [x] visual-explainer command files (3 files)
 
 ### Step 4: Changelog (if exists)
-- [ ] Check and rename changelog dir if it exists
+- [x] Check and rename changelog dir if it exists
 
 ### Step 5: Verification
-- [ ] grep: 0 matches
-- [ ] skill_advisor.py smoke test
+- [x] grep: 0 matches
+- [x] skill_advisor.py smoke test
 <!-- /ANCHOR:phases -->
 
 ---
@@ -83,7 +83,7 @@ Mechanical find-and-replace. No architectural changes.
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Grep | All active files | `grep -r "workflows-visual-explainer"` |
+| Grep | All active files | `grep -r "sk-visual-explainer"` |
 | Smoke test | skill_advisor.py | `python3 skill_advisor.py` |
 | Directory | Filesystem | `ls -d` |
 <!-- /ANCHOR:testing -->
@@ -95,7 +95,7 @@ Mechanical find-and-replace. No architectural changes.
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| Phases 3, 1, 2, 7, 4 complete | Internal | Pending | Must execute 6th |
+| Phases 3, 1, 2, 7, 4 complete | Internal | Complete | Must execute 6th |
 <!-- /ANCHOR:dependencies -->
 
 ---
@@ -138,8 +138,8 @@ Phase 4 ──► Phase 6 (This Phase) ──► Phase 5
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deployment Checklist
-- [ ] Prior phases confirmed complete
-- [ ] Clean git state
+- [x] Prior phases confirmed complete
+- [x] Clean git state
 
 ### Rollback Procedure
 1. `git checkout -- .`

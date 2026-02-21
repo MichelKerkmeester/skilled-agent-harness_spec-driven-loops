@@ -1,4 +1,4 @@
-# Verification Checklist: Phase 006 — Rename workflows-visual-explainer to sk-visual-explainer
+# Verification Checklist: Phase 006 — Rename sk-visual-explainer to sk-visual-explainer
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->
@@ -30,7 +30,7 @@
 <!-- ANCHOR:filesystem -->
 ## Filesystem Rename
 
-- [x] CHK-010 [P0] `workflows-visual-explainer` renamed to `sk-visual-explainer` — `git mv` successful
+- [x] CHK-010 [P0] `sk-visual-explainer` renamed to `sk-visual-explainer` — `git mv` successful
 - [x] CHK-011 [P0] No old folder remains — `ls -d` confirms gone
 - [x] CHK-012 [P0] All 22 internal files present — `find -type f | wc -l` = 22
 <!-- /ANCHOR:filesystem -->
@@ -72,7 +72,7 @@
 <!-- ANCHOR:verification -->
 ## Verification
 
-- [x] CHK-050 [P0] grep: 0 matches for `workflows-visual-explainer` — `grep -ri` on text files returns exit 1 (no matches). Note: binary SQLite memory index has stale entry (auto-updates on next indexing)
+- [x] CHK-050 [P0] grep: 0 matches for `sk-visual-explainer` — `grep -ri` on text files returns exit 1 (no matches). Note: binary SQLite memory index has stale entry (auto-updates on next indexing)
 - [x] CHK-051 [P0] skill_advisor.py correct — routes "create visual explainer" → `sk-visual-explainer` with confidence 0.95, passes_threshold: true
 - [x] CHK-052 [P0] Folder exists — `ls -d .opencode/skill/sk-visual-explainer/` confirmed
 <!-- /ANCHOR:verification -->
@@ -83,7 +83,7 @@
 ## Documentation
 
 - [x] CHK-060 [P1] Spec/plan/tasks synchronized — spec.md, plan.md, tasks.md pre-created; checklist.md updated with evidence
-- [ ] CHK-061 [P2] Memory saved — pending
+- [x] CHK-061 [P2] Memory saved — Evidence: phase 006 included in `generate-context.js` indexed batch `#87-#93`
 <!-- /ANCHOR:docs -->
 
 ---
@@ -93,9 +93,9 @@
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 12 | 12/12 |
+| P0 Items | 13 | 13/13 |
 | P1 Items | 8 | 8/8 |
-| P2 Items | 1 | 0/1 |
+| P2 Items | 1 | 1/1 |
 
 **Verification Date**: 2026-02-21
 <!-- /ANCHOR:summary -->

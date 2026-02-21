@@ -95,7 +95,7 @@ Phase 5: Verification     → Validate: System works end-to-end
 ### Validation Checkpoint Format
 
 ```markdown
-### ✅ Phase N Validation
+### Validation: `phase_N_complete`
 
 ```bash
 <validation-command>
@@ -110,7 +110,7 @@ Phase 5: Verification     → Validate: System works end-to-end
 - [ ] Output matches expected pattern
 - [ ] No error messages displayed
 
-⛔ **STOP if validation fails** → See [Troubleshooting](#troubleshooting)
+❌ **STOP if validation fails** - See [Troubleshooting](#troubleshooting)
 ```
 
 ### Requirements
@@ -228,11 +228,11 @@ $env:MCP_PATH = "$HOME\.mcp"
 
 | Issue | Fix |
 |-------|-----|
-| Missing validation checkpoints | Add `### ✅ Phase N Validation` |
+| Missing validation checkpoints | Add `### Validation: \`phase_N_complete\`` |
 | Commands without expected output | Add `**Expected output**:` block |
 | Vague troubleshooting | Use 3-column table with specific fixes |
 | Platform assumptions | Add platform-specific alternatives |
-| Missing STOP conditions | Add `⛔ STOP if validation fails` |
+| Missing STOP conditions | Add `❌ **STOP if validation fails**` |
 
 ---
 

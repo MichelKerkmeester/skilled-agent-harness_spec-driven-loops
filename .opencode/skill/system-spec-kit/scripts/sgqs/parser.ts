@@ -25,6 +25,14 @@ interface ParserState {
   pos: number;
 }
 
+const PROPERTY_ALIASES: Record<string, string> = {
+  alias: 'aliases',
+  key: 'keywords',
+  keyword: 'keywords',
+  tags: 'keywords',
+  desc: 'description',
+};
+
 // ---------------------------------------------------------------
 // 2. HELPERS
 // ---------------------------------------------------------------
@@ -56,6 +64,11 @@ function isKeyword(state: ParserState, value: string): boolean {
 
 function check(state: ParserState, type: TokenType): boolean {
   return peek(state).type === type;
+}
+
+function normalizePropertyKey(raw: string): string {
+  const normalized = raw.toLowerCase();
+  return PROPERTY_ALIASES[normalized] || normalized;
 }
 
 // ---------------------------------------------------------------
@@ -323,7 +336,7 @@ function parsePropertyPair(state: ParserState): PropertyEntry {
   expect(state, 'COLON');
   const value = parseLiteral(state);
 
-  return { key: keyTok.value, value };
+  return { key: normalizePropertyKey(keyTok.value), value };
 }
 
 // ---------------------------------------------------------------
@@ -506,7 +519,7 @@ function parsePropertyRef(state: ParserState): PropertyRefNode {
   return {
     kind: 'PropertyRef',
     variable: varTok.value,
-    property: propTok.value.toLowerCase() === propTok.value ? propTok.value : propTok.value,
+    property: normalizePropertyKey(propTok.value),
   };
 }
 

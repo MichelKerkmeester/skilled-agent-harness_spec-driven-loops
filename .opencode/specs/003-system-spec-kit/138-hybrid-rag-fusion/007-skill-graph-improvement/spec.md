@@ -12,7 +12,7 @@
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Complete |
+| **Status** | Verified (2026-02-21) |
 | **Created** | 2026-02-21 |
 | **Branch** | `main` |
 <!-- /ANCHOR:metadata -->
@@ -57,9 +57,9 @@ Raise the SGQS from 2.50 to an estimated 4.5–5.0 (Good to Excellent tier) by c
 | `.opencode/skill/system-spec-kit/scripts/sgqs/types.ts` | Modify | Unknown property warnings |
 | `.opencode/skill/system-spec-kit/scripts/sgqs/graph-builder.ts` | Modify | LINKS_TO edge generation from markdown links |
 | `.opencode/skill/system-spec-kit/graphs/system-spec-kit/nodes/*.md` (×8) | Modify | Domain vocabulary enrichment |
-| `.opencode/skill/workflows-git/graphs/workflows-git/nodes/*.md` (×2) | Modify | Domain vocabulary enrichment |
-| `.opencode/skill/workflows-documentation/graphs/workflows-documentation/nodes/*.md` (×3) | Modify | Domain vocabulary enrichment |
-| `.opencode/skill/workflows-code--opencode/graphs/workflows-code--opencode/nodes/*.md` (×2) | Modify | Domain vocabulary enrichment |
+| `.opencode/skill/sk-git/graphs/sk-git/nodes/*.md` (×2) | Modify | Domain vocabulary enrichment |
+| `.opencode/skill/sk-documentation/graphs/sk-documentation/nodes/*.md` (×3) | Modify | Domain vocabulary enrichment |
+| `.opencode/skill/sk-code--opencode/graphs/sk-code--opencode/nodes/*.md` (×2) | Modify | Domain vocabulary enrichment |
 | `.opencode/skill/scripts/skill_advisor.py` | Modify | INTENT_BOOSTERS, SYNONYM_MAP, MULTI_SKILL_BOOSTERS, CSS routing |
 <!-- /ANCHOR:scope -->
 
@@ -93,10 +93,10 @@ Raise the SGQS from 2.50 to an estimated 4.5–5.0 (Good to Excellent tier) by c
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: SGQS score rises from 2.50 to an estimated 4.5–5.0 (Good to Excellent tier) across the 5 developer personas
-- **SC-002**: All 7 identified gaps closed — no gap remains open after implementation
-- **SC-003**: skill_advisor.py routes CSS/frontend queries to workflows-code--web-dev at ≥0.8 confidence
-- **SC-004**: SGQS engine handles case-insensitive queries without regression on existing passing scenarios
+- **SC-001**: SGQS score rises from 2.50 to an estimated 4.5–5.0 (Good to Excellent tier) across the 5 developer personas — **ACTUAL: 2.75/5.0 (+0.25), tier unchanged (Insufficient). Target not met.**
+- **SC-002**: All 7 identified gaps closed — no gap remains open after implementation — **ACTUAL: 2 Closed, 3 Partial, 1 Open, 1 Deferred. Target not met.**
+- **SC-003**: skill_advisor.py routes CSS/frontend queries to workflows-code--web-dev at ≥0.8 confidence — **ACTUAL: "css animation debugging" returns empty array. Target not met.**
+- **SC-004**: SGQS engine handles case-insensitive queries without regression on existing passing scenarios — **ACTUAL: Case-insensitive `.toLowerCase()` verified in executor.ts. PASS (no regressions observed).**
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -174,8 +174,8 @@ Raise the SGQS from 2.50 to an estimated 4.5–5.0 (Good to Excellent tier) by c
 <!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
-- Should LINKS_TO edges be bidirectional or directed? Current implementation is directed (source → target).
-- Is a formal re-run of the 5-persona test suite required to confirm the 4.5–5.0 score estimate, or is gap-closure evidence sufficient?
+- Should LINKS_TO edges be bidirectional or directed? Current implementation is directed (source → target). — **ANSWERED: Directed. However, 0 cross-skill LINKS_TO edges exist in practice despite code being present in graph-builder.ts.**
+- Is a formal re-run of the 5-persona test suite required to confirm the 4.5–5.0 score estimate, or is gap-closure evidence sufficient? — **ANSWERED: Re-run completed 2026-02-21. Score is 2.75/5.0, not 4.5–5.0. Gap-closure evidence alone was insufficient — the re-run exposed that many claimed fixes were not reflected in actual test performance.**
 <!-- /ANCHOR:questions -->
 
 ---

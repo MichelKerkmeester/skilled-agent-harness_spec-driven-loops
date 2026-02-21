@@ -109,7 +109,7 @@
 
 **Decisions:** 4 decisions recorded
 
-**Summary:** Completed a strict-mode hardening pass for the system-spec-kit validation pipeline to align with workflows-code--opencode expectations. Standardized remaining rule scripts to set -euo pipefail, fixed ...
+**Summary:** Completed a strict-mode hardening pass for the system-spec-kit validation pipeline to align with sk-code--opencode expectations. Standardized remaining rule scripts to set -euo pipefail, fixed ...
 
 ### Pending Work
 
@@ -163,7 +163,7 @@ Next: Continue implementation
 
 **What Was Built**:
 
-- **Completed a strict-mode hardening pass for the system-spec-kit validation pipeline to align with...** - Completed a strict-mode hardening pass for the system-spec-kit validation pipeline to align with workflows-code--opencode expectations.
+- **Completed a strict-mode hardening pass for the system-spec-kit validation pipeline to align with...** - Completed a strict-mode hardening pass for the system-spec-kit validation pipeline to align with sk-code--opencode expectations.
 
 - **Technical Implementation Details** - rootCause: Several validation rule scripts used non-strict shell mode and array patterns that were unsafe under nounset, causing runtime failures when strict execution was enforced.
 
@@ -208,7 +208,7 @@ Next: Continue implementation
 
 ## 2. OVERVIEW
 
-Completed a strict-mode hardening pass for the system-spec-kit validation pipeline to align with workflows-code--opencode expectations. Standardized remaining rule scripts to set -euo pipefail, fixed nounset-sensitive array handling that caused unbound variable failures, and validated end-to-end execution for validate.sh, test-validation.sh, and upgrade-level.sh (including bash -u runs). Confirmed no regressions with the Level 3+ target spec and full validation test suite.
+Completed a strict-mode hardening pass for the system-spec-kit validation pipeline to align with sk-code--opencode expectations. Standardized remaining rule scripts to set -euo pipefail, fixed nounset-sensitive array handling that caused unbound variable failures, and validated end-to-end execution for validate.sh, test-validation.sh, and upgrade-level.sh (including bash -u runs). Confirmed no regressions with the Level 3+ target spec and full validation test suite.
 
 **Key Outcomes**:
 - Completed a strict-mode hardening pass for the system-spec-kit validation pipeline to align with...
@@ -245,7 +245,7 @@ Completed a strict-mode hardening pass for the system-spec-kit validation pipeli
 <!-- ANCHOR:architecture-completed-strictmode-hardening-pass-87b666a0 -->
 ### FEATURE: Completed a strict-mode hardening pass for the system-spec-kit validation pipeline to align with...
 
-Completed a strict-mode hardening pass for the system-spec-kit validation pipeline to align with workflows-code--opencode expectations. Standardized remaining rule scripts to set -euo pipefail, fixed nounset-sensitive array handling that caused unbound variable failures, and validated end-to-end execution for validate.sh, test-validation.sh, and upgrade-level.sh (including bash -u runs). Confirmed no regressions with the Level 3+ target spec and full validation test suite.
+Completed a strict-mode hardening pass for the system-spec-kit validation pipeline to align with sk-code--opencode expectations. Standardized remaining rule scripts to set -euo pipefail, fixed nounset-sensitive array handling that caused unbound variable failures, and validated end-to-end execution for validate.sh, test-validation.sh, and upgrade-level.sh (including bash -u runs). Confirmed no regressions with the Level 3+ target spec and full validation test suite.
 
 **Details:** strict mode bash | set -euo pipefail | nounset array guard | spec validation rules | system-spec-kit validate.sh | test-validation.sh | upgrade-level dry-run | alignment drift verifier | anchor enforcement automation
 <!-- /ANCHOR:architecture-completed-strictmode-hardening-pass-87b666a0 -->
@@ -420,7 +420,7 @@ This session followed a **Linear Sequential** conversation pattern with **0** di
 
 > **User** | 2026-02-17 @ 09:11:18
 
-Completed a strict-mode hardening pass for the system-spec-kit validation pipeline to align with workflows-code--opencode expectations. Standardized remaining rule scripts to set -euo pipefail, fixed nounset-sensitive array handling that caused unbound variable failures, and validated end-to-end execution for validate.sh, test-validation.sh, and upgrade-level.sh (including bash -u runs). Confirmed no regressions with the Level 3+ target spec and full validation test suite.
+Completed a strict-mode hardening pass for the system-spec-kit validation pipeline to align with sk-code--opencode expectations. Standardized remaining rule scripts to set -euo pipefail, fixed nounset-sensitive array handling that caused unbound variable failures, and validated end-to-end execution for validate.sh, test-validation.sh, and upgrade-level.sh (including bash -u runs). Confirmed no regressions with the Level 3+ target spec and full validation test suite.
 
 ---
 
