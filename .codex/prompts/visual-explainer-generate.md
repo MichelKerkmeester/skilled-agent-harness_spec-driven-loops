@@ -1,0 +1,1 @@
+../../.opencode/command/visual-explainer/generate.md

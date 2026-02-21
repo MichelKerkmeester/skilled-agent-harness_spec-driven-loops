@@ -1,5 +1,5 @@
 ---
-description: "CLI (bdg) approach for browser debugging: installation, discovery, session management, and commands"
+description: "CLI (bdg) approach for browser debugging: installation, discovery, network inspection, HAR export, session management, and commands"
 ---
 # CLI Approach
 

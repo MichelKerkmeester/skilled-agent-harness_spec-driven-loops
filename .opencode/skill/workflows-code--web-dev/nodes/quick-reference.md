@@ -1,5 +1,5 @@
 ---
-description: "Common commands, CDN version workflow, external documentation links, and related skills"
+description: "Common commands, CDN version workflow, deployment steps, external documentation links, and related skills"
 ---
 # Quick Reference
 

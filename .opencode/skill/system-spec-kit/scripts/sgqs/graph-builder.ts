@@ -435,6 +435,23 @@ function extractEdges(
         });
       }
     }
+
+    // If both source and target are Node-labeled files, also create LINKS_TO edge
+    const targetNode = graph.nodes.get(targetId);
+    if (targetNode &&
+        sourceNode.labels.includes(':Node') && targetNode.labels.includes(':Node')) {
+      const linksToId = `${sourceNode.id}--LINKS_TO--${targetId}`;
+      if (!seenEdgeIds.has(linksToId)) {
+        seenEdgeIds.add(linksToId);
+        edges.push({
+          id: linksToId,
+          type: ':LINKS_TO',
+          source: sourceNode.id,
+          target: targetId,
+          properties: { via: 'markdown_link' },
+        });
+      }
+    }
   }
 
   return edges;

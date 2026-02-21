@@ -1,7 +1,15 @@
 ---
 description: Manage memory database - stats, scan, cleanup, tier, triggers, validate, delete, health, and checkpoint operations
 argument-hint: "[scan [--force]] | [cleanup] | [tier <id> <tier>] | [triggers <id>] | [validate <id> <useful|not>] | [delete <id>] | [health] | [checkpoint <subcommand>]"
-allowed-tools: Read, Bash, spec_kit_memory_memory_stats, spec_kit_memory_memory_list, spec_kit_memory_memory_search, spec_kit_memory_memory_index_scan, spec_kit_memory_memory_validate, spec_kit_memory_memory_update, spec_kit_memory_memory_delete, spec_kit_memory_memory_health, spec_kit_memory_checkpoint_create, spec_kit_memory_checkpoint_restore, spec_kit_memory_checkpoint_list, spec_kit_memory_checkpoint_delete
+allowed-tools: Read, spec_kit_memory_memory_stats, spec_kit_memory_memory_list, spec_kit_memory_memory_search, spec_kit_memory_memory_index_scan, spec_kit_memory_memory_validate, spec_kit_memory_memory_update, spec_kit_memory_memory_delete, spec_kit_memory_memory_health, spec_kit_memory_checkpoint_create, spec_kit_memory_checkpoint_restore, spec_kit_memory_checkpoint_list, spec_kit_memory_checkpoint_delete
+---
+
+# 🚨 TOOL ENFORCEMENT
+
+> **NEVER use Bash to query the database directly. NEVER run `sqlite3` commands.**
+> All database access MUST go through the `spec_kit_memory_*` MCP tools listed in `allowed-tools`.
+> If an MCP tool returns an error, report the error to the user — do NOT fall back to raw SQL via Bash.
+
 ---
 
 # 🚨 MANDATORY FIRST ACTION - DO NOT SKIP
@@ -168,15 +176,15 @@ Provide a unified interface for memory database **management** operations:
 ```
 $ARGUMENTS
     │
-    ├─ Empty (no args)       → STATS DASHBOARD (Section 5)
+    ├─ Empty (no args)       → STATS DASHBOARD (Section 7)
     ├─ "scan [--force]"      → GATE 4 → SCAN MODE (Section 8)
-    ├─ "cleanup"             → GATE 1 → CLEANUP MODE (Section 7)
-    ├─ "tier <id> <tier>"    → TIER MANAGEMENT (Section 8)
-    ├─ "triggers <id>"       → TRIGGER EDIT (Section 9)
-    ├─ "validate <id> <u|n>" → VALIDATE MODE (Section 10)
-    ├─ "delete <id>"         → GATE 2 → DELETE MODE (Section 11)
-    ├─ "health"              → HEALTH CHECK (Section 12)
-    └─ "checkpoint <sub>"    → CHECKPOINT OPS (Section 13)
+    ├─ "cleanup"             → GATE 1 → CLEANUP MODE (Section 9)
+    ├─ "tier <id> <tier>"    → TIER MANAGEMENT (Section 10)
+    ├─ "triggers <id>"       → TRIGGER EDIT (Section 11)
+    ├─ "validate <id> <u|n>" → VALIDATE MODE (Section 12)
+    ├─ "delete <id>"         → GATE 2 → DELETE MODE (Section 13)
+    ├─ "health"              → HEALTH CHECK (Section 14)
+    └─ "checkpoint <sub>"    → CHECKPOINT OPS (Section 15)
         ├─ "create <name>"   → Create snapshot
         ├─ "restore <name>"  → GATE 3 → Restore
         ├─ "list"            → List snapshots
@@ -532,10 +540,11 @@ MEMORY:HEALTH
 
 → Tables ───────────────────────────────────────────
   PASS  memory_index (v13)
+  PASS  memory_history
+  PASS  checkpoints
+  PASS  memory_conflicts
   PASS  causal_edges
   PASS  memory_corrections
-  PASS  session_state
-  PASS  checkpoints
 
   Note: causal_edges is actively used for graph traversal when SPECKIT_GRAPH_UNIFIED
   is enabled. Graph channel status (hit rate, multi-source results) is available via
@@ -724,6 +733,8 @@ STATUS=OK CHECKPOINT=<name> ACTION=delete
 | Scan failed             | `STATUS=FAIL ERROR="Scan failed: <reason>"`  |
 | Checkpoint not found    | `STATUS=FAIL ERROR="Checkpoint not found"`   |
 | Max checkpoints reached | Auto-delete oldest, warn user                |
+| MCP tool unavailable    | `STATUS=FAIL ERROR="MCP tool unavailable. Verify the Spec Kit Memory MCP server is running."` — Do NOT fall back to Bash/sqlite3 |
+| Database not initialized | `STATUS=FAIL ERROR="Database not initialized. Run memory_index_scan() to create schema, or restart the MCP server."` |
 
 ---
 

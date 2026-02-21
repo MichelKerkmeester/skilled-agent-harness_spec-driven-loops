@@ -28,6 +28,7 @@ import * as transactionManager from '../lib/storage/transaction-manager';
 import * as incrementalIndex from '../lib/storage/incremental-index';
 import * as preflight from '../lib/validation/preflight';
 import * as toolCache from '../lib/cache/tool-cache';
+import * as mutationLedger from '../lib/storage/mutation-ledger';
 import { createMCPSuccessResponse } from '../lib/response/envelope';
 import * as retryManager from '../lib/providers/retry-manager';
 import * as causalEdges from '../lib/storage/causal-edges';
@@ -147,6 +148,57 @@ interface SaveArgs {
   dryRun?: boolean;
   skipPreflight?: boolean;
   asyncEmbedding?: boolean; // T306: When true, embedding generation is deferred (non-blocking)
+}
+
+interface MemoryHashSnapshot {
+  id: number;
+  content_hash: string | null;
+  spec_folder?: string | null;
+  file_path?: string | null;
+}
+
+interface MutationLedgerInput {
+  mutationType: mutationLedger.MutationType;
+  reason: string;
+  priorHash: string | null;
+  newHash: string;
+  linkedMemoryIds: number[];
+  decisionMeta: Record<string, unknown>;
+  actor: string;
+  sessionId?: string | null;
+}
+
+function getMemoryHashSnapshot(database: BetterSqlite3.Database, memoryId: number): MemoryHashSnapshot | null {
+  try {
+    const row = database.prepare(`
+      SELECT id, content_hash, spec_folder, file_path
+      FROM memory_index
+      WHERE id = ?
+    `).get(memoryId) as MemoryHashSnapshot | undefined;
+
+    return row ?? null;
+  } catch {
+    return null;
+  }
+}
+
+function appendMutationLedgerSafe(database: BetterSqlite3.Database, input: MutationLedgerInput): void {
+  try {
+    mutationLedger.initLedger(database);
+    mutationLedger.appendEntry(database, {
+      mutation_type: input.mutationType,
+      reason: input.reason,
+      prior_hash: input.priorHash,
+      new_hash: input.newHash,
+      linked_memory_ids: input.linkedMemoryIds,
+      decision_meta: input.decisionMeta,
+      actor: input.actor,
+      session_id: input.sessionId ?? null,
+    });
+  } catch (err: unknown) {
+    const message = toErrorMessage(err);
+    console.warn(`[memory-save] mutation ledger append failed: ${message}`);
+  }
 }
 
 /* ---------------------------------------------------------------
@@ -714,12 +766,32 @@ async function indexMemoryFile(filePath: string, { force = false, parsedOverride
     switch (peDecision.action) {
       case predictionErrorGate.ACTION.REINFORCE: {
         const existingId = peDecision.existingMemoryId as number;
+        const priorSnapshot = getMemoryHashSnapshot(database, existingId);
         console.info(`[PE-Gate] REINFORCE: Duplicate detected (${peDecision.similarity.toFixed(1)}%)`);
         const reinforced = reinforceExistingMemory(existingId, parsed);
         reinforced.pe_action = 'REINFORCE';
         reinforced.pe_reason = peDecision.reason;
         reinforced.warnings = validation.warnings;
         reinforced.embeddingStatus = embeddingStatus;
+
+        if (reinforced.status !== 'error') {
+          appendMutationLedgerSafe(database, {
+            mutationType: 'update',
+            reason: 'memory_save: reinforced existing memory via prediction-error gate',
+            priorHash: priorSnapshot?.content_hash ?? null,
+            newHash: parsed.contentHash,
+            linkedMemoryIds: [existingId],
+            decisionMeta: {
+              tool: 'memory_save',
+              action: predictionErrorGate.ACTION.REINFORCE,
+              similarity: peDecision.similarity,
+              specFolder: parsed.specFolder,
+              filePath,
+            },
+            actor: 'mcp:memory_save',
+          });
+        }
+
         return reinforced;
       }
 
@@ -735,6 +807,7 @@ async function indexMemoryFile(filePath: string, { force = false, parsedOverride
 
       case predictionErrorGate.ACTION.UPDATE: {
         const existingId = peDecision.existingMemoryId as number;
+        const priorSnapshot = getMemoryHashSnapshot(database, existingId);
         console.info(`[PE-Gate] UPDATE: High similarity (${peDecision.similarity.toFixed(1)}%), updating existing`);
         if (!embedding) {
           console.warn(
@@ -747,6 +820,23 @@ async function indexMemoryFile(filePath: string, { force = false, parsedOverride
         updated.pe_reason = peDecision.reason;
         updated.warnings = validation.warnings;
         updated.embeddingStatus = embeddingStatus;
+
+        appendMutationLedgerSafe(database, {
+          mutationType: 'update',
+          reason: 'memory_save: updated existing memory via prediction-error gate',
+          priorHash: priorSnapshot?.content_hash ?? null,
+          newHash: parsed.contentHash,
+          linkedMemoryIds: [existingId],
+          decisionMeta: {
+            tool: 'memory_save',
+            action: predictionErrorGate.ACTION.UPDATE,
+            similarity: peDecision.similarity,
+            specFolder: parsed.specFolder,
+            filePath,
+          },
+          actor: 'mcp:memory_save',
+        });
+
         return updated;
       }
 
@@ -952,6 +1042,32 @@ async function indexMemoryFile(filePath: string, { force = false, parsedOverride
   } else {
     resultStatus = 'indexed';
   }
+
+  const linkedMemoryIds = [
+    id,
+    ...(peDecision.existingMemoryId != null ? [peDecision.existingMemoryId] : []),
+  ];
+  appendMutationLedgerSafe(database, {
+    mutationType: existing ? 'update' : 'create',
+    reason: existing
+      ? 'memory_save: updated indexed memory entry'
+      : 'memory_save: created new indexed memory entry',
+    priorHash: existing?.content_hash ?? null,
+    newHash: parsed.contentHash,
+    linkedMemoryIds,
+    decisionMeta: {
+      tool: 'memory_save',
+      status: resultStatus,
+      action: peDecision.action,
+      similarity: peDecision.similarity,
+      specFolder: parsed.specFolder,
+      filePath,
+      embeddingStatus,
+      qualityScore: parsed.qualityScore ?? 0,
+      documentType: parsed.documentType || 'memory',
+    },
+    actor: 'mcp:memory_save',
+  });
 
   const result: IndexResult = {
     status: resultStatus,

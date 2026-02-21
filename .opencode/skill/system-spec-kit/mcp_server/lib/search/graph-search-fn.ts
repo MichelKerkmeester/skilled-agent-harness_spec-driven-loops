@@ -175,8 +175,16 @@ function queryCausalEdges(
     const rows = (database.prepare(`
       SELECT ce.id, ce.source_id, ce.target_id, ce.relation, ce.strength
       FROM causal_edges ce
-      WHERE ce.source_id IN (SELECT id FROM memories WHERE content LIKE ? ESCAPE '\\')
-         OR ce.target_id IN (SELECT id FROM memories WHERE content LIKE ? ESCAPE '\\')
+      WHERE ce.source_id IN (
+        SELECT id
+        FROM memory_index
+        WHERE COALESCE(content_text, title, '') LIKE ? ESCAPE '\\'
+      )
+         OR ce.target_id IN (
+        SELECT id
+        FROM memory_index
+        WHERE COALESCE(content_text, title, '') LIKE ? ESCAPE '\\'
+      )
       ORDER BY ce.strength DESC
       LIMIT ?
     `) as Database.Statement).all(likeParam, likeParam, limit) as CausalEdgeRow[];

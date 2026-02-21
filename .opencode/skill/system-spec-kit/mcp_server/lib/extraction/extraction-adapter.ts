@@ -38,21 +38,21 @@ const REDACTION_SKIP_THRESHOLD = 0.9;
 const RULES: ExtractionRule[] = [
   {
     id: 'read-spec',
-    toolPattern: /^read$/i,
+    toolPattern: /^(read|memory_context|memory_search|memory_list)$/i,
     contentPattern: /spec\.md/i,
     attention: 0.9,
     summarizer: 'firstLast500',
   },
   {
     id: 'grep-error',
-    toolPattern: /^grep$/i,
+    toolPattern: /^(grep|memory_search)$/i,
     contentPattern: /\berror\b/i,
     attention: 0.8,
     summarizer: 'matchCountSummary',
   },
   {
     id: 'bash-git-commit',
-    toolPattern: /^bash$/i,
+    toolPattern: /^(bash|memory_save|memory_update)$/i,
     contentPattern: /\bgit\s+commit\b/i,
     attention: 0.7,
     summarizer: 'stdoutSummary',

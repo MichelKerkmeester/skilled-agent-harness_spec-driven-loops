@@ -188,7 +188,7 @@ describe('C136-10 Adaptive Fusion', () => {
       failure_mode: 'adaptive_fusion_error: simulated failure',
       fallback_mode: 'standard_rrf',
       confidence_impact: 0.3,
-      retry_recommendation: false,
+      retry_recommendation: 'none',
     };
 
     // Validate contract field types and constraints
@@ -197,18 +197,18 @@ describe('C136-10 Adaptive Fusion', () => {
     expect(contract.fallback_mode).toBe('standard_rrf');
     expect(contract.confidence_impact).toBeGreaterThan(0);
     expect(contract.confidence_impact).toBeLessThanOrEqual(1.0);
-    expect(typeof contract.retry_recommendation).toBe('boolean');
+    expect(contract.retry_recommendation).toBe('none');
 
     // Verify empty_results degraded contract (total failure)
     const totalFailure: DegradedModeContract = {
       failure_mode: 'standard_fusion_error: catastrophic',
       fallback_mode: 'empty_results',
       confidence_impact: 1.0,
-      retry_recommendation: true,
+      retry_recommendation: 'immediate',
     };
 
     expect(totalFailure.confidence_impact).toBe(1.0);
-    expect(totalFailure.retry_recommendation).toBe(true);
+    expect(totalFailure.retry_recommendation).toBe('immediate');
     expect(totalFailure.fallback_mode).toBe('empty_results');
 
     // Also verify that when flag is ON and results exist, no degraded contract is set

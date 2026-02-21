@@ -1,5 +1,5 @@
 ---
-description: "Activation triggers, use cases, phase overview, and when NOT to use this skill"
+description: "Activation triggers, use cases including API integration, phase overview, and when NOT to use this skill"
 ---
 # When To Use
 

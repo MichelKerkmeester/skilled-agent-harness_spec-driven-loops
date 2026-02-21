@@ -1,0 +1,6 @@
+model_reasoning_effort = "xhigh"
+sandbox_mode = "workspace-write"
+developer_instructions = """
+Use `.opencode/agent/chatgpt/debug.md` as the canonical role playbook.
+Apply the 4-phase workflow (observe, analyze, hypothesize, fix) and validate fixes.
+"""

@@ -443,8 +443,12 @@ export function extractContextType(content: string): ContextType {
 export function extractImportanceTier(content: string): string {
   const validTiers: string[] = ['constitutional', 'critical', 'important', 'normal', 'temporary', 'deprecated'];
 
-  // Check YAML metadata block
-  const yamlMatch = content.match(/(?:importance_tier|importanceTier):\s*["']?(\w+)["']?/i);
+  // Strip HTML comments to avoid matching instructional examples
+  // (e.g., template comments containing "importanceTier: 'constitutional'" as documentation)
+  const contentWithoutComments = content.replace(/<!--[\s\S]*?-->/g, '');
+
+  // Check YAML metadata block (only in non-comment content)
+  const yamlMatch = contentWithoutComments.match(/(?:importance_tier|importanceTier):\s*["']?(\w+)["']?/i);
   if (yamlMatch) {
     const tier = yamlMatch[1].toLowerCase();
     if (validTiers.includes(tier)) {
@@ -452,14 +456,14 @@ export function extractImportanceTier(content: string): string {
     }
   }
 
-  // Check for tier markers in content
-  if (content.includes('[CONSTITUTIONAL]') || content.includes('importance: constitutional')) {
+  // Check for tier markers in content (only in non-comment content)
+  if (contentWithoutComments.includes('[CONSTITUTIONAL]') || contentWithoutComments.includes('importance: constitutional')) {
     return 'constitutional';
   }
-  if (content.includes('[CRITICAL]') || content.includes('importance: critical')) {
+  if (contentWithoutComments.includes('[CRITICAL]') || contentWithoutComments.includes('importance: critical')) {
     return 'critical';
   }
-  if (content.includes('[IMPORTANT]') || content.includes('importance: important')) {
+  if (contentWithoutComments.includes('[IMPORTANT]') || contentWithoutComments.includes('importance: important')) {
     return 'important';
   }
 

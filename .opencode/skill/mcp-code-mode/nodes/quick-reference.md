@@ -1,5 +1,5 @@
 ---
-description: "Code snippets and templates for Code Mode invocations."
+description: "Code snippets, tool chain patterns, and templates for Code Mode invocations."
 ---
 # Quick Reference
 

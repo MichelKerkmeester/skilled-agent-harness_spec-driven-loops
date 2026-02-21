@@ -22,10 +22,10 @@ import * as vectorIndex from '../lib/search/vector-index';
  * @returns Non-null database instance
  * @throws {Error} If the database is not initialized
  */
-function requireDb(): ReturnType<typeof vectorIndex.getDb> & {} {
+function requireDb(): NonNullable<ReturnType<typeof vectorIndex.getDb>> {
   const db = vectorIndex.getDb();
   if (!db) {
-    throw new Error('Database not initialized. Server may still be starting up.');
+    throw new Error('Database not initialized. MCP server may not be running. Check server process is active, then retry.');
   }
   return db;
 }

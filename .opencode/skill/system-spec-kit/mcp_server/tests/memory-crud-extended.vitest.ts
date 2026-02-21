@@ -74,6 +74,14 @@ vi.mock('../lib/cache/tool-cache', async (importOriginal) => {
   };
 });
 
+vi.mock('../lib/storage/mutation-ledger', async () => {
+  return {
+    initLedger: vi.fn(),
+    appendEntry: vi.fn(() => ({ id: 1 })),
+    computeHash: vi.fn((input: string) => `mock-hash-${String(input).length}`),
+  };
+});
+
 // Mock the embeddings barrel that the handler actually imports
 vi.mock('../lib/providers/embeddings', async (importOriginal) => {
   const actual = await importOriginal() as unknown;
@@ -106,6 +114,7 @@ let causalEdgesMod: any = null;
 let folderScoringMod: any = null;
 let folderScoringSourceMod: any = null;
 let dbStateMod: any = null;
+let mutationLedgerMod: any = null;
 
 /** Parse the JSON envelope from an MCP response */
 function parseResponse(result: any): any {
@@ -137,6 +146,7 @@ beforeAll(async () => {
   try { folderScoringMod = await import('../lib/scoring/folder-scoring'); } catch { /* optional */ }
   try { folderScoringSourceMod = await import('../lib/scoring/folder-scoring'); } catch { /* optional */ }
   try { dbStateMod = await import('../core/db-state'); } catch { /* optional */ }
+  try { mutationLedgerMod = await import('../lib/storage/mutation-ledger'); } catch { /* optional */ }
 });
 
 afterEach(() => {
@@ -386,6 +396,34 @@ function installHealthMocks(opts: {
   }
 
   return fakeDb;
+}
+
+function installMutationLedgerMocks() {
+  const calls: Record<string, any[]> = {
+    initLedger: [],
+    appendEntry: [],
+    computeHash: [],
+  };
+
+  if (!mutationLedgerMod) {
+    return calls;
+  }
+
+  vi.mocked(mutationLedgerMod.initLedger).mockImplementation((db: any) => {
+    calls.initLedger.push(db);
+  });
+
+  vi.mocked(mutationLedgerMod.appendEntry).mockImplementation((db: any, entry: any) => {
+    calls.appendEntry.push(entry);
+    return { id: calls.appendEntry.length, ...entry };
+  });
+
+  vi.mocked(mutationLedgerMod.computeHash).mockImplementation((input: string) => {
+    calls.computeHash.push(input);
+    return `mock-hash-${calls.computeHash.length}`;
+  });
+
+  return calls;
 }
 
 /* ─────────────────────────────────────────────────────────────
@@ -994,5 +1032,49 @@ describe('MCP Response Envelope Structure', () => {
     vi.mocked(vectorIndex.getDb).mockImplementation(() => null);
     const result = await handler.handleMemoryList({});
     expect(result?.isError).toBe(true);
+  });
+});
+
+describe('Mutation ledger wiring', () => {
+  it('EXT-ML1: single delete logs a delete mutation', async () => {
+    if (!handler?.handleMemoryDelete || !vectorIndex || !mutationLedgerMod) return;
+    installDeleteMocks({ deleteResult: true, dbAvailable: true });
+    const ledgerCalls = installMutationLedgerMocks();
+
+    await handler.handleMemoryDelete({ id: 42 });
+
+    expect(ledgerCalls.initLedger.length).toBeGreaterThan(0);
+    expect(ledgerCalls.appendEntry.length).toBe(1);
+    expect(ledgerCalls.appendEntry[0].mutation_type).toBe('delete');
+    expect(ledgerCalls.appendEntry[0].linked_memory_ids).toEqual([42]);
+  });
+
+  it('EXT-ML2: bulk delete logs one ledger entry per deleted memory', async () => {
+    if (!handler?.handleMemoryDelete || !vectorIndex || !mutationLedgerMod) return;
+    installBulkDeleteMocks({ memories: [{ id: 90 }, { id: 91 }], dbAvailable: true });
+    const ledgerCalls = installMutationLedgerMocks();
+
+    await handler.handleMemoryDelete({ specFolder: 'specs/test', confirm: true });
+
+    expect(ledgerCalls.appendEntry.length).toBe(2);
+    expect(ledgerCalls.appendEntry[0].mutation_type).toBe('delete');
+    expect(ledgerCalls.appendEntry[1].mutation_type).toBe('delete');
+  });
+
+  it('EXT-ML3: memory update logs an update mutation', async () => {
+    if (!handler?.handleMemoryUpdate || !vectorIndex || !mutationLedgerMod) return;
+    installUpdateMocks({ existingMemory: { id: 7, title: 'Old title', content_hash: 'old-hash' } });
+    vi.mocked(vectorIndex.getDb).mockImplementation(() => ({
+      prepare: (_sql: string) => ({
+        get: (_id: number) => ({ id: 7, content_hash: 'old-hash', spec_folder: 'specs/test', file_path: '/tmp/memory.md' }),
+      }),
+    }));
+    const ledgerCalls = installMutationLedgerMocks();
+
+    await handler.handleMemoryUpdate({ id: 7, importanceWeight: 0.8 });
+
+    expect(ledgerCalls.appendEntry.length).toBe(1);
+    expect(ledgerCalls.appendEntry[0].mutation_type).toBe('update');
+    expect(ledgerCalls.appendEntry[0].linked_memory_ids).toEqual([7]);
   });
 });

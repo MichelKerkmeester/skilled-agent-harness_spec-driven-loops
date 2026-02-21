@@ -1,5 +1,5 @@
 ---
-description: "Prerequisites, Code Mode dependency, configuration, and cross-tool workflow patterns."
+description: "Prerequisites, Code Mode dependency, configuration, design export workflows, and cross-tool workflow patterns."
 ---
 # Integration Points
 

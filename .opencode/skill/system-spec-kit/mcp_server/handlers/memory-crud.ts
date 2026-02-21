@@ -19,6 +19,7 @@ import { MemoryError, ErrorCodes } from '../lib/errors';
 import * as folderScoring from '../lib/scoring/folder-scoring';
 import type { FolderMemoryInput } from '../lib/scoring/folder-scoring';
 import * as toolCache from '../lib/cache/tool-cache';
+import * as mutationLedger from '../lib/storage/mutation-ledger';
 // P4-10 FIX: Import causal-edges for cleanup on delete
 import * as causalEdges from '../lib/storage/causal-edges';
 import { createMCPSuccessResponse, createMCPErrorResponse } from '../lib/response/envelope';
@@ -77,6 +78,67 @@ interface ProviderMetadata {
 
 let embeddingModelReady = false;
 
+interface MemoryHashSnapshot {
+  id: number;
+  content_hash: string | null;
+  spec_folder?: string | null;
+  file_path?: string | null;
+}
+
+interface MutationLedgerInput {
+  mutationType: mutationLedger.MutationType;
+  reason: string;
+  priorHash: string | null;
+  newHash: string;
+  linkedMemoryIds: number[];
+  decisionMeta: Record<string, unknown>;
+  actor: string;
+  sessionId?: string | null;
+}
+
+function getMemoryHashSnapshot(database: Database | null, memoryId: number): MemoryHashSnapshot | null {
+  if (!database || typeof (database as Record<string, unknown>).prepare !== 'function') {
+    return null;
+  }
+
+  try {
+    const row = (database as unknown as {
+      prepare: (sql: string) => { get: (id: number) => MemoryHashSnapshot | undefined };
+    }).prepare(`
+      SELECT id, content_hash, spec_folder, file_path
+      FROM memory_index
+      WHERE id = ?
+    `).get(memoryId);
+
+    return row ?? null;
+  } catch {
+    return null;
+  }
+}
+
+function appendMutationLedgerSafe(database: Database | null, input: MutationLedgerInput): void {
+  if (!database) {
+    return;
+  }
+
+  try {
+    mutationLedger.initLedger(database as unknown as Parameters<typeof mutationLedger.initLedger>[0]);
+    mutationLedger.appendEntry(database as unknown as Parameters<typeof mutationLedger.appendEntry>[0], {
+      mutation_type: input.mutationType,
+      reason: input.reason,
+      prior_hash: input.priorHash,
+      new_hash: input.newHash,
+      linked_memory_ids: input.linkedMemoryIds,
+      decision_meta: input.decisionMeta,
+      actor: input.actor,
+      session_id: input.sessionId ?? null,
+    });
+  } catch (err: unknown) {
+    const message = toErrorMessage(err);
+    console.warn(`[memory-crud] mutation ledger append failed: ${message}`);
+  }
+}
+
 function safeJsonParse(str: string | null | undefined, fallback: unknown[] = []): unknown[] {
   if (!str) return fallback;
   try { return JSON.parse(str); } catch { return fallback; }
@@ -94,10 +156,10 @@ async function handleMemoryDelete(args: DeleteArgs): Promise<MCPResponse> {
   const startTime = Date.now();
   await checkDatabaseUpdated();
 
-  const { id, specFolder: spec_folder, confirm } = args;
-  if (!id && !spec_folder) throw new Error('Either id or specFolder is required');
-  if (spec_folder !== undefined && typeof spec_folder !== 'string') throw new Error('specFolder must be a string');
-  if (spec_folder && !id && !confirm) throw new Error('Bulk delete requires confirm: true');
+  const { id, specFolder, confirm } = args;
+  if (!id && !specFolder) throw new Error('Either id or specFolder is required');
+  if (specFolder !== undefined && typeof specFolder !== 'string') throw new Error('specFolder must be a string');
+  if (specFolder && !id && !confirm) throw new Error('Bulk delete requires confirm: true');
 
   let numericId: number | null = null;
   if (id !== undefined && id !== null) {
@@ -108,14 +170,15 @@ async function handleMemoryDelete(args: DeleteArgs): Promise<MCPResponse> {
   }
 
   let deletedCount = 0;
-  let checkpoint_name: string | null = null;
+  let checkpointName: string | null = null;
+  const database = vectorIndex.getDb();
 
   if (numericId !== null) {
+    const singleSnapshot = getMemoryHashSnapshot(database, numericId);
     deletedCount = vectorIndex.deleteMemory(numericId) ? 1 : 0;
     // P4-10 FIX: Clean up causal graph edges when deleting a memory
     if (deletedCount > 0) {
       try {
-        const database = vectorIndex.getDb();
         if (database) {
           causalEdges.init(database);
           causalEdges.deleteEdgesForMemory(String(numericId));
@@ -124,34 +187,71 @@ async function handleMemoryDelete(args: DeleteArgs): Promise<MCPResponse> {
         const msg = toErrorMessage(edgeErr);
         console.warn(`[memory-delete] Failed to clean up causal edges for memory ${numericId}: ${msg}`);
       }
+
+      appendMutationLedgerSafe(database, {
+        mutationType: 'delete',
+        reason: 'memory_delete: single memory delete',
+        priorHash: singleSnapshot?.content_hash ?? null,
+        newHash: mutationLedger.computeHash(`delete:${numericId}:${Date.now()}`),
+        linkedMemoryIds: [numericId],
+        decisionMeta: {
+          tool: 'memory_delete',
+          bulk: false,
+          memoryId: numericId,
+          specFolder: singleSnapshot?.spec_folder ?? null,
+          filePath: singleSnapshot?.file_path ?? null,
+        },
+        actor: 'mcp:memory_delete',
+      });
     }
   } else {
-    const memories: { id: number }[] = vectorIndex.getMemoriesByFolder(spec_folder as string);
+    const memories: { id: number }[] = vectorIndex.getMemoriesByFolder(specFolder as string);
+    const deletedIds: number[] = [];
+    const hashById = new Map<number, MemoryHashSnapshot>();
+
+    if (database && typeof (database as Record<string, unknown>).prepare === 'function') {
+      try {
+        const rows = (database as unknown as {
+          prepare: (sql: string) => { all: (folder: string) => MemoryHashSnapshot[] };
+        }).prepare(`
+          SELECT id, content_hash, spec_folder, file_path
+          FROM memory_index
+          WHERE spec_folder = ?
+        `).all(specFolder as string);
+
+        for (const row of rows) {
+          hashById.set(row.id, row);
+        }
+      } catch {
+        // Non-fatal: bulk delete still proceeds without per-memory hash snapshots
+      }
+    }
+
     if (memories.length > 0) {
       const timestamp = new Date().toISOString().replace(/[:.]/g, '-').slice(0, 19);
-      checkpoint_name = `pre-cleanup-${timestamp}`;
+      checkpointName = `pre-cleanup-${timestamp}`;
       try {
-        checkpoints.createCheckpoint({ name: checkpoint_name, specFolder: spec_folder, metadata: { reason: 'auto-checkpoint before bulk delete', memoryCount: memories.length } });
-        console.error(`[memory-delete] Created checkpoint: ${checkpoint_name}`);
-      } catch (cp_err: unknown) {
-        const message = toErrorMessage(cp_err);
+        checkpoints.createCheckpoint({ name: checkpointName, specFolder, metadata: { reason: 'auto-checkpoint before bulk delete', memoryCount: memories.length } });
+        console.error(`[memory-delete] Created checkpoint: ${checkpointName}`);
+      } catch (cpErr: unknown) {
+        const message = toErrorMessage(cpErr);
         console.error(`[memory-delete] Failed to create checkpoint: ${message}`);
         if (!confirm) {
           return createMCPErrorResponse({ tool: 'memory_delete', error: 'Failed to create backup checkpoint before bulk delete. Set confirm=true to proceed without backup.', startTime });
         }
         console.warn(`[memory-delete] Proceeding without backup (user confirmed)`);
-        checkpoint_name = null;
+        checkpointName = null;
       }
     }
     // P4-20 FIX: Wrap bulk delete in transaction for atomicity.
     // P4-10 FIX: Clean up causal edges for each deleted memory.
-    const database = vectorIndex.getDb();
     if (database) {
       causalEdges.init(database);
       const bulkDeleteTx = database.transaction(() => {
         for (const memory of memories) {
           if (vectorIndex.deleteMemory(memory.id)) {
             deletedCount++;
+            deletedIds.push(memory.id);
             try {
               causalEdges.deleteEdgesForMemory(String(memory.id));
             } catch (edgeErr: unknown) {
@@ -164,13 +264,38 @@ async function handleMemoryDelete(args: DeleteArgs): Promise<MCPResponse> {
       bulkDeleteTx();
     } else {
       // Fallback if DB not available (should not happen in practice)
-      for (const memory of memories) { if (vectorIndex.deleteMemory(memory.id)) deletedCount++; }
+      for (const memory of memories) {
+        if (vectorIndex.deleteMemory(memory.id)) {
+          deletedCount++;
+          deletedIds.push(memory.id);
+        }
+      }
+    }
+
+    for (const deletedId of deletedIds) {
+      const snapshot = hashById.get(deletedId) ?? null;
+      appendMutationLedgerSafe(database, {
+        mutationType: 'delete',
+        reason: 'memory_delete: bulk delete by spec folder',
+        priorHash: snapshot?.content_hash ?? null,
+        newHash: mutationLedger.computeHash(`bulk-delete:${deletedId}:${Date.now()}`),
+        linkedMemoryIds: [deletedId],
+        decisionMeta: {
+          tool: 'memory_delete',
+          bulk: true,
+          specFolder,
+          checkpoint: checkpointName,
+          memoryId: deletedId,
+          filePath: snapshot?.file_path ?? null,
+        },
+        actor: 'mcp:memory_delete',
+      });
     }
   }
 
   if (deletedCount > 0) {
     triggerMatcher.clearCache();
-    toolCache.invalidateOnWrite('delete', { specFolder: spec_folder });
+    toolCache.invalidateOnWrite('delete', { specFolder });
   }
 
   const summary = deletedCount > 0
@@ -178,17 +303,17 @@ async function handleMemoryDelete(args: DeleteArgs): Promise<MCPResponse> {
     : 'No memories found to delete';
 
   const hints: string[] = [];
-  if (checkpoint_name) {
-    hints.push(`Restore with: checkpoint_restore({ name: "${checkpoint_name}" })`);
+  if (checkpointName) {
+    hints.push(`Restore with: checkpoint_restore({ name: "${checkpointName}" })`);
   }
   if (deletedCount === 0) {
     hints.push('Use memory_list() to find existing memories');
   }
 
   const data: Record<string, unknown> = { deleted: deletedCount };
-  if (checkpoint_name) {
-    data.checkpoint = checkpoint_name;
-    data.restoreCommand = `checkpoint_restore({ name: "${checkpoint_name}" })`;
+  if (checkpointName) {
+    data.checkpoint = checkpointName;
+    data.restoreCommand = `checkpoint_restore({ name: "${checkpointName}" })`;
   }
 
   return createMCPSuccessResponse({
@@ -207,44 +332,46 @@ async function handleMemoryDelete(args: DeleteArgs): Promise<MCPResponse> {
 async function handleMemoryUpdate(args: UpdateArgs): Promise<MCPResponse> {
   await checkDatabaseUpdated();
 
-  const { id, title, triggerPhrases, importanceWeight: importance_weight, importanceTier: importance_tier, allowPartialUpdate: allow_partial_update = false } = args;
+  const { id, title, triggerPhrases, importanceWeight, importanceTier, allowPartialUpdate = false } = args;
   if (!id) throw new MemoryError(ErrorCodes.MISSING_REQUIRED_PARAM, 'id is required', { param: 'id' });
-  if (importance_weight !== undefined && (typeof importance_weight !== 'number' || importance_weight < 0 || importance_weight > 1)) {
-    throw new MemoryError(ErrorCodes.INVALID_PARAMETER, 'importanceWeight must be a number between 0 and 1', { param: 'importanceWeight', value: importance_weight });
+  if (importanceWeight !== undefined && (typeof importanceWeight !== 'number' || importanceWeight < 0 || importanceWeight > 1)) {
+    throw new MemoryError(ErrorCodes.INVALID_PARAMETER, 'importanceWeight must be a number between 0 and 1', { param: 'importanceWeight', value: importanceWeight });
   }
-  if (importance_tier !== undefined && !isValidTier(importance_tier)) {
-    throw new MemoryError(ErrorCodes.INVALID_PARAMETER, `Invalid importance tier: ${importance_tier}. Valid tiers: ${VALID_TIERS.join(', ')}`, { param: 'importanceTier', value: importance_tier });
+  if (importanceTier !== undefined && !isValidTier(importanceTier)) {
+    throw new MemoryError(ErrorCodes.INVALID_PARAMETER, `Invalid importance tier: ${importanceTier}. Valid tiers: ${VALID_TIERS.join(', ')}`, { param: 'importanceTier', value: importanceTier });
   }
 
   const existing = vectorIndex.getMemory(id);
   if (!existing) throw new MemoryError(ErrorCodes.FILE_NOT_FOUND, `Memory not found: ${id}`, { id });
+  const database = vectorIndex.getDb();
+  const priorSnapshot = getMemoryHashSnapshot(database, id);
 
   const updateParams: UpdateMemoryParams = { id };
   if (title !== undefined) updateParams.title = title;
   if (triggerPhrases !== undefined) updateParams.triggerPhrases = triggerPhrases;
-  if (importance_weight !== undefined) updateParams.importanceWeight = importance_weight;
-  if (importance_tier !== undefined) updateParams.importanceTier = importance_tier;
+  if (importanceWeight !== undefined) updateParams.importanceWeight = importanceWeight;
+  if (importanceTier !== undefined) updateParams.importanceTier = importanceTier;
 
   let embeddingRegenerated = false;
-  let embedding_marked_for_reindex = false;
+  let embeddingMarkedForReindex = false;
 
   if (title !== undefined && title !== existing.title) {
     console.error(`[memory-update] Title changed, regenerating embedding for memory ${id}`);
-    let new_embedding: Float32Array | null = null;
-    try { new_embedding = await embeddings.generateDocumentEmbedding(title); }
+    let newEmbedding: Float32Array | null = null;
+    try { newEmbedding = await embeddings.generateDocumentEmbedding(title); }
     catch (err: unknown) {
       const message = toErrorMessage(err);
-      if (allow_partial_update) {
+      if (allowPartialUpdate) {
         console.warn(`[memory-update] Embedding regeneration failed, marking for re-index: ${message}`);
-        vectorIndex.updateEmbeddingStatus(id, 'pending'); embedding_marked_for_reindex = true;
+        vectorIndex.updateEmbeddingStatus(id, 'pending'); embeddingMarkedForReindex = true;
       } else {
         console.error(`[memory-update] Embedding regeneration failed, rolling back update: ${message}`);
         throw new MemoryError(ErrorCodes.EMBEDDING_FAILED, 'Embedding regeneration failed, update rolled back. No changes were made.', { originalError: message, memoryId: id });
       }
     }
-    if (new_embedding) { updateParams.embedding = new_embedding; embeddingRegenerated = true; }
-    else if (!embedding_marked_for_reindex) {
-      if (allow_partial_update) { console.warn(`[memory-update] Embedding returned null, marking for re-index`); vectorIndex.updateEmbeddingStatus(id, 'pending'); embedding_marked_for_reindex = true; }
+    if (newEmbedding) { updateParams.embedding = newEmbedding; embeddingRegenerated = true; }
+    else if (!embeddingMarkedForReindex) {
+      if (allowPartialUpdate) { console.warn(`[memory-update] Embedding returned null, marking for re-index`); vectorIndex.updateEmbeddingStatus(id, 'pending'); embeddingMarkedForReindex = true; }
       else throw new MemoryError(ErrorCodes.EMBEDDING_FAILED, 'Failed to regenerate embedding (null result), update rolled back. No changes were made.', { memoryId: id });
     }
   }
@@ -254,12 +381,35 @@ async function handleMemoryUpdate(args: UpdateArgs): Promise<MCPResponse> {
   toolCache.invalidateOnWrite('update', { memoryId: id });
 
   const fields = Object.keys(updateParams).filter(k => k !== 'id' && k !== 'embedding');
-  const summary = embedding_marked_for_reindex
+
+  appendMutationLedgerSafe(database, {
+    mutationType: 'update',
+    reason: 'memory_update: metadata update',
+    priorHash: priorSnapshot?.content_hash ?? ((existing as Record<string, unknown>).content_hash as string | null) ?? null,
+    newHash: mutationLedger.computeHash(JSON.stringify({
+      id,
+      title: updateParams.title ?? existing.title ?? null,
+      triggerPhrases: updateParams.triggerPhrases ?? null,
+      importanceWeight: updateParams.importanceWeight ?? null,
+      importanceTier: updateParams.importanceTier ?? null,
+    })),
+    linkedMemoryIds: [id],
+    decisionMeta: {
+      tool: 'memory_update',
+      fields,
+      embeddingRegenerated,
+      embeddingMarkedForReindex,
+      allowPartialUpdate,
+    },
+    actor: 'mcp:memory_update',
+  });
+
+  const summary = embeddingMarkedForReindex
     ? `Memory ${id} updated (embedding pending re-index)`
     : `Memory ${id} updated successfully`;
 
   const hints: string[] = [];
-  if (embedding_marked_for_reindex) {
+  if (embeddingMarkedForReindex) {
     hints.push('Run memory_index_scan() to regenerate embeddings');
   }
   if (embeddingRegenerated) {
@@ -269,9 +419,9 @@ async function handleMemoryUpdate(args: UpdateArgs): Promise<MCPResponse> {
   const data: Record<string, unknown> = {
     updated: id,
     fields,
-    embeddingRegenerated: embeddingRegenerated
+    embeddingRegenerated,
   };
-  if (embedding_marked_for_reindex) {
+  if (embeddingMarkedForReindex) {
     data.warning = 'Embedding regeneration failed, memory marked for re-indexing';
     data.embeddingStatus = 'pending';
   }
@@ -292,26 +442,26 @@ async function handleMemoryUpdate(args: UpdateArgs): Promise<MCPResponse> {
 async function handleMemoryList(args: ListArgs): Promise<MCPResponse> {
   const startTime = Date.now();
   await checkDatabaseUpdated();
-  const { limit: raw_limit = 20, offset: raw_offset = 0, specFolder: spec_folder, sortBy: sort_by = 'created_at' } = args;
-  if (spec_folder !== undefined && typeof spec_folder !== 'string') throw new Error('specFolder must be a string');
+  const { limit: rawLimit = 20, offset: rawOffset = 0, specFolder, sortBy = 'created_at' } = args;
+  if (specFolder !== undefined && typeof specFolder !== 'string') throw new Error('specFolder must be a string');
 
-  const safeLimit = Math.max(1, Math.min(raw_limit || 20, 100));
-  const safeOffset = Math.max(0, raw_offset || 0);
+  const safeLimit = Math.max(1, Math.min(rawLimit || 20, 100));
+  const safeOffset = Math.max(0, rawOffset || 0);
   const database = vectorIndex.getDb();
   if (!database) {
-    return createMCPErrorResponse({ tool: 'memory_list', error: 'Database not initialized. Server may still be starting up.', code: 'E020', startTime });
+    return createMCPErrorResponse({ tool: 'memory_list', error: 'Database not initialized. Run memory_index_scan() to trigger schema creation, or restart the MCP server.', code: 'E020', startTime });
   }
 
   let total = 0;
   let rows: unknown[];
-  const sortColumn = ['created_at', 'updated_at', 'importance_weight'].includes(sort_by) ? sort_by : 'created_at';
+  const sortColumn = ['created_at', 'updated_at', 'importance_weight'].includes(sortBy) ? sortBy : 'created_at';
   try {
-    const countSql = spec_folder ? 'SELECT COUNT(*) as count FROM memory_index WHERE spec_folder = ?' : 'SELECT COUNT(*) as count FROM memory_index';
-    const countResult = database.prepare(countSql).get(...(spec_folder ? [spec_folder] : [])) as Record<string, unknown> | undefined;
+    const countSql = specFolder ? 'SELECT COUNT(*) as count FROM memory_index WHERE spec_folder = ?' : 'SELECT COUNT(*) as count FROM memory_index';
+    const countResult = database.prepare(countSql).get(...(specFolder ? [specFolder] : [])) as Record<string, unknown> | undefined;
     total = (countResult && typeof countResult.count === 'number') ? countResult.count : 0;
 
-    const sql = `SELECT id, spec_folder, file_path, title, trigger_phrases, importance_weight, created_at, updated_at FROM memory_index ${spec_folder ? 'WHERE spec_folder = ?' : ''} ORDER BY ${sortColumn} DESC LIMIT ? OFFSET ?`;
-    const params = spec_folder ? [spec_folder, safeLimit, safeOffset] : [safeLimit, safeOffset];
+    const sql = `SELECT id, spec_folder, file_path, title, trigger_phrases, importance_weight, created_at, updated_at FROM memory_index ${specFolder ? 'WHERE spec_folder = ?' : ''} ORDER BY ${sortColumn} DESC LIMIT ? OFFSET ?`;
+    const params = specFolder ? [specFolder, safeLimit, safeOffset] : [safeLimit, safeOffset];
     rows = database.prepare(sql).all(...params);
   } catch (dbErr: unknown) {
     const message = toErrorMessage(dbErr);
@@ -363,31 +513,31 @@ async function handleMemoryStats(args: StatsArgs | null): Promise<MCPResponse> {
   await checkDatabaseUpdated();
   const database = vectorIndex.getDb();
   if (!database) {
-    return createMCPErrorResponse({ tool: 'memory_stats', error: 'Database not initialized. Server may still be starting up.', code: 'E020', startTime });
+    return createMCPErrorResponse({ tool: 'memory_stats', error: 'Database not initialized. Run memory_index_scan() to trigger schema creation, or restart the MCP server.', code: 'E020', startTime });
   }
 
   const {
-    folderRanking: folder_ranking = 'count',
-    excludePatterns: exclude_patterns = [],
-    includeScores: include_scores = false,
-    includeArchived: include_archived = false,
-    limit: raw_limit = 10
+    folderRanking = 'count',
+    excludePatterns = [],
+    includeScores = false,
+    includeArchived = false,
+    limit: rawLimit = 10
   } = args || {};
 
   const validRankings = ['count', 'recency', 'importance', 'composite'];
-  if (!validRankings.includes(folder_ranking)) {
-    throw new Error(`Invalid folderRanking: ${folder_ranking}. Valid options: ${validRankings.join(', ')}`);
+  if (!validRankings.includes(folderRanking)) {
+    throw new Error(`Invalid folderRanking: ${folderRanking}. Valid options: ${validRankings.join(', ')}`);
   }
-  if (exclude_patterns && !Array.isArray(exclude_patterns)) {
+  if (excludePatterns && !Array.isArray(excludePatterns)) {
     throw new Error('excludePatterns must be an array of regex pattern strings');
   }
-  const safeLimit = Math.max(1, Math.min(raw_limit || 10, 100));
+  const safeLimit = Math.max(1, Math.min(rawLimit || 10, 100));
 
   let total = 0;
   let statusCounts: ReturnType<typeof vectorIndex.getStatusCounts> = { success: 0, pending: 0, failed: 0 };
   let dates: Record<string, unknown> = { oldest: null, newest: null };
   let triggerCount = 0;
-  let top_folders: Record<string, unknown>[];
+  let topFolders: Record<string, unknown>[];
   let tierBreakdown: Record<string, number> = {};
   let lastIndexedAt: string | null = null;
 
@@ -425,15 +575,15 @@ async function handleMemoryStats(args: StatsArgs | null): Promise<MCPResponse> {
   } catch { /* non-fatal */ }
 
   try {
-    if (folder_ranking === 'count') {
+    if (folderRanking === 'count') {
       const folderRows = database.prepare('SELECT spec_folder, COUNT(*) as count FROM memory_index GROUP BY spec_folder ORDER BY count DESC').all() as { spec_folder: string; count: number }[];
 
       let filteredFolders = folderRows;
-      if (!include_archived) {
+      if (!includeArchived) {
         filteredFolders = filteredFolders.filter(f => !folderScoring.isArchived(f.spec_folder));
       }
-      if (exclude_patterns.length > 0) {
-        const regexes = exclude_patterns
+      if (excludePatterns.length > 0) {
+        const regexes = excludePatterns
           .map((p: string) => {
             try { return new RegExp(p, 'i'); }
             catch (err: unknown) {
@@ -448,7 +598,7 @@ async function handleMemoryStats(args: StatsArgs | null): Promise<MCPResponse> {
         }
       }
 
-      top_folders = filteredFolders.slice(0, safeLimit).map(f => ({
+      topFolders = filteredFolders.slice(0, safeLimit).map(f => ({
         folder: f.spec_folder,
         count: f.count
       }));
@@ -462,33 +612,33 @@ async function handleMemoryStats(args: StatsArgs | null): Promise<MCPResponse> {
       `).all() as FolderMemoryInput[];
 
       const scoringOptions = {
-        ranking_mode: folder_ranking,
-        includeArchived: include_archived,
-        excludePatterns: exclude_patterns,
-        include_scores: include_scores || folder_ranking === 'composite',
+        ranking_mode: folderRanking,
+        includeArchived,
+        excludePatterns,
+        include_scores: includeScores || folderRanking === 'composite',
         limit: safeLimit
       };
 
-      let scored_folders: Record<string, unknown>[];
+      let scoredFolders: Record<string, unknown>[];
       try {
-        scored_folders = folderScoring.computeFolderScores(allMemories, scoringOptions);
-      } catch (scoring_err: unknown) {
-        const message = toErrorMessage(scoring_err);
+        scoredFolders = folderScoring.computeFolderScores(allMemories, scoringOptions);
+      } catch (scoringErr: unknown) {
+        const message = toErrorMessage(scoringErr);
         console.error(`[memory-stats] Scoring failed, falling back to count-based: ${message}`);
         const folderCounts = new Map<string, number>();
         for (const m of allMemories as Record<string, unknown>[]) {
           const folder = (m.spec_folder as string) || 'unknown';
           folderCounts.set(folder, (folderCounts.get(folder) || 0) + 1);
         }
-        scored_folders = Array.from(folderCounts.entries())
-          .filter(([folder]) => include_archived || !folderScoring.isArchived(folder))
+        scoredFolders = Array.from(folderCounts.entries())
+          .filter(([folder]) => includeArchived || !folderScoring.isArchived(folder))
           .map(([folder, count]) => ({ folder, simplified: folder.split('/').pop() || folder, count, score: 0, isArchived: folderScoring.isArchived(folder) }))
           .sort((a, b) => (b as Record<string, unknown>).count as number - ((a as Record<string, unknown>).count as number))
           .slice(0, safeLimit);
       }
 
-      if (include_scores || folder_ranking === 'composite') {
-        top_folders = scored_folders.map((f: Record<string, unknown>) => ({
+      if (includeScores || folderRanking === 'composite') {
+        topFolders = scoredFolders.map((f: Record<string, unknown>) => ({
           folder: f.folder,
           simplified: f.simplified,
           count: f.count,
@@ -502,7 +652,7 @@ async function handleMemoryStats(args: StatsArgs | null): Promise<MCPResponse> {
           topTier: f.topTier
         }));
       } else {
-        top_folders = scored_folders.map((f: Record<string, unknown>) => ({
+        topFolders = scoredFolders.map((f: Record<string, unknown>) => ({
           folder: f.folder,
           simplified: f.simplified,
           count: f.count,
@@ -518,7 +668,7 @@ async function handleMemoryStats(args: StatsArgs | null): Promise<MCPResponse> {
     return createMCPErrorResponse({ tool: 'memory_stats', error: `Folder ranking query failed: ${message}`, code: 'E021', startTime });
   }
 
-  const summary = `Memory system: ${total} memories across ${top_folders.length} folders`;
+  const summary = `Memory system: ${total} memories across ${topFolders.length} folders`;
   const hints: string[] = [];
   if (!vectorIndex.isVectorSearchAvailable()) {
     hints.push('Vector search unavailable - using BM25 fallback');
@@ -535,11 +685,11 @@ async function handleMemoryStats(args: StatsArgs | null): Promise<MCPResponse> {
       byStatus: statusCounts,
       oldestMemory: dates.oldest || null,
       newestMemory: dates.newest || null,
-      topFolders: top_folders,
+      topFolders: topFolders,
       totalTriggerPhrases: triggerCount,
       sqliteVecAvailable: vectorIndex.isVectorSearchAvailable(),
       vectorSearchEnabled: vectorIndex.isVectorSearchAvailable(),
-      folderRanking: folder_ranking,
+      folderRanking,
       tierBreakdown,
       databaseSizeBytes,
       lastIndexedAt
@@ -555,11 +705,25 @@ async function handleMemoryStats(args: StatsArgs | null): Promise<MCPResponse> {
 /** Handle memory_health tool - checks database, embedding provider, and vector search status */
 async function handleMemoryHealth(_args: HealthArgs): Promise<MCPResponse> {
   const startTime = Date.now();
+  await checkDatabaseUpdated();
   const database: Database | null = vectorIndex.getDb();
   let memoryCount = 0;
-  try { if (database) { memoryCount = (database.prepare('SELECT COUNT(*) as count FROM memory_index').get() as Record<string, number>).count; } }
-  catch (err: unknown) {
+  try {
+    if (database) {
+      const countResult = database.prepare('SELECT COUNT(*) as count FROM memory_index')
+        .get() as Record<string, number>;
+      memoryCount = countResult.count;
+    }
+  } catch (err: unknown) {
     const message = toErrorMessage(err);
+    if (message.includes('no such table')) {
+      return createMCPErrorResponse({
+        tool: 'memory_health',
+        error: `Schema missing: ${message}. Run memory_index_scan() to create the database schema, or restart the MCP server.`,
+        code: 'E_SCHEMA_MISSING',
+        startTime
+      });
+    }
     console.warn('[memory-health] Failed to get memory count:', message);
   }
 
@@ -584,10 +748,10 @@ async function handleMemoryHealth(_args: HealthArgs): Promise<MCPResponse> {
     summary,
     data: {
       status,
-      embeddingModelReady: embeddingModelReady,
+      embeddingModelReady,
       databaseConnected: !!database,
       vectorSearchAvailable: vectorIndex.isVectorSearchAvailable(),
-      memoryCount: memoryCount,
+      memoryCount,
       uptime: process.uptime(),
       version: '1.7.2',
       embeddingProvider: {
@@ -616,7 +780,7 @@ export {
   setEmbeddingModelReady,
 };
 
-// Backward-compatible aliases (snake_case)
+// Backward-compatible aliases (snake_case) — remove after all callers migrate to camelCase
 const handle_memory_delete = handleMemoryDelete;
 const handle_memory_update = handleMemoryUpdate;
 const handle_memory_list = handleMemoryList;

@@ -52,6 +52,7 @@ JavaScript tests:
 - `test-validation-system.js`
 
 Shell tests:
+- `test-phase-system.sh`
 - `test-upgrade-level.sh`
 - `test-validation.sh`
 - `test-validation-extended.sh`
@@ -75,6 +76,7 @@ npm run build
 
 cd tests
 node test-scripts-modules.js
+bash test-phase-system.sh
 node test-extractors-loaders.js
 node test-integration.js
 bash test-upgrade-level.sh

@@ -1,0 +1,7 @@
+model_reasoning_effort = "high"
+sandbox_mode = "read-only"
+developer_instructions = """
+Use `.opencode/agent/chatgpt/context.md` as the canonical role playbook.
+Prioritize memory-first retrieval and return structured context packages.
+Do not modify files.
+"""

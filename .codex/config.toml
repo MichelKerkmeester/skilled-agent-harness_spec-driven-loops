@@ -1,0 +1,62 @@
+[mcp_servers.sequential_thinking]
+command = "npx"
+args = ["-y", "@modelcontextprotocol/server-sequential-thinking"]
+
+[mcp_servers.spec_kit_memory]
+command = "node"
+args = [".opencode/skill/system-spec-kit/mcp_server/dist/context-server.js"]
+
+[mcp_servers.spec_kit_memory.env]
+EMBEDDINGS_PROVIDER = "auto"
+MEMORY_DB_PATH = ".opencode/skill/system-spec-kit/mcp_server/dist/database/context-index.sqlite"
+_NOTE_1_DATABASE = "Stores vectors in: .opencode/skill/system-spec-kit/mcp_server/dist/database/context-index.sqlite"
+_NOTE_2_PROVIDERS = "Supports: Voyage (1024 dims), OpenAI (1536/3072 dims), HF Local (768 dims, no API needed)"
+_NOTE_3_EMBEDDINGS_PROVIDER = "Current: 'hf-local' (free, offline). Options: 'auto', 'voyage', 'openai'"
+_NOTE_4_CLOUD_PROVIDERS = "For cloud: add VOYAGE_API_KEY or OPENAI_API_KEY and set EMBEDDINGS_PROVIDER=auto"
+_NOTE_5_GET_VOYAGE_KEY = "Get Voyage key: https://dash.voyageai.com/api-keys (recommended, 8% better than OpenAI)"
+_NOTE_6_GET_OPENAI_KEY = "Get OpenAI key: https://platform.openai.com/api-keys"
+_NOTE_7_FEATURE_FLAGS = "Opt-out flags (all default ON unless noted): SPECKIT_GRAPH_UNIFIED, SPECKIT_GRAPH_MMR, SPECKIT_GRAPH_AUTHORITY, SPECKIT_EXTENDED_TELEMETRY | Default OFF: SPECKIT_ADAPTIVE_FUSION"
+_NOTE_8_GRAPH = "Skill graph active by default. Set SPECKIT_GRAPH_UNIFIED=false to disable"
+
+[mcp_servers.code_mode]
+command = "node"
+args = [".opencode/skill/mcp-code-mode/mcp_server/dist/index.js"]
+
+[mcp_servers.code_mode.env]
+UTCP_CONFIG_FILE = ".utcp_config.json"
+
+[features]
+multi_agent = true
+child_agents_md = true
+
+[agents.context]
+description = "Production context retrieval specialist (memory-first, read-only)."
+config_file = "agents/context.toml"
+
+[agents.debug]
+description = "Debugging specialist for root-cause analysis and fix validation."
+config_file = "agents/debug.toml"
+
+[agents.handover]
+description = "Session handover specialist for continuation documents."
+config_file = "agents/handover.toml"
+
+[agents.orchestrate]
+description = "Senior orchestrator for decomposition, delegation, and synthesis."
+config_file = "agents/orchestrate.toml"
+
+[agents.research]
+description = "Technical investigation specialist with evidence-first analysis."
+config_file = "agents/research.toml"
+
+[agents.review]
+description = "Code review specialist focused on correctness, risk, and tests."
+config_file = "agents/review.toml"
+
+[agents.speckit]
+description = "Spec-folder documentation specialist (template-enforced)."
+config_file = "agents/speckit.toml"
+
+[agents.write]
+description = "Documentation specialist for project-level docs and guides."
+config_file = "agents/write.toml"

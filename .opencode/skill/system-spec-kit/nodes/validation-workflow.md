@@ -1,5 +1,5 @@
 ---
-description: "How validate.sh automates the validation of spec folder contents."
+description: "How validate.sh automates the audit and validation of spec folder contents."
 ---
 # Validation Workflow
 

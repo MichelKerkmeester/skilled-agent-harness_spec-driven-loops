@@ -1,5 +1,5 @@
 ---
-description: "PR creation, branch cleanup, merge strategies, and finish workflow"
+description: "PR creation, conflict resolution, branch cleanup, merge strategies, deployment, and finish workflow"
 ---
 # Work Completion
 

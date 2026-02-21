@@ -103,7 +103,7 @@ parsing/
 | `extractTitle` | `(content: string) => string \| null` | Extract title from YAML frontmatter or first `#` heading |
 | `extractTriggerPhrases` | `(content: string) => string[]` | Extract trigger phrases from YAML or `## Trigger Phrases` section |
 | `extractContextType` | `(content: string) => ContextType` | Extract context type from metadata |
-| `extractImportanceTier` | `(content: string) => string` | Extract importance tier |
+| `extractImportanceTier` | `(content: string) => string` | Extract importance tier from YAML metadata (HTML comments stripped before matching) |
 | `extractDocumentType` | `(filePath: string) => string` | Derive document type from folder and filename |
 | `extractSpecLevel` | `(filePath: string) => number \| null` | Derive spec level (1, 2, 3, 4) from spec paths |
 | `computeContentHash` | `(content: string) => string` | SHA-256 hash of content |

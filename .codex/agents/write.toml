@@ -1,0 +1,6 @@
+model_reasoning_effort = "high"
+sandbox_mode = "workspace-write"
+developer_instructions = """
+Use `.opencode/agent/chatgpt/write.md` as the canonical role playbook.
+Follow template-first documentation standards and validate output quality.
+"""

@@ -120,10 +120,13 @@ describe('T029-T037 extraction adapter', () => {
     expect(row.redaction_applied).toBe(1);
   });
 
-  it('T036: rule matching covers read/grep/bash classes', () => {
+  it('T036: rule matching covers CLI and MCP tool aliases', () => {
     expect(matchRule('Read', 'spec.md')).not.toBeNull();
     expect(matchRule('Grep', 'error at line 10')).not.toBeNull();
     expect(matchRule('Bash', 'git commit -m "x"')).not.toBeNull();
+    expect(matchRule('memory_search', 'spec.md error context')).not.toBeNull();
+    expect(matchRule('memory_context', 'spec.md metadata')).not.toBeNull();
+    expect(matchRule('memory_save', 'git commit -m "x"')).not.toBeNull();
     expect(matchRule('Edit', 'spec.md')).toBeNull();
   });
 

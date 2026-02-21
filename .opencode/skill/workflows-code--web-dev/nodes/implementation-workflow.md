@@ -1,5 +1,5 @@
 ---
-description: "Phase 1 implementation patterns and Phase 1.5 code quality gate for frontend development"
+description: "Phase 1 implementation patterns for CSS, layout, accessibility (ARIA), and event handler development with Phase 1.5 code quality gate for frontend development"
 ---
 # Implementation Workflow
 

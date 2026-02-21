@@ -36,7 +36,7 @@ The `scripts/spec/` directory is the shell-based spec lifecycle layer.
 - `upgrade-level.sh` - upgrade existing folders to `2`, `3`, or `3+`
 - `check-placeholders.sh` - detect unresolved bracket placeholders after upgrades
 - `validate.sh` - orchestrate modular validation rules
-- `test-validation.sh` - validation test suite for exit code and rule behavior
+- `../tests/test-validation.sh` - validation test suite for exit code and rule behavior
 - `check-completion.sh` - enforce completion gate before claiming done
 - `calculate-completeness.sh` - compute checklist completion metrics
 - `recommend-level.sh` - recommend level from task signals

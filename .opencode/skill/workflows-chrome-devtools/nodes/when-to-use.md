@@ -1,5 +1,5 @@
 ---
-description: "Activation triggers, use cases, and exclusion criteria for the Chrome DevTools orchestrator skill"
+description: "Activation triggers, use cases including performance audit, and exclusion criteria for the Chrome DevTools orchestrator skill"
 ---
 # When To Use
 

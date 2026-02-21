@@ -6,11 +6,11 @@
 # validate installation logic in a clean environment.
 #
 # Usage:
-#   .opencode/install_scripts/test/run-tests.sh [script-name]
+#   .opencode/install_guides/install_scripts/test/run-tests.sh [script-name]
 #
 # Examples:
-#   .opencode/install_scripts/test/run-tests.sh                    # Run all tests
-#   .opencode/install_scripts/test/run-tests.sh sequential-thinking # Run specific test
+#   .opencode/install_guides/install_scripts/test/run-tests.sh                    # Run all tests
+#   .opencode/install_guides/install_scripts/test/run-tests.sh sequential-thinking # Run specific test
 
 set -euo pipefail
 IFS=$'\n\t'
@@ -19,7 +19,7 @@ IFS=$'\n\t'
 # 1. CONFIGURATION
 # ───────────────────────────────────────────────────────────────
 readonly SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-readonly PROJECT_ROOT="$(cd "${SCRIPT_DIR}/../../.." && pwd)"
+readonly PROJECT_ROOT="$(cd "${SCRIPT_DIR}/../../../.." && pwd)"
 readonly IMAGE_NAME="mcp-install-test"
 
 # ───────────────────────────────────────────────────────────────
@@ -57,7 +57,7 @@ build_image() {
 # Run a single script test
 run_test() {
     local script_name="$1"
-    local script_path=".opencode/install_scripts/install-${script_name}.sh"
+    local script_path=".opencode/install_guides/install_scripts/install-${script_name}.sh"
     
     log_info "Testing: ${script_name}"
     

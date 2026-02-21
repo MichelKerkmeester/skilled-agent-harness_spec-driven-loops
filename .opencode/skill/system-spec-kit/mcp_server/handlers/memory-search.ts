@@ -24,6 +24,8 @@ import * as retrievalTelemetry from '../lib/telemetry/retrieval-telemetry';
 import { detectEvidenceGap, formatEvidenceGapWarning } from '../lib/search/evidence-gap-detector';
 // C138-P3: Query expansion for mode="deep" multi-query RAG
 import { expandQuery } from '../lib/search/query-expander';
+// C136-09: Artifact-class routing (spec/plan/tasks/checklist/memory)
+import { applyRoutingWeights, getStrategyForQuery } from '../lib/search/artifact-routing';
 
 // Core utilities
 import { checkDatabaseUpdated, isEmbeddingModelReady, waitForEmbeddingModel } from '../core';
@@ -48,6 +50,7 @@ import type { RetrievalTrace } from '../lib/contracts/retrieval-trace';
 import type { IntentType, IntentWeights as IntentClassifierWeights } from '../lib/search/intent-classifier';
 import type { RawSearchResult } from '../formatters';
 import type { RerankDocument } from '../lib/search/cross-encoder';
+import type { RoutingResult, WeightedResult } from '../lib/search/artifact-routing';
 
 /* ---------------------------------------------------------------
    2. TYPES
@@ -137,6 +140,42 @@ function filterByMinQualityScore(results: MemorySearchRow[], minQualityScore?: n
     const score = typeof rawScore === 'number' && Number.isFinite(rawScore) ? rawScore : 0;
     return score >= threshold;
   });
+}
+
+function resolveQualityThreshold(minQualityScore?: number, minQualityScoreSnake?: number): number | undefined {
+  if (typeof minQualityScore === 'number' && Number.isFinite(minQualityScore)) {
+    return minQualityScore;
+  }
+
+  if (typeof minQualityScoreSnake === 'number' && Number.isFinite(minQualityScoreSnake)) {
+    return minQualityScoreSnake;
+  }
+
+  return undefined;
+}
+
+function resolveArtifactRoutingQuery(query: string | null, concepts?: string[]): string {
+  if (typeof query === 'string' && query.trim().length > 0) {
+    return query;
+  }
+
+  if (Array.isArray(concepts) && concepts.length > 0) {
+    return concepts.join(' ');
+  }
+
+  return '';
+}
+
+function applyArtifactRouting(results: MemorySearchRow[], routingResult?: RoutingResult): MemorySearchRow[] {
+  if (!Array.isArray(results) || results.length === 0) {
+    return results;
+  }
+
+  if (!routingResult || routingResult.detectedClass === 'unknown' || routingResult.confidence <= 0) {
+    return results;
+  }
+
+  return applyRoutingWeights(results as WeightedResult[], routingResult.strategy) as MemorySearchRow[];
 }
 
 /* ---------------------------------------------------------------
@@ -478,25 +517,30 @@ async function postSearchPipeline(
     enableSessionBoost: boolean;
     enableCausalBoost: boolean;
     anchors?: string[];
+    artifactRouting?: RoutingResult;
     trace?: RetrievalTrace;
   }
 ): Promise<ReturnType<typeof formatSearchResults>> {
+  const pipelineStart = Date.now();
   const {
     minState, applyStateLimits, trackAccess,
     intentWeights, detectedIntent, intentConfidence,
     rerank, applyLengthPenalty, limit,
     includeContent, sessionId, enableSessionBoost, enableCausalBoost, anchors,
+    artifactRouting,
     trace
   } = options;
 
   // C136-08: Record candidate stage (input to pipeline)
-  const candidateStart = Date.now();
+  const filterStart = Date.now();
   const { results: stateFiltered, stateStats } = filterByMemoryState(
     results, minState, applyStateLimits
   );
   if (trace) {
-    addTraceEntry(trace, 'filter', results.length, stateFiltered.length, Date.now() - candidateStart, { searchType, minState });
+    addTraceEntry(trace, 'filter', results.length, stateFiltered.length, Date.now() - filterStart, { searchType, minState });
   }
+
+  const fusionStart = Date.now();
 
   let boostedResults: MemorySearchRow[] = stateFiltered;
   let boostMetadata: sessionBoost.SessionBoostMetadata | {
@@ -536,7 +580,7 @@ async function postSearchPipeline(
 
   // C136-08: Record fusion stage (session + causal boosting)
   if (trace) {
-    addTraceEntry(trace, 'fusion', stateFiltered.length, causallyBoostedResults.length, Date.now() - candidateStart, {
+    addTraceEntry(trace, 'fusion', stateFiltered.length, causallyBoostedResults.length, Date.now() - fusionStart, {
       sessionBoostApplied: boostMetadata.applied,
       causalBoostApplied: causalMetadata.applied,
     });
@@ -556,16 +600,22 @@ async function postSearchPipeline(
     weightsWereApplied = true;
   }
 
+  const artifactWeightedResults = applyArtifactRouting(weightedResults, artifactRouting);
+  const hasArtifactClass = !!artifactRouting && artifactRouting.detectedClass !== 'unknown';
+  const artifactLimitedResults = hasArtifactClass
+    ? artifactWeightedResults.slice(0, Math.min(artifactRouting!.strategy.maxResults, limit))
+    : artifactWeightedResults;
+
   const rerankStart = Date.now();
   const { results: finalResults, rerankMetadata } = await applyCrossEncoderReranking(
     rerankQuery,
-    weightedResults,
+    artifactLimitedResults,
     { rerank, applyLengthPenalty, limit }
   );
 
   // C136-08: Record rerank stage
   if (trace) {
-    addTraceEntry(trace, 'rerank', weightedResults.length, finalResults.length, Date.now() - rerankStart, {
+    addTraceEntry(trace, 'rerank', artifactLimitedResults.length, finalResults.length, Date.now() - rerankStart, {
       rerankRequested: rerank,
       rerankApplied: rerankMetadata?.reranking_applied ?? false,
     });
@@ -603,6 +653,19 @@ async function postSearchPipeline(
       weightsApplied: weightsWereApplied
     };
   }
+  if (artifactRouting) {
+    const maxResultsApplied = hasArtifactClass
+      ? Math.min(artifactRouting.strategy.maxResults, limit)
+      : limit;
+    extraData.artifactRouting = {
+      detectedClass: artifactRouting.detectedClass,
+      confidence: artifactRouting.confidence,
+      strategy: artifactRouting.strategy,
+      applied: hasArtifactClass,
+      maxResultsApplied,
+    };
+    extraData.artifact_routing = extraData.artifactRouting;
+  }
   if (rerankMetadata) {
     extraData.rerankMetadata = rerankMetadata;
   }
@@ -619,7 +682,7 @@ async function postSearchPipeline(
   // C136-12: Retrieval telemetry — latency, mode, fallback, quality-proxy
   if (retrievalTelemetry.isExtendedTelemetryEnabled()) {
     const t = retrievalTelemetry.createTelemetry();
-    const pipelineElapsed = Date.now() - candidateStart;
+    const pipelineElapsed = Date.now() - pipelineStart;
     retrievalTelemetry.recordLatency(t, 'candidateLatencyMs', trace?.stages?.[0]?.durationMs ?? pipelineElapsed);
     if (trace?.stages) {
       for (const entry of trace.stages) {
@@ -699,9 +762,7 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
     mode,
   } = args;
 
-  const qualityThreshold = typeof minQualityScore === 'number'
-    ? minQualityScore
-    : min_quality_score;
+  const qualityThreshold = resolveQualityThreshold(minQualityScore, min_quality_score);
 
   // T120: Validate numeric limit parameter
   const limit = (typeof rawLimit === 'number' && Number.isFinite(rawLimit) && rawLimit > 0)
@@ -740,6 +801,12 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
   if (specFolder !== undefined && typeof specFolder !== 'string') {
     throw new Error('specFolder must be a string');
   }
+
+  const artifactRoutingQuery = resolveArtifactRoutingQuery(
+    normalizedQuery,
+    hasValidConcepts ? concepts : undefined
+  );
+  const artifactRouting = getStrategyForQuery(artifactRoutingQuery, specFolder);
 
   // T039: Intent-aware retrieval
   let detectedIntent: string | null = null;
@@ -859,6 +926,7 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
           enableSessionBoost,
           enableCausalBoost,
           anchors,
+          artifactRouting,
           trace,
         });
       }
@@ -984,6 +1052,7 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
             enableSessionBoost,
             enableCausalBoost,
             anchors,
+            artifactRouting,
             trace,
           });
         }
@@ -1029,6 +1098,7 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
         enableSessionBoost,
         enableCausalBoost,
         anchors,
+        artifactRouting,
         trace,
       });
     },
@@ -1090,6 +1160,13 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
 
 export {
   handleMemorySearch,
+};
+
+export const __testables = {
+  filterByMinQualityScore,
+  resolveQualityThreshold,
+  resolveArtifactRoutingQuery,
+  applyArtifactRouting,
 };
 
 // Backward-compatible aliases (snake_case)

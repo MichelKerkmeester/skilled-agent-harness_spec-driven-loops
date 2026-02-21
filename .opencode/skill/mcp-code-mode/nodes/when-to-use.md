@@ -1,5 +1,5 @@
 ---
-description: "When to trigger Code Mode and when to use native MCP instead."
+description: "When to trigger Code Mode for external API access and when to use native MCP instead."
 ---
 # When To Use Code Mode
 

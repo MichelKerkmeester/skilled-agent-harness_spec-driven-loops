@@ -20,6 +20,9 @@ import { TypeMismatchError } from './errors';
 /** A single binding environment: maps variable names to graph entities */
 type Bindings = Map<string, GraphNode | GraphEdge>;
 
+/** Module-level warning accumulator, reset per execute() call */
+let executionWarnings: SGQSErrorInfo[] = [];
+
 // ---------------------------------------------------------------
 // 2. MAIN EXECUTOR
 // ---------------------------------------------------------------
@@ -33,6 +36,7 @@ type Bindings = Map<string, GraphNode | GraphEdge>;
  */
 export function execute(query: QueryNode, graph: SkillGraph): SGQSResult {
   const errors: SGQSErrorInfo[] = [];
+  executionWarnings = []; // Reset warnings for this execution
 
   try {
     // Phase 1: MATCH -- enumerate all matching binding sets
@@ -44,7 +48,21 @@ export function execute(query: QueryNode, graph: SkillGraph): SGQSResult {
     }
 
     // Phase 3: RETURN -- project results
-    return executeReturn(query.return, bindingSets, errors);
+    const result = executeReturn(query.return, bindingSets, errors);
+
+    // Merge deduplicated warnings into errors
+    if (executionWarnings.length > 0) {
+      const seenWarnings = new Set<string>();
+      for (const w of executionWarnings) {
+        const key = `${w.code}:${w.message}`;
+        if (!seenWarnings.has(key)) {
+          seenWarnings.add(key);
+          result.errors.push(w);
+        }
+      }
+    }
+
+    return result;
   } catch (err) {
     if (err instanceof TypeMismatchError) {
       errors.push(err.toErrorInfo());
@@ -402,7 +420,9 @@ function evaluateCondition(expr: ExpressionNode, bindings: Bindings): boolean {
 
 function evaluateComparison(comp: ComparisonNode, bindings: Bindings): boolean {
   const leftValue = resolvePropertyRef(comp.left, bindings);
-  const rightValue = literalToValue(comp.right);
+  const rightValue = comp.right.kind === 'PropertyRef'
+    ? resolvePropertyRef(comp.right, bindings)
+    : literalToValue(comp.right);
 
   // NULL semantics: comparisons with NULL are false (except IS NULL handled elsewhere)
   if (leftValue === null || leftValue === undefined) return false;
@@ -423,13 +443,13 @@ function evaluateComparison(comp: ComparisonNode, bindings: Bindings): boolean {
       return (leftValue as number) >= (rightValue as number);
     case 'CONTAINS':
       return typeof leftValue === 'string' && typeof rightValue === 'string' &&
-        leftValue.includes(rightValue);
+        leftValue.toLowerCase().includes(rightValue.toLowerCase());
     case 'STARTS_WITH':
       return typeof leftValue === 'string' && typeof rightValue === 'string' &&
-        leftValue.startsWith(rightValue);
+        leftValue.toLowerCase().startsWith(rightValue.toLowerCase());
     case 'ENDS_WITH':
       return typeof leftValue === 'string' && typeof rightValue === 'string' &&
-        leftValue.endsWith(rightValue);
+        leftValue.toLowerCase().endsWith(rightValue.toLowerCase());
     default:
       return false;
   }
@@ -700,7 +720,11 @@ function getNodeProperty(node: GraphNode, property: string): unknown {
     return node.properties[property];
   }
 
-  // Property not found -- return null (NULL semantics)
+  // Property not found -- emit W001 warning and return null (NULL semantics)
+  executionWarnings.push({
+    code: 'W001',
+    message: `Unknown property "${property}" on node "${node.id}" (labels: ${node.labels.join(', ')})`,
+  });
   return null;
 }
 

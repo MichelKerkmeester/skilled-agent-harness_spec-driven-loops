@@ -1,5 +1,5 @@
 ---
-description: "Phase 3 mandatory browser verification, testing matrix, and completion gate"
+description: "Phase 3 mandatory browser verification including layout inspection, accessibility audit, testing matrix, and completion gate"
 ---
 # Verification Workflow
 

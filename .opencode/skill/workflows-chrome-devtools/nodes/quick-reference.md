@@ -1,5 +1,5 @@
 ---
-description: "Cheat sheet of essential CLI commands, MCP tool patterns, and error handling templates"
+description: "Cheat sheet of essential CLI commands, network inspection, MCP tool patterns, and error handling templates"
 ---
 # Quick Reference
 

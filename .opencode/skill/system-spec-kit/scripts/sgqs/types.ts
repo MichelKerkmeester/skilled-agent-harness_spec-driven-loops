@@ -181,12 +181,12 @@ export type ExpressionNode =
   | NotNode
   | NullCheckNode;
 
-/** A comparison: property_ref OP value */
+/** A comparison: property_ref OP value_or_property */
 export interface ComparisonNode {
   kind: 'Comparison';
   left: PropertyRefNode;
   operator: '=' | '<>' | '<' | '>' | '<=' | '>=' | 'CONTAINS' | 'STARTS_WITH' | 'ENDS_WITH';
-  right: LiteralNode;
+  right: LiteralNode | PropertyRefNode;
 }
 
 /** Logical AND/OR combining two expressions */

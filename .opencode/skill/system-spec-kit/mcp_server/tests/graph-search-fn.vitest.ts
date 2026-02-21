@@ -120,6 +120,19 @@ describe('createUnifiedGraphSearchFn', () => {
     expect(causalResult!['source']).toBe('graph');
   });
 
+  it('uses memory_index content_text lookup in causal query SQL', async () => {
+    mockAll.mockReturnValue([]);
+
+    const searchFn = createUnifiedGraphSearchFn(mockDb, '/skills');
+    await new Promise(r => setTimeout(r, 0));
+
+    searchFn('spec', { limit: 5 });
+
+    const sql = String(mockPrepare.mock.calls[0]?.[0] ?? '');
+    expect(sql).toContain('FROM memory_index');
+    expect(sql).toContain('COALESCE(content_text, title');
+  });
+
   // ----------------------------------------------------------------
   // 2. SGQS SKILL GRAPH RESULTS
   // ----------------------------------------------------------------

@@ -35,8 +35,8 @@ export interface DegradedModeContract {
   fallback_mode: string;
   /** Impact on result confidence (0-1, where 0 = no impact, 1 = total loss) */
   confidence_impact: number;
-  /** Whether the caller should retry */
-  retry_recommendation: boolean;
+  /** Retry guidance for callers and typed trace contracts */
+  retry_recommendation: 'immediate' | 'delayed' | 'none';
 }
 
 export interface AdaptiveFusionResult {
@@ -311,13 +311,13 @@ export function hybridAdaptiveFuse(
     return {
       results: [],
       weights,
-      degraded: {
-        failure_mode: `standard_fusion_error: ${msg}`,
-        fallback_mode: 'empty_results',
-        confidence_impact: 1.0,
-        retry_recommendation: true,
-      },
-    };
+        degraded: {
+          failure_mode: `standard_fusion_error: ${msg}`,
+          fallback_mode: 'empty_results',
+          confidence_impact: 1.0,
+          retry_recommendation: 'immediate',
+        },
+      };
   }
 
   // If flag is OFF and not a dark run, return standard
@@ -342,7 +342,7 @@ export function hybridAdaptiveFuse(
         failure_mode: `adaptive_fusion_error: ${msg}`,
         fallback_mode: 'standard_rrf',
         confidence_impact: 0.3,
-        retry_recommendation: false,
+        retry_recommendation: 'none',
       },
     };
   }

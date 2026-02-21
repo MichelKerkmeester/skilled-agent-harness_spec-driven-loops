@@ -568,11 +568,18 @@ async function main(): Promise<void> {
     }
     checkpointsLib.init(database);
     accessTracker.init(database);
+    const unifiedGraphSearchFn = isGraphUnifiedEnabled()
+      ? createUnifiedGraphSearchFn(database, path.resolve(DEFAULT_BASE_PATH, '..', 'skill'))
+      : null;
+
     hybridSearch.init(
       database,
       vectorIndex.vectorSearch,
-      isGraphUnifiedEnabled() ? createUnifiedGraphSearchFn(database, path.resolve(DEFAULT_BASE_PATH, '..', 'skill')) : undefined
+      unifiedGraphSearchFn
     );
+
+    // Keep db-state reinitialization wiring consistent with initial graph-channel setup.
+    initDbState({ graphSearchFn: unifiedGraphSearchFn });
     sessionBoost.init(database);
     causalBoost.init(database);
     console.error('[context-server] Checkpoints, access tracker, hybrid search, session boost, and causal boost initialized');

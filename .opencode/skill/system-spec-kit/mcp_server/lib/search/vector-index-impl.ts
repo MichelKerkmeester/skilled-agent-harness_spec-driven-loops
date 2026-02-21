@@ -1417,6 +1417,72 @@ function create_common_indexes(database: Database.Database) {
   }
 }
 
+/**
+ * Ensure companion tables exist alongside memory_index.
+ *
+ * Separated from main schema creation because create_schema() returns early
+ * when memory_index already exists (migration path). Without this, companion
+ * tables that were added after initial DB creation would never be created on
+ * existing databases. All statements use IF NOT EXISTS for idempotency.
+ */
+function ensureCompanionTables(database: Database.Database) {
+  database.exec(`
+    CREATE TABLE IF NOT EXISTS memory_history (
+      id TEXT PRIMARY KEY,
+      memory_id INTEGER NOT NULL,
+      prev_value TEXT,
+      new_value TEXT,
+      event TEXT NOT NULL CHECK(event IN ('ADD', 'UPDATE', 'DELETE')),
+      timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
+      is_deleted INTEGER DEFAULT 0,
+      actor TEXT DEFAULT 'system',
+      FOREIGN KEY (memory_id) REFERENCES memory_index(id)
+    )
+  `);
+
+  database.exec(`
+    CREATE TABLE IF NOT EXISTS checkpoints (
+      id INTEGER PRIMARY KEY,
+      name TEXT NOT NULL UNIQUE,
+      created_at TEXT NOT NULL,
+      spec_folder TEXT,
+      git_branch TEXT,
+      memory_snapshot BLOB,
+      file_snapshot BLOB,
+      metadata TEXT
+    )
+  `);
+
+  database.exec(`
+    CREATE TABLE IF NOT EXISTS memory_conflicts (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      timestamp TEXT DEFAULT CURRENT_TIMESTAMP,
+      action TEXT CHECK(action IN ('CREATE', 'CREATE_LINKED', 'UPDATE', 'SUPERSEDE', 'REINFORCE')),
+      new_memory_hash TEXT,
+      new_memory_id INTEGER,
+      existing_memory_id INTEGER,
+      similarity REAL,
+      reason TEXT,
+      new_content_preview TEXT,
+      existing_content_preview TEXT,
+      contradiction_detected INTEGER DEFAULT 0,
+      contradiction_type TEXT,
+      spec_folder TEXT,
+      created_at TEXT DEFAULT CURRENT_TIMESTAMP,
+      FOREIGN KEY (existing_memory_id) REFERENCES memory_index(id) ON DELETE SET NULL
+    )
+  `);
+
+  // Companion table indexes
+  database.exec(`
+    CREATE INDEX IF NOT EXISTS idx_history_memory ON memory_history(memory_id, timestamp);
+    CREATE INDEX IF NOT EXISTS idx_history_timestamp ON memory_history(timestamp DESC);
+    CREATE INDEX IF NOT EXISTS idx_checkpoints_spec ON checkpoints(spec_folder);
+    CREATE INDEX IF NOT EXISTS idx_conflicts_memory ON memory_conflicts(existing_memory_id);
+    CREATE INDEX IF NOT EXISTS idx_conflicts_timestamp ON memory_conflicts(timestamp DESC);
+  `);
+}
+
 // Create database schema
 function create_schema(database: Database.Database) {
   const table_exists = database.prepare(`
@@ -1428,6 +1494,7 @@ function create_schema(database: Database.Database) {
     migrate_confidence_columns(database);
     migrate_constitutional_tier(database);
     create_common_indexes(database);
+    ensureCompanionTables(database);
     return;
   }
 
@@ -1533,57 +1600,10 @@ function create_schema(database: Database.Database) {
     END
   `);
 
-  // Create memory_history and checkpoints tables
-  database.exec(`
-    CREATE TABLE IF NOT EXISTS memory_history (
-      id TEXT PRIMARY KEY,
-      memory_id INTEGER NOT NULL,
-      prev_value TEXT,
-      new_value TEXT,
-      event TEXT NOT NULL CHECK(event IN ('ADD', 'UPDATE', 'DELETE')),
-      timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
-      is_deleted INTEGER DEFAULT 0,
-      actor TEXT DEFAULT 'system',
-      FOREIGN KEY (memory_id) REFERENCES memory_index(id)
-    )
-  `);
+  // Create companion tables (memory_history, checkpoints, memory_conflicts) and their indexes
+  ensureCompanionTables(database);
 
-  database.exec(`
-    CREATE TABLE IF NOT EXISTS checkpoints (
-      id INTEGER PRIMARY KEY,
-      name TEXT NOT NULL UNIQUE,
-      created_at TEXT NOT NULL,
-      spec_folder TEXT,
-      git_branch TEXT,
-      memory_snapshot BLOB,
-      file_snapshot BLOB,
-      metadata TEXT
-    )
-  `);
-
-  // Create memory_conflicts table for prediction error gating audit (cognitive memory)
-  // KL-1: Unified DDL — matches migration v12 and all INSERT statements
-  database.exec(`
-    CREATE TABLE IF NOT EXISTS memory_conflicts (
-      id INTEGER PRIMARY KEY AUTOINCREMENT,
-      timestamp TEXT DEFAULT CURRENT_TIMESTAMP,
-      action TEXT CHECK(action IN ('CREATE', 'CREATE_LINKED', 'UPDATE', 'SUPERSEDE', 'REINFORCE')),
-      new_memory_hash TEXT,
-      new_memory_id INTEGER,
-      existing_memory_id INTEGER,
-      similarity REAL,
-      reason TEXT,
-      new_content_preview TEXT,
-      existing_content_preview TEXT,
-      contradiction_detected INTEGER DEFAULT 0,
-      contradiction_type TEXT,
-      spec_folder TEXT,
-      created_at TEXT DEFAULT CURRENT_TIMESTAMP,
-      FOREIGN KEY (existing_memory_id) REFERENCES memory_index(id) ON DELETE SET NULL
-    )
-  `);
-
-  // Create indexes
+  // Create memory_index-specific indexes (not IF NOT EXISTS because this is a fresh DB)
   database.exec(`
     CREATE INDEX idx_spec_folder ON memory_index(spec_folder);
     CREATE INDEX idx_created_at ON memory_index(created_at);
@@ -1597,9 +1617,6 @@ function create_schema(database: Database.Database) {
     CREATE INDEX IF NOT EXISTS idx_access_importance ON memory_index(access_count DESC, importance_weight DESC);
     CREATE INDEX IF NOT EXISTS idx_memories_scope ON memory_index(spec_folder, session_id, context_type);
     CREATE INDEX IF NOT EXISTS idx_channel ON memory_index(channel);
-    CREATE INDEX IF NOT EXISTS idx_history_memory ON memory_history(memory_id, timestamp);
-    CREATE INDEX IF NOT EXISTS idx_history_timestamp ON memory_history(timestamp DESC);
-    CREATE INDEX IF NOT EXISTS idx_checkpoints_spec ON checkpoints(spec_folder);
   `);
 
   database.exec(`
@@ -1616,8 +1633,6 @@ function create_schema(database: Database.Database) {
     CREATE INDEX IF NOT EXISTS idx_stability ON memory_index(stability DESC);
     CREATE INDEX IF NOT EXISTS idx_last_review ON memory_index(last_review);
     CREATE INDEX IF NOT EXISTS idx_fsrs_retrieval ON memory_index(stability, difficulty, last_review);
-    CREATE INDEX IF NOT EXISTS idx_conflicts_memory ON memory_conflicts(existing_memory_id);
-    CREATE INDEX IF NOT EXISTS idx_conflicts_timestamp ON memory_conflicts(timestamp DESC);
   `);
 
   console.warn('[vector-index] Schema created successfully');

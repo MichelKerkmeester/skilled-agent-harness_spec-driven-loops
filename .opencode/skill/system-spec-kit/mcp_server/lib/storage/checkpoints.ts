@@ -10,6 +10,9 @@ import { execSync } from 'child_process';
 // External packages
 import type Database from 'better-sqlite3';
 
+// Internal utils
+import { toErrorMessage } from '../../utils/db-helpers';
+
 /* -------------------------------------------------------------
    1. CONSTANTS
 ----------------------------------------------------------------*/
@@ -71,7 +74,7 @@ function init(database: Database.Database): void {
 }
 
 function getDatabase(): Database.Database {
-  if (!db) throw new Error('[checkpoints] Database not initialized. Server may still be starting up.');
+  if (!db) throw new Error('Database not initialized. The checkpoints module requires the MCP server to be running. Restart the MCP server and retry.');
   return db;
 }
 
@@ -214,7 +217,7 @@ function createCheckpoint(options: CreateCheckpointOptions = {}): CheckpointInfo
       metadata: { ...metadata, memoryCount: memories.length },
     };
   } catch (error: unknown) {
-    const msg = error instanceof Error ? error.message : String(error);
+    const msg = toErrorMessage(error);
     console.warn(`[checkpoints] createCheckpoint error: ${msg}`);
     return null;
   }
@@ -245,7 +248,7 @@ function listCheckpoints(specFolder: string | null = null, limit: number = 50): 
       metadata: row.metadata ? JSON.parse(row.metadata as string) : {},
     }));
   } catch (error: unknown) {
-    const msg = error instanceof Error ? error.message : String(error);
+    const msg = toErrorMessage(error);
     console.warn(`[checkpoints] listCheckpoints error: ${msg}`);
     return [];
   }
@@ -261,7 +264,7 @@ function getCheckpoint(nameOrId: string | number): CheckpointEntry | null {
 
     return (row as CheckpointEntry) || null;
   } catch (error: unknown) {
-    const msg = error instanceof Error ? error.message : String(error);
+    const msg = toErrorMessage(error);
     console.warn(`[checkpoints] getCheckpoint error: ${msg}`);
     return null;
   }
@@ -296,7 +299,7 @@ function restoreCheckpoint(nameOrId: string | number, clearExisting: boolean = f
           validateMemoryRow(snapshot.memories[i], i);
         }
       } catch (validationError: unknown) {
-        const msg = validationError instanceof Error ? validationError.message : String(validationError);
+        const msg = toErrorMessage(validationError);
         result.errors.push(`Schema validation failed: ${msg}`);
         return result;
       }
@@ -352,7 +355,7 @@ function restoreCheckpoint(nameOrId: string | number, clearExisting: boolean = f
           );
           result.restored++;
         } catch (e: unknown) {
-          const msg = e instanceof Error ? e.message : String(e);
+          const msg = toErrorMessage(e);
           txErrors.push(`Memory ${memory.id}: ${msg}`);
           result.skipped++;
         }
@@ -438,7 +441,7 @@ function restoreCheckpoint(nameOrId: string | number, clearExisting: boolean = f
             );
             result.workingMemoryRestored++;
           } catch (e: unknown) {
-            const msg = e instanceof Error ? e.message : String(e);
+            const msg = toErrorMessage(e);
             txErrors.push(`WorkingMemory ${wmEntry.id}: ${msg}`);
           }
         }
@@ -469,7 +472,7 @@ function restoreCheckpoint(nameOrId: string | number, clearExisting: boolean = f
 
     console.error(`[checkpoints] Restored ${result.restored} memories, ${result.workingMemoryRestored} working memory entries from "${checkpoint.name}"`);
   } catch (error: unknown) {
-    const msg = error instanceof Error ? error.message : String(error);
+    const msg = toErrorMessage(error);
     result.errors.push(msg);
     console.warn(`[checkpoints] restoreCheckpoint error: ${msg}`);
   }
@@ -487,7 +490,7 @@ function deleteCheckpoint(nameOrId: string | number): boolean {
 
     return (result as { changes: number }).changes > 0;
   } catch (error: unknown) {
-    const msg = error instanceof Error ? error.message : String(error);
+    const msg = toErrorMessage(error);
     console.warn(`[checkpoints] deleteCheckpoint error: ${msg}`);
     return false;
   }

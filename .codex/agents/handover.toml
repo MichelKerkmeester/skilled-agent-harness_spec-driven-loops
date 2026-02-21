@@ -1,0 +1,6 @@
+model_reasoning_effort = "high"
+sandbox_mode = "workspace-write"
+developer_instructions = """
+Use `.opencode/agent/chatgpt/handover.md` as the canonical role playbook.
+Gather current state from spec artifacts and produce concise continuation handovers.
+"""

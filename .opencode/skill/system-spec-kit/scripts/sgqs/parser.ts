@@ -438,7 +438,7 @@ function parseComparison(state: ParserState): ExpressionNode {
   // CONTAINS
   if (isKeyword(state, 'CONTAINS')) {
     advance(state);
-    const right = parseLiteral(state);
+    const right = parseComparisonRHS(state);
     return { kind: 'Comparison', left: propRef, operator: 'CONTAINS', right } as ComparisonNode;
   }
 
@@ -446,7 +446,7 @@ function parseComparison(state: ParserState): ExpressionNode {
   if (isKeyword(state, 'STARTS')) {
     advance(state);
     expect(state, 'KEYWORD', 'WITH');
-    const right = parseLiteral(state);
+    const right = parseComparisonRHS(state);
     return { kind: 'Comparison', left: propRef, operator: 'STARTS_WITH', right } as ComparisonNode;
   }
 
@@ -454,7 +454,7 @@ function parseComparison(state: ParserState): ExpressionNode {
   if (isKeyword(state, 'ENDS')) {
     advance(state);
     expect(state, 'KEYWORD', 'WITH');
-    const right = parseLiteral(state);
+    const right = parseComparisonRHS(state);
     return { kind: 'Comparison', left: propRef, operator: 'ENDS_WITH', right } as ComparisonNode;
   }
 
@@ -474,8 +474,19 @@ function parseComparison(state: ParserState): ExpressionNode {
     );
   }
 
-  const right = parseLiteral(state);
+  const right = parseComparisonRHS(state);
   return { kind: 'Comparison', left: propRef, operator, right } as ComparisonNode;
+}
+
+/** Parse the right-hand side of a comparison: either a property ref (n.prop) or a literal */
+function parseComparisonRHS(state: ParserState): LiteralNode | PropertyRefNode {
+  // Lookahead: IDENTIFIER DOT means property reference
+  if (check(state, 'IDENTIFIER') &&
+      state.pos + 1 < state.tokens.length &&
+      state.tokens[state.pos + 1].type === 'DOT') {
+    return parsePropertyRef(state);
+  }
+  return parseLiteral(state);
 }
 
 function parsePropertyRef(state: ParserState): PropertyRefNode {
@@ -529,7 +540,17 @@ function parseReturnItem(state: ParserState): ReturnItemNode {
   let alias: string | null = null;
   if (isKeyword(state, 'AS')) {
     advance(state);
-    alias = expect(state, 'IDENTIFIER').value;
+    const aliasTok = peek(state);
+    if (aliasTok.type === 'IDENTIFIER' || aliasTok.type === 'KEYWORD') {
+      advance(state);
+      alias = aliasTok.value.toLowerCase();
+    } else {
+      throw new UnexpectedTokenError(
+        'alias name',
+        `${aliasTok.type}("${aliasTok.value}")`,
+        aliasTok.position, aliasTok.line, aliasTok.column
+      );
+    }
   }
 
   return { kind: 'ReturnItem', expression, alias };
@@ -667,6 +688,9 @@ function validateExprBindings(expr: ExpressionNode, bindings: Map<string, 'node'
   switch (expr.kind) {
     case 'Comparison':
       validatePropRefBinding(expr.left, bindings);
+      if (expr.right.kind === 'PropertyRef') {
+        validatePropRefBinding(expr.right, bindings);
+      }
       break;
     case 'NullCheck':
       validatePropRefBinding(expr.property, bindings);

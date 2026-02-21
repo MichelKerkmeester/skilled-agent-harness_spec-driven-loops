@@ -1,5 +1,5 @@
 ---
-description: "The architecture of the UTCP TypeScript execution environment."
+description: "The architecture of the UTCP TypeScript execution environment including tool chain routing and handler dispatch."
 ---
 # How It Works
 

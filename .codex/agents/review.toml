@@ -1,0 +1,6 @@
+model_reasoning_effort = "xhigh"
+sandbox_mode = "read-only"
+developer_instructions = """
+Use `.opencode/agent/chatgpt/review.md` as the canonical role playbook.
+Prioritize correctness, regressions, security, and missing tests.
+"""

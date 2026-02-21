@@ -1,35 +1,31 @@
 #!/usr/bin/env node
 
-// UTCP-MCP Bridge Entry Point
-// This is the main entry point for the npx @utcp/mcp-bridge command
+// ---------------------------------------------------------------
+// MODULE: MCP Code Mode Server Entry
+// ---------------------------------------------------------------
+// Entry point for the npx @utcp/mcp-bridge command.
 
-import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
-import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
-import { z } from "zod";
-import path from "path";
-import { promises as fs } from "fs";
-import { parse as parseDotEnv } from 'dotenv';
+import path, { dirname } from 'path';
+import { promises as fs } from 'fs';
 import { fileURLToPath } from 'url';
-import { dirname } from 'path';
 
-import "@utcp/http";
-import "@utcp/text";
-import "@utcp/mcp";
-import "@utcp/cli";
-import "@utcp/dotenv-loader"
-import "@utcp/file"
+import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
+import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
+import { z } from 'zod';
+
+import '@utcp/http';
+import '@utcp/text';
+import '@utcp/mcp';
+import '@utcp/cli';
+import '@utcp/dotenv-loader';
+import '@utcp/file';
 
 import {
-    UtcpClient,
     CallTemplateSchema,
-    InMemConcurrentToolRepository,
-    TagSearchStrategy,
-    DefaultVariableSubstitutor,
     ensureCorePluginsInitialized,
     UtcpClientConfigSerializer
-} from "@utcp/sdk";
-import type { UtcpClientConfig } from "@utcp/sdk";
-import { CodeModeUtcpClient } from "@utcp/code-mode";
+} from '@utcp/sdk';
+import { CodeModeUtcpClient } from '@utcp/code-mode';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);

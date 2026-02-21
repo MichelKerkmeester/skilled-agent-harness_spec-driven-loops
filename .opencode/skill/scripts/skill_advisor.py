@@ -107,7 +107,18 @@ SYNONYM_MAP = {
     "breakpoint": ["debug", "chrome", "devtools"],
     "error": ["bug", "debug", "fix", "issue"],
     "issue": ["bug", "debug", "error", "problem"],
-    
+
+    # Web development, accessibility & cross-cutting concerns
+    "layout": ["css", "frontend", "responsive", "grid", "flexbox"],
+    "accessibility": ["aria", "wcag", "a11y", "semantic", "keyboard"],
+    "aria": ["accessibility", "wcag", "a11y", "role", "label"],
+    "audit": ["validate", "verify", "check", "review", "inspect"],
+    "deployment": ["deploy", "release", "publish", "cdn", "build"],
+    "handler": ["function", "callback", "listener", "event", "hook"],
+    "export": ["download", "output", "generate", "har", "asset"],
+    "toolchain": ["call_tool_chain", "code_mode", "utcp", "mcp"],
+    "conflict": ["merge", "rebase", "resolution", "branch", "diverge"],
+
     # Search & discovery
     "find": ["search", "locate", "explore", "lookup"],
     "search": ["find", "locate", "explore", "query", "lookup"],
@@ -202,6 +213,8 @@ INTENT_BOOSTERS = {
     "checkout": ("workflows-git", 0.5),
     "clone": ("workflows-git", 0.5),
     "commit": ("workflows-git", 0.5),
+    "conflict": ("workflows-git", 0.6),
+    "deploy": ("workflows-git", 0.5),
     "diff": ("workflows-git", 0.5),
     "fetch": ("workflows-git", 0.4),
     "gh": ("workflows-git", 1.5),
@@ -218,7 +231,7 @@ INTENT_BOOSTERS = {
     "review": ("workflows-git", 0.8),
     "stash": ("workflows-git", 0.5),
     "worktree": ("workflows-git", 1.2),
-    
+
     # ─────────────────────────────────────────────────────────────────
     # WORKFLOWS-CHROME-DEVTOOLS: Browser debugging
     # ─────────────────────────────────────────────────────────────────
@@ -227,7 +240,6 @@ INTENT_BOOSTERS = {
     "browser": ("workflows-chrome-devtools", 1.2),
     "chrome": ("workflows-chrome-devtools", 1.0),
     "console": ("workflows-chrome-devtools", 1.0),
-    "css": ("workflows-chrome-devtools", 0.4),
     "debug": ("workflows-chrome-devtools", 0.6),
     "debugger": ("workflows-chrome-devtools", 1.0),
     "devtools": ("workflows-chrome-devtools", 1.2),
@@ -249,15 +261,36 @@ INTENT_BOOSTERS = {
     "markdown": ("workflows-documentation", 0.5),
     "readme": ("workflows-documentation", 0.5),
     "template": ("workflows-documentation", 0.4),
-    
+
+    # ─────────────────────────────────────────────────────────────────
+    # WORKFLOWS-VISUAL-EXPLAINER: Visual HTML diagrams and pages
+    # ─────────────────────────────────────────────────────────────────
+    "visual": ("workflows-visual-explainer", 1.2),
+    "visualization": ("workflows-visual-explainer", 1.0),
+    "html": ("workflows-visual-explainer", 0.8),
+    "mermaid": ("workflows-visual-explainer", 1.5),
+    "architecture": ("workflows-visual-explainer", 0.6),
+    "sequence": ("workflows-visual-explainer", 0.6),
+    "chart": ("workflows-visual-explainer", 0.6),
+    "timeline": ("workflows-visual-explainer", 0.8),
+    "dashboard": ("workflows-visual-explainer", 0.6),
+    "aesthetic": ("workflows-visual-explainer", 1.0),
+    "recap": ("workflows-visual-explainer", 1.2),
+
     # ─────────────────────────────────────────────────────────────────
     # WORKFLOWS-CODE--WEB-DEV: Implementation and verification (frontend/Webflow)
     # ─────────────────────────────────────────────────────────────────
+    "a11y": ("workflows-code--web-dev", 0.6),
+    "accessibility": ("workflows-code--web-dev", 0.6),
+    "aria": ("workflows-code--web-dev", 0.6),
     "bug": ("workflows-code--web-dev", 0.5),
     "error": ("workflows-code--web-dev", 0.4),
+    "frontend": ("workflows-code--web-dev", 0.5),
     "implement": ("workflows-code--web-dev", 0.6),
+    "layout": ("workflows-code--web-dev", 0.6),
     "refactor": ("workflows-code--web-dev", 0.5),
     "verification": ("workflows-code--web-dev", 0.5),
+    "wcag": ("workflows-code--web-dev", 0.5),
 
     # ─────────────────────────────────────────────────────────────────
     # WORKFLOWS-CODE--OPENCODE: OpenCode system code standards
@@ -290,6 +323,7 @@ INTENT_BOOSTERS = {
     "pages": ("mcp-code-mode", 0.4),
     "site": ("mcp-code-mode", 0.6),
     "sites": ("mcp-code-mode", 0.6),
+    "toolchain": ("mcp-code-mode", 0.6),
     "typescript": ("mcp-code-mode", 0.4),
     "utcp": ("mcp-code-mode", 0.8),
     "webflow": ("mcp-code-mode", 2.5),
@@ -298,11 +332,19 @@ INTENT_BOOSTERS = {
 # Ambiguous keywords that should boost MULTIPLE skills
 # Format: keyword -> list of (skill_name, boost_amount)
 MULTI_SKILL_BOOSTERS = {
-    "api": [("mcp-code-mode", 0.3)],
+    "api": [("mcp-code-mode", 0.3), ("workflows-code--web-dev", 0.3), ("workflows-code--full-stack", 0.3)],
+    "audit": [("system-spec-kit", 0.3), ("workflows-chrome-devtools", 0.3), ("workflows-code--web-dev", 0.2)],
+    "chain": [("mcp-code-mode", 0.3)],
     "changes": [("workflows-git", 0.4), ("system-spec-kit", 0.2)],
+    "css": [("workflows-code--web-dev", 0.4), ("workflows-chrome-devtools", 0.3)],
     "code": [("workflows-code--web-dev", 0.2), ("workflows-code--full-stack", 0.2), ("workflows-code--opencode", 0.1)],
     "context": [("system-spec-kit", 0.4)],
+    "deployment": [("workflows-code--web-dev", 0.4), ("workflows-git", 0.3)],
+    "export": [("mcp-figma", 0.3), ("workflows-chrome-devtools", 0.2)],
     "fix": [("workflows-code--web-dev", 0.3), ("workflows-code--full-stack", 0.3), ("workflows-git", 0.1)],
+    "handler": [("workflows-code--web-dev", 0.3), ("mcp-code-mode", 0.2)],
+    "layout": [("workflows-code--web-dev", 0.4), ("workflows-chrome-devtools", 0.2)],
+    "mobile": [("workflows-code--web-dev", 0.3), ("workflows-chrome-devtools", 0.2)],
     "mcp": [("mcp-code-mode", 0.3), ("workflows-code--opencode", 0.4)],
     "plan": [("system-spec-kit", 0.3), ("workflows-code--web-dev", 0.2), ("workflows-code--full-stack", 0.2)],
     "save": [("system-spec-kit", 0.4), ("workflows-git", 0.2)],
@@ -314,6 +356,11 @@ MULTI_SKILL_BOOSTERS = {
     "task": [("system-spec-kit", 0.3)],
     "test": [("workflows-code--web-dev", 0.3), ("workflows-code--full-stack", 0.3), ("workflows-chrome-devtools", 0.2)],
     "update": [("mcp-code-mode", 0.3), ("workflows-git", 0.2), ("workflows-code--web-dev", 0.2), ("workflows-code--full-stack", 0.2)],
+    "diagram": [("workflows-visual-explainer", 0.6)],
+    "flowchart": [("workflows-visual-explainer", 0.8)],
+    "generate": [("workflows-visual-explainer", 0.4)],
+    "table": [("workflows-visual-explainer", 0.3)],
+    "review": [("workflows-visual-explainer", 0.3)],
 }
 
 

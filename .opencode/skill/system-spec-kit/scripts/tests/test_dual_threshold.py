@@ -12,22 +12,28 @@ Tests the three core dual-threshold functions:
 
 Run with: pytest test_dual_threshold.py -v
 """
-import sys
-import os
+import importlib.util
+from pathlib import Path
 import pytest
 
-# Add the scripts directory to path for importing skill_advisor
-# Path: tests/ -> scripts/ -> system-spec-kit/ -> skill/ -> .opencode/ -> append 'scripts'
-SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
-OPENCODE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(SCRIPT_DIR))))
-SCRIPTS_DIR = os.path.join(OPENCODE_DIR, 'scripts')
-sys.path.insert(0, SCRIPTS_DIR)
+# Load skill_advisor.py directly from .opencode/skill/scripts.
+SCRIPT_DIR = Path(__file__).resolve().parent
+SKILL_DIR = SCRIPT_DIR.parent.parent.parent
+ADVISOR_PATH = SKILL_DIR / 'scripts' / 'skill_advisor.py'
 
-from skill_advisor import (
-    calculate_uncertainty,
-    passes_dual_threshold,
-    calculate_confidence
-)
+if not ADVISOR_PATH.exists():
+    raise RuntimeError(f"skill_advisor.py not found at expected path: {ADVISOR_PATH}")
+
+advisor_spec = importlib.util.spec_from_file_location('skill_advisor', ADVISOR_PATH)
+if advisor_spec is None or advisor_spec.loader is None:
+    raise RuntimeError(f"Failed to load module spec from: {ADVISOR_PATH}")
+
+skill_advisor = importlib.util.module_from_spec(advisor_spec)
+advisor_spec.loader.exec_module(skill_advisor)
+
+calculate_uncertainty = skill_advisor.calculate_uncertainty
+passes_dual_threshold = skill_advisor.passes_dual_threshold
+calculate_confidence = skill_advisor.calculate_confidence
 
 
 # =============================================================================

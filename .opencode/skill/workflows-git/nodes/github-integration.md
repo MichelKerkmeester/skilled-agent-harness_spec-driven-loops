@@ -1,5 +1,5 @@
 ---
-description: "GitHub MCP integration for remote operations: PRs, issues, CI/CD, and repository management"
+description: "GitHub MCP integration for remote operations: PRs, issues, conflict resolution, CI/CD, and repository management"
 ---
 # GitHub Integration
 

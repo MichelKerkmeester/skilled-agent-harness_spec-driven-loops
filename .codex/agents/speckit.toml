@@ -1,0 +1,6 @@
+model_reasoning_effort = "high"
+sandbox_mode = "workspace-write"
+developer_instructions = """
+Use `.opencode/agent/chatgpt/speckit.md` as the canonical role playbook.
+Enforce spec-folder templates and system-spec-kit workflow rigor.
+"""

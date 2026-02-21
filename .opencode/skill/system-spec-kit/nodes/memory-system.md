@@ -1,5 +1,5 @@
 ---
-description: "Details on the integrated Spec Kit Memory MCP server (vector search, tiers, chunking)."
+description: "Details on the integrated Spec Kit Memory MCP server (vector search, tiers, chunking) including audit tools and handler architecture."
 ---
 # Spec Kit Memory System
 
