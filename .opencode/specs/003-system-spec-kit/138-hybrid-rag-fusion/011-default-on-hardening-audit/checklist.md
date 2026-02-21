@@ -1,4 +1,4 @@
-# Verification Checklist: 140 - Default-On Hardening Audit
+# Verification Checklist: 011 - Default-On Hardening Audit
 
 <!-- SPECKIT_LEVEL: 3+ -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist + checklist-extended | v2.2 -->
@@ -10,7 +10,7 @@
 
 ## 1. OVERVIEW
 
-This document tracks hardening verification checkpoints and evidence for Spec 140 completion.
+This document tracks hardening verification checkpoints and evidence for Child 011 completion.
 
 ---
 
@@ -80,7 +80,7 @@ Evidence format: `[Evidence: command/file/result]`
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [x] CHK-040 [P1] `spec.md`, `plan.md`, `tasks.md`, `checklist.md` synchronized with final implementation state [Evidence: current file updates in spec 140 folder]
+- [x] CHK-040 [P1] `spec.md`, `plan.md`, `tasks.md`, `checklist.md` synchronized with final implementation state [Evidence: current file updates in child 011 folder]
 - [x] CHK-041 [P1] Baseline findings updated to final post-fix state [Evidence: `spec.md` section 5 post-fix verification note + passing gate commands]
 - [x] CHK-042 [P1] Frozen scope and out-of-scope boundaries unchanged without approval [Evidence: scope in `spec.md` section 3 preserved]
 <!-- /ANCHOR:docs -->

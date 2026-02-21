@@ -11,7 +11,7 @@
 
 ## 1. OVERVIEW
 
-This document summarizes delivered changes, decisions, and final verification outcomes for Spec 140.
+This document summarizes delivered changes, decisions, and final verification outcomes for Child 011.
 
 ---
 
@@ -20,7 +20,7 @@ This document summarizes delivered changes, decisions, and final verification ou
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `003-system-spec-kit/140-default-on-hardening-audit` |
+| **Spec Folder** | `003-system-spec-kit/138-hybrid-rag-fusion/011-default-on-hardening-audit` |
 | **Completed** | 2026-02-21 |
 | **Level** | 3+ |
 <!-- /ANCHOR:metadata -->
@@ -30,7 +30,7 @@ This document summarizes delivered changes, decisions, and final verification ou
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Spec 140 delivered a full hardening pass for 136/138/139 with default-on behavior, defect fixes, runtime wiring closure, and complete verification recovery. The workspace now passes all required gates and the previously failing MCP intent-path regression is fixed. The result is stable runtime behavior with explicit opt-out only controls and stronger feature-level test coverage.
+Child 011 delivered a full hardening pass for 136/138/139 with default-on behavior, defect fixes, runtime wiring closure, and complete verification recovery. The workspace now passes all required gates and the previously failing MCP intent-path regression is fixed. The result is stable runtime behavior with explicit opt-out only controls and stronger feature-level test coverage.
 
 ### Default-On Contract Hardening
 

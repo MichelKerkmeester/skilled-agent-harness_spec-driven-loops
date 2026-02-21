@@ -1,4 +1,4 @@
-# Tasks: 140 - Default-On Hardening Audit
+# Tasks: 011 - Default-On Hardening Audit
 
 <!-- SPECKIT_LEVEL: 3+ -->
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
@@ -10,7 +10,7 @@
 
 ## 1. OVERVIEW
 
-This document tracks execution tasks and completion criteria for Spec 140 hardening.
+This document tracks execution tasks and completion criteria for Child 011 hardening.
 
 ---
 
@@ -32,7 +32,7 @@ This document tracks execution tasks and completion criteria for Spec 140 harden
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Default-On Contract + Baseline Lock
 
-- [x] T001 Document and freeze baseline failure evidence in spec/checklist (`.opencode/specs/003-system-spec-kit/140-default-on-hardening-audit/*.md`)
+- [x] T001 Document and freeze baseline failure evidence in spec/checklist (`specs/003-system-spec-kit/138-hybrid-rag-fusion/011-default-on-hardening-audit/*.md`)
 - [x] T002 Define target default-on flag matrix for 136/138/139 features (`mcp_server/lib/search/graph-flags.ts`, `mcp_server/lib/search/search-flags.ts`, `mcp_server/lib/cognitive/rollout-policy.ts`)
 - [x] T003 Implement/normalize default-on behavior (opt-out only on explicit `FLAG=false`) in covered flag reads (`mcp_server/lib/search/graph-flags.ts`, `mcp_server/lib/search/search-flags.ts`, related callers)
 - [x] T004 [P] Add/adjust tests for unset/empty/true/false semantics (`mcp_server/tests/graph-flags.vitest.ts`, `mcp_server/tests/search-flags.vitest.ts`)

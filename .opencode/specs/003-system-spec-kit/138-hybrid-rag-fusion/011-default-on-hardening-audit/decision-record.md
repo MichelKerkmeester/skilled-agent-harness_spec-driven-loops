@@ -1,4 +1,4 @@
-# Decision Record: Spec 140 Default-On Hardening
+# Decision Record: Child 011 Default-On Hardening
 
 <!-- SPECKIT_LEVEL: 3+ -->
 <!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2 -->
@@ -11,7 +11,7 @@
 
 ## 1. OVERVIEW
 
-This document records key architectural and execution decisions made during Spec 140 hardening.
+This document records key architectural and execution decisions made during Child 011 hardening.
 
 ---
 
@@ -25,7 +25,7 @@ This document records key architectural and execution decisions made during Spec
 |-------|-------|
 | **Status** | Accepted |
 | **Date** | 2026-02-21 |
-| **Deciders** | Spec 140 implementation owner |
+| **Deciders** | Child 011 implementation owner |
 
 ---
 
@@ -93,7 +93,7 @@ Specs 136/138/139 had drift between feature intent and runtime behavior. Several
 | 1 | **Necessary?** | PASS | Directly addresses failing gates and contract drift |
 | 2 | **Beyond Local Maxima?** | PASS | Compared with minimal patch alternative; rejected incomplete option |
 | 3 | **Sufficient?** | PASS | No new feature scope added; hardening only |
-| 4 | **Fits Goal?** | PASS | Matches Spec 140 scope and acceptance criteria |
+| 4 | **Fits Goal?** | PASS | Matches Child 011 scope and acceptance criteria |
 | 5 | **Open Horizons?** | PASS | Shared-module layout reduces future boundary errors |
 
 **Checks Summary**: 5/5 PASS
@@ -109,6 +109,6 @@ Specs 136/138/139 had drift between feature intent and runtime behavior. Several
 - Integrated deep semantic bridge runtime expansion and added SGQS/deep bridge runtime tests.
 - Consolidated SGQS/chunker shared imports and removed source-adjacent generated artifacts for migrated modules.
 
-**How to roll back**: revert Spec 140 change set, then rerun `npm run typecheck`, `npm run test --workspace=mcp_server`, and `npm test` to confirm pre-change baseline.
+**How to roll back**: revert Child 011 change set, then rerun `npm run typecheck`, `npm run test --workspace=mcp_server`, and `npm test` to confirm pre-change baseline.
 <!-- /ANCHOR:adr-001-impl -->
 <!-- /ANCHOR:adr-001 -->

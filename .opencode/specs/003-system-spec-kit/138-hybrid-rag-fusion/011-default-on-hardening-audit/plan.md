@@ -1,4 +1,4 @@
-# Implementation Plan: 140 - Default-On Hardening Audit
+# Implementation Plan: 011 - Default-On Hardening Audit
 
 <!-- SPECKIT_LEVEL: 3+ -->
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core + level2-verify + level3-arch + level3plus-govern | v2.2 -->
@@ -10,7 +10,7 @@
 
 ## 1. OVERVIEW
 
-This document defines the execution plan, workstreams, and gates for Spec 140 hardening.
+This document defines the execution plan, workstreams, and gates for Child 011 hardening.
 
 ---
 
