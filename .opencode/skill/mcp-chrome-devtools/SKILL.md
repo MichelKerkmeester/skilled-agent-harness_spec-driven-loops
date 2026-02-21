@@ -11,17 +11,7 @@ version: 1.0.7.0
 
 Browser debugging and automation through two complementary approaches: CLI (bdg) for speed and token efficiency, MCP for multi-tool integration.
 
-### Skill Graph Status
-This skill has a supplemental graph navigation layer for deep-dive topics.
-- Primary entrypoint: `SKILL.md` (this file -- activation rules, routing, core behavior)
-- Supplemental navigation: `index.md` (optional deep-dive into specific topics)
-- Topic nodes: `nodes/*.md` (detailed content per topic)
 
-Use `SKILL.md` for activation, rules, and routing. Optionally traverse `index.md` for focused deep-dive content on specific topics.
-
----
-
-<!-- ANCHOR:when-to-use -->
 ## 1. WHEN TO USE
 
 ### Activation Triggers

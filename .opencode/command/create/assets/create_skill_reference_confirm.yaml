@@ -465,12 +465,6 @@ workflow:
     activities:
     - Structure validation (core principle, phases, checkpoints)
     - Content validation (explicit reasoning, named checkpoints, links)
-    - "Detect graph mode: check if [skill_path]/index.md exists"
-    - IF index.md exists (graph-mode skill):
-      - Integration target is the relevant index.md or nodes/*.md file
-      - Update the appropriate nodes/*.md Navigation section
-      - Add routing rules to the relevant graph node(s)
-    - IF no index.md (monolithic skill — default):
       - Integration (update SKILL.md Navigation Guide, SMART ROUTING)
     validation_checklist:
       structure:
@@ -483,8 +477,6 @@ workflow:
       - "Named checkpoints referenced"
       - "Links to related resources work"
       integration:
-      - "Reference added to Navigation Guide (SKILL.md) OR relevant graph node"
-      - "SMART ROUTING section updated OR graph node routing updated"
       - "Referenced from HOW IT WORKS if relevant"
     quality_gates:
       structure_complete: true

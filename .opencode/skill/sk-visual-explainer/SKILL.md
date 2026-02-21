@@ -70,7 +70,6 @@ Activate on **any** of these triggers:
 └──────────┘    └───────────┘    └─────────┘    └──────────┘
 ```
 
-Phases are sequential — do not skip or reorder. Full detail: `nodes/how-it-works.md`.
 
 ### Resource Domains
 
@@ -79,7 +78,6 @@ Phases are sequential — do not skip or reorder. Full detail: `nodes/how-it-wor
 | `references/` | Quick ref, CSS patterns, library guide, nav patterns, quality checklist | 5 files |
 | `assets/templates/` | Architecture, Mermaid flowchart, data table HTML templates | 3 files |
 | `scripts/` | `validate-html-output.sh`, `cleanup-output.sh` | 2 files |
-| `nodes/` | Topic deep-dives (when-to-use, rules, aesthetics, etc.) | 10 files |
 
 ### Smart Router Pseudocode
 
@@ -180,8 +178,6 @@ The skill executes a strict 4-phase workflow. Do not skip phases.
 
 ### Phase 1 — Think
 - **Audience analysis:** Who reads this? Developer, stakeholder, or technical reviewer?
-- **Diagram type selection:** Choose from 11 types (see `nodes/diagram-types.md`). Use the decision tree if unclear.
-- **Aesthetic selection:** Choose from 9 profiles (see `nodes/aesthetics.md`). Match to content tone and diagram type.
 - If unsure of diagram type, present 2–3 options and ask the user to confirm.
 
 ### Phase 2 — Structure
@@ -199,7 +195,6 @@ The skill executes a strict 4-phase workflow. Do not skip phases.
 - **Both themes:** Light AND dark via `prefers-color-scheme` media query. Both must look intentional.
 
 ### Phase 4 — Deliver
-- Run all 9 quality checks from `nodes/success-criteria.md` before saving.
 - Save output to: `.opencode/output/visual/{command}-{description}-{timestamp}.html` using the `Write` tool.
 - Validate the saved file with `scripts/validate-html-output.sh` and fix any failures before delivery.
 - Open in browser for visual verification.
@@ -213,7 +208,6 @@ The skill executes a strict 4-phase workflow. Do not skip phases.
 <!-- ANCHOR:rules -->
 ## 4. RULES
 
-Full rule detail is in `nodes/rules.md`. Abbreviated summary:
 
 ### ✅ ALWAYS
 - Self-contained HTML — all CSS inline, no external stylesheets linked
@@ -248,7 +242,6 @@ Full rule detail is in `nodes/rules.md`. Abbreviated summary:
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-Full detail in `nodes/success-criteria.md`. All 9 checks must pass before delivery:
 
 1. **Squint test** — hierarchy visible when page is blurred
 2. **Swap test** — page is NOT generic; wrong theme would look wrong
@@ -276,7 +269,6 @@ Full detail in `nodes/success-criteria.md`. All 9 checks must pass before delive
 | anime.js | v3.2.2 | Staggered reveals, SVG path drawing |
 | Google Fonts | Latest | Typography — 13 curated pairings only |
 
-Full CDN URLs and configuration in `nodes/integration-points.md`.
 
 ### Output Convention
 
@@ -316,15 +308,5 @@ Examples:
 | `assets/templates/architecture.html` | Terracotta/sage reference template | ON_DEMAND |
 | `assets/templates/mermaid-flowchart.html` | Teal/cyan Mermaid+ELK template | ON_DEMAND |
 | `assets/templates/data-table.html` | Rose/cranberry data table template | ON_DEMAND |
-| `nodes/when-to-use.md` | Full activation trigger detail | ON_DEMAND |
-| `nodes/rules.md` | Full ALWAYS/NEVER/ESCALATE rules | ON_DEMAND |
-| `nodes/success-criteria.md` | 9 pre-delivery quality checks | ON_DEMAND |
-| `nodes/how-it-works.md` | Full 4-phase workflow detail | ON_DEMAND |
-| `nodes/smart-routing.md` | Intent scoring and resource loading | ON_DEMAND |
-| `nodes/commands.md` | Full contracts for all 5 commands | ON_DEMAND |
-| `nodes/diagram-types.md` | 11 types with decision tree | ON_DEMAND |
-| `nodes/aesthetics.md` | 9 profiles with compatibility matrix | ON_DEMAND |
-| `nodes/integration-points.md` | CDN libraries and cross-skill wiring | ON_DEMAND |
-| `nodes/related-resources.md` | Index of all references and assets | ON_DEMAND |
 
 <!-- /ANCHOR:integration-points -->

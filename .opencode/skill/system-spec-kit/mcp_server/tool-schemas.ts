@@ -1,7 +1,7 @@
 // ---------------------------------------------------------------
 // MODULE: Tool Schemas
 // ---------------------------------------------------------------
-// All 25 MCP tool definitions (names, descriptions, input schemas).
+// All MCP tool definitions (names, descriptions, input schemas).
 // Extracted from context-server.ts for maintainability (T303).
 // ---------------------------------------------------------------
 
@@ -139,7 +139,7 @@ const memoryMatchTriggers: ToolDefinition = {
 const memorySave: ToolDefinition = {
   name: 'memory_save',
   description: '[L2:Core] Index a memory file into the spec kit memory database. Reads the file, extracts metadata (title, trigger phrases), generates embedding, and stores in the index. Use this to manually index new or updated memory files. Includes pre-flight validation (T067-T070) for anchor format, duplicate detection, and token budget estimation. Token Budget: 1500.',
-  inputSchema: { type: 'object', properties: { filePath: { type: 'string', description: 'Absolute path to the memory file (must be in specs/**/memory/, .opencode/specs/**/memory/, specs/**/ for spec documents, .opencode/skill/*/constitutional/, or README.md/README.txt paths)' }, force: { type: 'boolean', default: false, description: 'Force re-index even if content hash unchanged' }, dryRun: { type: 'boolean', default: false, description: 'Validate only without saving. Returns validation results including anchor format, duplicate check, and token budget estimation (CHK-160)' }, skipPreflight: { type: 'boolean', default: false, description: 'Skip pre-flight validation checks (not recommended)' }, asyncEmbedding: { type: 'boolean', default: false, description: 'When true, embedding generation is deferred for non-blocking saves. Memory is immediately saved with pending status and an async background attempt is triggered. Default false preserves synchronous embedding behavior.' } }, required: ['filePath'] },
+  inputSchema: { type: 'object', properties: { filePath: { type: 'string', description: 'Absolute path to the memory file (must be in specs/**/memory/, .opencode/specs/**/memory/, specs/**/ for spec documents, or .opencode/skill/*/constitutional/)' }, force: { type: 'boolean', default: false, description: 'Force re-index even if content hash unchanged' }, dryRun: { type: 'boolean', default: false, description: 'Validate only without saving. Returns validation results including anchor format, duplicate check, and token budget estimation (CHK-160)' }, skipPreflight: { type: 'boolean', default: false, description: 'Skip pre-flight validation checks (not recommended)' }, asyncEmbedding: { type: 'boolean', default: false, description: 'When true, embedding generation is deferred for non-blocking saves. Memory is immediately saved with pending status and an async background attempt is triggered. Default false preserves synchronous embedding behavior.' } }, required: ['filePath'] },
 };
 
 // L3: Discovery - Browse and explore (Token Budget: 800)
@@ -249,23 +249,11 @@ const memoryCausalUnlink: ToolDefinition = {
   inputSchema: { type: 'object', properties: { edgeId: { type: 'number', description: 'Edge ID to delete (required)' } }, required: ['edgeId'] },
 };
 
-const memorySkillGraphQuery: ToolDefinition = {
-  name: 'memory_skill_graph_query',
-  description: '[L6:Analysis] Query the skill graph dynamically using SGQS (Skill Graph Query System). Use this tool to discover skill dependencies, find templates, or explore node attributes in the system-spec-kit graph using a Cypher-lite syntax (MATCH/WHERE/RETURN). Example: `MATCH (n:Node) RETURN n.name, n.description`',
-  inputSchema: { type: 'object', properties: { queryString: { type: 'string', description: 'SGQS query string (Cypher-like)' } }, required: ['queryString'] },
-};
-
-const memorySkillGraphInvalidate: ToolDefinition = {
-  name: 'memory_skill_graph_invalidate',
-  description: '[L6:Analysis] Force-clear the cached skill graph so the next query rebuilds from disk. Use after modifying skill node files, adding new skills, or when stale cache is suspected. The graph auto-refreshes every 5 minutes, so this is only needed for immediate consistency.',
-  inputSchema: { type: 'object', properties: {}, required: [] },
-};
-
 // L7: Maintenance - Indexing and system operations (Token Budget: 1000)
 const memoryIndexScan: ToolDefinition = {
   name: 'memory_index_scan',
   description: '[L7:Maintenance] Scan workspace for new/changed memory files and index them. Useful for bulk indexing after creating multiple memory files. Token Budget: 1000.',
-  inputSchema: { type: 'object', properties: { specFolder: { type: 'string', description: 'Limit scan to specific spec folder (e.g., "005-memory")' }, force: { type: 'boolean', default: false, description: 'Force re-index all files (ignore content hash)' }, includeConstitutional: { type: 'boolean', default: true, description: 'Whether to scan .opencode/skill/*/constitutional/ directories' }, includeReadmes: { type: 'boolean', default: true, description: 'Whether to scan for README.md and README.txt files (default: true). README files are indexed with reduced importance (0.3) to never outrank user work memories.' }, includeSpecDocs: { type: 'boolean', default: true, description: 'Whether to scan .opencode/specs/ directories for spec folder documents (spec.md, plan.md, tasks.md, checklist.md, decision-record.md, implementation-summary.md, research.md, handover.md). These are indexed with higher priority than regular memories. Set SPECKIT_INDEX_SPEC_DOCS=false env var to disable globally.' }, includeSkillRefs: { type: 'boolean', default: true, description: 'Whether to scan configured sk-code--* skill references/ and assets/ directories. Skills to scan are configured in config.jsonc skillReferenceIndexing.indexedSkills. Set SPECKIT_INDEX_SKILL_REFS=false env var to disable globally.' }, incremental: { type: 'boolean', default: true, description: 'Enable incremental indexing. When true (default), skips files whose mtime and content hash are unchanged since last index. Set to false to re-evaluate all files regardless of change detection.' } }, required: [] },
+  inputSchema: { type: 'object', properties: { specFolder: { type: 'string', description: 'Limit scan to specific spec folder (e.g., "005-memory")' }, force: { type: 'boolean', default: false, description: 'Force re-index all files (ignore content hash)' }, includeConstitutional: { type: 'boolean', default: true, description: 'Whether to scan .opencode/skill/*/constitutional/ directories' }, includeSpecDocs: { type: 'boolean', default: true, description: 'Whether to scan .opencode/specs/ directories for spec folder documents (spec.md, plan.md, tasks.md, checklist.md, decision-record.md, implementation-summary.md, research.md, handover.md). These are indexed with higher priority than regular memories. Set SPECKIT_INDEX_SPEC_DOCS=false env var to disable globally.' }, incremental: { type: 'boolean', default: true, description: 'Enable incremental indexing. When true (default), skips files whose mtime and content hash are unchanged since last index. Set to false to re-evaluate all files regardless of change detection.' } }, required: [] },
 };
 
 const memoryGetLearningHistory: ToolDefinition = {
@@ -306,8 +294,6 @@ export const TOOL_DEFINITIONS: ToolDefinition[] = [
   memoryCausalLink,
   memoryCausalStats,
   memoryCausalUnlink,
-  memorySkillGraphQuery,
-  memorySkillGraphInvalidate,
   // L7: Maintenance
   memoryIndexScan,
   memoryGetLearningHistory,

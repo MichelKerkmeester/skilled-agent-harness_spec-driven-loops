@@ -49,7 +49,7 @@ export interface ParsedMemory {
   memoryTypeConfidence: number;
   causalLinks: CausalLinks;
   hasCausalLinks: boolean;
-  /** Spec 126: Document structural type (spec, plan, tasks, memory, readme, etc.) */
+  /** Spec 126: Document structural type (spec, plan, tasks, memory, etc.) */
   documentType: string;
   qualityScore: number;
   qualityFlags: string[];
@@ -257,24 +257,6 @@ export function extractDocumentType(filePath: string): string {
     return 'constitutional';
   }
 
-  // README files
-  if (isReadmeFileName(basename)) {
-    return 'readme';
-  }
-
-  // Skill reference and asset files (Source #6)
-  if (normalizedPath.includes('/.opencode/skill/') && normalizedPath.endsWith('.md')) {
-    if (normalizedPath.includes('/checklists/')) {
-      return 'skill_checklist';
-    }
-    if (normalizedPath.includes('/references/')) {
-      return 'skill_reference';
-    }
-    if (normalizedPath.includes('/assets/')) {
-      return 'skill_asset';
-    }
-  }
-
   return 'memory';
 }
 
@@ -288,23 +270,6 @@ export function extractSpecFolder(filePath: string): string {
   }
   // Normalize path separators
   normalizedPath = normalizedPath.replace(/\\/g, '/');
-
-  // README files in skill directories → skill:SKILL-NAME
-  const skillReadmeMatch = normalizedPath.match(/\.opencode\/skill\/([^/]+)(?:\/.*)?\/readme\.(?:md|txt)$/i);
-  if (skillReadmeMatch) {
-    return `skill:${skillReadmeMatch[1]}`;
-  }
-
-  // Skill reference/asset files → skill:SKILL-NAME (Source #6)
-  const skillRefMatch = normalizedPath.match(/\.opencode\/skill\/([^/]+)\/(?:references|assets)\//);
-  if (skillRefMatch) {
-    return `skill:${skillRefMatch[1]}`;
-  }
-
-  // Project/code-folder READMEs
-  if (isProjectReadme(filePath)) {
-    return 'project-readmes';
-  }
 
   // Match specs/XXX-name/.../memory/ pattern
   const match = normalizedPath.match(/specs\/([^/]+(?:\/[^/]+)*?)\/memory\//);
@@ -557,20 +522,6 @@ export function hasCausalLinks(causalLinks: CausalLinks | null | undefined): boo
    4. VALIDATION FUNCTIONS
    --------------------------------------------------------------- */
 
-/** Exclusion patterns for project README discovery */
-const README_EXCLUDE_PATTERNS = [
-  'node_modules',
-  '.git/',
-  '.opencode/skill/',
-  'dist/',
-  'build/',
-  '.next/',
-  'coverage/',
-  'vendor/',
-  '__pycache__',
-  '.pytest_cache',
-];
-
 /** README filename matcher for markdown and plain text docs */
 const README_FILE_PATTERN = /^readme\.(md|txt)$/i;
 
@@ -580,18 +531,6 @@ function isReadmeFileName(fileName: string): boolean {
 
 function isMarkdownOrTextFile(filePath: string): boolean {
   return /\.(md|txt)$/i.test(filePath);
-}
-
-/** Check if a file is a project/code-folder README (not a skill README) */
-export function isProjectReadme(filePath: string): boolean {
-  const normalized = filePath.replace(/\\/g, '/');
-  const basename = path.basename(normalized).toLowerCase();
-
-  if (!isReadmeFileName(basename)) return false;
-
-  return !README_EXCLUDE_PATTERNS.some(pattern =>
-    normalized.toLowerCase().includes(pattern.toLowerCase())
-  );
 }
 
 /** Check if a file path is a valid memory file */
@@ -623,25 +562,7 @@ export function isMemoryFile(filePath: string): boolean {
     !isReadmeFileName(path.basename(normalizedPath))
   );
 
-  // README files in skill directories (indexed as semantic documentation)
-  const isSkillReadme = (
-    isReadmeFileName(path.basename(normalizedPath)) &&
-    normalizedPath.includes('/.opencode/skill/') &&
-    !normalizedPath.includes('/constitutional/')
-  );
-
-  // Project/code-folder READMEs (must check after skill README to avoid overlap)
-  const isProjectRm = isProjectReadme(filePath);
-
-  // Skill reference and asset files (Source #6)
-  const isSkillRef = (
-    normalizedPath.includes('/.opencode/skill/') &&
-    (normalizedPath.includes('/references/') || normalizedPath.includes('/assets/')) &&
-    normalizedPath.endsWith('.md') &&
-    !isReadmeFileName(path.basename(normalizedPath))
-  );
-
-  return isSpecsMemory || isSpecDocument || isConstitutional || isSkillReadme || isProjectRm || isSkillRef;
+  return isSpecsMemory || isSpecDocument || isConstitutional;
 }
 
 /** Set of recognized spec folder document filenames (lowercase) */

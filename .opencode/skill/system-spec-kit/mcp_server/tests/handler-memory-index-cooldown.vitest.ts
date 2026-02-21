@@ -41,15 +41,6 @@ vi.mock('../lib/parsing/trigger-matcher', () => ({
   clearCache: vi.fn(),
 }));
 
-vi.mock('../lib/config/skill-ref-config', () => ({
-  loadSkillRefConfig: vi.fn(() => ({
-    enabled: true,
-    indexedSkills: [],
-    fileExtensions: ['.md'],
-    indexDirs: ['references', 'assets'],
-  })),
-}));
-
 vi.mock('../lib/storage/incremental-index', () => ({
   categorizeFilesForIndexing: vi.fn((files: string[]) => ({
     toIndex: files,
@@ -94,7 +85,6 @@ describe('handler-memory-index cooldown behavior', () => {
 
     const result = await handler.handleMemoryIndexScan({
       includeConstitutional: false,
-      includeReadmes: false,
       includeSpecDocs: false,
     });
 
@@ -107,7 +97,6 @@ describe('handler-memory-index cooldown behavior', () => {
   it('sets cooldown timestamp after successful scan response', async () => {
     const result = await handler.handleMemoryIndexScan({
       includeConstitutional: false,
-      includeReadmes: false,
       includeSpecDocs: false,
     });
 

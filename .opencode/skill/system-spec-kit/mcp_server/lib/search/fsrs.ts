@@ -12,7 +12,7 @@
  * Minimal graph interface required by `computeGraphCentrality`.
  * Defined locally — no imports outside this module's rootDir.
  */
-interface SkillGraphLike {
+interface MemoryGraphLike {
   /** All graph nodes keyed by node id. */
   nodes: Map<string, unknown>;
   /** Map from node id → list of node ids that point INTO it (inbound edges). */
@@ -60,12 +60,12 @@ export function computeStructuralFreshness(
  * - The graph has fewer than 2 nodes (denominator would be 0).
  *
  * @param nodeId - The id of the node to compute centrality for.
- * @param graph  - A SkillGraph-like object with `nodes`, `inbound`, and `outbound` maps.
+ * @param graph  - A memory-graph-like object with `nodes`, `inbound`, and `outbound` maps.
  * @returns Normalized degree centrality in [0, 1].
  */
 export function computeGraphCentrality(
   nodeId: string,
-  graph: SkillGraphLike
+  graph: MemoryGraphLike
 ): number {
   const totalNodes = graph.nodes.size;
 

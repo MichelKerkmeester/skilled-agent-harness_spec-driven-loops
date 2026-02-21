@@ -22,17 +22,7 @@ Programmatic access to Figma design files through 18 specialized tools covering 
 
 **Recommendation:** Start with **Option A** (Official) - zero installation, OAuth login, works immediately. See [Install Guide](./INSTALL_GUIDE.md) for setup details.
 
-### Skill Graph Status
-This skill has a supplemental graph navigation layer for deep-dive topics.
-- Primary entrypoint: `SKILL.md` (this file -- activation rules, routing, core behavior)
-- Supplemental navigation: `index.md` (optional deep-dive into specific topics)
-- Topic nodes: `nodes/*.md` (detailed content per topic)
 
-Use `SKILL.md` for activation, rules, and routing. Optionally traverse `index.md` for focused deep-dive content on specific topics.
-
----
-
-<!-- ANCHOR:when-to-use -->
 ## 1. WHEN TO USE
 
 ### Activation Triggers

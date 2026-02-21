@@ -1,6 +1,6 @@
 ---
 title: "Search Subsystem"
-description: "4-channel hybrid search architecture combining vector, lexical (BM25/FTS5), graph-based and SGQS/Skill Graph retrieval with Reciprocal Rank Fusion (RRF) and Adaptive Fusion."
+description: "4-channel hybrid search architecture combining vector, lexical (BM25/FTS5), graph-based and structure-aware graph retrieval with Reciprocal Rank Fusion (RRF) and Adaptive Fusion."
 trigger_phrases:
   - "search subsystem"
   - "hybrid search"
@@ -10,7 +10,7 @@ importance_tier: "normal"
 
 # Search Subsystem
 
-> 4-channel hybrid search architecture combining vector, lexical (BM25/FTS5), graph-based, and SGQS/Skill Graph retrieval, fused with Reciprocal Rank Fusion (RRF) and Adaptive Fusion.
+> 4-channel hybrid search architecture combining vector, lexical (BM25/FTS5), graph-based and structure-aware graph retrieval, fused with Reciprocal Rank Fusion (RRF) and Adaptive Fusion.
 
 ---
 
@@ -34,7 +34,7 @@ importance_tier: "normal"
 The search subsystem provides production-grade hybrid search capabilities with multiple retrieval methods fused via RRF scoring. It handles query expansion, intent classification, typo tolerance and optional cross-encoder reranking.
 
 **Core Capabilities:**
-- **4-Channel Hybrid Search**: Vector (semantic) + BM25/FTS5 (lexical) + Graph (relationship-based) + SGQS/Skill Graph (structural)
+- **4-Channel Hybrid Search**: Vector (semantic) + BM25/FTS5 (lexical) + Graph (relationship-based) + Graph Structure (structural)
 - **RRF Score Fusion**: Industry-standard k=60 with convergence bonuses
 - **Intent Classification**: 7 intent types route to task-specific retrieval weights
 - **Query Enhancement**: Fuzzy matching (Levenshtein) + acronym expansions (via hybrid-search.ts inline logic)
@@ -53,7 +53,7 @@ Parallel Search (4 channels)
 |---> Vector (sqlite-vec)       -> Semantic matches
 |---> BM25 (Pure JS)            -> Keyword matches
 |---> Graph (Co-activation)     -> Relationship matches
-|---> SGQS / Skill Graph        -> Structural matches
+|---> Graph Structure           -> Structural matches
     |
 RRF Fusion (k=60) + Adaptive Fusion -> Unified scores
     |
@@ -216,7 +216,7 @@ vector-index-impl.ts     (3333 LOC)
 | `adaptive-fusion.ts`     | -      | TypeScript | Intent-aware weighted RRF with dark-run mode, feature flag SPECKIT_ADAPTIVE_FUSION |
 | `causal-boost.ts`        | -      | TypeScript | Causal-neighbor score boosting for graph traversal  |
 | `session-boost.ts`       | -      | TypeScript | Session-attention score boosting                    |
-| `graph-search-fn.ts`     | -      | TypeScript | SGQS/Skill Graph search channel (4th retrieval channel) |
+| `graph-search-fn.ts`     | -      | TypeScript | Graph-structure search channel (4th retrieval channel) |
 
 **Total**: ~5,379+ LOC across 13 files (all TypeScript)
 
@@ -234,7 +234,7 @@ vector-index-impl.ts     (3333 LOC)
    vector-index.ts (-> vector-index-impl.ts) -> Vector search (semantic)
    bm25-index.ts -> BM25 search (keyword)
    graph (via co-activation.ts) -> Relationship search
-   graph-search-fn.ts (SGQS) -> Skill Graph structural search
+   graph-search-fn.ts (graph structure) -> Structural graph search
 
          |
          v
@@ -325,7 +325,7 @@ const DEFAULT_B = 0.75;    // Length normalization
 
 **Spec 126 hardening references:**
 - `tests/spec126-full-spec-doc-indexing.vitest.ts`: validates 8 spec document types, scoring multipliers and new intents.
-- `handlers/memory-index.ts`: keeps 5-source indexing and `includeSpecDocs` wiring aligned with search expectations.
+- `handlers/memory-index.ts`: keeps 3-source indexing and `includeSpecDocs` wiring aligned with search expectations.
 
 **Multi-Provider Support**:
 - Voyage AI: 1024-dim (default)
@@ -368,7 +368,7 @@ IDF = log((N - n(qi) + 0.5) / (n(qi) + 0.5) + 1)
 // 1. Vector search (semantic similarity)
 // 2. BM25/FTS5 search (keyword matching)
 // 3. Graph search (relationship traversal, 1.5x boost)
-// 4. SGQS / Skill Graph search (structural discovery)
+// 4. Graph-structure search (structural discovery)
 // -> RRF + Adaptive Fusion -> MMR diversity -> Sorted by combined score
 ```
 
@@ -382,7 +382,7 @@ hybridSearch("authentication", { specFolder: "specs/007-auth" })
 - If BM25 disabled: Vector + FTS5 only
 - If RRF disabled: Vector-only with basic metadata
 - If no graph: Vector + Lexical fusion
-- If no SGQS/Skill Graph: Vector + Lexical + Co-activation (3-channel fallback)
+- If no structural graph channel: Vector + Lexical + Co-activation (3-channel fallback)
 
 ### Intent Classification Features
 

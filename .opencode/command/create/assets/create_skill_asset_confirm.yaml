@@ -201,18 +201,6 @@ asset_types:
     - "Numbered steps"
     - "Troubleshooting"
 
-  graph_node:
-    directory: "nodes/"
-    naming: "[topic].md"
-    purpose: "Graph node with YAML frontmatter and wikilinks (graph-mode skills only)"
-    prerequisite: "Skill must have index.md — check with: ls [skill_path]/index.md 2>/dev/null"
-    template: .opencode/skill/sk-documentation/assets/opencode/skill_graph_node_template.md
-    structure:
-    - "YAML frontmatter (id, title, tags, related)"
-    - "Purpose section"
-    - "Content body"
-    - "Wikilinks to related nodes"
-
 # ─────────────────────────────────────────────────────────────────
 # CHECKPOINT OPTIONS
 # ─────────────────────────────────────────────────────────────────
@@ -236,14 +224,12 @@ workflow:
     - Confirm asset_type from UNIFIED SETUP PHASE
     - Confirm skill_path from UNIFIED SETUP PHASE
     - Confirm skill_verified from UNIFIED SETUP PHASE
-    - Validate asset_type is one of: template, lookup, example, guide, graph_node
-    - IF asset_type == graph_node: verify [skill_path]/index.md exists (graph-mode required)
+    - Validate asset_type is one of: template, lookup, example, guide
     type_lookup:
       template: "[content]_templates.md - Copy-paste starting points"
       lookup: "[topic]_lookup.md - Lookup tables, decisions"
       example: "[topic]_examples.md - Working code examples"
       guide: "[process]_guide.md - Step-by-step how-tos"
-      graph_node: "nodes/[topic].md - Graph node with YAML frontmatter and wikilinks (graph-mode only)"
     outputs:
     - skill_confirmed
     - type_confirmed
@@ -353,12 +339,6 @@ workflow:
     activities:
     - Structure check (title, sections, examples, quick reference)
     - Content check (completeness, field descriptions, placeholders)
-    - "Detect graph mode: check if [skill_path]/index.md exists"
-    - IF index.md exists (graph-mode skill):
-      - Integration target is the relevant index.md or nodes/*.md file
-      - Update the appropriate nodes/*.md Navigation section
-      - Add routing rules to the relevant graph node(s)
-    - IF no index.md (monolithic skill — default):
       - Integration check (update SKILL.md Navigation Guide, SMART ROUTING)
     validation_checklist:
       structure:
@@ -371,8 +351,6 @@ workflow:
       - "Field descriptions explain purpose"
       - "Placeholders are obvious"
       integration:
-      - "Asset added to Navigation Guide (SKILL.md) OR relevant graph node"
-      - "SMART ROUTING updated OR graph node routing updated if needed"
     quality_gates:
       structure_complete: true
       examples_present: true
@@ -597,11 +575,8 @@ error_recovery:
     action: "Show available skills, prompt for selection"
     options: ["List skills", "Provide path", "Cancel"]
   invalid_asset_type:
-    action: "Show valid types: template, lookup, example, guide, graph_node"
-    options: ["template", "lookup", "example", "guide", "graph_node"]
-  graph_node_no_index:
-    action: "graph_node type requires a graph-mode skill (index.md must exist)"
-    options: ["Switch to monolithic asset type", "Convert skill to graph-mode first", "Cancel"]
+    action: "Show valid types: template, lookup, example, guide"
+    options: ["template", "lookup", "example", "guide"]
   asset_already_exists:
     action: "Offer to update or create with new name"
     options: ["Update existing", "Create with new name", "Cancel"]

@@ -454,21 +454,6 @@ describe('C138 Stage: Feature Flag Guards', () => {
     if (original !== undefined) process.env.SPECKIT_GRAPH_UNIFIED = original;
   });
 
-  it('isGraphMMREnabled defaults to true (enabled by default)', async () => {
-    const { isGraphMMREnabled } = await import('../lib/search/graph-flags');
-    const original = process.env.SPECKIT_GRAPH_MMR;
-    delete process.env.SPECKIT_GRAPH_MMR;
-    expect(isGraphMMREnabled()).toBe(true);
-    if (original !== undefined) process.env.SPECKIT_GRAPH_MMR = original;
-  });
-
-  it('isGraphAuthorityEnabled defaults to true (enabled by default)', async () => {
-    const { isGraphAuthorityEnabled } = await import('../lib/search/graph-flags');
-    const original = process.env.SPECKIT_GRAPH_AUTHORITY;
-    delete process.env.SPECKIT_GRAPH_AUTHORITY;
-    expect(isGraphAuthorityEnabled()).toBe(true);
-    if (original !== undefined) process.env.SPECKIT_GRAPH_AUTHORITY = original;
-  });
 });
 
 /* ---------------------------------------------------------------

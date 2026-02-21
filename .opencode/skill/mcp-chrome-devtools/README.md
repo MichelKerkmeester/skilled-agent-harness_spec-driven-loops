@@ -15,6 +15,7 @@ importance_tier: "normal"
 ---
 
 ## TABLE OF CONTENTS
+<!-- ANCHOR:table-of-contents -->
 - [MCP-CHROME-DEVTOOLS](#mcp-chrome-devtools)
   - [TABLE OF CONTENTS](#table-of-contents)
   - [1. OVERVIEW](#1--overview)
@@ -25,6 +26,7 @@ importance_tier: "normal"
   - [6. EXAMPLES](#6--examples)
   - [7. TROUBLESHOOTING](#7-️-troubleshooting)
   - [8. RELATED](#8--related)
+<!-- /ANCHOR:table-of-contents -->
 
 ---
 

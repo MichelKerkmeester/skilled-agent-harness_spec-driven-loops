@@ -120,7 +120,6 @@ export interface ScanArgs {
   specFolder?: string | null;
   force?: boolean;
   includeConstitutional?: boolean;
-  includeReadmes?: boolean;
   includeSpecDocs?: boolean;
   incremental?: boolean;
 }
@@ -203,9 +202,3 @@ export interface BulkDeleteArgs {
   confirm: boolean;
   olderThanDays?: number;
 }
-
-export interface SgqsQueryArgs {
-  queryString: string;
-}
-
-export type SgqsInvalidateArgs = Record<string, never>;

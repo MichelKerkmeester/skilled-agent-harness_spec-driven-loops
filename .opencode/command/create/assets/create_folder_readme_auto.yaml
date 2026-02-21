@@ -5,9 +5,8 @@
 # Note: This workflow executes all steps sequentially with
 #       continuous self-validation. Pauses only if confidence < 40%.
 #
-# Note: README files created in .opencode/skill/*/ or project directories are
-# auto-indexed by memory_index_scan with importance_weight 0.3 (skill) or 0.4 (project).
-# Add YAML frontmatter (title, description, trigger_phrases) for enhanced memory indexing.
+# Note: README files should include clear section anchors and concise metadata.
+# Use YAML frontmatter (title, description, trigger_phrases) for consistency.
 # ───────────────────────────────────────────────────────────────────
 role: Expert README Creator using sk-documentation skill
 purpose: Create comprehensive README files with proper structure and AI-optimization

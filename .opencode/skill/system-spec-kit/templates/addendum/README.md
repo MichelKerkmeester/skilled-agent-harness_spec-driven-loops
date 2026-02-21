@@ -15,12 +15,14 @@ importance_tier: "normal"
 ---
 
 ## TABLE OF CONTENTS
+<!-- ANCHOR:table-of-contents -->
 
 - [1. 📖 OVERVIEW](#1--overview)
 - [2. 🔀 COMPOSITION MODEL](#2--composition-model)
 - [3. 📁 CONTENTS](#3--contents)
 - [4. 💡 WORKFLOW NOTES](#4--workflow-notes)
 - [5. 🔗 RELATED RESOURCES](#5--related-resources)
+<!-- /ANCHOR:table-of-contents -->
 
 ---
 

@@ -59,7 +59,7 @@ scripts/
 <!-- ANCHOR:implemented-state -->
 
 - Reindex implementation lives in `scripts/memory/reindex-embeddings.ts` and runs through current handlers (not a separate indexing implementation).
-- Indexed scope follows current scan behavior, including README and spec-doc discovery defaults.
+- Indexed scope follows current scan behavior, including memory, constitutional and spec-doc discovery defaults.
 - Script prints a concise progress summary on stdout and exits non-zero on fatal startup failures.
 - Spec 138: graph-unified search flag (`isGraphUnifiedEnabled`) is checked at startup. When enabled, a unified graph search function is created and registered before the scan begins.
 - Module initialization order: `vectorIndex` -> `embeddings` -> `checkpointsLib` -> `accessTracker` -> `hybridSearch` -> `initDbState` -> `setEmbeddingModelReady`.

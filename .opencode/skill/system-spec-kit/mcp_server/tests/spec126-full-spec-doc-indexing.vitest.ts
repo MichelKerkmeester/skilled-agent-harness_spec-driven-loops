@@ -41,7 +41,6 @@ import {
 // Phase 5: Indexing pipeline
 import {
   calculateDocumentWeight,
-  calculateReadmeWeight,
 } from '../handlers/memory-save';
 
 // Phase 6: Scoring & priority
@@ -96,12 +95,9 @@ describe('Spec 126 Phase 2: Type Configuration', () => {
       expect(inferDocumentTypeFromPath('/project/.opencode/skill/system-spec-kit/constitutional/rules.md')).toBe('constitutional');
     });
 
-    it('Returns "readme" for README.md files', () => {
-      expect(inferDocumentTypeFromPath('/project/.opencode/skill/system-spec-kit/README.md')).toBe('readme');
-    });
-
-    it('Returns "readme" for README.txt files', () => {
-      expect(inferDocumentTypeFromPath('/project/.opencode/command/spec_kit/README.txt')).toBe('readme');
+    it('Returns "memory" for README files', () => {
+      expect(inferDocumentTypeFromPath('/project/.opencode/skill/system-spec-kit/README.md')).toBe('memory');
+      expect(inferDocumentTypeFromPath('/project/.opencode/command/spec_kit/README.txt')).toBe('memory');
     });
 
     it('Returns "memory" for unrecognized files', () => {
@@ -211,12 +207,12 @@ describe('Spec 126 Phase 4: Parser Enhancements', () => {
       expect(extractDocumentType('/p/.opencode/skill/kit/constitutional/rules.md')).toBe('constitutional');
     });
 
-    it('Returns "readme" for readme.md', () => {
-      expect(extractDocumentType('/p/.opencode/skill/kit/README.md')).toBe('readme');
+    it('Returns "memory" for readme.md', () => {
+      expect(extractDocumentType('/p/.opencode/skill/kit/README.md')).toBe('memory');
     });
 
-    it('Returns "readme" for readme.txt', () => {
-      expect(extractDocumentType('/p/.opencode/command/kit/README.txt')).toBe('readme');
+    it('Returns "memory" for readme.txt', () => {
+      expect(extractDocumentType('/p/.opencode/command/kit/README.txt')).toBe('memory');
     });
 
     it('Returns "memory" for unrecognized files in memory/', () => {
@@ -270,8 +266,8 @@ describe('Spec 126 Phase 4: Parser Enhancements', () => {
       expect(isMemoryFile('/p/.opencode/skill/kit/constitutional/rules.md')).toBe(true);
     });
 
-    it('Accepts README.txt files', () => {
-      expect(isMemoryFile('/p/.opencode/command/spec_kit/README.txt')).toBe(true);
+    it('Rejects README.txt files', () => {
+      expect(isMemoryFile('/p/.opencode/command/spec_kit/README.txt')).toBe(false);
     });
   });
 
@@ -296,14 +292,14 @@ describe('Spec 126 Phase 4: Parser Enhancements', () => {
       expect(result).toBe('003-system-spec-kit/100-feature');
     });
 
-    it('Returns skill: prefix for skill README', () => {
+    it('Returns folder category for skill README path', () => {
       const result = extractSpecFolder('/p/.opencode/skill/system-spec-kit/README.md');
-      expect(result).toBe('skill:system-spec-kit');
+      expect(result).toBe('skill');
     });
 
-    it('Returns project-readmes for command README.txt', () => {
+    it('Returns folder category for command README path', () => {
       const result = extractSpecFolder('/p/.opencode/command/spec_kit/README.txt');
-      expect(result).toBe('project-readmes');
+      expect(result).toBe('command');
     });
   });
 });
@@ -355,12 +351,9 @@ describe('Spec 126 Phase 5: Indexing Pipeline', () => {
       expect(calculateDocumentWeight('/p/specs/x/memory/notes.md', 'memory')).toBe(0.5);
     });
 
-    it('skill readme -> 0.3', () => {
-      expect(calculateDocumentWeight('/p/.opencode/skill/kit/README.md', 'readme')).toBe(0.3);
-    });
-
-    it('project readme -> 0.4', () => {
-      expect(calculateDocumentWeight('/p/src/README.md', 'readme')).toBe(0.4);
+    it('README paths with explicit memory type use baseline memory weight', () => {
+      expect(calculateDocumentWeight('/p/.opencode/skill/kit/README.md', 'memory')).toBe(0.5);
+      expect(calculateDocumentWeight('/p/src/README.md', 'memory')).toBe(0.5);
     });
 
     it('scratch path fallback -> 0.25', () => {
@@ -368,14 +361,6 @@ describe('Spec 126 Phase 5: Indexing Pipeline', () => {
     });
   });
 
-  describe('T071: calculateReadmeWeight() deprecated wrapper', () => {
-    it('Returns numeric weight', () => {
-      const result = calculateReadmeWeight('/p/src/README.md');
-      expect(typeof result).toBe('number');
-      expect(result).toBeGreaterThan(0);
-      expect(result).toBeLessThanOrEqual(1);
-    });
-  });
 });
 
 /* ═══════════════════════════════════════════════════════════════
@@ -385,11 +370,11 @@ describe('Spec 126 Phase 5: Indexing Pipeline', () => {
 describe('Spec 126 Phase 6: Scoring & Priority', () => {
 
   describe('T065: DOCUMENT_TYPE_MULTIPLIERS values', () => {
-    it('Has all 11 document types', () => {
+    it('Has all 10 document types', () => {
       const expectedTypes = [
         'spec', 'decision_record', 'plan', 'tasks',
         'implementation_summary', 'checklist', 'handover',
-        'memory', 'constitutional', 'readme', 'scratch',
+        'memory', 'constitutional', 'scratch',
       ];
       for (const type of expectedTypes) {
         expect(DOCUMENT_TYPE_MULTIPLIERS[type]).toBeDefined();
@@ -405,7 +390,6 @@ describe('Spec 126 Phase 6: Scoring & Priority', () => {
     it('handover: 1.0', () => expect(DOCUMENT_TYPE_MULTIPLIERS.handover).toBe(1.0));
     it('memory: 1.0 (unchanged)', () => expect(DOCUMENT_TYPE_MULTIPLIERS.memory).toBe(1.0));
     it('constitutional: 2.0', () => expect(DOCUMENT_TYPE_MULTIPLIERS.constitutional).toBe(2.0));
-    it('readme: 0.8', () => expect(DOCUMENT_TYPE_MULTIPLIERS.readme).toBe(0.8));
     it('scratch: 0.6', () => expect(DOCUMENT_TYPE_MULTIPLIERS.scratch).toBe(0.6));
   });
 
@@ -737,10 +721,6 @@ describe('Spec 126 Peripheral: getDefaultTierForDocumentType()', () => {
 
     it('memory -> normal', () => {
       expect(getDefaultTierForDocumentType('memory')).toBe('normal');
-    });
-
-    it('readme -> normal', () => {
-      expect(getDefaultTierForDocumentType('readme')).toBe('normal');
     });
 
     it('unknown type -> normal (fallback)', () => {

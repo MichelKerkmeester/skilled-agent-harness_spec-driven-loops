@@ -14,7 +14,7 @@ Complete guide to saving conversation context, execution methods, and retrieval.
 
 ### Core Principle
 
-Execute memory operations through whichever method fits your workflow - slash commands for convenience, direct scripts for control. All paths produce identical output with consistent naming for reliable retrieval and index into the same 5-source memory system (schema v13).
+Execute memory operations through whichever method fits your workflow - slash commands for convenience, direct scripts for control. All paths produce identical output with consistent naming for reliable retrieval and index into the same 3-source memory system (schema v13).
 
 ### Execution Paths
 
@@ -323,23 +323,21 @@ Content here...
 | Files Modified | Conditional | When files changed |
 | Session Metadata | Yes | Statistics and timing |
 
-### All Indexed Content Sources (5)
+### All Indexed Content Sources (3)
 
-This workflow writes memory files in `specs/*/memory/` (source 1). During `memory_index_scan()`, the memory system indexes all 5 sources:
+This workflow writes memory files in `specs/*/memory/` (source 1). During `memory_index_scan()`, the memory system indexes all 3 sources:
 
 | Content Type | Location | Weight | Indexed By |
 |-------------|----------|--------|------------|
 | Memory files | `specs/*/memory/*.{md,txt}` | 0.5 | `findMemoryFiles()` |
 | Constitutional rules | `.opencode/skill/*/constitutional/*.md` | 1.0 | `findConstitutionalFiles()` |
-| Skill READMEs | `.opencode/skill/**/README.{md,txt}` | 0.3 | `findSkillReadmes()` |
-| Project READMEs | Root `README.md` + key directory `README.{md,txt}` files | 0.4 | `findProjectReadmes()` |
 | Spec documents | `.opencode/specs/**/*.md` | Per-type multiplier | `findSpecDocuments()` |
 
-README types are controlled by the `includeReadmes` parameter in `memory_index_scan()`. Spec documents are controlled by the `includeSpecDocs` parameter (default: `true`) or the `SPECKIT_INDEX_SPEC_DOCS` environment variable. Spec documents use 11 document types with scoring multipliers (e.g., spec: 1.4x, plan: 1.3x, constitutional: 2.0x) and schema v13 fields (`document_type`, `spec_level`).
+Spec documents are controlled by the `includeSpecDocs` parameter (default: `true`) or the `SPECKIT_INDEX_SPEC_DOCS` environment variable. Spec documents use per-document scoring multipliers (e.g., spec: 1.4x, plan: 1.3x, constitutional: 2.0x) and schema v13 fields (`document_type`, `spec_level`).
 
 For retrieval, `memory_context()` routes queries across 7 intents (including `find_spec` and `find_decision`) and applies intent-aware weighting.
 
-> **Tip:** Add `<!-- ANCHOR:name -->` tags to README files to enable section-level memory retrieval.
+> **Tip:** Add `<!-- ANCHOR:name -->` tags to spec documents and memory files to enable section-level retrieval.
 
 ---
 

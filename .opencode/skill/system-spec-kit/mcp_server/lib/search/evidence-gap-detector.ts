@@ -58,7 +58,7 @@ export interface GraphCoverageResult {
  * Minimal graph interface required by `predictGraphCoverage`.
  * Define locally so this module has no dependency outside its rootDir.
  */
-interface SkillGraphLike {
+interface MemoryGraphLike {
   nodes: Map<string, { id: string; labels: string[]; properties: Record<string, unknown> }>;
   /** Map from node id → list of node ids that point INTO it (inbound edges). */
   inbound: Map<string, string[]>;
@@ -80,12 +80,12 @@ interface SkillGraphLike {
  * returns `{ earlyGap: false, connectedNodes: 0 }` (no-op).
  *
  * @param query - Raw query string to tokenize and match against graph nodes.
- * @param graph - A SkillGraph-like object with `nodes` and `inbound` maps.
+ * @param graph - A memory-graph-like object with `nodes` and `inbound` maps.
  * @returns GraphCoverageResult with early-gap flag and connected node count.
  */
 export function predictGraphCoverage(
   query: string,
-  graph: SkillGraphLike
+  graph: MemoryGraphLike
 ): GraphCoverageResult {
   // Feature-flag guard: when disabled, report no gap so callers proceed normally.
   if (!isGraphUnifiedEnabled()) {

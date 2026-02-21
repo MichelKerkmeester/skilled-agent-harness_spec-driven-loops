@@ -213,7 +213,6 @@ export function getDefaultTierForDocumentType(documentType: string): ImportanceT
     research: 'normal',
     handover: 'normal',
     memory: 'normal',
-    readme: 'normal',
   };
   return DOC_TYPE_TIERS[documentType] || 'normal';
 }

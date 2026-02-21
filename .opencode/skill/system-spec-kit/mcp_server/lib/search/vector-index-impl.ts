@@ -906,22 +906,14 @@ function run_migrations(database: Database.Database, from_version: number, to_ve
         console.warn('[VectorIndex] Migration v13 warning (indexes):', get_error_message(e));
       }
 
-      // Backfill existing rows: constitutional files -> 'constitutional', readme files -> 'readme'
+      // Backfill existing rows: constitutional files -> 'constitutional'
       try {
         database.exec(`
           UPDATE memory_index SET document_type = 'constitutional'
           WHERE document_type = 'memory'
             AND importance_tier = 'constitutional'
         `);
-        database.exec(`
-          UPDATE memory_index SET document_type = 'readme'
-          WHERE document_type = 'memory'
-            AND (
-              LOWER(file_path) LIKE '%readme.md'
-              OR LOWER(file_path) LIKE '%readme.txt'
-            )
-        `);
-        logger.info('Migration v13: Backfilled document_type for constitutional and readme files');
+        logger.info('Migration v13: Backfilled document_type for constitutional files');
       } catch (e: unknown) {
         console.warn('[VectorIndex] Migration v13 warning (backfill):', get_error_message(e));
       }

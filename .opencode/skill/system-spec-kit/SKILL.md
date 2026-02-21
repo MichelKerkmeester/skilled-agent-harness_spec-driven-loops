@@ -11,17 +11,7 @@ version: 2.2.26.0
 
 Orchestrates mandatory spec folder creation for all conversations involving file modifications. Ensures proper documentation level selection (1-3+), template usage, and context preservation through AGENTS.md-enforced workflows.
 
-### Skill Graph Status
-This skill has a supplemental graph navigation layer for deep-dive topics.
-- Primary entrypoint: `SKILL.md` (this file -- activation rules, routing, core behavior)
-- Supplemental navigation: `index.md` (optional deep-dive into specific topics)
-- Topic nodes: `nodes/*.md` (detailed content per topic)
 
-Use `SKILL.md` for activation, rules, and routing. Optionally traverse `index.md` for focused deep-dive content on specific topics.
-
----
-
-<!-- ANCHOR:when-to-use -->
 ## 1. WHEN TO USE
 
 ### What is a Spec Folder?
@@ -534,7 +524,6 @@ Context preservation across sessions via hybrid search (vector similarity + BM25
 | `checkpoint_create()`           | L5    | Create gzip-compressed checkpoint snapshot        |
 | `checkpoint_restore()`          | L5    | Transaction-wrapped restore with rollback         |
 
-> Other tools: `memory_stats()` (L3), `memory_health()` (L3), `memory_update()` (L4), `memory_validate()` (L4), `checkpoint_list/delete()` (L5), `task_preflight/postflight()` (L6), `memory_drift_why/causal_link/causal_stats/causal_unlink()` (L6), `memory_skill_graph_query()` (L6), `memory_index_scan()` (L7), `memory_get_learning_history()` (L7). Full tool names use `spec_kit_memory_` prefix.
 
 **memory_context() — Mode Routing:**
 
@@ -575,9 +564,6 @@ Context preservation across sessions via hybrid search (vector similarity + BM25
 | ----------------------------- | ------- | ------------------------------------------------------------------------------------------- |
 | `SPECKIT_ADAPTIVE_FUSION`     | on      | Enables intent-aware weighted RRF with 7 task-type profiles in `memory_search()` (set `false` to disable) |
 | `SPECKIT_EXTENDED_TELEMETRY`  | on      | Emits 4-dimension retrieval metrics (latency, mode, fallback, quality) per search operation |
-| `SPECKIT_GRAPH_UNIFIED`       | on      | Gates the entire unified graph channel in hybrid search. When enabled, both causal edge (SQLite CTE) and SGQS skill graph sources participate in RRF fusion. Set `SPECKIT_GRAPH_UNIFIED=false` to disable. |
-| `SPECKIT_GRAPH_MMR`           | on      | Gates Graph-Guided MMR diversity reranking. When enabled, pairwise diversity includes BFS shortest-path graph distance alongside cosine distance. Set `SPECKIT_GRAPH_MMR=false` to disable. |
-| `SPECKIT_GRAPH_AUTHORITY`     | on      | Gates Structural Authority Propagation scoring. When enabled, node type multipliers (Index 3.0x, Entrypoint 2.5x, Concept 1.5x, Reference 1.0x, Asset 0.3x) boost search results by topological importance. Set `SPECKIT_GRAPH_AUTHORITY=false` to disable. |
 | `SPECKIT_INDEX_SPEC_DOCS`    | on      | Gates spec document indexing in `memory_index_scan()`. When enabled, discovers and indexes spec folder documents (specs, plans, tasks, etc.) with document-type scoring multipliers. Set `SPECKIT_INDEX_SPEC_DOCS=false` to disable. |
 
 Set via environment variable before starting the MCP server (e.g., `SPECKIT_ADAPTIVE_FUSION=1`).

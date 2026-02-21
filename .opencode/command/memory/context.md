@@ -109,7 +109,7 @@ The system detects one of seven intent types:
 | **find_spec**      | Spec document retrieval        | spec-doc: 1.5x, architecture: 1.3x, overview: 1.2x       | 0.9          | 0.3               |
 | **find_decision**  | Decision rationale lookup      | decisions: 1.5x, rationale: 1.4x, architecture: 1.2x     | 0.8          | 0.9               |
 
-> **Graph channel:** Graph Weight and Graph Causal Bias apply when `SPECKIT_GRAPH_UNIFIED` is enabled (3-channel fusion: vector + BM25 + graph). Intents with `—` do not have a dedicated graph weight profile and use the balanced default (0.5 / 0.5). For `find_cause`, the same profile as `find_decision` applies (graphWeight 0.8, graphCausalBias 0.9). For `find_procedure`, the same profile as `find_spec` applies (graphWeight 0.7, graphCausalBias 0.3). Intent-to-subgraph routing: `find_decision`/`find_cause` route to causal graph 0.8 + SGQS skill graph 0.2; `find_spec`/`find_procedure` route to SGQS 0.8 + causal 0.2; all others use balanced 0.5/0.5.
+> **Graph channel:** Graph Weight and Graph Causal Bias apply when `SPECKIT_GRAPH_UNIFIED` is enabled (3-channel fusion: vector + BM25 + graph). Intents with `—` do not have a dedicated graph weight profile and use the balanced default (0.5 / 0.5). For `find_cause`, the same profile as `find_decision` applies (graphWeight 0.8, graphCausalBias 0.9). For `find_procedure`, the same profile as `find_spec` applies (graphWeight 0.7, graphCausalBias 0.3). `find_decision` and `find_cause` prioritize causal traversal, `find_spec` and `find_procedure` use balanced graph retrieval with lower causal bias, and all other intents use the default balanced profile.
 
 ### Detection Logic
 
@@ -348,10 +348,8 @@ deduplication:
 
 > **Adaptive Fusion & Telemetry:** When `SPECKIT_ADAPTIVE_FUSION` is enabled, fusion weights adapt dynamically to the detected intent — anchor boosts and context-type filters are adjusted at query time rather than using static multipliers. Search results may also be routed through artifact-class classification before scoring. When `SPECKIT_EXTENDED_TELEMETRY` is enabled, extended telemetry is captured alongside results (query timing, score distributions, fusion decisions) and written to the telemetry log.
 >
-> **Graph Channel Flags (all default: ENABLED):**
-> - `SPECKIT_GRAPH_UNIFIED` — gates the entire graph channel in hybrid search. When enabled, fusion becomes 3-channel (vector + BM25 + graph); when disabled, falls back to 2-channel (vector + BM25). Intent-to-subgraph routing and graph weight profiles (see Section 3) are active only when this flag is on.
-> - `SPECKIT_GRAPH_MMR` — gates Graph-Guided MMR diversity reranking. When enabled, results are diversified across graph regions (not just semantic space), which changes the result set composition — results from structurally distant memory nodes are surfaced alongside semantically close ones, reducing result clustering.
-> - `SPECKIT_GRAPH_AUTHORITY` — gates Structural Authority Propagation scoring. When enabled, nodes that are heavily referenced within the causal/skill graph receive an authority score boost during ranking.
+> **Graph Channel Flag (default: ENABLED):**
+> - `SPECKIT_GRAPH_UNIFIED` — gates the graph channel in hybrid search. When enabled, fusion becomes 3-channel (vector + BM25 + graph); when disabled, it falls back to 2-channel (vector + BM25).
 >
 > **Evidence Gap Prevention:** When `SPECKIT_GRAPH_UNIFIED` is enabled, graph coverage is predicted before returning results. Queries with fewer than 3 connected memory nodes in the graph trigger an early evidence gap warning in the response.
 

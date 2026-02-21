@@ -135,8 +135,6 @@ describe('Context Server', () => {
       'memory_causal_link',
       'memory_causal_stats',
       'memory_causal_unlink',
-      'memory_skill_graph_query',
-      'memory_skill_graph_invalidate',
       'memory_index_scan',
       'memory_get_learning_history',
     ]
@@ -206,7 +204,7 @@ describe('Context Server', () => {
       'checkpoint_create', 'checkpoint_list', 'checkpoint_restore', 'checkpoint_delete',
       'memory_validate', 'memory_save', 'memory_index_scan', 'memory_health',
       'task_preflight', 'task_postflight', 'memory_get_learning_history',
-      'memory_drift_why', 'memory_causal_link', 'memory_causal_stats', 'memory_causal_unlink', 'memory_skill_graph_query', 'memory_skill_graph_invalidate',
+      'memory_drift_why', 'memory_causal_link', 'memory_causal_stats', 'memory_causal_unlink',
     ]
 
     // T16: CallToolRequestSchema handler exists
@@ -614,7 +612,6 @@ describe('Context Server', () => {
       { name: 'CausalLinkArgs', requiredFields: ['sourceId', 'targetId', 'relation'], source: 'toolTypes' },
       { name: 'CausalStatsArgs', source: 'toolTypes' },
       { name: 'CausalUnlinkArgs', requiredFields: ['edgeId'], source: 'toolTypes' },
-      { name: 'SgqsQueryArgs', requiredFields: ['queryString'], source: 'toolTypes' },
       { name: 'PendingRecoveryResult', source: 'contextServer' },
       { name: 'ApiKeyValidation', source: 'contextServer' },
       { name: 'NodeVersionMarker', source: 'startupChecks' },
@@ -1360,7 +1357,6 @@ describe('Context Server', () => {
       'memory_causal_link': '[L6:Analysis]',
       'memory_causal_stats': '[L6:Analysis]',
       'memory_causal_unlink': '[L6:Analysis]',
-      'memory_skill_graph_query': '[L6:Analysis]',
       'memory_index_scan': '[L7:Maintenance]',
       'memory_get_learning_history': '[L7:Maintenance]',
     }

@@ -11,7 +11,6 @@ import * as memoryBulkDelete from './memory-bulk-delete';
 import * as checkpoints from './checkpoints';
 import * as sessionLearning from './session-learning';
 import * as causalGraph from './causal-graph';
-import * as sgqsQuery from './sgqs-query';
 // T061: L1 Orchestration - unified entry point
 import * as memoryContext from './memory-context';
 
@@ -66,11 +65,9 @@ export {
   handleMemoryIndexScan,
   indexSingleFile,
   findConstitutionalFiles,
-  findSkillReferenceFiles,
   handle_memory_index_scan,
   index_single_file,
   find_constitutional_files,
-  find_skill_reference_files,
 } from './memory-index';
 
 // Memory bulk delete handler
@@ -114,12 +111,6 @@ export {
   handle_memory_causal_unlink,
 } from './causal-graph';
 
-// SGQS Query handler
-export {
-  handleMemorySkillGraphQuery,
-  handleMemorySkillGraphInvalidate,
-} from './sgqs-query';
-
 // T061: L1 Orchestration handler
 export {
   handleMemoryContext,
@@ -140,7 +131,5 @@ export {
   checkpoints,
   sessionLearning,
   causalGraph,
-  sgqsQuery,
   memoryContext,
 };
-

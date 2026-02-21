@@ -2,7 +2,7 @@
 
 > Version 3.0.0 | 2026-02-20
 
-Complete installation and configuration guide for the Spec Kit Memory MCP server. This guide enables AI-powered context retrieval and conversation memory across your project. The system indexes markdown documentation, spec folders and skill references to surface relevant information during AI interactions. It provides semantic search, trigger-based memory surfacing, intent-aware context loading, causal relationship tracking and a skill graph for cross-domain knowledge enrichment.
+Complete installation and configuration guide for the Spec Kit Memory MCP server. This guide enables AI-powered context retrieval and conversation memory across your project. The system indexes markdown documentation from spec folders and constitutional rules to surface relevant information during AI interactions. It provides semantic search, trigger-based memory surfacing, intent-aware context loading, causal relationship tracking and causal graph enrichment.
 
 > **Part of OpenCode Installation.** See the [Master Installation Guide](../README.md) for complete setup.
 
@@ -75,7 +75,7 @@ Spec Kit Memory is an MCP (Model Context Protocol) server that gives AI assistan
 │              Spec Kit Memory MCP Server (Node.js)               │
 │                                                                 │
 │  Context indexing    Semantic search    Trigger matching        │
-│  Skill Graph (SGQS)  Adaptive fusion    Extended telemetry      │
+│  Graph channel       Adaptive fusion    Extended telemetry      │
 │                                                                 │
 │  SQLite + sqlite-vec for vector storage                         │
 │  Canonical DB: mcp_server/dist/database/context-index.sqlite    │
@@ -84,10 +84,10 @@ Spec Kit Memory is an MCP (Model Context Protocol) server that gives AI assistan
           ┌──────────┴──────────┐
           ▼                     ▼
 ┌─────────────────┐   ┌────────────────────────────────┐
-│ Markdown Docs   │   │ Skill Graph (72 nodes, 9 skills)│
-│ specs/**/memory │   │ nodes/*.md with YAML frontmatter│
-│ skill references│   │ Wikilinks as graph edges        │
-│ README files    │   │ 5-min TTL cache, SGQS engine    │
+│ Markdown Docs   │   │ Causal Graph (memory lineage)   │
+│ specs/**/memory │   │ Decision-chain relationships     │
+│ Constitutional  │   │ Graph-aware reranking signals   │
+│ Spec documents  │   │ Runtime graph cache + telemetry │
 └─────────────────┘   └────────────────────────────────┘
 ```
 
@@ -320,8 +320,6 @@ Add these flags to the `environment` (or `env`) block of any configuration optio
 | Variable | Default | Description |
 |---|---|---|
 | `SPECKIT_GRAPH_UNIFIED` | `true` | Controls the entire graph channel. Set to `false` to disable all graph enrichment. |
-| `SPECKIT_GRAPH_MMR` | `true` | Controls Graph-Guided MMR reranking. Set to `false` to disable MMR on graph results. |
-| `SPECKIT_GRAPH_AUTHORITY` | `true` | Controls Structural Authority Propagation. Set to `false` to disable authority score boosts. |
 | `SPECKIT_ADAPTIVE_FUSION` | `true` | Controls adaptive intent-based fusion weights. Set to `false` to disable (7 task types). |
 | `SPECKIT_EXTENDED_TELEMETRY` | `true` | Controls 4-dimension per-retrieval telemetry. Set to `false` to disable metrics collection. |
 
@@ -340,8 +338,6 @@ Add these flags to the `environment` (or `env`) block of any configuration optio
         "EMBEDDINGS_PROVIDER": "hf-local",
         "MEMORY_DB_PATH": ".opencode/skill/system-spec-kit/mcp_server/dist/database/context-index.sqlite",
         "SPECKIT_GRAPH_UNIFIED": "true",
-        "SPECKIT_GRAPH_MMR": "true",
-        "SPECKIT_GRAPH_AUTHORITY": "true",
         "SPECKIT_ADAPTIVE_FUSION": "true",
         "SPECKIT_EXTENDED_TELEMETRY": "true"
       },
@@ -527,38 +523,27 @@ Query expansion activates automatically when you use `mode="deep"`.
 - `specFolder`: Limit scan to a specific folder
 - `includeConstitutional`: Include `.opencode/skill/*/constitutional/`
 - `includeSpecDocs`: Include spec folder documents (spec.md, plan.md, etc.)
-- `includeReadmes`: Include README.md files
 
 ### memory_stats: System Statistics
 
 `memory_stats()` returns counts, dates and top-ranked folders for the memory system. Use it to confirm indexing is working and to inspect database health.
 
-### Skill Graph System
+### Graph Channel System
 
-The skill graph provides in-process, cross-domain knowledge enrichment. It requires no external database.
+Graph enrichment in the current runtime is causal-graph based and runs in-process.
 
-**Structure:**
-- 72 graph nodes across 9 skills
-- Each node lives in a `nodes/*.md` file with YAML frontmatter (`description:`, `tags:`, `links:`)
-- Wikilinks (`[[node-name]]`) serve as graph edges between nodes
-- Graph enrichment fires on every `memory_save` call (Step 7.6 in workflow.ts)
+**Behavior:**
+- Causal traversal augments memory retrieval for lineage/"why" queries
+- Graph channel contributions are included when the graph flag is enabled
+- Graph-related metrics are emitted when extended telemetry is enabled
 
-**Performance:**
-- Cold start query: 100-150ms
-- Cache hit: under 1ms
-- TTL: 5 minutes per skill graph query
-
-**SGQS (Skill Graph-Lite Query Script):** Provides in-process Cypher-like queries, no external database required.
-
-**Link validation:** Run `check-links.sh` to validate all wikilinks across skill folders.
+**Link validation:** Run `check-links.sh` to validate markdown links in skill docs.
 
 ### Graph Channel (Enabled by Default)
 
-The causal graph channel now participates in every search query. Previously it was disabled. Three flags control graph behavior:
+The causal graph channel now participates in every search query. Previously it was disabled.
 
 - `SPECKIT_GRAPH_UNIFIED`: Master switch for the entire graph channel
-- `SPECKIT_GRAPH_MMR`: Graph-Guided MMR (Maximal Marginal Relevance) reranking, which diversifies results by penalizing near-duplicate entries
-- `SPECKIT_GRAPH_AUTHORITY`: Structural Authority Propagation, which boosts scores for nodes that many other nodes link to
 
 ### Adaptive Hybrid Fusion
 
@@ -588,7 +573,7 @@ Disable by setting `SPECKIT_EXTENDED_TELEMETRY: "false"`.
 
 ### Artifact-Class Routing
 
-Routes retrieval requests through per-type strategies based on the artifact being queried. Supports 9 artifact types: `spec`, `plan`, `checklist`, `decision-record`, `memory`, `implementation-summary`, `skill`, `readme` and `research`. Each type applies its own indexing and ranking rules (for example, `memory` uses recency-weighted scoring while `decision-record` boosts causal edges).
+Routes retrieval requests through per-type strategies based on the artifact being queried. Supports 8 artifact types: `spec`, `plan`, `checklist`, `decision-record`, `memory`, `implementation-summary`, `research` and `handover`. Each type applies its own indexing and ranking rules (for example, `memory` uses recency-weighted scoring while `decision-record` boosts causal edges).
 
 ### Append-Only Mutation Ledger
 
@@ -675,7 +660,7 @@ I need to add a new feature for user profiles
 
 **Behind the scenes:**
 1. AI calls `memory_index_scan({ force: false })`
-2. Server scans `specs/**/memory/`, `.opencode/skill/**/constitutional/` and README files
+2. Server scans `specs/**/memory/`, `.opencode/skill/**/constitutional/` and spec documents
 3. Indexes changed or new files, skipping unchanged ones based on content hash
 
 ### Example 6: Enabling Adaptive Fusion for a Debug Session
@@ -712,12 +697,12 @@ sqlite3 .opencode/skill/system-spec-kit/mcp_server/dist/database/context-index.s
 # Restart your AI client after indexing completes
 ```
 
-### Example 8: Validating Skill Graph Links
+### Example 8: Validating Markdown Links
 
 ```bash
 # From the skill root:
 bash .opencode/skill/system-spec-kit/scripts/check-links.sh
-# Reports any broken wikilinks across all skill node files
+# Reports broken markdown links across skill documentation
 ```
 
 ### Example 9: Phase Folder Validation
@@ -744,7 +729,6 @@ bash .opencode/skill/system-spec-kit/scripts/validate.sh \
 | Database appears stale after restore | Client still uses old MCP process with in-memory state | Fully restart OpenCode or Claude Code |
 | MCP server not in tools list | Configuration file error or path is wrong | Validate JSON syntax and verify binary path (see below) |
 | Graph enrichment not firing | `SPECKIT_GRAPH_UNIFIED` set to `false` | Remove the flag or set it to `true` in your config |
-| MMR not diversifying results | `SPECKIT_GRAPH_MMR` set to `false` | Remove the flag or set it to `true` |
 | Wikilink validation fails | Broken `[[node-name]]` reference in a skill node file | Run `check-links.sh` and fix the reported broken links |
 
 ### Detailed Fixes
@@ -842,7 +826,7 @@ The four most common failure modes after a major update:
 | `.opencode/skill/system-spec-kit/mcp_server/database/context-index.sqlite` | Compatibility symlink |
 | `.opencode/skill/system-spec-kit/scripts/setup/check-native-modules.sh` | Native module diagnostics |
 | `.opencode/skill/system-spec-kit/scripts/setup/rebuild-native-modules.sh` | Native module rebuild |
-| `.opencode/skill/system-spec-kit/scripts/check-links.sh` | Skill graph wikilink validator |
+| `.opencode/skill/system-spec-kit/scripts/check-links.sh` | Documentation wikilink validator |
 | `.opencode/skill/system-spec-kit/scripts/validate.sh` | Spec folder validator (supports --recursive) |
 | `.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-impl.ts` | Vector index implementation |
 | `.opencode/skill/system-spec-kit/mcp_server/database/README.md` | Database path notes |
@@ -876,7 +860,7 @@ sqlite3 mcp_server/dist/database/context-index.sqlite \
 cp mcp_server/dist/database/context-index.sqlite \
   mcp_server/dist/database/backup-$(date +%Y%m%d-%H%M%S).sqlite
 
-# Validate skill graph wikilinks
+# Validate documentation wikilinks
 bash .opencode/skill/system-spec-kit/scripts/check-links.sh
 
 # Validate spec folder phases recursively
@@ -896,8 +880,6 @@ PHASE VALID:  bash scripts/validate.sh specs/NNN-name --recursive
 
 FEATURE FLAGS (env vars):
   SPECKIT_GRAPH_UNIFIED     default: true  (false = disable all graph)
-  SPECKIT_GRAPH_MMR         default: true  (false = disable MMR reranking)
-  SPECKIT_GRAPH_AUTHORITY   default: true  (false = disable authority boosts)
   SPECKIT_ADAPTIVE_FUSION   default: true  (false = disable intent-based fusion)
   SPECKIT_EXTENDED_TELEMETRY default: true (false = disable metrics)
 
@@ -917,6 +899,6 @@ MCP TOOLS: memory_context, memory_search, memory_match_triggers,
 
 | Version | Date | Summary |
 |---|---|---|
-| v3.0.0 | 2026-02-20 | Skill Graph System (72 nodes, 9 skills, SGQS engine). Graph channel enabled by default. Cross-encoder reranking enabled by default. Co-activation score boost fix. Query expansion on deep mode. Evidence gap warnings. MMR reranking with intent-mapped lambda. Phase system support (recursive validation, phase detection scoring). Five new feature flags. `memory_context` tokenUsage parameter. |
+| v3.0.0 | 2026-02-20 | Graph channel enabled by default. Cross-encoder reranking enabled by default. Co-activation score boost fix. Query expansion on deep mode. Evidence gap warnings. MMR reranking with intent-mapped lambda. Phase system support (recursive validation, phase detection scoring). Five new feature flags. `memory_context` tokenUsage parameter. |
 | v2.x | 2025 | Adaptive fusion, extended telemetry, artifact-class routing, append-only mutation ledger, typed retrieval contracts. |
 | v1.x | 2024 | Initial release. Semantic search, trigger matching, intent-aware context, session deduplication. |

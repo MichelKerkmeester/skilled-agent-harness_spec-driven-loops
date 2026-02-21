@@ -293,33 +293,4 @@ Emoji: Test content
     });
   });
 
-  describe('Skill Reference Classification (T500-16)', () => {
-    it('T500-16a: checklists path maps to skill_checklist', () => {
-      const filePath = '/workspace/.opencode/skill/sk-code--web/references/checklists/quality.md';
-      const documentType = memoryParser.extractDocumentType(filePath);
-
-      expect(documentType).toBe('skill_checklist');
-    });
-
-    it('T500-16b: references path maps to skill_reference', () => {
-      const filePath = '/workspace/.opencode/skill/sk-code--web/references/patterns.md';
-      const documentType = memoryParser.extractDocumentType(filePath);
-
-      expect(documentType).toBe('skill_reference');
-    });
-
-    it('T500-16c: assets path maps to skill_asset', () => {
-      const filePath = '/workspace/.opencode/skill/sk-code--web/assets/templates/component.md';
-      const documentType = memoryParser.extractDocumentType(filePath);
-
-      expect(documentType).toBe('skill_asset');
-    });
-
-    it('T500-16d: skill references resolve to skill spec folder', () => {
-      const filePath = '/workspace/.opencode/skill/sk-code--web/references/checklists/quality.md';
-      const specFolder = memoryParser.extractSpecFolder(filePath);
-
-      expect(specFolder).toBe('skill:sk-code--web');
-    });
-  });
 });

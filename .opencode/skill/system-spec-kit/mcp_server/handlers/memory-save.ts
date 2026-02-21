@@ -59,7 +59,7 @@ interface ParsedMemory {
   memoryTypeSource?: string;
   hasCausalLinks?: boolean;
   causalLinks?: CausalLinks;
-  /** Spec 126: Document structural type (spec, plan, tasks, memory, readme, etc.) */
+  /** Spec 126: Document structural type (spec, plan, tasks, memory, etc.) */
   documentType?: string;
   qualityScore?: number;
   qualityFlags?: string[];
@@ -171,11 +171,11 @@ function escapeLikePattern(str: string): string {
 
 /**
  * Calculate importance weight based on file path and document type.
- * Spec 126: Expanded from README-only to support all document types.
+ * Spec 126: Applies document-type-aware weighting.
  *
  * Weights: constitutional -> 1.0, spec/decision-record -> 0.8, plan -> 0.7,
  * tasks/impl-summary/research -> 0.6, checklist/handover -> 0.5,
- * memory -> 0.5, project readme -> 0.4, skill readme -> 0.3, scratch -> 0.25
+ * memory -> 0.5, scratch -> 0.25
  */
 function calculateDocumentWeight(filePath: string, documentType?: string): number {
   // If documentType is provided, use it directly
@@ -191,39 +191,21 @@ function calculateDocumentWeight(filePath: string, documentType?: string): numbe
       handover: 0.5,
       constitutional: 1.0,
       memory: 0.5,
-      readme: 0.4,
-      skill_reference: 0.35,
-      skill_checklist: 0.35,
-      skill_asset: 0.30,
       scratch: 0.25,
     };
     const weight = DOC_TYPE_WEIGHTS[documentType];
-    if (weight !== undefined) {
-      // Skill READMEs get lower weight than project READMEs
-      if (documentType === 'readme') {
-        const normalizedPath = filePath.replace(/\\/g, '/');
-        if (normalizedPath.includes('.opencode/skill/')) return 0.3;
-      }
-      return weight;
-    }
+    if (weight !== undefined) return weight;
   }
 
   // Fallback: path-based heuristic (backward compatibility)
   const normalizedPath = filePath.replace(/\\/g, '/');
-  const isReadme = /readme\.(md|txt)$/i.test(normalizedPath);
-  const isSkillRm = normalizedPath.toLowerCase().includes('.opencode/skill/') && isReadme;
   if (normalizedPath.includes('/scratch/')) return 0.25;
-  return isSkillRm ? 0.3 : (isReadme ? 0.4 : 0.5);
+  return 0.5;
 }
 
-/** @deprecated Use calculateDocumentWeight() instead */
-function calculateReadmeWeight(filePath: string): number {
-  return calculateDocumentWeight(filePath);
-}
-
-/** Spec 126: True for structural spec documents (not memory/readme/constitutional). */
+/** Spec 126: True for structural spec documents (not memory/constitutional). */
 function isSpecDocumentType(documentType?: string): boolean {
-  return !!documentType && documentType !== 'memory' && documentType !== 'readme' && documentType !== 'constitutional';
+  return !!documentType && documentType !== 'memory' && documentType !== 'constitutional';
 }
 
 /** Find memories with similar embeddings for PE gating deduplication */
@@ -1394,7 +1376,7 @@ async function handleMemorySave(args: SaveArgs): Promise<MCPResponse> {
   const validatedPath: string = validateFilePathLocal(file_path);
 
   if (!memoryParser.isMemoryFile(validatedPath)) {
-    throw new Error('File must be a .md or .txt file in: specs/**/memory/, specs/**/ (spec docs), .opencode/skill/*/constitutional/, or README.md/README.txt paths');
+    throw new Error('File must be a .md or .txt file in: specs/**/memory/, specs/**/ (spec docs), or .opencode/skill/*/constitutional/');
   }
 
   // PRE-FLIGHT VALIDATION
@@ -1667,7 +1649,6 @@ export {
 
   // PE gating helper functions
   calculateDocumentWeight,
-  calculateReadmeWeight,
   findSimilarMemories,
   reinforceExistingMemory,
   markMemorySuperseded,
@@ -1689,7 +1670,6 @@ const handle_memory_save = handleMemorySave;
 const atomic_save_memory = atomicSaveMemory;
 const get_atomicity_metrics = getAtomicityMetrics;
 const calculate_document_weight = calculateDocumentWeight;
-const calculate_readme_weight = calculateReadmeWeight;
 const find_similar_memories = findSimilarMemories;
 const reinforce_existing_memory = reinforceExistingMemory;
 const mark_memory_superseded = markMemorySuperseded;
@@ -1704,7 +1684,6 @@ export {
   atomic_save_memory,
   get_atomicity_metrics,
   calculate_document_weight,
-  calculate_readme_weight,
   find_similar_memories,
   reinforce_existing_memory,
   mark_memory_superseded,

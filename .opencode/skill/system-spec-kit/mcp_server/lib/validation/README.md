@@ -42,7 +42,7 @@ The validation subsystem provides pre-flight checks that run before expensive op
 
 | Feature | Description |
 |---------|-------------|
-| **Anchor Validation** | Validates `<!-- ANCHOR:id -->` format, closure and uniqueness |
+| **Anchor Validation** | Validates paired tags (`<!-- ANCHOR:id --> ... <!-- /ANCHOR:id -->`) for format, closure and uniqueness |
 | **Duplicate Detection** | Exact (SHA-256 hash) and similar (vector similarity) duplicate finding |
 | **Token Budget** | Estimates tokens and enforces limits before API calls |
 | **Unified Preflight** | Single `runPreflight()` runs all checks with dry-run support |
@@ -75,9 +75,9 @@ Validates memory file anchor tags:
 
 | Check | Description |
 |-------|-------------|
-| Format | Must match `<!-- ANCHOR:id -->` pattern |
+| Format | Must match paired tags (`<!-- ANCHOR:id --> ... <!-- /ANCHOR:id -->`) |
 | ID Pattern | Alphanumeric start, allows hyphens and slashes |
-| Closure | Each opening tag needs `<!-- /ANCHOR: id -->` |
+| Closure | Each `<!-- ANCHOR:id -->` opening tag needs matching `<!-- /ANCHOR:id -->` closure |
 | Uniqueness | No duplicate anchor IDs in same file |
 
 ### Duplicate Detection

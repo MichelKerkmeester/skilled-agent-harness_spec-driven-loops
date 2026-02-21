@@ -92,7 +92,7 @@ This consolidation eliminates code duplication and ensures consistent behavior a
 | **Dynamic Dimension Detection** | 768 (HF), 1024 (Voyage), 1536/3072 (OpenAI)                    |
 | **Task-Specific Functions**     | Document, query and clustering embeddings                      |
 | **TF-IDF + Semantic Triggers**  | Advanced trigger phrase extraction (v11)                       |
-| **Adaptive Fusion**             | 4-channel search fusion (Vector, FTS5, BM25, Skill Graph) with intent-aware weighting |
+| **Adaptive Fusion**             | 3-channel search fusion (Vector, FTS5, BM25) with intent-aware weighting |
 | **7 Intent Profiles**           | Task-specific weight profiles: add_feature, fix_bug, refactor, security_audit, understand, find_spec, find_decision |
 
 ### Requirements

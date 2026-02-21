@@ -108,7 +108,7 @@ The scoring module provides multi-factor algorithms for ranking memories in the 
 
 ### Document-Type Multipliers
 
-The scoring layer includes document-type multipliers for 11 document types (for example `spec`, `plan`, `tasks`, `checklist`, `decision-record`, `implementation-summary`, `memory`, `readme`, `scratch`, `constitutional`, `research`). These multipliers are used by folder scoring and document retrieval ranking.
+The scoring layer includes document-type multipliers for active document types (for example `spec`, `plan`, `tasks`, `checklist`, `decision-record`, `implementation-summary`, `memory`, `constitutional`, `research`, `handover`, `scratch`). These multipliers are used by folder scoring and document retrieval ranking.
 
 ### Event-Based Decay Model (Spec 136)
 

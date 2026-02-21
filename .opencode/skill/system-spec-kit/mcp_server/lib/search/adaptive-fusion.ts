@@ -24,7 +24,7 @@ export interface FusionWeights {
   recencyWeight: number;
   /** Weight for graph channel results (0-1). Only used when graph channel active. */
   graphWeight?: number;
-  /** Bias toward causal edges vs skill graph (0-1, where 1.0 = full causal bias). */
+  /** Bias toward causal-edge signals within graph-assisted ranking (0-1). */
   graphCausalBias?: number;
 }
 

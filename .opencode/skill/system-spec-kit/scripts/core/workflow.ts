@@ -30,7 +30,6 @@ import {
   type ValidationSignal,
 } from '../extractors/quality-scorer';
 import { validateMemoryQualityContent } from '../memory/validate-memory-quality';
-import { enrichWithGraphMetadata } from '../memory/graph-enrichment';
 
 // Static imports replacing lazy require()
 import * as flowchartGen from '../lib/flowchart-generator';
@@ -313,29 +312,6 @@ async function runWorkflow(options: WorkflowOptions = {}): Promise<WorkflowResul
 
   log(`   Generated summary: ${implSummary.filesCreated.length} created, ${implSummary.filesModified.length} modified, ${implSummary.decisions.length} decisions\n`);
 
-  // Step 7.6: Graph enrichment — inject skill graph metadata into the pipeline
-  log('Step 7.6: Enriching with skill graph metadata...');
-
-  let graphEnrichmentContext = '';
-  let graphDerivedPhrases: string[] = [];
-  try {
-    const skillRoot = path.join(CONFIG.PROJECT_ROOT, '.opencode', 'skill');
-    const enrichment = enrichWithGraphMetadata(skillRoot, specFolderName);
-
-    if (enrichment.nodeCount > 0) {
-      graphDerivedPhrases = enrichment.triggerPhrases;
-      graphEnrichmentContext = enrichment.graphContext;
-      log(`   Graph: ${enrichment.nodeCount} nodes, ${enrichment.edgeCount} edges across ${enrichment.skillsFound.length} skills`);
-      log(`   Graph trigger phrases: ${graphDerivedPhrases.length}`);
-    } else {
-      log('   Graph enrichment skipped (no nodes found or skill root absent)');
-    }
-  } catch (e: unknown) {
-    const errMsg = e instanceof Error ? e.message : String(e);
-    warn(`   Warning: Graph enrichment failed: ${errMsg}`);
-  }
-  log();
-
   // Step 8: Populate templates
   log('Step 8: Populating template...');
 
@@ -392,18 +368,6 @@ async function runWorkflow(options: WorkflowOptions = {}): Promise<WorkflowResul
     warn(`   Warning: Pre-extraction of trigger phrases failed: ${errMsg}`);
   }
 
-  // Merge graph-derived trigger phrases (deduplication against existing set)
-  if (graphDerivedPhrases.length > 0) {
-    const existingLower = new Set(preExtractedTriggers.map((p) => p.toLowerCase()));
-    for (const phrase of graphDerivedPhrases) {
-      if (!existingLower.has(phrase.toLowerCase())) {
-        preExtractedTriggers.push(phrase);
-        existingLower.add(phrase.toLowerCase());
-      }
-    }
-    log(`   Merged graph phrases: ${preExtractedTriggers.length} total trigger phrases`);
-  }
-
   const files: Record<string, string> = {
     [ctxFilename]: await populateTemplate('context', {
       ...sessionData,
@@ -446,8 +410,8 @@ async function runWorkflow(options: WorkflowOptions = {}): Promise<WorkflowResul
       EMBEDDING_MODEL: MODEL_NAME || 'text-embedding-3-small',
       EMBEDDING_VERSION: '1.0',
       CHUNK_COUNT: 1,
-      GRAPH_CONTEXT: graphEnrichmentContext,
-      HAS_GRAPH_CONTEXT: graphEnrichmentContext.length > 0
+      GRAPH_CONTEXT: '',
+      HAS_GRAPH_CONTEXT: false
     }),
     'metadata.json': JSON.stringify({
       timestamp: `${sessionData.DATE} ${sessionData.TIME}`,

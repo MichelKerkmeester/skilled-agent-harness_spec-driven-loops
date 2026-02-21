@@ -472,7 +472,7 @@ STATUS=OK ID=<id> TRIGGERS=<count>
 | **memory_save MCP tool**       | On demand        | Immediate indexing of single file |
 | **memory_index_scan MCP tool** | On demand        | Bulk re-index of folder/all files |
 
-> **Note:** The indexing pipeline includes six sources: spec memories, constitutional files, skill READMEs, project READMEs, spec documents, and configured skill references/assets.
+> **Note:** The indexing pipeline includes three sources: spec memories, constitutional files and spec documents.
 
 ### Deferred Indexing (Graceful Degradation)
 
@@ -491,8 +491,8 @@ spec_kit_memory_memory_save({ filePath: "specs/.../memory/context.md", force: tr
 # Single file (non-blocking embedding)
 spec_kit_memory_memory_save({ filePath: "specs/.../memory/context.md", asyncEmbedding: true })
 
-# Entire folder (explicitly include workflow skill references/assets)
-spec_kit_memory_memory_index_scan({ specFolder: "011-memory", force: true, includeSkillRefs: true })
+# Entire folder
+spec_kit_memory_memory_index_scan({ specFolder: "011-memory", force: true })
 ```
 
 **Recovery Options:**
@@ -520,10 +520,8 @@ spec_kit_memory_memory_index_scan({ specFolder: "011-memory", force: true, inclu
 | -------------------- | ------- | ------- | ------------------------------------------------- |
 | `force`              | boolean | false   | Force re-index all files                          |
 | `specFolder`         | string  | -       | Limit scan to specific spec folder                |
-| `includeReadmes`     | boolean | true    | Include skill + project README.md and README.txt files |
 | `includeSpecDocs`    | boolean | true    | Include spec folder documents                     |
 | `includeConstitutional` | boolean | true | Include constitutional rule files                 |
-| `includeSkillRefs`   | boolean | true    | Include configured workflow skill `references/` and `assets/` files |
 | `incremental`        | boolean | true    | Skip unchanged files (mtime check)                |
 
 ---

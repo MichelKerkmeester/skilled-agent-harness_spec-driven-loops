@@ -46,7 +46,6 @@ Current modules:
 - `checkpoints.ts`
 - `session-learning.ts`
 - `causal-graph.ts`
-- `sgqs-query.ts`
 - `types.ts`
 - `index.ts`
 

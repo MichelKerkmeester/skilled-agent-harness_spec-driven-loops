@@ -933,65 +933,62 @@ scripts/package_skill.py <path/to/skill> <output-directory>
 ---
 
 <!-- /ANCHOR:distribution -->
-<!-- ANCHOR:skill-graph-system -->
-## 9. SKILL GRAPH SYSTEM
+<!-- ANCHOR:skill-structure-system -->
+## 9. SKILL STRUCTURE SYSTEM
 
-### Why Skill Graphs
+### Why Layered Skill Docs
 
-Large skills eventually outgrow one `SKILL.md` file. Skill graphs solve this by splitting knowledge into focused nodes and letting the agent traverse only what is relevant.
+Large skills eventually outgrow one `SKILL.md` file. The maintainable pattern is to keep routing in `SKILL.md` and split depth into focused reference files that can be loaded on demand.
 
 ### Core Structure
 
 ```
 skill-name/
 ├── SKILL.md                # Primary entrypoint (activation rules, routing, core behavior)
-├── index.md                # Supplemental deep-dive index for graph traversal
-├── nodes/
+├── index.md                # Optional map of content for deep-dive docs
+├── references/
 │   ├── topic-a.md
 │   ├── topic-b.md
 │   └── topic-c.md
-├── references/
-└── assets/
+├── assets/
+└── scripts/
 ```
 
 ### Design Logic
 
-1. **Index first**: Start at `index.md` to map the domain.
-2. **Description scan**: Use YAML `description` fields on nodes to decide what to read.
-3. **Semantic traversal**: Follow wikilinks only when they match the active task.
-4. **Progressive disclosure**: Load minimal context first, then deepen as needed.
+1. Start with `SKILL.md` for trigger/routing behavior.
+2. Use `index.md` (if present) as a concise navigation map.
+3. Load only the specific `references/` files required by the active task.
+4. Keep progressive disclosure strict to control context size.
 
-### How AI Should Use Skill Graphs
+### How AI Should Use Layered Skills
 
 Use this operating pattern:
 
 1. Read `SKILL.md` for trigger and routing rules.
-2. Jump to `index.md` for graph topology.
-3. Read one node at a time and summarize locally.
-4. Follow outbound links only when they advance the current objective.
-5. Stop traversal when confidence is high and required information is complete.
+2. Open `index.md` if additional navigation is needed.
+3. Read one focused reference at a time and summarize locally.
+4. Follow markdown links only when they advance the current objective.
+5. Stop once confidence is high and required context is complete.
 
 ### Authoring Rules
 
-- Keep each node scoped to one complete concept.
-- Keep node content concise and practical.
-- Add one-line YAML `description` to every node.
+- Keep each reference file scoped to one complete concept.
+- Keep reference content concise and practical.
+- Add one-line YAML `description` to long-form docs.
 - Put links inside meaningful prose, not isolated link dumps.
-- Validate links after changes using:
-
-```bash
-.opencode/skill/system-spec-kit/scripts/rules/check-links.sh
-```
+- Validate markdown links after edits.
 
 ### Templates
 
-Use these templates when authoring skill graphs:
-- Index template: `../assets/opencode/skill_graph_index_template.md`
-- Node template: `../assets/opencode/skill_graph_node_template.md`
+Use these templates when authoring layered skills:
+- Skill template: `../assets/opencode/skill_md_template.md`
+- Reference template: `../assets/opencode/skill_reference_template.md`
+- Asset template: `../assets/opencode/skill_asset_template.md`
 
 ---
 
-<!-- /ANCHOR:skill-graph-system -->
+<!-- /ANCHOR:skill-structure-system -->
 <!-- ANCHOR:related-resources -->
 ## 10. RELATED RESOURCES
 
@@ -999,8 +996,6 @@ Use these templates when authoring skill graphs:
 - [skill_md_template.md](../assets/opencode/skill_md_template.md) - SKILL.md file templates
 - [skill_reference_template.md](../assets/opencode/skill_reference_template.md) - Reference file templates
 - [skill_asset_template.md](../assets/opencode/skill_asset_template.md) - Asset file templates
-- [skill_graph_index_template.md](../assets/opencode/skill_graph_index_template.md) - Skill graph index.md entrypoint template
-- [skill_graph_node_template.md](../assets/opencode/skill_graph_node_template.md) - Skill graph node template
 - [frontmatter_templates.md](../assets/documentation/frontmatter_templates.md) - Frontmatter by document type
 
 ### Reference Files

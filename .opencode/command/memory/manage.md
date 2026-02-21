@@ -87,19 +87,19 @@ If `$ARGUMENTS` contains "checkpoint restore `<name>`":
 
 HARD STOP: DO NOT restore checkpoint until user explicitly confirms
 
-### GATE 4: SCAN SOURCE CONFIRMATION
+### GATE 4: SCAN EXECUTION CONFIRMATION
 
 **STATUS: N/A** (default for non-scan modes)
 
 If `$ARGUMENTS` contains `scan`:
 1. SET STATUS: BLOCKED
-2. Ask user source scope for this run:
-   - `[a]ll` → include skill references (`includeSkillRefs: true`) **(default)**
-   - `[c]ore` → exclude skill references (`includeSkillRefs: false`)
+2. Ask user scan mode for this run:
+   - `[n]ormal` → incremental scan (default)
+   - `[f]orce` → full re-index
    - `[b]ack` → cancel and return to dashboard
 3. **WAIT for user selection** before calling `memory_index_scan`
 
-HARD STOP: DO NOT execute scan until user selects source scope for this run
+HARD STOP: DO NOT execute scan until user confirms scan mode for this run
 
 ---
 
@@ -216,7 +216,7 @@ $ARGUMENTS
 spec_kit_memory_memory_stats({})
 spec_kit_memory_memory_list({ limit: N, sortBy: "created_at", specFolder: "optional" })
 spec_kit_memory_memory_search({ query: "<q>", limit: N, specFolder: "optional" })
-spec_kit_memory_memory_index_scan({ force, specFolder, includeReadmes, includeSpecDocs, includeConstitutional, includeSkillRefs, incremental })
+spec_kit_memory_memory_index_scan({ force, specFolder, includeSpecDocs, includeConstitutional, incremental })
 spec_kit_memory_memory_validate({ id: <id>, wasUseful: <bool> })
 spec_kit_memory_memory_update({ id: <id>, importanceTier: "<tier>", triggerPhrases: [...] })
 spec_kit_memory_memory_delete({ id: <id> })
@@ -229,10 +229,8 @@ spec_kit_memory_checkpoint_delete({ name: "<name>" })
 
 > **Feature Flag Behavior:** `SPECKIT_ADAPTIVE_FUSION` affects scan and search behavior — when enabled, index scans apply adaptive weight profiles during embedding and artifact-class routing during re-indexing. `SPECKIT_EXTENDED_TELEMETRY` enables detailed per-operation metrics for scan, search, and health calls. **Mutation Ledger:** cleanup and delete operations are recorded in the append-only mutation ledger, providing a full audit trail that can be reviewed when investigating unexpected state changes.
 >
-> **Graph Channel Flags (all default: ENABLED):**
-> - `SPECKIT_GRAPH_UNIFIED` — gates the entire graph channel in hybrid search. When enabled, all `memory_search` calls use 3-channel fusion (vector + BM25 + graph), including deduplication searches in scan and cleanup workflows.
-> - `SPECKIT_GRAPH_MMR` — gates Graph-Guided MMR diversity reranking. Results are diversified across graph regions rather than purely by semantic similarity; this affects search result ordering in scan pre-flight checks and health diagnostics.
-> - `SPECKIT_GRAPH_AUTHORITY` — gates Structural Authority Propagation scoring. Nodes heavily referenced in the causal/skill graph receive ranking boosts, influencing tier recommendations during cleanup and validation workflows.
+> **Graph Channel Flag (default: ENABLED):**
+> - `SPECKIT_GRAPH_UNIFIED` — gates the graph channel in hybrid search. When enabled, `memory_search` calls use 3-channel fusion (vector + BM25 + graph), including deduplication searches in scan and cleanup workflows.
 
 ### `memory_index_scan` Parameters
 
@@ -240,10 +238,8 @@ spec_kit_memory_checkpoint_delete({ name: "<name>" })
 |-----------|------|---------|-------------|
 | force | boolean | false | Force re-index all files |
 | specFolder | string | - | Limit scan to specific spec folder |
-| includeReadmes | boolean | true | Include skill + project README.md and README.txt files |
 | includeSpecDocs | boolean | true | Include spec folder documents |
 | includeConstitutional | boolean | true | Include constitutional rule files |
-| includeSkillRefs | boolean | true | Include workflow skill `references/` and `assets/` files |
 | incremental | boolean | true | Skip unchanged files (mtime check) |
 
 ---
@@ -301,38 +297,34 @@ Before running `memory_index_scan`, ask:
 MEMORY:SCAN
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-→ Source Scope ─────────────────────────────────────
-  [a] all     include skill references (default)
-  [c] core    exclude skill references
+→ Scan Mode ────────────────────────────────────────
+  [n] normal  incremental scan (default)
+  [f] force   full re-index
   [b] back    cancel
 ```
 
-Map selection to `includeSkillRefs` for this run.
+Map selection to `force` for this run.
 
-### 6-Source Pipeline
+### 3-Source Pipeline
 
-The scan discovers memory-eligible files from six sources:
+The scan discovers memory-eligible files from three sources:
 
 | # | Source | Key | Location |
 |---|--------|-----|----------|
 | 1 | Spec Memories | specFiles | specs/*/memory/*.{md,txt} |
 | 2 | Constitutional | constitutionalFiles | .opencode/skill/*/constitutional/*.md |
-| 3 | Skill READMEs | skillReadmes | .opencode/skill/*/README.{md,txt} |
-| 4 | Project READMEs | projectReadmes | **/README.{md,txt} |
-| 5 | Spec Documents | specDocFiles | .opencode/specs/**/*.md |
-| 6 | Skill References/Assets | skillRefFiles | .opencode/skill/*/{references,assets}/**/*.md |
+| 3 | Spec Documents | specDocFiles | .opencode/specs/**/*.md |
 
 ### Call Examples
 
 ```javascript
-spec_kit_memory_memory_index_scan({ force: false, includeSkillRefs: true })  // Normal incremental
-spec_kit_memory_memory_index_scan({ force: true, includeSkillRefs: true })   // Force full re-index
+spec_kit_memory_memory_index_scan({ force: false })  // Normal incremental
+spec_kit_memory_memory_index_scan({ force: true })   // Force full re-index
 ```
 
 **Targeted indexing examples:**
-- Spec docs only: `{ includeReadmes: false }`
-- READMEs only: `{ includeSpecDocs: false }`
-- Core sources only (no skill refs): `{ includeSkillRefs: false }`
+- Exclude spec docs: `{ includeSpecDocs: false }`
+- Exclude constitutional: `{ includeConstitutional: false }`
 - Specific folder: `{ specFolder: "007-auth" }`
 - Force full re-index: `{ force: true }`
 

@@ -14,7 +14,7 @@ importance_tier: "normal"
 
 > Your AI assistant forgets everything between sessions. Not anymore.
 
-Unified documentation and context preservation skill providing spec folder workflows, memory management and MCP-powered semantic search with 4-channel hybrid retrieval (Vector, FTS5, BM25, Skill Graph) and graph intelligence.
+Unified documentation and context preservation skill providing spec folder workflows, memory management and MCP-powered semantic search with 3-channel hybrid retrieval (Vector, FTS5, BM25) and causal graph intelligence.
 
 ---
 
@@ -79,9 +79,9 @@ Cross-workflow alignment is mandatory:
 
 | Capability | Description |
 | --- | --- |
-| **4-Channel Hybrid Search + Post-Fusion** | Primary scatter-gather across vector, FTS5, BM25 and skill graph; co-activation/session/causal signals are applied post-fusion |
+| **4-Channel Hybrid Search + Post-Fusion** | Primary scatter-gather across vector, FTS5, BM25 and causal graph; co-activation/session/causal signals are applied post-fusion |
 | **Adaptive RRF Fusion** | Intent-weighted profiles replace fixed-weight RRF when `SPECKIT_ADAPTIVE_FUSION=true` |
-| **Graph Intelligence** | Unified graph search bridging causal edges and skill graph via SGQS |
+| **Graph Intelligence** | Unified causal graph search for decision lineage and retrieval enrichment |
 | **MMR Diversity Reranking** | Lambda mapped to detected intent for relevance-diversity balance |
 | **Evidence Gap Detection** | TRM with Z-score confidence flags missing context before retrieval |
 | **Multi-Query RAG Fusion** | Query expansion with domain vocabulary before scatter-gather |
@@ -95,7 +95,7 @@ Cross-workflow alignment is mandatory:
 
 | Category | Count |
 | --- | --- |
-| **MCP Tools** | 25 (memory, checkpoint, causal/skill-graph, drift, learning, health) |
+| **MCP Tools** | 25 (memory, checkpoint, causal, drift, learning, health) |
 | **Templates** | 10 (specs, plans, research, decisions) |
 | **Commands** | 13 (8 spec_kit + 5 memory) |
 | **Importance Tiers** | 6 (constitutional to deprecated) |
@@ -175,7 +175,6 @@ When in doubt, choose the higher level.
 | **References** | `references/` | Reference documentation (19 files) |
 | **Assets** | `assets/` | Workflow assets, YAML configs, checklists |
 | **Constitutional** | `constitutional/` | Always-surface project rules (never decay) |
-| **Nodes** | `nodes/` | Skill graph node content (graph mode) |
 
 ### MCP Server (`mcp_server/`)
 
@@ -184,7 +183,7 @@ The cognitive memory engine. It provides 22 MCP tools over stdio for semantic se
 **Key characteristics after spec 138:**
 - 4-channel scatter-gather search pipeline
 - Adaptive RRF fusion with 7 intent profiles
-- Unified graph search (causal edges + skill graph via SGQS)
+- Unified causal graph search for decision lineage
 - MMR diversity reranking with intent-mapped lambda
 - Evidence gap detection (TRM with Z-score confidence)
 - Multi-query RAG fusion with domain vocabulary expansion
@@ -376,17 +375,13 @@ We chose JWT with refresh tokens because stateless auth scales better.
 **Token savings:** ~93% vs loading full documents.
 **Common anchors:** `summary`, `decisions`, `metadata`, `state`, `context`, `artifacts`, `blockers`, `next-steps`
 
-### 5-Source Indexing Pipeline
+### 3-Source Indexing Pipeline
 
 | # | Source | Location Pattern | Weight |
 | --- | --- | --- | --- |
 | 1 | Constitutional rules | `.opencode/skill/*/constitutional/*.md` | Per-file metadata |
 | 2 | Spec documents | `.opencode/specs/**/*.md` | Per-type multiplier |
 | 3 | Spec memories | `specs/*/memory/*.{md,txt}` | 0.5 |
-| 4 | Project READMEs | `**/README.{md,txt}` (project root) | 0.4 |
-| 5 | Skill READMEs | `.opencode/skill/*/README.{md,txt}` | 0.3 |
-
-README sources use reduced importance weights so user-authored memories always outrank documentation in search results.
 
 ---
 
@@ -413,7 +408,7 @@ All tools use the `spec_kit_memory_` prefix in MCP calls (e.g., `spec_kit_memory
 | Tool | Purpose |
 | --- | --- |
 | `memory_save` | Index a memory file with PE gating |
-| `memory_index_scan` | Bulk scan workspace (5-source pipeline, incremental) |
+| `memory_index_scan` | Bulk scan workspace (3-source pipeline, incremental) |
 | `memory_update` | Update memory metadata and tier |
 | `memory_delete` | Delete memories by ID or folder |
 | `memory_validate` | Record validation feedback |
@@ -451,9 +446,9 @@ All tools use the `spec_kit_memory_` prefix in MCP calls (e.g., `spec_kit_memory
 | --- | --- |
 | `memory_health` | Check health status of the memory system |
 
-### Graph Intelligence (SGQS)
+### Graph Intelligence
 
-After spec 138, `memory_context` with `SPECKIT_GRAPH_UNIFIED=true` bridges causal edges and the skill graph (SGQS) in a single traversal. This surfaces skill-to-skill relationships alongside memory-to-memory causal links, giving a unified view of both project decisions and skill dependencies.
+After spec 138, `memory_context` with `SPECKIT_GRAPH_UNIFIED=true` incorporates causal-edge traversal directly into retrieval. This surfaces linked decision chains alongside semantically matched memories, improving "why" and lineage-focused queries.
 
 ---
 
@@ -699,7 +694,7 @@ A: Start with `memory_context`. It routes by intent, applies multi-query RAG fus
 
 **Q: Are all feature flags enabled by default after spec 138?**
 
-A: Yes. All major flags including `SPECKIT_ADAPTIVE_FUSION`, `SPECKIT_CAUSAL_BOOST`, `SPECKIT_SESSION_BOOST`, `SPECKIT_GRAPH_UNIFIED`, `SPECKIT_GRAPH_MMR` and `SPECKIT_GRAPH_AUTHORITY` default to enabled via `isFeatureEnabled()`. See [mcp_server/README.md](./mcp_server/README.md) for the full flag table.
+A: Yes. All major flags including `SPECKIT_ADAPTIVE_FUSION`, `SPECKIT_CAUSAL_BOOST`, `SPECKIT_SESSION_BOOST` and `SPECKIT_GRAPH_UNIFIED` default to enabled via `isFeatureEnabled()`. See [mcp_server/README.md](./mcp_server/README.md) for the full flag table.
 
 ---
 
@@ -715,7 +710,6 @@ A: Yes. All major flags including `SPECKIT_ADAPTIVE_FUSION`, `SPECKIT_CAUSAL_BOO
 | [SKILL.md](./SKILL.md) | AI workflow instructions (routing, validation, command protocols) |
 | [mcp_server/README.md](./mcp_server/README.md) | Memory MCP installation, architecture and API reference |
 | [references/memory/memory_system.md](./references/memory/memory_system.md) | Memory system detailed reference |
-| [references/memory/readme_indexing.md](./references/memory/readme_indexing.md) | 5-source indexing pipeline, README weights, discovery functions |
 | [references/validation/validation_rules.md](./references/validation/validation_rules.md) | All validation rules and fixes |
 | [references/validation/five-checks.md](./references/validation/five-checks.md) | Five Checks evaluation framework |
 | [references/workflows/rollback-runbook.md](./references/workflows/rollback-runbook.md) | Feature-flag rollback and smoke-test procedure |
@@ -728,8 +722,6 @@ A: Yes. All major flags including `SPECKIT_ADAPTIVE_FUSION`, `SPECKIT_CAUSAL_BOO
 .opencode/skill/system-spec-kit/
 ├── SKILL.md                   # AI workflow instructions
 ├── README.md                  # This file
-├── index.md                   # Skill graph entrypoint
-├── nodes/                     # Skill graph node content
 ├── templates/                 # Template system (CORE + ADDENDUM v2.2)
 │   ├── core/                  # Foundation templates (4 files)
 │   ├── addendum/              # Level-specific additions

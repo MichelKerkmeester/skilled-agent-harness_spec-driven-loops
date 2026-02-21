@@ -160,7 +160,6 @@ export const DOCUMENT_TYPE_MULTIPLIERS: Readonly<Record<string, number>> = {
   handover: 1.0,
   memory: 1.0,
   constitutional: 2.0,
-  readme: 0.8,
   scratch: 0.6,
 };
 

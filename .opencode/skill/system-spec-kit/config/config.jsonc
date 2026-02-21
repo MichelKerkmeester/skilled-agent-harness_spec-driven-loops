@@ -154,21 +154,5 @@
   "templates": {
     "styleFallback": "minimal", // Fallback if selected style not found
     "minimalPath": "templates" // Path to minimal templates (default)
-  },
-  // ─────────────────────────────────────────────────────────────
-  // 12. SKILL REFERENCE INDEXING
-  // ─────────────────────────────────────────────────────────────
-  // Source #6: Index references/ and assets/ from configured skills.
-  // Only skills listed in indexedSkills[] will be scanned.
-  // Empty array = feature disabled (no skills indexed).
-  // Set SPECKIT_INDEX_SKILL_REFS=false env var to disable globally.
-  "skillReferenceIndexing": {
-    "enabled": true,
-    "indexedSkills": [
-      "sk-code--web",
-      "sk-code--opencode"
-    ],
-    "fileExtensions": [".md"],
-    "indexDirs": ["references", "assets"]
   }
 }

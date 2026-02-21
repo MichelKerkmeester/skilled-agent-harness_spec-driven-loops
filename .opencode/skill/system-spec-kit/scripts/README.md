@@ -43,7 +43,7 @@ Top-level files:
 Primary script directories:
 - `spec/` - 8 lifecycle scripts (`create.sh`, `upgrade-level.sh`, `check-placeholders.sh`, `validate.sh`, `check-completion.sh`, `calculate-completeness.sh`, `recommend-level.sh`, `archive.sh`)
 - `rules/` - 16 modular validation rules used by `spec/validate.sh` (`LINKS_VALID` runs only when `SPECKIT_VALIDATE_LINKS=true`)
-- `memory/` - 7 TypeScript CLIs (`generate-context.ts`, `rank-memories.ts`, `cleanup-orphaned-vectors.ts`, `graph-enrichment.ts`, `validate-memory-quality.ts`, `reindex-embeddings.ts`, `ast-parser.ts`)
+- `memory/` - 6 TypeScript CLIs (`generate-context.ts`, `rank-memories.ts`, `cleanup-orphaned-vectors.ts`, `validate-memory-quality.ts`, `reindex-embeddings.ts`, `ast-parser.ts`)
 - `core/` - 8 TypeScript workflow modules
 - `extractors/` - 11 TypeScript extraction modules plus barrel export
 - `loaders/` - 2 TypeScript loading modules plus barrel export
@@ -71,7 +71,6 @@ Anchor requirements introduced in this workflow are validated by `rules/check-an
 Phase workflow additions (specs 138-139):
 - `spec/create.sh --phase` supports phase-based spec folder decomposition.
 - `spec/validate.sh --recursive` validates parent and child phase folders.
-- `sgqs/` directory contains SGQS graph builder and type definitions for skill graph queries.
 
 
 <!-- /ANCHOR:post-spec124128129-workflow -->
@@ -112,5 +111,4 @@ node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js /tm
 - `loaders/README.md`
 - `renderers/README.md`
 - `lib/README.md`
-- `sgqs/` - SGQS graph builder and types for skill graph queries (spec 138)
 <!-- /ANCHOR:related-readmes -->

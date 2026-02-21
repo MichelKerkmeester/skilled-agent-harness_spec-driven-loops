@@ -49,7 +49,7 @@ This section provides an overview of the MCP Server Formatters directory.
 
 - File path checks are defense-in-depth for content embedding.
 - JSON parsing helpers are safe-fallback based and do not throw on malformed optional payload fields.
-- Formatter logic is compatible with Spec 126 document-type indexing output (spec docs, readmes, memories).
+- Formatter logic is compatible with Spec 126 document-type indexing output (spec docs, memories, constitutional files).
 
 
 <!-- /ANCHOR:hardening-notes -->

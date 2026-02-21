@@ -50,8 +50,8 @@ The storage layer provides all persistence operations for the Spec Kit Memory MC
 | **Checkpoints** | Gzip-compressed state snapshots for rollback |
 | **Atomic Transactions** | File write + index insert with pending file recovery |
 | **Access Tracking** | Batched accumulator updates minimize I/O while tracking usage for relevance boost |
-| **Schema v15** | Current database schema version (v15) with skill graph storage tables |
-| **Skill Graph Storage** | Persists SGQS skill graph nodes, edges, and metadata for graph-based retrieval |
+| **Schema v15** | Current database schema version (v15) with causal graph and retrieval-index storage tables |
+| **Graph Storage** | Persists causal graph edges and graph-related metadata for retrieval enrichment |
 
 <!-- /ANCHOR:overview -->
 

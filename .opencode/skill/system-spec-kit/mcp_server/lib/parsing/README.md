@@ -44,7 +44,7 @@ The parsing module provides core functionality for extracting structured data fr
 
 | Feature | Description |
 |---------|-------------|
-| **ANCHOR Extraction** | Parse `<!-- ANCHOR:id -->` sections for targeted retrieval |
+| **ANCHOR Extraction** | Parse paired tags (`<!-- ANCHOR:id --> ... <!-- /ANCHOR:id -->`) for targeted retrieval |
 | **Trigger Matching** | Match user prompts against cached trigger phrases with Unicode support |
 | **Memory Type Inference** | Automatic classification (research, implementation, decision, discovery) via `inferMemoryType` from config |
 | **Spec Document Classification** | Derives `documentType` and `specLevel` from file paths for full spec folder indexing |
@@ -89,7 +89,7 @@ parsing/
 |--------|---------|
 | **Encoding Support** | UTF-8, UTF-16 LE/BE with automatic BOM detection |
 | **Metadata Extraction** | Title, spec folder, context type, importance tier, memory type |
-| **ANCHOR Parsing** | Section-level content retrieval via `<!-- ANCHOR:id -->` tags |
+| **ANCHOR Parsing** | Section-level content retrieval via paired tags (`<!-- ANCHOR:id --> ... <!-- /ANCHOR:id -->`) |
 | **Type Inference** | Automatic `memoryType` classification via `inferMemoryType` from `lib/config/type-inference` |
 | **Causal Links** | Extracts `caused_by`, `supersedes`, `derived_from`, `blocks`, `related_to` from YAML metadata |
 

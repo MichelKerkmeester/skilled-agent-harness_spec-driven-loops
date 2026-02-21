@@ -60,7 +60,7 @@ None of it works because none of it understands what matters.
 
 This MCP server gives your AI assistant persistent memory with intelligence built in:
 
-- **4-channel hybrid search** (Vector, FTS5, BM25, Skill Graph) finds what you mean, not what you typed
+- **4-channel hybrid search** (Vector, FTS5, BM25, Graph Channel) finds what you mean, not what you typed
 - **Post-fusion enhancements** — RRF, Adaptive Fusion, MMR, Co-activation and Recency Boost are applied after retrieval, not separate search channels
 - **Cognitive decay** keeps relevant memories fresh and lets stale ones fade
 - **Causal graph** traces decision lineage ("Why did we choose JWT?")
@@ -77,7 +77,7 @@ This MCP server gives your AI assistant persistent memory with intelligence buil
 | **Recovery** | Hope | Crash recovery with zero data loss |
 | **Sessions** | None | Deduplication with ~50% tokens saved on follow-up |
 | **Context** | Full documents | ANCHOR-based section retrieval (93% token savings) |
-| **Search** | Vector only | 4-channel (Vector, FTS5, BM25, Skill Graph) with adaptive RRF fusion |
+| **Search** | Vector only | 4-channel (Vector, FTS5, BM25, Graph Channel) with adaptive RRF fusion |
 | **State** | Stateless | 5-state cognitive model (HOT/WARM/COLD/DORMANT/ARCHIVED) |
 | **Tiers** | None | 6-tier importance with configurable boosts |
 | **Decay** | None or exponential | FSRS power-law (validated on 100M+ users) |
@@ -90,7 +90,7 @@ This MCP server gives your AI assistant persistent memory with intelligence buil
 
 | Category | Count |
 | --- | --- |
-| **MCP Tools** | 25 |
+| **MCP Tools** | 23 |
 | **Library Modules** | 76 |
 | **Handler Modules** | 19 |
 | **Embedding Providers** | 3 |
@@ -181,7 +181,7 @@ Add to your MCP client configuration (e.g., `opencode.json`):
 context-server.ts          (server init, startup, shutdown, main orchestration)
         |
         v
-tool-schemas.ts            (TOOL_DEFINITIONS — all 25 tool schemas)
+tool-schemas.ts            (TOOL_DEFINITIONS — all 23 tool schemas)
         |
         v
 tools/index.ts             (dispatchTool — routes call to correct handler)
@@ -203,7 +203,7 @@ dist/context-server.js     (compiled output — executed at runtime by node)
 | File | Purpose |
 | --- | --- |
 | `context-server.ts` | Server init, stdio transport, startup/shutdown lifecycle |
-| `tool-schemas.ts` | All 25 tool schema definitions (decomposed from server in T303) |
+| `tool-schemas.ts` | All 23 tool schema definitions (decomposed from server in T303) |
 | `cli.ts` | CLI entry point for maintenance commands (stats, bulk-delete, reindex, schema-downgrade) |
 | `tools/index.ts` | `dispatchTool()` — routes MCP call to handler module |
 | `core/config.ts` | Path resolution (`SERVER_DIR`, `LIB_DIR`, `SHARED_DIR`) |
@@ -238,7 +238,7 @@ dist/context-server.js     (compiled output — executed at runtime by node)
 | **CRUD Operations** | 6 | Create, update, delete, validate, and bulk-delete |
 | **Checkpoints** | 4 | State snapshots for recovery |
 | **Session Learning** | 3 | Knowledge tracking across tasks |
-| **Causal and Drift** | 6 | Causal graph, skill-graph traversal, and cache management |
+| **Causal and Drift** | 6 | Causal graph traversal, drift analysis and cache management |
 | **System** | 1 | Health monitoring |
 
 ### Orchestration Tools
@@ -261,7 +261,7 @@ dist/context-server.js     (compiled output — executed at runtime by node)
 | Tool | Purpose | Latency |
 | --- | --- | --- |
 | `memory_save` | Index a single memory file | ~1s |
-| `memory_index_scan` | Bulk scan and index workspace (5-source pipeline, incremental) | varies |
+| `memory_index_scan` | Bulk scan and index workspace (3-source pipeline, incremental) | varies |
 | `memory_update` | Update metadata, tier, triggers | <50ms* |
 | `memory_delete` | Delete by ID or spec folder | <50ms |
 | `memory_bulk_delete` | Bulk delete by tier with checkpoint safety gates. Supports `skipCheckpoint` for non-critical tiers | <100ms + checkpoint |
@@ -294,8 +294,6 @@ dist/context-server.js     (compiled output — executed at runtime by node)
 | `memory_causal_link` | Create causal relationships between memories | <50ms |
 | `memory_causal_stats` | Graph statistics and coverage metrics | <50ms |
 | `memory_causal_unlink` | Remove causal relationships | <50ms |
-| `memory_skill_graph_query` | Query skill dependency graph with tiered traversal | <100ms |
-| `memory_skill_graph_invalidate` | Force-clear cached skill graph for immediate consistency | <10ms |
 
 ### System Tools
 
@@ -329,7 +327,7 @@ The causal graph supports 6 relationship types for tracing decision history:
 | L3 | Discovery | 800 | `memory_list`, `memory_stats`, `memory_health` |
 | L4 | Mutation | 500 | `memory_delete`, `memory_bulk_delete`, `memory_update`, `memory_validate` |
 | L5 | Lifecycle | 600 | `checkpoint_create`, `checkpoint_list`, `checkpoint_restore`, `checkpoint_delete` |
-| L6 | Analysis | 1200 | `task_preflight`, `task_postflight`, `memory_drift_why`, `memory_causal_link`, `memory_causal_stats`, `memory_causal_unlink`, `memory_skill_graph_query`, `memory_skill_graph_invalidate` |
+| L6 | Analysis | 1200 | `task_preflight`, `task_postflight`, `memory_drift_why`, `memory_causal_link`, `memory_causal_stats`, `memory_causal_unlink` |
 | L7 | Maintenance | 1000 | `memory_index_scan`, `memory_get_learning_history` |
 
 ---
@@ -400,7 +398,7 @@ Query
 | Vector | `sqlite-vec` 1024d embeddings | 1.0x | Semantic similarity |
 | FTS5 | SQLite full-text search | 1.0x | Full-text lexical matching |
 | BM25 | SQLite FTS5 BM25 ranking | 1.0x | Keyword relevance scoring |
-| Skill Graph | Graph traversal (causal + skill) | 1.5x | Decision lineage and "why" queries |
+| Graph Channel | Graph traversal (causal) | 1.5x | Decision lineage and "why" queries |
 
 ### Post-Fusion Enhancements
 
@@ -524,7 +522,7 @@ Prevents duplicate memories from polluting the index:
 | 0.50-0.69 | LOW_MATCH | Create new, note similarity |
 | < 0.50 | UNIQUE | Create new memory normally |
 
-### 5-Source Indexing Pipeline
+### 3-Source Indexing Pipeline
 
 `memory_index_scan` categorizes discovered files into five sources:
 
@@ -533,8 +531,6 @@ Prevents duplicate memories from polluting the index:
 | Constitutional rules | `.opencode/skill/*/constitutional/*.md` | Per-file metadata |
 | Spec documents | `.opencode/specs/**/*.md` | Per-type multiplier |
 | Spec memories | `specs/**/memory/*.{md,txt}` | 0.5 |
-| Project READMEs | `**/README.{md,txt}` (excl. node_modules) | 0.4 |
-| Skill READMEs | `.opencode/skill/*/README.{md,txt}` | 0.3 |
 
 ---
 
@@ -545,8 +541,8 @@ Prevents duplicate memories from polluting the index:
 
 ```
 mcp_server/
-├── context-server.ts       # Main MCP server entry point (25 tools) [source]
-├── tool-schemas.ts         # All 25 tool schema definitions
+├── context-server.ts       # Main MCP server entry point (23 tools) [source]
+├── tool-schemas.ts         # All 23 tool schema definitions
 ├── cli.ts                  # CLI entry point (stats, bulk-delete, reindex, schema-downgrade)
 ├── package.json            # @spec-kit/mcp-server v1.7.2
 ├── tsconfig.json           # TypeScript config (outDir: ./dist)
@@ -574,12 +570,11 @@ mcp_server/
 │   ├── memory-crud-utils.ts  # CRUD shared helper utilities
 │   ├── memory-crud-types.ts  # CRUD argument and helper types
 │   ├── memory-bulk-delete.ts # memory_bulk_delete + skipCheckpoint
-│   ├── memory-index.ts     # memory_index_scan + 5-source pipeline
+│   ├── memory-index.ts     # memory_index_scan + 3-source pipeline
 │   ├── checkpoints.ts      # checkpoint_create/list/restore/delete + memory_validate
 │   ├── session-learning.ts # preflight/postflight/learning history
 │   ├── memory-context.ts   # memory_context + unified entry
 │   ├── causal-graph.ts     # causal_link/unlink/stats/drift_why
-│   └── sgqs-query.ts       # memory_skill_graph_query + memory_skill_graph_invalidate
 │
 ├── hooks/                  # MCP lifecycle hooks
 │   ├── index.ts            # Hook exports
@@ -590,7 +585,7 @@ mcp_server/
 │   ├── cache/              # Tool result caching + nested cognitive/ and scoring/ (2)
 │   ├── chunking/           # Anchor-aware large-file chunker (50K threshold) (1)
 │   ├── cognitive/          # FSRS, PE gating, 5-state model, co-activation, rollout policy (10)
-│   ├── config/             # Memory types, type inference, skill-ref config (3)
+│   ├── config/             # Memory types and type inference helpers (2)
 │   ├── contracts/          # ContextEnvelope, RetrievalTrace, DegradedModeContract (1)
 │   ├── errors/             # Core errors, recovery hints (49 codes) (3)
 │   ├── extraction/         # Extraction adapter, redaction gate (2)
@@ -669,14 +664,11 @@ All flags are evaluated via `isFeatureEnabled()`. After specs 137-139, the flags
 | `SPECKIT_CROSS_ENCODER` | `true` | Enable cross-encoder reranking when a provider is configured (set `false` to disable) |
 | `SPECKIT_RELATIONS` | `true` | Enable causal memory graph |
 | `SPECKIT_INDEX_SPEC_DOCS` | `true` | Enable spec folder document indexing |
-| `SPECKIT_INDEX_SKILL_REFS` | `true` | Enable skill reference/assets directory indexing |
 | `SPECKIT_EXTENDED_TELEMETRY` | `true` | Enable 4-dimension retrieval telemetry |
 | `SPECKIT_CAUSAL_BOOST` | `true` | Enable 2-hop causal-neighbor score boost |
 | `SPECKIT_SESSION_BOOST` | `true` | Enable session-attention score boost |
 | `SPECKIT_ADAPTIVE_FUSION` | `true` | Enable intent-aware weighted RRF fusion |
-| `SPECKIT_GRAPH_UNIFIED` | `true` | Unified graph search bridging causal + skill graph |
-| `SPECKIT_GRAPH_MMR` | `true` | MMR diversity reranking for graph results |
-| `SPECKIT_GRAPH_AUTHORITY` | `true` | Authority scoring in graph traversal |
+| `SPECKIT_GRAPH_UNIFIED` | `true` | Unified graph search bridging causal graph retrieval |
 | `SPECKIT_PRESSURE_POLICY` | `true` | Enable token-pressure mode override in `memory_context` (set `false` to disable) |
 
 ### Database Schema

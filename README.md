@@ -72,10 +72,9 @@ Two custom-built systems fix this: a **spec-kit documentation framework** and a 
 ┌──────────────────────────────────────────────────────────────┐
 │  MEMORY ENGINE (32 MCP tools: 25 memory + 7 code mode)       │
 │  Cognitive tiers ─ Causal graphs ─ Unified Context Engine    │
-│  4-channel hybrid: Vector + BM25 + FTS5 + Skill Graph (RRF)  │
+│  3-channel hybrid: Vector + BM25 + FTS5 (RRF)                │
 │  MMR diversity ─ TRM confidence gating ─ query expansion     │
-│  Sources: spec memory + constitutional + skill READMEs +     │
-│           project READMEs + spec documents                   │
+│  Sources: spec memory + constitutional + spec documents      │
 │  Embeddings: Voyage | OpenAI | HuggingFace Local (free)      │
 └──────────────────────┬───────────────────────────────────────┘
                        ▼
@@ -92,8 +91,7 @@ Everything connects. Memory files live *inside* spec folders. Gates enforce docu
 
 ### Recent Platform Highlights
 
-- **Hybrid RAG Fusion (spec 138)**: The memory engine now activates all three retrieval channels simultaneously (Vector, BM25, FTS5) and fuses results via Reciprocal Rank Fusion. A 4th channel (Skill Graph / SGQS) adds graph traversal results. MMR diversity pruning, Transparent Reasoning Module confidence gating, multi-query expansion and AST-based section extraction complete the Unified Context Engine.
-- **Skill Graph decomposition (spec 138)**: All 10 monolithic SKILL.md files decomposed into wikilink-connected node files with YAML frontmatter. An in-process SGQS query layer (Neo4j-style) resolves `[[node]]` wikilinks and returns traversal subgraphs without any external database dependency.
+- **Hybrid RAG Fusion (spec 138)**: The memory engine activates three retrieval channels simultaneously (Vector, BM25, FTS5) and fuses results via Reciprocal Rank Fusion. MMR diversity pruning, Transparent Reasoning Module confidence gating, multi-query expansion and AST-based section extraction complete the Unified Context Engine.
 - **Gemini CLI is the 4th runtime**: 8 agents, 19 TOML command wrappers, 10 skill symlinks and 3 MCP servers. Agents optimized for gemini-3.1-pro within a 400K effective token window.
 - **Spec documents are indexed and searchable**: spec folder docs (`spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `decision-record.md`, `implementation-summary.md`, `research.md`, `handover.md`) surface via `find_spec` and `find_decision` intents.
 - **473 anchor tags across 74 READMEs**: section-level retrieval with ~93% token savings over loading full files.
@@ -220,19 +218,17 @@ Exit code 0 = pass. Exit code 2 = must fix.
 
 > *Remember everything. Surface what matters. Keep it private.*
 
-Your AI assistant forgets everything between sessions. The Memory Engine fixes this with 25 MCP tools across 7 architectural layers: 5-source indexing, 7-intent retrieval routing, schema v15 metadata (`document_type`, `spec_level`) and document-type scoring. The Unified Context Engine (spec 138) adds a 4-channel hybrid retrieval pipeline with RRF fusion, MMR diversity pruning, confidence gating and in-process Skill Graph traversal.
+Your AI assistant forgets everything between sessions. The Memory Engine fixes this with 23 MCP tools across 7 architectural layers: 3-source indexing, 7-intent retrieval routing, schema v15 metadata (`document_type`, `spec_level`) and document-type scoring. The Unified Context Engine (spec 138) adds a 3-channel hybrid retrieval pipeline with RRF fusion, MMR diversity pruning, confidence gating and causal graph enrichment.
 
-### 5-Source Discovery Pipeline
+### 3-Source Discovery Pipeline
 
 The memory index builds from 5 distinct source types, each with its own discovery path and importance weight:
 
-| #   | Source                    | Discovery Path                              | Weight  | What Gets Indexed                          |
-| --- | ------------------------- | ------------------------------------------- | ------- | ------------------------------------------ |
-| 1   | **Constitutional docs**   | `constitutional.md` files                   | 1.0     | System rules (never decay, always surface) |
-| 2   | **Spec folder documents** | `.opencode/specs/**/*.md`                   | 0.6-0.8 | Specs, plans, tasks, decisions, summaries  |
-| 3   | **Memory files**          | `specs/###-feature/memory/*.{md,txt}`       | 0.5     | Session context, decisions, progress       |
-| 4   | **Project READMEs**       | `.opencode/**/README.{md,txt}`, root README | 0.4     | Architecture, structure, conventions       |
-| 5   | **Skill READMEs**         | `.opencode/skill/*/README.{md,txt}`         | 0.3     | Domain expertise, tool documentation       |
+| #   | Source                    | Discovery Path                        | Weight  | What Gets Indexed                          |
+| --- | ------------------------- | ------------------------------------- | ------- | ------------------------------------------ |
+| 1   | **Constitutional docs**   | `constitutional.md` files             | 1.0     | System rules (never decay, always surface) |
+| 2   | **Spec folder documents** | `.opencode/specs/**/*.md`             | 0.6-0.8 | Specs, plans, tasks, decisions, summaries  |
+| 3   | **Memory files**          | `specs/###-feature/memory/*.{md,txt}` | 0.5     | Session context, decisions, progress       |
 
 Source 2 was added in spec 126 — prior to that, spec folder documents (the most authoritative project knowledge) were invisible to memory search. Controlled via `includeSpecDocs` parameter on `memory_index_scan` and `SPECKIT_INDEX_SPEC_DOCS` environment variable.
 
@@ -282,18 +278,17 @@ Two additional subsystems: **FSRS Scheduler** (spaced repetition for review inte
 
 ### Hybrid Search Architecture
 
-Four retrieval channels fuse via Reciprocal Rank Fusion (RRF) in the Unified Context Engine (spec 138):
+Three retrieval channels fuse via Reciprocal Rank Fusion (RRF) in the Unified Context Engine (spec 138):
 
 | Channel           | Method                                | Strength                                          |
 | ----------------- | ------------------------------------- | ------------------------------------------------- |
 | **Vector**        | Semantic similarity (embeddings)      | Conceptual matching, paraphrase detection         |
 | **BM25 Keyword**  | Term frequency / inverse document     | Technical terms, code identifiers, exact phrases  |
 | **FTS5 Full-Text**| SQLite full-text search               | Exact substring matching, structured queries      |
-| **Skill Graph**   | SGQS wikilink traversal (in-process)  | Procedure-level skill context, graph subgraphs    |
 
 **Post-fusion processing**: MMR diversity pruning (reduces redundant results by >= 30%), Transparent Reasoning Module confidence gating (blocks results below `confidence_threshold=0.65`, never returns empty set), multi-query expansion (>= 3 query variants for vocabulary mismatch resolution) and AST-based document section extraction.
 
-**Latency target**: p95 <= 120ms with all four channels active on the v15 SQLite schema. Zero schema migrations required.
+**Latency target**: p95 <= 120ms with all three channels active on the v15 SQLite schema. Zero schema migrations required.
 
 **4 embedding providers**: Voyage AI, OpenAI, HuggingFace Local (free, default), auto-detection.
 
@@ -512,12 +507,12 @@ Skills are domain expertise on demand. The AI loads the right skill and already 
 | ---------------------------- | ------------- | ------------------------------------------------------------------------------------------ |
 | `mcp-code-mode`              | Integrations  | External tools via Code Mode (Figma, GitHub, ClickUp)                                      |
 | `mcp-figma`                  | Design        | Figma file access, components, styles, comments                                            |
-| `system-spec-kit`            | Documentation | Spec folders, templates, memory integration, context preservation. Skill Graph node files with SGQS traversal (spec 138) |
+| `system-spec-kit`            | Documentation | Spec folders, templates, memory integration, context preservation and memory workflows |
 | `mcp-chrome-devtools`  | Browser       | DevTools automation, screenshots, debugging                                                |
 | `sk-code--full-stack` | Multi-Stack   | Go, Node.js, React, React Native, Swift, auto-detected via marker files                    |
 | `sk-code--opencode`   | System Code   | TypeScript, Python, Shell for MCP servers and scripts                                      |
 | `sk-code--web`    | Web Dev       | Webflow, vanilla JS: implementation, debugging, verification                               |
-| `sk-documentation`    | Docs          | Document quality scoring, skill creation, install guides. Skill Graph node authoring       |
+| `sk-documentation`    | Docs          | Document quality scoring, skill creation and install guides       |
 | `sk-git`              | Git           | Commits, branches, PRs, worktrees                                                          |
 
 ### Auto-Detection
@@ -534,56 +529,16 @@ Skills are domain expertise on demand. The AI loads the right skill and already 
 | **React Native** | mobile   | `app.json` with "expo"                          | Navigation, hooks, platform APIs  |
 | **Swift**        | mobile   | `Package.swift`                                 | SwiftUI, Combine, async/await     |
 
-### Skill Graph Architecture
+### Skill Content Structure
 
-Each skill directory contains markdown node files (`nodes/*.md`) connected by `[[wikilinks]]`. The SGQS (Skill Graph Query System) engine builds an in-memory graph from these files and exposes it through an MCP tool.
+Each skill is organized for progressive disclosure:
 
-```
-nodes/*.md ──┐                                    ┌── MCP Tool
-index.md ────┤                                    │   (memory_skill_graph_query)
-SKILL.md ────┼──► Graph Builder ──► In-Memory ──► SGQS Query ──► Results
-references/ ─┤    (filesystem      Graph          Engine        (columns +
-other .md ───┘     scan + parse)   (435 nodes,    (Cypher-lite   rows)
-                                    6 edge types)  MATCH/WHERE/
-                                                   RETURN)
-```
+- `SKILL.md` as the entrypoint and routing surface
+- `references/` for deeper documentation and standards
+- `assets/` for reusable templates and examples
+- Optional `scripts/` for deterministic automation and validation
 
-| Metric         | Value                                                                                  |
-| -------------- | -------------------------------------------------------------------------------------- |
-| Skills indexed | 10                                                                                     |
-| Graph nodes    | 435 (83 knowledge nodes in `nodes/*.md` + references, structural files, virtual roots) |
-| Edge types     | 6: `LINKS_TO`, `CONTAINS`, `REFERENCES`, `DEPENDS_ON`, `HAS_ENTRYPOINT`, `HAS_INDEX`  |
-| Node labels    | 7: `:Skill`, `:Node`, `:Index`, `:Entrypoint`, `:Reference`, `:Document`, `:Asset`     |
-
-The graph builder scans skill directories, parses YAML frontmatter and extracts edges from wikilinks and markdown links. Each `index.md` serves as a Map of Content (MOC). Cross-skill wikilinks produce `DEPENDS_ON` edges. The entire graph lives in-process with no external database required.
-
-See [Skills Library README](.opencode/skill/README.md#5-skill-graph) for full SGQS syntax reference and node structure details.
-
-### Intelligence Patterns
-
-Seven graph-topology patterns augment the hybrid RAG fusion pipeline, leveraging Skill Graph structural signals to address limitations that statistical retrieval alone cannot solve. Combined overhead: ~8-10ms within the 120ms pipeline budget.
-
-| Pattern                              | Description                                                                                       | Spec    |
-| ------------------------------------ | ------------------------------------------------------------------------------------------------- | ------- |
-| **Graph-Guided MMR**                 | Composite diversity metric incorporating graph topological distance alongside cosine distance      | 138/003 |
-| **Structural Authority Propagation** | PageRank-style authority score based on Index > Node > Reference hierarchy and link density        | 138/003 |
-| **Intent-to-Subgraph Routing**       | Maps query intents to graph label affinities, creating intent-aware search lanes before retrieval  | 138/003 |
-| **Semantic Bridge Discovery**        | Traverses wikilink edges to extract related terms, expanding BM25/FTS queries with topological vocabulary | 138/003 |
-| **Evidence Gap Prevention**          | Pre-computed graph coverage density predicts retrieval confidence before search executes           | 138/002 |
-| **Context Budget Optimization**      | Selects results to maximize graph-region coverage within the 2000-token context budget             | 138/003 |
-| **Temporal-Structural Coherence**    | Combines FSRS spaced-repetition decay with graph centrality for architecture-aware aging           | 138/003 |
-
-### Benchmarks
-
-Retrieval quality validated through three independent benchmark suites, each containing 20 scored scenarios (0-5 scale) with cryptographic freeze integrity on StrictHoldout inputs.
-
-| Suite             | Queries | Score        | Description                                                    |
-| ----------------- | ------- | ------------ | -------------------------------------------------------------- |
-| **Legacy20**      | 20      | **5.00/5.0** | Safety gate — preserves historical behavior. Threshold: 3.0    |
-| **V2**            | 20      | **5.00/5.0** | Primary quality milestone. Threshold: 3.5                      |
-| **StrictHoldout** | 20      | **5.00/5.0** | Hardest scenarios + hash-locked freeze integrity. Threshold: 4.5 |
-
-Full test suite: 4,770 tests across 159 files, 0 failures. Pipeline p95 latency: 24ms (ceiling: 120ms).
+See [Skills Library README](.opencode/skill/README.md#5-skill-structure) for directory conventions and authoring guidance.
 
 <!-- /ANCHOR:skills-library -->
 
@@ -838,8 +793,8 @@ memory_search({ query: "authentication flow", specFolder: "005-auth", includeCon
 
 Bulk indexing with source control:
 ```
-memory_index_scan({ includeReadmes: true, includeSpecDocs: true })
-→ Indexes all 5 sources (memory files, constitutional, skill READMEs, project READMEs, spec documents)
+memory_index_scan({ includeSpecDocs: true })
+→ Indexes all 3 sources (memory files, constitutional, spec documents)
 → Skips unchanged files (content hash comparison)
 → Generates embeddings only for new/modified content
 

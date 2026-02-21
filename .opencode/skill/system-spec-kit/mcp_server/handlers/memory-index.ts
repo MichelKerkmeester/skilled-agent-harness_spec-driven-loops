@@ -21,8 +21,6 @@ import * as memoryParser from '../lib/parsing/memory-parser';
 import * as embeddings from '../lib/providers/embeddings';
 import * as triggerMatcher from '../lib/parsing/trigger-matcher';
 import * as incrementalIndex from '../lib/storage/incremental-index';
-import { loadSkillRefConfig } from '../lib/config/skill-ref-config';
-import type { SkillRefConfig } from '../lib/config/skill-ref-config';
 
 // REQ-019: Standardized Response Structure
 import { createMCPSuccessResponse, createMCPErrorResponse } from '../lib/response/envelope';
@@ -49,12 +47,8 @@ const SPEC_DOCUMENT_FILENAMES = new Set([
 /** Directories to exclude from spec document discovery */
 const SPEC_DOC_EXCLUDE_DIRS = new Set(['z_archive', 'scratch', 'memory', 'node_modules']);
 
-/** README filename matcher for markdown and plain text docs */
+/** README filename matcher for markdown and plain text docs. */
 const README_FILE_PATTERN = /^readme\.(md|txt)$/i;
-
-function isReadmeFileName(fileName: string): boolean {
-  return README_FILE_PATTERN.test(fileName);
-}
 
 /**
  * Discover spec folder documents (.opencode/specs/ directory tree).
@@ -217,9 +211,7 @@ interface ScanArgs {
   specFolder?: string | null;
   force?: boolean;
   includeConstitutional?: boolean;
-  includeReadmes?: boolean;
   includeSpecDocs?: boolean;
-  includeSkillRefs?: boolean;
   incremental?: boolean;
 }
 
@@ -255,7 +247,7 @@ function findConstitutionalFiles(workspacePath: string): string[] {
         const files = fs.readdirSync(constitutionalDir, { withFileTypes: true });
         for (const file of files) {
           if (file.isFile() && file.name.endsWith('.md')) {
-            if (isReadmeFileName(file.name)) continue;
+            if (README_FILE_PATTERN.test(file.name)) continue;
             results.push(path.join(constitutionalDir, file.name));
           }
         }
@@ -271,171 +263,8 @@ function findConstitutionalFiles(workspacePath: string): string[] {
   return results;
 }
 
-/**
- * Find README.md and README.txt files in skill directories for indexing.
- * Discovers README docs recursively under .opencode/skill/ directories.
- * Per ADR-003: Separate discovery path from constitutional files.
- */
-function findSkillReadmes(workspacePath: string): string[] {
-  const results: string[] = [];
-  const skillDir = path.join(workspacePath, '.opencode', 'skill');
-
-  if (!fs.existsSync(skillDir)) {
-    return results;
-  }
-
-  // Recursive function to find README docs
-  function walkDir(dir: string): void {
-    try {
-      const entries = fs.readdirSync(dir, { withFileTypes: true });
-      for (const entry of entries) {
-        const fullPath = path.join(dir, entry.name);
-        if (entry.isDirectory()) {
-          // Skip node_modules and hidden directories (except .opencode itself)
-          if (entry.name === 'node_modules' || (entry.name.startsWith('.') && entry.name !== '.opencode')) {
-            continue;
-          }
-          walkDir(fullPath);
-        } else if ((entry.isFile() || entry.isSymbolicLink()) && isReadmeFileName(entry.name)) {
-          results.push(fullPath);
-        }
-      }
-    } catch (_err: unknown) {
-      // Skip directories we can't read
-    }
-  }
-
-  walkDir(skillDir);
-  return results;
-}
-
-/**
- * Find project/code-folder README docs (not under .opencode/skill/).
- * Uses catch-all discovery with exclusion patterns.
- */
-async function findProjectReadmes(workspaceRoot: string): Promise<string[]> {
-  const readmes: string[] = [];
-
-  async function walk(dir: string): Promise<void> {
-    try {
-      const entries = await fs.promises.readdir(dir, { withFileTypes: true });
-      for (const entry of entries) {
-        const fullPath = path.join(dir, entry.name);
-        const relativePath = path.relative(workspaceRoot, fullPath).replace(/\\/g, '/');
-
-        // Skip excluded directories
-        if (entry.isDirectory()) {
-          const skipDirs = ['node_modules', '.git', 'dist', 'build', '.next', 'coverage', 'vendor', '__pycache__', '.pytest_cache'];
-          if (skipDirs.includes(entry.name)) continue;
-          // Skip .opencode/skill/ — those are handled by findSkillReadmes()
-          if (relativePath === '.opencode/skill' || relativePath.startsWith('.opencode/skill/')) continue;
-          await walk(fullPath);
-          continue;
-        }
-
-        if (isReadmeFileName(entry.name)) {
-          readmes.push(fullPath);
-        }
-      }
-    } catch {
-      // Silently skip directories we can't read (permissions, etc.)
-    }
-  }
-
-  await walk(workspaceRoot);
-  return readmes;
-}
-
 /* ---------------------------------------------------------------
-   7. SKILL REFERENCE FILE DISCOVERY (Source #6)
---------------------------------------------------------------- */
-
-/**
- * Find reference and asset files from configured sk-code--* skills.
- * Source #6: Skill References & Assets.
- * Only scans skills listed in config.jsonc skillReferenceIndexing.indexedSkills.
- */
-function findSkillReferenceFiles(workspacePath: string): string[] {
-  // Feature flag: allow opt-out
-  if (process.env.SPECKIT_INDEX_SKILL_REFS === 'false') {
-    return [];
-  }
-
-  const config: SkillRefConfig = loadSkillRefConfig();
-  if (!config.enabled || config.indexedSkills.length === 0) {
-    return [];
-  }
-
-  const results = new Set<string>();
-  const skillDir = path.join(workspacePath, '.opencode', 'skill');
-
-  if (!fs.existsSync(skillDir)) return [];
-
-  const skillRoot = path.resolve(skillDir);
-  const skillRootPrefix = `${skillRoot}${path.sep}`;
-
-  const extensionSet = new Set(config.fileExtensions.map((e: string) => e.toLowerCase()));
-
-  for (const skillName of config.indexedSkills) {
-    const skillPath = path.resolve(skillRoot, skillName);
-    if (!skillPath.startsWith(skillRootPrefix)) {
-      console.warn(`[skill-ref-index] Unsafe skill path in config ignored: ${skillName}`);
-      continue;
-    }
-
-    if (!fs.existsSync(skillPath)) {
-      console.warn(`[skill-ref-index] Configured skill not found: ${skillName}`);
-      continue;
-    }
-
-    const skillPathPrefix = `${skillPath}${path.sep}`;
-
-    for (const subDir of config.indexDirs) {
-      const targetDir = path.resolve(skillPath, subDir);
-      if (!targetDir.startsWith(skillPathPrefix)) {
-        console.warn(`[skill-ref-index] Unsafe indexDir ignored for skill ${skillName}: ${subDir}`);
-        continue;
-      }
-
-      if (!fs.existsSync(targetDir)) continue;
-
-      function walkDir(dir: string, depth: number = 0): void {
-        if (depth > 10) return;
-        try {
-          const entries = fs.readdirSync(dir, { withFileTypes: true });
-          for (const entry of entries) {
-            if (entry.isSymbolicLink()) continue;
-            const fullPath = path.join(dir, entry.name);
-            const resolvedPath = path.resolve(fullPath);
-            if (!resolvedPath.startsWith(skillPathPrefix)) continue;
-
-            if (entry.isDirectory()) {
-              if (entry.name.startsWith('.') || entry.name === 'node_modules') continue;
-              walkDir(resolvedPath, depth + 1);
-            } else if (entry.isFile()) {
-              const ext = path.extname(entry.name).toLowerCase();
-              if (extensionSet.has(ext)) {
-                // Skip README files (already handled by findSkillReadmes)
-                if (!isReadmeFileName(entry.name)) {
-                  results.add(resolvedPath);
-                }
-              }
-            }
-          }
-        } catch {
-          // Skip unreadable directories
-        }
-      }
-
-      walkDir(targetDir);
-    }
-  }
-
-  return Array.from(results).sort();
-}
-
-/* ---------------------------------------------------------------
-   8. MEMORY INDEX SCAN HANDLER
+   7. MEMORY INDEX SCAN HANDLER
 --------------------------------------------------------------- */
 
 /** Handle memory_index_scan tool - scans and indexes memory files with incremental support */
@@ -444,9 +273,7 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
     specFolder: spec_folder = null,
     force = false,
     includeConstitutional: include_constitutional = true,
-    includeReadmes: include_readmes = true,
     includeSpecDocs: include_spec_docs = true,
-    includeSkillRefs: include_skill_refs = true,
     incremental = true
   } = args;
 
@@ -485,11 +312,8 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
 
   const specFiles: string[] = memoryParser.findMemoryFiles(workspacePath, { specFolder: spec_folder });
   const constitutionalFiles: string[] = include_constitutional ? findConstitutionalFiles(workspacePath) : [];
-  const readmeFiles: string[] = include_readmes ? findSkillReadmes(workspacePath) : [];
-  const projectReadmeFiles: string[] = include_readmes ? await findProjectReadmes(workspacePath) : [];
   const specDocFiles: string[] = include_spec_docs ? findSpecDocuments(workspacePath, { specFolder: spec_folder }) : [];
-  const skillRefFiles: string[] = include_skill_refs ? findSkillReferenceFiles(workspacePath) : [];
-  const files = [...specFiles, ...constitutionalFiles, ...readmeFiles, ...projectReadmeFiles, ...specDocFiles, ...skillRefFiles];
+  const files = [...specFiles, ...constitutionalFiles, ...specDocFiles];
 
   if (files.length === 0) {
     await setLastScanTime(now);
@@ -654,7 +478,6 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
         const docType = memoryParser.extractDocumentType(fileResult.filePath);
         if (
           docType !== 'memory' &&
-          docType !== 'readme' &&
           docType !== 'constitutional'
         ) {
           affectedSpecFolders.add(fileResult.specFolder);
@@ -736,14 +559,9 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
             _debug_fileCounts: {
               specFiles: specFiles.length,
               constitutionalFiles: constitutionalFiles.length,
-              skillReadmes: readmeFiles.length,
-              projectReadmes: projectReadmeFiles.length,
               specDocFiles: specDocFiles.length,
-              skillRefFiles: skillRefFiles.length,
               totalFiles: files.length,
-              includeReadmes: include_readmes,
               includeSpecDocs: include_spec_docs,
-              includeSkillRefs: include_skill_refs,
               workspacePath,
             },
           }
@@ -761,10 +579,7 @@ export {
   handleMemoryIndexScan,
   indexSingleFile,
   findConstitutionalFiles,
-  findSkillReadmes,
-  findProjectReadmes,
   findSpecDocuments,
-  findSkillReferenceFiles,
   detectSpecLevel,
 };
 
@@ -772,19 +587,13 @@ export {
 const handle_memory_index_scan = handleMemoryIndexScan;
 const index_single_file = indexSingleFile;
 const find_constitutional_files = findConstitutionalFiles;
-const find_skill_readmes = findSkillReadmes;
-const find_project_readmes = findProjectReadmes;
 const find_spec_documents = findSpecDocuments;
-const find_skill_reference_files = findSkillReferenceFiles;
 const detect_spec_level = detectSpecLevel;
 
 export {
   handle_memory_index_scan,
   index_single_file,
   find_constitutional_files,
-  find_skill_readmes,
-  find_project_readmes,
   find_spec_documents,
-  find_skill_reference_files,
   detect_spec_level,
 };

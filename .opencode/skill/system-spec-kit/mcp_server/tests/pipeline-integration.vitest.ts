@@ -51,33 +51,6 @@ vi.mock('../lib/cognitive/co-activation', () => ({
   spreadActivation: vi.fn(() => []),
 }));
 
-// Mock skill-graph-cache so createUnifiedGraphSearchFn background warm-load
-// does not hit the filesystem.
-vi.mock('../lib/search/skill-graph-cache', () => ({
-  skillGraphCache: {
-    get: vi.fn().mockResolvedValue({
-      nodes: new Map([
-        ['test-skill/node-a', {
-          id: 'test-skill/node-a',
-          labels: [':Node'],
-          properties: { name: 'Node A' },
-          skill: 'test-skill',
-          path: 'test-skill/node-a',
-        }],
-      ]),
-      edges: [],
-      edgeById: new Map(),
-      outbound: new Map(),
-      inbound: new Map(),
-    }),
-  },
-  SkillGraphCacheManager: class {
-    get = vi.fn().mockResolvedValue({ nodes: new Map(), edges: [], edgeById: new Map(), outbound: new Map(), inbound: new Map() });
-    invalidate = vi.fn();
-    isWarm = vi.fn(() => false);
-  },
-}));
-
 /* ─────────────────────────────────────────────────────────────
    MINIMAL MOCK DATABASE
 ──────────────────────────────────────────────────────────────── */
@@ -105,8 +78,6 @@ const mockGraphFn = vi.fn(() => FAKE_GRAPH_RESULTS);
 function saveEnv() {
   return {
     SPECKIT_GRAPH_UNIFIED: process.env.SPECKIT_GRAPH_UNIFIED,
-    SPECKIT_GRAPH_MMR: process.env.SPECKIT_GRAPH_MMR,
-    SPECKIT_GRAPH_AUTHORITY: process.env.SPECKIT_GRAPH_AUTHORITY,
   };
 }
 
@@ -137,32 +108,20 @@ describe('Suite 1 — Module wiring: all exports are accessible', () => {
     expect(typeof mod.resetGraphMetrics).toBe('function');
   });
 
-  it('graph-search-fn exports: createUnifiedGraphSearchFn, getSubgraphWeights, computeAuthorityScores', async () => {
+  it('graph-search-fn exports: createUnifiedGraphSearchFn, getSubgraphWeights', async () => {
     const mod = await import('../lib/search/graph-search-fn');
     expect(typeof mod.createUnifiedGraphSearchFn).toBe('function');
     expect(typeof mod.getSubgraphWeights).toBe('function');
-    expect(typeof mod.computeAuthorityScores).toBe('function');
   });
 
-  it('graph-flags exports: isGraphUnifiedEnabled, isGraphMMREnabled, isGraphAuthorityEnabled', async () => {
+  it('graph-flags exports: isGraphUnifiedEnabled', async () => {
     const mod = await import('../lib/search/graph-flags');
     expect(typeof mod.isGraphUnifiedEnabled).toBe('function');
-    expect(typeof mod.isGraphMMREnabled).toBe('function');
-    expect(typeof mod.isGraphAuthorityEnabled).toBe('function');
   });
 
-  it('skill-graph-cache exports: SkillGraphCacheManager, skillGraphCache', async () => {
-    const mod = await import('../lib/search/skill-graph-cache');
-    expect(typeof mod.SkillGraphCacheManager).toBe('function');
-    expect(mod.skillGraphCache).toBeDefined();
-    expect(typeof mod.skillGraphCache.get).toBe('function');
-  });
-
-  it('query-expander exports: expandQuery, buildSemanticBridgeMap, expandQueryWithBridges', async () => {
+  it('query-expander exports: expandQuery', async () => {
     const mod = await import('../lib/search/query-expander');
     expect(typeof mod.expandQuery).toBe('function');
-    expect(typeof mod.buildSemanticBridgeMap).toBe('function');
-    expect(typeof mod.expandQueryWithBridges).toBe('function');
   });
 
   it('evidence-gap-detector exports: detectEvidenceGap, predictGraphCoverage', async () => {
@@ -270,7 +229,7 @@ describe('Suite 2 — Pipeline contract tests', () => {
 
 // ================================================================
 // SUITE 3: FEATURE FLAG CONTRACT
-// All 3 flags default to true when unset; setting SPECKIT_GRAPH_UNIFIED=true
+// Graph unified flag defaults to true when unset; setting SPECKIT_GRAPH_UNIFIED=true
 // keeps isGraphUnifiedEnabled() enabled.
 // ================================================================
 
@@ -279,10 +238,8 @@ describe('Suite 3 — Feature flag contract', () => {
 
   beforeEach(() => {
     savedEnv = saveEnv();
-    // Ensure all flags are unset at the start of each test.
+    // Ensure the flag is unset at the start of each test.
     delete process.env.SPECKIT_GRAPH_UNIFIED;
-    delete process.env.SPECKIT_GRAPH_MMR;
-    delete process.env.SPECKIT_GRAPH_AUTHORITY;
   });
 
   afterEach(() => {
@@ -292,16 +249,6 @@ describe('Suite 3 — Feature flag contract', () => {
   it('isGraphUnifiedEnabled defaults to true when SPECKIT_GRAPH_UNIFIED is unset', async () => {
     const { isGraphUnifiedEnabled } = await import('../lib/search/graph-flags');
     expect(isGraphUnifiedEnabled()).toBe(true);
-  });
-
-  it('isGraphMMREnabled defaults to true when SPECKIT_GRAPH_MMR is unset', async () => {
-    const { isGraphMMREnabled } = await import('../lib/search/graph-flags');
-    expect(isGraphMMREnabled()).toBe(true);
-  });
-
-  it('isGraphAuthorityEnabled defaults to true when SPECKIT_GRAPH_AUTHORITY is unset', async () => {
-    const { isGraphAuthorityEnabled } = await import('../lib/search/graph-flags');
-    expect(isGraphAuthorityEnabled()).toBe(true);
   });
 
   it('setting SPECKIT_GRAPH_UNIFIED=true enables the graph channel flag', async () => {

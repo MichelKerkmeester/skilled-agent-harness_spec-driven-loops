@@ -56,7 +56,7 @@ The test suite validates all critical functionality of the Spec Kit Memory MCP s
 | **Full Coverage** | 142 test files covering cognitive, search, handlers and integration |
 | **Category Organization** | Tests grouped by functional domain (cognitive, search, handlers, integration, unit) |
 | **Type Safety** | Full TypeScript with type checking at test level |
-| **Spec 126/127 Reality Checks** | Coverage for 5-source indexing, 7 intents, schema v13 document fields, document-type scoring and `includeSpecDocs` |
+| **Spec 126/127 Reality Checks** | Coverage for 3-source indexing, 7 intents, schema v13 document fields, document-type scoring and `includeSpecDocs` |
 
 ### Requirements
 
@@ -213,9 +213,6 @@ tests/
 ├── pressure-monitor.vitest.ts             # Cognitive pressure monitoring
 ├── rollout-policy.vitest.ts               # Feature rollout policy
 ├── config-cognitive.vitest.ts             # Cognitive configuration
-├── readme-discovery.vitest.ts             # README file discovery logic
-├── integration-readme-sources.vitest.ts   # README-source integration
-├── regression-readme-sources.vitest.ts    # README-source regression tests
 ├── anchor-id-simplification.vitest.ts     # Anchor ID simplification rules
 ├── anchor-prefix-matching.vitest.ts       # Anchor prefix matching logic
 │
@@ -223,7 +220,6 @@ tests/
 ├── memory-context.vitest.ts               # Unified context entry
 ├── memory-parser.vitest.ts                # Memory file parsing
 ├── memory-parser-extended.vitest.ts       # Extended memory parsing
-├── memory-parser-readme.vitest.ts         # Memory parser README-source validation
 ├── memory-crud-extended.vitest.ts         # Extended CRUD operations
 ├── memory-save-extended.vitest.ts         # Extended save operations
 ├── memory-save-integration.vitest.ts      # PE gate + save handler
@@ -273,8 +269,6 @@ tests/
 ├── t302-session-cleanup.vitest.ts         # Session cleanup
 ├── t503-learning-stats-filters.vitest.ts  # Learning stats filters
 ├── spec126-full-spec-doc-indexing.vitest.ts # Spec-doc indexing, schema v13, scoring, intent expansion
-├── skill-ref-config.vitest.ts             # Skill-reference config resolution
-│
 ├── # Unit Tests (Focused Type/Logic Validation)
 ├── unit-composite-scoring-types.vitest.ts # Composite scoring types
 ├── unit-folder-scoring-types.vitest.ts    # Folder scoring types
@@ -312,7 +306,7 @@ tests/
 | `integration-search-pipeline.vitest.ts` | Search pipeline integration |
 | `memory-save-integration.vitest.ts` | PE gate + save handler integration |
 | `memory-search-integration.vitest.ts` | Testing effect integration |
-| `spec126-full-spec-doc-indexing.vitest.ts` | 5-source indexing expectations, v13 fields, document-type scoring, find_spec/find_decision |
+| `spec126-full-spec-doc-indexing.vitest.ts` | 3-source indexing expectations, v13 fields, document-type scoring, find_spec/find_decision |
 
 ---
 

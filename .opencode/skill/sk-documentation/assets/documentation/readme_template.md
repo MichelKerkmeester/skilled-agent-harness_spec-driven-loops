@@ -604,14 +604,14 @@ If deprecating a project/component:
 <!-- ANCHOR:yaml-frontmatter-schema -->
 ## 12. YAML FRONTMATTER SCHEMA
 
-README files that should be indexed by the Spec Kit Memory system can include YAML frontmatter at the very top of the file. This metadata enables semantic search, trigger-phrase matching and importance-based ranking.
+README files can include YAML frontmatter at the very top for consistent metadata across tooling and documentation workflows.
 
 ### Frontmatter Format
 
 ```yaml
 ---
 title: "Human-readable title"
-description: "Brief description for memory indexing"
+description: "Brief description of this document"
 trigger_phrases:
   - "phrase that should surface this document"
   - "another trigger phrase"
@@ -623,10 +623,10 @@ importance_tier: "normal"  # constitutional | critical | important | normal | te
 
 | Field | Required | Type | Description |
 |-------|----------|------|-------------|
-| `title` | Yes | string | Human-readable title used in search results and memory listings |
-| `description` | Yes | string | Brief summary (1-2 sentences) used for indexing and display |
-| `trigger_phrases` | No | string[] | Phrases that cause this document to surface during `memory_match_triggers()` |
-| `importance_tier` | No | enum | Controls ranking priority in search results (default: `normal`) |
+| `title` | Yes | string | Human-readable title for document discovery and display |
+| `description` | Yes | string | Brief summary (1-2 sentences) for quick scanning |
+| `trigger_phrases` | No | string[] | Optional phrases that improve retrieval and routing |
+| `importance_tier` | No | enum | Optional priority hint for downstream tooling (default: `normal`) |
 
 ### Importance Tiers
 
@@ -642,14 +642,13 @@ importance_tier: "normal"  # constitutional | critical | important | normal | te
 
 | Context | Needed? | Reason |
 |---------|---------|--------|
-| README inside `.opencode/skill/` and should be discoverable by memory system | ✅ Required | Enables semantic search and trigger-phrase matching |
-| Document contains decision rationale or architectural context for future sessions | ✅ Required | Context preservation and memory retrieval |
-| Specific trigger phrases should surface the document during prompt matching | ✅ Required | Automatic context surfacing |
-| Standard project root `README.md` (not memory-indexed) | ⚠️ Optional | Not indexed by memory system |
+| README inside `.opencode/skill/` with reusable conventions | ✅ Recommended | Improves consistency across skills |
+| Document contains decision rationale or architectural context | ✅ Recommended | Improves discoverability and maintainability |
+| Specific trigger phrases should surface during prompt matching | ✅ Recommended | Better routing and context surfacing |
+| Standard project root `README.md` | ⚠️ Optional | Useful when extra metadata adds value |
 | File is inside `scratch/` directory (temporary) | ⚠️ Optional | Temporary by nature |
-| Content already captured in dedicated memory files | ⚠️ Optional | Redundant with existing memories |
-| For human consumption only with no AI retrieval intent | ❌ Not needed | No memory indexing required |
-| One-off guide unlikely to be referenced again | ❌ Not needed | No future retrieval expected |
+| For human-only consumption with no retrieval intent | ❌ Not needed | Metadata adds little value |
+| One-off guide unlikely to be referenced again | ❌ Not needed | Can stay minimal |
 
 ### Example: Skill README with Frontmatter
 
@@ -678,17 +677,19 @@ importance_tier: "important"
 <!-- ANCHOR:anchor-templates-for-structured-retrieval -->
 ## 13. ANCHOR TEMPLATES FOR STRUCTURED RETRIEVAL
 
-Memory files and spec folder documents (including READMEs) use a standardized set of **retrieval anchors** for fine-grained context extraction. These anchors enable the memory system to pull specific sections without loading entire files.
+Structured documents can use standardized **retrieval anchors** for fine-grained context extraction. These anchors enable tooling to pull specific sections without loading entire files.
 
 ### Memory Anchor Format
 
 ```markdown
+<!-- ANCHOR:summary -->
 Content for this section...
+<!-- /ANCHOR:summary -->
 ```
 
 ### Standard Memory Anchors
 
-These anchor names are recognized by `memory_search()` and `memory_context()` for targeted retrieval:
+These anchor names are commonly used for targeted retrieval:
 
 | Anchor | Purpose | Typical Content |
 |--------|---------|-----------------|
@@ -702,31 +703,45 @@ These anchor names are recognized by `memory_search()` and `memory_context()` fo
 
 ### Anchor Template
 
-Use this skeleton when creating memory-indexed documents:
+Use this skeleton when creating structured documents:
 
 ```markdown
+<!-- ANCHOR:summary -->
 Brief overview of this document's purpose and key content.
+<!-- /ANCHOR:summary -->
 
+<!-- ANCHOR:state -->
 Current status and implementation state.
 - Completed: [what's done]
 - Remaining: [what's left]
+<!-- /ANCHOR:state -->
 
+<!-- ANCHOR:decisions -->
 Key decisions and their rationale.
 - Decision: [what was decided]
   - Reason: [why]
   - Alternatives considered: [what else was evaluated]
+<!-- /ANCHOR:decisions -->
 
+<!-- ANCHOR:context -->
 Background information needed to understand this work.
+<!-- /ANCHOR:context -->
 
+<!-- ANCHOR:artifacts -->
 Files created or modified:
 - `path/to/file.ts` - [purpose]
+<!-- /ANCHOR:artifacts -->
 
+<!-- ANCHOR:next-steps -->
 What to do next:
 1. [First priority]
 2. [Second priority]
+<!-- /ANCHOR:next-steps -->
 
+<!-- ANCHOR:blockers -->
 Issues preventing progress:
 - [Blocker description and any known workarounds]
+<!-- /ANCHOR:blockers -->
 ```
 
 ### Anchor Rules
@@ -735,27 +750,18 @@ Issues preventing progress:
 - **IDs**: Lowercase with hyphens only (e.g., `next-steps`, not `NextSteps`)
 - **No nesting**: Anchors must not overlap or nest inside each other
 - **Include only what applies**: Not every document needs all seven anchors. Use what's relevant.
-- **Minimum for memory files**: `summary` anchor is strongly recommended for all indexed documents
-- **Retrieval**: Use `memory_search({ query: "...", anchors: ["state", "next-steps"] })` to extract specific sections
+- **Minimum**: `summary` anchor is strongly recommended for structured documents
+- **Retrieval**: Use your retrieval tooling with anchor filters (for example `["state", "next-steps"]`)
 
-### README Anchors and Memory Integration
+### README Anchor Conventions
 
-README files under `.opencode/skill/` are automatically indexed by the Spec Kit Memory system. They use **section-based anchor names** like `overview`, `quick-start`, `features`, `troubleshooting`, etc. (matching H2 sections). These differ from **memory-specific anchors** (`summary`, `state`, `decisions`, `next-steps`) used in memory files for session continuity.
+README files typically use **section-based anchor names** like `overview`, `quick-start`, `features`, and `troubleshooting` (matching H2 sections). These differ from **stateful anchors** (`summary`, `state`, `decisions`, `next-steps`) used in session/context documents.
 
 **README Anchor Conventions**:
-- Match H2 section names (e.g., `<!-- ANCHOR:overview -->` for the Overview section)
+- Match H2 section names (e.g., `<!-- ANCHOR:overview --> ... <!-- /ANCHOR:overview -->` for the Overview section)
 - Lowercase, alphanumeric with hyphens only (e.g., `quick-start`, not `Quick Start`)
 - No session IDs (unlike memory files)
 - Minimum: Every README should have at least an `overview` anchor
-
-**How README Indexing Works**:
-- Discovered by `findSkillReadmes()` during `memory_index_scan()`
-- Classified as `semantic` memory type (documentation describing concepts)
-- Assigned `normal` tier with reduced importance weight (0.3). Surfaces when relevant but never outranks user work memories.
-- Searchable via `memory_search({ query: "..." })` alongside memory files
-- Grouped under `skill:SKILL-NAME` spec folder identifier
-
----
 
 <!-- /ANCHOR:anchor-templates-for-structured-retrieval -->
 <!-- ANCHOR:complete-template -->
@@ -764,10 +770,10 @@ README files under `.opencode/skill/` are automatically indexed by the Spec Kit 
 Copy and customize this template. Replace all `[PLACEHOLDER]` markers with actual content. Remove sections that don't apply (keep minimum: Overview, Quick Start, Troubleshooting).
 
 ```markdown
-<!-- Optional: for memory-indexed READMEs
+<!-- Optional: frontmatter
 ---
 title: "[PROJECT_NAME]"
-description: "[Brief description for memory indexing]"
+description: "[Brief description]"
 ---
 -->
 
@@ -786,6 +792,7 @@ description: "[Brief description for memory indexing]"
 
 ---
 
+<!-- ANCHOR:table-of-contents -->
 ## TABLE OF CONTENTS
 
 - [1. OVERVIEW](#1--overview)
@@ -798,8 +805,10 @@ description: "[Brief description for memory indexing]"
 - [8. FAQ](#8--faq)
 - [9. RELATED DOCUMENTS](#9--related-documents)
 
+<!-- /ANCHOR:table-of-contents -->
 ---
 
+<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 ### What is [PROJECT_NAME]?
@@ -827,8 +836,10 @@ description: "[Brief description for memory indexing]"
 |-------------|---------|-------------|
 | [Runtime/Tool] | [Version] | [Version] |
 
+<!-- /ANCHOR:overview -->
 ---
 
+<!-- ANCHOR:quick-start -->
 ## 2. QUICK START
 
 ### 30-Second Setup
@@ -861,8 +872,10 @@ description: "[Brief description for memory indexing]"
 [minimal usage command or code]
 ```
 
+<!-- /ANCHOR:quick-start -->
 ---
 
+<!-- ANCHOR:structure -->
 ## 3. STRUCTURE
 
 ```
@@ -881,8 +894,10 @@ description: "[Brief description for memory indexing]"
 | `[filename-1]` | [What it does] |
 | `[filename-2]` | [What it does] |
 
+<!-- /ANCHOR:structure -->
 ---
 
+<!-- ANCHOR:features -->
 ## 4. FEATURES
 
 ### [Feature Category 1]
@@ -904,8 +919,10 @@ description: "[Brief description for memory indexing]"
 [command or code example]
 ```
 
+<!-- /ANCHOR:features -->
 ---
 
+<!-- ANCHOR:configuration -->
 ## 5. CONFIGURATION
 
 ### Configuration File
@@ -930,8 +947,10 @@ description: "[Brief description for memory indexing]"
 |----------|----------|-------------|
 | `[VAR_NAME]` | [Yes/No] | [What it controls] |
 
+<!-- /ANCHOR:configuration -->
 ---
 
+<!-- ANCHOR:usage-examples -->
 ## 6. USAGE EXAMPLES
 
 ### Example 1: [Use Case Name]
@@ -964,8 +983,10 @@ description: "[Brief description for memory indexing]"
 | [Pattern 1] | `[code]` | [Scenario] |
 | [Pattern 2] | `[code]` | [Scenario] |
 
+<!-- /ANCHOR:usage-examples -->
 ---
 
+<!-- ANCHOR:troubleshooting -->
 ## 7. TROUBLESHOOTING
 
 ### Common Issues
@@ -1006,8 +1027,10 @@ description: "[Brief description for memory indexing]"
 [diagnostic command 2]
 ```
 
+<!-- /ANCHOR:troubleshooting -->
 ---
 
+<!-- ANCHOR:faq -->
 ## 8. FAQ
 
 ### General Questions
@@ -1034,8 +1057,10 @@ A: [Answer with code if applicable.]
 [example]
 ```
 
+<!-- /ANCHOR:faq -->
 ---
 
+<!-- ANCHOR:related-documents -->
 ## 9. RELATED DOCUMENTS
 
 ### Internal Documentation
@@ -1050,6 +1075,7 @@ A: [Answer with code if applicable.]
 |----------|-------------|
 | [Resource Name](https://url) | [What it provides] |
 
+<!-- /ANCHOR:related-documents -->
 ---
 
 *[Optional: Footer with version info or maintainer contact]*

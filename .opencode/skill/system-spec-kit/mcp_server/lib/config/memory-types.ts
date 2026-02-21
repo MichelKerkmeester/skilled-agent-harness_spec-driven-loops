@@ -157,8 +157,6 @@ export const PATH_TYPE_PATTERNS: readonly PathTypePattern[] = [
   { pattern: /design[-_]?doc/i, type: 'semantic' },
   { pattern: /decision[-_]?record/i, type: 'semantic' },
   { pattern: /adr[-_]?\d+/i, type: 'semantic' },
-  // README files in skill directories (semantic documentation)
-  { pattern: /(?:^|\/)readme\.(md|txt)$/i, type: 'semantic' },
 
   // Autobiographical patterns (history)
   { pattern: /changelog/i, type: 'autobiographical' },
@@ -308,7 +306,6 @@ export type DocumentType =
   | 'research'
   | 'handover'
   | 'memory'
-  | 'readme'
   | 'constitutional';
 
 export interface SpecDocumentConfig {
@@ -364,11 +361,6 @@ export function inferDocumentTypeFromPath(filePath: string): DocumentType {
   // Constitutional files
   if (normalizedPath.includes('/constitutional/') && normalizedPath.endsWith('.md')) {
     return 'constitutional';
-  }
-
-  // README files
-  if (/readme\.(md|txt)$/i.test(normalizedPath)) {
-    return 'readme';
   }
 
   // Default: memory

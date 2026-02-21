@@ -43,7 +43,7 @@ The MCP Server Library provides the core functionality for the Spec Kit Memory M
 | Module Categories | 18+ | search, scoring, cognitive, storage, parsing, providers, utils, session, errors, learning, architecture, embeddings, response, cache, config, validation, interfaces, contracts, telemetry, extraction |
 | Cognitive Features | 10+ | FSRS scheduler, attention decay, PE gating, working memory, tier classification, co-activation, temporal contiguity, archival manager, causal graph, corrections |
 | Search Intents | 7 | add_feature, fix_bug, refactor, security_audit, understand, find_spec, find_decision |
-| Index Sources | 5 | spec memories, constitutional files, skill READMEs, project READMEs, spec documents (`includeSpecDocs`) |
+| Index Sources | 3 | spec memories, constitutional files, spec documents (`includeSpecDocs`) |
 | Schema Milestones | v13+ | v13 introduced `document_type` and `spec_level` for spec-doc indexing and scoring |
 | Total Modules | 63 | Organized into 19 domain-specific folders |
 | Last Verified | 2026-02-20 | Module category and total counts revalidated via Glob |
@@ -57,7 +57,7 @@ The MCP Server Library provides the core functionality for the Spec Kit Memory M
 | **Importance Scoring** | Six-tier importance classification (constitutional, critical, important, normal, temporary, deprecated) |
 | **Folder Ranking** | Composite scoring for spec folders based on recency, relevance and importance |
 | **Document-Type Scoring** | Document-aware ranking supports spec lifecycle docs (spec/plan/tasks/checklist/decision-record/implementation-summary/research/handover) |
-| **Spec Document Indexing** | 5-source indexing pipeline supports optional spec-doc ingestion via `includeSpecDocs` (default: true) |
+| **Spec Document Indexing** | 3-source indexing pipeline supports optional spec-doc ingestion via `includeSpecDocs` (default: true) |
 | **Content Parsing** | Memory file parsing, trigger matching and entity scope detection |
 | **Batch Processing** | Utilities for batch operations, retry logic and rate limiting |
 
@@ -206,10 +206,9 @@ lib/                            # TypeScript source files
 │   │   └── composite-scoring.ts # Cache-aware composite scoring
 │   └── README.md               # Module documentation
 │
-├── config/                     # Configuration (3 modules)
+├── config/                     # Configuration (2 modules)
 │   ├── memory-types.ts         # Memory type definitions
 │   ├── type-inference.ts       # Type inference utilities
-│   ├── skill-ref-config.ts     # Skill reference configuration
 │   └── README.md               # Module documentation
 │
 ├── interfaces/                 # TypeScript interfaces (1 module)

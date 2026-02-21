@@ -42,7 +42,7 @@ This directory serves as the configuration backbone of the OpenCode AI Assistant
 
 The framework is built on two core systems:
 
-1. **Memory Engine**: 25 memory MCP tools across 7 layers (32 MCP tools total with 7 Code Mode tools), with 5-source indexing, 7-intent retrieval routing, schema v15 metadata (`document_type`, `spec_level`), document-type scoring and causal lineage tracking
+1. **Memory Engine**: 25 memory MCP tools across 7 layers (32 MCP tools total with 7 Code Mode tools), with 3-source indexing, 7-intent retrieval routing, schema v15 metadata (`document_type`, `spec_level`), document-type scoring and causal lineage tracking
 2. **Spec Kit Documentation Framework**: Structured documentation with 84 templates, 13 validation rules and Level 1-3+ CORE + ADDENDUM architecture
 
 Together, these systems enable context-aware development with traceability, hardened retrieval behavior and session continuity through quality gates.
@@ -226,7 +226,7 @@ The Spec Kit Memory MCP provides persistent context across sessions:
 - **Engine:** SQLite + `sqlite-vec` with provider auto-detection (Voyage, OpenAI, HF Local)
 - **Retrieval:** Hybrid search across vector, BM25 and trigger matching with RRF fusion + cross-encoder reranking
 - **Architecture:** 7-layer tool hierarchy (L1 Orchestration to L7 Maintenance)
-- **Indexing:** 5 sources (spec memories, constitutional files, skill READMEs, project READMEs, spec documents) with `includeSpecDocs: true` default
+- **Indexing:** 3 sources (spec memories, constitutional files, spec documents) with `includeSpecDocs: true` default
 - **Schema:** v15 adds `document_type` and `spec_level` columns for document-type scoring and filtering
 - **Features:** Constitutional tier, session deduplication, causal lineage tracking, temporal decay, learning analytics, typed retrieval contracts, artifact-class routing, adaptive fusion, append-only mutation ledger, extended retrieval telemetry and session-cognitive automation (attention-based decay, tiered content injection, co-activation of related memories)
 - **Hardening (Spec126):** import-path fixes, `specFolder` filtering, metadata preservation, vector metadata plumbing and stable causal edge semantics

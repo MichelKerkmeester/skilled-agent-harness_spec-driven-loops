@@ -158,19 +158,7 @@ version: 1.0.0
 <!-- OPTIONAL: Include this block if skill has a supplemental graph navigation layer.
      See skill_creation.md Section 9 for graph authoring rules. -->
 <!-- Remove comment markers to activate:
-### Skill Graph Status
-This skill has a supplemental graph navigation layer for deep-dive topics.
-- Primary entrypoint: `SKILL.md` (this file -- activation rules, routing, core behavior)
-- Supplemental navigation: `index.md` (optional deep-dive into specific topics)
-- Topic nodes: `nodes/*.md` (detailed content per topic)
 
-Use `SKILL.md` for activation, rules, and routing. Optionally traverse `index.md` for focused deep-dive content on specific topics.
--->
-
----
-
-<!-- /ANCHOR:skill-template-with-bundled-resources -->
-<!-- ANCHOR:when-to-use -->
 ## 1. WHEN TO USE
 
 <!-- CRITICAL: This section contains ONLY activation triggers and use cases.
@@ -570,8 +558,6 @@ See [workflow-details.md](./references/workflow-details.md) for complete step-by
 ```
 .opencode/skill/skill-name/
 ├── SKILL.md              - Primary entrypoint (activation rules, routing, core behavior)
-├── index.md              - Supplemental deep-dive index with Map of Content + wikilinks
-├── nodes/
 │   ├── when-to-use.md    - Activation triggers (required)
 │   ├── rules.md          - ALWAYS/NEVER/ESCALATE (required)
 │   ├── success-criteria.md - Completion gates (required)
@@ -582,11 +568,9 @@ See [workflow-details.md](./references/workflow-details.md) for complete step-by
 └── assets/
 ```
 
-**When to use graph mode**: When SKILL.md exceeds ~3k words or covers multiple distinct domains that benefit from independent traversal. See `skill_creation.md` Section 9 for full graph authoring rules. Use `skill_graph_index_template.md` for the index entrypoint and `skill_graph_node_template.md` for individual nodes.
 
 **Node file requirements**:
 - YAML frontmatter with `description:` field on every node
-- Wikilinks for cross-references: `[​[sibling-node]]` within nodes/, `[​[nodes/name|Label]]` from index.md
 - Each node scoped to one complete concept
 - Required nodes: `when-to-use.md`, `rules.md`, `success-criteria.md`
 
@@ -1157,8 +1141,6 @@ python .opencode/skill/sk-documentation/scripts/package_skill.py .opencode/skill
 - [frontmatter_templates.md](../documentation/frontmatter_templates.md) - Frontmatter by document type
 - [skill_asset_template.md](./skill_asset_template.md) - Asset file creation guide
 - [skill_reference_template.md](./skill_reference_template.md) - Reference file templates
-- [skill_graph_index_template.md](./skill_graph_index_template.md) - Skill graph index.md entrypoint template
-- [skill_graph_node_template.md](./skill_graph_node_template.md) - Skill graph node template
 
 ### Standards
 - [core_standards.md](../../references/core_standards.md) - Document type rules

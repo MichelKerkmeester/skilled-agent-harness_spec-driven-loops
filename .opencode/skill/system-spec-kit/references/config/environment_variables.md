@@ -166,9 +166,7 @@ Feature flags control experimental and optional functionality. All flags default
 | `SPEC_KIT_PROVIDER_FALLBACK` | `true` | Auto-switch embedding providers on failure |
 | `SPECKIT_ADAPTIVE_FUSION` | `true` | Enables intent-aware weighted RRF with 7 task-type profiles in `memory_search()` (set `false` to disable) |
 | `SPECKIT_EXTENDED_TELEMETRY` | `true` | Emits 4-dimension retrieval metrics (latency, mode, fallback, quality) per search operation |
-| `SPECKIT_GRAPH_UNIFIED` | `true` | Gates the entire unified graph channel in hybrid search (causal edge + SGQS skill graph in RRF fusion) |
-| `SPECKIT_GRAPH_MMR` | `true` | Gates Graph-Guided MMR diversity reranking (BFS shortest-path graph distance alongside cosine distance) |
-| `SPECKIT_GRAPH_AUTHORITY` | `true` | Gates Structural Authority Propagation scoring (node type multipliers boost search results by topological importance) |
+| `SPECKIT_GRAPH_UNIFIED` | `true` | Gates the unified graph channel in hybrid search (causal graph contribution in RRF fusion) |
 | `SPECKIT_INDEX_SPEC_DOCS` | `true` | Gates spec document indexing in `memory_index_scan()` (discovers and indexes spec folder documents with document-type scoring multipliers) |
 
 ### Usage Examples
@@ -192,8 +190,8 @@ SPEC_KIT_ENABLE_TRIGGERS=false node mcp_server/context-server.ts
 # Enable adaptive fusion (intent-aware search weighting)
 SPECKIT_ADAPTIVE_FUSION=true node mcp_server/context-server.ts
 
-# Disable graph-guided features
-SPECKIT_GRAPH_UNIFIED=false SPECKIT_GRAPH_MMR=false node mcp_server/context-server.ts
+# Disable graph channel
+SPECKIT_GRAPH_UNIFIED=false node mcp_server/context-server.ts
 
 # Disable spec document indexing
 SPECKIT_INDEX_SPEC_DOCS=false node mcp_server/context-server.ts
