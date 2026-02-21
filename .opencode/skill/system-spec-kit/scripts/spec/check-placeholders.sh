@@ -100,11 +100,15 @@ fi
 TOTAL=0
 MATCHES=""
 
-# Process each .md file (skip backup directories)
+# Process each .md file (skip backup/temp directories)
 while IFS= read -r file; do
-    # Skip backup directories
+    # Skip backup directories and non-template subfolders.
+    # memory/ contains generated session context markdown that legitimately
+    # uses bracketed TOC links (e.g., [CONTINUE SESSION]); scratch/ is temp.
     case "$file" in
         */.backup-*) continue ;;
+        */memory/*) continue ;;
+        */scratch/*) continue ;;
     esac
 
     line_num=0
