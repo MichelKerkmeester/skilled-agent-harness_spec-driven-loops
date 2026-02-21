@@ -1,5 +1,5 @@
 <!-- SPECKIT_LEVEL: 3+ -->
-# Feature Specification: 140 - Default-On Hardening Audit (Specs 136/138/139)
+# Feature Specification: 011 - Default-On Hardening Audit (Specs 136/138/139)
 
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify + level3-arch + level3plus-govern | v2.2 -->
 
@@ -10,7 +10,7 @@
 
 ## 1. OVERVIEW
 
-This document defines scope, requirements, and verification criteria for Spec 140 hardening work.
+This document defines scope, requirements, and verification criteria for Child 011 hardening work.
 
 ---
 
@@ -31,13 +31,13 @@ This spec hardens the shipped implementations from specs 136, 138, and 139 so ru
 
 | Field | Value |
 |-------|-------|
-| **Spec ID** | 140 |
+| **Spec ID** | 011 |
 | **Level** | 3+ |
 | **Priority** | P0 |
 | **Status** | Completed |
 | **Created** | 2026-02-21 |
-| **Branch** | `140-default-on-hardening-audit` |
-| **Parent** | `.opencode/specs/003-system-spec-kit/` |
+| **Branch** | `138-hybrid-rag-fusion` |
+| **Parent** | `../spec.md` |
 | **Hardening Targets** | 136, 138, 139 |
 <!-- /ANCHOR:metadata -->
 

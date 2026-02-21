@@ -519,9 +519,9 @@ Memory files are always saved to the child folder's `memory/` directory (e.g., `
 
 Context preservation across sessions via hybrid search (vector similarity + BM25 + FTS with Reciprocal Rank Fusion).
 
-**Server:** `@spec-kit/mcp-server` v1.7.2 — `context-server.ts` (~682 lines) with 12 handler files, 20 lib subdirectories, and 23 MCP tools across 7 layers.
+**Server:** `@spec-kit/mcp-server` v1.7.2 — `context-server.ts` (~682 lines) with 12 handler files, 20 lib subdirectories, and 25 MCP tools across 7 layers.
 
-**MCP Tools (8 most-used of 23 total — see [memory_system.md](./references/memory/memory_system.md) for full reference):**
+**MCP Tools (8 most-used of 25 total — see [memory_system.md](./references/memory/memory_system.md) for full reference):**
 
 | Tool                            | Layer | Purpose                                           |
 | ------------------------------- | ----- | ------------------------------------------------- |
