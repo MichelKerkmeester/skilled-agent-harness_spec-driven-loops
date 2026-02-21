@@ -18,6 +18,8 @@
 - Dual benchmark requirement: `Legacy20` + `V2`
 - Milestone gate: `V2 >= 3.5`
 - Safety gate: `Legacy20 >= 3.0`
+- Additive strict gate: `StrictHoldout >= 4.5`
+- Additive continuity gates: `Legacy20 >= 4.5` and `V2 >= 4.5`
 - Historical lock: keep `006/007` unchanged
 <!-- /ANCHOR:protocol -->
 
@@ -25,11 +27,11 @@
 
 ## P0
 
-- [x] [P0] Milestone 3.5-first hard gates passed (`CHK-020`, `CHK-021`, `CHK-022`) with evidence.
+- [x] [P0] Milestone 3.5-first and strict-cycle hard gates passed (`CHK-020`, `CHK-021`, `CHK-022`, `CHK-060`, `CHK-061`, `CHK-062`, `CHK-063`) [Evidence: See testing checks `CHK-020`..`CHK-022` and `CHK-060`..`CHK-063` below]
 
 ## P1
 
-- [x] [P1] Required quality and documentation gates passed (`CHK-012`, `CHK-023`, `CHK-024`, `CHK-040`, `CHK-041`, `CHK-050`) with evidence.
+- [x] [P1] Required quality and documentation gates passed (`CHK-012`, `CHK-023`, `CHK-024`, `CHK-040`, `CHK-041`, `CHK-050`, `CHK-064`, `CHK-065`) [Evidence: See checks `CHK-012`, `CHK-023`, `CHK-024`, `CHK-040`, `CHK-041`, `CHK-050`, `CHK-064`, `CHK-065` below]
 
 ---
 
@@ -64,6 +66,12 @@
 - [x] CHK-023 [P1] Advisor routing threshold reached (>=85% correct on recovery prompts) (TG-004) [Evidence: `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/specs/003-system-spec-kit/138-hybrid-rag-fusion/009-score-recovery-v2/scratch/score-dashboard.md` (all listed advisor probes pass threshold `0.8`)]
 - [x] CHK-024 [P1] Graph build/index integrity verified on updated node set (TG-002) [Evidence: `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/specs/003-system-spec-kit/138-hybrid-rag-fusion/009-score-recovery-v2/scratch/results-legacy20.json` and `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/specs/003-system-spec-kit/138-hybrid-rag-fusion/009-score-recovery-v2/scratch/results-v2.json` (`graphStats.nodes=435`, `graphStats.edges=932`, no fatal errors)]
 - [x] CHK-025 [P1] Acceptance criteria AC-001..AC-006 fully satisfied [Evidence: `plan.md` AC definitions + this checklist gate evidence (`CHK-010`..`CHK-024`, `CHK-040`..`CHK-051`)]
+- [x] CHK-060 [P0] Strict holdout gate passed (`StrictHoldout >= 4.5`) [Evidence: `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/specs/003-system-spec-kit/138-hybrid-rag-fusion/009-score-recovery-v2/scratch/results-strictholdout.json` (`averageScore: 5`) and `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/specs/003-system-spec-kit/138-hybrid-rag-fusion/009-score-recovery-v2/scratch/strict-score-dashboard.md` (`5.00/5.0`, PASS)]
+- [x] CHK-061 [P0] Continuity gates passed under strict policy (`Legacy20 >= 4.5`, `V2 >= 4.5`) [Evidence: `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/specs/003-system-spec-kit/138-hybrid-rag-fusion/009-score-recovery-v2/scratch/strict-score-dashboard.md` (both suites `5.00/5.0`, PASS)]
+- [x] CHK-062 [P0] Freeze manifest hash integrity verified for strict suite and runner [Evidence: `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/specs/003-system-spec-kit/138-hybrid-rag-fusion/009-score-recovery-v2/scratch/strict-freeze-manifest.json` (`suiteSha256=c9761c6e55750cdb2d4ef5a55f9600c964d7ca61f8f9a269649e22b60eaf7e1a`, `runnerSha256=38c52a28a80bb3a77424678ce178a414d648968b722f1def8d333658dcd4693c`)]
+- [x] CHK-063 [P0] No post-freeze edits to strict suite or runner inputs [Evidence: `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/specs/003-system-spec-kit/138-hybrid-rag-fusion/009-score-recovery-v2/scratch/strict-freeze-manifest.json` rule + `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/specs/003-system-spec-kit/138-hybrid-rag-fusion/009-score-recovery-v2/scratch/strict-score-dashboard.md` freeze integrity section]
+- [x] CHK-064 [P1] Advisor probe pass-rate met strict threshold (`>=85%`) [Evidence: `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/specs/003-system-spec-kit/138-hybrid-rag-fusion/009-score-recovery-v2/scratch/agent-wave3-advisor.md` (`7/7` probes passed at `--threshold 0.8`, pass-rate `100%`)]
+- [x] CHK-065 [P1] Error/warning paths validated with non-crash behavior [Evidence: `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/specs/003-system-spec-kit/138-hybrid-rag-fusion/009-score-recovery-v2/scratch/agent-wave3-regression.md` (`E005`/`E011` structured exits, warning case `exit 0`, no crash)]
 <!-- /ANCHOR:testing -->
 
 ---
@@ -102,10 +110,10 @@
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 9 | 9/9 |
-| P1 Items | 13 | 13/13 |
+| P0 Items | 12 | 12/12 |
+| P1 Items | 14 | 14/14 |
 | P2 Items | 2 | 2/2 |
 
 **Verification Date**: 2026-02-21
-**Current State**: Milestone and safety gates passed (`Legacy20`: `5.00/5.0`, `V2`: `5.00/5.0`); checklist updated with gate evidence.
+**Current State**: Milestone, safety, and strict additive gates passed (`StrictHoldout`: `5.00/5.0`, `Legacy20`: `5.00/5.0`, `V2`: `5.00/5.0`); freeze integrity and non-crash checks verified.
 <!-- /ANCHOR:summary -->

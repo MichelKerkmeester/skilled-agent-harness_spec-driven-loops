@@ -19,6 +19,8 @@ import { GraphNode, GraphEdge, SkillGraph } from './types';
  * @returns Complete SkillGraph ready for SGQS query execution
  */
 export function buildSkillGraph(skillRoot: string): SkillGraph {
+  // Cache file contents to avoid double-reading each file (node pass + edge pass)
+  const fileContentCache = new Map<string, string>();
   const graph: SkillGraph = {
     nodes: new Map(),
     edges: [],
@@ -51,6 +53,9 @@ export function buildSkillGraph(skillRoot: string): SkillGraph {
       const content = readFileSafe(filePath);
       if (content === null) continue;
 
+      // Cache content for reuse in edge extraction pass
+      fileContentCache.set(filePath, content);
+
       // Create node from file
       const node = buildNodeFromFile(skillName, relativePath, content, skillRoot);
       if (node) {
@@ -61,8 +66,8 @@ export function buildSkillGraph(skillRoot: string): SkillGraph {
     // Extract links from all files and create edges
     for (const filePath of files) {
       const relativePath = path.relative(skillRoot, filePath);
-      const content = readFileSafe(filePath);
-      if (content === null) continue;
+      const content = fileContentCache.get(filePath);
+      if (content === undefined) continue;
 
       const nodeId = filePathToNodeId(relativePath);
       const sourceNode = graph.nodes.get(nodeId);
@@ -77,6 +82,9 @@ export function buildSkillGraph(skillRoot: string): SkillGraph {
 
     // Stage 4: Generate structural edges
     generateStructuralEdges(graph, skillName);
+
+    // Free cached file contents for this skill directory
+    fileContentCache.clear();
   }
 
   // Stage 5: Validate -- remove dangling edges
@@ -247,8 +255,8 @@ function parseFrontmatter(content: string): Record<string, string | string[] | n
   const yaml = match[1];
   const lines = yaml.split('\n');
 
-  for (const line of lines) {
-    const trimmed = line.trim();
+  for (let i = 0; i < lines.length; i++) {
+    const trimmed = lines[i].trim();
     if (!trimmed || trimmed.startsWith('#')) continue;
 
     // Match key: value patterns
@@ -257,6 +265,20 @@ function parseFrontmatter(content: string): Record<string, string | string[] | n
 
     const key = normalizeKey(kvMatch[1]);
     const rawValue = kvMatch[2].trim();
+
+    // Handle multiline YAML arrays (indented "- item" lines after an empty value)
+    if (!rawValue || rawValue === '') {
+      const items: string[] = [];
+      while (i + 1 < lines.length && lines[i + 1].match(/^\s+-\s+/)) {
+        i++;
+        const item = lines[i].replace(/^\s+-\s+/, '').trim();
+        if (item) items.push(item);
+      }
+      if (items.length > 0) {
+        properties[key] = items;
+        continue;
+      }
+    }
 
     properties[key] = parseYamlValue(rawValue);
   }
@@ -529,7 +551,13 @@ function normalizeLinkPath(rawPath: string): string | null {
     return null;
   }
 
-  const withoutFragment = trimmed.split('#')[0].split('?')[0];
+  let withoutFragment = trimmed.split('#')[0].split('?')[0];
+
+  // If path doesn't end in .md, try appending it (supports wikilinks like [[nodes/some-concept]])
+  if (!withoutFragment.endsWith('.md')) {
+    withoutFragment = withoutFragment + '.md';
+  }
+
   if (!withoutFragment.endsWith('.md')) {
     return null;
   }
@@ -598,12 +626,14 @@ function addEdge(graph: SkillGraph, edge: GraphEdge): void {
   if (!graph.outbound.has(edge.source)) {
     graph.outbound.set(edge.source, []);
   }
+  // Safe: outbound array just created above if it didn't exist
   graph.outbound.get(edge.source)!.push(edge.id);
 
   // Update inbound index
   if (!graph.inbound.has(edge.target)) {
     graph.inbound.set(edge.target, []);
   }
+  // Safe: inbound array just created above if it didn't exist
   graph.inbound.get(edge.target)!.push(edge.id);
 }
 
@@ -632,11 +662,13 @@ function removeDanglingEdges(graph: SkillGraph): void {
       if (!graph.outbound.has(edge.source)) {
         graph.outbound.set(edge.source, []);
       }
+      // Safe: outbound array just initialized above if key was absent
       graph.outbound.get(edge.source)!.push(edge.id);
 
       if (!graph.inbound.has(edge.target)) {
         graph.inbound.set(edge.target, []);
       }
+      // Safe: inbound array just initialized above if key was absent
       graph.inbound.get(edge.target)!.push(edge.id);
     }
   }

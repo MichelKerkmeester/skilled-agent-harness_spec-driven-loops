@@ -123,8 +123,8 @@
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 9 | 0/9 |
-| P1 Items | 16 | 0/16 |
+| P0 Items | 13 | 0/13 |
+| P1 Items | 19 | 0/19 |
 | P2 Items | 2 | 0/2 |
 
 **Verification Date**: —

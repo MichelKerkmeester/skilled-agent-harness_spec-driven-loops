@@ -1,17 +1,24 @@
-// ---------------------------------------------------------------
-// MODULE: Memory CRUD List Handler
-// ---------------------------------------------------------------
+// ------- MODULE: Memory CRUD List Handler -------
+
+/* ---------------------------------------------------------------
+   IMPORTS
+--------------------------------------------------------------- */
 
 import { checkDatabaseUpdated } from '../core';
 import * as vectorIndex from '../lib/search/vector-index';
 import { createMCPSuccessResponse, createMCPErrorResponse } from '../lib/response/envelope';
 import { toErrorMessage } from '../utils';
 
-import { safeJsonParse } from './memory-crud-utils';
+import { safeJsonParseTyped } from '../utils/json-helpers';
 
 import type { MCPResponse } from './types';
 import type { ListArgs } from './memory-crud-types';
 
+/* ---------------------------------------------------------------
+   CORE LOGIC
+--------------------------------------------------------------- */
+
+/** Handle memory_list tool -- returns paginated memory entries. */
 async function handleMemoryList(args: ListArgs): Promise<MCPResponse> {
   const startTime = Date.now();
   await checkDatabaseUpdated();
@@ -74,7 +81,7 @@ async function handleMemoryList(args: ListArgs): Promise<MCPResponse> {
     createdAt: row.created_at,
     updatedAt: row.updated_at,
     importanceWeight: row.importance_weight,
-    triggerCount: (safeJsonParse(row.trigger_phrases as string, []) as unknown[]).length,
+    triggerCount: safeJsonParseTyped<unknown[]>(row.trigger_phrases as string, 'array', []).length,
     filePath: row.file_path,
   }));
 
@@ -100,5 +107,9 @@ async function handleMemoryList(args: ListArgs): Promise<MCPResponse> {
     hints,
   });
 }
+
+/* ---------------------------------------------------------------
+   EXPORTS
+--------------------------------------------------------------- */
 
 export { handleMemoryList };

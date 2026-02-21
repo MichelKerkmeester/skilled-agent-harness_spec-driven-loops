@@ -1,6 +1,8 @@
-// ---------------------------------------------------------------
-// MODULE: Memory CRUD Delete Handler
-// ---------------------------------------------------------------
+// ------- MODULE: Memory CRUD Delete Handler -------
+
+/* ---------------------------------------------------------------
+   IMPORTS
+--------------------------------------------------------------- */
 
 import { checkDatabaseUpdated } from '../core';
 import * as vectorIndex from '../lib/search/vector-index';
@@ -17,6 +19,11 @@ import { appendMutationLedgerSafe, getMemoryHashSnapshot } from './memory-crud-u
 import type { MCPResponse } from './types';
 import type { DeleteArgs, MemoryHashSnapshot } from './memory-crud-types';
 
+/* ---------------------------------------------------------------
+   CORE LOGIC
+--------------------------------------------------------------- */
+
+/** Handle memory_delete tool -- deletes a single memory by ID or bulk-deletes by spec folder. */
 async function handleMemoryDelete(args: DeleteArgs): Promise<MCPResponse> {
   const startTime = Date.now();
   await checkDatabaseUpdated();
@@ -74,20 +81,18 @@ async function handleMemoryDelete(args: DeleteArgs): Promise<MCPResponse> {
     const deletedIds: number[] = [];
     const hashById = new Map<number, MemoryHashSnapshot>();
 
-    if (database && typeof (database as unknown as Record<string, unknown>).prepare === 'function') {
+    if (database && 'prepare' in database) {
       try {
-        const rows = (database as unknown as {
-          prepare: (sql: string) => { all: (folder: string) => MemoryHashSnapshot[] };
-        }).prepare(`
+        const rows = database.prepare(`
           SELECT id, content_hash, spec_folder, file_path
           FROM memory_index
           WHERE spec_folder = ?
-        `).all(specFolder as string);
+        `).all(specFolder as string) as MemoryHashSnapshot[];
 
         for (const row of rows) {
           hashById.set(row.id, row);
         }
-      } catch {
+      } catch (_err: unknown) {
         // Non-fatal: bulk delete still proceeds without per-memory hash snapshots
       }
     }
@@ -108,18 +113,13 @@ async function handleMemoryDelete(args: DeleteArgs): Promise<MCPResponse> {
       } catch (cpErr: unknown) {
         const message = toErrorMessage(cpErr);
         console.error(`[memory-delete] Failed to create checkpoint: ${message}`);
-        if (!confirm) {
-          return createMCPErrorResponse({
-            tool: 'memory_delete',
-            error: 'Failed to create backup checkpoint before bulk delete. Set confirm=true to proceed without backup.',
-            startTime,
-          });
-        }
+        // confirm is always true here (validated at function entry)
         console.warn('[memory-delete] Proceeding without backup (user confirmed)');
         checkpointName = null;
       }
     }
 
+    // WHY: snapshot-then-delete is safe under single-process better-sqlite3; re-evaluate if multi-process support is added
     if (database) {
       causalEdges.init(database);
       const bulkDeleteTx = database.transaction(() => {
@@ -135,6 +135,27 @@ async function handleMemoryDelete(args: DeleteArgs): Promise<MCPResponse> {
             }
           }
         }
+
+        // Mutation ledger entries inside transaction for atomicity
+        for (const deletedId of deletedIds) {
+          const snapshot = hashById.get(deletedId) ?? null;
+          appendMutationLedgerSafe(database, {
+            mutationType: 'delete',
+            reason: 'memory_delete: bulk delete by spec folder',
+            priorHash: snapshot?.content_hash ?? null,
+            newHash: mutationLedger.computeHash(`bulk-delete:${deletedId}:${Date.now()}`),
+            linkedMemoryIds: [deletedId],
+            decisionMeta: {
+              tool: 'memory_delete',
+              bulk: true,
+              specFolder,
+              checkpoint: checkpointName,
+              memoryId: deletedId,
+              filePath: snapshot?.file_path ?? null,
+            },
+            actor: 'mcp:memory_delete',
+          });
+        }
       });
       bulkDeleteTx();
     } else {
@@ -144,26 +165,6 @@ async function handleMemoryDelete(args: DeleteArgs): Promise<MCPResponse> {
           deletedIds.push(memory.id);
         }
       }
-    }
-
-    for (const deletedId of deletedIds) {
-      const snapshot = hashById.get(deletedId) ?? null;
-      appendMutationLedgerSafe(database, {
-        mutationType: 'delete',
-        reason: 'memory_delete: bulk delete by spec folder',
-        priorHash: snapshot?.content_hash ?? null,
-        newHash: mutationLedger.computeHash(`bulk-delete:${deletedId}:${Date.now()}`),
-        linkedMemoryIds: [deletedId],
-        decisionMeta: {
-          tool: 'memory_delete',
-          bulk: true,
-          specFolder,
-          checkpoint: checkpointName,
-          memoryId: deletedId,
-          filePath: snapshot?.file_path ?? null,
-        },
-        actor: 'mcp:memory_delete',
-      });
     }
   }
 
@@ -197,5 +198,9 @@ async function handleMemoryDelete(args: DeleteArgs): Promise<MCPResponse> {
     hints,
   });
 }
+
+/* ---------------------------------------------------------------
+   EXPORTS
+--------------------------------------------------------------- */
 
 export { handleMemoryDelete };

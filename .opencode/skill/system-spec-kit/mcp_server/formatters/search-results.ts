@@ -1,5 +1,5 @@
 // ---------------------------------------------------------------
-// FORMATTERS: SEARCH RESULTS
+// MODULE: Search Results Formatter
 // ---------------------------------------------------------------
 
 // Node stdlib
@@ -69,6 +69,12 @@ export interface FormattedSearchResult {
   content?: string | null;
   contentError?: string;
   tokenMetrics?: AnchorTokenMetrics;
+  isChunk?: boolean;
+  parentId?: number | null;
+  chunkIndex?: number | null;
+  chunkLabel?: string | null;
+  chunkCount?: number | null;
+  contentSource?: 'reassembled_chunks' | 'file_read_fallback';
 }
 
 /** Memory parser interface (for optional override) */
@@ -106,6 +112,15 @@ export function safeJsonParse<T>(str: string | null | undefined, fallback: T): T
   } catch {
     return fallback;
   }
+}
+
+function toNullableNumber(value: unknown): number | null {
+  if (typeof value === 'number' && Number.isFinite(value)) return value;
+  if (typeof value === 'string' && value.trim().length > 0) {
+    const parsed = Number(value);
+    if (Number.isFinite(parsed)) return parsed;
+  }
+  return null;
 }
 
 /* ---------------------------------------------------------------
@@ -156,19 +171,46 @@ export async function formatSearchResults(
       importanceTier: rawResult.importance_tier,
       triggerPhrases: Array.isArray(rawResult.triggerPhrases) ? rawResult.triggerPhrases :
                       safeJsonParse<string[]>(rawResult.triggerPhrases as string, []),
-      createdAt: rawResult.created_at
+      createdAt: rawResult.created_at,
+      isChunk: rawResult.isChunk === true,
+      parentId: toNullableNumber(rawResult.parentId ?? rawResult.parent_id),
+      chunkIndex: toNullableNumber(rawResult.chunkIndex ?? rawResult.chunk_index),
+      chunkLabel: (typeof rawResult.chunkLabel === 'string'
+        ? rawResult.chunkLabel
+        : (typeof rawResult.chunk_label === 'string' ? rawResult.chunk_label : null)),
+      chunkCount: toNullableNumber(rawResult.chunkCount),
+      contentSource: (rawResult.contentSource === 'reassembled_chunks' || rawResult.contentSource === 'file_read_fallback')
+        ? rawResult.contentSource
+        : undefined,
     };
 
-    // Include file content if requested
-    // SEC-002: Validate DB-stored file paths before reading (CWE-22 defense-in-depth)
-    if (includeContent && rawResult.file_path) {
+    // Include file content if requested.
+    // Prefer precomputed chunk reassembly from memory-search to avoid disk reads.
+    if (includeContent) {
       try {
-        const validatedPath = validateFilePathLocal(rawResult.file_path);
-        let content = await fs.promises.readFile(validatedPath, 'utf-8');
+        let content: string | null = null;
+
+        if (typeof rawResult.precomputedContent === 'string' && rawResult.precomputedContent.length > 0) {
+          content = rawResult.precomputedContent;
+          if (!formattedResult.contentSource) {
+            formattedResult.contentSource = 'reassembled_chunks';
+          }
+        } else if (rawResult.file_path) {
+          // SEC-002: Validate DB-stored file paths before reading (CWE-22 defense-in-depth)
+          const validatedPath = validateFilePathLocal(rawResult.file_path);
+          content = await fs.promises.readFile(validatedPath, 'utf-8');
+          if (!formattedResult.contentSource) {
+            formattedResult.contentSource = 'file_read_fallback';
+          }
+        } else {
+          formattedResult.content = null;
+          formattedResult.contentError = 'File not found';
+          return formattedResult;
+        }
 
         // SK-005: Anchor System Implementation
         const parser: MemoryParserLike = parserOverride || memoryParser;
-        if (anchors && Array.isArray(anchors) && anchors.length > 0 && parser) {
+        if (anchors && Array.isArray(anchors) && anchors.length > 0 && parser && typeof content === 'string') {
           // BUG-017 FIX: Capture original tokens BEFORE any content reassignment
           const originalTokens = estimateTokens(content);
 

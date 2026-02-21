@@ -1,13 +1,11 @@
-// ---------------------------------------------------------------
-// MODULE: Memory CRUD
-// ---------------------------------------------------------------
+// ------- MODULE: Memory CRUD -------
 
 import { handleMemoryDelete } from './memory-crud-delete';
 import { handleMemoryUpdate } from './memory-crud-update';
 import { handleMemoryList } from './memory-crud-list';
 import { handleMemoryStats } from './memory-crud-stats';
 import { handleMemoryHealth } from './memory-crud-health';
-import { setEmbeddingModelReady } from './memory-crud-state';
+import { setEmbeddingModelReady, isEmbeddingModelReady } from '../core';
 
 /* ---------------------------------------------------------------
    EXPORTS
@@ -20,6 +18,7 @@ export {
   handleMemoryStats,
   handleMemoryHealth,
   setEmbeddingModelReady,
+  isEmbeddingModelReady,
 };
 
 // Backward-compatible aliases (snake_case) — remove after all callers migrate to camelCase
@@ -29,6 +28,7 @@ const handle_memory_list = handleMemoryList;
 const handle_memory_stats = handleMemoryStats;
 const handle_memory_health = handleMemoryHealth;
 const set_embedding_model_ready = setEmbeddingModelReady;
+const is_embedding_model_ready = isEmbeddingModelReady;
 
 export {
   handle_memory_delete,
@@ -37,4 +37,5 @@ export {
   handle_memory_stats,
   handle_memory_health,
   set_embedding_model_ready,
+  is_embedding_model_ready,
 };

@@ -1,7 +1,7 @@
 // ---------------------------------------------------------------
 // MODULE: Tool Schemas
 // ---------------------------------------------------------------
-// All 23 MCP tool definitions (names, descriptions, input schemas).
+// All 25 MCP tool definitions (names, descriptions, input schemas).
 // Extracted from context-server.ts for maintainability (T303).
 // ---------------------------------------------------------------
 
@@ -182,8 +182,8 @@ const memoryValidate: ToolDefinition = {
 
 const memoryBulkDelete: ToolDefinition = {
   name: 'memory_bulk_delete',
-  description: '[L4:Mutation] Bulk delete memories by importance tier. Use to clean up deprecated or temporary memories at scale. Auto-creates checkpoint before deletion for safety. Refuses unscoped deletion of constitutional/critical tiers. Token Budget: 500.',
-  inputSchema: { type: 'object', properties: { tier: { type: 'string', enum: ['constitutional', 'critical', 'important', 'normal', 'temporary', 'deprecated'], description: 'Importance tier to delete (required)' }, specFolder: { type: 'string', description: 'Optional: scope deletion to a specific spec folder' }, confirm: { type: 'boolean', description: 'Required safety gate: must be true to proceed' }, olderThanDays: { type: 'number', description: 'Optional: only delete memories older than this many days' } }, required: ['tier', 'confirm'] },
+  description: '[L4:Mutation] Bulk delete memories by importance tier. Use to clean up deprecated or temporary memories at scale. Auto-creates checkpoint before deletion for safety. Refuses unscoped deletion of constitutional/critical tiers. Supports optional checkpoint bypass for lower-risk tiers when speed is prioritized. Token Budget: 500.',
+  inputSchema: { type: 'object', properties: { tier: { type: 'string', enum: ['constitutional', 'critical', 'important', 'normal', 'temporary', 'deprecated'], description: 'Importance tier to delete (required)' }, specFolder: { type: 'string', description: 'Optional: scope deletion to a specific spec folder' }, confirm: { type: 'boolean', description: 'Required safety gate: must be true to proceed' }, olderThanDays: { type: 'number', description: 'Optional: only delete memories older than this many days' }, skipCheckpoint: { type: 'boolean', default: false, description: 'Optional speed optimization for non-critical tiers. When true, skips auto-checkpoint creation before delete. Rejected for constitutional/critical tiers.' } }, required: ['tier', 'confirm'] },
 };
 
 // L5: Lifecycle - Checkpoints and versioning (Token Budget: 600)
@@ -255,6 +255,12 @@ const memorySkillGraphQuery: ToolDefinition = {
   inputSchema: { type: 'object', properties: { queryString: { type: 'string', description: 'SGQS query string (Cypher-like)' } }, required: ['queryString'] },
 };
 
+const memorySkillGraphInvalidate: ToolDefinition = {
+  name: 'memory_skill_graph_invalidate',
+  description: '[L6:Analysis] Force-clear the cached skill graph so the next query rebuilds from disk. Use after modifying skill node files, adding new skills, or when stale cache is suspected. The graph auto-refreshes every 5 minutes, so this is only needed for immediate consistency.',
+  inputSchema: { type: 'object', properties: {}, required: [] },
+};
+
 // L7: Maintenance - Indexing and system operations (Token Budget: 1000)
 const memoryIndexScan: ToolDefinition = {
   name: 'memory_index_scan',
@@ -301,6 +307,7 @@ export const TOOL_DEFINITIONS: ToolDefinition[] = [
   memoryCausalStats,
   memoryCausalUnlink,
   memorySkillGraphQuery,
+  memorySkillGraphInvalidate,
   // L7: Maintenance
   memoryIndexScan,
   memoryGetLearningHistory,

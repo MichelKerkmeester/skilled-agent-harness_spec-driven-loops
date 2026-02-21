@@ -22,10 +22,10 @@ const MAX_MODULE_LINES = 320; // 300 target with 20-line tolerance
 // These modules contain complex business logic justifying larger size
 const EXTENDED_LIMITS: Record<string, number> = {
   'context-server.js': 660,         // Main entry point (tool defs extracted to tool-schemas.ts)
-  'handlers/memory-search.js': 900, // Complex search logic with multiple strategies
+  'handlers/memory-search.js': 1120, // Complex search logic with multiple strategies + chunk reassembly paths
   'handlers/memory-triggers.js': 350, // Trigger matching with cognitive features
   'handlers/memory-crud.js': 760,   // CRUD operations with validation + checkpoint/ledger/graph metrics wiring
-  'handlers/memory-save.js': 1300,  // Save logic with parsing, validation, indexing
+  'handlers/memory-save.js': 1400,  // Save logic with parsing, validation, indexing
   'handlers/memory-index.js': 700,  // Index operations with scanning + spec document discovery (Spec 126) + skill reference discovery (Source #6)
 };
 

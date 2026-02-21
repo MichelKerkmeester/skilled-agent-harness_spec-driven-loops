@@ -1,6 +1,6 @@
 // @ts-nocheck
 // ---------------------------------------------------------------
-// TEST: CONTEXT SERVER
+// MODULE: Context Server Tests
 // ---------------------------------------------------------------
 
 import { describe, it, expect, beforeAll, afterEach, vi } from 'vitest'
@@ -112,7 +112,7 @@ describe('Context Server', () => {
   // =================================================================
   // GROUP 2: Tool Definition Completeness
   // =================================================================
-  describe('Group 2: Tool Definitions (22 tools)', () => {
+  describe('Group 2: Tool Definitions (25 tools)', () => {
     const EXPECTED_TOOLS = [
       'memory_context',
       'memory_search',
@@ -123,6 +123,7 @@ describe('Context Server', () => {
       'memory_health',
       'memory_delete',
       'memory_update',
+      'memory_bulk_delete',
       'memory_validate',
       'checkpoint_create',
       'checkpoint_list',
@@ -135,6 +136,7 @@ describe('Context Server', () => {
       'memory_causal_stats',
       'memory_causal_unlink',
       'memory_skill_graph_query',
+      'memory_skill_graph_invalidate',
       'memory_index_scan',
       'memory_get_learning_history',
     ]
@@ -148,40 +150,16 @@ describe('Context Server', () => {
       expect(sourceCode).toMatch(/tools:\s*TOOL_DEFINITIONS/)
     })
 
-    it('T11c: Tool count is 22', () => {
+    it('T11c: Tool count is current expected list length', () => {
       const sectionToolNames = (toolSchemasCode.match(/name:\s*'(\w+)'/g) || []).map((m: string) => {
         const match = m.match(/name:\s*'(\w+)'/)
         return match ? match[1] : null
       }).filter(Boolean)
-      expect(sectionToolNames.length).toBe(23)
+      expect(sectionToolNames.length).toBe(EXPECTED_TOOLS.length)
     })
 
     // T12: Each expected tool exists
-    for (const tool of [
-      'memory_context',
-      'memory_search',
-      'memory_match_triggers',
-      'memory_save',
-      'memory_list',
-      'memory_stats',
-      'memory_health',
-      'memory_delete',
-      'memory_update',
-      'memory_validate',
-      'checkpoint_create',
-      'checkpoint_list',
-      'checkpoint_restore',
-      'checkpoint_delete',
-      'task_preflight',
-      'task_postflight',
-      'memory_drift_why',
-      'memory_causal_link',
-      'memory_causal_stats',
-      'memory_causal_unlink',
-      'memory_skill_graph_query',
-      'memory_index_scan',
-      'memory_get_learning_history',
-    ]) {
+    for (const tool of EXPECTED_TOOLS) {
       it(`T12: Tool defined: ${tool}`, () => {
         const sectionToolNames = (toolSchemasCode.match(/name:\s*'(\w+)'/g) || []).map((m: string) => {
           const match = m.match(/name:\s*'(\w+)'/)
@@ -202,31 +180,7 @@ describe('Context Server', () => {
     })
 
     // T14: Each tool has a description
-    for (const tool of [
-      'memory_context',
-      'memory_search',
-      'memory_match_triggers',
-      'memory_save',
-      'memory_list',
-      'memory_stats',
-      'memory_health',
-      'memory_delete',
-      'memory_update',
-      'memory_validate',
-      'checkpoint_create',
-      'checkpoint_list',
-      'checkpoint_restore',
-      'checkpoint_delete',
-      'task_preflight',
-      'task_postflight',
-      'memory_drift_why',
-      'memory_causal_link',
-      'memory_causal_stats',
-      'memory_causal_unlink',
-      'memory_skill_graph_query',
-      'memory_index_scan',
-      'memory_get_learning_history',
-    ]) {
+    for (const tool of EXPECTED_TOOLS) {
       it(`T14: Tool ${tool} has description`, () => {
         const toolDefRegex = new RegExp(`name:\\s*'${tool}'\\s*,\\s*description:\\s*'`)
         expect(toolDefRegex.test(toolSchemasCode)).toBe(true)
@@ -234,31 +188,7 @@ describe('Context Server', () => {
     }
 
     // T15: Each tool has an inputSchema
-    for (const tool of [
-      'memory_context',
-      'memory_search',
-      'memory_match_triggers',
-      'memory_save',
-      'memory_list',
-      'memory_stats',
-      'memory_health',
-      'memory_delete',
-      'memory_update',
-      'memory_validate',
-      'checkpoint_create',
-      'checkpoint_list',
-      'checkpoint_restore',
-      'checkpoint_delete',
-      'task_preflight',
-      'task_postflight',
-      'memory_drift_why',
-      'memory_causal_link',
-      'memory_causal_stats',
-      'memory_causal_unlink',
-      'memory_skill_graph_query',
-      'memory_index_scan',
-      'memory_get_learning_history',
-    ]) {
+    for (const tool of EXPECTED_TOOLS) {
       it(`T15: Tool ${tool} has inputSchema`, () => {
         const schemaRegex = new RegExp(`name:\\s*'${tool}'[\\s\\S]*?inputSchema:\\s*\\{`)
         expect(schemaRegex.test(toolSchemasCode)).toBe(true)
@@ -272,11 +202,11 @@ describe('Context Server', () => {
   describe('Group 3: Tool Dispatch Coverage', () => {
     const EXPECTED_CASES = [
       'memory_context', 'memory_search', 'memory_match_triggers',
-      'memory_delete', 'memory_update', 'memory_list', 'memory_stats',
+      'memory_delete', 'memory_update', 'memory_bulk_delete', 'memory_list', 'memory_stats',
       'checkpoint_create', 'checkpoint_list', 'checkpoint_restore', 'checkpoint_delete',
       'memory_validate', 'memory_save', 'memory_index_scan', 'memory_health',
       'task_preflight', 'task_postflight', 'memory_get_learning_history',
-      'memory_drift_why', 'memory_causal_link', 'memory_causal_stats', 'memory_causal_unlink', 'memory_skill_graph_query',
+      'memory_drift_why', 'memory_causal_link', 'memory_causal_stats', 'memory_causal_unlink', 'memory_skill_graph_query', 'memory_skill_graph_invalidate',
     ]
 
     // T16: CallToolRequestSchema handler exists
@@ -293,8 +223,8 @@ describe('Context Server', () => {
       expect(sourceCode).toMatch(/import\s+\{[^}]*dispatchTool[^}]*\}\s*from\s+['"]\.\/tools['"]/)
     })
 
-    // T17: All 22 tools dispatched via tool modules
-    it('T17: All 22 tools dispatched via modules', () => {
+    // T17: All tools dispatched via tool modules
+    it('T17: All expected tools dispatched via modules', () => {
       const toolsDir = path.join(SERVER_DIR, 'tools')
       let allToolModulesCode = ''
       const toolFiles = fs.readdirSync(toolsDir).filter((f: string) => f.endsWith('.ts') && f !== 'types.ts')

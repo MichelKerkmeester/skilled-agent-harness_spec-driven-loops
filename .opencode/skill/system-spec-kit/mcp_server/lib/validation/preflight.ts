@@ -1,8 +1,9 @@
 // ---------------------------------------------------------------
-// VALIDATION: PREFLIGHT QUALITY GATES
+// MODULE: Preflight Quality Gates
 // ---------------------------------------------------------------
 
 import crypto from 'crypto';
+import { CHUNKING_THRESHOLD } from '../chunking/anchor-chunker';
 
 /* ---------------------------------------------------------------
    1. TYPES
@@ -78,6 +79,7 @@ export interface ContentSizeResult {
   valid: boolean;
   content_length: number;
   errors: PreflightIssue[];
+  warnings: PreflightIssue[];
 }
 
 /** Parameters for duplicate checking */
@@ -182,7 +184,7 @@ export const PREFLIGHT_CONFIG: PreflightConfig = {
 
   // Content size limits
   min_content_length: parseInt(process.env.MCP_MIN_CONTENT_LENGTH || '10', 10),
-  max_content_length: parseInt(process.env.MCP_MAX_CONTENT_LENGTH || '100000', 10),
+  max_content_length: parseInt(process.env.MCP_MAX_CONTENT_LENGTH || '250000', 10),
 
   // Duplicate detection thresholds
   exact_duplicate_enabled: true,
@@ -512,6 +514,7 @@ export function validateContentSize(content: string, options: {
     valid: true,
     content_length: 0,
     errors: [],
+    warnings: [],
   };
 
   if (!content || typeof content !== 'string') {
@@ -536,26 +539,18 @@ export function validateContentSize(content: string, options: {
   }
 
   if (content.length > maxLength) {
-    // 010-index-large-files: Files above the limit but eligible for chunking
-    // are downgraded to a warning instead of an error. The chunking pipeline
-    // in memory-save.ts handles splitting them automatically.
-    const CHUNKING_THRESHOLD = 50000;
-    if (content.length >= CHUNKING_THRESHOLD) {
-      // Will be chunked automatically — emit warning, not error
-      result.errors.push({
-        code: PreflightErrorCodes.CONTENT_TOO_LARGE,
-        message: `Content is large (${content.length} chars) — will be chunked automatically into smaller records`,
-        suggestion: 'No action needed: chunked indexing handles large files',
-      });
-      // Mark valid=true to let it through (the chunking pipeline handles it)
-    } else {
-      result.valid = false;
-      result.errors.push({
-        code: PreflightErrorCodes.CONTENT_TOO_LARGE,
-        message: `Content too large: ${content.length} chars (max: ${maxLength})`,
-        suggestion: `Reduce content by ${content.length - maxLength} characters or split into multiple memories`,
-      });
-    }
+    result.valid = false;
+    result.errors.push({
+      code: PreflightErrorCodes.CONTENT_TOO_LARGE,
+      message: `Content too large: ${content.length} chars (max: ${maxLength})`,
+      suggestion: `Reduce content by ${content.length - maxLength} characters or split into multiple memories`,
+    });
+  } else if (content.length >= CHUNKING_THRESHOLD) {
+    result.warnings.push({
+      code: PreflightErrorCodes.CONTENT_TOO_LARGE,
+      message: `Content is large (${content.length} chars) — will be chunked automatically into smaller records`,
+      suggestion: 'No action needed: chunked indexing handles large files',
+    });
   }
 
   return result;
@@ -603,9 +598,10 @@ export function runPreflight(params: PreflightParams, options: PreflightOptions 
     result.details[name] = check_result;
   };
 
-  // 010-index-large-files: Detect if content is chunk-eligible
-  const CHUNKING_THRESHOLD = 50000;
-  const isChunkEligible = content && content.length >= CHUNKING_THRESHOLD;
+  // 010-index-large-files: token-budget overages can be warnings when chunking can safely handle them.
+  const isChunkEligible = !!content
+    && content.length >= CHUNKING_THRESHOLD
+    && content.length <= PREFLIGHT_CONFIG.max_content_length;
 
   // 1. Content size validation (fast, do first)
   if (check_size) {
@@ -613,13 +609,11 @@ export function runPreflight(params: PreflightParams, options: PreflightOptions 
     addCheck('content_size', sizeResult);
 
     if (!sizeResult.valid) {
-      if (isChunkEligible) {
-        // Large files will be chunked — convert errors to warnings
-        result.warnings.push(...sizeResult.errors);
-      } else {
-        result.pass = false;
-        result.errors.push(...sizeResult.errors);
-      }
+      result.pass = false;
+      result.errors.push(...sizeResult.errors);
+    }
+    if (sizeResult.warnings.length > 0) {
+      result.warnings.push(...sizeResult.warnings);
     }
   }
 
@@ -702,4 +696,3 @@ export function runPreflight(params: PreflightParams, options: PreflightOptions 
 
   return result;
 }
-

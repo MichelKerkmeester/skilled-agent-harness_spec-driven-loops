@@ -1,6 +1,6 @@
-// ───────────────────────────────────────────────────────────────
-// TESTS: PREFLIGHT VALIDATION (T067-T070, T156-T166) — vitest
-// ───────────────────────────────────────────────────────────────
+// ---------------------------------------------------------------
+// MODULE: Preflight Validation Tests (T067-T070, T156-T166)
+// ---------------------------------------------------------------
 
 import { describe, it, expect } from 'vitest';
 import * as preflight from '../lib/validation/preflight';
@@ -59,6 +59,7 @@ Duplicate summary
 const TEST_CONTENT_SMALL = 'Hi';
 
 const TEST_CONTENT_LARGE = 'x'.repeat(150000);
+const TEST_CONTENT_OVER_MAX = 'x'.repeat(260000);
 
 describe('Preflight Validation', () => {
 
@@ -192,6 +193,13 @@ describe('Preflight Validation', () => {
       expect(result.valid).toBe(false);
       expect(result.errors.some(e => e.code === preflight.PreflightErrorCodes.CONTENT_TOO_LARGE)).toBe(true);
     });
+
+    it('chunk-eligible content emits warning but stays valid', () => {
+      const result = preflight.validateContentSize(TEST_CONTENT_LARGE);
+      expect(result.valid).toBe(true);
+      expect(result.errors).toHaveLength(0);
+      expect(result.warnings.some(w => w.code === preflight.PreflightErrorCodes.CONTENT_TOO_LARGE)).toBe(true);
+    });
   });
 
   /* ─────────────────────────────────────────────────────────────
@@ -210,7 +218,7 @@ describe('Preflight Validation', () => {
 
     it('run_preflight with invalid content fails', () => {
       const result = preflight.runPreflight(
-        { content: TEST_CONTENT_LARGE, file_path: '/test/memory.md', spec_folder: 'test-spec' },
+        { content: TEST_CONTENT_OVER_MAX, file_path: '/test/memory.md', spec_folder: 'test-spec' },
         { check_anchors: true, check_tokens: true, check_size: true }
       );
       expect(result.pass).toBe(false);
@@ -219,7 +227,7 @@ describe('Preflight Validation', () => {
 
     it('dry-run mode (CHK-160)', () => {
       const result = preflight.runPreflight(
-        { content: TEST_CONTENT_LARGE, file_path: '/test/memory.md', spec_folder: 'test-spec' },
+        { content: TEST_CONTENT_OVER_MAX, file_path: '/test/memory.md', spec_folder: 'test-spec' },
         { dry_run: true, check_anchors: true, check_tokens: true, check_size: true }
       );
       expect(result.pass).toBe(true);

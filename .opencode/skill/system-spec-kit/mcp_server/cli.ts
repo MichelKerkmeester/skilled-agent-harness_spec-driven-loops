@@ -9,7 +9,8 @@
 // Usage:
 //   node .opencode/skill/system-spec-kit/mcp_server/dist/cli.js stats
 //   node .opencode/skill/system-spec-kit/mcp_server/dist/cli.js bulk-delete --tier deprecated
-//   node .opencode/skill/system-spec-kit/mcp_server/dist/cli.js reindex [--force]
+//   node .opencode/skill/system-spec-kit/mcp_server/dist/cli.js reindex [--force] [--eager-warmup]
+//   node .opencode/skill/system-spec-kit/mcp_server/dist/cli.js schema-downgrade --to 15 --confirm
 // ---------------------------------------------------------------
 
 // Core modules (resolved relative to this file's location)
@@ -19,7 +20,8 @@ import * as accessTracker from './lib/storage/access-tracker';
 import * as causalEdges from './lib/storage/causal-edges';
 import * as mutationLedger from './lib/storage/mutation-ledger';
 import * as triggerMatcher from './lib/parsing/trigger-matcher';
-import { DATABASE_PATH } from './core';
+import { downgradeSchemaV16ToV15 } from './lib/storage/schema-downgrade';
+import { DATABASE_PATH, init as initDbState } from './core';
 
 /* ---------------------------------------------------------------
    1. ARGUMENT PARSING
@@ -51,7 +53,11 @@ Commands:
     [--folder <spec-folder>]       Optional: scope to a spec folder
     [--older-than <days>]          Optional: only delete older than N days
     [--dry-run]                    Preview without deleting
-  reindex [--force]              Re-index memory files
+    [--skip-checkpoint]            Optional: skip pre-delete checkpoint (blocked for constitutional/critical)
+  reindex [--force] [--eager-warmup]
+                                 Re-index memory files (lazy model load by default)
+  schema-downgrade --to 15 --confirm
+                                 Downgrade schema from v16 to v15 (targeted, destructive)
 
 Options:
   --help                         Show this help message
@@ -63,6 +69,8 @@ Examples:
   spec-kit-cli bulk-delete --tier deprecated --folder 003-system-spec-kit --dry-run
   spec-kit-cli reindex
   spec-kit-cli reindex --force
+  spec-kit-cli reindex --eager-warmup
+  spec-kit-cli schema-downgrade --to 15 --confirm
 `);
 }
 
@@ -77,6 +85,8 @@ function initDatabase(): void {
     console.error(`ERROR: Failed to open database at ${DATABASE_PATH}`);
     process.exit(1);
   }
+  // Keep CLI and MCP handlers aligned: handlers invoked from CLI rely on db-state wiring.
+  initDbState({ vectorIndex, checkpoints: checkpointsLib, accessTracker });
   checkpointsLib.init(db);
   accessTracker.init(db);
 }
@@ -122,12 +132,20 @@ function runStats(): void {
 
   // Schema version
   try {
-    const versionRow = db.prepare("SELECT value FROM config WHERE key = 'schema_version'").get() as { value: string } | undefined;
+    const versionRow = db.prepare('SELECT version FROM schema_version WHERE id = 1').get() as { version: number } | undefined;
     if (versionRow) {
-      console.log(`\n  Schema:    v${versionRow.value}`);
+      console.log(`\n  Schema:    v${versionRow.version}`);
     }
   } catch {
-    // config table may not exist
+    // schema_version table may not exist
+    try {
+      const legacyVersion = db.prepare("SELECT value FROM config WHERE key = 'schema_version'").get() as { value: string } | undefined;
+      if (legacyVersion) {
+        console.log(`\n  Schema:    v${legacyVersion.value}`);
+      }
+    } catch {
+      // No schema version metadata available
+    }
   }
 
   // Chunked memories (parent/child)
@@ -168,10 +186,15 @@ function runBulkDelete(): void {
   const specFolder = getOption('folder');
   const olderThanDays = getOption('older-than');
   const dryRun = getFlag('dry-run');
+  const skipCheckpoint = getFlag('skip-checkpoint');
 
   // Safety: refuse constitutional/critical without folder scope
   if ((tier === 'constitutional' || tier === 'critical') && !specFolder) {
     console.error(`ERROR: Bulk delete of "${tier}" tier requires --folder scope for safety.`);
+    process.exit(1);
+  }
+  if ((tier === 'constitutional' || tier === 'critical') && skipCheckpoint) {
+    console.error(`ERROR: --skip-checkpoint is not allowed for "${tier}" tier.`);
     process.exit(1);
   }
 
@@ -199,6 +222,7 @@ function runBulkDelete(): void {
   console.log(`  Tier:        ${tier}`);
   if (specFolder) console.log(`  Folder:      ${specFolder}`);
   if (olderThanDays) console.log(`  Older than:  ${olderThanDays} days`);
+  if (skipCheckpoint) console.log(`  Checkpoint:  skipped (--skip-checkpoint)`);
   console.log(`  Affected:    ${affectedCount} memories`);
 
   if (affectedCount === 0) {
@@ -229,26 +253,31 @@ function runBulkDelete(): void {
     return;
   }
 
-  // Create checkpoint before deletion
-  const timestamp = new Date().toISOString().replace(/[:.]/g, '-').slice(0, 19);
-  const checkpointName = `pre-bulk-delete-${tier}-${timestamp}`;
+  let checkpointName: string | null = null;
+  if (!skipCheckpoint) {
+    const timestamp = new Date().toISOString().replace(/[:.]/g, '-').slice(0, 19);
+    checkpointName = `pre-bulk-delete-${tier}-${timestamp}`;
 
-  try {
-    checkpointsLib.createCheckpoint({
-      name: checkpointName,
-      specFolder,
-      metadata: {
-        reason: `CLI bulk delete of ${affectedCount} "${tier}" memories`,
-        tier,
-        affectedCount,
-        olderThanDays: olderThanDays ? parseInt(olderThanDays, 10) : null,
-      },
-    });
-    console.log(`\n  Checkpoint:  ${checkpointName}`);
-  } catch (err: unknown) {
-    const message = err instanceof Error ? err.message : String(err);
-    console.error(`  WARNING: Failed to create checkpoint: ${message}`);
-    console.error(`  Proceeding with deletion...`);
+    try {
+      checkpointsLib.createCheckpoint({
+        name: checkpointName,
+        specFolder,
+        metadata: {
+          reason: `CLI bulk delete of ${affectedCount} "${tier}" memories`,
+          tier,
+          affectedCount,
+          olderThanDays: olderThanDays ? parseInt(olderThanDays, 10) : null,
+        },
+      });
+      console.log(`\n  Checkpoint:  ${checkpointName}`);
+    } catch (err: unknown) {
+      const message = err instanceof Error ? err.message : String(err);
+      console.error(`  WARNING: Failed to create checkpoint: ${message}`);
+      console.error(`  Proceeding with deletion...`);
+      checkpointName = null;
+    }
+  } else {
+    console.log(`\n  Checkpoint:  skipped`);
   }
 
   // Fetch IDs for deletion
@@ -287,7 +316,14 @@ function runBulkDelete(): void {
       prior_hash: null,
       new_hash: mutationLedger.computeHash(`cli-bulk-delete-tier:${tier}:${deletedCount}:${Date.now()}`),
       linked_memory_ids: deletedIds.slice(0, 50),
-      decision_meta: { tool: 'cli:bulk-delete', tier, specFolder: specFolder || null, olderThanDays: olderThanDays ? parseInt(olderThanDays, 10) : null },
+      decision_meta: {
+        tool: 'cli:bulk-delete',
+        tier,
+        specFolder: specFolder || null,
+        olderThanDays: olderThanDays ? parseInt(olderThanDays, 10) : null,
+        checkpoint: checkpointName,
+        skipCheckpoint,
+      },
       actor: 'cli:bulk-delete',
     });
   } catch {
@@ -298,7 +334,11 @@ function runBulkDelete(): void {
   triggerMatcher.clearCache();
 
   console.log(`\n  Deleted:     ${deletedCount} memories`);
-  console.log(`  Restore:     spec-kit-cli checkpoint restore ${checkpointName}`);
+  if (checkpointName) {
+    console.log(`  Restore:     spec-kit-cli checkpoint restore ${checkpointName}`);
+  } else if (skipCheckpoint) {
+    console.log(`  Restore:     unavailable (checkpoint skipped)`);
+  }
   console.log('');
 }
 
@@ -308,27 +348,29 @@ function runBulkDelete(): void {
 
 async function runReindex(): Promise<void> {
   const force = getFlag('force');
+  const eagerWarmup = getFlag('eager-warmup');
 
   console.log(`\nReindex Memory Files`);
   console.log(`${'─'.repeat(50)}`);
   console.log(`  Mode:  ${force ? 'force (all files)' : 'incremental (changed only)'}`);
+  console.log(`  Warmup: ${eagerWarmup ? 'eager (startup)' : 'lazy (on demand)'}`);
 
-  // Dynamic import to avoid pulling in embeddings at startup for simple commands
+  // Dynamic import to avoid pulling in heavy modules unless needed.
   const { handleMemoryIndexScan } = await import('./handlers/memory-index');
-  const { setEmbeddingModelReady: setHandlerReady } = await import('./handlers/memory-crud');
-  const embeddings = await import('./lib/providers/embeddings');
 
   initDatabase();
 
-  // Initialize embedding model (required for indexing)
-  console.log(`  Loading embedding model...`);
-  try {
-    await embeddings.generateEmbedding('warmup');
-    setHandlerReady(true);
-  } catch (err: unknown) {
-    const message = err instanceof Error ? err.message : String(err);
-    console.error(`  ERROR: Embedding model failed: ${message}`);
-    process.exit(1);
+  // Optional legacy warmup path.
+  if (eagerWarmup) {
+    console.log(`  Loading embedding model...`);
+    const embeddings = await import('./lib/providers/embeddings');
+    try {
+      await embeddings.generateEmbedding('warmup');
+    } catch (err: unknown) {
+      const message = err instanceof Error ? err.message : String(err);
+      console.error(`  ERROR: Embedding model failed: ${message}`);
+      process.exit(1);
+    }
   }
 
   console.log(`  Scanning...`);
@@ -362,7 +404,50 @@ async function runReindex(): Promise<void> {
 }
 
 /* ---------------------------------------------------------------
-   6. MAIN DISPATCH
+   6. SCHEMA DOWNGRADE COMMAND
+--------------------------------------------------------------- */
+
+function runSchemaDowngrade(): void {
+  const toVersion = getOption('to');
+  const confirm = getFlag('confirm');
+  const specFolder = getOption('folder');
+
+  if (toVersion !== '15') {
+    console.error('ERROR: Only --to 15 is supported (targeted v16 -> v15 downgrade).');
+    process.exit(1);
+  }
+
+  if (!confirm) {
+    console.error('ERROR: --confirm is required for schema-downgrade.');
+    process.exit(1);
+  }
+
+  initDatabase();
+  const db = vectorIndex.getDb();
+  if (!db) {
+    console.error('ERROR: Database not available.');
+    process.exit(1);
+  }
+
+  console.log(`\nSchema Downgrade`);
+  console.log(`${'─'.repeat(50)}`);
+  console.log(`  From: v16`);
+  console.log(`  To:   v15`);
+  if (specFolder) {
+    console.log(`  Scope checkpoint: ${specFolder}`);
+  }
+
+  const result = downgradeSchemaV16ToV15(db, { specFolder: specFolder || undefined });
+
+  console.log(`\n  Completed`);
+  console.log(`  Checkpoint: ${result.checkpointName}`);
+  console.log(`  Rows:       ${result.preservedRows}`);
+  console.log(`  Removed:    ${result.removedColumns.join(', ')}`);
+  console.log('');
+}
+
+/* ---------------------------------------------------------------
+   7. MAIN DISPATCH
 --------------------------------------------------------------- */
 
 async function main(): Promise<void> {
@@ -380,6 +465,9 @@ async function main(): Promise<void> {
       break;
     case 'reindex':
       await runReindex();
+      break;
+    case 'schema-downgrade':
+      runSchemaDowngrade();
       break;
     default:
       console.error(`Unknown command: ${command}`);

@@ -15,7 +15,7 @@ import * as checkpointsLib from '../../mcp_server/lib/storage/checkpoints';
 import * as accessTracker from '../../mcp_server/lib/storage/access-tracker';
 import * as hybridSearch from '../../mcp_server/lib/search/hybrid-search';
 import { init as initDbState, setEmbeddingModelReady, DEFAULT_BASE_PATH } from '../../mcp_server/core';
-import { handleMemoryIndexScan, setEmbeddingModelReady as setHandlerEmbeddingReady } from '../../mcp_server/handlers';
+import { handleMemoryIndexScan } from '../../mcp_server/handlers';
 import { createUnifiedGraphSearchFn } from '../../mcp_server/lib/search/graph-search-fn';
 import { isGraphUnifiedEnabled } from '../../mcp_server/lib/search/graph-flags';
 
@@ -63,7 +63,6 @@ async function reindex(): Promise<void> {
     await embeddings.generateEmbedding('warmup test');
     const elapsed = Date.now() - start;
     setEmbeddingModelReady(true);
-    if (setHandlerEmbeddingReady) setHandlerEmbeddingReady(true);
     console.log(`    Embedding model ready (${elapsed}ms)`);
 
     const profile = embeddings.getEmbeddingProfile() as EmbeddingProfile | null;

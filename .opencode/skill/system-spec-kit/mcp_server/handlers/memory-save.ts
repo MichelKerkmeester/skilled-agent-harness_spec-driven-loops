@@ -37,6 +37,8 @@ import { needsChunking, chunkLargeFile } from '../lib/chunking/anchor-chunker';
 import type { MCPResponse } from './types';
 import type BetterSqlite3 from 'better-sqlite3';
 
+import { getMemoryHashSnapshot, appendMutationLedgerSafe } from './memory-crud-utils';
+
 // Create local path validator
 const validateFilePathLocal = createFilePathValidator(ALLOWED_BASE_PATHS, validateFilePath);
 
@@ -149,57 +151,6 @@ interface SaveArgs {
   dryRun?: boolean;
   skipPreflight?: boolean;
   asyncEmbedding?: boolean; // T306: When true, embedding generation is deferred (non-blocking)
-}
-
-interface MemoryHashSnapshot {
-  id: number;
-  content_hash: string | null;
-  spec_folder?: string | null;
-  file_path?: string | null;
-}
-
-interface MutationLedgerInput {
-  mutationType: mutationLedger.MutationType;
-  reason: string;
-  priorHash: string | null;
-  newHash: string;
-  linkedMemoryIds: number[];
-  decisionMeta: Record<string, unknown>;
-  actor: string;
-  sessionId?: string | null;
-}
-
-function getMemoryHashSnapshot(database: BetterSqlite3.Database, memoryId: number): MemoryHashSnapshot | null {
-  try {
-    const row = database.prepare(`
-      SELECT id, content_hash, spec_folder, file_path
-      FROM memory_index
-      WHERE id = ?
-    `).get(memoryId) as MemoryHashSnapshot | undefined;
-
-    return row ?? null;
-  } catch {
-    return null;
-  }
-}
-
-function appendMutationLedgerSafe(database: BetterSqlite3.Database, input: MutationLedgerInput): void {
-  try {
-    mutationLedger.initLedger(database);
-    mutationLedger.appendEntry(database, {
-      mutation_type: input.mutationType,
-      reason: input.reason,
-      prior_hash: input.priorHash,
-      new_hash: input.newHash,
-      linked_memory_ids: input.linkedMemoryIds,
-      decision_meta: input.decisionMeta,
-      actor: input.actor,
-      session_id: input.sessionId ?? null,
-    });
-  } catch (err: unknown) {
-    const message = toErrorMessage(err);
-    console.warn(`[memory-save] mutation ledger append failed: ${message}`);
-  }
 }
 
 /* ---------------------------------------------------------------
@@ -692,115 +643,125 @@ async function indexChunkedMemoryFile(
   const chunkResult = chunkLargeFile(parsed.content);
   console.info(`[memory-save] Chunking ${filePath}: ${chunkResult.strategy} strategy, ${chunkResult.chunks.length} chunks`);
 
-  // Check if parent already exists
-  const existing = database.prepare(`
-    SELECT id FROM memory_index WHERE file_path = ? AND parent_id IS NULL
-  `).get(filePath) as { id: number } | undefined;
+  // Wrap parent setup in transaction to prevent check-then-delete race condition
+  const setupParent = database.transaction(() => {
+    const existing = database.prepare(`
+      SELECT id FROM memory_index WHERE file_path = ? AND parent_id IS NULL
+    `).get(filePath) as { id: number } | undefined;
 
-  let parentId: number;
+    let pid: number;
 
-  if (existing && !force) {
-    parentId = existing.id;
+    if (existing && !force) {
+      pid = existing.id;
 
-    // Delete existing children to re-index
-    database.prepare(`DELETE FROM memory_index WHERE parent_id = ?`).run(parentId);
+      // Delete existing children to re-index
+      database.prepare(`DELETE FROM memory_index WHERE parent_id = ?`).run(pid);
 
-    // Update parent metadata
-    const importanceWeight = calculateDocumentWeight(filePath, parsed.documentType);
-    const specLevel = isSpecDocumentType(parsed.documentType)
-      ? detectSpecLevelFromParsed(filePath)
-      : null;
-    const fileMetadata = incrementalIndex.getFileMetadata(filePath);
-    const fileMtimeMs = fileMetadata ? fileMetadata.mtime : null;
+      // Update parent metadata
+      const importanceWeight = calculateDocumentWeight(filePath, parsed.documentType);
+      const specLevel = isSpecDocumentType(parsed.documentType)
+        ? detectSpecLevelFromParsed(filePath)
+        : null;
+      const fileMetadata = incrementalIndex.getFileMetadata(filePath);
+      const fileMtimeMs = fileMetadata ? fileMetadata.mtime : null;
 
-    database.prepare(`
-      UPDATE memory_index
-      SET content_hash = ?,
-          context_type = ?,
-          importance_tier = ?,
-          importance_weight = ?,
-          embedding_status = 'partial',
-          content_text = ?,
-          updated_at = datetime('now'),
-          file_mtime_ms = ?,
-          document_type = ?,
-          spec_level = ?,
-          quality_score = ?,
-          quality_flags = ?
-      WHERE id = ?
-    `).run(
-      parsed.contentHash,
-      parsed.contextType,
-      parsed.importanceTier,
-      importanceWeight,
-      chunkResult.parentSummary,
-      fileMtimeMs,
-      parsed.documentType || 'memory',
-      specLevel,
-      parsed.qualityScore ?? 0,
-      JSON.stringify(parsed.qualityFlags ?? []),
-      parentId
-    );
-  } else {
-    // Delete old parent+children if force re-indexing
-    if (existing && force) {
-      database.prepare(`DELETE FROM memory_index WHERE parent_id = ?`).run(existing.id);
-      database.prepare(`DELETE FROM memory_index WHERE id = ?`).run(existing.id);
+      database.prepare(`
+        UPDATE memory_index
+        SET content_hash = ?,
+            context_type = ?,
+            importance_tier = ?,
+            importance_weight = ?,
+            embedding_status = 'partial',
+            content_text = ?,
+            updated_at = datetime('now'),
+            file_mtime_ms = ?,
+            document_type = ?,
+            spec_level = ?,
+            quality_score = ?,
+            quality_flags = ?
+        WHERE id = ?
+      `).run(
+        parsed.contentHash,
+        parsed.contextType,
+        parsed.importanceTier,
+        importanceWeight,
+        chunkResult.parentSummary,
+        fileMtimeMs,
+        parsed.documentType || 'memory',
+        specLevel,
+        parsed.qualityScore ?? 0,
+        JSON.stringify(parsed.qualityFlags ?? []),
+        pid
+      );
+
+      return { parentId: pid, isUpdate: true };
+    } else {
+      // Delete old parent+children if force re-indexing
+      if (existing && force) {
+        database.prepare(`DELETE FROM memory_index WHERE parent_id = ?`).run(existing.id);
+        database.prepare(`DELETE FROM memory_index WHERE id = ?`).run(existing.id);
+      }
+
+      // Create parent record (no embedding)
+      const importanceWeight = calculateDocumentWeight(filePath, parsed.documentType);
+      const specLevel = isSpecDocumentType(parsed.documentType)
+        ? detectSpecLevelFromParsed(filePath)
+        : null;
+
+      pid = vectorIndex.indexMemoryDeferred({
+        specFolder: parsed.specFolder,
+        filePath,
+        title: parsed.title,
+        triggerPhrases: parsed.triggerPhrases,
+        importanceWeight,
+        failureReason: 'Chunked parent: embedding in children',
+        documentType: parsed.documentType || 'memory',
+        specLevel,
+        contentText: chunkResult.parentSummary,
+        qualityScore: parsed.qualityScore,
+        qualityFlags: parsed.qualityFlags,
+      });
+
+      const fileMetadata = incrementalIndex.getFileMetadata(filePath);
+      const fileMtimeMs = fileMetadata ? fileMetadata.mtime : null;
+
+      database.prepare(`
+        UPDATE memory_index
+        SET content_hash = ?,
+            context_type = ?,
+            importance_tier = ?,
+            memory_type = ?,
+            type_inference_source = ?,
+            stability = ?,
+            difficulty = ?,
+            last_review = datetime('now'),
+            review_count = 0,
+            file_mtime_ms = ?,
+            embedding_status = 'partial',
+            quality_score = ?,
+            quality_flags = ?
+        WHERE id = ?
+      `).run(
+        parsed.contentHash,
+        parsed.contextType,
+        parsed.importanceTier,
+        parsed.memoryType,
+        parsed.memoryTypeSource,
+        fsrsScheduler.DEFAULT_INITIAL_STABILITY,
+        fsrsScheduler.DEFAULT_INITIAL_DIFFICULTY,
+        fileMtimeMs,
+        parsed.qualityScore ?? 0,
+        JSON.stringify(parsed.qualityFlags ?? []),
+        pid
+      );
+
+      return { parentId: pid, isUpdate: false };
     }
+  });
 
-    // Create parent record (no embedding)
-    const importanceWeight = calculateDocumentWeight(filePath, parsed.documentType);
-    const specLevel = isSpecDocumentType(parsed.documentType)
-      ? detectSpecLevelFromParsed(filePath)
-      : null;
-
-    parentId = vectorIndex.indexMemoryDeferred({
-      specFolder: parsed.specFolder,
-      filePath,
-      title: parsed.title,
-      triggerPhrases: parsed.triggerPhrases,
-      importanceWeight,
-      failureReason: 'Chunked parent: embedding in children',
-      documentType: parsed.documentType || 'memory',
-      specLevel,
-      contentText: chunkResult.parentSummary,
-      qualityScore: parsed.qualityScore,
-      qualityFlags: parsed.qualityFlags,
-    });
-
-    const fileMetadata = incrementalIndex.getFileMetadata(filePath);
-    const fileMtimeMs = fileMetadata ? fileMetadata.mtime : null;
-
-    database.prepare(`
-      UPDATE memory_index
-      SET content_hash = ?,
-          context_type = ?,
-          importance_tier = ?,
-          memory_type = ?,
-          type_inference_source = ?,
-          stability = ?,
-          difficulty = ?,
-          last_review = datetime('now'),
-          review_count = 0,
-          file_mtime_ms = ?,
-          embedding_status = 'partial',
-          quality_score = ?,
-          quality_flags = ?
-      WHERE id = ?
-    `).run(
-      parsed.contentHash,
-      parsed.contextType,
-      parsed.importanceTier,
-      parsed.memoryType,
-      parsed.memoryTypeSource,
-      fsrsScheduler.DEFAULT_INITIAL_STABILITY,
-      fsrsScheduler.DEFAULT_INITIAL_DIFFICULTY,
-      fileMtimeMs,
-      parsed.qualityScore ?? 0,
-      JSON.stringify(parsed.qualityFlags ?? []),
-      parentId
-    );
-  }
+  const { parentId, isUpdate: existingParentUpdated } = setupParent();
+  // Use existingParentUpdated below for mutation ledger (replaces `existing` variable)
+  const existing = existingParentUpdated;
 
   // Index BM25 for parent with summary
   if (bm25Index.isBm25Enabled()) {
@@ -817,6 +778,7 @@ async function indexChunkedMemoryFile(
   let successCount = 0;
   let failedCount = 0;
   const childIds: number[] = [];
+  const bm25FailedChunks: number[] = [];
 
   for (let i = 0; i < chunkResult.chunks.length; i++) {
     const chunk = chunkResult.chunks[i];
@@ -902,7 +864,8 @@ async function indexChunkedMemoryFile(
           bm25.addDocument(String(childId), chunk.content);
         } catch (bm25_err: unknown) {
           const message = toErrorMessage(bm25_err);
-          console.warn(`[memory-save] BM25 indexing failed for chunk ${i + 1}: ${message}`);
+          console.error(`[memory-save] BM25 indexing failed for chunk ${i + 1}: ${message}`);
+          bm25FailedChunks.push(childId);
         }
       }
 
@@ -943,7 +906,8 @@ async function indexChunkedMemoryFile(
     contextType: parsed.contextType,
     importanceTier: parsed.importanceTier,
     embeddingStatus: 'partial',
-    message: `Chunked: ${successCount}/${chunkResult.chunks.length} chunks indexed (${chunkResult.strategy} strategy)`,
+    message: `Chunked: ${successCount}/${chunkResult.chunks.length} chunks indexed (${chunkResult.strategy} strategy)` +
+      (bm25FailedChunks.length > 0 ? ` (${bm25FailedChunks.length} BM25 failures)` : ''),
   };
 }
 

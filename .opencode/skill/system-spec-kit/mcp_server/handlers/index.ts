@@ -51,12 +51,14 @@ export {
   handleMemoryStats,
   handleMemoryHealth,
   setEmbeddingModelReady,
+  isEmbeddingModelReady,
   handle_memory_delete,
   handle_memory_update,
   handle_memory_list,
   handle_memory_stats,
   handle_memory_health,
   set_embedding_model_ready,
+  is_embedding_model_ready,
 } from './memory-crud';
 
 // Memory index handlers
@@ -115,6 +117,7 @@ export {
 // SGQS Query handler
 export {
   handleMemorySkillGraphQuery,
+  handleMemorySkillGraphInvalidate,
 } from './sgqs-query';
 
 // T061: L1 Orchestration handler

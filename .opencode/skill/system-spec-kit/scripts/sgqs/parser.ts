@@ -9,9 +9,10 @@ import {
   WhereNode, ExpressionNode, ComparisonNode, LogicalNode, NotNode, NullCheckNode,
   ReturnNode, ReturnItemNode, ReturnExprNode, PropertyRefNode, VariableRefNode,
   AggregateNode, StarNode, LiteralNode,
-  VALID_LABELS, VALID_REL_TYPES, KEYWORDS,
+  VALID_LABELS, VALID_REL_TYPES,
 } from './types';
 import {
+  SGQSError,
   UnexpectedTokenError, MissingClauseError, InvalidRangeError,
   DuplicateBindingError, UnboundVariableError, UnknownLabelError, UnknownRelTypeError,
 } from './errors';
@@ -38,6 +39,9 @@ const PROPERTY_ALIASES: Record<string, string> = {
 // ---------------------------------------------------------------
 
 function peek(state: ParserState): Token {
+  if (state.pos >= state.tokens.length) {
+    throw new SGQSError('E001', 'Unexpected end of input: token stream is empty or exhausted');
+  }
   return state.tokens[state.pos];
 }
 
@@ -480,10 +484,11 @@ function parseComparison(state: ParserState): ExpressionNode {
   else if (check(state, 'LTE')) { advance(state); operator = '<='; }
   else if (check(state, 'GTE')) { advance(state); operator = '>='; }
   else {
+    const currentTok = peek(state);
     throw new UnexpectedTokenError(
       'comparison operator',
-      `${tok.type}("${tok.value}")`,
-      tok.position, tok.line, tok.column
+      `${currentTok.type}("${currentTok.value}")`,
+      currentTok.position, currentTok.line, currentTok.column
     );
   }
 

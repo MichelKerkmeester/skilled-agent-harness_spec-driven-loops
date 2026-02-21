@@ -91,7 +91,7 @@ This MCP server gives your AI assistant persistent memory with intelligence buil
 
 | Category | Count |
 | --- | --- |
-| **MCP Tools** | 22 |
+| **MCP Tools** | 24 |
 | **Library Modules** | 63 |
 | **Handler Modules** | 11 |
 | **Embedding Providers** | 3 |
@@ -182,7 +182,7 @@ Add to your MCP client configuration (e.g., `opencode.json`):
 context-server.ts          (server init, startup, shutdown, main orchestration)
         |
         v
-tool-schemas.ts            (TOOL_DEFINITIONS — all 22 tool schemas)
+tool-schemas.ts            (TOOL_DEFINITIONS — all 24 tool schemas)
         |
         v
 tools/index.ts             (dispatchTool — routes call to correct handler)
@@ -204,7 +204,7 @@ dist/context-server.js     (compiled output — executed at runtime by node)
 | File | Purpose |
 | --- | --- |
 | `context-server.ts` | Server init, stdio transport, startup/shutdown lifecycle |
-| `tool-schemas.ts` | All 22 tool schema definitions (decomposed from server in T303) |
+| `tool-schemas.ts` | All 24 tool schema definitions (decomposed from server in T303) |
 | `tools/index.ts` | `dispatchTool()` — routes MCP call to handler module |
 | `core/config.ts` | Path resolution (`SERVER_DIR`, `LIB_DIR`, `SHARED_DIR`) |
 | `core/db-state.ts` | Database connection state shared across handlers |
@@ -234,10 +234,10 @@ dist/context-server.js     (compiled output — executed at runtime by node)
 | Category | Tools | Purpose |
 | --- | --- | --- |
 | **Search and Retrieval** | 4 | Find and match memories |
-| **CRUD Operations** | 5 | Create, update, delete, validate |
+| **CRUD Operations** | 6 | Create, update, delete, validate, and bulk-delete |
 | **Checkpoints** | 4 | State snapshots for recovery |
 | **Session Learning** | 3 | Knowledge tracking across tasks |
-| **Causal and Drift** | 5 | Causal graph and intent-aware search |
+| **Causal and Drift** | 6 | Causal graph, skill-graph traversal, and intent-aware search |
 | **System** | 1 | Health monitoring |
 
 ### Search and Retrieval Tools
@@ -257,6 +257,7 @@ dist/context-server.js     (compiled output — executed at runtime by node)
 | `memory_index_scan` | Bulk scan and index workspace (5-source pipeline, incremental) | varies |
 | `memory_update` | Update metadata, tier, triggers | <50ms* |
 | `memory_delete` | Delete by ID or spec folder | <50ms |
+| `memory_bulk_delete` | Bulk delete by tier with checkpoint safety gates | <100ms + checkpoint |
 | `memory_validate` | Record validation feedback | <50ms |
 
 *+~400ms if title changed (triggers embedding regeneration)
@@ -286,6 +287,7 @@ dist/context-server.js     (compiled output — executed at runtime by node)
 | `memory_causal_link` | Create causal relationships between memories | <50ms |
 | `memory_causal_stats` | Graph statistics and coverage metrics | <50ms |
 | `memory_causal_unlink` | Remove causal relationships | <50ms |
+| `memory_skill_graph_query` | Query skill dependency graph with tiered traversal | <100ms |
 | `memory_context` | Unified entry with intent awareness (L1 Orchestration) | ~500ms |
 
 ### System Tools
@@ -318,9 +320,9 @@ The causal graph supports 6 relationship types for tracing decision history:
 | L1 | Orchestration | 2000 | `memory_context` |
 | L2 | Core | 1500 | `memory_search`, `memory_match_triggers`, `memory_save` |
 | L3 | Discovery | 800 | `memory_list`, `memory_stats`, `memory_health` |
-| L4 | Mutation | 500 | `memory_delete`, `memory_update`, `memory_validate` |
+| L4 | Mutation | 500 | `memory_delete`, `memory_bulk_delete`, `memory_update`, `memory_validate` |
 | L5 | Lifecycle | 600 | `checkpoint_create`, `checkpoint_list`, `checkpoint_restore`, `checkpoint_delete` |
-| L6 | Analysis | 1200 | `task_preflight`, `task_postflight`, `memory_drift_why`, `memory_causal_link`, `memory_causal_stats`, `memory_causal_unlink` |
+| L6 | Analysis | 1200 | `task_preflight`, `task_postflight`, `memory_drift_why`, `memory_causal_link`, `memory_causal_stats`, `memory_causal_unlink`, `memory_skill_graph_query` |
 | L7 | Maintenance | 1000 | `memory_index_scan`, `memory_get_learning_history` |
 
 ---
@@ -508,8 +510,8 @@ Prevents duplicate memories from polluting the index:
 
 ```
 mcp_server/
-├── context-server.ts       # Main MCP server entry point (22 tools) [source]
-├── tool-schemas.ts         # All 22 tool schema definitions
+├── context-server.ts       # Main MCP server entry point (24 tools) [source]
+├── tool-schemas.ts         # All 24 tool schema definitions
 ├── package.json            # @spec-kit/mcp-server v1.7.2
 ├── tsconfig.json           # TypeScript config (outDir: ./dist)
 ├── vitest.config.ts        # Vitest test configuration
@@ -686,6 +688,23 @@ memory_search({
   anchors: ['decisions', 'context'],
   includeContent: true
 })
+```
+
+When chunked files are indexed, `includeContent: true` now reassembles child chunks into full content from indexed `content_text` values. Each result can include:
+- `isChunk`
+- `parentId`
+- `chunkIndex`
+- `chunkLabel`
+- `chunkCount`
+- `contentSource` (`reassembled_chunks` or `file_read_fallback`)
+
+```typescript
+memory_search({
+  query: "large file summary",
+  includeContent: true
+})
+// Chunked hits return reassembled content + chunk metadata.
+// includeContent: false keeps metadata-only behavior.
 ```
 
 ### Intent-Aware Context
@@ -872,6 +891,23 @@ sqlite3 database/context-index.sqlite "SELECT importance_tier, COUNT(*) FROM mem
 
 # Check causal graph stats
 sqlite3 database/context-index.sqlite "SELECT relation, COUNT(*) FROM causal_edges GROUP BY relation;"
+```
+
+### CLI Operations (`spec-kit-cli`)
+
+```bash
+# Show database stats
+node dist/cli.js stats
+
+# Bulk delete with optional checkpoint bypass (non-critical tiers only)
+node dist/cli.js bulk-delete --tier temporary --older-than 30 --skip-checkpoint
+# --skip-checkpoint is blocked for constitutional/critical tiers
+
+# Reindex with optional eager warmup (lazy warmup is default)
+node dist/cli.js reindex --eager-warmup
+
+# Targeted schema downgrade (v16 -> v15 only)
+node dist/cli.js schema-downgrade --to 15 --confirm
 ```
 
 ### Run Tests

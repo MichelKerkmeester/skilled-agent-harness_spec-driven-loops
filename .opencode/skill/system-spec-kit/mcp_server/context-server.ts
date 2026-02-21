@@ -31,7 +31,6 @@ import { dispatchTool } from './tools';
 // Handler modules (only indexSingleFile needed directly for startup scan)
 import {
   indexSingleFile,
-  setEmbeddingModelReady as setHandlerEmbeddingReady
 } from './handlers';
 
 // Utils
@@ -513,7 +512,6 @@ async function main(): Promise<void> {
         await embeddings.generateEmbedding('warmup test');
         warmupCompleted = true;
         setEmbeddingModelReady(true);
-        if (setHandlerEmbeddingReady) setHandlerEmbeddingReady(true);
         console.error(`[context-server] Embedding model ready (${Date.now() - startTime}ms)`);
         return true;
       } catch (err: unknown) {
@@ -532,7 +530,6 @@ async function main(): Promise<void> {
           console.warn('[context-server] Warmup timeout — marking embedding as ready to avoid undefined state');
           // P1-08 FIX: Mark embedding ready even on timeout so the system is usable
           setEmbeddingModelReady(true);
-          if (setHandlerEmbeddingReady) setHandlerEmbeddingReady(true);
         }
         resolve();
       }, WARMUP_TIMEOUT))
@@ -543,7 +540,6 @@ async function main(): Promise<void> {
     console.error('[context-server] Set SPECKIT_EAGER_WARMUP=true to restore eager warmup');
     // Mark embedding as "ready" since it will self-initialize on first use
     setEmbeddingModelReady(true);
-    if (setHandlerEmbeddingReady) setHandlerEmbeddingReady(true);
   }
 
   // Integrity check and module initialization

@@ -29,6 +29,7 @@ interface BulkDeleteArgs {
   specFolder?: string;
   confirm: boolean;
   olderThanDays?: number;
+  skipCheckpoint?: boolean;
 }
 
 /* ---------------------------------------------------------------
@@ -39,7 +40,7 @@ async function handleMemoryBulkDelete(args: BulkDeleteArgs): Promise<MCPResponse
   const startTime = Date.now();
   await checkDatabaseUpdated();
 
-  const { tier, specFolder, confirm, olderThanDays } = args;
+  const { tier, specFolder, confirm, olderThanDays, skipCheckpoint = false } = args;
 
   // Validation
   if (!tier || typeof tier !== 'string') {
@@ -58,6 +59,10 @@ async function handleMemoryBulkDelete(args: BulkDeleteArgs): Promise<MCPResponse
   // Safety: refuse to bulk-delete constitutional or critical tiers without explicit specFolder scope
   if ((tier === 'constitutional' || tier === 'critical') && !specFolder) {
     throw new Error(`Bulk delete of "${tier}" tier requires specFolder scope for safety. Use memory_delete for individual deletions.`);
+  }
+
+  if ((tier === 'constitutional' || tier === 'critical') && skipCheckpoint) {
+    throw new Error(`skipCheckpoint is not allowed for "${tier}" tier. Checkpoint is mandatory for high-safety tiers.`);
   }
 
   const database = vectorIndex.getDb();
@@ -91,28 +96,32 @@ async function handleMemoryBulkDelete(args: BulkDeleteArgs): Promise<MCPResponse
     });
   }
 
-  // Create auto-checkpoint before bulk deletion
+  // Create auto-checkpoint before bulk deletion (unless explicitly skipped)
   let checkpointName: string | null = null;
-  const timestamp = new Date().toISOString().replace(/[:.]/g, '-').slice(0, 19);
-  checkpointName = `pre-bulk-delete-${tier}-${timestamp}`;
+  if (!skipCheckpoint) {
+    const timestamp = new Date().toISOString().replace(/[:.]/g, '-').slice(0, 19);
+    checkpointName = `pre-bulk-delete-${tier}-${timestamp}`;
 
-  try {
-    checkpoints.createCheckpoint({
-      name: checkpointName,
-      specFolder,
-      metadata: {
-        reason: `auto-checkpoint before bulk delete of ${affectedCount} "${tier}" memories`,
-        tier,
-        affectedCount,
-        olderThanDays: olderThanDays || null,
-      },
-    });
-    console.error(`[memory-bulk-delete] Created checkpoint: ${checkpointName}`);
-  } catch (cpErr: unknown) {
-    const message = toErrorMessage(cpErr);
-    console.error(`[memory-bulk-delete] Failed to create checkpoint: ${message}`);
-    // Still proceed — user confirmed
-    checkpointName = null;
+    try {
+      checkpoints.createCheckpoint({
+        name: checkpointName,
+        specFolder,
+        metadata: {
+          reason: `auto-checkpoint before bulk delete of ${affectedCount} "${tier}" memories`,
+          tier,
+          affectedCount,
+          olderThanDays: olderThanDays || null,
+        },
+      });
+      console.error(`[memory-bulk-delete] Created checkpoint: ${checkpointName}`);
+    } catch (cpErr: unknown) {
+      const message = toErrorMessage(cpErr);
+      console.error(`[memory-bulk-delete] Failed to create checkpoint: ${message}`);
+      // Still proceed — user confirmed
+      checkpointName = null;
+    }
+  } else {
+    console.error('[memory-bulk-delete] Checkpoint creation skipped by caller (skipCheckpoint=true)');
   }
 
   // Fetch IDs for deletion (needed for causal edge cleanup and ledger)
@@ -174,6 +183,7 @@ async function handleMemoryBulkDelete(args: BulkDeleteArgs): Promise<MCPResponse
       olderThanDays: olderThanDays || null,
       totalDeleted: deletedCount,
       checkpoint: checkpointName,
+      skipCheckpoint,
     },
     actor: 'mcp:memory_bulk_delete',
   });
@@ -189,6 +199,8 @@ async function handleMemoryBulkDelete(args: BulkDeleteArgs): Promise<MCPResponse
   const hints: string[] = [];
   if (checkpointName) {
     hints.push(`Restore with: checkpoint_restore({ name: "${checkpointName}" })`);
+  } else if (skipCheckpoint) {
+    hints.push('Checkpoint skipped: restore is not available for this operation');
   }
   hints.push(`Run memory_index_scan({ force: true }) to re-index if needed`);
 
@@ -197,6 +209,7 @@ async function handleMemoryBulkDelete(args: BulkDeleteArgs): Promise<MCPResponse
     tier,
     specFolder: specFolder || null,
     olderThanDays: olderThanDays || null,
+    skipCheckpoint,
   };
   if (checkpointName) {
     data.checkpoint = checkpointName;

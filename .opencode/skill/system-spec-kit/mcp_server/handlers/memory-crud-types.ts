@@ -1,13 +1,17 @@
-// ---------------------------------------------------------------
-// MODULE: Memory CRUD Types
-// ---------------------------------------------------------------
+// ------- MODULE: Memory CRUD Types -------
 
+/* ---------------------------------------------------------------
+   TYPES
+--------------------------------------------------------------- */
+
+/** Arguments for the memory_delete handler. */
 interface DeleteArgs {
   id?: number | string;
   specFolder?: string;
   confirm?: boolean;
 }
 
+/** Arguments for the memory_update handler. */
 interface UpdateArgs {
   id: number;
   title?: string;
@@ -17,6 +21,7 @@ interface UpdateArgs {
   allowPartialUpdate?: boolean;
 }
 
+/** Arguments for the memory_list handler. */
 interface ListArgs {
   limit?: number;
   offset?: number;
@@ -24,6 +29,7 @@ interface ListArgs {
   sortBy?: string;
 }
 
+/** Arguments for the memory_stats handler. */
 interface StatsArgs {
   folderRanking?: string;
   excludePatterns?: string[];
@@ -32,16 +38,19 @@ interface StatsArgs {
   limit?: number;
 }
 
+/** Arguments for the memory_health handler (currently unused). */
 interface HealthArgs {
   _?: never;
 }
 
+/** Embedding provider metadata returned by the health check. */
 interface ProviderMetadata {
   provider: string;
   model: string;
   healthy?: boolean;
 }
 
+/** Snapshot of a memory's hash state for mutation tracking. */
 interface MemoryHashSnapshot {
   id: number;
   content_hash: string | null;
@@ -49,8 +58,10 @@ interface MemoryHashSnapshot {
   file_path?: string | null;
 }
 
+/** Valid mutation types for the CRUD ledger. */
 type CrudMutationType = 'create' | 'update' | 'delete' | 'merge' | 'archive' | 'restore' | 'reindex';
 
+/** Input parameters for recording a mutation in the ledger. */
 interface MutationLedgerInput {
   mutationType: CrudMutationType;
   reason: string;
@@ -62,6 +73,10 @@ interface MutationLedgerInput {
   sessionId?: string | null;
 }
 
+/* ---------------------------------------------------------------
+   EXPORTS
+--------------------------------------------------------------- */
+
 export type {
   DeleteArgs,
   UpdateArgs,
@@ -70,5 +85,6 @@ export type {
   HealthArgs,
   ProviderMetadata,
   MemoryHashSnapshot,
+  CrudMutationType,
   MutationLedgerInput,
 };

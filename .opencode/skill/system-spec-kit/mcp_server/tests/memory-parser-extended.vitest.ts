@@ -1,6 +1,6 @@
 // @ts-nocheck
 // ---------------------------------------------------------------
-// TEST: MEMORY PARSER EXTENDED
+// MODULE: Memory Parser Extended Tests
 // ---------------------------------------------------------------
 
 import { describe, it, expect, beforeAll, afterAll } from 'vitest';
@@ -375,8 +375,8 @@ describe('MEMORY PARSER EXTENDED TESTS', () => {
         contextType: 'general',
         importanceTier: 'normal',
         contentHash: 'abc',
-        content: 'x'.repeat(100001),
-        fileSize: 100001,
+        content: 'x'.repeat(250001),
+        fileSize: 250001,
         lastModified: new Date().toISOString(),
         memoryType: 'declarative',
         memoryTypeSource: 'default',

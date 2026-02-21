@@ -1,6 +1,8 @@
-// ---------------------------------------------------------------
-// MODULE: Memory CRUD Update Handler
-// ---------------------------------------------------------------
+// ------- MODULE: Memory CRUD Update Handler -------
+
+/* ---------------------------------------------------------------
+   IMPORTS
+--------------------------------------------------------------- */
 
 import { checkDatabaseUpdated } from '../core';
 import * as vectorIndex from '../lib/search/vector-index';
@@ -19,6 +21,11 @@ import { appendMutationLedgerSafe, getMemoryHashSnapshot } from './memory-crud-u
 import type { MCPResponse } from './types';
 import type { UpdateArgs } from './memory-crud-types';
 
+/* ---------------------------------------------------------------
+   CORE LOGIC
+--------------------------------------------------------------- */
+
+/** Handle memory_update tool -- updates metadata fields and optionally regenerates embeddings. */
 async function handleMemoryUpdate(args: UpdateArgs): Promise<MCPResponse> {
   await checkDatabaseUpdated();
 
@@ -31,7 +38,7 @@ async function handleMemoryUpdate(args: UpdateArgs): Promise<MCPResponse> {
     allowPartialUpdate = false,
   } = args;
 
-  if (!id) {
+  if (typeof id !== 'number') {
     throw new MemoryError(ErrorCodes.MISSING_REQUIRED_PARAM, 'id is required', { param: 'id' });
   }
 
@@ -117,7 +124,7 @@ async function handleMemoryUpdate(args: UpdateArgs): Promise<MCPResponse> {
   appendMutationLedgerSafe(database, {
     mutationType: 'update',
     reason: 'memory_update: metadata update',
-    priorHash: priorSnapshot?.content_hash ?? ((existing as Record<string, unknown>).content_hash as string | null) ?? null,
+    priorHash: priorSnapshot?.content_hash ?? existing.content_hash ?? null,
     newHash: mutationLedger.computeHash(JSON.stringify({
       id,
       title: updateParams.title ?? existing.title ?? null,
@@ -166,5 +173,9 @@ async function handleMemoryUpdate(args: UpdateArgs): Promise<MCPResponse> {
     hints,
   });
 }
+
+/* ---------------------------------------------------------------
+   EXPORTS
+--------------------------------------------------------------- */
 
 export { handleMemoryUpdate };

@@ -34,19 +34,19 @@ SKILLS_DIR = os.path.dirname(SCRIPT_DIR)
 
 # Comprehensive stop words - filtered from BOTH query AND corpus
 # These words have no semantic meaning for skill matching
-STOP_WORDS = {
-    'a', 'about', 'able', 'actually', 'agent', 'all', 'also', 'an', 'and', 'any', 
-    'are', 'as', 'at', 'be', 'been', 'being', 'but', 'by', 'can', 'could', 'did', 
-    'do', 'does', 'even', 'for', 'from', 'get', 'give', 'go', 'going', 'had', 
-    'has', 'have', 'he', 'help', 'her', 'him', 'how', 'i', 'if', 'in', 'into', 
-    'is', 'it', 'its', 'just', 'let', 'like', 'may', 'me', 'might', 'more', 
-    'most', 'must', 'my', 'need', 'no', 'not', 'now', 'of', 'on', 'only', 'or', 
-    'other', 'our', 'please', 'really', 'run', 'she', 'should', 'show', 'skill', 
-    'so', 'some', 'tell', 'that', 'the', 'them', 'then', 'these', 'they', 
-    'thing', 'things', 'this', 'those', 'to', 'tool', 'try', 'us', 'use', 
-    'used', 'using', 'very', 'want', 'was', 'way', 'we', 'were', 'what', 'when', 
-    'where', 'which', 'who', 'why', 'will', 'with', 'work', 'would', 'you', 'your'
-}
+STOP_WORDS = frozenset({
+    'a', 'about', 'able', 'actually', 'agent', 'all', 'also', 'an', 'and', 'any',
+    'are', 'as', 'at', 'be', 'been', 'being', 'but', 'by', 'can', 'could', 'did',
+    'do', 'does', 'even', 'for', 'from', 'get', 'give', 'go', 'going', 'had',
+    'has', 'have', 'he', 'help', 'her', 'him', 'how', 'i', 'if', 'in', 'into',
+    'is', 'it', 'its', 'just', 'let', 'like', 'may', 'me', 'might', 'more',
+    'most', 'must', 'my', 'need', 'no', 'not', 'now', 'of', 'on', 'only', 'or',
+    'other', 'our', 'please', 'really', 'she', 'should', 'skill',
+    'so', 'some', 'tell', 'that', 'the', 'them', 'then', 'these', 'they',
+    'thing', 'things', 'this', 'those', 'to', 'tool', 'try', 'us',
+    'used', 'using', 'very', 'want', 'was', 'way', 'we', 'were', 'what', 'when',
+    'where', 'which', 'who', 'why', 'will', 'with', 'would', 'you', 'your'
+})
 
 # Synonym expansion - maps user intent to technical terms in SKILL.md
 SYNONYM_MAP = {
@@ -399,9 +399,13 @@ def parse_frontmatter(file_path: str) -> Optional[Dict[str, str]]:
                 for line in yaml_block.split('\n'):
                     if ':' in line:
                         key, val = line.split(':', 1)
-                        data[key.strip()] = val.strip().strip('"').strip("'")
+                        val = val.strip()
+                        # Remove one matching pair of quotes (preserves inner content)
+                        if len(val) >= 2 and val[0] == val[-1] and val[0] in ('"', "'"):
+                            val = val[1:-1]
+                        data[key.strip()] = val
                 return data
-    except Exception as exc:
+    except (OSError, UnicodeDecodeError, ValueError) as exc:
         print(
             f"Warning: Failed to parse frontmatter from {file_path} "
             f"({type(exc).__name__}: {exc})",
@@ -421,18 +425,15 @@ def get_skills() -> Dict[str, Dict[str, Any]]:
             if meta and 'name' in meta:
                 skills[meta['name']] = {
                     "description": meta.get('description', ''),
-                    "weight": 1.0  # Equal weight for all skills
                 }
     
     # Hardcoded command bridges (slash commands)
     skills["command-spec-kit"] = {
         "description": "Create specifications and plans using /spec_kit slash command for new features or complex changes.",
-        "weight": 1.0
     }
-    
+
     skills["command-memory-save"] = {
         "description": "Save conversation context to memory using /memory:save.",
-        "weight": 1.0
     }
 
     return skills
@@ -451,7 +452,7 @@ def expand_query(prompt_tokens: List[str]) -> List[str]:
 # 3. SCORING
 # ───────────────────────────────────────────────────────────────
 
-def calculate_confidence(score: float, has_intent_boost: bool, weight: float = 1.0) -> float:
+def calculate_confidence(score: float, has_intent_boost: bool) -> float:
     """
     Calculate confidence score using two-tiered formula.
 
@@ -485,11 +486,9 @@ def calculate_confidence(score: float, has_intent_boost: bool, weight: float = 1
                Higher scores come from matching more terms or important keywords.
         has_intent_boost: Whether an INTENT_BOOSTER keyword was matched.
                          True enables the higher-confidence formula.
-        weight: Skill weight multiplier (default 1.0, currently unused but
-                reserved for future skill prioritization).
 
     Returns:
-        float: Confidence score between 0.0 and 0.95 (or 1.0 if weight > 1.0)
+        float: Confidence score between 0.0 and 0.95
     """
     if has_intent_boost:
         # Intent booster matched - higher confidence curve
@@ -498,7 +497,7 @@ def calculate_confidence(score: float, has_intent_boost: bool, weight: float = 1
         # No explicit boosters - conservative (corpus matches only)
         confidence = min(0.25 + score * 0.15, 0.95)
 
-    return min(confidence * weight, 1.0)
+    return confidence
 
 
 def calculate_uncertainty(num_matches: int, has_intent_boost: bool, num_ambiguous_matches: int) -> float:
@@ -658,7 +657,6 @@ def analyze_request(prompt: str) -> List[Dict[str, Any]]:
             confidence = calculate_confidence(
                 score=score,
                 has_intent_boost=has_boost,
-                weight=config['weight']
             )
 
             num_matches = len(matches)

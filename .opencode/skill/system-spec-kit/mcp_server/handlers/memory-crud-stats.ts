@@ -1,6 +1,8 @@
-// ---------------------------------------------------------------
-// MODULE: Memory CRUD Stats Handler
-// ---------------------------------------------------------------
+// ------- MODULE: Memory CRUD Stats Handler -------
+
+/* ---------------------------------------------------------------
+   IMPORTS
+--------------------------------------------------------------- */
 
 import * as fs from 'fs';
 
@@ -15,6 +17,11 @@ import { toErrorMessage } from '../utils';
 import type { MCPResponse } from './types';
 import type { StatsArgs } from './memory-crud-types';
 
+/* ---------------------------------------------------------------
+   CORE LOGIC
+--------------------------------------------------------------- */
+
+/** Handle memory_stats tool -- returns memory system statistics and folder rankings. */
 async function handleMemoryStats(args: StatsArgs | null): Promise<MCPResponse> {
   const startTime = Date.now();
   await checkDatabaseUpdated();
@@ -93,7 +100,7 @@ async function handleMemoryStats(args: StatsArgs | null): Promise<MCPResponse> {
     if (dbPath) {
       databaseSizeBytes = fs.statSync(dbPath).size;
     }
-  } catch {
+  } catch (_err: unknown) {
     // Non-fatal.
   }
 
@@ -138,22 +145,28 @@ async function handleMemoryStats(args: StatsArgs | null): Promise<MCPResponse> {
       `).all() as FolderMemoryInput[];
 
       const scoringOptions = {
-        ranking_mode: folderRanking,
         includeArchived,
         excludePatterns,
-        include_scores: includeScores || folderRanking === 'composite',
         limit: safeLimit,
       };
 
       let scoredFolders: Record<string, unknown>[];
       try {
         scoredFolders = folderScoring.computeFolderScores(allMemories, scoringOptions);
+
+        // Sort by ranking mode
+        if (folderRanking === 'recency') {
+          scoredFolders.sort((a, b) => ((b.recencyScore as number) ?? 0) - ((a.recencyScore as number) ?? 0));
+        } else if (folderRanking === 'importance') {
+          scoredFolders.sort((a, b) => ((b.importanceScore as number) ?? 0) - ((a.importanceScore as number) ?? 0));
+        }
+        // 'composite' and 'count' use default sort from computeFolderScores (by .score)
       } catch (scoringErr: unknown) {
         const message = toErrorMessage(scoringErr);
         console.error(`[memory-stats] Scoring failed, falling back to count-based: ${message}`);
 
         const folderCounts = new Map<string, number>();
-        for (const memory of allMemories as Record<string, unknown>[]) {
+        for (const memory of allMemories) {
           const folder = (memory.spec_folder as string) || 'unknown';
           folderCounts.set(folder, (folderCounts.get(folder) || 0) + 1);
         }
@@ -167,7 +180,7 @@ async function handleMemoryStats(args: StatsArgs | null): Promise<MCPResponse> {
             score: 0,
             isArchived: folderScoring.isArchived(folder),
           }))
-          .sort((a, b) => (b as Record<string, unknown>).count as number - ((a as Record<string, unknown>).count as number))
+          .sort((a, b) => b.count - a.count)
           .slice(0, safeLimit);
       }
 
@@ -227,7 +240,6 @@ async function handleMemoryStats(args: StatsArgs | null): Promise<MCPResponse> {
       newestMemory: dates.newest || null,
       topFolders,
       totalTriggerPhrases: triggerCount,
-      sqliteVecAvailable: vectorIndex.isVectorSearchAvailable(),
       vectorSearchEnabled: vectorIndex.isVectorSearchAvailable(),
       graphChannelMetrics: getGraphMetrics(),
       folderRanking,
@@ -238,5 +250,9 @@ async function handleMemoryStats(args: StatsArgs | null): Promise<MCPResponse> {
     hints,
   });
 }
+
+/* ---------------------------------------------------------------
+   EXPORTS
+--------------------------------------------------------------- */
 
 export { handleMemoryStats };

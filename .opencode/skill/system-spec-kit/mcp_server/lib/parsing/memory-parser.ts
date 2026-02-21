@@ -77,6 +77,7 @@ export type ContextType = 'implementation' | 'research' | 'decision' | 'discover
    --------------------------------------------------------------- */
 
 export const MEMORY_FILE_PATTERN: RegExp = /specs\/([^/]+)(?:\/[^/]+)*\/memory\/[^/]+\.(?:md|txt)$/i;
+export const MAX_CONTENT_LENGTH: number = parseInt(process.env.MCP_MAX_CONTENT_LENGTH || '250000', 10);
 
 export const CONTEXT_TYPE_MAP: Record<string, ContextType> = {
   'implementation': 'implementation',
@@ -730,8 +731,8 @@ export function validateParsedMemory(parsed: ParsedMemory): ParsedMemoryValidati
     errors.push(`Content too short (min ${MIN_CONTENT_LENGTH} chars)`);
   }
 
-  if (parsed.content && parsed.content.length > 100000) {
-    errors.push('Content too long (max 100KB)');
+  if (parsed.content && parsed.content.length > MAX_CONTENT_LENGTH) {
+    errors.push(`Content too long (max ${Math.round(MAX_CONTENT_LENGTH / 1000)}KB)`);
   }
 
   // Validate anchors (warnings only - don't block indexing)

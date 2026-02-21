@@ -207,3 +207,5 @@ export interface BulkDeleteArgs {
 export interface SgqsQueryArgs {
   queryString: string;
 }
+
+export type SgqsInvalidateArgs = Record<string, never>;

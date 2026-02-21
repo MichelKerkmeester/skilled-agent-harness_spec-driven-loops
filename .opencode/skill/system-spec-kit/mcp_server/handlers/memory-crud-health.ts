@@ -1,6 +1,11 @@
-// ---------------------------------------------------------------
-// MODULE: Memory CRUD Health Handler
-// ---------------------------------------------------------------
+// ------- MODULE: Memory CRUD Health Handler -------
+
+/* ---------------------------------------------------------------
+   IMPORTS
+--------------------------------------------------------------- */
+
+import { readFileSync } from 'node:fs';
+import { resolve } from 'node:path';
 
 import { checkDatabaseUpdated } from '../core';
 import * as vectorIndex from '../lib/search/vector-index';
@@ -8,11 +13,31 @@ import * as embeddings from '../lib/providers/embeddings';
 import { createMCPSuccessResponse, createMCPErrorResponse } from '../lib/response/envelope';
 import { toErrorMessage } from '../utils';
 
-import { isEmbeddingModelReady } from './memory-crud-state';
+import { isEmbeddingModelReady } from './memory-crud';
 
-import type { MCPResponse, EmbeddingProfileExtended as EmbeddingProfile } from './types';
+import type { MCPResponse, EmbeddingProfile } from './types';
 import type { HealthArgs, ProviderMetadata } from './memory-crud-types';
 
+/* ---------------------------------------------------------------
+   CONSTANTS
+--------------------------------------------------------------- */
+
+// Read version from package.json at module load time (CJS __dirname is available)
+// WHY try-catch: if package.json is missing or malformed, the server should still start
+const SERVER_VERSION: string = (() => {
+  try {
+    const pkg = JSON.parse(readFileSync(resolve(__dirname, '../package.json'), 'utf-8'));
+    return pkg.version ?? 'unknown';
+  } catch {
+    return 'unknown';
+  }
+})();
+
+/* ---------------------------------------------------------------
+   CORE LOGIC
+--------------------------------------------------------------- */
+
+/** Handle memory_health tool -- returns system health status and diagnostics. */
 async function handleMemoryHealth(_args: HealthArgs): Promise<MCPResponse> {
   const startTime = Date.now();
   await checkDatabaseUpdated();
@@ -22,8 +47,8 @@ async function handleMemoryHealth(_args: HealthArgs): Promise<MCPResponse> {
   try {
     if (database) {
       const countResult = database.prepare('SELECT COUNT(*) as count FROM memory_index')
-        .get() as Record<string, number>;
-      memoryCount = countResult.count;
+        .get() as Record<string, number> | undefined;
+      memoryCount = countResult?.count ?? 0;
     }
   } catch (err: unknown) {
     const message = toErrorMessage(err);
@@ -64,7 +89,7 @@ async function handleMemoryHealth(_args: HealthArgs): Promise<MCPResponse> {
       vectorSearchAvailable: vectorIndex.isVectorSearchAvailable(),
       memoryCount,
       uptime: process.uptime(),
-      version: '1.7.2',
+      version: SERVER_VERSION,
       embeddingProvider: {
         provider: providerMetadata.provider,
         model: providerMetadata.model,
@@ -77,5 +102,9 @@ async function handleMemoryHealth(_args: HealthArgs): Promise<MCPResponse> {
     startTime,
   });
 }
+
+/* ---------------------------------------------------------------
+   EXPORTS
+--------------------------------------------------------------- */
 
 export { handleMemoryHealth };

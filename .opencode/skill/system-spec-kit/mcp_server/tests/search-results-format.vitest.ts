@@ -1,6 +1,6 @@
 // @ts-nocheck
 // ---------------------------------------------------------------
-// TEST: SEARCH RESULTS FORMAT
+// MODULE: Search Results Format Tests
 // ---------------------------------------------------------------
 
 // Converted from: search-results-format.test.ts (custom runner)
@@ -258,6 +258,31 @@ describe('formatSearchResults', () => {
     expect(result.content).toBe(null);
     expect(typeof result.contentError).toBe('string');
     expect(result.contentError.length).toBeGreaterThan(0);
+  });
+
+  it('C15: precomputed chunk content bypasses file read', async () => {
+    const mockResults = [{
+      id: 51,
+      spec_folder: 'specs/010-test',
+      file_path: '/nonexistent/path.md',
+      title: 'Chunk Parent',
+      isChunk: true,
+      parentId: 999,
+      chunkIndex: 0,
+      chunkLabel: 'intro',
+      chunkCount: 3,
+      contentSource: 'reassembled_chunks',
+      precomputedContent: 'Reassembled content from chunks.',
+    }];
+    const res = await formatSearchResults(mockResults, 'semantic', true);
+    const envelope = parseEnvelope(res);
+    const result = envelope.data.results[0];
+    expect(result.content).toBe('Reassembled content from chunks.');
+    expect(result.contentError).toBeUndefined();
+    expect(result.isChunk).toBe(true);
+    expect(result.parentId).toBe(999);
+    expect(result.chunkCount).toBe(3);
+    expect(result.contentSource).toBe('reassembled_chunks');
   });
 });
 

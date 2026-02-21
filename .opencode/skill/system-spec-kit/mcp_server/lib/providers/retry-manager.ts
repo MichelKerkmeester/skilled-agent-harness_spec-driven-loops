@@ -343,6 +343,9 @@ async function processRetryQueue(limit = 3, contentLoader: ContentLoader | null 
 
     if (contentLoader) {
       content = await contentLoader(memory);
+    } else if (typeof memory.content_text === 'string' && memory.content_text.length > 0) {
+      // Use stored content_text — critical for chunks which share file_path with parent
+      content = memory.content_text;
     } else {
       content = await loadContentFromFile(memory.file_path);
     }

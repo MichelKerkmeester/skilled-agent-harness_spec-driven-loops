@@ -91,6 +91,20 @@ Status note: Scoped SGQS modules compiled via `npx tsc scripts/sgqs/*.ts --modul
 
 ---
 
+<!-- ANCHOR:phase-5 -->
+## Phase 5: Strict Re-Score Cycle (Additive)
+
+- [x] T030 Freeze strict holdout inputs and record integrity manifest (`scratch/strict-freeze-manifest.json`; `suiteSha256=c9761c6e55750cdb2d4ef5a55f9600c964d7ca61f8f9a269649e22b60eaf7e1a`, `runnerSha256=38c52a28a80bb3a77424678ce178a414d648968b722f1def8d333658dcd4693c`)
+- [x] T031 Execute strict holdout suite and publish strict gate dashboard (`scratch/results-strictholdout.json`, `scratch/strict-score-dashboard.md`; `StrictHoldout=5.00/5.0`)
+- [x] T032 Re-check continuity suites under strict policy (`scratch/results-legacy20.json`, `scratch/results-v2.json`; both `5.00/5.0` against `>= 4.5`)
+- [x] T033 Capture strict-cycle wave evidence artifacts (`scratch/agent-wave1-*.md`, `scratch/agent-wave3-*.md`)
+- [x] T034 Close strict cycle with freeze integrity unchanged and no additional recovery edits to runner/suite inputs [Evidence: `scratch/strict-freeze-manifest.json` hashes still match current files]
+
+Status note: Wave 2 code edits were not required in this cycle because the strict baseline already passed (`StrictHoldout=5.00/5.0`, threshold `>= 4.5`).
+<!-- /ANCHOR:phase-5 -->
+
+---
+
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
@@ -99,6 +113,9 @@ Status note: Scoped SGQS modules compiled via `npx tsc scripts/sgqs/*.ts --modul
 - [x] Test gates TG-001..TG-006 all pass
 - [x] Acceptance criteria AC-001..AC-006 all pass
 - [x] Milestone thresholds met: `V2 >= 3.5` and `Legacy20 >= 3.0`
+- [x] Strict additive thresholds met: `StrictHoldout >= 4.5`, `Legacy20 >= 4.5`, and `V2 >= 4.5`
+- [x] Freeze integrity maintained post-freeze (`suiteSha256=c9761c6e55750cdb2d4ef5a55f9600c964d7ca61f8f9a269649e22b60eaf7e1a`, `runnerSha256=38c52a28a80bb3a77424678ce178a414d648968b722f1def8d333658dcd4693c`)
+- [x] Wave 2 code edits explicitly skipped because strict baseline pass removed the need for additional recovery changes
 <!-- /ANCHOR:completion -->
 
 ---

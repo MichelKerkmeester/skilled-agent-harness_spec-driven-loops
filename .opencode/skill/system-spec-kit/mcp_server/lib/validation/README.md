@@ -99,6 +99,18 @@ Prevents exceeding embedding API limits:
 | Max tokens | 8000 | `MCP_MAX_MEMORY_TOKENS` |
 | Warning threshold | 80% | `MCP_TOKEN_WARNING_THRESHOLD` |
 
+### Content Size Behavior
+
+`validateContentSize()` and `runPreflight()` enforce a max-size gate with chunk-aware warning behavior:
+
+| Range | Behavior |
+|------|----------|
+| `< MCP_MIN_CONTENT_LENGTH` | Hard fail (`PF031`) |
+| `>= CHUNKING_THRESHOLD` and `<= MCP_MAX_CONTENT_LENGTH` | Warning (`PF030`) with chunking guidance |
+| `> MCP_MAX_CONTENT_LENGTH` | Hard fail (`PF030`) |
+
+Default cap is `MCP_MAX_CONTENT_LENGTH=250000` (250KB), configurable via environment.
+
 ### Pre-flight Error Codes
 
 | Code | Error | Description |
@@ -230,7 +242,7 @@ MCP_TOKEN_WARNING_THRESHOLD=0.8
 
 # Content limits
 MCP_MIN_CONTENT_LENGTH=10
-MCP_MAX_CONTENT_LENGTH=100000
+MCP_MAX_CONTENT_LENGTH=250000
 
 # Duplicate detection
 MCP_DUPLICATE_THRESHOLD=0.95

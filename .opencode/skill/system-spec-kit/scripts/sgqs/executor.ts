@@ -20,9 +20,6 @@ import { TypeMismatchError } from './errors';
 /** A single binding environment: maps variable names to graph entities */
 type Bindings = Map<string, GraphNode | GraphEdge>;
 
-/** Module-level warning accumulator, reset per execute() call */
-let executionWarnings: SGQSErrorInfo[] = [];
-
 // ---------------------------------------------------------------
 // 2. MAIN EXECUTOR
 // ---------------------------------------------------------------
@@ -33,27 +30,28 @@ let executionWarnings: SGQSErrorInfo[] = [];
  * @param query - Parsed AST from the parser
  * @param graph - The skill graph to query against
  * @returns Query results with columns and rows
+ * @throws {TypeMismatchError} When a type mismatch is unrecoverable (re-thrown after conversion to error info)
  */
 export function execute(query: QueryNode, graph: SkillGraph): SGQSResult {
   const errors: SGQSErrorInfo[] = [];
-  executionWarnings = []; // Reset warnings for this execution
+  const warnings: SGQSErrorInfo[] = [];
 
   try {
     // Phase 1: MATCH -- enumerate all matching binding sets
-    let bindingSets = executeMatch(query.match, graph);
+    let bindingSets = executeMatch(query.match, graph, warnings);
 
     // Phase 2: WHERE -- filter binding sets
     if (query.where) {
-      bindingSets = executeWhere(query.where, bindingSets);
+      bindingSets = executeWhere(query.where, bindingSets, warnings);
     }
 
     // Phase 3: RETURN -- project results
-    const result = executeReturn(query.return, bindingSets, errors);
+    const result = executeReturn(query.return, bindingSets, errors, warnings);
 
     // Merge deduplicated warnings into errors
-    if (executionWarnings.length > 0) {
+    if (warnings.length > 0) {
       const seenWarnings = new Set<string>();
-      for (const w of executionWarnings) {
+      for (const w of warnings) {
         const key = `${w.code}:${w.message}`;
         if (!seenWarnings.has(key)) {
           seenWarnings.add(key);
@@ -76,11 +74,11 @@ export function execute(query: QueryNode, graph: SkillGraph): SGQSResult {
 // 3. MATCH EXECUTION
 // ---------------------------------------------------------------
 
-function executeMatch(matchNode: MatchNode, graph: SkillGraph): Bindings[] {
+function executeMatch(matchNode: MatchNode, graph: SkillGraph, warnings: SGQSErrorInfo[]): Bindings[] {
   let bindingSets: Bindings[] = [new Map()];
 
   for (const pattern of matchNode.patterns) {
-    bindingSets = executePattern(pattern, graph, bindingSets);
+    bindingSets = executePattern(pattern, graph, bindingSets, warnings);
   }
 
   return bindingSets;
@@ -90,6 +88,7 @@ function executePattern(
   pattern: PatternNode,
   graph: SkillGraph,
   existingBindings: Bindings[],
+  warnings: SGQSErrorInfo[],
 ): Bindings[] {
   const elements = pattern.elements;
 
@@ -101,7 +100,7 @@ function executePattern(
 
   for (const bindings of existingBindings) {
     // Match the first node
-    const firstMatches = matchNodePattern(firstNode, graph, bindings);
+    const firstMatches = matchNodePattern(firstNode, graph, bindings, warnings);
 
     for (const nodeBindings of firstMatches) {
       // Process remaining rel-chain pairs
@@ -118,7 +117,7 @@ function executePattern(
 
         const nextSets: Bindings[] = [];
         for (const bs of currentSets) {
-          const expanded = matchRelChain(relPattern, nextNodePattern, graph, bs, prevNodeBinding);
+          const expanded = matchRelChain(relPattern, nextNodePattern, graph, bs, warnings, prevNodeBinding);
           nextSets.push(...expanded);
         }
         currentSets = nextSets;
@@ -137,13 +136,15 @@ function matchNodePattern(
   nodePattern: NodePatternNode,
   graph: SkillGraph,
   bindings: Bindings,
+  warnings: SGQSErrorInfo[],
 ): Bindings[] {
   const results: Bindings[] = [];
 
   // If binding already exists, check if the existing node matches
   if (nodePattern.binding && bindings.has(nodePattern.binding)) {
+    // Safe: binding existence verified by the has() check on the line above
     const existing = bindings.get(nodePattern.binding)!;
-    if (isGraphNode(existing) && nodeMatchesPattern(existing as GraphNode, nodePattern)) {
+    if (isGraphNode(existing) && nodeMatchesPattern(existing as GraphNode, nodePattern, warnings)) {
       results.push(new Map(bindings));
     }
     return results;
@@ -151,7 +152,7 @@ function matchNodePattern(
 
   // Otherwise, search all nodes
   for (const [, node] of graph.nodes) {
-    if (nodeMatchesPattern(node, nodePattern)) {
+    if (nodeMatchesPattern(node, nodePattern, warnings)) {
       const newBindings = new Map(bindings);
       if (nodePattern.binding) {
         newBindings.set(nodePattern.binding, node);
@@ -164,7 +165,7 @@ function matchNodePattern(
 }
 
 /** Check if a node matches a node pattern's label and property filters */
-function nodeMatchesPattern(node: GraphNode, pattern: NodePatternNode): boolean {
+function nodeMatchesPattern(node: GraphNode, pattern: NodePatternNode, warnings: SGQSErrorInfo[]): boolean {
   // Check label
   if (pattern.label) {
     const requiredLabel = ':' + pattern.label.toLowerCase();
@@ -177,7 +178,7 @@ function nodeMatchesPattern(node: GraphNode, pattern: NodePatternNode): boolean 
   // Check properties
   if (pattern.properties) {
     for (const entry of pattern.properties.entries) {
-      const nodeValue = getNodeProperty(node, entry.key);
+      const nodeValue = getNodeProperty(node, entry.key, warnings);
       const patternValue = literalToValue(entry.value);
       if (!patternPropertyMatches(nodeValue, patternValue)) {
         return false;
@@ -194,6 +195,7 @@ function matchRelChain(
   nextNodePattern: NodePatternNode,
   graph: SkillGraph,
   bindings: Bindings,
+  warnings: SGQSErrorInfo[],
   sourceBinding: string | null = null,
 ): Bindings[] {
   // Resolve source node: prefer explicit binding from the current pattern chain,
@@ -213,12 +215,12 @@ function matchRelChain(
   if (relPattern.range) {
     // Variable-length path traversal
     return matchVariableLengthPath(
-      sourceNode, relPattern, nextNodePattern, graph, bindings
+      sourceNode, relPattern, nextNodePattern, graph, bindings, warnings
     );
   }
 
   // Single-hop relationship matching
-  return matchSingleHopRel(sourceNode, relPattern, nextNodePattern, graph, bindings);
+  return matchSingleHopRel(sourceNode, relPattern, nextNodePattern, graph, bindings, warnings);
 }
 
 /** Match a single-hop relationship */
@@ -228,6 +230,7 @@ function matchSingleHopRel(
   nextNodePattern: NodePatternNode,
   graph: SkillGraph,
   bindings: Bindings,
+  warnings: SGQSErrorInfo[],
 ): Bindings[] {
   const results: Bindings[] = [];
   const candidateEdges = getDirectedEdges(sourceNode.id, relPattern.direction, graph);
@@ -244,10 +247,11 @@ function matchSingleHopRel(
     if (!otherNode) continue;
 
     // Check if other node matches the next node pattern
-    if (!nodeMatchesPattern(otherNode, nextNodePattern)) continue;
+    if (!nodeMatchesPattern(otherNode, nextNodePattern, warnings)) continue;
 
     // Check binding consistency for the next node
     if (nextNodePattern.binding && bindings.has(nextNodePattern.binding)) {
+      // Safe: binding existence verified by the has() check on the line above
       const existing = bindings.get(nextNodePattern.binding)!;
       if (isGraphNode(existing) && (existing as GraphNode).id !== otherNode.id) {
         continue;
@@ -274,7 +278,9 @@ function matchVariableLengthPath(
   targetPattern: NodePatternNode,
   graph: SkillGraph,
   bindings: Bindings,
+  warnings: SGQSErrorInfo[],
 ): Bindings[] {
+  // Safe: range existence verified by caller (matchRelChain checks relPattern.range before calling)
   const range = relPattern.range!;
   const minHops = range.min ?? 0;
   const maxHops = range.max ?? MAX_TRAVERSAL_DEPTH;
@@ -296,15 +302,17 @@ function matchVariableLengthPath(
   }];
 
   while (queue.length > 0) {
+    // Safe: loop condition guarantees queue is non-empty
     const current = queue.shift()!;
 
     // If within range, check if target matches
     if (current.depth >= minHops && current.depth <= maxHops) {
       const targetNode = graph.nodes.get(current.nodeId);
       if (targetNode && targetNode.id !== startNode.id &&
-          nodeMatchesPattern(targetNode, targetPattern)) {
+          nodeMatchesPattern(targetNode, targetPattern, warnings)) {
         // Check binding consistency
         if (targetPattern.binding && bindings.has(targetPattern.binding)) {
+          // Safe: binding existence verified by the has() check on the line above
           const existing = bindings.get(targetPattern.binding)!;
           if (isGraphNode(existing) && (existing as GraphNode).id !== targetNode.id) {
             // Skip this match -- binding conflict
@@ -385,6 +393,9 @@ function getDirectedEdges(
   return edges;
 }
 
+// Safe: Map preserves insertion order per ES2015 spec. Bindings are always
+// inserted in pattern-match order during MATCH clause processing, so the
+// last entry is the most recently bound node.
 /** Find the most recently bound node in a bindings map */
 function findPreviousNode(bindings: Bindings): GraphNode | null {
   let lastNode: GraphNode | null = null;
@@ -400,29 +411,33 @@ function findPreviousNode(bindings: Bindings): GraphNode | null {
 // 4. WHERE EXECUTION
 // ---------------------------------------------------------------
 
-function executeWhere(whereNode: WhereNode, bindingSets: Bindings[]): Bindings[] {
+function executeWhere(whereNode: WhereNode, bindingSets: Bindings[], warnings: SGQSErrorInfo[]): Bindings[] {
   return bindingSets.filter(bindings => {
-    return evaluateCondition(whereNode.condition, bindings);
+    return evaluateCondition(whereNode.condition, bindings, warnings);
   });
 }
 
-function evaluateCondition(expr: ExpressionNode, bindings: Bindings): boolean {
+function evaluateCondition(expr: ExpressionNode, bindings: Bindings, warnings: SGQSErrorInfo[]): boolean {
   switch (expr.kind) {
     case 'Comparison':
-      return evaluateComparison(expr, bindings);
+      return evaluateComparison(expr, bindings, warnings);
     case 'Logical':
-      return evaluateLogical(expr, bindings);
+      return evaluateLogical(expr, bindings, warnings);
     case 'Not':
-      return !evaluateCondition(expr.operand, bindings);
+      return !evaluateCondition(expr.operand, bindings, warnings);
     case 'NullCheck':
-      return evaluateNullCheck(expr, bindings);
+      return evaluateNullCheck(expr, bindings, warnings);
+    default: {
+      const _exhaustive: never = expr;
+      throw new Error(`Unexpected expression kind: ${(expr as any).kind}`);
+    }
   }
 }
 
-function evaluateComparison(comp: ComparisonNode, bindings: Bindings): boolean {
-  const leftValue = resolvePropertyRef(comp.left, bindings);
+function evaluateComparison(comp: ComparisonNode, bindings: Bindings, warnings: SGQSErrorInfo[]): boolean {
+  const leftValue = resolvePropertyRef(comp.left, bindings, warnings);
   const rightValue = comp.right.kind === 'PropertyRef'
-    ? resolvePropertyRef(comp.right, bindings)
+    ? resolvePropertyRef(comp.right, bindings, warnings)
     : literalToValue(comp.right);
 
   // NULL semantics: comparisons with NULL are false (except IS NULL handled elsewhere)
@@ -456,18 +471,18 @@ function evaluateComparison(comp: ComparisonNode, bindings: Bindings): boolean {
   }
 }
 
-function evaluateLogical(logical: LogicalNode, bindings: Bindings): boolean {
+function evaluateLogical(logical: LogicalNode, bindings: Bindings, warnings: SGQSErrorInfo[]): boolean {
   if (logical.operator === 'AND') {
-    return evaluateCondition(logical.left, bindings) &&
-           evaluateCondition(logical.right, bindings);
+    return evaluateCondition(logical.left, bindings, warnings) &&
+           evaluateCondition(logical.right, bindings, warnings);
   }
   // OR
-  return evaluateCondition(logical.left, bindings) ||
-         evaluateCondition(logical.right, bindings);
+  return evaluateCondition(logical.left, bindings, warnings) ||
+         evaluateCondition(logical.right, bindings, warnings);
 }
 
-function evaluateNullCheck(check: NullCheckNode, bindings: Bindings): boolean {
-  const value = resolvePropertyRef(check.property, bindings);
+function evaluateNullCheck(check: NullCheckNode, bindings: Bindings, warnings: SGQSErrorInfo[]): boolean {
+  const value = resolvePropertyRef(check.property, bindings, warnings);
   const isNull = value === null || value === undefined;
   return check.negated ? !isNull : isNull;
 }
@@ -480,6 +495,7 @@ function executeReturn(
   returnNode: ReturnNode,
   bindingSets: Bindings[],
   errors: SGQSErrorInfo[],
+  warnings: SGQSErrorInfo[],
 ): SGQSResult {
   // Determine if we have aggregation functions
   const hasAggregates = returnNode.items.some(
@@ -487,7 +503,7 @@ function executeReturn(
   );
 
   if (hasAggregates) {
-    return executeAggregateReturn(returnNode, bindingSets, errors);
+    return executeAggregateReturn(returnNode, bindingSets, errors, warnings);
   }
 
   // Simple projection
@@ -501,7 +517,7 @@ function executeReturn(
     const row: Record<string, unknown> = {};
     for (const item of returnNode.items) {
       const colName = item.alias || getReturnExprName(item.expression);
-      row[colName] = resolveReturnExpr(item.expression, bindings);
+      row[colName] = resolveReturnExpr(item.expression, bindings, warnings);
     }
     rows.push(row);
   }
@@ -518,6 +534,7 @@ function executeAggregateReturn(
   returnNode: ReturnNode,
   bindingSets: Bindings[],
   errors: SGQSErrorInfo[],
+  warnings: SGQSErrorInfo[],
 ): SGQSResult {
   // Identify grouping keys (non-aggregate return items)
   const groupKeys: ReturnItemNode[] = [];
@@ -541,7 +558,7 @@ function executeAggregateReturn(
   for (const bindings of bindingSets) {
     const keyParts: string[] = [];
     for (const gk of groupKeys) {
-      const val = resolveReturnExpr(gk.expression, bindings);
+      const val = resolveReturnExpr(gk.expression, bindings, warnings);
       keyParts.push(JSON.stringify(val));
     }
     const key = keyParts.join('||');
@@ -549,6 +566,7 @@ function executeAggregateReturn(
     if (!groups.has(key)) {
       groups.set(key, []);
     }
+    // Safe: groups.get(key) is guaranteed non-null by the set() call on the line above
     groups.get(key)!.push(bindings);
   }
 
@@ -567,7 +585,7 @@ function executeAggregateReturn(
     // Group key values from first binding in group
     for (const gk of groupKeys) {
       const colName = gk.alias || getReturnExprName(gk.expression);
-      row[colName] = resolveReturnExpr(gk.expression, groupBindings[0]);
+      row[colName] = resolveReturnExpr(gk.expression, groupBindings[0], warnings);
     }
 
     // Aggregate values across group
@@ -575,7 +593,8 @@ function executeAggregateReturn(
       const colName = agg.alias || getReturnExprName(agg.expression);
       row[colName] = computeAggregate(
         agg.expression as AggregateNode,
-        groupBindings
+        groupBindings,
+        warnings
       );
     }
 
@@ -589,10 +608,11 @@ function executeAggregateReturn(
 function resolveAggregateArgument(
   arg: PropertyRefNode | VariableRefNode | StarNode,
   bindings: Bindings,
+  warnings: SGQSErrorInfo[],
 ): unknown {
   switch (arg.kind) {
     case 'PropertyRef':
-      return resolvePropertyRef(arg, bindings);
+      return resolvePropertyRef(arg, bindings, warnings);
     case 'VariableRef':
       return resolveVariableRef(arg, bindings);
     case 'Star':
@@ -600,7 +620,7 @@ function resolveAggregateArgument(
   }
 }
 
-function computeAggregate(agg: AggregateNode, bindingSets: Bindings[]): unknown {
+function computeAggregate(agg: AggregateNode, bindingSets: Bindings[], warnings: SGQSErrorInfo[]): unknown {
   if (agg.function === 'COUNT') {
     if (agg.argument.kind === 'Star') {
       return bindingSets.length;
@@ -608,7 +628,7 @@ function computeAggregate(agg: AggregateNode, bindingSets: Bindings[]): unknown 
 
     const values: unknown[] = [];
     for (const bindings of bindingSets) {
-      const val = resolveAggregateArgument(agg.argument, bindings);
+      const val = resolveAggregateArgument(agg.argument, bindings, warnings);
       if (val !== null && val !== undefined) {
         values.push(val);
       }
@@ -624,7 +644,7 @@ function computeAggregate(agg: AggregateNode, bindingSets: Bindings[]): unknown 
   if (agg.function === 'COLLECT') {
     const values: unknown[] = [];
     for (const bindings of bindingSets) {
-      const val = resolveAggregateArgument(agg.argument, bindings);
+      const val = resolveAggregateArgument(agg.argument, bindings, warnings);
       values.push(val);
     }
 
@@ -648,12 +668,12 @@ function computeAggregate(agg: AggregateNode, bindingSets: Bindings[]): unknown 
 // ---------------------------------------------------------------
 
 /** Resolve a property reference against bindings */
-function resolvePropertyRef(ref: PropertyRefNode, bindings: Bindings): unknown {
+function resolvePropertyRef(ref: PropertyRefNode, bindings: Bindings, warnings: SGQSErrorInfo[]): unknown {
   const entity = bindings.get(ref.variable);
   if (!entity) return null;
 
   if (isGraphNode(entity)) {
-    return getNodeProperty(entity as GraphNode, ref.property);
+    return getNodeProperty(entity as GraphNode, ref.property, warnings);
   }
 
   if (isGraphEdge(entity)) {
@@ -664,10 +684,10 @@ function resolvePropertyRef(ref: PropertyRefNode, bindings: Bindings): unknown {
 }
 
 /** Resolve a return expression against bindings */
-function resolveReturnExpr(expr: ReturnExprNode, bindings: Bindings): unknown {
+function resolveReturnExpr(expr: ReturnExprNode, bindings: Bindings, warnings: SGQSErrorInfo[]): unknown {
   switch (expr.kind) {
     case 'PropertyRef':
-      return resolvePropertyRef(expr, bindings);
+      return resolvePropertyRef(expr, bindings, warnings);
     case 'VariableRef':
       return resolveVariableRef(expr, bindings);
     case 'Aggregate':
@@ -707,7 +727,7 @@ function resolveVariableRef(ref: VariableRefNode, bindings: Bindings): unknown {
 }
 
 /** Get a property from a GraphNode, checking both direct fields and properties map */
-function getNodeProperty(node: GraphNode, property: string): unknown {
+function getNodeProperty(node: GraphNode, property: string, warnings: SGQSErrorInfo[]): unknown {
   const normalizedProperty = property.toLowerCase();
 
   // Check direct fields first
@@ -741,7 +761,7 @@ function getNodeProperty(node: GraphNode, property: string): unknown {
   }
 
   // Property not found -- emit W001 warning and return null (NULL semantics)
-  executionWarnings.push({
+  warnings.push({
     code: 'W001',
     message: `Unknown property "${property}" on node "${node.id}" (labels: ${node.labels.join(', ')})`,
   });
