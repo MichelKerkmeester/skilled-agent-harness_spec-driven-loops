@@ -6,7 +6,7 @@
 <!-- ANCHOR:executive-summary -->
 ## EXECUTIVE SUMMARY
 
-Rename 7 skills from legacy `workflows-*` prefix to cleaner `sk-*`/`mcp-*` convention across ~370 files. The rename improves skill discoverability, distinguishes MCP integrations from standard skills, and reduces naming verbosity. Work is decomposed into 7 independent phases (one per skill), each executable as a standalone spec folder.
+Rename 7 skills from legacy `workflows-*` prefix to cleaner `sk-*`/`mcp-*` convention across ~370 files. The rename improves skill discoverability, distinguishes MCP integrations from standard skills, and reduces naming verbosity. Work is decomposed into 9 phases (7 Public repo + 2 Barter repo extensions) (one per skill), each executable as a standalone spec folder.
 
 **Key Decisions**: Per-skill phase decomposition for isolation and parallel planning; longest-match-first execution order to prevent partial replacements.
 
@@ -22,7 +22,7 @@ Rename 7 skills from legacy `workflows-*` prefix to cleaner `sk-*`/`mcp-*` conve
 |-------|-------|
 | **Level** | 3+ |
 | **Priority** | P1 |
-| **Status** | Completed |
+| **Status** | In Progress |
 | **Created** | 2026-02-21 |
 | **Completed** | 2026-02-21 |
 | **Verified** | 2026-02-21 |
@@ -114,6 +114,8 @@ Rename 7 skills to a cleaner naming convention: `sk-*` for standard skills and `
 | 5 | 005-sk-git/ | Rename `sk-git` → `sk-git` (20 internal, 39 external files) | None | Completed |
 | 6 | 006-sk-visual-explainer/ | Rename `sk-visual-explainer` → `sk-visual-explainer` (22 internal, 6 external files) | None | Completed |
 | 7 | 007-mcp-chrome-devtools/ | Rename `mcp-chrome-devtools` → `mcp-chrome-devtools` (21 internal, 36 external files) | None | Completed |
+| 8 | 008-sk-code-from-barter-repo/ | Rename `workflows-code` → `sk-code` in Barter repo (6 internal, 8 external files) | Phase 007 | Completed |
+| 9 | 009-sk-git-from-barter-repo/ | Rename `workflows-git` → `sk-git` in Barter repo (8 internal files, 8 text changes) | Phase 005, 008 | Completed |
 
 ### Phase Transition Rules
 
@@ -322,6 +324,9 @@ Rename 7 skills to a cleaner naming convention: `sk-*` for standard skills and `
 
 <!-- ANCHOR:changelog -->
 ## 15. CHANGE LOG
+
+### v2.2 (2026-02-21)
+**Barter repo extensions added**: Added Phase 008 (sk-code Barter) and Phase 009 (sk-git Barter) as extension phases for the Barter repository skill renames.
 
 ### v2.1 (2026-02-21)
 **Documentation closure complete**: Parent/phase statuses synchronized, phase map marked complete, and checklist evidence aligned to verified command outputs.

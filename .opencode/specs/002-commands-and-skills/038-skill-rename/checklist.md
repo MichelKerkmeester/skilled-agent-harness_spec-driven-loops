@@ -62,6 +62,7 @@
 - [x] CHK-034 [P1] Changelog directories renamed (Evidence: per-phase changelog checks complete; phase 006 correctly documents no changelog folder)
 - [x] CHK-035 [P1] Wildcard `workflows-code--*` → `sk-code--*` updated everywhere (Evidence: old-name active-target grep checks return exit `1`)
 - [x] CHK-036 [P1] Bare `workflows-code` references resolved (Evidence: `rg -nP "\\bworkflows-code\\b(?!--)"` exit `1`)
+- [x] CHK-037 [P1] Phase 008 spec documentation created (008-sk-code-from-barter-repo/spec.md, plan.md, tasks.md, checklist.md) (Evidence: all 4 files exist with SPECKIT_LEVEL: 2)
 <!-- /ANCHOR:content-updates -->
 
 ---
@@ -74,6 +75,9 @@
 - [x] CHK-042 [P0] All 7 new skill folders exist with complete file contents (Evidence: required-folder existence checks passed)
 - [x] CHK-043 [P1] No broken relative paths between skills (Evidence: no stale old-name path references found in active-target scans)
 - [x] CHK-044 [P2] system-spec-kit vitest tests pass with updated fixtures (Evidence: `73` tests passed)
+- [x] CHK-045 [P0] Phase 008 Barter repo `workflows-code` folder renamed to `sk-code` (Evidence: `test -d .opencode/skill/sk-code` = present, `workflows-code/` absent)
+- [x] CHK-046 [P0] Phase 008 skill_advisor.py bare `workflows-code` entries updated to `sk-code` (Evidence: `python3 skill_advisor.py "implement code"` → `sk-code` confidence 0.95)
+- [x] CHK-047 [P1] Phase 008 all system-spec-kit bare `workflows-code` references updated (Evidence: grep over SKILL.md + 5 references + 1 assets + 1 test fixture = 0 bare matches)
 <!-- /ANCHOR:testing -->
 
 ---
@@ -83,6 +87,7 @@
 
 - [x] CHK-050 [P1] Spec/plan/checklist synchronized (Evidence: parent + phase status fields and summary tables aligned on 2026-02-21)
 - [x] CHK-051 [P2] Findings saved to memory/ (Evidence: `generate-context.js` indexed parent and phases `002-007` as `#87-#93`)
+- [x] CHK-052 [P1] Phase 008 spec/plan/tasks/checklist complete and aligned (Evidence: all 4 docs created, implementation executed, verification passed)
 <!-- /ANCHOR:docs -->
 
 ---
@@ -158,8 +163,8 @@
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 22 | 22/22 |
-| P1 Items | 25 | 25/25 |
+| P0 Items | 24 | 24/24 |
+| P1 Items | 28 | 28/28 |
 | P2 Items | 7 | 7/7 |
 
 **Verification Date**: 2026-02-21

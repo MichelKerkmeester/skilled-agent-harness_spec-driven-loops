@@ -9,7 +9,8 @@
     "./*": "./dist/*.js"
   },
   "bin": {
-    "context-server": "./dist/context-server.js"
+    "context-server": "./dist/context-server.js",
+    "spec-kit-cli": "./dist/cli.js"
   },
   "scripts": {
     "start": "node dist/context-server.js",

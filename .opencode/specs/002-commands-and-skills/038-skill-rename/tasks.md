@@ -62,6 +62,9 @@
 - [x] T023 Verify no old folders remain
 - [x] T024 Update parent Phase Documentation Map with completion status
 - [x] T025 Save memory context
+- [x] T026 Create Phase 008 spec documentation (008-sk-code-from-barter-repo/)
+- [x] T027 Execute Phase 008: rename `workflows-code` → `sk-code` in Barter repo
+- [x] T028 Verify Phase 008: legacy-token scan + skill_advisor.py smoke test (Barter repo)
 <!-- /ANCHOR:verification -->
 
 ---
