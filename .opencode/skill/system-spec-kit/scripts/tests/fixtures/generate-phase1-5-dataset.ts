@@ -19,7 +19,7 @@ const HUMAN_REVIEW_RATIO = 0.10;
 function parseArgs(): { specFolder: string } {
   const [, , specFolder] = process.argv;
   if (!specFolder) {
-    throw new Error('Usage: ts-node scripts/evals/generate-phase1-5-dataset.ts <spec-folder-relative-path>');
+    throw new Error('Usage: ts-node scripts/tests/fixtures/generate-phase1-5-dataset.ts <spec-folder-relative-path>');
   }
   return { specFolder };
 }

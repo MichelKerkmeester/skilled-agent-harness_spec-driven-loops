@@ -24,12 +24,14 @@ interface FallbackMetadata {
   fallbackRetry: boolean;
 }
 
+type ScatterFn = (query: string, opts: ScatterOptions) => Promise<ScatterResult[]>;
+
 /**
  * Adaptive fallback logic extracted for testability.
  * In production this wraps the Promise.all scatter block in hybrid-search.ts.
  */
 async function executeWithFallback(
-  scatterFn: (query: string, opts: ScatterOptions) => Promise<ScatterResult[]>,
+  scatterFn: ScatterFn,
   query: string,
   metadata: FallbackMetadata,
   primaryThreshold = 0.3,
@@ -48,11 +50,11 @@ async function executeWithFallback(
    --------------------------------------------------------------- */
 
 describe('C138-P0 Adaptive Fallback', () => {
-  let mockScatter: ReturnType<typeof vi.fn>;
+  let mockScatter: ReturnType<typeof vi.fn<ScatterFn>>;
   let metadata: FallbackMetadata;
 
   beforeEach(() => {
-    mockScatter = vi.fn();
+    mockScatter = vi.fn<ScatterFn>();
     metadata = { fallbackRetry: false };
   });
 

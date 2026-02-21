@@ -1,3 +1,6 @@
+// ---------------------------------------------------------------
+// MODULE: FSRS Scheduler Tests
+// ---------------------------------------------------------------
 import { describe, it, expect, beforeAll } from 'vitest';
 import { TIER_MULTIPLIER } from '../lib/cache/cognitive/fsrs-scheduler';
 
@@ -601,8 +604,9 @@ describe('FSRS Module Exports', () => {
   for (const name of expectedExports) {
     it(`Export: ${name}`, () => {
       if (!fsrsScheduler) return;
-      if (fsrsScheduler[name] === undefined) return; // Not implemented yet
-      expect(fsrsScheduler[name]).toBeDefined();
+      const moduleExports = fsrsScheduler as unknown as Record<string, unknown>;
+      if (moduleExports[name] === undefined) return; // Not implemented yet
+      expect(moduleExports[name]).toBeDefined();
     });
   }
 });
@@ -617,8 +621,9 @@ describe('PE Gate Module Exports', () => {
   for (const name of expectedExports) {
     it(`Export: ${name}`, () => {
       if (!predictionErrorGate) return;
-      if (predictionErrorGate[name] === undefined) return; // Not implemented yet
-      expect(predictionErrorGate[name]).toBeDefined();
+      const moduleExports = predictionErrorGate as unknown as Record<string, unknown>;
+      if (moduleExports[name] === undefined) return; // Not implemented yet
+      expect(moduleExports[name]).toBeDefined();
     });
   }
 });

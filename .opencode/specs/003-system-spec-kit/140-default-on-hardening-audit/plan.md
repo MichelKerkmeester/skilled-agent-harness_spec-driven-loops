@@ -5,6 +5,15 @@
 
 ---
 
+## TABLE OF CONTENTS
+- [1. OVERVIEW](#1--overview)
+
+## 1. OVERVIEW
+
+This document defines the execution plan, workstreams, and gates for Spec 140 hardening.
+
+---
+
 <!-- ANCHOR:summary -->
 ## 1. SUMMARY
 
@@ -34,12 +43,12 @@ This implementation hardens specs 136/138/139 with five coordinated tracks: defa
 - [x] Verification commands fixed for completion criteria
 
 ### Definition of Done
-- [ ] All P0 requirements complete
-- [ ] All P1 requirements complete or explicitly deferred by user
-- [ ] `npm run typecheck` passes
-- [ ] `npm run test --workspace=mcp_server` passes
-- [ ] `npm test` passes
-- [ ] checklist evidence populated
+- [x] All P0 requirements complete
+- [x] All P1 requirements complete or explicitly deferred by user
+- [x] `npm run typecheck` passes
+- [x] `npm run test --workspace=mcp_server` passes
+- [x] `npm test` passes
+- [x] checklist evidence populated
 <!-- /ANCHOR:quality-gates -->
 
 ---

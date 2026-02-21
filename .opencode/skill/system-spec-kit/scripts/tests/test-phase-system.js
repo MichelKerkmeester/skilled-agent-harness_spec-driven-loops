@@ -1,4 +1,9 @@
 #!/usr/bin/env node
+// ╔══════════════════════════════════════════════════════════════════════════╗
+// ║ COMPONENT: Phase System Tests                                            ║
+// ╠══════════════════════════════════════════════════════════════════════════╣
+// ║ PURPOSE: Validate phase recommendation and phase-map append workflows.   ║
+// ╚══════════════════════════════════════════════════════════════════════════╝
 'use strict';
 
 const fs = require('fs');
@@ -159,6 +164,18 @@ function testCreatePhaseParentAppendMode() {
   const parentSpec = fs.readFileSync(path.join(parent, 'spec.md'), 'utf-8');
   const phaseMapCount = countOccurrences(parentSpec, '<!-- ANCHOR:phase-map -->');
   assertEqual(phaseMapCount, 1, 'create.sh parent mode: phase-map section not duplicated');
+  assertTrue(
+    parentSpec.includes('| 3 | 003-stabilization/ | [Phase 3 scope] | [deps] | Pending |'),
+    'create.sh parent mode: append updates phase-map rows with new phase'
+  );
+  assertTrue(
+    parentSpec.includes('| 002-implementation | 003-stabilization | [Criteria TBD] | [Verification TBD] |'),
+    'create.sh parent mode: append updates handoff rows for new phase transition'
+  );
+  assertTrue(
+    !parentSpec.includes('| (single phase - no handoffs) | | | |'),
+    'create.sh parent mode: append removes single-phase placeholder handoff row'
+  );
 
   const childSpec = fs.readFileSync(path.join(parent, '003-stabilization', 'spec.md'), 'utf-8');
   assertTrue(childSpec.includes('| **Phase** | 3 of 3 |'), 'create.sh parent mode: absolute phase numbering in child header');

@@ -247,6 +247,17 @@ function calculatePatternScore(query: string, intent: IntentType): number {
 }
 
 /**
+ * Detect explicit spec-retrieval phrasing so document lookup intent wins over domain terms.
+ */
+function isExplicitSpecLookup(query: string): boolean {
+  return (
+    /(?:find|show|get)\s+(?:me\s+)?(?:the\s+)?(?:spec|specification|requirements|scope|plan|checklist)/i.test(query) ||
+    /(?:spec|specification)\s+for\s+/i.test(query) ||
+    /what\s+(?:are|is|was|were)\s+the\s+(?:requirements|scope|plan)/i.test(query)
+  );
+}
+
+/**
  * Compute a deterministic normalized embedding for text.
  */
 function toDeterministicEmbedding(text: string): Float32Array {
@@ -374,6 +385,11 @@ function classifyIntent(query: string): IntentResult {
 
     scores[intent] = combined;
     allKeywords.push(...matches);
+  }
+
+  if (isExplicitSpecLookup(query)) {
+    scores.find_spec += 0.25;
+    scores.security_audit *= 0.6;
   }
 
   // Find top intent

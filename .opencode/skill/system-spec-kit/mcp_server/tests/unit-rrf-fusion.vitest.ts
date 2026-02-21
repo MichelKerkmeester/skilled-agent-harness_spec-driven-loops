@@ -7,6 +7,11 @@ import { describe, it, expect } from 'vitest';
 import type { FusionResult } from '../lib/search/rrf-fusion';
 import { fuseResults, fuseResultsMulti, fuseResultsCrossVariant, SOURCE_TYPES } from '../lib/search/rrf-fusion';
 
+function requireResult<T>(value: T | undefined): T {
+  expect(value).toBeDefined();
+  return value as T;
+}
+
 describe('RRF Fusion (T001-T006)', () => {
   it('T001: Fuses results from multiple sources', () => {
     const vectorResults = [
@@ -71,13 +76,9 @@ describe('RRF Fusion (T001-T006)', () => {
       { source: SOURCE_TYPES.BM25, results: bm25Results },
     ]);
 
-    const shared = fused.find((r: FusionResult) => r.id === 'shared');
-    const vectorOnly = fused.find((r: FusionResult) => r.id === 'vector-only');
-    const bm25Only = fused.find((r: FusionResult) => r.id === 'bm25-only');
-
-    expect(shared).toBeDefined();
-    expect(vectorOnly).toBeDefined();
-    expect(bm25Only).toBeDefined();
+    const shared = requireResult(fused.find((r: FusionResult) => r.id === 'shared'));
+    const vectorOnly = requireResult(fused.find((r: FusionResult) => r.id === 'vector-only'));
+    const bm25Only = requireResult(fused.find((r: FusionResult) => r.id === 'bm25-only'));
 
     expect(shared.rrfScore).toBeGreaterThan(vectorOnly.rrfScore);
     expect(shared.rrfScore).toBeGreaterThan(bm25Only.rrfScore);
@@ -134,15 +135,15 @@ describe('RRF Fusion (T001-T006)', () => {
       { source: SOURCE_TYPES.BM25, results: bm25Results },
     ]);
 
-    const v1 = fused.find((r: FusionResult) => r.id === 'v1');
+    const v1 = requireResult(fused.find((r: FusionResult) => r.id === 'v1'));
     expect(v1.sources).toContain(SOURCE_TYPES.VECTOR);
     expect(v1.sources).toHaveLength(1);
 
-    const b1 = fused.find((r: FusionResult) => r.id === 'b1');
+    const b1 = requireResult(fused.find((r: FusionResult) => r.id === 'b1'));
     expect(b1.sources).toContain(SOURCE_TYPES.BM25);
     expect(b1.sources).toHaveLength(1);
 
-    const shared = fused.find((r: FusionResult) => r.id === 'shared');
+    const shared = requireResult(fused.find((r: FusionResult) => r.id === 'shared'));
     expect(shared.sources).toContain(SOURCE_TYPES.VECTOR);
     expect(shared.sources).toContain(SOURCE_TYPES.BM25);
     expect(shared.sources).toHaveLength(2);
@@ -163,8 +164,7 @@ describe('C138: Cross-Variant RRF (Multi-Query)', () => {
       { source: 'graph', results: graphResults },
     ]);
 
-    const shared = fused.find(r => r.id === 'shared');
-    expect(shared).toBeDefined();
+    const shared = requireResult(fused.find(r => r.id === 'shared'));
     expect(shared.sources).toHaveLength(3);
     // 3-source convergence should give bonus
     expect(shared.convergenceBonus).toBeGreaterThan(0);
@@ -179,7 +179,7 @@ describe('C138: Cross-Variant RRF (Multi-Query)', () => {
       { source: SOURCE_TYPES.BM25, results: resultsB },
     ]);
 
-    const x = fused.find(r => r.id === 'x');
+    const x = requireResult(fused.find(r => r.id === 'x'));
     expect(x.convergenceBonus).toBeCloseTo(0.10, 2);
   });
 
@@ -227,11 +227,8 @@ describe('C138-P3: fuseResultsCrossVariant', () => {
 
     const fused = fuseResultsCrossVariant([variant0, variant1]);
 
-    const shared = fused.find(r => r.id === 'shared');
-    const v0Only = fused.find(r => r.id === 'v0-only');
-
-    expect(shared).toBeDefined();
-    expect(v0Only).toBeDefined();
+    const shared = requireResult(fused.find(r => r.id === 'shared'));
+    const v0Only = requireResult(fused.find(r => r.id === 'v0-only'));
     // Shared gets cross-variant bonus, v0-only does not
     expect(shared.convergenceBonus).toBeGreaterThanOrEqual(0.10);
     expect(shared.rrfScore).toBeGreaterThan(v0Only.rrfScore);
@@ -248,7 +245,7 @@ describe('C138-P3: fuseResultsCrossVariant', () => {
       mkVariant(['shared', 'c']),
     ]);
 
-    const shared = fused.find(r => r.id === 'shared');
+    const shared = requireResult(fused.find(r => r.id === 'shared'));
     // 3 variants - 1 = 2 => 2 * 0.10 = 0.20 cross-variant bonus
     expect(shared.convergenceBonus).toBeCloseTo(0.20, 2);
   });

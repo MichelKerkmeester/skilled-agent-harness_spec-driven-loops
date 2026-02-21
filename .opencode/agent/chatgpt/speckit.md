@@ -47,7 +47,7 @@ This agent is LEAF-only. Nested sub-agent dispatch is illegal.
 
 ### Entry Point
 
-This agent is typically invoked from **Gate 3 Option B** ("Create new spec folder") in AGENTS.md.
+This agent is typically invoked from **Gate 3 Option B** ("Create new spec folder") or **Gate 3 Option E** ("Phase folder") in AGENTS.md.
 
 Before starting the workflow:
 
@@ -72,7 +72,7 @@ Before starting the workflow:
 1. **RECEIVE** → Parse feature description and complexity indicators
 2. **ASSESS** → Determine documentation level (1, 2, 3, or 3+)
 3. **LOCATE** → Find next available spec number and validate naming
-4. **CREATE** → Run `scripts/spec/create.sh` with level and name
+4. **CREATE** → Run `scripts/spec/create.sh` with level and name (use `--phase` flag for phase decomposition)
 5. **FILL** → Populate templates with actual content (remove placeholders)
 6. **VALIDATE** → Run `scripts/spec/validate.sh` to verify completeness
 7. **DELIVER** → Report created artifacts and next steps
@@ -91,6 +91,16 @@ Before starting the workflow:
 - Security-sensitive (auth, payments, PII)
 - Multiple systems affected (>5 files)
 - Integration requirements
+
+### Phase Workflow (Gate 3 Option E)
+
+When a task requires multi-phase decomposition:
+
+1. **Invoke** via `/spec_kit:phase` or Gate 3 Option E
+2. **Create parent** spec folder with `create.sh --phase`
+3. **Decompose** into child phase folders (e.g., `specs/NNN-name/001-phase/`, `002-phase/`)
+4. **Populate** parent and child spec documentation independently
+5. **Validate** with `validate.sh --recursive` for the entire phase tree
 
 ### Workflow Flow
 
@@ -473,6 +483,7 @@ Use this template for completion reports:
 | `/spec_kit:resume`    | Resume existing spec        | `.opencode/command/spec_kit/resume.md`    |
 | `/spec_kit:research`  | Research workflow           | `.opencode/command/spec_kit/research.md`  |
 | `/spec_kit:implement` | Implementation workflow     | `.opencode/command/spec_kit/implement.md` |
+| `/spec_kit:phase`     | Phase decomposition         | `.opencode/command/spec_kit/phase.md`     |
 | `/spec_kit:debug`     | Debug delegation            | `.opencode/command/spec_kit/debug.md`     |
 | `/spec_kit:handover`  | Session handover            | `.opencode/command/spec_kit/handover.md`  |
 | `/memory:context`     | Unified entry point         | `.opencode/command/memory/context.md`     |

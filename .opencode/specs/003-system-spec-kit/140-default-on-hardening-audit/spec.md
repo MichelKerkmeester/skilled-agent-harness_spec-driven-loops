@@ -5,6 +5,15 @@
 
 ---
 
+## TABLE OF CONTENTS
+- [1. OVERVIEW](#1--overview)
+
+## 1. OVERVIEW
+
+This document defines scope, requirements, and verification criteria for Spec 140 hardening work.
+
+---
+
 <!-- ANCHOR:executive-summary -->
 ## EXECUTIVE SUMMARY
 
@@ -25,7 +34,7 @@ This spec hardens the shipped implementations from specs 136, 138, and 139 so ru
 | **Spec ID** | 140 |
 | **Level** | 3+ |
 | **Priority** | P0 |
-| **Status** | Draft |
+| **Status** | Completed |
 | **Created** | 2026-02-21 |
 | **Branch** | `140-default-on-hardening-audit` |
 | **Parent** | `.opencode/specs/003-system-spec-kit/` |
@@ -102,16 +111,16 @@ Complete a full hardening pass so the 136/138/139 feature surface is default-on,
 | 138 | TRM/evidence-gap gating | `mcp_server/lib/search/evidence-gap-detector.ts` | `mcp_server/tests/evidence-gap-detector.vitest.ts` |
 | 138 | Weighted FTS5 BM25 | `mcp_server/lib/search/sqlite-fts.ts`, `mcp_server/lib/search/hybrid-search.ts` | `mcp_server/tests/sqlite-fts.vitest.ts` |
 | 138 | Deep-mode multi-query expansion | `mcp_server/lib/search/query-expander.ts`, `mcp_server/handlers/memory-search.ts` | `mcp_server/tests/query-expander.vitest.ts`, `mcp_server/tests/handler-memory-search.vitest.ts` |
-| 138 | Semantic bridge expansion | `mcp_server/lib/search/query-expander.ts`, `mcp_server/handlers/memory-search.ts` | `mcp_server/tests/semantic-bridge.vitest.ts` + runtime integration coverage (currently missing) |
+| 138 | Semantic bridge expansion | `mcp_server/lib/search/query-expander.ts`, `mcp_server/handlers/memory-search.ts` | `mcp_server/tests/semantic-bridge.vitest.ts`, `mcp_server/tests/deep-semantic-bridge-runtime.vitest.ts` |
 | 138 | Unified graph adapter (causal + SGQS) | `mcp_server/lib/search/graph-search-fn.ts`, `mcp_server/lib/search/skill-graph-cache.ts` | `mcp_server/tests/graph-search-fn.vitest.ts`, `mcp_server/tests/graph-channel-benchmark.vitest.ts` |
-| 138 | SGQS query handler runtime path | `mcp_server/handlers/sgqs-query.ts` | Dedicated handler runtime tests (currently missing) |
-| 138 | AST/structure-aware chunker | `scripts/lib/structure-aware-chunker.ts` | `mcp_server/tests/structure-aware-chunker.vitest.ts` + explicit runtime/non-runtime scope decision |
+| 138 | SGQS query handler runtime path | `mcp_server/handlers/sgqs-query.ts` | `mcp_server/tests/sgqs-query-handler.vitest.ts` |
+| 138 | AST/structure-aware chunker | `shared/lib/structure-aware-chunker.ts`, `scripts/memory/ast-parser.ts` | `mcp_server/tests/structure-aware-chunker.vitest.ts` |
 | 138 | Authority/PageRank scoring | `mcp_server/lib/manage/pagerank.ts`, `mcp_server/lib/search/graph-search-fn.ts` | `mcp_server/tests/pagerank.vitest.ts`, `mcp_server/tests/graph-channel-benchmark.vitest.ts` |
 | 139 | Phase recommendation scoring | `scripts/spec/recommend-level.sh` | `scripts/tests/test-phase-system.js`, `scripts/tests/test-phase-validation.js` |
 | 139 | Phase creation (`--phase`, `--phases`, `--phase-names`) | `scripts/spec/create.sh`, `templates/addendum/phase/*` | `scripts/tests/test-phase-system.js`, `scripts/tests/test-phase-validation.js` |
-| 139 | Parent append map behavior | `scripts/spec/create.sh` | Additional append-map row-update assertion (currently missing) |
-| 139 | `/spec_kit:phase` command workflow | `.opencode/command/spec_kit/phase.md`, `.opencode/command/spec_kit/assets/spec_kit_phase_*.yaml` | Command-flow tests (currently missing) |
-| 139 | `--phase-folder` path handling across commands | `.opencode/command/spec_kit/{plan,research,implement,complete,resume}.md` | Path-resolution tests (currently missing) |
+| 139 | Parent append map behavior | `scripts/spec/create.sh` | `scripts/tests/test-phase-system.js` (append row/handoff assertions) |
+| 139 | `/spec_kit:phase` command workflow | `.opencode/command/spec_kit/phase.md`, `.opencode/command/spec_kit/assets/spec_kit_phase_*.yaml` | `scripts/tests/test-phase-command-workflows.js` |
+| 139 | `--phase-folder` path handling across commands | `.opencode/command/spec_kit/{plan,research,implement,complete,resume}.md` | `scripts/tests/test-phase-command-workflows.js` |
 | 139 | Recursive phase validation + phase-link rule | `scripts/spec/validate.sh`, `scripts/rules/check-phase-links.sh` | `scripts/tests/test-phase-validation.js` |
 <!-- /ANCHOR:inventory -->
 
@@ -147,6 +156,23 @@ Complete a full hardening pass so the 136/138/139 feature surface is default-on,
 - No runtime coverage for `handlers/sgqs-query.ts` execution path.
 - Semantic bridge expansion has unit tests but no runtime deep-search integration test.
 - `create.sh` append-mode tests assert "no duplicate phase-map section" but not "existing phase-map rows updated/appended correctly".
+
+### 5.4 Post-Fix Verification State (2026-02-21)
+
+| Command | Final Result |
+|---------|--------------|
+| `node scripts/tests/test-phase-system.js` | PASS (27 passed, 0 failed) |
+| `node scripts/tests/test-phase-validation.js` | PASS (49 passed, 0 failed) |
+| `node scripts/tests/test-phase-command-workflows.js` | PASS (40 passed, 0 failed) |
+| `npm run test --workspace=mcp_server` | PASS (166 files, 4825 tests, 0 failed) |
+| `npm run typecheck` | PASS |
+| `npm test` | PASS |
+
+Gap closure outcomes:
+- `/spec_kit:phase` and `--phase-folder` command-flow coverage added.
+- SGQS query runtime handler coverage added.
+- Deep-mode semantic bridge runtime wiring now has dedicated tests.
+- Shared SGQS/chunker placement and import boundaries verified type-safe.
 <!-- /ANCHOR:baseline -->
 
 ---

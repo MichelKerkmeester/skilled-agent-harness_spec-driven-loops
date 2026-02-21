@@ -311,14 +311,14 @@ function collapseAndReassembleChunkResults(results: MemorySearchRow[]): ChunkRea
 
     let reassembled = 0;
     let fallback = 0;
-    const withContent = collapsed.map((row) => {
-      if (!row.isChunk || row.parentId === null) return row;
+    const withContent: MemorySearchRow[] = collapsed.map((row): MemorySearchRow => {
+      if (!row.isChunk || row.parentId == null) return row;
 
       const chunks = byParent.get(row.parentId) || [];
       const chunkCount = chunks.length;
       if (chunkCount === 0) {
         fallback++;
-        return { ...row, chunkCount, contentSource: 'file_read_fallback' };
+        return { ...row, chunkCount, contentSource: 'file_read_fallback' as const };
       }
 
       const normalizedChunks = chunks
@@ -331,7 +331,7 @@ function collapseAndReassembleChunkResults(results: MemorySearchRow[]): ChunkRea
 
       if (hasMissingContent) {
         fallback++;
-        return { ...row, chunkCount, contentSource: 'file_read_fallback' };
+        return { ...row, chunkCount, contentSource: 'file_read_fallback' as const };
       }
 
       const reassembledContent = normalizedChunks
@@ -342,7 +342,7 @@ function collapseAndReassembleChunkResults(results: MemorySearchRow[]): ChunkRea
 
       if (!reassembledContent) {
         fallback++;
-        return { ...row, chunkCount, contentSource: 'file_read_fallback' };
+        return { ...row, chunkCount, contentSource: 'file_read_fallback' as const };
       }
 
       reassembled++;
@@ -350,7 +350,7 @@ function collapseAndReassembleChunkResults(results: MemorySearchRow[]): ChunkRea
         ...row,
         chunkCount,
         precomputedContent: reassembledContent,
-        contentSource: 'reassembled_chunks',
+        contentSource: 'reassembled_chunks' as const,
       };
     });
 
@@ -1428,6 +1428,7 @@ export const __testables = {
   resolveArtifactRoutingQuery,
   applyArtifactRouting,
   collapseAndReassembleChunkResults,
+  buildDeepQueryVariants,
 };
 
 // Backward-compatible aliases (snake_case)

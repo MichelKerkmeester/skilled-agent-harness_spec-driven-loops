@@ -1,5 +1,8 @@
 // @ts-nocheck
 // ---------------------------------------------------------------
+// MODULE: Handler Memory Context Tests
+// ---------------------------------------------------------------
+// ---------------------------------------------------------------
 // TEST: HANDLER MEMORY CONTEXT
 // ---------------------------------------------------------------
 
@@ -62,8 +65,21 @@ async function withTimeout<T>(promise: Promise<T>, ms: number, name: string): Pr
 }
 
 describe('Handler Memory Context (T524) [deferred - requires DB test fixtures]', () => {
+  const originalAutoResume = process.env.SPECKIT_AUTO_RESUME;
+  const originalRolloutPercent = process.env.SPECKIT_ROLLOUT_PERCENT;
+
   afterEach(() => {
     vi.restoreAllMocks();
+    if (originalAutoResume === undefined) {
+      delete process.env.SPECKIT_AUTO_RESUME;
+    } else {
+      process.env.SPECKIT_AUTO_RESUME = originalAutoResume;
+    }
+    if (originalRolloutPercent === undefined) {
+      delete process.env.SPECKIT_ROLLOUT_PERCENT;
+    } else {
+      process.env.SPECKIT_ROLLOUT_PERCENT = originalRolloutPercent;
+    }
   });
 
   // ─────────────────────────────────────────────────────────────
@@ -71,7 +87,7 @@ describe('Handler Memory Context (T524) [deferred - requires DB test fixtures]',
   // ─────────────────────────────────────────────────────────────
   describe('Auto Mode Routing (T524-1 to T524-3)', () => {
     it('T524-1: Auto mode routes "resume" to resume strategy', async () => {
-      const result: any = await withTimeout(
+      const result = await withTimeout(
         handler.handleMemoryContext({
           input: 'resume where I left off on the authentication module',
         }),
@@ -93,7 +109,7 @@ describe('Handler Memory Context (T524) [deferred - requires DB test fixtures]',
     });
 
     it('T524-2: Short question routes to focused mode', async () => {
-      const result: any = await withTimeout(
+      const result = await withTimeout(
         handler.handleMemoryContext({
           input: 'what is the auth flow?',
         }),
@@ -126,7 +142,7 @@ describe('Handler Memory Context (T524) [deferred - requires DB test fixtures]',
   // ─────────────────────────────────────────────────────────────
   describe('Explicit Mode Selection (T524-4)', () => {
     it('T524-4: Invalid mode falls back to focused', async () => {
-      const result: any = await withTimeout(
+      const result = await withTimeout(
         handler.handleMemoryContext({
           input: 'test query for invalid mode',
           mode: 'totally_invalid_mode',
@@ -174,7 +190,7 @@ describe('Handler Memory Context (T524) [deferred - requires DB test fixtures]',
   // ─────────────────────────────────────────────────────────────
   describe('tokenUsage fallback contract and pressure policy lane', () => {
     it('T018/T019: 55% pressure keeps intent-selected mode (no override)', async () => {
-      const result: any = await withTimeout(
+      const result = await withTimeout(
         handler.handleMemoryContext({
           input: 'what is the auth flow?',
           tokenUsage: 0.55,
@@ -193,7 +209,7 @@ describe('Handler Memory Context (T524) [deferred - requires DB test fixtures]',
     });
 
     it('T018/T019: 65% pressure forces focused mode in auto', async () => {
-      const result: any = await withTimeout(
+      const result = await withTimeout(
         handler.handleMemoryContext({
           input: 'implement OAuth state and token refresh flow with threat model and rollout plan',
           tokenUsage: 0.65,
@@ -214,7 +230,7 @@ describe('Handler Memory Context (T524) [deferred - requires DB test fixtures]',
     });
 
     it('T018/T019: 85% pressure forces quick mode in auto', async () => {
-      const result: any = await withTimeout(
+      const result = await withTimeout(
         handler.handleMemoryContext({
           input: 'what is the auth flow?',
           tokenUsage: 0.85,
@@ -234,7 +250,7 @@ describe('Handler Memory Context (T524) [deferred - requires DB test fixtures]',
     });
 
     it('T018/T019: out-of-range caller tokenUsage clamps to [0,1] and maps to quick', async () => {
-      const result: any = await withTimeout(
+      const result = await withTimeout(
         handler.handleMemoryContext({
           input: 'what is the auth flow?',
           tokenUsage: 2.7,
@@ -253,7 +269,7 @@ describe('Handler Memory Context (T524) [deferred - requires DB test fixtures]',
     it('T017: absent tokenUsage uses estimator fallback from runtime stats', async () => {
       const highPressureInput = 'x'.repeat(7000);
 
-      const result: any = await withTimeout(
+      const result = await withTimeout(
         handler.handleMemoryContext({
           input: highPressureInput,
         }),
@@ -273,7 +289,7 @@ describe('Handler Memory Context (T524) [deferred - requires DB test fixtures]',
       vi.spyOn(layerDefs, 'getLayerInfo').mockReturnValue({ tokenBudget: 0 } as any);
       const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => undefined);
 
-      const result: any = await withTimeout(
+      const result = await withTimeout(
         handler.handleMemoryContext({
           input: 'what is the auth flow?',
         }),
@@ -293,7 +309,7 @@ describe('Handler Memory Context (T524) [deferred - requires DB test fixtures]',
     });
 
     it('T018/T019: high pressure does not override explicit mode', async () => {
-      const result: any = await withTimeout(
+      const result = await withTimeout(
         handler.handleMemoryContext({
           input: 'deep analysis query',
           mode: 'deep',
@@ -313,7 +329,7 @@ describe('Handler Memory Context (T524) [deferred - requires DB test fixtures]',
     });
 
     it('T020: response metadata and hints expose applied pressure policy warning', async () => {
-      const result: any = await withTimeout(
+      const result = await withTimeout(
         handler.handleMemoryContext({
           input: 'implement OAuth state and token refresh flow with threat model and rollout plan',
           tokenUsage: 0.95,
@@ -353,7 +369,7 @@ describe('Handler Memory Context (T524) [deferred - requires DB test fixtures]',
   // ─────────────────────────────────────────────────────────────
   describe('Session lifecycle metadata and resume context', () => {
     it('T027k: missing sessionId generates ephemeral UUID scope', async () => {
-      const result: any = await withTimeout(
+      const result = await withTimeout(
         handler.handleMemoryContext({
           input: 'what changed in this spec?',
         }),
@@ -381,7 +397,7 @@ describe('Handler Memory Context (T524) [deferred - requires DB test fixtures]',
         },
       ] as any);
 
-      const result: any = await withTimeout(
+      const result = await withTimeout(
         handler.handleMemoryContext({
           input: 'resume previous work on memory quality',
           sessionId: 'session-abc',
@@ -402,6 +418,65 @@ describe('Handler Memory Context (T524) [deferred - requires DB test fixtures]',
       expect(parsed.data.systemPromptContext.length).toBe(1);
       expect(parsed.data.systemPromptContext[0].memoryId).toBe(101);
     });
+
+    it('default-on contract: auto-resume injection runs when SPECKIT_AUTO_RESUME is unset', async () => {
+      delete process.env.SPECKIT_AUTO_RESUME;
+      process.env.SPECKIT_ROLLOUT_PERCENT = '100';
+      vi.spyOn(workingMemory, 'sessionExists').mockReturnValue(true);
+      vi.spyOn(workingMemory, 'getSessionEventCounter').mockReturnValue(3);
+      vi.spyOn(workingMemory, 'getSessionPromptContext').mockReturnValue([
+        {
+          memoryId: 201,
+          title: 'Auto resume memory',
+          filePath: '/tmp/auto-resume.md',
+          attentionScore: 0.81,
+        },
+      ] as any);
+
+      const result = await withTimeout(
+        handler.handleMemoryContext({
+          input: 'resume prior work',
+          sessionId: 'session-default-on',
+          mode: 'resume',
+        }),
+        5000,
+        'auto-resume-default-on'
+      );
+
+      const parsed = JSON.parse(result.content[0].text);
+      expect(parsed.data.systemPromptContextInjected).toBe(true);
+      expect(parsed.data.systemPromptContext.length).toBe(1);
+      expect(parsed.data.systemPromptContext[0].memoryId).toBe(201);
+    });
+
+    it('opt-out contract: SPECKIT_AUTO_RESUME=false disables context injection', async () => {
+      process.env.SPECKIT_AUTO_RESUME = 'false';
+      process.env.SPECKIT_ROLLOUT_PERCENT = '100';
+      vi.spyOn(workingMemory, 'sessionExists').mockReturnValue(true);
+      vi.spyOn(workingMemory, 'getSessionEventCounter').mockReturnValue(2);
+      vi.spyOn(workingMemory, 'getSessionPromptContext').mockReturnValue([
+        {
+          memoryId: 301,
+          title: 'Disabled auto-resume memory',
+          filePath: '/tmp/disabled-auto-resume.md',
+          attentionScore: 0.77,
+        },
+      ] as any);
+
+      const result = await withTimeout(
+        handler.handleMemoryContext({
+          input: 'resume prior work',
+          sessionId: 'session-opt-out',
+          mode: 'resume',
+        }),
+        5000,
+        'auto-resume-opt-out'
+      );
+
+      const parsed = JSON.parse(result.content[0].text);
+      expect(parsed.data.systemPromptContextInjected).not.toBe(true);
+      expect(parsed.data.systemPromptContext ?? []).toEqual([]);
+    });
   });
 
   // ─────────────────────────────────────────────────────────────
@@ -409,7 +484,7 @@ describe('Handler Memory Context (T524) [deferred - requires DB test fixtures]',
   // ─────────────────────────────────────────────────────────────
   describe('Error Response Structure (T524-7 to T524-8)', () => {
     it('T524-7: Empty input error includes L1 layer metadata', async () => {
-      const result: any = await withTimeout(
+      const result = await withTimeout(
         handler.handleMemoryContext({ input: '' }),
         5000,
         'T524-7'
@@ -424,7 +499,7 @@ describe('Handler Memory Context (T524) [deferred - requires DB test fixtures]',
     });
 
     it('T524-8: Error includes actionable hint', async () => {
-      const result: any = await withTimeout(
+      const result = await withTimeout(
         handler.handleMemoryContext({ input: '' }),
         5000,
         'T524-8'

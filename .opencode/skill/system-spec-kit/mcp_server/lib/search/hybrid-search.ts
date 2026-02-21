@@ -17,6 +17,7 @@ import { isMMREnabled } from './search-flags';
 import type Database from 'better-sqlite3';
 import type { SpreadResult } from '../cognitive/co-activation';
 import type { MMRCandidate } from './mmr-reranker';
+import type { FusionResult } from './rrf-fusion';
 
 /* ---------------------------------------------------------------
    1. INTERFACES
@@ -61,6 +62,20 @@ interface HybridSearchResult {
   source: string;
   title?: string;
   [key: string]: unknown;
+}
+
+/** Normalize a fused RRF result to the HybridSearchResult contract. */
+function toHybridResult(result: FusionResult): HybridSearchResult {
+  const sourceCandidate = (result as { source?: unknown }).source;
+  const primarySource = result.sources[0] ?? 'hybrid';
+  const scoreCandidate = (result as { score?: unknown }).score;
+
+  return {
+    ...result,
+    id: result.id,
+    score: typeof scoreCandidate === 'number' ? scoreCandidate : result.rrfScore,
+    source: typeof sourceCandidate === 'string' ? sourceCandidate : primarySource,
+  };
 }
 
 /* ---------------------------------------------------------------
@@ -326,7 +341,7 @@ async function hybridSearch(
       for (const r of graphResults) {
         results.push({
           ...r,
-          id: r.id,
+          id: r.id as number | string,
           score: (r.score as number) || 0,
           source: 'graph',
         });
@@ -486,12 +501,13 @@ async function hybridSearchEnhanced(
       }
 
       const fused = fuseResultsMulti(lists);
+      const fusedHybridResults: HybridSearchResult[] = fused.map(toHybridResult);
       const limit = options.limit || DEFAULT_LIMIT;
 
       // C138: MMR reranking — retrieve embeddings from vec_memories for diversity pruning.
       // Fused results don't carry embeddings through RRF, so we look them up from the
       // vec0 virtual table for the top-N numeric-ID results before running MMR.
-      let reranked = fused.slice(0, limit);
+      let reranked: HybridSearchResult[] = fusedHybridResults.slice(0, limit);
       if (db && isMMREnabled()) {
         const numericIds = reranked
           .map(r => r.id)
@@ -529,9 +545,18 @@ async function hybridSearchEnhanced(
             if (mmrCandidates.length >= MMR_MIN_CANDIDATES) {
               const mmrLambda = INTENT_LAMBDA_MAP[intent] ?? MMR_DEFAULT_LAMBDA;
               const diversified = applyMMR(mmrCandidates, { lambda: mmrLambda, limit });
-              reranked = diversified.map(c =>
-                reranked.find(r => r.id === c.id) ?? (c as typeof reranked[0]),
-              );
+              reranked = diversified.map((candidate): HybridSearchResult => {
+                const existing = reranked.find(r => r.id === candidate.id);
+                if (existing) {
+                  return existing;
+                }
+
+                return {
+                  id: candidate.id,
+                  score: candidate.score,
+                  source: 'vector',
+                };
+              });
             }
           } catch (embErr: unknown) {
             const msg = embErr instanceof Error ? embErr.message : String(embErr);
@@ -567,11 +592,7 @@ async function hybridSearchEnhanced(
         }
       }
 
-      return reranked.map(r => ({
-        ...r,
-        score: r.score as number,
-        source: (r.source as string) || 'hybrid'
-      }));
+      return reranked;
     }
   } catch (error: unknown) {
     const msg = error instanceof Error ? error.message : String(error);
@@ -647,5 +668,4 @@ export type {
   HybridSearchOptions,
   HybridSearchResult,
   VectorSearchFn,
-  GraphSearchFn,
 };

@@ -66,7 +66,7 @@ This agent is LEAF-only. Nested sub-agent dispatch is illegal.
 | `List`                  | Codebase    | Directory listing         | Explore folder structure             |
 | `memory_match_triggers` | Memory (L2) | Trigger phrase matching   | Quick context surfacing (Layer 1)    |
 | `memory_context`        | Memory (L1) | Unified context retrieval | Intent-aware routing (Layer 1/3)     |
-| `memory_search`         | Memory (L2) | Semantic vector search    | Deep memory retrieval (Layer 3)      |
+| `memory_search`         | Memory (L2) | 4-channel hybrid search (Vector, BM25, FTS5, Skill Graph) with RRF fusion | Deep memory retrieval (Layer 3) |
 | `memory_list`           | Memory (L3) | Browse stored memories    | Discover what memories exist         |
 | `memory_stats`          | Memory (L3) | Memory system statistics  | Check memory health and coverage     |
 
@@ -146,7 +146,7 @@ Every exploration traverses all 3 layers for comprehensive context.
 **Tools**: `memory_search`, `memory_context (deep)`, `memory_list`
 
 **Strategy**: Comprehensive semantic search to complement Layers 1-2:
-- `memory_search({ query: topic, includeContent: true })` — semantic vector search across all memories with full content
+- `memory_search({ query: topic, includeContent: true })` — 4-channel hybrid search (Vector, BM25, FTS5, Skill Graph) with RRF fusion across all memories with full content
 - `memory_context({ input: topic, mode: "deep" })` — comprehensive retrieval with full analysis, ranked intent-aware results
 - `memory_list({ specFolder: relevant_spec })` — browse all memories in a specific spec folder
 - Spec folder inspection — Glob for related spec folders, Read spec.md/plan.md/checklist.md for context
@@ -366,7 +366,7 @@ When the orchestrator specifies `Output Size: summary-only` or `minimal`, use th
 | ----------------------- | ----- | ----------------------------------------- |
 | `memory_context`        | L1    | Unified entry point for context retrieval |
 | `memory_match_triggers` | L2    | Fast trigger phrase matching              |
-| `memory_search`         | L2    | Semantic vector search                    |
+| `memory_search`         | L2    | 4-channel hybrid search (Vector, BM25, FTS5, Skill Graph) with RRF fusion |
 | `memory_list`           | L3    | Browse stored memories                    |
 | `memory_stats`          | L3    | Memory system statistics                  |
 

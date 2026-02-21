@@ -310,6 +310,9 @@ describe('Regression 010: index large files guardrails', () => {
 
     const chunkResult = prepared.results.find((row: { parentId?: number | null }) => row.parentId === 9000);
     expect(chunkResult).toBeTruthy();
+    if (!chunkResult) {
+      throw new Error('Expected reassembled chunk result for parent_id=9000');
+    }
     expect(chunkResult.isChunk).toBe(true);
     expect(chunkResult.chunkCount).toBe(3);
     expect(chunkResult.contentSource).toBe('reassembled_chunks');

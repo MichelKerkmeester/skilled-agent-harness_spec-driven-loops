@@ -88,6 +88,7 @@ This agent is LEAF-only. Nested sub-agent dispatch is illegal.
 | `Read`              | File content           | Examine implementations         |
 | `WebFetch`          | External documentation | API docs, library references    |
 | `spec_kit_memory_*` | Context preservation   | Save/retrieve research findings |
+| `memory_skill_graph_query` | SGQS graph traversal | Skill graph queries via Cypher-lite syntax |
 
 ---
 
@@ -104,6 +105,9 @@ Research Request
     │
     ├─► Feasibility analysis? (constraints, risks, trade-offs)
     │   └─► Step 5: Technical Analysis with evidence
+    │
+    ├─► Skill graph exploration? (dependencies, templates, node attributes)
+    │   └─► memory_skill_graph_query → SGQS Cypher-lite traversal
     │
     └─► Full investigation? (comprehensive research)
         └─► All 9 steps in sequence

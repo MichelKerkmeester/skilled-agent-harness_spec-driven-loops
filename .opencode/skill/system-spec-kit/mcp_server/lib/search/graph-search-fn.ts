@@ -262,7 +262,7 @@ function querySkillGraph(
 }
 
 function computeSkillGraphPageRankScores(graph: SkillGraph): Map<string, number> {
-  const nodeIds = Array.from(graph.nodes.keys());
+  const nodeIds = Array.from(graph.nodes.keys()) as string[];
   if (nodeIds.length === 0) {
     return new Map();
   }
@@ -274,7 +274,7 @@ function computeSkillGraphPageRankScores(graph: SkillGraph): Map<string, number>
 
   const numericNodes = nodeIds.map((nodeId) => {
     const numericId = nodeIdToNumber.get(nodeId) ?? 0;
-    const outboundEdgeIds = graph.outbound.get(nodeId) ?? [];
+    const outboundEdgeIds = (graph.outbound.get(nodeId) ?? []) as string[];
     const outLinks: number[] = [];
     for (const edgeId of outboundEdgeIds) {
       const edge = graph.edgeById.get(edgeId);

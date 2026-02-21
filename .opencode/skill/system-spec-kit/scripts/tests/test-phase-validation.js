@@ -1,4 +1,9 @@
 #!/usr/bin/env node
+// ╔══════════════════════════════════════════════════════════════════════════╗
+// ║ COMPONENT: Phase Validation Tests                                        ║
+// ╠══════════════════════════════════════════════════════════════════════════╣
+// ║ PURPOSE: Validate phase-level rules and recursive validation behavior.   ║
+// ╚══════════════════════════════════════════════════════════════════════════╝
 'use strict';
 
 const fs = require('fs');
@@ -181,6 +186,24 @@ function testPhaseDetectionFixtures() {
   }
 }
 
+function testPhaseDefaultsContracts() {
+  const raw = runBash(RECOMMEND_SCRIPT, ['--loc', '700', '--files', '16', '--architectural', '--api', '--db', '--json']);
+  const result = parseJson(raw, 'recommend-level default phase output parse failed');
+
+  assertTrue(
+    Object.prototype.hasOwnProperty.call(result, 'recommended_phases'),
+    'recommend-level default-on: recommended_phases field present without --recommend-phases'
+  );
+  assertTrue(
+    Object.prototype.hasOwnProperty.call(result, 'phase_score'),
+    'recommend-level default-on: phase_score field present without --recommend-phases'
+  );
+  assertTrue(
+    Object.prototype.hasOwnProperty.call(result, 'suggested_phase_count'),
+    'recommend-level default-on: suggested_phase_count field present without --recommend-phases'
+  );
+}
+
 function testPhaseCreationFixtures() {
   const tempRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'speckit-phase-create-'));
   const scenarios = [
@@ -304,11 +327,25 @@ function testPhaseValidationFixtures() {
     if (fixture.empty_child) {
       assertTrue(result.summary.errors > 0, `${scenario}: empty child produces validation errors`);
     }
+
+    if (!fixture.scenario.startsWith('flat')) {
+      const autoRawOrError = runBashExpectFailure(VALIDATE_SCRIPT, [fixturePath, '--json']);
+      const autoRawJson = autoRawOrError.code === 0
+        ? runBash(VALIDATE_SCRIPT, [fixturePath, '--json'])
+        : autoRawOrError.stdout;
+      const autoResult = parseJson(autoRawJson, `validate.sh auto-recursive parse failed (${scenario})`);
+      assertEqual(
+        autoResult.phaseCount,
+        fixture.phase_names.length,
+        `${scenario}: validate.sh auto-enables recursive mode when phase children exist`
+      );
+    }
   }
 }
 
 function main() {
   testPhaseDetectionFixtures();
+  testPhaseDefaultsContracts();
   testPhaseCreationFixtures();
   testPhaseValidationFixtures();
 

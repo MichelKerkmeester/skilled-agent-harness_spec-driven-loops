@@ -100,11 +100,11 @@ function getCurrentSchemaVersion(database: Database.Database): number {
 function ensureColumnsExist(database: Database.Database, requiredColumns: readonly string[]): void {
   const columns = database
     .prepare('PRAGMA table_info(memory_index)')
-    .all()
-    .map((row: Record<string, unknown>) => String(row.name));
+    .all() as Array<{ name: string }>;
+  const columnNames = columns.map((row) => row.name);
 
   for (const col of requiredColumns) {
-    if (!columns.includes(col)) {
+    if (!columnNames.includes(col)) {
       throw new Error(`Cannot downgrade: required v16 column "${col}" not found on memory_index`);
     }
   }
@@ -322,4 +322,3 @@ export type {
   SchemaDowngradeOptions,
   SchemaDowngradeResult,
 };
-
