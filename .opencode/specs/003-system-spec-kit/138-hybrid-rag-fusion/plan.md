@@ -490,3 +490,24 @@ LEVEL 3+ PLAN
 - AI Execution Framework: 4-tier with sync points
 - Workstream Coordination: 3 workstreams, 4 sync points
 -->
+
+## AI EXECUTION PROTOCOL
+
+### Pre-Task Checklist
+- Confirm scoped files and validation commands before edits.
+
+### Execution Rules
+| Rule | Requirement |
+|------|-------------|
+| TASK-SEQ | Validate context before modification and verify after changes |
+| TASK-SCOPE | Restrict edits to declared phase files |
+
+### Status Reporting Format
+- STATE: current checkpoint
+- ACTIONS: files/commands run
+- RESULT: pass/fail and next action
+
+### Blocked Task Protocol
+1. Mark BLOCKED with evidence.
+2. Attempt one bounded workaround.
+3. Escalate with options if unresolved.

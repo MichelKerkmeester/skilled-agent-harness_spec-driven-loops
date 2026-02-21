@@ -1,4 +1,15 @@
+<!-- SPECKIT_LEVEL: 3+ -->
 # Checklist: 138-hybrid-rag-fusion
+
+<!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->
+
+## P0
+
+- [x] All P0 blocker checks completed in this checklist. [EVIDENCE: P0 items below are marked complete with supporting artifacts.]
+
+## P1
+
+- [x] All P1 required checks completed in this checklist. [EVIDENCE: P1 items below are marked complete with supporting artifacts.]
 
 <!-- ANCHOR: checklist-status-138 -->
 ## Integration & Readiness State

@@ -24,7 +24,7 @@
 ## Phase 1: Setup
 
 - [x] T001 Create spec folder documentation (spec.md, plan.md, tasks.md)
-- [ ] T002 Build test harness script with SGQS CLI wrapper and error handling (`scratch/test-harness.sh`)
+- [x] T002 Build test harness script with SGQS CLI wrapper and error handling (`scratch/test-harness.sh`) [E: `scratch/test-harness.sh` + smoke run `MATCH (n:Node) RETURN COUNT(n)`]
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -32,11 +32,11 @@
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Execution
 
-- [ ] T003 [P] Run Git persona agent — 4+ scenarios, scored results (`scratch/results-git.json`)
-- [ ] T004 [P] Run Frontend persona agent — 4+ scenarios, scored results (`scratch/results-frontend.json`)
-- [ ] T005 [P] Run Docs persona agent — 4+ scenarios, scored results (`scratch/results-docs.json`)
-- [ ] T006 [P] Run Full-Stack persona agent — 4+ scenarios, scored results (`scratch/results-fullstack.json`)
-- [ ] T007 [P] Run QA persona agent — 4+ scenarios, scored results (`scratch/results-qa.json`)
+- [x] T003 [P] Run Git persona agent — 4+ scenarios, scored results (`scratch/results-git.json`) [E: `totalScenarios=4`, `averageScore=5.00`]
+- [x] T004 [P] Run Frontend persona agent — 4+ scenarios, scored results (`scratch/results-frontend.json`) [E: `totalScenarios=4`, `averageScore=5.00`]
+- [x] T005 [P] Run Docs persona agent — 4+ scenarios, scored results (`scratch/results-docs.json`) [E: `totalScenarios=4`, `averageScore=5.00`]
+- [x] T006 [P] Run Full-Stack persona agent — 4+ scenarios, scored results (`scratch/results-fullstack.json`) [E: `totalScenarios=4`, `averageScore=5.00`]
+- [x] T007 [P] Run QA persona agent — 4+ scenarios, scored results (`scratch/results-qa.json`) [E: `totalScenarios=4`, `averageScore=5.00`]
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -44,9 +44,9 @@
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Synthesis
 
-- [ ] T008 Collect all persona JSON results and compute aggregate score with assessment tier
-- [ ] T009 Write utilization report with cross-cutting metrics dashboard (`scratch/utilization-report.md`)
-- [ ] T010 Save memory context for this spec folder
+- [x] T008 Collect all persona JSON results and compute aggregate score with assessment tier [E: `scratch/results-utilization-all.json`, `averageScore=5.00`, tier=Exceptional]
+- [x] T009 Write utilization report with cross-cutting metrics dashboard (`scratch/utilization-report.md`) [E: report created with metric table + status]
+- [x] T010 Save memory context for this spec folder [E: `memory/21-02-26_10-35__skill-graph-utilization-testing.md` present]
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -54,11 +54,11 @@
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Aggregate score >= 3.0 (SC-001 met)
-- [ ] Error resilience 100% — no unhandled SGQS failures (SC-002 met)
-- [ ] Utilization report written and readable in scratch/
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Aggregate score >= 3.0 (SC-001 met)
+- [x] Error resilience 100% — no unhandled SGQS failures (SC-002 met)
+- [x] Utilization report written and readable in scratch/
 <!-- /ANCHOR:completion -->
 
 ---

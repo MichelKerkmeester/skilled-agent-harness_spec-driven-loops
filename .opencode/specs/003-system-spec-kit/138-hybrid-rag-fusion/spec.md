@@ -110,6 +110,23 @@ Deliver a unified intelligent context engine where hybrid retrieval with confide
 
 ---
 
+## PHASE DOCUMENTATION MAP
+
+| Phase | Folder | Status |
+|-------|--------|--------|
+| 001 | `001-system-speckit-hybrid-rag-fusion/` | Complete |
+| 002 | `002-skill-graph-integration/` | Complete |
+| 003 | `003-unified-graph-intelligence/` | Complete |
+| 004 | `004-command-alignment/` | Complete |
+| 005 | `005-install-guide-alignment/` | Complete |
+| 006 | `006-skill-graph-utilization/` | Complete |
+| 007 | `007-skill-graph-improvement/` | Complete |
+| 008 | `008-codex-audit/` | Complete |
+| 009 | `009-skill-graph-score-recovery/` | Complete |
+| 010 | `010-index-large-files/` | Complete |
+
+---
+
 <!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
 
@@ -143,6 +160,49 @@ Deliver a unified intelligent context engine where hybrid retrieval with confide
 | REQ-014 | A | TRM reasoning traces persisted to scratch/ for debugging sessions | When `debug_mode=true`, TRM writes confidence breakdown to `scratch/trm-trace-{timestamp}.json` |
 | REQ-015 | B | SGQS `MATCH` query syntax supports property filters (`WHERE node.type = 'procedure'`) | SGQS parser handles `WHERE` clauses on YAML frontmatter properties |
 <!-- /ANCHOR:requirements -->
+
+---
+
+## Acceptance Scenarios
+
+1. Hybrid query retrieval returns ranked results from vector, BM25/FTS5, and graph channels in one response.
+2. Graph-disabled runtime (`SPECKIT_GRAPH_UNIFIED=false`) preserves baseline retrieval behavior.
+3. SGQS traversal query returns non-zero cross-skill `LINKS_TO` edges.
+4. Advisor routing for frontend prompt (`css animation`) returns frontend skill at threshold >=0.8.
+5. Root + child checklists/tasks contain zero open checkboxes.
+6. Recursive spec validation completes with no errors for root and 001-010.
+
+---
+
+## AI Execution Protocol
+
+### Pre-Task Checklist
+
+- Confirm scope is limited to this spec tree (`138-hybrid-rag-fusion` root + 001-010).
+- Confirm unrelated workspace changes are preserved.
+- Confirm required verification commands are known before edits.
+
+### Execution Rules
+
+| Rule | Requirement |
+|------|-------------|
+| Scope lock | Edit only files in declared spec/code targets for this closure pass |
+| Verification | Run tests/benchmarks/validators before final sign-off |
+| Evidence | Update checklist/task evidence with concrete artifact paths |
+| Safety | Avoid destructive git operations and preserve unrelated modifications |
+
+### Status Reporting Format
+
+- `STATE`: current phase and target
+- `ACTIONS`: files/commands executed
+- `RESULT`: pass/fail outcome + next step
+
+### Blocked Task Protocol
+
+1. Stop further related edits.
+2. Record blocker with file + command evidence.
+3. Attempt one bounded workaround.
+4. If still blocked, escalate with options and impact.
 
 ---
 
@@ -393,3 +453,12 @@ LEVEL 3+ SPEC — 138: Intelligent Context Architecture
 Parent spec governing two workstreams. Sub-specs hold detailed requirements.
 Complexity: 92/100 | Status: In Progress | Schema constraint: v15 SQLite, zero migrations
 -->
+
+## Acceptance Scenario Details
+
+- **Given** graph flags are enabled, **When** a hybrid query runs, **Then** fused channels contribute to final ranking.
+- **Given** graph flags are disabled, **When** a hybrid query runs, **Then** baseline behavior is preserved.
+- **Given** SGQS traversal query, **When** LINKS_TO edges are requested, **Then** non-zero links are returned.
+- **Given** CSS advisor prompt, **When** threshold is 0.8, **Then** frontend skill is returned above threshold.
+- **Given** root and child checklists, **When** closure pass completes, **Then** no unchecked tasks/checklist items remain.
+- **Given** strict recursive validation, **When** the validator runs, **Then** no blocking errors are reported.

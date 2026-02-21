@@ -27,7 +27,9 @@ The `graphSearchFn` argument in the production hybrid search pipeline has been N
 | **Status** | Complete |
 | **Created** | 2026-02-20 |
 | **Branch** | `138-hybrid-rag-fusion` |
-| **Parent Spec** | `.opencode/specs/003-system-spec-kit/138-hybrid-rag-fusion/spec.md` |
+| **Parent Spec** | `../spec.md` |
+| **Predecessor** | `002-skill-graph-integration` |
+| **Successor** | `004-command-alignment` |
 | **Sibling 001** | `.opencode/specs/003-system-spec-kit/138-hybrid-rag-fusion/001-system-speckit-hybrid-rag-fusion/spec.md` |
 | **Sibling 002** | `.opencode/specs/003-system-spec-kit/138-hybrid-rag-fusion/002-skill-graph-integration/spec.md` |
 | **Complexity Score** | 85/100 |
@@ -426,3 +428,43 @@ LEVEL 3+ SPEC
 - Full governance controls for multi-workstream convergence
 - Complexity score: 85/100
 -->
+
+---
+
+## Acceptance Scenarios
+
+1. `graphSearchFn` wiring is active at all three init call sites.
+2. Unified graph adapter merges causal + SGQS sources.
+3. `memory_stats` includes graph-channel metrics in output.
+4. Feature flags disable graph channel cleanly when set to `false`.
+5. Integration diagram in plan matches runtime data flow.
+6. Benchmarks remain under the 120ms p95 budget.
+
+## AI Execution Protocol
+
+### Pre-Task Checklist
+- Confirm graph channel wiring scope.
+- Confirm benchmark and metrics artifacts are defined.
+
+### Execution Rules
+| Rule | Requirement |
+|------|-------------|
+| Scope | Limit edits to unified graph integration surfaces |
+| Verification | Run integration and benchmark checks before closure |
+
+### Status Reporting Format
+- `STATE`, `ACTIONS`, `RESULT`
+
+### Blocked Task Protocol
+1. Pause related integration edits.
+2. Capture command/file evidence.
+3. Apply bounded workaround or escalate.
+
+## Acceptance Scenario Details
+
+- **Given** context server startup, **When** init runs, **Then** graphSearchFn is wired with three args.
+- **Given** unified graph query, **When** adapter executes, **Then** causal + SGQS outputs are merged.
+- **Given** memory_stats request, **When** stats handler runs, **Then** graph metrics are included.
+- **Given** feature flag false, **When** query runs, **Then** graph channel is bypassed.
+- **Given** integration diagram, **When** architecture review occurs, **Then** W001/W002/W003 flow is clear.
+- **Given** aspirational benchmark run, **When** p95 is measured, **Then** runtime stays within 120ms budget.

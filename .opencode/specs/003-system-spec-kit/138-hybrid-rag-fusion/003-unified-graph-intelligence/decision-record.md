@@ -536,3 +536,24 @@ Write in human voice: active, direct, specific. No em dashes, no hedging, no AI 
 State decisions with certainty. Be honest about trade-offs.
 HVR rules: .opencode/skill/sk-documentation/references/hvr_rules.md
 -->
+
+---
+
+<!-- ANCHOR:migration-path -->
+## Migration Path: Virtual Adapter to Real Graph DB (Future Phase)
+
+This spec ships with a virtual adapter over SQLite + SGQS. If the project later needs a dedicated graph database, migrate in staged gates:
+
+1. **Dual-write Gate**: keep current adapter as source-of-truth while mirroring edges/nodes into the new graph store.
+2. **Read-Shadow Gate**: execute shadow reads against the graph DB and compare top-k overlap, latency, and error parity.
+3. **Partial-traffic Gate**: route a bounded percentage of graph-channel reads to the graph DB behind feature flags.
+4. **Cutover Gate**: promote the graph DB only when p95 latency and retrieval quality parity are both met for 7 consecutive days.
+5. **Fallback Gate**: preserve one-command rollback to `SPECKIT_GRAPH_UNIFIED=false` and the existing virtual adapter path.
+
+Exit criteria for graduation:
+- No schema breakage for existing MCP tool contracts.
+- `memory_stats` graph metrics parity maintained.
+- Rollback validated in production-like environment.
+
+Related reference: `scratch/migration-path-real-graph-db-2026-02-21.md`.
+<!-- /ANCHOR:migration-path -->

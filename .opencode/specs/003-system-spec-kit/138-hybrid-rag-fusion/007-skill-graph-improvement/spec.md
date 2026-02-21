@@ -12,9 +12,12 @@
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Verified (2026-02-21) |
+| **Status** | Complete |
 | **Created** | 2026-02-21 |
 | **Branch** | `main` |
+| **Parent Spec** | `../spec.md` |
+| **Predecessor** | `006-skill-graph-utilization` |
+| **Successor** | `008-codex-audit` |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -186,3 +189,19 @@ CORE TEMPLATE (~80 lines)
 - No boilerplate sections
 - Add L2/L3 addendums for complexity
 -->
+
+---
+
+## Acceptance Scenarios
+
+1. SGQS keyword alias query path resolves expected nodes.
+2. LINKS_TO traversal returns non-zero results after rebuild.
+3. Frontend CSS advisor routing passes threshold >=0.8.
+4. Previously failing utilization scenarios now score >=3.0.
+
+## Acceptance Scenario Details
+
+- **Given** keyword alias query, **When** parser maps aliases, **Then** target nodes are returned.
+- **Given** LINKS_TO traversal query, **When** graph index is rebuilt, **Then** non-zero cross-skill links are returned.
+- **Given** frontend advisor prompt, **When** threshold is 0.8, **Then** frontend skill is returned.
+- **Given** utilization smoke scenarios, **When** benchmark runs, **Then** scores meet or exceed 3.0.

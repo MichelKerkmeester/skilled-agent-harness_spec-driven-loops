@@ -12,10 +12,12 @@
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-02-20 |
 | **Branch** | `main` |
 | **Parent Spec** | `../spec.md` |
+| **Predecessor** | `004-command-alignment` |
+| **Successor** | `006-skill-graph-utilization` |
 | **Parent Plan** | `../plan.md` |
 <!-- /ANCHOR:metadata -->
 
@@ -95,3 +97,30 @@ All four install guides are rewritten to match the latest `install_guide_templat
 <!-- /ANCHOR:success-criteria -->
 
 ---
+
+---
+
+## Acceptance Scenarios
+
+1. All install guides follow the shared section template.
+2. HVR compliance checks pass across rewritten guide content.
+3. Cross-guide links and version blocks are valid.
+4. Feature-flag and graph-related install instructions are synchronized.
+
+## Risks and Dependencies
+
+- Dependency: guide template and HVR rules remain stable during edits.
+- Risk: cross-guide drift if one guide updates without synchronized changes.
+- Mitigation: enforce checklist-based consistency validation.
+
+## Non-Functional Requirements
+
+- Keep guide structure readable and consistent across all skill install docs.
+- Preserve command examples and validation checkpoints in each guide.
+
+## Acceptance Scenario Details
+
+- **Given** install guides, **When** section checks run, **Then** template numbering is consistent.
+- **Given** HVR constraints, **When** language checks run, **Then** banned phrasing is absent.
+- **Given** version blocks, **When** guide consistency is reviewed, **Then** each guide has current metadata.
+- **Given** cross-links, **When** validation runs, **Then** links resolve correctly.

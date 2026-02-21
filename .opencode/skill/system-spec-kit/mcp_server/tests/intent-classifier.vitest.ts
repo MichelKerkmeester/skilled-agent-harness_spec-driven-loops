@@ -395,8 +395,8 @@ describe('T056: Keyword Scoring', () => {
   });
 });
 
-describe('T057: Pattern + Keyword Combined Scoring (60/40 weight)', () => {
-  it('T057: Combined score uses 60% keywords, 40% patterns', () => {
+describe('T057: Pattern + Keyword + Centroid Combined Scoring', () => {
+  it('T057: Combined score uses centroid/keyword/pattern blend', () => {
     const query = 'add a new authentication feature';
     const result = intentClassifier.classifyIntent(query);
 
@@ -404,20 +404,24 @@ describe('T057: Pattern + Keyword Combined Scoring (60/40 weight)', () => {
     expect(result.confidence).toBeGreaterThan(0);
 
     const patternScore = intentClassifier.calculatePatternScore('add a new authentication', 'add_feature');
+    const keywordScore = intentClassifier.calculateKeywordScore('add a new authentication feature', 'add_feature');
+    const centroidScore = intentClassifier.calculateCentroidScore('add a new authentication feature', 'add_feature');
     expect(patternScore).toBeGreaterThan(0);
+    expect(keywordScore.score).toBeGreaterThan(0);
+    expect(centroidScore).toBeGreaterThan(0);
   });
 
-  it('T057: Pattern-only matches still contribute 40%', () => {
+  it('T057: Pattern-only signal still contributes to ranking', () => {
     const patternScore = intentClassifier.calculatePatternScore('fix the login error', 'fix_bug');
     expect(patternScore).toBeGreaterThan(0);
-    const expectedContribution = patternScore * 0.4;
+    const expectedContribution = patternScore * 0.15;
     expect(expectedContribution).toBeGreaterThan(0);
   });
 
-  it('T057: Keyword-only matches still contribute 60%', () => {
+  it('T057: Keyword signal remains weighted in combined score', () => {
     const result = intentClassifier.calculateKeywordScore('refactor the code', 'refactor');
     expect(result.score).toBeGreaterThan(0);
-    const expectedContribution = result.score * 0.6;
+    const expectedContribution = result.score * 0.35;
     expect(expectedContribution).toBeGreaterThan(0);
   });
 });
@@ -577,6 +581,46 @@ describe('T060: 80% Overall Detection Accuracy Target', () => {
 });
 
 describe('C138: Centroid-Based Classification & Lambda Mapping', () => {
+  it('C138-T0: 7 centroid embeddings are computed at initialization', () => {
+    const centroidKeys = Object.keys(intentClassifier.INTENT_CENTROIDS);
+    expect(centroidKeys).toHaveLength(7);
+    for (const key of centroidKeys) {
+      const centroid = intentClassifier.INTENT_CENTROIDS[key as keyof typeof intentClassifier.INTENT_CENTROIDS];
+      expect(centroid).toBeInstanceOf(Float32Array);
+      expect(centroid.length).toBeGreaterThan(0);
+    }
+  });
+
+  it('C138-T0b: dotProduct self-similarity is >= cross-intent similarity', () => {
+    const query = intentClassifier.toDeterministicEmbedding('fix login bug and debug failing auth');
+    const fixCentroid = intentClassifier.INTENT_CENTROIDS.fix_bug;
+    const refactorCentroid = intentClassifier.INTENT_CENTROIDS.refactor;
+    const self = intentClassifier.dotProduct(query, fixCentroid);
+    const cross = intentClassifier.dotProduct(query, refactorCentroid);
+    expect(self).toBeGreaterThanOrEqual(cross);
+  });
+
+  it('C138-T0c: centroid score peak classifies canonical queries for all 7 intents', () => {
+    const canonicalQueries: Record<string, string> = {
+      add_feature: 'add a new feature and implement support for integration',
+      fix_bug: 'fix login bug and debug broken crash',
+      refactor: 'refactor and simplify module architecture',
+      security_audit: 'security audit vulnerability and injection review',
+      understand: 'explain architecture and system flow overview',
+      find_spec: 'find spec requirements and implementation plan',
+      find_decision: 'find decision record rationale and alternatives',
+    };
+
+    for (const [expectedIntent, query] of Object.entries(canonicalQueries)) {
+      const scores = Object.keys(intentClassifier.INTENT_CENTROIDS).map((intent) => ({
+        intent,
+        score: intentClassifier.calculateCentroidScore(query, intent as never),
+      }));
+      const top = scores.sort((a, b) => b.score - a.score)[0];
+      expect(top.intent).toBe(expectedIntent);
+    }
+  });
+
   it('C138-T1: classifyIntent returns one of 7 valid intent types', () => {
     const validIntents = ['add_feature', 'fix_bug', 'refactor', 'security_audit', 'understand', 'find_spec', 'find_decision'];
     const result = intentClassifier.classifyIntent('fix the login error');

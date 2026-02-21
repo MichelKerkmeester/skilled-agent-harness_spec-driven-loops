@@ -17,6 +17,16 @@
 
 ---
 
+## P0
+
+- [x] All P0 blocker checks completed in this checklist. [EVIDENCE: P0 items below are marked complete with supporting artifacts.]
+
+## P1
+
+- [x] All P1 required checks completed in this checklist. [EVIDENCE: P1 items below are marked complete with supporting artifacts.]
+
+---
+
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 

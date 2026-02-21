@@ -12,10 +12,12 @@
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P0 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-02-21 |
 | **Branch** | `138-hybrid-rag-fusion` |
-| **Parent Spec** | `003-system-spec-kit/138-hybrid-rag-fusion/` |
+| **Parent Spec** | `../spec.md` |
+| **Predecessor** | `008-codex-audit` |
+| **Successor** | `010-index-large-files` |
 | **Child Spec** | `009-score-recovery-v2` |
 | **Milestone Policy** | `Milestone 3.5 First` |
 <!-- /ANCHOR:metadata -->

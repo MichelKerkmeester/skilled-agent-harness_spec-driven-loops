@@ -21,7 +21,7 @@ Think of it as a "project folder" for AI-assisted development - it keeps context
 - Configuration: JSON, YAML, TOML, env templates
 - Templates, knowledge base, build/tooling files
 
-**Request patterns that trigger activation:**
+**Request patterns that trigger activation:** 
 - "Add/implement/create [feature]"
 - "Fix/update/refactor [code]"
 - "Modify/change [configuration]"

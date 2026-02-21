@@ -100,6 +100,28 @@ Query → Intent Classification (2ms)
 ```
 
 The graph channel and the two existing channels operate in parallel. The fusion step receives all three result sets and applies weighted RRF. When `SPECKIT_GRAPH_UNIFIED=false`, the graph channel returns an empty array and the merge step behaves identically to the current two-channel pipeline.
+
+### Integration Architecture Diagram (W:001 + W:002 + W:003)
+
+```mermaid
+flowchart LR
+  Q["Query Intake"] --> I["W:001 Intent Classifier"]
+  I --> V["W:001 Vector Channel"]
+  I --> F["W:001 FTS5/BM25 Channel"]
+  I --> G["W:003 Unified Graph Adapter"]
+  G --> C["Causal Edge Graph"]
+  G --> S["W:002 SGQS Skill Graph"]
+  V --> R["Adaptive RRF Re-rank"]
+  F --> R
+  C --> R
+  S --> R
+  R --> W["graphWeight + graphCausalBias"]
+  W --> O["Final Context Payload"]
+```
+
+Reference artifacts:
+- Baseline no-graph benchmark: `scratch/baseline-latency-no-graph-2026-02-21.md`
+- Aspirational 7-pattern benchmark: `scratch/aspirational-7-pattern-benchmark-2026-02-21.md`
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -494,3 +516,24 @@ LEVEL 3+ PLAN
 - Feature flags: SPECKIT_GRAPH_UNIFIED, SPECKIT_GRAPH_MMR, SPECKIT_GRAPH_AUTHORITY
 - Zero schema migrations; instant rollback via flag
 -->
+
+## AI EXECUTION PROTOCOL
+
+### Pre-Task Checklist
+- Confirm scoped files and validation commands before edits.
+
+### Execution Rules
+| Rule | Requirement |
+|------|-------------|
+| TASK-SEQ | Validate context before modification and verify after changes |
+| TASK-SCOPE | Restrict edits to declared phase files |
+
+### Status Reporting Format
+- STATE: current checkpoint
+- ACTIONS: files/commands run
+- RESULT: pass/fail and next action
+
+### Blocked Task Protocol
+1. Mark BLOCKED with evidence.
+2. Attempt one bounded workaround.
+3. Escalate with options if unresolved.

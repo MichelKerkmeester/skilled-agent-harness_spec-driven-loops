@@ -12,9 +12,12 @@
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-02-20 |
 | **Branch** | `main` |
+| **Parent Spec** | `../spec.md` |
+| **Predecessor** | `005-install-guide-alignment` |
+| **Successor** | `007-skill-graph-improvement` |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -120,3 +123,15 @@ CORE TEMPLATE (~80 lines)
 - No boilerplate sections
 - Add L2/L3 addendums for complexity
 -->
+
+---
+
+## Acceptance Scenarios
+
+1. Five persona result files are generated with >=4 scenarios each.
+2. Aggregate utilization score and resilience metrics are reported in scratch artifacts.
+
+## Acceptance Scenario Details
+
+- **Given** persona benchmark scenarios, **When** harness runs, **Then** per-persona result files are generated.
+- **Given** all persona outputs, **When** synthesis runs, **Then** aggregate score and resilience metrics are reported.

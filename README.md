@@ -533,6 +533,57 @@ Skills are domain expertise on demand. The AI loads the right skill and already 
 | **React Native** | mobile   | `app.json` with "expo"                          | Navigation, hooks, platform APIs  |
 | **Swift**        | mobile   | `Package.swift`                                 | SwiftUI, Combine, async/await     |
 
+### Skill Graph Architecture
+
+Each skill directory contains markdown node files (`nodes/*.md`) connected by `[[wikilinks]]`. The SGQS (Skill Graph Query System) engine builds an in-memory graph from these files and exposes it through an MCP tool.
+
+```
+nodes/*.md ──┐                                    ┌── MCP Tool
+index.md ────┤                                    │   (memory_skill_graph_query)
+SKILL.md ────┼──► Graph Builder ──► In-Memory ──► SGQS Query ──► Results
+references/ ─┤    (filesystem      Graph          Engine        (columns +
+other .md ───┘     scan + parse)   (435 nodes,    (Cypher-lite   rows)
+                                    6 edge types)  MATCH/WHERE/
+                                                   RETURN)
+```
+
+| Metric         | Value                                                                                  |
+| -------------- | -------------------------------------------------------------------------------------- |
+| Skills indexed | 10                                                                                     |
+| Graph nodes    | 435 (83 knowledge nodes in `nodes/*.md` + references, structural files, virtual roots) |
+| Edge types     | 6: `LINKS_TO`, `CONTAINS`, `REFERENCES`, `DEPENDS_ON`, `HAS_ENTRYPOINT`, `HAS_INDEX`  |
+| Node labels    | 7: `:Skill`, `:Node`, `:Index`, `:Entrypoint`, `:Reference`, `:Document`, `:Asset`     |
+
+The graph builder scans skill directories, parses YAML frontmatter and extracts edges from wikilinks and markdown links. Each `index.md` serves as a Map of Content (MOC). Cross-skill wikilinks produce `DEPENDS_ON` edges. The entire graph lives in-process with no external database required.
+
+See [Skills Library README](.opencode/skill/README.md#5-skill-graph) for full SGQS syntax reference and node structure details.
+
+### Intelligence Patterns
+
+Seven graph-topology patterns augment the hybrid RAG fusion pipeline, leveraging Skill Graph structural signals to address limitations that statistical retrieval alone cannot solve. Combined overhead: ~8-10ms within the 120ms pipeline budget.
+
+| Pattern                              | Description                                                                                       | Spec    |
+| ------------------------------------ | ------------------------------------------------------------------------------------------------- | ------- |
+| **Graph-Guided MMR**                 | Composite diversity metric incorporating graph topological distance alongside cosine distance      | 138/003 |
+| **Structural Authority Propagation** | PageRank-style authority score based on Index > Node > Reference hierarchy and link density        | 138/003 |
+| **Intent-to-Subgraph Routing**       | Maps query intents to graph label affinities, creating intent-aware search lanes before retrieval  | 138/003 |
+| **Semantic Bridge Discovery**        | Traverses wikilink edges to extract related terms, expanding BM25/FTS queries with topological vocabulary | 138/003 |
+| **Evidence Gap Prevention**          | Pre-computed graph coverage density predicts retrieval confidence before search executes           | 138/002 |
+| **Context Budget Optimization**      | Selects results to maximize graph-region coverage within the 2000-token context budget             | 138/003 |
+| **Temporal-Structural Coherence**    | Combines FSRS spaced-repetition decay with graph centrality for architecture-aware aging           | 138/003 |
+
+### Benchmarks
+
+Retrieval quality validated through three independent benchmark suites, each containing 20 scored scenarios (0-5 scale) with cryptographic freeze integrity on StrictHoldout inputs.
+
+| Suite             | Queries | Score        | Description                                                    |
+| ----------------- | ------- | ------------ | -------------------------------------------------------------- |
+| **Legacy20**      | 20      | **5.00/5.0** | Safety gate — preserves historical behavior. Threshold: 3.0    |
+| **V2**            | 20      | **5.00/5.0** | Primary quality milestone. Threshold: 3.5                      |
+| **StrictHoldout** | 20      | **5.00/5.0** | Hardest scenarios + hash-locked freeze integrity. Threshold: 4.5 |
+
+Full test suite: 4,770 tests across 159 files, 0 failures. Pipeline p95 latency: 24ms (ceiling: 120ms).
+
 <!-- /ANCHOR:skills-library -->
 
 ---

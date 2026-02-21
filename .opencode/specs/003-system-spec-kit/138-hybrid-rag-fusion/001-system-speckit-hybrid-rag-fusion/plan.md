@@ -1,4 +1,7 @@
+<!-- SPECKIT_LEVEL: 3+ -->
 # Plan: 138-hybrid-rag-fusion
+
+<!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 
 <!-- ANCHOR: plan-approach-138 -->
 ## 1. Execution Approach
@@ -94,3 +97,54 @@ If `memory_stats` latency exceeds 150ms average for `mode="auto"`, or if LLMs co
 | **R03** | FTS5 weights (`bm25`) cause non-vector results to overwhelm RRF. | High | Low | Apply a specific multiplier to the FTS5 rank in `adaptive-fusion.ts` to ensure it only dominates if the user's intent is `find_spec` or `find_decision`. |
 | **R04** | "LLM-in-MCP Paradox" causes API timeouts. | Critical | Zero | Completely banned. No LLM calls will be made from within the MCP server during read-time retrieval. |
 <!-- /ANCHOR: plan-risks-138 -->
+
+---
+
+## Technical Context
+
+- Stack: TypeScript + SQLite + vitest.
+- Primary files: `hybrid-search.ts`, `intent-classifier.ts`, `mmr-reranker.ts`.
+- Constraints: no schema migration, bounded latency, backward-compatible contracts.
+
+## Implementation
+
+1. Enable dormant graph/adaptive fusion paths.
+2. Add centroid intent scoring internals.
+3. Add/adjust tests for centroid behavior.
+4. Re-run targeted suite and update phase docs.
+
+## Testing Strategy
+
+- Run `vitest` for `intent-classifier.vitest.ts`.
+- Verify no regressions in scoring boundaries and type contracts.
+
+## Dependencies
+
+- Existing SGQS/graph channel code from sibling phases.
+- Existing toolchain (`node`, `npm`, `vitest`).
+
+## Rollback
+
+- Restore prior scoring blend in `intent-classifier.ts` if regressions appear.
+- Keep additive exports backward compatible to minimize rollback scope.
+
+## AI EXECUTION PROTOCOL
+
+### Pre-Task Checklist
+- Confirm scoped files and validation commands before edits.
+
+### Execution Rules
+| Rule | Requirement |
+|------|-------------|
+| TASK-SEQ | Validate context before modification and verify after changes |
+| TASK-SCOPE | Restrict edits to declared phase files |
+
+### Status Reporting Format
+- STATE: current checkpoint
+- ACTIONS: files/commands run
+- RESULT: pass/fail and next action
+
+### Blocked Task Protocol
+1. Mark BLOCKED with evidence.
+2. Attempt one bounded workaround.
+3. Escalate with options if unresolved.

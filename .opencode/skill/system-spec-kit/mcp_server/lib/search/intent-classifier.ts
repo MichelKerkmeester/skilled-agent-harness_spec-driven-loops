@@ -23,6 +23,8 @@ interface IntentWeights {
   contextType: string | null;
 }
 
+type IntentCentroids = Record<IntentType, Float32Array>;
+
 const INTENT_TYPES: Record<string, IntentType> = {
   ADD_FEATURE: 'add_feature',
   FIX_BUG: 'fix_bug',
@@ -54,7 +56,7 @@ const INTENT_KEYWORDS: Record<IntentType, string[]> = {
   understand: [
     'understand', 'explain', 'describe', 'overview',
     'architecture', 'design', 'flow', 'documentation', 'guide',
-    'learn',
+    'learn', 'strategy', 'purpose', 'context',
   ],
   find_spec: [
     'spec', 'specification', 'requirements', 'scope', 'feature',
@@ -103,6 +105,7 @@ const INTENT_PATTERNS: Record<IntentType, RegExp[]> = {
     /describe\s+(?:the\s+)?(?:architecture|design|flow)/i,
     /how\s+does\s+(?:the\s+|this\s+)/i,
     /what\s+is\s+(?:the\s+|this\s+)/i,
+    /why\s+was\s+(?:the\s+|this\s+)?(?:architecture|design|approach)\s+chosen/i,
   ],
   find_spec: [
     /(?:find|show|get)\s+(?:the\s+)?spec/i,
@@ -121,6 +124,52 @@ const INTENT_PATTERNS: Record<IntentType, RegExp[]> = {
 };
 
 /**
+ * T016: Lightweight deterministic embedding centroid classifier.
+ *
+ * The model uses hashed bag-of-words embeddings so centroids can be built
+ * synchronously at module initialization with no external provider dependency.
+ */
+const CENTROID_EMBED_DIM = 128;
+
+const INTENT_CENTROID_SEEDS: Record<IntentType, string[]> = {
+  add_feature: [
+    'add new feature and implement capability',
+    'create and build a new integration',
+    'introduce support for a new flow',
+  ],
+  fix_bug: [
+    'fix bug and debug failing error',
+    'resolve broken crash and incorrect behavior',
+    'repair issue and patch regression',
+  ],
+  refactor: [
+    'refactor and simplify existing code',
+    'restructure and clean architecture',
+    'improve maintainability and modernize module',
+  ],
+  security_audit: [
+    'security audit vulnerability and injection review',
+    'authorization authentication and permission checks',
+    'pentest sanitize validate and encryption checks',
+  ],
+  understand: [
+    'understand architecture and explain design',
+    'describe system overview and flow',
+    'learn purpose and documentation context',
+  ],
+  find_spec: [
+    'find spec requirements plan and checklist',
+    'show specification scope and implementation tasks',
+    'locate feature plan and requirement details',
+  ],
+  find_decision: [
+    'find decision record rationale and trade off',
+    'show why this choice was made',
+    'locate adr alternatives and final decision',
+  ],
+};
+
+/**
  * P3-12: Negative patterns — when matched, penalize the given intent.
  * E.g., "how to fix" should not score for "understand".
  */
@@ -129,6 +178,11 @@ const INTENT_NEGATIVE_PATTERNS: Partial<Record<IntentType, RegExp[]>> = {
     /how\s+to\s+(?:fix|add|create|implement|build|repair|patch)/i,
     /what\s+(?:is\s+)?(?:wrong|broken|failing|the\s+error|the\s+bug)/i,
     /why\s+(?:is\s+it\s+)?(?:broken|failing|crashing|not\s+working)/i,
+  ],
+  security_audit: [
+    /\bunderstand\b/i,
+    /\bhow\s+does\b/i,
+    /\bwhat\s+is\s+the\s+purpose\b/i,
   ],
 };
 
@@ -144,6 +198,8 @@ const INTENT_WEIGHT_ADJUSTMENTS: Record<IntentType, IntentWeights> = {
   find_spec: { recency: 0.1, importance: 0.5, similarity: 0.4, contextType: 'decision' },
   find_decision: { recency: 0.1, importance: 0.5, similarity: 0.4, contextType: 'decision' },
 };
+
+const INTENT_CENTROIDS: IntentCentroids = buildIntentCentroids();
 
 /* -----------------------------------------------------------
    2. SCORING FUNCTIONS
@@ -190,6 +246,87 @@ function calculatePatternScore(query: string, intent: IntentType): number {
   return patterns.length > 0 ? matches / patterns.length : 0;
 }
 
+/**
+ * Compute a deterministic normalized embedding for text.
+ */
+function toDeterministicEmbedding(text: string): Float32Array {
+  const vec = new Float32Array(CENTROID_EMBED_DIM);
+  const tokens = text.toLowerCase().match(/[a-z0-9_]+/g) ?? [];
+  for (const token of tokens) {
+    const idx = hashToken(token) % CENTROID_EMBED_DIM;
+    vec[idx] += 1;
+  }
+  return normalizeVector(vec);
+}
+
+/**
+ * Build one centroid vector per intent from seed phrases and keywords.
+ */
+function buildIntentCentroids(): IntentCentroids {
+  const out = {} as IntentCentroids;
+  for (const intent of Object.values(INTENT_TYPES)) {
+    const sources = [...INTENT_CENTROID_SEEDS[intent], ...INTENT_KEYWORDS[intent]];
+    const acc = new Float32Array(CENTROID_EMBED_DIM);
+    for (const src of sources) {
+      const emb = toDeterministicEmbedding(src);
+      for (let i = 0; i < acc.length; i++) {
+        acc[i] += emb[i];
+      }
+    }
+    out[intent] = normalizeVector(acc);
+  }
+  return out;
+}
+
+/**
+ * Hash a token into a stable non-negative integer.
+ */
+function hashToken(token: string): number {
+  let h = 2166136261;
+  for (let i = 0; i < token.length; i++) {
+    h ^= token.charCodeAt(i);
+    h = Math.imul(h, 16777619);
+  }
+  return h >>> 0;
+}
+
+/**
+ * L2-normalize a vector in place.
+ */
+function normalizeVector(vec: Float32Array): Float32Array {
+  let norm = 0;
+  for (let i = 0; i < vec.length; i++) {
+    norm += vec[i] * vec[i];
+  }
+  if (norm <= 0) return vec;
+  const inv = 1 / Math.sqrt(norm);
+  for (let i = 0; i < vec.length; i++) {
+    vec[i] *= inv;
+  }
+  return vec;
+}
+
+/**
+ * Dot product similarity for normalized vectors.
+ */
+function dotProduct(a: Float32Array | number[], b: Float32Array | number[]): number {
+  const len = Math.min(a.length, b.length);
+  let sum = 0;
+  for (let i = 0; i < len; i++) {
+    sum += (a[i] as number) * (b[i] as number);
+  }
+  return sum;
+}
+
+/**
+ * Score query-to-intent using centroid embeddings.
+ */
+function calculateCentroidScore(query: string, intent: IntentType): number {
+  const queryEmb = toDeterministicEmbedding(query);
+  const centroid = INTENT_CENTROIDS[intent];
+  return Math.max(0, dotProduct(queryEmb, centroid));
+}
+
 /* -----------------------------------------------------------
    3. CLASSIFICATION
 ----------------------------------------------------------------*/
@@ -220,8 +357,9 @@ function classifyIntent(query: string): IntentResult {
   for (const intent of Object.values(INTENT_TYPES)) {
     const { score: keywordScore, matches } = calculateKeywordScore(query, intent);
     const patternScore = calculatePatternScore(query, intent);
+    const centroidScore = calculateCentroidScore(query, intent);
 
-    let combined = (keywordScore * 0.6) + (patternScore * 0.4);
+    let combined = (centroidScore * 0.5) + (keywordScore * 0.35) + (patternScore * 0.15);
 
     // P3-12: Apply negative pattern penalties
     const negPatterns = INTENT_NEGATIVE_PATTERNS[intent];
@@ -369,6 +507,10 @@ export {
   // Scoring
   calculateKeywordScore,
   calculatePatternScore,
+  calculateCentroidScore,
+  dotProduct,
+  toDeterministicEmbedding,
+  INTENT_CENTROIDS,
 
   // Classification
   classifyIntent,

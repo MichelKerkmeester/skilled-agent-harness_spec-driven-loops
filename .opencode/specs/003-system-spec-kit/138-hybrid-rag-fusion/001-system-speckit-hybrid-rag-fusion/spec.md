@@ -1,4 +1,21 @@
+<!-- SPECKIT_LEVEL: 3+ -->
 # Spec: 138-hybrid-rag-fusion (Unified Context Engine)
+
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify + level3-arch + level3plus-govern | v2.2 -->
+
+---
+
+## 0. Metadata
+
+| Field | Value |
+|-------|-------|
+| **Level** | 3+ |
+| **Priority** | P0 |
+| **Status** | Complete |
+| **Created** | 2026-02-20 |
+| **Branch** | `138-hybrid-rag-fusion` |
+| **Parent Spec** | `../spec.md` |
+| **Successor** | `002-skill-graph-integration` |
 
 <!-- ANCHOR: spec-summary-138 -->
 ## 1. Executive Summary
@@ -108,3 +125,68 @@ interface EnhancedMCPResponse {
 }
 ```
 <!-- /ANCHOR: spec-architecture-138 -->
+
+---
+
+## Acceptance Scenarios
+
+1. Intent classifier computes centroid vectors at module initialization.
+2. Centroid-based scoring influences final intent classification output.
+3. Graph-enabled hybrid search path fuses vector/FTS/graph channels.
+4. MMR and evidence-gap modules execute without regression.
+5. Updated intent test suite passes with centroid coverage checks.
+6. Root integration tasks/checklists reflect this workstream as complete.
+
+## AI Execution Protocol
+
+### Pre-Task Checklist
+- Confirm target files and test scope.
+- Confirm no schema migration is introduced.
+
+### Execution Rules
+| Rule | Requirement |
+|------|-------------|
+| Scope | Edit only planned files for this phase |
+| Verification | Run targeted tests before completion |
+
+### Status Reporting Format
+- `STATE`, `ACTIONS`, `RESULT`
+
+### Blocked Task Protocol
+1. Stop edits for blocked area.
+2. Capture error/output evidence.
+3. Apply one bounded workaround, then escalate if unresolved.
+
+## Structured Requirements
+
+| ID | Requirement |
+|----|-------------|
+| REQ-001 | Activate graph, BM25, and vector channels in hybrid retrieval. |
+| REQ-002 | Keep retrieval pipeline within p95 <= 120ms. |
+| REQ-003 | Apply MMR for diversity on fused results. |
+| REQ-004 | Apply evidence-gap confidence signaling. |
+| REQ-005 | Preserve zero-schema-migration constraint. |
+| REQ-006 | Add centroid-based intent scoring internals. |
+| REQ-007 | Add coverage tests for centroid scoring behavior. |
+| REQ-008 | Maintain backward-compatible MCP interfaces. |
+
+## Risks and Dependencies
+
+- Dependency: existing SQLite/FTS/vector stack remains available.
+- Risk: retrieval quality regression if channel weights drift.
+- Mitigation: targeted regression tests and integration checks.
+
+## Completion Criteria
+
+- All tasks/checklist items are marked complete with evidence.
+- Targeted intent classifier tests pass.
+- Root integration checklist recognizes this phase as complete.
+
+## Acceptance Scenario Details
+
+- **Given** centroid seeds are loaded, **When** classifier initializes, **Then** seven centroids exist.
+- **Given** canonical intent query text, **When** centroid scores are computed, **Then** expected intent receives top score.
+- **Given** empty query input, **When** classifier runs, **Then** `understand` fallback is returned safely.
+- **Given** routing query for bug fix, **When** classification runs, **Then** `fix_bug` remains correctly detected.
+- **Given** updated tests, **When** vitest runs, **Then** centroid suites pass.
+- **Given** closure documents, **When** root sync runs, **Then** phase 001 is marked complete.

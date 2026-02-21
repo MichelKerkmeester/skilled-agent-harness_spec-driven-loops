@@ -27,6 +27,9 @@ This spec documents the completed remediation work captured in `008-codex-audit`
 | **Status** | Complete |
 | **Created** | 2026-02-21 |
 | **Branch** | `138-hybrid-rag-fusion` |
+| **Parent Spec** | `../spec.md` |
+| **Predecessor** | `007-skill-graph-improvement` |
+| **Successor** | `009-skill-graph-score-recovery` |
 <!-- /ANCHOR:metadata -->
 
 ---

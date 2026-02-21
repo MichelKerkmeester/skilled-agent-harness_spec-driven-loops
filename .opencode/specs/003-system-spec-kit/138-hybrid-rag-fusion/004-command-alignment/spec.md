@@ -15,7 +15,9 @@
 | **Status** | Complete |
 | **Created** | 2026-02-20 |
 | **Branch** | `main` |
-| **Parent Spec** | `138-hybrid-rag-fusion` |
+| **Parent Spec** | `../spec.md` |
+| **Predecessor** | `003-unified-graph-intelligence` |
+| **Successor** | `005-install-guide-alignment` |
 | **Phase** | `004-command-alignment` |
 <!-- /ANCHOR:metadata -->
 
@@ -180,3 +182,19 @@ CORE TEMPLATE (~80 lines)
 - No boilerplate sections
 - Add L2/L3 addendums for complexity
 -->
+
+---
+
+## Acceptance Scenarios
+
+1. All targeted command docs contain aligned argument/flow wording.
+2. Auto/confirm YAML variants stay content-equivalent.
+3. Command docs reference current graph-enabled behavior where applicable.
+4. Cross-command consistency checks pass without regressions.
+
+## Acceptance Scenario Details
+
+- **Given** command docs, **When** create workflows are reviewed, **Then** graph mode options are present.
+- **Given** auto/confirm YAML pairs, **When** compared, **Then** argument flows are synchronized.
+- **Given** memory commands, **When** docs are read, **Then** graph flag behavior is accurately described.
+- **Given** command templates, **When** integration checks run, **Then** no conflicting guidance remains.

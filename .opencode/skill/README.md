@@ -20,9 +20,10 @@ importance_tier: "normal"
 - [2. QUICK START](#2--quick-start)
 - [3. STRUCTURE](#3--structure)
 - [4. SKILLS CATALOG](#4--skills-catalog)
-- [5. SKILL ROUTING](#5--skill-routing)
-- [6. CREATING SKILLS](#6--creating-skills)
-- [7. RELATED](#7--related)
+- [5. SKILL GRAPH](#5--skill-graph)
+- [6. SKILL ROUTING](#6--skill-routing)
+- [7. CREATING SKILLS](#7--creating-skills)
+- [8. RELATED](#8--related)
 
 <!-- /ANCHOR:table-of-contents -->
 
@@ -94,6 +95,8 @@ Each skill folder contains:
 | Directory          | Purpose                                                    |
 | ------------------ | ---------------------------------------------------------- |
 | `SKILL.md`         | Entry point. Loaded when the skill is invoked.             |
+| `index.md`         | Map of Content (MOC) for the Skill Graph. Wikilinks to nodes. |
+| `nodes/`           | Knowledge node files with YAML frontmatter and `[[wikilinks]]`. |
 | `references/`      | Domain knowledge, coding standards and pattern libraries   |
 | `scripts/`         | Automation scripts (validation, generation, indexing)       |
 | `assets/`          | Templates, configs and static resources                    |
@@ -207,8 +210,163 @@ Figma design file access via MCP providing 18 tools for file retrieval, image ex
 
 <!-- /ANCHOR:skills-catalog -->
 
+<!-- ANCHOR:skill-graph -->
+## 5. SKILL GRAPH
+
+### 5.1 Overview
+
+The Skill Graph is a queryable knowledge graph built from the filesystem structure of the Skills Library. It models skills, their content nodes and the relationships between them as a directed graph traversable via SGQS (Skill Graph Query System), a Cypher-lite query language.
+
+| Metric              | Value                                                                        |
+| ------------------- | ---------------------------------------------------------------------------- |
+| Skills indexed      | 10                                                                           |
+| Knowledge nodes     | 83 files in `nodes/` directories                                             |
+| Total graph nodes   | 435 (includes references, structural files and virtual `:Skill` roots)       |
+| Node labels         | 7: `Node`, `Index`, `Skill`, `Entrypoint`, `Reference`, `Asset`, `Document` |
+| Edge types          | 6: `LINKS_TO`, `CONTAINS`, `REFERENCES`, `HAS_ENTRYPOINT`, `HAS_INDEX`, `DEPENDS_ON` |
+| Max traversal depth | 10 hops (variable-length paths)                                              |
+| Cache TTL           | 300 seconds (5 minutes)                                                      |
+
+The graph is built on demand, cached in memory and queried through the `memory_skill_graph_query` MCP tool.
+
+### 5.2 Node Structure
+
+Every `.md` file inside a skill directory becomes a graph node. Nodes are identified by their relative path without extension (e.g., `sk-git/nodes/rules`).
+
+**YAML frontmatter** provides node properties. The graph builder parses frontmatter with a zero-dependency regex parser supporting strings, arrays, numbers, booleans and null values.
+
+```yaml
+---
+description: "ALWAYS/NEVER/ESCALATE rules governing git workflow behavior"
+---
+# Rules
+
+Hard constraints that apply to every git workflow operation.
+```
+
+Parsed frontmatter properties are stored alongside computed properties (`skill`, `path`, `name`, `type`, `title`).
+
+**Node labels** are inferred from file location:
+
+| Location                   | Label         | Example                       |
+| -------------------------- | ------------- | ----------------------------- |
+| `{skill}/nodes/*.md`       | `:Node`       | `sk-git/nodes/rules`          |
+| `{skill}/index.md`         | `:Index`      | `sk-git/index`                |
+| `{skill}/SKILL.md`         | `:Entrypoint` | `sk-git/SKILL`                |
+| `{skill}/references/*.md`  | `:Reference`  | `sk-git/references/config`    |
+| `{skill}/assets/*.md`      | `:Asset`      | `sk-documentation/assets/tpl` |
+| Other `.md` files          | `:Document`   | `sk-git/README`               |
+| Virtual (no file)          | `:Skill`      | `sk-git`                      |
+
+**Wikilink syntax** connects nodes within and across skills:
+
+```markdown
+- [[nodes/success-criteria|Success Criteria]] — Quality gates
+- [[nodes/commit-workflow]] — Commit formatting conventions
+```
+
+**Index.md MOC pattern.** Each skill includes an `index.md` that serves as a Map of Content (MOC). It uses wikilinks to reference child nodes. The graph builder creates `:CONTAINS` edges from Index nodes to any linked `nodes/` targets.
+
+### 5.3 Edge Types
+
+Edges are extracted from wikilinks (`[[target]]`), markdown links (`[text](path.md)`) and structural conventions. Each edge has a unique ID: `{source}--{TYPE}--{target}`.
+
+| Edge Type        | Source              | Description                                         |
+| ---------------- | ------------------- | --------------------------------------------------- |
+| `LINKS_TO`       | Wikilinks / md links | General link between two nodes                     |
+| `CONTAINS`       | Index wikilinks     | Structural containment (Index to nodes/ target)     |
+| `REFERENCES`     | Markdown links      | Explicit reference via `[text](path.md)` syntax     |
+| `HAS_ENTRYPOINT` | Structural (auto)   | Virtual `:Skill` node to `SKILL.md` `:Entrypoint`  |
+| `HAS_INDEX`      | Structural (auto)   | Virtual `:Skill` node to `index.md` `:Index`        |
+| `DEPENDS_ON`     | Cross-skill links   | Wikilink or markdown link crossing a skill boundary |
+
+A validation pass removes dangling edges whose source or target nodes do not exist.
+
+### 5.4 SGQS Query Engine
+
+SGQS uses a Cypher-lite syntax with three clauses: `MATCH`, `WHERE` (optional) and `RETURN` (required). Queries are parsed by a recursive descent parser with post-parse semantic validation.
+
+| Clause   | Required | Purpose                                                   |
+| -------- | -------- | --------------------------------------------------------- |
+| `MATCH`  | Yes      | Define graph patterns with node and relationship patterns |
+| `WHERE`  | No       | Filter with boolean expressions, comparisons, null checks |
+| `RETURN` | Yes      | Project results as properties, variables or aggregates    |
+
+**Node pattern:** `(binding:Label {key: "value"})`
+
+**Relationship pattern:** `-[binding:TYPE*min..max]->` (direction: `->` outbound, `<-` inbound, `-` both)
+
+**WHERE operators:** `=`, `<>`, `<`, `>`, `<=`, `>=`, `CONTAINS`, `STARTS WITH`, `ENDS WITH`, `IS NULL`, `IS NOT NULL`, `AND`, `OR`, `NOT`
+
+**RETURN modifiers:** `DISTINCT`, `AS alias`, `COUNT(*)`, `COUNT(DISTINCT n.prop)`, `COLLECT(n.prop)`
+
+**Examples:**
+
+```cypher
+-- List all skills
+MATCH (n:Skill) RETURN n.name
+
+-- Find all nodes in a specific skill
+MATCH (s:Skill)-[:HAS_INDEX]->(i:Index)-[:CONTAINS]->(n:Node)
+WHERE s.name = "sk-git"
+RETURN n.name, n.description
+
+-- Count nodes per skill
+MATCH (s:Skill)-[:HAS_INDEX]->(i:Index)-[:CONTAINS]->(n:Node)
+RETURN s.name, COUNT(n) AS node_count
+
+-- Find cross-skill dependencies
+MATCH (a:Node)-[r:DEPENDS_ON]->(b:Node)
+RETURN a.skill, a.name, b.skill, b.name
+```
+
+### 5.5 Build Pipeline
+
+```
+Scan ──► Parse ──► Extract ──► Structure ──► Validate ──► Cache
+ │         │          │            │              │           │
+ │       Read .md   Wikilinks   HAS_ENTRYPOINT  Remove      300s TTL
+ │       Parse YAML Md links    HAS_INDEX       dangling    Single-flight
+Discover            LINKS_TO                    edges       Epoch counter
+skills              CONTAINS
+                    REFERENCES
+                    DEPENDS_ON
+```
+
+**Query execution:** `Query string` &#8594; `Tokenize` &#8594; `Parse (AST)` &#8594; `MATCH (pattern matching)` &#8594; `WHERE (filter)` &#8594; `RETURN (project/aggregate)` &#8594; `SGQSResult`
+
+Cache provides sub-millisecond responses on hits versus ~100-150ms for cold filesystem rebuilds. Invalidate manually via `memory_skill_graph_invalidate` or wait for TTL expiry.
+
+### 5.6 Feature Flags
+
+Three environment variables control graph-enhanced search. All default to `true` (enabled). Set to `"false"` to disable.
+
+| Flag                      | Default | Description                                                                           |
+| ------------------------- | ------- | ------------------------------------------------------------------------------------- |
+| `SPECKIT_GRAPH_UNIFIED`   | `true`  | Master switch for the graph channel in RRF fusion                                     |
+| `SPECKIT_GRAPH_MMR`       | `true`  | Graph-Guided MMR diversity reranking with BFS shortest-path distance                  |
+| `SPECKIT_GRAPH_AUTHORITY` | `true`  | Structural Authority Propagation scoring (Index 3.0x, Entrypoint 2.5x, Reference 1.0x, Asset 0.3x) |
+
+### 5.7 MCP Integration
+
+Two MCP tools on the Spec Kit Memory server expose the Skill Graph.
+
+**`memory_skill_graph_query`** — Execute an SGQS query against the cached skill graph.
+
+| Parameter     | Type   | Required | Description                               |
+| ------------- | ------ | -------- | ----------------------------------------- |
+| `queryString` | string | Yes      | SGQS query (Cypher-lite, max 4096 chars)  |
+
+Returns `columns`, `rows`, `rowCount` and `errors`.
+
+**`memory_skill_graph_invalidate`** — Force-clear the cached graph so the next query triggers a fresh rebuild. No parameters required.
+
+Use after modifying skill files (adding nodes, editing wikilinks, creating new skills) to ensure the graph reflects the latest state.
+
+<!-- /ANCHOR:skill-graph -->
+
 <!-- ANCHOR:skill-routing -->
-## 5. SKILL ROUTING
+## 6. SKILL ROUTING
 
 Gate 2 in the mandatory pre-execution gates handles skill routing. The `skill_advisor.py` script analyzes each request and returns a confidence score with a recommended skill.
 
@@ -246,7 +404,7 @@ python3 .opencode/skill/scripts/skill_advisor.py "build a new React component" -
 <!-- /ANCHOR:skill-routing -->
 
 <!-- ANCHOR:creating-skills -->
-## 6. CREATING SKILLS
+## 7. CREATING SKILLS
 
 To create a new skill, use the `sk-documentation` skill with the skill creation template.
 
@@ -278,7 +436,7 @@ After creating a skill, validate its structure against the template and test inv
 <!-- /ANCHOR:creating-skills -->
 
 <!-- ANCHOR:related -->
-## 7. RELATED
+## 8. RELATED
 
 **Framework:**
 

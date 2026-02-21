@@ -1,4 +1,7 @@
+<!-- SPECKIT_LEVEL: 3+ -->
 # Tasks: 138-hybrid-rag-fusion
+
+<!-- SPECKIT_TEMPLATE_SOURCE: tasks-core + level2-verify + level3-arch + level3plus-govern | v2.2 -->
 
 <!-- ANCHOR: tasks-phase-0-138 -->
 ## Phase 0: Activate Assets
@@ -70,7 +73,7 @@
 **Target Files:** `scripts/lib/structure-aware-chunker.ts` (NEW), `lib/manage/pagerank.ts` (NEW), `lib/search/intent-classifier.ts`
 - [x] **AST Parsing:** Integrate `remark` + `remark-gfm` syntax tree parsing during the `generate-context.js` ingest phase. Ensure any node of type `code` or `table` bypasses text splitting.
 - [x] **Batch PageRank:** Write batch PageRank SQL logic to execute iteratively (10 iterations) during `memory_manage` runs, storing the float value in `memory_index.pagerank_score`.
-- [ ] **Embedding Centroids:** Refactor `intent-classifier.ts` to compute 7 centroid embeddings during initialization. Replace regex checks with `Math.max(...centroids.map(c => dotProduct(c, queryEmb)))`. *(deferred -- requires embedding model dependency)*
+- [x] **Embedding Centroids:** Refactor `intent-classifier.ts` to compute 7 centroid embeddings during initialization. Replace regex checks with `Math.max(...centroids.map(c => dotProduct(c, queryEmb)))`. *(Completed 2026-02-21 using deterministic centroid embeddings with exported `INTENT_CENTROIDS`, `dotProduct`, and `calculateCentroidScore`.)*
 - [x] **Tier Decay Modulation:** Update `fsrs.ts` decay math: `new_stability = old_stability * (1.0 - (decay_rate * TIER_MULTIPLIER[tier]))`.
 - [x] **Read-Time Prediction Error:** Pipe the retrieved context payload through `prediction-error-gate.ts` just before MMR to flag read-time contradictions.
 <!-- /ANCHOR: tasks-phase-4-138 -->
@@ -103,7 +106,7 @@
 ### Phase 4 Tests (New + Update)
 - [x] **Create `structure-aware-chunker.vitest.ts` (NEW):** Test AST-based chunking — verify markdown tables are never split mid-row, verify code blocks are kept atomic, verify headings stay with their content, verify chunk size limits are respected. *(Done: structure-aware-chunker.vitest.ts exists with 9 tests T1-T9)*
 - [x] **Create `pagerank.vitest.ts` (NEW):** Test batch PageRank — verify 10 iterations converge, verify `pagerank_score` is written to `memory_index`, verify no `SQLITE_BUSY` errors during batch execution, verify isolated nodes get minimum score. *(Done: pagerank.vitest.ts exists with 10 tests T1-T10)*
-- [ ] **Update `intent-classifier.vitest.ts`:** Add tests for centroid-based classification replacing regex. Verify 7 centroid embeddings are computed at init. Verify `dotProduct` distance correctly classifies all 7 intent types.
+- [x] **Update `intent-classifier.vitest.ts`:** Add tests for centroid-based classification replacing regex. Verify 7 centroid embeddings are computed at init. Verify `dotProduct` distance correctly classifies all 7 intent types. *(Completed: `C138-T0`, `C138-T0b`, `C138-T0c`; targeted run `vitest tests/intent-classifier.vitest.ts` = 54/54 passing.)*
 - [x] **Update `fsrs-scheduler.vitest.ts`:** Add tests for tier decay modulation: verify Constitutional tier uses `TIER_MULTIPLIER=0.1` (minimal decay), verify Scratch tier uses `3.0` (rapid decay). Verify formula: `new_stability = old_stability * (1.0 - (decay_rate * TIER_MULTIPLIER[tier]))`. *(Done: fsrs-scheduler.vitest.ts exists with tier decay tests)*
 - [x] **Update `prediction-error-gate.vitest.ts`:** Add read-time contradiction test: verify contradicting Constitutional+Scratch memories trigger explicit flag in response payload. *(Done: prediction-error-gate.vitest.ts exists with 49 tests including C138 read-time contradiction flagging suite)*
 

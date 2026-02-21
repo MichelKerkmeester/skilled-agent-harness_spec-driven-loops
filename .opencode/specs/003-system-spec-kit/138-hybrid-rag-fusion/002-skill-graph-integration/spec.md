@@ -29,9 +29,12 @@ The OpenCode skill system currently uses monolithic `SKILL.md` files which exhau
 |-------|-------|
 | **Level** | 3+ |
 | **Priority** | P0 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-02-20 |
 | **Branch** | `036-skill-graphs` |
+| **Parent Spec** | `../spec.md` |
+| **Predecessor** | `001-system-speckit-hybrid-rag-fusion` |
+| **Successor** | `003-unified-graph-intelligence` |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -236,3 +239,43 @@ Implement a traversable Skill Graph architecture for **every available skill** u
 ## 16. OPEN QUESTIONS
 - Should we build a `Glob` wrapper for wikilink resolution if strict pathing fails?
 <!-- /ANCHOR:questions -->
+
+---
+
+## Acceptance Scenarios
+
+1. Skill nodes across all 9 skills load with valid metadata.
+2. Link validation reports zero broken wiki/markdown links.
+3. SGQS parser accepts MATCH/REL/WHERE/RETURN syntax.
+4. SGQS executor returns expected traversal/query results.
+5. Skill graph docs and templates are published and usable.
+6. SGQS integration remains backward compatible with memory MCP tools.
+
+## AI Execution Protocol
+
+### Pre-Task Checklist
+- Confirm graph node schema and link rules.
+- Confirm command/doc updates stay in scope.
+
+### Execution Rules
+| Rule | Requirement |
+|------|-------------|
+| Scope | Restrict edits to skill graph integration targets |
+| Validation | Run link and SGQS checks before sign-off |
+
+### Status Reporting Format
+- `STATE`, `ACTIONS`, `RESULT`
+
+### Blocked Task Protocol
+1. Stop affected work item.
+2. Record blocker evidence.
+3. Retry with one bounded alternative, then escalate.
+
+## Acceptance Scenario Details
+
+- **Given** all skill folders, **When** graph build runs, **Then** node metadata is produced for each skill.
+- **Given** wiki and markdown links, **When** link validation runs, **Then** broken link count is zero.
+- **Given** SGQS MATCH query, **When** parser executes, **Then** AST output is valid.
+- **Given** SGQS WHERE clause, **When** executor runs, **Then** filtered traversal results are returned.
+- **Given** memory MCP tools, **When** SGQS integration is active, **Then** interfaces remain backward compatible.
+- **Given** documentation assets, **When** authors create nodes, **Then** templates and standards are available.

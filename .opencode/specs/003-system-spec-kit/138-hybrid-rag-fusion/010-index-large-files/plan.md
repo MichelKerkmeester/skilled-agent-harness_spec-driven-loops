@@ -361,3 +361,24 @@ See `decision-record.md` for all ADRs (ADR-001 through ADR-005).
 2. Embedding model unavailable during chunked indexing → mark child as `status='pending_embed'`, log, continue
 3. CLI module resolution failure → verify `__dirname` path, check `better-sqlite3` binary ABI compatibility
 <!-- /ANCHOR:communication -->
+
+## AI EXECUTION PROTOCOL
+
+### Pre-Task Checklist
+- Confirm scoped files and validation commands before edits.
+
+### Execution Rules
+| Rule | Requirement |
+|------|-------------|
+| TASK-SEQ | Validate context before modification and verify after changes |
+| TASK-SCOPE | Restrict edits to declared phase files |
+
+### Status Reporting Format
+- STATE: current checkpoint
+- ACTIONS: files/commands run
+- RESULT: pass/fail and next action
+
+### Blocked Task Protocol
+1. Mark BLOCKED with evidence.
+2. Attempt one bounded workaround.
+3. Escalate with options if unresolved.

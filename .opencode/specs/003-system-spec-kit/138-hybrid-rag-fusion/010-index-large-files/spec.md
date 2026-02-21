@@ -27,6 +27,8 @@ Three related failures in the Spec Kit Memory MCP Server's indexing pipeline wer
 | **Status** | Complete |
 | **Created** | 2026-02-21 |
 | **Branch** | `010-index-large-files` |
+| **Parent Spec** | `../spec.md` |
+| **Predecessor** | `009-skill-graph-score-recovery` |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -293,3 +295,43 @@ Replace the hard rejection of large files with anchor-aware chunked indexing, ad
 - **Verification Checklist**: See `checklist.md`
 - **Decision Records**: See `decision-record.md`
 - **Parent Spec**: See `../spec.md` (138-hybrid-rag-fusion)
+
+---
+
+## Acceptance Scenarios
+
+1. Large files are indexed via chunking instead of PF030 hard failure.
+2. Bulk-delete safety gates require confirm/scope for protected tiers.
+3. CLI runs from project root without module-resolution failures.
+4. Schema v16 migration upgrades from v15 without data loss.
+5. Benchmarks/load checks complete with stable outputs.
+6. Deployment runbook and rollback steps are documented and reviewed.
+
+## AI Execution Protocol
+
+### Pre-Task Checklist
+- Confirm chunking/delete/CLI scope.
+- Confirm migration and rollback criteria are documented.
+
+### Execution Rules
+| Rule | Requirement |
+|------|-------------|
+| Scope | Edit only index-large-files targets |
+| Verification | Run regression and CLI checks before completion |
+
+### Status Reporting Format
+- `STATE`, `ACTIONS`, `RESULT`
+
+### Blocked Task Protocol
+1. Halt blocked sub-task.
+2. Capture failure evidence.
+3. Apply one bounded workaround or escalate.
+
+## Acceptance Scenario Details
+
+- **Given** large file ingestion, **When** size exceeds threshold, **Then** chunked indexing path succeeds.
+- **Given** protected-tier deletion request, **When** scope/confirm is missing, **Then** safety gate blocks mutation.
+- **Given** CLI stats run from root, **When** command executes, **Then** module resolution succeeds.
+- **Given** v15 database, **When** migration runs, **Then** schema upgrades to v16 safely.
+- **Given** benchmark/load execution, **When** closure verification runs, **Then** stable pass artifacts are produced.
+- **Given** deployment runbook, **When** review occurs, **Then** rollback and verification steps are present.

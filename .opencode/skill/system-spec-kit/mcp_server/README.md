@@ -91,12 +91,12 @@ This MCP server gives your AI assistant persistent memory with intelligence buil
 
 | Category | Count |
 | --- | --- |
-| **MCP Tools** | 24 |
-| **Library Modules** | 63 |
-| **Handler Modules** | 11 |
+| **MCP Tools** | 25 |
+| **Library Modules** | 76 |
+| **Handler Modules** | 20 |
 | **Embedding Providers** | 3 |
-| **Feature Flags** | 17 (all default enabled after spec 138) |
-| **Test Coverage** | 4,791 tests across 163 files |
+| **Feature Flags** | 16 (all default enabled after spec 138, except SPECKIT_PRESSURE_POLICY) |
+| **Test Coverage** | 164 test files |
 | **Last Verified** | 2026-02-21 |
 
 ### Requirements
@@ -149,7 +149,7 @@ ls dist/context-server.js
 
 # Run full test suite
 npx vitest run
-# Expected: 4,791 tests passing across 163 files
+# Expected: tests passing across 164 files
 ```
 
 ### MCP Configuration
@@ -182,7 +182,7 @@ Add to your MCP client configuration (e.g., `opencode.json`):
 context-server.ts          (server init, startup, shutdown, main orchestration)
         |
         v
-tool-schemas.ts            (TOOL_DEFINITIONS — all 24 tool schemas)
+tool-schemas.ts            (TOOL_DEFINITIONS — all 25 tool schemas)
         |
         v
 tools/index.ts             (dispatchTool — routes call to correct handler)
@@ -193,7 +193,7 @@ tools/index.ts             (dispatchTool — routes call to correct handler)
   search   triggers  save   context   index   points  learning  crud    graph
         |
         v
-lib/                       (63 library modules — search, cognitive, storage, etc.)
+lib/                       (76 library modules — search, cognitive, storage, etc.)
         |
         v
 dist/context-server.js     (compiled output — executed at runtime by node)
@@ -204,7 +204,8 @@ dist/context-server.js     (compiled output — executed at runtime by node)
 | File | Purpose |
 | --- | --- |
 | `context-server.ts` | Server init, stdio transport, startup/shutdown lifecycle |
-| `tool-schemas.ts` | All 24 tool schema definitions (decomposed from server in T303) |
+| `tool-schemas.ts` | All 25 tool schema definitions (decomposed from server in T303) |
+| `cli.ts` | CLI entry point for maintenance commands (stats, bulk-delete, reindex, schema-downgrade) |
 | `tools/index.ts` | `dispatchTool()` — routes MCP call to handler module |
 | `core/config.ts` | Path resolution (`SERVER_DIR`, `LIB_DIR`, `SHARED_DIR`) |
 | `core/db-state.ts` | Database connection state shared across handlers |
@@ -213,13 +214,13 @@ dist/context-server.js     (compiled output — executed at runtime by node)
 
 | Directory | Purpose |
 | --- | --- |
-| `handlers/` | 9 functional + 2 infrastructure handler modules |
-| `lib/` | 63 library modules (cognitive, search, scoring, storage, etc.) |
+| `handlers/` | 16 functional + 4 infrastructure handler modules |
+| `lib/` | 76 library modules (cognitive, search, scoring, storage, etc.) |
 | `tools/` | Tool registration wrappers per category |
 | `core/` | Initialization, config, database state |
 | `formatters/` | Search result and token-metric formatting |
 | `scripts/` | CLI utilities |
-| `tests/` | 163 test files, 4,791 tests |
+| `tests/` | 164 test files |
 | `dist/` | Compiled JavaScript output (runtime target) |
 
 ---
@@ -233,12 +234,19 @@ dist/context-server.js     (compiled output — executed at runtime by node)
 
 | Category | Tools | Purpose |
 | --- | --- | --- |
+| **Orchestration** | 1 | Unified entry point with intent-aware routing |
 | **Search and Retrieval** | 4 | Find and match memories |
 | **CRUD Operations** | 6 | Create, update, delete, validate, and bulk-delete |
 | **Checkpoints** | 4 | State snapshots for recovery |
 | **Session Learning** | 3 | Knowledge tracking across tasks |
-| **Causal and Drift** | 6 | Causal graph, skill-graph traversal, and intent-aware search |
+| **Causal and Drift** | 6 | Causal graph, skill-graph traversal, and cache management |
 | **System** | 1 | Health monitoring |
+
+### Orchestration Tools
+
+| Tool | Purpose | Latency |
+| --- | --- | --- |
+| `memory_context` | Unified entry with intent-aware routing (L1 Orchestration). START HERE for most retrieval tasks | ~500ms |
 
 ### Search and Retrieval Tools
 
@@ -257,7 +265,7 @@ dist/context-server.js     (compiled output — executed at runtime by node)
 | `memory_index_scan` | Bulk scan and index workspace (5-source pipeline, incremental) | varies |
 | `memory_update` | Update metadata, tier, triggers | <50ms* |
 | `memory_delete` | Delete by ID or spec folder | <50ms |
-| `memory_bulk_delete` | Bulk delete by tier with checkpoint safety gates | <100ms + checkpoint |
+| `memory_bulk_delete` | Bulk delete by tier with checkpoint safety gates. Supports `skipCheckpoint` for non-critical tiers | <100ms + checkpoint |
 | `memory_validate` | Record validation feedback | <50ms |
 
 *+~400ms if title changed (triggers embedding regeneration)
@@ -288,7 +296,7 @@ dist/context-server.js     (compiled output — executed at runtime by node)
 | `memory_causal_stats` | Graph statistics and coverage metrics | <50ms |
 | `memory_causal_unlink` | Remove causal relationships | <50ms |
 | `memory_skill_graph_query` | Query skill dependency graph with tiered traversal | <100ms |
-| `memory_context` | Unified entry with intent awareness (L1 Orchestration) | ~500ms |
+| `memory_skill_graph_invalidate` | Force-clear cached skill graph for immediate consistency | <10ms |
 
 ### System Tools
 
@@ -322,7 +330,7 @@ The causal graph supports 6 relationship types for tracing decision history:
 | L3 | Discovery | 800 | `memory_list`, `memory_stats`, `memory_health` |
 | L4 | Mutation | 500 | `memory_delete`, `memory_bulk_delete`, `memory_update`, `memory_validate` |
 | L5 | Lifecycle | 600 | `checkpoint_create`, `checkpoint_list`, `checkpoint_restore`, `checkpoint_delete` |
-| L6 | Analysis | 1200 | `task_preflight`, `task_postflight`, `memory_drift_why`, `memory_causal_link`, `memory_causal_stats`, `memory_causal_unlink`, `memory_skill_graph_query` |
+| L6 | Analysis | 1200 | `task_preflight`, `task_postflight`, `memory_drift_why`, `memory_causal_link`, `memory_causal_stats`, `memory_causal_unlink`, `memory_skill_graph_query`, `memory_skill_graph_invalidate` |
 | L7 | Maintenance | 1000 | `memory_index_scan`, `memory_get_learning_history` |
 
 ---
@@ -434,6 +442,18 @@ We chose JWT with refresh tokens because stateless auth scales better.
 - Summary anchor only: ~200 tokens
 - Savings: 93%
 
+### Large-File Anchor Chunking
+
+Files exceeding 50,000 characters are automatically split into smaller chunks for embedding. The chunker (`lib/chunking/anchor-chunker.ts`) uses ANCHOR tags as natural boundaries when present, falling back to structure-aware markdown splitting otherwise.
+
+| Parameter | Value |
+| --- | --- |
+| Chunking threshold | 50,000 characters |
+| Target chunk size | ~4,000 characters (~1,000 tokens) |
+| Max chunk size | 12,000 characters (hard cap) |
+
+Each chunk is indexed as a child record linked to a parent via `parent_id`. Search results from chunked files include metadata: `isChunk`, `parentId`, `chunkIndex`, `chunkLabel` and `chunkCount`. When `includeContent: true` is set, child chunks are reassembled into full content automatically.
+
 ---
 
 <!-- /ANCHOR:search-system -->
@@ -510,8 +530,9 @@ Prevents duplicate memories from polluting the index:
 
 ```
 mcp_server/
-├── context-server.ts       # Main MCP server entry point (24 tools) [source]
-├── tool-schemas.ts         # All 24 tool schema definitions
+├── context-server.ts       # Main MCP server entry point (25 tools) [source]
+├── tool-schemas.ts         # All 25 tool schema definitions
+├── cli.ts                  # CLI entry point (stats, bulk-delete, reindex, schema-downgrade)
 ├── package.json            # @spec-kit/mcp-server v1.7.2
 ├── tsconfig.json           # TypeScript config (outDir: ./dist)
 ├── vitest.config.ts        # Vitest test configuration
@@ -523,7 +544,7 @@ mcp_server/
 │   ├── config.ts           # Path resolution (SERVER_DIR, LIB_DIR, SHARED_DIR)
 │   └── db-state.ts         # Database connection state
 │
-├── handlers/               # MCP tool handlers (CRUD split into focused modules)
+├── handlers/               # MCP tool handlers (16 functional + 4 infrastructure)
 │   ├── index.ts            # Handler aggregator
 │   ├── types.ts            # Shared handler types
 │   ├── memory-search.ts    # memory_search + Testing Effect
@@ -537,29 +558,38 @@ mcp_server/
 │   ├── memory-crud-health.ts # memory_health
 │   ├── memory-crud-utils.ts  # CRUD shared helper utilities
 │   ├── memory-crud-types.ts  # CRUD argument and helper types
-│   ├── memory-crud-state.ts  # CRUD module state
+│   ├── memory-bulk-delete.ts # memory_bulk_delete + skipCheckpoint
 │   ├── memory-index.ts     # memory_index_scan + 5-source pipeline
-│   ├── checkpoints.ts      # checkpoint_create/list/restore/delete
+│   ├── checkpoints.ts      # checkpoint_create/list/restore/delete + memory_validate
 │   ├── session-learning.ts # preflight/postflight/learning history
 │   ├── memory-context.ts   # memory_context + unified entry
 │   ├── causal-graph.ts     # causal_link/unlink/stats/drift_why
-│   └── sgqs-query.ts       # memory_skill_graph_query
+│   └── sgqs-query.ts       # memory_skill_graph_query + memory_skill_graph_invalidate
 │
-├── lib/                    # Library modules (63 total)
-│   ├── cognitive/          # FSRS, PE gating, 5-state model, co-activation (10)
-│   ├── search/             # Vector, BM25, RRF, adaptive fusion, MMR, causal boost (12)
-│   ├── scoring/            # Composite scoring, importance tiers, folder scoring (4)
-│   ├── storage/            # SQLite, causal edges, mutation ledger, incremental index (8)
-│   ├── providers/          # Embedding providers, retry manager (2)
-│   ├── session/            # Session deduplication (1)
-│   ├── parsing/            # Memory parser, trigger matcher, entity scope (3)
-│   ├── errors/             # Core errors, recovery hints (49 codes) (3)
-│   ├── telemetry/          # 4-dimension retrieval telemetry (1)
-│   ├── cache/              # Tool result caching (2)
-│   ├── contracts/          # ContextEnvelope, RetrievalTrace, DegradedModeContract (1)
+├── hooks/                  # MCP lifecycle hooks
+│   ├── index.ts            # Hook exports
+│   └── memory-surface.ts   # Memory surfacing hook
+│
+├── lib/                    # Library modules (76 total)
+│   ├── architecture/       # Layer definitions, tool-to-layer mapping (1)
+│   ├── cache/              # Tool result caching + nested cognitive/ and scoring/ (2)
+│   ├── chunking/           # Anchor-aware large-file chunker (50K threshold) (1)
+│   ├── cognitive/          # FSRS, PE gating, 5-state model, co-activation, rollout policy (10)
 │   ├── config/             # Memory types, type inference, skill-ref config (3)
-│   ├── learning/           # Corrections tracking (2)
+│   ├── contracts/          # ContextEnvelope, RetrievalTrace, DegradedModeContract (1)
+│   ├── errors/             # Core errors, recovery hints (49 codes) (3)
 │   ├── extraction/         # Extraction adapter, redaction gate (2)
+│   ├── interfaces/         # Vector store interface (1)
+│   ├── learning/           # Corrections tracking (2)
+│   ├── manage/             # PageRank scoring (1)
+│   ├── parsing/            # Memory parser, trigger matcher, entity scope (3)
+│   ├── providers/          # Embedding providers, retry manager (2)
+│   ├── response/           # MCP response envelope helpers (1)
+│   ├── scoring/            # Composite scoring, importance tiers, folder scoring (4)
+│   ├── search/             # Vector, BM25, RRF, adaptive fusion, MMR, causal boost, graph search (22)
+│   ├── session/            # Session deduplication (1)
+│   ├── storage/            # SQLite, causal edges, mutation ledger, incremental index, schema downgrade (9)
+│   ├── telemetry/          # 4-dimension retrieval telemetry (1)
 │   ├── utils/              # Format helpers, path security, retry, logger (4)
 │   └── validation/         # Pre-flight validation (1)
 │
@@ -575,7 +605,7 @@ mcp_server/
 │   ├── search-results.ts   # Format search results
 │   └── token-metrics.ts    # Token estimation
 │
-├── tests/                  # Test suite (4,791 tests across 163 files)
+├── tests/                  # Test suite (164 test files)
 ├── dist/                   # Compiled JavaScript output (generated via tsc)
 │   └── context-server.js   # Runtime entry point
 ├── database/               # SQLite database storage
@@ -618,13 +648,13 @@ All flags are evaluated via `isFeatureEnabled()`. After spec 138, the flags belo
 | Flag | Default | Description |
 | --- | --- | --- |
 | `SPECKIT_RRF` | `true` | Enable RRF search fusion |
-| `SPECKIT_BM25` | `true` | Enable BM25 lexical search |
-| `SPECKIT_SESSION_DEDUP` | `true` | Enable session deduplication |
-| `SPECKIT_LAZY_LOAD` | `true` | Defer embedding model init until first use |
-| `SPECKIT_TYPE_DECAY` | `true` | Enable type-specific half-lives |
+| `SPECKIT_MMR` | `true` | Enable MMR diversity reranking |
+| `SPECKIT_TRM` | `true` | Enable Transparent Reasoning Module (evidence-gap detection) |
+| `SPECKIT_MULTI_QUERY` | `true` | Enable multi-query expansion for deep-mode retrieval |
+| `SPECKIT_CROSS_ENCODER` | `true` | Enable cross-encoder reranking when a provider is configured (set `false` to disable) |
 | `SPECKIT_RELATIONS` | `true` | Enable causal memory graph |
-| `SPECKIT_INCREMENTAL` | `true` | Enable incremental indexing |
 | `SPECKIT_INDEX_SPEC_DOCS` | `true` | Enable spec folder document indexing |
+| `SPECKIT_INDEX_SKILL_REFS` | `true` | Enable skill reference/assets directory indexing |
 | `SPECKIT_EXTENDED_TELEMETRY` | `true` | Enable 4-dimension retrieval telemetry |
 | `SPECKIT_CAUSAL_BOOST` | `true` | Enable 2-hop causal-neighbor score boost |
 | `SPECKIT_SESSION_BOOST` | `true` | Enable session-attention score boost |
@@ -633,7 +663,6 @@ All flags are evaluated via `isFeatureEnabled()`. After spec 138, the flags belo
 | `SPECKIT_GRAPH_MMR` | `true` | MMR diversity reranking for graph results |
 | `SPECKIT_GRAPH_AUTHORITY` | `true` | Authority scoring in graph traversal |
 | `SPECKIT_PRESSURE_POLICY` | `false` | Enable token-pressure mode override in `memory_context` |
-| `SPECKIT_CROSS_ENCODER` | `true` | Enable cross-encoder reranking by default when a provider is configured (set `false` to disable) |
 
 ### Database Schema
 
@@ -650,6 +679,15 @@ All flags are evaluated via `isFeatureEnabled()`. After spec 138, the flags belo
 | `causal_edges` | Causal relationships (6 types) |
 | `memory_corrections` | Learning from corrections |
 | `session_state` | Crash recovery state |
+| `schema_version` | Database schema version tracking |
+
+**v16 chunking columns** (added to `memory_index`):
+
+| Column | Purpose |
+| --- | --- |
+| `parent_id` | Links chunk to parent record |
+| `chunk_index` | Ordering within parent |
+| `chunk_label` | Human-readable chunk description |
 
 ### Dependencies
 
@@ -915,7 +953,7 @@ node dist/cli.js schema-downgrade --to 15 --confirm
 ```bash
 # Run full test suite (from mcp_server directory)
 npx vitest run
-# Expected: 4,791 tests passing across 163 files
+# Expected: tests passing across 164 files
 
 # Run specific test file
 npx vitest run tests/fsrs-scheduler.vitest.ts
@@ -987,6 +1025,8 @@ A: All flags listed in the Configuration section under "default: true" are enabl
 | `lib/storage/mutation-ledger.ts` | Append-only tamper-proof audit trail |
 | `lib/telemetry/retrieval-telemetry.ts` | 4-dimension retrieval telemetry |
 | `lib/errors/recovery-hints.ts` | 49 error codes with recovery guidance |
+| `lib/chunking/anchor-chunker.ts` | Large-file anchor-aware chunking (50K threshold) |
+| `lib/architecture/layer-definitions.ts` | 7-layer tool architecture and token budgets |
 
 ### External Resources
 

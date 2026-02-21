@@ -1,4 +1,7 @@
+<!-- SPECKIT_LEVEL: 3+ -->
 # Decision Record: 138-hybrid-rag-fusion
+
+<!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2 -->
 
 <!-- ANCHOR: decision-architecture-138 -->
 ## D1: Utilizing Native SQLite over External Databases
@@ -40,3 +43,13 @@ Keeping the stack strictly inside SQLite guarantees zero schema migrations, avoi
 **Decision:** Exclusively use Breadth-First Search (BFS) bounded by a hard `maxDepth=2` and `maxResults=20`.
 **Rationale:** Depth-First Search (DFS) on an unconstrained causal graph risks "topic drift"—navigating so far down a causal chain that the retrieved memory has zero relevance to the user's initial query. BFS ensures that spreading activation stays strictly adjacent to the highly relevant "seed" nodes retrieved by the Tri-Hybrid search, pulling in immediate context rather than tangential history.
 <!-- /ANCHOR: decision-graph-traversal-138 -->
+
+## Context
+
+This phase consolidates hybrid-retrieval intelligence features under strict latency and compatibility constraints.
+
+## Consequences
+
+- Positive: improved intent classification precision through centroid scoring.
+- Positive: stronger evidence-based closure with explicit test coverage.
+- Tradeoff: additional scoring internals increase module complexity slightly.
