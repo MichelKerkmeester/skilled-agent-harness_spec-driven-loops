@@ -3,7 +3,7 @@
 // ---------------------------------------------------------------
 
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import type { SkillGraph } from '../../../scripts/sgqs/types';
+import type { SkillGraph } from '@spec-kit/shared/sgqs/types';
 
 /* ─────────────────────────────────────────────────────────────
    MOCK: SKILL GRAPH CACHE

@@ -22,7 +22,7 @@ source "${SCRIPT_DIR}/../lib/shell-common.sh"
 
 # State
 FOLDER_PATH="" DETECTED_LEVEL=1 LEVEL_METHOD="inferred" CONFIG_FILE_PATH=""
-JSON_MODE=false STRICT_MODE=false VERBOSE=false QUIET_MODE=false RECURSIVE=false
+JSON_MODE=false STRICT_MODE=false VERBOSE=false QUIET_MODE=false RECURSIVE=false RECURSIVE_OPT_OUT=false
 ERRORS=0 WARNINGS=0 INFOS=0 RESULTS=""
 PHASE_RESULTS="" PHASE_COUNT=0
 
@@ -71,6 +71,7 @@ OPTIONS:
     --json         JSON output   --strict       Warnings as errors
     --verbose      Detailed      --quiet, -q    Results only
     --recursive    Validate parent + all [0-9][0-9][0-9]-*/ child phase folders
+    --no-recursive Disable auto-recursive validation when phase children exist
 
 EXIT CODES: 0=pass, 1=warnings, 2=errors
 
@@ -92,6 +93,7 @@ parse_args() {
             --verbose) VERBOSE=true; shift ;;
             --quiet|-q) QUIET_MODE=true; shift ;;
             --recursive) RECURSIVE=true; shift ;;
+            --no-recursive) RECURSIVE=false; RECURSIVE_OPT_OUT=true; shift ;;
             -*) echo "ERROR: Unknown option '$1'" >&2; exit 2 ;;
             *) [[ -z "$FOLDER_PATH" ]] && FOLDER_PATH="$1" || { echo "ERROR: Multiple paths" >&2; exit 2; }; shift ;;
         esac
@@ -100,6 +102,16 @@ parse_args() {
     FOLDER_PATH="${FOLDER_PATH%/}"
     [[ ! -d "$FOLDER_PATH" ]] && { echo "ERROR: Folder not found: $FOLDER_PATH" >&2; exit 2; }
     return 0
+}
+
+has_phase_children() {
+    local parent_folder="$1"
+    for phase_dir in "$parent_folder"/[0-9][0-9][0-9]-*/; do
+        if [[ -d "$phase_dir" ]]; then
+            return 0
+        fi
+    done
+    return 1
 }
 
 apply_env_overrides() {
@@ -460,6 +472,10 @@ run_recursive_validation() {
 
 main() {
     parse_args "$@"
+    if ! $RECURSIVE && ! $RECURSIVE_OPT_OUT && has_phase_children "$FOLDER_PATH"; then
+        RECURSIVE=true
+        ! $JSON_MODE && ! $QUIET_MODE && echo "Auto-enabled recursive validation: phase child folders detected."
+    fi
     load_config "$FOLDER_PATH"
     apply_env_overrides
     detect_level "$FOLDER_PATH"

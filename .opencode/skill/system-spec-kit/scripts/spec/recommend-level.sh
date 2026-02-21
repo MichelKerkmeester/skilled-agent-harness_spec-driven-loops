@@ -20,7 +20,8 @@
 #   --api                Task involves API changes
 #   --db                 Task involves database changes
 #   --architectural      Task involves architectural changes
-#   --recommend-phases   Include phase scoring in output
+#   --recommend-phases   Include phase scoring in output (default behavior)
+#   --no-recommend-phases  Disable phase scoring output
 #   --phase-threshold <N> Override phase score threshold (default 25)
 #   --json, -j           Output in JSON format
 #   --help, -h           Show this help message
@@ -44,7 +45,7 @@
 #   45-69       -> Level 2 (Verification)
 #   70+         -> Level 3 (Full)
 #
-# PHASE SCORING (separate from level, enabled via --recommend-phases):
+# PHASE SCORING (separate from level, enabled by default):
 #   Architectural flag:     +15 points
 #   Files > 15:             +10 points
 #   LOC > 800:              +10 points
@@ -120,7 +121,7 @@ HAS_ARCHITECTURAL=false
 JSON_OUTPUT=false
 
 # Phase recommendation flags
-RECOMMEND_PHASES=false
+RECOMMEND_PHASES=true
 PHASE_THRESHOLD=$PHASE_DEFAULT_THRESHOLD
 
 # Calculated scores
@@ -173,7 +174,8 @@ OPTIONS:
   --api                Task involves API changes
   --db                 Task involves database changes
   --architectural      Task involves architectural changes
-  --recommend-phases   Include phase scoring in output
+  --recommend-phases   Include phase scoring in output (default)
+  --no-recommend-phases Disable phase scoring output
   --phase-threshold <N> Override phase score threshold (default 25)
   --json, -j           Output in JSON format
   --help, -h           Show this help message
@@ -188,8 +190,11 @@ EXAMPLES:
   # Complex full-stack feature
   recommend-level.sh --loc 500 --files 15 --auth --api --db --architectural
 
-  # With phase recommendation
+  # With phase recommendation (default behavior)
   recommend-level.sh --loc 1000 --files 20 --architectural --api --db --recommend-phases
+
+  # Disable phase recommendation fields
+  recommend-level.sh --loc 1000 --files 20 --architectural --no-recommend-phases
 
   # JSON output for scripting
   recommend-level.sh --loc 100 --files 3 --json
@@ -533,7 +538,7 @@ output_text() {
   fi
   echo ""
 
-  # Phase recommendation section (only when --recommend-phases is used)
+  # Phase recommendation section (default on; can be disabled with --no-recommend-phases)
   if [[ "$RECOMMEND_PHASES" = true ]]; then
     echo "Phase Recommendation:"
     echo "- Phase Score: ${PHASE_SCORE}/${PHASE_MAX_SCORE} (threshold: ${PHASE_THRESHOLD})"
@@ -685,6 +690,10 @@ while [[ $# -gt 0 ]]; do
       RECOMMEND_PHASES=true
       shift
       ;;
+    --no-recommend-phases)
+      RECOMMEND_PHASES=false
+      shift
+      ;;
     --phase-threshold)
       if [[ -z "${2:-}" ]] || [[ "$2" =~ ^-- ]]; then
         echo "ERROR: --phase-threshold requires a numeric value" >&2
@@ -748,7 +757,7 @@ determine_level "$TOTAL_SCORE"
 # Calculate confidence
 calculate_confidence
 
-# Calculate phase recommendation (only when requested)
+# Calculate phase recommendation (default on; opt-out via --no-recommend-phases)
 if [[ "$RECOMMEND_PHASES" = true ]]; then
   determine_phasing
 fi

@@ -95,7 +95,7 @@ This MCP server gives your AI assistant persistent memory with intelligence buil
 | **Library Modules** | 76 |
 | **Handler Modules** | 20 |
 | **Embedding Providers** | 3 |
-| **Feature Flags** | 16 (all default enabled after spec 138, except SPECKIT_PRESSURE_POLICY) |
+| **Feature Flags** | 16 (all default enabled; explicit `FLAG=false` disables) |
 | **Test Coverage** | 164 test files |
 | **Last Verified** | 2026-02-21 |
 
@@ -662,7 +662,7 @@ All flags are evaluated via `isFeatureEnabled()`. After spec 138, the flags belo
 | `SPECKIT_GRAPH_UNIFIED` | `true` | Unified graph search bridging causal + skill graph |
 | `SPECKIT_GRAPH_MMR` | `true` | MMR diversity reranking for graph results |
 | `SPECKIT_GRAPH_AUTHORITY` | `true` | Authority scoring in graph traversal |
-| `SPECKIT_PRESSURE_POLICY` | `false` | Enable token-pressure mode override in `memory_context` |
+| `SPECKIT_PRESSURE_POLICY` | `true` | Enable token-pressure mode override in `memory_context` (set `false` to disable) |
 
 ### Database Schema
 
@@ -990,7 +990,7 @@ A: No. The server falls back to local HuggingFace embeddings when cloud keys are
 
 **Q: Are all feature flags enabled by default after spec 138?**
 
-A: All flags listed in the Configuration section under "default: true" are enabled via `isFeatureEnabled()`. `SPECKIT_PRESSURE_POLICY` remains opt-in; `SPECKIT_CROSS_ENCODER` is default-on but only active when a reranker provider is configured.
+A: Yes. Flags are default-on and only explicit `FLAG=false` disables them. `SPECKIT_CROSS_ENCODER` is default-on but still requires a configured reranker provider to be active.
 
 ---
 

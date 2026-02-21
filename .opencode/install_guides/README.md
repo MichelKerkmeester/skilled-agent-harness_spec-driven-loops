@@ -14,7 +14,7 @@ importance_tier: "important"
 
 # OpenCode Install Guides
 
-> AI-executable guides for the OpenCode dev environment. Covers 3 native MCP servers, 9 native skills, 8 agents, and optional CLI tools.
+> AI-executable guides for the OpenCode dev environment. Covers 3 native MCP servers, 10 native skills, 8 agents, and optional CLI tools.
 
 ---
 
@@ -363,7 +363,7 @@ uname -s | grep -E "Darwin|Linux" && echo "✅ PASS" || echo "❌ FAIL"
    │  Webflow, Figma, ClickUp, GitHub...   │
    └───────────────────────────────────┘
 
-   NATIVE SKILLS: 9 skills auto-discovered from .opencode/skill/*/SKILL.md
+   NATIVE SKILLS: 10 skills auto-discovered from .opencode/skill/*/SKILL.md
    OPTIONAL: Chrome DevTools CLI (bdg), Auth Plugins
 ```
 
@@ -807,7 +807,7 @@ Skills are automatically discovered from:
 - `~/.opencode/skill/<name>/SKILL.md` (global)
 - `.claude/skills/<name>/SKILL.md` (Claude-compatible)
 
-**Current Skills (9 total):**
+**Current Skills (10 total):**
 | Skill                      | Version    | Purpose                                              |
 | -------------------------- | ---------- | ---------------------------------------------------- |
 | mcp-code-mode              | v1.0.4.0   | External tool orchestration                          |
@@ -819,6 +819,7 @@ Skills are automatically discovered from:
 | sk-code--web    | v1.0.5.0   | Web development implementation orchestrator          |
 | sk-documentation    | v1.0.6.0   | Unified markdown and skill management                |
 | sk-git              | v1.0.2.0   | Git workflow orchestrator                            |
+| sk-visual-explainer | v1.0.0     | Visual explanation generation                        |
 
 **How it works:**
 - OpenCode scans skill folders on startup
@@ -972,7 +973,7 @@ test -d .opencode/skill && [ $(ls -1 .opencode/skill | wc -l) -ge 1 ] && echo "�
 - [ ] Prerequisites: Node.js 18+, Python 3.10+, uv
 - [ ] Ollama running with nomic-embed-text model
 - [ ] All 3 native MCP servers configured in opencode.json
-- [ ] Skills directory exists with 9 skills
+- [ ] Skills directory exists with 10 skills
 - [ ] Configuration files exist and are valid JSON
 
 ### Quick Verification
@@ -1405,7 +1406,7 @@ sudo chown -R $(whoami) /usr/local/lib/node_modules
 | --------------------------- | --------------------------------------------- |
 | `opencode.json`             | OpenCode MCP server config (3 native servers) |
 | `.utcp_config.json`         | Code Mode external tools config               |
-| `.opencode/skill/`          | Skill definitions (9 skills)                  |
+| `.opencode/skill/`          | Skill definitions (10 skills)                 |
 | `.opencode/agent/`          | Agent definitions (8 agents)                  |
 | `.opencode/install_guides/` | Installation documentation                    |
 | `~/.opencode-backup/`       | Configuration backups                         |

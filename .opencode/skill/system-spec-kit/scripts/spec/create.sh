@@ -626,7 +626,7 @@ if [[ "$PHASE_MODE" = true ]]; then
         CHILD_FOLDERS+=("${_child_num}-${_child_slug}")
     done
 
-    # ── Inject Phase Documentation Map into parent spec.md ──
+    # ── Inject or append Phase Documentation Map into parent spec.md ──
     PARENT_SPEC="$FEATURE_DIR/spec.md"
     if [[ -f "$PARENT_SPEC" ]]; then
         PHASE_MAP_EXISTS=false
@@ -634,13 +634,7 @@ if [[ "$PHASE_MODE" = true ]]; then
             PHASE_MAP_EXISTS=true
         fi
 
-        if [[ "$APPEND_TO_EXISTING_PARENT" = true ]] && [[ "$PHASE_MAP_EXISTS" = true ]]; then
-            >&2 echo "[speckit] Existing PHASE DOCUMENTATION MAP found in parent spec.md; skipping duplicate map injection"
-        else
-        # Read the parent section template
-        PHASE_PARENT_TEMPLATE=$(< "$PHASE_ADDENDUM_DIR/phase-parent-section.md")
-
-        # Build phase table rows
+        # Build phase table rows for this invocation
         PHASE_ROWS=""
         for (( _i=1; _i<=PHASE_COUNT; _i++ )); do
             _folder="${CHILD_FOLDERS[$((_i - 1))]}"
@@ -651,7 +645,7 @@ if [[ "$PHASE_MODE" = true ]]; then
             PHASE_ROWS="${PHASE_ROWS}| ${_phase_number} | ${_folder}/ | [Phase ${_phase_number} scope] | [deps] | Pending |"
         done
 
-        # Build handoff criteria rows
+        # Build handoff criteria rows for this invocation
         HANDOFF_ROWS=""
         if [[ -n "$LAST_EXISTING_PHASE" ]]; then
             _first_new="${CHILD_FOLDERS[0]}"
@@ -668,30 +662,73 @@ if [[ "$PHASE_MODE" = true ]]; then
             fi
         done
 
-        # Replace placeholders in template
-        # Use a temp file for sed replacements (avoids in-place issues)
-        _tmp_phase_section=$(mktemp)
-        PHASE_TMP_FILES+=("$_tmp_phase_section")
+        if [[ "$APPEND_TO_EXISTING_PARENT" = true ]] && [[ "$PHASE_MAP_EXISTS" = true ]]; then
+            >&2 echo "[speckit] Existing PHASE DOCUMENTATION MAP found; appending new phase rows and handoffs"
+            _tmp_parent_spec=$(mktemp)
+            PHASE_TMP_FILES+=("$_tmp_parent_spec")
 
-        # Write the template, replacing [PHASE_ROW] and [HANDOFF_ROW] line placeholders
-        while IFS= read -r _line; do
-            if [[ "$_line" == *"[YOUR_VALUE_HERE: PHASE_ROW]"* ]]; then
-                printf '%s\n' "$PHASE_ROWS"
-            elif [[ "$_line" == *"[YOUR_VALUE_HERE: HANDOFF_ROW]"* ]]; then
-                if [[ -n "$HANDOFF_ROWS" ]]; then
-                    printf '%s\n' "$HANDOFF_ROWS"
+            awk -v phase_rows="$PHASE_ROWS" -v handoff_rows="$HANDOFF_ROWS" '
+                BEGIN {
+                    in_phase=0;
+                    in_handoff=0;
+                    inserted_phase=0;
+                    inserted_handoff=0;
+                }
+                /<!-- ANCHOR:phase-map -->/ {
+                    in_phase=1;
+                }
+                in_phase && /^### Phase Transition Rules/ && !inserted_phase {
+                    if (phase_rows != "") {
+                        print phase_rows;
+                    }
+                    inserted_phase=1;
+                }
+                in_phase && /^### Phase Handoff Criteria/ {
+                    in_handoff=1;
+                }
+                in_phase && in_handoff && handoff_rows != "" && $0 ~ /^\| \(single phase - no handoffs\) \| \| \| \|$/ {
+                    next;
+                }
+                in_phase && /<!-- \/ANCHOR:phase-map -->/ && !inserted_handoff {
+                    if (handoff_rows != "") {
+                        print handoff_rows;
+                    }
+                    inserted_handoff=1;
+                    in_phase=0;
+                    in_handoff=0;
+                }
+                { print }
+            ' "$PARENT_SPEC" > "$_tmp_parent_spec"
+
+            mv "$_tmp_parent_spec" "$PARENT_SPEC"
+        else
+            # Read the parent section template
+            PHASE_PARENT_TEMPLATE=$(< "$PHASE_ADDENDUM_DIR/phase-parent-section.md")
+
+            # Replace placeholders in template
+            # Use a temp file for sed replacements (avoids in-place issues)
+            _tmp_phase_section=$(mktemp)
+            PHASE_TMP_FILES+=("$_tmp_phase_section")
+
+            # Write the template, replacing [PHASE_ROW] and [HANDOFF_ROW] line placeholders
+            while IFS= read -r _line; do
+                if [[ "$_line" == *"[YOUR_VALUE_HERE: PHASE_ROW]"* ]]; then
+                    printf '%s\n' "$PHASE_ROWS"
+                elif [[ "$_line" == *"[YOUR_VALUE_HERE: HANDOFF_ROW]"* ]]; then
+                    if [[ -n "$HANDOFF_ROWS" ]]; then
+                        printf '%s\n' "$HANDOFF_ROWS"
+                    else
+                        printf '%s\n' "| (single phase - no handoffs) | | | |"
+                    fi
                 else
-                    printf '%s\n' "| (single phase - no handoffs) | | | |"
+                    printf '%s\n' "$_line"
                 fi
-            else
-                printf '%s\n' "$_line"
-            fi
-        done <<< "$PHASE_PARENT_TEMPLATE" > "$_tmp_phase_section"
+            done <<< "$PHASE_PARENT_TEMPLATE" > "$_tmp_phase_section"
 
-        # Append phase section to parent spec.md
-        printf '\n' >> "$PARENT_SPEC"
-        cat "$_tmp_phase_section" >> "$PARENT_SPEC"
-        rm -f "$_tmp_phase_section"
+            # Append phase section to parent spec.md
+            printf '\n' >> "$PARENT_SPEC"
+            cat "$_tmp_phase_section" >> "$PARENT_SPEC"
+            rm -f "$_tmp_phase_section"
         fi
     fi
 

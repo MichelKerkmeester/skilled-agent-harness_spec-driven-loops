@@ -7,6 +7,8 @@
 --------------------------------------------------------------- */
 
 // Lib modules
+import * as path from 'path';
+
 import * as vectorIndex from '../lib/search/vector-index';
 import * as embeddings from '../lib/providers/embeddings';
 import * as hybridSearch from '../lib/search/hybrid-search';
@@ -24,12 +26,14 @@ import * as retrievalTelemetry from '../lib/telemetry/retrieval-telemetry';
 // C138-P1: Evidence gap detection (TRM — Z-score confidence check on RRF scores)
 import { detectEvidenceGap, formatEvidenceGapWarning } from '../lib/search/evidence-gap-detector';
 // C138-P3: Query expansion for mode="deep" multi-query RAG
-import { expandQuery } from '../lib/search/query-expander';
+import { expandQuery, buildSemanticBridgeMap, expandQueryWithBridges } from '../lib/search/query-expander';
+import { skillGraphCache } from '../lib/search/skill-graph-cache';
+import { isGraphUnifiedEnabled } from '../lib/search/graph-flags';
 // C136-09: Artifact-class routing (spec/plan/tasks/checklist/memory)
 import { applyRoutingWeights, getStrategyForQuery } from '../lib/search/artifact-routing';
 
 // Core utilities
-import { checkDatabaseUpdated, isEmbeddingModelReady, waitForEmbeddingModel } from '../core';
+import { checkDatabaseUpdated, isEmbeddingModelReady, waitForEmbeddingModel, DEFAULT_BASE_PATH } from '../core';
 
 // Utils
 import { validateQuery, requireDb, toErrorMessage } from '../utils';
@@ -380,6 +384,36 @@ function collapseAndReassembleChunkResults(results: MemorySearchRow[]): ChunkRea
 
 // Valid memory states in order of priority (0=highest, 4=lowest)
 const STATE_PRIORITY: Record<string, number> = { HOT: 0, WARM: 1, COLD: 2, DORMANT: 3, ARCHIVED: 4 };
+const MAX_DEEP_QUERY_VARIANTS = 6;
+
+async function buildDeepQueryVariants(query: string): Promise<string[]> {
+  const variants = new Set<string>(expandQuery(query));
+
+  if (!isGraphUnifiedEnabled()) {
+    return Array.from(variants).slice(0, MAX_DEEP_QUERY_VARIANTS);
+  }
+
+  try {
+    const skillRoot = path.join(DEFAULT_BASE_PATH, '.opencode', 'skill');
+    const graph = await skillGraphCache.get(skillRoot);
+    const bridgeMap = buildSemanticBridgeMap(graph);
+
+    // Expand each lexical variant with semantic bridge synonyms from SGQS graph links.
+    for (const variant of Array.from(variants)) {
+      const bridgedVariants = expandQueryWithBridges(variant, bridgeMap);
+      for (const bridged of bridgedVariants) {
+        variants.add(bridged);
+        if (variants.size >= MAX_DEEP_QUERY_VARIANTS) break;
+      }
+      if (variants.size >= MAX_DEEP_QUERY_VARIANTS) break;
+    }
+  } catch (error: unknown) {
+    const message = toErrorMessage(error);
+    console.warn('[memory-search] Deep semantic-bridge expansion unavailable, continuing with lexical variants:', message);
+  }
+
+  return Array.from(variants).slice(0, MAX_DEEP_QUERY_VARIANTS);
+}
 
 /* ---------------------------------------------------------------
    4. TESTING EFFECT UTILITIES
@@ -1161,7 +1195,7 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
 
       // C138-P3: Query expansion for mode="deep" — generate variant queries before embedding
       const queryVariants: string[] = mode === 'deep' && isMultiQueryEnabled()
-        ? expandQuery(normalizedQuery!)
+        ? await buildDeepQueryVariants(normalizedQuery!)
         : [normalizedQuery!];
 
       const queryEmbedding = await embeddings.generateQueryEmbedding(normalizedQuery!);

@@ -1,0 +1,675 @@
+// ---------------------------------------------------------------
+// MODULE: SGQS Graph Builder
+// Constructs a SkillGraph from the filesystem by scanning skill directories
+// ---------------------------------------------------------------
+
+import * as fs from 'fs';
+import * as path from 'path';
+import { GraphNode, GraphEdge, SkillGraph } from './types';
+
+// ---------------------------------------------------------------
+// 1. MAIN ENTRY POINT
+// ---------------------------------------------------------------
+
+/**
+ * Build a complete SkillGraph by scanning skill directories.
+ *
+ * @param skillRoot - Absolute path to the skill root directory
+ *                    (e.g., "/path/to/.opencode/skill")
+ * @returns Complete SkillGraph ready for SGQS query execution
+ */
+export function buildSkillGraph(skillRoot: string): SkillGraph {
+  // Cache file contents to avoid double-reading each file (node pass + edge pass)
+  const fileContentCache = new Map<string, string>();
+  const graph: SkillGraph = {
+    nodes: new Map(),
+    edges: [],
+    edgeById: new Map(),
+    outbound: new Map(),
+    inbound: new Map(),
+  };
+
+  // Stage 1: Scan filesystem for skill directories
+  const skillDirs = scanSkillDirectories(skillRoot);
+
+  for (const skillDir of skillDirs) {
+    const skillName = path.basename(skillDir);
+
+    // Create virtual :Skill root node
+    const skillNode: GraphNode = {
+      id: skillName,
+      labels: [':Skill'],
+      properties: { name: skillName },
+      skill: skillName,
+      path: path.relative(path.resolve(skillRoot, '..', '..'), skillDir) + '/',
+    };
+    graph.nodes.set(skillNode.id, skillNode);
+
+    // Stage 2-3: Scan files, parse frontmatter, extract links
+    const files = scanSkillFiles(skillDir);
+
+    for (const filePath of files) {
+      const relativePath = path.relative(skillRoot, filePath);
+      const content = readFileSafe(filePath);
+      if (content === null) continue;
+
+      // Cache content for reuse in edge extraction pass
+      fileContentCache.set(filePath, content);
+
+      // Create node from file
+      const node = buildNodeFromFile(skillName, relativePath, content, skillRoot);
+      if (node) {
+        graph.nodes.set(node.id, node);
+      }
+    }
+
+    // Extract links from all files and create edges
+    for (const filePath of files) {
+      const relativePath = path.relative(skillRoot, filePath);
+      const content = fileContentCache.get(filePath);
+      if (content === undefined) continue;
+
+      const nodeId = filePathToNodeId(relativePath);
+      const sourceNode = graph.nodes.get(nodeId);
+      if (!sourceNode) continue;
+
+      const bodyContent = stripFrontmatter(content);
+      const edges = extractEdges(sourceNode, bodyContent, skillName, graph);
+      for (const edge of edges) {
+        addEdge(graph, edge);
+      }
+    }
+
+    // Stage 4: Generate structural edges
+    generateStructuralEdges(graph, skillName);
+
+    // Free cached file contents for this skill directory
+    fileContentCache.clear();
+  }
+
+  // Stage 5: Validate -- remove dangling edges
+  removeDanglingEdges(graph);
+
+  return graph;
+}
+
+// ---------------------------------------------------------------
+// 2. FILESYSTEM SCANNING
+// ---------------------------------------------------------------
+
+/** Find all skill directories under the root */
+function scanSkillDirectories(skillRoot: string): string[] {
+  if (!fs.existsSync(skillRoot)) {
+    return [];
+  }
+
+  const entries = fs.readdirSync(skillRoot, { withFileTypes: true });
+  const dirs: string[] = [];
+
+  for (const entry of entries) {
+    if (entry.isDirectory() && !entry.name.startsWith('.') && entry.name !== 'scripts') {
+      dirs.push(path.join(skillRoot, entry.name));
+    }
+  }
+
+  return dirs;
+}
+
+/** Find all .md files in a skill directory */
+function scanSkillFiles(skillDir: string): string[] {
+  const files: string[] = [];
+
+  function walk(dir: string): void {
+    if (!fs.existsSync(dir)) return;
+
+    const entries = fs.readdirSync(dir, { withFileTypes: true });
+    for (const entry of entries) {
+      const fullPath = path.join(dir, entry.name);
+      if (entry.isDirectory()) {
+        // Skip hidden directories and common non-content dirs
+        if (!entry.name.startsWith('.') && entry.name !== 'node_modules' &&
+            entry.name !== 'scripts' && entry.name !== 'dist') {
+          walk(fullPath);
+        }
+      } else if (entry.name.endsWith('.md')) {
+        files.push(fullPath);
+      }
+    }
+  }
+
+  walk(skillDir);
+  return files;
+}
+
+/** Read a file safely, returning null on error */
+function readFileSafe(filePath: string): string | null {
+  try {
+    return fs.readFileSync(filePath, 'utf-8');
+  } catch {
+    return null;
+  }
+}
+
+// ---------------------------------------------------------------
+// 3. NODE CONSTRUCTION
+// ---------------------------------------------------------------
+
+/** Convert a relative file path to a node ID */
+function filePathToNodeId(relativePath: string): string {
+  // Remove .md extension and normalize separators
+  return relativePath.replace(/\.md$/, '').replace(/\\/g, '/');
+}
+
+/** Infer node labels from file location */
+function inferLabels(relativePath: string): string[] {
+  const parts = relativePath.replace(/\\/g, '/').split('/');
+  const filename = parts[parts.length - 1];
+
+  // Check filename-based labels first
+  if (filename === 'index.md' && parts.length === 2) {
+    return [':Index'];
+  }
+  if (filename === 'SKILL.md' && parts.length === 2) {
+    return [':Entrypoint'];
+  }
+
+  // Check directory-based labels
+  if (parts.length >= 3) {
+    const parentDir = parts[1];
+    if (parentDir === 'nodes') return [':Node'];
+    if (parentDir === 'references') return [':Reference'];
+    if (parentDir === 'assets') return [':Asset'];
+  }
+
+  return [':Document'];
+}
+
+/** Build a GraphNode from a file */
+function buildNodeFromFile(
+  skillName: string,
+  relativePath: string,
+  content: string,
+  skillRoot: string,
+): GraphNode | null {
+  const nodeId = filePathToNodeId(relativePath);
+  const labels = inferLabels(relativePath);
+  const properties = parseFrontmatter(content);
+
+  // Add computed properties
+  properties.skill = skillName;
+  properties.path = relativePath;
+
+  // Derive name from filename if not in frontmatter
+  if (!properties.name) {
+    const parts = relativePath.replace(/\\/g, '/').split('/');
+    const filename = parts[parts.length - 1].replace(/\.md$/, '');
+    properties.name = filename;
+  }
+
+  // Derive type from labels
+  if (!properties.type) {
+    const label = labels[0].replace(/^:/, '').toLowerCase();
+    properties.type = label;
+  }
+
+  // Extract title from first heading if not in frontmatter
+  if (!properties.title) {
+    const titleMatch = content.match(/^#\s+(.+)$/m);
+    if (titleMatch) {
+      properties.title = titleMatch[1].trim();
+    }
+  }
+
+  return {
+    id: nodeId,
+    labels,
+    properties,
+    skill: skillName,
+    path: relativePath,
+  };
+}
+
+// ---------------------------------------------------------------
+// 4. YAML FRONTMATTER PARSING (No external dependencies)
+// ---------------------------------------------------------------
+
+/** Strip frontmatter from content, returning only body text */
+function stripFrontmatter(content: string): string {
+  const match = content.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n?([\s\S]*)$/);
+  if (match) {
+    return match[2];
+  }
+  return content;
+}
+
+/**
+ * Parse YAML frontmatter into a flat property record.
+ * Simple regex-based parser -- handles strings, arrays, bare values, numbers.
+ */
+function parseFrontmatter(content: string): Record<string, string | string[] | number | boolean | null> {
+  const properties: Record<string, string | string[] | number | boolean | null> = {};
+
+  const match = content.match(/^---\r?\n([\s\S]*?)\r?\n---/);
+  if (!match) return properties;
+
+  const yaml = match[1];
+  const lines = yaml.split('\n');
+
+  for (let i = 0; i < lines.length; i++) {
+    const trimmed = lines[i].trim();
+    if (!trimmed || trimmed.startsWith('#')) continue;
+
+    // Match key: value patterns
+    const kvMatch = trimmed.match(/^([a-zA-Z_][a-zA-Z0-9_\-]*)\s*:\s*(.*)$/);
+    if (!kvMatch) continue;
+
+    const key = normalizeKey(kvMatch[1]);
+    const rawValue = kvMatch[2].trim();
+
+    // Handle multiline YAML arrays (indented "- item" lines after an empty value)
+    if (!rawValue || rawValue === '') {
+      const items: string[] = [];
+      while (i + 1 < lines.length && lines[i + 1].match(/^\s+-\s+/)) {
+        i++;
+        const item = lines[i].replace(/^\s+-\s+/, '').trim();
+        if (item) items.push(item);
+      }
+      if (items.length > 0) {
+        properties[key] = items;
+        continue;
+      }
+    }
+
+    properties[key] = parseYamlValue(rawValue);
+  }
+
+  return properties;
+}
+
+/** Normalize YAML keys: convert kebab-case to camelCase where appropriate */
+function normalizeKey(key: string): string {
+  // Special mappings
+  const keyMap: Record<string, string> = {
+    'allowed-tools': 'tools',
+    'argument-hint': 'argumentHint',
+  };
+  if (keyMap[key]) return keyMap[key];
+  return key;
+}
+
+/** Parse a single YAML value */
+function parseYamlValue(raw: string): string | string[] | number | boolean | null {
+  if (!raw || raw === '~' || raw === 'null') return null;
+
+  // Boolean
+  if (raw === 'true' || raw === 'True' || raw === 'TRUE') return true;
+  if (raw === 'false' || raw === 'False' || raw === 'FALSE') return false;
+
+  // Array: [item1, item2, ...]
+  if (raw.startsWith('[') && raw.endsWith(']')) {
+    const inner = raw.slice(1, -1);
+    if (!inner.trim()) return [];
+    return inner.split(',').map(s => {
+      const trimmed = s.trim();
+      // Strip quotes
+      if ((trimmed.startsWith('"') && trimmed.endsWith('"')) ||
+          (trimmed.startsWith("'") && trimmed.endsWith("'"))) {
+        return trimmed.slice(1, -1);
+      }
+      return trimmed;
+    });
+  }
+
+  // Quoted string
+  if ((raw.startsWith('"') && raw.endsWith('"')) ||
+      (raw.startsWith("'") && raw.endsWith("'"))) {
+    return raw.slice(1, -1);
+  }
+
+  // Number
+  if (/^-?\d+(\.\d+)?$/.test(raw)) {
+    const num = parseFloat(raw);
+    if (Number.isInteger(num)) return num;
+    return num;
+  }
+
+  // Bare string
+  return raw;
+}
+
+// ---------------------------------------------------------------
+// 5. LINK EXTRACTION
+// ---------------------------------------------------------------
+
+/** Regex for wikilinks: [[target]] or [[target|label]] */
+const WIKILINK_RE = /\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g;
+
+/** Regex for standard markdown links to local .md files */
+const MDLINK_RE = /\[([^\]]+)\]\(([^)\s]+\.md(?:#[^)]+)?)\)/g;
+
+/**
+ * Extract edges from file body content.
+ * Creates LINKS_TO, CONTAINS, REFERENCES, and DEPENDS_ON edges.
+ */
+function extractEdges(
+  sourceNode: GraphNode,
+  bodyContent: string,
+  skillName: string,
+  graph: SkillGraph,
+): GraphEdge[] {
+  const edges: GraphEdge[] = [];
+  const seenEdgeIds = new Set<string>();
+
+  // Extract wikilinks
+  let match: RegExpExecArray | null;
+  const wikiRe = new RegExp(WIKILINK_RE.source, 'g');
+
+  while ((match = wikiRe.exec(bodyContent)) !== null) {
+    const targetPath = match[1].trim();
+    const displayLabel = match[2]?.trim() || '';
+
+    // Resolve target: wikilinks are relative to the current source node path.
+    const targetId = resolveWikilinkTarget(targetPath, sourceNode, skillName, graph);
+    if (!targetId) continue;
+
+    // Create LINKS_TO edge
+    const linksToId = `${sourceNode.id}--LINKS_TO--${targetId}`;
+    if (!seenEdgeIds.has(linksToId)) {
+      seenEdgeIds.add(linksToId);
+      const edgeProps: Record<string, string> = {};
+      if (displayLabel) edgeProps.label = displayLabel;
+      edges.push({
+        id: linksToId,
+        type: ':LINKS_TO',
+        source: sourceNode.id,
+        target: targetId,
+        properties: edgeProps,
+      });
+    }
+
+    // CONTAINS: if source is Index and target is in nodes/
+    if (sourceNode.labels.includes(':Index') && targetId.includes('/nodes/')) {
+      const containsId = `${sourceNode.id}--CONTAINS--${targetId}`;
+      if (!seenEdgeIds.has(containsId)) {
+        seenEdgeIds.add(containsId);
+        edges.push({
+          id: containsId,
+          type: ':CONTAINS',
+          source: sourceNode.id,
+          target: targetId,
+          properties: displayLabel ? { label: displayLabel } : {},
+        });
+      }
+    }
+
+    // DEPENDS_ON: if target crosses skill boundary
+    const targetSkill = targetId.split('/')[0];
+    if (targetSkill !== skillName) {
+      const dependsId = `${sourceNode.id}--DEPENDS_ON--${targetId}`;
+      if (!seenEdgeIds.has(dependsId)) {
+        seenEdgeIds.add(dependsId);
+        edges.push({
+          id: dependsId,
+          type: ':DEPENDS_ON',
+          source: sourceNode.id,
+          target: targetId,
+          properties: displayLabel ? { label: displayLabel } : {},
+        });
+      }
+    }
+  }
+
+  // Extract standard markdown links
+  const mdRe = new RegExp(MDLINK_RE.source, 'g');
+
+  while ((match = mdRe.exec(bodyContent)) !== null) {
+    const displayText = match[1].trim();
+    const relativePath = match[2].trim();
+
+    // Resolve relative path from source file location
+    const targetId = resolveMarkdownLinkTarget(relativePath, sourceNode, skillName, graph);
+    if (!targetId) continue;
+
+    // Create REFERENCES edge
+    const refsId = `${sourceNode.id}--REFERENCES--${targetId}`;
+    if (!seenEdgeIds.has(refsId)) {
+      seenEdgeIds.add(refsId);
+      edges.push({
+        id: refsId,
+        type: ':REFERENCES',
+        source: sourceNode.id,
+        target: targetId,
+        properties: { label: displayText },
+      });
+    }
+
+    // DEPENDS_ON for cross-skill markdown links
+    const targetSkill = targetId.split('/')[0];
+    if (targetSkill !== skillName) {
+      const dependsId = `${sourceNode.id}--DEPENDS_ON--${targetId}`;
+      if (!seenEdgeIds.has(dependsId)) {
+        seenEdgeIds.add(dependsId);
+        edges.push({
+          id: dependsId,
+          type: ':DEPENDS_ON',
+          source: sourceNode.id,
+          target: targetId,
+          properties: { label: displayText },
+        });
+      }
+    }
+
+    // If both source and target are Node-labeled files, also create LINKS_TO edge
+    const targetNode = graph.nodes.get(targetId);
+    if (targetNode &&
+        sourceNode.labels.includes(':Node') && targetNode.labels.includes(':Node')) {
+      const linksToId = `${sourceNode.id}--LINKS_TO--${targetId}`;
+      if (!seenEdgeIds.has(linksToId)) {
+        seenEdgeIds.add(linksToId);
+        edges.push({
+          id: linksToId,
+          type: ':LINKS_TO',
+          source: sourceNode.id,
+          target: targetId,
+          properties: { via: 'markdown_link' },
+        });
+      }
+    }
+  }
+
+  return edges;
+}
+
+/** Resolve a wikilink target path to a full node ID */
+function resolveWikilinkTarget(
+  targetPath: string,
+  sourceNode: GraphNode,
+  skillName: string,
+  graph: SkillGraph,
+): string | null {
+  const cleaned = normalizeLinkPath(targetPath);
+  if (!cleaned) return null;
+
+  const rootRelative = cleaned.startsWith('/') ? cleaned.slice(1) : cleaned;
+
+  // Explicit cross-skill form: other-skill/nodes/...
+  const [firstSegment] = rootRelative.split('/');
+  if (firstSegment && isSkillId(firstSegment, graph)) {
+    return rootRelative;
+  }
+
+  // Explicit current-skill content roots
+  if (rootRelative.startsWith('nodes/') ||
+      rootRelative.startsWith('references/') ||
+      rootRelative.startsWith('assets/')) {
+    return `${skillName}/${rootRelative}`;
+  }
+
+  // Resolve relative to source path directory
+  const resolved = resolveFromSourcePath(sourceNode.path, rootRelative);
+  if (resolved) {
+    return resolved;
+  }
+
+  // Root-level shorthand links from SKILL.md often target nodes/*.md
+  const nodeFallback = `${skillName}/nodes/${rootRelative}`;
+  if (graph.nodes.has(nodeFallback)) {
+    return nodeFallback;
+  }
+
+  // Last-resort same-skill root
+  return `${skillName}/${rootRelative}`;
+}
+
+/** Resolve a markdown link relative path to a node ID */
+function resolveMarkdownLinkTarget(
+  relativePath: string,
+  sourceNode: GraphNode,
+  skillName: string,
+  graph: SkillGraph,
+): string | null {
+  const cleaned = normalizeLinkPath(relativePath);
+  if (!cleaned) return null;
+
+  const rootRelative = cleaned.startsWith('/') ? cleaned.slice(1) : cleaned;
+  const [firstSegment] = rootRelative.split('/');
+  if (firstSegment && isSkillId(firstSegment, graph)) {
+    return rootRelative;
+  }
+
+  const resolved = resolveFromSourcePath(sourceNode.path, rootRelative);
+  if (resolved) {
+    return resolved;
+  }
+
+  return `${skillName}/${rootRelative}`;
+}
+
+function normalizeLinkPath(rawPath: string): string | null {
+  const trimmed = rawPath.trim();
+  if (!trimmed || /^https?:\/\//i.test(trimmed) || /^mailto:/i.test(trimmed)) {
+    return null;
+  }
+
+  let withoutFragment = trimmed.split('#')[0].split('?')[0];
+
+  // If path doesn't end in .md, try appending it (supports wikilinks like [[nodes/some-concept]])
+  if (!withoutFragment.endsWith('.md')) {
+    withoutFragment = withoutFragment + '.md';
+  }
+
+  if (!withoutFragment.endsWith('.md')) {
+    return null;
+  }
+
+  return withoutFragment.replace(/\.md$/, '');
+}
+
+function resolveFromSourcePath(sourcePath: string, targetPath: string): string | null {
+  const sourceDir = path.posix.dirname(sourcePath.replace(/\\/g, '/'));
+  const resolved = path.posix.normalize(path.posix.join(sourceDir, targetPath));
+  if (resolved.startsWith('..')) {
+    return null;
+  }
+  return resolved;
+}
+
+function isSkillId(segment: string, graph: SkillGraph): boolean {
+  const maybeSkill = graph.nodes.get(segment);
+  return Boolean(maybeSkill && maybeSkill.labels.includes(':Skill'));
+}
+
+// ---------------------------------------------------------------
+// 6. STRUCTURAL EDGES
+// ---------------------------------------------------------------
+
+/** Generate HAS_ENTRYPOINT and HAS_INDEX edges for a skill */
+function generateStructuralEdges(graph: SkillGraph, skillName: string): void {
+  // HAS_ENTRYPOINT
+  const entrypointId = `${skillName}/SKILL`;
+  if (graph.nodes.has(entrypointId)) {
+    addEdge(graph, {
+      id: `${skillName}--HAS_ENTRYPOINT--${entrypointId}`,
+      type: ':HAS_ENTRYPOINT',
+      source: skillName,
+      target: entrypointId,
+      properties: {},
+    });
+  }
+
+  // HAS_INDEX
+  const indexId = `${skillName}/index`;
+  if (graph.nodes.has(indexId)) {
+    addEdge(graph, {
+      id: `${skillName}--HAS_INDEX--${indexId}`,
+      type: ':HAS_INDEX',
+      source: skillName,
+      target: indexId,
+      properties: {},
+    });
+  }
+}
+
+// ---------------------------------------------------------------
+// 7. GRAPH UTILITIES
+// ---------------------------------------------------------------
+
+/** Add an edge to the graph and update adjacency indexes */
+function addEdge(graph: SkillGraph, edge: GraphEdge): void {
+  // Deduplicate by edge ID — O(1) via edgeById Map
+  if (graph.edgeById.has(edge.id)) return;
+
+  graph.edges.push(edge);
+  graph.edgeById.set(edge.id, edge);
+
+  // Update outbound index
+  if (!graph.outbound.has(edge.source)) {
+    graph.outbound.set(edge.source, []);
+  }
+  // Safe: outbound array just created above if it didn't exist
+  graph.outbound.get(edge.source)!.push(edge.id);
+
+  // Update inbound index
+  if (!graph.inbound.has(edge.target)) {
+    graph.inbound.set(edge.target, []);
+  }
+  // Safe: inbound array just created above if it didn't exist
+  graph.inbound.get(edge.target)!.push(edge.id);
+}
+
+/** Remove edges whose source or target nodes don't exist in the graph */
+function removeDanglingEdges(graph: SkillGraph): void {
+  const validEdges: GraphEdge[] = [];
+
+  for (const edge of graph.edges) {
+    if (graph.nodes.has(edge.source) && graph.nodes.has(edge.target)) {
+      validEdges.push(edge);
+    }
+  }
+
+  // Rebuild if we removed any edges
+  if (validEdges.length !== graph.edges.length) {
+    graph.edges = validEdges;
+
+    // Rebuild all edge indexes
+    graph.edgeById.clear();
+    graph.outbound.clear();
+    graph.inbound.clear();
+
+    for (const edge of graph.edges) {
+      graph.edgeById.set(edge.id, edge);
+
+      if (!graph.outbound.has(edge.source)) {
+        graph.outbound.set(edge.source, []);
+      }
+      // Safe: outbound array just initialized above if key was absent
+      graph.outbound.get(edge.source)!.push(edge.id);
+
+      if (!graph.inbound.has(edge.target)) {
+        graph.inbound.set(edge.target, []);
+      }
+      // Safe: inbound array just initialized above if key was absent
+      graph.inbound.get(edge.target)!.push(edge.id);
+    }
+  }
+}

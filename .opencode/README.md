@@ -42,7 +42,7 @@ This directory serves as the configuration backbone of the OpenCode AI Assistant
 
 The framework is built on two core systems:
 
-1. **Memory Engine**: 22 memory MCP tools across 7 layers (29 MCP tools total with 7 Code Mode tools), with 5-source indexing, 7-intent retrieval routing, schema v13 metadata (`document_type`, `spec_level`), document-type scoring and causal lineage tracking
+1. **Memory Engine**: 25 memory MCP tools across 7 layers (32 MCP tools total with 7 Code Mode tools), with 5-source indexing, 7-intent retrieval routing, schema v15 metadata (`document_type`, `spec_level`), document-type scoring and causal lineage tracking
 2. **Spec Kit Documentation Framework**: Structured documentation with 84 templates, 13 validation rules, and Level 1-3+ CORE + ADDENDUM architecture
 
 Together, these systems enable context-aware development with traceability, hardened retrieval behavior and session continuity through quality gates.
@@ -52,14 +52,14 @@ Together, these systems enable context-aware development with traceability, hard
 | Category | Count | Details |
 |---|---:|---|
 | MCP Servers | 3 | Memory Engine, Code Mode, Sequential Thinking |
-| MCP Tools | 29 | 22 memory + 7 code mode |
+| MCP Tools | 32 | 25 memory + 7 code mode |
 | Agents | 10 | 8 custom + 2 built-in (`@general`, `@explore`) |
-| Skills | 9 | Skill modules in `.opencode/skill/` |
+| Skills | 10 | Skill modules in `.opencode/skill/` |
 | Commands | 19 | `spec_kit`, `memory`, `create`, `agent_router` |
 | Templates | 79 | Spec Kit CORE + ADDENDUM templates |
 | YAML assets | 25 | Command execution YAML files |
 | Validation rules | 13 | Spec folder validation scripts |
-| Last Verified | 2026-02-20 | Counts refreshed during spec 136 release pass |
+| Last Verified | 2026-02-21 | Counts refreshed during spec 136 release pass |
 
 <!-- /ANCHOR:overview -->
 
@@ -74,7 +74,7 @@ Together, these systems enable context-aware development with traceability, hard
 ├── command/         — 19 slash commands for workflow automation (spec_kit, memory, create)
 ├── install_guides/  — Setup and configuration guides for framework installation
 ├── skill/scripts/   — Skill routing scripts (skill_advisor.py) and setup guides
-├── skill/           — 9 domain expertise skill modules with bundled resources
+├── skill/           — 10 domain expertise skill modules with bundled resources
 └── specs/           — Spec folder storage for documentation and memory files
 ```
 
@@ -225,7 +225,7 @@ The Spec Kit Memory MCP provides persistent context across sessions:
 - **Retrieval:** Hybrid search across vector, BM25 and trigger matching with RRF fusion + cross-encoder reranking
 - **Architecture:** 7-layer tool hierarchy (L1 Orchestration to L7 Maintenance)
 - **Indexing:** 5 sources (spec memories, constitutional files, skill READMEs, project READMEs, spec documents) with `includeSpecDocs: true` default
-- **Schema:** v13 adds `document_type` and `spec_level` columns for document-type scoring and filtering
+- **Schema:** v15 adds `document_type` and `spec_level` columns for document-type scoring and filtering
 - **Features:** Constitutional tier, session deduplication, causal lineage tracking, temporal decay, learning analytics, typed retrieval contracts, artifact-class routing, adaptive fusion, append-only mutation ledger and extended retrieval telemetry
 - **Hardening (Spec126):** import-path fixes, `specFolder` filtering, metadata preservation, vector metadata plumbing, and stable causal edge semantics
 

@@ -63,14 +63,14 @@ Two custom-built systems fix this: a **spec-kit documentation framework** and a 
          ▼                            ▼
 ┌─────────────────┐        ┌─────────────────────┐
 │  AGENT NETWORK  │        │  SKILLS LIBRARY     │
-│  10 specialized │        │  9 domain skills    │
+│  10 specialized │        │  10 domain skills   │
 │  agents with    │◄──────►│  auto-loaded by     │
 │  routing logic  │        │  task keywords      │
 └────────┬────────┘        └──────────┬──────────┘
          │                            │
          ▼                            ▼
 ┌──────────────────────────────────────────────────────────────┐
-│  MEMORY ENGINE (29 MCP tools: 22 memory + 7 code mode)       │
+│  MEMORY ENGINE (32 MCP tools: 25 memory + 7 code mode)       │
 │  Cognitive tiers ─ Causal graphs ─ Unified Context Engine    │
 │  4-channel hybrid: Vector + BM25 + FTS5 + Skill Graph (RRF)  │
 │  MMR diversity ─ TRM confidence gating ─ query expansion     │
@@ -93,7 +93,7 @@ Everything connects. Memory files live *inside* spec folders. Gates enforce docu
 ### Recent Platform Highlights
 
 - **Hybrid RAG Fusion (spec 138)**: The memory engine now activates all three retrieval channels simultaneously (Vector, BM25, FTS5) and fuses results via Reciprocal Rank Fusion. A 4th channel (Skill Graph / SGQS) adds graph traversal results. MMR diversity pruning, Transparent Reasoning Module confidence gating, multi-query expansion, and AST-based section extraction complete the Unified Context Engine.
-- **Skill Graph decomposition (spec 138)**: All 9 monolithic SKILL.md files decomposed into wikilink-connected node files with YAML frontmatter. An in-process SGQS query layer (Neo4j-style) resolves `[[node]]` wikilinks and returns traversal subgraphs without any external database dependency.
+- **Skill Graph decomposition (spec 138)**: All 10 monolithic SKILL.md files decomposed into wikilink-connected node files with YAML frontmatter. An in-process SGQS query layer (Neo4j-style) resolves `[[node]]` wikilinks and returns traversal subgraphs without any external database dependency.
 - **Gemini CLI is the 4th runtime**: 8 agents, 19 TOML command wrappers, 10 skill symlinks and 3 MCP servers. Agents optimized for gemini-3.1-pro within a 400K effective token window.
 - **Spec documents are indexed and searchable**: spec folder docs (`spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `decision-record.md`, `implementation-summary.md`, `research.md`, `handover.md`) surface via `find_spec` and `find_decision` intents.
 - **473 anchor tags across 74 READMEs**: section-level retrieval with ~93% token savings over loading full files.
@@ -143,7 +143,7 @@ opencode
 
 # Test skill routing
 # Ask: "What skills are available?"
-# Expected: 9 skills listed
+# Expected: 10 skills listed
 ```
 
 <!-- /ANCHOR:quick-start -->
@@ -216,11 +216,11 @@ Exit code 0 = pass. Exit code 2 = must fix.
 ## 4. 🧠 MEMORY ENGINE
 <!-- ANCHOR:memory-engine -->
 
-22 MCP tools across 7 cognitive layers.
+25 MCP tools across 7 cognitive layers.
 
 > *Remember everything. Surface what matters. Keep it private.*
 
-Your AI assistant forgets everything between sessions. The Memory Engine fixes this with 22 MCP tools across 7 architectural layers: 5-source indexing, 7-intent retrieval routing, schema v15 metadata (`document_type`, `spec_level`), and document-type scoring. The Unified Context Engine (spec 138) adds a 4-channel hybrid retrieval pipeline with RRF fusion, MMR diversity pruning, confidence gating, and in-process Skill Graph traversal.
+Your AI assistant forgets everything between sessions. The Memory Engine fixes this with 25 MCP tools across 7 architectural layers: 5-source indexing, 7-intent retrieval routing, schema v15 metadata (`document_type`, `spec_level`), and document-type scoring. The Unified Context Engine (spec 138) adds a 4-channel hybrid retrieval pipeline with RRF fusion, MMR diversity pruning, confidence gating, and in-process Skill Graph traversal.
 
 ### 5-Source Discovery Pipeline
 
@@ -311,7 +311,7 @@ Four retrieval channels fuse via Reciprocal Rank Fusion (RRF) in the Unified Con
 | `find_spec`      | Boosts spec documents, plans, decision records        |
 | `find_decision`  | Boosts decision records, architectural context        |
 
-**Document-Type Scoring**: search results are multiplied by document type to prioritize authoritative sources. Schema v13 tracks `document_type` and `spec_level` per indexed entry.
+**Document-Type Scoring**: search results are multiplied by document type to prioritize authoritative sources. Schema v15 tracks `document_type` and `spec_level` per indexed entry.
 
 | Document Type            | Multiplier | Rationale                                    |
 | ------------------------ | ---------- | -------------------------------------------- |
@@ -501,7 +501,7 @@ All support `:auto` and `:confirm` mode suffixes.
 ## 7. 🧩 SKILLS LIBRARY
 <!-- ANCHOR:skills-library -->
 
-9 domain skills, auto-loaded by task keywords.
+10 domain skills, auto-loaded by task keywords.
 
 Skills are domain expertise on demand. The AI loads the right skill and already knows your conventions.
 
@@ -758,7 +758,7 @@ export EMBEDDINGS_PROVIDER=hf-local
 
 | Server                  | Tools | Purpose                                                               |
 | ----------------------- | ----- | --------------------------------------------------------------------- |
-| **Spec Kit Memory**     | 22    | Cognitive memory system (the memory engine)                           |
+| **Spec Kit Memory**     | 25    | Cognitive memory system (the memory engine)                           |
 | **Code Mode**           | 7     | External tool orchestration (Figma, GitHub, ClickUp, Chrome DevTools) |
 | **Sequential Thinking** |       | Structured multi-step reasoning for complex problems                  |
 

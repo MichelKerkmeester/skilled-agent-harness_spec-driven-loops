@@ -8,7 +8,7 @@ import { isGraphAuthorityEnabled } from './graph-flags';
 import { computePageRank } from '../manage/pagerank';
 
 import type Database from 'better-sqlite3';
-import type { SkillGraph, GraphNode } from '../../../scripts/sgqs/types';
+import type { SkillGraph, GraphNode } from '@spec-kit/shared/sgqs/types';
 import type { GraphSearchFn } from './hybrid-search';
 
 // ---------------------------------------------------------------

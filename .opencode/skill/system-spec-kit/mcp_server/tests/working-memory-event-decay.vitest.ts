@@ -28,11 +28,23 @@ function createDb() {
 
 describe('T005-T008: event-based decay pipeline', () => {
   let db: Database.Database | null = null;
+  const originalEventDecay = process.env.SPECKIT_EVENT_DECAY;
+  const originalRolloutPercent = process.env.SPECKIT_ROLLOUT_PERCENT;
 
   afterEach(() => {
     if (db) {
       db.close();
       db = null;
+    }
+    if (originalEventDecay === undefined) {
+      delete process.env.SPECKIT_EVENT_DECAY;
+    } else {
+      process.env.SPECKIT_EVENT_DECAY = originalEventDecay;
+    }
+    if (originalRolloutPercent === undefined) {
+      delete process.env.SPECKIT_ROLLOUT_PERCENT;
+    } else {
+      process.env.SPECKIT_ROLLOUT_PERCENT = originalRolloutPercent;
     }
   });
 
@@ -174,5 +186,38 @@ describe('T005-T008: event-based decay pipeline', () => {
       attention_score: number;
     };
     expect(Math.abs(decayed.attention_score - 0.85)).toBeLessThan(1e-9);
+  });
+
+  it('default-on contract: event decay runs when SPECKIT_EVENT_DECAY is unset', () => {
+    delete process.env.SPECKIT_EVENT_DECAY;
+    process.env.SPECKIT_ROLLOUT_PERCENT = '100';
+    db = createDb();
+
+    db.prepare(`
+      INSERT INTO working_memory (session_id, memory_id, attention_score, event_counter, mention_count, last_focused)
+      VALUES ('s-default', 12, 1.0, 0, 0, '2026-01-01T00:00:00.000Z')
+    `).run();
+
+    const changed = wm.batchUpdateScores('s-default');
+    expect(changed).toBe(1);
+  });
+
+  it('opt-out contract: event decay is disabled only when SPECKIT_EVENT_DECAY=false', () => {
+    process.env.SPECKIT_EVENT_DECAY = 'false';
+    process.env.SPECKIT_ROLLOUT_PERCENT = '100';
+    db = createDb();
+
+    db.prepare(`
+      INSERT INTO working_memory (session_id, memory_id, attention_score, event_counter, mention_count, last_focused)
+      VALUES ('s-disabled', 13, 0.9, 0, 0, '2026-01-01T00:00:00.000Z')
+    `).run();
+
+    const changed = wm.batchUpdateScores('s-disabled');
+    expect(changed).toBe(0);
+
+    const row = db.prepare('SELECT attention_score FROM working_memory WHERE session_id = ? AND memory_id = ?').get('s-disabled', 13) as {
+      attention_score: number;
+    };
+    expect(row.attention_score).toBe(0.9);
   });
 });

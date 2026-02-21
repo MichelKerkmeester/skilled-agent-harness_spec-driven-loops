@@ -8,7 +8,7 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
    MOCK: graph builder
 ──────────────────────────────────────────────────────────────── */
 
-vi.mock('../../scripts/sgqs/graph-builder', () => ({
+vi.mock('@spec-kit/shared/sgqs/graph-builder', () => ({
   buildSkillGraph: vi.fn(() => ({
     nodes: new Map(),
     edges: [],
@@ -19,7 +19,7 @@ vi.mock('../../scripts/sgqs/graph-builder', () => ({
 }));
 
 import { SkillGraphCacheManager } from '../lib/search/skill-graph-cache';
-import { buildSkillGraph } from '../../scripts/sgqs/graph-builder';
+import { buildSkillGraph } from '@spec-kit/shared/sgqs/graph-builder';
 
 const SKILL_ROOT = '/fake/skill/root';
 const ALT_ROOT = '/fake/skill/other-root';

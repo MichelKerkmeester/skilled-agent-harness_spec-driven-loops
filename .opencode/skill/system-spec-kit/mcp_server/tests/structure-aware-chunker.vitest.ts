@@ -5,7 +5,7 @@
 // ---------------------------------------------------------------
 
 import { describe, it, expect } from 'vitest';
-import { chunkMarkdown, splitIntoBlocks } from '../../scripts/lib/structure-aware-chunker';
+import { chunkMarkdown, splitIntoBlocks } from '@spec-kit/shared/lib/structure-aware-chunker';
 
 /* ---------------------------------------------------------------
    TESTS

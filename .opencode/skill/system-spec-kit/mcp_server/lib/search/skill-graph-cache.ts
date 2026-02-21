@@ -3,9 +3,9 @@
 // Singleton TTL cache for SGQS buildSkillGraph() results
 // ---------------------------------------------------------------
 
-import { buildSkillGraph } from '../../../scripts/sgqs/graph-builder';
+import { buildSkillGraph } from '@spec-kit/shared/sgqs/graph-builder';
 
-import type { SkillGraph } from '../../../scripts/sgqs/types';
+import type { SkillGraph } from '@spec-kit/shared/sgqs/types';
 
 // ---------------------------------------------------------------
 // 1. CONSTANTS

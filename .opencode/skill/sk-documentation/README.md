@@ -34,7 +34,7 @@ This skill is the central documentation engine for OpenCode projects. It operate
 
 The architecture follows a script-assisted AI analysis model: Python scripts handle deterministic parsing and metrics extraction, while the AI handles quality judgment and recommendations. The core principle is **structure first, then content, then quality**.
 
-All documentation output must follow **Human Voice Rules (HVR)**: no em dashes, no semicolons, no Oxford commas, no banned words (leverage, robust, seamless, etc.) and active voice throughout. See `readme_template.md` §9 for the full HVR ruleset.
+All documentation output must follow **Human Voice Rules (HVR)**: no em dashes, no semicolons, no Oxford commas, no banned words (leverage, robust, seamless, etc.) and active voice throughout. See `hvr_rules.md` for the full HVR ruleset.
 
 Use this skill when creating or improving markdown documentation, scaffolding new OpenCode components (skills, agents, commands), visualizing workflows as ASCII flowcharts or writing installation guides. Do not use it for non-markdown files or auto-generated API docs. Simple typo fixes also fall outside its scope.
 
@@ -81,6 +81,7 @@ sk-documentation/
 ├── assets/
 │   ├── documentation/                # Document templates
 │   │   ├── frontmatter_templates.md  # Frontmatter validation (11 types)
+│   │   ├── hvr_rules.md              # HVR (Human-Verified Results) validation rules
 │   │   ├── install_guide_template.md # 5-phase install guide template
 │   │   ├── llmstxt_templates.md      # llms.txt generation templates
 │   │   └── readme_template.md        # README structure (15 sections + HVR)
@@ -201,7 +202,7 @@ python3 .opencode/skill/sk-documentation/scripts/validate_document.py README.md
 | DQI score below 60 | Missing structure or content | Run `extract_structure.py`, address flagged violations |
 | `validate_document.py` exit 2 | Blocking errors (missing frontmatter, wrong section order) | Fix critical violations before re-running |
 | `package_skill.py` fails | SKILL.md over 5k words or missing required sections | Move detail to `references/`, ensure all required sections present |
-| HVR violations in output | Banned words, em dashes or semicolons in text | Review `readme_template.md` §9 for full HVR ruleset and fix violations |
+| HVR violations in output | Banned words, em dashes or semicolons in text | Review `hvr_rules.md` for full HVR ruleset and fix violations |
 
 <!-- /ANCHOR:troubleshooting -->
 

@@ -2,7 +2,7 @@
 // MODULE: AST Parser (Structured Markdown Sections)
 // ---------------------------------------------------------------
 
-import { chunkMarkdown, splitIntoBlocks } from '../lib/structure-aware-chunker';
+import { chunkMarkdown, splitIntoBlocks } from '@spec-kit/shared/lib/structure-aware-chunker';
 
 /** Structured markdown block emitted by parseMarkdownSections(). */
 export interface ParsedSection {
