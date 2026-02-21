@@ -153,7 +153,21 @@ console.log(`Resolved ID: ${memoryId}`);
 
 ---
 
-## 5. RELATED RESOURCES
+## 5. CONFIGURATION
+<!-- ANCHOR:configuration -->
+
+### Feature Flags
+
+| Environment Variable      | Default | Purpose                                                                 |
+|---------------------------|---------|-------------------------------------------------------------------------|
+| `SPECKIT_EXTRACTION`      | false   | Enable the post-tool extraction pipeline for automated memory creation. When `false`, extraction is disabled and tool outputs are not automatically processed into memories. |
+| `SPECKIT_REDACTION_GATE`  | true    | Enable the PII/secret redaction gate before memory insert. When `true`, all content passes through pattern-based PII and secret detection before reaching the memory store. Set to `false` only in trusted environments where redaction overhead is unnecessary. |
+
+<!-- /ANCHOR:configuration -->
+
+---
+
+## 6. RELATED RESOURCES
 <!-- ANCHOR:related -->
 
 ### Internal Documentation

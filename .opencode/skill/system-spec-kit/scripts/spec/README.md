@@ -66,7 +66,17 @@ bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/003-system-s
 `validate.sh` executes modular rules in `scripts/rules/`, including `check-anchors.sh` for ANCHOR tag pairing.
 
 
-<!-- /ANCHOR:upgrade-flow-spec124128129 -->
+Phase-based spec folders (specs 136-139 and later) use `--phase` with `create.sh` and `--recursive` with `validate.sh`:
+
+```bash
+# Create a phase child folder inside an existing spec
+bash .opencode/skill/system-spec-kit/scripts/spec/create.sh --phase specs/003-system-spec-kit/138-hybrid-rag-fusion/001-phase-name
+
+# Validate a phase parent and all its children recursively
+bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/003-system-spec-kit/138-hybrid-rag-fusion --recursive
+```
+
+<!-- /ANCHOR:upgrade-flow-spec124128129136-139 -->
 <!-- ANCHOR:completion-gate -->
 ## 4. COMPLETION GATE
 
@@ -85,5 +95,7 @@ bash .opencode/skill/system-spec-kit/scripts/spec/check-completion.sh specs/003-
 
 - `upgrade-level.sh` supports `--dry-run`, `--json`, `--verbose`, and `--keep-backups`.
 - `create.sh` supports `--subfolder` for subfolder-based work inside an existing spec folder.
+- `create.sh` supports `--phase` to create a numbered phase child folder inside a parent spec (e.g., `001-phase-name/`).
+- `validate.sh` supports `--recursive` to validate a parent spec folder and all its phase children in one pass.
 - `validate.sh` supports emergency bypass via `SPECKIT_SKIP_VALIDATION=1`.
 <!-- /ANCHOR:notes -->

@@ -60,12 +60,11 @@ None of it works because none of it understands what matters.
 
 This MCP server gives your AI assistant persistent memory with intelligence built in:
 
-- **6-channel hybrid search** finds what you mean, not what you typed
-- **Adaptive RRF fusion** shifts weights dynamically by detected intent
+- **4-channel hybrid search** (Vector, FTS5, BM25, Skill Graph) finds what you mean, not what you typed
+- **Post-fusion enhancements** — RRF, Adaptive Fusion, MMR, Co-activation and Recency Boost are applied after retrieval, not separate search channels
 - **Cognitive decay** keeps relevant memories fresh and lets stale ones fade
 - **Causal graph** traces decision lineage ("Why did we choose JWT?")
 - **Session awareness** prevents duplicate context and saves tokens
-- **MMR diversity reranking** balances relevance with breadth
 - **Evidence gap detection** flags missing context before retrieval
 
 ---
@@ -78,7 +77,7 @@ This MCP server gives your AI assistant persistent memory with intelligence buil
 | **Recovery** | Hope | Crash recovery with zero data loss |
 | **Sessions** | None | Deduplication with ~50% tokens saved on follow-up |
 | **Context** | Full documents | ANCHOR-based section retrieval (93% token savings) |
-| **Search** | Vector only | 6-channel hybrid with adaptive RRF fusion |
+| **Search** | Vector only | 4-channel (Vector, FTS5, BM25, Skill Graph) with adaptive RRF fusion |
 | **State** | Stateless | 5-state cognitive model (HOT/WARM/COLD/DORMANT/ARCHIVED) |
 | **Tiers** | None | 6-tier importance with configurable boosts |
 | **Decay** | None or exponential | FSRS power-law (validated on 100M+ users) |
@@ -93,7 +92,7 @@ This MCP server gives your AI assistant persistent memory with intelligence buil
 | --- | --- |
 | **MCP Tools** | 25 |
 | **Library Modules** | 76 |
-| **Handler Modules** | 20 |
+| **Handler Modules** | 19 |
 | **Embedding Providers** | 3 |
 | **Feature Flags** | 16 (all default enabled; explicit `FLAG=false` disables) |
 | **Test Coverage** | 164 test files |
@@ -214,7 +213,7 @@ dist/context-server.js     (compiled output — executed at runtime by node)
 
 | Directory | Purpose |
 | --- | --- |
-| `handlers/` | 16 functional + 4 infrastructure handler modules |
+| `handlers/` | 19 handler modules (functional + infrastructure) |
 | `lib/` | 76 library modules (cognitive, search, scoring, storage, etc.) |
 | `tools/` | Tool registration wrappers per category |
 | `core/` | Initialization, config, database state |
@@ -252,7 +251,7 @@ dist/context-server.js     (compiled output — executed at runtime by node)
 
 | Tool | Purpose | Latency |
 | --- | --- | --- |
-| `memory_search` | Semantic vector search with 6-channel hybrid pipeline and adaptive RRF fusion | ~500ms |
+| `memory_search` | Semantic vector search with 4-channel hybrid pipeline and adaptive RRF fusion | ~500ms |
 | `memory_match_triggers` | Fast trigger phrase matching with cognitive features | <50ms |
 | `memory_list` | Browse memories with pagination | <50ms |
 | `memory_stats` | System statistics and folder rankings | <10ms |
@@ -340,9 +339,9 @@ The causal graph supports 6 relationship types for tracing decision history:
 ## 5. SEARCH SYSTEM
 <!-- ANCHOR:search-system -->
 
-### 6-Channel Hybrid Search Pipeline
+### 4-Channel Hybrid Search Pipeline
 
-Spec 138 (hybrid-rag-fusion) expanded the pipeline from 3 to 6 channels with a scatter-gather architecture:
+Specs 137, 138 (hybrid-rag-fusion) and 139 expanded the pipeline from 3 to 4 primary retrieval channels with a scatter-gather architecture. Post-fusion enhancements (RRF, Adaptive Fusion, MMR, Co-activation, Recency Boost) are applied after retrieval and are not counted as separate channels:
 
 ```
 Query
@@ -355,35 +354,43 @@ Query
 +--------+---------+
          |
          v
-+----------+----------+----------+----------+----------+----------+
-| VECTOR   | FTS5/    | GRAPH    | CO-ACT   | SESSION  | CAUSAL   |
-| 1024d    | BM25     | Causal   | Boost    | Boost    | Edges    |
-| (1.0x)   | (1.0x)   | (1.5x)   | (+0.25)  | (capped) | (2-hop)  |
-+----+-----+----+-----+----+-----+----+-----+----+-----+----+-----+
-     |          |          |          |          |          |
-     +----------+----------+----------+----------+----------+
++----------+----------+----------+----------+
+| VECTOR   | FTS5     | BM25     | SKILL    |
+| 1024d    | Full-    | Keyword  | GRAPH    |
+| (1.0x)   | text     | ranking  | (1.5x)  |
++----+-----+----+-----+----+-----+----+-----+
+     |          |          |          |
+     +----------+----------+----------+
+                     |
+                     v
+       +-------------+-------------+
+       |  ADAPTIVE RRF FUSION      |
+       |  k=60, +10% convergence   |
+       |  intent-weighted profiles  |
+       +-------------+-------------+
                                 |
                                 v
-                  +-------------+-------------+
-                  |  ADAPTIVE RRF FUSION      |
-                  |  k=60, +10% convergence   |
-                  |  intent-weighted profiles  |
-                  +-------------+-------------+
-                                |
-                                v
-                  +-------------+-------------+
-                  |  MMR DIVERSITY RERANKING  |
-                  |  lambda mapped to intent  |
-                  +-------------+-------------+
-                                |
-                                v
-                  +-------------+-------------+
-                  |  EVIDENCE GAP DETECTION   |
-                  |  TRM with Z-score confidence|
-                  +-------------+-------------+
-                                |
-                                v
-                       Final Ranked Results
+       +-------------+-------------+
+       |  POST-FUSION ENHANCEMENTS  |
+       |  Co-activation (+0.25)     |
+       |  Session/Recency Boost     |
+       |  Causal 2-hop boost        |
+       +-------------+-------------+
+                     |
+                     v
+       +-------------+-------------+
+       |  MMR DIVERSITY RERANKING  |
+       |  lambda mapped to intent  |
+       +-------------+-------------+
+                     |
+                     v
+       +-------------+-------------+
+       |  EVIDENCE GAP DETECTION   |
+       |  TRM with Z-score confidence|
+       +-------------+-------------+
+                     |
+                     v
+              Final Ranked Results
 ```
 
 ### Channel Descriptions
@@ -391,11 +398,19 @@ Query
 | Channel | Source | Weight | Purpose |
 | --- | --- | --- | --- |
 | Vector | `sqlite-vec` 1024d embeddings | 1.0x | Semantic similarity |
-| FTS5/BM25 | SQLite full-text search | 1.0x | Keyword and lexical matching |
-| Graph | Causal edge traversal | 1.5x | Decision lineage and "why" queries |
+| FTS5 | SQLite full-text search | 1.0x | Full-text lexical matching |
+| BM25 | SQLite FTS5 BM25 ranking | 1.0x | Keyword relevance scoring |
+| Skill Graph | Graph traversal (causal + skill) | 1.5x | Decision lineage and "why" queries |
+
+### Post-Fusion Enhancements
+
+These processing stages are applied after the 4 primary channels are fused via RRF. They boost or rerank results but are not independent search channels:
+
+| Enhancement | Source | Effect | Purpose |
+| --- | --- | --- | --- |
 | Co-activation | Working memory patterns | +0.25 boost | Related memory surfacing |
-| Session boost | `working_memory` table | Hard cap 0.20 | Recency and session context |
-| Causal edges | 2-hop neighbor boost | Injected | Transitively related memories |
+| Recency Boost | `working_memory` table | Hard cap 0.20 | Session context recency |
+| Causal 2-hop | Causal edge traversal | Injected | Transitively related memories |
 
 ### Adaptive RRF Fusion
 
@@ -465,7 +480,7 @@ This is not basic memory storage. The system implements biologically-inspired co
 
 ### FSRS Power-Law Decay with Tier-Based Modulation
 
-Memory strength follows the Free Spaced Repetition Scheduler formula, validated on 100M+ Anki users. Spec 138 added tier-based decay modulation so importance tier also gates how fast memories fade:
+Memory strength follows the Free Spaced Repetition Scheduler formula, validated on 100M+ Anki users. Specs 137-139 added tier-based decay modulation so importance tier also gates how fast memories fade:
 
 ```
 R(t, S) = (1 + (19/81) * t/S)^(-0.5)    where R(S,S) = 0.9
@@ -544,7 +559,7 @@ mcp_server/
 │   ├── config.ts           # Path resolution (SERVER_DIR, LIB_DIR, SHARED_DIR)
 │   └── db-state.ts         # Database connection state
 │
-├── handlers/               # MCP tool handlers (16 functional + 4 infrastructure)
+├── handlers/               # MCP tool handlers (19 modules)
 │   ├── index.ts            # Handler aggregator
 │   ├── types.ts            # Shared handler types
 │   ├── memory-search.ts    # memory_search + Testing Effect
@@ -643,7 +658,7 @@ mcp_server/
 
 ### Feature Flags
 
-All flags are evaluated via `isFeatureEnabled()`. After spec 138, the flags below default to enabled:
+All flags are evaluated via `isFeatureEnabled()`. After specs 137-139, the flags below default to enabled:
 
 | Flag | Default | Description |
 | --- | --- | --- |
@@ -988,7 +1003,7 @@ A: Request focused anchors like `state` and `next-steps`, keep `includeContent` 
 
 A: No. The server falls back to local HuggingFace embeddings when cloud keys are not configured. Voyage AI is recommended for production quality.
 
-**Q: Are all feature flags enabled by default after spec 138?**
+**Q: Are all feature flags enabled by default after specs 137-139?**
 
 A: Yes. Flags are default-on and only explicit `FLAG=false` disables them. `SPECKIT_CROSS_ENCODER` is default-on but still requires a configured reranker provider to be active.
 
@@ -1008,11 +1023,19 @@ A: Yes. Flags are default-on and only explicit `FLAG=false` disables them. `SPEC
 | Install Guide | `INSTALL_GUIDE.md` | Detailed installation |
 | Rollback Runbook | `../references/workflows/rollback-runbook.md` | Feature-flag rollback procedure |
 
+### Related Specs
+
+| Spec | Path | Purpose |
+| --- | --- | --- |
+| 137 | `specs/003-system-spec-kit/137-*` | Pre-hybrid-RAG search improvements |
+| 138 | `specs/003-system-spec-kit/138-hybrid-rag-fusion/` | Hybrid RAG fusion (4-channel pipeline, adaptive RRF, MMR) |
+| 139 | `specs/003-system-spec-kit/139-*` | Post-fusion enhancements and phase system |
+
 ### Key Library Modules
 
 | Module | Purpose |
 | --- | --- |
-| `lib/search/hybrid-search.ts` | 6-channel scatter-gather pipeline |
+| `lib/search/hybrid-search.ts` | 4-channel scatter-gather pipeline |
 | `lib/search/adaptive-fusion.ts` | Intent-aware weighted RRF fusion |
 | `lib/search/rrf-fusion.ts` | RRF algorithm implementation |
 | `lib/search/causal-boost.ts` | 2-hop causal-neighbor score boost |

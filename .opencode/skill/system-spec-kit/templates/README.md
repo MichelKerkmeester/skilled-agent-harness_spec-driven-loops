@@ -64,6 +64,21 @@ LOC is guidance, not a hard limit. Risk and complexity can move work up a level.
 
 <!-- /ANCHOR:workflow-notes -->
 
+## Phase System
+<!-- ANCHOR:phase-system -->
+
+Large specs can be decomposed into ordered phases using the Phase System (Spec 139). Each phase becomes a child spec folder under the parent (e.g., `specs/003-name/001-phase-one/`, `specs/003-name/002-phase-two/`).
+
+- **Gate 3 Option E** targets a specific phase child folder for implementation work.
+- **`/spec_kit:phase`** decomposes a spec into phases, creating parent and child folders with proper linking.
+- Phase addendum templates live in `addendum/phase/`:
+  - `phase-child-header.md` — prepended to child spec files to link back to the parent.
+  - `phase-parent-section.md` — appended to the parent spec to list and track child phases.
+
+Phase children follow the same level system (1-3+) as standalone specs.
+
+<!-- /ANCHOR:phase-system -->
+
 ## Related
 <!-- ANCHOR:related -->
 

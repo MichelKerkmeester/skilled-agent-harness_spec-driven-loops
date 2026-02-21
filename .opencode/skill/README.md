@@ -30,7 +30,7 @@ importance_tier: "normal"
 <!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
-The Skills Library contains 9 domain-specific skills across 5 categories. Each skill provides specialized workflows for complex, multi-step tasks.
+The Skills Library contains 10 domain-specific skills across 5 categories. Each skill provides specialized workflows for complex, multi-step tasks.
 
 Skills differ from passive knowledge files in two ways. They are explicitly invoked (on-demand, not always-on). They provide step-by-step workflow instructions with bundled resources, scripts and templates.
 
@@ -111,14 +111,17 @@ Not every skill uses all directories. `SKILL.md` is the only required file.
 
 ### Core System
 
-#### `system-spec-kit` (v2.2.9.0)
+#### `system-spec-kit` (v2.2.26.0)
 
 Unified documentation and context preservation. Spec folder workflow (levels 1-3+), CORE + ADDENDUM template architecture (v2.2), validation and Spec Kit Memory for cognitive context preservation. The foundational skill that all others depend on.
 
 - Spec folder creation with tiered documentation levels (1 through 3+)
 - Template-driven document generation with CORE + ADDENDUM architecture
-- Validation scripts for structure, content quality and completeness
-- Cognitive memory system for cross-session context preservation
+- Validation scripts for structure, content quality and completeness with `--phase` and `--recursive` flags
+- Cognitive memory system with unified retrieval via `memory_context` for cross-session context preservation
+- Skill Graph Query System (SGQS) for queryable knowledge graph traversal
+- HVR (Human Voice Rules) enforcement for prose quality and style compliance
+- `/spec_kit:phase` command for phased spec folder decomposition
 
 ---
 
@@ -177,14 +180,15 @@ Chrome DevTools orchestrator with CLI (bdg) and MCP approaches. Browser debuggin
 
 ### Documentation
 
-#### `sk-documentation` (v1.0.6.0)
+#### `sk-documentation` (v1.1.1.0)
 
-Document quality enforcement and content optimization. Component creation workflows for skills, agents and commands. ASCII flowcharts and install guides.
+Document quality enforcement and content optimization with HVR (Human Voice Rules) compliance. Component creation workflows for skills, agents and commands. ASCII flowcharts and install guides.
 
 - DQI (Document Quality Index) scoring and validation
 - Template-aligned output for all document types
 - Component creation workflows (skills, agents, commands)
 - ASCII flowchart generation and install guide formatting
+- HVR rules asset (`references/hvr_rules.md`) for prose style enforcement
 
 ---
 
@@ -192,7 +196,7 @@ Document quality enforcement and content optimization. Component creation workfl
 
 #### `mcp-code-mode` (v1.0.4.0)
 
-TypeScript execution with 200+ MCP tools via progressive disclosure. 98.7% context reduction, 60% faster execution and type-safe invocation for all external tool integration.
+TypeScript execution with 200+ MCP tools via progressive disclosure. 98.7% context reduction with type-safe invocation and 60% faster execution for all external tool integration.
 
 - Progressive tool discovery with `search_tools()` and `tool_info()`
 - Type-safe TypeScript execution via `call_tool_chain()`

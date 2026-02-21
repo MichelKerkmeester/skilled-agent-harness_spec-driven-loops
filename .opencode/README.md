@@ -43,7 +43,7 @@ This directory serves as the configuration backbone of the OpenCode AI Assistant
 The framework is built on two core systems:
 
 1. **Memory Engine**: 25 memory MCP tools across 7 layers (32 MCP tools total with 7 Code Mode tools), with 5-source indexing, 7-intent retrieval routing, schema v15 metadata (`document_type`, `spec_level`), document-type scoring and causal lineage tracking
-2. **Spec Kit Documentation Framework**: Structured documentation with 84 templates, 13 validation rules, and Level 1-3+ CORE + ADDENDUM architecture
+2. **Spec Kit Documentation Framework**: Structured documentation with 84 templates, 13 validation rules and Level 1-3+ CORE + ADDENDUM architecture
 
 Together, these systems enable context-aware development with traceability, hardened retrieval behavior and session continuity through quality gates.
 
@@ -55,9 +55,9 @@ Together, these systems enable context-aware development with traceability, hard
 | MCP Tools | 32 | 25 memory + 7 code mode |
 | Agents | 10 | 8 custom + 2 built-in (`@general`, `@explore`) |
 | Skills | 10 | Skill modules in `.opencode/skill/` |
-| Commands | 19 | `spec_kit`, `memory`, `create`, `agent_router` |
+| Commands | 25 | `spec_kit`, `memory`, `create`, `visual_explainer`, `agent_router` |
 | Templates | 79 | Spec Kit CORE + ADDENDUM templates |
-| YAML assets | 25 | Command execution YAML files |
+| YAML assets | 27 | Command execution YAML files |
 | Validation rules | 13 | Spec folder validation scripts |
 | Last Verified | 2026-02-21 | Counts refreshed during spec 136 release pass |
 
@@ -71,7 +71,7 @@ Together, these systems enable context-aware development with traceability, hard
 ```
 .opencode/
 ├── agent/           — 8 specialized AI agent definitions for task delegation
-├── command/         — 19 slash commands for workflow automation (spec_kit, memory, create)
+├── command/         — 25 slash commands for workflow automation (spec_kit, memory, create, visual_explainer)
 ├── install_guides/  — Setup and configuration guides for framework installation
 ├── skill/scripts/   — Skill routing scripts (skill_advisor.py) and setup guides
 ├── skill/           — 10 domain expertise skill modules with bundled resources
@@ -111,7 +111,7 @@ This is a 10 specialized agents / 3-platform model (OpenCode, Claude Code, Codex
 | `@general` | General implementation and complex tasks | Default agent for code implementation (built-in) |
 | `@explore` | Fast codebase search and discovery | Quick file/pattern search (built-in) |
 
-**Agent Routing:** Automatic via Gate 2 (`skill_advisor.py`) or manual via `@agent_name` syntax. Current agent state includes model-agnostic `@review`, Haiku-tier `@handover`, and Codex profile-based agent frontmatter.
+**Agent Routing:** Automatic via Gate 2 (`skill_advisor.py`) or manual via `@agent_name` syntax. Current agent state includes model-agnostic `@review`, Haiku-tier `@handover` and Codex profile-based agent frontmatter.
 
 <!-- /ANCHOR:agents-overview -->
 
@@ -133,6 +133,7 @@ Skills are specialized, on-demand capabilities invoked for complex workflows:
 | `mcp-chrome-devtools` | Chrome DevTools orchestrator with CLI (bdg) and MCP (Code Mode) routing (v2.1) |
 | `mcp-code-mode` | MCP orchestration via TypeScript execution for external tools (ClickUp, Figma, etc.) (v1.1) |
 | `mcp-figma` | Figma design file access with 18 tools for components, styles, exports (v1.1) |
+| `sk-visual-explainer` | Converts terminal output and technical concepts into styled HTML pages with diagrams and visualizations (v1.0) |
 
 **Skill Structure:** Each skill contains `SKILL.md` (entry point), `references/` (documentation), `scripts/` (automation) and `assets/` (templates/checklists).
 
@@ -154,6 +155,7 @@ Commands are invoked with `/command_name` syntax in the chat interface.
 - `/spec_kit:debug`: Debug delegation with model selection and task dispatch
 - `/spec_kit:handover`: Session continuation with context preservation
 - `/spec_kit:resume`: Resume existing spec folder work with context loading
+- `/spec_kit:phase`: Phase decomposition workflow for complex multi-phase spec folders
 
 ### Memory Commands (`/memory:*`)
 
@@ -226,10 +228,10 @@ The Spec Kit Memory MCP provides persistent context across sessions:
 - **Architecture:** 7-layer tool hierarchy (L1 Orchestration to L7 Maintenance)
 - **Indexing:** 5 sources (spec memories, constitutional files, skill READMEs, project READMEs, spec documents) with `includeSpecDocs: true` default
 - **Schema:** v15 adds `document_type` and `spec_level` columns for document-type scoring and filtering
-- **Features:** Constitutional tier, session deduplication, causal lineage tracking, temporal decay, learning analytics, typed retrieval contracts, artifact-class routing, adaptive fusion, append-only mutation ledger and extended retrieval telemetry
-- **Hardening (Spec126):** import-path fixes, `specFolder` filtering, metadata preservation, vector metadata plumbing, and stable causal edge semantics
+- **Features:** Constitutional tier, session deduplication, causal lineage tracking, temporal decay, learning analytics, typed retrieval contracts, artifact-class routing, adaptive fusion, append-only mutation ledger, extended retrieval telemetry and session-cognitive automation (attention-based decay, tiered content injection, co-activation of related memories)
+- **Hardening (Spec126):** import-path fixes, `specFolder` filtering, metadata preservation, vector metadata plumbing and stable causal edge semantics
 
-**Spec Kit workflow features:** `upgrade-level.sh`, auto-populate workflow, `check-placeholders.sh`, and anchor tags.
+**Spec Kit workflow features:** `upgrade-level.sh`, auto-populate workflow, `check-placeholders.sh` and anchor tags.
 
 **Memory File Format:** ANCHOR tags for semantic sections (`summary`, `state`, `decisions`, `context`, `artifacts`, `next-steps`, `blockers`).
 

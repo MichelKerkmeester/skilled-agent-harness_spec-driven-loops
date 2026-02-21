@@ -217,6 +217,7 @@ const result = runPreflight(
 | Anchor check | `validateAnchorFormat()` | Editing memory files |
 | Token estimate | `estimateTokens()` | Before embedding API |
 | Hash compute | `computeContentHash()` | Duplicate detection |
+| Recursive phase validation | `validate.sh --recursive` | Validate phase-based spec hierarchies (spec 139) |
 
 <!-- /ANCHOR:usage-examples -->
 
@@ -255,5 +256,5 @@ MCP_ANCHOR_STRICT=true
 
 ---
 
-**Version**: 1.7.2
-**Last Updated**: 2026-02-16
+**Version**: 1.7.3
+**Last Updated**: 2026-02-21

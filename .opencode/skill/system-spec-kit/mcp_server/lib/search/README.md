@@ -1,6 +1,6 @@
 ---
 title: "Search Subsystem"
-description: "Multi-modal hybrid search architecture combining vector, lexical (BM25/FTS5) and graph-based retrieval with Reciprocal Rank Fusion (RRF)."
+description: "4-channel hybrid search architecture combining vector, lexical (BM25/FTS5), graph-based and SGQS/Skill Graph retrieval with Reciprocal Rank Fusion (RRF) and Adaptive Fusion."
 trigger_phrases:
   - "search subsystem"
   - "hybrid search"
@@ -10,7 +10,7 @@ importance_tier: "normal"
 
 # Search Subsystem
 
-> Multi-modal hybrid search architecture combining vector and lexical (BM25/FTS5) retrieval alongside graph-based discovery, fused with Reciprocal Rank Fusion (RRF).
+> 4-channel hybrid search architecture combining vector, lexical (BM25/FTS5), graph-based, and SGQS/Skill Graph retrieval, fused with Reciprocal Rank Fusion (RRF) and Adaptive Fusion.
 
 ---
 
@@ -34,12 +34,14 @@ importance_tier: "normal"
 The search subsystem provides production-grade hybrid search capabilities with multiple retrieval methods fused via RRF scoring. It handles query expansion, intent classification, typo tolerance and optional cross-encoder reranking.
 
 **Core Capabilities:**
-- **Triple-Hybrid Search**: Vector (semantic) + BM25/FTS5 (lexical) + Graph (relationship-based)
+- **4-Channel Hybrid Search**: Vector (semantic) + BM25/FTS5 (lexical) + Graph (relationship-based) + SGQS/Skill Graph (structural)
 - **RRF Score Fusion**: Industry-standard k=60 with convergence bonuses
 - **Intent Classification**: 7 intent types route to task-specific retrieval weights
 - **Query Enhancement**: Fuzzy matching (Levenshtein) + acronym expansions (via hybrid-search.ts inline logic)
 - **Reranking Pipeline**: Optional cross-encoder with length penalties
-- **Schema Management**: sqlite-vec schema includes v13 document-type fields used for spec-doc indexing and scoring
+- **MMR Diversity Reranking**: Maximal Marginal Relevance to reduce redundancy in result sets
+- **Evidence Gap Detection**: Identifies missing context and suggests follow-up queries
+- **Schema Management**: sqlite-vec schema v15 (current) with document-type fields, event-based decay and phase-aware columns
 
 **Architecture Pattern:**
 ```
@@ -47,14 +49,19 @@ Query Input
     |
 Intent Classifier -> Task-specific weights
     |
-Parallel Search
-|---> Vector (sqlite-vec) -> Semantic matches
-|---> BM25 (Pure JS)       -> Keyword matches
-|---> Graph (Co-activation) -> Relationship matches
+Parallel Search (4 channels)
+|---> Vector (sqlite-vec)       -> Semantic matches
+|---> BM25 (Pure JS)            -> Keyword matches
+|---> Graph (Co-activation)     -> Relationship matches
+|---> SGQS / Skill Graph        -> Structural matches
     |
-RRF Fusion (k=60) -> Unified scores
+RRF Fusion (k=60) + Adaptive Fusion -> Unified scores
+    |
+MMR Diversity Reranking -> Redundancy reduction
     |
 Cross-Encoder Rerank (optional) -> Relevance refinement
+    |
+Recency Boost + Co-activation -> Final adjustments
     |
 Final Results
 ```
@@ -81,6 +88,10 @@ Final Results
 **Enhancements (REQ-011):**
 - **10% Convergence Bonus**: Results in multiple sources get +10% score boost
 - **1.5x Graph Weight**: Graph-exclusive discoveries weighted higher for novelty
+- **Adaptive Fusion**: Intent-aware weighted RRF with dark-run mode (feature flag `SPECKIT_ADAPTIVE_FUSION`)
+- **MMR Diversity**: Maximal Marginal Relevance reranking reduces near-duplicate results
+- **Recency Boost**: Time-aware score adjustment favoring recently updated memories
+- **Co-activation Boost**: Graph-neighbor score propagation via 2-hop causal traversal
 
 **Example:**
 ```javascript
@@ -205,8 +216,9 @@ vector-index-impl.ts     (3333 LOC)
 | `adaptive-fusion.ts`     | -      | TypeScript | Intent-aware weighted RRF with dark-run mode, feature flag SPECKIT_ADAPTIVE_FUSION |
 | `causal-boost.ts`        | -      | TypeScript | Causal-neighbor score boosting for graph traversal  |
 | `session-boost.ts`       | -      | TypeScript | Session-attention score boosting                    |
+| `graph-search-fn.ts`     | -      | TypeScript | SGQS/Skill Graph search channel (4th retrieval channel) |
 
-**Total**: ~5,379+ LOC across 12 files (all TypeScript)
+**Total**: ~5,379+ LOC across 13 files (all TypeScript)
 
 ### Data Flow
 
@@ -218,22 +230,32 @@ vector-index-impl.ts     (3333 LOC)
          |
          v
 
-2. PARALLEL RETRIEVAL
+2. PARALLEL RETRIEVAL (4 channels)
    vector-index.ts (-> vector-index-impl.ts) -> Vector search (semantic)
    bm25-index.ts -> BM25 search (keyword)
    graph (via co-activation.ts) -> Relationship search
+   graph-search-fn.ts (SGQS) -> Skill Graph structural search
 
          |
          v
 
 3. SCORE FUSION
-   hybrid-search.ts -> RRF with k=60, convergence bonus
+   rrf-fusion.ts -> RRF with k=60, convergence bonus
+   adaptive-fusion.ts -> Intent-aware weighted fusion
    hybrid-search.ts -> Orchestrate multi-source fusion
 
          |
          v
 
-4. RERANKING (Optional)
+4. POST-FUSION ENHANCEMENTS
+   MMR diversity reranking -> Reduce near-duplicate results
+   Co-activation boost -> Graph-neighbor score propagation
+   Recency boost -> Time-aware score adjustment
+
+         |
+         v
+
+5. RERANKING (Optional)
    cross-encoder.ts -> API or local reranker
    Apply length penalty for short content
 
@@ -282,7 +304,7 @@ const DEFAULT_B = 0.75;    // Length normalization
 
 ### Vector Index Features
 
-**Schema Versions** (v1-v9, v12-v14. Note: v10-v11 are skipped):
+**Schema Versions** (v1-v9, v12-v15. Note: v10-v11 are skipped):
 
 | Version | Migration                                                                    |
 | ------- | ---------------------------------------------------------------------------- |
@@ -298,7 +320,8 @@ const DEFAULT_B = 0.75;    // Length normalization
 | v10-v11 | **Skipped** (no migration functions exist. Version jumps from 9 to 12)       |
 | v12     | Unified `memory_conflicts` DDL: drop and recreate with canonical schema (KL-1) |
 | v13     | Add `document_type` + `spec_level` columns and indexes for spec-doc indexing and document-type scoring (Spec 126) |
-| v14     | Follow-up schema updates after v13 (current schema constant) |
+| v14     | Follow-up schema updates after v13                                                           |
+| v15     | Event-based decay columns (spec 136), HVR integration fields (spec 137), phase-aware scoring columns (spec 139) — **current schema** |
 
 **Spec 126 hardening references:**
 - `tests/spec126-full-spec-doc-indexing.vitest.ts`: validates 8 spec document types, scoring multipliers and new intents.
@@ -339,13 +362,14 @@ IDF = log((N - n(qi) + 0.5) / (n(qi) + 0.5) + 1)
 
 ### Hybrid Search Features
 
-**Triple-Source Fusion**:
+**4-Channel Fusion**:
 ```javascript
 // unifiedSearch() orchestrates:
 // 1. Vector search (semantic similarity)
 // 2. BM25/FTS5 search (keyword matching)
 // 3. Graph search (relationship traversal, 1.5x boost)
-// -> RRF fusion -> Sorted by combined score
+// 4. SGQS / Skill Graph search (structural discovery)
+// -> RRF + Adaptive Fusion -> MMR diversity -> Sorted by combined score
 ```
 
 **Spec Folder Scoping**:
@@ -358,6 +382,7 @@ hybridSearch("authentication", { specFolder: "specs/007-auth" })
 - If BM25 disabled: Vector + FTS5 only
 - If RRF disabled: Vector-only with basic metadata
 - If no graph: Vector + Lexical fusion
+- If no SGQS/Skill Graph: Vector + Lexical + Co-activation (3-channel fallback)
 
 ### Intent Classification Features
 

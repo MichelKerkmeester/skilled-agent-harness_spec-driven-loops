@@ -14,7 +14,7 @@ importance_tier: "normal"
 
 > Your AI assistant forgets everything between sessions. Not anymore.
 
-Unified documentation and context preservation skill providing spec folder workflows, memory management and MCP-powered semantic search with 6-channel hybrid retrieval and graph intelligence.
+Unified documentation and context preservation skill providing spec folder workflows, memory management and MCP-powered semantic search with 4-channel hybrid retrieval (Vector, FTS5, BM25, Skill Graph) and graph intelligence.
 
 ---
 
@@ -52,7 +52,7 @@ AI coding assistants are powerful but stateless. Every session starts from zero:
 
 ### The Solution
 
-Spec Kit adds the missing layers: persistent memory, enforced documentation and cross-session context. Documentation is not optional. Gate 3 blocks file changes without a spec folder. Memory persists across sessions, models, projects and tools.
+Spec Kit adds the missing layers: persistent memory, enforced documentation and cross-session context. Documentation is not optional. Gate 3 blocks file changes without a spec folder. Memory persists across sessions, models, projects, tools and runtimes.
 
 Cross-workflow alignment is mandatory:
 - All code created or updated must fully align with `sk-code--opencode`.
@@ -66,8 +66,8 @@ Cross-workflow alignment is mandatory:
 | --- | --- | --- |
 | **Decision Archaeology** | "Why did we build it this way?" | Causal graph traces decision lineage |
 | **Token Usage** | Re-send same memories every query | Session deduplication saves ~50% on follow-ups |
-| **Context** | Re-explain everything every session | Memory persists across sessions, models and projects |
-| **Search** | Vector only | 6-channel hybrid with adaptive RRF fusion |
+| **Context** | Re-explain everything every session | Memory persists across sessions, models, projects, tools and runtimes |
+| **Search** | Vector only | 4-channel hybrid with adaptive RRF fusion |
 | **Ranking** | Score order | MMR diversity reranking + evidence gap detection |
 | **Documentation** | "I'll document later" (never happens) | Gate 3 enforces spec folders on every file change |
 | **Quality Gates** | Trust the AI did it right | PREFLIGHT/POSTFLIGHT validation at operation boundaries |
@@ -97,7 +97,7 @@ Cross-workflow alignment is mandatory:
 | --- | --- |
 | **MCP Tools** | 22 (memory, checkpoint, causal, drift, learning) |
 | **Templates** | 10 (specs, plans, research, decisions) |
-| **Commands** | 12 (7 spec_kit + 5 memory) |
+| **Commands** | 13 (8 spec_kit + 5 memory) |
 | **Importance Tiers** | 6 (constitutional to deprecated) |
 | **Memory Types** | 9 (working, episodic, procedural, semantic, etc.) |
 | **ANCHOR Coverage** | 533 anchors across 78 skill READMEs |
@@ -182,7 +182,7 @@ When in doubt, choose the higher level.
 The cognitive memory engine. It provides 22 MCP tools over stdio for semantic search, memory management, causal graph operations, checkpoints and session learning.
 
 **Key characteristics after spec 138:**
-- 6-channel scatter-gather search pipeline
+- 4-channel scatter-gather search pipeline
 - Adaptive RRF fusion with 7 intent profiles
 - Unified graph search (causal edges + skill graph via SGQS)
 - MMR diversity reranking with intent-mapped lambda
@@ -198,11 +198,11 @@ CLI tools for day-to-day spec kit operations:
 
 | Script | Purpose |
 | --- | --- |
-| `spec/create.sh` | Create feature branch and spec folder |
-| `spec/validate.sh` | Validation orchestrator (13 rules) |
+| `spec/create.sh` | Create feature branch and spec folder; `--phase` creates parent + child phase folders |
+| `spec/validate.sh` | Validation orchestrator (13 rules); `--recursive` validates parent and all child phase folders |
 | `spec/calculate-completeness.sh` | Calculate completeness percentage |
 | `spec/check-placeholders.sh` | Verify zero placeholders after upgrade |
-| `spec/recommend-level.sh` | Recommend documentation level |
+| `spec/recommend-level.sh` | Recommend documentation level with phased decomposition detection |
 | `spec/archive.sh` | Archive completed spec folders |
 | `memory/generate-context.ts` | Memory file generation (source) |
 | `templates/compose.sh` | Compose level templates |
@@ -292,7 +292,7 @@ The memory system implements biologically-inspired cognitive features:
 
 | Basic Chat Logs | This Memory System |
 | --- | --- |
-| Search: Ctrl+F (text only) | Search: 6-channel hybrid with adaptive RRF fusion |
+| Search: Ctrl+F (text only) | Search: 4-channel hybrid with adaptive RRF fusion |
 | Prioritization: None | Prioritization: 6-tier importance (constitutional to deprecated) |
 | Token Efficiency: Load everything | Token Efficiency: ANCHOR format (93% savings) + session dedup (~50%) |
 | Recovery: Hope you backed up | Recovery: Checkpoints = undo button for your index |
@@ -403,7 +403,7 @@ All tools use the `spec_kit_memory_` prefix in MCP calls (e.g., `spec_kit_memory
 
 | Tool | Purpose |
 | --- | --- |
-| `memory_search` | 6-channel hybrid search with adaptive RRF, MMR reranking and evidence gap detection |
+| `memory_search` | 4-channel hybrid search with adaptive RRF, MMR reranking and evidence gap detection |
 | `memory_match_triggers` | Fast keyword matching (<50ms) for Gate 1 context surfacing |
 | `memory_list` | Browse stored memories with pagination |
 | `memory_stats` | System statistics and folder rankings |
@@ -473,6 +473,7 @@ After spec 138, `memory_context` with `SPECKIT_GRAPH_UNIFIED=true` bridges causa
 | `/spec_kit:resume` | 4 | Resume previous session |
 | `/spec_kit:handover` | 4 | Create session handover document |
 | `/spec_kit:debug` | 5 | Delegate debugging to sub-agent |
+| `/spec_kit:phase` | — | Decompose complex features into parent and child phase folders |
 
 ### Memory Commands
 

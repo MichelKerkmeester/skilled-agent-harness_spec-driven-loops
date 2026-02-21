@@ -82,7 +82,7 @@ Two custom-built systems fix this: a **spec-kit documentation framework** and a 
 ┌──────────────────────────────────────────────────────────────┐
 │  SPEC KIT (documentation framework)                          │
 │  specs/###-feature/  ─  memory/  ─  scratch/                 │
-│  4 levels ─ 84 templates ─ 13 validation rules               │
+│  4 levels ─ 81 templates ─ 13 validation rules               │
 └──────────────────────────────────────────────────────────────┘
 ```
 
@@ -92,7 +92,7 @@ Everything connects. Memory files live *inside* spec folders. Gates enforce docu
 
 ### Recent Platform Highlights
 
-- **Hybrid RAG Fusion (spec 138)**: The memory engine now activates all three retrieval channels simultaneously (Vector, BM25, FTS5) and fuses results via Reciprocal Rank Fusion. A 4th channel (Skill Graph / SGQS) adds graph traversal results. MMR diversity pruning, Transparent Reasoning Module confidence gating, multi-query expansion, and AST-based section extraction complete the Unified Context Engine.
+- **Hybrid RAG Fusion (spec 138)**: The memory engine now activates all three retrieval channels simultaneously (Vector, BM25, FTS5) and fuses results via Reciprocal Rank Fusion. A 4th channel (Skill Graph / SGQS) adds graph traversal results. MMR diversity pruning, Transparent Reasoning Module confidence gating, multi-query expansion and AST-based section extraction complete the Unified Context Engine.
 - **Skill Graph decomposition (spec 138)**: All 10 monolithic SKILL.md files decomposed into wikilink-connected node files with YAML frontmatter. An in-process SGQS query layer (Neo4j-style) resolves `[[node]]` wikilinks and returns traversal subgraphs without any external database dependency.
 - **Gemini CLI is the 4th runtime**: 8 agents, 19 TOML command wrappers, 10 skill symlinks and 3 MCP servers. Agents optimized for gemini-3.1-pro within a 400K effective token window.
 - **Spec documents are indexed and searchable**: spec folder docs (`spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `decision-record.md`, `implementation-summary.md`, `research.md`, `handover.md`) surface via `find_spec` and `find_decision` intents.
@@ -153,7 +153,7 @@ opencode
 ## 3. 📝 SPEC KIT DOCUMENTATION
 <!-- ANCHOR:spec-kit-documentation -->
 
-4 levels, 84 templates, 13 validation rules.
+4 levels, 81 templates, 13 validation rules.
 
 Every feature leaves a trail. Not for bureaucracy. For your future self, your team and the AI that picks up where you left off.
 
@@ -168,7 +168,7 @@ Every feature leaves a trail. Not for bureaucracy. For your future self, your te
 
 ### CORE + ADDENDUM Template Architecture
 
-**84 templates** across the v2.2 composition model. CORE templates are shared across levels. ADDENDUM templates extend them. Update CORE once and all levels inherit. Zero duplication.
+**81 templates** across the v2.2 composition model. CORE templates are shared across levels. ADDENDUM templates extend them. Update CORE once and all levels inherit. Zero duplication.
 
 ```
 Level 1:  [CORE templates]                    -> 4 files
@@ -220,7 +220,7 @@ Exit code 0 = pass. Exit code 2 = must fix.
 
 > *Remember everything. Surface what matters. Keep it private.*
 
-Your AI assistant forgets everything between sessions. The Memory Engine fixes this with 25 MCP tools across 7 architectural layers: 5-source indexing, 7-intent retrieval routing, schema v15 metadata (`document_type`, `spec_level`), and document-type scoring. The Unified Context Engine (spec 138) adds a 4-channel hybrid retrieval pipeline with RRF fusion, MMR diversity pruning, confidence gating, and in-process Skill Graph traversal.
+Your AI assistant forgets everything between sessions. The Memory Engine fixes this with 25 MCP tools across 7 architectural layers: 5-source indexing, 7-intent retrieval routing, schema v15 metadata (`document_type`, `spec_level`) and document-type scoring. The Unified Context Engine (spec 138) adds a 4-channel hybrid retrieval pipeline with RRF fusion, MMR diversity pruning, confidence gating and in-process Skill Graph traversal.
 
 ### 5-Source Discovery Pipeline
 
@@ -291,13 +291,13 @@ Four retrieval channels fuse via Reciprocal Rank Fusion (RRF) in the Unified Con
 | **FTS5 Full-Text**| SQLite full-text search               | Exact substring matching, structured queries      |
 | **Skill Graph**   | SGQS wikilink traversal (in-process)  | Procedure-level skill context, graph subgraphs    |
 
-**Post-fusion processing**: MMR diversity pruning (reduces redundant results by >= 30%), Transparent Reasoning Module confidence gating (blocks results below `confidence_threshold=0.65`, never returns empty set), multi-query expansion (>= 3 query variants for vocabulary mismatch resolution), and AST-based document section extraction.
+**Post-fusion processing**: MMR diversity pruning (reduces redundant results by >= 30%), Transparent Reasoning Module confidence gating (blocks results below `confidence_threshold=0.65`, never returns empty set), multi-query expansion (>= 3 query variants for vocabulary mismatch resolution) and AST-based document section extraction.
 
 **Latency target**: p95 <= 120ms with all four channels active on the v15 SQLite schema. Zero schema migrations required.
 
 **4 embedding providers**: Voyage AI, OpenAI, HuggingFace Local (free, default), auto-detection.
 
-**Spec126 Hardening**: import-path fixes, `specFolder` filtering, metadata preservation, vector metadata plumbing, and stable causal edge semantics.
+**Spec126 Hardening**: import-path fixes, `specFolder` filtering, metadata preservation, vector metadata plumbing and stable causal edge semantics.
 
 **Intent-Aware Scoring**: weights adjust for 7 task types.
 
@@ -437,7 +437,7 @@ The `@debug` agent uses a 4-phase methodology: Observe, Analyze, Hypothesize, Fi
 ## 6. ⌨️ COMMAND ARCHITECTURE
 <!-- ANCHOR:command-architecture -->
 
-19 commands across 4 namespaces with 25 YAML assets.
+20 commands across 4 namespaces with 25 YAML assets.
 
 Commands are user-triggered workflows built on a two-layer architecture. Markdown entry points route to YAML execution engines.
 
@@ -453,7 +453,7 @@ Commands are user-triggered workflows built on a two-layer architecture. Markdow
 | Enforcement       | No enforcement       | Gates prevent skipping   |
 | Skill Loading     | Manual skill loading | Auto-loads what's needed |
 
-### spec_kit/ (7 commands)
+### spec_kit/ (8 commands)
 
 All support `:auto` and `:confirm` mode suffixes.
 
@@ -462,6 +462,7 @@ All support `:auto` and `:confirm` mode suffixes.
 | `/spec_kit:complete`  | Full workflow: spec -> plan -> implement -> verify     |
 | `/spec_kit:plan`      | Planning only, no implementation                       |
 | `/spec_kit:implement` | Execute an existing plan                               |
+| `/spec_kit:phase`     | Decompose a spec into phased child folders             |
 | `/spec_kit:research`  | Technical investigation with evidence gathering        |
 | `/spec_kit:debug`     | Delegate debugging to a fresh-perspective sub-agent    |
 | `/spec_kit:resume`    | Continue a previous session (auto-loads memory)        |
@@ -607,7 +608,7 @@ Dual-threshold validation: `READINESS = (confidence >= 0.70) AND (uncertainty <=
 Runs `skill_advisor.py` against your request. Confidence >= 0.8 means the skill *must* be loaded. This ensures the right domain expertise is always in context.
 
 **Gate 3: Spec Folder** (HARD BLOCK)
-If the request involves *any* file modification, the AI must ask: A) Use existing? B) Create new? C) Update related? D) Skip? No file changes without an answer.
+If the request involves *any* file modification, the AI must ask: A) Use existing? B) Create new? C) Update related? D) Skip? E) Phase folder — target a specific phase child (e.g., `specs/NNN-name/001-phase/`)? No file changes without an answer.
 
 **Post-Execution Rules:**
 - **Memory Save**: `generate-context.js` is mandatory (no manual memory file creation)
@@ -704,7 +705,7 @@ Every component follows standardized patterns for customization:
 
 **Custom Commands**: two-layer (.md + .yaml). Optimize to <=600 lines.
 
-**Template System**: 84 templates across CORE + ADDENDUM v2.2. Update once, inherit everywhere. 13 validation rules ensure compliance.
+**Template System**: 81 templates across CORE + ADDENDUM v2.2. Update once, inherit everywhere. 13 validation rules ensure compliance.
 
 **Philosophy**: Convention over configuration. Templates provide structure. You own the content. The framework adapts to your project.
 

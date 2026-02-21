@@ -81,7 +81,6 @@ sk-documentation/
 ├── assets/
 │   ├── documentation/                # Document templates
 │   │   ├── frontmatter_templates.md  # Frontmatter validation (11 types)
-│   │   ├── hvr_rules.md              # HVR (Human-Verified Results) validation rules
 │   │   ├── install_guide_template.md # 5-phase install guide template
 │   │   ├── llmstxt_templates.md      # llms.txt generation templates
 │   │   └── readme_template.md        # README structure (15 sections + HVR)
@@ -101,6 +100,7 @@ sk-documentation/
 │   └── template_rules.json           # Template enforcement rules
 ├── references/                       # Domain knowledge
 │   ├── core_standards.md             # Filename conventions, structure
+│   ├── hvr_rules.md                  # Human Voice Rules (HVR) full ruleset
 │   ├── optimization.md               # AI-friendly content transforms
 │   ├── validation.md                 # DQI scoring criteria
 │   ├── workflows.md                  # Execution modes

@@ -66,6 +66,15 @@ bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/###-feature-
 
 <!-- /ANCHOR:workflow-notes -->
 
+## Phase Decomposition
+<!-- ANCHOR:phase -->
+
+Phase decomposition is strongly recommended for Level 3+ complexity. Governance-heavy work benefits significantly from phased ordering, enabling approval checkpoints and compliance verification at each stage. Use Gate 3 Option E to target a specific phase child and `/spec_kit:phase` to create the phase structure.
+
+See the Phase System in the [main templates README](../README.md#phase-system) for full details.
+
+<!-- /ANCHOR:phase -->
+
 ## Related
 <!-- ANCHOR:related -->
 

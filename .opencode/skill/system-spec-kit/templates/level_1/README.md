@@ -51,6 +51,15 @@ cp .opencode/skill/system-spec-kit/templates/level_1/implementation-summary.md s
 
 <!-- /ANCHOR:quick-start -->
 
+## Phase Decomposition
+<!-- ANCHOR:phase -->
+
+Phase decomposition is typically not needed at Level 1. Most Level 1 tasks are small enough to complete in a single pass without phased ordering.
+
+If a task unexpectedly grows beyond Level 1 scope, consider escalating to Level 2+ with phase decomposition rather than splitting a Level 1 spec. See the Phase System in the [main templates README](../README.md#phase-system).
+
+<!-- /ANCHOR:phase -->
+
 ## Related
 <!-- ANCHOR:related -->
 

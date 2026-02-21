@@ -45,6 +45,9 @@ The scoring module provides multi-factor algorithms for ranking memories in the 
 | **Folder Scoring** | Rank spec folders by recency, activity and importance |
 | **Confidence Tracking** | User feedback loop for memory promotion |
 | **FSRS Decay** | Spaced repetition formula for retrievability |
+| **Event-Based Decay** | Event-driven decay model replacing pure time-based decay (Spec 136) |
+| **HVR Integration** | Human Validation Rate integration for confidence-weighted scoring (Spec 137) |
+| **Phase-Aware Scoring** | Phase-context scoring adjustments for spec phase workflows (Spec 139) |
 
 ### Module Statistics
 
@@ -106,6 +109,37 @@ The scoring module provides multi-factor algorithms for ranking memories in the 
 ### Document-Type Multipliers
 
 The scoring layer includes document-type multipliers for 11 document types (for example `spec`, `plan`, `tasks`, `checklist`, `decision-record`, `implementation-summary`, `memory`, `readme`, `scratch`, `constitutional`, `research`). These multipliers are used by folder scoring and document retrieval ranking.
+
+### Event-Based Decay Model (Spec 136)
+
+The scoring module supports an event-based decay model that replaces pure time-based decay with event-driven signals. Instead of decaying scores solely based on elapsed time, the model tracks meaningful events (access, citation, validation) and adjusts decay rates based on event frequency and recency. This provides more accurate relevance scoring for memories that are actively referenced versus those that are merely recent.
+
+**Key properties:**
+- Decay triggered by event gaps rather than wall-clock time
+- Event types: `access`, `citation`, `validation`, `modification`
+- Memories with frequent events decay slower; idle memories decay faster
+- Backward-compatible with FSRS decay (falls back when no event data available)
+
+### Human Validation Rate (HVR) Integration (Spec 137)
+
+HVR integration extends the confidence tracking system by incorporating human validation signals into composite scoring. The HVR score reflects how often users confirm a memory as useful versus not useful, creating a feedback-weighted confidence metric.
+
+**Key properties:**
+- HVR score = validated_useful_count / total_validation_count
+- Integrates with the Confidence Tracking factor in composite scoring
+- High-HVR memories receive score boosts during retrieval
+- Low-HVR memories are candidates for demotion or deprecation
+- Works alongside the existing promotion pipeline in `confidence-tracker.ts`
+
+### Phase-Aware Scoring (Spec 139)
+
+Phase-aware scoring adjusts retrieval relevance based on the active spec phase context. When a user is working within a specific phase of a phased spec folder, memories belonging to that phase (or its parent/sibling phases) receive scoring adjustments.
+
+**Key properties:**
+- Phase context derived from spec folder structure (e.g., `003-parent/001-phase-child`)
+- Same-phase memories receive a boost; unrelated-phase memories receive a penalty
+- Parent-phase memories are boosted at a lower factor than same-phase
+- Phase columns added in schema v15 for persistent phase metadata
 
 <!-- /ANCHOR:key-concepts -->
 

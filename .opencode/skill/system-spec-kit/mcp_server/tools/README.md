@@ -36,13 +36,14 @@ This section provides an overview of the Tools: Dispatch Layer directory.
 ## 2. IMPLEMENTED STATE
 
 
-- Current footprint: 22 tools across 5 dispatch modules.
+- Current footprint: 25 tools across 5 dispatch modules.
 - Routing model: first dispatcher with `TOOL_NAMES.has(name)` handles the call.
 - `parseArgs<T>()` is the single protocol-boundary cast point.
 - Tool args include recent fields such as:
   - `includeSpecDocs` for `memory_index_scan` (Spec 126)
   - `asyncEmbedding` for `memory_save`
   - cognitive/intent-related flags on search/context flows
+  - `memory_skill_graph_query` for SGQS Cypher-lite graph queries (spec 138)
 
 
 <!-- /ANCHOR:implemented-state -->

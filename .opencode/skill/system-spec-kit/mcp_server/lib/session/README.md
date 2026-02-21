@@ -50,6 +50,7 @@ The session layer provides all session-related operations for the Spec Kit Memor
 | **Crash Recovery** | Immediate SQLite persistence + CONTINUE_SESSION.md generation |
 | **Token Savings** | ~50% reduction on follow-up queries |
 | **State Persistence** | Zero data loss on crash via immediate saves |
+| **Phase Awareness** | Session context includes phase metadata for phase-based specs (spec 139) |
 
 <!-- /ANCHOR:overview -->
 
@@ -304,4 +305,4 @@ console.log(getInterruptedSessions());
 
 ---
 
-*Documentation version: 1.7.2 | Last updated: 2026-02-16 | Session layer v1.2.0*
+*Documentation version: 1.7.3 | Last updated: 2026-02-21 | Session layer v1.2.0*

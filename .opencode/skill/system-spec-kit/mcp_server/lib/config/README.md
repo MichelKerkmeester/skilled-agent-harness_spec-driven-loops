@@ -134,6 +134,7 @@ config/
 | `memory-types.ts` | Type definitions, half-lives, path/keyword patterns |
 | `type-inference.ts` | Multi-source inference with confidence scoring |
 | `skill-ref-config.ts` | Skill reference configuration management |
+| Feature flags | 16 primary flags control subsystem behavior (see env configuration) |
 
 <!-- /ANCHOR:structure -->
 
@@ -248,4 +249,4 @@ const validation = validateInferredType('declarative', '/specs/scratch/temp.md')
 
 ---
 
-*Documentation version: 1.8.0 | Last updated: 2026-02-16*
+*Documentation version: 1.8.1 | Last updated: 2026-02-21*

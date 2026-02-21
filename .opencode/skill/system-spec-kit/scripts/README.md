@@ -56,7 +56,7 @@ Primary script directories:
 
 <!-- /ANCHOR:inventory-snapshot -->
 <!-- ANCHOR:post-spec124128129-workflow -->
-## 3. POST-SPEC124/128/129 WORKFLOW
+## 3. POST-SPEC124/128/129/136-139 WORKFLOW
 
 
 For spec-level upgrades and memory-safe docs flow:
@@ -67,6 +67,11 @@ For spec-level upgrades and memory-safe docs flow:
 5. Run `spec/check-completion.sh` before claiming completion.
 
 Anchor requirements introduced in this workflow are validated by `rules/check-anchors.sh` and enforced through `spec/validate.sh`.
+
+Phase workflow additions (specs 138-139):
+- `spec/create.sh --phase` supports phase-based spec folder decomposition.
+- `spec/validate.sh --recursive` validates parent and child phase folders.
+- `sgqs/` directory contains SGQS graph builder and type definitions for skill graph queries.
 
 
 <!-- /ANCHOR:post-spec124128129-workflow -->
@@ -107,4 +112,5 @@ node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js /tm
 - `loaders/README.md`
 - `renderers/README.md`
 - `lib/README.md`
+- `sgqs/` - SGQS graph builder and types for skill graph queries (spec 138)
 <!-- /ANCHOR:related-readmes -->

@@ -94,6 +94,9 @@ The cognitive subsystem is the "brain" of the memory system. It determines which
 | **Testing Effect**           | Low retrievability = greater boost on success                                         | Harder recalls strengthen more       |
 | **Automatic Archival**       | 90-day threshold with background job (2hr interval)                                   | Lifecycle management                 |
 | **Document-Aware Retrieval** | Uses indexed doc metadata (`spec`, `plan`, `decision_record`, etc.) in ranking inputs | Better relevance for spec workflows  |
+| **Event-Based Decay**        | Event-driven decay model (spec 136) replaces fixed per-turn decay with event triggers | Context-sensitive memory management  |
+| **Session-Attention Boost**  | `SPECKIT_SESSION_BOOST` boosts scores for memories active in the current session       | Recency-aware retrieval              |
+| **Pressure-Aware Mode**      | `SPECKIT_PRESSURE_POLICY` enables token pressure monitoring for context window management | Prevents context overflow          |
 
 ### Requirements
 
@@ -1048,6 +1051,10 @@ Note: `temporal-contiguity.js` in dist/ is **not** orphaned. It is compiled from
 | `SPECKIT_COACTIVATION`    | true    | Enable spreading activation             |
 | `SPECKIT_ARCHIVAL`        | true    | Enable background archival job          |
 | `SPECKIT_WORKING_MEMORY`  | true    | Enable working memory sessions          |
+| `SPECKIT_SESSION_BOOST`   | false   | Enable session-based score boost from working_memory attention signals |
+| `SPECKIT_PRESSURE_POLICY` | false   | Enable pressure-aware mode for token budget monitoring and context window management |
+| `SPECKIT_EXTRACTION`      | false   | Enable post-tool extraction pipeline for automated memory creation |
+| `SPECKIT_REDACTION_GATE`  | true    | Enable PII/secret redaction gate before memory insert |
 
 <!-- /ANCHOR:related -->
 

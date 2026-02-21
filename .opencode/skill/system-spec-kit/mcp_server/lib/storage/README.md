@@ -50,6 +50,8 @@ The storage layer provides all persistence operations for the Spec Kit Memory MC
 | **Checkpoints** | Gzip-compressed state snapshots for rollback |
 | **Atomic Transactions** | File write + index insert with pending file recovery |
 | **Access Tracking** | Batched accumulator updates minimize I/O while tracking usage for relevance boost |
+| **Schema v15** | Current database schema version (v15) with skill graph storage tables |
+| **Skill Graph Storage** | Persists SGQS skill graph nodes, edges, and metadata for graph-based retrieval |
 
 <!-- /ANCHOR:overview -->
 
@@ -395,4 +397,4 @@ console.log(getUnindexedDocuments());
 
 ---
 
-*Documentation version: 1.7.2 | Last updated: 2026-02-16 | Storage layer v1.2.0*
+*Documentation version: 1.7.3 | Last updated: 2026-02-21 | Storage layer v1.2.0 | Schema v15*
