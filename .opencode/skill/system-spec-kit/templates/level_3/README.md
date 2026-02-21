@@ -12,7 +12,20 @@ importance_tier: "normal"
 
 Use when implementation needs explicit architecture and risk management.
 
-## When to Use
+## TABLE OF CONTENTS
+<!-- ANCHOR:table-of-contents -->
+
+- [1. OVERVIEW](#1--overview)
+- [2. REQUIRED FILES](#2--required-files)
+- [3. LEVEL 3 ADDITIONS](#3--level-3-additions)
+- [4. QUICK START](#4--quick-start)
+- [5. WORKFLOW NOTES](#5--workflow-notes)
+- [6. PHASE DECOMPOSITION](#6--phase-decomposition)
+- [7. RELATED](#7--related)
+
+<!-- /ANCHOR:table-of-contents -->
+
+## 1. OVERVIEW
 <!-- ANCHOR:overview -->
 
 - Typical size is 500+ LOC.
@@ -23,7 +36,7 @@ Use Level 3+ if governance and formal approvals are required.
 
 <!-- /ANCHOR:overview -->
 
-## Required Files
+## 2. REQUIRED FILES
 <!-- ANCHOR:files -->
 
 - `spec.md`
@@ -35,7 +48,7 @@ Use Level 3+ if governance and formal approvals are required.
 
 <!-- /ANCHOR:files -->
 
-## Level 3 Additions
+## 3. LEVEL 3 ADDITIONS
 <!-- ANCHOR:additions -->
 
 - Architecture-focused sections in spec and plan templates.
@@ -44,7 +57,7 @@ Use Level 3+ if governance and formal approvals are required.
 
 <!-- /ANCHOR:additions -->
 
-## Quick Start
+## 4. QUICK START
 <!-- ANCHOR:quick-start -->
 
 ```bash
@@ -55,7 +68,7 @@ bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/###-feature-
 
 <!-- /ANCHOR:quick-start -->
 
-## Workflow Notes
+## 5. WORKFLOW NOTES
 <!-- ANCHOR:workflow-notes -->
 
 - Keep `decision-record.md` updated as decisions are made.
@@ -64,7 +77,7 @@ bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/###-feature-
 
 <!-- /ANCHOR:workflow-notes -->
 
-## Phase Decomposition
+## 6. PHASE DECOMPOSITION
 <!-- ANCHOR:phase -->
 
 Phase decomposition is recommended for Level 3 tasks exceeding 500 LOC across multiple subsystems. Breaking large architectural work into ordered phases improves delivery control and risk management. Use Gate 3 Option E to target a specific phase child and `/spec_kit:phase` to create the phase structure.
@@ -73,7 +86,7 @@ See the Phase System in the [main templates README](../README.md#phase-system) f
 
 <!-- /ANCHOR:phase -->
 
-## Related
+## 7. RELATED
 <!-- ANCHOR:related -->
 
 - `../level_2/README.md`

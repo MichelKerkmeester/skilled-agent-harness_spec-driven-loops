@@ -44,14 +44,11 @@ trigger_phrases:
 | Script | Language | Purpose |
 |--------|----------|---------|
 | `skill_advisor.py` | Python 3.6+ | Analyzes user requests, recommends skills via keyword matching, synonym expansion, intent detection and confidence scoring. Powers Gate 2. |
-| `agents/activate-provider.sh` | Bash | Activates `copilot` or `chatgpt` profile into `.opencode/agent/*.md` with backup, verification and rollback. |
-| `agents/provider-status.sh` | Bash | Reports active provider state by comparing runtime agent files against profile folders. |
 
 ### Supporting Files
 
 | File | Purpose |
 |------|---------|
-| `agents/README.md` | Detailed operator guide for provider switching logic and rollback behavior |
 | `SET-UP_GUIDE.md` | Customization guide for adapting `skill_advisor.py` to your project |
 | `README.md` | This documentation |
 
@@ -59,9 +56,11 @@ trigger_phrases:
 
 | Component | Count | Description |
 |-----------|-------|-------------|
-| Stop Words | ~60 | Filtered from queries for cleaner matching |
-| Synonym Mappings | ~25 | Expand user intent to technical terms |
-| Intent Boosters | ~80 | Direct keyword-to-skill mappings |
+| Stop Words | 106 | Filtered from queries for cleaner matching |
+| Synonym Mappings | 86 | Expand user intent to technical terms |
+| Intent Boosters | 129 | Direct keyword-to-skill mappings |
+| Multi-Skill Boosters | 29 | Ambiguous keywords mapped to multiple skills |
+| Phrase Intent Boosters | 14 | Multi-token phrases with high-signal routing boosts |
 | Command Bridges | 2 | Slash commands exposed as pseudo-skills |
 
 ### Requirements
@@ -444,24 +443,25 @@ The script requires customization for each project. See [SET-UP_GUIDE.md](./SET-
 
 | Component | Location | Purpose |
 |-----------|----------|---------|
-| `SKILLS_DIR` | Line 17 | Path to skills directory |
-| `STOP_WORDS` | Lines 21-47 | Words filtered from queries |
-| `SYNONYM_MAP` | Lines 50-100 | User intent to technical terms |
-| `INTENT_BOOSTERS` | Lines 108-252 | Keyword to skill direct mappings |
-| `MULTI_SKILL_BOOSTERS` | Lines 255-270 | Ambiguous keyword to multi-skill |
-| `parse_frontmatter` | Line 273 | YAML frontmatter parser |
-| `get_skills` | Line 292 | Skill discovery function |
-| `analyze_request` | Line 328 | Main analysis function |
+| `SCRIPT_DIR`, `SKILLS_DIR` | Constant definitions | Resolve script and skills directory paths |
+| `STOP_WORDS` | Constant definition | Words filtered from queries |
+| `SYNONYM_MAP` | Constant definition | User intent to technical terms |
+| `INTENT_BOOSTERS` | Constant definition | Keyword-to-skill direct mappings |
+| `MULTI_SKILL_BOOSTERS` | Constant definition | Ambiguous keywords mapped to multiple skills |
+| `PHRASE_INTENT_BOOSTERS` | Constant definition | Multi-token phrase routing boosts |
+| `parse_frontmatter` | Function definition | YAML frontmatter parser |
+| `get_skills` | Function definition | Skill discovery function |
+| `analyze_request` | Function definition | Main analysis function |
 
 ### SKILLS_DIR Configuration
 
 ```python
-# Default: relative to current working directory
-PROJECT_ROOT = os.getcwd()
-SKILLS_DIR = os.path.join(PROJECT_ROOT, ".opencode/skill")
+# Resolve from this script's real filesystem location
+SCRIPT_DIR = os.path.dirname(os.path.realpath(__file__))
+SKILLS_DIR = os.path.dirname(SCRIPT_DIR)
 ```
 
-**Note:** The script expects to be run from the project root directory.
+**Note:** The script resolves paths from its own location, so it does not require running from project root.
 
 ### Adding Custom Synonyms
 
@@ -743,17 +743,17 @@ A: No, the script uses word tokenization. Regex patterns will be treated as lite
 
 | Document | Purpose |
 |----------|---------|
-| [agents/README.md](./agents/README.md) | Detailed activation, rollback and status behavior for provider switching |
+| [skill_advisor.py](./skill_advisor.py) | Source implementation for routing and scoring logic |
 | [SET-UP_GUIDE.md](./SET-UP_GUIDE.md) | Step-by-step customization guide for `skill_advisor.py` |
-| [Changelog](../changelog/02--skill-advisor/) | Version history and changes |
-| [AGENTS.md](../../AGENTS.md) | Framework rules including Gate 2 skill routing |
+| [Changelog](../../changelog/05--skill-advisor/) | Version history and changes |
+| [AGENTS.md](../../../AGENTS.md) | Framework rules including Gate 2 skill routing |
 
 ### Skill System
 
 | Resource | Purpose |
 |----------|---------|
 | `.opencode/skill/*/SKILL.md` | Individual skill definitions parsed by the advisor |
-| [system-spec-kit README](../skill/system-spec-kit/README.md) | Documentation and memory framework |
-| [sk-documentation SKILL.md](../skill/sk-documentation/SKILL.md) | Documentation standards and templates |
+| [system-spec-kit README](../system-spec-kit/README.md) | Documentation and memory framework |
+| [sk-documentation SKILL.md](../sk-documentation/SKILL.md) | Documentation standards and templates |
 
 <!-- /ANCHOR:related-documents -->

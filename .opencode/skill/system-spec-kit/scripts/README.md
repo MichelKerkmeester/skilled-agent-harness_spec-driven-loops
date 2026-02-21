@@ -48,8 +48,8 @@ Primary script directories:
 - `extractors/` - 11 TypeScript extraction modules plus barrel export
 - `loaders/` - 2 TypeScript loading modules plus barrel export
 - `renderers/` - 2 TypeScript rendering modules plus barrel export
-- `lib/` - 10 TypeScript libraries plus 3 shell helper libraries
-- `evals/` - 9 evaluation scripts (redaction calibration, phase1-5 shadow eval, quality backfill, performance benchmarks, closure metrics, telemetry dashboard, quality legacy remediation, dataset generation)
+- `lib/` - 11 TypeScript libraries plus 3 shell helper libraries
+- `evals/` - 8 evaluation scripts (redaction calibration, phase1-5 shadow eval, quality backfill, performance benchmarks, closure metrics, telemetry dashboard, quality legacy remediation)
 - `kpi/` - shell KPI scripts (`quality-kpi.sh`)
 - `tests/` - JS, shell, and Python test suites for scripts and modules
 

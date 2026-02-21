@@ -39,9 +39,9 @@ Current modules:
 - `memory-crud-list.ts`
 - `memory-crud-stats.ts`
 - `memory-crud-health.ts`
-- `memory-crud-state.ts`
 - `memory-crud-types.ts`
 - `memory-crud-utils.ts`
+- `memory-bulk-delete.ts`
 - `memory-index.ts`
 - `checkpoints.ts`
 - `session-learning.ts`

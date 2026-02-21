@@ -76,6 +76,7 @@ Always read from `assets/templates/` using the Read tool. Never reconstruct temp
 | Data table | `assets/templates/data-table.html` |
 
 If no template matches exactly, use the closest one as a structural reference and adapt.
+Template-first rule: copy/adapt the closest template skeleton before adding custom sections. Do not begin from a blank HTML scaffold unless no template applies.
 
 ### 2b. Rendering Approach Decision
 
@@ -253,7 +254,7 @@ Always include `prefers-reduced-motion` override (see [[rules]], ALWAYS rule 3).
 ## Phase 4 — Deliver
 
 **Input:** Fully styled HTML file
-**Output:** Saved file, opened in browser, quality report
+**Output:** Saved file, validated file, opened-in-browser file, quality report
 
 ### 4a. Run All 9 Quality Checks
 
@@ -270,7 +271,17 @@ mkdir -p .opencode/output/visual
 # diff-review-pr-47-20260220-143022.html
 ```
 
-### 4c. Open in Browser
+Use the `Write` tool to create the HTML artifact at the final path. Do not stop at a markdown summary.
+
+### 4c. Validate the Saved HTML
+
+```bash
+bash .codex/skills/sk-visual-explainer/scripts/validate-html-output.sh .opencode/output/visual/{filename}.html
+```
+
+If validation returns warnings or errors, fix the file and re-run validation until it passes cleanly.
+
+### 4d. Open in Browser
 
 ```bash
 open .opencode/output/visual/{filename}.html
@@ -278,13 +289,16 @@ open .opencode/output/visual/{filename}.html
 xdg-open .opencode/output/visual/{filename}.html
 ```
 
-### 4d. Report
+### 4e. Report
 
 Provide the user with:
 1. File path (absolute)
 2. File size in KB
-3. Quality check results (all 9 passed, or list failures)
-4. Any content that was intentionally truncated or summarized
+3. Validator result (pass, pass-with-warnings, or fail)
+4. Quality check results (all 9 passed, or list failures)
+5. Any content that was intentionally truncated or summarized
+
+If HTML output cannot be generated for any reason, explicitly escalate and ask for direction. Never substitute markdown output when the request was for HTML.
 
 ---
 

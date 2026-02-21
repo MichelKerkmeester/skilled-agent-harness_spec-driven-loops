@@ -12,7 +12,20 @@ importance_tier: "normal"
 
 Use for medium-scope work that needs explicit validation.
 
-## When to Use
+## TABLE OF CONTENTS
+<!-- ANCHOR:table-of-contents -->
+
+- [1. OVERVIEW](#1--overview)
+- [2. REQUIRED FILES](#2--required-files)
+- [3. LEVEL 2 ADDITIONS](#3--level-2-additions)
+- [4. QUICK START](#4--quick-start)
+- [5. WORKFLOW NOTES](#5--workflow-notes)
+- [6. PHASE DECOMPOSITION](#6--phase-decomposition)
+- [7. RELATED](#7--related)
+
+<!-- /ANCHOR:table-of-contents -->
+
+## 1. OVERVIEW
 <!-- ANCHOR:overview -->
 
 - Typical size is 100-499 LOC.
@@ -23,7 +36,7 @@ Escalate to Level 3 for architecture-heavy decisions.
 
 <!-- /ANCHOR:overview -->
 
-## Required Files
+## 2. REQUIRED FILES
 <!-- ANCHOR:files -->
 
 - `spec.md`
@@ -34,7 +47,7 @@ Escalate to Level 3 for architecture-heavy decisions.
 
 <!-- /ANCHOR:files -->
 
-## Level 2 Additions
+## 3. LEVEL 2 ADDITIONS
 <!-- ANCHOR:additions -->
 
 - Verification-first `checklist.md` with P0/P1/P2 priorities.
@@ -43,7 +56,7 @@ Escalate to Level 3 for architecture-heavy decisions.
 
 <!-- /ANCHOR:additions -->
 
-## Quick Start
+## 4. QUICK START
 <!-- ANCHOR:quick-start -->
 
 ```bash
@@ -54,7 +67,7 @@ bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/###-feature-
 
 <!-- /ANCHOR:quick-start -->
 
-## Workflow Notes
+## 5. WORKFLOW NOTES
 <!-- ANCHOR:workflow-notes -->
 
 - Keep checklist current during implementation.
@@ -63,7 +76,7 @@ bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/###-feature-
 
 <!-- /ANCHOR:workflow-notes -->
 
-## Phase Decomposition
+## 6. PHASE DECOMPOSITION
 <!-- ANCHOR:phase -->
 
 Consider phase decomposition for multi-sprint Level 2 tasks where work naturally divides into ordered stages. Use Gate 3 Option E to target a specific phase child and `/spec_kit:phase` to create the phase structure.
@@ -72,7 +85,7 @@ See the Phase System in the [main templates README](../README.md#phase-system) f
 
 <!-- /ANCHOR:phase -->
 
-## Related
+## 7. RELATED
 <!-- ANCHOR:related -->
 
 - `../level_1/README.md`

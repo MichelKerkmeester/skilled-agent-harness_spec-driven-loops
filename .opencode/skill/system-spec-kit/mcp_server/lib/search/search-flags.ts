@@ -3,7 +3,7 @@
 // Default-on runtime gates for search pipeline controls
 // ---------------------------------------------------------------
 
-import { isFeatureEnabled } from '../cognitive/rollout-policy';
+import { isFeatureEnabled } from '../cache/cognitive/rollout-policy';
 
 /**
  * Graph-guided MMR diversity reranking.

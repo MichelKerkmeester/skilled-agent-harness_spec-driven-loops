@@ -161,9 +161,9 @@ updateChartColors(chart, !mq.matches); // initial state
 
 ### anime.js v3.2.2
 
-**CDN URL:**
+**CDN URL (preferred):**
 ```html
-<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.2/anime.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/animejs@3.2.2/lib/anime.min.js"></script>
 ```
 
 **Staggered card reveal:**

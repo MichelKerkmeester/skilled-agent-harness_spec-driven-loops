@@ -195,7 +195,7 @@ stopBackgroundJob();
 | Document | Purpose |
 |----------|---------|
 | [lib/README.md](../README.md) | Parent library overview |
-| [embeddings/README.md](../embeddings/README.md) | Provider chain and fallback |
+| [contracts/README.md](../contracts/README.md) | Shared data contracts used by providers |
 | [search/README.md](../search/README.md) | Vector search using embeddings |
 
 ### External Resources

@@ -43,6 +43,8 @@ JavaScript tests:
 - `test-integration.js`
 - `test-ast-parser.js`
 - `test-naming-migration.js`
+- `test-phase-command-workflows.js`
+- `test-phase-system.js`
 - `test-phase-validation.js`
 - `test-retry-manager-behavioral.js`
 - `test-scripts-modules.js`

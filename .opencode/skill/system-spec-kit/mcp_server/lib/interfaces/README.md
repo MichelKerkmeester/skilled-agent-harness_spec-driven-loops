@@ -72,46 +72,21 @@ interfaces/
 ## 3. FEATURES
 <!-- ANCHOR:features -->
 
-### IEmbeddingProvider Interface
+### Local Runtime Contract
 
-Defines the contract for text-to-vector embedding generation.
+The local module currently exports one runtime contract:
 
-| Method | Purpose |
-|--------|---------|
-| `embed(text)` | Generate embedding for single text |
-| `batchEmbed(texts, options)` | Generate embeddings for multiple texts |
-| `embedQuery(query)` | Embed a search query (may differ from documents) |
-| `embedDocument(document)` | Embed a document for storage |
-| `getDimension()` | Return embedding vector dimension |
-| `getModelName()` | Return model identifier |
-| `getProfile()` | Return provider configuration profile |
-| `isReady()` | Check if provider is initialized |
-| `initialize()` | Perform provider initialization |
-| `validateCredentials()` | Verify API credentials are valid |
-| `getProviderName()` | Return provider name string |
-| `close()` | Clean up resources |
+| Export | Location | Purpose |
+|--------|----------|---------|
+| `IVectorStore` | `vector-store.ts` | Abstract base class for JS runtime consumers; subclasses must implement search/upsert/delete/get/stats/availability/dimension/close |
 
-### IVectorStore Interface
+### Shared-Package Contracts
 
-Defines the contract for vector similarity search and storage.
+`IEmbeddingProvider` and TypeScript-first interface definitions are maintained in `@spec-kit/shared` as part of the shared-package migration.
 
-| Method | Purpose |
-|--------|---------|
-| `search(embedding, topK, options)` | Find similar vectors |
-| `upsert(id, embedding, metadata)` | Insert or update a vector |
-| `delete(id)` | Remove a vector by ID |
-| `get(id)` | Retrieve a vector by ID |
-| `getStats()` | Return storage statistics |
-| `isAvailable()` | Check if store is ready |
-| `getEmbeddingDimension()` | Return expected embedding dimension |
-| `close()` | Clean up resources |
+### Test-Only Mocks
 
-### Mock Implementations
-
-| Class | Features |
-|-------|----------|
-| `MockEmbeddingProvider` | Deterministic embeddings, configurable latency/failure rate |
-| `MockVectorStore` | In-memory storage, cosine similarity search |
+`MockEmbeddingProvider` and `MockVectorStore` are implemented in `../../tests/interfaces.vitest.ts` for interface compliance tests. They are not exported from `lib/interfaces/`.
 
 <!-- /ANCHOR:features -->
 
@@ -120,53 +95,35 @@ Defines the contract for vector similarity search and storage.
 ## 4. USAGE EXAMPLES
 <!-- ANCHOR:usage-examples -->
 
-### Using MockEmbeddingProvider for Tests
+### Implementing a Custom Vector Store
 
 ```typescript
-import { MockEmbeddingProvider } from './interfaces';
+import { IVectorStore } from './vector-store';
 
-// Create mock with custom options
-const provider = new MockEmbeddingProvider({
-  dimension: 1024,
-  latencyMs: 0,      // No simulated delay
-  failRate: 0,       // No random failures
-  seed: 42           // Deterministic output
-});
-
-// Generate embedding
-const embedding = await provider.embed('test query');
-console.log(embedding.length); // 1024
+class InMemoryVectorStore extends IVectorStore {
+  async search(embedding, topK, options) { return []; }
+  async upsert(id, embedding, metadata) { return 1; }
+  async delete(id) { return true; }
+  async get(id) { return null; }
+  async getStats() { return { total: 0, pending: 0, success: 0, failed: 0, retry: 0 }; }
+  isAvailable() { return true; }
+  getEmbeddingDimension() { return 1024; }
+  close() {}
+}
 ```
 
-### Using MockVectorStore for Tests
+### Verifying Base-Class Enforcement
 
 ```typescript
-import { MockVectorStore, MockEmbeddingProvider } from './interfaces';
+import { IVectorStore } from './vector-store';
 
-const store = new MockVectorStore({ embeddingDim: 1024 });
-const provider = new MockEmbeddingProvider({ dimension: 1024 });
-
-// Store a vector
-const embedding = await provider.embed('Hello world');
-await store.upsert(1, embedding, { title: 'Test' });
-
-// Search
-const results = await store.search(embedding, 5);
-console.log(results[0].similarity); // ~100 (self-similarity)
+const base = new IVectorStore();
+await base.search([], 10); // throws: "Method search() must be implemented by subclass"
 ```
 
-### Simulating Failures
+### Using Test-Only Mocks
 
-```typescript
-import { MockEmbeddingProvider } from './interfaces';
-
-const provider = new MockEmbeddingProvider({ failRate: 0.5 });
-provider.setLatency(100); // Add 100ms delay
-
-// 50% of embed() calls will return null
-const result = await provider.embed('test');
-// result is null or Float32Array
-```
+Use `../../tests/interfaces.vitest.ts` when you need the in-memory `MockEmbeddingProvider` or `MockVectorStore` test helpers.
 
 <!-- /ANCHOR:usage-examples -->
 
@@ -180,8 +137,9 @@ const result = await provider.embed('test');
 | Document | Purpose |
 |----------|---------|
 | [../README.md](../README.md) | Parent lib directory overview |
-| [../embeddings/](../embeddings/) | Concrete embedding implementations |
-| [../search/](../search/) | Vector search implementations |
+| [./vector-store.ts](./vector-store.ts) | Local runtime abstract class contract |
+| [../search/vector-index-impl.ts](../search/vector-index-impl.ts) | Main in-repo `IVectorStore` implementation |
+| [../../tests/interfaces.vitest.ts](../../tests/interfaces.vitest.ts) | Interface compliance tests and mock classes |
 
 ### Design Patterns
 

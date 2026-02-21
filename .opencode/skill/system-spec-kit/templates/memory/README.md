@@ -12,14 +12,25 @@ importance_tier: "normal"
 
 Memory context files are generated, not hand-written.
 
-## Overview
+## TABLE OF CONTENTS
+<!-- ANCHOR:table-of-contents -->
+
+- [1. OVERVIEW](#1--overview)
+- [2. HARD RULE](#2--hard-rule)
+- [3. CREATION MODES](#3--creation-modes)
+- [4. FOLDER INTENT](#4--folder-intent)
+- [5. RELATED](#5--related)
+
+<!-- /ANCHOR:table-of-contents -->
+
+## 1. OVERVIEW
 <!-- ANCHOR:overview -->
 
 Use memory files to preserve project state, decisions, blockers, and next steps across sessions.
 
 <!-- /ANCHOR:overview -->
 
-## Hard Rule
+## 2. HARD RULE
 <!-- ANCHOR:warning -->
 
 Never create memory files manually.
@@ -31,7 +42,7 @@ node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js <sp
 
 <!-- /ANCHOR:warning -->
 
-## Creation Modes
+## 3. CREATION MODES
 <!-- ANCHOR:creation -->
 
 ```bash
@@ -53,7 +64,7 @@ Optional immediate index sync:
 
 <!-- /ANCHOR:creation -->
 
-## Folder Intent
+## 4. FOLDER INTENT
 <!-- ANCHOR:contents -->
 
 `templates/memory/` is intentionally empty.
@@ -61,7 +72,7 @@ Actual memory files are written inside active spec folders at `specs/.../memory/
 
 <!-- /ANCHOR:contents -->
 
-## Related
+## 5. RELATED
 <!-- ANCHOR:related -->
 
 - `../../references/memory/memory_system.md`

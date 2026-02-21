@@ -12,7 +12,19 @@ importance_tier: "normal"
 
 Source of truth for Spec Kit documentation templates.
 
-## Overview
+## TABLE OF CONTENTS
+<!-- ANCHOR:table-of-contents -->
+
+- [1. OVERVIEW](#1--overview)
+- [2. STRUCTURE](#2--structure)
+- [3. LEVEL SELECTION](#3--level-selection)
+- [4. WORKFLOW NOTES](#4--workflow-notes)
+- [5. PHASE SYSTEM](#5--phase-system)
+- [6. RELATED](#6--related)
+
+<!-- /ANCHOR:table-of-contents -->
+
+## 1. OVERVIEW
 <!-- ANCHOR:overview -->
 
 Templates follow CORE + ADDENDUM v2.2:
@@ -24,7 +36,7 @@ Use level templates for real work. Do not copy from `core/` or `addendum/` direc
 
 <!-- /ANCHOR:overview -->
 
-## Structure
+## 2. STRUCTURE
 <!-- ANCHOR:structure -->
 
 | Path | Role |
@@ -40,7 +52,7 @@ Use level templates for real work. Do not copy from `core/` or `addendum/` direc
 
 <!-- /ANCHOR:structure -->
 
-## Level Selection
+## 3. LEVEL SELECTION
 <!-- ANCHOR:level-selection -->
 
 | Level | Typical Size | Required Spec Files |
@@ -54,17 +66,17 @@ LOC is guidance, not a hard limit. Risk and complexity can move work up a level.
 
 <!-- /ANCHOR:level-selection -->
 
-## Workflow Notes
+## 4. WORKFLOW NOTES
 <!-- ANCHOR:workflow-notes -->
 
 - Gate 3 spec-folder choice applies before implementation work.
 - `implementation-summary.md` is required for all levels and finalized after implementation.
 - Level 2+ completion uses checklist verification (P0, then P1, then P2).
-- Memory context is saved via `scripts/dist/memory/generate-context.js`, never manual file creation.
+- Memory context is saved via `../scripts/dist/memory/generate-context.js`, never manual file creation.
 
 <!-- /ANCHOR:workflow-notes -->
 
-## Phase System
+## 5. PHASE SYSTEM
 <!-- ANCHOR:phase-system -->
 
 Large specs can be decomposed into ordered phases using the Phase System (Spec 139). Each phase becomes a child spec folder under the parent (e.g., `specs/003-name/001-phase-one/`, `specs/003-name/002-phase-two/`).
@@ -79,12 +91,12 @@ Phase children follow the same level system (1-3+) as standalone specs.
 
 <!-- /ANCHOR:phase-system -->
 
-## Related
+## 6. RELATED
 <!-- ANCHOR:related -->
 
-- `../../references/templates/level_specifications.md`
-- `../../references/templates/template_guide.md`
-- `../../references/validation/validation_rules.md`
-- `../examples/README.md`
+- `../references/templates/level_specifications.md`
+- `../references/templates/template_guide.md`
+- `../references/validation/validation_rules.md`
+- `./examples/README.md`
 
 <!-- /ANCHOR:related -->

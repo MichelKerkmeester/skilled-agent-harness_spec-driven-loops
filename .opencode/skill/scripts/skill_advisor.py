@@ -268,13 +268,15 @@ INTENT_BOOSTERS = {
     # ─────────────────────────────────────────────────────────────────
     "visual": ("sk-visual-explainer", 1.2),
     "visualization": ("sk-visual-explainer", 1.0),
-    "html": ("sk-visual-explainer", 0.8),
+    "html": ("sk-visual-explainer", 1.0),
     "mermaid": ("sk-visual-explainer", 1.5),
-    "architecture": ("sk-visual-explainer", 0.6),
-    "sequence": ("sk-visual-explainer", 0.6),
-    "chart": ("sk-visual-explainer", 0.6),
+    "architecture": ("sk-visual-explainer", 0.8),
+    "sequence": ("sk-visual-explainer", 0.8),
+    "chart": ("sk-visual-explainer", 0.8),
     "timeline": ("sk-visual-explainer", 0.8),
     "dashboard": ("sk-visual-explainer", 0.6),
+    "render": ("sk-visual-explainer", 1.0),
+    "explainer": ("sk-visual-explainer", 0.9),
     "aesthetic": ("sk-visual-explainer", 1.0),
     "recap": ("sk-visual-explainer", 1.2),
 
@@ -380,6 +382,15 @@ PHRASE_INTENT_BOOSTERS = {
     "template level validation": [("system-spec-kit", 0.8)],
     "figma css": [("mcp-figma", 0.8), ("sk-code--web", 0.4)],
     "full stack typescript": [("sk-code--full-stack", 0.8), ("sk-code--opencode", 0.4)],
+    # Explicit visual-explainer intents and path references
+    "sk-visual-explainer": [("sk-visual-explainer", 2.2)],
+    "/visual-explainer": [("sk-visual-explainer", 2.2)],
+    "styled html": [("sk-visual-explainer", 1.8)],
+    "html diagram": [("sk-visual-explainer", 2.0)],
+    "html page": [("sk-visual-explainer", 1.5)],
+    "generate html": [("sk-visual-explainer", 1.2)],
+    ".codex/skills/sk-visual-explainer": [("sk-visual-explainer", 2.8)],
+    ".opencode/skill/sk-visual-explainer": [("sk-visual-explainer", 2.8)],
 }
 
 
@@ -589,6 +600,7 @@ def analyze_request(prompt: str) -> List[Dict[str, Any]]:
 
     prompt_lower = prompt.lower()
     all_tokens = re.findall(r'\b\w+\b', prompt_lower)
+    skills = get_skills()
 
     # Intent boosts calculated BEFORE stop word filtering - question words (how, why, what)
     # are important signals for semantic search but would otherwise be filtered
@@ -617,6 +629,28 @@ def analyze_request(prompt: str) -> List[Dict[str, Any]]:
                     boost_reasons[skill] = []
                 boost_reasons[skill].append(f"!{phrase}(phrase)")
 
+    # Strongly prefer the explicitly named skill when users mention it directly.
+    # This protects routing in mixed prompts that also contain broad terms like "opencode".
+    for skill_name in skills:
+        skill_lower = skill_name.lower()
+        variants = {
+            skill_lower,
+            f"${skill_lower}",
+            f"/{skill_lower}",
+            skill_lower.replace('-', ' '),
+            skill_lower.replace('-', '_'),
+        }
+        matched_variants = sorted({v for v in variants if v in prompt_lower})
+        if not matched_variants:
+            continue
+
+        explicit_boost = 2.5 + 0.3 * (len(matched_variants) - 1)
+        skill_boosts[skill_name] = skill_boosts.get(skill_name, 0) + explicit_boost
+        if skill_name not in boost_reasons:
+            boost_reasons[skill_name] = []
+        for variant in matched_variants:
+            boost_reasons[skill_name].append(f"!{variant}(explicit)")
+
     # Stop words filtered for corpus matching only
     tokens = [t for t in all_tokens if t not in STOP_WORDS and len(t) > 2]
 
@@ -625,8 +659,6 @@ def analyze_request(prompt: str) -> List[Dict[str, Any]]:
 
     search_terms = expand_query(tokens) if tokens else []
     recommendations = []
-    skills = get_skills()
-
     for name, config in skills.items():
         score = skill_boosts.get(name, 0)
         matches = boost_reasons.get(name, []).copy()
@@ -674,10 +706,23 @@ def analyze_request(prompt: str) -> List[Dict[str, Any]]:
                 "confidence": round(confidence, 2),
                 "uncertainty": uncertainty,
                 "passes_threshold": passes,
-                "reason": f"Matched: {', '.join(list(set(matches))[:5])}"
+                "reason": f"Matched: {', '.join(list(set(matches))[:5])}",
+                "_score": round(score, 4),
+                "_explicit_skill_match": any('(explicit)' in m for m in matches),
             })
 
-    return sorted(recommendations, key=lambda x: x['confidence'], reverse=True)
+    ranked = sorted(
+        recommendations,
+        key=lambda x: (x['_explicit_skill_match'], x['confidence'], x['_score']),
+        reverse=True,
+    )
+
+    # Internal sort metadata should not leak in advisor output.
+    for rec in ranked:
+        rec.pop('_score', None)
+        rec.pop('_explicit_skill_match', None)
+
+    return ranked
 
 
 # ───────────────────────────────────────────────────────────────

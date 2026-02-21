@@ -2,7 +2,7 @@
 name: sk-documentation
 description: "Unified markdown and OpenCode component specialist providing document quality enforcement, content optimization, component creation workflows (skills, agents, commands), ASCII flowcharts and install guides."
 allowed-tools: [Bash, Edit, Glob, Grep, Read, Task, Write]
-version: 1.1.1.0
+version: 1.1.2.0
 ---
 
 <!-- Keywords: sk-documentation, markdown-quality, skill-creation, document-validation, ascii-flowchart, llms-txt, content-optimization, extract-structure -->
@@ -90,6 +90,8 @@ Node template: [skill_graph_node_template.md](./assets/opencode/skill_graph_node
 ### Use Case: Flowchart Creation
 
 Create ASCII flowcharts for visualizing workflows, user journeys and decision trees.
+
+For styled HTML visuals (interactive diagrams, dashboard pages, or polished data-table renders), route to `sk-visual-explainer` instead of forcing ASCII/markdown flowcharts.
 
 **Use when**:
 - Documenting multi-step processes with branching
@@ -679,6 +681,7 @@ Key integrations:
 | ------------------- | ----------------------------------------------------------------------------- |
 | **system-spec-kit** | Context files can be optimized. Validates spec folder documentation structure. |
 | **sk-git**   | Uses documentation quality for commit/PR descriptions                         |
+| **sk-visual-explainer** | Owns self-contained HTML visual outputs and interactive diagram rendering workflows. |
 
 ### Workflow Integration
 

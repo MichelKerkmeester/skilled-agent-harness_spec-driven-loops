@@ -395,7 +395,7 @@ echo "EMBEDDINGS_PROVIDER: $EMBEDDINGS_PROVIDER"
 |----------|---------|
 | [shared/README.md](../README.md) | Parent shared library documentation |
 | [generate-context.js](../../scripts/dist/memory/generate-context.js) | Main script using embeddings |
-| [SKILL.md](../../../SKILL.md) | System spec-kit skill documentation |
+| [SKILL.md](../../SKILL.md) | System spec-kit skill documentation |
 
 ### External Resources
 

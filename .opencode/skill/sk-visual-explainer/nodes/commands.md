@@ -49,10 +49,16 @@ This node defines the full contract for each of the 5 slash commands. Every comm
 2. Identify all entities, relationships, and data points to be represented
 3. Confirm diagram type — if ambiguous, present 2–3 options and wait for user input
 4. Confirm aesthetic — if not specified, auto-select based on content type and diagram type compatibility matrix
+5. Read a matching template from `assets/templates/` before writing any HTML
 
 ### Verification Checkpoint
 
-Before writing HTML: state the chosen diagram type, aesthetic, and a brief section outline. Ask "Does this match your intent?" if confidence < 80% on any choice.
+Before writing HTML, produce a structured fact sheet that includes:
+- quantitative claims (counts, totals, metrics)
+- entity/module names that will appear in the output
+- behavior claims and source references (file path, command output, or user-provided data)
+
+Then state chosen diagram type, aesthetic, and section outline. Ask "Does this match your intent?" if confidence < 80% on any choice.
 
 ### Section Architecture
 
@@ -70,6 +76,12 @@ Add sticky navigation if 4+ sections.
 ```
 .opencode/output/visual/generate-{description}-{timestamp}.html
 ```
+
+Delivery contract:
+1. Use `Write` to create the HTML file at the final output path.
+2. Run `scripts/validate-html-output.sh` on that file.
+3. Reply with absolute path, file size, validator result, and key quality-check status.
+4. Do not return markdown-only output when HTML was requested.
 
 ---
 
@@ -103,10 +115,17 @@ Call `sk-git` skill to collect:
 3. Commit messages for all commits in range
 4. PR title and description (if available via `gh pr view`)
 5. Failing CI checks (if available)
+6. Documentation impact checks (`README.md`, `CHANGELOG.md`, and affected docs)
+7. Decision rationale signals from commit messages / plan docs / session context (when available)
 
 ### Verification Checkpoint
 
-After gathering data, report: "{N} files changed, {+X/-Y} lines, {Z} commits. Ready to generate visual review?" Pause if > 50 files or > 2000 lines changed — ask if user wants a summary view or full detail.
+Before writing HTML, produce a fact sheet of every claim you will show:
+- all counts/metrics (files, lines, commits, tests)
+- module/function/type names referenced
+- behavior and before/after assertions with source evidence (command output or file reference)
+
+Then report: "{N} files changed, {+X/-Y} lines, {Z} commits. Ready to generate visual review?" Pause if > 50 files or > 2000 lines changed — ask if user wants summary view or full detail.
 
 ### Section Architecture (10 sections)
 
@@ -154,6 +173,12 @@ After gathering data, report: "{N} files changed, {+X/-Y} lines, {Z} commits. Re
 .opencode/output/visual/diff-review-{target}-{timestamp}.html
 ```
 
+Delivery contract:
+1. Use `Write` to create the HTML file at the final output path.
+2. Run `scripts/validate-html-output.sh` on that file.
+3. Reply with absolute path, file size, validator result, and key quality-check status.
+4. Do not return markdown-only output when HTML was requested.
+
 ---
 
 ## `/visual-explainer:plan-review`
@@ -180,13 +205,20 @@ After gathering data, report: "{N} files changed, {+X/-Y} lines, {Z} commits. Re
 ### Data Gathering Phase
 
 1. Read the plan file (`Read` tool)
-2. If `--spec-folder` provided or inferable: load memory context from `system-spec-kit`
-3. Extract: objectives, tasks, decisions, risks, dependencies, timeline estimates
-4. Identify gaps: missing sections, unresolved decisions, undefined dependencies
+2. Read files referenced by the plan, plus directly dependent files where needed for blast-radius validation
+3. If `--spec-folder` provided or inferable: load memory context from `system-spec-kit`
+4. Extract: objectives, tasks, decisions, risks, dependencies, timeline estimates
+5. Identify gaps: missing sections, unresolved decisions, undefined dependencies
+6. Cross-check plan assertions against actual code and structure before visualizing
 
 ### Verification Checkpoint
 
-Report extracted structure: "{N} objectives, {M} tasks, {K} open decisions found. Proceeding with visual analysis." Pause if plan.md is missing critical sections (no objectives, no tasks) — ask user to confirm intent.
+Before writing HTML, produce a fact sheet of every claim you will show:
+- all plan/code metrics and counts
+- module/function/type names from plan and code
+- current-state vs planned-state behavior claims with source evidence (plan section or file reference)
+
+Then report extracted structure: "{N} objectives, {M} tasks, {K} open decisions found. Proceeding with visual analysis." Pause if plan.md is missing critical sections (no objectives, no tasks) — ask user to confirm intent.
 
 ### Section Architecture (9 sections)
 
@@ -207,6 +239,12 @@ Report extracted structure: "{N} objectives, {M} tasks, {K} open decisions found
 ```
 .opencode/output/visual/plan-review-{spec-slug}-{timestamp}.html
 ```
+
+Delivery contract:
+1. Use `Write` to create the HTML file at the final output path.
+2. Run `scripts/validate-html-output.sh` on that file.
+3. Reply with absolute path, file size, validator result, and key quality-check status.
+4. Do not return markdown-only output when HTML was requested.
 
 ---
 
@@ -236,13 +274,19 @@ Report extracted structure: "{N} objectives, {M} tasks, {K} open decisions found
 ### Data Gathering Phase
 
 1. Load `system-spec-kit` memory entries from the time window
-2. If `--include-git`: call `sk-git` for commit history in range
-3. Extract: completed tasks, decisions made, blockers encountered, files modified
-4. Summarize by spec folder / feature area
+2. If `--include-git`: call `sk-git` for commit history and file-activity patterns
+3. Capture project-state signals (active branches, uncommitted changes, recent TODO/FIXME in active areas)
+4. Extract: completed tasks, decisions made, blockers encountered, files modified
+5. Summarize by spec folder / feature area
 
 ### Verification Checkpoint
 
-Report: "Found {N} memory entries, {M} commits, {K} spec folders active in this window. Proceeding with recap." Pause if window produces 0 results — ask user to extend window or check spec folder path.
+Before writing HTML, produce a fact sheet of every claim you will show:
+- all counts/metrics (entries, commits, files, branches)
+- modules/features referenced
+- behavior/state assertions with source evidence (memory entry, git output, or file reference)
+
+Then report: "Found {N} memory entries, {M} commits, {K} spec folders active in this window. Proceeding with recap." Pause if window produces 0 results — ask user to extend window or check spec folder path.
 
 ### Section Architecture (8 sections)
 
@@ -262,6 +306,12 @@ Report: "Found {N} memory entries, {M} commits, {K} spec folders active in this 
 ```
 .opencode/output/visual/recap-{window}-{timestamp}.html
 ```
+
+Delivery contract:
+1. Use `Write` to create the HTML file at the final output path.
+2. Run `scripts/validate-html-output.sh` on that file.
+3. Reply with absolute path, file size, validator result, and key quality-check status.
+4. Do not return markdown-only output when HTML was requested.
 
 ---
 
@@ -336,6 +386,11 @@ Quality checks: Run /visual-explainer:fact-check on the corrected file to verify
 ```
 
 **Default aesthetic:** N/A — preserves the aesthetic of the input file entirely.
+
+Delivery contract:
+1. Use `Edit`/`Write` to produce the corrected HTML file path above.
+2. Run `scripts/validate-html-output.sh` on the corrected file.
+3. Print the fact-check summary plus absolute corrected-file path, size, and validator result.
 
 ---
 

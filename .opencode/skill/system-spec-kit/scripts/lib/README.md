@@ -40,6 +40,7 @@ TypeScript modules:
 - `retry-manager.ts`
 - `semantic-summarizer.ts`
 - `simulation-factory.ts`
+- `structure-aware-chunker.ts`
 - `trigger-extractor.ts`
 
 Shell helper libraries:

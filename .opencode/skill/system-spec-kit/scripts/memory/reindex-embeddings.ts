@@ -8,16 +8,7 @@
 --------------------------------------------------------------- */
 
 import path from 'path';
-
-import * as vectorIndex from '../../mcp_server/lib/search/vector-index';
-import * as embeddings from '../../mcp_server/lib/providers/embeddings';
-import * as checkpointsLib from '../../mcp_server/lib/storage/checkpoints';
-import * as accessTracker from '../../mcp_server/lib/storage/access-tracker';
-import * as hybridSearch from '../../mcp_server/lib/search/hybrid-search';
-import { init as initDbState, setEmbeddingModelReady, DEFAULT_BASE_PATH } from '../../mcp_server/core';
-import { handleMemoryIndexScan } from '../../mcp_server/handlers';
-import { createUnifiedGraphSearchFn } from '../../mcp_server/lib/search/graph-search-fn';
-import { isGraphUnifiedEnabled } from '../../mcp_server/lib/search/graph-flags';
+import fs from 'fs';
 
 /* ---------------------------------------------------------------
    2. TYPES
@@ -25,6 +16,16 @@ import { isGraphUnifiedEnabled } from '../../mcp_server/lib/search/graph-flags';
 
 import type { EmbeddingProfile } from '../../shared/types';
 import type { MCPResponse } from '../../shared/types';
+
+type VectorIndexModule = typeof import('../../mcp_server/lib/search/vector-index');
+type EmbeddingsModule = typeof import('../../mcp_server/lib/providers/embeddings');
+type CheckpointsModule = typeof import('../../mcp_server/lib/storage/checkpoints');
+type AccessTrackerModule = typeof import('../../mcp_server/lib/storage/access-tracker');
+type HybridSearchModule = typeof import('../../mcp_server/lib/search/hybrid-search');
+type CoreModule = typeof import('../../mcp_server/core');
+type HandlersModule = typeof import('../../mcp_server/handlers');
+type GraphSearchFnModule = typeof import('../../mcp_server/lib/search/graph-search-fn');
+type GraphFlagsModule = typeof import('../../mcp_server/lib/search/graph-flags');
 
 interface ScanData {
   status: string;
@@ -41,6 +42,40 @@ interface ScanData {
   files?: { status: string; file: string; isConstitutional?: boolean }[];
 }
 
+function resolveMcpServerDistRoot(): string {
+  const candidates: string[] = [
+    path.resolve(__dirname, '../../mcp_server/dist'),
+    path.resolve(__dirname, '../../../mcp_server/dist'),
+  ];
+
+  for (const candidate of candidates) {
+    if (fs.existsSync(path.join(candidate, 'core', 'index.js'))) {
+      return candidate;
+    }
+  }
+
+  throw new Error(
+    `Unable to locate mcp_server/dist from ${__dirname}. Tried:\n - ${candidates.join('\n - ')}`
+  );
+}
+
+const MCP_SERVER_DIST_ROOT: string = resolveMcpServerDistRoot();
+
+function requireFromMcpServerDist<T>(...segments: string[]): T {
+  const modulePath = path.join(MCP_SERVER_DIST_ROOT, ...segments);
+  return require(modulePath) as T;
+}
+
+const vectorIndex = requireFromMcpServerDist<VectorIndexModule>('lib', 'search', 'vector-index');
+const embeddings = requireFromMcpServerDist<EmbeddingsModule>('lib', 'providers', 'embeddings');
+const checkpointsLib = requireFromMcpServerDist<CheckpointsModule>('lib', 'storage', 'checkpoints');
+const accessTracker = requireFromMcpServerDist<AccessTrackerModule>('lib', 'storage', 'access-tracker');
+const hybridSearch = requireFromMcpServerDist<HybridSearchModule>('lib', 'search', 'hybrid-search');
+const core = requireFromMcpServerDist<CoreModule>('core');
+const handlers = requireFromMcpServerDist<HandlersModule>('handlers');
+const graphSearchFn = requireFromMcpServerDist<GraphSearchFnModule>('lib', 'search', 'graph-search-fn');
+const graphFlags = requireFromMcpServerDist<GraphFlagsModule>('lib', 'search', 'graph-flags');
+
 /* ---------------------------------------------------------------
    3. REINDEX FUNCTION
 --------------------------------------------------------------- */
@@ -55,14 +90,14 @@ async function reindex(): Promise<void> {
   vectorIndex.initializeDb();
 
   console.log('[2/5] Initializing db-state module...');
-  initDbState({ vectorIndex, checkpoints: checkpointsLib, accessTracker, hybridSearch });
+  core.init({ vectorIndex, checkpoints: checkpointsLib, accessTracker, hybridSearch });
 
   console.log('[3/5] Warming up embedding model...');
   try {
     const start = Date.now();
     await embeddings.generateEmbedding('warmup test');
     const elapsed = Date.now() - start;
-    setEmbeddingModelReady(true);
+    core.setEmbeddingModelReady(true);
     console.log(`    Embedding model ready (${elapsed}ms)`);
 
     const profile = embeddings.getEmbeddingProfile() as EmbeddingProfile | null;
@@ -80,17 +115,19 @@ async function reindex(): Promise<void> {
     process.exit(1);
   }
   checkpointsLib.init(database);  accessTracker.init(database);
-  const skillRoot = path.join(DEFAULT_BASE_PATH, '.opencode', 'skill');
+  const skillRoot = path.join(core.DEFAULT_BASE_PATH, '.opencode', 'skill');
   hybridSearch.init(
     database,
     vectorIndex.vectorSearch,
-    isGraphUnifiedEnabled() ? createUnifiedGraphSearchFn(database, skillRoot) : undefined
+    graphFlags.isGraphUnifiedEnabled()
+      ? graphSearchFn.createUnifiedGraphSearchFn(database, skillRoot)
+      : undefined
   );
 
   console.log('[5/5] Force reindexing all memory files...');
   console.log('');
 
-  const result: MCPResponse = await handleMemoryIndexScan({
+  const result: MCPResponse = await handlers.handleMemoryIndexScan({
     force: true,
     includeConstitutional: true
   });

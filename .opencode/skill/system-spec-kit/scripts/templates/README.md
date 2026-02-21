@@ -45,7 +45,7 @@ The Template Composer (`compose.sh`) is an automated build system that generates
 | Documentation Levels | 4 | Level 1, 2, 3, 3+ |
 | Core Templates | 4 | spec, plan, tasks, implementation-summary |
 | Addendum Sets | 3 | level2-verify, level3-arch, level3plus-govern |
-| Output Templates | 13 | Across 4 levels |
+| Output Templates | 21 | Generated template files across Levels 1, 2, 3, and 3+ (excluding README.md) |
 
 ### Key Features
 

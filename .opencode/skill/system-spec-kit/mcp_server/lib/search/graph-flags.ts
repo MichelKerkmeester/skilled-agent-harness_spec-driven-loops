@@ -3,7 +3,7 @@
 // Feature flags for graph-enhanced search channel
 // ---------------------------------------------------------------
 
-import { isFeatureEnabled } from '../cognitive/rollout-policy';
+import { isFeatureEnabled } from '../cache/cognitive/rollout-policy';
 
 /**
  * Check if the unified graph search channel is enabled.

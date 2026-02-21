@@ -273,13 +273,13 @@ Parsed frontmatter properties are stored alongside computed properties (`skill`,
 
 ### 5.3 Edge Types
 
-Edges are extracted from wikilinks (`[[target]]`), markdown links (`[text](path.md)`) and structural conventions. Each edge has a unique ID: `{source}--{TYPE}--{target}`.
+Edges are extracted from wikilinks (`[[target]]`), markdown links (for example, `text -> ./relative-path.md`) and structural conventions. Each edge has a unique ID: `{source}--{TYPE}--{target}`.
 
 | Edge Type        | Source              | Description                                         |
 | ---------------- | ------------------- | --------------------------------------------------- |
 | `LINKS_TO`       | Wikilinks / md links | General link between two nodes                     |
 | `CONTAINS`       | Index wikilinks     | Structural containment (Index to nodes/ target)     |
-| `REFERENCES`     | Markdown links      | Explicit reference via `[text](path.md)` syntax     |
+| `REFERENCES`     | Markdown links      | Explicit reference via `text -> ./relative-path.md` syntax |
 | `HAS_ENTRYPOINT` | Structural (auto)   | Virtual `:Skill` node to `SKILL.md` `:Entrypoint`  |
 | `HAS_INDEX`      | Structural (auto)   | Virtual `:Skill` node to `index.md` `:Index`        |
 | `DEPENDS_ON`     | Cross-skill links   | Wikilink or markdown link crossing a skill boundary |

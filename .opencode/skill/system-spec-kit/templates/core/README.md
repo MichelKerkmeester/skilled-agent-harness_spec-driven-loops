@@ -12,7 +12,18 @@ importance_tier: "normal"
 
 Shared base components for level template composition.
 
-## Overview
+## TABLE OF CONTENTS
+<!-- ANCHOR:table-of-contents -->
+
+- [1. OVERVIEW](#1--overview)
+- [2. CONTENTS](#2--contents)
+- [3. ARCHITECTURE](#3--architecture)
+- [4. USAGE RULES](#4--usage-rules)
+- [5. RELATED](#5--related)
+
+<!-- /ANCHOR:table-of-contents -->
+
+## 1. OVERVIEW
 <!-- ANCHOR:overview -->
 
 Core templates define the common structure reused across levels.
@@ -20,7 +31,7 @@ They are source artifacts, not direct user-facing copies.
 
 <!-- /ANCHOR:overview -->
 
-## Contents
+## 2. CONTENTS
 <!-- ANCHOR:contents -->
 
 | File | Purpose |
@@ -32,7 +43,7 @@ They are source artifacts, not direct user-facing copies.
 
 <!-- /ANCHOR:contents -->
 
-## Architecture
+## 3. ARCHITECTURE
 <!-- ANCHOR:architecture -->
 
 Core plus addendum composition:
@@ -46,7 +57,7 @@ level_3+ = level_3 + level3plus-govern
 
 <!-- /ANCHOR:architecture -->
 
-## Usage Rules
+## 4. USAGE RULES
 <!-- ANCHOR:usage-rules -->
 
 - Do not copy from `core/` into spec folders.
@@ -55,7 +66,7 @@ level_3+ = level_3 + level3plus-govern
 
 <!-- /ANCHOR:usage-rules -->
 
-## Related
+## 5. RELATED
 <!-- ANCHOR:related -->
 
 - `../README.md`

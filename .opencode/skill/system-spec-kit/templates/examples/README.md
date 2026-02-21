@@ -12,7 +12,17 @@ importance_tier: "normal"
 
 Reference-only examples for level formatting and depth.
 
-## Overview
+## TABLE OF CONTENTS
+<!-- ANCHOR:table-of-contents -->
+
+- [1. OVERVIEW](#1--overview)
+- [2. STRUCTURE](#2--structure)
+- [3. USAGE](#3--usage)
+- [4. RELATED](#4--related)
+
+<!-- /ANCHOR:table-of-contents -->
+
+## 1. OVERVIEW
 <!-- ANCHOR:overview -->
 
 Examples show how content scales from Level 1 through Level 3+.
@@ -20,7 +30,7 @@ Use them for comparison, not direct copying.
 
 <!-- /ANCHOR:overview -->
 
-## Structure
+## 2. STRUCTURE
 <!-- ANCHOR:structure -->
 
 | Example | Purpose |
@@ -32,7 +42,7 @@ Use them for comparison, not direct copying.
 
 <!-- /ANCHOR:structure -->
 
-## Usage
+## 3. USAGE
 <!-- ANCHOR:usage -->
 
 1. Choose your level from real requirements.
@@ -41,7 +51,7 @@ Use them for comparison, not direct copying.
 
 <!-- /ANCHOR:usage -->
 
-## Related
+## 4. RELATED
 <!-- ANCHOR:related -->
 
 - `../README.md`

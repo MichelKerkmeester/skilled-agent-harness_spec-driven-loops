@@ -79,7 +79,7 @@ Cross-workflow alignment is mandatory:
 
 | Capability | Description |
 | --- | --- |
-| **6-Channel Hybrid Search** | Scatter-gather across vector, FTS5/BM25, graph, co-activation, session boost and causal edges |
+| **4-Channel Hybrid Search + Post-Fusion** | Primary scatter-gather across vector, FTS5, BM25 and skill graph; co-activation/session/causal signals are applied post-fusion |
 | **Adaptive RRF Fusion** | Intent-weighted profiles replace fixed-weight RRF when `SPECKIT_ADAPTIVE_FUSION=true` |
 | **Graph Intelligence** | Unified graph search bridging causal edges and skill graph via SGQS |
 | **MMR Diversity Reranking** | Lambda mapped to detected intent for relevance-diversity balance |
@@ -95,14 +95,14 @@ Cross-workflow alignment is mandatory:
 
 | Category | Count |
 | --- | --- |
-| **MCP Tools** | 22 (memory, checkpoint, causal, drift, learning) |
+| **MCP Tools** | 25 (memory, checkpoint, causal/skill-graph, drift, learning, health) |
 | **Templates** | 10 (specs, plans, research, decisions) |
 | **Commands** | 13 (8 spec_kit + 5 memory) |
 | **Importance Tiers** | 6 (constitutional to deprecated) |
 | **Memory Types** | 9 (working, episodic, procedural, semantic, etc.) |
 | **ANCHOR Coverage** | 533 anchors across 78 skill READMEs |
 | **Test Coverage** | 4,770 tests across 159 files |
-| **Last Verified** | 2026-02-20 |
+| **Last Verified** | 2026-02-21 |
 
 ### Requirements
 

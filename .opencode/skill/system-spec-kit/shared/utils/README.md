@@ -19,8 +19,8 @@ importance_tier: "normal"
 
 - [1. OVERVIEW](#1--overview)
 - [2. STRUCTURE](#2--structure)
-- [3. PATH SECURITY]](#3--path-security)
-- [4. RETRY]](#4--retry)
+- [3. PATH SECURITY](#3--path-security)
+- [4. RETRY](#4--retry)
 - [5. RELATED](#5--related)
 
 <!-- /ANCHOR:table-of-contents -->

@@ -297,6 +297,55 @@ else
   info "     }"
 fi
 
+# ── CHECK 11: --ve-* token system coverage ────────────────────────────────────
+section "11" "Visual Token System"
+
+VE_TOKEN_COUNT=$(grep -oE -- '--ve-[a-zA-Z0-9_-]+' "$HTML_FILE" 2>/dev/null | sort -u | wc -l | tr -d ' ' || echo 0)
+if [[ "$VE_TOKEN_COUNT" -ge 6 ]]; then
+  pass "--ve-* token system detected (${VE_TOKEN_COUNT} unique tokens)"
+elif [[ "$VE_TOKEN_COUNT" -ge 1 ]]; then
+  warn "Limited --ve-* token coverage (${VE_TOKEN_COUNT} unique tokens)"
+  info "Use a broader --ve-* variable system (bg/surface/border/text/accent/fonts)"
+else
+  fail "No --ve-* design token variables found"
+  info "Define theme tokens in :root (e.g., --ve-bg, --ve-surface, --ve-text, --ve-accent)"
+fi
+
+# ── CHECK 12: Typography guardrails ────────────────────────────────────────────
+section "12" "Typography Guardrails"
+
+if grep -qiE 'family=Inter|family=Roboto' "$HTML_FILE"; then
+  fail "Primary font request includes Inter/Roboto (disallowed as primary visual identity)"
+  info "Use curated alternatives from references/quick_reference.md"
+elif grep -qiE -- '--ve-font-(display|body)[^;]*(Inter|Roboto|Arial)' "$HTML_FILE"; then
+  fail "--ve primary font variables use Inter/Roboto/Arial (disallowed)"
+  info "Choose a non-default display/body pairing and keep system fonts as fallback only"
+else
+  pass "Primary typography does not use Inter/Roboto/Arial in --ve font variables"
+fi
+
+# ── CHECK 13: Background atmosphere signal ─────────────────────────────────────
+section "13" "Background Atmosphere"
+
+if grep -qiE 'background-image:[^;]*(radial-gradient|linear-gradient|repeating-linear-gradient)' "$HTML_FILE"; then
+  pass "Background atmosphere detected via gradient treatment"
+elif grep -qiE 'background-size:[^;]*[0-9]+px[^;]*[0-9]+px' "$HTML_FILE"; then
+  pass "Background atmosphere detected via pattern sizing"
+else
+  warn "No explicit atmosphere pattern detected"
+  info "Consider subtle gradients, dot grids, or directional patterns to avoid flat output"
+fi
+
+# ── CHECK 14: Staggered reveal signal ─────────────────────────────────────────
+section "14" "Motion Structure"
+
+if grep -qiE -- '--i[^a-zA-Z0-9_-]' "$HTML_FILE" || grep -qi 'anime\.stagger' "$HTML_FILE"; then
+  pass "Staggered reveal signal detected (--i or anime.stagger)"
+else
+  warn "No staggered reveal signal detected"
+  info "Consider using --i delay variables or anime.stagger for intentional motion hierarchy"
+fi
+
 # ── SUMMARY ───────────────────────────────────────────────────────────────────
 echo ""
 echo "──────────────────────────────────────────────────"

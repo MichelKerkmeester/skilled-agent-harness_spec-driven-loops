@@ -12,7 +12,20 @@ importance_tier: "normal"
 
 Use for work that needs formal governance, compliance traceability, and coordinated execution.
 
-## When to Use
+## TABLE OF CONTENTS
+<!-- ANCHOR:table-of-contents -->
+
+- [1. OVERVIEW](#1--overview)
+- [2. REQUIRED FILES](#2--required-files)
+- [3. GOVERNANCE ADDITIONS](#3--governance-additions)
+- [4. QUICK START](#4--quick-start)
+- [5. WORKFLOW NOTES](#5--workflow-notes)
+- [6. PHASE DECOMPOSITION](#6--phase-decomposition)
+- [7. RELATED](#7--related)
+
+<!-- /ANCHOR:table-of-contents -->
+
+## 1. OVERVIEW
 <!-- ANCHOR:overview -->
 
 - Formal approval workflow is required.
@@ -22,7 +35,7 @@ Use for work that needs formal governance, compliance traceability, and coordina
 
 <!-- /ANCHOR:overview -->
 
-## Required Files
+## 2. REQUIRED FILES
 <!-- ANCHOR:files -->
 
 - `spec.md`
@@ -36,7 +49,7 @@ These are the same core files as Level 3 with governance-expanded sections.
 
 <!-- /ANCHOR:files -->
 
-## Governance Additions
+## 3. GOVERNANCE ADDITIONS
 <!-- ANCHOR:additions -->
 
 - Approval workflow and stakeholder sign-off structure.
@@ -46,7 +59,7 @@ These are the same core files as Level 3 with governance-expanded sections.
 
 <!-- /ANCHOR:additions -->
 
-## Quick Start
+## 4. QUICK START
 <!-- ANCHOR:quick-start -->
 
 ```bash
@@ -57,7 +70,7 @@ bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/###-feature-
 
 <!-- /ANCHOR:quick-start -->
 
-## Workflow Notes
+## 5. WORKFLOW NOTES
 <!-- ANCHOR:workflow-notes -->
 
 - Keep approvals and compliance checks updated as work progresses.
@@ -66,7 +79,7 @@ bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/###-feature-
 
 <!-- /ANCHOR:workflow-notes -->
 
-## Phase Decomposition
+## 6. PHASE DECOMPOSITION
 <!-- ANCHOR:phase -->
 
 Phase decomposition is strongly recommended for Level 3+ complexity. Governance-heavy work benefits significantly from phased ordering, enabling approval checkpoints and compliance verification at each stage. Use Gate 3 Option E to target a specific phase child and `/spec_kit:phase` to create the phase structure.
@@ -75,7 +88,7 @@ See the Phase System in the [main templates README](../README.md#phase-system) f
 
 <!-- /ANCHOR:phase -->
 
-## Related
+## 7. RELATED
 <!-- ANCHOR:related -->
 
 - `../level_3/README.md`

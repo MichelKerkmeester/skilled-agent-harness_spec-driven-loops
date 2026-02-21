@@ -62,6 +62,6 @@ This section provides an overview of the Tools: Dispatch Layer directory.
 
 
 - `../handlers/README.md`
-- `../definitions/README.md`
+- `../tool-schemas.ts`
 - `../../shared/types.ts`
 <!-- /ANCHOR:related -->

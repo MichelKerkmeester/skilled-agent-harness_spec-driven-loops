@@ -2,7 +2,7 @@
 name: sk-visual-explainer
 description: "Converts complex terminal output and technical concepts into styled, self-contained HTML pages with diagrams, tables, and visualizations through a 4-phase Think-Structure-Style-Deliver workflow."
 allowed-tools: [Read, Write, Edit, Bash, Glob, Grep]
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 <!-- Keywords: visual, diagram, HTML, generate, architecture, flowchart, sequence, chart, mermaid, review, diff, plan, recap, fact-check, table, render, visualization, timeline, dashboard, metrics, data-table, aesthetic, css, typography -->
@@ -78,7 +78,7 @@ Phases are sequential — do not skip or reorder. Full detail: `nodes/how-it-wor
 |--------|----------|-------|
 | `references/` | Quick ref, CSS patterns, library guide, nav patterns, quality checklist | 5 files |
 | `assets/templates/` | Architecture, Mermaid flowchart, data table HTML templates | 3 files |
-| `scripts/` | `open_in_browser.sh`, `create_output_dir.sh` | 2 files |
+| `scripts/` | `validate-html-output.sh`, `cleanup-output.sh` | 2 files |
 | `nodes/` | Topic deep-dives (when-to-use, rules, aesthetics, etc.) | 10 files |
 
 ### Smart Router Pseudocode
@@ -186,6 +186,7 @@ The skill executes a strict 4-phase workflow. Do not skip phases.
 
 ### Phase 2 — Structure
 - Read templates FRESH from `assets/templates/` — never rely on memory for template structure.
+- Start from the closest template skeleton and adapt it. Do not start from blank HTML unless no template applies.
 - Select rendering approach: Mermaid (flowcharts, sequences, ER, state, mindmap) | Chart.js (dashboards, metrics) | CSS Grid (architecture cards) | HTML `<table>` (tabular data) | CSS timeline (temporal).
 - Build semantic HTML: `<header>`, `<main>`, `<section>` blocks, sticky nav if 4+ sections.
 
@@ -199,9 +200,11 @@ The skill executes a strict 4-phase workflow. Do not skip phases.
 
 ### Phase 4 — Deliver
 - Run all 9 quality checks from `nodes/success-criteria.md` before saving.
-- Save output to: `.opencode/output/visual/{command}-{description}-{timestamp}.html`
+- Save output to: `.opencode/output/visual/{command}-{description}-{timestamp}.html` using the `Write` tool.
+- Validate the saved file with `scripts/validate-html-output.sh` and fix any failures before delivery.
 - Open in browser for visual verification.
-- Report: file path, file size, and any quality check failures.
+- Report: file path, file size, validator result, and any quality check failures.
+- Never stop at markdown-only output when HTML was requested. If HTML cannot be produced, escalate clearly instead of returning markdown as a fallback.
 
 <!-- /ANCHOR:how-it-works -->
 
@@ -285,6 +288,13 @@ Examples:
 - `generate-auth-architecture-20260220-143022.html`
 - `diff-review-pr-47-20260220-143022.html`
 - `recap-2w-progress-20260220-143022.html`
+
+### Delivery Contract
+
+- Artifact-first: always create the `.html` file with the `Write` tool before replying.
+- Verification-first: run `scripts/validate-html-output.sh` on the generated file.
+- Reply format: provide absolute path, file size, and validator outcome.
+- Do not return markdown tables or prose as a substitute for a requested HTML visual.
 
 ### Cross-Skill Integration
 

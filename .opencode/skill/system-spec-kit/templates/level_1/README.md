@@ -12,7 +12,18 @@ importance_tier: "normal"
 
 Use for simple work where full verification/governance overhead is unnecessary.
 
-## When to Use
+## TABLE OF CONTENTS
+<!-- ANCHOR:table-of-contents -->
+
+- [1. OVERVIEW](#1--overview)
+- [2. REQUIRED FILES](#2--required-files)
+- [3. QUICK START](#3--quick-start)
+- [4. PHASE DECOMPOSITION](#4--phase-decomposition)
+- [5. RELATED](#5--related)
+
+<!-- /ANCHOR:table-of-contents -->
+
+## 1. OVERVIEW
 <!-- ANCHOR:overview -->
 
 - Typical size is under 100 LOC.
@@ -23,7 +34,7 @@ Move to Level 2 when verification checklist tracking is required.
 
 <!-- /ANCHOR:overview -->
 
-## Required Files
+## 2. REQUIRED FILES
 <!-- ANCHOR:files -->
 
 - `spec.md`
@@ -33,7 +44,7 @@ Move to Level 2 when verification checklist tracking is required.
 
 <!-- /ANCHOR:files -->
 
-## Quick Start
+## 3. QUICK START
 <!-- ANCHOR:quick-start -->
 
 ```bash
@@ -51,7 +62,7 @@ cp .opencode/skill/system-spec-kit/templates/level_1/implementation-summary.md s
 
 <!-- /ANCHOR:quick-start -->
 
-## Phase Decomposition
+## 4. PHASE DECOMPOSITION
 <!-- ANCHOR:phase -->
 
 Phase decomposition is typically not needed at Level 1. Most Level 1 tasks are small enough to complete in a single pass without phased ordering.
@@ -60,7 +71,7 @@ If a task unexpectedly grows beyond Level 1 scope, consider escalating to Level 
 
 <!-- /ANCHOR:phase -->
 
-## Related
+## 5. RELATED
 <!-- ANCHOR:related -->
 
 - `../level_2/README.md`

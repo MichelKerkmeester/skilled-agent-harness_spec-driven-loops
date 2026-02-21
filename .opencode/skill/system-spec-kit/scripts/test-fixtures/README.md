@@ -24,7 +24,7 @@ importance_tier: "normal"
 - [5. USAGE EXAMPLES](#5--usage-examples)
 - [6. TROUBLESHOOTING](#6--troubleshooting)
 - [7. RELATED DOCUMENTS](#7--related-documents)
-- [8. COGNITIVE MEMORY FIXTURES]](#8--cognitive-memory-fixtures)
+- [8. COGNITIVE MEMORY FIXTURES](#8--cognitive-memory-fixtures)
 
 ---
 

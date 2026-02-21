@@ -7,7 +7,7 @@
 import { getIndex, sanitizeFTS5Query } from './bm25-index';
 import { fuseResultsMulti } from './rrf-fusion';
 import { hybridAdaptiveFuse } from './adaptive-fusion';
-import { spreadActivation } from '../cognitive/co-activation';
+import { spreadActivation } from '../cache/cognitive/co-activation';
 import { applyMMR } from './mmr-reranker';
 import { INTENT_LAMBDA_MAP, classifyIntent } from './intent-classifier';
 import { fts5Bm25Search } from './sqlite-fts';
@@ -15,7 +15,7 @@ import { isMMREnabled } from './search-flags';
 
 // Type-only
 import type Database from 'better-sqlite3';
-import type { SpreadResult } from '../cognitive/co-activation';
+import type { SpreadResult } from '../cache/cognitive/co-activation';
 import type { MMRCandidate } from './mmr-reranker';
 import type { FusionResult } from './rrf-fusion';
 

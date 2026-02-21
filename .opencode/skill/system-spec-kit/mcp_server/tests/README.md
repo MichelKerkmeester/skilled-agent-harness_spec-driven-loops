@@ -43,7 +43,7 @@ The test suite validates all critical functionality of the Spec Kit Memory MCP s
 
 | Category | Count | Details |
 |----------|-------|---------|
-| Test Files | 142 | All `.vitest.ts` format |
+| Test Files | 166 | All `.vitest.ts` format |
 | Total Tests | 3,872+ | Across all test files |
 | Test Framework | Vitest | TypeScript-native, no compilation step needed |
 | Coverage Target | 80/70/50 | Unit 80%, Integration 70%, E2E 50% |
@@ -519,7 +519,7 @@ npx vitest --version
 
 # List test files
 ls tests/*.vitest.ts | wc -l
-# Expected: 142
+# Expected: 166
 
 # Run tests with detailed output
 npx vitest run --reporter=verbose 2>&1 | head -50
@@ -561,13 +561,10 @@ npx vitest run tests/integration-*.vitest.ts
 npx vitest run tests/composite-scoring.vitest.ts tests/five-factor-scoring.vitest.ts tests/bm25-index.vitest.ts tests/rrf-fusion.vitest.ts
 ```
 
-### Verification Report
+### Verification Notes
 
-See [VERIFICATION_REPORT.md](./VERIFICATION_REPORT.md) for the complete Phase 3 verification report including:
-- Code quality gate compliance details
-- Test coverage matrix
-- Test result summary template
-- Verification checklist
+This directory does not include a standalone `VERIFICATION_REPORT.md`.
+Use `npx vitest run` output and CI logs for current verification details.
 
 ---
 

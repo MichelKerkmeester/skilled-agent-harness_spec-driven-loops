@@ -94,7 +94,7 @@ Every output must include both a light and a dark theme. Use the `prefers-color-
 ```
 
 ### 9. Output to `.opencode/output/visual/` Directory
-Always save files to this path. Create the directory if it doesn't exist (`mkdir -p .opencode/output/visual/`). Use the naming convention: `{command}-{description}-{timestamp}.html`.
+Always save files to this path. Create the directory if it doesn't exist (`mkdir -p .opencode/output/visual/`). Use the naming convention: `{command}-{description}-{timestamp}.html`. Use the `Write` tool to create the file, then run `scripts/validate-html-output.sh` before delivery.
 
 ---
 
@@ -184,6 +184,9 @@ Never use emoji as status indicators (e.g., ✅ ❌ ⚠️ 🔴 🟢). Use CSS b
 ```
 
 **Why:** Emoji rendering varies across OS and browser, is inaccessible to screen readers without explicit `aria-label`, and cannot be styled. CSS badges provide consistent rendering, accessibility, and visual alignment with the `--ve-*` color system.
+
+### 10. Markdown-Only Fallbacks for HTML Requests
+Never end with markdown-only output when the request asked for HTML visual output. If HTML generation fails, escalate explicitly and ask for direction instead of silently downgrading format.
 
 ---
 
