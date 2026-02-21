@@ -38,7 +38,7 @@ This pass is completion-focused: capture final deprecation proof after cleanup a
 - [x] Completion evidence captured for compile/test/forbidden-term sweeps.
 - [x] Additional cleanup actions documented (command + README TOC anchors + MCP residuals).
 - [x] Decision record finalized with retained causal graph boundary.
-- [x] Spec validation and placeholder checks pass for this folder.
+- [x] Spec validation passes; placeholder scan outcome is captured (generated-memory section labels are currently flagged).
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -173,7 +173,7 @@ Evidence Collection --> Residual Cleanup Documentation --> Artifact Authoring --
 |-----------|-------------|------------------|--------|
 | M1 | Evidence captured | Compile/tests/scans recorded | 2026-02-21 |
 | M2 | Level 3 docs authored | All six artifacts created | 2026-02-21 |
-| M3 | Validation passed | `validate.sh` + placeholder check pass | 2026-02-21 |
+| M3 | Validation status captured | `validate.sh` pass + placeholder scan recorded (`9` generated-memory label matches) | 2026-02-21 |
 <!-- /ANCHOR:milestones -->
 
 ---

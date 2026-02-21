@@ -22,23 +22,12 @@ Evidence format: `[Evidence: command/file/result]`
 <!-- ANCHOR:p0 -->
 ## P0 - Hard Blockers
 
-- [x] CHK-001 [P0] mcp_server TypeScript compile succeeds
-  [Evidence: `cd .opencode/skill/system-spec-kit/mcp_server && npx tsc -p tsconfig.json` -> exit 0]
-
-- [x] CHK-002 [P0] full mcp_server suite succeeds
-  [Evidence: `cd .opencode/skill/system-spec-kit/mcp_server && unset VOYAGE_API_KEY && npm test` -> `Test Files 155 passed (155); Tests 4528 passed | 19 skipped (4547)`]
-
-- [x] CHK-003 [P0] forbidden-term scan clean in mcp_server source (`sgqs|skill-ref|readme-indexing|skill-graph`)
-  [Evidence: `rg -n -i "sgqs|skill-ref|readme-indexing|skill-graph" .opencode/skill/system-spec-kit/mcp_server --glob '!**/dist/**' --glob '!**/node_modules/**' || true` -> no matches]
-
-- [x] CHK-004 [P0] `graph_node` removed from create command workflows
-  [Evidence: `rg -n "graph_node" .opencode/command/create || true` -> no matches]
-
-- [x] CHK-005 [P0] README indexing notes removed from create-folder-readme auto/confirm YAML
-  [Evidence: `rg -n -i "README indexing|readme indexing|auto-index|index readme|includeReadmes" .opencode/command/create/assets/create_folder_readme_auto.yaml .opencode/command/create/assets/create_folder_readme_confirm.yaml || true` -> no matches]
-
-- [x] CHK-006 [P0] Level 3 artifact set exists for this phase folder
-  [Evidence: `spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `decision-record.md`, `implementation-summary.md` present in `specs/003-system-spec-kit/138-hybrid-rag-fusion/013-deprecate-skill-graph-and-readme-indexing-2/`]
+- [x] CHK-001 [P0] mcp_server TypeScript compile succeeds [Evidence: `cd .opencode/skill/system-spec-kit/mcp_server && npx tsc -p tsconfig.json` -> exit 0]
+- [x] CHK-002 [P0] full mcp_server suite succeeds [Evidence: `cd .opencode/skill/system-spec-kit/mcp_server && unset VOYAGE_API_KEY && npm test` -> `Test Files 155 passed (155); Tests 4528 passed | 19 skipped (4547)`]
+- [x] CHK-003 [P0] forbidden-term scan clean in mcp_server source (`sgqs|skill-ref|readme-indexing|skill-graph`) [Evidence: `rg -n -i "sgqs|skill-ref|readme-indexing|skill-graph" .opencode/skill/system-spec-kit/mcp_server --glob '!**/dist/**' --glob '!**/node_modules/**' || true` -> no matches]
+- [x] CHK-004 [P0] `graph_node` removed from create command workflows [Evidence: `rg -n "graph_node" .opencode/command/create || true` -> no matches]
+- [x] CHK-005 [P0] README indexing notes removed from create-folder-readme auto/confirm YAML [Evidence: `rg -n -i "README indexing|readme indexing|auto-index|index readme|includeReadmes" .opencode/command/create/assets/create_folder_readme_auto.yaml .opencode/command/create/assets/create_folder_readme_confirm.yaml || true` -> no matches]
+- [x] CHK-006 [P0] Level 3 artifact set exists for this phase folder [Evidence: `spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `decision-record.md`, `implementation-summary.md` present in `specs/003-system-spec-kit/138-hybrid-rag-fusion/013-deprecate-skill-graph-and-readme-indexing-2/`]
 <!-- /ANCHOR:p0 -->
 
 ---
@@ -46,20 +35,11 @@ Evidence format: `[Evidence: command/file/result]`
 <!-- ANCHOR:p1 -->
 ## P1 - Required
 
-- [x] CHK-020 [P1] README TOC anchor completion captured for three README files
-  [Evidence: `.opencode/skill/mcp-chrome-devtools/README.md:20`, `.opencode/skill/sk-documentation/README.md:20`, `.opencode/skill/system-spec-kit/templates/addendum/README.md:20`]
-
-- [x] CHK-021 [P1] MCP residual rename cleanup captured (`MemoryGraphLike` present; `SkillGraphLike` absent)
-  [Evidence: `rg -n "SkillGraphLike|MemoryGraphLike" .opencode/skill/system-spec-kit/mcp_server --glob '!**/dist/**'` -> only `MemoryGraphLike` in `.opencode/skill/system-spec-kit/mcp_server/lib/search/evidence-gap-detector.ts:61` and `.opencode/skill/system-spec-kit/mcp_server/lib/search/fsrs.ts:15`]
-
-- [x] CHK-022 [P1] runtime assets restored for tests after dist rebuild
-  [Evidence: `.opencode/skill/system-spec-kit/mcp_server/dist/database` exists; `.opencode/skill/system-spec-kit/mcp_server/dist/configs/search-weights.json` exists]
-
-- [x] CHK-023 [P1] deprecation boundary documented: causal graph features preserved
-  [Evidence: `decision-record.md` ADR-002 consequences/implementation sections and ADR-003 decision]
-
-- [x] CHK-024 [P1] documentation validation passes for this `013` folder
-  [Evidence: `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/003-system-spec-kit/138-hybrid-rag-fusion/013-deprecate-skill-graph-and-readme-indexing-2` -> pass; `bash .opencode/skill/system-spec-kit/scripts/spec/check-placeholders.sh specs/003-system-spec-kit/138-hybrid-rag-fusion/013-deprecate-skill-graph-and-readme-indexing-2` -> pass]
+- [x] CHK-020 [P1] README TOC anchor completion captured for three README files [Evidence: `.opencode/skill/mcp-chrome-devtools/README.md:20`, `.opencode/skill/sk-documentation/README.md:20`, `.opencode/skill/system-spec-kit/templates/addendum/README.md:20`]
+- [x] CHK-021 [P1] MCP residual rename cleanup captured (`MemoryGraphLike` present; `SkillGraphLike` absent) [Evidence: `rg -n "SkillGraphLike|MemoryGraphLike" .opencode/skill/system-spec-kit/mcp_server --glob '!**/dist/**'` -> only `MemoryGraphLike` in `.opencode/skill/system-spec-kit/mcp_server/lib/search/evidence-gap-detector.ts:61` and `.opencode/skill/system-spec-kit/mcp_server/lib/search/fsrs.ts:15`]
+- [x] CHK-022 [P1] runtime assets restored for tests after dist rebuild [Evidence: `.opencode/skill/system-spec-kit/mcp_server/dist/database` exists; `.opencode/skill/system-spec-kit/mcp_server/dist/configs/search-weights.json` exists]
+- [x] CHK-023 [P1] deprecation boundary documented: causal graph features preserved [Evidence: `decision-record.md` ADR-002 consequences/implementation sections and ADR-003 decision]
+- [x] CHK-024 [P1] documentation validation status captured for this `013` folder [Evidence: `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/003-system-spec-kit/138-hybrid-rag-fusion/013-deprecate-skill-graph-and-readme-indexing-2` -> `RESULT: PASSED`; `bash .opencode/skill/system-spec-kit/scripts/spec/check-placeholders.sh specs/003-system-spec-kit/138-hybrid-rag-fusion/013-deprecate-skill-graph-and-readme-indexing-2 --verbose` -> `FAIL — 9 placeholder pattern(s)` in `memory/21-02-26_21-03__deprecate-skill-graph-and-readme-indexing-2.md` section labels (`[CONTINUE SESSION]`, `[PROJECT STATE SNAPSHOT]`, etc.) generated by `generate-context.js`, not unfilled spec template placeholders]
 <!-- /ANCHOR:p1 -->
 
 ---
@@ -67,11 +47,8 @@ Evidence format: `[Evidence: command/file/result]`
 <!-- ANCHOR:p2 -->
 ## P2 - Optional
 
-- [x] CHK-030 [P2] Include stabilization note for environment-sensitive test behavior
-  [Evidence: `implementation-summary.md` notes default-env timeout seen before stabilized full pass]
-
-- [x] CHK-031 [P2] Include explicit coverage-target map in spec
-  [Evidence: `spec.md` Scope section includes four target path families]
+- [x] CHK-030 [P2] Include stabilization note for environment-sensitive test behavior [Evidence: `implementation-summary.md` notes default-env timeout seen before stabilized full pass]
+- [x] CHK-031 [P2] Include explicit coverage-target map in spec [Evidence: `spec.md` Scope section includes four target path families]
 <!-- /ANCHOR:p2 -->
 
 ---

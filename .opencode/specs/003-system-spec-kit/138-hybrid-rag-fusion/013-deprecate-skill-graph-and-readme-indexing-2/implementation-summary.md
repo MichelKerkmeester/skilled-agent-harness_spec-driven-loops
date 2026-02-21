@@ -66,7 +66,7 @@ One earlier default-environment test run showed a timeout in `tests/memory-save-
 | `rg -n "graph_node" .opencode/command/create` | PASS (no matches) |
 | `rg -n -i "README indexing|readme indexing|auto-index|index readme|includeReadmes" .opencode/command/create/assets/create_folder_readme_auto.yaml .opencode/command/create/assets/create_folder_readme_confirm.yaml` | PASS (no matches) |
 | `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/003-system-spec-kit/138-hybrid-rag-fusion/013-deprecate-skill-graph-and-readme-indexing-2` | PASS |
-| `bash .opencode/skill/system-spec-kit/scripts/spec/check-placeholders.sh specs/003-system-spec-kit/138-hybrid-rag-fusion/013-deprecate-skill-graph-and-readme-indexing-2` | PASS |
+| `bash .opencode/skill/system-spec-kit/scripts/spec/check-placeholders.sh specs/003-system-spec-kit/138-hybrid-rag-fusion/013-deprecate-skill-graph-and-readme-indexing-2 --verbose` | FAIL (`9` matches in generated memory file section labels, not unfilled spec template placeholders) |
 <!-- /ANCHOR:verification -->
 
 ---

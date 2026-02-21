@@ -155,8 +155,8 @@ version: 1.0.0
 
 [One-sentence tagline followed by key capabilities overview]
 
-<!-- OPTIONAL: Include this block if skill has a supplemental graph navigation layer.
-     See skill_creation.md Section 9 for graph authoring rules. -->
+<!-- OPTIONAL: Include this block if skill has a supplemental navigation layer.
+     See skill_creation.md for authoring rules. -->
 <!-- Remove comment markers to activate:
 
 ## 1. WHEN TO USE
@@ -553,26 +553,6 @@ See [workflow-details.md](./references/workflow-details.md) for complete step-by
         ├── opencode/     - OpenCode component templates (skills, agents, commands)
         └── documentation/ - Document templates (README, install guides)
 ```
-
-**Graph Mode Structure** (for skills that benefit from node decomposition):
-```
-.opencode/skill/skill-name/
-├── SKILL.md              - Primary entrypoint (activation rules, routing, core behavior)
-│   ├── when-to-use.md    - Activation triggers (required)
-│   ├── rules.md          - ALWAYS/NEVER/ESCALATE (required)
-│   ├── success-criteria.md - Completion gates (required)
-│   ├── how-it-works.md   - Workflow and architecture
-│   ├── smart-routing.md  - Intent scoring and resource routing
-│   └── [domain].md       - Skill-specific topic nodes
-├── references/
-└── assets/
-```
-
-
-**Node file requirements**:
-- YAML frontmatter with `description:` field on every node
-- Each node scoped to one complete concept
-- Required nodes: `when-to-use.md`, `rules.md`, `success-criteria.md`
 
 **Folder Organization Principle**:
 - **references/** = flat for small skills, domain subfolders for medium/complex skills

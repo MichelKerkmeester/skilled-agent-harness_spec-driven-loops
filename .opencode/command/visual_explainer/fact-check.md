@@ -36,7 +36,7 @@ INPUT: $ARGUMENTS
 - Validate diagram relationships against actual code structure
 
 ### Step 3: Run Quality Checks
-Execute all 9 quality checks from `nodes/success-criteria.md`:
+Execute all 9 quality checks from `references/quality_checklist.md`:
 1. Squint test
 2. Swap test
 3. Both themes

@@ -945,7 +945,6 @@ Large skills eventually outgrow one `SKILL.md` file. The maintainable pattern is
 ```
 skill-name/
 ├── SKILL.md                # Primary entrypoint (activation rules, routing, core behavior)
-├── index.md                # Optional map of content for deep-dive docs
 ├── references/
 │   ├── topic-a.md
 │   ├── topic-b.md
@@ -957,7 +956,7 @@ skill-name/
 ### Design Logic
 
 1. Start with `SKILL.md` for trigger/routing behavior.
-2. Use `index.md` (if present) as a concise navigation map.
+2. Use `README.md` or the SKILL navigation section as a concise map.
 3. Load only the specific `references/` files required by the active task.
 4. Keep progressive disclosure strict to control context size.
 
@@ -966,7 +965,7 @@ skill-name/
 Use this operating pattern:
 
 1. Read `SKILL.md` for trigger and routing rules.
-2. Open `index.md` if additional navigation is needed.
+2. Open `README.md` if additional navigation is needed.
 3. Read one focused reference at a time and summarize locally.
 4. Follow markdown links only when they advance the current objective.
 5. Stop once confidence is high and required context is complete.

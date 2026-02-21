@@ -32,8 +32,8 @@ Execute the 4-phase workflow from the skill:
 
 ### Phase 1: Think
 - Analyze the topic and determine audience
-- If `--type` not specified: use the diagram type decision tree from `nodes/diagram-types.md`
-- If `--style` not specified: auto-detect based on content and diagram type using `nodes/aesthetics.md` compatibility matrix
+- If `--type` not specified: use the diagram type decision guide from `references/quick_reference.md`
+- If `--style` not specified: auto-detect based on content and diagram type using `references/css_patterns.md`
 
 ### Phase 2: Structure
 - Read the matching reference template from `assets/templates/` FRESH (never from memory)
@@ -41,14 +41,14 @@ Execute the 4-phase workflow from the skill:
 - Build semantic HTML structure
 
 ### Phase 3: Style
-- Apply chosen aesthetic from `nodes/aesthetics.md`
+- Apply chosen aesthetic from `references/css_patterns.md`
 - Use CSS custom properties (`--ve-*` namespace)
 - Add light/dark theme support via `prefers-color-scheme`
 - Add animations with `prefers-reduced-motion` fallback
 - If 4+ sections: add navigation from `references/navigation_patterns.md`
 
 ### Phase 4: Deliver
-- Run all 9 quality checks from `nodes/success-criteria.md`
+- Run all 9 quality checks from `references/quality_checklist.md`
 - Save to `.opencode/output/visual/generate-{desc}-{timestamp}.html`
 - Open in browser
 

@@ -52,7 +52,7 @@ Create and manage OpenCode components (skills, agents, commands). Each component
 - **Agents** (.opencode/agent/) - AI personas with tool permissions → [agent_template.md](./assets/opencode/agent_template.md)
 - **Commands** (.opencode/command/) - Slash commands for user invocation → [command_template.md](./assets/opencode/command_template.md)
 
-For larger skills, split deep content into focused `references/` files with an optional `index.md` map.
+For larger skills, split deep content into focused `references/` files and keep concise navigation in `SKILL.md` or `README.md`.
 
 Start with: [skill_creation.md](./references/skill_creation.md) (Section 9)
 Primary templates:
