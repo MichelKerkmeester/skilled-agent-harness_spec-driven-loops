@@ -15,6 +15,7 @@ created: 2025-12-13
 estimated_loc: 400
 level: 2
 status: active
+
 ---
 # Spec: SpecKit Skill Refinement
 

@@ -15,6 +15,7 @@ estimated-effort: "3-5 sessions"
 
 phases: 4
 spec: "089"
+
 ---
 # Plan: system-spec-kit Reimagined Refinement
 

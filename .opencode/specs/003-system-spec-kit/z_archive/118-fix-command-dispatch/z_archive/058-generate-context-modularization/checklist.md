@@ -1,6 +1,6 @@
 ---
 title: "Verification Checklist: generate-context.js Modularization [058-generate-context-modularization/checklist]"
-description: "find .opencode/skill/system-spec-kit/scripts -name \"*.js\" -exec wc -l {} \\; | sort -n"
+description: "find .opencode/skill/system-spec-kit/scripts -name \"*.js\" -exec wc -l {} \\\\; | sort -n"
 trigger_phrases:
   - "verification"
   - "checklist"

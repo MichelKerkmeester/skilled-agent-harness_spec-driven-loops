@@ -16,6 +16,7 @@ completed: 2026-02-17
 created: 2026-02-17
 level: 3
 status: done
+
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: legacy-normalized | v2.2 -->
 

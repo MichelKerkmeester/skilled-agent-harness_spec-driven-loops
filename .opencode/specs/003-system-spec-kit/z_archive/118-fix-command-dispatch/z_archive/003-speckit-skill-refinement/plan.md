@@ -15,6 +15,7 @@ approach: conservative
 created: 2025-12-13
 level: 2
 status: active
+
 ---
 # Plan: SpecKit Skill Refinement (Conservative Approach)
 

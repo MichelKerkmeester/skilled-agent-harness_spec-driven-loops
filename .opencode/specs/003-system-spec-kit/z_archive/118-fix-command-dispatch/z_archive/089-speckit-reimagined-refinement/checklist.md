@@ -13,6 +13,7 @@ importance_tier: "normal"
 contextType: "implementation"
 spec: "089"
 
+
 ---
 # Checklist: system-spec-kit Reimagined Refinement
 
