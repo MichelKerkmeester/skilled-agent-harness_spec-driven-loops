@@ -32,6 +32,7 @@ user_inputs:
   phases: "[PHASES] - Number of phases. Default: 3."
   phase_names: "[NAMES] - Comma-separated phase names. Optional (auto-generated if omitted)."
   parent_level: "[LEVEL] - Parent doc level. Default: 3+."
+  phase_threshold: "[PHASE_THRESHOLD] - Optional threshold for phase recommendation. Default: 25."
 
 # ─────────────────────────────────────────────────────────────────
 # FIELD HANDLING
@@ -49,6 +50,7 @@ field_handling:
     phases_empty: "Default to 3, refine during scope analysis"
     phase_names_empty: "Auto-generate from feature decomposition"
     parent_level_empty: "Default to Level 3+"
+    phase_threshold_empty: "Default to 25"
 
 # ─────────────────────────────────────────────────────────────────
 # CONTEXT LOADING
@@ -133,13 +135,13 @@ workflow:
   step_1_analyze_scope:
     purpose: Evaluate task complexity and recommend phase decomposition
     activities:
-      - "Run recommend-level.sh --json --recommend-phases with estimated LOC, files, and domain flags"
+      - "Run recommend-level.sh --json --recommend-phases --phase-threshold with estimated LOC, files, and domain flags"
       - Parse phase recommendation from JSON output
       - Extract suggested_phase_count, phase_score, phase_reason
       - "If phases not recommended (score < threshold): warn but allow user override"
       - Validate feature description is actionable
     tool_invocation:
-      command: "bash .opencode/skill/system-spec-kit/scripts/spec/recommend-level.sh --json --recommend-phases --loc {estimated_loc} --files {estimated_files}"
+      command: "bash .opencode/skill/system-spec-kit/scripts/spec/recommend-level.sh --json --recommend-phases --phase-threshold {phase_threshold} --loc {estimated_loc} --files {estimated_files}"
       note: "Add --architectural, --api, --db flags based on feature description analysis"
     outputs: { phase_recommendation: "true|false", suggested_count: number, phase_score: number, phase_reason: string }
     confidence_checkpoint:
@@ -229,13 +231,18 @@ workflow:
         - { context_type: "decision", section: "Phase boundary decisions", example_id: "DECISION-PHASE-BOUNDARIES-{spec#}" }
 
   step_7_next_steps:
-    purpose: Present created structure and continuation options
+    purpose: Validate recursive phase structure, then present continuation options
     activities:
+      - "Run validate.sh --recursive on parent folder to verify parent/child structure"
+      - "Confirm phase-link validation rule results are included in recursive validation output"
       - Display created folder structure (tree view)
       - Show Phase Documentation Map summary
       - "Suggest /spec_kit:plan for first child phase"
       - "Suggest sequential planning for all phases"
       - "Suggest /spec_kit:implement after planning completes"
+    tool_invocation:
+      command: "bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh --recursive {parent_folder}"
+      note: "Recursive validation runs phase-link checks as part of validation rule execution"
     display_format: |
       Phase Decomposition Complete:
       Parent: {parent_folder}
@@ -249,7 +256,7 @@ workflow:
       2. /spec_kit:plan {child_2_path}  (plan second phase)
       ...
       N. /spec_kit:implement {child_1_path}  (after planning)
-    outputs: { next_steps_presented: true }
+    outputs: { recursive_validation: passed_or_warned, next_steps_presented: true }
     validation: workflow_complete
 
 # ─────────────────────────────────────────────────────────────────
@@ -285,6 +292,7 @@ autonomous_execution:
     - Verify parent Phase Documentation Map after Step 4
     - Verify child back-references after Step 5
     - Verify memory save after Step 6
+    - Verify recursive validation after Step 7
 
 # ─────────────────────────────────────────────────────────────────
 # ERROR RECOVERY

@@ -273,9 +273,15 @@ workflow:
     condition: "spec_choice != D (Skip)"
     activities:
     - IF spec_choice == B (Create new):
-      - Find next available spec number
-      - Command: "ls -d specs/[0-9]*/ | sed 's/.*\\/\\([0-9]*\\)-.*/\\1/' | sort -n | tail -1"
-      - Create folder: specs/[NNN]-[skill-name]/
+      - Assess whether phased setup is warranted (estimated >500 LOC, >15 files, multi-domain scope, or explicit phase hint in user request)
+      - IF phased setup recommended:
+        - Present checkpoint: "Use phase workflow for this skill spec setup?"
+        - On approval, route to `/spec_kit:phase` to create parent+child phase structure with proper back-references
+        - Capture resulting parent spec path as `spec_path`
+      - ELSE:
+        - Find next available spec number
+        - Command: "ls -d specs/[0-9]*/ | sed 's/.*\\/\\([0-9]*\\)-.*/\\1/' | sort -n | tail -1"
+        - Create folder: specs/[NNN]-[skill-name]/
     - IF spec_choice == A or C (Use existing):
       - Use selected spec_path
     - "Dispatch @speckit for spec.md and plan.md creation (AGENTS.md Rule 5)"
@@ -292,8 +298,10 @@ workflow:
     outputs:
     - spec.md: created_via_speckit
     - plan.md: created_via_speckit
+    - phase_mode_used: true_or_false
+    - spec_path: confirmed_parent_or_standard_path
     checkpoint:
-      question: "Spec folder created/confirmed. Continue to understanding phase?"
+      question: "Spec folder created/confirmed (phase-aware path evaluated). Continue to understanding phase?"
       options: checkpoint_options.standard
 
   step_3_understanding:

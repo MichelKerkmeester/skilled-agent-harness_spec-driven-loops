@@ -50,6 +50,7 @@ All commands run Phase 0 (@write agent self-verification) before gathering input
 | **skill** | `/create:skill <name> [description] [:auto\|:confirm]` | Create a new skill with SKILL.md, references, assets, and scripts |
 | **skill_asset** | `/create:skill_asset <skill> <type> [--chained] [:auto\|:confirm]` | Create an asset file (templates, lookups, examples, guides) for an existing skill |
 | **skill_reference** | `/create:skill_reference <skill> <type> [--chained] [:auto\|:confirm]` | Create a reference file (deep-dive technical docs, patterns, debugging guides) for an existing skill |
+| **phase (via spec_kit)** | `/spec_kit:phase <feature> [--phases N] [--phase-names list] [:auto\|:confirm]` | Phase-aware parent/child spec decomposition used when create workflows detect large multi-domain scope |
 
 ### README Types
 
@@ -160,4 +161,5 @@ The `--chained` flag on `skill_asset` and `skill_reference` indicates the comman
 | [agent_template.md](../../skill/sk-documentation/assets/opencode/agent_template.md) | Agent creation template |
 | [command_template.md](../../skill/sk-documentation/assets/opencode/command_template.md) | Command creation template |
 | [skill_creation.md](../../skill/sk-documentation/references/skill_creation.md) | Skill creation workflow reference |
+| [spec_kit:phase](../spec_kit/phase.md) | Phase-aware spec setup workflow for complex features |
 <!-- /ANCHOR:related-documents -->

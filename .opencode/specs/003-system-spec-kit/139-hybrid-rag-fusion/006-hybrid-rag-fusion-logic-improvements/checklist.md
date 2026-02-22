@@ -123,9 +123,9 @@ contextType: "implementation"
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 22 | 2/22 |
-| P1 Items | 24 | 8/24 |
-| P2 Items | 3 | 0/3 |
+| P0 Items | 20 | 2/20 |
+| P1 Items | 31 | 6/31 |
+| P2 Items | 6 | 0/6 |
 
 **Verification Date**: 2026-02-22
 **State**: Broadened-scope baseline initialized; implementation verification pending.

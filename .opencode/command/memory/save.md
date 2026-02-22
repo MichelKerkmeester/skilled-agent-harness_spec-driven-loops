@@ -474,6 +474,23 @@ STATUS=OK ID=<id> TRIGGERS=<count>
 
 > **Note:** The indexing pipeline includes three sources: spec memories, constitutional files and spec documents.
 
+### Normalization Before Bulk Rebuild
+
+When corpus-wide markdown metadata has changed (templates/spec docs/memory docs), run normalization before force re-index:
+
+```bash
+# Dry-run normalization
+node .opencode/skill/system-spec-kit/scripts/dist/memory/backfill-frontmatter.js --dry-run --include-archive
+
+# Apply normalization
+node .opencode/skill/system-spec-kit/scripts/dist/memory/backfill-frontmatter.js --apply --include-archive
+
+# Rebuild index after normalization
+spec_kit_memory_memory_index_scan({ force: true })
+```
+
+Recommended order: **normalize → verify → rebuild**.
+
 ### Deferred Indexing (Graceful Degradation)
 
 When MCP is unavailable or embedding fails, the system uses deferred indexing:

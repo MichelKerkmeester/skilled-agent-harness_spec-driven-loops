@@ -77,6 +77,17 @@ Provide a unified entry point for context retrieval that:
 - Enforces L1 token budget constraints (target: ~2000 tokens per call)
 - Handles session deduplication for cross-session queries
 
+### Hybrid Retrieval Runtime (Current Behavior)
+
+The unified context tool now runs a hybrid retrieval pipeline:
+- Tri-channel retrieval (vector + FTS5/BM25 + graph)
+- Intent-adaptive fusion and reranking
+- MMR diversity pruning to reduce redundant chunks
+- Deep-mode query expansion for broader lexical coverage
+- Evidence-gap detection to flag low-confidence retrievals
+
+When evidence quality is low, responses may include an explicit evidence-gap warning so downstream reasoning can remain cautious.
+
 ---
 
 ## 2. CONTRACT
@@ -166,13 +177,14 @@ Adjust search parameters:
 ### Step 3: Execute Search with Optimizations
 
 ```javascript
-memory_search({
-  query: query,
+spec_kit_memory_memory_context({
+  input: query,
+  intent: intent,
+  mode: "auto",                 // use "deep" for expanded multi-query retrieval
   anchors: intentAnchors[intent],
   limit: 10,
   includeContent: true,
-  useDecay: true,
-  contextType: intentFilters[intent], // e.g., 'implementation' for add_feature
+  enableDedup: true
 });
 ```
 
@@ -344,9 +356,9 @@ deduplication:
 
 > **Note:** The dedicated `spec_kit_memory_memory_context()` tool provides unified intent-aware retrieval server-side. It accepts `input`, `mode`, `intent`, `specFolder`, `limit`, `sessionId`, `enableDedup`, `includeContent`, and `anchors` params. This is the recommended unified approach. The manual orchestration below is for advanced use cases requiring fine-grained control.
 
-> **Adaptive Fusion & Telemetry:** When `SPECKIT_ADAPTIVE_FUSION` is enabled, fusion weights adapt dynamically to the detected intent — anchor boosts and context-type filters are adjusted at query time rather than using static multipliers. Search results may also be routed through artifact-class classification before scoring. When `SPECKIT_EXTENDED_TELEMETRY` is enabled, extended telemetry is captured alongside results (query timing, score distributions, fusion decisions) and written to the telemetry log.
+> **Adaptive Fusion, Hybrid Routing & Telemetry:** Retrieval combines vector, FTS5/BM25, and graph channels, then applies intent-adaptive fusion and reranking. Results may be routed through artifact-class classification before scoring. When `SPECKIT_ADAPTIVE_FUSION` is enabled, weights adapt dynamically by intent. When `SPECKIT_EXTENDED_TELEMETRY` is enabled, extended telemetry is captured (query timing, score distributions, fusion decisions) and written to the telemetry log.
 >
-> **Evidence Gap Prevention:** Low-confidence retrieval can trigger an early evidence-gap warning in the response so sparse results are treated cautiously.
+> **MMR and Evidence Gap Prevention:** Post-fusion MMR reduces redundant context chunks, and low-confidence retrieval can trigger an early evidence-gap warning so sparse results are treated cautiously.
 
 ```javascript
 // Option 1: Dedicated context tool (preferred — single call)

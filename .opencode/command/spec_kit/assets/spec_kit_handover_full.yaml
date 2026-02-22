@@ -13,6 +13,27 @@ operating_mode:
   execution: autonomous
   output: "handover.md file in spec folder"
 
+session_detection:
+  priority_order: ["CLI argument", "Deterministic candidate ranking", "Most recent active spec fallback"]
+  deterministic_ranking:
+    roots: ["specs/", ".opencode/specs/"]
+    normalization: "Canonicalize alias roots before ranking (specs/ vs .opencode/specs/)"
+    filters: ["archive", "test", "fixture", "scratch"]
+    tie_breakers: ["artifact completeness", "recent activity", "stable path sort"]
+    confidence_contract:
+      high_confidence: "select top ranked candidate"
+      low_confidence: "prompt for explicit folder confirmation"
+  fallback: "If no eligible folder found, abort handover and request explicit spec path"
+
+pre_handover_validation:
+  mode: strict
+  required_checks:
+    - { id: ANCHORS_VALID, description: "Referenced session docs contain valid opening/closing anchor pairs" }
+    - { id: PRIORITY_TAGS, description: "Key pending work and blockers are explicitly tagged by priority in summary" }
+    - { id: PLACEHOLDER_FILLED, description: "No unresolved placeholder text remains in generated output" }
+  on_warning: "Prompt user to fix first or proceed explicitly"
+  on_error: "Block handover creation until resolved or explicitly bypassed"
+
 user_inputs:
   spec_folder: "[SPEC_FOLDER] - Path to spec folder (e.g., specs/007-auth-feature). REQUIRED."
   session_context: "[SESSION_CONTEXT] - Current session context. Auto-gathered from conversation."
@@ -195,13 +216,25 @@ circuit_breaker:
 # WORKFLOW
 # ─────────────────────────────────────────────────────────────────
 execution:
-  steps: ["Analyze current session context", "Extract completed work from tool calls and file changes", "Identify pending tasks from conversation and todo list", "Document decisions made", "Note blockers and risks", "Generate handover.md using template", "Write file to spec folder", "Return file path and summary"]
+  steps:
+    - "Resolve spec folder from CLI argument or deterministic ranking"
+    - "Run strict pre-handover validation checks (ANCHORS_VALID, PRIORITY_TAGS, PLACEHOLDER_FILLED)"
+    - "Analyze current session context"
+    - "Extract completed work from tool calls and file changes"
+    - "Identify pending tasks from conversation and todo list"
+    - "Document decisions made"
+    - "Note blockers and risks"
+    - "Generate handover.md using template"
+    - "Write file to spec folder"
+    - "Return file path and summary"
 
 # ─────────────────────────────────────────────────────────────────
 # RULES
 # ─────────────────────────────────────────────────────────────────
 rules:
   ALWAYS:
+  - Resolve or confirm spec folder before generation
+  - Run pre-handover validation checks before writing output
   - Be specific in Next Action (file names, line numbers)
   - List files in order of importance
   - Include command to resume

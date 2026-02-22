@@ -182,6 +182,21 @@ Deliver a broadened deep-audit and hardening pass that makes the complete retrie
 | REQ-017 | Phase 4, Phase 5 | T017, T021 |
 | REQ-018 | Phase 5 | T022, T023 |
 
+## 4.6 SUBSYSTEM COVERAGE MAP
+
+| Scoped Subsystem Area | Primary Requirement IDs | Primary Task IDs |
+|-----------------------|-------------------------|------------------|
+| Retrieval/fusion pipeline | REQ-002, REQ-013 | T005, T008, T020 |
+| Graph/causal contracts + relation scoring | REQ-003 | T006 |
+| Cognitive/attention-decay + FSRS ranking | REQ-004 | T007 |
+| Session manager + session-learning quality/performance | REQ-005 | T009, T010 |
+| Memory CRUD + metadata re-embedding consistency | REQ-006 | T011 |
+| Parser/indexing invariants + index health automation | REQ-007 | T012, T014 |
+| Storage reliability + mutation ledger consistency | REQ-008 | T013, T021 |
+| Telemetry/trace schema governance + docs drift prevention | REQ-009 | T015, T016 |
+| Deferred/skipped-path test hardening | REQ-010 | T019 |
+| Automation loops + operational self-healing runbooks | REQ-011, REQ-017 | T017, T018, T021 |
+
 ---
 
 <!-- ANCHOR:success-criteria -->
@@ -462,6 +477,9 @@ Deliver a broadened deep-audit and hardening pass that makes the complete retrie
 
 ### v1.1 (2026-02-22)
 Broadened scope from retrieval/fusion-focused hardening to full cross-system hardening across ten audited subsystems; added explicit traceability matrix and expanded governance/verification requirements.
+
+### v1.2 (2026-02-22)
+Added explicit subsystem coverage map to tighten requirement/task traceability for all ten scoped areas.
 
 ### v1.0 (2026-02-22)
 Initial Level 3+ specification for hybrid RAG fusion logic improvements.

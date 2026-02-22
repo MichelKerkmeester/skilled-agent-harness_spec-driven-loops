@@ -401,6 +401,7 @@ Phase 1 (Audit + Continuity)
 2. Verification failure -> QA Lead
 3. Operational readiness blocker -> Operations Lead
 4. Scope or timeline risk -> Product Owner
+<!-- /ANCHOR:communication -->
 
 ---
 

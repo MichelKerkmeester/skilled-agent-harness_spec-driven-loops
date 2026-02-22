@@ -286,6 +286,23 @@ User Input: Type action name (scan, cleanup, health, point, quit) to proceed
 
 Normal scan skips unchanged files (mtime check). Force scan re-indexes all files regardless.
 
+### Frontmatter Normalization Prerequisite (For Corpus Rebuilds)
+
+Before bulk re-index operations after documentation/template changes, run normalization first:
+
+```bash
+# 1) Dry-run normalization
+node .opencode/skill/system-spec-kit/scripts/dist/memory/backfill-frontmatter.js --dry-run --include-archive
+
+# 2) Apply normalization (only after dry-run review)
+node .opencode/skill/system-spec-kit/scripts/dist/memory/backfill-frontmatter.js --apply --include-archive
+
+# 3) Re-run scan
+spec_kit_memory_memory_index_scan({ force: true })
+```
+
+Recommended order: **normalize → verify → rebuild**.
+
 ### Gate 4 Prompt (Required Every Scan)
 
 Before running `memory_index_scan`, ask:
@@ -312,6 +329,12 @@ The scan discovers memory-eligible files from three sources:
 | 2 | Constitutional | constitutionalFiles | .opencode/skill/*/constitutional/*.md |
 | 3 | Spec Documents | specDocFiles | .opencode/specs/**/*.md |
 
+### Canonical Path Deduplication
+
+- The scan canonicalizes alias roots (`specs/` vs `.opencode/specs/`) before indexing.
+- Duplicate logical files are merged into a unique scan set before batch indexing.
+- Scan diagnostics should be interpreted with dedup behavior in mind (unique files vs duplicates removed).
+
 ### Call Examples
 
 ```javascript
@@ -336,6 +359,8 @@ MEMORY:SCAN
   Skipped     <N>
   Updated     <N>
   Errors      <N>
+
+  Details     unique=<N>, deduped=<N> (when dedup diagnostics are emitted)
 
 STATUS=OK INDEXED=<N> SKIPPED=<N> UPDATED=<N>
 ```
@@ -387,6 +412,10 @@ STATUS=OK REMOVED=<N> KEPT=<N> CHECKPOINT=<name>
 ## 10. TIER MANAGEMENT
 
 **Trigger:** `/memory:manage tier <id> <tier>`
+
+Tier resolution for indexed content is deterministic:
+- Precedence: **metadata tier → inline marker tier → default tier**
+- Manual tier updates via this command override stored tier values for the target memory ID.
 
 ### Workflow
 

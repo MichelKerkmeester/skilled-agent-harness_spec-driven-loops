@@ -30,12 +30,23 @@ user_inputs:
 # SESSION DETECTION
 # ─────────────────────────────────────────────────────────────────
 session_detection:
-  priority_order: ["CLI argument", "Semantic memory search", "Trigger phrase matching", "Most recent memory file by mtime"]
-  note: "Stateless architecture - no .spec-active marker file used"
+  priority_order: ["CLI argument", "Deterministic candidate ranking", "Semantic memory search", "Trigger phrase matching", "Most recent memory file by mtime"]
+  note: "Stateless architecture - no .spec-active marker file used. Interactive mode confirms ambiguous ranked detections."
+  deterministic_ranking:
+    roots: ["specs/", ".opencode/specs/"]
+    normalization: "Canonicalize alias roots before ranking (specs/ vs .opencode/specs/)"
+    filters: ["archive", "test", "fixture", "scratch"]
+    tie_breakers: ["artifact completeness", "recent activity", "stable path sort"]
+    confidence_contract:
+      high_confidence: "present top candidate for confirmation"
+      low_confidence_interactive: "present top 3 ranked candidates and require explicit user selection"
   tier_details:
     tier_1_cli:
       method: "Parse $ARGUMENTS for spec folder path"
       priority: "highest"
+    tier_1b_ranked_candidates:
+      method: "Enumerate candidate folders from both roots, normalize aliases, filter non-active folders, rank deterministically"
+      fallback: "tier_2"
     tier_2_semantic:
       method: "memory_list({ limit: 3, sortBy: 'updated_at' })"
       fallback: "tier_3"
@@ -109,7 +120,14 @@ confidence_framework:
 workflow:
   step_1_session_detection:
     purpose: Detect active session from CLI argument or memory files
-    activities: [Check CLI argument for spec folder, Find most recent memory file if no argument, Validate spec folder exists]
+    activities:
+      - Check CLI argument for spec folder
+      - If no argument, build deterministic candidates from `specs/` and `.opencode/specs/`
+      - Canonicalize aliases and filter archive/test/fixture/scratch paths
+      - Rank candidates deterministically with stable tie-breakers
+      - If low confidence, present top-ranked candidates for explicit selection
+      - If no ranked candidate, continue to semantic/memory fallback
+      - Validate resolved spec folder exists
     outputs: { spec_folder: detected_path, detection_method: argument_or_memory }
     validation: session_detected
     checkpoint:
@@ -186,7 +204,10 @@ stale_session:
 termination:
   after_step: 5
   message: "Session resume complete. Ready to continue work."
-  next_steps: [Continue from pending work, Review implementation summary, Run /spec_kit:implement if tasks remain]
+  next_steps:
+    - "Continue from pending work"
+    - "Review implementation summary"
+    - "Run /spec_kit:implement if tasks remain"
 
 # ─────────────────────────────────────────────────────────────────
 # INTERACTIVE EXECUTION GUIDANCE

@@ -1,12 +1,12 @@
 ---
 title: "Decision Record: 006-hybrid-rag-fusion-logic-improvements [template:level_3+/decision-record.md]"
-description: "Decision records for audit-first hybrid RAG hardening, unified confidence policy, and prevention-first automation."
+description: "Decision records for broad cross-system hardening across ranking, session/state integrity, telemetry governance, and prevention-first operations."
 SPECKIT_TEMPLATE_SOURCE: "decision-record | v2.2"
 trigger_phrases:
   - "decision"
   - "adr"
   - "hybrid rag fusion"
-  - "confidence policy"
+  - "governance"
   - "prevention"
 importance_tier: "critical"
 contextType: "decision"
@@ -20,7 +20,7 @@ contextType: "decision"
 ---
 
 <!-- ANCHOR:adr-001 -->
-## ADR-001: Audit-First Hardening Before Additional Fusion Tuning
+## ADR-001: Broad Audit-First Hardening Across All Discovered Risk Systems
 
 ### Metadata
 
@@ -28,20 +28,20 @@ contextType: "decision"
 |-------|-------|
 | **Status** | Accepted |
 | **Date** | 2026-02-22 |
-| **Deciders** | Retrieval Maintainer, Spec Kit Maintainer |
+| **Deciders** | Retrieval Maintainer, Platform Maintainer, QA Lead |
 
 ---
 
 <!-- ANCHOR:adr-001-context -->
 ### Context
 
-The hybrid pipeline from `002` is active and feature-rich, but seam-level failure risk remains across indexing, retrieval confidence, and session routing. Directly adding more tuning without a deep baseline audit risks introducing regressions that are hard to explain or roll back.
+The original 006 framing was retrieval/fusion-centric. Research and continuity review showed material risk outside that narrow slice: graph relation contracts, cognitive ranking modifiers, session-learning quality, mutation/re-embedding consistency, parser/index health, storage recovery, telemetry schema drift, deferred test coverage, and operational readiness.
 
 ### Constraints
 
-- Preserve existing architecture and avoid schema migrations.
-- Keep prior bug-fix invariants from `003`, `004`, and `005` intact.
-- Maintain practical latency targets while adding safeguards.
+- Preserve existing SQLite-first architecture and avoid schema migration.
+- Preserve carry-forward invariants from `002`, `003`, `004`, and `005`.
+- Keep release safety based on measurable evidence and deterministic behavior.
 <!-- /ANCHOR:adr-001-context -->
 
 ---
@@ -49,9 +49,9 @@ The hybrid pipeline from `002` is active and feature-rich, but seam-level failur
 <!-- ANCHOR:adr-001-decision -->
 ### Decision
 
-**We chose**: run an explicit deep system audit first, then apply bounded hardening based on measured findings.
+**We chose**: broaden 006 scope to full ten-subsystem hardening with explicit requirement -> phase -> task traceability.
 
-**How it works**: Phase 1 produces fixture baselines, confidence distributions, and seam-risk mapping. Only then do phases 2 and 3 introduce fusion guardrails and automation checks. Each change must map to a baseline gap and an acceptance criterion.
+**How it works**: Phase 1 locks baselines across all scoped systems; phases 2-4 implement ranked/channel, state-integrity, and governance/operations controls; phase 5 closes verification and sign-off. No subsystem discovered in research remains implicit or untracked.
 <!-- /ANCHOR:adr-001-decision -->
 
 ---
@@ -61,11 +61,11 @@ The hybrid pipeline from `002` is active and feature-rich, but seam-level failur
 
 | Option | Pros | Cons | Score |
 |--------|------|------|-------|
-| **Audit-first hardening (Chosen)** | High traceability, lower regression risk, clear rollback points | Front-loaded analysis time | 9/10 |
-| Direct tuning without baseline | Faster initial code changes | Low explainability and high drift risk | 4/10 |
-| Full architecture replacement | Potential long-term redesign flexibility | High scope, high risk, violates current constraints | 2/10 |
+| **Broad cross-system hardening (Chosen)** | Prevents silent failures across dependent systems; strongest continuity | Higher implementation and verification scope | 9/10 |
+| Retrieval/fusion-only hardening | Faster initial delivery | Leaves discovered systemic risks unresolved | 4/10 |
+| Two-stage plan with future phase for remaining systems | Lower immediate complexity | Defers known high-impact risks without guarantees | 6/10 |
 
-**Why this one**: It is the lowest-risk path that still yields meaningful quality gains and governance-grade evidence.
+**Why this one**: It is the only option that fully addresses discovered risk surface while preserving architecture continuity.
 <!-- /ANCHOR:adr-001-alternatives -->
 
 ---
@@ -74,18 +74,19 @@ The hybrid pipeline from `002` is active and feature-rich, but seam-level failur
 ### Consequences
 
 **What improves**:
-- Every hardening change has measurable before/after evidence.
-- Regression risk is contained by phase boundaries and fixture baselines.
+- Risk controls become systemic rather than local to ranking internals.
+- Governance and operational readiness become enforceable release criteria.
 
 **What it costs**:
-- Initial schedule overhead for analysis. Mitigation: bound audit scope to top risk seams.
+- Increased complexity and broader verification burden.
 
 **Risks**:
 
 | Risk | Impact | Mitigation |
 |------|--------|------------|
-| Audit data becomes stale during long implementation windows | M | Re-run baseline snapshots at phase boundaries |
-| Over-analysis delays core fixes | M | Track strict deliverables and stop conditions per phase |
+| Scope expansion slows delivery | M | Enforce phase gates and critical-path discipline |
+| Additional controls increase false positives initially | M | Use bounded threshold tuning and holdout fixtures |
+| Multi-subsystem coupling complicates triage | H | Require telemetry schema governance and runbook drills |
 <!-- /ANCHOR:adr-001-consequences -->
 
 ---
@@ -95,11 +96,11 @@ The hybrid pipeline from `002` is active and feature-rich, but seam-level failur
 
 | # | Check | Result | Evidence |
 |---|-------|--------|----------|
-| 1 | **Necessary?** | PASS | Seam failures are already known from `003` to `005` lineage. |
-| 2 | **Beyond Local Maxima?** | PASS | Multiple alternatives were evaluated. |
-| 3 | **Sufficient?** | PASS | Audit plus bounded hardening directly targets the gap. |
-| 4 | **Fits Goal?** | PASS | Aligns with deep-audit and bug-prevention objective. |
-| 5 | **Open Horizons?** | PASS | Preserves architecture while enabling future tuning safely. |
+| 1 | **Necessary?** | PASS | Research identified critical non-retrieval risks requiring direct controls. |
+| 2 | **Beyond Local Maxima?** | PASS | Retrieval-only and staged alternatives were evaluated and rejected. |
+| 3 | **Sufficient?** | PASS | Ten-subsystem scope maps all discovered risks to enforceable controls. |
+| 4 | **Fits Goal?** | PASS | Aligns with user-requested broadened plan across relevant systems. |
+| 5 | **Open Horizons?** | PASS | Preserves architecture while improving operational maturity. |
 
 **Checks Summary**: 5/5 PASS
 <!-- /ANCHOR:adr-001-five-checks -->
@@ -110,17 +111,17 @@ The hybrid pipeline from `002` is active and feature-rich, but seam-level failur
 ### Implementation
 
 **What changes**:
-- Add audit artifacts and baseline fixtures.
-- Gate hardening tasks on baseline evidence.
-- Update docs and checklist with audit-to-action mapping.
+- Expanded requirements, phases, tasks, checklist, and baseline implementation summary.
+- Added subsystem-specific thresholds and acceptance gates.
+- Added sign-off consistency model across docs.
 
-**How to roll back**: revert phase-specific hardening changes while preserving audit fixtures for next iteration.
+**How to roll back**: keep baseline fixtures, revert phase-specific controls in reverse order, re-run deterministic regression + recovery suites.
 <!-- /ANCHOR:adr-001-impl -->
 <!-- /ANCHOR:adr-001 -->
 
 ---
 
-## ADR-002: Unified Confidence Policy Across Retrieval and Session Routing
+## ADR-002: Unified Ranking Contract for Fusion, Graph Relations, and Cognitive Modifiers
 
 ### Metadata
 
@@ -128,51 +129,51 @@ The hybrid pipeline from `002` is active and feature-rich, but seam-level failur
 |-------|-------|
 | **Status** | Accepted |
 | **Date** | 2026-02-22 |
-| **Deciders** | Retrieval Maintainer, Command Workflow Maintainer |
+| **Deciders** | Retrieval Maintainer, Session Maintainer |
 
 ### Context
 
-`memory-search` and folder auto-detection both rely on confidence signals, but their thresholds and fallback behaviors evolved independently. This can create inconsistent user behavior where retrieval marks low confidence while routing proceeds silently, or the reverse.
+Fusion scores, graph relation scores, and cognitive/FSRS modifiers influence final ranking. Without one bounded contract, ranking can drift and become difficult to explain or verify.
 
 ### Decision
 
-Adopt one policy contract for low-confidence handling: explicit threshold ownership, explicit fallback behavior, and shared escalation semantics, while allowing component-specific numeric tuning where justified by evidence.
+Define one ranking contract with explicit contribution bounds, deterministic fallback ordering, and ablation-based quality guardrails. Graph relations and cognitive modifiers are first-class but bounded contributors.
 
 ### Alternatives Considered
 
 | Option | Pros | Cons | Score |
 |--------|------|------|-------|
-| **Shared policy contract (Chosen)** | Consistent user behavior, clearer governance | Requires cross-module coordination | 8/10 |
-| Fully independent policies | Faster local iteration | Behavioral drift and confusion | 5/10 |
-| One global numeric threshold for all modules | Simple mental model | Ignores distribution differences per subsystem | 6/10 |
+| **Unified bounded ranking contract (Chosen)** | Consistent behavior, testable guardrails | Requires calibration and additional tests | 8.5/10 |
+| Independent scoring subsystems | Faster local evolution | Cross-channel drift and debugging complexity | 5/10 |
+| Disable cognitive modifiers | Simpler ranking path | Missed quality gains on long-tail recall | 6/10 |
 
 ### Consequences
 
-- Positive: low-confidence behavior becomes predictable across workflows.
-- Positive: incident triage becomes easier due to consistent semantics.
-- Tradeoff: additional coordination and regression coverage required.
+- Positive: deterministic and explainable ranking behavior.
+- Positive: measurable quality tradeoff boundaries via ablation tests.
+- Tradeoff: tighter calibration loop and maintenance cost.
 
 ### Five Checks Evaluation
 
 | # | Check | Result | Evidence |
 |---|-------|--------|----------|
-| 1 | **Necessary?** | PASS | Inconsistent confidence handling is an active risk class. |
-| 2 | **Beyond Local Maxima?** | PASS | Independent and unified alternatives evaluated. |
-| 3 | **Sufficient?** | PASS | Shared contract with local tuning balances consistency and accuracy. |
-| 4 | **Fits Goal?** | PASS | Directly supports automation/interconnection objective. |
-| 5 | **Open Horizons?** | PASS | Enables future modules to adopt same confidence semantics. |
+| 1 | **Necessary?** | PASS | Multi-channel scoring is already active and requires contract governance. |
+| 2 | **Beyond Local Maxima?** | PASS | Independent and simplified alternatives assessed. |
+| 3 | **Sufficient?** | PASS | Bounds + ablation thresholds directly manage drift risk. |
+| 4 | **Fits Goal?** | PASS | Supports broadened reliability and explainability objectives. |
+| 5 | **Open Horizons?** | PASS | Enables future channels under the same contract model. |
 
 **Checks Summary**: 5/5 PASS
 
 ### Implementation
 
-- Define policy contract document in this spec.
-- Map retrieval and routing handlers to this contract.
-- Add boundary tests for ambiguous and low-confidence cases.
+- Add relation-scoring and cognitive-weight bounds.
+- Add deterministic fallback sequencing tests.
+- Emit debug metadata for score contribution rationale.
 
 ---
 
-## ADR-003: Prevention-First Release Gates for 003/004/005 Failure Classes
+## ADR-003: State Integrity First for Session Learning, CRUD Re-Embedding, and Storage Recovery
 
 ### Metadata
 
@@ -180,59 +181,164 @@ Adopt one policy contract for low-confidence handling: explicit threshold owners
 |-------|-------|
 | **Status** | Accepted |
 | **Date** | 2026-02-22 |
-| **Deciders** | Engineering Lead, QA Lead |
+| **Deciders** | Platform Maintainer, Engineering Lead, QA Lead |
 
 ### Context
 
-Prior specs fixed concrete bugs, but fixes can regress without explicit release gates. Known classes include alias-path duplication (`003`), metadata/tier drift (`004`), and wrong-folder auto-selection (`005`).
+Ranking quality is insufficient if session routing, memory mutation, index consistency, or transaction replay can drift. The highest-impact failures here are often silent and compound over time.
 
 ### Decision
 
-Promote these classes to release-gated invariants. A release cannot proceed when any mapped invariant fails.
+Treat session quality, CRUD re-embedding consistency, parser/index invariants, and mutation-ledger recovery parity as one state-integrity domain with release-gated checks.
 
 ### Alternatives Considered
 
 | Option | Pros | Cons | Score |
 |--------|------|------|-------|
-| **Release-gated invariants (Chosen)** | Strong prevention, objective quality bar | More CI setup and maintenance | 9/10 |
-| Best-effort regression tests only | Lower overhead | Easier to bypass under schedule pressure | 5/10 |
-| Manual review only | Human judgment flexibility | High miss risk and poor reproducibility | 3/10 |
+| **Unified state-integrity domain (Chosen)** | End-to-end consistency, fewer silent failures | Broader implementation touch points | 9/10 |
+| Separate incremental fixes | Smaller local changes | Leaves cross-system drift unresolved | 5.5/10 |
+| Manual audits only | Low coding overhead | Low repeatability and weak prevention | 3/10 |
 
 ### Consequences
 
-- Positive: known failures are blocked before deployment.
-- Positive: continuity from prior specs becomes enforceable, not narrative only.
-- Tradeoff: CI runtime and triage overhead increase.
+- Positive: session, index, and storage behavior become jointly verifiable.
+- Positive: mutation consistency and recovery gain objective pass/fail criteria.
+- Tradeoff: expanded CI and recovery simulation runtime.
 
 ### Five Checks Evaluation
 
 | # | Check | Result | Evidence |
 |---|-------|--------|----------|
-| 1 | **Necessary?** | PASS | Prior failures justify strict prevention. |
-| 2 | **Beyond Local Maxima?** | PASS | Manual and best-effort alternatives considered. |
-| 3 | **Sufficient?** | PASS | Invariant gates directly target recurrence risk. |
-| 4 | **Fits Goal?** | PASS | Matches bug-prevention objective in this initiative. |
-| 5 | **Open Horizons?** | PASS | Adds reusable quality pattern for future specs. |
+| 1 | **Necessary?** | PASS | Existing lineage demonstrates recurring cross-state defect classes. |
+| 2 | **Beyond Local Maxima?** | PASS | Local and manual alternatives evaluated and rejected. |
+| 3 | **Sufficient?** | PASS | Unified gates directly address end-to-end state integrity risk. |
+| 4 | **Fits Goal?** | PASS | Aligns with broadened systemic hardening objective. |
+| 5 | **Open Horizons?** | PASS | Establishes reusable pattern for future stateful modules. |
 
 **Checks Summary**: 5/5 PASS
 
 ### Implementation
 
-- Add invariant checks and test fixtures tied to each bug class.
-- Fail CI on invariant violations.
-- Track remediation evidence in checklist before sign-off.
+- Add session misroute/latency gates and session-learning freshness checks.
+- Add CRUD mutation-to-embedding SLA checks.
+- Add parser/index invariant checks and ledger replay verification.
+
+---
+
+## ADR-004: Telemetry Schema Governance with Documentation Drift Gating
+
+### Metadata
+
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted |
+| **Date** | 2026-02-22 |
+| **Deciders** | Operations Lead, QA Lead, Platform Maintainer |
+
+### Context
+
+Diagnostics become unreliable when emitted trace schema and documented fields diverge. This weakens incident triage and creates hidden operational risk.
+
+### Decision
+
+Introduce canonical trace schema validation in CI and enforce documentation drift checks so schema and docs must evolve together.
+
+### Alternatives Considered
+
+| Option | Pros | Cons | Score |
+|--------|------|------|-------|
+| **Schema + docs drift gate (Chosen)** | High diagnostic trust, objective enforcement | Requires schema registry maintenance | 8.5/10 |
+| Schema validation without docs gate | Partial protection | Documentation drift still possible | 6/10 |
+| Manual doc review only | Low tooling effort | High chance of mismatch and missed updates | 3/10 |
+
+### Consequences
+
+- Positive: operational diagnostics remain dependable.
+- Positive: release-time detection of trace/schema mismatch.
+- Tradeoff: additional maintenance for schema registry and docs checks.
+
+### Five Checks Evaluation
+
+| # | Check | Result | Evidence |
+|---|-------|--------|----------|
+| 1 | **Necessary?** | PASS | Diagnostics are a critical dependency for expanded operations scope. |
+| 2 | **Beyond Local Maxima?** | PASS | Schema-only and manual-review alternatives considered. |
+| 3 | **Sufficient?** | PASS | Combined gate closes both emission and documentation drift. |
+| 4 | **Fits Goal?** | PASS | Supports governance and operations reliability goals. |
+| 5 | **Open Horizons?** | PASS | Enables consistent onboarding of future telemetry events. |
+
+**Checks Summary**: 5/5 PASS
+
+### Implementation
+
+- Define schema registry and payload validators.
+- Add docs drift comparison checks.
+- Gate release on schema/docs alignment.
+
+---
+
+## ADR-005: Prevention-First Closure for Deferred Tests and Operational Self-Healing
+
+### Metadata
+
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted |
+| **Date** | 2026-02-22 |
+| **Deciders** | QA Lead, Operations Lead, Product Owner |
+
+### Context
+
+Deferred/skipped tests and unpracticed runbooks create latent release risk. Prior specs resolved urgent defects but left some paths weakly covered.
+
+### Decision
+
+Treat deferred/skipped-path closure and self-healing runbook drills as release-gated outcomes, not optional follow-ups.
+
+### Alternatives Considered
+
+| Option | Pros | Cons | Score |
+|--------|------|------|-------|
+| **Release-gated closure + drills (Chosen)** | Strong recurrence prevention and operational readiness | More verification workload | 9/10 |
+| Best-effort closure post-release | Faster release cadence | High recurrence risk | 4/10 |
+| Manual checklist only | Simpler process | Weak evidence and enforceability | 3.5/10 |
+
+### Consequences
+
+- Positive: known weak paths are either tested or explicitly approved with ownership.
+- Positive: operators have validated runbooks before release.
+- Tradeoff: additional CI/runtime overhead and planning effort.
+
+### Five Checks Evaluation
+
+| # | Check | Result | Evidence |
+|---|-------|--------|----------|
+| 1 | **Necessary?** | PASS | Prior lineage shows deferred paths can reintroduce failures. |
+| 2 | **Beyond Local Maxima?** | PASS | Best-effort and manual alternatives evaluated. |
+| 3 | **Sufficient?** | PASS | Explicit gates and drills directly reduce recurrence and MTTR risk. |
+| 4 | **Fits Goal?** | PASS | Aligns with broadened prevention and operational resilience goals. |
+| 5 | **Open Horizons?** | PASS | Establishes reusable verification discipline for future specs. |
+
+**Checks Summary**: 5/5 PASS
+
+### Implementation
+
+- Build deferred/skipped-path inventory and closure tracker.
+- Run operational drills for four failure classes.
+- Record evidence and sign-off in checklist and implementation summary.
 
 ---
 
 ## Continuity Notes
 
-- ADR-001 explicitly carries forward architecture decisions from `002`.
-- ADR-003 operationalizes protections for defect classes fixed in `003`, `004`, and `005`.
-- ADR-002 connects `005` routing confidence behavior to retrieval confidence behavior from `002`.
+- ADR-001 expands 006 scope while preserving architecture decisions from `002`.
+- ADR-003 operationalizes defect-prevention lineage from `003` and `004` into state-integrity gates.
+- ADR-002 and ADR-003 extend confidence behaviors from `005` across ranking and session-learning paths.
+- ADR-004 and ADR-005 add governance and operations controls required for sustained reliability after implementation.
 
 ---
 
 <!--
 DECISION RECORD
-Multiple ADRs for Level 3+ governance and continuity enforcement.
+Level 3+ ADR set aligned to broadened cross-system hardening scope and continuity requirements.
 -->

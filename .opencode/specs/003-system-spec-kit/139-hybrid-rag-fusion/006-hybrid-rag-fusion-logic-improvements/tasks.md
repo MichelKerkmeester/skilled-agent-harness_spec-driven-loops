@@ -43,6 +43,21 @@ contextType: "implementation"
 | `004-frontmatter-indexing` | Keep normalized frontmatter + idempotent reindex | Add CRUD re-embed metadata consistency and docs/schema governance checks |
 | `005-auto-detected-session-bug` | Keep low-confidence routing safeguards and archive exclusion behavior | Extend to session-learning quality/performance and runbook automation |
 
+## Subsystem-to-Task Coverage
+
+| Scoped Subsystem Area | Task Coverage |
+|-----------------------|---------------|
+| Retrieval/fusion pipeline | T005, T008, T020 |
+| Graph/causal contracts + relation scoring | T006 |
+| Cognitive/attention-decay + FSRS ranking | T007 |
+| Session manager + session-learning quality/performance | T009, T010 |
+| Memory CRUD + metadata re-embedding consistency | T011 |
+| Parser/indexing invariants + index health automation | T012, T014 |
+| Storage reliability + mutation ledger consistency | T013, T021 |
+| Telemetry/trace schema governance + docs drift prevention | T015, T016 |
+| Deferred/skipped-path test hardening | T019 |
+| Automation loops + operational self-healing runbooks | T017, T018, T021 |
+
 ---
 
 <!-- ANCHOR:phase-1 -->
