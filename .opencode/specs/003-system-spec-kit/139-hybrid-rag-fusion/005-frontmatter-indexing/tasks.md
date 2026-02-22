@@ -34,9 +34,9 @@ contextType: "implementation"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Define canonical frontmatter schema and mapping table (`spec.md`, parser references)
-- [ ] T002 Capture legacy frontmatter variants from templates/spec docs/memories (`scratch/` notes)
-- [ ] T003 [P] Prepare migration fixtures for valid and malformed cases (`mcp_server/tests/...`)
+- [x] T001 Define canonical frontmatter schema and mapping table (`spec.md`, parser references) | Evidence: Canonical schema/normalization approach documented and exercised by migration + parser tests.
+- [x] T002 Capture legacy frontmatter variants from templates/spec docs/memories (`scratch/` notes) | Evidence: Migration/report corpus covers templates (81), memory (365), spec docs (1343).
+- [x] T003 [P] Prepare migration fixtures for valid and malformed cases (`mcp_server/tests/...`) | Evidence: Template/frontmatter test suites executed successfully.
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -44,10 +44,10 @@ contextType: "implementation"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 Implement normalize and compose helpers in parser layer (`mcp_server/lib/parsing/...`)
-- [ ] T005 Implement migration CLI flow with dry-run and apply modes (`scripts/dist/memory/...`)
-- [ ] T006 Wire index rebuild after successful migration (`mcp_server/lib/storage/index-refresh.ts`)
-- [ ] T007 Add error handling for malformed frontmatter and unsupported legacy keys (`mcp_server/lib/errors/...`)
+- [x] T004 Implement normalize and compose helpers in parser layer (`mcp_server/lib/parsing/...`) | Evidence: `node scripts/tests/test-template-system.js` and `node scripts/tests/test-template-comprehensive.js` passed.
+- [x] T005 Implement migration CLI flow with dry-run and apply modes (`scripts/dist/memory/...`) | Evidence: `scratch/frontmatter-apply-report.json` and `scratch/frontmatter-final-dry-run-report-v3.json` show successful apply + idempotent dry-run.
+- [x] T006 Wire index rebuild after successful migration (`mcp_server/lib/storage/index-refresh.ts`) | Evidence: Reindex completed with `STATUS=OK` (executed twice).
+- [x] T007 Add error handling for malformed frontmatter and unsupported legacy keys (`mcp_server/lib/errors/...`) | Evidence: `node scripts/tests/test-frontmatter-backfill.js` and memory parser vitest target passed.
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -55,9 +55,9 @@ contextType: "implementation"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 Run unit tests for parser/coercion/compose paths (`npm test -- parser/frontmatter suites`)
-- [ ] T009 Run integration reindex and retrieval regression suites (`mcp_server/tests/...`)
-- [ ] T010 Update checklist and implementation summary with evidence (`checklist.md`, `implementation-summary.md`)
+- [x] T008 Run unit tests for parser/coercion/compose paths (`npm test -- parser/frontmatter suites`) | Evidence: Passed: `test-template-system.js`, `test-template-comprehensive.js`, `test-frontmatter-backfill.js`, `mcp_server/tests/memory-parser.vitest.ts`.
+- [x] T009 Run integration reindex and retrieval regression suites (`mcp_server/tests/...`) | Evidence: Reindex `STATUS=OK`; DB quality checks: memory-row `SESSION SUMMARY` exact/trimmed/prefix counts all `0`; `distinct_titles_all=1250`, `distinct_titles_memory=1052`.
+- [x] T010 Update checklist and implementation summary with evidence (`checklist.md`, `implementation-summary.md`) | Evidence: This completion update.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -65,9 +65,12 @@ contextType: "implementation"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Manual verification passed
+
+Deferred/Non-Applicable Notes:
+- None for task execution. Deferred items are tracked in `checklist.md` where evidence was not strictly available.
 <!-- /ANCHOR:completion -->
 
 ---
