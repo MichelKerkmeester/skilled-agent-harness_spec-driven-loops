@@ -51,7 +51,7 @@ contextType: "general"
 
 ---
 
-<!-- ANCHOR:preflight-session-1766670613954-rlpvll559-004-anobel.com/009-security-remediation -->
+<!-- ANCHOR:preflight-session-1766670613954-rlpvll559-004-anobel-com/009-security-remediation -->
 ## PREFLIGHT BASELINE
 
 **Epistemic state captured at session start for learning delta calculation.**
@@ -71,7 +71,7 @@ contextType: "general"
 - Confidence: N/A
 - Uncertainty: N/A
 - Readiness: N/A
-<!-- /ANCHOR:preflight-session-1766670613954-rlpvll559-004-anobel.com/009-security-remediation -->
+<!-- /ANCHOR:preflight-session-1766670613954-rlpvll559-004-anobel-com/009-security-remediation -->
 ---
 
 ## Table of Contents
@@ -88,7 +88,7 @@ contextType: "general"
 
 ---
 
-<!-- ANCHOR:continue-session-session-1766670613954-rlpvll559-004-anobel.com/009-security-remediation -->
+<!-- ANCHOR:continue-session-session-1766670613954-rlpvll559-004-anobel-com/009-security-remediation -->
 <a id="continue-session"></a>
 
 ## CONTINUE SESSION
@@ -119,7 +119,7 @@ This session was migrated from an older format to v2.2. Review the OVERVIEW and 
 ```
 /spec_kit:resume 004-anobel.com/009-security-remediation
 ```
-<!-- /ANCHOR:continue-session-session-1766670613954-rlpvll559-004-anobel.com/009-security-remediation -->
+<!-- /ANCHOR_EXAMPLE:continue-session-session-1766670613954-rlpvll559-004-anobel.com/009-security-remediation -->
 ---
 
 <a id="project-state-snapshot"></a>
@@ -138,7 +138,7 @@ This session was migrated from an older format to v2.2. Review the OVERVIEW and 
 
 ---
 
-<!-- ANCHOR:task-guide-anobel.com/009-security-remediation-004-anobel.com/009-security-remediation -->
+<!-- ANCHOR_EXAMPLE:task-guide-anobel.com/009-security-remediation-004-anobel.com/009-security-remediation -->
 <a id="implementation-guide"></a>
 
 ## 1. IMPLEMENTATION GUIDE
@@ -171,11 +171,11 @@ This session was migrated from an older format to v2.2. Review the OVERVIEW and 
 
 - No patterns identified
 
-<!-- /ANCHOR:task-guide-anobel.com/009-security-remediation-004-anobel.com/009-security-remediation -->
+<!-- /ANCHOR_EXAMPLE:task-guide-anobel.com/009-security-remediation-004-anobel.com/009-security-remediation -->
 
 ---
 
-<!-- ANCHOR:summary-session-1766670613954-rlpvll559-004-anobel.com/009-security-remediation -->
+<!-- ANCHOR_EXAMPLE:summary-session-1766670613954-rlpvll559-004-anobel.com/009-security-remediation -->
 <a id="overview"></a>
 
 ## 2. OVERVIEW
@@ -205,341 +205,341 @@ I'll verify the Narsil command location and check for any references that need u
 | `.opencode/command/search/narsil.md` | Updated narsil |
 | `.opencode/command/README.md` | Updated readme |
 
-<!-- /ANCHOR:summary-session-1766670613954-rlpvll559-004-anobel.com/009-security-remediation -->
+<!-- /ANCHOR_EXAMPLE:summary-session-1766670613954-rlpvll559-004-anobel.com/009-security-remediation -->
 
 ---
 
-<!-- ANCHOR:detailed-changes-session-1766670613954-rlpvll559-004-anobel.com/009-security-remediation -->
+<!-- ANCHOR_EXAMPLE:detailed-changes-session-1766670613954-rlpvll559-004-anobel.com/009-security-remediation -->
 <a id="detailed-changes"></a>
 
 ## 3. DETAILED CHANGES
 
-<!-- ANCHOR:implementation-ill-verify-narsil-command-5a6377e5-session-1766670613954-rlpvll559 -->
+<!-- ANCHOR_EXAMPLE:implementation-ill-verify-narsil-command-5a6377e5-session-1766670613954-rlpvll559 -->
 ### FEATURE: I'll verify the Narsil command location and check for any references that need u
 
 I'll verify the Narsil command location and check for any references that need updating.
 
-<!-- /ANCHOR:implementation-ill-verify-narsil-command-5a6377e5-session-1766670613954-rlpvll559 -->
+<!-- /ANCHOR_EXAMPLE:implementation-ill-verify-narsil-command-5a6377e5-session-1766670613954-rlpvll559 -->
 
-<!-- ANCHOR:implementation-tool-bash-db4f5783-session-1766670613954-rlpvll559 -->
+<!-- ANCHOR_EXAMPLE:implementation-tool-bash-db4f5783-session-1766670613954-rlpvll559 -->
 ### OBSERVATION: Tool: bash
 
 Check original narsil command location
 
 **Details:** Tool: bash | Status: completed
-<!-- /ANCHOR:implementation-tool-bash-db4f5783-session-1766670613954-rlpvll559 -->
+<!-- /ANCHOR_EXAMPLE:implementation-tool-bash-db4f5783-session-1766670613954-rlpvll559 -->
 
-<!-- ANCHOR:implementation-tool-bash-db4f5783-2-session-1766670613954-rlpvll559 -->
+<!-- ANCHOR_EXAMPLE:implementation-tool-bash-db4f5783-2-session-1766670613954-rlpvll559 -->
 ### OBSERVATION: Tool: bash
 
 Check new search command location
 
 **Details:** Tool: bash | Status: completed
-<!-- /ANCHOR:implementation-tool-bash-db4f5783-2-session-1766670613954-rlpvll559 -->
+<!-- /ANCHOR_EXAMPLE:implementation-tool-bash-db4f5783-2-session-1766670613954-rlpvll559 -->
 
-<!-- ANCHOR:implementation-tool-glob-8aed8c80-session-1766670613954-rlpvll559 -->
+<!-- ANCHOR_EXAMPLE:implementation-tool-glob-8aed8c80-session-1766670613954-rlpvll559 -->
 ### OBSERVATION: Tool: glob
 
 Executed glob
 
 **Details:** Tool: glob | Status: completed
-<!-- /ANCHOR:implementation-tool-glob-8aed8c80-session-1766670613954-rlpvll559 -->
+<!-- /ANCHOR_EXAMPLE:implementation-tool-glob-8aed8c80-session-1766670613954-rlpvll559 -->
 
-<!-- ANCHOR:implementation-tool-read-7936db18-session-1766670613954-rlpvll559 -->
+<!-- ANCHOR_EXAMPLE:implementation-tool-read-7936db18-session-1766670613954-rlpvll559 -->
 ### OBSERVATION: Tool: read
 
 .opencode/command/search/narsil.md
 
 **Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/command/search/narsil.md
 **Details:** Tool: read | Status: completed
-<!-- /ANCHOR:implementation-tool-read-7936db18-session-1766670613954-rlpvll559 -->
+<!-- /ANCHOR_EXAMPLE:implementation-tool-read-7936db18-session-1766670613954-rlpvll559 -->
 
-<!-- ANCHOR:implementation-tool-bash-db4f5783-3-session-1766670613954-rlpvll559 -->
+<!-- ANCHOR_EXAMPLE:implementation-tool-bash-db4f5783-3-session-1766670613954-rlpvll559 -->
 ### OBSERVATION: Tool: bash
 
 Search for old location references
 
 **Details:** Tool: bash | Status: completed
-<!-- /ANCHOR:implementation-tool-bash-db4f5783-3-session-1766670613954-rlpvll559 -->
+<!-- /ANCHOR_EXAMPLE:implementation-tool-bash-db4f5783-3-session-1766670613954-rlpvll559 -->
 
-<!-- ANCHOR:implementation-tool-bash-db4f5783-4-session-1766670613954-rlpvll559 -->
+<!-- ANCHOR_EXAMPLE:implementation-tool-bash-db4f5783-4-session-1766670613954-rlpvll559 -->
 ### OBSERVATION: Tool: bash
 
 Search for old namespace references
 
 **Details:** Tool: bash | Status: completed
-<!-- /ANCHOR:implementation-tool-bash-db4f5783-4-session-1766670613954-rlpvll559 -->
+<!-- /ANCHOR_EXAMPLE:implementation-tool-bash-db4f5783-4-session-1766670613954-rlpvll559 -->
 
-<!-- ANCHOR:implementation-tool-read-7936db18-2-session-1766670613954-rlpvll559 -->
+<!-- ANCHOR_EXAMPLE:implementation-tool-read-7936db18-2-session-1766670613954-rlpvll559 -->
 ### OBSERVATION: Tool: read
 
 specs/002-commands-and-skills/008-mcp-narsil/memory/2025-12-25_command-and-testing.md
 
 **Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/specs/002-commands-and-skills/008-mcp-narsil/memory/2025-12-25_command-and-testing.md
 **Details:** Tool: read | Status: completed
-<!-- /ANCHOR:implementation-tool-read-7936db18-2-session-1766670613954-rlpvll559 -->
+<!-- /ANCHOR_EXAMPLE:implementation-tool-read-7936db18-2-session-1766670613954-rlpvll559 -->
 
-<!-- ANCHOR:implementation-tool-read-7936db18-3-session-1766670613954-rlpvll559 -->
+<!-- ANCHOR_EXAMPLE:implementation-tool-read-7936db18-3-session-1766670613954-rlpvll559 -->
 ### OBSERVATION: Tool: read
 
 specs/002-commands-and-skills/008-mcp-narsil/testing/test_cases.md
 
 **Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/specs/002-commands-and-skills/008-mcp-narsil/testing/test_cases.md
 **Details:** Tool: read | Status: completed
-<!-- /ANCHOR:implementation-tool-read-7936db18-3-session-1766670613954-rlpvll559 -->
+<!-- /ANCHOR_EXAMPLE:implementation-tool-read-7936db18-3-session-1766670613954-rlpvll559 -->
 
-<!-- ANCHOR:implementation-tool-read-7936db18-4-session-1766670613954-rlpvll559 -->
+<!-- ANCHOR_EXAMPLE:implementation-tool-read-7936db18-4-session-1766670613954-rlpvll559 -->
 ### OBSERVATION: Tool: read
 
 specs/002-commands-and-skills/008-mcp-narsil/testing/test_plan.md
 
 **Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/specs/002-commands-and-skills/008-mcp-narsil/testing/test_plan.md
 **Details:** Tool: read | Status: completed
-<!-- /ANCHOR:implementation-tool-read-7936db18-4-session-1766670613954-rlpvll559 -->
+<!-- /ANCHOR_EXAMPLE:implementation-tool-read-7936db18-4-session-1766670613954-rlpvll559 -->
 
-<!-- ANCHOR:implementation-tool-read-7936db18-5-session-1766670613954-rlpvll559 -->
+<!-- ANCHOR_EXAMPLE:implementation-tool-read-7936db18-5-session-1766670613954-rlpvll559 -->
 ### OBSERVATION: Tool: read
 
 specs/002-commands-and-skills/008-mcp-narsil/handover.md
 
 **Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/specs/002-commands-and-skills/008-mcp-narsil/handover.md
 **Details:** Tool: read | Status: completed
-<!-- /ANCHOR:implementation-tool-read-7936db18-5-session-1766670613954-rlpvll559 -->
+<!-- /ANCHOR_EXAMPLE:implementation-tool-read-7936db18-5-session-1766670613954-rlpvll559 -->
 
-<!-- ANCHOR:implementation-tool-edit-ad272d76-session-1766670613954-rlpvll559 -->
+<!-- ANCHOR_EXAMPLE:implementation-tool-edit-ad272d76-session-1766670613954-rlpvll559 -->
 ### IMPLEMENTATION: Tool: edit
 
 specs/002-commands-and-skills/008-mcp-narsil/memory/2025-12-25_command-and-testing.md
 
 **Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/specs/002-commands-and-skills/008-mcp-narsil/memory/2025-12-25_command-and-testing.md
 **Details:** Tool: edit | Status: completed
-<!-- /ANCHOR:implementation-tool-edit-ad272d76-session-1766670613954-rlpvll559 -->
+<!-- /ANCHOR_EXAMPLE:implementation-tool-edit-ad272d76-session-1766670613954-rlpvll559 -->
 
-<!-- ANCHOR:implementation-tool-edit-ad272d76-2-session-1766670613954-rlpvll559 -->
+<!-- ANCHOR_EXAMPLE:implementation-tool-edit-ad272d76-2-session-1766670613954-rlpvll559 -->
 ### IMPLEMENTATION: Tool: edit
 
 specs/002-commands-and-skills/008-mcp-narsil/memory/2025-12-25_command-and-testing.md
 
 **Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/specs/002-commands-and-skills/008-mcp-narsil/memory/2025-12-25_command-and-testing.md
 **Details:** Tool: edit | Status: completed
-<!-- /ANCHOR:implementation-tool-edit-ad272d76-2-session-1766670613954-rlpvll559 -->
+<!-- /ANCHOR_EXAMPLE:implementation-tool-edit-ad272d76-2-session-1766670613954-rlpvll559 -->
 
-<!-- ANCHOR:implementation-tool-edit-ad272d76-3-session-1766670613954-rlpvll559 -->
+<!-- ANCHOR_EXAMPLE:implementation-tool-edit-ad272d76-3-session-1766670613954-rlpvll559 -->
 ### IMPLEMENTATION: Tool: edit
 
 specs/002-commands-and-skills/008-mcp-narsil/memory/2025-12-25_command-and-testing.md
 
 **Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/specs/002-commands-and-skills/008-mcp-narsil/memory/2025-12-25_command-and-testing.md
 **Details:** Tool: edit | Status: completed
-<!-- /ANCHOR:implementation-tool-edit-ad272d76-3-session-1766670613954-rlpvll559 -->
+<!-- /ANCHOR_EXAMPLE:implementation-tool-edit-ad272d76-3-session-1766670613954-rlpvll559 -->
 
-<!-- ANCHOR:implementation-tool-edit-ad272d76-4-session-1766670613954-rlpvll559 -->
+<!-- ANCHOR_EXAMPLE:implementation-tool-edit-ad272d76-4-session-1766670613954-rlpvll559 -->
 ### IMPLEMENTATION: Tool: edit
 
 specs/002-commands-and-skills/008-mcp-narsil/memory/2025-12-25_command-and-testing.md
 
 **Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/specs/002-commands-and-skills/008-mcp-narsil/memory/2025-12-25_command-and-testing.md
 **Details:** Tool: edit | Status: completed
-<!-- /ANCHOR:implementation-tool-edit-ad272d76-4-session-1766670613954-rlpvll559 -->
+<!-- /ANCHOR_EXAMPLE:implementation-tool-edit-ad272d76-4-session-1766670613954-rlpvll559 -->
 
-<!-- ANCHOR:implementation-tool-edit-ad272d76-5-session-1766670613954-rlpvll559 -->
+<!-- ANCHOR_EXAMPLE:implementation-tool-edit-ad272d76-5-session-1766670613954-rlpvll559 -->
 ### IMPLEMENTATION: Tool: edit
 
 specs/002-commands-and-skills/008-mcp-narsil/testing/test_cases.md
 
 **Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/specs/002-commands-and-skills/008-mcp-narsil/testing/test_cases.md
 **Details:** Tool: edit | Status: completed
-<!-- /ANCHOR:implementation-tool-edit-ad272d76-5-session-1766670613954-rlpvll559 -->
+<!-- /ANCHOR_EXAMPLE:implementation-tool-edit-ad272d76-5-session-1766670613954-rlpvll559 -->
 
-<!-- ANCHOR:implementation-tool-edit-ad272d76-6-session-1766670613954-rlpvll559 -->
+<!-- ANCHOR_EXAMPLE:implementation-tool-edit-ad272d76-6-session-1766670613954-rlpvll559 -->
 ### IMPLEMENTATION: Tool: edit
 
 specs/002-commands-and-skills/008-mcp-narsil/testing/test_plan.md
 
 **Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/specs/002-commands-and-skills/008-mcp-narsil/testing/test_plan.md
 **Details:** Tool: edit | Status: completed
-<!-- /ANCHOR:implementation-tool-edit-ad272d76-6-session-1766670613954-rlpvll559 -->
+<!-- /ANCHOR_EXAMPLE:implementation-tool-edit-ad272d76-6-session-1766670613954-rlpvll559 -->
 
-<!-- ANCHOR:implementation-tool-edit-ad272d76-7-session-1766670613954-rlpvll559 -->
+<!-- ANCHOR_EXAMPLE:implementation-tool-edit-ad272d76-7-session-1766670613954-rlpvll559 -->
 ### IMPLEMENTATION: Tool: edit
 
 specs/002-commands-and-skills/008-mcp-narsil/handover.md
 
 **Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/specs/002-commands-and-skills/008-mcp-narsil/handover.md
 **Details:** Tool: edit | Status: completed
-<!-- /ANCHOR:implementation-tool-edit-ad272d76-7-session-1766670613954-rlpvll559 -->
+<!-- /ANCHOR_EXAMPLE:implementation-tool-edit-ad272d76-7-session-1766670613954-rlpvll559 -->
 
-<!-- ANCHOR:implementation-tool-edit-ad272d76-8-session-1766670613954-rlpvll559 -->
+<!-- ANCHOR_EXAMPLE:implementation-tool-edit-ad272d76-8-session-1766670613954-rlpvll559 -->
 ### IMPLEMENTATION: Tool: edit
 
 specs/002-commands-and-skills/008-mcp-narsil/handover.md
 
 **Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/specs/002-commands-and-skills/008-mcp-narsil/handover.md
 **Details:** Tool: edit | Status: completed
-<!-- /ANCHOR:implementation-tool-edit-ad272d76-8-session-1766670613954-rlpvll559 -->
+<!-- /ANCHOR_EXAMPLE:implementation-tool-edit-ad272d76-8-session-1766670613954-rlpvll559 -->
 
-<!-- ANCHOR:implementation-tool-bash-db4f5783-5-session-1766670613954-rlpvll559 -->
+<!-- ANCHOR_EXAMPLE:implementation-tool-bash-db4f5783-5-session-1766670613954-rlpvll559 -->
 ### OBSERVATION: Tool: bash
 
 Check invocation pattern in command file
 
 **Details:** Tool: bash | Status: completed
-<!-- /ANCHOR:implementation-tool-bash-db4f5783-5-session-1766670613954-rlpvll559 -->
+<!-- /ANCHOR_EXAMPLE:implementation-tool-bash-db4f5783-5-session-1766670613954-rlpvll559 -->
 
-<!-- ANCHOR:implementation-tool-edit-ad272d76-9-session-1766670613954-rlpvll559 -->
+<!-- ANCHOR_EXAMPLE:implementation-tool-edit-ad272d76-9-session-1766670613954-rlpvll559 -->
 ### IMPLEMENTATION: Tool: edit
 
 .opencode/command/search/narsil.md
 
 **Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/command/search/narsil.md
 **Details:** Tool: edit | Status: completed
-<!-- /ANCHOR:implementation-tool-edit-ad272d76-9-session-1766670613954-rlpvll559 -->
+<!-- /ANCHOR_EXAMPLE:implementation-tool-edit-ad272d76-9-session-1766670613954-rlpvll559 -->
 
-<!-- ANCHOR:implementation-tool-edit-ad272d76-10-session-1766670613954-rlpvll559 -->
+<!-- ANCHOR_EXAMPLE:implementation-tool-edit-ad272d76-10-session-1766670613954-rlpvll559 -->
 ### IMPLEMENTATION: Tool: edit
 
 .opencode/command/search/narsil.md
 
 **Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/command/search/narsil.md
 **Details:** Tool: edit | Status: completed
-<!-- /ANCHOR:implementation-tool-edit-ad272d76-10-session-1766670613954-rlpvll559 -->
+<!-- /ANCHOR_EXAMPLE:implementation-tool-edit-ad272d76-10-session-1766670613954-rlpvll559 -->
 
-<!-- ANCHOR:implementation-tool-edit-ad272d76-11-session-1766670613954-rlpvll559 -->
+<!-- ANCHOR_EXAMPLE:implementation-tool-edit-ad272d76-11-session-1766670613954-rlpvll559 -->
 ### IMPLEMENTATION: Tool: edit
 
 .opencode/command/search/narsil.md
 
 **Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/command/search/narsil.md
 **Details:** Tool: edit | Status: completed
-<!-- /ANCHOR:implementation-tool-edit-ad272d76-11-session-1766670613954-rlpvll559 -->
+<!-- /ANCHOR_EXAMPLE:implementation-tool-edit-ad272d76-11-session-1766670613954-rlpvll559 -->
 
-<!-- ANCHOR:implementation-tool-edit-ad272d76-12-session-1766670613954-rlpvll559 -->
+<!-- ANCHOR_EXAMPLE:implementation-tool-edit-ad272d76-12-session-1766670613954-rlpvll559 -->
 ### IMPLEMENTATION: Tool: edit
 
 .opencode/command/search/narsil.md
 
 **Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/command/search/narsil.md
 **Details:** Tool: edit | Status: completed
-<!-- /ANCHOR:implementation-tool-edit-ad272d76-12-session-1766670613954-rlpvll559 -->
+<!-- /ANCHOR_EXAMPLE:implementation-tool-edit-ad272d76-12-session-1766670613954-rlpvll559 -->
 
-<!-- ANCHOR:implementation-tool-edit-ad272d76-13-session-1766670613954-rlpvll559 -->
+<!-- ANCHOR_EXAMPLE:implementation-tool-edit-ad272d76-13-session-1766670613954-rlpvll559 -->
 ### IMPLEMENTATION: Tool: edit
 
 specs/002-commands-and-skills/008-mcp-narsil/memory/2025-12-25_command-and-testing.md
 
 **Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/specs/002-commands-and-skills/008-mcp-narsil/memory/2025-12-25_command-and-testing.md
 **Details:** Tool: edit | Status: completed
-<!-- /ANCHOR:implementation-tool-edit-ad272d76-13-session-1766670613954-rlpvll559 -->
+<!-- /ANCHOR_EXAMPLE:implementation-tool-edit-ad272d76-13-session-1766670613954-rlpvll559 -->
 
-<!-- ANCHOR:implementation-tool-edit-ad272d76-14-session-1766670613954-rlpvll559 -->
+<!-- ANCHOR_EXAMPLE:implementation-tool-edit-ad272d76-14-session-1766670613954-rlpvll559 -->
 ### IMPLEMENTATION: Tool: edit
 
 specs/002-commands-and-skills/008-mcp-narsil/memory/2025-12-25_command-and-testing.md
 
 **Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/specs/002-commands-and-skills/008-mcp-narsil/memory/2025-12-25_command-and-testing.md
 **Details:** Tool: edit | Status: completed
-<!-- /ANCHOR:implementation-tool-edit-ad272d76-14-session-1766670613954-rlpvll559 -->
+<!-- /ANCHOR_EXAMPLE:implementation-tool-edit-ad272d76-14-session-1766670613954-rlpvll559 -->
 
-<!-- ANCHOR:implementation-tool-edit-ad272d76-15-session-1766670613954-rlpvll559 -->
+<!-- ANCHOR_EXAMPLE:implementation-tool-edit-ad272d76-15-session-1766670613954-rlpvll559 -->
 ### IMPLEMENTATION: Tool: edit
 
 specs/002-commands-and-skills/008-mcp-narsil/memory/2025-12-25_command-and-testing.md
 
 **Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/specs/002-commands-and-skills/008-mcp-narsil/memory/2025-12-25_command-and-testing.md
 **Details:** Tool: edit | Status: completed
-<!-- /ANCHOR:implementation-tool-edit-ad272d76-15-session-1766670613954-rlpvll559 -->
+<!-- /ANCHOR_EXAMPLE:implementation-tool-edit-ad272d76-15-session-1766670613954-rlpvll559 -->
 
-<!-- ANCHOR:implementation-tool-edit-ad272d76-16-session-1766670613954-rlpvll559 -->
+<!-- ANCHOR_EXAMPLE:implementation-tool-edit-ad272d76-16-session-1766670613954-rlpvll559 -->
 ### IMPLEMENTATION: Tool: edit
 
 specs/002-commands-and-skills/008-mcp-narsil/memory/2025-12-25_command-and-testing.md
 
 **Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/specs/002-commands-and-skills/008-mcp-narsil/memory/2025-12-25_command-and-testing.md
 **Details:** Tool: edit | Status: completed
-<!-- /ANCHOR:implementation-tool-edit-ad272d76-16-session-1766670613954-rlpvll559 -->
+<!-- /ANCHOR_EXAMPLE:implementation-tool-edit-ad272d76-16-session-1766670613954-rlpvll559 -->
 
-<!-- ANCHOR:implementation-tool-bash-db4f5783-6-session-1766670613954-rlpvll559 -->
+<!-- ANCHOR_EXAMPLE:implementation-tool-bash-db4f5783-6-session-1766670613954-rlpvll559 -->
 ### OBSERVATION: Tool: bash
 
 Update all invocation patterns in test_cases.md
 
 **Details:** Tool: bash | Status: completed
-<!-- /ANCHOR:implementation-tool-bash-db4f5783-6-session-1766670613954-rlpvll559 -->
+<!-- /ANCHOR_EXAMPLE:implementation-tool-bash-db4f5783-6-session-1766670613954-rlpvll559 -->
 
-<!-- ANCHOR:implementation-tool-bash-db4f5783-7-session-1766670613954-rlpvll559 -->
+<!-- ANCHOR_EXAMPLE:implementation-tool-bash-db4f5783-7-session-1766670613954-rlpvll559 -->
 ### OBSERVATION: Tool: bash
 
 Update all invocation patterns in test_plan.md
 
 **Details:** Tool: bash | Status: completed
-<!-- /ANCHOR:implementation-tool-bash-db4f5783-7-session-1766670613954-rlpvll559 -->
+<!-- /ANCHOR_EXAMPLE:implementation-tool-bash-db4f5783-7-session-1766670613954-rlpvll559 -->
 
-<!-- ANCHOR:implementation-tool-bash-db4f5783-8-session-1766670613954-rlpvll559 -->
+<!-- ANCHOR_EXAMPLE:implementation-tool-bash-db4f5783-8-session-1766670613954-rlpvll559 -->
 ### OBSERVATION: Tool: bash
 
 Update all invocation patterns in handover.md
 
 **Details:** Tool: bash | Status: completed
-<!-- /ANCHOR:implementation-tool-bash-db4f5783-8-session-1766670613954-rlpvll559 -->
+<!-- /ANCHOR_EXAMPLE:implementation-tool-bash-db4f5783-8-session-1766670613954-rlpvll559 -->
 
-<!-- ANCHOR:implementation-tool-bash-db4f5783-9-session-1766670613954-rlpvll559 -->
+<!-- ANCHOR_EXAMPLE:implementation-tool-bash-db4f5783-9-session-1766670613954-rlpvll559 -->
 ### OBSERVATION: Tool: bash
 
 Update all invocation patterns in quick-continue.md
 
 **Details:** Tool: bash | Status: completed
-<!-- /ANCHOR:implementation-tool-bash-db4f5783-9-session-1766670613954-rlpvll559 -->
+<!-- /ANCHOR_EXAMPLE:implementation-tool-bash-db4f5783-9-session-1766670613954-rlpvll559 -->
 
-<!-- ANCHOR:implementation-tool-read-7936db18-6-session-1766670613954-rlpvll559 -->
+<!-- ANCHOR_EXAMPLE:implementation-tool-read-7936db18-6-session-1766670613954-rlpvll559 -->
 ### OBSERVATION: Tool: read
 
 .opencode/command/README.md
 
 **Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/command/README.md
 **Details:** Tool: read | Status: completed
-<!-- /ANCHOR:implementation-tool-read-7936db18-6-session-1766670613954-rlpvll559 -->
+<!-- /ANCHOR_EXAMPLE:implementation-tool-read-7936db18-6-session-1766670613954-rlpvll559 -->
 
-<!-- ANCHOR:implementation-tool-edit-ad272d76-17-session-1766670613954-rlpvll559 -->
+<!-- ANCHOR_EXAMPLE:implementation-tool-edit-ad272d76-17-session-1766670613954-rlpvll559 -->
 ### IMPLEMENTATION: Tool: edit
 
 .opencode/command/README.md
 
 **Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/command/README.md
 **Details:** Tool: edit | Status: completed
-<!-- /ANCHOR:implementation-tool-edit-ad272d76-17-session-1766670613954-rlpvll559 -->
+<!-- /ANCHOR_EXAMPLE:implementation-tool-edit-ad272d76-17-session-1766670613954-rlpvll559 -->
 
-<!-- ANCHOR:implementation-tool-edit-ad272d76-18-session-1766670613954-rlpvll559 -->
+<!-- ANCHOR_EXAMPLE:implementation-tool-edit-ad272d76-18-session-1766670613954-rlpvll559 -->
 ### IMPLEMENTATION: Tool: edit
 
 .opencode/command/README.md
 
 **Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/command/README.md
 **Details:** Tool: edit | Status: completed
-<!-- /ANCHOR:implementation-tool-edit-ad272d76-18-session-1766670613954-rlpvll559 -->
+<!-- /ANCHOR_EXAMPLE:implementation-tool-edit-ad272d76-18-session-1766670613954-rlpvll559 -->
 
-<!-- ANCHOR:implementation-tool-edit-ad272d76-19-session-1766670613954-rlpvll559 -->
+<!-- ANCHOR_EXAMPLE:implementation-tool-edit-ad272d76-19-session-1766670613954-rlpvll559 -->
 ### IMPLEMENTATION: Tool: edit
 
 .opencode/command/README.md
 
 **Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/command/README.md
 **Details:** Tool: edit | Status: completed
-<!-- /ANCHOR:implementation-tool-edit-ad272d76-19-session-1766670613954-rlpvll559 -->
+<!-- /ANCHOR_EXAMPLE:implementation-tool-edit-ad272d76-19-session-1766670613954-rlpvll559 -->
 
-<!-- ANCHOR:implementation-tool-edit-ad272d76-20-session-1766670613954-rlpvll559 -->
+<!-- ANCHOR_EXAMPLE:implementation-tool-edit-ad272d76-20-session-1766670613954-rlpvll559 -->
 ### IMPLEMENTATION: Tool: edit
 
 .opencode/command/README.md
 
 **Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/command/README.md
 **Details:** Tool: edit | Status: completed
-<!-- /ANCHOR:implementation-tool-edit-ad272d76-20-session-1766670613954-rlpvll559 -->
+<!-- /ANCHOR_EXAMPLE:implementation-tool-edit-ad272d76-20-session-1766670613954-rlpvll559 -->
 
-<!-- /ANCHOR:detailed-changes-session-1766670613954-rlpvll559-004-anobel.com/009-security-remediation -->
+<!-- /ANCHOR_EXAMPLE:detailed-changes-session-1766670613954-rlpvll559-004-anobel.com/009-security-remediation -->
 
 ---
 
-<!-- ANCHOR:decisions-session-1766670613954-rlpvll559-004-anobel.com/009-security-remediation -->
+<!-- ANCHOR_EXAMPLE:decisions-session-1766670613954-rlpvll559-004-anobel.com/009-security-remediation -->
 <a id="decisions"></a>
 
 ## 4. DECISIONS
@@ -548,9 +548,9 @@ This session did not involve significant architectural or technical decisions. T
 
 ---
 
-<!-- /ANCHOR:decisions-session-1766670613954-rlpvll559-004-anobel.com/009-security-remediation -->
+<!-- /ANCHOR_EXAMPLE:decisions-session-1766670613954-rlpvll559-004-anobel.com/009-security-remediation -->
 
-<!-- ANCHOR:session-history-session-1766670613954-rlpvll559-004-anobel.com/009-security-remediation -->
+<!-- ANCHOR_EXAMPLE:session-history-session-1766670613954-rlpvll559-004-anobel.com/009-security-remediation -->
 <a id="conversation"></a>
 
 ## 5. CONVERSATION
@@ -611,11 +611,11 @@ Tool: read
 
 ---
 
-<!-- /ANCHOR:session-history-session-1766670613954-rlpvll559-004-anobel.com/009-security-remediation -->
+<!-- /ANCHOR_EXAMPLE:session-history-session-1766670613954-rlpvll559-004-anobel.com/009-security-remediation -->
 
 ---
 
-<!-- ANCHOR:recovery-hints-session-1766670613954-rlpvll559-004-anobel.com/009-security-remediation -->
+<!-- ANCHOR_EXAMPLE:recovery-hints-session-1766670613954-rlpvll559-004-anobel.com/009-security-remediation -->
 <a id="recovery-hints"></a>
 
 ## RECOVERY HINTS
@@ -637,10 +637,10 @@ Tool: read
 3. **Review last session state** - Check PROJECT STATE SNAPSHOT
 4. **Validate pending tasks** - Review CONTINUE SESSION section
 5. **Resume with handover prompt** - Use continuation template above
-<!-- /ANCHOR:recovery-hints-session-1766670613954-rlpvll559-004-anobel.com/009-security-remediation -->
+<!-- /ANCHOR_EXAMPLE:recovery-hints-session-1766670613954-rlpvll559-004-anobel.com/009-security-remediation -->
 ---
 
-<!-- ANCHOR:postflight-session-1766670613954-rlpvll559-004-anobel.com/009-security-remediation -->
+<!-- ANCHOR_EXAMPLE:postflight-session-1766670613954-rlpvll559-004-anobel.com/009-security-remediation -->
 <a id="postflight-learning-delta"></a>
 
 ## POSTFLIGHT LEARNING DELTA
@@ -663,14 +663,14 @@ Tool: read
 
 **Session Learning Summary:**
 This session was migrated from an older format. Learning metrics were not captured in the original format.
-<!-- /ANCHOR:postflight-session-1766670613954-rlpvll559-004-anobel.com/009-security-remediation -->
+<!-- /ANCHOR_EXAMPLE:postflight-session-1766670613954-rlpvll559-004-anobel.com/009-security-remediation -->
 ---
 
 <a id="memory-metadata"></a>
 
 ## MEMORY METADATA
 
-<!-- ANCHOR:metadata-session-1766670613954-rlpvll559-004-anobel.com/009-security-remediation -->
+<!-- ANCHOR_EXAMPLE:metadata-session-1766670613954-rlpvll559-004-anobel.com/009-security-remediation -->
 
 > **Machine-Readable Section** - This YAML block is parsed by the semantic memory indexer for search optimization and decay calculations.
 
@@ -767,7 +767,7 @@ embedding_version: "1.0"
 chunk_count: 1
 ```
 
-<!-- /ANCHOR:metadata-session-1766670613954-rlpvll559-004-anobel.com/009-security-remediation -->
+<!-- /ANCHOR:metadata-session-1766670613954-rlpvll559-004-anobel-com/009-security-remediation -->
 
 ---
 

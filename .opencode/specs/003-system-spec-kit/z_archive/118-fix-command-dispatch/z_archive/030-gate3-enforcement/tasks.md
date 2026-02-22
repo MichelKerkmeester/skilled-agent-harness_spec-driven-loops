@@ -52,7 +52,7 @@ contextType: "implementation"
 | ID | Task | Status | Notes |
 |----|------|--------|-------|
 | 3.1 | Create memory file from draft | [ ] | In `memory/` subfolder |
-| 3.2 | Ensure correct anchor format | [ ] | `<!-- ANCHOR:gate3-constitutional -->` |
+| 3.2 | Ensure correct anchor format | [ ] | `<!-- ANCHOR_EXAMPLE:gate3-constitutional -->` |
 | 3.3 | Run generate-context.js | [ ] | Creates indexed memory |
 | 3.4 | Update tier to constitutional | [ ] | Via memory_update() |
 | 3.5 | Verify trigger phrases indexed | [ ] | Check metadata.json |

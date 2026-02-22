@@ -355,24 +355,24 @@ Exit: 0
 **Verification Command:**
 ```bash
 # Check generated memory file for observation anchors
-grep -c "<!-- ANCHOR:" specs/*/memory/*.md 2>/dev/null | grep -v ":0"
+grep -c "<!-- ANCHOR_EXAMPLE:" specs/*/memory/*.md 2>/dev/null | grep -v ":0"
 
 # Look for multiple ANCHOR blocks
-grep -E "<!-- ANCHOR:(OBS|DEC|IMPL)" specs/*/memory/*.md | head -20
+grep -E "<!-- ANCHOR_EXAMPLE:(OBS|DEC|IMPL)" specs/*/memory/*.md | head -20
 ```
 
 **Expected Output:**
 Memory files should contain 2+ ANCHOR blocks:
 ```markdown
-<!-- ANCHOR:OBS-001_session-summary -->
+<!-- ANCHOR_EXAMPLE:OBS-001_session-summary -->
 ## Session Summary
 ...narrative content...
-<!-- /ANCHOR:OBS-001_session-summary -->
+<!-- /ANCHOR_EXAMPLE:OBS-001_session-summary -->
 
-<!-- ANCHOR:DEC-001_approach-selection -->
+<!-- ANCHOR_EXAMPLE:DEC-001_approach-selection -->
 ## Decision: Approach Selection
 ...decision content...
-<!-- /ANCHOR:DEC-001_approach-selection -->
+<!-- /ANCHOR_EXAMPLE:DEC-001_approach-selection -->
 ```
 
 **Pass/Fail Criteria:**
@@ -398,7 +398,7 @@ Memory files should contain 2+ ANCHOR blocks:
 cat specs/*/memory/metadata.json 2>/dev/null | grep -i decision
 
 # Check memory file for decision sections
-grep -E "## Decision:|<!-- ANCHOR:DEC-" specs/*/memory/*.md | head -10
+grep -E "## Decision:|<!-- ANCHOR_EXAMPLE:DEC-" specs/*/memory/*.md | head -10
 ```
 
 **Expected Output:**
@@ -412,7 +412,7 @@ In metadata.json:
 
 In memory file:
 ```markdown
-<!-- ANCHOR:DEC-001_hook-architecture -->
+<!-- ANCHOR_EXAMPLE:DEC-001_hook-architecture -->
 ## Decision: Hook Architecture
 
 **Chosen:** Python hooks with fail-open behavior
@@ -421,7 +421,7 @@ In memory file:
 - JavaScript hooks: Faster but less subprocess control
 - Shell scripts: Simple but limited error handling
 
-<!-- /ANCHOR:DEC-001_hook-architecture -->
+<!-- /ANCHOR_EXAMPLE:DEC-001_hook-architecture -->
 ```
 
 **Pass/Fail Criteria:**
@@ -558,7 +558,7 @@ cat specs/*/memory/*.md | grep -v "^---$" | grep -v "^```" | wc -w
 **Verification Command:**
 ```bash
 # Check that memory file uses ANCHOR format (extractable content)
-grep -c "<!-- ANCHOR:" specs/*/memory/*.md
+grep -c "<!-- ANCHOR_EXAMPLE:" specs/*/memory/*.md
 
 # Verify content is structured, not prose blob
 head -100 specs/*/memory/*.md | grep -E "^## |^### |^- "
@@ -638,7 +638,7 @@ echo ""
 echo "=== Root Cause Fixes ==="
 
 echo "CHK-RC1: Multiple Observations"
-count=$(grep -c "<!-- ANCHOR:OBS" specs/*/memory/*.md 2>/dev/null | grep -v ":0" | wc -l)
+count=$(grep -c "<!-- ANCHOR_EXAMPLE:OBS" specs/*/memory/*.md 2>/dev/null | grep -v ":0" | wc -l)
 [ "$count" -gt 0 ] && echo "  ✅ PASS ($count files with observations)" || echo "  ⚠️ No memory files yet"
 
 echo "CHK-RC2: keyDecisions Populated"
@@ -657,7 +657,7 @@ for f in specs/*/memory/*.md; do
 done 2>/dev/null || echo "  ⚠️ No memory files yet"
 
 echo "CHK-RC6: No Agent Summarization"
-count=$(grep -c "<!-- ANCHOR:" specs/*/memory/*.md 2>/dev/null | grep -v ":0" | wc -l)
+count=$(grep -c "<!-- ANCHOR_EXAMPLE:" specs/*/memory/*.md 2>/dev/null | grep -v ":0" | wc -l)
 [ "$count" -gt 0 ] && echo "  ✅ Uses ANCHOR format" || echo "  ⚠️ Check structure"
 
 echo ""

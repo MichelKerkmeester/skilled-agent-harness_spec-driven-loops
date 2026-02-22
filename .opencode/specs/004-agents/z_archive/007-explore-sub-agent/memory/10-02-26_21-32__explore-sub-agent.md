@@ -51,7 +51,7 @@ contextType: "general"
 
 ---
 
-<!-- ANCHOR:preflight-session-1770755538077-vrdx3wsyj-../.opencode/specs/004-agents/007-explore-sub-agent -->
+<!-- ANCHOR:preflight-session-1770755538077-vrdx3wsyj/opencode/specs/004-agents/007-explore-sub-agent -->
 ## PREFLIGHT BASELINE
 
 **Epistemic state captured at session start for learning delta calculation.**
@@ -71,7 +71,7 @@ contextType: "general"
 - Confidence: [TBD]%
 - Uncertainty: [TBD]
 - Readiness: [TBD]
-<!-- /ANCHOR:preflight-session-1770755538077-vrdx3wsyj-../.opencode/specs/004-agents/007-explore-sub-agent -->
+<!-- /ANCHOR:preflight-session-1770755538077-vrdx3wsyj/opencode/specs/004-agents/007-explore-sub-agent -->
 
 ---
 
@@ -87,7 +87,7 @@ contextType: "general"
 
 ---
 
-<!-- ANCHOR:continue-session-session-1770755538077-vrdx3wsyj-../.opencode/specs/004-agents/007-explore-sub-agent -->
+<!-- ANCHOR:continue-session-session-1770755538077-vrdx3wsyj/opencode/specs/004-agents/007-explore-sub-agent -->
 <a id="continue-session"></a>
 
 ## CONTINUE SESSION
@@ -132,7 +132,7 @@ Next: Continue implementation
 - Review PROJECT STATE SNAPSHOT for current state
 - Check DECISIONS for recent choices made
 
-<!-- /ANCHOR:continue-session-session-1770755538077-vrdx3wsyj-../.opencode/specs/004-agents/007-explore-sub-agent -->
+<!-- /ANCHOR_EXAMPLE:continue-session-session-1770755538077-vrdx3wsyj-../.opencode/specs/004-agents/007-explore-sub-agent -->
 
 ---
 
@@ -152,7 +152,7 @@ Next: Continue implementation
 
 ---
 
-<!-- ANCHOR:summary-session-1770755538077-vrdx3wsyj-../.opencode/specs/004-agents/007-explore-sub-agent -->
+<!-- ANCHOR_EXAMPLE:summary-session-1770755538077-vrdx3wsyj-../.opencode/specs/004-agents/007-explore-sub-agent -->
 <a id="overview"></a>
 
 ## 1. OVERVIEW
@@ -162,11 +162,11 @@ Assistant processed request
 **Key Outcomes**:
 - Session in progress
 
-<!-- /ANCHOR:summary-session-1770755538077-vrdx3wsyj-../.opencode/specs/004-agents/007-explore-sub-agent -->
+<!-- /ANCHOR_EXAMPLE:summary-session-1770755538077-vrdx3wsyj-../.opencode/specs/004-agents/007-explore-sub-agent -->
 
 ---
 
-<!-- ANCHOR:decisions-session-1770755538077-vrdx3wsyj-../.opencode/specs/004-agents/007-explore-sub-agent -->
+<!-- ANCHOR_EXAMPLE:decisions-session-1770755538077-vrdx3wsyj-../.opencode/specs/004-agents/007-explore-sub-agent -->
 <a id="decisions"></a>
 
 <!-- DYNAMIC SECTION NUMBERING:
@@ -194,9 +194,9 @@ This session did not involve significant architectural or technical decisions. T
 
 ---
 
-<!-- /ANCHOR:decisions-session-1770755538077-vrdx3wsyj-../.opencode/specs/004-agents/007-explore-sub-agent -->
+<!-- /ANCHOR_EXAMPLE:decisions-session-1770755538077-vrdx3wsyj-../.opencode/specs/004-agents/007-explore-sub-agent -->
 
-<!-- ANCHOR:session-history-session-1770755538077-vrdx3wsyj-../.opencode/specs/004-agents/007-explore-sub-agent -->
+<!-- ANCHOR_EXAMPLE:session-history-session-1770755538077-vrdx3wsyj-../.opencode/specs/004-agents/007-explore-sub-agent -->
 <a id="conversation"></a>
 
 <!-- DYNAMIC SECTION NUMBERING:
@@ -226,11 +226,11 @@ Request to return full PUBLIC_RELEASE.md contents verbatim
 
 ---
 
-<!-- /ANCHOR:session-history-session-1770755538077-vrdx3wsyj-../.opencode/specs/004-agents/007-explore-sub-agent -->
+<!-- /ANCHOR_EXAMPLE:session-history-session-1770755538077-vrdx3wsyj-../.opencode/specs/004-agents/007-explore-sub-agent -->
 
 ---
 
-<!-- ANCHOR:recovery-hints-session-1770755538077-vrdx3wsyj-../.opencode/specs/004-agents/007-explore-sub-agent -->
+<!-- ANCHOR_EXAMPLE:recovery-hints-session-1770755538077-vrdx3wsyj-../.opencode/specs/004-agents/007-explore-sub-agent -->
 <a id="recovery-hints"></a>
 
 ## RECOVERY HINTS
@@ -283,11 +283,11 @@ node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js ../
 | Index Entry Valid |  | Last indexed:  |
 | Checksums Match |  |  |
 | No Dedup Conflicts |  |  |
-<!-- /ANCHOR:recovery-hints-session-1770755538077-vrdx3wsyj-../.opencode/specs/004-agents/007-explore-sub-agent -->
+<!-- /ANCHOR_EXAMPLE:recovery-hints-session-1770755538077-vrdx3wsyj-../.opencode/specs/004-agents/007-explore-sub-agent -->
 
 ---
 
-<!-- ANCHOR:postflight-session-1770755538077-vrdx3wsyj-../.opencode/specs/004-agents/007-explore-sub-agent -->
+<!-- ANCHOR_EXAMPLE:postflight-session-1770755538077-vrdx3wsyj-../.opencode/specs/004-agents/007-explore-sub-agent -->
 <a id="postflight-learning-delta"></a>
 
 ## POSTFLIGHT LEARNING DELTA
@@ -322,7 +322,7 @@ node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js ../
 
 **Session Learning Summary:**
 Learning metrics will be calculated when both preflight and postflight data are provided.
-<!-- /ANCHOR:postflight-session-1770755538077-vrdx3wsyj-../.opencode/specs/004-agents/007-explore-sub-agent -->
+<!-- /ANCHOR_EXAMPLE:postflight-session-1770755538077-vrdx3wsyj-../.opencode/specs/004-agents/007-explore-sub-agent -->
 
 ---
 
@@ -330,7 +330,7 @@ Learning metrics will be calculated when both preflight and postflight data are 
 
 ## MEMORY METADATA
 
-<!-- ANCHOR:metadata-session-1770755538077-vrdx3wsyj-../.opencode/specs/004-agents/007-explore-sub-agent -->
+<!-- ANCHOR_EXAMPLE:metadata-session-1770755538077-vrdx3wsyj-../.opencode/specs/004-agents/007-explore-sub-agent -->
 
 > **Machine-Readable Section** - This YAML block is parsed by the semantic memory indexer for search optimization and decay calculations.
 
@@ -447,7 +447,7 @@ embedding_version: "1.0"
 chunk_count: 1
 ```
 
-<!-- /ANCHOR:metadata-session-1770755538077-vrdx3wsyj-../.opencode/specs/004-agents/007-explore-sub-agent -->
+<!-- /ANCHOR:metadata-session-1770755538077-vrdx3wsyj/opencode/specs/004-agents/007-explore-sub-agent -->
 
 ---
 

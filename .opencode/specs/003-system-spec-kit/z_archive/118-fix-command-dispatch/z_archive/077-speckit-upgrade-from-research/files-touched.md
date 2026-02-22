@@ -112,7 +112,7 @@
 | POSTFLIGHT LEARNING DELTA | Before memory metadata | Calculate learning delta at session end |
 
 **Key Features:**
-- ANCHOR tags for semantic search: `<!-- ANCHOR:preflight-{{SESSION_ID}}-{{SPEC_FOLDER}} -->`
+- ANCHOR tags for semantic search: `<!-- ANCHOR_EXAMPLE:preflight-{{SESSION_ID}}-{{SPEC_FOLDER}} -->`
 - Knowledge/Uncertainty/Context score tracking
 - Learning Index formula: `(Knowledge Delta × 0.4) + (Uncertainty Reduction × 0.35) + (Context Improvement × 0.25)`
 - Gaps Closed / New Gaps Discovered tracking

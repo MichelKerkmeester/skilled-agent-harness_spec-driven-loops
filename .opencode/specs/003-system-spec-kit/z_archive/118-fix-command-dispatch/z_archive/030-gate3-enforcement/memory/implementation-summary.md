@@ -29,7 +29,7 @@ contextType: "general"
 
 ---
 
-<!-- ANCHOR:preflight-session-legacy-1770632216921-io0wlw-003-memory-and-spec-kit/z_archive/030-gate3-enforcement -->
+<!-- ANCHOR:preflight-session-legacy-1770632216921-io0wlw-003-memory-and-spec-kit/z-archive/030-gate3-enforcement -->
 ## PREFLIGHT BASELINE
 
 **Epistemic state captured at session start for learning delta calculation.**
@@ -49,7 +49,7 @@ contextType: "general"
 - Confidence: N/A
 - Uncertainty: N/A
 - Readiness: N/A
-<!-- /ANCHOR:preflight-session-legacy-1770632216921-io0wlw-003-memory-and-spec-kit/z_archive/030-gate3-enforcement -->
+<!-- /ANCHOR:preflight-session-legacy-1770632216921-io0wlw-003-memory-and-spec-kit/z-archive/030-gate3-enforcement -->
 
 ---
 
@@ -65,7 +65,7 @@ contextType: "general"
 
 ---
 
-<!-- ANCHOR:continue-session-session-legacy-1770632216921-io0wlw-003-memory-and-spec-kit/z_archive/030-gate3-enforcement -->
+<!-- ANCHOR:continue-session-session-legacy-1770632216921-io0wlw-003-memory-and-spec-kit/z-archive/030-gate3-enforcement -->
 <a id="continue-session"></a>
 
 ## CONTINUE SESSION
@@ -96,7 +96,7 @@ This session was migrated from an older format to v2.2. Review the OVERVIEW and 
 ```
 /spec_kit:resume 003-memory-and-spec-kit/z_archive/030-gate3-enforcement
 ```
-<!-- /ANCHOR:continue-session-session-legacy-1770632216921-io0wlw-003-memory-and-spec-kit/z_archive/030-gate3-enforcement -->
+<!-- /ANCHOR_EXAMPLE:continue-session-session-legacy-1770632216921-io0wlw-003-memory-and-spec-kit/z_archive/030-gate3-enforcement -->
 
 ---
 
@@ -114,7 +114,7 @@ This session was migrated from an older format to v2.2. Review the OVERVIEW and 
 
 ---
 
-<!-- ANCHOR:summary-session-legacy-1770632216921-io0wlw-003-memory-and-spec-kit/z_archive/030-gate3-enforcement -->
+<!-- ANCHOR_EXAMPLE:summary-session-legacy-1770632216921-io0wlw-003-memory-and-spec-kit/z_archive/030-gate3-enforcement -->
 <a id="overview"></a>
 
 ## 1. OVERVIEW
@@ -137,13 +137,13 @@ triggers:
 
 # Memory System Overhaul - Implementation Summary
 
-<!-- ANCHOR: summary -->
+<!-- ANCHOR_EXAMPLE: summary -->
 ## Executive Summary
 
 This implementation completed a comprehensive overhaul of the semantic memory system, removing the deprecated `memory_load` tool in favor of the new `includeContent` parameter on `memory_search`. The refactor eliminated ~661 lines of code across MCP server, scripts, config, and documentation while consolidating 7 reference files down to 4. Key improvements include extracted shared functions, fixed version mismatches, and clarified Gate priority rules in AGENTS.md.
-<!-- ANCHOR_END: summary -->
+<!-- ANCHOR_END_EXAMPLE: summary -->
 
-<!-- ANCHOR: changes -->
+<!-- ANCHOR_EXAMPLE: changes -->
 ## Changes Made
 
 ### MCP Server Code (semantic-memory.js)
@@ -177,9 +177,9 @@ This implementation completed a comprehensive overhaul of the semantic memory sy
 - AGENTS.md: Gate 4 updated with includeContent:true, Gate 1 vs Gate 3 priority clarified
 - README.md: Removed 70 lines of NOT YET IMPLEMENTED sections
 - SKILL.md: Resource Router updated for consolidated files
-<!-- ANCHOR_END: changes -->
+<!-- ANCHOR_END_EXAMPLE: changes -->
 
-<!-- ANCHOR: metrics -->
+<!-- ANCHOR_EXAMPLE: metrics -->
 ## Impact Metrics
 
 | Component | Before | After | Change |
@@ -190,9 +190,9 @@ This implementation completed a comprehensive overhaul of the semantic memory sy
 | README.md | 2,403 lines | 2,333 lines | -70 |
 | Reference files | 7 files | 4 files | -3 files |
 | **Total lines removed** | - | - | **~661 lines** |
-<!-- ANCHOR_END: metrics -->
+<!-- ANCHOR_END_EXAMPLE: metrics -->
 
-<!-- ANCHOR: technical -->
+<!-- ANCHOR_EXAMPLE: technical -->
 ## Technical Details
 
 ### New includeContent Parameter
@@ -203,21 +203,21 @@ Extracted from duplicated logic in handleMemorySave() and indexSingleFile(). Ret
 
 ### Gate Priority Clarification
 Gate 3 (HARD BLOCK) now explicitly takes priority over Gate 1 (SOFT BLOCK) when file modifications are detected. Sequence: Detect intent → Ask Gate 3 → Wait for response → Then analyze.
-<!-- ANCHOR_END: technical -->
+<!-- ANCHOR_END_EXAMPLE: technical -->
 
-<!-- ANCHOR: next-steps -->
+<!-- ANCHOR_EXAMPLE: next-steps -->
 ## Required Actions
 1. Restart OpenCode to pick up MCP server changes
 2. Test memory_search with includeContent: true
 3. Verify reference file links work correctly
-<!-- ANCHOR_END: next-steps -->
+<!-- ANCHOR_END_EXAMPLE: next-steps -->
 
 
-<!-- /ANCHOR:summary-session-legacy-1770632216921-io0wlw-003-memory-and-spec-kit/z_archive/030-gate3-enforcement -->
+<!-- /ANCHOR_EXAMPLE:summary-session-legacy-1770632216921-io0wlw-003-memory-and-spec-kit/z_archive/030-gate3-enforcement -->
 
 ---
 
-<!-- ANCHOR:decisions-session-legacy-1770632216921-io0wlw-003-memory-and-spec-kit/z_archive/030-gate3-enforcement -->
+<!-- ANCHOR_EXAMPLE:decisions-session-legacy-1770632216921-io0wlw-003-memory-and-spec-kit/z_archive/030-gate3-enforcement -->
 <a id="decisions"></a>
 
 ## 2. DECISIONS
@@ -226,9 +226,9 @@ This session did not involve significant architectural or technical decisions. T
 
 ---
 
-<!-- /ANCHOR:decisions-session-legacy-1770632216921-io0wlw-003-memory-and-spec-kit/z_archive/030-gate3-enforcement -->
+<!-- /ANCHOR_EXAMPLE:decisions-session-legacy-1770632216921-io0wlw-003-memory-and-spec-kit/z_archive/030-gate3-enforcement -->
 
-<!-- ANCHOR:session-history-session-legacy-1770632216921-io0wlw-003-memory-and-spec-kit/z_archive/030-gate3-enforcement -->
+<!-- ANCHOR_EXAMPLE:session-history-session-legacy-1770632216921-io0wlw-003-memory-and-spec-kit/z_archive/030-gate3-enforcement -->
 <a id="conversation"></a>
 
 ## 3. CONVERSATION
@@ -248,11 +248,11 @@ No conversation messages were captured. This is a legacy memory file migrated to
 
 ---
 
-<!-- /ANCHOR:session-history-session-legacy-1770632216921-io0wlw-003-memory-and-spec-kit/z_archive/030-gate3-enforcement -->
+<!-- /ANCHOR_EXAMPLE:session-history-session-legacy-1770632216921-io0wlw-003-memory-and-spec-kit/z_archive/030-gate3-enforcement -->
 
 ---
 
-<!-- ANCHOR:recovery-hints-session-legacy-1770632216921-io0wlw-003-memory-and-spec-kit/z_archive/030-gate3-enforcement -->
+<!-- ANCHOR_EXAMPLE:recovery-hints-session-legacy-1770632216921-io0wlw-003-memory-and-spec-kit/z_archive/030-gate3-enforcement -->
 <a id="recovery-hints"></a>
 
 ## RECOVERY HINTS
@@ -274,11 +274,11 @@ No conversation messages were captured. This is a legacy memory file migrated to
 3. **Review last session state** - Check PROJECT STATE SNAPSHOT
 4. **Validate pending tasks** - Review CONTINUE SESSION section
 5. **Resume with handover prompt** - Use continuation template above
-<!-- /ANCHOR:recovery-hints-session-legacy-1770632216921-io0wlw-003-memory-and-spec-kit/z_archive/030-gate3-enforcement -->
+<!-- /ANCHOR_EXAMPLE:recovery-hints-session-legacy-1770632216921-io0wlw-003-memory-and-spec-kit/z_archive/030-gate3-enforcement -->
 
 ---
 
-<!-- ANCHOR:postflight-session-legacy-1770632216921-io0wlw-003-memory-and-spec-kit/z_archive/030-gate3-enforcement -->
+<!-- ANCHOR_EXAMPLE:postflight-session-legacy-1770632216921-io0wlw-003-memory-and-spec-kit/z_archive/030-gate3-enforcement -->
 <a id="postflight-learning-delta"></a>
 
 ## POSTFLIGHT LEARNING DELTA
@@ -301,7 +301,7 @@ No conversation messages were captured. This is a legacy memory file migrated to
 
 **Session Learning Summary:**
 This session was migrated from an older format. Learning metrics were not captured in the original format.
-<!-- /ANCHOR:postflight-session-legacy-1770632216921-io0wlw-003-memory-and-spec-kit/z_archive/030-gate3-enforcement -->
+<!-- /ANCHOR_EXAMPLE:postflight-session-legacy-1770632216921-io0wlw-003-memory-and-spec-kit/z_archive/030-gate3-enforcement -->
 
 ---
 
@@ -309,7 +309,7 @@ This session was migrated from an older format. Learning metrics were not captur
 
 ## MEMORY METADATA
 
-<!-- ANCHOR:metadata-session-legacy-1770632216921-io0wlw-003-memory-and-spec-kit/z_archive/030-gate3-enforcement -->
+<!-- ANCHOR_EXAMPLE:metadata-session-legacy-1770632216921-io0wlw-003-memory-and-spec-kit/z_archive/030-gate3-enforcement -->
 
 > **Machine-Readable Section** - This YAML block is parsed by the semantic memory indexer for search optimization and decay calculations.
 
@@ -386,7 +386,7 @@ embedding_version: "1.0"
 chunk_count: 1
 ```
 
-<!-- /ANCHOR:metadata-session-legacy-1770632216921-io0wlw-003-memory-and-spec-kit/z_archive/030-gate3-enforcement -->
+<!-- /ANCHOR:metadata-session-legacy-1770632216921-io0wlw-003-memory-and-spec-kit/z-archive/030-gate3-enforcement -->
 
 ---
 

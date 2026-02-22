@@ -132,9 +132,9 @@ message: "All P0 items must have an @owner assigned"
 name: MEMORY_ANCHORS
 severity: error
 files: ["memory/*.md"]
-pattern: "<!-- ANCHOR:[a-z-]+ -->"
+pattern: "<!-- ANCHOR_EXAMPLE:[a-z-]+ -->"
 condition: paired
-pair_pattern: "<!-- /ANCHOR:[a-z-]+ -->"
+pair_pattern: "<!-- /ANCHOR_EXAMPLE:[a-z-]+ -->"
 message: "Memory files require paired ANCHOR tags"
 ```
 

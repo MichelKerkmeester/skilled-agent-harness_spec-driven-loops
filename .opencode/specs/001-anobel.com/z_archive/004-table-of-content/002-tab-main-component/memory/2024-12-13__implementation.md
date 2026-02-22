@@ -29,7 +29,7 @@ contextType: "general"
 
 ---
 
-<!-- ANCHOR:preflight-session-legacy-1770632216970-pz5vw3-005-anobel.com/z_archive/004-table-of-content/002-tab-main-component -->
+<!-- ANCHOR:preflight-session-legacy-1770632216970-pz5vw3-005-anobel-com/z-archive/004-table-of-content/002-tab-main-component -->
 ## PREFLIGHT BASELINE
 
 **Epistemic state captured at session start for learning delta calculation.**
@@ -49,7 +49,7 @@ contextType: "general"
 - Confidence: N/A
 - Uncertainty: N/A
 - Readiness: N/A
-<!-- /ANCHOR:preflight-session-legacy-1770632216970-pz5vw3-005-anobel.com/z_archive/004-table-of-content/002-tab-main-component -->
+<!-- /ANCHOR:preflight-session-legacy-1770632216970-pz5vw3-005-anobel-com/z-archive/004-table-of-content/002-tab-main-component -->
 
 ---
 
@@ -65,7 +65,7 @@ contextType: "general"
 
 ---
 
-<!-- ANCHOR:continue-session-session-legacy-1770632216970-pz5vw3-005-anobel.com/z_archive/004-table-of-content/002-tab-main-component -->
+<!-- ANCHOR:continue-session-session-legacy-1770632216970-pz5vw3-005-anobel-com/z-archive/004-table-of-content/002-tab-main-component -->
 <a id="continue-session"></a>
 
 ## CONTINUE SESSION
@@ -96,7 +96,7 @@ This session was migrated from an older format to v2.2. Review the OVERVIEW and 
 ```
 /spec_kit:resume 005-anobel.com/z_archive/004-table-of-content/002-tab-main-component
 ```
-<!-- /ANCHOR:continue-session-session-legacy-1770632216970-pz5vw3-005-anobel.com/z_archive/004-table-of-content/002-tab-main-component -->
+<!-- /ANCHOR_EXAMPLE:continue-session-session-legacy-1770632216970-pz5vw3-005-anobel.com/z_archive/004-table-of-content/002-tab-main-component -->
 
 ---
 
@@ -114,7 +114,7 @@ This session was migrated from an older format to v2.2. Review the OVERVIEW and 
 
 ---
 
-<!-- ANCHOR:summary-session-legacy-1770632216970-pz5vw3-005-anobel.com/z_archive/004-table-of-content/002-tab-main-component -->
+<!-- ANCHOR_EXAMPLE:summary-session-legacy-1770632216970-pz5vw3-005-anobel.com/z_archive/004-table-of-content/002-tab-main-component -->
 <a id="overview"></a>
 
 ## 1. OVERVIEW
@@ -143,7 +143,7 @@ trigger_phrases:
 **Status**: Complete
 
 ---
-<!-- ANCHOR:summary-2024-12-13-implementation -->
+<!-- ANCHOR_EXAMPLE:summary-2024-12-13-implementation -->
 
 
 ## Summary
@@ -152,7 +152,7 @@ Created attribute-based tab component (`tab_main.js`) that links tab buttons to 
 
 ---
 
-<!-- ANCHOR:decisions-2024-12-13-implementation -->
+<!-- ANCHOR_EXAMPLE:decisions-2024-12-13-implementation -->
 ## Key Decisions
 
 ### 1. Attribute-Based Linking
@@ -181,7 +181,7 @@ Created attribute-based tab component (`tab_main.js`) that links tab buttons to 
 
 ---
 
-<!-- /ANCHOR:decisions-2024-12-13-implementation -->
+<!-- /ANCHOR_EXAMPLE:decisions-2024-12-13-implementation -->
 
 ## Files Created
 
@@ -236,13 +236,13 @@ data-tab-visible="true" - Applied to visible content
 - Add to project documentation
 
 
-<!-- /ANCHOR:summary-2024-12-13-implementation -->
+<!-- /ANCHOR_EXAMPLE:summary-2024-12-13-implementation -->
 
-<!-- /ANCHOR:summary-session-legacy-1770632216970-pz5vw3-005-anobel.com/z_archive/004-table-of-content/002-tab-main-component -->
+<!-- /ANCHOR_EXAMPLE:summary-session-legacy-1770632216970-pz5vw3-005-anobel.com/z_archive/004-table-of-content/002-tab-main-component -->
 
 ---
 
-<!-- ANCHOR:decisions-session-legacy-1770632216970-pz5vw3-005-anobel.com/z_archive/004-table-of-content/002-tab-main-component -->
+<!-- ANCHOR_EXAMPLE:decisions-session-legacy-1770632216970-pz5vw3-005-anobel.com/z_archive/004-table-of-content/002-tab-main-component -->
 <a id="decisions"></a>
 
 ## 2. DECISIONS
@@ -251,9 +251,9 @@ This session did not involve significant architectural or technical decisions. T
 
 ---
 
-<!-- /ANCHOR:decisions-session-legacy-1770632216970-pz5vw3-005-anobel.com/z_archive/004-table-of-content/002-tab-main-component -->
+<!-- /ANCHOR_EXAMPLE:decisions-session-legacy-1770632216970-pz5vw3-005-anobel.com/z_archive/004-table-of-content/002-tab-main-component -->
 
-<!-- ANCHOR:session-history-session-legacy-1770632216970-pz5vw3-005-anobel.com/z_archive/004-table-of-content/002-tab-main-component -->
+<!-- ANCHOR_EXAMPLE:session-history-session-legacy-1770632216970-pz5vw3-005-anobel.com/z_archive/004-table-of-content/002-tab-main-component -->
 <a id="conversation"></a>
 
 ## 3. CONVERSATION
@@ -273,11 +273,11 @@ No conversation messages were captured. This is a legacy memory file migrated to
 
 ---
 
-<!-- /ANCHOR:session-history-session-legacy-1770632216970-pz5vw3-005-anobel.com/z_archive/004-table-of-content/002-tab-main-component -->
+<!-- /ANCHOR_EXAMPLE:session-history-session-legacy-1770632216970-pz5vw3-005-anobel.com/z_archive/004-table-of-content/002-tab-main-component -->
 
 ---
 
-<!-- ANCHOR:recovery-hints-session-legacy-1770632216970-pz5vw3-005-anobel.com/z_archive/004-table-of-content/002-tab-main-component -->
+<!-- ANCHOR_EXAMPLE:recovery-hints-session-legacy-1770632216970-pz5vw3-005-anobel.com/z_archive/004-table-of-content/002-tab-main-component -->
 <a id="recovery-hints"></a>
 
 ## RECOVERY HINTS
@@ -299,11 +299,11 @@ No conversation messages were captured. This is a legacy memory file migrated to
 3. **Review last session state** - Check PROJECT STATE SNAPSHOT
 4. **Validate pending tasks** - Review CONTINUE SESSION section
 5. **Resume with handover prompt** - Use continuation template above
-<!-- /ANCHOR:recovery-hints-session-legacy-1770632216970-pz5vw3-005-anobel.com/z_archive/004-table-of-content/002-tab-main-component -->
+<!-- /ANCHOR_EXAMPLE:recovery-hints-session-legacy-1770632216970-pz5vw3-005-anobel.com/z_archive/004-table-of-content/002-tab-main-component -->
 
 ---
 
-<!-- ANCHOR:postflight-session-legacy-1770632216970-pz5vw3-005-anobel.com/z_archive/004-table-of-content/002-tab-main-component -->
+<!-- ANCHOR_EXAMPLE:postflight-session-legacy-1770632216970-pz5vw3-005-anobel.com/z_archive/004-table-of-content/002-tab-main-component -->
 <a id="postflight-learning-delta"></a>
 
 ## POSTFLIGHT LEARNING DELTA
@@ -326,7 +326,7 @@ No conversation messages were captured. This is a legacy memory file migrated to
 
 **Session Learning Summary:**
 This session was migrated from an older format. Learning metrics were not captured in the original format.
-<!-- /ANCHOR:postflight-session-legacy-1770632216970-pz5vw3-005-anobel.com/z_archive/004-table-of-content/002-tab-main-component -->
+<!-- /ANCHOR_EXAMPLE:postflight-session-legacy-1770632216970-pz5vw3-005-anobel.com/z_archive/004-table-of-content/002-tab-main-component -->
 
 ---
 
@@ -334,7 +334,7 @@ This session was migrated from an older format. Learning metrics were not captur
 
 ## MEMORY METADATA
 
-<!-- ANCHOR:metadata-session-legacy-1770632216970-pz5vw3-005-anobel.com/z_archive/004-table-of-content/002-tab-main-component -->
+<!-- ANCHOR_EXAMPLE:metadata-session-legacy-1770632216970-pz5vw3-005-anobel.com/z_archive/004-table-of-content/002-tab-main-component -->
 
 > **Machine-Readable Section** - This YAML block is parsed by the semantic memory indexer for search optimization and decay calculations.
 
@@ -411,7 +411,7 @@ embedding_version: "1.0"
 chunk_count: 1
 ```
 
-<!-- /ANCHOR:metadata-session-legacy-1770632216970-pz5vw3-005-anobel.com/z_archive/004-table-of-content/002-tab-main-component -->
+<!-- /ANCHOR:metadata-session-legacy-1770632216970-pz5vw3-005-anobel-com/z-archive/004-table-of-content/002-tab-main-component -->
 
 ---
 

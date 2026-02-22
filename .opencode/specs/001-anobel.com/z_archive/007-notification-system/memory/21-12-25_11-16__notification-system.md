@@ -34,7 +34,7 @@ contextType: "general"
 
 ---
 
-<!-- ANCHOR:preflight-session-1766312167619-8gzanmfid-007-anobel.com/007-notification-system -->
+<!-- ANCHOR_EXAMPLE:preflight-session-1766312167619-8gzanmfid-007-anobel.com/007-notification-system -->
 ## PREFLIGHT BASELINE
 
 **Epistemic state captured at session start for learning delta calculation.**
@@ -54,11 +54,11 @@ contextType: "general"
 - Confidence: N/A
 - Uncertainty: N/A
 - Readiness: N/A
-<!-- /ANCHOR:preflight-session-1766312167619-8gzanmfid-007-anobel.com/007-notification-system -->
+<!-- /ANCHOR_EXAMPLE:preflight-session-1766312167619-8gzanmfid-007-anobel.com/007-notification-system -->
 
 ---
 
-<!-- ANCHOR:continue-session-session-1766312167619-8gzanmfid-007-anobel.com/007-notification-system -->
+<!-- ANCHOR_EXAMPLE:continue-session-session-1766312167619-8gzanmfid-007-anobel.com/007-notification-system -->
 <a id="continue-session"></a>
 
 ## CONTINUE SESSION
@@ -89,11 +89,11 @@ This session was migrated from an older format to v2.2. Review the OVERVIEW and 
 ```
 /spec_kit:resume 007-anobel.com/007-notification-system
 ```
-<!-- /ANCHOR:continue-session-session-1766312167619-8gzanmfid-007-anobel.com/007-notification-system -->
+<!-- /ANCHOR_EXAMPLE:continue-session-session-1766312167619-8gzanmfid-007-anobel.com/007-notification-system -->
 
 ---
 
-<!-- ANCHOR:task-guide-anobel.com/007-notification-system-007-anobel.com/007-notification-system -->
+<!-- ANCHOR_EXAMPLE:task-guide-anobel.com/007-notification-system-007-anobel.com/007-notification-system -->
 ## 1. IMPLEMENTATION GUIDE
 
 **What Was Built**:
@@ -130,11 +130,11 @@ This session was migrated from an older format to v2.2. Review the OVERVIEW and 
 
 - **Functional Transforms**: Use functional methods for data transformation
 
-<!-- /ANCHOR:task-guide-anobel.com/007-notification-system-007-anobel.com/007-notification-system -->
+<!-- /ANCHOR_EXAMPLE:task-guide-anobel.com/007-notification-system-007-anobel.com/007-notification-system -->
 
 ---
 
-<!-- ANCHOR:summary-session-1766312167619-8gzanmfid-007-anobel.com/007-notification-system -->
+<!-- ANCHOR_EXAMPLE:summary-session-1766312167619-8gzanmfid-007-anobel.com/007-notification-system -->
 ## 2. OVERVIEW
 
 Implemented a CMS-driven alert/notification system for A. Nobel & Zn. Webflow website (anobel.com). The system supports one-alert-at-a-time display with queue behavior, office hours integration, date range filtering, and three dismiss modes (session, day, until-end-date). Container auto-hides when empty. Created comprehensive test suite (12 tests) and integrated with Webflow CMS collection 'C | Notifications'.
@@ -156,36 +156,36 @@ Implemented a CMS-driven alert/notification system for A. Nobel & Zn. Webflow we
 | `src/0_html/global.html` | Modified during session |
 | `src/2_javascript/contact/CMS Alert System (Notifications).md` | Modified during session |
 
-<!-- /ANCHOR:summary-session-1766312167619-8gzanmfid-007-anobel.com/007-notification-system -->
+<!-- /ANCHOR_EXAMPLE:summary-session-1766312167619-8gzanmfid-007-anobel.com/007-notification-system -->
 
 ---
 
-<!-- ANCHOR:detailed-changes-session-1766312167619-8gzanmfid-007-anobel.com/007-notification-system -->
+<!-- ANCHOR_EXAMPLE:detailed-changes-session-1766312167619-8gzanmfid-007-anobel.com/007-notification-system -->
 ## 3. DETAILED CHANGES
 
-<!-- ANCHOR:implementation-cmsdriven-alertnotification-system-nobel-7b51699e-session-1766312167619-8gzanmfid -->
+<!-- ANCHOR_EXAMPLE:implementation-cmsdriven-alertnotification-system-nobel-7b51699e-session-1766312167619-8gzanmfid -->
 ### FEATURE: Implemented a CMS-driven alert/notification system for A. Nobel & Zn. Webflow website (anobel.com)....
 
 Implemented a CMS-driven alert/notification system for A. Nobel & Zn. Webflow website (anobel.com). The system supports one-alert-at-a-time display with queue behavior, office hours integration, date range filtering, and three dismiss modes (session, day, until-end-date). Container auto-hides when empty. Created comprehensive test suite (12 tests) and integrated with Webflow CMS collection 'C | Notifications'.
 
 **Details:** notification system | alert system | CMS notifications | contact_notifications.js | dismiss behavior | office hours alert | anobel alerts | webflow notifications | one alert at a time | notification queue
-<!-- /ANCHOR:implementation-cmsdriven-alertnotification-system-nobel-7b51699e-session-1766312167619-8gzanmfid -->
+<!-- /ANCHOR_EXAMPLE:implementation-cmsdriven-alertnotification-system-nobel-7b51699e-session-1766312167619-8gzanmfid -->
 
-<!-- ANCHOR:implementation-technical-implementation-details-f92fc3ff-session-1766312167619-8gzanmfid -->
+<!-- ANCHOR_EXAMPLE:implementation-technical-implementation-details-f92fc3ff-session-1766312167619-8gzanmfid -->
 ### IMPLEMENTATION: Technical Implementation Details
 
 webflowSiteId: 6723d26a4aa4a278cad8f59c; cmsCollectionId: 6946fcdfc4ba3d0d8abebe4c; cmsCollectionName: C | Notifications; cmsFields: {"active":"data-alert-active (Switch)","closable":"data-alert-closable (Switch)","dismissBehavior":"data-alert-dismiss (Option: session|day|until-end-date)","startDate":"data-alert-start (DateTime)","endDate":"data-alert-end (DateTime)","officeHours":"data-alert-office-hours (Switch)","showWhen":"data-alert-show-when (Option: open|closed|always)"}; publicApi: {"refresh":"Re-evaluate visibility","getAll":"Get all parsed alerts","getVisible":"Get currently visible alert","getOfficeStatus":"Get office hours status","clearDismissals":"Clear all dismiss storage","debug":"Enable/disable console logging"}; cdnUrlPattern: https://pub-85443b585f1e4411ab5cc976c4fb08ca.r2.dev/contact_notifications.js?v=1.1.30; testResults: {"passed":8,"partial":4,"total":12,"note":"Partial tests verified CMS integration but require live browser for full validation"}
 
-<!-- /ANCHOR:implementation-technical-implementation-details-f92fc3ff-session-1766312167619-8gzanmfid -->
+<!-- /ANCHOR_EXAMPLE:implementation-technical-implementation-details-f92fc3ff-session-1766312167619-8gzanmfid -->
 
-<!-- /ANCHOR:detailed-changes-session-1766312167619-8gzanmfid-007-anobel.com/007-notification-system -->
+<!-- /ANCHOR_EXAMPLE:detailed-changes-session-1766312167619-8gzanmfid-007-anobel.com/007-notification-system -->
 
 ---
 
-<!-- ANCHOR:decisions-session-1766312167619-8gzanmfid-007-anobel.com/007-notification-system -->
+<!-- ANCHOR_EXAMPLE:decisions-session-1766312167619-8gzanmfid-007-anobel.com/007-notification-system -->
 ## 4. DECISIONS
 
-<!-- ANCHOR:decision-one-alert-time-queue-a0b34101-session-1766312167619-8gzanmfid -->
+<!-- ANCHOR_EXAMPLE:decision-one-alert-time-queue-a0b34101-session-1766312167619-8gzanmfid -->
 ### Decision 1: One alert at a time with queue behavior
 
 **Context**: One alert at a time with queue behavior
@@ -208,11 +208,11 @@ webflowSiteId: 6723d26a4aa4a278cad8f59c; cmsCollectionId: 6946fcdfc4ba3d0d8abebe
 #### Trade-offs
 
 **Confidence**: 80%
-<!-- /ANCHOR:decision-one-alert-time-queue-a0b34101-session-1766312167619-8gzanmfid -->
+<!-- /ANCHOR_EXAMPLE:decision-one-alert-time-queue-a0b34101-session-1766312167619-8gzanmfid -->
 
 ---
 
-<!-- ANCHOR:decision-three-dismiss-behavior-modes-ce255734-session-1766312167619-8gzanmfid -->
+<!-- ANCHOR_EXAMPLE:decision-three-dismiss-behavior-modes-ce255734-session-1766312167619-8gzanmfid -->
 ### Decision 2: Three dismiss behavior modes
 
 **Context**: Three dismiss behavior modes
@@ -235,11 +235,11 @@ webflowSiteId: 6723d26a4aa4a278cad8f59c; cmsCollectionId: 6946fcdfc4ba3d0d8abebe
 #### Trade-offs
 
 **Confidence**: 80%
-<!-- /ANCHOR:decision-three-dismiss-behavior-modes-ce255734-session-1766312167619-8gzanmfid -->
+<!-- /ANCHOR_EXAMPLE:decision-three-dismiss-behavior-modes-ce255734-session-1766312167619-8gzanmfid -->
 
 ---
 
-<!-- ANCHOR:decision-office-hours-integration-via-3925facd-session-1766312167619-8gzanmfid -->
+<!-- ANCHOR_EXAMPLE:decision-office-hours-integration-via-3925facd-session-1766312167619-8gzanmfid -->
 ### Decision 3: Office hours integration via show
 
 **Context**: when attribute
@@ -262,11 +262,11 @@ webflowSiteId: 6723d26a4aa4a278cad8f59c; cmsCollectionId: 6946fcdfc4ba3d0d8abebe
 #### Trade-offs
 
 **Confidence**: 80%
-<!-- /ANCHOR:decision-office-hours-integration-via-3925facd-session-1766312167619-8gzanmfid -->
+<!-- /ANCHOR_EXAMPLE:decision-office-hours-integration-via-3925facd-session-1766312167619-8gzanmfid -->
 
 ---
 
-<!-- ANCHOR:decision-container-auto-b3da6f45-session-1766312167619-8gzanmfid -->
+<!-- ANCHOR_EXAMPLE:decision-container-auto-b3da6f45-session-1766312167619-8gzanmfid -->
 ### Decision 4: Container auto
 
 **Context**: hide when empty
@@ -289,13 +289,13 @@ webflowSiteId: 6723d26a4aa4a278cad8f59c; cmsCollectionId: 6946fcdfc4ba3d0d8abebe
 #### Trade-offs
 
 **Confidence**: 80%
-<!-- /ANCHOR:decision-container-auto-b3da6f45-session-1766312167619-8gzanmfid -->
+<!-- /ANCHOR_EXAMPLE:decision-container-auto-b3da6f45-session-1766312167619-8gzanmfid -->
 
 ---
 
-<!-- /ANCHOR:decisions-session-1766312167619-8gzanmfid-007-anobel.com/007-notification-system -->
+<!-- /ANCHOR_EXAMPLE:decisions-session-1766312167619-8gzanmfid-007-anobel.com/007-notification-system -->
 
-<!-- ANCHOR:session-history-session-1766312167619-8gzanmfid-007-anobel.com/007-notification-system -->
+<!-- ANCHOR_EXAMPLE:session-history-session-1766312167619-8gzanmfid-007-anobel.com/007-notification-system -->
 ## 5. CONVERSATION
 
 Complete timestamped dialogue capturing all user interactions, AI responses, tool executions, and code changes during the session.
@@ -317,11 +317,11 @@ Implemented a CMS-driven alert/notification system for A. Nobel & Zn. Webflow we
 
 ---
 
-<!-- /ANCHOR:session-history-session-1766312167619-8gzanmfid-007-anobel.com/007-notification-system -->
+<!-- /ANCHOR_EXAMPLE:session-history-session-1766312167619-8gzanmfid-007-anobel.com/007-notification-system -->
 
 ---
 
-<!-- ANCHOR:recovery-hints-session-1766312167619-8gzanmfid-007-anobel.com/007-notification-system -->
+<!-- ANCHOR_EXAMPLE:recovery-hints-session-1766312167619-8gzanmfid-007-anobel.com/007-notification-system -->
 <a id="recovery-hints"></a>
 
 ## RECOVERY HINTS
@@ -343,10 +343,10 @@ Implemented a CMS-driven alert/notification system for A. Nobel & Zn. Webflow we
 3. **Review last session state** - Check PROJECT STATE SNAPSHOT
 4. **Validate pending tasks** - Review CONTINUE SESSION section
 5. **Resume with handover prompt** - Use continuation template above
-<!-- /ANCHOR:recovery-hints-session-1766312167619-8gzanmfid-007-anobel.com/007-notification-system -->
+<!-- /ANCHOR_EXAMPLE:recovery-hints-session-1766312167619-8gzanmfid-007-anobel.com/007-notification-system -->
 ---
 
-<!-- ANCHOR:postflight-session-1766312167619-8gzanmfid-007-anobel.com/007-notification-system -->
+<!-- ANCHOR_EXAMPLE:postflight-session-1766312167619-8gzanmfid-007-anobel.com/007-notification-system -->
 <a id="postflight-learning-delta"></a>
 
 ## POSTFLIGHT LEARNING DELTA
@@ -369,12 +369,12 @@ Implemented a CMS-driven alert/notification system for A. Nobel & Zn. Webflow we
 
 **Session Learning Summary:**
 This session was migrated from an older format. Learning metrics were not captured in the original format.
-<!-- /ANCHOR:postflight-session-1766312167619-8gzanmfid-007-anobel.com/007-notification-system -->
+<!-- /ANCHOR_EXAMPLE:postflight-session-1766312167619-8gzanmfid-007-anobel.com/007-notification-system -->
 ---
 
 ## MEMORY METADATA
 
-<!-- ANCHOR:metadata-session-1766312167619-8gzanmfid-007-anobel.com/007-notification-system -->
+<!-- ANCHOR_EXAMPLE:metadata-session-1766312167619-8gzanmfid-007-anobel.com/007-notification-system -->
 
 > **Machine-Readable Section** - This YAML block is parsed by the semantic memory indexer for search optimization and decay calculations.
 
@@ -466,7 +466,7 @@ embedding_version: "1.0"
 chunk_count: 1
 ```
 
-<!-- /ANCHOR:metadata-session-1766312167619-8gzanmfid-007-anobel.com/007-notification-system -->
+<!-- /ANCHOR:metadata-session-1766312167619-8gzanmfid-007-anobel-com/007-notification-system -->
 
 ---
 

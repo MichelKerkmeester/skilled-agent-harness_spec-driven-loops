@@ -22,8 +22,8 @@
 ### Unit Test: `test-parser.js`
 Verifies the `extractAnchors` function in `memory-parser.js`.
 
-- **Standard Anchor:** `<!-- ANCHOR:summary -->...` ✅ Extracted
-- **Nested Anchor:** `<!-- ANCHOR:parent -->...<!-- ANCHOR:child -->...` ✅ Extracted both independently
+- **Standard Anchor:** `<!-- ANCHOR_EXAMPLE:summary -->...` ✅ Extracted
+- **Nested Anchor:** `<!-- ANCHOR_EXAMPLE:parent -->...<!-- ANCHOR_EXAMPLE:child -->...` ✅ Extracted both independently
 - **Broken Anchor:** Missing closing tag ✅ Ignored (Robustness verified)
 
 ### Integration Simulation: `verify-logic.js`

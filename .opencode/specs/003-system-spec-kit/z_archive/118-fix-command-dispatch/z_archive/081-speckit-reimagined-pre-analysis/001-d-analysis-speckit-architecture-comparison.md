@@ -192,7 +192,7 @@ score = weighted_sum(
 
 **ANCHOR Format:**
 ```markdown
-<!-- ANCHOR: decisions -->
+<!-- ANCHOR_EXAMPLE: decisions -->
 Key decisions made in this session...
 <!-- /ANCHOR -->
 ```

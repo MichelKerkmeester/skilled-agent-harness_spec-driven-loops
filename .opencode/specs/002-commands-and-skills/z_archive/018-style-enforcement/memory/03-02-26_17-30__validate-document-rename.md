@@ -51,7 +51,7 @@ contextType: "general"
 
 ---
 
-<!-- ANCHOR:preflight-session-1770136207570-co50n1c6d-005-anobel.com -->
+<!-- ANCHOR:preflight-session-1770136207570-co50n1c6d-005-anobel-com -->
 ## PREFLIGHT BASELINE
 
 **Epistemic state captured at session start for learning delta calculation.**
@@ -71,7 +71,7 @@ contextType: "general"
 - Confidence: [TBD]%
 - Uncertainty: [TBD]
 - Readiness: [TBD]
-<!-- /ANCHOR:preflight-session-1770136207570-co50n1c6d-005-anobel.com -->
+<!-- /ANCHOR:preflight-session-1770136207570-co50n1c6d-005-anobel-com -->
 
 ---
 
@@ -89,7 +89,7 @@ contextType: "general"
 
 ---
 
-<!-- ANCHOR:continue-session-session-1770136207570-co50n1c6d-005-anobel.com -->
+<!-- ANCHOR:continue-session-session-1770136207570-co50n1c6d-005-anobel-com -->
 <a id="continue-session"></a>
 
 ## CONTINUE SESSION
@@ -141,7 +141,7 @@ Next: Continue implementation
 
 - Last: Completed the rename of validate_readme.py to validate_document.py across the en
 
-<!-- /ANCHOR:continue-session-session-1770136207570-co50n1c6d-005-anobel.com -->
+<!-- /ANCHOR_EXAMPLE:continue-session-session-1770136207570-co50n1c6d-005-anobel.com -->
 
 ---
 
@@ -161,7 +161,7 @@ Next: Continue implementation
 
 ---
 
-<!-- ANCHOR:task-guide-anobel.com-005-anobel.com -->
+<!-- ANCHOR_EXAMPLE:task-guide-anobel.com-005-anobel.com -->
 <a id="implementation-guide"></a>
 
 ## 1. IMPLEMENTATION GUIDE
@@ -192,11 +192,11 @@ Next: Continue implementation
 
 - **Validation**: Input validation before processing
 
-<!-- /ANCHOR:task-guide-anobel.com-005-anobel.com -->
+<!-- /ANCHOR_EXAMPLE:task-guide-anobel.com-005-anobel.com -->
 
 ---
 
-<!-- ANCHOR:summary-session-1770136207570-co50n1c6d-005-anobel.com -->
+<!-- ANCHOR_EXAMPLE:summary-session-1770136207570-co50n1c6d-005-anobel.com -->
 <a id="overview"></a>
 
 ## 2. OVERVIEW
@@ -220,35 +220,35 @@ Completed the rename of validate_readme.py to validate_document.py across the en
 | `/.../coder/AGENTS.md` | The script's internal docstring |
 | `/.../Public/AGENTS.md` | The script's internal docstring |
 
-<!-- /ANCHOR:summary-session-1770136207570-co50n1c6d-005-anobel.com -->
+<!-- /ANCHOR_EXAMPLE:summary-session-1770136207570-co50n1c6d-005-anobel.com -->
 
 ---
 
-<!-- ANCHOR:detailed-changes-session-1770136207570-co50n1c6d-005-anobel.com -->
+<!-- ANCHOR_EXAMPLE:detailed-changes-session-1770136207570-co50n1c6d-005-anobel.com -->
 <a id="detailed-changes"></a>
 
 ## 3. DETAILED CHANGES
 
-<!-- ANCHOR:files-completed-rename-validatereadmepy-validatedocumentpy-dc7f4c74-session-1770136207570-co50n1c6d -->
+<!-- ANCHOR_EXAMPLE:files-completed-rename-validatereadmepy-validatedocumentpy-dc7f4c74-session-1770136207570-co50n1c6d -->
 ### FEATURE: Completed the rename of validate_readme.py to validate_document.py across the entire codebase. The...
 
 Completed the rename of validate_readme.py to validate_document.py across the entire codebase. The rename was necessary because the script validates 5 document types (readme, skill, reference, asset, agent), not just READMEs - the original name was misleading. Updated all references in: the script's internal docstring, spec folder documentation (tasks.md, plan.md), and three AGENTS.md files (anobel.com, Barter/coder, Public). Verified all 6 tests pass and no remaining validate_readme references exist in the codebase.
 
 **Details:** validate_document | validate_readme rename | documentation validator | style enforcement | sk-documentation | AGENTS.md update | script rename | format validation | TOC validation | H2 emoji validation
-<!-- /ANCHOR:files-completed-rename-validatereadmepy-validatedocumentpy-dc7f4c74-session-1770136207570-co50n1c6d -->
+<!-- /ANCHOR_EXAMPLE:files-completed-rename-validatereadmepy-validatedocumentpy-dc7f4c74-session-1770136207570-co50n1c6d -->
 
-<!-- ANCHOR:implementation-technical-implementation-details-55fa8164-session-1770136207570-co50n1c6d -->
+<!-- ANCHOR_EXAMPLE:implementation-technical-implementation-details-55fa8164-session-1770136207570-co50n1c6d -->
 ### IMPLEMENTATION: Technical Implementation Details
 
 rootCause: The validate_readme.py script name was misleading - it validates 5 document types (readme, skill, reference, asset, agent), not just READMEs; solution: Renamed to validate_document.py and updated all references across the codebase including docstrings, spec documentation, and AGENTS.md files in 3 projects; patterns: Used replace_all=true for bulk string replacement, ran test suite (6/6 pass) to verify functionality, used Grep to find remaining references
 
-<!-- /ANCHOR:implementation-technical-implementation-details-55fa8164-session-1770136207570-co50n1c6d -->
+<!-- /ANCHOR_EXAMPLE:implementation-technical-implementation-details-55fa8164-session-1770136207570-co50n1c6d -->
 
-<!-- /ANCHOR:detailed-changes-session-1770136207570-co50n1c6d-005-anobel.com -->
+<!-- /ANCHOR_EXAMPLE:detailed-changes-session-1770136207570-co50n1c6d-005-anobel.com -->
 
 ---
 
-<!-- ANCHOR:decisions-session-1770136207570-co50n1c6d-005-anobel.com -->
+<!-- ANCHOR_EXAMPLE:decisions-session-1770136207570-co50n1c6d-005-anobel.com -->
 <a id="decisions"></a>
 
 <!-- DYNAMIC SECTION NUMBERING:
@@ -272,7 +272,7 @@ rootCause: The validate_readme.py script name was misleading - it validates 5 do
 -->
 ## 4. DECISIONS
 
-<!-- ANCHOR:decision-renamed-validatereadmepy-validatedocumentpy-because-cac6d8ab-session-1770136207570-co50n1c6d -->
+<!-- ANCHOR_EXAMPLE:decision-renamed-validatereadmepy-validatedocumentpy-because-cac6d8ab-session-1770136207570-co50n1c6d -->
 ### Decision 1: Decision: Renamed validate_readme.py to validate_document.py because the script validates 5 document types (readme, skill, reference, asset, agent), not just READMEs
 
 **Context**: the original name was misleading
@@ -295,11 +295,11 @@ rootCause: The validate_readme.py script name was misleading - it validates 5 do
 #### Trade-offs
 
 **Confidence**: 80%
-<!-- /ANCHOR:decision-renamed-validatereadmepy-validatedocumentpy-because-cac6d8ab-session-1770136207570-co50n1c6d -->
+<!-- /ANCHOR_EXAMPLE:decision-renamed-validatereadmepy-validatedocumentpy-because-cac6d8ab-session-1770136207570-co50n1c6d -->
 
 ---
 
-<!-- ANCHOR:decision-all-three-agentsmd-files-60509988-session-1770136207570-co50n1c6d -->
+<!-- ANCHOR_EXAMPLE:decision-all-three-agentsmd-files-60509988-session-1770136207570-co50n1c6d -->
 ### Decision 2: Decision: Updated all three AGENTS.md files (anobel.com, Barter/coder, Public) to ensure consistency across projects that share the workflows
 
 **Context**: documentation skill
@@ -322,11 +322,11 @@ rootCause: The validate_readme.py script name was misleading - it validates 5 do
 #### Trade-offs
 
 **Confidence**: 80%
-<!-- /ANCHOR:decision-all-three-agentsmd-files-60509988-session-1770136207570-co50n1c6d -->
+<!-- /ANCHOR_EXAMPLE:decision-all-three-agentsmd-files-60509988-session-1770136207570-co50n1c6d -->
 
 ---
 
-<!-- ANCHOR:decision-spec-folder-documentation-tasksmd-b6ed6e51-session-1770136207570-co50n1c6d -->
+<!-- ANCHOR_EXAMPLE:decision-spec-folder-documentation-tasksmd-b6ed6e51-session-1770136207570-co50n1c6d -->
 ### Decision 3: Decision: Updated spec folder documentation (tasks.md, plan.md) to reflect the actual implementation rather than leaving historical references
 
 **Context**: Decision: Updated spec folder documentation (tasks.md, plan.md) to reflect the actual implementation rather than leaving historical references
@@ -349,13 +349,13 @@ rootCause: The validate_readme.py script name was misleading - it validates 5 do
 #### Trade-offs
 
 **Confidence**: 80%
-<!-- /ANCHOR:decision-spec-folder-documentation-tasksmd-b6ed6e51-session-1770136207570-co50n1c6d -->
+<!-- /ANCHOR_EXAMPLE:decision-spec-folder-documentation-tasksmd-b6ed6e51-session-1770136207570-co50n1c6d -->
 
 ---
 
-<!-- /ANCHOR:decisions-session-1770136207570-co50n1c6d-005-anobel.com -->
+<!-- /ANCHOR_EXAMPLE:decisions-session-1770136207570-co50n1c6d-005-anobel.com -->
 
-<!-- ANCHOR:session-history-session-1770136207570-co50n1c6d-005-anobel.com -->
+<!-- ANCHOR_EXAMPLE:session-history-session-1770136207570-co50n1c6d-005-anobel.com -->
 <a id="conversation"></a>
 
 <!-- DYNAMIC SECTION NUMBERING:
@@ -384,11 +384,11 @@ Completed the rename of validate_readme.py to validate_document.py across the en
 
 ---
 
-<!-- /ANCHOR:session-history-session-1770136207570-co50n1c6d-005-anobel.com -->
+<!-- /ANCHOR_EXAMPLE:session-history-session-1770136207570-co50n1c6d-005-anobel.com -->
 
 ---
 
-<!-- ANCHOR:recovery-hints-session-1770136207570-co50n1c6d-005-anobel.com -->
+<!-- ANCHOR_EXAMPLE:recovery-hints-session-1770136207570-co50n1c6d-005-anobel.com -->
 <a id="recovery-hints"></a>
 
 ## RECOVERY HINTS
@@ -441,11 +441,11 @@ node .opencode/skill/system-spec-kit/scripts/memory/generate-context.js 005-anob
 | Index Entry Valid |  | Last indexed:  |
 | Checksums Match |  |  |
 | No Dedup Conflicts |  |  |
-<!-- /ANCHOR:recovery-hints-session-1770136207570-co50n1c6d-005-anobel.com -->
+<!-- /ANCHOR_EXAMPLE:recovery-hints-session-1770136207570-co50n1c6d-005-anobel.com -->
 
 ---
 
-<!-- ANCHOR:postflight-session-1770136207570-co50n1c6d-005-anobel.com -->
+<!-- ANCHOR_EXAMPLE:postflight-session-1770136207570-co50n1c6d-005-anobel.com -->
 <a id="postflight-learning-delta"></a>
 
 ## POSTFLIGHT LEARNING DELTA
@@ -480,7 +480,7 @@ node .opencode/skill/system-spec-kit/scripts/memory/generate-context.js 005-anob
 
 **Session Learning Summary:**
 Learning metrics will be calculated when both preflight and postflight data are provided.
-<!-- /ANCHOR:postflight-session-1770136207570-co50n1c6d-005-anobel.com -->
+<!-- /ANCHOR_EXAMPLE:postflight-session-1770136207570-co50n1c6d-005-anobel.com -->
 
 ---
 
@@ -488,7 +488,7 @@ Learning metrics will be calculated when both preflight and postflight data are 
 
 ## MEMORY METADATA
 
-<!-- ANCHOR:metadata-session-1770136207570-co50n1c6d-005-anobel.com -->
+<!-- ANCHOR_EXAMPLE:metadata-session-1770136207570-co50n1c6d-005-anobel.com -->
 
 > **Machine-Readable Section** - This YAML block is parsed by the semantic memory indexer for search optimization and decay calculations.
 
@@ -602,7 +602,7 @@ embedding_version: "1.0"
 chunk_count: 1
 ```
 
-<!-- /ANCHOR:metadata-session-1770136207570-co50n1c6d-005-anobel.com -->
+<!-- /ANCHOR:metadata-session-1770136207570-co50n1c6d-005-anobel-com -->
 
 ---
 

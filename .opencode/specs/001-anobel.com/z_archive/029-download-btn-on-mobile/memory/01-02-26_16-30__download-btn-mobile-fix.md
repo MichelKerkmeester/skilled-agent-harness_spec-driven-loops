@@ -29,7 +29,7 @@ contextType: "general"
 
 ---
 
-<!-- ANCHOR:preflight-session-legacy-1770632216978-qxfblx-005-anobel.com/z_archive/029-download-btn-on-mobile -->
+<!-- ANCHOR:preflight-session-legacy-1770632216978-qxfblx-005-anobel-com/z-archive/029-download-btn-on-mobile -->
 ## PREFLIGHT BASELINE
 
 **Epistemic state captured at session start for learning delta calculation.**
@@ -49,7 +49,7 @@ contextType: "general"
 - Confidence: N/A
 - Uncertainty: N/A
 - Readiness: N/A
-<!-- /ANCHOR:preflight-session-legacy-1770632216978-qxfblx-005-anobel.com/z_archive/029-download-btn-on-mobile -->
+<!-- /ANCHOR:preflight-session-legacy-1770632216978-qxfblx-005-anobel-com/z-archive/029-download-btn-on-mobile -->
 
 ---
 
@@ -65,7 +65,7 @@ contextType: "general"
 
 ---
 
-<!-- ANCHOR:continue-session-session-legacy-1770632216978-qxfblx-005-anobel.com/z_archive/029-download-btn-on-mobile -->
+<!-- ANCHOR:continue-session-session-legacy-1770632216978-qxfblx-005-anobel-com/z-archive/029-download-btn-on-mobile -->
 <a id="continue-session"></a>
 
 ## CONTINUE SESSION
@@ -96,7 +96,7 @@ This session was migrated from an older format to v2.2. Review the OVERVIEW and 
 ```
 /spec_kit:resume 005-anobel.com/z_archive/029-download-btn-on-mobile
 ```
-<!-- /ANCHOR:continue-session-session-legacy-1770632216978-qxfblx-005-anobel.com/z_archive/029-download-btn-on-mobile -->
+<!-- /ANCHOR_EXAMPLE:continue-session-session-legacy-1770632216978-qxfblx-005-anobel.com/z_archive/029-download-btn-on-mobile -->
 
 ---
 
@@ -114,7 +114,7 @@ This session was migrated from an older format to v2.2. Review the OVERVIEW and 
 
 ---
 
-<!-- ANCHOR:summary-session-legacy-1770632216978-qxfblx-005-anobel.com/z_archive/029-download-btn-on-mobile -->
+<!-- ANCHOR_EXAMPLE:summary-session-legacy-1770632216978-qxfblx-005-anobel.com/z_archive/029-download-btn-on-mobile -->
 <a id="overview"></a>
 
 ## 1. OVERVIEW
@@ -125,7 +125,7 @@ Session Memory: Download Button Mobile Fix
 
 # Session Memory: Download Button Mobile Fix
 
-<!-- ANCHOR:metadata -->
+<!-- ANCHOR_EXAMPLE:metadata -->
 ## Metadata
 
 | Field | Value |
@@ -134,19 +134,19 @@ Session Memory: Download Button Mobile Fix
 | **Spec Folder** | 029-download-btn-on-mobile |
 | **Session Type** | Bug Fix |
 | **Importance** | HIGH |
-<!-- /ANCHOR:metadata -->
+<!-- /ANCHOR_EXAMPLE:metadata -->
 
 ---
 
-<!-- ANCHOR:summary -->
+<!-- ANCHOR_EXAMPLE:summary -->
 ## Summary
 
 Fixed mobile download button functionality on anobel.com. The root cause was Webflow's hidden anchor overlay intercepting touch events before the JavaScript handler could fire. The fix involved CSS changes to disable the anchor and add a spinner animation, plus JavaScript updates for better iOS handling.
-<!-- /ANCHOR:summary -->
+<!-- /ANCHOR_EXAMPLE:summary -->
 
 ---
 
-<!-- ANCHOR:context -->
+<!-- ANCHOR_EXAMPLE:context -->
 ## Project Context
 
 ### Problem
@@ -164,11 +164,11 @@ Used Chrome DevTools (bdg CLI) to debug the live site:
 User taps button → Anchor intercepts (z-index + pointer-events) → 
 Direct navigation to PDF → iOS opens in viewer → No JS fires
 ```
-<!-- /ANCHOR:context -->
+<!-- /ANCHOR_EXAMPLE:context -->
 
 ---
 
-<!-- ANCHOR:decisions -->
+<!-- ANCHOR_EXAMPLE:decisions -->
 ## Key Decisions
 
 | Decision | Rationale |
@@ -178,11 +178,11 @@ Direct navigation to PDF → iOS opens in viewer → No JS fires
 | 400ms delay on iOS before download | Shows spinner so user sees feedback |
 | Use `trigger_download()` not `window.open()` on iOS | Avoids popup blocker issues |
 | Load CSS from CDN | Ensures fixes apply without Webflow update |
-<!-- /ANCHOR:decisions -->
+<!-- /ANCHOR_EXAMPLE:decisions -->
 
 ---
 
-<!-- ANCHOR:artifacts -->
+<!-- ANCHOR_EXAMPLE:artifacts -->
 ## Key Artifacts
 
 ### Files Modified
@@ -235,22 +235,22 @@ if (is_ios) {
 ### CDN URLs
 - JS: `https://pub-85443b585f1e4411ab5cc976c4fb08ca.r2.dev/btn_download.js?v=1.3.0`
 - CSS: `https://pub-85443b585f1e4411ab5cc976c4fb08ca.r2.dev/btn_download.css?v=1.3.0`
-<!-- /ANCHOR:artifacts -->
+<!-- /ANCHOR_EXAMPLE:artifacts -->
 
 ---
 
-<!-- ANCHOR:state -->
+<!-- ANCHOR_EXAMPLE:state -->
 ## Project State Snapshot
 
 - **Phase**: Complete
 - **Last Action**: User confirmed fix working after z-index addition
 - **Next Action**: None - issue resolved
 - **Blockers**: None
-<!-- /ANCHOR:state -->
+<!-- /ANCHOR_EXAMPLE:state -->
 
 ---
 
-<!-- ANCHOR:lessons -->
+<!-- ANCHOR_EXAMPLE:lessons -->
 ## Lessons Learned
 
 1. **Webflow button structure**: Webflow adds hidden anchor overlays for link behavior. These can intercept touch events on mobile.
@@ -260,11 +260,11 @@ if (is_ios) {
 3. **Multiple CSS properties needed**: Both `pointer-events: none` AND `z-index: -1` were required for complete fix.
 
 4. **CDN CSS loading**: Loading CSS from CDN allows hotfixing without Webflow deployments.
-<!-- /ANCHOR:lessons -->
+<!-- /ANCHOR_EXAMPLE:lessons -->
 
 ---
 
-<!-- ANCHOR:triggers -->
+<!-- ANCHOR_EXAMPLE:triggers -->
 ## Trigger Phrases
 
 - download button mobile
@@ -273,14 +273,14 @@ if (is_ios) {
 - pointer-events fix
 - mobile tap not working
 - download not triggering
-<!-- /ANCHOR:triggers -->
+<!-- /ANCHOR_EXAMPLE:triggers -->
 
 
-<!-- /ANCHOR:summary-session-legacy-1770632216978-qxfblx-005-anobel.com/z_archive/029-download-btn-on-mobile -->
+<!-- /ANCHOR_EXAMPLE:summary-session-legacy-1770632216978-qxfblx-005-anobel.com/z_archive/029-download-btn-on-mobile -->
 
 ---
 
-<!-- ANCHOR:decisions-session-legacy-1770632216978-qxfblx-005-anobel.com/z_archive/029-download-btn-on-mobile -->
+<!-- ANCHOR_EXAMPLE:decisions-session-legacy-1770632216978-qxfblx-005-anobel.com/z_archive/029-download-btn-on-mobile -->
 <a id="decisions"></a>
 
 ## 2. DECISIONS
@@ -289,9 +289,9 @@ This session did not involve significant architectural or technical decisions. T
 
 ---
 
-<!-- /ANCHOR:decisions-session-legacy-1770632216978-qxfblx-005-anobel.com/z_archive/029-download-btn-on-mobile -->
+<!-- /ANCHOR_EXAMPLE:decisions-session-legacy-1770632216978-qxfblx-005-anobel.com/z_archive/029-download-btn-on-mobile -->
 
-<!-- ANCHOR:session-history-session-legacy-1770632216978-qxfblx-005-anobel.com/z_archive/029-download-btn-on-mobile -->
+<!-- ANCHOR_EXAMPLE:session-history-session-legacy-1770632216978-qxfblx-005-anobel.com/z_archive/029-download-btn-on-mobile -->
 <a id="conversation"></a>
 
 ## 3. CONVERSATION
@@ -311,11 +311,11 @@ No conversation messages were captured. This is a legacy memory file migrated to
 
 ---
 
-<!-- /ANCHOR:session-history-session-legacy-1770632216978-qxfblx-005-anobel.com/z_archive/029-download-btn-on-mobile -->
+<!-- /ANCHOR_EXAMPLE:session-history-session-legacy-1770632216978-qxfblx-005-anobel.com/z_archive/029-download-btn-on-mobile -->
 
 ---
 
-<!-- ANCHOR:recovery-hints-session-legacy-1770632216978-qxfblx-005-anobel.com/z_archive/029-download-btn-on-mobile -->
+<!-- ANCHOR_EXAMPLE:recovery-hints-session-legacy-1770632216978-qxfblx-005-anobel.com/z_archive/029-download-btn-on-mobile -->
 <a id="recovery-hints"></a>
 
 ## RECOVERY HINTS
@@ -337,11 +337,11 @@ No conversation messages were captured. This is a legacy memory file migrated to
 3. **Review last session state** - Check PROJECT STATE SNAPSHOT
 4. **Validate pending tasks** - Review CONTINUE SESSION section
 5. **Resume with handover prompt** - Use continuation template above
-<!-- /ANCHOR:recovery-hints-session-legacy-1770632216978-qxfblx-005-anobel.com/z_archive/029-download-btn-on-mobile -->
+<!-- /ANCHOR_EXAMPLE:recovery-hints-session-legacy-1770632216978-qxfblx-005-anobel.com/z_archive/029-download-btn-on-mobile -->
 
 ---
 
-<!-- ANCHOR:postflight-session-legacy-1770632216978-qxfblx-005-anobel.com/z_archive/029-download-btn-on-mobile -->
+<!-- ANCHOR_EXAMPLE:postflight-session-legacy-1770632216978-qxfblx-005-anobel.com/z_archive/029-download-btn-on-mobile -->
 <a id="postflight-learning-delta"></a>
 
 ## POSTFLIGHT LEARNING DELTA
@@ -364,7 +364,7 @@ No conversation messages were captured. This is a legacy memory file migrated to
 
 **Session Learning Summary:**
 This session was migrated from an older format. Learning metrics were not captured in the original format.
-<!-- /ANCHOR:postflight-session-legacy-1770632216978-qxfblx-005-anobel.com/z_archive/029-download-btn-on-mobile -->
+<!-- /ANCHOR_EXAMPLE:postflight-session-legacy-1770632216978-qxfblx-005-anobel.com/z_archive/029-download-btn-on-mobile -->
 
 ---
 
@@ -372,7 +372,7 @@ This session was migrated from an older format. Learning metrics were not captur
 
 ## MEMORY METADATA
 
-<!-- ANCHOR:metadata-session-legacy-1770632216978-qxfblx-005-anobel.com/z_archive/029-download-btn-on-mobile -->
+<!-- ANCHOR_EXAMPLE:metadata-session-legacy-1770632216978-qxfblx-005-anobel.com/z_archive/029-download-btn-on-mobile -->
 
 > **Machine-Readable Section** - This YAML block is parsed by the semantic memory indexer for search optimization and decay calculations.
 
@@ -454,7 +454,7 @@ embedding_version: "1.0"
 chunk_count: 1
 ```
 
-<!-- /ANCHOR:metadata-session-legacy-1770632216978-qxfblx-005-anobel.com/z_archive/029-download-btn-on-mobile -->
+<!-- /ANCHOR:metadata-session-legacy-1770632216978-qxfblx-005-anobel-com/z-archive/029-download-btn-on-mobile -->
 
 ---
 

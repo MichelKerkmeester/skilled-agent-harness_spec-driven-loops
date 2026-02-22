@@ -29,7 +29,7 @@ contextType: "general"
 
 ---
 
-<!-- ANCHOR:preflight-session-legacy-1770632216878-qztu4i-003-memory-and-spec-kit/z_archive/006-auto-indexing -->
+<!-- ANCHOR:preflight-session-legacy-1770632216878-qztu4i-003-memory-and-spec-kit/z-archive/006-auto-indexing -->
 ## PREFLIGHT BASELINE
 
 **Epistemic state captured at session start for learning delta calculation.**
@@ -49,7 +49,7 @@ contextType: "general"
 - Confidence: N/A
 - Uncertainty: N/A
 - Readiness: N/A
-<!-- /ANCHOR:preflight-session-legacy-1770632216878-qztu4i-003-memory-and-spec-kit/z_archive/006-auto-indexing -->
+<!-- /ANCHOR:preflight-session-legacy-1770632216878-qztu4i-003-memory-and-spec-kit/z-archive/006-auto-indexing -->
 
 ---
 
@@ -65,7 +65,7 @@ contextType: "general"
 
 ---
 
-<!-- ANCHOR:continue-session-session-legacy-1770632216878-qztu4i-003-memory-and-spec-kit/z_archive/006-auto-indexing -->
+<!-- ANCHOR:continue-session-session-legacy-1770632216878-qztu4i-003-memory-and-spec-kit/z-archive/006-auto-indexing -->
 <a id="continue-session"></a>
 
 ## CONTINUE SESSION
@@ -96,7 +96,7 @@ This session was migrated from an older format to v2.2. Review the OVERVIEW and 
 ```
 /spec_kit:resume 003-memory-and-spec-kit/z_archive/006-auto-indexing
 ```
-<!-- /ANCHOR:continue-session-session-legacy-1770632216878-qztu4i-003-memory-and-spec-kit/z_archive/006-auto-indexing -->
+<!-- /ANCHOR_EXAMPLE:continue-session-session-legacy-1770632216878-qztu4i-003-memory-and-spec-kit/z_archive/006-auto-indexing -->
 
 ---
 
@@ -114,7 +114,7 @@ This session was migrated from an older format to v2.2. Review the OVERVIEW and 
 
 ---
 
-<!-- ANCHOR:summary-session-legacy-1770632216878-qztu4i-003-memory-and-spec-kit/z_archive/006-auto-indexing -->
+<!-- ANCHOR_EXAMPLE:summary-session-legacy-1770632216878-qztu4i-003-memory-and-spec-kit/z_archive/006-auto-indexing -->
 <a id="overview"></a>
 
 ## 1. OVERVIEW
@@ -130,7 +130,7 @@ Memory Command Alignment - Session Complete
 > **Context Type**: implementation
 
 ---
-<!-- ANCHOR:summary-16-12-25-13-30-command-alignment -->
+<!-- ANCHOR_EXAMPLE:summary-16-12-25-13-30-command-alignment -->
 
 
 ## Session Summary
@@ -231,13 +231,13 @@ Used Sequential Thinking MCP for thorough analysis:
 - `.opencode/skills/workflows-memory/SKILL.md`
 
 
-<!-- /ANCHOR:summary-16-12-25-13-30-command-alignment -->
+<!-- /ANCHOR_EXAMPLE:summary-16-12-25-13-30-command-alignment -->
 
-<!-- /ANCHOR:summary-session-legacy-1770632216878-qztu4i-003-memory-and-spec-kit/z_archive/006-auto-indexing -->
+<!-- /ANCHOR_EXAMPLE:summary-session-legacy-1770632216878-qztu4i-003-memory-and-spec-kit/z_archive/006-auto-indexing -->
 
 ---
 
-<!-- ANCHOR:decisions-session-legacy-1770632216878-qztu4i-003-memory-and-spec-kit/z_archive/006-auto-indexing -->
+<!-- ANCHOR_EXAMPLE:decisions-session-legacy-1770632216878-qztu4i-003-memory-and-spec-kit/z_archive/006-auto-indexing -->
 <a id="decisions"></a>
 
 ## 2. DECISIONS
@@ -246,9 +246,9 @@ This session did not involve significant architectural or technical decisions. T
 
 ---
 
-<!-- /ANCHOR:decisions-session-legacy-1770632216878-qztu4i-003-memory-and-spec-kit/z_archive/006-auto-indexing -->
+<!-- /ANCHOR_EXAMPLE:decisions-session-legacy-1770632216878-qztu4i-003-memory-and-spec-kit/z_archive/006-auto-indexing -->
 
-<!-- ANCHOR:session-history-session-legacy-1770632216878-qztu4i-003-memory-and-spec-kit/z_archive/006-auto-indexing -->
+<!-- ANCHOR_EXAMPLE:session-history-session-legacy-1770632216878-qztu4i-003-memory-and-spec-kit/z_archive/006-auto-indexing -->
 <a id="conversation"></a>
 
 ## 3. CONVERSATION
@@ -268,11 +268,11 @@ No conversation messages were captured. This is a legacy memory file migrated to
 
 ---
 
-<!-- /ANCHOR:session-history-session-legacy-1770632216878-qztu4i-003-memory-and-spec-kit/z_archive/006-auto-indexing -->
+<!-- /ANCHOR_EXAMPLE:session-history-session-legacy-1770632216878-qztu4i-003-memory-and-spec-kit/z_archive/006-auto-indexing -->
 
 ---
 
-<!-- ANCHOR:recovery-hints-session-legacy-1770632216878-qztu4i-003-memory-and-spec-kit/z_archive/006-auto-indexing -->
+<!-- ANCHOR_EXAMPLE:recovery-hints-session-legacy-1770632216878-qztu4i-003-memory-and-spec-kit/z_archive/006-auto-indexing -->
 <a id="recovery-hints"></a>
 
 ## RECOVERY HINTS
@@ -294,11 +294,11 @@ No conversation messages were captured. This is a legacy memory file migrated to
 3. **Review last session state** - Check PROJECT STATE SNAPSHOT
 4. **Validate pending tasks** - Review CONTINUE SESSION section
 5. **Resume with handover prompt** - Use continuation template above
-<!-- /ANCHOR:recovery-hints-session-legacy-1770632216878-qztu4i-003-memory-and-spec-kit/z_archive/006-auto-indexing -->
+<!-- /ANCHOR_EXAMPLE:recovery-hints-session-legacy-1770632216878-qztu4i-003-memory-and-spec-kit/z_archive/006-auto-indexing -->
 
 ---
 
-<!-- ANCHOR:postflight-session-legacy-1770632216878-qztu4i-003-memory-and-spec-kit/z_archive/006-auto-indexing -->
+<!-- ANCHOR_EXAMPLE:postflight-session-legacy-1770632216878-qztu4i-003-memory-and-spec-kit/z_archive/006-auto-indexing -->
 <a id="postflight-learning-delta"></a>
 
 ## POSTFLIGHT LEARNING DELTA
@@ -321,7 +321,7 @@ No conversation messages were captured. This is a legacy memory file migrated to
 
 **Session Learning Summary:**
 This session was migrated from an older format. Learning metrics were not captured in the original format.
-<!-- /ANCHOR:postflight-session-legacy-1770632216878-qztu4i-003-memory-and-spec-kit/z_archive/006-auto-indexing -->
+<!-- /ANCHOR_EXAMPLE:postflight-session-legacy-1770632216878-qztu4i-003-memory-and-spec-kit/z_archive/006-auto-indexing -->
 
 ---
 
@@ -329,7 +329,7 @@ This session was migrated from an older format. Learning metrics were not captur
 
 ## MEMORY METADATA
 
-<!-- ANCHOR:metadata-session-legacy-1770632216878-qztu4i-003-memory-and-spec-kit/z_archive/006-auto-indexing -->
+<!-- ANCHOR_EXAMPLE:metadata-session-legacy-1770632216878-qztu4i-003-memory-and-spec-kit/z_archive/006-auto-indexing -->
 
 > **Machine-Readable Section** - This YAML block is parsed by the semantic memory indexer for search optimization and decay calculations.
 
@@ -410,7 +410,7 @@ embedding_version: "1.0"
 chunk_count: 1
 ```
 
-<!-- /ANCHOR:metadata-session-legacy-1770632216878-qztu4i-003-memory-and-spec-kit/z_archive/006-auto-indexing -->
+<!-- /ANCHOR:metadata-session-legacy-1770632216878-qztu4i-003-memory-and-spec-kit/z-archive/006-auto-indexing -->
 
 ---
 

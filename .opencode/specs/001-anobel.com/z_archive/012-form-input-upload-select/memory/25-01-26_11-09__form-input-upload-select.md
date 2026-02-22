@@ -51,7 +51,7 @@ contextType: "general"
 
 ---
 
-<!-- ANCHOR:preflight-session-1769335781904-bjxfc4vt7-005-anobel.com/012-form-input-upload-select -->
+<!-- ANCHOR:preflight-session-1769335781904-bjxfc4vt7-005-anobel-com/012-form-input-upload-select -->
 ## PREFLIGHT BASELINE
 
 **Epistemic state captured at session start for learning delta calculation.**
@@ -71,7 +71,7 @@ contextType: "general"
 - Confidence: [TBD]%
 - Uncertainty: [TBD]
 - Readiness: [TBD]
-<!-- /ANCHOR:preflight-session-1769335781904-bjxfc4vt7-005-anobel.com/012-form-input-upload-select -->
+<!-- /ANCHOR:preflight-session-1769335781904-bjxfc4vt7-005-anobel-com/012-form-input-upload-select -->
 
 ---
 
@@ -87,7 +87,7 @@ contextType: "general"
 
 ---
 
-<!-- ANCHOR:continue-session-session-1769335781904-bjxfc4vt7-005-anobel.com/012-form-input-upload-select -->
+<!-- ANCHOR:continue-session-session-1769335781904-bjxfc4vt7-005-anobel-com/012-form-input-upload-select -->
 <a id="continue-session"></a>
 
 ## CONTINUE SESSION
@@ -118,7 +118,7 @@ This session was migrated from an older format to v2.2. Review the OVERVIEW and 
 ```
 /spec_kit:resume 005-anobel.com/012-form-input-upload-select
 ```
-<!-- /ANCHOR:continue-session-session-1769335781904-bjxfc4vt7-005-anobel.com/012-form-input-upload-select -->
+<!-- /ANCHOR_EXAMPLE:continue-session-session-1769335781904-bjxfc4vt7-005-anobel.com/012-form-input-upload-select -->
 ---
 
 <a id="project-state-snapshot"></a>
@@ -137,7 +137,7 @@ This session was migrated from an older format to v2.2. Review the OVERVIEW and 
 
 ---
 
-<!-- ANCHOR:summary-session-1769335781904-bjxfc4vt7-005-anobel.com/012-form-input-upload-select -->
+<!-- ANCHOR_EXAMPLE:summary-session-1769335781904-bjxfc4vt7-005-anobel.com/012-form-input-upload-select -->
 <a id="overview"></a>
 
 ## 1. OVERVIEW
@@ -150,11 +150,11 @@ Fixed mobile labels not appearing on FilePond upload component. Root cause: Webf
 - Added mobile-specific data-label attributes support
 - Documented Webflow duplicate element pattern for future reference
 
-<!-- /ANCHOR:summary-session-1769335781904-bjxfc4vt7-005-anobel.com/012-form-input-upload-select -->
+<!-- /ANCHOR_EXAMPLE:summary-session-1769335781904-bjxfc4vt7-005-anobel.com/012-form-input-upload-select -->
 
 ---
 
-<!-- ANCHOR:decisions-session-1769335781904-bjxfc4vt7-005-anobel.com/012-form-input-upload-select -->
+<!-- ANCHOR_EXAMPLE:decisions-session-1769335781904-bjxfc4vt7-005-anobel.com/012-form-input-upload-select -->
 <a id="decisions"></a>
 
 <!-- DYNAMIC SECTION NUMBERING:
@@ -200,11 +200,11 @@ Fixed mobile labels not appearing on FilePond upload component. Root cause: Webf
 
 ---
 
-<!-- /ANCHOR:decisions-session-1769335781904-bjxfc4vt7-005-anobel.com/012-form-input-upload-select -->
+<!-- /ANCHOR_EXAMPLE:decisions-session-1769335781904-bjxfc4vt7-005-anobel.com/012-form-input-upload-select -->
 
 ---
 
-<!-- ANCHOR:technical-context-session-1769335781904-bjxfc4vt7-005-anobel.com/012-form-input-upload-select -->
+<!-- ANCHOR_EXAMPLE:technical-context-session-1769335781904-bjxfc4vt7-005-anobel.com/012-form-input-upload-select -->
 ## 2.5 TECHNICAL CONTEXT
 
 ### Root Cause Analysis
@@ -226,11 +226,11 @@ Changed querySelector to querySelectorAll + forEach to update ALL matching text/
 | `src/0_html/werken_bij.html` | Updated data-label attributes |
 | `src/0_html/cms/vacature.html` | Updated data-label attributes |
 
-<!-- /ANCHOR:technical-context-session-1769335781904-bjxfc4vt7-005-anobel.com/012-form-input-upload-select -->
+<!-- /ANCHOR_EXAMPLE:technical-context-session-1769335781904-bjxfc4vt7-005-anobel.com/012-form-input-upload-select -->
 
 ---
 
-<!-- ANCHOR:session-history-session-1769335781904-bjxfc4vt7-005-anobel.com/012-form-input-upload-select -->
+<!-- ANCHOR_EXAMPLE:session-history-session-1769335781904-bjxfc4vt7-005-anobel.com/012-form-input-upload-select -->
 <a id="conversation"></a>
 
 <!-- DYNAMIC SECTION NUMBERING:
@@ -306,11 +306,11 @@ This session followed a **Linear Sequential** conversation pattern with **0** di
 
 ---
 
-<!-- /ANCHOR:session-history-session-1769335781904-bjxfc4vt7-005-anobel.com/012-form-input-upload-select -->
+<!-- /ANCHOR_EXAMPLE:session-history-session-1769335781904-bjxfc4vt7-005-anobel.com/012-form-input-upload-select -->
 
 ---
 
-<!-- ANCHOR:postflight-session-1769335781904-bjxfc4vt7-005-anobel.com/012-form-input-upload-select -->
+<!-- ANCHOR_EXAMPLE:postflight-session-1769335781904-bjxfc4vt7-005-anobel.com/012-form-input-upload-select -->
 <a id="postflight-learning-delta"></a>
 
 ## POSTFLIGHT LEARNING DELTA
@@ -345,11 +345,11 @@ This session followed a **Linear Sequential** conversation pattern with **0** di
 
 **Session Learning Summary:**
 Learning metrics will be calculated when both preflight and postflight data are provided.
-<!-- /ANCHOR:postflight-session-1769335781904-bjxfc4vt7-005-anobel.com/012-form-input-upload-select -->
+<!-- /ANCHOR_EXAMPLE:postflight-session-1769335781904-bjxfc4vt7-005-anobel.com/012-form-input-upload-select -->
 
 ---
 
-<!-- ANCHOR:recovery-hints-session-1769335781904-bjxfc4vt7-005-anobel.com/012-form-input-upload-select -->
+<!-- ANCHOR_EXAMPLE:recovery-hints-session-1769335781904-bjxfc4vt7-005-anobel.com/012-form-input-upload-select -->
 <a id="recovery-hints"></a>
 
 ## RECOVERY HINTS
@@ -371,14 +371,14 @@ Learning metrics will be calculated when both preflight and postflight data are 
 3. **Review last session state** - Check PROJECT STATE SNAPSHOT
 4. **Validate pending tasks** - Review CONTINUE SESSION section
 5. **Resume with handover prompt** - Use continuation template above
-<!-- /ANCHOR:recovery-hints-session-1769335781904-bjxfc4vt7-005-anobel.com/012-form-input-upload-select -->
+<!-- /ANCHOR_EXAMPLE:recovery-hints-session-1769335781904-bjxfc4vt7-005-anobel.com/012-form-input-upload-select -->
 ---
 
 <a id="memory-metadata"></a>
 
 ## MEMORY METADATA
 
-<!-- ANCHOR:metadata-session-1769335781904-bjxfc4vt7-005-anobel.com/012-form-input-upload-select -->
+<!-- ANCHOR_EXAMPLE:metadata-session-1769335781904-bjxfc4vt7-005-anobel.com/012-form-input-upload-select -->
 
 > **Machine-Readable Section** - This YAML block is parsed by the semantic memory indexer for search optimization and decay calculations.
 
@@ -478,7 +478,7 @@ embedding_version: "1.0"
 chunk_count: 1
 ```
 
-<!-- /ANCHOR:metadata-session-1769335781904-bjxfc4vt7-005-anobel.com/012-form-input-upload-select -->
+<!-- /ANCHOR:metadata-session-1769335781904-bjxfc4vt7-005-anobel-com/012-form-input-upload-select -->
 
 ---
 

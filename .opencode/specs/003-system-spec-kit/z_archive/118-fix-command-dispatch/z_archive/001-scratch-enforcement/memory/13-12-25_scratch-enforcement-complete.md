@@ -29,7 +29,7 @@ contextType: "general"
 
 ---
 
-<!-- ANCHOR:preflight-session-legacy-1770632216875-tilq6a-003-memory-and-spec-kit/z_archive/001-scratch-enforcement -->
+<!-- ANCHOR:preflight-session-legacy-1770632216875-tilq6a-003-memory-and-spec-kit/z-archive/001-scratch-enforcement -->
 ## PREFLIGHT BASELINE
 
 **Epistemic state captured at session start for learning delta calculation.**
@@ -49,7 +49,7 @@ contextType: "general"
 - Confidence: N/A
 - Uncertainty: N/A
 - Readiness: N/A
-<!-- /ANCHOR:preflight-session-legacy-1770632216875-tilq6a-003-memory-and-spec-kit/z_archive/001-scratch-enforcement -->
+<!-- /ANCHOR:preflight-session-legacy-1770632216875-tilq6a-003-memory-and-spec-kit/z-archive/001-scratch-enforcement -->
 
 ---
 
@@ -65,7 +65,7 @@ contextType: "general"
 
 ---
 
-<!-- ANCHOR:continue-session-session-legacy-1770632216875-tilq6a-003-memory-and-spec-kit/z_archive/001-scratch-enforcement -->
+<!-- ANCHOR:continue-session-session-legacy-1770632216875-tilq6a-003-memory-and-spec-kit/z-archive/001-scratch-enforcement -->
 <a id="continue-session"></a>
 
 ## CONTINUE SESSION
@@ -96,7 +96,7 @@ This session was migrated from an older format to v2.2. Review the OVERVIEW and 
 ```
 /spec_kit:resume 003-memory-and-spec-kit/z_archive/001-scratch-enforcement
 ```
-<!-- /ANCHOR:continue-session-session-legacy-1770632216875-tilq6a-003-memory-and-spec-kit/z_archive/001-scratch-enforcement -->
+<!-- /ANCHOR_EXAMPLE:continue-session-session-legacy-1770632216875-tilq6a-003-memory-and-spec-kit/z_archive/001-scratch-enforcement -->
 
 ---
 
@@ -114,7 +114,7 @@ This session was migrated from an older format to v2.2. Review the OVERVIEW and 
 
 ---
 
-<!-- ANCHOR:summary-session-legacy-1770632216875-tilq6a-003-memory-and-spec-kit/z_archive/001-scratch-enforcement -->
+<!-- ANCHOR_EXAMPLE:summary-session-legacy-1770632216875-tilq6a-003-memory-and-spec-kit/z_archive/001-scratch-enforcement -->
 <a id="overview"></a>
 
 ## 1. OVERVIEW
@@ -144,7 +144,7 @@ trigger_phrases:
 **Spec Folder**: specs/004-speckit/
 
 ---
-<!-- ANCHOR:summary-13-12-25-scratch-enforcement-complete -->
+<!-- ANCHOR_EXAMPLE:summary-13-12-25-scratch-enforcement-complete -->
 
 
 ## Summary
@@ -209,14 +209,14 @@ All enforcement is documentation-based:
 - Checklist items (CHK036-038) are primary enforcement
 - Manual verification replaces automated hook checks
 
-<!-- ANCHOR:decisions-13-12-25-scratch-enforcement-complete -->
+<!-- ANCHOR_EXAMPLE:decisions-13-12-25-scratch-enforcement-complete -->
 ## Decisions Made
 
 1. **Documentation over hooks**: Chose documentation-based enforcement
 2. **P1 priority for CHK036-037**: Makes them mandatory verification items
 3. **4-layer redundancy**: Multiple touchpoints ensure agents see the rules
 
-<!-- /ANCHOR:decisions-13-12-25-scratch-enforcement-complete -->
+<!-- /ANCHOR_EXAMPLE:decisions-13-12-25-scratch-enforcement-complete -->
 
 ## Future Considerations
 
@@ -232,13 +232,13 @@ All enforcement is documentation-based:
 **Verify**: CHK036-038 before claiming completion
 
 
-<!-- /ANCHOR:summary-13-12-25-scratch-enforcement-complete -->
+<!-- /ANCHOR_EXAMPLE:summary-13-12-25-scratch-enforcement-complete -->
 
-<!-- /ANCHOR:summary-session-legacy-1770632216875-tilq6a-003-memory-and-spec-kit/z_archive/001-scratch-enforcement -->
+<!-- /ANCHOR_EXAMPLE:summary-session-legacy-1770632216875-tilq6a-003-memory-and-spec-kit/z_archive/001-scratch-enforcement -->
 
 ---
 
-<!-- ANCHOR:decisions-session-legacy-1770632216875-tilq6a-003-memory-and-spec-kit/z_archive/001-scratch-enforcement -->
+<!-- ANCHOR_EXAMPLE:decisions-session-legacy-1770632216875-tilq6a-003-memory-and-spec-kit/z_archive/001-scratch-enforcement -->
 <a id="decisions"></a>
 
 ## 2. DECISIONS
@@ -247,9 +247,9 @@ This session did not involve significant architectural or technical decisions. T
 
 ---
 
-<!-- /ANCHOR:decisions-session-legacy-1770632216875-tilq6a-003-memory-and-spec-kit/z_archive/001-scratch-enforcement -->
+<!-- /ANCHOR_EXAMPLE:decisions-session-legacy-1770632216875-tilq6a-003-memory-and-spec-kit/z_archive/001-scratch-enforcement -->
 
-<!-- ANCHOR:session-history-session-legacy-1770632216875-tilq6a-003-memory-and-spec-kit/z_archive/001-scratch-enforcement -->
+<!-- ANCHOR_EXAMPLE:session-history-session-legacy-1770632216875-tilq6a-003-memory-and-spec-kit/z_archive/001-scratch-enforcement -->
 <a id="conversation"></a>
 
 ## 3. CONVERSATION
@@ -269,11 +269,11 @@ No conversation messages were captured. This is a legacy memory file migrated to
 
 ---
 
-<!-- /ANCHOR:session-history-session-legacy-1770632216875-tilq6a-003-memory-and-spec-kit/z_archive/001-scratch-enforcement -->
+<!-- /ANCHOR_EXAMPLE:session-history-session-legacy-1770632216875-tilq6a-003-memory-and-spec-kit/z_archive/001-scratch-enforcement -->
 
 ---
 
-<!-- ANCHOR:recovery-hints-session-legacy-1770632216875-tilq6a-003-memory-and-spec-kit/z_archive/001-scratch-enforcement -->
+<!-- ANCHOR_EXAMPLE:recovery-hints-session-legacy-1770632216875-tilq6a-003-memory-and-spec-kit/z_archive/001-scratch-enforcement -->
 <a id="recovery-hints"></a>
 
 ## RECOVERY HINTS
@@ -295,11 +295,11 @@ No conversation messages were captured. This is a legacy memory file migrated to
 3. **Review last session state** - Check PROJECT STATE SNAPSHOT
 4. **Validate pending tasks** - Review CONTINUE SESSION section
 5. **Resume with handover prompt** - Use continuation template above
-<!-- /ANCHOR:recovery-hints-session-legacy-1770632216875-tilq6a-003-memory-and-spec-kit/z_archive/001-scratch-enforcement -->
+<!-- /ANCHOR_EXAMPLE:recovery-hints-session-legacy-1770632216875-tilq6a-003-memory-and-spec-kit/z_archive/001-scratch-enforcement -->
 
 ---
 
-<!-- ANCHOR:postflight-session-legacy-1770632216875-tilq6a-003-memory-and-spec-kit/z_archive/001-scratch-enforcement -->
+<!-- ANCHOR_EXAMPLE:postflight-session-legacy-1770632216875-tilq6a-003-memory-and-spec-kit/z_archive/001-scratch-enforcement -->
 <a id="postflight-learning-delta"></a>
 
 ## POSTFLIGHT LEARNING DELTA
@@ -322,7 +322,7 @@ No conversation messages were captured. This is a legacy memory file migrated to
 
 **Session Learning Summary:**
 This session was migrated from an older format. Learning metrics were not captured in the original format.
-<!-- /ANCHOR:postflight-session-legacy-1770632216875-tilq6a-003-memory-and-spec-kit/z_archive/001-scratch-enforcement -->
+<!-- /ANCHOR_EXAMPLE:postflight-session-legacy-1770632216875-tilq6a-003-memory-and-spec-kit/z_archive/001-scratch-enforcement -->
 
 ---
 
@@ -330,7 +330,7 @@ This session was migrated from an older format. Learning metrics were not captur
 
 ## MEMORY METADATA
 
-<!-- ANCHOR:metadata-session-legacy-1770632216875-tilq6a-003-memory-and-spec-kit/z_archive/001-scratch-enforcement -->
+<!-- ANCHOR_EXAMPLE:metadata-session-legacy-1770632216875-tilq6a-003-memory-and-spec-kit/z_archive/001-scratch-enforcement -->
 
 > **Machine-Readable Section** - This YAML block is parsed by the semantic memory indexer for search optimization and decay calculations.
 
@@ -407,7 +407,7 @@ embedding_version: "1.0"
 chunk_count: 1
 ```
 
-<!-- /ANCHOR:metadata-session-legacy-1770632216875-tilq6a-003-memory-and-spec-kit/z_archive/001-scratch-enforcement -->
+<!-- /ANCHOR:metadata-session-legacy-1770632216875-tilq6a-003-memory-and-spec-kit/z-archive/001-scratch-enforcement -->
 
 ---
 

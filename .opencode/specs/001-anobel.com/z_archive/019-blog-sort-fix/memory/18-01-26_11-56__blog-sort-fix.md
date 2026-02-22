@@ -51,7 +51,7 @@ contextType: "general"
 
 ---
 
-<!-- ANCHOR:preflight-session-1768733811107-p58rwtw06-005-anobel.com/019-blog-sort-fix -->
+<!-- ANCHOR:preflight-session-1768733811107-p58rwtw06-005-anobel-com/019-blog-sort-fix -->
 ## PREFLIGHT BASELINE
 
 **Epistemic state captured at session start for learning delta calculation.**
@@ -71,7 +71,7 @@ contextType: "general"
 - Confidence: N/A
 - Uncertainty: N/A
 - Readiness: N/A
-<!-- /ANCHOR:preflight-session-1768733811107-p58rwtw06-005-anobel.com/019-blog-sort-fix -->
+<!-- /ANCHOR:preflight-session-1768733811107-p58rwtw06-005-anobel-com/019-blog-sort-fix -->
 ---
 
 ## Table of Contents
@@ -88,7 +88,7 @@ contextType: "general"
 
 ---
 
-<!-- ANCHOR:continue-session-session-1768733811107-p58rwtw06-005-anobel.com/019-blog-sort-fix -->
+<!-- ANCHOR:continue-session-session-1768733811107-p58rwtw06-005-anobel-com/019-blog-sort-fix -->
 <a id="continue-session"></a>
 
 ## CONTINUE SESSION
@@ -119,7 +119,7 @@ This session was migrated from an older format to v2.2. Review the OVERVIEW and 
 ```
 /spec_kit:resume 005-anobel.com/019-blog-sort-fix
 ```
-<!-- /ANCHOR:continue-session-session-1768733811107-p58rwtw06-005-anobel.com/019-blog-sort-fix -->
+<!-- /ANCHOR_EXAMPLE:continue-session-session-1768733811107-p58rwtw06-005-anobel.com/019-blog-sort-fix -->
 ---
 
 <a id="project-state-snapshot"></a>
@@ -153,7 +153,7 @@ This session was migrated from an older format to v2.2. Review the OVERVIEW and 
 
 ---
 
-<!-- ANCHOR:task-guide-anobel.com/019-blog-sort-fix-005-anobel.com/019-blog-sort-fix -->
+<!-- ANCHOR_EXAMPLE:task-guide-anobel.com/019-blog-sort-fix-005-anobel.com/019-blog-sort-fix -->
 <a id="implementation-guide"></a>
 
 ## 1. IMPLEMENTATION GUIDE
@@ -182,11 +182,11 @@ This session was migrated from an older format to v2.2. Review the OVERVIEW and 
 
 - No patterns identified
 
-<!-- /ANCHOR:task-guide-anobel.com/019-blog-sort-fix-005-anobel.com/019-blog-sort-fix -->
+<!-- /ANCHOR_EXAMPLE:task-guide-anobel.com/019-blog-sort-fix-005-anobel.com/019-blog-sort-fix -->
 
 ---
 
-<!-- ANCHOR:summary-session-1768733811107-p58rwtw06-005-anobel.com/019-blog-sort-fix -->
+<!-- ANCHOR_EXAMPLE:summary-session-1768733811107-p58rwtw06-005-anobel.com/019-blog-sort-fix -->
 <a id="overview"></a>
 
 ## 2. OVERVIEW
@@ -209,35 +209,35 @@ Investigated why the blog page sort dropdown at anobel.com/nl/blog doesn't work.
 | `specs/005-anobel.com/019-blog-sort-fix/tasks.md` | Complete documentation including spec |
 | `specs/005-anobel.com/019-blog-sort-fix/checklist.md` | Complete documentation including spec |
 
-<!-- /ANCHOR:summary-session-1768733811107-p58rwtw06-005-anobel.com/019-blog-sort-fix -->
+<!-- /ANCHOR_EXAMPLE:summary-session-1768733811107-p58rwtw06-005-anobel.com/019-blog-sort-fix -->
 
 ---
 
-<!-- ANCHOR:detailed-changes-session-1768733811107-p58rwtw06-005-anobel.com/019-blog-sort-fix -->
+<!-- ANCHOR_EXAMPLE:detailed-changes-session-1768733811107-p58rwtw06-005-anobel.com/019-blog-sort-fix -->
 <a id="detailed-changes"></a>
 
 ## 3. DETAILED CHANGES
 
-<!-- ANCHOR:implementation-why-blog-page-sort-c6af6621-session-1768733811107-p58rwtw06 -->
+<!-- ANCHOR_EXAMPLE:implementation-why-blog-page-sort-c6af6621-session-1768733811107-p58rwtw06 -->
 ### FEATURE: Investigated why the blog page sort dropdown at anobel.com/nl/blog doesn't work. Used Chrome...
 
 Investigated why the blog page sort dropdown at anobel.com/nl/blog doesn't work. Used Chrome DevTools CLI (bdg) to inspect the page. Found that the CustomSelect component and input_select_fs_bridge.js correctly sync values to a hidden select element, but Finsweet fs-list ignores change events on dynamically created selects. Discovered that Finsweet fs-list uses URL parameters (?sort_name=asc, ?sort_category=asc) for sorting, not select change events. When navigating directly to URLs with sort params, sorting works correctly. Created spec folder 019-blog-sort-fix with complete documentation including spec.md, plan.md, tasks.md, and checklist.md.
 
 **Details:** blog sort dropdown | finsweet fs-list | input_select_fs_bridge | sort not working | URL parameters sorting | CustomSelect bridge | fs-list-element sort-trigger | blog category filter
-<!-- /ANCHOR:implementation-why-blog-page-sort-c6af6621-session-1768733811107-p58rwtw06 -->
+<!-- /ANCHOR_EXAMPLE:implementation-why-blog-page-sort-c6af6621-session-1768733811107-p58rwtw06 -->
 
-<!-- ANCHOR:implementation-technical-implementation-details-ad5d972b-session-1768733811107-p58rwtw06 -->
+<!-- ANCHOR_EXAMPLE:implementation-technical-implementation-details-ad5d972b-session-1768733811107-p58rwtw06 -->
 ### IMPLEMENTATION: Technical Implementation Details
 
 rootCause: Finsweet fs-list uses URL parameters for sorting (?sort_name=asc), not change events on the sort-trigger select. The bridge creates a hidden select and syncs values, but Finsweet ignores programmatic changes.; solution: Modify sync_to_native() in input_select_fs_bridge.js to update URL parameters and navigate, rather than just updating the hidden select value.; patterns: URL-based state management for Finsweet, Chrome DevTools CLI debugging with bdg tool
 
-<!-- /ANCHOR:implementation-technical-implementation-details-ad5d972b-session-1768733811107-p58rwtw06 -->
+<!-- /ANCHOR_EXAMPLE:implementation-technical-implementation-details-ad5d972b-session-1768733811107-p58rwtw06 -->
 
-<!-- /ANCHOR:detailed-changes-session-1768733811107-p58rwtw06-005-anobel.com/019-blog-sort-fix -->
+<!-- /ANCHOR_EXAMPLE:detailed-changes-session-1768733811107-p58rwtw06-005-anobel.com/019-blog-sort-fix -->
 
 ---
 
-<!-- ANCHOR:decisions-session-1768733811107-p58rwtw06-005-anobel.com/019-blog-sort-fix -->
+<!-- ANCHOR_EXAMPLE:decisions-session-1768733811107-p58rwtw06-005-anobel.com/019-blog-sort-fix -->
 <a id="decisions"></a>
 
 <!-- DYNAMIC SECTION NUMBERING:
@@ -261,7 +261,7 @@ rootCause: Finsweet fs-list uses URL parameters for sorting (?sort_name=asc), no
 -->
 ## 4. DECISIONS
 
-<!-- ANCHOR:decision-root-cause-url-d0570075-session-1768733811107-p58rwtw06 -->
+<!-- ANCHOR_EXAMPLE:decision-root-cause-url-d0570075-session-1768733811107-p58rwtw06 -->
 ### Decision 1: Decision: Root cause is URL
 
 **Context**: based sorting because Finsweet fs-list reads ?sort_{field}={direction} from URL on page load, not from select change events
@@ -284,11 +284,11 @@ rootCause: Finsweet fs-list uses URL parameters for sorting (?sort_name=asc), no
 #### Trade-offs
 
 **Confidence**: 80%
-<!-- /ANCHOR:decision-root-cause-url-d0570075-session-1768733811107-p58rwtw06 -->
+<!-- /ANCHOR_EXAMPLE:decision-root-cause-url-d0570075-session-1768733811107-p58rwtw06 -->
 
 ---
 
-<!-- ANCHOR:decision-recommended-option-url-navigation-a79d1183-session-1768733811107-p58rwtw06 -->
+<!-- ANCHOR_EXAMPLE:decision-recommended-option-url-navigation-a79d1183-session-1768733811107-p58rwtw06 -->
 ### Decision 2: Decision: Recommended Option A (URL Navigation) for fix because it's simple and guaranteed to work, versus Option B (pushState + restart) which caused list duplication issues
 
 **Context**: Decision: Recommended Option A (URL Navigation) for fix because it's simple and guaranteed to work, versus Option B (pushState + restart) which caused list duplication issues
@@ -311,11 +311,11 @@ rootCause: Finsweet fs-list uses URL parameters for sorting (?sort_name=asc), no
 #### Trade-offs
 
 **Confidence**: 80%
-<!-- /ANCHOR:decision-recommended-option-url-navigation-a79d1183-session-1768733811107-p58rwtw06 -->
+<!-- /ANCHOR_EXAMPLE:decision-recommended-option-url-navigation-a79d1183-session-1768733811107-p58rwtw06 -->
 
 ---
 
-<!-- ANCHOR:decision-level-spec-folder-because-5cbdff69-session-1768733811107-p58rwtw06 -->
+<!-- ANCHOR_EXAMPLE:decision-level-spec-folder-because-5cbdff69-session-1768733811107-p58rwtw06 -->
 ### Decision 3: Decision: Level 2 spec folder because fix requires ~50
 
 **Context**: 100 LOC and needs testing checklist
@@ -338,13 +338,13 @@ rootCause: Finsweet fs-list uses URL parameters for sorting (?sort_name=asc), no
 #### Trade-offs
 
 **Confidence**: 80%
-<!-- /ANCHOR:decision-level-spec-folder-because-5cbdff69-session-1768733811107-p58rwtw06 -->
+<!-- /ANCHOR_EXAMPLE:decision-level-spec-folder-because-5cbdff69-session-1768733811107-p58rwtw06 -->
 
 ---
 
-<!-- /ANCHOR:decisions-session-1768733811107-p58rwtw06-005-anobel.com/019-blog-sort-fix -->
+<!-- /ANCHOR_EXAMPLE:decisions-session-1768733811107-p58rwtw06-005-anobel.com/019-blog-sort-fix -->
 
-<!-- ANCHOR:session-history-session-1768733811107-p58rwtw06-005-anobel.com/019-blog-sort-fix -->
+<!-- ANCHOR_EXAMPLE:session-history-session-1768733811107-p58rwtw06-005-anobel.com/019-blog-sort-fix -->
 <a id="conversation"></a>
 
 <!-- DYNAMIC SECTION NUMBERING:
@@ -373,11 +373,11 @@ Investigated why the blog page sort dropdown at anobel.com/nl/blog doesn't work.
 
 ---
 
-<!-- /ANCHOR:session-history-session-1768733811107-p58rwtw06-005-anobel.com/019-blog-sort-fix -->
+<!-- /ANCHOR_EXAMPLE:session-history-session-1768733811107-p58rwtw06-005-anobel.com/019-blog-sort-fix -->
 
 ---
 
-<!-- ANCHOR:recovery-hints-session-1768733811107-p58rwtw06-005-anobel.com/019-blog-sort-fix -->
+<!-- ANCHOR_EXAMPLE:recovery-hints-session-1768733811107-p58rwtw06-005-anobel.com/019-blog-sort-fix -->
 <a id="recovery-hints"></a>
 
 ## RECOVERY HINTS
@@ -399,10 +399,10 @@ Investigated why the blog page sort dropdown at anobel.com/nl/blog doesn't work.
 3. **Review last session state** - Check PROJECT STATE SNAPSHOT
 4. **Validate pending tasks** - Review CONTINUE SESSION section
 5. **Resume with handover prompt** - Use continuation template above
-<!-- /ANCHOR:recovery-hints-session-1768733811107-p58rwtw06-005-anobel.com/019-blog-sort-fix -->
+<!-- /ANCHOR_EXAMPLE:recovery-hints-session-1768733811107-p58rwtw06-005-anobel.com/019-blog-sort-fix -->
 ---
 
-<!-- ANCHOR:postflight-session-1768733811107-p58rwtw06-005-anobel.com/019-blog-sort-fix -->
+<!-- ANCHOR_EXAMPLE:postflight-session-1768733811107-p58rwtw06-005-anobel.com/019-blog-sort-fix -->
 <a id="postflight-learning-delta"></a>
 
 ## POSTFLIGHT LEARNING DELTA
@@ -425,14 +425,14 @@ Investigated why the blog page sort dropdown at anobel.com/nl/blog doesn't work.
 
 **Session Learning Summary:**
 This session was migrated from an older format. Learning metrics were not captured in the original format.
-<!-- /ANCHOR:postflight-session-1768733811107-p58rwtw06-005-anobel.com/019-blog-sort-fix -->
+<!-- /ANCHOR_EXAMPLE:postflight-session-1768733811107-p58rwtw06-005-anobel.com/019-blog-sort-fix -->
 ---
 
 <a id="memory-metadata"></a>
 
 ## MEMORY METADATA
 
-<!-- ANCHOR:metadata-session-1768733811107-p58rwtw06-005-anobel.com/019-blog-sort-fix -->
+<!-- ANCHOR_EXAMPLE:metadata-session-1768733811107-p58rwtw06-005-anobel.com/019-blog-sort-fix -->
 
 > **Machine-Readable Section** - This YAML block is parsed by the semantic memory indexer for search optimization and decay calculations.
 
@@ -529,7 +529,7 @@ embedding_version: "1.0"
 chunk_count: 1
 ```
 
-<!-- /ANCHOR:metadata-session-1768733811107-p58rwtw06-005-anobel.com/019-blog-sort-fix -->
+<!-- /ANCHOR:metadata-session-1768733811107-p58rwtw06-005-anobel-com/019-blog-sort-fix -->
 
 ---
 

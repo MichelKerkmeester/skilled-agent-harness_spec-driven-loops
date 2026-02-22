@@ -51,7 +51,7 @@ contextType: "general"
 
 ---
 
-<!-- ANCHOR:preflight-session-1770815950245-43y47835l-../.opencode/specs/004-agents/009-claude-code-subagents -->
+<!-- ANCHOR:preflight-session-1770815950245-43y47835l/opencode/specs/004-agents/009-claude-code-subagents -->
 ## PREFLIGHT BASELINE
 
 **Epistemic state captured at session start for learning delta calculation.**
@@ -71,7 +71,7 @@ contextType: "general"
 - Confidence: [TBD]%
 - Uncertainty: [TBD]
 - Readiness: [TBD]
-<!-- /ANCHOR:preflight-session-1770815950245-43y47835l-../.opencode/specs/004-agents/009-claude-code-subagents -->
+<!-- /ANCHOR:preflight-session-1770815950245-43y47835l/opencode/specs/004-agents/009-claude-code-subagents -->
 
 ---
 
@@ -89,7 +89,7 @@ contextType: "general"
 
 ---
 
-<!-- ANCHOR:continue-session-session-1770815950245-43y47835l-../.opencode/specs/004-agents/009-claude-code-subagents -->
+<!-- ANCHOR:continue-session-session-1770815950245-43y47835l/opencode/specs/004-agents/009-claude-code-subagents -->
 <a id="continue-session"></a>
 
 ## CONTINUE SESSION
@@ -139,7 +139,7 @@ Next: Continue implementation
 
 - Last: Single file, 5 edits — one agent can handle this cleanly (~6 tool calls, well wi
 
-<!-- /ANCHOR:continue-session-session-1770815950245-43y47835l-../.opencode/specs/004-agents/009-claude-code-subagents -->
+<!-- /ANCHOR_EXAMPLE:continue-session-session-1770815950245-43y47835l-../.opencode/specs/004-agents/009-claude-code-subagents -->
 
 ---
 
@@ -164,7 +164,7 @@ BEFORE DISPATCH          DURING EXECUTION  |
 
 ---
 
-<!-- ANCHOR:task-guide-../.opencode/specs/004-agents/009-claude-code-subagents-../.opencode/specs/004-agents/009-claude-code-subagents -->
+<!-- ANCHOR_EXAMPLE:task-guide-../.opencode/specs/004-agents/009-claude-code-subagents-../.opencode/specs/004-agents/009-claude-code-subagents -->
 <a id="implementation-guide"></a>
 
 ## 1. IMPLEMENTATION GUIDE
@@ -223,11 +223,11 @@ You are continuing a multi-phase session working on the OpenCode public framewor
 
 - **Data Normalization**: Clean and standardize data before use
 
-<!-- /ANCHOR:task-guide-../.opencode/specs/004-agents/009-claude-code-subagents-../.opencode/specs/004-agents/009-claude-code-subagents -->
+<!-- /ANCHOR_EXAMPLE:task-guide-../.opencode/specs/004-agents/009-claude-code-subagents-../.opencode/specs/004-agents/009-claude-code-subagents -->
 
 ---
 
-<!-- ANCHOR:summary-session-1770815950245-43y47835l-../.opencode/specs/004-agents/009-claude-code-subagents -->
+<!-- ANCHOR_EXAMPLE:summary-session-1770815950245-43y47835l-../.opencode/specs/004-agents/009-claude-code-subagents -->
 <a id="overview"></a>
 
 ## 2. OVERVIEW
@@ -287,23 +287,23 @@ Y
 | `PUBLIC_RELEASE.md` | Updated public release |
 | `/tmp/save-context-data.json` | Updated save context data |
 
-<!-- /ANCHOR:summary-session-1770815950245-43y47835l-../.opencode/specs/004-agents/009-claude-code-subagents -->
+<!-- /ANCHOR_EXAMPLE:summary-session-1770815950245-43y47835l-../.opencode/specs/004-agents/009-claude-code-subagents -->
 
 ---
 
-<!-- ANCHOR:detailed-changes-session-1770815950245-43y47835l-../.opencode/specs/004-agents/009-claude-code-subagents -->
+<!-- ANCHOR_EXAMPLE:detailed-changes-session-1770815950245-43y47835l-../.opencode/specs/004-agents/009-claude-code-subagents -->
 <a id="detailed-changes"></a>
 
 ## 3. DETAILED CHANGES
 
-<!-- ANCHOR:implementation-single-file-edits-one-acb2848e-session-1770815950245-43y47835l -->
+<!-- ANCHOR_EXAMPLE:implementation-single-file-edits-one-acb2848e-session-1770815950245-43y47835l -->
 ### FEATURE: Single file, 5 edits — one agent can handle this cleanly (~6 tool calls, well wi
 
 Single file, 5 edits — one agent can handle this cleanly (~6 tool calls, well within limits).
 
-<!-- /ANCHOR:implementation-single-file-edits-one-acb2848e-session-1770815950245-43y47835l -->
+<!-- /ANCHOR_EXAMPLE:implementation-single-file-edits-one-acb2848e-session-1770815950245-43y47835l -->
 
-<!-- ANCHOR:architecture-how-tcb-system-works-1634b237-session-1770815950245-43y47835l -->
+<!-- ANCHOR_EXAMPLE:architecture-how-tcb-system-works-1634b237-session-1770815950245-43y47835l -->
 ### FEATURE: ## How the TCB System Works
 
 ### The 3-Layer Defense
@@ -324,23 +324,23 @@ BEFORE DISPATCH          DURING EXECUTION          AFTER FAILURE
 │ Orchestrator │       │ Agent checks     │      │ Orchestrator    │
 │ estimates    │       │ its own
 
-<!-- /ANCHOR:architecture-how-tcb-system-works-1634b237-session-1770815950245-43y47835l -->
+<!-- /ANCHOR_EXAMPLE:architecture-how-tcb-system-works-1634b237-session-1770815950245-43y47835l -->
 
-<!-- ANCHOR:implementation-quick-sync-read-write-a8d35775-session-1770815950245-43y47835l -->
+<!-- ANCHOR_EXAMPLE:implementation-quick-sync-read-write-a8d35775-session-1770815950245-43y47835l -->
 ### FEATURE: Quick sync — 1 read + 1 write = 2 tool calls. ✅
 
 Quick sync — 1 read + 1 write = 2 tool calls. ✅
 
-<!-- /ANCHOR:implementation-quick-sync-read-write-a8d35775-session-1770815950245-43y47835l -->
+<!-- /ANCHOR_EXAMPLE:implementation-quick-sync-read-write-a8d35775-session-1770815950245-43y47835l -->
 
-<!-- ANCHOR:implementation-good-question-let-audit-c9b6c7bc-session-1770815950245-43y47835l -->
+<!-- ANCHOR_EXAMPLE:implementation-good-question-let-audit-c9b6c7bc-session-1770815950245-43y47835l -->
 ### FEATURE: Good question. Let me audit it for bloat.
 
 Good question. Let me audit it for bloat.
 
-<!-- /ANCHOR:implementation-good-question-let-audit-c9b6c7bc-session-1770815950245-43y47835l -->
+<!-- /ANCHOR_EXAMPLE:implementation-good-question-let-audit-c9b6c7bc-session-1770815950245-43y47835l -->
 
-<!-- ANCHOR:implementation-conversation-summary-continuation-prompt-a8e4d48f-session-1770815950245-43y47835l -->
+<!-- ANCHOR_EXAMPLE:implementation-conversation-summary-continuation-prompt-a8e4d48f-session-1770815950245-43y47835l -->
 ### FEATURE: 
 
 ## Conversation Summary & Continuation Prompt
@@ -366,185 +366,185 @@ You are continuing a multi-phase session working on the **OpenCode public framew
 ### Phase 1: Barter AI System Audit
 Audited the Barter Deal Templates AI system at `/Users/michelkerkmee (repeated 5 times)
 
-<!-- /ANCHOR:implementation-conversation-summary-continuation-prompt-a8e4d48f-session-1770815950245-43y47835l -->
+<!-- /ANCHOR_EXAMPLE:implementation-conversation-summary-continuation-prompt-a8e4d48f-session-1770815950245-43y47835l -->
 
-<!-- ANCHOR:discovery-let-pick-where-left-bb9942ea-session-1770815950245-43y47835l -->
+<!-- ANCHOR_EXAMPLE:discovery-let-pick-where-left-bb9942ea-session-1770815950245-43y47835l -->
 ### FEATURE: 
 
 Let me pick up where we left off. The immediate next step is completing the **
 
 Let me pick up where we left off. The immediate next step is completing the **bloat analysis of orchestrate.md** (Phase 7 continuation). Let me resume that analysis.
 
-<!-- /ANCHOR:discovery-let-pick-where-left-bb9942ea-session-1770815950245-43y47835l -->
+<!-- /ANCHOR_EXAMPLE:discovery-let-pick-where-left-bb9942ea-session-1770815950245-43y47835l -->
 
-<!-- ANCHOR:implementation-let-execute-all-content-b986bef3-session-1770815950245-43y47835l -->
+<!-- ANCHOR_EXAMPLE:implementation-let-execute-all-content-b986bef3-session-1770815950245-43y47835l -->
 ### FEATURE: Let me execute all 6 content changes, then handle renumbering and cross-referenc
 
 Let me execute all 6 content changes, then handle renumbering and cross-references. I'll work bottom-up to minimize line-shift issues.
 
-<!-- /ANCHOR:implementation-let-execute-all-content-b986bef3-session-1770815950245-43y47835l -->
+<!-- /ANCHOR_EXAMPLE:implementation-let-execute-all-content-b986bef3-session-1770815950245-43y47835l -->
 
-<!-- ANCHOR:implementation-let-pick-where-left-754b4933-session-1770815950245-43y47835l -->
+<!-- ANCHOR_EXAMPLE:implementation-let-pick-where-left-754b4933-session-1770815950245-43y47835l -->
 ### FEATURE: 
 
 Let me pick up where we left off — fixing the 32 cross-references in orchestra
 
 Let me pick up where we left off — fixing the 32 cross-references in orchestrate.md.
 
-<!-- /ANCHOR:implementation-let-pick-where-left-754b4933-session-1770815950245-43y47835l -->
+<!-- /ANCHOR_EXAMPLE:implementation-let-pick-where-left-754b4933-session-1770815950245-43y47835l -->
 
-<!-- ANCHOR:files-let-pick-where-left-53139738-session-1770815950245-43y47835l -->
+<!-- ANCHOR_EXAMPLE:files-let-pick-where-left-53139738-session-1770815950245-43y47835l -->
 ### FEATURE: 
 
 Let me pick up where we left off — syncing the Claude Code orchestrate.md with
 
 Let me pick up where we left off — syncing the Claude Code orchestrate.md with the updated OpenCode source.
 
-<!-- /ANCHOR:files-let-pick-where-left-53139738-session-1770815950245-43y47835l -->
+<!-- /ANCHOR_EXAMPLE:files-let-pick-where-left-53139738-session-1770815950245-43y47835l -->
 
-<!-- ANCHOR:implementation-let-verify-state-things-0444b756-session-1770815950245-43y47835l -->
+<!-- ANCHOR_EXAMPLE:implementation-let-verify-state-things-0444b756-session-1770815950245-43y47835l -->
 ### FEATURE: 
 
 Let me verify the state of things before proceeding.
 
 Let me verify the state of things before proceeding.
 
-<!-- /ANCHOR:implementation-let-verify-state-things-0444b756-session-1770815950245-43y47835l -->
+<!-- /ANCHOR_EXAMPLE:implementation-let-verify-state-things-0444b756-session-1770815950245-43y47835l -->
 
-<!-- ANCHOR:implementation-let-think-through-carefully-98e7cf64-session-1770815950245-43y47835l -->
+<!-- ANCHOR_EXAMPLE:implementation-let-think-through-carefully-98e7cf64-session-1770815950245-43y47835l -->
 ### FEATURE: Let me think through this carefully with Sequential Thinking MCP first.
 
 Let me think through this carefully with Sequential Thinking MCP first.
 
-<!-- /ANCHOR:implementation-let-think-through-carefully-98e7cf64-session-1770815950245-43y47835l -->
+<!-- /ANCHOR_EXAMPLE:implementation-let-think-through-carefully-98e7cf64-session-1770815950245-43y47835l -->
 
-<!-- ANCHOR:implementation-now-publicreleasemd-version-bump-1bc4d718-session-1770815950245-43y47835l -->
+<!-- ANCHOR_EXAMPLE:implementation-now-publicreleasemd-version-bump-1bc4d718-session-1770815950245-43y47835l -->
 ### FEATURE: Now update PUBLIC_RELEASE.md — version bump and series table:
 
 Now update PUBLIC_RELEASE.md — version bump and series table:
 
-<!-- /ANCHOR:implementation-now-publicreleasemd-version-bump-1bc4d718-session-1770815950245-43y47835l -->
+<!-- /ANCHOR_EXAMPLE:implementation-now-publicreleasemd-version-bump-1bc4d718-session-1770815950245-43y47835l -->
 
-<!-- ANCHOR:implementation-let-check-git-credential-d3eda036-session-1770815950245-43y47835l -->
+<!-- ANCHOR_EXAMPLE:implementation-let-check-git-credential-d3eda036-session-1770815950245-43y47835l -->
 ### FEATURE: Let me check your Git credential setup to give you the right fix.
 
 Let me check your Git credential setup to give you the right fix.
 
-<!-- /ANCHOR:implementation-let-check-git-credential-d3eda036-session-1770815950245-43y47835l -->
+<!-- /ANCHOR_EXAMPLE:implementation-let-check-git-credential-d3eda036-session-1770815950245-43y47835l -->
 
-<!-- ANCHOR:implementation-running-phase-preflight-checks-de8de5c1-session-1770815950245-43y47835l -->
+<!-- ANCHOR_EXAMPLE:implementation-running-phase-preflight-checks-de8de5c1-session-1770815950245-43y47835l -->
 ### FEATURE: Running Phase 0 pre-flight checks.
 
 Running Phase 0 pre-flight checks.
 
-<!-- /ANCHOR:implementation-running-phase-preflight-checks-de8de5c1-session-1770815950245-43y47835l -->
+<!-- /ANCHOR_EXAMPLE:implementation-running-phase-preflight-checks-de8de5c1-session-1770815950245-43y47835l -->
 
-<!-- ANCHOR:implementation-let-check-current-state-a4471dc2-session-1770815950245-43y47835l -->
+<!-- ANCHOR_EXAMPLE:implementation-let-check-current-state-a4471dc2-session-1770815950245-43y47835l -->
 ### FEATURE: 
 
 Let me check the current state of the repo and any deferred tasks that need at
 
 Let me check the current state of the repo and any deferred tasks that need attention.
 
-<!-- /ANCHOR:implementation-let-check-current-state-a4471dc2-session-1770815950245-43y47835l -->
+<!-- /ANCHOR_EXAMPLE:implementation-let-check-current-state-a4471dc2-session-1770815950245-43y47835l -->
 
-<!-- ANCHOR:implementation-spec-folder-exists-level-3ef29357-session-1770815950245-43y47835l -->
+<!-- ANCHOR_EXAMPLE:implementation-spec-folder-exists-level-3ef29357-session-1770815950245-43y47835l -->
 ### FEATURE: Spec folder exists with Level 1 docs. Memory folder is empty (just `.gitkeep`). 
 
 Spec folder exists with Level 1 docs. Memory folder is empty (just `.gitkeep`). Let me prepare the context data and run the generate-context script.
 
-<!-- /ANCHOR:implementation-spec-folder-exists-level-3ef29357-session-1770815950245-43y47835l -->
+<!-- /ANCHOR_EXAMPLE:implementation-spec-folder-exists-level-3ef29357-session-1770815950245-43y47835l -->
 
-<!-- ANCHOR:implementation-tool-sequentialthinkingsequentialthinking-9f3506c1-session-1770815950245-43y47835l -->
+<!-- ANCHOR_EXAMPLE:implementation-tool-sequentialthinkingsequentialthinking-9f3506c1-session-1770815950245-43y47835l -->
 ### OBSERVATION: Tool: sequential_thinking_sequentialthinking
 
 Executed sequential_thinking_sequentialthinking (repeated 7 times)
 
 **Details:** Tool: sequential_thinking_sequentialthinking | Status: completed
-<!-- /ANCHOR:implementation-tool-sequentialthinkingsequentialthinking-9f3506c1-session-1770815950245-43y47835l -->
+<!-- /ANCHOR_EXAMPLE:implementation-tool-sequentialthinkingsequentialthinking-9f3506c1-session-1770815950245-43y47835l -->
 
-<!-- ANCHOR:implementation-tool-bash-74ff6f94-session-1770815950245-43y47835l -->
+<!-- ANCHOR_EXAMPLE:implementation-tool-bash-74ff6f94-session-1770815950245-43y47835l -->
 ### OBSERVATION: Tool: bash
 
 Check spec folder and release files status (repeated 38 times)
 
 **Details:** Tool: bash | Status: completed | Status: running
-<!-- /ANCHOR:implementation-tool-bash-74ff6f94-session-1770815950245-43y47835l -->
+<!-- /ANCHOR_EXAMPLE:implementation-tool-bash-74ff6f94-session-1770815950245-43y47835l -->
 
-<!-- ANCHOR:implementation-tool-read-497ca790-session-1770815950245-43y47835l -->
+<!-- ANCHOR_EXAMPLE:implementation-tool-read-497ca790-session-1770815950245-43y47835l -->
 ### OBSERVATION: Tool: read
 
 CHANGELOG.md
 
 **Files:** /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/CHANGELOG.md
 **Details:** Tool: read | Status: completed
-<!-- /ANCHOR:implementation-tool-read-497ca790-session-1770815950245-43y47835l -->
+<!-- /ANCHOR_EXAMPLE:implementation-tool-read-497ca790-session-1770815950245-43y47835l -->
 
-<!-- ANCHOR:implementation-tool-read-497ca790-2-session-1770815950245-43y47835l -->
+<!-- ANCHOR_EXAMPLE:implementation-tool-read-497ca790-2-session-1770815950245-43y47835l -->
 ### OBSERVATION: Tool: read
 
 PUBLIC_RELEASE.md (repeated 3 times)
 
 **Files:** /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/PUBLIC_RELEASE.md
 **Details:** Tool: read | Status: completed
-<!-- /ANCHOR:implementation-tool-read-497ca790-2-session-1770815950245-43y47835l -->
+<!-- /ANCHOR_EXAMPLE:implementation-tool-read-497ca790-2-session-1770815950245-43y47835l -->
 
-<!-- ANCHOR:implementation-tool-todowrite-51d0aad7-session-1770815950245-43y47835l -->
+<!-- ANCHOR_EXAMPLE:implementation-tool-todowrite-51d0aad7-session-1770815950245-43y47835l -->
 ### OBSERVATION: Tool: todowrite
 
 5 todos (repeated 5 times)
 
 **Details:** Tool: todowrite | Status: completed
-<!-- /ANCHOR:implementation-tool-todowrite-51d0aad7-session-1770815950245-43y47835l -->
+<!-- /ANCHOR_EXAMPLE:implementation-tool-todowrite-51d0aad7-session-1770815950245-43y47835l -->
 
-<!-- ANCHOR:implementation-tool-edit-35d1af02-session-1770815950245-43y47835l -->
+<!-- ANCHOR_EXAMPLE:implementation-tool-edit-35d1af02-session-1770815950245-43y47835l -->
 ### IMPLEMENTATION: Tool: edit
 
 CHANGELOG.md
 
 **Files:** /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/CHANGELOG.md
 **Details:** Tool: edit | Status: completed
-<!-- /ANCHOR:implementation-tool-edit-35d1af02-session-1770815950245-43y47835l -->
+<!-- /ANCHOR_EXAMPLE:implementation-tool-edit-35d1af02-session-1770815950245-43y47835l -->
 
-<!-- ANCHOR:implementation-tool-edit-35d1af02-2-session-1770815950245-43y47835l -->
+<!-- ANCHOR_EXAMPLE:implementation-tool-edit-35d1af02-2-session-1770815950245-43y47835l -->
 ### IMPLEMENTATION: Tool: edit
 
 PUBLIC_RELEASE.md (repeated 2 times)
 
 **Files:** /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/PUBLIC_RELEASE.md
 **Details:** Tool: edit | Status: completed
-<!-- /ANCHOR:implementation-tool-edit-35d1af02-2-session-1770815950245-43y47835l -->
+<!-- /ANCHOR_EXAMPLE:implementation-tool-edit-35d1af02-2-session-1770815950245-43y47835l -->
 
-<!-- ANCHOR:implementation-tool-question-dfaedaec-session-1770815950245-43y47835l -->
+<!-- ANCHOR_EXAMPLE:implementation-tool-question-dfaedaec-session-1770815950245-43y47835l -->
 ### OBSERVATION: Tool: question
 
 Asked 1 question
 
 **Details:** Tool: question | Status: completed
-<!-- /ANCHOR:implementation-tool-question-dfaedaec-session-1770815950245-43y47835l -->
+<!-- /ANCHOR_EXAMPLE:implementation-tool-question-dfaedaec-session-1770815950245-43y47835l -->
 
-<!-- ANCHOR:implementation-tool-speckitmemorymemorystats-ac4221ed-session-1770815950245-43y47835l -->
+<!-- ANCHOR_EXAMPLE:implementation-tool-speckitmemorymemorystats-ac4221ed-session-1770815950245-43y47835l -->
 ### OBSERVATION: Tool: spec_kit_memory_memory_stats
 
 Executed spec_kit_memory_memory_stats
 
 **Details:** Tool: spec_kit_memory_memory_stats | Status: completed
-<!-- /ANCHOR:implementation-tool-speckitmemorymemorystats-ac4221ed-session-1770815950245-43y47835l -->
+<!-- /ANCHOR_EXAMPLE:implementation-tool-speckitmemorymemorystats-ac4221ed-session-1770815950245-43y47835l -->
 
-<!-- ANCHOR:implementation-tool-write-00f0f8d1-session-1770815950245-43y47835l -->
+<!-- ANCHOR_EXAMPLE:implementation-tool-write-00f0f8d1-session-1770815950245-43y47835l -->
 ### IMPLEMENTATION: Tool: write
 
 ../../../../../../tmp/save-context-data.json
 
 **Files:** /tmp/save-context-data.json
 **Details:** Tool: write | Status: completed
-<!-- /ANCHOR:implementation-tool-write-00f0f8d1-session-1770815950245-43y47835l -->
+<!-- /ANCHOR_EXAMPLE:implementation-tool-write-00f0f8d1-session-1770815950245-43y47835l -->
 
-<!-- /ANCHOR:detailed-changes-session-1770815950245-43y47835l-../.opencode/specs/004-agents/009-claude-code-subagents -->
+<!-- /ANCHOR_EXAMPLE:detailed-changes-session-1770815950245-43y47835l-../.opencode/specs/004-agents/009-claude-code-subagents -->
 
 ---
 
-<!-- ANCHOR:decisions-session-1770815950245-43y47835l-../.opencode/specs/004-agents/009-claude-code-subagents -->
+<!-- ANCHOR_EXAMPLE:decisions-session-1770815950245-43y47835l-../.opencode/specs/004-agents/009-claude-code-subagents -->
 <a id="decisions"></a>
 
 <!-- DYNAMIC SECTION NUMBERING:
@@ -572,9 +572,9 @@ This session did not involve significant architectural or technical decisions. T
 
 ---
 
-<!-- /ANCHOR:decisions-session-1770815950245-43y47835l-../.opencode/specs/004-agents/009-claude-code-subagents -->
+<!-- /ANCHOR_EXAMPLE:decisions-session-1770815950245-43y47835l-../.opencode/specs/004-agents/009-claude-code-subagents -->
 
-<!-- ANCHOR:session-history-session-1770815950245-43y47835l-../.opencode/specs/004-agents/009-claude-code-subagents -->
+<!-- ANCHOR_EXAMPLE:session-history-session-1770815950245-43y47835l-../.opencode/specs/004-agents/009-claude-code-subagents -->
 <a id="conversation"></a>
 
 <!-- DYNAMIC SECTION NUMBERING:
@@ -1051,11 +1051,11 @@ Tool: bash
 
 ---
 
-<!-- /ANCHOR:session-history-session-1770815950245-43y47835l-../.opencode/specs/004-agents/009-claude-code-subagents -->
+<!-- /ANCHOR_EXAMPLE:session-history-session-1770815950245-43y47835l-../.opencode/specs/004-agents/009-claude-code-subagents -->
 
 ---
 
-<!-- ANCHOR:recovery-hints-session-1770815950245-43y47835l-../.opencode/specs/004-agents/009-claude-code-subagents -->
+<!-- ANCHOR_EXAMPLE:recovery-hints-session-1770815950245-43y47835l-../.opencode/specs/004-agents/009-claude-code-subagents -->
 <a id="recovery-hints"></a>
 
 ## RECOVERY HINTS
@@ -1108,11 +1108,11 @@ node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js ../
 | Index Entry Valid |  | Last indexed:  |
 | Checksums Match |  |  |
 | No Dedup Conflicts |  |  |
-<!-- /ANCHOR:recovery-hints-session-1770815950245-43y47835l-../.opencode/specs/004-agents/009-claude-code-subagents -->
+<!-- /ANCHOR_EXAMPLE:recovery-hints-session-1770815950245-43y47835l-../.opencode/specs/004-agents/009-claude-code-subagents -->
 
 ---
 
-<!-- ANCHOR:postflight-session-1770815950245-43y47835l-../.opencode/specs/004-agents/009-claude-code-subagents -->
+<!-- ANCHOR_EXAMPLE:postflight-session-1770815950245-43y47835l-../.opencode/specs/004-agents/009-claude-code-subagents -->
 <a id="postflight-learning-delta"></a>
 
 ## POSTFLIGHT LEARNING DELTA
@@ -1147,7 +1147,7 @@ node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js ../
 
 **Session Learning Summary:**
 Learning metrics will be calculated when both preflight and postflight data are provided.
-<!-- /ANCHOR:postflight-session-1770815950245-43y47835l-../.opencode/specs/004-agents/009-claude-code-subagents -->
+<!-- /ANCHOR_EXAMPLE:postflight-session-1770815950245-43y47835l-../.opencode/specs/004-agents/009-claude-code-subagents -->
 
 ---
 
@@ -1155,7 +1155,7 @@ Learning metrics will be calculated when both preflight and postflight data are 
 
 ## MEMORY METADATA
 
-<!-- ANCHOR:metadata-session-1770815950245-43y47835l-../.opencode/specs/004-agents/009-claude-code-subagents -->
+<!-- ANCHOR_EXAMPLE:metadata-session-1770815950245-43y47835l-../.opencode/specs/004-agents/009-claude-code-subagents -->
 
 > **Machine-Readable Section** - This YAML block is parsed by the semantic memory indexer for search optimization and decay calculations.
 
@@ -1292,7 +1292,7 @@ embedding_version: "1.0"
 chunk_count: 1
 ```
 
-<!-- /ANCHOR:metadata-session-1770815950245-43y47835l-../.opencode/specs/004-agents/009-claude-code-subagents -->
+<!-- /ANCHOR_EXAMPLE:metadata-session-1770815950245-43y47835l-../.opencode/specs/004-agents/009-claude-code-subagents -->
 
 ---
 

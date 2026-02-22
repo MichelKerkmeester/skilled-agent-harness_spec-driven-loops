@@ -719,7 +719,7 @@ Example: `- [x] CHK-001: Component renders correctly [E:screenshot-component.png
 | CHK-202 | Template version updated to v2.2 | P1 | ✅ [E:context_template.md:1] |
 | CHK-203 | Table of contents updated with new sections | P1 | ✅ [E:context_template.md:156-167] |
 | CHK-204 | All new YAML metadata has valid syntax | P0 | ✅ [E:context_template.md:699-811 valid YAML] |
-| CHK-205 | All new anchors follow `<!-- ANCHOR:name -->` format | P0 | ✅ [E:context_template.md:171,582,695 proper format] |
+| CHK-205 | All new anchors follow `<!-- ANCHOR_EXAMPLE:name -->` format | P0 | ✅ [E:context_template.md:171,582,695 proper format] |
 
 ### Command Documentation Verification (save.md)
 

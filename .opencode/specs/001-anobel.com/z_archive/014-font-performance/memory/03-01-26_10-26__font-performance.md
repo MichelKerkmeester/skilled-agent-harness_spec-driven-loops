@@ -51,7 +51,7 @@ contextType: "general"
 
 ---
 
-<!-- ANCHOR:preflight-session-1767432416158-dox3gn2h6-005-anobel.com/014-font-performance -->
+<!-- ANCHOR:preflight-session-1767432416158-dox3gn2h6-005-anobel-com/014-font-performance -->
 ## PREFLIGHT BASELINE
 
 **Epistemic state captured at session start for learning delta calculation.**
@@ -71,7 +71,7 @@ contextType: "general"
 - Confidence: N/A
 - Uncertainty: N/A
 - Readiness: N/A
-<!-- /ANCHOR:preflight-session-1767432416158-dox3gn2h6-005-anobel.com/014-font-performance -->
+<!-- /ANCHOR:preflight-session-1767432416158-dox3gn2h6-005-anobel-com/014-font-performance -->
 ---
 
 ## Table of Contents
@@ -86,7 +86,7 @@ contextType: "general"
 
 ---
 
-<!-- ANCHOR:continue-session-session-1767432416158-dox3gn2h6-005-anobel.com/014-font-performance -->
+<!-- ANCHOR:continue-session-session-1767432416158-dox3gn2h6-005-anobel-com/014-font-performance -->
 <a id="continue-session"></a>
 
 ## CONTINUE SESSION
@@ -117,7 +117,7 @@ This session was migrated from an older format to v2.2. Review the OVERVIEW and 
 ```
 /spec_kit:resume 005-anobel.com/014-font-performance
 ```
-<!-- /ANCHOR:continue-session-session-1767432416158-dox3gn2h6-005-anobel.com/014-font-performance -->
+<!-- /ANCHOR_EXAMPLE:continue-session-session-1767432416158-dox3gn2h6-005-anobel.com/014-font-performance -->
 ---
 
 <a id="project-state-snapshot"></a>
@@ -136,7 +136,7 @@ This session was migrated from an older format to v2.2. Review the OVERVIEW and 
 
 ---
 
-<!-- ANCHOR:summary-session-1767432416158-dox3gn2h6-005-anobel.com/014-font-performance -->
+<!-- ANCHOR_EXAMPLE:summary-session-1767432416158-dox3gn2h6-005-anobel.com/014-font-performance -->
 <a id="overview"></a>
 
 ## 1. OVERVIEW
@@ -146,11 +146,11 @@ Session focused on implementing and testing features.
 **Key Outcomes**:
 - Session in progress
 
-<!-- /ANCHOR:summary-session-1767432416158-dox3gn2h6-005-anobel.com/014-font-performance -->
+<!-- /ANCHOR_EXAMPLE:summary-session-1767432416158-dox3gn2h6-005-anobel.com/014-font-performance -->
 
 ---
 
-<!-- ANCHOR:decisions-session-1767432416158-dox3gn2h6-005-anobel.com/014-font-performance -->
+<!-- ANCHOR_EXAMPLE:decisions-session-1767432416158-dox3gn2h6-005-anobel.com/014-font-performance -->
 <a id="decisions"></a>
 
 <!-- DYNAMIC SECTION NUMBERING:
@@ -178,9 +178,9 @@ This session did not involve significant architectural or technical decisions. T
 
 ---
 
-<!-- /ANCHOR:decisions-session-1767432416158-dox3gn2h6-005-anobel.com/014-font-performance -->
+<!-- /ANCHOR_EXAMPLE:decisions-session-1767432416158-dox3gn2h6-005-anobel.com/014-font-performance -->
 
-<!-- ANCHOR:session-history-session-1767432416158-dox3gn2h6-005-anobel.com/014-font-performance -->
+<!-- ANCHOR_EXAMPLE:session-history-session-1767432416158-dox3gn2h6-005-anobel.com/014-font-performance -->
 <a id="conversation"></a>
 
 <!-- DYNAMIC SECTION NUMBERING:
@@ -212,11 +212,11 @@ This session followed a **Linear Sequential** conversation pattern with **0** di
 
 ---
 
-<!-- /ANCHOR:session-history-session-1767432416158-dox3gn2h6-005-anobel.com/014-font-performance -->
+<!-- /ANCHOR_EXAMPLE:session-history-session-1767432416158-dox3gn2h6-005-anobel.com/014-font-performance -->
 
 ---
 
-<!-- ANCHOR:recovery-hints-session-1767432416158-dox3gn2h6-005-anobel.com/014-font-performance -->
+<!-- ANCHOR_EXAMPLE:recovery-hints-session-1767432416158-dox3gn2h6-005-anobel.com/014-font-performance -->
 <a id="recovery-hints"></a>
 
 ## RECOVERY HINTS
@@ -238,10 +238,10 @@ This session followed a **Linear Sequential** conversation pattern with **0** di
 3. **Review last session state** - Check PROJECT STATE SNAPSHOT
 4. **Validate pending tasks** - Review CONTINUE SESSION section
 5. **Resume with handover prompt** - Use continuation template above
-<!-- /ANCHOR:recovery-hints-session-1767432416158-dox3gn2h6-005-anobel.com/014-font-performance -->
+<!-- /ANCHOR_EXAMPLE:recovery-hints-session-1767432416158-dox3gn2h6-005-anobel.com/014-font-performance -->
 ---
 
-<!-- ANCHOR:postflight-session-1767432416158-dox3gn2h6-005-anobel.com/014-font-performance -->
+<!-- ANCHOR_EXAMPLE:postflight-session-1767432416158-dox3gn2h6-005-anobel.com/014-font-performance -->
 <a id="postflight-learning-delta"></a>
 
 ## POSTFLIGHT LEARNING DELTA
@@ -264,14 +264,14 @@ This session followed a **Linear Sequential** conversation pattern with **0** di
 
 **Session Learning Summary:**
 This session was migrated from an older format. Learning metrics were not captured in the original format.
-<!-- /ANCHOR:postflight-session-1767432416158-dox3gn2h6-005-anobel.com/014-font-performance -->
+<!-- /ANCHOR_EXAMPLE:postflight-session-1767432416158-dox3gn2h6-005-anobel.com/014-font-performance -->
 ---
 
 <a id="memory-metadata"></a>
 
 ## MEMORY METADATA
 
-<!-- ANCHOR:metadata-session-1767432416158-dox3gn2h6-005-anobel.com/014-font-performance -->
+<!-- ANCHOR_EXAMPLE:metadata-session-1767432416158-dox3gn2h6-005-anobel.com/014-font-performance -->
 
 > **Machine-Readable Section** - This YAML block is parsed by the semantic memory indexer for search optimization and decay calculations.
 
@@ -359,7 +359,7 @@ embedding_version: "1.0"
 chunk_count: 1
 ```
 
-<!-- /ANCHOR:metadata-session-1767432416158-dox3gn2h6-005-anobel.com/014-font-performance -->
+<!-- /ANCHOR:metadata-session-1767432416158-dox3gn2h6-005-anobel-com/014-font-performance -->
 
 ---
 

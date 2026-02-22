@@ -192,7 +192,7 @@ _Implementation notes and deviations from original plan:_
 
 4. ANCHOR FORMAT FIX: Fixed old anchor format in 
    specs/002-commands-and-skills/003-sk-documentation/002-skill-rename/memory/
-   Updated from <!-- anchor: name --> to <!-- ANCHOR:name --> with closing tags.
+   Updated from <!-- ANCHOR_EXAMPLE: name --> to <!-- ANCHOR_EXAMPLE:name --> with closing tags.
 
 5. P2.1 DEFERRED: Old system-memory skill was replaced rather than archived.
    This is acceptable as the new implementation is a complete replacement.

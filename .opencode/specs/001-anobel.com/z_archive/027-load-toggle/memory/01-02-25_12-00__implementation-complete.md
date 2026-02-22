@@ -29,7 +29,7 @@ contextType: "general"
 
 ---
 
-<!-- ANCHOR:preflight-session-legacy-1770632216978-yv46lz-005-anobel.com/z_archive/027-load-toggle -->
+<!-- ANCHOR:preflight-session-legacy-1770632216978-yv46lz-005-anobel-com/z-archive/027-load-toggle -->
 ## PREFLIGHT BASELINE
 
 **Epistemic state captured at session start for learning delta calculation.**
@@ -49,7 +49,7 @@ contextType: "general"
 - Confidence: N/A
 - Uncertainty: N/A
 - Readiness: N/A
-<!-- /ANCHOR:preflight-session-legacy-1770632216978-yv46lz-005-anobel.com/z_archive/027-load-toggle -->
+<!-- /ANCHOR:preflight-session-legacy-1770632216978-yv46lz-005-anobel-com/z-archive/027-load-toggle -->
 
 ---
 
@@ -65,7 +65,7 @@ contextType: "general"
 
 ---
 
-<!-- ANCHOR:continue-session-session-legacy-1770632216978-yv46lz-005-anobel.com/z_archive/027-load-toggle -->
+<!-- ANCHOR:continue-session-session-legacy-1770632216978-yv46lz-005-anobel-com/z-archive/027-load-toggle -->
 <a id="continue-session"></a>
 
 ## CONTINUE SESSION
@@ -96,7 +96,7 @@ This session was migrated from an older format to v2.2. Review the OVERVIEW and 
 ```
 /spec_kit:resume 005-anobel.com/z_archive/027-load-toggle
 ```
-<!-- /ANCHOR:continue-session-session-legacy-1770632216978-yv46lz-005-anobel.com/z_archive/027-load-toggle -->
+<!-- /ANCHOR_EXAMPLE:continue-session-session-legacy-1770632216978-yv46lz-005-anobel.com/z_archive/027-load-toggle -->
 
 ---
 
@@ -114,7 +114,7 @@ This session was migrated from an older format to v2.2. Review the OVERVIEW and 
 
 ---
 
-<!-- ANCHOR:summary-session-legacy-1770632216978-yv46lz-005-anobel.com/z_archive/027-load-toggle -->
+<!-- ANCHOR_EXAMPLE:summary-session-legacy-1770632216978-yv46lz-005-anobel.com/z_archive/027-load-toggle -->
 <a id="overview"></a>
 
 ## 1. OVERVIEW
@@ -138,24 +138,24 @@ importance: normal
 
 # Load Toggle Component - Session Context
 
-<!-- ANCHOR:summary -->
+<!-- ANCHOR_EXAMPLE:summary -->
 ## Summary
 
 Implemented a reusable expand/collapse component for Webflow with CMS-bindable button text. The component uses data attributes for configuration and supports multiple independent instances per page.
 
 **Key Feature:** Text attributes (`data-load-collapsed`, `data-load-expanded`) are placed on the button element, enabling CMS field binding in Webflow.
-<!-- /ANCHOR:summary -->
+<!-- /ANCHOR_EXAMPLE:summary -->
 
-<!-- ANCHOR:state -->
+<!-- ANCHOR_EXAMPLE:state -->
 ## Project State Snapshot
 
 - **Phase:** Implementation Complete
 - **Last Action:** Created Level 2 spec documentation retroactively
 - **Next Action:** Apply Webflow attribute fixes, deploy to CDN
 - **Blockers:** Webflow needs attribute updates (remove duplicate, add icon attribute)
-<!-- /ANCHOR:state -->
+<!-- /ANCHOR_EXAMPLE:state -->
 
-<!-- ANCHOR:decisions -->
+<!-- ANCHOR_EXAMPLE:decisions -->
 ## Key Decisions
 
 ### D1: Text Attributes on Button (not Container)
@@ -171,9 +171,9 @@ Implemented a reusable expand/collapse component for Webflow with CMS-bindable b
 ### D3: CSS-Only Icon Animation
 - **Decision:** Handle icon rotation entirely in CSS
 - **Rationale:** No JS overhead, GPU-accelerated animation
-<!-- /ANCHOR:decisions -->
+<!-- /ANCHOR_EXAMPLE:decisions -->
 
-<!-- ANCHOR:artifacts -->
+<!-- ANCHOR_EXAMPLE:artifacts -->
 ## Key Artifacts
 
 ### Files Created/Modified
@@ -197,9 +197,9 @@ Implemented a reusable expand/collapse component for Webflow with CMS-bindable b
 | `data-load-collapsed` | Button | **Yes** |
 | `data-load-expanded` | Button | **Yes** |
 | `data-load="expanded"` | Hidden items | No |
-<!-- /ANCHOR:artifacts -->
+<!-- /ANCHOR_EXAMPLE:artifacts -->
 
-<!-- ANCHOR:blockers -->
+<!-- ANCHOR_EXAMPLE:blockers -->
 ## Webflow Fixes Required
 
 | Element | Attribute | Action |
@@ -209,9 +209,9 @@ Implemented a reusable expand/collapse component for Webflow with CMS-bindable b
 
 ### Debug Finding
 The `button--w` wrapper incorrectly had `data-target="load-toggle"`, which is the same attribute as the actual container (`time--group`). This caused the JS to find the wrong element.
-<!-- /ANCHOR:blockers -->
+<!-- /ANCHOR_EXAMPLE:blockers -->
 
-<!-- ANCHOR:next-steps -->
+<!-- ANCHOR_EXAMPLE:next-steps -->
 ## Next Steps
 
 1. **Webflow:** Remove `data-target="load-toggle"` from `button--w`
@@ -222,9 +222,9 @@ The `button--w` wrapper incorrectly had `data-target="load-toggle"`, which is th
    wrangler r2 object put anobel-cdn/load_toggle.js --file src/2_javascript/z_minified/menu/load_toggle.js
    ```
 5. **Update:** Change version to `?v=1.1.0` in Webflow script tag
-<!-- /ANCHOR:next-steps -->
+<!-- /ANCHOR_EXAMPLE:next-steps -->
 
-<!-- ANCHOR:testing -->
+<!-- ANCHOR_EXAMPLE:testing -->
 ## Testing
 
 ### Test URL
@@ -241,7 +241,7 @@ npm run dev
 bdg "https://a-nobel-en-zn.webflow.io/nl/contact"
 bdg eval "document.querySelector('[data-target=\"load-toggle\"]')"
 ```
-<!-- /ANCHOR:testing -->
+<!-- /ANCHOR_EXAMPLE:testing -->
 
 ---
 
@@ -249,11 +249,11 @@ bdg eval "document.querySelector('[data-target=\"load-toggle\"]')"
 **Author:** Claude Opus 4
 
 
-<!-- /ANCHOR:summary-session-legacy-1770632216978-yv46lz-005-anobel.com/z_archive/027-load-toggle -->
+<!-- /ANCHOR_EXAMPLE:summary-session-legacy-1770632216978-yv46lz-005-anobel.com/z_archive/027-load-toggle -->
 
 ---
 
-<!-- ANCHOR:decisions-session-legacy-1770632216978-yv46lz-005-anobel.com/z_archive/027-load-toggle -->
+<!-- ANCHOR_EXAMPLE:decisions-session-legacy-1770632216978-yv46lz-005-anobel.com/z_archive/027-load-toggle -->
 <a id="decisions"></a>
 
 ## 2. DECISIONS
@@ -262,9 +262,9 @@ This session did not involve significant architectural or technical decisions. T
 
 ---
 
-<!-- /ANCHOR:decisions-session-legacy-1770632216978-yv46lz-005-anobel.com/z_archive/027-load-toggle -->
+<!-- /ANCHOR_EXAMPLE:decisions-session-legacy-1770632216978-yv46lz-005-anobel.com/z_archive/027-load-toggle -->
 
-<!-- ANCHOR:session-history-session-legacy-1770632216978-yv46lz-005-anobel.com/z_archive/027-load-toggle -->
+<!-- ANCHOR_EXAMPLE:session-history-session-legacy-1770632216978-yv46lz-005-anobel.com/z_archive/027-load-toggle -->
 <a id="conversation"></a>
 
 ## 3. CONVERSATION
@@ -284,11 +284,11 @@ No conversation messages were captured. This is a legacy memory file migrated to
 
 ---
 
-<!-- /ANCHOR:session-history-session-legacy-1770632216978-yv46lz-005-anobel.com/z_archive/027-load-toggle -->
+<!-- /ANCHOR_EXAMPLE:session-history-session-legacy-1770632216978-yv46lz-005-anobel.com/z_archive/027-load-toggle -->
 
 ---
 
-<!-- ANCHOR:recovery-hints-session-legacy-1770632216978-yv46lz-005-anobel.com/z_archive/027-load-toggle -->
+<!-- ANCHOR_EXAMPLE:recovery-hints-session-legacy-1770632216978-yv46lz-005-anobel.com/z_archive/027-load-toggle -->
 <a id="recovery-hints"></a>
 
 ## RECOVERY HINTS
@@ -310,11 +310,11 @@ No conversation messages were captured. This is a legacy memory file migrated to
 3. **Review last session state** - Check PROJECT STATE SNAPSHOT
 4. **Validate pending tasks** - Review CONTINUE SESSION section
 5. **Resume with handover prompt** - Use continuation template above
-<!-- /ANCHOR:recovery-hints-session-legacy-1770632216978-yv46lz-005-anobel.com/z_archive/027-load-toggle -->
+<!-- /ANCHOR_EXAMPLE:recovery-hints-session-legacy-1770632216978-yv46lz-005-anobel.com/z_archive/027-load-toggle -->
 
 ---
 
-<!-- ANCHOR:postflight-session-legacy-1770632216978-yv46lz-005-anobel.com/z_archive/027-load-toggle -->
+<!-- ANCHOR_EXAMPLE:postflight-session-legacy-1770632216978-yv46lz-005-anobel.com/z_archive/027-load-toggle -->
 <a id="postflight-learning-delta"></a>
 
 ## POSTFLIGHT LEARNING DELTA
@@ -337,7 +337,7 @@ No conversation messages were captured. This is a legacy memory file migrated to
 
 **Session Learning Summary:**
 This session was migrated from an older format. Learning metrics were not captured in the original format.
-<!-- /ANCHOR:postflight-session-legacy-1770632216978-yv46lz-005-anobel.com/z_archive/027-load-toggle -->
+<!-- /ANCHOR_EXAMPLE:postflight-session-legacy-1770632216978-yv46lz-005-anobel.com/z_archive/027-load-toggle -->
 
 ---
 
@@ -345,7 +345,7 @@ This session was migrated from an older format. Learning metrics were not captur
 
 ## MEMORY METADATA
 
-<!-- ANCHOR:metadata-session-legacy-1770632216978-yv46lz-005-anobel.com/z_archive/027-load-toggle -->
+<!-- ANCHOR_EXAMPLE:metadata-session-legacy-1770632216978-yv46lz-005-anobel.com/z_archive/027-load-toggle -->
 
 > **Machine-Readable Section** - This YAML block is parsed by the semantic memory indexer for search optimization and decay calculations.
 
@@ -422,7 +422,7 @@ embedding_version: "1.0"
 chunk_count: 1
 ```
 
-<!-- /ANCHOR:metadata-session-legacy-1770632216978-yv46lz-005-anobel.com/z_archive/027-load-toggle -->
+<!-- /ANCHOR:metadata-session-legacy-1770632216978-yv46lz-005-anobel-com/z-archive/027-load-toggle -->
 
 ---
 

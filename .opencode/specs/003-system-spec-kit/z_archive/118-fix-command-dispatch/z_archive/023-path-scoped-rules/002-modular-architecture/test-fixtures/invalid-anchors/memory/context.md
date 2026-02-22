@@ -29,7 +29,7 @@ contextType: "general"
 
 ---
 
-<!-- ANCHOR:preflight-session-legacy-1770632216906-t352r4-003-memory-and-spec-kit/z_archive/023-path-scoped-rules/002-modular-architecture/test-fixtures/invalid-anchors -->
+<!-- ANCHOR:preflight-session-legacy-1770632216906-t352r4-003-memory-and-spec-kit/z-archive/023-path-scoped-rules/002-modular-architecture/test-fixtures/invalid-anchors -->
 ## PREFLIGHT BASELINE
 
 **Epistemic state captured at session start for learning delta calculation.**
@@ -49,7 +49,7 @@ contextType: "general"
 - Confidence: N/A
 - Uncertainty: N/A
 - Readiness: N/A
-<!-- /ANCHOR:preflight-session-legacy-1770632216906-t352r4-003-memory-and-spec-kit/z_archive/023-path-scoped-rules/002-modular-architecture/test-fixtures/invalid-anchors -->
+<!-- /ANCHOR:preflight-session-legacy-1770632216906-t352r4-003-memory-and-spec-kit/z-archive/023-path-scoped-rules/002-modular-architecture/test-fixtures/invalid-anchors -->
 
 ---
 
@@ -65,7 +65,7 @@ contextType: "general"
 
 ---
 
-<!-- ANCHOR:continue-session-session-legacy-1770632216906-t352r4-003-memory-and-spec-kit/z_archive/023-path-scoped-rules/002-modular-architecture/test-fixtures/invalid-anchors -->
+<!-- ANCHOR:continue-session-session-legacy-1770632216906-t352r4-003-memory-and-spec-kit/z-archive/023-path-scoped-rules/002-modular-architecture/test-fixtures/invalid-anchors -->
 <a id="continue-session"></a>
 
 ## CONTINUE SESSION
@@ -96,7 +96,7 @@ This session was migrated from an older format to v2.2. Review the OVERVIEW and 
 ```
 /spec_kit:resume 003-memory-and-spec-kit/z_archive/023-path-scoped-rules/002-modular-architecture/test-fixtures/invalid-anchors
 ```
-<!-- /ANCHOR:continue-session-session-legacy-1770632216906-t352r4-003-memory-and-spec-kit/z_archive/023-path-scoped-rules/002-modular-architecture/test-fixtures/invalid-anchors -->
+<!-- /ANCHOR_EXAMPLE:continue-session-session-legacy-1770632216906-t352r4-003-memory-and-spec-kit/z_archive/023-path-scoped-rules/002-modular-architecture/test-fixtures/invalid-anchors -->
 
 ---
 
@@ -114,7 +114,7 @@ This session was migrated from an older format to v2.2. Review the OVERVIEW and 
 
 ---
 
-<!-- ANCHOR:summary-session-legacy-1770632216906-t352r4-003-memory-and-spec-kit/z_archive/023-path-scoped-rules/002-modular-architecture/test-fixtures/invalid-anchors -->
+<!-- ANCHOR_EXAMPLE:summary-session-legacy-1770632216906-t352r4-003-memory-and-spec-kit/z_archive/023-path-scoped-rules/002-modular-architecture/test-fixtures/invalid-anchors -->
 <a id="overview"></a>
 
 ## 1. OVERVIEW
@@ -127,47 +127,47 @@ Context: Invalid Anchors Test
 
 ## Unclosed Anchor
 
-<!-- ANCHOR:unclosed-section -->
+<!-- ANCHOR_EXAMPLE:unclosed-section -->
 This anchor is never closed. The validator should catch this.
 Content continues without a closing tag...
 
 ## Mismatched IDs
 
-<!-- ANCHOR:section-one -->
+<!-- ANCHOR_EXAMPLE:section-one -->
 This anchor opens with one ID...
-<!-- /ANCHOR:section-two -->
+<!-- /ANCHOR_EXAMPLE:section-two -->
 ...but closes with a different ID. Should be caught.
 
 ## Orphaned Closing Tag
 
 Some regular content here.
-<!-- /ANCHOR:orphan-close -->
+<!-- /ANCHOR_EXAMPLE:orphan-close -->
 This closing tag has no corresponding opening tag.
 
 ## Wrong Format
 
-<!-- ANCHOR: space-in-tag -->
+<!-- ANCHOR_EXAMPLE: space-in-tag -->
 Anchor with space after colon - may or may not be valid depending on parser.
-<!-- /ANCHOR: space-in-tag -->
+<!-- /ANCHOR_EXAMPLE: space-in-tag -->
 
-<!--ANCHOR:no-space-->
+<!-- ANCHOR_EXAMPLE:no-space-->
 Missing space after comment opening.
-<!--/ANCHOR:no-space-->
+<!-- /ANCHOR_EXAMPLE:no-space-->
 
 ## Double Open
 
-<!-- ANCHOR:duplicate -->
+<!-- ANCHOR_EXAMPLE:duplicate -->
 First opening of duplicate anchor.
-<!-- ANCHOR:duplicate -->
+<!-- ANCHOR_EXAMPLE:duplicate -->
 Second opening without closing the first.
-<!-- /ANCHOR:duplicate -->
+<!-- /ANCHOR_EXAMPLE:duplicate -->
 
 
-<!-- /ANCHOR:summary-session-legacy-1770632216906-t352r4-003-memory-and-spec-kit/z_archive/023-path-scoped-rules/002-modular-architecture/test-fixtures/invalid-anchors -->
+<!-- /ANCHOR_EXAMPLE:summary-session-legacy-1770632216906-t352r4-003-memory-and-spec-kit/z_archive/023-path-scoped-rules/002-modular-architecture/test-fixtures/invalid-anchors -->
 
 ---
 
-<!-- ANCHOR:decisions-session-legacy-1770632216906-t352r4-003-memory-and-spec-kit/z_archive/023-path-scoped-rules/002-modular-architecture/test-fixtures/invalid-anchors -->
+<!-- ANCHOR_EXAMPLE:decisions-session-legacy-1770632216906-t352r4-003-memory-and-spec-kit/z_archive/023-path-scoped-rules/002-modular-architecture/test-fixtures/invalid-anchors -->
 <a id="decisions"></a>
 
 ## 2. DECISIONS
@@ -176,9 +176,9 @@ This session did not involve significant architectural or technical decisions. T
 
 ---
 
-<!-- /ANCHOR:decisions-session-legacy-1770632216906-t352r4-003-memory-and-spec-kit/z_archive/023-path-scoped-rules/002-modular-architecture/test-fixtures/invalid-anchors -->
+<!-- /ANCHOR_EXAMPLE:decisions-session-legacy-1770632216906-t352r4-003-memory-and-spec-kit/z_archive/023-path-scoped-rules/002-modular-architecture/test-fixtures/invalid-anchors -->
 
-<!-- ANCHOR:session-history-session-legacy-1770632216906-t352r4-003-memory-and-spec-kit/z_archive/023-path-scoped-rules/002-modular-architecture/test-fixtures/invalid-anchors -->
+<!-- ANCHOR_EXAMPLE:session-history-session-legacy-1770632216906-t352r4-003-memory-and-spec-kit/z_archive/023-path-scoped-rules/002-modular-architecture/test-fixtures/invalid-anchors -->
 <a id="conversation"></a>
 
 ## 3. CONVERSATION
@@ -198,11 +198,11 @@ No conversation messages were captured. This is a legacy memory file migrated to
 
 ---
 
-<!-- /ANCHOR:session-history-session-legacy-1770632216906-t352r4-003-memory-and-spec-kit/z_archive/023-path-scoped-rules/002-modular-architecture/test-fixtures/invalid-anchors -->
+<!-- /ANCHOR_EXAMPLE:session-history-session-legacy-1770632216906-t352r4-003-memory-and-spec-kit/z_archive/023-path-scoped-rules/002-modular-architecture/test-fixtures/invalid-anchors -->
 
 ---
 
-<!-- ANCHOR:recovery-hints-session-legacy-1770632216906-t352r4-003-memory-and-spec-kit/z_archive/023-path-scoped-rules/002-modular-architecture/test-fixtures/invalid-anchors -->
+<!-- ANCHOR_EXAMPLE:recovery-hints-session-legacy-1770632216906-t352r4-003-memory-and-spec-kit/z_archive/023-path-scoped-rules/002-modular-architecture/test-fixtures/invalid-anchors -->
 <a id="recovery-hints"></a>
 
 ## RECOVERY HINTS
@@ -224,11 +224,11 @@ No conversation messages were captured. This is a legacy memory file migrated to
 3. **Review last session state** - Check PROJECT STATE SNAPSHOT
 4. **Validate pending tasks** - Review CONTINUE SESSION section
 5. **Resume with handover prompt** - Use continuation template above
-<!-- /ANCHOR:recovery-hints-session-legacy-1770632216906-t352r4-003-memory-and-spec-kit/z_archive/023-path-scoped-rules/002-modular-architecture/test-fixtures/invalid-anchors -->
+<!-- /ANCHOR_EXAMPLE:recovery-hints-session-legacy-1770632216906-t352r4-003-memory-and-spec-kit/z_archive/023-path-scoped-rules/002-modular-architecture/test-fixtures/invalid-anchors -->
 
 ---
 
-<!-- ANCHOR:postflight-session-legacy-1770632216906-t352r4-003-memory-and-spec-kit/z_archive/023-path-scoped-rules/002-modular-architecture/test-fixtures/invalid-anchors -->
+<!-- ANCHOR_EXAMPLE:postflight-session-legacy-1770632216906-t352r4-003-memory-and-spec-kit/z_archive/023-path-scoped-rules/002-modular-architecture/test-fixtures/invalid-anchors -->
 <a id="postflight-learning-delta"></a>
 
 ## POSTFLIGHT LEARNING DELTA
@@ -251,7 +251,7 @@ No conversation messages were captured. This is a legacy memory file migrated to
 
 **Session Learning Summary:**
 This session was migrated from an older format. Learning metrics were not captured in the original format.
-<!-- /ANCHOR:postflight-session-legacy-1770632216906-t352r4-003-memory-and-spec-kit/z_archive/023-path-scoped-rules/002-modular-architecture/test-fixtures/invalid-anchors -->
+<!-- /ANCHOR_EXAMPLE:postflight-session-legacy-1770632216906-t352r4-003-memory-and-spec-kit/z_archive/023-path-scoped-rules/002-modular-architecture/test-fixtures/invalid-anchors -->
 
 ---
 
@@ -259,7 +259,7 @@ This session was migrated from an older format. Learning metrics were not captur
 
 ## MEMORY METADATA
 
-<!-- ANCHOR:metadata-session-legacy-1770632216906-t352r4-003-memory-and-spec-kit/z_archive/023-path-scoped-rules/002-modular-architecture/test-fixtures/invalid-anchors -->
+<!-- ANCHOR_EXAMPLE:metadata-session-legacy-1770632216906-t352r4-003-memory-and-spec-kit/z_archive/023-path-scoped-rules/002-modular-architecture/test-fixtures/invalid-anchors -->
 
 > **Machine-Readable Section** - This YAML block is parsed by the semantic memory indexer for search optimization and decay calculations.
 
@@ -336,7 +336,7 @@ embedding_version: "1.0"
 chunk_count: 1
 ```
 
-<!-- /ANCHOR:metadata-session-legacy-1770632216906-t352r4-003-memory-and-spec-kit/z_archive/023-path-scoped-rules/002-modular-architecture/test-fixtures/invalid-anchors -->
+<!-- /ANCHOR:metadata-session-legacy-1770632216906-t352r4-003-memory-and-spec-kit/z-archive/023-path-scoped-rules/002-modular-architecture/test-fixtures/invalid-anchors -->
 
 ---
 

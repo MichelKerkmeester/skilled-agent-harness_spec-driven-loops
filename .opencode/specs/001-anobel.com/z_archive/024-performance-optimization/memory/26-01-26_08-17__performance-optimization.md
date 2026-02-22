@@ -51,7 +51,7 @@ contextType: "general"
 
 ---
 
-<!-- ANCHOR:preflight-session-1769411868736-9m49afj1w-005-anobel.com/024-performance-optimization -->
+<!-- ANCHOR:preflight-session-1769411868736-9m49afj1w-005-anobel-com/024-performance-optimization -->
 ## PREFLIGHT BASELINE
 
 **Epistemic state captured at session start for learning delta calculation.**
@@ -71,7 +71,7 @@ contextType: "general"
 - Confidence: [TBD]%
 - Uncertainty: [TBD]
 - Readiness: [TBD]
-<!-- /ANCHOR:preflight-session-1769411868736-9m49afj1w-005-anobel.com/024-performance-optimization -->
+<!-- /ANCHOR:preflight-session-1769411868736-9m49afj1w-005-anobel-com/024-performance-optimization -->
 
 ---
 
@@ -87,7 +87,7 @@ contextType: "general"
 
 ---
 
-<!-- ANCHOR:continue-session-session-1769411868736-9m49afj1w-005-anobel.com/024-performance-optimization -->
+<!-- ANCHOR:continue-session-session-1769411868736-9m49afj1w-005-anobel-com/024-performance-optimization -->
 <a id="continue-session"></a>
 
 ## CONTINUE SESSION
@@ -118,7 +118,7 @@ This session was migrated from an older format to v2.2. Review the OVERVIEW and 
 ```
 /spec_kit:resume 005-anobel.com/024-performance-optimization
 ```
-<!-- /ANCHOR:continue-session-session-1769411868736-9m49afj1w-005-anobel.com/024-performance-optimization -->
+<!-- /ANCHOR_EXAMPLE:continue-session-session-1769411868736-9m49afj1w-005-anobel.com/024-performance-optimization -->
 ---
 
 <a id="project-state-snapshot"></a>
@@ -137,7 +137,7 @@ This session was migrated from an older format to v2.2. Review the OVERVIEW and 
 
 ---
 
-<!-- ANCHOR:summary-session-1769411868736-9m49afj1w-005-anobel.com/024-performance-optimization -->
+<!-- ANCHOR_EXAMPLE:summary-session-1769411868736-9m49afj1w-005-anobel.com/024-performance-optimization -->
 <a id="overview"></a>
 
 ## 1. OVERVIEW
@@ -147,11 +147,11 @@ Session focused on implementing and testing features.
 **Key Outcomes**:
 - Session in progress
 
-<!-- /ANCHOR:summary-session-1769411868736-9m49afj1w-005-anobel.com/024-performance-optimization -->
+<!-- /ANCHOR_EXAMPLE:summary-session-1769411868736-9m49afj1w-005-anobel.com/024-performance-optimization -->
 
 ---
 
-<!-- ANCHOR:decisions-session-1769411868736-9m49afj1w-005-anobel.com/024-performance-optimization -->
+<!-- ANCHOR_EXAMPLE:decisions-session-1769411868736-9m49afj1w-005-anobel.com/024-performance-optimization -->
 <a id="decisions"></a>
 
 <!-- DYNAMIC SECTION NUMBERING:
@@ -179,9 +179,9 @@ This session did not involve significant architectural or technical decisions. T
 
 ---
 
-<!-- /ANCHOR:decisions-session-1769411868736-9m49afj1w-005-anobel.com/024-performance-optimization -->
+<!-- /ANCHOR_EXAMPLE:decisions-session-1769411868736-9m49afj1w-005-anobel.com/024-performance-optimization -->
 
-<!-- ANCHOR:session-history-session-1769411868736-9m49afj1w-005-anobel.com/024-performance-optimization -->
+<!-- ANCHOR_EXAMPLE:session-history-session-1769411868736-9m49afj1w-005-anobel.com/024-performance-optimization -->
 <a id="conversation"></a>
 
 <!-- DYNAMIC SECTION NUMBERING:
@@ -257,11 +257,11 @@ This session followed a **Linear Sequential** conversation pattern with **0** di
 
 ---
 
-<!-- /ANCHOR:session-history-session-1769411868736-9m49afj1w-005-anobel.com/024-performance-optimization -->
+<!-- /ANCHOR_EXAMPLE:session-history-session-1769411868736-9m49afj1w-005-anobel.com/024-performance-optimization -->
 
 ---
 
-<!-- ANCHOR:postflight-session-1769411868736-9m49afj1w-005-anobel.com/024-performance-optimization -->
+<!-- ANCHOR_EXAMPLE:postflight-session-1769411868736-9m49afj1w-005-anobel.com/024-performance-optimization -->
 <a id="postflight-learning-delta"></a>
 
 ## POSTFLIGHT LEARNING DELTA
@@ -296,11 +296,11 @@ This session followed a **Linear Sequential** conversation pattern with **0** di
 
 **Session Learning Summary:**
 Learning metrics will be calculated when both preflight and postflight data are provided.
-<!-- /ANCHOR:postflight-session-1769411868736-9m49afj1w-005-anobel.com/024-performance-optimization -->
+<!-- /ANCHOR_EXAMPLE:postflight-session-1769411868736-9m49afj1w-005-anobel.com/024-performance-optimization -->
 
 ---
 
-<!-- ANCHOR:recovery-hints-session-1769411868736-9m49afj1w-005-anobel.com/024-performance-optimization -->
+<!-- ANCHOR_EXAMPLE:recovery-hints-session-1769411868736-9m49afj1w-005-anobel.com/024-performance-optimization -->
 <a id="recovery-hints"></a>
 
 ## RECOVERY HINTS
@@ -322,14 +322,14 @@ Learning metrics will be calculated when both preflight and postflight data are 
 3. **Review last session state** - Check PROJECT STATE SNAPSHOT
 4. **Validate pending tasks** - Review CONTINUE SESSION section
 5. **Resume with handover prompt** - Use continuation template above
-<!-- /ANCHOR:recovery-hints-session-1769411868736-9m49afj1w-005-anobel.com/024-performance-optimization -->
+<!-- /ANCHOR_EXAMPLE:recovery-hints-session-1769411868736-9m49afj1w-005-anobel.com/024-performance-optimization -->
 ---
 
 <a id="memory-metadata"></a>
 
 ## MEMORY METADATA
 
-<!-- ANCHOR:metadata-session-1769411868736-9m49afj1w-005-anobel.com/024-performance-optimization -->
+<!-- ANCHOR_EXAMPLE:metadata-session-1769411868736-9m49afj1w-005-anobel.com/024-performance-optimization -->
 
 > **Machine-Readable Section** - This YAML block is parsed by the semantic memory indexer for search optimization and decay calculations.
 
@@ -417,7 +417,7 @@ embedding_version: "1.0"
 chunk_count: 1
 ```
 
-<!-- /ANCHOR:metadata-session-1769411868736-9m49afj1w-005-anobel.com/024-performance-optimization -->
+<!-- /ANCHOR:metadata-session-1769411868736-9m49afj1w-005-anobel-com/024-performance-optimization -->
 
 ---
 

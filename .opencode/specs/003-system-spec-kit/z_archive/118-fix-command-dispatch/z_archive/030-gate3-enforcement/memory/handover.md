@@ -29,7 +29,7 @@ contextType: "general"
 
 ---
 
-<!-- ANCHOR:preflight-session-legacy-1770632216921-krvp00-** `specs/003-memory-and-spec-kit/030-gate3-enforcement/` -->
+<!-- ANCHOR_EXAMPLE:preflight-session-legacy-1770632216921-krvp00-** `specs/003-memory-and-spec-kit/030-gate3-enforcement/` -->
 ## PREFLIGHT BASELINE
 
 **Epistemic state captured at session start for learning delta calculation.**
@@ -49,7 +49,7 @@ contextType: "general"
 - Confidence: N/A
 - Uncertainty: N/A
 - Readiness: N/A
-<!-- /ANCHOR:preflight-session-legacy-1770632216921-krvp00-** `specs/003-memory-and-spec-kit/030-gate3-enforcement/` -->
+<!-- /ANCHOR_EXAMPLE:preflight-session-legacy-1770632216921-krvp00-** `specs/003-memory-and-spec-kit/030-gate3-enforcement/` -->
 
 ---
 
@@ -65,7 +65,7 @@ contextType: "general"
 
 ---
 
-<!-- ANCHOR:continue-session-session-legacy-1770632216921-krvp00-** `specs/003-memory-and-spec-kit/030-gate3-enforcement/` -->
+<!-- ANCHOR_EXAMPLE:continue-session-session-legacy-1770632216921-krvp00-** `specs/003-memory-and-spec-kit/030-gate3-enforcement/` -->
 <a id="continue-session"></a>
 
 ## CONTINUE SESSION
@@ -96,7 +96,7 @@ This session was migrated from an older format to v2.2. Review the OVERVIEW and 
 ```
 /spec_kit:resume ** `specs/003-memory-and-spec-kit/030-gate3-enforcement/`
 ```
-<!-- /ANCHOR:continue-session-session-legacy-1770632216921-krvp00-** `specs/003-memory-and-spec-kit/030-gate3-enforcement/` -->
+<!-- /ANCHOR_EXAMPLE:continue-session-session-legacy-1770632216921-krvp00-** `specs/003-memory-and-spec-kit/030-gate3-enforcement/` -->
 
 ---
 
@@ -114,7 +114,7 @@ This session was migrated from an older format to v2.2. Review the OVERVIEW and 
 
 ---
 
-<!-- ANCHOR:summary-session-legacy-1770632216921-krvp00-** `specs/003-memory-and-spec-kit/030-gate3-enforcement/` -->
+<!-- ANCHOR_EXAMPLE:summary-session-legacy-1770632216921-krvp00-** `specs/003-memory-and-spec-kit/030-gate3-enforcement/` -->
 <a id="overview"></a>
 
 ## 1. OVERVIEW
@@ -135,15 +135,15 @@ triggers:
 
 # Memory System Overhaul - Handover
 
-<!-- ANCHOR: status -->
+<!-- ANCHOR_EXAMPLE: status -->
 ## Project Status:  COMPLETE
 
 **Spec Folder:** `specs/003-memory-and-spec-kit/030-gate3-enforcement/`
 **Completion Date:** 2025-12-25
 **Phase:** Implementation Complete, Testing Pending
-<!-- ANCHOR_END: status -->
+<!-- ANCHOR_END_EXAMPLE: status -->
 
-<!-- ANCHOR: completed -->
+<!-- ANCHOR_EXAMPLE: completed -->
 ## What Was Completed
 
 ### Phase 1: Constitutional Memory & includeContent (Earlier Session)
@@ -186,9 +186,9 @@ Using 12 parallel Opus agents, implemented all 20 fixes from analysis:
 **Documentation:**
 18. ✅ AGENTS.md Gate 4 + priority clarification
 19. ✅ README.md cleaned
-<!-- ANCHOR_END: completed -->
+<!-- ANCHOR_END_EXAMPLE: completed -->
 
-<!-- ANCHOR: pending -->
+<!-- ANCHOR_EXAMPLE: pending -->
 ## Pending Items
 
 ### Required Before Use
@@ -199,9 +199,9 @@ Using 12 parallel Opus agents, implemented all 20 fixes from analysis:
 - Consider merging mcp_server/README.md into main README.md (user declined for now)
 - Monitor 6-tier importance system usage (mostly unused)
 - Consider further generate-context.js refactoring (4,330 lines still large)
-<!-- ANCHOR_END: pending -->
+<!-- ANCHOR_END_EXAMPLE: pending -->
 
-<!-- ANCHOR: files -->
+<!-- ANCHOR_EXAMPLE: files -->
 ## Key Files Modified
 
 ### MCP Server
@@ -228,9 +228,9 @@ Using 12 parallel Opus agents, implemented all 20 fixes from analysis:
 - `AGENTS.md`
 - `.opencode/skill/system-memory/README.md`
 - `.opencode/skill/system-memory/SKILL.md`
-<!-- ANCHOR_END: files -->
+<!-- ANCHOR_END_EXAMPLE: files -->
 
-<!-- ANCHOR: continuation -->
+<!-- ANCHOR_EXAMPLE: continuation -->
 ## Continuation Instructions
 
 If resuming this work:
@@ -252,14 +252,14 @@ If resuming this work:
 
 4. **Run test suite:**
    - See testing-suite.md in this spec folder
-<!-- ANCHOR_END: continuation -->
+<!-- ANCHOR_END_EXAMPLE: continuation -->
 
 
-<!-- /ANCHOR:summary-session-legacy-1770632216921-krvp00-** `specs/003-memory-and-spec-kit/030-gate3-enforcement/` -->
+<!-- /ANCHOR_EXAMPLE:summary-session-legacy-1770632216921-krvp00-** `specs/003-memory-and-spec-kit/030-gate3-enforcement/` -->
 
 ---
 
-<!-- ANCHOR:decisions-session-legacy-1770632216921-krvp00-** `specs/003-memory-and-spec-kit/030-gate3-enforcement/` -->
+<!-- ANCHOR_EXAMPLE:decisions-session-legacy-1770632216921-krvp00-** `specs/003-memory-and-spec-kit/030-gate3-enforcement/` -->
 <a id="decisions"></a>
 
 ## 2. DECISIONS
@@ -268,9 +268,9 @@ This session did not involve significant architectural or technical decisions. T
 
 ---
 
-<!-- /ANCHOR:decisions-session-legacy-1770632216921-krvp00-** `specs/003-memory-and-spec-kit/030-gate3-enforcement/` -->
+<!-- /ANCHOR_EXAMPLE:decisions-session-legacy-1770632216921-krvp00-** `specs/003-memory-and-spec-kit/030-gate3-enforcement/` -->
 
-<!-- ANCHOR:session-history-session-legacy-1770632216921-krvp00-** `specs/003-memory-and-spec-kit/030-gate3-enforcement/` -->
+<!-- ANCHOR_EXAMPLE:session-history-session-legacy-1770632216921-krvp00-** `specs/003-memory-and-spec-kit/030-gate3-enforcement/` -->
 <a id="conversation"></a>
 
 ## 3. CONVERSATION
@@ -290,11 +290,11 @@ No conversation messages were captured. This is a legacy memory file migrated to
 
 ---
 
-<!-- /ANCHOR:session-history-session-legacy-1770632216921-krvp00-** `specs/003-memory-and-spec-kit/030-gate3-enforcement/` -->
+<!-- /ANCHOR_EXAMPLE:session-history-session-legacy-1770632216921-krvp00-** `specs/003-memory-and-spec-kit/030-gate3-enforcement/` -->
 
 ---
 
-<!-- ANCHOR:recovery-hints-session-legacy-1770632216921-krvp00-** `specs/003-memory-and-spec-kit/030-gate3-enforcement/` -->
+<!-- ANCHOR_EXAMPLE:recovery-hints-session-legacy-1770632216921-krvp00-** `specs/003-memory-and-spec-kit/030-gate3-enforcement/` -->
 <a id="recovery-hints"></a>
 
 ## RECOVERY HINTS
@@ -316,11 +316,11 @@ No conversation messages were captured. This is a legacy memory file migrated to
 3. **Review last session state** - Check PROJECT STATE SNAPSHOT
 4. **Validate pending tasks** - Review CONTINUE SESSION section
 5. **Resume with handover prompt** - Use continuation template above
-<!-- /ANCHOR:recovery-hints-session-legacy-1770632216921-krvp00-** `specs/003-memory-and-spec-kit/030-gate3-enforcement/` -->
+<!-- /ANCHOR_EXAMPLE:recovery-hints-session-legacy-1770632216921-krvp00-** `specs/003-memory-and-spec-kit/030-gate3-enforcement/` -->
 
 ---
 
-<!-- ANCHOR:postflight-session-legacy-1770632216921-krvp00-** `specs/003-memory-and-spec-kit/030-gate3-enforcement/` -->
+<!-- ANCHOR_EXAMPLE:postflight-session-legacy-1770632216921-krvp00-** `specs/003-memory-and-spec-kit/030-gate3-enforcement/` -->
 <a id="postflight-learning-delta"></a>
 
 ## POSTFLIGHT LEARNING DELTA
@@ -343,7 +343,7 @@ No conversation messages were captured. This is a legacy memory file migrated to
 
 **Session Learning Summary:**
 This session was migrated from an older format. Learning metrics were not captured in the original format.
-<!-- /ANCHOR:postflight-session-legacy-1770632216921-krvp00-** `specs/003-memory-and-spec-kit/030-gate3-enforcement/` -->
+<!-- /ANCHOR_EXAMPLE:postflight-session-legacy-1770632216921-krvp00-** `specs/003-memory-and-spec-kit/030-gate3-enforcement/` -->
 
 ---
 
@@ -351,7 +351,7 @@ This session was migrated from an older format. Learning metrics were not captur
 
 ## MEMORY METADATA
 
-<!-- ANCHOR:metadata-session-legacy-1770632216921-krvp00-** `specs/003-memory-and-spec-kit/030-gate3-enforcement/` -->
+<!-- ANCHOR_EXAMPLE:metadata-session-legacy-1770632216921-krvp00-** `specs/003-memory-and-spec-kit/030-gate3-enforcement/` -->
 
 > **Machine-Readable Section** - This YAML block is parsed by the semantic memory indexer for search optimization and decay calculations.
 
@@ -428,7 +428,7 @@ embedding_version: "1.0"
 chunk_count: 1
 ```
 
-<!-- /ANCHOR:metadata-session-legacy-1770632216921-krvp00-** `specs/003-memory-and-spec-kit/030-gate3-enforcement/` -->
+<!-- /ANCHOR_EXAMPLE:metadata-session-legacy-1770632216921-krvp00-** `specs/003-memory-and-spec-kit/030-gate3-enforcement/` -->
 
 ---
 

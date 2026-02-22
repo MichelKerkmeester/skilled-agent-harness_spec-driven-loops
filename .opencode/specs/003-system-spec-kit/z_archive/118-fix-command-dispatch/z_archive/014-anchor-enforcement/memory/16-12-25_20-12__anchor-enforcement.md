@@ -10,7 +10,7 @@ contextType: "general"
 
 > **Purpose**: Enhanced memory template with rich metadata for semantic search, importance-based decay, and intelligent context retrieval.
 >
-> **Changes from v2.0**: Fixed anchor format to match MCP server extraction (`<!-- ANCHOR:id -->` UPPERCASE with closing tags).
+> **Changes from v2.0**: Fixed anchor format to match MCP server extraction (`<!-- ANCHOR_EXAMPLE:id -->` UPPERCASE with closing tags).
 >
 > **Changes from v1**: Added Session ID, Channel, Importance Tier, Context Type, Epoch timestamps, and machine-readable MEMORY METADATA section.
 
@@ -42,7 +42,7 @@ contextType: "general"
 
 ---
 
-<!-- ANCHOR:preflight-session-1765912339678-asxgxjvi9-008-anchor-enforcement -->
+<!-- ANCHOR_EXAMPLE:preflight-session-1765912339678-asxgxjvi9-008-anchor-enforcement -->
 ## PREFLIGHT BASELINE
 
 **Epistemic state captured at session start for learning delta calculation.**
@@ -62,11 +62,11 @@ contextType: "general"
 - Confidence: N/A
 - Uncertainty: N/A
 - Readiness: N/A
-<!-- /ANCHOR:preflight-session-1765912339678-asxgxjvi9-008-anchor-enforcement -->
+<!-- /ANCHOR_EXAMPLE:preflight-session-1765912339678-asxgxjvi9-008-anchor-enforcement -->
 
 ---
 
-<!-- ANCHOR:continue-session-session-1765912339678-asxgxjvi9-008-anchor-enforcement -->
+<!-- ANCHOR_EXAMPLE:continue-session-session-1765912339678-asxgxjvi9-008-anchor-enforcement -->
 <a id="continue-session"></a>
 
 ## CONTINUE SESSION
@@ -97,11 +97,11 @@ This session was migrated from an older format to v2.2. Review the OVERVIEW and 
 ```
 /spec_kit:resume 008-anchor-enforcement
 ```
-<!-- /ANCHOR:continue-session-session-1765912339678-asxgxjvi9-008-anchor-enforcement -->
+<!-- /ANCHOR_EXAMPLE:continue-session-session-1765912339678-asxgxjvi9-008-anchor-enforcement -->
 
 ---
 
-<!-- ANCHOR:summary-session-1765912339678-asxgxjvi9-008-anchor-enforcement -->
+<!-- ANCHOR_EXAMPLE:summary-session-1765912339678-asxgxjvi9-008-anchor-enforcement -->
 ## 1. OVERVIEW
 
 Added anchor ID validation warning to semantic-memory MCP server. Implemented validateAnchorIdPattern() helper function that logs warnings for anchor IDs not following the recommended [CONTEXT-TYPE]-[KEYWORDS]-[SPEC#] pattern.
@@ -120,64 +120,64 @@ Added anchor ID validation warning to semantic-memory MCP server. Implemented va
 |:---------|:----------------|
 | `/.../semantic-memory/semantic-memory.js` | Modified during session |
 
-<!-- /ANCHOR:summary-session-1765912339678-asxgxjvi9-008-anchor-enforcement -->
+<!-- /ANCHOR_EXAMPLE:summary-session-1765912339678-asxgxjvi9-008-anchor-enforcement -->
 
 ---
 
-<!-- ANCHOR:detailed-changes-session-1765912339678-asxgxjvi9-008-anchor-enforcement -->
+<!-- ANCHOR_EXAMPLE:detailed-changes-session-1765912339678-asxgxjvi9-008-anchor-enforcement -->
 ## 2. DETAILED CHANGES
 
-<!-- ANCHOR:implementation-anchor-id-validation-005-session-1765912339678-asxgxjvi9 -->
+<!-- ANCHOR_EXAMPLE:implementation-anchor-id-validation-005-session-1765912339678-asxgxjvi9 -->
 ### FEATURE: Added anchor ID validation warning to semantic-memory MCP server. Implemented validateAnchorIdPatter
 
 Added anchor ID validation warning to semantic-memory MCP server. Implemented validateAnchorIdPattern() helper function that logs warnings for anchor IDs not following the recommended [CONTEXT-TYPE]-[KEYWORDS]-[SPEC#] pattern.
 
 **Details:** anchor ID validation | validateAnchorIdPattern | anchor naming convention | anchor pattern warning | anchor ID pattern
-<!-- /ANCHOR:implementation-anchor-id-validation-005-session-1765912339678-asxgxjvi9 -->
+<!-- /ANCHOR_EXAMPLE:implementation-anchor-id-validation-005-session-1765912339678-asxgxjvi9 -->
 
-<!-- ANCHOR:decision-warning-only-approach-005-session-1765912339678-asxgxjvi9 -->
+<!-- ANCHOR_EXAMPLE:decision-warning-only-approach-005-session-1765912339678-asxgxjvi9 -->
 ### DECISION: Warning-only approach using console.warn() - never throws or blocks operations
 
 Warning-only approach using console.warn() - never throws or blocks operations
 
-<!-- /ANCHOR:decision-warning-only-approach-005-session-1765912339678-asxgxjvi9 -->
+<!-- /ANCHOR_EXAMPLE:decision-warning-only-approach-005-session-1765912339678-asxgxjvi9 -->
 
-<!-- ANCHOR:implementation-two-tier-validation-005-session-1765912339678-asxgxjvi9 -->
+<!-- ANCHOR_EXAMPLE:implementation-two-tier-validation-005-session-1765912339678-asxgxjvi9 -->
 ### DECISION: Two-tier validation: first checks for overly simple IDs, then checks against rec
 
 Two-tier validation: first checks for overly simple IDs, then checks against recommended pattern
 
-<!-- /ANCHOR:implementation-two-tier-validation-005-session-1765912339678-asxgxjvi9 -->
+<!-- /ANCHOR_EXAMPLE:implementation-two-tier-validation-005-session-1765912339678-asxgxjvi9 -->
 
-<!-- ANCHOR:implementation-function-placed-before-005-session-1765912339678-asxgxjvi9 -->
+<!-- ANCHOR_EXAMPLE:implementation-function-placed-before-005-session-1765912339678-asxgxjvi9 -->
 ### DECISION: Function placed before extractAnchorSection for logical grouping
 
 Function placed before extractAnchorSection for logical grouping
 
-<!-- /ANCHOR:implementation-function-placed-before-005-session-1765912339678-asxgxjvi9 -->
+<!-- /ANCHOR_EXAMPLE:implementation-function-placed-before-005-session-1765912339678-asxgxjvi9 -->
 
-<!-- ANCHOR:implementation-case-insensitive-regex-005-session-1765912339678-asxgxjvi9 -->
+<!-- ANCHOR_EXAMPLE:implementation-case-insensitive-regex-005-session-1765912339678-asxgxjvi9 -->
 ### DECISION: Case-insensitive regex patterns for flexibility
 
 Case-insensitive regex patterns for flexibility
 
-<!-- /ANCHOR:implementation-case-insensitive-regex-005-session-1765912339678-asxgxjvi9 -->
+<!-- /ANCHOR_EXAMPLE:implementation-case-insensitive-regex-005-session-1765912339678-asxgxjvi9 -->
 
-<!-- ANCHOR:implementation-technical-implementation-details-005-session-1765912339678-asxgxjvi9 -->
+<!-- ANCHOR_EXAMPLE:implementation-technical-implementation-details-005-session-1765912339678-asxgxjvi9 -->
 ### IMPLEMENTATION: Technical Implementation Details
 
 functionLocation: Lines 727-752 in semantic-memory.js; validationCallLocation: Lines 656-659 in handleMemoryLoad; recommendedPattern: ^[A-Z]+-[A-Z0-9-]+-\d{2,3}$
 
-<!-- /ANCHOR:implementation-technical-implementation-details-005-session-1765912339678-asxgxjvi9 -->
+<!-- /ANCHOR_EXAMPLE:implementation-technical-implementation-details-005-session-1765912339678-asxgxjvi9 -->
 
-<!-- /ANCHOR:detailed-changes-session-1765912339678-asxgxjvi9-008-anchor-enforcement -->
+<!-- /ANCHOR_EXAMPLE:detailed-changes-session-1765912339678-asxgxjvi9-008-anchor-enforcement -->
 
 ---
 
-<!-- ANCHOR:decisions-session-1765912339678-asxgxjvi9-008-anchor-enforcement -->
+<!-- ANCHOR_EXAMPLE:decisions-session-1765912339678-asxgxjvi9-008-anchor-enforcement -->
 ## 3. DECISIONS
 
-<!-- ANCHOR:decision-warning-only-approach-005-session-1765912339678-asxgxjvi9 -->
+<!-- ANCHOR_EXAMPLE:decision-warning-only-approach-005-session-1765912339678-asxgxjvi9 -->
 ### Decision 1: Warning-only approach using console.warn() - never throws or blocks operations
 
 **Context**: Warning-only approach using console.warn() - never throws or blocks operations
@@ -197,11 +197,11 @@ functionLocation: Lines 727-752 in semantic-memory.js; validationCallLocation: L
 #### Trade-offs
 
 **Confidence**: 75%
-<!-- /ANCHOR:decision-warning-only-approach-005-session-1765912339678-asxgxjvi9 -->
+<!-- /ANCHOR_EXAMPLE:decision-warning-only-approach-005-session-1765912339678-asxgxjvi9 -->
 
 ---
 
-<!-- ANCHOR:decision-two-tier-validation-005-session-1765912339678-asxgxjvi9 -->
+<!-- ANCHOR_EXAMPLE:decision-two-tier-validation-005-session-1765912339678-asxgxjvi9 -->
 ### Decision 2: Two-tier validation: first checks for overly simple IDs, then checks against rec
 
 **Context**: Two-tier validation: first checks for overly simple IDs, then checks against recommended pattern
@@ -221,11 +221,11 @@ functionLocation: Lines 727-752 in semantic-memory.js; validationCallLocation: L
 #### Trade-offs
 
 **Confidence**: 75%
-<!-- /ANCHOR:decision-two-tier-validation-005-session-1765912339678-asxgxjvi9 -->
+<!-- /ANCHOR_EXAMPLE:decision-two-tier-validation-005-session-1765912339678-asxgxjvi9 -->
 
 ---
 
-<!-- ANCHOR:decision-function-placed-before-005-session-1765912339678-asxgxjvi9 -->
+<!-- ANCHOR_EXAMPLE:decision-function-placed-before-005-session-1765912339678-asxgxjvi9 -->
 ### Decision 3: Function placed before extractAnchorSection for logical grouping
 
 **Context**: Function placed before extractAnchorSection for logical grouping
@@ -245,11 +245,11 @@ functionLocation: Lines 727-752 in semantic-memory.js; validationCallLocation: L
 #### Trade-offs
 
 **Confidence**: 75%
-<!-- /ANCHOR:decision-function-placed-before-005-session-1765912339678-asxgxjvi9 -->
+<!-- /ANCHOR_EXAMPLE:decision-function-placed-before-005-session-1765912339678-asxgxjvi9 -->
 
 ---
 
-<!-- ANCHOR:decision-case-insensitive-regex-005-session-1765912339678-asxgxjvi9 -->
+<!-- ANCHOR_EXAMPLE:decision-case-insensitive-regex-005-session-1765912339678-asxgxjvi9 -->
 ### Decision 4: Case-insensitive regex patterns for flexibility
 
 **Context**: Case-insensitive regex patterns for flexibility
@@ -269,13 +269,13 @@ functionLocation: Lines 727-752 in semantic-memory.js; validationCallLocation: L
 #### Trade-offs
 
 **Confidence**: 75%
-<!-- /ANCHOR:decision-case-insensitive-regex-005-session-1765912339678-asxgxjvi9 -->
+<!-- /ANCHOR_EXAMPLE:decision-case-insensitive-regex-005-session-1765912339678-asxgxjvi9 -->
 
 ---
 
-<!-- /ANCHOR:decisions-session-1765912339678-asxgxjvi9-008-anchor-enforcement -->
+<!-- /ANCHOR_EXAMPLE:decisions-session-1765912339678-asxgxjvi9-008-anchor-enforcement -->
 
-<!-- ANCHOR:session-history-session-1765912339678-asxgxjvi9-008-anchor-enforcement -->
+<!-- ANCHOR_EXAMPLE:session-history-session-1765912339678-asxgxjvi9-008-anchor-enforcement -->
 ## 4. CONVERSATION
 
 Complete timestamped dialogue capturing all user interactions, AI responses, tool executions, and code changes during the session.
@@ -297,11 +297,11 @@ Added anchor ID validation warning to semantic-memory MCP server. Implemented va
 
 ---
 
-<!-- /ANCHOR:session-history-session-1765912339678-asxgxjvi9-008-anchor-enforcement -->
+<!-- /ANCHOR_EXAMPLE:session-history-session-1765912339678-asxgxjvi9-008-anchor-enforcement -->
 
 ---
 
-<!-- ANCHOR:recovery-hints-session-1765912339678-asxgxjvi9-008-anchor-enforcement -->
+<!-- ANCHOR_EXAMPLE:recovery-hints-session-1765912339678-asxgxjvi9-008-anchor-enforcement -->
 <a id="recovery-hints"></a>
 
 ## RECOVERY HINTS
@@ -323,10 +323,10 @@ Added anchor ID validation warning to semantic-memory MCP server. Implemented va
 3. **Review last session state** - Check PROJECT STATE SNAPSHOT
 4. **Validate pending tasks** - Review CONTINUE SESSION section
 5. **Resume with handover prompt** - Use continuation template above
-<!-- /ANCHOR:recovery-hints-session-1765912339678-asxgxjvi9-008-anchor-enforcement -->
+<!-- /ANCHOR_EXAMPLE:recovery-hints-session-1765912339678-asxgxjvi9-008-anchor-enforcement -->
 ---
 
-<!-- ANCHOR:postflight-session-1765912339678-asxgxjvi9-008-anchor-enforcement -->
+<!-- ANCHOR_EXAMPLE:postflight-session-1765912339678-asxgxjvi9-008-anchor-enforcement -->
 <a id="postflight-learning-delta"></a>
 
 ## POSTFLIGHT LEARNING DELTA
@@ -349,12 +349,12 @@ Added anchor ID validation warning to semantic-memory MCP server. Implemented va
 
 **Session Learning Summary:**
 This session was migrated from an older format. Learning metrics were not captured in the original format.
-<!-- /ANCHOR:postflight-session-1765912339678-asxgxjvi9-008-anchor-enforcement -->
+<!-- /ANCHOR_EXAMPLE:postflight-session-1765912339678-asxgxjvi9-008-anchor-enforcement -->
 ---
 
 ## MEMORY METADATA
 
-<!-- ANCHOR:metadata-session-1765912339678-asxgxjvi9-008-anchor-enforcement -->
+<!-- ANCHOR_EXAMPLE:metadata-session-1765912339678-asxgxjvi9-008-anchor-enforcement -->
 
 > **Machine-Readable Section** - This YAML block is parsed by the semantic memory indexer for search optimization and decay calculations.
 

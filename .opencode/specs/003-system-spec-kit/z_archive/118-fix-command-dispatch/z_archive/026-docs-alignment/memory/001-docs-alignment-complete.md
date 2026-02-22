@@ -29,7 +29,7 @@ contextType: "general"
 
 ---
 
-<!-- ANCHOR:preflight-session-legacy-1770632216908-at20ec-`specs/008-memory-docs-alignment/` -->
+<!-- ANCHOR_EXAMPLE:preflight-session-legacy-1770632216908-at20ec-`specs/008-memory-docs-alignment/` -->
 ## PREFLIGHT BASELINE
 
 **Epistemic state captured at session start for learning delta calculation.**
@@ -49,7 +49,7 @@ contextType: "general"
 - Confidence: N/A
 - Uncertainty: N/A
 - Readiness: N/A
-<!-- /ANCHOR:preflight-session-legacy-1770632216908-at20ec-`specs/008-memory-docs-alignment/` -->
+<!-- /ANCHOR_EXAMPLE:preflight-session-legacy-1770632216908-at20ec-`specs/008-memory-docs-alignment/` -->
 
 ---
 
@@ -65,7 +65,7 @@ contextType: "general"
 
 ---
 
-<!-- ANCHOR:continue-session-session-legacy-1770632216908-at20ec-`specs/008-memory-docs-alignment/` -->
+<!-- ANCHOR_EXAMPLE:continue-session-session-legacy-1770632216908-at20ec-`specs/008-memory-docs-alignment/` -->
 <a id="continue-session"></a>
 
 ## CONTINUE SESSION
@@ -96,7 +96,7 @@ This session was migrated from an older format to v2.2. Review the OVERVIEW and 
 ```
 /spec_kit:resume `specs/008-memory-docs-alignment/`
 ```
-<!-- /ANCHOR:continue-session-session-legacy-1770632216908-at20ec-`specs/008-memory-docs-alignment/` -->
+<!-- /ANCHOR_EXAMPLE:continue-session-session-legacy-1770632216908-at20ec-`specs/008-memory-docs-alignment/` -->
 
 ---
 
@@ -114,7 +114,7 @@ This session was migrated from an older format to v2.2. Review the OVERVIEW and 
 
 ---
 
-<!-- ANCHOR:summary-session-legacy-1770632216908-at20ec-`specs/008-memory-docs-alignment/` -->
+<!-- ANCHOR_EXAMPLE:summary-session-legacy-1770632216908-at20ec-`specs/008-memory-docs-alignment/` -->
 <a id="overview"></a>
 
 ## 1. OVERVIEW
@@ -208,11 +208,11 @@ This is a larger refactoring task for a future session.
 - Database location: `.opencode/skills/system-memory/database/memory-index.sqlite`
 
 
-<!-- /ANCHOR:summary-session-legacy-1770632216908-at20ec-`specs/008-memory-docs-alignment/` -->
+<!-- /ANCHOR_EXAMPLE:summary-session-legacy-1770632216908-at20ec-`specs/008-memory-docs-alignment/` -->
 
 ---
 
-<!-- ANCHOR:decisions-session-legacy-1770632216908-at20ec-`specs/008-memory-docs-alignment/` -->
+<!-- ANCHOR_EXAMPLE:decisions-session-legacy-1770632216908-at20ec-`specs/008-memory-docs-alignment/` -->
 <a id="decisions"></a>
 
 ## 2. DECISIONS
@@ -221,9 +221,9 @@ This session did not involve significant architectural or technical decisions. T
 
 ---
 
-<!-- /ANCHOR:decisions-session-legacy-1770632216908-at20ec-`specs/008-memory-docs-alignment/` -->
+<!-- /ANCHOR_EXAMPLE:decisions-session-legacy-1770632216908-at20ec-`specs/008-memory-docs-alignment/` -->
 
-<!-- ANCHOR:session-history-session-legacy-1770632216908-at20ec-`specs/008-memory-docs-alignment/` -->
+<!-- ANCHOR_EXAMPLE:session-history-session-legacy-1770632216908-at20ec-`specs/008-memory-docs-alignment/` -->
 <a id="conversation"></a>
 
 ## 3. CONVERSATION
@@ -243,11 +243,11 @@ No conversation messages were captured. This is a legacy memory file migrated to
 
 ---
 
-<!-- /ANCHOR:session-history-session-legacy-1770632216908-at20ec-`specs/008-memory-docs-alignment/` -->
+<!-- /ANCHOR_EXAMPLE:session-history-session-legacy-1770632216908-at20ec-`specs/008-memory-docs-alignment/` -->
 
 ---
 
-<!-- ANCHOR:recovery-hints-session-legacy-1770632216908-at20ec-`specs/008-memory-docs-alignment/` -->
+<!-- ANCHOR_EXAMPLE:recovery-hints-session-legacy-1770632216908-at20ec-`specs/008-memory-docs-alignment/` -->
 <a id="recovery-hints"></a>
 
 ## RECOVERY HINTS
@@ -269,11 +269,11 @@ No conversation messages were captured. This is a legacy memory file migrated to
 3. **Review last session state** - Check PROJECT STATE SNAPSHOT
 4. **Validate pending tasks** - Review CONTINUE SESSION section
 5. **Resume with handover prompt** - Use continuation template above
-<!-- /ANCHOR:recovery-hints-session-legacy-1770632216908-at20ec-`specs/008-memory-docs-alignment/` -->
+<!-- /ANCHOR_EXAMPLE:recovery-hints-session-legacy-1770632216908-at20ec-`specs/008-memory-docs-alignment/` -->
 
 ---
 
-<!-- ANCHOR:postflight-session-legacy-1770632216908-at20ec-`specs/008-memory-docs-alignment/` -->
+<!-- ANCHOR_EXAMPLE:postflight-session-legacy-1770632216908-at20ec-`specs/008-memory-docs-alignment/` -->
 <a id="postflight-learning-delta"></a>
 
 ## POSTFLIGHT LEARNING DELTA
@@ -296,7 +296,7 @@ No conversation messages were captured. This is a legacy memory file migrated to
 
 **Session Learning Summary:**
 This session was migrated from an older format. Learning metrics were not captured in the original format.
-<!-- /ANCHOR:postflight-session-legacy-1770632216908-at20ec-`specs/008-memory-docs-alignment/` -->
+<!-- /ANCHOR_EXAMPLE:postflight-session-legacy-1770632216908-at20ec-`specs/008-memory-docs-alignment/` -->
 
 ---
 
@@ -304,7 +304,7 @@ This session was migrated from an older format. Learning metrics were not captur
 
 ## MEMORY METADATA
 
-<!-- ANCHOR:metadata-session-legacy-1770632216908-at20ec-`specs/008-memory-docs-alignment/` -->
+<!-- ANCHOR_EXAMPLE:metadata-session-legacy-1770632216908-at20ec-`specs/008-memory-docs-alignment/` -->
 
 > **Machine-Readable Section** - This YAML block is parsed by the semantic memory indexer for search optimization and decay calculations.
 
@@ -381,7 +381,7 @@ embedding_version: "1.0"
 chunk_count: 1
 ```
 
-<!-- /ANCHOR:metadata-session-legacy-1770632216908-at20ec-`specs/008-memory-docs-alignment/` -->
+<!-- /ANCHOR_EXAMPLE:metadata-session-legacy-1770632216908-at20ec-`specs/008-memory-docs-alignment/` -->
 
 ---
 

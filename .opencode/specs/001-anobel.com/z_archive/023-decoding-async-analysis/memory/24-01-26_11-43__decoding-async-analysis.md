@@ -51,7 +51,7 @@ contextType: "general"
 
 ---
 
-<!-- ANCHOR:preflight-session-1769251412293-hjfebsbfk-005-anobel.com/001-decoding-async-analysis -->
+<!-- ANCHOR:preflight-session-1769251412293-hjfebsbfk-005-anobel-com/001-decoding-async-analysis -->
 ## PREFLIGHT BASELINE
 
 **Epistemic state captured at session start for learning delta calculation.**
@@ -71,7 +71,7 @@ contextType: "general"
 - Confidence: [TBD]%
 - Uncertainty: [TBD]
 - Readiness: [TBD]
-<!-- /ANCHOR:preflight-session-1769251412293-hjfebsbfk-005-anobel.com/001-decoding-async-analysis -->
+<!-- /ANCHOR:preflight-session-1769251412293-hjfebsbfk-005-anobel-com/001-decoding-async-analysis -->
 
 ---
 
@@ -87,7 +87,7 @@ contextType: "general"
 
 ---
 
-<!-- ANCHOR:continue-session-session-1769251412293-hjfebsbfk-005-anobel.com/001-decoding-async-analysis -->
+<!-- ANCHOR:continue-session-session-1769251412293-hjfebsbfk-005-anobel-com/001-decoding-async-analysis -->
 <a id="continue-session"></a>
 
 ## CONTINUE SESSION
@@ -118,7 +118,7 @@ This session was migrated from an older format to v2.2. Review the OVERVIEW and 
 ```
 /spec_kit:resume 005-anobel.com/001-decoding-async-analysis
 ```
-<!-- /ANCHOR:continue-session-session-1769251412293-hjfebsbfk-005-anobel.com/001-decoding-async-analysis -->
+<!-- /ANCHOR_EXAMPLE:continue-session-session-1769251412293-hjfebsbfk-005-anobel.com/001-decoding-async-analysis -->
 ---
 
 <a id="project-state-snapshot"></a>
@@ -137,7 +137,7 @@ This session was migrated from an older format to v2.2. Review the OVERVIEW and 
 
 ---
 
-<!-- ANCHOR:summary-session-1769251412293-hjfebsbfk-005-anobel.com/001-decoding-async-analysis -->
+<!-- ANCHOR_EXAMPLE:summary-session-1769251412293-hjfebsbfk-005-anobel.com/001-decoding-async-analysis -->
 <a id="overview"></a>
 
 ## 1. OVERVIEW
@@ -147,11 +147,11 @@ Session focused on implementing and testing features.
 **Key Outcomes**:
 - Session in progress
 
-<!-- /ANCHOR:summary-session-1769251412293-hjfebsbfk-005-anobel.com/001-decoding-async-analysis -->
+<!-- /ANCHOR_EXAMPLE:summary-session-1769251412293-hjfebsbfk-005-anobel.com/001-decoding-async-analysis -->
 
 ---
 
-<!-- ANCHOR:decisions-session-1769251412293-hjfebsbfk-005-anobel.com/001-decoding-async-analysis -->
+<!-- ANCHOR_EXAMPLE:decisions-session-1769251412293-hjfebsbfk-005-anobel.com/001-decoding-async-analysis -->
 <a id="decisions"></a>
 
 <!-- DYNAMIC SECTION NUMBERING:
@@ -179,9 +179,9 @@ This session did not involve significant architectural or technical decisions. T
 
 ---
 
-<!-- /ANCHOR:decisions-session-1769251412293-hjfebsbfk-005-anobel.com/001-decoding-async-analysis -->
+<!-- /ANCHOR_EXAMPLE:decisions-session-1769251412293-hjfebsbfk-005-anobel.com/001-decoding-async-analysis -->
 
-<!-- ANCHOR:session-history-session-1769251412293-hjfebsbfk-005-anobel.com/001-decoding-async-analysis -->
+<!-- ANCHOR_EXAMPLE:session-history-session-1769251412293-hjfebsbfk-005-anobel.com/001-decoding-async-analysis -->
 <a id="conversation"></a>
 
 <!-- DYNAMIC SECTION NUMBERING:
@@ -209,11 +209,11 @@ This session followed a **Linear Sequential** conversation pattern with **0** di
 
 ---
 
-<!-- /ANCHOR:session-history-session-1769251412293-hjfebsbfk-005-anobel.com/001-decoding-async-analysis -->
+<!-- /ANCHOR_EXAMPLE:session-history-session-1769251412293-hjfebsbfk-005-anobel.com/001-decoding-async-analysis -->
 
 ---
 
-<!-- ANCHOR:postflight-session-1769251412293-hjfebsbfk-005-anobel.com/001-decoding-async-analysis -->
+<!-- ANCHOR_EXAMPLE:postflight-session-1769251412293-hjfebsbfk-005-anobel.com/001-decoding-async-analysis -->
 <a id="postflight-learning-delta"></a>
 
 ## POSTFLIGHT LEARNING DELTA
@@ -248,11 +248,11 @@ This session followed a **Linear Sequential** conversation pattern with **0** di
 
 **Session Learning Summary:**
 Learning metrics will be calculated when both preflight and postflight data are provided.
-<!-- /ANCHOR:postflight-session-1769251412293-hjfebsbfk-005-anobel.com/001-decoding-async-analysis -->
+<!-- /ANCHOR_EXAMPLE:postflight-session-1769251412293-hjfebsbfk-005-anobel.com/001-decoding-async-analysis -->
 
 ---
 
-<!-- ANCHOR:recovery-hints-session-1769251412293-hjfebsbfk-005-anobel.com/001-decoding-async-analysis -->
+<!-- ANCHOR_EXAMPLE:recovery-hints-session-1769251412293-hjfebsbfk-005-anobel.com/001-decoding-async-analysis -->
 <a id="recovery-hints"></a>
 
 ## RECOVERY HINTS
@@ -274,14 +274,14 @@ Learning metrics will be calculated when both preflight and postflight data are 
 3. **Review last session state** - Check PROJECT STATE SNAPSHOT
 4. **Validate pending tasks** - Review CONTINUE SESSION section
 5. **Resume with handover prompt** - Use continuation template above
-<!-- /ANCHOR:recovery-hints-session-1769251412293-hjfebsbfk-005-anobel.com/001-decoding-async-analysis -->
+<!-- /ANCHOR_EXAMPLE:recovery-hints-session-1769251412293-hjfebsbfk-005-anobel.com/001-decoding-async-analysis -->
 ---
 
 <a id="memory-metadata"></a>
 
 ## MEMORY METADATA
 
-<!-- ANCHOR:metadata-session-1769251412293-hjfebsbfk-005-anobel.com/001-decoding-async-analysis -->
+<!-- ANCHOR_EXAMPLE:metadata-session-1769251412293-hjfebsbfk-005-anobel.com/001-decoding-async-analysis -->
 
 > **Machine-Readable Section** - This YAML block is parsed by the semantic memory indexer for search optimization and decay calculations.
 
@@ -369,7 +369,7 @@ embedding_version: "1.0"
 chunk_count: 1
 ```
 
-<!-- /ANCHOR:metadata-session-1769251412293-hjfebsbfk-005-anobel.com/001-decoding-async-analysis -->
+<!-- /ANCHOR:metadata-session-1769251412293-hjfebsbfk-005-anobel-com/001-decoding-async-analysis -->
 
 ---
 

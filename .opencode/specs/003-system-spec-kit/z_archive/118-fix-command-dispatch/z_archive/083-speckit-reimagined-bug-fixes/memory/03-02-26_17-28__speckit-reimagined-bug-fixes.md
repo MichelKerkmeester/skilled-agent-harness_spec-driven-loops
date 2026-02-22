@@ -51,7 +51,7 @@ contextType: "general"
 
 ---
 
-<!-- ANCHOR:preflight-session-1770136121695-5y4uhy7mq-005-anobel.com -->
+<!-- ANCHOR:preflight-session-1770136121695-5y4uhy7mq-005-anobel-com -->
 ## PREFLIGHT BASELINE
 
 **Epistemic state captured at session start for learning delta calculation.**
@@ -71,7 +71,7 @@ contextType: "general"
 - Confidence: [TBD]%
 - Uncertainty: [TBD]
 - Readiness: [TBD]
-<!-- /ANCHOR:preflight-session-1770136121695-5y4uhy7mq-005-anobel.com -->
+<!-- /ANCHOR:preflight-session-1770136121695-5y4uhy7mq-005-anobel-com -->
 
 ---
 
@@ -89,7 +89,7 @@ contextType: "general"
 
 ---
 
-<!-- ANCHOR:continue-session-session-1770136121695-5y4uhy7mq-005-anobel.com -->
+<!-- ANCHOR:continue-session-session-1770136121695-5y4uhy7mq-005-anobel-com -->
 <a id="continue-session"></a>
 
 ## CONTINUE SESSION
@@ -141,7 +141,7 @@ Next: Continue implementation
 
 - Last: Completed post-audit test verification for system-spec-kit after the 30-agent au
 
-<!-- /ANCHOR:continue-session-session-1770136121695-5y4uhy7mq-005-anobel.com -->
+<!-- /ANCHOR_EXAMPLE:continue-session-session-1770136121695-5y4uhy7mq-005-anobel.com -->
 
 ---
 
@@ -161,7 +161,7 @@ Next: Continue implementation
 
 ---
 
-<!-- ANCHOR:task-guide-anobel.com-005-anobel.com -->
+<!-- ANCHOR_EXAMPLE:task-guide-anobel.com-005-anobel.com -->
 <a id="implementation-guide"></a>
 
 ## 1. IMPLEMENTATION GUIDE
@@ -202,11 +202,11 @@ Next: Continue implementation
 
 - **Module Pattern**: Organize code into importable modules
 
-<!-- /ANCHOR:task-guide-anobel.com-005-anobel.com -->
+<!-- /ANCHOR_EXAMPLE:task-guide-anobel.com-005-anobel.com -->
 
 ---
 
-<!-- ANCHOR:summary-session-1770136121695-5y4uhy7mq-005-anobel.com -->
+<!-- ANCHOR_EXAMPLE:summary-session-1770136121695-5y4uhy7mq-005-anobel.com -->
 <a id="overview"></a>
 
 ## 2. OVERVIEW
@@ -231,35 +231,35 @@ Completed post-audit test verification for system-spec-kit after the 30-agent au
 | `/.../coder/AGENTS.md` | Spec-kit related sections: fixed generate-context |
 | `/.../Public/AGENTS.md` | Spec-kit related sections: fixed generate-context |
 
-<!-- /ANCHOR:summary-session-1770136121695-5y4uhy7mq-005-anobel.com -->
+<!-- /ANCHOR_EXAMPLE:summary-session-1770136121695-5y4uhy7mq-005-anobel.com -->
 
 ---
 
-<!-- ANCHOR:detailed-changes-session-1770136121695-5y4uhy7mq-005-anobel.com -->
+<!-- ANCHOR_EXAMPLE:detailed-changes-session-1770136121695-5y4uhy7mq-005-anobel.com -->
 <a id="detailed-changes"></a>
 
 ## 3. DETAILED CHANGES
 
-<!-- ANCHOR:implementation-completed-postaudit-test-verification-6b5fddad-session-1770136121695-5y4uhy7mq -->
+<!-- ANCHOR_EXAMPLE:implementation-completed-postaudit-test-verification-6b5fddad-session-1770136121695-5y4uhy7mq -->
 ### FEATURE: Completed post-audit test verification for system-spec-kit after the 30-agent audit fixes (spec...
 
 Completed post-audit test verification for system-spec-kit after the 30-agent audit fixes (spec 085-audit-fixes). Fixed test file path issues in test-bug-fixes.js and test-template-system.js caused by post-modularization changes. Then updated two external AGENTS.md files (Barter and Public) with spec-kit related sections: fixed generate-context.js path, added Memory Commands (Consolidated) section with 5 commands, added Spec Kit Commands section with 7 commands, added MCP Tools listing, and added Quick Reference table rows for 'Learn from mistakes' and 'Database maintenance' workflows.
 
 **Details:** AGENTS.md sync | external AGENTS.md update | spec-kit sections | Memory Commands Consolidated | Spec Kit Commands | test-bug-fixes.js | post-modularization paths | generate-context.js path | Barter AGENTS | Public AGENTS | v1.2.3.1
-<!-- /ANCHOR:implementation-completed-postaudit-test-verification-6b5fddad-session-1770136121695-5y4uhy7mq -->
+<!-- /ANCHOR_EXAMPLE:implementation-completed-postaudit-test-verification-6b5fddad-session-1770136121695-5y4uhy7mq -->
 
-<!-- ANCHOR:implementation-technical-implementation-details-2f295cbe-session-1770136121695-5y4uhy7mq -->
+<!-- ANCHOR_EXAMPLE:implementation-technical-implementation-details-2f295cbe-session-1770136121695-5y4uhy7mq -->
 ### IMPLEMENTATION: Technical Implementation Details
 
 rootCause: Post-modularization changes moved lib files to subdirectories (lib/search/, lib/parsing/, lib/core/, lib/utils/) but test files still referenced old flat paths. External AGENTS.md files were outdated and missing new memory/spec-kit command documentation.; solution: Updated test file imports to match new modular structure. Added Memory Commands (5 consolidated), Spec Kit Commands (7 commands), and MCP Tools listing to both Barter and Public AGENTS.md files.; patterns: Sync external documentation by copying spec-kit related sections from anobel.com AGENTS.md (source of truth) to derivative AGENTS.md files while preserving project-specific content.
 
-<!-- /ANCHOR:implementation-technical-implementation-details-2f295cbe-session-1770136121695-5y4uhy7mq -->
+<!-- /ANCHOR_EXAMPLE:implementation-technical-implementation-details-2f295cbe-session-1770136121695-5y4uhy7mq -->
 
-<!-- /ANCHOR:detailed-changes-session-1770136121695-5y4uhy7mq-005-anobel.com -->
+<!-- /ANCHOR_EXAMPLE:detailed-changes-session-1770136121695-5y4uhy7mq-005-anobel.com -->
 
 ---
 
-<!-- ANCHOR:decisions-session-1770136121695-5y4uhy7mq-005-anobel.com -->
+<!-- ANCHOR_EXAMPLE:decisions-session-1770136121695-5y4uhy7mq-005-anobel.com -->
 <a id="decisions"></a>
 
 <!-- DYNAMIC SECTION NUMBERING:
@@ -283,7 +283,7 @@ rootCause: Post-modularization changes moved lib files to subdirectories (lib/se
 -->
 ## 4. DECISIONS
 
-<!-- ANCHOR:decision-file-paths-test-b599e5c7-session-1770136121695-5y4uhy7mq -->
+<!-- ANCHOR_EXAMPLE:decision-file-paths-test-b599e5c7-session-1770136121695-5y4uhy7mq -->
 ### Decision 1: Decision: Updated 9 file paths in test
 
 **Context**: bug-fixes.js to match new modular lib structure (e.g., lib/vector-index.js → lib/search/vector-index.js) because the post-modularization reorganization moved files to subdirectories
@@ -306,11 +306,11 @@ rootCause: Post-modularization changes moved lib files to subdirectories (lib/se
 #### Trade-offs
 
 **Confidence**: 80%
-<!-- /ANCHOR:decision-file-paths-test-b599e5c7-session-1770136121695-5y4uhy7mq -->
+<!-- /ANCHOR_EXAMPLE:decision-file-paths-test-b599e5c7-session-1770136121695-5y4uhy7mq -->
 
 ---
 
-<!-- ANCHOR:decision-test-c6436b9b-session-1770136121695-5y4uhy7mq -->
+<!-- ANCHOR_EXAMPLE:decision-test-c6436b9b-session-1770136121695-5y4uhy7mq -->
 ### Decision 2: Decision: Fixed test
 
 **Context**: template-system.js to exclude README.md from template file count because documentation files should not be counted as templates
@@ -333,11 +333,11 @@ rootCause: Post-modularization changes moved lib files to subdirectories (lib/se
 #### Trade-offs
 
 **Confidence**: 80%
-<!-- /ANCHOR:decision-test-c6436b9b-session-1770136121695-5y4uhy7mq -->
+<!-- /ANCHOR_EXAMPLE:decision-test-c6436b9b-session-1770136121695-5y4uhy7mq -->
 
 ---
 
-<!-- ANCHOR:decision-memory-commands-section-after-132d2f91-session-1770136121695-5y4uhy7mq -->
+<!-- ANCHOR_EXAMPLE:decision-memory-commands-section-after-132d2f91-session-1770136121695-5y4uhy7mq -->
 ### Decision 3: Decision: Added Memory Commands section after MCP Configuration in both external AGENTS.md files because this is the logical placement following the v1.2.1 consolidation that reduced 9 commands to 5
 
 **Context**: Decision: Added Memory Commands section after MCP Configuration in both external AGENTS.md files because this is the logical placement following the v1.2.1 consolidation that reduced 9 commands to 5
@@ -360,11 +360,11 @@ rootCause: Post-modularization changes moved lib files to subdirectories (lib/se
 #### Trade-offs
 
 **Confidence**: 80%
-<!-- /ANCHOR:decision-memory-commands-section-after-132d2f91-session-1770136121695-5y4uhy7mq -->
+<!-- /ANCHOR_EXAMPLE:decision-memory-commands-section-after-132d2f91-session-1770136121695-5y4uhy7mq -->
 
 ---
 
-<!-- ANCHOR:decision-barter-agentsmd-database-path-6c211dd4-session-1770136121695-5y4uhy7mq -->
+<!-- ANCHOR_EXAMPLE:decision-barter-agentsmd-database-path-6c211dd4-session-1770136121695-5y4uhy7mq -->
 ### Decision 4: Decision: Fixed Barter AGENTS.md database path from .../database/... to .../mcp_server/database/... to match the correct location
 
 **Context**: Decision: Fixed Barter AGENTS.md database path from .../database/... to .../mcp_server/database/... to match the correct location
@@ -387,13 +387,13 @@ rootCause: Post-modularization changes moved lib files to subdirectories (lib/se
 #### Trade-offs
 
 **Confidence**: 80%
-<!-- /ANCHOR:decision-barter-agentsmd-database-path-6c211dd4-session-1770136121695-5y4uhy7mq -->
+<!-- /ANCHOR_EXAMPLE:decision-barter-agentsmd-database-path-6c211dd4-session-1770136121695-5y4uhy7mq -->
 
 ---
 
-<!-- /ANCHOR:decisions-session-1770136121695-5y4uhy7mq-005-anobel.com -->
+<!-- /ANCHOR_EXAMPLE:decisions-session-1770136121695-5y4uhy7mq-005-anobel.com -->
 
-<!-- ANCHOR:session-history-session-1770136121695-5y4uhy7mq-005-anobel.com -->
+<!-- ANCHOR_EXAMPLE:session-history-session-1770136121695-5y4uhy7mq-005-anobel.com -->
 <a id="conversation"></a>
 
 <!-- DYNAMIC SECTION NUMBERING:
@@ -422,11 +422,11 @@ Completed post-audit test verification for system-spec-kit after the 30-agent au
 
 ---
 
-<!-- /ANCHOR:session-history-session-1770136121695-5y4uhy7mq-005-anobel.com -->
+<!-- /ANCHOR_EXAMPLE:session-history-session-1770136121695-5y4uhy7mq-005-anobel.com -->
 
 ---
 
-<!-- ANCHOR:recovery-hints-session-1770136121695-5y4uhy7mq-005-anobel.com -->
+<!-- ANCHOR_EXAMPLE:recovery-hints-session-1770136121695-5y4uhy7mq-005-anobel.com -->
 <a id="recovery-hints"></a>
 
 ## RECOVERY HINTS
@@ -479,11 +479,11 @@ node .opencode/skill/system-spec-kit/scripts/memory/generate-context.js 005-anob
 | Index Entry Valid |  | Last indexed:  |
 | Checksums Match |  |  |
 | No Dedup Conflicts |  |  |
-<!-- /ANCHOR:recovery-hints-session-1770136121695-5y4uhy7mq-005-anobel.com -->
+<!-- /ANCHOR_EXAMPLE:recovery-hints-session-1770136121695-5y4uhy7mq-005-anobel.com -->
 
 ---
 
-<!-- ANCHOR:postflight-session-1770136121695-5y4uhy7mq-005-anobel.com -->
+<!-- ANCHOR_EXAMPLE:postflight-session-1770136121695-5y4uhy7mq-005-anobel.com -->
 <a id="postflight-learning-delta"></a>
 
 ## POSTFLIGHT LEARNING DELTA
@@ -518,7 +518,7 @@ node .opencode/skill/system-spec-kit/scripts/memory/generate-context.js 005-anob
 
 **Session Learning Summary:**
 Learning metrics will be calculated when both preflight and postflight data are provided.
-<!-- /ANCHOR:postflight-session-1770136121695-5y4uhy7mq-005-anobel.com -->
+<!-- /ANCHOR_EXAMPLE:postflight-session-1770136121695-5y4uhy7mq-005-anobel.com -->
 
 ---
 
@@ -526,7 +526,7 @@ Learning metrics will be calculated when both preflight and postflight data are 
 
 ## MEMORY METADATA
 
-<!-- ANCHOR:metadata-session-1770136121695-5y4uhy7mq-005-anobel.com -->
+<!-- ANCHOR_EXAMPLE:metadata-session-1770136121695-5y4uhy7mq-005-anobel.com -->
 
 > **Machine-Readable Section** - This YAML block is parsed by the semantic memory indexer for search optimization and decay calculations.
 
@@ -640,7 +640,7 @@ embedding_version: "1.0"
 chunk_count: 1
 ```
 
-<!-- /ANCHOR:metadata-session-1770136121695-5y4uhy7mq-005-anobel.com -->
+<!-- /ANCHOR:metadata-session-1770136121695-5y4uhy7mq-005-anobel-com -->
 
 ---
 

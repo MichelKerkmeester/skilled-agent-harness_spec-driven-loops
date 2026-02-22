@@ -51,7 +51,7 @@ contextType: "implementation"
 
 ---
 
-<!-- ANCHOR:preflight-session-1768743940251-x1zduc32s-005-anobel.com/019-blog-sort-fix -->
+<!-- ANCHOR:preflight-session-1768743940251-x1zduc32s-005-anobel-com/019-blog-sort-fix -->
 ## PREFLIGHT BASELINE
 
 **Epistemic state captured at session start for learning delta calculation.**
@@ -71,7 +71,7 @@ contextType: "implementation"
 - Confidence: N/A
 - Uncertainty: N/A
 - Readiness: N/A
-<!-- /ANCHOR:preflight-session-1768743940251-x1zduc32s-005-anobel.com/019-blog-sort-fix -->
+<!-- /ANCHOR:preflight-session-1768743940251-x1zduc32s-005-anobel-com/019-blog-sort-fix -->
 ---
 
 ## Table of Contents
@@ -86,7 +86,7 @@ contextType: "implementation"
 
 ---
 
-<!-- ANCHOR:continue-session-session-1768743940251-x1zduc32s-005-anobel.com/019-blog-sort-fix -->
+<!-- ANCHOR:continue-session-session-1768743940251-x1zduc32s-005-anobel-com/019-blog-sort-fix -->
 <a id="continue-session"></a>
 
 ## CONTINUE SESSION
@@ -117,7 +117,7 @@ This session was migrated from an older format to v2.2. Review the OVERVIEW and 
 ```
 /spec_kit:resume 005-anobel.com/019-blog-sort-fix
 ```
-<!-- /ANCHOR:continue-session-session-1768743940251-x1zduc32s-005-anobel.com/019-blog-sort-fix -->
+<!-- /ANCHOR_EXAMPLE:continue-session-session-1768743940251-x1zduc32s-005-anobel.com/019-blog-sort-fix -->
 ---
 
 <a id="project-state-snapshot"></a>
@@ -136,7 +136,7 @@ This session was migrated from an older format to v2.2. Review the OVERVIEW and 
 
 ---
 
-<!-- ANCHOR:summary-session-1768743940251-x1zduc32s-005-anobel.com/019-blog-sort-fix -->
+<!-- ANCHOR_EXAMPLE:summary-session-1768743940251-x1zduc32s-005-anobel.com/019-blog-sort-fix -->
 <a id="overview"></a>
 
 ## 1. OVERVIEW
@@ -154,11 +154,11 @@ Applied P1 code quality fix to blog sort dropdown bridge. Added INIT_DELAY_MS co
 - `src/2_javascript/z_minified/form/input_select_fs_bridge.js` (auto-generated)
 - `src/0_html/blog.html` (version v=1.1.1)
 
-<!-- /ANCHOR:summary-session-1768743940251-x1zduc32s-005-anobel.com/019-blog-sort-fix -->
+<!-- /ANCHOR_EXAMPLE:summary-session-1768743940251-x1zduc32s-005-anobel.com/019-blog-sort-fix -->
 
 ---
 
-<!-- ANCHOR:decisions-session-1768743940251-x1zduc32s-005-anobel.com/019-blog-sort-fix -->
+<!-- ANCHOR_EXAMPLE:decisions-session-1768743940251-x1zduc32s-005-anobel.com/019-blog-sort-fix -->
 <a id="decisions"></a>
 
 <!-- DYNAMIC SECTION NUMBERING:
@@ -192,11 +192,11 @@ Applied P1 code quality fix to blog sort dropdown bridge. Added INIT_DELAY_MS co
 
 ---
 
-<!-- /ANCHOR:decisions-session-1768743940251-x1zduc32s-005-anobel.com/019-blog-sort-fix -->
+<!-- /ANCHOR_EXAMPLE:decisions-session-1768743940251-x1zduc32s-005-anobel.com/019-blog-sort-fix -->
 
 ---
 
-<!-- ANCHOR:technical-context-session-1768743940251-x1zduc32s-005-anobel.com/019-blog-sort-fix -->
+<!-- ANCHOR_EXAMPLE:technical-context-session-1768743940251-x1zduc32s-005-anobel.com/019-blog-sort-fix -->
 
 ## TECHNICAL CONTEXT
 
@@ -230,11 +230,11 @@ listInstance.sorting.value = { fieldKey: 'publication-date', direction: 'asc' };
 - v1.1.1 - P1 code quality fix (INIT_DELAY_MS constant)
 - v1.1.2 - (Pending) CDN upload
 
-<!-- /ANCHOR:technical-context-session-1768743940251-x1zduc32s-005-anobel.com/019-blog-sort-fix -->
+<!-- /ANCHOR_EXAMPLE:technical-context-session-1768743940251-x1zduc32s-005-anobel.com/019-blog-sort-fix -->
 
 ---
 
-<!-- ANCHOR:session-history-session-1768743940251-x1zduc32s-005-anobel.com/019-blog-sort-fix -->
+<!-- ANCHOR_EXAMPLE:session-history-session-1768743940251-x1zduc32s-005-anobel.com/019-blog-sort-fix -->
 <a id="conversation"></a>
 
 <!-- DYNAMIC SECTION NUMBERING:
@@ -262,11 +262,11 @@ This session followed a **Linear Sequential** conversation pattern with **0** di
 
 ---
 
-<!-- /ANCHOR:session-history-session-1768743940251-x1zduc32s-005-anobel.com/019-blog-sort-fix -->
+<!-- /ANCHOR_EXAMPLE:session-history-session-1768743940251-x1zduc32s-005-anobel.com/019-blog-sort-fix -->
 
 ---
 
-<!-- ANCHOR:recovery-hints-session-1768743940251-x1zduc32s-005-anobel.com/019-blog-sort-fix -->
+<!-- ANCHOR_EXAMPLE:recovery-hints-session-1768743940251-x1zduc32s-005-anobel.com/019-blog-sort-fix -->
 <a id="recovery-hints"></a>
 
 ## RECOVERY HINTS
@@ -288,10 +288,10 @@ This session followed a **Linear Sequential** conversation pattern with **0** di
 3. **Review last session state** - Check PROJECT STATE SNAPSHOT
 4. **Validate pending tasks** - Review CONTINUE SESSION section
 5. **Resume with handover prompt** - Use continuation template above
-<!-- /ANCHOR:recovery-hints-session-1768743940251-x1zduc32s-005-anobel.com/019-blog-sort-fix -->
+<!-- /ANCHOR_EXAMPLE:recovery-hints-session-1768743940251-x1zduc32s-005-anobel.com/019-blog-sort-fix -->
 ---
 
-<!-- ANCHOR:postflight-session-1768743940251-x1zduc32s-005-anobel.com/019-blog-sort-fix -->
+<!-- ANCHOR_EXAMPLE:postflight-session-1768743940251-x1zduc32s-005-anobel.com/019-blog-sort-fix -->
 <a id="postflight-learning-delta"></a>
 
 ## POSTFLIGHT LEARNING DELTA
@@ -314,14 +314,14 @@ This session followed a **Linear Sequential** conversation pattern with **0** di
 
 **Session Learning Summary:**
 This session was migrated from an older format. Learning metrics were not captured in the original format.
-<!-- /ANCHOR:postflight-session-1768743940251-x1zduc32s-005-anobel.com/019-blog-sort-fix -->
+<!-- /ANCHOR_EXAMPLE:postflight-session-1768743940251-x1zduc32s-005-anobel.com/019-blog-sort-fix -->
 ---
 
 <a id="memory-metadata"></a>
 
 ## MEMORY METADATA
 
-<!-- ANCHOR:metadata-session-1768743940251-x1zduc32s-005-anobel.com/019-blog-sort-fix -->
+<!-- ANCHOR_EXAMPLE:metadata-session-1768743940251-x1zduc32s-005-anobel.com/019-blog-sort-fix -->
 
 > **Machine-Readable Section** - This YAML block is parsed by the semantic memory indexer for search optimization and decay calculations.
 
@@ -420,7 +420,7 @@ embedding_version: "1.0"
 chunk_count: 1
 ```
 
-<!-- /ANCHOR:metadata-session-1768743940251-x1zduc32s-005-anobel.com/019-blog-sort-fix -->
+<!-- /ANCHOR:metadata-session-1768743940251-x1zduc32s-005-anobel-com/019-blog-sort-fix -->
 
 ---
 

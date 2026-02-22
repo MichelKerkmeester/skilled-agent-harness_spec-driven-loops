@@ -29,7 +29,7 @@ contextType: "general"
 
 ---
 
-<!-- ANCHOR:preflight-session-legacy-1770632216887-6t89i7-003-memory-and-spec-kit/z_archive/014-anchor-enforcement -->
+<!-- ANCHOR:preflight-session-legacy-1770632216887-6t89i7-003-memory-and-spec-kit/z-archive/014-anchor-enforcement -->
 ## PREFLIGHT BASELINE
 
 **Epistemic state captured at session start for learning delta calculation.**
@@ -49,7 +49,7 @@ contextType: "general"
 - Confidence: N/A
 - Uncertainty: N/A
 - Readiness: N/A
-<!-- /ANCHOR:preflight-session-legacy-1770632216887-6t89i7-003-memory-and-spec-kit/z_archive/014-anchor-enforcement -->
+<!-- /ANCHOR:preflight-session-legacy-1770632216887-6t89i7-003-memory-and-spec-kit/z-archive/014-anchor-enforcement -->
 
 ---
 
@@ -65,7 +65,7 @@ contextType: "general"
 
 ---
 
-<!-- ANCHOR:continue-session-session-legacy-1770632216887-6t89i7-003-memory-and-spec-kit/z_archive/014-anchor-enforcement -->
+<!-- ANCHOR:continue-session-session-legacy-1770632216887-6t89i7-003-memory-and-spec-kit/z-archive/014-anchor-enforcement -->
 <a id="continue-session"></a>
 
 ## CONTINUE SESSION
@@ -96,7 +96,7 @@ This session was migrated from an older format to v2.2. Review the OVERVIEW and 
 ```
 /spec_kit:resume 003-memory-and-spec-kit/z_archive/014-anchor-enforcement
 ```
-<!-- /ANCHOR:continue-session-session-legacy-1770632216887-6t89i7-003-memory-and-spec-kit/z_archive/014-anchor-enforcement -->
+<!-- /ANCHOR_EXAMPLE:continue-session-session-legacy-1770632216887-6t89i7-003-memory-and-spec-kit/z_archive/014-anchor-enforcement -->
 
 ---
 
@@ -114,7 +114,7 @@ This session was migrated from an older format to v2.2. Review the OVERVIEW and 
 
 ---
 
-<!-- ANCHOR:summary-session-legacy-1770632216887-6t89i7-003-memory-and-spec-kit/z_archive/014-anchor-enforcement -->
+<!-- ANCHOR_EXAMPLE:summary-session-legacy-1770632216887-6t89i7-003-memory-and-spec-kit/z_archive/014-anchor-enforcement -->
 <a id="overview"></a>
 
 ## 1. OVERVIEW
@@ -130,7 +130,7 @@ Memory: Anchor Enforcement Implementation Complete
 > **Status**: Complete
 > **Trigger Phrases**: anchor enforcement, anchor format, case-insensitive anchor, memory anchors, ANCHOR tags, closing tags
 
-<!-- ANCHOR:summary-anchor-enforcement -->
+<!-- ANCHOR_EXAMPLE:summary-anchor-enforcement -->
 
 ## Summary
 
@@ -142,17 +142,17 @@ Successfully implemented anchor enforcement across the semantic memory system, i
 4. **Database Cleanup**: 15 duplicate entries with partial paths removed
 5. **Tier Promotions**: 6 strategic memories promoted (2 critical, 4 important)
 
-<!-- /ANCHOR:summary-anchor-enforcement -->
+<!-- /ANCHOR_EXAMPLE:summary-anchor-enforcement -->
 
-<!-- ANCHOR:decisions-anchor-enforcement -->
+<!-- ANCHOR_EXAMPLE:decisions-anchor-enforcement -->
 
 ## Key Decisions
 
 ### Anchor Format (Case-Insensitive)
 Both formats now work interchangeably:
 ```html
-<!-- ANCHOR:id -->content<!-- /ANCHOR:id -->  (recommended)
-<!-- anchor:id -->content<!-- /anchor:id -->  (legacy supported)
+<!-- ANCHOR_EXAMPLE:id -->content<!-- /ANCHOR_EXAMPLE:id -->  (recommended)
+<!-- ANCHOR_EXAMPLE:id -->content<!-- /ANCHOR_EXAMPLE:id -->  (legacy supported)
 ```
 
 ### Naming Convention for Auto-Generated Anchors
@@ -165,9 +165,9 @@ Both formats now work interchangeably:
 - **Important**: Workflow patterns (scratch enforcement, commands, skills)
 - **Normal**: Project-specific implementation details
 
-<!-- /ANCHOR:decisions-anchor-enforcement -->
+<!-- /ANCHOR_EXAMPLE:decisions-anchor-enforcement -->
 
-<!-- ANCHOR:technical-anchor-enforcement -->
+<!-- ANCHOR_EXAMPLE:technical-anchor-enforcement -->
 
 ## Technical Details
 
@@ -196,7 +196,7 @@ Processed 22 memory files:
 - Normal tier: 16
 - All with full paths and valid anchors
 
-<!-- /ANCHOR:technical-anchor-enforcement -->
+<!-- /ANCHOR_EXAMPLE:technical-anchor-enforcement -->
 
 ## Verification Commands
 
@@ -222,11 +222,11 @@ memory_list({ sortBy: "importance_weight", limit: 25 })
 - ID 36: Command Alignment (important)
 
 
-<!-- /ANCHOR:summary-session-legacy-1770632216887-6t89i7-003-memory-and-spec-kit/z_archive/014-anchor-enforcement -->
+<!-- /ANCHOR_EXAMPLE:summary-session-legacy-1770632216887-6t89i7-003-memory-and-spec-kit/z_archive/014-anchor-enforcement -->
 
 ---
 
-<!-- ANCHOR:decisions-session-legacy-1770632216887-6t89i7-003-memory-and-spec-kit/z_archive/014-anchor-enforcement -->
+<!-- ANCHOR_EXAMPLE:decisions-session-legacy-1770632216887-6t89i7-003-memory-and-spec-kit/z_archive/014-anchor-enforcement -->
 <a id="decisions"></a>
 
 ## 2. DECISIONS
@@ -235,9 +235,9 @@ This session did not involve significant architectural or technical decisions. T
 
 ---
 
-<!-- /ANCHOR:decisions-session-legacy-1770632216887-6t89i7-003-memory-and-spec-kit/z_archive/014-anchor-enforcement -->
+<!-- /ANCHOR_EXAMPLE:decisions-session-legacy-1770632216887-6t89i7-003-memory-and-spec-kit/z_archive/014-anchor-enforcement -->
 
-<!-- ANCHOR:session-history-session-legacy-1770632216887-6t89i7-003-memory-and-spec-kit/z_archive/014-anchor-enforcement -->
+<!-- ANCHOR_EXAMPLE:session-history-session-legacy-1770632216887-6t89i7-003-memory-and-spec-kit/z_archive/014-anchor-enforcement -->
 <a id="conversation"></a>
 
 ## 3. CONVERSATION
@@ -257,11 +257,11 @@ No conversation messages were captured. This is a legacy memory file migrated to
 
 ---
 
-<!-- /ANCHOR:session-history-session-legacy-1770632216887-6t89i7-003-memory-and-spec-kit/z_archive/014-anchor-enforcement -->
+<!-- /ANCHOR_EXAMPLE:session-history-session-legacy-1770632216887-6t89i7-003-memory-and-spec-kit/z_archive/014-anchor-enforcement -->
 
 ---
 
-<!-- ANCHOR:recovery-hints-session-legacy-1770632216887-6t89i7-003-memory-and-spec-kit/z_archive/014-anchor-enforcement -->
+<!-- ANCHOR_EXAMPLE:recovery-hints-session-legacy-1770632216887-6t89i7-003-memory-and-spec-kit/z_archive/014-anchor-enforcement -->
 <a id="recovery-hints"></a>
 
 ## RECOVERY HINTS
@@ -283,11 +283,11 @@ No conversation messages were captured. This is a legacy memory file migrated to
 3. **Review last session state** - Check PROJECT STATE SNAPSHOT
 4. **Validate pending tasks** - Review CONTINUE SESSION section
 5. **Resume with handover prompt** - Use continuation template above
-<!-- /ANCHOR:recovery-hints-session-legacy-1770632216887-6t89i7-003-memory-and-spec-kit/z_archive/014-anchor-enforcement -->
+<!-- /ANCHOR_EXAMPLE:recovery-hints-session-legacy-1770632216887-6t89i7-003-memory-and-spec-kit/z_archive/014-anchor-enforcement -->
 
 ---
 
-<!-- ANCHOR:postflight-session-legacy-1770632216887-6t89i7-003-memory-and-spec-kit/z_archive/014-anchor-enforcement -->
+<!-- ANCHOR_EXAMPLE:postflight-session-legacy-1770632216887-6t89i7-003-memory-and-spec-kit/z_archive/014-anchor-enforcement -->
 <a id="postflight-learning-delta"></a>
 
 ## POSTFLIGHT LEARNING DELTA
@@ -310,7 +310,7 @@ No conversation messages were captured. This is a legacy memory file migrated to
 
 **Session Learning Summary:**
 This session was migrated from an older format. Learning metrics were not captured in the original format.
-<!-- /ANCHOR:postflight-session-legacy-1770632216887-6t89i7-003-memory-and-spec-kit/z_archive/014-anchor-enforcement -->
+<!-- /ANCHOR_EXAMPLE:postflight-session-legacy-1770632216887-6t89i7-003-memory-and-spec-kit/z_archive/014-anchor-enforcement -->
 
 ---
 
@@ -318,7 +318,7 @@ This session was migrated from an older format. Learning metrics were not captur
 
 ## MEMORY METADATA
 
-<!-- ANCHOR:metadata-session-legacy-1770632216887-6t89i7-003-memory-and-spec-kit/z_archive/014-anchor-enforcement -->
+<!-- ANCHOR_EXAMPLE:metadata-session-legacy-1770632216887-6t89i7-003-memory-and-spec-kit/z_archive/014-anchor-enforcement -->
 
 > **Machine-Readable Section** - This YAML block is parsed by the semantic memory indexer for search optimization and decay calculations.
 
@@ -395,7 +395,7 @@ embedding_version: "1.0"
 chunk_count: 1
 ```
 
-<!-- /ANCHOR:metadata-session-legacy-1770632216887-6t89i7-003-memory-and-spec-kit/z_archive/014-anchor-enforcement -->
+<!-- /ANCHOR:metadata-session-legacy-1770632216887-6t89i7-003-memory-and-spec-kit/z-archive/014-anchor-enforcement -->
 
 ---
 

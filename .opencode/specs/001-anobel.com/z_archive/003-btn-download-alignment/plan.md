@@ -19,7 +19,7 @@ contextType: "decision"
 Apply code quality standards to both JS and CSS files without changing functionality.
 <!-- /ANCHOR:approach -->
 
-<!-- ANCHOR:javascript-changes-btn_downloadjs -->
+<!-- ANCHOR:javascript-changes-btn-downloadjs -->
 ## JavaScript Changes (btn_download.js)
 
 ### Current Issues:
@@ -38,9 +38,9 @@ Apply code quality standards to both JS and CSS files without changing functiona
 | `showSuccessAndReset` | `show_success_and_reset` | snake_case |
 | `attrSrc`, `attrName` | `ATTR_SRC`, `ATTR_NAME` | Constants = UPPER_SNAKE_CASE |
 | DOMContentLoaded | CDN-safe pattern | Webflow compatibility |
-<!-- /ANCHOR:javascript-changes-btn_downloadjs -->
+<!-- /ANCHOR:javascript-changes-btn-downloadjs -->
 
-<!-- ANCHOR:css-changes-btn_downloadcss -->
+<!-- ANCHOR:css-changes-btn-downloadcss -->
 ## CSS Changes (btn_download.css)
 
 ### Current Issues:
@@ -52,7 +52,7 @@ Apply code quality standards to both JS and CSS files without changing functiona
 - Add file header matching btn_main.css pattern
 - Add numbered section headers
 - Improve comment clarity (WHY not WHAT)
-<!-- /ANCHOR:css-changes-btn_downloadcss -->
+<!-- /ANCHOR:css-changes-btn-downloadcss -->
 
 <!-- ANCHOR:risk-assessment -->
 ## Risk Assessment

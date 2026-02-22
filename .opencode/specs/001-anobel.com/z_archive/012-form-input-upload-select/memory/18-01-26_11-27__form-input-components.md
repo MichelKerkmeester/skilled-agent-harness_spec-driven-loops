@@ -51,7 +51,7 @@ contextType: "general"
 
 ---
 
-<!-- ANCHOR:preflight-session-1768732062054-tauyy0x3e-005-anobel.com/012-form-input-components -->
+<!-- ANCHOR:preflight-session-1768732062054-tauyy0x3e-005-anobel-com/012-form-input-components -->
 ## PREFLIGHT BASELINE
 
 **Epistemic state captured at session start for learning delta calculation.**
@@ -71,7 +71,7 @@ contextType: "general"
 - Confidence: N/A
 - Uncertainty: N/A
 - Readiness: N/A
-<!-- /ANCHOR:preflight-session-1768732062054-tauyy0x3e-005-anobel.com/012-form-input-components -->
+<!-- /ANCHOR:preflight-session-1768732062054-tauyy0x3e-005-anobel-com/012-form-input-components -->
 ---
 
 ## Table of Contents
@@ -88,7 +88,7 @@ contextType: "general"
 
 ---
 
-<!-- ANCHOR:continue-session-session-1768732062054-tauyy0x3e-005-anobel.com/012-form-input-components -->
+<!-- ANCHOR:continue-session-session-1768732062054-tauyy0x3e-005-anobel-com/012-form-input-components -->
 <a id="continue-session"></a>
 
 ## CONTINUE SESSION
@@ -119,7 +119,7 @@ This session was migrated from an older format to v2.2. Review the OVERVIEW and 
 ```
 /spec_kit:resume 005-anobel.com/012-form-input-components
 ```
-<!-- /ANCHOR:continue-session-session-1768732062054-tauyy0x3e-005-anobel.com/012-form-input-components -->
+<!-- /ANCHOR_EXAMPLE:continue-session-session-1768732062054-tauyy0x3e-005-anobel.com/012-form-input-components -->
 ---
 
 <a id="project-state-snapshot"></a>
@@ -157,7 +157,7 @@ This session was migrated from an older format to v2.2. Review the OVERVIEW and 
 
 ---
 
-<!-- ANCHOR:task-guide-anobel.com/012-form-input-components-005-anobel.com/012-form-input-components -->
+<!-- ANCHOR_EXAMPLE:task-guide-anobel.com/012-form-input-components-005-anobel.com/012-form-input-components -->
 <a id="implementation-guide"></a>
 
 ## 1. IMPLEMENTATION GUIDE
@@ -198,11 +198,11 @@ This session was migrated from an older format to v2.2. Review the OVERVIEW and 
 
 - **Data Normalization**: Clean and standardize data before use
 
-<!-- /ANCHOR:task-guide-anobel.com/012-form-input-components-005-anobel.com/012-form-input-components -->
+<!-- /ANCHOR_EXAMPLE:task-guide-anobel.com/012-form-input-components-005-anobel.com/012-form-input-components -->
 
 ---
 
-<!-- ANCHOR:summary-session-1768732062054-tauyy0x3e-005-anobel.com/012-form-input-components -->
+<!-- ANCHOR_EXAMPLE:summary-session-1768732062054-tauyy0x3e-005-anobel.com/012-form-input-components -->
 <a id="overview"></a>
 
 ## 2. OVERVIEW
@@ -231,35 +231,35 @@ Implemented comprehensive enhancements to the FilePond file upload component wit
 | `src/3_staging/test-webflow-upload.html` | File modified (description pending) |
 | `src/2_javascript/z_minified/form/input_upload.js` | New CDN version numbers |
 
-<!-- /ANCHOR:summary-session-1768732062054-tauyy0x3e-005-anobel.com/012-form-input-components -->
+<!-- /ANCHOR_EXAMPLE:summary-session-1768732062054-tauyy0x3e-005-anobel.com/012-form-input-components -->
 
 ---
 
-<!-- ANCHOR:detailed-changes-session-1768732062054-tauyy0x3e-005-anobel.com/012-form-input-components -->
+<!-- ANCHOR_EXAMPLE:detailed-changes-session-1768732062054-tauyy0x3e-005-anobel.com/012-form-input-components -->
 <a id="detailed-changes"></a>
 
 ## 3. DETAILED CHANGES
 
-<!-- ANCHOR:implementation-comprehensive-enhancements-filepond-file-23f803f3-session-1768732062054-tauyy0x3e -->
+<!-- ANCHOR_EXAMPLE:implementation-comprehensive-enhancements-filepond-file-23f803f3-session-1768732062054-tauyy0x3e -->
 ### FEATURE: Implemented comprehensive enhancements to the FilePond file upload component with custom Webflow...
 
 Implemented comprehensive enhancements to the FilePond file upload component with custom Webflow UI. Added icon toggle functionality (upload icon during upload, success checkmark on complete), complete state hover effects with clickable area for deletion, error state handling for invalid file types/sizes, and configurable labels via data attributes for CMS integration. Also added idle state labels (drag text, browse link, description). Updated CSS for font-weight normalization on filename display. Minified all JavaScript, renamed filepond_connector.js to input_upload.js, and updated HTML files (werken_bij.html, vacature.html, contact.html) with new CDN version numbers.
 
 **Details:** filepond connector | file upload webflow | custom upload UI | icon toggle complete state | configurable labels CMS | data-file-upload attributes | input_upload.js | upload error state | drag drop file | click to delete upload
-<!-- /ANCHOR:implementation-comprehensive-enhancements-filepond-file-23f803f3-session-1768732062054-tauyy0x3e -->
+<!-- /ANCHOR_EXAMPLE:implementation-comprehensive-enhancements-filepond-file-23f803f3-session-1768732062054-tauyy0x3e -->
 
-<!-- ANCHOR:implementation-technical-implementation-details-743b8b65-session-1768732062054-tauyy0x3e -->
+<!-- ANCHOR_EXAMPLE:implementation-technical-implementation-details-743b8b65-session-1768732062054-tauyy0x3e -->
 ### IMPLEMENTATION: Technical Implementation Details
 
 rootCause: Needed custom Webflow-designed file upload UI that hides FilePond's native interface while using FilePond for upload logic; solution: Created connector script that bridges FilePond events to custom Webflow elements using data attributes, with CSS state classes for visibility toggling; patterns: State machine pattern (IDLE/UPLOADING/COMPLETE/ERROR), data attribute configuration, CSS state class toggling, configurable labels via wrapper attributes for CMS integration
 
-<!-- /ANCHOR:implementation-technical-implementation-details-743b8b65-session-1768732062054-tauyy0x3e -->
+<!-- /ANCHOR_EXAMPLE:implementation-technical-implementation-details-743b8b65-session-1768732062054-tauyy0x3e -->
 
-<!-- /ANCHOR:detailed-changes-session-1768732062054-tauyy0x3e-005-anobel.com/012-form-input-components -->
+<!-- /ANCHOR_EXAMPLE:detailed-changes-session-1768732062054-tauyy0x3e-005-anobel.com/012-form-input-components -->
 
 ---
 
-<!-- ANCHOR:decisions-session-1768732062054-tauyy0x3e-005-anobel.com/012-form-input-components -->
+<!-- ANCHOR_EXAMPLE:decisions-session-1768732062054-tauyy0x3e-005-anobel.com/012-form-input-components -->
 <a id="decisions"></a>
 
 <!-- DYNAMIC SECTION NUMBERING:
@@ -283,7 +283,7 @@ rootCause: Needed custom Webflow-designed file upload UI that hides FilePond's n
 -->
 ## 4. DECISIONS
 
-<!-- ANCHOR:decision-two-separate-icon-elements-1cf197fb-session-1768732062054-tauyy0x3e -->
+<!-- ANCHOR_EXAMPLE:decision-two-separate-icon-elements-1cf197fb-session-1768732062054-tauyy0x3e -->
 ### Decision 1: Decision: Use two separate icon elements with data attributes (icon
 
 **Context**: upload, icon-success) toggled via CSS state classes because this allows Webflow designers to style each icon independently without JavaScript changes
@@ -306,11 +306,11 @@ rootCause: Needed custom Webflow-designed file upload UI that hides FilePond's n
 #### Trade-offs
 
 **Confidence**: 80%
-<!-- /ANCHOR:decision-two-separate-icon-elements-1cf197fb-session-1768732062054-tauyy0x3e -->
+<!-- /ANCHOR_EXAMPLE:decision-two-separate-icon-elements-1cf197fb-session-1768732062054-tauyy0x3e -->
 
 ---
 
-<!-- ANCHOR:decision-make-entire-loader-area-f9f577a5-session-1768732062054-tauyy0x3e -->
+<!-- ANCHOR_EXAMPLE:decision-make-entire-loader-area-f9f577a5-session-1768732062054-tauyy0x3e -->
 ### Decision 2: Decision: Make entire loader area clickable for delete on complete state because it provides better UX than just the small notice text
 
 **Context**: Decision: Make entire loader area clickable for delete on complete state because it provides better UX than just the small notice text
@@ -333,11 +333,11 @@ rootCause: Needed custom Webflow-designed file upload UI that hides FilePond's n
 #### Trade-offs
 
 **Confidence**: 80%
-<!-- /ANCHOR:decision-make-entire-loader-area-f9f577a5-session-1768732062054-tauyy0x3e -->
+<!-- /ANCHOR_EXAMPLE:decision-make-entire-loader-area-f9f577a5-session-1768732062054-tauyy0x3e -->
 
 ---
 
-<!-- ANCHOR:decision-configurable-error-labels-data-dfbb3fb0-session-1768732062054-tauyy0x3e -->
+<!-- ANCHOR_EXAMPLE:decision-configurable-error-labels-data-dfbb3fb0-session-1768732062054-tauyy0x3e -->
 ### Decision 3: Decision: Add configurable error labels (data
 
 **Context**: label-error-type, data-label-error-size, data-label-error-dismiss) because this enables CMS-driven localization for error messages
@@ -360,11 +360,11 @@ rootCause: Needed custom Webflow-designed file upload UI that hides FilePond's n
 #### Trade-offs
 
 **Confidence**: 80%
-<!-- /ANCHOR:decision-configurable-error-labels-data-dfbb3fb0-session-1768732062054-tauyy0x3e -->
+<!-- /ANCHOR_EXAMPLE:decision-configurable-error-labels-data-dfbb3fb0-session-1768732062054-tauyy0x3e -->
 
 ---
 
-<!-- ANCHOR:decision-rename-filepondconnectorjs-inputuploadjs-because-f3c97ec4-session-1768732062054-tauyy0x3e -->
+<!-- ANCHOR_EXAMPLE:decision-rename-filepondconnectorjs-inputuploadjs-because-f3c97ec4-session-1768732062054-tauyy0x3e -->
 ### Decision 4: Decision: Rename filepond_connector.js to input_upload.js because it maintains backward compatibility with existing CDN URLs while replacing the old FilePond native UI implementation
 
 **Context**: Decision: Rename filepond_connector.js to input_upload.js because it maintains backward compatibility with existing CDN URLs while replacing the old FilePond native UI implementation
@@ -387,11 +387,11 @@ rootCause: Needed custom Webflow-designed file upload UI that hides FilePond's n
 #### Trade-offs
 
 **Confidence**: 80%
-<!-- /ANCHOR:decision-rename-filepondconnectorjs-inputuploadjs-because-f3c97ec4-session-1768732062054-tauyy0x3e -->
+<!-- /ANCHOR_EXAMPLE:decision-rename-filepondconnectorjs-inputuploadjs-because-f3c97ec4-session-1768732062054-tauyy0x3e -->
 
 ---
 
-<!-- ANCHOR:decision-set-font-bba50429-session-1768732062054-tauyy0x3e -->
+<!-- ANCHOR_EXAMPLE:decision-set-font-bba50429-session-1768732062054-tauyy0x3e -->
 ### Decision 5: Decision: Set font
 
 **Context**: weight to 400 on filename in complete state because the semi-bold weight from 'Uploading...' text should not persist to the filename display
@@ -414,13 +414,13 @@ rootCause: Needed custom Webflow-designed file upload UI that hides FilePond's n
 #### Trade-offs
 
 **Confidence**: 80%
-<!-- /ANCHOR:decision-set-font-bba50429-session-1768732062054-tauyy0x3e -->
+<!-- /ANCHOR_EXAMPLE:decision-set-font-bba50429-session-1768732062054-tauyy0x3e -->
 
 ---
 
-<!-- /ANCHOR:decisions-session-1768732062054-tauyy0x3e-005-anobel.com/012-form-input-components -->
+<!-- /ANCHOR_EXAMPLE:decisions-session-1768732062054-tauyy0x3e-005-anobel.com/012-form-input-components -->
 
-<!-- ANCHOR:session-history-session-1768732062054-tauyy0x3e-005-anobel.com/012-form-input-components -->
+<!-- ANCHOR_EXAMPLE:session-history-session-1768732062054-tauyy0x3e-005-anobel.com/012-form-input-components -->
 <a id="conversation"></a>
 
 <!-- DYNAMIC SECTION NUMBERING:
@@ -448,11 +448,11 @@ Implemented comprehensive enhancements to the FilePond file upload component wit
 
 ---
 
-<!-- /ANCHOR:session-history-session-1768732062054-tauyy0x3e-005-anobel.com/012-form-input-components -->
+<!-- /ANCHOR_EXAMPLE:session-history-session-1768732062054-tauyy0x3e-005-anobel.com/012-form-input-components -->
 
 ---
 
-<!-- ANCHOR:recovery-hints-session-1768732062054-tauyy0x3e-005-anobel.com/012-form-input-components -->
+<!-- ANCHOR_EXAMPLE:recovery-hints-session-1768732062054-tauyy0x3e-005-anobel.com/012-form-input-components -->
 <a id="recovery-hints"></a>
 
 ## RECOVERY HINTS
@@ -474,10 +474,10 @@ Implemented comprehensive enhancements to the FilePond file upload component wit
 3. **Review last session state** - Check PROJECT STATE SNAPSHOT
 4. **Validate pending tasks** - Review CONTINUE SESSION section
 5. **Resume with handover prompt** - Use continuation template above
-<!-- /ANCHOR:recovery-hints-session-1768732062054-tauyy0x3e-005-anobel.com/012-form-input-components -->
+<!-- /ANCHOR_EXAMPLE:recovery-hints-session-1768732062054-tauyy0x3e-005-anobel.com/012-form-input-components -->
 ---
 
-<!-- ANCHOR:postflight-session-1768732062054-tauyy0x3e-005-anobel.com/012-form-input-components -->
+<!-- ANCHOR_EXAMPLE:postflight-session-1768732062054-tauyy0x3e-005-anobel.com/012-form-input-components -->
 <a id="postflight-learning-delta"></a>
 
 ## POSTFLIGHT LEARNING DELTA
@@ -500,14 +500,14 @@ Implemented comprehensive enhancements to the FilePond file upload component wit
 
 **Session Learning Summary:**
 This session was migrated from an older format. Learning metrics were not captured in the original format.
-<!-- /ANCHOR:postflight-session-1768732062054-tauyy0x3e-005-anobel.com/012-form-input-components -->
+<!-- /ANCHOR_EXAMPLE:postflight-session-1768732062054-tauyy0x3e-005-anobel.com/012-form-input-components -->
 ---
 
 <a id="memory-metadata"></a>
 
 ## MEMORY METADATA
 
-<!-- ANCHOR:metadata-session-1768732062054-tauyy0x3e-005-anobel.com/012-form-input-components -->
+<!-- ANCHOR_EXAMPLE:metadata-session-1768732062054-tauyy0x3e-005-anobel.com/012-form-input-components -->
 
 > **Machine-Readable Section** - This YAML block is parsed by the semantic memory indexer for search optimization and decay calculations.
 
@@ -608,7 +608,7 @@ embedding_version: "1.0"
 chunk_count: 1
 ```
 
-<!-- /ANCHOR:metadata-session-1768732062054-tauyy0x3e-005-anobel.com/012-form-input-components -->
+<!-- /ANCHOR:metadata-session-1768732062054-tauyy0x3e-005-anobel-com/012-form-input-components -->
 
 ---
 

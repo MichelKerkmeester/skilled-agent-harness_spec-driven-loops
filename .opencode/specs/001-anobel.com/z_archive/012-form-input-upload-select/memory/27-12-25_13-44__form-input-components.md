@@ -51,7 +51,7 @@ contextType: "general"
 
 ---
 
-<!-- ANCHOR:preflight-session-1766839461668-guzu8k16x-005-anobel.com/012-form-input-components -->
+<!-- ANCHOR:preflight-session-1766839461668-guzu8k16x-005-anobel-com/012-form-input-components -->
 ## PREFLIGHT BASELINE
 
 **Epistemic state captured at session start for learning delta calculation.**
@@ -71,7 +71,7 @@ contextType: "general"
 - Confidence: N/A
 - Uncertainty: N/A
 - Readiness: N/A
-<!-- /ANCHOR:preflight-session-1766839461668-guzu8k16x-005-anobel.com/012-form-input-components -->
+<!-- /ANCHOR:preflight-session-1766839461668-guzu8k16x-005-anobel-com/012-form-input-components -->
 ---
 
 ## Table of Contents
@@ -88,7 +88,7 @@ contextType: "general"
 
 ---
 
-<!-- ANCHOR:continue-session-session-1766839461668-guzu8k16x-005-anobel.com/012-form-input-components -->
+<!-- ANCHOR:continue-session-session-1766839461668-guzu8k16x-005-anobel-com/012-form-input-components -->
 <a id="continue-session"></a>
 
 ## CONTINUE SESSION
@@ -119,7 +119,7 @@ This session was migrated from an older format to v2.2. Review the OVERVIEW and 
 ```
 /spec_kit:resume 005-anobel.com/012-form-input-components
 ```
-<!-- /ANCHOR:continue-session-session-1766839461668-guzu8k16x-005-anobel.com/012-form-input-components -->
+<!-- /ANCHOR_EXAMPLE:continue-session-session-1766839461668-guzu8k16x-005-anobel.com/012-form-input-components -->
 ---
 
 <a id="project-state-snapshot"></a>
@@ -138,7 +138,7 @@ This session was migrated from an older format to v2.2. Review the OVERVIEW and 
 
 ---
 
-<!-- ANCHOR:task-guide-agents-004-agents -->
+<!-- ANCHOR_EXAMPLE:task-guide-agents-004-agents -->
 <a id="implementation-guide"></a>
 
 ## 1. IMPLEMENTATION GUIDE
@@ -171,11 +171,11 @@ This session was migrated from an older format to v2.2. Review the OVERVIEW and 
 
 - **Async/Await**: Handle asynchronous operations cleanly
 
-<!-- /ANCHOR:task-guide-agents-004-agents -->
+<!-- /ANCHOR_EXAMPLE:task-guide-agents-004-agents -->
 
 ---
 
-<!-- ANCHOR:summary-session-1766839461668-guzu8k16x-004-agents -->
+<!-- ANCHOR_EXAMPLE:summary-session-1766839461668-guzu8k16x-004-agents -->
 <a id="overview"></a>
 
 ## 2. OVERVIEW
@@ -204,35 +204,35 @@ Created comprehensive Level 3 spec folder documentation for form input component
 | `specs/.../012-form-input-components/decision-record.md` | Detailed architecture diagrams |
 | `specs/005-anobel.com/012-form-input-components/tasks.md` | Detailed architecture diagrams |
 
-<!-- /ANCHOR:summary-session-1766839461668-guzu8k16x-004-agents -->
+<!-- /ANCHOR_EXAMPLE:summary-session-1766839461668-guzu8k16x-004-agents -->
 
 ---
 
-<!-- ANCHOR:detailed-changes-session-1766839461668-guzu8k16x-004-agents -->
+<!-- ANCHOR_EXAMPLE:detailed-changes-session-1766839461668-guzu8k16x-004-agents -->
 <a id="detailed-changes"></a>
 
 ## 3. DETAILED CHANGES
 
-<!-- ANCHOR:implementation-comprehensive-level-spec-folder-99be3628-session-1766839461668-guzu8k16x -->
+<!-- ANCHOR_EXAMPLE:implementation-comprehensive-level-spec-folder-99be3628-session-1766839461668-guzu8k16x -->
 ### FEATURE: Created comprehensive Level 3 spec folder documentation for form input components enhancement. This...
 
 Created comprehensive Level 3 spec folder documentation for form input components enhancement. This session involved: (1) Analyzing the existing Finsweet-based select component on the Webflow site and determining requirements for a CMS-driven custom select replacement that maintains custom styling. (2) Researching FilePond file upload library integration with Formspark form service using 4 parallel Opus agents - covering FilePond capabilities, Wized example analysis, existing form scripts analysis, and Formspark file upload options. (3) Creating and updating all Level 3 documentation files (spec.md, plan.md, checklist.md, decision-record.md, tasks.md) with detailed architecture diagrams, state machines, data flows, 11 architectural decisions, ~100 checklist items with P0/P1/P2 priorities, and phased implementation tasks. Key finding: Formspark does NOT support native file attachments, requiring Uploadcare as intermediate cloud storage with URL submission.
 
 **Details:** form input components | custom select CMS | filepond file upload | uploadcare formspark | webflow form components | finsweet replacement | dropdown CMS options | file upload webflow | input component enhancement | form select dropdown
-<!-- /ANCHOR:implementation-comprehensive-level-spec-folder-99be3628-session-1766839461668-guzu8k16x -->
+<!-- /ANCHOR_EXAMPLE:implementation-comprehensive-level-spec-folder-99be3628-session-1766839461668-guzu8k16x -->
 
-<!-- ANCHOR:implementation-technical-implementation-details-d831a480-session-1766839461668-guzu8k16x -->
+<!-- ANCHOR_EXAMPLE:implementation-technical-implementation-details-d831a480-session-1766839461668-guzu8k16x -->
 ### IMPLEMENTATION: Technical Implementation Details
 
 rootCause: Finsweet select has static options, cannot be updated from CMS. Forms lack file upload capability. Formspark does not support native file attachments.; solution: Custom JS select with CMS Collection List for dynamic options. FilePond + Uploadcare for file uploads with URL submission to Formspark.; patterns: Data attributes for JS hooks, ES6 class-based components, container state class (.is--open), hidden native elements for form submission
 
-<!-- /ANCHOR:implementation-technical-implementation-details-d831a480-session-1766839461668-guzu8k16x -->
+<!-- /ANCHOR_EXAMPLE:implementation-technical-implementation-details-d831a480-session-1766839461668-guzu8k16x -->
 
-<!-- /ANCHOR:detailed-changes-session-1766839461668-guzu8k16x-004-agents -->
+<!-- /ANCHOR_EXAMPLE:detailed-changes-session-1766839461668-guzu8k16x-004-agents -->
 
 ---
 
-<!-- ANCHOR:decisions-session-1766839461668-guzu8k16x-004-agents -->
+<!-- ANCHOR_EXAMPLE:decisions-session-1766839461668-guzu8k16x-004-agents -->
 <a id="decisions"></a>
 
 <!-- DYNAMIC SECTION NUMBERING:
@@ -256,7 +256,7 @@ rootCause: Finsweet select has static options, cannot be updated from CMS. Forms
 -->
 ## 4. DECISIONS
 
-<!-- ANCHOR:decision-unnamed-322e1bbb-session-1766839461668-guzu8k16x -->
+<!-- ANCHOR_EXAMPLE:decision-unnamed-322e1bbb-session-1766839461668-guzu8k16x -->
 ### Decision 1: DR
 
 **Context**: 001: Chose custom JavaScript over Finsweet for full CMS integration control and removal of external dependency
@@ -279,11 +279,11 @@ rootCause: Finsweet select has static options, cannot be updated from CMS. Forms
 #### Trade-offs
 
 **Confidence**: 80%
-<!-- /ANCHOR:decision-unnamed-322e1bbb-session-1766839461668-guzu8k16x -->
+<!-- /ANCHOR_EXAMPLE:decision-unnamed-322e1bbb-session-1766839461668-guzu8k16x -->
 
 ---
 
-<!-- ANCHOR:decision-unnamed-322e1bbb-2-session-1766839461668-guzu8k16x -->
+<!-- ANCHOR_EXAMPLE:decision-unnamed-322e1bbb-2-session-1766839461668-guzu8k16x -->
 ### Decision 2: DR
 
 **Context**: 002: Single Collection List with JS sync - JS generates hidden select options from visual dropdown to avoid Webflow nesting limitations
@@ -306,11 +306,11 @@ rootCause: Finsweet select has static options, cannot be updated from CMS. Forms
 #### Trade-offs
 
 **Confidence**: 80%
-<!-- /ANCHOR:decision-unnamed-322e1bbb-2-session-1766839461668-guzu8k16x -->
+<!-- /ANCHOR_EXAMPLE:decision-unnamed-322e1bbb-2-session-1766839461668-guzu8k16x -->
 
 ---
 
-<!-- ANCHOR:decision-unnamed-322e1bbb-3-session-1766839461668-guzu8k16x -->
+<!-- ANCHOR_EXAMPLE:decision-unnamed-322e1bbb-3-session-1766839461668-guzu8k16x -->
 ### Decision 3: DR
 
 **Context**: 003: Data attributes (data-select, data-file-upload) for JS hooks - decouples behavior from styling
@@ -333,11 +333,11 @@ rootCause: Finsweet select has static options, cannot be updated from CMS. Forms
 #### Trade-offs
 
 **Confidence**: 80%
-<!-- /ANCHOR:decision-unnamed-322e1bbb-3-session-1766839461668-guzu8k16x -->
+<!-- /ANCHOR_EXAMPLE:decision-unnamed-322e1bbb-3-session-1766839461668-guzu8k16x -->
 
 ---
 
-<!-- ANCHOR:decision-unnamed-322e1bbb-4-session-1766839461668-guzu8k16x -->
+<!-- ANCHOR_EXAMPLE:decision-unnamed-322e1bbb-4-session-1766839461668-guzu8k16x -->
 ### Decision 4: DR
 
 **Context**: 007: FilePond library for file upload UI - user requested, excellent UX, customizable
@@ -360,11 +360,11 @@ rootCause: Finsweet select has static options, cannot be updated from CMS. Forms
 #### Trade-offs
 
 **Confidence**: 80%
-<!-- /ANCHOR:decision-unnamed-322e1bbb-4-session-1766839461668-guzu8k16x -->
+<!-- /ANCHOR_EXAMPLE:decision-unnamed-322e1bbb-4-session-1766839461668-guzu8k16x -->
 
 ---
 
-<!-- ANCHOR:decision-unnamed-322e1bbb-5-session-1766839461668-guzu8k16x -->
+<!-- ANCHOR_EXAMPLE:decision-unnamed-322e1bbb-5-session-1766839461668-guzu8k16x -->
 ### Decision 5: DR
 
 **Context**: 008: Uploadcare as storage backend - Formspark's official recommendation, 3k uploads/month free tier
@@ -387,11 +387,11 @@ rootCause: Finsweet select has static options, cannot be updated from CMS. Forms
 #### Trade-offs
 
 **Confidence**: 80%
-<!-- /ANCHOR:decision-unnamed-322e1bbb-5-session-1766839461668-guzu8k16x -->
+<!-- /ANCHOR_EXAMPLE:decision-unnamed-322e1bbb-5-session-1766839461668-guzu8k16x -->
 
 ---
 
-<!-- ANCHOR:decision-unnamed-322e1bbb-6-session-1766839461668-guzu8k16x -->
+<!-- ANCHOR_EXAMPLE:decision-unnamed-322e1bbb-6-session-1766839461668-guzu8k16x -->
 ### Decision 6: DR
 
 **Context**: 009: Async upload mode (not base64) - files upload immediately, no size overhead, better UX
@@ -414,11 +414,11 @@ rootCause: Finsweet select has static options, cannot be updated from CMS. Forms
 #### Trade-offs
 
 **Confidence**: 80%
-<!-- /ANCHOR:decision-unnamed-322e1bbb-6-session-1766839461668-guzu8k16x -->
+<!-- /ANCHOR_EXAMPLE:decision-unnamed-322e1bbb-6-session-1766839461668-guzu8k16x -->
 
 ---
 
-<!-- ANCHOR:decision-unnamed-322e1bbb-7-session-1766839461668-guzu8k16x -->
+<!-- ANCHOR_EXAMPLE:decision-unnamed-322e1bbb-7-session-1766839461668-guzu8k16x -->
 ### Decision 7: DR
 
 **Context**: 010: Hidden input with URL for form submission - works with existing form_submission.js without modification
@@ -441,11 +441,11 @@ rootCause: Finsweet select has static options, cannot be updated from CMS. Forms
 #### Trade-offs
 
 **Confidence**: 80%
-<!-- /ANCHOR:decision-unnamed-322e1bbb-7-session-1766839461668-guzu8k16x -->
+<!-- /ANCHOR_EXAMPLE:decision-unnamed-322e1bbb-7-session-1766839461668-guzu8k16x -->
 
 ---
 
-<!-- ANCHOR:decision-unnamed-322e1bbb-8-session-1766839461668-guzu8k16x -->
+<!-- ANCHOR_EXAMPLE:decision-unnamed-322e1bbb-8-session-1766839461668-guzu8k16x -->
 ### Decision 8: DR
 
 **Context**: 011: Selected FilePond plugins: ImagePreview, FileValidateType, FileValidateSize
@@ -468,13 +468,13 @@ rootCause: Finsweet select has static options, cannot be updated from CMS. Forms
 #### Trade-offs
 
 **Confidence**: 80%
-<!-- /ANCHOR:decision-unnamed-322e1bbb-8-session-1766839461668-guzu8k16x -->
+<!-- /ANCHOR_EXAMPLE:decision-unnamed-322e1bbb-8-session-1766839461668-guzu8k16x -->
 
 ---
 
-<!-- /ANCHOR:decisions-session-1766839461668-guzu8k16x-004-agents -->
+<!-- /ANCHOR_EXAMPLE:decisions-session-1766839461668-guzu8k16x-004-agents -->
 
-<!-- ANCHOR:session-history-session-1766839461668-guzu8k16x-004-agents -->
+<!-- ANCHOR_EXAMPLE:session-history-session-1766839461668-guzu8k16x-004-agents -->
 <a id="conversation"></a>
 
 <!-- DYNAMIC SECTION NUMBERING:
@@ -502,11 +502,11 @@ Created comprehensive Level 3 spec folder documentation for form input component
 
 ---
 
-<!-- /ANCHOR:session-history-session-1766839461668-guzu8k16x-004-agents -->
+<!-- /ANCHOR_EXAMPLE:session-history-session-1766839461668-guzu8k16x-004-agents -->
 
 ---
 
-<!-- ANCHOR:recovery-hints-session-1766839461668-guzu8k16x-005-anobel.com/012-form-input-components -->
+<!-- ANCHOR_EXAMPLE:recovery-hints-session-1766839461668-guzu8k16x-005-anobel.com/012-form-input-components -->
 <a id="recovery-hints"></a>
 
 ## RECOVERY HINTS
@@ -528,10 +528,10 @@ Created comprehensive Level 3 spec folder documentation for form input component
 3. **Review last session state** - Check PROJECT STATE SNAPSHOT
 4. **Validate pending tasks** - Review CONTINUE SESSION section
 5. **Resume with handover prompt** - Use continuation template above
-<!-- /ANCHOR:recovery-hints-session-1766839461668-guzu8k16x-005-anobel.com/012-form-input-components -->
+<!-- /ANCHOR_EXAMPLE:recovery-hints-session-1766839461668-guzu8k16x-005-anobel.com/012-form-input-components -->
 ---
 
-<!-- ANCHOR:postflight-session-1766839461668-guzu8k16x-005-anobel.com/012-form-input-components -->
+<!-- ANCHOR_EXAMPLE:postflight-session-1766839461668-guzu8k16x-005-anobel.com/012-form-input-components -->
 <a id="postflight-learning-delta"></a>
 
 ## POSTFLIGHT LEARNING DELTA
@@ -554,14 +554,14 @@ Created comprehensive Level 3 spec folder documentation for form input component
 
 **Session Learning Summary:**
 This session was migrated from an older format. Learning metrics were not captured in the original format.
-<!-- /ANCHOR:postflight-session-1766839461668-guzu8k16x-005-anobel.com/012-form-input-components -->
+<!-- /ANCHOR_EXAMPLE:postflight-session-1766839461668-guzu8k16x-005-anobel.com/012-form-input-components -->
 ---
 
 <a id="memory-metadata"></a>
 
 ## MEMORY METADATA
 
-<!-- ANCHOR:metadata-session-1766839461668-guzu8k16x-004-agents -->
+<!-- ANCHOR_EXAMPLE:metadata-session-1766839461668-guzu8k16x-004-agents -->
 
 > **Machine-Readable Section** - This YAML block is parsed by the semantic memory indexer for search optimization and decay calculations.
 

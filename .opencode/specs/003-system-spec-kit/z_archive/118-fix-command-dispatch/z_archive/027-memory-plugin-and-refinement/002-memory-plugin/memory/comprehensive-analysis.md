@@ -29,7 +29,7 @@ contextType: "general"
 
 ---
 
-<!-- ANCHOR:preflight-session-legacy-1770632216911-yditco-003-memory-and-spec-kit/z_archive/027-memory-plugin-and-refinement/002-memory-plugin -->
+<!-- ANCHOR:preflight-session-legacy-1770632216911-yditco-003-memory-and-spec-kit/z-archive/027-memory-plugin-and-refinement/002-memory-plugin -->
 ## PREFLIGHT BASELINE
 
 **Epistemic state captured at session start for learning delta calculation.**
@@ -49,7 +49,7 @@ contextType: "general"
 - Confidence: N/A
 - Uncertainty: N/A
 - Readiness: N/A
-<!-- /ANCHOR:preflight-session-legacy-1770632216911-yditco-003-memory-and-spec-kit/z_archive/027-memory-plugin-and-refinement/002-memory-plugin -->
+<!-- /ANCHOR:preflight-session-legacy-1770632216911-yditco-003-memory-and-spec-kit/z-archive/027-memory-plugin-and-refinement/002-memory-plugin -->
 
 ---
 
@@ -65,7 +65,7 @@ contextType: "general"
 
 ---
 
-<!-- ANCHOR:continue-session-session-legacy-1770632216911-yditco-003-memory-and-spec-kit/z_archive/027-memory-plugin-and-refinement/002-memory-plugin -->
+<!-- ANCHOR:continue-session-session-legacy-1770632216911-yditco-003-memory-and-spec-kit/z-archive/027-memory-plugin-and-refinement/002-memory-plugin -->
 <a id="continue-session"></a>
 
 ## CONTINUE SESSION
@@ -96,7 +96,7 @@ This session was migrated from an older format to v2.2. Review the OVERVIEW and 
 ```
 /spec_kit:resume 003-memory-and-spec-kit/z_archive/027-memory-plugin-and-refinement/002-memory-plugin
 ```
-<!-- /ANCHOR:continue-session-session-legacy-1770632216911-yditco-003-memory-and-spec-kit/z_archive/027-memory-plugin-and-refinement/002-memory-plugin -->
+<!-- /ANCHOR_EXAMPLE:continue-session-session-legacy-1770632216911-yditco-003-memory-and-spec-kit/z_archive/027-memory-plugin-and-refinement/002-memory-plugin -->
 
 ---
 
@@ -114,7 +114,7 @@ This session was migrated from an older format to v2.2. Review the OVERVIEW and 
 
 ---
 
-<!-- ANCHOR:summary-session-legacy-1770632216911-yditco-003-memory-and-spec-kit/z_archive/027-memory-plugin-and-refinement/002-memory-plugin -->
+<!-- ANCHOR_EXAMPLE:summary-session-legacy-1770632216911-yditco-003-memory-and-spec-kit/z_archive/027-memory-plugin-and-refinement/002-memory-plugin -->
 <a id="overview"></a>
 
 ## 1. OVERVIEW
@@ -221,11 +221,11 @@ These issues were identified but require changes to the MCP server:
 - MCP Server: `.opencode/skills/system-memory/mcp_server/`
 
 
-<!-- /ANCHOR:summary-session-legacy-1770632216911-yditco-003-memory-and-spec-kit/z_archive/027-memory-plugin-and-refinement/002-memory-plugin -->
+<!-- /ANCHOR_EXAMPLE:summary-session-legacy-1770632216911-yditco-003-memory-and-spec-kit/z_archive/027-memory-plugin-and-refinement/002-memory-plugin -->
 
 ---
 
-<!-- ANCHOR:decisions-session-legacy-1770632216911-yditco-003-memory-and-spec-kit/z_archive/027-memory-plugin-and-refinement/002-memory-plugin -->
+<!-- ANCHOR_EXAMPLE:decisions-session-legacy-1770632216911-yditco-003-memory-and-spec-kit/z_archive/027-memory-plugin-and-refinement/002-memory-plugin -->
 <a id="decisions"></a>
 
 ## 2. DECISIONS
@@ -234,9 +234,9 @@ This session did not involve significant architectural or technical decisions. T
 
 ---
 
-<!-- /ANCHOR:decisions-session-legacy-1770632216911-yditco-003-memory-and-spec-kit/z_archive/027-memory-plugin-and-refinement/002-memory-plugin -->
+<!-- /ANCHOR_EXAMPLE:decisions-session-legacy-1770632216911-yditco-003-memory-and-spec-kit/z_archive/027-memory-plugin-and-refinement/002-memory-plugin -->
 
-<!-- ANCHOR:session-history-session-legacy-1770632216911-yditco-003-memory-and-spec-kit/z_archive/027-memory-plugin-and-refinement/002-memory-plugin -->
+<!-- ANCHOR_EXAMPLE:session-history-session-legacy-1770632216911-yditco-003-memory-and-spec-kit/z_archive/027-memory-plugin-and-refinement/002-memory-plugin -->
 <a id="conversation"></a>
 
 ## 3. CONVERSATION
@@ -256,11 +256,11 @@ No conversation messages were captured. This is a legacy memory file migrated to
 
 ---
 
-<!-- /ANCHOR:session-history-session-legacy-1770632216911-yditco-003-memory-and-spec-kit/z_archive/027-memory-plugin-and-refinement/002-memory-plugin -->
+<!-- /ANCHOR_EXAMPLE:session-history-session-legacy-1770632216911-yditco-003-memory-and-spec-kit/z_archive/027-memory-plugin-and-refinement/002-memory-plugin -->
 
 ---
 
-<!-- ANCHOR:recovery-hints-session-legacy-1770632216911-yditco-003-memory-and-spec-kit/z_archive/027-memory-plugin-and-refinement/002-memory-plugin -->
+<!-- ANCHOR_EXAMPLE:recovery-hints-session-legacy-1770632216911-yditco-003-memory-and-spec-kit/z_archive/027-memory-plugin-and-refinement/002-memory-plugin -->
 <a id="recovery-hints"></a>
 
 ## RECOVERY HINTS
@@ -282,11 +282,11 @@ No conversation messages were captured. This is a legacy memory file migrated to
 3. **Review last session state** - Check PROJECT STATE SNAPSHOT
 4. **Validate pending tasks** - Review CONTINUE SESSION section
 5. **Resume with handover prompt** - Use continuation template above
-<!-- /ANCHOR:recovery-hints-session-legacy-1770632216911-yditco-003-memory-and-spec-kit/z_archive/027-memory-plugin-and-refinement/002-memory-plugin -->
+<!-- /ANCHOR_EXAMPLE:recovery-hints-session-legacy-1770632216911-yditco-003-memory-and-spec-kit/z_archive/027-memory-plugin-and-refinement/002-memory-plugin -->
 
 ---
 
-<!-- ANCHOR:postflight-session-legacy-1770632216911-yditco-003-memory-and-spec-kit/z_archive/027-memory-plugin-and-refinement/002-memory-plugin -->
+<!-- ANCHOR_EXAMPLE:postflight-session-legacy-1770632216911-yditco-003-memory-and-spec-kit/z_archive/027-memory-plugin-and-refinement/002-memory-plugin -->
 <a id="postflight-learning-delta"></a>
 
 ## POSTFLIGHT LEARNING DELTA
@@ -309,7 +309,7 @@ No conversation messages were captured. This is a legacy memory file migrated to
 
 **Session Learning Summary:**
 This session was migrated from an older format. Learning metrics were not captured in the original format.
-<!-- /ANCHOR:postflight-session-legacy-1770632216911-yditco-003-memory-and-spec-kit/z_archive/027-memory-plugin-and-refinement/002-memory-plugin -->
+<!-- /ANCHOR_EXAMPLE:postflight-session-legacy-1770632216911-yditco-003-memory-and-spec-kit/z_archive/027-memory-plugin-and-refinement/002-memory-plugin -->
 
 ---
 
@@ -317,7 +317,7 @@ This session was migrated from an older format. Learning metrics were not captur
 
 ## MEMORY METADATA
 
-<!-- ANCHOR:metadata-session-legacy-1770632216911-yditco-003-memory-and-spec-kit/z_archive/027-memory-plugin-and-refinement/002-memory-plugin -->
+<!-- ANCHOR_EXAMPLE:metadata-session-legacy-1770632216911-yditco-003-memory-and-spec-kit/z_archive/027-memory-plugin-and-refinement/002-memory-plugin -->
 
 > **Machine-Readable Section** - This YAML block is parsed by the semantic memory indexer for search optimization and decay calculations.
 
@@ -394,7 +394,7 @@ embedding_version: "1.0"
 chunk_count: 1
 ```
 
-<!-- /ANCHOR:metadata-session-legacy-1770632216911-yditco-003-memory-and-spec-kit/z_archive/027-memory-plugin-and-refinement/002-memory-plugin -->
+<!-- /ANCHOR:metadata-session-legacy-1770632216911-yditco-003-memory-and-spec-kit/z-archive/027-memory-plugin-and-refinement/002-memory-plugin -->
 
 ---
 

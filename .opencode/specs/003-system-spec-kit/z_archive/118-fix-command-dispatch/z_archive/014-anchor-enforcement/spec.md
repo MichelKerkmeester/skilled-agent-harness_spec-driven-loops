@@ -19,17 +19,17 @@ Enforce correct anchor format throughout memory system to enable section-specifi
 ## Problem Statement
 
 Memory files were using inconsistent anchor formats:
-- Some used `<!-- anchor: id -->` (lowercase, no closing tag)
-- MCP server expected `<!-- ANCHOR:id -->` (UPPERCASE with closing tag)
+- Some used `<!-- ANCHOR_EXAMPLE: id -->` (lowercase, no closing tag)
+- MCP server expected `<!-- ANCHOR_EXAMPLE:id -->` (UPPERCASE with closing tag)
 - Result: `memory_load({ anchorId: "..." })` always failed silently
 
 ## Solution
 
 1. **Standardize on MCP server format:**
    ```html
-   <!-- ANCHOR:anchor-id -->
+   <!-- ANCHOR_EXAMPLE:anchor-id -->
    Content...
-   <!-- /ANCHOR:anchor-id -->
+   <!-- /ANCHOR_EXAMPLE:anchor-id -->
    ```
 
 2. **Enforce through documentation:**
