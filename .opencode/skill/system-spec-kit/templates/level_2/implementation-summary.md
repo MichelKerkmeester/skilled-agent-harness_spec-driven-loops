@@ -1,11 +1,11 @@
 ---
 title: "Implementation Summary [template:level_2/implementation-summary.md]"
-description: "Open with a hook: what changed and why it matters."
+description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
 trigger_phrases:
   - "implementation"
   - "summary"
   - "template"
-  - "implementation summary"
+  - "impl summary core"
 importance_tier: "normal"
 contextType: "general"
 ---
@@ -24,7 +24,7 @@ contextType: "general"
 |-------|-------|
 | **Spec Folder** | [###-feature-name] |
 | **Completed** | [YYYY-MM-DD] |
-| **Level** | 2 |
+| **Level** | [1/2/3/3+] |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -33,14 +33,23 @@ contextType: "general"
 ## What Was Built
 
 <!-- Voice guide:
-     Open with a hook: what changed and why it matters.
-     Use ### subsections for distinct features if more than one.
-     "You can now inspect the trace" not "Trace inspection was implemented."
+     Open with a hook: what changed and why it matters. One paragraph, impact first.
+     Then use ### subsections per feature. Each subsection: what it does + why it exists.
+     Write "You can now inspect the trace" not "Trace inspection was implemented."
+     NO "Files Changed" table for Level 3/3+. The narrative IS the summary.
+     For Level 1-2, a Files Changed table after the narrative is fine.
      Reference: specs/003-system-spec-kit/136-mcp-working-memory-hybrid-rag/implementation-summary.md -->
 
-[Opening hook: 2-3 sentences on what changed and why it matters.]
+[Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
+
+### [Feature Name]
+
+[What this feature does and why it exists. 1-2 paragraphs. Use direct address.
+Explain what the user gains, not what files you touched.]
 
 ### Files Changed
+
+<!-- Include for Level 1-2. Omit for Level 3/3+ where the narrative carries. -->
 
 | File | Action | Purpose |
 |------|--------|---------|
@@ -52,16 +61,22 @@ contextType: "general"
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-<!-- Voice guide: What gave you confidence this works?
-     "All tests pass with zero regressions" not "Testing was performed." -->
+<!-- Voice guide:
+     Tell the delivery story. What gave you confidence this works?
+     "All features shipped behind feature flags" not "Feature flags were used."
+     For Level 1: a single sentence is enough.
+     For Level 3+: describe stages (testing, rollout, verification). -->
 
-[How was this tested, verified and shipped?]
+[How was this tested, verified and shipped? What was the rollout approach?]
 <!-- /ANCHOR:how-delivered -->
 
 ---
 
 <!-- ANCHOR:decisions -->
 ## Key Decisions
+
+<!-- Voice guide: "Why" column should read like you're explaining to a colleague.
+     "Chose X because Y" not "X was selected due to Y." -->
 
 | Decision | Why |
 |----------|-----|
@@ -73,7 +88,8 @@ contextType: "general"
 <!-- ANCHOR:verification -->
 ## Verification
 
-<!-- Voice guide: Be honest. Show failures alongside passes. -->
+<!-- Voice guide: Be honest. Show failures alongside passes.
+     "FAIL, TS2349 error in benchmarks.ts" not "Minor issues detected." -->
 
 | Check | Result |
 |-------|--------|
@@ -85,15 +101,18 @@ contextType: "general"
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-<!-- Voice guide: Be specific and actionable. Number them for larger lists. -->
+<!-- Voice guide: Number them. Be specific and actionable.
+     "Adaptive fusion is enabled by default. Set SPECKIT_ADAPTIVE_FUSION=false to disable."
+     not "Some features may require configuration."
+     Write "None identified." if nothing applies. -->
 
-[Specific limitations with workarounds, or "None identified."]
+1. **[Limitation]** [Specific detail with workaround if one exists.]
 <!-- /ANCHOR:limitations -->
 
 ---
 
 <!--
-Level 2: Full post-implementation summary with delivery narrative.
+CORE TEMPLATE: Post-implementation documentation, created AFTER work completes.
 Write in human voice: active, direct, specific. No em dashes, no hedging, no AI filler.
 HVR rules: .opencode/skill/sk-documentation/references/hvr_rules.md
 -->

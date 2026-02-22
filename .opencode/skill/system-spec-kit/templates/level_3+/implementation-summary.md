@@ -1,11 +1,11 @@
 ---
 title: "Implementation Summary [template:level_3+/implementation-summary.md]"
-description: "Open with a hook paragraph: what changed and why it matters. Impact first."
+description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
 trigger_phrases:
   - "implementation"
   - "summary"
   - "template"
-  - "implementation summary"
+  - "impl summary core"
 importance_tier: "normal"
 contextType: "general"
 ---
@@ -24,7 +24,7 @@ contextType: "general"
 |-------|-------|
 | **Spec Folder** | [###-feature-name] |
 | **Completed** | [YYYY-MM-DD] |
-| **Level** | 3+ |
+| **Level** | [1/2/3/3+] |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -33,18 +33,27 @@ contextType: "general"
 ## What Was Built
 
 <!-- Voice guide:
-     Open with a hook paragraph: what changed and why it matters. Impact first.
-     Then ### subsections per feature. Each: what it does + why it exists.
+     Open with a hook: what changed and why it matters. One paragraph, impact first.
+     Then use ### subsections per feature. Each subsection: what it does + why it exists.
      Write "You can now inspect the trace" not "Trace inspection was implemented."
-     The narrative IS the summary. No "Files Changed" table needed at this level.
+     NO "Files Changed" table for Level 3/3+. The narrative IS the summary.
+     For Level 1-2, a Files Changed table after the narrative is fine.
      Reference: specs/003-system-spec-kit/136-mcp-working-memory-hybrid-rag/implementation-summary.md -->
 
-[Opening hook: 2-4 sentences on what changed and why it matters. Lead with impact.]
+[Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
 
 ### [Feature Name]
 
-[What this feature does and why it exists. 1-2 paragraphs with direct address.
+[What this feature does and why it exists. 1-2 paragraphs. Use direct address.
 Explain what the user gains, not what files you touched.]
+
+### Files Changed
+
+<!-- Include for Level 1-2. Omit for Level 3/3+ where the narrative carries. -->
+
+| File | Action | Purpose |
+|------|--------|---------|
+| [path] | [Created/Modified/Deleted] | [What this change accomplishes] |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -53,12 +62,12 @@ Explain what the user gains, not what files you touched.]
 ## How It Was Delivered
 
 <!-- Voice guide:
-     Tell the delivery story in stages: testing, verification, rollout.
+     Tell the delivery story. What gave you confidence this works?
      "All features shipped behind feature flags" not "Feature flags were used."
-     Include specific numbers: pass rates, failure counts, gate decisions. -->
+     For Level 1: a single sentence is enough.
+     For Level 3+: describe stages (testing, rollout, verification). -->
 
-[How was this tested, verified and shipped? What was the rollout approach?
-What checks gave you confidence this works correctly?]
+[How was this tested, verified and shipped? What was the rollout approach?]
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -66,7 +75,7 @@ What checks gave you confidence this works correctly?]
 <!-- ANCHOR:decisions -->
 ## Key Decisions
 
-<!-- Voice guide: "Why" reads like you're explaining to a colleague.
+<!-- Voice guide: "Why" column should read like you're explaining to a colleague.
      "Chose X because Y" not "X was selected due to Y." -->
 
 | Decision | Why |
@@ -92,9 +101,10 @@ What checks gave you confidence this works correctly?]
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-<!-- Voice guide: Number them. Specific and actionable.
+<!-- Voice guide: Number them. Be specific and actionable.
      "Adaptive fusion is enabled by default. Set SPECKIT_ADAPTIVE_FUSION=false to disable."
-     not "Some features may require configuration." -->
+     not "Some features may require configuration."
+     Write "None identified." if nothing applies. -->
 
 1. **[Limitation]** [Specific detail with workaround if one exists.]
 <!-- /ANCHOR:limitations -->
@@ -102,7 +112,7 @@ What checks gave you confidence this works correctly?]
 ---
 
 <!--
-Level 3+: Narrative post-implementation summary. Feature subsections replace file tables.
+CORE TEMPLATE: Post-implementation documentation, created AFTER work completes.
 Write in human voice: active, direct, specific. No em dashes, no hedging, no AI filler.
 HVR rules: .opencode/skill/sk-documentation/references/hvr_rules.md
 -->

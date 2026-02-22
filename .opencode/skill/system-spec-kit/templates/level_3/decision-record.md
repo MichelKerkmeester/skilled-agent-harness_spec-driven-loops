@@ -1,6 +1,6 @@
 ---
 title: "Decision Record: [NAME] [template:level_3/decision-record.md]"
-description: "not \"A decision was required regarding the selection of an appropriate approach.\""
+description: "not \"A decision was required regarding the selection of an appropriate approach.\" -->"
 trigger_phrases:
   - "decision"
   - "record"
@@ -21,7 +21,6 @@ contextType: "general"
 <!-- ANCHOR:adr-001 -->
 ## ADR-001: [Decision Title]
 
-<!-- ANCHOR:adr-001-context -->
 ### Metadata
 
 | Field | Value |
@@ -32,18 +31,16 @@ contextType: "general"
 
 ---
 
+<!-- ANCHOR:adr-001-context -->
 ### Context
 
 <!-- Voice guide: State the problem directly. "We needed to choose between X and Y because Z"
-     not "A decision was required regarding the selection of an appropriate approach."
-     Write 2-4 sentences that a new team member could understand without prior context. -->
+     not "A decision was required regarding the selection of an appropriate approach." -->
 
 [What problem or situation required this decision? What was at stake?
-Write in direct, active voice. State the forces that made this decision necessary.]
+Write in direct, active voice.]
 
 ### Constraints
-
-<!-- Voice guide: Be specific. "API rate limit of 100 req/s" not "Performance considerations." -->
 
 - [Technical constraint with specifics]
 - [Business constraint with specifics]
@@ -53,9 +50,6 @@ Write in direct, active voice. State the forces that made this decision necessar
 
 <!-- ANCHOR:adr-001-decision -->
 ### Decision
-
-<!-- Voice guide: State the decision with certainty. "We chose X" not "It was decided that X would be selected."
-     The details should explain how it works, not justify why (that comes in Alternatives). -->
 
 **We chose**: [One-sentence description of the decision, in active voice]
 
@@ -72,10 +66,6 @@ Write in direct, active voice. State the forces that made this decision necessar
 | **[Chosen]** | [Advantages] | [Disadvantages] | [X/10] |
 | [Alternative A] | [Advantages] | [Disadvantages] | [Y/10] |
 
-<!-- Voice guide: Write the rationale like you're convincing a skeptical colleague.
-     "X scored highest because it solves our rate-limit constraint without adding latency"
-     not "X was determined to be the optimal solution based on evaluation criteria." -->
-
 **Why this one**: [Rationale in 1-2 sentences, direct and specific]
 <!-- /ANCHOR:adr-001-alternatives -->
 
@@ -83,9 +73,6 @@ Write in direct, active voice. State the forces that made this decision necessar
 
 <!-- ANCHOR:adr-001-consequences -->
 ### Consequences
-
-<!-- Voice guide: Be honest about trade-offs. Every decision has costs.
-     "This adds ~50ms latency to cold starts" not "There may be minor performance implications." -->
 
 **What improves**:
 - [Specific benefit with measurable impact where possible]
@@ -133,8 +120,7 @@ Write in direct, active voice. State the forces that made this decision necessar
 ---
 
 <!--
-Level 3 Decision Record: One ADR per major decision.
-Write in human voice: active, direct, specific. No em dashes, no hedging, no AI filler.
-State decisions with certainty. Be honest about trade-offs.
+Level 3 Decision Record (Addendum): One ADR per major decision.
+Write in human voice: active, direct, specific. No em dashes, no hedging.
 HVR rules: .opencode/skill/sk-documentation/references/hvr_rules.md
 -->

@@ -6,6 +6,7 @@ trigger_phrases:
   - "plan"
   - "name"
   - "template"
+  - "plan core"
 importance_tier: "normal"
 contextType: "general"
 ---
@@ -115,6 +116,9 @@ contextType: "general"
 - **Trigger**: [Conditions requiring rollback]
 - **Procedure**: [How to revert changes]
 <!-- /ANCHOR:rollback -->
+
+---
+
 
 ---
 

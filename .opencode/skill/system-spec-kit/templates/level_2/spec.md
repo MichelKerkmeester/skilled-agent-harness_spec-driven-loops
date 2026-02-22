@@ -6,7 +6,7 @@ trigger_phrases:
   - "specification"
   - "name"
   - "template"
-  - "spec"
+  - "spec core"
 importance_tier: "normal"
 contextType: "general"
 ---
@@ -102,6 +102,10 @@ contextType: "general"
 
 ---
 
+<!-- ANCHOR:questions -->
+
+---
+
 <!-- ANCHOR:nfr -->
 ## L2: NON-FUNCTIONAL REQUIREMENTS
 
@@ -153,7 +157,6 @@ contextType: "general"
 
 ---
 
-<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - [Question 1 requiring clarification]

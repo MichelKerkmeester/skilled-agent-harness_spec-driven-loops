@@ -13,8 +13,6 @@ trigger_phrases:
 importance_tier: "important"
 contextType: "decision"
 spec: "089"
-
-
 ---
 # Decision Record: system-spec-kit Reimagined Refinement
 

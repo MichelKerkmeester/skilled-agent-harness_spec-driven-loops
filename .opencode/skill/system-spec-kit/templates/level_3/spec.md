@@ -1,12 +1,12 @@
 ---
 title: "Feature Specification: [NAME] [template:level_3/spec.md]"
-description: "Level 3 (+Arch) is appropriate when"
+description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
 trigger_phrases:
   - "feature"
   - "specification"
   - "name"
   - "template"
-  - "spec"
+  - "spec core"
 importance_tier: "normal"
 contextType: "general"
 ---
@@ -34,7 +34,6 @@ DO NOT use Level 3 if:
 
 ---
 
-<!-- ANCHOR:executive-summary -->
 ## EXECUTIVE SUMMARY
 
 [2-3 sentence high-level overview for stakeholders who need quick context]
@@ -42,11 +41,9 @@ DO NOT use Level 3 if:
 **Key Decisions**: [Major decision 1], [Major decision 2]
 
 **Critical Dependencies**: [Blocking dependency]
-<!-- /ANCHOR:executive-summary -->
 
 ---
 
-<!-- ANCHOR:metadata -->
 ## 1. METADATA
 
 | Field | Value |
@@ -131,7 +128,8 @@ DO NOT use Level 3 if:
 
 ---
 
-<!-- ANCHOR:nfr -->
+<!-- ANCHOR:questions -->
+
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -142,11 +140,9 @@ DO NOT use Level 3 if:
 
 ### Reliability
 - **NFR-R01**: [Uptime target - e.g., 99.9%]
-<!-- /ANCHOR:nfr -->
 
 ---
 
-<!-- ANCHOR:edge-cases -->
 ## 8. EDGE CASES
 
 ### Data Boundaries
@@ -156,11 +152,9 @@ DO NOT use Level 3 if:
 ### Error Scenarios
 - External service failure: [Fallback behavior]
 - Network timeout: [Retry strategy]
-<!-- /ANCHOR:edge-cases -->
 
 ---
 
-<!-- ANCHOR:complexity -->
 ## 9. COMPLEXITY ASSESSMENT
 
 | Dimension | Score | Triggers |
@@ -171,21 +165,17 @@ DO NOT use Level 3 if:
 | Multi-Agent | [/15] | [Workstreams: X] |
 | Coordination | [/15] | [Dependencies: X] |
 | **Total** | **[/100]** | **Level 3** |
-<!-- /ANCHOR:complexity -->
 
 ---
 
-<!-- ANCHOR:risk-matrix -->
 ## 10. RISK MATRIX
 
 | Risk ID | Description | Impact | Likelihood | Mitigation |
 |---------|-------------|--------|------------|------------|
 | R-001 | [Risk] | [H/M/L] | [H/M/L] | [Strategy] |
-<!-- /ANCHOR:risk-matrix -->
 
 ---
 
-<!-- ANCHOR:user-stories -->
 ## 11. USER STORIES
 
 ### US-001: [Title] (Priority: P0)
@@ -203,11 +193,9 @@ DO NOT use Level 3 if:
 
 **Acceptance Criteria**:
 1. Given [context], When [action], Then [outcome]
-<!-- /ANCHOR:user-stories -->
 
 ---
 
-<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - [Question 1 requiring clarification]

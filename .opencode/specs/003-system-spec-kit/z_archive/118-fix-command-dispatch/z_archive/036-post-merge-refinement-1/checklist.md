@@ -10,8 +10,6 @@ importance_tier: "normal"
 contextType: "implementation"
 id: 036-post-merge-refinement
 level: 2
-
-
 ---
 # Completion Checklist
 

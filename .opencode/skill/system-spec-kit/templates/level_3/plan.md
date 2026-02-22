@@ -6,6 +6,7 @@ trigger_phrases:
   - "plan"
   - "name"
   - "template"
+  - "plan core"
 importance_tier: "normal"
 contextType: "general"
 ---

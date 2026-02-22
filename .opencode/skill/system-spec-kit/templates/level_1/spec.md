@@ -6,7 +6,7 @@ trigger_phrases:
   - "specification"
   - "name"
   - "template"
-  - "spec"
+  - "spec core"
 importance_tier: "normal"
 contextType: "general"
 ---

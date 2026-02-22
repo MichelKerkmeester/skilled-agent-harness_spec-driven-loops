@@ -117,6 +117,8 @@ contextType: "general"
 
 # {{MEMORY_TITLE}}
 
+## SESSION SUMMARY
+
 | **Meta Data** | **Value** |
 |:--------------|:----------|
 | Session Date | {{DATE}} |

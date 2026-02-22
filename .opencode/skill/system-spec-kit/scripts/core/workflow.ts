@@ -148,10 +148,10 @@ function truncateMemoryTitle(title: string, maxLength: number = 110): string {
   return `${truncated}...`;
 }
 
-function buildMemoryTitle(implementationTask: string, summary: string, specFolderName: string, date: string): string {
+function buildMemoryTitle(implementationTask: string, specFolderName: string, date: string): string {
   const genericTitles = new Set(['development session', 'session summary', 'session context']);
 
-  const candidateInputs = [implementationTask, summary.split('\n')[0] || ''];
+  const candidateInputs = [implementationTask];
   for (const input of candidateInputs) {
     const normalized = normalizeMemoryTitleCandidate(input || '');
     if (normalized.length < 8) {
@@ -389,7 +389,7 @@ async function runWorkflow(options: WorkflowOptions = {}): Promise<WorkflowResul
   const keyTopicsInitial: string[] = extractKeyTopics(sessionData.SUMMARY, decisions.DECISIONS, specFolderName);
   const keyTopics: string[] = ensureMinSemanticTopics(keyTopicsInitial, enhancedFiles, specFolderName);
   const keyFiles = enhancedFiles.map((f) => ({ FILE_PATH: f.FILE_PATH }));
-  const memoryTitle = buildMemoryTitle(implSummary.task, sessionData.SUMMARY || '', specFolderName, sessionData.DATE);
+  const memoryTitle = buildMemoryTitle(implSummary.task, specFolderName, sessionData.DATE);
   const memoryDashboardTitle = buildMemoryDashboardTitle(memoryTitle, specFolderName, ctxFilename);
 
   // Pre-extract trigger phrases for template embedding AND later indexing

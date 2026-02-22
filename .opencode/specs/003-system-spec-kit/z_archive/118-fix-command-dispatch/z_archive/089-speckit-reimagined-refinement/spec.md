@@ -10,13 +10,11 @@ trigger_phrases:
 importance_tier: "important"
 contextType: "decision"
 complexity: "High (85+)"
-
 created: "2026-02-06"
 estimated-loc: ">500"
 level: "3+"
 scope: "system-spec-kit ecosystem audit and remediation"
 status: "Active"
-
 ---
 # Spec 089: system-spec-kit Reimagined Refinement
 

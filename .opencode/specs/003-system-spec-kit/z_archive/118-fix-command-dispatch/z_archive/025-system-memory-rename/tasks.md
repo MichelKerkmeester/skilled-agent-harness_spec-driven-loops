@@ -1,6 +1,6 @@
 ---
 title: "Tasks: Rename workflows-memory → system-memory [025-system-memory-rename/tasks]"
-description: "node .opencode/skills/system-memory/scripts/generate-context.js \\\\"
+description: "node .opencode/skills/system-memory/scripts/generate-context.js \\\\\\\\"
 trigger_phrases:
   - "tasks"
   - "rename"

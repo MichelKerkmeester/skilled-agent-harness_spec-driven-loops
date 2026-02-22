@@ -149,7 +149,11 @@ function stripWrappingQuotes(value: string): string {
     (trimmed.startsWith('"') && trimmed.endsWith('"')) ||
     (trimmed.startsWith("'") && trimmed.endsWith("'"))
   ) {
-    return trimmed.slice(1, -1).replace(/\\"/g, '"').replace(/\\'/g, "'");
+    return trimmed
+      .slice(1, -1)
+      .replace(/\\"/g, '"')
+      .replace(/\\'/g, "'")
+      .replace(/\\\\/g, '\\');
   }
   return trimmed;
 }
@@ -392,6 +396,13 @@ export function detectFrontmatter(content: string): FrontmatterDetection {
 export function parseFrontmatterSections(rawBlock: string): FrontmatterSection[] {
   const lines = rawBlock.replace(/\r/g, '').split('\n');
   const sections: FrontmatterSection[] = [];
+  const trimTrailingBlankLines = (section: FrontmatterSection): FrontmatterSection => {
+    const next = { ...section, lines: [...section.lines] };
+    while (next.lines.length > 1 && next.lines[next.lines.length - 1].trim() === '') {
+      next.lines.pop();
+    }
+    return next;
+  };
 
   let current: FrontmatterSection | null = null;
 
@@ -399,7 +410,7 @@ export function parseFrontmatterSections(rawBlock: string): FrontmatterSection[]
     const topLevel = line.match(/^([A-Za-z_][A-Za-z0-9_-]*)\s*:\s*(.*)$/);
     if (topLevel) {
       if (current) {
-        sections.push(current);
+        sections.push(trimTrailingBlankLines(current));
       }
       current = {
         key: topLevel[1],
@@ -414,7 +425,7 @@ export function parseFrontmatterSections(rawBlock: string): FrontmatterSection[]
   }
 
   if (current) {
-    sections.push(current);
+    sections.push(trimTrailingBlankLines(current));
   }
 
   return sections;

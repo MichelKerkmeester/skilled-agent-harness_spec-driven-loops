@@ -12,10 +12,8 @@ trigger_phrases:
 importance_tier: "important"
 contextType: "decision"
 estimated-effort: "3-5 sessions"
-
 phases: 4
 spec: "089"
-
 ---
 # Plan: system-spec-kit Reimagined Refinement
 

@@ -11,8 +11,6 @@ importance_tier: "important"
 contextType: "decision"
 id: 036-post-merge-refinement
 phase: Planning
-
-
 ---
 # Implementation Plan
 

@@ -248,6 +248,82 @@ strip_frontmatter() {
     echo "$stripped"
 }
 
+# normalize_template_title_suffix()
+# Rewrite frontmatter title suffix to composed output path:
+#   "... [template:core/spec-core.md]" -> "... [template:level_2/spec.md]"
+# Ensures composed templates remain dashboard-disambiguated and idempotent
+# with the frontmatter migration CLI.
+normalize_template_title_suffix() {
+    local filepath="$1"
+    local content="$2"
+
+    # Only normalize files written under templates/
+    if [[ "${filepath#"$TEMPLATES_DIR"/}" == "$filepath" ]]; then
+        echo "$content"
+        return
+    fi
+
+    local rel_path="${filepath#"$TEMPLATES_DIR"/}"
+    local suffix="[template:${rel_path}]"
+
+    if [[ "$(echo "$content" | head -n 1)" != "---" ]]; then
+        echo "$content"
+        return
+    fi
+
+    echo "$content" | awk -v suffix="$suffix" '
+        BEGIN {
+            in_frontmatter = 0;
+            title_done = 0;
+        }
+
+        NR == 1 && $0 ~ /^---[[:space:]]*$/ {
+            in_frontmatter = 1;
+            print;
+            next;
+        }
+
+        in_frontmatter == 1 && $0 ~ /^---[[:space:]]*$/ {
+            in_frontmatter = 0;
+            print;
+            next;
+        }
+
+        {
+            if (in_frontmatter == 1 && title_done == 0 && $0 ~ /^[[:space:]]*title:[[:space:]]*/) {
+                line = $0;
+                sub(/^[[:space:]]*title:[[:space:]]*/, "", line);
+                sub(/\r$/, "", line);
+                sub(/^[[:space:]]+/, "", line);
+                sub(/[[:space:]]+$/, "", line);
+
+                if (substr(line, 1, 1) == "\"" && substr(line, length(line), 1) == "\"") {
+                    line = substr(line, 2, length(line) - 2);
+                }
+
+                gsub(/\\"/, "\"", line);
+                gsub(/\\\\/, "\\", line);
+                gsub(/ \[template:[^]]+\]/, "", line);
+                sub(/[[:space:]]+$/, "", line);
+
+                if (line == "") {
+                    line = "Template";
+                }
+
+                line = line " " suffix;
+                gsub(/\\/, "\\\\", line);
+                gsub(/"/, "\\\"", line);
+
+                print "title: \"" line "\"";
+                title_done = 1;
+                next;
+            }
+
+            print;
+        }
+    '
+}
+
 # extract_frontmatter()
 # Return leading YAML frontmatter block (with delimiters) if present.
 extract_frontmatter() {
@@ -629,6 +705,8 @@ write_file() {
     local content="$2"
     local filename
     filename=$(basename "$filepath")
+
+    content=$(normalize_template_title_suffix "$filepath" "$content")
 
     if [[ "$DRY_RUN" == true ]]; then
         log DEBUG "Would write: $filepath"

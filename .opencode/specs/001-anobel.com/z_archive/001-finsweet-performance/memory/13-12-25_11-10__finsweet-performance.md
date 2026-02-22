@@ -12,7 +12,6 @@ importance_tier: "normal"
 contextType: "implementation"
 date: 2025-12-13
 spec_folder: 006-code-refinement/001-finsweet-performance
-
 ---
 # IMPROVED CONTEXT TEMPLATE v2.0
 

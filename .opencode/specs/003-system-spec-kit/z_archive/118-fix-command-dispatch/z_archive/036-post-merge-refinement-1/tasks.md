@@ -10,7 +10,6 @@ trigger_phrases:
 importance_tier: "normal"
 contextType: "implementation"
 id: 036-post-merge-refinement
-
 ---
 # Tasks
 

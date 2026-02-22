@@ -11,9 +11,7 @@ importance_tier: "normal"
 contextType: "implementation"
 created: 2025-12-13
 level: 2
-
 status: complete
-
 ---
 # Tasks: SpecKit Skill Refinement
 

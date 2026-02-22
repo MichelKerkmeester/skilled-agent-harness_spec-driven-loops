@@ -5,6 +5,7 @@ trigger_phrases:
   - "tasks"
   - "name"
   - "template"
+  - "tasks core"
 importance_tier: "normal"
 contextType: "general"
 ---

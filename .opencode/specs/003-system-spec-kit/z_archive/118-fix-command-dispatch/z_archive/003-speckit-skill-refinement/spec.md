@@ -10,12 +10,10 @@ trigger_phrases:
 importance_tier: "important"
 contextType: "decision"
 complexity: medium
-
 created: 2025-12-13
 estimated_loc: 400
 level: 2
 status: active
-
 ---
 # Spec: SpecKit Skill Refinement
 
