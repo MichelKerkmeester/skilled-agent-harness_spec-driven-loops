@@ -38,6 +38,7 @@ The `memory/` directory contains the CLI entrypoints for the Spec Kit memory pip
 - `validate-memory-quality.ts` - validates memory entry quality against scoring thresholds
 - `reindex-embeddings.ts` - force full embedding reindex across memory/spec documents
 - `ast-parser.ts` - parse markdown into heading/code/table-aware sections
+- `backfill-frontmatter.ts` - bulk frontmatter normalization for templates, spec docs, and memory files
 
 Runtime files are compiled into `../dist/memory/`.
 
@@ -69,6 +70,7 @@ node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js /tm
 node .opencode/skill/system-spec-kit/scripts/dist/memory/rank-memories.js /tmp/memories.json
 node .opencode/skill/system-spec-kit/scripts/dist/memory/cleanup-orphaned-vectors.js
 node .opencode/skill/system-spec-kit/scripts/dist/memory/reindex-embeddings.js
+node .opencode/skill/system-spec-kit/scripts/dist/memory/backfill-frontmatter.js --dry-run --include-archive
 ```
 
 

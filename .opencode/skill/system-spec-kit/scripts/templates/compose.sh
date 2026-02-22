@@ -210,6 +210,71 @@ strip_addendum_markers() {
     echo "$content" | grep -v "<!-- SPECKIT_ADDENDUM:" | grep -v "<!-- Append after" | grep -v "<!-- Insert after"
 }
 
+# strip_frontmatter()
+# Remove leading YAML frontmatter block from content if present.
+strip_frontmatter() {
+    local content="$1"
+
+    if [[ "$(echo "$content" | head -n 1)" != "---" ]]; then
+        echo "$content"
+        return
+    fi
+
+    local stripped
+    stripped=$(echo "$content" | awk '
+        BEGIN { in_frontmatter=0; seen_start=0 }
+        NR==1 && $0 ~ /^---[[:space:]]*$/ {
+            in_frontmatter=1
+            seen_start=1
+            next
+        }
+        in_frontmatter==1 && $0 ~ /^---[[:space:]]*$/ {
+            in_frontmatter=0
+            next
+        }
+        in_frontmatter==1 {
+            next
+        }
+        {
+            print
+        }
+    ')
+
+    if [[ -z "$stripped" ]]; then
+        echo "$content"
+        return
+    fi
+
+    echo "$stripped"
+}
+
+# extract_frontmatter()
+# Return leading YAML frontmatter block (with delimiters) if present.
+extract_frontmatter() {
+    local content="$1"
+
+    if [[ "$(echo "$content" | head -n 1)" != "---" ]]; then
+        echo ""
+        return
+    fi
+
+    echo "$content" | awk '
+        BEGIN { in_frontmatter=0; started=0 }
+        NR==1 && $0 ~ /^---[[:space:]]*$/ {
+            in_frontmatter=1
+            started=1
+            print
+            next
+        }
+        in_frontmatter==1 {
+            print
+            if ($0 ~ /^---[[:space:]]*$/) {
+                exit
+            }
+        }
+    '
+}
+
 # compose_spec()
 # Compose spec.md from core + addendums based on level
 # Args: $1=level (1, 2, 3, 3+)
@@ -232,6 +297,7 @@ compose_spec() {
             # Level 2: Core + L2 addendum (NFRs, Edge Cases, Complexity)
             local l2_content
             l2_content=$(<"$ADDENDUM_L2/spec-level2.md")
+            l2_content=$(strip_frontmatter "$l2_content")
             l2_content=$(strip_addendum_markers "$l2_content")
 
             # Insert L2 content after Section 6 (Risks & Dependencies)
@@ -249,20 +315,26 @@ ${after_marker}"
             ;;
         3)
             # Level 3: Dynamic composition from core + L3 fragments
-            local l3_guidance l3_prefix l3_suffix core_body open_q
+            local l3_guidance l3_prefix l3_suffix core_frontmatter core_without_frontmatter core_body open_q
             l3_guidance=$(<"$ADDENDUM_L3/spec-level3-guidance.md")
             l3_prefix=$(<"$ADDENDUM_L3/spec-level3-prefix.md")
             l3_suffix=$(<"$ADDENDUM_L3/spec-level3-suffix.md")
+            l3_guidance=$(strip_frontmatter "$l3_guidance")
+            l3_prefix=$(strip_frontmatter "$l3_prefix")
+            l3_suffix=$(strip_frontmatter "$l3_suffix")
+            core_frontmatter=$(extract_frontmatter "$core_content")
+            core_without_frontmatter=$(strip_frontmatter "$core_content")
 
             # Extract core body: sections 1-6 (between first "## 1." and "## 7.")
-            core_body=$(sed -n '/^## 1\. /,/^## 7\. /{ /^## 7\. /d; p; }' "$CORE_DIR/spec-core.md")
+            core_body=$(echo "$core_without_frontmatter" | sed -n '/^## 1\. /,/^## 7\. /{ /^## 7\. /d; p; }')
 
             # Extract open questions content (section heading + items, without trailing ---)
-            open_q=$(sed -n '/^## 7\. OPEN QUESTIONS/,/^---$/{ /^---$/d; p; }' "$CORE_DIR/spec-core.md")
+            open_q=$(echo "$core_without_frontmatter" | sed -n '/^## 7\. OPEN QUESTIONS/,/^---$/{ /^---$/d; p; }')
             # Renumber to section 12
             open_q=$(echo "$open_q" | sed 's/^## 7\. OPEN QUESTIONS/## 12. OPEN QUESTIONS/')
 
-            output="# Feature Specification: [NAME]
+            output="${core_frontmatter}
+# Feature Specification: [NAME]
 
 <!-- SPECKIT_LEVEL: 3 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify + level3-arch | v2.2 -->
@@ -303,20 +375,26 @@ LEVEL 3 SPEC (~165 lines)
             ;;
         "3+")
             # Level 3+: Dynamic composition from core + L3 prefix + L3+ fragments
-            local l3plus_guidance l3_prefix l3plus_suffix core_body open_q
+            local l3plus_guidance l3_prefix l3plus_suffix core_frontmatter core_without_frontmatter core_body open_q
             l3plus_guidance=$(<"$ADDENDUM_L3PLUS/spec-level3plus-guidance.md")
             l3_prefix=$(<"$ADDENDUM_L3/spec-level3-prefix.md")
             l3plus_suffix=$(<"$ADDENDUM_L3PLUS/spec-level3plus-suffix.md")
+            l3plus_guidance=$(strip_frontmatter "$l3plus_guidance")
+            l3_prefix=$(strip_frontmatter "$l3_prefix")
+            l3plus_suffix=$(strip_frontmatter "$l3plus_suffix")
+            core_frontmatter=$(extract_frontmatter "$core_content")
+            core_without_frontmatter=$(strip_frontmatter "$core_content")
 
             # Extract core body: sections 1-6
-            core_body=$(sed -n '/^## 1\. /,/^## 7\. /{ /^## 7\. /d; p; }' "$CORE_DIR/spec-core.md")
+            core_body=$(echo "$core_without_frontmatter" | sed -n '/^## 1\. /,/^## 7\. /{ /^## 7\. /d; p; }')
 
             # Open questions as section 16
             open_q="## 16. OPEN QUESTIONS
 
 - [Question 1 requiring clarification]"
 
-            output="<!-- SPECKIT_LEVEL: 3+ -->
+            output="${core_frontmatter}
+<!-- SPECKIT_LEVEL: 3+ -->
 # Feature Specification: [NAME]
 
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify + level3-arch + level3plus-govern | v2.2 -->
@@ -383,6 +461,7 @@ compose_plan() {
             # Level 2: Core + L2 addendum
             local l2_content
             l2_content=$(<"$ADDENDUM_L2/plan-level2.md")
+            l2_content=$(strip_frontmatter "$l2_content")
             l2_content=$(strip_addendum_markers "$l2_content")
 
             # Append L2 sections after core content (before closing comment)
@@ -403,6 +482,8 @@ LEVEL 2 PLAN (~140 lines)
             local l2_content l3_content
             l2_content=$(<"$ADDENDUM_L2/plan-level2.md")
             l3_content=$(<"$ADDENDUM_L3/plan-level3.md")
+            l2_content=$(strip_frontmatter "$l2_content")
+            l3_content=$(strip_frontmatter "$l3_content")
             l2_content=$(strip_addendum_markers "$l2_content")
             l3_content=$(strip_addendum_markers "$l3_content")
 
@@ -426,6 +507,9 @@ LEVEL 3 PLAN (~200 lines)
             l2_content=$(<"$ADDENDUM_L2/plan-level2.md")
             l3_content=$(<"$ADDENDUM_L3/plan-level3.md")
             l3plus_content=$(<"$ADDENDUM_L3PLUS/plan-level3plus.md")
+            l2_content=$(strip_frontmatter "$l2_content")
+            l3_content=$(strip_frontmatter "$l3_content")
+            l3plus_content=$(strip_frontmatter "$l3plus_content")
             l2_content=$(strip_addendum_markers "$l2_content")
             l3_content=$(strip_addendum_markers "$l3_content")
             l3plus_content=$(strip_addendum_markers "$l3plus_content")
@@ -501,6 +585,7 @@ compose_checklist() {
             # Add L3+ extended checklist items
             local ext_content
             ext_content=$(<"$ADDENDUM_L3PLUS/checklist-extended.md")
+            ext_content=$(strip_frontmatter "$ext_content")
             ext_content=$(strip_addendum_markers "$ext_content")
 
             # Append extended items before closing comment

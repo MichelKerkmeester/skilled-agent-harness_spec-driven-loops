@@ -4,8 +4,11 @@
 
 // fs and path removed — unused in this module
 
-// T301: Import FSRS constants from canonical source (fsrs-scheduler.ts)
-import { FSRS_FACTOR, FSRS_DECAY, FSRS_HALF_LIFE_FACTOR } from './fsrs-scheduler';
+// T301: Import FSRS constants and canonical retrievability function.
+import {
+  FSRS_HALF_LIFE_FACTOR,
+  calculateRetrievability as calculateFsrsRetrievability
+} from './fsrs-scheduler';
 import type { MemoryDbRow } from '../../../../shared/types';
 
 /**
@@ -190,37 +193,13 @@ function halfLifeToStability(halfLifeDays: number | null): number {
    2. CORE CLASSIFICATION FUNCTIONS
 ----------------------------------------------------------------*/
 
-// Lazy-load FSRS scheduler to avoid circular dependencies
-let fsrsModule: Record<string, unknown> | null = null;
-
-function getFsrsModule(): Record<string, unknown> | null {
-  if (fsrsModule !== null) {
-    return fsrsModule;
-  }
-  try {
-    // eslint-disable-next-line @typescript-eslint/no-require-imports
-    fsrsModule = require('./fsrs-scheduler');
-    return fsrsModule;
-  } catch (error: unknown) {
-    const msg = error instanceof Error ? error.message : String(error);
-    console.warn('[tier-classifier] fsrs-scheduler not available:', msg);
-    return null;
-  }
-}
-
 /**
  * Calculate retrievability using FSRS formula.
  * R = (1 + FACTOR * t / S)^DECAY
  */
 function calculateRetrievability(stability: number, elapsedDays: number): number {
-  const fsrs = getFsrsModule();
-  if (fsrs && typeof fsrs.calculateRetrievability === 'function') {
-    return fsrs.calculateRetrievability(stability, elapsedDays) as number;
-  }
-
-  // T301: Inline fallback uses canonical constants imported from fsrs-scheduler.ts
   if (stability <= 0 || elapsedDays < 0) return 0;
-  return Math.pow(1 + FSRS_FACTOR * (elapsedDays / stability), FSRS_DECAY);
+  return calculateFsrsRetrievability(stability, elapsedDays);
 }
 
 /**

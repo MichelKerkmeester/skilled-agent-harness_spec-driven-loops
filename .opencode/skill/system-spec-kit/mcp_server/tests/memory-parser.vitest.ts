@@ -37,6 +37,19 @@ Some content here.
       expect(contextType).toBe('implementation');
     });
 
+    it('T500-01b: context_type alias is parsed for context type', () => {
+      const content = `---
+title: "Alias Context Test"
+importance_tier: important
+context_type: research
+---
+
+# Alias Context Test
+`;
+      const contextType = memoryParser.extractContextType(content);
+      expect(contextType).toBe('research');
+    });
+
     it('T500-02: Missing frontmatter handled gracefully', () => {
       const content = `# No Frontmatter Here
 

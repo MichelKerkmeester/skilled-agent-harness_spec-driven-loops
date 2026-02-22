@@ -534,7 +534,7 @@ export function extractContextType(content: string): ContextType {
   }
 
   // Check YAML metadata block
-  const yamlMatch = content.match(/(?:contextType):\s*["']?(\w+)["']?/i);
+  const yamlMatch = content.match(/(?:contextType|context_type):\s*["']?(\w+)["']?/i);
   if (yamlMatch) {
     return CONTEXT_TYPE_MAP[yamlMatch[1].toLowerCase()] || 'general';
   }

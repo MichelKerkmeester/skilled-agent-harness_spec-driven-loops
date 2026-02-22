@@ -1,5 +1,11 @@
 ---
-title: "{{MEMORY_TITLE}}"
+title: "{{MEMORY_DASHBOARD_TITLE}}"
+description: "Session context memory template for Spec Kit indexing."
+trigger_phrases:
+  - "memory dashboard"
+  - "session summary"
+  - "context template"
+importance_tier: "{{IMPORTANCE_TIER}}"
 importanceTier: "{{IMPORTANCE_TIER}}"
 contextType: "{{CONTEXT_TYPE}}"
 ---

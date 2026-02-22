@@ -43,7 +43,7 @@ Top-level files:
 Primary script directories:
 - `spec/` - 8 lifecycle scripts (`create.sh`, `upgrade-level.sh`, `check-placeholders.sh`, `validate.sh`, `check-completion.sh`, `calculate-completeness.sh`, `recommend-level.sh`, `archive.sh`)
 - `rules/` - 16 modular validation rules used by `spec/validate.sh` (`LINKS_VALID` runs only when `SPECKIT_VALIDATE_LINKS=true`)
-- `memory/` - 6 TypeScript CLIs (`generate-context.ts`, `rank-memories.ts`, `cleanup-orphaned-vectors.ts`, `validate-memory-quality.ts`, `reindex-embeddings.ts`, `ast-parser.ts`)
+- `memory/` - 7 TypeScript CLIs (`generate-context.ts`, `rank-memories.ts`, `cleanup-orphaned-vectors.ts`, `validate-memory-quality.ts`, `reindex-embeddings.ts`, `ast-parser.ts`, `backfill-frontmatter.ts`)
 - `core/` - 8 TypeScript workflow modules
 - `extractors/` - 11 TypeScript extraction modules plus barrel export
 - `loaders/` - 2 TypeScript loading modules plus barrel export

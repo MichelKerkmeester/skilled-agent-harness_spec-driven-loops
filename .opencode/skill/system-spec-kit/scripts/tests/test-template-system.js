@@ -93,6 +93,20 @@ function readFile(file_path) {
   return fs.readFileSync(file_path, 'utf8');
 }
 
+function hasSingleTopFrontmatter(content) {
+  if (!content || !content.startsWith('---\n')) {
+    return false;
+  }
+
+  const closingIndex = content.indexOf('\n---\n', 4);
+  if (closingIndex === -1) {
+    return false;
+  }
+
+  const trailing = content.slice(closingIndex + 5);
+  return !trailing.startsWith('---\n');
+}
+
 /* ─────────────────────────────────────────────────────────────
    3. TEST SUITE: LEVEL TEMPLATES EXIST
 ────────────────────────────────────────────────────────────────*/
@@ -759,6 +773,23 @@ async function testTemplateConsistency() {
         pass(`T-070d: ${level.name}/implementation-summary.md exists`, 'File found');
       } else {
         fail(`T-070d: ${level.name}/implementation-summary.md exists`, 'File missing');
+      }
+    }
+
+    const composedFiles = ['spec.md', 'plan.md', 'tasks.md', 'implementation-summary.md', 'checklist.md', 'decision-record.md'];
+    for (const level of levels) {
+      for (const fileName of composedFiles) {
+        const filePath = path.join(level.dir, fileName);
+        if (!fileExists(filePath)) {
+          continue;
+        }
+
+        const content = readFile(filePath);
+        if (hasSingleTopFrontmatter(content)) {
+          pass(`T-070e: ${level.name}/${fileName} has single top frontmatter`, 'Single top frontmatter detected');
+        } else {
+          fail(`T-070e: ${level.name}/${fileName} has single top frontmatter`, 'Missing or malformed top frontmatter');
+        }
       }
     }
 

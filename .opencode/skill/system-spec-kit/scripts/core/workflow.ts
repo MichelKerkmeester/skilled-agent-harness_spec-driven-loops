@@ -168,6 +168,32 @@ function buildMemoryTitle(implementationTask: string, summary: string, specFolde
   return truncateMemoryTitle(fallback);
 }
 
+function buildMemoryDashboardTitle(memoryTitle: string, specFolderName: string, contextFilename: string): string {
+  const specLeaf = specFolderName.split('/').filter(Boolean).pop() || specFolderName;
+  const fileStem = path.basename(contextFilename, path.extname(contextFilename));
+  const suffix = `[${specLeaf}/${fileStem}]`;
+
+  if (memoryTitle.endsWith(suffix)) {
+    return memoryTitle;
+  }
+
+  const maxLength = 120;
+  const maxBaseLength = Math.max(24, maxLength - suffix.length - 1);
+  let base = memoryTitle.trim();
+
+  if (base.length > maxBaseLength) {
+    const hardCut = base.slice(0, maxBaseLength).trim();
+    const lastSpace = hardCut.lastIndexOf(' ');
+    if (lastSpace >= Math.floor(maxBaseLength * 0.6)) {
+      base = hardCut.slice(0, lastSpace);
+    } else {
+      base = hardCut;
+    }
+  }
+
+  return `${base} ${suffix}`;
+}
+
 function injectQualityMetadata(content: string, qualityScore: number, qualityFlags: string[]): string {
   const yamlBlockMatch = content.match(/```yaml\n([\s\S]*?)\n```/);
   if (!yamlBlockMatch) {
@@ -364,6 +390,7 @@ async function runWorkflow(options: WorkflowOptions = {}): Promise<WorkflowResul
   const keyTopics: string[] = ensureMinSemanticTopics(keyTopicsInitial, enhancedFiles, specFolderName);
   const keyFiles = enhancedFiles.map((f) => ({ FILE_PATH: f.FILE_PATH }));
   const memoryTitle = buildMemoryTitle(implSummary.task, sessionData.SUMMARY || '', specFolderName, sessionData.DATE);
+  const memoryDashboardTitle = buildMemoryDashboardTitle(memoryTitle, specFolderName, ctxFilename);
 
   // Pre-extract trigger phrases for template embedding AND later indexing
   let preExtractedTriggers: string[] = [];
@@ -453,6 +480,7 @@ async function runWorkflow(options: WorkflowOptions = {}): Promise<WorkflowResul
       EMBEDDING_VERSION: '1.0',
       CHUNK_COUNT: 1,
       MEMORY_TITLE: memoryTitle,
+      MEMORY_DASHBOARD_TITLE: memoryDashboardTitle,
       GRAPH_CONTEXT: '',
       HAS_GRAPH_CONTEXT: false
     }),
