@@ -232,9 +232,9 @@ if (extended) {
 | Pattern | When to Use |
 |---------|-------------|
 | Populate `RetrievalTelemetry` before returning from handler | Every retrieval handler call |
-| Check `fallback.triggered` to gate quality alerts | Governance / SLO monitoring |
-| Use `quality.score < 0.6` to log degraded-run warnings | Observability dashboards |
-| Compare `latency.rerankMs` to `null` | Detect runs where reranking was skipped |
+| Check `fallback.fallbackTriggered` to gate quality alerts | Governance / SLO monitoring |
+| Use `quality.qualityProxyScore < 0.6` to log degraded-run warnings | Observability dashboards |
+| Compare `latency.rerankLatencyMs` to `0` | Detect runs where reranking was skipped |
 
 <!-- /ANCHOR:usage-examples -->
 

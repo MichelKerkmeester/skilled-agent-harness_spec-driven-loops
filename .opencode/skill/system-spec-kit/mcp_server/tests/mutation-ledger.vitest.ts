@@ -315,5 +315,14 @@ describe('Mutation Ledger', () => {
     expect(escalationMeta.status).toBe('escalated');
     expect(escalationMeta.escalation?.code).toBe('E_DIVERGENCE_RECONCILE_RETRY_EXHAUSTED');
     expect(escalationMeta.escalation?.recommendation).toBe('manual_triage_required');
+
+    const repeatedEscalation = recordDivergenceReconcileHook(db, { normalizedPath, variants, maxRetries: 2 });
+    expect(repeatedEscalation.escalation).toBeTruthy();
+    expect(repeatedEscalation.escalationEntryId).toBeNull();
+
+    const escalationEntriesAfterRepeat = db.prepare(
+      'SELECT reason FROM mutation_ledger WHERE reason = ? ORDER BY id ASC'
+    ).all(DIVERGENCE_RECONCILE_ESCALATION_REASON);
+    expect(escalationEntriesAfterRepeat).toHaveLength(1);
   });
 });

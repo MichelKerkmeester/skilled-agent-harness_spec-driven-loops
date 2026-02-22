@@ -340,6 +340,73 @@ describe('Handler Memory Index (T520) [deferred - requires DB test fixtures]', (
       expect(summary.escalated).toBe(0);
       expect(summary.errors).toHaveLength(0);
     });
+
+    it('T520-9i: expands beyond sample cap when divergent group count is higher', () => {
+      const calledPaths: string[] = [];
+      const rows = [
+        { file_path: '/workspace/specs/003-system-spec-kit/801-a/memory/x.md', content_hash: 'hash-a' },
+        { file_path: '/workspace/.opencode/specs/003-system-spec-kit/801-a/memory/x.md', content_hash: 'hash-b' },
+        { file_path: '/workspace/specs/003-system-spec-kit/802-b/memory/y.md', content_hash: 'hash-c' },
+        { file_path: '/workspace/.opencode/specs/003-system-spec-kit/802-b/memory/y.md', content_hash: 'hash-d' },
+        { file_path: '/workspace/specs/003-system-spec-kit/803-c/memory/z.md', content_hash: 'hash-e' },
+        { file_path: '/workspace/.opencode/specs/003-system-spec-kit/803-c/memory/z.md', content_hash: 'hash-f' },
+      ];
+
+      const fakeDb = {
+        prepare: () => ({
+          all: () => rows,
+        }),
+      };
+
+      const summary = handler.runDivergenceReconcileHooks(
+        {
+          groups: 7,
+          rows: 14,
+          identicalHashGroups: 2,
+          divergentHashGroups: 3,
+          unknownHashGroups: 2,
+          samples: [
+            {
+              normalizedPath: '/workspace/specs/003-system-spec-kit/801-a/memory/x.md',
+              hashState: 'divergent',
+              variants: [
+                '/workspace/specs/003-system-spec-kit/801-a/memory/x.md',
+                '/workspace/.opencode/specs/003-system-spec-kit/801-a/memory/x.md',
+              ],
+            },
+          ],
+        },
+        {
+          requireDatabase: () => fakeDb as never,
+          reconcileHook: (_db, input) => {
+            calledPaths.push(input.normalizedPath);
+            return {
+              policy: {
+                normalizedPath: input.normalizedPath,
+                attemptsSoFar: 0,
+                nextAttempt: 1,
+                maxRetries: 3,
+                shouldRetry: true,
+                exhausted: false,
+              },
+              retryEntryId: 1,
+              escalationEntryId: null,
+              escalation: null,
+            };
+          },
+        }
+      );
+
+      expect(summary.candidates).toBe(3);
+      expect(summary.retriesScheduled).toBe(3);
+      expect(summary.escalated).toBe(0);
+      expect(summary.errors).toHaveLength(0);
+      expect(calledPaths).toEqual([
+        '/workspace/specs/003-system-spec-kit/801-a/memory/x.md',
+        '/workspace/specs/003-system-spec-kit/802-b/memory/y.md',
+        '/workspace/specs/003-system-spec-kit/803-c/memory/z.md',
+      ]);
+    });
   });
 
   describe('handleMemoryIndexScan Input/Behavior', () => {

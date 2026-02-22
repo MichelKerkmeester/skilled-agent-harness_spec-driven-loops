@@ -64,14 +64,14 @@ Protocol coverage is global and includes every implemented update and new featur
 ---
 
 <!-- ANCHOR:evidence-table -->
-## Evidence Table Template
+## Evidence Table
 
 | Evidence ID | Protocol Step | Command / Check | Result Summary | Artifact / Link | Defects (P0/P1/P2) | Owner | Status |
 |-------------|---------------|-----------------|----------------|-----------------|--------------------|-------|--------|
-| EVT-001 | Global Testing Round | `REPLACE_WITH_COMMAND` | `pass/fail + key metric` | `path/to/artifact` | `0/0/0` | `name` | `Open/Closed` |
-| EVT-002 | Global Bug Detection Sweep | `REPLACE_WITH_COMMAND` | `sweep summary` | `path/to/bug-report` | `0/0/N` | `name` | `Open/Closed` |
-| EVT-003 | `sk-code--opencode` Compliance Audit | `REPLACE_WITH_COMMAND` | `compliant/non-compliant` | `path/to/audit-output` | `0/0/N` | `name` | `Open/Closed` |
-| EVT-004 | Conditional Standards Update Pathway | `REPLACE_WITH_COMMAND_OR_NA` | `updated/N/A` | `path/to/change-or-rationale` | `0/0/N` | `name` | `Open/Closed` |
+| EVT-001 | Global Testing Round | `npm run lint`; `npm test`; `npx vitest run tests/handler-memory-index.vitest.ts tests/mutation-ledger.vitest.ts tests/retrieval-telemetry.vitest.ts tests/retrieval-trace.vitest.ts`; `node .opencode/skill/system-spec-kit/scripts/tests/test-alignment-validator.js`; `.opencode/skill/system-spec-kit/scripts/ops/runbook.sh drill all --scenario success --max-attempts 3`; `.opencode/skill/system-spec-kit/scripts/ops/runbook.sh drill all --scenario escalate --max-attempts 1` | PASS (lint/test/targeted/alignment/success drill); expected escalate-path coverage (exit `1`) with `ESCALATIONS=4`; full suite `Test Files 155 passed`, `Tests 4570 passed | 19 skipped`; targeted suite `84` tests passed; alignment `6/6` passed | `.opencode/specs/003-system-spec-kit/139-hybrid-rag-fusion/006-hybrid-rag-fusion-logic-improvements/scratch/final-quality-evidence-2026-02-22.md` | `0/0/0` | Spec closure owner | Closed |
+| EVT-002 | Global Bug Detection Sweep | Defect consolidation from final verification bundle + prior sweep artifact (`w5`) | Unresolved defects closed with final counts: `P0=0`, `P1=0`, `P2=0`; secret/key scan reported `0` matches on changed paths; no remaining blocking findings | `.opencode/specs/003-system-spec-kit/139-hybrid-rag-fusion/006-hybrid-rag-fusion-logic-improvements/scratch/final-quality-evidence-2026-02-22.md`; `.opencode/specs/003-system-spec-kit/139-hybrid-rag-fusion/006-hybrid-rag-fusion-logic-improvements/scratch/w5-global-quality-evidence.md` | `0/0/0` | Spec closure owner | Closed |
+| EVT-003 | `sk-code--opencode` Compliance Audit | Compliance evidence consolidation from lint, tests, and focused scan of changed paths | Compliant for closure gate: no lint violations, no test failures, no focused secret/key findings, and no unresolved P0/P1 defects in scoped implementation evidence | `.opencode/specs/003-system-spec-kit/139-hybrid-rag-fusion/006-hybrid-rag-fusion-logic-improvements/scratch/final-quality-evidence-2026-02-22.md`; `.opencode/specs/003-system-spec-kit/139-hybrid-rag-fusion/006-hybrid-rag-fusion-logic-improvements/scratch/w5-global-quality-evidence.md` | `0/0/0` | Spec closure owner | Closed |
+| EVT-004 | Conditional Standards Update Pathway | `N/A` (no standards change command executed) | `N/A` approved: no architecture mismatch detected requiring standards update; telemetry/docs alignment validator passed (`6/6`) and no unresolved compliance defects remain | `.opencode/specs/003-system-spec-kit/139-hybrid-rag-fusion/006-hybrid-rag-fusion-logic-improvements/scratch/final-quality-evidence-2026-02-22.md` (command 4 + defect closure); `.opencode/specs/003-system-spec-kit/139-hybrid-rag-fusion/006-hybrid-rag-fusion-logic-improvements/decision-record.md` | `0/0/0` | Spec closure owner | Closed |
 <!-- /ANCHOR:evidence-table -->
 
 ---
@@ -79,14 +79,16 @@ Protocol coverage is global and includes every implemented update and new featur
 <!-- ANCHOR:closure-gate -->
 ## Closure Gate
 
-Completion claim for this spec is permitted only when all conditions below are true:
+Completion claim for this spec is permitted only when all conditions below are true and they are all satisfied as of `2026-02-22`:
 
-- Global testing round completed with published evidence.
-- Global bug detection sweep completed with zero unresolved `P0` and `P1` defects.
-- `sk-code--opencode` compliance audit completed with evidence.
+- [x] Global testing round completed with published evidence (`EVT-001`).
+- [x] Global bug detection sweep completed with zero unresolved `P0` and `P1` defects (`EVT-002`, closure counts `P0=0`, `P1=0`).
+- [x] `sk-code--opencode` compliance audit completed with evidence (`EVT-003`).
 - Conditional standards update pathway is either:
-  - Completed with documented change evidence, or
-  - Marked `N/A` with explicit rationale and evidence.
+  - [ ] Completed with documented change evidence, or
+  - [x] Marked `N/A` with explicit rationale and evidence (`EVT-004`, no architecture mismatch detected).
+
+**Closure Gate Decision**: SATISFIED (all required protocol steps closed; unresolved defects `P0=0`, `P1=0`).
 <!-- /ANCHOR:closure-gate -->
 
 ---

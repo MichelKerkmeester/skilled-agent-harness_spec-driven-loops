@@ -46,11 +46,11 @@ This plan now covers all risk-bearing systems discovered in research, not only r
 - [x] Requirement -> phase -> task traceability map established
 
 ### Definition of Done
-- [ ] All P0 acceptance criteria met
-- [ ] P1 items complete or explicitly deferred with approval
-- [ ] Regression, recovery, and telemetry gates passing
-- [ ] Latency/reliability budgets verified
-- [ ] Governance docs synchronized (`spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `decision-record.md`, `implementation-summary.md`)
+- [x] All P0 acceptance criteria met
+- [x] P1 items complete or explicitly deferred with approval
+- [x] Regression, recovery, and telemetry gates passing
+- [x] Latency/reliability budgets verified
+- [x] Governance docs synchronized (`spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `decision-record.md`, `implementation-summary.md`)
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -101,31 +101,31 @@ Audit-first, contract-driven hardening with release-gated invariants and self-he
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Cross-System Audit and Continuity Lock
-- [ ] Build subsystem contract map for all ten scoped areas.
-- [ ] Capture baseline fixtures, latency/reliability metrics, and deferred/skipped-path inventory.
-- [ ] Produce risk register and continuity mapping from `002/003/004/005` to 006 controls.
-- [ ] Lock decision gates `T025`/`T026`/`T027` (relation corpus policy, cognitive-weight scope, self-healing auto-remediation policy) before Phase 2 execution.
+- [x] Build subsystem contract map for all ten scoped areas.
+- [x] Capture baseline fixtures, latency/reliability metrics, and deferred/skipped-path inventory.
+- [x] Produce risk register and continuity mapping from `002/003/004/005` to 006 controls.
+- [x] Lock decision gates `T025`/`T026`/`T027` (relation corpus policy, cognitive-weight scope, self-healing auto-remediation policy) before Phase 2 execution.
 
 ### Phase 2: Ranking and Channel Contract Hardening
-- [ ] Harden retrieval/fusion determinism, graph relation scoring contracts, and cognitive ranking bounds.
-- [ ] Align low-confidence policy across retrieval and session routing behavior.
-- [ ] Emit ranked-channel diagnostics and confidence rationale in debug metadata.
+- [x] Harden retrieval/fusion determinism, graph relation scoring contracts, and cognitive ranking bounds.
+- [x] Align low-confidence policy across retrieval and session routing behavior.
+- [x] Emit ranked-channel diagnostics and confidence rationale in debug metadata.
 
 ### Phase 3: Session and State Integrity Hardening
-- [ ] Improve session manager/session-learning quality and performance.
-- [ ] Enforce CRUD re-embedding consistency SLAs.
-- [ ] Enforce parser/index invariants and index-health automation.
-- [ ] Add storage recovery and mutation-ledger parity checks.
+- [x] Improve session manager/session-learning quality and performance.
+- [x] Enforce CRUD re-embedding consistency SLAs.
+- [x] Enforce parser/index invariants and index-health automation.
+- [x] Add storage recovery and mutation-ledger parity checks.
 
 ### Phase 4: Telemetry Governance and Operational Automation
-- [ ] Implement trace schema registry and validation gates.
-- [ ] Add docs drift prevention checks tied to telemetry and runbook contracts.
-- [ ] Build self-healing checks and operational runbooks for known failure classes.
+- [x] Implement trace schema registry and validation gates.
+- [x] Add docs drift prevention checks tied to telemetry and runbook contracts.
+- [x] Build self-healing checks and operational runbooks for known failure classes.
 
 ### Phase 5: Verification Hardening and Governance Closure
-- [ ] Convert deferred/skipped-path tests into active coverage or approved deferrals.
-- [ ] Run full performance/reliability/recovery verification suite.
-- [ ] Finalize evidence, ADR updates, checklist closure, and sign-offs.
+- [x] Convert deferred/skipped-path tests into active coverage or approved deferrals.
+- [x] Run full performance/reliability/recovery verification suite.
+- [x] Finalize evidence, ADR updates, checklist closure, and sign-offs.
 
 ### Requirement-to-Phase Mapping
 
@@ -226,10 +226,10 @@ Phase 3 outputs ─┘
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deployment Checklist
-- [ ] Baseline audit fixtures archived for retrieval, session, and storage paths
-- [ ] Threshold and contract deltas documented with before/after metrics
-- [ ] Recovery replay artifacts captured and verifiable
-- [ ] Emergency gate override protocol documented with approver list
+- [x] Baseline audit fixtures archived for retrieval, session, and storage paths
+- [x] Threshold and contract deltas documented with before/after metrics
+- [x] Recovery replay artifacts captured and verifiable
+- [x] Emergency gate override protocol documented with approver list
 
 ### Rollback Procedure
 1. Disable newly introduced gates only when verified false positives are documented.

@@ -100,10 +100,16 @@ run_drill() {
     local target="$1"
     shift
     if [[ "$target" == "all" ]]; then
-        run_drill_one "index-drift" "$@"
-        run_drill_one "session-ambiguity" "$@"
-        run_drill_one "ledger-mismatch" "$@"
-        run_drill_one "telemetry-drift" "$@"
+        local failures=0
+        for failure_class in index-drift session-ambiguity ledger-mismatch telemetry-drift; do
+            if ! run_drill_one "$failure_class" "$@"; then
+                failures=$((failures + 1))
+            fi
+        done
+
+        if (( failures > 0 )); then
+            return 1
+        fi
         return 0
     fi
     run_drill_one "$target" "$@"
@@ -155,4 +161,3 @@ EOF
 }
 
 main "$@"
-

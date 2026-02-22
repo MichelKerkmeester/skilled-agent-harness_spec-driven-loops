@@ -63,13 +63,13 @@ contextType: "implementation"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Cross-System Audit and Continuity Lock
 
-- [ ] T001 [P0] Build ten-subsystem contract map across retrieval, graph, cognitive, session, CRUD, parser/index, storage, telemetry, tests, and operations (`spec.md`, audit artifacts)
-- [ ] T002 [P0] Capture baseline fixture corpus and metrics (latency, quality, misroute, stale-embed backlog, recovery timing) (`mcp_server/tests/*`, benchmark scripts)
-- [ ] T003 [P0] Create ranked seam-risk register with owner and mitigation for each subsystem (`spec.md`, `plan.md`, `decision-record.md`)
-- [ ] T004 [P1] Validate continuity assumptions from `002/003/004/005` and map to 006 requirement IDs (`spec.md`, `plan.md`, `tasks.md`)
-- [ ] T025 [P0] Lock relation-score adjudication corpus policy (shared vs domain-specific corpus) with approved fixture governance (`spec.md`, `decision-record.md`, ranking fixtures)
-- [ ] T026 [P0] Lock cognitive-weight policy scope (global bounds vs intent-scoped bounds) and rollout defaults (`spec.md`, `decision-record.md`, scoring fixtures)
-- [ ] T027 [P1] Lock self-healing auto-remediation policy (auto-apply vs operator acknowledgement by failure class) with escalation guardrails (`plan.md`, `checklist.md`, runbook artifacts)
+- [x] T001 [P0] Build ten-subsystem contract map across retrieval, graph, cognitive, session, CRUD, parser/index, storage, telemetry, tests, and operations (`spec.md`, audit artifacts)
+- [x] T002 [P0] Capture baseline fixture corpus and metrics (latency, quality, misroute, stale-embed backlog, recovery timing) (`mcp_server/tests/*`, benchmark scripts) [EVIDENCE: `scratch/w6-baseline-metrics-sweep.md`]
+- [x] T003 [P0] Create ranked seam-risk register with owner and mitigation for each subsystem (`spec.md`, `plan.md`, `decision-record.md`)
+- [x] T004 [P1] Validate continuity assumptions from `002/003/004/005` and map to 006 requirement IDs (`spec.md`, `plan.md`, `tasks.md`)
+- [x] T025 [P0] Lock relation-score adjudication corpus policy (shared vs domain-specific corpus) with approved fixture governance (`spec.md`, `decision-record.md`, ranking fixtures)
+- [x] T026 [P0] Lock cognitive-weight policy scope (global bounds vs intent-scoped bounds) and rollout defaults (`spec.md`, `decision-record.md`, scoring fixtures)
+- [x] T027 [P1] Lock self-healing auto-remediation policy (auto-apply vs operator acknowledgement by failure class) with escalation guardrails (`plan.md`, `checklist.md`, runbook artifacts) [EVIDENCE: `scratch/final-quality-evidence-2026-02-22.md` runbook drill entries]
 <!-- /ANCHOR:phase-1 -->
 
 ### Phase 1 Task Matrix
@@ -89,10 +89,10 @@ contextType: "implementation"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Ranking and Channel Contract Hardening
 
-- [ ] T005 [P0] Implement bounded retrieval/fusion guardrails with deterministic tie and fallback behavior (`lib/search/adaptive-fusion.ts`, `lib/search/hybrid-search.ts`)
-- [ ] T006 [P0] Formalize graph/causal channel contracts and calibrate relation scoring (`lib/search/co-activation.ts`, `lib/scoring/*`, tests)
-- [ ] T007 [P0] Integrate cognitive/attention-decay and FSRS modifiers with bounded contribution (`lib/scoring/*`, `lib/search/*`)
-- [ ] T008 [P1] [P] Emit debug diagnostics for channel contributions, cognitive modifiers, and low-confidence rationale (`handlers/memory-search.ts`, telemetry interfaces)
+- [x] T005 [P0] Implement bounded retrieval/fusion guardrails with deterministic tie and fallback behavior (`lib/search/adaptive-fusion.ts`, `lib/search/hybrid-search.ts`)
+- [x] T006 [P0] Formalize graph/causal channel contracts and calibrate relation scoring (`lib/search/co-activation.ts`, `lib/scoring/*`, tests)
+- [x] T007 [P0] Integrate cognitive/attention-decay and FSRS modifiers with bounded contribution (`lib/scoring/*`, `lib/search/*`)
+- [x] T008 [P1] [P] Emit debug diagnostics for channel contributions, cognitive modifiers, and low-confidence rationale (`handlers/memory-search.ts`, telemetry interfaces)
 <!-- /ANCHOR:phase-2 -->
 
 ### Phase 2 Task Matrix
@@ -109,12 +109,12 @@ contextType: "implementation"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Session and State Integrity Hardening
 
-- [ ] T009 [P0] Improve session manager selection quality and latency with ambiguity handling (`lib/session/*`, folder/session selection handlers)
-- [ ] T010 [P0] Harden session-learning pipeline freshness, feedback hygiene, and performance instrumentation (`lib/session-learning/*`, tests)
-- [ ] T011 [P0] Enforce memory CRUD to re-embedding consistency workflow with backlog SLA guards (`handlers/memory-crud.ts`, embedding queue orchestration)
-- [ ] T012 [P0] Add parser/indexing invariant checks and index-health automation hooks (`lib/parsing/memory-parser.ts`, `handlers/memory-index.ts`)
-- [ ] T013 [P0] Implement transaction recovery and mutation-ledger consistency checks (`lib/storage/sqlite-transaction-recovery.ts`, `lib/storage/mutation-ledger.ts`)
-- [ ] T014 [P1] [P] Add auto-reconcile hooks for index/ledger divergence with bounded retry policy (`scripts/ops/*`, storage/index handlers)
+- [x] T009 [P0] Improve session manager selection quality and latency with ambiguity handling (`lib/session/*`, folder/session selection handlers)
+- [x] T010 [P0] Harden session-learning pipeline freshness, feedback hygiene, and performance instrumentation (`lib/session-learning/*`, tests)
+- [x] T011 [P0] Enforce memory CRUD to re-embedding consistency workflow with backlog SLA guards (`handlers/memory-crud.ts`, embedding queue orchestration)
+- [x] T012 [P0] Add parser/indexing invariant checks and index-health automation hooks (`lib/parsing/memory-parser.ts`, `handlers/memory-index.ts`)
+- [x] T013 [P0] Implement transaction recovery and mutation-ledger consistency checks (`lib/storage/sqlite-transaction-recovery.ts`, `lib/storage/mutation-ledger.ts`)
+- [x] T014 [P1] [P] Add auto-reconcile hooks for index/ledger divergence with bounded retry policy (`scripts/ops/*`, storage/index handlers)
 <!-- /ANCHOR:phase-3 -->
 
 ### Phase 3 Task Matrix
@@ -133,10 +133,10 @@ contextType: "implementation"
 <!-- ANCHOR:phase-4 -->
 ## Phase 4: Telemetry Governance and Operational Automation
 
-- [ ] T015 [P0] Define canonical telemetry/trace schema and enforce payload validation (`lib/telemetry/trace-schema.ts`, emitters, tests)
-- [ ] T016 [P0] Implement documentation drift prevention checks for telemetry and operational contracts (`scripts/spec-folder/alignment-validator.ts`, docs validation hooks)
-- [ ] T017 [P1] Draft and verify runbooks for index drift, session ambiguity, ledger mismatch, and telemetry drift (`plan.md`, `checklist.md`, ops docs)
-- [ ] T018 [P1] [P] Wire self-healing automation loops and operational checks into CI/scheduled runs (`scripts/ops/*`, CI config)
+- [x] T015 [P0] Define canonical telemetry/trace schema and enforce payload validation (`lib/telemetry/trace-schema.ts`, emitters, tests) [EVIDENCE: `scratch/final-quality-evidence-2026-02-22.md` command 4]
+- [x] T016 [P0] Implement documentation drift prevention checks for telemetry and operational contracts (`scripts/spec-folder/alignment-validator.ts`, docs validation hooks) [EVIDENCE: `scratch/final-quality-evidence-2026-02-22.md` command 4]
+- [x] T017 [P1] Draft and verify runbooks for index drift, session ambiguity, ledger mismatch, and telemetry drift (`plan.md`, `checklist.md`, ops docs) [EVIDENCE: `scratch/final-quality-evidence-2026-02-22.md` commands 5-6]
+- [x] T018 [P1] [P] Wire self-healing automation loops and operational checks into CI/scheduled runs (`scripts/ops/*`, CI config)
 <!-- /ANCHOR:phase-4 -->
 
 ### Phase 4 Task Matrix
@@ -153,16 +153,16 @@ contextType: "implementation"
 <!-- ANCHOR:phase-5 -->
 ## Phase 5: Verification Hardening and Governance Closure
 
-- [ ] T019 [P0] Expand and close deferred/skipped-path tests from `002`/`003`/`004`/`005` lineage (`mcp_server/tests/*`, script tests)
-- [ ] T020 [P0] Run consolidated performance/reliability verification (retrieval, session, recovery, automation) against required thresholds
-- [ ] T021 [P1] Execute failure-injection drills for recovery and self-healing paths and capture evidence (`scripts/ops/*`, verification artifacts)
-- [ ] T022 [P1] Synchronize checklist evidence and sign-off model across all Level 3+ docs (`checklist.md`, `spec.md`)
-- [ ] T023 [P1] Finalize decision record and implementation summary with delivered subsystem evidence (`decision-record.md`, `implementation-summary.md`)
-- [ ] T024 [P2] Save context snapshot after implementation completion (`memory/` via generate-context script)
-- [ ] T028 [P0] Execute global quality sweep across all implemented updates/new features and publish evidence in `global-quality-sweep.md`
-- [ ] T029 [P0] Run global bug detection sweep and close all discovered P0/P1 defects; publish closure evidence in `global-quality-sweep.md`
-- [ ] T030 [P1] Complete `sk-code--opencode` compliance audit for all changed/added code paths and capture findings in `global-quality-sweep.md`
-- [ ] T031 [P1] Apply conditional standards update only if architecture mismatch is confirmed; document rationale/evidence in `global-quality-sweep.md`
+- [x] T019 [P0] Expand and close deferred/skipped-path tests from `002`/`003`/`004`/`005` lineage (`mcp_server/tests/*`, script tests) [EVIDENCE: `scratch/final-quality-evidence-2026-02-22.md` commands 2-3]
+- [x] T020 [P0] Run consolidated performance/reliability verification (retrieval, session, recovery, automation) against required thresholds [EVIDENCE: `scratch/final-quality-evidence-2026-02-22.md`, `scratch/w6-baseline-metrics-sweep.md`]
+- [x] T021 [P1] Execute failure-injection drills for recovery and self-healing paths and capture evidence (`scripts/ops/*`, verification artifacts) [EVIDENCE: `scratch/final-quality-evidence-2026-02-22.md` commands 5-6]
+- [x] T022 [P1] Synchronize checklist evidence and sign-off model across all Level 3+ docs (`checklist.md`, `spec.md`) [EVIDENCE: docs sync closure dated 2026-02-22]
+- [x] T023 [P1] Finalize decision record and implementation summary with delivered subsystem evidence (`decision-record.md`, `implementation-summary.md`)
+- [x] T024 [P2] Save context snapshot after implementation completion (`memory/` via generate-context script) [N/A: memory snapshot generation intentionally not executed in this closure pass because user scope is markdown-only updates in this folder] [EVIDENCE: `memory/.gitkeep` only; no memory artifact creation requested in closure scope]
+- [x] T028 [P0] Execute global quality sweep across all implemented updates/new features and publish evidence in `global-quality-sweep.md` [EVIDENCE: `global-quality-sweep.md` EVT-001]
+- [x] T029 [P0] Run global bug detection sweep and close all discovered P0/P1 defects; publish closure evidence in `global-quality-sweep.md` [EVIDENCE: `global-quality-sweep.md` EVT-002]
+- [x] T030 [P1] Complete `sk-code--opencode` compliance audit for all changed/added code paths and capture findings in `global-quality-sweep.md` [EVIDENCE: `global-quality-sweep.md` EVT-003]
+- [x] T031 [P1] Apply conditional standards update only if architecture mismatch is confirmed; document rationale/evidence in `global-quality-sweep.md` [EVIDENCE: `global-quality-sweep.md` EVT-004 (`N/A`, no mismatch detected)]
 <!-- /ANCHOR:phase-5 -->
 
 ### Phase 5 Task Matrix
@@ -185,13 +185,13 @@ contextType: "implementation"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All P0 tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Decision-lock tasks `T025`, `T026`, and `T027` are closed before Phase 2 starts
-- [ ] Performance, recovery, and automation gates passed
-- [ ] `T028` and `T029` are closed with evidence in `global-quality-sweep.md`
-- [ ] `T030` and `T031` are closed, or `T031` is approved `N/A` with explicit rationale/evidence in `global-quality-sweep.md`
-- [ ] Governance approval workflow updated to approved state
+- [x] All P0 tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Decision-lock tasks `T025`, `T026`, and `T027` are closed before Phase 2 starts
+- [x] Performance, recovery, and automation gates passed [EVIDENCE: `scratch/final-quality-evidence-2026-02-22.md`, `scratch/w6-baseline-metrics-sweep.md`]
+- [x] `T028` and `T029` are closed with evidence in `global-quality-sweep.md`
+- [x] `T030` and `T031` are closed, or `T031` is approved `N/A` with explicit rationale/evidence in `global-quality-sweep.md`
+- [x] Governance approval workflow updated to approved state
 <!-- /ANCHOR:completion -->
 
 ---

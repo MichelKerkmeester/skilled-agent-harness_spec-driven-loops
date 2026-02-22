@@ -304,6 +304,30 @@ function getDivergenceReconcileAttemptCount(db: Database.Database, normalizedPat
   return attempts;
 }
 
+function hasDivergenceEscalationEntry(db: Database.Database, normalizedPath: string): boolean {
+  const targetPath = normalizePath(normalizedPath);
+  if (targetPath.length === 0) {
+    return false;
+  }
+
+  const rows = db.prepare(`
+    SELECT decision_meta
+    FROM mutation_ledger
+    WHERE mutation_type = 'reindex'
+      AND reason = ?
+    ORDER BY id ASC
+  `).all(DIVERGENCE_RECONCILE_ESCALATION_REASON) as Array<{ decision_meta: string }>;
+
+  for (const row of rows) {
+    const rowPath = readDecisionMetaNormalizedPath(row.decision_meta);
+    if (rowPath === targetPath) {
+      return true;
+    }
+  }
+
+  return false;
+}
+
 function buildDivergenceReconcilePolicy(
   normalizedPath: string,
   attemptsSoFar: number,
@@ -384,6 +408,15 @@ function recordDivergenceReconcileHook(
   }
 
   const escalation = buildDivergenceEscalationPayload(policy, variants);
+  if (hasDivergenceEscalationEntry(db, normalizedPath)) {
+    return {
+      policy,
+      retryEntryId: null,
+      escalationEntryId: null,
+      escalation,
+    };
+  }
+
   const escalationEntry = appendEntry(db, {
     mutation_type: 'reindex',
     reason: DIVERGENCE_RECONCILE_ESCALATION_REASON,

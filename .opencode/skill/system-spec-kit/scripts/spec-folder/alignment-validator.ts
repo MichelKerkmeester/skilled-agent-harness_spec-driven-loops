@@ -83,7 +83,7 @@ const ALIGNMENT_CONFIG: AlignmentConfig = {
   INFRASTRUCTURE_THRESHOLD: 0.5
 };
 
-const TELEMETRY_INTERFACE_NAMES = [
+const FALLBACK_TELEMETRY_INTERFACE_NAMES = [
   'RetrievalTelemetry',
   'LatencyMetrics',
   'ModeMetrics',
@@ -93,7 +93,6 @@ const TELEMETRY_INTERFACE_NAMES = [
 
 const telemetrySchemaDocsValidationCache = {
   checked: false,
-  error: null as Error | null,
 };
 
 /* -----------------------------------------------------------------
@@ -158,13 +157,34 @@ function extractDocsInterfaceFields(docsSource: string, interfaceName: string): 
   return dedupeAndSort(fields);
 }
 
+function extractTelemetryInterfaceNames(schemaSource: string): string[] {
+  const interfacePattern = /interface\s+([A-Za-z_][A-Za-z0-9_]*)\s*\{/g;
+  const names: string[] = [];
+  let match = interfacePattern.exec(schemaSource);
+  while (match) {
+    const interfaceName = match[1];
+    if (/Telemetry|Metrics|Trace/i.test(interfaceName)) {
+      names.push(interfaceName);
+    }
+    match = interfacePattern.exec(schemaSource);
+  }
+
+  const deduped = dedupeAndSort(names);
+  if (deduped.length > 0) {
+    return deduped;
+  }
+
+  return [...FALLBACK_TELEMETRY_INTERFACE_NAMES];
+}
+
 function computeTelemetrySchemaDocsFieldDiffs(
   schemaSource: string,
   docsSource: string
 ): TelemetrySchemaFieldDiff[] {
   const diffs: TelemetrySchemaFieldDiff[] = [];
+  const interfaceNames = extractTelemetryInterfaceNames(schemaSource);
 
-  for (const interfaceName of TELEMETRY_INTERFACE_NAMES) {
+  for (const interfaceName of interfaceNames) {
     const schemaFields = extractSchemaInterfaceFields(schemaSource, interfaceName);
     const docsFields = extractDocsInterfaceFields(docsSource, interfaceName);
 
@@ -247,15 +267,17 @@ async function validateTelemetrySchemaDocsDrift(
     typeof options.docsPath !== 'string';
 
   if (useCache && telemetrySchemaDocsValidationCache.checked) {
-    if (telemetrySchemaDocsValidationCache.error) {
-      throw telemetrySchemaDocsValidationCache.error;
-    }
     return;
   }
 
-  const defaultPaths = await resolveTelemetrySchemaDocsPaths();
-  const schemaPath = options.schemaPath || defaultPaths.schemaPath;
-  const docsPath = options.docsPath || defaultPaths.docsPath;
+  let schemaPath = options.schemaPath;
+  let docsPath = options.docsPath;
+
+  if (!schemaPath || !docsPath) {
+    const defaultPaths = await resolveTelemetrySchemaDocsPaths();
+    schemaPath = schemaPath || defaultPaths.schemaPath;
+    docsPath = docsPath || defaultPaths.docsPath;
+  }
 
   const schemaSource = await fs.readFile(schemaPath, 'utf-8');
   const docsSource = await fs.readFile(docsPath, 'utf-8');
@@ -270,16 +292,13 @@ async function validateTelemetrySchemaDocsDrift(
     const error = new Error(message);
 
     if (useCache) {
-      telemetrySchemaDocsValidationCache.checked = true;
-      telemetrySchemaDocsValidationCache.error = error;
+      telemetrySchemaDocsValidationCache.checked = false;
     }
-
     throw error;
   }
 
   if (useCache) {
     telemetrySchemaDocsValidationCache.checked = true;
-    telemetrySchemaDocsValidationCache.error = null;
   }
 }
 

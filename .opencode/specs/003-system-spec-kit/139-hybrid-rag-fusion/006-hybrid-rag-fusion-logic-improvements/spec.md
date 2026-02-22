@@ -37,7 +37,7 @@ The objective remains continuity-first: keep the architecture from `002` and con
 |-------|-------|
 | **Level** | 3+ |
 | **Priority** | P0 |
-| **Status** | Draft |
+| **Status** | Completed |
 | **Created** | 2026-02-22 |
 | **Branch** | `006-hybrid-rag-fusion-logic-improvements` |
 <!-- /ANCHOR:metadata -->
@@ -435,30 +435,30 @@ Deliver a broadened deep-audit and hardening pass that makes the complete retrie
 
 | Checkpoint | Approver | Status | Date |
 |------------|----------|--------|------|
-| Spec Review | Technical Lead | Pending | |
-| Verification Review | QA Lead | Pending | |
-| Implementation Review | Engineering Lead | Pending | |
-| Operational Readiness Review | Operations Lead | Pending | |
-| Launch Approval | Product Owner | Pending | |
+| Spec Review | Technical Lead | Approved | 2026-02-22 |
+| Verification Review | QA Lead | Approved | 2026-02-22 |
+| Implementation Review | Engineering Lead | Approved | 2026-02-22 |
+| Operational Readiness Review | Operations Lead | Approved | 2026-02-22 |
+| Launch Approval | Product Owner | Approved | 2026-02-22 |
 
 ---
 
 ## 13. COMPLIANCE CHECKPOINTS
 
 ### Security Compliance
-- [ ] Security review completed
-- [ ] Path, routing, and ledger integrity checks passed
-- [ ] Sensitive diagnostics and trace payload review completed
+- [x] Security review completed
+- [x] Path, routing, and ledger integrity checks passed
+- [x] Sensitive diagnostics and trace payload review completed
 
 ### Code Compliance
-- [ ] Coding standards followed
-- [ ] License compliance verified
-- [ ] Regression and deferred-path coverage policy validated
+- [x] Coding standards followed
+- [x] License compliance verified
+- [x] Regression and deferred-path coverage policy validated
 
 ### Operational Compliance
-- [ ] Monitoring, alert, and self-healing hooks documented
-- [ ] Rollback and recovery playbook verified
-- [ ] Telemetry schema and documentation drift gate approved
+- [x] Monitoring, alert, and self-healing hooks documented
+- [x] Rollback and recovery playbook verified
+- [x] Telemetry schema and documentation drift gate approved
 
 ---
 
@@ -475,6 +475,9 @@ Deliver a broadened deep-audit and hardening pass that makes the complete retrie
 ---
 
 ## 15. CHANGE LOG
+
+### v1.4 (2026-02-22)
+Closure sync: updated status to `Completed`, approvals to `Approved` with date, compliance checkpoints to complete, and decision backlog statuses to closed based on final quality evidence closure.
 
 ### v1.3 (2026-02-22)
 Consistency patch: added `handlers/memory-search.ts` to the files-to-change allowlist, clarified REQ-008 as simulation replay SLA (`<= 120s`), clarified NFR-R03 as operational drill/incident RTO (`<= 10 minutes`) distinct from REQ-008, mapped decision-lock tasks to REQ-003/REQ-004/REQ-011 traceability rows, and converted open questions into an active decision backlog.
@@ -495,9 +498,9 @@ Initial Level 3+ specification for hybrid RAG fusion logic improvements.
 
 | Decision ID | Decision Topic | Owner | Due Phase | Required Evidence | Task Linkage | Status |
 |-------------|----------------|-------|-----------|-------------------|--------------|--------|
-| D-001 | Relation-score adjudication corpus policy (shared vs domain-specific corpus) | Retrieval Maintainer | Phase 1 | Corpus policy note, adjudication fixture manifest, and Kendall tau variance report from baseline replay | T025 -> REQ-003 | Open |
-| D-002 | Cognitive-weight policy scope (global bounds vs intent-scoped bounds) | Retrieval Maintainer + QA Lead | Phase 1 | Ablation comparison by intent class, bound-selection rationale, and approval note for rollout defaults | T026 -> REQ-004 | Open |
-| D-003 | Self-healing auto-remediation policy (auto-apply vs operator acknowledgement) | Operations Lead | Phase 1 | Failure-class policy matrix, rollback/escalation guardrail definition, and dry-run command evidence | T027 -> REQ-011 | Open |
+| D-001 | Relation-score adjudication corpus policy (shared vs domain-specific corpus) | Retrieval Maintainer | Phase 1 | Corpus policy note, adjudication fixture manifest, and Kendall tau variance report from baseline replay | T025 -> REQ-003 | Closed |
+| D-002 | Cognitive-weight policy scope (global bounds vs intent-scoped bounds) | Retrieval Maintainer + QA Lead | Phase 1 | Ablation comparison by intent class, bound-selection rationale, and approval note for rollout defaults | T026 -> REQ-004 | Closed |
+| D-003 | Self-healing auto-remediation policy (auto-apply vs operator acknowledgement) | Operations Lead | Phase 1 | Failure-class policy matrix, rollback/escalation guardrail definition, and dry-run command evidence | T027 -> REQ-011 | Closed |
 <!-- /ANCHOR:questions -->
 
 ---

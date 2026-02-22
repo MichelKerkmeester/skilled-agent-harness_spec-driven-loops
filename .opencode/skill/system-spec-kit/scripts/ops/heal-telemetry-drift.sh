@@ -37,12 +37,24 @@ parse_args() {
     while [[ $# -gt 0 ]]; do
         case "$1" in
             --help|-h) show_help; exit 0 ;;
-            --scenario) SCENARIO="$2"; shift 2 ;;
-            --max-attempts) MAX_ATTEMPTS="$2"; shift 2 ;;
-            --backoff-seconds) BACKOFF_SECONDS="$2"; shift 2 ;;
-            --detect-failures) DETECT_FAILURES="$2"; shift 2 ;;
-            --repair-failures) REPAIR_FAILURES="$2"; shift 2 ;;
-            --verify-failures) VERIFY_FAILURES="$2"; shift 2 ;;
+            --scenario)
+                [[ $# -lt 2 ]] && { echo "ERROR: --scenario requires a value" >&2; exit 2; }
+                SCENARIO="$2"; shift 2 ;;
+            --max-attempts)
+                [[ $# -lt 2 ]] && { echo "ERROR: --max-attempts requires a value" >&2; exit 2; }
+                MAX_ATTEMPTS="$2"; shift 2 ;;
+            --backoff-seconds)
+                [[ $# -lt 2 ]] && { echo "ERROR: --backoff-seconds requires a value" >&2; exit 2; }
+                BACKOFF_SECONDS="$2"; shift 2 ;;
+            --detect-failures)
+                [[ $# -lt 2 ]] && { echo "ERROR: --detect-failures requires a value" >&2; exit 2; }
+                DETECT_FAILURES="$2"; shift 2 ;;
+            --repair-failures)
+                [[ $# -lt 2 ]] && { echo "ERROR: --repair-failures requires a value" >&2; exit 2; }
+                REPAIR_FAILURES="$2"; shift 2 ;;
+            --verify-failures)
+                [[ $# -lt 2 ]] && { echo "ERROR: --verify-failures requires a value" >&2; exit 2; }
+                VERIFY_FAILURES="$2"; shift 2 ;;
             *)
                 echo "ERROR: Unknown option: $1" >&2
                 exit 2
@@ -94,4 +106,3 @@ main() {
 }
 
 main "$@"
-
