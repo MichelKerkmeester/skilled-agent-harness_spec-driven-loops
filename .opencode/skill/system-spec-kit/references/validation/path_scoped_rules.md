@@ -85,7 +85,7 @@ ENVIRONMENT OVERRIDES (runtime control)
 ### Placeholder Patterns Detected
 
 - `[YOUR_VALUE_HERE: ...]` - Template placeholder, must be filled
-- `[NEEDS CLARIFICATION: ...]` - Ambiguity marker, must be resolved
+- `<NEEDS_CLARIFICATION: ...>` - Ambiguity marker, must be resolved
 - `[OPTIONAL: ...]` - NOT flagged (intentionally optional content)
 
 ### Section Requirements

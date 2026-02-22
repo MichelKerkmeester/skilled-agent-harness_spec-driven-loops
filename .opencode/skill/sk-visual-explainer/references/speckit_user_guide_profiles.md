@@ -10,6 +10,12 @@ Defines profile contracts for user-facing documentation artifacts so visual outp
 
 ---
 
+## Overview
+
+This reference defines README and install-guide profile contracts, including detection rules, required sections, visual module mapping, and quality gates for artifact-aware rendering.
+
+---
+
 ## 1. Profile Scope
 
 Supported user-guide artifact IDs:

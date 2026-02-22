@@ -7,10 +7,9 @@
 <title>Architecture Diagram — Reference Template</title>
 <!--
   Reference template for the sk-visual-explainer skill: CSS Grid architecture layout.
-  Warm terracotta/sage palette — distinctly different from the teal (mermaid)
-  and rose (data-table) templates so agents absorb variety, not a single palette.
+  Uses the shared SpecKit dashboard palette (single approved palette for all templates).
   Key patterns demonstrated:
-  - Warm non-default palette (terracotta + sage, NOT indigo/violet)
+  - Shared visual-explainer palette consistency
   - Depth tiers: hero (input sources), default (mid sections), recessed (callout)
   - Asymmetric background atmosphere (off-center gradient mesh)
   - Large heading (38px) for typographic contrast
@@ -31,59 +30,57 @@
     --font-body: 'IBM Plex Sans', system-ui, sans-serif;
     --font-mono: 'IBM Plex Mono', 'SF Mono', Consolas, monospace;
 
-    /* Light theme — warm terracotta + sage palette */
-    --ve-bg: #faf7f5;
+    --ve-bg: #f7fafc;
     --ve-surface: #ffffff;
-    --ve-surface2: #f5f0ec;
-    --ve-surface-elevated: #fff9f5;
-    --ve-border: rgba(0, 0, 0, 0.07);
-    --ve-border-bright: rgba(0, 0, 0, 0.14);
-    --ve-text: #292017;
-    --ve-text-dim: #8a7e72;
-    --ve-accent: #c2410c;
-    --ve-accent-dim: rgba(194, 65, 12, 0.07);
-    --ve-success: #4d7c0f;
-    --ve-success-dim: rgba(77, 124, 15, 0.07);
+    --ve-surface2: #eef3f8;
+    --ve-surface-elevated: #fcfdff;
+    --ve-border: rgba(15, 23, 42, 0.1);
+    --ve-border-bright: rgba(15, 23, 42, 0.2);
+    --ve-text: #0f172a;
+    --ve-text-dim: #4b5563;
+    --ve-accent: #0f766e;
+    --ve-accent-dim: rgba(15, 118, 110, 0.1);
+    --ve-success: #15803d;
+    --ve-success-dim: rgba(21, 128, 61, 0.1);
     --ve-warning: #b45309;
-    --ve-warning-dim: rgba(180, 83, 9, 0.07);
-    --ve-sage: #65a30d;
-    --ve-sage-dim: rgba(101, 163, 13, 0.07);
-    --ve-teal: #0f766e;
-    --ve-teal-dim: rgba(15, 118, 110, 0.07);
-    --ve-plum: #9f1239;
-    --ve-plum-dim: rgba(159, 18, 57, 0.07);
+    --ve-warning-dim: rgba(180, 83, 9, 0.1);
+    --ve-danger: #b91c1c;
+    --ve-danger-dim: rgba(185, 28, 28, 0.1);
+
+    --ve-sage: var(--ve-success);
+    --ve-sage-dim: var(--ve-success-dim);
+    --ve-teal: var(--ve-accent);
+    --ve-teal-dim: var(--ve-accent-dim);
+    --ve-plum: var(--ve-danger);
+    --ve-plum-dim: var(--ve-danger-dim);
   }
 
   @media (prefers-color-scheme: dark) {
     :root {
-      --ve-bg: #1a1412;
-      --ve-surface: #231d1a;
-      --ve-surface2: #2e2622;
-      --ve-surface-elevated: #352d28;
-      --ve-border: rgba(255, 255, 255, 0.06);
-      --ve-border-bright: rgba(255, 255, 255, 0.12);
-      --ve-text: #ede5dd;
-      --ve-text-dim: #a69889;
-      --ve-accent: #fb923c;
-      --ve-accent-dim: rgba(251, 146, 60, 0.12);
-      --ve-success: #a3e635;
-      --ve-success-dim: rgba(163, 230, 53, 0.1);
+      --ve-bg: #071017;
+      --ve-surface: #10202a;
+      --ve-surface2: #162b37;
+      --ve-surface-elevated: #1a3240;
+      --ve-border: rgba(226, 232, 240, 0.14);
+      --ve-border-bright: rgba(226, 232, 240, 0.24);
+      --ve-text: #e5edf5;
+      --ve-text-dim: #a9b6c3;
+      --ve-accent: #2dd4bf;
+      --ve-accent-dim: rgba(45, 212, 191, 0.16);
+      --ve-success: #4ade80;
+      --ve-success-dim: rgba(74, 222, 128, 0.16);
       --ve-warning: #fbbf24;
-      --ve-warning-dim: rgba(251, 191, 36, 0.1);
-      --ve-sage: #bef264;
-      --ve-sage-dim: rgba(190, 242, 100, 0.1);
-      --ve-teal: #5eead4;
-      --ve-teal-dim: rgba(94, 234, 212, 0.1);
-      --ve-plum: #fda4af;
-      --ve-plum-dim: rgba(253, 164, 175, 0.1);
+      --ve-warning-dim: rgba(251, 191, 36, 0.16);
+      --ve-danger: #f87171;
+      --ve-danger-dim: rgba(248, 113, 113, 0.16);
     }
   }
 
   @media (prefers-contrast: more) {
     :root {
-      --ve-border: rgba(0, 0, 0, 0.22);
-      --ve-border-bright: rgba(0, 0, 0, 0.34);
-      --ve-text-dim: #5f5347;
+      --ve-border: rgba(0, 0, 0, 0.3);
+      --ve-border-bright: rgba(0, 0, 0, 0.45);
+      --ve-text-dim: #334155;
     }
   }
 
@@ -174,14 +171,15 @@
 
   .section--hero {
     background: var(--ve-surface-elevated);
+    border-color: var(--ve-accent);
     border-color: color-mix(in srgb, var(--ve-border) 50%, var(--ve-accent) 50%);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+    box-shadow: 0 4px 20px var(--ve-accent-dim);
     padding: 28px 32px;
   }
 
   .section--recessed {
     background: var(--ve-surface2);
-    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.04);
+    box-shadow: inset 0 1px 3px var(--ve-border);
   }
 
   .section-label {

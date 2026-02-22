@@ -1,4 +1,5 @@
 ---
+SPECKIT_TEMPLATE_SOURCE: "checklist | v2.2"
 title: "Verification Checklist: Online Visual Upgrade (Next Stage) [001-online-visual-upgrade/checklist]"
 description: "Verification Date: 2026-02-22"
 trigger_phrases:

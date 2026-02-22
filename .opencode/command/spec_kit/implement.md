@@ -305,7 +305,7 @@ task_postflight(): specFolder, taskId (must match), knowledgeScore[0-100],
 **Learning Index** = (Knowledge Delta x 0.4) + (Uncertainty Reduction x 0.35) + (Context Improvement x 0.25)
 Interpretation: 40+ significant, 15-40 moderate, 5-15 incremental, <5 execution-focused, negative = regression.
 
-Reference: `.opencode/skill/system-spec-kit/references/memory/epistemic-vectors.md`
+Reference: `.opencode/skill/system-spec-kit/references/memory/epistemic_vectors.md`
 
 ---
 

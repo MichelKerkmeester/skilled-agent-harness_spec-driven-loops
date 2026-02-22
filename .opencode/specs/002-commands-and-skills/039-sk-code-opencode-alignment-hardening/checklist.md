@@ -1,4 +1,5 @@
 ---
+SPECKIT_TEMPLATE_SOURCE: "checklist | v2.2"
 title: "Verification Checklist: sk-code--opencode Alignment Hardening [040-sk-code-opencode-alignment-hardening/checklist]"
 description: "This document preserves the existing technical decisions and adds validator-required readme structure."
 trigger_phrases:

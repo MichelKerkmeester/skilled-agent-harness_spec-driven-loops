@@ -1,4 +1,5 @@
 ---
+SPECKIT_TEMPLATE_SOURCE: "spec-core | v2.2"
 title: "Feature Specification: Online Visual Upgrade (Next Stage) [001-online-visual-upgrade/spec]"
 description: "The current sk-visual-explainer hardening baseline is stable, but parity between router behavior, reference coverage, and template/version governance is not yet explicit. This c..."
 trigger_phrases:
@@ -29,6 +30,7 @@ contextType: "decision"
 | **Status** | Draft |
 | **Created** | 2026-02-22 |
 | **Branch** | `041-sk-visual-explainer-hardening/001-online-visual-upgrade` |
+| **Parent Spec** | ../spec.md |
 <!-- /ANCHOR:metadata -->
 
 ---

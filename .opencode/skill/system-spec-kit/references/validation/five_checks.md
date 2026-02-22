@@ -326,7 +326,7 @@ RESULT: [X/5 PASS] -> [PROCEED/RECONSIDER]
 <!-- ANCHOR:related-resources -->
 ## 7. RELATED RESOURCES
 
-- [Structured Gate Decision Format](./decision-format.md) - Standard format for documenting decisions
+- [Structured Gate Decision Format](./decision_format.md) - Standard format for documenting decisions
 - [Checklist Template](../../templates/level_2/checklist.md) - Level 2+ validation checklist structure
 - [SKILL.md - Validation Workflow](../../SKILL.md) - Overview of validation workflows (Section 3)
 - [Decision Record Template](../../templates/level_3/decision-record.md) - For documenting Level 3/3+ decisions

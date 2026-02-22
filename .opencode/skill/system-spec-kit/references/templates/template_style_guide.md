@@ -121,9 +121,9 @@ Use bulleted list format for metadata sections in all templates:
 Use numbered sections with emoji and UPPERCASE:
 
 ```markdown
-## 1. SECTION NAME
-## 2. ANOTHER SECTION
-## 3. THIRD SECTION
+\## 1. SECTION NAME
+\## 2. ANOTHER SECTION
+\## 3. THIRD SECTION
 ```
 
 ### Emoji Usage

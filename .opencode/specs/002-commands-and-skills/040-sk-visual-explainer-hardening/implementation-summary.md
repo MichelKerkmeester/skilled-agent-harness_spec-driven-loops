@@ -1,4 +1,5 @@
 ---
+SPECKIT_TEMPLATE_SOURCE: "impl-summary-core | v2.2"
 title: "Implementation Summary [041-sk-visual-explainer-hardening/implementation-summary]"
 description: "Post-implementation closeout for sk-visual-explainer hardening, including delivered changes, decisions, and reproducible verification outcomes."
 trigger_phrases:

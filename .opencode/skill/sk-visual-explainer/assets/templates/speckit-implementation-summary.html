@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+<meta name="ve-artifact-type" content="implementation-summary">
+<meta name="ve-source-doc" content="specs/003-system-spec-kit/136-mcp-working-memory-hybrid-rag/implementation-summary.md">
+<meta name="ve-speckit-level" content="3+">
+<meta name="ve-view-mode" content="artifact-dashboard">
+<title>SpecKit Implementation Summary - Interactive Template</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --font-body: 'Outfit', system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', 'SF Mono', Consolas, monospace;
+
+  --ve-bg: #f7fafc;
+  --ve-surface: #ffffff;
+  --ve-surface2: #eef3f8;
+  --ve-surface-elevated: #fcfdff;
+  --ve-border: rgba(15, 23, 42, 0.1);
+  --ve-border-bright: rgba(15, 23, 42, 0.2);
+
+  --ve-text: #0f172a;
+  --ve-text-dim: #4b5563;
+
+  --ve-accent: #0f766e;
+  --ve-accent-dim: rgba(15, 118, 110, 0.1);
+  --ve-success: #15803d;
+  --ve-success-dim: rgba(21, 128, 61, 0.1);
+  --ve-warning: #b45309;
+  --ve-warning-dim: rgba(180, 83, 9, 0.1);
+  --ve-danger: #b91c1c;
+  --ve-danger-dim: rgba(185, 28, 28, 0.1);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ve-bg: #071017;
+    --ve-surface: #10202a;
+    --ve-surface2: #162b37;
+    --ve-surface-elevated: #1a3240;
+    --ve-border: rgba(226, 232, 240, 0.14);
+    --ve-border-bright: rgba(226, 232, 240, 0.24);
+
+    --ve-text: #e5edf5;
+    --ve-text-dim: #a9b6c3;
+
+    --ve-accent: #2dd4bf;
+    --ve-accent-dim: rgba(45, 212, 191, 0.16);
+    --ve-success: #4ade80;
+    --ve-success-dim: rgba(74, 222, 128, 0.16);
+    --ve-warning: #fbbf24;
+    --ve-warning-dim: rgba(251, 191, 36, 0.16);
+    --ve-danger: #f87171;
+    --ve-danger-dim: rgba(248, 113, 113, 0.16);
+  }
+}
+
+@media (prefers-contrast: more) {
+  :root {
+    --ve-border: rgba(0, 0, 0, 0.3);
+    --ve-border-bright: rgba(0, 0, 0, 0.45);
+    --ve-text-dim: #334155;
+  }
+}
+
+@media (forced-colors: active) {
+  :root {
+    --ve-bg: Canvas;
+    --ve-surface: Canvas;
+    --ve-surface2: Canvas;
+    --ve-surface-elevated: Canvas;
+    --ve-border: CanvasText;
+    --ve-border-bright: CanvasText;
+    --ve-text: CanvasText;
+    --ve-text-dim: CanvasText;
+    --ve-accent: LinkText;
+    --ve-success: CanvasText;
+    --ve-warning: CanvasText;
+    --ve-danger: CanvasText;
+  }
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  color: var(--ve-text);
+  background-color: var(--ve-bg);
+  background-image:
+    radial-gradient(ellipse at 18% 0%, var(--ve-accent-dim), transparent 48%),
+    radial-gradient(ellipse at 85% 100%, var(--ve-success-dim), transparent 42%);
+  min-height: 100vh;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate {
+  animation: fadeUp 0.35s ease-out both;
+  animation-delay: calc(var(--i, 0) * 0.05s);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-delay: 0ms !important;
+    transition-duration: 0.01ms !important;
+  }
+  .animate { opacity: 1; transform: none; }
+}
+
+.wrapper {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 32px 18px 52px;
+}
+
+.header {
+  margin-bottom: 24px;
+}
+
+h1 {
+  font-size: 34px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 8px;
+}
+
+.subhead {
+  color: var(--ve-text-dim);
+  font-family: var(--font-mono);
+  font-size: 12px;
+}
+
+.page-layout {
+  display: grid;
+  grid-template-columns: 230px 1fr;
+  gap: 20px;
+}
+
+.toc {
+  position: sticky;
+  top: 20px;
+  align-self: start;
+  background: var(--ve-surface);
+  border: 1px solid var(--ve-border);
+  border-radius: 12px;
+  padding: 10px;
+  max-height: calc(100vh - 40px);
+  overflow: auto;
+}
+
+.toc a {
+  display: block;
+  text-decoration: none;
+  color: var(--ve-text-dim);
+  font-size: 12px;
+  border-radius: 8px;
+  padding: 8px 10px;
+  margin-bottom: 4px;
+}
+
+.toc a:hover,
+.toc a.active {
+  color: var(--ve-accent);
+  background: var(--ve-accent-dim);
+}
+
+.content {
+  min-width: 0;
+  display: grid;
+  gap: 16px;
+}
+
+.panel {
+  background: var(--ve-surface);
+  border: 1px solid var(--ve-border);
+  border-radius: 14px;
+  padding: 18px;
+}
+
+.panel h2 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.panel h3 {
+  font-size: 15px;
+  margin-bottom: 8px;
+}
+
+.body-text {
+  color: var(--ve-text-dim);
+  line-height: 1.65;
+  font-size: 14px;
+}
+
+.kpi-row {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(120px, 1fr));
+  gap: 10px;
+}
+
+.kpi {
+  background: var(--ve-surface2);
+  border: 1px solid var(--ve-border);
+  border-radius: 12px;
+  padding: 12px;
+}
+
+.kpi-label {
+  color: var(--ve-text-dim);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  margin-bottom: 6px;
+}
+
+.kpi-value {
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.grid-two {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.list {
+  list-style: none;
+  display: grid;
+  gap: 8px;
+}
+
+.item {
+  padding: 10px;
+  border: 1px solid var(--ve-border);
+  background: var(--ve-surface2);
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.badge {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  padding: 2px 7px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.badge--healthy { background: var(--ve-success-dim); color: var(--ve-success); }
+.badge--warning { background: var(--ve-warning-dim); color: var(--ve-warning); }
+.badge--critical { background: var(--ve-danger-dim); color: var(--ve-danger); }
+
+.table-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.data-table th,
+.data-table td {
+  border-bottom: 1px solid var(--ve-border);
+  padding: 10px;
+  text-align: left;
+  vertical-align: top;
+}
+
+.data-table th {
+  color: var(--ve-text-dim);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+}
+
+.details {
+  border: 1px solid var(--ve-border);
+  border-radius: 10px;
+  background: var(--ve-surface2);
+  padding: 10px;
+}
+
+.details summary {
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--ve-text);
+}
+
+.details p,
+.details ul {
+  margin-top: 8px;
+}
+
+.code-block {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  background: var(--ve-surface2);
+  border: 1px solid var(--ve-border);
+  border-radius: 10px;
+  padding: 12px;
+  overflow: auto;
+  line-height: 1.55;
+}
+
+code {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  overflow-wrap: break-word;
+}
+
+@media (max-width: 980px) {
+  .page-layout { grid-template-columns: 1fr; }
+  .toc {
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    display: flex;
+    gap: 6px;
+    overflow-x: auto;
+    max-height: none;
+  }
+  .toc a { white-space: nowrap; margin-bottom: 0; }
+}
+
+@media (max-width: 840px) {
+  .kpi-row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .grid-two { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<div class="wrapper">
+  <header class="header animate" style="--i:1">
+    <h1>Implementation Summary</h1>
+    <p class="subhead">Interactive implementation-summary template based on SpecKit L3+ structure and evidence-driven closeout.</p>
+  </header>
+
+  <div class="page-layout">
+    <nav class="toc animate" style="--i:2" aria-label="Implementation summary sections">
+      <a href="#artifact-kpis">Metadata KPI Row</a>
+      <a href="#section-coverage-map">Delivery Coverage</a>
+      <a href="#what-was-built">What Was Built</a>
+      <a href="#delivery">How It Was Delivered</a>
+      <a href="#decisions">Key Decisions</a>
+      <a href="#risk-gaps-panel">Known Limitations</a>
+      <a href="#inside">What's Inside</a>
+      <a href="#evidence-table">Verification Evidence</a>
+    </nav>
+
+    <main class="content">
+      <section id="artifact-kpis" class="panel animate" style="--i:3">
+        <h2>Metadata KPI Row</h2>
+        <div class="kpi-row">
+          <article class="kpi">
+            <p class="kpi-label">Spec Folder</p>
+            <p class="kpi-value">136</p>
+          </article>
+          <article class="kpi">
+            <p class="kpi-label">Completed</p>
+            <p class="kpi-value">2026-02-19</p>
+          </article>
+          <article class="kpi">
+            <p class="kpi-label">Level</p>
+            <p class="kpi-value">3+</p>
+          </article>
+          <article class="kpi">
+            <p class="kpi-label">Verification</p>
+            <p class="kpi-value"><span class="badge badge--healthy">PASS</span></p>
+          </article>
+          <article class="kpi">
+            <p class="kpi-label">Status</p>
+            <p class="kpi-value"><span class="badge badge--healthy">Complete</span></p>
+          </article>
+        </div>
+      </section>
+
+      <section id="section-coverage-map" class="panel animate" style="--i:4">
+        <h2>Delivery Coverage Map</h2>
+        <ul class="list">
+          <li class="item"><span>Typed retrieval trace + ContextEnvelope contract</span><span class="badge badge--healthy">Built</span></li>
+          <li class="item"><span>Artifact-aware routing and adaptive fusion profiles</span><span class="badge badge--healthy">Built</span></li>
+          <li class="item"><span>Append-only mutation ledger + telemetry extension</span><span class="badge badge--healthy">Built</span></li>
+          <li class="item"><span>Flagged rollout with staged validation and closure evidence</span><span class="badge badge--warning">Review</span></li>
+        </ul>
+      </section>
+
+      <section id="what-was-built" class="panel animate" style="--i:5">
+        <h2>What Was Built</h2>
+        <p class="body-text">The memory engine moves from opaque retrieval to traceable, intent-aware retrieval. Results carry a typed trace, routing adapts by artifact type, and fusion weights adjust by task intent. The index now records append-only mutation history and captures richer operational telemetry.</p>
+        <div style="height:10px"></div>
+        <div class="grid-two">
+          <details class="details" open>
+            <summary>Typed Retrieval Trace</summary>
+            <p class="body-text">Every hit can expose stage-level decisions (candidate selection, filter, fusion, rerank, fallback) with score and timing context.</p>
+          </details>
+          <details class="details" open>
+            <summary>Artifact-Aware Routing</summary>
+            <p class="body-text">Specs, plans, decisions, code, config, README, memory, scratch and research can each route to deterministic weighting strategies.</p>
+          </details>
+          <details class="details">
+            <summary>Adaptive Hybrid Fusion</summary>
+            <p class="body-text">Seven intent profiles tune retrieval emphasis with an explicit opt-out flag path for deterministic fallback.</p>
+          </details>
+          <details class="details">
+            <summary>Ledger + Telemetry</summary>
+            <p class="body-text">Mutation events become tamper-evident and telemetry captures latency, mode selection, fallback signals and quality proxies.</p>
+          </details>
+        </div>
+      </section>
+
+      <section id="delivery" class="panel animate" style="--i:6">
+        <h2>How It Was Delivered</h2>
+        <div class="grid-two">
+          <article class="panel" style="padding:12px;">
+            <h3>Rollout Path</h3>
+            <ul class="list">
+              <li class="item"><span>Dark launch with flags disabled and baseline regression checks</span><span class="badge badge--healthy">GO</span></li>
+              <li class="item"><span>Staged enablement at 10% -> 50% -> 100%</span><span class="badge badge--healthy">GO</span></li>
+              <li class="item"><span>Closure packet with KPI trend and capability truth matrix</span><span class="badge badge--healthy">GO</span></li>
+            </ul>
+          </article>
+          <article class="panel" style="padding:12px;">
+            <h3>Governance Sign-Off</h3>
+            <ul class="list">
+              <li class="item"><span>Tech Lead: architecture + reliability checks</span><span class="badge badge--healthy">Approved</span></li>
+              <li class="item"><span>Data Reviewer: quality + scoring integrity</span><span class="badge badge--healthy">Approved</span></li>
+              <li class="item"><span>Product Owner: requirement mapping + closure</span><span class="badge badge--healthy">Approved</span></li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section id="decisions" class="panel animate" style="--i:7">
+        <h2>Key Decisions</h2>
+        <div class="table-scroll">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Decision</th>
+                <th>Why</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Adaptive fusion uses opt-out semantics</td>
+                <td>Default behavior stays adaptive unless explicitly disabled for deterministic comparison.</td>
+              </tr>
+              <tr>
+                <td>Append-only ledger enforced at DB layer</td>
+                <td>Trigger-level guarantees are stronger than application-only mutation controls.</td>
+              </tr>
+              <tr>
+                <td>Deterministic artifact-routing weights</td>
+                <td>Transparent and auditable retrieval behavior beats opaque adaptive routing for governance.</td>
+              </tr>
+              <tr>
+                <td>Telemetry isolated to evaluation lane</td>
+                <td>Prevents synthetic closure metrics from being represented as live production telemetry.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="risk-gaps-panel" class="panel animate" style="--i:8">
+        <h2>Known Limitations</h2>
+        <ul class="list">
+          <li class="item"><span>Adaptive fusion is opt-out, not opt-in.</span><span class="badge badge--warning">Operational</span></li>
+          <li class="item"><span>Telemetry currently reflects evaluation scenarios.</span><span class="badge badge--warning">Interpretation</span></li>
+          <li class="item"><span>Survey confirmation is administrative and should be complemented by live-user data.</span><span class="badge badge--critical">Evidence Gap</span></li>
+          <li class="item"><span>Archive semantics may map to <code>deprecated</code> enum equivalents.</span><span class="badge badge--warning">Modeling</span></li>
+        </ul>
+      </section>
+
+      <section id="inside" class="panel animate" style="--i:9">
+        <h2>What's Inside</h2>
+        <p class="body-text">Use this continuation block to show how the final implementation summary maps back to parent and wave-specific specs.</p>
+        <div style="height:10px"></div>
+        <pre class="code-block">136-mcp-working-memory-hybrid-rag/
+├── 004-post-research-wave-1-governance-foundations/
+├── 005-post-research-wave-2-controlled-delivery/
+└── 006-post-research-wave-3-outcome-confirmation/</pre>
+      </section>
+
+      <section id="evidence-table" class="panel animate" style="--i:10">
+        <h2>Verification Evidence</h2>
+        <div class="table-scroll">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Check</th>
+                <th>Result</th>
+                <th>Evidence Path</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Strict root validation</td>
+                <td><span class="badge badge--healthy">PASS</span></td>
+                <td><code>scripts/spec/validate.sh</code></td>
+              </tr>
+              <tr>
+                <td>Full suite and targeted suites</td>
+                <td><span class="badge badge--healthy">PASS</span></td>
+                <td><code>specs/.../test-results.md</code></td>
+              </tr>
+              <tr>
+                <td>Lint, typecheck, build</td>
+                <td><span class="badge badge--healthy">PASS</span></td>
+                <td><code>workspace verification logs</code></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+  </div>
+</div>
+
+<script>
+(function initInteractiveToc() {
+  const links = Array.from(document.querySelectorAll('.toc a[href^="#"]'));
+  const sections = links
+    .map((link) => document.querySelector(link.getAttribute('href')))
+    .filter(Boolean);
+
+  if (!links.length || !sections.length) return;
+
+  const setActive = (id) => {
+    links.forEach((link) => {
+      const active = link.getAttribute('href') === '#' + id;
+      link.classList.toggle('active', active);
+      if (active) link.setAttribute('aria-current', 'true');
+      else link.removeAttribute('aria-current');
+    });
+  };
+
+  links.forEach((link) => {
+    link.addEventListener('click', (event) => {
+      event.preventDefault();
+      const id = link.getAttribute('href').slice(1);
+      const target = document.getElementById(id);
+      if (!target) return;
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      setActive(id);
+    });
+  });
+
+  const observer = new IntersectionObserver((entries) => {
+    const visible = entries
+      .filter((entry) => entry.isIntersecting)
+      .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+    if (!visible.length) return;
+    setActive(visible[0].target.id);
+  }, {
+    root: null,
+    rootMargin: '-28% 0px -58% 0px',
+    threshold: [0.1, 0.25, 0.5, 0.75]
+  });
+
+  sections.forEach((section) => observer.observe(section));
+  setActive(sections[0].id);
+})();
+</script>
+</body>
+</html>

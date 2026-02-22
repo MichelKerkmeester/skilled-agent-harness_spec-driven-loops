@@ -1030,7 +1030,7 @@ A: Yes. Flags are default-on and only explicit `FLAG=false` disables them. `SPEC
 | Skill README     | `../README.md`                                | Complete skill documentation        |
 | SKILL.md         | `../SKILL.md`                                 | Workflow instructions for AI agents |
 | Install Guide    | `INSTALL_GUIDE.md`                            | Detailed installation               |
-| Rollback Runbook | `../references/workflows/rollback-runbook.md` | Feature-flag rollback procedure     |
+| Rollback Runbook | `../references/workflows/rollback_runbook.md` | Feature-flag rollback procedure     |
 
 ### Related Specs
 

@@ -1,4 +1,5 @@
 ---
+SPECKIT_TEMPLATE_SOURCE: "tasks-core | v2.2"
 title: "Tasks: sk-code--opencode Alignment Hardening [040-sk-code-opencode-alignment-hardening/tasks]"
 description: "This document preserves the existing technical decisions and adds validator-required readme structure."
 trigger_phrases:

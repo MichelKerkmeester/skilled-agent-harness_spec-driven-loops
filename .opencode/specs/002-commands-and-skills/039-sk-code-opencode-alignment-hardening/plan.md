@@ -1,4 +1,5 @@
 ---
+SPECKIT_TEMPLATE_SOURCE: "plan-core | v2.2"
 title: "Implementation Plan: sk-code--opencode Alignment Hardening [040-sk-code-opencode-alignment-hardening/plan]"
 description: "This document preserves the existing technical decisions and adds validator-required readme structure."
 trigger_phrases:

@@ -7,10 +7,9 @@
 <title>Requirements Audit — Reference Template</title>
 <!--
   Reference template for the sk-visual-explainer skill: data tables.
-  Rose/cranberry palette — distinctly different from terracotta (architecture)
-  and teal (mermaid) templates so agents absorb variety.
+  Uses the shared SpecKit dashboard palette (single approved palette for all templates).
   Key patterns demonstrated:
-  - Rose/cranberry palette (NOT indigo/violet)
+  - Shared visual-explainer palette consistency
   - KPI summary cards above the table (visual hook before the data)
   - Collapsible <details> section (replaces static callout)
   - Depth tiers: elevated KPIs, default table, collapsible for secondary
@@ -32,50 +31,50 @@
     --font-mono: 'JetBrains Mono', 'SF Mono', Consolas, monospace;
     --font-sans: system-ui, -apple-system, sans-serif;
 
-    --ve-bg: #fff5f5;
+    --ve-bg: #f7fafc;
     --ve-surface: #ffffff;
-    --ve-surface2: #fef0ee;
-    --ve-surface-elevated: #fff8f7;
-    --ve-border: rgba(0, 0, 0, 0.07);
-    --ve-border-bright: rgba(0, 0, 0, 0.14);
-    --ve-text: #1c1917;
-    --ve-text-dim: #78716c;
-    --ve-accent: #be123c;
-    --ve-accent-dim: rgba(190, 18, 60, 0.06);
-    --ve-success: #16a34a;
-    --ve-success-dim: rgba(22, 163, 74, 0.08);
-    --ve-danger: #dc2626;
-    --ve-danger-dim: rgba(220, 38, 38, 0.08);
-    --ve-warning: #d97706;
-    --ve-warning-dim: rgba(217, 119, 6, 0.08);
+    --ve-surface2: #eef3f8;
+    --ve-surface-elevated: #fcfdff;
+    --ve-border: rgba(15, 23, 42, 0.1);
+    --ve-border-bright: rgba(15, 23, 42, 0.2);
+    --ve-text: #0f172a;
+    --ve-text-dim: #4b5563;
+    --ve-accent: #0f766e;
+    --ve-accent-dim: rgba(15, 118, 110, 0.1);
+    --ve-success: #15803d;
+    --ve-success-dim: rgba(21, 128, 61, 0.1);
+    --ve-danger: #b91c1c;
+    --ve-danger-dim: rgba(185, 28, 28, 0.1);
+    --ve-warning: #b45309;
+    --ve-warning-dim: rgba(180, 83, 9, 0.1);
   }
 
   @media (prefers-color-scheme: dark) {
     :root {
-      --ve-bg: #1a0a0a;
-      --ve-surface: #231414;
-      --ve-surface2: #2e1b1b;
-      --ve-surface-elevated: #351f1f;
-      --ve-border: rgba(255, 255, 255, 0.06);
-      --ve-border-bright: rgba(255, 255, 255, 0.12);
-      --ve-text: #fde2e2;
-      --ve-text-dim: #c9a3a3;
-      --ve-accent: #fb7185;
-      --ve-accent-dim: rgba(251, 113, 133, 0.12);
+      --ve-bg: #071017;
+      --ve-surface: #10202a;
+      --ve-surface2: #162b37;
+      --ve-surface-elevated: #1a3240;
+      --ve-border: rgba(226, 232, 240, 0.14);
+      --ve-border-bright: rgba(226, 232, 240, 0.24);
+      --ve-text: #e5edf5;
+      --ve-text-dim: #a9b6c3;
+      --ve-accent: #2dd4bf;
+      --ve-accent-dim: rgba(45, 212, 191, 0.16);
       --ve-success: #4ade80;
-      --ve-success-dim: rgba(74, 222, 128, 0.1);
+      --ve-success-dim: rgba(74, 222, 128, 0.16);
       --ve-danger: #f87171;
-      --ve-danger-dim: rgba(248, 113, 113, 0.1);
+      --ve-danger-dim: rgba(248, 113, 113, 0.16);
       --ve-warning: #fbbf24;
-      --ve-warning-dim: rgba(251, 191, 36, 0.1);
+      --ve-warning-dim: rgba(251, 191, 36, 0.16);
     }
   }
 
   @media (prefers-contrast: more) {
     :root {
-      --ve-border: rgba(0, 0, 0, 0.22);
-      --ve-border-bright: rgba(0, 0, 0, 0.34);
-      --ve-text-dim: #57534e;
+      --ve-border: rgba(0, 0, 0, 0.3);
+      --ve-border-bright: rgba(0, 0, 0, 0.45);
+      --ve-text-dim: #334155;
     }
   }
 
@@ -197,13 +196,10 @@
   }
 
   /* Header */
-  .data-table thead {
+  .data-table th {
     position: sticky;
     top: 0;
     z-index: 2;
-  }
-
-  .data-table th {
     background: var(--ve-surface2);
     font-family: var(--font-mono);
     font-size: 10px;
@@ -330,7 +326,7 @@
     border: 1px solid var(--ve-border);
     border-radius: 10px;
     padding: 18px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 2px 8px var(--ve-accent-dim);
   }
 
   .kpi-card__value {

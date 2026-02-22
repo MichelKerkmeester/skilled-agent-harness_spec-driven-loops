@@ -1,4 +1,5 @@
 ---
+SPECKIT_TEMPLATE_SOURCE: "impl-summary-core | v2.2"
 title: "Implementation Summary [040-sk-code-opencode-alignment-hardening/implementation-summary]"
 description: "This document preserves the existing technical decisions and adds validator-required readme structure."
 trigger_phrases:

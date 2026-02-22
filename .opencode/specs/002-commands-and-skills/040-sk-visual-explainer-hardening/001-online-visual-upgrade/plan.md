@@ -1,4 +1,5 @@
 ---
+SPECKIT_TEMPLATE_SOURCE: "plan-core | v2.2"
 title: "Implementation Plan: Online Visual Upgrade (Next Stage) [001-online-visual-upgrade/plan]"
 description: "This workstream upgrades sk-visual-explainer with parity-first routing documentation, assets/library_versions.json plus synchronized references, template modernization, and enfo..."
 trigger_phrases:

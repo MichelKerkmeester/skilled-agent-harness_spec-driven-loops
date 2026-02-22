@@ -31,7 +31,7 @@ const VALIDATION_DIR = path.join(ROOT, 'references', 'validation');
 const TEMPLATES_DIR = path.join(ROOT, 'templates');
 
 // Five Checks documentation path
-const FIVE_CHECKS_DOC = path.join(VALIDATION_DIR, 'five-checks.md');
+const FIVE_CHECKS_DOC = path.join(VALIDATION_DIR, 'five_checks.md');
 
 // Template paths
 const LEVEL_1_DIR = path.join(TEMPLATES_DIR, 'level_1');
@@ -202,17 +202,17 @@ async function testFrameworkDocumentationStructure() {
   log('\n--- TEST SUITE: Framework Documentation Structure ---');
 
   try {
-    // Test five-checks.md exists
+    // Test five_checks.md exists
     if (fileExists(FIVE_CHECKS_DOC)) {
-      pass('T-FC-001: five-checks.md exists', FIVE_CHECKS_DOC);
+      pass('T-FC-001: five_checks.md exists', FIVE_CHECKS_DOC);
     } else {
-      fail('T-FC-001: five-checks.md exists', `File not found: ${FIVE_CHECKS_DOC}`);
+      fail('T-FC-001: five_checks.md exists', `File not found: ${FIVE_CHECKS_DOC}`);
       return;
     }
 
     const content = readFile(FIVE_CHECKS_DOC);
     if (!content) {
-      fail('T-FC-002: five-checks.md is readable', 'Could not read file');
+      fail('T-FC-002: five_checks.md is readable', 'Could not read file');
       return;
     }
 
@@ -225,15 +225,15 @@ async function testFrameworkDocumentationStructure() {
         const hasDescription = frontmatter.includes('description:');
 
         if (hasTitle && hasDescription) {
-          pass('T-FC-002: five-checks.md has valid frontmatter', 'title and description found');
+          pass('T-FC-002: five_checks.md has valid frontmatter', 'title and description found');
         } else {
-          fail('T-FC-002: five-checks.md has valid frontmatter', `title:${hasTitle}, description:${hasDescription}`);
+          fail('T-FC-002: five_checks.md has valid frontmatter', `title:${hasTitle}, description:${hasDescription}`);
         }
       } else {
-        fail('T-FC-002: five-checks.md has valid frontmatter', 'Frontmatter not closed');
+        fail('T-FC-002: five_checks.md has valid frontmatter', 'Frontmatter not closed');
       }
     } else {
-      fail('T-FC-002: five-checks.md has valid frontmatter', 'No frontmatter found');
+      fail('T-FC-002: five_checks.md has valid frontmatter', 'No frontmatter found');
     }
 
     // Test main sections exist
@@ -323,7 +323,7 @@ async function testCheckCriteriaParsing() {
   try {
     const content = readFile(FIVE_CHECKS_DOC);
     if (!content) {
-      fail('T-CP-001: Can read five-checks.md for parsing tests', 'File not readable');
+      fail('T-CP-001: Can read five_checks.md for parsing tests', 'File not readable');
       return;
     }
 
@@ -516,7 +516,7 @@ async function testLevelApplicability() {
   try {
     const fiveChecksDoc = readFile(FIVE_CHECKS_DOC);
     if (!fiveChecksDoc) {
-      fail('T-LA-001: Can read five-checks.md for level applicability tests', 'File not readable');
+      fail('T-LA-001: Can read five_checks.md for level applicability tests', 'File not readable');
       return;
     }
 
@@ -747,7 +747,7 @@ async function testCrossReferenceValidation() {
   try {
     const fiveChecksDoc = readFile(FIVE_CHECKS_DOC);
     if (!fiveChecksDoc) {
-      fail('T-CR-001: Can read five-checks.md for cross-reference tests', 'File not readable');
+      fail('T-CR-001: Can read five_checks.md for cross-reference tests', 'File not readable');
       return;
     }
 

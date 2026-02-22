@@ -1,4 +1,5 @@
 ---
+SPECKIT_TEMPLATE_SOURCE: "impl-summary-core | v2.2"
 title: "Implementation Summary [001-online-visual-upgrade/implementation-summary]"
 description: "Completed implementation includes routing/structure hardening, pinned library matrixing, reference/template modernization, validator and drift enforcement, fixture-based tests, ..."
 trigger_phrases:

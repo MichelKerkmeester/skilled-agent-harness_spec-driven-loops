@@ -1,4 +1,5 @@
 ---
+SPECKIT_TEMPLATE_SOURCE: "spec-core | v2.2"
 title: "Feature Specification: sk-visual-explainer Hardening [041-sk-visual-explainer-hardening/spec]"
 description: "Level 2 specification for validator/template hardening of sk-visual-explainer, scoped to documented P0/P1 requirements and verification evidence."
 trigger_phrases:
@@ -20,6 +21,12 @@ contextType: "decision"
 ## 1. OVERVIEW
 
 Level 2 specification for validator/template hardening of `sk-visual-explainer`, scoped to documented P0/P1 requirements and verification evidence.
+
+## PHASE DOCUMENTATION MAP
+
+| Phase | Spec |
+|-------|------|
+| `001-online-visual-upgrade` | `001-online-visual-upgrade/spec.md` |
 ---
 
 <!-- ANCHOR:metadata -->

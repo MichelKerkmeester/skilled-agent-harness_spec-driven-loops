@@ -546,11 +546,11 @@ bash upgrade-level.sh specs/042-feature/ --to 3 --dry-run
 
 **Post-Upgrade: AI Auto-Populate (Mandatory)**
 
-After `upgrade-level.sh` runs, newly injected template sections contain `[placeholder]` text. The AI agent **must** auto-populate these placeholders by:
+After `upgrade-level.sh` runs, newly injected template sections contain `<placeholder_token>` text. The AI agent **must** auto-populate these placeholders by:
 
 1. Reading existing spec context (spec.md, plan.md, tasks.md, etc.)
 2. Deriving appropriate content for each placeholder from that context
-3. Replacing all `[placeholder]` markers with populated content
+3. Replacing all `<placeholder_token>` markers with populated content
 4. Running `check-placeholders.sh` to verify none remain
 
 ```bash

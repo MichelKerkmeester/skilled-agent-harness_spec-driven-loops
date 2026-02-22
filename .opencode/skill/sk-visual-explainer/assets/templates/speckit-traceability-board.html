@@ -17,18 +17,18 @@
   --font-body: 'Manrope', system-ui, sans-serif;
   --font-mono: 'DM Mono', 'SF Mono', Consolas, monospace;
 
-  --ve-bg: #f8fafc;
+  --ve-bg: #f7fafc;
   --ve-surface: #ffffff;
-  --ve-surface2: #eef2f7;
-  --ve-surface-elevated: #fbfdff;
+  --ve-surface2: #eef3f8;
+  --ve-surface-elevated: #fcfdff;
   --ve-border: rgba(15, 23, 42, 0.1);
   --ve-border-bright: rgba(15, 23, 42, 0.2);
 
   --ve-text: #0f172a;
-  --ve-text-dim: #475569;
+  --ve-text-dim: #4b5563;
 
-  --ve-accent: #0e7490;
-  --ve-accent-dim: rgba(14, 116, 144, 0.12);
+  --ve-accent: #0f766e;
+  --ve-accent-dim: rgba(15, 118, 110, 0.1);
   --ve-success: #15803d;
   --ve-success-dim: rgba(21, 128, 61, 0.1);
   --ve-warning: #b45309;
@@ -39,18 +39,18 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --ve-bg: #07141c;
-    --ve-surface: #102532;
-    --ve-surface2: #163242;
-    --ve-surface-elevated: #1a3b4c;
+    --ve-bg: #071017;
+    --ve-surface: #10202a;
+    --ve-surface2: #162b37;
+    --ve-surface-elevated: #1a3240;
     --ve-border: rgba(226, 232, 240, 0.14);
     --ve-border-bright: rgba(226, 232, 240, 0.24);
 
-    --ve-text: #e4edf4;
-    --ve-text-dim: #abc1ce;
+    --ve-text: #e5edf5;
+    --ve-text-dim: #a9b6c3;
 
-    --ve-accent: #67e8f9;
-    --ve-accent-dim: rgba(103, 232, 249, 0.18);
+    --ve-accent: #2dd4bf;
+    --ve-accent-dim: rgba(45, 212, 191, 0.16);
     --ve-success: #4ade80;
     --ve-success-dim: rgba(74, 222, 128, 0.16);
     --ve-warning: #fbbf24;
@@ -92,8 +92,8 @@ body {
   color: var(--ve-text);
   background-color: var(--ve-bg);
   background-image:
-    radial-gradient(ellipse at 14% 0%, var(--ve-accent-dim), transparent 48%),
-    radial-gradient(ellipse at 92% 95%, var(--ve-warning-dim), transparent 40%);
+    radial-gradient(ellipse at 18% 0%, var(--ve-accent-dim), transparent 48%),
+    radial-gradient(ellipse at 85% 100%, var(--ve-success-dim), transparent 42%);
   min-height: 100vh;
 }
 
@@ -462,10 +462,14 @@ graph LR
     let startX = 0;
     let startY = 0;
     wrap.addEventListener('mousedown', function(event) {
+      if (event.button !== 0) return;
+      if (event.target.closest('.zoom-controls')) return;
+      if (zoom <= 1) return;
       dragging = true;
       startX = event.clientX;
       startY = event.clientY;
       wrap.style.cursor = 'grabbing';
+      event.preventDefault();
     });
 
     window.addEventListener('mouseup', function() {
@@ -490,7 +494,8 @@ graph LR
 import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11.12.3/dist/mermaid.esm.min.mjs';
 import elkLayouts from 'https://cdn.jsdelivr.net/npm/@mermaid-js/layout-elk@0.2.0/dist/mermaid-layout-elk.esm.min.mjs';
 
-const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+const styles = getComputedStyle(document.documentElement);
+const cssVar = (name, fallback) => styles.getPropertyValue(name).trim() || fallback;
 mermaid.registerLayoutLoaders(elkLayouts);
 mermaid.initialize({
   startOnLoad: true,
@@ -504,10 +509,10 @@ mermaid.initialize({
   themeVariables: {
     fontFamily: 'Manrope, system-ui, sans-serif',
     fontSize: '16px',
-    primaryColor: isDark ? '#163242' : '#e0f2fe',
-    primaryBorderColor: isDark ? '#67e8f9' : '#0e7490',
-    primaryTextColor: isDark ? '#e4edf4' : '#0f172a',
-    lineColor: isDark ? '#67e8f9' : '#0e7490'
+    primaryColor: cssVar('--ve-surface2', '#eef3f8'),
+    primaryBorderColor: cssVar('--ve-accent', '#0f766e'),
+    primaryTextColor: cssVar('--ve-text', '#0f172a'),
+    lineColor: cssVar('--ve-accent', '#0f766e')
   }
 });
 </script>

@@ -1,9 +1,26 @@
+---
+title: Rollback Runbook
+description: Rollback flow for working-memory automation features and feature-flag re-enable sequencing
+---
+
 # Rollback Runbook: Working Memory Automation
+
+Rollback procedure for safely disabling and re-enabling working-memory automation features when rollout quality gates regress.
 
 ---
 
+<!-- ANCHOR:overview -->
+## 1. OVERVIEW
+
+This runbook defines the rollback and staged recovery flow for working-memory automation features introduced in spec `136-mcp-working-memory-hybrid-rag`.
+
+Use this runbook when rollout quality gates regress and feature flags must be disabled and re-enabled in a controlled sequence.
+
+---
+
+<!-- /ANCHOR:overview -->
 <!-- ANCHOR:scope -->
-## 1. Scope
+## 2. SCOPE
 
 This runbook defines the rollback flow for the automation features introduced in spec `136-mcp-working-memory-hybrid-rag`.
 
@@ -16,7 +33,7 @@ Rollback is required when one or more of the following occurs:
 
 <!-- /ANCHOR:scope -->
 <!-- ANCHOR:flags -->
-## 2. Disable Flags
+## 3. DISABLE FLAGS
 
 Disable all rollout-sensitive automation flags:
 
@@ -32,7 +49,7 @@ SPECKIT_AUTO_RESUME=false
 
 <!-- /ANCHOR:flags -->
 <!-- ANCHOR:smoke-tests -->
-## 3. Smoke Tests
+## 4. SMOKE TESTS
 
 Run focused verification immediately after restart:
 
@@ -49,7 +66,7 @@ Expected outcomes:
 
 <!-- /ANCHOR:smoke-tests -->
 <!-- ANCHOR:verification -->
-## 4. Baseline Verification
+## 5. BASELINE VERIFICATION
 
 Confirm baseline behavior before closing rollback:
 - `memory_search` response metadata shows no applied session/causal boosts
@@ -60,7 +77,7 @@ Confirm baseline behavior before closing rollback:
 
 <!-- /ANCHOR:verification -->
 <!-- ANCHOR:re-enable -->
-## 5. Controlled Re-Enable
+## 6. CONTROLLED RE-ENABLE
 
 Re-enable features one flag at a time in this order:
 1. `SPECKIT_SESSION_BOOST`

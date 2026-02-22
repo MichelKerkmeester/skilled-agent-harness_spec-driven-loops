@@ -1,4 +1,5 @@
 ---
+SPECKIT_TEMPLATE_SOURCE: "tasks-core | v2.2"
 title: "Tasks: sk-visual-explainer Hardening [041-sk-visual-explainer-hardening/tasks]"
 description: "Task-level execution checklist aligned to the hardening spec and plan, preserving current completion/evidence state."
 trigger_phrases:

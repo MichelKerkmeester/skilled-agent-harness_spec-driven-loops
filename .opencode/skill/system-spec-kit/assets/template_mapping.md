@@ -31,7 +31,7 @@ This asset provides the definitive source for which templates are required at ea
 
 ### Directory Structure
 
-```
+```text
 templates/
 ├── core/                    # Source components (DO NOT USE DIRECTLY)
 ├── addendum/                # Level additions (DO NOT USE DIRECTLY)
@@ -83,7 +83,7 @@ compose.sh --verify           # Check if templates are current
 <!-- ANCHOR:required-templates-by-level-progressive-enhancement -->
 ## 3. REQUIRED TEMPLATES BY LEVEL (Progressive Enhancement)
 
-```
+```text
 Level 1 (Baseline):     spec.md + plan.md + tasks.md + implementation-summary.md
                               ↓
 Level 2 (Verification): Level 1 + checklist.md
@@ -165,7 +165,7 @@ These templates are OPTIONAL and only apply to Level 3 documentation:
 
 ### Level 1: Baseline Documentation
 
-```
+```text
 specs/043-add-email-validation/
 ├── spec.md                      (REQUIRED - from spec.md)
 ├── plan.md                      (REQUIRED - from plan.md)
@@ -186,7 +186,7 @@ specs/043-add-email-validation/
 
 ### Level 2: Verification Added
 
-```
+```text
 specs/044-modal-component/
 ├── spec.md                      (REQUIRED - from Level 1)
 ├── plan.md                      (REQUIRED - from Level 1)
@@ -206,7 +206,7 @@ specs/044-modal-component/
 
 ### Level 3: Full Documentation
 
-```
+```text
 specs/045-user-dashboard/
 ├── spec.md                      (REQUIRED - from Level 2)
 ├── plan.md                      (REQUIRED - from Level 2)
@@ -228,7 +228,7 @@ specs/045-user-dashboard/
 
 ### Level 3+: Extended Documentation
 
-```
+```text
 specs/046-enterprise-migration/
 ├── spec.md                      (REQUIRED - from Level 3, +approval workflow, +compliance, +stakeholders)
 ├── plan.md                      (REQUIRED - from Level 3, +AI execution framework, +workstream coordination)

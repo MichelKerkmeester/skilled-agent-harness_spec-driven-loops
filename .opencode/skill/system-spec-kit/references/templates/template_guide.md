@@ -14,7 +14,7 @@ Guide to template selection, copying, adaptation, and quality standards.
 
 ### Progressive Enhancement Model
 
-```
+```text
 Level 1 (Baseline):     spec.md + plan.md + tasks.md + implementation-summary.md
                                ↓
 Level 2 (Verification): Level 1 + checklist.md
@@ -243,9 +243,9 @@ cp .opencode/skill/system-spec-kit/templates/level_3+/decision-record.md specs/#
 
 **Example:**
 ```markdown
-## 1. OBJECTIVE
-## 2. SCOPE
-## 3. IMPLEMENTATION
+\## 1. OBJECTIVE
+\## 2. SCOPE
+\## 3. IMPLEMENTATION
 ```
 
 **Rules:**
@@ -636,7 +636,7 @@ node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js spe
 
 **Workflow:**
 
-```
+```text
 1. TRIGGER
    ├── Manual: Run /spec_kit:debug
    └── Auto-suggested: After repeated failures or frustration keywords
@@ -810,22 +810,22 @@ The form submission button doesn't show loading state, causing duplicate submiss
 
 **Wrong:**
 ```markdown
-## 1. OBJECTIVE
+\## 1. OBJECTIVE
 [...]
 
-## 3. IMPLEMENTATION
+\## 3. IMPLEMENTATION
 [...]
 ```
 
 **Right:**
 ```markdown
-## 1. OBJECTIVE
+\## 1. OBJECTIVE
 [...]
 
-## 2. SCOPE
+\## 2. SCOPE
 N/A - Single file change, no scope considerations
 
-## 3. IMPLEMENTATION
+\## 3. IMPLEMENTATION
 [...]
 ```
 
@@ -918,7 +918,7 @@ There are **two distinct sub-folder systems**:
 6. Each sub-folder gets independent `memory/` context
 
 **Example:**
-```
+```text
 specs/122-skill-standardization/
 ├── 001-original-work/  (auto-archived)
 │   ├── spec.md
@@ -943,7 +943,7 @@ Create sub-folders **manually** within spec folders when:
 
 ### Sub-Folder Structure Pattern
 
-```
+```text
 specs/###-parent-feature/
   spec.md              # Parent feature specification
   plan.md              # Overall implementation plan
@@ -1002,7 +1002,7 @@ mkdir -p specs/122-skill-standardization/spec-enforcement-improvements
 **Purpose:** Standardize all skills across the project
 
 **Sub-Folders:**
-```
+```text
 specs/122-skill-standardization/
   cli-codex-alignment/
     README.md           # Purpose: Align cli-codex skill with standards

@@ -243,7 +243,7 @@ Templates are now pre-expanded in level folders, eliminating runtime gate proces
 
 <!-- /ANCHOR:related-resources -->
 <!-- ANCHOR:appendix-deprecated-content -->
-## Appendix: Deprecated Content
+## 9. APPENDIX: DEPRECATED CONTENT
 
 > **DEPRECATED:** The following content is retained for historical reference only.
 > COMPLEXITY_GATE markers have been replaced by the level selection criteria in sections above.

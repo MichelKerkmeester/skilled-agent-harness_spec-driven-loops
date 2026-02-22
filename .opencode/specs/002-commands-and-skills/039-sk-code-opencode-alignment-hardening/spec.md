@@ -1,4 +1,5 @@
 ---
+SPECKIT_TEMPLATE_SOURCE: "spec-core + level2-verify + level3-arch | v2.2"
 title: "Feature Specification: sk-code--opencode Alignment Hardening [040-sk-code-opencode-alignment-hardening/spec]"
 description: "This document preserves the existing technical decisions and adds validator-required readme structure."
 trigger_phrases:

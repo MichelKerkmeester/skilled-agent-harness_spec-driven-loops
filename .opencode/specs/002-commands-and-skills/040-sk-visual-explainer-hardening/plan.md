@@ -1,4 +1,5 @@
 ---
+SPECKIT_TEMPLATE_SOURCE: "plan-core | v2.2"
 title: "Implementation Plan: sk-visual-explainer Hardening [041-sk-visual-explainer-hardening/plan]"
 description: "Implementation sequence for delivering and verifying sk-visual-explainer hardening with minimal, requirement-bound changes."
 trigger_phrases:

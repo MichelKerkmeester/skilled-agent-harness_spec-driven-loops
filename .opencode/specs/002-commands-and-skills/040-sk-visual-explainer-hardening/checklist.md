@@ -1,4 +1,5 @@
 ---
+SPECKIT_TEMPLATE_SOURCE: "checklist | v2.2"
 title: "Verification Checklist: sk-visual-explainer Hardening [041-sk-visual-explainer-hardening/checklist]"
 description: "Verification status and evidence matrix for all Level 2 P0/P1/P2 checklist items tied to this hardening scope."
 trigger_phrases:

@@ -284,7 +284,7 @@ bash upgrade-level.sh specs/042-feature/ --to 3+
 bash upgrade-level.sh specs/042-feature/ --to 3 --dry-run
 ```
 
-**Post-Upgrade:** After the script runs, AI **must** auto-populate all `[placeholder]` text in newly injected sections by reading existing spec context and deriving appropriate content.
+**Post-Upgrade:** After the script runs, AI **must** auto-populate all `<placeholder_token>` text in newly injected sections by reading existing spec context and deriving appropriate content.
 
 Then verify placeholders are fully resolved:
 
@@ -446,7 +446,7 @@ Before presenting documentation to user:
   - [ ] Level 2: Level 1 + checklist.md
   - [ ] Level 3: Level 2 + decision-record.md
 - [ ] Optional templates copied if needed (Level 3 only)
-- [ ] All placeholders replaced (`[PLACEHOLDER]`, `[NEEDS CLARIFICATION: ...]`)
+- [ ] All placeholders replaced (`<PLACEHOLDER>`, `<NEEDS_CLARIFICATION: ...>`)
 - [ ] All sample content removed (`<!-- SAMPLE CONTENT -->`)
 - [ ] Template footer deleted
 - [ ] Metadata block filled correctly
@@ -560,7 +560,7 @@ specs/###-parent/
   - Level 1: spec.md + plan.md + tasks.md + implementation-summary.md
   - Level 2: Level 1 + checklist.md
   - Level 3: Level 2 + decision-record.md
-- **ALWAYS fill ALL placeholders** - No `[PLACEHOLDER]` in final docs
+- **ALWAYS fill ALL placeholders** - No `<PLACEHOLDER>` marker in final docs
 - **ALWAYS respond to workflow prompts** - Ask user for A/B/C/D choice
 - **ALWAYS get user approval** - Explicit "yes" before file changes
 - **ONLY @speckit creates spec documentation** — Never route spec.md/plan.md/tasks.md/etc. to @general/@write. Exceptions: @handover (handover.md), @research (research.md)

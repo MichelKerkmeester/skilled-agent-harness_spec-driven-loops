@@ -540,7 +540,7 @@ Context preservation across sessions via hybrid search (vector similarity + BM25
 - Intent weights auto-adjust scoring: `fix_bug` boosts recency, `security_audit` boosts importance, `refactor`/`understand` boost similarity.
 - **Full parameter reference:** See [memory_system.md](./references/memory/memory_system.md)
 
-**Epistemic Learning:** Use `task_preflight()` before and `task_postflight()` after implementation to measure knowledge gains. Learning Index: `LI = (KnowledgeDelta × 0.4) + (UncertaintyReduction × 0.35) + (ContextImprovement × 0.25)`. Review trends via `memory_get_learning_history()`. See [epistemic-vectors.md](./references/memory/epistemic-vectors.md).
+**Epistemic Learning:** Use `task_preflight()` before and `task_postflight()` after implementation to measure knowledge gains. Learning Index: `LI = (KnowledgeDelta × 0.4) + (UncertaintyReduction × 0.35) + (ContextImprovement × 0.25)`. Review trends via `memory_get_learning_history()`. See [epistemic_vectors.md](./references/memory/epistemic_vectors.md).
 
 **Key Concepts:**
 - **Constitutional tier** — 3.0x search boost + 2.0x importance multiplier; merged into normal scoring pipeline

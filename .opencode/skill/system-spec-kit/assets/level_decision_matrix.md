@@ -40,7 +40,7 @@ This matrix helps determine the appropriate documentation level for any task. Us
 | **3+: Extended**    | Complexity 80+   | Level 3 + AI protocols + extended checklist + sign-offs             | Governance + orchestration         | Multi-agent workflows, enterprise    |
 
 **Progressive Enhancement Model:**
-```
+```text
 Level 1 (Baseline):     spec.md + plan.md + tasks.md + implementation-summary.md
                               ↓
 Level 2 (Verification): Level 1 + checklist.md
@@ -228,7 +228,7 @@ The spec validation system (`validate.sh`) checks documentation quality using th
 - Purpose: Detects unfilled template placeholders that indicate incomplete documentation
 - Applies to: All levels
 - Severity: warning (default)
-- Details: Searches for patterns like `[PROJECT_NAME]`, `[DESCRIPTION]`, `{{placeholder}}`, etc.
+- Details: Searches for patterns like `<PROJECT_NAME>`, `<DESCRIPTION>`, or other unresolved placeholder tokens.
 
 **ANCHORS_VALID**
 - Purpose: Validates that memory files have balanced ANCHOR open/close pairs
@@ -286,7 +286,7 @@ If scope grows during implementation, escalate by adding the required files:
 <!-- ANCHOR:quick-decision-flowchart -->
 ## 10. QUICK DECISION FLOWCHART
 
-```
+```text
 Any file modification?
     ↓
 Single typo? ──YES──→ Exempt (no spec needed)

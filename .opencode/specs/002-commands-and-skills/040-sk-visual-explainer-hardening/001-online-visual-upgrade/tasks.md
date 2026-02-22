@@ -1,4 +1,5 @@
 ---
+SPECKIT_TEMPLATE_SOURCE: "tasks-core | v2.2"
 title: "Tasks: Online Visual Upgrade (Next Stage) [001-online-visual-upgrade/tasks]"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:

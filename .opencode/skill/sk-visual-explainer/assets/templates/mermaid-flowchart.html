@@ -7,10 +7,9 @@
 <title>CI/CD Pipeline — Reference Template</title>
 <!--
   Reference template for the sk-visual-explainer skill: Mermaid diagrams.
-  Teal/cyan palette — distinctly different from terracotta (architecture)
-  and rose (data-table) templates so agents absorb variety.
+  Uses the shared SpecKit dashboard palette (single approved palette for all templates).
   Key patterns demonstrated:
-  - Teal/cyan palette (NOT indigo/violet)
+  - Shared visual-explainer palette consistency
   - Dot-grid background atmosphere (different from radial gradient)
   - Large heading (38px) for typographic contrast
   - ESM import of Mermaid + @mermaid-js/layout-elk
@@ -31,50 +30,59 @@
     --font-body: 'Bricolage Grotesque', system-ui, sans-serif;
     --font-mono: 'Fragment Mono', 'SF Mono', Consolas, monospace;
 
-    --ve-bg: #f0fdfa;
+    --ve-bg: #f7fafc;
     --ve-surface: #ffffff;
-    --ve-surface2: #e6f7f3;
-    --ve-border: rgba(0, 0, 0, 0.07);
-    --ve-border-bright: rgba(0, 0, 0, 0.14);
-    --ve-text: #134e4a;
-    --ve-text-dim: #5f8a85;
+    --ve-surface2: #eef3f8;
+    --ve-surface-elevated: #fcfdff;
+    --ve-border: rgba(15, 23, 42, 0.1);
+    --ve-border-bright: rgba(15, 23, 42, 0.2);
+    --ve-text: #0f172a;
+    --ve-text-dim: #4b5563;
 
-    --ve-primary: #0d9488;
-    --ve-primary-dim: rgba(13, 148, 136, 0.08);
-    --ve-secondary: #7c3aed;
-    --ve-secondary-dim: rgba(124, 58, 237, 0.08);
-    --ve-tertiary: #d97706;
-    --ve-tertiary-dim: rgba(217, 119, 6, 0.08);
-    --ve-danger: #dc2626;
-    --ve-danger-dim: rgba(220, 38, 38, 0.08);
+    --ve-accent: #0f766e;
+    --ve-accent-dim: rgba(15, 118, 110, 0.1);
+    --ve-success: #15803d;
+    --ve-success-dim: rgba(21, 128, 61, 0.1);
+    --ve-warning: #b45309;
+    --ve-warning-dim: rgba(180, 83, 9, 0.1);
+    --ve-danger: #b91c1c;
+    --ve-danger-dim: rgba(185, 28, 28, 0.1);
+
+    --ve-primary: var(--ve-accent);
+    --ve-primary-dim: var(--ve-accent-dim);
+    --ve-secondary: var(--ve-success);
+    --ve-secondary-dim: var(--ve-success-dim);
+    --ve-tertiary: var(--ve-warning);
+    --ve-tertiary-dim: var(--ve-warning-dim);
   }
 
   @media (prefers-color-scheme: dark) {
     :root {
-      --ve-bg: #042f2e;
-      --ve-surface: #0a3d3a;
-      --ve-surface2: #115e59;
-      --ve-border: rgba(255, 255, 255, 0.08);
-      --ve-border-bright: rgba(255, 255, 255, 0.14);
-      --ve-text: #ccfbf1;
-      --ve-text-dim: #5eead4;
+      --ve-bg: #071017;
+      --ve-surface: #10202a;
+      --ve-surface2: #162b37;
+      --ve-surface-elevated: #1a3240;
+      --ve-border: rgba(226, 232, 240, 0.14);
+      --ve-border-bright: rgba(226, 232, 240, 0.24);
+      --ve-text: #e5edf5;
+      --ve-text-dim: #a9b6c3;
 
-      --ve-primary: #2dd4bf;
-      --ve-primary-dim: rgba(45, 212, 191, 0.14);
-      --ve-secondary: #c4b5fd;
-      --ve-secondary-dim: rgba(196, 181, 253, 0.12);
-      --ve-tertiary: #fbbf24;
-      --ve-tertiary-dim: rgba(251, 191, 36, 0.12);
+      --ve-accent: #2dd4bf;
+      --ve-accent-dim: rgba(45, 212, 191, 0.16);
+      --ve-success: #4ade80;
+      --ve-success-dim: rgba(74, 222, 128, 0.16);
+      --ve-warning: #fbbf24;
+      --ve-warning-dim: rgba(251, 191, 36, 0.16);
       --ve-danger: #f87171;
-      --ve-danger-dim: rgba(248, 113, 113, 0.12);
+      --ve-danger-dim: rgba(248, 113, 113, 0.16);
     }
   }
 
   @media (prefers-contrast: more) {
     :root {
-      --ve-border: rgba(0, 0, 0, 0.22);
-      --ve-border-bright: rgba(0, 0, 0, 0.34);
-      --ve-text-dim: #145b55;
+      --ve-border: rgba(0, 0, 0, 0.3);
+      --ve-border-bright: rgba(0, 0, 0, 0.45);
+      --ve-text-dim: #334155;
     }
   }
 
@@ -87,7 +95,10 @@
       --ve-border-bright: CanvasText;
       --ve-text: CanvasText;
       --ve-text-dim: CanvasText;
-      --ve-primary: LinkText;
+      --ve-accent: LinkText;
+      --ve-success: CanvasText;
+      --ve-warning: CanvasText;
+      --ve-danger: CanvasText;
     }
   }
 
@@ -371,7 +382,8 @@
   import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11.12.3/dist/mermaid.esm.min.mjs';
   import elkLayouts from 'https://cdn.jsdelivr.net/npm/@mermaid-js/layout-elk@0.2.0/dist/mermaid-layout-elk.esm.min.mjs';
 
-  const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const styles = getComputedStyle(document.documentElement);
+  const cssVar = (name, fallback) => styles.getPropertyValue(name).trim() || fallback;
 
   mermaid.registerLayoutLoaders(elkLayouts);
   mermaid.initialize({
@@ -384,21 +396,21 @@
     maxTextSize: 50000,
     maxEdges: 200,
     themeVariables: {
-      primaryColor: isDark ? '#115e59' : '#ccfbf1',
-      primaryBorderColor: isDark ? '#2dd4bf' : '#0d9488',
-      primaryTextColor: isDark ? '#ccfbf1' : '#134e4a',
-      secondaryColor: isDark ? '#1e1b4b' : '#ede9fe',
-      secondaryBorderColor: isDark ? '#c4b5fd' : '#7c3aed',
-      secondaryTextColor: isDark ? '#ccfbf1' : '#134e4a',
-      tertiaryColor: isDark ? '#2e2618' : '#fffbeb',
-      tertiaryBorderColor: isDark ? '#fbbf24' : '#d97706',
-      tertiaryTextColor: isDark ? '#ccfbf1' : '#134e4a',
-      lineColor: isDark ? '#5eead4' : '#5f8a85',
+      primaryColor: cssVar('--ve-surface2', '#eef3f8'),
+      primaryBorderColor: cssVar('--ve-accent', '#0f766e'),
+      primaryTextColor: cssVar('--ve-text', '#0f172a'),
+      secondaryColor: cssVar('--ve-success-dim', 'rgba(21, 128, 61, 0.1)'),
+      secondaryBorderColor: cssVar('--ve-success', '#15803d'),
+      secondaryTextColor: cssVar('--ve-text', '#0f172a'),
+      tertiaryColor: cssVar('--ve-warning-dim', 'rgba(180, 83, 9, 0.1)'),
+      tertiaryBorderColor: cssVar('--ve-warning', '#b45309'),
+      tertiaryTextColor: cssVar('--ve-text', '#0f172a'),
+      lineColor: cssVar('--ve-accent', '#0f766e'),
       fontSize: '16px',
       fontFamily: "'Bricolage Grotesque', system-ui, sans-serif",
-      noteBkgColor: isDark ? '#115e59' : '#fefce8',
-      noteTextColor: isDark ? '#ccfbf1' : '#134e4a',
-      noteBorderColor: isDark ? '#fbbf24' : '#d97706',
+      noteBkgColor: cssVar('--ve-surface-elevated', '#fcfdff'),
+      noteTextColor: cssVar('--ve-text', '#0f172a'),
+      noteBorderColor: cssVar('--ve-warning', '#b45309'),
     }
   });
 </script>

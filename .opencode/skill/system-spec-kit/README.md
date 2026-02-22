@@ -746,8 +746,8 @@ A: Yes. Major flags including `SPECKIT_ADAPTIVE_FUSION`, `SPECKIT_CAUSAL_BOOST` 
 | [mcp_server/README.md](./mcp_server/README.md) | Memory MCP installation, architecture and API reference |
 | [references/memory/memory_system.md](./references/memory/memory_system.md) | Memory system detailed reference |
 | [references/validation/validation_rules.md](./references/validation/validation_rules.md) | All validation rules and fixes |
-| [references/validation/five-checks.md](./references/validation/five-checks.md) | Five Checks evaluation framework |
-| [references/workflows/rollback-runbook.md](./references/workflows/rollback-runbook.md) | Feature-flag rollback and smoke-test procedure |
+| [references/validation/five_checks.md](./references/validation/five_checks.md) | Five Checks evaluation framework |
+| [references/workflows/rollback_runbook.md](./references/workflows/rollback_runbook.md) | Feature-flag rollback and smoke-test procedure |
 | [../sk-code--opencode/SKILL.md](../sk-code--opencode/SKILL.md) | Mandatory standard for all code creation and updates |
 | [../sk-documentation/SKILL.md](../sk-documentation/SKILL.md) | Mandatory standard for all documentation creation and updates |
 

@@ -10,6 +10,12 @@ Defines the artifact-profile contract used by command routing, dashboard generat
 
 ---
 
+## Overview
+
+This reference defines the SpecKit artifact profile model, profile catalog, detector precedence, and the quality checks that `sk-visual-explainer` must apply per artifact type.
+
+---
+
 ## 1. ArtifactProfile Schema
 
 Use this schema for every SpecKit artifact profile:

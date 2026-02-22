@@ -152,9 +152,9 @@ cp .opencode/skill/system-spec-kit/templates/implementation-summary.md specs/007
 
 | Pattern                      | Status  | Action Required           |
 | ---------------------------- | ------- | ------------------------- |
-| `[YOUR_VALUE_HERE: ...]`     | FLAGGED | Replace with actual value |
-| `[NEEDS CLARIFICATION: ...]` | FLAGGED | Resolve and replace       |
-| `[OPTIONAL: ...]`            | IGNORED | Optional content          |
+| `<YOUR_VALUE_HERE: ...>`     | FLAGGED | Replace with actual value |
+| `<NEEDS_CLARIFICATION: ...>` | FLAGGED | Resolve and replace       |
+| `<OPTIONAL: ...>`            | IGNORED | Optional content          |
 
 ### Files Scanned
 
@@ -237,9 +237,9 @@ Replace placeholder text with actual content:
 ```markdown
 # My Spec
 
-## 1. Problem Statement 
-## 2. Requirements 
-## 3. Scope 
+\## 1. Problem Statement 
+\## 2. Requirements 
+\## 3. Scope 
 ```
 
 ### How to Fix
@@ -247,11 +247,11 @@ Replace placeholder text with actual content:
 Add the missing section headers. You can use numbered prefixes:
 
 ```markdown
-## 1. Problem Statement
+\## 1. Problem Statement
 
 [Content here]
 
-## 2. Requirements
+\## 2. Requirements
 
 [Content here]
 ```
