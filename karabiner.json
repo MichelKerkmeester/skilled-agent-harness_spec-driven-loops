@@ -52,7 +52,7 @@
                                 },
                                 "to": [
                                     {
-                                        "shell_command": "osascript -e 'set the clipboard to \"Follow [runtime_agent_path]/orchestrate.md §6 Compaction Recovery + §8 Self-Protection Rules to prevent context overload (resolve [runtime_agent_path] per AGENTS.md §7)\"' -e 'tell application \"System Events\" to keystroke \"v\" using command down'"
+                                        "shell_command": "osascript -e 'set the clipboard to \"Follow [runtime_agent_path]/orchestrate.md §6 Compaction Recovery + §8 Self-Protection Rules, and enforce §2 Nesting Depth Protocol: single-hop only, max depth 2 (0/1), and depth-1 LEAF agents MUST NOT dispatch sub-agents (resolve [runtime_agent_path] per AGENTS.md §7)\"' -e 'tell application \"System Events\" to keystroke \"v\" using command down'"
                                     }
                                 ],
                                 "type": "basic"
