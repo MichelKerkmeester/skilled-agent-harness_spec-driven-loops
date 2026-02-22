@@ -188,8 +188,14 @@ function isGenericTitle(rawTitle: string): boolean {
 }
 
 function truncateWithSuffix(base: string, suffix: string, maxLength: number): string {
-  const normalizedBase = normalizeTitleCandidate(base) || 'Untitled';
+  let normalizedBase = normalizeTitleCandidate(base) || 'Untitled';
   const normalizedSuffix = suffix.trim();
+
+  if (normalizedSuffix && normalizedBase.endsWith(normalizedSuffix)) {
+    normalizedBase = normalizeTitleCandidate(
+      normalizedBase.slice(0, normalizedBase.length - normalizedSuffix.length).trim()
+    ) || 'Untitled';
+  }
 
   if (!normalizedSuffix) {
     if (normalizedBase.length <= maxLength) {
