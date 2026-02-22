@@ -196,7 +196,68 @@ async function populateRelatedMemories(
 }
 
 /**
- * Spreading activation: traverse the co-activation graph from seed memories.
+ * Get causally related memories for a given memory ID from the causal_edges table.
+ * This surfaces memories connected by causal relationships (caused, enabled, supports, etc.)
+ * which may be semantically dissimilar but contextually important.
+ */
+function getCausalNeighbors(
+  memoryId: number,
+  limit: number = CO_ACTIVATION_CONFIG.maxRelated
+): RelatedMemory[] {
+  if (!db) return [];
+
+  try {
+    const memIdStr = String(memoryId);
+    const rows = (db.prepare(`
+      SELECT
+        CASE WHEN ce.source_id = ? THEN CAST(ce.target_id AS INTEGER)
+             ELSE CAST(ce.source_id AS INTEGER)
+        END AS neighbor_id,
+        ce.strength,
+        ce.relation
+      FROM causal_edges ce
+      WHERE ce.source_id = ? OR ce.target_id = ?
+      ORDER BY ce.strength DESC
+      LIMIT ?
+    `) as Database.Statement).all(memIdStr, memIdStr, memIdStr, limit) as Array<{
+      neighbor_id: number;
+      strength: number;
+      relation: string;
+    }>;
+
+    const results: RelatedMemory[] = [];
+    for (const row of rows) {
+      if (row.neighbor_id == null || row.neighbor_id === memoryId) continue;
+      try {
+        const fullMemory = (db!.prepare( // non-null safe: guard on line 207 returns early if db is null
+          'SELECT id, title, spec_folder, file_path, importance_tier FROM memory_index WHERE id = ?'
+        ) as Database.Statement).get(row.neighbor_id) as Record<string, unknown> | undefined;
+
+        if (fullMemory) {
+          results.push({
+            ...(fullMemory as RelatedMemory),
+            // Map edge strength (0-1) to similarity scale (0-100) for consistent scoring
+            similarity: Math.round(row.strength * 100),
+          });
+        }
+      } catch {
+        // Skip individual failures
+      }
+    }
+
+    return results;
+  } catch (error: unknown) {
+    const msg = error instanceof Error ? error.message : String(error);
+    console.warn(`[co-activation] getCausalNeighbors error: ${msg}`);
+    return [];
+  }
+}
+
+/**
+ * Spreading activation: traverse both pre-computed similarity graph
+ * and causal_edges graph from seed memories. Merging both sources
+ * surfaces causally related but semantically dissimilar memories
+ * that pure vector similarity would miss.
  */
 function spreadActivation(
   seedIds: number[],
@@ -240,9 +301,23 @@ function spreadActivation(
 
     if (current.hop >= maxHops) continue;
 
-    // Get related memories for next hop
-    const related = getRelatedMemories(current.id);
-    for (const rel of related) {
+    // Merge neighbors from both similarity and causal graphs
+    const similarityNeighbors = getRelatedMemories(current.id);
+    const causalNeighbors = getCausalNeighbors(current.id);
+
+    // Deduplicate by ID, keeping the higher similarity score
+    const neighborMap = new Map<number, RelatedMemory>();
+    for (const rel of similarityNeighbors) {
+      neighborMap.set(rel.id, rel);
+    }
+    for (const rel of causalNeighbors) {
+      const existing = neighborMap.get(rel.id);
+      if (!existing || rel.similarity > existing.similarity) {
+        neighborMap.set(rel.id, rel);
+      }
+    }
+
+    for (const rel of neighborMap.values()) {
       if (visited.has(rel.id)) continue;
 
       const decayedScore = current.score * CO_ACTIVATION_CONFIG.decayPerHop * (rel.similarity / 100);
@@ -283,6 +358,7 @@ export {
   isEnabled,
   boostScore,
   getRelatedMemories,
+  getCausalNeighbors,
   populateRelatedMemories,
   spreadActivation,
   logCoActivationEvent,

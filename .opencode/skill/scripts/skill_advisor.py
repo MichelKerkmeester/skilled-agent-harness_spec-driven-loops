@@ -229,9 +229,18 @@ INTENT_BOOSTERS = {
     "rebase": ("sk-git", 0.8),
     "repo": ("sk-git", 0.6),
     "repository": ("sk-git", 0.5),
-    "review": ("sk-git", 0.8),
     "stash": ("sk-git", 0.5),
     "worktree": ("sk-git", 1.2),
+
+    # ─────────────────────────────────────────────────────────────────
+    # SK-CODE--REVIEW: Stack-agnostic code review baseline
+    # ─────────────────────────────────────────────────────────────────
+    "review": ("sk-code--review", 1.2),
+    "findings": ("sk-code--review", 1.1),
+    "blocker": ("sk-code--review", 0.9),
+    "blockers": ("sk-code--review", 0.9),
+    "vulnerability": ("sk-code--review", 1.0),
+    "regression": ("sk-code--review", 0.8),
 
     # ─────────────────────────────────────────────────────────────────
     # MCP-CHROME-DEVTOOLS: Browser debugging
@@ -369,19 +378,32 @@ MULTI_SKILL_BOOSTERS = {
     "flowchart": [("sk-visual-explainer", 0.8)],
     "generate": [("sk-visual-explainer", 0.4)],
     "table": [("sk-visual-explainer", 0.3)],
-    "review": [("sk-visual-explainer", 0.3)],
+    "review": [("sk-code--review", 0.8), ("sk-visual-explainer", 0.3)],
 }
 
 # Phrase-level intent boosters for high-signal multi-token requests
 # Format: phrase -> list of (skill_name, boost_amount)
 PHRASE_INTENT_BOOSTERS = {
     "create documentation": [("sk-documentation", 0.6)],
+    "code review": [("sk-code--review", 2.4)],
+    "pr review": [("sk-code--review", 2.3), ("sk-git", 0.4)],
+    "security review": [("sk-code--review", 2.2)],
+    "review this pr": [("sk-code--review", 2.4)],
+    "review this diff": [("sk-code--review", 2.2)],
+    "quality gate": [("sk-code--review", 2.0)],
+    "request changes": [("sk-code--review", 2.0)],
+    "race conditions": [("sk-code--review", 1.5)],
+    "auth bugs": [("sk-code--review", 1.5)],
     "implement feature": [("sk-code--web", 0.9)],
     "css animation": [("sk-code--web", 0.8)],
     "api network": [("sk-code--web", 0.7), ("mcp-chrome-devtools", 0.4)],
     "template level validation": [("system-spec-kit", 0.8)],
     "figma css": [("mcp-figma", 0.8), ("sk-code--web", 0.4)],
     "full stack typescript": [("sk-code--full-stack", 0.8), ("sk-code--opencode", 0.4)],
+    "sk-code--review": [("sk-code--review", 2.8)],
+    "/sk-code--review": [("sk-code--review", 2.8)],
+    ".opencode/skill/sk-code--review": [("sk-code--review", 3.0)],
+    "visual review": [("sk-visual-explainer", 1.6), ("sk-code--review", 0.4)],
     # Explicit visual-explainer intents and path references
     "sk-visual-explainer": [("sk-visual-explainer", 2.2)],
     "/visual-explainer": [("sk-visual-explainer", 2.2)],

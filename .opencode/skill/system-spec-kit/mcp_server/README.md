@@ -95,8 +95,8 @@ This MCP server gives your AI assistant persistent memory with intelligence buil
 | **Handler Modules**     | 19                                                       |
 | **Embedding Providers** | 3                                                        |
 | **Feature Flags**       | 16 (all default enabled; explicit `FLAG=false` disables) |
-| **Test Coverage**       | 164 test files                                           |
-| **Last Verified**       | 2026-02-21                                               |
+| **Test Coverage**       | 155 test files                                           |
+| **Last Verified**       | 2026-02-22                                               |
 
 ### Requirements
 

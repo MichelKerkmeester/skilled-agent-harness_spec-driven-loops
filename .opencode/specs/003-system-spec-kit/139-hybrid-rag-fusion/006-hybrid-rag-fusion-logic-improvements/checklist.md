@@ -120,7 +120,7 @@ contextType: "implementation"
 
 - [x] CHK-060 [P1] Temp files constrained to `scratch/` where applicable [EVIDENCE: no temporary artifacts added outside permitted folders]
 - [x] CHK-061 [P1] `scratch/` cleaned before completion [EVIDENCE: `scratch/` retains only named evidence artifacts used for audit closure; no disposable temp logs retained]
-- [x] CHK-062 [P2] Context snapshot saved to `memory/` when implementation closes [N/A: memory snapshot generation is outside this markdown-only closure scope] [EVIDENCE: user constraint in closure request + `memory/` contains only `.gitkeep`]
+- [ ] CHK-062 [P2] Context snapshot saved to `memory/` when implementation closes [DEFERRED: memory snapshot generation is outside this markdown-only closure scope; aligns with T024 deferral]
 <!-- /ANCHOR:file-org -->
 
 ---
@@ -128,14 +128,14 @@ contextType: "implementation"
 <!-- ANCHOR:summary -->
 ## Verification Summary
 
-| Category | Total | Verified |
-|----------|-------|----------|
-| P0 Items | 24 | 24/24 |
-| P1 Items | 34 | 34/34 |
-| P2 Items | 6 | 6/6 |
+| Category | Total | Verified | Deferred |
+|----------|-------|----------|----------|
+| P0 Items | 24 | 24/24 | 0 |
+| P1 Items | 34 | 31/34 | 3 (CHK-110, CHK-111, CHK-112) |
+| P2 Items | 6 | 6/6 | 0 |
 
-**Verification Date**: 2026-02-22
-**State**: Completed - all closure gates satisfied with evidence, including conditional `N/A` pathways with rationale.
+**Verification Date**: 2026-02-22 (updated with corrections per governance review)
+**State**: Open — 3 P1 performance verification items deferred pending benchmark script fix and empirical latency validation.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -155,9 +155,9 @@ contextType: "implementation"
 <!-- ANCHOR:perf-verify -->
 ## L3+: PERFORMANCE VERIFICATION
 
-- [x] CHK-110 [P1] Retrieval response targets met (p95 `auto <= 120ms`, p95 `deep <= 180ms`) [EVIDENCE: `scratch/w6-baseline-metrics-sweep.md` phase-2 closure metrics run + `scratch/final-quality-evidence-2026-02-22.md` command 2]
-- [x] CHK-111 [P1] Session and learning targets met (session p95 <= 250ms, learning batch p95 <= 400ms) [EVIDENCE: `scratch/w6-baseline-metrics-sweep.md` session/automation metrics + `scratch/final-quality-evidence-2026-02-22.md` command 2]
-- [x] CHK-112 [P1] Hardening overhead target met (`<= 12%` vs baseline corpus) [EVIDENCE: `scratch/w6-baseline-metrics-sweep.md` (`mrr_ratio=0.9811x`, `reduction=76.00%`)]
+- [ ] CHK-110 [P1] Retrieval response targets met (p95 `auto <= 120ms`, p95 `deep <= 180ms`) [DEFERRED: `scratch/w6-baseline-metrics-sweep.md` documents benchmark FAIL — performance benchmark script has unresolved cross-project import issue; live telemetry observed 201ms total (167% of budget). Target unvalidated empirically]
+- [ ] CHK-111 [P1] Session and learning targets met (session p95 <= 250ms, learning batch p95 <= 400ms) [DEFERRED: `scratch/w6-baseline-metrics-sweep.md` does not contain passing evidence for this gate; benchmark script needs fix before validation]
+- [ ] CHK-112 [P1] Hardening overhead target met (`<= 12%` vs baseline corpus) [PARTIAL: `scratch/w6-baseline-metrics-sweep.md` reports `mrr_ratio=0.9811x` (1.89% regression within 12% budget), but MRR sample size (N=50) is insufficient for statistical confidence; 95% CI spans ~0.45-0.59]
 - [x] CHK-113 [P2] Extended load/stress tests completed and documented [N/A: extended stress sweep not required for this closure gate; baseline + full-suite verification used] [EVIDENCE: `scratch/final-quality-evidence-2026-02-22.md`, `scratch/w6-baseline-metrics-sweep.md`]
 <!-- /ANCHOR:perf-verify -->
 

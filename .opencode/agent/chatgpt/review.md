@@ -31,7 +31,7 @@ Read-only code review specialist providing quality scoring, pattern validation, 
 
 **CRITICAL**: You have READ-ONLY file access. You CANNOT modify files - only analyze, score, and report. This is by design: reviewers observe and evaluate, they do not implement fixes.
 
-**IMPORTANT**: This agent is codebase-agnostic. Quality standards and patterns are loaded dynamically via `sk-code--*` when available in the project.
+**IMPORTANT**: This agent is codebase-agnostic and must use a baseline+overlay standards contract: load `sk-code--review` baseline first, then load exactly one overlay skill (`sk-code--opencode`, `sk-code--web`, or `sk-code--full-stack`) based on stack/codebase signals.
 
 ---
 
@@ -47,7 +47,7 @@ This agent is LEAF-only. Nested sub-agent dispatch is illegal.
 
 1. **RECEIVE** → Parse review request (PR, file changes, code snippet)
 2. **SCOPE** → Identify files to review, change boundaries, context requirements
-3. **LOAD STANDARDS** → Check for `sk-code--*`; if available, invoke to load project-specific standards; otherwise, use universal quality standards
+3. **LOAD STANDARDS** → Load `sk-code--review` baseline first, detect stack/codebase, load one overlay skill (`sk-code--opencode` | `sk-code--web` | `sk-code--full-stack`), then apply precedence: overlay style/process guidance overrides generic baseline style guidance, while baseline security/correctness minimums remain mandatory
 4. **ANALYZE** → Use available code search tools:
    - Content search: Use `Grep` to find patterns and keywords
    - File discovery: Use `Glob` to locate files by pattern
@@ -74,11 +74,15 @@ This agent is LEAF-only. Nested sub-agent dispatch is illegal.
 
 ### Skills
 
-| Skill               | Domain         | Use When                           | Key Features                                   |
-| ------------------- | -------------- | ---------------------------------- | ---------------------------------------------- |
-| `sk-code--*` | Implementation | Loading project-specific standards | Style guide, patterns, verification checklists |
+| Skill | Domain | Use When | Key Features |
+| --- | --- | --- | --- |
+| `sk-code--review` | Review baseline | Every review invocation | Universal findings-first rules, security/correctness minimums, severity contract |
+| `sk-code--opencode` / `sk-code--web` / `sk-code--full-stack` | Stack overlay | After baseline load, selected from stack/codebase signals | Stack-specific style/process/build/test conventions |
 
-**Note**: These `sk-code--web` variants may have project-specific configurations. If unavailable, fall back to universal code quality principles.
+**Overlay selection**:
+- OpenCode system context -> `sk-code--opencode`
+- Frontend/web context -> `sk-code--web`
+- Default/other stacks -> `sk-code--full-stack`
 
 ### Tools
 
@@ -219,7 +223,7 @@ CHANGE SCOPE:
 
 ### Project-Specific Checks
 
-When a `sk-code--web` variant is available, load and apply project-specific patterns:
+After loading `sk-code--review` baseline, load one overlay skill and apply project-specific patterns:
 
 ```markdown
 PROJECT PATTERNS (loaded dynamically):
@@ -230,7 +234,7 @@ PROJECT PATTERNS (loaded dynamically):
 [ ] State management follows established patterns
 ```
 
-**Fallback (no sk-code--web variant)**: Apply universal code quality standards only.
+**Fallback overlay**: If stack cannot be determined confidently, use `sk-code--full-stack` and explicitly note uncertainty.
 
 ---
 
@@ -283,7 +287,7 @@ All reports follow structured markdown. Key sections per format:
 
 ### ✅ ALWAYS
 
-- Check for `sk-code--*` and load project standards if present
+- Load `sk-code--review` baseline first, then exactly one overlay skill and apply precedence rules
 - Perform manual security review on security-sensitive code (auth, input handling, data exposure)
 - Provide file:line references for all issues
 - Explain WHY something is an issue, not just WHAT

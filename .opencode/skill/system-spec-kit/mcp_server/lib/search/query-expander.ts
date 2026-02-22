@@ -34,6 +34,19 @@ export const DOMAIN_VOCABULARY_MAP: Record<string, string[]> = {
   refactor: ['restructure', 'clean-up'],
   test: ['spec', 'assertion'],
   config: ['configuration', 'settings'],
+  // Memory system domain
+  memory: ['context', 'knowledge'],
+  spec: ['specification', 'requirement'],
+  embedding: ['vector', 'representation'],
+  tier: ['importance', 'priority'],
+  causal: ['relationship', 'dependency'],
+  checkpoint: ['snapshot', 'backup'],
+  indexing: ['ingestion', 'cataloging'],
+  search: ['retrieval', 'query'],
+  decision: ['adr', 'rationale'],
+  session: ['conversation', 'context-window'],
+  trigger: ['activation', 'match-phrase'],
+  fusion: ['merge', 'combine'],
 };
 
 /* ---------------------------------------------------------------
@@ -59,9 +72,12 @@ export function expandQuery(query: string): string[] {
     if (variants.size >= MAX_VARIANTS) break;
     const synonyms = DOMAIN_VOCABULARY_MAP[word];
     if (synonyms && synonyms.length > 0) {
-      // Replace the matched word with its first synonym (case-insensitive)
-      const expanded = query.replace(new RegExp(`\\b${word}\\b`, 'i'), synonyms[0]);
-      variants.add(expanded);
+      // Try each synonym to generate distinct variants
+      for (const synonym of synonyms) {
+        if (variants.size >= MAX_VARIANTS) break;
+        const expanded = query.replace(new RegExp(`\\b${word}\\b`, 'i'), synonym);
+        variants.add(expanded);
+      }
     }
   }
 

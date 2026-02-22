@@ -279,7 +279,12 @@ function combinedLexicalSearch(
    7. HYBRID SEARCH
    --------------------------------------------------------------- */
 
-/** Run multi-channel hybrid search combining vector, FTS, BM25, and graph results with per-source normalization. */
+/**
+ * Run multi-channel hybrid search combining vector, FTS, BM25, and graph results with per-source normalization.
+ * @deprecated Use hybridSearchEnhanced() or searchWithFallback() instead. This function uses naive per-source
+ * min-max normalization which produces different orderings than the RRF pipeline in hybridSearchEnhanced().
+ * Retained as internal fallback only.
+ */
 async function hybridSearch(
   query: string,
   embedding: Float32Array | number[] | null,
@@ -400,6 +405,7 @@ async function hybridSearch(
 
 /**
  * Enhanced hybrid search with RRF fusion.
+ * Channels execute in parallel for lower latency.
  */
 async function hybridSearchEnhanced(
   query: string,
@@ -413,65 +419,86 @@ async function hybridSearchEnhanced(
       weight?: number;
     }> = [];
 
-    // Gather semantic (vector) and keyword results for adaptive fusion
+    // Channel results collected independently, merged after all complete
     let semanticResults: Array<{ id: number | string; source: string; [key: string]: unknown }> = [];
-    let keywordResults: Array<{ id: number | string; source: string; [key: string]: unknown }> = [];
+    let ftsChannelResults: HybridSearchResult[] = [];
+    let bm25ChannelResults: HybridSearchResult[] = [];
 
+    // Run all 4 channels in parallel for lower latency
+    const channelPromises: Array<Promise<void>> = [];
+
+    // Vector channel
     if (embedding && vectorSearchFn) {
-      try {
-        const vectorResults = vectorSearchFn(embedding, {
-          limit: options.limit || DEFAULT_LIMIT,
-          specFolder: options.specFolder,
-          minSimilarity: options.minSimilarity || 0,
-          includeConstitutional: false, // Handler manages constitutional separately
-          includeArchived: options.includeArchived || false,
-        });
-        // P3-15 FIX: Tag individual results with correct source type
-        // so RRF fusion preserves the source provenance
-        semanticResults = vectorResults.map((r: Record<string, unknown>): { id: number | string; source: string; [key: string]: unknown } => ({
-          ...r,
-          id: r.id as number | string,
-          source: 'vector',
-        }));
-        lists.push({ source: 'vector', results: semanticResults, weight: 1.0 });
-      } catch {
-        // Skip on failure
-      }
-    }
-
-    const ftsResults = ftsSearch(query, options);
-    if (ftsResults.length > 0) {
-      keywordResults = [...keywordResults, ...ftsResults];
-      lists.push({ source: 'fts', results: ftsResults, weight: 0.8 });
-    }
-
-    const bm25Results = bm25Search(query, options);
-    if (bm25Results.length > 0) {
-      keywordResults = [...keywordResults, ...bm25Results];
-      lists.push({ source: 'bm25', results: bm25Results, weight: 0.6 });
-    }
-
-    // T008: Graph channel metrics collection
-    const useGraph = (options.useGraph !== false);
-    if (useGraph && graphSearchFn) {
-      graphMetrics.totalQueries++;
-      try {
-        const graphResults = graphSearchFn(query, {
-          limit: options.limit || DEFAULT_LIMIT,
-          specFolder: options.specFolder,
-          intent: options.intent,
-        });
-        if (graphResults.length > 0) {
-          graphMetrics.graphHits++;
-          lists.push({ source: 'graph', results: graphResults.map(r => ({
+      const vectorFn = vectorSearchFn; // capture for closure
+      channelPromises.push((async () => {
+        try {
+          const vectorResults = vectorFn(embedding, {
+            limit: options.limit || DEFAULT_LIMIT,
+            specFolder: options.specFolder,
+            minSimilarity: options.minSimilarity || 0,
+            includeConstitutional: false,
+            includeArchived: options.includeArchived || false,
+          });
+          semanticResults = vectorResults.map((r: Record<string, unknown>): { id: number | string; source: string; [key: string]: unknown } => ({
             ...r,
             id: r.id as number | string,
-          })), weight: 0.5 });
+            source: 'vector',
+          }));
+          lists.push({ source: 'vector', results: semanticResults, weight: 1.0 });
+        } catch {
+          // Skip on failure
         }
-      } catch {
-        // Non-critical — graph channel failure does not block pipeline
-      }
+      })());
     }
+
+    // FTS channel
+    channelPromises.push((async () => {
+      ftsChannelResults = ftsSearch(query, options);
+      if (ftsChannelResults.length > 0) {
+        lists.push({ source: 'fts', results: ftsChannelResults, weight: 0.8 });
+      }
+    })());
+
+    // BM25 channel
+    channelPromises.push((async () => {
+      bm25ChannelResults = bm25Search(query, options);
+      if (bm25ChannelResults.length > 0) {
+        lists.push({ source: 'bm25', results: bm25ChannelResults, weight: 0.6 });
+      }
+    })());
+
+    // Graph channel (T008: metrics collection)
+    const useGraph = (options.useGraph !== false);
+    if (useGraph && graphSearchFn) {
+      const graphFn = graphSearchFn; // capture for closure
+      graphMetrics.totalQueries++;
+      channelPromises.push((async () => {
+        try {
+          const graphResults = graphFn(query, {
+            limit: options.limit || DEFAULT_LIMIT,
+            specFolder: options.specFolder,
+            intent: options.intent,
+          });
+          if (graphResults.length > 0) {
+            graphMetrics.graphHits++;
+            lists.push({ source: 'graph', results: graphResults.map(r => ({
+              ...r,
+              id: r.id as number | string,
+            })), weight: 0.5 });
+          }
+        } catch {
+          // Non-critical — graph channel failure does not block pipeline
+        }
+      })());
+    }
+
+    await Promise.all(channelPromises);
+
+    // Merge keyword results after parallel execution completes
+    const keywordResults: Array<{ id: number | string; source: string; [key: string]: unknown }> = [
+      ...ftsChannelResults,
+      ...bm25ChannelResults,
+    ];
 
     if (lists.length > 0) {
       // T008: Track multi-source and graph-only results

@@ -172,11 +172,15 @@ agent_availability:
     available_at_step: 7
     condition: "ONLY dispatch when Step 7 is actively executing and all prior steps are completed"
     agent_file: "[runtime_agent_path]/review.md"
+    standards_contract:
+      baseline: "sk-code--review"
+      overlay: "Auto-detect one overlay: sk-code--opencode | sk-code--web | sk-code--full-stack"
+      precedence: "Overlay style/process/build/test conventions override generic baseline guidance; baseline security/correctness minimums remain mandatory."
     fallback: "general"
     blocking: true
     on_block: "P0 items incomplete. Address before completion."
     dual_phase:
-      phase_a: { mode: 2, name: "Pre-Commit code review", blocking: false }
+      phase_a: { mode: 2, name: "Pre-Commit code review (sk-code--review + overlay)", blocking: false }
       phase_b: { mode: 4, name: "Gate Validation", blocking: true }
     not_for: "reviewing this workflow prompt, reviewing the command, or any pre-step validation"
   debug:

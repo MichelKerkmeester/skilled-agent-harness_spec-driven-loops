@@ -2,6 +2,13 @@
 // MODULE: Performance Benchmarks (CHK-110..CHK-114)
 // ---------------------------------------------------------------
 
+// ---------------------------------------------------------------
+// USAGE: npx tsx scripts/evals/run-performance-benchmarks.ts <spec-folder>
+//
+// This script MUST be run with tsx (not compiled JS) because
+// the cross-project imports rely on tsconfig path resolution.
+// ---------------------------------------------------------------
+
 import fs from 'fs';
 import path from 'path';
 import { performance } from 'perf_hooks';
@@ -75,7 +82,7 @@ const LOAD_TEST_CONCURRENCY = 1000;
 function parseArgs(): { specFolder: string } {
   const [, , specFolder] = process.argv;
   if (!specFolder) {
-    throw new Error('Usage: npx tsx scripts/evals/run-performance-benchmarks.ts <spec-folder-relative-path>');
+    throw new Error('Usage: npx tsx --tsconfig scripts/tsconfig.json scripts/evals/run-performance-benchmarks.ts <spec-folder-relative-path>');
   }
   return { specFolder };
 }

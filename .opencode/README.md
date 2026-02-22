@@ -54,7 +54,7 @@ Together, these systems enable context-aware development with traceability, hard
 | MCP Servers | 3 | Memory Engine, Code Mode, Sequential Thinking |
 | MCP Tools | 32 | 25 memory + 7 code mode |
 | Agents | 10 | 8 custom + 2 built-in (`@general`, `@explore`) |
-| Skills | 10 | Skill modules in `.opencode/skill/` |
+| Skills | 11 | Skill modules in `.opencode/skill/` |
 | Commands | 25 | `spec_kit`, `memory`, `create`, `visual_explainer`, `agent_router` |
 | Templates | 79 | Spec Kit CORE + ADDENDUM templates |
 | YAML assets | 27 | Command execution YAML files |
@@ -74,7 +74,7 @@ Together, these systems enable context-aware development with traceability, hard
 ├── command/         — 25 slash commands for workflow automation (spec_kit, memory, create, visual_explainer)
 ├── install_guides/  — Setup and configuration guides for framework installation
 ├── skill/scripts/   — Skill routing scripts (skill_advisor.py) and setup guides
-├── skill/           — 10 domain expertise skill modules with bundled resources
+├── skill/           — 11 domain expertise skill modules with bundled resources
 └── specs/           — Spec folder storage for documentation and memory files
 ```
 
@@ -129,6 +129,7 @@ Skills are specialized, on-demand capabilities invoked for complex workflows:
 | `sk-git` | Git workflow orchestrator for worktrees, commits, PRs with read-only enforcement (v1.5) |
 | `sk-code--web` | Frontend development lifecycle: implementation, debugging, verification (v1.0.9) |
 | `sk-code--full-stack` | Multi-stack development with auto-detection (Go, Node.js, React, React Native, Swift) (v1.0) |
+| `sk-code--review` | Stack-agnostic findings-first review baseline that layers with stack-specific code standards (v1.1.0.0) |
 | `sk-code--opencode` | OpenCode system code standards for JS, TS, Python, Shell with language routing (v1.3.2) |
 | `mcp-chrome-devtools` | Chrome DevTools orchestrator with CLI (bdg) and MCP (Code Mode) routing (v2.1) |
 | `mcp-code-mode` | MCP orchestration via TypeScript execution for external tools (ClickUp, Figma, etc.) (v1.1) |

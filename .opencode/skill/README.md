@@ -35,11 +35,11 @@ importance_tier: "normal"
 
 The Skills Library contains the current skill set under `.opencode/skill/`. Skills load on demand through Gate 2 routing or explicit invocation.
 
-This folder now has 10 skill folders and one shared scripts folder:
+This folder now has 11 skill folders and one shared scripts folder:
 
 | Item | Count | Notes |
 | --- | --- | --- |
-| Skill folders | 10 | Each skill has a `SKILL.md` entry point |
+| Skill folders | 11 | Each skill has a `SKILL.md` entry point |
 | Skills with local `scripts/` | 6 | Automation lives close to the skill that owns it |
 | Shared routing scripts | 1 executable | `.opencode/skill/scripts/skill_advisor.py` |
 
@@ -89,6 +89,7 @@ Request -> Route skill -> Load SKILL.md -> Load only needed references/assets/sc
 ├── mcp-figma/
 ├── scripts/
 ├── sk-code--full-stack/
+├── sk-code--review/
 ├── sk-code--opencode/
 ├── sk-code--web/
 ├── sk-documentation/
@@ -135,6 +136,10 @@ Spec folder workflow, template validation and memory context workflows. This is 
 #### `sk-code--full-stack` (v1.1.0.0)
 
 Stack-agnostic coding workflow with implementation, debugging and verification phases.
+
+#### `sk-code--review` (v1.1.0.0)
+
+Stack-agnostic findings-first review baseline with baseline+overlay standards contract for `@review`.
 
 #### `sk-code--web` (v1.0.8.0)
 
@@ -198,6 +203,7 @@ Converts terminal output and technical context into styled, self-contained HTML 
 | `mcp-code-mode` | Yes | Yes | Yes |
 | `mcp-figma` | Yes | Yes | No |
 | `sk-code--full-stack` | Yes | Yes | No |
+| `sk-code--review` | Yes | No | No |
 | `sk-code--opencode` | Yes | Yes | Yes |
 | `sk-code--web` | Yes | Yes | Yes |
 | `sk-documentation` | Yes | Yes | Yes |
@@ -267,6 +273,7 @@ Skill folders:
 
 - [system-spec-kit](system-spec-kit/)
 - [sk-code--full-stack](sk-code--full-stack/)
+- [sk-code--review](sk-code--review/)
 - [sk-code--web](sk-code--web/)
 - [sk-code--opencode](sk-code--opencode/)
 - [sk-documentation](sk-documentation/)
