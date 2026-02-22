@@ -45,10 +45,11 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
 
 1. CHECK for spec folder in $ARGUMENTS:
    - IF has path -> validate path exists
-   - IF empty -> auto-detect: Glob("specs/**/memory/*.{md,txt}"), sort by mtime, take first
+   - IF empty -> auto-detect with deterministic filtered ranking across `specs/` and `.opencode/specs/`
 
 2. Auto-detect result:
-   - Found: spec_path = extracted, detection_method = "recent"
+   - Found: spec_path = extracted, detection_method = "ranked"
+     (archive/test/fixture/scratch filtered, stable tie-breakers, low-confidence confirm/fallback contract)
    - Not found: detection_method = "none" (include Q0)
 
 3. Run pre-handover validation (background, strict mode):
@@ -223,7 +224,7 @@ Show created file path and continuation instructions.
 ### No Spec Folder Found
 ```text
  NO ACTIVE SESSION
- No recent spec folders found.
+ No eligible spec folders found from deterministic auto-detection.
  Options: /spec_kit:handover specs/014-*/ or /spec_kit:complete
 ```
 
@@ -239,7 +240,7 @@ Show created file path and continuation instructions.
 ## 10. EXAMPLES
 
 ```
-/spec_kit:handover                           # Auto-detect recent spec folder
+/spec_kit:handover                           # Auto-detect via deterministic filtered ranking
 /spec_kit:handover specs/014-auth-feature/   # Specific folder
 ```
 

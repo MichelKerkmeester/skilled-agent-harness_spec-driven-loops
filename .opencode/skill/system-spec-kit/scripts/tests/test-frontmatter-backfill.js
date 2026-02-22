@@ -153,6 +153,144 @@ function run() {
     }
   }
 
+  // --------------------------------------------------------------------------
+  // T-FMB-005: Managed keys normalize case-insensitively.
+  // --------------------------------------------------------------------------
+  try {
+    const input = `---
+Title: "Mixed Case Title"
+TriggerPhrases: ["alpha", "beta"]
+ImportanceTier: important
+Context_Type: research
+---
+
+# Mixed Case Title
+`;
+    const result = migration.buildFrontmatterContent(
+      input,
+      { templatesRoot: path.join(ROOT, 'templates') },
+      path.join(ROOT, 'specs', '007-case-test', 'spec.md')
+    );
+
+    const hasCanonical = result.content.includes('trigger_phrases:') &&
+      result.content.includes('importance_tier: "important"') &&
+      result.content.includes('contextType: "research"');
+    const hasLegacyManaged = /^(TriggerPhrases|ImportanceTier|Context_Type):/m.test(result.content);
+
+    if (hasCanonical && !hasLegacyManaged) {
+      pass('T-FMB-005: Managed keys normalize case-insensitively', 'legacy key casing collapsed into canonical managed keys');
+    } else {
+      fail('T-FMB-005: Managed keys normalize case-insensitively', `hasCanonical=${hasCanonical}, hasLegacyManaged=${hasLegacyManaged}`);
+    }
+  } catch (error) {
+    fail('T-FMB-005: Managed keys normalize case-insensitively', error.message);
+  }
+
+  // --------------------------------------------------------------------------
+  // T-FMB-006: Inline arrays keep quoted comma values intact.
+  // --------------------------------------------------------------------------
+  try {
+    const input = `---
+triggerPhrases: ["alpha, beta", "gamma"]
+---
+
+# Trigger Test
+`;
+    const result = migration.buildFrontmatterContent(
+      input,
+      { templatesRoot: path.join(ROOT, 'templates') },
+      path.join(ROOT, 'specs', '007-inline-array', 'spec.md')
+    );
+
+    const hasJoinedPhrase = result.content.includes('- "alpha, beta"');
+    const splitIncorrectly = result.content.includes('- "alpha"') || result.content.includes('- "beta"');
+
+    if (hasJoinedPhrase && !splitIncorrectly) {
+      pass('T-FMB-006: Inline arrays preserve quoted commas', 'quoted comma value retained as single trigger phrase');
+    } else {
+      fail('T-FMB-006: Inline arrays preserve quoted commas', `hasJoinedPhrase=${hasJoinedPhrase}, splitIncorrectly=${splitIncorrectly}`);
+    }
+  } catch (error) {
+    fail('T-FMB-006: Inline arrays preserve quoted commas', error.message);
+  }
+
+  // --------------------------------------------------------------------------
+  // T-FMB-007: Strict mode skips malformed frontmatter and reports failure.
+  // --------------------------------------------------------------------------
+  tmpRoot = null;
+  try {
+    tmpRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'frontmatter-malformed-'));
+    const specsRoot = path.join(tmpRoot, 'specs');
+    const specDir = path.join(specsRoot, '001-malformed');
+    const memoryDir = path.join(specDir, 'memory');
+    fs.mkdirSync(memoryDir, { recursive: true });
+
+    fs.writeFileSync(
+      path.join(memoryDir, 'bad.md'),
+      '---\ntitle: "Unclosed frontmatter"\ncontextType: implementation\n# Missing closing delimiter on purpose\n',
+      'utf-8'
+    );
+
+    const reportPath = path.join(tmpRoot, 'malformed-report.json');
+    let exitedNonZero = false;
+    try {
+      execSync(
+        `node "${DIST_CLI}" --dry-run --roots "${specsRoot}" --skip-templates --report "${reportPath}"`,
+        { stdio: 'pipe' }
+      );
+    } catch (error) {
+      exitedNonZero = true;
+    }
+
+    const report = JSON.parse(fs.readFileSync(reportPath, 'utf-8'));
+    const malformedCount = report.summary.malformedSkipped || 0;
+    const failedCount = report.summary.failed || 0;
+
+    if (exitedNonZero && malformedCount > 0 && failedCount > 0) {
+      pass('T-FMB-007: Strict malformed handling reports and fails', `malformed=${malformedCount}, failed=${failedCount}`);
+    } else {
+      fail('T-FMB-007: Strict malformed handling reports and fails', `exitedNonZero=${exitedNonZero}, malformed=${malformedCount}, failed=${failedCount}`);
+    }
+  } catch (error) {
+    fail('T-FMB-007: Strict malformed handling reports and fails', error.message);
+  } finally {
+    if (tmpRoot && fs.existsSync(tmpRoot)) {
+      fs.rmSync(tmpRoot, { recursive: true, force: true });
+    }
+  }
+
+  // --------------------------------------------------------------------------
+  // T-FMB-008: CLI dry-run includes template-path processing by default.
+  // --------------------------------------------------------------------------
+  tmpRoot = null;
+  try {
+    tmpRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'frontmatter-template-'));
+    const specsRoot = path.join(tmpRoot, 'specs');
+    const specDir = path.join(specsRoot, '001-template-coverage');
+    fs.mkdirSync(specDir, { recursive: true });
+    fs.writeFileSync(path.join(specDir, 'spec.md'), '# Template Coverage\n', 'utf-8');
+
+    const reportPath = path.join(tmpRoot, 'template-coverage-report.json');
+    execSync(
+      `node "${DIST_CLI}" --dry-run --roots "${specsRoot}" --report "${reportPath}"`,
+      { stdio: 'pipe' }
+    );
+
+    const report = JSON.parse(fs.readFileSync(reportPath, 'utf-8'));
+    const templateBucket = report.byKind['template:template'];
+    if (templateBucket && templateBucket.total > 0) {
+      pass('T-FMB-008: Template-path coverage included by default', `template files processed=${templateBucket.total}`);
+    } else {
+      fail('T-FMB-008: Template-path coverage included by default', 'template:template bucket missing from report');
+    }
+  } catch (error) {
+    fail('T-FMB-008: Template-path coverage included by default', error.message);
+  } finally {
+    if (tmpRoot && fs.existsSync(tmpRoot)) {
+      fs.rmSync(tmpRoot, { recursive: true, force: true });
+    }
+  }
+
   console.log('');
   console.log(`Summary: pass=${passed}, fail=${failed}`);
 

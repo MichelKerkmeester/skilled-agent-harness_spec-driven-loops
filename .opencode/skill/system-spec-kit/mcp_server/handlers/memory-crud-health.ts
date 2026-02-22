@@ -14,6 +14,7 @@ import { createMCPSuccessResponse, createMCPErrorResponse } from '../lib/respons
 import { toErrorMessage } from '../utils';
 
 import { isEmbeddingModelReady } from './memory-crud';
+import { summarizeAliasConflicts } from './memory-index';
 
 import type { MCPResponse, EmbeddingProfile } from './types';
 import type { HealthArgs, ProviderMetadata } from './memory-crud-types';
@@ -44,11 +45,20 @@ async function handleMemoryHealth(_args: HealthArgs): Promise<MCPResponse> {
 
   const database = vectorIndex.getDb();
   let memoryCount = 0;
+  let aliasConflicts: ReturnType<typeof summarizeAliasConflicts> = summarizeAliasConflicts([]);
   try {
     if (database) {
       const countResult = database.prepare('SELECT COUNT(*) as count FROM memory_index')
         .get() as Record<string, number> | undefined;
       memoryCount = countResult?.count ?? 0;
+
+      const aliasRows = database.prepare(`
+        SELECT file_path, content_hash
+        FROM memory_index
+        WHERE parent_id IS NULL
+          AND file_path LIKE '%/specs/%'
+      `).all() as Array<{ file_path: string; content_hash: string | null }>;
+      aliasConflicts = summarizeAliasConflicts(aliasRows);
     }
   } catch (err: unknown) {
     const message = toErrorMessage(err);
@@ -78,6 +88,12 @@ async function handleMemoryHealth(_args: HealthArgs): Promise<MCPResponse> {
   if (!vectorIndex.isVectorSearchAvailable()) {
     hints.push('Vector search unavailable - fallback to BM25');
   }
+  if (aliasConflicts.groups > 0) {
+    hints.push(`Detected ${aliasConflicts.groups} specs/.opencode alias group(s)`);
+  }
+  if (aliasConflicts.divergentHashGroups > 0) {
+    hints.push(`${aliasConflicts.divergentHashGroups} alias group(s) have divergent content hashes`);
+  }
 
   return createMCPSuccessResponse({
     tool: 'memory_health',
@@ -90,6 +106,7 @@ async function handleMemoryHealth(_args: HealthArgs): Promise<MCPResponse> {
       memoryCount,
       uptime: process.uptime(),
       version: SERVER_VERSION,
+      aliasConflicts,
       embeddingProvider: {
         provider: providerMetadata.provider,
         model: providerMetadata.model,

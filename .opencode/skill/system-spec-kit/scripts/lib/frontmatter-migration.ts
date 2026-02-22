@@ -18,6 +18,8 @@ export interface FrontmatterSection {
 
 export interface FrontmatterDetection {
   found: boolean;
+  malformed: boolean;
+  reason?: string;
   start: number;
   end: number;
   sections: FrontmatterSection[];
@@ -33,6 +35,7 @@ export interface ClassifiedDocument {
   fileName: string;
   fileStem: string;
   specLeaf: string | null;
+  specPath: string | null;
   templateRelativePath: string | null;
   suffix: string;
 }
@@ -57,6 +60,8 @@ export interface BuildFrontmatterResult {
   classification: ClassifiedDocument;
   managed: ManagedFrontmatter;
   hadFrontmatter: boolean;
+  malformedFrontmatter: boolean;
+  malformedReason: string | null;
 }
 
 /* -----------------------------------------------------------------
@@ -347,26 +352,34 @@ function isLikelyYamlFrontmatter(block: string): boolean {
 
 export function detectFrontmatter(content: string): FrontmatterDetection {
   if (!content) {
-    return { found: false, start: -1, end: -1, sections: [], rawBlock: '' };
+    return { found: false, malformed: false, start: -1, end: -1, sections: [], rawBlock: '' };
   }
 
   const start = skipLeadingCommentsAndWhitespace(content);
 
   const firstLineEnd = content.indexOf('\n', start);
   if (firstLineEnd === -1) {
-    return { found: false, start: -1, end: -1, sections: [], rawBlock: '' };
+    return { found: false, malformed: false, start: -1, end: -1, sections: [], rawBlock: '' };
   }
 
   const firstLine = content.slice(start, firstLineEnd).replace(/\r$/, '').trim();
   if (firstLine !== '---') {
-    return { found: false, start: -1, end: -1, sections: [], rawBlock: '' };
+    return { found: false, malformed: false, start: -1, end: -1, sections: [], rawBlock: '' };
   }
 
   const closingRegex = /^---\s*$/gm;
   closingRegex.lastIndex = firstLineEnd + 1;
   const closingMatch = closingRegex.exec(content);
   if (!closingMatch) {
-    return { found: false, start: -1, end: -1, sections: [], rawBlock: '' };
+    return {
+      found: false,
+      malformed: true,
+      reason: 'Frontmatter opening delimiter found without closing delimiter',
+      start: -1,
+      end: -1,
+      sections: [],
+      rawBlock: '',
+    };
   }
 
   const blockStart = firstLineEnd + 1;
@@ -374,7 +387,15 @@ export function detectFrontmatter(content: string): FrontmatterDetection {
   const rawBlock = content.slice(blockStart, blockEnd);
 
   if (!isLikelyYamlFrontmatter(rawBlock)) {
-    return { found: false, start: -1, end: -1, sections: [], rawBlock: '' };
+    return {
+      found: false,
+      malformed: true,
+      reason: 'Frontmatter block is not valid YAML-like key/value content',
+      start: -1,
+      end: -1,
+      sections: [],
+      rawBlock,
+    };
   }
 
   let end = closingMatch.index + closingMatch[0].length;
@@ -386,6 +407,7 @@ export function detectFrontmatter(content: string): FrontmatterDetection {
 
   return {
     found: true,
+    malformed: false,
     start,
     end,
     sections: parseFrontmatterSections(rawBlock),
@@ -437,8 +459,52 @@ function parseInlineArray(value: string): string[] {
     return [];
   }
 
-  return inner
-    .split(',')
+  const parts: string[] = [];
+  let current = '';
+  let quote: '"' | "'" | null = null;
+  let escaped = false;
+
+  for (let i = 0; i < inner.length; i += 1) {
+    const ch = inner[i];
+
+    if (escaped) {
+      current += ch;
+      escaped = false;
+      continue;
+    }
+
+    if (ch === '\\') {
+      current += ch;
+      escaped = true;
+      continue;
+    }
+
+    if (quote) {
+      current += ch;
+      if (ch === quote) {
+        quote = null;
+      }
+      continue;
+    }
+
+    if (ch === '"' || ch === "'") {
+      quote = ch;
+      current += ch;
+      continue;
+    }
+
+    if (ch === ',') {
+      parts.push(current.trim());
+      current = '';
+      continue;
+    }
+
+    current += ch;
+  }
+
+  parts.push(current.trim());
+
+  return parts
     .map((part) => stripWrappingQuotes(part.trim()))
     .filter((part) => part.length > 0);
 }
@@ -530,6 +596,22 @@ function mapSpecDocType(fileName: string): string {
   }
 }
 
+function extractSpecPathFromNormalizedPath(normalizedPath: string): string | null {
+  const memoryMatch = normalizedPath.match(/\/specs\/(.+?)\/memory\//i);
+  if (memoryMatch && memoryMatch[1]) {
+    return memoryMatch[1];
+  }
+
+  const specDocMatch = normalizedPath.match(
+    /\/specs\/(.+?)\/(?:spec|plan|tasks|checklist|decision-record|implementation-summary|research|handover)\.md$/i
+  );
+  if (specDocMatch && specDocMatch[1]) {
+    return specDocMatch[1];
+  }
+
+  return null;
+}
+
 export function classifyDocument(filePath: string, templatesRoot: string): ClassifiedDocument {
   const normalized = normalizePath(filePath);
   const normalizedTemplatesRoot = normalizePath(templatesRoot).replace(/\/+$/, '');
@@ -549,6 +631,7 @@ export function classifyDocument(filePath: string, templatesRoot: string): Class
       fileName,
       fileStem,
       specLeaf: null,
+      specPath: null,
       templateRelativePath: relative || fileName,
       suffix: `[template:${relative || fileName}]`,
     };
@@ -557,9 +640,11 @@ export function classifyDocument(filePath: string, templatesRoot: string): Class
   if (/\/memory\/.+\.md$/i.test(normalized)) {
     const segments = normalized.split('/').filter(Boolean);
     const memoryIndex = segments.indexOf('memory');
+    const specPath = extractSpecPathFromNormalizedPath(normalized);
     const specLeaf = memoryIndex > 0
       ? segments[memoryIndex - 1]
       : path.basename(path.dirname(path.dirname(normalized)));
+    const suffixScope = specPath || specLeaf;
     return {
       kind: 'memory',
       documentType: 'memory',
@@ -567,13 +652,16 @@ export function classifyDocument(filePath: string, templatesRoot: string): Class
       fileName,
       fileStem,
       specLeaf,
+      specPath,
       templateRelativePath: null,
-      suffix: `[${specLeaf}/${fileStem}]`,
+      suffix: `[${suffixScope}/${fileStem}]`,
     };
   }
 
   if (SPEC_DOC_BASENAMES.has(fileName)) {
+    const specPath = extractSpecPathFromNormalizedPath(normalized);
     const specLeaf = path.basename(path.dirname(normalized));
+    const suffixScope = specPath || specLeaf;
     const documentType = mapSpecDocType(fileName);
     return {
       kind: 'spec_doc',
@@ -582,8 +670,9 @@ export function classifyDocument(filePath: string, templatesRoot: string): Class
       fileName,
       fileStem,
       specLeaf,
+      specPath,
       templateRelativePath: null,
-      suffix: `[${specLeaf}/${fileStem}]`,
+      suffix: `[${suffixScope}/${fileStem}]`,
     };
   }
 
@@ -594,6 +683,7 @@ export function classifyDocument(filePath: string, templatesRoot: string): Class
     fileName,
     fileStem,
     specLeaf: null,
+    specPath: null,
     templateRelativePath: null,
     suffix: `[${fileStem}]`,
   };
@@ -603,9 +693,10 @@ function sectionValueByKeys(
   sections: FrontmatterSection[],
   keys: string[]
 ): FrontmatterValue | undefined {
-  for (const key of keys) {
-    const section = sections.find((entry) => entry.key === key);
-    if (!section) {
+  const lookup = new Set(keys.map((key) => lower(key)));
+
+  for (const section of sections) {
+    if (!lookup.has(lower(section.key))) {
       continue;
     }
 
@@ -950,6 +1041,12 @@ const MANAGED_KEYS = new Set([
   'context_type',
 ]);
 
+const MANAGED_KEYS_LOWER = new Set(Array.from(MANAGED_KEYS).map((key) => lower(key)));
+
+function isManagedKey(key: string): boolean {
+  return MANAGED_KEYS_LOWER.has(lower(key));
+}
+
 function serializeFrontmatter(
   managed: ManagedFrontmatter,
   existingSections: FrontmatterSection[]
@@ -976,7 +1073,7 @@ function serializeFrontmatter(
   lines.push(...sectionToLines('contextType', managed.contextType));
 
   const unknownSections = existingSections
-    .filter((section) => !MANAGED_KEYS.has(section.key))
+    .filter((section) => !isManagedKey(section.key))
     .slice()
     .sort((left, right) => left.key.localeCompare(right.key));
 
@@ -998,16 +1095,27 @@ export function buildFrontmatterContent(
   const templatesRoot = options.templatesRoot;
   const maxTitleLength = options.maxTitleLength || TITLE_MAX_LENGTH;
 
+  const classification = classifyDocument(filePath, templatesRoot);
   const detection = detectFrontmatter(originalContent);
   const existingSections = detection.found ? detection.sections : [];
-
-  const classification = classifyDocument(filePath, templatesRoot);
   const managed = buildManagedFrontmatter(
     originalContent,
     existingSections,
     classification,
     maxTitleLength
   );
+
+  if (detection.malformed) {
+    return {
+      changed: false,
+      content: originalContent,
+      classification,
+      managed,
+      hadFrontmatter: false,
+      malformedFrontmatter: true,
+      malformedReason: detection.reason || 'Malformed frontmatter detected',
+    };
+  }
 
   const frontmatterText = serializeFrontmatter(managed, existingSections);
 
@@ -1024,6 +1132,8 @@ export function buildFrontmatterContent(
     classification,
     managed,
     hadFrontmatter: detection.found,
+    malformedFrontmatter: false,
+    malformedReason: null,
   };
 }
 

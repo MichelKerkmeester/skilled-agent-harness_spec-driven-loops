@@ -22,6 +22,7 @@ interface CliOptions {
   apply: boolean;
   includeArchive: boolean;
   skipTemplates: boolean;
+  allowMalformed: boolean;
   roots: string[];
   reportPath: string | null;
 }
@@ -37,6 +38,7 @@ interface ChangeEntry {
 interface FailureEntry {
   filePath: string;
   error: string;
+  category?: 'error' | 'malformed_frontmatter';
 }
 
 interface MigrationReport {
@@ -45,6 +47,7 @@ interface MigrationReport {
   options: {
     includeArchive: boolean;
     skipTemplates: boolean;
+    allowMalformed: boolean;
     roots: string[];
   };
   summary: {
@@ -52,6 +55,7 @@ interface MigrationReport {
     changed: number;
     unchanged: number;
     failed: number;
+    malformedSkipped: number;
   };
   byKind: Record<string, { total: number; changed: number }>;
   changedFiles: ChangeEntry[];
@@ -96,6 +100,7 @@ Options:
   --roots <paths>      Comma-separated specs root paths (default: auto-discover all dirs named "specs")
   --include-archive    Include z_archive trees (default: excluded)
   --skip-templates     Skip templates root processing
+  --allow-malformed    Continue without failing when malformed frontmatter is detected
   --report <path>      Write JSON report to file
   --help, -h           Show this help message
 
@@ -113,6 +118,7 @@ function parseArgs(argv: string[]): CliOptions {
   let apply = false;
   let includeArchive = false;
   let skipTemplates = false;
+  let allowMalformed = false;
   let roots: string[] = [];
   let reportPath: string | null = null;
 
@@ -143,6 +149,11 @@ function parseArgs(argv: string[]): CliOptions {
 
     if (arg === '--skip-templates') {
       skipTemplates = true;
+      continue;
+    }
+
+    if (arg === '--allow-malformed') {
+      allowMalformed = true;
       continue;
     }
 
@@ -178,6 +189,7 @@ function parseArgs(argv: string[]): CliOptions {
     apply,
     includeArchive,
     skipTemplates,
+    allowMalformed,
     roots,
     reportPath,
   };
@@ -356,6 +368,7 @@ function initializeReport(options: CliOptions): MigrationReport {
     options: {
       includeArchive: options.includeArchive,
       skipTemplates: options.skipTemplates,
+      allowMalformed: options.allowMalformed,
       roots: options.roots,
     },
     summary: {
@@ -363,6 +376,7 @@ function initializeReport(options: CliOptions): MigrationReport {
       changed: 0,
       unchanged: 0,
       failed: 0,
+      malformedSkipped: 0,
     },
     byKind: {},
     changedFiles: [],
@@ -398,6 +412,7 @@ function printSummary(report: MigrationReport): void {
   console.log(`Changed:   ${report.summary.changed}`);
   console.log(`Unchanged: ${report.summary.unchanged}`);
   console.log(`Failed:    ${report.summary.failed}`);
+  console.log(`Malformed: ${report.summary.malformedSkipped}`);
 
   console.log('\nBy kind:');
   const keys = Object.keys(report.byKind).sort();
@@ -457,6 +472,24 @@ function run(): void {
         { templatesRoot: TEMPLATES_ROOT },
         filePath
       );
+
+      if (result.malformedFrontmatter) {
+        report.summary.malformedSkipped += 1;
+        const reason = result.malformedReason || 'Malformed frontmatter detected';
+
+        if (options.allowMalformed) {
+          report.summary.unchanged += 1;
+        } else {
+          report.summary.failed += 1;
+          report.failedFiles.push({
+            filePath,
+            error: reason,
+            category: 'malformed_frontmatter',
+          });
+        }
+
+        continue;
+      }
 
       addKindCounters(report, result.classification, result.changed);
 

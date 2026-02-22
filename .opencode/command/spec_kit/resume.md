@@ -48,11 +48,13 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
 
 2. CHECK $ARGUMENTS for spec folder path:
    ├─ Has path → validate path exists
-   └─ Empty → auto-detect from recent memory files
+   └─ Empty → auto-detect from deterministic filtered candidates
 
 3. Auto-detect if needed:
-   - Glob("specs/**/memory/*.{md,txt}") → Sort by mtime, take first
-   - Found → spec_path = extracted, detection_method = "recent"
+   - Build candidates from session-learning + known spec roots (`specs/`, `.opencode/specs/`)
+   - Normalize aliases, filter archive/test/fixture/scratch, then rank deterministically
+   - Low confidence: confirm in interactive mode; non-interactive safely falls through
+   - Found → spec_path = extracted, detection_method = "ranked"
    - Not found → detection_method = "none" (include Q0)
 
 3b. CHECK --phase-folder flag OR detect phase parent:
@@ -242,7 +244,7 @@ The YAML contains detailed step-by-step workflow, output formats, and all config
 1. Validate provided path from $ARGUMENTS
 2. `memory_match_triggers()` — fast phrase matching (<50ms)
 3. `memory_context()` — L1 unified retrieval (score > 0.6)
-4. Glob by mtime: `ls -t specs/**/memory/*.{md,txt}`
+4. Deterministic filtered ranking (session-learning + alias-normalized spec roots)
 5. No session found → offer: /spec_kit:complete or specify path
 
 **Context loading priority (after spec_path confirmed):**
@@ -308,7 +310,7 @@ Call MCP tools directly — NEVER through Code Mode.
 
 ### Session Deduplication
 
-- Prefer most recent handover.md or memory file by mtime
+- Prefer deterministic ranked active candidates (archive/test/fixture filtered)
 - handover.md takes priority over CONTINUE_SESSION.md
 - Use `/memory:continue` for explicit crash recovery
 - Older handovers preserved for audit trail
@@ -334,7 +336,7 @@ Resume is a **utility workflow** — no parallel dispatch. All steps sequential.
 ## 14. EXAMPLES
 
 ```
-/spec_kit:resume                                          → Auto-detect from recent memory
+/spec_kit:resume                                          → Auto-detect via deterministic filtered ranking
 /spec_kit:resume specs/014-context-aware-permission-system/ → Resume specific folder
 /spec_kit:resume:auto                                      → Auto-load, skip selection
 /spec_kit:resume:confirm specs/014-*/                      → Interactive with memory options

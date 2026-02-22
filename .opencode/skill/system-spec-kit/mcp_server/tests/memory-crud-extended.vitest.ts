@@ -374,6 +374,7 @@ function installHealthMocks(opts: {
   vectorSearchAvailable?: boolean;
   providerMetadata?: any;
   embeddingProfile?: any;
+  aliasRows?: any[];
 } = {}) {
   const {
     dbAvailable = true,
@@ -381,6 +382,7 @@ function installHealthMocks(opts: {
     vectorSearchAvailable = true,
     providerMetadata = { provider: 'test', model: 'test-model', healthy: true },
     embeddingProfile = { dim: 768, getDatabasePath: (base: string) => base + '/test.db' },
+    aliasRows = [],
   } = opts;
 
   const fakeDb = dbAvailable ? {
@@ -388,6 +390,10 @@ function installHealthMocks(opts: {
       get: (...params: any[]) => {
         if (sql.includes('COUNT(*)')) return { count: memoryCount };
         return null;
+      },
+      all: (...params: any[]) => {
+        if (sql.includes('file_path, content_hash')) return aliasRows;
+        return [];
       },
     }),
   } : null;
@@ -991,6 +997,39 @@ describe('handleMemoryHealth - Happy Path', () => {
     expect(parsed?.data).toBeDefined();
     // Reset
     handler.setEmbeddingModelReady(false);
+  });
+
+  it('EXT-H8: Health includes alias conflict summary', async () => {
+    if (!handler?.handleMemoryHealth || !vectorIndex) return;
+    handler.setEmbeddingModelReady(true);
+    installHealthMocks({
+      dbAvailable: true,
+      aliasRows: [
+        { file_path: '/workspace/specs/003-system-spec-kit/001-test/memory/a.md', content_hash: 'hash-1' },
+        { file_path: '/workspace/.opencode/specs/003-system-spec-kit/001-test/memory/a.md', content_hash: 'hash-1' },
+      ],
+    });
+    const result = await handler.handleMemoryHealth({});
+    const parsed = parseResponse(result);
+    expect(parsed?.data?.aliasConflicts?.groups).toBe(1);
+    expect(parsed?.data?.aliasConflicts?.identicalHashGroups).toBe(1);
+    expect(parsed?.data?.aliasConflicts?.divergentHashGroups).toBe(0);
+  });
+
+  it('EXT-H9: Health hints include divergent alias warning', async () => {
+    if (!handler?.handleMemoryHealth || !vectorIndex) return;
+    handler.setEmbeddingModelReady(true);
+    installHealthMocks({
+      dbAvailable: true,
+      aliasRows: [
+        { file_path: '/workspace/specs/003-system-spec-kit/002-test/memory/b.md', content_hash: 'hash-1' },
+        { file_path: '/workspace/.opencode/specs/003-system-spec-kit/002-test/memory/b.md', content_hash: 'hash-2' },
+      ],
+    });
+    const result = await handler.handleMemoryHealth({});
+    const parsed = parseResponse(result);
+    const hints = parsed?.hints || [];
+    expect(hints.some((hint: string) => hint.includes('divergent content hashes'))).toBe(true);
   });
 });
 

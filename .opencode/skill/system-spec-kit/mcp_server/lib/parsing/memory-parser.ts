@@ -821,6 +821,21 @@ export interface FindMemoryFilesOptions {
   specFolder?: string | null;
 }
 
+function normalizeSpecFolderFilter(value: string): string {
+  return value.replace(/\\/g, '/').replace(/^\/+|\/+$/g, '');
+}
+
+function matchesSpecFolderFilter(extractedFolder: string, specFolderFilter: string): boolean {
+  const normalizedExtracted = normalizeSpecFolderFilter(extractedFolder);
+  const normalizedFilter = normalizeSpecFolderFilter(specFolderFilter);
+
+  if (!normalizedFilter) {
+    return true;
+  }
+
+  return normalizedExtracted === normalizedFilter || normalizedExtracted.startsWith(`${normalizedFilter}/`);
+}
+
 /** Find all memory files in a workspace */
 export function findMemoryFiles(workspacePath: string, options: FindMemoryFilesOptions = {}): string[] {
   const { specFolder = null } = options;
@@ -868,7 +883,7 @@ export function findMemoryFiles(workspacePath: string, options: FindMemoryFilesO
           // Apply spec folder filter if specified
           if (specFolder) {
             const extractedFolder = extractSpecFolder(fullPath);
-            if (!extractedFolder.startsWith(specFolder)) {
+            if (!matchesSpecFolderFilter(extractedFolder, specFolder)) {
               continue;
             }
           }

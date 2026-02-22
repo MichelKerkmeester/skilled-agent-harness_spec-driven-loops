@@ -406,6 +406,25 @@ Emoji: Test content
       expect(files).toHaveLength(1);
       expect(files[0].endsWith(path.join('200-dedup-check', 'memory', 'entry.md'))).toBe(true);
     });
+
+    it('T500-17: specFolder filter uses boundary-safe matching', () => {
+      const specsRoot = path.join(workspaceRoot, '.opencode', 'specs');
+      const targetDir = path.join(specsRoot, '003-target', 'memory');
+      const siblingPrefixDir = path.join(specsRoot, '003-target-other', 'memory');
+
+      fs.mkdirSync(targetDir, { recursive: true });
+      fs.mkdirSync(siblingPrefixDir, { recursive: true });
+
+      const targetFile = path.join(targetDir, 'target.md');
+      const siblingFile = path.join(siblingPrefixDir, 'sibling.md');
+      fs.writeFileSync(targetFile, '# Target');
+      fs.writeFileSync(siblingFile, '# Sibling');
+
+      const files = memoryParser.findMemoryFiles(workspaceRoot, { specFolder: '003-target' });
+
+      expect(files.some((filePath) => filePath.endsWith(path.join('003-target', 'memory', 'target.md')))).toBe(true);
+      expect(files.some((filePath) => filePath.endsWith(path.join('003-target-other', 'memory', 'sibling.md')))).toBe(false);
+    });
   });
 
 });

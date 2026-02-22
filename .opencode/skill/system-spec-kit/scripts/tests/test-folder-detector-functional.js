@@ -671,9 +671,11 @@ async function testPriority25BeforePriority3() {
       path.join(SCRIPTS_DIR, 'spec-folder', 'folder-detector.js'),
       'utf-8'
     );
+    const detectFnIndex = sourceCode.indexOf('async function detectSpecFolder');
+    const scopedSource = detectFnIndex >= 0 ? sourceCode.slice(detectFnIndex) : sourceCode;
 
-    const p25Index = sourceCode.indexOf('Priority 2.5');
-    const p3Index = sourceCode.indexOf('Priority 3');
+    const p25Index = scopedSource.indexOf('Priority 2.5');
+    const p3Index = scopedSource.indexOf('Priority 3');
 
     if (p25Index === -1) {
       fail('T-FD05c: Priority 2.5 before Priority 3', 'Priority 2.5 comment not found in source');
@@ -699,12 +701,14 @@ async function testPriorityChainOrder() {
       path.join(SCRIPTS_DIR, 'spec-folder', 'folder-detector.js'),
       'utf-8'
     );
+    const detectFnIndex = sourceCode.indexOf('async function detectSpecFolder');
+    const scopedSource = detectFnIndex >= 0 ? sourceCode.slice(detectFnIndex) : sourceCode;
 
-    const p1Index = sourceCode.indexOf('Priority 1');
-    const p2Index = sourceCode.indexOf('Priority 2:');
-    const p25Index = sourceCode.indexOf('Priority 2.5');
-    const p3Index = sourceCode.indexOf('Priority 3');
-    const p4Index = sourceCode.indexOf('Priority 4');
+    const p1Index = scopedSource.indexOf('Priority 1');
+    const p2Index = scopedSource.indexOf('Priority 2:');
+    const p25Index = scopedSource.indexOf('Priority 2.5');
+    const p3Index = scopedSource.indexOf('Priority 3');
+    const p4Index = scopedSource.indexOf('Priority 4');
 
     const allFound = p1Index !== -1 && p2Index !== -1 && p25Index !== -1 && p3Index !== -1 && p4Index !== -1;
     const correctOrder = p1Index < p2Index && p2Index < p25Index && p25Index < p3Index && p3Index < p4Index;
@@ -917,7 +921,193 @@ async function testConfigProjectRootAlignment() {
 }
 
 /* ─────────────────────────────────────────────────────────────
-   11. MAIN TEST RUNNER
+   11. TEST: NEW REGRESSION MATRIX (SESSION SELECTION BUG)
+────────────────────────────────────────────────────────────────*/
+
+async function testArchiveCandidateExcludedWhenActiveExists() {
+  log('\n🔬 REGRESSION: Active candidate preferred over archived candidate');
+
+  try {
+    const { TEST_HELPERS } = require(path.join(SCRIPTS_DIR, 'spec-folder', 'folder-detector'));
+    if (!TEST_HELPERS || typeof TEST_HELPERS.rankSessionCandidates !== 'function') {
+      fail('T-FD09a: Active beats archive candidate', 'TEST_HELPERS.rankSessionCandidates not available');
+      return;
+    }
+
+    const now = Date.now();
+    const ranked = TEST_HELPERS.rankSessionCandidates([
+      { path: 'specs/999-z_archive-session-selection', recencyMs: now + 60000 },
+      { path: '.opencode/specs/139-hybrid-rag-fusion/005-auto-detected-session-bug', recencyMs: now }
+    ]);
+
+    if (ranked.length > 0 && ranked[0].quality && ranked[0].quality.label === 'active') {
+      pass('T-FD09a: Active beats archive candidate',
+        `Top=${ranked[0].path} quality=${ranked[0].quality.label}`);
+    } else {
+      fail('T-FD09a: Active beats archive candidate', `Ranking result: ${JSON.stringify(ranked[0])}`);
+    }
+  } catch (err) {
+    fail('T-FD09a: Active beats archive candidate', err.message);
+  }
+}
+
+async function testAliasNormalizationDeterminism() {
+  log('\n🔬 REGRESSION: Alias normalization deterministic between specs roots');
+
+  try {
+    const { TEST_HELPERS } = require(path.join(SCRIPTS_DIR, 'spec-folder', 'folder-detector'));
+    if (!TEST_HELPERS || typeof TEST_HELPERS.normalizeSpecReferenceForLookup !== 'function') {
+      fail('T-FD09b: Alias normalization deterministic', 'normalizeSpecReferenceForLookup not available');
+      return;
+    }
+
+    const variants = [
+      'specs/003-system-spec-kit/139-hybrid-rag-fusion',
+      '.opencode/specs/003-system-spec-kit/139-hybrid-rag-fusion',
+      'specs\\003-system-spec-kit\\139-hybrid-rag-fusion',
+      '003-system-spec-kit/139-hybrid-rag-fusion'
+    ];
+
+    const normalized = variants.map((v) => TEST_HELPERS.normalizeSpecReferenceForLookup(v));
+    const unique = Array.from(new Set(normalized));
+
+    if (unique.length === 1 && unique[0] === '003-system-spec-kit/139-hybrid-rag-fusion') {
+      pass('T-FD09b: Alias normalization deterministic', `Canonical=${unique[0]}`);
+    } else {
+      fail('T-FD09b: Alias normalization deterministic',
+        `Expected one canonical value, got: ${JSON.stringify(unique)}`);
+    }
+  } catch (err) {
+    fail('T-FD09b: Alias normalization deterministic', err.message);
+  }
+}
+
+async function testRankingResistsMtimeSkew() {
+  log('\n🔬 REGRESSION: Ranking resists raw mtime skew');
+
+  try {
+    const { TEST_HELPERS } = require(path.join(SCRIPTS_DIR, 'spec-folder', 'folder-detector'));
+    if (!TEST_HELPERS || typeof TEST_HELPERS.rankAutoDetectCandidates !== 'function') {
+      fail('T-FD09c: Ranking resists mtime skew', 'rankAutoDetectCandidates not available');
+      return;
+    }
+
+    const now = Date.now();
+    const rankedByQuality = TEST_HELPERS.rankAutoDetectCandidates([
+      {
+        path: '/tmp/older-active',
+        relativePath: '139-hybrid-rag-fusion/005-auto-detected-session-bug',
+        mtimeMs: now - 300000
+      },
+      {
+        path: '/tmp/newer-archive',
+        relativePath: '999-z_archive-session-selection',
+        mtimeMs: now + 300000
+      }
+    ]);
+
+    const rankedByStableId = TEST_HELPERS.rankAutoDetectCandidates([
+      {
+        path: '/tmp/high-id-older',
+        relativePath: '220-high-id-parent/010-phase',
+        mtimeMs: now - 1000000
+      },
+      {
+        path: '/tmp/low-id-newer',
+        relativePath: '219-low-id-parent/999-phase',
+        mtimeMs: now + 1000000
+      }
+    ]);
+
+    const qualityPass = rankedByQuality.length > 0 &&
+      rankedByQuality[0].relativePath === '139-hybrid-rag-fusion/005-auto-detected-session-bug';
+    const idPass = rankedByStableId.length > 0 &&
+      rankedByStableId[0].relativePath === '220-high-id-parent/010-phase';
+
+    if (qualityPass && idPass) {
+      pass('T-FD09c: Ranking resists mtime skew',
+        `Top quality=${rankedByQuality[0].relativePath}; Top id=${rankedByStableId[0].relativePath}`);
+    } else {
+      fail('T-FD09c: Ranking resists mtime skew',
+        `qualityTop=${rankedByQuality[0] ? rankedByQuality[0].relativePath : 'none'}, idTop=${rankedByStableId[0] ? rankedByStableId[0].relativePath : 'none'}`);
+    }
+  } catch (err) {
+    fail('T-FD09c: Ranking resists mtime skew', err.message);
+  }
+}
+
+async function testLowConfidenceConfirmationAndFallbackContract() {
+  log('\n🔬 REGRESSION: Low-confidence confirmation/fallback contract');
+
+  try {
+    const { TEST_HELPERS } = require(path.join(SCRIPTS_DIR, 'spec-folder', 'folder-detector'));
+    if (!TEST_HELPERS ||
+        typeof TEST_HELPERS.decideSessionAction !== 'function' ||
+        typeof TEST_HELPERS.decideAutoDetectAction !== 'function') {
+      fail('T-FD09d: Low-confidence contract', 'decision helpers not available');
+      return;
+    }
+
+    const now = Date.now();
+    const ambiguousSessionInputs = [
+      { path: 'specs/120-active-session-a', recencyMs: now },
+      { path: '.opencode/specs/121-active-session-b', recencyMs: now + 1000 }
+    ];
+    const ambiguousAutoInputs = [
+      { path: '/tmp/a', relativePath: '300-parent/001-phase-a', mtimeMs: now },
+      { path: '/tmp/b', relativePath: '300-parent/001-phase-b', mtimeMs: now + 1000 }
+    ];
+
+    const sessionInteractive = TEST_HELPERS.decideSessionAction(ambiguousSessionInputs, true);
+    const sessionNonInteractive = TEST_HELPERS.decideSessionAction(ambiguousSessionInputs, false);
+    const autoInteractive = TEST_HELPERS.decideAutoDetectAction(ambiguousAutoInputs, true);
+    const autoNonInteractive = TEST_HELPERS.decideAutoDetectAction(ambiguousAutoInputs, false);
+
+    const contractPass =
+      sessionInteractive.action === 'confirm' &&
+      sessionNonInteractive.action === 'skip' &&
+      autoInteractive.action === 'confirm' &&
+      autoNonInteractive.action === 'fallback';
+
+    if (contractPass) {
+      pass('T-FD09d: Low-confidence contract',
+        `session=[${sessionInteractive.action}/${sessionNonInteractive.action}] auto=[${autoInteractive.action}/${autoNonInteractive.action}]`);
+    } else {
+      fail('T-FD09d: Low-confidence contract',
+        `session=[${sessionInteractive.action}/${sessionNonInteractive.action}] auto=[${autoInteractive.action}/${autoNonInteractive.action}]`);
+    }
+  } catch (err) {
+    fail('T-FD09d: Low-confidence contract', err.message);
+  }
+}
+
+async function testSessionQueryUsesTimestampedMultiRowLookup() {
+  log('\n🔬 REGRESSION: Session-learning lookup queries multiple timestamped rows');
+
+  try {
+    const sourceCode = fs.readFileSync(
+      path.join(SCRIPTS_DIR, 'spec-folder', 'folder-detector.js'),
+      'utf-8'
+    );
+
+    const hasColumns = sourceCode.includes('SELECT spec_folder, created_at, updated_at');
+    const hasLimit = sourceCode.includes('LIMIT 25') || sourceCode.includes('LIMIT ${SESSION_ROW_LIMIT}');
+    const hasOrder = sourceCode.includes('ORDER BY created_at DESC');
+
+    if (hasColumns && hasLimit && hasOrder) {
+      pass('T-FD09e: Timestamped multi-row session query',
+        'Found SELECT spec_folder, created_at, updated_at ... ORDER BY created_at DESC ... LIMIT 25');
+    } else {
+      fail('T-FD09e: Timestamped multi-row session query',
+        `columns=${hasColumns}, order=${hasOrder}, limit=${hasLimit}`);
+    }
+  } catch (err) {
+    fail('T-FD09e: Timestamped multi-row session query', err.message);
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────
+   12. MAIN TEST RUNNER
 ────────────────────────────────────────────────────────────────*/
 
 async function main() {
@@ -969,6 +1159,14 @@ async function main() {
   // Category 8: CONFIG Alignment
   log('\n── Category 8: CONFIG Alignment ──');
   await testConfigProjectRootAlignment();
+
+  // Category 9: Session-Selection Regressions
+  log('\n── Category 9: Session-Selection Regressions ──');
+  await testArchiveCandidateExcludedWhenActiveExists();
+  await testAliasNormalizationDeterminism();
+  await testRankingResistsMtimeSkew();
+  await testLowConfidenceConfirmationAndFallbackContract();
+  await testSessionQueryUsesTimestampedMultiRowLookup();
 
   // Results summary
   log('\n═══════════════════════════════════════════════════════════════');
