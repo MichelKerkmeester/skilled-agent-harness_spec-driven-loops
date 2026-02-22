@@ -60,6 +60,7 @@ Delivery followed the plan's setup -> implementation -> verification progression
 2. Core dedup/tier logic was implemented in parser, index handler, and tier utility modules.
 3. Verification evidence was captured with targeted/extended test runs, scoped ESLint, and spec validation.
 4. Level 3 documentation was synchronized to implemented state (tasks, checklist, ADR statuses, and this summary).
+5. Body-text normalization audit for stale spec-number references was rerun during fusion remediation and required no updates in this folder.
 <!-- /ANCHOR:how-delivered -->
 
 ---

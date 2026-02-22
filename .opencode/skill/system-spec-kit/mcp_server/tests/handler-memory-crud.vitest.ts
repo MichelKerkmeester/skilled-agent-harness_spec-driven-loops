@@ -214,5 +214,17 @@ describe('Handler Memory CRUD (T519) [deferred - requires DB test fixtures]', ()
     it('T519-H2b: setEmbeddingModelReady(false) succeeds', () => {
       expect(() => handler.setEmbeddingModelReady(false)).not.toThrow();
     });
+
+    it('T519-H3: Invalid reportMode throws', async () => {
+      await expect(
+        handler.handleMemoryHealth({ reportMode: 'not-valid' })
+      ).rejects.toThrow(/Invalid reportMode/);
+    });
+
+    it('T519-H4: Invalid limit throws', async () => {
+      await expect(
+        handler.handleMemoryHealth({ reportMode: 'divergent_aliases', limit: 0 })
+      ).rejects.toThrow(/limit must be a positive number/);
+    });
   });
 });

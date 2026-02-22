@@ -1,17 +1,18 @@
 ---
 title: "Decision Record: 004-frontmatter-indexing [004-frontmatter-indexing/decision-record]"
 description: "We need one predictable metadata contract before rebuilding indexes. Legacy documents contain mixed key casing, optional aliases, and inconsistent scalar vs list values. If we r..."
+SPECKIT_TEMPLATE_SOURCE: "decision-record | v2.2"
 trigger_phrases:
   - "decision"
   - "record"
-  - "005"
+  - "004"
   - "frontmatter"
   - "indexing"
   - "decision record"
 importance_tier: "important"
 contextType: "decision"
 ---
-# Decision Record: 005-frontmatter-indexing
+# Decision Record: 004-frontmatter-indexing
 
 <!-- SPECKIT_LEVEL: 3 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2 -->
@@ -27,7 +28,7 @@ contextType: "decision"
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Accepted |
 | **Date** | 2026-02-22 |
 | **Deciders** | Spec Kit maintainers |
 

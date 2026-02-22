@@ -221,12 +221,17 @@ Never create memory files with the Write tool. The script enforces format and in
 
 ```bash
 # 1) Preview normalization across discovered specs roots (includes archive)
+#    Strict mode is default: malformed frontmatter is reported and exits non-zero.
 node .opencode/skill/system-spec-kit/scripts/dist/memory/backfill-frontmatter.js \
   --dry-run --include-archive --report /tmp/frontmatter-dry-run.json
 
 # 2) Apply frontmatter updates
 node .opencode/skill/system-spec-kit/scripts/dist/memory/backfill-frontmatter.js \
   --apply --include-archive --report /tmp/frontmatter-apply.json
+
+# Optional compatibility mode (do not fail on malformed frontmatter)
+node .opencode/skill/system-spec-kit/scripts/dist/memory/backfill-frontmatter.js \
+  --dry-run --allow-malformed --report /tmp/frontmatter-relaxed.json
 
 # 3) Recompose templates and verify single-frontmatter outputs
 bash .opencode/skill/system-spec-kit/scripts/templates/compose.sh
@@ -240,6 +245,7 @@ Frontmatter contract for indexed markdown uses managed keys:
 `title`, `description`, `trigger_phrases`, `importance_tier`, `contextType`.
 
 Parser compatibility is non-breaking: both `contextType` and `context_type` are accepted.
+Migration reports include a dedicated `malformed` summary counter for strict-mode diagnostics.
 
 ### Templates (`templates/`)
 

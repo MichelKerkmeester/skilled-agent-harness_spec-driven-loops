@@ -34,31 +34,169 @@ const SERVER_VERSION: string = (() => {
   }
 })();
 
+const DIVERGENT_ALIAS_REPORT_MODE = 'divergent_aliases';
+const DEFAULT_DIVERGENT_ALIAS_LIMIT = 20;
+const MAX_DIVERGENT_ALIAS_LIMIT = 200;
+const DOT_OPENCODE_SPECS_SEGMENT = '/.opencode/specs/';
+const SPECS_SEGMENT = '/specs/';
+
+interface AliasConflictDbRow {
+  file_path: string;
+  content_hash: string | null;
+  spec_folder?: string | null;
+}
+
+interface DivergentAliasVariant {
+  filePath: string;
+  contentHash: string | null;
+}
+
+interface DivergentAliasGroup {
+  normalizedPath: string;
+  specFolders: string[];
+  distinctHashCount: number;
+  variants: DivergentAliasVariant[];
+}
+
+interface DivergentAliasBucket {
+  hasDotOpencodeVariant: boolean;
+  hasSpecsVariant: boolean;
+  variants: Map<string, string | null>;
+  hashes: Set<string>;
+  specFolders: Set<string>;
+}
+
+function toNormalizedPath(filePath: string): string {
+  return filePath.replace(/\\/g, '/');
+}
+
+function toSpecAliasKey(filePath: string): string {
+  return toNormalizedPath(filePath).replace(DOT_OPENCODE_SPECS_SEGMENT, SPECS_SEGMENT);
+}
+
+function getDivergentAliasGroups(rows: AliasConflictDbRow[], limit: number): DivergentAliasGroup[] {
+  if (!rows.length) {
+    return [];
+  }
+
+  const buckets = new Map<string, DivergentAliasBucket>();
+
+  for (const row of rows) {
+    if (!row || typeof row.file_path !== 'string' || row.file_path.length === 0) {
+      continue;
+    }
+
+    const normalizedPath = toNormalizedPath(row.file_path);
+    const aliasKey = toSpecAliasKey(normalizedPath);
+    let bucket = buckets.get(aliasKey);
+    if (!bucket) {
+      bucket = {
+        hasDotOpencodeVariant: false,
+        hasSpecsVariant: false,
+        variants: new Map<string, string | null>(),
+        hashes: new Set<string>(),
+        specFolders: new Set<string>(),
+      };
+      buckets.set(aliasKey, bucket);
+    }
+
+    if (normalizedPath.includes(DOT_OPENCODE_SPECS_SEGMENT)) {
+      bucket.hasDotOpencodeVariant = true;
+    }
+    if (normalizedPath.includes(SPECS_SEGMENT) && !normalizedPath.includes(DOT_OPENCODE_SPECS_SEGMENT)) {
+      bucket.hasSpecsVariant = true;
+    }
+
+    bucket.variants.set(normalizedPath, row.content_hash ?? null);
+    if (typeof row.content_hash === 'string' && row.content_hash.trim().length > 0) {
+      bucket.hashes.add(row.content_hash.trim());
+    }
+    if (typeof row.spec_folder === 'string' && row.spec_folder.length > 0) {
+      bucket.specFolders.add(row.spec_folder);
+    }
+  }
+
+  const groups: DivergentAliasGroup[] = [];
+  for (const [normalizedPath, bucket] of buckets.entries()) {
+    if (!bucket.hasDotOpencodeVariant || !bucket.hasSpecsVariant) {
+      continue;
+    }
+    if (bucket.variants.size < 2 || bucket.hashes.size < 2) {
+      continue;
+    }
+
+    const variants: DivergentAliasVariant[] = Array.from(bucket.variants.entries())
+      .sort(([pathA], [pathB]) => pathA.localeCompare(pathB))
+      .map(([filePath, contentHash]) => ({ filePath, contentHash }));
+
+    groups.push({
+      normalizedPath,
+      specFolders: Array.from(bucket.specFolders).sort(),
+      distinctHashCount: bucket.hashes.size,
+      variants,
+    });
+  }
+
+  groups.sort((a, b) => a.normalizedPath.localeCompare(b.normalizedPath));
+  return groups.slice(0, limit);
+}
+
 /* ---------------------------------------------------------------
    CORE LOGIC
 --------------------------------------------------------------- */
 
 /** Handle memory_health tool -- returns system health status and diagnostics. */
-async function handleMemoryHealth(_args: HealthArgs): Promise<MCPResponse> {
+async function handleMemoryHealth(args: HealthArgs): Promise<MCPResponse> {
   const startTime = Date.now();
   await checkDatabaseUpdated();
+
+  const {
+    reportMode = 'full',
+    limit: rawLimit = DEFAULT_DIVERGENT_ALIAS_LIMIT,
+    specFolder,
+  } = args ?? {};
+
+  if (reportMode !== 'full' && reportMode !== DIVERGENT_ALIAS_REPORT_MODE) {
+    throw new Error(`Invalid reportMode: ${String(reportMode)}. Expected "full" or "${DIVERGENT_ALIAS_REPORT_MODE}"`);
+  }
+  if (specFolder !== undefined && typeof specFolder !== 'string') {
+    throw new Error('specFolder must be a string');
+  }
+  if (rawLimit !== undefined && (!Number.isFinite(rawLimit) || rawLimit <= 0)) {
+    throw new Error('limit must be a positive number');
+  }
+  const safeLimit = Math.max(1, Math.min(Math.floor(rawLimit || DEFAULT_DIVERGENT_ALIAS_LIMIT), MAX_DIVERGENT_ALIAS_LIMIT));
 
   const database = vectorIndex.getDb();
   let memoryCount = 0;
   let aliasConflicts: ReturnType<typeof summarizeAliasConflicts> = summarizeAliasConflicts([]);
+  let aliasRows: AliasConflictDbRow[] = [];
+  let divergentAliasGroups: DivergentAliasGroup[] = [];
   try {
     if (database) {
       const countResult = database.prepare('SELECT COUNT(*) as count FROM memory_index')
         .get() as Record<string, number> | undefined;
       memoryCount = countResult?.count ?? 0;
 
-      const aliasRows = database.prepare(`
-        SELECT file_path, content_hash
+      const whereParts: string[] = [
+        'parent_id IS NULL',
+        "file_path LIKE '%/specs/%'",
+      ];
+      const params: unknown[] = [];
+      if (specFolder) {
+        whereParts.push('spec_folder = ?');
+        params.push(specFolder);
+      }
+
+      const aliasSql = `
+        SELECT file_path, content_hash, spec_folder
         FROM memory_index
-        WHERE parent_id IS NULL
-          AND file_path LIKE '%/specs/%'
-      `).all() as Array<{ file_path: string; content_hash: string | null }>;
+        WHERE ${whereParts.join(' AND ')}
+      `;
+
+      aliasRows = database.prepare(aliasSql).all(...params) as AliasConflictDbRow[];
       aliasConflicts = summarizeAliasConflicts(aliasRows);
+      divergentAliasGroups = getDivergentAliasGroups(aliasRows, safeLimit);
     }
   } catch (err: unknown) {
     const message = toErrorMessage(err);
@@ -71,6 +209,37 @@ async function handleMemoryHealth(_args: HealthArgs): Promise<MCPResponse> {
       });
     }
     console.warn('[memory-health] Failed to get memory count:', message);
+  }
+
+  if (reportMode === DIVERGENT_ALIAS_REPORT_MODE) {
+    const hints: string[] = [];
+    if (!database) {
+      hints.push('Database not connected - restart MCP server');
+    }
+    if (aliasConflicts.divergentHashGroups === 0) {
+      hints.push('No divergent alias groups detected');
+    }
+    if (aliasConflicts.divergentHashGroups > divergentAliasGroups.length) {
+      hints.push(`More divergent alias groups available: increase limit above ${safeLimit}`);
+    }
+
+    return createMCPSuccessResponse({
+      tool: 'memory_health',
+      summary: `Divergent alias report: ${divergentAliasGroups.length} of ${aliasConflicts.divergentHashGroups} group(s)`,
+      data: {
+        reportMode,
+        status: isEmbeddingModelReady() && database ? 'healthy' : 'degraded',
+        databaseConnected: !!database,
+        specFolder: specFolder ?? null,
+        limit: safeLimit,
+        totalRowsScanned: aliasRows.length,
+        totalDivergentGroups: aliasConflicts.divergentHashGroups,
+        returnedGroups: divergentAliasGroups.length,
+        groups: divergentAliasGroups,
+      },
+      hints,
+      startTime,
+    });
   }
 
   const providerMetadata = embeddings.getProviderMetadata() as ProviderMetadata;
@@ -106,6 +275,7 @@ async function handleMemoryHealth(_args: HealthArgs): Promise<MCPResponse> {
       memoryCount,
       uptime: process.uptime(),
       version: SERVER_VERSION,
+      reportMode: 'full',
       aliasConflicts,
       embeddingProvider: {
         provider: providerMetadata.provider,

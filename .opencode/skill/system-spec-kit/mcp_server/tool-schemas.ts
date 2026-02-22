@@ -158,7 +158,27 @@ const memoryStats: ToolDefinition = {
 const memoryHealth: ToolDefinition = {
   name: 'memory_health',
   description: '[L3:Discovery] Check health status of the memory system. Token Budget: 800.',
-  inputSchema: { type: 'object', properties: {}, required: [] },
+  inputSchema: {
+    type: 'object',
+    properties: {
+      reportMode: {
+        type: 'string',
+        enum: ['full', 'divergent_aliases'],
+        default: 'full',
+        description: 'Report mode. full returns system diagnostics; divergent_aliases returns compact divergent alias triage output.'
+      },
+      limit: {
+        type: 'number',
+        default: 20,
+        description: 'Maximum divergent alias groups to return when reportMode=divergent_aliases (max 200).'
+      },
+      specFolder: {
+        type: 'string',
+        description: 'Optional spec folder filter for divergent alias triage mode.'
+      }
+    },
+    required: []
+  },
 };
 
 // L4: Mutation - Modify existing memories (Token Budget: 500)

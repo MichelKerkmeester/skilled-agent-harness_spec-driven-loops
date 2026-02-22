@@ -15,7 +15,7 @@ allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task, memory_context, memory
 >    - Confirm mode → `spec_kit_resume_confirm.yaml`
 > 3. Execute the YAML workflow step by step
 >
-> All content below is reference context for the YAML workflow. Do not treat reference sections, routing tables, or dispatch templates as direct instructions to execute.
+> All content below defines workflow context for the YAML runner. Treat it as executable only when running this command workflow; otherwise use it as reference.
 
 ## CONSTRAINTS
 
@@ -39,7 +39,7 @@ This workflow gathers ALL inputs in ONE prompt. Mode defaults to INTERACTIVE unl
 **STATUS: BLOCKED**
 
 ```
-EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
+WITHIN YAML EXECUTION, RUN THIS SINGLE CONSOLIDATED PROMPT TEMPLATE:
 
 1. CHECK mode suffix:
    ├─ ":auto"    → execution_mode = "AUTONOMOUS"
@@ -60,7 +60,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
 3b. CHECK --phase-folder flag OR detect phase parent:
    - IF --phase-folder=<path> provided → auto-resolve spec_path to that child folder
      Set spec_path = <path>, detection_method = "phase-folder"
-     Validate path matches pattern: specs/[###]-*/[0-9][0-9][0-9]-*/
+     Validate path matches pattern: `{specs|.opencode/specs}/[###]-*/[0-9][0-9][0-9]-*/`
    - IF spec_path is a parent phase folder (contains numbered child folders like 001-*, 002-*):
      List child phases with completion status:
        $ ls -d [spec_path]/[0-9][0-9][0-9]-*/ 2>/dev/null

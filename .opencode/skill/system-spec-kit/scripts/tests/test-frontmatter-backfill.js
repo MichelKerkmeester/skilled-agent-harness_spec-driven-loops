@@ -122,7 +122,7 @@ function run() {
 
     fs.writeFileSync(
       path.join(memoryDir, 'session.md'),
-      '<!-- header -->\n\n---\n\n# SESSION SUMMARY\n\n| **Meta Data** | **Value** |\n|:--------------|:----------|\n| Importance Tier | normal |\n| Context Type | general |\n',
+      '<!-- header -->\n\n---\nimportance_tier: normal\ncontextType: general\n---\n\n# SESSION SUMMARY\n\n| **Meta Data** | **Value** |\n|:--------------|:----------|\n| Importance Tier | normal |\n| Context Type | general |\n',
       'utf-8'
     );
 

@@ -1,16 +1,17 @@
 ---
 title: "Verification Checklist: 004-frontmatter-indexing [004-frontmatter-indexing/checklist]"
 description: "Verification Date: 2026-02-22"
+SPECKIT_TEMPLATE_SOURCE: "checklist | v2.2"
 trigger_phrases:
   - "verification"
   - "checklist"
-  - "005"
+  - "004"
   - "frontmatter"
   - "indexing"
 importance_tier: "normal"
 contextType: "implementation"
 ---
-# Verification Checklist: 005-frontmatter-indexing
+# Verification Checklist: 004-frontmatter-indexing
 
 <!-- SPECKIT_LEVEL: 3 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->
@@ -32,7 +33,7 @@ contextType: "implementation"
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [x] CHK-001 [P0] Requirements documented in spec.md | Evidence: `spec.md` exists and contains scoped requirements for `005-frontmatter-indexing`.
+- [x] CHK-001 [P0] Requirements documented in spec.md | Evidence: `spec.md` exists and contains scoped requirements for `004-frontmatter-indexing`.
 - [x] CHK-002 [P0] Technical approach defined in plan.md | Evidence: `plan.md` exists and defines migration/reindex approach for this child spec.
 - [x] CHK-003 [P1] Dependencies identified and available | Evidence: `npm run build` passed in `.opencode/skill/system-spec-kit`.
 <!-- /ANCHOR:pre-impl -->
@@ -55,8 +56,8 @@ contextType: "implementation"
 
 - [x] CHK-020 [P0] Acceptance criteria met for normalization and rebuild | Evidence: Coverage post-migration reported `templates 81/0 missing`, `memory 365/0 missing`, `specDocs 1343/0 missing`; reindex `STATUS=OK` (ran twice).
 - [x] CHK-021 [P0] Manual dry-run and apply verification complete | Evidence: `scratch/frontmatter-apply-report.json` (`changed: 1789, failed: 0`) plus idempotency dry-run `scratch/frontmatter-final-dry-run-report-v3.json` (`changed: 0, unchanged: 1789, failed: 0`).
-- [x] CHK-022 [P1] Edge cases tested (empty block, duplicate keys, mixed types) | Evidence: `node scripts/tests/test-template-system.js`, `node scripts/tests/test-template-comprehensive.js`, and `node scripts/tests/test-frontmatter-backfill.js` passed.
-- [x] CHK-023 [P1] Retrieval regression scenarios validated | Evidence: Reindex `STATUS=OK` and DB quality checks show memory-row `SESSION SUMMARY` exact/trimmed/prefix counts all `0`.
+- [x] CHK-022 [P1] Edge cases tested (empty block, duplicate keys, mixed types) | Evidence: `node scripts/tests/test-frontmatter-backfill.js` passed with `T-FMB-005`, `T-FMB-006`, and `T-FMB-007` covering case-insensitive managed keys, quoted-comma arrays, and malformed-frontmatter strict handling.
+- [x] CHK-023 [P1] Retrieval regression scenarios validated | Evidence: `npm run test --workspace mcp_server -- tests/spec126-full-spec-doc-indexing.vitest.ts tests/index-refresh.vitest.ts` passed; prior DB quality checks remain recorded in implementation summary.
 <!-- /ANCHOR:testing -->
 
 ---
@@ -107,13 +108,13 @@ contextType: "implementation"
 
 ## P0 TRACKING SNAPSHOT
 
-- [x] No remaining P0 blockers. CHK-011 and CHK-120 are closed with practical operational evidence and caveats documented.
+- [x] No remaining P0 blockers. CHK-011 and CHK-120 are closed with practical operational evidence and caveats documented. [EVIDENCE: `CHK-011`, `CHK-120`, and `CHK-121` evidence entries in this checklist]
 
 ---
 
 ## P1 TRACKING SNAPSHOT
 
-- [ ] Remaining P1 blockers: CHK-051, CHK-101, CHK-110, CHK-111, CHK-122, CHK-123, CHK-130, CHK-131, CHK-141.
+- [ ] Remaining P1 blockers: CHK-051, CHK-110, CHK-111, CHK-122, CHK-123, CHK-130, CHK-131, CHK-141.
 
 ---
 
@@ -121,7 +122,7 @@ contextType: "implementation"
 ## L3+: ARCHITECTURE VERIFICATION
 
 - [x] CHK-100 [P0] Architecture decisions documented in decision-record.md | Evidence: ADR-001 is documented in `decision-record.md`.
-- [ ] CHK-101 [P1] ADR status maintained and current | Deferred: ADR-001 status remains `Proposed` (not promoted to final status in the record).
+- [x] CHK-101 [P1] ADR status maintained and current | Evidence: ADR-001 status is now `Accepted` in `decision-record.md`.
 - [x] CHK-102 [P1] Alternatives documented with rejection rationale | Evidence: ADR-001 includes an alternatives table with scoring and rationale.
 - [x] CHK-103 [P2] Migration path documented for legacy frontmatter variants | Evidence: ADR-001 implementation/rollback sections document migration approach for legacy variants.
 <!-- /ANCHOR:arch-verify -->

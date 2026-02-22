@@ -1,11 +1,12 @@
 ---
 title: "Implementation Summary [004-frontmatter-indexing/implementation-summary]"
 description: "Completed implementation summary with build/test/migration/reindex verification evidence for frontmatter normalization and indexing."
+SPECKIT_TEMPLATE_SOURCE: "impl-summary-core | v2.2"
 trigger_phrases:
   - "implementation"
   - "summary"
   - "implementation summary"
-  - "005"
+  - "004"
   - "frontmatter"
 importance_tier: "normal"
 contextType: "implementation"
@@ -23,7 +24,7 @@ contextType: "implementation"
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 005-frontmatter-indexing |
+| **Spec Folder** | 004-frontmatter-indexing |
 | **Completed** | 2026-02-22 |
 | **Level** | 3 |
 <!-- /ANCHOR:metadata -->
@@ -58,18 +59,20 @@ Delivery and verification evidence captured in this run:
 - `node scripts/tests/test-template-system.js` passed.
 - `node scripts/tests/test-template-comprehensive.js` passed.
 - `node scripts/tests/test-frontmatter-backfill.js` passed.
-- `npm run test --workspace mcp_server -- tests/memory-parser.vitest.ts` passed.
+- `npm run test --workspace mcp_server -- tests/memory-parser.vitest.ts tests/memory-parser-extended.vitest.ts tests/spec126-full-spec-doc-indexing.vitest.ts tests/index-refresh.vitest.ts` passed.
 
 3. Migration execution and idempotency:
 - Apply pass evidence exists (`scratch/frontmatter-apply-report.json`: `changed 1789`, `failed 0`).
 - Final idempotency dry-run passed (`node scripts/dist/memory/backfill-frontmatter.js --dry-run --include-archive`):
   `changed 0 / unchanged 1789 / failed 0`.
-- Final dry-run report: `specs/003-system-spec-kit/139-hybrid-rag-fusion/005-frontmatter-indexing/scratch/frontmatter-final-dry-run-report-v3.json`.
+- Final dry-run report: `specs/003-system-spec-kit/139-hybrid-rag-fusion/004-frontmatter-indexing/scratch/frontmatter-final-dry-run-report-v3.json`.
+- Strict-policy validation dry-run (post-remediation): `scratch/frontmatter-proof-dry-run.json` (`total 1704`, `changed 1623`, `failed 0`, `malformed 0`).
 
 4. Coverage and reindex quality:
 - Coverage post-migration: templates total 81 missing 0; memory total 365 missing 0; specDocs total 1343 missing 0.
 - Reindex completed with `STATUS=OK` (ran twice); legacy invalid-anchor warnings in archived files were non-fatal.
 - DB checks after reindex: memory-row generic `SESSION SUMMARY` exact/trimmed/prefix counts all `0`; `distinct_titles_all=1250`; `distinct_titles_memory=1052`.
+- Expanded fusion audit report: `scratch/full-tree-fusion-audit.md` (commits `111fb30a`, `937f0b06`, `85cc0ce3`) confirms no stale active-spec references outside archive paths.
 <!-- /ANCHOR:how-delivered -->
 
 ---

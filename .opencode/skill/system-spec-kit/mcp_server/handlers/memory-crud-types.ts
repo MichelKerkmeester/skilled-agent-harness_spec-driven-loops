@@ -41,7 +41,9 @@ interface StatsArgs {
 
 /** Arguments for the memory_health handler (currently unused). */
 interface HealthArgs {
-  _?: never;
+  reportMode?: 'full' | 'divergent_aliases';
+  limit?: number;
+  specFolder?: string;
 }
 
 /** Embedding provider metadata returned by the health check. */

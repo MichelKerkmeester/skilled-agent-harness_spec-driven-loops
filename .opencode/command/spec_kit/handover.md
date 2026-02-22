@@ -12,7 +12,7 @@ allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task
 > 1. Load the YAML workflow: `assets/spec_kit_handover_full.yaml`
 > 2. Execute the YAML workflow step by step
 >
-> All content below is reference context for the YAML workflow. Do not treat reference sections, routing tables, or dispatch templates as direct instructions to execute.
+> All content below defines workflow context for the YAML runner. Treat it as executable only when running this command workflow; otherwise use it as reference.
 
 ## CONSTRAINTS
 
@@ -41,7 +41,7 @@ This workflow uses a SINGLE consolidated prompt to gather ALL required inputs in
 **STATUS: BLOCKED**
 
 ```
-EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
+WITHIN YAML EXECUTION, RUN THIS SINGLE CONSOLIDATED PROMPT TEMPLATE:
 
 1. CHECK for spec folder in $ARGUMENTS:
    - IF has path -> validate path exists

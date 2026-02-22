@@ -1,15 +1,16 @@
 ---
 title: "Tasks: 004-frontmatter-indexing [004-frontmatter-indexing/tasks]"
 description: "Task Format: T### [P?] Description (file path)"
+SPECKIT_TEMPLATE_SOURCE: "tasks-core | v2.2"
 trigger_phrases:
   - "tasks"
-  - "005"
+  - "004"
   - "frontmatter"
   - "indexing"
 importance_tier: "normal"
 contextType: "implementation"
 ---
-# Tasks: 005-frontmatter-indexing
+# Tasks: 004-frontmatter-indexing
 
 <!-- SPECKIT_LEVEL: 3 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
@@ -55,9 +56,9 @@ contextType: "implementation"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [x] T008 Run unit tests for parser/coercion/compose paths (`npm test -- parser/frontmatter suites`) | Evidence: Passed: `test-template-system.js`, `test-template-comprehensive.js`, `test-frontmatter-backfill.js`, `mcp_server/tests/memory-parser.vitest.ts`.
-- [x] T009 Run integration reindex and retrieval regression suites (`mcp_server/tests/...`) | Evidence: Reindex `STATUS=OK`; DB quality checks: memory-row `SESSION SUMMARY` exact/trimmed/prefix counts all `0`; `distinct_titles_all=1250`, `distinct_titles_memory=1052`.
-- [x] T010 Update checklist and implementation summary with evidence (`checklist.md`, `implementation-summary.md`) | Evidence: This completion update.
+- [x] T008 Run unit tests for parser/coercion/compose paths (`npm test -- parser/frontmatter suites`) | Evidence: Passed: `test-template-system.js`, `test-template-comprehensive.js`, `test-frontmatter-backfill.js`, `mcp_server/tests/memory-parser.vitest.ts`, `mcp_server/tests/memory-parser-extended.vitest.ts`.
+- [x] T009 Run integration reindex and retrieval regression suites (`mcp_server/tests/...`) | Evidence: `npm run test --workspace mcp_server -- tests/spec126-full-spec-doc-indexing.vitest.ts tests/index-refresh.vitest.ts` passed; reindex quality checks remain captured in `implementation-summary.md`.
+- [x] T010 Update checklist and implementation summary with evidence (`checklist.md`, `implementation-summary.md`) | Evidence: Evidence paths, numbering normalization, and `scratch/full-tree-fusion-audit.md` were updated in this remediation pass.
 <!-- /ANCHOR:phase-3 -->
 
 ---

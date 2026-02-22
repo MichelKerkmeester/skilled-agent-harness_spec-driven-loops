@@ -101,7 +101,9 @@ export interface StatsArgs {
 }
 
 export interface HealthArgs {
-  _?: never;
+  reportMode?: 'full' | 'divergent_aliases';
+  limit?: number;
+  specFolder?: string;
 }
 
 export interface MemoryValidateArgs {

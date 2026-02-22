@@ -1,17 +1,18 @@
 ---
 title: "Feature Specification: 004-frontmatter-indexing [004-frontmatter-indexing/spec]"
 description: "This child spec defines a focused Level 3 implementation for frontmatter normalization and index rebuild. The goal is to standardize metadata across templates, spec docs, and me..."
+SPECKIT_TEMPLATE_SOURCE: "spec-core + level2-verify + level3-arch | v2.2"
 trigger_phrases:
   - "feature"
   - "specification"
-  - "005"
+  - "004"
   - "frontmatter"
   - "indexing"
   - "spec"
 importance_tier: "important"
 contextType: "decision"
 ---
-# Feature Specification: 005-frontmatter-indexing
+# Feature Specification: 004-frontmatter-indexing
 
 <!-- SPECKIT_LEVEL: 3 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify + level3-arch | v2.2 -->
@@ -37,9 +38,9 @@ This child spec defines a focused Level 3 implementation for frontmatter normali
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P0 |
-| **Status** | Draft |
+| **Status** | Completed |
 | **Created** | 2026-02-22 |
-| **Branch** | `005-frontmatter-indexing` |
+| **Branch** | `main` |
 <!-- /ANCHOR:metadata -->
 
 ---

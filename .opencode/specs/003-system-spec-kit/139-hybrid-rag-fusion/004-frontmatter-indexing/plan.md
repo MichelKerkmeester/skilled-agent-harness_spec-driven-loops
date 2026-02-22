@@ -1,16 +1,17 @@
 ---
 title: "Implementation Plan: 004-frontmatter-indexing [004-frontmatter-indexing/plan]"
 description: "This plan standardizes frontmatter across templates, spec docs, and memory markdown, then rebuilds indexes from normalized metadata. The approach is parser-first: define canonic..."
+SPECKIT_TEMPLATE_SOURCE: "plan-core | v2.2"
 trigger_phrases:
   - "implementation"
   - "plan"
-  - "005"
+  - "004"
   - "frontmatter"
   - "indexing"
 importance_tier: "important"
 contextType: "decision"
 ---
-# Implementation Plan: 005-frontmatter-indexing
+# Implementation Plan: 004-frontmatter-indexing
 
 <!-- SPECKIT_LEVEL: 3 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
@@ -39,14 +40,14 @@ This plan standardizes frontmatter across templates, spec docs, and memory markd
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [x] Problem statement clear and scope documented
+- [x] Success criteria measurable
+- [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All acceptance criteria met
+- [x] Tests passing (if applicable)
+- [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -238,7 +239,7 @@ Schema Definition ──► Parser/Compose ──► Migration Apply ──► R
 
 ### ADR-001: Canonical frontmatter first, migration second
 
-**Status**: Proposed
+**Status**: Accepted
 
 **Context**: Index reliability depends on stable metadata contracts across multiple markdown classes.
 

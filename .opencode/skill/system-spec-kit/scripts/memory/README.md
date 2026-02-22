@@ -104,7 +104,7 @@ Managed keys:
 Typical migration workflow:
 
 ```bash
-# Dry-run first
+# Dry-run first (strict mode by default: malformed frontmatter fails)
 node .opencode/skill/system-spec-kit/scripts/dist/memory/backfill-frontmatter.js \
   --dry-run --include-archive --report /tmp/frontmatter-dry-run.json
 
@@ -122,4 +122,6 @@ To target specific roots, pass `--roots`:
 node .opencode/skill/system-spec-kit/scripts/dist/memory/backfill-frontmatter.js \
   --dry-run --roots ./.opencode/specs,./specs --report /tmp/frontmatter-targeted.json
 ```
+
+If you need compatibility mode during staged cleanup, use `--allow-malformed` to keep processing without non-zero exit on malformed frontmatter files.
 <!-- /ANCHOR:frontmatter-normalization-reindex -->

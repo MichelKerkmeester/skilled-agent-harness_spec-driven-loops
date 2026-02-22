@@ -68,39 +68,46 @@ function loadDatabase() {
 
 /**
  * Create a temporary SQLite DB with session_learning table.
- * Returns { db, dbPath } or null if better-sqlite3 unavailable.
+ * Returns { db, dbPath, error }.
  */
 function createTempDb(Database) {
   const tmpDir = os.tmpdir();
   const dbPath = path.join(tmpDir, `test-folder-detector-${Date.now()}-${Math.random().toString(36).slice(2)}.sqlite`);
-  const db = new Database(dbPath);
-  db.exec(`
-    CREATE TABLE IF NOT EXISTS session_learning (
-      id INTEGER PRIMARY KEY AUTOINCREMENT,
-      spec_folder TEXT NOT NULL,
-      task_id TEXT NOT NULL,
-      phase TEXT NOT NULL CHECK(phase IN ('preflight', 'complete')),
-      session_id TEXT,
-      pre_knowledge_score INTEGER,
-      pre_uncertainty_score INTEGER,
-      pre_context_score INTEGER,
-      knowledge_gaps TEXT,
-      post_knowledge_score INTEGER,
-      post_uncertainty_score INTEGER,
-      post_context_score INTEGER,
-      delta_knowledge REAL,
-      delta_uncertainty REAL,
-      delta_context REAL,
-      learning_index REAL,
-      gaps_closed TEXT,
-      new_gaps_discovered TEXT,
-      created_at TEXT DEFAULT (datetime('now')),
-      updated_at TEXT DEFAULT (datetime('now')),
-      completed_at TEXT,
-      UNIQUE(spec_folder, task_id)
-    )
-  `);
-  return { db, dbPath };
+  let db = null;
+  try {
+    db = new Database(dbPath);
+    db.exec(`
+      CREATE TABLE IF NOT EXISTS session_learning (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        spec_folder TEXT NOT NULL,
+        task_id TEXT NOT NULL,
+        phase TEXT NOT NULL CHECK(phase IN ('preflight', 'complete')),
+        session_id TEXT,
+        pre_knowledge_score INTEGER,
+        pre_uncertainty_score INTEGER,
+        pre_context_score INTEGER,
+        knowledge_gaps TEXT,
+        post_knowledge_score INTEGER,
+        post_uncertainty_score INTEGER,
+        post_context_score INTEGER,
+        delta_knowledge REAL,
+        delta_uncertainty REAL,
+        delta_context REAL,
+        learning_index REAL,
+        gaps_closed TEXT,
+        new_gaps_discovered TEXT,
+        created_at TEXT DEFAULT (datetime('now')),
+        updated_at TEXT DEFAULT (datetime('now')),
+        completed_at TEXT,
+        UNIQUE(spec_folder, task_id)
+      )
+    `);
+    return { db, dbPath, error: null };
+  } catch (error) {
+    try { if (db) db.close(); } catch { /* ignore */ }
+    cleanupTempDb(dbPath);
+    return { db: null, dbPath, error };
+  }
 }
 
 /**
@@ -131,7 +138,11 @@ async function testDbQueryReturnsRecentRecord() {
     return;
   }
 
-  const { db, dbPath } = createTempDb(Database);
+  const { db, dbPath, error } = createTempDb(Database);
+  if (error || !db) {
+    skip('T-FD01a: DB query returns recent record', `temp db setup failed: ${error ? error.message : 'unknown error'}`);
+    return;
+  }
   try {
     // Insert a record with "now" timestamp (default)
     db.prepare(`
@@ -167,7 +178,11 @@ async function testDbQueryReturnsMostRecentOfMultiple() {
     return;
   }
 
-  const { db, dbPath } = createTempDb(Database);
+  const { db, dbPath, error } = createTempDb(Database);
+  if (error || !db) {
+    skip('T-FD01b: Returns most recent of multiple records', `temp db setup failed: ${error ? error.message : 'unknown error'}`);
+    return;
+  }
   try {
     // Insert older record (1 hour ago)
     db.prepare(`
@@ -208,7 +223,11 @@ async function testDbQueryReturnsNullWhenEmpty() {
     return;
   }
 
-  const { db, dbPath } = createTempDb(Database);
+  const { db, dbPath, error } = createTempDb(Database);
+  if (error || !db) {
+    skip('T-FD01c: Returns undefined for empty table', `temp db setup failed: ${error ? error.message : 'unknown error'}`);
+    return;
+  }
   try {
     // Table exists but has no rows
     const row = db.prepare(
@@ -243,7 +262,11 @@ async function testBoundaryFilter24hOldRecord() {
     return;
   }
 
-  const { db, dbPath } = createTempDb(Database);
+  const { db, dbPath, error } = createTempDb(Database);
+  if (error || !db) {
+    skip('T-FD02a: 24h-old record excluded', `temp db setup failed: ${error ? error.message : 'unknown error'}`);
+    return;
+  }
   try {
     // Insert a record 25 hours ago — should be excluded
     db.prepare(`
@@ -278,7 +301,11 @@ async function testBoundaryFilterRecentWithOld() {
     return;
   }
 
-  const { db, dbPath } = createTempDb(Database);
+  const { db, dbPath, error } = createTempDb(Database);
+  if (error || !db) {
+    skip('T-FD02b: Recent returned, old ignored', `temp db setup failed: ${error ? error.message : 'unknown error'}`);
+    return;
+  }
   try {
     // Insert old record (48h ago) — should be excluded
     db.prepare(`
@@ -319,7 +346,11 @@ async function testBoundaryFilterEdge23h59m() {
     return;
   }
 
-  const { db, dbPath } = createTempDb(Database);
+  const { db, dbPath, error } = createTempDb(Database);
+  if (error || !db) {
+    skip('T-FD02c: 23h59m record included', `temp db setup failed: ${error ? error.message : 'unknown error'}`);
+    return;
+  }
   try {
     // Insert record 23 hours and 55 minutes ago — should be included (within 24h)
     db.prepare(`
@@ -940,7 +971,13 @@ async function testArchiveCandidateExcludedWhenActiveExists() {
       { path: '.opencode/specs/139-hybrid-rag-fusion/005-auto-detected-session-bug', recencyMs: now }
     ]);
 
-    if (ranked.length > 0 && ranked[0].quality && ranked[0].quality.label === 'active') {
+    const expectedTop = '.opencode/specs/139-hybrid-rag-fusion/005-auto-detected-session-bug';
+    if (
+      ranked.length > 0 &&
+      ranked[0].path === expectedTop &&
+      ranked[0].quality &&
+      ranked[0].quality.label === 'active'
+    ) {
       pass('T-FD09a: Active beats archive candidate',
         `Top=${ranked[0].path} quality=${ranked[0].quality.label}`);
     } else {

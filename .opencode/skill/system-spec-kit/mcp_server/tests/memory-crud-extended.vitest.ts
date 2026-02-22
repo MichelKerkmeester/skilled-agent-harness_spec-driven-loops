@@ -1031,6 +1031,45 @@ describe('handleMemoryHealth - Happy Path', () => {
     const hints = parsed?.hints || [];
     expect(hints.some((hint: string) => hint.includes('divergent content hashes'))).toBe(true);
   });
+
+  it('EXT-H10: divergent_aliases mode returns compact divergent-only payload', async () => {
+    if (!handler?.handleMemoryHealth || !vectorIndex) return;
+    handler.setEmbeddingModelReady(true);
+    installHealthMocks({
+      dbAvailable: true,
+      aliasRows: [
+        { file_path: '/workspace/specs/003-system-spec-kit/010-test/memory/a.md', content_hash: 'hash-1', spec_folder: '003-system-spec-kit/010-test' },
+        { file_path: '/workspace/.opencode/specs/003-system-spec-kit/010-test/memory/a.md', content_hash: 'hash-2', spec_folder: '003-system-spec-kit/010-test' },
+      ],
+    });
+    const result = await handler.handleMemoryHealth({ reportMode: 'divergent_aliases', limit: 20 });
+    const parsed = parseResponse(result);
+    expect(parsed?.data?.reportMode).toBe('divergent_aliases');
+    expect(parsed?.data?.totalDivergentGroups).toBe(1);
+    expect(parsed?.data?.returnedGroups).toBe(1);
+    expect(parsed?.data?.groups?.[0]?.normalizedPath).toContain('/workspace/specs/003-system-spec-kit/010-test/memory/a.md');
+    expect(parsed?.data?.embeddingProvider).toBeUndefined();
+  });
+
+  it('EXT-H11: divergent_aliases mode respects limit', async () => {
+    if (!handler?.handleMemoryHealth || !vectorIndex) return;
+    handler.setEmbeddingModelReady(true);
+    installHealthMocks({
+      dbAvailable: true,
+      aliasRows: [
+        { file_path: '/workspace/specs/003-system-spec-kit/020-test/memory/a.md', content_hash: 'hash-1', spec_folder: '003-system-spec-kit/020-test' },
+        { file_path: '/workspace/.opencode/specs/003-system-spec-kit/020-test/memory/a.md', content_hash: 'hash-2', spec_folder: '003-system-spec-kit/020-test' },
+        { file_path: '/workspace/specs/003-system-spec-kit/021-test/memory/b.md', content_hash: 'hash-3', spec_folder: '003-system-spec-kit/021-test' },
+        { file_path: '/workspace/.opencode/specs/003-system-spec-kit/021-test/memory/b.md', content_hash: 'hash-4', spec_folder: '003-system-spec-kit/021-test' },
+      ],
+    });
+    const result = await handler.handleMemoryHealth({ reportMode: 'divergent_aliases', limit: 1 });
+    const parsed = parseResponse(result);
+    expect(parsed?.data?.totalDivergentGroups).toBe(2);
+    expect(parsed?.data?.returnedGroups).toBe(1);
+    const hints = parsed?.hints || [];
+    expect(hints.some((hint: string) => hint.includes('More divergent alias groups available'))).toBe(true);
+  });
 });
 
 /* ─────────────────────────────────────────────────────────────
