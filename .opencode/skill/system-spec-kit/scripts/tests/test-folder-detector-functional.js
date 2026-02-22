@@ -1,7 +1,8 @@
-// ───────────────────────────────────────────────────────────────
-// TEST: FOLDER DETECTOR FUNCTIONAL TESTS
-// Focus: Priority 2.5 session_learning DB lookup in detectSpecFolder()
-// ───────────────────────────────────────────────────────────────
+// ╔══════════════════════════════════════════════════════════════════════════╗
+// ║ COMPONENT: Folder Detector Functional Tests                              ║
+// ╠══════════════════════════════════════════════════════════════════════════╣
+// ║ PURPOSE: Validate session selection behavior in detectSpecFolder()       ║
+// ╚══════════════════════════════════════════════════════════════════════════╝
 
 'use strict';
 
@@ -18,6 +19,26 @@ const SKILL_ROOT = path.join(__dirname, '..', '..'); // .opencode/skill/system-s
 const PROJECT_ROOT = path.resolve(__dirname, '..', '..', '..', '..', '..'); // actual project root
 const BETTER_SQLITE3_PATH = path.join(SKILL_ROOT, 'mcp_server/node_modules/better-sqlite3');
 const REAL_DB_PATH = path.join(SKILL_ROOT, 'mcp_server/database/context-index.sqlite');
+const RECENT_SESSION_LOOKUP_SQL =
+  `SELECT spec_folder FROM session_learning WHERE created_at > datetime('now', '-24 hours') ORDER BY created_at DESC LIMIT 1`;
+const DETECT_SPEC_FUNCTION_MARKER = 'async function detectSpecFolder';
+const PRIORITY_1_MARKER = 'Priority 1';
+const PRIORITY_2_MARKER = 'Priority 2:';
+const PRIORITY_25_MARKER = 'Priority 2.5';
+const PRIORITY_3_MARKER = 'Priority 3';
+const PRIORITY_4_MARKER = 'Priority 4';
+const TIMESTAMP_QUERY_COLUMNS_MARKER = 'SELECT spec_folder, created_at, updated_at';
+const TIMESTAMP_QUERY_LIMIT_LITERAL_MARKER = 'LIMIT 25';
+const TIMESTAMP_QUERY_LIMIT_CONST_MARKER = 'LIMIT ${SESSION_ROW_LIMIT}';
+const TIMESTAMP_QUERY_ORDER_MARKER = 'ORDER BY created_at DESC';
+const TWENTY_FIVE_HOURS = 25;
+const FORTY_EIGHT_HOURS = 48;
+const THIRTY_MINUTES = 30;
+const EDGE_WINDOW_MINUTES = 1435;
+const PRIORITY_COMPARISON_OFFSET_MS = 60000;
+const ONE_SECOND_MS = 1000;
+const MTIME_SMALL_SKEW_MS = 300000;
+const MTIME_LARGE_SKEW_MS = 1000000;
 
 // Test results tracking
 const results = {
@@ -151,9 +172,7 @@ async function testDbQueryReturnsRecentRecord() {
     `).run('003-memory-and-spec-kit', 'T1', 'preflight');
 
     // Run the exact same query used by Priority 2.5
-    const row = db.prepare(
-      `SELECT spec_folder FROM session_learning WHERE created_at > datetime('now', '-24 hours') ORDER BY created_at DESC LIMIT 1`
-    ).get();
+    const row = db.prepare(RECENT_SESSION_LOOKUP_SQL).get();
     db.close();
 
     if (row && row.spec_folder === '003-memory-and-spec-kit') {
@@ -196,9 +215,7 @@ async function testDbQueryReturnsMostRecentOfMultiple() {
       VALUES (?, ?, ?, datetime('now'))
     `).run('002-new-folder', 'T-new', 'preflight');
 
-    const row = db.prepare(
-      `SELECT spec_folder FROM session_learning WHERE created_at > datetime('now', '-24 hours') ORDER BY created_at DESC LIMIT 1`
-    ).get();
+    const row = db.prepare(RECENT_SESSION_LOOKUP_SQL).get();
     db.close();
 
     if (row && row.spec_folder === '002-new-folder') {
@@ -230,9 +247,7 @@ async function testDbQueryReturnsNullWhenEmpty() {
   }
   try {
     // Table exists but has no rows
-    const row = db.prepare(
-      `SELECT spec_folder FROM session_learning WHERE created_at > datetime('now', '-24 hours') ORDER BY created_at DESC LIMIT 1`
-    ).get();
+    const row = db.prepare(RECENT_SESSION_LOOKUP_SQL).get();
     db.close();
 
     if (row === undefined) {
@@ -271,12 +286,10 @@ async function testBoundaryFilter24hOldRecord() {
     // Insert a record 25 hours ago — should be excluded
     db.prepare(`
       INSERT INTO session_learning (spec_folder, task_id, phase, created_at)
-      VALUES (?, ?, ?, datetime('now', '-25 hours'))
+      VALUES (?, ?, ?, datetime('now', '-${TWENTY_FIVE_HOURS} hours'))
     `).run('099-stale-folder', 'T-stale', 'preflight');
 
-    const row = db.prepare(
-      `SELECT spec_folder FROM session_learning WHERE created_at > datetime('now', '-24 hours') ORDER BY created_at DESC LIMIT 1`
-    ).get();
+    const row = db.prepare(RECENT_SESSION_LOOKUP_SQL).get();
     db.close();
 
     if (row === undefined) {
@@ -310,18 +323,16 @@ async function testBoundaryFilterRecentWithOld() {
     // Insert old record (48h ago) — should be excluded
     db.prepare(`
       INSERT INTO session_learning (spec_folder, task_id, phase, created_at)
-      VALUES (?, ?, ?, datetime('now', '-48 hours'))
+      VALUES (?, ?, ?, datetime('now', '-${FORTY_EIGHT_HOURS} hours'))
     `).run('001-ancient-folder', 'T-ancient', 'preflight');
 
     // Insert recent record (30 min ago) — should be included
     db.prepare(`
       INSERT INTO session_learning (spec_folder, task_id, phase, created_at)
-      VALUES (?, ?, ?, datetime('now', '-30 minutes'))
+      VALUES (?, ?, ?, datetime('now', '-${THIRTY_MINUTES} minutes'))
     `).run('002-recent-folder', 'T-recent', 'preflight');
 
-    const row = db.prepare(
-      `SELECT spec_folder FROM session_learning WHERE created_at > datetime('now', '-24 hours') ORDER BY created_at DESC LIMIT 1`
-    ).get();
+    const row = db.prepare(RECENT_SESSION_LOOKUP_SQL).get();
     db.close();
 
     if (row && row.spec_folder === '002-recent-folder') {
@@ -355,12 +366,10 @@ async function testBoundaryFilterEdge23h59m() {
     // Insert record 23 hours and 55 minutes ago — should be included (within 24h)
     db.prepare(`
       INSERT INTO session_learning (spec_folder, task_id, phase, created_at)
-      VALUES (?, ?, ?, datetime('now', '-1435 minutes'))
+      VALUES (?, ?, ?, datetime('now', '-${EDGE_WINDOW_MINUTES} minutes'))
     `).run('003-edge-case', 'T-edge', 'preflight');
 
-    const row = db.prepare(
-      `SELECT spec_folder FROM session_learning WHERE created_at > datetime('now', '-24 hours') ORDER BY created_at DESC LIMIT 1`
-    ).get();
+    const row = db.prepare(RECENT_SESSION_LOOKUP_SQL).get();
     db.close();
 
     if (row && row.spec_folder === '003-edge-case') {
@@ -435,9 +444,7 @@ async function testSilentFallthroughMissingTable() {
     const db2 = new Database(dbPath, { readonly: true });
     let threw = false;
     try {
-      db2.prepare(
-        `SELECT spec_folder FROM session_learning WHERE created_at > datetime('now', '-24 hours') ORDER BY created_at DESC LIMIT 1`
-      ).get();
+      db2.prepare(RECENT_SESSION_LOOKUP_SQL).get();
     } catch {
       threw = true;
     }
@@ -508,12 +515,6 @@ async function testSilentFallthroughCombinedInDetect() {
 
 async function testFolderValidationResolvesPath() {
   log('\n🔬 FOLDER VALIDATION: spec_folder path is resolved correctly');
-
-  const Database = loadDatabase();
-  if (!Database) {
-    skip('T-FD04a: Path resolution', 'better-sqlite3 not available');
-    return;
-  }
 
   try {
     // Test path resolution logic: path.join(activeDir, row.spec_folder)
@@ -680,18 +681,16 @@ async function testPriority2OverridesDb() {
       if (result.endsWith(specFolders[0])) {
         pass('T-FD05b: Priority 2 overrides 2.5', `Data SPEC_FOLDER "${specFolders[0]}" → result ends with it`);
       } else {
-        // The alignment validator may redirect — this is acceptable behavior
-        // but the key test is that Priority 2 was checked (not Priority 2.5)
-        pass('T-FD05b: Priority 2 overrides 2.5', `Data SPEC_FOLDER checked (alignment may redirect). Result: ${path.basename(result)}`);
+        skip('T-FD05b: Priority 2 overrides 2.5',
+          `Alignment redirected from "${specFolders[0]}" to "${path.basename(result)}"`);
       }
     } finally {
       CONFIG.SPEC_FOLDER_ARG = originalArg;
     }
   } catch (err) {
-    // If it throws due to alignment validator interactive prompt, that's also evidence
-    // Priority 2 was reached (not Priority 2.5 or later)
+    // Alignment prompts can interrupt this non-interactive test environment.
     if (err.message.includes('retry attempts') || err.message.includes('stdin')) {
-      pass('T-FD05b: Priority 2 overrides 2.5', 'Priority 2 path reached (alignment prompt attempted)');
+      skip('T-FD05b: Priority 2 overrides 2.5', 'Alignment prompt requires interactive confirmation');
     } else {
       fail('T-FD05b: Priority 2 overrides 2.5', err.message);
     }
@@ -707,11 +706,12 @@ async function testPriority25BeforePriority3() {
       path.join(SCRIPTS_DIR, 'spec-folder', 'folder-detector.js'),
       'utf-8'
     );
-    const detectFnIndex = sourceCode.indexOf('async function detectSpecFolder');
+    // WHY: these markers are part of the detector's documented priority contract.
+    const detectFnIndex = sourceCode.indexOf(DETECT_SPEC_FUNCTION_MARKER);
     const scopedSource = detectFnIndex >= 0 ? sourceCode.slice(detectFnIndex) : sourceCode;
 
-    const p25Index = scopedSource.indexOf('Priority 2.5');
-    const p3Index = scopedSource.indexOf('Priority 3');
+    const p25Index = scopedSource.indexOf(PRIORITY_25_MARKER);
+    const p3Index = scopedSource.indexOf(PRIORITY_3_MARKER);
 
     if (p25Index === -1) {
       fail('T-FD05c: Priority 2.5 before Priority 3', 'Priority 2.5 comment not found in source');
@@ -737,14 +737,14 @@ async function testPriorityChainOrder() {
       path.join(SCRIPTS_DIR, 'spec-folder', 'folder-detector.js'),
       'utf-8'
     );
-    const detectFnIndex = sourceCode.indexOf('async function detectSpecFolder');
+    const detectFnIndex = sourceCode.indexOf(DETECT_SPEC_FUNCTION_MARKER);
     const scopedSource = detectFnIndex >= 0 ? sourceCode.slice(detectFnIndex) : sourceCode;
 
-    const p1Index = scopedSource.indexOf('Priority 1');
-    const p2Index = scopedSource.indexOf('Priority 2:');
-    const p25Index = scopedSource.indexOf('Priority 2.5');
-    const p3Index = scopedSource.indexOf('Priority 3');
-    const p4Index = scopedSource.indexOf('Priority 4');
+    const p1Index = scopedSource.indexOf(PRIORITY_1_MARKER);
+    const p2Index = scopedSource.indexOf(PRIORITY_2_MARKER);
+    const p25Index = scopedSource.indexOf(PRIORITY_25_MARKER);
+    const p3Index = scopedSource.indexOf(PRIORITY_3_MARKER);
+    const p4Index = scopedSource.indexOf(PRIORITY_4_MARKER);
 
     const allFound = p1Index !== -1 && p2Index !== -1 && p25Index !== -1 && p3Index !== -1 && p4Index !== -1;
     const correctOrder = p1Index < p2Index && p2Index < p25Index && p25Index < p3Index && p3Index < p4Index;
@@ -828,9 +828,7 @@ async function testRealDbQueryable() {
   try {
     const db = new Database(REAL_DB_PATH, { readonly: true });
     // Execute the exact Priority 2.5 query
-    const row = db.prepare(
-      `SELECT spec_folder FROM session_learning WHERE created_at > datetime('now', '-24 hours') ORDER BY created_at DESC LIMIT 1`
-    ).get();
+    const row = db.prepare(RECENT_SESSION_LOOKUP_SQL).get();
     db.close();
 
     // row can be undefined (no recent records) or an object — both are valid
@@ -972,7 +970,7 @@ async function testArchiveCandidateExcludedWhenActiveExists() {
 
     const now = Date.now();
     const ranked = TEST_HELPERS.rankSessionCandidates([
-      { path: 'specs/999-z_archive-session-selection', recencyMs: now + 60000 },
+      { path: 'specs/999-z_archive-session-selection', recencyMs: now + PRIORITY_COMPARISON_OFFSET_MS },
       { path: '.opencode/specs/139-hybrid-rag-fusion/005-auto-detected-session-bug', recencyMs: now }
     ]);
 
@@ -1039,12 +1037,12 @@ async function testRankingResistsMtimeSkew() {
       {
         path: '/tmp/older-active',
         relativePath: '139-hybrid-rag-fusion/005-auto-detected-session-bug',
-        mtimeMs: now - 300000
+        mtimeMs: now - MTIME_SMALL_SKEW_MS
       },
       {
         path: '/tmp/newer-archive',
         relativePath: '999-z_archive-session-selection',
-        mtimeMs: now + 300000
+        mtimeMs: now + MTIME_SMALL_SKEW_MS
       }
     ]);
 
@@ -1052,12 +1050,12 @@ async function testRankingResistsMtimeSkew() {
       {
         path: '/tmp/high-id-older',
         relativePath: '220-high-id-parent/010-phase',
-        mtimeMs: now - 1000000
+        mtimeMs: now - MTIME_LARGE_SKEW_MS
       },
       {
         path: '/tmp/low-id-newer',
         relativePath: '219-low-id-parent/999-phase',
-        mtimeMs: now + 1000000
+        mtimeMs: now + MTIME_LARGE_SKEW_MS
       }
     ]);
 
@@ -1093,11 +1091,11 @@ async function testLowConfidenceConfirmationAndFallbackContract() {
     const now = Date.now();
     const ambiguousSessionInputs = [
       { path: 'specs/120-active-session-a', recencyMs: now },
-      { path: '.opencode/specs/121-active-session-b', recencyMs: now + 1000 }
+      { path: '.opencode/specs/121-active-session-b', recencyMs: now + ONE_SECOND_MS }
     ];
     const ambiguousAutoInputs = [
       { path: '/tmp/a', relativePath: '300-parent/001-phase-a', mtimeMs: now },
-      { path: '/tmp/b', relativePath: '300-parent/001-phase-b', mtimeMs: now + 1000 }
+      { path: '/tmp/b', relativePath: '300-parent/001-phase-b', mtimeMs: now + ONE_SECOND_MS }
     ];
 
     const sessionInteractive = TEST_HELPERS.decideSessionAction(ambiguousSessionInputs, true);
@@ -1132,9 +1130,10 @@ async function testSessionQueryUsesTimestampedMultiRowLookup() {
       'utf-8'
     );
 
-    const hasColumns = sourceCode.includes('SELECT spec_folder, created_at, updated_at');
-    const hasLimit = sourceCode.includes('LIMIT 25') || sourceCode.includes('LIMIT ${SESSION_ROW_LIMIT}');
-    const hasOrder = sourceCode.includes('ORDER BY created_at DESC');
+    const hasColumns = sourceCode.includes(TIMESTAMP_QUERY_COLUMNS_MARKER);
+    const hasLimit = sourceCode.includes(TIMESTAMP_QUERY_LIMIT_LITERAL_MARKER) ||
+      sourceCode.includes(TIMESTAMP_QUERY_LIMIT_CONST_MARKER);
+    const hasOrder = sourceCode.includes(TIMESTAMP_QUERY_ORDER_MARKER);
 
     if (hasColumns && hasLimit && hasOrder) {
       pass('T-FD09e: Timestamped multi-row session query',
@@ -1219,6 +1218,6 @@ async function main() {
 }
 
 main().catch(err => {
-  console.error('Test runner fatal error:', err);
+  console.error('[folder-detector-functional] Test runner fatal error:', err);
   process.exit(1);
 });

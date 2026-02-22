@@ -58,7 +58,7 @@ Delivery and verification evidence captured in this run:
 2. Test execution:
 - `node scripts/tests/test-template-system.js` passed.
 - `node scripts/tests/test-template-comprehensive.js` passed.
-- `node scripts/tests/test-frontmatter-backfill.js` passed.
+- `node scripts/tests/test-frontmatter-backfill.js` passed, including `T-FMB-008` (template-path coverage by default), `T-FMB-009` (malformed in-block list skip), and `T-FMB-010` (inline-array trailing-comment parsing).
 - `npm run test --workspace mcp_server -- tests/memory-parser.vitest.ts tests/memory-parser-extended.vitest.ts tests/spec126-full-spec-doc-indexing.vitest.ts tests/index-refresh.vitest.ts` passed.
 
 3. Migration execution and idempotency:
@@ -72,6 +72,10 @@ Delivery and verification evidence captured in this run:
 - Coverage and parser/index regression tests passed in the executed command set listed above.
 - Reindex completed with `STATUS=OK` (ran twice), and legacy invalid-anchor warnings in archived files were non-fatal.
 - Expanded fusion audit report: `scratch/full-tree-fusion-audit.md` (commits `111fb30a`, `937f0b06`, `85cc0ce3`) confirms no stale active-spec references outside archive paths.
+
+5. Standards alignment checks:
+- `python3 .opencode/skill/sk-code--opencode/scripts/verify_alignment_drift.py --root .opencode/skill/system-spec-kit/mcp_server/lib/parsing --root .opencode/skill/system-spec-kit/scripts/lib --root .opencode/skill/system-spec-kit/scripts/memory --root .opencode/skill/system-spec-kit/mcp_server/tests --root .opencode/skill/system-spec-kit/scripts/tests` passed with `Errors: 0`. Warnings were in unrelated shell utilities, and no findings matched touched frontmatter/indexing files.
+- `python3 .opencode/skill/sk-documentation/scripts/extract_structure.py` was run for active 003/004 remediation docs, and all scoped docs reported `style_issues=0` and `content_issues=0` after plan code-fence language tagging.
 <!-- /ANCHOR:how-delivered -->
 
 ---

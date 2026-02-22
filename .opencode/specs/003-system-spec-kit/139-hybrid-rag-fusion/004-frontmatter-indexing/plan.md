@@ -127,7 +127,7 @@ Input markdown files pass through parse and normalize steps, then compose writes
 <!-- ANCHOR:phase-deps -->
 ## L2: PHASE DEPENDENCIES
 
-```
+```text
 Schema Definition ──► Parser/Compose ──► Migration Apply ──► Reindex ──► Verification
 ```
 
@@ -179,7 +179,7 @@ Schema Definition ──► Parser/Compose ──► Migration Apply ──► R
 <!-- ANCHOR:dependency-graph -->
 ## L3: DEPENDENCY GRAPH
 
-```
+```text
 ┌───────────────────┐    ┌───────────────────┐    ┌───────────────────┐
 │ Canonical Schema  │───►│ Parser + Compose  │───►│ Migration Runner  │
 └───────────────────┘    └─────────┬─────────┘    └─────────┬─────────┘

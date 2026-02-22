@@ -54,7 +54,7 @@ contextType: "implementation"
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [x] CHK-020 [P0] Acceptance criteria met for normalization and rebuild | Evidence: Migration dry-run and regression command set passed, and reindex reached `STATUS=OK` (ran twice).
+- [x] CHK-020 [P0] Acceptance criteria met for normalization and rebuild | Evidence: Migration dry-run and regression command set passed, including `test-frontmatter-backfill.js` coverage for template-path processing by default (`T-FMB-008`), and reindex reached `STATUS=OK` (ran twice).
 - [x] CHK-021 [P0] Manual dry-run and apply verification complete | Evidence: `scratch/frontmatter-apply-report.json` (`changed: 1789, failed: 0`) plus idempotency dry-run `scratch/frontmatter-final-dry-run-report-v3.json` (`changed: 0, unchanged: 1789, failed: 0`).
 - [x] CHK-022 [P1] Edge cases tested (managed key casing, quoted comma arrays, malformed frontmatter) | Evidence: `node scripts/tests/test-frontmatter-backfill.js` passed with `T-FMB-005`, `T-FMB-006`, `T-FMB-007`, `T-FMB-009`, and `T-FMB-010`.
 - [x] CHK-023 [P1] Retrieval regression scenarios validated | Evidence: `npm run test --workspace mcp_server -- tests/spec126-full-spec-doc-indexing.vitest.ts tests/index-refresh.vitest.ts` passed. Prior DB quality checks remain recorded in implementation summary.
