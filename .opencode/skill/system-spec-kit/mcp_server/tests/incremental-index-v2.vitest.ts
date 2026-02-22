@@ -218,6 +218,43 @@ describe('getStoredMetadata()', () => {
     const result = mod.getStoredMetadata('/any/file.md');
     expect(result).toBeNull();
   });
+
+  it('matches alias path via canonical_file_path when available', () => {
+    const db = createTestDb();
+    db.exec('ALTER TABLE memory_index ADD COLUMN canonical_file_path TEXT');
+    mod.init(db);
+
+    const canonicalDir = fs.mkdtempSync(path.join(os.tmpdir(), 'inc-idx-canonical-'));
+    const canonicalFile = path.join(canonicalDir, 'alias-match.md');
+    fs.writeFileSync(canonicalFile, 'alias content', 'utf-8');
+
+    const aliasDir = path.join(os.tmpdir(), `inc-idx-alias-${Date.now()}-${Math.random().toString(36).slice(2)}`);
+    try {
+      fs.symlinkSync(canonicalDir, aliasDir, 'dir');
+    } catch {
+      fs.rmSync(canonicalDir, { recursive: true, force: true });
+      db.close();
+      expect(true).toBe(true);
+      return;
+    }
+
+    const aliasFile = path.join(aliasDir, 'alias-match.md');
+    const canonicalKey = fs.realpathSync(canonicalFile);
+
+    db.prepare(`
+      INSERT INTO memory_index (spec_folder, file_path, canonical_file_path, file_mtime_ms, content_hash, embedding_status)
+      VALUES (?, ?, ?, ?, ?, ?)
+    `).run('specs/test', canonicalFile, canonicalKey, 1700000000000, 'alias-hash', 'success');
+
+    const row = mod.getStoredMetadata(aliasFile);
+    expect(row).not.toBeNull();
+    expect(row.file_path).toBe(canonicalFile);
+    expect(row.content_hash).toBe('alias-hash');
+
+    fs.rmSync(aliasDir, { recursive: true, force: true });
+    fs.rmSync(canonicalDir, { recursive: true, force: true });
+    db.close();
+  });
 });
 
 describe('shouldReindex()', () => {
@@ -334,6 +371,44 @@ describe('updateFileMtime()', () => {
     mod.init(null);
     const ok = mod.updateFileMtime('/any/path.md', 1234);
     expect(ok).toBe(false);
+  });
+
+  it('updates mtime when called with symlink alias path', () => {
+    const db = createTestDb();
+    db.exec('ALTER TABLE memory_index ADD COLUMN canonical_file_path TEXT');
+    mod.init(db);
+
+    const canonicalDir = fs.mkdtempSync(path.join(os.tmpdir(), 'inc-idx-canonical-update-'));
+    const canonicalFile = path.join(canonicalDir, 'alias-update.md');
+    fs.writeFileSync(canonicalFile, 'mtime alias content', 'utf-8');
+
+    const aliasDir = path.join(os.tmpdir(), `inc-idx-alias-update-${Date.now()}-${Math.random().toString(36).slice(2)}`);
+    try {
+      fs.symlinkSync(canonicalDir, aliasDir, 'dir');
+    } catch {
+      fs.rmSync(canonicalDir, { recursive: true, force: true });
+      db.close();
+      expect(true).toBe(true);
+      return;
+    }
+
+    const aliasFile = path.join(aliasDir, 'alias-update.md');
+    const canonicalKey = fs.realpathSync(canonicalFile);
+
+    db.prepare(`
+      INSERT INTO memory_index (spec_folder, file_path, canonical_file_path, file_mtime_ms, content_hash, embedding_status)
+      VALUES (?, ?, ?, ?, ?, ?)
+    `).run('specs/test', canonicalFile, canonicalKey, 1000, 'mtime-hash', 'success');
+
+    const ok = mod.updateFileMtime(aliasFile, 3000);
+    expect(ok).toBe(true);
+
+    const row = db.prepare('SELECT file_mtime_ms FROM memory_index WHERE file_path = ?').get(canonicalFile) as { file_mtime_ms: number };
+    expect(row.file_mtime_ms).toBe(3000);
+
+    fs.rmSync(aliasDir, { recursive: true, force: true });
+    fs.rmSync(canonicalDir, { recursive: true, force: true });
+    db.close();
   });
 });
 

@@ -91,6 +91,7 @@ type UpdateMemoryParams = {
   importanceWeight?: number;
   importanceTier?: string;
   embedding?: EmbeddingInput;
+  canonicalFilePath?: string;
   documentType?: string;
   specLevel?: number | null;
   contentText?: string | null;
@@ -1783,9 +1784,10 @@ function index_memory(params: IndexMemoryParams) {
   const now = new Date().toISOString();
   const triggers_json = JSON.stringify(triggerPhrases);
   const embedding_buffer = to_embedding_buffer(embedding);
+  const canonicalFilePath = getCanonicalPathKey(filePath);
 
   const stmts = init_prepared_statements(database);
-  const existing = stmts.get_by_folder_and_path.get(specFolder, filePath, anchorId, anchorId);
+  const existing = stmts.get_by_folder_and_path.get(specFolder, canonicalFilePath, filePath, anchorId, anchorId);
 
   if (existing) {
     return update_memory({
@@ -1797,6 +1799,7 @@ function index_memory(params: IndexMemoryParams) {
       contentText,
       qualityScore,
       qualityFlags,
+      canonicalFilePath,
     });
   }
 
@@ -1805,13 +1808,13 @@ function index_memory(params: IndexMemoryParams) {
 
     const result = database.prepare(`
       INSERT INTO memory_index (
-        spec_folder, file_path, anchor_id, title, trigger_phrases,
+        spec_folder, file_path, canonical_file_path, anchor_id, title, trigger_phrases,
         importance_weight, created_at, updated_at, embedding_model,
         embedding_generated_at, embedding_status, document_type, spec_level,
         content_text, quality_score, quality_flags
-      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     `).run(
-      specFolder, filePath, anchorId, title, triggers_json,
+      specFolder, filePath, canonicalFilePath, anchorId, title, triggers_json,
       importanceWeight, now, now, embeddingsProvider.getModelName(), now, embedding_status,
       documentType, specLevel, contentText, qualityScore, JSON.stringify(qualityFlags)
     );
@@ -1852,9 +1855,10 @@ function index_memory_deferred(params: IndexMemoryDeferredParams) {
 
   const now = new Date().toISOString();
   const triggers_json = JSON.stringify(triggerPhrases);
+  const canonicalFilePath = getCanonicalPathKey(filePath);
 
   const stmts = init_prepared_statements(database);
-  const existing = stmts.get_by_folder_and_path.get(specFolder, filePath, anchorId, anchorId);
+  const existing = stmts.get_by_folder_and_path.get(specFolder, canonicalFilePath, filePath, anchorId, anchorId);
 
   if (existing) {
     database.prepare(`
@@ -1862,6 +1866,7 @@ function index_memory_deferred(params: IndexMemoryDeferredParams) {
       SET title = ?,
           trigger_phrases = ?,
           importance_weight = ?,
+          canonical_file_path = ?,
           embedding_status = 'pending',
           failure_reason = ?,
           updated_at = ?,
@@ -1871,19 +1876,19 @@ function index_memory_deferred(params: IndexMemoryDeferredParams) {
           quality_score = ?,
           quality_flags = ?
       WHERE id = ?
-    `).run(title, triggers_json, importanceWeight, failureReason, now, documentType, specLevel, contentText, qualityScore, JSON.stringify(qualityFlags), existing.id);
+    `).run(title, triggers_json, importanceWeight, canonicalFilePath, failureReason, now, documentType, specLevel, contentText, qualityScore, JSON.stringify(qualityFlags), existing.id);
     return existing.id;
   }
 
   const result = database.prepare(`
     INSERT INTO memory_index (
-      spec_folder, file_path, anchor_id, title, trigger_phrases,
+      spec_folder, file_path, canonical_file_path, anchor_id, title, trigger_phrases,
       importance_weight, created_at, updated_at, embedding_status,
       failure_reason, retry_count, document_type, spec_level,
       content_text, quality_score, quality_flags
-    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, 'pending', ?, 0, ?, ?, ?, ?, ?)
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 'pending', ?, 0, ?, ?, ?, ?, ?)
   `).run(
-    specFolder, filePath, anchorId, title, triggers_json,
+    specFolder, filePath, canonicalFilePath, anchorId, title, triggers_json,
     importanceWeight, now, now, failureReason, documentType, specLevel, contentText, qualityScore, JSON.stringify(qualityFlags)
   );
 
@@ -1903,6 +1908,7 @@ function update_memory(params: UpdateMemoryParams) {
     importanceWeight,
     importanceTier,
     embedding,
+    canonicalFilePath,
     documentType,
     specLevel,
     contentText,
@@ -1932,6 +1938,10 @@ function update_memory(params: UpdateMemoryParams) {
       updates.push('importance_tier = ?');
       values.push(importanceTier);
       clear_constitutional_cache();
+    }
+    if (canonicalFilePath !== undefined) {
+      updates.push('canonical_file_path = ?');
+      values.push(canonicalFilePath);
     }
     if (documentType !== undefined) {
       updates.push('document_type = ?');
@@ -2013,11 +2023,16 @@ function delete_memory(id: number) {
 
 function delete_memory_by_path(spec_folder: string, file_path: string, anchor_id: string | null = null) {
   const database = initialize_db();
+  const canonicalPath = getCanonicalPathKey(file_path);
 
   const row = database.prepare(`
     SELECT id FROM memory_index
-    WHERE spec_folder = ? AND file_path = ? AND (anchor_id = ? OR (anchor_id IS NULL AND ? IS NULL))
-  `).get(spec_folder, file_path, anchor_id, anchor_id) as { id: number } | undefined;
+    WHERE spec_folder = ?
+      AND (canonical_file_path = ? OR file_path = ?)
+      AND (anchor_id = ? OR (anchor_id IS NULL AND ? IS NULL))
+    ORDER BY id DESC
+    LIMIT 1
+  `).get(spec_folder, canonicalPath, file_path, anchor_id, anchor_id) as { id: number } | undefined;
 
   if (row) {
     return delete_memory(row.id);

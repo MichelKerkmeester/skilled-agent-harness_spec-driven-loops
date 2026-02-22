@@ -480,6 +480,45 @@ describe('Vector Index Implementation [deferred - requires DB test fixtures]', (
       const mem = mod.getMemory(updatedId);
       expect(mem?.title).toBe('Updated Title Alpha');
     });
+
+    it('upserts existing memory across symlink alias paths', () => {
+      const canonicalDir = path.join(TMP_DIR, 'canonical-specs');
+      fs.mkdirSync(canonicalDir, { recursive: true });
+
+      const canonicalFile = path.join(canonicalDir, 'memory-symlink.md');
+      fs.writeFileSync(canonicalFile, 'symlink content', 'utf-8');
+
+      const aliasDir = path.join(TMP_DIR, 'alias-specs');
+      try {
+        if (!fs.existsSync(aliasDir)) {
+          fs.symlinkSync(canonicalDir, aliasDir, 'dir');
+        }
+      } catch {
+        expect(true).toBe(true);
+        return;
+      }
+
+      const aliasFile = path.join(aliasDir, 'memory-symlink.md');
+
+      const firstId = mod.indexMemoryDeferred({
+        specFolder: 'specs/test-symlink',
+        filePath: canonicalFile,
+        title: 'Canonical Path Memory',
+        triggerPhrases: ['symlink'],
+      });
+
+      const secondId = mod.indexMemoryDeferred({
+        specFolder: 'specs/test-symlink',
+        filePath: aliasFile,
+        title: 'Symlink Alias Updated',
+        triggerPhrases: ['symlink', 'alias'],
+      });
+
+      expect(secondId).toBe(firstId);
+
+      const mem = mod.getMemory(firstId);
+      expect(mem?.title).toBe('Symlink Alias Updated');
+    });
   });
 
   // ─────────────────────────────────────────────────────────────

@@ -14,6 +14,8 @@ import { getDefaultTierForDocumentType, isValidTier, normalizeTier } from '../sc
 // T125: Import type inference for memory_type classification
 import { inferMemoryType } from '../config/type-inference';
 
+export { getCanonicalPathKey };
+
 /* ---------------------------------------------------------------
    1. TYPES
    --------------------------------------------------------------- */

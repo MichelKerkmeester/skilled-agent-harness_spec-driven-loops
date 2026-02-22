@@ -28,10 +28,10 @@ import * as transactionManager from '../lib/storage/transaction-manager';
 import * as incrementalIndex from '../lib/storage/incremental-index';
 import * as preflight from '../lib/validation/preflight';
 import * as toolCache from '../lib/cache/tool-cache';
-import * as mutationLedger from '../lib/storage/mutation-ledger';
 import { createMCPSuccessResponse } from '../lib/response/envelope';
 import * as retryManager from '../lib/providers/retry-manager';
 import * as causalEdges from '../lib/storage/causal-edges';
+import { getCanonicalPathKey } from '../lib/utils/canonical-path';
 import { requireDb, toErrorMessage } from '../utils';
 import { needsChunking, chunkLargeFile } from '../lib/chunking/anchor-chunker';
 import type { MCPResponse } from './types';
@@ -621,6 +621,7 @@ async function indexChunkedMemoryFile(
   { force = false }: { force?: boolean } = {}
 ): Promise<IndexResult> {
   const database = requireDb();
+  const canonicalFilePath = getCanonicalPathKey(filePath);
 
   const chunkResult = chunkLargeFile(parsed.content);
   console.info(`[memory-save] Chunking ${filePath}: ${chunkResult.strategy} strategy, ${chunkResult.chunks.length} chunks`);
@@ -628,8 +629,13 @@ async function indexChunkedMemoryFile(
   // Wrap parent setup in transaction to prevent check-then-delete race condition
   const setupParent = database.transaction(() => {
     const existing = database.prepare(`
-      SELECT id FROM memory_index WHERE file_path = ? AND parent_id IS NULL
-    `).get(filePath) as { id: number } | undefined;
+      SELECT id FROM memory_index
+      WHERE spec_folder = ?
+        AND parent_id IS NULL
+        AND (canonical_file_path = ? OR file_path = ?)
+      ORDER BY id DESC
+      LIMIT 1
+    `).get(parsed.specFolder, canonicalFilePath, filePath) as { id: number } | undefined;
 
     let pid: number;
 
@@ -919,10 +925,14 @@ async function indexMemoryFile(filePath: string, { force = false, parsedOverride
   }
 
   const database = requireDb();
+  const canonicalFilePath = getCanonicalPathKey(filePath);
   const existing = database.prepare(`
     SELECT id, content_hash FROM memory_index
-    WHERE file_path = ?
-  `).get(filePath) as { id: number; content_hash: string } | undefined;
+    WHERE spec_folder = ?
+      AND (canonical_file_path = ? OR file_path = ?)
+    ORDER BY id DESC
+    LIMIT 1
+  `).get(parsed.specFolder, canonicalFilePath, filePath) as { id: number; content_hash: string } | undefined;
 
   if (existing && existing.content_hash === parsed.contentHash && !force) {
     return {
