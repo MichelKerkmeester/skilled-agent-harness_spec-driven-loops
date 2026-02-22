@@ -9,7 +9,7 @@ This verifier is intentionally behavior-neutral: it only inspects files and
 reports actionable findings. It exits non-zero when violations are found.
 
 Coverage:
-- TypeScript (.ts, .tsx)
+- TypeScript (.ts, .tsx, .mts)
 - JavaScript (.js, .mjs, .cjs)
 - Python (.py)
 - Shell (.sh)
@@ -25,12 +25,13 @@ import os
 import re
 import sys
 from dataclasses import dataclass
-from typing import Dict, Iterable, List, Tuple
+from typing import Dict, Iterable, List, Set
 
 
 SUPPORTED_EXTENSIONS: Dict[str, str] = {
     ".ts": "typescript",
     ".tsx": "typescript",
+    ".mts": "typescript",
     ".js": "javascript",
     ".mjs": "javascript",
     ".cjs": "javascript",
@@ -52,6 +53,27 @@ EXCLUDED_DIRS = {
     "venv",
 }
 
+INTEGRITY_RULE_PREFIXES = ("COMMON-", "JSON-", "JSONC-")
+CONTEXT_ADVISORY_SEGMENTS = {
+    "z_archive",
+    "scratch",
+    "memory",
+    "research",
+    "context",
+    "assets",
+    "examples",
+    "fixtures",
+}
+TS_TEST_SUFFIXES = (
+    ".test.ts",
+    ".spec.ts",
+    ".vitest.ts",
+    ".test.tsx",
+    ".spec.tsx",
+    ".vitest.tsx",
+)
+TSCONFIG_JSON_RE = re.compile(r"^tsconfig(\..+)?\.json$")
+
 
 @dataclass
 class Finding:
@@ -60,6 +82,7 @@ class Finding:
     message: str
     fix_hint: str
     line: int = 1
+    severity: str = "WARN"
 
 
 def parse_args() -> argparse.Namespace:
@@ -70,24 +93,28 @@ def parse_args() -> argparse.Namespace:
         default=[],
         help="Root directory to scan (repeatable). Defaults to current directory.",
     )
+    parser.add_argument(
+        "--fail-on-warn",
+        action="store_true",
+        help="Treat warning findings as build-breaking failures.",
+    )
     return parser.parse_args()
 
 
 def iter_code_files(roots: Iterable[str]) -> Iterable[str]:
+    seen_paths: Set[str] = set()
     for root in roots:
-        for current_root, dirs, files in os.walk(root):
+        abs_root = os.path.realpath(root)
+        for current_root, dirs, files in os.walk(abs_root):
             dirs[:] = [entry for entry in dirs if entry not in EXCLUDED_DIRS]
             for filename in files:
                 extension = os.path.splitext(filename)[1].lower()
                 if extension in SUPPORTED_EXTENSIONS:
-                    yield os.path.join(current_root, filename)
-
-
-def first_nonempty_line(lines: List[str]) -> Tuple[int, str]:
-    for index, value in enumerate(lines, start=1):
-        if value.strip():
-            return index, value.strip()
-    return 1, ""
+                    candidate = os.path.realpath(os.path.join(current_root, filename))
+                    if candidate in seen_paths:
+                        continue
+                    seen_paths.add(candidate)
+                    yield candidate
 
 
 def find_line(lines: List[str], pattern: str) -> int:
@@ -124,6 +151,9 @@ def strip_jsonc_comments(content: str) -> str:
                 in_block_comment = False
                 i += 2
             else:
+                if char == "\n":
+                    # Preserve newlines for line-accurate parser errors.
+                    result.append("\n")
                 i += 1
             continue
 
@@ -161,8 +191,50 @@ def strip_jsonc_comments(content: str) -> str:
     return "".join(result)
 
 
-def check_javascript(path: str, lines: List[str]) -> List[Finding]:
+def normalize_path(path: str) -> str:
+    return path.replace("\\", "/").lower()
+
+
+def is_path_segment_present(path: str, segment: str) -> bool:
+    normalized = f"/{normalize_path(path).strip('/')}/"
+    return f"/{segment.lower()}/" in normalized
+
+
+def is_context_advisory_path(path: str) -> bool:
+    if is_test_heavy_path(path):
+        return True
+    return any(is_path_segment_present(path, segment) for segment in CONTEXT_ADVISORY_SEGMENTS)
+
+
+def is_test_heavy_path(path: str) -> bool:
+    normalized = normalize_path(path)
+    basename = os.path.basename(normalized)
+    if "/tests/" in f"/{normalized.strip('/')}/":
+        return True
+    return basename.endswith(TS_TEST_SUFFIXES)
+
+
+def is_ts_pattern_asset(path: str) -> bool:
+    normalized = normalize_path(path)
+    return "/assets/" in normalized and "/patterns/" in normalized
+
+
+def should_skip_ts_module_header(path: str) -> bool:
+    return is_test_heavy_path(path) or is_ts_pattern_asset(path)
+
+
+def classify_severity(path: str, rule_id: str) -> str:
+    base_severity = "ERROR" if rule_id.startswith(INTEGRITY_RULE_PREFIXES) else "WARN"
+    if is_context_advisory_path(path):
+        return "WARN"
+    return base_severity
+
+
+def check_javascript(path: str, lines: List[str], extension: str) -> List[Finding]:
     findings: List[Finding] = []
+    if extension == ".mjs":
+        return findings
+
     strict_line = find_line(lines[:40], r"^\s*['\"]use strict['\"];\s*$")
     if strict_line == 0:
         findings.append(
@@ -179,6 +251,9 @@ def check_javascript(path: str, lines: List[str]) -> List[Finding]:
 
 def check_typescript(path: str, lines: List[str]) -> List[Finding]:
     findings: List[Finding] = []
+    if should_skip_ts_module_header(path):
+        return findings
+
     module_marker = find_line(lines[:40], r"MODULE:")
     if module_marker == 0:
         findings.append(
@@ -254,12 +329,21 @@ def check_json(path: str, content: str) -> List[Finding]:
     try:
         json.loads(content)
     except json.JSONDecodeError as error:
+        fallback_error = error
+        if TSCONFIG_JSON_RE.match(os.path.basename(path).lower()):
+            cleaned = strip_jsonc_comments(content)
+            try:
+                json.loads(cleaned)
+                return findings
+            except json.JSONDecodeError as second_error:
+                fallback_error = second_error
+
         findings.append(
             Finding(
                 path=path,
-                line=error.lineno,
+                line=fallback_error.lineno,
                 rule_id="JSON-PARSE",
-                message=f"Invalid JSON: {error.msg}",
+                message=f"Invalid JSON: {fallback_error.msg}",
                 fix_hint="Fix JSON syntax so standard parsers can load this file.",
             )
         )
@@ -301,7 +385,7 @@ def check_common(path: str, content: str) -> List[Finding]:
 
 def check_file(path: str) -> List[Finding]:
     extension = os.path.splitext(path)[1].lower()
-    findings: List[Finding] = []
+    raw_findings: List[Finding] = []
 
     try:
         with open(path, "r", encoding="utf-8") as handle:
@@ -318,21 +402,25 @@ def check_file(path: str) -> List[Finding]:
         ]
 
     lines = content.splitlines(keepends=True)
-    findings.extend(check_common(path, content))
+    raw_findings.extend(check_common(path, content))
 
     if extension in {".js", ".mjs", ".cjs"}:
-        findings.extend(check_javascript(path, lines))
-    elif extension in {".ts", ".tsx"}:
-        findings.extend(check_typescript(path, lines))
+        raw_findings.extend(check_javascript(path, lines, extension))
+    elif extension in {".ts", ".tsx", ".mts"}:
+        raw_findings.extend(check_typescript(path, lines))
     elif extension == ".py":
-        findings.extend(check_python(path, lines))
+        raw_findings.extend(check_python(path, lines))
     elif extension == ".sh":
-        findings.extend(check_shell(path, lines))
+        raw_findings.extend(check_shell(path, lines))
     elif extension == ".json":
-        findings.extend(check_json(path, content))
+        raw_findings.extend(check_json(path, content))
     elif extension == ".jsonc":
-        findings.extend(check_jsonc(path, content))
+        raw_findings.extend(check_jsonc(path, content))
 
+    findings: List[Finding] = []
+    for finding in raw_findings:
+        finding.severity = classify_severity(path, finding.rule_id)
+        findings.append(finding)
     return findings
 
 
@@ -353,24 +441,45 @@ def main() -> int:
         scanned += 1
         findings.extend(check_file(file_path))
 
-    if findings:
+    error_count = sum(1 for item in findings if item.severity == "ERROR")
+    warning_count = sum(1 for item in findings if item.severity == "WARN")
+    should_fail = error_count > 0 or (args.fail_on_warn and warning_count > 0)
+
+    if should_fail:
         print("[alignment-drift] FAIL")
-        print(f"Scanned files: {scanned}")
-        print(f"Violations: {len(findings)}")
+    else:
+        print("[alignment-drift] PASS")
+
+    print(f"Scanned files: {scanned}")
+    print(f"Findings: {len(findings)}")
+    print(f"Errors: {error_count}")
+    print(f"Warnings: {warning_count}")
+
+    if findings:
         print("")
         print("Actionable findings:")
         for item in findings:
             print(
-                f"- {relpath(item.path)}:{item.line} [{item.rule_id}] {item.message} "
+                f"- {relpath(item.path)}:{item.line} [{item.rule_id}] [{item.severity}] {item.message} "
                 f"Fix: {item.fix_hint}"
             )
-        return 1
+    else:
+        print("Violations: 0")
 
-    print("[alignment-drift] PASS")
-    print(f"Scanned files: {scanned}")
-    print("Violations: 0")
-    return 0
+    if not should_fail and warning_count > 0 and not args.fail_on_warn:
+        print("")
+        print("Note: warnings are non-blocking by default. Use --fail-on-warn to make warnings fail.")
+
+    return 1 if should_fail else 0
 
 
 if __name__ == "__main__":
-    sys.exit(main())
+    try:
+        sys.exit(main())
+    except BrokenPipeError:
+        # Support pipelines like `... | rg ...` without stack traces.
+        try:
+            sys.stdout.close()
+        except Exception:
+            pass
+        sys.exit(0)

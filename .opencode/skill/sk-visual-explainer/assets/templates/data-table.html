@@ -31,42 +31,42 @@
     --font-mono: 'JetBrains Mono', 'SF Mono', Consolas, monospace;
     --font-sans: system-ui, -apple-system, sans-serif;
 
-    --bg: #fff5f5;
-    --surface: #ffffff;
-    --surface2: #fef0ee;
-    --surface-elevated: #fff8f7;
-    --border: rgba(0, 0, 0, 0.07);
-    --border-bright: rgba(0, 0, 0, 0.14);
-    --text: #1c1917;
-    --text-dim: #78716c;
-    --accent: #be123c;
-    --accent-dim: rgba(190, 18, 60, 0.06);
-    --green: #16a34a;
-    --green-dim: rgba(22, 163, 74, 0.08);
-    --red: #dc2626;
-    --red-dim: rgba(220, 38, 38, 0.08);
-    --orange: #d97706;
-    --orange-dim: rgba(217, 119, 6, 0.08);
+    --ve-bg: #fff5f5;
+    --ve-surface: #ffffff;
+    --ve-surface2: #fef0ee;
+    --ve-surface-elevated: #fff8f7;
+    --ve-border: rgba(0, 0, 0, 0.07);
+    --ve-border-bright: rgba(0, 0, 0, 0.14);
+    --ve-text: #1c1917;
+    --ve-text-dim: #78716c;
+    --ve-accent: #be123c;
+    --ve-accent-dim: rgba(190, 18, 60, 0.06);
+    --ve-success: #16a34a;
+    --ve-success-dim: rgba(22, 163, 74, 0.08);
+    --ve-danger: #dc2626;
+    --ve-danger-dim: rgba(220, 38, 38, 0.08);
+    --ve-warning: #d97706;
+    --ve-warning-dim: rgba(217, 119, 6, 0.08);
   }
 
   @media (prefers-color-scheme: dark) {
     :root {
-      --bg: #1a0a0a;
-      --surface: #231414;
-      --surface2: #2e1b1b;
-      --surface-elevated: #351f1f;
-      --border: rgba(255, 255, 255, 0.06);
-      --border-bright: rgba(255, 255, 255, 0.12);
-      --text: #fde2e2;
-      --text-dim: #c9a3a3;
-      --accent: #fb7185;
-      --accent-dim: rgba(251, 113, 133, 0.12);
-      --green: #4ade80;
-      --green-dim: rgba(74, 222, 128, 0.1);
-      --red: #f87171;
-      --red-dim: rgba(248, 113, 113, 0.1);
-      --orange: #fbbf24;
-      --orange-dim: rgba(251, 191, 36, 0.1);
+      --ve-bg: #1a0a0a;
+      --ve-surface: #231414;
+      --ve-surface2: #2e1b1b;
+      --ve-surface-elevated: #351f1f;
+      --ve-border: rgba(255, 255, 255, 0.06);
+      --ve-border-bright: rgba(255, 255, 255, 0.12);
+      --ve-text: #fde2e2;
+      --ve-text-dim: #c9a3a3;
+      --ve-accent: #fb7185;
+      --ve-accent-dim: rgba(251, 113, 133, 0.12);
+      --ve-success: #4ade80;
+      --ve-success-dim: rgba(74, 222, 128, 0.1);
+      --ve-danger: #f87171;
+      --ve-danger-dim: rgba(248, 113, 113, 0.1);
+      --ve-warning: #fbbf24;
+      --ve-warning-dim: rgba(251, 191, 36, 0.1);
     }
   }
 
@@ -74,11 +74,11 @@
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   body {
-    background: var(--bg);
+    background: var(--ve-bg);
     background-image:
-      radial-gradient(ellipse at 30% 0%, var(--accent-dim) 0%, transparent 50%),
-      radial-gradient(ellipse at 70% 100%, var(--green-dim) 0%, transparent 40%);
-    color: var(--text);
+      radial-gradient(ellipse at 30% 0%, var(--ve-accent-dim) 0%, transparent 50%),
+      radial-gradient(ellipse at 70% 100%, var(--ve-success-dim) 0%, transparent 40%);
+    color: var(--ve-text);
     font-family: var(--font-sans);
     padding: 40px;
     min-height: 100vh;
@@ -119,7 +119,7 @@
   }
 
   .subtitle {
-    color: var(--text-dim);
+    color: var(--ve-text-dim);
     font-family: var(--font-mono);
     font-size: 12px;
     margin-bottom: 32px;
@@ -139,7 +139,7 @@
     gap: 6px;
     font-family: var(--font-mono);
     font-size: 11px;
-    color: var(--text-dim);
+    color: var(--ve-text-dim);
   }
 
   .legend-swatch {
@@ -150,8 +150,8 @@
 
   /* ============ TABLE WRAPPER ============ */
   .table-wrap {
-    background: var(--surface);
-    border: 1px solid var(--border);
+    background: var(--ve-surface);
+    border: 1px solid var(--ve-border);
     border-radius: 12px;
     overflow: hidden;
     margin-bottom: 24px;
@@ -178,23 +178,23 @@
   }
 
   .data-table th {
-    background: var(--surface2);
+    background: var(--ve-surface2);
     font-family: var(--font-mono);
     font-size: 10px;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 1.2px;
-    color: var(--text-dim);
+    color: var(--ve-text-dim);
     text-align: left;
     padding: 14px 16px;
-    border-bottom: 2px solid var(--border-bright);
+    border-bottom: 2px solid var(--ve-border-bright);
     white-space: nowrap;
   }
 
   /* Cells */
   .data-table td {
     padding: 14px 16px;
-    border-bottom: 1px solid var(--border);
+    border-bottom: 1px solid var(--ve-border);
     vertical-align: top;
   }
 
@@ -210,7 +210,7 @@
 
   /* Alternating rows */
   .data-table tbody tr:nth-child(even) {
-    background: var(--accent-dim);
+    background: var(--ve-accent-dim);
   }
 
   /* Row hover + animation stagger */
@@ -221,15 +221,15 @@
   }
 
   .data-table tbody tr:hover {
-    background: var(--border);
+    background: var(--ve-border);
   }
 
   /* Code in cells */
   .data-table code {
     font-family: var(--font-mono);
     font-size: 11px;
-    background: var(--accent-dim);
-    color: var(--accent);
+    background: var(--ve-accent-dim);
+    color: var(--ve-accent);
     padding: 1px 5px;
     border-radius: 3px;
   }
@@ -237,7 +237,7 @@
   /* Secondary text */
   .data-table small {
     display: block;
-    color: var(--text-dim);
+    color: var(--ve-text-dim);
     font-size: 11px;
     margin-top: 3px;
   }
@@ -257,18 +257,18 @@
   }
 
   .status--match {
-    background: var(--green-dim);
-    color: var(--green);
+    background: var(--ve-success-dim);
+    color: var(--ve-success);
   }
 
   .status--gap {
-    background: var(--red-dim);
-    color: var(--red);
+    background: var(--ve-danger-dim);
+    color: var(--ve-danger);
   }
 
   .status--partial {
-    background: var(--orange-dim);
-    color: var(--orange);
+    background: var(--ve-warning-dim);
+    color: var(--ve-warning);
   }
 
   /* Dot before status text */
@@ -282,11 +282,11 @@
 
   /* ============ FOOTER ROW ============ */
   .data-table tfoot td {
-    background: var(--surface2);
+    background: var(--ve-surface2);
     font-weight: 600;
     font-family: var(--font-mono);
     font-size: 12px;
-    border-top: 2px solid var(--border-bright);
+    border-top: 2px solid var(--ve-border-bright);
     border-bottom: none;
     padding: 14px 16px;
   }
@@ -300,8 +300,8 @@
   }
 
   .kpi-card {
-    background: var(--surface-elevated, var(--surface));
-    border: 1px solid var(--border);
+    background: var(--ve-surface-elevated, var(--ve-surface));
+    border: 1px solid var(--ve-border);
     border-radius: 10px;
     padding: 18px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
@@ -315,9 +315,9 @@
     font-variant-numeric: tabular-nums;
   }
 
-  .kpi-card__value--green { color: var(--green); }
-  .kpi-card__value--red { color: var(--red); }
-  .kpi-card__value--orange { color: var(--orange); }
+  .kpi-card__value--ve-success { color: var(--ve-success); }
+  .kpi-card__value--ve-danger { color: var(--ve-danger); }
+  .kpi-card__value--ve-warning { color: var(--ve-warning); }
 
   .kpi-card__label {
     font-family: var(--font-mono);
@@ -325,20 +325,20 @@
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 1.2px;
-    color: var(--text-dim);
+    color: var(--ve-text-dim);
     margin-top: 6px;
   }
 
   /* ============ COLLAPSIBLE ============ */
   details.collapsible {
-    border: 1px solid var(--border);
+    border: 1px solid var(--ve-border);
     border-radius: 10px;
     overflow: hidden;
   }
 
   details.collapsible summary {
     padding: 14px 20px;
-    background: var(--surface);
+    background: var(--ve-surface);
     font-family: var(--font-mono);
     font-size: 12px;
     font-weight: 600;
@@ -347,12 +347,12 @@
     display: flex;
     align-items: center;
     gap: 8px;
-    color: var(--text);
+    color: var(--ve-text);
     transition: background 0.15s ease;
   }
 
   details.collapsible summary:hover {
-    background: var(--surface-elevated, var(--surface));
+    background: var(--ve-surface-elevated, var(--ve-surface));
   }
 
   details.collapsible summary::-webkit-details-marker { display: none; }
@@ -360,7 +360,7 @@
   details.collapsible summary::before {
     content: '▸';
     font-size: 11px;
-    color: var(--text-dim);
+    color: var(--ve-text-dim);
     transition: transform 0.15s ease;
   }
 
@@ -370,22 +370,22 @@
 
   details.collapsible .collapsible__body {
     padding: 16px 20px;
-    border-top: 1px solid var(--border);
+    border-top: 1px solid var(--ve-border);
     font-size: 13px;
     line-height: 1.6;
-    color: var(--text-dim);
+    color: var(--ve-text-dim);
   }
 
   details.collapsible .collapsible__body strong {
-    color: var(--text);
+    color: var(--ve-text);
     font-weight: 600;
   }
 
   details.collapsible .collapsible__body code {
     font-family: var(--font-mono);
     font-size: 11px;
-    background: var(--accent-dim);
-    color: var(--accent);
+    background: var(--ve-accent-dim);
+    color: var(--ve-accent);
     padding: 1px 5px;
     border-radius: 3px;
   }
@@ -412,23 +412,23 @@
       <div class="kpi-card__label">Items Reviewed</div>
     </div>
     <div class="kpi-card">
-      <div class="kpi-card__value kpi-card__value--green">13</div>
+      <div class="kpi-card__value kpi-card__value--ve-success">13</div>
       <div class="kpi-card__label">Match</div>
     </div>
     <div class="kpi-card">
-      <div class="kpi-card__value kpi-card__value--red">1</div>
+      <div class="kpi-card__value kpi-card__value--ve-danger">1</div>
       <div class="kpi-card__label">Gap</div>
     </div>
     <div class="kpi-card">
-      <div class="kpi-card__value" style="color:var(--accent)">93%</div>
+      <div class="kpi-card__value" style="color:var(--ve-accent)">93%</div>
       <div class="kpi-card__label">Coverage</div>
     </div>
   </div>
 
   <div class="legend animate" style="--i:3">
-    <div class="legend-item"><div class="legend-swatch" style="background:var(--green)"></div> Match</div>
-    <div class="legend-item"><div class="legend-swatch" style="background:var(--red)"></div> Gap</div>
-    <div class="legend-item"><div class="legend-swatch" style="background:var(--orange)"></div> Partial</div>
+    <div class="legend-item"><div class="legend-swatch" style="background:var(--ve-success)"></div> Match</div>
+    <div class="legend-item"><div class="legend-swatch" style="background:var(--ve-danger)"></div> Gap</div>
+    <div class="legend-item"><div class="legend-swatch" style="background:var(--ve-warning)"></div> Partial</div>
   </div>
 
   <div class="table-wrap animate" style="--i:4">

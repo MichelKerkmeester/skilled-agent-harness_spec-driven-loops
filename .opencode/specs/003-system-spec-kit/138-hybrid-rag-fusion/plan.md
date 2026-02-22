@@ -21,10 +21,13 @@
 
 This plan coordinates two workstreams that together upgrade the system-spec-kit intelligent context system. Workstream A (Hybrid RAG Fusion) enhances the memory retrieval pipeline in `lib/search/` by activating dormant graph features, introducing MMR diversity pruning, TRM confidence gating, BM25 weighted FTS5 queries, multi-query expansion, and AST-based chunking — all dark-launched via feature flags. Workstream B (Skill Graph Integration) migrates all nine skills to an SGQS-enriched graph metadata schema, providing the structured skill relationship data that Workstream A's graph channel depends on. Workstream B is fully complete; Workstream A has not yet started.
 
+Skill-graph-related active documentation is consolidated in `013-deprecate-skill-graph-and-readme-indexing-2/`; legacy folders are archived under `z_archive/skill-graph-legacy/`.
+
 See sub-plans for phase details:
 - `001-system-speckit-hybrid-rag-fusion/plan.md` — Workstream A phases 0–5
-- `002-skill-graph-integration/plan.md` — Workstream B phases 1–5
-- `003-unified-graph-intelligence/plan.md` — Workstream C: Integration phases 0+, 1+, 2+
+- `z_archive/skill-graph-legacy/002-skill-graph-integration/plan.md` — Workstream B phases 1–5 (archived)
+- `z_archive/skill-graph-legacy/003-unified-graph-intelligence/plan.md` — Workstream C: Integration phases 0+, 1+, 2+ (archived)
+- `013-deprecate-skill-graph-and-readme-indexing-2/plan.md` — active consolidation/deprecation completion tracker
 <!-- /ANCHOR:summary -->
 
 ---
@@ -65,7 +68,7 @@ Pipeline + Feature-Flag Dark Launch — a staged retrieval pipeline where each e
 - **adaptive-fusion.ts**: Dormant `useGraph:true` path and adaptive-fusion weight tuning. Phase 0 activates existing code; Phase 1 adds TRM confidence gating.
 - **co-activation.ts**: Dormant co-activation scoring. Phase 0 enables; Phase 4 adds PageRank authority and entity linking.
 - **SGQS metadata (Workstream B output)**: Structured skill-graph edge data in SQLite, consumed by the graph channel in hybrid-search.ts.
-- **Unified Graph Adapter (Workstream C output)**: Composite `graphSearchFn` wiring both Causal Edge and SGQS Skill Graph systems into the graph channel slot. See `003-unified-graph-intelligence/plan.md`.
+- **Unified Graph Adapter (Workstream C output)**: Composite `graphSearchFn` wiring both Causal Edge and SGQS Skill Graph systems into the graph channel slot. See `z_archive/skill-graph-legacy/003-unified-graph-intelligence/plan.md`.
 - **Feature flag layer**: `process.env.SPECKIT_MMR`, `SPECKIT_TRM`, `SPECKIT_MULTI_QUERY` guard each enhancement independently.
 
 ### Data Flow
@@ -104,7 +107,7 @@ Query Input
 
 ### Workstream B: Skill Graph Integration — COMPLETE
 
-All five phases are done. SGQS metadata for all nine skills is present in SQLite. Sub-plan: `002-skill-graph-integration/plan.md`.
+All five phases are done. SGQS metadata for all nine skills is present in SQLite. Sub-plan (archived): `z_archive/skill-graph-legacy/002-skill-graph-integration/plan.md`.
 
 | Phase | Description | Status |
 |-------|-------------|--------|

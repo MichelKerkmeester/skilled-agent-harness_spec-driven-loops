@@ -18,6 +18,8 @@
 | **Level** | 3+ |
 | **Complexity Score** | 92/100 |
 | **Workstreams** | 3 (RAG Fusion, Skill Graphs, Unified Graph Intelligence) |
+| **Skill-Graph Active Canonical Folder** | `013-deprecate-skill-graph-and-readme-indexing-2/` |
+| **Skill-Graph Legacy Archive Root** | `z_archive/skill-graph-legacy/` |
 | **Global Tasks** | G001-G004 complete, G005 awaiting sign-off |
 | **Test Suite** | 159 files, 4,770 tests passed, 0 failed |
 | **Schema Changes** | Zero — v15 SQLite schema unchanged |
@@ -56,7 +58,7 @@ All 9 monolithic SKILL.md files decomposed into a composable graph architecture 
 
 **Authoring enablement:** `skill_graph_standards.md` and `skill_graph_node_template.md` published as references. `check-links.sh` passes globally with 0 broken wikilinks.
 
-> Full details: `002-skill-graph-integration/implementation-summary.md`
+> Full details (archived): `z_archive/skill-graph-legacy/002-skill-graph-integration/implementation-summary.md`
 
 ### Workstream C: Unified Graph Intelligence (22/22 tasks)
 
@@ -69,7 +71,7 @@ The missing link between Workstreams A and B. Before this work, `hybridSearch.in
 
 **Seven Intelligence Amplification Patterns:** Graph-Guided MMR (BFS shortest-path augments cosine diversity), Structural Authority Propagation (type multipliers: Index 3.0x, Entrypoint 2.5x, Asset 0.3x), Semantic Bridge Discovery (wikilinks as synonym dictionaries), Intent-to-Subgraph Routing, Evidence Gap Prevention (graph node coverage checks), Context Budget Optimization (greedy token-budget-aware selection), and Temporal-Structural Coherence (FSRS stability times graph centrality).
 
-> Full details: `003-unified-graph-intelligence/implementation-summary.md`
+> Full details (archived): `z_archive/skill-graph-legacy/003-unified-graph-intelligence/implementation-summary.md`
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -275,8 +277,9 @@ The system is production-ready with the following caveats:
 | Workstream | Folder | Implementation Summary | Tasks | Status |
 |-----------|--------|----------------------|-------|--------|
 | A: Hybrid RAG Fusion | `001-system-speckit-hybrid-rag-fusion/` | `001-system-speckit-hybrid-rag-fusion/implementation-summary.md` | 23/24 (1 deferred) | Nearly Complete |
-| B: Skill Graph Integration | `002-skill-graph-integration/` | `002-skill-graph-integration/implementation-summary.md` | 16/16 | Complete |
-| C: Unified Graph Intelligence | `003-unified-graph-intelligence/` | `003-unified-graph-intelligence/implementation-summary.md` | 22/22 | Complete |
+| B: Skill Graph Integration | `z_archive/skill-graph-legacy/002-skill-graph-integration/` | `z_archive/skill-graph-legacy/002-skill-graph-integration/implementation-summary.md` | 16/16 | Complete (Archived) |
+| C: Unified Graph Intelligence | `z_archive/skill-graph-legacy/003-unified-graph-intelligence/` | `z_archive/skill-graph-legacy/003-unified-graph-intelligence/implementation-summary.md` | 22/22 | Complete (Archived) |
+| Canonical Skill-Graph Consolidation | `013-deprecate-skill-graph-and-readme-indexing-2/` | `013-deprecate-skill-graph-and-readme-indexing-2/implementation-summary.md` | 43/43 | Active |
 <!-- /ANCHOR:workstream-references -->
 
 ---

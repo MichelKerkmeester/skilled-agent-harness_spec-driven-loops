@@ -522,12 +522,8 @@ export function hasCausalLinks(causalLinks: CausalLinks | null | undefined): boo
    4. VALIDATION FUNCTIONS
    --------------------------------------------------------------- */
 
-/** README filename matcher for markdown and plain text docs */
-const README_FILE_PATTERN = /^readme\.(md|txt)$/i;
-
-function isReadmeFileName(fileName: string): boolean {
-  return README_FILE_PATTERN.test(fileName);
-}
+/** Constitutional markdown basenames intentionally excluded from indexing */
+const EXCLUDED_CONSTITUTIONAL_BASENAMES = new Set(['readme.md', 'readme.txt']);
 
 function isMarkdownOrTextFile(filePath: string): boolean {
   return /\.(md|txt)$/i.test(filePath);
@@ -559,7 +555,7 @@ export function isMemoryFile(filePath: string): boolean {
     normalizedPath.endsWith('.md') &&
     normalizedPath.includes('/.opencode/skill/') &&
     normalizedPath.includes('/constitutional/') &&
-    !isReadmeFileName(path.basename(normalizedPath))
+    !EXCLUDED_CONSTITUTIONAL_BASENAMES.has(path.basename(normalizedPath).toLowerCase())
   );
 
   return isSpecsMemory || isSpecDocument || isConstitutional;

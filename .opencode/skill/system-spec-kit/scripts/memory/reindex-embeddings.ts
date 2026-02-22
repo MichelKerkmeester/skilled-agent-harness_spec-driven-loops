@@ -115,12 +115,11 @@ async function reindex(): Promise<void> {
     process.exit(1);
   }
   checkpointsLib.init(database);  accessTracker.init(database);
-  const skillRoot = path.join(core.DEFAULT_BASE_PATH, '.opencode', 'skill');
   hybridSearch.init(
     database,
     vectorIndex.vectorSearch,
     graphFlags.isGraphUnifiedEnabled()
-      ? graphSearchFn.createUnifiedGraphSearchFn(database, skillRoot)
+      ? graphSearchFn.createUnifiedGraphSearchFn(database, '')
       : undefined
   );
 

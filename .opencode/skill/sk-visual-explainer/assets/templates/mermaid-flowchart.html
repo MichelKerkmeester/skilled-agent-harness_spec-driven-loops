@@ -30,42 +30,42 @@
     --font-body: 'Bricolage Grotesque', system-ui, sans-serif;
     --font-mono: 'Fragment Mono', 'SF Mono', Consolas, monospace;
 
-    --bg: #f0fdfa;
-    --surface: #ffffff;
-    --surface2: #e6f7f3;
-    --border: rgba(0, 0, 0, 0.07);
-    --border-bright: rgba(0, 0, 0, 0.14);
-    --text: #134e4a;
-    --text-dim: #5f8a85;
+    --ve-bg: #f0fdfa;
+    --ve-surface: #ffffff;
+    --ve-surface2: #e6f7f3;
+    --ve-border: rgba(0, 0, 0, 0.07);
+    --ve-border-bright: rgba(0, 0, 0, 0.14);
+    --ve-text: #134e4a;
+    --ve-text-dim: #5f8a85;
 
-    --primary: #0d9488;
-    --primary-dim: rgba(13, 148, 136, 0.08);
-    --secondary: #7c3aed;
-    --secondary-dim: rgba(124, 58, 237, 0.08);
-    --tertiary: #d97706;
-    --tertiary-dim: rgba(217, 119, 6, 0.08);
-    --danger: #dc2626;
-    --danger-dim: rgba(220, 38, 38, 0.08);
+    --ve-primary: #0d9488;
+    --ve-primary-dim: rgba(13, 148, 136, 0.08);
+    --ve-secondary: #7c3aed;
+    --ve-secondary-dim: rgba(124, 58, 237, 0.08);
+    --ve-tertiary: #d97706;
+    --ve-tertiary-dim: rgba(217, 119, 6, 0.08);
+    --ve-danger: #dc2626;
+    --ve-danger-dim: rgba(220, 38, 38, 0.08);
   }
 
   @media (prefers-color-scheme: dark) {
     :root {
-      --bg: #042f2e;
-      --surface: #0a3d3a;
-      --surface2: #115e59;
-      --border: rgba(255, 255, 255, 0.08);
-      --border-bright: rgba(255, 255, 255, 0.14);
-      --text: #ccfbf1;
-      --text-dim: #5eead4;
+      --ve-bg: #042f2e;
+      --ve-surface: #0a3d3a;
+      --ve-surface2: #115e59;
+      --ve-border: rgba(255, 255, 255, 0.08);
+      --ve-border-bright: rgba(255, 255, 255, 0.14);
+      --ve-text: #ccfbf1;
+      --ve-text-dim: #5eead4;
 
-      --primary: #2dd4bf;
-      --primary-dim: rgba(45, 212, 191, 0.14);
-      --secondary: #c4b5fd;
-      --secondary-dim: rgba(196, 181, 253, 0.12);
-      --tertiary: #fbbf24;
-      --tertiary-dim: rgba(251, 191, 36, 0.12);
-      --danger: #f87171;
-      --danger-dim: rgba(248, 113, 113, 0.12);
+      --ve-primary: #2dd4bf;
+      --ve-primary-dim: rgba(45, 212, 191, 0.14);
+      --ve-secondary: #c4b5fd;
+      --ve-secondary-dim: rgba(196, 181, 253, 0.12);
+      --ve-tertiary: #fbbf24;
+      --ve-tertiary-dim: rgba(251, 191, 36, 0.12);
+      --ve-danger: #f87171;
+      --ve-danger-dim: rgba(248, 113, 113, 0.12);
     }
   }
 
@@ -73,10 +73,10 @@
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   body {
-    background-color: var(--bg);
-    background-image: radial-gradient(circle, var(--border) 1px, transparent 1px);
+    background-color: var(--ve-bg);
+    background-image: radial-gradient(circle, var(--ve-border) 1px, transparent 1px);
     background-size: 24px 24px;
-    color: var(--text);
+    color: var(--ve-text);
     font-family: var(--font-body);
     padding: 40px;
     min-height: 100vh;
@@ -117,7 +117,7 @@
   }
 
   .subtitle {
-    color: var(--text-dim);
+    color: var(--ve-text-dim);
     font-family: var(--font-mono);
     font-size: 12px;
     margin-bottom: 32px;
@@ -126,7 +126,7 @@
   .description {
     font-size: 14px;
     line-height: 1.7;
-    color: var(--text-dim);
+    color: var(--ve-text-dim);
     margin-bottom: 24px;
     max-width: 700px;
   }
@@ -134,8 +134,8 @@
   .description code {
     font-family: var(--font-mono);
     font-size: 12px;
-    background: var(--primary-dim);
-    color: var(--primary);
+    background: var(--ve-primary-dim);
+    color: var(--ve-primary);
     padding: 1px 5px;
     border-radius: 3px;
   }
@@ -143,8 +143,8 @@
   /* ============ MERMAID CONTAINER ============ */
   .mermaid-wrap {
     position: relative;
-    background: var(--surface);
-    border: 1px solid var(--border);
+    background: var(--ve-surface);
+    border: 1px solid var(--ve-border);
     border-radius: 12px;
     padding: 32px 24px;
     overflow: auto;
@@ -165,8 +165,8 @@
     display: flex;
     gap: 2px;
     z-index: 10;
-    background: var(--surface);
-    border: 1px solid var(--border);
+    background: var(--ve-surface);
+    border: 1px solid var(--ve-border);
     border-radius: 6px;
     padding: 2px;
   }
@@ -176,7 +176,7 @@
     height: 28px;
     border: none;
     background: transparent;
-    color: var(--text-dim);
+    color: var(--ve-text-dim);
     font-family: var(--font-mono);
     font-size: 14px;
     cursor: pointer;
@@ -188,21 +188,21 @@
   }
 
   .zoom-controls button:hover {
-    background: var(--border);
-    color: var(--text);
+    background: var(--ve-border);
+    color: var(--ve-text);
   }
 
   .mermaid-wrap {
     scrollbar-width: thin;
-    scrollbar-color: var(--border) transparent;
+    scrollbar-color: var(--ve-border) transparent;
   }
   .mermaid-wrap::-webkit-scrollbar { width: 6px; height: 6px; }
   .mermaid-wrap::-webkit-scrollbar-track { background: transparent; }
   .mermaid-wrap::-webkit-scrollbar-thumb {
-    background: var(--border);
+    background: var(--ve-border);
     border-radius: 3px;
   }
-  .mermaid-wrap::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+  .mermaid-wrap::-webkit-scrollbar-thumb:hover { background: var(--ve-text-dim); }
 
   .mermaid-wrap.is-zoomed { cursor: grab; }
   .mermaid-wrap.is-panning { cursor: grabbing; user-select: none; }
@@ -241,7 +241,7 @@
     gap: 6px;
     font-family: var(--font-mono);
     font-size: 11px;
-    color: var(--text-dim);
+    color: var(--ve-text-dim);
   }
 
   .legend-swatch {
@@ -252,24 +252,24 @@
 
   /* ============ CALLOUT ============ */
   .callout {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-left: 3px solid var(--primary);
+    background: var(--ve-surface);
+    border: 1px solid var(--ve-border);
+    border-left: 3px solid var(--ve-primary);
     border-radius: 0 10px 10px 0;
     padding: 16px 20px;
     font-size: 13px;
     line-height: 1.6;
-    color: var(--text-dim);
+    color: var(--ve-text-dim);
     margin-top: 24px;
   }
 
-  .callout strong { color: var(--text); }
+  .callout strong { color: var(--ve-text); }
 
   .callout code {
     font-family: var(--font-mono);
     font-size: 11px;
-    background: var(--primary-dim);
-    color: var(--primary);
+    background: var(--ve-primary-dim);
+    color: var(--ve-primary);
     padding: 1px 5px;
     border-radius: 3px;
   }
@@ -324,10 +324,10 @@
   </div>
 
   <div class="legend animate" style="--i:4">
-    <div class="legend-item"><div class="legend-swatch" style="background:var(--primary)"></div> Automated step</div>
-    <div class="legend-item"><div class="legend-swatch" style="background:var(--tertiary)"></div> Decision gate</div>
-    <div class="legend-item"><div class="legend-swatch" style="background:var(--danger)"></div> Failure path</div>
-    <div class="legend-item"><div class="legend-swatch" style="background:var(--secondary)"></div> Success</div>
+    <div class="legend-item"><div class="legend-swatch" style="background:var(--ve-primary)"></div> Automated step</div>
+    <div class="legend-item"><div class="legend-swatch" style="background:var(--ve-tertiary)"></div> Decision gate</div>
+    <div class="legend-item"><div class="legend-swatch" style="background:var(--ve-danger)"></div> Failure path</div>
+    <div class="legend-item"><div class="legend-swatch" style="background:var(--ve-secondary)"></div> Success</div>
   </div>
 
   <div class="callout animate" style="--i:5">

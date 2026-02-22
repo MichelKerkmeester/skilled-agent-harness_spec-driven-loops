@@ -544,7 +544,7 @@ Context preservation across sessions via hybrid search (vector similarity + BM25
 
 **Key Concepts:**
 - **Constitutional tier** — 3.0x search boost + 2.0x importance multiplier; merged into normal scoring pipeline
-- **Document-type scoring** — 11 document types with multipliers: spec (1.4x), plan (1.3x), constitutional (2.0x), decision_record (1.4x), tasks (1.1x), implementation_summary (1.1x), memory (1.0x), checklist (1.0x), handover (1.0x), readme (0.8x), scratch (0.6x). 7 intent types including `find_spec` and `find_decision` for spec document retrieval
+- **Document-type scoring** — 10 indexed document types with multipliers: spec (1.4x), plan (1.3x), constitutional (2.0x), decision_record (1.4x), tasks (1.1x), implementation_summary (1.1x), research (1.1x), checklist (1.0x), handover (1.0x), memory (1.0x). README files and skill-doc trees (`workflows-code--*` / `sk-code--*`, including `references/` and `assets/`) are excluded from memory indexing.
 - **Decay scoring** — FSRS v4 power-law model; recent memories rank higher
 - **Import-path hardening** - Spec 126 fixed MCP import-path regressions in memory runtime modules (including context server + attention decay wiring)
 - **Metadata preservation pipeline** - `memory_save` update/reinforce paths preserve `document_type` and `spec_level`, and vector-index metadata updates stay in sync

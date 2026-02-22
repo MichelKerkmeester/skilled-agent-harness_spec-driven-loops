@@ -29,7 +29,11 @@ This completion pass finalizes deprecation of skill graph and README/skill-refer
 | **Created** | 2026-02-21 |
 | **Branch** | `138-hybrid-rag-fusion` |
 | **Parent** | `../spec.md` |
+| **Predecessor** | `004-command-alignment` |
+| **Successor** | `014-non-skill-graph-consolidated` |
 | **Phase Folder** | `013-deprecate-skill-graph-and-readme-indexing-2` |
+| **Canonical Skill-Graph Folder** | `013-deprecate-skill-graph-and-readme-indexing-2/` |
+| **Legacy Skill-Graph Archive Root** | `../z_archive/skill-graph-legacy/` |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -91,6 +95,18 @@ Provide completion-grade closure for deprecating skill graph + README/skill-ref/
 | `specs/003-system-spec-kit/138-hybrid-rag-fusion/013-deprecate-skill-graph-and-readme-indexing-2/checklist.md` | Create | P0/P1/P2 verification evidence |
 | `specs/003-system-spec-kit/138-hybrid-rag-fusion/013-deprecate-skill-graph-and-readme-indexing-2/decision-record.md` | Create | ADRs for deprecation and retained causal graph |
 | `specs/003-system-spec-kit/138-hybrid-rag-fusion/013-deprecate-skill-graph-and-readme-indexing-2/implementation-summary.md` | Create | Concise completion summary |
+| `specs/003-system-spec-kit/138-hybrid-rag-fusion/013-deprecate-skill-graph-and-readme-indexing-2/merge-manifest.md` | Create | Legacy skill-graph source mapping + archive manifest |
+
+### Legacy Consolidation Inputs
+
+The following legacy skill-graph-related folders are consolidated into this active `013` phase via merge documentation and archived intact under `../z_archive/skill-graph-legacy/`:
+
+- `002-skill-graph-integration/`
+- `003-unified-graph-intelligence/`
+- `006-skill-graph-utilization/`
+- `007-skill-graph-improvement/`
+- `009-skill-graph-score-recovery/`
+- `012-deprecate-skill-graph-and-readme-indexing/`
 <!-- /ANCHOR:scope -->
 
 ---

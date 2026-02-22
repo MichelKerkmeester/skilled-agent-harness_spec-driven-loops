@@ -47,8 +47,8 @@ const SPEC_DOCUMENT_FILENAMES = new Set([
 /** Directories to exclude from spec document discovery */
 const SPEC_DOC_EXCLUDE_DIRS = new Set(['z_archive', 'scratch', 'memory', 'node_modules']);
 
-/** README filename matcher for markdown and plain text docs. */
-const README_FILE_PATTERN = /^readme\.(md|txt)$/i;
+/** Constitutional markdown basenames intentionally excluded from indexing. */
+const EXCLUDED_CONSTITUTIONAL_BASENAMES = new Set(['readme.md', 'readme.txt']);
 
 /**
  * Discover spec folder documents (.opencode/specs/ directory tree).
@@ -247,7 +247,7 @@ function findConstitutionalFiles(workspacePath: string): string[] {
         const files = fs.readdirSync(constitutionalDir, { withFileTypes: true });
         for (const file of files) {
           if (file.isFile() && file.name.endsWith('.md')) {
-            if (README_FILE_PATTERN.test(file.name)) continue;
+            if (EXCLUDED_CONSTITUTIONAL_BASENAMES.has(file.name.toLowerCase())) continue;
             results.push(path.join(constitutionalDir, file.name));
           }
         }

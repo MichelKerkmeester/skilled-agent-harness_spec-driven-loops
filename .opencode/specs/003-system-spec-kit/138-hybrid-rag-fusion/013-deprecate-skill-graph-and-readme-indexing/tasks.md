@@ -69,6 +69,17 @@
 
 ---
 
+<!-- ANCHOR:phase-5 -->
+## Phase 5: Legacy Skill-Graph Consolidation
+
+- [x] T040 Create `merge-manifest.md` with source-to-archive mapping
+- [x] T041 Consolidate legacy skill-graph source context (`002/003/006/007/009/012`) into active `013` docs
+- [x] T042 Move legacy source folders to `../z_archive/skill-graph-legacy/`
+- [x] T043 Sync parent `138` root docs with consolidated active/archived state
+<!-- /ANCHOR:phase-5 -->
+
+---
+
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
@@ -88,4 +99,5 @@
 - **Checklist**: `checklist.md`
 - **Decision Record**: `decision-record.md`
 - **Implementation Summary**: `implementation-summary.md`
+- **Merge Manifest**: `merge-manifest.md`
 <!-- /ANCHOR:cross-refs -->

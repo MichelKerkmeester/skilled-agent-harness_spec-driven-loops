@@ -30,11 +30,13 @@ This specification governs the transformation of the system-spec-kit from a basi
 | **Branch** | `138-hybrid-rag-fusion` |
 | **Parent Spec** | `.opencode/specs/003-system-spec-kit/` |
 | **Workstream A Sub-Spec** | `001-system-speckit-hybrid-rag-fusion/spec.md` |
-| **Workstream B Sub-Spec** | `002-skill-graph-integration/spec.md` |
-| **Workstream C Sub-Spec** | `003-unified-graph-intelligence/spec.md` |
+| **Skill-Graph Active Canonical Subfolder** | `013-deprecate-skill-graph-and-readme-indexing-2/` |
+| **Skill-Graph Legacy Archive Root** | `z_archive/skill-graph-legacy/` |
+| **Workstream B Sub-Spec (Archived)** | `z_archive/skill-graph-legacy/002-skill-graph-integration/spec.md` |
+| **Workstream C Sub-Spec (Archived)** | `z_archive/skill-graph-legacy/003-unified-graph-intelligence/spec.md` |
 | **Workstream A Status** | Research + Planning COMPLETE — Implementation NOT started |
-| **Workstream B Status** | ALL tasks COMPLETE |
-| **Workstream C Status** | Spec + Planning COMPLETE — Implementation NOT started |
+| **Workstream B Status** | ALL tasks COMPLETE — archived and consolidated into active `013` |
+| **Workstream C Status** | COMPLETE — archived and consolidated into active `013` |
 | **Complexity Score** | 92/100 |
 <!-- /ANCHOR:metadata -->
 
@@ -67,7 +69,7 @@ Deliver a unified intelligent context engine where hybrid retrieval with confide
 - AST-based document parsing for structured section extraction
 - PageRank authority scoring on the memory graph for result re-ranking
 
-**Workstream B — Skill Graph Integration** (sub-spec: `002-skill-graph-integration/spec.md`)
+**Workstream B — Skill Graph Integration** (historical source archived at `z_archive/skill-graph-legacy/002-skill-graph-integration/spec.md`; active consolidation tracker: `013-deprecate-skill-graph-and-readme-indexing-2/merge-manifest.md`)
 - Decomposition of all 9 monolithic SKILL.md files into wikilink-connected Skill Graph nodes
 - YAML frontmatter on all node files (id, title, type, tags, links)
 - SGQS (Skill Graph-Lite Query Script) — Neo4j-style query layer implemented in-process on existing memory architecture
@@ -80,7 +82,7 @@ Deliver a unified intelligent context engine where hybrid retrieval with confide
 - Shared MCP server surface exposing unified `memory_context()` entry point
 - Unified Graph Adapter connecting both Causal Edge and SGQS Skill Graph systems into a single `graphSearchFn`
 - 7 Intelligence Amplification Patterns leveraging graph topology for diversity, authority, and routing
-- See `003-unified-graph-intelligence/spec.md` for complete integration architecture
+- See `z_archive/skill-graph-legacy/003-unified-graph-intelligence/spec.md` for complete historical integration architecture
 
 ### Out of Scope
 
@@ -115,15 +117,19 @@ Deliver a unified intelligent context engine where hybrid retrieval with confide
 | Phase | Folder | Status |
 |-------|--------|--------|
 | 001 | `001-system-speckit-hybrid-rag-fusion/` | Complete |
-| 002 | `002-skill-graph-integration/` | Complete |
-| 003 | `003-unified-graph-intelligence/` | Complete |
+| 002 | `z_archive/skill-graph-legacy/002-skill-graph-integration/` | Archived skill-graph legacy |
+| 003 | `z_archive/skill-graph-legacy/003-unified-graph-intelligence/` | Archived skill-graph legacy |
 | 004 | `004-command-alignment/` | Complete |
-| 005 | `005-install-guide-alignment/` | Complete |
-| 006 | `006-skill-graph-utilization/` | Complete |
-| 007 | `007-skill-graph-improvement/` | Complete |
-| 008 | `008-codex-audit/` | Complete |
-| 009 | `009-skill-graph-score-recovery/` | Complete |
-| 010 | `010-index-large-files/` | Complete |
+| 005 | `z_archive/non-skill-graph-legacy/005-install-guide-alignment/` | Archived non-skill-graph legacy |
+| 008 | `z_archive/non-skill-graph-legacy/008-codex-audit/` | Archived non-skill-graph legacy |
+| 010 | `z_archive/non-skill-graph-legacy/010-index-large-files/` | Archived non-skill-graph legacy |
+| 011 | `z_archive/non-skill-graph-legacy/011-default-on-hardening-audit/` | Archived non-skill-graph legacy |
+| 006 | `z_archive/skill-graph-legacy/006-skill-graph-utilization/` | Archived skill-graph legacy |
+| 007 | `z_archive/skill-graph-legacy/007-skill-graph-improvement/` | Archived skill-graph legacy |
+| 009 | `z_archive/skill-graph-legacy/009-skill-graph-score-recovery/` | Archived skill-graph legacy |
+| 012 | `z_archive/skill-graph-legacy/012-deprecate-skill-graph-and-readme-indexing/` | Archived skill-graph legacy |
+| 013 | `013-deprecate-skill-graph-and-readme-indexing-2/` | Active canonical skill-graph-related folder |
+| 014 | `014-non-skill-graph-consolidated/` | Active canonical non-skill-graph folder |
 
 ---
 
@@ -438,8 +444,9 @@ Deliver a unified intelligent context engine where hybrid retrieval with confide
 ## RELATED DOCUMENTS
 
 - **Workstream A Sub-Spec**: `001-system-speckit-hybrid-rag-fusion/spec.md`
-- **Workstream B Sub-Spec**: `002-skill-graph-integration/spec.md`
-- **Workstream C Sub-Spec**: `003-unified-graph-intelligence/spec.md`
+- **Workstream B Sub-Spec (archived)**: `z_archive/skill-graph-legacy/002-skill-graph-integration/spec.md`
+- **Workstream C Sub-Spec (archived)**: `z_archive/skill-graph-legacy/003-unified-graph-intelligence/spec.md`
+- **Skill-Graph Active Canonical**: `013-deprecate-skill-graph-and-readme-indexing-2/`
 - **Implementation Plan**: See `plan.md`
 - **Task Breakdown**: See `tasks.md`
 - **Verification Checklist**: See `checklist.md`

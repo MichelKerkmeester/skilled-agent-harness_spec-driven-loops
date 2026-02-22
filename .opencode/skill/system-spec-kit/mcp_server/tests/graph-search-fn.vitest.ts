@@ -41,7 +41,7 @@ describe('createUnifiedGraphSearchFn', () => {
   it('returns mem-prefixed graph results for causal matches', () => {
     mockAll.mockReturnValue([makeCausalRow({ id: 'edge-001', strength: 0.9 })]);
 
-    const searchFn = createUnifiedGraphSearchFn(mockDb, '/skills');
+    const searchFn = createUnifiedGraphSearchFn(mockDb);
     const results = searchFn('memory', { limit: 5 });
 
     expect(results).toHaveLength(1);
@@ -52,7 +52,7 @@ describe('createUnifiedGraphSearchFn', () => {
   it('uses memory_index content_text lookup in causal SQL', () => {
     mockAll.mockReturnValue([]);
 
-    const searchFn = createUnifiedGraphSearchFn(mockDb, '/skills');
+    const searchFn = createUnifiedGraphSearchFn(mockDb);
     searchFn('spec', { limit: 5 });
 
     const sql = String(mockPrepare.mock.calls[0]?.[0] ?? '');
@@ -65,7 +65,7 @@ describe('createUnifiedGraphSearchFn', () => {
       throw new Error('DB connection lost');
     });
 
-    const searchFn = createUnifiedGraphSearchFn(mockDb, '/skills');
+    const searchFn = createUnifiedGraphSearchFn(mockDb);
     expect(searchFn('memory', { limit: 10 })).toEqual([]);
   });
 
@@ -76,7 +76,7 @@ describe('createUnifiedGraphSearchFn', () => {
       makeCausalRow({ id: 'edge-mid', strength: 0.7 }),
     ]);
 
-    const searchFn = createUnifiedGraphSearchFn(mockDb, '/skills');
+    const searchFn = createUnifiedGraphSearchFn(mockDb);
     const results = searchFn('memory', { limit: 20 });
 
     const scores = results.map(r => (typeof r['score'] === 'number' ? r['score'] : 0));

@@ -121,7 +121,7 @@ graph TD
 
 Supported per diagram types:
 - **Flowchart** (`graph TD` / `graph LR`): `TYPE: flowchart`, `WHEN: components + connections`, `ENGINE: mermaid`, `RULES: quote special chars, max 20 nodes, use subgraph for grouping`
-- **Sequence** (`sequenceDiagram`): `TYPE: sequence`, `WHEN: actor interactions + messages`, `ENGINE: mermaid`, `RULES: use ->>/--> for sync/async, avoid HTML in labels`
+- **Sequence** (`sequenceDiagram`): `TYPE: sequence`, `WHEN: actor interactions + messages`, `ENGINE: mermaid`, `RULES: use ->>/-->> for sync/async, avoid HTML in labels`
 - **ER** (`erDiagram`): `TYPE: er`, `WHEN: data schema + relationships`, `ENGINE: mermaid`, `RULES: define attributes inline, use cardinality notation`
 - **State** (`stateDiagram-v2`): `TYPE: state`, `WHEN: lifecycle states + transitions`, `ENGINE: mermaid`, `RULES: avoid colons/parens in labels, use flowchart for complex labels`
 - **Mind map** (`mindmap`): `TYPE: mindmap`, `WHEN: hierarchical breakdown + topics`, `ENGINE: mermaid`, `RULES: indent-based syntax, no edge labels`

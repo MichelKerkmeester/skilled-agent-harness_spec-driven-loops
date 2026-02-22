@@ -113,11 +113,19 @@ else
   pass "File size is acceptable: ${FILE_SIZE_KB} KB"
 fi
 
+# Normalize once for multiline-safe CSS/HTML checks and minified one-line files
+HTML_NORMALIZED=$(tr '\n' ' ' < "$HTML_FILE")
+
 # ── CHECK 4: Required <meta> tags ─────────────────────────────────────────────
 section "4" "Required Meta Tags"
 
-# Only scan the <head> section for efficiency — extract up to first </head>
-HEAD_SECTION=$(awk '/<\/head>/{ found=1 } !found{ print }' "$HTML_FILE" | head -100)
+# Extract <head> from normalized HTML first so one-line/minified files are handled.
+HEAD_SECTION=$(echo "$HTML_NORMALIZED" | sed -nE 's/.*<head[^>]*>(.*)<\/head>.*/\1/ip')
+
+# Fallback: if <head> extraction fails, scan the top chunk of the file.
+if [[ -z "$HEAD_SECTION" ]]; then
+  HEAD_SECTION=$(head -c 8000 "$HTML_FILE" | tr '\n' ' ')
+fi
 
 if echo "$HEAD_SECTION" | grep -qi 'charset\s*=\s*["\x27]\?utf-8'; then
   pass "charset=UTF-8 meta tag found"
@@ -152,7 +160,7 @@ if grep -qE '/home/[a-zA-Z0-9_-]+/' "$HTML_FILE" 2>/dev/null; then
   HARDCODED_PATHS=$((HARDCODED_PATHS + 1))
 fi
 
-if grep -qiE '[Cc]:\\\\[a-zA-Z0-9_-]+\\\\' "$HTML_FILE" 2>/dev/null; then
+if grep -qiE "[Cc]:\\\\[a-zA-Z0-9_-]+\\\\" "$HTML_FILE" 2>/dev/null; then
   fail "Found hardcoded Windows path: C:\\Users\\..."
   HARDCODED_PATHS=$((HARDCODED_PATHS + 1))
 fi
@@ -189,8 +197,13 @@ CDN_ERRORS=0
 CDN_URLS=$(grep -oE 'https://cdn\.[a-zA-Z0-9._/-]+' "$HTML_FILE" 2>/dev/null || true)
 
 if [[ -z "$CDN_URLS" ]]; then
-  warn "No CDN URLs found (cdn.* pattern)"
-  info "Expected at minimum: cdn.jsdelivr.net for Mermaid, Chart.js, or anime.js"
+  # Only warn when CDN-backed libraries are actually referenced.
+  if grep -qiE 'mermaid|chart\.js|new Chart\(|animejs|anime\(' "$HTML_FILE"; then
+    warn "No CDN URLs found (cdn.* pattern)"
+    info "Expected at minimum: cdn.jsdelivr.net for Mermaid, Chart.js, or anime.js"
+  else
+    pass "No CDN URLs found and no CDN-backed libraries detected"
+  fi
 else
   # Check that URLs at least start with https://
   INSECURE=$(grep -oE 'http://cdn\.[a-zA-Z0-9._/-]+' "$HTML_FILE" 2>/dev/null || true)
@@ -300,10 +313,15 @@ fi
 # ── CHECK 11: --ve-* token system coverage ────────────────────────────────────
 section "11" "Visual Token System"
 
-VE_TOKEN_COUNT=$(grep -oE -- '--ve-[a-zA-Z0-9_-]+' "$HTML_FILE" 2>/dev/null | sort -u | wc -l | tr -d ' ' || echo 0)
-if [[ "$VE_TOKEN_COUNT" -ge 6 ]]; then
+VE_TOKEN_COUNT=$(
+  (grep -oE -- '--ve-[a-zA-Z0-9_-]+' "$HTML_FILE" 2>/dev/null || true) |
+  sort -u |
+  awk 'NF { count++ } END { print count + 0 }'
+)
+
+if [[ $VE_TOKEN_COUNT -ge 6 ]]; then
   pass "--ve-* token system detected (${VE_TOKEN_COUNT} unique tokens)"
-elif [[ "$VE_TOKEN_COUNT" -ge 1 ]]; then
+elif [[ $VE_TOKEN_COUNT -ge 1 ]]; then
   warn "Limited --ve-* token coverage (${VE_TOKEN_COUNT} unique tokens)"
   info "Use a broader --ve-* variable system (bg/surface/border/text/accent/fonts)"
 else
@@ -314,11 +332,14 @@ fi
 # ── CHECK 12: Typography guardrails ────────────────────────────────────────────
 section "12" "Typography Guardrails"
 
-if grep -qiE 'family=Inter|family=Roboto' "$HTML_FILE"; then
+if grep -qiE 'family=Inter([:&]|$)' "$HTML_FILE"; then
+  fail "Primary font request includes Inter (disallowed as primary visual identity)"
+  info "Use curated alternatives from references/quick_reference.md"
+elif grep -qiE 'family=Roboto([:&]|$)' "$HTML_FILE"; then
   fail "Primary font request includes Inter/Roboto (disallowed as primary visual identity)"
   info "Use curated alternatives from references/quick_reference.md"
-elif grep -qiE -- '--ve-font-(display|body)[^;]*(Inter|Roboto|Arial)' "$HTML_FILE"; then
-  fail "--ve primary font variables use Inter/Roboto/Arial (disallowed)"
+elif grep -qiE -- '--(ve-)?font-(display|body)[^;]*(Inter|Roboto|Arial)' "$HTML_FILE"; then
+  fail "Primary font variables use Inter/Roboto/Arial (disallowed)"
   info "Choose a non-default display/body pairing and keep system fonts as fallback only"
 else
   pass "Primary typography does not use Inter/Roboto/Arial in --ve font variables"
@@ -327,9 +348,9 @@ fi
 # ── CHECK 13: Background atmosphere signal ─────────────────────────────────────
 section "13" "Background Atmosphere"
 
-if grep -qiE 'background-image:[^;]*(radial-gradient|linear-gradient|repeating-linear-gradient)' "$HTML_FILE"; then
+if echo "$HTML_NORMALIZED" | grep -qiE 'background-image:[^;]*(radial-gradient|linear-gradient|repeating-linear-gradient)'; then
   pass "Background atmosphere detected via gradient treatment"
-elif grep -qiE 'background-size:[^;]*[0-9]+px[^;]*[0-9]+px' "$HTML_FILE"; then
+elif echo "$HTML_NORMALIZED" | grep -qiE 'background-size:[^;]*[0-9]+px[^;]*[0-9]+px'; then
   pass "Background atmosphere detected via pattern sizing"
 else
   warn "No explicit atmosphere pattern detected"

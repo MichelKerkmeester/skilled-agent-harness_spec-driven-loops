@@ -565,7 +565,7 @@ async function main(): Promise<void> {
     checkpointsLib.init(database);
     accessTracker.init(database);
     const unifiedGraphSearchFn = isGraphUnifiedEnabled()
-      ? createUnifiedGraphSearchFn(database, path.join(DEFAULT_BASE_PATH, '.opencode', 'skill'))
+      ? createUnifiedGraphSearchFn(database, '')
       : null;
 
     hybridSearch.init(

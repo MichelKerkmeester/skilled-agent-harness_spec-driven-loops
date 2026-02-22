@@ -448,7 +448,7 @@ We chose JWT with refresh tokens because stateless auth scales better.
 <!-- /ANCHOR: decisions -->
 ```
 
-**Coverage**: 533 anchor tags across 78 skill READMEs.
+**Coverage**: ANCHOR retrieval is applied across indexed spec docs, spec memories, and constitutional docs.
 
 **Token comparison**:
 - Full document: ~3000 tokens
@@ -524,13 +524,15 @@ Prevents duplicate memories from polluting the index:
 
 ### 3-Source Indexing Pipeline
 
-`memory_index_scan` categorizes discovered files into five sources:
+`memory_index_scan` indexes only three source families:
 
 | Source | Path Pattern | Weight |
 | --- | --- | --- |
 | Constitutional rules | `.opencode/skill/*/constitutional/*.md` | Per-file metadata |
 | Spec documents | `.opencode/specs/**/*.md` | Per-type multiplier |
 | Spec memories | `specs/**/memory/*.{md,txt}` | 0.5 |
+
+README files and skill documentation trees (`workflows-code--*` / `sk-code--*`, including `references/` and `assets/`) are excluded.
 
 ---
 

@@ -15,7 +15,7 @@
 | **Created** | 2026-02-20 |
 | **Branch** | `138-hybrid-rag-fusion` |
 | **Parent Spec** | `../spec.md` |
-| **Successor** | `002-skill-graph-integration` |
+| **Successor** | `004-command-alignment` |
 
 <!-- ANCHOR: spec-summary-138 -->
 ## 1. Executive Summary

@@ -194,8 +194,8 @@ configure_mcp() {
             "_NOTE_2_PROVIDERS": "Supports: Voyage (1024 dims), OpenAI (1536/3072 dims), HF Local (768 dims, no API needed)",
             "_NOTE_3_CLOUD_PROVIDERS": "For cloud embeddings: add VOYAGE_API_KEY or OPENAI_API_KEY and set EMBEDDINGS_PROVIDER accordingly",
             "_NOTE_4_PORTABLE": "Uses relative path - works when copying project to new location",
-            "_NOTE_5_FEATURE_FLAGS": "Opt-out flags (all default ON unless noted): SPECKIT_GRAPH_UNIFIED, SPECKIT_GRAPH_MMR, SPECKIT_GRAPH_AUTHORITY, SPECKIT_EXTENDED_TELEMETRY | Default OFF: SPECKIT_ADAPTIVE_FUSION",
-            "_NOTE_6_GRAPH": "Skill graph (72 nodes, 9 skills) is active by default. Disable with SPECKIT_GRAPH_UNIFIED=false"
+            "_NOTE_5_FEATURE_FLAGS": "Opt-out flags (all default ON unless noted): SPECKIT_GRAPH_UNIFIED, SPECKIT_EXTENDED_TELEMETRY | Default OFF: SPECKIT_ADAPTIVE_FUSION",
+            "_NOTE_6_GRAPH": "Causal graph retrieval channel is active by default. Disable with SPECKIT_GRAPH_UNIFIED=false"
         }
     }'
     
@@ -279,7 +279,7 @@ Features:
     - Constitutional tier memories (always surface first)
     - Checkpoint save/restore
     - Trigger phrase matching
-    - Skill graph system (72 nodes across 9 skills, SGQS query engine)
+    - Causal graph retrieval tools (drift tracing, causal links, causal stats, causal unlink)
     - Graph-guided MMR reranking with intent-mapped lambda values
     - Structural authority propagation (cross-encoder reranking)
     - Feature flag system (5 opt-out flags for graph, telemetry, fusion)
@@ -350,7 +350,7 @@ main() {
     echo "  1. Restart OpenCode to load the new MCP"
     echo "  2. (Optional) Set VOYAGE_API_KEY for better embeddings"
     echo "  3. Use memory_search, memory_save, memory_context tools for context preservation"
-    echo "  4. Run check-links.sh to validate skill graph node connections"
+    echo "  4. (Optional) Run check-links.sh to validate markdown links"
     echo ""
 }
 

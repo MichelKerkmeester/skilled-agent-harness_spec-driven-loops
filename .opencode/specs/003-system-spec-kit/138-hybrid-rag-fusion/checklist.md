@@ -21,14 +21,16 @@ This is the **root checklist** for the 138-hybrid-rag-fusion spec folder. It tra
 | Tag | Workstream | Spec Folder |
 |-----|-----------|-------------|
 | `[W:RAG]` | Hybrid RAG Fusion (Workstream A) | `001-system-speckit-hybrid-rag-fusion/` |
-| `[W:GRAPH]` | Skill Graph Integration (Workstream B) | `002-skill-graph-integration/` |
+| `[W:GRAPH]` | Skill Graph Integration (Workstream B, archived) | `z_archive/skill-graph-legacy/002-skill-graph-integration/` |
 | `[W:INTEG]` | Cross-workstream integration | Both |
-| `[W:UGRAPH]` | Unified Graph Intelligence (Workstream C) | `003-unified-graph-intelligence/` |
+| `[W:UGRAPH]` | Unified Graph Intelligence (Workstream C, archived) | `z_archive/skill-graph-legacy/003-unified-graph-intelligence/` |
+| `[W:GRAPH-CANON]` | Skill-graph canonical active consolidation | `013-deprecate-skill-graph-and-readme-indexing-2/` |
 
 **Sub-checklists:**
 - Workstream A detail: `001-system-speckit-hybrid-rag-fusion/checklist.md`
-- Workstream B detail: `002-skill-graph-integration/checklist.md`
-- Workstream C detail: `003-unified-graph-intelligence/checklist.md`
+- Workstream B detail (archived): `z_archive/skill-graph-legacy/002-skill-graph-integration/checklist.md`
+- Workstream C detail (archived): `z_archive/skill-graph-legacy/003-unified-graph-intelligence/checklist.md`
+- Skill-graph canonical active detail: `013-deprecate-skill-graph-and-readme-indexing-2/checklist.md`
 <!-- /ANCHOR:protocol -->
 
 ---
@@ -87,7 +89,7 @@ This is the **root checklist** for the 138-hybrid-rag-fusion spec folder. It tra
 <!-- ANCHOR:workstream-c -->
 ## Workstream C: Unified Graph Intelligence (003)
 
-> Cross-ref: `003-unified-graph-intelligence/checklist.md` for detailed verification items
+> Cross-ref: `z_archive/skill-graph-legacy/003-unified-graph-intelligence/checklist.md` for detailed verification items
 
 - [x] CHK-C01 [P0] graphSearchFn wired at context-server.ts:566 (receives 3 arguments) [Evidence: 003/CHK-010 — context-server.ts wired with 3 args]
 - [x] CHK-C02 [P0] createUnifiedGraphSearchFn() queries both Causal + SGQS graphs [Evidence: 003/CHK-012 — queries queryCausalEdges() and querySkillGraph()]
@@ -200,7 +202,7 @@ This is the **root checklist** for the 138-hybrid-rag-fusion spec folder. It tra
 <!--
 Level 3+ root checklist for 138-hybrid-rag-fusion.
 Covers global quality gates across Workstream A (RAG) and Workstream B (Graph).
-Sub-checklists in 001-system-speckit-hybrid-rag-fusion/ and 002-skill-graph-integration/ track implementation detail.
+Sub-checklists in 001-system-speckit-hybrid-rag-fusion/ and z_archive/skill-graph-legacy/002-skill-graph-integration/ track implementation detail.
 Mark [x] with evidence format: [Evidence: description of proof]
 P0 must complete before done claim. P1 needs approval to defer. P2 free to defer.
 -->

@@ -16,8 +16,8 @@
 | **Created** | 2026-02-20 |
 | **Branch** | `main` |
 | **Parent Spec** | `../spec.md` |
-| **Predecessor** | `003-unified-graph-intelligence` |
-| **Successor** | `005-install-guide-alignment` |
+| **Predecessor** | `001-system-speckit-hybrid-rag-fusion` |
+| **Successor** | `013-deprecate-skill-graph-and-readme-indexing-2` |
 | **Phase** | `004-command-alignment` |
 <!-- /ANCHOR:metadata -->
 

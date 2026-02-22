@@ -20,6 +20,8 @@
 ### Overview
 
 This pass is completion-focused: capture final deprecation proof after cleanup already landed. The flow confirms no SGQS/readme-indexing/skill-ref residue remains in target areas, records additional command and README anchor cleanup, then validates compile/test gates and closes Level 3 documentation artifacts.
+
+This phase also serves as the canonical consolidation target for legacy skill-graph child folders, with archive mapping tracked in `merge-manifest.md`.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -87,6 +89,13 @@ Requested cleanup state is validated through deterministic commands. Results are
 
 - [x] Run spec validation script on `013` folder.
 - [x] Run placeholder check on `013` folder.
+
+### Phase 5: Legacy Skill-Graph Consolidation and Archive
+
+- [x] Create merge manifest documenting legacy source coverage and destination archive paths.
+- [x] Consolidate legacy-scope documentation context into active `013` artifacts.
+- [x] Move legacy skill-graph folders under `../z_archive/skill-graph-legacy/`.
+- [x] Update root 138 docs (`spec/plan/tasks/checklist/implementation-summary`) to reflect single active skill-graph folder state.
 <!-- /ANCHOR:phases -->
 
 ---

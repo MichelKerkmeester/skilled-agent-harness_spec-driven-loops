@@ -371,7 +371,7 @@ We chose JWT with refresh tokens because stateless auth scales better.
 <!-- /ANCHOR: decisions -->
 ```
 
-**Coverage:** 533 anchor tags across 78 skill READMEs.
+**Coverage:** ANCHOR retrieval is applied across the indexed memory corpus (spec docs, spec memories, constitutional docs).
 **Token savings:** ~93% vs loading full documents.
 **Common anchors:** `summary`, `decisions`, `metadata`, `state`, `context`, `artifacts`, `blockers`, `next-steps`
 
@@ -382,6 +382,8 @@ We chose JWT with refresh tokens because stateless auth scales better.
 | 1 | Constitutional rules | `.opencode/skill/*/constitutional/*.md` | Per-file metadata |
 | 2 | Spec documents | `.opencode/specs/**/*.md` | Per-type multiplier |
 | 3 | Spec memories | `specs/*/memory/*.{md,txt}` | 0.5 |
+
+README files and skill documentation trees (`workflows-code--*` / `sk-code--*`, including `references/` and `assets/`) are excluded from indexing.
 
 ---
 

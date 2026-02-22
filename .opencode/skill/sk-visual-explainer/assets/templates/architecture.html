@@ -31,50 +31,50 @@
     --font-mono: 'IBM Plex Mono', 'SF Mono', Consolas, monospace;
 
     /* Light theme — warm terracotta + sage palette */
-    --bg: #faf7f5;
-    --surface: #ffffff;
-    --surface2: #f5f0ec;
-    --surface-elevated: #fff9f5;
-    --border: rgba(0, 0, 0, 0.07);
-    --border-bright: rgba(0, 0, 0, 0.14);
-    --text: #292017;
-    --text-dim: #8a7e72;
-    --accent: #c2410c;
-    --accent-dim: rgba(194, 65, 12, 0.07);
-    --green: #4d7c0f;
-    --green-dim: rgba(77, 124, 15, 0.07);
-    --orange: #b45309;
-    --orange-dim: rgba(180, 83, 9, 0.07);
-    --sage: #65a30d;
-    --sage-dim: rgba(101, 163, 13, 0.07);
-    --teal: #0f766e;
-    --teal-dim: rgba(15, 118, 110, 0.07);
-    --plum: #9f1239;
-    --plum-dim: rgba(159, 18, 57, 0.07);
+    --ve-bg: #faf7f5;
+    --ve-surface: #ffffff;
+    --ve-surface2: #f5f0ec;
+    --ve-surface-elevated: #fff9f5;
+    --ve-border: rgba(0, 0, 0, 0.07);
+    --ve-border-bright: rgba(0, 0, 0, 0.14);
+    --ve-text: #292017;
+    --ve-text-dim: #8a7e72;
+    --ve-accent: #c2410c;
+    --ve-accent-dim: rgba(194, 65, 12, 0.07);
+    --ve-success: #4d7c0f;
+    --ve-success-dim: rgba(77, 124, 15, 0.07);
+    --ve-warning: #b45309;
+    --ve-warning-dim: rgba(180, 83, 9, 0.07);
+    --ve-sage: #65a30d;
+    --ve-sage-dim: rgba(101, 163, 13, 0.07);
+    --ve-teal: #0f766e;
+    --ve-teal-dim: rgba(15, 118, 110, 0.07);
+    --ve-plum: #9f1239;
+    --ve-plum-dim: rgba(159, 18, 57, 0.07);
   }
 
   @media (prefers-color-scheme: dark) {
     :root {
-      --bg: #1a1412;
-      --surface: #231d1a;
-      --surface2: #2e2622;
-      --surface-elevated: #352d28;
-      --border: rgba(255, 255, 255, 0.06);
-      --border-bright: rgba(255, 255, 255, 0.12);
-      --text: #ede5dd;
-      --text-dim: #a69889;
-      --accent: #fb923c;
-      --accent-dim: rgba(251, 146, 60, 0.12);
-      --green: #a3e635;
-      --green-dim: rgba(163, 230, 53, 0.1);
-      --orange: #fbbf24;
-      --orange-dim: rgba(251, 191, 36, 0.1);
-      --sage: #bef264;
-      --sage-dim: rgba(190, 242, 100, 0.1);
-      --teal: #5eead4;
-      --teal-dim: rgba(94, 234, 212, 0.1);
-      --plum: #fda4af;
-      --plum-dim: rgba(253, 164, 175, 0.1);
+      --ve-bg: #1a1412;
+      --ve-surface: #231d1a;
+      --ve-surface2: #2e2622;
+      --ve-surface-elevated: #352d28;
+      --ve-border: rgba(255, 255, 255, 0.06);
+      --ve-border-bright: rgba(255, 255, 255, 0.12);
+      --ve-text: #ede5dd;
+      --ve-text-dim: #a69889;
+      --ve-accent: #fb923c;
+      --ve-accent-dim: rgba(251, 146, 60, 0.12);
+      --ve-success: #a3e635;
+      --ve-success-dim: rgba(163, 230, 53, 0.1);
+      --ve-warning: #fbbf24;
+      --ve-warning-dim: rgba(251, 191, 36, 0.1);
+      --ve-sage: #bef264;
+      --ve-sage-dim: rgba(190, 242, 100, 0.1);
+      --ve-teal: #5eead4;
+      --ve-teal-dim: rgba(94, 234, 212, 0.1);
+      --ve-plum: #fda4af;
+      --ve-plum-dim: rgba(253, 164, 175, 0.1);
     }
   }
 
@@ -82,11 +82,11 @@
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   body {
-    background: var(--bg);
+    background: var(--ve-bg);
     background-image:
-      radial-gradient(ellipse at 20% 0%, var(--accent-dim) 0%, transparent 50%),
-      radial-gradient(ellipse at 80% 100%, var(--sage-dim) 0%, transparent 40%);
-    color: var(--text);
+      radial-gradient(ellipse at 20% 0%, var(--ve-accent-dim) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 100%, var(--ve-sage-dim) 0%, transparent 40%);
+    color: var(--ve-text);
     font-family: var(--font-body);
     padding: 40px;
     min-height: 100vh;
@@ -121,7 +121,7 @@
   }
 
   .subtitle {
-    color: var(--text-dim);
+    color: var(--ve-text-dim);
     font-size: 14px;
     margin-bottom: 40px;
     font-family: var(--font-mono);
@@ -138,21 +138,21 @@
 
   /* ============ SECTION CARD ============ */
   .section {
-    background: var(--surface);
-    border: 1px solid var(--border);
+    background: var(--ve-surface);
+    border: 1px solid var(--ve-border);
     border-radius: 12px;
     padding: 20px 24px;
   }
 
   .section--hero {
-    background: var(--surface-elevated);
-    border-color: color-mix(in srgb, var(--border) 50%, var(--accent) 50%);
+    background: var(--ve-surface-elevated);
+    border-color: color-mix(in srgb, var(--ve-border) 50%, var(--ve-accent) 50%);
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
     padding: 28px 32px;
   }
 
   .section--recessed {
-    background: var(--surface2);
+    background: var(--ve-surface2);
     box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.04);
   }
 
@@ -176,29 +176,29 @@
   }
 
   /* Color variants */
-  .section--accent { border-color: var(--accent-dim); }
-  .section--accent .section-label { color: var(--accent); }
-  .section--accent .section-label .dot { background: var(--accent); }
+  .section--ve-accent { border-color: var(--ve-accent-dim); }
+  .section--ve-accent .section-label { color: var(--ve-accent); }
+  .section--ve-accent .section-label .dot { background: var(--ve-accent); }
 
-  .section--green { border-color: var(--green-dim); }
-  .section--green .section-label { color: var(--green); }
-  .section--green .section-label .dot { background: var(--green); }
+  .section--ve-success { border-color: var(--ve-success-dim); }
+  .section--ve-success .section-label { color: var(--ve-success); }
+  .section--ve-success .section-label .dot { background: var(--ve-success); }
 
-  .section--orange { border-color: var(--orange-dim); }
-  .section--orange .section-label { color: var(--orange); }
-  .section--orange .section-label .dot { background: var(--orange); }
+  .section--ve-warning { border-color: var(--ve-warning-dim); }
+  .section--ve-warning .section-label { color: var(--ve-warning); }
+  .section--ve-warning .section-label .dot { background: var(--ve-warning); }
 
-  .section--sage { border-color: var(--sage-dim); }
-  .section--sage .section-label { color: var(--sage); }
-  .section--sage .section-label .dot { background: var(--sage); }
+  .section--ve-sage { border-color: var(--ve-sage-dim); }
+  .section--ve-sage .section-label { color: var(--ve-sage); }
+  .section--ve-sage .section-label .dot { background: var(--ve-sage); }
 
-  .section--teal { border-color: var(--teal-dim); }
-  .section--teal .section-label { color: var(--teal); }
-  .section--teal .section-label .dot { background: var(--teal); }
+  .section--ve-teal { border-color: var(--ve-teal-dim); }
+  .section--ve-teal .section-label { color: var(--ve-teal); }
+  .section--ve-teal .section-label .dot { background: var(--ve-teal); }
 
-  .section--plum { border-color: var(--plum-dim); }
-  .section--plum .section-label { color: var(--plum); }
-  .section--plum .section-label .dot { background: var(--plum); }
+  .section--ve-plum { border-color: var(--ve-plum-dim); }
+  .section--ve-plum .section-label { color: var(--ve-plum); }
+  .section--ve-plum .section-label .dot { background: var(--ve-plum); }
 
   /* ============ INNER GRID ============ */
   .inner-grid {
@@ -208,8 +208,8 @@
   }
 
   .inner-card {
-    background: var(--surface2);
-    border: 1px solid var(--border);
+    background: var(--ve-surface2);
+    border: 1px solid var(--ve-border);
     border-radius: 8px;
     padding: 12px 16px;
   }
@@ -221,7 +221,7 @@
   }
 
   .inner-card .desc {
-    color: var(--text-dim);
+    color: var(--ve-text-dim);
     font-size: 12px;
     line-height: 1.5;
   }
@@ -229,8 +229,8 @@
   .inner-card code {
     font-family: var(--font-mono);
     font-size: 11px;
-    background: var(--accent-dim);
-    color: var(--accent);
+    background: var(--ve-accent-dim);
+    color: var(--ve-accent);
     padding: 1px 5px;
     border-radius: 3px;
   }
@@ -241,7 +241,7 @@
     justify-content: center;
     align-items: center;
     gap: 8px;
-    color: var(--text-dim);
+    color: var(--ve-text-dim);
     font-family: var(--font-mono);
     font-size: 12px;
     padding: 4px 0;
@@ -251,7 +251,7 @@
     width: 20px;
     height: 20px;
     fill: none;
-    stroke: var(--border-bright);
+    stroke: var(--ve-border-bright);
     stroke-width: 2;
     stroke-linecap: round;
     stroke-linejoin: round;
@@ -267,8 +267,8 @@
   }
 
   .pipeline-step {
-    background: var(--surface);
-    border: 1px solid var(--border);
+    background: var(--ve-surface);
+    border: 1px solid var(--ve-border);
     border-radius: 8px;
     padding: 10px 12px;
     min-width: 120px;
@@ -291,28 +291,28 @@
 
   .pipeline-step .step-detail {
     font-size: 10px;
-    color: var(--text-dim);
+    color: var(--ve-text-dim);
     line-height: 1.4;
   }
 
   /* Step color variants */
-  .pipeline-step--teal { border-color: var(--teal-dim); }
-  .pipeline-step--teal .step-num { color: var(--teal); }
+  .pipeline-step--ve-teal { border-color: var(--ve-teal-dim); }
+  .pipeline-step--ve-teal .step-num { color: var(--ve-teal); }
 
-  .pipeline-step--sage { border-color: var(--sage-dim); }
-  .pipeline-step--sage .step-num { color: var(--sage); }
+  .pipeline-step--ve-sage { border-color: var(--ve-sage-dim); }
+  .pipeline-step--ve-sage .step-num { color: var(--ve-sage); }
 
-  .pipeline-step--orange { border-color: var(--orange-dim); }
-  .pipeline-step--orange .step-num { color: var(--orange); }
+  .pipeline-step--ve-warning { border-color: var(--ve-warning-dim); }
+  .pipeline-step--ve-warning .step-num { color: var(--ve-warning); }
 
-  .pipeline-step--green { border-color: var(--green-dim); }
-  .pipeline-step--green .step-num { color: var(--green); }
+  .pipeline-step--ve-success { border-color: var(--ve-success-dim); }
+  .pipeline-step--ve-success .step-num { color: var(--ve-success); }
 
   .pipeline-arrow {
     display: flex;
     align-items: center;
     padding: 0 2px;
-    color: var(--border-bright);
+    color: var(--ve-border-bright);
     font-size: 16px;
     flex-shrink: 0;
   }
@@ -344,7 +344,7 @@
 
   .node-list li::before {
     content: '›';
-    color: var(--text-dim);
+    color: var(--ve-text-dim);
     font-weight: 600;
     position: absolute;
     left: 0;
@@ -353,31 +353,31 @@
   .node-list code {
     font-family: var(--font-mono);
     font-size: 11px;
-    background: var(--accent-dim);
-    color: var(--accent);
+    background: var(--ve-accent-dim);
+    color: var(--ve-accent);
     padding: 1px 5px;
     border-radius: 3px;
   }
 
   /* ============ CALLOUT ============ */
   .callout {
-    background: var(--surface2);
-    border: 1px solid var(--border);
-    border-left: 3px solid var(--accent);
+    background: var(--ve-surface2);
+    border: 1px solid var(--ve-border);
+    border-left: 3px solid var(--ve-accent);
     border-radius: 0 8px 8px 0;
     padding: 14px 18px;
     font-size: 13px;
     line-height: 1.6;
-    color: var(--text-dim);
+    color: var(--ve-text-dim);
   }
 
-  .callout strong { color: var(--text); font-weight: 600; }
+  .callout strong { color: var(--ve-text); font-weight: 600; }
 
   .callout code {
     font-family: var(--font-mono);
     font-size: 11px;
-    background: var(--accent-dim);
-    color: var(--accent);
+    background: var(--ve-accent-dim);
+    color: var(--ve-accent);
     padding: 1px 5px;
     border-radius: 3px;
   }
@@ -394,7 +394,7 @@
     align-items: center;
     gap: 6px;
     font-size: 11px;
-    color: var(--text-dim);
+    color: var(--ve-text-dim);
     font-family: var(--font-mono);
   }
 
@@ -413,8 +413,8 @@
   }
 
   .source {
-    background: var(--surface2);
-    border: 1px solid var(--border);
+    background: var(--ve-surface2);
+    border: 1px solid var(--ve-border);
     border-radius: 8px;
     padding: 10px 18px;
     font-family: var(--font-mono);
@@ -426,7 +426,7 @@
     transition: border-color 0.2s;
   }
 
-  .source:hover { border-color: var(--border-bright); }
+  .source:hover { border-color: var(--ve-border-bright); }
 
   /* ============ RESPONSIVE ============ */
   @media (max-width: 768px) {
@@ -447,7 +447,7 @@
 
   <!-- Source pills row — hero depth for the entry point -->
   <div class="section section--hero" style="--i:0">
-    <div class="section-label"><span class="dot" style="background:var(--text-dim)"></span> Input Sources</div>
+    <div class="section-label"><span class="dot" style="background:var(--ve-text-dim)"></span> Input Sources</div>
     <div class="sources">
       <div class="source"><span>💬</span> Slack</div>
       <div class="source"><span>🐙</span> GitHub</div>
@@ -462,7 +462,7 @@
   </div>
 
   <!-- Gateway section with inner grid -->
-  <div class="section section--accent" style="--i:2">
+  <div class="section section--ve-accent" style="--i:2">
     <div class="section-label"><span class="dot"></span> Gateway Layer</div>
     <div class="inner-grid">
       <div class="inner-card">
@@ -482,47 +482,47 @@
   </div>
 
   <!-- Pipeline section -->
-  <div class="section section--green" style="--i:4">
+  <div class="section section--ve-success" style="--i:4">
     <div class="section-label"><span class="dot"></span> Processing Pipeline</div>
     <div class="legend" style="margin-bottom:14px">
-      <div class="legend-item"><div class="legend-swatch" style="background:var(--teal-dim);border:1px solid var(--teal)"></div>no LLM</div>
-      <div class="legend-item"><div class="legend-swatch" style="background:var(--sage-dim);border:1px solid var(--sage)"></div>LLM call</div>
-      <div class="legend-item"><div class="legend-swatch" style="background:var(--orange-dim);border:1px solid var(--orange)"></div>embedding</div>
-      <div class="legend-item"><div class="legend-swatch" style="background:var(--green-dim);border:1px solid var(--green)"></div>DB write</div>
+      <div class="legend-item"><div class="legend-swatch" style="background:var(--ve-teal-dim);border:1px solid var(--ve-teal)"></div>no LLM</div>
+      <div class="legend-item"><div class="legend-swatch" style="background:var(--ve-sage-dim);border:1px solid var(--ve-sage)"></div>LLM call</div>
+      <div class="legend-item"><div class="legend-swatch" style="background:var(--ve-warning-dim);border:1px solid var(--ve-warning)"></div>embedding</div>
+      <div class="legend-item"><div class="legend-swatch" style="background:var(--ve-success-dim);border:1px solid var(--ve-success)"></div>DB write</div>
     </div>
     <div class="pipeline">
-      <div class="pipeline-step pipeline-step--teal">
+      <div class="pipeline-step pipeline-step--ve-teal">
         <div class="step-num">STEP 0</div>
         <div class="step-name">Pre-filter</div>
         <div class="step-detail">Allowlist, bots,<br>dedup check</div>
       </div>
       <div class="pipeline-arrow">→</div>
-      <div class="pipeline-step pipeline-step--sage">
+      <div class="pipeline-step pipeline-step--ve-sage">
         <div class="step-num">STEP 1</div>
         <div class="step-name">Relevance</div>
         <div class="step-detail">Cheap LLM<br>boolean check</div>
       </div>
       <div class="pipeline-arrow">→</div>
-      <div class="pipeline-step pipeline-step--sage">
+      <div class="pipeline-step pipeline-step--ve-sage">
         <div class="step-num">STEP 2</div>
         <div class="step-name">Classify</div>
         <div class="step-detail">JSON schema<br>validated output</div>
       </div>
       <div class="pipeline-arrow">→</div>
       <div class="pipeline-parallel">
-        <div class="pipeline-step pipeline-step--orange">
+        <div class="pipeline-step pipeline-step--ve-warning">
           <div class="step-num">STEP 3</div>
           <div class="step-name">Embed</div>
           <div class="step-detail">Vector embedding</div>
         </div>
-        <div class="pipeline-step pipeline-step--teal">
+        <div class="pipeline-step pipeline-step--ve-teal">
           <div class="step-num">STEP 5</div>
           <div class="step-name">Enrich</div>
           <div class="step-detail">User resolution</div>
         </div>
       </div>
       <div class="pipeline-arrow">→</div>
-      <div class="pipeline-step pipeline-step--green">
+      <div class="pipeline-step pipeline-step--ve-success">
         <div class="step-num">STEP 4</div>
         <div class="step-name">Cluster</div>
         <div class="step-detail">Cosine similarity<br>+ INSERT</div>
@@ -536,7 +536,7 @@
   </div>
 
   <!-- Database section -->
-  <div class="section section--orange" style="--i:6">
+  <div class="section section--ve-warning" style="--i:6">
     <div class="section-label"><span class="dot"></span> Database</div>
     <div class="inner-grid">
       <div class="inner-card">
@@ -557,7 +557,7 @@
 
   <!-- Three column output -->
   <div class="three-col">
-    <div class="section section--sage" style="--i:8">
+    <div class="section section--ve-sage" style="--i:8">
       <div class="section-label"><span class="dot"></span> Agent Tools</div>
       <ul class="node-list">
         <li><code>search</code> semantic vector search</li>
@@ -565,7 +565,7 @@
         <li><code>stats</code> aggregate metrics</li>
       </ul>
     </div>
-    <div class="section section--plum" style="--i:9">
+    <div class="section section--ve-plum" style="--i:9">
       <div class="section-label"><span class="dot"></span> Actions</div>
       <ul class="node-list">
         <li>Create tickets from clusters</li>
@@ -573,7 +573,7 @@
         <li>Generate release notes</li>
       </ul>
     </div>
-    <div class="section section--teal" style="--i:10">
+    <div class="section section--ve-teal" style="--i:10">
       <div class="section-label"><span class="dot"></span> Dashboard</div>
       <ul class="node-list">
         <li>Metrics overview</li>

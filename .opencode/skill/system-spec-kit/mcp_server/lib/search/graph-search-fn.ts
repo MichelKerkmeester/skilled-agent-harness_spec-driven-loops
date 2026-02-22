@@ -87,12 +87,11 @@ function queryCausalEdges(
  * Creates a graph search function backed by causal_edges only.
  *
  * @param database  - An open better-sqlite3 Database instance
- * @param _skillRoot - Deprecated parameter retained for API compatibility
  * @returns A GraphSearchFn over causal edges
  */
 function createUnifiedGraphSearchFn(
   database: Database.Database,
-  _skillRoot: string
+  _legacyArg?: string
 ): GraphSearchFn {
   return function unifiedGraphSearch(
     query: string,

@@ -19,8 +19,9 @@
 
 > **Scope note:** This root `tasks.md` tracks high-level tasks and cross-workstream integration. Detailed per-task tracking lives in sub-folder task files:
 > - Workstream A: `001-system-speckit-hybrid-rag-fusion/tasks.md`
-> - Workstream B: `002-skill-graph-integration/tasks.md`
-> - Workstream C: `003-unified-graph-intelligence/tasks.md`
+> - Workstream B (archived): `z_archive/skill-graph-legacy/002-skill-graph-integration/tasks.md`
+> - Workstream C (archived): `z_archive/skill-graph-legacy/003-unified-graph-intelligence/tasks.md`
+> - Skill-graph active consolidation: `013-deprecate-skill-graph-and-readme-indexing-2/tasks.md`
 <!-- /ANCHOR:notation -->
 
 ---
@@ -31,9 +32,10 @@
 | Workstream | Folder | Status | Progress |
 |------------|--------|--------|----------|
 | [W:RAG] Hybrid RAG Fusion | `001-system-speckit-hybrid-rag-fusion/` | **Complete** | 6 / 6 phases |
-| [W:GRAPH] Skill Graph Integration | `002-skill-graph-integration/` | **Complete** | 5 / 5 phases |
+| [W:GRAPH] Skill Graph Integration | `z_archive/skill-graph-legacy/002-skill-graph-integration/` | **Complete (Archived)** | 5 / 5 phases |
+| [W:GRAPH-CANON] Skill-Graph Consolidation Canonical | `013-deprecate-skill-graph-and-readme-indexing-2/` | **Active** | 5 / 5 phases |
 | [W:INTEG] Global Integration | (root-level tasks) | **Complete** | 5 / 5 tasks |
-| [W:INTEG-GRAPH] Unified Graph Intelligence | `003-unified-graph-intelligence/` | **Complete** | 4 / 4 phases |
+| [W:INTEG-GRAPH] Unified Graph Intelligence | `z_archive/skill-graph-legacy/003-unified-graph-intelligence/` | **Complete (Archived)** | 4 / 4 phases |
 
 **Overall completion**: All 3 workstreams complete. Workstream B done. Workstream C done (22 tasks, 4770 tests). Workstream A done including centroid scoring/tests. Global integration: G001-G005 complete. All checklist priorities closed in this closure pass.
 <!-- /ANCHOR:overview -->
@@ -87,7 +89,7 @@
 <!-- ANCHOR:workstream-b -->
 ## Workstream B: Skill Graph Integration [W:GRAPH]
 
-> Details: `002-skill-graph-integration/tasks.md`
+> Details (archived): `z_archive/skill-graph-legacy/002-skill-graph-integration/tasks.md`
 
 ### Phase 1: Tooling
 - [x] [W:GRAPH-P1] T101 Create `check-links.sh` link validation script
@@ -121,7 +123,7 @@
 <!-- ANCHOR:workstream-c -->
 ## Workstream C: Unified Graph Intelligence [W:INTEG-GRAPH]
 
-> Details: `003-unified-graph-intelligence/tasks.md`
+> Details (archived): `z_archive/skill-graph-legacy/003-unified-graph-intelligence/tasks.md`
 
 ### Phase 0+: Wire Graph Channel — COMPLETE
 - [x] [W:INTEG-P0+] T301 Create SkillGraphCacheManager singleton (graph-search cache) — maps to 003/T001
@@ -213,6 +215,7 @@ These tasks require both workstreams to be sufficiently complete before executio
 - **Decision Record**: See `decision-record.md`
 - **Checklist**: See `checklist.md`
 - **Workstream A Tasks**: `001-system-speckit-hybrid-rag-fusion/tasks.md`
-- **Workstream B Tasks**: `002-skill-graph-integration/tasks.md`
-- **Workstream C Tasks**: `003-unified-graph-intelligence/tasks.md`
+- **Workstream B Tasks (archived)**: `z_archive/skill-graph-legacy/002-skill-graph-integration/tasks.md`
+- **Workstream C Tasks (archived)**: `z_archive/skill-graph-legacy/003-unified-graph-intelligence/tasks.md`
+- **Skill-Graph Canonical Tasks (active)**: `013-deprecate-skill-graph-and-readme-indexing-2/tasks.md`
 <!-- /ANCHOR:cross-refs -->

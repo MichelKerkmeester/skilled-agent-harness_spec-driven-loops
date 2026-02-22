@@ -29,6 +29,15 @@ The phase records three verification pillars: build health (`npx tsc`), full reg
 ### Boundary Safety
 
 The decision record makes the boundary explicit: deprecation removes SGQS/readme-indexing/skill-ref/workflows asset indexing features, while causal graph functionality remains supported. This prevents over-removal and keeps behavior aligned with intent.
+
+### Legacy Skill-Graph Consolidation
+
+`013` is now the single active skill-graph-related folder in `138-hybrid-rag-fusion`. Legacy folders `002`, `003`, `006`, `007`, `009`, and `012` were consolidated through merge documentation and archived intact under `../z_archive/skill-graph-legacy/`.
+
+The merge index is documented in `merge-manifest.md`, which records:
+- source folders and archive destinations
+- preserved artifact categories (spec/plan/tasks/checklist/decision/summary plus auxiliary docs)
+- active-state rule preventing duplicate active skill-graph folders
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -84,5 +93,6 @@ One earlier default-environment test run showed a timeout in `tests/memory-save-
 ## Next Steps
 
 1. Treat this `013` child phase as complete and ready for parent phase roll-up.
-2. Keep the forbidden-term scans as a regression guard in future deprecation-related work.
+2. Use `merge-manifest.md` as the canonical bridge to archived legacy skill-graph folders.
+3. Keep the forbidden-term scans as a regression guard in future deprecation-related work.
 <!-- /ANCHOR:next-steps -->

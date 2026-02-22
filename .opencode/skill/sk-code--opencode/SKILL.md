@@ -2,7 +2,7 @@
 name: sk-code--opencode
 description: Multi-language code standards for OpenCode system code (JavaScript, TypeScript, Python, Shell, JSON/JSONC) with language detection routing, universal patterns, and quality checklists.
 allowed-tools: [Bash, Edit, Glob, Grep, Read, Task, Write]
-version: 1.0.8.0
+version: 1.0.9.0
 ---
 
 <!-- Keywords: opencode style, script standards, mcp code quality, node code style, typescript style, ts standards, python style, py standards, bash style, shell script, json format, jsonc config, code standards opencode -->
@@ -256,7 +256,7 @@ def route_opencode_resources(task):
 
 ```
 STEP 1: Language Detection
-        ├─ Check file extension first (.js, .py, .sh, .json)
+        ├─ Check file extension first (.js/.cjs/.mjs, .ts/.tsx/.mts, .py, .sh, .json/.jsonc)
         ├─ Fall back to keyword matching
         └─ Prompt user if ambiguous
         ↓
@@ -295,6 +295,20 @@ STEP 4: Apply Standards
 | Python     | `skill_advisor.py`, `validate_document.py`, `package_skill.py` |
 | Shell      | `lib/common.sh`, `spec/create.sh`, `validate.sh`               |
 | Config     | `config.jsonc`, `opencode.json`, `complexity-config.jsonc`     |
+
+### Alignment Verifier Output Contract
+
+The recurring verifier at `scripts/verify_alignment_drift.py` applies severity-aware reporting:
+
+- Output format includes rule id and severity: `[{RULE_ID}] [{ERROR|WARN}]`.
+- Default failure criteria: `ERROR` findings only.
+- Optional strict mode: `--fail-on-warn` makes warnings build-breaking.
+- Style rules (`JS-*`, `TS-*`, `PY-*`, `SH-*`) are warning-first by default.
+- Parse/integrity rules (`COMMON-*`, `JSON-*`, `JSONC-*`) are error-class by default.
+- Context-aware advisory downgrade is applied in archival/contextual paths (`z_archive`, `scratch`, `memory`, `research`, `context`, `assets`, `examples`, `fixtures`, and test-heavy paths).
+- TypeScript module-header enforcement is skipped for test files (`*.test.ts`, `*.spec.ts`, `*.vitest.ts` + TSX variants) and pattern assets.
+- JavaScript strict-mode enforcement is skipped for `.mjs`.
+- `tsconfig*.json` supports comment-aware parsing fallback.
 
 ---
 
