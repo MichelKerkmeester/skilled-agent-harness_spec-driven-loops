@@ -376,6 +376,15 @@
       "severity": "warning",
       "essential": false,
       "version": "1.0.0"
+    },
+    {
+      "name": "check-toc-policy",
+      "path": "scripts/rules/check-toc-policy.sh",
+      "type": "bash",
+      "description": "TOC_POLICY rule - allows ToC only in research.md and rejects ToC in standard spec artifacts",
+      "severity": "error",
+      "essential": true,
+      "version": "1.0.0"
     }
   ],
   "libraries": {

@@ -40,7 +40,7 @@ Validation rules are modular shell scripts that check spec folders for structura
 
 | Category             | Count | Details                                       |
 | -------------------- | ----- | --------------------------------------------- |
-| Rules                | 16    | Modular validation scripts                    |
+| Rules                | 17    | Modular validation scripts                    |
 | Severity Levels      | 3     | error, warn, info                             |
 | Documentation Levels | 4     | L1, L2, L3, L3+ with progressive requirements |
 
@@ -86,7 +86,7 @@ cd specs/003-memory-and-spec-kit/046-post-release-refinement-1/
 # Check that rules are executable
 ls -la .opencode/skill/system-spec-kit/scripts/rules/
 
-# Expected: 16 .sh files with execute permissions
+# Expected: 17 .sh files with execute permissions
 # -rwxr-xr-x check-files.sh
 # -rwxr-xr-x check-priority-tags.sh
 # -rwxr-xr-x check-complexity.sh
@@ -124,6 +124,7 @@ rules/
 ├── check-priority-tags.sh  # PRIORITY_TAGS - Checklist priority context
 ├── check-section-counts.sh # SECTION_COUNTS - Section count validation
 ├── check-sections.sh       # SECTIONS_PRESENT - Required markdown sections
+├── check-toc-policy.sh     # TOC_POLICY - ToC allowed only in research.md
 ├── check-template-source.sh# TEMPLATE_SOURCE - Template provenance marker checks
 └── README.md               # This file
 ```
@@ -143,6 +144,7 @@ rules/
 | `check-evidence.sh`       | Completion validation: ensures completed items cite evidence              |
 | `check-links.sh`          | Link validation: validates wikilinks across skill markdown trees          |
 | `check-phase-links.sh`    | Phase validation: checks parent/child phase chain references              |
+| `check-toc-policy.sh`     | Style validation: allows ToC only in `research.md`                        |
 | `check-template-source.sh`| Provenance validation: checks template-source metadata markers            |
 
 `check-links.sh` runs as `LINKS_VALID` only when `SPECKIT_VALIDATE_LINKS=true` to avoid expensive repository-wide scans during routine per-spec validation.
@@ -294,6 +296,21 @@ L3+: 10+ major sections, detailed acceptance scenarios
 ```
 
 **Severity**: warn (advisory)
+
+---
+
+#### TOC_POLICY (check-toc-policy.sh)
+
+**Purpose**: Enforces SpecKit ToC policy for spec artifacts
+
+**Policy**:
+- `research.md`: ToC allowed
+- `spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `decision-record.md`, `implementation-summary.md`, `handover.md`, `debug-delegation.md`: ToC forbidden
+
+**Detection**:
+- Headings matching `## TABLE OF CONTENTS`, `## Table of Contents`, or `## TOC`
+
+**Severity**: error (blocks validation)
 
 ---
 

@@ -76,7 +76,7 @@ OPTIONS:
 EXIT CODES: 0=pass, 1=warnings, 2=errors
 
 RULES: FILE_EXISTS, PLACEHOLDER_FILLED, SECTIONS_PRESENT, LEVEL_DECLARED,
-       PRIORITY_TAGS, EVIDENCE_CITED, ANCHORS_VALID, PHASE_LINKS
+       PRIORITY_TAGS, EVIDENCE_CITED, ANCHORS_VALID, TOC_POLICY, PHASE_LINKS
 
 LEVELS: 1=spec+plan+tasks+impl-summary*, 2=+checklist, 3=+decision-record
         *impl-summary required after tasks completed
@@ -256,7 +256,7 @@ log_detail() { ! $JSON_MODE && ! $QUIET_MODE && printf "    - %s\n" "$1"; true; 
 
 get_rule_severity() {
     case "$1" in
-        FILE_EXISTS|FILES|PLACEHOLDER_FILLED|PLACEHOLDERS|ANCHORS_VALID|ANCHORS) echo "error" ;;
+        FILE_EXISTS|FILES|PLACEHOLDER_FILLED|PLACEHOLDERS|ANCHORS_VALID|ANCHORS|TOC_POLICY) echo "error" ;;
         SECTIONS_PRESENT|SECTIONS|PRIORITY_TAGS|EVIDENCE_CITED|EVIDENCE|PRIORITY|PHASE_LINKS|LINKS_VALID|LINKS) echo "warn" ;;
         LEVEL_DECLARED|LEVEL) echo "info" ;;
         *) echo "error" ;;
@@ -275,6 +275,7 @@ rule_name_to_script() {
         PRIORITY_TAGS) echo "priority-tags" ;;
         EVIDENCE_CITED) echo "evidence" ;;
         ANCHORS_VALID) echo "anchors" ;;
+        TOC_POLICY) echo "toc-policy" ;;
         PHASE_LINKS) echo "phase-links" ;;
         *) echo "" ;;
     esac

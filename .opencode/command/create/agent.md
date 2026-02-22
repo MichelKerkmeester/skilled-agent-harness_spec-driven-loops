@@ -110,7 +110,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    │                                                                │
    │ **Q0. Agent Name** (if not provided in command):               │
    │    What agent would you like to create?                        │
-   │    Format: kebab-case (e.g., review, security-audit)           │
+   │    Format: kebab-case (e.g., quality-gate, security-audit)     │
    │                                                                │
    │ **Q1. Spec Folder** (required):                                │
    │    A) Use existing: [suggest if related found]                 │
@@ -127,7 +127,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    │    B) Load all recent files, up to 3                            │
    │    C) Skip (start fresh)                                       │
    │                                                                │
-   │ Reply with answers, e.g.: "B, A, C" or "review, B, A, C"       │
+   │ Reply with answers, e.g.: "B, A, C" or "quality-gate, B, A, C" │
    └────────────────────────────────────────────────────────────────┘
 
 6. WAIT for user response (DO NOT PROCEED)
@@ -206,8 +206,7 @@ The YAML contains: detailed step activities, checkpoints, confidence scoring, er
 
 ## CONSTRAINTS
 
-- **DO NOT** dispatch any agent (`@context`, `@speckit`, `@review`) from this document
-- **DO NOT** dispatch `@review` to review this workflow or command prompt
+- **DO NOT** dispatch any agent (`@context`, `@speckit`) from this document
 - **ALL** agent dispatching is handled by the YAML workflow steps — this document is setup + reference only
 - **FIRST ACTION** is always: run Phase 0, then Setup Phase, then load the YAML file
 
@@ -294,7 +293,7 @@ permission:
 
 ## 2. [DOMAIN SECTION]
 
-[Content based on purpose - e.g., "Code Review Standards" for a review agent]
+[Content based on purpose - e.g., "Quality Validation Standards" for a quality-gate agent]
 
 ---
 
@@ -328,7 +327,7 @@ permission:
 
 **Subagents:**
 - Invoked via `@agent-name` mentions or automatically by primary agents
-- Specialized for specific tasks (review, research, security, etc.)
+- Specialized for specific tasks (validation, research, security, etc.)
 - Return control to primary agent when complete
 
 **Mode: All:**
@@ -391,12 +390,12 @@ permission:
 
 ## 7. EXAMPLES
 
-**Example 1: Code Review Subagent**
+**Example 1: Quality Validation Subagent**
 ```
-/create:agent review --mode subagent
+/create:agent quality-gate --mode subagent
 ```
-→ Creates `[runtime_agent_path]/review.md`
-→ Invoked via `@review` or automatically by primary agents
+→ Creates `[runtime_agent_path]/quality-gate.md`
+→ Invoked via `@quality-gate` or automatically by primary agents
 
 **Example 2: Security Audit Primary Agent**
 ```
@@ -421,7 +420,7 @@ permission:
 
 **Example 5: Auto mode (no prompts)**
 ```
-/create:agent review --mode subagent :auto
+/create:agent quality-gate --mode subagent :auto
 ```
 → Creates agent without approval prompts, only stops for errors
 

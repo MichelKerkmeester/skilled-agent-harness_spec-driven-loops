@@ -16,7 +16,7 @@ Structured risk checklist for security vulnerabilities, runtime reliability issu
 
 Help reviewers prioritize exploitability and business impact, not just code style.
 
-### Severity Bias
+### Core Principle
 
 When impact is unclear, prefer conservative classification and state uncertainty explicitly.
 <!-- /ANCHOR:overview -->
@@ -189,5 +189,18 @@ Check for:
 - Missing consent mechanisms for user data processing.
 
 Review prompt:
-- "Does this code collect, store, or transmit personal data — and is that justified and protected?"
+- "Does this code collect, store, or transmit personal data - and is that justified and protected?"
 <!-- /ANCHOR:privacy-data-handling -->
+
+---
+
+<!-- ANCHOR:related-resources -->
+## 12. RELATED RESOURCES
+
+- [quick_reference.md](./quick_reference.md) - Findings-first review flow, severity model, and output contract.
+- [code_quality_checklist.md](./code_quality_checklist.md) - Correctness, scaling, and maintainability checks.
+- [solid_checklist.md](./solid_checklist.md) - Architecture cohesion and coupling checks.
+- [removal_plan.md](./removal_plan.md) - Safe deletion and deferred removal planning.
+
+Overlay portability: use this baseline with stack-specific controls from `sk-code--opencode`, `sk-code--web`, or `sk-code--full-stack`.
+<!-- /ANCHOR:related-resources -->

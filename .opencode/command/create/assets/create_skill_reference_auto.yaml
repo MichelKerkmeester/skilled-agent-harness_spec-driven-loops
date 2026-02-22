@@ -458,28 +458,28 @@ workflow:
     - checklist_results: object
     - skill_md_updated: boolean
 
-  step_5b_quality_review:
-    purpose: Quality-score the created reference artifact
+  step_5b_quality_validation:
+    purpose: Quality-validate the created reference artifact
     agent_availability:
-      agent_file: "[runtime_agent_path]/review.md"
-      standards_contract:
-        baseline: "sk-code"
-        overlay: "Auto-detect one overlay: sk-code--*"
-        precedence: "Overlay style/process/build/test conventions override generic baseline guidance; baseline security/correctness minimums remain mandatory."
-      rule_reference: "AGENTS.md §3 — quality scoring + sk-code baseline + sk-code--* overlay contract"
+      agent_file: "[runtime_agent_path]/write.md"
+      template_contract:
+        source: "sk-documentation"
+        validators: "validate_document.py + extract_structure.py"
+        precedence: "Template compliance and DQI quality checks are mandatory before completion."
+      rule_reference: "AGENTS.md §3 — sk-documentation template alignment and quality validation"
       condition: "ONLY when this step is actively executing"
       blocking: false
       not_for: "reviewing this workflow prompt or any pre-step activity"
     activities:
-    - "Dispatch @review using sk-code baseline plus one sk-code--* overlay to quality-score the created reference file"
-    - "Review checks: template adherence, content quality, SKILL.md integration"
+    - "Run @write quality validation to score the created reference file"
+    - "Validation checks: template adherence, content quality, SKILL.md integration"
     - "Score against 100-point rubric (Accuracy 40%, Completeness 35%, Consistency 25%)"
     on_low_score:
       threshold: 70
       action: "Log warnings and suggest improvements; do not block workflow"
     outputs:
     - quality_score: number
-    - review_findings: list
+    - validation_findings: list
     - improvement_suggestions: list (if score < 70)
 
   step_6_save_context:

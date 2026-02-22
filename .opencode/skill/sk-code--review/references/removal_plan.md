@@ -16,6 +16,10 @@ Template for identifying safe deletion candidates and planning deferred removals
 
 Provide a consistent way to recommend code removal without introducing hidden regressions.
 
+### Core Principle
+
+Recommend deletion only when usage evidence, verification steps, and rollback plans are explicit.
+
 ### Priority Model
 
 - **P0**: Immediate removal required (critical security/correctness cost).
@@ -83,3 +87,16 @@ Deferred removal guidance:
 
 If any item is missing, keep the recommendation at P2 with follow-up actions.
 <!-- /ANCHOR:reviewer-checklist -->
+
+---
+
+<!-- ANCHOR:related-resources -->
+## 5. RELATED RESOURCES
+
+- [quick_reference.md](./quick_reference.md) - Baseline review protocol and severity handling.
+- [security_checklist.md](./security_checklist.md) - Security and privacy checks before deleting controls.
+- [code_quality_checklist.md](./code_quality_checklist.md) - Reliability and edge-case checks before cleanup.
+- [solid_checklist.md](./solid_checklist.md) - Architecture ownership checks for extraction or deletion.
+
+Overlay portability: apply this removal plan with stack-specific constraints from `sk-code--opencode`, `sk-code--web`, or `sk-code--full-stack`.
+<!-- /ANCHOR:related-resources -->

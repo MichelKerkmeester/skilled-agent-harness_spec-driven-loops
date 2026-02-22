@@ -16,7 +16,7 @@ Correctness, performance, and boundary-condition checklist for identifying produ
 
 Provide a systematic pass for non-security defects that still cause outages, regressions, or high maintenance cost.
 
-### Prioritization Rule
+### Core Principle
 
 Prioritize silent-failure and data-corruption risks above stylistic concerns.
 <!-- /ANCHOR:overview -->
@@ -90,3 +90,16 @@ Watch for:
 
 Decision cue: if reviewers cannot explain intent quickly, maintenance risk is likely at least P2.
 <!-- /ANCHOR:maintainability -->
+
+---
+
+<!-- ANCHOR:related-resources -->
+## 6. RELATED RESOURCES
+
+- [quick_reference.md](./quick_reference.md) - Baseline review flow and severity output contract.
+- [security_checklist.md](./security_checklist.md) - Security, authz, abuse, and privacy risk checks.
+- [solid_checklist.md](./solid_checklist.md) - SOLID and architecture risk prompts.
+- [removal_plan.md](./removal_plan.md) - Removal candidate classification and migration planning.
+
+Overlay portability: pair this baseline with stack-specific quality guidance from `sk-code--opencode`, `sk-code--web`, or `sk-code--full-stack`.
+<!-- /ANCHOR:related-resources -->

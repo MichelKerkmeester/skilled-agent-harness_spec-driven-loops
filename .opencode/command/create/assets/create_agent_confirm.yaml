@@ -94,7 +94,7 @@ request_analysis_framework:
 user_inputs:
   agent_name: |
     [AGENT_NAME]
-    Name for the agent in kebab-case (e.g., review, security-audit).
+    Name for the agent in kebab-case (e.g., quality-gate, security-audit).
     FROM UNIFIED SETUP PHASE (Q0 or command argument).
 
   agent_path: |
@@ -540,31 +540,31 @@ workflow:
       - label: "C) Fix issues"
         description: "Address validation failures and revalidate"
 
-  step_5b_quality_review:
-    purpose: Quality-score the created agent artifact
+  step_5b_quality_validation:
+    purpose: Quality-validate the created agent artifact
     agent_availability:
-      agent_file: "[runtime_agent_path]/review.md"
-      standards_contract:
-        baseline: "sk-code"
-        overlay: "Auto-detect one overlay: sk-code--*"
-        precedence: "Overlay style/process/build/test conventions override generic baseline guidance; baseline security/correctness minimums remain mandatory."
-      rule_reference: "AGENTS.md §3 — quality scoring + sk-code baseline + sk-code--* overlay contract"
+      agent_file: "[runtime_agent_path]/write.md"
+      template_contract:
+        source: "sk-documentation"
+        validators: "validate_document.py + extract_structure.py"
+        precedence: "Template compliance and DQI quality checks are mandatory before completion."
+      rule_reference: "AGENTS.md §3 — sk-documentation template alignment and quality validation"
       condition: "ONLY when this step is actively executing"
       blocking: false
       not_for: "reviewing this workflow prompt or any pre-step activity"
     activities:
-    - "Dispatch @review using sk-code baseline plus one sk-code--* overlay to quality-score the created agent definition file"
-    - "Review checks: frontmatter validity, permission config, behavioral rules"
+    - "Run @write quality validation to score the created agent definition file"
+    - "Validation checks: frontmatter validity, permission config, behavioral rules"
     - "Score against 100-point rubric (Accuracy 40%, Completeness 35%, Consistency 25%)"
     on_low_score:
       threshold: 70
       action: "Log warnings and suggest improvements; do not block workflow"
     outputs:
     - quality_score: number
-    - review_findings: list
+    - validation_findings: list
     - improvement_suggestions: list (if score < 70)
     checkpoint:
-      question: "Quality review complete (score: [quality_score]/100). Continue?"
+      question: "Quality validation complete (score: [quality_score]/100). Continue?"
       options:
       - label: "A) Accept and continue"
         description: "Proceed to save context"

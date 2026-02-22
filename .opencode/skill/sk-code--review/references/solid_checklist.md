@@ -16,6 +16,10 @@ Review prompts and smell patterns for evaluating architecture cohesion, coupling
 
 Provide repeatable prompts to detect structural issues that create long-term maintenance risk.
 
+### Core Principle
+
+Favor cohesive modules and low-coupling boundaries so behavior can evolve without broad side effects.
+
 ### Scope
 
 Use this checklist for new modules, refactors, and behavior-heavy changes where design quality can regress silently.
@@ -94,3 +98,16 @@ When suggesting a refactor, include:
 - Minimal safe split
 - Verification strategy
 <!-- /ANCHOR:refactor-guidance -->
+
+---
+
+<!-- ANCHOR:related-resources -->
+## 5. RELATED RESOURCES
+
+- [quick_reference.md](./quick_reference.md) - Baseline review flow and severity mapping.
+- [security_checklist.md](./security_checklist.md) - Security and runtime risk checks.
+- [code_quality_checklist.md](./code_quality_checklist.md) - Correctness and performance checklist.
+- [removal_plan.md](./removal_plan.md) - Safe deletion and deferred migration planning.
+
+Overlay portability: combine architecture findings with overlay-specific standards from `sk-code--opencode`, `sk-code--web`, or `sk-code--full-stack`.
+<!-- /ANCHOR:related-resources -->

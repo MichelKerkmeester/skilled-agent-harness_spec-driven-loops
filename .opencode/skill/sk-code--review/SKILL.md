@@ -9,7 +9,7 @@ version: 1.1.0.0
 
 # Code Review Baseline - Stack-Agnostic Findings-First Review
 
-Universal review baseline for any codebase. This skill defines minimum review principles and evidence standards, then adapts to stack/codebase context through overlay skills.
+Universal `sk-code` review baseline for any codebase, implemented by `sk-code--review` and paired with one `sk-code--*` overlay skill for stack-specific rules.
 
 <!-- ANCHOR:when-to-use -->
 ## 1. WHEN TO USE
@@ -44,39 +44,57 @@ Use this skill when:
 <!-- ANCHOR:smart-routing -->
 ## 2. SMART ROUTING
 
-### Stack/Codebase Detection
+### Primary Detection Signal
 
 Review behavior follows a baseline+overlay model:
 
-- Baseline (always): `sk-code--review`
-- Overlay (exactly one):
+- Baseline (always): `sk-code` (implemented by this skill: `sk-code--review`)
+- Overlay (exactly one `sk-code--*`):
   - OpenCode system context -> `sk-code--opencode`
   - Frontend/web context -> `sk-code--web`
   - Default/other stacks -> `sk-code--full-stack`
 
+### Phase Detection
+
+```text
+TASK CONTEXT
+    |
+    +- STEP 0: Detect `sk-code` baseline + one `sk-code--*` overlay
+    +- STEP 1: Score intents (top-2 when ambiguity delta <= 1.0)
+    +- Phase 1: Scope and baseline checks
+    +- Phase 2: Overlay alignment
+    +- Phase 3: Findings-first analysis
+    +- Phase 4: Output contract and next action
+```
+
 ### Resource Domains
 
-The router discovers markdown resources recursively from `references/` and applies weighted intent scoring.
+The router discovers markdown resources recursively from `references/` and `assets/`, then applies weighted intent scoring.
 
-- `references/quick_reference.md` for baseline review flow and output contract.
-- `references/security_checklist.md` for mandatory security/reliability checks.
-- `references/code_quality_checklist.md` for correctness, performance, and boundary checks.
-- `references/solid_checklist.md` for architecture/design quality checks.
-- `references/removal_plan.md` for safe deletion and deferred-removal planning.
+Knowledge is organized by domain mapping:
+
+```text
+references/review-core/...
+references/review-risk/...
+assets/review/...
+```
+
+- `references/` for baseline review flow, severity contracts, and risk checklists.
+- `assets/` for optional reusable templates/checklists (if present in this skill).
 
 ### Resource Loading Levels
 
 | Level | When to Load | Resources |
 | --- | --- | --- |
-| ALWAYS | Every invocation | `quick_reference`, `security_checklist`, `code_quality_checklist` |
-| CONDITIONAL | Intent score indicates need | `solid_checklist`, `removal_plan` |
-| ON_DEMAND | Explicit deep-dive request | Full reference set |
+| ALWAYS | Every invocation | `references/quick_reference.md`, `references/security_checklist.md`, `references/code_quality_checklist.md` |
+| CONDITIONAL | Intent score indicates need | `references/solid_checklist.md`, `references/removal_plan.md` |
+| ON_DEMAND | Explicit deep-dive request | Full mapped reference set |
 
 ### Precedence Matrix
 
 | Rule Type | Source of Truth | Behavior |
 | --- | --- | --- |
-| Security/correctness minimums | `sk-code--review` baseline | Always enforced; never relaxed by overlay |
+| Security/correctness minimums | `sk-code` baseline (`sk-code--review`) | Always enforced; never relaxed by overlay |
 | Stack style/process conventions | Overlay skill | Overlay guidance overrides baseline generic style/process advice |
 | Verification/build/test commands | Overlay skill | Overlay commands are authoritative for the detected stack |
 | Ambiguous conflicts | Escalation | Ask for clarification; do not guess |
@@ -96,7 +114,8 @@ If intent/stack detection is unclear, request:
 from pathlib import Path
 
 SKILL_ROOT = Path(__file__).resolve().parent
-RESOURCE_BASES = (SKILL_ROOT / "references",)
+# Discover resources recursively across references and assets.
+RESOURCE_BASES = (SKILL_ROOT / "references", SKILL_ROOT / "assets")
 DEFAULT_RESOURCES = [
     "references/quick_reference.md",
     "references/security_checklist.md",
@@ -247,7 +266,7 @@ def route_review_resources(task, workspace_files=None, changed_files=None):
 ### Phase 1: Scope and Baseline
 
 1. Inspect the review target (`git diff`, staged diff, file list, or commit range).
-2. Load baseline standards from `sk-code--review` references.
+2. Load baseline standards from `sk-code` references in this skill (`sk-code--review`).
 3. Detect one overlay skill by codebase/stack signals.
 
 ### Phase 2: Overlay Alignment
@@ -274,6 +293,7 @@ Required output contract:
 
 **Files reviewed**: X files, Y lines changed
 **Overall assessment**: [APPROVE / REQUEST_CHANGES / COMMENT]
+**Baseline used**: [sk-code (`sk-code--review`)]
 **Overlay skill used**: [sk-code--opencode | sk-code--web | sk-code--full-stack]
 
 ## Findings
@@ -328,11 +348,18 @@ After reporting findings, request explicit next action before any implementation
 <!-- ANCHOR:references -->
 ## 5. REFERENCES
 
+### Core References
+
 - [quick_reference.md](./references/quick_reference.md) - Baseline review flow, severity rubric, output checklist.
 - [security_checklist.md](./references/security_checklist.md) - Mandatory security and reliability checks.
 - [code_quality_checklist.md](./references/code_quality_checklist.md) - Correctness, performance, and boundary checks.
 - [solid_checklist.md](./references/solid_checklist.md) - SOLID and architecture assessment prompts.
 - [removal_plan.md](./references/removal_plan.md) - Safe-now vs deferred removal planning template.
+
+### Reference Loading Notes
+
+- Load only the references needed for the selected intents.
+- Keep Section 2 (`SMART ROUTING`) as the authoritative routing source.
 <!-- /ANCHOR:references -->
 
 ---
@@ -341,7 +368,7 @@ After reporting findings, request explicit next action before any implementation
 ## 6. SUCCESS CRITERIA
 
 - Review output is findings-first and severity-ordered.
-- Baseline+overlay contract is explicit in report context.
+- `sk-code` baseline + `sk-code--*` overlay contract is explicit in report context.
 - Security/correctness minimums are always covered.
 - Recommended fixes are actionable and scope-proportional.
 <!-- /ANCHOR:success-criteria -->
