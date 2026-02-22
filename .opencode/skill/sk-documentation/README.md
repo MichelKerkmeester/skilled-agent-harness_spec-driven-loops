@@ -189,7 +189,7 @@ python3 .opencode/skill/sk-documentation/scripts/init_skill.py my-new-skill --pa
 **Validate a README before delivery:**
 ```bash
 python3 .opencode/skill/sk-documentation/scripts/validate_document.py README.md
-# Exit 0 = pass, Exit 1 = warnings, Exit 2 = errors
+# Exit 0 = pass, Exit 1 = blocking errors, Exit 2 = file/parse error
 ```
 
 <!-- /ANCHOR:usage-examples -->
@@ -202,7 +202,8 @@ python3 .opencode/skill/sk-documentation/scripts/validate_document.py README.md
 | Issue | Cause | Fix |
 |-------|-------|-----|
 | DQI score below 60 | Missing structure or content | Run `extract_structure.py`, address flagged violations |
-| `validate_document.py` exit 2 | Blocking errors (missing frontmatter, wrong section order) | Fix critical violations before re-running |
+| `validate_document.py` exit 1 | Blocking validation errors (missing TOC, missing required sections, wrong anchors) | Fix blocking issues and re-run |
+| `validate_document.py` exit 2 | File read/parse error (missing file or malformed input) | Verify path/input and re-run |
 | `package_skill.py` fails | SKILL.md over 5k words or missing required sections | Move detail to `references/`, ensure all required sections present |
 | HVR violations in output | Banned words, em dashes or semicolons in text | Review `hvr_rules.md` for full HVR ruleset and fix violations |
 

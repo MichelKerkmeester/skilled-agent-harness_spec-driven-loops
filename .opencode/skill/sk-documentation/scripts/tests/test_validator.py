@@ -67,6 +67,30 @@ TEST_CASES: List[Dict[str, Any]] = [
         "expected_exit": 1,
         "expected_errors": ["missing_required_section"],
         "description": "SKILL.md missing required sections (smart_routing, how_it_works, rules)"
+    },
+    {
+        "file": "valid_command.md",
+        "doc_type": "command",
+        "expected_exit": 0,
+        "expected_errors": [],
+        "expected_document_type": "command",
+        "description": "Valid command doc using explicit --type command"
+    },
+    {
+        "file": "valid_install_guide.md",
+        "doc_type": "install_guide",
+        "expected_exit": 0,
+        "expected_errors": [],
+        "expected_document_type": "install_guide",
+        "description": "Valid install guide doc using explicit --type install_guide"
+    },
+    {
+        "file": "command/auto_detect_command.md",
+        "doc_type": None,
+        "expected_exit": 0,
+        "expected_errors": [],
+        "expected_document_type": "command",
+        "description": "Command doc auto-detects from /command/ path"
     }
 ]
 
@@ -93,7 +117,7 @@ class TestResult:
 
 def run_validator(
     test_file: Path,
-    doc_type: str,
+    doc_type: Optional[str],
     validator_path: Path,
 ) -> Tuple[int, Optional[Dict[str, Any]], Optional[str]]:
     """
@@ -106,9 +130,10 @@ def run_validator(
         sys.executable,  # Use same Python interpreter
         str(validator_path),
         str(test_file),
-        "--type", doc_type,
         "--json"
     ]
+    if doc_type:
+        cmd.extend(["--type", doc_type])
     
     try:
         result = subprocess.run(
@@ -149,9 +174,10 @@ def run_test(
     Run a single test case and return the result.
     """
     test_file = tests_dir / test_case["file"]
-    doc_type = test_case.get("doc_type", "readme")
+    doc_type = test_case.get("doc_type")
     expected_exit = test_case["expected_exit"]
     expected_errors = test_case["expected_errors"]
+    expected_document_type = test_case.get("expected_document_type")
     description = test_case.get("description", test_case["file"])
     
     # Check test file exists
@@ -214,6 +240,20 @@ def run_test(
                 message=f"Valid document has blocking errors: {found_types}",
                 details={
                     "unexpected_errors": blocking_errors,
+                    "json_output": json_output
+                }
+            )
+
+    if expected_document_type and json_output:
+        actual_document_type = json_output.get("document_type")
+        if actual_document_type != expected_document_type:
+            return TestResult(
+                name=test_case["file"],
+                passed=False,
+                message=f"Document type mismatch: expected {expected_document_type}, got {actual_document_type}",
+                details={
+                    "expected_document_type": expected_document_type,
+                    "actual_document_type": actual_document_type,
                     "json_output": json_output
                 }
             )

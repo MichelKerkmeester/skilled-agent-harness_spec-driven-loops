@@ -175,7 +175,7 @@ def validate_sections(content: str) -> Tuple[bool, str, List[str]]:
         Tuple of (is_valid, error_message, warnings).
     """
     warnings = []
-    h2_pattern = r'^##\s+(?:\d+\.\s*)?(?:[\U0001F300-\U0001F9FF]\s*)?(.+?)(?:\s*$)'
+    h2_pattern = r'^##\s+(?:\d+\.\s*)?(.+?)\s*$'
     headings = re.findall(h2_pattern, content, re.MULTILINE)
     headings_upper = [h.upper().strip() for h in headings]
 
@@ -194,7 +194,7 @@ def validate_sections(content: str) -> Tuple[bool, str, List[str]]:
         if not found:
             warnings.append(f"Missing recommended section: {section}")
 
-    emoji_pattern = r'[\U0001F300-\U0001F9FF]'
+    emoji_pattern = r'[\U0001F300-\U0001F9FF\u2600-\u26FF\u2700-\u27BF]'
     for heading in headings:
         if not re.search(emoji_pattern, heading) and heading.strip():
             warnings.append(f"H2 section '{heading.strip()[:30]}...' missing emoji prefix")

@@ -1,4 +1,4 @@
-# Implementation Plan: [NAME]
+# Implementation Plan: sk-visual-explainer Hardening
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
@@ -12,13 +12,13 @@
 
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+| **Language/Stack** | Bash + HTML/CSS + Markdown |
+| **Framework** | Static validator script + reference templates |
+| **Storage** | None |
+| **Testing** | Shell command checks (`bash`, `rg`) with exit-code validation |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
+This plan hardens `sk-visual-explainer` by locking validator behavior and template/doc conformance to the required P0/P1 criteria. Work proceeds in five explicit phases: baseline capture, validator fixes, template token migration, docs correction, and validation+summary.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -27,14 +27,14 @@
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [x] Problem statement clear and scope documented
+- [x] Success criteria measurable
+- [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All acceptance criteria met
+- [x] Validation commands executed with expected results
+- [x] Docs updated (`spec.md`, `plan.md`, `tasks.md`, `checklist.md`)
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -43,14 +43,19 @@
 ## 3. ARCHITECTURE
 
 ### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
+Scripted validation pipeline with reference-template and docs consistency checks.
 
 ### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
+- **Validator Script** (`validate-html-output.sh`): Enforces structural, token, typography, and atmosphere checks.
+- **Reference Templates** (`architecture.html`, `data-table.html`, `mermaid-flowchart.html`): Canonical examples for generated output style.
+- **Reference Guide** (`library_guide.md`): Authoritative Mermaid syntax documentation.
 
 ### Data Flow
-[Brief description of how data moves through the system]
+1. Run baseline validator on all three templates and capture exit/status output.
+2. Apply validator fixes for token counting, font guardrails, and multiline background detection.
+3. Canonicalize template tokens to `--ve-*`.
+4. Correct docs typo in `library_guide.md`.
+5. Re-run validator and targeted `rg` checks to confirm all P0/P1 criteria.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -58,20 +63,28 @@
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
-### Phase 1: Setup
-- [ ] Project structure created
-- [ ] Dependencies installed
-- [ ] Development environment ready
+### Phase 1: Baseline capture
+- [x] Capture current validator output and exit code for each template.
+- [ ] Record baseline evidence in `scratch/` for pre/post comparison.
 
-### Phase 2: Core Implementation
-- [ ] [Core feature 1]
-- [ ] [Core feature 2]
-- [ ] [Core feature 3]
+### Phase 2: Validator fixes
+- [x] Fix `VE_TOKEN_COUNT` detection bug.
+- [x] Update typography guardrails to allow `Roboto Mono` while blocking Inter/Roboto/Arial primary use.
+- [x] Ensure multiline `background-image` detection is robust.
 
-### Phase 3: Verification
-- [ ] Manual testing complete
-- [ ] Edge cases handled
-- [ ] Documentation updated
+### Phase 3: Template token migration
+- [x] Ensure `architecture.html` uses canonical `--ve-*` token namespace.
+- [x] Ensure `data-table.html` uses canonical `--ve-*` token namespace.
+- [x] Ensure `mermaid-flowchart.html` uses canonical `--ve-*` token namespace.
+
+### Phase 4: Docs correction
+- [x] Correct `->>/-->` typo in `library_guide.md`.
+- [x] Verify corrected sequence syntax string is present.
+
+### Phase 5: Validation+summary
+- [x] Run validator for all three templates and confirm exit code `0`.
+- [x] Run targeted regex checks for token namespace, typography rule behavior, and doc typo removal.
+- [x] Update `checklist.md` evidence and completion status.
 <!-- /ANCHOR:phases -->
 
 ---
@@ -81,9 +94,9 @@
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+| Script validation | End-to-end validator behavior per template | `bash .opencode/skill/sk-visual-explainer/scripts/validate-html-output.sh <template>` |
+| Policy checks | Font/token/doc rule assertions | `rg` |
+| Manual review | Confirm check output messages align with requirements | Terminal output review |
 <!-- /ANCHOR:testing -->
 
 ---
@@ -93,7 +106,10 @@
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+| `.opencode/skill/sk-visual-explainer/scripts/validate-html-output.sh` | Internal | Green | Core hardening cannot proceed |
+| `.opencode/skill/sk-visual-explainer/assets/templates/*.html` | Internal | Green | Token migration and validator exit checks cannot be completed |
+| `.opencode/skill/sk-visual-explainer/references/library_guide.md` | Internal | Green | Docs typo requirement cannot be completed |
+| Shell tooling (`bash`, `rg`) | Internal | Green | Verification evidence cannot be generated |
 <!-- /ANCHOR:dependencies -->
 
 ---
@@ -101,8 +117,8 @@
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+- **Trigger**: Validator starts producing false positives/false negatives, or template output quality regresses.
+- **Procedure**: Revert hardening edits in validator/templates/docs, rerun baseline commands, confirm previous behavior is restored.
 <!-- /ANCHOR:rollback -->
 
 ---
@@ -111,17 +127,18 @@
 ## L2: PHASE DEPENDENCIES
 
 ```
-Phase 1 (Setup) ──────┐
-                      ├──► Phase 2 (Core) ──► Phase 3 (Verify)
-Phase 1.5 (Config) ───┘
+Phase 1 (baseline capture) ─► Phase 2 (validator fixes) ─► Phase 3 (template token migration)
+                                                       └► Phase 4 (docs correction)
+Phase 3 + Phase 4 ───────────────────────────────────────────────► Phase 5 (validation+summary)
 ```
 
 | Phase | Depends On | Blocks |
 |-------|------------|--------|
-| Setup | None | Core, Config |
-| Config | Setup | Core |
-| Core | Setup, Config | Verify |
-| Verify | Core | None |
+| Baseline capture | None | Validator fixes |
+| Validator fixes | Baseline capture | Template token migration, validation+summary |
+| Template token migration | Validator fixes | Validation+summary |
+| Docs correction | Baseline capture | Validation+summary |
+| Validation+summary | Validator fixes, template token migration, docs correction | Completion |
 <!-- /ANCHOR:phase-deps -->
 
 ---
@@ -131,10 +148,12 @@ Phase 1.5 (Config) ───┘
 
 | Phase | Complexity | Estimated Effort |
 |-------|------------|------------------|
-| Setup | [Low/Med/High] | [e.g., 1-2 hours] |
-| Core Implementation | [Low/Med/High] | [e.g., 4-8 hours] |
-| Verification | [Low/Med/High] | [e.g., 1-2 hours] |
-| **Total** | | **[e.g., 6-12 hours]** |
+| Baseline capture | Low | 30-45 minutes |
+| Validator fixes | Medium | 1.5-3 hours |
+| Template token migration | Medium | 1-2 hours |
+| Docs correction | Low | 15-30 minutes |
+| Validation+summary | Medium | 45-90 minutes |
+| **Total** | | **4-7 hours** |
 <!-- /ANCHOR:effort -->
 
 ---
@@ -143,26 +162,17 @@ Phase 1.5 (Config) ───┘
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deployment Checklist
-- [ ] Backup created (if data changes)
-- [ ] Feature flag configured
-- [ ] Monitoring alerts set
+- [ ] Baseline evidence captured before edits
+- [x] Post-fix validator output captured
+- [x] P0/P1 checklist evidence populated
 
 ### Rollback Procedure
-1. [Immediate action - e.g., disable feature flag]
-2. [Revert code - e.g., git revert or redeploy previous version]
-3. [Verify rollback - e.g., smoke test critical paths]
-4. [Notify stakeholders - if user-facing]
+1. Revert validator and template/doc hardening commits.
+2. Re-run baseline commands on all three templates.
+3. Confirm outputs match baseline evidence.
+4. Document rollback outcome in `checklist.md`.
 
 ### Data Reversal
-- **Has data migrations?** [Yes/No]
-- **Reversal procedure**: [Steps or "N/A"]
+- **Has data migrations?** No
+- **Reversal procedure**: N/A
 <!-- /ANCHOR:enhanced-rollback -->
-
----
-
-<!--
-LEVEL 2 PLAN (~140 lines)
-- Core + Verification additions
-- Phase dependencies, effort estimation
-- Enhanced rollback procedures
--->

@@ -283,3 +283,23 @@ Current JSONC block-comment stripping removes newline structure, which shifts pa
 
 **How to roll back**: Restore previous stripping behavior and mark JSONC line mapping as known limitation.
 <!-- /ANCHOR:adr-004 -->
+
+---
+
+<!-- ANCHOR:implementation-outcomes -->
+## Implementation Outcomes (2026-02-22)
+
+This section records delivered outcomes against planned ADRs.
+
+| ADR | Planned Direction | Implementation Outcome | Status | Evidence |
+|-----|-------------------|------------------------|--------|----------|
+| ADR-001 | Path policy and rule applicability controls to reduce noise | Implemented path-classification helpers and contextual advisory severity downgrade instead of hard exclusions for contextual trees | Delivered (policy adapted) | `.opencode/skill/sk-code--opencode/scripts/verify_alignment_drift.py`: `CONTEXT_ADVISORY_SEGMENTS`, `is_context_advisory_path`, `classify_severity` |
+| ADR-002 | Normalize and dedupe overlapping roots/files | Implemented realpath normalization and file-level dedupe via `seen_paths` | Delivered | `iter_code_files` in verifier script + `test_deduplicates_overlapping_roots` |
+| ADR-003 | Add `.mts` support and narrow TS module-header scope | Implemented `.mts` coverage, TS test/pattern-asset skips, and reduced TS over-trigger from 193 to 32 | Delivered | `SUPPORTED_EXTENSIONS`, `should_skip_ts_module_header`, test coverage, post-run metrics |
+| ADR-004 | Preserve JSONC line numbers during block-comment stripping | Implemented newline-preserving block-comment handling and `tsconfig` comment-aware fallback parse, reducing JSON parse noise from 2 to 1 | Delivered | `strip_jsonc_comments`, `check_json`, tests for JSONC line number and tsconfig comments |
+
+### Outcome Summary
+
+- All four ADRs were implemented and validated by command runs and regression tests.
+- Default verifier behavior now passes warning-only scans (`exit 0`), while strict mode (`--fail-on-warn`) fails warning findings (`exit 1`), enabling CI-selectable enforcement.
+<!-- /ANCHOR:implementation-outcomes -->

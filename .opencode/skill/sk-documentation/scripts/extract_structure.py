@@ -130,22 +130,22 @@ def extract_headings(content: str) -> List[Dict[str, Any]]:
     """
     headings = []
     lines = content.split('\n')
-    code_block_depth = 0
+    in_code_block = False
 
     for i, line in enumerate(lines, start=1):
         stripped = line.strip()
 
-        # Depth counter handles nested code blocks in documentation examples
+        # Treat non-empty fence markers inside code blocks as literal example content.
+        # Only plain ``` closes an open code block.
         if stripped.startswith('```'):
-            if code_block_depth == 0:
-                code_block_depth = 1
-            elif stripped == '```':
-                code_block_depth = max(0, code_block_depth - 1)
-            else:
-                code_block_depth += 1
+            if not in_code_block:
+                in_code_block = True
+                continue
+            if stripped == '```':
+                in_code_block = False
             continue
 
-        if code_block_depth > 0:
+        if in_code_block:
             continue
 
         match = re.match(r'^(#{1,6})\s+(.+)$', line)
@@ -217,7 +217,7 @@ def extract_code_blocks(content: str) -> List[Dict[str, Any]]:
     lines = content.split('\n')
 
     i = 0
-    block_depth = 0
+    in_code_block = False
     current_block = None
 
     while i < len(lines):
@@ -225,33 +225,37 @@ def extract_code_blocks(content: str) -> List[Dict[str, Any]]:
         stripped = line.strip()
 
         if stripped.startswith('```'):
-            if stripped == '```':
-                if block_depth > 0:
-                    block_depth -= 1
-                    if block_depth == 0 and current_block is not None:
-                        code_blocks.append(current_block)
-                        current_block = None
-            else:
+            if not in_code_block:
                 language = stripped[3:].strip()
+                current_block = {
+                    'language': language or 'unknown',
+                    'line_start': i + 1,
+                    'code_lines': []
+                }
+                in_code_block = True
+                i += 1
+                continue
 
-                # Placeholder languages like [language] are nested examples, not real blocks
-                if language.startswith('[') and language.endswith(']'):
-                    if current_block is not None:
-                        current_block['code_lines'].append(line)
-                    i += 1
-                    continue
+            if stripped == '```':
+                if current_block is not None:
+                    code_blocks.append(current_block)
+                    current_block = None
+                in_code_block = False
+                i += 1
+                continue
 
-                block_depth += 1
-                if block_depth == 1:
-                    current_block = {
-                        'language': language or 'unknown',
-                        'line_start': i + 1,
-                        'code_lines': []
-                    }
-        elif current_block is not None and block_depth == 1:
+            # Keep fence-like example lines (for example ```python) as content
+            # while still inside the currently open block.
+            if current_block is not None:
+                current_block['code_lines'].append(line)
+        elif current_block is not None and in_code_block:
             current_block['code_lines'].append(line)
 
         i += 1
+
+    # Preserve unclosed trailing block content for analysis robustness.
+    if in_code_block and current_block is not None:
+        code_blocks.append(current_block)
 
     result = []
     for block in code_blocks:
@@ -319,21 +323,20 @@ def detect_placeholders(content: str) -> List[Dict[str, Any]]:
     """
     issues = []
     lines = content.split('\n')
-    code_block_depth = 0
+    in_code_block = False
 
     for i, line in enumerate(lines, start=1):
         stripped = line.strip()
 
         if stripped.startswith('```'):
-            if code_block_depth == 0:
-                code_block_depth = 1
-            elif stripped == '```':
-                code_block_depth = max(0, code_block_depth - 1)
-            else:
-                code_block_depth += 1
+            if not in_code_block:
+                in_code_block = True
+                continue
+            if stripped == '```':
+                in_code_block = False
             continue
 
-        if code_block_depth > 0:
+        if in_code_block:
             continue
 
         for pattern in PLACEHOLDER_PATTERNS:
@@ -635,7 +638,7 @@ def detect_document_type(filepath: str) -> Tuple[str, str]:
         return 'skill', 'filename'
     elif path.name == 'README.md':
         return 'readme', 'filename'
-    elif '/commands/' in filepath_str or '\\commands\\' in filepath_str:
+    elif '/command/' in filepath_str or '\\command\\' in filepath_str or '/commands/' in filepath_str or '\\commands\\' in filepath_str:
         return 'command', 'path'
     elif '/specs/' in filepath_str or '\\specs\\' in filepath_str:
         return 'spec', 'path'

@@ -407,11 +407,12 @@ Standard Flow:      Branch:           Parallel:         Merge:
 1. **ALWAYS start with concrete examples** (validate understanding)
 2. **ALWAYS run init_skill.py** (proper scaffolding)
 3. **ALWAYS identify bundled resources** (scripts/references/assets)
-4. **ALWAYS use third-person** ("Use when..." not "You should use...")
-5. **ALWAYS keep SKILL.md <5k words** (move details to references/)
-6. **ALWAYS delete unused examples** (keep lean)
-7. **ALWAYS validate before packaging**
-8. **ALWAYS recommend final review** (run `extract_structure.py`)
+4. **ALWAYS include a `REFERENCES` section** (or combined `SMART ROUTING & REFERENCES`) for packaging compatibility
+5. **ALWAYS use third-person** ("Use when..." not "You should use...")
+6. **ALWAYS keep SKILL.md <5k words** (move details to references/)
+7. **ALWAYS delete unused examples** (keep lean)
+8. **ALWAYS validate before packaging**
+9. **ALWAYS recommend final review** (run `extract_structure.py`)
 
 ##### ❌ NEVER
 
@@ -613,7 +614,7 @@ The `extract_structure.py` script computes a **DQI** (0-100) based on measurable
 
 | Type      | Structure               | Content              | Required                    |
 | --------- | ----------------------- | -------------------- | --------------------------- |
-| SKILL.md  | Strict (no failures)    | High AI-friendliness | Frontmatter, WHEN/HOW/RULES |
+| SKILL.md  | Strict (no failures)    | High AI-friendliness | Frontmatter, WHEN/SMART/HOW/RULES/REFERENCES |
 | README.md | Flexible                | High AI-friendliness | Quick Start, examples       |
 | Knowledge | Strict (no frontmatter) | Good AI-friendliness | Numbered H2s                |
 
@@ -674,8 +675,33 @@ Key integrations:
 ---
 
 <!-- /ANCHOR:integration-points -->
+<!-- ANCHOR:references -->
+## 7. REFERENCES
+
+### Core References
+
+- [core_standards.md](./references/core_standards.md) - markdown structure standards and naming conventions
+- [validation.md](./references/validation.md) - validation pipeline and blocking criteria
+- [workflows.md](./references/workflows.md) - execution workflows by documentation mode
+- [skill_creation.md](./references/skill_creation.md) - skill lifecycle and packaging guidance
+
+### Templates
+
+- [skill_md_template.md](./assets/opencode/skill_md_template.md) - canonical SKILL.md template
+- [readme_template.md](./assets/documentation/readme_template.md) - README structure and quality rules
+- [install_guide_template.md](./assets/documentation/install_guide_template.md) - install guide template
+
+### Validation Scripts
+
+- `scripts/validate_document.py`
+- `scripts/extract_structure.py`
+- `scripts/package_skill.py`
+
+---
+
+<!-- /ANCHOR:references -->
 <!-- ANCHOR:external-resources -->
-## 7. EXTERNAL RESOURCES
+## 8. EXTERNAL RESOURCES
 
 - **llms.txt specification**: https://llmstxt.org/
 - **Context7 (external docs benchmark)**: https://context7.ai/
@@ -686,7 +712,7 @@ Key integrations:
 
 <!-- /ANCHOR:external-resources -->
 <!-- ANCHOR:related-resources -->
-## 8. RELATED RESOURCES
+## 9. RELATED RESOURCES
 
 ### For Document Quality
 

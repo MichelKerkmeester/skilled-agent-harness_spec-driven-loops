@@ -136,9 +136,9 @@ Use retrieval anchors for every H2 section so section-level loading can target s
 - Max 5000 words (3000 recommended)
 - Max 3000 lines
 
-**Required Sections**: WHEN TO USE, HOW IT WORKS, RULES (with ✅ ALWAYS, ❌ NEVER, ⚠️ ESCALATE IF)
+**Required Sections**: WHEN TO USE, SMART ROUTING, HOW IT WORKS, RULES (with ✅ ALWAYS, ❌ NEVER, ⚠️ ESCALATE IF), REFERENCES (or combined `SMART ROUTING & REFERENCES`)
 
-**Recommended Sections**: SMART ROUTING, SUCCESS CRITERIA, INTEGRATION POINTS
+**Recommended Sections**: SUCCESS CRITERIA, INTEGRATION POINTS, RELATED RESOURCES
 
 ### Template
 
@@ -449,8 +449,30 @@ See [workflow-details.md](./references/workflow-details.md) for complete step-by
 ---
 
 <!-- /ANCHOR:rules -->
+<!-- ANCHOR:references -->
+## 5. REFERENCES
+
+### Core References
+
+- [reference-name.md](./references/reference-name.md) - Primary operational guidance
+- [workflow-name.md](./references/workflow-name.md) - End-to-end execution flow
+
+### Templates and Assets
+
+- [template-name.md](./assets/template-name.md) - Reusable output template
+- [checklist-name.md](./assets/checklist-name.md) - Validation checklist
+
+### Reference Loading Notes
+
+- Load only references needed for current intent.
+- Keep `SMART ROUTING` as the authority for loading rules.
+- Use combined heading `SMART ROUTING & REFERENCES` only if both concerns stay clear.
+
+---
+
+<!-- /ANCHOR:references -->
 <!-- ANCHOR:success-criteria -->
-## 5. SUCCESS CRITERIA
+## 6. SUCCESS CRITERIA
 
 ### [Primary Workflow] Completion Checklist
 
@@ -479,7 +501,7 @@ See [workflow-details.md](./references/workflow-details.md) for complete step-by
 
 <!-- /ANCHOR:success-criteria -->
 <!-- ANCHOR:integration-points -->
-## 6. INTEGRATION POINTS
+## 7. INTEGRATION POINTS
 
 ### [Integration System 1 - e.g., Validation Workflow]
 
@@ -520,7 +542,7 @@ See [workflow-details.md](./references/workflow-details.md) for complete step-by
 
 <!-- /ANCHOR:integration-points -->
 <!-- ANCHOR:related-resources -->
-## 7. RELATED RESOURCES
+## 8. RELATED RESOURCES
 
 ### Reference Files
 - [reference-name.md](./references/reference-name.md) - Description of reference file
@@ -539,8 +561,10 @@ See [workflow-details.md](./references/workflow-details.md) for complete step-by
 - Section 2 (SMART ROUTING): 80-200 lines (routing logic + resource catalog)
 - Section 3 (HOW IT WORKS): 200-300 lines
 - Section 4 (RULES): 150-200 lines
-- Section 5 (SUCCESS CRITERIA): 80-120 lines
-- Section 6 (INTEGRATION POINTS): 100-150 lines
+- Section 5 (REFERENCES): 40-120 lines
+- Section 6 (SUCCESS CRITERIA): 80-120 lines
+- Section 7 (INTEGRATION POINTS): 100-150 lines
+- Section 8 (RELATED RESOURCES): 60-120 lines
 
 **Bundled Resources Structure (Monolithic)**:
 ```
@@ -1077,7 +1101,7 @@ Quality:
 | **Description Voice** | Third-person               | ✅ "Use when..."  ❌ "You should..."                                                                 |
 | **H2 Format**         | Number + ALL CAPS          | ✅ `## 1. WHEN TO USE`                                                                            |
 | **TOC**               | Forbidden in SKILL.md      | ❌ No table of contents                                                                             |
-| **Sections**          | 6 required sections        | WHEN TO USE (triggers only), SMART ROUTING (detection + domains + loading levels + pseudocode), HOW IT WORKS, RULES, SUCCESS CRITERIA, INTEGRATION POINTS |
+| **Sections**          | 5 required + 3 recommended | Required: WHEN TO USE, SMART ROUTING, HOW IT WORKS, RULES, REFERENCES (or combined `SMART ROUTING & REFERENCES`). Recommended: SUCCESS CRITERIA, INTEGRATION POINTS, RELATED RESOURCES |
 | **File Size**         | <5k words (<3k preferred)  | Move details to references/                                                                        |
 | **Rules Format**      | ALWAYS, NEVER, ESCALATE IF | All caps headers, specific rules                                                                   |
 | **Examples**          | Concrete and realistic     | Show actual use cases                                                                              |
@@ -1090,7 +1114,7 @@ Quality:
 | **Bundled Resources** | None                      | Some (refs/scripts/assets)       | Extensive                           |
 | **Total Lines**       | 400-800                   | 800-2000                         | 2000-5000                           |
 | **SKILL.md Lines**    | 400-800                   | 800-1000                         | <3000                               |
-| **Sections**          | 6 core                    | 6 core + navigation              | 6 core per mode + overview          |
+| **Sections**          | 5 required core           | 5 required + recommended sections | 5 required per mode + overview       |
 | **Example Skills**    | mcp-chrome-devtools | system-spec-kit, sk-code--web | sk-documentation, sk-git |
 
 ### Validation Command Reference
@@ -1101,7 +1125,7 @@ python .opencode/skill/sk-documentation/scripts/package_skill.py .opencode/skill
 
 # Validation checks:
 # - Frontmatter: name (hyphen-case), description (no <>), allowed-tools (array format), version
-# - Required sections: WHEN TO USE, HOW IT WORKS, RULES
+# - Required sections: WHEN TO USE, SMART ROUTING, HOW IT WORKS, RULES, REFERENCES
 # - RULES subsections: ✅ ALWAYS, ❌ NEVER, ⚠️ ESCALATE IF
 # - Size constraints: max 5000 words, max 3000 lines
 

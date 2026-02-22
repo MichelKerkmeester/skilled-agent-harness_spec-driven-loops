@@ -1,4 +1,4 @@
-# Tasks: [NAME]
+# Tasks: sk-visual-explainer Hardening
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
@@ -21,33 +21,89 @@
 ---
 
 <!-- ANCHOR:phase-1 -->
-## Phase 1: Setup
+## Phase 1: Baseline capture
 
-- [ ] T001 Create project structure
-- [ ] T002 Install dependencies
-- [ ] T003 [P] Configure development tools
+- [x] T001 Capture baseline validator output for `architecture.html` (`.opencode/skill/sk-visual-explainer/scripts/validate-html-output.sh`, `.opencode/skill/sk-visual-explainer/assets/templates/architecture.html`)
+- [x] T002 Capture baseline validator output for `data-table.html` (`.opencode/skill/sk-visual-explainer/scripts/validate-html-output.sh`, `.opencode/skill/sk-visual-explainer/assets/templates/data-table.html`)
+- [x] T003 Capture baseline validator output for `mermaid-flowchart.html` (`.opencode/skill/sk-visual-explainer/scripts/validate-html-output.sh`, `.opencode/skill/sk-visual-explainer/assets/templates/mermaid-flowchart.html`)
+- [ ] T004 Save baseline evidence file (`specs/002-commands-and-skills/041-sk-visual-explainer-hardening/scratch/baseline-validator.txt`)
+
+Verification commands:
+
+```bash
+bash .opencode/skill/sk-visual-explainer/scripts/validate-html-output.sh .opencode/skill/sk-visual-explainer/assets/templates/architecture.html
+bash .opencode/skill/sk-visual-explainer/scripts/validate-html-output.sh .opencode/skill/sk-visual-explainer/assets/templates/data-table.html
+bash .opencode/skill/sk-visual-explainer/scripts/validate-html-output.sh .opencode/skill/sk-visual-explainer/assets/templates/mermaid-flowchart.html
+```
 <!-- /ANCHOR:phase-1 -->
 
 ---
 
 <!-- ANCHOR:phase-2 -->
-## Phase 2: Implementation
+## Phase 2: Validator fixes
 
-- [ ] T004 [Implement core feature 1]
-- [ ] T005 [Implement core feature 2]
-- [ ] T006 [Implement core feature 3]
-- [ ] T007 [Add error handling]
+- [x] T005 Fix `VE_TOKEN_COUNT` counting logic (`.opencode/skill/sk-visual-explainer/scripts/validate-html-output.sh`)
+- [x] T006 Update typography guardrails to allow `Roboto Mono` while still blocking Inter/Roboto/Arial primary (`.opencode/skill/sk-visual-explainer/scripts/validate-html-output.sh`)
+- [x] T007 Implement multiline-safe `background-image` detection (`.opencode/skill/sk-visual-explainer/scripts/validate-html-output.sh`)
+
+Verification commands:
+
+```bash
+rg -n -- "VE_TOKEN_COUNT|Typography Guardrails|Background Atmosphere" .opencode/skill/sk-visual-explainer/scripts/validate-html-output.sh
+```
 <!-- /ANCHOR:phase-2 -->
 
 ---
 
 <!-- ANCHOR:phase-3 -->
-## Phase 3: Verification
+## Phase 3: Template token migration
 
-- [ ] T008 Test happy path manually
-- [ ] T009 Test edge cases
-- [ ] T010 Update documentation
+- [x] T008 Canonicalize tokens in `architecture.html` to `--ve-*` (`.opencode/skill/sk-visual-explainer/assets/templates/architecture.html`)
+- [x] T009 Canonicalize tokens in `data-table.html` to `--ve-*` (`.opencode/skill/sk-visual-explainer/assets/templates/data-table.html`)
+- [x] T010 Canonicalize tokens in `mermaid-flowchart.html` to `--ve-*` (`.opencode/skill/sk-visual-explainer/assets/templates/mermaid-flowchart.html`)
+
+Verification commands:
+
+```bash
+rg -n -- "--ve-" .opencode/skill/sk-visual-explainer/assets/templates/architecture.html .opencode/skill/sk-visual-explainer/assets/templates/data-table.html .opencode/skill/sk-visual-explainer/assets/templates/mermaid-flowchart.html
+```
 <!-- /ANCHOR:phase-3 -->
+
+---
+
+<!-- ANCHOR:phase-4 -->
+## Phase 4: Docs correction
+
+- [x] T011 Fix sequence syntax typo `->>/-->` in docs (`.opencode/skill/sk-visual-explainer/references/library_guide.md`)
+
+Verification commands:
+
+```bash
+rg -n --fixed-strings -- "->>/-->" .opencode/skill/sk-visual-explainer/references/library_guide.md
+rg -n --fixed-strings -- "->>/-->>" .opencode/skill/sk-visual-explainer/references/library_guide.md
+```
+<!-- /ANCHOR:phase-4 -->
+
+---
+
+<!-- ANCHOR:phase-5 -->
+## Phase 5: Validation+summary
+
+- [x] T012 Run validator and confirm exit code `0` for `architecture.html` (`.opencode/skill/sk-visual-explainer/scripts/validate-html-output.sh`)
+- [x] T013 Run validator and confirm exit code `0` for `data-table.html` (`.opencode/skill/sk-visual-explainer/scripts/validate-html-output.sh`)
+- [x] T014 Run validator and confirm exit code `0` for `mermaid-flowchart.html` (`.opencode/skill/sk-visual-explainer/scripts/validate-html-output.sh`)
+- [x] T015 Verify typography guardrail behavior for `Roboto Mono` allow + Inter/Roboto/Arial primary block (`.opencode/skill/sk-visual-explainer/scripts/validate-html-output.sh`)
+- [x] T016 Update checklist evidence and verification summary (`specs/002-commands-and-skills/041-sk-visual-explainer-hardening/checklist.md`)
+- [x] T017 Finalize completion narrative (`specs/002-commands-and-skills/041-sk-visual-explainer-hardening/implementation-summary.md`)
+
+Verification commands:
+
+```bash
+bash .opencode/skill/sk-visual-explainer/scripts/validate-html-output.sh .opencode/skill/sk-visual-explainer/assets/templates/architecture.html
+bash .opencode/skill/sk-visual-explainer/scripts/validate-html-output.sh .opencode/skill/sk-visual-explainer/assets/templates/data-table.html
+bash .opencode/skill/sk-visual-explainer/scripts/validate-html-output.sh .opencode/skill/sk-visual-explainer/assets/templates/mermaid-flowchart.html
+```
+<!-- /ANCHOR:phase-5 -->
 
 ---
 
@@ -55,8 +111,9 @@
 ## Completion Criteria
 
 - [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] No `[B]` blocked tasks remaining
+- [x] P0 requirements REQ-001..REQ-003 verified with evidence
+- [x] P1 requirements REQ-004..REQ-006 verified or explicitly deferred with approval
 <!-- /ANCHOR:completion -->
 
 ---
@@ -66,13 +123,5 @@
 
 - **Specification**: See `spec.md`
 - **Plan**: See `plan.md`
+- **Verification**: See `checklist.md`
 <!-- /ANCHOR:cross-refs -->
-
----
-
-<!--
-CORE TEMPLATE (~60 lines)
-- Simple task tracking
-- 3 phases: Setup, Implementation, Verification
-- Add L2/L3 addendums for complexity
--->

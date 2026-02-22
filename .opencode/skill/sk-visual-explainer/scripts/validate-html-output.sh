@@ -192,13 +192,18 @@ fi
 section "7" "CDN URLs"
 
 CDN_ERRORS=0
+USES_CDN_LIBS=false
+
+if grep -qiE 'import[[:space:]]+mermaid|new[[:space:]]+Chart\(|anime\(|<script[^>]+src=[^>]*(mermaid|chart\.js|animejs)' "$HTML_FILE"; then
+  USES_CDN_LIBS=true
+fi
 
 # Extract all script src and link href attributes that look like CDN URLs
 CDN_URLS=$(grep -oE 'https://cdn\.[a-zA-Z0-9._/-]+' "$HTML_FILE" 2>/dev/null || true)
 
 if [[ -z "$CDN_URLS" ]]; then
   # Only warn when CDN-backed libraries are actually referenced.
-  if grep -qiE 'mermaid|chart\.js|new Chart\(|animejs|anime\(' "$HTML_FILE"; then
+  if $USES_CDN_LIBS; then
     warn "No CDN URLs found (cdn.* pattern)"
     info "Expected at minimum: cdn.jsdelivr.net for Mermaid, Chart.js, or anime.js"
   else
@@ -238,7 +243,7 @@ else
     fi
   fi
 
-  if [[ $CDN_ERRORS -eq 0 ]] && ! grep -qi 'mermaid\|chart\.js\|animejs' "$HTML_FILE"; then
+  if [[ $CDN_ERRORS -eq 0 ]] && ! $USES_CDN_LIBS; then
     pass "CDN URLs found and use HTTPS"
   fi
 fi

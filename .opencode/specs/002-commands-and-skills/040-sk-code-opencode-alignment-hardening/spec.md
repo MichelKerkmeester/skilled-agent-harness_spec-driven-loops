@@ -221,7 +221,8 @@ Deliver a deterministic, lower-noise verifier that preserves meaningful drift de
 **As a** maintainer, **I want** verifier output to focus on actionable issues, **so that** remediation work is not diluted by scanner noise.
 
 **Acceptance Criteria**:
-1. Given baseline roots, when the hardened verifier runs, then violation count drops by >= 30% from baseline without hiding production checks.
+1. **Given** baseline roots, **when** the hardened verifier runs, **then** violation count drops by >= 30% from baseline without hiding production checks.
+2. **Given** production module fixtures with known drift, **when** the verifier runs, **then** actionable violations are still reported.
 
 ---
 
@@ -230,7 +231,8 @@ Deliver a deterministic, lower-noise verifier that preserves meaningful drift de
 **As a** TypeScript maintainer, **I want** `.mts` modules to be scanned and tested, **so that** module drift is not missed.
 
 **Acceptance Criteria**:
-1. Given `.mts` fixtures, when verifier runs, then TS checks apply and produce expected findings.
+1. **Given** `.mts` fixtures, **when** verifier runs, **then** TS checks apply and produce expected findings.
+2. **Given** `.mts` fixtures without module header markers, **when** path policy marks them as production modules, **then** `TS-MODULE-HEADER` findings are emitted.
 
 ---
 
@@ -239,7 +241,8 @@ Deliver a deterministic, lower-noise verifier that preserves meaningful drift de
 **As a** developer investigating JSONC failures, **I want** line numbers to map to real source lines, **so that** I can fix issues quickly.
 
 **Acceptance Criteria**:
-1. Given block-comment JSONC fixtures, when parsing fails, then reported line numbers match expected fixture lines.
+1. **Given** block-comment JSONC fixtures, **when** parsing fails, **then** reported line numbers match expected fixture lines.
+2. **Given** comment-like tokens inside JSON strings, **when** JSONC stripping runs, **then** string content remains intact and parse behavior is unchanged.
 
 ---
 
@@ -248,7 +251,8 @@ Deliver a deterministic, lower-noise verifier that preserves meaningful drift de
 **As a** CI owner, **I want** repeated or overlapping roots to produce deterministic counts, **so that** reports are stable and comparable over time.
 
 **Acceptance Criteria**:
-1. Given repeated and overlapping root combinations, when verifier runs, then scanned-file set has no duplicates.
+1. **Given** repeated and overlapping root combinations, **when** verifier runs, **then** scanned-file set has no duplicates.
+2. **Given** identical inputs across two runs, **when** verifier executes twice, **then** scanned and violation totals are identical.
 <!-- /ANCHOR:user-stories -->
 
 ---

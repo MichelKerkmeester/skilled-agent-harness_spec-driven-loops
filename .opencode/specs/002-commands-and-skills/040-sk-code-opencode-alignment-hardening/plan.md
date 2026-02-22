@@ -39,6 +39,32 @@ This implementation hardens verifier signal quality by reducing path noise, narr
 
 ---
 
+## 2A. AI EXECUTION PROTOCOL
+
+### Pre-Task Checklist
+- [ ] Confirm target files match scope in `spec.md` Section 3
+- [ ] Confirm each task maps to REQ-002 through REQ-012
+- [ ] Confirm baseline command/output artifact is captured before logic edits
+
+### Task Execution Rules
+
+| Rule ID | Rule | Enforcement |
+|---------|------|-------------|
+| TASK-SEQ | Execute phases in order: Setup -> Implementation -> Verification | Do not start Phase 3 before Phase 2 pass criteria |
+| TASK-SCOPE | Edit only verifier/test/doc files listed in `spec.md` | Reject out-of-scope refactors |
+| TASK-EVIDENCE | Every completed checklist item needs evidence | Reference command output or file path |
+
+### Status Reporting Format
+- Use: `STATUS: <phase> | <task-id> | <state> | <evidence>`
+- Example: `STATUS: Phase 2 | T013 | done | test_verify_alignment_drift.py::test_ts_header_scope`
+
+### Blocked Task Protocol
+1. Mark task `[B]` in `tasks.md` with the blocking condition.
+2. Capture blocker evidence in `scratch/` and summarize in `checklist.md`.
+3. Stop dependent tasks until blocker is resolved or explicitly deferred.
+
+---
+
 <!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
 

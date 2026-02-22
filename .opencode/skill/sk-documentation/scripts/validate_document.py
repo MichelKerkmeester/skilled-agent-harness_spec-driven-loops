@@ -10,7 +10,7 @@ Validates markdown documentation against template rules to ensure
 consistent formatting with proper TOC, H2 emojis, and section structure.
 
 Usage:
-    python validate_document.py <document.md> [--type readme|skill|reference|asset|agent]
+    python validate_document.py <document.md> [--type readme|skill|reference|asset|agent|command|install_guide]
     python validate_document.py <document.md> --json
     python validate_document.py <document.md> --fix [--dry-run]
     python validate_document.py <document.md> --blocking-only
@@ -115,6 +115,12 @@ def detect_document_type(file_path: str, content: str, rules: Dict[str, Any]) ->
     """Detect document type from file path or content."""
     path_lower = str(file_path).lower()
 
+    if '/command/' in path_lower or '\\command\\' in path_lower or '/commands/' in path_lower or '\\commands\\' in path_lower:
+        return 'command'
+    if '/install_guides/' in path_lower or '\\install_guides\\' in path_lower:
+        return 'install_guide'
+    if 'install_guide' in Path(path_lower).stem:
+        return 'install_guide'
     if path_lower.endswith('readme.md'):
         return 'readme'
     if path_lower.endswith('skill.md'):
@@ -604,7 +610,7 @@ def main() -> None:
         epilog=__doc__
     )
     parser.add_argument('file', help='Markdown file to validate')
-    parser.add_argument('--type', choices=['readme', 'skill', 'reference', 'asset', 'agent'],
+    parser.add_argument('--type', choices=['readme', 'skill', 'reference', 'asset', 'agent', 'command', 'install_guide'],
                         help='Document type (auto-detected if not specified)')
     parser.add_argument('--json', action='store_true', help='Output results as JSON')
     parser.add_argument('--blocking-only', action='store_true', help='Show only blocking errors')

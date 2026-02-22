@@ -73,6 +73,7 @@ skill-name/
 2. SMART ROUTING (detection guidance + merged resource domains/mapping + loading levels + authoritative pseudocode)
 3. HOW IT WORKS
 4. RULES (ALWAYS/NEVER/ESCALATE IF)
+5. REFERENCES (or combined `SMART ROUTING & REFERENCES`)
 
 **Recommended Sections**:
 5. SUCCESS CRITERIA
@@ -262,7 +263,7 @@ scripts/init_skill.py <skill-name> --path <output-directory>
 3. Creates example resource directories: `scripts/`, `references/`, `assets/`
 4. Adds example files that can be customized or deleted
 
-**Generated SKILL.md**: `init_skill.py` generates a SKILL.md with TODO placeholders for all required sections (WHEN TO USE, SMART ROUTING, HOW IT WORKS, RULES, SUCCESS CRITERIA, INTEGRATION POINTS).
+**Generated SKILL.md**: `init_skill.py` generates a SKILL.md with TODO placeholders for all required sections (WHEN TO USE, SMART ROUTING, REFERENCES, HOW IT WORKS, RULES) plus recommended sections (SUCCESS CRITERIA, INTEGRATION POINTS).
 
 **After initialization**: Customize or remove generated files as needed.
 
@@ -369,6 +370,10 @@ Answer these questions in SKILL.md:
    - ALWAYS rules (required actions)
    - NEVER rules (forbidden actions)
    - ESCALATE IF (when to ask user)
+
+7. **What references should the skill expose explicitly?**
+   - Section 5: REFERENCES
+   - Include core references and templates, or use combined `SMART ROUTING & REFERENCES` if preferred.
 
 **Writing Style Reminders**:
 - Use imperative/infinitive form (verb-first: "Run validation", "Check structure")

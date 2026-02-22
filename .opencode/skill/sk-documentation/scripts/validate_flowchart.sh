@@ -12,6 +12,12 @@ set -euo pipefail
 # 1. CONFIGURATION
 # ───────────────────────────────────────────────────────────────
 
+if [[ $# -lt 1 ]]; then
+  echo "Usage: $0 <flowchart.md>"
+  echo "Example: $0 specs/094-feature/flowchart.md"
+  exit 1
+fi
+
 FLOWCHART_FILE="$1"
 ERRORS=0
 WARNINGS=0
@@ -29,8 +35,15 @@ fi
 
 check_box_alignment() {
     echo "⏹️  Checking for misaligned boxes..."
-    BOX_WIDTHS=$(grep -oE '─{2,}' "$FLOWCHART_FILE" | awk '{print length}' | sort -u)
-    NUM_WIDTHS=$(echo "$BOX_WIDTHS" | wc -l | tr -d ' ')
+    NUM_WIDTHS=$(awk '
+      {
+        while (match($0, /─{2,}/)) {
+          print RLENGTH
+          $0 = substr($0, RSTART + RLENGTH)
+        }
+      }
+    ' "$FLOWCHART_FILE" | sort -u | sed '/^$/d' | wc -l | tr -d ' ')
+    NUM_WIDTHS="${NUM_WIDTHS:-0}"
 
     if [[ $NUM_WIDTHS -gt 5 ]]; then
       echo "   ❌ Error: Too many box width variations ($NUM_WIDTHS)"
@@ -47,8 +60,10 @@ check_box_alignment() {
 
 check_arrows() {
     echo "➡️  Checking for arrow patterns..."
-    ARROW_COUNT=$(grep -c '→\|↓\|├─\|└─' "$FLOWCHART_FILE" || echo "0")
-    BOX_COUNT=$(grep -c '┌─\|┐\|└─\|┘' "$FLOWCHART_FILE" || echo "0")
+    ARROW_COUNT=$(grep -Ec '→|↓|├─|└─' "$FLOWCHART_FILE" || true)
+    BOX_COUNT=$(grep -Ec '┌─|┐|└─|┘' "$FLOWCHART_FILE" || true)
+    ARROW_COUNT="${ARROW_COUNT:-0}"
+    BOX_COUNT="${BOX_COUNT:-0}"
 
     if [[ $ARROW_COUNT -eq 0 ]] && [[ $BOX_COUNT -gt 0 ]]; then
       echo "   ❌ Error: Found boxes but no arrows/connectors (broken flowchart)"
@@ -61,8 +76,10 @@ check_arrows() {
 
 check_decision_labels() {
     echo "🔀 Checking decision branch labels..."
-    DECISION_COUNT=$(grep -ci 'decision\|if\|choice\|branch' "$FLOWCHART_FILE" || echo "0")
-    YES_NO_COUNT=$(grep -ci '\[yes\]\|\[no\]\|✓\|✗' "$FLOWCHART_FILE" || echo "0")
+    DECISION_COUNT=$(grep -Eic '(^|[^[:alpha:]])(decision|choice|branch)([^[:alpha:]]|$)|(^|[^[:alpha:]])if([^[:alpha:]]|$)' "$FLOWCHART_FILE" || true)
+    YES_NO_COUNT=$(grep -Eic '\[(yes|no)\]|✓|✗' "$FLOWCHART_FILE" || true)
+    DECISION_COUNT="${DECISION_COUNT:-0}"
+    YES_NO_COUNT="${YES_NO_COUNT:-0}"
 
     if [[ $DECISION_COUNT -gt 0 ]] && [[ $YES_NO_COUNT -eq 0 ]]; then
       echo "   ❌ Error: Decision points detected but no YES/NO labels found"
@@ -76,6 +93,7 @@ check_decision_labels() {
 check_nesting_depth() {
     echo "📊 Checking nesting depth..."
     MAX_INDENT=$(awk '{match($0, /^[ ]*/); print RLENGTH}' "$FLOWCHART_FILE" | sort -rn | head -1)
+    MAX_INDENT="${MAX_INDENT:-0}"
     DEPTH_LEVEL=$((MAX_INDENT / 2))
 
     if [[ $DEPTH_LEVEL -gt 6 ]]; then
