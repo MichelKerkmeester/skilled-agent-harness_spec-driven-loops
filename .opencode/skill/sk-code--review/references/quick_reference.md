@@ -109,3 +109,16 @@ If no changes are detected, return:
   - Review a specific commit/range
   - Review selected files
 <!-- /ANCHOR:no-diff-path -->
+
+---
+
+<!-- ANCHOR:related-resources -->
+## 7. RELATED RESOURCES
+
+- [security_checklist.md](./security_checklist.md) - Security, reliability, and abuse-prevention checks.
+- [code_quality_checklist.md](./code_quality_checklist.md) - Non-security correctness and performance checks.
+- [solid_checklist.md](./solid_checklist.md) - Architecture and design quality checks.
+- [removal_plan.md](./removal_plan.md) - Safe-now versus deferred deletion planning.
+
+Overlay portability: apply this baseline with `sk-code--opencode`, `sk-code--web`, or `sk-code--full-stack`.
+<!-- /ANCHOR:related-resources -->

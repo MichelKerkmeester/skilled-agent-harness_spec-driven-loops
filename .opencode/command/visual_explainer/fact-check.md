@@ -1,65 +1,106 @@
 ---
-description: "Verify accuracy of an existing visual-explainer HTML output and correct errors"
-argument-hint: "<html-file-path>"
+description: Verify accuracy of an existing visual-explainer HTML output and correct errors
+argument-hint: "[html-file-path]"
 allowed-tools: Read, Write, Edit, Bash, Glob, Grep
 ---
 
-# /visual-explainer:fact-check
+# Visual Explainer Fact Check
 
-Verify the accuracy of an existing visual-explainer HTML output file, correct any errors, and produce a verification summary.
+Verify factual and structural correctness of an existing visual-explainer HTML file, then emit a corrected output and verification summary.
 
-## Skill Activation
+---
 
-Load the `sk-visual-explainer` skill:
-1. Read `.opencode/skill/sk-visual-explainer/SKILL.md`
-2. Load `references/quality_checklist.md` (detailed verification)
+## 1. PURPOSE
 
-## Argument Parsing
+Run deterministic checks against source truth (codebase/files/data), fix inaccuracies, and provide a transparent verification report for trustable visuals.
 
-```
-INPUT: $ARGUMENTS
-├─ Required: <html-file-path> — Path to the HTML file to verify
-└─ If no arguments: look in .opencode/output/visual/ for the most recent file
-```
+---
 
-## Verification Process
+## 2. CONTRACT
+
+**Inputs:** `$ARGUMENTS` with optional `[html-file-path]`.
+**Default:** Most recent file in `.opencode/output/visual/` when omitted.
+**Outputs:** `{original-name}-verified.html` and structured verification summary.
+**Status:** `STATUS=OK ACTION=verify PATH=<verified-path>` or `STATUS=FAIL ERROR="<message>"`
+
+---
+
+## 3. REFERENCE
+
+Load `sk-visual-explainer` verification resources:
+- `.opencode/skill/sk-visual-explainer/SKILL.md`
+- `references/quality_checklist.md`
+
+---
+
+## 4. ARGUMENT ROUTING
+
+- If `[html-file-path]` provided: verify that file.
+- If omitted: select newest file under `.opencode/output/visual/`.
+- If no candidate exists: return `STATUS=FAIL ERROR="No visual output found to verify"`.
+
+---
+
+## 5. INSTRUCTIONS
 
 ### Step 1: Parse Existing Output
-- Read the HTML file
-- Extract all factual claims, data points, code references, and relationships
+
+- Read the target HTML file.
+- Extract factual claims, numbers, file references, and relationship statements.
 
 ### Step 2: Verify Against Sources
-- Cross-reference code mentions with actual codebase files
-- Verify file paths exist
-- Check that code snippets match actual source
-- Verify statistical claims (LOC counts, file counts, etc.)
-- Validate diagram relationships against actual code structure
+
+- Check referenced files and paths exist.
+- Validate code snippets against source files.
+- Recompute numerical claims (file counts, LOC, percentages).
+- Validate diagram relationships against actual structure.
 
 ### Step 3: Run Quality Checks
-Execute all 9 quality checks from `references/quality_checklist.md`:
-1. Squint test
-2. Swap test
-3. Both themes
-4. Information completeness
-5. No overflow
-6. Mermaid zoom controls
-7. File opens cleanly
-8. Accessibility
-9. Reduced motion
 
-### Step 4: Generate Report
-Produce a summary:
-- Total claims verified
+Execute quality checklist items and capture pass/fail status per check.
+
+### Step 4: Correct and Save
+
+- Apply required corrections.
+- Save corrected output with `-verified` suffix.
+- Preserve original unless user explicitly requests overwrite.
+
+### Step 5: Return Structured Status
+
+Return:
+- Verified claims count
 - Accuracy percentage
-- List of corrections made
-- Quality check results (pass/fail per check)
+- Corrections list
+- Quality check summary
+- `STATUS=OK ACTION=verify PATH=<verified-path>`
 
-### Step 5: Fix and Save
-- If errors found: create corrected version
-- Save corrected file alongside original with `-verified` suffix
-- Output corrections summary to console
+---
 
-## Output
+## 6. ERROR HANDLING
 
-- Corrected file: `{original-name}-verified.html`
-- Console summary of all changes made
+| Condition | Action |
+| --- | --- |
+| Target HTML not found | Return `STATUS=FAIL ERROR="HTML file not found: <path>"` |
+| No source data available for claim verification | Mark claim as unverified and include in report |
+| Parse failure on malformed HTML | Return `STATUS=FAIL ERROR="Unable to parse HTML for verification"` |
+| Write failure for verified output | Return `STATUS=FAIL ERROR="Unable to write verified output"` |
+
+---
+
+## 7. COMPLETION REPORT
+
+After successful execution, return:
+
+```text
+STATUS=OK ACTION=verify PATH=<verified-path>
+SUMMARY="Verified visual output and applied factual/quality corrections"
+```
+
+---
+
+## 8. EXAMPLES
+
+```bash
+/visual-explainer:fact-check
+/visual-explainer:fact-check ".opencode/output/visual/generate-auth-flow-20260222-103000.html"
+```

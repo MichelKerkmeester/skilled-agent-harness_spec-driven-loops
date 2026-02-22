@@ -1,52 +1,122 @@
 ---
-description: "Generate a styled HTML recap of recent work and progress"
-argument-hint: "<time-window> (e.g., 2w, 1m, today)"
+description: Generate a styled HTML recap of recent work and progress
+argument-hint: "[time-window]"
 allowed-tools: Read, Write, Edit, Bash, Glob, Grep
 ---
 
-# /visual-explainer:recap
+# Visual Explainer Recap
 
-Generate a visual recap page summarizing recent work, progress, and accomplishments.
+Generate a visual recap page summarizing recent work, progress, and next actions for a selected time window.
 
-## Skill Activation
+---
 
-Load the `sk-visual-explainer` skill:
-1. Read `.opencode/skill/sk-visual-explainer/SKILL.md`
-2. Load `references/quick_reference.md` (always)
-3. Load `references/css_patterns.md` (for styling)
-4. Load `references/navigation_patterns.md` (multi-section page)
+## 1. PURPOSE
 
-## Argument Parsing
+Create an at-a-glance progress artifact that combines commit activity, completed work, architectural changes, and upcoming priorities.
 
+---
+
+## 2. CONTRACT
+
+**Inputs:** `$ARGUMENTS` with optional `[time-window]` (`3d`, `1w`, `2w`, `1m`, `today`).
+**Default:** `1w` when omitted.
+**Outputs:** `.opencode/output/visual/recap-{timewindow}-{timestamp}.html`
+**Status:** `STATUS=OK ACTION=create PATH=<output-path>` or `STATUS=FAIL ERROR="<message>"`
+
+---
+
+## 3. REFERENCE
+
+Load `sk-visual-explainer` and recap resources:
+- `.opencode/skill/sk-visual-explainer/SKILL.md`
+- `references/quick_reference.md`
+- `references/css_patterns.md`
+- `references/navigation_patterns.md`
+- `references/quality_checklist.md`
+
+---
+
+## 4. ARGUMENT ROUTING
+
+Parse time-window input:
+- Accepted format: `<number><unit>` where `unit` is `d`, `w`, or `m`
+- Accepted literal: `today`
+- Empty input: use `1w`
+
+Resolve to a concrete date range before collecting data.
+
+---
+
+## 5. INSTRUCTIONS
+
+### Step 1: Gather Evidence
+
+Collect from:
+- `git log --since="<resolved-date>" --oneline --stat`
+- Recently changed spec folders and implementation summaries
+- Recent memory/context files when available
+- Diff statistics over the same time window
+
+### Step 2: Build Recap Narrative
+
+Summarize:
+- Completed work
+- Work in progress
+- Major decisions
+- Architectural impact
+- Trend highlights
+- Next-step recommendations
+
+### Step 3: Build Visual Report
+
+Include these sections:
+1. Period Summary
+2. Timeline
+3. Completed Work
+4. In Progress
+5. Architecture Changes
+6. Key Decisions
+7. Metrics and Trends
+8. Next Steps
+
+Default aesthetic: `data-dense`.
+
+### Step 4: Validate and Deliver
+
+- Run quality checklist validations.
+- Save to `.opencode/output/visual/recap-{timewindow}-{timestamp}.html`.
+- Open in browser.
+- Return structured status.
+
+---
+
+## 6. ERROR HANDLING
+
+| Condition | Action |
+| --- | --- |
+| Invalid time-window format | Return `STATUS=FAIL ERROR="Invalid time window: <value>"` |
+| No activity in range | Generate report with explicit "No activity found" state |
+| Data collection command fails | Return `STATUS=FAIL` with command context |
+| Render/validation failure | Return `STATUS=FAIL` with failing stage detail |
+
+---
+
+## 7. COMPLETION REPORT
+
+After successful execution, return:
+
+```text
+STATUS=OK ACTION=create PATH=<output-path>
+SUMMARY="Generated progress recap for the selected time window"
 ```
-INPUT: $ARGUMENTS
-├─ Accepts: time window — "2w" (2 weeks), "1m" (1 month), "today", "3d" (3 days)
-├─ Default: "1w" (1 week) if no argument provided
-└─ Parse: number + unit (d=days, w=weeks, m=months)
+
+---
+
+## 8. EXAMPLES
+
+```bash
+/visual-explainer:recap
+/visual-explainer:recap "2w"
+/visual-explainer:recap "1m"
+/visual-explainer:recap "today"
 ```
-
-## Data Gathering
-
-Collect from multiple sources:
-1. **Git log** — commits in time window: `git log --since="<date>" --oneline --stat`
-2. **Spec folders** — recently modified spec folders with implementation-summary.md
-3. **Memory files** — recent memory saves with context
-4. **Changed files** — `git diff --stat HEAD@{<time>}..HEAD`
-
-## Section Architecture (8 sections)
-
-1. **Period Summary** — KPI cards: commits, files changed, LOC added/removed, specs completed
-2. **Timeline** — Chronological view of major events/milestones
-3. **Completed Work** — Table of finished tasks with links to spec folders
-4. **In Progress** — Current open work items
-5. **Architecture Changes** — Mermaid diagram of components modified
-6. **Key Decisions** — Important decisions made during the period
-7. **Metrics & Trends** — Chart.js charts showing activity over time
-8. **Next Steps** — Upcoming planned work
-
-Default aesthetic: **Data-dense** (small type, tight spacing, max information)
-
-## Output
-
-Save to `.opencode/output/visual/recap-{timewindow}-{timestamp}.html`
-Open in browser.

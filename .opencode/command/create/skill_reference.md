@@ -417,7 +417,7 @@ $ARGUMENTS
 
 **Example 1: Create workflow reference**
 ```
-/create:skill_reference sk-code--web workflow
+/create:skill_reference sk-code--* workflow
 ```
 → Creates phased workflow documentation with checkpoints
 
@@ -435,7 +435,7 @@ $ARGUMENTS
 
 **Example 4: Auto mode (no prompts)**
 ```
-/create:skill_reference sk-code--web workflow :auto
+/create:skill_reference sk-code--* workflow :auto
 ```
 → Creates reference without approval prompts, only stops for errors
 

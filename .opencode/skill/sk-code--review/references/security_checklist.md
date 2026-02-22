@@ -114,3 +114,80 @@ Reviewer questions:
 - "What happens if two requests hit this path at the same time?"
 - "Is this update atomic across all failure modes?"
 <!-- /ANCHOR:concurrency -->
+
+---
+
+<!-- ANCHOR:rate-limiting -->
+## 7. RATE LIMITING AND ABUSE PREVENTION
+
+Check for:
+- Missing rate limits on authentication endpoints (login, signup, password reset).
+- Unthrottled API endpoints accepting expensive operations.
+- Missing abuse vectors: account enumeration, credential stuffing, brute force.
+- Lack of per-user or per-IP request budgets on public-facing routes.
+
+Review prompt:
+- "What stops an attacker from calling this endpoint 10,000 times per second?"
+<!-- /ANCHOR:rate-limiting -->
+
+---
+
+<!-- ANCHOR:csp-headers -->
+## 8. CONTENT SECURITY POLICY AND HEADERS
+
+Check for:
+- Missing or overly permissive CSP headers (`unsafe-inline`, `unsafe-eval`, wildcard sources).
+- Missing security headers: `X-Content-Type-Options`, `X-Frame-Options`, `Strict-Transport-Security`.
+- CORS misconfiguration: wildcard origins, credentials with broad origins.
+- Missing `SameSite` attribute on sensitive cookies.
+
+Review prompt:
+- "Could an attacker embed, frame, or inject scripts into this page?"
+<!-- /ANCHOR:csp-headers -->
+
+---
+
+<!-- ANCHOR:dependency-supply-chain -->
+## 9. DEPENDENCY AND SUPPLY CHAIN SECURITY
+
+Check for:
+- Known vulnerabilities in dependencies (`npm audit`, `pip-audit`, `cargo audit`).
+- Unpinned or loosely pinned dependency versions (major version ranges).
+- Dependencies with no maintainer activity or known compromises.
+- Post-install scripts in untrusted packages.
+- Lock file integrity (committed and consistent with manifest).
+
+Review prompt:
+- "Are all dependencies pinned, audited, and from trusted sources?"
+<!-- /ANCHOR:dependency-supply-chain -->
+
+---
+
+<!-- ANCHOR:audit-logging -->
+## 10. AUDIT LOGGING AND OBSERVABILITY
+
+Check for:
+- Missing audit logs for security-sensitive operations (auth, permission changes, data deletion).
+- Insufficient context in logs (who, what, when, from where).
+- Logging sensitive data (passwords, tokens, PII) in plain text.
+- Missing alerting for anomalous patterns (repeated auth failures, privilege escalation).
+
+Review prompt:
+- "If this action were abused, would we know about it from the logs?"
+<!-- /ANCHOR:audit-logging -->
+
+---
+
+<!-- ANCHOR:privacy-data-handling -->
+## 11. PRIVACY AND DATA HANDLING
+
+Check for:
+- PII stored without encryption at rest or purpose limitation.
+- Missing data retention policies or deletion mechanisms.
+- Cross-border data transfer without adequate safeguards.
+- Excessive data collection beyond stated purpose.
+- Missing consent mechanisms for user data processing.
+
+Review prompt:
+- "Does this code collect, store, or transmit personal data — and is that justified and protected?"
+<!-- /ANCHOR:privacy-data-handling -->

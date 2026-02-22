@@ -545,15 +545,15 @@ workflow:
     agent_availability:
       agent_file: "[runtime_agent_path]/review.md"
       standards_contract:
-        baseline: "sk-code--review"
-        overlay: "Auto-detect one overlay: sk-code--opencode | sk-code--web | sk-code--full-stack"
+        baseline: "sk-code"
+        overlay: "Auto-detect one overlay: sk-code--*"
         precedence: "Overlay style/process/build/test conventions override generic baseline guidance; baseline security/correctness minimums remain mandatory."
-      rule_reference: "AGENTS.md §3 — quality scoring + sk-code--review baseline-overlay contract"
+      rule_reference: "AGENTS.md §3 — quality scoring + sk-code baseline + sk-code--* overlay contract"
       condition: "ONLY when this step is actively executing"
       blocking: false
       not_for: "reviewing this workflow prompt or any pre-step activity"
     activities:
-    - "Dispatch @review using sk-code--review baseline plus one stack overlay to quality-score the created agent definition file"
+    - "Dispatch @review using sk-code baseline plus one sk-code--* overlay to quality-score the created agent definition file"
     - "Review checks: frontmatter validity, permission config, behavioral rules"
     - "Score against 100-point rubric (Accuracy 40%, Completeness 35%, Consistency 25%)"
     on_low_score:

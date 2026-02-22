@@ -77,10 +77,10 @@ agent_availability:
     condition: "ONLY dispatch when Step 5 is actively executing AND user chose Option A (Apply fix)"
     agent_file: "[runtime_agent_path]/review.md"
     standards_contract:
-      baseline: "sk-code--review"
-      overlay: "Auto-detect one overlay: sk-code--opencode | sk-code--web | sk-code--full-stack"
+      baseline: "sk-code"
+      overlay: "Auto-detect one overlay: sk-code--*"
       precedence: "Overlay style/process/build/test conventions override generic baseline guidance; baseline security/correctness minimums remain mandatory."
-    purpose: "Post-fix code quality validation (sk-code--review baseline + overlay)"
+    purpose: "Post-fix code quality validation (sk-code baseline + sk-code--* overlay)"
     fallback: "general"
     blocking: false
     advisory: true

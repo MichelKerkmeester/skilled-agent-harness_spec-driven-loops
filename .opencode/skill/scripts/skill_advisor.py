@@ -241,6 +241,9 @@ INTENT_BOOSTERS = {
     "blockers": ("sk-code--review", 0.9),
     "vulnerability": ("sk-code--review", 1.0),
     "regression": ("sk-code--review", 0.8),
+    "audit": ("sk-code--review", 1.0),
+    "solid": ("sk-code--review", 0.9),
+    "readiness": ("sk-code--review", 0.8),
 
     # ─────────────────────────────────────────────────────────────────
     # MCP-CHROME-DEVTOOLS: Browser debugging
@@ -351,7 +354,7 @@ INTENT_BOOSTERS = {
 # Format: keyword -> list of (skill_name, boost_amount)
 MULTI_SKILL_BOOSTERS = {
     "api": [("mcp-code-mode", 0.2), ("sk-code--web", 0.5), ("sk-code--full-stack", 0.4)],
-    "audit": [("system-spec-kit", 0.3), ("mcp-chrome-devtools", 0.3), ("sk-code--web", 0.2)],
+    "audit": [("sk-code--review", 0.6), ("system-spec-kit", 0.3), ("mcp-chrome-devtools", 0.3), ("sk-code--web", 0.2)],
     "chain": [("mcp-code-mode", 0.3)],
     "changes": [("sk-git", 0.4), ("system-spec-kit", 0.2)],
     "css": [("sk-code--web", 0.6), ("mcp-chrome-devtools", 0.3)],
@@ -394,6 +397,14 @@ PHRASE_INTENT_BOOSTERS = {
     "request changes": [("sk-code--review", 2.0)],
     "race conditions": [("sk-code--review", 1.5)],
     "auth bugs": [("sk-code--review", 1.5)],
+    "code audit": [("sk-code--review", 2.2)],
+    "audit this code": [("sk-code--review", 2.3)],
+    "check this code": [("sk-code--review", 2.0)],
+    "check for issues": [("sk-code--review", 2.0)],
+    "solid violations": [("sk-code--review", 2.2)],
+    "solid principles": [("sk-code--review", 2.0)],
+    "merge readiness": [("sk-code--review", 2.2), ("sk-git", 0.4)],
+    "ready to merge": [("sk-code--review", 2.2), ("sk-git", 0.4)],
     "implement feature": [("sk-code--web", 0.9)],
     "css animation": [("sk-code--web", 0.8)],
     "api network": [("sk-code--web", 0.7), ("mcp-chrome-devtools", 0.4)],
