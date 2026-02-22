@@ -65,13 +65,12 @@ Delivery and verification evidence captured in this run:
 - Apply pass evidence exists (`scratch/frontmatter-apply-report.json`: `changed 1789`, `failed 0`).
 - Final idempotency dry-run passed (`node scripts/dist/memory/backfill-frontmatter.js --dry-run --include-archive`):
   `changed 0 / unchanged 1789 / failed 0`.
-- Final dry-run report: `specs/003-system-spec-kit/139-hybrid-rag-fusion/004-frontmatter-indexing/scratch/frontmatter-final-dry-run-report-v3.json`.
+- Final dry-run report: `scratch/frontmatter-final-dry-run-report-v3.json`.
 - Strict-policy validation dry-run (post-remediation): `scratch/frontmatter-proof-dry-run.json` (`total 1704`, `changed 1623`, `failed 0`, `malformed 0`).
 
 4. Coverage and reindex quality:
-- Coverage post-migration: templates total 81 missing 0; memory total 365 missing 0; specDocs total 1343 missing 0.
-- Reindex completed with `STATUS=OK` (ran twice); legacy invalid-anchor warnings in archived files were non-fatal.
-- DB checks after reindex: memory-row generic `SESSION SUMMARY` exact/trimmed/prefix counts all `0`; `distinct_titles_all=1250`; `distinct_titles_memory=1052`.
+- Coverage and parser/index regression tests passed in the executed command set listed above.
+- Reindex completed with `STATUS=OK` (ran twice), and legacy invalid-anchor warnings in archived files were non-fatal.
 - Expanded fusion audit report: `scratch/full-tree-fusion-audit.md` (commits `111fb30a`, `937f0b06`, `85cc0ce3`) confirms no stale active-spec references outside archive paths.
 <!-- /ANCHOR:how-delivered -->
 
@@ -84,7 +83,7 @@ Delivery and verification evidence captured in this run:
 |----------|-----|
 | Keep archived-file invalid-anchor warnings as non-blocking | Reindex status was OK and warnings were legacy archive-only, not active migration failures. |
 | Treat idempotency as release gate | `changed: 0` on final dry-run confirms deterministic reruns before completion claim. |
-| Record deferred controls in checklist instead of forcing assumptions | Preserves strict evidence standard for unresolved P0/P1/P2 controls. |
+| Record deferred controls in checklist instead of forcing assumptions | Preserves strict evidence standard for unresolved controls. |
 <!-- /ANCHOR:decisions -->
 
 ---

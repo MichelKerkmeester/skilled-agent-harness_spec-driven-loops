@@ -311,9 +311,12 @@ importanceTier: [invalid
       // Should not throw - should return defaults
       const title = memoryParser.extractTitle(content);
       const tier = memoryParser.extractImportanceTier(content);
+      const triggers = memoryParser.extractTriggerPhrases(content);
 
       // The parser is regex-based so it should still extract something or return defaults
       expect(typeof title === 'string' || title === null).toBe(true);
+      expect(tier).toBe('normal');
+      expect(triggers).toEqual([]);
     });
   });
 

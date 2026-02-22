@@ -62,7 +62,7 @@ We need one predictable metadata contract before rebuilding indexes. Legacy docu
 | Option | Pros | Cons | Score |
 |--------|------|------|-------|
 | **Canonical normalize then rebuild** | Deterministic metadata, testable migration, stable retrieval inputs | Requires up-front schema design and corpus rewrite | 9/10 |
-| Reindex legacy metadata as-is | Faster initial delivery | Preserves drift and parser complexity; harder to debug | 4/10 |
+| Reindex legacy metadata as-is | Faster initial delivery | Preserves drift, and parser complexity is harder to debug | 4/10 |
 
 **Why this one**: it creates a durable contract that simplifies indexing, testing, and future template evolution.
 <!-- /ANCHOR:adr-001-alternatives -->

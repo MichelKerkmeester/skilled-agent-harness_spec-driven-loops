@@ -225,9 +225,10 @@ triggerPhrases: ["alpha, beta", "gamma"]
     const memoryDir = path.join(specDir, 'memory');
     fs.mkdirSync(memoryDir, { recursive: true });
 
+    const malformedInput = '---\ntitle: "Unclosed frontmatter"\ncontextType: implementation\n# Missing closing delimiter on purpose\n';
     fs.writeFileSync(
       path.join(memoryDir, 'bad.md'),
-      '---\ntitle: "Unclosed frontmatter"\ncontextType: implementation\n# Missing closing delimiter on purpose\n',
+      malformedInput,
       'utf-8'
     );
 
@@ -245,11 +246,13 @@ triggerPhrases: ["alpha, beta", "gamma"]
     const report = JSON.parse(fs.readFileSync(reportPath, 'utf-8'));
     const malformedCount = report.summary.malformedSkipped || 0;
     const failedCount = report.summary.failed || 0;
+    const postRun = fs.readFileSync(path.join(memoryDir, 'bad.md'), 'utf-8');
+    const unchanged = postRun === malformedInput;
 
-    if (exitedNonZero && malformedCount > 0 && failedCount > 0) {
-      pass('T-FMB-007: Strict malformed handling reports and fails', `malformed=${malformedCount}, failed=${failedCount}`);
+    if (exitedNonZero && malformedCount > 0 && failedCount > 0 && unchanged) {
+      pass('T-FMB-007: Strict malformed handling reports and fails', `malformed=${malformedCount}, failed=${failedCount}, unchanged=${unchanged}`);
     } else {
-      fail('T-FMB-007: Strict malformed handling reports and fails', `exitedNonZero=${exitedNonZero}, malformed=${malformedCount}, failed=${failedCount}`);
+      fail('T-FMB-007: Strict malformed handling reports and fails', `exitedNonZero=${exitedNonZero}, malformed=${malformedCount}, failed=${failedCount}, unchanged=${unchanged}`);
     }
   } catch (error) {
     fail('T-FMB-007: Strict malformed handling reports and fails', error.message);
@@ -278,10 +281,11 @@ triggerPhrases: ["alpha, beta", "gamma"]
 
     const report = JSON.parse(fs.readFileSync(reportPath, 'utf-8'));
     const templateBucket = report.byKind['template:template'];
-    if (templateBucket && templateBucket.total > 0) {
-      pass('T-FMB-008: Template-path coverage included by default', `template files processed=${templateBucket.total}`);
+    const templatesEnabled = report.options && report.options.skipTemplates === false;
+    if (templateBucket && templateBucket.total > 0 && templatesEnabled) {
+      pass('T-FMB-008: Template-path coverage included by default', `template files processed=${templateBucket.total}, skipTemplates=${report.options.skipTemplates}`);
     } else {
-      fail('T-FMB-008: Template-path coverage included by default', 'template:template bucket missing from report');
+      fail('T-FMB-008: Template-path coverage included by default', `templateBucket=${Boolean(templateBucket)}, total=${templateBucket ? templateBucket.total : 0}, skipTemplates=${report.options ? report.options.skipTemplates : 'n/a'}`);
     }
   } catch (error) {
     fail('T-FMB-008: Template-path coverage included by default', error.message);
@@ -289,6 +293,61 @@ triggerPhrases: ["alpha, beta", "gamma"]
     if (tmpRoot && fs.existsSync(tmpRoot)) {
       fs.rmSync(tmpRoot, { recursive: true, force: true });
     }
+  }
+
+  // --------------------------------------------------------------------------
+  // T-FMB-009: Malformed in-block list is treated as malformed and not rewritten.
+  // --------------------------------------------------------------------------
+  try {
+    const input = `---
+title: "Malformed List"
+- stray
+---
+
+# Body
+`;
+    const result = migration.buildFrontmatterContent(
+      input,
+      { templatesRoot: path.join(ROOT, 'templates') },
+      path.join(ROOT, 'specs', '007-malformed-list', 'spec.md')
+    );
+
+    if (result.malformedFrontmatter && result.content === input) {
+      pass('T-FMB-009: Malformed in-block list is skipped', 'malformedFrontmatter=true and content unchanged');
+    } else {
+      fail('T-FMB-009: Malformed in-block list is skipped', `malformed=${result.malformedFrontmatter}, unchanged=${result.content === input}`);
+    }
+  } catch (error) {
+    fail('T-FMB-009: Malformed in-block list is skipped', error.message);
+  }
+
+  // --------------------------------------------------------------------------
+  // T-FMB-010: Inline arrays support trailing YAML comments.
+  // --------------------------------------------------------------------------
+  try {
+    const input = `---
+triggerPhrases: ["alpha, beta", "gamma"] # keep this comment ignored
+---
+
+# Inline Comment Array
+`;
+    const result = migration.buildFrontmatterContent(
+      input,
+      { templatesRoot: path.join(ROOT, 'templates') },
+      path.join(ROOT, 'specs', '007-inline-comment-array', 'spec.md')
+    );
+
+    const hasJoinedPhrase = result.content.includes('- "alpha, beta"');
+    const hasGamma = result.content.includes('- "gamma"');
+    const splitIncorrectly = result.content.includes('- "alpha"') || result.content.includes('- "beta"');
+
+    if (hasJoinedPhrase && hasGamma && !splitIncorrectly) {
+      pass('T-FMB-010: Inline arrays support trailing comments', 'array parsed before YAML comment');
+    } else {
+      fail('T-FMB-010: Inline arrays support trailing comments', `hasJoinedPhrase=${hasJoinedPhrase}, hasGamma=${hasGamma}, splitIncorrectly=${splitIncorrectly}`);
+    }
+  } catch (error) {
+    fail('T-FMB-010: Inline arrays support trailing comments', error.message);
   }
 
   console.log('');

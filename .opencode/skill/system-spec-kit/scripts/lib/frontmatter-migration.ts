@@ -216,7 +216,11 @@ function truncateWithSuffix(base: string, suffix: string, maxLength: number): st
 
   const required = normalizedSuffix.length + 1;
   if (required >= maxLength) {
-    return normalizedSuffix.slice(0, maxLength);
+    if (maxLength <= 3) {
+      return normalizedSuffix.slice(0, maxLength);
+    }
+    const tailLength = maxLength - 3;
+    return `...${normalizedSuffix.slice(-tailLength)}`;
   }
 
   const allowedBaseLength = maxLength - required;
@@ -340,7 +344,10 @@ function isLikelyYamlFrontmatter(block: string): boolean {
       continue;
     }
 
-    if (/^\s*-\s+/.test(line) || /^\s{2,}\S+/.test(line)) {
+    if (/^\s{2,}-\s+/.test(line) || /^\s{2,}\S+/.test(line)) {
+      if (topLevelCount === 0) {
+        return false;
+      }
       continue;
     }
 
@@ -509,6 +516,44 @@ function parseInlineArray(value: string): string[] {
     .filter((part) => part.length > 0);
 }
 
+function stripTrailingYamlComment(value: string): string {
+  let quote: '"' | "'" | null = null;
+  let escaped = false;
+
+  for (let i = 0; i < value.length; i += 1) {
+    const ch = value[i];
+
+    if (quote) {
+      if (escaped) {
+        escaped = false;
+        continue;
+      }
+      if (quote === '"' && ch === '\\') {
+        escaped = true;
+        continue;
+      }
+      if (ch === quote) {
+        quote = null;
+      }
+      continue;
+    }
+
+    if (ch === '"' || ch === "'") {
+      quote = ch;
+      continue;
+    }
+
+    if (ch === '#') {
+      const previous = i > 0 ? value[i - 1] : '';
+      if (i === 0 || /\s/.test(previous)) {
+        return value.slice(0, i).trimEnd();
+      }
+    }
+  }
+
+  return value.trimEnd();
+}
+
 export function parseSectionValue(section: FrontmatterSection): FrontmatterValue | undefined {
   if (!section.lines.length) {
     return undefined;
@@ -520,7 +565,8 @@ export function parseSectionValue(section: FrontmatterSection): FrontmatterValue
     return undefined;
   }
 
-  const firstValue = match[1].trim();
+  const firstValueRaw = match[1].trim();
+  const firstValue = stripTrailingYamlComment(firstValueRaw).trim();
 
   if (firstValue.startsWith('[') && firstValue.endsWith(']')) {
     return parseInlineArray(firstValue);

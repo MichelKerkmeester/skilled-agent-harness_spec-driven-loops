@@ -72,7 +72,7 @@ Delivery followed the plan's setup -> implementation -> verification progression
 |----------|-----|
 | Accept ADR-001 (canonical path dedup before indexing) | Eliminates alias-root duplication while preserving dual-root compatibility |
 | Accept ADR-002 (metadata -> inline marker -> default tier precedence) | Makes tier resolution deterministic and explainable across parser/scoring paths |
-| Keep verification scope targeted instead of full-repo lint | Project-wide lint has unrelated pre-existing failures; scoped lint proves this change set is clean |
+| Keep verification scope targeted instead of full-repo lint | Project-wide lint has unrelated pre-existing failures. Scoped lint proves this change set is clean |
 <!-- /ANCHOR:decisions -->
 
 ---

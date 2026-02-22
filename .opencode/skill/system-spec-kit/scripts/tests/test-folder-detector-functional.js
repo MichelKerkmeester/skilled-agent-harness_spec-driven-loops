@@ -423,8 +423,13 @@ async function testSilentFallthroughMissingTable() {
   const dbPath = path.join(tmpDir, `test-no-table-${Date.now()}.sqlite`);
   try {
     // Create empty DB (no tables)
-    const db = new Database(dbPath);
-    db.close();
+    try {
+      const db = new Database(dbPath);
+      db.close();
+    } catch (err) {
+      skip('T-FD03b: Missing table throws on prepare/get', `temp db setup failed: ${err.message}`);
+      return;
+    }
 
     // Reopen as readonly, try query — should throw because table doesn't exist
     const db2 = new Database(dbPath, { readonly: true });

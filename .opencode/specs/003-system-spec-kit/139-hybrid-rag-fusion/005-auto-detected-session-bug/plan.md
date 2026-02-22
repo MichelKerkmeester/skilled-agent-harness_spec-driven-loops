@@ -45,9 +45,9 @@ The fix centers on `folder-detector.ts`, where current auto-detection can over-t
 - [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing for new regression matrix
-- [ ] Docs updated and synchronized across spec/plan/tasks/checklist
+- [x] All acceptance criteria met
+- [x] Tests passing for new regression matrix
+- [x] Docs updated and synchronized across spec/plan/tasks/checklist
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -73,20 +73,20 @@ Input sources (CLI arg, JSON data, session-learning DB, CWD, auto-detect scan) a
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup and Baseline
-- [ ] Confirm current behavior and reproduce archived-folder misselection case.
-- [ ] Define deterministic scoring/tie-break rules and confidence threshold constants.
-- [ ] Prepare regression fixtures for alias, archive, and mtime distortion cases.
+- [x] Confirm current behavior and reproduce archived-folder misselection case.
+- [x] Define deterministic scoring/tie-break rules and confidence threshold constants.
+- [x] Prepare regression fixtures for alias, archive, and mtime distortion cases.
 
 ### Phase 2: Core Implementation
-- [ ] Add canonical alias normalization for `.opencode/specs` and `specs`.
-- [ ] Apply active non-archived preference with explicit archive/fixture filtering.
-- [ ] Replace mtime-only winner logic with deterministic composite scoring.
-- [ ] Add low-confidence confirmation/fallback behavior and rationale output.
+- [x] Add canonical alias normalization for `.opencode/specs` and `specs`.
+- [x] Apply active non-archived preference with explicit archive/fixture filtering.
+- [x] Replace mtime-only winner logic with deterministic composite scoring.
+- [x] Add low-confidence confirmation/fallback behavior and rationale output.
 
 ### Phase 3: Verification and Documentation
-- [ ] Add or update functional regression tests covering REQ-001 through REQ-004.
-- [ ] Update command docs (`resume.md`, `handover.md`) for behavior parity.
-- [ ] Run validation/tests and capture evidence in checklist + implementation summary.
+- [x] Add or update functional regression tests covering REQ-001 through REQ-004.
+- [x] Update command docs (`resume.md`, `handover.md`) for behavior parity.
+- [x] Run validation/tests and capture evidence in checklist + implementation summary.
 <!-- /ANCHOR:phases -->
 
 ---

@@ -299,7 +299,7 @@ dist/context-server.js     (compiled output — executed at runtime by node)
 
 | Tool | Purpose | Latency |
 | --- | --- | --- |
-| `memory_health` | Check health status of the memory system | <10ms |
+| `memory_health` | Check system health or return compact divergent-alias triage output (`reportMode: 'divergent_aliases'`) | <10ms |
 
 ---
 
@@ -828,6 +828,22 @@ memory_delete({ specFolder: "specs/old-project", confirm: true })
 checkpoint_restore({ name: "pre-cleanup" })
 ```
 
+### Divergent Alias Triage Report
+
+Use `memory_health` in `divergent_aliases` mode when you need a compact manual-triage view instead of the full health payload.
+
+```typescript
+memory_health({
+  reportMode: "divergent_aliases",
+  limit: 25,
+  specFolder: "specs/139-hybrid-rag-fusion"
+})
+// Returns only divergent alias groups:
+// - normalizedPath (canonical key)
+// - variants[] with filePath + contentHash
+// - totalDivergentGroups and returnedGroups
+```
+
 ### Common Patterns
 
 | Pattern | Tool Call | When to Use |
@@ -838,6 +854,7 @@ checkpoint_restore({ name: "pre-cleanup" })
 | Decision archaeology | `memory_drift_why({ memoryId: "..." })` | Understanding past decisions |
 | Track learning | `task_preflight` -> work -> `task_postflight` | Implementation tasks |
 | Check system health | `memory_health({})` | Debugging issues |
+| Triage divergent alias anomalies | `memory_health({ reportMode: "divergent_aliases", limit: 20 })` | Fast manual review of path/hash conflicts |
 | Recover from error | `checkpoint_restore({ name: "..." })` | After mistakes |
 
 ---

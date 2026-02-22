@@ -74,19 +74,19 @@ Input markdown files pass through parse and normalize steps, then compose writes
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Finalize canonical frontmatter schema and mapping table.
-- [ ] Add migration command with dry-run output.
-- [ ] Prepare fixture set for templates/spec/memory variants.
+- [x] Finalize canonical frontmatter schema and mapping table.
+- [x] Add migration command with dry-run output.
+- [x] Prepare fixture set for templates/spec/memory variants.
 
 ### Phase 2: Core Implementation
-- [ ] Implement normalize + compose behavior in parser layer.
-- [ ] Apply migration tooling to targeted files.
-- [ ] Hook explicit index rebuild after successful migration.
+- [x] Implement normalize + compose behavior in parser layer.
+- [x] Apply migration tooling to targeted files.
+- [x] Hook explicit index rebuild after successful migration.
 
 ### Phase 3: Verification
-- [ ] Run parser, migration, and idempotency tests.
-- [ ] Run integration reindex + retrieval checks.
-- [ ] Update checklist and implementation summary with evidence.
+- [x] Run parser, migration, and idempotency tests.
+- [x] Run integration reindex + retrieval checks.
+- [x] Update checklist and implementation summary with evidence.
 <!-- /ANCHOR:phases -->
 
 ---
