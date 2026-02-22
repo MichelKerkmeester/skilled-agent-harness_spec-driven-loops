@@ -50,6 +50,20 @@ describe('C138-P4 Batch PageRank', () => {
     expect(sum).toBeCloseTo(1.0, 2);
   });
 
+  it('T2b: dangling-node mass is redistributed and score sum remains ~1.0', () => {
+    const nodes: GraphNode[] = [
+      { id: 1, outLinks: [2] },
+      { id: 2, outLinks: [1] },
+      { id: 3, outLinks: [] }, // dangling node
+    ];
+
+    const result = computePageRank(nodes);
+    const sum = Array.from(result.scores.values()).reduce((a, b) => a + b, 0);
+
+    expect(sum).toBeCloseTo(1.0, 4);
+    expect(result.scores.get(3)).toBeGreaterThan(0);
+  });
+
   // ---- T3: Hub node gets higher score ----
   it('T3: node with many inbound links gets highest score', () => {
     const nodes: GraphNode[] = [

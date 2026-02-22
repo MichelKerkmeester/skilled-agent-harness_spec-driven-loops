@@ -23,6 +23,35 @@ function getTierClassifier(): Record<string, unknown> | null {
   }
 }
 
+interface Bm25IndexModule {
+  isBm25Enabled: () => boolean;
+  getIndex: () => {
+    removeDocument: (id: string) => boolean;
+    addDocument: (id: string, text: string) => void;
+  };
+}
+
+let bm25IndexModule: Bm25IndexModule | null = null;
+
+function getBm25Index(): Bm25IndexModule | null {
+  if (bm25IndexModule !== null) return bm25IndexModule;
+
+  try {
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    bm25IndexModule = require('../search/bm25-index') as Bm25IndexModule;
+    return bm25IndexModule;
+  } catch {
+    try {
+      // Support cache/cognitive symlink import path in some runtime setups.
+      // eslint-disable-next-line @typescript-eslint/no-require-imports
+      bm25IndexModule = require('../../search/bm25-index') as Bm25IndexModule;
+      return bm25IndexModule;
+    } catch {
+      return null;
+    }
+  }
+}
+
 /* -------------------------------------------------------------
    2. CONFIGURATION
 ----------------------------------------------------------------*/
@@ -327,6 +356,60 @@ function checkMemoryArchivalStatus(memoryId: number): {
   }
 }
 
+function getMemoryIndexColumns(): Set<string> {
+  if (!db) return new Set();
+
+  try {
+    const columns = (db.prepare('PRAGMA table_info(memory_index)') as Database.Statement).all() as Array<{ name: string }>;
+    return new Set(columns.map(column => column.name));
+  } catch {
+    return new Set();
+  }
+}
+
+function syncBm25OnArchive(memoryId: number): void {
+  const bm25 = getBm25Index();
+  if (!db || !bm25 || !bm25.isBm25Enabled()) return;
+
+  try {
+    bm25.getIndex().removeDocument(String(memoryId));
+  } catch (error: unknown) {
+    const msg = error instanceof Error ? error.message : String(error);
+    console.warn(`[archival-manager] BM25 archive sync failed: ${msg}`);
+  }
+}
+
+function syncBm25OnUnarchive(memoryId: number): void {
+  const bm25 = getBm25Index();
+  if (!db || !bm25 || !bm25.isBm25Enabled()) return;
+
+  try {
+    const columns = getMemoryIndexColumns();
+    const searchableColumns = ['title', 'content_text', 'trigger_phrases', 'file_path']
+      .filter(column => columns.has(column));
+
+    if (searchableColumns.length === 0) return;
+
+    const query = `SELECT ${searchableColumns.join(', ')} FROM memory_index WHERE id = ? AND is_archived = 0`;
+    const row = (db.prepare(query) as Database.Statement).get(memoryId) as Record<string, unknown> | undefined;
+    if (!row) return;
+
+    const text = searchableColumns
+      .map(column => {
+        const value = row[column];
+        return typeof value === 'string' ? value.trim() : '';
+      })
+      .filter(Boolean)
+      .join(' ');
+
+    if (!text) return;
+    bm25.getIndex().addDocument(String(memoryId), text);
+  } catch (error: unknown) {
+    const msg = error instanceof Error ? error.message : String(error);
+    console.warn(`[archival-manager] BM25 unarchive sync failed: ${msg}`);
+  }
+}
+
 function archiveMemory(memoryId: number): boolean {
   if (!db) return false;
 
@@ -342,6 +425,7 @@ function archiveMemory(memoryId: number): boolean {
     const success = (result as { changes: number }).changes > 0;
     if (success) {
       archivalStats.totalArchived++;
+      syncBm25OnArchive(memoryId);
       saveArchivalStats();
     }
     return success;
@@ -386,6 +470,7 @@ function unarchiveMemory(memoryId: number): boolean {
     const success = (result as { changes: number }).changes > 0;
     if (success) {
       archivalStats.totalUnarchived++;
+      syncBm25OnUnarchive(memoryId);
       saveArchivalStats();
     }
     return success;

@@ -11,7 +11,7 @@ import * as triggerMatcher from '../lib/parsing/trigger-matcher';
 import * as toolCache from '../lib/cache/tool-cache';
 import * as mutationLedger from '../lib/storage/mutation-ledger';
 import * as causalEdges from '../lib/storage/causal-edges';
-import { createMCPSuccessResponse, createMCPErrorResponse } from '../lib/response/envelope';
+import { createMCPSuccessResponse } from '../lib/response/envelope';
 import { toErrorMessage } from '../utils';
 
 import { appendMutationLedgerSafe, getMemoryHashSnapshot } from './memory-crud-utils';
@@ -25,7 +25,6 @@ import type { DeleteArgs, MemoryHashSnapshot } from './memory-crud-types';
 
 /** Handle memory_delete tool -- deletes a single memory by ID or bulk-deletes by spec folder. */
 async function handleMemoryDelete(args: DeleteArgs): Promise<MCPResponse> {
-  const startTime = Date.now();
   await checkDatabaseUpdated();
 
   const { id, specFolder, confirm } = args;

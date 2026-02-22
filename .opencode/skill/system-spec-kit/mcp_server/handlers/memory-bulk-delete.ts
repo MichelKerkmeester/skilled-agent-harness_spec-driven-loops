@@ -13,7 +13,7 @@ import * as triggerMatcher from '../lib/parsing/trigger-matcher';
 import * as toolCache from '../lib/cache/tool-cache';
 import * as mutationLedger from '../lib/storage/mutation-ledger';
 import * as causalEdges from '../lib/storage/causal-edges';
-import { createMCPSuccessResponse, createMCPErrorResponse } from '../lib/response/envelope';
+import { createMCPSuccessResponse } from '../lib/response/envelope';
 import { toErrorMessage } from '../utils';
 
 import { appendMutationLedgerSafe } from './memory-crud-utils';
@@ -37,7 +37,6 @@ interface BulkDeleteArgs {
 --------------------------------------------------------------- */
 
 async function handleMemoryBulkDelete(args: BulkDeleteArgs): Promise<MCPResponse> {
-  const startTime = Date.now();
   await checkDatabaseUpdated();
 
   const { tier, specFolder, confirm, olderThanDays, skipCheckpoint = false } = args;

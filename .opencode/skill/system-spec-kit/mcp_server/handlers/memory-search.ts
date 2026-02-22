@@ -28,7 +28,7 @@ import { expandQuery } from '../lib/search/query-expander';
 import { applyRoutingWeights, getStrategyForQuery } from '../lib/search/artifact-routing';
 
 // Core utilities
-import { checkDatabaseUpdated, isEmbeddingModelReady, waitForEmbeddingModel, DEFAULT_BASE_PATH } from '../core';
+import { checkDatabaseUpdated, isEmbeddingModelReady, waitForEmbeddingModel } from '../core';
 
 // Utils
 import { validateQuery, requireDb, toErrorMessage } from '../utils';
@@ -173,6 +173,83 @@ function resolveQualityThreshold(minQualityScore?: number, minQualityScoreSnake?
   }
 
   return undefined;
+}
+
+interface CacheArgsInput {
+  normalizedQuery: string | null;
+  hasValidConcepts: boolean;
+  concepts?: string[];
+  specFolder?: string;
+  limit: number;
+  mode?: string;
+  tier?: string;
+  contextType?: string;
+  useDecay: boolean;
+  includeArchived: boolean;
+  qualityThreshold?: number;
+  applyStateLimits: boolean | undefined;
+  includeContiguity: boolean;
+  includeConstitutional: boolean;
+  includeContent: boolean;
+  anchors?: string[] | string;
+  detectedIntent: string | null;
+  minState: string;
+  rerank: boolean;
+  applyLengthPenalty: boolean;
+  sessionId?: string;
+  enableSessionBoost: boolean;
+  enableCausalBoost: boolean;
+}
+
+function buildCacheArgs({
+  normalizedQuery,
+  hasValidConcepts,
+  concepts,
+  specFolder,
+  limit,
+  mode,
+  tier,
+  contextType,
+  useDecay,
+  includeArchived,
+  qualityThreshold,
+  applyStateLimits,
+  includeContiguity,
+  includeConstitutional,
+  includeContent,
+  anchors,
+  detectedIntent,
+  minState,
+  rerank,
+  applyLengthPenalty,
+  sessionId,
+  enableSessionBoost,
+  enableCausalBoost,
+}: CacheArgsInput): Record<string, unknown> {
+  return {
+    query: normalizedQuery,
+    concepts: hasValidConcepts ? concepts : undefined,
+    specFolder,
+    limit,
+    mode,
+    tier,
+    contextType,
+    useDecay,
+    includeArchived,
+    qualityThreshold,
+    applyStateLimits,
+    includeContiguity,
+    includeConstitutional,
+    includeContent,
+    anchors,
+    intent: detectedIntent,
+    minState,
+    rerank,
+    applyLengthPenalty,
+    sessionId,
+    enableSessionBoost,
+    enableCausalBoost,
+  };
 }
 
 function resolveArtifactRoutingQuery(query: string | null, concepts?: string[]): string {
@@ -1023,7 +1100,7 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
   }
 
   const hasValidQuery = normalizedQuery !== null;
-  const hasValidConcepts = concepts && Array.isArray(concepts) && concepts.length >= 2;
+  const hasValidConcepts = Array.isArray(concepts) && concepts.length >= 2;
 
   if (!hasValidQuery && !hasValidConcepts) {
     throw new Error('Either query (string) or concepts (array of 2-5 strings) is required');
@@ -1083,26 +1160,31 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
   }
 
   // T012-T015: Build cache key args
-  const cacheArgs = {
-    query: normalizedQuery,
-    concepts: hasValidConcepts ? concepts : undefined,
+  const cacheArgs = buildCacheArgs({
+    normalizedQuery,
+    hasValidConcepts,
+    concepts,
     specFolder,
     limit,
+    mode,
     tier,
     contextType,
     useDecay,
+    includeArchived,
+    qualityThreshold,
+    applyStateLimits,
     includeContiguity,
     includeConstitutional,
     includeContent,
     anchors,
-    intent: detectedIntent,
+    detectedIntent,
     minState,
     rerank,
-    applyLengthPenalty: applyLengthPenalty,
+    applyLengthPenalty,
     sessionId,
     enableSessionBoost,
     enableCausalBoost,
-  };
+  });
 
   // T012-T015: Use cache wrapper for search execution
   const cachedResult = await toolCache.withCache(
@@ -1396,6 +1478,7 @@ export {
 export const __testables = {
   filterByMinQualityScore,
   resolveQualityThreshold,
+  buildCacheArgs,
   resolveArtifactRoutingQuery,
   applyArtifactRouting,
   collapseAndReassembleChunkResults,

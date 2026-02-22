@@ -16,10 +16,10 @@
 | **Spec Folder** | 003-system-spec-kit/139-hybrid-rag-fusion/002-hybrid-rag-fusion |
 | **Completed** | 2026-02-20 |
 | **Level** | 3+ |
-| **Tasks** | 23/24 complete (1 deferred: T016 embedding centroids) |
+| **Tasks** | 24/24 complete |
 | **Orchestration** | Two-wave, 10 parallel Sonnet agents |
 | **Schema Changes** | Zero — v15 SQLite schema unchanged |
-| **Test Suite** | 4,770 tests across 159 files (final global count, post-Workstreams B and C) |
+| **Test Suite** | 4,546 passed, 19 skipped, 0 failed across 155 files (latest verification run in `mcp_server`) |
 | **Workstream A Baseline** | 4,532 tests, 149 files at Workstream A completion |
 | **Code Review** | R-Wave (5 Sonnet agents) + D-Wave (5 Opus agents), sk-code--opencode compliance verified |
 <!-- /ANCHOR:metadata -->
@@ -153,9 +153,9 @@ The implementation used a two-wave parallel orchestration model with 10 Sonnet a
 
 **Wave 2 — 5 agents in parallel.** Each agent owned a distinct non-overlapping file bundle. Agent 1 owned `hybrid-search.ts` and its test assertions (4 surgical edits). Agent 2 owned `memory-search.ts` and `handler-memory-search.vitest.ts` (3 edits). Agent 3 owned `causal-edges.ts` and its test file (`RELATION_WEIGHTS` export + test update). Agent 4 owned `bm25-index.ts`, `fsrs-scheduler.ts`, and `intent-classifier.ts` with their respective test blocks (constant exports + test updates). Agent 5 owned the integration test files. Zero file conflicts across all 10 agents.
 
-The opt-out flag pattern was applied to all new default-enabled features. `SPECKIT_MMR_DISABLED=true` disables MMR, not `SPECKIT_MMR=true` enables it. The inversion ensures that missing or undefined environment variables activate all features, which is the correct safe state for a local development environment. Explicit `'false'` string values disable features, and these are the values set during a canary rollback.
+The opt-out flag pattern was applied to all new default-enabled features. `SPECKIT_MMR`, `SPECKIT_TRM`, and `SPECKIT_MULTI_QUERY` are default-on when unset. An explicit `'false'` string disables each feature, which keeps local defaults safe while allowing canary rollback by configuration.
 
-The full test suite was run after Wave 2 completion to confirm zero regressions across 3,872+ pre-existing tests. The Workstream A completion count was 4,532 tests passed, 0 failed, 19 skipped across 149 test files in 4.08 seconds. The 19 skipped tests are pre-existing skips unrelated to this workstream.
+Latest verification after code fixes: `npm test -- --reporter=dot` in `mcp_server` reported 4,546 passed, 19 skipped, 0 failed across 155 files. `npm run typecheck` in `.opencode/skill/system-spec-kit` also passed.
 
 **Code quality — R-Wave (5 Sonnet agents).** The R-Wave review pass fixed falsy-zero `||` bugs, removed dead code, corrected unsafe type casts, added missing module box headers, and removed `@ts-nocheck` directives from 2 test files. This pass ran across all Wave 1 and Wave 2 output before the D-Wave pass.
 
@@ -217,7 +217,7 @@ The zero schema migration constraint (spec §3.1) was maintained throughout. All
 |-------|--------|
 | `integration-search-pipeline.vitest.ts` | PASS — 3 new C138 assertions passing. Opt-out default-enabled pattern verified: undefined env = enabled, `'false'` = disabled. |
 | `integration-138-pipeline.vitest.ts` | PASS — production adapter wrappers verified. Real `applyMMR` and `detectEvidenceGap` implementations validated end-to-end. |
-| Regression: pre-existing 3,872+ tests | PASS — full Workstream A suite (4,532 total) confirms zero regressions from all 11 production file changes. |
+| Regression: pre-existing 3,872+ tests | PASS — latest `mcp_server` suite reports 4,546 passed, 19 skipped, 0 failed across 155 files, confirming no regressions from these changes. |
 
 ### Updated Test Files (Constants Alignment)
 
@@ -245,7 +245,7 @@ The zero schema migration constraint (spec §3.1) was maintained throughout. All
 
 | Check | Result |
 |-------|--------|
-| Full vitest suite (final global count) | PASS — 4,770 tests passed, 0 failed, 159 test files |
+| Full vitest suite (latest verification) | PASS — 4,546 passed, 19 skipped, 0 failed, 155 test files (`npm test -- --reporter=dot` in `mcp_server`) |
 | 120ms latency ceiling (spec §3.2) | ARCHITECTURAL ONLY — validated via component benchmarks and budget analysis. Real-world profiling against populated SQLite DB is deferred. |
 <!-- /ANCHOR:verification -->
 
@@ -260,13 +260,11 @@ The zero schema migration constraint (spec §3.1) was maintained throughout. All
 
 3. **Structure-aware chunker created but not wired.** `scripts/lib/structure-aware-chunker.ts` is fully implemented and tested (9/9) but `generate-context.js` still uses the character-boundary chunker at ingest time. Markdown tables and code blocks in new memories may still be split mid-structure. Wiring requires replacing the ingest chunker call and adding `remark`/`remark-gfm` to the scripts package. This is Phase 4 work.
 
-4. **Intent classifier still uses keyword/pattern scoring.** The spec describes transitioning `intent-classifier.ts` to embedding centroid matching: compute 7 centroid embeddings at init time, classify via `Math.max(...centroids.map(c => dotProduct(c, queryEmb)))`. The current classifier uses regex and keyword scoring. Centroid-based classification is T016, deferred as Phase 4 work. `INTENT_LAMBDA_MAP` is in place and will work correctly with the upgraded classifier.
+4. **Read-time prediction error gate not wired.** `prediction-error-gate.ts` is active at write-time (preventing contradictory memories from being stored) but the spec also requires piping retrieved context payloads through it at read-time to flag contradictions in the returned result set. The read-time pipe is deferred to Phase 4. Contradicting memories may currently both appear in search results without an explicit contradiction flag.
 
-5. **Read-time prediction error gate not wired.** `prediction-error-gate.ts` is active at write-time (preventing contradictory memories from being stored) but the spec also requires piping retrieved context payloads through it at read-time to flag contradictions in the returned result set. The read-time pipe is deferred to Phase 4. Contradicting memories may currently both appear in search results without an explicit contradiction flag.
+5. **MMR requires Float32Array embeddings to activate.** The MMR reranker is guard-gated on embedding presence. Memories stored before the vector search backend was provisioned, or memories stored with a failed embedding generation, lack `Float32Array` data and receive only RRF-ranked results rather than MMR-diversified results. This is graceful degradation by design.
 
-6. **MMR requires Float32Array embeddings to activate.** The MMR reranker is guard-gated on embedding presence. Memories stored before the vector search backend was provisioned, or memories stored with a failed embedding generation, lack `Float32Array` data and receive only RRF-ranked results rather than MMR-diversified results. This is graceful degradation by design.
-
-7. **Query expansion vocabulary map is sparse.** The initial `DOMAIN_VOCABULARY_MAP` covers common software development terminology but is not exhaustive. Queries in specialized domains (infrastructure, machine learning, mobile development) may generate no useful synonyms and fall back to single-variant search. The map is a plain TypeScript object and extends incrementally without infrastructure changes.
+6. **Query expansion vocabulary map is sparse.** The initial `DOMAIN_VOCABULARY_MAP` covers common software development terminology but is not exhaustive. Queries in specialized domains (infrastructure, machine learning, mobile development) may generate no useful synonyms and fall back to single-variant search. The map is a plain TypeScript object and extends incrementally without infrastructure changes.
 <!-- /ANCHOR:limitations -->
 
 ---
@@ -353,7 +351,6 @@ The zero schema migration constraint (spec §3.1) was maintained throughout. All
 
 | Item | Task | Reason | Follow-up Path |
 |------|------|--------|----------------|
-| Embedding centroid-based intent classification | T016 | Requires computing 7 centroid embeddings at MCP server init time. Current keyword/pattern classifier works correctly with `INTENT_LAMBDA_MAP` already in place. | Replace regex classifier with `Math.max(...centroids.map(c => dotProduct(c, queryEmb)))`. Phase 4. |
 | PageRank wiring into ingest pipeline | — | Module fully created and tested (10/10). Wiring requires `remark`/`remark-gfm` as new dependency and a batch hook in `memory_manage`. Different risk profile from TypeScript-only MCP changes. | Wire into `memory_manage` batch job; store scores in `memory_index.pagerank_score`. Phase 4. |
 | Structure-aware chunker wiring into `generate-context.js` | — | Module fully created and tested (9/9). Same `remark`/`remark-gfm` dependency blocker as PageRank. | Replace character-boundary chunker in ingest path. Phase 4. |
 | Read-time prediction error gating | — | Write-time gate is active. Read-time pipe that flags contradictions in returned result sets was not in scope for this workstream. | Pipe retrieved payloads through `prediction-error-gate.ts` at read time. Phase 4. |
@@ -375,8 +372,8 @@ Index and mapping are maintained in `supplemental-index.md`.
 
 <!--
 Level 3+: Workstream A implementation summary — Hybrid RAG Fusion Pipeline.
-23/24 tasks complete. 5 new production modules, 6 modified source files, 11 test files.
-Final global test count: 4,770 tests, 0 failed, 159 files.
+24/24 tasks complete. 5 new production modules, 6 modified source files, 11 test files.
+Latest verification: 4,546 passed, 19 skipped, 0 failed, 155 files.
 Written in human voice: active, direct, specific. No em dashes, no hedging, no AI filler.
 HVR rules: .opencode/skill/sk-documentation/references/hvr_rules.md
 -->

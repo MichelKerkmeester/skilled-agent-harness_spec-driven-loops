@@ -22,6 +22,7 @@ interface FsrsSchedulerModule {
   calculateRetrievability: (stability: number, elapsedDays: number) => number;
   FSRS_FACTOR: number;
   FSRS_DECAY: number;
+  TIER_MULTIPLIER?: Readonly<Record<string, number>>;
 }
 
 let fsrsScheduler: FsrsSchedulerModule | null = null;
@@ -133,6 +134,15 @@ export const RECENCY_SCALE_DAYS: number = 1 / DECAY_RATE;
 export const FSRS_FACTOR: number = fsrsScheduler?.FSRS_FACTOR ?? 19 / 81;
 export const FSRS_DECAY: number = fsrsScheduler?.FSRS_DECAY ?? -0.5;
 
+const RETRIEVABILITY_TIER_MULTIPLIER: Readonly<Record<string, number>> = {
+  constitutional: 0.1,
+  critical: 0.3,
+  important: 0.5,
+  normal: 1.0,
+  temporary: 2.0,
+  scratch: 3.0,
+};
+
 // REQ-017: Importance weight multipliers
 export const IMPORTANCE_MULTIPLIERS: Readonly<Record<string, number>> = {
   constitutional: 2.0,
@@ -207,6 +217,9 @@ function parseLastAccessed(value: number | string | undefined | null): number | 
 export function calculateRetrievabilityScore(row: ScoringInput): number {
   const stability = (row.stability as number | undefined) || 1.0;
   const lastReview = (row.lastReview as string | undefined) || row.updated_at || row.created_at;
+  const tier = typeof row.importance_tier === 'string'
+    ? row.importance_tier.toLowerCase()
+    : 'normal';
 
   // BUG-007 FIX: Return neutral score when no timestamp (prevents NaN propagation)
   if (!lastReview) {
@@ -218,13 +231,17 @@ export function calculateRetrievabilityScore(row: ScoringInput): number {
 
   const elapsedMs = Date.now() - timestamp;
   const elapsedDays = Math.max(0, elapsedMs / (1000 * 60 * 60 * 24));
+  const tierMultiplier = fsrsScheduler?.TIER_MULTIPLIER?.[tier]
+    ?? RETRIEVABILITY_TIER_MULTIPLIER[tier]
+    ?? RETRIEVABILITY_TIER_MULTIPLIER.normal;
+  const adjustedElapsedDays = elapsedDays * tierMultiplier;
 
   if (fsrsScheduler && typeof fsrsScheduler.calculateRetrievability === 'function') {
-    return fsrsScheduler.calculateRetrievability(stability, elapsedDays);
+    return fsrsScheduler.calculateRetrievability(stability, adjustedElapsedDays);
   }
 
   // Inline FSRS calculation (fallback when scheduler not available)
-  const retrievability = Math.pow(1 + FSRS_FACTOR * (elapsedDays / stability), FSRS_DECAY);
+  const retrievability = Math.pow(1 + FSRS_FACTOR * (adjustedElapsedDays / stability), FSRS_DECAY);
 
   return Math.max(0, Math.min(1, retrievability));
 }

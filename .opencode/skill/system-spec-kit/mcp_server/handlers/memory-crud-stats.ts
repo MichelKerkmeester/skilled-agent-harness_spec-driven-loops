@@ -60,7 +60,7 @@ async function handleMemoryStats(args: StatsArgs | null): Promise<MCPResponse> {
   let dates: Record<string, unknown> = { oldest: null, newest: null };
   let triggerCount = 0;
   let topFolders: Record<string, unknown>[];
-  let tierBreakdown: Record<string, number> = {};
+  const tierBreakdown: Record<string, number> = {};
   let lastIndexedAt: string | null = null;
 
   try {

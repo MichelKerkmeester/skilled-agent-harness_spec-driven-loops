@@ -99,6 +99,14 @@ export function computePageRank(
   for (iteration = 0; iteration < maxIterations; iteration++) {
     const nextScores = new Map<number, number>();
     let maxDelta = 0;
+    let danglingMass = 0;
+
+    // Standard dangling-node correction: redistribute sink-node rank uniformly.
+    for (const sourceNode of nodes) {
+      if (sourceNode.outLinks.length === 0) {
+        danglingMass += (scores.get(sourceNode.id) ?? 0);
+      }
+    }
 
     for (const node of nodes) {
       // Sum contributions from all nodes that link into this one.
@@ -106,14 +114,14 @@ export function computePageRank(
       const inboundSources = inLinks.get(node.id) ?? [];
       for (const sourceId of inboundSources) {
         const sourceNode = nodeMap.get(sourceId);
-        if (sourceNode) {
+        if (sourceNode && sourceNode.outLinks.length > 0) {
           // Distribute source score evenly across all outbound edges.
-          const outDegree = sourceNode.outLinks.length || 1;
+          const outDegree = sourceNode.outLinks.length;
           linkSum += (scores.get(sourceId) ?? 0) / outDegree;
         }
       }
 
-      const updatedScore = (1 - dampingFactor) / nodeCount + dampingFactor * linkSum;
+      const updatedScore = (1 - dampingFactor) / nodeCount + dampingFactor * (linkSum + (danglingMass / nodeCount));
       nextScores.set(node.id, updatedScore);
 
       const delta = Math.abs(updatedScore - (scores.get(node.id) ?? 0));

@@ -3,10 +3,11 @@
 // Legacy compatibility shim retained for test/runtime imports.
 // ---------------------------------------------------------------
 
+import { isFeatureEnabled } from '../cache/cognitive/rollout-policy';
+
 /**
- * Legacy graph channel is permanently disabled.
- * Keep this function as a stable no-op compatibility surface.
+ * Unified graph channel gate (default-on, explicit opt-out with `'false'`).
  */
 export function isGraphUnifiedEnabled(): boolean {
-  return false;
+  return isFeatureEnabled('SPECKIT_GRAPH_UNIFIED');
 }

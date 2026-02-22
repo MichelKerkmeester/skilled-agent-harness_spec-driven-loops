@@ -167,6 +167,30 @@ describe('Composite Scoring', () => {
       expect(rHighS).toBeGreaterThan(rLowS)
     })
 
+    it('T418b: Tier multipliers affect retrievability decay rate', () => {
+      const now = Date.now()
+      const elapsed = new Date(now - 1000 * 60 * 60 * 24 * 14).toISOString() // 14 days ago
+
+      const constitutional = calcR({
+        stability: 5.0,
+        lastReview: elapsed,
+        importance_tier: 'constitutional',
+      })
+      const normal = calcR({
+        stability: 5.0,
+        lastReview: elapsed,
+        importance_tier: 'normal',
+      })
+      const scratch = calcR({
+        stability: 5.0,
+        lastReview: elapsed,
+        importance_tier: 'scratch',
+      })
+
+      expect(constitutional).toBeGreaterThan(normal)
+      expect(normal).toBeGreaterThan(scratch)
+    })
+
     it('T419: R decreases monotonically with elapsed time', () => {
       const now = Date.now()
       const rDay1 = calcR({ stability: 5.0, lastReview: new Date(now - 1000 * 60 * 60 * 24).toISOString() })

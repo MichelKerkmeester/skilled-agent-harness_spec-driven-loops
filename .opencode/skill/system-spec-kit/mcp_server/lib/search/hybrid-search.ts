@@ -4,7 +4,7 @@
 // ---------------------------------------------------------------
 
 // Local
-import { getIndex, sanitizeFTS5Query } from './bm25-index';
+import { getIndex } from './bm25-index';
 import { fuseResultsMulti } from './rrf-fusion';
 import { hybridAdaptiveFuse } from './adaptive-fusion';
 import { spreadActivation } from '../cache/cognitive/co-activation';

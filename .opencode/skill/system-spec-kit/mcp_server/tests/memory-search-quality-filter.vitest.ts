@@ -10,6 +10,7 @@ type Row = { id: string | number; quality_score?: number };
 const {
   filterByMinQualityScore,
   resolveQualityThreshold,
+  buildCacheArgs,
   resolveArtifactRoutingQuery,
   applyArtifactRouting,
 } = __testables;
@@ -99,5 +100,70 @@ describe('C136-09: artifact routing integration helpers', () => {
 
     expect(routed[0].artifactBoostApplied).toBe(1.1);
     expect(routed[0].score).toBeCloseTo(0.88, 5);
+  });
+});
+
+describe('C138: memory-search cache args include behavior-changing parameters', () => {
+  it('includes deep-mode and archival/quality/state-limit controls in cache args', () => {
+    const args = buildCacheArgs({
+      normalizedQuery: 'test query',
+      hasValidConcepts: false,
+      concepts: undefined,
+      specFolder: '003-system-spec-kit',
+      limit: 10,
+      mode: 'deep',
+      tier: 'normal',
+      contextType: 'project',
+      useDecay: true,
+      includeArchived: true,
+      qualityThreshold: 0.75,
+      applyStateLimits: true,
+      includeContiguity: true,
+      includeConstitutional: true,
+      includeContent: true,
+      anchors: ['alpha'],
+      detectedIntent: 'find_spec',
+      minState: 'warm',
+      rerank: true,
+      applyLengthPenalty: true,
+      sessionId: 'session-1',
+      enableSessionBoost: true,
+      enableCausalBoost: true,
+    });
+
+    expect(args.mode).toBe('deep');
+    expect(args.includeArchived).toBe(true);
+    expect(args.qualityThreshold).toBe(0.75);
+    expect(args.applyStateLimits).toBe(true);
+  });
+
+  it('omits concepts from cache args when concepts are not valid input', () => {
+    const args = buildCacheArgs({
+      normalizedQuery: 'test query',
+      hasValidConcepts: false,
+      concepts: ['a', 'b'],
+      specFolder: undefined,
+      limit: 5,
+      mode: undefined,
+      tier: undefined,
+      contextType: undefined,
+      useDecay: true,
+      includeArchived: false,
+      qualityThreshold: undefined,
+      applyStateLimits: false,
+      includeContiguity: false,
+      includeConstitutional: true,
+      includeContent: false,
+      anchors: undefined,
+      detectedIntent: null,
+      minState: 'hot',
+      rerank: false,
+      applyLengthPenalty: false,
+      sessionId: undefined,
+      enableSessionBoost: false,
+      enableCausalBoost: false,
+    });
+
+    expect(args.concepts).toBeUndefined();
   });
 });

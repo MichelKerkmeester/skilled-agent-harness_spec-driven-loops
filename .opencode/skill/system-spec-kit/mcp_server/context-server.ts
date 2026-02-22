@@ -51,6 +51,8 @@ import * as embeddings from './lib/providers/embeddings';
 import * as checkpointsLib from './lib/storage/checkpoints';
 import * as accessTracker from './lib/storage/access-tracker';
 import * as hybridSearch from './lib/search/hybrid-search';
+import { createUnifiedGraphSearchFn } from './lib/search/graph-search-fn';
+import { isGraphUnifiedEnabled } from './lib/search/graph-flags';
 import * as sessionBoost from './lib/search/session-boost';
 import * as causalBoost from './lib/search/causal-boost';
 import * as bm25Index from './lib/search/bm25-index';
@@ -560,12 +562,17 @@ async function main(): Promise<void> {
     if (!database) {
       throw new Error('Database not initialized after initializeDb(). Cannot start server.');
     }
+
+    const graphSearchFn = isGraphUnifiedEnabled()
+      ? createUnifiedGraphSearchFn(database)
+      : null;
+
     checkpointsLib.init(database);
     accessTracker.init(database);
-    hybridSearch.init(database, vectorIndex.vectorSearch);
+    hybridSearch.init(database, vectorIndex.vectorSearch, graphSearchFn);
 
     // Keep db-state reinitialization wiring aligned with startup search wiring.
-    initDbState({});
+    initDbState({ graphSearchFn });
     sessionBoost.init(database);
     causalBoost.init(database);
     console.error('[context-server] Checkpoints, access tracker, hybrid search, session boost, and causal boost initialized');
