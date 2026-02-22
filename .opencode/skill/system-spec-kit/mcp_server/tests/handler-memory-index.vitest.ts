@@ -40,10 +40,15 @@ describe('Handler Memory Index (T520) [deferred - requires DB test fixtures]', (
         'handle_memory_index_scan',
         'index_single_file',
         'find_constitutional_files',
+        'summarize_alias_conflicts',
       ];
       for (const alias of aliases) {
         expect(typeof handler[alias]).toBe('function');
       }
+    });
+
+    it('T520-4b: summarizeAliasConflicts exported', () => {
+      expect(typeof handler.summarizeAliasConflicts).toBe('function');
     });
   });
 
@@ -144,6 +149,65 @@ describe('Handler Memory Index (T520) [deferred - requires DB test fixtures]', (
       } finally {
         fs.rmSync(root, { recursive: true, force: true });
       }
+    });
+  });
+
+  describe('summarizeAliasConflicts', () => {
+    it('T520-9d: detects identical-hash alias groups', () => {
+      const summary = handler.summarizeAliasConflicts([
+        {
+          file_path: '/workspace/specs/003-system-spec-kit/200-test/memory/a.md',
+          content_hash: 'hash-1',
+        },
+        {
+          file_path: '/workspace/.opencode/specs/003-system-spec-kit/200-test/memory/a.md',
+          content_hash: 'hash-1',
+        },
+      ]);
+
+      expect(summary.groups).toBe(1);
+      expect(summary.rows).toBe(2);
+      expect(summary.identicalHashGroups).toBe(1);
+      expect(summary.divergentHashGroups).toBe(0);
+      expect(summary.samples).toHaveLength(1);
+      expect(summary.samples[0].hashState).toBe('identical');
+    });
+
+    it('T520-9e: detects divergent-hash alias groups', () => {
+      const summary = handler.summarizeAliasConflicts([
+        {
+          file_path: '/workspace/specs/003-system-spec-kit/201-test/memory/b.md',
+          content_hash: 'hash-1',
+        },
+        {
+          file_path: '/workspace/.opencode/specs/003-system-spec-kit/201-test/memory/b.md',
+          content_hash: 'hash-2',
+        },
+      ]);
+
+      expect(summary.groups).toBe(1);
+      expect(summary.identicalHashGroups).toBe(0);
+      expect(summary.divergentHashGroups).toBe(1);
+      expect(summary.samples[0].hashState).toBe('divergent');
+    });
+
+    it('T520-9f: ignores rows that are not cross-root aliases', () => {
+      const summary = handler.summarizeAliasConflicts([
+        {
+          file_path: '/workspace/specs/003-system-spec-kit/300-test/memory/c.md',
+          content_hash: 'hash-1',
+        },
+        {
+          file_path: '/workspace/specs/003-system-spec-kit/301-test/memory/c.md',
+          content_hash: 'hash-1',
+        },
+      ]);
+
+      expect(summary.groups).toBe(0);
+      expect(summary.rows).toBe(0);
+      expect(summary.identicalHashGroups).toBe(0);
+      expect(summary.divergentHashGroups).toBe(0);
+      expect(summary.samples).toHaveLength(0);
     });
   });
 

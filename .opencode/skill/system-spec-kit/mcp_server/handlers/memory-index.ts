@@ -50,6 +50,9 @@ const SPEC_DOC_EXCLUDE_DIRS = new Set(['z_archive', 'scratch', 'memory', 'node_m
 
 /** Constitutional markdown basenames intentionally excluded from indexing. */
 const EXCLUDED_CONSTITUTIONAL_BASENAMES = new Set(['readme.md', 'readme.txt']);
+const DOT_OPENCODE_SPECS_SEGMENT = '/.opencode/specs/';
+const SPECS_SEGMENT = '/specs/';
+const MAX_ALIAS_CONFLICT_SAMPLES = 5;
 
 /**
  * Discover spec folder documents (.opencode/specs/ directory tree).
@@ -220,7 +223,44 @@ interface ScanResults {
     uniqueTotal: number;
     duplicatesSkipped: number;
   };
+  aliasConflicts: AliasConflictSummary;
 }
+
+interface AliasConflictRow {
+  file_path: string;
+  content_hash: string | null;
+}
+
+interface AliasConflictSample {
+  normalizedPath: string;
+  hashState: 'identical' | 'divergent' | 'unknown';
+  variants: string[];
+}
+
+interface AliasConflictSummary {
+  groups: number;
+  rows: number;
+  identicalHashGroups: number;
+  divergentHashGroups: number;
+  unknownHashGroups: number;
+  samples: AliasConflictSample[];
+}
+
+interface AliasConflictBucket {
+  hasDotOpencodeVariant: boolean;
+  hasSpecsVariant: boolean;
+  variants: Set<string>;
+  hashes: Set<string>;
+}
+
+const EMPTY_ALIAS_CONFLICT_SUMMARY: AliasConflictSummary = {
+  groups: 0,
+  rows: 0,
+  identicalHashGroups: 0,
+  divergentHashGroups: 0,
+  unknownHashGroups: 0,
+  samples: [],
+};
 
 interface CategorizedFiles {
   toIndex: string[];
@@ -283,6 +323,107 @@ function findConstitutionalFiles(workspacePath: string): string[] {
     console.warn(`Warning: Could not read skill directory:`, message);
   }
   return results;
+}
+
+function toNormalizedPath(filePath: string): string {
+  return filePath.replace(/\\/g, '/');
+}
+
+function toSpecAliasKey(filePath: string): string {
+  return toNormalizedPath(filePath).replace(DOT_OPENCODE_SPECS_SEGMENT, SPECS_SEGMENT);
+}
+
+function summarizeAliasConflicts(rows: AliasConflictRow[]): AliasConflictSummary {
+  if (!rows.length) {
+    return { ...EMPTY_ALIAS_CONFLICT_SUMMARY };
+  }
+
+  const buckets = new Map<string, AliasConflictBucket>();
+
+  for (const row of rows) {
+    if (!row || typeof row.file_path !== 'string' || row.file_path.length === 0) {
+      continue;
+    }
+
+    const normalizedPath = toNormalizedPath(row.file_path);
+    const aliasKey = toSpecAliasKey(normalizedPath);
+    let bucket = buckets.get(aliasKey);
+    if (!bucket) {
+      bucket = {
+        hasDotOpencodeVariant: false,
+        hasSpecsVariant: false,
+        variants: new Set<string>(),
+        hashes: new Set<string>(),
+      };
+      buckets.set(aliasKey, bucket);
+    }
+
+    if (normalizedPath.includes(DOT_OPENCODE_SPECS_SEGMENT)) {
+      bucket.hasDotOpencodeVariant = true;
+    }
+    if (normalizedPath.includes(SPECS_SEGMENT) && !normalizedPath.includes(DOT_OPENCODE_SPECS_SEGMENT)) {
+      bucket.hasSpecsVariant = true;
+    }
+    bucket.variants.add(normalizedPath);
+
+    if (typeof row.content_hash === 'string' && row.content_hash.trim().length > 0) {
+      bucket.hashes.add(row.content_hash.trim());
+    }
+  }
+
+  const summary: AliasConflictSummary = { ...EMPTY_ALIAS_CONFLICT_SUMMARY, samples: [] };
+
+  for (const [normalizedPath, bucket] of buckets.entries()) {
+    if (!bucket.hasDotOpencodeVariant || !bucket.hasSpecsVariant) {
+      continue;
+    }
+
+    if (bucket.variants.size < 2) {
+      continue;
+    }
+
+    summary.groups++;
+    summary.rows += bucket.variants.size;
+
+    let hashState: AliasConflictSample['hashState'];
+    if (bucket.hashes.size === 0) {
+      summary.unknownHashGroups++;
+      hashState = 'unknown';
+    } else if (bucket.hashes.size === 1) {
+      summary.identicalHashGroups++;
+      hashState = 'identical';
+    } else {
+      summary.divergentHashGroups++;
+      hashState = 'divergent';
+    }
+
+    if (summary.samples.length < MAX_ALIAS_CONFLICT_SAMPLES) {
+      summary.samples.push({
+        normalizedPath,
+        hashState,
+        variants: Array.from(bucket.variants).sort(),
+      });
+    }
+  }
+
+  return summary;
+}
+
+function detectAliasConflictsFromIndex(): AliasConflictSummary {
+  try {
+    const database = requireDb();
+    const rows = database.prepare(`
+      SELECT file_path, content_hash
+      FROM memory_index
+      WHERE parent_id IS NULL
+        AND file_path LIKE '%/specs/%'
+    `).all() as AliasConflictRow[];
+    return summarizeAliasConflicts(rows);
+  } catch (err: unknown) {
+    const message = toErrorMessage(err);
+    console.warn(`[memory-index-scan] Alias conflict detection skipped: ${message}`);
+    return { ...EMPTY_ALIAS_CONFLICT_SUMMARY };
+  }
 }
 
 /* ---------------------------------------------------------------
@@ -412,7 +553,8 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
       inputTotal: mergedFiles.length,
       uniqueTotal: files.length,
       duplicatesSkipped: dedupDuplicatesSkipped,
-    }
+    },
+    aliasConflicts: { ...EMPTY_ALIAS_CONFLICT_SUMMARY },
   };
 
   let filesToIndex: string[] = files;
@@ -588,6 +730,8 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
     triggerMatcher.clearCache();
   }
 
+  results.aliasConflicts = detectAliasConflictsFromIndex();
+
   const summary = `Scan complete: ${results.indexed} indexed, ${results.updated} updated, ${results.unchanged} unchanged, ${results.failed} failed`;
 
   const hints: string[] = [];
@@ -596,6 +740,12 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
   }
   if (results.dedup.duplicatesSkipped > 0) {
     hints.push(`Canonical dedup skipped ${results.dedup.duplicatesSkipped} alias path(s)`);
+  }
+  if (results.aliasConflicts.groups > 0) {
+    hints.push(`Detected ${results.aliasConflicts.groups} specs/.opencode alias group(s); no automatic mutation performed`);
+  }
+  if (results.aliasConflicts.divergentHashGroups > 0) {
+    hints.push(`${results.aliasConflicts.divergentHashGroups} alias group(s) have divergent content hashes`);
   }
   if (results.incremental.enabled && results.incremental.fast_path_skips > 0) {
     hints.push(`Incremental mode saved time: ${results.incremental.fast_path_skips} files skipped via mtime check`);
@@ -642,6 +792,7 @@ export {
   findConstitutionalFiles,
   findSpecDocuments,
   detectSpecLevel,
+  summarizeAliasConflicts,
 };
 
 // Backward-compatible aliases (snake_case)
@@ -650,6 +801,7 @@ const index_single_file = indexSingleFile;
 const find_constitutional_files = findConstitutionalFiles;
 const find_spec_documents = findSpecDocuments;
 const detect_spec_level = detectSpecLevel;
+const summarize_alias_conflicts = summarizeAliasConflicts;
 
 export {
   handle_memory_index_scan,
@@ -657,4 +809,5 @@ export {
   find_constitutional_files,
   find_spec_documents,
   detect_spec_level,
+  summarize_alias_conflicts,
 };
