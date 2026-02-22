@@ -1589,6 +1589,7 @@ function create_schema(database: Database.Database) {
   if (table_exists) {
     migrate_confidence_columns(database);
     migrate_constitutional_tier(database);
+    ensure_canonical_file_path_support(database);
     create_common_indexes(database);
     ensureCompanionTables(database);
     return;
@@ -1600,6 +1601,7 @@ function create_schema(database: Database.Database) {
       id INTEGER PRIMARY KEY,
       spec_folder TEXT NOT NULL,
       file_path TEXT NOT NULL,
+      canonical_file_path TEXT,
       anchor_id TEXT,
       title TEXT,
       trigger_phrases TEXT,
@@ -1720,6 +1722,8 @@ function create_schema(database: Database.Database) {
 
   database.exec(`
     CREATE INDEX IF NOT EXISTS idx_file_path ON memory_index(file_path);
+    CREATE INDEX IF NOT EXISTS idx_canonical_file_path ON memory_index(canonical_file_path);
+    CREATE INDEX IF NOT EXISTS idx_spec_canonical_path ON memory_index(spec_folder, canonical_file_path);
     CREATE INDEX IF NOT EXISTS idx_content_hash ON memory_index(content_hash);
     CREATE INDEX IF NOT EXISTS idx_last_accessed ON memory_index(last_accessed DESC);
     CREATE INDEX IF NOT EXISTS idx_file_mtime ON memory_index(file_mtime_ms);
