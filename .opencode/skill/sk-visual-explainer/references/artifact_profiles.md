@@ -10,13 +10,13 @@ Defines the artifact-profile contract used by command routing, dashboard generat
 
 ---
 
-## Overview
+## 1. OVERVIEW
 
 This reference defines the SpecKit artifact profile model, profile catalog, detector precedence, and the quality checks that `sk-visual-explainer` must apply per artifact type.
 
 ---
 
-## 1. ArtifactProfile Schema
+## 2. ArtifactProfile Schema
 
 Use this schema for every SpecKit artifact profile:
 
@@ -43,7 +43,7 @@ ArtifactProfile:
 
 ---
 
-## 2. Detector Precedence
+## 3. Detector Precedence
 
 Apply detector rules in this exact order. Stop at the first confident match.
 
@@ -59,7 +59,7 @@ Tie-breaker rule:
 
 ---
 
-## 3. Profile Catalog
+## 4. Profile Catalog
 
 ### spec
 
@@ -281,7 +281,7 @@ Tie-breaker rule:
 
 ---
 
-## 4. Quality Metric Definitions
+## 5. Quality Metric Definitions
 
 | Metric | Definition |
 |---|---|
@@ -297,7 +297,7 @@ Output recommendation:
 
 ---
 
-## 5. Dashboard and Traceability Mapping
+## 6. Dashboard and Traceability Mapping
 
 Use these view modes consistently:
 

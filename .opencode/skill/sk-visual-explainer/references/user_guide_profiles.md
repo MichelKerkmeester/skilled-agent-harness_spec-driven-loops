@@ -10,23 +10,23 @@ Defines profile contracts for user-facing documentation artifacts so visual outp
 
 ---
 
-## Overview
+## 1. OVERVIEW
 
 This reference defines README and install-guide profile contracts, including detection rules, required sections, visual module mapping, and quality gates for artifact-aware rendering.
 
 ---
 
-## 1. Profile Scope
+## 2. Profile Scope
 
 Supported user-guide artifact IDs:
 - `readme`
 - `install-guide`
 
-Profile behavior mirrors the `ArtifactProfile` model from `speckit_artifact_profiles.md` and is consumed by `generate`, `plan-review`, and `fact-check` commands.
+Profile behavior mirrors the `ArtifactProfile` model from `artifact_profiles.md` and is consumed by `generate`, `plan-review`, and `fact-check` commands.
 
 ---
 
-## 2. Detector Rules
+## 3. Detector Rules
 
 Detector precedence (same global order):
 1. Filename (`README.md`, `README`, `INSTALL_GUIDE.md`, `INSTALL.md`, `install-guide.md`).
@@ -39,7 +39,7 @@ Tie-breaker:
 
 ---
 
-## 3. readme Profile
+## 4. readme Profile
 
 | Field | Value |
 |---|---|
@@ -56,7 +56,7 @@ Recommended view mode:
 
 ---
 
-## 4. install-guide Profile
+## 5. install-guide Profile
 
 | Field | Value |
 |---|---|
@@ -73,12 +73,12 @@ Recommended view mode:
 
 ---
 
-## 5. Mapping to Visual Templates
+## 6. Mapping to Visual Templates
 
 When source is user-guide content:
 
-- Use `speckit-artifact-dashboard.html` for default rendering.
-- Use `speckit-traceability-board.html` only when `--traceability` is explicitly enabled.
+- Use `artifact-dashboard.html` for default rendering.
+- Use `traceability-board.html` only when `--traceability` is explicitly enabled.
 
 Output metadata requirements remain identical:
 - `<meta name="ve-artifact-type" content="readme|install-guide">`
@@ -88,7 +88,7 @@ Output metadata requirements remain identical:
 
 ---
 
-## 6. User-Guide Quality Gates
+## 7. User-Guide Quality Gates
 
 Apply these gates before delivery:
 

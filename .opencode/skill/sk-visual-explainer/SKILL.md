@@ -20,11 +20,11 @@ Converts complex terminal output and technical concepts into styled, self-contai
 
 | Command | Purpose | Example Trigger |
 |---------|---------|----------------|
-| `/visual-explainer:generate` | Generate a visual diagram or styled page from any topic | "generate an architecture diagram for this service" |
-| `/visual-explainer:diff-review` | Visual review of git diffs, PRs, or commit ranges | "visual diff review of this PR" |
-| `/visual-explainer:plan-review` | Visual analysis of any planning or SpecKit artifact document | "visually review specs/007-auth/plan.md" |
-| `/visual-explainer:recap` | Visual recap of recent work or progress | "generate a visual recap of the last 2 weeks" |
-| `/visual-explainer:fact-check` | Verify accuracy of an existing HTML output | "fact-check this visual output against the spec" |
+| `/create:visual_html --mode generate` | Generate a visual diagram or styled page from any topic | "generate an architecture diagram for this service" |
+| `/create:visual_html --mode diff-review` | Visual review of git diffs, PRs, or commit ranges | "visual diff review of this PR" |
+| `/create:visual_html --mode plan-review` | Visual analysis of any planning or SpecKit artifact document | "visually review specs/007-auth/plan.md" |
+| `/create:visual_html --mode recap` | Visual recap of recent work or progress | "generate a visual recap of the last 2 weeks" |
+| `/create:visual_html --mode fact-check` | Verify accuracy of an existing HTML output | "fact-check this visual output against the spec" |
 
 ### Keyword Triggers (Auto-Activate)
 
@@ -95,11 +95,12 @@ INTENT_SIGNALS = {
 }
 
 COMMAND_BOOSTS = {
-    "/visual-explainer:generate": "GENERATE",
-    "/visual-explainer:diff-review": "DIFF_REVIEW",
-    "/visual-explainer:plan-review": "PLAN_REVIEW",
-    "/visual-explainer:recap": "RECAP",
-    "/visual-explainer:fact-check": "FACT_CHECK",
+    "/create:visual_html --mode generate": "GENERATE",
+    "/create:visual_html --mode diff-review": "DIFF_REVIEW",
+    "/create:visual_html --mode plan-review": "PLAN_REVIEW",
+    "/create:visual_html --mode recap": "RECAP",
+    "/create:visual_html --mode fact-check": "FACT_CHECK",
+    "/create:visual_html": "GENERATE",
 }
 
 RESOURCE_MAP = {
@@ -108,9 +109,9 @@ RESOURCE_MAP = {
     "PLAN_REVIEW": ["references/css_patterns.md", "references/quality_checklist.md"],
     "RECAP": ["references/css_patterns.md", "references/navigation_patterns.md"],
     "FACT_CHECK": ["references/quality_checklist.md"],
-    "SPECKIT_ARTIFACT_REVIEW": ["references/speckit_artifact_profiles.md", "references/quality_checklist.md"],
-    "SPECKIT_TRACEABILITY": ["references/speckit_artifact_profiles.md", "references/navigation_patterns.md", "references/library_guide.md"],
-    "USER_GUIDE_REVIEW": ["references/speckit_user_guide_profiles.md", "references/quality_checklist.md", "references/css_patterns.md"],
+    "SPECKIT_ARTIFACT_REVIEW": ["references/artifact_profiles.md", "references/quality_checklist.md"],
+    "SPECKIT_TRACEABILITY": ["references/artifact_profiles.md", "references/navigation_patterns.md", "references/library_guide.md"],
+    "USER_GUIDE_REVIEW": ["references/user_guide_profiles.md", "references/quality_checklist.md", "references/css_patterns.md"],
     "AESTHETIC": ["references/css_patterns.md"],
     "DIAGRAM_TYPE": ["references/library_guide.md"],
 }
@@ -123,10 +124,10 @@ LOADING_LEVELS = {
         "assets/templates/architecture.html",
         "assets/templates/mermaid-flowchart.html",
         "assets/templates/data-table.html",
-        "assets/templates/speckit-artifact-dashboard.html",
-        "assets/templates/speckit-traceability-board.html",
-        "assets/templates/speckit-readme-guide.html",
-        "assets/templates/speckit-implementation-summary.html",
+        "assets/templates/artifact-dashboard.html",
+        "assets/templates/traceability-board.html",
+        "assets/templates/readme-guide.html",
+        "assets/templates/implementation-summary.html",
     ],
 }
 
@@ -320,12 +321,12 @@ The skill executes a strict 4-phase workflow. Do not skip phases.
 
 ## 5. RELATED RESOURCES
 
-- `references/speckit_artifact_profiles.md` for artifact detector precedence and profile rules.
-- `references/speckit_user_guide_profiles.md` for README/install-guide mapping.
-- `assets/templates/speckit-artifact-dashboard.html` for artifact dashboard output mode.
-- `assets/templates/speckit-traceability-board.html` for traceability board output mode.
-- `assets/templates/speckit-readme-guide.html` for interactive README-style artifact rendering.
-- `assets/templates/speckit-implementation-summary.html` for implementation-summary artifact rendering with side TOC.
+- `references/artifact_profiles.md` for artifact detector precedence and profile rules.
+- `references/user_guide_profiles.md` for README/install-guide mapping.
+- `assets/templates/artifact-dashboard.html` for artifact dashboard output mode.
+- `assets/templates/traceability-board.html` for traceability board output mode.
+- `assets/templates/readme-guide.html` for interactive README-style artifact rendering.
+- `assets/templates/implementation-summary.html` for implementation-summary artifact rendering with side TOC.
 - `scripts/validate-html-output.sh` for contract enforcement and final delivery checks.
 
 ---
@@ -340,8 +341,8 @@ The skill executes a strict 4-phase workflow. Do not skip phases.
 - [library_guide.md](./references/library_guide.md)
 - [navigation_patterns.md](./references/navigation_patterns.md)
 - [quality_checklist.md](./references/quality_checklist.md)
-- [speckit_artifact_profiles.md](./references/speckit_artifact_profiles.md)
-- [speckit_user_guide_profiles.md](./references/speckit_user_guide_profiles.md)
+- [artifact_profiles.md](./references/artifact_profiles.md)
+- [user_guide_profiles.md](./references/user_guide_profiles.md)
 - [library_versions.json](./assets/library_versions.json)
 
 ### Template Assets
@@ -349,10 +350,10 @@ The skill executes a strict 4-phase workflow. Do not skip phases.
 - [architecture.html](./assets/templates/architecture.html)
 - [mermaid-flowchart.html](./assets/templates/mermaid-flowchart.html)
 - [data-table.html](./assets/templates/data-table.html)
-- [speckit-artifact-dashboard.html](./assets/templates/speckit-artifact-dashboard.html)
-- [speckit-traceability-board.html](./assets/templates/speckit-traceability-board.html)
-- [speckit-readme-guide.html](./assets/templates/speckit-readme-guide.html)
-- [speckit-implementation-summary.html](./assets/templates/speckit-implementation-summary.html)
+- [artifact-dashboard.html](./assets/templates/artifact-dashboard.html)
+- [traceability-board.html](./assets/templates/traceability-board.html)
+- [readme-guide.html](./assets/templates/readme-guide.html)
+- [implementation-summary.html](./assets/templates/implementation-summary.html)
 
 ### Enforcement Scripts
 
@@ -407,8 +408,8 @@ The skill executes a strict 4-phase workflow. Do not skip phases.
 
 | Skill | When to Call |
 |-------|-------------|
-| `system-spec-kit` memory | `/recap` and `/plan-review` context retrieval |
-| `sk-git` | `/diff-review` evidence gathering |
+| `system-spec-kit` memory | `/create:visual_html --mode recap` and `--mode plan-review` context retrieval |
+| `sk-git` | `/create:visual_html --mode diff-review` evidence gathering |
 | `mcp-chrome-devtools` | post-delivery console/layout verification |
 
 ### Resource Loading Contract
@@ -419,8 +420,8 @@ The skill executes a strict 4-phase workflow. Do not skip phases.
 | `references/css_patterns.md` | CONDITIONAL |
 | `references/library_guide.md` | CONDITIONAL |
 | `references/quality_checklist.md` | CONDITIONAL |
-| `references/speckit_artifact_profiles.md` | CONDITIONAL |
-| `references/speckit_user_guide_profiles.md` | CONDITIONAL |
+| `references/artifact_profiles.md` | CONDITIONAL |
+| `references/user_guide_profiles.md` | CONDITIONAL |
 | `references/navigation_patterns.md` | ON_DEMAND |
 | `assets/templates/*.html` | ON_DEMAND |
 

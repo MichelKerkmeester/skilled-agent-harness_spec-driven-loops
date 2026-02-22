@@ -39,8 +39,8 @@ Delivered the full SpecKit alignment for `sk-visual-explainer` across references
 ### Delivered Areas
 
 1. Added two new artifact profile reference documents:
-   - `.opencode/skill/sk-visual-explainer/references/speckit_artifact_profiles.md`
-   - `.opencode/skill/sk-visual-explainer/references/speckit_user_guide_profiles.md`
+   - `.opencode/skill/sk-visual-explainer/references/artifact_profiles.md`
+   - `.opencode/skill/sk-visual-explainer/references/user_guide_profiles.md`
 2. Updated skill/reference guidance:
    - `.opencode/skill/sk-visual-explainer/SKILL.md`
    - `.opencode/skill/sk-visual-explainer/references/quick_reference.md`
@@ -49,8 +49,8 @@ Delivered the full SpecKit alignment for `sk-visual-explainer` across references
    - `.opencode/skill/sk-visual-explainer/references/library_guide.md`
    - `.opencode/skill/sk-visual-explainer/references/css_patterns.md`
 3. Added two new SpecKit-oriented templates:
-   - `.opencode/skill/sk-visual-explainer/assets/templates/speckit-artifact-dashboard.html`
-   - `.opencode/skill/sk-visual-explainer/assets/templates/speckit-traceability-board.html`
+   - `.opencode/skill/sk-visual-explainer/assets/templates/artifact-dashboard.html`
+   - `.opencode/skill/sk-visual-explainer/assets/templates/traceability-board.html`
 4. Updated all five visual explainer commands:
    - `.opencode/command/visual_explainer/generate.md`
    - `.opencode/command/visual_explainer/plan-review.md`
@@ -105,8 +105,8 @@ Implementation followed the planned five-phase flow and completed each phase:
 | `python3 .opencode/skill/sk-documentation/scripts/validate_document.py --type command .opencode/command/visual_explainer/fact-check.md` | PASS (`✅ VALID`, issues: 0) |
 | `python3 .opencode/skill/sk-documentation/scripts/package_skill.py .opencode/skill/sk-visual-explainer --no-zip` | PASS (`Skill is valid`, packaged successfully) |
 | `bash .opencode/skill/sk-visual-explainer/scripts/tests/test-validator-fixtures.sh` | PASS (`validator fixture tests passed`) |
-| `bash .opencode/skill/sk-visual-explainer/scripts/validate-html-output.sh .opencode/skill/sk-visual-explainer/assets/templates/speckit-artifact-dashboard.html` | PASS (`PASS - All checks passed`) |
-| `bash .opencode/skill/sk-visual-explainer/scripts/validate-html-output.sh .opencode/skill/sk-visual-explainer/assets/templates/speckit-traceability-board.html` | PASS (`PASS - All checks passed`) |
+| `bash .opencode/skill/sk-visual-explainer/scripts/validate-html-output.sh .opencode/skill/sk-visual-explainer/assets/templates/artifact-dashboard.html` | PASS (`PASS - All checks passed`) |
+| `bash .opencode/skill/sk-visual-explainer/scripts/validate-html-output.sh .opencode/skill/sk-visual-explainer/assets/templates/traceability-board.html` | PASS (`PASS - All checks passed`) |
 | `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/002-commands-and-skills/042-sk-visual-explainer-speckit-alignmnet` | PASS (`RESULT: PASSED`) |
 <!-- /ANCHOR:verification -->
 

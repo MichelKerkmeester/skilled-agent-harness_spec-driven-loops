@@ -75,6 +75,7 @@ All guides in this directory, sorted by recommended reading order:
 | Guide | Purpose | Audience |
 |-------|---------|----------|
 | **[README.md](./README.md)** (this file) | Main installation walkthrough and directory index | All users |
+| **[TEMPLATE - Install Guide.md](./TEMPLATE%20-%20Install%20Guide.md)** | Reusable template for authoring new install guides | Maintainers and guide authors |
 | **[MCP - Code Mode.md](./MCP%20-%20Code%20Mode.md)** | Code Mode MCP server: external tool orchestration (Webflow, Figma, ClickUp, GitHub) | All users (foundation component) |
 | **[MCP - Spec Kit Memory.md](./MCP%20-%20Spec%20Kit%20Memory.md)** | Spec Kit Memory MCP server: conversation context preservation with vector search | All users (core component) |
 | **[MCP - Sequential Thinking.md](./MCP%20-%20Sequential%20Thinking.md)** | Sequential Thinking MCP server: complex reasoning chains | Users needing advanced reasoning |

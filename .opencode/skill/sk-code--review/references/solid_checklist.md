@@ -80,6 +80,7 @@ Use this checklist for new modules, refactors, and behavior-heavy changes where 
 | Feature envy | Logic manipulates another module's data heavily | Wrong ownership boundaries |
 
 Quick check: if naming the module's purpose requires "and", it likely violates SRP.
+KISS/DRY tie-in: if two modules differ only by literals or thin wrappers, consolidate before adding new abstraction layers.
 <!-- /ANCHOR:architecture-smells -->
 
 ---

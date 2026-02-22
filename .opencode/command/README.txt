@@ -17,13 +17,13 @@ trigger_phrases:
 <!-- ANCHOR:table-of-contents -->
 ## TABLE OF CONTENTS
 
-- [1. OVERVIEW](#1-overview)
-- [2. STRUCTURE](#2-structure)
-- [3. COMMAND GROUPS](#3-command-groups)
-- [4. USAGE](#4-usage)
-- [5. EXECUTION MODES](#5-execution-modes)
-- [6. TROUBLESHOOTING](#6-troubleshooting)
-- [7. RELATED DOCUMENTS](#7-related-documents)
+- [1. OVERVIEW](#1--overview)
+- [2. STRUCTURE](#2--structure)
+- [3. COMMAND GROUPS](#3--command-groups)
+- [4. USAGE](#4--usage)
+- [5. EXECUTION MODES](#5--execution-modes)
+- [6. TROUBLESHOOTING](#6--troubleshooting)
+- [7. RELATED DOCUMENTS](#7--related-documents)
 
 ---
 
@@ -37,7 +37,7 @@ Commands are organized into three groups:
 
 | Group | Path | Commands | Purpose |
 |-------|------|----------|---------|
-| **create** | `command/create/` | 6 | Scaffold OpenCode components (agents, skills, READMEs, install guides) |
+| **create** | `command/create/` | 7 | Scaffold OpenCode components and create unified visual HTML artifacts |
 | **memory** | `command/memory/` | 5 | Memory system operations (save, search, continue, learn, manage) |
 | **spec_kit** | `command/spec_kit/` | 7 | Spec folder workflows (plan, implement, research, debug, handover, resume, complete) |
 
@@ -59,7 +59,8 @@ command/
 │   ├── skill.md              # Create new skill
 │   ├── skill_asset.md        # Create skill asset file
 │   ├── skill_reference.md    # Create skill reference file
-│   └── assets/               # YAML workflow definitions (12 files)
+│   ├── visual_html.md        # Create or verify visual HTML output
+│   └── assets/               # YAML workflow definitions (14 files)
 ├── memory/                   # Memory system commands
 │   ├── context.md            # Intent-aware context retrieval
 │   ├── continue.md           # Session recovery
@@ -95,6 +96,7 @@ Scaffold OpenCode components using the `sk-documentation` skill. Each command su
 | Skill | `/create:skill <name>` | Create skill with SKILL.md, references, assets, scripts |
 | Skill Asset | `/create:skill_asset <skill> <type>` | Create asset file for existing skill |
 | Skill Reference | `/create:skill_reference <skill> <type>` | Create reference file for existing skill |
+| Visual HTML | `/create:visual_html <target> --mode <generate\|plan-review\|diff-review\|recap\|fact-check>` | Unified visual generation/review/fact-check command |
 
 ### Memory Commands
 
@@ -132,6 +134,7 @@ Structured workflows for the spec folder development lifecycle.
 
 ```
 /create:skill my-new-skill "Description of what it does"
+/create:visual_html "specs/007-auth/plan.md" --mode plan-review
 /memory:save specs/007-feature
 /spec_kit:plan "Add user authentication" :auto
 ```

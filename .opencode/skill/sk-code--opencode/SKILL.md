@@ -298,6 +298,23 @@ STEP 4: Apply Standards
 | Shell      | `lib/common.sh`, `spec/create.sh`, `validate.sh`               |
 | Config     | `config.jsonc`, `opencode.json`, `complexity-config.jsonc`     |
 
+### 139 Carry-Forward Patterns
+
+Recent 139 hybrid-rag implementation patterns are normative for new standards work:
+
+1. **Default-on with explicit opt-out**
+   - New behavior flags default to enabled.
+   - Opt-out is explicit and testable (`false` path must be covered).
+2. **Single source of truth constants**
+   - Shared rule values live in one module and are imported by dependents/tests.
+   - Avoid duplicate literals across handlers, tests, or checklists.
+3. **Invariant-at-source, regression-at-seam**
+   - Put invariants in core parsing/scoring modules.
+   - Validate via seam-level tests and command assertions.
+4. **Idempotent verification loops**
+   - Re-running the same validation command should keep status stable.
+   - Treat drift between first and second pass as a defect.
+
 ### Alignment Verifier Output Contract
 
 The recurring verifier at `scripts/verify_alignment_drift.py` applies severity-aware reporting:
@@ -588,7 +605,7 @@ import type { SearchOptions } from '../types';
 // ╚══════════════════════════════════════════════════════════════════════════╝
 {
   "$schema": "https://...",
-  // Section comment
+  // AI-WHY: section-level rationale
   "key": "value"
 }
 ```

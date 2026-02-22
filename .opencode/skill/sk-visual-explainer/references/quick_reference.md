@@ -18,11 +18,11 @@ Fast lookup for command mappings, pinned CDN snippets, version matrix linkage, a
 
 | Command | Usage |
 |---------|-------|
-| `generate` | `/visual-explainer:generate <topic-or-source> [--artifact auto\|spec\|plan\|tasks\|checklist\|implementation-summary\|research\|decision-record\|readme\|install-guide] [--source-file PATH] [--traceability] [--type TYPE] [--style STYLE]` |
-| `diff-review` | `/visual-explainer:diff-review [branch\|commit\|PR#] [--spec-folder PATH] [--include-doc-impact]` |
-| `plan-review` | `/visual-explainer:plan-review <doc-file-path> [--artifact auto\|...] [--traceability]` |
-| `recap` | `/visual-explainer:recap [time-window] [--spec-folder PATH] [--include-doc-health]` |
-| `fact-check` | `/visual-explainer:fact-check [html-file-path] [--source-file PATH] [--spec-folder PATH] [--artifact auto\|...]` |
+| `generate` | `/create:visual_html <topic-or-source> --mode generate [--artifact auto\|spec\|plan\|tasks\|checklist\|implementation-summary\|research\|decision-record\|readme\|install-guide] [--source-file PATH] [--traceability] [--type TYPE] [--style STYLE]` |
+| `diff-review` | `/create:visual_html [branch\|commit\|PR#] --mode diff-review [--spec-folder PATH] [--include-doc-impact]` |
+| `plan-review` | `/create:visual_html <doc-file-path> --mode plan-review [--artifact auto\|...] [--traceability]` |
+| `recap` | `/create:visual_html [time-window] --mode recap [--spec-folder PATH] [--include-doc-health]` |
+| `fact-check` | `/create:visual_html [html-file-path] --mode fact-check [--source-file PATH] [--spec-folder PATH] [--artifact auto\|...]` |
 
 ---
 

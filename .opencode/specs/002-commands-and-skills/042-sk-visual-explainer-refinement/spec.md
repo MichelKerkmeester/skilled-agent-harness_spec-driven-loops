@@ -66,10 +66,10 @@ Deliver a single SpecKit-aligned visual explainer contract across commands, refe
 | `.opencode/skill/sk-visual-explainer/SKILL.md` | Modify | Add SpecKit-aware routing and reference loading rules |
 | `.opencode/skill/sk-visual-explainer/references/quick_reference.md` | Modify | Add artifact metadata and command contract reminders |
 | `.opencode/skill/sk-visual-explainer/references/quality_checklist.md` | Modify | Add metadata + traceability verification checks |
-| `.opencode/skill/sk-visual-explainer/references/speckit_artifact_profiles.md` | Create | Define artifact profile schema and detectors |
-| `.opencode/skill/sk-visual-explainer/references/speckit_user_guide_profiles.md` | Create | Define README and install guide profile mapping |
-| `.opencode/skill/sk-visual-explainer/assets/templates/speckit-artifact-dashboard.html` | Create | Add SpecKit artifact dashboard starter template |
-| `.opencode/skill/sk-visual-explainer/assets/templates/speckit-traceability-board.html` | Create | Add traceability board starter template |
+| `.opencode/skill/sk-visual-explainer/references/artifact_profiles.md` | Create | Define artifact profile schema and detectors |
+| `.opencode/skill/sk-visual-explainer/references/user_guide_profiles.md` | Create | Define README and install guide profile mapping |
+| `.opencode/skill/sk-visual-explainer/assets/templates/artifact-dashboard.html` | Create | Add SpecKit artifact dashboard starter template |
+| `.opencode/skill/sk-visual-explainer/assets/templates/traceability-board.html` | Create | Add traceability board starter template |
 | `.opencode/command/visual_explainer/generate.md` | Modify | Add artifact-aware contract and metadata output requirements |
 | `.opencode/command/visual_explainer/plan-review.md` | Modify | Add artifact-aware contract and metadata output requirements |
 | `.opencode/command/visual_explainer/diff-review.md` | Modify | Add artifact-aware contract and metadata output requirements |
@@ -93,9 +93,9 @@ Deliver a single SpecKit-aligned visual explainer contract across commands, refe
 |----|-------------|---------------------|
 | REQ-001 | Artifact-aware command contracts | Each command file (`generate.md`, `plan-review.md`, `diff-review.md`, `recap.md`, `fact-check.md`) explicitly defines artifact-aware input and output behavior, including supported artifact types and source-document expectations. |
 | REQ-002 | Output metadata contract (`ve-artifact-type`, `ve-source-doc`, `ve-speckit-level`, `ve-view-mode`) | Command contracts and references define all four metadata fields with allowed values, default behavior, and required presence in generated outputs. |
-| REQ-003 | Artifact profile schema and detectors | `speckit_artifact_profiles.md` is created with a schema table, detector rules, and deterministic mapping from input source to artifact profile. |
-| REQ-004 | User guide profiles (README + install guide) | `speckit_user_guide_profiles.md` is created and documents profile rules for README and install guide artifacts, including command usage guidance. |
-| REQ-005 | Two template additions | `speckit-artifact-dashboard.html` and `speckit-traceability-board.html` are added and usable as command starter templates. |
+| REQ-003 | Artifact profile schema and detectors | `artifact_profiles.md` is created with a schema table, detector rules, and deterministic mapping from input source to artifact profile. |
+| REQ-004 | User guide profiles (README + install guide) | `user_guide_profiles.md` is created and documents profile rules for README and install guide artifacts, including command usage guidance. |
+| REQ-005 | Two template additions | `artifact-dashboard.html` and `traceability-board.html` are added and usable as command starter templates. |
 | REQ-006 | Validator/test fixture updates | Validator and fixture test script enforce and verify SpecKit metadata and traceability checks with pass/fail fixture coverage. |
 | REQ-007 | Verification command completion | Required verification commands complete successfully: validator fixture tests, command markdown validation, template validation for both new templates, `package_skill.py --no-zip`, and spec `validate.sh`. |
 
@@ -179,7 +179,7 @@ Deliver a single SpecKit-aligned visual explainer contract across commands, refe
 
 1. **Given** `/visual-explainer:generate` receives a SpecKit artifact source, **when** it builds output, **then** output metadata includes `ve-artifact-type`, `ve-source-doc`, `ve-speckit-level`, and `ve-view-mode`.
 2. **Given** `/visual-explainer:plan-review` reads a plan file, **when** the detector runs, **then** it maps to the correct artifact profile and template guidance.
-3. **Given** `speckit-artifact-dashboard.html` is used as a starter, **when** validator runs, **then** SpecKit metadata and traceability checks pass.
+3. **Given** `artifact-dashboard.html` is used as a starter, **when** validator runs, **then** SpecKit metadata and traceability checks pass.
 4. **Given** a fixture missing traceability metadata, **when** `test-validator-fixtures.sh` runs, **then** the fixture fails with the expected exit code.
 5. **Given** all five command markdown files are updated, **when** `validate_document.py --type command` runs on each file, **then** each command document passes validation.
 6. **Given** skill and spec validations are executed, **when** `package_skill.py --check` and `validate.sh` run, **then** both commands return pass status.

@@ -93,12 +93,36 @@ Decision cue: if reviewers cannot explain intent quickly, maintenance risk is li
 
 ---
 
+<!-- ANCHOR:kiss-dry -->
+## 6. KISS / DRY ENFORCEMENT
+
+### KISS Checks
+
+Flag:
+- New abstraction layers without a current behavior need.
+- Generic helpers used in only one place.
+- Workflow complexity introduced "for future flexibility" without evidence.
+
+### DRY Checks
+
+Flag:
+- Duplicated constants/rules across modules.
+- Copy-paste branches with minor name changes.
+- Repeated validation/parsing blocks that can share one source.
+
+Severity guidance:
+- P2 default for stylistic duplication/complexity.
+- Escalate to P1 if duplication or complexity introduces behavior/regression risk.
+<!-- /ANCHOR:kiss-dry -->
+
+---
+
 <!-- ANCHOR:related-resources -->
-## 6. RELATED RESOURCES
+## 7. RELATED RESOURCES
 
 - [quick_reference.md](./quick_reference.md) - Baseline review flow and severity output contract.
 - [security_checklist.md](./security_checklist.md) - Security, authz, abuse, and privacy risk checks.
-- [solid_checklist.md](./solid_checklist.md) - SOLID and architecture risk prompts.
+- [solid_checklist.md](./solid_checklist.md) - SOLID (SRP/OCP/LSP/ISP/DIP) and architecture risk prompts.
 - [removal_plan.md](./removal_plan.md) - Removal candidate classification and migration planning.
 
 Overlay portability: pair this baseline with stack-specific quality guidance from `sk-code--opencode`, `sk-code--web`, or `sk-code--full-stack`.

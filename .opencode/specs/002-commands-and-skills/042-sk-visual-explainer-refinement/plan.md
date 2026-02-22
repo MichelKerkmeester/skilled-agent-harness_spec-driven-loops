@@ -59,7 +59,7 @@ This plan upgrades visual explainer workflows to be SpecKit-artifact aware. Impl
 Contract-first documentation and validation hardening.
 
 ### Key Components
-- **Artifact Profile Layer**: `speckit_artifact_profiles.md` and `speckit_user_guide_profiles.md` define profile schema and detector logic.
+- **Artifact Profile Layer**: `artifact_profiles.md` and `user_guide_profiles.md` define profile schema and detector logic.
 - **Command Contract Layer**: Five `visual_explainer` command docs enforce artifact-aware inputs and metadata outputs.
 - **Template Layer**: Two new templates provide concrete starters for dashboard and traceability outputs.
 - **Validation Layer**: Validator script + fixture tests enforce SpecKit metadata and traceability rules.
@@ -78,8 +78,8 @@ Contract-first documentation and validation hardening.
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Profile references
-- [x] Add `speckit_artifact_profiles.md` with schema and detectors.
-- [x] Add `speckit_user_guide_profiles.md` for README/install-guide profiles.
+- [x] Add `artifact_profiles.md` with schema and detectors.
+- [x] Add `user_guide_profiles.md` for README/install-guide profiles.
 - [x] Wire new reference files from `SKILL.md` and quick references.
 
 ### Phase 2: Command contract alignment
@@ -90,8 +90,8 @@ Contract-first documentation and validation hardening.
 - [x] Update `fact-check.md` contract for artifact-aware outputs.
 
 ### Phase 3: Template additions
-- [x] Add `speckit-artifact-dashboard.html` starter template.
-- [x] Add `speckit-traceability-board.html` starter template.
+- [x] Add `artifact-dashboard.html` starter template.
+- [x] Add `traceability-board.html` starter template.
 
 ### Phase 4: Validator and fixtures
 - [x] Add metadata contract checks in `validate-html-output.sh`.

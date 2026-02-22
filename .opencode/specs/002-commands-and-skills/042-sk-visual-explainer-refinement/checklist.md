@@ -43,8 +43,8 @@ contextType: "implementation"
 ## P0 Code Quality
 
 - [x] CHK-010 [P0] Command contract updates complete [EVIDENCE: `rg -n "ve-artifact-type|ve-source-doc|ve-speckit-level|ve-view-mode" .opencode/command/visual_explainer/{generate,plan-review,diff-review,recap,fact-check}.md` confirms metadata contract in all five command docs]
-- [x] CHK-011 [P0] Profile references complete [EVIDENCE: new files present at `references/speckit_artifact_profiles.md` and `references/speckit_user_guide_profiles.md`; `rg -n "speckit_artifact_profiles|speckit_user_guide_profiles" .opencode/skill/sk-visual-explainer/SKILL.md .opencode/skill/sk-visual-explainer/references/{quick_reference,quality_checklist}.md` confirms linkage]
-- [x] CHK-012 [P0] Template additions complete [EVIDENCE: `speckit-artifact-dashboard.html` and `speckit-traceability-board.html` exist and pass `validate-html-output.sh`]
+- [x] CHK-011 [P0] Profile references complete [EVIDENCE: new files present at `references/artifact_profiles.md` and `references/user_guide_profiles.md`; `rg -n "artifact_profiles|user_guide_profiles" .opencode/skill/sk-visual-explainer/SKILL.md .opencode/skill/sk-visual-explainer/references/{quick_reference,quality_checklist}.md` confirms linkage]
+- [x] CHK-012 [P0] Template additions complete [EVIDENCE: `artifact-dashboard.html` and `traceability-board.html` exist and pass `validate-html-output.sh`]
 - [x] CHK-013 [P1] Skill routing/reference updates synchronized [EVIDENCE: `.opencode/skill/sk-visual-explainer/SKILL.md`, `references/quick_reference.md`, `references/quality_checklist.md`, `references/navigation_patterns.md`, `references/library_guide.md`, and `references/css_patterns.md` updated in same delivery set]
 <!-- /ANCHOR:code-quality -->
 
@@ -56,7 +56,7 @@ contextType: "implementation"
 - [x] CHK-020 [P0] Validator/fixtures pass [EVIDENCE: `bash .opencode/skill/sk-visual-explainer/scripts/tests/test-validator-fixtures.sh` returned `validator fixture tests passed` with exit 0]
 - [x] CHK-021 [P0] Command markdown validation pass [EVIDENCE: `validate_document.py --type command` reports `✅ VALID` + `Total issues: 0` for `generate.md`, `plan-review.md`, `diff-review.md`, `recap.md`, `fact-check.md`]
 - [x] CHK-022 [P1] Metadata and traceability fail fixtures validate expected errors [EVIDENCE: fixture suite output includes `ok speckit-artifact-missing-meta.html exit=2` and `ok speckit-traceability-missing-crossrefs.html exit=2`]
-- [x] CHK-023 [P1] Template validation pass for new SpecKit templates [EVIDENCE: `validate-html-output.sh .../speckit-artifact-dashboard.html` and `validate-html-output.sh .../speckit-traceability-board.html` both ended `PASS — All checks passed`]
+- [x] CHK-023 [P1] Template validation pass for new SpecKit templates [EVIDENCE: `validate-html-output.sh .../artifact-dashboard.html` and `validate-html-output.sh .../traceability-board.html` both ended `PASS — All checks passed`]
 <!-- /ANCHOR:testing -->
 
 ---

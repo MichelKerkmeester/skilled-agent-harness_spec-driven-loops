@@ -44,16 +44,16 @@ contextType: "implementation"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [x] T004 Add artifact profile schema reference (`.opencode/skill/sk-visual-explainer/references/speckit_artifact_profiles.md`)
-- [x] T005 Add user guide profile reference (`.opencode/skill/sk-visual-explainer/references/speckit_user_guide_profiles.md`)
+- [x] T004 Add artifact profile schema reference (`.opencode/skill/sk-visual-explainer/references/artifact_profiles.md`)
+- [x] T005 Add user guide profile reference (`.opencode/skill/sk-visual-explainer/references/user_guide_profiles.md`)
 - [x] T006 Update skill routing/reference links (`.opencode/skill/sk-visual-explainer/SKILL.md`, `.opencode/skill/sk-visual-explainer/references/quick_reference.md`, `.opencode/skill/sk-visual-explainer/references/quality_checklist.md`)
 - [x] T007 Update command contract for `generate` (`.opencode/command/visual_explainer/generate.md`)
 - [x] T008 Update command contract for `plan-review` (`.opencode/command/visual_explainer/plan-review.md`)
 - [x] T009 Update command contract for `diff-review` (`.opencode/command/visual_explainer/diff-review.md`)
 - [x] T010 Update command contract for `recap` (`.opencode/command/visual_explainer/recap.md`)
 - [x] T011 Update command contract for `fact-check` (`.opencode/command/visual_explainer/fact-check.md`)
-- [x] T012 Add `speckit-artifact-dashboard` template (`.opencode/skill/sk-visual-explainer/assets/templates/speckit-artifact-dashboard.html`)
-- [x] T013 Add `speckit-traceability-board` template (`.opencode/skill/sk-visual-explainer/assets/templates/speckit-traceability-board.html`)
+- [x] T012 Add `artifact-dashboard` template (`.opencode/skill/sk-visual-explainer/assets/templates/artifact-dashboard.html`)
+- [x] T013 Add `traceability-board` template (`.opencode/skill/sk-visual-explainer/assets/templates/traceability-board.html`)
 - [x] T014 Update validator checks for SpecKit metadata and traceability (`.opencode/skill/sk-visual-explainer/scripts/validate-html-output.sh`)
 - [x] T015 Update fixture runner and fixtures for metadata/traceability pass-fail scenarios (`.opencode/skill/sk-visual-explainer/scripts/tests/test-validator-fixtures.sh`, `.opencode/skill/sk-visual-explainer/scripts/tests/fixtures/*.html`)
 <!-- /ANCHOR:phase-2 -->

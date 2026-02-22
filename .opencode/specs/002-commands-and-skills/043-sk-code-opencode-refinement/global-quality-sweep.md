@@ -120,10 +120,10 @@ rg -n "KISS|DRY|SOLID|module|adapter|interface|abstraction|responsibility|depend
 
 | Evidence ID | Protocol Step | Command / Check | Result Summary | Artifact / Link | Defects (P0/P1/P2) | Owner | Status |
 |-------------|---------------|-----------------|----------------|-----------------|--------------------|-------|--------|
-| EVT-001 | Global Testing Round | Run command bundle sections 1, 2, 3, and spec validation | Pending execution during implementation phase | `.opencode/specs/002-commands-and-skills/043-sk-code-opencode-refinement/scratch/final-quality-evidence-2026-02-22.md` | `0/0/0` target | Spec closure owner | Open |
-| EVT-002 | Global Bug Detection Sweep | Consolidate defects from EVT-001 outputs and scoped diffs | Pending execution during implementation phase | `.opencode/specs/002-commands-and-skills/043-sk-code-opencode-refinement/scratch/final-quality-evidence-2026-02-22.md` | `0/0/0` target | Spec closure owner | Open |
-| EVT-003 | `sk-code--opencode` Compliance Audit | Scope check + policy/checklist invariant audit | Pending execution during implementation phase | `.opencode/specs/002-commands-and-skills/043-sk-code-opencode-refinement/scratch/final-quality-evidence-2026-02-22.md` | `0/0/0` target | Spec closure owner | Open |
-| EVT-004 | Conditional Standards Update Pathway | Review mismatch decision + optional command bundle section 4 | Pending trigger decision in Phase 5 | `.opencode/specs/002-commands-and-skills/043-sk-code-opencode-refinement/scratch/final-quality-evidence-2026-02-22.md` | `0/0/0` target | Spec closure owner | Open |
+| EVT-001 | Global Testing Round | Run command bundle sections 1, 2, 3, and spec validation | PASS. Policy semantics assertions, header invariants, and KISS/DRY/SOLID coverage all passed; spec validation passed with one advisory warning (`SECTION_COUNTS`). | `.opencode/specs/002-commands-and-skills/043-sk-code-opencode-refinement/scratch/final-quality-evidence-2026-02-22.md` | `0/0/0` | Spec closure owner | Closed |
+| EVT-002 | Global Bug Detection Sweep | Consolidate defects from EVT-001 outputs and scoped diffs | PASS. No defects detected across verification outputs and scoped changed-file audit. | `.opencode/specs/002-commands-and-skills/043-sk-code-opencode-refinement/scratch/final-quality-evidence-2026-02-22.md` | `0/0/0` | Spec closure owner | Closed |
+| EVT-003 | `sk-code--opencode` Compliance Audit | Scope check + policy/checklist invariant audit | PASS. Scope audit confirmed changed files remained within declared implementation scope (4 files). | `.opencode/specs/002-commands-and-skills/043-sk-code-opencode-refinement/scratch/final-quality-evidence-2026-02-22.md` | `0/0/0` | Spec closure owner | Closed |
+| EVT-004 | Conditional Standards Update Pathway | Review mismatch decision + optional command bundle section 4 | PASS (Applied). Conditional review alignment path executed and assertions passed after minimal scoped review updates. | `.opencode/specs/002-commands-and-skills/043-sk-code-opencode-refinement/scratch/final-quality-evidence-2026-02-22.md` | `0/0/0` | Spec closure owner | Closed |
 <!-- /ANCHOR:evidence-table -->
 
 ---
@@ -133,7 +133,7 @@ rg -n "KISS|DRY|SOLID|module|adapter|interface|abstraction|responsibility|depend
 
 | Defect ID | Severity | File | Summary | Owner | Status |
 |-----------|----------|------|---------|-------|--------|
-| DEF-001 | P2 | Pending | Use this table only when a real defect is discovered during sweep execution | Spec closure owner | Open |
+| None | N/A | N/A | No defects were discovered during EVT-001 through EVT-004. | Spec closure owner | Closed |
 
 Current unresolved counts:
 - `P0: 0`
@@ -148,11 +148,11 @@ Current unresolved counts:
 
 Completion claim for this spec is permitted only when all conditions below are true:
 
-- [ ] Global testing round completed with published evidence (`EVT-001`).
-- [ ] Global bug detection sweep completed with unresolved `P0=0` and `P1=0` (`EVT-002`).
-- [ ] `sk-code--opencode` compliance audit completed with evidence (`EVT-003`).
-- [ ] Conditional standards update pathway decision completed (`EVT-004`) as either Applied or N/A with rationale.
-- [ ] Spec documents synchronized and checklist evidence slots updated.
+- [x] Global testing round completed with published evidence (`EVT-001`).
+- [x] Global bug detection sweep completed with unresolved `P0=0` and `P1=0` (`EVT-002`).
+- [x] `sk-code--opencode` compliance audit completed with evidence (`EVT-003`).
+- [x] Conditional standards update pathway decision completed (`EVT-004`) as either Applied or N/A with rationale.
+- [x] Spec documents synchronized and checklist evidence slots updated.
 
-**Closure Gate Decision**: NOT SATISFIED (implementation and sweep execution pending).
+**Closure Gate Decision**: SATISFIED WITH WARNING. All mandatory closure checks passed with unresolved defects `P0=0`, `P1=0`; spec validation reported one advisory warning (`SECTION_COUNTS`).
 <!-- /ANCHOR:closure-gate -->

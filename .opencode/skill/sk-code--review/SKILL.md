@@ -87,7 +87,7 @@ assets/review/...
 | Level | When to Load | Resources |
 | --- | --- | --- |
 | ALWAYS | Every invocation | `references/quick_reference.md`, `references/security_checklist.md`, `references/code_quality_checklist.md` |
-| CONDITIONAL | Intent score indicates need | `references/solid_checklist.md`, `references/removal_plan.md` |
+| CONDITIONAL | Intent score indicates need | `references/solid_checklist.md`, `references/code_quality_checklist.md`, `references/removal_plan.md` |
 | ON_DEMAND | Explicit deep-dive request | Full mapped reference set |
 
 ### Precedence Matrix
@@ -105,8 +105,9 @@ If intent/stack detection is unclear, request:
 
 1. Review target scope (full diff, staged files, commit range, or explicit file list).
 2. Primary risk class (security, correctness, performance, maintainability).
-3. Stack/context (OpenCode system code, web/frontend, or other/full-stack).
-4. Desired output mode (findings-only or findings + gated fix follow-up).
+3. Architecture lens priority (KISS/DRY/SOLID strict or optional).
+4. Stack/context (OpenCode system code, web/frontend, or other/full-stack).
+5. Desired output mode (findings-only or findings + gated fix follow-up).
 
 ### Smart Router Pseudocode
 

@@ -357,7 +357,7 @@ document.querySelectorAll('[data-count]').forEach(el => {
 **Purpose:** Verify the rendered view covers required sections for the detected artifact profile.
 
 **How to run:**
-- Load expected profile from `speckit_artifact_profiles.md` or `speckit_user_guide_profiles.md`.
+- Load expected profile from `artifact_profiles.md` or `user_guide_profiles.md`.
 - Compare required sections and anchors with rendered panels/labels.
 
 **Pass:** Required section coverage and anchor coverage are explicitly represented and scored.

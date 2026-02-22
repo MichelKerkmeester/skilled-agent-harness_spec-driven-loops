@@ -1,30 +1,31 @@
 ---
 title: "Create Commands"
-description: "Slash commands for scaffolding OpenCode components including agents, skills, READMEs, and install guides."
+description: "Slash commands for scaffolding OpenCode components and creating visual HTML artifacts."
 trigger_phrases:
   - "create command"
   - "scaffold component"
   - "create agent"
   - "create skill"
   - "create readme"
+  - "create visual html"
 ---
 
 # Create Commands
 
-> Slash commands for scaffolding OpenCode components with proper structure, templates, and validation.
+> Slash commands for scaffolding OpenCode components with proper structure, templates, validation, and visual HTML delivery.
 
 ---
 
 <!-- ANCHOR:table-of-contents -->
 ## TABLE OF CONTENTS
 
-- [1. OVERVIEW](#1-overview)
-- [2. COMMANDS](#2-commands)
-- [3. STRUCTURE](#3-structure)
-- [4. EXECUTION MODES](#4-execution-modes)
-- [5. USAGE EXAMPLES](#5-usage-examples)
-- [6. TROUBLESHOOTING](#6-troubleshooting)
-- [7. RELATED DOCUMENTS](#7-related-documents)
+- [1. OVERVIEW](#1--overview)
+- [2. COMMANDS](#2--commands)
+- [3. STRUCTURE](#3--structure)
+- [4. EXECUTION MODES](#4--execution-modes)
+- [5. USAGE EXAMPLES](#5--usage-examples)
+- [6. TROUBLESHOOTING](#6--troubleshooting)
+- [7. RELATED DOCUMENTS](#7--related-documents)
 
 ---
 
@@ -32,9 +33,9 @@ trigger_phrases:
 <!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
-The `create` command group scaffolds OpenCode components using templates from the `sk-documentation` skill. Each command follows a structured YAML workflow and supports `:auto` (no approval prompts) and `:confirm` (pause at each step) execution modes.
+The `create` command group scaffolds OpenCode components and unifies visual HTML creation under a single command entrypoint. Each command follows a structured YAML workflow and supports `:auto` (no approval prompts) and `:confirm` (pause at each step) execution modes.
 
-All commands run Phase 0 (@write agent self-verification) before gathering inputs.
+Most commands run Phase 0 (@write agent self-verification). The `visual_html` command runs Phase 0 with @general agent verification.
 
 ---
 
@@ -50,6 +51,7 @@ All commands run Phase 0 (@write agent self-verification) before gathering input
 | **skill** | `/create:skill <name> [description] [:auto\|:confirm]` | Create a new skill with SKILL.md, references, assets, and scripts |
 | **skill_asset** | `/create:skill_asset <skill> <type> [--chained] [:auto\|:confirm]` | Create an asset file (templates, lookups, examples, guides) for an existing skill |
 | **skill_reference** | `/create:skill_reference <skill> <type> [--chained] [:auto\|:confirm]` | Create a reference file (deep-dive technical docs, patterns, debugging guides) for an existing skill |
+| **visual_html** | `/create:visual_html <target-or-source> [--mode <auto\|create\|analyze\|verify\|custom>] [:auto\|:confirm]` | Unified visual HTML command with broad intent-based routing |
 | **phase (via spec_kit)** | `/spec_kit:phase <feature> [--phases N] [--phase-names list] [:auto\|:confirm]` | Phase-aware parent/child spec decomposition used when create workflows detect large multi-domain scope |
 
 ### README Types
@@ -77,6 +79,7 @@ create/
 ├── skill.md              # /create:skill command
 ├── skill_asset.md        # /create:skill_asset command
 ├── skill_reference.md    # /create:skill_reference command
+├── visual_html.md        # /create:visual_html command
 └── assets/               # YAML workflow definitions
     ├── create_agent_auto.yaml
     ├── create_agent_confirm.yaml
@@ -89,7 +92,9 @@ create/
     ├── create_skill_asset_auto.yaml
     ├── create_skill_asset_confirm.yaml
     ├── create_skill_reference_auto.yaml
-    └── create_skill_reference_confirm.yaml
+    ├── create_skill_reference_confirm.yaml
+    ├── create_visual_html_auto.yaml
+    └── create_visual_html_confirm.yaml
 ```
 
 ---
@@ -133,6 +138,9 @@ The `--chained` flag on `skill_asset` and `skill_reference` indicates the comman
 
 # Create an install guide for multiple platforms
 /create:install_guide my-tool --platforms opencode,claude-code :confirm
+
+# Generate a visual HTML artifact from a spec plan
+/create:visual_html specs/007-auth/plan.md --mode plan-review :auto
 ```
 
 ---
@@ -144,6 +152,7 @@ The `--chained` flag on `skill_asset` and `skill_reference` indicates the comman
 | Problem | Cause | Fix |
 |---------|-------|-----|
 | Phase 0 fails | @write agent not available | Verify agent files exist in the runtime path (`.opencode/agent/`, `.opencode/agent/chatgpt/`, or `.opencode/agent/claude/`) |
+| `visual_html` Phase 0 fails | @general agent routing unavailable | Re-run as `@general /create:visual_html ...` |
 | YAML workflow not found | Missing asset file | Check `assets/` contains the matching YAML for your mode |
 | Skill not found for asset/reference | Wrong skill name | Use the exact folder name from `.opencode/skill/` |
 | `--chained` has no effect | Only meaningful during skill creation pipeline | Remove flag when running standalone |
