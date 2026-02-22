@@ -96,7 +96,7 @@ This session was migrated from an older format to v2.2. Review the OVERVIEW and 
 ```
 /spec_kit:resume 005-anobel.com/z_archive/004-table-of-content/002-tab-main-component
 ```
-<!-- /ANCHOR_EXAMPLE:continue-session-session-legacy-1770632216970-pz5vw3-005-anobel.com/z_archive/004-table-of-content/002-tab-main-component -->
+<!-- /ANCHOR:continue-session-session-legacy-1770632216970-pz5vw3-005-anobel-com/z-archive/004-table-of-content/002-tab-main-component -->
 
 ---
 

@@ -117,7 +117,7 @@ This session was migrated from an older format to v2.2. Review the OVERVIEW and 
 ```
 /spec_kit:resume 005-anobel.com/019-blog-sort-fix
 ```
-<!-- /ANCHOR_EXAMPLE:continue-session-session-1768743940251-x1zduc32s-005-anobel.com/019-blog-sort-fix -->
+<!-- /ANCHOR:continue-session-session-1768743940251-x1zduc32s-005-anobel-com/019-blog-sort-fix -->
 ---
 
 <a id="project-state-snapshot"></a>

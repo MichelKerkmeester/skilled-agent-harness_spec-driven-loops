@@ -119,7 +119,7 @@ This session was migrated from an older format to v2.2. Review the OVERVIEW and 
 ```
 /spec_kit:resume 004-anobel.com/009-security-remediation
 ```
-<!-- /ANCHOR_EXAMPLE:continue-session-session-1766670613954-rlpvll559-004-anobel.com/009-security-remediation -->
+<!-- /ANCHOR:continue-session-session-1766670613954-rlpvll559-004-anobel-com/009-security-remediation -->
 ---
 
 <a id="project-state-snapshot"></a>

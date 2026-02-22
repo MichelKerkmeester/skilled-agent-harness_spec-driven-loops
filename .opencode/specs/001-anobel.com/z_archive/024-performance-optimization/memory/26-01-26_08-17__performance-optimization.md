@@ -118,7 +118,7 @@ This session was migrated from an older format to v2.2. Review the OVERVIEW and 
 ```
 /spec_kit:resume 005-anobel.com/024-performance-optimization
 ```
-<!-- /ANCHOR_EXAMPLE:continue-session-session-1769411868736-9m49afj1w-005-anobel.com/024-performance-optimization -->
+<!-- /ANCHOR:continue-session-session-1769411868736-9m49afj1w-005-anobel-com/024-performance-optimization -->
 ---
 
 <a id="project-state-snapshot"></a>

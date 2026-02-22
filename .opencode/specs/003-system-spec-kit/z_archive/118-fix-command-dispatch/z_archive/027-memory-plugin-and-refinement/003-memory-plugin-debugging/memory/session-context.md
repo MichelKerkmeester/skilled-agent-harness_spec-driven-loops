@@ -96,7 +96,7 @@ This session was migrated from an older format to v2.2. Review the OVERVIEW and 
 ```
 /spec_kit:resume 003-memory-and-spec-kit/z_archive/027-memory-plugin-and-refinement/003-memory-plugin-debugging
 ```
-<!-- /ANCHOR_EXAMPLE:continue-session-session-legacy-1770632216917-yl6v2u-003-memory-and-spec-kit/z_archive/027-memory-plugin-and-refinement/003-memory-plugin-debugging -->
+<!-- /ANCHOR:continue-session-session-legacy-1770632216917-yl6v2u-003-memory-and-spec-kit/z-archive/027-memory-plugin-and-refinement/003-memory-plugin-debugging -->
 
 ---
 

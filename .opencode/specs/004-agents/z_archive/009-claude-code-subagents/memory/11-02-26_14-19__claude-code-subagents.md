@@ -139,7 +139,7 @@ Next: Continue implementation
 
 - Last: Single file, 5 edits — one agent can handle this cleanly (~6 tool calls, well wi
 
-<!-- /ANCHOR_EXAMPLE:continue-session-session-1770815950245-43y47835l-../.opencode/specs/004-agents/009-claude-code-subagents -->
+<!-- /ANCHOR:continue-session-session-1770815950245-43y47835l/opencode/specs/004-agents/009-claude-code-subagents -->
 
 ---
 

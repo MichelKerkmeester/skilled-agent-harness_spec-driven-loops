@@ -96,7 +96,7 @@ This session was migrated from an older format to v2.2. Review the OVERVIEW and 
 ```
 /spec_kit:resume 003-memory-and-spec-kit/z_archive/008-rename-memory-check
 ```
-<!-- /ANCHOR_EXAMPLE:continue-session-session-legacy-1770632216883-kvohe2-003-memory-and-spec-kit/z_archive/008-rename-memory-check -->
+<!-- /ANCHOR:continue-session-session-legacy-1770632216883-kvohe2-003-memory-and-spec-kit/z-archive/008-rename-memory-check -->
 
 ---
 

@@ -96,7 +96,7 @@ This session was migrated from an older format to v2.2. Review the OVERVIEW and 
 ```
 /spec_kit:resume 003-memory-and-spec-kit/z_archive/011-docs-alignment
 ```
-<!-- /ANCHOR_EXAMPLE:continue-session-session-legacy-1770632216884-t7ofe5-003-memory-and-spec-kit/z_archive/011-docs-alignment -->
+<!-- /ANCHOR:continue-session-session-legacy-1770632216884-t7ofe5-003-memory-and-spec-kit/z-archive/011-docs-alignment -->
 
 ---
 

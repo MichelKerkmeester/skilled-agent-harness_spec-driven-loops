@@ -132,7 +132,7 @@ Next: Continue implementation
 - Review PROJECT STATE SNAPSHOT for current state
 - Check DECISIONS for recent choices made
 
-<!-- /ANCHOR_EXAMPLE:continue-session-session-1770755538077-vrdx3wsyj-../.opencode/specs/004-agents/007-explore-sub-agent -->
+<!-- /ANCHOR:continue-session-session-1770755538077-vrdx3wsyj/opencode/specs/004-agents/007-explore-sub-agent -->
 
 ---
 

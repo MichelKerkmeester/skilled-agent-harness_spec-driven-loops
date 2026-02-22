@@ -96,7 +96,7 @@ This session was migrated from an older format to v2.2. Review the OVERVIEW and 
 ```
 /spec_kit:resume 003-memory-and-spec-kit/z_archive/044-speckit-test-suite
 ```
-<!-- /ANCHOR_EXAMPLE:continue-session-session-legacy-1770632216931-o1u761-003-memory-and-spec-kit/z_archive/044-speckit-test-suite -->
+<!-- /ANCHOR:continue-session-session-legacy-1770632216931-o1u761-003-memory-and-spec-kit/z-archive/044-speckit-test-suite -->
 
 ---
 

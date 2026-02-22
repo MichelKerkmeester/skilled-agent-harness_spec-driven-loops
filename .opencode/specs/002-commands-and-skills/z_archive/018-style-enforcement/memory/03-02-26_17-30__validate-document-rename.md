@@ -141,7 +141,7 @@ Next: Continue implementation
 
 - Last: Completed the rename of validate_readme.py to validate_document.py across the en
 
-<!-- /ANCHOR_EXAMPLE:continue-session-session-1770136207570-co50n1c6d-005-anobel.com -->
+<!-- /ANCHOR:continue-session-session-1770136207570-co50n1c6d-005-anobel-com -->
 
 ---
 

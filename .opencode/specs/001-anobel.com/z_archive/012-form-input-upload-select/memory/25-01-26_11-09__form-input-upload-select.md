@@ -118,7 +118,7 @@ This session was migrated from an older format to v2.2. Review the OVERVIEW and 
 ```
 /spec_kit:resume 005-anobel.com/012-form-input-upload-select
 ```
-<!-- /ANCHOR_EXAMPLE:continue-session-session-1769335781904-bjxfc4vt7-005-anobel.com/012-form-input-upload-select -->
+<!-- /ANCHOR:continue-session-session-1769335781904-bjxfc4vt7-005-anobel-com/012-form-input-upload-select -->
 ---
 
 <a id="project-state-snapshot"></a>

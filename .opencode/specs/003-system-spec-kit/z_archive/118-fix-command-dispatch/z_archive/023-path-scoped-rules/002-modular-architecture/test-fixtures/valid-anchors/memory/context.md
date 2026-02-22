@@ -96,7 +96,7 @@ This session was migrated from an older format to v2.2. Review the OVERVIEW and 
 ```
 /spec_kit:resume 003-memory-and-spec-kit/z_archive/023-path-scoped-rules/002-modular-architecture/test-fixtures/valid-anchors
 ```
-<!-- /ANCHOR_EXAMPLE:continue-session-session-legacy-1770632216907-7wgtla-003-memory-and-spec-kit/z_archive/023-path-scoped-rules/002-modular-architecture/test-fixtures/valid-anchors -->
+<!-- /ANCHOR:continue-session-session-legacy-1770632216907-7wgtla-003-memory-and-spec-kit/z-archive/023-path-scoped-rules/002-modular-architecture/test-fixtures/valid-anchors -->
 
 ---
 

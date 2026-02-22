@@ -96,7 +96,7 @@ This session was migrated from an older format to v2.2. Review the OVERVIEW and 
 ```
 /spec_kit:resume 005-anobel.com/z_archive/027-load-toggle
 ```
-<!-- /ANCHOR_EXAMPLE:continue-session-session-legacy-1770632216978-yv46lz-005-anobel.com/z_archive/027-load-toggle -->
+<!-- /ANCHOR:continue-session-session-legacy-1770632216978-yv46lz-005-anobel-com/z-archive/027-load-toggle -->
 
 ---
 

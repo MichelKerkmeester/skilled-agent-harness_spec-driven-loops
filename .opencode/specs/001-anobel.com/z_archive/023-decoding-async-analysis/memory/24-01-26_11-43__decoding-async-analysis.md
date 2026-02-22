@@ -118,7 +118,7 @@ This session was migrated from an older format to v2.2. Review the OVERVIEW and 
 ```
 /spec_kit:resume 005-anobel.com/001-decoding-async-analysis
 ```
-<!-- /ANCHOR_EXAMPLE:continue-session-session-1769251412293-hjfebsbfk-005-anobel.com/001-decoding-async-analysis -->
+<!-- /ANCHOR:continue-session-session-1769251412293-hjfebsbfk-005-anobel-com/001-decoding-async-analysis -->
 ---
 
 <a id="project-state-snapshot"></a>

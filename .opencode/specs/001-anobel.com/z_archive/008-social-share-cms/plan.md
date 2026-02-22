@@ -15,7 +15,7 @@ contextType: "decision"
 ## Phase 1: Add New Attribute Constants
 - Add `ATTR_URL = "data-social-share-url"`
 - Add `ATTR_SLUG = "data-social-share-slug"`
-<!-- /ANCHOR_EXAMPLE:phase-1-add-new-attribute-constants -->
+<!-- /ANCHOR:phase-1-add-new-attribute-constants -->
 
 <!-- ANCHOR_EXAMPLE:phase-2-add-url-join-helper -->
 ## Phase 2: Add URL Join Helper

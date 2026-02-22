@@ -117,7 +117,7 @@ This session was migrated from an older format to v2.2. Review the OVERVIEW and 
 ```
 /spec_kit:resume 005-anobel.com/014-font-performance
 ```
-<!-- /ANCHOR_EXAMPLE:continue-session-session-1767433141739-0rr8nuexb-005-anobel.com/014-font-performance -->
+<!-- /ANCHOR:continue-session-session-1767433141739-0rr8nuexb-005-anobel-com/014-font-performance -->
 ---
 
 <a id="project-state-snapshot"></a>

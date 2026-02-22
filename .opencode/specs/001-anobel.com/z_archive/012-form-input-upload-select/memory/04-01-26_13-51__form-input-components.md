@@ -117,7 +117,7 @@ This session was migrated from an older format to v2.2. Review the OVERVIEW and 
 ```
 /spec_kit:resume 005-anobel.com/012-form-input-components
 ```
-<!-- /ANCHOR_EXAMPLE:continue-session-session-1767531065972-vueol2y5j-005-anobel.com/012-form-input-components -->
+<!-- /ANCHOR:continue-session-session-1767531065972-vueol2y5j-005-anobel-com/012-form-input-components -->
 ---
 
 <a id="project-state-snapshot"></a>

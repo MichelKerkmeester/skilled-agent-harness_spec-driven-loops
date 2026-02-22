@@ -141,7 +141,7 @@ Next: Continue implementation
 
 - Last: Completed post-audit test verification for system-spec-kit after the 30-agent au
 
-<!-- /ANCHOR_EXAMPLE:continue-session-session-1770136121695-5y4uhy7mq-005-anobel.com -->
+<!-- /ANCHOR:continue-session-session-1770136121695-5y4uhy7mq-005-anobel-com -->
 
 ---
 
