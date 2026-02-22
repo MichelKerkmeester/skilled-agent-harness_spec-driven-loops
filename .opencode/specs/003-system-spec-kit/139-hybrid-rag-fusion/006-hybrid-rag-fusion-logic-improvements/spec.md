@@ -1,11 +1,11 @@
 ---
 title: "Feature Specification: 006-hybrid-rag-fusion-logic-improvements [template:level_3+/spec.md]"
-description: "This initiative performs a deep audit and hardening pass on hybrid RAG fusion logic, inter-system automation, and bug-prevention controls so retrieval remains accurate, deterministic, and explainable under production pressure."
+description: "This initiative broadens hybrid RAG hardening to all critical cross-system seams: retrieval/fusion, graph contracts, cognitive ranking, session-learning quality, memory CRUD re-embedding, parser/index invariants, storage reliability, telemetry governance, test hardening, and self-healing operations."
 SPECKIT_TEMPLATE_SOURCE: "spec-core + level2-verify + level3-arch + level3plus-govern | v2.2"
 trigger_phrases:
   - "hybrid rag"
   - "fusion logic improvements"
-  - "deep system audit"
+  - "cross-system hardening"
   - "automation interconnection"
   - "bug prevention"
 importance_tier: "critical"
@@ -20,13 +20,13 @@ contextType: "decision"
 
 ## EXECUTIVE SUMMARY
 
-This initiative hardens the active Hybrid RAG stack by auditing the full retrieval chain, tightening fusion logic, and adding automation hooks that keep indexing, ranking, and session selection aligned. The objective is not to replace the existing architecture from `002`, but to remove remaining weak points that can still create noisy retrieval, stale context routing, or silent confidence drops.
+This initiative hardens the active Hybrid RAG stack across the full operational surface, not only retrieval/fusion internals. The delivery now spans ten integrated subsystems: retrieval/fusion, graph/causal contracts, cognitive ranking (attention-decay and FSRS), session manager and session-learning quality, memory CRUD re-embedding consistency, parser/indexing invariants with automated index health, storage reliability (transaction recovery and mutation ledger consistency), telemetry/trace schema governance with docs drift prevention, deferred/skipped-path test hardening, and self-healing automation runbooks.
 
-The delivery combines algorithmic tuning (fusion and confidence gates), interconnection automation (index and command alignment health checks), and prevention controls (regression and invariant checks) so known bug classes from `003`, `004`, and `005` do not recur.
+The objective remains continuity-first: keep the architecture from `002` and convert high-risk seams identified through `003`, `004`, and `005` into measurable controls with release gates.
 
-**Key Decisions**: retain SQLite-first tri-hybrid architecture; execute audit-first then tune; promote prevention automation to release-gate status.
+**Key Decisions**: retain SQLite-first tri-hybrid architecture; apply audit-first execution; extend hardening scope to all discovered risk-bearing subsystems; require traceable requirement -> phase -> task -> checklist mapping.
 
-**Critical Dependencies**: stable MCP search/index contracts, existing regression harnesses from `002` through `005`, and deterministic path canonicalization behavior.
+**Critical Dependencies**: stable MCP search/index contracts, regression harnesses from `002` through `005`, deterministic canonicalization behavior, mutation ledger integrity, and schema-governed telemetry events.
 
 ---
 
@@ -48,10 +48,10 @@ The delivery combines algorithmic tuning (fusion and confidence gates), intercon
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-Hybrid retrieval capabilities are active, but the system still carries operational risk at the seams: fusion quality can drift if channel weighting and confidence thresholds are not continuously validated; index/metadata consistency issues can reappear when migration and scan behavior diverge; and session-routing bugs can silently re-introduce wrong-context execution when confidence gating is weak.
+Hybrid retrieval capabilities are active, but systemic risk remains at cross-module seams. Existing hardening is concentrated on fusion quality and confidence thresholds while other coupled systems still permit silent drift: graph relation scores can diverge from ranking expectations, cognitive decay signals may be inconsistently applied, session-learning can route stale context, memory CRUD can leave stale embeddings, parser/index invariants can degrade without automatic repair, transaction/mutation consistency can fail under interruption, telemetry schemas can drift from docs, deferred test paths can remain unverified, and operational checks can remain reactive instead of self-healing.
 
 ### Purpose
-Deliver a deep system audit and targeted hardening pass that makes fusion behavior measurable, automated, and resilient so retrieval and workflow routing stay trustworthy at scale.
+Deliver a broadened deep-audit and hardening pass that makes the complete retrieval-to-operations chain measurable, deterministic, and resilient so retrieval quality, context routing, data integrity, and run-time governance remain trustworthy under production pressure.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -60,29 +60,43 @@ Deliver a deep system audit and targeted hardening pass that makes fusion behavi
 ## 3. SCOPE
 
 ### In Scope
-- End-to-end audit of retrieval path: parse -> index -> scatter/gather -> fusion -> post-fusion gating -> response packaging.
-- Fusion logic improvements: adaptive weighting guardrails, confidence calibration, redundancy controls, and deterministic fallback sequencing.
-- Automation/interconnection improvements between index health, command routing confidence, and retrieval diagnostics.
-- Bug prevention framework that converts known failure modes from `003`, `004`, and `005` into enforced regression and release checks.
-- Governance artifacts, sign-off protocol, and evidence capture for high-risk retrieval changes.
+1. Retrieval/fusion pipeline hardening (parse -> index -> gather -> fusion -> fallback -> response metadata).
+2. Graph/causal channel contracts and relation-scoring calibration.
+3. Cognitive ranking integration: attention-decay and FSRS-aware score modulation.
+4. Session manager and session-learning pipeline quality/performance upgrades.
+5. Memory CRUD and metadata re-embedding consistency controls.
+6. Parser/indexing invariants plus index-health automation checks.
+7. Storage reliability: transaction recovery and mutation-ledger consistency.
+8. Telemetry/trace schema governance and documentation drift prevention.
+9. Test coverage hardening for deferred/skipped paths and prior-spec regressions.
+10. Automation loops and operational runbooks for self-healing checks.
 
 ### Out of Scope
 - Migration to external vector, graph, or search databases.
 - Large schema redesign of the existing SQLite memory schema.
 - UI changes or non-MCP client feature work.
-- Broad refactors unrelated to audit findings or fusion hardening goals.
+- Broad refactors not tied to audit findings or required subsystem controls above.
 
 ### Files to Change
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts` | Modify | Tighten fusion-stage orchestration, fallback guards, and metric hooks. |
-| `.opencode/skill/system-spec-kit/mcp_server/lib/search/adaptive-fusion.ts` | Modify | Enforce bounded channel weights and deterministic tie resolution. |
-| `.opencode/skill/system-spec-kit/mcp_server/lib/search/evidence-gap-detector.ts` | Modify | Recalibrate confidence thresholds using audited score distributions. |
-| `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts` | Modify | Strengthen interconnection between deep mode expansion, evidence signaling, and response metadata. |
-| `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index.ts` | Modify | Add index/fusion alignment checks and drift counters consumed by audit dashboards. |
-| `.opencode/skill/system-spec-kit/scripts/spec-folder/folder-detector.ts` | Modify | Align low-confidence routing safeguards with retrieval confidence policy. |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/` | Modify | Add regression suites for cross-module bug-prevention guarantees. |
+| `.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts` | Modify | Tighten retrieval/fusion orchestration, deterministic fallback, and metadata contracts. |
+| `.opencode/skill/system-spec-kit/mcp_server/lib/search/adaptive-fusion.ts` | Modify | Enforce bounded channel weights and deterministic tie/merge policies. |
+| `.opencode/skill/system-spec-kit/mcp_server/lib/search/co-activation.ts` | Modify | Formalize graph-channel contract inputs/outputs and relation-score usage. |
+| `.opencode/skill/system-spec-kit/mcp_server/lib/search/evidence-gap-detector.ts` | Modify | Recalibrate confidence thresholds and evidence-gap emissions from audited distributions. |
+| `.opencode/skill/system-spec-kit/mcp_server/lib/scoring/` | Modify | Integrate relation scoring, FSRS/attention decay modifiers, and normalization invariants. |
+| `.opencode/skill/system-spec-kit/mcp_server/lib/session/` | Modify | Improve session manager ranking, low-confidence behavior, and performance instrumentation. |
+| `.opencode/skill/system-spec-kit/mcp_server/lib/session-learning/` | Modify | Harden learning-pipeline quality checks and stale-signal handling. |
+| `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud.ts` | Modify | Enforce post-mutation embedding refresh workflow and metadata consistency guards. |
+| `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index.ts` | Modify | Expand index invariant checks and auto-heal health probes. |
+| `.opencode/skill/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts` | Modify | Enforce parser invariants tied to canonicalization and frontmatter normalization continuity. |
+| `.opencode/skill/system-spec-kit/mcp_server/lib/storage/sqlite-transaction-recovery.ts` | Modify | Add deterministic recovery path and replay checks for interrupted mutations. |
+| `.opencode/skill/system-spec-kit/mcp_server/lib/storage/mutation-ledger.ts` | Modify | Enforce append/replay consistency and integrity counters. |
+| `.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/trace-schema.ts` | Modify | Define and validate canonical trace payload schema. |
+| `.opencode/skill/system-spec-kit/scripts/spec-folder/alignment-validator.ts` | Modify | Add docs drift and contract-alignment checks for schema-governed diagnostics. |
+| `.opencode/skill/system-spec-kit/scripts/ops/` | Modify | Add self-healing operational checks and runbook automation glue. |
+| `.opencode/skill/system-spec-kit/mcp_server/tests/` | Modify | Expand subsystem-specific regression and deferred/skipped-path coverage. |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -90,15 +104,24 @@ Deliver a deep system audit and targeted hardening pass that makes fusion behavi
 ## 3.5 PRIOR-WORK CONTINUITY (002/003/004/005)
 
 ### Carry-Forward Assumptions
-- **From `002-hybrid-rag-fusion`**: tri-hybrid retrieval (vector + FTS/BM25 + graph), MMR, and evidence-gap signaling remain the architectural baseline.
-- **From `003-index-tier-anomalies`**: canonical-path dedup and deterministic tier precedence are mandatory invariants, not optional behaviors.
-- **From `004-frontmatter-indexing`**: normalized frontmatter and idempotent reindex behavior remain required preconditions for retrieval quality.
+- **From `002-hybrid-rag-fusion`**: tri-hybrid retrieval (vector + FTS/BM25 + graph), MMR, and evidence-gap signaling remain architectural baseline.
+- **From `003-index-tier-anomalies`**: canonical-path dedup and deterministic tier precedence remain mandatory invariants.
+- **From `004-frontmatter-indexing`**: normalized frontmatter and idempotent reindex behavior remain required preconditions.
 - **From `005-auto-detected-session-bug`**: confidence-aware session/folder detection and archive exclusion remain mandatory for workflow safety.
 
+### Carry-Forward Expansion Matrix in `006`
+
+| Prior Spec | Preserved Outcome | Expanded in 006 |
+|------------|-------------------|-----------------|
+| `002-hybrid-rag-fusion` | Tri-hybrid + fusion + evidence-gap baseline | Adds graph-contract scoring, cognitive decay integration, and telemetry-governed ranking diagnostics |
+| `003-index-tier-anomalies` | Canonical path + tier invariants | Adds index-health automation, CRUD re-embed consistency, and ledger-backed integrity checks |
+| `004-frontmatter-indexing` | Normalized metadata and idempotent reindex | Adds parser/index auto-heal checks, schema drift prevention, and re-embedding consistency gates |
+| `005-auto-detected-session-bug` | Confidence-aware routing safeguards | Adds session-learning quality metrics, routing/retrieval confidence alignment, and operational runbook coverage |
+
 ### Carry-Forward Gaps Addressed in `006`
-- Convert deferred operational controls into enforceable release checks (monitoring, runbook, sign-off evidence).
-- Add cross-system drift detection so index health, fusion confidence, and folder selection confidence are validated together.
-- Harden regression boundaries so mtime/path anomalies and metadata inconsistencies cannot silently degrade retrieval logic.
+- Convert deferred operational controls into enforced release checks across all ten scoped subsystems.
+- Add cross-system drift detection linking ranking quality, storage integrity, and telemetry/documentation consistency.
+- Harden regression boundaries so canonicalization, session confidence, and mutation consistency issues cannot silently recur.
 
 ---
 
@@ -109,33 +132,71 @@ Deliver a deep system audit and targeted hardening pass that makes fusion behavi
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | Complete deep audit across retrieval and routing seams | Audit report maps every stage, input/output contract, and top 10 risk points with owner and fix status. |
-| REQ-002 | Fusion logic guardrails prevent score-drift regressions | Automated tests verify bounded weights, deterministic tie handling, and stable ranked output across fixed fixtures. |
-| REQ-003 | Confidence policy is unified across retrieval and session detection | `memory-search` evidence-gap and folder-selection low-confidence behavior share documented thresholds and expected fallback behavior. |
-| REQ-004 | Automation detects index/fusion misalignment before release | CI gate fails when index metadata invariants, tier invariants, or retrieval confidence invariants are violated. |
-| REQ-005 | Bug prevention matrix covers failures seen in 003/004/005 | Regression suite includes explicit scenarios for alias-path duplication, tier precedence drift, and wrong-folder auto-selection. |
-| REQ-006 | Governance completion evidence is auditable | Checklist, decision record, and implementation summary include command-level evidence and approval state. |
+| REQ-001 | Complete deep audit across all ten scoped subsystems | Audit artifact enumerates each subsystem contract, top risks, owner, and mitigation with no uncovered subsystem. |
+| REQ-002 | Retrieval/fusion pipeline remains deterministic and bounded | Regression fixtures show stable ranked outputs and deterministic fallback behavior across repeated runs. |
+| REQ-003 | Graph/causal channel contracts and relation scoring are calibrated | Contract tests verify schema and score semantics; adjudicated relation fixture shows Kendall tau >= 0.75 against expected ordering. |
+| REQ-004 | Cognitive/attention-decay and FSRS signals are integrated into ranking safely | Ablation tests show >= 8% NDCG@5 improvement on long-tail fixture with <= 3% regression on primary fixture and bounded cognitive weight contribution (5-25%). |
+| REQ-005 | Session manager and session-learning quality/performance are hardened | Misroute rate <= 1% on ambiguity fixture and p95 session selection <= 250ms for 500 candidates. |
+| REQ-006 | Memory CRUD mutations maintain re-embedding consistency | 100% create/update/delete mutations queue re-embed reconciliation within 5s and clear stale embedding backlog >15m to zero. |
+| REQ-007 | Parser/indexing invariants and index health automation are enforced | CI fails when canonical path, tier precedence, or frontmatter invariants break; index health job reports pass/fail with actionable diagnostics. |
+| REQ-008 | Storage reliability protects committed state under interruption | Transaction recovery replay yields RPO 0 for committed mutations and recovery simulation completes <= 120s on reference dataset. |
+| REQ-009 | Telemetry/trace schema governance prevents drift | All emitted trace payloads validate against schema registry; documentation drift check fails on schema-doc mismatch. |
+| REQ-010 | Deferred/skipped path coverage is hardened | All deferred/skipped test paths from `002`/`003`/`004`/`005` are converted to active tests or approved with explicit rationale and owner. |
+| REQ-011 | Automation loops and operational runbooks support self-healing checks | Self-healing routines detect and remediate at least four known failure classes with simulated MTTR <= 10 minutes. |
+| REQ-012 | Governance evidence is auditable and sign-off ready | Checklist, ADRs, and implementation summary include command-level evidence for each P0 requirement and sign-off state. |
 
 ### P1 - Required (complete OR user-approved deferral)
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-007 | Improve observability for fusion decisions | Response metadata exposes channel contribution summary and confidence rationale fields for debug mode. |
-| REQ-008 | Automation/interconnection runbook documented | Plan and checklist include operational playbook for audit reruns, rollback, and anomaly escalation. |
-| REQ-009 | Maintain latency budget while adding checks | Benchmarks show p95 remains within agreed search budget for `mode="auto"` and `mode="deep"` after hardening. |
-| REQ-010 | Cross-spec continuity preserved | `006` documents explicitly map inherited assumptions and unresolved follow-ups from `002` to `005`. |
+| REQ-013 | Maintain latency and throughput budgets while adding controls | p95 `mode="auto" <= 120ms`, p95 `mode="deep" <= 180ms`, session-learning batch p95 <= 400ms, and net overhead <= 12% vs baseline corpus. |
+| REQ-014 | Improve observability for ranking and routing decisions | Debug metadata includes per-channel contribution, cognitive modifier summary, relation score contribution, and session confidence rationale. |
+| REQ-015 | Preserve continuity mapping from `002` to `005` across all artifacts | `spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `decision-record.md`, and `implementation-summary.md` contain aligned continuity references. |
+| REQ-016 | Approval/sign-off model is internally consistent | Same approver roles and status model appear in spec approval workflow and checklist sign-off sections. |
+| REQ-017 | Operational drills validate recovery and runbook paths | At least one dry-run per runbook class (index drift, session ambiguity, ledger recovery, telemetry drift) is documented with outcomes. |
+| REQ-018 | Deferred items are explicitly bounded | Any deferred P1 item includes owner, reason, impact, and re-entry condition in checklist and implementation summary. |
 <!-- /ANCHOR:requirements -->
+
+---
+
+## 4.5 TRACEABILITY MATRIX (REQUIREMENTS -> PLAN PHASES -> TASKS)
+
+| Requirement | Plan Phase | Task IDs |
+|-------------|------------|----------|
+| REQ-001 | Phase 1 | T001, T002, T003, T004 |
+| REQ-002 | Phase 2 | T005, T008 |
+| REQ-003 | Phase 2 | T006 |
+| REQ-004 | Phase 2 | T007 |
+| REQ-005 | Phase 3 | T009, T010 |
+| REQ-006 | Phase 3 | T011 |
+| REQ-007 | Phase 3 | T012 |
+| REQ-008 | Phase 3 | T013, T014 |
+| REQ-009 | Phase 4 | T015, T016 |
+| REQ-010 | Phase 5 | T019 |
+| REQ-011 | Phase 4 | T017, T018 |
+| REQ-012 | Phase 5 | T022, T023 |
+| REQ-013 | Phase 5 | T020 |
+| REQ-014 | Phase 2, Phase 4 | T008, T015 |
+| REQ-015 | Phase 1, Phase 5 | T004, T022, T023 |
+| REQ-016 | Phase 5 | T022, T023 |
+| REQ-017 | Phase 4, Phase 5 | T017, T021 |
+| REQ-018 | Phase 5 | T022, T023 |
 
 ---
 
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: Audit artifacts identify root-cause classes and map each to implemented prevention controls.
-- **SC-002**: Fusion output is stable and deterministic across regression fixtures after guardrail implementation.
-- **SC-003**: CI rejects builds where index invariants, tier invariants, or routing-confidence invariants are violated.
-- **SC-004**: Known bug classes from `003`, `004`, and `005` are represented in automated tests and pass consistently.
-- **SC-005**: Governance sign-off reaches approved state for technical, product, and QA roles.
+- **SC-001**: Audit artifacts fully cover all ten scoped subsystems with risk/owner/remediation mapping.
+- **SC-002**: Retrieval/fusion outputs remain deterministic with bounded confidence behavior.
+- **SC-003**: Graph relation scoring and cognitive modifiers improve ranking quality within defined safety bounds.
+- **SC-004**: Session manager and session-learning quality/performance targets are met.
+- **SC-005**: Memory CRUD and re-embedding consistency checks prevent stale embedding drift.
+- **SC-006**: Parser/index invariants and storage reliability checks gate releases with actionable failures.
+- **SC-007**: Telemetry schemas and documentation stay aligned through automated drift checks.
+- **SC-008**: Deferred/skipped-path coverage is closed or formally approved with explicit ownership.
+- **SC-009**: Self-healing runbooks are tested and operationally usable.
+- **SC-010**: Governance sign-off reaches approved state across technical, QA, product, and operations roles.
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -145,11 +206,14 @@ Deliver a deep system audit and targeted hardening pass that makes fusion behavi
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | Existing hybrid-search scoring contracts | Incorrect assumptions can break ranking semantics | Capture baseline fixtures before tuning and compare post-change deterministically |
-| Dependency | Parser/index normalization guarantees from `004` | Drift in metadata contract weakens retrieval confidence | Add invariant checks that fail fast when normalization contract is violated |
-| Risk | Over-constrained confidence thresholds | Increased false warnings or excessive confirmation prompts | Calibrate against audited distributions and set boundary tests |
-| Risk | Added checks impact latency | Search response time can exceed operational budget | Keep critical checks O(n) or bounded O(n^2) with capped candidate sets |
-| Risk | Cross-module scope creep | Initiative expands beyond fusion hardening objective | Enforce scope lock through tasks, ownership, and checklist gating |
+| Dependency | Existing hybrid-search scoring contracts | Incorrect assumptions can break ranking semantics | Capture and lock baseline fixtures before tuning; compare deterministically post-change |
+| Dependency | Parser/index normalization guarantees from `003` and `004` | Drift in metadata contract weakens ranking and retrieval confidence | Add invariant gates and auto-heal probes for parser/index paths |
+| Dependency | Session confidence mechanics from `005` | Session-learning quality can regress routing behavior | Align routing/retrieval confidence policy and add ambiguity boundary tests |
+| Risk | Overweighting cognitive modifiers | False precision in ranking and unstable output | Bound FSRS/decay contribution to 5-25% and enforce ablation regression checks |
+| Risk | Re-embedding backlog under high mutation volume | Stale embeddings degrade retrieval quality | Add queue SLA checks and reconciliation loop with alert thresholds |
+| Risk | Transaction recovery logic adds hidden complexity | Inconsistent data on interruption | Add recovery simulation suite and ledger replay assertions before release |
+| Risk | Telemetry schema drift vs documentation | Operators lose diagnostic reliability | Enforce schema registry validation and docs drift gate |
+| Risk | Expanded scope causes timeline pressure | Delivery quality drops or partial controls ship | Require phased completion gates and explicit deferral protocol |
 <!-- /ANCHOR:risks -->
 
 ---
@@ -158,16 +222,19 @@ Deliver a deep system audit and targeted hardening pass that makes fusion behavi
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
-- **NFR-P01**: Additional auditing and guardrail logic must preserve target p95 response time budget for search pathways.
-- **NFR-P02**: CI invariant checks complete within acceptable build-time overhead (target <10% increase).
+- **NFR-P01**: Retrieval p95 remains <= 120ms for `mode="auto"` and <= 180ms for `mode="deep"` on baseline corpus.
+- **NFR-P02**: Session selection p95 remains <= 250ms for 500 candidates; session-learning batch reconciliation p95 <= 400ms.
+- **NFR-P03**: Health automation loop runtime remains <= 5 minutes per full sweep.
 
 ### Security
 - **NFR-S01**: Path normalization and folder detection safeguards continue blocking traversal and unapproved roots.
-- **NFR-S02**: No sensitive runtime data is logged in diagnostic metadata.
+- **NFR-S02**: Trace payloads exclude sensitive content and validate against allowed schema fields only.
+- **NFR-S03**: Mutation ledger integrity checks detect tampering or out-of-order replay.
 
 ### Reliability
-- **NFR-R01**: Same query + same index state yields deterministic ranking output.
-- **NFR-R02**: Reindex + retrieval workflows remain idempotent across reruns.
+- **NFR-R01**: Same query and same index state yield deterministic ranking output.
+- **NFR-R02**: Reindex + retrieval + session routing workflows remain idempotent across reruns.
+- **NFR-R03**: Recovery drills achieve RPO 0 for committed mutations and documented RTO <= 10 minutes.
 <!-- /ANCHOR:nfr -->
 
 ---
@@ -175,16 +242,20 @@ Deliver a deep system audit and targeted hardening pass that makes fusion behavi
 ## 8. EDGE CASES
 
 ### Data Boundaries
-- Empty or near-empty result sets still emit deterministic confidence metadata.
-- Large candidate sets remain bounded before expensive pairwise operations execute.
+- Empty or near-empty retrieval sets still emit deterministic confidence and trace metadata.
+- High-cardinality graph neighborhoods are bounded before expensive relation-score fanout executes.
+- Large mutation bursts do not leave stale embedding backlog after reconciliation SLA window.
 
 ### Error Scenarios
-- Index anomaly detected during search: response includes safe fallback metadata and triggers alert hooks.
-- Session selection ambiguity with close confidence scores: explicit confirmation path triggers instead of silent default.
+- Index anomaly during search emits safe fallback metadata and triggers health loop escalation.
+- Session ambiguity with near-equal confidence scores triggers explicit confirmation or safe deterministic fallback.
+- Interrupted write transaction triggers replay-recovery path and ledger consistency validation before marking success.
+- Trace schema mismatch blocks release and reports doc/schema field diffs.
 
 ### Cross-System Consistency
-- Canonical path aliases (`specs/` vs `.opencode/specs/`) remain unified across scan, index, and session detection logic.
-- Tier precedence remains consistent between parser output and retrieval ranking inputs.
+- Canonical path aliases (`specs/` vs `.opencode/specs/`) remain unified across scan, index, search, and session detection.
+- Tier precedence and frontmatter normalization remain consistent from parser output through ranking inputs.
+- Telemetry field names and docs references remain synchronized by automated drift checks.
 
 ---
 
@@ -192,12 +263,12 @@ Deliver a deep system audit and targeted hardening pass that makes fusion behavi
 
 | Dimension | Score | Triggers |
 |-----------|-------|----------|
-| Scope | 23/25 | Retrieval, indexing, routing, testing, and governance docs all affected |
-| Risk | 24/25 | Incorrect behavior can silently misroute workflows and degrade answer quality |
-| Research | 17/20 | Requires deep audit, baseline capture, and confidence calibration |
-| Multi-Agent | 12/15 | Multiple tightly coupled workstreams and synchronization points |
-| Coordination | 13/15 | Cross-component dependencies and release-gate integration |
-| **Total** | **89/100** | **Level 3+** |
+| Scope | 24/25 | Ten tightly-coupled subsystems across retrieval, storage, telemetry, testing, and operations |
+| Risk | 24/25 | Failures can silently misroute context or corrupt confidence in system behavior |
+| Research | 18/20 | Requires multi-subsystem baseline, calibration, and continuity mapping |
+| Multi-Agent | 13/15 | Multiple concurrent workstreams require strict synchronization and governance |
+| Coordination | 14/15 | Cross-component dependencies and sign-off coordination are extensive |
+| **Total** | **93/100** | **Level 3+** |
 
 ---
 
@@ -205,75 +276,114 @@ Deliver a deep system audit and targeted hardening pass that makes fusion behavi
 
 | Risk ID | Description | Impact | Likelihood | Mitigation |
 |---------|-------------|--------|------------|------------|
-| R-001 | Fusion guardrails overfit to current fixtures | H | M | Use mixed fixture sets and holdout scenarios for calibration |
-| R-002 | Invariant checks generate high false-positive rate | M | M | Add threshold tuning phase and boundary test suite |
-| R-003 | Cross-system automation creates hidden coupling | H | M | Define explicit contracts and fail-fast diagnostics |
-| R-004 | Continuity assumptions from prior specs become stale | M | L | Revalidate assumptions at each milestone and update ADRs |
+| R-001 | Fusion and graph scoring overfit benchmark fixtures | H | M | Use holdout fixtures, calibration review, and threshold caps |
+| R-002 | FSRS/attention-decay signals regress high-confidence paths | H | M | Enforce ablation bounds and automatic rollback thresholds |
+| R-003 | Session-learning feedback loop amplifies stale signals | H | M | Add freshness windows, confidence decay, and retraining guardrails |
+| R-004 | Mutation ledger replay diverges from CRUD source-of-truth | H | L | Add transaction replay parity checks and invariant gates |
+| R-005 | Telemetry schema/doc mismatch hides production drift | M | M | Gate releases on schema/docs validation and trace field linting |
+| R-006 | Expanded verification set extends cycle time | M | M | Parallelize non-blocking suites and enforce critical-path order |
 
 ---
 
 ## 11. USER STORIES
 
-### US-001: Retrieval Confidence You Can Trust (Priority: P0)
+### US-001: Deterministic Hybrid Retrieval with Causal and Cognitive Signals (Priority: P0)
 
-**As a** maintainer, **I want** fusion and confidence logic to be deterministic and observable, **so that** retrieval quality is explainable and safe under production load.
+**As a** retrieval maintainer, **I want** fusion, graph relation scoring, and cognitive decay signals to be consistent and bounded, **so that** ranking quality improves without nondeterministic behavior.
 
 **Acceptance Criteria**:
-1. Given stable fixtures, when search executes repeatedly, then ranked output and confidence metadata stay consistent.
-2. Given low-confidence retrieval, when response is generated, then warning and fallback details are explicit and machine-readable.
+1. Given fixed fixture queries, when retrieval executes repeatedly, then ranked outputs and metadata are deterministic.
+2. Given long-tail recall fixtures, when cognitive modifiers are enabled, then NDCG@5 improves while primary-fixture regression remains bounded.
 
 ---
 
-### US-002: Automation That Prevents Known Failures (Priority: P0)
+### US-002: Trustworthy Session and Memory State Integrity (Priority: P0)
 
-**As a** platform owner, **I want** CI to block regressions in index/tier/routing invariants, **so that** known bug classes do not re-enter production.
+**As a** platform owner, **I want** session routing, session-learning, CRUD re-embedding, parser/index invariants, and storage recovery to be synchronized, **so that** context state remains reliable under mutation and interruption.
 
 **Acceptance Criteria**:
-1. Given alias/tier/routing regression fixtures, when CI runs, then failures are surfaced before release.
+1. Given ambiguous sessions, when selection runs, then low-confidence handling is explicit and misroutes stay <= 1%.
+2. Given write interruptions, when recovery runs, then committed mutations are preserved and replay remains consistent.
 
 ---
 
-### US-003: Continuity Across Spec Lineage (Priority: P1)
+### US-003: Governance and Observability That Stay in Sync (Priority: P0)
 
-**As a** project lead, **I want** `006` to inherit and enforce key outcomes from `002` to `005`, **so that** improvements build on prior work instead of restarting assumptions.
+**As an** operations lead, **I want** telemetry schema validation and docs drift prevention tied to release gates, **so that** diagnostics remain accurate and actionable.
 
 **Acceptance Criteria**:
-1. Given prior-spec assumptions, when `006` docs are reviewed, then each assumption has a mapped control or verification task.
+1. Given trace emission changes, when CI runs, then schema/doc mismatches fail fast.
+2. Given production-like diagnostics, when debugging incidents, then per-channel/routing rationale is available.
+
+---
+
+### US-004: Prevention Controls That Cover Known and Deferred Paths (Priority: P1)
+
+**As a** QA lead, **I want** deferred/skipped path coverage and self-healing runbooks to be explicit and test-backed, **so that** regressions are blocked and remediation is repeatable.
+
+**Acceptance Criteria**:
+1. Given deferred test inventory, when hardening completes, then each path is tested or approved with explicit owner.
+2. Given known failure classes, when self-healing checks run, then remediation flow is documented and validated.
 
 ---
 
 <!-- ANCHOR:acceptance-scenarios -->
 ## 11.5 ACCEPTANCE SCENARIOS
 
-1. **Deep audit mapping**
-   **Given** active retrieval/index/routing modules
-   **When** Phase 1 audit executes
-   **Then** every stage has documented inputs, outputs, and risk classification.
+1. **Full-surface audit coverage**
+   **Given** the ten scoped subsystem areas
+   **When** Phase 1 audit completes
+   **Then** each area has documented contracts, risks, and mitigation owner.
 
-2. **Fusion determinism guardrail**
-   **Given** fixed fixture queries and index state
-   **When** hardening changes are applied
-   **Then** ranking output remains deterministic across repeated runs.
+2. **Fusion determinism and fallback safety**
+   **Given** fixed index state and fixture queries
+   **When** retrieval runs repeatedly
+   **Then** ranking and fallback behavior remain deterministic.
 
-3. **Confidence policy alignment**
-   **Given** low-confidence retrieval and ambiguous folder-selection candidates
-   **When** confidence policies execute
-   **Then** both systems apply explicit fallback or confirmation behavior.
+3. **Graph relation contract compliance**
+   **Given** causal-edge fixtures with expected relation ordering
+   **When** relation scoring executes
+   **Then** output ordering meets contract thresholds and schema checks pass.
 
-4. **Invariant gate enforcement**
-   **Given** alias-path, tier, or routing regression fixtures
-   **When** CI runs
-   **Then** release gates fail with actionable diagnostics.
+4. **Cognitive integration bounds**
+   **Given** FSRS and attention-decay modifiers enabled
+   **When** ranking executes on benchmark fixtures
+   **Then** quality improvement and regression bounds remain within required limits.
 
-5. **Performance budget protection**
-   **Given** post-hardening code paths
-   **When** benchmark suites run
-   **Then** p95 search latency remains within agreed budget.
+5. **Session-learning quality and latency**
+   **Given** 500-candidate session ambiguity fixtures
+   **When** session manager and learning feedback run
+   **Then** misroute and p95 latency targets are satisfied.
 
-6. **Governance closure**
-   **Given** completed implementation
-   **When** checklist and approval workflow are reviewed
-   **Then** all P0 checks and required sign-offs are present with evidence.
+6. **CRUD re-embedding consistency**
+   **Given** create/update/delete mutation events
+   **When** re-embedding reconciliation runs
+   **Then** stale embedding backlog does not exceed SLA thresholds.
+
+7. **Parser/index and storage integrity**
+   **Given** canonicalization and transaction interruption fixtures
+   **When** invariants and recovery tests run
+   **Then** CI fails on violations and recovery preserves committed state.
+
+8. **Telemetry schema and docs drift gate**
+   **Given** trace payload updates
+   **When** validation runs
+   **Then** schema violations or documentation mismatches fail release gates.
+
+9. **Deferred/skipped path hardening**
+   **Given** inherited deferred test list from `002` to `005`
+   **When** coverage hardening completes
+   **Then** all deferred paths are closed or explicitly approved with rationale.
+
+10. **Self-healing operations readiness**
+   **Given** index drift, session ambiguity, ledger mismatch, and telemetry drift simulations
+   **When** runbook automation executes
+   **Then** detection, remediation, and escalation follow documented flows within MTTR target.
+
+11. **Governance closure**
+   **Given** implementation completion
+   **When** approvals are reviewed
+   **Then** technical, QA, product, and operations sign-offs are present with evidence.
 <!-- /ANCHOR:acceptance-scenarios -->
 
 ---
@@ -281,16 +391,17 @@ Deliver a deep system audit and targeted hardening pass that makes fusion behavi
 ## 11.6 AI EXECUTION PROTOCOL
 
 ### Pre-Task Checklist
-- Confirm scope lock to hybrid RAG fusion logic improvements and related safeguards.
-- Confirm baseline fixtures and prior-spec continuity matrix are available.
-- Confirm verification commands for regression, performance, and validation.
+- Confirm scope lock includes all ten subsystem areas in Section 3.
+- Confirm continuity matrix for `002/003/004/005` is available.
+- Confirm verification commands for regression, performance, recovery, telemetry, and validation gates.
 
 ### Execution Rules
 | Rule | Requirement |
 |------|-------------|
-| Scope | Only change files mapped to this spec and task phase. |
+| Scope | Only change files mapped to this spec and current phase objectives. |
+| Traceability | Every requirement must map to plan phase, task IDs, and checklist evidence. |
 | Evidence | Record command-level evidence for completed P0/P1 items. |
-| Safety | Stop and escalate on invariant failures without approved fallback. |
+| Safety | Stop and escalate on invariant, recovery, or schema-gate failures without approved fallback. |
 
 ### Status Reporting Format
 - `STATE`: current phase and objective.
@@ -309,8 +420,9 @@ Deliver a deep system audit and targeted hardening pass that makes fusion behavi
 | Checkpoint | Approver | Status | Date |
 |------------|----------|--------|------|
 | Spec Review | Technical Lead | Pending | |
-| Design Review | Retrieval Architect | Pending | |
+| Verification Review | QA Lead | Pending | |
 | Implementation Review | Engineering Lead | Pending | |
+| Operational Readiness Review | Operations Lead | Pending | |
 | Launch Approval | Product Owner | Pending | |
 
 ---
@@ -319,18 +431,18 @@ Deliver a deep system audit and targeted hardening pass that makes fusion behavi
 
 ### Security Compliance
 - [ ] Security review completed
-- [ ] Path and routing safety checks passed
-- [ ] Sensitive diagnostics review completed
+- [ ] Path, routing, and ledger integrity checks passed
+- [ ] Sensitive diagnostics and trace payload review completed
 
 ### Code Compliance
 - [ ] Coding standards followed
 - [ ] License compliance verified
-- [ ] Regression policy coverage validated
+- [ ] Regression and deferred-path coverage policy validated
 
 ### Operational Compliance
-- [ ] Monitoring and alert hooks documented
-- [ ] Rollback playbook verified
-- [ ] Release-gate checklist approved
+- [ ] Monitoring, alert, and self-healing hooks documented
+- [ ] Rollback and recovery playbook verified
+- [ ] Telemetry schema and documentation drift gate approved
 
 ---
 
@@ -339,13 +451,17 @@ Deliver a deep system audit and targeted hardening pass that makes fusion behavi
 | Stakeholder | Role | Interest | Communication |
 |-------------|------|----------|---------------|
 | Retrieval Maintainer | Engineering | High | Daily async updates |
-| Spec Kit Maintainer | Platform | High | Phase-end sync |
-| Product Owner | Product | Medium | Milestone review |
+| Session/State Maintainer | Platform | High | Phase-end sync |
 | QA Lead | Verification | High | Test-gate review |
+| Operations Lead | Operations | High | Runbook and incident-drill review |
+| Product Owner | Product | Medium | Milestone review |
 
 ---
 
 ## 15. CHANGE LOG
+
+### v1.1 (2026-02-22)
+Broadened scope from retrieval/fusion-focused hardening to full cross-system hardening across ten audited subsystems; added explicit traceability matrix and expanded governance/verification requirements.
 
 ### v1.0 (2026-02-22)
 Initial Level 3+ specification for hybrid RAG fusion logic improvements.
@@ -355,9 +471,9 @@ Initial Level 3+ specification for hybrid RAG fusion logic improvements.
 <!-- ANCHOR:questions -->
 ## 16. OPEN QUESTIONS
 
-- Should low-confidence thresholds be shared as one constant source across retrieval and folder detection, or linked by policy mapping with independent numeric values?
-- Which benchmark corpus should be the primary p95 latency reference for release gating?
-- Should monitoring alerts trigger on absolute confidence drops, relative drift, or both?
+- Should relation-score calibration use one shared adjudication corpus or separate corpora for graph and session-learning domains?
+- Should cognitive-weight bounds vary by intent class or remain globally fixed for initial rollout?
+- Should self-healing loops auto-apply remediation in production by default or require explicit operator acknowledgement for specific failure classes?
 <!-- /ANCHOR:questions -->
 
 ---
@@ -373,5 +489,5 @@ Initial Level 3+ specification for hybrid RAG fusion logic improvements.
 
 <!--
 LEVEL 3+ SPEC
-Governance-focused high complexity specification with continuity mapping.
+Governance-focused high complexity specification with expanded cross-system continuity mapping.
 -->

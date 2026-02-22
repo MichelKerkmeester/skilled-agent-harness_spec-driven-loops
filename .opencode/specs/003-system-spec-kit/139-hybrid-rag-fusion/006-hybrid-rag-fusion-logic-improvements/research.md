@@ -171,6 +171,15 @@ Caller
 
 ## 9. Implementation Options (At Least 3)
 
+### Estimation Method (for durations, confidence, and KPI framing)
+
+- Duration ranges are planning estimates derived from 006 phase/task decomposition plus analogous effort recorded in 002-005 implementation summaries.
+- Confidence labels use evidence density: `High` (multiple A-grade code sources + test coverage), `Medium-High` (A-grade code sources with one or more unresolved runtime assumptions), `Medium` (requires broader refactor assumptions).
+- KPI targets are governance targets for 006 release gates, not claims of current measured production values.
+
+Method evidence:
+[SOURCE: `.opencode/specs/003-system-spec-kit/139-hybrid-rag-fusion/006-hybrid-rag-fusion-logic-improvements/plan.md:173-180`] [SOURCE: `.opencode/specs/003-system-spec-kit/139-hybrid-rag-fusion/006-hybrid-rag-fusion-logic-improvements/tasks.md:49-127`] [SOURCE: `.opencode/specs/003-system-spec-kit/139-hybrid-rag-fusion/002-hybrid-rag-fusion/implementation-summary.md`] [SOURCE: `.opencode/specs/003-system-spec-kit/139-hybrid-rag-fusion/003-index-tier-anomalies/implementation-summary.md`] [SOURCE: `.opencode/specs/003-system-spec-kit/139-hybrid-rag-fusion/004-frontmatter-indexing/implementation-summary.md`] [SOURCE: `.opencode/specs/003-system-spec-kit/139-hybrid-rag-fusion/005-auto-detected-session-bug/implementation-summary.md`]
+
 ### Option A: Contract-Hardening Patchset (Incremental, 2-3 weeks)
 
 Scope:
@@ -417,7 +426,7 @@ Evidence basis:
 
 1. Should graph channel results represent edges, memory nodes, or dual objects with explicit translation layer before formatter?
 2. Should deep-mode query expansion be user-visible in telemetry/debug payload by default?
-3. What is the authoritative performance budget for `auto` and `deep` under realistic production corpus size?
+3. How frequently should the benchmark corpus be refreshed while preserving comparability against the release-gate targets (`auto <= 120ms`, `deep <= 180ms`, overhead `<= 10%`)?
 4. Should evidence-gap detector integrate `predictGraphCoverage()` as an early-stage gate in runtime, or remain test-only utility for now?
 
 Related evidence:
@@ -475,4 +484,3 @@ Related evidence:
 - `.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts`
 - `.opencode/skill/system-spec-kit/mcp_server/tests/retrieval-trace.vitest.ts`
 - `.opencode/skill/system-spec-kit/mcp_server/tests/retrieval-telemetry.vitest.ts`
-

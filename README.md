@@ -313,11 +313,11 @@ Two additional subsystems: **FSRS Scheduler** (spaced repetition for review inte
 
 Three retrieval channels fuse via Reciprocal Rank Fusion (RRF) in the Unified Context Engine (spec 138):
 
-| Channel           | Method                                | Strength                                          |
-| ----------------- | ------------------------------------- | ------------------------------------------------- |
-| **Vector**        | Semantic similarity (embeddings)      | Conceptual matching, paraphrase detection         |
-| **BM25 Keyword**  | Term frequency / inverse document     | Technical terms, code identifiers, exact phrases  |
-| **FTS5 Full-Text**| SQLite full-text search               | Exact substring matching, structured queries      |
+| Channel            | Method                            | Strength                                         |
+| ------------------ | --------------------------------- | ------------------------------------------------ |
+| **Vector**         | Semantic similarity (embeddings)  | Conceptual matching, paraphrase detection        |
+| **BM25 Keyword**   | Term frequency / inverse document | Technical terms, code identifiers, exact phrases |
+| **FTS5 Full-Text** | SQLite full-text search           | Exact substring matching, structured queries     |
 
 **Post-fusion processing**: MMR diversity pruning (reduces redundant results by >= 30%), Transparent Reasoning Module confidence gating (blocks results below `confidence_threshold=0.65`, never returns empty set), multi-query expansion (>= 3 query variants for vocabulary mismatch resolution) and AST-based document section extraction.
 
@@ -325,7 +325,7 @@ Three retrieval channels fuse via Reciprocal Rank Fusion (RRF) in the Unified Co
 
 **4 embedding providers**: Voyage AI, OpenAI, HuggingFace Local (free, default), auto-detection.
 
-**Spec126 Hardening**: import-path fixes, `specFolder` filtering, metadata preservation, vector metadata plumbing and stable causal edge semantics.
+**Spec Hardening**: import-path fixes, `specFolder` filtering, metadata preservation, vector metadata plumbing and stable causal edge semantics.
 
 **Intent-Aware Scoring**: weights adjust for 7 task types.
 
@@ -536,17 +536,17 @@ Skills are domain expertise on demand. The AI loads the right skill and already 
 
 ### All Skills
 
-| Skill                        | Domain        | Purpose                                                                                    |
-| ---------------------------- | ------------- | ------------------------------------------------------------------------------------------ |
-| `mcp-code-mode`              | Integrations  | External tools via Code Mode (Figma, GitHub, ClickUp)                                      |
-| `mcp-figma`                  | Design        | Figma file access, components, styles, comments                                            |
-| `system-spec-kit`            | Documentation | Spec folders, templates, memory integration, context preservation and memory workflows |
-| `mcp-chrome-devtools`  | Browser       | DevTools automation, screenshots, debugging                                                |
-| `sk-code--full-stack` | Multi-Stack   | Go, Node.js, React, React Native, Swift, auto-detected via marker files                    |
-| `sk-code--opencode`   | System Code   | TypeScript, Python, Shell for MCP servers and scripts                                      |
-| `sk-code--web`    | Web Dev       | Webflow, vanilla JS: implementation, debugging, verification                               |
-| `sk-documentation`    | Docs          | Document quality scoring, skill creation and install guides       |
-| `sk-git`              | Git           | Commits, branches, PRs, worktrees                                                          |
+| Skill                 | Domain        | Purpose                                                                                |
+| --------------------- | ------------- | -------------------------------------------------------------------------------------- |
+| `mcp-code-mode`       | Integrations  | External tools via Code Mode (Figma, GitHub, ClickUp)                                  |
+| `mcp-figma`           | Design        | Figma file access, components, styles, comments                                        |
+| `system-spec-kit`     | Documentation | Spec folders, templates, memory integration, context preservation and memory workflows |
+| `mcp-chrome-devtools` | Browser       | DevTools automation, screenshots, debugging                                            |
+| `sk-code--full-stack` | Multi-Stack   | Go, Node.js, React, React Native, Swift, auto-detected via marker files                |
+| `sk-code--opencode`   | System Code   | TypeScript, Python, Shell for MCP servers and scripts                                  |
+| `sk-code--web`        | Web Dev       | Webflow, vanilla JS: implementation, debugging, verification                           |
+| `sk-documentation`    | Docs          | Document quality scoring, skill creation and install guides                            |
+| `sk-git`              | Git           | Commits, branches, PRs, worktrees                                                      |
 
 ### Auto-Detection
 
@@ -1001,23 +1001,23 @@ A: Minimal. SQLite databases are compact. A project with 100+ memories typically
 
 ### Changelogs
 
-| Component                                                                           | Versions |
-| ----------------------------------------------------------------------------------- | -------- |
-| [OpenCode Environment](.opencode/changelog/00--opencode-environment/)               | 90 files |
-| [System Spec Kit](.opencode/changelog/01--system-spec-kit/)                         | 45 files |
-| [AGENTS.md](.opencode/changelog/02--agents-md/)                                     | 27 files |
-| [Agent Orchestration](.opencode/changelog/03--agent-orchestration/)                 | 26 files |
-| [Commands](.opencode/changelog/04--commands/)                                       | 29 files |
-| [Skill Advisor](.opencode/changelog/05--skill-advisor/)                             | 4 files  |
+| Component                                                                    | Versions |
+| ---------------------------------------------------------------------------- | -------- |
+| [OpenCode Environment](.opencode/changelog/00--opencode-environment/)        | 90 files |
+| [System Spec Kit](.opencode/changelog/01--system-spec-kit/)                  | 45 files |
+| [AGENTS.md](.opencode/changelog/02--agents-md/)                              | 27 files |
+| [Agent Orchestration](.opencode/changelog/03--agent-orchestration/)          | 26 files |
+| [Commands](.opencode/changelog/04--commands/)                                | 29 files |
+| [Skill Advisor](.opencode/changelog/05--skill-advisor/)                      | 4 files  |
 | [Workflows: Code (OpenCode)](.opencode/changelog/06--sk-code--opencode/)     | 9 files  |
-| [Workflows: Code (Web Dev)](.opencode/changelog/07--sk-code--web/)            | 10 files |
-| [Workflows: Code (Full Stack)](.opencode/changelog/08--sk-code--full-stack/)  | 4 files  |
-| [Workflows: Git](.opencode/changelog/09--sk-git/)                              | 7 files  |
-| [Workflows: Documentation](.opencode/changelog/10--sk-documentation/)          | 9 files  |
-| [Workflows: Visual Explainer](.opencode/changelog/11--sk-visual-explainer/)   | 1 file   |
-| [MCP: Code Mode](.opencode/changelog/12--mcp-code-mode/)                       | 7 files  |
-| [MCP: Chrome DevTools](.opencode/changelog/13--mcp-chrome-devtools/)           | 4 files  |
-| [MCP: Figma](.opencode/changelog/14--mcp-figma/)                               | 5 files  |
+| [Workflows: Code (Web Dev)](.opencode/changelog/07--sk-code--web/)           | 10 files |
+| [Workflows: Code (Full Stack)](.opencode/changelog/08--sk-code--full-stack/) | 4 files  |
+| [Workflows: Git](.opencode/changelog/09--sk-git/)                            | 7 files  |
+| [Workflows: Documentation](.opencode/changelog/10--sk-documentation/)        | 9 files  |
+| [Workflows: Visual Explainer](.opencode/changelog/11--sk-visual-explainer/)  | 1 file   |
+| [MCP: Code Mode](.opencode/changelog/12--mcp-code-mode/)                     | 7 files  |
+| [MCP: Chrome DevTools](.opencode/changelog/13--mcp-chrome-devtools/)         | 4 files  |
+| [MCP: Figma](.opencode/changelog/14--mcp-figma/)                             | 5 files  |
 
 ### External Resources
 

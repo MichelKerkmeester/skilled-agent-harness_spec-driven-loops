@@ -71,39 +71,39 @@ This MCP server gives your AI assistant persistent memory with intelligence buil
 
 ### What Makes This Different
 
-| Capability | Basic RAG | This MCP Server |
-| --- | --- | --- |
-| **"Why" queries** | Impossible | Causal graph traversal (6 relationship types) |
-| **Recovery** | Hope | Crash recovery with zero data loss |
-| **Sessions** | None | Deduplication with ~50% tokens saved on follow-up |
-| **Context** | Full documents | ANCHOR-based section retrieval (93% token savings) |
-| **Search** | Vector only | 3-channel (Vector, FTS5, BM25) with adaptive RRF fusion |
-| **State** | Stateless | 5-state cognitive model (HOT/WARM/COLD/DORMANT/ARCHIVED) |
-| **Tiers** | None | 6-tier importance with configurable boosts |
-| **Decay** | None or exponential | FSRS power-law (validated on 100M+ users) |
-| **Duplicates** | Index everything | Prediction Error Gating (4-tier thresholds) |
-| **Ranking** | Score order | MMR diversity reranking with lambda-intent mapping |
+| Capability        | Basic RAG           | This MCP Server                                          |
+| ----------------- | ------------------- | -------------------------------------------------------- |
+| **"Why" queries** | Impossible          | Causal graph traversal (6 relationship types)            |
+| **Recovery**      | Hope                | Crash recovery with zero data loss                       |
+| **Sessions**      | None                | Deduplication with ~50% tokens saved on follow-up        |
+| **Context**       | Full documents      | ANCHOR-based section retrieval (93% token savings)       |
+| **Search**        | Vector only         | 3-channel (Vector, FTS5, BM25) with adaptive RRF fusion  |
+| **State**         | Stateless           | 5-state cognitive model (HOT/WARM/COLD/DORMANT/ARCHIVED) |
+| **Tiers**         | None                | 6-tier importance with configurable boosts               |
+| **Decay**         | None or exponential | FSRS power-law (validated on 100M+ users)                |
+| **Duplicates**    | Index everything    | Prediction Error Gating (4-tier thresholds)              |
+| **Ranking**       | Score order         | MMR diversity reranking with lambda-intent mapping       |
 
 ---
 
 ### By The Numbers
 
-| Category | Count |
-| --- | --- |
-| **MCP Tools** | 23 |
-| **Library Modules** | 76 |
-| **Handler Modules** | 19 |
-| **Embedding Providers** | 3 |
-| **Feature Flags** | 16 (all default enabled; explicit `FLAG=false` disables) |
-| **Test Coverage** | 164 test files |
-| **Last Verified** | 2026-02-21 |
+| Category                | Count                                                    |
+| ----------------------- | -------------------------------------------------------- |
+| **MCP Tools**           | 23                                                       |
+| **Library Modules**     | 76                                                       |
+| **Handler Modules**     | 19                                                       |
+| **Embedding Providers** | 3                                                        |
+| **Feature Flags**       | 16 (all default enabled; explicit `FLAG=false` disables) |
+| **Test Coverage**       | 164 test files                                           |
+| **Last Verified**       | 2026-02-21                                               |
 
 ### Requirements
 
 | Requirement | Minimum | Recommended |
-| --- | --- | --- |
-| Node.js | 18.0.0 | 20+ |
-| npm | 9+ | 10+ |
+| ----------- | ------- | ----------- |
+| Node.js     | 18.0.0  | 20+         |
+| npm         | 9+      | 10+         |
 
 ---
 
@@ -200,27 +200,27 @@ dist/context-server.js     (compiled output — executed at runtime by node)
 
 ### Key Entry Points
 
-| File | Purpose |
-| --- | --- |
-| `context-server.ts` | Server init, stdio transport, startup/shutdown lifecycle |
-| `tool-schemas.ts` | All 23 tool schema definitions (decomposed from server in T303) |
-| `cli.ts` | CLI entry point for maintenance commands (stats, bulk-delete, reindex, schema-downgrade) |
-| `tools/index.ts` | `dispatchTool()` — routes MCP call to handler module |
-| `core/config.ts` | Path resolution (`SERVER_DIR`, `LIB_DIR`, `SHARED_DIR`) |
-| `core/db-state.ts` | Database connection state shared across handlers |
+| File                | Purpose                                                                                  |
+| ------------------- | ---------------------------------------------------------------------------------------- |
+| `context-server.ts` | Server init, stdio transport, startup/shutdown lifecycle                                 |
+| `tool-schemas.ts`   | All 23 tool schema definitions (decomposed from server in T303)                          |
+| `cli.ts`            | CLI entry point for maintenance commands (stats, bulk-delete, reindex, schema-downgrade) |
+| `tools/index.ts`    | `dispatchTool()` — routes MCP call to handler module                                     |
+| `core/config.ts`    | Path resolution (`SERVER_DIR`, `LIB_DIR`, `SHARED_DIR`)                                  |
+| `core/db-state.ts`  | Database connection state shared across handlers                                         |
 
 ### Directory Map
 
-| Directory | Purpose |
-| --- | --- |
-| `handlers/` | 19 handler modules (functional + infrastructure) |
-| `lib/` | 76 library modules (cognitive, search, scoring, storage, etc.) |
-| `tools/` | Tool registration wrappers per category |
-| `core/` | Initialization, config, database state |
-| `formatters/` | Search result and token-metric formatting |
-| `scripts/` | CLI utilities |
-| `tests/` | 164 test files |
-| `dist/` | Compiled JavaScript output (runtime target) |
+| Directory     | Purpose                                                        |
+| ------------- | -------------------------------------------------------------- |
+| `handlers/`   | 19 handler modules (functional + infrastructure)               |
+| `lib/`        | 76 library modules (cognitive, search, scoring, storage, etc.) |
+| `tools/`      | Tool registration wrappers per category                        |
+| `core/`       | Initialization, config, database state                         |
+| `formatters/` | Search result and token-metric formatting                      |
+| `scripts/`    | CLI utilities                                                  |
+| `tests/`      | 164 test files                                                 |
+| `dist/`       | Compiled JavaScript output (runtime target)                    |
 
 ---
 
@@ -231,75 +231,75 @@ dist/context-server.js     (compiled output — executed at runtime by node)
 
 ### Tool Categories
 
-| Category | Tools | Purpose |
-| --- | --- | --- |
-| **Orchestration** | 1 | Unified entry point with intent-aware routing |
-| **Search and Retrieval** | 4 | Find and match memories |
-| **CRUD Operations** | 6 | Create, update, delete, validate, and bulk-delete |
-| **Checkpoints** | 4 | State snapshots for recovery |
-| **Session Learning** | 3 | Knowledge tracking across tasks |
-| **Causal and Drift** | 6 | Causal graph traversal, drift analysis and cache management |
-| **System** | 1 | Health monitoring |
+| Category                 | Tools | Purpose                                                     |
+| ------------------------ | ----- | ----------------------------------------------------------- |
+| **Orchestration**        | 1     | Unified entry point with intent-aware routing               |
+| **Search and Retrieval** | 4     | Find and match memories                                     |
+| **CRUD Operations**      | 6     | Create, update, delete, validate, and bulk-delete           |
+| **Checkpoints**          | 4     | State snapshots for recovery                                |
+| **Session Learning**     | 3     | Knowledge tracking across tasks                             |
+| **Causal and Drift**     | 6     | Causal graph traversal, drift analysis and cache management |
+| **System**               | 1     | Health monitoring                                           |
 
 ### Orchestration Tools
 
-| Tool | Purpose | Latency |
-| --- | --- | --- |
-| `memory_context` | Unified entry with intent-aware routing (L1 Orchestration). START HERE for most retrieval tasks | ~500ms |
+| Tool             | Purpose                                                                                         | Latency |
+| ---------------- | ----------------------------------------------------------------------------------------------- | ------- |
+| `memory_context` | Unified entry with intent-aware routing (L1 Orchestration). START HERE for most retrieval tasks | ~500ms  |
 
 ### Search and Retrieval Tools
 
-| Tool | Purpose | Latency |
-| --- | --- | --- |
-| `memory_search` | Semantic vector search with a 3-channel hybrid pipeline and adaptive RRF fusion | ~500ms |
-| `memory_match_triggers` | Fast trigger phrase matching with cognitive features | <50ms |
-| `memory_list` | Browse memories with pagination | <50ms |
-| `memory_stats` | System statistics and folder rankings | <10ms |
+| Tool                    | Purpose                                                                         | Latency |
+| ----------------------- | ------------------------------------------------------------------------------- | ------- |
+| `memory_search`         | Semantic vector search with a 3-channel hybrid pipeline and adaptive RRF fusion | ~500ms  |
+| `memory_match_triggers` | Fast trigger phrase matching with cognitive features                            | <50ms   |
+| `memory_list`           | Browse memories with pagination                                                 | <50ms   |
+| `memory_stats`          | System statistics and folder rankings                                           | <10ms   |
 
 ### CRUD Tools
 
-| Tool | Purpose | Latency |
-| --- | --- | --- |
-| `memory_save` | Index a single memory file | ~1s |
-| `memory_index_scan` | Bulk scan and index workspace (3-source pipeline, incremental) | varies |
-| `memory_update` | Update metadata, tier, triggers | <50ms* |
-| `memory_delete` | Delete by ID or spec folder | <50ms |
+| Tool                 | Purpose                                                                                            | Latency             |
+| -------------------- | -------------------------------------------------------------------------------------------------- | ------------------- |
+| `memory_save`        | Index a single memory file                                                                         | ~1s                 |
+| `memory_index_scan`  | Bulk scan and index workspace (3-source pipeline, incremental)                                     | varies              |
+| `memory_update`      | Update metadata, tier, triggers                                                                    | <50ms*              |
+| `memory_delete`      | Delete by ID or spec folder                                                                        | <50ms               |
 | `memory_bulk_delete` | Bulk delete by tier with checkpoint safety gates. Supports `skipCheckpoint` for non-critical tiers | <100ms + checkpoint |
-| `memory_validate` | Record validation feedback | <50ms |
+| `memory_validate`    | Record validation feedback                                                                         | <50ms               |
 
 *+~400ms if title changed (triggers embedding regeneration)
 
 ### Checkpoint Tools
 
-| Tool | Purpose | Latency |
-| --- | --- | --- |
-| `checkpoint_create` | Create named state snapshot | <100ms |
-| `checkpoint_list` | List available checkpoints | <50ms |
-| `checkpoint_restore` | Restore from checkpoint | varies |
-| `checkpoint_delete` | Delete a checkpoint | <50ms |
+| Tool                 | Purpose                     | Latency |
+| -------------------- | --------------------------- | ------- |
+| `checkpoint_create`  | Create named state snapshot | <100ms  |
+| `checkpoint_list`    | List available checkpoints  | <50ms   |
+| `checkpoint_restore` | Restore from checkpoint     | varies  |
+| `checkpoint_delete`  | Delete a checkpoint         | <50ms   |
 
 ### Session Learning Tools
 
-| Tool | Purpose | Latency |
-| --- | --- | --- |
-| `task_preflight` | Capture epistemic baseline before task | <50ms |
-| `task_postflight` | Capture state after task, calculate learning delta | <50ms |
-| `memory_get_learning_history` | Get learning history with trends | <50ms |
+| Tool                          | Purpose                                            | Latency |
+| ----------------------------- | -------------------------------------------------- | ------- |
+| `task_preflight`              | Capture epistemic baseline before task             | <50ms   |
+| `task_postflight`             | Capture state after task, calculate learning delta | <50ms   |
+| `memory_get_learning_history` | Get learning history with trends                   | <50ms   |
 
 ### Causal and Drift Tools
 
-| Tool | Purpose | Latency |
-| --- | --- | --- |
-| `memory_drift_why` | Trace causal chain for decision lineage | varies |
-| `memory_causal_link` | Create causal relationships between memories | <50ms |
-| `memory_causal_stats` | Graph statistics and coverage metrics | <50ms |
-| `memory_causal_unlink` | Remove causal relationships | <50ms |
+| Tool                   | Purpose                                      | Latency |
+| ---------------------- | -------------------------------------------- | ------- |
+| `memory_drift_why`     | Trace causal chain for decision lineage      | varies  |
+| `memory_causal_link`   | Create causal relationships between memories | <50ms   |
+| `memory_causal_stats`  | Graph statistics and coverage metrics        | <50ms   |
+| `memory_causal_unlink` | Remove causal relationships                  | <50ms   |
 
 ### System Tools
 
-| Tool | Purpose | Latency |
-| --- | --- | --- |
-| `memory_health` | Check system health or return compact divergent-alias triage output (`reportMode: 'divergent_aliases'`) | <10ms |
+| Tool            | Purpose                                                                                                 | Latency |
+| --------------- | ------------------------------------------------------------------------------------------------------- | ------- |
+| `memory_health` | Check system health or return compact divergent-alias triage output (`reportMode: 'divergent_aliases'`) | <10ms   |
 
 ---
 
@@ -307,28 +307,28 @@ dist/context-server.js     (compiled output — executed at runtime by node)
 
 The causal graph supports 6 relationship types for tracing decision history:
 
-| Relation | Meaning |
-| --- | --- |
-| `caused` | A directly led to B |
-| `enabled` | A made B possible without directly causing it |
-| `supersedes` | A replaces B as the current truth |
-| `contradicts` | A and B are mutually incompatible |
-| `derived_from` | A was built upon or derived from B |
-| `supports` | A provides evidence or support for B |
+| Relation       | Meaning                                       |
+| -------------- | --------------------------------------------- |
+| `caused`       | A directly led to B                           |
+| `enabled`      | A made B possible without directly causing it |
+| `supersedes`   | A replaces B as the current truth             |
+| `contradicts`  | A and B are mutually incompatible             |
+| `derived_from` | A was built upon or derived from B            |
+| `supports`     | A provides evidence or support for B          |
 
 ---
 
 ### 7-Layer MCP Architecture
 
-| Layer | Name | Token Budget | Tools |
-| --- | --- | --- | --- |
-| L1 | Orchestration | 2000 | `memory_context` |
-| L2 | Core | 1500 | `memory_search`, `memory_match_triggers`, `memory_save` |
-| L3 | Discovery | 800 | `memory_list`, `memory_stats`, `memory_health` |
-| L4 | Mutation | 500 | `memory_delete`, `memory_bulk_delete`, `memory_update`, `memory_validate` |
-| L5 | Lifecycle | 600 | `checkpoint_create`, `checkpoint_list`, `checkpoint_restore`, `checkpoint_delete` |
-| L6 | Analysis | 1200 | `task_preflight`, `task_postflight`, `memory_drift_why`, `memory_causal_link`, `memory_causal_stats`, `memory_causal_unlink` |
-| L7 | Maintenance | 1000 | `memory_index_scan`, `memory_get_learning_history` |
+| Layer | Name          | Token Budget | Tools                                                                                                                        |
+| ----- | ------------- | ------------ | ---------------------------------------------------------------------------------------------------------------------------- |
+| L1    | Orchestration | 2000         | `memory_context`                                                                                                             |
+| L2    | Core          | 1500         | `memory_search`, `memory_match_triggers`, `memory_save`                                                                      |
+| L3    | Discovery     | 800          | `memory_list`, `memory_stats`, `memory_health`                                                                               |
+| L4    | Mutation      | 500          | `memory_delete`, `memory_bulk_delete`, `memory_update`, `memory_validate`                                                    |
+| L5    | Lifecycle     | 600          | `checkpoint_create`, `checkpoint_list`, `checkpoint_restore`, `checkpoint_delete`                                            |
+| L6    | Analysis      | 1200         | `task_preflight`, `task_postflight`, `memory_drift_why`, `memory_causal_link`, `memory_causal_stats`, `memory_causal_unlink` |
+| L7    | Maintenance   | 1000         | `memory_index_scan`, `memory_get_learning_history`                                                                           |
 
 ---
 
@@ -355,7 +355,7 @@ Query
 +----------+----------+----------+----------+
 | VECTOR   | FTS5     | BM25     | SKILL    |
 | 1024d    | Full-    | Keyword  | GRAPH    |
-| (1.0x)   | text     | ranking  | (1.5x)  |
+| (1.0x)   | text     | ranking  | (1.5x)   |
 +----+-----+----+-----+----+-----+----+-----+
      |          |          |          |
      +----------+----------+----------+
@@ -393,33 +393,33 @@ Query
 
 ### Channel Descriptions
 
-| Channel | Source | Weight | Purpose |
-| --- | --- | --- | --- |
-| Vector | `sqlite-vec` 1024d embeddings | 1.0x | Semantic similarity |
-| FTS5 | SQLite full-text search | 1.0x | Full-text lexical matching |
-| BM25 | SQLite FTS5 BM25 ranking | 1.0x | Keyword relevance scoring |
+| Channel | Source                        | Weight | Purpose                    |
+| ------- | ----------------------------- | ------ | -------------------------- |
+| Vector  | `sqlite-vec` 1024d embeddings | 1.0x   | Semantic similarity        |
+| FTS5    | SQLite full-text search       | 1.0x   | Full-text lexical matching |
+| BM25    | SQLite FTS5 BM25 ranking      | 1.0x   | Keyword relevance scoring  |
 
 ### Post-Fusion Enhancements
 
 These processing stages are applied after the 4 primary channels are fused via RRF. They boost or rerank results but are not independent search channels:
 
-| Enhancement | Source | Effect | Purpose |
-| --- | --- | --- | --- |
-| Co-activation | Working memory patterns | +0.25 boost | Related memory surfacing |
-| Recency Boost | `working_memory` table | Hard cap 0.20 | Session context recency |
-| Causal 2-hop | Causal edge traversal | Injected | Transitively related memories |
+| Enhancement   | Source                  | Effect        | Purpose                       |
+| ------------- | ----------------------- | ------------- | ----------------------------- |
+| Co-activation | Working memory patterns | +0.25 boost   | Related memory surfacing      |
+| Recency Boost | `working_memory` table  | Hard cap 0.20 | Session context recency       |
+| Causal 2-hop  | Causal edge traversal   | Injected      | Transitively related memories |
 
 ### Adaptive RRF Fusion
 
 When `SPECKIT_ADAPTIVE_FUSION=true` (default enabled), standard fixed-weight RRF is replaced with intent-aware weighted RRF. Fusion weights shift dynamically based on detected query intent:
 
-| Intent | Vector Weight | BM25 Weight | Graph Weight |
-| --- | --- | --- | --- |
-| `add_feature` | 1.2x | 0.8x | 1.0x |
-| `fix_bug` | 0.8x | 1.4x | 1.2x |
-| `understand` | 1.4x | 0.7x | 1.0x |
-| `find_decision` | 0.8x | 0.9x | 1.8x |
-| `security_audit` | 1.1x | 1.1x | 1.3x |
+| Intent           | Vector Weight | BM25 Weight | Graph Weight |
+| ---------------- | ------------- | ----------- | ------------ |
+| `add_feature`    | 1.2x          | 0.8x        | 1.0x         |
+| `fix_bug`        | 0.8x          | 1.4x        | 1.2x         |
+| `understand`     | 1.4x          | 0.7x        | 1.0x         |
+| `find_decision`  | 0.8x          | 0.9x        | 1.8x         |
+| `security_audit` | 1.1x          | 1.1x        | 1.3x         |
 
 ### Multi-Query RAG Fusion
 
@@ -458,11 +458,11 @@ We chose JWT with refresh tokens because stateless auth scales better.
 
 Files exceeding 50,000 characters are automatically split into smaller chunks for embedding. The chunker (`lib/chunking/anchor-chunker.ts`) uses ANCHOR tags as natural boundaries when present, falling back to structure-aware markdown splitting otherwise.
 
-| Parameter | Value |
-| --- | --- |
-| Chunking threshold | 50,000 characters |
-| Target chunk size | ~4,000 characters (~1,000 tokens) |
-| Max chunk size | 12,000 characters (hard cap) |
+| Parameter          | Value                             |
+| ------------------ | --------------------------------- |
+| Chunking threshold | 50,000 characters                 |
+| Target chunk size  | ~4,000 characters (~1,000 tokens) |
+| Max chunk size     | 12,000 characters (hard cap)      |
 
 Each chunk is indexed as a child record linked to a parent via `parent_id`. Search results from chunked files include metadata: `isChunk`, `parentId`, `chunkIndex`, `chunkLabel` and `chunkCount`. When `includeContent: true` is set, child chunks are reassembled into full content automatically.
 
@@ -487,49 +487,49 @@ Where `R(t, S)` = retrievability at time t with stability S. Higher importance t
 
 ### 5-State Memory Model
 
-| State | Retrievability | Content Returned | Max Items | Behavior |
-| --- | --- | --- | --- | --- |
-| **HOT** | R >= 0.80 | Full content | 5 | Active working memory, top priority |
-| **WARM** | 0.25 <= R < 0.80 | Summary only | 10 | Accessible background context |
-| **COLD** | 0.05 <= R < 0.25 | None | — | Inactive but retrievable on demand |
-| **DORMANT** | 0.02 <= R < 0.05 | None | — | Very weak, needs explicit revival |
-| **ARCHIVED** | R < 0.02 or 90d+ | None | — | Time-based archival, effectively forgotten |
+| State        | Retrievability   | Content Returned | Max Items | Behavior                                   |
+| ------------ | ---------------- | ---------------- | --------- | ------------------------------------------ |
+| **HOT**      | R >= 0.80        | Full content     | 5         | Active working memory, top priority        |
+| **WARM**     | 0.25 <= R < 0.80 | Summary only     | 10        | Accessible background context              |
+| **COLD**     | 0.05 <= R < 0.25 | None             | —         | Inactive but retrievable on demand         |
+| **DORMANT**  | 0.02 <= R < 0.05 | None             | —         | Very weak, needs explicit revival          |
+| **ARCHIVED** | R < 0.02 or 90d+ | None             | —         | Time-based archival, effectively forgotten |
 
 ### Type-Specific Half-Lives
 
-| Memory Type | Half-Life | Example |
-| --- | --- | --- |
-| **constitutional** | Never | "Never edit without reading first" |
-| **procedural** | 90+ days | "How to deploy to production" |
-| **semantic** | 60 days | "RRF stands for Reciprocal Rank Fusion" |
-| **contextual** | 30 days | "Auth module uses JWT" |
-| **episodic** | 14 days | "Fixed bug XYZ on Tuesday" |
-| **working** | 1 day | "Currently debugging auth flow" |
-| **temporary** | 4 hours | "Testing this config" |
-| **debug** | 1 hour | "Stack trace from crash" |
-| **scratch** | Session | "Rough notes" |
+| Memory Type        | Half-Life | Example                                 |
+| ------------------ | --------- | --------------------------------------- |
+| **constitutional** | Never     | "Never edit without reading first"      |
+| **procedural**     | 90+ days  | "How to deploy to production"           |
+| **semantic**       | 60 days   | "RRF stands for Reciprocal Rank Fusion" |
+| **contextual**     | 30 days   | "Auth module uses JWT"                  |
+| **episodic**       | 14 days   | "Fixed bug XYZ on Tuesday"              |
+| **working**        | 1 day     | "Currently debugging auth flow"         |
+| **temporary**      | 4 hours   | "Testing this config"                   |
+| **debug**          | 1 hour    | "Stack trace from crash"                |
+| **scratch**        | Session   | "Rough notes"                           |
 
 ### Prediction Error Gating
 
 Prevents duplicate memories from polluting the index:
 
-| Similarity | Category | Action |
-| --- | --- | --- |
-| >= 0.95 | DUPLICATE | Block save, reinforce existing |
-| 0.90-0.94 | HIGH_MATCH | Check for contradiction. UPDATE or SUPERSEDE |
-| 0.70-0.89 | MEDIUM_MATCH | Create with link to related memory |
-| 0.50-0.69 | LOW_MATCH | Create new, note similarity |
-| < 0.50 | UNIQUE | Create new memory normally |
+| Similarity | Category     | Action                                       |
+| ---------- | ------------ | -------------------------------------------- |
+| >= 0.95    | DUPLICATE    | Block save, reinforce existing               |
+| 0.90-0.94  | HIGH_MATCH   | Check for contradiction. UPDATE or SUPERSEDE |
+| 0.70-0.89  | MEDIUM_MATCH | Create with link to related memory           |
+| 0.50-0.69  | LOW_MATCH    | Create new, note similarity                  |
+| < 0.50     | UNIQUE       | Create new memory normally                   |
 
 ### 3-Source Indexing Pipeline
 
 `memory_index_scan` indexes only three source families:
 
-| Source | Path Pattern | Weight |
-| --- | --- | --- |
-| Constitutional rules | `.opencode/skill/*/constitutional/*.md` | Per-file metadata |
-| Spec documents | `.opencode/specs/**/*.md` | Per-type multiplier |
-| Spec memories | `specs/**/memory/*.{md,txt}` | 0.5 |
+| Source               | Path Pattern                            | Weight              |
+| -------------------- | --------------------------------------- | ------------------- |
+| Constitutional rules | `.opencode/skill/*/constitutional/*.md` | Per-file metadata   |
+| Spec documents       | `.opencode/specs/**/*.md`               | Per-type multiplier |
+| Spec memories        | `specs/**/memory/*.{md,txt}`            | 0.5                 |
 
 README files and skill documentation trees (`sk-*`, including `references/` and `assets/`) are excluded.
 
@@ -636,19 +636,19 @@ mcp_server/
 
 ### Environment Variables
 
-| Variable | Default | Description |
-| --- | --- | --- |
-| `MEMORY_DB_PATH` | `./dist/database/context-index.sqlite` | Database location |
-| `MEMORY_BASE_PATH` | CWD | Workspace root for memory files |
-| `DEBUG_TRIGGER_MATCHER` | `false` | Enable verbose trigger logs |
+| Variable                | Default                                | Description                     |
+| ----------------------- | -------------------------------------- | ------------------------------- |
+| `MEMORY_DB_PATH`        | `./dist/database/context-index.sqlite` | Database location               |
+| `MEMORY_BASE_PATH`      | CWD                                    | Workspace root for memory files |
+| `DEBUG_TRIGGER_MATCHER` | `false`                                | Enable verbose trigger logs     |
 
 ### Embedding Providers
 
-| Variable | Required | Description |
-| --- | --- | --- |
-| `EMBEDDINGS_PROVIDER` | No | Force: `voyage`, `openai` or `hf-local` |
-| `VOYAGE_API_KEY` | For Voyage | Voyage AI API key (1024d, recommended) |
-| `OPENAI_API_KEY` | For OpenAI | OpenAI API key (1536d/3072d) |
+| Variable              | Required   | Description                             |
+| --------------------- | ---------- | --------------------------------------- |
+| `EMBEDDINGS_PROVIDER` | No         | Force: `voyage`, `openai` or `hf-local` |
+| `VOYAGE_API_KEY`      | For Voyage | Voyage AI API key (1024d, recommended)  |
+| `OPENAI_API_KEY`      | For OpenAI | OpenAI API key (1536d/3072d)            |
 
 **Auto-detection priority:** `EMBEDDINGS_PROVIDER` env > `VOYAGE_API_KEY` detected > `OPENAI_API_KEY` detected > HuggingFace local (768d, default fallback)
 
@@ -656,55 +656,55 @@ mcp_server/
 
 All flags are evaluated via `isFeatureEnabled()`. After specs 137-139, the flags below default to enabled:
 
-| Flag | Default | Description |
-| --- | --- | --- |
-| `SPECKIT_RRF` | `true` | Enable RRF search fusion |
-| `SPECKIT_MMR` | `true` | Enable MMR diversity reranking |
-| `SPECKIT_TRM` | `true` | Enable Transparent Reasoning Module (evidence-gap detection) |
-| `SPECKIT_MULTI_QUERY` | `true` | Enable multi-query expansion for deep-mode retrieval |
-| `SPECKIT_CROSS_ENCODER` | `true` | Enable cross-encoder reranking when a provider is configured (set `false` to disable) |
-| `SPECKIT_RELATIONS` | `true` | Enable causal memory graph |
-| `SPECKIT_INDEX_SPEC_DOCS` | `true` | Enable spec folder document indexing |
-| `SPECKIT_EXTENDED_TELEMETRY` | `true` | Enable 4-dimension retrieval telemetry |
-| `SPECKIT_CAUSAL_BOOST` | `true` | Enable 2-hop causal-neighbor score boost |
-| `SPECKIT_SESSION_BOOST` | `true` | Enable session-attention score boost |
-| `SPECKIT_ADAPTIVE_FUSION` | `true` | Enable intent-aware weighted RRF fusion |
-| `SPECKIT_PRESSURE_POLICY` | `true` | Enable token-pressure mode override in `memory_context` (set `false` to disable) |
+| Flag                         | Default | Description                                                                           |
+| ---------------------------- | ------- | ------------------------------------------------------------------------------------- |
+| `SPECKIT_RRF`                | `true`  | Enable RRF search fusion                                                              |
+| `SPECKIT_MMR`                | `true`  | Enable MMR diversity reranking                                                        |
+| `SPECKIT_TRM`                | `true`  | Enable Transparent Reasoning Module (evidence-gap detection)                          |
+| `SPECKIT_MULTI_QUERY`        | `true`  | Enable multi-query expansion for deep-mode retrieval                                  |
+| `SPECKIT_CROSS_ENCODER`      | `true`  | Enable cross-encoder reranking when a provider is configured (set `false` to disable) |
+| `SPECKIT_RELATIONS`          | `true`  | Enable causal memory graph                                                            |
+| `SPECKIT_INDEX_SPEC_DOCS`    | `true`  | Enable spec folder document indexing                                                  |
+| `SPECKIT_EXTENDED_TELEMETRY` | `true`  | Enable 4-dimension retrieval telemetry                                                |
+| `SPECKIT_CAUSAL_BOOST`       | `true`  | Enable 2-hop causal-neighbor score boost                                              |
+| `SPECKIT_SESSION_BOOST`      | `true`  | Enable session-attention score boost                                                  |
+| `SPECKIT_ADAPTIVE_FUSION`    | `true`  | Enable intent-aware weighted RRF fusion                                               |
+| `SPECKIT_PRESSURE_POLICY`    | `true`  | Enable token-pressure mode override in `memory_context` (set `false` to disable)      |
 
 ### Database Schema
 
-| Table | Purpose |
-| --- | --- |
-| `memory_index` | Memory metadata (title, tier, triggers, document_type, spec_level) |
-| `vec_memories` | Vector embeddings (sqlite-vec) |
-| `memory_fts` | Full-text search index (FTS5) |
-| `checkpoints` | State snapshots |
-| `memory_history` | Access and modification history |
-| `learning_records` | Session learning preflight/postflight |
-| `working_memory` | Session-scoped attention scores |
-| `memory_conflicts` | PE gating decisions (audit trail) |
-| `causal_edges` | Causal relationships (6 types) |
-| `memory_corrections` | Learning from corrections |
-| `session_state` | Crash recovery state |
-| `schema_version` | Database schema version tracking |
+| Table                | Purpose                                                            |
+| -------------------- | ------------------------------------------------------------------ |
+| `memory_index`       | Memory metadata (title, tier, triggers, document_type, spec_level) |
+| `vec_memories`       | Vector embeddings (sqlite-vec)                                     |
+| `memory_fts`         | Full-text search index (FTS5)                                      |
+| `checkpoints`        | State snapshots                                                    |
+| `memory_history`     | Access and modification history                                    |
+| `learning_records`   | Session learning preflight/postflight                              |
+| `working_memory`     | Session-scoped attention scores                                    |
+| `memory_conflicts`   | PE gating decisions (audit trail)                                  |
+| `causal_edges`       | Causal relationships (6 types)                                     |
+| `memory_corrections` | Learning from corrections                                          |
+| `session_state`      | Crash recovery state                                               |
+| `schema_version`     | Database schema version tracking                                   |
 
 **v16 chunking columns** (added to `memory_index`):
 
-| Column | Purpose |
-| --- | --- |
-| `parent_id` | Links chunk to parent record |
-| `chunk_index` | Ordering within parent |
+| Column        | Purpose                          |
+| ------------- | -------------------------------- |
+| `parent_id`   | Links chunk to parent record     |
+| `chunk_index` | Ordering within parent           |
 | `chunk_label` | Human-readable chunk description |
 
 ### Dependencies
 
-| Dependency | Version | Purpose |
-| --- | --- | --- |
-| `@modelcontextprotocol/sdk` | ^1.24.3 | MCP protocol |
-| `@huggingface/transformers` | ^3.8.1 | Local embeddings |
-| `better-sqlite3` | ^12.6.2 | SQLite database |
-| `sqlite-vec` | ^0.1.7-alpha.2 | Vector similarity search |
-| `zod` | ^4.1.12 | Schema validation |
+| Dependency                  | Version        | Purpose                  |
+| --------------------------- | -------------- | ------------------------ |
+| `@modelcontextprotocol/sdk` | ^1.24.3        | MCP protocol             |
+| `@huggingface/transformers` | ^3.8.1         | Local embeddings         |
+| `better-sqlite3`            | ^12.6.2        | SQLite database          |
+| `sqlite-vec`                | ^0.1.7-alpha.2 | Vector similarity search |
+| `zod`                       | ^4.1.12        | Schema validation        |
 
 ---
 
@@ -846,16 +846,16 @@ memory_health({
 
 ### Common Patterns
 
-| Pattern | Tool Call | When to Use |
-| --- | --- | --- |
-| Find related context | `memory_search({ query: "..." })` | Before starting work |
-| Token-efficient retrieval | `memory_search({ anchors: ['summary'] })` | Large context, limited budget |
-| Intent-aware context | `memory_context({ input: "...", intent: "fix_bug" })` | Task-specific context |
-| Decision archaeology | `memory_drift_why({ memoryId: "..." })` | Understanding past decisions |
-| Track learning | `task_preflight` -> work -> `task_postflight` | Implementation tasks |
-| Check system health | `memory_health({})` | Debugging issues |
+| Pattern                          | Tool Call                                                       | When to Use                               |
+| -------------------------------- | --------------------------------------------------------------- | ----------------------------------------- |
+| Find related context             | `memory_search({ query: "..." })`                               | Before starting work                      |
+| Token-efficient retrieval        | `memory_search({ anchors: ['summary'] })`                       | Large context, limited budget             |
+| Intent-aware context             | `memory_context({ input: "...", intent: "fix_bug" })`           | Task-specific context                     |
+| Decision archaeology             | `memory_drift_why({ memoryId: "..." })`                         | Understanding past decisions              |
+| Track learning                   | `task_preflight` -> work -> `task_postflight`                   | Implementation tasks                      |
+| Check system health              | `memory_health({})`                                             | Debugging issues                          |
 | Triage divergent alias anomalies | `memory_health({ reportMode: "divergent_aliases", limit: 20 })` | Fast manual review of path/hash conflicts |
-| Recover from error | `checkpoint_restore({ name: "..." })` | After mistakes |
+| Recover from error               | `checkpoint_restore({ name: "..." })`                           | After mistakes                            |
 
 ---
 
@@ -913,14 +913,14 @@ memory_index_scan({ force: true })
 
 ### Quick Fixes
 
-| Problem | Quick Fix |
-| --- | --- |
-| Empty search results | `memory_index_scan({ force: true })` |
-| Slow embeddings | Set `VOYAGE_API_KEY` for faster API embeddings |
-| Missing constitutional | Check files in `constitutional/` directory |
-| Duplicate detection | Check `memory_conflicts` table for decisions |
-| Causal graph empty | Use `memory_causal_link` to create relationships |
-| Session not deduplicating | Ensure `session_id` is consistent |
+| Problem                   | Quick Fix                                        |
+| ------------------------- | ------------------------------------------------ |
+| Empty search results      | `memory_index_scan({ force: true })`             |
+| Slow embeddings           | Set `VOYAGE_API_KEY` for faster API embeddings   |
+| Missing constitutional    | Check files in `constitutional/` directory       |
+| Duplicate detection       | Check `memory_conflicts` table for decisions     |
+| Causal graph empty        | Use `memory_causal_link` to create relationships |
+| Session not deduplicating | Ensure `session_id` is consistent                |
 
 ### Feature Flag Rollback
 
@@ -1025,50 +1025,50 @@ A: Yes. Flags are default-on and only explicit `FLAG=false` disables them. `SPEC
 
 ### Parent Documentation
 
-| Document | Location | Purpose |
-| --- | --- | --- |
-| Skill README | `../README.md` | Complete skill documentation |
-| SKILL.md | `../SKILL.md` | Workflow instructions for AI agents |
-| Install Guide | `INSTALL_GUIDE.md` | Detailed installation |
-| Rollback Runbook | `../references/workflows/rollback-runbook.md` | Feature-flag rollback procedure |
+| Document         | Location                                      | Purpose                             |
+| ---------------- | --------------------------------------------- | ----------------------------------- |
+| Skill README     | `../README.md`                                | Complete skill documentation        |
+| SKILL.md         | `../SKILL.md`                                 | Workflow instructions for AI agents |
+| Install Guide    | `INSTALL_GUIDE.md`                            | Detailed installation               |
+| Rollback Runbook | `../references/workflows/rollback-runbook.md` | Feature-flag rollback procedure     |
 
 ### Related Specs
 
-| Spec | Path | Purpose |
-| --- | --- | --- |
-| 137 | `specs/003-system-spec-kit/137-*` | Pre-hybrid-RAG search improvements |
-| 138 | `specs/003-system-spec-kit/138-hybrid-rag-fusion/` | Hybrid RAG fusion (adaptive RRF, MMR) |
-| 139 | `specs/003-system-spec-kit/139-*` | Post-fusion enhancements and phase system |
+| Spec | Path                                               | Purpose                                   |
+| ---- | -------------------------------------------------- | ----------------------------------------- |
+| 137  | `specs/003-system-spec-kit/137-*`                  | Pre-hybrid-RAG search improvements        |
+| 138  | `specs/003-system-spec-kit/138-hybrid-rag-fusion/` | Hybrid RAG fusion (adaptive RRF, MMR)     |
+| 139  | `specs/003-system-spec-kit/139-*`                  | Post-fusion enhancements and phase system |
 
 ### Key Library Modules
 
-| Module | Purpose |
-| --- | --- |
-| `lib/search/hybrid-search.ts` | Hybrid scatter-gather retrieval pipeline |
-| `lib/search/adaptive-fusion.ts` | Intent-aware weighted RRF fusion |
-| `lib/search/rrf-fusion.ts` | RRF algorithm implementation |
-| `lib/search/causal-boost.ts` | 2-hop causal-neighbor score boost |
-| `lib/search/session-boost.ts` | Session-attention score boost |
-| `lib/cognitive/fsrs-scheduler.ts` | FSRS power-law decay algorithm |
-| `lib/cognitive/tier-classifier.ts` | 5-state memory classification |
-| `lib/cognitive/prediction-error-gate.ts` | Duplicate detection |
-| `lib/scoring/composite-scoring.ts` | Multi-factor ranking |
-| `lib/storage/causal-edges.ts` | Causal graph storage |
-| `lib/storage/mutation-ledger.ts` | Append-only tamper-proof audit trail |
-| `lib/telemetry/retrieval-telemetry.ts` | 4-dimension retrieval telemetry |
-| `lib/errors/recovery-hints.ts` | 49 error codes with recovery guidance |
-| `lib/chunking/anchor-chunker.ts` | Large-file anchor-aware chunking (50K threshold) |
-| `lib/architecture/layer-definitions.ts` | 7-layer tool architecture and token budgets |
+| Module                                   | Purpose                                          |
+| ---------------------------------------- | ------------------------------------------------ |
+| `lib/search/hybrid-search.ts`            | Hybrid scatter-gather retrieval pipeline         |
+| `lib/search/adaptive-fusion.ts`          | Intent-aware weighted RRF fusion                 |
+| `lib/search/rrf-fusion.ts`               | RRF algorithm implementation                     |
+| `lib/search/causal-boost.ts`             | 2-hop causal-neighbor score boost                |
+| `lib/search/session-boost.ts`            | Session-attention score boost                    |
+| `lib/cognitive/fsrs-scheduler.ts`        | FSRS power-law decay algorithm                   |
+| `lib/cognitive/tier-classifier.ts`       | 5-state memory classification                    |
+| `lib/cognitive/prediction-error-gate.ts` | Duplicate detection                              |
+| `lib/scoring/composite-scoring.ts`       | Multi-factor ranking                             |
+| `lib/storage/causal-edges.ts`            | Causal graph storage                             |
+| `lib/storage/mutation-ledger.ts`         | Append-only tamper-proof audit trail             |
+| `lib/telemetry/retrieval-telemetry.ts`   | 4-dimension retrieval telemetry                  |
+| `lib/errors/recovery-hints.ts`           | 49 error codes with recovery guidance            |
+| `lib/chunking/anchor-chunker.ts`         | Large-file anchor-aware chunking (50K threshold) |
+| `lib/architecture/layer-definitions.ts`  | 7-layer tool architecture and token budgets      |
 
 ### External Resources
 
-| Resource | URL |
-| --- | --- |
-| MCP Protocol Spec | https://modelcontextprotocol.io/ |
-| FSRS Algorithm | https://github.com/open-spaced-repetition/fsrs4anki/wiki |
-| sqlite-vec | https://github.com/asg017/sqlite-vec |
-| Voyage AI | https://www.voyageai.com/ |
-| FTS5 Docs | https://www.sqlite.org/fts5.html |
-| RRF Paper | https://plg.uwaterloo.ca/~gvcormac/cormacksigir09-rrf.pdf |
+| Resource          | URL                                                       |
+| ----------------- | --------------------------------------------------------- |
+| MCP Protocol Spec | https://modelcontextprotocol.io/                          |
+| FSRS Algorithm    | https://github.com/open-spaced-repetition/fsrs4anki/wiki  |
+| sqlite-vec        | https://github.com/asg017/sqlite-vec                      |
+| Voyage AI         | https://www.voyageai.com/                                 |
+| FTS5 Docs         | https://www.sqlite.org/fts5.html                          |
+| RRF Paper         | https://plg.uwaterloo.ca/~gvcormac/cormacksigir09-rrf.pdf |
 
 <!-- /ANCHOR:related -->

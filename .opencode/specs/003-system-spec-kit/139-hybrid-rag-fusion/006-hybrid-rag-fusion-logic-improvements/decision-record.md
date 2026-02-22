@@ -126,7 +126,7 @@ The hybrid pipeline from `002` is active and feature-rich, but seam-level failur
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Accepted |
 | **Date** | 2026-02-22 |
 | **Deciders** | Retrieval Maintainer, Command Workflow Maintainer |
 

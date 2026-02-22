@@ -1,6 +1,6 @@
 ---
 title: "Verification Checklist: 006-hybrid-rag-fusion-logic-improvements [template:level_3+/checklist.md]"
-description: "Verification Date: 2026-02-22 (baseline initialization)"
+description: "Verification Date: 2026-02-22 (broadened Level 3+ scope baseline)"
 SPECKIT_TEMPLATE_SOURCE: "checklist | v2.2"
 trigger_phrases:
   - "verification"
@@ -44,9 +44,10 @@ contextType: "implementation"
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [x] CHK-001 [P0] Requirements documented in `spec.md` [EVIDENCE: `spec.md` sections 2-5 and continuity section 3.5]
-- [x] CHK-002 [P0] Technical approach defined in `plan.md` [EVIDENCE: `plan.md` sections 1-4]
-- [x] CHK-003 [P1] Dependencies identified and available [EVIDENCE: `plan.md` section 6 and carry-forward table section 3.5]
+- [x] CHK-001 [P0] Requirements documented in `spec.md` with all ten scoped subsystem areas [EVIDENCE: `spec.md` sections 3-5]
+- [x] CHK-002 [P0] Technical approach defined in `plan.md` with requirement-to-phase mapping [EVIDENCE: `plan.md` sections 1-4]
+- [x] CHK-003 [P1] Dependencies identified and risk-classified [EVIDENCE: `plan.md` section 6]
+- [x] CHK-004 [P1] Continuity mapping from `002/003/004/005` expanded across docs [EVIDENCE: `spec.md` section 3.5, `plan.md` section 3.5, `tasks.md` carry-forward table]
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -54,10 +55,14 @@ contextType: "implementation"
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-010 [P0] Code passes lint/format checks
-- [ ] CHK-011 [P0] No console errors or warnings
-- [ ] CHK-012 [P1] Error handling implemented
-- [ ] CHK-013 [P1] Code follows project patterns
+- [ ] CHK-010 [P0] Retrieval/fusion guardrail code passes lint/format checks
+- [ ] CHK-011 [P0] Graph/causal contract and relation-scoring modules pass lint/format checks
+- [ ] CHK-012 [P0] Cognitive/FSRS ranking integration follows bounded-weight contract and project patterns
+- [ ] CHK-013 [P0] Session manager and session-learning changes follow deterministic-confidence policy
+- [ ] CHK-014 [P1] CRUD re-embedding orchestration includes bounded retries and error handling
+- [ ] CHK-015 [P1] Parser/index invariant code uses canonical path + tier normalization consistently
+- [ ] CHK-016 [P1] Storage recovery and mutation ledger code includes replay parity assertions
+- [ ] CHK-017 [P1] Telemetry schema validation paths avoid sensitive payload logging
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -65,10 +70,17 @@ contextType: "implementation"
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [ ] CHK-020 [P0] All acceptance criteria met
-- [ ] CHK-021 [P0] Manual testing complete
-- [ ] CHK-022 [P1] Edge cases tested
-- [ ] CHK-023 [P1] Error scenarios validated
+- [ ] CHK-020 [P0] All P0 acceptance criteria from `spec.md` are met
+- [ ] CHK-021 [P0] Retrieval/fusion deterministic fixtures pass
+- [ ] CHK-022 [P0] Graph relation-score contract tests pass (Kendall tau threshold met)
+- [ ] CHK-023 [P0] Cognitive/FSRS ablation tests meet quality/regression bounds
+- [ ] CHK-024 [P0] Session misroute and latency targets pass on ambiguity fixtures
+- [ ] CHK-025 [P0] CRUD re-embedding consistency tests meet queue/backlog SLA thresholds
+- [ ] CHK-026 [P0] Parser/index invariant tests pass and fail correctly on injected violations
+- [ ] CHK-027 [P0] Storage recovery replay tests meet RPO/RTO constraints
+- [ ] CHK-028 [P0] Deferred/skipped paths from `002`/`003`/`004`/`005` are closed or approved
+- [ ] CHK-029 [P1] Manual operational drill tests complete for four runbook classes
+- [ ] CHK-030 [P1] Error scenarios validated for telemetry schema/doc drift and auto-heal escalation
 <!-- /ANCHOR:testing -->
 
 ---
@@ -76,9 +88,10 @@ contextType: "implementation"
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] CHK-030 [P0] No hardcoded secrets
-- [ ] CHK-031 [P0] Input validation implemented
-- [ ] CHK-032 [P1] Auth/authz working correctly where applicable
+- [ ] CHK-040 [P0] No hardcoded secrets introduced in changed modules
+- [ ] CHK-041 [P0] Input/path validation maintained for parser, session, and storage flows
+- [ ] CHK-042 [P1] Telemetry payloads exclude sensitive content by schema policy
+- [ ] CHK-043 [P1] Mutation ledger integrity checks detect tampering or out-of-order replay
 <!-- /ANCHOR:security -->
 
 ---
@@ -86,9 +99,11 @@ contextType: "implementation"
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [x] CHK-040 [P1] Spec/plan/tasks synchronized [EVIDENCE: `spec.md`, `plan.md`, `tasks.md` created and cross-referenced]
-- [x] CHK-041 [P1] Documentation reflects carry-forward assumptions from `002/003/004/005` [EVIDENCE: continuity sections in `spec.md` and `plan.md`]
-- [ ] CHK-042 [P2] README updated (if applicable)
+- [x] CHK-050 [P1] `spec.md`, `plan.md`, and `tasks.md` synchronized to broadened ten-subsystem scope [EVIDENCE: current baseline update]
+- [x] CHK-051 [P1] `checklist.md`, `decision-record.md`, and `implementation-summary.md` aligned to broadened scope [EVIDENCE: current baseline update]
+- [x] CHK-052 [P1] Requirement -> phase -> task mapping documented [EVIDENCE: `spec.md` section 4.5, `plan.md` section 4]
+- [ ] CHK-053 [P1] Runbook documentation includes trigger, command, owner, and escalation for each failure class
+- [ ] CHK-054 [P2] User-facing docs updated if operational behavior changes surface externally
 <!-- /ANCHOR:docs -->
 
 ---
@@ -96,9 +111,9 @@ contextType: "implementation"
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [x] CHK-050 [P1] Temp files in `scratch/` only [EVIDENCE: no temporary artifacts added outside permitted folders]
-- [x] CHK-051 [P1] `scratch/` cleaned before completion [EVIDENCE: no task-generated residue required for this documentation pass]
-- [ ] CHK-052 [P2] Findings saved to `memory/` (if requested)
+- [x] CHK-060 [P1] Temp files constrained to `scratch/` where applicable [EVIDENCE: no temporary artifacts added outside permitted folders]
+- [ ] CHK-061 [P1] `scratch/` cleaned before completion
+- [ ] CHK-062 [P2] Context snapshot saved to `memory/` when implementation closes
 <!-- /ANCHOR:file-org -->
 
 ---
@@ -108,12 +123,12 @@ contextType: "implementation"
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 11 | 2/11 |
-| P1 Items | 20 | 5/20 |
-| P2 Items | 10 | 0/10 |
+| P0 Items | 22 | 2/22 |
+| P1 Items | 24 | 8/24 |
+| P2 Items | 3 | 0/3 |
 
 **Verification Date**: 2026-02-22
-**State**: Baseline initialized; implementation verification pending.
+**State**: Broadened-scope baseline initialized; implementation verification pending.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -122,9 +137,10 @@ contextType: "implementation"
 ## L3+: ARCHITECTURE VERIFICATION
 
 - [ ] CHK-100 [P0] Architecture decisions documented in `decision-record.md`
-- [ ] CHK-101 [P1] All ADRs have status (Proposed/Accepted)
-- [ ] CHK-102 [P1] Alternatives documented with rejection rationale
-- [ ] CHK-103 [P2] Migration path documented (if applicable)
+- [ ] CHK-101 [P1] All ADRs have status and explicit consequences
+- [ ] CHK-102 [P1] Alternatives include retrieval-only and partial-scope options with rationale
+- [ ] CHK-103 [P1] Continuity decisions from `002/003/004/005` are mapped to implemented controls
+- [ ] CHK-104 [P2] Future migration path documented if external storage becomes necessary
 <!-- /ANCHOR:arch-verify -->
 
 ---
@@ -132,10 +148,10 @@ contextType: "implementation"
 <!-- ANCHOR:perf-verify -->
 ## L3+: PERFORMANCE VERIFICATION
 
-- [ ] CHK-110 [P1] Response time targets met (NFR-P01)
-- [ ] CHK-111 [P1] Throughput/check overhead targets met (NFR-P02)
-- [ ] CHK-112 [P2] Load testing completed
-- [ ] CHK-113 [P2] Performance benchmarks documented
+- [ ] CHK-110 [P1] Retrieval response targets met (p95 `auto <= 120ms`, p95 `deep <= 180ms`)
+- [ ] CHK-111 [P1] Session and learning targets met (session p95 <= 250ms, learning batch p95 <= 400ms)
+- [ ] CHK-112 [P1] Hardening overhead target met (`<= 12%` vs baseline corpus)
+- [ ] CHK-113 [P2] Extended load/stress tests completed and documented
 <!-- /ANCHOR:perf-verify -->
 
 ---
@@ -143,11 +159,11 @@ contextType: "implementation"
 <!-- ANCHOR:deploy-ready -->
 ## L3+: DEPLOYMENT READINESS
 
-- [ ] CHK-120 [P0] Rollback procedure documented and tested
-- [ ] CHK-121 [P0] Feature/invariant gating configured
-- [ ] CHK-122 [P1] Monitoring/alerting configured
-- [ ] CHK-123 [P1] Runbook created
-- [ ] CHK-124 [P2] Deployment runbook reviewed
+- [ ] CHK-120 [P0] Rollback and transaction recovery procedure documented and dry-run tested
+- [ ] CHK-121 [P0] Invariant and schema gating configured in CI
+- [ ] CHK-122 [P1] Monitoring and alerting configured for retrieval/session/storage/telemetry paths
+- [ ] CHK-123 [P1] Self-healing runbook automation created and validated
+- [ ] CHK-124 [P1] Failure-injection drill evidence captured for runbook classes
 <!-- /ANCHOR:deploy-ready -->
 
 ---
@@ -157,8 +173,8 @@ contextType: "implementation"
 
 - [ ] CHK-130 [P1] Security review completed
 - [ ] CHK-131 [P1] Dependency licenses compatible
-- [ ] CHK-132 [P2] OWASP-aligned checklist completed
-- [ ] CHK-133 [P2] Data handling compliant with requirements
+- [ ] CHK-132 [P1] Data handling and telemetry schema governance compliant with documented policy
+- [ ] CHK-133 [P2] OWASP-aligned checklist completed where applicable
 <!-- /ANCHOR:compliance-verify -->
 
 ---
@@ -167,9 +183,9 @@ contextType: "implementation"
 ## L3+: DOCUMENTATION VERIFICATION
 
 - [ ] CHK-140 [P1] All spec documents synchronized with implementation evidence
-- [ ] CHK-141 [P1] API/diagnostic documentation complete (if applicable)
-- [ ] CHK-142 [P2] User-facing documentation updated
-- [ ] CHK-143 [P2] Knowledge transfer documented
+- [ ] CHK-141 [P1] Diagnostics/trace documentation complete and schema-aligned
+- [ ] CHK-142 [P1] Deferral records include owner, impact, and re-entry condition
+- [ ] CHK-143 [P2] Knowledge transfer and handoff documentation completed
 <!-- /ANCHOR:docs-verify -->
 
 ---
@@ -180,13 +196,15 @@ contextType: "implementation"
 | Approver | Role | Status | Date |
 |----------|------|--------|------|
 | Technical Lead | Engineering | Pending | |
-| Product Owner | Product | Pending | |
+| Engineering Lead | Engineering | Pending | |
 | QA Lead | Quality | Pending | |
+| Operations Lead | Operations | Pending | |
+| Product Owner | Product | Pending | |
 <!-- /ANCHOR:sign-off -->
 
 ---
 
 <!--
 LEVEL 3+ CHECKLIST
-Baseline verification initialized for future implementation evidence updates.
+Broadened verification baseline covering all scoped subsystems and governance gates.
 -->

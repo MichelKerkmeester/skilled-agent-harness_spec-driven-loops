@@ -1,12 +1,12 @@
 ---
 title: "Implementation Plan: 006-hybrid-rag-fusion-logic-improvements [template:level_3+/plan.md]"
-description: "This plan executes an audit-first hardening cycle for hybrid RAG fusion logic, then adds automation and prevention controls that keep retrieval, indexing, and routing behavior synchronized."
+description: "This plan executes audit-first hardening across retrieval, ranking, session/state integrity, telemetry governance, and self-healing operations with explicit traceability to expanded requirements."
 SPECKIT_TEMPLATE_SOURCE: "plan-core | v2.2"
 trigger_phrases:
   - "implementation"
   - "plan"
   - "hybrid rag fusion"
-  - "audit first"
+  - "cross-system hardening"
   - "automation interconnection"
 importance_tier: "critical"
 contextType: "implementation"
@@ -31,7 +31,7 @@ contextType: "implementation"
 | **Testing** | Vitest, script-level functional tests, spec validation scripts |
 
 ### Overview
-This plan runs in four phases: baseline audit, fusion-logic hardening, automation/interconnection, and prevention validation. The implementation does not replace the established architecture from `002`; it adds deterministic guardrails and release gates that absorb known failure patterns from `003`, `004`, and `005`. Delivery emphasizes measurable invariants and rollback-ready changes.
+This plan now covers all risk-bearing systems discovered in research, not only retrieval/fusion internals. Delivery runs in five phases: cross-system audit, ranking/channel hardening, state-integrity hardening, telemetry/operations governance, and verification/sign-off closure. The plan preserves architecture decisions from `002` and converts fragile seams from `003`, `004`, and `005` into measured controls and release gates.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -40,16 +40,17 @@ This plan runs in four phases: baseline audit, fusion-logic hardening, automatio
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [x] Problem statement clear and scope documented
-- [x] Success criteria measurable
-- [x] Dependencies identified
-- [x] Prior-work assumptions from `002` to `005` mapped into this plan
+- [x] Problem statement clear and scope documented for ten subsystems
+- [x] Success criteria and thresholds measurable
+- [x] Dependencies identified with continuity from `002` to `005`
+- [x] Requirement -> phase -> task traceability map established
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Regression and invariant suites passing
-- [ ] Latency and reliability budgets verified
-- [ ] Governance docs synchronized (`spec.md`, `tasks.md`, `checklist.md`, `decision-record.md`, `implementation-summary.md`)
+- [ ] All P0 acceptance criteria met
+- [ ] P1 items complete or explicitly deferred with approval
+- [ ] Regression, recovery, and telemetry gates passing
+- [ ] Latency/reliability budgets verified
+- [ ] Governance docs synchronized (`spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `decision-record.md`, `implementation-summary.md`)
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -58,19 +59,21 @@ This plan runs in four phases: baseline audit, fusion-logic hardening, automatio
 ## 3. ARCHITECTURE
 
 ### Pattern
-Audit-first closed-loop hardening with deterministic guardrails.
+Audit-first, contract-driven hardening with release-gated invariants and self-healing operations.
 
 ### Key Components
-- **Audit Orchestrator**: captures baseline behavior and identifies seam risks across retrieval, indexing, and routing.
-- **Fusion Guardrail Layer**: enforces bounded weights, deterministic ties, and confidence calibration.
-- **Automation Bridge**: links index health signals, retrieval confidence signals, and folder-selection confidence into one invariant framework.
-- **Prevention Harness**: regression suites and CI release gates for known bug classes.
+- **Cross-System Audit Orchestrator**: maps subsystem contracts, captures baselines, and ranks seam risks.
+- **Ranking and Contract Guardrails**: retrieval/fusion determinism, graph relation contract checks, and cognitive modifier bounds.
+- **Session/State Integrity Layer**: session manager quality controls, session-learning hygiene, CRUD re-embedding consistency, parser/index invariants, and storage recovery checks.
+- **Telemetry Governance Layer**: trace schema registry, payload validation, and docs drift enforcement.
+- **Prevention and Operations Layer**: deferred/skipped-path test hardening and self-healing runbooks.
 
 ### Data Flow
-1. Collect baseline fixtures and metrics from active retrieval/index/routing paths.
-2. Apply fusion guardrails and confidence policy refinements.
-3. Emit machine-readable diagnostics that connect retrieval outcomes with index/routing invariants.
-4. Run prevention suite and gate releases on invariant compliance.
+1. Capture baseline metrics and continuity constraints for all ten subsystem areas.
+2. Apply ranking/channel hardening (fusion, graph, cognitive) with deterministic contracts.
+3. Apply session/state-integrity controls (routing quality, learning hygiene, CRUD re-embed, parser/index health, storage recovery).
+4. Govern diagnostics through telemetry schema validation and docs drift checks.
+5. Run prevention, recovery, and operational self-heal drills before sign-off.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -79,35 +82,59 @@ Audit-first closed-loop hardening with deterministic guardrails.
 
 | Prior Spec | Carry-Forward Asset | 006 Usage |
 |------------|---------------------|-----------|
-| `002-hybrid-rag-fusion` | Tri-hybrid retrieval + MMR/TRM pipeline | Baseline audited and hardened, not replaced |
-| `003-index-tier-anomalies` | Canonical path dedup + tier precedence | Treated as mandatory invariants for release gating |
-| `004-frontmatter-indexing` | Frontmatter normalization + reindex discipline | Used as precondition checks before fusion benchmarking |
-| `005-auto-detected-session-bug` | Confidence-aware folder detection behavior | Aligned with retrieval confidence policy and escalation rules |
+| `002-hybrid-rag-fusion` | Tri-hybrid retrieval + MMR/TRM pipeline | Baseline for retrieval/fusion determinism and channel governance |
+| `003-index-tier-anomalies` | Canonical path dedup + tier precedence | Elevated to parser/index + storage integrity gates |
+| `004-frontmatter-indexing` | Frontmatter normalization + idempotent reindex | Enforced as parser/index invariant and metadata consistency precondition |
+| `005-auto-detected-session-bug` | Confidence-aware folder/session detection | Extended into session manager and session-learning quality/performance controls |
+
+| Expanded Area | Primary Continuity Source | Implementation Note |
+|---------------|---------------------------|---------------------|
+| Graph/causal relation scoring | `002` | Contract tests and relation score calibration are now mandatory release-gated checks |
+| Cognitive decay + FSRS ranking | `002` + `005` | Confidence/ranking alignment requires bounded cognitive weighting and ablation checks |
+| CRUD re-embed consistency | `003` + `004` | Canonical metadata and index consistency now include mutation-to-embedding SLA controls |
+| Storage recovery + mutation ledger | `003` | Index integrity now extends to transactional recovery parity and replay consistency |
+| Telemetry/docs drift governance | `004` + `005` | Diagnostic schema changes require matching docs updates and gate validation |
 
 ---
 
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
-### Phase 1: Deep System Audit
-- [ ] Build an end-to-end component map of retrieval/index/routing seams.
-- [ ] Capture baseline fixtures, latency metrics, and confidence distributions.
-- [ ] Produce ranked risk register with owner and mitigation mapping.
+### Phase 1: Cross-System Audit and Continuity Lock
+- [ ] Build subsystem contract map for all ten scoped areas.
+- [ ] Capture baseline fixtures, latency/reliability metrics, and deferred/skipped-path inventory.
+- [ ] Produce risk register and continuity mapping from `002/003/004/005` to 006 controls.
 
-### Phase 2: Fusion Logic Hardening
-- [ ] Add bounded adaptive-fusion guardrails and deterministic tie handling.
-- [ ] Recalibrate evidence-gap confidence thresholds from audited distributions.
-- [ ] Ensure fallback sequence is explicit and test-covered.
+### Phase 2: Ranking and Channel Contract Hardening
+- [ ] Harden retrieval/fusion determinism, graph relation scoring contracts, and cognitive ranking bounds.
+- [ ] Align low-confidence policy across retrieval and session routing behavior.
+- [ ] Emit ranked-channel diagnostics and confidence rationale in debug metadata.
 
-### Phase 3: Automation and Interconnection
-- [ ] Add invariant checks linking index health, tier correctness, and routing confidence.
-- [ ] Wire diagnostics so anomalies are visible in CI and operational logs.
-- [ ] Align folder detection confidence policy with retrieval confidence contract.
+### Phase 3: Session and State Integrity Hardening
+- [ ] Improve session manager/session-learning quality and performance.
+- [ ] Enforce CRUD re-embedding consistency SLAs.
+- [ ] Enforce parser/index invariants and index-health automation.
+- [ ] Add storage recovery and mutation-ledger parity checks.
 
-### Phase 4: Bug Prevention and Governance Verification
-- [ ] Expand regression matrix to include alias-path, tier-drift, and wrong-folder scenarios.
-- [ ] Run performance and reliability verification gates.
-- [ ] Finalize approvals, checklist evidence, and implementation summary.
+### Phase 4: Telemetry Governance and Operational Automation
+- [ ] Implement trace schema registry and validation gates.
+- [ ] Add docs drift prevention checks tied to telemetry and runbook contracts.
+- [ ] Build self-healing checks and operational runbooks for known failure classes.
+
+### Phase 5: Verification Hardening and Governance Closure
+- [ ] Convert deferred/skipped-path tests into active coverage or approved deferrals.
+- [ ] Run full performance/reliability/recovery verification suite.
+- [ ] Finalize evidence, ADR updates, checklist closure, and sign-offs.
+
+### Requirement-to-Phase Mapping
+
+| Requirement IDs | Phase |
+|-----------------|-------|
+| REQ-001, REQ-015 | Phase 1 |
+| REQ-002, REQ-003, REQ-004, REQ-014 | Phase 2 |
+| REQ-005, REQ-006, REQ-007, REQ-008 | Phase 3 |
+| REQ-009, REQ-011, REQ-017 | Phase 4 |
+| REQ-010, REQ-012, REQ-013, REQ-016, REQ-018 | Phase 5 |
 <!-- /ANCHOR:phases -->
 
 ---
@@ -117,11 +144,12 @@ Audit-first closed-loop hardening with deterministic guardrails.
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Unit | fusion weighting bounds, confidence math, fallback logic | Vitest |
-| Integration | end-to-end retrieval/index/routing invariants | Vitest + script harness |
-| Regression | prior bug classes from `003`, `004`, `005` | Existing and new functional suites |
-| Performance | p95 latency and check-overhead deltas | benchmark scripts + CI metrics |
-| Manual | anomaly review and rollback dry-run | command-line runbook execution |
+| Unit | fusion bounds, relation scoring, cognitive weighting, session confidence math | Vitest |
+| Integration | retrieval + session + CRUD + parser/index + telemetry contracts | Vitest + script harness |
+| Regression | known failures and deferred/skipped paths from `002`/`003`/`004`/`005` | functional suites + fixture replay |
+| Recovery | transaction interruption, ledger replay, index repair | script harness + deterministic replay fixtures |
+| Performance | retrieval/session latency budgets, automation overhead, health loop runtime | benchmark scripts + CI metrics |
+| Operational | runbook drills for index drift, session ambiguity, ledger mismatch, telemetry drift | command-line runbooks |
 <!-- /ANCHOR:testing -->
 
 ---
@@ -131,10 +159,15 @@ Audit-first closed-loop hardening with deterministic guardrails.
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| Baseline fixtures from active hybrid search | Internal | Green | Hardening cannot be validated against current behavior |
-| Parser/index normalization guarantees from `004` | Internal | Yellow | Confidence and ranking checks may be invalid |
-| Folder detection confidence hooks from `005` | Internal | Green | Cross-policy alignment for routing confidence is incomplete |
-| CI pipeline support for new invariant gates | Internal | Yellow | Prevention controls cannot enforce release safety |
+| Baseline fixtures for retrieval/session/storage/telemetry paths | Internal | Green | Hardening cannot be validated against real behavior |
+| Parser/index normalization guarantees from `003` and `004` | Internal | Green | State-integrity controls can produce false positives |
+| Session confidence hooks from `005` | Internal | Green | Routing/retrieval policy alignment is incomplete |
+| Mutation ledger + transaction recovery hooks | Internal | Yellow | Storage reliability criteria cannot be proven |
+| CI support for schema-gate and self-healing verification | Internal | Yellow | Prevention controls cannot be release-enforced |
+
+Status criteria:
+- `Green`: validated in the current branch with passing evidence available.
+- `Yellow`: dependency is identified, but one or more validation artifacts are still pending.
 <!-- /ANCHOR:dependencies -->
 
 ---
@@ -142,8 +175,8 @@ Audit-first closed-loop hardening with deterministic guardrails.
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: significant latency regression, false-positive confidence warnings, or invariant gate noise that blocks safe delivery.
-- **Procedure**: revert guardrail changes by phase, keep baseline fixtures, restore previous thresholds, and rerun regression matrix before reattempt.
+- **Trigger**: sustained latency regression, elevated session misroute rate, re-embedding backlog growth, recovery replay mismatch, or telemetry-schema gate failures.
+- **Procedure**: roll back by phase in reverse critical-path order while preserving audit baselines and replay fixtures; restore previous thresholds/contracts; rerun critical regression + recovery suites before reattempt.
 <!-- /ANCHOR:rollback -->
 
 ---
@@ -152,17 +185,20 @@ Audit-first closed-loop hardening with deterministic guardrails.
 ## L2: PHASE DEPENDENCIES
 
 ```
-Phase 1 (Audit) ──────┐
-                      ├──► Phase 2 (Hardening) ───► Phase 3 (Automation) ───► Phase 4 (Prevention/Verify)
-Prior-spec checks ────┘
+Phase 1 (Audit + Continuity)
+  ├──► Phase 2 (Ranking/Channel Hardening)
+  ├──► Phase 3 (Session/State Integrity)
+  └──► Phase 4 (Telemetry/Ops Governance)
+                └──► Phase 5 (Verification + Sign-off)
 ```
 
 | Phase | Depends On | Blocks |
 |-------|------------|--------|
-| Audit | Prior-spec continuity map | Hardening, Automation, Verify |
-| Hardening | Audit baselines | Automation, Verify |
-| Automation | Hardening + continuity checks | Verify |
-| Prevention/Verify | Automation + regression matrix | Completion |
+| Phase 1 Audit | Prior-spec continuity mapping | Phases 2, 3, 4, 5 |
+| Phase 2 Ranking/Channel | Phase 1 baselines | Phases 4, 5 |
+| Phase 3 Session/State | Phase 1 baselines + Phase 2 confidence contracts | Phases 4, 5 |
+| Phase 4 Telemetry/Ops | Phases 2 and 3 outputs | Phase 5 |
+| Phase 5 Verification | Phases 2, 3, 4 complete | Completion |
 <!-- /ANCHOR:phase-deps -->
 
 ---
@@ -172,11 +208,12 @@ Prior-spec checks ────┘
 
 | Phase | Complexity | Estimated Effort |
 |-------|------------|------------------|
-| Deep System Audit | High | 1.5-2.5 days |
-| Fusion Logic Hardening | High | 2-3 days |
-| Automation and Interconnection | High | 1.5-2.5 days |
-| Prevention and Governance Verification | Medium-High | 1-2 days |
-| **Total** | | **6-10 days** |
+| Phase 1: Cross-System Audit | High | 1.5-2.5 days |
+| Phase 2: Ranking/Channel Hardening | High | 2-3 days |
+| Phase 3: Session/State Integrity | High | 2-3 days |
+| Phase 4: Telemetry/Ops Governance | High | 1.5-2.5 days |
+| Phase 5: Verification/Closure | Medium-High | 1-2 days |
+| **Total** | | **8-13 days** |
 <!-- /ANCHOR:effort -->
 
 ---
@@ -185,19 +222,21 @@ Prior-spec checks ────┘
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deployment Checklist
-- [ ] Baseline audit fixtures archived
-- [ ] Threshold changes documented with before/after metrics
-- [ ] Invariant gate overrides documented for emergency use
+- [ ] Baseline audit fixtures archived for retrieval, session, and storage paths
+- [ ] Threshold and contract deltas documented with before/after metrics
+- [ ] Recovery replay artifacts captured and verifiable
+- [ ] Emergency gate override protocol documented with approver list
 
 ### Rollback Procedure
-1. Disable newly introduced invariant gates only if they are producing verified false positives.
-2. Revert phase-specific hardening changes in reverse order (Phase 4 -> Phase 2).
-3. Re-run baseline fixture suite and compare against pre-change results.
-4. Record incident and update decision record before redeployment.
+1. Disable newly introduced gates only when verified false positives are documented.
+2. Revert phase-specific changes in reverse order (Phase 5 -> Phase 2).
+3. Restore prior stable thresholds/contracts from archived baseline artifacts.
+4. Re-run deterministic regression, recovery replay, and telemetry schema checks.
+5. Record incident details and decision-record updates before redeployment.
 
 ### Data Reversal
 - **Has data migrations?** No direct schema migrations expected
-- **Reversal procedure**: restore previous index snapshots if benchmark corpus was reindexed during validation
+- **Reversal procedure**: restore previous index snapshots and mutation-ledger checkpoint, then replay validated transaction set to confirm parity
 <!-- /ANCHOR:enhanced-rollback -->
 
 ---
@@ -206,35 +245,40 @@ Prior-spec checks ────┘
 ## L3: DEPENDENCY GRAPH
 
 ```
-┌──────────────────────┐
-│ A: Audit Baselines   │
-└──────────┬───────────┘
-           │
-┌──────────▼───────────┐
-│ B: Fusion Guardrails │
-└───────┬───────┬──────┘
-        │       │
-┌───────▼───┐ ┌─▼──────────────────┐
-│ C: Policy │ │ D: Automation Bridge│
-│ Alignment │ │ (invariant gates)   │
-└───────┬───┘ └───────────┬─────────┘
-        │                 │
-        └───────┬─────────┘
-                ▼
-      ┌──────────────────────┐
-      │ E: Prevention Verify │
-      └──────────────────────┘
+┌────────────────────────────┐
+│ A: Cross-System Baselines  │
+└──────────────┬─────────────┘
+               │
+      ┌────────▼─────────┐
+      │ B: Ranking Guard │
+      │ (fusion/graph/cog)
+      └───────┬──────────┘
+              │
+      ┌───────▼──────────┐
+      │ C: Session/State │
+      │ Integrity Layer  │
+      └───────┬──────────┘
+              │
+      ┌───────▼──────────┐
+      │ D: Telemetry/Ops │
+      │ Governance Layer │
+      └───────┬──────────┘
+              │
+      ┌───────▼──────────┐
+      │ E: Verification  │
+      │ and Sign-off     │
+      └──────────────────┘
 ```
 
 ### Dependency Matrix
 
 | Component | Depends On | Produces | Blocks |
 |-----------|------------|----------|--------|
-| A Audit Baselines | Prior-spec continuity mapping | Fixture corpus + risk register | B, C, D |
-| B Fusion Guardrails | A | Tuned weighting and fallback behavior | D, E |
-| C Policy Alignment | A + B | Unified confidence policy | E |
-| D Automation Bridge | A + B | Invariant checks and diagnostics | E |
-| E Prevention Verify | C + D | Release-gate evidence | Completion |
+| A Baselines | Prior-spec continuity mapping | Contract map + fixture corpus + risk register | B, C, D, E |
+| B Ranking Guard | A | Deterministic fusion/graph/cognitive behavior | C, D, E |
+| C Session/State | A + B | Session quality controls + CRUD/index/storage invariants | D, E |
+| D Telemetry/Ops | B + C | Schema-gated diagnostics + self-healing runbooks | E |
+| E Verification | B + C + D | Release-gate evidence and approvals | Completion |
 <!-- /ANCHOR:dependency-graph -->
 
 ---
@@ -242,16 +286,18 @@ Prior-spec checks ────┘
 <!-- ANCHOR:critical-path -->
 ## L3: CRITICAL PATH
 
-1. **Audit baselines captured and reviewed** - 1.5 days - CRITICAL
-2. **Fusion guardrails implemented and stabilized** - 2 days - CRITICAL
-3. **Automation bridge and invariant gates operational** - 1.5 days - CRITICAL
-4. **Regression/performance/governance verification complete** - 1 day - CRITICAL
+1. **Cross-system baselines and continuity lock complete** - 1.5 days - CRITICAL
+2. **Ranking/channel hardening stabilized** - 2 days - CRITICAL
+3. **Session/state integrity controls validated** - 2 days - CRITICAL
+4. **Telemetry/ops governance checks operational** - 1.5 days - CRITICAL
+5. **Verification/recovery/sign-off closure** - 1 day - CRITICAL
 
-**Total Critical Path**: ~6 days
+**Total Critical Path**: ~8 days
 
 **Parallel Opportunities**:
-- Policy alignment and test fixture expansion can run in parallel after guardrail interfaces stabilize.
-- Documentation evidence can be updated alongside verification runs in Phase 4.
+- Telemetry schema authoring can start during Phase 3 once diagnostic contracts stabilize.
+- Runbook drafting can proceed in parallel with verification fixture expansion.
+- Documentation evidence updates can run concurrently with Phase 5 gate execution.
 <!-- /ANCHOR:critical-path -->
 
 ---
@@ -261,30 +307,31 @@ Prior-spec checks ────┘
 
 | Milestone | Description | Success Criteria | Target |
 |-----------|-------------|------------------|--------|
-| M1 | Audit Complete | Risk register and baseline metrics approved | End Phase 1 |
-| M2 | Hardening Complete | Fusion regression suite passing with deterministic outputs | End Phase 2 |
-| M3 | Automation Complete | Invariant gates active and stable | End Phase 3 |
-| M4 | Release Ready | Governance approvals + verification evidence complete | End Phase 4 |
+| M1 | Baselines Locked | Ten-subsystem audit and continuity matrix approved | End Phase 1 |
+| M2 | Ranking Contracts Hardened | Fusion/graph/cognitive suites pass deterministic and quality bounds | End Phase 2 |
+| M3 | State Integrity Hardened | Session/CRUD/index/storage gates pass with required thresholds | End Phase 3 |
+| M4 | Governance and Ops Ready | Telemetry schema/docs drift checks and runbooks validated | End Phase 4 |
+| M5 | Release Ready | Full verification evidence and sign-offs complete | End Phase 5 |
 <!-- /ANCHOR:milestones -->
 
 ---
 
 ## L3: ARCHITECTURE DECISION RECORD
 
-### ADR-001: Audit-first hardening over direct tuning
+### ADR-001: Broad cross-system hardening over retrieval-only tuning
 
 **Status**: Accepted
 
-**Context**: Prior specs solved core architecture and bug classes, but seam-level drift risk remains. Direct tuning without a baseline increases regression risk.
+**Context**: Research identified high-risk seams outside retrieval/fusion. Limiting work to ranking internals would leave unresolved state-integrity and operational failure modes.
 
-**Decision**: Capture deep baselines first, then apply bounded hardening and release-gated automation.
+**Decision**: Execute full ten-subsystem hardening with explicit requirement mapping and release gates.
 
 **Consequences**:
-- Positive: changes are measurable and reversible.
-- Negative: front-loaded analysis adds initial schedule cost.
+- Positive: failure prevention is systemic rather than local.
+- Negative: implementation complexity and verification scope increase.
 
 **Alternatives Rejected**:
-- Immediate tuning without baseline: rejected due to low explainability and high regression risk.
+- Retrieval/fusion-only plan: rejected because it does not cover discovered systemic risks.
 
 ---
 
@@ -292,21 +339,21 @@ Prior-spec checks ────┘
 ## L3+: AI EXECUTION FRAMEWORK
 
 ### Tier 1: Sequential Foundation
-**Files**: `spec.md` sections 1-4 and continuity matrix
+**Files**: `spec.md` sections 1-5 + continuity and traceability mappings
 **Duration**: one focused pass
 **Agent**: Primary
 
 ### Tier 2: Controlled Parallel Preparation
 | Agent | Focus | Files |
 |-------|-------|-------|
-| Primary (single-owner) | Planning and checklist synchronization | `plan.md`, `checklist.md` |
-| Primary (single-owner) | Decision continuity and governance updates | `decision-record.md`, `implementation-summary.md` |
+| Primary (single-owner) | Plan + tasks synchronization | `plan.md`, `tasks.md` |
+| Primary (single-owner) | Checklist + governance synchronization | `checklist.md`, `decision-record.md`, `implementation-summary.md` |
 
-**Execution Rule**: This phase runs sequentially in one LEAF execution context; no nested dispatch is used.
+**Execution Rule**: Workflow runs in one LEAF execution context; no nested dispatch is used.
 
 ### Tier 3: Integration
 **Agent**: Primary
-**Task**: Merge outputs, validate cross-file consistency, and enforce scope lock
+**Task**: Validate requirement-to-task mapping, sign-off consistency, and gate readiness across all docs
 **Duration**: final verification pass
 <!-- /ANCHOR:ai-execution -->
 
@@ -319,22 +366,23 @@ Prior-spec checks ────┘
 
 | ID | Name | Owner | Files | Status |
 |----|------|-------|-------|--------|
-| W-A | Audit and Baseline | Retrieval Maintainer | search/index/routing diagnostics | Planned |
-| W-B | Fusion Hardening | Retrieval Engineer | fusion/confidence modules | Planned |
-| W-C | Prevention and Governance | QA + Spec Maintainer | tests + docs + gates | Planned |
+| W-A | Ranking Contracts | Retrieval Maintainer | search/scoring modules + tests | Planned |
+| W-B | Session and State Integrity | Platform Maintainer | session, CRUD, parser/index, storage modules + tests | Planned |
+| W-C | Governance and Operations | QA + Operations | telemetry schema, runbooks, checklist, ADRs | Planned |
 
 ### Sync Points
 
 | Sync ID | Trigger | Participants | Output |
 |---------|---------|--------------|--------|
-| SYNC-001 | M1 complete | W-A, W-B | Approved baseline and hardening targets |
-| SYNC-002 | M2 complete | W-B, W-C | Regression matrix freeze |
-| SYNC-003 | M3 complete | W-A, W-B, W-C | Release-gate readiness packet |
+| SYNC-001 | M1 complete | W-A, W-B, W-C | Approved baselines and locked contract map |
+| SYNC-002 | M2 complete | W-A, W-B | Confidence and ranking contract freeze |
+| SYNC-003 | M3 complete | W-B, W-C | State-integrity and recovery evidence packet |
+| SYNC-004 | M4 complete | W-A, W-B, W-C | Release-gate readiness packet |
 
 ### File Ownership Rules
-- Each implementation file has a primary owner and one reviewer.
+- Each implementation file has one primary owner and one reviewer.
 - Cross-workstream edits require sync checkpoint evidence.
-- Unplanned changes outside this spec scope require explicit deferral entry.
+- Unplanned scope additions require explicit deferral entry and approval.
 <!-- /ANCHOR:workstreams -->
 
 ---
@@ -343,23 +391,24 @@ Prior-spec checks ────┘
 ## L3+: COMMUNICATION PLAN
 
 ### Checkpoints
-- **Daily**: concise status update in `tasks.md` and blocker notes in `checklist.md`.
-- **Per Phase**: milestone review and risk register update.
-- **Blockers**: immediate escalation with command evidence.
+- **Daily**: status updates in `tasks.md` and blockers in `checklist.md`.
+- **Per Phase**: milestone review with continuity and risk register updates.
+- **Operational Drill**: runbook simulation summary at end of Phase 4.
+- **Blockers**: immediate escalation with command-level evidence.
 
 ### Escalation Path
 1. Technical blocker -> Engineering Lead
-2. Scope or timeline risk -> Product Owner
-3. Verification failure -> QA Lead
-<!-- /ANCHOR:communication -->
+2. Verification failure -> QA Lead
+3. Operational readiness blocker -> Operations Lead
+4. Scope or timeline risk -> Product Owner
 
 ---
 
 ## AI EXECUTION PROTOCOL
 
 ### Pre-Task Checklist
-- Confirm target files and test scope for the active phase.
-- Confirm carry-forward constraints from `002/003/004/005`.
+- Confirm target files, tests, and subsystem focus for active phase.
+- Confirm continuity constraints from `002/003/004/005` remain valid.
 - Confirm no schema migration and no out-of-scope refactor.
 
 ### Execution Rules
@@ -383,5 +432,5 @@ Prior-spec checks ────┘
 
 <!--
 LEVEL 3+ PLAN
-Audit-first hardening with governance and prevention controls.
+Audit-first cross-system hardening with governance and prevention controls.
 -->
