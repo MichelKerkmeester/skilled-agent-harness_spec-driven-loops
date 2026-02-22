@@ -495,7 +495,7 @@ P0 - HARD BLOCKERS:
 [ ] All variables double-quoted
 [ ] File header present
 [ ] No commented-out code
-[ ] WHY comments for complex logic
+[ ] AI-intent comments (max 3/10, AI-WHY/AI-GUARD/AI-INVARIANT/AI-TRACE/AI-RISK)
 
 P1 - REQUIRED:
 [ ] Function names use snake_case

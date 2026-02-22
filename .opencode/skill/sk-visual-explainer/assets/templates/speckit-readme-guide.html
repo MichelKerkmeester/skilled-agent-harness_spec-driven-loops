@@ -4,11 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="color-scheme" content="light dark">
-<meta name="ve-artifact-type" content="implementation-summary">
-<meta name="ve-source-doc" content="specs/003-system-spec-kit/136-mcp-working-memory-hybrid-rag/implementation-summary.md">
-<meta name="ve-speckit-level" content="3+">
+<meta name="ve-artifact-type" content="readme">
+<meta name="ve-source-doc" content="README.md">
+<meta name="ve-speckit-level" content="n/a">
 <meta name="ve-view-mode" content="artifact-dashboard">
-<title>SpecKit Implementation Summary - Interactive Template</title>
+<title>SpecKit README Guide - Interactive Template</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -120,7 +120,7 @@ body {
 }
 
 .wrapper {
-  max-width: 1240px;
+  max-width: 1260px;
   margin: 0 auto;
   padding: 32px 18px 52px;
 }
@@ -265,6 +265,35 @@ h1 {
 .badge--warning { background: var(--ve-warning-dim); color: var(--ve-warning); }
 .badge--critical { background: var(--ve-danger-dim); color: var(--ve-danger); }
 
+.tab-bar {
+  display: inline-flex;
+  gap: 6px;
+  background: var(--ve-surface2);
+  border: 1px solid var(--ve-border);
+  border-radius: 10px;
+  padding: 4px;
+  margin-bottom: 10px;
+}
+
+.tab-button {
+  border: none;
+  border-radius: 8px;
+  padding: 7px 11px;
+  font: inherit;
+  font-size: 12px;
+  color: var(--ve-text-dim);
+  background: transparent;
+  cursor: pointer;
+}
+
+.tab-button.is-active {
+  color: var(--ve-accent);
+  background: var(--ve-accent-dim);
+}
+
+.tab-panel { display: none; }
+.tab-panel.is-active { display: block; }
+
 .table-scroll {
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
@@ -289,24 +318,6 @@ h1 {
   font-family: var(--font-mono);
   font-size: 11px;
   text-transform: uppercase;
-}
-
-.details {
-  border: 1px solid var(--ve-border);
-  border-radius: 10px;
-  background: var(--ve-surface2);
-  padding: 10px;
-}
-
-.details summary {
-  cursor: pointer;
-  font-weight: 600;
-  color: var(--ve-text);
-}
-
-.details p,
-.details ul {
-  margin-top: 8px;
 }
 
 .code-block {
@@ -349,183 +360,180 @@ code {
 <body>
 <div class="wrapper">
   <header class="header animate" style="--i:1">
-    <h1>Implementation Summary</h1>
-    <p class="subhead">Interactive implementation-summary template based on SpecKit L3+ structure and evidence-driven closeout.</p>
+    <h1>README Guide</h1>
+    <p class="subhead">Interactive README template inspired by the OpenCode + Spec Kit system README, rendered for visual explainer output.</p>
   </header>
 
   <div class="page-layout">
-    <nav class="toc animate" style="--i:2" aria-label="Implementation summary sections">
-      <a href="#artifact-kpis">Metadata KPI Row</a>
-      <a href="#section-coverage-map">Delivery Coverage</a>
-      <a href="#what-was-built">What Was Built</a>
-      <a href="#delivery">How It Was Delivered</a>
-      <a href="#decisions">Key Decisions</a>
-      <a href="#risk-gaps-panel">Known Limitations</a>
-      <a href="#inside">What's Inside</a>
-      <a href="#evidence-table">Verification Evidence</a>
+    <nav class="toc animate" style="--i:2" aria-label="README guide sections">
+      <a href="#artifact-kpis">Project Snapshot</a>
+      <a href="#overview">Overview</a>
+      <a href="#quick-start">Quick Start</a>
+      <a href="#section-coverage-map">Documentation Map</a>
+      <a href="#platform-architecture">Platform Architecture</a>
+      <a href="#runtime-tabs">Runtime Profiles</a>
+      <a href="#risk-gaps-panel">Troubleshooting Priorities</a>
+      <a href="#evidence-table">Command Matrix</a>
     </nav>
 
     <main class="content">
       <section id="artifact-kpis" class="panel animate" style="--i:3">
-        <h2>Metadata KPI Row</h2>
+        <h2>Project Snapshot</h2>
         <div class="kpi-row">
           <article class="kpi">
-            <p class="kpi-label">Spec Folder</p>
-            <p class="kpi-value">136</p>
+            <p class="kpi-label">Artifact</p>
+            <p class="kpi-value">README</p>
           </article>
           <article class="kpi">
-            <p class="kpi-label">Completed</p>
-            <p class="kpi-value">2026-02-19</p>
+            <p class="kpi-label">Audience</p>
+            <p class="kpi-value">Developers</p>
           </article>
           <article class="kpi">
-            <p class="kpi-label">Level</p>
-            <p class="kpi-value">3+</p>
+            <p class="kpi-label">Core Pillars</p>
+            <p class="kpi-value">4</p>
           </article>
           <article class="kpi">
-            <p class="kpi-label">Verification</p>
-            <p class="kpi-value"><span class="badge badge--healthy">PASS</span></p>
+            <p class="kpi-label">Commands</p>
+            <p class="kpi-value">20+</p>
           </article>
           <article class="kpi">
             <p class="kpi-label">Status</p>
-            <p class="kpi-value"><span class="badge badge--healthy">Complete</span></p>
+            <p class="kpi-value"><span class="badge badge--healthy">Maintained</span></p>
           </article>
         </div>
       </section>
 
-      <section id="section-coverage-map" class="panel animate" style="--i:4">
-        <h2>Delivery Coverage Map</h2>
-        <ul class="list">
-          <li class="item"><span>Typed retrieval trace + ContextEnvelope contract</span><span class="badge badge--healthy">Built</span></li>
-          <li class="item"><span>Artifact-aware routing and adaptive fusion profiles</span><span class="badge badge--healthy">Built</span></li>
-          <li class="item"><span>Append-only mutation ledger + telemetry extension</span><span class="badge badge--healthy">Built</span></li>
-          <li class="item"><span>Flagged rollout with staged validation and closure evidence</span><span class="badge badge--warning">Review</span></li>
-        </ul>
-      </section>
-
-      <section id="what-was-built" class="panel animate" style="--i:5">
-        <h2>What Was Built</h2>
-        <p class="body-text">The memory engine moves from opaque retrieval to traceable, intent-aware retrieval. Results carry a typed trace, routing adapts by artifact type, and fusion weights adjust by task intent. The index now records append-only mutation history and captures richer operational telemetry.</p>
+      <section id="overview" class="panel animate" style="--i:4">
+        <h2>Overview</h2>
+        <p class="body-text">Use this section to explain the system problem first: AI sessions are stateless, architecture context gets lost, and documentation debt compounds. Then state the integrated solution: gate system, agent network, skills library and memory engine working as one operating model.</p>
         <div style="height:10px"></div>
         <div class="grid-two">
-          <details class="details" open>
-            <summary>Typed Retrieval Trace</summary>
-            <p class="body-text">Every hit can expose stage-level decisions (candidate selection, filter, fusion, rerank, fallback) with score and timing context.</p>
-          </details>
-          <details class="details" open>
-            <summary>Artifact-Aware Routing</summary>
-            <p class="body-text">Specs, plans, decisions, code, config, README, memory, scratch and research can each route to deterministic weighting strategies.</p>
-          </details>
-          <details class="details">
-            <summary>Adaptive Hybrid Fusion</summary>
-            <p class="body-text">Seven intent profiles tune retrieval emphasis with an explicit opt-out flag path for deterministic fallback.</p>
-          </details>
-          <details class="details">
-            <summary>Ledger + Telemetry</summary>
-            <p class="body-text">Mutation events become tamper-evident and telemetry captures latency, mode selection, fallback signals and quality proxies.</p>
-          </details>
-        </div>
-      </section>
-
-      <section id="delivery" class="panel animate" style="--i:6">
-        <h2>How It Was Delivered</h2>
-        <div class="grid-two">
           <article class="panel" style="padding:12px;">
-            <h3>Rollout Path</h3>
+            <h3>What It Solves</h3>
             <ul class="list">
-              <li class="item"><span>Dark launch with flags disabled and baseline regression checks</span><span class="badge badge--healthy">GO</span></li>
-              <li class="item"><span>Staged enablement at 10% -> 50% -> 100%</span><span class="badge badge--healthy">GO</span></li>
-              <li class="item"><span>Closure packet with KPI trend and capability truth matrix</span><span class="badge badge--healthy">GO</span></li>
+              <li class="item"><span>Context loss between sessions</span><span class="badge badge--critical">High</span></li>
+              <li class="item"><span>Decision history not discoverable</span><span class="badge badge--warning">Medium</span></li>
+              <li class="item"><span>Documentation deferred indefinitely</span><span class="badge badge--warning">Medium</span></li>
             </ul>
           </article>
           <article class="panel" style="padding:12px;">
-            <h3>Governance Sign-Off</h3>
+            <h3>How It Solves It</h3>
             <ul class="list">
-              <li class="item"><span>Tech Lead: architecture + reliability checks</span><span class="badge badge--healthy">Approved</span></li>
-              <li class="item"><span>Data Reviewer: quality + scoring integrity</span><span class="badge badge--healthy">Approved</span></li>
-              <li class="item"><span>Product Owner: requirement mapping + closure</span><span class="badge badge--healthy">Approved</span></li>
+              <li class="item"><span>Mandatory spec workflow with validation</span><span class="badge badge--healthy">Stable</span></li>
+              <li class="item"><span>Memory indexing across specs and anchors</span><span class="badge badge--healthy">Stable</span></li>
+              <li class="item"><span>Skill + agent routing with deterministic gates</span><span class="badge badge--healthy">Stable</span></li>
             </ul>
           </article>
         </div>
       </section>
 
-      <section id="decisions" class="panel animate" style="--i:7">
-        <h2>Key Decisions</h2>
-        <div class="table-scroll">
-          <table class="data-table">
-            <thead>
-              <tr>
-                <th>Decision</th>
-                <th>Why</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Adaptive fusion uses opt-out semantics</td>
-                <td>Default behavior stays adaptive unless explicitly disabled for deterministic comparison.</td>
-              </tr>
-              <tr>
-                <td>Append-only ledger enforced at DB layer</td>
-                <td>Trigger-level guarantees are stronger than application-only mutation controls.</td>
-              </tr>
-              <tr>
-                <td>Deterministic artifact-routing weights</td>
-                <td>Transparent and auditable retrieval behavior beats opaque adaptive routing for governance.</td>
-              </tr>
-              <tr>
-                <td>Telemetry isolated to evaluation lane</td>
-                <td>Prevents synthetic closure metrics from being represented as live production telemetry.</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+      <section id="quick-start" class="panel animate" style="--i:5">
+        <h2>Quick Start</h2>
+        <pre class="code-block"># 1) Clone repository
+ git clone https://github.com/MichelKerkmeester/opencode-spec-kit-framework.git
+ cd opencode-spec-kit-framework
+
+# 2) Build memory engine
+ cd .opencode/skill/system-spec-kit && npm install && npm run build && cd ../../..
+
+# 3) Start OpenCode
+ opencode</pre>
       </section>
 
-      <section id="risk-gaps-panel" class="panel animate" style="--i:8">
-        <h2>Known Limitations</h2>
+      <section id="section-coverage-map" class="panel animate" style="--i:6">
+        <h2>Documentation Map</h2>
         <ul class="list">
-          <li class="item"><span>Adaptive fusion is opt-out, not opt-in.</span><span class="badge badge--warning">Operational</span></li>
-          <li class="item"><span>Telemetry currently reflects evaluation scenarios.</span><span class="badge badge--warning">Interpretation</span></li>
-          <li class="item"><span>Survey confirmation is administrative and should be complemented by live-user data.</span><span class="badge badge--critical">Evidence Gap</span></li>
-          <li class="item"><span>Archive semantics may map to <code>deprecated</code> enum equivalents.</span><span class="badge badge--warning">Modeling</span></li>
+          <li class="item"><span>Overview and system model</span><span class="badge badge--healthy">Covered</span></li>
+          <li class="item"><span>Spec kit levels and required artifacts</span><span class="badge badge--healthy">Covered</span></li>
+          <li class="item"><span>Memory architecture and retrieval layers</span><span class="badge badge--healthy">Covered</span></li>
+          <li class="item"><span>Agent and command catalog</span><span class="badge badge--healthy">Covered</span></li>
+          <li class="item"><span>Troubleshooting and FAQ depth</span><span class="badge badge--warning">Expand</span></li>
         </ul>
       </section>
 
-      <section id="inside" class="panel animate" style="--i:9">
-        <h2>What's Inside</h2>
-        <p class="body-text">Use this continuation block to show how the final implementation summary maps back to parent and wave-specific specs.</p>
-        <div style="height:10px"></div>
-        <pre class="code-block">136-mcp-working-memory-hybrid-rag/
-├── 004-post-research-wave-1-governance-foundations/
-├── 005-post-research-wave-2-controlled-delivery/
-└── 006-post-research-wave-3-outcome-confirmation/</pre>
+      <section id="platform-architecture" class="panel animate" style="--i:7">
+        <h2>Platform Architecture</h2>
+        <div class="grid-two">
+          <article class="panel" style="padding:12px;">
+            <h3>Execution Flow</h3>
+            <p class="body-text">User request -> Gate system -> Agent/Skill routing -> Memory context retrieval -> Implementation with spec evidence.</p>
+          </article>
+          <article class="panel" style="padding:12px;">
+            <h3>Core Modules</h3>
+            <ul class="list">
+              <li class="item"><span>3 mandatory gates</span><span class="badge badge--healthy">Enabled</span></li>
+              <li class="item"><span>10 specialized agents</span><span class="badge badge--healthy">Enabled</span></li>
+              <li class="item"><span>25+ memory MCP tools</span><span class="badge badge--healthy">Enabled</span></li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section id="runtime-tabs" class="panel animate" style="--i:8">
+        <h2>Runtime Profiles (Interactive)</h2>
+        <div class="tab-bar" role="tablist" aria-label="Runtime profile tabs">
+          <button class="tab-button is-active" type="button" data-tab="opencode" role="tab" aria-selected="true">OpenCode</button>
+          <button class="tab-button" type="button" data-tab="claude" role="tab" aria-selected="false">Claude Code</button>
+          <button class="tab-button" type="button" data-tab="gemini" role="tab" aria-selected="false">Gemini CLI</button>
+        </div>
+
+        <article class="tab-panel is-active" data-panel="opencode" role="tabpanel">
+          <p class="body-text"><strong>Directory:</strong> <code>.opencode/agent/</code></p>
+          <p class="body-text"><strong>Strength:</strong> Full command + skill integration with default orchestration flow.</p>
+        </article>
+
+        <article class="tab-panel" data-panel="claude" role="tabpanel">
+          <p class="body-text"><strong>Directory:</strong> <code>.claude/agents/</code></p>
+          <p class="body-text"><strong>Strength:</strong> Sonnet/Opus/Haiku role specialization and parallel investigation workflows.</p>
+        </article>
+
+        <article class="tab-panel" data-panel="gemini" role="tabpanel">
+          <p class="body-text"><strong>Directory:</strong> <code>.gemini/agents/</code></p>
+          <p class="body-text"><strong>Strength:</strong> Large effective context windows with mirrored command wrappers.</p>
+        </article>
+      </section>
+
+      <section id="risk-gaps-panel" class="panel animate" style="--i:9">
+        <h2>Troubleshooting Priorities</h2>
+        <ul class="list">
+          <li class="item"><span>Memory DB path mismatch between runtimes</span><span class="badge badge--critical">P0</span></li>
+          <li class="item"><span>Missing feature flags for adaptive fusion/telemetry</span><span class="badge badge--warning">P1</span></li>
+          <li class="item"><span>Template/document validation not run before merge</span><span class="badge badge--warning">P1</span></li>
+          <li class="item"><span>Spec folder checkpoints omitted in long sessions</span><span class="badge badge--warning">P2</span></li>
+        </ul>
       </section>
 
       <section id="evidence-table" class="panel animate" style="--i:10">
-        <h2>Verification Evidence</h2>
+        <h2>Command Matrix</h2>
         <div class="table-scroll">
           <table class="data-table">
             <thead>
               <tr>
-                <th>Check</th>
-                <th>Result</th>
-                <th>Evidence Path</th>
+                <th>Command Group</th>
+                <th>Example</th>
+                <th>Outcome</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td>Strict root validation</td>
-                <td><span class="badge badge--healthy">PASS</span></td>
-                <td><code>scripts/spec/validate.sh</code></td>
+                <td>SpecKit workflow</td>
+                <td><code>/spec_kit:complete</code></td>
+                <td>End-to-end plan + implement + verify</td>
               </tr>
               <tr>
-                <td>Full suite and targeted suites</td>
-                <td><span class="badge badge--healthy">PASS</span></td>
-                <td><code>specs/.../test-results.md</code></td>
+                <td>Memory recovery</td>
+                <td><code>/memory:continue</code></td>
+                <td>Restores context after compaction/crash</td>
               </tr>
               <tr>
-                <td>Lint, typecheck, build</td>
-                <td><span class="badge badge--healthy">PASS</span></td>
-                <td><code>workspace verification logs</code></td>
+                <td>Debug delegation</td>
+                <td><code>/spec_kit:debug</code></td>
+                <td>Fresh-perspective root-cause workflow</td>
+              </tr>
+              <tr>
+                <td>Documentation generation</td>
+                <td><code>/create:folder_readme</code></td>
+                <td>Structured README aligned with templates</td>
               </tr>
             </tbody>
           </table>
@@ -578,6 +586,28 @@ code {
 
   sections.forEach((section) => observer.observe(section));
   setActive(sections[0].id);
+})();
+
+(function initRuntimeTabs() {
+  const buttons = Array.from(document.querySelectorAll('.tab-button'));
+  const panels = Array.from(document.querySelectorAll('.tab-panel'));
+  if (!buttons.length || !panels.length) return;
+
+  const setTab = (tab) => {
+    buttons.forEach((button) => {
+      const active = button.dataset.tab === tab;
+      button.classList.toggle('is-active', active);
+      button.setAttribute('aria-selected', active ? 'true' : 'false');
+    });
+
+    panels.forEach((panel) => {
+      panel.classList.toggle('is-active', panel.dataset.panel === tab);
+    });
+  };
+
+  buttons.forEach((button) => {
+    button.addEventListener('click', () => setTab(button.dataset.tab));
+  });
 })();
 </script>
 </body>

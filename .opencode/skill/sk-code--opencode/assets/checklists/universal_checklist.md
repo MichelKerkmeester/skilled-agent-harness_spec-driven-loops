@@ -68,10 +68,10 @@ These items MUST be fixed before any commit.
 ### WHY Comments
 
 ```markdown
-[ ] Complex or non-obvious logic has WHY comments
-    - Explain reasoning, not what code does
-    - Business rules and edge cases documented
-    - Algorithm choices explained
+[ ] Inline comments follow AI-intent policy (max 3 comments per 10 LOC)
+    - Allowed prefixes: AI-WHY, AI-GUARD, AI-INVARIANT, AI-TRACE, AI-RISK
+    - Comments explain reasoning, not mechanics
+    - Business rules, invariants, and edge cases documented
 ```
 
 **Bad (WHAT)**:
@@ -82,8 +82,16 @@ x = 5
 
 **Good (WHY)**:
 ```python
-# Use 5 retries per SLA requirement for transient network failures
+# AI-WHY: use 5 retries per SLA requirement for transient network failures
 max_retries = 5
+```
+
+### Numbered ALL-CAPS Section Invariant
+
+```markdown
+[ ] Numbered ALL-CAPS section headers are preserved
+    - Use `## N. SECTION NAME` in standards/examples
+    - Do not switch to sentence-case section names
 ```
 
 ---
@@ -158,6 +166,15 @@ const MAX_ITEMS = 100;  // API rate limit per request
 if (items.length > MAX_ITEMS) {
 ```
 
+### KISS / DRY / SOLID Gate
+
+```markdown
+[ ] KISS/DRY/SOLID checks applied before merge
+    - KISS: no speculative abstraction layers
+    - DRY: repeated rules/constants consolidated
+    - SOLID: SRP/OCP/LSP/ISP/DIP violations reviewed and resolved or documented
+```
+
 ---
 
 <!-- /ANCHOR:p1-required -->
@@ -172,7 +189,7 @@ These improve quality but can be deferred.
 [ ] Appropriate level of documentation
     - Public APIs have documentation
     - Complex algorithms explained
-    - Not over-commented (obvious code)
+    - Not over-commented (target <= 3 comments per 10 LOC)
 ```
 
 ### Code Organization
@@ -259,7 +276,7 @@ Copy this for code review:
 ### P0 - HARD BLOCKERS
 - [ ] File header present
 - [ ] No commented-out code
-- [ ] WHY comments for complex logic
+- [ ] AI-intent comments (max 3/10, AI-WHY/AI-GUARD/AI-INVARIANT/AI-TRACE/AI-RISK)
 
 ### P1 - REQUIRED
 - [ ] Consistent naming conventions

@@ -31,50 +31,50 @@
     --font-mono: 'JetBrains Mono', 'SF Mono', Consolas, monospace;
     --font-sans: system-ui, -apple-system, sans-serif;
 
-    --ve-bg: #f7fafc;
+    --ve-bg: #f8f9fb;
     --ve-surface: #ffffff;
-    --ve-surface2: #eef3f8;
-    --ve-surface-elevated: #fcfdff;
-    --ve-border: rgba(15, 23, 42, 0.1);
-    --ve-border-bright: rgba(15, 23, 42, 0.2);
-    --ve-text: #0f172a;
-    --ve-text-dim: #4b5563;
-    --ve-accent: #0f766e;
-    --ve-accent-dim: rgba(15, 118, 110, 0.1);
-    --ve-success: #15803d;
-    --ve-success-dim: rgba(21, 128, 61, 0.1);
-    --ve-danger: #b91c1c;
-    --ve-danger-dim: rgba(185, 28, 28, 0.1);
-    --ve-warning: #b45309;
-    --ve-warning-dim: rgba(180, 83, 9, 0.1);
+    --ve-surface2: #f0f3f6;
+    --ve-surface-elevated: #fbfcfd;
+    --ve-border: rgba(15, 23, 42, 0.08);
+    --ve-border-bright: rgba(15, 23, 42, 0.15);
+    --ve-text: #1a2332;
+    --ve-text-dim: #5e6e7e;
+    --ve-accent: #3d867e;
+    --ve-accent-dim: rgba(61, 134, 126, 0.08);
+    --ve-success: #3a7a55;
+    --ve-success-dim: rgba(58, 122, 85, 0.08);
+    --ve-danger: #9c4242;
+    --ve-danger-dim: rgba(156, 66, 66, 0.08);
+    --ve-warning: #946830;
+    --ve-warning-dim: rgba(148, 104, 48, 0.08);
   }
 
   @media (prefers-color-scheme: dark) {
     :root {
-      --ve-bg: #071017;
-      --ve-surface: #10202a;
-      --ve-surface2: #162b37;
-      --ve-surface-elevated: #1a3240;
-      --ve-border: rgba(226, 232, 240, 0.14);
-      --ve-border-bright: rgba(226, 232, 240, 0.24);
-      --ve-text: #e5edf5;
-      --ve-text-dim: #a9b6c3;
-      --ve-accent: #2dd4bf;
-      --ve-accent-dim: rgba(45, 212, 191, 0.16);
-      --ve-success: #4ade80;
-      --ve-success-dim: rgba(74, 222, 128, 0.16);
-      --ve-danger: #f87171;
-      --ve-danger-dim: rgba(248, 113, 113, 0.16);
-      --ve-warning: #fbbf24;
-      --ve-warning-dim: rgba(251, 191, 36, 0.16);
+      --ve-bg: #0e1419;
+      --ve-surface: #151d25;
+      --ve-surface2: #1c2630;
+      --ve-surface-elevated: #212d38;
+      --ve-border: rgba(200, 215, 230, 0.10);
+      --ve-border-bright: rgba(200, 215, 230, 0.18);
+      --ve-text: #dce4ec;
+      --ve-text-dim: #8899a8;
+      --ve-accent: #5eb8af;
+      --ve-accent-dim: rgba(94, 184, 175, 0.12);
+      --ve-success: #5cbd82;
+      --ve-success-dim: rgba(92, 189, 130, 0.12);
+      --ve-danger: #d07070;
+      --ve-danger-dim: rgba(208, 112, 112, 0.12);
+      --ve-warning: #d4a24a;
+      --ve-warning-dim: rgba(212, 162, 74, 0.12);
     }
   }
 
   @media (prefers-contrast: more) {
     :root {
-      --ve-border: rgba(0, 0, 0, 0.3);
-      --ve-border-bright: rgba(0, 0, 0, 0.45);
-      --ve-text-dim: #334155;
+      --ve-border: rgba(0, 0, 0, 0.25);
+      --ve-border-bright: rgba(0, 0, 0, 0.38);
+      --ve-text-dim: #3d4d5c;
     }
   }
 
@@ -101,11 +101,11 @@
   body {
     background: var(--ve-bg);
     background-image:
-      radial-gradient(ellipse at 30% 0%, var(--ve-accent-dim) 0%, transparent 50%),
-      radial-gradient(ellipse at 70% 100%, var(--ve-success-dim) 0%, transparent 40%);
+      radial-gradient(ellipse at 25% -5%, var(--ve-accent-dim) 0%, transparent 45%),
+      radial-gradient(ellipse at 75% 105%, var(--ve-success-dim) 0%, transparent 35%);
     color: var(--ve-text);
     font-family: var(--font-sans);
-    padding: 40px;
+    padding: 48px 40px;
     min-height: 100vh;
   }
 
@@ -116,7 +116,7 @@
   }
 
   .animate {
-    animation: fadeUp 0.35s ease-out both;
+    animation: fadeUp 0.45s cubic-bezier(0.16, 1, 0.3, 1) both;
     animation-delay: calc(var(--i, 0) * 0.04s);
   }
 
@@ -324,9 +324,9 @@
   .kpi-card {
     background: var(--ve-surface-elevated, var(--ve-surface));
     border: 1px solid var(--ve-border);
-    border-radius: 10px;
+    border-radius: 12px;
     padding: 18px;
-    box-shadow: 0 2px 8px var(--ve-accent-dim);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03), 0 1px 2px rgba(0, 0, 0, 0.02);
   }
 
   .kpi-card__value {

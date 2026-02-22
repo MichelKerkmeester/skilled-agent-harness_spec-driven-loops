@@ -1,6 +1,7 @@
 ---
 title: "Implementation Plan: sk-code--opencode refinement"
 description: "Execution plan for refining sk-code--opencode policy language and checklists based on completed spec and research artifacts. The plan sequences implementation, verification, and closure with a mandatory global quality sweep across all changed files."
+SPECKIT_TEMPLATE_SOURCE: "plan-core + level2-verify + level3-arch + level3plus-govern | v2.2"
 trigger_phrases:
   - "implementation"
   - "plan"
@@ -358,6 +359,30 @@ See `decision-record.md` for full ADR set and tradeoffs.
 **Agent**: Primary
 **Task**: Merge updates, execute verification commands, run global quality sweep, and synchronize spec docs.
 **Duration**: ~90 minutes
+
+### Pre-Task Checklist
+- Confirm active task ID and owning phase in `tasks.md`.
+- Confirm scope lock against `spec.md` section 3 before file edits.
+- Confirm matching ADR constraints in `decision-record.md`.
+- Confirm verification command coverage exists for target file set.
+
+### Task Execution Rules
+| Rule ID | Rule | Enforcement |
+|---------|------|-------------|
+| TASK-SEQ | Execute tasks in dependency order | No implementation task starts before Phase 1 setup is complete |
+| TASK-SCOPE | Edit only scoped files from `spec.md` | Reject unrelated file changes |
+| TASK-VERIFY | Run command checks before phase completion | Phase cannot close without evidence update |
+| TASK-SWEEP | Global quality sweep is mandatory for closure | Completion blocked until sweep gate is satisfied |
+
+### Status Reporting Format
+- **Status Reporting**: `Phase <N> | Task <ID> | State <Pending/In Progress/Done/Blocked> | Evidence <command/artifact>`
+- Example: `Phase 4 | T041 | Done | rg header invariant command logged in EVT-001`.
+
+### Blocked Task Protocol
+1. Mark task as `[B]` in `tasks.md` with blocker reason.
+2. Record blocker severity in `global-quality-sweep.md` defect log.
+3. Stop dependent tasks until blocker is cleared or explicitly deferred.
+4. Re-run affected verification commands after unblock and update evidence.
 <!-- /ANCHOR:ai-execution -->
 
 ---

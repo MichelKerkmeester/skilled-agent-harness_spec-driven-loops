@@ -46,8 +46,22 @@ git diff
 
 ---
 
+<!-- ANCHOR:design-lens -->
+## 3. KISS / DRY / SOLID LENS
+
+Apply this lens during every review pass:
+
+- **KISS**: flag complexity that does not serve a current requirement.
+- **DRY**: flag duplicated logic/constants that should be centralized.
+- **SOLID**: explicitly evaluate SRP/OCP/LSP/ISP/DIP risks in changed modules.
+
+Escalation rule: when uncertain between P1 and P2 for architecture risk, choose P1 and state uncertainty.
+<!-- /ANCHOR:design-lens -->
+
+---
+
 <!-- ANCHOR:overlay-contract -->
-## 3. BASELINE + OVERLAY CONTRACT
+## 4. BASELINE + OVERLAY CONTRACT
 
 Apply this skill as baseline first, then select one overlay skill:
 
@@ -64,7 +78,7 @@ Precedence:
 ---
 
 <!-- ANCHOR:severity-model -->
-## 4. SEVERITY MODEL
+## 5. SEVERITY MODEL
 
 | Level | Meaning | Handling |
 | --- | --- | --- |
@@ -79,7 +93,7 @@ Escalation rule: If confidence is low but impact is high, classify toward higher
 ---
 
 <!-- ANCHOR:output-checklist -->
-## 5. OUTPUT CHECKLIST
+## 6. OUTPUT CHECKLIST
 
 Before returning a review, confirm:
 
@@ -87,6 +101,7 @@ Before returning a review, confirm:
 - [ ] Each finding has path + line reference.
 - [ ] Risk and impact are explained in plain language.
 - [ ] Suggested fixes are specific and proportional.
+- [ ] KISS/DRY/SOLID checks are explicitly reported.
 - [ ] Next-step options are presented.
 
 Recommended next-step options:
@@ -99,7 +114,7 @@ Recommended next-step options:
 ---
 
 <!-- ANCHOR:no-diff-path -->
-## 6. NO-DIFF PATH
+## 7. NO-DIFF PATH
 
 If no changes are detected, return:
 - What was checked (`git status`, `git diff`, staged state)
@@ -113,11 +128,11 @@ If no changes are detected, return:
 ---
 
 <!-- ANCHOR:related-resources -->
-## 7. RELATED RESOURCES
+## 8. RELATED RESOURCES
 
 - [security_checklist.md](./security_checklist.md) - Security, reliability, and abuse-prevention checks.
-- [code_quality_checklist.md](./code_quality_checklist.md) - Non-security correctness and performance checks.
-- [solid_checklist.md](./solid_checklist.md) - Architecture and design quality checks.
+- [code_quality_checklist.md](./code_quality_checklist.md) - Non-security correctness, KISS, and DRY checks.
+- [solid_checklist.md](./solid_checklist.md) - Architecture and SOLID (SRP/OCP/LSP/ISP/DIP) checks.
 - [removal_plan.md](./removal_plan.md) - Safe-now versus deferred deletion planning.
 
 Overlay portability: apply this baseline with `sk-code--opencode`, `sk-code--web`, or `sk-code--full-stack`.

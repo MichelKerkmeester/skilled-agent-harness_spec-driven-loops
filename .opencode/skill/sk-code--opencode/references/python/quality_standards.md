@@ -447,7 +447,7 @@ P0 - HARD BLOCKERS:
 [ ] All functions use snake_case
 [ ] All constants use UPPER_SNAKE_CASE
 [ ] No commented-out code
-[ ] WHY comments for complex logic
+[ ] AI-intent comments (max 3/10, AI-WHY/AI-GUARD/AI-INVARIANT/AI-TRACE/AI-RISK)
 
 P1 - REQUIRED:
 [ ] Type hints on all function signatures

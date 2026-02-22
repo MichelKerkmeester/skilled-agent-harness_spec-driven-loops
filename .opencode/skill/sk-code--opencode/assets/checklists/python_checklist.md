@@ -122,7 +122,15 @@ DEFAULT_TIMEOUT = 30
 ### WHY Comments
 
 ```markdown
-[ ] Non-obvious logic has WHY comments
+[ ] Inline comments follow AI-intent policy (max 3 comments per 10 LOC)
+    - Allowed prefixes: AI-WHY, AI-GUARD, AI-INVARIANT, AI-TRACE, AI-RISK
+    - No narrative comments describing obvious mechanics
+```
+
+### Numbered ALL-CAPS Sections
+
+```markdown
+[ ] Numbered ALL-CAPS section headers are preserved (`## N. SECTION NAME`)
 ```
 
 ---
@@ -226,6 +234,14 @@ def process(data):
 # TODO(TICKET-123): Handle edge case
 ```
 
+### KISS / DRY / SOLID Checks
+
+```markdown
+[ ] KISS: avoid extra layers and keep function boundaries simple
+[ ] DRY: repeated parsing/validation logic extracted
+[ ] SOLID: SRP/OCP/LSP/ISP/DIP impacts reviewed for module boundaries
+```
+
 ---
 
 <!-- /ANCHOR:p1-required -->
@@ -307,7 +323,7 @@ Copy this for code review:
 - [ ] Functions use snake_case
 - [ ] Constants use UPPER_SNAKE_CASE
 - [ ] No commented-out code
-- [ ] WHY comments for complex logic
+- [ ] AI-intent comments (max 3/10, AI-WHY/AI-GUARD/AI-INVARIANT/AI-TRACE/AI-RISK)
 
 ### P1 - REQUIRED
 - [ ] Type hints on all functions

@@ -1,6 +1,7 @@
 ---
 title: "Verification Checklist: sk-code--opencode refinement"
 description: "Verification checklist with P0/P1/P2 gates and evidence slots for implementation and closure."
+SPECKIT_TEMPLATE_SOURCE: "checklist + level2-verify + level3-arch + level3plus-govern | v2.2"
 trigger_phrases:
   - "verification"
   - "checklist"
@@ -31,11 +32,11 @@ contextType: "verification"
 <!-- ANCHOR:p0 -->
 ## P0 - Hard Blockers
 
-- [x] CHK-001 Scope and requirements are frozen to `spec.md` section 3.
+- [ ] CHK-001 Scope and requirements are frozen to `spec.md` section 3.
   - **Evidence Slot**: Scoped file table in `spec.md` plus this checklist scope lock.
-- [x] CHK-002 Planning docs exist and are implementation-ready (`plan.md`, `tasks.md`, `decision-record.md`, `global-quality-sweep.md`).
+- [ ] CHK-002 Planning docs exist and are implementation-ready (`plan.md`, `tasks.md`, `decision-record.md`, `global-quality-sweep.md`).
   - **Evidence Slot**: File creation completed in this spec folder.
-- [x] CHK-003 Tasks include mandatory global quality sweep phase covering all changed files.
+- [ ] CHK-003 Tasks include mandatory global quality sweep phase covering all changed files.
   - **Evidence Slot**: `tasks.md` Phase 5 includes T050-T055.
 - [ ] CHK-004 Reduced inline-comment policy and AI semantics are implemented in all required `sk-code--opencode` files.
   - **Evidence Slot**: `rg -n "Maximum 3 comments per 10 lines|WHY|GUARD|INVARIANT|REQ-|BUG-|SEC-|RISK|PERF"` over scoped policy files.
@@ -105,7 +106,7 @@ contextType: "verification"
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 9 | 3/9 |
+| P0 Items | 9 | 0/9 |
 | P1 Items | 5 | 0/5 |
 | P2 Items | 3 | 0/3 |
 | Global Sweep Items | 5 | 0/5 |

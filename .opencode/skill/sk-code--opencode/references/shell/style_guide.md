@@ -276,23 +276,24 @@ log_detail() {
 
 Follow the universal commenting principles (see `../shared/universal_patterns.md`):
 
-1. **Quantity limit:** Maximum 5 comments per 10 lines of code
-2. **Focus on WHY, not WHAT:** Explain intent, constraints, reasoning
-3. **No commented-out code:** Delete unused code (git preserves history)
+1. **Quantity limit:** Maximum 3 comments per 10 lines of code
+2. **Focus on AI-intent semantics:** `AI-WHY`, `AI-GUARD`, `AI-INVARIANT`, `AI-TRACE`, `AI-RISK`
+3. **Focus on WHY, not WHAT:** Explain intent, constraints, reasoning
+4. **No commented-out code:** Delete unused code (git preserves history)
 
 **Good - explains reasoning:**
 
 ```bash
-# Guard: Skip if output directory already exists to prevent data loss
+# AI-GUARD: skip if output directory already exists to prevent data loss
 if [[ -d "$output_dir" ]]; then
     log_error "Output directory already exists"
     exit 1
 fi
 
-# Ensure strict mode catches pipe failures in complex commands
+# AI-INVARIANT: strict mode must catch pipe failures in complex commands
 set -o pipefail
 
-# T107: Transaction manager for pending file recovery (REQ-033)
+# AI-TRACE T107/REQ-033: pending file recovery transaction manager
 source "$SCRIPT_DIR/lib/transaction.sh"
 ```
 

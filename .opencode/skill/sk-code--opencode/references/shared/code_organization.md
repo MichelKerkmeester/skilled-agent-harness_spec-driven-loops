@@ -88,6 +88,9 @@ Use consistent labels in headers:
 
 Every significant file should have numbered sections:
 
+- Keep section titles uppercase and numbered (non-regression): `## 1. IMPORTS`, `## 2. CONSTANTS`.
+- Do not convert these headers to sentence case or unnumbered variants.
+
 ```javascript
 /* ─────────────────────────────────────────────────────────────
    1. MODULE IMPORTS
@@ -142,6 +145,16 @@ mcp_server/
 ├── utils.js                # "Utils" grab bag (unclear)
 └── helpers.js              # More "helpers" (unclear)
 ```
+
+### KISS/DRY/SOLID Structural Checks
+
+Apply these checks during module organization:
+
+1. **KISS**: keep modules small and behavior-focused; avoid speculative abstraction layers.
+2. **DRY**: shared rules/constants live in one file and are imported by dependents.
+3. **SRP**: each module has one change reason.
+4. **OCP**: add variants through extension points before editing stable cores.
+5. **LSP/ISP/DIP**: avoid subtype surprises, oversized interfaces, and direct policy-to-infra coupling.
 
 ### Directory Structure Pattern
 

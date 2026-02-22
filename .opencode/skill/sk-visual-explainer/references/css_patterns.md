@@ -24,54 +24,54 @@ Always define these variables in `:root`. The `--ve-` prefix namespaces them to 
 
 ```css
 :root {
-  /* Typography */
+  /* Typography — override per template */
   --font-body: 'Bricolage Grotesque', system-ui, sans-serif;
   --font-mono: 'Fragment Mono', 'SF Mono', Consolas, monospace;
 
   /* Surfaces */
-  --ve-bg: #fafaf9;
+  --ve-bg: #f8f9fb;
   --ve-surface: #ffffff;
-  --ve-surface2: #f5f5f4;
-  --ve-surface-elevated: #fffdf9;
-  --ve-border: rgba(0, 0, 0, 0.07);
-  --ve-border-bright: rgba(0, 0, 0, 0.14);
+  --ve-surface2: #f0f3f6;
+  --ve-surface-elevated: #fbfcfd;
+  --ve-border: rgba(15, 23, 42, 0.08);
+  --ve-border-bright: rgba(15, 23, 42, 0.15);
 
   /* Text */
-  --ve-text: #1c1917;
-  --ve-text-dim: #78716c;
+  --ve-text: #1a2332;
+  --ve-text-dim: #5e6e7e;
 
-  /* Accent — override per aesthetic */
-  --ve-accent: #8b5cf6;
-  --ve-accent-dim: rgba(139, 92, 246, 0.08);
+  /* Accent — desaturated teal */
+  --ve-accent: #3d867e;
+  --ve-accent-dim: rgba(61, 134, 126, 0.08);
 
-  /* Semantic colors */
-  --ve-success: #16a34a;
-  --ve-success-dim: rgba(22, 163, 74, 0.08);
-  --ve-warning: #d97706;
-  --ve-warning-dim: rgba(217, 119, 6, 0.08);
-  --ve-danger: #dc2626;
-  --ve-danger-dim: rgba(220, 38, 38, 0.08);
+  /* Semantic colors — desaturated */
+  --ve-success: #3a7a55;
+  --ve-success-dim: rgba(58, 122, 85, 0.08);
+  --ve-warning: #946830;
+  --ve-warning-dim: rgba(148, 104, 48, 0.08);
+  --ve-danger: #9c4242;
+  --ve-danger-dim: rgba(156, 66, 66, 0.08);
 }
 
 /* Dark mode — complete override */
 @media (prefers-color-scheme: dark) {
   :root {
-    --ve-bg: #0c0a09;
-    --ve-surface: #1c1917;
-    --ve-surface2: #292524;
-    --ve-surface-elevated: #231f1e;
-    --ve-border: rgba(255, 255, 255, 0.07);
-    --ve-border-bright: rgba(255, 255, 255, 0.13);
-    --ve-text: #fafaf9;
-    --ve-text-dim: #a8a29e;
-    --ve-accent: #a78bfa;
-    --ve-accent-dim: rgba(167, 139, 250, 0.12);
-    --ve-success: #4ade80;
-    --ve-success-dim: rgba(74, 222, 128, 0.1);
-    --ve-warning: #fbbf24;
-    --ve-warning-dim: rgba(251, 191, 36, 0.1);
-    --ve-danger: #f87171;
-    --ve-danger-dim: rgba(248, 113, 113, 0.1);
+    --ve-bg: #0e1419;
+    --ve-surface: #151d25;
+    --ve-surface2: #1c2630;
+    --ve-surface-elevated: #212d38;
+    --ve-border: rgba(200, 215, 230, 0.10);
+    --ve-border-bright: rgba(200, 215, 230, 0.18);
+    --ve-text: #dce4ec;
+    --ve-text-dim: #8899a8;
+    --ve-accent: #5eb8af;
+    --ve-accent-dim: rgba(94, 184, 175, 0.12);
+    --ve-success: #5cbd82;
+    --ve-success-dim: rgba(92, 189, 130, 0.12);
+    --ve-warning: #d4a24a;
+    --ve-warning-dim: rgba(212, 162, 74, 0.12);
+    --ve-danger: #d07070;
+    --ve-danger-dim: rgba(208, 112, 112, 0.12);
   }
 }
 ```
@@ -87,9 +87,9 @@ Include these support patterns on new pages:
 ```css
 @media (prefers-contrast: more) {
   :root {
-    --ve-border: rgba(0, 0, 0, 0.24);
-    --ve-border-bright: rgba(0, 0, 0, 0.36);
-    --ve-text-dim: #4b5563;
+    --ve-border: rgba(0, 0, 0, 0.25);
+    --ve-border-bright: rgba(0, 0, 0, 0.38);
+    --ve-text-dim: #3d4d5c;
   }
 }
 
@@ -120,7 +120,7 @@ Choose one per page — sets the ambient mood without being distracting.
 ```css
 body {
   background-color: var(--ve-bg);
-  background-image: radial-gradient(ellipse at 30% 0%, var(--ve-accent-dim), transparent 50%);
+  background-image: radial-gradient(ellipse at 25% -5%, var(--ve-accent-dim), transparent 45%);
 }
 ```
 
@@ -129,8 +129,8 @@ body {
 body {
   background-color: var(--ve-bg);
   background-image:
-    radial-gradient(ellipse at 20% 0%, var(--ve-accent-dim) 0%, transparent 50%),
-    radial-gradient(ellipse at 80% 100%, var(--ve-success-dim) 0%, transparent 40%);
+    radial-gradient(ellipse at 15% -5%, var(--ve-accent-dim) 0%, transparent 45%),
+    radial-gradient(ellipse at 85% 105%, var(--ve-success-dim) 0%, transparent 35%);
 }
 ```
 
@@ -179,21 +179,22 @@ Three distinct levels of elevation for cards and containers.
 .depth-elevated {
   background: var(--ve-surface-elevated);
   border: 1px solid color-mix(in srgb, var(--ve-border) 50%, var(--ve-accent) 50%);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  border-top: 2px solid var(--ve-accent);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.03);
 }
 
 /* Default — standard cards and sections */
 .depth-default {
   background: var(--ve-surface);
   border: 1px solid var(--ve-border);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03), 0 1px 2px rgba(0, 0, 0, 0.02);
 }
 
 /* Recessed — secondary info, inner content */
 .depth-recessed {
   background: var(--ve-surface2);
   border: 1px solid var(--ve-border);
-  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.04);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.03);
 }
 
 /* Glass — special-occasion overlay effect (use sparingly) */
@@ -521,7 +522,7 @@ Recommended breakpoints:
 
 /* Apply to any element with --i CSS variable for stagger */
 .animate {
-  animation: fadeUp 0.4s ease-out both;
+  animation: fadeUp 0.45s cubic-bezier(0.16, 1, 0.3, 1) both;
   animation-delay: calc(var(--i, 0) * 0.06s);
 }
 
@@ -607,9 +608,9 @@ Recommended breakpoints:
 .kpi-card {
   background: var(--ve-surface);
   border: 1px solid var(--ve-border);
-  border-radius: 10px;
+  border-radius: 12px;
   padding: 18px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03), 0 1px 2px rgba(0, 0, 0, 0.02);
 }
 
 .kpi-card__value {

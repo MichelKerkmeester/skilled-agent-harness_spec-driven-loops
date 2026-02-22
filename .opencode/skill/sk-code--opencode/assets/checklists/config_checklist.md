@@ -122,6 +122,14 @@ These must be addressed or receive approval to defer.
 }
 ```
 
+### AI-Intent Comment Policy (JSONC)
+
+```markdown
+[ ] Inline comments follow AI-intent policy (max 3 comments per 10 LOC)
+    - Allowed prefixes: AI-WHY, AI-INVARIANT, AI-TRACE, AI-RISK
+    - Narrative comments are not used
+```
+
 ### camelCase Keys
 
 ```markdown
@@ -158,6 +166,14 @@ These must be addressed or receive approval to defer.
   "scaleDays": 90,         // Half-life ~ 62 days with this value
   "rrfK": 60               // RRF constant for rank fusion
 }
+```
+
+### KISS / DRY / SOLID Checks
+
+```markdown
+[ ] KISS: section nesting remains minimal and behavior-focused
+[ ] DRY: repeated constants appear in one canonical section
+[ ] SOLID: SRP/OCP/LSP/ISP/DIP impacts reviewed for config consumers
 ```
 
 ---

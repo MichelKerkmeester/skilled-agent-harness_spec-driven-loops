@@ -302,21 +302,22 @@ Example:
 
 Follow the universal commenting principles (see `../shared/universal_patterns.md`):
 
-1. **Quantity limit:** Maximum 5 comments per 10 lines of code
-2. **Focus on WHY, not WHAT:** Explain intent, constraints, reasoning
-3. **No commented-out code:** Delete unused code (git preserves history)
+1. **Quantity limit:** Maximum 3 comments per 10 lines of code
+2. **Focus on AI-intent semantics:** `AI-WHY`, `AI-GUARD`, `AI-INVARIANT`, `AI-TRACE`, `AI-RISK`
+3. **Focus on WHY, not WHAT:** Explain intent, constraints, reasoning
+4. **No commented-out code:** Delete unused code (git preserves history)
 
 **Good - explains reasoning:**
 
 ```python
-# Sort by recency so newest memories surface first
+# AI-WHY: sort by recency so newest memories surface first
 results.sort(key=lambda x: x['timestamp'], reverse=True)
 
-# Guard: Skip if already processed to prevent duplicate work
+# AI-GUARD: skip if already processed to prevent duplicate work
 if item_id in processed_set:
     continue
 
-# REQ-033: Transaction manager for pending file recovery
+# AI-TRACE REQ-033: transaction manager for pending file recovery
 transaction_manager = TransactionManager(db_path)
 ```
 

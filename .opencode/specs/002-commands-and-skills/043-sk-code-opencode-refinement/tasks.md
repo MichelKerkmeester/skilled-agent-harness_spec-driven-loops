@@ -1,6 +1,7 @@
 ---
 title: "Tasks: sk-code--opencode refinement"
 description: "Execution sequence for implementing, verifying, and closing the 043 refinement with a mandatory global quality sweep."
+SPECKIT_TEMPLATE_SOURCE: "tasks-core + level2-verify + level3-arch + level3plus-govern | v2.2"
 trigger_phrases:
   - "tasks"
   - "sk-code--opencode refinement"

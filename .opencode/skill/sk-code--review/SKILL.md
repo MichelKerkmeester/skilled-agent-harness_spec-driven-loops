@@ -2,7 +2,7 @@
 name: sk-code--review
 description: "Stack-agnostic code review baseline skill with findings-first severity analysis, mandatory security/correctness minimums, and adaptive overlay compatibility with sk-code--opencode, sk-code--web, and sk-code--full-stack standards."
 allowed-tools: [Read, Write, Edit, Bash, Glob, Grep]
-version: 1.1.0.0
+version: 1.2.0.0
 ---
 
 <!-- Keywords: sk-code--review, code-review, pull-request, findings-first, security-review, quality-gate, stack-agnostic, baseline-overlay -->
@@ -125,13 +125,17 @@ DEFAULT_RESOURCES = [
 INTENT_SIGNALS = {
     "SECURITY": {"weight": 5, "keywords": ["security", "auth", "injection", "vulnerability", "race"]},
     "QUALITY": {"weight": 4, "keywords": ["correctness", "bug", "regression", "performance", "boundary"]},
-    "SOLID": {"weight": 3, "keywords": ["solid", "architecture", "design", "coupling", "cohesion"]},
+    "KISS": {"weight": 3, "keywords": ["kiss", "simple", "simplicity", "over-engineer", "overengineering"]},
+    "DRY": {"weight": 3, "keywords": ["dry", "duplication", "duplicate", "copy-paste", "repeated logic"]},
+    "SOLID": {"weight": 3, "keywords": ["solid", "architecture", "design", "coupling", "cohesion", "module", "adapter", "interface", "abstraction", "responsibility", "dependency", "boundary"]},
     "REMOVAL": {"weight": 3, "keywords": ["remove", "dead code", "cleanup", "deprecate"]},
 }
 
 RESOURCE_MAP = {
     "SECURITY": ["references/security_checklist.md"],
     "QUALITY": ["references/code_quality_checklist.md"],
+    "KISS": ["references/code_quality_checklist.md"],
+    "DRY": ["references/code_quality_checklist.md"],
     "SOLID": ["references/solid_checklist.md"],
     "REMOVAL": ["references/removal_plan.md"],
 }
@@ -140,6 +144,7 @@ ON_DEMAND_KEYWORDS = ["deep review", "full review", "all checks", "comprehensive
 UNKNOWN_FALLBACK_CHECKLIST = [
     "Confirm review scope (diff/staged/files/commit range)",
     "Confirm risk priority (security/correctness/performance/maintainability)",
+    "Confirm architecture lens (KISS/DRY/SOLID required or optional)",
     "Confirm stack context (opencode/web/full-stack)",
     "Confirm findings-only vs findings+fix follow-up",
 ]
@@ -281,8 +286,9 @@ def route_review_resources(task, workspace_files=None, changed_files=None):
 
 1. Analyze for security and correctness first.
 2. Analyze quality/performance and architecture concerns.
-3. Analyze removal opportunities with safe-now vs deferred classification.
-4. Produce findings ordered by severity (`P0`, `P1`, `P2`, `P3`).
+3. Analyze KISS/DRY and SOLID violations (SRP/OCP/LSP/ISP/DIP) with evidence.
+4. Analyze removal opportunities with safe-now vs deferred classification.
+5. Produce findings ordered by severity (`P0`, `P1`, `P2`, `P3`).
 
 ### Phase 4: Output and Next Action
 
@@ -352,8 +358,8 @@ After reporting findings, request explicit next action before any implementation
 
 - [quick_reference.md](./references/quick_reference.md) - Baseline review flow, severity rubric, output checklist.
 - [security_checklist.md](./references/security_checklist.md) - Mandatory security and reliability checks.
-- [code_quality_checklist.md](./references/code_quality_checklist.md) - Correctness, performance, and boundary checks.
-- [solid_checklist.md](./references/solid_checklist.md) - SOLID and architecture assessment prompts.
+- [code_quality_checklist.md](./references/code_quality_checklist.md) - Correctness, performance, KISS, and DRY checks.
+- [solid_checklist.md](./references/solid_checklist.md) - SOLID (SRP/OCP/LSP/ISP/DIP) and architecture assessment prompts.
 - [removal_plan.md](./references/removal_plan.md) - Safe-now vs deferred removal planning template.
 
 ### Reference Loading Notes

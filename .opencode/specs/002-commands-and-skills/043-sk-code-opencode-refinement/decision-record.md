@@ -1,6 +1,7 @@
 ---
 title: "Decision Record: sk-code--opencode refinement"
 description: "Architecture and policy decisions for comment policy tightening, structural invariants, AI-oriented semantics, principle enforcement depth, and optional review scope."
+SPECKIT_TEMPLATE_SOURCE: "decision-record + level3-arch + level3plus-govern | v2.2"
 trigger_phrases:
   - "decision"
   - "adr"

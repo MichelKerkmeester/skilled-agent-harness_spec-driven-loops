@@ -309,7 +309,7 @@ embedding-provider.ts
 TypeScript interfaces that mirror SQLite column names MAY use `snake_case` properties. This exception applies **only** to properties that directly map to database columns.
 
 **Rules:**
-- Include a justification comment on each snake_case property: `// Maps to SQLite column: column_name`
+- Include a justification comment on each snake_case property: `// AI-TRACE: maps to SQLite column column_name`
 - For new code, prefer a mapping layer at the DB boundary (map to `camelCase` internally)
 - Existing interfaces with dual naming (e.g., `MemoryRecord`) are acceptable during migration
 
@@ -317,9 +317,9 @@ TypeScript interfaces that mirror SQLite column names MAY use `snake_case` prope
 // ACCEPTABLE — interface mirrors DB schema directly
 interface MemoryRow {
   id: string;
-  importance_tier: number;   // Maps to SQLite column: importance_tier
-  spec_folder: string;       // Maps to SQLite column: spec_folder
-  created_at: number;        // Maps to SQLite column: created_at
+  importance_tier: number;   // AI-TRACE: maps to SQLite column importance_tier
+  spec_folder: string;       // AI-TRACE: maps to SQLite column spec_folder
+  created_at: number;        // AI-TRACE: maps to SQLite column created_at
 }
 
 // PREFERRED for new code — map at the DB boundary
@@ -549,9 +549,20 @@ export type { SearchResult, SearchOptions } from '../types';
 
 ### Principles (Same as JavaScript)
 
-1. **Quantity limit**: Maximum 5 comments per 10 lines of code
-2. **Focus on WHY, not WHAT**: Explain intent, constraints, reasoning
-3. **No commented-out code**: Delete unused code (git preserves history)
+1. **Quantity limit**: Maximum 3 comments per 10 lines of code
+2. **Focus on AI-intent semantics**: `AI-WHY`, `AI-GUARD`, `AI-INVARIANT`, `AI-TRACE`, `AI-RISK`
+3. **Focus on WHY, not WHAT**: Explain intent, constraints, reasoning
+4. **No commented-out code**: Delete unused code (git preserves history)
+
+### AI Comment Prefix Contract
+
+Use these inline prefixes:
+
+- `// AI-WHY: rationale for this path`
+- `// AI-GUARD: contract/precondition`
+- `// AI-INVARIANT: state that must hold after execution`
+- `// AI-TRACE REQ-###|BUG-###|SEC-###|T###: traceability`
+- `// AI-RISK: reliability/performance/security risk control`
 
 ### TSDoc Comments (Replaces JSDoc)
 

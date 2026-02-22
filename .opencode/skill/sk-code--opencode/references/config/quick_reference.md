@@ -16,6 +16,7 @@ Fast lookup for JSON/JSONC configuration patterns and common structures in OpenC
 
 Quick-access reference card for configuration file patterns. For detailed explanations, see:
 - [style_guide.md](./style_guide.md) - Full style documentation
+- [quality_standards.md](./quality_standards.md) - P0/P1/P2 quality gates
 
 ---
 
@@ -336,6 +337,7 @@ P1 - Should Have:
 [ ] Section comments
 [ ] camelCase keys
 [ ] Inline documentation
+[ ] AI-intent comments (max 3/10, AI-WHY/AI-INVARIANT/AI-TRACE/AI-RISK)
 
 P2 - Nice to Have:
 [ ] Logical ordering
@@ -350,5 +352,6 @@ P2 - Nice to Have:
 ## 12. RELATED RESOURCES
 
 - [style_guide.md](./style_guide.md) - Detailed style documentation
+- [quality_standards.md](./quality_standards.md) - Config quality gates
 - [JSON Specification](https://www.json.org/)
 <!-- /ANCHOR:related-resources -->

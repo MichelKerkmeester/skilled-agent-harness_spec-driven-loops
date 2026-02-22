@@ -101,7 +101,15 @@ Same rule as JavaScript. Delete unused code; git preserves history.
 ### WHY Comments
 
 ```markdown
-[ ] Complex or non-obvious logic has WHY comments
+[ ] Inline comments follow AI-intent policy (max 3 comments per 10 LOC)
+    - Allowed prefixes: AI-WHY, AI-GUARD, AI-INVARIANT, AI-TRACE, AI-RISK
+    - No narrative comments describing obvious mechanics
+```
+
+### Numbered ALL-CAPS Sections
+
+```markdown
+[ ] Numbered ALL-CAPS section headers are preserved (`## N. SECTION NAME`)
 ```
 
 Same rule as JavaScript. Explain reasoning, not mechanics.
@@ -223,6 +231,14 @@ try { } catch (error) {        // implicitly any
 }
 ```
 
+### KISS / DRY / SOLID Checks
+
+```markdown
+[ ] KISS: remove unnecessary abstraction layers
+[ ] DRY: duplicate constants/rules are centralized
+[ ] SOLID: SRP/OCP/LSP/ISP/DIP risks reviewed with evidence
+```
+
 ---
 
 <!-- /ANCHOR:p1-required -->
@@ -336,7 +352,7 @@ Copy this for code review:
 - [ ] No `any` in public API
 - [ ] PascalCase types/interfaces/enums
 - [ ] No commented-out code
-- [ ] WHY comments for complex logic
+- [ ] AI-intent comments (max 3/10, AI-WHY/AI-GUARD/AI-INVARIANT/AI-TRACE/AI-RISK)
 
 ### P1 - REQUIRED
 - [ ] Explicit return types on exported functions

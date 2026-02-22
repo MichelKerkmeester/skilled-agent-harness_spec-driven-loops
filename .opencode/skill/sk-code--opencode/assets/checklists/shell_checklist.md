@@ -104,7 +104,15 @@ file_path=$1
 ### WHY Comments
 
 ```markdown
-[ ] Non-obvious logic has WHY comments
+[ ] Inline comments follow AI-intent policy (max 3 comments per 10 LOC)
+    - Allowed prefixes: AI-WHY, AI-GUARD, AI-INVARIANT, AI-TRACE, AI-RISK
+    - No narrative comments describing obvious mechanics
+```
+
+### Numbered ALL-CAPS Sections
+
+```markdown
+[ ] Numbered ALL-CAPS section headers are preserved (`## N. SECTION NAME`)
 ```
 
 ---
@@ -199,6 +207,14 @@ echo "Error: file not found"  # Goes to stdout
 [ ] TODOs include owner or ticket number
 ```
 
+### KISS / DRY / SOLID Checks
+
+```markdown
+[ ] KISS: script flow is simple and avoids speculative helper layers
+[ ] DRY: repeated command fragments extracted into reusable functions
+[ ] SOLID: SRP/OCP/LSP/ISP/DIP risks reviewed for script/module boundaries
+```
+
 ---
 
 <!-- /ANCHOR:p1-required -->
@@ -279,7 +295,7 @@ Copy this for code review:
 - [ ] All variables double-quoted
 - [ ] COMPONENT header present
 - [ ] No commented-out code
-- [ ] WHY comments for complex logic
+- [ ] AI-intent comments (max 3/10, AI-WHY/AI-GUARD/AI-INVARIANT/AI-TRACE/AI-RISK)
 
 ### P1 - REQUIRED
 - [ ] Functions use snake_case

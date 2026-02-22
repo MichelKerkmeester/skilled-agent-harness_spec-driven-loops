@@ -93,7 +93,9 @@ function ProcessFile(path) { }       // PascalCase
 ### WHY Comments
 
 ```markdown
-[ ] Non-obvious logic has WHY comments
+[ ] Inline comments follow AI-intent policy (max 3 comments per 10 LOC)
+    - Allowed prefixes: AI-WHY, AI-GUARD, AI-INVARIANT, AI-TRACE, AI-RISK
+    - No narrative comments describing obvious mechanics
 ```
 
 **Required for**:
@@ -101,6 +103,12 @@ function ProcessFile(path) { }       // PascalCase
 - Performance optimizations
 - Business rule implementations
 - Workarounds for known issues
+
+### Numbered ALL-CAPS Sections
+
+```markdown
+[ ] Numbered ALL-CAPS section headers are preserved (`## N. SECTION NAME`)
+```
 
 ---
 
@@ -204,6 +212,14 @@ try {
 }
 ```
 
+### KISS / DRY / SOLID Checks
+
+```markdown
+[ ] KISS: avoid unnecessary abstraction or layering
+[ ] DRY: repeated rules/constants extracted to shared source
+[ ] SOLID: SRP/OCP/LSP/ISP/DIP violations checked and documented
+```
+
 ---
 
 <!-- /ANCHOR:p1-required -->
@@ -284,7 +300,7 @@ Copy this for code review:
 - [ ] 'use strict' directive
 - [ ] Functions use camelCase
 - [ ] No commented-out code
-- [ ] WHY comments for complex logic
+- [ ] AI-intent comments (max 3/10, AI-WHY/AI-GUARD/AI-INVARIANT/AI-TRACE/AI-RISK)
 
 ### P1 - REQUIRED
 - [ ] CommonJS exports (module.exports)

@@ -2,7 +2,7 @@
 name: sk-code--opencode
 description: Multi-language code standards for OpenCode system code (JavaScript, TypeScript, Python, Shell, JSON/JSONC) with language detection routing, universal patterns, and quality checklists.
 allowed-tools: [Bash, Edit, Glob, Grep, Read, Task, Write]
-version: 1.0.9.0
+version: 1.1.0.0
 ---
 
 <!-- Keywords: opencode style, script standards, mcp code quality, node code style, typescript style, ts standards, python style, py standards, bash style, shell script, json format, jsonc config, code standards opencode -->
@@ -222,6 +222,7 @@ def route_opencode_resources(task):
         elif language == "CONFIG":
             selected.extend([
                 "references/config/style_guide.md",
+                "references/config/quality_standards.md",
                 "references/config/quick_reference.md"
             ])
             if task.needs_checklist:
@@ -282,9 +283,10 @@ STEP 4: Apply Standards
 | File Headers     | Box-drawing format, shebang, 'use strict', strict mode      |
 | Section Dividers | Numbered sections with consistent divider style             |
 | Naming           | Functions, constants, classes, interfaces, types per lang   |
-| Commenting       | WHY not WHAT, reference comments (T###, REQ-###)            |
+| Commenting       | AI-intent comments only (WHY/GUARD/INVARIANT/TRACE), max 3/10 LOC |
 | Error Handling   | Guard clauses, try-catch, typed catch, specific exceptions  |
-| Documentation    | JSDoc, TSDoc, Google docstrings, inline comments            |
+| Documentation    | JSDoc, TSDoc, Google docstrings                             |
+| Design Quality   | KISS/DRY + SOLID (SRP/OCP/LSP/ISP/DIP) violation checks     |
 
 ### Evidence-Based Patterns
 
@@ -332,21 +334,31 @@ The recurring verifier at `scripts/verify_alignment_drift.py` applies severity-a
    - Shell: `lowercase_underscore` functions, `UPPERCASE` globals
    - Config: `camelCase` keys, `$schema` for validation
 
-3. **Add WHY comments, not WHAT comments**
-   - Maximum 5 comments per 10 lines of code
+3. **Add AI-intent comments only (not narrative comments)**
+   - Maximum 3 comments per 10 lines of code
+   - Allowed intents: `AI-WHY`, `AI-GUARD`, `AI-INVARIANT`, `AI-TRACE`, `AI-RISK`
    - Bad: `// Loop through items`
-   - Good: `// Process in reverse order for dependency resolution`
+   - Good: `// AI-GUARD: reverse order preserves dependency resolution`
 
 4. **Include reference comments for traceability**
-   - Task: `// T001: Description`
-   - Bug: `// BUG-042: Description`
-   - Requirement: `// REQ-003: Description`
-   - Security: `// SEC-001: Description (CWE-XXX)`
+   - Task: `// AI-TRACE T001: Description`
+   - Bug: `// AI-TRACE BUG-042: Description`
+   - Requirement: `// AI-TRACE REQ-003: Description`
+   - Security: `// AI-TRACE SEC-001: Description (CWE-XXX)`
 
 5. **Validate inputs and handle errors**
    - JavaScript: Guard clauses + try-catch
    - Python: try-except with specific exceptions + early return tuples
    - Shell: `set -euo pipefail` + explicit exit codes
+
+6. **Apply KISS/DRY + SOLID checks before finalizing**
+   - KISS: avoid speculative abstractions and unnecessary indirection
+   - DRY: consolidate duplicated logic/constants into one source
+   - SOLID: detect SRP/OCP/LSP/ISP/DIP violations and simplify before merge
+
+7. **Preserve numbered ALL-CAPS section headers**
+   - Keep `## N. UPPERCASE SECTION NAME` unchanged in standards and examples
+   - Treat header style drift as non-regression failure
 
 ### ❌ NEVER
 
@@ -376,8 +388,10 @@ The recurring verifier at `scripts/verify_alignment_drift.py` applies severity-a
 | File Header        | Matches language-specific format         | P0       |
 | Naming Convention  | Consistent throughout file               | P0       |
 | No Commented Code  | Zero commented-out code blocks           | P0       |
+| Header Invariant   | Numbered ALL-CAPS section headers preserved | P0    |
 | Error Handling     | All error paths handled                  | P1       |
-| WHY Comments       | Comments explain reasoning               | P1       |
+| AI Comment Policy  | Max 3/10 + AI-intent comment tags only   | P1       |
+| KISS/DRY/SOLID     | SRP/OCP/LSP/ISP/DIP violations identified | P1      |
 | Documentation      | Public functions have doc comments       | P1       |
 | Reference Comments | Task/bug/req references where applicable | P2       |
 
@@ -396,11 +410,13 @@ P0 Items (MUST pass):
 □ File header present and correct format
 □ No commented-out code
 □ Consistent naming convention
+□ Numbered ALL-CAPS section headers preserved
 
 P1 Items (Required):
-□ WHY comments, not WHAT
+□ AI comment policy enforced (max 3/10, AI-WHY/AI-GUARD/AI-INVARIANT/AI-TRACE/AI-RISK)
 □ Error handling implemented
 □ Public functions documented
+□ KISS/DRY + SOLID checks applied (SRP/OCP/LSP/ISP/DIP)
 
 P2 Items (Can defer):
 □ Reference comments (T###, BUG-###)
@@ -464,7 +480,7 @@ This skill operates within the behavioral framework defined in AGENTS.md.
 | TypeScript | `style_guide.md`, `quality_standards.md`, `quick_reference.md` |
 | Python     | `style_guide.md`, `quality_standards.md`, `quick_reference.md` |
 | Shell      | `style_guide.md`, `quality_standards.md`, `quick_reference.md` |
-| Config     | `style_guide.md`, `quick_reference.md`                         |
+| Config     | `style_guide.md`, `quality_standards.md`, `quick_reference.md` |
 
 ### Checklists
 
@@ -634,10 +650,10 @@ validate_file() {
 ### Comment Patterns
 
 ```javascript
-// GOOD - WHY comments
-// Guard: Skip if initialized to prevent double-binding
-// Sort by recency so newest memories surface first
-// REQ-033: Transaction manager for pending file recovery
+// GOOD - AI-intent comments
+// AI-GUARD: skip initialization to prevent double-binding
+// AI-WHY: sort by recency so latest evidence is consumed first
+// AI-TRACE REQ-033: transaction manager for pending file recovery
 
 // BAD - WHAT comments (avoid)
 // Set value to 42

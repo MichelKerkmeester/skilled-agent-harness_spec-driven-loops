@@ -2,7 +2,7 @@
 name: sk-visual-explainer
 description: "Converts complex technical context into self-contained, styled HTML visual artifacts with strict quality checks, weighted intent routing, and template-first delivery."
 allowed-tools: [Read, Write, Edit, Bash, Glob, Grep]
-version: 1.2.0.0
+version: 1.3.0.0
 ---
 
 <!-- Keywords: visual, diagram, HTML, generate, architecture, flowchart, sequence, chart, mermaid, review, diff, plan, recap, fact-check, table, render, visualization, timeline, dashboard, metrics, data-table, aesthetic, css, typography, speckit, traceability, checklist, implementation summary, readme, install guide -->
@@ -125,6 +125,8 @@ LOADING_LEVELS = {
         "assets/templates/data-table.html",
         "assets/templates/speckit-artifact-dashboard.html",
         "assets/templates/speckit-traceability-board.html",
+        "assets/templates/speckit-readme-guide.html",
+        "assets/templates/speckit-implementation-summary.html",
     ],
 }
 
@@ -322,6 +324,8 @@ The skill executes a strict 4-phase workflow. Do not skip phases.
 - `references/speckit_user_guide_profiles.md` for README/install-guide mapping.
 - `assets/templates/speckit-artifact-dashboard.html` for artifact dashboard output mode.
 - `assets/templates/speckit-traceability-board.html` for traceability board output mode.
+- `assets/templates/speckit-readme-guide.html` for interactive README-style artifact rendering.
+- `assets/templates/speckit-implementation-summary.html` for implementation-summary artifact rendering with side TOC.
 - `scripts/validate-html-output.sh` for contract enforcement and final delivery checks.
 
 ---
@@ -347,6 +351,8 @@ The skill executes a strict 4-phase workflow. Do not skip phases.
 - [data-table.html](./assets/templates/data-table.html)
 - [speckit-artifact-dashboard.html](./assets/templates/speckit-artifact-dashboard.html)
 - [speckit-traceability-board.html](./assets/templates/speckit-traceability-board.html)
+- [speckit-readme-guide.html](./assets/templates/speckit-readme-guide.html)
+- [speckit-implementation-summary.html](./assets/templates/speckit-implementation-summary.html)
 
 ### Enforcement Scripts
 

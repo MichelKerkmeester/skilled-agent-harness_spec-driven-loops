@@ -164,8 +164,8 @@ for (const entry of entry) { ... }  // very confusing
 
 ### Core Principles
 
-1. **Quantity limit:** Maximum 5 comments per 10 lines of code
-2. **Focus on WHY, not WHAT:** Explain intent, constraints, reasoning
+1. **Quantity limit:** Maximum 3 comments per 10 lines of code
+2. **Focus on AI-intent semantics:** Use `AI-WHY`, `AI-GUARD`, `AI-INVARIANT`, `AI-TRACE`, or `AI-RISK`
 3. **No commented-out code:** Delete unused code (git preserves history)
 4. **Function purpose comments:** Single line above function describing intent
 
@@ -187,14 +187,13 @@ if (isValid) { ... }
 
 **Good - explains WHY**:
 ```javascript
-// Process items in reverse order for dependency resolution
+// AI-WHY: process in reverse order for dependency resolution
 for (const item of items.reverse()) { ... }
 
-// Track retry count for exponential backoff
+// AI-RISK: track retry count for exponential backoff control
 retryCount++;
 
-// Early return: skip processing for invalid entries to avoid
-// downstream errors in the embedding pipeline
+// AI-GUARD: skip invalid entries to avoid downstream embedding errors
 if (!isValid) return null;
 ```
 
@@ -202,10 +201,10 @@ if (!isValid) return null;
 
 | Situation | Comment? | Example |
 |-----------|----------|---------|
-| Non-obvious logic | YES | `// Sort by timestamp DESC so newest appears first` |
-| Business rule | YES | `// Constitutional tier always surfaces (REQ-005)` |
-| Workaround | YES | `// Workaround for SDK bug #123` |
-| Security concern | YES | `// SEC-001: Sanitize input (CWE-79)` |
+| Non-obvious logic | YES | `// AI-WHY: sort timestamp DESC so newest appears first` |
+| Business rule | YES | `// AI-TRACE REQ-005: constitutional tier always surfaces` |
+| Workaround | YES | `// AI-RISK: workaround for SDK bug #123` |
+| Security concern | YES | `// AI-TRACE SEC-001: sanitize input (CWE-79)` |
 | Self-explanatory code | NO | `const sum = a + b;` needs no comment |
 | Obvious loops | NO | `for (let i = 0; i < 10; i++)` needs no comment |
 
@@ -234,23 +233,23 @@ Reference comments create traceability between code and requirements/issues. Ope
 
 | Prefix | Purpose | Format | Example |
 |--------|---------|--------|---------|
-| `T###` | Task reference | `// T001: Description` | `// T043-T047: Causal Memory Graph handlers` |
-| `BUG-###` | Bug fix tracking | `// BUG-042: Fix race condition` | `// BUG-107: Pending file recovery on startup` |
-| `REQ-###` | Requirement tracing | `// REQ-003: Must support UTF-8` | `// REQ-033: Transaction manager for recovery` |
-| `SEC-###` | Security note | `// SEC-001: Description (CWE-XXX)` | `// SEC-001: Sanitize user input (CWE-79)` |
-| `CHK-###` | Checklist item | `// CHK-160: Token budget estimation` | `// CHK-160: Pre-flight validation` |
+| `T###` | Task reference | `// AI-TRACE T001: Description` | `// AI-TRACE T043-T047: Causal Memory Graph handlers` |
+| `BUG-###` | Bug fix tracking | `// AI-TRACE BUG-042: Fix race condition` | `// AI-TRACE BUG-107: Pending file recovery on startup` |
+| `REQ-###` | Requirement tracing | `// AI-TRACE REQ-003: Must support UTF-8` | `// AI-TRACE REQ-033: Transaction manager for recovery` |
+| `SEC-###` | Security note | `// AI-TRACE SEC-001: Description (CWE-XXX)` | `// AI-TRACE SEC-001: Sanitize user input (CWE-79)` |
+| `CHK-###` | Checklist item | `// AI-TRACE CHK-160: Token budget estimation` | `// AI-TRACE CHK-160: Pre-flight validation` |
 
 ### Evidence from Codebase
 
 ```typescript
 // From context-server.ts:34,62,65
-// T043-T047: Causal Memory Graph handlers
+// AI-TRACE T043-T047: Causal Memory Graph handlers
 handleMemoryDriftWhy, handleMemoryCausalLink, handleMemoryCausalStats, handleMemoryCausalUnlink,
 
-// T001-T004: Session deduplication
+// AI-TRACE T001-T004: Session deduplication
 import * as sessionManager from './lib/session/session-manager';
 
-// T107: Transaction manager for pending file recovery on startup (REQ-033)
+// AI-TRACE T107/REQ-033: transaction manager for pending file recovery
 import * as transactionManager from './lib/storage/transaction-manager';
 ```
 
@@ -268,17 +267,27 @@ For related tasks, use range notation:
 
 ```javascript
 // GOOD: Range for related tasks
-// T043-T047: Causal Memory Graph handlers
+// AI-TRACE T043-T047: Causal Memory Graph handlers
 
 // ALSO GOOD: List for non-sequential
-// T001, T004, T015: Session management handlers
+// AI-TRACE T001, T004, T015: Session management handlers
 
 // BAD: Individual comments for each
-// T043: drift_why handler
-// T044: causal_link handler
-// T045: causal_stats handler
-// T046: (etc - too verbose)
+// AI-TRACE T043: drift_why handler
+// AI-TRACE T044: causal_link handler
+// AI-TRACE T045: causal_stats handler
+// AI-TRACE T046: (etc - too verbose)
 ```
+
+### Design Principles Gate (KISS/DRY/SOLID)
+
+Apply this gate before finalizing implementation:
+
+1. **KISS**: remove speculative layers that do not serve current behavior.
+2. **DRY**: centralize repeated literals/rules into a single source.
+3. **SOLID**: flag SRP/OCP/LSP/ISP/DIP violations and simplify before merge.
+
+Carry-over from 139: keep rule constants centralized and test imports referencing those constants (avoid duplicate local literals).
 
 ---
 
