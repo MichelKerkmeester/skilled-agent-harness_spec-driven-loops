@@ -1,3 +1,16 @@
+---
+title: "048: SpecKit & Memory System Remediation [048-system-analysis/spec]"
+description: "A comprehensive audit of the SpecKit and Memory systems identified 16 verified bugs, 10 alignment issues, and 9 improvement opportunities (35 total tasks). While the systems are..."
+trigger_phrases:
+  - "048"
+  - "speckit"
+  - "memory"
+  - "system"
+  - "remediation"
+  - "spec"
+importance_tier: "important"
+contextType: "decision"
+---
 # 048: SpecKit & Memory System Remediation
 
 > **Level**: 3 (Complex - Architectural implications)

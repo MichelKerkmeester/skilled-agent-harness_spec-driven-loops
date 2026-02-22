@@ -1,3 +1,17 @@
+---
+title: "Tasks: workflows-code-opencode Skill Implementation [030-initial-set-up/tasks]"
+description: "Parallel Dispatch: 3 opus agents executed simultaneously"
+trigger_phrases:
+  - "tasks"
+  - "workflows"
+  - "code"
+  - "opencode"
+  - "skill"
+  - "030"
+  - "initial"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: workflows-code-opencode Skill Implementation
 
 <!-- SPECKIT_LEVEL: 3+ -->

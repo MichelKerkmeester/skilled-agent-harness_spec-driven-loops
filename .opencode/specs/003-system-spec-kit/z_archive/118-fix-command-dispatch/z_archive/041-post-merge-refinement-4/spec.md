@@ -1,3 +1,17 @@
+---
+title: "Feature Specification: Post-Merge Refinement 4 - Comprehensive System Alignment [041-post-merge-refinement-4/spec]"
+description: "Complete specification for addressing 75+ issues identified by 10-agent analysis across documentation, code, UX, and integration."
+trigger_phrases:
+  - "feature"
+  - "specification"
+  - "post"
+  - "merge"
+  - "refinement"
+  - "spec"
+  - "041"
+importance_tier: "important"
+contextType: "decision"
+---
 # Feature Specification: Post-Merge Refinement 4 - Comprehensive System Alignment
 
 Complete specification for addressing 75+ issues identified by 10-agent analysis across documentation, code, UX, and integration.

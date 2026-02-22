@@ -2,25 +2,24 @@
 <!-- Migrated by migrate-memory-v22.mjs -->
 
 ---
-title: Memory System Merger - Before and After Architecture
+title: "Memory System Merger - Before and After Architecture [035-memory-speckit-merger/2024-12-25_memory-system-merger]"
 trigger_phrases:
-  - memory system merger
-  - spec-kit integration
-  - system-memory skill
-  - semantic memory migration
-  - context preservation
-  - unified skill architecture
-  - constitutional files location
-  - context-server.js
-  - context-index.sqlite
-  - memory MCP tools
-  - 035-memory-speckit-merger
-  - skill consolidation
-  - MCP server migration
-importance_tier: critical
-context_type: implementation
+  - "memory system merger"
+  - "spec-kit integration"
+  - "system-memory skill"
+  - "semantic memory migration"
+  - "context preservation"
+  - "unified skill architecture"
+  - "constitutional files location"
+  - "context-server.js"
+  - "context-index.sqlite"
+  - "memory mcp tools"
+  - "035-memory-speckit-merger"
+  - "skill consolidation"
+  - "mcp server migration"
+importance_tier: "critical"
+contextType: "implementation"
 ---
-
 # SESSION SUMMARY
 
 | **Meta Data** | **Value** |

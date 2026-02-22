@@ -1,3 +1,16 @@
+---
+title: "Implementation Plan: Modular Validation Architecture [002-modular-architecture/plan]"
+description: ".opencode/skill/system-spec-kit/scripts/"
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "modular"
+  - "validation"
+  - "architecture"
+  - "002"
+importance_tier: "important"
+contextType: "decision"
+---
 # Implementation Plan: Modular Validation Architecture
 
 ## Technical Context

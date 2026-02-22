@@ -1,3 +1,15 @@
+---
+title: "Decision Record: [NAME] [template:level_3+/decision-record.md]"
+description: "not \"A decision was required regarding the selection of an appropriate approach.\""
+trigger_phrases:
+  - "decision"
+  - "record"
+  - "name"
+  - "template"
+  - "decision record"
+importance_tier: "normal"
+contextType: "general"
+---
 # Decision Record: [NAME]
 
 <!-- SPECKIT_LEVEL: 3+ -->

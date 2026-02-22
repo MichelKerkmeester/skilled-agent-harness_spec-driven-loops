@@ -1,3 +1,16 @@
+---
+title: "Decision Record: Task 01 — README Audit & Alignment [task-01-readme-alignment/decision-record]"
+description: "Task 01 requires systematic audit of 60+ README.md files across .opencode/ directory tree. The scope must balance completeness (catching all stale references) with feasibility (..."
+trigger_phrases:
+  - "decision"
+  - "record"
+  - "task"
+  - "readme"
+  - "audit"
+  - "decision record"
+importance_tier: "important"
+contextType: "decision"
+---
 # Decision Record: Task 01 — README Audit & Alignment
 
 <!-- SPECKIT_LEVEL: 3+ -->

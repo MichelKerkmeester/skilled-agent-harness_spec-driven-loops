@@ -1,3 +1,16 @@
+---
+title: "Verification Checklist: Smart Router V2 Rollout [034-smart-router-v2/checklist]"
+description: "Verification Date: 2026-02-17"
+trigger_phrases:
+  - "verification"
+  - "checklist"
+  - "smart"
+  - "router"
+  - "rollout"
+  - "034"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Verification Checklist: Smart Router V2 Rollout
 
 <!-- SPECKIT_LEVEL: 3 -->

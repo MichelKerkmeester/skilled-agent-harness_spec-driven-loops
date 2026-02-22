@@ -1,3 +1,17 @@
+---
+title: "Feature Specification: JWT Authentication [resume-stale/spec]"
+description: "The application currently lacks a secure authentication mechanism. Users cannot log in, and API endpoints are unprotected, allowing unauthorized access to sensitive data and ope..."
+trigger_phrases:
+  - "feature"
+  - "specification"
+  - "jwt"
+  - "authentication"
+  - "spec"
+  - "resume"
+  - "stale"
+importance_tier: "important"
+contextType: "decision"
+---
 # Feature Specification: JWT Authentication
 
 <!-- SPECKIT_LEVEL: 2 -->

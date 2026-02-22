@@ -1,3 +1,17 @@
+---
+title: "Feature Specification: System-Spec-Kit Deep Analysis & Remediation [087-speckit-deep-analysis/spec]"
+description: "Comprehensive audit and remediation of the entire system-spec-kit ecosystem: MCP server code, skill files, agent definitions, command files, constitutional memories, scripts, an..."
+trigger_phrases:
+  - "feature"
+  - "specification"
+  - "system"
+  - "spec"
+  - "kit"
+  - "087"
+  - "speckit"
+importance_tier: "important"
+contextType: "decision"
+---
 <!-- SPECKIT_LEVEL: 3+ -->
 # Feature Specification: System-Spec-Kit Deep Analysis & Remediation
 

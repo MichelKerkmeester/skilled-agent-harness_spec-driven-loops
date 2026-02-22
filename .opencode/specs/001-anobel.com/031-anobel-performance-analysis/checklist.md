@@ -1,3 +1,17 @@
+---
+title: "Verification Checklist: Comprehensive Performance Optimization - anobel.com [031-anobel-performance-analysis/checklist]"
+description: "Evidence Requirements"
+trigger_phrases:
+  - "verification"
+  - "checklist"
+  - "comprehensive"
+  - "performance"
+  - "optimization"
+  - "031"
+  - "anobel"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Verification Checklist: Comprehensive Performance Optimization - anobel.com
 
 <!-- SPECKIT_LEVEL: 3+ -->

@@ -1,3 +1,14 @@
+---
+title: "Implementation Plan [085-alignment-file-paths/plan]"
+description: "1. Test with spec-kit memory file saved to project folder (current bug case)"
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "085"
+  - "alignment"
+importance_tier: "important"
+contextType: "decision"
+---
 # Implementation Plan
 
 ## Phase 1: alignment-validator.js Updates

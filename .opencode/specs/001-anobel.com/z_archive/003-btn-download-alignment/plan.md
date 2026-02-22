@@ -1,3 +1,17 @@
+---
+title: "Plan: Download Button Code Standards Alignment [003-btn-download-alignment/plan]"
+description: "Apply code quality standards to both JS and CSS files without changing functionality."
+trigger_phrases:
+  - "plan"
+  - "download"
+  - "button"
+  - "code"
+  - "standards"
+  - "003"
+  - "btn"
+importance_tier: "important"
+contextType: "decision"
+---
 # Plan: Download Button Code Standards Alignment
 
 <!-- ANCHOR:approach -->

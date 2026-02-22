@@ -1,3 +1,17 @@
+---
+title: "Feature Specification: SpecKit Reimagined Test Suite [083-speckit-reimagined-test-suite/spec]"
+description: "This specification defines comprehensive test coverage for the SpecKit Reimagined implementation (082-speckit-reimagined). The test suite covers 33 features across 8 categories ..."
+trigger_phrases:
+  - "feature"
+  - "specification"
+  - "speckit"
+  - "reimagined"
+  - "test"
+  - "spec"
+  - "083"
+importance_tier: "important"
+contextType: "decision"
+---
 <!-- SPECKIT_LEVEL: 3+ -->
 # Feature Specification: SpecKit Reimagined Test Suite
 

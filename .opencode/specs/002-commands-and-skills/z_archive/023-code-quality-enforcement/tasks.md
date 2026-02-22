@@ -1,3 +1,17 @@
+---
+title: "Task Breakdown: Code Quality Enforcement - Implementation Tasks [023-code-quality-enforcement/tasks]"
+description: "Implementation tasks organized by phase for the code quality enforcement enhancement."
+trigger_phrases:
+  - "task"
+  - "breakdown"
+  - "code"
+  - "quality"
+  - "enforcement"
+  - "tasks"
+  - "023"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Task Breakdown: Code Quality Enforcement - Implementation Tasks
 
 Implementation tasks organized by phase for the code quality enforcement enhancement.

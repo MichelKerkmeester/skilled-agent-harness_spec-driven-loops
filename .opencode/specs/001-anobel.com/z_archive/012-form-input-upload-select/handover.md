@@ -1,3 +1,15 @@
+---
+title: "Session Handover Document [012-form-input-upload-select/handover]"
+description: "1. Upload minified files to R2 CDN for deployment"
+trigger_phrases:
+  - "session"
+  - "handover"
+  - "document"
+  - "012"
+  - "form"
+importance_tier: "normal"
+contextType: "general"
+---
 # Session Handover Document
 <!-- SPECKIT_TEMPLATE_SOURCE: handover | v2.0 -->
 

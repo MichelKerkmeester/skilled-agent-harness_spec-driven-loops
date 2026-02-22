@@ -1,3 +1,8 @@
+---
+title: "Epistemic state captured at session start for learning delta [014-config-alignment/01-01-26_15-02__config-alignment]"
+importance_tier: "important"
+contextType: "implementation"
+---
 <!-- TEMPLATE: context_template.md v2.2 - DO NOT EDIT GENERATED FILES -->
 
 ---

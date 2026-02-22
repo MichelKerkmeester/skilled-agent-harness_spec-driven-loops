@@ -1,3 +1,16 @@
+---
+title: "Tasks: System-Spec-Kit Bug Remediation [049-system-analysis-bugs/tasks]"
+description: "Existing Infrastructure"
+trigger_phrases:
+  - "tasks"
+  - "system"
+  - "spec"
+  - "kit"
+  - "bug"
+  - "049"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: System-Spec-Kit Bug Remediation
 
 ## Metadata

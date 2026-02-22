@@ -1,3 +1,16 @@
+---
+title: "Tasks: Smart Router V2 Refinement - Ambiguity & Efficiency Improvements [035-smart-router-v2-refinement/tasks]"
+description: "Task Format: T### [P?] Description (file path) with verification command"
+trigger_phrases:
+  - "tasks"
+  - "smart"
+  - "router"
+  - "refinement"
+  - "ambiguity"
+  - "035"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: Smart Router V2 Refinement - Ambiguity & Efficiency Improvements
 
 <!-- SPECKIT_LEVEL: 3 -->

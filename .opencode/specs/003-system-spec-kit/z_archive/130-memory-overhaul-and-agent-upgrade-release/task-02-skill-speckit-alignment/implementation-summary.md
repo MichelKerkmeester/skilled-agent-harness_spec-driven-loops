@@ -1,3 +1,16 @@
+---
+title: "Implementation Summary: Task 02 — SKILL.md & References Audit [task-02-skill-speckit-alignment/implementation-summary]"
+description: "[Implementer: Summarize what was completed for this task. Document all files audited/created/modified and the nature of changes made.]"
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "task"
+  - "skill"
+  - "references"
+  - "implementation summary"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Implementation Summary: Task 02 — SKILL.md & References Audit
 
 <!-- SPECKIT_LEVEL: 3+ -->

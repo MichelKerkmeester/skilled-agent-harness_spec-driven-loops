@@ -1,3 +1,16 @@
+---
+title: "Phase Package Plan: Post-Research Wave 1 (Governance Foundations) [004-post-research-wave-1-governance-foundations/plan]"
+description: "Deliver deterministic runtime foundations and governance evidence required to unlock controlled post-research delivery waves."
+trigger_phrases:
+  - "phase"
+  - "package"
+  - "plan"
+  - "post"
+  - "research"
+  - "004"
+importance_tier: "important"
+contextType: "decision"
+---
 # Phase Package Plan: Post-Research Wave 1 (Governance Foundations)
 
 <!-- SPECKIT_LEVEL: 3+ -->

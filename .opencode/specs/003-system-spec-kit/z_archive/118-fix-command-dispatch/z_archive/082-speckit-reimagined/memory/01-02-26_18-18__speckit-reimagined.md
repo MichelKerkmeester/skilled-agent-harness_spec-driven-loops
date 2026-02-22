@@ -1,3 +1,8 @@
+---
+title: "To promote a memory to constitutional tier (always surfaced) [082-speckit-reimagined/01-02-26_18-18__speckit-reimagined]"
+importance_tier: "normal"
+contextType: "general"
+---
 <!-- WARNING: This is simulated/placeholder content - NOT from a real session -->
 
 <!-- TEMPLATE: context_template.md v2.2 - DO NOT EDIT GENERATED FILES -->

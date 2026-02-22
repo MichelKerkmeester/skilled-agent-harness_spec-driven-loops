@@ -1,3 +1,16 @@
+---
+title: "Research: Memory & Folder Ranking Approaches [070-memory-ranking/research]"
+description: "Ranking memories and folders for relevance requires balancing multiple, sometimes competing, factors"
+trigger_phrases:
+  - "research"
+  - "memory"
+  - "folder"
+  - "ranking"
+  - "approaches"
+  - "070"
+importance_tier: "normal"
+contextType: "research"
+---
 # Research: Memory & Folder Ranking Approaches
 
 > **Spec:** `071-memory-ranking`  

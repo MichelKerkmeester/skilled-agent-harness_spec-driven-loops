@@ -1,3 +1,16 @@
+---
+title: "Verification Checklist: Anchor Enforcement Automation [132-anchor-enforcement-automation/checklist]"
+description: "Total P0 Items: 28"
+trigger_phrases:
+  - "verification"
+  - "checklist"
+  - "anchor"
+  - "enforcement"
+  - "automation"
+  - "132"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Verification Checklist: Anchor Enforcement Automation
 
 <!-- SPECKIT_LEVEL: 3+ -->

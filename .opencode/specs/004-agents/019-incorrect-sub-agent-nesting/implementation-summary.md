@@ -1,3 +1,15 @@
+---
+title: "Implementation Summary [019-incorrect-sub-agent-nesting/implementation-summary]"
+description: "Added the Nesting Depth Protocol (NDP) as new Section 26 to all three orchestrate.md variants (base, chatgpt, copilot). The NDP introduces a 3-tier agent classification system (..."
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "implementation summary"
+  - "019"
+  - "incorrect"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Implementation Summary
 
 <!-- SPECKIT_LEVEL: 3 -->

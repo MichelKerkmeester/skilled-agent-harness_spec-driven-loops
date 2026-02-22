@@ -1,3 +1,16 @@
+---
+title: "Tasks: Naming Convention Test Suite [091-naming-convention-test-suite/tasks]"
+description: "tasks document for 091-naming-convention-test-suite."
+trigger_phrases:
+  - "tasks"
+  - "naming"
+  - "convention"
+  - "test"
+  - "suite"
+  - "091"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: Naming Convention Test Suite
 
 <!-- SPECKIT_LEVEL: 2 -->

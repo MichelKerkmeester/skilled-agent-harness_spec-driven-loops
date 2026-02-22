@@ -1,3 +1,16 @@
+---
+title: "Verification Checklist: Agent Routing Documentation Update [119-agent-routing-doc-update/checklist]"
+description: "Verification Date: 2026-02-14"
+trigger_phrases:
+  - "verification"
+  - "checklist"
+  - "agent"
+  - "routing"
+  - "documentation"
+  - "119"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Verification Checklist: Agent Routing Documentation Update
 
 <!-- SPECKIT_LEVEL: 2 -->

@@ -1,3 +1,15 @@
+---
+title: "Tasks: 011 - Default-On Hardening Audit [011-default-on-hardening-audit/tasks]"
+description: "This document tracks execution tasks and completion criteria for Child 011 hardening."
+trigger_phrases:
+  - "tasks"
+  - "011"
+  - "default"
+  - "hardening"
+  - "audit"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: 011 - Default-On Hardening Audit
 
 <!-- SPECKIT_LEVEL: 3+ -->

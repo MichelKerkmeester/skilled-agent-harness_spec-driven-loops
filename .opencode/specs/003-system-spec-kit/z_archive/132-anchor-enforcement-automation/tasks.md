@@ -1,3 +1,15 @@
+---
+title: "Tasks: Anchor Enforcement Automation [132-anchor-enforcement-automation/tasks]"
+description: "Task Format: T### [P?] [W:XXXX?] Description (file path) [Priority]"
+trigger_phrases:
+  - "tasks"
+  - "anchor"
+  - "enforcement"
+  - "automation"
+  - "132"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: Anchor Enforcement Automation
 
 <!-- SPECKIT_LEVEL: 3+ -->

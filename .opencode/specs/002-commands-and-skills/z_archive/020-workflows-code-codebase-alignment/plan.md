@@ -1,3 +1,16 @@
+---
+title: "Implementation Plan: Workflows-Code Skill Alignment [020-workflows-code-codebase-alignment/plan]"
+description: "Implementation plan for aligning workflows-code skill documentation with actual anobel.com codebase patterns."
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "workflows"
+  - "code"
+  - "skill"
+  - "020"
+importance_tier: "important"
+contextType: "decision"
+---
 # Implementation Plan: Workflows-Code Skill Alignment
 
 Implementation plan for aligning workflows-code skill documentation with actual anobel.com codebase patterns.

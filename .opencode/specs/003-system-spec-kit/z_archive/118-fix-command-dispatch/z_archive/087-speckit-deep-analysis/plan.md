@@ -1,3 +1,17 @@
+---
+title: "Implementation Plan: System-Spec-Kit Deep Analysis & Remediation [087-speckit-deep-analysis/plan]"
+description: "Fix 3 critical bugs (SQL constraint, ghost tools, stale references), 15+ moderate misalignments (gate numbering, thresholds, missing commands), and perform ecosystem-wide AGENTS..."
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "system"
+  - "spec"
+  - "kit"
+  - "087"
+  - "speckit"
+importance_tier: "important"
+contextType: "decision"
+---
 # Implementation Plan: System-Spec-Kit Deep Analysis & Remediation
 
 <!-- SPECKIT_LEVEL: 3+ -->

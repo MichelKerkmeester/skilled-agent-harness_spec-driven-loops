@@ -1,3 +1,17 @@
+---
+title: "Decision Record: SpecKit Upgrade from Research [077-speckit-upgrade-from-research/decision-record]"
+description: "This document records architectural decisions made during the consolidation of four research specifications (060-063) into a unified SpecKit upgrade implementation plan. Each de..."
+trigger_phrases:
+  - "decision"
+  - "record"
+  - "speckit"
+  - "upgrade"
+  - "from"
+  - "decision record"
+  - "077"
+importance_tier: "important"
+contextType: "decision"
+---
 # Decision Record: SpecKit Upgrade from Research
 
 > **Spec Folder**: 077-speckit-upgrade-from-research

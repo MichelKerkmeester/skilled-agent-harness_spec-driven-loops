@@ -1,3 +1,15 @@
+---
+title: "Validation Checklist: System Analysis [015-system-analysis/checklist]"
+description: "checklist document for 015-system-analysis."
+trigger_phrases:
+  - "validation"
+  - "checklist"
+  - "system"
+  - "analysis"
+  - "015"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Validation Checklist: System Analysis
 
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v1.0 -->

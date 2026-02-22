@@ -1,3 +1,15 @@
+---
+title: "Checklist: Invalid Priority Tags Fixture [invalid-priority-tags/checklist]"
+description: "* [ ] Wrong bullet style with asterisk"
+trigger_phrases:
+  - "checklist"
+  - "invalid"
+  - "priority"
+  - "tags"
+  - "fixture"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Checklist: Invalid Priority Tags Fixture
 
 ## Tasks

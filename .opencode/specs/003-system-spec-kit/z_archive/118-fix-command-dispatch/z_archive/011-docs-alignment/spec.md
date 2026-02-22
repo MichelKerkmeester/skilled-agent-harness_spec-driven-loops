@@ -1,3 +1,18 @@
+---
+title: "Feature Specification: [YOUR_VALUE_HERE: Feature-Name] - Requirements & User Stories [011-docs-alignment/spec]"
+description: "Complete feature specification defining requirements, user stories, and success criteria."
+trigger_phrases:
+  - "feature"
+  - "specification"
+  - "your"
+  - "value"
+  - "here"
+  - "spec"
+  - "011"
+  - "docs"
+importance_tier: "important"
+contextType: "decision"
+---
 # Feature Specification: [YOUR_VALUE_HERE: Feature-Name] - Requirements & User Stories
 
 Complete feature specification defining requirements, user stories, and success criteria.

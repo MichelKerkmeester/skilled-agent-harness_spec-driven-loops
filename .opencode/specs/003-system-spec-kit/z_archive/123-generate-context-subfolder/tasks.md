@@ -1,3 +1,16 @@
+---
+title: "Tasks: generate-context.ts Subfolder Support [123-generate-context-subfolder/tasks]"
+description: "Task Format: T### [P?] Description (file path)"
+trigger_phrases:
+  - "tasks"
+  - "generate"
+  - "context"
+  - "subfolder"
+  - "support"
+  - "123"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: generate-context.ts Subfolder Support
 
 <!-- SPECKIT_LEVEL: 2 -->

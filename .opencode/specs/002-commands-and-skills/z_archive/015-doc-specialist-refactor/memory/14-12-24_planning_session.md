@@ -1,3 +1,8 @@
+---
+title: "Epistemic state captured at session start for learning delta [015-doc-specialist-refactor/14-12-24_planning_session]"
+importance_tier: "normal"
+contextType: "general"
+---
 <!-- TEMPLATE: context_template.md v2.2 - DO NOT EDIT GENERATED FILES -->
 <!-- Migrated from legacy format by migrate-memory-v22.mjs -->
 

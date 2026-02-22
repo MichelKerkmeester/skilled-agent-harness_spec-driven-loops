@@ -1,3 +1,14 @@
+---
+title: "Implementation Summary [template:examples/level_1/implementation-summary.md]"
+description: "the completed authentication feature. Created AFTER implementation completes. -->"
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "template"
+  - "implementation summary"
+importance_tier: "normal"
+contextType: "general"
+---
 # Implementation Summary
 
 <!-- SPECKIT_LEVEL: 1 -->

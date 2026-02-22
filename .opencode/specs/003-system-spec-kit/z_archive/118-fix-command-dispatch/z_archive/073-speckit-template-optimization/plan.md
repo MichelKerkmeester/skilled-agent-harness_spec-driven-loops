@@ -1,3 +1,16 @@
+---
+title: "Implementation Plan: SpecKit Template Optimization [073-speckit-template-optimization/plan]"
+description: "Restructure the SpecKit template system from monolithic templates to a CORE + ADDENDUM compositional architecture. Core templates (~270 LOC) provide the foundation shared across..."
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "speckit"
+  - "template"
+  - "optimization"
+  - "073"
+importance_tier: "important"
+contextType: "decision"
+---
 <!-- SPECKIT_LEVEL: 3+ -->
 # Implementation Plan: SpecKit Template Optimization
 

@@ -1,3 +1,18 @@
+---
+title: "Decision Record: System-Spec-Kit Deep Analysis & Remediation [087-speckit-deep-analysis/decision-record]"
+description: "Three different documentation sources give conflicting template file counts and LOC estimates for the same template levels. This causes confusion for agents loading different fi..."
+trigger_phrases:
+  - "decision"
+  - "record"
+  - "system"
+  - "spec"
+  - "kit"
+  - "decision record"
+  - "087"
+  - "speckit"
+importance_tier: "important"
+contextType: "decision"
+---
 # Decision Record: System-Spec-Kit Deep Analysis & Remediation
 
 <!-- SPECKIT_LEVEL: 3+ -->

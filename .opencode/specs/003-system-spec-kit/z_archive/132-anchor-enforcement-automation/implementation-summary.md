@@ -1,3 +1,17 @@
+---
+title: "Implementation Summary: Anchor Enforcement Automation [132-anchor-enforcement-automation/implementation-summary]"
+description: "This implementation delivers a 3-layer defense-in-depth enforcement system to ensure all spec folder documentation follows template structure and uses proper ANCHOR tags for str..."
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "anchor"
+  - "enforcement"
+  - "automation"
+  - "implementation summary"
+  - "132"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Implementation Summary: Anchor Enforcement Automation
 
 <!-- SPECKIT_LEVEL: 3+ -->

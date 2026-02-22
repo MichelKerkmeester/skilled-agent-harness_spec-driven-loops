@@ -1,3 +1,15 @@
+---
+title: "Tasks: Agent System Improvements [005-agent-system-improvements/tasks]"
+description: "Task Format: T### [P?] Description (file path)"
+trigger_phrases:
+  - "tasks"
+  - "agent"
+  - "system"
+  - "improvements"
+  - "005"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: Agent System Improvements
 
 <!-- SPECKIT_LEVEL: 3+ -->

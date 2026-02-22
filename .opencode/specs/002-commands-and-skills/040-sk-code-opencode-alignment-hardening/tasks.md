@@ -1,3 +1,16 @@
+---
+title: "Tasks: sk-code--opencode Alignment Hardening [040-sk-code-opencode-alignment-hardening/tasks]"
+description: "This document preserves the existing technical decisions and adds validator-required readme structure."
+trigger_phrases:
+  - "tasks"
+  - "code"
+  - "opencode"
+  - "alignment"
+  - "hardening"
+  - "040"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: sk-code--opencode Alignment Hardening
 
 <!-- SPECKIT_LEVEL: 3 -->

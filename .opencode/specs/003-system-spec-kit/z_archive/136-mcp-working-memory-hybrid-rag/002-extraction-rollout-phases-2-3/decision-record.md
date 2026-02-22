@@ -1,3 +1,17 @@
+---
+title: "Decision Record: Extraction and Rollout Package (Phase 2, 3) [002-extraction-rollout-phases-2-3/decision-record]"
+description: "This package captures closed Phase 2/3 execution and wave handoff mappings. Level 3+ compliance requires a local decision-record.md, while architecture-level ADR authority remai..."
+trigger_phrases:
+  - "decision"
+  - "record"
+  - "extraction"
+  - "and"
+  - "rollout"
+  - "decision record"
+  - "002"
+importance_tier: "important"
+contextType: "decision"
+---
 # Decision Record: Extraction and Rollout Package (Phase 2, 3)
 
 <!-- SPECKIT_LEVEL: 3+ -->

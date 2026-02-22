@@ -1,3 +1,16 @@
+---
+title: "Plan: Fix Download Button Transition Glitch [033-fix-download-btn-transition-glitch/plan]"
+description: "1. Add opacity-based hiding for [data-download-success] SVG in base state"
+trigger_phrases:
+  - "plan"
+  - "fix"
+  - "download"
+  - "button"
+  - "transition"
+  - "033"
+importance_tier: "important"
+contextType: "decision"
+---
 <!-- SPECKIT_TEMPLATE_SOURCE: legacy-normalized | v2.2 -->
 
 # Plan: Fix Download Button Transition Glitch

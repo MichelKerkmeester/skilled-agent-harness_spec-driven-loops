@@ -1,3 +1,17 @@
+---
+title: "Feature Specification: Comprehensive Script Audit [121-script-audit-comprehensive/spec]"
+description: "Comprehensive audit of all system-spec-kit scripts to identify bugs, broken features, and misalignments with sk-code--opencode standards. Investigation excludes issues solely ca..."
+trigger_phrases:
+  - "feature"
+  - "specification"
+  - "comprehensive"
+  - "script"
+  - "audit"
+  - "spec"
+  - "121"
+importance_tier: "important"
+contextType: "decision"
+---
 # Feature Specification: Comprehensive Script Audit
 
 <!-- SPECKIT_LEVEL: 3 -->

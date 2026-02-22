@@ -1,3 +1,17 @@
+---
+title: "Decision Record: SpecKit & Memory System Remediation [048-system-analysis/decision-record]"
+description: "48 unique issues identified across the SpecKit and Memory systems need to be organized for implementation. Multiple organization strategies were considered."
+trigger_phrases:
+  - "decision"
+  - "record"
+  - "speckit"
+  - "memory"
+  - "system"
+  - "decision record"
+  - "048"
+importance_tier: "important"
+contextType: "decision"
+---
 # Decision Record: SpecKit & Memory System Remediation
 
 > **Spec**: 048-system-analysis

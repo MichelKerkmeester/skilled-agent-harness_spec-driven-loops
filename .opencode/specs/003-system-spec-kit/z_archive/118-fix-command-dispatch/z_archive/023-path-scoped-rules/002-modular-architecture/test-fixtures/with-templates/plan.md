@@ -1,3 +1,16 @@
+---
+title: "Plan: Template Test Fixture [with-templates/plan]"
+description: "Testing template exclusion from validation rules."
+trigger_phrases:
+  - "plan"
+  - "template"
+  - "test"
+  - "fixture"
+  - "with"
+  - "templates"
+importance_tier: "important"
+contextType: "decision"
+---
 # Plan: Template Test Fixture
 
 ## Technical Context

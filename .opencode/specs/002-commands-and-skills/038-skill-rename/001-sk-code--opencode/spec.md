@@ -1,3 +1,17 @@
+---
+title: "Feature Specification: Phase 001 — Rename legacy workflow-prefixed skill to [001-sk-code--opencode/spec]"
+description: "This is Phase 1 of the Skill Rename (038) specification."
+trigger_phrases:
+  - "feature"
+  - "specification"
+  - "phase"
+  - "001"
+  - "rename"
+  - "spec"
+  - "code"
+importance_tier: "important"
+contextType: "decision"
+---
 # Feature Specification: Phase 001 — Rename legacy workflow-prefixed skill to `sk-code--opencode`
 
 <!-- SPECKIT_LEVEL: 2 -->

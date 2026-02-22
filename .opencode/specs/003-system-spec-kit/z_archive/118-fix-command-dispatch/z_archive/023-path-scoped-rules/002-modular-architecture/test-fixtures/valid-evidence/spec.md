@@ -1,3 +1,14 @@
+---
+title: "Spec: Valid Evidence Fixture [valid-evidence/spec]"
+description: "This fixture tests that completed P0/P1 items have evidence."
+trigger_phrases:
+  - "spec"
+  - "valid"
+  - "evidence"
+  - "fixture"
+importance_tier: "important"
+contextType: "decision"
+---
 # Spec: Valid Evidence Fixture
 
 | Field       | Value                    |

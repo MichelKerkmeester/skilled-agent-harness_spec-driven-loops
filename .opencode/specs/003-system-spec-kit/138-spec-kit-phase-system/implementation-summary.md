@@ -1,3 +1,15 @@
+---
+title: "Implementation Summary [138-spec-kit-phase-system/implementation-summary]"
+description: "The phase system moved from proposal into implemented behavior across scripts, command routing, and documentation surfaces. The core flow now exists end-to-end: phase recommenda..."
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "implementation summary"
+  - "138"
+  - "spec"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Implementation Summary
 
 <!-- SPECKIT_LEVEL: 3+ -->

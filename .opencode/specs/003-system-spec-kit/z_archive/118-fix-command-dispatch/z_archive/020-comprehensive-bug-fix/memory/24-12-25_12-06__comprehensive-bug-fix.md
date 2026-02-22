@@ -1,3 +1,8 @@
+---
+title: "Epistemic state captured at session start for [020-comprehensive-bug-fix/24-12-25_12-06__comprehensive-bug-fix]"
+importance_tier: "normal"
+contextType: "general"
+---
 <!-- TEMPLATE: context_template.md v2.2 - DO NOT EDIT GENERATED FILES -->
 ---
 

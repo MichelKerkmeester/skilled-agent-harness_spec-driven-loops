@@ -1,3 +1,17 @@
+---
+title: "Tasks: System-Spec-Kit Deep Analysis & Remediation [087-speckit-deep-analysis/tasks]"
+description: "Task Format: T### [P?] Description (file path)"
+trigger_phrases:
+  - "tasks"
+  - "system"
+  - "spec"
+  - "kit"
+  - "deep"
+  - "087"
+  - "speckit"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: System-Spec-Kit Deep Analysis & Remediation
 
 <!-- SPECKIT_LEVEL: 3+ -->

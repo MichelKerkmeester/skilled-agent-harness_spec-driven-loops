@@ -1,3 +1,17 @@
+---
+title: "Decision Record: Orchestration Upgrade [003-agent-system-upgrade/decision-record]"
+description: "This document captures the 10 key architectural decisions for the multi-agent orchestration upgrade, establishing patterns for fault tolerance, quality assurance, and scalable a..."
+trigger_phrases:
+  - "decision"
+  - "record"
+  - "orchestration"
+  - "upgrade"
+  - "decision record"
+  - "003"
+  - "agent"
+importance_tier: "important"
+contextType: "decision"
+---
 # Decision Record: Orchestration Upgrade
 
 <!-- SPECKIT_LEVEL: 3 -->

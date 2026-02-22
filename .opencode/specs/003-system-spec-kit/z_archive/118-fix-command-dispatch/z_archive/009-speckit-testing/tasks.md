@@ -1,3 +1,16 @@
+---
+title: "Tasks: SpecKit Post-Rename Testing [009-speckit-testing/tasks]"
+description: "Task breakdown for parallel agent testing."
+trigger_phrases:
+  - "tasks"
+  - "speckit"
+  - "post"
+  - "rename"
+  - "testing"
+  - "009"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: SpecKit Post-Rename Testing
 
 Task breakdown for parallel agent testing.

@@ -1,3 +1,16 @@
+---
+title: "Plan: Document Specialist Refactor [015-doc-specialist-refactor/plan]"
+description: "┌─────────────────────────────────────────────────────────────────┐"
+trigger_phrases:
+  - "plan"
+  - "document"
+  - "specialist"
+  - "refactor"
+  - "015"
+  - "doc"
+importance_tier: "important"
+contextType: "decision"
+---
 <!-- SPECKIT_TEMPLATE_SOURCE: legacy-normalized | v2.2 -->
 
 # Plan: Document Specialist Refactor

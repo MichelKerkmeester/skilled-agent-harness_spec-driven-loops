@@ -1,3 +1,16 @@
+---
+title: "Decision Record: Spec 017 - Agent Provider Switching [017-agent-provider-switch/decision-record]"
+description: "Status: Accepted"
+trigger_phrases:
+  - "decision"
+  - "record"
+  - "spec"
+  - "017"
+  - "agent"
+  - "decision record"
+importance_tier: "important"
+contextType: "decision"
+---
 # Decision Record: Spec 017 - Agent Provider Switching
 
 <!-- SPECKIT_LEVEL: 3 -->

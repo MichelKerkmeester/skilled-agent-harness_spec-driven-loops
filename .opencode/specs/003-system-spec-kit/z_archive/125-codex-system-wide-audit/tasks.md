@@ -1,3 +1,17 @@
+---
+title: "Tasks: System-Wide Remediation of Confirmed Findings [125-codex-system-wide-audit/tasks]"
+description: "Task format: T### [P?] Description (path)"
+trigger_phrases:
+  - "tasks"
+  - "system"
+  - "wide"
+  - "remediation"
+  - "confirmed"
+  - "125"
+  - "codex"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: System-Wide Remediation of Confirmed Findings
 
 <!-- SPECKIT_LEVEL: 3+ -->

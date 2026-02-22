@@ -1,3 +1,16 @@
+---
+title: "Handover: Form Upload File Type Issues [035-form-upload-issues/handover]"
+description: "Spec: 035-form-upload-issues"
+trigger_phrases:
+  - "handover"
+  - "form"
+  - "upload"
+  - "file"
+  - "type"
+  - "035"
+importance_tier: "normal"
+contextType: "general"
+---
 # Handover: Form Upload File Type Issues
 
 **Spec:** `035-form-upload-issues`

@@ -1,3 +1,16 @@
+---
+title: "Verification Checklist: Phase 009 - Rename workflows-git to sk-git (Barter Repo) [009-sk-git-from-barter-repo/checklist]"
+description: "P0 blocker checks are distributed across sections below and must all be complete."
+trigger_phrases:
+  - "verification"
+  - "checklist"
+  - "phase"
+  - "009"
+  - "rename"
+  - "git"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Verification Checklist: Phase 009 - Rename workflows-git to sk-git (Barter Repo)
 
 <!-- SPECKIT_LEVEL: 2 -->

@@ -1,3 +1,16 @@
+---
+title: "Verification Checklist: sk-code--opencode Alignment Hardening [040-sk-code-opencode-alignment-hardening/checklist]"
+description: "This document preserves the existing technical decisions and adds validator-required readme structure."
+trigger_phrases:
+  - "verification"
+  - "checklist"
+  - "code"
+  - "opencode"
+  - "alignment"
+  - "040"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Verification Checklist: sk-code--opencode Alignment Hardening
 
 <!-- SPECKIT_LEVEL: 3 -->

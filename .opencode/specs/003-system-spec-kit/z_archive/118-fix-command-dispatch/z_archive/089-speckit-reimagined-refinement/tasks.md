@@ -1,9 +1,20 @@
 ---
-title: "Tasks: system-spec-kit Reimagined Refinement"
+title: "Tasks: system-spec-kit Reimagined Refinement [089-speckit-reimagined-refinement/tasks]"
+description: "title: \"Tasks: system-spec-kit Reimagined Refinement\""
+trigger_phrases:
+  - "tasks"
+  - "system"
+  - "spec"
+  - "kit"
+  - "reimagined"
+  - "089"
+  - "speckit"
+importance_tier: "normal"
+contextType: "implementation"
 spec: "089"
 total-tasks: 28
----
 
+---
 # Tasks: system-spec-kit Reimagined Refinement
 
 ---

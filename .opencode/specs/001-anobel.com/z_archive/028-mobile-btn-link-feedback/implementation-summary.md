@@ -1,3 +1,15 @@
+---
+title: "Implementation Summary [028-mobile-btn-link-feedback/implementation-summary]"
+description: "A scroll-aware system for button/link active states that eliminates unwanted visual feedback during scroll on touch devices while preserving instant tap feedback."
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "implementation summary"
+  - "028"
+  - "mobile"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Implementation Summary
 
 <!-- SPECKIT_LEVEL: 1 -->

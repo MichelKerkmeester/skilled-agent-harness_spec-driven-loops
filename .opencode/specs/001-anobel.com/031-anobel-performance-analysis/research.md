@@ -1,3 +1,17 @@
+---
+title: "Research Summary: 10-Agent Performance Analysis - anobel.com [031-anobel-performance-analysis/research]"
+description: "A comprehensive performance analysis was conducted using 10 parallel agents, each focusing on a specific performance domain. The analysis identified 50+ performance issues acros..."
+trigger_phrases:
+  - "research"
+  - "summary"
+  - "agent"
+  - "performance"
+  - "analysis"
+  - "031"
+  - "anobel"
+importance_tier: "normal"
+contextType: "research"
+---
 # Research Summary: 10-Agent Performance Analysis - anobel.com
 
 <!-- SPECKIT_LEVEL: 3+ -->

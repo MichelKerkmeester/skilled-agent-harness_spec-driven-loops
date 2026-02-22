@@ -1,3 +1,18 @@
+---
+title: "Decision Record: workflows-code-opencode Skill [030-initial-set-up/decision-record]"
+description: "The existing workflows-code skill has a complex 4-phase routing system (Research → Implementation → Debugging → Verification) designed for full frontend development lifecycle ma..."
+trigger_phrases:
+  - "decision"
+  - "record"
+  - "workflows"
+  - "code"
+  - "opencode"
+  - "decision record"
+  - "030"
+  - "initial"
+importance_tier: "important"
+contextType: "decision"
+---
 # Decision Record: workflows-code-opencode Skill
 
 <!-- SPECKIT_LEVEL: 3+ -->

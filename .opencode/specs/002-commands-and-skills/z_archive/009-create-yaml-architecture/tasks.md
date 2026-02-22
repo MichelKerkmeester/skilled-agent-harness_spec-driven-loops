@@ -1,3 +1,16 @@
+---
+title: "Tasks: Create Commands YAML-First Architecture Refactor [009-create-yaml-architecture/tasks]"
+description: "Task Format: T### [P?] Description (file path)"
+trigger_phrases:
+  - "tasks"
+  - "create"
+  - "commands"
+  - "yaml"
+  - "first"
+  - "009"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: Create Commands YAML-First Architecture Refactor
 
 <!-- SPECKIT_LEVEL: 3 -->

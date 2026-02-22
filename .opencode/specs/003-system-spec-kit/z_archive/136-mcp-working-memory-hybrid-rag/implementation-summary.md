@@ -1,3 +1,15 @@
+---
+title: "Implementation Summary [136-mcp-working-memory-hybrid-rag/implementation-summary]"
+description: "The memory engine got a significant upgrade. Search results are now traceable, artifact-aware and self-tuning. Every retrieval carries a typed trace showing exactly how it was f..."
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "implementation summary"
+  - "136"
+  - "mcp"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Implementation Summary
 
 <!-- SPECKIT_LEVEL: 3+ -->

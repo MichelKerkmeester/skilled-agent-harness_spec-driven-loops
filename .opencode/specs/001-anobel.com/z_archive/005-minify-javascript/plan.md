@@ -1,3 +1,16 @@
+---
+title: "Implementation Plan: minify-javascript - Technical Approach [005-minify-javascript/plan]"
+description: "Minify all JavaScript files in src/2_javascript/z_minified/ in-place, using conservative minifier settings to avoid behavior changes when embedded in Webflow and served from Clo..."
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "minify"
+  - "javascript"
+  - "technical"
+  - "005"
+importance_tier: "important"
+contextType: "decision"
+---
 # Implementation Plan: minify-javascript - Technical Approach
 
 Minify all JavaScript files in `src/2_javascript/z_minified/` in-place, using conservative minifier settings to avoid behavior changes when embedded in Webflow and served from Cloudflare.

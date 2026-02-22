@@ -1,3 +1,18 @@
+---
+title: "Decision Record: Retrieval Anchors for Skill Documentation [033-anchor-implementation/decision-record]"
+description: "Spec Folder: specs/002-commands-and-skills/033-anchor-implementation"
+trigger_phrases:
+  - "decision"
+  - "record"
+  - "retrieval"
+  - "anchors"
+  - "for"
+  - "decision record"
+  - "033"
+  - "anchor"
+importance_tier: "important"
+contextType: "decision"
+---
 <!-- SPECKIT_TEMPLATE_SOURCE: legacy-normalized | v2.2 -->
 
 <!-- ANCHOR:summary -->

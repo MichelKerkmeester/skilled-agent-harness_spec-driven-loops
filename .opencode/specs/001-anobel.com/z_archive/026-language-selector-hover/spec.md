@@ -1,3 +1,16 @@
+---
+title: "Spec: Language Selector - Desktop Hover to Open [026-language-selector-hover/spec]"
+description: "Modify nav_language_selector.js to open the dropdown on hover (desktop only), matching the behavior of nav_dropdown.js."
+trigger_phrases:
+  - "spec"
+  - "language"
+  - "selector"
+  - "desktop"
+  - "hover"
+  - "026"
+importance_tier: "important"
+contextType: "decision"
+---
 # Spec: Language Selector - Desktop Hover to Open
 
 <!-- ANCHOR:overview -->

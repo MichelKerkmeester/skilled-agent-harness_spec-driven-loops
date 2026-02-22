@@ -1,3 +1,16 @@
+---
+title: "H2 Emoji Enforcement - Implementation Summary [017-h2-emoji-enforcement/implementation-summary]"
+description: "Implemented a \"Copy-First, Validate-All\" approach to prevent H2 emoji omission in template-based documents. The solution adds three layers of defense: prevention (write agent in..."
+trigger_phrases:
+  - "emoji"
+  - "enforcement"
+  - "implementation"
+  - "summary"
+  - "implementation summary"
+  - "017"
+importance_tier: "normal"
+contextType: "implementation"
+---
 <!-- SPECKIT_TEMPLATE_SOURCE: legacy-normalized | v2.2 -->
 
 # H2 Emoji Enforcement - Implementation Summary

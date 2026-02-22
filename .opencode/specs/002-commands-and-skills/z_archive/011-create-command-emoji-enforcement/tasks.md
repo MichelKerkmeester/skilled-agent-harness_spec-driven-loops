@@ -1,3 +1,17 @@
+---
+title: "Tasks: Remove Emoji Enforcement from /create Command [011-create-command-emoji-enforcement/tasks]"
+description: "Task Format: T### [P?] Description (file path)"
+trigger_phrases:
+  - "tasks"
+  - "remove"
+  - "emoji"
+  - "enforcement"
+  - "from"
+  - "011"
+  - "create"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: Remove Emoji Enforcement from /create Command
 
 <!-- SPECKIT_LEVEL: 3 -->

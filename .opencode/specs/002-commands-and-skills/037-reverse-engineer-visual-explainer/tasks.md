@@ -1,3 +1,16 @@
+---
+title: "Tasks: Reverse-Engineer Visual Explainer Skill [037-reverse-engineer-visual-explainer/tasks]"
+description: "Task Format: T### [P?] Description (file path)"
+trigger_phrases:
+  - "tasks"
+  - "reverse"
+  - "engineer"
+  - "visual"
+  - "explainer"
+  - "037"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: Reverse-Engineer Visual Explainer Skill
 
 <!-- SPECKIT_LEVEL: 3 -->

@@ -1,3 +1,8 @@
+---
+title: "To promote a memory to constitutional [137-readme-and-summary-with-hvr/19-02-26_21-46__readme-and-summary-with-hvr]"
+importance_tier: "normal"
+contextType: "general"
+---
 <!-- TEMPLATE: context_template.md v2.2 - DO NOT EDIT GENERATED FILES -->
 <!-- Constitutional Tier Promotion:
   To promote a memory to constitutional tier (always surfaced):

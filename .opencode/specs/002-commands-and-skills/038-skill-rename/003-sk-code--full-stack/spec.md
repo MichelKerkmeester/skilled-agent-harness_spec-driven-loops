@@ -1,3 +1,17 @@
+---
+title: "Feature Specification: Phase 003 — Rename legacy full-stack skill identifier to [003-sk-code--full-stack/spec]"
+description: "This is Phase 3 of the Skill Rename (038) specification. It executes FIRST in the implementation order because legacy full-stack skill identifier is the longest old name, and mu..."
+trigger_phrases:
+  - "feature"
+  - "specification"
+  - "phase"
+  - "003"
+  - "rename"
+  - "spec"
+  - "code"
+importance_tier: "important"
+contextType: "decision"
+---
 # Feature Specification: Phase 003 — Rename legacy full-stack skill identifier to sk-code--full-stack
 
 <!-- SPECKIT_LEVEL: 2 -->

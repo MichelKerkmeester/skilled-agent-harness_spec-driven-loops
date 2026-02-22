@@ -1,3 +1,17 @@
+---
+title: "Research: Practical Integration Roadmap -- Skill Graphs x Hybrid RAG Fusion [002-hybrid-rag-fusion/research]"
+description: "The original 001 plan (Phases 0-5) was designed before the skill graph system (002) existed. Now that 002 is complete (412 nodes, 627 edges, 9 skills, SGQS parser/executor, grap..."
+trigger_phrases:
+  - "research"
+  - "practical"
+  - "integration"
+  - "roadmap"
+  - "skill"
+  - "002"
+  - "hybrid"
+importance_tier: "normal"
+contextType: "research"
+---
 # Research: Practical Integration Roadmap -- Skill Graphs x Hybrid RAG Fusion
 
 <!-- SPECKIT_LEVEL: 3+ -->

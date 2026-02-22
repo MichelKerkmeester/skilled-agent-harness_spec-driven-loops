@@ -1,3 +1,15 @@
+---
+title: "Task 01 — README Audit & Alignment [task-01-readme-alignment/spec]"
+description: "Audit every README.md file in the .opencode/ directory tree to ensure all statistics, feature descriptions, version numbers, and cross-references reflect the post-implementation..."
+trigger_phrases:
+  - "task"
+  - "readme"
+  - "audit"
+  - "alignment"
+  - "spec"
+importance_tier: "important"
+contextType: "decision"
+---
 <!-- SPECKIT_LEVEL: 3+ -->
 # Task 01 — README Audit & Alignment
 

@@ -1,3 +1,15 @@
+---
+title: "Session Handover Document [045-readme-alignment/handover]"
+description: "1. Phase 1: Fix system-spec-kit/README.md (8 tasks - 3 P0, 4 P1, 1 P2)"
+trigger_phrases:
+  - "session"
+  - "handover"
+  - "document"
+  - "045"
+  - "readme"
+importance_tier: "normal"
+contextType: "general"
+---
 # Session Handover Document
 <!-- SPECKIT_TEMPLATE_SOURCE: handover | v2.0 -->
 

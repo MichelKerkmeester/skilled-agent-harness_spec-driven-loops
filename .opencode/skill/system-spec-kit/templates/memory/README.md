@@ -1,13 +1,13 @@
 ---
-title: "Memory"
+title: "Memory [template:memory/README.md]"
 description: "Memory workflow rules for generated context files in spec folders."
 trigger_phrases:
   - "memory"
   - "save context"
   - "generate-context"
 importance_tier: "normal"
+contextType: "general"
 ---
-
 # Memory
 
 Memory context files are generated, not hand-written.

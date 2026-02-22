@@ -1,3 +1,15 @@
+---
+title: "Session Handover Document [030-gate3-enforcement/handover]"
+description: "MCP Server Changes (semantic-memory.js)"
+trigger_phrases:
+  - "session"
+  - "handover"
+  - "document"
+  - "030"
+  - "gate3"
+importance_tier: "normal"
+contextType: "general"
+---
 # Session Handover Document
 <!-- SPECKIT_TEMPLATE_SOURCE: handover | v2.0 -->
 

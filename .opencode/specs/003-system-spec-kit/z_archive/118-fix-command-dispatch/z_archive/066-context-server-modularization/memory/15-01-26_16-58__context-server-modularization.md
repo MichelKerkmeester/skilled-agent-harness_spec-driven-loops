@@ -1,3 +1,8 @@
+---
+title: "To promote a memory to [066-context-server-modularization/15-01-26_16-58__context-server-modularization]"
+importance_tier: "critical"
+contextType: "general"
+---
 <!-- TEMPLATE: context_template.md v2.2 - DO NOT EDIT GENERATED FILES -->
 <!-- Constitutional Tier Promotion:
   To promote a memory to constitutional tier (always surfaced):

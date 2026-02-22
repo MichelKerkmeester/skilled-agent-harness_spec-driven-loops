@@ -1,3 +1,17 @@
+---
+title: "Feature Specification: Memory Plugin Dashboard Optimization - Requirements & User Stories [002-memory-plugin/spec]"
+description: "Optimize the semantic memory plugin to inject a compact \"memory dashboard\" instead of full content, reducing token consumption while maintaining context visibility."
+trigger_phrases:
+  - "feature"
+  - "specification"
+  - "memory"
+  - "plugin"
+  - "dashboard"
+  - "spec"
+  - "002"
+importance_tier: "important"
+contextType: "decision"
+---
 # Feature Specification: Memory Plugin Dashboard Optimization - Requirements & User Stories
 
 Optimize the semantic memory plugin to inject a compact "memory dashboard" instead of full content, reducing token consumption while maintaining context visibility.

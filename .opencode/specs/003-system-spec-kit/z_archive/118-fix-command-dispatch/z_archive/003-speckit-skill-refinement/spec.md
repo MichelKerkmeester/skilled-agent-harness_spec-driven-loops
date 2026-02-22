@@ -1,11 +1,21 @@
 ---
-created: 2025-12-13
-status: active
-level: 2
-estimated_loc: 400
+title: "Spec: SpecKit Skill Refinement [003-speckit-skill-refinement/spec]"
+description: "created: 2025-12-13"
+trigger_phrases:
+  - "spec"
+  - "speckit"
+  - "skill"
+  - "refinement"
+  - "003"
+importance_tier: "important"
+contextType: "decision"
 complexity: medium
----
 
+created: 2025-12-13
+estimated_loc: 400
+level: 2
+status: active
+---
 # Spec: SpecKit Skill Refinement
 
 ## 1. OBJECTIVE

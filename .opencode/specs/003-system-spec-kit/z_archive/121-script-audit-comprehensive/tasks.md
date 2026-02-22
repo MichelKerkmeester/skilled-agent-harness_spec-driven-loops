@@ -1,3 +1,15 @@
+---
+title: "Tasks: Comprehensive Script Audit [121-script-audit-comprehensive/tasks]"
+description: "Task Format: T### [P?] Description (file path)"
+trigger_phrases:
+  - "tasks"
+  - "comprehensive"
+  - "script"
+  - "audit"
+  - "121"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: Comprehensive Script Audit
 
 <!-- SPECKIT_LEVEL: 3 -->

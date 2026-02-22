@@ -1,3 +1,8 @@
+---
+title: "To promote a memory to constitutional tier (always surfaced) [033-ux-deep-analysis/25-12-25_11-36__ux-deep-analysis]"
+importance_tier: "normal"
+contextType: "general"
+---
 <!-- TEMPLATE: context_template.md v2.2 - DO NOT EDIT GENERATED FILES -->
 <!-- Constitutional Tier Promotion:
   To promote a memory to constitutional tier (always surfaced):

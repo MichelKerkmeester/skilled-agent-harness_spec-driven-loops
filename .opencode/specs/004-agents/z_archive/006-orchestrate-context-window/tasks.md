@@ -1,3 +1,16 @@
+---
+title: "Tasks: Orchestrate Agent Context Window Protection [006-orchestrate-context-window/tasks]"
+description: "Task Format: T### [P?] Description (file path)"
+trigger_phrases:
+  - "tasks"
+  - "orchestrate"
+  - "agent"
+  - "context"
+  - "window"
+  - "006"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: Orchestrate Agent Context Window Protection
 
 <!-- SPECKIT_LEVEL: 3+ -->

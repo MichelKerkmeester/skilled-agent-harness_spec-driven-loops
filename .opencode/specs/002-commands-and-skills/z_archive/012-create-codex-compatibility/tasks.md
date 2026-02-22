@@ -1,10 +1,21 @@
 ---
+title: "Tasks: Create Commands Codex Compatibility [012-create-codex-compatibility/tasks]"
+description: "level: 3"
+trigger_phrases:
+  - "tasks"
+  - "create"
+  - "commands"
+  - "codex"
+  - "compatibility"
+  - "012"
+importance_tier: "normal"
+contextType: "implementation"
+completed: 2026-02-17
+
+created: 2026-02-17
 level: 3
 status: done
-created: 2026-02-17
-completed: 2026-02-17
 ---
-
 <!-- SPECKIT_TEMPLATE_SOURCE: legacy-normalized | v2.2 -->
 
 # Tasks: Create Commands Codex Compatibility

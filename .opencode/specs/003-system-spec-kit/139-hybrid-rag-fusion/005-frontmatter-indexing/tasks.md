@@ -1,3 +1,14 @@
+---
+title: "Tasks: 005-frontmatter-indexing [005-frontmatter-indexing/tasks]"
+description: "Task Format: T### [P?] Description (file path)"
+trigger_phrases:
+  - "tasks"
+  - "005"
+  - "frontmatter"
+  - "indexing"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: 005-frontmatter-indexing
 
 <!-- SPECKIT_LEVEL: 3 -->

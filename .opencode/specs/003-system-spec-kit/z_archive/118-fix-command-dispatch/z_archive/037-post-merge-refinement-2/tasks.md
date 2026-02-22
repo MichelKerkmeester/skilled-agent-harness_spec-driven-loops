@@ -1,3 +1,15 @@
+---
+title: "Tasks: Post-Merge Refinement 2 [037-post-merge-refinement-2/tasks]"
+description: "tasks document for 037-post-merge-refinement-2."
+trigger_phrases:
+  - "tasks"
+  - "post"
+  - "merge"
+  - "refinement"
+  - "037"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: Post-Merge Refinement 2
 
 ## Task List

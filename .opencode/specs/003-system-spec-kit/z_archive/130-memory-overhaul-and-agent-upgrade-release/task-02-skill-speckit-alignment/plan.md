@@ -1,3 +1,15 @@
+---
+title: "Implementation Plan: Task 02 — SKILL.md & References Audit [task-02-skill-speckit-alignment/plan]"
+description: "system-spec-kit SKILL.md and reference docs audit/creation for spec 130 umbrella. Systematic review of SKILL.md + references/ directory to ensure alignment with post-implementat..."
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "task"
+  - "skill"
+  - "references"
+importance_tier: "important"
+contextType: "decision"
+---
 # Implementation Plan: Task 02 — SKILL.md & References Audit
 
 <!-- SPECKIT_LEVEL: 3+ -->

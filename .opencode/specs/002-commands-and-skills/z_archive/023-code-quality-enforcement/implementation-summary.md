@@ -1,3 +1,17 @@
+---
+title: "Implementation Summary: Code Quality Enforcement [023-code-quality-enforcement/implementation-summary]"
+description: "Enhancement to the workflows-code skill adding active code quality and style enforcement for all code files (JavaScript + CSS)."
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "code"
+  - "quality"
+  - "enforcement"
+  - "implementation summary"
+  - "023"
+importance_tier: "normal"
+contextType: "implementation"
+---
 <!-- SPECKIT_TEMPLATE_SOURCE: legacy-normalized | v2.2 -->
 
 # Implementation Summary: Code Quality Enforcement

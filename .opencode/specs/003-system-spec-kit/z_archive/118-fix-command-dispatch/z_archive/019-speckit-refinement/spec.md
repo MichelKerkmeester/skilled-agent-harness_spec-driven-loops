@@ -1,3 +1,17 @@
+---
+title: "SpecKit Refinement: ECP Analysis & Improvements [019-speckit-refinement/spec]"
+description: "1. Three State Files"
+trigger_phrases:
+  - "speckit"
+  - "refinement"
+  - "ecp"
+  - "analysis"
+  - "improvements"
+  - "spec"
+  - "019"
+importance_tier: "important"
+contextType: "decision"
+---
 # SpecKit Refinement: ECP Analysis & Improvements
 <!-- SPECKIT_TEMPLATE_SOURCE: spec | v1.0 -->
 <!-- SPECKIT_STATUS: COMPLETE -->

@@ -1,3 +1,15 @@
+---
+title: "Plan: Valid Priority Tags Fixture [valid-priority-tags/plan]"
+description: "Testing that properly formatted priority tags pass validation."
+trigger_phrases:
+  - "plan"
+  - "valid"
+  - "priority"
+  - "tags"
+  - "fixture"
+importance_tier: "important"
+contextType: "decision"
+---
 # Plan: Valid Priority Tags Fixture
 
 ## Technical Context

@@ -1,10 +1,21 @@
 ---
-created: 2025-12-13
-status: active
-level: 2
+title: "Plan: SpecKit Skill Refinement (Conservative Approach) [003-speckit-skill-refinement/plan]"
+description: "created: 2025-12-13"
+trigger_phrases:
+  - "plan"
+  - "speckit"
+  - "skill"
+  - "refinement"
+  - "conservative"
+  - "003"
+importance_tier: "important"
+contextType: "decision"
 approach: conservative
----
 
+created: 2025-12-13
+level: 2
+status: active
+---
 # Plan: SpecKit Skill Refinement (Conservative Approach)
 
 ## 1. Philosophy

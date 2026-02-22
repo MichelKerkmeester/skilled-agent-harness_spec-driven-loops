@@ -1,3 +1,8 @@
+---
+title: "Implementation Session: JWT Authentication [implement-happy/14-02-26_11-00__implementation_session]"
+importance_tier: "normal"
+contextType: "general"
+---
 # Implementation Session: JWT Authentication
 
 <!-- SPECKIT_MEMORY_FILE -->

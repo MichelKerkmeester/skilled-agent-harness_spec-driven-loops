@@ -1,3 +1,17 @@
+---
+title: "Decision Record: Modular Validation Architecture [002-modular-architecture/decision-record]"
+description: "The MVP validation script (validate-spec.sh) is ~600 lines. Adding all planned features would grow it to ~1400 lines, making maintenance difficult."
+trigger_phrases:
+  - "decision"
+  - "record"
+  - "modular"
+  - "validation"
+  - "architecture"
+  - "decision record"
+  - "002"
+importance_tier: "important"
+contextType: "decision"
+---
 # Decision Record: Modular Validation Architecture
 
 ## Metadata

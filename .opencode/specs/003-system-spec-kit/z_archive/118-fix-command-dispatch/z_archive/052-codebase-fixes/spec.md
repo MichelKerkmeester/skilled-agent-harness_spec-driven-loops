@@ -1,3 +1,16 @@
+---
+title: "Spec: Codebase Fixes - Embedding Dimension & Performance [052-codebase-fixes/spec]"
+description: "Fix critical bugs and performance issues identified during comprehensive codebase analysis."
+trigger_phrases:
+  - "spec"
+  - "codebase"
+  - "fixes"
+  - "embedding"
+  - "dimension"
+  - "052"
+importance_tier: "important"
+contextType: "decision"
+---
 # Spec: Codebase Fixes - Embedding Dimension & Performance
 
 ## Overview

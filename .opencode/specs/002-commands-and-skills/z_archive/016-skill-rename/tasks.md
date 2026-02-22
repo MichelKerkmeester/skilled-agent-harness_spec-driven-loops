@@ -1,3 +1,16 @@
+---
+title: "Tasks: sk-documentation Skill Functional Testing [016-skill-rename/tasks]"
+description: "Result: ALL TESTS PASSED"
+trigger_phrases:
+  - "tasks"
+  - "documentation"
+  - "skill"
+  - "functional"
+  - "testing"
+  - "016"
+importance_tier: "normal"
+contextType: "implementation"
+---
 <!-- SPECKIT_TEMPLATE_SOURCE: legacy-normalized | v2.2 -->
 
 # Tasks: sk-documentation Skill Functional Testing

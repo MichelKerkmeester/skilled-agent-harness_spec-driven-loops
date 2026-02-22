@@ -1,3 +1,17 @@
+---
+title: "Decision Record: Reverse-Engineer Visual Explainer Skill [037-reverse-engineer-visual-explainer/decision-record]"
+description: "The visual-explainer source material contains 5 commands, 11 diagram types, 9 aesthetic profiles, a CSS pattern library (~15KB), a library guide (~16KB), and 3 HTML templates. P..."
+trigger_phrases:
+  - "decision"
+  - "record"
+  - "reverse"
+  - "engineer"
+  - "visual"
+  - "decision record"
+  - "037"
+importance_tier: "important"
+contextType: "decision"
+---
 # Decision Record: Reverse-Engineer Visual Explainer Skill
 
 <!-- SPECKIT_LEVEL: 3 -->

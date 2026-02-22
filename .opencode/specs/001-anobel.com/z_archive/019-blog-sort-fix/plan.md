@@ -1,3 +1,16 @@
+---
+title: "Plan: Blog Sort Dropdown Fix [019-blog-sort-fix/plan]"
+description: "┌─────────────────────────────────────────────────────────────────────────────┐"
+trigger_phrases:
+  - "plan"
+  - "blog"
+  - "sort"
+  - "dropdown"
+  - "fix"
+  - "019"
+importance_tier: "important"
+contextType: "decision"
+---
 # Plan: Blog Sort Dropdown Fix
 
 <!-- ANCHOR:architecture-overview -->

@@ -1,3 +1,16 @@
+---
+title: "Session Handover: Skill Graph Layer Addition [002-skill-graph-integration/handover]"
+description: "Spec Folder: .opencode/specs/003-system-spec-kit/138-hybrid-rag-fusion/002-skill-graph-integration/"
+trigger_phrases:
+  - "session"
+  - "handover"
+  - "skill"
+  - "graph"
+  - "layer"
+  - "002"
+importance_tier: "normal"
+contextType: "general"
+---
 # Session Handover: Skill Graph Layer Addition
 
 **Spec Folder**: `.opencode/specs/003-system-spec-kit/138-hybrid-rag-fusion/002-skill-graph-integration/`

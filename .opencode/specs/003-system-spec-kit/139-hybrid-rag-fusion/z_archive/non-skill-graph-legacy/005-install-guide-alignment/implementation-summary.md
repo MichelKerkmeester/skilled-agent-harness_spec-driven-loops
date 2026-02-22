@@ -1,3 +1,17 @@
+---
+title: "Implementation Summary: Install Guide Alignment [005-install-guide-alignment/implementation-summary]"
+description: "All 4 INSTALL_GUIDE.md files across the OpenCode skill system were rewritten to align with the latest install_guide_template.md structure, comply with HVR (Human Voice Rules), a..."
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "install"
+  - "guide"
+  - "alignment"
+  - "implementation summary"
+  - "005"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Implementation Summary: Install Guide Alignment
 
 <!-- SPECKIT_LEVEL: 2 -->

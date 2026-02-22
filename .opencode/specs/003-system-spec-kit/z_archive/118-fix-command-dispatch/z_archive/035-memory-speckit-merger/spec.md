@@ -1,3 +1,16 @@
+---
+title: "Memory System Integration into Spec-Kit [035-memory-speckit-merger/spec]"
+description: "The current architecture has two overlapping skill folders for documentation and context management"
+trigger_phrases:
+  - "memory"
+  - "system"
+  - "integration"
+  - "into"
+  - "spec"
+  - "035"
+importance_tier: "important"
+contextType: "decision"
+---
 # Memory System Integration into Spec-Kit
 
 ## Overview

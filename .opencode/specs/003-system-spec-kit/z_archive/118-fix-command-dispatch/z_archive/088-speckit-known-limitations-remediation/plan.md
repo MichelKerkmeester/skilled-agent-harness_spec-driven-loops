@@ -1,3 +1,17 @@
+---
+title: "Implementation Plan: System-Spec-Kit Known Limitations Remediation [088-speckit-known-limitations-remediation/plan]"
+description: "Fix 4 known limitations from the 087-speckit-deep-analysis: unify the memory_conflicts SQLite table schema via migration v12, fix stale Gate 4/6 references across 7+ files, add ..."
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "system"
+  - "spec"
+  - "kit"
+  - "088"
+  - "speckit"
+importance_tier: "important"
+contextType: "decision"
+---
 # Implementation Plan: System-Spec-Kit Known Limitations Remediation
 
 <!-- SPECKIT_LEVEL: 2 -->

@@ -1,3 +1,13 @@
+---
+title: "Checklist [037-post-merge-refinement-2/checklist]"
+description: "checklist document for 037-post-merge-refinement-2."
+trigger_phrases:
+  - "checklist"
+  - "037"
+  - "post"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Checklist
 
 - [x] Analyze feature gap between v11 and v12

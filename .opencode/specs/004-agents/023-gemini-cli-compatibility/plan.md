@@ -1,3 +1,16 @@
+---
+title: "Implementation Plan: Gemini CLI Compatibility [023-gemini-cli-compatibility/plan]"
+description: "Add a Gemini CLI runtime layer to the existing multi-provider OpenCode architecture. This creates a .gemini/ directory with adapted agent definitions, TOML command wrappers, ski..."
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "gemini"
+  - "cli"
+  - "compatibility"
+  - "023"
+importance_tier: "important"
+contextType: "decision"
+---
 # Implementation Plan: Gemini CLI Compatibility
 
 <!-- SPECKIT_LEVEL: 2 -->

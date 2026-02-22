@@ -1,3 +1,17 @@
+---
+title: "Implementation Plan: Comprehensive Performance Optimization - anobel.com [031-anobel-performance-analysis/plan]"
+description: "This plan addresses 50+ performance issues identified by 10-agent parallel analysis. The implementation is organized into 6 phases, progressing from critical P0 JavaScript bugs ..."
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "comprehensive"
+  - "performance"
+  - "optimization"
+  - "031"
+  - "anobel"
+importance_tier: "important"
+contextType: "decision"
+---
 # Implementation Plan: Comprehensive Performance Optimization - anobel.com
 
 <!-- SPECKIT_LEVEL: 3+ -->

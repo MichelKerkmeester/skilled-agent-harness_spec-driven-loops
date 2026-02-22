@@ -1,3 +1,14 @@
+---
+title: "Session Handover [044-speckit-test-suite/handover]"
+description: "1. Comprehensive Parallel Testing"
+trigger_phrases:
+  - "session"
+  - "handover"
+  - "044"
+  - "speckit"
+importance_tier: "normal"
+contextType: "general"
+---
 # Session Handover
 <!-- SPECKIT_TEMPLATE_SOURCE: handover | v2.0 -->
 

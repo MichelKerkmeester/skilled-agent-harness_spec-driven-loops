@@ -1,3 +1,17 @@
+---
+title: "Plan: Figma MCP Install Guide & Skill Creation [013-initial-creation/plan]"
+description: "1. Load templates from sk-documentation skill"
+trigger_phrases:
+  - "plan"
+  - "figma"
+  - "mcp"
+  - "install"
+  - "guide"
+  - "013"
+  - "initial"
+importance_tier: "important"
+contextType: "decision"
+---
 <!-- SPECKIT_TEMPLATE_SOURCE: legacy-normalized | v2.2 -->
 
 # Plan: Figma MCP Install Guide & Skill Creation

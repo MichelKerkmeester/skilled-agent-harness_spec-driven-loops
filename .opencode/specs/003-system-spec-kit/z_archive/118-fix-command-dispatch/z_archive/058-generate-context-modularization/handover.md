@@ -1,3 +1,15 @@
+---
+title: "Session Handover Document [058-generate-context-modularization/handover]"
+description: "Spec: specs/003-memory-and-spec-kit/058-generate-context-modularization"
+trigger_phrases:
+  - "session"
+  - "handover"
+  - "document"
+  - "058"
+  - "generate"
+importance_tier: "normal"
+contextType: "general"
+---
 # Session Handover Document
 <!-- SPECKIT_TEMPLATE_SOURCE: handover | v2.0 -->
 

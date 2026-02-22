@@ -1,3 +1,15 @@
+---
+title: "Tasks: Add User Authentication [template:examples/level_2/tasks.md]"
+description: "including effort estimates and explicit verification tasks for each feature. -->"
+trigger_phrases:
+  - "tasks"
+  - "add"
+  - "user"
+  - "authentication"
+  - "template"
+importance_tier: "normal"
+contextType: "general"
+---
 # Tasks: Add User Authentication
 
 <!-- SPECKIT_LEVEL: 2 -->

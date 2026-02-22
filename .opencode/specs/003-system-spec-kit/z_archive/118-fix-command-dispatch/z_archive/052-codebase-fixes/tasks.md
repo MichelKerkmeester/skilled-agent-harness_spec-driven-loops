@@ -1,3 +1,14 @@
+---
+title: "Tasks: Codebase Fixes [052-codebase-fixes/tasks]"
+description: "1. Add import for getEmbeddingDimension"
+trigger_phrases:
+  - "tasks"
+  - "codebase"
+  - "fixes"
+  - "052"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: Codebase Fixes
 
 ## Task Breakdown

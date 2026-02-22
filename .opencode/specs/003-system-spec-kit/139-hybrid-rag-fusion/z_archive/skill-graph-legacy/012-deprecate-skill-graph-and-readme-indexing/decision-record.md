@@ -1,3 +1,17 @@
+---
+title: "Decision Record: 012 - Skill-Graph and [012-deprecate-skill-graph-and-readme-indexing/decision-record]"
+description: "Memory MCP currently exposes SGQS tools and runtime paths that expand feature surface without matching long-term maintenance priorities. Keeping SGQS active requires schema, han..."
+trigger_phrases:
+  - "decision"
+  - "record"
+  - "012"
+  - "skill"
+  - "graph"
+  - "decision record"
+  - "deprecate"
+importance_tier: "important"
+contextType: "decision"
+---
 # Decision Record: 012 - Skill-Graph and README/Skill-Ref Indexing Deprecation
 
 <!-- SPECKIT_LEVEL: 3 -->

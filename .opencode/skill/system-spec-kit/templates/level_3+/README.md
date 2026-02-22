@@ -1,13 +1,13 @@
 ---
-title: "Level 3+ Templates"
+title: "Level 3+ Templates [template:level_3+/README.md]"
 description: "Governance-heavy templates for high-complexity or regulated work."
 trigger_phrases:
   - "level 3+"
   - "governance"
   - "compliance"
 importance_tier: "normal"
+contextType: "general"
 ---
-
 # Level 3+ Templates
 
 Use for work that needs formal governance, compliance traceability, and coordinated execution.

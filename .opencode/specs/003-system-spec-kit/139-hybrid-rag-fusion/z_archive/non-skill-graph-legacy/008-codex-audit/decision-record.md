@@ -1,3 +1,17 @@
+---
+title: "Decision Record: Codex Audit Remediation Closure [008-codex-audit/decision-record]"
+description: "memory-crud.ts held multiple responsibilities that increased review cost and regression risk. The codex audit required improving maintainability without breaking runtime entrypo..."
+trigger_phrases:
+  - "decision"
+  - "record"
+  - "codex"
+  - "audit"
+  - "remediation"
+  - "decision record"
+  - "008"
+importance_tier: "important"
+contextType: "decision"
+---
 # Decision Record: Codex Audit Remediation Closure
 
 <!-- SPECKIT_LEVEL: 3 -->

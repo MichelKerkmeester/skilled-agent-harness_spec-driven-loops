@@ -1,3 +1,17 @@
+---
+title: "Decision Record: JavaScript Codebase Alignment Analysis [025-js-codebase-analysis/decision-record]"
+description: "The anobel.com codebase contains approximately 91 JavaScript files across multiple directories including navigation, CMS, global utilities, forms, and minified bundles. A compre..."
+trigger_phrases:
+  - "decision"
+  - "record"
+  - "javascript"
+  - "codebase"
+  - "alignment"
+  - "decision record"
+  - "025"
+importance_tier: "important"
+contextType: "decision"
+---
 # Decision Record: JavaScript Codebase Alignment Analysis
 
 <!-- SPECKIT_LEVEL: 3+ -->

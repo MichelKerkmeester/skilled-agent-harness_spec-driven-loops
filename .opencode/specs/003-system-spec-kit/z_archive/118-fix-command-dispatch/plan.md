@@ -1,3 +1,16 @@
+---
+title: "Implementation Plan: Fix Command Dispatch Vulnerability [118-fix-command-dispatch/plan]"
+description: "This plan addresses a command dispatch vulnerability where OpenCode's runtime injects phantom dispatch text based on structural patterns in command .md files. The approach is: (..."
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "fix"
+  - "command"
+  - "dispatch"
+  - "118"
+importance_tier: "important"
+contextType: "decision"
+---
 # Implementation Plan: Fix Command Dispatch Vulnerability
 
 <!-- SPECKIT_LEVEL: 3+ -->

@@ -1,3 +1,16 @@
+---
+title: "Phase Package Spec: Post-Research Wave 1 (Governance Foundations) [004-post-research-wave-1-governance-foundations/spec]"
+description: "This package defines the first post-research delivery wave for governance readiness and deterministic hybrid retrieval foundations."
+trigger_phrases:
+  - "phase"
+  - "package"
+  - "spec"
+  - "post"
+  - "research"
+  - "004"
+importance_tier: "important"
+contextType: "decision"
+---
 <!-- SPECKIT_LEVEL: 3+ -->
 # Phase Package Spec: Post-Research Wave 1 (Governance Foundations)
 

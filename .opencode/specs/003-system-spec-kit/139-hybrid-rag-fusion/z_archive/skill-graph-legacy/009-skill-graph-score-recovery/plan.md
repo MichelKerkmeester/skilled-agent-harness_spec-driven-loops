@@ -1,3 +1,17 @@
+---
+title: "Implementation Plan: 138 SGQS Score Recovery Plan (Child 009, Milestone 3.5 First) [009-skill-graph-score-recovery/plan]"
+description: "This child plan executes score recovery with strict milestone-first governance. Work is limited to four core files (engine, parser, graph-builder, advisor) and explicit node mar..."
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "138"
+  - "sgqs"
+  - "score"
+  - "009"
+  - "skill"
+importance_tier: "important"
+contextType: "decision"
+---
 # Implementation Plan: 138 SGQS Score Recovery Plan (Child 009, Milestone 3.5 First)
 
 <!-- SPECKIT_LEVEL: 2 -->

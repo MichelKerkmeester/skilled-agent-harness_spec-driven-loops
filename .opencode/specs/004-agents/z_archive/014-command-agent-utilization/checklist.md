@@ -1,3 +1,16 @@
+---
+title: "Verification Checklist: Command Agent Utilization Audit [014-command-agent-utilization/checklist]"
+description: "Verification Date: 2026-02-14"
+trigger_phrases:
+  - "verification"
+  - "checklist"
+  - "command"
+  - "agent"
+  - "utilization"
+  - "014"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Verification Checklist: Command Agent Utilization Audit
 
 <!-- SPECKIT_LEVEL: 3 -->

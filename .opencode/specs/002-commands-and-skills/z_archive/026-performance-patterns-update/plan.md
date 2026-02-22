@@ -1,3 +1,16 @@
+---
+title: "Performance Patterns Update - Implementation Plan [026-performance-patterns-update/plan]"
+description: "Goal: Enhance workflows-code skill with performance optimization patterns learned from anobel.com project."
+trigger_phrases:
+  - "performance"
+  - "patterns"
+  - "update"
+  - "implementation"
+  - "plan"
+  - "026"
+importance_tier: "important"
+contextType: "decision"
+---
 <!-- SPECKIT_TEMPLATE_SOURCE: legacy-normalized | v2.2 -->
 
 # Performance Patterns Update - Implementation Plan

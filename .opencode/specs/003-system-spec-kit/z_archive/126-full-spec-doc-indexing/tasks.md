@@ -1,3 +1,16 @@
+---
+title: "Tasks: Full Spec Folder Document Indexing [126-full-spec-doc-indexing/tasks]"
+description: "LEVEL 3+ TASKS"
+trigger_phrases:
+  - "tasks"
+  - "full"
+  - "spec"
+  - "folder"
+  - "document"
+  - "126"
+importance_tier: "normal"
+contextType: "implementation"
+---
 <!-- SPECKIT_LEVEL: 3+ -->
 # Tasks: Full Spec Folder Document Indexing
 

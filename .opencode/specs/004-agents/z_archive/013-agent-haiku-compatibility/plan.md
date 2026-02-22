@@ -1,3 +1,16 @@
+---
+title: "Implementation Plan: Agent Haiku Compatibility [013-agent-haiku-compatibility/plan]"
+description: "Update orchestrate.md to remove stale 3-mode context agent references and add Haiku-specific failure awareness. The context agent was rewritten to thorough-only mode after spec ..."
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "agent"
+  - "haiku"
+  - "compatibility"
+  - "013"
+importance_tier: "important"
+contextType: "decision"
+---
 # Implementation Plan: Agent Haiku Compatibility
 
 <!-- SPECKIT_LEVEL: 2 -->

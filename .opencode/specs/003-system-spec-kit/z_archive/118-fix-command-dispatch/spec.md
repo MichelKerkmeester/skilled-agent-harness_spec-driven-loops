@@ -1,3 +1,17 @@
+---
+title: "Feature Specification: Fix Command Dispatch Vulnerability [118-fix-command-dispatch/spec]"
+description: "During a security audit of the OpenCode command system, a critical vulnerability was discovered in 7 command .md files: phantom dispatch text and missing guardrails that cause c..."
+trigger_phrases:
+  - "feature"
+  - "specification"
+  - "fix"
+  - "command"
+  - "dispatch"
+  - "spec"
+  - "118"
+importance_tier: "important"
+contextType: "decision"
+---
 # Feature Specification: Fix Command Dispatch Vulnerability
 
 <!-- SPECKIT_LEVEL: 3+ -->

@@ -1,3 +1,18 @@
+---
+title: "Implementation Summary: Sub-Agent Delegation [005-subagent-delegation/implementation-summary]"
+description: "Refactored /spec_kit:handover and /memory:save commands to delegate execution work to sub-agents via the Task tool, improving token efficiency while maintaining fallback capabil..."
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "sub"
+  - "agent"
+  - "delegation"
+  - "implementation summary"
+  - "005"
+  - "subagent"
+importance_tier: "normal"
+contextType: "implementation"
+---
 <!-- SPECKIT_TEMPLATE_SOURCE: legacy-normalized | v2.2 -->
 
 # Implementation Summary: Sub-Agent Delegation

@@ -1,3 +1,17 @@
+---
+title: "Tasks: Utility Template Trigger Keywords - Implementation Breakdown [012-handover-triggers/tasks]"
+description: "Task list for adding automatic keyword detection for handover.md and debug-delegation.md templates to SKILL.md."
+trigger_phrases:
+  - "tasks"
+  - "utility"
+  - "template"
+  - "trigger"
+  - "keywords"
+  - "012"
+  - "handover"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: Utility Template Trigger Keywords - Implementation Breakdown
 
 Task list for adding automatic keyword detection for handover.md and debug-delegation.md templates to SKILL.md.

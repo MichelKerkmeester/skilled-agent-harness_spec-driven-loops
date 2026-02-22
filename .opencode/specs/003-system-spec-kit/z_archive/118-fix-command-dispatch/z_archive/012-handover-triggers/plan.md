@@ -1,3 +1,17 @@
+---
+title: "Implementation Plan: Utility Template Trigger Keywords - Technical Approach & Architecture [012-handover-triggers/plan]"
+description: "Implementation plan for adding automatic keyword detection for handover.md and debug-delegation.md templates to SKILL.md."
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "utility"
+  - "template"
+  - "trigger"
+  - "012"
+  - "handover"
+importance_tier: "important"
+contextType: "decision"
+---
 # Implementation Plan: Utility Template Trigger Keywords - Technical Approach & Architecture
 
 Implementation plan for adding automatic keyword detection for handover.md and debug-delegation.md templates to SKILL.md.

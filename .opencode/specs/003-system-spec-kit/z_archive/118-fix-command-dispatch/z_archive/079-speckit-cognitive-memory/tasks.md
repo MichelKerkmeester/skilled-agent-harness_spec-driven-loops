@@ -1,3 +1,16 @@
+---
+title: "Tasks: Cognitive Memory Upgrade [079-speckit-cognitive-memory/tasks]"
+description: "Task Format: T### [P?] Description (file path)"
+trigger_phrases:
+  - "tasks"
+  - "cognitive"
+  - "memory"
+  - "upgrade"
+  - "079"
+  - "speckit"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: Cognitive Memory Upgrade
 
 <!-- SPECKIT_LEVEL: 3+ -->

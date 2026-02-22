@@ -1,3 +1,17 @@
+---
+title: "Decision Record: Post-SpecKit Template Upgrade [075-post-speckit-template-upgrade-command-allignment/decision-record]"
+description: "Status: PROPOSED"
+trigger_phrases:
+  - "decision"
+  - "record"
+  - "post"
+  - "speckit"
+  - "template"
+  - "decision record"
+  - "075"
+importance_tier: "important"
+contextType: "decision"
+---
 # Decision Record: Post-SpecKit Template Upgrade - Command Alignment
 
 ## ADR-001: Section Header Standardization Approach

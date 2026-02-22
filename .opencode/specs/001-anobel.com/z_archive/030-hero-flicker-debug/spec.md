@@ -1,3 +1,17 @@
+---
+title: "Feature Specification: Hero Video Card Image Flickering Fix [030-hero-flicker-debug/spec]"
+description: "On mobile devices, when scrolling through video cards in the hero section (both \"hero cards\" and \"hero general\" variants), the thumbnail images flicker rapidly. This occurs on p..."
+trigger_phrases:
+  - "feature"
+  - "specification"
+  - "hero"
+  - "video"
+  - "card"
+  - "spec"
+  - "030"
+importance_tier: "important"
+contextType: "decision"
+---
 # Feature Specification: Hero Video Card Image Flickering Fix
 
 <!-- SPECKIT_LEVEL: 2 -->

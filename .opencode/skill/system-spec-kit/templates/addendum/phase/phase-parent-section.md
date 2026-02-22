@@ -1,3 +1,15 @@
+---
+title: "phase parent section [template:addendum/phase/phase-parent-section.md]"
+description: "Template document for addendum/phase/phase-parent-section.md."
+trigger_phrases:
+  - "phase"
+  - "parent"
+  - "section"
+  - "template"
+  - "phase parent section"
+importance_tier: "normal"
+contextType: "general"
+---
 <!-- SPECKIT_ADDENDUM: Phase - Parent Section -->
 <!-- Append to parent spec.md after SCOPE section -->
 

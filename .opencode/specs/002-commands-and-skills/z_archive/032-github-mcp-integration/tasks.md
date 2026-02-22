@@ -1,3 +1,13 @@
+---
+title: "Tasks [032-github-mcp-integration/tasks]"
+description: "N/A - legacy spec artifact."
+trigger_phrases:
+  - "tasks"
+  - "032"
+  - "github"
+importance_tier: "normal"
+contextType: "implementation"
+---
 <!-- SPECKIT_TEMPLATE_SOURCE: legacy-normalized | v2.2 -->
 <!-- SPECKIT_LEVEL: 2 -->
 

@@ -1,3 +1,17 @@
+---
+title: "Decision Record: Smart Router V2 Rollout [034-smart-router-v2/decision-record]"
+description: "Current first-hit keyword routing in skill documents is brittle for mixed-intent prompts and cannot prioritize stronger signals. Smart Router V2 needs a deterministic but flexib..."
+trigger_phrases:
+  - "decision"
+  - "record"
+  - "smart"
+  - "router"
+  - "rollout"
+  - "decision record"
+  - "034"
+importance_tier: "important"
+contextType: "decision"
+---
 # Decision Record: Smart Router V2 Rollout
 
 <!-- SPECKIT_LEVEL: 3 -->

@@ -1,3 +1,12 @@
+---
+title: "[2-3 sentence high-level overview for stakeholders who need quick [template:addendum/level3-arch/spec-level3.md]"
+description: "[2-3 sentence high-level overview for stakeholders who need quick context]"
+trigger_phrases:
+  - "template"
+  - "spec level3"
+importance_tier: "normal"
+contextType: "general"
+---
 <!-- SPECKIT_ADDENDUM: Level 3 - Architecture -->
 <!-- Insert after CORE spec.md Section 1 METADATA -->
 

@@ -1,3 +1,17 @@
+---
+title: "Feature Specification: Phase 007 — Finalize mcp-chrome-devtools Rename [007-mcp-chrome-devtools/spec]"
+description: "This is Phase 7 of the Skill Rename (038) specification. It is the only phase using the mcp- prefix instead of sk-, because Chrome DevTools is an MCP integration, not a standard..."
+trigger_phrases:
+  - "feature"
+  - "specification"
+  - "phase"
+  - "007"
+  - "finalize"
+  - "spec"
+  - "mcp"
+importance_tier: "important"
+contextType: "decision"
+---
 # Feature Specification: Phase 007 — Finalize mcp-chrome-devtools Rename
 
 <!-- SPECKIT_LEVEL: 2 -->

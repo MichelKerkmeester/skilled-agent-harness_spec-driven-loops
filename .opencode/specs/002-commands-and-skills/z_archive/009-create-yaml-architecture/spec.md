@@ -1,3 +1,17 @@
+---
+title: "Feature Specification: Create Commands YAML-First Architecture Refactor [009-create-yaml-architecture/spec]"
+description: "Architectural refactor of all 6 create commands (.opencode/command/create/) to align with the spec_kit YAML-first workflow pattern. The current create commands use an inverted w..."
+trigger_phrases:
+  - "feature"
+  - "specification"
+  - "create"
+  - "commands"
+  - "yaml"
+  - "spec"
+  - "009"
+importance_tier: "important"
+contextType: "decision"
+---
 # Feature Specification: Create Commands YAML-First Architecture Refactor
 
 <!-- SPECKIT_LEVEL: 3 -->

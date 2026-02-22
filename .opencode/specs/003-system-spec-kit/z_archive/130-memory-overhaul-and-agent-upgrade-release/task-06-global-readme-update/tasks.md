@@ -1,3 +1,16 @@
+---
+title: "Tasks: Task 06 — Root README Update [task-06-global-readme-update/tasks]"
+description: "Task Format: T### Description (file path)"
+trigger_phrases:
+  - "tasks"
+  - "task"
+  - "root"
+  - "readme"
+  - "update"
+  - "global"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: Task 06 — Root README Update
 
 <!-- SPECKIT_LEVEL: 3+ -->

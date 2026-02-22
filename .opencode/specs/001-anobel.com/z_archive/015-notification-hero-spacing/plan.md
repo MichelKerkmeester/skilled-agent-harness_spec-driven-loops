@@ -1,3 +1,14 @@
+---
+title: "Implementation Plan [015-notification-hero-spacing/plan]"
+description: "Implement conditional hero spacing that responds to notification bar visibility using CSS :has() selector with the existing data-alert-container-active attribute."
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "015"
+  - "notification"
+importance_tier: "important"
+contextType: "decision"
+---
 # Implementation Plan
 
 <!-- ANCHOR:overview -->

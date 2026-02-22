@@ -1,3 +1,16 @@
+---
+title: "System-Spec-Kit Bug Analysis and Remediation [049-system-analysis-bugs/spec]"
+description: "A comprehensive 20-agent parallel analysis of the system-spec-kit skill revealed 1 CRITICAL bug, 2 HIGH severity issues, and 6 MEDIUM issues that impact the memory indexing syst..."
+trigger_phrases:
+  - "system"
+  - "spec"
+  - "kit"
+  - "bug"
+  - "analysis"
+  - "049"
+importance_tier: "important"
+contextType: "decision"
+---
 # System-Spec-Kit Bug Analysis and Remediation
 
 ## Metadata

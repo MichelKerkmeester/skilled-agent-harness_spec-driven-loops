@@ -1,3 +1,15 @@
+---
+title: "Command Logic Improvement [004-command-logic-improvement/spec]"
+description: "Analysis of external command references (GitHub Gist) compared to existing OpenCode commands to identify improvements in logic, teachings, and reference patterns."
+trigger_phrases:
+  - "command"
+  - "logic"
+  - "improvement"
+  - "spec"
+  - "004"
+importance_tier: "important"
+contextType: "decision"
+---
 <!-- SPECKIT_LEVEL: 2 -->
 
 <!-- SPECKIT_TEMPLATE_SOURCE: legacy-normalized | v2.2 -->

@@ -1,3 +1,15 @@
+---
+title: "Feature Specification: [NAME] [template:level_2/spec.md]"
+description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
+trigger_phrases:
+  - "feature"
+  - "specification"
+  - "name"
+  - "template"
+  - "spec"
+importance_tier: "normal"
+contextType: "general"
+---
 # Feature Specification: [NAME]
 
 <!-- SPECKIT_LEVEL: 2 -->

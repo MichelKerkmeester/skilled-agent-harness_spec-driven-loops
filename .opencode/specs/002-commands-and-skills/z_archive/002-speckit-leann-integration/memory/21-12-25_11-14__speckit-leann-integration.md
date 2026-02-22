@@ -1,3 +1,8 @@
+---
+title: "Related Documentation [002-speckit-leann-integration/21-12-25_11-14__speckit-leann-integration]"
+importance_tier: "normal"
+contextType: "general"
+---
 <!-- TEMPLATE: context_template.md v2.2 - DO NOT EDIT GENERATED FILES -->
 ---
 

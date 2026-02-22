@@ -1,3 +1,15 @@
+---
+title: "Implementation Summary [020-agent-sonnet-upgrade/implementation-summary]"
+description: "All agent model fields across the Copilot and Claude Code agent systems were upgraded to align on claude-sonnet-4-6 as the standard fleet model. Five Copilot agents were pinned ..."
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "implementation summary"
+  - "020"
+  - "agent"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Implementation Summary
 
 <!-- SPECKIT_LEVEL: 2 -->

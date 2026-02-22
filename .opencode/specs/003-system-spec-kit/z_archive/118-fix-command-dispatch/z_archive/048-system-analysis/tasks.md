@@ -1,3 +1,17 @@
+---
+title: "Task Breakdown: SpecKit & Memory System Remediation [048-system-analysis/tasks]"
+description: "Legend"
+trigger_phrases:
+  - "task"
+  - "breakdown"
+  - "speckit"
+  - "memory"
+  - "system"
+  - "tasks"
+  - "048"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Task Breakdown: SpecKit & Memory System Remediation
 
 > **Spec**: 048-system-analysis

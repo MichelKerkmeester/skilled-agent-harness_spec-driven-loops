@@ -1,3 +1,15 @@
+---
+title: "Checklist - workflows-code Conversion [027-workflows-code-multi-stack/checklist]"
+description: "grep -ri \"barter\" .opencode/skill/workflows-code/"
+trigger_phrases:
+  - "checklist"
+  - "workflows"
+  - "code"
+  - "conversion"
+  - "027"
+importance_tier: "normal"
+contextType: "implementation"
+---
 <!-- SPECKIT_TEMPLATE_SOURCE: legacy-normalized | v2.2 -->
 
 # Checklist - workflows-code Conversion

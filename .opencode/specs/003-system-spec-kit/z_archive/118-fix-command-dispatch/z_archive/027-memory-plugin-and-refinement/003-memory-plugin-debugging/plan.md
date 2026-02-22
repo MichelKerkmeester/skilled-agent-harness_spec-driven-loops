@@ -1,3 +1,17 @@
+---
+title: "Implementation Plan - bun:sqlite Migration [003-memory-plugin-debugging/plan]"
+description: "Migrate the semantic memory plugin from better-sqlite3 to bun:sqlite to fix the \"Loaded 0 memories\" issue."
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "bun"
+  - "sqlite"
+  - "migration"
+  - "003"
+  - "memory"
+importance_tier: "important"
+contextType: "decision"
+---
 # Implementation Plan - bun:sqlite Migration
 
 ## Overview

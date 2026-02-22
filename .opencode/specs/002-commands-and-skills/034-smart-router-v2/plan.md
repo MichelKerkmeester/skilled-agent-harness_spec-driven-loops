@@ -1,3 +1,16 @@
+---
+title: "Implementation Plan: Smart Router V2 Rollout [034-smart-router-v2/plan]"
+description: "This rollout updates 10 skill definition files to Smart Router V2 behavior using weighted keyword classification, recursive references/assets discovery, and stack/language detec..."
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "smart"
+  - "router"
+  - "rollout"
+  - "034"
+importance_tier: "important"
+contextType: "decision"
+---
 # Implementation Plan: Smart Router V2 Rollout
 
 <!-- SPECKIT_LEVEL: 3 -->

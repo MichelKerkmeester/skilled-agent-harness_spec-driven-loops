@@ -1,3 +1,18 @@
+---
+title: "Implementation Summary: 013 - Deprecate Skill Graph and [001-deprecated-skill-graph-experiment/implementation-summary]"
+description: "This pass closes the deprecation work with evidence-backed documentation. You now have a complete Level 3 artifact set proving that SGQS/readme-indexing/skill-ref surfaces are r..."
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "013"
+  - "deprecate"
+  - "skill"
+  - "implementation summary"
+  - "001"
+  - "deprecated"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Implementation Summary: 013 - Deprecate Skill Graph and README/Skill-Ref Indexing (Completion Pass 2)
 
 <!-- SPECKIT_LEVEL: 3 -->

@@ -1,3 +1,17 @@
+---
+title: "Decision Record: Make Debug Command Stack-Agnostic [006-debug-stack-agnostic/decision-record]"
+description: "The /spec_kit:debug command was analyzed for technology stack bias. The command itself is reasonably generic, but its references point to frontend-specific debugging materials."
+trigger_phrases:
+  - "decision"
+  - "record"
+  - "make"
+  - "debug"
+  - "command"
+  - "decision record"
+  - "006"
+importance_tier: "important"
+contextType: "decision"
+---
 <!-- SPECKIT_TEMPLATE_SOURCE: legacy-normalized | v2.2 -->
 
 # Decision Record: Make Debug Command Stack-Agnostic

@@ -1,3 +1,17 @@
+---
+title: "Tasks: libSQL Hybrid RAG Enablement Assessment [140-sqlite-to-libsql/tasks]"
+description: "Task Format: T### [P?] Description (file path)"
+trigger_phrases:
+  - "tasks"
+  - "libsql"
+  - "hybrid"
+  - "rag"
+  - "enablement"
+  - "140"
+  - "sqlite"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: libSQL Hybrid RAG Enablement Assessment
 
 <!-- SPECKIT_LEVEL: 3 -->

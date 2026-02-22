@@ -1,3 +1,16 @@
+---
+title: "Implementation Plan: Add User Authentication [template:examples/level_3/plan.md]"
+description: "planning. Note the addition of Dependency Graph, Critical Path, Milestones, and"
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "add"
+  - "user"
+  - "authentication"
+  - "template"
+importance_tier: "normal"
+contextType: "general"
+---
 # Implementation Plan: Add User Authentication
 
 <!-- SPECKIT_LEVEL: 3 -->

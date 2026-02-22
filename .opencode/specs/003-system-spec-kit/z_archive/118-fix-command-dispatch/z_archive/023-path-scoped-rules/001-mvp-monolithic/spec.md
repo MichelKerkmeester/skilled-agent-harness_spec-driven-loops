@@ -1,3 +1,17 @@
+---
+title: "Path-Scoped Validation Rules [001-mvp-monolithic/spec]"
+description: "1. No quality enforcement: Incomplete specs pass silently"
+trigger_phrases:
+  - "path"
+  - "scoped"
+  - "validation"
+  - "rules"
+  - "spec"
+  - "001"
+  - "mvp"
+importance_tier: "important"
+contextType: "decision"
+---
 # Path-Scoped Validation Rules
 <!-- SPECKIT_TEMPLATE_SOURCE: spec.md | v1.0 -->
 

@@ -1,3 +1,16 @@
+---
+title: "Tasks: system-spec-kit References Reorganization [056-spec-kit-references-reorganization/tasks]"
+description: "All tasks above marked complete with"
+trigger_phrases:
+  - "tasks"
+  - "system"
+  - "spec"
+  - "kit"
+  - "references"
+  - "056"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: system-spec-kit References Reorganization
 
 ## Phase 1: Analyze Current Structure

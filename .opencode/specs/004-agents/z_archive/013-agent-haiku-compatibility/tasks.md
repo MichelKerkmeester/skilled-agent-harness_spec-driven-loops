@@ -1,3 +1,15 @@
+---
+title: "Tasks: Agent Haiku Compatibility [013-agent-haiku-compatibility/tasks]"
+description: "Task Format: T### [P?] Description (file path)"
+trigger_phrases:
+  - "tasks"
+  - "agent"
+  - "haiku"
+  - "compatibility"
+  - "013"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: Agent Haiku Compatibility
 
 <!-- SPECKIT_LEVEL: 2 -->

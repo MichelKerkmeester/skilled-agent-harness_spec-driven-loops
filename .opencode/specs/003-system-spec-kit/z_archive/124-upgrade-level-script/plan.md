@@ -1,3 +1,17 @@
+---
+title: "Implementation Plan: Spec Folder Level Upgrade Script [124-upgrade-level-script/plan]"
+description: "Implement upgrade-level.sh as a bash script that orchestrates spec folder upgrades using compose.sh-generated templates, validate.sh-derived level detection, and careful content..."
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "spec"
+  - "folder"
+  - "level"
+  - "124"
+  - "upgrade"
+importance_tier: "important"
+contextType: "decision"
+---
 # Implementation Plan: Spec Folder Level Upgrade Script
 
 <!-- SPECKIT_LEVEL: 2 -->

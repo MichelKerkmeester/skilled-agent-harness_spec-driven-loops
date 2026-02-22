@@ -1,3 +1,17 @@
+---
+title: "Feature Specification: Context Overload Prevention [022-context-overload-prevention/spec]"
+description: "Claude Code sessions frequently hit irrecoverable compaction failures when the orchestrator overloads its own context window. The orchestrate.md agent definition across all thre..."
+trigger_phrases:
+  - "feature"
+  - "specification"
+  - "context"
+  - "overload"
+  - "prevention"
+  - "spec"
+  - "022"
+importance_tier: "important"
+contextType: "decision"
+---
 # Feature Specification: Context Overload Prevention
 
 <!-- SPECKIT_LEVEL: 2 -->

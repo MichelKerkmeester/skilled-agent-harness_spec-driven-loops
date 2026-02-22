@@ -1,3 +1,17 @@
+---
+title: "Spec: Zero-Tolerance Documentation Formatting [018-style-enforcement/spec]"
+description: "Despite having comprehensive templates (readme_template.md, skill_md_template.md) and detailed guidelines (sk-documentation skill, write agent), documentation is still created w..."
+trigger_phrases:
+  - "spec"
+  - "zero"
+  - "tolerance"
+  - "documentation"
+  - "formatting"
+  - "018"
+  - "style"
+importance_tier: "important"
+contextType: "decision"
+---
 <!-- SPECKIT_LEVEL: 2 -->
 
 <!-- SPECKIT_TEMPLATE_SOURCE: legacy-normalized | v2.2 -->

@@ -1,3 +1,15 @@
+---
+title: "Implementation Plan - Performance Hacks [016-performance-hacks/plan]"
+description: "plan document for 016-performance-hacks."
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "performance"
+  - "hacks"
+  - "016"
+importance_tier: "important"
+contextType: "decision"
+---
 # Implementation Plan - Performance Hacks
 
 > **Goal:** Apply quick wins to boost LCP and FCP.

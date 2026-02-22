@@ -1,3 +1,16 @@
+---
+title: "Tasks: Phase 001 — Rename legacy workflow-prefixed skill to sk-code--opencode [001-sk-code--opencode/tasks]"
+description: "Task Format: T### [P?] Description (file path)"
+trigger_phrases:
+  - "tasks"
+  - "phase"
+  - "001"
+  - "rename"
+  - "legacy"
+  - "code"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: Phase 001 — Rename legacy workflow-prefixed skill to `sk-code--opencode`
 
 <!-- SPECKIT_LEVEL: 2 -->

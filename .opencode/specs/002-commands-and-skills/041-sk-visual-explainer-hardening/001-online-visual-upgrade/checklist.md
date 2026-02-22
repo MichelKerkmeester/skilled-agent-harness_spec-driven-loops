@@ -1,3 +1,16 @@
+---
+title: "Verification Checklist: Online Visual Upgrade (Next Stage) [001-online-visual-upgrade/checklist]"
+description: "Verification Date: 2026-02-22"
+trigger_phrases:
+  - "verification"
+  - "checklist"
+  - "online"
+  - "visual"
+  - "upgrade"
+  - "001"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Verification Checklist: Online Visual Upgrade (Next Stage)
 
 <!-- SPECKIT_LEVEL: 2 -->

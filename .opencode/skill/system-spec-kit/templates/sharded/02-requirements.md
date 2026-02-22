@@ -1,3 +1,13 @@
+---
+title: "Requirements [template:sharded/02-requirements.md]"
+description: "Template document for sharded/02-requirements.md."
+trigger_phrases:
+  - "requirements"
+  - "template"
+  - "02 requirements"
+importance_tier: "normal"
+contextType: "general"
+---
 # Requirements
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-section-requirements | v1.0 -->
 

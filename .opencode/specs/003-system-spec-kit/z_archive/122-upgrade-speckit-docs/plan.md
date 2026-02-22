@@ -1,3 +1,17 @@
+---
+title: "Implementation Plan: OpenCode Documentation Quality Upgrade [122-upgrade-speckit-docs/plan]"
+description: "Systematic documentation quality improvement across the OpenCode system. Applied prose tightening, conciseness improvements, and style consistency patterns to ~4,864 total LOC c..."
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "opencode"
+  - "documentation"
+  - "quality"
+  - "122"
+  - "upgrade"
+importance_tier: "important"
+contextType: "decision"
+---
 # Implementation Plan: OpenCode Documentation Quality Upgrade
 
 <!-- SPECKIT_LEVEL: 3 -->

@@ -1,3 +1,15 @@
+---
+title: "Tasks: Add User Authentication [template:examples/level_3+/tasks.md]"
+description: "features including 3-Tier Task Format, AI Execution Protocol, and Workstream"
+trigger_phrases:
+  - "tasks"
+  - "add"
+  - "user"
+  - "authentication"
+  - "template"
+importance_tier: "normal"
+contextType: "general"
+---
 # Tasks: Add User Authentication
 
 <!-- SPECKIT_LEVEL: 3+ -->

@@ -1,3 +1,16 @@
+---
+title: "Phase Package Spec: Memory Quality (QP-0 through QP-4) [003-memory-quality-qp-0-4/spec]"
+description: "This package defines memory-generation quality controls derived from research.md and source analysis artifacts in ../research/."
+trigger_phrases:
+  - "phase"
+  - "package"
+  - "spec"
+  - "memory"
+  - "quality"
+  - "003"
+importance_tier: "important"
+contextType: "decision"
+---
 <!-- SPECKIT_LEVEL: 3+ -->
 # Phase Package Spec: Memory Quality (QP-0 through QP-4)
 

@@ -1,3 +1,17 @@
+---
+title: "Research: Memory File Quality and Usefulness Audit [136-mcp-working-memory-hybrid-rag/research]"
+description: "I audited generated memory markdown quality for .opencode/specs/003-system-spec-kit//memory/*.md using a 50-file sample and corpus-level cross-checks."
+trigger_phrases:
+  - "research"
+  - "memory"
+  - "file"
+  - "quality"
+  - "and"
+  - "136"
+  - "mcp"
+importance_tier: "normal"
+contextType: "research"
+---
 # Research: Memory File Quality and Usefulness Audit
 
 ## Executive Summary

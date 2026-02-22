@@ -1,3 +1,16 @@
+---
+title: "Decision Record: 005-frontmatter-indexing [005-frontmatter-indexing/decision-record]"
+description: "We need one predictable metadata contract before rebuilding indexes. Legacy documents contain mixed key casing, optional aliases, and inconsistent scalar vs list values. If we r..."
+trigger_phrases:
+  - "decision"
+  - "record"
+  - "005"
+  - "frontmatter"
+  - "indexing"
+  - "decision record"
+importance_tier: "important"
+contextType: "decision"
+---
 # Decision Record: 005-frontmatter-indexing
 
 <!-- SPECKIT_LEVEL: 3 -->

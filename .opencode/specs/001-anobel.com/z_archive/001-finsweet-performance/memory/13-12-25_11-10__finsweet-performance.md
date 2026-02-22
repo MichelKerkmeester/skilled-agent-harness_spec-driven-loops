@@ -2,18 +2,17 @@
 <!-- Migrated by migrate-memory-v22.mjs -->
 
 ---
-title: Finsweet Performance Verification Session
-spec_folder: 006-code-refinement/001-finsweet-performance
-date: 2025-12-13
-context_type: implementation
-importance_tier: normal
+title: "Finsweet Performance Verification Session [001-finsweet-performance/13-12-25_11-10__finsweet-performance]"
 trigger_phrases:
-  - finsweet performance verification
-  - scratch enforcement verification
-  - date typo fixes
-  - speckit implementation check
+  - "finsweet performance verification"
+  - "scratch enforcement verification"
+  - "date typo fixes"
+  - "speckit implementation check"
+importance_tier: "normal"
+contextType: "implementation"
+date: 2025-12-13
+spec_folder: 006-code-refinement/001-finsweet-performance
 ---
-
 # IMPROVED CONTEXT TEMPLATE v2.0
 
 > **Purpose**: Enhanced memory template with rich metadata for semantic search, importance-based decay, and intelligent context retrieval.

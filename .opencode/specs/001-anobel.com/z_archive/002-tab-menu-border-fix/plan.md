@@ -1,3 +1,16 @@
+---
+title: "Implementation Plan: Tab Menu Border Fix [002-tab-menu-border-fix/plan]"
+description: "Simple find-and-replace of the incorrect CSS variable name in tab_menu.js."
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "tab"
+  - "menu"
+  - "border"
+  - "002"
+importance_tier: "important"
+contextType: "decision"
+---
 # Implementation Plan: Tab Menu Border Fix
 
 <!-- ANCHOR:approach -->

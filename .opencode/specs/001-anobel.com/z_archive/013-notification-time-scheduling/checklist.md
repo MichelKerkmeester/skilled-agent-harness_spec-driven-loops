@@ -1,3 +1,16 @@
+---
+title: "Validation Checklist: Notification Time-Based Scheduling [013-notification-time-scheduling/checklist]"
+description: "Quality gates for validating the time-based scheduling implementation."
+trigger_phrases:
+  - "validation"
+  - "checklist"
+  - "notification"
+  - "time"
+  - "based"
+  - "013"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Validation Checklist: Notification Time-Based Scheduling
 
 Quality gates for validating the time-based scheduling implementation.

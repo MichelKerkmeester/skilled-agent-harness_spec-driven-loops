@@ -1,3 +1,17 @@
+---
+title: "Feature Specification: JavaScript Codebase Remediation [002-remediation/spec]"
+description: "Implementation of P0 cleanup fixes and snake_case naming standardization across 26 JavaScript files identified in the codebase analysis. This work uses 10 parallel Opus agents o..."
+trigger_phrases:
+  - "feature"
+  - "specification"
+  - "javascript"
+  - "codebase"
+  - "remediation"
+  - "spec"
+  - "002"
+importance_tier: "important"
+contextType: "decision"
+---
 <!-- SPECKIT_LEVEL: 3+ -->
 # Feature Specification: JavaScript Codebase Remediation
 

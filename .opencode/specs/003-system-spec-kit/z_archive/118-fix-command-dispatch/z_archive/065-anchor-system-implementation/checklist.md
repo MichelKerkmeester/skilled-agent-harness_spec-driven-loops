@@ -1,3 +1,15 @@
+---
+title: "Checklist: Anchor System Implementation [065-anchor-system-implementation/checklist]"
+description: "checklist document for 065-anchor-system-implementation."
+trigger_phrases:
+  - "checklist"
+  - "anchor"
+  - "system"
+  - "implementation"
+  - "065"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Checklist: Anchor System Implementation
 
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v1.0 -->

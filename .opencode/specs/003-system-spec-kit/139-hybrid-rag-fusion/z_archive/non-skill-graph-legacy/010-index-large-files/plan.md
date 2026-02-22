@@ -1,3 +1,16 @@
+---
+title: "Implementation Plan: Index Large Files — Chunked Indexing, Bulk Delete, and CLI [010-index-large-files/plan]"
+description: "This plan covers three coordinated tasks in the Spec Kit Memory MCP Server: (1) anchor-aware chunked indexing that splits files exceeding 50K chars into parent-child records ins..."
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "index"
+  - "large"
+  - "files"
+  - "010"
+importance_tier: "important"
+contextType: "decision"
+---
 # Implementation Plan: Index Large Files — Chunked Indexing, Bulk Delete, and CLI
 
 <!-- SPECKIT_LEVEL: 3+ -->

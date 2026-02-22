@@ -1,3 +1,16 @@
+---
+title: "Research Summary: Post-SpecKit Template Upgrade - [075-post-speckit-template-upgrade-command-allignment/research]"
+description: "Dispatch: 10 Opus 4.5 agents executed in parallel"
+trigger_phrases:
+  - "research"
+  - "summary"
+  - "post"
+  - "speckit"
+  - "template"
+  - "075"
+importance_tier: "normal"
+contextType: "research"
+---
 # Research Summary: Post-SpecKit Template Upgrade - Command Alignment
 
 ## Research Methodology

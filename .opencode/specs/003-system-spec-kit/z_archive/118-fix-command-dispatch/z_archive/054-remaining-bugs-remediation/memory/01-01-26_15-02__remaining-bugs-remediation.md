@@ -1,3 +1,8 @@
+---
+title: "To promote a memory to constitutional tier [054-remaining-bugs-remediation/01-01-26_15-02__remaining-bugs-remediation]"
+importance_tier: "normal"
+contextType: "general"
+---
 <!-- TEMPLATE: context_template.md v2.2 - DO NOT EDIT GENERATED FILES -->
 <!-- Constitutional Tier Promotion:
   To promote a memory to constitutional tier (always surfaced):

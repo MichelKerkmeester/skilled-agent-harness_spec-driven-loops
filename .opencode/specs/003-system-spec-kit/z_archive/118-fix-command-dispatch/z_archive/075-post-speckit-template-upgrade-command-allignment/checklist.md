@@ -1,3 +1,16 @@
+---
+title: "Checklist: Post-SpecKit Template Upgrade - Command [075-post-speckit-template-upgrade-command-allignment/checklist]"
+description: "checklist document for 075-post-speckit-template-upgrade-command-allignment."
+trigger_phrases:
+  - "checklist"
+  - "post"
+  - "speckit"
+  - "template"
+  - "upgrade"
+  - "075"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Checklist: Post-SpecKit Template Upgrade - Command Alignment
 
 ## P0 - HARD BLOCKERS (Must Complete)

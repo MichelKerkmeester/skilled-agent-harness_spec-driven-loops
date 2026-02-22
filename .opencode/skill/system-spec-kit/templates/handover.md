@@ -1,3 +1,14 @@
+---
+title: "Session Handover Document [template:handover.md]"
+description: "Session handover template for preserving context and enabling seamless continuation across sessions."
+trigger_phrases:
+  - "session"
+  - "handover"
+  - "document"
+  - "template"
+importance_tier: "normal"
+contextType: "general"
+---
 # Session Handover Document
 
 Session handover template for preserving context and enabling seamless continuation across sessions.

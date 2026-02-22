@@ -1,3 +1,18 @@
+---
+title: "Feature Specification: 138 SGQS Score Recovery Plan (Child 009, Milestone 3.5 [009-skill-graph-score-recovery/spec]"
+description: "Historical SGQS performance is below recovery thresholds. Spec 006-skill-graph-utilization established a baseline score of 2.50/5.0 over 20 scenarios, and spec 007-skill-graph-i..."
+trigger_phrases:
+  - "feature"
+  - "specification"
+  - "138"
+  - "sgqs"
+  - "score"
+  - "spec"
+  - "009"
+  - "skill"
+importance_tier: "important"
+contextType: "decision"
+---
 # Feature Specification: 138 SGQS Score Recovery Plan (Child 009, Milestone 3.5 First)
 
 <!-- SPECKIT_LEVEL: 2 -->

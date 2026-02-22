@@ -1,3 +1,17 @@
+---
+title: "Gate 3 Enforcement - Preventing Spec Folder Bypass [030-gate3-enforcement/spec]"
+description: "During a comprehensive bug fix session (63+ bugs, 25+ files, 15 parallel agents), the AI"
+trigger_phrases:
+  - "gate"
+  - "enforcement"
+  - "preventing"
+  - "spec"
+  - "folder"
+  - "030"
+  - "gate3"
+importance_tier: "important"
+contextType: "decision"
+---
 # Gate 3 Enforcement - Preventing Spec Folder Bypass
 
 > Multi-layered enforcement to ensure Gate 3 (spec folder question) is never skipped, especially on large or exciting tasks.

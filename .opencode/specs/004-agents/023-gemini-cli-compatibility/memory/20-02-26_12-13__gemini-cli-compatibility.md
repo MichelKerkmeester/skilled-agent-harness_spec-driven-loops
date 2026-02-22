@@ -1,3 +1,8 @@
+---
+title: "To promote a memory to constitutional tier [023-gemini-cli-compatibility/20-02-26_12-13__gemini-cli-compatibility]"
+importance_tier: "normal"
+contextType: "general"
+---
 <!-- TEMPLATE: context_template.md v2.2 - DO NOT EDIT GENERATED FILES -->
 <!-- Constitutional Tier Promotion:
   To promote a memory to constitutional tier (always surfaced):

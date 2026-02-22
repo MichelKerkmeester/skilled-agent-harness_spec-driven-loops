@@ -1,3 +1,16 @@
+---
+title: "Verification Checklist: Unified Graph-RAG Intelligence Integration [003-unified-graph-intelligence/checklist]"
+description: "Workstreams integrated in this spec"
+trigger_phrases:
+  - "verification"
+  - "checklist"
+  - "unified"
+  - "graph"
+  - "rag"
+  - "003"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Verification Checklist: Unified Graph-RAG Intelligence Integration
 
 <!-- SPECKIT_LEVEL: 3+ -->

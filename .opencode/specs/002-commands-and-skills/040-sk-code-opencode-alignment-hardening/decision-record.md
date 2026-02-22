@@ -1,3 +1,17 @@
+---
+title: "Decision Record: sk-code--opencode Alignment Hardening [040-sk-code-opencode-alignment-hardening/decision-record]"
+description: "This document preserves the existing technical decisions and adds validator-required readme structure."
+trigger_phrases:
+  - "decision"
+  - "record"
+  - "code"
+  - "opencode"
+  - "alignment"
+  - "decision record"
+  - "040"
+importance_tier: "important"
+contextType: "decision"
+---
 # Decision Record: sk-code--opencode Alignment Hardening
 
 <!-- SPECKIT_LEVEL: 3 -->

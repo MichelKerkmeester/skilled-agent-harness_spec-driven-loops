@@ -1,3 +1,16 @@
+---
+title: "Tasks: Memory Index TXT File Support [131-memory-index-txt-support/tasks]"
+description: "Task Format: T### [P?] Description (file path)"
+trigger_phrases:
+  - "tasks"
+  - "memory"
+  - "index"
+  - "txt"
+  - "file"
+  - "131"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: Memory Index TXT File Support
 
 <!-- SPECKIT_LEVEL: 3 -->

@@ -1,3 +1,18 @@
+---
+title: "Decision Record: System-Wide Remediation [125-codex-system-wide-audit/decision-record]"
+description: "The previous spec 125 documents mixed accurate findings with stale claims (for example, declaring completion while open P0 work remained). This made the folder unreliable as a w..."
+trigger_phrases:
+  - "decision"
+  - "record"
+  - "system"
+  - "wide"
+  - "remediation"
+  - "decision record"
+  - "125"
+  - "codex"
+importance_tier: "important"
+contextType: "decision"
+---
 # Decision Record: System-Wide Remediation
 
 <!-- SPECKIT_LEVEL: 3+ -->

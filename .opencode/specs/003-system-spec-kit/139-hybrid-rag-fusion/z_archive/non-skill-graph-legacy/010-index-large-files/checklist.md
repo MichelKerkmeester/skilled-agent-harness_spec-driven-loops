@@ -1,3 +1,16 @@
+---
+title: "Verification Checklist: Index Large Files — Chunked Indexing, Bulk Delete, and CLI [010-index-large-files/checklist]"
+description: "Verification Date: 2026-02-21"
+trigger_phrases:
+  - "verification"
+  - "checklist"
+  - "index"
+  - "large"
+  - "files"
+  - "010"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Verification Checklist: Index Large Files — Chunked Indexing, Bulk Delete, and CLI
 
 <!-- SPECKIT_LEVEL: 3+ -->

@@ -1,3 +1,17 @@
+---
+title: "Implementation Plan: Convert OpenCode Agents to Claude Code Subagents [009-claude-code-subagents/plan]"
+description: "Overview: Convert 8 agent markdown files from OpenCode frontmatter format to Claude Code subagent frontmatter format. Source files in .opencode/agent/ remain unchanged. Target f..."
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "convert"
+  - "opencode"
+  - "agents"
+  - "009"
+  - "claude"
+importance_tier: "important"
+contextType: "decision"
+---
 # Implementation Plan: Convert OpenCode Agents to Claude Code Subagents
 
 <!-- SPECKIT_LEVEL: 1 -->

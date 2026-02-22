@@ -1,3 +1,17 @@
+---
+title: "Feature Specification: sk-visual-explainer Hardening [041-sk-visual-explainer-hardening/spec]"
+description: "Level 2 specification for validator/template hardening of sk-visual-explainer, scoped to documented P0/P1 requirements and verification evidence."
+trigger_phrases:
+  - "feature"
+  - "specification"
+  - "visual"
+  - "explainer"
+  - "hardening"
+  - "spec"
+  - "041"
+importance_tier: "important"
+contextType: "decision"
+---
 # Feature Specification: sk-visual-explainer Hardening
 
 <!-- SPECKIT_LEVEL: 2 -->

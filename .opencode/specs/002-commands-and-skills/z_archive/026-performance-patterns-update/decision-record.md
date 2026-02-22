@@ -1,3 +1,17 @@
+---
+title: "Decision Record - Performance Patterns Update [026-performance-patterns-update/decision-record]"
+description: "This document records architectural and implementation decisions for updating the workflows-code skill with performance optimization patterns."
+trigger_phrases:
+  - "decision"
+  - "record"
+  - "performance"
+  - "patterns"
+  - "update"
+  - "decision record"
+  - "026"
+importance_tier: "important"
+contextType: "decision"
+---
 <!-- SPECKIT_TEMPLATE_SOURCE: legacy-normalized | v2.2 -->
 
 # Decision Record - Performance Patterns Update

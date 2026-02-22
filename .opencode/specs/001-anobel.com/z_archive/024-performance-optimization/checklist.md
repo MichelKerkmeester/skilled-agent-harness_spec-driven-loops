@@ -1,3 +1,14 @@
+---
+title: "Checklist - Performance Optimization [024-performance-optimization/checklist]"
+description: "1. [ ] Browser test all functionality"
+trigger_phrases:
+  - "checklist"
+  - "performance"
+  - "optimization"
+  - "024"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Checklist - Performance Optimization
 
 <!-- ANCHOR:pre-implementation-complete -->

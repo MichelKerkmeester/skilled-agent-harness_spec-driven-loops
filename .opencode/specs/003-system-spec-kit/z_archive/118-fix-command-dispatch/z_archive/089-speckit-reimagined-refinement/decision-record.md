@@ -1,8 +1,20 @@
 ---
-title: "Decision Record: system-spec-kit Reimagined Refinement"
+title: "Decision Record: system-spec-kit Reimagined Refinement [089-speckit-reimagined-refinement/decision-record]"
+description: "title: \"Decision Record: system-spec-kit Reimagined Refinement\""
+trigger_phrases:
+  - "decision"
+  - "record"
+  - "system"
+  - "spec"
+  - "kit"
+  - "decision record"
+  - "089"
+  - "speckit"
+importance_tier: "important"
+contextType: "decision"
 spec: "089"
----
 
+---
 # Decision Record: system-spec-kit Reimagined Refinement
 
 ---

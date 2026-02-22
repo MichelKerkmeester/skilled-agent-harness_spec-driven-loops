@@ -1,3 +1,17 @@
+---
+title: "Feature Specification: Naming Convention Test Suite [091-naming-convention-test-suite/spec]"
+description: "Comprehensive test suite to verify all ~246 files adjusted during the OpenCode naming convention migration (spec 090). Tests confirm that every JS, shell, and Python script work..."
+trigger_phrases:
+  - "feature"
+  - "specification"
+  - "naming"
+  - "convention"
+  - "test"
+  - "spec"
+  - "091"
+importance_tier: "important"
+contextType: "decision"
+---
 <!-- SPECKIT_LEVEL: 2 -->
 # Feature Specification: Naming Convention Test Suite
 

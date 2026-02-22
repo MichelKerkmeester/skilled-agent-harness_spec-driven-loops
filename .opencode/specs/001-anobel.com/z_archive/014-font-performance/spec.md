@@ -1,3 +1,16 @@
+---
+title: "Specification: Font Performance Optimization [014-font-performance/spec]"
+description: "This specification outlines the implementation of font performance optimizations for anobel.com. The goal is to improve the site's Core Web Vitals (specifically LCP) and user ex..."
+trigger_phrases:
+  - "specification"
+  - "font"
+  - "performance"
+  - "optimization"
+  - "spec"
+  - "014"
+importance_tier: "important"
+contextType: "decision"
+---
 # Specification: Font Performance Optimization
 
 <!-- ANCHOR:overview -->

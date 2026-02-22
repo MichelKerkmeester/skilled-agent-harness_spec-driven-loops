@@ -1,3 +1,8 @@
+---
+title: "Epistemic state captured at session start for learning delta [002-tab-main-component/2024-12-13__implementation]"
+importance_tier: "normal"
+contextType: "general"
+---
 <!-- TEMPLATE: context_template.md v2.2 - DO NOT EDIT GENERATED FILES -->
 <!-- Migrated from legacy format by migrate-memory-v22.mjs -->
 

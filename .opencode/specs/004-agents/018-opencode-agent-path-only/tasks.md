@@ -1,3 +1,16 @@
+---
+title: "Tasks: OpenCode Agent Path Only [018-opencode-agent-path-only/tasks]"
+description: "Task Format: T### [P?] Description (file path)"
+trigger_phrases:
+  - "tasks"
+  - "opencode"
+  - "agent"
+  - "path"
+  - "only"
+  - "018"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: OpenCode Agent Path Only
 
 <!-- SPECKIT_LEVEL: 1 -->

@@ -1,3 +1,17 @@
+---
+title: "Decision Record: Skill Rename — workflows-* to sk-*/mcp-* [038-skill-rename/decision-record]"
+description: "We needed to rename 7 skills across ~370 files, touching 10+ directories and shared configuration files. The core challenge: multiple skills are referenced in the same files (e...."
+trigger_phrases:
+  - "decision"
+  - "record"
+  - "skill"
+  - "rename"
+  - "workflows"
+  - "decision record"
+  - "038"
+importance_tier: "important"
+contextType: "decision"
+---
 # Decision Record: Skill Rename — workflows-* to sk-*/mcp-*
 
 <!-- SPECKIT_LEVEL: 3+ -->

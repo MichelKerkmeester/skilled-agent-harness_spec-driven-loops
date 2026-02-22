@@ -1,3 +1,15 @@
+---
+title: "Phase Package Plan: Foundation (Phase 0, Phase 1, Phase 1.5) [001-foundation-phases-0-1-1-5/plan]"
+description: "Deliver prerequisite and hardening infrastructure that enables safe start of Phase 2 extraction work."
+trigger_phrases:
+  - "phase"
+  - "package"
+  - "plan"
+  - "foundation"
+  - "001"
+importance_tier: "important"
+contextType: "decision"
+---
 # Phase Package Plan: Foundation (Phase 0, Phase 1, Phase 1.5)
 
 <!-- SPECKIT_LEVEL: 3+ -->

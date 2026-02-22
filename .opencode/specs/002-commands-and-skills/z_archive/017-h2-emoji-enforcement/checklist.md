@@ -1,3 +1,14 @@
+---
+title: "H2 Emoji Enforcement - QA Checklist [017-h2-emoji-enforcement/checklist]"
+description: "1. Run all P0 checklist items"
+trigger_phrases:
+  - "emoji"
+  - "enforcement"
+  - "checklist"
+  - "017"
+importance_tier: "normal"
+contextType: "implementation"
+---
 <!-- SPECKIT_TEMPLATE_SOURCE: legacy-normalized | v2.2 -->
 
 # H2 Emoji Enforcement - QA Checklist

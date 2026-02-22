@@ -1,3 +1,17 @@
+---
+title: "Feature Specification: Anchor Enforcement Automation [132-anchor-enforcement-automation/spec]"
+description: "This specification addresses systematic gaps in template and anchor compliance within the system-spec-kit framework, implementing automated enforcement to prevent spec documenta..."
+trigger_phrases:
+  - "feature"
+  - "specification"
+  - "anchor"
+  - "enforcement"
+  - "automation"
+  - "spec"
+  - "132"
+importance_tier: "important"
+contextType: "decision"
+---
 <!-- SPECKIT_LEVEL: 3+ -->
 # Feature Specification: Anchor Enforcement Automation
 

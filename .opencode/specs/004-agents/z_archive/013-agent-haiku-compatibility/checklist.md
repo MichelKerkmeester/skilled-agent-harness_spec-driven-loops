@@ -1,3 +1,16 @@
+---
+title: "Implementation Checklist: Agent Haiku Compatibility [013-agent-haiku-compatibility/checklist]"
+description: "checklist document for 013-agent-haiku-compatibility."
+trigger_phrases:
+  - "implementation"
+  - "checklist"
+  - "agent"
+  - "haiku"
+  - "compatibility"
+  - "013"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Implementation Checklist: Agent Haiku Compatibility
 
 <!-- SPECKIT_LEVEL: 2 -->

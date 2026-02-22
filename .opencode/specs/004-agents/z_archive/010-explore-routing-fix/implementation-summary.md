@@ -1,3 +1,15 @@
+---
+title: "Implementation Summary [010-explore-routing-fix/implementation-summary]"
+description: "Fixed two agent routing problems in orchestrate.md that caused the orchestrator to (1) dispatch @explore directly instead of routing through @context, and (2) dispatch custom ag..."
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "implementation summary"
+  - "010"
+  - "explore"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Implementation Summary
 
 <!-- SPECKIT_LEVEL: 2 -->

@@ -1,3 +1,8 @@
+---
+title: "To promote a memory to constitutional [090-opencode-naming-conventions/06-02-26_18-40__opencode-naming-conventions]"
+importance_tier: "normal"
+contextType: "general"
+---
 <!-- WARNING: This is simulated/placeholder content - NOT from a real session -->
 
 <!-- TEMPLATE: context_template.md v2.2 - DO NOT EDIT GENERATED FILES -->

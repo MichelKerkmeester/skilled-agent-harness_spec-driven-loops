@@ -1,3 +1,16 @@
+---
+title: "Implementation Plan - System Health Audit (Retrospective) [032-system-health-audit/plan]"
+description: "Phase 1 (Analysis) Phase 2 (Implementation)"
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "system"
+  - "health"
+  - "audit"
+  - "032"
+importance_tier: "important"
+contextType: "decision"
+---
 # Implementation Plan - System Health Audit (Retrospective)
 
 ## Execution Overview

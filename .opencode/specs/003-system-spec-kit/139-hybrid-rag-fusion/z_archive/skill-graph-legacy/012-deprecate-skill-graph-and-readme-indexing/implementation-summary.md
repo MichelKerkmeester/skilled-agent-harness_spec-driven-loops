@@ -1,3 +1,16 @@
+---
+title: "Implementation Summary: 012 - Deprecate Skill [012-deprecate-skill-graph-and-readme-indexing/implementation-summary]"
+description: "1. Ran banned-term and stale-surface sweep"
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "012"
+  - "deprecate"
+  - "skill"
+  - "implementation summary"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Implementation Summary: 012 - Deprecate Skill Graph and README/Skill-Ref Indexing
 
 <!-- SPECKIT_LEVEL: 3 -->

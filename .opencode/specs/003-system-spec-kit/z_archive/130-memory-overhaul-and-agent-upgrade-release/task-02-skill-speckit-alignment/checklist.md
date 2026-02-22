@@ -1,3 +1,15 @@
+---
+title: "Verification Checklist: Task 02 — SKILL.md & References Audit [task-02-skill-speckit-alignment/checklist]"
+description: "Verification Date: 2026-02-16 (manual re-check)"
+trigger_phrases:
+  - "verification"
+  - "checklist"
+  - "task"
+  - "skill"
+  - "references"
+importance_tier: "normal"
+contextType: "implementation"
+---
 <!-- SPECKIT_TEMPLATE_SOURCE: legacy-normalized | v2.2 -->
 
 # Verification Checklist: Task 02 — SKILL.md & References Audit

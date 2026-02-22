@@ -1,3 +1,16 @@
+---
+title: "MCP Embedding Failure Investigation [086-mcp-embedding-failure/spec]"
+description: "Users report that the spec_kit_memory MCP server fails to generate semantic embeddings due to a corrupted local HuggingFace embedding model cache. The ONNX model fails protobuf ..."
+trigger_phrases:
+  - "mcp"
+  - "embedding"
+  - "failure"
+  - "investigation"
+  - "spec"
+  - "086"
+importance_tier: "important"
+contextType: "decision"
+---
 # MCP Embedding Failure Investigation
 
 ## Problem Statement

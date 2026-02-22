@@ -1,3 +1,16 @@
+---
+title: "Spec: Icon Animation Isolation for Download Button [003-icon-animation-isolation/spec]"
+description: "Refactor btn_download.css to isolate only the icon animation logic, removing all button-level hover/focus/active styling so the download icon can be embedded inside another butt..."
+trigger_phrases:
+  - "spec"
+  - "icon"
+  - "animation"
+  - "isolation"
+  - "for"
+  - "003"
+importance_tier: "important"
+contextType: "decision"
+---
 # Spec: Icon Animation Isolation for Download Button
 
 <!-- ANCHOR:overview -->

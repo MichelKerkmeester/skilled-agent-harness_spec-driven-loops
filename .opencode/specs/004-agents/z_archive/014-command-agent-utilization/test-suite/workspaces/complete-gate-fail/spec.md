@@ -1,3 +1,17 @@
+---
+title: "Feature Specification: Notification System [complete-gate-fail/spec]"
+description: "[NEEDS CLARIFICATION] - The exact scope of the notification system is unclear. Should it cover email, push, in-app, or all three?"
+trigger_phrases:
+  - "feature"
+  - "specification"
+  - "notification"
+  - "system"
+  - "spec"
+  - "complete"
+  - "gate"
+importance_tier: "important"
+contextType: "decision"
+---
 # Feature Specification: Notification System
 
 <!-- SPECKIT_LEVEL: 2 -->

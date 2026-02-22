@@ -1,3 +1,16 @@
+---
+title: "Implementation Plan: Phase 002 — Rename workflows-code--web-dev to sk-code--web [002-sk-code--web/plan]"
+description: "Rename the workflows-code--web-dev skill folder to sk-code--web and update all 68 files (51 internal + 17 external) that reference the old name. Special attention to bare workfl..."
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "phase"
+  - "002"
+  - "rename"
+  - "code"
+importance_tier: "important"
+contextType: "decision"
+---
 # Implementation Plan: Phase 002 — Rename workflows-code--web-dev to sk-code--web
 
 <!-- SPECKIT_LEVEL: 2 -->

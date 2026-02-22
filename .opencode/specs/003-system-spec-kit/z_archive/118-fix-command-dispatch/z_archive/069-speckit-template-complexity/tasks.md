@@ -1,3 +1,17 @@
+---
+title: "Tasks: Level-Based Template Architecture [069-speckit-template-complexity/tasks]"
+description: "Implementation task breakdown for complexity detection and level-based template folder system."
+trigger_phrases:
+  - "tasks"
+  - "level"
+  - "based"
+  - "template"
+  - "architecture"
+  - "069"
+  - "speckit"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: Level-Based Template Architecture
 
 Implementation task breakdown for complexity detection and level-based template folder system.

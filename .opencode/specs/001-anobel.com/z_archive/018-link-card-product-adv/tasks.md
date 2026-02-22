@@ -1,3 +1,13 @@
+---
+title: "Tasks [018-link-card-product-adv/tasks]"
+description: "tasks document for 018-link-card-product-adv."
+trigger_phrases:
+  - "tasks"
+  - "018"
+  - "link"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks
 
 <!-- ANCHOR:implementation -->

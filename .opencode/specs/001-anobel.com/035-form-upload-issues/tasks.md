@@ -1,3 +1,16 @@
+---
+title: "Tasks: CV Upload Form File Type Validation Fix [035-form-upload-issues/tasks]"
+description: "Task Format: T### [P?] Description (file path)"
+trigger_phrases:
+  - "tasks"
+  - "upload"
+  - "form"
+  - "file"
+  - "type"
+  - "035"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: CV Upload Form File Type Validation Fix
 
 <!-- SPECKIT_LEVEL: 3 -->

@@ -1,3 +1,16 @@
+---
+title: "Validation Checklist: workflows-code Skill Bug Fixes [024-skill-bug-fixes/checklist]"
+description: "Quality gate checklist for validating all bug fixes."
+trigger_phrases:
+  - "validation"
+  - "checklist"
+  - "workflows"
+  - "code"
+  - "skill"
+  - "024"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Validation Checklist: workflows-code Skill Bug Fixes
 
 Quality gate checklist for validating all bug fixes.

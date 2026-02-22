@@ -1,3 +1,15 @@
+---
+title: "Tasks: Memory System Integration [035-memory-speckit-merger/tasks]"
+description: "STATUS: COMPLETE - Implementation used different approach than originally planned."
+trigger_phrases:
+  - "tasks"
+  - "memory"
+  - "system"
+  - "integration"
+  - "035"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: Memory System Integration
 
 ## Task Overview

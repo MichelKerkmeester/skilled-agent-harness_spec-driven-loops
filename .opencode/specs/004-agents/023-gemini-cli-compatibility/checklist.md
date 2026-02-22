@@ -1,3 +1,16 @@
+---
+title: "Verification Checklist: Gemini CLI Compatibility [023-gemini-cli-compatibility/checklist]"
+description: "Verification Date: —"
+trigger_phrases:
+  - "verification"
+  - "checklist"
+  - "gemini"
+  - "cli"
+  - "compatibility"
+  - "023"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Verification Checklist: Gemini CLI Compatibility
 
 <!-- SPECKIT_LEVEL: 2 -->

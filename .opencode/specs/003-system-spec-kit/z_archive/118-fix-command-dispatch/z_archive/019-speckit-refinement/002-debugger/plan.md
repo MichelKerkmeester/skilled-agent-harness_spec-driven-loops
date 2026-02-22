@@ -1,3 +1,16 @@
+---
+title: "Debug Delegation Implementation Plan [002-debugger/plan]"
+description: "plan document for 002-debugger."
+trigger_phrases:
+  - "debug"
+  - "delegation"
+  - "implementation"
+  - "plan"
+  - "002"
+  - "debugger"
+importance_tier: "important"
+contextType: "decision"
+---
 # Debug Delegation Implementation Plan
 
 ## Phase 1: Command Creation

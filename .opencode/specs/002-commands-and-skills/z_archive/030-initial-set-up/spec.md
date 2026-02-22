@@ -1,3 +1,18 @@
+---
+title: "Feature Specification: workflows-code-opencode Skill [030-initial-set-up/spec]"
+description: "Create a comprehensive multi-language code standards skill for OpenCode system code covering JavaScript (Node.js), Python, Shell scripts, and JSON/JSONC configuration. This skil..."
+trigger_phrases:
+  - "feature"
+  - "specification"
+  - "workflows"
+  - "code"
+  - "opencode"
+  - "spec"
+  - "030"
+  - "initial"
+importance_tier: "important"
+contextType: "decision"
+---
 <!-- SPECKIT_LEVEL: 3+ -->
 # Feature Specification: workflows-code-opencode Skill
 

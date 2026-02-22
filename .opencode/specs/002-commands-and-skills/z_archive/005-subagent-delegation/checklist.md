@@ -1,3 +1,17 @@
+---
+title: "Verification Checklist: Sub-Agent Delegation [005-subagent-delegation/checklist]"
+description: "Validation checklist for sub-agent delegation implementation."
+trigger_phrases:
+  - "verification"
+  - "checklist"
+  - "sub"
+  - "agent"
+  - "delegation"
+  - "005"
+  - "subagent"
+importance_tier: "normal"
+contextType: "implementation"
+---
 <!-- SPECKIT_TEMPLATE_SOURCE: legacy-normalized | v2.2 -->
 
 # Verification Checklist: Sub-Agent Delegation

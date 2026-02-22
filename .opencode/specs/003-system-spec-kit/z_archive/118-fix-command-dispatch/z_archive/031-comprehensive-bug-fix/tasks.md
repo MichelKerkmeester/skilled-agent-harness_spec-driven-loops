@@ -1,3 +1,16 @@
+---
+title: "Task Breakdown by Agent [031-comprehensive-bug-fix/tasks]"
+description: "tasks document for 031-comprehensive-bug-fix."
+trigger_phrases:
+  - "task"
+  - "breakdown"
+  - "agent"
+  - "tasks"
+  - "031"
+  - "comprehensive"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Task Breakdown by Agent
 
 ## Agent 1: Buffer & Embedding Core

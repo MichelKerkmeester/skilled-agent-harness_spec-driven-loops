@@ -1,3 +1,16 @@
+---
+title: "Verification Checklist: Full Spec Folder Document Indexing [126-full-spec-doc-indexing/checklist]"
+description: "Status: ALL ITEMS VERIFIED -- 143 Spec 126 tests passing and full system-spec-kit suite green"
+trigger_phrases:
+  - "verification"
+  - "checklist"
+  - "full"
+  - "spec"
+  - "folder"
+  - "126"
+importance_tier: "normal"
+contextType: "implementation"
+---
 <!-- SPECKIT_LEVEL: 3+ -->
 # Verification Checklist: Full Spec Folder Document Indexing
 

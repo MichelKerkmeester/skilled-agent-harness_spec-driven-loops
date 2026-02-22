@@ -1,3 +1,15 @@
+---
+title: "Task 04 — Agent Configs Audit [task-04-agent-alignment/spec]"
+description: "Audit agent configuration files across all 3 platforms (OpenCode, Claude Code, Codex) to ensure handover model assignment (spec 016), review model-agnostic configuration (spec 0..."
+trigger_phrases:
+  - "task"
+  - "agent"
+  - "configs"
+  - "audit"
+  - "spec"
+importance_tier: "important"
+contextType: "decision"
+---
 <!-- SPECKIT_LEVEL: 3+ -->
 # Task 04 — Agent Configs Audit
 

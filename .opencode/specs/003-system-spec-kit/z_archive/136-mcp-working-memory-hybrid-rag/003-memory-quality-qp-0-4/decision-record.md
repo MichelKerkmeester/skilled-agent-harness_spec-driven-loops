@@ -1,3 +1,17 @@
+---
+title: "Decision Record: Memory Quality Package (QP-0 to QP-4) [003-memory-quality-qp-0-4/decision-record]"
+description: "This folder is marked Level 3+ and therefore requires a local decision-record.md. Existing package governance text states that canonical architecture decisions are maintained at..."
+trigger_phrases:
+  - "decision"
+  - "record"
+  - "memory"
+  - "quality"
+  - "package"
+  - "decision record"
+  - "003"
+importance_tier: "important"
+contextType: "decision"
+---
 # Decision Record: Memory Quality Package (QP-0 to QP-4)
 
 <!-- SPECKIT_LEVEL: 3+ -->

@@ -1,3 +1,15 @@
+---
+title: "AI Integration Patterns Research [080-ai-integration-patterns-research/spec]"
+description: "Cross-repository analysis of AI assistant integration patterns from three open-source projects to inform improvements to the system-spec-kit MCP."
+trigger_phrases:
+  - "integration"
+  - "patterns"
+  - "research"
+  - "spec"
+  - "080"
+importance_tier: "important"
+contextType: "decision"
+---
 # AI Integration Patterns Research
 
 ## Overview

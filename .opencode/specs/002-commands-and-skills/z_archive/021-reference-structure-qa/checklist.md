@@ -1,3 +1,14 @@
+---
+title: "Checklist: Reference Structure QA [021-reference-structure-qa/checklist]"
+description: "checklist document for 021-reference-structure-qa."
+trigger_phrases:
+  - "checklist"
+  - "reference"
+  - "structure"
+  - "021"
+importance_tier: "normal"
+contextType: "implementation"
+---
 <!-- SPECKIT_TEMPLATE_SOURCE: legacy-normalized | v2.2 -->
 
 # Checklist: Reference Structure QA

@@ -1,3 +1,17 @@
+---
+title: "Decision Record: CV Upload Form File Type Validation Fix [035-form-upload-issues/decision-record]"
+description: "Browsers report inconsistent MIME types for document files, particularly Microsoft Office formats"
+trigger_phrases:
+  - "decision"
+  - "record"
+  - "upload"
+  - "form"
+  - "file"
+  - "decision record"
+  - "035"
+importance_tier: "important"
+contextType: "decision"
+---
 # Decision Record: CV Upload Form File Type Validation Fix
 
 <!-- SPECKIT_LEVEL: 3 -->

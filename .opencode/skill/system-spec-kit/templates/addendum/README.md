@@ -1,13 +1,13 @@
 ---
-title: "Addendum Templates"
+title: "Addendum Templates [template:addendum/README.md]"
 description: "Level extension blocks used to compose final level templates."
 trigger_phrases:
   - "addendum"
   - "composition"
   - "level extension"
 importance_tier: "normal"
+contextType: "general"
 ---
-
 # Addendum Templates
 
 > Source-only extension blocks that compose into final level templates during spec folder setup.

@@ -1,3 +1,16 @@
+---
+title: "Level 3+ (+Govern) is appropriate when [template:addendum/level3plus-govern/spec-level3plus-guidance.md]"
+description: "Level 3+ (+Govern) is appropriate when"
+trigger_phrases:
+  - "level"
+  - "govern"
+  - "appropriate"
+  - "when"
+  - "template"
+  - "spec level3plus guidance"
+importance_tier: "normal"
+contextType: "general"
+---
 <!-- WHEN TO USE THIS TEMPLATE:
 Level 3+ (+Govern) is appropriate when:
 - Enterprise-scale changes with high visibility

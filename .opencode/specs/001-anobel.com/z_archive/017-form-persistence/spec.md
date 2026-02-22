@@ -1,3 +1,15 @@
+---
+title: "Form Data Persistence [017-form-persistence/spec]"
+description: "Implement automatic form data persistence to preserve user input across page refreshes, preventing data loss due to accidental navigation or browser refresh."
+trigger_phrases:
+  - "form"
+  - "data"
+  - "persistence"
+  - "spec"
+  - "017"
+importance_tier: "important"
+contextType: "decision"
+---
 # Form Data Persistence
 
 <!-- ANCHOR:overview -->

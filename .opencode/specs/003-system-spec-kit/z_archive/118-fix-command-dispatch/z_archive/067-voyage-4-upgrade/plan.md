@@ -1,3 +1,14 @@
+---
+title: "Voyage 4 Upgrade Plan [067-voyage-4-upgrade/plan]"
+description: "File: .opencode/skill/system-spec-kit/shared/embeddings/providers/voyage.js"
+trigger_phrases:
+  - "voyage"
+  - "upgrade"
+  - "plan"
+  - "067"
+importance_tier: "important"
+contextType: "decision"
+---
 # Voyage 4 Upgrade Plan
 
 ## Phase 1: Code Updates (Spec Kit Memory)

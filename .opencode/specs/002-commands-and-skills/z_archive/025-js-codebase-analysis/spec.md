@@ -1,3 +1,17 @@
+---
+title: "Feature Specification: JavaScript Codebase Alignment with workflows-code Skill [025-js-codebase-analysis/spec]"
+description: "Comprehensive analysis of all 91 JavaScript files in the anobel.com codebase to evaluate compliance with the workflows-code skill's quality standards and style guide. This analy..."
+trigger_phrases:
+  - "feature"
+  - "specification"
+  - "javascript"
+  - "codebase"
+  - "alignment"
+  - "spec"
+  - "025"
+importance_tier: "important"
+contextType: "decision"
+---
 <!-- SPECKIT_LEVEL: 3+ -->
 # Feature Specification: JavaScript Codebase Alignment with workflows-code Skill
 

@@ -1,3 +1,16 @@
+---
+title: "Plan: Constitutional Memory System README [047-constitutional-readme/plan]"
+description: "1. Analyze existing READMEs in the skill folder to understand patterns"
+trigger_phrases:
+  - "plan"
+  - "constitutional"
+  - "memory"
+  - "system"
+  - "readme"
+  - "047"
+importance_tier: "important"
+contextType: "decision"
+---
 # Plan: Constitutional Memory System README
 
 | Metadata | Value |

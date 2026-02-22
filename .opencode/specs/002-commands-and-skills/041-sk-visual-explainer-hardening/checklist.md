@@ -1,3 +1,16 @@
+---
+title: "Verification Checklist: sk-visual-explainer Hardening [041-sk-visual-explainer-hardening/checklist]"
+description: "Verification status and evidence matrix for all Level 2 P0/P1/P2 checklist items tied to this hardening scope."
+trigger_phrases:
+  - "verification"
+  - "checklist"
+  - "visual"
+  - "explainer"
+  - "hardening"
+  - "041"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Verification Checklist: sk-visual-explainer Hardening
 
 <!-- SPECKIT_LEVEL: 2 -->

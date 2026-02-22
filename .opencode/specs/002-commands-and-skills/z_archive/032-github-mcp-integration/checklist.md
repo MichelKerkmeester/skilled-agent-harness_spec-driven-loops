@@ -1,3 +1,15 @@
+---
+title: "Checklist: GitHub MCP Integration [032-github-mcp-integration/checklist]"
+description: "For each file, verified"
+trigger_phrases:
+  - "checklist"
+  - "github"
+  - "mcp"
+  - "integration"
+  - "032"
+importance_tier: "normal"
+contextType: "implementation"
+---
 <!-- SPECKIT_TEMPLATE_SOURCE: legacy-normalized | v2.2 -->
 
 # Checklist: GitHub MCP Integration

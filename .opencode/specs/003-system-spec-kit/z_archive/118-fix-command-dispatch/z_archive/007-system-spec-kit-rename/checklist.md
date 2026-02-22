@@ -1,3 +1,17 @@
+---
+title: "Verification Checklist: workflows-spec-kit → system-spec-kit Rename [007-system-spec-kit-rename/checklist]"
+description: "$ grep -r \"workflows-spec-kit\" .opencode/ | grep -v .sqlite | wc -l"
+trigger_phrases:
+  - "verification"
+  - "checklist"
+  - "workflows"
+  - "spec"
+  - "kit"
+  - "007"
+  - "system"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Verification Checklist: workflows-spec-kit → system-spec-kit Rename
 
 ## Overview

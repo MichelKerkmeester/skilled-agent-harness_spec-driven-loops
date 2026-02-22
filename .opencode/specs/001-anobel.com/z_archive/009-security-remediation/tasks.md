@@ -1,3 +1,14 @@
+---
+title: "Security Remediation Tasks [009-security-remediation/tasks]"
+description: "tasks document for 009-security-remediation."
+trigger_phrases:
+  - "security"
+  - "remediation"
+  - "tasks"
+  - "009"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Security Remediation Tasks
 
 <!-- ANCHOR:xss-fixes -->

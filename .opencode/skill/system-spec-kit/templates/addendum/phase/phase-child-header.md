@@ -1,3 +1,17 @@
+---
+title: "This is Phase [YOUR_VALUE_HERE: PHASE_NUMBER] of the [YOUR_VALUE_HERE: [template:addendum/phase/phase-child-header.md]"
+description: "This is Phase [YOUR_VALUE_HERE: PHASE_NUMBER] of the [YOUR_VALUE_HERE: PARENT_SPEC_NAME] specification."
+trigger_phrases:
+  - "this"
+  - "phase"
+  - "your"
+  - "value"
+  - "here"
+  - "template"
+  - "phase child header"
+importance_tier: "normal"
+contextType: "general"
+---
 <!-- SPECKIT_ADDENDUM: Phase - Child Header -->
 <!-- Inject into child spec.md METADATA table (append rows after core metadata) -->
 <!-- PARENT_FOLDER: Replaced with ".." (relative path from child to parent folder) by create.sh -->

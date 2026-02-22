@@ -1,3 +1,16 @@
+---
+title: "Implementation Plan: Security & Documentation Remediation [050-security-doc-remediation/plan]"
+description: "Problem: CONFIG.DATA_FILE from CLI arguments is used in fs.readFileSync() without path validation."
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "security"
+  - "documentation"
+  - "remediation"
+  - "050"
+importance_tier: "important"
+contextType: "decision"
+---
 # Implementation Plan: Security & Documentation Remediation
 
 ## Metadata

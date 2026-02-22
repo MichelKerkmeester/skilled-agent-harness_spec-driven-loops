@@ -1,3 +1,15 @@
+---
+title: "Spec 012: Context Agent Model Comparison (Haiku vs Sonnet) [012-context-model-comparison/spec]"
+description: "Spec Level: L2+ (Research & Validation)"
+trigger_phrases:
+  - "spec"
+  - "012"
+  - "context"
+  - "agent"
+  - "model"
+importance_tier: "important"
+contextType: "decision"
+---
 # Spec 012: Context Agent Model Comparison (Haiku vs Sonnet)
 
 **Spec Level**: L2+ (Research & Validation)

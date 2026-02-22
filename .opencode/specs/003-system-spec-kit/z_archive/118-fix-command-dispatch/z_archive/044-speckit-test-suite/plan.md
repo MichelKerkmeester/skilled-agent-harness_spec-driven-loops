@@ -1,3 +1,18 @@
+---
+title: "Spec Kit Test Suite - Implementation Plan [044-speckit-test-suite/plan]"
+description: "Comprehensive test suite covering 4 domains"
+trigger_phrases:
+  - "spec"
+  - "kit"
+  - "test"
+  - "suite"
+  - "implementation"
+  - "plan"
+  - "044"
+  - "speckit"
+importance_tier: "important"
+contextType: "decision"
+---
 # Spec Kit Test Suite - Implementation Plan
 
 ## 1. Overview

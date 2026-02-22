@@ -1,3 +1,17 @@
+---
+title: "Plan: Figma MCP Configuration Alignment [014-config-alignment/plan]"
+description: "1. Search for all old references using grep"
+trigger_phrases:
+  - "plan"
+  - "figma"
+  - "mcp"
+  - "configuration"
+  - "alignment"
+  - "014"
+  - "config"
+importance_tier: "important"
+contextType: "decision"
+---
 <!-- SPECKIT_TEMPLATE_SOURCE: legacy-normalized | v2.2 -->
 
 # Plan: Figma MCP Configuration Alignment

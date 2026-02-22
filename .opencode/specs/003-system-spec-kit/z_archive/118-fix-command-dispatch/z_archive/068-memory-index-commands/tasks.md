@@ -1,3 +1,16 @@
+---
+title: "Tasks: Memory Command Separation - Implementation Breakdown [068-memory-index-commands/tasks]"
+description: "Task list for separating /memory:search into /memory:search (read-only) and /memory:database (management)."
+trigger_phrases:
+  - "tasks"
+  - "memory"
+  - "command"
+  - "separation"
+  - "implementation"
+  - "068"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: Memory Command Separation - Implementation Breakdown
 
 Task list for separating `/memory:search` into `/memory:search` (read-only) and `/memory:database` (management).

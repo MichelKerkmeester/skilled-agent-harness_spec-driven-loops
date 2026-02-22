@@ -1,3 +1,16 @@
+---
+title: "Tasks: Remove Git Branch Logic from YAML Commands [007-remove-git-branch-logic/tasks]"
+description: "Files: spec_kit_complete_auto.yaml, spec_kit_complete_confirm.yaml"
+trigger_phrases:
+  - "tasks"
+  - "remove"
+  - "git"
+  - "branch"
+  - "logic"
+  - "007"
+importance_tier: "normal"
+contextType: "implementation"
+---
 <!-- SPECKIT_TEMPLATE_SOURCE: legacy-normalized | v2.2 -->
 
 # Tasks: Remove Git Branch Logic from YAML Commands

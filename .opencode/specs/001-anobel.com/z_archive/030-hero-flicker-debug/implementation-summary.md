@@ -1,3 +1,15 @@
+---
+title: "Implementation Summary [030-hero-flicker-debug/implementation-summary]"
+description: "Fixed the mobile image flickering issue in hero video cards by addressing two root causes: (1) immediate visibility: hidden setting during thumbnail fade transitions, and (2) la..."
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "implementation summary"
+  - "030"
+  - "hero"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Implementation Summary
 
 <!-- SPECKIT_LEVEL: 2 -->

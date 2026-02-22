@@ -1,3 +1,8 @@
+---
+title: "To promote a memory to constitutional tier [007-remove-git-branch-logic/21-01-26_08-56__remove-git-branch-logic]"
+importance_tier: "normal"
+contextType: "general"
+---
 <!-- TEMPLATE: context_template.md v2.2 - DO NOT EDIT GENERATED FILES -->
 <!-- Constitutional Tier Promotion:
   To promote a memory to constitutional tier (always surfaced):

@@ -1,3 +1,16 @@
+---
+title: "Verification Checklist: Performance Optimization Review - Spec 025 [025-performance-review/checklist]"
+description: "Notes"
+trigger_phrases:
+  - "verification"
+  - "checklist"
+  - "performance"
+  - "optimization"
+  - "review"
+  - "025"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Verification Checklist: Performance Optimization Review - Spec 025
 
 <!-- SPECKIT_LEVEL: 2 -->

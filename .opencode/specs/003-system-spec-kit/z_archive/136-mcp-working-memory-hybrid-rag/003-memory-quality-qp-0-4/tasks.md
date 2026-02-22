@@ -1,3 +1,15 @@
+---
+title: "Tasks: Memory Quality Package (QP-0 to QP-4) [003-memory-quality-qp-0-4/tasks]"
+description: "Tracking document synchronized with root execution state; administrative closure applied per user directive."
+trigger_phrases:
+  - "tasks"
+  - "memory"
+  - "quality"
+  - "package"
+  - "003"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: Memory Quality Package (QP-0 to QP-4)
 
 <!-- SPECKIT_LEVEL: 3+ -->

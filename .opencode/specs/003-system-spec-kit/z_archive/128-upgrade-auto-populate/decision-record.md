@@ -1,3 +1,18 @@
+---
+title: "Decision Record: AI Auto-Populate on Spec Upgrade [128-upgrade-auto-populate/decision-record]"
+description: "The upgrade-level.sh script injects template scaffolding with [placeholder] text when upgrading spec levels. These placeholders need to be replaced with real, context-aware cont..."
+trigger_phrases:
+  - "decision"
+  - "record"
+  - "auto"
+  - "populate"
+  - "spec"
+  - "decision record"
+  - "128"
+  - "upgrade"
+importance_tier: "important"
+contextType: "decision"
+---
 # Decision Record: AI Auto-Populate on Spec Upgrade
 
 <!-- SPECKIT_LEVEL: 3+ -->

@@ -1,3 +1,16 @@
+---
+title: "Specification: Agent System Upgrade [003-agent-system-upgrade/spec]"
+description: "Comprehensive upgrade to the multi-agent orchestration system, encompassing three major workstreams: (1) Enterprise-grade orchestration patterns with fault tolerance, (2) Comman..."
+trigger_phrases:
+  - "specification"
+  - "agent"
+  - "system"
+  - "upgrade"
+  - "spec"
+  - "003"
+importance_tier: "important"
+contextType: "decision"
+---
 # Specification: Agent System Upgrade
 
 <!-- SPECKIT_LEVEL: 3+ -->

@@ -1,3 +1,18 @@
+---
+title: "workflows-code Skill Alignment with Barter Patterns [022-barter-alignment/spec]"
+description: "The current anobel.com workflows-code skill may lack organizational patterns and routing logic that have been refined in the Barter system. Without analysis, we cannot determine..."
+trigger_phrases:
+  - "workflows"
+  - "code"
+  - "skill"
+  - "alignment"
+  - "with"
+  - "spec"
+  - "022"
+  - "barter"
+importance_tier: "important"
+contextType: "decision"
+---
 <!-- SPECKIT_LEVEL: 3 -->
 
 <!-- SPECKIT_TEMPLATE_SOURCE: legacy-normalized | v2.2 -->

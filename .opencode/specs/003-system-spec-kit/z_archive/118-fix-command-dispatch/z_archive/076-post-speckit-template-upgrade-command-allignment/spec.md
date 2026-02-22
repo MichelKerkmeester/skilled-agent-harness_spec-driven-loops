@@ -1,3 +1,15 @@
+---
+title: "Spec 076: Post-SpecKit Template Upgrade - Command Alignment [076-post-speckit-template-upgrade-command-allignment/spec]"
+description: "Comprehensive alignment of 19 OpenCode commands with command_template.md standards following SpecKit v1.9.0 CORE + ADDENDUM v2.0 template architecture upgrade."
+trigger_phrases:
+  - "spec"
+  - "076"
+  - "post"
+  - "speckit"
+  - "template"
+importance_tier: "important"
+contextType: "decision"
+---
 # Spec 076: Post-SpecKit Template Upgrade - Command Alignment
 
 ## Overview

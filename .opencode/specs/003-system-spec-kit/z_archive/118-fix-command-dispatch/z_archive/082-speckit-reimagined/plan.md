@@ -1,3 +1,15 @@
+---
+title: "Implementation Plan: SpecKit Reimagined [082-speckit-reimagined/plan]"
+description: "This plan implements a comprehensive enhancement to SpecKit's memory system based on consolidated analysis of dotmd, seu-claude, drift, and system-speckit architectures. The imp..."
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "speckit"
+  - "reimagined"
+  - "082"
+importance_tier: "important"
+contextType: "decision"
+---
 # Implementation Plan: SpecKit Reimagined
 
 <!-- SPECKIT_LEVEL: 3+ -->

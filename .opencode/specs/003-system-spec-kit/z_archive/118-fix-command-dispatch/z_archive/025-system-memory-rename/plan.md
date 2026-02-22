@@ -1,3 +1,16 @@
+---
+title: "Plan: Rename workflows-memory → system-memory [025-system-memory-rename/plan]"
+description: "Based on the proven pattern from specs/008-system-spec-kit-rename/, this rename will follow a 5-phase architecture with parallel agent execution where possible."
+trigger_phrases:
+  - "plan"
+  - "rename"
+  - "workflows"
+  - "memory"
+  - "system"
+  - "025"
+importance_tier: "important"
+contextType: "decision"
+---
 # Plan: Rename workflows-memory → system-memory
 
 ## Implementation Architecture

@@ -1,3 +1,16 @@
+---
+title: "Implementation Plan: Fix Create Command Dispatch Vulnerability + Defensive Hardening [008-fix-create-dispatch/plan]"
+description: "This implements a security fix for the phantom dispatch vulnerability in create commands, following the proven pattern from Spec 118. The critical fix removes Task from skill.md..."
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "fix"
+  - "create"
+  - "command"
+  - "008"
+importance_tier: "important"
+contextType: "decision"
+---
 # Implementation Plan: Fix Create Command Dispatch Vulnerability + Defensive Hardening
 
 <!-- SPECKIT_LEVEL: 2 -->

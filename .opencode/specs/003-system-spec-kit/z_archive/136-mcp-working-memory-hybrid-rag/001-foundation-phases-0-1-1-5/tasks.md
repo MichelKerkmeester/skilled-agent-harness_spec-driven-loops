@@ -1,3 +1,15 @@
+---
+title: "Tasks: Foundation Package (Phase 0, 1, 1.5) [001-foundation-phases-0-1-1-5/tasks]"
+description: "Tracking document synchronized with root execution state; remaining open items are human/ops-gated."
+trigger_phrases:
+  - "tasks"
+  - "foundation"
+  - "package"
+  - "phase"
+  - "001"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: Foundation Package (Phase 0, 1, 1.5)
 
 <!-- SPECKIT_LEVEL: 3+ -->

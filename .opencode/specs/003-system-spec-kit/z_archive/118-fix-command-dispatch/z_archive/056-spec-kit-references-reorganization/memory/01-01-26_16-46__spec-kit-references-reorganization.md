@@ -1,3 +1,8 @@
+---
+title: "To promote a memory to [056-spec-kit-references-reorganization/01-01-26_16-46__spec-kit-references-reorganization]"
+importance_tier: "normal"
+contextType: "general"
+---
 <!-- TEMPLATE: context_template.md v2.2 - DO NOT EDIT GENERATED FILES -->
 <!-- Constitutional Tier Promotion:
   To promote a memory to constitutional tier (always surfaced):

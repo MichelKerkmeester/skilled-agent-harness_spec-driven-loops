@@ -1,3 +1,16 @@
+---
+title: "Implementation Summary: Task 01 — README Audit & Alignment [task-01-readme-alignment/implementation-summary]"
+description: "[Implementer: Summarize README audit results. Example: \"Audited 60+ README.md files across .opencode/ directory tree, identified X stale source counts (4→5), Y stale intent coun..."
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "task"
+  - "readme"
+  - "audit"
+  - "implementation summary"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Implementation Summary: Task 01 — README Audit & Alignment
 
 <!-- SPECKIT_LEVEL: 3+ -->

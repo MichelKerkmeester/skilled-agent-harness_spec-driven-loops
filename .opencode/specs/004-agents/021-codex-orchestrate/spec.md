@@ -1,3 +1,18 @@
+---
+title: "Feature Specification: ChatGPT Agent Suite Codex Optimization [021-codex-orchestrate/spec]"
+description: "The ChatGPT agent set had drift across files: orchestration was optimized in isolation while sibling agent documents still contained inconsistent thresholds, naming, fast-path b..."
+trigger_phrases:
+  - "feature"
+  - "specification"
+  - "chatgpt"
+  - "agent"
+  - "suite"
+  - "spec"
+  - "021"
+  - "codex"
+importance_tier: "important"
+contextType: "decision"
+---
 # Feature Specification: ChatGPT Agent Suite Codex Optimization
 
 <!-- SPECKIT_LEVEL: 3 -->

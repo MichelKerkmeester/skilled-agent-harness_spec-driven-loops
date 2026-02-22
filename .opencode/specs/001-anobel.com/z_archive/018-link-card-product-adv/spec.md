@@ -1,3 +1,17 @@
+---
+title: "Link Card Product/Adv - CTA Button Hover Animation [018-link-card-product-adv/spec]"
+description: "Extend the link card ad hover state to trigger the CTA button Secondary-Full animations, including"
+trigger_phrases:
+  - "link"
+  - "card"
+  - "product"
+  - "adv"
+  - "cta"
+  - "spec"
+  - "018"
+importance_tier: "important"
+contextType: "decision"
+---
 # Link Card Product/Adv - CTA Button Hover Animation
 
 <!-- ANCHOR:overview -->

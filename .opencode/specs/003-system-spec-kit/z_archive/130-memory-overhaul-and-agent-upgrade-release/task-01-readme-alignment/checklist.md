@@ -1,3 +1,15 @@
+---
+title: "Verification Checklist: Task 01 — README Audit & Alignment [task-01-readme-alignment/checklist]"
+description: "Verification Date: 2026-02-16 (manual re-check)"
+trigger_phrases:
+  - "verification"
+  - "checklist"
+  - "task"
+  - "readme"
+  - "audit"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Verification Checklist: Task 01 — README Audit & Alignment
 
 <!-- SPECKIT_LEVEL: 3+ -->

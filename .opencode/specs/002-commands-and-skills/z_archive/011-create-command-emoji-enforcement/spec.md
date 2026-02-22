@@ -1,3 +1,18 @@
+---
+title: "Feature Specification: Remove Emoji Enforcement from /create Command [011-create-command-emoji-enforcement/spec]"
+description: "The /create command currently enforces emoji usage in documentation titles and sections through validation logic. This policy has been deprecated. This spec documents the remova..."
+trigger_phrases:
+  - "feature"
+  - "specification"
+  - "remove"
+  - "emoji"
+  - "enforcement"
+  - "spec"
+  - "011"
+  - "create"
+importance_tier: "important"
+contextType: "decision"
+---
 # Feature Specification: Remove Emoji Enforcement from /create Command
 
 <!-- SPECKIT_LEVEL: 3 -->

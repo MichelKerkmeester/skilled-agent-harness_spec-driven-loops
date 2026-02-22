@@ -1,3 +1,17 @@
+---
+title: "Research: Memory Consolidation and Dormancy Patterns [079-speckit-cognitive-memory/research]"
+description: "Request: Research how memories transition between active and dormant states in cognitive science and how to implement this for AI memory systems."
+trigger_phrases:
+  - "research"
+  - "memory"
+  - "consolidation"
+  - "and"
+  - "dormancy"
+  - "079"
+  - "speckit"
+importance_tier: "normal"
+contextType: "research"
+---
 # Research: Memory Consolidation and Dormancy Patterns
 
 ## Metadata

@@ -1,3 +1,18 @@
+---
+title: "Decision Record: Path-Scoped Validation Rules [001-mvp-monolithic/decision-record]"
+description: "We need to implement a validation script for spec folders. The validation logic needs to"
+trigger_phrases:
+  - "decision"
+  - "record"
+  - "path"
+  - "scoped"
+  - "validation"
+  - "decision record"
+  - "001"
+  - "mvp"
+importance_tier: "important"
+contextType: "decision"
+---
 # Decision Record: Path-Scoped Validation Rules
 <!-- SPECKIT_TEMPLATE_SOURCE: decision-record.md | v1.0 -->
 

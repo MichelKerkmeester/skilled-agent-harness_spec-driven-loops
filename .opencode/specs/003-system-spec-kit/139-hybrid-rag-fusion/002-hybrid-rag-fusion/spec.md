@@ -1,3 +1,16 @@
+---
+title: "Spec: 138-hybrid-rag-fusion (Unified Context Engine) [002-hybrid-rag-fusion/spec]"
+description: "This specification details the Level 3+ architectural upgrade of the system-speckit memory Model Context Protocol (MCP) server. The goal is to transform the server from a collec..."
+trigger_phrases:
+  - "spec"
+  - "138"
+  - "hybrid"
+  - "rag"
+  - "fusion"
+  - "002"
+importance_tier: "important"
+contextType: "decision"
+---
 <!-- SPECKIT_LEVEL: 3+ -->
 # Spec: 138-hybrid-rag-fusion (Unified Context Engine)
 

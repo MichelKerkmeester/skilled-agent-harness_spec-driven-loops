@@ -1,3 +1,17 @@
+---
+title: "Feature Specification: System Spec Kit Comprehensive Test Suite [078-speckit-test-suite/spec]"
+description: "The system-spec-kit has grown to ~10,500 LOC across MCP handlers (2,208 LOC) and scripts (8,500 LOC), but test coverage is incomplete. While 14 existing test files cover ~1,027 ..."
+trigger_phrases:
+  - "feature"
+  - "specification"
+  - "system"
+  - "spec"
+  - "kit"
+  - "078"
+  - "speckit"
+importance_tier: "important"
+contextType: "decision"
+---
 # Feature Specification: System Spec Kit Comprehensive Test Suite
 
 <!-- SPECKIT_LEVEL: 3 -->

@@ -1,3 +1,16 @@
+---
+title: "Verification Checklist: Workflows-Code Skill Alignment [020-workflows-code-codebase-alignment/checklist]"
+description: "Checklist for verifying skill file updates match actual codebase patterns."
+trigger_phrases:
+  - "verification"
+  - "checklist"
+  - "workflows"
+  - "code"
+  - "skill"
+  - "020"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Verification Checklist: Workflows-Code Skill Alignment
 
 Checklist for verifying skill file updates match actual codebase patterns.

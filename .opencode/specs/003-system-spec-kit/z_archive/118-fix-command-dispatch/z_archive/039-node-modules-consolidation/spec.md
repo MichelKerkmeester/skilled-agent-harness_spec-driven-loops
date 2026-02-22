@@ -1,11 +1,20 @@
 ---
-id: 039-node-modules-consolidation
-title: Node Modules Consolidation
-status: Complete
-level: 2
+title: "Node Modules Consolidation [039-node-modules-consolidation/spec]"
+description: "id: 039-node-modules-consolidation"
+trigger_phrases:
+  - "node"
+  - "modules"
+  - "consolidation"
+  - "spec"
+  - "039"
+importance_tier: "important"
+contextType: "decision"
 created: 2025-12-25
----
 
+id: 039-node-modules-consolidation
+level: 2
+status: Complete
+---
 # Node Modules Consolidation
 
 ## Problem Statement

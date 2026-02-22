@@ -1,10 +1,21 @@
 ---
+title: "Implementation Plan: Create Commands Codex Compatibility [012-create-codex-compatibility/plan]"
+description: "level: 3"
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "create"
+  - "commands"
+  - "codex"
+  - "012"
+importance_tier: "important"
+contextType: "decision"
+completed: 2026-02-17
+
+created: 2026-02-17
 level: 3
 status: done
-created: 2026-02-17
-completed: 2026-02-17
 ---
-
 <!-- SPECKIT_TEMPLATE_SOURCE: legacy-normalized | v2.2 -->
 
 # Implementation Plan: Create Commands Codex Compatibility

@@ -1,3 +1,17 @@
+---
+title: "Implementation Plan: AI Auto-Populate on Spec Upgrade [128-upgrade-auto-populate/plan]"
+description: "This implements a post-upgrade AI workflow step that automatically populates template placeholders injected by upgrade-level.sh. The approach is workflow-driven (AI agent instru..."
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "auto"
+  - "populate"
+  - "spec"
+  - "128"
+  - "upgrade"
+importance_tier: "important"
+contextType: "decision"
+---
 # Implementation Plan: AI Auto-Populate on Spec Upgrade
 
 <!-- SPECKIT_LEVEL: 3+ -->

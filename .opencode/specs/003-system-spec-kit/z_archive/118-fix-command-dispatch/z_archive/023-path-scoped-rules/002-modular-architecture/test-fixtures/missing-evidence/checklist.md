@@ -1,3 +1,14 @@
+---
+title: "Checklist: Missing Evidence Fixture [missing-evidence/checklist]"
+description: "checklist document for missing-evidence."
+trigger_phrases:
+  - "checklist"
+  - "missing"
+  - "evidence"
+  - "fixture"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Checklist: Missing Evidence Fixture
 
 ## P0 - Critical

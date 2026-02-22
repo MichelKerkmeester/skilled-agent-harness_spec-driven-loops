@@ -1,3 +1,17 @@
+---
+title: "Memory Plugin Debugging - bun:sqlite Migration [003-memory-plugin-debugging/spec]"
+description: "The semantic memory plugin fails to load memories into the AI context dashboard, showing \"Loaded 0 memories for dashboard\" despite 66+ memories existing in the database. This pr..."
+trigger_phrases:
+  - "memory"
+  - "plugin"
+  - "debugging"
+  - "bun"
+  - "sqlite"
+  - "spec"
+  - "003"
+importance_tier: "important"
+contextType: "decision"
+---
 # Memory Plugin Debugging - bun:sqlite Migration
 
 ## Problem Statement

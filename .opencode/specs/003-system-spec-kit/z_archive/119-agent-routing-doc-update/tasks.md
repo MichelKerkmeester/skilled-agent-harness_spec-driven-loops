@@ -1,3 +1,16 @@
+---
+title: "Tasks: Agent Routing Documentation Update [119-agent-routing-doc-update/tasks]"
+description: "Task Format: T### [P?] Description (file path)"
+trigger_phrases:
+  - "tasks"
+  - "agent"
+  - "routing"
+  - "documentation"
+  - "update"
+  - "119"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: Agent Routing Documentation Update
 
 <!-- SPECKIT_LEVEL: 2 -->

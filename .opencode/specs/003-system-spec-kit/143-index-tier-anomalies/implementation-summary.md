@@ -1,3 +1,15 @@
+---
+title: "Implementation Summary [143-index-tier-anomalies/implementation-summary]"
+description: "The implementation delivered deterministic indexing and tier normalization for Spec 143."
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "implementation summary"
+  - "143"
+  - "index"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Implementation Summary
 
 <!-- SPECKIT_LEVEL: 3 -->

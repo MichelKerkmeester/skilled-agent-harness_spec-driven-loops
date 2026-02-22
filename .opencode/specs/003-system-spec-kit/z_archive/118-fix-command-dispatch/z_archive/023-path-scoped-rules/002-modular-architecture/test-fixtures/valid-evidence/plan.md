@@ -1,3 +1,14 @@
+---
+title: "Plan: Valid Evidence Fixture [valid-evidence/plan]"
+description: "Testing that completed high-priority items include evidence."
+trigger_phrases:
+  - "plan"
+  - "valid"
+  - "evidence"
+  - "fixture"
+importance_tier: "important"
+contextType: "decision"
+---
 # Plan: Valid Evidence Fixture
 
 ## Technical Context

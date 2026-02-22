@@ -1,3 +1,16 @@
+---
+title: "Tasks: SpecKit Refinement - Implementation Breakdown [019-speckit-refinement/tasks]"
+description: "Task list for Phase 1 MVP implementation of the Handover System based on ECP research."
+trigger_phrases:
+  - "tasks"
+  - "speckit"
+  - "refinement"
+  - "implementation"
+  - "breakdown"
+  - "019"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: SpecKit Refinement - Implementation Breakdown
 
 Task list for Phase 1 MVP implementation of the Handover System based on ECP research.

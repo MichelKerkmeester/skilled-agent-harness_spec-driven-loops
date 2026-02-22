@@ -1,3 +1,16 @@
+---
+title: "Verification Checklist: Memory Overhaul & Agent Upgrade [130-memory-overhaul-and-agent-upgrade-release/checklist]"
+description: "Verification Date: 2026-02-16 (Task 07 prepared; publication still blocked)"
+trigger_phrases:
+  - "verification"
+  - "checklist"
+  - "memory"
+  - "overhaul"
+  - "agent"
+  - "130"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Verification Checklist: Memory Overhaul & Agent Upgrade Release
 
 <!-- SPECKIT_LEVEL: 3+ -->

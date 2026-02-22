@@ -1,3 +1,8 @@
+---
+title: "To promote a [075-post-speckit-template-upgrade-testing/20-01-26_09-10__speckit-template-optimization-refinement]"
+importance_tier: "critical"
+contextType: "general"
+---
 <!-- TEMPLATE: context_template.md v2.2 - DO NOT EDIT GENERATED FILES -->
 <!-- Constitutional Tier Promotion:
   To promote a memory to constitutional tier (always surfaced):

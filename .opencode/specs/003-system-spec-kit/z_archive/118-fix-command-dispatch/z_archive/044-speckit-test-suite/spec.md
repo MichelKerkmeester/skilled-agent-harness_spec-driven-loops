@@ -1,3 +1,16 @@
+---
+title: "Spec Kit Test Suite [044-speckit-test-suite/spec]"
+description: "The Spec Kit Memory MCP and related tools lacked comprehensive testing"
+trigger_phrases:
+  - "spec"
+  - "kit"
+  - "test"
+  - "suite"
+  - "044"
+  - "speckit"
+importance_tier: "important"
+contextType: "decision"
+---
 # Spec Kit Test Suite
 
 | Metadata | Value |

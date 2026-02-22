@@ -1,3 +1,15 @@
+---
+title: "Verification Checklist: 012 - Deprecate Skill Graph and [012-deprecate-skill-graph-and-readme-indexing/checklist]"
+description: "Evidence format: [Evidence: command/file/result]"
+trigger_phrases:
+  - "verification"
+  - "checklist"
+  - "012"
+  - "deprecate"
+  - "skill"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Verification Checklist: 012 - Deprecate Skill Graph and README/Skill-Ref Indexing
 
 <!-- SPECKIT_LEVEL: 3 -->

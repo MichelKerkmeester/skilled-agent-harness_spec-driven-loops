@@ -1,3 +1,15 @@
+---
+title: "Tasks - Performance Patterns Update [026-performance-patterns-update/tasks]"
+description: "Status: Pending | Priority: P0 | LOC: ~200"
+trigger_phrases:
+  - "tasks"
+  - "performance"
+  - "patterns"
+  - "update"
+  - "026"
+importance_tier: "normal"
+contextType: "implementation"
+---
 <!-- SPECKIT_TEMPLATE_SOURCE: legacy-normalized | v2.2 -->
 
 # Tasks - Performance Patterns Update

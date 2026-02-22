@@ -1,3 +1,17 @@
+---
+title: "Implementation Plan: Path-Scoped Validation Rules [001-mvp-monolithic/plan]"
+description: "┌─────────────────────────────────────────────────────────────────┐"
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "path"
+  - "scoped"
+  - "validation"
+  - "001"
+  - "mvp"
+importance_tier: "important"
+contextType: "decision"
+---
 # Implementation Plan: Path-Scoped Validation Rules
 <!-- SPECKIT_TEMPLATE_SOURCE: plan.md | v1.0 -->
 

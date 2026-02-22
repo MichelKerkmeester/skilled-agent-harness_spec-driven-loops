@@ -1,3 +1,16 @@
+---
+title: "Specification: generate-context.js Modularization [058-generate-context-modularization/spec]"
+description: "The generate-context.js script is a 4,837-line monolithic file containing 84 functions across 18 sections. This creates several problems"
+trigger_phrases:
+  - "specification"
+  - "generate"
+  - "context"
+  - "modularization"
+  - "spec"
+  - "058"
+importance_tier: "important"
+contextType: "decision"
+---
 # Specification: generate-context.js Modularization
 
 ## Overview

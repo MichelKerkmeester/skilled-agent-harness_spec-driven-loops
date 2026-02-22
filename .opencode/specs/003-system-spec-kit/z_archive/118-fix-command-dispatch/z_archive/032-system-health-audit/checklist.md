@@ -1,3 +1,16 @@
+---
+title: "Checklist - System Health Audit (COMPLETED) [032-system-health-audit/checklist]"
+description: "checklist document for 032-system-health-audit."
+trigger_phrases:
+  - "checklist"
+  - "system"
+  - "health"
+  - "audit"
+  - "completed"
+  - "032"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Checklist - System Health Audit (COMPLETED)
 
 > **Status:** ALL ITEMS COMPLETE ✅

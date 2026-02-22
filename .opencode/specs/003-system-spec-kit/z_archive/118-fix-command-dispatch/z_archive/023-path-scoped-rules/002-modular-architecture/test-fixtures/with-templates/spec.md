@@ -1,3 +1,16 @@
+---
+title: "Spec: Template Test Fixture [with-templates/spec]"
+description: "This fixture tests that template directories are excluded from validation."
+trigger_phrases:
+  - "spec"
+  - "template"
+  - "test"
+  - "fixture"
+  - "with"
+  - "templates"
+importance_tier: "important"
+contextType: "decision"
+---
 # Spec: Template Test Fixture
 
 | Field       | Value                    |

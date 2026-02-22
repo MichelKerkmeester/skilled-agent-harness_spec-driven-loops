@@ -1,3 +1,16 @@
+---
+title: "Spec: sk-documentation Skill Functional Testing [016-skill-rename/spec]"
+description: "The create-documentation skill was renamed to sk-documentation to align with the naming convention of other workflow skills. This spec documents the testing effort to verify all..."
+trigger_phrases:
+  - "spec"
+  - "documentation"
+  - "skill"
+  - "functional"
+  - "testing"
+  - "016"
+importance_tier: "important"
+contextType: "decision"
+---
 <!-- SPECKIT_LEVEL: 1 -->
 
 <!-- SPECKIT_TEMPLATE_SOURCE: legacy-normalized | v2.2 -->

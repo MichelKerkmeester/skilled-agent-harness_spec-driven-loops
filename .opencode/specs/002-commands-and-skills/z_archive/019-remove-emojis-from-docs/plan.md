@@ -1,3 +1,16 @@
+---
+title: "Implementation Plan: Remove Emojis from All Documentation [019-remove-emojis-from-docs/plan]"
+description: "This plan executes a 12-phase AI swarm operation to strip emojis from H2 headings and TOC entries across 287 markdown files in the .opencode/ directory. Each phase targets one c..."
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "remove"
+  - "emojis"
+  - "from"
+  - "019"
+importance_tier: "important"
+contextType: "decision"
+---
 # Implementation Plan: Remove Emojis from All Documentation
 
 <!-- SPECKIT_LEVEL: 3+ -->

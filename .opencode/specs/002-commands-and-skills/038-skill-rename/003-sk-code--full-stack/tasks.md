@@ -1,3 +1,16 @@
+---
+title: "Tasks: Phase 003 — Rename legacy full-stack skill identifier to sk-code--full-stack [003-sk-code--full-stack/tasks]"
+description: "Task Format: T### [P?] Description (file path)"
+trigger_phrases:
+  - "tasks"
+  - "phase"
+  - "003"
+  - "rename"
+  - "legacy"
+  - "code"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: Phase 003 — Rename legacy full-stack skill identifier to sk-code--full-stack
 
 <!-- SPECKIT_LEVEL: 2 -->

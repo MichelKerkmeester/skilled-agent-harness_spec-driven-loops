@@ -1,3 +1,16 @@
+---
+title: "Implementation Plan: workflows-code Skill Bug Fixes [024-skill-bug-fixes/plan]"
+description: "Systematic plan to fix all identified bugs in the workflows-code skill."
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "workflows"
+  - "code"
+  - "skill"
+  - "024"
+importance_tier: "important"
+contextType: "decision"
+---
 # Implementation Plan: workflows-code Skill Bug Fixes
 
 Systematic plan to fix all identified bugs in the workflows-code skill.

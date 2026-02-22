@@ -1,3 +1,17 @@
+---
+title: "Gate Enforcement Constitutional Memory Refinement [034-gate-enforcement-refinement/spec]"
+description: "Refine the gate-enforcement.md constitutional memory to cover ALL 4 HARD BLOCK gates (0, 3, 5, 6) instead of just 2 (3, 5)."
+trigger_phrases:
+  - "gate"
+  - "enforcement"
+  - "constitutional"
+  - "memory"
+  - "refinement"
+  - "spec"
+  - "034"
+importance_tier: "important"
+contextType: "decision"
+---
 # Gate Enforcement Constitutional Memory Refinement
 
 ## Overview

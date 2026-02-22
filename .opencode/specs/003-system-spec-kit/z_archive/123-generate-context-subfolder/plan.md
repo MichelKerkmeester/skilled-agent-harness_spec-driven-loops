@@ -1,3 +1,16 @@
+---
+title: "Implementation Plan: generate-context.ts Subfolder Support [123-generate-context-subfolder/plan]"
+description: "Add nested subfolder path resolution to generate-context.ts and folder-detector.ts. The approach is additive-only: new branches handle parent/child format inputs while existing ..."
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "generate"
+  - "context"
+  - "subfolder"
+  - "123"
+importance_tier: "important"
+contextType: "decision"
+---
 # Implementation Plan: generate-context.ts Subfolder Support
 
 <!-- SPECKIT_LEVEL: 2 -->

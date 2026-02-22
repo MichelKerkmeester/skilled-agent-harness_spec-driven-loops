@@ -1,3 +1,17 @@
+---
+title: "Feature Specification: OpenCode Codebase Alignment [031-opencode-codebase-alignment/spec]"
+description: "Align OpenCode implementation files in TypeScript, JavaScript, Python, Shell, JSON, and JSONC to the standards defined by .opencode/skill/sk-code--opencode with a behavior-prese..."
+trigger_phrases:
+  - "feature"
+  - "specification"
+  - "opencode"
+  - "codebase"
+  - "alignment"
+  - "spec"
+  - "031"
+importance_tier: "important"
+contextType: "decision"
+---
 <!-- SPECKIT_LEVEL: 3+ -->
 # Feature Specification: OpenCode Codebase Alignment
 

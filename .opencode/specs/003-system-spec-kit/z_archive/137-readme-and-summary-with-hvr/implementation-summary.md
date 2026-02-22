@@ -1,3 +1,15 @@
+---
+title: "Implementation Summary [137-readme-and-summary-with-hvr/implementation-summary]"
+description: "The Human Voice Rules existed. They just sat inside a Barter-specific context document that no other system could reach. This spec changed that. The rules were extracted, cleane..."
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "implementation summary"
+  - "137"
+  - "readme"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Implementation Summary
 
 <!-- SPECKIT_LEVEL: 3+ -->

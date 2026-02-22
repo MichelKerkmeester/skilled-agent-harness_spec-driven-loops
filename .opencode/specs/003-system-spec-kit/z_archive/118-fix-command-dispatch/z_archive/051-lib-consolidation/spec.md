@@ -1,3 +1,17 @@
+---
+title: "Lib Consolidation - Shared Module Unification [051-lib-consolidation/spec]"
+description: "The system-spec-kit has shared JavaScript modules duplicated or re-exported across two separate lib folders, creating several issues"
+trigger_phrases:
+  - "lib"
+  - "consolidation"
+  - "shared"
+  - "module"
+  - "unification"
+  - "spec"
+  - "051"
+importance_tier: "important"
+contextType: "decision"
+---
 # Lib Consolidation - Shared Module Unification
 
 ## Metadata

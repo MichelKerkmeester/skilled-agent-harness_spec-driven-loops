@@ -1,3 +1,14 @@
+---
+title: "spec level2 [template:addendum/level2-verify/spec-level2.md]"
+description: "Template document for addendum/level2-verify/spec-level2.md."
+trigger_phrases:
+  - "spec"
+  - "level2"
+  - "template"
+  - "spec level2"
+importance_tier: "normal"
+contextType: "general"
+---
 <!-- SPECKIT_ADDENDUM: Level 2 - Verification -->
 <!-- Append after CORE spec.md Section 6 -->
 

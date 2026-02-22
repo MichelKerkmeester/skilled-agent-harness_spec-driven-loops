@@ -1,3 +1,16 @@
+---
+title: "Implementation Plan: Naming Convention Test Suite [091-naming-convention-test-suite/plan]"
+description: "Build 3 test files that comprehensively verify every script adjusted during the naming convention migration. Tests run without external dependencies (no DB, no API keys) where p..."
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "naming"
+  - "convention"
+  - "test"
+  - "091"
+importance_tier: "important"
+contextType: "decision"
+---
 # Implementation Plan: Naming Convention Test Suite
 
 <!-- SPECKIT_LEVEL: 2 -->

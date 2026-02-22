@@ -1,13 +1,13 @@
 ---
-title: "Level 2 Templates"
+title: "Level 2 Templates [template:level_2/README.md]"
 description: "Verification-focused templates for medium complexity changes."
 trigger_phrases:
   - "level 2"
   - "checklist"
   - "verification"
 importance_tier: "normal"
+contextType: "general"
 ---
-
 # Level 2 Templates
 
 Use for medium-scope work that needs explicit validation.

@@ -1,3 +1,17 @@
+---
+title: "Tasks: Spec Kit Bug Remediation [080-speckit-bug-remediation/tasks]"
+description: "Assigned Bugs: BUG-001, BUG-002, BUG-003"
+trigger_phrases:
+  - "tasks"
+  - "spec"
+  - "kit"
+  - "bug"
+  - "remediation"
+  - "080"
+  - "speckit"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: Spec Kit Bug Remediation
 
 <!-- SPECKIT_LEVEL: 3+ -->

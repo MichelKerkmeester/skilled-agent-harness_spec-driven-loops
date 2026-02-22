@@ -1,3 +1,16 @@
+---
+title: "Decision Record - Performance Optimization [024-performance-optimization/decision-record]"
+description: "This document records architectural and implementation decisions made during the performance optimization project for anobel.com."
+trigger_phrases:
+  - "decision"
+  - "record"
+  - "performance"
+  - "optimization"
+  - "decision record"
+  - "024"
+importance_tier: "important"
+contextType: "decision"
+---
 # Decision Record - Performance Optimization
 
 <!-- ANCHOR:overview -->

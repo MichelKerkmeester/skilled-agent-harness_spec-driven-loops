@@ -1,3 +1,8 @@
+---
+title: "Key Topics: refinements | spec | plan | let | [019-speckit-refinement/23-12-25_12-52__speckit-refinement]"
+importance_tier: "normal"
+contextType: "general"
+---
 <!-- TEMPLATE: context_template.md v2.2 - DO NOT EDIT GENERATED FILES -->
 ---
 

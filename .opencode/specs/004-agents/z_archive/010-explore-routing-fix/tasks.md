@@ -1,3 +1,16 @@
+---
+title: "Tasks: Fix @explore Direct Dispatch in Orchestrate Agent [010-explore-routing-fix/tasks]"
+description: "Phase: 1 (High-Impact)"
+trigger_phrases:
+  - "tasks"
+  - "fix"
+  - "explore"
+  - "direct"
+  - "dispatch"
+  - "010"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: Fix @explore Direct Dispatch in Orchestrate Agent
 
 <!-- SPECKIT_LEVEL: 2 -->

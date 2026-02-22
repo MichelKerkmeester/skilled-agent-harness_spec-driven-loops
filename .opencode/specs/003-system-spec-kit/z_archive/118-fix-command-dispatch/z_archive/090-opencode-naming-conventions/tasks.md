@@ -1,3 +1,16 @@
+---
+title: "Tasks: OpenCode Naming Convention Alignment [090-opencode-naming-conventions/tasks]"
+description: "tasks document for 090-opencode-naming-conventions."
+trigger_phrases:
+  - "tasks"
+  - "opencode"
+  - "naming"
+  - "convention"
+  - "alignment"
+  - "090"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: OpenCode Naming Convention Alignment
 
 <!-- SPECKIT_LEVEL: 3+ -->

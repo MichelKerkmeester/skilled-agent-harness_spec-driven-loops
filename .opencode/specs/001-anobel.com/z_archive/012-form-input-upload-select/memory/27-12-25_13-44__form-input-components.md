@@ -1,3 +1,8 @@
+---
+title: "To promote a memory to constitutional tier [012-form-input-upload-select/27-12-25_13-44__form-input-components]"
+importance_tier: "normal"
+contextType: "general"
+---
 <!-- TEMPLATE: context_template.md v2.2 - DO NOT EDIT GENERATED FILES -->
 <!-- Constitutional Tier Promotion:
   To promote a memory to constitutional tier (always surfaced):

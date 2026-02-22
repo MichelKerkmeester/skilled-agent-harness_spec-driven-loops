@@ -1,3 +1,15 @@
+---
+title: "Implementation Summary [001-online-visual-upgrade/implementation-summary]"
+description: "Completed implementation includes routing/structure hardening, pinned library matrixing, reference/template modernization, validator and drift enforcement, fixture-based tests, ..."
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "implementation summary"
+  - "001"
+  - "online"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Implementation Summary
 
 <!-- SPECKIT_LEVEL: 2 -->

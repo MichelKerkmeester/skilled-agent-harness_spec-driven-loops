@@ -1,3 +1,15 @@
+---
+title: "Implementation Plan: Lib Consolidation [051-lib-consolidation/plan]"
+description: "mkdir -p .opencode/skill/system-spec-kit/lib"
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "lib"
+  - "consolidation"
+  - "051"
+importance_tier: "important"
+contextType: "decision"
+---
 # Implementation Plan: Lib Consolidation
 
 ## Metadata

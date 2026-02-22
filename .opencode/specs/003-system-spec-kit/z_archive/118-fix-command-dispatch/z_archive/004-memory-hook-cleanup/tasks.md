@@ -1,3 +1,16 @@
+---
+title: "Tasks: Memory Hook Cleanup - Implementation Breakdown [004-memory-hook-cleanup/tasks]"
+description: "Task list for removing Claude Code Hook references from workflows-memory skill."
+trigger_phrases:
+  - "tasks"
+  - "memory"
+  - "hook"
+  - "cleanup"
+  - "implementation"
+  - "004"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: Memory Hook Cleanup - Implementation Breakdown
 
 Task list for removing Claude Code Hook references from workflows-memory skill.

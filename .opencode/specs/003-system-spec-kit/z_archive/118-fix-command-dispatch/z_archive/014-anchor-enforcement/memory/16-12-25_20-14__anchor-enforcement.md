@@ -1,3 +1,8 @@
+---
+title: "IMPROVED CONTEXT TEMPLATE v2.1 [014-anchor-enforcement/16-12-25_20-14__anchor-enforcement]"
+importance_tier: "normal"
+contextType: "general"
+---
 <!-- TEMPLATE: context_template.md v2.2 - DO NOT EDIT GENERATED FILES -->
 <!-- Migrated by migrate-memory-v22.mjs -->
 

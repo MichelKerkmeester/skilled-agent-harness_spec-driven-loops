@@ -1,3 +1,14 @@
+---
+title: "Tasks: [NAME] [030-hero-flicker-debug/tasks]"
+description: "Level 2 Tasks (+Verify) is appropriate when"
+trigger_phrases:
+  - "tasks"
+  - "name"
+  - "030"
+  - "hero"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: [NAME]
 
 <!-- SPECKIT_LEVEL: 2 -->

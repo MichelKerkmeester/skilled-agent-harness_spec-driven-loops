@@ -1,3 +1,17 @@
+---
+title: "Verification Checklist: Path-Scoped Validation Rules [001-mvp-monolithic/checklist]"
+description: "When marking items complete, add evidence"
+trigger_phrases:
+  - "verification"
+  - "checklist"
+  - "path"
+  - "scoped"
+  - "validation"
+  - "001"
+  - "mvp"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Verification Checklist: Path-Scoped Validation Rules
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist.md | v1.0 -->
 

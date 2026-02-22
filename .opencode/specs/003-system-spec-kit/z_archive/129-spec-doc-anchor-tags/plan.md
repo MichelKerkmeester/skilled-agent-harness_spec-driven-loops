@@ -1,3 +1,16 @@
+---
+title: "Implementation Plan: Spec Document Anchor Tags [129-spec-doc-anchor-tags/plan]"
+description: "Add <!-- ANCHOR:name --> / <!-- /ANCHOR:name --> tags to all spec kit templates, enabling section-level retrieval for spec documents. The anchor infrastructure (parser, indexer,..."
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "spec"
+  - "document"
+  - "anchor"
+  - "129"
+importance_tier: "important"
+contextType: "decision"
+---
 # Implementation Plan: Spec Document Anchor Tags
 
 <!-- SPECKIT_LEVEL: 2 -->

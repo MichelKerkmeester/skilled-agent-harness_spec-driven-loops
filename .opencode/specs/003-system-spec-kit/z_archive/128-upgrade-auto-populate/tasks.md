@@ -1,3 +1,16 @@
+---
+title: "Tasks: AI Auto-Populate on Spec Upgrade [128-upgrade-auto-populate/tasks]"
+description: "Task Format: T### [P?] Description (file path)"
+trigger_phrases:
+  - "tasks"
+  - "auto"
+  - "populate"
+  - "spec"
+  - "upgrade"
+  - "128"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: AI Auto-Populate on Spec Upgrade
 
 <!-- SPECKIT_LEVEL: 3+ -->

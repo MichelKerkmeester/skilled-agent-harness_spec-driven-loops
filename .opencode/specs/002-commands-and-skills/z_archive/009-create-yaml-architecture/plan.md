@@ -1,3 +1,16 @@
+---
+title: "Implementation Plan: Create Commands YAML-First Architecture Refactor [009-create-yaml-architecture/plan]"
+description: "Refactor all 6 create commands from an inverted inline-workflow model to YAML-first architecture matching the spec_kit command pattern. The refactor proceeds in 4 phases: bug fi..."
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "create"
+  - "commands"
+  - "yaml"
+  - "009"
+importance_tier: "important"
+contextType: "decision"
+---
 # Implementation Plan: Create Commands YAML-First Architecture Refactor
 
 <!-- SPECKIT_LEVEL: 3 -->

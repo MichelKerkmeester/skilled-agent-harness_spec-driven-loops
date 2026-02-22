@@ -1,3 +1,8 @@
+---
+title: "Epistemic state captured at session start for learning [006-auto-indexing/16-12-25_11-45__docs-alignment-complete]"
+importance_tier: "normal"
+contextType: "general"
+---
 <!-- TEMPLATE: context_template.md v2.2 - DO NOT EDIT GENERATED FILES -->
 <!-- Migrated from legacy format by migrate-memory-v22.mjs -->
 

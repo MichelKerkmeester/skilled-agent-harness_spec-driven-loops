@@ -1,3 +1,16 @@
+---
+title: "Validation Checklist: Notification System - Quality Gates [007-notification-system/checklist]"
+description: "Checklist for validating the notification system implementation."
+trigger_phrases:
+  - "validation"
+  - "checklist"
+  - "notification"
+  - "system"
+  - "quality"
+  - "007"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Validation Checklist: Notification System - Quality Gates
 
 Checklist for validating the notification system implementation.

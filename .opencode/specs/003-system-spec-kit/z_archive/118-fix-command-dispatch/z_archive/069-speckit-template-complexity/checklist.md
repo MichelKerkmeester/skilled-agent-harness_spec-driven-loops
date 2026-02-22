@@ -1,3 +1,17 @@
+---
+title: "Validation Checklist: Level-Based Template Architecture [069-speckit-template-complexity/checklist]"
+description: "Verification items for complexity detection and level-based template folder implementation."
+trigger_phrases:
+  - "validation"
+  - "checklist"
+  - "level"
+  - "based"
+  - "template"
+  - "069"
+  - "speckit"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Validation Checklist: Level-Based Template Architecture
 
 Verification items for complexity detection and level-based template folder implementation.

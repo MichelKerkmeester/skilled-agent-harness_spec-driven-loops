@@ -1,3 +1,17 @@
+---
+title: "MCP Server Rename: semantic_memory → spec_kit_memory [040-mcp-server-rename/spec]"
+description: "Rename the semantic memory MCP server from semantic_memory to spec_kit_memory across all configuration files, documentation, and code references."
+trigger_phrases:
+  - "mcp"
+  - "server"
+  - "rename"
+  - "semantic"
+  - "memory"
+  - "spec"
+  - "040"
+importance_tier: "important"
+contextType: "decision"
+---
 # MCP Server Rename: semantic_memory → spec_kit_memory
 
 ## Overview

@@ -1,3 +1,14 @@
+---
+title: "Task 05 — Changelog Creation [task-05-changelog-updates/spec]"
+description: "After Tasks 01–04 identify all required documentation changes, create changelog entries for each affected track documenting the alignment work performed in spec 130."
+trigger_phrases:
+  - "task"
+  - "changelog"
+  - "creation"
+  - "spec"
+importance_tier: "important"
+contextType: "decision"
+---
 <!-- SPECKIT_LEVEL: 3+ -->
 # Task 05 — Changelog Creation
 

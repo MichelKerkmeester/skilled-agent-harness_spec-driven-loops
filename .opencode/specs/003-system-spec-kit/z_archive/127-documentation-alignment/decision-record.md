@@ -1,3 +1,17 @@
+---
+title: "Decision Record: Spec 126 Documentation Alignment [127-documentation-alignment/decision-record]"
+description: "Spec 126 added spec folder document indexing as a 5th source in the memory pipeline. The code implementation used true as the default for includeSpecDocs, but all documentation ..."
+trigger_phrases:
+  - "decision"
+  - "record"
+  - "spec"
+  - "126"
+  - "documentation"
+  - "decision record"
+  - "127"
+importance_tier: "important"
+contextType: "decision"
+---
 # Decision Record: Spec 126 Documentation Alignment
 
 <!-- SPECKIT_LEVEL: 3+ -->

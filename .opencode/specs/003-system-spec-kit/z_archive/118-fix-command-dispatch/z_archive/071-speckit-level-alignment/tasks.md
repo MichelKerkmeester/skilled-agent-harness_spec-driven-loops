@@ -1,3 +1,16 @@
+---
+title: "Tasks: SpecKit Level-Based Template Alignment [071-speckit-level-alignment/tasks]"
+description: "Implementation tasks for aligning SpecKit with level-based template architecture."
+trigger_phrases:
+  - "tasks"
+  - "speckit"
+  - "level"
+  - "based"
+  - "template"
+  - "071"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: SpecKit Level-Based Template Alignment
 
 Implementation tasks for aligning SpecKit with level-based template architecture.

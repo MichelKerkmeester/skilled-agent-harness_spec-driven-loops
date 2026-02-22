@@ -1,3 +1,15 @@
+---
+title: "Plan: Workflows-Code Reference QA [021-reference-structure-qa/plan]"
+description: "plan document for 021-reference-structure-qa."
+trigger_phrases:
+  - "plan"
+  - "workflows"
+  - "code"
+  - "reference"
+  - "021"
+importance_tier: "important"
+contextType: "decision"
+---
 <!-- SPECKIT_TEMPLATE_SOURCE: legacy-normalized | v2.2 -->
 
 # Plan: Workflows-Code Reference QA

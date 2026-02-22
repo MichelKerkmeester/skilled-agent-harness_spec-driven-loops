@@ -1,3 +1,16 @@
+---
+title: "Verification Checklist: JWT Authentication [handover-happy/checklist]"
+description: "Verification Date: 2026-02-14"
+trigger_phrases:
+  - "verification"
+  - "checklist"
+  - "jwt"
+  - "authentication"
+  - "handover"
+  - "happy"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Verification Checklist: JWT Authentication
 
 <!-- SPECKIT_LEVEL: 2 -->

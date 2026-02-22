@@ -1,3 +1,17 @@
+---
+title: "Feature Specification: Attribute Cleanup Deepdive [021-attribute-cleanup/spec]"
+description: "Level 1 (Core) is appropriate when"
+trigger_phrases:
+  - "feature"
+  - "specification"
+  - "attribute"
+  - "cleanup"
+  - "deepdive"
+  - "spec"
+  - "021"
+importance_tier: "important"
+contextType: "decision"
+---
 # Feature Specification: Attribute Cleanup Deepdive
 
 <!-- SPECKIT_LEVEL: 1 -->

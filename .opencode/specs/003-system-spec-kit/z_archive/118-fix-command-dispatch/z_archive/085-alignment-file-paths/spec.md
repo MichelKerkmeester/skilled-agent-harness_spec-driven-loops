@@ -1,3 +1,16 @@
+---
+title: "085: Alignment Validator File Path Analysis [085-alignment-file-paths/spec]"
+description: "Memory files are being saved to incorrect spec folders because the alignment scoring ignores file paths. When work is done on shared infrastructure (.opencode/skill/system-spec-..."
+trigger_phrases:
+  - "085"
+  - "alignment"
+  - "validator"
+  - "file"
+  - "path"
+  - "spec"
+importance_tier: "important"
+contextType: "decision"
+---
 # 085: Alignment Validator File Path Analysis
 
 ## Problem Statement

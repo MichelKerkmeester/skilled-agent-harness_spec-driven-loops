@@ -1,3 +1,15 @@
+---
+title: "Research: generate-context.js Analysis [058-generate-context-modularization/research]"
+description: "This document provides detailed analysis of the generate-context.js script to support the modularization effort. Key findings"
+trigger_phrases:
+  - "research"
+  - "generate"
+  - "context"
+  - "analysis"
+  - "058"
+importance_tier: "normal"
+contextType: "research"
+---
 # Research: generate-context.js Analysis
 
 ## Executive Summary

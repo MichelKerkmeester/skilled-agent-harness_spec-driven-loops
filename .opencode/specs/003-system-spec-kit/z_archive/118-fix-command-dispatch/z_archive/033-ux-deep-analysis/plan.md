@@ -1,3 +1,15 @@
+---
+title: "Fix Plan - UX Deep Analysis [033-ux-deep-analysis/plan]"
+description: "1. Fix MCP tool naming in all memory commands"
+trigger_phrases:
+  - "fix"
+  - "plan"
+  - "deep"
+  - "analysis"
+  - "033"
+importance_tier: "important"
+contextType: "decision"
+---
 # Fix Plan - UX Deep Analysis
 
 ## Phase 1: P0 Critical Fixes (Blocking)

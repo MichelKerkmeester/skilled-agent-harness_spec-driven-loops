@@ -1,3 +1,16 @@
+---
+title: "Tasks: Video Play/Pause Hover Effect [006-video-play-pause-hover/tasks]"
+description: "tasks document for 006-video-play-pause-hover."
+trigger_phrases:
+  - "tasks"
+  - "video"
+  - "play"
+  - "pause"
+  - "hover"
+  - "006"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: Video Play/Pause Hover Effect
 
 <!-- ANCHOR:css-complete -->

@@ -1,3 +1,17 @@
+---
+title: "Verification Checklist: Plan-to-Implementation Gate Bypass Fix [134-command-adherence/checklist]"
+description: "Verification Date: [YYYY-MM-DD]"
+trigger_phrases:
+  - "verification"
+  - "checklist"
+  - "plan"
+  - "implementation"
+  - "gate"
+  - "134"
+  - "command"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Verification Checklist: Plan-to-Implementation Gate Bypass Fix
 
 <!-- SPECKIT_LEVEL: 3 -->

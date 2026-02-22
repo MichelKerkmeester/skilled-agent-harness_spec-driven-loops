@@ -1,3 +1,16 @@
+---
+title: "Plan: Context Agent Model Comparison [012-context-model-comparison/plan]"
+description: "Spec: 012-context-model-comparison"
+trigger_phrases:
+  - "plan"
+  - "context"
+  - "agent"
+  - "model"
+  - "comparison"
+  - "012"
+importance_tier: "important"
+contextType: "decision"
+---
 # Plan: Context Agent Model Comparison
 
 **Spec**: 012-context-model-comparison

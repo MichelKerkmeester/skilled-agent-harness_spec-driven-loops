@@ -1,3 +1,17 @@
+---
+title: "Verification Checklist: 138 SGQS Score Recovery Plan (Child 009, Milestone [009-skill-graph-score-recovery/checklist]"
+description: "Locked Milestone Policy"
+trigger_phrases:
+  - "verification"
+  - "checklist"
+  - "138"
+  - "sgqs"
+  - "score"
+  - "009"
+  - "skill"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Verification Checklist: 138 SGQS Score Recovery Plan (Child 009, Milestone 3.5 First)
 
 <!-- SPECKIT_LEVEL: 2 -->

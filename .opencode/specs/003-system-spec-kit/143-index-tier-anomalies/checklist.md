@@ -1,3 +1,16 @@
+---
+title: "Verification Checklist: Memory Index Deduplication and Tier Normalization [143-index-tier-anomalies/checklist]"
+description: "Verification Date: 2026-02-22"
+trigger_phrases:
+  - "verification"
+  - "checklist"
+  - "memory"
+  - "index"
+  - "deduplication"
+  - "143"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Verification Checklist: Memory Index Deduplication and Tier Normalization
 
 <!-- SPECKIT_LEVEL: 3 -->

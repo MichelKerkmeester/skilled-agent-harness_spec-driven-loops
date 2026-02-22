@@ -1,3 +1,16 @@
+---
+title: "Verification Checklist: OpenCode Codebase Alignment [031-opencode-codebase-alignment/checklist]"
+description: "Evidence format (mandatory for every checked item)"
+trigger_phrases:
+  - "verification"
+  - "checklist"
+  - "opencode"
+  - "codebase"
+  - "alignment"
+  - "031"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Verification Checklist: OpenCode Codebase Alignment
 
 <!-- SPECKIT_LEVEL: 3+ -->

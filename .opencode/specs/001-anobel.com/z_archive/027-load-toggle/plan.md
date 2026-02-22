@@ -1,3 +1,16 @@
+---
+title: "Implementation Plan - Load Toggle Component [027-load-toggle/plan]"
+description: "This plan outlines the implementation of a reusable expand/collapse component for Webflow with CMS-bindable button text and multi-instance support."
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "load"
+  - "toggle"
+  - "component"
+  - "027"
+importance_tier: "important"
+contextType: "decision"
+---
 # Implementation Plan - Load Toggle Component
 
 <!-- ANCHOR:overview -->

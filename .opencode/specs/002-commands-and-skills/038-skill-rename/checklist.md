@@ -1,3 +1,16 @@
+---
+title: "Verification Checklist: Skill Rename — workflows-* to sk-*/mcp-* [038-skill-rename/checklist]"
+description: "Verification Date: 2026-02-21"
+trigger_phrases:
+  - "verification"
+  - "checklist"
+  - "skill"
+  - "rename"
+  - "workflows"
+  - "038"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Verification Checklist: Skill Rename — workflows-* to sk-*/mcp-*
 
 <!-- SPECKIT_LEVEL: 3+ -->

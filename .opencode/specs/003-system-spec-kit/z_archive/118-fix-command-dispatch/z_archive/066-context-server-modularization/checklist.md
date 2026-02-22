@@ -1,3 +1,16 @@
+---
+title: "Validation Checklist: Context-Server Modularization - Verification Items [066-context-server-modularization/checklist]"
+description: "Validation checklist for context-server.js modularization."
+trigger_phrases:
+  - "validation"
+  - "checklist"
+  - "context"
+  - "server"
+  - "modularization"
+  - "066"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Validation Checklist: Context-Server Modularization - Verification Items
 
 Validation checklist for context-server.js modularization.

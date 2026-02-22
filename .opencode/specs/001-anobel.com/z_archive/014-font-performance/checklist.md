@@ -1,3 +1,14 @@
+---
+title: "Checklist: Font Performance [014-font-performance/checklist]"
+description: "checklist document for 014-font-performance."
+trigger_phrases:
+  - "checklist"
+  - "font"
+  - "performance"
+  - "014"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Checklist: Font Performance
 
 <!-- ANCHOR:blockers -->

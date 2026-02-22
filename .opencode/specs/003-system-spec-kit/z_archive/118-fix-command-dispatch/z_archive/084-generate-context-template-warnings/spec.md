@@ -1,3 +1,16 @@
+---
+title: "Spec: Fix generate-context.js Template Warnings and API Mismatch [084-generate-context-template-warnings/spec]"
+description: "When running generate-context.js, two issues occur"
+trigger_phrases:
+  - "spec"
+  - "fix"
+  - "generate"
+  - "context"
+  - "template"
+  - "084"
+importance_tier: "important"
+contextType: "decision"
+---
 # Spec: Fix generate-context.js Template Warnings and API Mismatch
 
 ## Problem Statement

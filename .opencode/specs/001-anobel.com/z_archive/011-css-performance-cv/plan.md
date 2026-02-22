@@ -1,3 +1,16 @@
+---
+title: "Implementation Plan: CSS Performance Upgrade [011-css-performance-cv/plan]"
+description: "plan document for 011-css-performance-cv."
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "css"
+  - "performance"
+  - "upgrade"
+  - "011"
+importance_tier: "important"
+contextType: "decision"
+---
 # Implementation Plan: CSS Performance Upgrade
 
 <!-- ANCHOR:phase-1-setup--implementation -->

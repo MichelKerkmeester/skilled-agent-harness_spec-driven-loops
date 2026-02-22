@@ -1,3 +1,16 @@
+---
+title: "Checklist: Memory & Folder Ranking Implementation [070-memory-ranking/checklist]"
+description: "checklist document for 070-memory-ranking."
+trigger_phrases:
+  - "checklist"
+  - "memory"
+  - "folder"
+  - "ranking"
+  - "implementation"
+  - "070"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Checklist: Memory & Folder Ranking Implementation
 
 > **Spec:** `070-memory-ranking`  

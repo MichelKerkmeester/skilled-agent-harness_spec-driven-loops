@@ -1,3 +1,15 @@
+---
+title: "Phase Package Spec: Foundation (Phase 0, Phase 1, Phase 1.5) [001-foundation-phases-0-1-1-5/spec]"
+description: "This package defines the foundation and hardening work required before extraction/rollout implementation begins. It covers prerequisite infrastructure, core cognitive automation..."
+trigger_phrases:
+  - "phase"
+  - "package"
+  - "spec"
+  - "foundation"
+  - "001"
+importance_tier: "important"
+contextType: "decision"
+---
 <!-- SPECKIT_LEVEL: 3+ -->
 # Phase Package Spec: Foundation (Phase 0, Phase 1, Phase 1.5)
 

@@ -1,3 +1,17 @@
+---
+title: "Decision Record: system-spec-kit References Reorganization [056-spec-kit-references-reorganization/decision-record]"
+description: "Reorganize the system-spec-kit skill's references/ folder from a flat structure into logical sub-folders, following the pattern established in the workflows-code skill improvement."
+trigger_phrases:
+  - "decision"
+  - "record"
+  - "system"
+  - "spec"
+  - "kit"
+  - "decision record"
+  - "056"
+importance_tier: "important"
+contextType: "decision"
+---
 # Decision Record: system-spec-kit References Reorganization
 
 ## Decision

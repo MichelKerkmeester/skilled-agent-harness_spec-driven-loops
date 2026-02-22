@@ -1,3 +1,15 @@
+---
+title: "Research Plan: AI Integration Patterns [080-ai-integration-patterns-research/plan]"
+description: "Extract actionable patterns from three AI-focused repositories to improve system-spec-kit MCP."
+trigger_phrases:
+  - "research"
+  - "plan"
+  - "integration"
+  - "patterns"
+  - "080"
+importance_tier: "important"
+contextType: "decision"
+---
 # Research Plan: AI Integration Patterns
 
 ## Objective

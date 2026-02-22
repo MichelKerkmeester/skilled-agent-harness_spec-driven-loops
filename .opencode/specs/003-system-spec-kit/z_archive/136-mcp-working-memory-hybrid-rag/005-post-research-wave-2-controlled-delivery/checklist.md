@@ -1,3 +1,16 @@
+---
+title: "Verification Checklist: Post-Research Wave 2 Package [005-post-research-wave-2-controlled-delivery/checklist]"
+description: "checklist document for 005-post-research-wave-2-controlled-delivery."
+trigger_phrases:
+  - "verification"
+  - "checklist"
+  - "post"
+  - "research"
+  - "wave"
+  - "005"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Verification Checklist: Post-Research Wave 2 Package
 
 <!-- SPECKIT_LEVEL: 3+ -->

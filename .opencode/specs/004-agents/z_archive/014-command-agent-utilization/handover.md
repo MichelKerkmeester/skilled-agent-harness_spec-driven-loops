@@ -1,3 +1,15 @@
+---
+title: "Session Handover Document [014-command-agent-utilization/handover]"
+description: "Session handover for cross-project implementation: Smart Agent Integration into Spec Kit Commands."
+trigger_phrases:
+  - "session"
+  - "handover"
+  - "document"
+  - "014"
+  - "command"
+importance_tier: "normal"
+contextType: "general"
+---
 # Session Handover Document
 
 Session handover for cross-project implementation: Smart Agent Integration into Spec Kit Commands.

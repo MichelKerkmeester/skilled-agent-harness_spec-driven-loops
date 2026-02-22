@@ -1,3 +1,16 @@
+---
+title: "Implementation Plan: Memory Index TXT File Support [131-memory-index-txt-support/plan]"
+description: "Extend the memory indexing subsystem (memory-index.ts, memory-save.ts) to discover and index .txt files alongside .md files. The implementation adds .txt extension checks to fou..."
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "memory"
+  - "index"
+  - "txt"
+  - "131"
+importance_tier: "important"
+contextType: "decision"
+---
 # Implementation Plan: Memory Index TXT File Support
 
 <!-- SPECKIT_LEVEL: 3 -->

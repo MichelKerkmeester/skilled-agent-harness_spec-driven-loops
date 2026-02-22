@@ -1,3 +1,17 @@
+---
+title: "Deep Technical Research: LibSQL Hybrid-RAG Fit [140-sqlite-to-libsql/research]"
+description: "Determine whether LibSQL materially improves the current feature set and increases compatibility/possibility for a hybrid RAG fusion database, given the current System Spec Kit ..."
+trigger_phrases:
+  - "deep"
+  - "technical"
+  - "research"
+  - "libsql"
+  - "hybrid"
+  - "140"
+  - "sqlite"
+importance_tier: "normal"
+contextType: "research"
+---
 # Deep Technical Research: LibSQL Hybrid-RAG Fit
 
 ## 1. Metadata

@@ -1,3 +1,8 @@
+---
+title: "To promote a memory to constitutional tier (always [009-skill-graph-score-recovery/21-02-26_14-07__score-recovery-v2]"
+importance_tier: "critical"
+contextType: "general"
+---
 <!-- TEMPLATE: context_template.md v2.2 - DO NOT EDIT GENERATED FILES -->
 <!-- Constitutional Tier Promotion:
   To promote a memory to constitutional tier (always surfaced):

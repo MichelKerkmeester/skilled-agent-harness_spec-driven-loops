@@ -1,3 +1,17 @@
+---
+title: "Implementation Summary: Form Input Components Enhancement [012-form-input-upload-select/implementation-summary]"
+description: "This spec folder documents the implementation of two enhanced form input components for anobel.com"
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "form"
+  - "input"
+  - "components"
+  - "implementation summary"
+  - "012"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Implementation Summary: Form Input Components Enhancement
 
 <!-- ANCHOR:overview -->

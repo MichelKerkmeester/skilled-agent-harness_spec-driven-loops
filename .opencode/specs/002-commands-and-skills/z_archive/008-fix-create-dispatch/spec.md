@@ -1,3 +1,17 @@
+---
+title: "Feature Specification: Fix Create Command Dispatch Vulnerability + Defensive Hardening [008-fix-create-dispatch/spec]"
+description: "OpenCode's Go runtime injects phantom dispatch instructions when it detects (1) @agent references in command file text AND (2) Task tool in the command's allowed-tools frontmatt..."
+trigger_phrases:
+  - "feature"
+  - "specification"
+  - "fix"
+  - "create"
+  - "command"
+  - "spec"
+  - "008"
+importance_tier: "important"
+contextType: "decision"
+---
 # Feature Specification: Fix Create Command Dispatch Vulnerability + Defensive Hardening
 
 <!-- SPECKIT_LEVEL: 2 -->

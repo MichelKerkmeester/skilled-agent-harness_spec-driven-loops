@@ -1,3 +1,17 @@
+---
+title: "Tasks: Human Voice Rules — Template Integration [137-readme-and-summary-with-hvr/tasks]"
+description: "Before starting any task in this spec"
+trigger_phrases:
+  - "tasks"
+  - "human"
+  - "voice"
+  - "rules"
+  - "template"
+  - "137"
+  - "readme"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: Human Voice Rules — Template Integration
 
 <!-- SPECKIT_LEVEL: 3+ -->

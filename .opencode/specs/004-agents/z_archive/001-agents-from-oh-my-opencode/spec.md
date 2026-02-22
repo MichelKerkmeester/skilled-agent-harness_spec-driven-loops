@@ -1,3 +1,17 @@
+---
+title: "Agent Architecture Analysis: oh-my-opencode [001-agents-from-oh-my-opencode/spec]"
+description: "Analysis of agent implementations from the oh-my-opencode repository to inform agent development for the anobel.com Webflow project environment."
+trigger_phrases:
+  - "agent"
+  - "architecture"
+  - "analysis"
+  - "opencode"
+  - "spec"
+  - "001"
+  - "agents"
+importance_tier: "important"
+contextType: "decision"
+---
 # Agent Architecture Analysis: oh-my-opencode
 
 <!-- ANCHOR:overview -->

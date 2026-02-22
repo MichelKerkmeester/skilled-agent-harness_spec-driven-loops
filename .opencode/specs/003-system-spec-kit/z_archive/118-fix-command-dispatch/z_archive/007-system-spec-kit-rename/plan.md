@@ -1,3 +1,17 @@
+---
+title: "Implementation Plan: workflows-spec-kit → system-spec-kit Rename [007-system-spec-kit-rename/plan]"
+description: "Phase 1: Directory Rename (BLOCKING)"
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "workflows"
+  - "spec"
+  - "kit"
+  - "007"
+  - "system"
+importance_tier: "important"
+contextType: "decision"
+---
 # Implementation Plan: workflows-spec-kit → system-spec-kit Rename
 
 ## Overview

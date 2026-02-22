@@ -1,3 +1,16 @@
+---
+title: "Implementation Plan: Context Overload Prevention [022-context-overload-prevention/plan]"
+description: "This implements context overload prevention logic across all 3 orchestrator agent variants. The approach extracts proven patterns from the source prompt (007-enhanced-cc-context..."
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "context"
+  - "overload"
+  - "prevention"
+  - "022"
+importance_tier: "important"
+contextType: "decision"
+---
 # Implementation Plan: Context Overload Prevention
 
 <!-- SPECKIT_LEVEL: 2 -->

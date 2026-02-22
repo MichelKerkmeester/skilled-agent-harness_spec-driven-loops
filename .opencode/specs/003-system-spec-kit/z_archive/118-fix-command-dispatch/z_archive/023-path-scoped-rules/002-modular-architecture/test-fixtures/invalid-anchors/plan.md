@@ -1,3 +1,14 @@
+---
+title: "Plan: Invalid Anchors Fixture [invalid-anchors/plan]"
+description: "Testing detection of malformed anchor tags in memory files."
+trigger_phrases:
+  - "plan"
+  - "invalid"
+  - "anchors"
+  - "fixture"
+importance_tier: "important"
+contextType: "decision"
+---
 # Plan: Invalid Anchors Fixture
 
 ## Technical Context

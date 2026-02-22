@@ -1,3 +1,15 @@
+---
+title: "Session Handover Document [066-context-server-modularization/handover]"
+description: "Session handover for the completed context-server.js modularization."
+trigger_phrases:
+  - "session"
+  - "handover"
+  - "document"
+  - "066"
+  - "context"
+importance_tier: "normal"
+contextType: "general"
+---
 # Session Handover Document
 
 Session handover for the completed context-server.js modularization.

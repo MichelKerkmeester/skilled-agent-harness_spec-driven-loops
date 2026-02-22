@@ -1,3 +1,17 @@
+---
+title: "Decision Record: generate-context.js Modularization [058-generate-context-modularization/decision-record]"
+description: "The script contains 84 functions across 18 sections. We need to decide how to organize these into modules."
+trigger_phrases:
+  - "decision"
+  - "record"
+  - "generate"
+  - "context"
+  - "modularization"
+  - "decision record"
+  - "058"
+importance_tier: "important"
+contextType: "decision"
+---
 # Decision Record: generate-context.js Modularization
 
 ## ADR-001: Module Organization Strategy

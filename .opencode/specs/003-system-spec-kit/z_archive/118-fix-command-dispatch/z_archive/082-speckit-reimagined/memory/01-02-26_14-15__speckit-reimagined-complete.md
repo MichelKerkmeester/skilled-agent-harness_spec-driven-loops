@@ -1,3 +1,8 @@
+---
+title: "To promote a memory to constitutional tier [082-speckit-reimagined/01-02-26_14-15__speckit-reimagined-complete]"
+importance_tier: "critical"
+contextType: "implementation"
+---
 <!-- TEMPLATE: context_template.md v2.2 - DO NOT EDIT GENERATED FILES -->
 <!-- Constitutional Tier Promotion:
   To promote a memory to constitutional tier (always surfaced):

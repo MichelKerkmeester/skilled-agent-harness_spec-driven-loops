@@ -1,3 +1,18 @@
+---
+title: "Decision Record: ChatGPT Agent Suite Codex Optimization [021-codex-orchestrate/decision-record]"
+description: "The current ChatGPT/Codex orchestrator policy tends to over-decompose work into too many small agent tasks. This behavior increases orchestration overhead and context fragmentat..."
+trigger_phrases:
+  - "decision"
+  - "record"
+  - "chatgpt"
+  - "agent"
+  - "suite"
+  - "decision record"
+  - "021"
+  - "codex"
+importance_tier: "important"
+contextType: "decision"
+---
 # Decision Record: ChatGPT Agent Suite Codex Optimization
 
 <!-- SPECKIT_LEVEL: 3 -->

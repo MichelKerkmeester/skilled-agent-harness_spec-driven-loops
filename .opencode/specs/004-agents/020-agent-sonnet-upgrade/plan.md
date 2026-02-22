@@ -1,3 +1,16 @@
+---
+title: "Implementation Plan: Agent Sonnet 4.6 Upgrade [020-agent-sonnet-upgrade/plan]"
+description: "This plan covers upgrading model field assignments across two agent directories: the Copilot fleet (.opencode/agent/copilot/) and the Claude Code agent set (.claude/agents/). Th..."
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "agent"
+  - "sonnet"
+  - "upgrade"
+  - "020"
+importance_tier: "important"
+contextType: "decision"
+---
 # Implementation Plan: Agent Sonnet 4.6 Upgrade
 
 <!-- SPECKIT_LEVEL: 2 -->

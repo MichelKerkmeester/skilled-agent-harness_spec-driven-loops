@@ -1,3 +1,17 @@
+---
+title: "Session Handover: Dynamic Complexity-Based Template Scaling [069-speckit-template-complexity/handover]"
+description: "Spec Folder: specs/003-memory-and-spec-kit/069-speckit-template-complexity"
+trigger_phrases:
+  - "session"
+  - "handover"
+  - "dynamic"
+  - "complexity"
+  - "based"
+  - "069"
+  - "speckit"
+importance_tier: "normal"
+contextType: "general"
+---
 # Session Handover: Dynamic Complexity-Based Template Scaling
 
 **Spec Folder**: `specs/003-memory-and-spec-kit/069-speckit-template-complexity`

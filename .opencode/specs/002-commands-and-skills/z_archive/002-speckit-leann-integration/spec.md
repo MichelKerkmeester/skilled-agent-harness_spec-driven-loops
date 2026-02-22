@@ -1,3 +1,15 @@
+---
+title: "SpecKit LEANN Integration [002-speckit-leann-integration/spec]"
+description: "Add backwards-compatible LEANN semantic discovery to SpecKit commands (/spec_kit:plan, /spec_kit:complete, /spec_kit:research) to enhance codebase exploration with semantic sear..."
+trigger_phrases:
+  - "speckit"
+  - "leann"
+  - "integration"
+  - "spec"
+  - "002"
+importance_tier: "important"
+contextType: "decision"
+---
 <!-- SPECKIT_LEVEL: 1 -->
 
 <!-- SPECKIT_TEMPLATE_SOURCE: legacy-normalized | v2.2 -->

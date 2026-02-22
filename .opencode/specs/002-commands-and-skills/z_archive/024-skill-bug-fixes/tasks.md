@@ -1,3 +1,17 @@
+---
+title: "Task Breakdown: workflows-code Skill Bug Fixes [024-skill-bug-fixes/tasks]"
+description: "Granular task list for implementing all bug fixes."
+trigger_phrases:
+  - "task"
+  - "breakdown"
+  - "workflows"
+  - "code"
+  - "skill"
+  - "tasks"
+  - "024"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Task Breakdown: workflows-code Skill Bug Fixes
 
 Granular task list for implementing all bug fixes.

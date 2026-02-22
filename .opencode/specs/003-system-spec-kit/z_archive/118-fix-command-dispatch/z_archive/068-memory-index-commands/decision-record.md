@@ -1,3 +1,17 @@
+---
+title: "Decision: Memory Command Separation - Architecture Decision Record [068-memory-index-commands/decision-record]"
+description: "Architecture Decision Record documenting the decision to separate /memory:search into two focused commands."
+trigger_phrases:
+  - "decision"
+  - "memory"
+  - "command"
+  - "separation"
+  - "architecture"
+  - "decision record"
+  - "068"
+importance_tier: "important"
+contextType: "decision"
+---
 # Decision: Memory Command Separation - Architecture Decision Record
 
 Architecture Decision Record documenting the decision to separate `/memory:search` into two focused commands.

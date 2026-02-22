@@ -1,3 +1,16 @@
+---
+title: "Tasks: Memory & Folder Ranking Implementation [070-memory-ranking/tasks]"
+description: "Priority: P0"
+trigger_phrases:
+  - "tasks"
+  - "memory"
+  - "folder"
+  - "ranking"
+  - "implementation"
+  - "070"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: Memory & Folder Ranking Implementation
 
 > **Spec:** `070-memory-ranking`  

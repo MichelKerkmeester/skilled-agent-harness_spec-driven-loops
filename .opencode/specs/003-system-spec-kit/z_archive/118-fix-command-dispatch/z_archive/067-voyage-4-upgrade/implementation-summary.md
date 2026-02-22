@@ -1,3 +1,16 @@
+---
+title: "Implementation Summary - Voyage 4 Upgrade [067-voyage-4-upgrade/implementation-summary]"
+description: "Completed (Requires Restart)"
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "voyage"
+  - "upgrade"
+  - "implementation summary"
+  - "067"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Implementation Summary - Voyage 4 Upgrade
 
 ## Status

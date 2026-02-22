@@ -1,3 +1,16 @@
+---
+title: "Research: Blog Sort Dropdown Fix [019-blog-sort-fix/research]"
+description: "Deep dive investigation conducted 2026-01-18 using 5 parallel Opus agents to analyze the blog sort dropdown issue and identify optimal solutions."
+trigger_phrases:
+  - "research"
+  - "blog"
+  - "sort"
+  - "dropdown"
+  - "fix"
+  - "019"
+importance_tier: "normal"
+contextType: "research"
+---
 # Research: Blog Sort Dropdown Fix
 
 <!-- ANCHOR:overview -->

@@ -1,3 +1,17 @@
+---
+title: "Implementation Plan: Make spec_kit Commands Codex-Compatible [010-speckit-codex-compatibility/plan]"
+description: "Made 7 spec_kit command .md files and 11 YAML workflow files Codex-compatible using a three-pronged approach: (A) strip agent routing sections from .md, (B) add CONSTRAINTS anti..."
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "make"
+  - "spec"
+  - "kit"
+  - "010"
+  - "speckit"
+importance_tier: "important"
+contextType: "decision"
+---
 # Implementation Plan: Make spec_kit Commands Codex-Compatible
 
 <!-- SPECKIT_LEVEL: 3 -->

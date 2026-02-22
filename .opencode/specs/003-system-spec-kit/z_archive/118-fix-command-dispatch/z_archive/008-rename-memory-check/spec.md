@@ -1,3 +1,15 @@
+---
+title: "Spec: Rename /memory Command to /memory:check [008-rename-memory-check/spec]"
+description: "Rename the unified memory dashboard command from /memory to /memory:check and update all references across the codebase."
+trigger_phrases:
+  - "spec"
+  - "rename"
+  - "memory"
+  - "command"
+  - "008"
+importance_tier: "important"
+contextType: "decision"
+---
 # Spec: Rename `/memory` Command to `/memory:check`
 
 ## Overview

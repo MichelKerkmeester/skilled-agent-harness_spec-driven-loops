@@ -1,3 +1,16 @@
+---
+title: "Tasks: 138-hybrid-rag-fusion [002-hybrid-rag-fusion/tasks]"
+description: "Target File: lib/search/hybrid-search.ts"
+trigger_phrases:
+  - "tasks"
+  - "138"
+  - "hybrid"
+  - "rag"
+  - "fusion"
+  - "002"
+importance_tier: "normal"
+contextType: "implementation"
+---
 <!-- SPECKIT_LEVEL: 3+ -->
 # Tasks: 138-hybrid-rag-fusion
 

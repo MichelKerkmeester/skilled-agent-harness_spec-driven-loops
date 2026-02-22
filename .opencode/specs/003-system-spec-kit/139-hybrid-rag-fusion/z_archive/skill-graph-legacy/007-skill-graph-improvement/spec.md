@@ -1,3 +1,17 @@
+---
+title: "Feature Specification: Skill Graph Improvement [007-skill-graph-improvement/spec]"
+description: "Utilization testing of the Skill Graph (spec 006) revealed a Skill Graph Quality Score (SGQS) of 2.50 across 5 developer personas and 20 scenarios — well below the Adequate tier..."
+trigger_phrases:
+  - "feature"
+  - "specification"
+  - "skill"
+  - "graph"
+  - "improvement"
+  - "spec"
+  - "007"
+importance_tier: "important"
+contextType: "decision"
+---
 # Feature Specification: Skill Graph Improvement
 
 <!-- SPECKIT_LEVEL: 2 -->

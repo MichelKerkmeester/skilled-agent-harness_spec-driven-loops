@@ -1,3 +1,16 @@
+---
+title: "Plan: Fix generate-context.js Issues [084-generate-context-template-warnings/plan]"
+description: "Option A (Selected): Add snake_case aliases to vector-index.js exports"
+trigger_phrases:
+  - "plan"
+  - "fix"
+  - "generate"
+  - "context"
+  - "issues"
+  - "084"
+importance_tier: "important"
+contextType: "decision"
+---
 # Plan: Fix generate-context.js Issues
 
 ## Approach

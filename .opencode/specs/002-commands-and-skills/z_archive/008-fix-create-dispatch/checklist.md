@@ -1,3 +1,16 @@
+---
+title: "Verification Checklist: Fix Create Command Dispatch Vulnerability + Defensive [008-fix-create-dispatch/checklist]"
+description: "Verification Date: Pending"
+trigger_phrases:
+  - "verification"
+  - "checklist"
+  - "fix"
+  - "create"
+  - "command"
+  - "008"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Verification Checklist: Fix Create Command Dispatch Vulnerability + Defensive Hardening
 
 <!-- SPECKIT_LEVEL: 2 -->

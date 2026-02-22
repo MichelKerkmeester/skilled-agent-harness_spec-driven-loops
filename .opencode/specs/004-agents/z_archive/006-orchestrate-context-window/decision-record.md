@@ -1,3 +1,17 @@
+---
+title: "Decision Record: Orchestrate Agent Context Window Protection [006-orchestrate-context-window/decision-record]"
+description: "When the orchestrate agent dispatches 10-20 sub-agents in parallel, all results return simultaneously into the orchestrator's context window. Each agent returns ~2-8K tokens, so..."
+trigger_phrases:
+  - "decision"
+  - "record"
+  - "orchestrate"
+  - "agent"
+  - "context"
+  - "decision record"
+  - "006"
+importance_tier: "important"
+contextType: "decision"
+---
 <!-- SPECKIT_LEVEL: 3+ -->
 # Decision Record: Orchestrate Agent Context Window Protection
 

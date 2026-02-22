@@ -1,3 +1,15 @@
+---
+title: "Tasks: Modular Validation Architecture [002-modular-architecture/tasks]"
+description: "tasks document for 002-modular-architecture."
+trigger_phrases:
+  - "tasks"
+  - "modular"
+  - "validation"
+  - "architecture"
+  - "002"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: Modular Validation Architecture
 
 ## Task Overview

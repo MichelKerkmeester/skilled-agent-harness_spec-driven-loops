@@ -1,3 +1,17 @@
+---
+title: "Comprehensive Skills & MCP Server Bug Fix [029-comprehensive-bug-fix/spec]"
+description: "Date: December 24, 2024"
+trigger_phrases:
+  - "comprehensive"
+  - "skills"
+  - "mcp"
+  - "server"
+  - "bug"
+  - "spec"
+  - "029"
+importance_tier: "important"
+contextType: "decision"
+---
 # Comprehensive Skills & MCP Server Bug Fix
 
 > Systematic analysis and fix of 63+ bugs across 9 skills, 5 MCP servers, and 25+ library files.

@@ -1,3 +1,16 @@
+---
+title: "Tasks: Comprehensive Performance Optimization - anobel.com [031-anobel-performance-analysis/tasks]"
+description: "Task Format: T### [Notation] Description (file path) — Issue ID"
+trigger_phrases:
+  - "tasks"
+  - "comprehensive"
+  - "performance"
+  - "optimization"
+  - "anobel"
+  - "031"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: Comprehensive Performance Optimization - anobel.com
 
 <!-- SPECKIT_LEVEL: 3+ -->

@@ -1,3 +1,17 @@
+---
+title: "Tasks: System-Spec-Kit Known Limitations Remediation [088-speckit-known-limitations-remediation/tasks]"
+description: "Task Format: T### [P?] [Priority] Description (file path) → CHK-###"
+trigger_phrases:
+  - "tasks"
+  - "system"
+  - "spec"
+  - "kit"
+  - "known"
+  - "088"
+  - "speckit"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: System-Spec-Kit Known Limitations Remediation
 
 <!-- SPECKIT_LEVEL: 2 -->

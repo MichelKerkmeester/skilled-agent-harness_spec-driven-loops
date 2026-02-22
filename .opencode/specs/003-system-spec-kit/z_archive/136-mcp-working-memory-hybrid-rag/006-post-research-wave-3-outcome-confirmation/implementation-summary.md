@@ -1,3 +1,15 @@
+---
+title: "Implementation Summary [006-post-research-wave-3-outcome-confirmation/implementation-summary]"
+description: "Wave 3 outcome-confirmation outputs are documented as complete in this package. Existing task evidence covers real-user survey outcomes, 14-day KPI closure reporting, and final ..."
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "implementation summary"
+  - "006"
+  - "post"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Implementation Summary
 
 <!-- SPECKIT_LEVEL: 3+ -->

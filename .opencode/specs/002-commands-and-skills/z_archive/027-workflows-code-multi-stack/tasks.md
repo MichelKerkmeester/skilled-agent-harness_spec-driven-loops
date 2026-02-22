@@ -1,3 +1,15 @@
+---
+title: "Tasks - workflows-code Conversion [027-workflows-code-multi-stack/tasks]"
+description: "Status: Pending | Priority: P0 | Est. Hours: 8-12"
+trigger_phrases:
+  - "tasks"
+  - "workflows"
+  - "code"
+  - "conversion"
+  - "027"
+importance_tier: "normal"
+contextType: "implementation"
+---
 <!-- SPECKIT_TEMPLATE_SOURCE: legacy-normalized | v2.2 -->
 
 # Tasks - workflows-code Conversion

@@ -1,3 +1,14 @@
+---
+title: "Tasks - Performance Optimization [024-performance-optimization/tasks]"
+description: "Status: Complete | Priority: P0"
+trigger_phrases:
+  - "tasks"
+  - "performance"
+  - "optimization"
+  - "024"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks - Performance Optimization
 
 <!-- ANCHOR:task-overview -->

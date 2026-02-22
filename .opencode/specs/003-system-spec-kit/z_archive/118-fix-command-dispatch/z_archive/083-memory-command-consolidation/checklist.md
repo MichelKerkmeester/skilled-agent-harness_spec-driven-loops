@@ -1,3 +1,15 @@
+---
+title: "Checklist: Memory Command Consolidation [083-memory-command-consolidation/checklist]"
+description: "Spec ID: 083-memory-command-consolidation"
+trigger_phrases:
+  - "checklist"
+  - "memory"
+  - "command"
+  - "consolidation"
+  - "083"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Checklist: Memory Command Consolidation
 
 **Spec ID:** 083-memory-command-consolidation

@@ -1,3 +1,15 @@
+---
+title: "Implementation Summary [037-reverse-engineer-visual-explainer/implementation-summary]"
+description: "The OpenCode framework now has a full sk-visual-explainer skill — a Skill Graph architecture with 10 interconnected nodes — reverse-engineered from nicobailon/visual-explainer v..."
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "implementation summary"
+  - "037"
+  - "reverse"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Implementation Summary
 
 <!-- SPECKIT_LEVEL: 3 -->

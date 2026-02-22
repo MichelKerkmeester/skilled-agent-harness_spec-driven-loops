@@ -1,3 +1,17 @@
+---
+title: "Decision Record: Add User Authentication [template:examples/level_3/decision-record.md]"
+description: "architecture decisions with proper context, alternatives, and consequences."
+trigger_phrases:
+  - "decision"
+  - "record"
+  - "add"
+  - "user"
+  - "authentication"
+  - "template"
+  - "decision record"
+importance_tier: "normal"
+contextType: "general"
+---
 # Decision Record: Add User Authentication
 
 <!-- SPECKIT_LEVEL: 3 -->

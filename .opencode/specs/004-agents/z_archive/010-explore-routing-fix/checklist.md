@@ -1,3 +1,16 @@
+---
+title: "Verification Checklist: Fix @explore Direct Dispatch in Orchestrate Agent [010-explore-routing-fix/checklist]"
+description: "Verification Date: 2026-02-12"
+trigger_phrases:
+  - "verification"
+  - "checklist"
+  - "fix"
+  - "explore"
+  - "direct"
+  - "010"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Verification Checklist: Fix @explore Direct Dispatch in Orchestrate Agent
 
 <!-- SPECKIT_LEVEL: 2 -->

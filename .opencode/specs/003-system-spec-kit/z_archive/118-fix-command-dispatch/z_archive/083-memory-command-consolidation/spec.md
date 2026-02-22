@@ -1,3 +1,15 @@
+---
+title: "Memory Command Consolidation [083-memory-command-consolidation/spec]"
+description: "Spec ID: 083-memory-command-consolidation"
+trigger_phrases:
+  - "memory"
+  - "command"
+  - "consolidation"
+  - "spec"
+  - "083"
+importance_tier: "important"
+contextType: "decision"
+---
 # Memory Command Consolidation
 
 **Spec ID:** 083-memory-command-consolidation

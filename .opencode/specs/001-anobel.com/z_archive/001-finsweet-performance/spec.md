@@ -1,3 +1,15 @@
+---
+title: "Finsweet Performance Optimization [001-finsweet-performance/spec]"
+description: "Optimize Finsweet Attributes loading to improve PageSpeed scores by deferring script execution until after page load."
+trigger_phrases:
+  - "finsweet"
+  - "performance"
+  - "optimization"
+  - "spec"
+  - "001"
+importance_tier: "important"
+contextType: "decision"
+---
 # Finsweet Performance Optimization
 
 <!-- ANCHOR:overview -->

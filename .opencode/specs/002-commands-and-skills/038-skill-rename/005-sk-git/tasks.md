@@ -1,3 +1,15 @@
+---
+title: "Tasks: Phase 005 - Finalize sk-git Rename [005-sk-git/tasks]"
+description: "Task Format: T### [P?] Description (file path)"
+trigger_phrases:
+  - "tasks"
+  - "phase"
+  - "005"
+  - "finalize"
+  - "git"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: Phase 005 - Finalize sk-git Rename
 
 <!-- SPECKIT_LEVEL: 2 -->

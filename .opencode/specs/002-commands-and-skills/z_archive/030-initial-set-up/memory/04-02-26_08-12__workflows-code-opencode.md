@@ -1,3 +1,8 @@
+---
+title: "To promote a memory to constitutional tier (always [030-initial-set-up/04-02-26_08-12__workflows-code-opencode]"
+importance_tier: "normal"
+contextType: "general"
+---
 <!-- TEMPLATE: context_template.md v2.2 - DO NOT EDIT GENERATED FILES -->
 <!-- Constitutional Tier Promotion:
   To promote a memory to constitutional tier (always surfaced):

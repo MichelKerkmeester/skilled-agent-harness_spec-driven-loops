@@ -1,3 +1,16 @@
+---
+title: "Tasks: Memory Index Deduplication and Tier Normalization [143-index-tier-anomalies/tasks]"
+description: "Task Format: T### [priority] [P?] Description (file path)"
+trigger_phrases:
+  - "tasks"
+  - "memory"
+  - "index"
+  - "deduplication"
+  - "and"
+  - "143"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: Memory Index Deduplication and Tier Normalization
 
 <!-- SPECKIT_LEVEL: 3 -->

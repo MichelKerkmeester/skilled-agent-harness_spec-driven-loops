@@ -1,3 +1,16 @@
+---
+title: "Implementation Plan: Add User Authentication [template:examples/level_1/plan.md]"
+description: "planning required for a simple authentication feature. Note the straightforward"
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "add"
+  - "user"
+  - "authentication"
+  - "template"
+importance_tier: "normal"
+contextType: "general"
+---
 # Implementation Plan: Add User Authentication
 
 <!-- SPECKIT_LEVEL: 1 -->

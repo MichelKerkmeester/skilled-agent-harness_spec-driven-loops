@@ -1,3 +1,15 @@
+---
+title: "QA Checklist - Load Toggle Component [027-load-toggle/checklist]"
+description: "Must pass before deployment."
+trigger_phrases:
+  - "checklist"
+  - "load"
+  - "toggle"
+  - "component"
+  - "027"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # QA Checklist - Load Toggle Component
 
 <!-- ANCHOR:summary -->

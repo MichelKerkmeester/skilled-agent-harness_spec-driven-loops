@@ -1,3 +1,17 @@
+---
+title: "UX Deep Analysis - Memory & SpecKit Systems [033-ux-deep-analysis/spec]"
+description: "The Memory Skill, Memory Server, SpecKit Skill, and Commands need comprehensive UX analysis for public repo readiness. A dev team cloning this repo should have a seamless first-..."
+trigger_phrases:
+  - "deep"
+  - "analysis"
+  - "memory"
+  - "speckit"
+  - "systems"
+  - "spec"
+  - "033"
+importance_tier: "important"
+contextType: "decision"
+---
 # UX Deep Analysis - Memory & SpecKit Systems
 
 ## Problem Statement

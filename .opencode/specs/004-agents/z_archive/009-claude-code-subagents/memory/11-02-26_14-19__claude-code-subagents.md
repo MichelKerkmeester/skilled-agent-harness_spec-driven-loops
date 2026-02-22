@@ -1,3 +1,8 @@
+---
+title: "To promote a memory to constitutional tier (always [009-claude-code-subagents/11-02-26_14-19__claude-code-subagents]"
+importance_tier: "normal"
+contextType: "general"
+---
 <!-- TEMPLATE: context_template.md v2.2 - DO NOT EDIT GENERATED FILES -->
 <!-- Constitutional Tier Promotion:
   To promote a memory to constitutional tier (always surfaced):

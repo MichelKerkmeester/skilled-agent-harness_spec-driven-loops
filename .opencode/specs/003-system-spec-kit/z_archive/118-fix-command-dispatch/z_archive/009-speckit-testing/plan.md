@@ -1,3 +1,16 @@
+---
+title: "Implementation Plan: SpecKit Post-Rename Testing [009-speckit-testing/plan]"
+description: "Technical approach for comprehensive testing of system-spec-kit skill."
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "speckit"
+  - "post"
+  - "rename"
+  - "009"
+importance_tier: "important"
+contextType: "decision"
+---
 # Implementation Plan: SpecKit Post-Rename Testing
 
 Technical approach for comprehensive testing of system-spec-kit skill.

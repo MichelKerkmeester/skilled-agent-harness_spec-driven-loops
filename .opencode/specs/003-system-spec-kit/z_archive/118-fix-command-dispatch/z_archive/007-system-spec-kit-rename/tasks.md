@@ -1,3 +1,16 @@
+---
+title: "Tasks: workflows-spec-kit → system-spec-kit Rename [007-system-spec-kit-rename/tasks]"
+description: "tasks document for 007-system-spec-kit-rename."
+trigger_phrases:
+  - "tasks"
+  - "workflows"
+  - "spec"
+  - "kit"
+  - "system"
+  - "007"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: workflows-spec-kit → system-spec-kit Rename
 
 ## Overview

@@ -1,3 +1,16 @@
+---
+title: "Tasks: Phase 008 — Rename workflows-code to sk-code in Barter repo [008-sk-code-from-barter-repo/tasks]"
+description: "Task Format: T### [P?] Description (file path)"
+trigger_phrases:
+  - "tasks"
+  - "phase"
+  - "008"
+  - "rename"
+  - "workflows"
+  - "code"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: Phase 008 — Rename `workflows-code` to `sk-code` in Barter repo
 
 <!-- SPECKIT_LEVEL: 2 -->

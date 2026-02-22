@@ -1,3 +1,16 @@
+---
+title: "Implementation Plan: Documentation Alignment for Spec 126 [127-documentation-alignment/plan]"
+description: "Update all documentation files to reflect spec 126 features: 5-source indexing pipeline, 7 intent types, 11 document types with scoring multipliers, schema v13, spec document cr..."
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "documentation"
+  - "alignment"
+  - "for"
+  - "127"
+importance_tier: "important"
+contextType: "decision"
+---
 <!-- SPECKIT_LEVEL: 3+ -->
 
 # Implementation Plan: Documentation Alignment for Spec 126

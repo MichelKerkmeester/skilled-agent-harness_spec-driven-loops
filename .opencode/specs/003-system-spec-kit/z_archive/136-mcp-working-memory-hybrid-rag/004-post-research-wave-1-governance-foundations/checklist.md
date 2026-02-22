@@ -1,3 +1,16 @@
+---
+title: "Verification Checklist: Post-Research Wave 1 Package [004-post-research-wave-1-governance-foundations/checklist]"
+description: "checklist document for 004-post-research-wave-1-governance-foundations."
+trigger_phrases:
+  - "verification"
+  - "checklist"
+  - "post"
+  - "research"
+  - "wave"
+  - "004"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Verification Checklist: Post-Research Wave 1 Package
 
 <!-- SPECKIT_LEVEL: 3+ -->

@@ -1,3 +1,17 @@
+---
+title: "MCP Embedding Failure - Implementation Summary [086-mcp-embedding-failure/implementation-summary]"
+description: "This spec addressed two issues"
+trigger_phrases:
+  - "mcp"
+  - "embedding"
+  - "failure"
+  - "implementation"
+  - "summary"
+  - "implementation summary"
+  - "086"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # MCP Embedding Failure - Implementation Summary
 
 ## Overview

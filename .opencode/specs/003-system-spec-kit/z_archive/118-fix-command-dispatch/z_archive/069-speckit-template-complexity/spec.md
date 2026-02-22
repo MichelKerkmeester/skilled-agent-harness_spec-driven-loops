@@ -1,3 +1,18 @@
+---
+title: "Feature Specification: Level-Based Template Architecture [069-speckit-template-complexity/spec]"
+description: "Transform static system-spec-kit templates into a level-based folder system with pre-expanded templates for each documentation level."
+trigger_phrases:
+  - "feature"
+  - "specification"
+  - "level"
+  - "based"
+  - "template"
+  - "spec"
+  - "069"
+  - "speckit"
+importance_tier: "important"
+contextType: "decision"
+---
 # Feature Specification: Level-Based Template Architecture
 
 Transform static system-spec-kit templates into a level-based folder system with pre-expanded templates for each documentation level.

@@ -1,3 +1,17 @@
+---
+title: "Feature Specification: JWT Authentication [implement-happy/spec]"
+description: "The application currently lacks a secure authentication mechanism. Users cannot log in, and API endpoints are unprotected, allowing unauthorized access to sensitive data and ope..."
+trigger_phrases:
+  - "feature"
+  - "specification"
+  - "jwt"
+  - "authentication"
+  - "spec"
+  - "implement"
+  - "happy"
+importance_tier: "important"
+contextType: "decision"
+---
 # Feature Specification: JWT Authentication
 
 <!-- SPECKIT_LEVEL: 2 -->

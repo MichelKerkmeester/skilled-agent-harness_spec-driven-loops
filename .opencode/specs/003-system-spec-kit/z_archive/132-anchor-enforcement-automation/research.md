@@ -1,3 +1,17 @@
+---
+title: "Research: Root Cause Analysis — Template/Anchor Non-Compliance & Speckit [132-anchor-enforcement-automation/research]"
+description: "This research documents WHY spec documentation can currently be created without proper template compliance or ANCHOR tags, and WHY the @speckit agent (designated as exclusive au..."
+trigger_phrases:
+  - "research"
+  - "root"
+  - "cause"
+  - "analysis"
+  - "template"
+  - "132"
+  - "anchor"
+importance_tier: "normal"
+contextType: "research"
+---
 # Research: Root Cause Analysis — Template/Anchor Non-Compliance & Speckit Under-Utilization
 
 <!-- SPECKIT_LEVEL: 3+ -->

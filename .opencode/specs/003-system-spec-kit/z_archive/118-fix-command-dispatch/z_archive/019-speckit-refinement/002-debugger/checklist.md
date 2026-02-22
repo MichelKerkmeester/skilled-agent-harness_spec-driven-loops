@@ -1,3 +1,15 @@
+---
+title: "Debug Delegation Checklist [002-debugger/checklist]"
+description: "checklist document for 002-debugger."
+trigger_phrases:
+  - "debug"
+  - "delegation"
+  - "checklist"
+  - "002"
+  - "debugger"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Debug Delegation Checklist
 
 ## P0 - Must Complete

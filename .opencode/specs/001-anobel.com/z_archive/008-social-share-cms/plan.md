@@ -1,3 +1,14 @@
+---
+title: "Implementation Plan [008-social-share-cms/plan]"
+description: "1. Check for direct link attribute (backwards compatible)"
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "008"
+  - "social"
+importance_tier: "important"
+contextType: "decision"
+---
 # Implementation Plan
 
 <!-- ANCHOR:phase-1-add-new-attribute-constants -->

@@ -1,3 +1,16 @@
+---
+title: "Implementation Plan: Custom TOC ScrollSpy - Technical Approach & Architecture [001-toc-scrollspy/plan]"
+description: "Implementation plan for a custom Table of Contents scroll-spy solution using IntersectionObserver with flexible styling options."
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "custom"
+  - "toc"
+  - "scrollspy"
+  - "001"
+importance_tier: "important"
+contextType: "decision"
+---
 # Implementation Plan: Custom TOC ScrollSpy - Technical Approach & Architecture
 
 Implementation plan for a custom Table of Contents scroll-spy solution using IntersectionObserver with flexible styling options.

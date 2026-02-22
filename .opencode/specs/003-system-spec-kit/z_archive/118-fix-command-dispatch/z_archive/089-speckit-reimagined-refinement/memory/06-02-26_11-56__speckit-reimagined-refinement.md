@@ -1,3 +1,8 @@
+---
+title: "To promote a memory to [089-speckit-reimagined-refinement/06-02-26_11-56__speckit-reimagined-refinement]"
+importance_tier: "normal"
+contextType: "general"
+---
 <!-- WARNING: This is simulated/placeholder content - NOT from a real session -->
 
 <!-- TEMPLATE: context_template.md v2.2 - DO NOT EDIT GENERATED FILES -->

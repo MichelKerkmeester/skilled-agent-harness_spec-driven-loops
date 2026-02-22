@@ -1,3 +1,14 @@
+---
+title: "QA Verification Checklist [077-speckit-upgrade-from-research/checklist]"
+description: "checklist document for 077-speckit-upgrade-from-research."
+trigger_phrases:
+  - "verification"
+  - "checklist"
+  - "077"
+  - "speckit"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # QA Verification Checklist
 
 > **Spec:** 077-speckit-upgrade-from-research

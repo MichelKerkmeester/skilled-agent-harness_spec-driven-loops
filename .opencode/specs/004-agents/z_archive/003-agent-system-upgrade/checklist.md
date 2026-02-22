@@ -1,3 +1,16 @@
+---
+title: "Verification Checklist: Agent System Upgrade [003-agent-system-upgrade/checklist]"
+description: "LEVEL 3+ CONSOLIDATED CHECKLIST"
+trigger_phrases:
+  - "verification"
+  - "checklist"
+  - "agent"
+  - "system"
+  - "upgrade"
+  - "003"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Verification Checklist: Agent System Upgrade
 
 <!-- SPECKIT_LEVEL: 3+ -->

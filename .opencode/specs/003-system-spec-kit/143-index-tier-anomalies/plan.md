@@ -1,3 +1,16 @@
+---
+title: "Implementation Plan: Memory Index Deduplication and Tier Normalization [143-index-tier-anomalies/plan]"
+description: "This implementation introduces a canonical-path dedup pass before index batching and a single tier-precedence model used across parser and scoring logic. Delivery is test-first ..."
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "memory"
+  - "index"
+  - "deduplication"
+  - "143"
+importance_tier: "important"
+contextType: "decision"
+---
 # Implementation Plan: Memory Index Deduplication and Tier Normalization
 
 <!-- SPECKIT_LEVEL: 3 -->

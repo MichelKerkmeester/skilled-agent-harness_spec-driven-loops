@@ -1,3 +1,16 @@
+---
+title: "Implementation Plan: sk-code--opencode Alignment Hardening [040-sk-code-opencode-alignment-hardening/plan]"
+description: "This document preserves the existing technical decisions and adds validator-required readme structure."
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "code"
+  - "opencode"
+  - "alignment"
+  - "040"
+importance_tier: "important"
+contextType: "decision"
+---
 # Implementation Plan: sk-code--opencode Alignment Hardening
 
 <!-- SPECKIT_LEVEL: 3 -->

@@ -1,3 +1,15 @@
+---
+title: "H2 Emoji Enforcement - Implementation Plan [017-h2-emoji-enforcement/plan]"
+description: "This plan implements a \"Copy-First, Validate-All\" approach to prevent H2 emoji omission errors in template-based documentation."
+trigger_phrases:
+  - "emoji"
+  - "enforcement"
+  - "implementation"
+  - "plan"
+  - "017"
+importance_tier: "important"
+contextType: "decision"
+---
 <!-- SPECKIT_TEMPLATE_SOURCE: legacy-normalized | v2.2 -->
 
 # H2 Emoji Enforcement - Implementation Plan

@@ -1,3 +1,16 @@
+---
+title: "State Simplification: Integrate State into Memory Files [001-state-simplification/spec]"
+description: "Current implementation has 3 context mechanisms"
+trigger_phrases:
+  - "state"
+  - "simplification"
+  - "integrate"
+  - "into"
+  - "spec"
+  - "001"
+importance_tier: "important"
+contextType: "decision"
+---
 # State Simplification: Integrate State into Memory Files
 <!-- SPECKIT_TEMPLATE_SOURCE: spec | v1.0 -->
 

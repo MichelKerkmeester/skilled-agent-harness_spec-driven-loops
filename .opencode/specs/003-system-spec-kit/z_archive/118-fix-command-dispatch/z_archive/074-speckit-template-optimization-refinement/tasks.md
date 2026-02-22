@@ -1,3 +1,16 @@
+---
+title: "Tasks: SpecKit Template Optimization Refinement [074-speckit-template-optimization-refinement/tasks]"
+description: "Task Format: T### [P?] Description (file path)"
+trigger_phrases:
+  - "tasks"
+  - "speckit"
+  - "template"
+  - "optimization"
+  - "refinement"
+  - "074"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: SpecKit Template Optimization Refinement
 
 <!-- SPECKIT_LEVEL: 3+ -->

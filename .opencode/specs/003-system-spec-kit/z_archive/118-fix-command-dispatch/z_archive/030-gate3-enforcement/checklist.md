@@ -1,3 +1,15 @@
+---
+title: "Checklist - Gate 3 Enforcement [030-gate3-enforcement/checklist]"
+description: "All items must be checked before marking this spec as COMPLETE"
+trigger_phrases:
+  - "checklist"
+  - "gate"
+  - "enforcement"
+  - "030"
+  - "gate3"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Checklist - Gate 3 Enforcement
 
 > Verification checklist for Gate 3 enforcement implementation.

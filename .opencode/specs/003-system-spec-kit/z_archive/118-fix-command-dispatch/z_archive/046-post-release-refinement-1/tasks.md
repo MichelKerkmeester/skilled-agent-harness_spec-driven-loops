@@ -1,3 +1,17 @@
+---
+title: "Task Breakdown: Post-Release Refinement 1 [046-post-release-refinement-1/tasks]"
+description: "Description"
+trigger_phrases:
+  - "task"
+  - "breakdown"
+  - "post"
+  - "release"
+  - "refinement"
+  - "tasks"
+  - "046"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Task Breakdown: Post-Release Refinement 1
 
 <!-- SPECKIT_TEMPLATE_SOURCE: system-spec-kit/templates/tasks.md -->

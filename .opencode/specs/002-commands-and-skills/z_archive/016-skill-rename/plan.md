@@ -1,3 +1,16 @@
+---
+title: "Plan: sk-documentation Skill Functional Testing [016-skill-rename/plan]"
+description: "Parallel execution of 8 test agents, each validating a specific component"
+trigger_phrases:
+  - "plan"
+  - "documentation"
+  - "skill"
+  - "functional"
+  - "testing"
+  - "016"
+importance_tier: "important"
+contextType: "decision"
+---
 <!-- SPECKIT_TEMPLATE_SOURCE: legacy-normalized | v2.2 -->
 
 # Plan: sk-documentation Skill Functional Testing

@@ -1,13 +1,13 @@
 ---
-title: "Level 3 Templates"
+title: "Level 3 Templates [template:level_3/README.md]"
 description: "Architecture-oriented templates for large or high-risk implementation work."
 trigger_phrases:
   - "level 3"
   - "architecture"
   - "decision record"
 importance_tier: "normal"
+contextType: "general"
 ---
-
 # Level 3 Templates
 
 Use when implementation needs explicit architecture and risk management.

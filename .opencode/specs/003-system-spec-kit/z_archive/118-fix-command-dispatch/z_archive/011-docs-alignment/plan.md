@@ -1,3 +1,17 @@
+---
+title: "Implementation Plan: [YOUR_VALUE_HERE: feature-name] - Technical Approach & Architecture [011-docs-alignment/plan]"
+description: "Implementation plan defining technical approach, project structure, and execution strategy."
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "your"
+  - "value"
+  - "here"
+  - "011"
+  - "docs"
+importance_tier: "important"
+contextType: "decision"
+---
 # Implementation Plan: [YOUR_VALUE_HERE: feature-name] - Technical Approach & Architecture
 
 Implementation plan defining technical approach, project structure, and execution strategy.

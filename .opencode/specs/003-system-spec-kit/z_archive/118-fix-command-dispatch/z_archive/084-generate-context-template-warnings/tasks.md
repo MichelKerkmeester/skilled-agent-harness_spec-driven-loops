@@ -1,3 +1,16 @@
+---
+title: "Tasks: Fix generate-context.js Warnings [084-generate-context-template-warnings/tasks]"
+description: "tasks document for 084-generate-context-template-warnings."
+trigger_phrases:
+  - "tasks"
+  - "fix"
+  - "generate"
+  - "context"
+  - "warnings"
+  - "084"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: Fix generate-context.js Warnings
 
 ## Completed

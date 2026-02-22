@@ -1,3 +1,15 @@
+---
+title: "Modular Validation Architecture [002-modular-architecture/spec]"
+description: "The current validate-spec.sh script is a monolithic ~600 line file. Adding all planned features (PRIORITY_TAGS, EVIDENCE_CITED, ANCHORS_VALID, .speckit.yaml config, glob pattern..."
+trigger_phrases:
+  - "modular"
+  - "validation"
+  - "architecture"
+  - "spec"
+  - "002"
+importance_tier: "important"
+contextType: "decision"
+---
 # Modular Validation Architecture
 
 ## Metadata

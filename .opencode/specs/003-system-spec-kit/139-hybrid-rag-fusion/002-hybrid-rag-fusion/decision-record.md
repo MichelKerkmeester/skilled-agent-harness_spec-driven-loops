@@ -1,3 +1,17 @@
+---
+title: "Decision Record: 138-hybrid-rag-fusion [002-hybrid-rag-fusion/decision-record]"
+description: "Context: The RAG pipeline requires Tri-Hybrid execution (Dense, Sparse, Graph), leading to initial assumptions that the system must migrate to Qdrant (vectors), Neo4j (graph), a..."
+trigger_phrases:
+  - "decision"
+  - "record"
+  - "138"
+  - "hybrid"
+  - "rag"
+  - "decision record"
+  - "002"
+importance_tier: "important"
+contextType: "decision"
+---
 <!-- SPECKIT_LEVEL: 3+ -->
 # Decision Record: 138-hybrid-rag-fusion
 

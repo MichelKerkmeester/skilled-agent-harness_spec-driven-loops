@@ -1,3 +1,17 @@
+---
+title: "Feature Specification: Add User Authentication [template:examples/level_2/spec.md]"
+description: "documentation. Note the addition of NFRs and Edge Cases sections compared to Level 1."
+trigger_phrases:
+  - "feature"
+  - "specification"
+  - "add"
+  - "user"
+  - "authentication"
+  - "template"
+  - "spec"
+importance_tier: "normal"
+contextType: "general"
+---
 # Feature Specification: Add User Authentication
 
 <!-- SPECKIT_LEVEL: 2 -->

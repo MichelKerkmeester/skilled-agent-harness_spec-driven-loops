@@ -1,3 +1,17 @@
+---
+title: "Decision Record: Notification Time-Based Scheduling [013-notification-time-scheduling/decision-record]"
+description: "Key architectural and implementation decisions for the time-based scheduling feature."
+trigger_phrases:
+  - "decision"
+  - "record"
+  - "notification"
+  - "time"
+  - "based"
+  - "decision record"
+  - "013"
+importance_tier: "important"
+contextType: "decision"
+---
 # Decision Record: Notification Time-Based Scheduling
 
 Key architectural and implementation decisions for the time-based scheduling feature.

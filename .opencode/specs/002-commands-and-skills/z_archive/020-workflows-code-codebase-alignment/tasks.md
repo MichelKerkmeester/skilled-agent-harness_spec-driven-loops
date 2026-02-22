@@ -1,3 +1,16 @@
+---
+title: "Tasks: Workflows-Code Skill Alignment [020-workflows-code-codebase-alignment/tasks]"
+description: "Implementation task breakdown for aligning workflows-code skill with anobel.com production patterns."
+trigger_phrases:
+  - "tasks"
+  - "workflows"
+  - "code"
+  - "skill"
+  - "alignment"
+  - "020"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: Workflows-Code Skill Alignment
 
 Implementation task breakdown for aligning workflows-code skill with anobel.com production patterns.

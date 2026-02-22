@@ -1,13 +1,13 @@
 ---
-title: "Templates"
+title: "Templates [template:README.md]"
 description: "System Spec Kit template architecture and level routing."
 trigger_phrases:
   - "templates"
   - "level architecture"
   - "core addendum"
 importance_tier: "normal"
+contextType: "general"
 ---
-
 # Templates
 
 Source of truth for Spec Kit documentation templates.

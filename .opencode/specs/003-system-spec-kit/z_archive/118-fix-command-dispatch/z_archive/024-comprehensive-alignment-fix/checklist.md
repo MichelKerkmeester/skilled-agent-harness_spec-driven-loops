@@ -1,3 +1,15 @@
+---
+title: "Comprehensive Alignment Fix Checklist [024-comprehensive-alignment-fix/checklist]"
+description: "checklist document for 024-comprehensive-alignment-fix."
+trigger_phrases:
+  - "comprehensive"
+  - "alignment"
+  - "fix"
+  - "checklist"
+  - "024"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Comprehensive Alignment Fix Checklist
 
 ## Status Legend

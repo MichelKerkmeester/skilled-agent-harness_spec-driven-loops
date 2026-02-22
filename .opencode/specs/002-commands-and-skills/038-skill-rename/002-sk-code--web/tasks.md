@@ -1,3 +1,16 @@
+---
+title: "Tasks: Phase 002 — Rename workflows-code--web-dev to sk-code--web [002-sk-code--web/tasks]"
+description: "Task Format: T### [P?] Description (file path)"
+trigger_phrases:
+  - "tasks"
+  - "phase"
+  - "002"
+  - "rename"
+  - "workflows"
+  - "code"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: Phase 002 — Rename workflows-code--web-dev to sk-code--web
 
 <!-- SPECKIT_LEVEL: 2 -->

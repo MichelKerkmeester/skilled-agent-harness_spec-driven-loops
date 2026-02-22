@@ -1,3 +1,18 @@
+---
+title: "Decision Record: Spec Kit Test Suite [044-speckit-test-suite/decision-record]"
+description: "This document captures architectural and framework decisions for the Spec Kit test suite implementation based on research from 4 specialized agents."
+trigger_phrases:
+  - "decision"
+  - "record"
+  - "spec"
+  - "kit"
+  - "test"
+  - "decision record"
+  - "044"
+  - "speckit"
+importance_tier: "important"
+contextType: "decision"
+---
 # Decision Record: Spec Kit Test Suite
 
 ## Overview

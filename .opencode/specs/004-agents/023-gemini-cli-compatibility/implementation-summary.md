@@ -1,3 +1,15 @@
+---
+title: "Implementation Summary [023-gemini-cli-compatibility/implementation-summary]"
+description: "Gemini CLI users can now access the full agent, command, and skill system that Claude Code and ChatGPT users already have. The implementation adds a complete .gemini/ runtime la..."
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "implementation summary"
+  - "023"
+  - "gemini"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Implementation Summary
 
 <!-- SPECKIT_LEVEL: 2 -->

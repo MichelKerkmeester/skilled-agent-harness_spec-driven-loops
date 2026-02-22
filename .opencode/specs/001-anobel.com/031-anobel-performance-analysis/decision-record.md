@@ -1,3 +1,18 @@
+---
+title: "Decision Record: Comprehensive Performance Optimization - anobel.com [031-anobel-performance-analysis/decision-record]"
+description: "Hero scripts in anobel.com have inconsistent timeout behavior"
+trigger_phrases:
+  - "decision"
+  - "record"
+  - "comprehensive"
+  - "performance"
+  - "optimization"
+  - "decision record"
+  - "031"
+  - "anobel"
+importance_tier: "important"
+contextType: "decision"
+---
 # Decision Record: Comprehensive Performance Optimization - anobel.com
 
 <!-- SPECKIT_LEVEL: 3+ -->

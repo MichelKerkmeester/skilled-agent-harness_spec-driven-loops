@@ -1,3 +1,16 @@
+---
+title: "Plan: Cognitive Memory Upgrade Research [055-cognitive-memory-upgrade/plan]"
+description: "plan document for 055-cognitive-memory-upgrade."
+trigger_phrases:
+  - "plan"
+  - "cognitive"
+  - "memory"
+  - "upgrade"
+  - "research"
+  - "055"
+importance_tier: "important"
+contextType: "decision"
+---
 # Plan: Cognitive Memory Upgrade Research
 
 ## Research Phases

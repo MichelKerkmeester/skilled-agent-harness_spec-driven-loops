@@ -1,3 +1,16 @@
+---
+title: "Verification Checklist: Extraction and Rollout Package [002-extraction-rollout-phases-2-3/checklist]"
+description: "checklist document for 002-extraction-rollout-phases-2-3."
+trigger_phrases:
+  - "verification"
+  - "checklist"
+  - "extraction"
+  - "and"
+  - "rollout"
+  - "002"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Verification Checklist: Extraction and Rollout Package
 
 <!-- SPECKIT_LEVEL: 3+ -->

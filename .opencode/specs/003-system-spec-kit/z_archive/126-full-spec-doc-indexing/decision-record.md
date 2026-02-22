@@ -1,3 +1,17 @@
+---
+title: "Decision Record: Full Spec Folder Document Indexing [126-full-spec-doc-indexing/decision-record]"
+description: "Context: Need to classify indexed files by their structural role in the spec lifecycle. The existing context_type column describes content nature (research/implementation/decisi..."
+trigger_phrases:
+  - "decision"
+  - "record"
+  - "full"
+  - "spec"
+  - "folder"
+  - "decision record"
+  - "126"
+importance_tier: "important"
+contextType: "decision"
+---
 <!-- SPECKIT_LEVEL: 3+ -->
 # Decision Record: Full Spec Folder Document Indexing
 

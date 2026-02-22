@@ -1,3 +1,18 @@
+---
+title: "Decision Record: Spec Kit Memory Test Suite Architecture [083-speckit-reimagined-test-suite/decision-record]"
+description: "The Spec Kit Memory MCP server requires a comprehensive test suite covering unit, integration, and end-to-end tests. The test framework selection affects developer experience, C..."
+trigger_phrases:
+  - "decision"
+  - "record"
+  - "spec"
+  - "kit"
+  - "memory"
+  - "decision record"
+  - "083"
+  - "speckit"
+importance_tier: "important"
+contextType: "decision"
+---
 # Decision Record: Spec Kit Memory Test Suite Architecture
 
 <!-- SPECKIT_LEVEL: 3+ -->

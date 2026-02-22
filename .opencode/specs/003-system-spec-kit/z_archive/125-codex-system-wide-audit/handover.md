@@ -1,3 +1,15 @@
+---
+title: "Session Handover Document [125-codex-system-wide-audit/handover]"
+description: "Session handover after runtime remediation and verification closure."
+trigger_phrases:
+  - "session"
+  - "handover"
+  - "document"
+  - "125"
+  - "codex"
+importance_tier: "normal"
+contextType: "general"
+---
 # Session Handover Document
 
 Session handover after runtime remediation and verification closure.

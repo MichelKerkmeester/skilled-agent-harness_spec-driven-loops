@@ -1,3 +1,16 @@
+---
+title: "Performance Optimization - anobel.com [024-performance-optimization/spec]"
+description: "Comprehensive performance analysis and optimization for anobel.com based on Google PageSpeed Insights results. The site had critical LCP issues (20.2s mobile) primarily caused b..."
+trigger_phrases:
+  - "performance"
+  - "optimization"
+  - "anobel"
+  - "com"
+  - "spec"
+  - "024"
+importance_tier: "important"
+contextType: "decision"
+---
 # Performance Optimization - anobel.com
 
 <!-- ANCHOR:metadata -->

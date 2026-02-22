@@ -1,3 +1,15 @@
+---
+title: "Tasks: Attribute Cleanup Deepdive [021-attribute-cleanup/tasks]"
+description: "Task Format: T### [P?] Description (file path)"
+trigger_phrases:
+  - "tasks"
+  - "attribute"
+  - "cleanup"
+  - "deepdive"
+  - "021"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: Attribute Cleanup Deepdive
 
 <!-- SPECKIT_LEVEL: 1 -->

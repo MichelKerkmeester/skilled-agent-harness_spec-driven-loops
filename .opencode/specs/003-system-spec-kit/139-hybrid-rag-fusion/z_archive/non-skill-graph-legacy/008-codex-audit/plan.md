@@ -1,3 +1,16 @@
+---
+title: "Implementation Plan: Codex Audit Remediation Closure [008-codex-audit/plan]"
+description: "This plan records what was delivered during codex audit remediation in 008-codex-audit. Work focused on turning memory-crud.ts into a stable facade backed by split operation mod..."
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "codex"
+  - "audit"
+  - "remediation"
+  - "008"
+importance_tier: "important"
+contextType: "decision"
+---
 # Implementation Plan: Codex Audit Remediation Closure
 
 <!-- SPECKIT_LEVEL: 3 -->

@@ -1,3 +1,18 @@
+---
+title: "Decision: Level-Based Template Architecture Alignment - Architecture [071-speckit-level-alignment/decision-record]"
+description: "Architecture Decision Record documenting the approach for aligning SpecKit scripts and documentation with level-based template folders."
+trigger_phrases:
+  - "decision"
+  - "level"
+  - "based"
+  - "template"
+  - "architecture"
+  - "decision record"
+  - "071"
+  - "speckit"
+importance_tier: "important"
+contextType: "decision"
+---
 # Decision: Level-Based Template Architecture Alignment - Architecture Decision Record
 
 Architecture Decision Record documenting the approach for aligning SpecKit scripts and documentation with level-based template folders.

@@ -1,3 +1,15 @@
+---
+title: "Tasks: SpecKit Template Optimization [073-speckit-template-optimization/tasks]"
+description: "Task Format: T### [P?] Description (file path)"
+trigger_phrases:
+  - "tasks"
+  - "speckit"
+  - "template"
+  - "optimization"
+  - "073"
+importance_tier: "normal"
+contextType: "implementation"
+---
 <!-- SPECKIT_LEVEL: 3+ -->
 # Tasks: SpecKit Template Optimization
 

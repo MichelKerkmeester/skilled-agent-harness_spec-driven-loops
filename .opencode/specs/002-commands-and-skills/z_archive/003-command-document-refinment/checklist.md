@@ -1,3 +1,15 @@
+---
+title: "Command Document Refinement - Checklist [003-command-document-refinment/checklist]"
+description: "All items above must be checked before marking this task complete."
+trigger_phrases:
+  - "command"
+  - "document"
+  - "refinement"
+  - "checklist"
+  - "003"
+importance_tier: "normal"
+contextType: "implementation"
+---
 <!-- SPECKIT_TEMPLATE_SOURCE: legacy-normalized | v2.2 -->
 
 # Command Document Refinement - Checklist

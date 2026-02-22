@@ -1,3 +1,17 @@
+---
+title: "Feature Specification: Memory Command Separation - Requirements & User Stories [068-memory-index-commands/spec]"
+description: "Separate the unified /memory:search command into two focused commands: a read-only search command and a database management command."
+trigger_phrases:
+  - "feature"
+  - "specification"
+  - "memory"
+  - "command"
+  - "separation"
+  - "spec"
+  - "068"
+importance_tier: "important"
+contextType: "decision"
+---
 # Feature Specification: Memory Command Separation - Requirements & User Stories
 
 Separate the unified `/memory:search` command into two focused commands: a read-only search command and a database management command.

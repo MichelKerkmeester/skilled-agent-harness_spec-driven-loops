@@ -1,3 +1,16 @@
+---
+title: "Decision Record: Task 02 — SKILL.md & References Audit [task-02-skill-speckit-alignment/decision-record]"
+description: "Task 02 requires systematic audit/creation of system-spec-kit SKILL.md and reference documentation. The scope must be clearly defined to ensure complete coverage while avoiding ..."
+trigger_phrases:
+  - "decision"
+  - "record"
+  - "task"
+  - "skill"
+  - "references"
+  - "decision record"
+importance_tier: "important"
+contextType: "decision"
+---
 # Decision Record: Task 02 — SKILL.md & References Audit
 
 <!-- SPECKIT_LEVEL: 3+ -->

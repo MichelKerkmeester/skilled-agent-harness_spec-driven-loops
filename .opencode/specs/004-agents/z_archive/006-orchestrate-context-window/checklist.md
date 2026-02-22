@@ -1,3 +1,16 @@
+---
+title: "Verification Checklist: Orchestrate Agent Context Window Protection [006-orchestrate-context-window/checklist]"
+description: "Verification Date: 2026-02-06"
+trigger_phrases:
+  - "verification"
+  - "checklist"
+  - "orchestrate"
+  - "agent"
+  - "context"
+  - "006"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Verification Checklist: Orchestrate Agent Context Window Protection
 
 <!-- SPECKIT_LEVEL: 3+ -->

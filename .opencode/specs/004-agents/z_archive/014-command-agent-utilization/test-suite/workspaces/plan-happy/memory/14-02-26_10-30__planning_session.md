@@ -1,3 +1,8 @@
+---
+title: "Planning Session: JWT Authentication with RS256 Signing [plan-happy/14-02-26_10-30__planning_session]"
+importance_tier: "normal"
+contextType: "general"
+---
 # Planning Session: JWT Authentication with RS256 Signing
 
 **Date**: 2026-02-14 10:30

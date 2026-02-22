@@ -1,3 +1,16 @@
+---
+title: "H2 Emoji Enforcement - Task Breakdown [017-h2-emoji-enforcement/tasks]"
+description: "File: .opencode/agent/write.md"
+trigger_phrases:
+  - "emoji"
+  - "enforcement"
+  - "task"
+  - "breakdown"
+  - "tasks"
+  - "017"
+importance_tier: "normal"
+contextType: "implementation"
+---
 <!-- SPECKIT_TEMPLATE_SOURCE: legacy-normalized | v2.2 -->
 
 # H2 Emoji Enforcement - Task Breakdown

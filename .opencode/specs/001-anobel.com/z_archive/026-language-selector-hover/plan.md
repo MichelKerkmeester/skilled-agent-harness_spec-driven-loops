@@ -1,3 +1,16 @@
+---
+title: "Plan: Language Selector - Desktop Hover to Open [026-language-selector-hover/plan]"
+description: "let hover_timeout = null"
+trigger_phrases:
+  - "plan"
+  - "language"
+  - "selector"
+  - "desktop"
+  - "hover"
+  - "026"
+importance_tier: "important"
+contextType: "decision"
+---
 # Plan: Language Selector - Desktop Hover to Open
 
 <!-- ANCHOR:implementation-changes -->

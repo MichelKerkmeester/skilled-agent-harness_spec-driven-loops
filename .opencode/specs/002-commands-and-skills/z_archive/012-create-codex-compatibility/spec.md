@@ -1,10 +1,22 @@
 ---
+title: "Feature Specification: Create Commands Codex Compatibility [012-create-codex-compatibility/spec]"
+description: "level: 3"
+trigger_phrases:
+  - "feature"
+  - "specification"
+  - "create"
+  - "commands"
+  - "codex"
+  - "spec"
+  - "012"
+importance_tier: "important"
+contextType: "decision"
+completed: 2026-02-17
+
+created: 2026-02-17
 level: 3
 status: done
-created: 2026-02-17
-completed: 2026-02-17
 ---
-
 <!-- SPECKIT_TEMPLATE_SOURCE: legacy-normalized | v2.2 -->
 
 # Feature Specification: Create Commands Codex Compatibility

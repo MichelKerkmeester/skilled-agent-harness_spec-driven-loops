@@ -1,3 +1,15 @@
+---
+title: "Implementation Summary [011-default-on-hardening-audit/implementation-summary]"
+description: "This document summarizes delivered changes, decisions, and final verification outcomes for Child 011."
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "implementation summary"
+  - "011"
+  - "default"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Implementation Summary
 
 <!-- SPECKIT_LEVEL: 3+ -->

@@ -1,3 +1,17 @@
+---
+title: "Implementation Plan: Sub-Agent Nesting Depth Control [019-incorrect-sub-agent-nesting/plan]"
+description: "This implements the Nesting Depth Protocol (NDP) across all three orchestrate.md variants by: (1) adding a new dedicated NDP section that defines 3-tier agent classification, (2..."
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "sub"
+  - "agent"
+  - "nesting"
+  - "019"
+  - "incorrect"
+importance_tier: "important"
+contextType: "decision"
+---
 # Implementation Plan: Sub-Agent Nesting Depth Control
 
 <!-- SPECKIT_LEVEL: 3 -->

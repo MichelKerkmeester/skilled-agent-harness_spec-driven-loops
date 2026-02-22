@@ -1,3 +1,14 @@
+---
+title: "Implementation Plan: [NAME] [template:level_2/plan.md]"
+description: "[2-3 sentences: what this implements and the technical approach]"
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "name"
+  - "template"
+importance_tier: "normal"
+contextType: "general"
+---
 # Implementation Plan: [NAME]
 
 <!-- SPECKIT_LEVEL: 2 -->

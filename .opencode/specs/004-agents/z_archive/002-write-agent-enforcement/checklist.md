@@ -1,3 +1,16 @@
+---
+title: "Checklist: @write Agent Enforcement for /create Commands [002-write-agent-enforcement/checklist]"
+description: "All changes implemented and synced to both repositories."
+trigger_phrases:
+  - "checklist"
+  - "write"
+  - "agent"
+  - "enforcement"
+  - "for"
+  - "002"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Checklist: @write Agent Enforcement for /create Commands
 
 <!-- ANCHOR:critical-must-complete -->

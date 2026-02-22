@@ -1,3 +1,16 @@
+---
+title: "Tasks: SpecKit Reimagined Test Suite [083-speckit-reimagined-test-suite/tasks]"
+description: "Task Format: T### [P?] [B:T###?] Description (target file)"
+trigger_phrases:
+  - "tasks"
+  - "speckit"
+  - "reimagined"
+  - "test"
+  - "suite"
+  - "083"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: SpecKit Reimagined Test Suite
 
 <!-- SPECKIT_LEVEL: 3+ -->

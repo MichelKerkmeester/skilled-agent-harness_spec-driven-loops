@@ -1,3 +1,17 @@
+---
+title: "Implementation Plan: workflows-code-opencode Skill [030-initial-set-up/plan]"
+description: "Create a comprehensive multi-language code standards skill for OpenCode system code. The skill provides code style guides for JavaScript (Node.js scripts, MCP servers), Python (..."
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "workflows"
+  - "code"
+  - "opencode"
+  - "030"
+  - "initial"
+importance_tier: "important"
+contextType: "decision"
+---
 # Implementation Plan: workflows-code-opencode Skill
 
 <!-- SPECKIT_LEVEL: 3+ -->

@@ -1,3 +1,16 @@
+---
+title: "Implementation Checklist: Code Quality Enforcement - Validation Items [023-code-quality-enforcement/checklist]"
+description: "Validation checklist for the code quality enforcement enhancement to workflows-code skill."
+trigger_phrases:
+  - "implementation"
+  - "checklist"
+  - "code"
+  - "quality"
+  - "enforcement"
+  - "023"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Implementation Checklist: Code Quality Enforcement - Validation Items
 
 Validation checklist for the code quality enforcement enhancement to workflows-code skill.

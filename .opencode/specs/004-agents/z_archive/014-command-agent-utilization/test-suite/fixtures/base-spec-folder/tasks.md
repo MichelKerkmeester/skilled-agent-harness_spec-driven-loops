@@ -1,3 +1,15 @@
+---
+title: "Tasks: JWT Authentication [base-spec-folder/tasks]"
+description: "Task Format: T### [P?] Description (file path)"
+trigger_phrases:
+  - "tasks"
+  - "jwt"
+  - "authentication"
+  - "base"
+  - "spec"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: JWT Authentication
 
 <!-- SPECKIT_LEVEL: 2 -->

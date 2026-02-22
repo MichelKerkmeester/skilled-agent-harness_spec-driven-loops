@@ -1,3 +1,8 @@
+---
+title: "Epistemic state captured at session start for learning [019-speckit-refinement/23-12-25_15-36__speckit-refinement]"
+importance_tier: "normal"
+contextType: "general"
+---
 <!-- TEMPLATE: context_template.md v2.2 - DO NOT EDIT GENERATED FILES -->
 ---
 

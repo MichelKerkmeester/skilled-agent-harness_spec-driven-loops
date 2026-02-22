@@ -1,3 +1,15 @@
+---
+title: "Implementation Summary [022-context-overload-prevention/implementation-summary]"
+description: "The orchestrator agent now protects itself from context overload. Five new sections were added to all three runtime variants of orchestrate.md, giving the orchestrator explicit ..."
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "implementation summary"
+  - "022"
+  - "context"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Implementation Summary
 
 <!-- SPECKIT_LEVEL: 2 -->

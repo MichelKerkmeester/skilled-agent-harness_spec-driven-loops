@@ -1,3 +1,15 @@
+---
+title: "Session Handover: JWT Authentication [handover-increment/handover]"
+description: "Spec Folder: specs/042-jwt-authentication"
+trigger_phrases:
+  - "session"
+  - "handover"
+  - "jwt"
+  - "authentication"
+  - "increment"
+importance_tier: "normal"
+contextType: "general"
+---
 # Session Handover: JWT Authentication
 
 **Spec Folder**: specs/042-jwt-authentication

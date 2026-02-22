@@ -1,3 +1,17 @@
+---
+title: "Memory Alignment Fix - Three-Layer Defense System [028-memory-alignment-fix/spec]"
+description: "Implement a comprehensive 3-layer defense system to prevent memory saves to incorrect spec folders."
+trigger_phrases:
+  - "memory"
+  - "alignment"
+  - "fix"
+  - "three"
+  - "layer"
+  - "spec"
+  - "028"
+importance_tier: "important"
+contextType: "decision"
+---
 # Memory Alignment Fix - Three-Layer Defense System
 
 ## Overview

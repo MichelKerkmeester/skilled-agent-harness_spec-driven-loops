@@ -1,3 +1,14 @@
+---
+title: "Initial specification [template:addendum/level3plus-govern/spec-level3plus.md]"
+description: "Initial specification"
+trigger_phrases:
+  - "initial"
+  - "specification"
+  - "template"
+  - "spec level3plus"
+importance_tier: "normal"
+contextType: "general"
+---
 <!-- SPECKIT_ADDENDUM: Level 3+ - Governance -->
 <!-- Append after L3 spec sections -->
 

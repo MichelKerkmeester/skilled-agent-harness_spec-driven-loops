@@ -1,3 +1,16 @@
+---
+title: "Tasks: OpenCode Documentation Quality Upgrade [122-upgrade-speckit-docs/tasks]"
+description: "Task Format: T### [P?] Description (file path)"
+trigger_phrases:
+  - "tasks"
+  - "opencode"
+  - "documentation"
+  - "quality"
+  - "upgrade"
+  - "122"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: OpenCode Documentation Quality Upgrade
 
 <!-- SPECKIT_LEVEL: 3 -->

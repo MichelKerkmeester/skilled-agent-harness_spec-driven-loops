@@ -1,3 +1,16 @@
+---
+title: "Implementation Plan: Skill Rename — workflows-* to sk-*/mcp-* [038-skill-rename/plan]"
+description: "Rename 7 skill folders from workflows-* convention to sk-*/mcp-* convention, then systematically update all references across the codebase. The implementation uses a phased appr..."
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "skill"
+  - "rename"
+  - "workflows"
+  - "038"
+importance_tier: "important"
+contextType: "decision"
+---
 # Implementation Plan: Skill Rename — workflows-* to sk-*/mcp-*
 
 <!-- SPECKIT_LEVEL: 3+ -->

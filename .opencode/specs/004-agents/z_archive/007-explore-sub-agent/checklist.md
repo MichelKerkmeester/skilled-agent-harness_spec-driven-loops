@@ -1,3 +1,17 @@
+---
+title: "Checklist: Context Loader Sub-Agent (@context_loader) [007-explore-sub-agent/checklist]"
+description: "checklist document for 007-explore-sub-agent."
+trigger_phrases:
+  - "checklist"
+  - "context"
+  - "loader"
+  - "sub"
+  - "agent"
+  - "007"
+  - "explore"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Checklist: Context Loader Sub-Agent (@context_loader)
 
 > **Spec Folder:** `.opencode/specs/004-agents/007-explore-sub-agent/`

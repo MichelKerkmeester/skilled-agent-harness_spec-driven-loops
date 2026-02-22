@@ -1,3 +1,16 @@
+---
+title: "Implementation Plan: SpecKit Upgrade from Research Consolidation [077-speckit-upgrade-from-research/plan]"
+description: "SPECKIT UPGRADE IMPLEMENTATION ROADMAP"
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "speckit"
+  - "upgrade"
+  - "from"
+  - "077"
+importance_tier: "important"
+contextType: "decision"
+---
 # Implementation Plan: SpecKit Upgrade from Research Consolidation
 
 ---

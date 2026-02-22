@@ -1,3 +1,15 @@
+---
+title: "Spec 120: Node Modules Relocation [120-node-modules-relocation/spec]"
+description: "Move node_modules from system-spec-kit/node_modules/ (workspace-hoisted) into mcp_server/node_modules/ where dependencies actually belong."
+trigger_phrases:
+  - "spec"
+  - "120"
+  - "node"
+  - "modules"
+  - "relocation"
+importance_tier: "important"
+contextType: "decision"
+---
 # Spec 120: Node Modules Relocation
 
 <!-- ANCHOR:metadata -->

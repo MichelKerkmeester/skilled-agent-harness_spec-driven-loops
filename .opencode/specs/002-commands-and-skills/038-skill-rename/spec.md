@@ -1,3 +1,17 @@
+---
+title: "Feature Specification: Skill Rename — workflows-* to sk-*/mcp-* [038-skill-rename/spec]"
+description: "Rename 7 skills from legacy workflows-* prefix to cleaner sk-*/mcp-* convention across ~370 files. The rename improves skill discoverability, distinguishes MCP integrations from..."
+trigger_phrases:
+  - "feature"
+  - "specification"
+  - "skill"
+  - "rename"
+  - "workflows"
+  - "spec"
+  - "038"
+importance_tier: "important"
+contextType: "decision"
+---
 # Feature Specification: Skill Rename — workflows-* to sk-*/mcp-*
 
 <!-- SPECKIT_LEVEL: 3+ -->

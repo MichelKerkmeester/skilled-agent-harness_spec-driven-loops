@@ -1,3 +1,8 @@
+---
+title: "Research Session: GraphQL API Layer for Microservices [research-empty-codebase/14-02-26_13-30__research_session]"
+importance_tier: "normal"
+contextType: "general"
+---
 # Research Session: GraphQL API Layer for Microservices
 
 **Date**: 2026-02-14 13:30

@@ -1,3 +1,17 @@
+---
+title: "Feature Specification: AI Auto-Populate on Spec Upgrade [.backup-20260216-113650/spec]"
+description: "When upgrade-level.sh upgrades a spec folder (e.g., L1 → L3+), it injects template scaffolding with placeholder text like [Response time target], [Low/Med/High], [Component A]. ..."
+trigger_phrases:
+  - "feature"
+  - "specification"
+  - "auto"
+  - "populate"
+  - "spec"
+  - "backup"
+  - "20260216"
+importance_tier: "important"
+contextType: "decision"
+---
 <!-- SPECKIT_LEVEL: 1 -->
 
 # Feature Specification: AI Auto-Populate on Spec Upgrade

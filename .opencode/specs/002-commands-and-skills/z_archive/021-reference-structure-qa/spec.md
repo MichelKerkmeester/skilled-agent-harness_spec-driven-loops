@@ -1,3 +1,16 @@
+---
+title: "Specification: Workflows-Code Reference QA [021-reference-structure-qa/spec]"
+description: "Quality assurance pass on the recently standardized workflows-code skill reference files. The previous task involved adding standard \"Overview\" sections and renumbering all subs..."
+trigger_phrases:
+  - "specification"
+  - "workflows"
+  - "code"
+  - "reference"
+  - "spec"
+  - "021"
+importance_tier: "important"
+contextType: "decision"
+---
 <!-- SPECKIT_LEVEL: 2 -->
 
 <!-- SPECKIT_TEMPLATE_SOURCE: legacy-normalized | v2.2 -->

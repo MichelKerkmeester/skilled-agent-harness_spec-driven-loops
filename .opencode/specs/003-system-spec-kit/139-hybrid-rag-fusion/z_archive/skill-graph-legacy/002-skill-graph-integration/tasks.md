@@ -1,3 +1,17 @@
+---
+title: "Task Tracking: Skill Graphs Integration [002-skill-graph-integration/tasks]"
+description: "tasks document for 002-skill-graph-integration."
+trigger_phrases:
+  - "task"
+  - "tracking"
+  - "skill"
+  - "graphs"
+  - "integration"
+  - "tasks"
+  - "002"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Task Tracking: Skill Graphs Integration
 
 <!-- SPECKIT_LEVEL: 3+ -->

@@ -1,3 +1,16 @@
+---
+title: "Validation Checklist: SpecKit Scratch Enforcement - Implementation Verification [001-scratch-enforcement/checklist]"
+description: "Custom checklist for scratch folder enforcement implementation validation."
+trigger_phrases:
+  - "validation"
+  - "checklist"
+  - "speckit"
+  - "scratch"
+  - "enforcement"
+  - "001"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Validation Checklist: SpecKit Scratch Enforcement - Implementation Verification
 
 Custom checklist for scratch folder enforcement implementation validation.

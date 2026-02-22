@@ -1,3 +1,17 @@
+---
+title: "Task Breakdown: SpecKit Skill Consolidation [005-speckit-consolidation/tasks]"
+description: "Detailed task breakdown for migrating .opencode/speckit/ into .opencode/skills/workflows-spec-kit/."
+trigger_phrases:
+  - "task"
+  - "breakdown"
+  - "speckit"
+  - "skill"
+  - "consolidation"
+  - "tasks"
+  - "005"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Task Breakdown: SpecKit Skill Consolidation
 
 Detailed task breakdown for migrating `.opencode/speckit/` into `.opencode/skills/workflows-spec-kit/`.

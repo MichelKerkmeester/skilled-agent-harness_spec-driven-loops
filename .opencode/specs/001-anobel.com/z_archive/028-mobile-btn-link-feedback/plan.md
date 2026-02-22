@@ -1,3 +1,16 @@
+---
+title: "Implementation Plan: Mobile Button/Link Tap Feedback [028-mobile-btn-link-feedback/plan]"
+description: "Overview: This implementation splits the :active pseudo-class behavior between desktop and touch devices. Desktop continues to use :active via @media (hover: hover) query. Touch..."
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "mobile"
+  - "button"
+  - "link"
+  - "028"
+importance_tier: "important"
+contextType: "decision"
+---
 # Implementation Plan: Mobile Button/Link Tap Feedback
 
 <!-- SPECKIT_LEVEL: 1 -->

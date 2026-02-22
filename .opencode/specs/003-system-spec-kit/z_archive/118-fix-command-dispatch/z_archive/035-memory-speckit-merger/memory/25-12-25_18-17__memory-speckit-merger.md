@@ -1,3 +1,8 @@
+---
+title: "To promote a memory to constitutional tier (always [035-memory-speckit-merger/25-12-25_18-17__memory-speckit-merger]"
+importance_tier: "normal"
+contextType: "general"
+---
 <!-- TEMPLATE: context_template.md v2.2 - DO NOT EDIT GENERATED FILES -->
 <!-- Constitutional Tier Promotion:
   To promote a memory to constitutional tier (always surfaced):

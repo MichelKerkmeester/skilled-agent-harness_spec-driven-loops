@@ -1,3 +1,15 @@
+---
+title: "Tasks: Task 01 — README Audit & Alignment [task-01-readme-alignment/tasks]"
+description: "Task Format: T### Description (file path)"
+trigger_phrases:
+  - "tasks"
+  - "task"
+  - "readme"
+  - "audit"
+  - "alignment"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: Task 01 — README Audit & Alignment
 
 <!-- SPECKIT_LEVEL: 3+ -->

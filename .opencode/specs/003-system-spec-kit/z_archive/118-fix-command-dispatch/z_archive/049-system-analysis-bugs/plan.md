@@ -1,3 +1,16 @@
+---
+title: "Implementation Plan: System-Spec-Kit Bug Remediation [049-system-analysis-bugs/plan]"
+description: "This plan addresses bugs and misalignments discovered during a comprehensive 20-agent analysis of the system-spec-kit skill. The work is organized into 4 phases, prioritized by ..."
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "system"
+  - "spec"
+  - "kit"
+  - "049"
+importance_tier: "important"
+contextType: "decision"
+---
 # Implementation Plan: System-Spec-Kit Bug Remediation
 
 ## Metadata

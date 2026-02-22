@@ -1,3 +1,17 @@
+---
+title: "Implementation Plan: System Spec Kit v2.1.0 Test Suite [078-speckit-test-suite/plan]"
+description: "This plan implements a comprehensive test suite for System Spec Kit v2.1.0 features. The suite covers 8 test files totaling approximately 3,000 LOC across five phases: MCP handl..."
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "system"
+  - "spec"
+  - "kit"
+  - "078"
+  - "speckit"
+importance_tier: "important"
+contextType: "decision"
+---
 # Implementation Plan: System Spec Kit v2.1.0 Test Suite
 
 <!-- SPECKIT_LEVEL: 2 -->

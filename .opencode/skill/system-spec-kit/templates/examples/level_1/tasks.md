@@ -1,3 +1,15 @@
+---
+title: "Tasks: Add User Authentication [template:examples/level_1/tasks.md]"
+description: "needed for a simple authentication feature. Note the straightforward task numbering"
+trigger_phrases:
+  - "tasks"
+  - "add"
+  - "user"
+  - "authentication"
+  - "template"
+importance_tier: "normal"
+contextType: "general"
+---
 # Tasks: Add User Authentication
 
 <!-- SPECKIT_LEVEL: 1 -->

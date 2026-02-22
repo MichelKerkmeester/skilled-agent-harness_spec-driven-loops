@@ -1,3 +1,15 @@
+---
+title: "Implementation Plan: [NAME] [template:core/plan-core.md]"
+description: "[2-3 sentences: what this implements and the technical approach]"
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "name"
+  - "template"
+  - "plan core"
+importance_tier: "normal"
+contextType: "general"
+---
 # Implementation Plan: [NAME]
 
 <!-- SPECKIT_LEVEL: CORE -->

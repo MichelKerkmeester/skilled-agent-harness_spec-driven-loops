@@ -1,8 +1,19 @@
 ---
-title: "Checklist: system-spec-kit Reimagined Refinement"
+title: "Checklist: system-spec-kit Reimagined Refinement [089-speckit-reimagined-refinement/checklist]"
+description: "title: \"Checklist: system-spec-kit Reimagined Refinement\""
+trigger_phrases:
+  - "checklist"
+  - "system"
+  - "spec"
+  - "kit"
+  - "reimagined"
+  - "089"
+  - "speckit"
+importance_tier: "normal"
+contextType: "implementation"
 spec: "089"
----
 
+---
 # Checklist: system-spec-kit Reimagined Refinement
 
 ---

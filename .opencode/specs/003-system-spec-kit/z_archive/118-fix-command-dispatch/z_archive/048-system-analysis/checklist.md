@@ -1,3 +1,16 @@
+---
+title: "QA Validation Checklist: SpecKit & Memory System Remediation [048-system-analysis/checklist]"
+description: "cp .opencode/skill/system-spec-kit/database/context-index.sqlite \\"
+trigger_phrases:
+  - "validation"
+  - "checklist"
+  - "speckit"
+  - "memory"
+  - "system"
+  - "048"
+importance_tier: "normal"
+contextType: "implementation"
+---
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v1.0 -->
 
 # QA Validation Checklist: SpecKit & Memory System Remediation

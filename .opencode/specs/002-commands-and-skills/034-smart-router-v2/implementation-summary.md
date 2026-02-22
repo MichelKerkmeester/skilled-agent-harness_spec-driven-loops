@@ -1,3 +1,15 @@
+---
+title: "Implementation Summary [034-smart-router-v2/implementation-summary]"
+description: "Smart Router rollout work in this session is complete for immediate */SKILL.md targets under Public and Barter skill roots, and verification artifacts are now captured in spec s..."
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "implementation summary"
+  - "034"
+  - "smart"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Implementation Summary
 
 <!-- SPECKIT_LEVEL: 3 -->

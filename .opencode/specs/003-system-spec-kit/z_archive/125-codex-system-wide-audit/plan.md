@@ -1,3 +1,17 @@
+---
+title: "Implementation Plan: System-Wide Remediation of Confirmed Findings [125-codex-system-wide-audit/plan]"
+description: "This plan executes remediation in a strict order"
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "system"
+  - "wide"
+  - "remediation"
+  - "125"
+  - "codex"
+importance_tier: "important"
+contextType: "decision"
+---
 # Implementation Plan: System-Wide Remediation of Confirmed Findings
 
 <!-- SPECKIT_LEVEL: 3+ -->

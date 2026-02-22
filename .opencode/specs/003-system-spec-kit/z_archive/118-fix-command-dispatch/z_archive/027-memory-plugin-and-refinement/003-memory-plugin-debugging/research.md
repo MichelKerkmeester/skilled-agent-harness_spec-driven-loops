@@ -1,3 +1,17 @@
+---
+title: "OpenCode Plugin Memory Database Access - Research Document [003-memory-plugin-debugging/research]"
+description: "Problem: The memory plugin shows \"Loaded 0 memories for dashboard\" despite 66 memories existing in the database."
+trigger_phrases:
+  - "opencode"
+  - "plugin"
+  - "memory"
+  - "database"
+  - "access"
+  - "research"
+  - "003"
+importance_tier: "normal"
+contextType: "research"
+---
 # OpenCode Plugin Memory Database Access - Research Document
 
 ## 1. Executive Summary

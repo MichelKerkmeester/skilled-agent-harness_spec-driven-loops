@@ -1,13 +1,13 @@
 ---
-title: "Level 1 Templates"
+title: "Level 1 Templates [template:level_1/README.md]"
 description: "Baseline documentation templates for low-risk, small-scope changes."
 trigger_phrases:
   - "level 1"
   - "small change"
   - "baseline docs"
 importance_tier: "normal"
+contextType: "general"
 ---
-
 # Level 1 Templates
 
 Use for simple work where full verification/governance overhead is unnecessary.

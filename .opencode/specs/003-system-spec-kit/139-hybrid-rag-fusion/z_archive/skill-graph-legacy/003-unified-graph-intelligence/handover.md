@@ -1,3 +1,15 @@
+---
+title: "Session Handover Document [003-unified-graph-intelligence/handover]"
+description: "1. Workstream A Phase 0 (T001-T004): Refactor hybridSearchEnhanced to unified dispatcher, activate graph channel routing, enable semantic + keyword co-activation, implement adap..."
+trigger_phrases:
+  - "session"
+  - "handover"
+  - "document"
+  - "003"
+  - "unified"
+importance_tier: "normal"
+contextType: "general"
+---
 # Session Handover Document
 
 <!-- SPECKIT_TEMPLATE_SOURCE: handover | v1.0 -->

@@ -1,3 +1,15 @@
+---
+title: "Tasks: Skill Graph Improvement [007-skill-graph-improvement/tasks]"
+description: "Task Format: T### [P?] Description (file path)"
+trigger_phrases:
+  - "tasks"
+  - "skill"
+  - "graph"
+  - "improvement"
+  - "007"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: Skill Graph Improvement
 
 <!-- SPECKIT_LEVEL: 2 -->

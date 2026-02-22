@@ -1,3 +1,16 @@
+---
+title: "Validation Checklist: Post-Release Refinement 1 [046-post-release-refinement-1/checklist]"
+description: "Task: Fix duplicate entries on checkpoint restore"
+trigger_phrases:
+  - "validation"
+  - "checklist"
+  - "post"
+  - "release"
+  - "refinement"
+  - "046"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Validation Checklist: Post-Release Refinement 1
 
 <!-- SPECKIT_TEMPLATE_SOURCE: system-spec-kit/templates/checklist.md -->

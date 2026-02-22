@@ -1,3 +1,17 @@
+---
+title: "Implementation Summary: Aggressive @context_loader Enforcement [008-context-loader-enforcement/implementation-summary]"
+description: "Full audit of all agent files (8) and command files (38+) for @explore references that should be replaced with @context_loader. Applied the aggressive enforcement rule defined i..."
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "aggressive"
+  - "context"
+  - "loader"
+  - "implementation summary"
+  - "008"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Implementation Summary: Aggressive @context_loader Enforcement
 
 > **Spec Folder:** `.opencode/specs/004-agents/008-context-loader-enforcement/`

@@ -1,3 +1,16 @@
+---
+title: "Implementation Plan: Phase 001 — Rename legacy workflow-prefixed skill to sk-code--opencode [001-sk-code--opencode/plan]"
+description: "Finalize migration to sk-code--opencode by renaming the legacy workflow-prefixed skill folder and updating all active-path references (35 internal + 12 external) that still use ..."
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "phase"
+  - "001"
+  - "rename"
+  - "code"
+importance_tier: "important"
+contextType: "decision"
+---
 # Implementation Plan: Phase 001 — Rename legacy workflow-prefixed skill to `sk-code--opencode`
 
 <!-- SPECKIT_LEVEL: 2 -->

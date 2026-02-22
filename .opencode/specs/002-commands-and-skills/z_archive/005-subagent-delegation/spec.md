@@ -1,3 +1,18 @@
+---
+title: "Feature Specification: Sub-Agent Delegation for Memory/Handover Commands [005-subagent-delegation/spec]"
+description: "Refactor /spec_kit:handover and /memory:save commands to delegate execution work to sub-agents."
+trigger_phrases:
+  - "feature"
+  - "specification"
+  - "sub"
+  - "agent"
+  - "delegation"
+  - "spec"
+  - "005"
+  - "subagent"
+importance_tier: "important"
+contextType: "decision"
+---
 <!-- SPECKIT_LEVEL: 2 -->
 
 <!-- SPECKIT_TEMPLATE_SOURCE: legacy-normalized | v2.2 -->

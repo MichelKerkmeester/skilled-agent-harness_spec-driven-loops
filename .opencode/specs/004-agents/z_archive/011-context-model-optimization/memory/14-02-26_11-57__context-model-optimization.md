@@ -1,3 +1,8 @@
+---
+title: "To promote a memory to constitutional tier [011-context-model-optimization/14-02-26_11-57__context-model-optimization]"
+importance_tier: "normal"
+contextType: "general"
+---
 <!-- TEMPLATE: context_template.md v2.2 - DO NOT EDIT GENERATED FILES -->
 <!-- Constitutional Tier Promotion:
   To promote a memory to constitutional tier (always surfaced):

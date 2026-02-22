@@ -1,3 +1,16 @@
+---
+title: "Implementation Plan: CV Upload Form File Type Validation Fix [035-form-upload-issues/plan]"
+description: "Phase 1 (COMPLETED): Fixed three independent MIME validation bugs — expanded MIME type configuration with extension fallback (MIME_TYPE_MAP), aggressive whitespace stripping for..."
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "upload"
+  - "form"
+  - "file"
+  - "035"
+importance_tier: "important"
+contextType: "decision"
+---
 # Implementation Plan: CV Upload Form File Type Validation Fix
 
 <!-- SPECKIT_LEVEL: 3 -->

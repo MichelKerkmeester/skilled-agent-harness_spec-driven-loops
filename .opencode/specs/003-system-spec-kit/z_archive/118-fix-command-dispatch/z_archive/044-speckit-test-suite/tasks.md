@@ -1,3 +1,17 @@
+---
+title: "Tasks: Spec Kit Test Suite [044-speckit-test-suite/tasks]"
+description: "Total: ~830 test cases across 4 domains"
+trigger_phrases:
+  - "tasks"
+  - "spec"
+  - "kit"
+  - "test"
+  - "suite"
+  - "044"
+  - "speckit"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: Spec Kit Test Suite
 
 ## Overview

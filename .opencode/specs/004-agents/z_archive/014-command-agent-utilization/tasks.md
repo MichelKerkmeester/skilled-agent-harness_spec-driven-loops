@@ -1,3 +1,16 @@
+---
+title: "Tasks: Command Agent Utilization Audit [014-command-agent-utilization/tasks]"
+description: "Task Format: T### [P?] Description (file path)"
+trigger_phrases:
+  - "tasks"
+  - "command"
+  - "agent"
+  - "utilization"
+  - "audit"
+  - "014"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: Command Agent Utilization Audit
 
 <!-- SPECKIT_LEVEL: 3 -->

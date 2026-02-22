@@ -1,3 +1,16 @@
+---
+title: "Verification Checklist: Phase 003 — Rename legacy full-stack skill identifier to [003-sk-code--full-stack/checklist]"
+description: "P0 blocker checks are distributed across sections below and must all be complete."
+trigger_phrases:
+  - "verification"
+  - "checklist"
+  - "phase"
+  - "003"
+  - "rename"
+  - "code"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Verification Checklist: Phase 003 — Rename legacy full-stack skill identifier to sk-code--full-stack
 
 <!-- SPECKIT_LEVEL: 2 -->

@@ -1,3 +1,15 @@
+---
+title: "H2 Emoji Enforcement - Specification [017-h2-emoji-enforcement/spec]"
+description: "When creating documentation from templates, H2 section headers were reconstructed from memory instead of copied verbatim, leading to omission of required emojis. The validation ..."
+trigger_phrases:
+  - "emoji"
+  - "enforcement"
+  - "specification"
+  - "spec"
+  - "017"
+importance_tier: "important"
+contextType: "decision"
+---
 <!-- SPECKIT_LEVEL: 3 -->
 
 <!-- SPECKIT_TEMPLATE_SOURCE: legacy-normalized | v2.2 -->

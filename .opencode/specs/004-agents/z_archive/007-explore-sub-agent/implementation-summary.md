@@ -1,3 +1,18 @@
+---
+title: "Implementation Summary: Context Loader Sub-Agent (@context_loader) [007-explore-sub-agent/implementation-summary]"
+description: "A dedicated agent definition file for @context_loader — a fast, read-only context retrieval sub-agent that gathers codebase and memory context before implementation work begins...."
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "context"
+  - "loader"
+  - "sub"
+  - "implementation summary"
+  - "007"
+  - "explore"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Implementation Summary: Context Loader Sub-Agent (@context_loader)
 
 > **Spec Folder:** `.opencode/specs/004-agents/007-explore-sub-agent/`

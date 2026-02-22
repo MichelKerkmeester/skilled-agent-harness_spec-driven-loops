@@ -1,3 +1,16 @@
+---
+title: "Comprehensive Bug Fix: System-Spec-Kit & Spec_Kit Commands [020-comprehensive-bug-fix/spec]"
+description: "Comprehensive analysis and fix of the system-spec-kit skill and all spec_kit commands. This work identified and resolved 36+ issues across P0-P3 priority levels, using 40 parall..."
+trigger_phrases:
+  - "comprehensive"
+  - "bug"
+  - "fix"
+  - "system"
+  - "spec"
+  - "020"
+importance_tier: "important"
+contextType: "decision"
+---
 # Comprehensive Bug Fix: System-Spec-Kit & Spec_Kit Commands
 <!-- SPECKIT_TEMPLATE_SOURCE: spec.md | v1.0 -->
 

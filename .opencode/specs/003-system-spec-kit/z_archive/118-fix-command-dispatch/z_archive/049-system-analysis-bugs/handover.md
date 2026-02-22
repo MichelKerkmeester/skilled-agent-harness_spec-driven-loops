@@ -1,3 +1,15 @@
+---
+title: "Session Handover Document [049-system-analysis-bugs/handover]"
+description: "1. RESTART OPENCODE - MCP server has old code cached (critical)"
+trigger_phrases:
+  - "session"
+  - "handover"
+  - "document"
+  - "049"
+  - "system"
+importance_tier: "normal"
+contextType: "general"
+---
 # Session Handover Document
 <!-- SPECKIT_TEMPLATE_SOURCE: handover | v2.0 -->
 

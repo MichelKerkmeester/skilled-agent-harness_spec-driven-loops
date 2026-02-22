@@ -1,3 +1,17 @@
+---
+title: "Feature Specification: Context-Server Modularization - Requirements & User [066-context-server-modularization/spec]"
+description: "Decompose the monolithic context-server.js (2,703 LOC) into focused modules following the Spec 058 pattern."
+trigger_phrases:
+  - "feature"
+  - "specification"
+  - "context"
+  - "server"
+  - "modularization"
+  - "spec"
+  - "066"
+importance_tier: "important"
+contextType: "decision"
+---
 # Feature Specification: Context-Server Modularization - Requirements & User Stories
 
 Decompose the monolithic context-server.js (2,703 LOC) into focused modules following the Spec 058 pattern.

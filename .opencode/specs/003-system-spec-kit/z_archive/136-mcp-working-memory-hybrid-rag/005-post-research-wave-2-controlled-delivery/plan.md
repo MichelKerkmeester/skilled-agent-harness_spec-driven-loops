@@ -1,3 +1,16 @@
+---
+title: "Phase Package Plan: Post-Research Wave 2 (Controlled Delivery) [005-post-research-wave-2-controlled-delivery/plan]"
+description: "Execute controlled delivery evidence with explicit stage gates and append-only change auditability."
+trigger_phrases:
+  - "phase"
+  - "package"
+  - "plan"
+  - "post"
+  - "research"
+  - "005"
+importance_tier: "important"
+contextType: "decision"
+---
 # Phase Package Plan: Post-Research Wave 2 (Controlled Delivery)
 
 <!-- SPECKIT_LEVEL: 3+ -->

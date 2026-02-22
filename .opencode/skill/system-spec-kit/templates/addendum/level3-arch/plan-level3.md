@@ -1,3 +1,12 @@
+---
+title: "┌─────────────┐ ┌─────────────┐ ┌─────────────┐ [template:addendum/level3-arch/plan-level3.md]"
+description: "┌─────────────┐ ┌─────────────┐ ┌─────────────┐"
+trigger_phrases:
+  - "template"
+  - "plan level3"
+importance_tier: "normal"
+contextType: "general"
+---
 <!-- SPECKIT_ADDENDUM: Level 3 - Architecture -->
 <!-- Append after L2 plan sections -->
 

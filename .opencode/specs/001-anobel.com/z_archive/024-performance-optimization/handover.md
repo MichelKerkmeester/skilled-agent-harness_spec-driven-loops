@@ -1,3 +1,15 @@
+---
+title: "Session Handover Document [024-performance-optimization/handover]"
+description: "CONTINUATION - Attempt 1"
+trigger_phrases:
+  - "session"
+  - "handover"
+  - "document"
+  - "024"
+  - "performance"
+importance_tier: "normal"
+contextType: "general"
+---
 # Session Handover Document
 
 CONTINUATION - Attempt 1

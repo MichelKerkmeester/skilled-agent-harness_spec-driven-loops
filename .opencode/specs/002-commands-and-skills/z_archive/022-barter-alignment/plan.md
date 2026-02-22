@@ -1,3 +1,16 @@
+---
+title: "Implementation Plan: workflows-code Barter Alignment [022-barter-alignment/plan]"
+description: "Align anobel.com's workflows-code skill with organizational patterns from the Barter system using selective adoption of priority-based loading, sub-folder organization, and veri..."
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "workflows"
+  - "code"
+  - "barter"
+  - "022"
+importance_tier: "important"
+contextType: "decision"
+---
 <!-- SPECKIT_TEMPLATE_SOURCE: legacy-normalized | v2.2 -->
 
 # Implementation Plan: workflows-code Barter Alignment

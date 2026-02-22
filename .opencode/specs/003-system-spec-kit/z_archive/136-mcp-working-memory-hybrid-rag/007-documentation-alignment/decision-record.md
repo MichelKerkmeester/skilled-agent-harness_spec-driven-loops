@@ -1,3 +1,16 @@
+---
+title: "Decision Record: Documentation Alignment [007-documentation-alignment/decision-record]"
+description: "Documentation alignment follows completed Waves 1-3 and closes a doc-to-code drift gap. The goal is to restore accuracy of module inventories, feature flags, architecture flow d..."
+trigger_phrases:
+  - "decision"
+  - "record"
+  - "documentation"
+  - "alignment"
+  - "decision record"
+  - "007"
+importance_tier: "important"
+contextType: "decision"
+---
 <!-- SPECKIT_LEVEL: 3 -->
 # Decision Record: Documentation Alignment
 

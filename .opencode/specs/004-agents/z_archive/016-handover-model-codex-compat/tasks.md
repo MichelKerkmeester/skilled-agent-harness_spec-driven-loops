@@ -1,3 +1,15 @@
+---
+title: "Tasks: Spec 016 — Handover Haiku + Codex Agent Conversion [016-handover-model-codex-compat/tasks]"
+description: "tasks document for 016-handover-model-codex-compat."
+trigger_phrases:
+  - "tasks"
+  - "spec"
+  - "016"
+  - "handover"
+  - "haiku"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: Spec 016 — Handover Haiku + Codex Agent Conversion
 
 <!-- ANCHOR:phase-1 -->

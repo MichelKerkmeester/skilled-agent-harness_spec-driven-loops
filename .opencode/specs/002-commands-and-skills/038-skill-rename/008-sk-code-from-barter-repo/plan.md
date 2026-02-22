@@ -1,3 +1,16 @@
+---
+title: "Implementation Plan: Phase 008 — Rename workflows-code to sk-code in Barter repo [008-sk-code-from-barter-repo/plan]"
+description: "Finalize migration to sk-code in the Barter repo by renaming the workflows-code skill folder and updating all active-path references: 6 internal content lines across 4 files, an..."
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "phase"
+  - "008"
+  - "rename"
+  - "code"
+importance_tier: "important"
+contextType: "decision"
+---
 # Implementation Plan: Phase 008 — Rename `workflows-code` to `sk-code` in Barter repo
 
 <!-- SPECKIT_LEVEL: 2 -->

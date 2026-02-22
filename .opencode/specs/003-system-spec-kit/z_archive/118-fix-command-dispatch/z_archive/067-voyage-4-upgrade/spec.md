@@ -1,3 +1,16 @@
+---
+title: "Voyage 4 Model Upgrade Analysis [067-voyage-4-upgrade/spec]"
+description: "Objective: Evaluate and plan the upgrade from current Voyage models to the newly released Voyage 4 model family for both Spec Kit Memory MCP and Narsil MCP systems."
+trigger_phrases:
+  - "voyage"
+  - "model"
+  - "upgrade"
+  - "analysis"
+  - "spec"
+  - "067"
+importance_tier: "important"
+contextType: "decision"
+---
 # Voyage 4 Model Upgrade Analysis
 
 ## Overview

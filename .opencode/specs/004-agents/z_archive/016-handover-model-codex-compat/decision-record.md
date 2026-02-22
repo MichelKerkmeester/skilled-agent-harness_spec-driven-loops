@@ -1,3 +1,16 @@
+---
+title: "Decision Record: Spec 016 — Handover Haiku + Codex Agent Conversion [016-handover-model-codex-compat/decision-record]"
+description: "Status: Accepted"
+trigger_phrases:
+  - "decision"
+  - "record"
+  - "spec"
+  - "016"
+  - "handover"
+  - "decision record"
+importance_tier: "important"
+contextType: "decision"
+---
 # Decision Record: Spec 016 — Handover Haiku + Codex Agent Conversion
 
 <!-- ANCHOR:adr-001 -->

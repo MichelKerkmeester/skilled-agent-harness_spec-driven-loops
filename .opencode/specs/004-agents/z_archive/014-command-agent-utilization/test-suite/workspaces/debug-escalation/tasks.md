@@ -1,3 +1,15 @@
+---
+title: "Tasks: JWT Authentication [debug-escalation/tasks]"
+description: "Task Format: T### [P?] Description (file path)"
+trigger_phrases:
+  - "tasks"
+  - "jwt"
+  - "authentication"
+  - "debug"
+  - "escalation"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: JWT Authentication
 
 <!-- SPECKIT_LEVEL: 2 -->

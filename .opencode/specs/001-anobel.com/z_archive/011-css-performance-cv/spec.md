@@ -1,3 +1,17 @@
+---
+title: "Specification: CSS Performance Upgrade (Content Visibility) [011-css-performance-cv/spec]"
+description: "The content-visibility CSS property is a powerful performance primitive that allows the browser to skip the rendering work of an element's subtree until it is needed (i.e., when..."
+trigger_phrases:
+  - "specification"
+  - "css"
+  - "performance"
+  - "upgrade"
+  - "content"
+  - "spec"
+  - "011"
+importance_tier: "important"
+contextType: "decision"
+---
 # Specification: CSS Performance Upgrade (Content Visibility)
 
 <!-- ANCHOR:context -->

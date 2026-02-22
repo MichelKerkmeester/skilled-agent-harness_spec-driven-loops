@@ -1,3 +1,17 @@
+---
+title: "Feature Specification: Agent Haiku Compatibility [013-agent-haiku-compatibility/spec]"
+description: "The context agent was rewritten from a 3-mode system (quick/medium/thorough) to thorough-only after spec 012 A/B testing showed the narrowest Haiku-Sonnet gap in thorough mode. ..."
+trigger_phrases:
+  - "feature"
+  - "specification"
+  - "agent"
+  - "haiku"
+  - "compatibility"
+  - "spec"
+  - "013"
+importance_tier: "important"
+contextType: "decision"
+---
 # Feature Specification: Agent Haiku Compatibility
 
 <!-- SPECKIT_LEVEL: 2 -->

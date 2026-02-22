@@ -1,3 +1,8 @@
+---
+title: "Epistemic state captured at session start for [083-memory-command-consolidation/2025-02-03_verification-complete]"
+importance_tier: "normal"
+contextType: "general"
+---
 <!-- TEMPLATE: context_template.md v2.2 - DO NOT EDIT GENERATED FILES -->
 <!-- Migrated from legacy format by migrate-memory-v22.mjs -->
 

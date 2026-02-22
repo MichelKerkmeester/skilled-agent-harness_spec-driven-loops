@@ -1,3 +1,8 @@
+---
+title: "To promote a memory to constitutional tier (always [138-spec-kit-phase-system/20-02-26_16-42__spec-kit-phase-system]"
+importance_tier: "critical"
+contextType: "general"
+---
 <!-- TEMPLATE: context_template.md v2.2 - DO NOT EDIT GENERATED FILES -->
 <!-- Constitutional Tier Promotion:
   To promote a memory to constitutional tier (always surfaced):

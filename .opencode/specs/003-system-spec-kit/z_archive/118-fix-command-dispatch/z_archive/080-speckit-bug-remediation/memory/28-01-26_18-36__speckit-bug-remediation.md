@@ -1,3 +1,8 @@
+---
+title: "To promote a memory to constitutional tier [080-speckit-bug-remediation/28-01-26_18-36__speckit-bug-remediation]"
+importance_tier: "normal"
+contextType: "general"
+---
 <!-- TEMPLATE: context_template.md v2.2 - DO NOT EDIT GENERATED FILES -->
 <!-- Constitutional Tier Promotion:
   To promote a memory to constitutional tier (always surfaced):

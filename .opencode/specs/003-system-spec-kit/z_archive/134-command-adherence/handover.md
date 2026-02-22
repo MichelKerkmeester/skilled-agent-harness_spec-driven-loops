@@ -1,3 +1,17 @@
+---
+title: "Session Handover: Plan-to-Implementation Gate Bypass Fix [134-command-adherence/handover]"
+description: "1. Validate live behavior end-to-end: /spec_kit:plan -> free-text implement request -> enforced routing through /spec_kit:implement."
+trigger_phrases:
+  - "session"
+  - "handover"
+  - "plan"
+  - "implementation"
+  - "gate"
+  - "134"
+  - "command"
+importance_tier: "normal"
+contextType: "general"
+---
 # Session Handover: Plan-to-Implementation Gate Bypass Fix
 
 <!-- SPECKIT_LEVEL: 3 -->

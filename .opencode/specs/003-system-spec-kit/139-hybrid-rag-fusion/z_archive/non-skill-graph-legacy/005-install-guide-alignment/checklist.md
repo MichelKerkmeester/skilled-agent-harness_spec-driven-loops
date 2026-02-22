@@ -1,3 +1,16 @@
+---
+title: "Verification Checklist: Install Guide Alignment [005-install-guide-alignment/checklist]"
+description: "checklist document for 005-install-guide-alignment."
+trigger_phrases:
+  - "verification"
+  - "checklist"
+  - "install"
+  - "guide"
+  - "alignment"
+  - "005"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Verification Checklist: Install Guide Alignment
 
 <!-- SPECKIT_LEVEL: 2 -->

@@ -1,3 +1,17 @@
+---
+title: "Decision Record: workflows-code Barter Alignment [022-barter-alignment/decision-record]"
+description: "The Barter system has a mature workflows-code skill with improved organizational patterns, priority-based loading, and token budget awareness that can benefit anobel.com's imple..."
+trigger_phrases:
+  - "decision"
+  - "record"
+  - "workflows"
+  - "code"
+  - "barter"
+  - "decision record"
+  - "022"
+importance_tier: "important"
+contextType: "decision"
+---
 <!-- SPECKIT_TEMPLATE_SOURCE: legacy-normalized | v2.2 -->
 
 # Decision Record: workflows-code Barter Alignment

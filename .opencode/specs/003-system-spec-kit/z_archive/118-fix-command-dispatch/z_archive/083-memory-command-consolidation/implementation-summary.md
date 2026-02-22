@@ -1,3 +1,17 @@
+---
+title: "Implementation Summary: Memory Command Consolidation [083-memory-command-consolidation/implementation-summary]"
+description: "Spec ID: 083-memory-command-consolidation"
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "memory"
+  - "command"
+  - "consolidation"
+  - "implementation summary"
+  - "083"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Implementation Summary: Memory Command Consolidation
 
 **Spec ID:** 083-memory-command-consolidation

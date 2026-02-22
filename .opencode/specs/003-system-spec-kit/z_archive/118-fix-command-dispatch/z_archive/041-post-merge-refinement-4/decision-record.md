@@ -1,3 +1,17 @@
+---
+title: "Decision Record: Post-Merge Refinement 4 [041-post-merge-refinement-4/decision-record]"
+description: "This document captures key architectural and implementation decisions made during the Post-Merge Refinement 4 project."
+trigger_phrases:
+  - "decision"
+  - "record"
+  - "post"
+  - "merge"
+  - "refinement"
+  - "decision record"
+  - "041"
+importance_tier: "important"
+contextType: "decision"
+---
 <!-- SPECKIT_TEMPLATE_SOURCE: decision-record.md | v1.0 -->
 
 # Decision Record: Post-Merge Refinement 4

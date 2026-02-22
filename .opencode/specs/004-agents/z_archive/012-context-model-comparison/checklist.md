@@ -1,3 +1,16 @@
+---
+title: "Checklist: Context Agent Model Comparison [012-context-model-comparison/checklist]"
+description: "Spec: 012-context-model-comparison"
+trigger_phrases:
+  - "checklist"
+  - "context"
+  - "agent"
+  - "model"
+  - "comparison"
+  - "012"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Checklist: Context Agent Model Comparison
 
 **Spec**: 012-context-model-comparison

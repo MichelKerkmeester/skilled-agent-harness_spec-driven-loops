@@ -1,3 +1,14 @@
+---
+title: "Verification Checklist [034-gate-enforcement-refinement/checklist]"
+description: "checklist document for 034-gate-enforcement-refinement."
+trigger_phrases:
+  - "verification"
+  - "checklist"
+  - "034"
+  - "gate"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Verification Checklist
 
 ## Content

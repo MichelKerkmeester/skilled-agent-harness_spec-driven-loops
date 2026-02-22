@@ -1,3 +1,16 @@
+---
+title: "Implementation Plan: Skill Graphs Integration [002-skill-graph-integration/plan]"
+description: "This plan details the process of adding supplemental Skill Graph layers to every available OpenCode skill and integrating graph semantics into the system-spec-kit memory archite..."
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "skill"
+  - "graphs"
+  - "integration"
+  - "002"
+importance_tier: "important"
+contextType: "decision"
+---
 # Implementation Plan: Skill Graphs Integration
 
 <!-- SPECKIT_LEVEL: 3+ -->

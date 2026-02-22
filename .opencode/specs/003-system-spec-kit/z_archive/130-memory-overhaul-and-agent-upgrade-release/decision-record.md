@@ -1,3 +1,17 @@
+---
+title: "Decision Record: Memory Overhaul & Agent Upgrade Release [130-memory-overhaul-and-agent-upgrade-release/decision-record]"
+description: "Specs 014-016 (agent system) and 122-129 (spec-kit system) have been implemented across 200+ files, but their documentation artifacts (READMEs, SKILL.md, command configs, agent ..."
+trigger_phrases:
+  - "decision"
+  - "record"
+  - "memory"
+  - "overhaul"
+  - "agent"
+  - "decision record"
+  - "130"
+importance_tier: "important"
+contextType: "decision"
+---
 # Decision Record: Memory Overhaul & Agent Upgrade Release
 
 <!-- SPECKIT_LEVEL: 3+ -->

@@ -1,3 +1,16 @@
+---
+title: "Implementation Plan: Command Agent Utilization Audit [014-command-agent-utilization/plan]"
+description: "Audit all 18 create command files (12 YAML workflows + 6 MD references) to ensure compliance with AGENTS.md routing rules. Route spec folder creation through @speckit (Rule 5), ..."
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "command"
+  - "agent"
+  - "utilization"
+  - "014"
+importance_tier: "important"
+contextType: "decision"
+---
 # Implementation Plan: Command Agent Utilization Audit
 
 <!-- SPECKIT_LEVEL: 3 -->

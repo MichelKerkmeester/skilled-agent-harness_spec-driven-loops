@@ -1,3 +1,15 @@
+---
+title: "Plan: MCP Server Rename [040-mcp-server-rename/plan]"
+description: "plan document for 040-mcp-server-rename."
+trigger_phrases:
+  - "plan"
+  - "mcp"
+  - "server"
+  - "rename"
+  - "040"
+importance_tier: "important"
+contextType: "decision"
+---
 # Plan: MCP Server Rename
 
 ## Phase 1: Discovery (Complete)

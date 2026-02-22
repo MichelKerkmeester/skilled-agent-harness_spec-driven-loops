@@ -1,3 +1,16 @@
+---
+title: "Verification Checklist: Skill Graph Improvement [007-skill-graph-improvement/checklist]"
+description: "*Each gap from the utilization test must be explicitly closed.*"
+trigger_phrases:
+  - "verification"
+  - "checklist"
+  - "skill"
+  - "graph"
+  - "improvement"
+  - "007"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Verification Checklist: Skill Graph Improvement
 
 <!-- SPECKIT_LEVEL: 2 -->

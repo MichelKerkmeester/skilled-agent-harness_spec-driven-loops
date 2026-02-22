@@ -1,3 +1,17 @@
+---
+title: "Implementation Plan: SpecKit Phase System [138-spec-kit-phase-system/plan]"
+description: "This plan covers formalizing the organic phase decomposition pattern that emerged from specs 136 and 138 into a first-class SpecKit behavioral layer. The technical approach adds..."
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "speckit"
+  - "phase"
+  - "system"
+  - "138"
+  - "spec"
+importance_tier: "important"
+contextType: "decision"
+---
 # Implementation Plan: SpecKit Phase System
 
 <!-- SPECKIT_LEVEL: 3+ -->

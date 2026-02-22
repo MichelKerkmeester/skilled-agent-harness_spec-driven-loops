@@ -1,3 +1,16 @@
+---
+title: "Handover: Sub-Agent Delegation [005-subagent-delegation/handover]"
+description: "1. Sub-Agent Architecture: Main agent handles validation/user interaction (PHASES), sub-agent handles execution work via Task tool"
+trigger_phrases:
+  - "handover"
+  - "sub"
+  - "agent"
+  - "delegation"
+  - "005"
+  - "subagent"
+importance_tier: "normal"
+contextType: "general"
+---
 # Handover: Sub-Agent Delegation
 
 ## Handover Summary

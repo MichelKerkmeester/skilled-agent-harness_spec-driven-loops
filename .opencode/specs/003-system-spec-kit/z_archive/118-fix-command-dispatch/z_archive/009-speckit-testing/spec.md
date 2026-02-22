@@ -1,3 +1,17 @@
+---
+title: "Feature Specification: SpecKit Post-Rename Testing [009-speckit-testing/spec]"
+description: "Comprehensive testing of system-spec-kit skill after rename from workflows-spec-kit."
+trigger_phrases:
+  - "feature"
+  - "specification"
+  - "speckit"
+  - "post"
+  - "rename"
+  - "spec"
+  - "009"
+importance_tier: "important"
+contextType: "decision"
+---
 # Feature Specification: SpecKit Post-Rename Testing
 
 Comprehensive testing of system-spec-kit skill after rename from workflows-spec-kit.

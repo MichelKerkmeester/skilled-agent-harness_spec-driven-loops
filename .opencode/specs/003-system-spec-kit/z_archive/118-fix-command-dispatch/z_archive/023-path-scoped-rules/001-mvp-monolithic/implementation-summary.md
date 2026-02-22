@@ -1,3 +1,18 @@
+---
+title: "Implementation Summary: Path-Scoped Validation Rules [001-mvp-monolithic/implementation-summary]"
+description: "Implemented validate-spec.sh, a spec folder validation script that enforces documentation standards by checking for required files, unfilled placeholders, and required sections ..."
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "path"
+  - "scoped"
+  - "validation"
+  - "implementation summary"
+  - "001"
+  - "mvp"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Implementation Summary: Path-Scoped Validation Rules
 
 ## Overview

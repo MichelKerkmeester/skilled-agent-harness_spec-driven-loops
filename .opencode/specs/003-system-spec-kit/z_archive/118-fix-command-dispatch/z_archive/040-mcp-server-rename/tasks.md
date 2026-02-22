@@ -1,3 +1,15 @@
+---
+title: "Tasks: MCP Server Rename [040-mcp-server-rename/tasks]"
+description: "tasks document for 040-mcp-server-rename."
+trigger_phrases:
+  - "tasks"
+  - "mcp"
+  - "server"
+  - "rename"
+  - "040"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: MCP Server Rename
 
 ## Task List

@@ -1,3 +1,14 @@
+---
+title: "Implementation Plan [004-command-logic-improvement/plan]"
+description: "1. ✅ Analyze GitHub Gist commands (9 commands)"
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "004"
+  - "command"
+importance_tier: "important"
+contextType: "decision"
+---
 <!-- SPECKIT_TEMPLATE_SOURCE: legacy-normalized | v2.2 -->
 
 # Implementation Plan

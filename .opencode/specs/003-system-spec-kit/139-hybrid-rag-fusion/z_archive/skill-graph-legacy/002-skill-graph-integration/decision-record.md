@@ -1,3 +1,17 @@
+---
+title: "Decision Record: Skill Graphs Integration [002-skill-graph-integration/decision-record]"
+description: "Currently, our skills architecture relies on monolithic markdown files (SKILL.md) that contain massive amounts of context. As skills grow in complexity (e.g., adding comprehensi..."
+trigger_phrases:
+  - "decision"
+  - "record"
+  - "skill"
+  - "graphs"
+  - "integration"
+  - "decision record"
+  - "002"
+importance_tier: "important"
+contextType: "decision"
+---
 # Decision Record: Skill Graphs Integration
 
 <!-- SPECKIT_LEVEL: 3 -->

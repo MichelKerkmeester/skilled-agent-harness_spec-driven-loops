@@ -1,3 +1,15 @@
+---
+title: "Tasks: Smart Router V2 Rollout [034-smart-router-v2/tasks]"
+description: "Task Format: T### [P?] Description (file path)"
+trigger_phrases:
+  - "tasks"
+  - "smart"
+  - "router"
+  - "rollout"
+  - "034"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: Smart Router V2 Rollout
 
 <!-- SPECKIT_LEVEL: 3 -->

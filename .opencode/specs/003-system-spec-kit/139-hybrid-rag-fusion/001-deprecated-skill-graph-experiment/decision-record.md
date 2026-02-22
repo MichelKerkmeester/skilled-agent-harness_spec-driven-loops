@@ -1,3 +1,18 @@
+---
+title: "Decision Record: 013 - Deprecate Skill Graph and [001-deprecated-skill-graph-experiment/decision-record]"
+description: "The previous phase removed most SGQS/readme-indexing behavior, but completion still required proof that target surfaces were fully clear. Leaving any residual references in sour..."
+trigger_phrases:
+  - "decision"
+  - "record"
+  - "013"
+  - "deprecate"
+  - "skill"
+  - "decision record"
+  - "001"
+  - "deprecated"
+importance_tier: "important"
+contextType: "decision"
+---
 # Decision Record: 013 - Deprecate Skill Graph and README/Skill-Ref Indexing (Completion Pass 2)
 
 <!-- SPECKIT_LEVEL: 3 -->

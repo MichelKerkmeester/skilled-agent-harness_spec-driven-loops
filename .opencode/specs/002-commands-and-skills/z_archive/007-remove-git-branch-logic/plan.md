@@ -1,3 +1,16 @@
+---
+title: "Plan: Remove Git Branch Logic from YAML Commands [007-remove-git-branch-logic/plan]"
+description: "Dispatch 4 parallel Opus agents, each handling 2 YAML files (auto + confirm pairs)"
+trigger_phrases:
+  - "plan"
+  - "remove"
+  - "git"
+  - "branch"
+  - "logic"
+  - "007"
+importance_tier: "important"
+contextType: "decision"
+---
 <!-- SPECKIT_TEMPLATE_SOURCE: legacy-normalized | v2.2 -->
 
 # Plan: Remove Git Branch Logic from YAML Commands

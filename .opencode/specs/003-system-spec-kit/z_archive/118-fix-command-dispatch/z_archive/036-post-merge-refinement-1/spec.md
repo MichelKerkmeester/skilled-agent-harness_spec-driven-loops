@@ -1,11 +1,21 @@
 ---
-id: 036-post-merge-refinement
-title: Post-Merger System Refinement
-status: Active
-priority: High
+title: "Post-Merger System Refinement [036-post-merge-refinement-1/spec]"
+description: "id: 036-post-merge-refinement"
+trigger_phrases:
+  - "post"
+  - "merger"
+  - "system"
+  - "refinement"
+  - "spec"
+  - "036"
+importance_tier: "important"
+contextType: "decision"
 created: 2025-12-25
----
 
+id: 036-post-merge-refinement
+priority: High
+status: Active
+---
 # Post-Merger System Refinement
 
 ## Overview

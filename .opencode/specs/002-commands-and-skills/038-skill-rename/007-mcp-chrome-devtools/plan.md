@@ -1,3 +1,16 @@
+---
+title: "Implementation Plan: Phase 007 — Finalize mcp-chrome-devtools Rename [007-mcp-chrome-devtools/plan]"
+description: "Phase implementation and verification are complete for the rename and reference updates across the targeted 57 files (21 internal + 36 external), including smoke tests for both ..."
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "phase"
+  - "007"
+  - "finalize"
+  - "mcp"
+importance_tier: "important"
+contextType: "decision"
+---
 # Implementation Plan: Phase 007 — Finalize mcp-chrome-devtools Rename
 
 <!-- SPECKIT_LEVEL: 2 -->

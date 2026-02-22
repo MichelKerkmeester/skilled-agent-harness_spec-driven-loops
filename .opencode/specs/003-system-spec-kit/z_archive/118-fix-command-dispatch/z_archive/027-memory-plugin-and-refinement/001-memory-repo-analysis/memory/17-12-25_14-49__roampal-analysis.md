@@ -1,3 +1,8 @@
+---
+title: "Key Topics: memory-context plugin | SQL error fix | plugin [001-memory-repo-analysis/17-12-25_14-49__roampal-analysis]"
+importance_tier: "important"
+contextType: "implementation"
+---
 <!-- TEMPLATE: context_template.md v2.2 - DO NOT EDIT GENERATED FILES -->
 ---
 

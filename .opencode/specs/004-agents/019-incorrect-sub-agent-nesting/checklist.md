@@ -1,3 +1,17 @@
+---
+title: "Verification Checklist: Sub-Agent Nesting Depth Control [019-incorrect-sub-agent-nesting/checklist]"
+description: "Verification Date: 2026-02-17"
+trigger_phrases:
+  - "verification"
+  - "checklist"
+  - "sub"
+  - "agent"
+  - "nesting"
+  - "019"
+  - "incorrect"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Verification Checklist: Sub-Agent Nesting Depth Control
 
 <!-- SPECKIT_LEVEL: 3 -->

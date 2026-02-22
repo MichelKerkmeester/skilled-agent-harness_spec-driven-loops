@@ -1,3 +1,16 @@
+---
+title: "Implementation Plan: Memory Plugin Dashboard Optimization - Technical Approach & Architecture [002-memory-plugin/plan]"
+description: "Implementation plan for optimizing the semantic memory plugin to inject a compact dashboard instead of full memory content."
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "memory"
+  - "plugin"
+  - "dashboard"
+  - "002"
+importance_tier: "important"
+contextType: "decision"
+---
 # Implementation Plan: Memory Plugin Dashboard Optimization - Technical Approach & Architecture
 
 Implementation plan for optimizing the semantic memory plugin to inject a compact dashboard instead of full memory content.

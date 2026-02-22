@@ -1,3 +1,17 @@
+---
+title: "Performance Patterns Update - workflows-code Skill [026-performance-patterns-update/spec]"
+description: "Based on learnings from the anobel.com performance optimization project (024-performance-optimization), this spec documents required updates to the workflows-code skill to incor..."
+trigger_phrases:
+  - "performance"
+  - "patterns"
+  - "update"
+  - "workflows"
+  - "code"
+  - "spec"
+  - "026"
+importance_tier: "important"
+contextType: "decision"
+---
 <!-- SPECKIT_LEVEL: 3 -->
 
 <!-- SPECKIT_TEMPLATE_SOURCE: legacy-normalized | v2.2 -->

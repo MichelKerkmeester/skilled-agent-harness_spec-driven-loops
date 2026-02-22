@@ -1,3 +1,16 @@
+---
+title: "Tasks: Convert OpenCode Agents to Claude Code Subagents [009-claude-code-subagents/tasks]"
+description: "Task Format: T### [P?] Description (file path)"
+trigger_phrases:
+  - "tasks"
+  - "convert"
+  - "opencode"
+  - "agents"
+  - "claude"
+  - "009"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: Convert OpenCode Agents to Claude Code Subagents
 
 <!-- SPECKIT_LEVEL: 1 -->

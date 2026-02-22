@@ -1,3 +1,13 @@
+---
+title: "Tasks [026-language-selector-hover/tasks]"
+description: "tasks document for 026-language-selector-hover."
+trigger_phrases:
+  - "tasks"
+  - "026"
+  - "language"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks
 
 <!-- ANCHOR:implementation -->

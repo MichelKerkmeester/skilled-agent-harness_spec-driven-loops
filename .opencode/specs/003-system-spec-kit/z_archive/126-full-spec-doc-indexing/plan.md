@@ -1,3 +1,16 @@
+---
+title: "Implementation Plan: Full Spec Folder Document Indexing [126-full-spec-doc-indexing/plan]"
+description: "Add full spec folder document indexing to the MCP server's memory system. This involves an 8-phase implementation: schema migration, type configuration, document discovery, pars..."
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "full"
+  - "spec"
+  - "folder"
+  - "126"
+importance_tier: "important"
+contextType: "decision"
+---
 <!-- SPECKIT_LEVEL: 3+ -->
 # Implementation Plan: Full Spec Folder Document Indexing
 

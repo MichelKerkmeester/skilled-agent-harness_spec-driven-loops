@@ -1,3 +1,13 @@
+---
+title: "Tasks: [NAME] [template:level_3+/tasks.md]"
+description: "Task Format: T### [P?] Description (file path)"
+trigger_phrases:
+  - "tasks"
+  - "name"
+  - "template"
+importance_tier: "normal"
+contextType: "general"
+---
 # Tasks: [NAME]
 
 <!-- SPECKIT_LEVEL: 3+ -->

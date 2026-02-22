@@ -1,3 +1,15 @@
+---
+title: "Tasks: sk-visual-explainer Hardening [041-sk-visual-explainer-hardening/tasks]"
+description: "Task-level execution checklist aligned to the hardening spec and plan, preserving current completion/evidence state."
+trigger_phrases:
+  - "tasks"
+  - "visual"
+  - "explainer"
+  - "hardening"
+  - "041"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: sk-visual-explainer Hardening
 
 <!-- SPECKIT_LEVEL: 2 -->

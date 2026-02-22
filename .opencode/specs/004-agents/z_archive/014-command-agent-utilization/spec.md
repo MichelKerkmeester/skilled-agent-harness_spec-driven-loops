@@ -1,3 +1,17 @@
+---
+title: "Feature Specification: Command Agent Utilization Audit [014-command-agent-utilization/spec]"
+description: "Create commands bypassed three AGENTS.md routing rules: spec folder docs were created inline (violating Rule 5: @speckit exclusive), codebase discovery used inline Glob/Grep (vi..."
+trigger_phrases:
+  - "feature"
+  - "specification"
+  - "command"
+  - "agent"
+  - "utilization"
+  - "spec"
+  - "014"
+importance_tier: "important"
+contextType: "decision"
+---
 # Feature Specification: Command Agent Utilization Audit
 
 <!-- SPECKIT_LEVEL: 3 -->

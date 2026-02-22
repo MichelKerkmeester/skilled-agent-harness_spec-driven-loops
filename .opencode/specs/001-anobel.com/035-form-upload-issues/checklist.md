@@ -1,3 +1,16 @@
+---
+title: "Verification Checklist: CV Upload Form File Type Validation Fix [035-form-upload-issues/checklist]"
+description: "Phase 1 (COMPLETED)"
+trigger_phrases:
+  - "verification"
+  - "checklist"
+  - "upload"
+  - "form"
+  - "file"
+  - "035"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Verification Checklist: CV Upload Form File Type Validation Fix
 
 <!-- SPECKIT_LEVEL: 3 -->

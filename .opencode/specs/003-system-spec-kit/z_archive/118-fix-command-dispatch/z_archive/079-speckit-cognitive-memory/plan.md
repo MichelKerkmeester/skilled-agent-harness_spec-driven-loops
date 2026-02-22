@@ -1,3 +1,17 @@
+---
+title: "Implementation Plan: Cognitive Memory Upgrade [079-speckit-cognitive-memory/plan]"
+description: "This implementation adds FSRS-based memory decay, prediction error gating for conflict detection, and dual-strength tracking to the Spec Kit Memory MCP server. The approach prio..."
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "cognitive"
+  - "memory"
+  - "upgrade"
+  - "079"
+  - "speckit"
+importance_tier: "important"
+contextType: "decision"
+---
 # Implementation Plan: Cognitive Memory Upgrade
 
 <!-- SPECKIT_LEVEL: 3+ -->

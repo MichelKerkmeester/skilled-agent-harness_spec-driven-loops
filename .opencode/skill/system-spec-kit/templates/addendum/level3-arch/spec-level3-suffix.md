@@ -1,3 +1,17 @@
+---
+title: "As a [user type], I want [capability], so that [benefit]. [template:addendum/level3-arch/spec-level3-suffix.md]"
+description: "As a [user type], I want [capability], so that [benefit]."
+trigger_phrases:
+  - "user"
+  - "type"
+  - "want"
+  - "capability"
+  - "that"
+  - "template"
+  - "spec level3 suffix"
+importance_tier: "normal"
+contextType: "general"
+---
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance

@@ -1,3 +1,16 @@
+---
+title: "Verification Checklist: SpecKit Template Optimization [074-speckit-template-optimization-refinement/checklist]"
+description: "Verification Date: 2026-01-20"
+trigger_phrases:
+  - "verification"
+  - "checklist"
+  - "speckit"
+  - "template"
+  - "optimization"
+  - "074"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Verification Checklist: SpecKit Template Optimization Refinement
 
 <!-- SPECKIT_LEVEL: 3+ -->

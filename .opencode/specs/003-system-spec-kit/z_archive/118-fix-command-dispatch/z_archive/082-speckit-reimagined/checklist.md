@@ -1,3 +1,15 @@
+---
+title: "Verification Checklist: SpecKit Reimagined [082-speckit-reimagined/checklist]"
+description: "When marking items complete, include evidence references using this format"
+trigger_phrases:
+  - "verification"
+  - "checklist"
+  - "speckit"
+  - "reimagined"
+  - "082"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Verification Checklist: SpecKit Reimagined
 
 <!-- SPECKIT_LEVEL: 3+ -->

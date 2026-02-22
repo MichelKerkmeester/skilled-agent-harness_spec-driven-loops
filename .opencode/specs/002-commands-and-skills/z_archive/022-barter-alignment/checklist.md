@@ -1,3 +1,16 @@
+---
+title: "Verification Checklist: workflows-code Barter Alignment [022-barter-alignment/checklist]"
+description: "assets/"
+trigger_phrases:
+  - "verification"
+  - "checklist"
+  - "workflows"
+  - "code"
+  - "barter"
+  - "022"
+importance_tier: "normal"
+contextType: "implementation"
+---
 <!-- SPECKIT_TEMPLATE_SOURCE: legacy-normalized | v2.2 -->
 
 # Verification Checklist: workflows-code Barter Alignment

@@ -1,3 +1,16 @@
+---
+title: "Checklist: README & Install Guide Alignment [045-readme-alignment/checklist]"
+description: "Phase 1 Evidence"
+trigger_phrases:
+  - "checklist"
+  - "readme"
+  - "install"
+  - "guide"
+  - "alignment"
+  - "045"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Checklist: README & Install Guide Alignment
 
 ## Summary

@@ -1,3 +1,15 @@
+---
+title: "Research: Skill Graphs Integration [002-skill-graph-integration/research]"
+description: "The research investigated the concept of \"Skill Graphs\" and how to utilize it for our OpenCode skill system. We analyzed the current structure of OpenCode skills (monolithic SKI..."
+trigger_phrases:
+  - "research"
+  - "skill"
+  - "graphs"
+  - "integration"
+  - "002"
+importance_tier: "normal"
+contextType: "research"
+---
 # Research: Skill Graphs Integration
 
 <!-- SPECKIT_LEVEL: 3 -->

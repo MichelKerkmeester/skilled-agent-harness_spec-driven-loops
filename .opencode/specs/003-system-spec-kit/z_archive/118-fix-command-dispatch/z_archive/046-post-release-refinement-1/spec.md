@@ -1,3 +1,17 @@
+---
+title: "Post-Release Refinement 1: Infrastructure Bug Fixes [046-post-release-refinement-1/spec]"
+description: "Systematically address all bugs, misalignments, and technical debt identified during the comprehensive 20-agent deep dive analysis of the OpenCode infrastructure. This includes ..."
+trigger_phrases:
+  - "post"
+  - "release"
+  - "refinement"
+  - "infrastructure"
+  - "bug"
+  - "spec"
+  - "046"
+importance_tier: "important"
+contextType: "decision"
+---
 # Post-Release Refinement 1: Infrastructure Bug Fixes
 
 <!-- SPECKIT_TEMPLATE_SOURCE: system-spec-kit/templates/spec.md -->

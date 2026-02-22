@@ -1,3 +1,15 @@
+---
+title: "Implementation Summary [032-github-mcp-integration/implementation-summary]"
+description: "N/A - legacy spec artifact."
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "implementation summary"
+  - "032"
+  - "github"
+importance_tier: "normal"
+contextType: "implementation"
+---
 <!-- SPECKIT_TEMPLATE_SOURCE: legacy-normalized | v2.2 -->
 <!-- SPECKIT_LEVEL: 2 -->
 

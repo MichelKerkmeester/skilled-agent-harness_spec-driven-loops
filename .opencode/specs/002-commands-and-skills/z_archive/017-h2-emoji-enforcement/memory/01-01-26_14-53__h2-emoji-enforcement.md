@@ -1,3 +1,8 @@
+---
+title: "To promote a memory to constitutional tier (always [017-h2-emoji-enforcement/01-01-26_14-53__h2-emoji-enforcement]"
+importance_tier: "normal"
+contextType: "general"
+---
 <!-- TEMPLATE: context_template.md v2.2 - DO NOT EDIT GENERATED FILES -->
 <!-- Constitutional Tier Promotion:
   To promote a memory to constitutional tier (always surfaced):

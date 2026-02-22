@@ -1,3 +1,16 @@
+---
+title: "Tasks: Unified Graph-RAG Intelligence Integration [003-unified-graph-intelligence/tasks]"
+description: "3-Tier Task Format: T### [W-X] [P?] Description (file path) [effort] {deps: T###}"
+trigger_phrases:
+  - "tasks"
+  - "unified"
+  - "graph"
+  - "rag"
+  - "intelligence"
+  - "003"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: Unified Graph-RAG Intelligence Integration
 
 <!-- SPECKIT_LEVEL: 3+ -->

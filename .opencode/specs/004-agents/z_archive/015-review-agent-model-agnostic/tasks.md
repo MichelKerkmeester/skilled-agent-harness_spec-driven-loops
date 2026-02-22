@@ -1,3 +1,16 @@
+---
+title: "Tasks: Review Agent Model-Agnostic [015-review-agent-model-agnostic/tasks]"
+description: "Task Format: T### [P?] Description (file path)"
+trigger_phrases:
+  - "tasks"
+  - "review"
+  - "agent"
+  - "model"
+  - "agnostic"
+  - "015"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: Review Agent Model-Agnostic
 
 <!-- SPECKIT_LEVEL: 1 -->

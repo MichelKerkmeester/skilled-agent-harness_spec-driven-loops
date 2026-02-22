@@ -1,3 +1,17 @@
+---
+title: "Verification Checklist: Working Memory + Hybrid RAG Automation [136-mcp-working-memory-hybrid-rag/checklist]"
+description: "Verification Date: 2026-02-19"
+trigger_phrases:
+  - "verification"
+  - "checklist"
+  - "working"
+  - "memory"
+  - "hybrid"
+  - "136"
+  - "mcp"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Verification Checklist: Working Memory + Hybrid RAG Automation
 
 <!-- SPECKIT_LEVEL: 3+ -->

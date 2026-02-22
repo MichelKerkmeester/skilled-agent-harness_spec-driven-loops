@@ -1,3 +1,16 @@
+---
+title: "Implementation Plan: Context-Server Modularization - Technical Approach & [066-context-server-modularization/plan]"
+description: "Implementation plan for decomposing context-server.js (2,703 LOC) into focused modules."
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "context"
+  - "server"
+  - "modularization"
+  - "066"
+importance_tier: "important"
+contextType: "decision"
+---
 # Implementation Plan: Context-Server Modularization - Technical Approach & Architecture
 
 Implementation plan for decomposing context-server.js (2,703 LOC) into focused modules.

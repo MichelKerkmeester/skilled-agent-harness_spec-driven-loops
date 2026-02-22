@@ -1,3 +1,14 @@
+---
+title: "Plan: Missing Evidence Fixture [missing-evidence/plan]"
+description: "Testing detection of missing evidence tags on completed items."
+trigger_phrases:
+  - "plan"
+  - "missing"
+  - "evidence"
+  - "fixture"
+importance_tier: "important"
+contextType: "decision"
+---
 # Plan: Missing Evidence Fixture
 
 ## Technical Context

@@ -1,3 +1,17 @@
+---
+title: "Verification Checklist: libSQL Hybrid RAG Enablement Assessment [140-sqlite-to-libsql/checklist]"
+description: "Verification Date: 2026-02-21"
+trigger_phrases:
+  - "verification"
+  - "checklist"
+  - "libsql"
+  - "hybrid"
+  - "rag"
+  - "140"
+  - "sqlite"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Verification Checklist: libSQL Hybrid RAG Enablement Assessment
 
 <!-- SPECKIT_LEVEL: 3 -->

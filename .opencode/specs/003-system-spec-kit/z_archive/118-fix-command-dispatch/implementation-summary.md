@@ -1,3 +1,15 @@
+---
+title: "Implementation Summary [118-fix-command-dispatch/implementation-summary]"
+description: "Fixed a command dispatch vulnerability where OpenCode's Go runtime injected phantom dispatch instructions at render time, causing wrong agent dispatch instead of following struc..."
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "implementation summary"
+  - "118"
+  - "fix"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Implementation Summary
 
 <!-- SPECKIT_LEVEL: 3+ -->

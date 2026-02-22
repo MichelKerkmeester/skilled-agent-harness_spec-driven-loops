@@ -1,3 +1,16 @@
+---
+title: "Tasks: Label Product Content Attribute [032-label-product-content-attr/tasks]"
+description: "Task Format: T### Description (file path)"
+trigger_phrases:
+  - "tasks"
+  - "label"
+  - "product"
+  - "content"
+  - "attribute"
+  - "032"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: Label Product Content Attribute
 
 <!-- SPECKIT_LEVEL: 1 -->

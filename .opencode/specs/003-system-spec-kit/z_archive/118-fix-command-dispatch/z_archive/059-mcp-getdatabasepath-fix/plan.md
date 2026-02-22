@@ -1,3 +1,16 @@
+---
+title: "Plan: Fix MCP Server Method Name Mismatches [059-mcp-getdatabasepath-fix/plan]"
+description: "The Spec Kit Memory MCP server fails with multiple errors due to import naming mismatches"
+trigger_phrases:
+  - "plan"
+  - "fix"
+  - "mcp"
+  - "server"
+  - "method"
+  - "059"
+importance_tier: "important"
+contextType: "decision"
+---
 # Plan: Fix MCP Server Method Name Mismatches
 
 ## Problem

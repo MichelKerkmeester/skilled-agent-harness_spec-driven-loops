@@ -1,3 +1,16 @@
+---
+title: "Plan: 138-hybrid-rag-fusion [002-hybrid-rag-fusion/plan]"
+description: "This Level 3+ architectural upgrade involves modifying the core retrieval engine (hybrid-search.ts, rrf-fusion.ts) which dictates the performance of the entire system. Consequen..."
+trigger_phrases:
+  - "plan"
+  - "138"
+  - "hybrid"
+  - "rag"
+  - "fusion"
+  - "002"
+importance_tier: "important"
+contextType: "decision"
+---
 <!-- SPECKIT_LEVEL: 3+ -->
 # Plan: 138-hybrid-rag-fusion
 

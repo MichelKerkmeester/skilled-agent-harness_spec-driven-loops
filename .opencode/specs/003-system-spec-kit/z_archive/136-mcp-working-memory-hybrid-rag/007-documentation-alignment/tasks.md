@@ -1,3 +1,14 @@
+---
+title: "Tasks: Documentation Alignment [007-documentation-alignment/tasks]"
+description: "tasks document for 007-documentation-alignment."
+trigger_phrases:
+  - "tasks"
+  - "documentation"
+  - "alignment"
+  - "007"
+importance_tier: "normal"
+contextType: "implementation"
+---
 <!-- SPECKIT_LEVEL: 3 -->
 # Tasks: Documentation Alignment
 

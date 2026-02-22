@@ -1,3 +1,16 @@
+---
+title: "Implementation Plan: GitHub MCP Integration [032-github-mcp-integration/plan]"
+description: "Current (Wrong)"
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "github"
+  - "mcp"
+  - "integration"
+  - "032"
+importance_tier: "important"
+contextType: "decision"
+---
 <!-- SPECKIT_TEMPLATE_SOURCE: legacy-normalized | v2.2 -->
 
 # Implementation Plan: GitHub MCP Integration

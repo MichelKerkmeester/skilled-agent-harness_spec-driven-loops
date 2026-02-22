@@ -1,3 +1,16 @@
+---
+title: "Implementation Plan: SpecKit Skill Consolidation - Technical Approach & Migration [005-speckit-consolidation/plan]"
+description: "Implementation plan for consolidating .opencode/speckit/ into .opencode/skills/workflows-spec-kit/."
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "speckit"
+  - "skill"
+  - "consolidation"
+  - "005"
+importance_tier: "important"
+contextType: "decision"
+---
 # Implementation Plan: SpecKit Skill Consolidation - Technical Approach & Migration Strategy
 
 Implementation plan for consolidating `.opencode/speckit/` into `.opencode/skills/workflows-spec-kit/`.

@@ -1,3 +1,18 @@
+---
+title: "Decision Record: Dynamic Complexity-Based Template Scaling [069-speckit-template-complexity/decision-record]"
+description: "Architectural decisions and rationale for the complexity detection system."
+trigger_phrases:
+  - "decision"
+  - "record"
+  - "dynamic"
+  - "complexity"
+  - "based"
+  - "decision record"
+  - "069"
+  - "speckit"
+importance_tier: "important"
+contextType: "decision"
+---
 # Decision Record: Dynamic Complexity-Based Template Scaling
 
 Architectural decisions and rationale for the complexity detection system.

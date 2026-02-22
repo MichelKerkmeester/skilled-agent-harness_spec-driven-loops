@@ -1,3 +1,8 @@
+---
+title: "To promote a memory to constitutional [127-documentation-alignment/16-02-26_11-43__spec126-documentation-alignment]"
+importance_tier: "normal"
+contextType: "general"
+---
 > **Note:** This session had limited actionable content (quality score: 0/100). 0 noise entries and 0 duplicates were filtered.
 
 <!-- TEMPLATE: context_template.md v2.2 - DO NOT EDIT GENERATED FILES -->

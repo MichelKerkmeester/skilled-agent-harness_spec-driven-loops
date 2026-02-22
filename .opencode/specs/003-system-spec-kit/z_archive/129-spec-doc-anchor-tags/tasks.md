@@ -1,3 +1,16 @@
+---
+title: "Tasks: Spec Document Anchor Tags [129-spec-doc-anchor-tags/tasks]"
+description: "Task Format: T### [P?] Description (file path)"
+trigger_phrases:
+  - "tasks"
+  - "spec"
+  - "document"
+  - "anchor"
+  - "tags"
+  - "129"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: Spec Document Anchor Tags
 
 <!-- SPECKIT_LEVEL: 2 -->

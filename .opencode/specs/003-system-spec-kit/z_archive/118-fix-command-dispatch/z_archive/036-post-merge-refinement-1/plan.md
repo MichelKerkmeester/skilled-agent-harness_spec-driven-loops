@@ -1,9 +1,18 @@
 ---
+title: "Post-Merger Refinement Plan [036-post-merge-refinement-1/plan]"
+description: "id: 036-post-merge-refinement"
+trigger_phrases:
+  - "post"
+  - "merger"
+  - "refinement"
+  - "plan"
+  - "036"
+importance_tier: "important"
+contextType: "decision"
 id: 036-post-merge-refinement
-title: Post-Merger Refinement Plan
 phase: Planning
----
 
+---
 # Implementation Plan
 
 ## Phase 1: Critical Fixes (P0)

@@ -1,3 +1,17 @@
+---
+title: "Feature Specification: SpecKit Level-Based Template Alignment [071-speckit-level-alignment/spec]"
+description: "Align ALL SpecKit scripts, lib modules, and documentation with the new level-based template architecture from Spec 069."
+trigger_phrases:
+  - "feature"
+  - "specification"
+  - "speckit"
+  - "level"
+  - "based"
+  - "spec"
+  - "071"
+importance_tier: "important"
+contextType: "decision"
+---
 # Feature Specification: SpecKit Level-Based Template Alignment
 
 Align ALL SpecKit scripts, lib modules, and documentation with the new level-based template architecture from Spec 069.

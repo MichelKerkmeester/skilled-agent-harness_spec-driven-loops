@@ -1,3 +1,15 @@
+---
+title: "State Simplification: Implementation Plan [001-state-simplification/plan]"
+description: "Current"
+trigger_phrases:
+  - "state"
+  - "simplification"
+  - "implementation"
+  - "plan"
+  - "001"
+importance_tier: "important"
+contextType: "decision"
+---
 # State Simplification: Implementation Plan
 <!-- SPECKIT_TEMPLATE_SOURCE: plan | v1.0 -->
 

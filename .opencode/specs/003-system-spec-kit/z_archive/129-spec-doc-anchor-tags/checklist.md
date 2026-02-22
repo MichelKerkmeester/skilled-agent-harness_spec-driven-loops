@@ -1,3 +1,16 @@
+---
+title: "Verification Checklist: Spec Document Anchor Tags [129-spec-doc-anchor-tags/checklist]"
+description: "Verification Date: 2026-02-16"
+trigger_phrases:
+  - "verification"
+  - "checklist"
+  - "spec"
+  - "document"
+  - "anchor"
+  - "129"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Verification Checklist: Spec Document Anchor Tags
 
 <!-- SPECKIT_LEVEL: 2 -->

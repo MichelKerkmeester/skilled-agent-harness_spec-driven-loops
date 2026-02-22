@@ -1,3 +1,16 @@
+---
+title: "Implementation Plan: Agent System Upgrade [003-agent-system-upgrade/plan]"
+description: "This plan consolidates three workstreams that were executed in sequence"
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "agent"
+  - "system"
+  - "upgrade"
+  - "003"
+importance_tier: "important"
+contextType: "decision"
+---
 # Implementation Plan: Agent System Upgrade
 
 <!-- SPECKIT_LEVEL: 3+ -->

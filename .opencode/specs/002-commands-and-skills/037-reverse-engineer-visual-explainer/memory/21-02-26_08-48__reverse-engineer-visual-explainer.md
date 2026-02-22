@@ -1,3 +1,8 @@
+---
+title: "To promote a memory to [037-reverse-engineer-visual-explainer/21-02-26_08-48__reverse-engineer-visual-explainer]"
+importance_tier: "normal"
+contextType: "general"
+---
 <!-- TEMPLATE: context_template.md v2.2 - DO NOT EDIT GENERATED FILES -->
 <!-- Constitutional Tier Promotion:
   To promote a memory to constitutional tier (always surfaced):

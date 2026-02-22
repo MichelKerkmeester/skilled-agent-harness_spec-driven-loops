@@ -1,3 +1,17 @@
+---
+title: "Stateless Spec Passing & System Alignment Plan [017-stateless-spec-passing/plan]"
+description: "Core commands that actively read/write .spec-active - MUST be refactored."
+trigger_phrases:
+  - "stateless"
+  - "spec"
+  - "passing"
+  - "system"
+  - "alignment"
+  - "plan"
+  - "017"
+importance_tier: "important"
+contextType: "decision"
+---
 # Stateless Spec Passing & System Alignment Plan
 <!-- SPECKIT_TEMPLATE_SOURCE: plan | v2.0.0 -->
 <!-- MERGED: 009-stateless-spec-passing + 010-stateless-alignment on 2025-12-22 -->

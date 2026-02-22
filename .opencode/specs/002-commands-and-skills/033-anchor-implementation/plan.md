@@ -1,3 +1,17 @@
+---
+title: "Technical Plan: Retrieval Anchors for Skill Documentation [033-anchor-implementation/plan]"
+description: "Spec Folder: specs/002-commands-and-skills/033-anchor-implementation"
+trigger_phrases:
+  - "technical"
+  - "plan"
+  - "retrieval"
+  - "anchors"
+  - "for"
+  - "033"
+  - "anchor"
+importance_tier: "important"
+contextType: "decision"
+---
 <!-- SPECKIT_TEMPLATE_SOURCE: legacy-normalized | v2.2 -->
 
 # Technical Plan: Retrieval Anchors for Skill Documentation

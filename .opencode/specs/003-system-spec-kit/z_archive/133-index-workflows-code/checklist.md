@@ -1,3 +1,17 @@
+---
+title: "Verification Checklist: Skill References & Assets Indexing [133-index-workflows-code/checklist]"
+description: "Verification Date: 2026-02-17"
+trigger_phrases:
+  - "verification"
+  - "checklist"
+  - "skill"
+  - "references"
+  - "assets"
+  - "133"
+  - "index"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Verification Checklist: Skill References & Assets Indexing
 
 <!-- SPECKIT_LEVEL: 3+ -->

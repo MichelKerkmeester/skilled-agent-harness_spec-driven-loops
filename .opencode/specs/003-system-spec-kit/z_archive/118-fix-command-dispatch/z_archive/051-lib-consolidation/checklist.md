@@ -1,3 +1,15 @@
+---
+title: "Verification Checklist: Lib Consolidation [051-lib-consolidation/checklist]"
+description: "npx madge --circular .opencode/skill/system-spec-kit/"
+trigger_phrases:
+  - "verification"
+  - "checklist"
+  - "lib"
+  - "consolidation"
+  - "051"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Verification Checklist: Lib Consolidation
 
 ## Metadata

@@ -1,3 +1,16 @@
+---
+title: "Checklist: 138-hybrid-rag-fusion [002-hybrid-rag-fusion/checklist]"
+description: "checklist document for 002-hybrid-rag-fusion."
+trigger_phrases:
+  - "checklist"
+  - "138"
+  - "hybrid"
+  - "rag"
+  - "fusion"
+  - "002"
+importance_tier: "normal"
+contextType: "implementation"
+---
 <!-- SPECKIT_LEVEL: 3+ -->
 # Checklist: 138-hybrid-rag-fusion
 

@@ -1,3 +1,16 @@
+---
+title: "Implementation Plan: Memory Command Dashboard Visual Design System [036-memory-command-output/plan]"
+description: "This plan defines a Memory Dashboard Visual Design System — a shared set of output components (headers, dividers, tables, status bars, box frames, metric displays) — and applies..."
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "memory"
+  - "command"
+  - "dashboard"
+  - "036"
+importance_tier: "important"
+contextType: "decision"
+---
 # Implementation Plan: Memory Command Dashboard Visual Design System
 
 <!-- SPECKIT_LEVEL: 2 -->

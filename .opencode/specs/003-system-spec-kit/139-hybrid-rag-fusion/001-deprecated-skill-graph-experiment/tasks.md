@@ -1,3 +1,17 @@
+---
+title: "Tasks: 013 - Deprecate Skill Graph and README/Skill-Ref Indexing [001-deprecated-skill-graph-experiment/tasks]"
+description: "Task Format: T### [P?] Description (file path)"
+trigger_phrases:
+  - "tasks"
+  - "013"
+  - "deprecate"
+  - "skill"
+  - "graph"
+  - "001"
+  - "deprecated"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: 013 - Deprecate Skill Graph and README/Skill-Ref Indexing (Completion Pass 2)
 
 <!-- SPECKIT_LEVEL: 3 -->

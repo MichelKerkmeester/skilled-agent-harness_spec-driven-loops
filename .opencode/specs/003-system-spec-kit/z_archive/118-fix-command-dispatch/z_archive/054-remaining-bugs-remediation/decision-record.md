@@ -1,3 +1,17 @@
+---
+title: "Decision Record: Remaining Bugs Remediation [054-remaining-bugs-remediation/decision-record]"
+description: "Date: 2026-01-01"
+trigger_phrases:
+  - "decision"
+  - "record"
+  - "remaining"
+  - "bugs"
+  - "remediation"
+  - "decision record"
+  - "054"
+importance_tier: "important"
+contextType: "decision"
+---
 # Decision Record: Remaining Bugs Remediation
 
 | Field | Value |

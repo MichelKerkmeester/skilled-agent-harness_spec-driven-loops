@@ -1,3 +1,16 @@
+---
+title: "Plan: Aggressive @context_loader Enforcement [008-context-loader-enforcement/plan]"
+description: "Full audit of all agent and command files, applying the aggressive enforcement rule from spec.md §3. Each @explore reference is classified as KEEP (rule-compliant) or REPLACE (s..."
+trigger_phrases:
+  - "plan"
+  - "aggressive"
+  - "context"
+  - "loader"
+  - "enforcement"
+  - "008"
+importance_tier: "important"
+contextType: "decision"
+---
 # Plan: Aggressive @context_loader Enforcement
 
 > **Spec Folder:** `.opencode/specs/004-agents/008-context-loader-enforcement/`

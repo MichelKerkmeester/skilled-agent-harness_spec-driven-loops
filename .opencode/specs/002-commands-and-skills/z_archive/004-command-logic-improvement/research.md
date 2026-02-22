@@ -1,3 +1,15 @@
+---
+title: "Command Logic Improvement Research [004-command-logic-improvement/research]"
+description: "The investigation was initiated to analyze external command references from a GitHub Gist containing 9 well-designed Claude Code commands, compare them against the 17 existing O..."
+trigger_phrases:
+  - "command"
+  - "logic"
+  - "improvement"
+  - "research"
+  - "004"
+importance_tier: "normal"
+contextType: "research"
+---
 # Command Logic Improvement Research
 
 ---

@@ -1,3 +1,15 @@
+---
+title: "Verification Checklist - UX Deep Analysis [033-ux-deep-analysis/checklist]"
+description: "checklist document for 033-ux-deep-analysis."
+trigger_phrases:
+  - "verification"
+  - "checklist"
+  - "deep"
+  - "analysis"
+  - "033"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Verification Checklist - UX Deep Analysis
 
 ## Analysis Phase

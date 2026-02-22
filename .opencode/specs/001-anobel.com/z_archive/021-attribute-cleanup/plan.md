@@ -1,3 +1,16 @@
+---
+title: "Implementation Plan: Attribute Cleanup Deepdive [021-attribute-cleanup/plan]"
+description: "USE LEVEL 2+ IF: Phase dependencies need tracking, effort estimation required, or multiple developers. -->"
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "attribute"
+  - "cleanup"
+  - "deepdive"
+  - "021"
+importance_tier: "important"
+contextType: "decision"
+---
 # Implementation Plan: Attribute Cleanup Deepdive
 
 <!-- SPECKIT_LEVEL: 1 -->

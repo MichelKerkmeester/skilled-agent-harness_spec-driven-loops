@@ -1,3 +1,16 @@
+---
+title: "Phase Package Plan: Extraction and Rollout (Phase 2, Phase 3) [002-extraction-rollout-phases-2-3/plan]"
+description: "Implement extraction and causal ranking features, then execute controlled rollout with telemetry and rollback safety."
+trigger_phrases:
+  - "phase"
+  - "package"
+  - "plan"
+  - "extraction"
+  - "and"
+  - "002"
+importance_tier: "important"
+contextType: "decision"
+---
 # Phase Package Plan: Extraction and Rollout (Phase 2, Phase 3)
 
 <!-- SPECKIT_LEVEL: 3+ -->

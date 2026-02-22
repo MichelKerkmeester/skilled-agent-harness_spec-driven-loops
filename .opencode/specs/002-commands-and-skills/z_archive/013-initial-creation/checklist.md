@@ -1,3 +1,17 @@
+---
+title: "Checklist: Figma MCP Install Guide & Skill Creation [013-initial-creation/checklist]"
+description: "Must complete before claiming done."
+trigger_phrases:
+  - "checklist"
+  - "figma"
+  - "mcp"
+  - "install"
+  - "guide"
+  - "013"
+  - "initial"
+importance_tier: "normal"
+contextType: "implementation"
+---
 <!-- SPECKIT_TEMPLATE_SOURCE: legacy-normalized | v2.2 -->
 
 # Checklist: Figma MCP Install Guide & Skill Creation

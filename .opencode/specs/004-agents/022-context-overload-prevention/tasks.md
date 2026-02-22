@@ -1,3 +1,15 @@
+---
+title: "Tasks: Context Overload Prevention [022-context-overload-prevention/tasks]"
+description: "Task Format: T### [P?] Description (file path)"
+trigger_phrases:
+  - "tasks"
+  - "context"
+  - "overload"
+  - "prevention"
+  - "022"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: Context Overload Prevention
 
 <!-- SPECKIT_LEVEL: 2 -->

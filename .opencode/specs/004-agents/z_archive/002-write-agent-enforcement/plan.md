@@ -1,3 +1,16 @@
+---
+title: "Plan: @write Agent Enforcement for /create Commands [002-write-agent-enforcement/plan]"
+description: "For each command, make these changes"
+trigger_phrases:
+  - "plan"
+  - "write"
+  - "agent"
+  - "enforcement"
+  - "for"
+  - "002"
+importance_tier: "important"
+contextType: "decision"
+---
 # Plan: @write Agent Enforcement for /create Commands
 
 <!-- ANCHOR:implementation-strategy -->

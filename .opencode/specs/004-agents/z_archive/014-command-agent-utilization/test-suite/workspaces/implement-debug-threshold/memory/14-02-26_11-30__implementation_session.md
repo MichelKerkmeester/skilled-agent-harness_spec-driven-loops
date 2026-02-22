@@ -1,3 +1,8 @@
+---
+title: "Implementation Session: JWT Authentication (Debug [implement-debug-threshold/14-02-26_11-30__implementation_session]"
+importance_tier: "normal"
+contextType: "general"
+---
 # Implementation Session: JWT Authentication (Debug Path)
 
 <!-- SPECKIT_MEMORY_FILE -->

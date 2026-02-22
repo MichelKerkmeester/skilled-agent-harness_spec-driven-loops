@@ -1,3 +1,17 @@
+---
+title: "Tasks: [YOUR_VALUE_HERE: feature-name] - Implementation Breakdown [011-docs-alignment/tasks]"
+description: "Task list template for feature implementation with user story organization and independent testing."
+trigger_phrases:
+  - "tasks"
+  - "your"
+  - "value"
+  - "here"
+  - "feature"
+  - "011"
+  - "docs"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: [YOUR_VALUE_HERE: feature-name] - Implementation Breakdown
 
 Task list template for feature implementation with user story organization and independent testing.

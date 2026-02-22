@@ -1,3 +1,15 @@
+---
+title: "Checklist: CSS Performance Upgrade [011-css-performance-cv/checklist]"
+description: "checklist document for 011-css-performance-cv."
+trigger_phrases:
+  - "checklist"
+  - "css"
+  - "performance"
+  - "upgrade"
+  - "011"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Checklist: CSS Performance Upgrade
 
 - [x] Spec folder created `specs/005-anobel.com/011-css-performance-cv`

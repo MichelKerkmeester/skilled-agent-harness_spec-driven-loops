@@ -1,3 +1,17 @@
+---
+title: "Tasks: 138 SGQS Score Recovery Plan (Child 009, Milestone 3.5 First) [009-skill-graph-score-recovery/tasks]"
+description: "Task Format: T### [P?] Description (file path)"
+trigger_phrases:
+  - "tasks"
+  - "138"
+  - "sgqs"
+  - "score"
+  - "recovery"
+  - "009"
+  - "skill"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: 138 SGQS Score Recovery Plan (Child 009, Milestone 3.5 First)
 
 <!-- SPECKIT_LEVEL: 2 -->

@@ -1,3 +1,8 @@
+---
+title: "Related Documentation [020-workflows-code-codebase-alignment/22-12-25_08-14__skill-alignment-complete]"
+importance_tier: "normal"
+contextType: "general"
+---
 <!-- TEMPLATE: context_template.md v2.2 - DO NOT EDIT GENERATED FILES -->
 ---
 

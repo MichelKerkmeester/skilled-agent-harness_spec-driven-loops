@@ -1,3 +1,16 @@
+---
+title: "Verification Checklist: generate-context.ts Subfolder Support [123-generate-context-subfolder/checklist]"
+description: "Verification Date: Pending"
+trigger_phrases:
+  - "verification"
+  - "checklist"
+  - "generate"
+  - "context"
+  - "subfolder"
+  - "123"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Verification Checklist: generate-context.ts Subfolder Support
 
 <!-- SPECKIT_LEVEL: 2 -->

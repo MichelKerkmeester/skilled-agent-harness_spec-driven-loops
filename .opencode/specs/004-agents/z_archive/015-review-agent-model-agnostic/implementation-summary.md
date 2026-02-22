@@ -1,3 +1,15 @@
+---
+title: "Implementation Summary [015-review-agent-model-agnostic/implementation-summary]"
+description: "Removed the hardcoded model: github-copilot/claude-opus-4.6 line from the review agent's YAML frontmatter, enabling model inheritance from the dispatching parent agent. This fol..."
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "implementation summary"
+  - "015"
+  - "review"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Implementation Summary
 
 <!-- SPECKIT_LEVEL: 1 -->

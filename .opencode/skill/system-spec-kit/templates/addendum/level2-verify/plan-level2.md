@@ -1,3 +1,14 @@
+---
+title: "Phase 1 (Setup) ──────┐ [template:addendum/level2-verify/plan-level2.md]"
+description: "Phase 1 (Setup) ──────┐"
+trigger_phrases:
+  - "phase"
+  - "setup"
+  - "template"
+  - "plan level2"
+importance_tier: "normal"
+contextType: "general"
+---
 <!-- SPECKIT_ADDENDUM: Level 2 - Verification -->
 <!-- Append after CORE plan.md Section 6 -->
 

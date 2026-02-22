@@ -1,3 +1,16 @@
+---
+title: "Research: Memory Index TXT File Support [131-memory-index-txt-support/research]"
+description: "This research document captures technical investigation into adding .txt file indexing support to the Spec Kit Memory system. Focus areas: command folder structure, existing fil..."
+trigger_phrases:
+  - "research"
+  - "memory"
+  - "index"
+  - "txt"
+  - "file"
+  - "131"
+importance_tier: "normal"
+contextType: "research"
+---
 # Research: Memory Index TXT File Support
 
 <!-- SPECKIT_LEVEL: 3 -->

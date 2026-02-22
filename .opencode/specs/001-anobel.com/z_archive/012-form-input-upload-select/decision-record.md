@@ -1,3 +1,17 @@
+---
+title: "Decision Record: Form Input Components Enhancement [012-form-input-upload-select/decision-record]"
+description: "Date: 2024-12-27"
+trigger_phrases:
+  - "decision"
+  - "record"
+  - "form"
+  - "input"
+  - "components"
+  - "decision record"
+  - "012"
+importance_tier: "important"
+contextType: "decision"
+---
 # Decision Record: Form Input Components Enhancement
 
 ---

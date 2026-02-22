@@ -1,3 +1,15 @@
+---
+title: "Implementation Summary [085-alignment-file-paths/implementation-summary]"
+description: "File: .opencode/skill/system-spec-kit/scripts/spec-folder/alignment-validator.js"
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "implementation summary"
+  - "085"
+  - "alignment"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Implementation Summary
 
 ## Changes Made

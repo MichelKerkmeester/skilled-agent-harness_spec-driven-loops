@@ -1,3 +1,8 @@
+---
+title: "--> [082-speckit-reimagined/01-02-26_11-16__speckit-reimagined]"
+importance_tier: "normal"
+contextType: "general"
+---
 <!-- TEMPLATE: context_template.md v2.2 - DO NOT EDIT GENERATED FILES -->
 <!-- v2.2 Features (20-Agent Analysis Improvements):
   - CONTINUE SESSION section: Enables seamless session recovery (seu-claude pattern)

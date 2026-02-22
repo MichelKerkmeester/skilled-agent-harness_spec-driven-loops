@@ -1,3 +1,17 @@
+---
+title: "Tasks: Zero-Tolerance Documentation Formatting [018-style-enforcement/tasks]"
+description: "Location: .opencode/skill/sk-documentation/assets/template_rules.json"
+trigger_phrases:
+  - "tasks"
+  - "zero"
+  - "tolerance"
+  - "documentation"
+  - "formatting"
+  - "018"
+  - "style"
+importance_tier: "normal"
+contextType: "implementation"
+---
 <!-- SPECKIT_TEMPLATE_SOURCE: legacy-normalized | v2.2 -->
 
 # Tasks: Zero-Tolerance Documentation Formatting

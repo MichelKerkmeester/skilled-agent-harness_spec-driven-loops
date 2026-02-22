@@ -1,3 +1,16 @@
+---
+title: "Session Handover: JWT Authentication [resume-happy/handover]"
+description: "Spec Folder: specs/042-jwt-authentication"
+trigger_phrases:
+  - "session"
+  - "handover"
+  - "jwt"
+  - "authentication"
+  - "resume"
+  - "happy"
+importance_tier: "normal"
+contextType: "general"
+---
 # Session Handover: JWT Authentication
 
 **Spec Folder**: specs/042-jwt-authentication

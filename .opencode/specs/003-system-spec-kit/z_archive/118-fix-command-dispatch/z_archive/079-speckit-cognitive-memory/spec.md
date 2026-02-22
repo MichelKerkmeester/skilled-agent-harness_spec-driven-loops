@@ -1,3 +1,18 @@
+---
+title: "Feature Specification: Cognitive Memory Upgrade [079-speckit-cognitive-memory/spec]"
+description: "Upgrade the Spec Kit Memory MCP server with cognitive science-inspired memory patterns: FSRS power-law decay, prediction error gating for conflict detection, and dual-strength t..."
+trigger_phrases:
+  - "feature"
+  - "specification"
+  - "cognitive"
+  - "memory"
+  - "upgrade"
+  - "spec"
+  - "079"
+  - "speckit"
+importance_tier: "important"
+contextType: "decision"
+---
 # Feature Specification: Cognitive Memory Upgrade
 
 <!-- SPECKIT_LEVEL: 3+ -->

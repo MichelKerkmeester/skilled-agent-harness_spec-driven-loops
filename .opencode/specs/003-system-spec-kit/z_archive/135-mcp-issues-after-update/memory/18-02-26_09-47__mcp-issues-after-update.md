@@ -1,3 +1,8 @@
+---
+title: "To promote a memory to constitutional tier [135-mcp-issues-after-update/18-02-26_09-47__mcp-issues-after-update]"
+importance_tier: "normal"
+contextType: "general"
+---
 <!-- TEMPLATE: context_template.md v2.2 - DO NOT EDIT GENERATED FILES -->
 <!-- Constitutional Tier Promotion:
   To promote a memory to constitutional tier (always surfaced):

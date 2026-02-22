@@ -1,3 +1,16 @@
+---
+title: "MCP Embedding Failure - Investigation Plan [086-mcp-embedding-failure/plan]"
+description: "After comprehensive parallel investigation by 12 opus agents, the root cause of the \"Protobuf parsing failed\" error is identified as"
+trigger_phrases:
+  - "mcp"
+  - "embedding"
+  - "failure"
+  - "investigation"
+  - "plan"
+  - "086"
+importance_tier: "important"
+contextType: "decision"
+---
 # MCP Embedding Failure - Investigation Plan
 
 ## Executive Summary

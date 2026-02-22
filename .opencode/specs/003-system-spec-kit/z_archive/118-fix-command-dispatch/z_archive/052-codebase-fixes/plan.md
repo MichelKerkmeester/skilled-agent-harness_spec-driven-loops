@@ -1,3 +1,15 @@
+---
+title: "Implementation Plan: Codebase Fixes [052-codebase-fixes/plan]"
+description: "File: mcp_server/lib/checkpoints.js"
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "codebase"
+  - "fixes"
+  - "052"
+importance_tier: "important"
+contextType: "decision"
+---
 # Implementation Plan: Codebase Fixes
 
 ## Phase 1: P0 Critical Fixes

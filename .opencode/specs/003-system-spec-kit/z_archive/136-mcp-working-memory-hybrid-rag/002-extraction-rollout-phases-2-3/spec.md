@@ -1,3 +1,16 @@
+---
+title: "Phase Package Spec: Extraction and Rollout (Phase 2, Phase 3) [002-extraction-rollout-phases-2-3/spec]"
+description: "This package defines extraction, redaction, causal boost, and rollout operations after foundation hard-gates pass."
+trigger_phrases:
+  - "phase"
+  - "package"
+  - "spec"
+  - "extraction"
+  - "and"
+  - "002"
+importance_tier: "important"
+contextType: "decision"
+---
 <!-- SPECKIT_LEVEL: 3+ -->
 # Phase Package Spec: Extraction and Rollout (Phase 2, Phase 3)
 

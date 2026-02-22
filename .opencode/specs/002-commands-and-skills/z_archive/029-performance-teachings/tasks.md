@@ -1,3 +1,17 @@
+---
+title: "Tasks: Update workflows-code--web-dev with Spec 031 Performance Teachings [029-performance-teachings/tasks]"
+description: "tasks document for 029-performance-teachings."
+trigger_phrases:
+  - "tasks"
+  - "update"
+  - "workflows"
+  - "code"
+  - "web"
+  - "029"
+  - "performance"
+importance_tier: "normal"
+contextType: "implementation"
+---
 <!-- SPECKIT_TEMPLATE_SOURCE: legacy-normalized | v2.2 -->
 
 # Tasks: Update workflows-code--web-dev with Spec 031 Performance Teachings

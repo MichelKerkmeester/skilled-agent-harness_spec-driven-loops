@@ -1,3 +1,14 @@
+---
+title: "Security Remediation Checklist [009-security-remediation/checklist]"
+description: "All minified files regenerated with Terser 5.44.1"
+trigger_phrases:
+  - "security"
+  - "remediation"
+  - "checklist"
+  - "009"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Security Remediation Checklist
 
 <!-- ANCHOR:p0---must-complete -->

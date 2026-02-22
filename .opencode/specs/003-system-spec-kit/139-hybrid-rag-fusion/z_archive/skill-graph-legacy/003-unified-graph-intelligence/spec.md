@@ -1,3 +1,17 @@
+---
+title: "Feature Specification: Unified Graph Intelligence Integration [003-unified-graph-intelligence/spec]"
+description: "The graphSearchFn argument in the production hybrid search pipeline has been NULL since initial deployment. At context-server.ts:566, hybridSearch.init() is called with only 2 o..."
+trigger_phrases:
+  - "feature"
+  - "specification"
+  - "unified"
+  - "graph"
+  - "intelligence"
+  - "spec"
+  - "003"
+importance_tier: "important"
+contextType: "decision"
+---
 <!-- SPECKIT_LEVEL: 3+ -->
 # Feature Specification: Unified Graph Intelligence Integration
 

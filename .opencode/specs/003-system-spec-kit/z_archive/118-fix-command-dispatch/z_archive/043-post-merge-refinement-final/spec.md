@@ -1,3 +1,17 @@
+---
+title: "Specification: Post-Merge Refinement Final [043-post-merge-refinement-final/spec]"
+description: "After the major Spec Kit + Memory system merger (spec 035), eight refinement attempts (036-042) identified ~300+ issues. However, many were"
+trigger_phrases:
+  - "specification"
+  - "post"
+  - "merge"
+  - "refinement"
+  - "final"
+  - "spec"
+  - "043"
+importance_tier: "important"
+contextType: "decision"
+---
 # Specification: Post-Merge Refinement Final
 
 | **Field** | **Value** |

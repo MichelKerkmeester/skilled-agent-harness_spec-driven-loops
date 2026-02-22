@@ -1,3 +1,17 @@
+---
+title: "Implementation Plan: Working Memory + Hybrid RAG Automation [136-mcp-working-memory-hybrid-rag/plan]"
+description: "Enhance Spec Kit Memory MCP with session-cognitive automation by adding bounded attention boosting post-RRF fusion, pressure-aware mode switching based on token usage ratios, ev..."
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "working"
+  - "memory"
+  - "hybrid"
+  - "136"
+  - "mcp"
+importance_tier: "important"
+contextType: "decision"
+---
 # Implementation Plan: Working Memory + Hybrid RAG Automation
 
 <!-- SPECKIT_LEVEL: 3+ -->

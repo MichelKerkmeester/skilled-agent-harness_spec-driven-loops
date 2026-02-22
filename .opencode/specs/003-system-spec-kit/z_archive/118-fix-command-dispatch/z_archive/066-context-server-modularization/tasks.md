@@ -1,3 +1,16 @@
+---
+title: "Tasks: Context-Server Modularization - Implementation Breakdown [066-context-server-modularization/tasks]"
+description: "Task list for decomposing context-server.js into focused modules."
+trigger_phrases:
+  - "tasks"
+  - "context"
+  - "server"
+  - "modularization"
+  - "implementation"
+  - "066"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: Context-Server Modularization - Implementation Breakdown
 
 Task list for decomposing context-server.js into focused modules.

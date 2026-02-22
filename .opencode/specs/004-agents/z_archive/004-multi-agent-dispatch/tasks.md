@@ -1,3 +1,16 @@
+---
+title: "Tasks: Multi-Agent Dispatch Implementation [004-multi-agent-dispatch/tasks]"
+description: "Task 1, Task 2 (commands) - No dependencies ✅"
+trigger_phrases:
+  - "tasks"
+  - "multi"
+  - "agent"
+  - "dispatch"
+  - "implementation"
+  - "004"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: Multi-Agent Dispatch Implementation
 
 <!-- ANCHOR:task-list -->

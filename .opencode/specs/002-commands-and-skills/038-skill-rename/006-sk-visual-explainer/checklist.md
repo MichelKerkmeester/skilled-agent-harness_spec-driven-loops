@@ -1,3 +1,16 @@
+---
+title: "Verification Checklist: Phase 006 — Rename sk-visual-explainer to [006-sk-visual-explainer/checklist]"
+description: "Verification Date: 2026-02-21"
+trigger_phrases:
+  - "verification"
+  - "checklist"
+  - "phase"
+  - "006"
+  - "rename"
+  - "visual"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Verification Checklist: Phase 006 — Rename sk-visual-explainer to sk-visual-explainer
 
 <!-- SPECKIT_LEVEL: 2 -->

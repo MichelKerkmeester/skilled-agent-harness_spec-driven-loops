@@ -1,3 +1,15 @@
+---
+title: "Checklist: Memory System Integration [035-memory-speckit-merger/checklist]"
+description: "Implementation Note: The actual implementation uses a different structure than originally planned"
+trigger_phrases:
+  - "checklist"
+  - "memory"
+  - "system"
+  - "integration"
+  - "035"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Checklist: Memory System Integration
 
 ## Overview

@@ -1,3 +1,14 @@
+---
+title: "Implementation Summary [template:level_2/implementation-summary.md]"
+description: "Open with a hook: what changed and why it matters."
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "template"
+  - "implementation summary"
+importance_tier: "normal"
+contextType: "general"
+---
 # Implementation Summary
 
 <!-- SPECKIT_LEVEL: 2 -->

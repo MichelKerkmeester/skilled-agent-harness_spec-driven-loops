@@ -1,10 +1,21 @@
 ---
-title: "Research: system-spec-kit Ecosystem Audit"
-spec: "089"
+title: "Research: system-spec-kit Ecosystem Audit [089-speckit-reimagined-refinement/research]"
+description: "title: \"Research: system-spec-kit Ecosystem Audit\""
+trigger_phrases:
+  - "research"
+  - "system"
+  - "spec"
+  - "kit"
+  - "ecosystem"
+  - "089"
+  - "speckit"
+importance_tier: "normal"
+contextType: "research"
 methodology: "10 parallel Opus 4.6 research agents"
+spec: "089"
 total-findings: "~120+"
----
 
+---
 # Research: system-spec-kit Ecosystem Audit
 
 > Complete findings from 10 parallel research agents analyzing the entire system-spec-kit skill ecosystem.

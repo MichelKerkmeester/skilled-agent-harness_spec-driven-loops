@@ -1,3 +1,16 @@
+---
+title: "Spec: Rename workflows-memory → system-memory [025-system-memory-rename/spec]"
+description: "The workflows-memory skill needs to be renamed to system-memory to align with the naming convention established by the recent workflows-spec-kit → system-spec-kit rename. The \"s..."
+trigger_phrases:
+  - "spec"
+  - "rename"
+  - "workflows"
+  - "memory"
+  - "system"
+  - "025"
+importance_tier: "important"
+contextType: "decision"
+---
 # Spec: Rename workflows-memory → system-memory
 
 ## Overview

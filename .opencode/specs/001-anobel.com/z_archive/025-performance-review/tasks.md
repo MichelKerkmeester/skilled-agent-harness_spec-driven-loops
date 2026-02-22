@@ -1,3 +1,16 @@
+---
+title: "Tasks: Performance Optimization Review - Spec 025 [025-performance-review/tasks]"
+description: "Task Format: T### [P?] [Priority] Description (file path) → CHK-###"
+trigger_phrases:
+  - "tasks"
+  - "performance"
+  - "optimization"
+  - "review"
+  - "spec"
+  - "025"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: Performance Optimization Review - Spec 025
 
 <!-- SPECKIT_LEVEL: 2 -->

@@ -1,3 +1,15 @@
+---
+title: "Anchor System Enforcement [014-anchor-enforcement/spec]"
+description: "Enforce correct anchor format throughout memory system to enable section-specific retrieval with 93% token savings."
+trigger_phrases:
+  - "anchor"
+  - "system"
+  - "enforcement"
+  - "spec"
+  - "014"
+importance_tier: "important"
+contextType: "decision"
+---
 # Anchor System Enforcement
 
 ## Overview

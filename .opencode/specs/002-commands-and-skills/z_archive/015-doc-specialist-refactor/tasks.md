@@ -1,3 +1,16 @@
+---
+title: "Tasks: Document Specialist Refactor [015-doc-specialist-refactor/tasks]"
+description: "tasks document for 015-doc-specialist-refactor."
+trigger_phrases:
+  - "tasks"
+  - "document"
+  - "specialist"
+  - "refactor"
+  - "015"
+  - "doc"
+importance_tier: "normal"
+contextType: "implementation"
+---
 <!-- SPECKIT_TEMPLATE_SOURCE: legacy-normalized | v2.2 -->
 
 # Tasks: Document Specialist Refactor

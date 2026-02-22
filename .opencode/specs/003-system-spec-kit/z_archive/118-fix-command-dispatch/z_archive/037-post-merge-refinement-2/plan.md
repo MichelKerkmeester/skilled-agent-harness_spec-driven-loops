@@ -1,3 +1,13 @@
+---
+title: "Plan [037-post-merge-refinement-2/plan]"
+description: "plan document for 037-post-merge-refinement-2."
+trigger_phrases:
+  - "plan"
+  - "037"
+  - "post"
+importance_tier: "important"
+contextType: "decision"
+---
 # Plan
 
 ## Phase 1: Analysis (Diff v11 vs v12)

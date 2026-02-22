@@ -1,3 +1,17 @@
+---
+title: "Feature Specification: Reverse-Engineer Visual Explainer Skill [037-reverse-engineer-visual-explainer/spec]"
+description: "Reverse-engineer the open-source nicobailon/visual-explainer GitHub repo (v0.1.1, MIT license) into a full OpenCode skill called sk-visual-explainer. The skill transforms comple..."
+trigger_phrases:
+  - "feature"
+  - "specification"
+  - "reverse"
+  - "engineer"
+  - "visual"
+  - "spec"
+  - "037"
+importance_tier: "important"
+contextType: "decision"
+---
 # Feature Specification: Reverse-Engineer Visual Explainer Skill
 
 <!-- SPECKIT_LEVEL: 3 -->

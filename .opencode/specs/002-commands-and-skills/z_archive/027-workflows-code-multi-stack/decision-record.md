@@ -1,3 +1,17 @@
+---
+title: "Decision Record - workflows-code Conversion [027-workflows-code-multi-stack/decision-record]"
+description: "Document key architectural and strategic decisions for converting Barter's workflows-code skill to a universal version."
+trigger_phrases:
+  - "decision"
+  - "record"
+  - "workflows"
+  - "code"
+  - "conversion"
+  - "decision record"
+  - "027"
+importance_tier: "important"
+contextType: "decision"
+---
 <!-- SPECKIT_TEMPLATE_SOURCE: legacy-normalized | v2.2 -->
 
 # Decision Record - workflows-code Conversion

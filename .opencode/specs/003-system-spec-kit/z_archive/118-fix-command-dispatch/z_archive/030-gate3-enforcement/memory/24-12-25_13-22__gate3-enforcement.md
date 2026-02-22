@@ -1,3 +1,8 @@
+---
+title: "Epistemic state captured at session start for learning delta [030-gate3-enforcement/24-12-25_13-22__gate3-enforcement]"
+importance_tier: "normal"
+contextType: "general"
+---
 <!-- TEMPLATE: context_template.md v2.2 - DO NOT EDIT GENERATED FILES -->
 ---
 

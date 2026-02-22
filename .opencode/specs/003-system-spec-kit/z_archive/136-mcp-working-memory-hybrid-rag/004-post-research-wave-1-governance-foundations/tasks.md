@@ -1,3 +1,16 @@
+---
+title: "Tasks: Post-Research Wave 1 Package (Governance Foundations) [004-post-research-wave-1-governance-foundations/tasks]"
+description: "Tracking document prepared for Wave 1 execution and synchronized with root post-research backlog mapping."
+trigger_phrases:
+  - "tasks"
+  - "post"
+  - "research"
+  - "wave"
+  - "package"
+  - "004"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: Post-Research Wave 1 Package (Governance Foundations)
 
 <!-- SPECKIT_LEVEL: 3+ -->

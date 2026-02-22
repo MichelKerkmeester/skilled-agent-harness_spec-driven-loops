@@ -1,3 +1,15 @@
+---
+title: "Tasks: Task 03 — Command Configs Audit [task-03-command-alignment/tasks]"
+description: "Task Format: T### Description (file path)"
+trigger_phrases:
+  - "tasks"
+  - "task"
+  - "command"
+  - "configs"
+  - "audit"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: Task 03 — Command Configs Audit
 
 <!-- SPECKIT_LEVEL: 3+ -->

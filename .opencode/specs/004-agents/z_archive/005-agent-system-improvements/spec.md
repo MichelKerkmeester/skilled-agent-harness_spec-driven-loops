@@ -1,3 +1,17 @@
+---
+title: "Feature Specification: Agent System Improvements [005-agent-system-improvements/spec]"
+description: "This specification defines 9 targeted improvements to the OpenCode agent, command, and skill documentation. All changes are documentation/instruction-level refinements - no new ..."
+trigger_phrases:
+  - "feature"
+  - "specification"
+  - "agent"
+  - "system"
+  - "improvements"
+  - "spec"
+  - "005"
+importance_tier: "important"
+contextType: "decision"
+---
 <!-- SPECKIT_LEVEL: 3+ -->
 # Feature Specification: Agent System Improvements
 

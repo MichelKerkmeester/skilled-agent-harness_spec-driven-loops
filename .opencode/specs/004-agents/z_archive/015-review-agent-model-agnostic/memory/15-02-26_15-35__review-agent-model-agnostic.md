@@ -1,3 +1,8 @@
+---
+title: "To promote a memory to constitutional [015-review-agent-model-agnostic/15-02-26_15-35__review-agent-model-agnostic]"
+importance_tier: "normal"
+contextType: "general"
+---
 <!-- TEMPLATE: context_template.md v2.2 - DO NOT EDIT GENERATED FILES -->
 <!-- Constitutional Tier Promotion:
   To promote a memory to constitutional tier (always surfaced):

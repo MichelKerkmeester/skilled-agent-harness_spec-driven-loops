@@ -1,3 +1,16 @@
+---
+title: "Verification Checklist: Add User Authentication [template:examples/level_2/checklist.md]"
+description: "verification evidence. Each item marked [x] includes evidence of completion. -->"
+trigger_phrases:
+  - "verification"
+  - "checklist"
+  - "add"
+  - "user"
+  - "authentication"
+  - "template"
+importance_tier: "normal"
+contextType: "general"
+---
 # Verification Checklist: Add User Authentication
 
 <!-- SPECKIT_LEVEL: 2 -->

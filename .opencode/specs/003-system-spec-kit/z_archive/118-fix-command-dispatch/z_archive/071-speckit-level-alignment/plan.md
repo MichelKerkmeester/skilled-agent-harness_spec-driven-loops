@@ -1,3 +1,16 @@
+---
+title: "Plan: SpecKit Level-Based Template Alignment [071-speckit-level-alignment/plan]"
+description: "Spec Folder: specs/003-memory-and-spec-kit/071-speckit-level-alignment"
+trigger_phrases:
+  - "plan"
+  - "speckit"
+  - "level"
+  - "based"
+  - "template"
+  - "071"
+importance_tier: "important"
+contextType: "decision"
+---
 # Plan: SpecKit Level-Based Template Alignment
 
 **Spec Folder**: `specs/003-memory-and-spec-kit/071-speckit-level-alignment`

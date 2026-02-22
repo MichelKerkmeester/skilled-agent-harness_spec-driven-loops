@@ -1,3 +1,16 @@
+---
+title: "Checklist: Document Specialist Refactor [015-doc-specialist-refactor/checklist]"
+description: "checklist document for 015-doc-specialist-refactor."
+trigger_phrases:
+  - "checklist"
+  - "document"
+  - "specialist"
+  - "refactor"
+  - "015"
+  - "doc"
+importance_tier: "normal"
+contextType: "implementation"
+---
 <!-- SPECKIT_TEMPLATE_SOURCE: legacy-normalized | v2.2 -->
 
 # Checklist: Document Specialist Refactor

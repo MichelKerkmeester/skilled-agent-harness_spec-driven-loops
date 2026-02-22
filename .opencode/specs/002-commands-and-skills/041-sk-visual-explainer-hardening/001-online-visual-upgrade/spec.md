@@ -1,3 +1,17 @@
+---
+title: "Feature Specification: Online Visual Upgrade (Next Stage) [001-online-visual-upgrade/spec]"
+description: "The current sk-visual-explainer hardening baseline is stable, but parity between router behavior, reference coverage, and template/version governance is not yet explicit. This c..."
+trigger_phrases:
+  - "feature"
+  - "specification"
+  - "online"
+  - "visual"
+  - "upgrade"
+  - "spec"
+  - "001"
+importance_tier: "important"
+contextType: "decision"
+---
 # Feature Specification: Online Visual Upgrade (Next Stage)
 
 <!-- SPECKIT_LEVEL: 2 -->

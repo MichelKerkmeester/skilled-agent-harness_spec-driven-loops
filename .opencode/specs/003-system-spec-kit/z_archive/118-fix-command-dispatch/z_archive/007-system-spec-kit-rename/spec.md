@@ -1,3 +1,17 @@
+---
+title: "Skill Rename: workflows-spec-kit → system-spec-kit [007-system-spec-kit-rename/spec]"
+description: "Rename the workflows-spec-kit skill to system-spec-kit across the entire codebase, ensuring all references are properly updated while preserving historical documentation."
+trigger_phrases:
+  - "skill"
+  - "rename"
+  - "workflows"
+  - "spec"
+  - "kit"
+  - "007"
+  - "system"
+importance_tier: "important"
+contextType: "decision"
+---
 # Skill Rename: workflows-spec-kit → system-spec-kit
 
 ## Overview

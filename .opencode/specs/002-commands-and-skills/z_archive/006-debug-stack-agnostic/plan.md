@@ -1,3 +1,16 @@
+---
+title: "Plan: Make Debug Command Stack-Agnostic [006-debug-stack-agnostic/plan]"
+description: "Make /spec_kit:debug inherently universal - it just works for any debugging task (frontend, backend, infrastructure) without asking or detecting what stack is being debugged."
+trigger_phrases:
+  - "plan"
+  - "make"
+  - "debug"
+  - "command"
+  - "stack"
+  - "006"
+importance_tier: "important"
+contextType: "decision"
+---
 <!-- SPECKIT_TEMPLATE_SOURCE: legacy-normalized | v2.2 -->
 
 # Plan: Make Debug Command Stack-Agnostic

@@ -1,3 +1,16 @@
+---
+title: "Tasks: Index Large Files — Chunked Indexing, Bulk Delete, and CLI [010-index-large-files/tasks]"
+description: "Task Format: T### [P?] Description (file path)"
+trigger_phrases:
+  - "tasks"
+  - "index"
+  - "large"
+  - "files"
+  - "chunked"
+  - "010"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: Index Large Files — Chunked Indexing, Bulk Delete, and CLI
 
 <!-- SPECKIT_LEVEL: 3+ -->

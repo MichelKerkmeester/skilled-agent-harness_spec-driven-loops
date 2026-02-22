@@ -1,3 +1,17 @@
+---
+title: "Verification Checklist: System-Wide Remediation [125-codex-system-wide-audit/checklist]"
+description: "All CHK-### [P0] items are hard blockers and must be closed with evidence before completion."
+trigger_phrases:
+  - "verification"
+  - "checklist"
+  - "system"
+  - "wide"
+  - "remediation"
+  - "125"
+  - "codex"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Verification Checklist: System-Wide Remediation
 
 <!-- SPECKIT_LEVEL: 3+ -->

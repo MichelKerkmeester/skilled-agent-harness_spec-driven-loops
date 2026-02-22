@@ -1,3 +1,15 @@
+---
+title: "Checklist - Memory Alignment Fix [028-memory-alignment-fix/checklist]"
+description: "Originally planned as separate layers"
+trigger_phrases:
+  - "checklist"
+  - "memory"
+  - "alignment"
+  - "fix"
+  - "028"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Checklist - Memory Alignment Fix
 
 ## P0 - Critical (HARD BLOCK)

@@ -1,3 +1,18 @@
+---
+title: "Decision Record: libSQL Hybrid RAG Enablement [140-sqlite-to-libsql/decision-record]"
+description: "We needed to decide whether to move from the current SQLite runtime directly to libSQL/Turso, or sequence migration through a compatibility layer first. The current runtime is b..."
+trigger_phrases:
+  - "decision"
+  - "record"
+  - "libsql"
+  - "hybrid"
+  - "rag"
+  - "decision record"
+  - "140"
+  - "sqlite"
+importance_tier: "important"
+contextType: "decision"
+---
 # Decision Record: libSQL Hybrid RAG Enablement
 
 <!-- SPECKIT_LEVEL: 3 -->

@@ -1,3 +1,8 @@
+---
+title: "Epistemic state captured at [058-generate-context-modularization/01-01-26_17-45__generate-context-modularization-spec]"
+importance_tier: "important"
+contextType: "decision"
+---
 <!-- TEMPLATE: context_template.md v2.2 - DO NOT EDIT GENERATED FILES -->
 <!-- Migrated by migrate-memory-v22.mjs -->
 

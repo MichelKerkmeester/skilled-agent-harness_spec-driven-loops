@@ -1,3 +1,17 @@
+---
+title: "Implementation Summary: OpenCode Naming Convention Alignment [090-opencode-naming-conventions/implementation-summary]"
+description: "Migrated all JavaScript code in .opencode/skill/system-spec-kit/ from snake_case to camelCase naming conventions, aligning with JS ecosystem standards (MDN, Airbnb, Node.js). Up..."
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "opencode"
+  - "naming"
+  - "convention"
+  - "implementation summary"
+  - "090"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Implementation Summary: OpenCode Naming Convention Alignment
 
 <!-- SPECKIT_LEVEL: 3+ -->

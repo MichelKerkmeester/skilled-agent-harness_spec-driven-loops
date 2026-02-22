@@ -1,3 +1,17 @@
+---
+title: "Spec: Update workflows-code--web-dev with Spec 031 Performance Teachings [029-performance-teachings/spec]"
+description: "Incorporate performance optimization teachings from spec 005-anobel.com/031-anobel-performance-analysis into the workflows-code--web-dev skill reference files. This ensures lear..."
+trigger_phrases:
+  - "spec"
+  - "update"
+  - "workflows"
+  - "code"
+  - "web"
+  - "029"
+  - "performance"
+importance_tier: "important"
+contextType: "decision"
+---
 <!-- SPECKIT_TEMPLATE_SOURCE: legacy-normalized | v2.2 -->
 
 # Spec: Update workflows-code--web-dev with Spec 031 Performance Teachings

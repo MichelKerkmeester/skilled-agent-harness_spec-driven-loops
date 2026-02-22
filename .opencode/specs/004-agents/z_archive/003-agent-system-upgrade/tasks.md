@@ -1,3 +1,17 @@
+---
+title: "Task Breakdown: Agent System Upgrade [003-agent-system-upgrade/tasks]"
+description: "Phase 1 (Orchestration)"
+trigger_phrases:
+  - "task"
+  - "breakdown"
+  - "agent"
+  - "system"
+  - "upgrade"
+  - "tasks"
+  - "003"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Task Breakdown: Agent System Upgrade
 
 <!-- SPECKIT_LEVEL: 3+ -->

@@ -1,3 +1,18 @@
+---
+title: "Task Breakdown: SpecKit Command Pattern Upgrade [015-system-analysis/tasks]"
+description: "tasks document for 015-system-analysis."
+trigger_phrases:
+  - "task"
+  - "breakdown"
+  - "speckit"
+  - "command"
+  - "pattern"
+  - "tasks"
+  - "015"
+  - "system"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Task Breakdown: SpecKit Command Pattern Upgrade
 
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks | v1.1 -->

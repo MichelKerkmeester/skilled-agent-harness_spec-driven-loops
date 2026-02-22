@@ -1,3 +1,16 @@
+---
+title: "Verification Checklist: Phase 002 — Rename workflows-code--web-dev to sk-code--web [002-sk-code--web/checklist]"
+description: "Verification Date: 2026-02-21"
+trigger_phrases:
+  - "verification"
+  - "checklist"
+  - "phase"
+  - "002"
+  - "rename"
+  - "code"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Verification Checklist: Phase 002 — Rename workflows-code--web-dev to sk-code--web
 
 <!-- SPECKIT_LEVEL: 2 -->

@@ -1,3 +1,17 @@
+---
+title: "Feature Specification: Code Quality Enforcement - Requirements & User Stories [023-code-quality-enforcement/spec]"
+description: "Add active code quality and style enforcement to the workflows-code skill with explicit checkpoints, validation checklists, and blocking gates."
+trigger_phrases:
+  - "feature"
+  - "specification"
+  - "code"
+  - "quality"
+  - "enforcement"
+  - "spec"
+  - "023"
+importance_tier: "important"
+contextType: "decision"
+---
 <!-- SPECKIT_LEVEL: 2 -->
 
 # Feature Specification: Code Quality Enforcement - Requirements & User Stories

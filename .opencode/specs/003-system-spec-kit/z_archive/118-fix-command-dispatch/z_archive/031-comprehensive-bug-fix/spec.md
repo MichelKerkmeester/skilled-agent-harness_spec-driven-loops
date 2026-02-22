@@ -1,11 +1,22 @@
 ---
-id: 018-comprehensive-bug-fix
-title: Memory System Comprehensive Bug Fix
-status: in-progress
-priority: P0
+title: "Memory System Comprehensive Bug Fix [031-comprehensive-bug-fix/spec]"
+description: "id: 018-comprehensive-bug-fix"
+trigger_phrases:
+  - "memory"
+  - "system"
+  - "comprehensive"
+  - "bug"
+  - "fix"
+  - "spec"
+  - "031"
+importance_tier: "important"
+contextType: "decision"
 created: 2024-12-24
----
 
+id: 018-comprehensive-bug-fix
+priority: P0
+status: in-progress
+---
 # Memory System Comprehensive Bug Fix
 
 ## Overview

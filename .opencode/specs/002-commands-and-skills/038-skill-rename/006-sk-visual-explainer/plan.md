@@ -1,3 +1,16 @@
+---
+title: "Implementation Plan: Phase 006 — Rename sk-visual-explainer to sk-visual-explainer [006-sk-visual-explainer/plan]"
+description: "Rename sk-visual-explainer to sk-visual-explainer across 28 files (22 internal + 6 external). Lowest-effort phase with fewest external references."
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "phase"
+  - "006"
+  - "rename"
+  - "visual"
+importance_tier: "important"
+contextType: "decision"
+---
 # Implementation Plan: Phase 006 — Rename sk-visual-explainer to sk-visual-explainer
 
 <!-- SPECKIT_LEVEL: 2 -->

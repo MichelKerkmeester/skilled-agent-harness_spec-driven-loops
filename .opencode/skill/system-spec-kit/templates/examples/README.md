@@ -1,13 +1,13 @@
 ---
-title: "Template Examples"
+title: "Template Examples [template:examples/README.md]"
 description: "Reference examples showing expected documentation depth by level."
 trigger_phrases:
   - "examples"
   - "reference folders"
   - "level comparison"
 importance_tier: "normal"
+contextType: "general"
 ---
-
 # Template Examples
 
 Reference-only examples for level formatting and depth.

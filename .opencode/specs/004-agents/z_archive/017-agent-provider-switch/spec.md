@@ -1,3 +1,15 @@
+---
+title: "Spec 017: Agent Provider Switching with Primary Runtime Path [017-agent-provider-switch/spec]"
+description: "This spec introduces provider-aware agent profile switching while keeping .opencode/agent/*.md as the single runtime path used by commands and orchestration. The system will sta..."
+trigger_phrases:
+  - "spec"
+  - "017"
+  - "agent"
+  - "provider"
+  - "switching"
+importance_tier: "important"
+contextType: "decision"
+---
 # Spec 017: Agent Provider Switching with Primary Runtime Path
 
 <!-- SPECKIT_LEVEL: 3 -->

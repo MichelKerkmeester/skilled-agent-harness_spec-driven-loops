@@ -1,3 +1,16 @@
+---
+title: "Implementation Plan: Image Decoding Async Analysis [023-decoding-async-analysis/plan]"
+description: "Overview: This plan documents the analysis of anobel.com's image usage patterns and provides recommendations for implementing decoding=\"async\" to improve scrolling performance. ..."
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "image"
+  - "decoding"
+  - "async"
+  - "023"
+importance_tier: "important"
+contextType: "decision"
+---
 # Implementation Plan: Image Decoding Async Analysis
 
 <!-- SPECKIT_LEVEL: 1 -->

@@ -1,3 +1,15 @@
+---
+title: "Plan: Icon Animation Isolation [003-icon-animation-isolation/plan]"
+description: "Remove all button-level styling from btn_download.css (staging), keeping only the pure icon animation for the download state machine."
+trigger_phrases:
+  - "plan"
+  - "icon"
+  - "animation"
+  - "isolation"
+  - "003"
+importance_tier: "important"
+contextType: "decision"
+---
 # Plan: Icon Animation Isolation
 
 <!-- ANCHOR:summary -->

@@ -1,3 +1,14 @@
+---
+title: "Tasks: [NAME] [template:core/tasks-core.md]"
+description: "Task Format: T### [P?] Description (file path)"
+trigger_phrases:
+  - "tasks"
+  - "name"
+  - "template"
+  - "tasks core"
+importance_tier: "normal"
+contextType: "general"
+---
 # Tasks: [NAME]
 
 <!-- SPECKIT_LEVEL: CORE -->

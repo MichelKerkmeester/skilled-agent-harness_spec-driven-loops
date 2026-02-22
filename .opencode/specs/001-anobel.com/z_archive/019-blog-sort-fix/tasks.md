@@ -1,3 +1,16 @@
+---
+title: "Tasks: Blog Sort Dropdown Fix [019-blog-sort-fix/tasks]"
+description: "┌─────────────────────────────────────────────────────────────────────────────┐"
+trigger_phrases:
+  - "tasks"
+  - "blog"
+  - "sort"
+  - "dropdown"
+  - "fix"
+  - "019"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: Blog Sort Dropdown Fix
 
 <!-- ANCHOR:task-breakdown -->

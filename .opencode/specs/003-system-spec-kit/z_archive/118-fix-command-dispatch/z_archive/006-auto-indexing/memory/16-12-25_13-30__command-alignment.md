@@ -1,3 +1,8 @@
+---
+title: "Epistemic state captured at session start for learning delta [006-auto-indexing/16-12-25_13-30__command-alignment]"
+importance_tier: "normal"
+contextType: "general"
+---
 <!-- TEMPLATE: context_template.md v2.2 - DO NOT EDIT GENERATED FILES -->
 <!-- Migrated from legacy format by migrate-memory-v22.mjs -->
 

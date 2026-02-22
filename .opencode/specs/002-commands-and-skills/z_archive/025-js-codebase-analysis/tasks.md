@@ -1,3 +1,16 @@
+---
+title: "Tasks: JavaScript Codebase Alignment Analysis [025-js-codebase-analysis/tasks]"
+description: "Task Format: T### [P?] Description (file path)"
+trigger_phrases:
+  - "tasks"
+  - "javascript"
+  - "codebase"
+  - "alignment"
+  - "analysis"
+  - "025"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: JavaScript Codebase Alignment Analysis
 
 <!-- SPECKIT_LEVEL: 3+ -->

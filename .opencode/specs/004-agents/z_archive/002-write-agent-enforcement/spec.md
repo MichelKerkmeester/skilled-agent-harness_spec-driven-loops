@@ -1,3 +1,16 @@
+---
+title: "Spec: @write Agent Enforcement for /create Commands [002-write-agent-enforcement/spec]"
+description: "Enforce @write agent requirement for all /create commands to ensure template-first workflow, DQI scoring, and quality gates are consistently applied."
+trigger_phrases:
+  - "spec"
+  - "write"
+  - "agent"
+  - "enforcement"
+  - "for"
+  - "002"
+importance_tier: "important"
+contextType: "decision"
+---
 # Spec: @write Agent Enforcement for /create Commands
 
 <!-- ANCHOR:overview -->

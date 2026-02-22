@@ -1,3 +1,17 @@
+---
+title: "Task Breakdown: workflows-code Barter Alignment [022-barter-alignment/tasks]"
+description: "Assets sub-folders created"
+trigger_phrases:
+  - "task"
+  - "breakdown"
+  - "workflows"
+  - "code"
+  - "barter"
+  - "tasks"
+  - "022"
+importance_tier: "normal"
+contextType: "implementation"
+---
 <!-- SPECKIT_TEMPLATE_SOURCE: legacy-normalized | v2.2 -->
 
 # Task Breakdown: workflows-code Barter Alignment

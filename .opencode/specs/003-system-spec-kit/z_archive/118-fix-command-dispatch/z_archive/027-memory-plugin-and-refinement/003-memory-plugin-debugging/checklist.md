@@ -1,3 +1,16 @@
+---
+title: "Verification Checklist: Memory Plugin bun:sqlite Migration [003-memory-plugin-debugging/checklist]"
+description: "Verified by: _______________"
+trigger_phrases:
+  - "verification"
+  - "checklist"
+  - "memory"
+  - "plugin"
+  - "bun"
+  - "003"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Verification Checklist: Memory Plugin bun:sqlite Migration
 
 > **SIMPLIFIED**: Only import statement change required - `bun:sqlite` is API-compatible with `better-sqlite3`. The `db.prepare()`, `db.query()`, and `db.close()` methods work identically in both libraries.

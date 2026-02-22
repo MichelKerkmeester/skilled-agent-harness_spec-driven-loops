@@ -1,3 +1,15 @@
+---
+title: "Implementation Plan - Font Performance [014-font-performance/plan]"
+description: "plan document for 014-font-performance."
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "font"
+  - "performance"
+  - "014"
+importance_tier: "important"
+contextType: "decision"
+---
 # Implementation Plan - Font Performance
 
 > **Goal:** Optimize font loading to improve LCP and eliminate FOIT.

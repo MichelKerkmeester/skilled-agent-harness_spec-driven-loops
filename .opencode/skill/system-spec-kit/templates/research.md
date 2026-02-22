@@ -1,3 +1,16 @@
+---
+title: "Feature Research: [YOUR_VALUE_HERE: feature-name] - Comprehensive Technical Investigation [template:research.md]"
+description: "Complete research documentation providing in-depth technical analysis, architecture patterns, and implementation guidance."
+trigger_phrases:
+  - "feature"
+  - "research"
+  - "your"
+  - "value"
+  - "here"
+  - "template"
+importance_tier: "normal"
+contextType: "general"
+---
 # Feature Research: [YOUR_VALUE_HERE: feature-name] - Comprehensive Technical Investigation
 
 Complete research documentation providing in-depth technical analysis, architecture patterns, and implementation guidance.

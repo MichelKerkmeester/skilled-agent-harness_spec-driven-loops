@@ -1,3 +1,17 @@
+---
+title: "Feature Specification: Memory Hook Cleanup - Remove Claude Code Hook References [004-memory-hook-cleanup/spec]"
+description: "Remove outdated Claude Code Hook references from workflows-memory skill for OpenCode compatibility."
+trigger_phrases:
+  - "feature"
+  - "specification"
+  - "memory"
+  - "hook"
+  - "cleanup"
+  - "spec"
+  - "004"
+importance_tier: "important"
+contextType: "decision"
+---
 # Feature Specification: Memory Hook Cleanup - Remove Claude Code Hook References
 
 Remove outdated Claude Code Hook references from workflows-memory skill for OpenCode compatibility.

@@ -1,3 +1,15 @@
+---
+title: "Tasks: OpenCode Codebase Alignment [031-opencode-codebase-alignment/tasks]"
+description: "Completion definition for every task: mark [x] only when all listed acceptance criteria are met with verifiable evidence (command output, file mapping, or review note)."
+trigger_phrases:
+  - "tasks"
+  - "opencode"
+  - "codebase"
+  - "alignment"
+  - "031"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: OpenCode Codebase Alignment
 
 <!-- SPECKIT_LEVEL: 3+ -->

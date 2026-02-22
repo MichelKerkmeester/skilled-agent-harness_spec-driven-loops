@@ -1,3 +1,16 @@
+---
+title: "Level 3 (+Arch) is appropriate when [template:addendum/level3-arch/spec-level3-guidance.md]"
+description: "Level 3 (+Arch) is appropriate when"
+trigger_phrases:
+  - "level"
+  - "arch"
+  - "appropriate"
+  - "when"
+  - "template"
+  - "spec level3 guidance"
+importance_tier: "normal"
+contextType: "general"
+---
 <!-- WHEN TO USE THIS TEMPLATE:
 Level 3 (+Arch) is appropriate when:
 - Changes affect 500+ lines of code

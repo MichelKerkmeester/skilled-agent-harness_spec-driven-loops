@@ -1,3 +1,17 @@
+---
+title: "Feature Specification: Phase 002 — Rename workflows-code--web-dev to sk-code--web [002-sk-code--web/spec]"
+description: "This is Phase 2 of the Skill Rename (038) specification."
+trigger_phrases:
+  - "feature"
+  - "specification"
+  - "phase"
+  - "002"
+  - "rename"
+  - "spec"
+  - "code"
+importance_tier: "important"
+contextType: "decision"
+---
 # Feature Specification: Phase 002 — Rename workflows-code--web-dev to sk-code--web
 
 <!-- SPECKIT_LEVEL: 2 -->

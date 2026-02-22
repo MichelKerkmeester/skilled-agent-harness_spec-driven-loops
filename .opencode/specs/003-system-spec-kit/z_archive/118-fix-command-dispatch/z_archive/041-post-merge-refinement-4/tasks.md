@@ -1,3 +1,16 @@
+---
+title: "Tasks: Post-Merge Refinement 4 - Implementation Breakdown [041-post-merge-refinement-4/tasks]"
+description: "Task list for resolving 75+ issues identified by 10-agent analysis across documentation, code, UX, and integration."
+trigger_phrases:
+  - "tasks"
+  - "post"
+  - "merge"
+  - "refinement"
+  - "implementation"
+  - "041"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: Post-Merge Refinement 4 - Implementation Breakdown
 
 Task list for resolving 75+ issues identified by 10-agent analysis across documentation, code, UX, and integration.

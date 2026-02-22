@@ -1,3 +1,16 @@
+---
+title: "Tasks: README & Install Guide Alignment [045-readme-alignment/tasks]"
+description: "tasks document for 045-readme-alignment."
+trigger_phrases:
+  - "tasks"
+  - "readme"
+  - "install"
+  - "guide"
+  - "alignment"
+  - "045"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: README & Install Guide Alignment
 
 ## Task Overview

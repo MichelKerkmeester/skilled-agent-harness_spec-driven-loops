@@ -537,9 +537,12 @@ export function classifyDocument(filePath: string, templatesRoot: string): Class
     };
   }
 
-  if (/\/memory\/[^/]+\.md$/i.test(normalized)) {
-    const specFolderDir = path.dirname(path.dirname(normalized));
-    const specLeaf = path.basename(specFolderDir);
+  if (/\/memory\/.+\.md$/i.test(normalized)) {
+    const segments = normalized.split('/').filter(Boolean);
+    const memoryIndex = segments.indexOf('memory');
+    const specLeaf = memoryIndex > 0
+      ? segments[memoryIndex - 1]
+      : path.basename(path.dirname(path.dirname(normalized)));
     return {
       kind: 'memory',
       documentType: 'memory',

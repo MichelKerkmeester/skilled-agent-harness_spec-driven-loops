@@ -1,3 +1,16 @@
+---
+title: "Verification Checklist: Agent Sonnet 4.6 Upgrade [020-agent-sonnet-upgrade/checklist]"
+description: "Verification Date: 2026-02-18"
+trigger_phrases:
+  - "verification"
+  - "checklist"
+  - "agent"
+  - "sonnet"
+  - "upgrade"
+  - "020"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Verification Checklist: Agent Sonnet 4.6 Upgrade
 
 <!-- SPECKIT_LEVEL: 2 -->

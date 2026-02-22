@@ -1,3 +1,17 @@
+---
+title: "Spec: Download Button Code Standards Alignment [003-btn-download-alignment/spec]"
+description: "Align btn_download.js and btn_download.css with project code quality standards."
+trigger_phrases:
+  - "spec"
+  - "download"
+  - "button"
+  - "code"
+  - "standards"
+  - "003"
+  - "btn"
+importance_tier: "important"
+contextType: "decision"
+---
 # Spec: Download Button Code Standards Alignment
 
 <!-- ANCHOR:overview -->

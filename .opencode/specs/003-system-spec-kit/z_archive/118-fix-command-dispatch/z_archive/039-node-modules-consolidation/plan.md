@@ -1,8 +1,15 @@
 ---
+title: "Implementation Plan [039-node-modules-consolidation/plan]"
+description: "id: 039-node-modules-consolidation"
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "039"
+  - "node"
+importance_tier: "important"
+contextType: "decision"
 id: 039-node-modules-consolidation
-title: Implementation Plan
 ---
-
 # Implementation Plan
 
 ## Phase 1: Preparation (Pre-flight)

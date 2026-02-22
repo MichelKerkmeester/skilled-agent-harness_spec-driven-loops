@@ -1,3 +1,16 @@
+---
+title: "Spec: Fix SQLite Transaction Nesting Issue [057-transaction-nesting-fix/spec]"
+description: "The memory_index_scan MCP tool fails with SQLite error"
+trigger_phrases:
+  - "spec"
+  - "fix"
+  - "sqlite"
+  - "transaction"
+  - "nesting"
+  - "057"
+importance_tier: "important"
+contextType: "decision"
+---
 # Spec: Fix SQLite Transaction Nesting Issue
 
 ## Overview

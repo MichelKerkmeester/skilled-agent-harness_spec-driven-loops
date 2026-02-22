@@ -1,3 +1,15 @@
+---
+title: "Research - Performance Patterns Update [026-performance-patterns-update/research]"
+description: "This document captures findings from 10 parallel research agents that analyzed the workflows-code skill and performance optimization patterns from spec 024-performance-optimizat..."
+trigger_phrases:
+  - "research"
+  - "performance"
+  - "patterns"
+  - "update"
+  - "026"
+importance_tier: "normal"
+contextType: "research"
+---
 # Research - Performance Patterns Update
 
 ## Overview

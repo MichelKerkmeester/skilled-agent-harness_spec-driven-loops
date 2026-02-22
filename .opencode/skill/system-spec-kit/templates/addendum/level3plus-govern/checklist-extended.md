@@ -1,3 +1,14 @@
+---
+title: "checklist extended [template:addendum/level3plus-govern/checklist-extended.md]"
+description: "Template document for addendum/level3plus-govern/checklist-extended.md."
+trigger_phrases:
+  - "checklist"
+  - "extended"
+  - "template"
+  - "checklist extended"
+importance_tier: "normal"
+contextType: "general"
+---
 <!-- SPECKIT_ADDENDUM: Level 3+ - Extended Checklist -->
 <!-- Append to Level 2 checklist.md -->
 

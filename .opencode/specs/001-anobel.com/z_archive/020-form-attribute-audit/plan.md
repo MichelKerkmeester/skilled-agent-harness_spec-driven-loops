@@ -1,3 +1,16 @@
+---
+title: "Plan: Form Attribute Audit - Consolidated Findings [020-form-attribute-audit/plan]"
+description: "Comprehensive audit of form input components on anobel.com/nl/werkenbij completed via 10 parallel analysis agents. Critical issues found requiring immediate attention."
+trigger_phrases:
+  - "plan"
+  - "form"
+  - "attribute"
+  - "audit"
+  - "consolidated"
+  - "020"
+importance_tier: "important"
+contextType: "decision"
+---
 # Plan: Form Attribute Audit - Consolidated Findings
 
 <!-- ANCHOR:executive-summary -->

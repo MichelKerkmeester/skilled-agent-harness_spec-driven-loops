@@ -1,3 +1,17 @@
+---
+title: "Feature Specification: OpenCode Naming Convention Alignment [090-opencode-naming-conventions/spec]"
+description: "Align JavaScript naming conventions in the OpenCode framework with ecosystem standards (camelCase) instead of the current non-standard snake_case enforcement. Migrate all ~206 J..."
+trigger_phrases:
+  - "feature"
+  - "specification"
+  - "opencode"
+  - "naming"
+  - "convention"
+  - "spec"
+  - "090"
+importance_tier: "important"
+contextType: "decision"
+---
 <!-- SPECKIT_LEVEL: 3+ -->
 # Feature Specification: OpenCode Naming Convention Alignment
 

@@ -1,3 +1,16 @@
+---
+title: "Plan: Multi-Agent Dispatch Implementation [004-multi-agent-dispatch/plan]"
+description: "User selects dispatch mode (A/B/C)"
+trigger_phrases:
+  - "plan"
+  - "multi"
+  - "agent"
+  - "dispatch"
+  - "implementation"
+  - "004"
+importance_tier: "important"
+contextType: "decision"
+---
 # Plan: Multi-Agent Dispatch Implementation
 
 <!-- ANCHOR:architecture -->

@@ -1,3 +1,18 @@
+---
+title: "Feature Specification: Plan-to-Implementation Gate Bypass Fix [134-command-adherence/spec]"
+description: "Fix critical gate bypass behavior where AI agents skip all mandatory gates (Gate 1 understanding, Gate 2 skill routing, Gate 3 spec folder question) when users request implement..."
+trigger_phrases:
+  - "feature"
+  - "specification"
+  - "plan"
+  - "implementation"
+  - "gate"
+  - "spec"
+  - "134"
+  - "command"
+importance_tier: "important"
+contextType: "decision"
+---
 # Feature Specification: Plan-to-Implementation Gate Bypass Fix
 
 <!-- SPECKIT_LEVEL: 3 -->

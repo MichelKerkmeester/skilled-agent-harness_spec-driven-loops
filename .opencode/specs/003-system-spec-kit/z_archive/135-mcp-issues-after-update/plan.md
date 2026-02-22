@@ -1,3 +1,16 @@
+---
+title: "Implementation Plan: MCP Server Failures After Updates [135-mcp-issues-after-update/plan]"
+description: "This plan guides the investigation of MCP server failures after system updates, tests the hypothesis that node_modules relocation is the root cause, and defines the approach for..."
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "mcp"
+  - "server"
+  - "failures"
+  - "135"
+importance_tier: "important"
+contextType: "decision"
+---
 # Implementation Plan: MCP Server Failures After Updates
 
 <!-- SPECKIT_LEVEL: 2 -->

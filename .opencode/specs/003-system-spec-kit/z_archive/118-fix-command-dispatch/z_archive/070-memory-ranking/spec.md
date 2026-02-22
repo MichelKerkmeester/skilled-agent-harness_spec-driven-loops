@@ -1,3 +1,16 @@
+---
+title: "Spec: Memory & Folder Ranking Improvements [070-memory-ranking/spec]"
+description: "The memory dashboard displays \"top folders\" ranked purely by memory file count. This creates several issues"
+trigger_phrases:
+  - "spec"
+  - "memory"
+  - "folder"
+  - "ranking"
+  - "improvements"
+  - "070"
+importance_tier: "important"
+contextType: "decision"
+---
 # Spec: Memory & Folder Ranking Improvements
 
 > **Level:** 3 (≥500 LOC, architecture changes)  

@@ -1,3 +1,15 @@
+---
+title: "Session Handover Document [001-memory-repo-analysis/handover]"
+description: "1. Restart OpenCode to load the fixed plugin"
+trigger_phrases:
+  - "session"
+  - "handover"
+  - "document"
+  - "001"
+  - "memory"
+importance_tier: "normal"
+contextType: "general"
+---
 # Session Handover Document
 <!-- SPECKIT_TEMPLATE_SOURCE: handover | v2.0 -->
 

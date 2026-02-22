@@ -1,3 +1,16 @@
+---
+title: "Implementation Plan: Smart Router V2 Refinement - Ambiguity & Efficiency [035-smart-router-v2-refinement/plan]"
+description: "Refine Smart Router V2 with adaptive top-N intent selection (2→3 when delta <0.15), expanded synonym lexicon for 7+ noisy terms, structured UNKNOWN fallback checklists, verifica..."
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "smart"
+  - "router"
+  - "refinement"
+  - "035"
+importance_tier: "important"
+contextType: "decision"
+---
 # Implementation Plan: Smart Router V2 Refinement - Ambiguity & Efficiency Improvements
 
 <!-- SPECKIT_LEVEL: 3 -->

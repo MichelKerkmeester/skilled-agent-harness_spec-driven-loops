@@ -1,3 +1,17 @@
+---
+title: "Feature Specification: Notification System - Requirements & User Stories [007-notification-system/spec]"
+description: "CMS-driven notification system for navbar banners and hero toasts with office hours integration."
+trigger_phrases:
+  - "feature"
+  - "specification"
+  - "notification"
+  - "system"
+  - "requirements"
+  - "spec"
+  - "007"
+importance_tier: "important"
+contextType: "decision"
+---
 # Feature Specification: Notification System - Requirements & User Stories
 
 CMS-driven notification system for navbar banners and hero toasts with office hours integration.

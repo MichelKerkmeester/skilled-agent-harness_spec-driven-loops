@@ -1,3 +1,16 @@
+---
+title: "Implementation Plan: Phase 005 - Finalize sk-git Rename [005-sk-git/plan]"
+description: "Phase implementation is complete for sk-git, including skill/changelog folder renames, internal and external reference updates, and routing verification for git queries."
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "phase"
+  - "005"
+  - "finalize"
+  - "git"
+importance_tier: "important"
+contextType: "decision"
+---
 # Implementation Plan: Phase 005 - Finalize sk-git Rename
 
 <!-- SPECKIT_LEVEL: 2 -->

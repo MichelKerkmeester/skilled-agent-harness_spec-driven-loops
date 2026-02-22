@@ -1,3 +1,17 @@
+---
+title: "Tasks: Context Loader Sub-Agent (@context_loader) [007-explore-sub-agent/tasks]"
+description: "Objective: Understand the structural template used by existing agent files"
+trigger_phrases:
+  - "tasks"
+  - "context"
+  - "loader"
+  - "sub"
+  - "agent"
+  - "007"
+  - "explore"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: Context Loader Sub-Agent (@context_loader)
 
 > **Spec Folder:** `.opencode/specs/004-agents/007-explore-sub-agent/`

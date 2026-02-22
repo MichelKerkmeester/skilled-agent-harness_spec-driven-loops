@@ -1,3 +1,16 @@
+---
+title: "Tasks - System Health Audit (Completed) [032-system-health-audit/tasks]"
+description: "All 34 tasks completed on 2025-12-25."
+trigger_phrases:
+  - "tasks"
+  - "system"
+  - "health"
+  - "audit"
+  - "completed"
+  - "032"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks - System Health Audit (Completed)
 
 ## Quick Reference

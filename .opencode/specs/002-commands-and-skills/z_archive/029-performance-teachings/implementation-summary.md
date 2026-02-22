@@ -1,3 +1,17 @@
+---
+title: "Implementation Summary: Spec 031 Performance Teachings → [029-performance-teachings/implementation-summary]"
+description: "What: Added ~120 lines documenting the SharedObservers API, migration patterns, and best practices."
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "spec"
+  - "031"
+  - "performance"
+  - "implementation summary"
+  - "029"
+importance_tier: "normal"
+contextType: "implementation"
+---
 <!-- SPECKIT_TEMPLATE_SOURCE: legacy-normalized | v2.2 -->
 
 # Implementation Summary: Spec 031 Performance Teachings → workflows-code--web-dev

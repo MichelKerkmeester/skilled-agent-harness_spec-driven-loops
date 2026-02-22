@@ -1,3 +1,17 @@
+---
+title: "Tasks: System Spec Kit v2.1.0 Test Suite [078-speckit-test-suite/tasks]"
+description: "Task Format: T### [P?] [Priority] Description (file path) → CHK-###"
+trigger_phrases:
+  - "tasks"
+  - "system"
+  - "spec"
+  - "kit"
+  - "test"
+  - "078"
+  - "speckit"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: System Spec Kit v2.1.0 Test Suite
 
 <!-- SPECKIT_LEVEL: 2 -->

@@ -1,3 +1,14 @@
+---
+title: "Implementation Summary [template:core/impl-summary-core.md]"
+description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "template"
+  - "impl summary core"
+importance_tier: "normal"
+contextType: "general"
+---
 # Implementation Summary
 
 <!-- SPECKIT_LEVEL: CORE -->

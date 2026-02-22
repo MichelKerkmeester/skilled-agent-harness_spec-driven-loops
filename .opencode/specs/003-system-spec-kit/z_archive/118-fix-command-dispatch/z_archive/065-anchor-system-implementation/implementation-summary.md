@@ -1,3 +1,16 @@
+---
+title: "Implementation Summary: Anchor System [065-anchor-system-implementation/implementation-summary]"
+description: "Implemented the Anchor System backend logic, enabling targeted retrieval of specific memory sections. This feature allows AI agents to request only relevant context (e.g., \"summ..."
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "anchor"
+  - "system"
+  - "implementation summary"
+  - "065"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Implementation Summary: Anchor System
 
 <!-- SPECKIT_TEMPLATE_SOURCE: implementation-summary | v1.0 -->

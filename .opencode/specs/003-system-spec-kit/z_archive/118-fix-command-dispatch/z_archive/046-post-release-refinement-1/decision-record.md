@@ -1,3 +1,17 @@
+---
+title: "Decision Record: Post-Release Refinement 1 [046-post-release-refinement-1/decision-record]"
+description: "Checkpoint restore can insert duplicate memory entries. The UNIQUE constraint on (spec_folder, file_path, anchor_id) should prevent this, but duplicates occur when values differ..."
+trigger_phrases:
+  - "decision"
+  - "record"
+  - "post"
+  - "release"
+  - "refinement"
+  - "decision record"
+  - "046"
+importance_tier: "important"
+contextType: "decision"
+---
 # Decision Record: Post-Release Refinement 1
 
 <!-- SPECKIT_TEMPLATE_SOURCE: system-spec-kit/templates/decision-record.md -->

@@ -1,3 +1,17 @@
+---
+title: "Plan: Spec Kit Bug Remediation [080-speckit-bug-remediation/plan]"
+description: "Given the scope (30 bugs across 13 files), use parallel agent delegation with phased rollout"
+trigger_phrases:
+  - "plan"
+  - "spec"
+  - "kit"
+  - "bug"
+  - "remediation"
+  - "080"
+  - "speckit"
+importance_tier: "important"
+contextType: "decision"
+---
 # Plan: Spec Kit Bug Remediation
 
 <!-- SPECKIT_LEVEL: 3+ -->

@@ -1,3 +1,17 @@
+---
+title: "Checklist: Spec Kit Bug Remediation [080-speckit-bug-remediation/checklist]"
+description: "Checklist created: 2026-01-28"
+trigger_phrases:
+  - "checklist"
+  - "spec"
+  - "kit"
+  - "bug"
+  - "remediation"
+  - "080"
+  - "speckit"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Checklist: Spec Kit Bug Remediation
 
 <!-- SPECKIT_LEVEL: 3+ -->

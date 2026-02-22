@@ -1,3 +1,15 @@
+---
+title: "Session Handover Document [017-h2-emoji-enforcement/handover]"
+description: "1. T1-T4: Update write.md (CORE WORKFLOW, checklist, emoji table, anti-pattern)"
+trigger_phrases:
+  - "session"
+  - "handover"
+  - "document"
+  - "017"
+  - "emoji"
+importance_tier: "normal"
+contextType: "general"
+---
 # Session Handover Document
 <!-- SPECKIT_TEMPLATE_SOURCE: handover | v2.0 -->
 

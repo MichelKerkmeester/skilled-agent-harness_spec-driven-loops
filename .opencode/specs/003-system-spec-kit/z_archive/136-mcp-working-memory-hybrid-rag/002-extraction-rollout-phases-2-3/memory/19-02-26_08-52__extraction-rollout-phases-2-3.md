@@ -1,3 +1,8 @@
+---
+title: "To promote a memory to [002-extraction-rollout-phases-2-3/19-02-26_08-52__extraction-rollout-phases-2-3]"
+importance_tier: "normal"
+contextType: "general"
+---
 <!-- TEMPLATE: context_template.md v2.2 - DO NOT EDIT GENERATED FILES -->
 <!-- Constitutional Tier Promotion:
   To promote a memory to constitutional tier (always surfaced):

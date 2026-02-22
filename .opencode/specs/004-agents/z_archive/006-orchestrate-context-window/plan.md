@@ -1,3 +1,16 @@
+---
+title: "Implementation Plan: Orchestrate Agent Context Window Protection [006-orchestrate-context-window/plan]"
+description: "This plan adds a Context Window Budget (CWB) system to orchestrate.md through 6 targeted modifications: a new CWB section, updated dispatch format, file-based collection pattern..."
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "orchestrate"
+  - "agent"
+  - "context"
+  - "006"
+importance_tier: "important"
+contextType: "decision"
+---
 # Implementation Plan: Orchestrate Agent Context Window Protection
 
 <!-- SPECKIT_LEVEL: 3+ -->

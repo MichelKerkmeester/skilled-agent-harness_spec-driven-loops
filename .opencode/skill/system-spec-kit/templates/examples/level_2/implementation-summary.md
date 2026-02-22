@@ -1,3 +1,14 @@
+---
+title: "Implementation Summary [template:examples/level_2/implementation-summary.md]"
+description: "verification documentation and test coverage details. -->"
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "template"
+  - "implementation summary"
+importance_tier: "normal"
+contextType: "general"
+---
 # Implementation Summary
 
 <!-- SPECKIT_LEVEL: 2 -->

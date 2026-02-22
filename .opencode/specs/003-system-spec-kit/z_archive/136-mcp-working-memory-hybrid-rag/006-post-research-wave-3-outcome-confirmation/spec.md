@@ -1,3 +1,16 @@
+---
+title: "Phase Package Spec: Post-Research Wave 3 (Outcome Confirmation) [006-post-research-wave-3-outcome-confirmation/spec]"
+description: "This package defines final outcome confirmation work after controlled delivery evidence is complete."
+trigger_phrases:
+  - "phase"
+  - "package"
+  - "spec"
+  - "post"
+  - "research"
+  - "006"
+importance_tier: "important"
+contextType: "decision"
+---
 <!-- SPECKIT_LEVEL: 3+ -->
 # Phase Package Spec: Post-Research Wave 3 (Outcome Confirmation)
 

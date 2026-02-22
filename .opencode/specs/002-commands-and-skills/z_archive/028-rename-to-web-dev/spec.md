@@ -1,3 +1,17 @@
+---
+title: "Feature Specification: Rename workflows-code to workflows-code--web-dev [028-rename-to-web-dev/spec]"
+description: "The skill directory .opencode/skill/workflows-code has a generic name that implies it handles all code workflows universally. In reality, this skill is specifically tailored for..."
+trigger_phrases:
+  - "feature"
+  - "specification"
+  - "rename"
+  - "workflows"
+  - "code"
+  - "spec"
+  - "028"
+importance_tier: "important"
+contextType: "decision"
+---
 # Feature Specification: Rename workflows-code to workflows-code--web-dev
 
 <!-- SPECKIT_LEVEL: 1 -->

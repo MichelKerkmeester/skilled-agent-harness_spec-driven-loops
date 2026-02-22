@@ -1,3 +1,17 @@
+---
+title: "Decision Record: Memory Index Deduplication and Tier Normalization [143-index-tier-anomalies/decision-record]"
+description: "We need deterministic indexing even when specs/ and .opencode/specs/ reference the same file tree. Today those roots can both contribute identical files to one scan. That create..."
+trigger_phrases:
+  - "decision"
+  - "record"
+  - "memory"
+  - "index"
+  - "deduplication"
+  - "decision record"
+  - "143"
+importance_tier: "important"
+contextType: "decision"
+---
 # Decision Record: Memory Index Deduplication and Tier Normalization
 
 <!-- SPECKIT_LEVEL: 3 -->

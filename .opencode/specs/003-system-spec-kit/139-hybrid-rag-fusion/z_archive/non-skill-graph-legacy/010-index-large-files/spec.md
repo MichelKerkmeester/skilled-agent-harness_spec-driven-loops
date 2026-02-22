@@ -1,3 +1,17 @@
+---
+title: "Feature Specification: Index Large Files — Chunked Indexing, Bulk Delete, and CLI [010-index-large-files/spec]"
+description: "Three related failures in the Spec Kit Memory MCP Server's indexing pipeline were found during a /memory:manage cleanup session: large memory files (>100KB) were rejected outrig..."
+trigger_phrases:
+  - "feature"
+  - "specification"
+  - "index"
+  - "large"
+  - "files"
+  - "spec"
+  - "010"
+importance_tier: "important"
+contextType: "decision"
+---
 <!-- SPECKIT_LEVEL: 3+ -->
 # Feature Specification: Index Large Files — Chunked Indexing, Bulk Delete, and CLI
 

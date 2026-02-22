@@ -1,3 +1,16 @@
+---
+title: "Implementation Plan: generate-context.js Modularization [058-generate-context-modularization/plan]"
+description: "Strategy: Incremental extraction with validation between each phase"
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "generate"
+  - "context"
+  - "modularization"
+  - "058"
+importance_tier: "important"
+contextType: "decision"
+---
 # Implementation Plan: generate-context.js Modularization
 
 ## Approach Summary

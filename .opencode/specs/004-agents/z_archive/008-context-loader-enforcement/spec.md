@@ -1,3 +1,16 @@
+---
+title: "Spec: Aggressive @context_loader Enforcement [008-context-loader-enforcement/spec]"
+description: "Aggressively enforce @context_loader as the primary context retrieval agent across all agents and commands. The previous session (007) created @context_loader but was too conser..."
+trigger_phrases:
+  - "spec"
+  - "aggressive"
+  - "context"
+  - "loader"
+  - "enforcement"
+  - "008"
+importance_tier: "important"
+contextType: "decision"
+---
 # Spec: Aggressive @context_loader Enforcement
 
 > **Spec Folder:** `.opencode/specs/004-agents/008-context-loader-enforcement/`

@@ -1,3 +1,16 @@
+---
+title: "Spec: Fix @explore Direct Dispatch in Orchestrate Agent [010-explore-routing-fix/spec]"
+description: "The orchestrate agent (orchestrate.md) contains Rule 4 (\"Never Dispatch @explore Directly\") instructing the LLM to route all exploration through @context instead of dispatching ..."
+trigger_phrases:
+  - "spec"
+  - "fix"
+  - "explore"
+  - "direct"
+  - "dispatch"
+  - "010"
+importance_tier: "important"
+contextType: "decision"
+---
 # Spec: Fix @explore Direct Dispatch in Orchestrate Agent
 
 <!-- SPECKIT_LEVEL: 2 -->

@@ -1,3 +1,17 @@
+---
+title: "Tasks: System-Spec-Kit Upgrade from Research [077-speckit-upgrade-from-research/tasks]"
+description: "Summary: 15 total tasks across 3 priority tiers and 4 implementation phases. ✅ ALL COMPLETE"
+trigger_phrases:
+  - "tasks"
+  - "system"
+  - "spec"
+  - "kit"
+  - "upgrade"
+  - "077"
+  - "speckit"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: System-Spec-Kit Upgrade from Research
 
 ## Metadata

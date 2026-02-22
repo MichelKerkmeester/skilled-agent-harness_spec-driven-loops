@@ -1,3 +1,18 @@
+---
+title: "Feature Specification: JWT Authentication with RS256 Signing [plan-happy/spec]"
+description: "The application currently lacks a secure authentication mechanism. Users cannot authenticate with the API, and there is no way to protect routes from unauthorized access. Withou..."
+trigger_phrases:
+  - "feature"
+  - "specification"
+  - "jwt"
+  - "authentication"
+  - "with"
+  - "spec"
+  - "plan"
+  - "happy"
+importance_tier: "important"
+contextType: "decision"
+---
 # Feature Specification: JWT Authentication with RS256 Signing
 
 <!-- SPECKIT_LEVEL: 2 -->

@@ -1,3 +1,15 @@
+---
+title: "Debug Delegation Report [template:debug-delegation.md]"
+description: "Debug delegation template for escalating stuck issues to specialized debugging agents after 3+ failed attempts."
+trigger_phrases:
+  - "debug"
+  - "delegation"
+  - "report"
+  - "template"
+  - "debug delegation"
+importance_tier: "normal"
+contextType: "general"
+---
 # Debug Delegation Report
 
 Debug delegation template for escalating stuck issues to specialized debugging agents after 3+ failed attempts.

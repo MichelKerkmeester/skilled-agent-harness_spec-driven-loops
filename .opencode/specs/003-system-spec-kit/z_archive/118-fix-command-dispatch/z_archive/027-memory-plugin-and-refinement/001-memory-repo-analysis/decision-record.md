@@ -1,3 +1,17 @@
+---
+title: "Decision Record: Memory System Analysis & Improvement Strategy [001-memory-repo-analysis/decision-record]"
+description: "Architecture Decision Record (ADR) documenting decisions from roampal memory system analysis and planned improvements for system-memory."
+trigger_phrases:
+  - "decision"
+  - "record"
+  - "memory"
+  - "system"
+  - "analysis"
+  - "decision record"
+  - "001"
+importance_tier: "important"
+contextType: "decision"
+---
 # Decision Record: Memory System Analysis & Improvement Strategy
 
 Architecture Decision Record (ADR) documenting decisions from roampal memory system analysis and planned improvements for system-memory.

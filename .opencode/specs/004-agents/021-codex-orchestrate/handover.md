@@ -1,3 +1,17 @@
+---
+title: "Session Handover Document — CONTINUATION Attempt 1 [021-codex-orchestrate/handover]"
+description: "ChatGPT Agent Suite Codex Optimization — session handover for context preservation and optional continuation."
+trigger_phrases:
+  - "session"
+  - "handover"
+  - "document"
+  - "continuation"
+  - "attempt"
+  - "021"
+  - "codex"
+importance_tier: "normal"
+contextType: "general"
+---
 # Session Handover Document — CONTINUATION Attempt 1
 
 ChatGPT Agent Suite Codex Optimization — session handover for context preservation and optional continuation.

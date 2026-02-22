@@ -1,3 +1,17 @@
+---
+title: "Implementation Summary: Remove Git Branch Logic from YAML Commands [007-remove-git-branch-logic/implementation-summary]"
+description: "Status: COMPLETE"
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "remove"
+  - "git"
+  - "branch"
+  - "implementation summary"
+  - "007"
+importance_tier: "normal"
+contextType: "implementation"
+---
 <!-- SPECKIT_TEMPLATE_SOURCE: legacy-normalized | v2.2 -->
 
 # Implementation Summary: Remove Git Branch Logic from YAML Commands

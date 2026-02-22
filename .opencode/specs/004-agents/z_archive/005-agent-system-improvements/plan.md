@@ -1,3 +1,16 @@
+---
+title: "Implementation Plan: Agent System Improvements [005-agent-system-improvements/plan]"
+description: "This plan implements 9 documentation improvements across 7 agent/command files. Changes are organized into 3 phases: immediate fixes (naming, minor text), core additions (verifi..."
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "agent"
+  - "system"
+  - "improvements"
+  - "005"
+importance_tier: "important"
+contextType: "decision"
+---
 # Implementation Plan: Agent System Improvements
 
 <!-- SPECKIT_LEVEL: 3+ -->

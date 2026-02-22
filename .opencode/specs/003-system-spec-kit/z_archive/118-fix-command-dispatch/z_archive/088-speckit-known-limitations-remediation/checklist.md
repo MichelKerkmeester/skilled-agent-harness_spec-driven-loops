@@ -1,3 +1,17 @@
+---
+title: "Verification Checklist: System-Spec-Kit Known Limitations [088-speckit-known-limitations-remediation/checklist]"
+description: "Verification Date: 2026-02-05"
+trigger_phrases:
+  - "verification"
+  - "checklist"
+  - "system"
+  - "spec"
+  - "kit"
+  - "088"
+  - "speckit"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Verification Checklist: System-Spec-Kit Known Limitations Remediation
 
 <!-- SPECKIT_LEVEL: 2 -->

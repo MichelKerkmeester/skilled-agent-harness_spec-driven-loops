@@ -1,3 +1,16 @@
+---
+title: "Tasks: Aggressive @context_loader Enforcement [008-context-loader-enforcement/tasks]"
+description: "Objective: Search all agent files in .opencode/agent/ for @explore references (excluding context_loader.md)"
+trigger_phrases:
+  - "tasks"
+  - "aggressive"
+  - "context"
+  - "loader"
+  - "enforcement"
+  - "008"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: Aggressive @context_loader Enforcement
 
 > **Spec Folder:** `.opencode/specs/004-agents/008-context-loader-enforcement/`

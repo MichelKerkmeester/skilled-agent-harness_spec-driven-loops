@@ -1,3 +1,16 @@
+---
+title: "Verification Checklist: Task 07 — Tagged Release [task-07-github-release/checklist]"
+description: "Prep Status: Release notes complete, publication blocked on clean commit and release publication"
+trigger_phrases:
+  - "verification"
+  - "checklist"
+  - "task"
+  - "tagged"
+  - "release"
+  - "github"
+importance_tier: "normal"
+contextType: "implementation"
+---
 <!-- SPECKIT_TEMPLATE_SOURCE: legacy-normalized | v2.2 -->
 
 # Verification Checklist: Task 07 — Tagged Release

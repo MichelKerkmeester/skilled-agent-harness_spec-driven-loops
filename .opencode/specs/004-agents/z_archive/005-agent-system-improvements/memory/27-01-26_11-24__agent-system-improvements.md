@@ -1,3 +1,8 @@
+---
+title: "To promote a memory to constitutional tier [005-agent-system-improvements/27-01-26_11-24__agent-system-improvements]"
+importance_tier: "normal"
+contextType: "general"
+---
 <!-- TEMPLATE: context_template.md v2.2 - DO NOT EDIT GENERATED FILES -->
 <!-- Constitutional Tier Promotion:
   To promote a memory to constitutional tier (always surfaced):

@@ -1,3 +1,16 @@
+---
+title: "Implementation Plan: OpenCode Codebase Alignment [031-opencode-codebase-alignment/plan]"
+description: "This phase maps to existing planning and baseline material in ## 1. SUMMARY, ## 2. TECHNICAL STRATEGY AND EXECUTION ARCHITECTURE, ## 3. MULTI-WORKSTREAM EXECUTION WITH SEQUENCIN..."
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "opencode"
+  - "codebase"
+  - "alignment"
+  - "031"
+importance_tier: "important"
+contextType: "decision"
+---
 # Implementation Plan: OpenCode Codebase Alignment
 
 <!-- SPECKIT_LEVEL: 3+ -->

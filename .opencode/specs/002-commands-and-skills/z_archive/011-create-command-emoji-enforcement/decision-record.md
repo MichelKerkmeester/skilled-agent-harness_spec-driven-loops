@@ -1,3 +1,18 @@
+---
+title: "Decision Record: Remove Emoji Enforcement from /create Command [011-create-command-emoji-enforcement/decision-record]"
+description: "The /create command currently enforces emoji usage in documentation through validation logic. Documentation standards have changed to make emoji usage optional rather than manda..."
+trigger_phrases:
+  - "decision"
+  - "record"
+  - "remove"
+  - "emoji"
+  - "enforcement"
+  - "decision record"
+  - "011"
+  - "create"
+importance_tier: "important"
+contextType: "decision"
+---
 # Decision Record: Remove Emoji Enforcement from /create Command
 
 <!-- SPECKIT_LEVEL: 3 -->

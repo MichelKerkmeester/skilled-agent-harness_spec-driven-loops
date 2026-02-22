@@ -1,3 +1,17 @@
+---
+title: "Decision Record: SpecKit Template Optimization Refinement [074-speckit-template-optimization-refinement/decision-record]"
+description: "The refinement task required comprehensive analysis of ~450 files and 27,600 LOC across the SpecKit system. Sequential analysis by a single agent would require 15+ minutes per s..."
+trigger_phrases:
+  - "decision"
+  - "record"
+  - "speckit"
+  - "template"
+  - "optimization"
+  - "decision record"
+  - "074"
+importance_tier: "important"
+contextType: "decision"
+---
 # Decision Record: SpecKit Template Optimization Refinement
 
 <!-- SPECKIT_LEVEL: 3+ -->

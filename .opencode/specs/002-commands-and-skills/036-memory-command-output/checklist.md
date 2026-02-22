@@ -1,3 +1,16 @@
+---
+title: "Checklist: Memory Command Dashboard Visual Design System [036-memory-command-output/checklist]"
+description: "checklist document for 036-memory-command-output."
+trigger_phrases:
+  - "checklist"
+  - "memory"
+  - "command"
+  - "dashboard"
+  - "visual"
+  - "036"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Checklist: Memory Command Dashboard Visual Design System
 
 <!-- SPECKIT_LEVEL: 2 -->

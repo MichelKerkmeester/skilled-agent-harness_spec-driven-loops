@@ -1,3 +1,17 @@
+---
+title: "Feature Specification: SpecKit Template Optimization [073-speckit-template-optimization/spec]"
+description: "This specification defines a comprehensive restructuring of the SpecKit template system from monolithic templates to a CORE + ADDENDUM compositional architecture. The optimizati..."
+trigger_phrases:
+  - "feature"
+  - "specification"
+  - "speckit"
+  - "template"
+  - "optimization"
+  - "spec"
+  - "073"
+importance_tier: "important"
+contextType: "decision"
+---
 <!-- SPECKIT_LEVEL: 3+ -->
 # Feature Specification: SpecKit Template Optimization
 

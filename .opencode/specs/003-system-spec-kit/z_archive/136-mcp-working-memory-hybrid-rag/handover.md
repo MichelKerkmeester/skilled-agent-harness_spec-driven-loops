@@ -1,3 +1,15 @@
+---
+title: "Session Handover: Spec 136 — MCP Working Memory + Hybrid RAG [136-mcp-working-memory-hybrid-rag/handover]"
+description: "Continuation: CONTINUATION - Attempt 3"
+trigger_phrases:
+  - "session"
+  - "handover"
+  - "spec"
+  - "136"
+  - "mcp"
+importance_tier: "normal"
+contextType: "general"
+---
 # Session Handover: Spec 136 — MCP Working Memory + Hybrid RAG
 
 **Continuation**: CONTINUATION - Attempt 3

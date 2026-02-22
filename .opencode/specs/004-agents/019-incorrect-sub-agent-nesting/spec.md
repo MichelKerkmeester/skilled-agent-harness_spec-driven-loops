@@ -1,3 +1,18 @@
+---
+title: "Feature Specification: Sub-Agent Nesting Depth Control [019-incorrect-sub-agent-nesting/spec]"
+description: "The orchestrator agent (Codex/ChatGPT provider) creates deeply nested sub-agent chains of 5+ levels when handling user requests, wasting tokens on orchestration overhead and pro..."
+trigger_phrases:
+  - "feature"
+  - "specification"
+  - "sub"
+  - "agent"
+  - "nesting"
+  - "spec"
+  - "019"
+  - "incorrect"
+importance_tier: "important"
+contextType: "decision"
+---
 # Feature Specification: Sub-Agent Nesting Depth Control
 
 <!-- SPECKIT_LEVEL: 3 -->

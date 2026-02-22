@@ -1,3 +1,17 @@
+---
+title: "Feature Specification: SpecKit Scratch Folder Enforcement - Requirements & Analysis [001-scratch-enforcement/spec]"
+description: "Complete specification for enforcing scratch folder usage to prevent root folder pollution."
+trigger_phrases:
+  - "feature"
+  - "specification"
+  - "speckit"
+  - "scratch"
+  - "folder"
+  - "spec"
+  - "001"
+importance_tier: "important"
+contextType: "decision"
+---
 # Feature Specification: SpecKit Scratch Folder Enforcement - Requirements & Analysis
 
 Complete specification for enforcing scratch folder usage to prevent root folder pollution.

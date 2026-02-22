@@ -1,3 +1,18 @@
+---
+title: "Feature Specification: 013 - Deprecate Skill Graph and README/Skill-Ref [001-deprecated-skill-graph-experiment/spec]"
+description: "This completion pass finalizes deprecation of skill graph and README/skill-reference indexing behavior across memory MCP, commands, skills, and agents. It closes residual cleanu..."
+trigger_phrases:
+  - "feature"
+  - "specification"
+  - "013"
+  - "deprecate"
+  - "skill"
+  - "spec"
+  - "001"
+  - "deprecated"
+importance_tier: "important"
+contextType: "decision"
+---
 # Feature Specification: 013 - Deprecate Skill Graph and README/Skill-Ref Indexing (Completion Pass 2)
 
 <!-- SPECKIT_LEVEL: 3 -->

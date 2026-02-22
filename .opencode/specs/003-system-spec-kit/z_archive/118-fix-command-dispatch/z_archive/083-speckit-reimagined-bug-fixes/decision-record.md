@@ -1,3 +1,18 @@
+---
+title: "Decision Record: Spec Kit Bug Fixes [083-speckit-reimagined-bug-fixes/decision-record]"
+description: "The MCP server's memory-parser.js uses regex to extract ANCHOR-tagged sections. The current regex expects closing tags in /ANCHOR: format, but README.md documents ANCHOR_END for..."
+trigger_phrases:
+  - "decision"
+  - "record"
+  - "spec"
+  - "kit"
+  - "bug"
+  - "decision record"
+  - "083"
+  - "speckit"
+importance_tier: "important"
+contextType: "decision"
+---
 # Decision Record: Spec Kit Bug Fixes
 
 > Architecture Decision Records (ADRs) for significant decisions made during bug fix implementation.

@@ -1,3 +1,18 @@
+---
+title: "Implementation Summary: Cognitive Memory Upgrade [079-speckit-cognitive-memory/implementation-summary]"
+description: "Successfully implemented a cognitive memory upgrade for the Spec Kit Memory MCP server, replacing arbitrary exponential decay with research-backed FSRS (Free Spaced Repetition S..."
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "cognitive"
+  - "memory"
+  - "upgrade"
+  - "implementation summary"
+  - "079"
+  - "speckit"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Implementation Summary: Cognitive Memory Upgrade
 
 <!-- SPECKIT_LEVEL: 3+ -->

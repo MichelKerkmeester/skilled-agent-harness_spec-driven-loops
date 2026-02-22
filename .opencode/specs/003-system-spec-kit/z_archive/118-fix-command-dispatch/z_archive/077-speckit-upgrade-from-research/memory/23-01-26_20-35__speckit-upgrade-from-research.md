@@ -1,3 +1,8 @@
+---
+title: "To promote a memory to [077-speckit-upgrade-from-research/23-01-26_20-35__speckit-upgrade-from-research]"
+importance_tier: "normal"
+contextType: "general"
+---
 <!-- TEMPLATE: context_template.md v2.2 - DO NOT EDIT GENERATED FILES -->
 <!-- Constitutional Tier Promotion:
   To promote a memory to constitutional tier (always surfaced):

@@ -1,3 +1,8 @@
+---
+title: "To promote a memory to constitutional [065-anchor-system-implementation/15-01-26_13-32__anchor-system-implementation]"
+importance_tier: "normal"
+contextType: "general"
+---
 <!-- TEMPLATE: context_template.md v2.2 - DO NOT EDIT GENERATED FILES -->
 <!-- Constitutional Tier Promotion:
   To promote a memory to constitutional tier (always surfaced):

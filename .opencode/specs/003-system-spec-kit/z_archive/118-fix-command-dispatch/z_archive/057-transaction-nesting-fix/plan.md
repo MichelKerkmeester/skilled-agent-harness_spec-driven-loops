@@ -1,3 +1,16 @@
+---
+title: "Plan: Fix SQLite Transaction Nesting Issue [057-transaction-nesting-fix/plan]"
+description: "The memory_index_scan MCP tool fails with \"cannot start a transaction within a transaction\" when bulk indexing memory files. This prevents reindexing the memory database after s..."
+trigger_phrases:
+  - "plan"
+  - "fix"
+  - "sqlite"
+  - "transaction"
+  - "nesting"
+  - "057"
+importance_tier: "important"
+contextType: "decision"
+---
 # Plan: Fix SQLite Transaction Nesting Issue
 
 ## Problem Statement

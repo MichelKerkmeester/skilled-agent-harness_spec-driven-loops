@@ -1,3 +1,15 @@
+---
+title: "Checklist: Spec 016 — Handover Haiku + Codex Agent Conversion [016-handover-model-codex-compat/checklist]"
+description: "checklist document for 016-handover-model-codex-compat."
+trigger_phrases:
+  - "checklist"
+  - "spec"
+  - "016"
+  - "handover"
+  - "haiku"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Checklist: Spec 016 — Handover Haiku + Codex Agent Conversion
 
 <!-- ANCHOR:pre-impl -->

@@ -1,3 +1,17 @@
+---
+title: "Implementation Plan: SpecKit Command Pattern Reference Upgrade [015-system-analysis/plan]"
+description: "Inject a \"Command Pattern Reference Protocol\" into SKILL.md. This protocol instructs agents to use sub-agents to scan available commands, extract their underlying logic/sequenci..."
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "speckit"
+  - "command"
+  - "pattern"
+  - "015"
+  - "system"
+importance_tier: "important"
+contextType: "decision"
+---
 # Implementation Plan: SpecKit Command Pattern Reference Upgrade
 
 > Upgrade the `system-spec-kit` skill to implement a "Pattern Extraction" protocol, enabling agents to intelligently adapt Command logic rather than blindly simulating it.

@@ -1,3 +1,15 @@
+---
+title: "Implementation Summary [004-post-research-wave-1-governance-foundations/implementation-summary]"
+description: "Wave 1 governance-foundation outputs are documented as complete in this package. Existing task evidence covers typed contracts, artifact-aware routing, adaptive fusion with degr..."
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "implementation summary"
+  - "004"
+  - "post"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Implementation Summary
 
 <!-- SPECKIT_LEVEL: 3+ -->

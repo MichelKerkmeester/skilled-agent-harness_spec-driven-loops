@@ -1,3 +1,16 @@
+---
+title: "Implementation Summary: 082-speckit-reimagined [082-speckit-reimagined/implementation-summary]"
+description: "Date: 2026-02-01"
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "082"
+  - "speckit"
+  - "reimagined"
+  - "implementation summary"
+importance_tier: "normal"
+contextType: "implementation"
+---
 <!-- SPECKIT_LEVEL: L3+ -->
 <!-- SOURCE: 082-speckit-reimagined -->
 <!-- GENERATED: 2026-02-01 -->

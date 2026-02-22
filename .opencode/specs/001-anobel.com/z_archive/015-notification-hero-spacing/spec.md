@@ -1,3 +1,15 @@
+---
+title: "Notification Hero Spacing [015-notification-hero-spacing/spec]"
+description: "When the notification bar is visible at the top of the page, the hero section content may overlap or be partially hidden. A spacing mechanism is needed to push hero content down..."
+trigger_phrases:
+  - "notification"
+  - "hero"
+  - "spacing"
+  - "spec"
+  - "015"
+importance_tier: "important"
+contextType: "decision"
+---
 # Notification Hero Spacing
 
 <!-- ANCHOR:problem-statement -->

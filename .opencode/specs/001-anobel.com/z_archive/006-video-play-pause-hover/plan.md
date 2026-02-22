@@ -1,3 +1,16 @@
+---
+title: "Plan: Video Play/Pause Hover Effect [006-video-play-pause-hover/plan]"
+description: "1. Create new CSS file following existing animation patterns"
+trigger_phrases:
+  - "plan"
+  - "video"
+  - "play"
+  - "pause"
+  - "hover"
+  - "006"
+importance_tier: "important"
+contextType: "decision"
+---
 # Plan: Video Play/Pause Hover Effect
 
 <!-- ANCHOR:phase-1-css-implementation -->

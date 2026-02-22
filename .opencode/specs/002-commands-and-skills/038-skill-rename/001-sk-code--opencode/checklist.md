@@ -1,3 +1,16 @@
+---
+title: "Verification Checklist: Phase 001 — Rename legacy workflow-prefixed skill to [001-sk-code--opencode/checklist]"
+description: "Verification Date: 2026-02-21"
+trigger_phrases:
+  - "verification"
+  - "checklist"
+  - "phase"
+  - "001"
+  - "rename"
+  - "code"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Verification Checklist: Phase 001 — Rename legacy workflow-prefixed skill to `sk-code--opencode`
 
 <!-- SPECKIT_LEVEL: 2 -->

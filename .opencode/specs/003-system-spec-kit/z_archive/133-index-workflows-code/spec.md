@@ -1,3 +1,18 @@
+---
+title: "Feature Specification: Skill References & Assets Indexing [133-index-workflows-code/spec]"
+description: "Add a configurable 6th indexing source to the Spec Kit Memory pipeline that indexes references/ and assets/ content from user-selected workflows-code--* skills. This enables the..."
+trigger_phrases:
+  - "feature"
+  - "specification"
+  - "skill"
+  - "references"
+  - "assets"
+  - "spec"
+  - "133"
+  - "index"
+importance_tier: "important"
+contextType: "decision"
+---
 # Feature Specification: Skill References & Assets Indexing
 
 <!-- SPECKIT_LEVEL: 3+ -->

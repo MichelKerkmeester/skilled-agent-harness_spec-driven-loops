@@ -1,3 +1,15 @@
+---
+title: "Tasks: Gemini CLI Compatibility [023-gemini-cli-compatibility/tasks]"
+description: "Task Format: T### [P?] Description (file path)"
+trigger_phrases:
+  - "tasks"
+  - "gemini"
+  - "cli"
+  - "compatibility"
+  - "023"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: Gemini CLI Compatibility
 
 <!-- SPECKIT_LEVEL: 2 -->

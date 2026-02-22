@@ -1,3 +1,14 @@
+---
+title: "Tasks: SpecKit Reimagined [082-speckit-reimagined/tasks]"
+description: "Task Format: T### [P?] [B:T###?] Description (file path)"
+trigger_phrases:
+  - "tasks"
+  - "speckit"
+  - "reimagined"
+  - "082"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: SpecKit Reimagined
 
 <!-- SPECKIT_LEVEL: 3+ -->

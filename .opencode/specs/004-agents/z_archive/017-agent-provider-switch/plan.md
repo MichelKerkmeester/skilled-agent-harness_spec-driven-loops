@@ -1,3 +1,15 @@
+---
+title: "Plan: Spec 017 - Agent Provider Switching with Primary Runtime Path [017-agent-provider-switch/plan]"
+description: "Implement a profile activation layer that maps provider-specific source folders (copilot, chatgpt) into .opencode/agent/*.md without changing command references. The runtime pat..."
+trigger_phrases:
+  - "plan"
+  - "spec"
+  - "017"
+  - "agent"
+  - "provider"
+importance_tier: "important"
+contextType: "decision"
+---
 # Plan: Spec 017 - Agent Provider Switching with Primary Runtime Path
 
 <!-- SPECKIT_LEVEL: 3 -->

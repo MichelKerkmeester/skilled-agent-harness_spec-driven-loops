@@ -1,3 +1,17 @@
+---
+title: "Implementation Summary: Performance Optimization Review - Spec 025 [025-performance-review/implementation-summary]"
+description: "Six Lighthouse audits were run using the Lighthouse CLI to capture post-Spec 024 performance metrics"
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "performance"
+  - "optimization"
+  - "review"
+  - "implementation summary"
+  - "025"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Implementation Summary: Performance Optimization Review - Spec 025
 
 <!-- ANCHOR:quick-reference -->

@@ -1,3 +1,16 @@
+---
+title: "Decision Record: SpecKit Reimagined [082-speckit-reimagined/decision-record]"
+description: "The current SpecKit search relies on vector + FTS5 with partial RRF fusion. Comparative analysis of dotmd, seu-claude, and drift systems revealed that multi-engine approaches wi..."
+trigger_phrases:
+  - "decision"
+  - "record"
+  - "speckit"
+  - "reimagined"
+  - "decision record"
+  - "082"
+importance_tier: "important"
+contextType: "decision"
+---
 # Decision Record: SpecKit Reimagined
 
 <!-- SPECKIT_LEVEL: 3+ -->

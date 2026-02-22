@@ -1,3 +1,16 @@
+---
+title: "Verification Checklist: Post-Research Wave 3 Package [006-post-research-wave-3-outcome-confirmation/checklist]"
+description: "checklist document for 006-post-research-wave-3-outcome-confirmation."
+trigger_phrases:
+  - "verification"
+  - "checklist"
+  - "post"
+  - "research"
+  - "wave"
+  - "006"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Verification Checklist: Post-Research Wave 3 Package
 
 <!-- SPECKIT_LEVEL: 3+ -->

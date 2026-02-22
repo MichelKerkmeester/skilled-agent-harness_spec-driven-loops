@@ -1,3 +1,16 @@
+---
+title: "Spec: Constitutional Memory System README [047-constitutional-readme/spec]"
+description: "Create comprehensive documentation (README.md) for the constitutional memory system located at .opencode/skill/system-spec-kit/constitutional/. The README should explain how con..."
+trigger_phrases:
+  - "spec"
+  - "constitutional"
+  - "memory"
+  - "system"
+  - "readme"
+  - "047"
+importance_tier: "important"
+contextType: "decision"
+---
 # Spec: Constitutional Memory System README
 
 | Metadata | Value |

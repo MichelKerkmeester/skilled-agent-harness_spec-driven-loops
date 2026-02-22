@@ -1,3 +1,17 @@
+---
+title: "Implementation Summary: SpecKit Reimagined Refinement (089) [089-speckit-reimagined-refinement/implementation-summary]"
+description: "Key files that received edits (not pre-applied)"
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "speckit"
+  - "reimagined"
+  - "refinement"
+  - "implementation summary"
+  - "089"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Implementation Summary: SpecKit Reimagined Refinement (089)
 
 ## Overview

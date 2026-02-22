@@ -1,3 +1,16 @@
+---
+title: "Implementation Plan: SpecKit Scratch Folder Enforcement - Technical Approach [001-scratch-enforcement/plan]"
+description: "Implementation plan defining the recommended changes to enforce scratch folder usage across the SpecKit system, with full OpenCode compatibility (no hooks required)."
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "speckit"
+  - "scratch"
+  - "folder"
+  - "001"
+importance_tier: "important"
+contextType: "decision"
+---
 # Implementation Plan: SpecKit Scratch Folder Enforcement - Technical Approach
 
 Implementation plan defining the recommended changes to enforce scratch folder usage across the SpecKit system, with full OpenCode compatibility (no hooks required).

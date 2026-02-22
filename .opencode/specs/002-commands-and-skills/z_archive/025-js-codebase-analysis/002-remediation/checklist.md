@@ -1,3 +1,13 @@
+---
+title: "Checklist [002-remediation/checklist]"
+description: "N/A - legacy spec artifact."
+trigger_phrases:
+  - "checklist"
+  - "002"
+  - "remediation"
+importance_tier: "normal"
+contextType: "implementation"
+---
 <!-- SPECKIT_TEMPLATE_SOURCE: legacy-normalized | v2.2 -->
 <!-- SPECKIT_LEVEL: 3+ -->
 

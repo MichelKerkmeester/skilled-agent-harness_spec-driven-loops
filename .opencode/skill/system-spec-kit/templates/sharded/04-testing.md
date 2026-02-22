@@ -1,3 +1,14 @@
+---
+title: "Testing Strategy [template:sharded/04-testing.md]"
+description: "Template document for sharded/04-testing.md."
+trigger_phrases:
+  - "testing"
+  - "strategy"
+  - "template"
+  - "04 testing"
+importance_tier: "normal"
+contextType: "general"
+---
 # Testing Strategy
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-section-testing | v1.0 -->
 

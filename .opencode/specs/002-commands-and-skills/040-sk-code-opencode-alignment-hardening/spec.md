@@ -1,3 +1,17 @@
+---
+title: "Feature Specification: sk-code--opencode Alignment Hardening [040-sk-code-opencode-alignment-hardening/spec]"
+description: "This document preserves the existing technical decisions and adds validator-required readme structure."
+trigger_phrases:
+  - "feature"
+  - "specification"
+  - "code"
+  - "opencode"
+  - "alignment"
+  - "spec"
+  - "040"
+importance_tier: "important"
+contextType: "decision"
+---
 # Feature Specification: sk-code--opencode Alignment Hardening
 
 <!-- SPECKIT_LEVEL: 3 -->

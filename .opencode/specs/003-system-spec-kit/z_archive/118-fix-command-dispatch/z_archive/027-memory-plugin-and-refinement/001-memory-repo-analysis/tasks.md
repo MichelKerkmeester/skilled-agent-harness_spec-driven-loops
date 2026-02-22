@@ -1,3 +1,18 @@
+---
+title: "Task Breakdown: Hybrid Context Injection Implementation [001-memory-repo-analysis/tasks]"
+description: "Task breakdown by user story for implementing the hybrid 3-layer context injection strategy."
+trigger_phrases:
+  - "task"
+  - "breakdown"
+  - "hybrid"
+  - "context"
+  - "injection"
+  - "tasks"
+  - "001"
+  - "memory"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Task Breakdown: Hybrid Context Injection Implementation
 
 Task breakdown by user story for implementing the hybrid 3-layer context injection strategy.

@@ -1,3 +1,17 @@
+---
+title: "Decision Record: Post-Research Wave 1 (Governance [004-post-research-wave-1-governance-foundations/decision-record]"
+description: "This phase package delegates decision records to the parent spec folder."
+trigger_phrases:
+  - "decision"
+  - "record"
+  - "post"
+  - "research"
+  - "wave"
+  - "decision record"
+  - "004"
+importance_tier: "important"
+contextType: "decision"
+---
 <!-- SPECKIT_LEVEL: 3+ -->
 # Decision Record: Post-Research Wave 1 (Governance Foundations)
 

@@ -1,3 +1,17 @@
+---
+title: "Decision Record: System-Spec-Kit Bug Remediation [049-system-analysis-bugs/decision-record]"
+description: "The system has a hardcoded EMBEDDING_DIM = 768 constant in vector-index.js, but the active Voyage AI provider returns 1024-dimension embeddings. This causes 100% of memory index..."
+trigger_phrases:
+  - "decision"
+  - "record"
+  - "system"
+  - "spec"
+  - "kit"
+  - "decision record"
+  - "049"
+importance_tier: "important"
+contextType: "decision"
+---
 # Decision Record: System-Spec-Kit Bug Remediation
 
 ## Metadata

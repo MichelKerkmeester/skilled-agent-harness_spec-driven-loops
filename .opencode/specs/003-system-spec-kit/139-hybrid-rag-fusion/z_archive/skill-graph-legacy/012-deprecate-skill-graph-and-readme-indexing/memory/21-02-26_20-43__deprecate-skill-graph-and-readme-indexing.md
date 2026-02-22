@@ -1,3 +1,8 @@
+---
+title: "To promote a [012-deprecate-skill-graph-and-readme-indexing/21-02-26_20-43__deprecate-skill-graph-and-readme-indexing]"
+importance_tier: "critical"
+contextType: "general"
+---
 <!-- TEMPLATE: context_template.md v2.2 - DO NOT EDIT GENERATED FILES -->
 <!-- Constitutional Tier Promotion:
   To promote a memory to constitutional tier (always surfaced):

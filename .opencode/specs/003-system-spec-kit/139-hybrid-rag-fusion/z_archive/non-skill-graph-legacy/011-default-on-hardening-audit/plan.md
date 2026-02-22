@@ -1,3 +1,15 @@
+---
+title: "Implementation Plan: 011 - Default-On Hardening Audit [011-default-on-hardening-audit/plan]"
+description: "This document defines the execution plan, workstreams, and gates for Child 011 hardening."
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "011"
+  - "default"
+  - "hardening"
+importance_tier: "important"
+contextType: "decision"
+---
 # Implementation Plan: 011 - Default-On Hardening Audit
 
 <!-- SPECKIT_LEVEL: 3+ -->

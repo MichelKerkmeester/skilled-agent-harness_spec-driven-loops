@@ -1,3 +1,16 @@
+---
+title: "Checklist: Multi-Agent Dispatch Implementation [004-multi-agent-dispatch/checklist]"
+description: "1. .opencode/command/spec_kit/research.md - Added Phase 3 (Dispatch Mode)"
+trigger_phrases:
+  - "checklist"
+  - "multi"
+  - "agent"
+  - "dispatch"
+  - "implementation"
+  - "004"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Checklist: Multi-Agent Dispatch Implementation
 
 <!-- ANCHOR:must-complete -->

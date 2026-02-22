@@ -1,3 +1,18 @@
+---
+title: "Decision Record: Working Memory + Hybrid RAG Automation [136-mcp-working-memory-hybrid-rag/decision-record]"
+description: "Reference systems analyzed for working memory and hybrid RAG patterns"
+trigger_phrases:
+  - "decision"
+  - "record"
+  - "working"
+  - "memory"
+  - "hybrid"
+  - "decision record"
+  - "136"
+  - "mcp"
+importance_tier: "important"
+contextType: "decision"
+---
 # Decision Record: Working Memory + Hybrid RAG Automation
 
 <!-- SPECKIT_LEVEL: 3+ -->

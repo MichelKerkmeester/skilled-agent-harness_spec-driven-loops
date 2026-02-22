@@ -1,3 +1,17 @@
+---
+title: "Feature Specification: Remove Emojis from All Documentation [019-remove-emojis-from-docs/spec]"
+description: "Remove all H2 heading emojis and TOC entry emojis from 287 markdown files across the .opencode/ directory, aligning the entire codebase with the updated sk-documentation v1.0.7...."
+trigger_phrases:
+  - "feature"
+  - "specification"
+  - "remove"
+  - "emojis"
+  - "from"
+  - "spec"
+  - "019"
+importance_tier: "important"
+contextType: "decision"
+---
 <!-- SPECKIT_LEVEL: 3+ -->
 # Feature Specification: Remove Emojis from All Documentation
 

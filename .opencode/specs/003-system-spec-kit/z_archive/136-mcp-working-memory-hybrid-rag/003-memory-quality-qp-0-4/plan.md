@@ -1,3 +1,16 @@
+---
+title: "Phase Package Plan: Memory Quality (QP-0 through QP-4) [003-memory-quality-qp-0-4/plan]"
+description: "Improve generated memory-file quality and retrieval usefulness by enforcing quality gates, reducing extraction noise, and adding measurable quality telemetry."
+trigger_phrases:
+  - "phase"
+  - "package"
+  - "plan"
+  - "memory"
+  - "quality"
+  - "003"
+importance_tier: "important"
+contextType: "decision"
+---
 # Phase Package Plan: Memory Quality (QP-0 through QP-4)
 
 <!-- SPECKIT_LEVEL: 3+ -->

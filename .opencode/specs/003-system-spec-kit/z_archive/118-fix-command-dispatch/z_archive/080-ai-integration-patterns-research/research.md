@@ -1,3 +1,14 @@
+---
+title: "AI Integration Patterns Research [080-ai-integration-patterns-research/research]"
+description: "Extract patterns for AI assistant integration, prompt management, and context optimization from three open-source repositories to inform improvements to the system-spec-kit MCP."
+trigger_phrases:
+  - "integration"
+  - "patterns"
+  - "research"
+  - "080"
+importance_tier: "normal"
+contextType: "research"
+---
 # AI Integration Patterns Research
 
 ## Metadata

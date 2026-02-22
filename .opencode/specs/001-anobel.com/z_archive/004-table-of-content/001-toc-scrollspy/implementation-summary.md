@@ -1,3 +1,17 @@
+---
+title: "Implementation Summary: Custom TOC ScrollSpy [001-toc-scrollspy/implementation-summary]"
+description: "A custom Table of Contents scroll-spy implementation using IntersectionObserver with flexible styling options, providing more control than Finsweet's Webflow-dependent approach."
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "custom"
+  - "toc"
+  - "scrollspy"
+  - "implementation summary"
+  - "001"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Implementation Summary: Custom TOC ScrollSpy
 
 <!-- ANCHOR:overview -->

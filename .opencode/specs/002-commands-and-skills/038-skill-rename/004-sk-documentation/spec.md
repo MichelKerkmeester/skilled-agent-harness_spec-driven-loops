@@ -1,3 +1,17 @@
+---
+title: "Feature Specification: Phase 004 — Finalize Rename to sk-documentation [004-sk-documentation/spec]"
+description: "This is Phase 4 of the Skill Rename (038) specification. It has the HIGHEST external reference count (52 files) making it the most cross-cutting rename."
+trigger_phrases:
+  - "feature"
+  - "specification"
+  - "phase"
+  - "004"
+  - "finalize"
+  - "spec"
+  - "documentation"
+importance_tier: "important"
+contextType: "decision"
+---
 # Feature Specification: Phase 004 — Finalize Rename to sk-documentation
 
 <!-- SPECKIT_LEVEL: 2 -->

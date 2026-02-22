@@ -1,3 +1,16 @@
+---
+title: "Implementation Plan: Review Agent Model-Agnostic [015-review-agent-model-agnostic/plan]"
+description: "This implementation removes the hardcoded model: github-copilot/claude-opus-4.6 line from the review agent's YAML frontmatter, enabling the agent to inherit the model from its d..."
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "review"
+  - "agent"
+  - "model"
+  - "015"
+importance_tier: "important"
+contextType: "decision"
+---
 # Implementation Plan: Review Agent Model-Agnostic
 
 <!-- SPECKIT_LEVEL: 1 -->

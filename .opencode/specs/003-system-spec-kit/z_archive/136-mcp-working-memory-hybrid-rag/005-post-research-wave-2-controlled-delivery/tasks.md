@@ -1,3 +1,16 @@
+---
+title: "Tasks: Post-Research Wave 2 Package (Controlled Delivery) [005-post-research-wave-2-controlled-delivery/tasks]"
+description: "Tracking document prepared for Wave 2 execution and synchronized with root post-research backlog mapping."
+trigger_phrases:
+  - "tasks"
+  - "post"
+  - "research"
+  - "wave"
+  - "package"
+  - "005"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: Post-Research Wave 2 Package (Controlled Delivery)
 
 <!-- SPECKIT_LEVEL: 3+ -->

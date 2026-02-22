@@ -1,3 +1,16 @@
+---
+title: "Tasks: Post-SpecKit Template Upgrade Testing [075-post-speckit-template-upgrade-testing/tasks]"
+description: "Task Format: T### [P?] Description (file path)"
+trigger_phrases:
+  - "tasks"
+  - "post"
+  - "speckit"
+  - "template"
+  - "upgrade"
+  - "075"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: Post-SpecKit Template Upgrade Testing
 
 <!-- SPECKIT_LEVEL: 3+ -->

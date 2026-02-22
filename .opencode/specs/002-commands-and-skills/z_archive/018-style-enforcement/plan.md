@@ -1,3 +1,17 @@
+---
+title: "Plan: Zero-Tolerance Documentation Formatting [018-style-enforcement/plan]"
+description: "CURRENT WORKFLOW (write agent)"
+trigger_phrases:
+  - "plan"
+  - "zero"
+  - "tolerance"
+  - "documentation"
+  - "formatting"
+  - "018"
+  - "style"
+importance_tier: "important"
+contextType: "decision"
+---
 <!-- SPECKIT_TEMPLATE_SOURCE: legacy-normalized | v2.2 -->
 
 # Plan: Zero-Tolerance Documentation Formatting

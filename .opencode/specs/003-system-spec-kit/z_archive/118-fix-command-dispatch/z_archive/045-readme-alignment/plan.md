@@ -1,3 +1,16 @@
+---
+title: "Plan: README & Install Guide Alignment [045-readme-alignment/plan]"
+description: "Fix all issues in each file before moving to the next. This minimizes context switching and ensures comprehensive fixes per file."
+trigger_phrases:
+  - "plan"
+  - "readme"
+  - "install"
+  - "guide"
+  - "alignment"
+  - "045"
+importance_tier: "important"
+contextType: "decision"
+---
 # Plan: README & Install Guide Alignment
 
 ## 1. Overview

@@ -1,3 +1,15 @@
+---
+title: "Tasks: Task 04 — Agent Configs Audit [task-04-agent-alignment/tasks]"
+description: "Task Format: T### Description (file path)"
+trigger_phrases:
+  - "tasks"
+  - "task"
+  - "agent"
+  - "configs"
+  - "audit"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: Task 04 — Agent Configs Audit
 
 <!-- SPECKIT_LEVEL: 3+ -->

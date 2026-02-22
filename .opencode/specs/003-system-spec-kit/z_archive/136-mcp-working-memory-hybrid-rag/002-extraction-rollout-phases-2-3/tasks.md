@@ -1,3 +1,16 @@
+---
+title: "Tasks: Extraction and Rollout Package (Phase 2, 3) [002-extraction-rollout-phases-2-3/tasks]"
+description: "Tracking document synchronized with root execution state; historical execution closure retained and post-research wave transition mapping recorded."
+trigger_phrases:
+  - "tasks"
+  - "extraction"
+  - "and"
+  - "rollout"
+  - "package"
+  - "002"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: Extraction and Rollout Package (Phase 2, 3)
 
 <!-- SPECKIT_LEVEL: 3+ -->

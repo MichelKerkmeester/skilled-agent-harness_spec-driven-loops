@@ -1,3 +1,17 @@
+---
+title: "Implementation Plan: Human Voice Rules — Template Integration [137-readme-and-summary-with-hvr/plan]"
+description: "This plan covers two categories of work. First, extracting the Human Voice Rules from a Barter-specific context document into a standalone, system-agnostic file at the canonical..."
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "human"
+  - "voice"
+  - "rules"
+  - "137"
+  - "readme"
+importance_tier: "important"
+contextType: "decision"
+---
 # Implementation Plan: Human Voice Rules — Template Integration
 
 <!-- SPECKIT_LEVEL: 3+ -->

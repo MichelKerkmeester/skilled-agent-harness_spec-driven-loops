@@ -1,3 +1,16 @@
+---
+title: "Verification Checklist: generate-context.js Modularization [058-generate-context-modularization/checklist]"
+description: "find .opencode/skill/system-spec-kit/scripts -name \"*.js\" -exec wc -l {} \\; | sort -n"
+trigger_phrases:
+  - "verification"
+  - "checklist"
+  - "generate"
+  - "context"
+  - "modularization"
+  - "058"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Verification Checklist: generate-context.js Modularization
 
 ## P0 - Critical (Must Complete)

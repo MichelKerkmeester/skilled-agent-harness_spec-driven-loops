@@ -1,3 +1,13 @@
+---
+title: "Tasks [008-social-share-cms/tasks]"
+description: "tasks document for 008-social-share-cms."
+trigger_phrases:
+  - "tasks"
+  - "008"
+  - "social"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks
 
 <!-- ANCHOR:tasks -->

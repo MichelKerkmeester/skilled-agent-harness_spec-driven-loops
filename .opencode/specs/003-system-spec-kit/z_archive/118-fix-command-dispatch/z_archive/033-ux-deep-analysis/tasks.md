@@ -1,3 +1,14 @@
+---
+title: "Tasks - UX Deep Analysis [033-ux-deep-analysis/tasks]"
+description: "tasks document for 033-ux-deep-analysis."
+trigger_phrases:
+  - "tasks"
+  - "deep"
+  - "analysis"
+  - "033"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks - UX Deep Analysis
 
 ## P0 Tasks (Must Complete)

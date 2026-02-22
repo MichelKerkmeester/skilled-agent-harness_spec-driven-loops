@@ -1,3 +1,16 @@
+---
+title: "Plan: Fix @explore Direct Dispatch in Orchestrate Agent [010-explore-routing-fix/plan]"
+description: "The fix applies a three-pronged approach to LLM prompt engineering"
+trigger_phrases:
+  - "plan"
+  - "fix"
+  - "explore"
+  - "direct"
+  - "dispatch"
+  - "010"
+importance_tier: "important"
+contextType: "decision"
+---
 # Plan: Fix @explore Direct Dispatch in Orchestrate Agent
 
 <!-- SPECKIT_LEVEL: 2 -->

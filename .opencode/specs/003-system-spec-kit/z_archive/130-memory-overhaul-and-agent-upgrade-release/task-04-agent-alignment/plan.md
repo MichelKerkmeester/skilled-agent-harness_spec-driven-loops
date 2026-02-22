@@ -1,3 +1,15 @@
+---
+title: "Implementation Plan: Task 04 — Agent Configs Audit [task-04-agent-alignment/plan]"
+description: "agent configs across OpenCode/Claude/Codex audit/creation for spec 130 umbrella. Systematic review of .opencode/agent/*.md + .claude/agents/*.md + .codex/agents/*.md to ensure a..."
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "task"
+  - "agent"
+  - "configs"
+importance_tier: "important"
+contextType: "decision"
+---
 # Implementation Plan: Task 04 — Agent Configs Audit
 
 <!-- SPECKIT_LEVEL: 3+ -->

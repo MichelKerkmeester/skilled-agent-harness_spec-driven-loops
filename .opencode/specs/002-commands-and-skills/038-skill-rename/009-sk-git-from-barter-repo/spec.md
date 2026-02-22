@@ -1,3 +1,17 @@
+---
+title: "Feature Specification: Phase 009 - Rename workflows-git to sk-git (Barter Repo) [009-sk-git-from-barter-repo/spec]"
+description: "This is Phase 9 of the Skill Rename (038) specification. It extends the rename to the Barter repository at /Users/michelkerkmeester/MEGA/Development/Opencode Env/Barter/coder/, ..."
+trigger_phrases:
+  - "feature"
+  - "specification"
+  - "phase"
+  - "009"
+  - "rename"
+  - "spec"
+  - "git"
+importance_tier: "important"
+contextType: "decision"
+---
 # Feature Specification: Phase 009 - Rename workflows-git to sk-git (Barter Repo)
 
 <!-- SPECKIT_LEVEL: 2 -->

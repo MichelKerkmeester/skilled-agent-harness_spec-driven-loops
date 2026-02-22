@@ -1,3 +1,17 @@
+---
+title: "Feature Specification: SpecKit Phase System [138-spec-kit-phase-system/spec]"
+description: "Level 3+ (+Govern) is appropriate when"
+trigger_phrases:
+  - "feature"
+  - "specification"
+  - "speckit"
+  - "phase"
+  - "system"
+  - "spec"
+  - "138"
+importance_tier: "important"
+contextType: "decision"
+---
 <!-- SPECKIT_LEVEL: 3+ -->
 # Feature Specification: SpecKit Phase System
 

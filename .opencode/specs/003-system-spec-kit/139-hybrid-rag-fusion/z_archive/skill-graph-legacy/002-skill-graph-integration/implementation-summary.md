@@ -1,3 +1,16 @@
+---
+title: "Implementation Summary: 002 — Skill Graph Integration (Workstream [002-skill-graph-integration/implementation-summary]"
+description: "Skills in the OpenCode system use markdown files (SKILL.md) as their primary entrypoints. A single SKILL.md contains everything: routing rules, examples, configuration, verifica..."
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "002"
+  - "skill"
+  - "graph"
+  - "implementation summary"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Implementation Summary: 002 — Skill Graph Integration (Workstream B)
 
 <!-- SPECKIT_LEVEL: 3+ -->

@@ -1,3 +1,15 @@
+---
+title: "Performance Optimization Review - Spec 025 [025-performance-review/spec]"
+description: "Spec 024 implemented Phase 1 performance optimizations but lacks post-implementation verification. Additionally, version inconsistencies were discovered across HTML files, and s..."
+trigger_phrases:
+  - "performance"
+  - "optimization"
+  - "review"
+  - "spec"
+  - "025"
+importance_tier: "important"
+contextType: "decision"
+---
 # Performance Optimization Review - Spec 025
 
 <!-- SPECKIT_LEVEL: 2 -->

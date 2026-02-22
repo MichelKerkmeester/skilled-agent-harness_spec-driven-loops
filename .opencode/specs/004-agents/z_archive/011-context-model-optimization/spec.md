@@ -1,3 +1,17 @@
+---
+title: "Feature Specification: Context Agent Model Optimization [011-context-model-optimization/spec]"
+description: "Investigate whether switching the @context agent from Sonnet to Haiku reduces API cost (66.7% savings, ~$918/month) and Copilot premium request consumption (67% reduction) witho..."
+trigger_phrases:
+  - "feature"
+  - "specification"
+  - "context"
+  - "agent"
+  - "model"
+  - "spec"
+  - "011"
+importance_tier: "important"
+contextType: "decision"
+---
 # Feature Specification: Context Agent Model Optimization
 
 <!-- SPECKIT_LEVEL: 3 -->

@@ -1,3 +1,18 @@
+---
+title: "Implementation Summary: workflows-code-opencode Skill [030-initial-set-up/implementation-summary]"
+description: "Skill: workflows-code-opencode"
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "workflows"
+  - "code"
+  - "opencode"
+  - "implementation summary"
+  - "030"
+  - "initial"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Implementation Summary: workflows-code-opencode Skill
 
 <!-- SPECKIT_LEVEL: 3+ -->

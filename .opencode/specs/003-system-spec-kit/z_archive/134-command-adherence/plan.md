@@ -1,3 +1,15 @@
+---
+title: "Implementation Plan: Plan-to-Implementation Gate Bypass Fix [134-command-adherence/plan]"
+description: "Fix gate bypass bug by adding phase boundary concept to CLAUDE.md Gate 3, scoping Memory Save Rule to memory saves only, and adding enforcement blocks to plan command YAML termi..."
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "gate"
+  - "134"
+  - "command"
+importance_tier: "important"
+contextType: "decision"
+---
 # Implementation Plan: Plan-to-Implementation Gate Bypass Fix
 
 <!-- SPECKIT_LEVEL: 3 -->

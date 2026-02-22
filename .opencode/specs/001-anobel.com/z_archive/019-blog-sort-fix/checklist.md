@@ -1,3 +1,16 @@
+---
+title: "Checklist: Blog Sort Dropdown Fix [019-blog-sort-fix/checklist]"
+description: "Evidence: Deep dive completed 2026-01-18. See research.md for full findings."
+trigger_phrases:
+  - "checklist"
+  - "blog"
+  - "sort"
+  - "dropdown"
+  - "fix"
+  - "019"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Checklist: Blog Sort Dropdown Fix
 
 <!-- ANCHOR:pre-implementation -->

@@ -1,3 +1,16 @@
+---
+title: "Implementation Plan: SpecKit Template Optimization Refinement [074-speckit-template-optimization-refinement/plan]"
+description: "Multi-agent orchestrated refinement of the SpecKit template optimization system. Leverages 20+ Opus 4.5 agents organized into three workstreams: Research [W-A], Implementation [..."
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "speckit"
+  - "template"
+  - "optimization"
+  - "074"
+importance_tier: "important"
+contextType: "decision"
+---
 # Implementation Plan: SpecKit Template Optimization Refinement
 
 <!-- SPECKIT_LEVEL: 3+ -->

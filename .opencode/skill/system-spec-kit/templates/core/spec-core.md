@@ -1,3 +1,15 @@
+---
+title: "Feature Specification: [NAME] [template:core/spec-core.md]"
+description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
+trigger_phrases:
+  - "feature"
+  - "specification"
+  - "name"
+  - "template"
+  - "spec core"
+importance_tier: "normal"
+contextType: "general"
+---
 # Feature Specification: [NAME]
 
 <!-- SPECKIT_LEVEL: CORE -->

@@ -1,3 +1,15 @@
+---
+title: "Checklist: 085 Alignment File Paths [085-alignment-file-paths/checklist]"
+description: "=== TEST SUITE: Alignment File Paths Fix ==="
+trigger_phrases:
+  - "checklist"
+  - "085"
+  - "alignment"
+  - "file"
+  - "paths"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Checklist: 085 Alignment File Paths
 
 ## P0 - Must Complete

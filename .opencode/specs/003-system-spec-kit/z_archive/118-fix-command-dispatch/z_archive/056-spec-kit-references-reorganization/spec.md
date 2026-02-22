@@ -1,3 +1,16 @@
+---
+title: "system-spec-kit References Reorganization [056-spec-kit-references-reorganization/spec]"
+description: "The system-spec-kit skill's references/ folder currently has a flat structure with all reference files at the root level. This makes navigation difficult, slows down discovery o..."
+trigger_phrases:
+  - "system"
+  - "spec"
+  - "kit"
+  - "references"
+  - "reorganization"
+  - "056"
+importance_tier: "important"
+contextType: "decision"
+---
 # system-spec-kit References Reorganization
 
 ## Problem Statement

@@ -1,3 +1,17 @@
+---
+title: "Tasks: Make spec_kit Commands Codex-Compatible [010-speckit-codex-compatibility/tasks]"
+description: "Task Format: T### [P?] Description (file path)"
+trigger_phrases:
+  - "tasks"
+  - "make"
+  - "spec"
+  - "kit"
+  - "commands"
+  - "010"
+  - "speckit"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: Make spec_kit Commands Codex-Compatible
 
 <!-- SPECKIT_LEVEL: 3 -->

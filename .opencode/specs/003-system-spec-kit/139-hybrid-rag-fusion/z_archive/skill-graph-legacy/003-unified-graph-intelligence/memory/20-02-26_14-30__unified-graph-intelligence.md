@@ -1,3 +1,8 @@
+---
+title: "To promote a memory to constitutional tier [003-unified-graph-intelligence/20-02-26_14-30__unified-graph-intelligence]"
+importance_tier: "critical"
+contextType: "general"
+---
 <!-- TEMPLATE: context_template.md v2.2 - DO NOT EDIT GENERATED FILES -->
 <!-- Constitutional Tier Promotion:
   To promote a memory to constitutional tier (always surfaced):

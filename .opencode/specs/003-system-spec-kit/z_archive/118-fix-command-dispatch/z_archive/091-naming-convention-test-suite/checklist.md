@@ -1,3 +1,16 @@
+---
+title: "Checklist: Naming Convention Test Suite [091-naming-convention-test-suite/checklist]"
+description: "CHK-001: PASS"
+trigger_phrases:
+  - "checklist"
+  - "naming"
+  - "convention"
+  - "test"
+  - "suite"
+  - "091"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Checklist: Naming Convention Test Suite
 
 <!-- SPECKIT_LEVEL: 2 -->

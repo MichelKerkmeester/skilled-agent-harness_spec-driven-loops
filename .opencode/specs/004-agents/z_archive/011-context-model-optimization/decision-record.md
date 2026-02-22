@@ -1,3 +1,17 @@
+---
+title: "Decision Record: Context Agent Model Optimization [011-context-model-optimization/decision-record]"
+description: "The @context agent is the highest-frequency agent in the system, dispatched for every codebase exploration, file search, and context retrieval task. It currently runs on Sonnet ..."
+trigger_phrases:
+  - "decision"
+  - "record"
+  - "context"
+  - "agent"
+  - "model"
+  - "decision record"
+  - "011"
+importance_tier: "important"
+contextType: "decision"
+---
 # Decision Record: Context Agent Model Optimization
 
 <!-- SPECKIT_LEVEL: 3 -->

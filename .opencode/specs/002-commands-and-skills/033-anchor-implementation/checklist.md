@@ -1,3 +1,17 @@
+---
+title: "Checklist: Retrieval Anchors for Skill Documentation [033-anchor-implementation/checklist]"
+description: "Spec Folder: specs/002-commands-and-skills/033-anchor-implementation"
+trigger_phrases:
+  - "checklist"
+  - "retrieval"
+  - "anchors"
+  - "for"
+  - "skill"
+  - "033"
+  - "anchor"
+importance_tier: "normal"
+contextType: "implementation"
+---
 <!-- SPECKIT_TEMPLATE_SOURCE: legacy-normalized | v2.2 -->
 
 <!-- ANCHOR:summary -->

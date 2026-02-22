@@ -1,3 +1,16 @@
+---
+title: "Implementation Plan: Phase 004 — Finalize Rename to sk-documentation [004-sk-documentation/plan]"
+description: "Complete migration from the legacy documentation-skill name to sk-documentation across the targeted internal and external references for this phase. This was the highest-effort ..."
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "phase"
+  - "004"
+  - "finalize"
+  - "documentation"
+importance_tier: "important"
+contextType: "decision"
+---
 # Implementation Plan: Phase 004 — Finalize Rename to sk-documentation
 
 <!-- SPECKIT_LEVEL: 2 -->

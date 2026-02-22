@@ -1,3 +1,8 @@
+---
+title: "Key Topics: response | [007-system-spec-kit-rename/17-12-25_08-52__system-spec-kit-rename]"
+importance_tier: "normal"
+contextType: "general"
+---
 <!-- TEMPLATE: context_template.md v2.2 - DO NOT EDIT GENERATED FILES -->
 ---
 

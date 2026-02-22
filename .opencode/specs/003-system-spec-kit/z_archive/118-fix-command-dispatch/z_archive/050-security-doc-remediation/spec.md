@@ -1,3 +1,15 @@
+---
+title: "Security & Documentation Remediation [050-security-doc-remediation/spec]"
+description: "Security audit of system-spec-kit identified 4 medium-severity and 5 low-severity issues. Additionally, documentation gaps exist from changes made in 048-system-analysis and 049..."
+trigger_phrases:
+  - "security"
+  - "documentation"
+  - "remediation"
+  - "spec"
+  - "050"
+importance_tier: "important"
+contextType: "decision"
+---
 # Security & Documentation Remediation
 
 ## Metadata

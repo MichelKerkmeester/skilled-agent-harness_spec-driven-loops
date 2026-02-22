@@ -1,3 +1,17 @@
+---
+title: "Tasks: Working Memory + Hybrid RAG Automation [136-mcp-working-memory-hybrid-rag/tasks]"
+description: "Task Format: T### [P?] Description (file path)"
+trigger_phrases:
+  - "tasks"
+  - "working"
+  - "memory"
+  - "hybrid"
+  - "rag"
+  - "136"
+  - "mcp"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: Working Memory + Hybrid RAG Automation
 
 <!-- SPECKIT_LEVEL: 3+ -->

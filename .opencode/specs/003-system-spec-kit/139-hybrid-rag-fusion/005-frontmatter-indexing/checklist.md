@@ -1,3 +1,15 @@
+---
+title: "Verification Checklist: 005-frontmatter-indexing [005-frontmatter-indexing/checklist]"
+description: "Verification Date: 2026-02-22"
+trigger_phrases:
+  - "verification"
+  - "checklist"
+  - "005"
+  - "frontmatter"
+  - "indexing"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Verification Checklist: 005-frontmatter-indexing
 
 <!-- SPECKIT_LEVEL: 3 -->

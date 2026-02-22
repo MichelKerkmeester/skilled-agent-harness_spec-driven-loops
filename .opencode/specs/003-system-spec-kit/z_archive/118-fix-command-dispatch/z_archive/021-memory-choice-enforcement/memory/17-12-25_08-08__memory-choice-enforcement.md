@@ -1,3 +1,8 @@
+---
+title: "Key Topics: authoritative | requirements | [021-memory-choice-enforcement/17-12-25_08-08__memory-choice-enforcement]"
+importance_tier: "normal"
+contextType: "general"
+---
 <!-- TEMPLATE: context_template.md v2.2 - DO NOT EDIT GENERATED FILES -->
 ---
 

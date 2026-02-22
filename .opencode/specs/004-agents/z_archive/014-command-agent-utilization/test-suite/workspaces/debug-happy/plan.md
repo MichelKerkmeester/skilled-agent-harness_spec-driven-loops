@@ -1,3 +1,16 @@
+---
+title: "Implementation Plan: JWT Authentication [debug-happy/plan]"
+description: "Implement JWT-based authentication using NestJS guards and passport strategies. The auth module will handle token generation (RS256), validation, and refresh flows, integrating ..."
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "jwt"
+  - "authentication"
+  - "debug"
+  - "happy"
+importance_tier: "important"
+contextType: "decision"
+---
 # Implementation Plan: JWT Authentication
 
 <!-- SPECKIT_LEVEL: 2 -->

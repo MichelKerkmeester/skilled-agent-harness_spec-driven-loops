@@ -1,3 +1,17 @@
+---
+title: "Feature Specification: Smart Router V2 Refinement - Ambiguity & Efficiency [035-smart-router-v2-refinement/spec]"
+description: "Smart Router V2 Refinement addresses ambiguity handling gaps and efficiency weaknesses discovered during initial deployment, implementing adaptive intent selection (top-2 → top-..."
+trigger_phrases:
+  - "feature"
+  - "specification"
+  - "smart"
+  - "router"
+  - "refinement"
+  - "spec"
+  - "035"
+importance_tier: "important"
+contextType: "decision"
+---
 # Feature Specification: Smart Router V2 Refinement - Ambiguity & Efficiency Improvements
 
 <!-- SPECKIT_LEVEL: 3 -->

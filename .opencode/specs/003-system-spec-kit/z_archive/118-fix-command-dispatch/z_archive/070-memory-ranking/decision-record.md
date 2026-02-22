@@ -1,3 +1,17 @@
+---
+title: "Decision Record: Memory & Folder Ranking [070-memory-ranking/decision-record]"
+description: "Date: 2026-01-16"
+trigger_phrases:
+  - "decision"
+  - "record"
+  - "memory"
+  - "folder"
+  - "ranking"
+  - "decision record"
+  - "070"
+importance_tier: "important"
+contextType: "decision"
+---
 # Decision Record: Memory & Folder Ranking
 
 > **Spec:** `071-memory-ranking`  

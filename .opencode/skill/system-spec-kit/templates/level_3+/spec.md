@@ -1,3 +1,15 @@
+---
+title: "Feature Specification: [NAME] [template:level_3+/spec.md]"
+description: "Level 3+ (+Govern) is appropriate when"
+trigger_phrases:
+  - "feature"
+  - "specification"
+  - "name"
+  - "template"
+  - "spec"
+importance_tier: "normal"
+contextType: "general"
+---
 <!-- SPECKIT_LEVEL: 3+ -->
 # Feature Specification: [NAME]
 

@@ -1,3 +1,15 @@
+---
+title: "Checklist: MCP Server Rename [040-mcp-server-rename/checklist]"
+description: "checklist document for 040-mcp-server-rename."
+trigger_phrases:
+  - "checklist"
+  - "mcp"
+  - "server"
+  - "rename"
+  - "040"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Checklist: MCP Server Rename
 
 ## Pre-Implementation

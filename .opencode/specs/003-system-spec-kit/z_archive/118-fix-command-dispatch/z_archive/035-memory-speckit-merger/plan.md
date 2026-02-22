@@ -1,3 +1,16 @@
+---
+title: "Implementation Plan: Memory System Integration [035-memory-speckit-merger/plan]"
+description: "This merger is a pure file migration with path updates. No functional changes."
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "memory"
+  - "system"
+  - "integration"
+  - "035"
+importance_tier: "important"
+contextType: "decision"
+---
 # Implementation Plan: Memory System Integration
 
 ## Technical Approach

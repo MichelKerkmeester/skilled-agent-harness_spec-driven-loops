@@ -1,3 +1,17 @@
+---
+title: "Tasks: Path-Scoped Validation Rules [001-mvp-monolithic/tasks]"
+description: "L1: spec.md, plan.md, tasks.md"
+trigger_phrases:
+  - "tasks"
+  - "path"
+  - "scoped"
+  - "validation"
+  - "rules"
+  - "001"
+  - "mvp"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: Path-Scoped Validation Rules
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks | v1.0 -->
 

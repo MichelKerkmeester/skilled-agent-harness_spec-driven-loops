@@ -1,3 +1,8 @@
+---
+title: "To promote a memory to constitutional tier (always [002-hybrid-rag-fusion/20-02-26_07-32__hybrid-rag-fusion-part1]"
+importance_tier: "normal"
+contextType: "research"
+---
 <!-- TEMPLATE: context_template.md v2.2 - DO NOT EDIT GENERATED FILES -->
 <!-- Constitutional Tier Promotion:
   To promote a memory to constitutional tier (always surfaced):

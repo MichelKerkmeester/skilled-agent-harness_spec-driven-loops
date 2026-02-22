@@ -1,3 +1,16 @@
+---
+title: "Decision Record: Task 04 — Agent Configs Audit [task-04-agent-alignment/decision-record]"
+description: "Task 04 requires systematic audit/creation of agent configuration files across 3 platforms (OpenCode, Claude, Codex). The scope must be clearly defined to ensure complete covera..."
+trigger_phrases:
+  - "decision"
+  - "record"
+  - "task"
+  - "agent"
+  - "configs"
+  - "decision record"
+importance_tier: "important"
+contextType: "decision"
+---
 # Decision Record: Task 04 — Agent Configs Audit
 
 <!-- SPECKIT_LEVEL: 3+ -->

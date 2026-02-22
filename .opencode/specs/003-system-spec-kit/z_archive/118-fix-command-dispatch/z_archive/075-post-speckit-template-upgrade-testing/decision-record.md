@@ -1,3 +1,17 @@
+---
+title: "Decision Record: Post-SpecKit Template Upgrade Testing [075-post-speckit-template-upgrade-testing/decision-record]"
+description: "The refinement task required comprehensive analysis of ~450 files and 27,600 LOC across the SpecKit system. Sequential analysis by a single agent would require 15+ minutes per s..."
+trigger_phrases:
+  - "decision"
+  - "record"
+  - "post"
+  - "speckit"
+  - "template"
+  - "decision record"
+  - "075"
+importance_tier: "important"
+contextType: "decision"
+---
 # Decision Record: Post-SpecKit Template Upgrade Testing
 
 <!-- SPECKIT_LEVEL: 3+ -->

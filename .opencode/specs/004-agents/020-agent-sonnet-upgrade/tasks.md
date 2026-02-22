@@ -1,3 +1,15 @@
+---
+title: "Tasks: Agent Sonnet 4.6 Upgrade [020-agent-sonnet-upgrade/tasks]"
+description: "Task Format: T### [P?] Description (file path)"
+trigger_phrases:
+  - "tasks"
+  - "agent"
+  - "sonnet"
+  - "upgrade"
+  - "020"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: Agent Sonnet 4.6 Upgrade
 
 <!-- SPECKIT_LEVEL: 2 -->

@@ -1,8 +1,16 @@
 ---
+title: "Task Breakdown [036-post-merge-refinement-1/tasks]"
+description: "id: 036-post-merge-refinement"
+trigger_phrases:
+  - "task"
+  - "breakdown"
+  - "tasks"
+  - "036"
+  - "post"
+importance_tier: "normal"
+contextType: "implementation"
 id: 036-post-merge-refinement
-title: Task Breakdown
 ---
-
 # Tasks
 
 ## Epic: Post-Merger System Refinement

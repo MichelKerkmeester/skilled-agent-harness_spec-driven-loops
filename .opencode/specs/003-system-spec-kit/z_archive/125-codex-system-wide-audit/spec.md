@@ -1,3 +1,18 @@
+---
+title: "Feature Specification: System-Wide Remediation of Audit Findings [125-codex-system-wide-audit/spec]"
+description: "This spec is re-baselined to address the full set of confirmed issues from audits of specs 121, 124, and 125 plus the runtime code they reference. The previous version mixed sta..."
+trigger_phrases:
+  - "feature"
+  - "specification"
+  - "system"
+  - "wide"
+  - "remediation"
+  - "spec"
+  - "125"
+  - "codex"
+importance_tier: "important"
+contextType: "decision"
+---
 <!-- SPECKIT_LEVEL: 3+ -->
 # Feature Specification: System-Wide Remediation of Audit Findings
 

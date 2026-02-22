@@ -1,3 +1,17 @@
+---
+title: "Feature Specification: Phase 005 - Finalize sk-git Rename [005-sk-git/spec]"
+description: "This is Phase 5 of the Skill Rename (038) specification. It executes last because the legacy git skill name was the shortest old token, avoiding substring-collision risk while o..."
+trigger_phrases:
+  - "feature"
+  - "specification"
+  - "phase"
+  - "005"
+  - "finalize"
+  - "spec"
+  - "git"
+importance_tier: "important"
+contextType: "decision"
+---
 # Feature Specification: Phase 005 - Finalize sk-git Rename
 
 <!-- SPECKIT_LEVEL: 2 -->

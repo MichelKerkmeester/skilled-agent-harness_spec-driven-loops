@@ -1,3 +1,16 @@
+---
+title: "Verification Checklist: Skill Graphs Integration [002-skill-graph-integration/checklist]"
+description: "1. Read spec.md sections for problem, scope, requirements, and success criteria."
+trigger_phrases:
+  - "verification"
+  - "checklist"
+  - "skill"
+  - "graphs"
+  - "integration"
+  - "002"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Verification Checklist: Skill Graphs Integration
 
 <!-- SPECKIT_LEVEL: 3+ -->

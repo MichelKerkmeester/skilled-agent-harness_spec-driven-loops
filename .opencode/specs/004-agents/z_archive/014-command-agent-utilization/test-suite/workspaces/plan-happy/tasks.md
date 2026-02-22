@@ -1,3 +1,17 @@
+---
+title: "Tasks: JWT Authentication with RS256 Signing [plan-happy/tasks]"
+description: "Task Format: T### [P?] Description (file path)"
+trigger_phrases:
+  - "tasks"
+  - "jwt"
+  - "authentication"
+  - "with"
+  - "rs256"
+  - "plan"
+  - "happy"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: JWT Authentication with RS256 Signing
 
 <!-- SPECKIT_LEVEL: 2 -->

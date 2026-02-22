@@ -1,3 +1,8 @@
+---
+title: "Key Topics: comparison | different | dispatch | parallel | [019-speckit-refinement/23-12-25_12-03__speckit-refinement]"
+importance_tier: "normal"
+contextType: "general"
+---
 <!-- TEMPLATE: context_template.md v2.2 - DO NOT EDIT GENERATED FILES -->
 ---
 

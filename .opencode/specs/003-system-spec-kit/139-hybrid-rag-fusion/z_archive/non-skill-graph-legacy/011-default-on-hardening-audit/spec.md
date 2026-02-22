@@ -1,3 +1,16 @@
+---
+title: "Feature Specification: 011 - Default-On Hardening Audit (Specs 136/138/139) [011-default-on-hardening-audit/spec]"
+description: "This document defines scope, requirements, and verification criteria for Child 011 hardening work."
+trigger_phrases:
+  - "feature"
+  - "specification"
+  - "011"
+  - "default"
+  - "hardening"
+  - "spec"
+importance_tier: "important"
+contextType: "decision"
+---
 <!-- SPECKIT_LEVEL: 3+ -->
 # Feature Specification: 011 - Default-On Hardening Audit (Specs 136/138/139)
 

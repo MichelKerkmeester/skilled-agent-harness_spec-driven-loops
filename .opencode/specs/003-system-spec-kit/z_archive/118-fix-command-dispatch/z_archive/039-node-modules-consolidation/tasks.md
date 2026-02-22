@@ -1,8 +1,16 @@
 ---
+title: "Task Breakdown [039-node-modules-consolidation/tasks]"
+description: "id: 039-node-modules-consolidation"
+trigger_phrases:
+  - "task"
+  - "breakdown"
+  - "tasks"
+  - "039"
+  - "node"
+importance_tier: "normal"
+contextType: "implementation"
 id: 039-node-modules-consolidation
-title: Task Breakdown
 ---
-
 # Tasks
 
 ## Phase 1: Preparation

@@ -1,3 +1,17 @@
+---
+title: "Feature Specification: Custom TOC ScrollSpy - Requirements & User Stories [001-toc-scrollspy/spec]"
+description: "Custom Table of Contents implementation with flexible styling options, replacing Finsweet's Webflow-dependent approach with a standalone IntersectionObserver-based solution."
+trigger_phrases:
+  - "feature"
+  - "specification"
+  - "custom"
+  - "toc"
+  - "scrollspy"
+  - "spec"
+  - "001"
+importance_tier: "important"
+contextType: "decision"
+---
 # Feature Specification: Custom TOC ScrollSpy - Requirements & User Stories
 
 Custom Table of Contents implementation with flexible styling options, replacing Finsweet's Webflow-dependent approach with a standalone IntersectionObserver-based solution.

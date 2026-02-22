@@ -1,3 +1,16 @@
+---
+title: "Implementation Plan: Post-Merge Refinement Final [043-post-merge-refinement-final/plan]"
+description: "Duration: 3-4 days | Effort: ~10 hours"
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "post"
+  - "merge"
+  - "refinement"
+  - "043"
+importance_tier: "important"
+contextType: "decision"
+---
 # Implementation Plan: Post-Merge Refinement Final
 
 | **Field** | **Value** |

@@ -1,3 +1,16 @@
+---
+title: "Tasks: Codex Audit Remediation Closure [008-codex-audit/tasks]"
+description: "Task Format: T### [P?] Description (file path)"
+trigger_phrases:
+  - "tasks"
+  - "codex"
+  - "audit"
+  - "remediation"
+  - "closure"
+  - "008"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: Codex Audit Remediation Closure
 
 <!-- SPECKIT_LEVEL: 3 -->

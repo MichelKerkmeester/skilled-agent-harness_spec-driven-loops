@@ -1,3 +1,16 @@
+---
+title: "Tasks: SpecKit Scratch Enforcement - Implementation Breakdown [001-scratch-enforcement/tasks]"
+description: "Task list for scratch folder enforcement implementation - documentation-based enforcement for OpenCode compatibility."
+trigger_phrases:
+  - "tasks"
+  - "speckit"
+  - "scratch"
+  - "enforcement"
+  - "implementation"
+  - "001"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: SpecKit Scratch Enforcement - Implementation Breakdown
 
 Task list for scratch folder enforcement implementation - documentation-based enforcement for OpenCode compatibility.

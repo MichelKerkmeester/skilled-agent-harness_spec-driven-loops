@@ -1,3 +1,18 @@
+---
+title: "Decision Record: Figma MCP Install Guide & Skill Creation [013-initial-creation/decision-record]"
+description: "Date: 2024-12-30"
+trigger_phrases:
+  - "decision"
+  - "record"
+  - "figma"
+  - "mcp"
+  - "install"
+  - "decision record"
+  - "013"
+  - "initial"
+importance_tier: "important"
+contextType: "decision"
+---
 <!-- SPECKIT_TEMPLATE_SOURCE: legacy-normalized | v2.2 -->
 
 # Decision Record: Figma MCP Install Guide & Skill Creation

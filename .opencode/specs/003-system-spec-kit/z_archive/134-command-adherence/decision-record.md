@@ -1,3 +1,18 @@
+---
+title: "Decision Record: Plan-to-Implementation Gate Bypass Fix [134-command-adherence/decision-record]"
+description: "Gate 3 (spec folder question) has no concept of workflow phases, causing answers to carry over indefinitely within a conversation. When /spec_kit:plan completes and user says \"i..."
+trigger_phrases:
+  - "decision"
+  - "record"
+  - "plan"
+  - "implementation"
+  - "gate"
+  - "decision record"
+  - "134"
+  - "command"
+importance_tier: "important"
+contextType: "decision"
+---
 # Decision Record: Plan-to-Implementation Gate Bypass Fix
 
 <!-- SPECKIT_LEVEL: 3 -->

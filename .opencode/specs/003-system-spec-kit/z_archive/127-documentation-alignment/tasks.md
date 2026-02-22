@@ -1,3 +1,16 @@
+---
+title: "Tasks: Documentation Alignment for Spec 126 [127-documentation-alignment/tasks]"
+description: "tasks document for 127-documentation-alignment."
+trigger_phrases:
+  - "tasks"
+  - "documentation"
+  - "alignment"
+  - "for"
+  - "spec"
+  - "127"
+importance_tier: "normal"
+contextType: "implementation"
+---
 <!-- SPECKIT_LEVEL: 3+ -->
 
 # Tasks: Documentation Alignment for Spec 126

@@ -1,3 +1,16 @@
+---
+title: "Tasks: MCP Server Failures After Updates [135-mcp-issues-after-update/tasks]"
+description: "Task Format: T### [P?] Description (file path)"
+trigger_phrases:
+  - "tasks"
+  - "mcp"
+  - "server"
+  - "failures"
+  - "after"
+  - "135"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: MCP Server Failures After Updates
 
 <!-- SPECKIT_LEVEL: 2 -->

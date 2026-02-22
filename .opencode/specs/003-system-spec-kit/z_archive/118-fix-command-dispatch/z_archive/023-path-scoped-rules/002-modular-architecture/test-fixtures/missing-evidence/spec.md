@@ -1,3 +1,14 @@
+---
+title: "Spec: Missing Evidence Fixture [missing-evidence/spec]"
+description: "This fixture tests detection of missing evidence on completed items."
+trigger_phrases:
+  - "spec"
+  - "missing"
+  - "evidence"
+  - "fixture"
+importance_tier: "important"
+contextType: "decision"
+---
 # Spec: Missing Evidence Fixture
 
 | Field       | Value                    |

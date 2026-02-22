@@ -1,3 +1,17 @@
+---
+title: "Spec: Figma MCP Configuration Alignment [014-config-alignment/spec]"
+description: "The Figma MCP configuration across the codebase was using deprecated package names and outdated environment variable references. This caused inconsistency between documentation ..."
+trigger_phrases:
+  - "spec"
+  - "figma"
+  - "mcp"
+  - "configuration"
+  - "alignment"
+  - "014"
+  - "config"
+importance_tier: "important"
+contextType: "decision"
+---
 <!-- SPECKIT_LEVEL: 1 -->
 
 <!-- SPECKIT_TEMPLATE_SOURCE: legacy-normalized | v2.2 -->

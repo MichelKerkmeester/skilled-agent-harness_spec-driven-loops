@@ -1,3 +1,16 @@
+---
+title: "Tasks: Post-SpecKit Template Upgrade - Command Alignment [075-post-speckit-template-upgrade-command-allignment/tasks]"
+description: "Agent: Agent 1 (Opus)"
+trigger_phrases:
+  - "tasks"
+  - "post"
+  - "speckit"
+  - "template"
+  - "upgrade"
+  - "075"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: Post-SpecKit Template Upgrade - Command Alignment
 
 ## Phase Overview

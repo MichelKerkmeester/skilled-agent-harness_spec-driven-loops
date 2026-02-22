@@ -1,3 +1,17 @@
+---
+title: "Feature Specification: System-Spec-Kit Known Limitations Remediation [088-speckit-known-limitations-remediation/spec]"
+description: "The 087-speckit-deep-analysis remediation identified and fixed 3 critical bugs and 15+ moderate misalignments, but deferred 4 known limitations that require separate implementat..."
+trigger_phrases:
+  - "feature"
+  - "specification"
+  - "system"
+  - "spec"
+  - "kit"
+  - "088"
+  - "speckit"
+importance_tier: "important"
+contextType: "decision"
+---
 # Feature Specification: System-Spec-Kit Known Limitations Remediation
 
 <!-- SPECKIT_LEVEL: 2 -->

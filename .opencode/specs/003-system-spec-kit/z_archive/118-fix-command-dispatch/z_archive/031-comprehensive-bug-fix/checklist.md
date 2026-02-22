@@ -1,3 +1,14 @@
+---
+title: "Verification Checklist [031-comprehensive-bug-fix/checklist]"
+description: "*Note: These were in the bug report but not tracked in original checklist*"
+trigger_phrases:
+  - "verification"
+  - "checklist"
+  - "031"
+  - "comprehensive"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Verification Checklist
 
 ## Summary

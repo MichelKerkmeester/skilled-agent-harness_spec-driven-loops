@@ -1,3 +1,14 @@
+---
+title: "Tasks: Task 05 — Changelog Creation [task-05-changelog-updates/tasks]"
+description: "Task Format: T### Description (file path)"
+trigger_phrases:
+  - "tasks"
+  - "task"
+  - "changelog"
+  - "creation"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: Task 05 — Changelog Creation
 
 <!-- SPECKIT_LEVEL: 3+ -->

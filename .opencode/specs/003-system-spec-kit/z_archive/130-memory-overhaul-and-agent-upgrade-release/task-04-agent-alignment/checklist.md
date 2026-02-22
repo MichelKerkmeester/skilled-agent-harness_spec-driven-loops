@@ -1,3 +1,15 @@
+---
+title: "Verification Checklist: Task 04 — Agent Configs Audit [task-04-agent-alignment/checklist]"
+description: "Verification Date: 2026-02-16 (manual re-check)"
+trigger_phrases:
+  - "verification"
+  - "checklist"
+  - "task"
+  - "agent"
+  - "configs"
+importance_tier: "normal"
+contextType: "implementation"
+---
 <!-- SPECKIT_TEMPLATE_SOURCE: legacy-normalized | v2.2 -->
 
 # Verification Checklist: Task 04 — Agent Configs Audit

@@ -1,3 +1,17 @@
+---
+title: "Implementation Summary: Fix generate-context.js Warnings [084-generate-context-template-warnings/implementation-summary]"
+description: "File: .opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index.js"
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "fix"
+  - "generate"
+  - "context"
+  - "implementation summary"
+  - "084"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Implementation Summary: Fix generate-context.js Warnings
 
 ## Changes Made

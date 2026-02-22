@@ -1,3 +1,15 @@
+---
+title: "Testing Checklist: Script Analysis Testing - Workflow Validation Items [053-script-analysis-testing/checklist]"
+description: "Checklist for validating the complete Spec Kit Memory workflow end-to-end."
+trigger_phrases:
+  - "testing"
+  - "checklist"
+  - "script"
+  - "analysis"
+  - "053"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Testing Checklist: Script Analysis Testing - Workflow Validation Items
 
 Checklist for validating the complete Spec Kit Memory workflow end-to-end.

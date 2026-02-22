@@ -1,3 +1,14 @@
+---
+title: "Tasks: Stateless Alignment [017-stateless-spec-passing/tasks]"
+description: "tasks document for 017-stateless-spec-passing."
+trigger_phrases:
+  - "tasks"
+  - "stateless"
+  - "alignment"
+  - "017"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: Stateless Alignment
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks | v2.0.0 -->
 

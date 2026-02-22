@@ -1,3 +1,17 @@
+---
+title: "Feature Specification: Smart Router V2 Rollout [034-smart-router-v2/spec]"
+description: "Level 3 (+Arch) is appropriate when"
+trigger_phrases:
+  - "feature"
+  - "specification"
+  - "smart"
+  - "router"
+  - "rollout"
+  - "spec"
+  - "034"
+importance_tier: "important"
+contextType: "decision"
+---
 # Feature Specification: Smart Router V2 Rollout
 
 <!-- SPECKIT_LEVEL: 3 -->

@@ -1,3 +1,17 @@
+---
+title: "Implementation Summary - Load Toggle Component [027-load-toggle/implementation-summary]"
+description: "This implementation provides a reusable expand/collapse component for Webflow with CMS-bindable button text, smooth animations, and multi-instance support. The component enables..."
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "load"
+  - "toggle"
+  - "component"
+  - "implementation summary"
+  - "027"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Implementation Summary - Load Toggle Component
 
 <!-- ANCHOR:overview -->

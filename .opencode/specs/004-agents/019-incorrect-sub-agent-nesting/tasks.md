@@ -1,3 +1,17 @@
+---
+title: "Tasks: Sub-Agent Nesting Depth Control [019-incorrect-sub-agent-nesting/tasks]"
+description: "Task Format: T### [P?] Description (file path)"
+trigger_phrases:
+  - "tasks"
+  - "sub"
+  - "agent"
+  - "nesting"
+  - "depth"
+  - "019"
+  - "incorrect"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: Sub-Agent Nesting Depth Control
 
 <!-- SPECKIT_LEVEL: 3 -->

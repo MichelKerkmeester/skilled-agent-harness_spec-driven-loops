@@ -1,3 +1,17 @@
+---
+title: "Implementation Plan: ChatGPT Agent Suite Codex Optimization [021-codex-orchestrate/plan]"
+description: "This implementation performs a suite-level audit and optimization pass across all 8 ChatGPT agent files. The work extends orchestrate optimization into consistency fixes for con..."
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "chatgpt"
+  - "agent"
+  - "suite"
+  - "021"
+  - "codex"
+importance_tier: "important"
+contextType: "decision"
+---
 # Implementation Plan: ChatGPT Agent Suite Codex Optimization
 
 <!-- SPECKIT_LEVEL: 3 -->

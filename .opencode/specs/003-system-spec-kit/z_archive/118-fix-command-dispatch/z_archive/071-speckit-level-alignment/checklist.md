@@ -1,3 +1,16 @@
+---
+title: "Implementation Checklist: SpecKit Level-Based Template Alignment [071-speckit-level-alignment/checklist]"
+description: "Validation checklist for ensuring SpecKit alignment with level-based template architecture."
+trigger_phrases:
+  - "implementation"
+  - "checklist"
+  - "speckit"
+  - "level"
+  - "based"
+  - "071"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Implementation Checklist: SpecKit Level-Based Template Alignment
 
 Validation checklist for ensuring SpecKit alignment with level-based template architecture.

@@ -1,3 +1,17 @@
+---
+title: "System Health Audit - Comprehensive Bug Fix [032-system-health-audit/spec]"
+description: "Spec ID: 032-system-health-audit"
+trigger_phrases:
+  - "system"
+  - "health"
+  - "audit"
+  - "comprehensive"
+  - "bug"
+  - "spec"
+  - "032"
+importance_tier: "important"
+contextType: "decision"
+---
 # System Health Audit - Comprehensive Bug Fix
 
 ## Overview

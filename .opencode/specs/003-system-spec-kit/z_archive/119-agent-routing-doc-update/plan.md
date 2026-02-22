@@ -1,3 +1,16 @@
+---
+title: "Implementation Plan: Agent Routing Documentation Update [119-agent-routing-doc-update/plan]"
+description: "Update SKILL.md and README.md to document the agent routing changes from spec 014. Add @debug to agent exclusivity exceptions, create an Agent Dispatch subsection, update mode s..."
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "agent"
+  - "routing"
+  - "documentation"
+  - "119"
+importance_tier: "important"
+contextType: "decision"
+---
 # Implementation Plan: Agent Routing Documentation Update
 
 <!-- SPECKIT_LEVEL: 2 -->

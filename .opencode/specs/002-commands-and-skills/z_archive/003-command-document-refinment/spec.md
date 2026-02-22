@@ -1,3 +1,15 @@
+---
+title: "Command Document Refinement [003-command-document-refinment/spec]"
+description: "The 21 command documentation files in .opencode/command/ have accumulated inconsistencies that reduce readability and maintainability"
+trigger_phrases:
+  - "command"
+  - "document"
+  - "refinement"
+  - "spec"
+  - "003"
+importance_tier: "important"
+contextType: "decision"
+---
 <!-- SPECKIT_LEVEL: 2 -->
 
 <!-- SPECKIT_TEMPLATE_SOURCE: legacy-normalized | v2.2 -->

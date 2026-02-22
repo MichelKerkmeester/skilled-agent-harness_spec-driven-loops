@@ -1,3 +1,16 @@
+---
+title: "Implementation Plan: Phase 009 - Rename workflows-git to sk-git (Barter Repo) [009-sk-git-from-barter-repo/plan]"
+description: "Rename the Barter repository's .opencode/skill/workflows-git/ to sk-git/ and update 6 internal references across 2 files (SKILL.md and references/git_workflow_guide.md). No exte..."
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "phase"
+  - "009"
+  - "rename"
+  - "git"
+importance_tier: "important"
+contextType: "decision"
+---
 # Implementation Plan: Phase 009 - Rename workflows-git to sk-git (Barter Repo)
 
 <!-- SPECKIT_LEVEL: 2 -->

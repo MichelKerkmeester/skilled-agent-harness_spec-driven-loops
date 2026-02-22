@@ -1,3 +1,13 @@
+---
+title: "Tasks [033-fix-download-btn-transition-glitch/tasks]"
+description: "tasks document for 033-fix-download-btn-transition-glitch."
+trigger_phrases:
+  - "tasks"
+  - "033"
+  - "fix"
+importance_tier: "normal"
+contextType: "implementation"
+---
 <!-- SPECKIT_TEMPLATE_SOURCE: legacy-normalized | v2.2 -->
 
 # Tasks

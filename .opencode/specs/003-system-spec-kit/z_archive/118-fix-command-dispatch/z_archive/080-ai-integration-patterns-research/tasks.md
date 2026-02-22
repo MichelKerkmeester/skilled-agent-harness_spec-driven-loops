@@ -1,3 +1,15 @@
+---
+title: "Tasks: AI Integration Patterns Research [080-ai-integration-patterns-research/tasks]"
+description: "tasks document for 080-ai-integration-patterns-research."
+trigger_phrases:
+  - "tasks"
+  - "integration"
+  - "patterns"
+  - "research"
+  - "080"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: AI Integration Patterns Research
 
 ## Completed Tasks

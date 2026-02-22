@@ -1,3 +1,17 @@
+---
+title: "Implementation Plan: libSQL Hybrid RAG Enablement Assessment [140-sqlite-to-libsql/plan]"
+description: "The plan uses an adapter-first approach: preserve current sqlite_local correctness, introduce backend abstraction and capability profiling, then validate hybrid candidates throu..."
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "libsql"
+  - "hybrid"
+  - "rag"
+  - "140"
+  - "sqlite"
+importance_tier: "important"
+contextType: "decision"
+---
 # Implementation Plan: libSQL Hybrid RAG Enablement Assessment
 
 <!-- SPECKIT_LEVEL: 3 -->

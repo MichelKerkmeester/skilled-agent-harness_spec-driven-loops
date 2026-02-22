@@ -1,3 +1,16 @@
+---
+title: "Verification Checklist: Modular Validation Architecture [002-modular-architecture/checklist]"
+description: "When marking items complete, add evidence"
+trigger_phrases:
+  - "verification"
+  - "checklist"
+  - "modular"
+  - "validation"
+  - "architecture"
+  - "002"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Verification Checklist: Modular Validation Architecture
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist.md | v1.0 -->
 

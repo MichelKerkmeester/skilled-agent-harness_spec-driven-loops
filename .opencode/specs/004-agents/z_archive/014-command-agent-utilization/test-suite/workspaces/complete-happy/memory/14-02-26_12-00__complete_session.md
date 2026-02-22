@@ -1,3 +1,8 @@
+---
+title: "Session Context: Notification System Complete Workflow [complete-happy/14-02-26_12-00__complete_session]"
+importance_tier: "normal"
+contextType: "general"
+---
 # Session Context: Notification System Complete Workflow
 
 <!-- ANCHOR:GENERAL-SESSION-SUMMARY-042 -->

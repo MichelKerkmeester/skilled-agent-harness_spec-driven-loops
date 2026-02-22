@@ -1,3 +1,16 @@
+---
+title: "Decision Record: Child 011 Default-On Hardening [011-default-on-hardening-audit/decision-record]"
+description: "This document records key architectural and execution decisions made during Child 011 hardening."
+trigger_phrases:
+  - "decision"
+  - "record"
+  - "child"
+  - "011"
+  - "default"
+  - "decision record"
+importance_tier: "important"
+contextType: "decision"
+---
 # Decision Record: Child 011 Default-On Hardening
 
 <!-- SPECKIT_LEVEL: 3+ -->

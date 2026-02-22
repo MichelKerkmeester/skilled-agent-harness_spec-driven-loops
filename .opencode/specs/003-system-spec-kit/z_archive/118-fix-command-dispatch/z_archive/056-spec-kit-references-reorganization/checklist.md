@@ -1,3 +1,16 @@
+---
+title: "Verification Checklist: system-spec-kit References Reorganization [056-spec-kit-references-reorganization/checklist]"
+description: "grep -E '\\./references/[^/]+\\.md' .opencode/skill/system-spec-kit/SKILL.md"
+trigger_phrases:
+  - "verification"
+  - "checklist"
+  - "system"
+  - "spec"
+  - "kit"
+  - "056"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Verification Checklist: system-spec-kit References Reorganization
 
 ## P0 - Critical (Must Complete)

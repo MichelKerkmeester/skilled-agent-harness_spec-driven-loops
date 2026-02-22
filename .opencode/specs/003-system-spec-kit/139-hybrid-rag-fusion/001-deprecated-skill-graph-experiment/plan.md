@@ -1,3 +1,17 @@
+---
+title: "Implementation Plan: 013 - Deprecate Skill Graph and README/Skill-Ref [001-deprecated-skill-graph-experiment/plan]"
+description: "This pass is completion-focused: capture final deprecation proof after cleanup already landed. The flow confirms no SGQS/readme-indexing/skill-ref residue remains in target area..."
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "013"
+  - "deprecate"
+  - "skill"
+  - "001"
+  - "deprecated"
+importance_tier: "important"
+contextType: "decision"
+---
 # Implementation Plan: 013 - Deprecate Skill Graph and README/Skill-Ref Indexing (Completion Pass 2)
 
 <!-- SPECKIT_LEVEL: 3 -->

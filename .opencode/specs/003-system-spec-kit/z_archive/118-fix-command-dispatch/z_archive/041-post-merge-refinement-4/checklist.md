@@ -1,3 +1,15 @@
+---
+title: "Checklist: Post-Merge Refinement 4 [041-post-merge-refinement-4/checklist]"
+description: "Approved By: _______________"
+trigger_phrases:
+  - "checklist"
+  - "post"
+  - "merge"
+  - "refinement"
+  - "041"
+importance_tier: "normal"
+contextType: "implementation"
+---
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist.md | v1.0 -->
 
 # Checklist: Post-Merge Refinement 4

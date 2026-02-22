@@ -1,3 +1,16 @@
+---
+title: "Feature Specification: SpecKit Reimagined [082-speckit-reimagined/spec]"
+description: "SpecKit Reimagined synthesizes findings from 25 parallel agent analyses of 8 pre-analysis documents examining dotmd, seu-claude, drift, and system-speckit architectures. This sp..."
+trigger_phrases:
+  - "feature"
+  - "specification"
+  - "speckit"
+  - "reimagined"
+  - "spec"
+  - "082"
+importance_tier: "important"
+contextType: "decision"
+---
 <!-- SPECKIT_LEVEL: 3+ -->
 # Feature Specification: SpecKit Reimagined
 

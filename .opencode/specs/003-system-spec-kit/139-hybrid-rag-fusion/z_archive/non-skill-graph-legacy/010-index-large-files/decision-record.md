@@ -1,3 +1,17 @@
+---
+title: "Decision Record: Index Large Files — Chunked Indexing, Bulk Delete, and CLI [010-index-large-files/decision-record]"
+description: "The MCP server enforced a 100KB hard gate (MCP_MAX_CONTENT_LENGTH in preflight.ts:538) that rejected files outright before they reached the embedding pipeline. The real constrai..."
+trigger_phrases:
+  - "decision"
+  - "record"
+  - "index"
+  - "large"
+  - "files"
+  - "decision record"
+  - "010"
+importance_tier: "important"
+contextType: "decision"
+---
 # Decision Record: Index Large Files — Chunked Indexing, Bulk Delete, and CLI
 
 <!-- SPECKIT_LEVEL: 3+ -->

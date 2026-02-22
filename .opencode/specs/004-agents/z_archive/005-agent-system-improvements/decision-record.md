@@ -1,3 +1,17 @@
+---
+title: "Decision Record: Agent System Improvements [005-agent-system-improvements/decision-record]"
+description: "Research identified gaps in agent system documentation (missing verification sections, naming inconsistencies, no workflow diagrams). The question was whether to address these v..."
+trigger_phrases:
+  - "decision"
+  - "record"
+  - "agent"
+  - "system"
+  - "improvements"
+  - "decision record"
+  - "005"
+importance_tier: "important"
+contextType: "decision"
+---
 # Decision Record: Agent System Improvements
 
 <!-- SPECKIT_LEVEL: 3+ -->

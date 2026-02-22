@@ -1,3 +1,17 @@
+---
+title: "Decision Record: Post-Merge Refinement Final [043-post-merge-refinement-final/decision-record]"
+description: "This document records architecture decisions made during the post-merge refinement phase, including accepted technical debt and deferred improvements."
+trigger_phrases:
+  - "decision"
+  - "record"
+  - "post"
+  - "merge"
+  - "refinement"
+  - "decision record"
+  - "043"
+importance_tier: "important"
+contextType: "decision"
+---
 # Decision Record: Post-Merge Refinement Final
 
 This document records architecture decisions made during the post-merge refinement phase, including accepted technical debt and deferred improvements.

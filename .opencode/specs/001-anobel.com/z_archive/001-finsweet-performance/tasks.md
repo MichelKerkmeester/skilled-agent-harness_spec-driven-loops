@@ -1,3 +1,15 @@
+---
+title: "Tasks: Finsweet Performance Optimization [001-finsweet-performance/tasks]"
+description: "tasks document for 001-finsweet-performance."
+trigger_phrases:
+  - "tasks"
+  - "finsweet"
+  - "performance"
+  - "optimization"
+  - "001"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: Finsweet Performance Optimization
 
 <!-- ANCHOR:us-001-deferred-finsweet-loading -->

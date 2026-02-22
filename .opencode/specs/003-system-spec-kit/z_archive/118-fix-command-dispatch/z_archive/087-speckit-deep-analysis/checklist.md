@@ -1,3 +1,17 @@
+---
+title: "Verification Checklist: System-Spec-Kit Deep Analysis & Remediation [087-speckit-deep-analysis/checklist]"
+description: "Verification Date: 2026-02-05"
+trigger_phrases:
+  - "verification"
+  - "checklist"
+  - "system"
+  - "spec"
+  - "kit"
+  - "087"
+  - "speckit"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Verification Checklist: System-Spec-Kit Deep Analysis & Remediation
 
 <!-- SPECKIT_LEVEL: 3+ -->

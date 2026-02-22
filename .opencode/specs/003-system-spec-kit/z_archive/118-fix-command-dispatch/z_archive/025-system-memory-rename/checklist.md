@@ -1,3 +1,16 @@
+---
+title: "Checklist: Rename workflows-memory → system-memory [025-system-memory-rename/checklist]"
+description: "These items MUST pass before claiming completion."
+trigger_phrases:
+  - "checklist"
+  - "rename"
+  - "workflows"
+  - "memory"
+  - "system"
+  - "025"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Checklist: Rename workflows-memory → system-memory
 
 ## Overview

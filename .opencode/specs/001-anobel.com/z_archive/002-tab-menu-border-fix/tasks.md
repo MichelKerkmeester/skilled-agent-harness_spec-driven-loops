@@ -1,3 +1,16 @@
+---
+title: "Tasks: Tab Menu Border Fix [002-tab-menu-border-fix/tasks]"
+description: "Priority: High"
+trigger_phrases:
+  - "tasks"
+  - "tab"
+  - "menu"
+  - "border"
+  - "fix"
+  - "002"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: Tab Menu Border Fix
 
 <!-- ANCHOR:us-001-consistent-border-color-on-filter-buttons -->

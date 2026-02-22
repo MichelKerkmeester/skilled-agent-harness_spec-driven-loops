@@ -1,3 +1,17 @@
+---
+title: "Decision: Context-Server Modularization Architecture - ADR [066-context-server-modularization/decision-record]"
+description: "Architecture Decision Record documenting the modularization approach for context-server.js."
+trigger_phrases:
+  - "decision"
+  - "context"
+  - "server"
+  - "modularization"
+  - "architecture"
+  - "decision record"
+  - "066"
+importance_tier: "important"
+contextType: "decision"
+---
 # Decision: Context-Server Modularization Architecture - ADR
 
 Architecture Decision Record documenting the modularization approach for context-server.js.

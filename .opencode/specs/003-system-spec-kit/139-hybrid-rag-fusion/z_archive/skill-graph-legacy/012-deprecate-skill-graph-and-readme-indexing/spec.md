@@ -1,3 +1,16 @@
+---
+title: "Feature Specification: 012 - Deprecate Skill Graph and [012-deprecate-skill-graph-and-readme-indexing/spec]"
+description: "This phase removes all Skill Graph (SGQS) behavior from the system-spec-kit memory MCP and narrows indexing scope to durable project knowledge only. The change also removes READ..."
+trigger_phrases:
+  - "feature"
+  - "specification"
+  - "012"
+  - "deprecate"
+  - "skill"
+  - "spec"
+importance_tier: "important"
+contextType: "decision"
+---
 # Feature Specification: 012 - Deprecate Skill Graph and README/Skill-Ref Indexing
 
 <!-- SPECKIT_LEVEL: 3 -->

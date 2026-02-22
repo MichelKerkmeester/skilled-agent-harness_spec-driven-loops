@@ -1,3 +1,16 @@
+---
+title: "Plan: Memory & Folder Ranking Implementation [070-memory-ranking/plan]"
+description: "Phase 1: Quick Wins (No MCP changes)"
+trigger_phrases:
+  - "plan"
+  - "memory"
+  - "folder"
+  - "ranking"
+  - "implementation"
+  - "070"
+importance_tier: "important"
+contextType: "decision"
+---
 # Plan: Memory & Folder Ranking Implementation
 
 > **Spec:** `070-memory-ranking`  

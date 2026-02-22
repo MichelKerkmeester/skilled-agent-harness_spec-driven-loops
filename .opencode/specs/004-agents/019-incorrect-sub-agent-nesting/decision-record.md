@@ -1,3 +1,18 @@
+---
+title: "Decision Record: Sub-Agent Nesting Depth Control [019-incorrect-sub-agent-nesting/decision-record]"
+description: "The orchestrator agent frequently creates deeply nested sub-agent chains (5+ levels) because there is no formal classification of which agents are allowed to spawn sub-agents. T..."
+trigger_phrases:
+  - "decision"
+  - "record"
+  - "sub"
+  - "agent"
+  - "nesting"
+  - "decision record"
+  - "019"
+  - "incorrect"
+importance_tier: "important"
+contextType: "decision"
+---
 # Decision Record: Sub-Agent Nesting Depth Control
 
 <!-- SPECKIT_LEVEL: 3 -->

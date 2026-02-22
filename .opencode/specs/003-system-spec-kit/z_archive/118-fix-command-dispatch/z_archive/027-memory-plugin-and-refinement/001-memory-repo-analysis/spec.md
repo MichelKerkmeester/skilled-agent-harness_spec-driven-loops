@@ -1,3 +1,17 @@
+---
+title: "Feature Specification: Memory System Analysis & Roampal Comparison - Requirements & [001-memory-repo-analysis/spec]"
+description: "Complete research specification for analyzing our semantic memory system and comparing with roampal-core for improvement opportunities."
+trigger_phrases:
+  - "feature"
+  - "specification"
+  - "memory"
+  - "system"
+  - "analysis"
+  - "spec"
+  - "001"
+importance_tier: "important"
+contextType: "decision"
+---
 # Feature Specification: Memory System Analysis & Roampal Comparison - Requirements & User Stories
 
 Complete research specification for analyzing our semantic memory system and comparing with roampal-core for improvement opportunities.

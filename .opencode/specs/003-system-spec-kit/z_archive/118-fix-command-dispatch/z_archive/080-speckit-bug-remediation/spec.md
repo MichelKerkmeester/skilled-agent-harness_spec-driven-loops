@@ -1,3 +1,16 @@
+---
+title: "Spec: Spec Kit Bug Remediation [080-speckit-bug-remediation/spec]"
+description: "Comprehensive audit by 10 parallel Opus agents identified 45+ bugs across the Spec Kit MCP server codebase. Issues range from critical data corruption risks to ReDoS vulnerabili..."
+trigger_phrases:
+  - "spec"
+  - "kit"
+  - "bug"
+  - "remediation"
+  - "080"
+  - "speckit"
+importance_tier: "important"
+contextType: "decision"
+---
 # Spec: Spec Kit Bug Remediation
 
 <!-- SPECKIT_LEVEL: 3+ -->

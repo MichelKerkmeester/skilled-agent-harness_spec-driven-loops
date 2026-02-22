@@ -1,3 +1,16 @@
+---
+title: "Implementation Plan: Unified Graph-RAG Intelligence Integration [003-unified-graph-intelligence/plan]"
+description: "This plan covers the integration of Workstream A (RAG Fusion / 001-system-speckit-hybrid-rag-fusion) and Workstream B (Skill Graphs / 002-skill-graph-integration) into a unified..."
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "unified"
+  - "graph"
+  - "rag"
+  - "003"
+importance_tier: "important"
+contextType: "decision"
+---
 # Implementation Plan: Unified Graph-RAG Intelligence Integration
 
 <!-- SPECKIT_LEVEL: 3+ -->

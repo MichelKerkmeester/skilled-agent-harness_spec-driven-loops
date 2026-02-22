@@ -1,3 +1,17 @@
+---
+title: "Feature Specification: SpecKit Skill Consolidation - Requirements & Migration Strategy [005-speckit-consolidation/spec]"
+description: "Consolidate the standalone .opencode/speckit/ folder into the .opencode/skills/workflows-spec-kit/ skill folder, following the self-contained architecture pattern established by..."
+trigger_phrases:
+  - "feature"
+  - "specification"
+  - "speckit"
+  - "skill"
+  - "consolidation"
+  - "spec"
+  - "005"
+importance_tier: "important"
+contextType: "decision"
+---
 # Feature Specification: SpecKit Skill Consolidation - Requirements & Migration Strategy
 
 Consolidate the standalone `.opencode/speckit/` folder into the `.opencode/skills/workflows-spec-kit/` skill folder, following the self-contained architecture pattern established by `workflows-memory`.

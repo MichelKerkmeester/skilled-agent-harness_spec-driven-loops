@@ -1,3 +1,17 @@
+---
+title: "GitHub MCP Integration for sk-git Skill [032-github-mcp-integration/spec]"
+description: "Integrate the GitHub MCP server (configured in .utcp_config.json) into the sk-git skill documentation, providing correct syntax for Code Mode access and comprehensive tool cover..."
+trigger_phrases:
+  - "github"
+  - "mcp"
+  - "integration"
+  - "for"
+  - "git"
+  - "spec"
+  - "032"
+importance_tier: "important"
+contextType: "decision"
+---
 <!-- SPECKIT_LEVEL: 2 -->
 
 <!-- SPECKIT_TEMPLATE_SOURCE: legacy-normalized | v2.2 -->

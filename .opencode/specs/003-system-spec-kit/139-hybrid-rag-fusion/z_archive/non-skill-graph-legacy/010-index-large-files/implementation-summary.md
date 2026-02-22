@@ -1,3 +1,15 @@
+---
+title: "Implementation Summary [010-index-large-files/implementation-summary]"
+description: "Four memory files that the indexing pipeline had rejected now index successfully. The release also added a new bulk-delete MCP tool and a standalone CLI that runs from the proje..."
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "implementation summary"
+  - "010"
+  - "index"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Implementation Summary
 
 <!-- SPECKIT_LEVEL: 3+ -->

@@ -1,3 +1,16 @@
+---
+title: "Implementation Plan: Label Product Content Attribute [032-label-product-content-attr/plan]"
+description: "Overview: Add a content key to the existing LABEL_CONFIG object in label_product.js. During initialization, set the data-label-content attribute alongside the existing data-labe..."
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "label"
+  - "product"
+  - "content"
+  - "032"
+importance_tier: "important"
+contextType: "decision"
+---
 # Implementation Plan: Label Product Content Attribute
 
 <!-- SPECKIT_LEVEL: 1 -->

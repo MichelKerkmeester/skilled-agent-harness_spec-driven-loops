@@ -1,3 +1,16 @@
+---
+title: "Implementation Plan: Skill Graph Improvement [007-skill-graph-improvement/plan]"
+description: "Three parallel workstreams address the 7 gaps found in utilization testing. Workstream A fixes four engine bugs in the TypeScript SGQS files so queries return correct results. W..."
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "skill"
+  - "graph"
+  - "improvement"
+  - "007"
+importance_tier: "important"
+contextType: "decision"
+---
 # Implementation Plan: Skill Graph Improvement
 
 <!-- SPECKIT_LEVEL: 2 -->

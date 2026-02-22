@@ -1,3 +1,17 @@
+---
+title: "Feature Specification: Phase 006 — Rename sk-visual-explainer to sk-visual-explainer [006-sk-visual-explainer/spec]"
+description: "This is Phase 6 of the Skill Rename (038) specification. It has the FEWEST external references (6 files), making it the lowest-effort phase."
+trigger_phrases:
+  - "feature"
+  - "specification"
+  - "phase"
+  - "006"
+  - "rename"
+  - "spec"
+  - "visual"
+importance_tier: "important"
+contextType: "decision"
+---
 # Feature Specification: Phase 006 — Rename sk-visual-explainer to sk-visual-explainer
 
 <!-- SPECKIT_LEVEL: 2 -->

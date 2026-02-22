@@ -1,3 +1,17 @@
+---
+title: "Feature Specification: System-Spec-Kit Bug Analysis and Fix - Requirements & User [064-bug-analysis-and-fix/spec]"
+description: "Complete feature specification for addressing ~231 identified issues across the system-spec-kit skill and spec_kit commands."
+trigger_phrases:
+  - "feature"
+  - "specification"
+  - "system"
+  - "spec"
+  - "kit"
+  - "064"
+  - "bug"
+importance_tier: "important"
+contextType: "decision"
+---
 # Feature Specification: System-Spec-Kit Bug Analysis and Fix - Requirements & User Stories
 
 Complete feature specification for addressing ~231 identified issues across the system-spec-kit skill and spec_kit commands.

@@ -1,3 +1,17 @@
+---
+title: "Decision Record: Unified Graph-RAG Intelligence Integration [003-unified-graph-intelligence/decision-record]"
+description: "Two disconnected graph systems exist inside the MCP server with no bridge between them. The Causal Edge Graph lives in SQLite (causal_edges table, 6 edge types: caused, enabled,..."
+trigger_phrases:
+  - "decision"
+  - "record"
+  - "unified"
+  - "graph"
+  - "rag"
+  - "decision record"
+  - "003"
+importance_tier: "important"
+contextType: "decision"
+---
 # Decision Record: Unified Graph-RAG Intelligence Integration
 
 <!-- SPECKIT_LEVEL: 3+ -->

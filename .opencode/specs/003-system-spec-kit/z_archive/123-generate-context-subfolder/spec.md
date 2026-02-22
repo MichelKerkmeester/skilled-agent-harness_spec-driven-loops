@@ -1,3 +1,17 @@
+---
+title: "Feature Specification: generate-context.ts Subfolder Support [123-generate-context-subfolder/spec]"
+description: "The generate-context.js memory save script only handles flat spec folder paths (e.g., specs/003-name/). Every spec folder in the project uses nested subfolders (e.g., specs/003-..."
+trigger_phrases:
+  - "feature"
+  - "specification"
+  - "generate"
+  - "context"
+  - "subfolder"
+  - "spec"
+  - "123"
+importance_tier: "important"
+contextType: "decision"
+---
 # Feature Specification: generate-context.ts Subfolder Support
 
 <!-- SPECKIT_LEVEL: 2 -->

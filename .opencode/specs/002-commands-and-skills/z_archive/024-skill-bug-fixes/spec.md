@@ -1,3 +1,17 @@
+---
+title: "Feature Specification: workflows-code Skill Bug Fixes [024-skill-bug-fixes/spec]"
+description: "Fix critical bugs, broken cross-references, and template compliance issues in the workflows-code skill identified through comprehensive multi-agent analysis."
+trigger_phrases:
+  - "feature"
+  - "specification"
+  - "workflows"
+  - "code"
+  - "skill"
+  - "spec"
+  - "024"
+importance_tier: "important"
+contextType: "decision"
+---
 <!-- SPECKIT_LEVEL: 2 -->
 
 # Feature Specification: workflows-code Skill Bug Fixes

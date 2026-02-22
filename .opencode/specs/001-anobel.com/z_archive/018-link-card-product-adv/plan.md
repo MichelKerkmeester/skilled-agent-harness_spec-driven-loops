@@ -1,3 +1,14 @@
+---
+title: "Implementation Plan [018-link-card-product-adv/plan]"
+description: "Leverage the existing state machine pattern to drive CTA button animations. The --_state---on variable toggles 0→1 on hover/focus, which can be used with calc() and color-mix() ..."
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "018"
+  - "link"
+importance_tier: "important"
+contextType: "decision"
+---
 # Implementation Plan
 
 <!-- ANCHOR:approach -->

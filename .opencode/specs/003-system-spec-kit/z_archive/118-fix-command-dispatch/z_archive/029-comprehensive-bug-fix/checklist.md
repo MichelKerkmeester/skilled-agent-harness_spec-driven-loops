@@ -1,3 +1,15 @@
+---
+title: "Checklist - Comprehensive Bug Fix [029-comprehensive-bug-fix/checklist]"
+description: "checklist document for 029-comprehensive-bug-fix."
+trigger_phrases:
+  - "checklist"
+  - "comprehensive"
+  - "bug"
+  - "fix"
+  - "029"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Checklist - Comprehensive Bug Fix
 
 > All items completed and verified.

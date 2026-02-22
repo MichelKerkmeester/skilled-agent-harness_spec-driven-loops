@@ -1,3 +1,16 @@
+---
+title: "Implementation Plan: Rename workflows-code to workflows-code--web-dev [028-rename-to-web-dev/plan]"
+description: "Overview: This implements a directory rename of .opencode/skill/workflows-code to .opencode/skill/workflows-code--web-dev and updates all references across the active codebase. ..."
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "rename"
+  - "workflows"
+  - "code"
+  - "028"
+importance_tier: "important"
+contextType: "decision"
+---
 # Implementation Plan: Rename workflows-code to workflows-code--web-dev
 
 <!-- SPECKIT_LEVEL: 1 -->

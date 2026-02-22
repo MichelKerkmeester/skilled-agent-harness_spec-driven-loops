@@ -1,3 +1,17 @@
+---
+title: "Decision Record: SpecKit Template Optimization [073-speckit-template-optimization/decision-record]"
+description: "The existing SpecKit templates were monolithic - each level had its own complete set of templates with significant duplication. tasks.md L1 and L2 were 100% identical (278 lines..."
+trigger_phrases:
+  - "decision"
+  - "record"
+  - "speckit"
+  - "template"
+  - "optimization"
+  - "decision record"
+  - "073"
+importance_tier: "important"
+contextType: "decision"
+---
 <!-- SPECKIT_LEVEL: 3+ -->
 # Decision Record: SpecKit Template Optimization
 

@@ -1,3 +1,15 @@
+---
+title: "Task 07 — Tagged Release [task-07-github-release/spec]"
+description: "Specify the GitHub tagged release for spec 130, following PUBLIC_RELEASE.md conventions. This is the final task in the dependency chain — all documentation alignment work must b..."
+trigger_phrases:
+  - "task"
+  - "tagged"
+  - "release"
+  - "spec"
+  - "github"
+importance_tier: "important"
+contextType: "decision"
+---
 <!-- SPECKIT_LEVEL: 3+ -->
 # Task 07 — Tagged Release
 

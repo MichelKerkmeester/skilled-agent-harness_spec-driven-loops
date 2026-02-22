@@ -1,3 +1,17 @@
+---
+title: "Decision Record: Post-Research Wave 3 (Outcome [006-post-research-wave-3-outcome-confirmation/decision-record]"
+description: "This phase package delegates decision records to the parent spec folder."
+trigger_phrases:
+  - "decision"
+  - "record"
+  - "post"
+  - "research"
+  - "wave"
+  - "decision record"
+  - "006"
+importance_tier: "important"
+contextType: "decision"
+---
 <!-- SPECKIT_LEVEL: 3+ -->
 # Decision Record: Post-Research Wave 3 (Outcome Confirmation)
 

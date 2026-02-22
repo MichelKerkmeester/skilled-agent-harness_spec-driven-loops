@@ -1,3 +1,15 @@
+---
+title: "Implementation Summary [088-speckit-known-limitations-remediation/implementation-summary]"
+description: "Level 2 Summary (+Verify) is appropriate when"
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "implementation summary"
+  - "088"
+  - "speckit"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Implementation Summary
 
 <!-- SPECKIT_LEVEL: 2 -->

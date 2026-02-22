@@ -1,3 +1,18 @@
+---
+title: "Decision Record: System-Spec-Kit Bug Fix Architectural Decisions [064-bug-analysis-and-fix/decision-record]"
+description: "Architecture Decision Records (ADRs) documenting significant technical decisions for the bug fix effort."
+trigger_phrases:
+  - "decision"
+  - "record"
+  - "system"
+  - "spec"
+  - "kit"
+  - "decision record"
+  - "064"
+  - "bug"
+importance_tier: "important"
+contextType: "decision"
+---
 # Decision Record: System-Spec-Kit Bug Fix Architectural Decisions
 
 Architecture Decision Records (ADRs) documenting significant technical decisions for the bug fix effort.

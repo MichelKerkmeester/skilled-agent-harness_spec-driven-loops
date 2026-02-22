@@ -1,3 +1,17 @@
+---
+title: "Verification Checklist: Cognitive Memory Upgrade [079-speckit-cognitive-memory/checklist]"
+description: "Verification Date: 2026-01-27"
+trigger_phrases:
+  - "verification"
+  - "checklist"
+  - "cognitive"
+  - "memory"
+  - "upgrade"
+  - "079"
+  - "speckit"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Verification Checklist: Cognitive Memory Upgrade
 
 <!-- SPECKIT_LEVEL: 3+ -->

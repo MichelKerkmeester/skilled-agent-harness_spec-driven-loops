@@ -1,3 +1,16 @@
+---
+title: "Implementation Plan: Install Guide Alignment [005-install-guide-alignment/plan]"
+description: "Rewrite all 4 INSTALL_GUIDE.md files to match the latest template structure, apply HVR voice rules, and document new features from specs 136/138/139 (feature flags, skill graph ..."
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "install"
+  - "guide"
+  - "alignment"
+  - "005"
+importance_tier: "important"
+contextType: "decision"
+---
 # Implementation Plan: Install Guide Alignment
 
 <!-- SPECKIT_LEVEL: 2 -->

@@ -1,9 +1,17 @@
 ---
+title: "Completion Checklist [036-post-merge-refinement-1/checklist]"
+description: "id: 036-post-merge-refinement"
+trigger_phrases:
+  - "completion"
+  - "checklist"
+  - "036"
+  - "post"
+importance_tier: "normal"
+contextType: "implementation"
 id: 036-post-merge-refinement
-title: Completion Checklist
 level: 2
----
 
+---
 # Completion Checklist
 
 ## P0 - Critical Issues (HARD BLOCKERS)

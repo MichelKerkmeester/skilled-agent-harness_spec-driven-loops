@@ -1,3 +1,17 @@
+---
+title: "Implementation Plan: Level-Based Template Architecture [069-speckit-template-complexity/plan]"
+description: "Technical approach and architecture for complexity detection and level-based template folder system."
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "level"
+  - "based"
+  - "template"
+  - "069"
+  - "speckit"
+importance_tier: "important"
+contextType: "decision"
+---
 # Implementation Plan: Level-Based Template Architecture
 
 Technical approach and architecture for complexity detection and level-based template folder system.

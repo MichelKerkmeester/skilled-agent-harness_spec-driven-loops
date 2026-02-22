@@ -1,3 +1,17 @@
+---
+title: "Implementation Summary: workflows-code Skill Bug Fixes [024-skill-bug-fixes/implementation-summary]"
+description: "Date: 2026-01-24"
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "workflows"
+  - "code"
+  - "skill"
+  - "implementation summary"
+  - "024"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Implementation Summary: workflows-code Skill Bug Fixes
 
 <!-- SPECKIT_TEMPLATE_SOURCE: implementation-summary | v1.0 -->

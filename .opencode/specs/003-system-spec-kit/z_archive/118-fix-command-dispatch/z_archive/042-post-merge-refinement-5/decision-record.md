@@ -1,3 +1,18 @@
+---
+title: "Spec Kit Memory System - Architecture Decision Record [042-post-merge-refinement-5/decision-record]"
+description: "Architecture Decision Record (ADR) documenting significant technical decisions for the post-merge refinement phase."
+trigger_phrases:
+  - "spec"
+  - "kit"
+  - "memory"
+  - "system"
+  - "architecture"
+  - "decision record"
+  - "042"
+  - "post"
+importance_tier: "important"
+contextType: "decision"
+---
 # Spec Kit Memory System - Architecture Decision Record
 
 Architecture Decision Record (ADR) documenting significant technical decisions for the post-merge refinement phase.

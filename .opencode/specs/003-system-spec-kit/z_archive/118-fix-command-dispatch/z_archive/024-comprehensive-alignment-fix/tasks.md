@@ -1,3 +1,15 @@
+---
+title: "Task Breakdown [024-comprehensive-alignment-fix/tasks]"
+description: "Actionable tasks for each checklist item. Complete in order within each phase."
+trigger_phrases:
+  - "task"
+  - "breakdown"
+  - "tasks"
+  - "024"
+  - "comprehensive"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Task Breakdown
 
 Actionable tasks for each checklist item. Complete in order within each phase.

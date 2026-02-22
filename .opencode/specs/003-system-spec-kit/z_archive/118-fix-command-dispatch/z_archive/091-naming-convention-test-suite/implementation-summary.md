@@ -1,3 +1,17 @@
+---
+title: "Implementation Summary: Naming Convention Test Suite [091-naming-convention-test-suite/implementation-summary]"
+description: "Built a 3-file test suite that comprehensively verifies the naming convention migration (spec 090). Tests cover syntax validation, module imports, export contracts, backward-com..."
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "naming"
+  - "convention"
+  - "test"
+  - "implementation summary"
+  - "091"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Implementation Summary: Naming Convention Test Suite
 
 <!-- SPECKIT_LEVEL: 2 -->

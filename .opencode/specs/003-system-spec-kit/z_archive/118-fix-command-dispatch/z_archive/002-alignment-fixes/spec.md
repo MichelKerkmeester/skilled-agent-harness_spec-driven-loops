@@ -1,3 +1,16 @@
+---
+title: "Memory Command Alignment Fixes [002-alignment-fixes/spec]"
+description: "This spec documents the alignment fixes applied to memory command files to ensure consistency with"
+trigger_phrases:
+  - "memory"
+  - "command"
+  - "alignment"
+  - "fixes"
+  - "spec"
+  - "002"
+importance_tier: "important"
+contextType: "decision"
+---
 # Memory Command Alignment Fixes
 
 ## Overview

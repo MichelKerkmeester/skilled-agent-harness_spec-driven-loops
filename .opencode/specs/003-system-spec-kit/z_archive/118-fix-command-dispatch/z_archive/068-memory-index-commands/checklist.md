@@ -1,3 +1,16 @@
+---
+title: "Validation Checklist: Memory Command Separation - Validation Items [068-memory-index-commands/checklist]"
+description: "Checklist for validating the memory command separation implementation."
+trigger_phrases:
+  - "validation"
+  - "checklist"
+  - "memory"
+  - "command"
+  - "separation"
+  - "068"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Validation Checklist: Memory Command Separation - Validation Items
 
 Checklist for validating the memory command separation implementation.

@@ -1,3 +1,16 @@
+---
+title: "Phase Package Spec: Post-Research Wave 2 (Controlled Delivery) [005-post-research-wave-2-controlled-delivery/spec]"
+description: "This package defines controlled delivery execution after Wave 1 governance foundations are complete."
+trigger_phrases:
+  - "phase"
+  - "package"
+  - "spec"
+  - "post"
+  - "research"
+  - "005"
+importance_tier: "important"
+contextType: "decision"
+---
 <!-- SPECKIT_LEVEL: 3+ -->
 # Phase Package Spec: Post-Research Wave 2 (Controlled Delivery)
 

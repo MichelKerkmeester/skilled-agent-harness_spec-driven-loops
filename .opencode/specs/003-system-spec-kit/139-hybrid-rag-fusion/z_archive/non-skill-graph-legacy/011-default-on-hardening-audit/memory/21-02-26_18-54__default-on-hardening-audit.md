@@ -1,3 +1,8 @@
+---
+title: "To promote a memory to constitutional tier [011-default-on-hardening-audit/21-02-26_18-54__default-on-hardening-audit]"
+importance_tier: "critical"
+contextType: "general"
+---
 <!-- TEMPLATE: context_template.md v2.2 - DO NOT EDIT GENERATED FILES -->
 <!-- Constitutional Tier Promotion:
   To promote a memory to constitutional tier (always surfaced):

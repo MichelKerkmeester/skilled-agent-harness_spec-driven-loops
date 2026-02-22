@@ -1,3 +1,17 @@
+---
+title: "Load Toggle Component - anobel.com [027-load-toggle/spec]"
+description: "A reusable expand/collapse component for Webflow with CMS-bindable button text, smooth animations, and multi-instance support. Enables \"View More / View Less\" patterns with dyna..."
+trigger_phrases:
+  - "load"
+  - "toggle"
+  - "component"
+  - "anobel"
+  - "com"
+  - "spec"
+  - "027"
+importance_tier: "important"
+contextType: "decision"
+---
 # Load Toggle Component - anobel.com
 
 <!-- ANCHOR:metadata -->

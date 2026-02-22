@@ -1,3 +1,17 @@
+---
+title: "Specification: System-Spec-Kit Upgrade from Research Synthesis [077-speckit-upgrade-from-research/spec]"
+description: "This specification consolidates findings from four prior research specs (060-063) into a single implementation plan for upgrading the system-spec-kit skill. The research analyze..."
+trigger_phrases:
+  - "specification"
+  - "system"
+  - "spec"
+  - "kit"
+  - "upgrade"
+  - "077"
+  - "speckit"
+importance_tier: "important"
+contextType: "decision"
+---
 # Specification: System-Spec-Kit Upgrade from Research Synthesis
 
 ---

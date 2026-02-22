@@ -1,3 +1,17 @@
+---
+title: "Tasks: Skill References & Assets Indexing [133-index-workflows-code/tasks]"
+description: "Task Format: T### [P?] Description (file path)"
+trigger_phrases:
+  - "tasks"
+  - "skill"
+  - "references"
+  - "assets"
+  - "indexing"
+  - "133"
+  - "index"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: Skill References & Assets Indexing
 
 <!-- SPECKIT_LEVEL: 3+ -->

@@ -1,3 +1,16 @@
+---
+title: "QA Checklist: Post-Merge Refinement Final [043-post-merge-refinement-final/checklist]"
+description: "Method: 10 parallel verification agents read all modified files and confirmed fixes with line-number evidence."
+trigger_phrases:
+  - "checklist"
+  - "post"
+  - "merge"
+  - "refinement"
+  - "final"
+  - "043"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # QA Checklist: Post-Merge Refinement Final
 
 | **Field** | **Value** |

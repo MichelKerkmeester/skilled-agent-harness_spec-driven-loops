@@ -1,3 +1,16 @@
+---
+title: "Verification Checklist: Security & Documentation Remediation [050-security-doc-remediation/checklist]"
+description: "curl or MCP call memory_health()"
+trigger_phrases:
+  - "verification"
+  - "checklist"
+  - "security"
+  - "documentation"
+  - "remediation"
+  - "050"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Verification Checklist: Security & Documentation Remediation
 
 ## Metadata

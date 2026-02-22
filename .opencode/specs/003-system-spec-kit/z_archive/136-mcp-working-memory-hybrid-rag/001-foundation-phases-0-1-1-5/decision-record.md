@@ -1,3 +1,17 @@
+---
+title: "Decision Record: Foundation Package (Phase 0, 1, 1.5) [001-foundation-phases-0-1-1-5/decision-record]"
+description: "This package is declared as Level 3+ and must include decision-record.md for compliance checks. Existing package governance text establishes that canonical architecture decision..."
+trigger_phrases:
+  - "decision"
+  - "record"
+  - "foundation"
+  - "package"
+  - "phase"
+  - "decision record"
+  - "001"
+importance_tier: "important"
+contextType: "decision"
+---
 # Decision Record: Foundation Package (Phase 0, 1, 1.5)
 
 <!-- SPECKIT_LEVEL: 3+ -->

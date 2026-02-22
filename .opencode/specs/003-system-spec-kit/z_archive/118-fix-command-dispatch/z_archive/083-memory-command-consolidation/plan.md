@@ -1,3 +1,16 @@
+---
+title: "Implementation Plan: Memory Command Consolidation [083-memory-command-consolidation/plan]"
+description: "Spec ID: 083-memory-command-consolidation"
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "memory"
+  - "command"
+  - "consolidation"
+  - "083"
+importance_tier: "important"
+contextType: "decision"
+---
 # Implementation Plan: Memory Command Consolidation
 
 **Spec ID:** 083-memory-command-consolidation

@@ -1,3 +1,17 @@
+---
+title: "Verification Checklist: AI Auto-Populate on Spec Upgrade [128-upgrade-auto-populate/checklist]"
+description: "Verification Date: 2026-02-16"
+trigger_phrases:
+  - "verification"
+  - "checklist"
+  - "auto"
+  - "populate"
+  - "spec"
+  - "128"
+  - "upgrade"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Verification Checklist: AI Auto-Populate on Spec Upgrade
 
 <!-- SPECKIT_LEVEL: 3+ -->

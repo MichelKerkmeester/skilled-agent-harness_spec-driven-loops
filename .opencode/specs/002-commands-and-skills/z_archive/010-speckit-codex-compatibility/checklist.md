@@ -1,3 +1,17 @@
+---
+title: "Verification Checklist: Make spec_kit Commands Codex-Compatible [010-speckit-codex-compatibility/checklist]"
+description: "All P0 items are HARD BLOCKERS. Cannot claim completion until every P0 is marked [x]."
+trigger_phrases:
+  - "verification"
+  - "checklist"
+  - "make"
+  - "spec"
+  - "kit"
+  - "010"
+  - "speckit"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Verification Checklist: Make spec_kit Commands Codex-Compatible
 
 <!-- SPECKIT_LEVEL: 3 -->

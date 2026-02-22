@@ -1,3 +1,17 @@
+---
+title: "Feature Specification: Agent Sonnet 4.6 Upgrade [020-agent-sonnet-upgrade/spec]"
+description: "Multiple agents across the Copilot and Claude Code agent systems were pinned to outdated or mismatched models: context and handover agents used haiku-4.5 (insufficient reasoning..."
+trigger_phrases:
+  - "feature"
+  - "specification"
+  - "agent"
+  - "sonnet"
+  - "upgrade"
+  - "spec"
+  - "020"
+importance_tier: "important"
+contextType: "decision"
+---
 # Feature Specification: Agent Sonnet 4.6 Upgrade
 
 <!-- SPECKIT_LEVEL: 2 -->

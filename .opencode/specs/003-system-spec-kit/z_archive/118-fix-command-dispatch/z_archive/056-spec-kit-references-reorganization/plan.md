@@ -1,3 +1,16 @@
+---
+title: "Implementation Plan: system-spec-kit References Reorganization [056-spec-kit-references-reorganization/plan]"
+description: "Reorganize the system-spec-kit references/ folder from a flat structure into logical sub-folders, following patterns established in workflows-code skill improvement."
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "system"
+  - "spec"
+  - "kit"
+  - "056"
+importance_tier: "important"
+contextType: "decision"
+---
 # Implementation Plan: system-spec-kit References Reorganization
 
 ## Overview

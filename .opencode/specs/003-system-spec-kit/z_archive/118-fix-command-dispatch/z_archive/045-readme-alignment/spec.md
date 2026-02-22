@@ -1,3 +1,16 @@
+---
+title: "Spec: README & Install Guide Alignment [045-readme-alignment/spec]"
+description: "Fix documentation misalignments, incorrect counts, and inconsistencies discovered by 10 parallel Opus agents auditing README files and install guides across the skill system."
+trigger_phrases:
+  - "spec"
+  - "readme"
+  - "install"
+  - "guide"
+  - "alignment"
+  - "045"
+importance_tier: "important"
+contextType: "decision"
+---
 # Spec: README & Install Guide Alignment
 
 ## 1. Metadata

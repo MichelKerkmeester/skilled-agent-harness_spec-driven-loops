@@ -1,3 +1,17 @@
+---
+title: "Feature Specification: Phase 008 — Rename workflows-code to sk-code in Barter repo [008-sk-code-from-barter-repo/spec]"
+description: "This is Phase 8 of the Skill Rename (038) specification — the final phase."
+trigger_phrases:
+  - "feature"
+  - "specification"
+  - "phase"
+  - "008"
+  - "rename"
+  - "spec"
+  - "code"
+importance_tier: "important"
+contextType: "decision"
+---
 # Feature Specification: Phase 008 — Rename `workflows-code` to `sk-code` in Barter repo
 
 <!-- SPECKIT_LEVEL: 2 -->

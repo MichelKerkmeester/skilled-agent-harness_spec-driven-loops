@@ -1,3 +1,16 @@
+---
+title: "Implementation Summary: Spec 016 — Handover Haiku + Codex [016-handover-model-codex-compat/implementation-summary]"
+description: "Added to .codex/config.toml"
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "spec"
+  - "016"
+  - "handover"
+  - "implementation summary"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Implementation Summary: Spec 016 — Handover Haiku + Codex Agent Conversion
 
 <!-- ANCHOR:what-built -->

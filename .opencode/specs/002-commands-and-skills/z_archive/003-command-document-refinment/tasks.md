@@ -1,3 +1,15 @@
+---
+title: "Command Document Refinement - Tasks [003-command-document-refinment/tasks]"
+description: "Location: .opencode/skill/sk-documentation/assets/command_template.md"
+trigger_phrases:
+  - "command"
+  - "document"
+  - "refinement"
+  - "tasks"
+  - "003"
+importance_tier: "normal"
+contextType: "implementation"
+---
 <!-- SPECKIT_TEMPLATE_SOURCE: legacy-normalized | v2.2 -->
 
 # Command Document Refinement - Tasks

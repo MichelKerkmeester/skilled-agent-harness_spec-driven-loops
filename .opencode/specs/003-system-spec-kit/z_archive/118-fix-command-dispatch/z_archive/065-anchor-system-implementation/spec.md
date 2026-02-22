@@ -1,3 +1,17 @@
+---
+title: "Feature Specification: Anchor System Implementation - Targeted Memory Retrieval [065-anchor-system-implementation/spec]"
+description: "Complete feature specification defining requirements, user stories, and success criteria for the Anchor System implementation."
+trigger_phrases:
+  - "feature"
+  - "specification"
+  - "anchor"
+  - "system"
+  - "implementation"
+  - "spec"
+  - "065"
+importance_tier: "important"
+contextType: "decision"
+---
 # Feature Specification: Anchor System Implementation - Targeted Memory Retrieval
 
 Complete feature specification defining requirements, user stories, and success criteria for the Anchor System implementation.

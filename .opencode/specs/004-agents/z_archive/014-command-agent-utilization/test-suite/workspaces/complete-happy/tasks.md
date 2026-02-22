@@ -1,3 +1,17 @@
+---
+title: "Tasks: Notification System with In-App Alerts and Email Delivery [complete-happy/tasks]"
+description: "Task Format: T### [P?] Description (file path)"
+trigger_phrases:
+  - "tasks"
+  - "notification"
+  - "system"
+  - "with"
+  - "app"
+  - "complete"
+  - "happy"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: Notification System with In-App Alerts and Email Delivery
 
 <!-- SPECKIT_LEVEL: 2 -->

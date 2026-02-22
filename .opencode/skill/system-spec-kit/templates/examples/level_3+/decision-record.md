@@ -1,3 +1,17 @@
+---
+title: "Decision Record: Add User Authentication [template:examples/level_3+/decision-record.md]"
+description: "Level 3, demonstrating that governance-level features are primarily in spec.md"
+trigger_phrases:
+  - "decision"
+  - "record"
+  - "add"
+  - "user"
+  - "authentication"
+  - "template"
+  - "decision record"
+importance_tier: "normal"
+contextType: "general"
+---
 # Decision Record: Add User Authentication
 
 <!-- SPECKIT_LEVEL: 3+ -->

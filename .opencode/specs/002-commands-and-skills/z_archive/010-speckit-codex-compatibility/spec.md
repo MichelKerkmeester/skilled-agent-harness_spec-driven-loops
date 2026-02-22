@@ -1,3 +1,17 @@
+---
+title: "Feature Specification: Make spec_kit Commands Codex-Compatible [010-speckit-codex-compatibility/spec]"
+description: "Made 7 spec_kit command .md files and 11 YAML workflow files Codex-compatible using a three-pronged approach: strip agent routing sections from .md files, add explicit CONSTRAIN..."
+trigger_phrases:
+  - "feature"
+  - "specification"
+  - "make"
+  - "spec"
+  - "kit"
+  - "010"
+  - "speckit"
+importance_tier: "important"
+contextType: "decision"
+---
 # Feature Specification: Make spec_kit Commands Codex-Compatible
 
 <!-- SPECKIT_LEVEL: 3 -->

@@ -1,3 +1,16 @@
+---
+title: "Tasks: Skill Rename — workflows-* to sk-*/mcp-* [038-skill-rename/tasks]"
+description: "Task Format: T### [P?] Description (file path)"
+trigger_phrases:
+  - "tasks"
+  - "skill"
+  - "rename"
+  - "workflows"
+  - "mcp"
+  - "038"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: Skill Rename — workflows-* to sk-*/mcp-*
 
 <!-- SPECKIT_LEVEL: 3+ -->

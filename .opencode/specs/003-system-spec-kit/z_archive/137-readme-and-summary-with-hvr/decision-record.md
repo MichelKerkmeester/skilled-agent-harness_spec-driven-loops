@@ -1,3 +1,18 @@
+---
+title: "Decision Record: Human Voice Rules — Template Integration [137-readme-and-summary-with-hvr/decision-record]"
+description: "The Human Voice Rules exist in a single file at context/Rules - Human Voice - v0.101.md, written for the Barter project. Multiple documentation templates across two separate ski..."
+trigger_phrases:
+  - "decision"
+  - "record"
+  - "human"
+  - "voice"
+  - "rules"
+  - "decision record"
+  - "137"
+  - "readme"
+importance_tier: "important"
+contextType: "decision"
+---
 # Decision Record: Human Voice Rules — Template Integration
 
 <!-- SPECKIT_LEVEL: 3+ -->

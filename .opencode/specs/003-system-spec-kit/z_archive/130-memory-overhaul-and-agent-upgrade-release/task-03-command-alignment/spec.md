@@ -1,3 +1,15 @@
+---
+title: "Task 03 — Command Configs Audit [task-03-command-alignment/spec]"
+description: "Audit all command configuration files in .opencode/command/ to ensure agent routing patterns (spec 014), memory command capabilities (specs 126–128), and spec_kit command refere..."
+trigger_phrases:
+  - "task"
+  - "command"
+  - "configs"
+  - "audit"
+  - "spec"
+importance_tier: "important"
+contextType: "decision"
+---
 <!-- SPECKIT_LEVEL: 3+ -->
 # Task 03 — Command Configs Audit
 

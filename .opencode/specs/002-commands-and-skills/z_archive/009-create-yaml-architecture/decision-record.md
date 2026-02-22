@@ -1,3 +1,17 @@
+---
+title: "Decision Record: Create Commands YAML-First Architecture Refactor [009-create-yaml-architecture/decision-record]"
+description: "6 create commands need identical architectural refactoring from inline-workflow to YAML-first. Doing all simultaneously risks inconsistency, makes debugging difficult, and incre..."
+trigger_phrases:
+  - "decision"
+  - "record"
+  - "create"
+  - "commands"
+  - "yaml"
+  - "decision record"
+  - "009"
+importance_tier: "important"
+contextType: "decision"
+---
 # Decision Record: Create Commands YAML-First Architecture Refactor
 
 <!-- SPECKIT_LEVEL: 3 -->

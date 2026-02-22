@@ -1,3 +1,17 @@
+---
+title: "Decision Record: Fix Command Dispatch Vulnerability [118-fix-command-dispatch/decision-record]"
+description: "When /spec_kit:complete and other spec_kit commands execute, OpenCode's runtime injects phantom dispatch text (\"Use the above message and context to generate a prompt and call t..."
+trigger_phrases:
+  - "decision"
+  - "record"
+  - "fix"
+  - "command"
+  - "dispatch"
+  - "decision record"
+  - "118"
+importance_tier: "important"
+contextType: "decision"
+---
 # Decision Record: Fix Command Dispatch Vulnerability
 
 <!-- SPECKIT_LEVEL: 3+ -->

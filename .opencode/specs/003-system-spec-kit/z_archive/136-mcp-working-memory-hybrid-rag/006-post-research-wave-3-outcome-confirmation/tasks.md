@@ -1,3 +1,16 @@
+---
+title: "Tasks: Post-Research Wave 3 Package (Outcome Confirmation) [006-post-research-wave-3-outcome-confirmation/tasks]"
+description: "Tracking document prepared for Wave 3 execution and synchronized with root post-research backlog mapping."
+trigger_phrases:
+  - "tasks"
+  - "post"
+  - "research"
+  - "wave"
+  - "package"
+  - "006"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: Post-Research Wave 3 Package (Outcome Confirmation)
 
 <!-- SPECKIT_LEVEL: 3+ -->

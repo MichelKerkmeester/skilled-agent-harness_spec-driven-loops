@@ -1,3 +1,15 @@
+---
+title: "Verification Checklist: Documentation Alignment [007-documentation-alignment/checklist]"
+description: "checklist document for 007-documentation-alignment."
+trigger_phrases:
+  - "verification"
+  - "checklist"
+  - "documentation"
+  - "alignment"
+  - "007"
+importance_tier: "normal"
+contextType: "implementation"
+---
 <!-- SPECKIT_LEVEL: 3 -->
 # Verification Checklist: Documentation Alignment
 

@@ -1,3 +1,17 @@
+---
+title: "Feature Specification: SpecKit System Architecture Analysis [015-system-analysis/spec]"
+description: "To deconstruct and analyze the SpecKit system's architecture, identifying strengths, weaknesses, and structural risks (specifically the synchronization between Skills and Comman..."
+trigger_phrases:
+  - "feature"
+  - "specification"
+  - "speckit"
+  - "system"
+  - "architecture"
+  - "spec"
+  - "015"
+importance_tier: "important"
+contextType: "decision"
+---
 # Feature Specification: SpecKit System Architecture Analysis
 
 > Deep architectural analysis of the SpecKit system, covering the interaction between AGENTS.md, Skills, Commands, and Data.

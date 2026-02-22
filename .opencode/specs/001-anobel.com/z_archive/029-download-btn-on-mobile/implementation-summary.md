@@ -1,3 +1,15 @@
+---
+title: "Implementation Summary [029-download-btn-on-mobile/implementation-summary]"
+description: "Fixed mobile download button functionality on anobel.com. The root cause was Webflow's hidden anchor overlay (.btn--interaction > .btn--link) intercepting taps before our JavaSc..."
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "implementation summary"
+  - "029"
+  - "download"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Implementation Summary
 
 <!-- SPECKIT_LEVEL: 1 -->

@@ -1,3 +1,16 @@
+---
+title: "Tasks: Phase 004 — Finalize Rename to sk-documentation [004-sk-documentation/tasks]"
+description: "Task Format: T### [P?] Description (file path)"
+trigger_phrases:
+  - "tasks"
+  - "phase"
+  - "004"
+  - "finalize"
+  - "rename"
+  - "documentation"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: Phase 004 — Finalize Rename to sk-documentation
 
 <!-- SPECKIT_LEVEL: 2 -->

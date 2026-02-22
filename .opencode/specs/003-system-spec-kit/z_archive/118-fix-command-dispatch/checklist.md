@@ -1,3 +1,16 @@
+---
+title: "Verification Checklist: Fix Command Dispatch Vulnerability [118-fix-command-dispatch/checklist]"
+description: "Audit Completion Date: 2026-02-13"
+trigger_phrases:
+  - "verification"
+  - "checklist"
+  - "fix"
+  - "command"
+  - "dispatch"
+  - "118"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Verification Checklist: Fix Command Dispatch Vulnerability
 
 <!-- SPECKIT_LEVEL: 3+ -->

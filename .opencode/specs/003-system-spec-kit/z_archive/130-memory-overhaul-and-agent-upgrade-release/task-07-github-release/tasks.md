@@ -1,3 +1,14 @@
+---
+title: "Tasks: Task 07 — GitHub Release [task-07-github-release/tasks]"
+description: "Task Format: T### Description (file path)"
+trigger_phrases:
+  - "tasks"
+  - "task"
+  - "github"
+  - "release"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: Task 07 — GitHub Release
 
 <!-- SPECKIT_LEVEL: 3+ -->

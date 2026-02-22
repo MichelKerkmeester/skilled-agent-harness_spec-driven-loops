@@ -1,3 +1,15 @@
+---
+title: "Tasks: Phase 007 — Finalize mcp-chrome-devtools Rename [007-mcp-chrome-devtools/tasks]"
+description: "Task Format: T### [P?] Description (file path)"
+trigger_phrases:
+  - "tasks"
+  - "phase"
+  - "007"
+  - "finalize"
+  - "mcp"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: Phase 007 — Finalize mcp-chrome-devtools Rename
 
 <!-- SPECKIT_LEVEL: 2 -->

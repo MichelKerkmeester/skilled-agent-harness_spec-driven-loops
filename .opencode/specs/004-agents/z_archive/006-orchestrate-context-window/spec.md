@@ -1,3 +1,17 @@
+---
+title: "Feature Specification: Orchestrate Agent Context Window Protection [006-orchestrate-context-window/spec]"
+description: "The orchestrate agent (orchestrate.md) can dispatch up to 20 sub-agents in parallel but has zero protection against its own context window overflow. When all agents return simul..."
+trigger_phrases:
+  - "feature"
+  - "specification"
+  - "orchestrate"
+  - "agent"
+  - "context"
+  - "spec"
+  - "006"
+importance_tier: "important"
+contextType: "decision"
+---
 <!-- SPECKIT_LEVEL: 3+ -->
 # Feature Specification: Orchestrate Agent Context Window Protection
 

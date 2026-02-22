@@ -1,3 +1,15 @@
+---
+title: "Session Handover Document [030-initial-set-up/handover]"
+description: "1. Phase 1: Setup - Create multi-language folder structure"
+trigger_phrases:
+  - "session"
+  - "handover"
+  - "document"
+  - "030"
+  - "initial"
+importance_tier: "normal"
+contextType: "general"
+---
 # Session Handover Document
 
 <!-- SPECKIT_TEMPLATE_SOURCE: handover | v1.0 -->

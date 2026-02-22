@@ -1,3 +1,14 @@
+---
+title: "State Simplification: Tasks [001-state-simplification/tasks]"
+description: "1. Find the memory file template section"
+trigger_phrases:
+  - "state"
+  - "simplification"
+  - "tasks"
+  - "001"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # State Simplification: Tasks
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks | v1.1 -->
 

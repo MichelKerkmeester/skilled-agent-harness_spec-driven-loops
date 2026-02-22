@@ -1,3 +1,18 @@
+---
+title: "Decision Record: Cognitive Memory Upgrade [079-speckit-cognitive-memory/decision-record]"
+description: "The current Spec Kit Memory system uses an arbitrary exponential decay formula (score × rate^turns) which does not accurately model human memory behavior. Research shows that ag..."
+trigger_phrases:
+  - "decision"
+  - "record"
+  - "cognitive"
+  - "memory"
+  - "upgrade"
+  - "decision record"
+  - "079"
+  - "speckit"
+importance_tier: "important"
+contextType: "decision"
+---
 # Decision Record: Cognitive Memory Upgrade
 
 <!-- SPECKIT_LEVEL: 3+ -->

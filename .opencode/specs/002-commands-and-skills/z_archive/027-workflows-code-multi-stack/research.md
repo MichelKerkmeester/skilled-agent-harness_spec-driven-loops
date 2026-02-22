@@ -1,3 +1,16 @@
+---
+title: "Research - Barter workflows-code Skill Analysis [027-workflows-code-multi-stack/research]"
+description: "Deep analysis of Barter's workflows-code skill to inform conversion strategy. This document catalogs all content, identifies what to keep/remove/replace, and documents the anony..."
+trigger_phrases:
+  - "research"
+  - "barter"
+  - "workflows"
+  - "code"
+  - "skill"
+  - "027"
+importance_tier: "normal"
+contextType: "research"
+---
 # Research - Barter workflows-code Skill Analysis
 
 ## Purpose

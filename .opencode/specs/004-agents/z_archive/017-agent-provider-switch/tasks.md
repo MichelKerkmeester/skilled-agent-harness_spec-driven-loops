@@ -1,3 +1,15 @@
+---
+title: "Tasks: Spec 017 - Agent Provider Switching [017-agent-provider-switch/tasks]"
+description: "tasks document for 017-agent-provider-switch."
+trigger_phrases:
+  - "tasks"
+  - "spec"
+  - "017"
+  - "agent"
+  - "provider"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: Spec 017 - Agent Provider Switching
 
 <!-- SPECKIT_LEVEL: 3 -->

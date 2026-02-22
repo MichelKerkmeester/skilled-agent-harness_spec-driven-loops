@@ -1,3 +1,16 @@
+---
+title: "Implementation Plan: Post-Merge Refinement 4 - Systematic Issue Remediation [041-post-merge-refinement-4/plan]"
+description: "Implementation plan defining phased approach to resolve 75+ issues identified by 10-agent analysis."
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "post"
+  - "merge"
+  - "refinement"
+  - "041"
+importance_tier: "important"
+contextType: "decision"
+---
 # Implementation Plan: Post-Merge Refinement 4 - Systematic Issue Remediation
 
 Implementation plan defining phased approach to resolve 75+ issues identified by 10-agent analysis.

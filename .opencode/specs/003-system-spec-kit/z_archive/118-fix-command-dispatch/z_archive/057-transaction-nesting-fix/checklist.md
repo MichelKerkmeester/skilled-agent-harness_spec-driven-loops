@@ -1,3 +1,16 @@
+---
+title: "Checklist: Transaction Nesting Fix (BUG-057) [057-transaction-nesting-fix/checklist]"
+description: "Why no README updates needed"
+trigger_phrases:
+  - "checklist"
+  - "transaction"
+  - "nesting"
+  - "fix"
+  - "bug"
+  - "057"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Checklist: Transaction Nesting Fix (BUG-057)
 
 ## Pre-Implementation

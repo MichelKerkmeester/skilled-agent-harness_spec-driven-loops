@@ -1,3 +1,15 @@
+---
+title: "Tasks: generate-context.js Modularization [058-generate-context-modularization/tasks]"
+description: "Priority: P0"
+trigger_phrases:
+  - "tasks"
+  - "generate"
+  - "context"
+  - "modularization"
+  - "058"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: generate-context.js Modularization
 
 ## Task Overview

@@ -1,3 +1,17 @@
+---
+title: "Feature Specification: Memory Command Dashboard Visual Design System [036-memory-command-output/spec]"
+description: "Each of the 5 memory commands (context.md, save.md, manage.md, learn.md, continue.md) defines its own visual output format independently, producing 5 different visual languages...."
+trigger_phrases:
+  - "feature"
+  - "specification"
+  - "memory"
+  - "command"
+  - "dashboard"
+  - "spec"
+  - "036"
+importance_tier: "important"
+contextType: "decision"
+---
 # Feature Specification: Memory Command Dashboard Visual Design System
 
 <!-- SPECKIT_LEVEL: 2 -->

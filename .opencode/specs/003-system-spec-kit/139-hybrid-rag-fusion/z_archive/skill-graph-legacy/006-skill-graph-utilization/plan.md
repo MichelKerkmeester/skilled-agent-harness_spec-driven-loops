@@ -1,3 +1,16 @@
+---
+title: "Implementation Plan: Skill Graph Utilization Testing [006-skill-graph-utilization/plan]"
+description: "This plan implements a lightweight test harness that wraps the SGQS CLI to execute structured queries on behalf of 5 developer personas. Five parallel sub-agents (one per person..."
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "skill"
+  - "graph"
+  - "utilization"
+  - "006"
+importance_tier: "important"
+contextType: "decision"
+---
 # Implementation Plan: Skill Graph Utilization Testing
 
 <!-- SPECKIT_LEVEL: 1 -->

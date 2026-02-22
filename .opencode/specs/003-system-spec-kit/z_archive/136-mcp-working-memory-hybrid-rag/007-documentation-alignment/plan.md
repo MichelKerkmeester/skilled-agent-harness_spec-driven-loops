@@ -1,3 +1,16 @@
+---
+title: "Phase Package Plan: Documentation Alignment [007-documentation-alignment/plan]"
+description: "Synchronize all user-facing documentation with the post-Wave 1–3 codebase. Every README, SKILL.md, INSTALL_GUIDE, memory command, and scripts doc should accurately reflect the c..."
+trigger_phrases:
+  - "phase"
+  - "package"
+  - "plan"
+  - "documentation"
+  - "alignment"
+  - "007"
+importance_tier: "important"
+contextType: "decision"
+---
 <!-- SPECKIT_LEVEL: 3 -->
 # Phase Package Plan: Documentation Alignment
 

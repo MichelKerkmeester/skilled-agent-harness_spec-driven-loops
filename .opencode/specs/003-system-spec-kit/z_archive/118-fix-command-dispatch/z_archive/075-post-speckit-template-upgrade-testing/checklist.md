@@ -1,3 +1,16 @@
+---
+title: "Verification Checklist: Post-SpecKit Template Upgrade Testing [075-post-speckit-template-upgrade-testing/checklist]"
+description: "Total Items: 48"
+trigger_phrases:
+  - "verification"
+  - "checklist"
+  - "post"
+  - "speckit"
+  - "template"
+  - "075"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Verification Checklist: Post-SpecKit Template Upgrade Testing
 
 <!-- SPECKIT_LEVEL: 3+ -->

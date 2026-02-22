@@ -1,3 +1,16 @@
+---
+title: "Verification Checklist: Add User Authentication [template:examples/level_3+/checklist.md]"
+description: "features including extended verification (100+ items), compliance checkpoints"
+trigger_phrases:
+  - "verification"
+  - "checklist"
+  - "add"
+  - "user"
+  - "authentication"
+  - "template"
+importance_tier: "normal"
+contextType: "general"
+---
 # Verification Checklist: Add User Authentication
 
 <!-- SPECKIT_LEVEL: 3+ -->

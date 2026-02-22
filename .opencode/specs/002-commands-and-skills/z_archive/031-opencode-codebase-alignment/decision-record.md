@@ -1,3 +1,17 @@
+---
+title: "Decision Record: OpenCode Codebase Alignment [031-opencode-codebase-alignment/decision-record]"
+description: "The mission scope prioritizes consistency and correctness in touched files across TypeScript, JavaScript, Python, Shell, JSON, and JSONC. Broad refactors would increase semantic..."
+trigger_phrases:
+  - "decision"
+  - "record"
+  - "opencode"
+  - "codebase"
+  - "alignment"
+  - "decision record"
+  - "031"
+importance_tier: "important"
+contextType: "decision"
+---
 # Decision Record: OpenCode Codebase Alignment
 
 <!-- SPECKIT_LEVEL: 3+ -->

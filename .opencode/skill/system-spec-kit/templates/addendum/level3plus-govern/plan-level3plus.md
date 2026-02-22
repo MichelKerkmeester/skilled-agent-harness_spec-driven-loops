@@ -1,3 +1,15 @@
+---
+title: "Files: spec.md (sections 1-3) [template:addendum/level3plus-govern/plan-level3plus.md]"
+description: "Files: spec.md (sections 1-3)"
+trigger_phrases:
+  - "files"
+  - "spec"
+  - "sections"
+  - "template"
+  - "plan level3plus"
+importance_tier: "normal"
+contextType: "general"
+---
 <!-- SPECKIT_ADDENDUM: Level 3+ - Governance -->
 <!-- Append after L3 plan sections -->
 

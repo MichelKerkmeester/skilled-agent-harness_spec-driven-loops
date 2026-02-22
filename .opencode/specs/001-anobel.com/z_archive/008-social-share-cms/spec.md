@@ -1,3 +1,16 @@
+---
+title: "Social Share CMS Integration [008-social-share-cms/spec]"
+description: "Enhance the social share component to support separate URL and slug CMS fields in Webflow, enabling more flexible CMS binding while maintaining backwards compatibility."
+trigger_phrases:
+  - "social"
+  - "share"
+  - "cms"
+  - "integration"
+  - "spec"
+  - "008"
+importance_tier: "important"
+contextType: "decision"
+---
 # Social Share CMS Integration
 
 <!-- ANCHOR:overview -->

@@ -1,3 +1,16 @@
+---
+title: "Tasks: Remove Emojis from All Documentation [019-remove-emojis-from-docs/tasks]"
+description: "Task Format: T### [P?] Description (file path or group)"
+trigger_phrases:
+  - "tasks"
+  - "remove"
+  - "emojis"
+  - "from"
+  - "all"
+  - "019"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: Remove Emojis from All Documentation
 
 <!-- SPECKIT_LEVEL: 3+ -->

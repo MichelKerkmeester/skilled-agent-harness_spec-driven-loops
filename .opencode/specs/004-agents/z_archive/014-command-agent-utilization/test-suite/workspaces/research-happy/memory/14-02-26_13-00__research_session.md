@@ -1,3 +1,8 @@
+---
+title: "Research Session: WebSocket Real-Time Collaboration [research-happy/14-02-26_13-00__research_session]"
+importance_tier: "normal"
+contextType: "general"
+---
 # Research Session: WebSocket Real-Time Collaboration
 
 **Date**: 2026-02-14 13:00

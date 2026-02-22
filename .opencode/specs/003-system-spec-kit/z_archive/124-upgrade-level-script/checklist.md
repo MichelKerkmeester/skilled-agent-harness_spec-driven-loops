@@ -1,3 +1,17 @@
+---
+title: "Verification Checklist: Spec Folder Level Upgrade Script [124-upgrade-level-script/checklist]"
+description: "Verification Date: 2026-02-15"
+trigger_phrases:
+  - "verification"
+  - "checklist"
+  - "spec"
+  - "folder"
+  - "level"
+  - "124"
+  - "upgrade"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Verification Checklist: Spec Folder Level Upgrade Script
 
 <!-- SPECKIT_LEVEL: 2 -->

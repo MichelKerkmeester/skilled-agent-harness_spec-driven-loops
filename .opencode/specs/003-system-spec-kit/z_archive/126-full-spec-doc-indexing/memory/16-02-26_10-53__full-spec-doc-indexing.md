@@ -1,3 +1,8 @@
+---
+title: "To promote a memory to constitutional tier (always [126-full-spec-doc-indexing/16-02-26_10-53__full-spec-doc-indexing]"
+importance_tier: "normal"
+contextType: "general"
+---
 <!-- TEMPLATE: context_template.md v2.2 - DO NOT EDIT GENERATED FILES -->
 <!-- Constitutional Tier Promotion:
   To promote a memory to constitutional tier (always surfaced):

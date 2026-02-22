@@ -1,3 +1,16 @@
+---
+title: "Plan - workflows-code Skill Conversion [027-workflows-code-multi-stack/plan]"
+description: "Objective: Complete analysis and prepare conversion infrastructure"
+trigger_phrases:
+  - "plan"
+  - "workflows"
+  - "code"
+  - "skill"
+  - "conversion"
+  - "027"
+importance_tier: "important"
+contextType: "decision"
+---
 <!-- SPECKIT_TEMPLATE_SOURCE: legacy-normalized | v2.2 -->
 
 # Plan - workflows-code Skill Conversion

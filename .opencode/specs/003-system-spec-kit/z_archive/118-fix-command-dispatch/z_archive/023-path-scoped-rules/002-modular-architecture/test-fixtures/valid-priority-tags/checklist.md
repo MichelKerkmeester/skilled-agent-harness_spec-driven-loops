@@ -1,3 +1,15 @@
+---
+title: "Checklist: Valid Priority Tags Fixture [valid-priority-tags/checklist]"
+description: "checklist document for valid-priority-tags."
+trigger_phrases:
+  - "checklist"
+  - "valid"
+  - "priority"
+  - "tags"
+  - "fixture"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Checklist: Valid Priority Tags Fixture
 
 ## P0 - Critical (Must Complete)

@@ -1,3 +1,14 @@
+---
+title: "Verification Checklist: [NAME] [template:addendum/level2-verify/checklist.md]"
+description: "Verification Date: [YYYY-MM-DD]"
+trigger_phrases:
+  - "verification"
+  - "checklist"
+  - "name"
+  - "template"
+importance_tier: "normal"
+contextType: "general"
+---
 # Verification Checklist: [NAME]
 
 <!-- SPECKIT_LEVEL: 2 -->

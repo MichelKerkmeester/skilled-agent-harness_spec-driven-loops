@@ -1,3 +1,16 @@
+---
+title: "Implementation Plan: Phase 003 — Rename legacy full-stack skill identifier to [003-sk-code--full-stack/plan]"
+description: "Renamed legacy full-stack skill identifier to sk-code--full-stack across 99 files (88 internal + 11 external). This phase executed first in the implementation order (longest mat..."
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "phase"
+  - "003"
+  - "rename"
+  - "code"
+importance_tier: "important"
+contextType: "decision"
+---
 # Implementation Plan: Phase 003 — Rename legacy full-stack skill identifier to sk-code--full-stack
 
 <!-- SPECKIT_LEVEL: 2 -->

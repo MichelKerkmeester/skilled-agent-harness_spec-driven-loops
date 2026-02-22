@@ -1,3 +1,15 @@
+---
+title: "Implementation Plan: Task 07 — GitHub Release [task-07-github-release/plan]"
+description: "tagged releases for 3 tracks audit/creation for spec 130 umbrella. Systematic review of Git tags + GitHub releases to ensure alignment with post-implementation state of specs 01..."
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "task"
+  - "github"
+  - "release"
+importance_tier: "important"
+contextType: "decision"
+---
 # Implementation Plan: Task 07 — GitHub Release
 
 <!-- SPECKIT_LEVEL: 3+ -->

@@ -1,3 +1,15 @@
+---
+title: "Verification Checklist: 011 - Default-On Hardening Audit [011-default-on-hardening-audit/checklist]"
+description: "This document tracks hardening verification checkpoints and evidence for Child 011 completion."
+trigger_phrases:
+  - "verification"
+  - "checklist"
+  - "011"
+  - "default"
+  - "hardening"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Verification Checklist: 011 - Default-On Hardening Audit
 
 <!-- SPECKIT_LEVEL: 3+ -->

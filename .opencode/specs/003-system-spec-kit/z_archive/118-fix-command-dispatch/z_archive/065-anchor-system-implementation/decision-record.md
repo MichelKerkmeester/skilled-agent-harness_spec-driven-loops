@@ -1,3 +1,17 @@
+---
+title: "Decision: Regex-Based Anchor Extraction - Architecture Decision [065-anchor-system-implementation/decision-record]"
+description: "Architecture Decision Record (ADR) documenting the choice of parsing strategy for the Anchor System."
+trigger_phrases:
+  - "decision"
+  - "regex"
+  - "based"
+  - "anchor"
+  - "extraction"
+  - "decision record"
+  - "065"
+importance_tier: "important"
+contextType: "decision"
+---
 # Decision: Regex-Based Anchor Extraction - Architecture Decision Record
 
 Architecture Decision Record (ADR) documenting the choice of parsing strategy for the Anchor System.

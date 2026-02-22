@@ -1,3 +1,17 @@
+---
+title: "Implementation Summary: Memory & Folder Ranking [070-memory-ranking/implementation-summary]"
+description: "A composite ranking system for the Spec Kit Memory that replaces simple count-based folder ranking with a multi-factor algorithm prioritizing recency, importance, and activity."
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "memory"
+  - "folder"
+  - "ranking"
+  - "implementation summary"
+  - "070"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Implementation Summary: Memory & Folder Ranking
 
 > **Spec:** 070-memory-ranking

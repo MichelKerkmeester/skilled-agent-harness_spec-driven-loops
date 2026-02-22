@@ -1,3 +1,15 @@
+---
+title: "Tasks: Install Guide Alignment [005-install-guide-alignment/tasks]"
+description: "Task Format: T### [P?] Description (file path)"
+trigger_phrases:
+  - "tasks"
+  - "install"
+  - "guide"
+  - "alignment"
+  - "005"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: Install Guide Alignment
 
 <!-- SPECKIT_LEVEL: 2 -->

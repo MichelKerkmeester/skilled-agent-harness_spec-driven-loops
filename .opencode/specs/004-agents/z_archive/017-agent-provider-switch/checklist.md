@@ -1,3 +1,15 @@
+---
+title: "Checklist: Spec 017 - Agent Provider Switching [017-agent-provider-switch/checklist]"
+description: "Verification Date: 2026-02-16"
+trigger_phrases:
+  - "checklist"
+  - "spec"
+  - "017"
+  - "agent"
+  - "provider"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Checklist: Spec 017 - Agent Provider Switching
 
 <!-- SPECKIT_LEVEL: 3 -->

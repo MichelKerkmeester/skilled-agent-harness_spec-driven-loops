@@ -1,3 +1,15 @@
+---
+title: "Implementation Plan: Anchor System [065-anchor-system-implementation/plan]"
+description: "The implementation focuses on enhancing the existing memory-parser.js to support extraction (not just validation) and integrating this capability into the memory_search MCP tool."
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "anchor"
+  - "system"
+  - "065"
+importance_tier: "important"
+contextType: "decision"
+---
 # Implementation Plan: Anchor System
 
 <!-- SPECKIT_TEMPLATE_SOURCE: plan | v1.0 -->

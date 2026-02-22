@@ -1,3 +1,18 @@
+---
+title: "Feature Specification: libSQL Hybrid RAG Enablement Assessment [140-sqlite-to-libsql/spec]"
+description: "This spec reframes the current folder around one decision question: \"Does libsql improve our existing feature set and increase possibilities/compatibilities to reach a hybrid RA..."
+trigger_phrases:
+  - "feature"
+  - "specification"
+  - "libsql"
+  - "hybrid"
+  - "rag"
+  - "spec"
+  - "140"
+  - "sqlite"
+importance_tier: "important"
+contextType: "decision"
+---
 # Feature Specification: libSQL Hybrid RAG Enablement Assessment
 
 <!-- SPECKIT_LEVEL: 3 -->

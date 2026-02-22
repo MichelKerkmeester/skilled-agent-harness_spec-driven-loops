@@ -1,3 +1,16 @@
+---
+title: "Verification Checklist: Memory Index TXT File Support [131-memory-index-txt-support/checklist]"
+description: "Verification Date: 2026-02-16"
+trigger_phrases:
+  - "verification"
+  - "checklist"
+  - "memory"
+  - "index"
+  - "txt"
+  - "131"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Verification Checklist: Memory Index TXT File Support
 
 <!-- SPECKIT_LEVEL: 3 -->

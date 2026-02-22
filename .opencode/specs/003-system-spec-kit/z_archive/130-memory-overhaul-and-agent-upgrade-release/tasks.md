@@ -1,3 +1,16 @@
+---
+title: "Tasks: Memory Overhaul & Agent Upgrade Release [130-memory-overhaul-and-agent-upgrade-release/tasks]"
+description: "Task Format: T### [P?] Description (folder path)"
+trigger_phrases:
+  - "tasks"
+  - "memory"
+  - "overhaul"
+  - "agent"
+  - "upgrade"
+  - "130"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: Memory Overhaul & Agent Upgrade Release
 
 <!-- SPECKIT_LEVEL: 3+ -->

@@ -1,3 +1,18 @@
+---
+title: "Task Breakdown: Spec Kit Bug Fixes [083-speckit-reimagined-bug-fixes/tasks]"
+description: "tasks document for 083-speckit-reimagined-bug-fixes."
+trigger_phrases:
+  - "task"
+  - "breakdown"
+  - "spec"
+  - "kit"
+  - "bug"
+  - "tasks"
+  - "083"
+  - "speckit"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Task Breakdown: Spec Kit Bug Fixes
 
 > Detailed task list for implementing all bug fixes identified in the 15-agent audit.

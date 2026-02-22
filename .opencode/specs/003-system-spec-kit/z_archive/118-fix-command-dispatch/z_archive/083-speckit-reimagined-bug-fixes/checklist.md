@@ -1,3 +1,17 @@
+---
+title: "Verification Checklist: Spec Kit Bug Fixes [083-speckit-reimagined-bug-fixes/checklist]"
+description: "checklist document for 083-speckit-reimagined-bug-fixes."
+trigger_phrases:
+  - "verification"
+  - "checklist"
+  - "spec"
+  - "kit"
+  - "bug"
+  - "083"
+  - "speckit"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Verification Checklist: Spec Kit Bug Fixes
 
 > Quality assurance checklist for validating all bug fixes before release.

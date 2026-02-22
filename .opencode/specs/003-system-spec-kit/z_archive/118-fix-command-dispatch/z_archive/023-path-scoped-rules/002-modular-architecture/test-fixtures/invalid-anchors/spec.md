@@ -1,3 +1,14 @@
+---
+title: "Spec: Invalid Anchors Fixture [invalid-anchors/spec]"
+description: "This fixture tests detection of malformed ANCHOR tags."
+trigger_phrases:
+  - "spec"
+  - "invalid"
+  - "anchors"
+  - "fixture"
+importance_tier: "important"
+contextType: "decision"
+---
 # Spec: Invalid Anchors Fixture
 
 | Field       | Value                    |

@@ -1,13 +1,13 @@
 ---
-title: "Core Templates"
+title: "Core Templates [template:core/README.md]"
 description: "Shared base templates used by all documentation levels."
 trigger_phrases:
   - "core templates"
   - "base structure"
   - "composition source"
 importance_tier: "normal"
+contextType: "general"
 ---
-
 # Core Templates
 
 Shared base components for level template composition.

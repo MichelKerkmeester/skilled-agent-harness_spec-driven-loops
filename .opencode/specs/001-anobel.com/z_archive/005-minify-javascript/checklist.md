@@ -1,3 +1,16 @@
+---
+title: "Testing & QA Checklist: minify-javascript - Validation Items [005-minify-javascript/checklist]"
+description: "Validation checklist for in-place JS minification in src/2_javascript/z_minified/."
+trigger_phrases:
+  - "testing"
+  - "checklist"
+  - "minify"
+  - "javascript"
+  - "validation"
+  - "005"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Testing & QA Checklist: minify-javascript - Validation Items
 
 Validation checklist for in-place JS minification in `src/2_javascript/z_minified/`.

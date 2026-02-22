@@ -1,3 +1,17 @@
+---
+title: "Verification Checklist: ChatGPT Agent Suite Codex Optimization [021-codex-orchestrate/checklist]"
+description: "Verification Date: 2026-02-19"
+trigger_phrases:
+  - "verification"
+  - "checklist"
+  - "chatgpt"
+  - "agent"
+  - "suite"
+  - "021"
+  - "codex"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Verification Checklist: ChatGPT Agent Suite Codex Optimization
 
 <!-- SPECKIT_LEVEL: 3 -->

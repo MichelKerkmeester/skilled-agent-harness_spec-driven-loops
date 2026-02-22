@@ -1,9 +1,19 @@
 ---
+title: "Tasks: SpecKit Skill Refinement [003-speckit-skill-refinement/tasks]"
+description: "created: 2025-12-13"
+trigger_phrases:
+  - "tasks"
+  - "speckit"
+  - "skill"
+  - "refinement"
+  - "003"
+importance_tier: "normal"
+contextType: "implementation"
 created: 2025-12-13
-status: complete
 level: 2
----
 
+status: complete
+---
 # Tasks: SpecKit Skill Refinement
 
 ## Overview

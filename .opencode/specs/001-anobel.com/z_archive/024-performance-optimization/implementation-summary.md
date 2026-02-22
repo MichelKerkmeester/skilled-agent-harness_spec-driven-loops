@@ -1,3 +1,16 @@
+---
+title: "Implementation Summary - Performance Optimization [024-performance-optimization/implementation-summary]"
+description: "This implementation addresses critical performance issues on anobel.com, specifically the 20.2s mobile LCP (Largest Contentful Paint) caused by a JavaScript-dependent page visib..."
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "performance"
+  - "optimization"
+  - "implementation summary"
+  - "024"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Implementation Summary - Performance Optimization
 
 <!-- ANCHOR:overview -->

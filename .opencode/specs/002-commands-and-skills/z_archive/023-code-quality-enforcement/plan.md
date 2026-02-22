@@ -1,3 +1,16 @@
+---
+title: "Implementation Plan: Code Quality Enforcement - Technical Approach & Architecture [023-code-quality-enforcement/plan]"
+description: "Implementation plan for adding active code quality and style enforcement to the workflows-code skill."
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "code"
+  - "quality"
+  - "enforcement"
+  - "023"
+importance_tier: "important"
+contextType: "decision"
+---
 # Implementation Plan: Code Quality Enforcement - Technical Approach & Architecture
 
 Implementation plan for adding active code quality and style enforcement to the workflows-code skill.

@@ -1,3 +1,17 @@
+---
+title: "Feature Specification: Memory Index Deduplication and Tier Normalization [143-index-tier-anomalies/spec]"
+description: "memory_index_scan can index the same logical files twice when both specs/ and .opencode/specs/ resolve to the same tree through symlinks or mirrored paths. This inflates scan co..."
+trigger_phrases:
+  - "feature"
+  - "specification"
+  - "memory"
+  - "index"
+  - "deduplication"
+  - "spec"
+  - "143"
+importance_tier: "important"
+contextType: "decision"
+---
 # Feature Specification: Memory Index Deduplication and Tier Normalization
 
 <!-- SPECKIT_LEVEL: 3 -->

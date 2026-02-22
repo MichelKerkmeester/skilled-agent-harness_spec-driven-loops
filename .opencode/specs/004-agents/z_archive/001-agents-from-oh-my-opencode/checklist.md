@@ -1,3 +1,16 @@
+---
+title: "Checklist: Agent System Implementation [001-agents-from-oh-my-opencode/checklist]"
+description: "checklist document for 001-agents-from-oh-my-opencode."
+trigger_phrases:
+  - "checklist"
+  - "agent"
+  - "system"
+  - "implementation"
+  - "001"
+  - "agents"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Checklist: Agent System Implementation
 
 <!-- ANCHOR:status-complete -->

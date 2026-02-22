@@ -1,3 +1,17 @@
+---
+title: "Tab Menu Border Color Fix [002-tab-menu-border-fix/spec]"
+description: "Fix incorrect border color on filter tab buttons after they transition from active (SET) to inactive (ENABLED) state."
+trigger_phrases:
+  - "tab"
+  - "menu"
+  - "border"
+  - "color"
+  - "fix"
+  - "spec"
+  - "002"
+importance_tier: "important"
+contextType: "decision"
+---
 # Tab Menu Border Color Fix
 
 <!-- ANCHOR:overview -->

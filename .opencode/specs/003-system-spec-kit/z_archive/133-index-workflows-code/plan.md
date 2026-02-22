@@ -1,3 +1,17 @@
+---
+title: "Implementation Plan: Skill References & Assets Indexing [133-index-workflows-code/plan]"
+description: "Extend the memory indexing subsystem to support a 6th source: skill references/ and assets/ directories. Implementation adds config-driven skill selection, three new document ty..."
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "skill"
+  - "references"
+  - "assets"
+  - "133"
+  - "index"
+importance_tier: "important"
+contextType: "decision"
+---
 # Implementation Plan: Skill References & Assets Indexing
 
 <!-- SPECKIT_LEVEL: 3+ -->

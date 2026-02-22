@@ -1,3 +1,17 @@
+---
+title: "Implementation Summary: Smart Router V2 Refinement - Ambiguity [035-smart-router-v2-refinement/implementation-summary]"
+description: "Smart Router V2 Refinement implemented adaptive top-N intent selection (expanding from top-2 to top-3 when score delta <0.15), expanded synonym lexicon for noisy user language (..."
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "smart"
+  - "router"
+  - "refinement"
+  - "implementation summary"
+  - "035"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Implementation Summary: Smart Router V2 Refinement - Ambiguity & Efficiency Improvements
 
 <!-- SPECKIT_LEVEL: 3 -->

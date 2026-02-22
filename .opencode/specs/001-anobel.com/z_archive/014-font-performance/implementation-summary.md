@@ -1,3 +1,15 @@
+---
+title: "Implementation Summary [014-font-performance/implementation-summary]"
+description: "implementation summary document for 014-font-performance."
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "implementation summary"
+  - "014"
+  - "font"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Implementation Summary
 
 <!-- ANCHOR:changes -->

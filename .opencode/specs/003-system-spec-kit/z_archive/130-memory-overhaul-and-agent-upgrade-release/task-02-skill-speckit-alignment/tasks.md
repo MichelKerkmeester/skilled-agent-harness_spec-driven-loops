@@ -1,3 +1,15 @@
+---
+title: "Tasks: Task 02 — SKILL.md & References Audit [task-02-skill-speckit-alignment/tasks]"
+description: "Task Format: T### Description (file path)"
+trigger_phrases:
+  - "tasks"
+  - "task"
+  - "skill"
+  - "references"
+  - "audit"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: Task 02 — SKILL.md & References Audit
 
 <!-- SPECKIT_LEVEL: 3+ -->

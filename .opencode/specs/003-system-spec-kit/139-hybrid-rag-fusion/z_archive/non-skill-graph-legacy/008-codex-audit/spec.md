@@ -1,3 +1,17 @@
+---
+title: "Feature Specification: Codex Audit Remediation Closure [008-codex-audit/spec]"
+description: "This spec documents the completed remediation work captured in 008-codex-audit, focused on improving maintainability and reliability in the Spec Kit MCP server. The largest chan..."
+trigger_phrases:
+  - "feature"
+  - "specification"
+  - "codex"
+  - "audit"
+  - "remediation"
+  - "spec"
+  - "008"
+importance_tier: "important"
+contextType: "decision"
+---
 # Feature Specification: Codex Audit Remediation Closure
 
 <!-- SPECKIT_LEVEL: 3 -->

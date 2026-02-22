@@ -1,3 +1,16 @@
+---
+title: "Verification Checklist: Phase 007 — Finalize mcp-chrome-devtools Rename [007-mcp-chrome-devtools/checklist]"
+description: "Verification Date: 2026-02-21"
+trigger_phrases:
+  - "verification"
+  - "checklist"
+  - "phase"
+  - "007"
+  - "finalize"
+  - "mcp"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Verification Checklist: Phase 007 — Finalize mcp-chrome-devtools Rename
 
 <!-- SPECKIT_LEVEL: 2 -->

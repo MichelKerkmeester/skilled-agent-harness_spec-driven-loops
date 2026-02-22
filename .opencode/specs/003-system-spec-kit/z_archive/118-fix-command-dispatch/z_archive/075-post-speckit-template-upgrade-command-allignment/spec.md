@@ -1,3 +1,16 @@
+---
+title: "Spec 076: Post-SpecKit Template Upgrade - Command Alignment [075-post-speckit-template-upgrade-command-allignment/spec]"
+description: "Comprehensive analysis of specs 072-075 in 003-memory-and-spec-kit combined with current system-spec-kit state to determine command alignment needs."
+trigger_phrases:
+  - "spec"
+  - "076"
+  - "post"
+  - "speckit"
+  - "template"
+  - "075"
+importance_tier: "important"
+contextType: "decision"
+---
 # Spec 076: Post-SpecKit Template Upgrade - Command Alignment
 
 ## Overview

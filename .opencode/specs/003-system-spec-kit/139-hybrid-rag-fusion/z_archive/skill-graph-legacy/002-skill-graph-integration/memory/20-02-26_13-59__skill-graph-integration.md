@@ -1,3 +1,8 @@
+---
+title: "To promote a memory to constitutional tier [002-skill-graph-integration/20-02-26_13-59__skill-graph-integration]"
+importance_tier: "critical"
+contextType: "general"
+---
 <!-- TEMPLATE: context_template.md v2.2 - DO NOT EDIT GENERATED FILES -->
 <!-- Constitutional Tier Promotion:
   To promote a memory to constitutional tier (always surfaced):

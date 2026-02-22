@@ -1,3 +1,16 @@
+---
+title: "Validation Checklist: SpecKit Skill Consolidation [005-speckit-consolidation/checklist]"
+description: "Quality assurance checklist for verifying the SpecKit consolidation migration."
+trigger_phrases:
+  - "validation"
+  - "checklist"
+  - "speckit"
+  - "skill"
+  - "consolidation"
+  - "005"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Validation Checklist: SpecKit Skill Consolidation
 
 Quality assurance checklist for verifying the SpecKit consolidation migration.

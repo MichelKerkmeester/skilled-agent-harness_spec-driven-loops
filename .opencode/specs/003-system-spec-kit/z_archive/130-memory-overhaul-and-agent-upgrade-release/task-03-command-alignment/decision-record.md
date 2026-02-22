@@ -1,3 +1,16 @@
+---
+title: "Decision Record: Task 03 — Command Configs Audit [task-03-command-alignment/decision-record]"
+description: "Task 03 requires systematic audit/creation of 9 command configuration files. The scope must be clearly defined to ensure complete coverage while avoiding scope creep into adjace..."
+trigger_phrases:
+  - "decision"
+  - "record"
+  - "task"
+  - "command"
+  - "configs"
+  - "decision record"
+importance_tier: "important"
+contextType: "decision"
+---
 # Decision Record: Task 03 — Command Configs Audit
 
 <!-- SPECKIT_LEVEL: 3+ -->

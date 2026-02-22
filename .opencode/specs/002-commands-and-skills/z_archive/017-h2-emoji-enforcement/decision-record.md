@@ -1,3 +1,16 @@
+---
+title: "H2 Emoji Enforcement - Decision Record [017-h2-emoji-enforcement/decision-record]"
+description: "This document records key architectural and implementation decisions for the H2 emoji enforcement feature."
+trigger_phrases:
+  - "emoji"
+  - "enforcement"
+  - "decision"
+  - "record"
+  - "decision record"
+  - "017"
+importance_tier: "important"
+contextType: "decision"
+---
 <!-- SPECKIT_TEMPLATE_SOURCE: legacy-normalized | v2.2 -->
 
 # H2 Emoji Enforcement - Decision Record

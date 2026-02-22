@@ -1,3 +1,16 @@
+---
+title: "Implementation Plan: Memory Hook Cleanup - Technical Approach [004-memory-hook-cleanup/plan]"
+description: "Implementation plan for removing Claude Code Hook references from workflows-memory skill."
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "memory"
+  - "hook"
+  - "cleanup"
+  - "004"
+importance_tier: "important"
+contextType: "decision"
+---
 # Implementation Plan: Memory Hook Cleanup - Technical Approach
 
 Implementation plan for removing Claude Code Hook references from workflows-memory skill.

@@ -1,3 +1,14 @@
+---
+title: "Security Remediation Plan [009-security-remediation/plan]"
+description: "plan document for 009-security-remediation."
+trigger_phrases:
+  - "security"
+  - "remediation"
+  - "plan"
+  - "009"
+importance_tier: "important"
+contextType: "decision"
+---
 # Security Remediation Plan
 
 <!-- ANCHOR:phase-1-xss-remediation-high -->

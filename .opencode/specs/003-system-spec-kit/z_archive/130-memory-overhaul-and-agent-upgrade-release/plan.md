@@ -1,3 +1,16 @@
+---
+title: "Implementation Plan: Memory Overhaul & Agent Upgrade Release [130-memory-overhaul-and-agent-upgrade-release/plan]"
+description: "This umbrella specification coordinates 7 sequential/parallel documentation audit tasks across 11 implemented source specs (014-016, 122-129). The technical approach uses self-c..."
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "memory"
+  - "overhaul"
+  - "agent"
+  - "130"
+importance_tier: "important"
+contextType: "decision"
+---
 # Implementation Plan: Memory Overhaul & Agent Upgrade Release
 
 <!-- SPECKIT_LEVEL: 3+ -->

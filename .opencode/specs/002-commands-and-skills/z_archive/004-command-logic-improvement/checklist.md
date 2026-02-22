@@ -1,3 +1,15 @@
+---
+title: "Command Logic Improvement Checklist [004-command-logic-improvement/checklist]"
+description: "checklist document for 004-command-logic-improvement."
+trigger_phrases:
+  - "command"
+  - "logic"
+  - "improvement"
+  - "checklist"
+  - "004"
+importance_tier: "normal"
+contextType: "implementation"
+---
 <!-- SPECKIT_TEMPLATE_SOURCE: legacy-normalized | v2.2 -->
 
 # Command Logic Improvement Checklist

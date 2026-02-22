@@ -1,3 +1,16 @@
+---
+title: "Tasks: ChatGPT Agent Suite Codex Optimization [021-codex-orchestrate/tasks]"
+description: "Task Format: T### [P?] Description (file path)"
+trigger_phrases:
+  - "tasks"
+  - "chatgpt"
+  - "agent"
+  - "suite"
+  - "codex"
+  - "021"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: ChatGPT Agent Suite Codex Optimization
 
 <!-- SPECKIT_LEVEL: 3 -->

@@ -1,3 +1,17 @@
+---
+title: "Implementation Summary: workflows-code Barter Alignment [022-barter-alignment/implementation-summary]"
+description: "Date: 2026-01-01"
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "workflows"
+  - "code"
+  - "barter"
+  - "implementation summary"
+  - "022"
+importance_tier: "normal"
+contextType: "implementation"
+---
 <!-- SPECKIT_TEMPLATE_SOURCE: legacy-normalized | v2.2 -->
 
 # Implementation Summary: workflows-code Barter Alignment

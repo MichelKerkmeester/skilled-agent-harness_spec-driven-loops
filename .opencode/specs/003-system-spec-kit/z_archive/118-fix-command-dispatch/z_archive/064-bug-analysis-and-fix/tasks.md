@@ -1,3 +1,16 @@
+---
+title: "Tasks: SpecKit Bug Analysis and Fix - Implementation Breakdown [064-bug-analysis-and-fix/tasks]"
+description: "Comprehensive task breakdown for fixing ~231 identified issues across the SpecKit system, organized by priority and phase."
+trigger_phrases:
+  - "tasks"
+  - "speckit"
+  - "bug"
+  - "analysis"
+  - "and"
+  - "064"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: SpecKit Bug Analysis and Fix - Implementation Breakdown
 
 Comprehensive task breakdown for fixing ~231 identified issues across the SpecKit system, organized by priority and phase.

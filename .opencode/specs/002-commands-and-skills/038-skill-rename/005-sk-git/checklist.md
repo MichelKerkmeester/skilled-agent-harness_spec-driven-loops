@@ -1,3 +1,16 @@
+---
+title: "Verification Checklist: Phase 005 - Finalize sk-git Rename [005-sk-git/checklist]"
+description: "P0 blocker checks are distributed across sections below and must all be complete."
+trigger_phrases:
+  - "verification"
+  - "checklist"
+  - "phase"
+  - "005"
+  - "finalize"
+  - "git"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Verification Checklist: Phase 005 - Finalize sk-git Rename
 
 <!-- SPECKIT_LEVEL: 2 -->

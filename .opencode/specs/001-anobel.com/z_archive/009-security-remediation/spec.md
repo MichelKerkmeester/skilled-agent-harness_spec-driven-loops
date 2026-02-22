@@ -1,3 +1,15 @@
+---
+title: "Security Vulnerability Remediation [009-security-remediation/spec]"
+description: "Remediation of security vulnerabilities discovered by Narsil MCP security scan."
+trigger_phrases:
+  - "security"
+  - "vulnerability"
+  - "remediation"
+  - "spec"
+  - "009"
+importance_tier: "important"
+contextType: "decision"
+---
 # Security Vulnerability Remediation
 
 <!-- ANCHOR:overview -->

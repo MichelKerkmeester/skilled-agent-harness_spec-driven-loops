@@ -1,3 +1,17 @@
+---
+title: "Feature Specification: Gemini CLI Compatibility [023-gemini-cli-compatibility/spec]"
+description: "The existing multi-provider setup supports Claude Code (.claude/) and ChatGPT (.opencode/agent/chatgpt/) runtimes, but has no Gemini CLI integration. Gemini CLI uses a different..."
+trigger_phrases:
+  - "feature"
+  - "specification"
+  - "gemini"
+  - "cli"
+  - "compatibility"
+  - "spec"
+  - "023"
+importance_tier: "important"
+contextType: "decision"
+---
 # Feature Specification: Gemini CLI Compatibility
 
 <!-- SPECKIT_LEVEL: 2 -->

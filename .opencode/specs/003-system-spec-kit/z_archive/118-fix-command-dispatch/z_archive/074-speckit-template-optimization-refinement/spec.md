@@ -1,3 +1,17 @@
+---
+title: "Feature Specification: SpecKit Template Optimization Refinement [074-speckit-template-optimization-refinement/spec]"
+description: "Enterprise-scale refinement of the SpecKit template optimization (Spec 073), conducted through multi-agent orchestration with 20+ Opus 4.5 agents executing parallel research, im..."
+trigger_phrases:
+  - "feature"
+  - "specification"
+  - "speckit"
+  - "template"
+  - "optimization"
+  - "spec"
+  - "074"
+importance_tier: "important"
+contextType: "decision"
+---
 <!-- SPECKIT_LEVEL: 3+ -->
 # Feature Specification: SpecKit Template Optimization Refinement
 

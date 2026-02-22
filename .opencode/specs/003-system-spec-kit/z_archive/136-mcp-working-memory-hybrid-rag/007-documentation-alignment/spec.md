@@ -1,3 +1,16 @@
+---
+title: "Phase Package Spec: Documentation Alignment [007-documentation-alignment/spec]"
+description: "Waves 1–3 shipped 5 new modules, 2 feature flags, and telemetry integration across the MCP server. The user-facing documentation was not updated. This phase aligns all READMEs, ..."
+trigger_phrases:
+  - "phase"
+  - "package"
+  - "spec"
+  - "documentation"
+  - "alignment"
+  - "007"
+importance_tier: "important"
+contextType: "decision"
+---
 <!-- SPECKIT_LEVEL: 3 -->
 # Phase Package Spec: Documentation Alignment
 

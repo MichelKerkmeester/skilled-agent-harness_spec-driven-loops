@@ -1,3 +1,18 @@
+---
+title: "Decision Record: Skill References & Assets Indexing [133-index-workflows-code/decision-record]"
+description: "The system needs to store skill indexing configuration: which skills to index (indexedSkills[]), which file extensions to include (fileExtensions[]), and which subdirectories to..."
+trigger_phrases:
+  - "decision"
+  - "record"
+  - "skill"
+  - "references"
+  - "assets"
+  - "decision record"
+  - "133"
+  - "index"
+importance_tier: "important"
+contextType: "decision"
+---
 # Decision Record: Skill References & Assets Indexing
 
 <!-- SPECKIT_LEVEL: 3+ -->

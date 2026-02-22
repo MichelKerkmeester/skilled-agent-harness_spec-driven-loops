@@ -1,3 +1,18 @@
+---
+title: "Implementation Summary: Dynamic Complexity-Based Template [069-speckit-template-complexity/implementation-summary]"
+description: "Spec Folder: specs/003-memory-and-spec-kit/069-speckit-template-complexity"
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "dynamic"
+  - "complexity"
+  - "based"
+  - "implementation summary"
+  - "069"
+  - "speckit"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Implementation Summary: Dynamic Complexity-Based Template Scaling
 
 **Spec Folder**: `specs/003-memory-and-spec-kit/069-speckit-template-complexity`

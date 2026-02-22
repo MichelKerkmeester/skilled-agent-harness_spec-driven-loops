@@ -1,3 +1,16 @@
+---
+title: "Implementation Plan: Reverse-Engineer Visual Explainer Skill [037-reverse-engineer-visual-explainer/plan]"
+description: "This plan covers the reverse-engineering of nicobailon/visual-explainer (v0.1.1) into a fully integrated OpenCode skill. The approach decomposes a single 700+ line prompt file i..."
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "reverse"
+  - "engineer"
+  - "visual"
+  - "037"
+importance_tier: "important"
+contextType: "decision"
+---
 # Implementation Plan: Reverse-Engineer Visual Explainer Skill
 
 <!-- SPECKIT_LEVEL: 3 -->

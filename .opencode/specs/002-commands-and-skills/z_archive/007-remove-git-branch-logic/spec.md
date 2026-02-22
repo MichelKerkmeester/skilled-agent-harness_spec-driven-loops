@@ -1,3 +1,15 @@
+---
+title: "Spec 007: Remove Git Branch Logic from YAML Commands [007-remove-git-branch-logic/spec]"
+description: "Remove all git branch management logic from spec_kit YAML command assets. The SpecKit workflow should focus on spec folder management only, not git branch creation/management."
+trigger_phrases:
+  - "spec"
+  - "007"
+  - "remove"
+  - "git"
+  - "branch"
+importance_tier: "important"
+contextType: "decision"
+---
 <!-- SPECKIT_LEVEL: 1 -->
 
 <!-- SPECKIT_TEMPLATE_SOURCE: legacy-normalized | v2.2 -->

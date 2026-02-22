@@ -1,3 +1,17 @@
+---
+title: "Feature Specification: Skill Graph Utilization Testing [006-skill-graph-utilization/spec]"
+description: "The Skill Graph system (002-skill-graph-integration + 003-unified-graph-intelligence) is fully implemented with 73 nodes across 9 skills, a SGQS query engine, and 7 intelligence..."
+trigger_phrases:
+  - "feature"
+  - "specification"
+  - "skill"
+  - "graph"
+  - "utilization"
+  - "spec"
+  - "006"
+importance_tier: "important"
+contextType: "decision"
+---
 # Feature Specification: Skill Graph Utilization Testing
 
 <!-- SPECKIT_LEVEL: 1 -->

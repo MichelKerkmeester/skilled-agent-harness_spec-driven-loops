@@ -1,3 +1,13 @@
+---
+title: "Tasks [067-voyage-4-upgrade/tasks]"
+description: "tasks document for 067-voyage-4-upgrade."
+trigger_phrases:
+  - "tasks"
+  - "067"
+  - "voyage"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks
 
 - [ ] **Phase 1: Code Updates** <!-- id: 1 -->

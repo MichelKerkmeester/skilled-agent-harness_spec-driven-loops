@@ -1,3 +1,16 @@
+---
+title: "Spec: Document Specialist Refactor [015-doc-specialist-refactor/spec]"
+description: "The markdown-document-specialist CLI promises features it doesn't deliver"
+trigger_phrases:
+  - "spec"
+  - "document"
+  - "specialist"
+  - "refactor"
+  - "015"
+  - "doc"
+importance_tier: "important"
+contextType: "decision"
+---
 <!-- SPECKIT_LEVEL: 2 -->
 
 <!-- SPECKIT_TEMPLATE_SOURCE: legacy-normalized | v2.2 -->

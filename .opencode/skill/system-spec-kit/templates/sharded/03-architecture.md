@@ -1,3 +1,13 @@
+---
+title: "Architecture [template:sharded/03-architecture.md]"
+description: "[High-level architecture description]"
+trigger_phrases:
+  - "architecture"
+  - "template"
+  - "03 architecture"
+importance_tier: "normal"
+contextType: "general"
+---
 # Architecture
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-section-architecture | v1.0 -->
 

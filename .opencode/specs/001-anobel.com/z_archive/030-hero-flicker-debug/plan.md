@@ -1,3 +1,15 @@
+---
+title: "Implementation Plan: [NAME] [030-hero-flicker-debug/plan]"
+description: "Level 2 Plan (+Verify) is appropriate when"
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "name"
+  - "030"
+  - "hero"
+importance_tier: "important"
+contextType: "decision"
+---
 # Implementation Plan: [NAME]
 
 <!-- SPECKIT_LEVEL: 2 -->

@@ -1,3 +1,17 @@
+---
+title: "Decision Record: Memory Index TXT File Support [131-memory-index-txt-support/decision-record]"
+description: "The memory indexing system currently discovers .md files via three functions: findMemoryFiles(), findSkillReadmes(), and findProjectReadmes(). We need to add .txt file support. ..."
+trigger_phrases:
+  - "decision"
+  - "record"
+  - "memory"
+  - "index"
+  - "txt"
+  - "decision record"
+  - "131"
+importance_tier: "important"
+contextType: "decision"
+---
 # Decision Record: Memory Index TXT File Support
 
 <!-- SPECKIT_LEVEL: 3 -->

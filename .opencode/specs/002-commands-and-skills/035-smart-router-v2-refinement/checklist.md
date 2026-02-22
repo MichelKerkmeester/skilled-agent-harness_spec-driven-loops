@@ -1,3 +1,16 @@
+---
+title: "Verification Checklist: Smart Router V2 Refinement - Ambiguity & Efficiency [035-smart-router-v2-refinement/checklist]"
+description: "Evidence: [Read spec.md:REQ-001 through REQ-008] - All requirements documented"
+trigger_phrases:
+  - "verification"
+  - "checklist"
+  - "smart"
+  - "router"
+  - "refinement"
+  - "035"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Verification Checklist: Smart Router V2 Refinement - Ambiguity & Efficiency Improvements
 
 <!-- SPECKIT_LEVEL: 3 -->

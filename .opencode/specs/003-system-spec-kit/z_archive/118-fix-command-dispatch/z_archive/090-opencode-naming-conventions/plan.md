@@ -1,3 +1,16 @@
+---
+title: "Implementation Plan: OpenCode Naming Convention Alignment [090-opencode-naming-conventions/plan]"
+description: "Rename all snake_case JavaScript identifiers (functions, parameters, module variables, exports) to camelCase across ~206 files in .opencode/skill/system-spec-kit/. Update 9 skil..."
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "opencode"
+  - "naming"
+  - "convention"
+  - "090"
+importance_tier: "important"
+contextType: "decision"
+---
 # Implementation Plan: OpenCode Naming Convention Alignment
 
 <!-- SPECKIT_LEVEL: 3+ -->

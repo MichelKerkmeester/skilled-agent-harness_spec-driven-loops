@@ -1,3 +1,16 @@
+---
+title: "Tasks: Custom TOC ScrollSpy - Implementation Breakdown [001-toc-scrollspy/tasks]"
+description: "Task list for implementing custom TOC scroll-spy with IntersectionObserver."
+trigger_phrases:
+  - "tasks"
+  - "custom"
+  - "toc"
+  - "scrollspy"
+  - "implementation"
+  - "001"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: Custom TOC ScrollSpy - Implementation Breakdown
 
 Task list for implementing custom TOC scroll-spy with IntersectionObserver.

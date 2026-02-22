@@ -1,3 +1,16 @@
+---
+title: "Checklist: Stateless Spec Passing & System Alignment [017-stateless-spec-passing/checklist]"
+description: "checklist document for 017-stateless-spec-passing."
+trigger_phrases:
+  - "checklist"
+  - "stateless"
+  - "spec"
+  - "passing"
+  - "system"
+  - "017"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Checklist: Stateless Spec Passing & System Alignment
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.0.0 -->
 <!-- MERGED: 009-stateless-spec-passing + 010-stateless-alignment on 2025-12-22 -->

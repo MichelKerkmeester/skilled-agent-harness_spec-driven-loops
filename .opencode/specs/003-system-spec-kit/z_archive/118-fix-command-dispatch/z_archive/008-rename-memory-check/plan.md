@@ -1,3 +1,15 @@
+---
+title: "Plan: Rename /memory Command to /memory:check [008-rename-memory-check/plan]"
+description: "Parallel agent delegation with domain isolation"
+trigger_phrases:
+  - "plan"
+  - "rename"
+  - "memory"
+  - "command"
+  - "008"
+importance_tier: "important"
+contextType: "decision"
+---
 # Plan: Rename `/memory` Command to `/memory:check`
 
 ## Approach

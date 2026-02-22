@@ -1,3 +1,17 @@
+---
+title: "Feature Specification: Tab Main Component [002-tab-main-component/spec]"
+description: "Attribute-based tab component for linking tab buttons to content panels via matching data attribute values."
+trigger_phrases:
+  - "feature"
+  - "specification"
+  - "tab"
+  - "main"
+  - "component"
+  - "spec"
+  - "002"
+importance_tier: "important"
+contextType: "decision"
+---
 # Feature Specification: Tab Main Component
 
 Attribute-based tab component for linking tab buttons to content panels via matching data attribute values.

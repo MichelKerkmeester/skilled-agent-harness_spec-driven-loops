@@ -1,3 +1,16 @@
+---
+title: "Tasks: Spec Folder Level Upgrade Script [124-upgrade-level-script/tasks]"
+description: "Task Format: T### [P?] Description (file path)"
+trigger_phrases:
+  - "tasks"
+  - "spec"
+  - "folder"
+  - "level"
+  - "upgrade"
+  - "124"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: Spec Folder Level Upgrade Script
 
 <!-- SPECKIT_LEVEL: 2 -->

@@ -1,3 +1,16 @@
+---
+title: "Stateless Spec Passing & System Alignment [017-stateless-spec-passing/spec]"
+description: "Remove all system reliance on the .spec-active marker file, enforcing a strictly stateless architecture. This aligns with AGENTS.md Gate 5: \"NEVER create/write to .spec-active f..."
+trigger_phrases:
+  - "stateless"
+  - "spec"
+  - "passing"
+  - "system"
+  - "alignment"
+  - "017"
+importance_tier: "important"
+contextType: "decision"
+---
 # Stateless Spec Passing & System Alignment
 
 > Merged spec combining initial stateless implementation (009) and full system alignment (010).

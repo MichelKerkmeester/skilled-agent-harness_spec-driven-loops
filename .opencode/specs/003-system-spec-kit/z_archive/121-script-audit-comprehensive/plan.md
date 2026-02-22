@@ -1,3 +1,16 @@
+---
+title: "Implementation Plan: Comprehensive Script Audit [121-script-audit-comprehensive/plan]"
+description: "Shard-based audit of system-spec-kit scripts across three directories (scripts/, shared/, mcp_server/) using 30 discrete shards: 10 context shards for discovery, 10 build verifi..."
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "comprehensive"
+  - "script"
+  - "audit"
+  - "121"
+importance_tier: "important"
+contextType: "decision"
+---
 # Implementation Plan: Comprehensive Script Audit
 
 <!-- SPECKIT_LEVEL: 3 -->

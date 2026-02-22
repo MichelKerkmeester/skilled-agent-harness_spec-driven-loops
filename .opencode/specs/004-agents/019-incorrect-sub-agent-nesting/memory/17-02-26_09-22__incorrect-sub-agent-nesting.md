@@ -1,3 +1,8 @@
+---
+title: "To promote a memory to constitutional [019-incorrect-sub-agent-nesting/17-02-26_09-22__incorrect-sub-agent-nesting]"
+importance_tier: "normal"
+contextType: "general"
+---
 <!-- TEMPLATE: context_template.md v2.2 - DO NOT EDIT GENERATED FILES -->
 <!-- Constitutional Tier Promotion:
   To promote a memory to constitutional tier (always surfaced):

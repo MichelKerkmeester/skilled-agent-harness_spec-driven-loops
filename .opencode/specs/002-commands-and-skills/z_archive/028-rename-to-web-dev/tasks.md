@@ -1,3 +1,15 @@
+---
+title: "Tasks: Rename workflows-code to workflows-code--web-dev [028-rename-to-web-dev/tasks]"
+description: "Task Format: T### [P?] Description (file path)"
+trigger_phrases:
+  - "tasks"
+  - "rename"
+  - "workflows"
+  - "code"
+  - "028"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: Rename workflows-code to workflows-code--web-dev
 
 <!-- SPECKIT_LEVEL: 1 -->

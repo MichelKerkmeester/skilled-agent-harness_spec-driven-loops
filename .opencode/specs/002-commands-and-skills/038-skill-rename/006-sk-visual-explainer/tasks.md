@@ -1,3 +1,15 @@
+---
+title: "Tasks: Phase 006 — Rename sk-visual-explainer to sk-visual-explainer [006-sk-visual-explainer/tasks]"
+description: "Task Format: T### [P?] Description (file path)"
+trigger_phrases:
+  - "tasks"
+  - "phase"
+  - "006"
+  - "rename"
+  - "visual"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: Phase 006 — Rename sk-visual-explainer to sk-visual-explainer
 
 <!-- SPECKIT_LEVEL: 2 -->

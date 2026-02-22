@@ -1,3 +1,15 @@
+---
+title: "Verification Checklist: [NAME] [030-hero-flicker-debug/checklist]"
+description: "Verification Date: [YYYY-MM-DD]"
+trigger_phrases:
+  - "verification"
+  - "checklist"
+  - "name"
+  - "030"
+  - "hero"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Verification Checklist: [NAME]
 
 <!-- SPECKIT_LEVEL: 2 -->

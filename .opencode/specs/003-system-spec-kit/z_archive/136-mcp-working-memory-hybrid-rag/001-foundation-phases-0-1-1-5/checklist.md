@@ -1,3 +1,15 @@
+---
+title: "Verification Checklist: Foundation Package [001-foundation-phases-0-1-1-5/checklist]"
+description: "checklist document for 001-foundation-phases-0-1-1-5."
+trigger_phrases:
+  - "verification"
+  - "checklist"
+  - "foundation"
+  - "package"
+  - "001"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Verification Checklist: Foundation Package
 
 <!-- SPECKIT_LEVEL: 3+ -->

@@ -1,3 +1,16 @@
+---
+title: "Tasks: Fix Create Command Dispatch Vulnerability + Defensive Hardening [008-fix-create-dispatch/tasks]"
+description: "Task Format: T### [P?] Description (file path)"
+trigger_phrases:
+  - "tasks"
+  - "fix"
+  - "create"
+  - "command"
+  - "dispatch"
+  - "008"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: Fix Create Command Dispatch Vulnerability + Defensive Hardening
 
 <!-- SPECKIT_LEVEL: 2 -->

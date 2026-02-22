@@ -1,3 +1,17 @@
+---
+title: "Implementation Checklist: Utility Template Trigger Keywords - Validation Items [012-handover-triggers/checklist]"
+description: "Validation checklist for adding automatic keyword detection for handover.md and debug-delegation.md templates to SKILL.md."
+trigger_phrases:
+  - "implementation"
+  - "checklist"
+  - "utility"
+  - "template"
+  - "trigger"
+  - "012"
+  - "handover"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Implementation Checklist: Utility Template Trigger Keywords - Validation Items
 
 Validation checklist for adding automatic keyword detection for handover.md and debug-delegation.md templates to SKILL.md.

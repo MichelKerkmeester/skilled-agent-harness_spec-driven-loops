@@ -1,3 +1,16 @@
+---
+title: "Feature Research: SpecKit Bug Analysis - Comprehensive Technical Investigation [064-bug-analysis-and-fix/research]"
+description: "Complete research documentation providing in-depth analysis of bugs, inconsistencies, and issues across the SpecKit system."
+trigger_phrases:
+  - "feature"
+  - "research"
+  - "speckit"
+  - "bug"
+  - "analysis"
+  - "064"
+importance_tier: "normal"
+contextType: "research"
+---
 # Feature Research: SpecKit Bug Analysis - Comprehensive Technical Investigation
 
 Complete research documentation providing in-depth analysis of bugs, inconsistencies, and issues across the SpecKit system.

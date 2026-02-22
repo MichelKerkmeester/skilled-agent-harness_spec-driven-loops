@@ -1,3 +1,18 @@
+---
+title: "Implementation Summary: Document Quality Index (DQI) [015-doc-specialist-refactor/implementation-summary]"
+description: "Spec: 012-doc-specialist-refactor"
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "document"
+  - "quality"
+  - "index"
+  - "implementation summary"
+  - "015"
+  - "doc"
+importance_tier: "normal"
+contextType: "implementation"
+---
 <!-- SPECKIT_TEMPLATE_SOURCE: legacy-normalized | v2.2 -->
 
 # Implementation Summary: Document Quality Index (DQI)

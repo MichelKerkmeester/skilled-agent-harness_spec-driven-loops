@@ -1,3 +1,8 @@
+---
+title: "To promote a memory to constitutional [031-anobel-performance-analysis/02-02-26_07-14__anobel-performance-analysis]"
+importance_tier: "normal"
+contextType: "general"
+---
 <!-- TEMPLATE: context_template.md v2.2 - DO NOT EDIT GENERATED FILES -->
 <!-- Constitutional Tier Promotion:
   To promote a memory to constitutional tier (always surfaced):

@@ -1,3 +1,15 @@
+---
+title: "Comprehensive Bug Fix Plan [031-comprehensive-bug-fix/plan]"
+description: "10 parallel Opus agents, each assigned a specific domain with non-overlapping file sections."
+trigger_phrases:
+  - "comprehensive"
+  - "bug"
+  - "fix"
+  - "plan"
+  - "031"
+importance_tier: "important"
+contextType: "decision"
+---
 # Comprehensive Bug Fix Plan
 
 ## Approach

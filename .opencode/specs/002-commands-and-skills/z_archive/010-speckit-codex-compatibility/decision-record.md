@@ -1,3 +1,18 @@
+---
+title: "Decision Record: Make spec_kit Commands Codex-Compatible [010-speckit-codex-compatibility/decision-record]"
+description: "Codex (OpenAI's coding agent) misinterprets agent routing metadata in spec_kit command files as dispatch instructions, causing three failure modes: premature @review dispatch, p..."
+trigger_phrases:
+  - "decision"
+  - "record"
+  - "make"
+  - "spec"
+  - "kit"
+  - "decision record"
+  - "010"
+  - "speckit"
+importance_tier: "important"
+contextType: "decision"
+---
 # Decision Record: Make spec_kit Commands Codex-Compatible
 
 <!-- SPECKIT_LEVEL: 3 -->

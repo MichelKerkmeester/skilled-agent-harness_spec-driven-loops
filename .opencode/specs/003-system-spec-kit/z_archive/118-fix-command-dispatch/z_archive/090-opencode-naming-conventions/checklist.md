@@ -1,3 +1,16 @@
+---
+title: "Verification Checklist: OpenCode Naming Convention Alignment [090-opencode-naming-conventions/checklist]"
+description: "Verification Date: 2026-02-06"
+trigger_phrases:
+  - "verification"
+  - "checklist"
+  - "opencode"
+  - "naming"
+  - "convention"
+  - "090"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Verification Checklist: OpenCode Naming Convention Alignment
 
 <!-- SPECKIT_LEVEL: 3+ -->

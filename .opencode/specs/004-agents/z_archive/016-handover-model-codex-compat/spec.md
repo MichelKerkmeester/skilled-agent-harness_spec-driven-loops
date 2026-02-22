@@ -1,3 +1,15 @@
+---
+title: "Spec 016: Handover Model Downgrade + Codex Agent Compatibility [016-handover-model-codex-compat/spec]"
+description: "Two issues with the current agent configuration"
+trigger_phrases:
+  - "spec"
+  - "016"
+  - "handover"
+  - "model"
+  - "downgrade"
+importance_tier: "important"
+contextType: "decision"
+---
 # Spec 016: Handover Model Downgrade + Codex Agent Compatibility
 
 <!-- ANCHOR:problem -->

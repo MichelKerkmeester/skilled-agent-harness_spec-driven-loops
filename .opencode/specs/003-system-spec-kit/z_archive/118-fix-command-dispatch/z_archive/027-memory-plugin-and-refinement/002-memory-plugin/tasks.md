@@ -1,3 +1,16 @@
+---
+title: "Tasks: Memory Plugin Dashboard Optimization [002-memory-plugin/tasks]"
+description: "Task breakdown by user story for the Memory Plugin Dashboard Optimization feature."
+trigger_phrases:
+  - "tasks"
+  - "memory"
+  - "plugin"
+  - "dashboard"
+  - "optimization"
+  - "002"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: Memory Plugin Dashboard Optimization
 
 Task breakdown by user story for the Memory Plugin Dashboard Optimization feature.

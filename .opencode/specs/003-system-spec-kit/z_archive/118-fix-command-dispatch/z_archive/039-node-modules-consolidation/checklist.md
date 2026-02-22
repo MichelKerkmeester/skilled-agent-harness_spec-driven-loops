@@ -1,9 +1,17 @@
 ---
+title: "Completion Checklist [039-node-modules-consolidation/checklist]"
+description: "id: 039-node-modules-consolidation"
+trigger_phrases:
+  - "completion"
+  - "checklist"
+  - "039"
+  - "node"
+importance_tier: "normal"
+contextType: "implementation"
 id: 039-node-modules-consolidation
-title: Completion Checklist
 level: 2
----
 
+---
 # Completion Checklist
 
 ## Pre-Implementation

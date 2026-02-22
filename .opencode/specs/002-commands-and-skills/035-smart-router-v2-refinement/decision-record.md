@@ -1,3 +1,17 @@
+---
+title: "Decision Record: Smart Router V2 Refinement - Ambiguity & Efficiency [035-smart-router-v2-refinement/decision-record]"
+description: "Smart Router V2 baseline uses top-2 intent selection (highest two candidate routes considered), but real-world usage reveals close scores (e.g., 0.72 vs 0.68) cause premature si..."
+trigger_phrases:
+  - "decision"
+  - "record"
+  - "smart"
+  - "router"
+  - "refinement"
+  - "decision record"
+  - "035"
+importance_tier: "important"
+contextType: "decision"
+---
 # Decision Record: Smart Router V2 Refinement - Ambiguity & Efficiency Improvements
 
 <!-- SPECKIT_LEVEL: 3 -->

@@ -5,11 +5,10 @@ trigger_phrases:
   - "memory dashboard"
   - "session summary"
   - "context template"
-importance_tier: "{{IMPORTANCE_TIER}}"
+importance_tier: "normal"
 importanceTier: "{{IMPORTANCE_TIER}}"
-contextType: "{{CONTEXT_TYPE}}"
+contextType: "general"
 ---
-
 <!-- TEMPLATE: context_template.md v2.2 - DO NOT EDIT GENERATED FILES -->
 <!-- Template Configuration Comments (stripped during generation) -->
 

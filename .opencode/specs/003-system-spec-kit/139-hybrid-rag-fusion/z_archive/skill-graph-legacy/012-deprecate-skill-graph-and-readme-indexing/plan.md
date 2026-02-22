@@ -1,3 +1,15 @@
+---
+title: "Implementation Plan: 012 - Deprecate Skill Graph and [012-deprecate-skill-graph-and-readme-indexing/plan]"
+description: "This plan removes SGQS and non-authoritative indexing sources (README and workflows-code/sk-code reference/assets) from memory MCP, then aligns all command/skill/agent documenta..."
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "012"
+  - "deprecate"
+  - "skill"
+importance_tier: "important"
+contextType: "decision"
+---
 # Implementation Plan: 012 - Deprecate Skill Graph and README/Skill-Ref Indexing
 
 <!-- SPECKIT_LEVEL: 3 -->

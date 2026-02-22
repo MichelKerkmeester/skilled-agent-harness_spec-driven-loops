@@ -1,3 +1,17 @@
+---
+title: "Feature Specification: Post-SpecKit Template Upgrade Testing [075-post-speckit-template-upgrade-testing/spec]"
+description: "This specification defines a comprehensive test suite to validate the system-spec-kit v1.9.0 after the CORE+ADDENDUM template architecture upgrade. The test suite covers 44 Java..."
+trigger_phrases:
+  - "feature"
+  - "specification"
+  - "post"
+  - "speckit"
+  - "template"
+  - "spec"
+  - "075"
+importance_tier: "important"
+contextType: "decision"
+---
 <!-- SPECKIT_LEVEL: 3+ -->
 # Feature Specification: Post-SpecKit Template Upgrade Testing
 

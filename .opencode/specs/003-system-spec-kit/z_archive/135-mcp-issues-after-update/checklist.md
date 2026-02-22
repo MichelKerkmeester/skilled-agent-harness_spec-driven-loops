@@ -1,3 +1,16 @@
+---
+title: "Verification Checklist: MCP Server Failures After Updates [135-mcp-issues-after-update/checklist]"
+description: "Verification Date: 2026-02-18"
+trigger_phrases:
+  - "verification"
+  - "checklist"
+  - "mcp"
+  - "server"
+  - "failures"
+  - "135"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Verification Checklist: MCP Server Failures After Updates
 
 <!-- SPECKIT_LEVEL: 2 -->

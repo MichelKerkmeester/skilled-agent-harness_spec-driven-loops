@@ -1,10 +1,21 @@
 ---
-title: "Plan: system-spec-kit Reimagined Refinement"
-spec: "089"
-phases: 4
+title: "Plan: system-spec-kit Reimagined Refinement [089-speckit-reimagined-refinement/plan]"
+description: "title: \"Plan: system-spec-kit Reimagined Refinement\""
+trigger_phrases:
+  - "plan"
+  - "system"
+  - "spec"
+  - "kit"
+  - "reimagined"
+  - "089"
+  - "speckit"
+importance_tier: "important"
+contextType: "decision"
 estimated-effort: "3-5 sessions"
----
 
+phases: 4
+spec: "089"
+---
 # Plan: system-spec-kit Reimagined Refinement
 
 > Phased remediation plan addressing ~120+ findings across the entire system-spec-kit ecosystem.

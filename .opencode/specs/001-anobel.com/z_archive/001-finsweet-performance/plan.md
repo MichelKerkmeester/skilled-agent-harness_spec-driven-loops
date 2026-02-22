@@ -1,3 +1,16 @@
+---
+title: "Implementation Plan: Finsweet Performance Optimization [001-finsweet-performance/plan]"
+description: "Defer Finsweet Attributes loading to improve PageSpeed by 10-20 points."
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "finsweet"
+  - "performance"
+  - "optimization"
+  - "001"
+importance_tier: "important"
+contextType: "decision"
+---
 # Implementation Plan: Finsweet Performance Optimization
 
 <!-- ANCHOR:overview -->

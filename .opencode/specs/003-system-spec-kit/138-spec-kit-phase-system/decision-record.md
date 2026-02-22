@@ -1,3 +1,18 @@
+---
+title: "Decision Record: SpecKit Phase System [138-spec-kit-phase-system/decision-record]"
+description: "The phase system needed a home in the existing SpecKit architecture. Three options existed: introduce a new Level 4 tier for \"phased\" specs, implement phases as a behavioral lay..."
+trigger_phrases:
+  - "decision"
+  - "record"
+  - "speckit"
+  - "phase"
+  - "system"
+  - "decision record"
+  - "138"
+  - "spec"
+importance_tier: "important"
+contextType: "decision"
+---
 <!-- SPECKIT_LEVEL: 3+ -->
 # Decision Record: SpecKit Phase System
 

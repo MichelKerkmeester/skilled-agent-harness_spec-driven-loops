@@ -1,3 +1,16 @@
+---
+title: "Verification Checklist: Task 06 — Root README Update [task-06-global-readme-update/checklist]"
+description: "Verification Date: 2026-02-16"
+trigger_phrases:
+  - "verification"
+  - "checklist"
+  - "task"
+  - "root"
+  - "readme"
+  - "global"
+importance_tier: "normal"
+contextType: "implementation"
+---
 <!-- SPECKIT_TEMPLATE_SOURCE: legacy-normalized | v2.2 -->
 
 # Verification Checklist: Task 06 — Root README Update

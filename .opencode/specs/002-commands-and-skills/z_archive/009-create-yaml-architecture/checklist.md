@@ -1,3 +1,16 @@
+---
+title: "Verification Checklist: Create Commands YAML-First Architecture Refactor [009-create-yaml-architecture/checklist]"
+description: "All P0 items are HARD BLOCKERS. Cannot claim completion until every P0 is marked [x]."
+trigger_phrases:
+  - "verification"
+  - "checklist"
+  - "create"
+  - "commands"
+  - "yaml"
+  - "009"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Verification Checklist: Create Commands YAML-First Architecture Refactor
 
 <!-- SPECKIT_LEVEL: 3 -->

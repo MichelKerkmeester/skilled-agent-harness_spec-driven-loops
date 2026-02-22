@@ -1,3 +1,15 @@
+---
+title: "Plan: Invalid Priority Tags Fixture [invalid-priority-tags/plan]"
+description: "Testing detection of malformed priority tags in checklists."
+trigger_phrases:
+  - "plan"
+  - "invalid"
+  - "priority"
+  - "tags"
+  - "fixture"
+importance_tier: "important"
+contextType: "decision"
+---
 # Plan: Invalid Priority Tags Fixture
 
 ## Technical Context

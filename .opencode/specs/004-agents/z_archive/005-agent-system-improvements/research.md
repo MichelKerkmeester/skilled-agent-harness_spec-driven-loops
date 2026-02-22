@@ -1,3 +1,16 @@
+---
+title: "Research: Oh My Opencode Agent System (2026 Analysis) [005-agent-system-improvements/research]"
+description: "Research ID: OMO-AGENT-2026-01"
+trigger_phrases:
+  - "research"
+  - "opencode"
+  - "agent"
+  - "system"
+  - "2026"
+  - "005"
+importance_tier: "normal"
+contextType: "research"
+---
 # Research: Oh My Opencode Agent System (2026 Analysis)
 
 **Research ID**: OMO-AGENT-2026-01

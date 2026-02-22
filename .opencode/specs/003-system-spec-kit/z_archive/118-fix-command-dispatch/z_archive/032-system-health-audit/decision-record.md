@@ -1,3 +1,17 @@
+---
+title: "Decision Record - System Health Audit [032-system-health-audit/decision-record]"
+description: "Date: 2025-12-25"
+trigger_phrases:
+  - "decision"
+  - "record"
+  - "system"
+  - "health"
+  - "audit"
+  - "decision record"
+  - "032"
+importance_tier: "important"
+contextType: "decision"
+---
 # Decision Record - System Health Audit
 
 ## DR-001: Decay Formula Resolution

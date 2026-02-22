@@ -1,3 +1,17 @@
+---
+title: "Implementation Plan: Spec Kit Bug Fixes [083-speckit-reimagined-bug-fixes/plan]"
+description: "Phase 1: CRITICAL Fixes (P0)"
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "spec"
+  - "kit"
+  - "bug"
+  - "083"
+  - "speckit"
+importance_tier: "important"
+contextType: "decision"
+---
 # Implementation Plan: Spec Kit Bug Fixes
 
 > Phased approach to resolving all identified bugs in the Spec Kit v1.2.1.0 release.

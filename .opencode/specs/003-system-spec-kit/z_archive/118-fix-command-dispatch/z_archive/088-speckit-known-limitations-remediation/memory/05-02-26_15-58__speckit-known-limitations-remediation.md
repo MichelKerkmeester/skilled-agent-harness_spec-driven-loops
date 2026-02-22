@@ -1,3 +1,8 @@
+---
+title: "To promote a memory [088-speckit-known-limitations-remediation/05-02-26_15-58__speckit-known-limitations-remediation]"
+importance_tier: "normal"
+contextType: "general"
+---
 <!-- TEMPLATE: context_template.md v2.2 - DO NOT EDIT GENERATED FILES -->
 <!-- Constitutional Tier Promotion:
   To promote a memory to constitutional tier (always surfaced):

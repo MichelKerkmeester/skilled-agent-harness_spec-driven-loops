@@ -1,3 +1,16 @@
+---
+title: "Verification Checklist: Codex Audit Remediation Closure [008-codex-audit/checklist]"
+description: "Verification Date: 2026-02-21"
+trigger_phrases:
+  - "verification"
+  - "checklist"
+  - "codex"
+  - "audit"
+  - "remediation"
+  - "008"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Verification Checklist: Codex Audit Remediation Closure
 
 <!-- SPECKIT_LEVEL: 3 -->

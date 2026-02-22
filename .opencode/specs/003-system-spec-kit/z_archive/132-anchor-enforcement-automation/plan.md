@@ -1,3 +1,16 @@
+---
+title: "Implementation Plan: Anchor Enforcement Automation [132-anchor-enforcement-automation/plan]"
+description: "Implements multi-layer enforcement system preventing spec documentation creation without template/anchor compliance. Three enforcement points: (1) Pre-flight validation gates in..."
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "anchor"
+  - "enforcement"
+  - "automation"
+  - "132"
+importance_tier: "important"
+contextType: "decision"
+---
 # Implementation Plan: Anchor Enforcement Automation
 
 <!-- SPECKIT_LEVEL: 3+ -->

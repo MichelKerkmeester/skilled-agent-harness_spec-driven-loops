@@ -1,3 +1,14 @@
+---
+title: "Implementation Summary [template:level_1/implementation-summary.md]"
+description: "\"Users can now do X\" not \"X functionality was implemented.\" -->"
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "template"
+  - "implementation summary"
+importance_tier: "normal"
+contextType: "general"
+---
 # Implementation Summary
 
 <!-- SPECKIT_LEVEL: 1 -->

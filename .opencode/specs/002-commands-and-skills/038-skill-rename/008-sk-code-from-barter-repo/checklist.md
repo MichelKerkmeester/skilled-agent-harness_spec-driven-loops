@@ -1,3 +1,16 @@
+---
+title: "Verification Checklist: Phase 008 — Rename workflows-code to sk-code in [008-sk-code-from-barter-repo/checklist]"
+description: "Verification Date: —"
+trigger_phrases:
+  - "verification"
+  - "checklist"
+  - "phase"
+  - "008"
+  - "rename"
+  - "code"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Verification Checklist: Phase 008 — Rename `workflows-code` to `sk-code` in Barter repo
 
 <!-- SPECKIT_LEVEL: 2 -->

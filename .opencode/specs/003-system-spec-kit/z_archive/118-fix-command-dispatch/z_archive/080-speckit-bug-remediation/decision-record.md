@@ -1,3 +1,18 @@
+---
+title: "Decision Record: Spec Kit Bug Remediation [080-speckit-bug-remediation/decision-record]"
+description: "10 parallel Opus agents identified 45+ bugs across the Spec Kit MCP server. The bugs range from critical (data corruption risk) to low (code style). Fixing all bugs sequentially..."
+trigger_phrases:
+  - "decision"
+  - "record"
+  - "spec"
+  - "kit"
+  - "bug"
+  - "decision record"
+  - "080"
+  - "speckit"
+importance_tier: "important"
+contextType: "decision"
+---
 # Decision Record: Spec Kit Bug Remediation
 
 <!-- SPECKIT_LEVEL: 3+ -->

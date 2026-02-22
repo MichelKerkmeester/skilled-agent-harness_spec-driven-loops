@@ -1,3 +1,17 @@
+---
+title: "Implementation Summary: Agent Haiku Compatibility [013-agent-haiku-compatibility/implementation-summary]"
+description: "Updated orchestrate.md on both platforms to align with the thorough-only Haiku context agent (spec 012 outcome). Removed stale 3-mode dispatch limits and added Haiku-specific fa..."
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "agent"
+  - "haiku"
+  - "compatibility"
+  - "implementation summary"
+  - "013"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Implementation Summary: Agent Haiku Compatibility
 
 <!-- SPECKIT_LEVEL: 2 -->

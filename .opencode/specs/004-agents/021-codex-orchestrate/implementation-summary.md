@@ -1,3 +1,15 @@
+---
+title: "Implementation Summary [021-codex-orchestrate/implementation-summary]"
+description: "Completed two finalized workstreams under this spec: (1) the 8-file ChatGPT agent consistency pass, and (2) runtime-aware command path normalization across command markdown and ..."
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "implementation summary"
+  - "021"
+  - "codex"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Implementation Summary
 
 <!-- SPECKIT_LEVEL: 3 -->

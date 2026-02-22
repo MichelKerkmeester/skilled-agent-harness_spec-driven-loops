@@ -1,3 +1,15 @@
+---
+title: "Checklist - Performance Patterns Update [026-performance-patterns-update/checklist]"
+description: "1. [x] Get user approval on spec"
+trigger_phrases:
+  - "checklist"
+  - "performance"
+  - "patterns"
+  - "update"
+  - "026"
+importance_tier: "normal"
+contextType: "implementation"
+---
 <!-- SPECKIT_TEMPLATE_SOURCE: legacy-normalized | v2.2 -->
 
 # Checklist - Performance Patterns Update

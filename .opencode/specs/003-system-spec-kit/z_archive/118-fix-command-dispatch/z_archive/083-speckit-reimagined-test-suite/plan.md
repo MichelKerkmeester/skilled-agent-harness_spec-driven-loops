@@ -1,3 +1,16 @@
+---
+title: "Implementation Plan: SpecKit Reimagined Test Suite [083-speckit-reimagined-test-suite/plan]"
+description: "This test suite provides comprehensive coverage for the SpecKit Reimagined implementation (082-speckit-reimagined), covering all 33 features and 107 tasks across 5 workstreams. ..."
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "speckit"
+  - "reimagined"
+  - "test"
+  - "083"
+importance_tier: "important"
+contextType: "decision"
+---
 # Implementation Plan: SpecKit Reimagined Test Suite
 
 <!-- SPECKIT_LEVEL: 3+ -->

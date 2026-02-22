@@ -1,3 +1,15 @@
+---
+title: "Checklist: Remaining Bugs Remediation [054-remaining-bugs-remediation/checklist]"
+description: "Code Implementation: 100% Complete"
+trigger_phrases:
+  - "checklist"
+  - "remaining"
+  - "bugs"
+  - "remediation"
+  - "054"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Checklist: Remaining Bugs Remediation
 
 | Field | Value |

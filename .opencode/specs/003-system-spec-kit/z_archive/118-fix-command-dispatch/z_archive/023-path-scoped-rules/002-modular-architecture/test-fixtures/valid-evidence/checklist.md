@@ -1,3 +1,14 @@
+---
+title: "Checklist: Valid Evidence Fixture [valid-evidence/checklist]"
+description: "checklist document for valid-evidence."
+trigger_phrases:
+  - "checklist"
+  - "valid"
+  - "evidence"
+  - "fixture"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Checklist: Valid Evidence Fixture
 
 ## P0 - Critical

@@ -1,3 +1,15 @@
+---
+title: "Command Document Refinement - Plan [003-command-document-refinment/plan]"
+description: "Systematic refinement in 4 phases, each building on the previous."
+trigger_phrases:
+  - "command"
+  - "document"
+  - "refinement"
+  - "plan"
+  - "003"
+importance_tier: "important"
+contextType: "decision"
+---
 <!-- SPECKIT_TEMPLATE_SOURCE: legacy-normalized | v2.2 -->
 
 # Command Document Refinement - Plan

@@ -1,3 +1,15 @@
+---
+title: "Plan: Spec 016 — Handover Haiku + Codex Agent Conversion [016-handover-model-codex-compat/plan]"
+description: "All profiles use the gpt-5.3 model family. Differentiation is via model variant (spark vs full) and reasoning effort"
+trigger_phrases:
+  - "plan"
+  - "spec"
+  - "016"
+  - "handover"
+  - "haiku"
+importance_tier: "important"
+contextType: "decision"
+---
 # Plan: Spec 016 — Handover Haiku + Codex Agent Conversion
 
 <!-- ANCHOR:architecture -->

@@ -1,3 +1,8 @@
+---
+title: "Key Topics: response | [019-speckit-refinement/23-12-25_13-56__speckit-refinement]"
+importance_tier: "normal"
+contextType: "general"
+---
 <!-- TEMPLATE: context_template.md v2.2 - DO NOT EDIT GENERATED FILES -->
 ---
 

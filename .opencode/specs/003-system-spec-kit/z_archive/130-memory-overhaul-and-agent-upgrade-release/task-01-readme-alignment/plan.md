@@ -1,3 +1,15 @@
+---
+title: "Implementation Plan: Task 01 — README Audit & Alignment [task-01-readme-alignment/plan]"
+description: "Audit 60+ README.md files in .opencode/ directory tree for stale source counts (4→5), stale intent counts (5→7), outdated schema versions, missing feature references (upgrade-le..."
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "task"
+  - "readme"
+  - "audit"
+importance_tier: "important"
+contextType: "decision"
+---
 # Implementation Plan: Task 01 — README Audit & Alignment
 
 <!-- SPECKIT_LEVEL: 3+ -->

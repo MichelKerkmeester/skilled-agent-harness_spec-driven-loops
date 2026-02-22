@@ -1,3 +1,17 @@
+---
+title: "Decision Record: Comprehensive Script Audit [121-script-audit-comprehensive/decision-record]"
+description: "System-spec-kit contains ~50+ scripts across 3 directories (scripts/, shared/, mcp_server/) with complex interdependencies. A comprehensive audit requires systematic investigati..."
+trigger_phrases:
+  - "decision"
+  - "record"
+  - "comprehensive"
+  - "script"
+  - "audit"
+  - "decision record"
+  - "121"
+importance_tier: "important"
+contextType: "decision"
+---
 # Decision Record: Comprehensive Script Audit
 
 <!-- SPECKIT_LEVEL: 3 -->

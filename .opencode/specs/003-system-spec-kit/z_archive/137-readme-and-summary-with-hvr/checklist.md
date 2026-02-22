@@ -1,3 +1,17 @@
+---
+title: "Verification Checklist: Human Voice Rules — Template Integration [137-readme-and-summary-with-hvr/checklist]"
+description: "These items verify that this spec folder demonstrates the style it promotes."
+trigger_phrases:
+  - "verification"
+  - "checklist"
+  - "human"
+  - "voice"
+  - "rules"
+  - "137"
+  - "readme"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Verification Checklist: Human Voice Rules — Template Integration
 
 <!-- SPECKIT_LEVEL: 3+ -->

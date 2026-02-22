@@ -1,3 +1,17 @@
+---
+title: "Verification Checklist: workflows-code-opencode Skill [030-initial-set-up/checklist]"
+description: "Research Complete: 2026-02-04"
+trigger_phrases:
+  - "verification"
+  - "checklist"
+  - "workflows"
+  - "code"
+  - "opencode"
+  - "030"
+  - "initial"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Verification Checklist: workflows-code-opencode Skill
 
 <!-- SPECKIT_LEVEL: 3+ -->

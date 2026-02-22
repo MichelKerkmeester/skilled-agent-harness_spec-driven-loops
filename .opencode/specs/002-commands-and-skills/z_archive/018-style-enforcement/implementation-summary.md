@@ -1,3 +1,18 @@
+---
+title: "Implementation Summary: Zero-Tolerance Documentation Formatting [018-style-enforcement/implementation-summary]"
+description: "Location: .opencode/skill/sk-documentation/assets/template_rules.json"
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "zero"
+  - "tolerance"
+  - "documentation"
+  - "implementation summary"
+  - "018"
+  - "style"
+importance_tier: "normal"
+contextType: "implementation"
+---
 <!-- SPECKIT_TEMPLATE_SOURCE: legacy-normalized | v2.2 -->
 
 # Implementation Summary: Zero-Tolerance Documentation Formatting

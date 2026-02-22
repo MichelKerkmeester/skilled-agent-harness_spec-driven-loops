@@ -1,3 +1,17 @@
+---
+title: "workflows-code-multi-stack Skill - Conversion Spec [027-workflows-code-multi-stack/spec]"
+description: "Convert Barter's comprehensive multi-stack workflows-code skill into a universal, fully anonymized version for the public OpenCode Dev Environment. The skill must work for any t..."
+trigger_phrases:
+  - "workflows"
+  - "code"
+  - "multi"
+  - "stack"
+  - "skill"
+  - "spec"
+  - "027"
+importance_tier: "important"
+contextType: "decision"
+---
 <!-- SPECKIT_LEVEL: 3 -->
 
 <!-- SPECKIT_TEMPLATE_SOURCE: legacy-normalized | v2.2 -->

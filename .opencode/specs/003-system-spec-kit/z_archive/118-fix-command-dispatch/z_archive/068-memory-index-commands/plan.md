@@ -1,3 +1,16 @@
+---
+title: "Implementation Plan: Memory Command Separation - Technical Approach & Architecture [068-memory-index-commands/plan]"
+description: "Implementation plan for separating the unified /memory:search command into two focused commands."
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "memory"
+  - "command"
+  - "separation"
+  - "068"
+importance_tier: "important"
+contextType: "decision"
+---
 # Implementation Plan: Memory Command Separation - Technical Approach & Architecture
 
 Implementation plan for separating the unified `/memory:search` command into two focused commands.

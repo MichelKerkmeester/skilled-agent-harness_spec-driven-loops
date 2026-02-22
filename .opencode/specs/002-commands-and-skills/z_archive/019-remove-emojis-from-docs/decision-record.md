@@ -1,3 +1,17 @@
+---
+title: "Decision Record: Remove Emojis from All Documentation [019-remove-emojis-from-docs/decision-record]"
+description: "H2 heading emojis were originally enforced as blocking validation errors across all template-based document types (SKILL, README, asset, reference). After extended use, the emoj..."
+trigger_phrases:
+  - "decision"
+  - "record"
+  - "remove"
+  - "emojis"
+  - "from"
+  - "decision record"
+  - "019"
+importance_tier: "important"
+contextType: "decision"
+---
 # Decision Record: Remove Emojis from All Documentation
 
 <!-- SPECKIT_LEVEL: 3 -->

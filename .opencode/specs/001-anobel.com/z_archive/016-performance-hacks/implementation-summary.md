@@ -1,3 +1,16 @@
+---
+title: "Implementation Summary - Performance Hacks [016-performance-hacks/implementation-summary]"
+description: "I cannot perform these changes via code because they are managed inside Webflow or external settings."
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "performance"
+  - "hacks"
+  - "implementation summary"
+  - "016"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Implementation Summary - Performance Hacks
 
 > **Goal:** High-impact, low-effort optimizations for Core Web Vitals (LCP/FCP).

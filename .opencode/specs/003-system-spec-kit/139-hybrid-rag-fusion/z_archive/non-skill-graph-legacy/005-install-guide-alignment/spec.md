@@ -1,3 +1,17 @@
+---
+title: "Feature Specification: Install Guide Alignment [005-install-guide-alignment/spec]"
+description: "Four INSTALL_GUIDE.md files across the OpenCode skill system are outdated after specs 136 (Working Memory + Hybrid RAG), 138 (Hybrid RAG Fusion + Skill Graph + Unified Graph Int..."
+trigger_phrases:
+  - "feature"
+  - "specification"
+  - "install"
+  - "guide"
+  - "alignment"
+  - "spec"
+  - "005"
+importance_tier: "important"
+contextType: "decision"
+---
 # Feature Specification: Install Guide Alignment
 
 <!-- SPECKIT_LEVEL: 2 -->

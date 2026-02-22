@@ -1,3 +1,16 @@
+---
+title: "Tasks: Rename Memory Command (Two-Phase Rename) [008-rename-memory-check/tasks]"
+description: "tasks document for 008-rename-memory-check."
+trigger_phrases:
+  - "tasks"
+  - "rename"
+  - "memory"
+  - "command"
+  - "two"
+  - "008"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: Rename Memory Command (Two-Phase Rename)
 
 ## Phase 1: `/memory` → `/memory:check` (COMPLETED)

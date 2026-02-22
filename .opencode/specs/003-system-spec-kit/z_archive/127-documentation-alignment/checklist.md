@@ -1,3 +1,16 @@
+---
+title: "Verification Checklist: Spec 126 Documentation Alignment [127-documentation-alignment/checklist]"
+description: "Verification Date: 2026-02-16"
+trigger_phrases:
+  - "verification"
+  - "checklist"
+  - "spec"
+  - "126"
+  - "documentation"
+  - "127"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Verification Checklist: Spec 126 Documentation Alignment
 
 <!-- SPECKIT_LEVEL: 3+ -->

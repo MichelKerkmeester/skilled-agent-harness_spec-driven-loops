@@ -1,3 +1,17 @@
+---
+title: "Implementation Summary: Semantic Memory Auto-Indexing (v12.0) [006-auto-indexing/implementation-summary]"
+description: "Date: 2025-12-16"
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "semantic"
+  - "memory"
+  - "auto"
+  - "implementation summary"
+  - "006"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Implementation Summary: Semantic Memory Auto-Indexing (v12.0)
 
 **Date:** 2025-12-16

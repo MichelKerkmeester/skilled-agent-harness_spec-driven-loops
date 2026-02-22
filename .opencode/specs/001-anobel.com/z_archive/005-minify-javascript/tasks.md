@@ -1,3 +1,16 @@
+---
+title: "Tasks: minify-javascript - Implementation Breakdown [005-minify-javascript/tasks]"
+description: "Minify the JavaScript files in src/2_javascript/z_minified/ in-place, with conservative settings to avoid runtime regressions when embedded in Webflow."
+trigger_phrases:
+  - "tasks"
+  - "minify"
+  - "javascript"
+  - "implementation"
+  - "breakdown"
+  - "005"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: minify-javascript - Implementation Breakdown
 
 Minify the JavaScript files in `src/2_javascript/z_minified/` in-place, with conservative settings to avoid runtime regressions when embedded in Webflow.

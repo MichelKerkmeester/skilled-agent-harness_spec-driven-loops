@@ -1,3 +1,16 @@
+---
+title: "[Feature Name] - Specification Index [template:sharded/spec-index.md]"
+description: "This specification uses sharded documents for token efficiency."
+trigger_phrases:
+  - "feature"
+  - "name"
+  - "specification"
+  - "index"
+  - "template"
+  - "spec index"
+importance_tier: "normal"
+contextType: "general"
+---
 # [Feature Name] - Specification Index
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-sharded | v1.0 -->
 

@@ -1,3 +1,15 @@
+---
+title: "MCP Embedding Failure - Tasks [086-mcp-embedding-failure/tasks]"
+description: "Objective: Give user actionable steps to resolve the issue now"
+trigger_phrases:
+  - "mcp"
+  - "embedding"
+  - "failure"
+  - "tasks"
+  - "086"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # MCP Embedding Failure - Tasks
 
 ## Task Overview

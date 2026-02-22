@@ -1,3 +1,17 @@
+---
+title: "Tasks: Figma MCP Install Guide & Skill Creation [013-initial-creation/tasks]"
+description: "Priority: P0 | Estimate: 15 min | Status: Pending"
+trigger_phrases:
+  - "tasks"
+  - "figma"
+  - "mcp"
+  - "install"
+  - "guide"
+  - "013"
+  - "initial"
+importance_tier: "normal"
+contextType: "implementation"
+---
 <!-- SPECKIT_TEMPLATE_SOURCE: legacy-normalized | v2.2 -->
 
 # Tasks: Figma MCP Install Guide & Skill Creation

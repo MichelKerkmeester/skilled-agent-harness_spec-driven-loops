@@ -1,3 +1,17 @@
+---
+title: "Feature Specification: Skill Graphs Integration [002-skill-graph-integration/spec]"
+description: "The OpenCode skill system currently uses monolithic SKILL.md files which exhaust token windows and restrict multi-domain synthesis. This specification outlines the addition of a..."
+trigger_phrases:
+  - "feature"
+  - "specification"
+  - "skill"
+  - "graphs"
+  - "integration"
+  - "spec"
+  - "002"
+importance_tier: "important"
+contextType: "decision"
+---
 # Feature Specification: Skill Graphs Integration
 
 <!-- SPECKIT_LEVEL: 3+ -->

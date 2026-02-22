@@ -1,3 +1,16 @@
+---
+title: "Tasks: Online Visual Upgrade (Next Stage) [001-online-visual-upgrade/tasks]"
+description: "Task Format: T### [P?] Description (file path)"
+trigger_phrases:
+  - "tasks"
+  - "online"
+  - "visual"
+  - "upgrade"
+  - "next"
+  - "001"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: Online Visual Upgrade (Next Stage)
 
 <!-- SPECKIT_LEVEL: 2 -->

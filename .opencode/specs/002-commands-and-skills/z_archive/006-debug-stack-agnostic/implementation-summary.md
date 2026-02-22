@@ -1,3 +1,17 @@
+---
+title: "Implementation Summary: Make Debug Command Stack-Agnostic [006-debug-stack-agnostic/implementation-summary]"
+description: "Made the /spec_kit:debug command inherently universal by removing frontend-specific references and creating a stack-agnostic debugging methodology in the system-spec-kit skill. ..."
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "make"
+  - "debug"
+  - "command"
+  - "implementation summary"
+  - "006"
+importance_tier: "normal"
+contextType: "implementation"
+---
 <!-- SPECKIT_TEMPLATE_SOURCE: legacy-normalized | v2.2 -->
 
 # Implementation Summary: Make Debug Command Stack-Agnostic

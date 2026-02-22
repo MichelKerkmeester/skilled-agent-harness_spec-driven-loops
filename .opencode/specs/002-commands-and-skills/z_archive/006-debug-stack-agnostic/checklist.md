@@ -1,3 +1,16 @@
+---
+title: "Checklist: Make Debug Command Stack-Agnostic [006-debug-stack-agnostic/checklist]"
+description: "Final file sizes"
+trigger_phrases:
+  - "checklist"
+  - "make"
+  - "debug"
+  - "command"
+  - "stack"
+  - "006"
+importance_tier: "normal"
+contextType: "implementation"
+---
 <!-- SPECKIT_TEMPLATE_SOURCE: legacy-normalized | v2.2 -->
 
 # Checklist: Make Debug Command Stack-Agnostic

@@ -1,3 +1,15 @@
+---
+title: "Implementation Plan: Task 03 — Command Configs Audit [task-03-command-alignment/plan]"
+description: "9 command configuration files audit/creation for spec 130 umbrella. Systematic review of .opencode/command/spec_kit/*.md (9 files) to ensure alignment with post-implementation s..."
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "task"
+  - "command"
+  - "configs"
+importance_tier: "important"
+contextType: "decision"
+---
 # Implementation Plan: Task 03 — Command Configs Audit
 
 <!-- SPECKIT_LEVEL: 3+ -->

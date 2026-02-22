@@ -1,3 +1,16 @@
+---
+title: "Decision Record: Lib Consolidation [051-lib-consolidation/decision-record]"
+description: "This document captures the architectural decisions made for consolidating shared JavaScript modules in the system-spec-kit skill. The consolidation addresses code duplication, i..."
+trigger_phrases:
+  - "decision"
+  - "record"
+  - "lib"
+  - "consolidation"
+  - "decision record"
+  - "051"
+importance_tier: "important"
+contextType: "decision"
+---
 # Decision Record: Lib Consolidation
 
 ## Overview

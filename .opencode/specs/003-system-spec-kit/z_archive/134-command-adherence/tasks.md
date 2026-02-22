@@ -1,3 +1,17 @@
+---
+title: "Tasks: Plan-to-Implementation Gate Bypass Fix [134-command-adherence/tasks]"
+description: "Task Format: T### [P?] Description (file path)"
+trigger_phrases:
+  - "tasks"
+  - "plan"
+  - "implementation"
+  - "gate"
+  - "bypass"
+  - "134"
+  - "command"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: Plan-to-Implementation Gate Bypass Fix
 
 <!-- SPECKIT_LEVEL: 3 -->

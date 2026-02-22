@@ -1,3 +1,15 @@
+---
+title: "Implementation Summary [124-upgrade-level-script/implementation-summary]"
+description: "A bash script (upgrade-level.sh) that upgrades existing spec folders between documentation levels (L1->L2, L2->L3, L3->L3+, and skip-level L1->L3). The script is 1,490+ lines wi..."
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "implementation summary"
+  - "124"
+  - "upgrade"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Implementation Summary
 
 <!-- SPECKIT_LEVEL: 2 -->

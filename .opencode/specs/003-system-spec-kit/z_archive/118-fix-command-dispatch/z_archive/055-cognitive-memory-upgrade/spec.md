@@ -1,3 +1,16 @@
+---
+title: "Spec: Cognitive Memory Upgrade Research [055-cognitive-memory-upgrade/spec]"
+description: "Research upgrading Spec Kit Memory system with ideas and principles from the claude-cognitive repository, adapted for OpenCode's hook-less architecture."
+trigger_phrases:
+  - "spec"
+  - "cognitive"
+  - "memory"
+  - "upgrade"
+  - "research"
+  - "055"
+importance_tier: "important"
+contextType: "decision"
+---
 # Spec: Cognitive Memory Upgrade Research
 
 ## Overview

@@ -1,3 +1,16 @@
+---
+title: "Tasks: Skill Graph Utilization Testing [006-skill-graph-utilization/tasks]"
+description: "Task Format: T### [P?] Description (file path)"
+trigger_phrases:
+  - "tasks"
+  - "skill"
+  - "graph"
+  - "utilization"
+  - "testing"
+  - "006"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: Skill Graph Utilization Testing
 
 <!-- SPECKIT_LEVEL: 1 -->

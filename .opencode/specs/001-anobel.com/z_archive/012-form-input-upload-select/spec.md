@@ -1,3 +1,16 @@
+---
+title: "Spec: Form Input Components Enhancement [012-form-input-upload-select/spec]"
+description: "Enhance form input capabilities with two new components"
+trigger_phrases:
+  - "spec"
+  - "form"
+  - "input"
+  - "components"
+  - "enhancement"
+  - "012"
+importance_tier: "important"
+contextType: "decision"
+---
 # Spec: Form Input Components Enhancement
 
 <!-- ANCHOR:overview -->

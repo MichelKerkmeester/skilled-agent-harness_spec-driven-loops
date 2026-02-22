@@ -1,3 +1,16 @@
+---
+title: "Spec-Kit Comprehensive Alignment Fix [024-comprehensive-alignment-fix/spec]"
+description: "A comprehensive audit identified 49 issues across the Spec-Kit command/skill ecosystem. These issues fall into categories of"
+trigger_phrases:
+  - "spec"
+  - "kit"
+  - "comprehensive"
+  - "alignment"
+  - "fix"
+  - "024"
+importance_tier: "important"
+contextType: "decision"
+---
 # Spec-Kit Comprehensive Alignment Fix
 
 ## Problem Statement

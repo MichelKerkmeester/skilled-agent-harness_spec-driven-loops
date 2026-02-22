@@ -1,3 +1,15 @@
+---
+title: "Tasks: Memory Command Consolidation [083-memory-command-consolidation/tasks]"
+description: "Spec ID: 083-memory-command-consolidation"
+trigger_phrases:
+  - "tasks"
+  - "memory"
+  - "command"
+  - "consolidation"
+  - "083"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks: Memory Command Consolidation
 
 **Spec ID:** 083-memory-command-consolidation

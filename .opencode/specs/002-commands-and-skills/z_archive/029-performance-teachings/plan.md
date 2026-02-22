@@ -1,3 +1,17 @@
+---
+title: "Plan: Update workflows-code--web-dev with Spec 031 Performance Teachings [029-performance-teachings/plan]"
+description: "Direct file edits to 6 skill files. All changes are additive (new sections, expanded content) — no existing content removed."
+trigger_phrases:
+  - "plan"
+  - "update"
+  - "workflows"
+  - "code"
+  - "web"
+  - "029"
+  - "performance"
+importance_tier: "important"
+contextType: "decision"
+---
 <!-- SPECKIT_TEMPLATE_SOURCE: legacy-normalized | v2.2 -->
 
 # Plan: Update workflows-code--web-dev with Spec 031 Performance Teachings

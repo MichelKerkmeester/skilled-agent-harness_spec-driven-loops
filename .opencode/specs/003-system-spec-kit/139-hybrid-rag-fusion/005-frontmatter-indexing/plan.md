@@ -1,3 +1,15 @@
+---
+title: "Implementation Plan: 005-frontmatter-indexing [005-frontmatter-indexing/plan]"
+description: "This plan standardizes frontmatter across templates, spec docs, and memory markdown, then rebuilds indexes from normalized metadata. The approach is parser-first: define canonic..."
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "005"
+  - "frontmatter"
+  - "indexing"
+importance_tier: "important"
+contextType: "decision"
+---
 # Implementation Plan: 005-frontmatter-indexing
 
 <!-- SPECKIT_LEVEL: 3 -->

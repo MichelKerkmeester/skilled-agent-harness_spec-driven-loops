@@ -1,3 +1,15 @@
+---
+title: "Tasks - Load Toggle Component [027-load-toggle/tasks]"
+description: "1. Remove data-target=\"load-toggle\" from button--w"
+trigger_phrases:
+  - "tasks"
+  - "load"
+  - "toggle"
+  - "component"
+  - "027"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Tasks - Load Toggle Component
 
 <!-- ANCHOR:summary -->

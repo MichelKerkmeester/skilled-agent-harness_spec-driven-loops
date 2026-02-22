@@ -1,3 +1,16 @@
+---
+title: "Spec: Make Debug Command Stack-Agnostic [006-debug-stack-agnostic/spec]"
+description: "The /spec_kit:debug command has implicit frontend bias in its references, limiting its effectiveness for backend, infrastructure, and other debugging scenarios."
+trigger_phrases:
+  - "spec"
+  - "make"
+  - "debug"
+  - "command"
+  - "stack"
+  - "006"
+importance_tier: "important"
+contextType: "decision"
+---
 <!-- SPECKIT_LEVEL: 3 -->
 
 <!-- SPECKIT_TEMPLATE_SOURCE: legacy-normalized | v2.2 -->

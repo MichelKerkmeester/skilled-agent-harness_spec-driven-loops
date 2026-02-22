@@ -1,3 +1,17 @@
+---
+title: "Feature Specification: Workflows-Code Skill Alignment - Codebase Analysis [020-workflows-code-codebase-alignment/spec]"
+description: "Complete analysis of alignment between workflows-code skill documentation and actual anobel.com codebase patterns."
+trigger_phrases:
+  - "feature"
+  - "specification"
+  - "workflows"
+  - "code"
+  - "skill"
+  - "spec"
+  - "020"
+importance_tier: "important"
+contextType: "decision"
+---
 <!-- SPECKIT_LEVEL: 2 -->
 
 # Feature Specification: Workflows-Code Skill Alignment - Codebase Analysis & Updates

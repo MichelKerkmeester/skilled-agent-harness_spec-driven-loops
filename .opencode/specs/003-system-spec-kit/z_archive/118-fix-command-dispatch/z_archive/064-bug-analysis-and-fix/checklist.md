@@ -1,3 +1,16 @@
+---
+title: "Verification Checklist: SpecKit Bug Analysis and Fix - Validation Items [064-bug-analysis-and-fix/checklist]"
+description: "Comprehensive checklist for validating the SpecKit bug fix implementation across all priority levels (re-analysis included)."
+trigger_phrases:
+  - "verification"
+  - "checklist"
+  - "speckit"
+  - "bug"
+  - "analysis"
+  - "064"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Verification Checklist: SpecKit Bug Analysis and Fix - Validation Items
 
 Comprehensive checklist for validating the SpecKit bug fix implementation across all priority levels (re-analysis included).

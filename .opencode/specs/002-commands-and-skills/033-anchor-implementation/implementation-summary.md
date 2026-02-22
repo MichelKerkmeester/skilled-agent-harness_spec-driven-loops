@@ -1,3 +1,18 @@
+---
+title: "Implementation Summary: Retrieval Anchors for Skill Documentation [033-anchor-implementation/implementation-summary]"
+description: "Spec Folder: specs/002-commands-and-skills/033-anchor-implementation"
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "retrieval"
+  - "anchors"
+  - "for"
+  - "implementation summary"
+  - "033"
+  - "anchor"
+importance_tier: "normal"
+contextType: "implementation"
+---
 <!-- SPECKIT_TEMPLATE_SOURCE: legacy-normalized | v2.2 -->
 
 <!-- ANCHOR:summary -->

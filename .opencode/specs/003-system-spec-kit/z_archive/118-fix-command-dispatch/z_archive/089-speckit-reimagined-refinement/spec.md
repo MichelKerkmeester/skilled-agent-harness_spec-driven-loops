@@ -1,13 +1,22 @@
 ---
-title: "Spec 089: system-spec-kit Reimagined Refinement"
-level: "3+"
-status: "Active"
-created: "2026-02-06"
-scope: "system-spec-kit ecosystem audit and remediation"
-estimated-loc: ">500"
+title: "Spec 089: system-spec-kit Reimagined Refinement [089-speckit-reimagined-refinement/spec]"
+description: "title: \"Spec 089: system-spec-kit Reimagined Refinement\""
+trigger_phrases:
+  - "spec"
+  - "089"
+  - "system"
+  - "kit"
+  - "speckit"
+importance_tier: "important"
+contextType: "decision"
 complexity: "High (85+)"
----
 
+created: "2026-02-06"
+estimated-loc: ">500"
+level: "3+"
+scope: "system-spec-kit ecosystem audit and remediation"
+status: "Active"
+---
 # Spec 089: system-spec-kit Reimagined Refinement
 
 > Comprehensive audit and remediation plan for the entire system-spec-kit skill ecosystem, covering SKILL.md, references, assets, scripts, config, MCP server, agents, and commands.
