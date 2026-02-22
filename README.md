@@ -97,6 +97,7 @@ Everything connects. Memory files live *inside* spec folders. Gates enforce docu
 ### Recent Platform Highlights
 
 - **Hybrid RAG Fusion (spec 138)**: The memory engine activates three retrieval channels simultaneously (Vector, BM25, FTS5) and fuses results via Reciprocal Rank Fusion. MMR diversity pruning, Transparent Reasoning Module confidence gating, multi-query expansion and AST-based section extraction complete the Unified Context Engine.
+- **Frontmatter normalization + title disambiguation (spec 139/004)**: Managed metadata was standardized across templates, spec docs and memory files so dashboard/search titles are unique, parser compatibility accepts `contextType` and `context_type`, and bulk backfill + reindex scripts keep the index consistent.
 - **Gemini CLI is the 4th runtime**: 8 agents, 19 TOML command wrappers, 10 skill symlinks and 3 MCP servers. Agents optimized for gemini-3.1-pro within a 400K effective token window.
 - **Spec documents are indexed and searchable**: spec folder docs (`spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `decision-record.md`, `implementation-summary.md`, `research.md`, `handover.md`) surface via `find_spec` and `find_decision` intents.
 - **473 anchor tags across 74 READMEs**: section-level retrieval with ~93% token savings over loading full files.
@@ -211,6 +212,33 @@ Level 3+: [CORE] + [all addendums]             -> 6+ files
 | `check-ai-protocols`   | AI interaction rules validated               |
 
 Exit code 0 = pass. Exit code 2 = must fix.
+
+### Frontmatter Normalization + Index Rebuild
+
+Spec 139/004 adds a metadata normalization workflow for all indexed markdown:
+
+- Managed keys: `title`, `description`, `trigger_phrases`, `importance_tier`, `contextType`
+- Memory dashboard titles are disambiguated with scoped suffixes
+- Parser compatibility accepts both `contextType` and legacy `context_type`
+- Compose pipeline preserves one top-level frontmatter block in composed templates
+
+Operational workflow:
+
+```bash
+# 1) Dry-run metadata normalization
+node .opencode/skill/system-spec-kit/scripts/dist/memory/backfill-frontmatter.js \
+  --dry-run --include-archive --report /tmp/frontmatter-dry-run.json
+
+# 2) Apply metadata normalization
+node .opencode/skill/system-spec-kit/scripts/dist/memory/backfill-frontmatter.js \
+  --apply --include-archive --report /tmp/frontmatter-apply.json
+
+# 3) Verify composed templates
+bash .opencode/skill/system-spec-kit/scripts/templates/compose.sh --verify
+
+# 4) Rebuild embeddings index
+node .opencode/skill/system-spec-kit/scripts/dist/memory/reindex-embeddings.js
+```
 
 <!-- /ANCHOR:spec-kit-documentation -->
 

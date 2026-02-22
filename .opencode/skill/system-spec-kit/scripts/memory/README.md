@@ -20,6 +20,7 @@ importance_tier: "normal"
 - [3. MEMORY SAVE RULE COMMANDS](#3--memory-save-rule-commands)
 - [4. MAINTENANCE COMMANDS](#4--maintenance-commands)
 - [5. WORKFLOW ALIGNMENT](#5--workflow-alignment)
+- [6. FRONTMATTER NORMALIZATION + REINDEX](#6--frontmatter-normalization--reindex)
 
 <!-- /ANCHOR:table-of-contents -->
 <!-- ANCHOR:overview -->
@@ -71,6 +72,7 @@ node .opencode/skill/system-spec-kit/scripts/dist/memory/rank-memories.js /tmp/m
 node .opencode/skill/system-spec-kit/scripts/dist/memory/cleanup-orphaned-vectors.js
 node .opencode/skill/system-spec-kit/scripts/dist/memory/reindex-embeddings.js
 node .opencode/skill/system-spec-kit/scripts/dist/memory/backfill-frontmatter.js --dry-run --include-archive
+node .opencode/skill/system-spec-kit/scripts/dist/memory/backfill-frontmatter.js --apply --include-archive --report /tmp/frontmatter-apply.json
 ```
 
 
@@ -83,5 +85,41 @@ node .opencode/skill/system-spec-kit/scripts/dist/memory/backfill-frontmatter.js
 - Supports subfolder-aware spec path handling through core utilities.
 - Produces ANCHOR-structured markdown expected by downstream validation and indexing.
 - Writes `MEMORY_TITLE` into generated context frontmatter/headings so index titles stay descriptive.
+- Writes `MEMORY_DASHBOARD_TITLE` into context template frontmatter so dashboard titles stay disambiguated.
 - Retroactive title refresh for existing memories: run `memory_index_scan({ force: true })` after parser/template updates.
 <!-- /ANCHOR:workflow-alignment -->
+
+<!-- ANCHOR:frontmatter-normalization-reindex -->
+## 6. FRONTMATTER NORMALIZATION + REINDEX
+
+Use the backfill CLI to normalize indexed markdown metadata across templates, spec docs, and memory files.
+
+Managed keys:
+- `title`
+- `description`
+- `trigger_phrases`
+- `importance_tier`
+- `contextType` (parser also accepts `context_type` alias)
+
+Typical migration workflow:
+
+```bash
+# Dry-run first
+node .opencode/skill/system-spec-kit/scripts/dist/memory/backfill-frontmatter.js \
+  --dry-run --include-archive --report /tmp/frontmatter-dry-run.json
+
+# Apply once dry-run output is clean
+node .opencode/skill/system-spec-kit/scripts/dist/memory/backfill-frontmatter.js \
+  --apply --include-archive --report /tmp/frontmatter-apply.json
+
+# Reindex embeddings so dashboard/search reflects updated metadata
+node .opencode/skill/system-spec-kit/scripts/dist/memory/reindex-embeddings.js
+```
+
+To target specific roots, pass `--roots`:
+
+```bash
+node .opencode/skill/system-spec-kit/scripts/dist/memory/backfill-frontmatter.js \
+  --dry-run --roots ./.opencode/specs,./specs --report /tmp/frontmatter-targeted.json
+```
+<!-- /ANCHOR:frontmatter-normalization-reindex -->

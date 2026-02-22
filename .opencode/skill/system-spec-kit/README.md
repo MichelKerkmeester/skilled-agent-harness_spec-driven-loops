@@ -88,6 +88,7 @@ Cross-workflow alignment is mandatory:
 | **FSRS Spaced Repetition** | Power-law decay with tier-based modulation (validated on 100M+ users) |
 | **Semantic Memory** | Voyage AI 1024d embeddings stored in sqlite-vec |
 | **Spec Folder Documentation** | Levels 1-3+ with CORE + ADDENDUM v2.2 template architecture |
+| **Frontmatter Normalization + Dashboard Titles** | Managed metadata keys and scoped title suffixes keep template/spec/memory entries disambiguated in the memory dashboard |
 
 ---
 
@@ -204,6 +205,8 @@ CLI tools for day-to-day spec kit operations:
 | `spec/recommend-level.sh` | Recommend documentation level with phased decomposition detection |
 | `spec/archive.sh` | Archive completed spec folders |
 | `memory/generate-context.ts` | Memory file generation (source) |
+| `memory/backfill-frontmatter.ts` | Bulk frontmatter normalization for templates/spec docs/memory files with dry-run/apply/report modes |
+| `memory/reindex-embeddings.ts` | Force embedding refresh after metadata migrations or parser/template updates |
 | `templates/compose.sh` | Compose level templates |
 
 **Memory generation is mandatory via script:**
@@ -213,6 +216,30 @@ node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js spe
 ```
 
 Never create memory files with the Write tool. The script enforces format and indexing consistency.
+
+**Frontmatter normalization workflow:**
+
+```bash
+# 1) Preview normalization across discovered specs roots (includes archive)
+node .opencode/skill/system-spec-kit/scripts/dist/memory/backfill-frontmatter.js \
+  --dry-run --include-archive --report /tmp/frontmatter-dry-run.json
+
+# 2) Apply frontmatter updates
+node .opencode/skill/system-spec-kit/scripts/dist/memory/backfill-frontmatter.js \
+  --apply --include-archive --report /tmp/frontmatter-apply.json
+
+# 3) Recompose templates and verify single-frontmatter outputs
+bash .opencode/skill/system-spec-kit/scripts/templates/compose.sh
+bash .opencode/skill/system-spec-kit/scripts/templates/compose.sh --verify
+
+# 4) Refresh embedding index with new metadata
+node .opencode/skill/system-spec-kit/scripts/dist/memory/reindex-embeddings.js
+```
+
+Frontmatter contract for indexed markdown uses managed keys:
+`title`, `description`, `trigger_phrases`, `importance_tier`, `contextType`.
+
+Parser compatibility is non-breaking: both `contextType` and `context_type` are accepted.
 
 ### Templates (`templates/`)
 
