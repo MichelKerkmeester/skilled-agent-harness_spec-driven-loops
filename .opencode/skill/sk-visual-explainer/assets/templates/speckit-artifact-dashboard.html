@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+<meta name="ve-artifact-type" content="spec">
+<meta name="ve-source-doc" content="specs/002-commands-and-skills/042-sk-visual-explainer-speckit-alignmnet/spec.md">
+<meta name="ve-speckit-level" content="2">
+<meta name="ve-view-mode" content="artifact-dashboard">
+<title>SpecKit Artifact Dashboard — Reference Template</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --font-body: 'Outfit', system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', 'SF Mono', Consolas, monospace;
+
+  --ve-bg: #f7fafc;
+  --ve-surface: #ffffff;
+  --ve-surface2: #eef3f8;
+  --ve-surface-elevated: #fcfdff;
+  --ve-border: rgba(15, 23, 42, 0.1);
+  --ve-border-bright: rgba(15, 23, 42, 0.2);
+
+  --ve-text: #0f172a;
+  --ve-text-dim: #4b5563;
+
+  --ve-accent: #0f766e;
+  --ve-accent-dim: rgba(15, 118, 110, 0.1);
+  --ve-success: #15803d;
+  --ve-success-dim: rgba(21, 128, 61, 0.1);
+  --ve-warning: #b45309;
+  --ve-warning-dim: rgba(180, 83, 9, 0.1);
+  --ve-danger: #b91c1c;
+  --ve-danger-dim: rgba(185, 28, 28, 0.1);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ve-bg: #071017;
+    --ve-surface: #10202a;
+    --ve-surface2: #162b37;
+    --ve-surface-elevated: #1a3240;
+    --ve-border: rgba(226, 232, 240, 0.14);
+    --ve-border-bright: rgba(226, 232, 240, 0.24);
+
+    --ve-text: #e5edf5;
+    --ve-text-dim: #a9b6c3;
+
+    --ve-accent: #2dd4bf;
+    --ve-accent-dim: rgba(45, 212, 191, 0.16);
+    --ve-success: #4ade80;
+    --ve-success-dim: rgba(74, 222, 128, 0.16);
+    --ve-warning: #fbbf24;
+    --ve-warning-dim: rgba(251, 191, 36, 0.16);
+    --ve-danger: #f87171;
+    --ve-danger-dim: rgba(248, 113, 113, 0.16);
+  }
+}
+
+@media (prefers-contrast: more) {
+  :root {
+    --ve-border: rgba(0, 0, 0, 0.3);
+    --ve-border-bright: rgba(0, 0, 0, 0.45);
+    --ve-text-dim: #334155;
+  }
+}
+
+@media (forced-colors: active) {
+  :root {
+    --ve-bg: Canvas;
+    --ve-surface: Canvas;
+    --ve-surface2: Canvas;
+    --ve-surface-elevated: Canvas;
+    --ve-border: CanvasText;
+    --ve-border-bright: CanvasText;
+    --ve-text: CanvasText;
+    --ve-text-dim: CanvasText;
+    --ve-accent: LinkText;
+    --ve-success: CanvasText;
+    --ve-warning: CanvasText;
+    --ve-danger: CanvasText;
+  }
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: var(--font-body);
+  color: var(--ve-text);
+  background-color: var(--ve-bg);
+  background-image:
+    radial-gradient(ellipse at 18% 0%, var(--ve-accent-dim), transparent 48%),
+    radial-gradient(ellipse at 85% 100%, var(--ve-success-dim), transparent 42%);
+  min-height: 100vh;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate {
+  animation: fadeUp 0.35s ease-out both;
+  animation-delay: calc(var(--i, 0) * 0.05s);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-delay: 0ms !important;
+    transition-duration: 0.01ms !important;
+  }
+  .animate { opacity: 1; transform: none; }
+}
+
+.wrapper {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 32px 18px 48px;
+}
+
+.header {
+  margin-bottom: 24px;
+}
+
+h1 {
+  font-size: 34px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 8px;
+}
+
+.subhead {
+  color: var(--ve-text-dim);
+  font-family: var(--font-mono);
+  font-size: 12px;
+}
+
+.page-layout {
+  display: grid;
+  grid-template-columns: 210px 1fr;
+  gap: 20px;
+}
+
+.toc {
+  position: sticky;
+  top: 20px;
+  align-self: start;
+  background: var(--ve-surface);
+  border: 1px solid var(--ve-border);
+  border-radius: 12px;
+  padding: 10px;
+}
+
+.toc a {
+  display: block;
+  text-decoration: none;
+  color: var(--ve-text-dim);
+  font-size: 12px;
+  border-radius: 8px;
+  padding: 8px 10px;
+  margin-bottom: 4px;
+}
+
+.toc a:hover,
+.toc a.active {
+  color: var(--ve-accent);
+  background: var(--ve-accent-dim);
+}
+
+.content {
+  min-width: 0;
+  display: grid;
+  gap: 16px;
+}
+
+.panel {
+  background: var(--ve-surface);
+  border: 1px solid var(--ve-border);
+  border-radius: 14px;
+  padding: 18px;
+}
+
+.panel h2 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.kpi-row {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(120px, 1fr));
+  gap: 10px;
+}
+
+.kpi {
+  background: var(--ve-surface2);
+  border: 1px solid var(--ve-border);
+  border-radius: 12px;
+  padding: 12px;
+}
+
+.kpi-label {
+  color: var(--ve-text-dim);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  margin-bottom: 6px;
+}
+
+.kpi-value {
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.grid-two {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 12px;
+}
+
+.coverage-list,
+.risk-list {
+  list-style: none;
+  display: grid;
+  gap: 8px;
+}
+
+.coverage-item,
+.risk-item {
+  padding: 10px;
+  border: 1px solid var(--ve-border);
+  background: var(--ve-surface2);
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.badge {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  padding: 2px 7px;
+  border-radius: 999px;
+}
+
+.badge--healthy { background: var(--ve-success-dim); color: var(--ve-success); }
+.badge--warning { background: var(--ve-warning-dim); color: var(--ve-warning); }
+.badge--critical { background: var(--ve-danger-dim); color: var(--ve-danger); }
+
+.table-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.evidence-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.evidence-table th,
+.evidence-table td {
+  border-bottom: 1px solid var(--ve-border);
+  padding: 10px;
+  text-align: left;
+  vertical-align: top;
+}
+
+.evidence-table th {
+  color: var(--ve-text-dim);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+}
+
+code {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  overflow-wrap: break-word;
+}
+
+@media (max-width: 980px) {
+  .page-layout { grid-template-columns: 1fr; }
+  .toc {
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    display: flex;
+    overflow-x: auto;
+    gap: 6px;
+  }
+  .toc a { white-space: nowrap; margin-bottom: 0; }
+}
+
+@media (max-width: 820px) {
+  .kpi-row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .grid-two { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<div class="wrapper">
+  <header class="header animate" style="--i:1">
+    <h1>Artifact Dashboard</h1>
+    <p class="subhead">SpecKit profile scorecard for requirements, anchors, and evidence quality.</p>
+  </header>
+
+  <div class="page-layout">
+    <nav class="toc animate" style="--i:2" aria-label="Dashboard sections">
+      <a href="#artifact-kpis">KPI Row</a>
+      <a href="#section-coverage-map">Coverage Map</a>
+      <a href="#risk-gaps-panel">Risks and Gaps</a>
+      <a href="#evidence-table">Evidence Table</a>
+    </nav>
+
+    <main class="content">
+      <section id="artifact-kpis" class="panel animate" style="--i:3">
+        <h2>Artifact KPI Row</h2>
+        <div class="kpi-row">
+          <article class="kpi">
+            <p class="kpi-label">Artifact Type</p>
+            <p class="kpi-value">spec</p>
+          </article>
+          <article class="kpi">
+            <p class="kpi-label">SpecKit Level</p>
+            <p class="kpi-value">2</p>
+          </article>
+          <article class="kpi">
+            <p class="kpi-label">Section Coverage</p>
+            <p class="kpi-value">93%</p>
+          </article>
+          <article class="kpi">
+            <p class="kpi-label">Placeholder Count</p>
+            <p class="kpi-value">0</p>
+          </article>
+          <article class="kpi">
+            <p class="kpi-label">Status</p>
+            <p class="kpi-value"><span class="badge badge--healthy">Healthy</span></p>
+          </article>
+        </div>
+      </section>
+
+      <section id="section-coverage-map" class="panel animate" style="--i:4">
+        <h2>Section Coverage Map</h2>
+        <ul class="coverage-list">
+          <li class="coverage-item"><span>Metadata and problem framing</span><span class="badge badge--healthy">100%</span></li>
+          <li class="coverage-item"><span>Scope and requirements</span><span class="badge badge--healthy">100%</span></li>
+          <li class="coverage-item"><span>Edge cases and success criteria</span><span class="badge badge--warning">82%</span></li>
+          <li class="coverage-item"><span>Cross-reference coverage</span><span class="badge badge--warning">78%</span></li>
+        </ul>
+      </section>
+
+      <section id="risk-gaps-panel" class="panel animate" style="--i:5">
+        <h2>Risks and Gaps</h2>
+        <div class="grid-two">
+          <article class="panel" style="padding:12px;">
+            <h3 style="font-size:15px; margin-bottom:8px;">Open Gaps</h3>
+            <ul class="risk-list">
+              <li class="risk-item"><span>Missing cross-doc reference to checklist evidence</span><span class="badge badge--warning">Warning</span></li>
+              <li class="risk-item"><span>One acceptance scenario lacks measurable result</span><span class="badge badge--critical">Critical</span></li>
+            </ul>
+          </article>
+          <article class="panel" style="padding:12px;">
+            <h3 style="font-size:15px; margin-bottom:8px;">Recommended Actions</h3>
+            <ul class="risk-list">
+              <li class="risk-item"><span>Add checklist link in scope block</span><span class="badge badge--healthy">Fix</span></li>
+              <li class="risk-item"><span>Quantify acceptance scenario output</span><span class="badge badge--healthy">Fix</span></li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section id="evidence-table" class="panel animate" style="--i:6">
+        <h2>Evidence Table</h2>
+        <div class="table-scroll">
+          <table class="evidence-table">
+            <thead>
+              <tr>
+                <th>Requirement</th>
+                <th>Status</th>
+                <th>Evidence</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>REQ-001 command contracts</td>
+                <td><span class="badge badge--healthy">Pass</span></td>
+                <td><code>.opencode/command/visual_explainer/*.md</code></td>
+              </tr>
+              <tr>
+                <td>REQ-005 templates</td>
+                <td><span class="badge badge--healthy">Pass</span></td>
+                <td><code>assets/templates/speckit-*.html</code></td>
+              </tr>
+              <tr>
+                <td>REQ-006 validator fixtures</td>
+                <td><span class="badge badge--warning">Review</span></td>
+                <td><code>scripts/tests/test-validator-fixtures.sh</code></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+  </div>
+</div>
+</body>
+</html>

@@ -18,20 +18,6 @@ contextType: "implementation"
 ## 1. OVERVIEW
 
 Verification matrix for completion evidence across rename, contract wiring, routing behavior, and spec closure.
-
-## TABLE OF CONTENTS
-
-- [VERIFICATION PROTOCOL](#verification-protocol)
-- [PRE-IMPLEMENTATION](#pre-implementation)
-- [P0 REQUIREMENT EVIDENCE](#p0-requirement-evidence)
-- [P1 REQUIREMENT EVIDENCE](#p1-requirement-evidence)
-- [CODE QUALITY](#code-quality)
-- [TESTING](#testing)
-- [SECURITY](#security)
-- [DOCUMENTATION](#documentation)
-- [FILE ORGANIZATION](#file-organization)
-- [VERIFICATION SUMMARY](#verification-summary)
-
 ---
 
 <!-- ANCHOR:protocol -->

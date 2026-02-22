@@ -1,6 +1,6 @@
 ---
-description: Generate a styled HTML visual analysis of a plan or specification document
-argument-hint: "<plan-file-path>"
+description: Generate a styled HTML visual analysis of a plan, SpecKit artifact, or user-guide document
+argument-hint: "<doc-file-path> [--artifact <auto|spec|plan|tasks|checklist|implementation-summary|research|decision-record|readme|install-guide>] [--traceability]"
 allowed-tools: Read, Write, Edit, Bash, Glob, Grep
 ---
 
@@ -9,19 +9,19 @@ allowed-tools: Read, Write, Edit, Bash, Glob, Grep
 **BEFORE READING ANYTHING ELSE IN THIS FILE, CHECK `$ARGUMENTS`:**
 
 ```
-IF $ARGUMENTS is empty, undefined, or contains only whitespace:
+IF $ARGUMENTS is empty, undefined, or whitespace-only:
     -> STOP IMMEDIATELY
     -> Ask:
-        question: "Which plan file should I review?"
+        question: "Which document file should I review?"
         options:
-          - label: "Plan file"
-            description: "Review an explicit plan.md path"
-          - label: "Spec file"
-            description: "Review an explicit spec.md path"
-          - label: "Task list"
-            description: "Review an explicit tasks.md path"
+          - label: "SpecKit doc"
+            description: "spec.md, plan.md, tasks.md, checklist.md, implementation-summary.md, research.md, or decision-record.md"
+          - label: "User guide"
+            description: "README or install-guide style file"
+          - label: "Other doc"
+            description: "Any explicit markdown file path"
     -> WAIT for user response
-    -> Use their response as <plan-file-path>
+    -> Use response as <doc-file-path>
     -> Only THEN continue
 
 IF $ARGUMENTS contains a path:
@@ -29,29 +29,40 @@ IF $ARGUMENTS contains a path:
 ```
 
 **CRITICAL RULES:**
-- **DO NOT** infer the review target from recent conversation.
-- **DO NOT** assume which file to review when multiple candidates exist.
-- **DO NOT** proceed without an explicit path from `$ARGUMENTS` or user reply.
-- The review target MUST be an explicit file path.
+- **DO NOT** infer review target from recent conversation.
+- **DO NOT** default to `plan.md` when another document path is provided.
+- **DO NOT** skip artifact metadata in output for artifact-aware rendering.
 
 ---
 
 # Visual Explainer Plan Review
 
-Generate a structured HTML analysis page for a plan/spec document with completeness, risks, and recommendations.
+Generate a structured HTML analysis page for a document with completeness, risks, cross-doc traceability, and recommendations.
 
 ---
 
 ## 1. PURPOSE
 
-Provide a visual quality review of planning artifacts so teams can quickly assess structure, coverage gaps, and execution risks before implementation.
+Provide a visual quality review of planning and documentation artifacts so teams can quickly assess structure, coverage gaps, and execution risk before implementation.
 
 ---
 
 ## 2. CONTRACT
 
-**Inputs:** `$ARGUMENTS` with required `<plan-file-path>`.
-**Outputs:** `.opencode/output/visual/plan-review-{plan-name}-{timestamp}.html`
+**Inputs:** `$ARGUMENTS` with required `<doc-file-path>` and optional:
+- `--artifact <auto|spec|plan|tasks|checklist|implementation-summary|research|decision-record|readme|install-guide>`
+- `--traceability`
+
+**Backward compatibility:** plain `/visual-explainer:plan-review "<path>/plan.md"` remains fully supported.
+
+**Outputs:** `.opencode/output/visual/plan-review-{doc-name}-{timestamp}.html`
+
+**SpecKit Metadata Contract:**
+- `<meta name="ve-artifact-type" content="<artifact>">`
+- `<meta name="ve-source-doc" content="<workspace-relative-path>">`
+- `<meta name="ve-speckit-level" content="<1|2|3|3+|n/a>">`
+- `<meta name="ve-view-mode" content="<artifact-dashboard|traceability-board>">`
+
 **Status:** `STATUS=OK ACTION=create PATH=<output-path>` or `STATUS=FAIL ERROR="<message>"`
 
 ---
@@ -61,6 +72,8 @@ Provide a visual quality review of planning artifacts so teams can quickly asses
 Load `sk-visual-explainer` and review resources:
 - `.opencode/skill/sk-visual-explainer/SKILL.md`
 - `references/quick_reference.md`
+- `references/speckit_artifact_profiles.md`
+- `references/speckit_user_guide_profiles.md` (if README/install-guide)
 - `references/css_patterns.md`
 - `references/navigation_patterns.md`
 - `references/quality_checklist.md`
@@ -71,10 +84,11 @@ Load `sk-visual-explainer` and review resources:
 
 | Step | Name | Purpose | Output |
 | --- | --- | --- | --- |
-| 1 | Load Inputs | Validate plan path and companion docs | Verified source set |
-| 2 | Analyze Content | Score completeness, identify risks and gaps | Review findings |
-| 3 | Build Visual | Render multi-section editorial report | HTML artifact |
-| 4 | Validate & Deliver | Run checks, save, open | Final report + status |
+| 1 | Load Inputs | Validate doc path and companion docs | Verified source set |
+| 2 | Detect Profile | Map source to artifact/user-guide profile | Profile + required module set |
+| 3 | Analyze Content | Score completeness, identify risks and gaps | Review findings |
+| 4 | Build Visual | Render dashboard or traceability board | HTML artifact |
+| 5 | Validate and Deliver | Run checks, save, open | Final report + status |
 
 ---
 
@@ -82,36 +96,51 @@ Load `sk-visual-explainer` and review resources:
 
 ### Step 1: Load Inputs
 
-- Read `<plan-file-path>` fully.
-- If present in same directory, also read `spec.md`, `tasks.md`, and `checklist.md`.
-- Treat missing companion files as optional context, not hard failure.
+- Read `<doc-file-path>` fully.
+- If present in same folder (or supplied spec folder), load companion docs:
+  - `spec.md`
+  - `plan.md`
+  - `tasks.md`
+  - `checklist.md`
+  - `implementation-summary.md`
+- Missing companion docs are informational unless required by selected profile.
 
-### Step 2: Analyze Content
+### Step 2: Detect Artifact and View Mode
 
-- Compute section completeness against expected planning structure.
-- Map requirements to plan items where possible.
-- Identify risks, dependencies, and missing work.
-- Compare with `spec.md` when available.
+- Resolve artifact:
+  - explicit `--artifact` wins
+  - otherwise infer via profile detector precedence
+- Resolve view mode:
+  - `traceability-board` when `--traceability` is set
+  - otherwise `artifact-dashboard`
 
-### Step 3: Build Visual Report
+### Step 3: Analyze Content
 
-Generate a report with these sections:
-1. Plan Overview
-2. Completeness Score
-3. Structure Map
-4. Requirements Coverage
-5. Risk Analysis
-6. Dependency Graph
-7. Gaps and Missing Items
-8. Comparison with Spec
-9. Recommendations
+- Compute section and anchor coverage against selected profile.
+- Calculate placeholder count.
+- Evaluate cross-reference integrity.
+- For checklist artifacts, compute checklist evidence density.
 
-Use default aesthetic `editorial` unless user asks otherwise.
+### Step 4: Build Visual Report
 
-### Step 4: Validate and Deliver
+Required modules by mode:
+- `artifact-dashboard`:
+  1. Artifact Overview
+  2. KPI Row
+  3. Section Coverage Map
+  4. Risks and Gaps
+  5. Evidence Table
+- `traceability-board`:
+  1. Doc Graph
+  2. Cross-Reference Matrix
+  3. Missing-Link Diagnostics
+  4. Recommendation Panel
 
+### Step 5: Validate and Deliver
+
+- Apply metadata contract in `<head>`.
 - Run quality checklist validations.
-- Save to `.opencode/output/visual/plan-review-{plan-name}-{timestamp}.html`.
+- Save to `.opencode/output/visual/plan-review-{doc-name}-{timestamp}.html`.
 - Open in browser.
 - Return structured status.
 
@@ -122,8 +151,9 @@ Use default aesthetic `editorial` unless user asks otherwise.
 | Condition | Action |
 | --- | --- |
 | Missing `$ARGUMENTS` | Trigger mandatory gate and wait |
-| Plan file does not exist | Return `STATUS=FAIL ERROR="Plan file not found: <path>"` |
-| Plan file unreadable | Return `STATUS=FAIL ERROR="Cannot read plan file: <path>"` |
+| Doc file does not exist | Return `STATUS=FAIL ERROR="Document file not found: <path>"` |
+| Artifact inference ambiguous in `auto` mode | Return `STATUS=FAIL` requesting explicit `--artifact` |
+| Traceability mode requested without companion docs | Continue with diagnostics and mark missing links explicitly |
 | Rendering/validation failure | Return `STATUS=FAIL` with failing stage detail |
 
 ---
@@ -134,7 +164,7 @@ After successful execution, return:
 
 ```text
 STATUS=OK ACTION=create PATH=<output-path>
-SUMMARY="Generated plan review with completeness, risk, and recommendation analysis"
+SUMMARY="Generated artifact-aware plan review with coverage, risk, and traceability analysis"
 ```
 
 ---
@@ -143,6 +173,7 @@ SUMMARY="Generated plan review with completeness, risk, and recommendation analy
 
 ```bash
 /visual-explainer:plan-review "specs/007-auth/plan.md"
-/visual-explainer:plan-review "specs/007-auth/spec.md"
-/visual-explainer:plan-review "docs/release-plan.md"
+/visual-explainer:plan-review "specs/007-auth/checklist.md"
+/visual-explainer:plan-review "specs/007-auth/spec.md" --traceability
+/visual-explainer:plan-review "README.md" --artifact readme
 ```

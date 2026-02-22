@@ -207,6 +207,65 @@ Three distinct levels of elevation for cards and containers.
 
 ---
 
+## SpecKit Dashboard and Traceability Modules
+
+Use these module classes for the two SpecKit templates.
+
+```css
+/* KPI row for artifact dashboard */
+.kpi-row {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(120px, 1fr));
+  gap: 10px;
+}
+
+.kpi-card {
+  background: var(--ve-surface2);
+  border: 1px solid var(--ve-border);
+  border-radius: 12px;
+  padding: 12px;
+}
+
+/* Coverage and risk panels */
+.coverage-map,
+.risk-gaps-panel {
+  background: var(--ve-surface);
+  border: 1px solid var(--ve-border);
+  border-radius: 12px;
+  padding: 14px;
+}
+
+/* Cross-reference matrix for traceability board */
+.crossref-matrix {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.crossref-matrix th,
+.crossref-matrix td {
+  padding: 10px;
+  border-bottom: 1px solid var(--ve-border);
+  text-align: left;
+}
+
+/* Diagnostics list */
+.missing-link-diagnostics {
+  display: grid;
+  gap: 8px;
+}
+```
+
+Recommended breakpoints:
+
+```css
+@media (max-width: 820px) {
+  .kpi-row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+```
+
+---
+
 ## CRITICAL: Overflow Protection
 
 **Always include these rules on flex/grid containers.** Missing them is the #1 cause of layout breaks.

@@ -18,18 +18,6 @@ contextType: "implementation"
 ## 1. OVERVIEW
 
 Execution checklist for hard-renaming and promoting `sk-code--review` with full baseline+overlay contract wiring.
-
-## TABLE OF CONTENTS
-
-- [TASK NOTATION](#task-notation)
-- [PHASE 1: RENAME + SKILL PACKAGE](#phase-1-rename--skill-package)
-- [PHASE 2: AGENTS + ORCHESTRATORS](#phase-2-agents--orchestrators)
-- [PHASE 3: COMMAND SWEEP](#phase-3-command-sweep)
-- [PHASE 4: ROUTING + CATALOGS](#phase-4-routing--catalogs)
-- [PHASE 5: VALIDATION + SPEC CLOSURE](#phase-5-validation--spec-closure)
-- [COMPLETION CRITERIA](#completion-criteria)
-- [CROSS-REFERENCES](#cross-references)
-
 ---
 
 <!-- ANCHOR:notation -->

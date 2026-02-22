@@ -43,6 +43,9 @@ run_case "missing-reduced-motion.html" 2
 run_case "mermaid-without-hardening.html" 2
 run_case "canvas-without-fallback.html" 2
 run_case "missing-contrast-media.html" 1
+run_case "speckit-artifact-pass.html" 0
+run_case "speckit-artifact-missing-meta.html" 2
+run_case "speckit-traceability-missing-crossrefs.html" 2
 
 rm -f /tmp/ve-validator-test.log
 

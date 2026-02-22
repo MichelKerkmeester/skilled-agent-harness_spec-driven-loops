@@ -149,6 +149,117 @@ else
   info "Required for consistent UA form/control rendering in light and dark modes"
 fi
 
+# ── CHECK 4A: SpecKit metadata contract (conditional) ────────────────────────
+section "4A" "SpecKit Metadata Contract"
+
+extract_meta_value() {
+  local meta_name="$1"
+  local value
+  value=$(
+    echo "$HEAD_SECTION" |
+      grep -oiE "<meta[^>]*name=[\"']${meta_name}[\"'][^>]*content=[\"'][^\"']+[\"'][^>]*>" |
+      head -1 |
+      sed -E "s/.*content=[\"']([^\"']+).*/\\1/I" || true
+  )
+  echo "$value"
+}
+
+USES_SPECKIT_METADATA=false
+if echo "$HEAD_SECTION" | grep -qiE 'name\s*=\s*["\x27]ve-artifact-type["\x27]'; then
+  USES_SPECKIT_METADATA=true
+fi
+
+if $USES_SPECKIT_METADATA; then
+  REQUIRED_SPECKIT_META=("ve-artifact-type" "ve-source-doc" "ve-speckit-level" "ve-view-mode")
+  MISSING_META=0
+  for meta_name in "${REQUIRED_SPECKIT_META[@]}"; do
+    if echo "$HEAD_SECTION" | grep -qiE "name\\s*=\\s*[\"\\x27]${meta_name}[\"\\x27]"; then
+      pass "SpecKit meta present: ${meta_name}"
+    else
+      fail "Missing SpecKit metadata tag: ${meta_name}"
+      MISSING_META=$((MISSING_META + 1))
+    fi
+  done
+
+  ARTIFACT_TYPE="$(extract_meta_value "ve-artifact-type")"
+  SOURCE_DOC="$(extract_meta_value "ve-source-doc")"
+  SPECKIT_LEVEL="$(extract_meta_value "ve-speckit-level")"
+  VIEW_MODE="$(extract_meta_value "ve-view-mode")"
+
+  if [[ "$ARTIFACT_TYPE" =~ ^(spec|plan|tasks|checklist|implementation-summary|research|decision-record|readme|install-guide)$ ]]; then
+    pass "ve-artifact-type value is valid: ${ARTIFACT_TYPE}"
+  else
+    fail "Invalid ve-artifact-type value: ${ARTIFACT_TYPE:-<empty>}"
+    info "Allowed values: spec, plan, tasks, checklist, implementation-summary, research, decision-record, readme, install-guide"
+  fi
+
+  if [[ "$SPECKIT_LEVEL" =~ ^(1|2|3|3\+|n/a)$ ]]; then
+    pass "ve-speckit-level value is valid: ${SPECKIT_LEVEL}"
+  else
+    fail "Invalid ve-speckit-level value: ${SPECKIT_LEVEL:-<empty>}"
+    info "Allowed values: 1, 2, 3, 3+, n/a"
+  fi
+
+  if [[ "$VIEW_MODE" =~ ^(artifact-dashboard|traceability-board)$ ]]; then
+    pass "ve-view-mode value is valid: ${VIEW_MODE}"
+  else
+    fail "Invalid ve-view-mode value: ${VIEW_MODE:-<empty>}"
+    info "Allowed values: artifact-dashboard, traceability-board"
+  fi
+
+  if [[ -z "$SOURCE_DOC" ]]; then
+    fail "ve-source-doc is empty"
+  elif [[ "$SOURCE_DOC" =~ ^/|^~|^[A-Za-z]:\\ ]]; then
+    fail "ve-source-doc must be workspace-relative (not absolute): ${SOURCE_DOC}"
+  else
+    pass "ve-source-doc appears workspace-relative: ${SOURCE_DOC}"
+    if [[ "$SOURCE_DOC" != *.md ]]; then
+      warn "ve-source-doc does not end with .md: ${SOURCE_DOC}"
+      info "Expected source docs to be markdown files for SpecKit/user-guide outputs"
+    fi
+  fi
+
+  if [[ "$VIEW_MODE" == "artifact-dashboard" ]]; then
+    REQUIRED_IDS=("artifact-kpis" "section-coverage-map" "risk-gaps-panel" "evidence-table")
+    MISSING_IDS=0
+    for required_id in "${REQUIRED_IDS[@]}"; do
+      if grep -qiE "id=[\"']${required_id}[\"']" "$HTML_FILE"; then
+        pass "artifact-dashboard structure includes #${required_id}"
+      else
+        fail "artifact-dashboard structure missing #${required_id}"
+        MISSING_IDS=$((MISSING_IDS + 1))
+      fi
+    done
+  fi
+
+  if [[ "$VIEW_MODE" == "traceability-board" ]]; then
+    REQUIRED_TRACE_IDS=("traceability-graph" "crossref-matrix" "missing-link-diagnostics")
+    MISSING_TRACE_IDS=0
+    for required_id in "${REQUIRED_TRACE_IDS[@]}"; do
+      if grep -qiE "id=[\"']${required_id}[\"']" "$HTML_FILE"; then
+        pass "traceability-board structure includes #${required_id}"
+      else
+        fail "traceability-board structure missing #${required_id}"
+        MISSING_TRACE_IDS=$((MISSING_TRACE_IDS + 1))
+      fi
+    done
+
+    TRACE_DOC_COUNT=$(grep -oE 'spec\.md|plan\.md|tasks\.md|checklist\.md|implementation-summary\.md' "$HTML_FILE" | sort -u | wc -l | tr -d ' ')
+    if [[ "${TRACE_DOC_COUNT}" -ge 2 ]]; then
+      pass "Traceability board references ${TRACE_DOC_COUNT} core SpecKit docs"
+    else
+      fail "Traceability board has insufficient core cross-doc references (${TRACE_DOC_COUNT})"
+      info "Expected references to at least two of: spec.md, plan.md, tasks.md, checklist.md, implementation-summary.md"
+    fi
+  fi
+
+  if [[ "${MISSING_META}" -eq 0 ]]; then
+    pass "SpecKit metadata contract is complete"
+  fi
+else
+  pass "No ve-artifact-type metadata detected (SpecKit metadata checks skipped)"
+fi
+
 # ── CHECK 5: No hardcoded absolute paths ─────────────────────────────────────
 section "5" "No Hardcoded Absolute Paths"
 

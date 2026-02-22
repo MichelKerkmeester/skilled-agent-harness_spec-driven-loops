@@ -18,11 +18,22 @@ Fast lookup for command mappings, pinned CDN snippets, version matrix linkage, a
 
 | Command | Usage |
 |---------|-------|
-| `generate` | `/visual-explainer:generate [topic] [--type TYPE] [--style STYLE]` |
-| `diff-review` | `/visual-explainer:diff-review [branch|commit|PR#]` |
-| `plan-review` | `/visual-explainer:plan-review [plan-file-path]` |
-| `recap` | `/visual-explainer:recap [time-window]` |
-| `fact-check` | `/visual-explainer:fact-check [html-file-path]` |
+| `generate` | `/visual-explainer:generate <topic-or-source> [--artifact auto\|spec\|plan\|tasks\|checklist\|implementation-summary\|research\|decision-record\|readme\|install-guide] [--source-file PATH] [--traceability] [--type TYPE] [--style STYLE]` |
+| `diff-review` | `/visual-explainer:diff-review [branch\|commit\|PR#] [--spec-folder PATH] [--include-doc-impact]` |
+| `plan-review` | `/visual-explainer:plan-review <doc-file-path> [--artifact auto\|...] [--traceability]` |
+| `recap` | `/visual-explainer:recap [time-window] [--spec-folder PATH] [--include-doc-health]` |
+| `fact-check` | `/visual-explainer:fact-check [html-file-path] [--source-file PATH] [--spec-folder PATH] [--artifact auto\|...]` |
+
+---
+
+## Common SpecKit Flags
+
+| Flag | Purpose |
+|---|---|
+| `--artifact <type>` | Force artifact profile selection instead of auto-detection |
+| `--source-file <path>` | Set explicit source-of-truth document |
+| `--traceability` | Switch output to `ve-view-mode=traceability-board` |
+| `--spec-folder <path>` | Load sibling SpecKit docs for doc-health or impact analysis |
 
 ---
 
@@ -99,6 +110,15 @@ Optional advanced path: anime.js `4.3.6` only when interaction complexity requir
 .opencode/output/visual/{command}-{desc}-{timestamp}.html
 ```
 
+SpecKit-aligned outputs must include:
+
+```html
+<meta name="ve-artifact-type" content="<artifact>">
+<meta name="ve-source-doc" content="<workspace-relative-path>">
+<meta name="ve-speckit-level" content="<1|2|3|3+|n/a>">
+<meta name="ve-view-mode" content="<artifact-dashboard|traceability-board>">
+```
+
 ---
 
 ## Quick Delivery Checklist
@@ -108,4 +128,3 @@ Optional advanced path: anime.js `4.3.6` only when interaction complexity requir
 3. No overflow at mobile and desktop widths.
 4. `validate-html-output.sh` exits `0`.
 5. `check-version-drift.sh` exits `0` after library edits.
-

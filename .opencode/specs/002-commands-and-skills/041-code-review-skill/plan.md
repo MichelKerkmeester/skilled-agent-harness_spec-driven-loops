@@ -18,20 +18,6 @@ contextType: "implementation"
 ## 1. OVERVIEW
 
 Implementation plan for hard-renaming the review skill package, rebuilding router logic to standards parity, wiring review runtime contracts, and closing with command-backed evidence.
-
-## TABLE OF CONTENTS
-
-- [2. SUMMARY](#2--summary)
-- [3. QUALITY GATES](#3--quality-gates)
-- [4. ARCHITECTURE](#4--architecture)
-- [5. IMPLEMENTATION PHASES](#5--implementation-phases)
-- [6. TESTING STRATEGY](#6--testing-strategy)
-- [7. DEPENDENCIES](#7--dependencies)
-- [8. ROLLBACK PLAN](#8--rollback-plan)
-- [L2: PHASE DEPENDENCIES](#l2-phase-dependencies)
-- [L2: EFFORT ESTIMATION](#l2-effort-estimation)
-- [L2: ENHANCED ROLLBACK](#l2-enhanced-rollback)
-
 ---
 
 <!-- ANCHOR:summary -->

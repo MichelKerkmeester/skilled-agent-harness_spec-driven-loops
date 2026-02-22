@@ -19,16 +19,6 @@ contextType: "implementation"
 ## 1. OVERVIEW
 
 Post-implementation closeout for `sk-visual-explainer` hardening, including delivered changes, decisions, and reproducible verification outcomes.
-
-## TABLE OF CONTENTS
-
-- [METADATA](#metadata)
-- [WHAT WAS BUILT](#what-was-built)
-- [HOW IT WAS DELIVERED](#how-it-was-delivered)
-- [KEY DECISIONS](#key-decisions)
-- [VERIFICATION](#verification)
-- [KNOWN LIMITATIONS](#known-limitations)
-
 ---
 
 <!-- ANCHOR:metadata -->

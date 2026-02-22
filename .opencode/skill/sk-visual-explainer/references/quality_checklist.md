@@ -326,7 +326,89 @@ document.querySelectorAll('[data-count]').forEach(el => {
 
 ---
 
-## Quick Reference — All 9 Checks
+## Check 10: SpecKit Metadata Contract
+
+**Purpose:** Ensure SpecKit-aware outputs are machine-detectable and traceable.
+
+**How to run:**
+- Inspect `<head>` for `ve-artifact-type`.
+- If present, verify all metadata keys exist:
+  - `ve-artifact-type`
+  - `ve-source-doc`
+  - `ve-speckit-level`
+  - `ve-view-mode`
+
+**Pass:** All four tags exist and values are valid (`ve-view-mode` is `artifact-dashboard` or `traceability-board`).
+
+**Fail:** Missing any metadata key, invalid level value, or empty source doc.
+
+**Fix:**
+```html
+<meta name="ve-artifact-type" content="plan">
+<meta name="ve-source-doc" content="specs/042/plan.md">
+<meta name="ve-speckit-level" content="2">
+<meta name="ve-view-mode" content="artifact-dashboard">
+```
+
+---
+
+## Check 11: Artifact Section and Anchor Coverage
+
+**Purpose:** Verify the rendered view covers required sections for the detected artifact profile.
+
+**How to run:**
+- Load expected profile from `speckit_artifact_profiles.md` or `speckit_user_guide_profiles.md`.
+- Compare required sections and anchors with rendered panels/labels.
+
+**Pass:** Required section coverage and anchor coverage are explicitly represented and scored.
+
+**Fail:** Missing required artifact areas (for example checklist evidence panel or plan phase dependency view).
+
+**Fix:**
+- Add missing profile modules.
+- Report section/anchor coverage percentages directly in the output.
+
+---
+
+## Check 12: Placeholder Leakage
+
+**Purpose:** Prevent template placeholders from leaking into final deliverables.
+
+**How to run:**
+- Search final HTML for placeholder tokens:
+  - `[YOUR_VALUE_HERE`
+  - `[PLACEHOLDER]`
+  - unresolved template brackets from copied docs
+
+**Pass:** No placeholder tokens are present.
+
+**Fail:** Any unresolved placeholder appears in copy, labels, or metadata.
+
+**Fix:**
+- Replace all placeholders with resolved values before delivery.
+- Re-run fact-check with explicit source file.
+
+---
+
+## Check 13: Cross-Doc Link Integrity
+
+**Purpose:** Ensure SpecKit artifact relationships are represented and internally consistent.
+
+**How to run:**
+- For SpecKit docs, verify links among `spec.md`, `plan.md`, `tasks.md`, `checklist.md`, and `implementation-summary.md`.
+- For traceability mode, verify graph and matrix sections both reflect current links.
+
+**Pass:** Cross-doc relationships are represented with no missing expected links.
+
+**Fail:** Required links are absent or contradict source docs.
+
+**Fix:**
+- Add missing links to matrix/diagnostics sections.
+- Include remediation notes for unresolved links.
+
+---
+
+## Quick Reference — All 13 Checks
 
 | # | Check | Method | Pass Criterion |
 |---|-------|--------|----------------|
@@ -339,3 +421,7 @@ document.querySelectorAll('[data-count]').forEach(el => {
 | 7 | File Opens Cleanly | Open via file:// | Zero console errors, no FOUC |
 | 8 | Accessibility | Contrast checker | WCAG AA, no color-only indicators |
 | 9 | Reduced Motion | DevTools emulation | All content visible, no broken layout |
+| 10 | SpecKit Metadata Contract | Check `<meta name=\"ve-*\">` | All 4 metadata keys present and valid |
+| 11 | Artifact Section Coverage | Compare to profile rules | Required sections/anchors represented |
+| 12 | Placeholder Leakage | Search for placeholder tokens | No unresolved placeholder strings |
+| 13 | Cross-Doc Link Integrity | Graph/matrix vs source docs | Required links present and consistent |

@@ -18,11 +18,6 @@ contextType: "decision"
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify + level3-arch | v2.2 -->
 
 ---
-
-## TABLE OF CONTENTS
-- [0. OVERVIEW](#0--overview)
-- [DOCUMENT SECTIONS](#document-sections)
-
 ## 0. OVERVIEW
 This document preserves the existing technical decisions and adds validator-required readme structure.
 

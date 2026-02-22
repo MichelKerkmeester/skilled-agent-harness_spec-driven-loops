@@ -20,21 +20,6 @@ contextType: "decision"
 ## 1. OVERVIEW
 
 Level 2 specification for validator/template hardening of `sk-visual-explainer`, scoped to documented P0/P1 requirements and verification evidence.
-
-## TABLE OF CONTENTS
-
-- [2. METADATA](#2--metadata)
-- [3. PROBLEM & PURPOSE](#3--problem--purpose)
-- [4. SCOPE](#4--scope)
-- [5. REQUIREMENTS](#5--requirements)
-- [6. SUCCESS CRITERIA](#6--success-criteria)
-- [7. RISKS & DEPENDENCIES](#7--risks--dependencies)
-- [L2: NON-FUNCTIONAL REQUIREMENTS](#l2-non-functional-requirements)
-- [L2: EDGE CASES](#l2-edge-cases)
-- [L2: ACCEPTANCE SCENARIOS](#l2-acceptance-scenarios)
-- [L2: COMPLEXITY ASSESSMENT](#l2-complexity-assessment)
-- [8. OPEN QUESTIONS](#8--open-questions)
-
 ---
 
 <!-- ANCHOR:metadata -->

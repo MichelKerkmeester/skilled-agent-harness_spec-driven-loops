@@ -29,6 +29,39 @@ Always pair navigation with:
 
 ---
 
+## SpecKit Navigation Presets
+
+Use these presets when rendering SpecKit dashboards and traceability boards.
+
+### Artifact Dashboard TOC
+
+```html
+<nav class="toc" aria-label="Artifact dashboard sections">
+  <div class="toc__header">Artifact Dashboard</div>
+  <a href="#artifact-kpis">KPI Row</a>
+  <a href="#section-coverage-map">Section Coverage</a>
+  <a href="#risk-gaps-panel">Risks and Gaps</a>
+  <a href="#evidence-table">Evidence</a>
+</nav>
+```
+
+### Traceability Board TOC
+
+```html
+<nav class="toc" aria-label="Traceability sections">
+  <div class="toc__header">Traceability</div>
+  <a href="#traceability-graph">Doc Graph</a>
+  <a href="#crossref-matrix">Cross-Reference Matrix</a>
+  <a href="#missing-link-diagnostics">Missing Links</a>
+  <a href="#recommendation-panel">Recommendations</a>
+</nav>
+```
+
+Validation note:
+- Every `href="#..."` entry must map to a real section id. The validator fails broken anchors.
+
+---
+
 ## Desktop Layout — Two-Column Grid with Sticky Sidebar
 
 The sidebar TOC is 180px wide. Content takes the remaining space. The sidebar sticks to the viewport top as the user scrolls.

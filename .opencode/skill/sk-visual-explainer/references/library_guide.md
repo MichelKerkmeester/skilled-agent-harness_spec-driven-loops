@@ -18,6 +18,28 @@ It provides canonical CDN/import patterns, initialization rules, and minimal wor
 
 ---
 
+## SpecKit Traceability Graph Starter
+
+For `ve-view-mode=traceability-board`, use a Mermaid graph with explicit document-node IDs and deterministic links:
+
+```html
+<pre class="mermaid">
+graph LR
+  spec[spec.md] --> plan[plan.md]
+  spec --> tasks[tasks.md]
+  plan --> checklist[checklist.md]
+  tasks --> checklist
+  checklist --> summary[implementation-summary.md]
+</pre>
+```
+
+Rules:
+- Keep node labels as canonical filenames (`spec.md`, `plan.md`, etc.).
+- Use optional dotted edges for non-required docs (`research.md`, `decision-record.md`).
+- Mirror graph links in the cross-reference matrix table so traceability checks stay coherent.
+
+---
+
 ## Mermaid.js 11.12.3
 
 ### CDN Import

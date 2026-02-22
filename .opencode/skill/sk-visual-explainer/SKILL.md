@@ -2,10 +2,10 @@
 name: sk-visual-explainer
 description: "Converts complex technical context into self-contained, styled HTML visual artifacts with strict quality checks, weighted intent routing, and template-first delivery."
 allowed-tools: [Read, Write, Edit, Bash, Glob, Grep]
-version: 1.1.0.0
+version: 1.2.0.0
 ---
 
-<!-- Keywords: visual, diagram, HTML, generate, architecture, flowchart, sequence, chart, mermaid, review, diff, plan, recap, fact-check, table, render, visualization, timeline, dashboard, metrics, data-table, aesthetic, css, typography -->
+<!-- Keywords: visual, diagram, HTML, generate, architecture, flowchart, sequence, chart, mermaid, review, diff, plan, recap, fact-check, table, render, visualization, timeline, dashboard, metrics, data-table, aesthetic, css, typography, speckit, traceability, checklist, implementation summary, readme, install guide -->
 
 # sk-visual-explainer — Styled HTML Diagram Generator
 
@@ -22,13 +22,13 @@ Converts complex terminal output and technical concepts into styled, self-contai
 |---------|---------|----------------|
 | `/visual-explainer:generate` | Generate a visual diagram or styled page from any topic | "generate an architecture diagram for this service" |
 | `/visual-explainer:diff-review` | Visual review of git diffs, PRs, or commit ranges | "visual diff review of this PR" |
-| `/visual-explainer:plan-review` | Visual analysis of a plan document | "visually review specs/007-auth/plan.md" |
+| `/visual-explainer:plan-review` | Visual analysis of any planning or SpecKit artifact document | "visually review specs/007-auth/plan.md" |
 | `/visual-explainer:recap` | Visual recap of recent work or progress | "generate a visual recap of the last 2 weeks" |
 | `/visual-explainer:fact-check` | Verify accuracy of an existing HTML output | "fact-check this visual output against the spec" |
 
 ### Keyword Triggers (Auto-Activate)
 
-Activate this skill when the user's message contains: `visual`, `diagram`, `HTML page`, `generate HTML`, `flowchart`, `architecture diagram`, `mermaid`, `chart`, `sequence diagram`, `timeline`, `dashboard`, `render`, `visualization`, `styled page`, `table render`, `data table`.
+Activate this skill when the user's message contains: `visual`, `diagram`, `HTML page`, `generate HTML`, `flowchart`, `architecture diagram`, `mermaid`, `chart`, `sequence diagram`, `timeline`, `dashboard`, `render`, `visualization`, `styled page`, `table render`, `data table`, `speckit`, `traceability`, `spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `implementation-summary.md`, `research.md`, `decision-record.md`, `README`, `install guide`.
 
 ### Proactive Trigger
 
@@ -56,7 +56,7 @@ Announce: "I'm rendering this as a styled HTML page for readability."
 
 The router discovers markdown resources recursively from `references/` and `assets/` and then applies intent scoring from `RESOURCE_MAP`.
 
-- `references/` for generation patterns, CSS/layout standards, library guidance, navigation, and quality checks.
+- `references/` for generation patterns, CSS/layout standards, library guidance, navigation, quality checks, and SpecKit artifact profiles.
 - `assets/templates/` for reusable HTML starter templates.
 - `assets/library_versions.json` as machine-readable version source-of-truth (used by drift checks, not markdown routing).
 - `scripts/` for validation and drift enforcement scripts.
@@ -65,8 +65,8 @@ The router discovers markdown resources recursively from `references/` and `asse
 
 | Level       | When to Load             | Resources                                 |
 | ----------- | ------------------------ | ----------------------------------------- |
-| ALWAYS      | Every skill invocation   | Quick reference baseline                   |
-| CONDITIONAL | If intent signals match  | CSS/library/checklist references          |
+| ALWAYS      | Every skill invocation   | Quick reference baseline |
+| CONDITIONAL | If intent signals match  | CSS/library/checklist + SpecKit profile references |
 | ON_DEMAND   | Only on explicit request | Navigation patterns and template deep-dive |
 
 ### Smart Router Pseudocode
@@ -77,7 +77,8 @@ The authoritative routing logic for scoped loading, weighted intent scoring, amb
 from pathlib import Path
 
 SKILL_ROOT = Path(__file__).resolve().parent
-RESOURCE_BASES = (SKILL_ROOT / "references", SKILL_ROOT / "assets")
+REFERENCE_BASE = SKILL_ROOT / "references"
+TEMPLATE_BASE = SKILL_ROOT / "assets" / "templates"
 DEFAULT_RESOURCE = "references/quick_reference.md"
 
 INTENT_SIGNALS = {
@@ -86,6 +87,9 @@ INTENT_SIGNALS = {
     "PLAN_REVIEW": {"weight": 4, "keywords": ["plan review", "plan analysis", "analyze plan"]},
     "RECAP": {"weight": 4, "keywords": ["recap", "summary", "progress", "what happened"]},
     "FACT_CHECK": {"weight": 4, "keywords": ["fact check", "verify", "accuracy", "correctness"]},
+    "SPECKIT_ARTIFACT_REVIEW": {"weight": 5, "keywords": ["speckit", "spec.md", "plan.md", "tasks.md", "checklist.md", "implementation-summary.md", "research.md", "decision-record.md", "artifact profile"]},
+    "SPECKIT_TRACEABILITY": {"weight": 5, "keywords": ["traceability", "cross-reference", "cross doc", "--traceability", "doc graph", "matrix"]},
+    "USER_GUIDE_REVIEW": {"weight": 4, "keywords": ["readme", "install guide", "installation guide", "user guide", "getting started"]},
     "AESTHETIC": {"weight": 3, "keywords": ["style", "aesthetic", "theme", "visual direction"]},
     "DIAGRAM_TYPE": {"weight": 3, "keywords": ["diagram type", "which diagram", "state machine", "mind map", "er diagram"]},
 }
@@ -104,23 +108,30 @@ RESOURCE_MAP = {
     "PLAN_REVIEW": ["references/css_patterns.md", "references/quality_checklist.md"],
     "RECAP": ["references/css_patterns.md", "references/navigation_patterns.md"],
     "FACT_CHECK": ["references/quality_checklist.md"],
+    "SPECKIT_ARTIFACT_REVIEW": ["references/speckit_artifact_profiles.md", "references/quality_checklist.md"],
+    "SPECKIT_TRACEABILITY": ["references/speckit_artifact_profiles.md", "references/navigation_patterns.md", "references/library_guide.md"],
+    "USER_GUIDE_REVIEW": ["references/speckit_user_guide_profiles.md", "references/quality_checklist.md", "references/css_patterns.md"],
     "AESTHETIC": ["references/css_patterns.md"],
     "DIAGRAM_TYPE": ["references/library_guide.md"],
 }
 
 LOADING_LEVELS = {
     "ALWAYS": [DEFAULT_RESOURCE],
-    "ON_DEMAND_KEYWORDS": ["full checklist", "full template", "deep dive", "navigation pattern"],
+    "ON_DEMAND_KEYWORDS": ["full checklist", "full template", "deep dive", "navigation pattern", "traceability template", "artifact dashboard"],
     "ON_DEMAND": [
         "references/navigation_patterns.md",
         "assets/templates/architecture.html",
         "assets/templates/mermaid-flowchart.html",
         "assets/templates/data-table.html",
+        "assets/templates/speckit-artifact-dashboard.html",
+        "assets/templates/speckit-traceability-board.html",
     ],
 }
 
 UNKNOWN_FALLBACK_CHECKLIST = [
     "Confirm desired visual artifact type (architecture, flowchart, data table, dashboard, timeline)",
+    "Confirm document artifact type (spec, plan, tasks, checklist, implementation-summary, research, decision-record, readme, install-guide)",
+    "Confirm view mode (artifact-dashboard vs traceability-board)",
     "Confirm audience (developer, reviewer, stakeholder)",
     "Provide the source of truth (spec, diff, notes, dataset)",
     "Confirm delivery constraints (single-page vs split pages, static HTML only)",
@@ -139,15 +150,16 @@ def _task_text(task) -> str:
 def _guard_in_skill(relative_path: str) -> str:
     resolved = (SKILL_ROOT / relative_path).resolve()
     resolved.relative_to(SKILL_ROOT)
-    if resolved.suffix.lower() != ".md":
-        raise ValueError(f"Only markdown resources are routable: {relative_path}")
+    if resolved.suffix.lower() not in {".md", ".html"}:
+        raise ValueError(f"Only markdown or html resources are routable: {relative_path}")
     return resolved.relative_to(SKILL_ROOT).as_posix()
 
-def discover_markdown_resources() -> set[str]:
+def discover_routable_resources() -> set[str]:
     docs = []
-    for base in RESOURCE_BASES:
-        if base.exists():
-            docs.extend(path for path in base.rglob("*.md") if path.is_file())
+    if REFERENCE_BASE.exists():
+        docs.extend(path for path in REFERENCE_BASE.rglob("*.md") if path.is_file())
+    if TEMPLATE_BASE.exists():
+        docs.extend(path for path in TEMPLATE_BASE.rglob("*.html") if path.is_file())
     return {doc.relative_to(SKILL_ROOT).as_posix() for doc in docs}
 
 def score_intents(task) -> dict[str, float]:
@@ -174,7 +186,7 @@ def select_intents(scores: dict[str, float], task_text: str, ambiguity_delta: fl
     if not ranked or ranked[0][1] <= 0:
         return ["GENERATE"]
 
-    noisy_hits = sum(1 for term in ["visual", "diagram", "plan", "review", "fact check"] if term in task_text)
+    noisy_hits = sum(1 for term in ["visual", "diagram", "plan", "review", "fact check", "traceability", "speckit"] if term in task_text)
     max_intents = adaptive_max_intents if noisy_hits >= 3 else base_max_intents
 
     selected = [ranked[0][0]]
@@ -189,7 +201,7 @@ def select_intents(scores: dict[str, float], task_text: str, ambiguity_delta: fl
     return selected[:max_intents]
 
 def route_visual_explainer_resources(task):
-    inventory = discover_markdown_resources()
+    inventory = discover_routable_resources()
     task_text = _task_text(task)
     scores = score_intents(task)
     intents = select_intents(scores, task_text, ambiguity_delta=1.0)
@@ -244,12 +256,14 @@ The skill executes a strict 4-phase workflow. Do not skip phases.
 ### Phase 1 — Think
 - Analyze audience: developer, stakeholder, or technical reviewer.
 - Identify artifact type: architecture, flowchart, table, dashboard, timeline.
+- If input is doc-driven, map to artifact profile (`spec`, `plan`, `tasks`, `checklist`, `implementation-summary`, `research`, `decision-record`, `readme`, `install-guide`).
 - If confidence on diagram type is <80%, present 2-3 options and ask.
 
 ### Phase 2 — Structure
 - Read templates from `assets/templates/` before composing output.
 - Prefer template adaptation over blank-page HTML.
 - Select rendering approach: Mermaid | Chart.js | semantic table | CSS grid/timeline.
+- Select view mode: `artifact-dashboard` (default) or `traceability-board` (`--traceability`).
 - Build semantic layout with landmarks (`header`, `main`, `section`, `figure`, `figcaption`).
 
 ### Phase 3 — Style
@@ -282,6 +296,7 @@ The skill executes a strict 4-phase workflow. Do not skip phases.
 - Mermaid hardened defaults when Mermaid is used: `securityLevel: 'strict'`, `deterministicIds: true`, bounded `maxTextSize`, bounded `maxEdges`.
 - Google Fonts with `display=swap` when web fonts are used.
 - Mermaid zoom controls (+/-/reset, Ctrl+scroll, drag-to-pan) on every `.mermaid-wrap`.
+- For SpecKit-aligned outputs, include metadata tags: `ve-artifact-type`, `ve-source-doc`, `ve-speckit-level`, `ve-view-mode`.
 
 ### ❌ NEVER
 - Build-step frameworks (React, Vue, Svelte) for generated output.
@@ -301,8 +316,18 @@ The skill executes a strict 4-phase workflow. Do not skip phases.
 
 ---
 
+## 5. RELATED RESOURCES
+
+- `references/speckit_artifact_profiles.md` for artifact detector precedence and profile rules.
+- `references/speckit_user_guide_profiles.md` for README/install-guide mapping.
+- `assets/templates/speckit-artifact-dashboard.html` for artifact dashboard output mode.
+- `assets/templates/speckit-traceability-board.html` for traceability board output mode.
+- `scripts/validate-html-output.sh` for contract enforcement and final delivery checks.
+
+---
+
 <!-- ANCHOR:references -->
-## 5. REFERENCES
+## 6. REFERENCES
 
 ### Internal References
 
@@ -311,6 +336,8 @@ The skill executes a strict 4-phase workflow. Do not skip phases.
 - [library_guide.md](./references/library_guide.md)
 - [navigation_patterns.md](./references/navigation_patterns.md)
 - [quality_checklist.md](./references/quality_checklist.md)
+- [speckit_artifact_profiles.md](./references/speckit_artifact_profiles.md)
+- [speckit_user_guide_profiles.md](./references/speckit_user_guide_profiles.md)
 - [library_versions.json](./assets/library_versions.json)
 
 ### Template Assets
@@ -318,6 +345,8 @@ The skill executes a strict 4-phase workflow. Do not skip phases.
 - [architecture.html](./assets/templates/architecture.html)
 - [mermaid-flowchart.html](./assets/templates/mermaid-flowchart.html)
 - [data-table.html](./assets/templates/data-table.html)
+- [speckit-artifact-dashboard.html](./assets/templates/speckit-artifact-dashboard.html)
+- [speckit-traceability-board.html](./assets/templates/speckit-traceability-board.html)
 
 ### Enforcement Scripts
 
@@ -329,7 +358,7 @@ The skill executes a strict 4-phase workflow. Do not skip phases.
 ---
 
 <!-- ANCHOR:success-criteria -->
-## 6. SUCCESS CRITERIA
+## 7. SUCCESS CRITERIA
 
 1. Squint test: hierarchy is clear under blur.
 2. Swap test: style is content-specific, not generic.
@@ -343,13 +372,15 @@ The skill executes a strict 4-phase workflow. Do not skip phases.
 10. `meta[name="color-scheme"]` is present.
 11. Mermaid hardened config signals are present when Mermaid is used.
 12. Version drift check passes against `assets/library_versions.json`.
+13. SpecKit outputs include all four metadata contract tags.
+14. Traceability-board outputs include graph and cross-reference matrix sections.
 
 <!-- /ANCHOR:success-criteria -->
 
 ---
 
 <!-- ANCHOR:integration-points -->
-## 7. INTEGRATION POINTS
+## 8. INTEGRATION POINTS
 
 ### Canonical Library Versions
 
@@ -382,6 +413,8 @@ The skill executes a strict 4-phase workflow. Do not skip phases.
 | `references/css_patterns.md` | CONDITIONAL |
 | `references/library_guide.md` | CONDITIONAL |
 | `references/quality_checklist.md` | CONDITIONAL |
+| `references/speckit_artifact_profiles.md` | CONDITIONAL |
+| `references/speckit_user_guide_profiles.md` | CONDITIONAL |
 | `references/navigation_patterns.md` | ON_DEMAND |
 | `assets/templates/*.html` | ON_DEMAND |
 

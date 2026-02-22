@@ -1,25 +1,34 @@
 ---
-description: Generate a styled HTML visual review of git diffs, commits, or pull requests
-argument-hint: "[branch|commit|PR#]"
+description: Generate a styled HTML visual review of git diffs, commits, or pull requests with optional SpecKit doc impact analysis
+argument-hint: "[branch|commit|PR#] [--spec-folder <path>] [--include-doc-impact]"
 allowed-tools: Read, Write, Edit, Bash, Glob, Grep
 ---
 
 # Visual Explainer Diff Review
 
-Generate a comprehensive HTML review for branch diffs, single commits, PRs, or the current working tree.
+Generate a comprehensive HTML review for branch diffs, single commits, PRs, or the current working tree, including an optional SpecKit documentation impact lane.
 
 ---
 
 ## 1. PURPOSE
 
-Transform raw git changes into a review artifact that highlights scale, risk, architecture impact, and recommended reviewer action.
+Transform raw git changes into a review artifact that highlights scale, risk, architecture impact, and recommended reviewer action with explicit doc impact diagnostics when requested.
 
 ---
 
 ## 2. CONTRACT
 
-**Inputs:** `$ARGUMENTS` with optional target (`branch`, `commit`, or `PR#`).
+**Inputs:** `$ARGUMENTS` with optional target and optional flags:
+- `[branch|commit|PR#]`
+- `--spec-folder <path>`
+- `--include-doc-impact`
+
 **Outputs:** `.opencode/output/visual/diff-review-{branch-or-commit}-{timestamp}.html`
+
+**When doc-impact lane is enabled:**
+- include SpecKit metadata tags with `ve-view-mode=artifact-dashboard`
+- include a dedicated `SpecKit Doc Impact` section
+
 **Status:** `STATUS=OK ACTION=create PATH=<output-path>` or `STATUS=FAIL ERROR="<message>"`
 
 ---
@@ -32,6 +41,7 @@ Load `sk-visual-explainer` and review references:
 - `references/css_patterns.md`
 - `references/library_guide.md`
 - `references/navigation_patterns.md`
+- `references/speckit_artifact_profiles.md` (when doc-impact lane is enabled)
 - `references/quality_checklist.md`
 
 ---
@@ -47,6 +57,10 @@ Resolve target from `$ARGUMENTS`:
 | PR number (`PR#`) | `gh pr view <PR#>` and `gh pr diff <PR#>` |
 | empty | `git diff HEAD` and working-tree status |
 
+Resolve doc-impact inputs:
+- `--include-doc-impact`: enable SpecKit doc lane
+- `--spec-folder <path>`: constrain doc lane to that folder
+
 ---
 
 ## 5. INSTRUCTIONS
@@ -54,10 +68,10 @@ Resolve target from `$ARGUMENTS`:
 ### Step 1: Collect Change Data
 
 Gather:
-- Changed files with additions/deletions
-- Full diff content
-- Commit messages (branch/PR)
-- PR metadata/comments when a PR target is used
+- changed files with additions/deletions
+- full diff content
+- commit messages (branch/PR)
+- PR metadata/comments when PR target is used
 
 ### Step 2: Analyze Risk and Coverage
 
@@ -65,9 +79,19 @@ Gather:
 - Detect dependency or migration-impact changes
 - Estimate test coverage gaps based on changed areas
 
-### Step 3: Build Visual Review
+### Step 3: Compute Doc Impact Lane (Optional)
 
-Include these sections:
+Run this step when `--include-doc-impact` is set:
+- Detect changed docs matching SpecKit artifact patterns (`spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `implementation-summary.md`, `research.md`, `decision-record.md`).
+- If `--spec-folder` is provided, include only files under that path.
+- Summarize:
+  - changed artifact types
+  - missing expected sibling updates
+  - recommended follow-up docs
+
+### Step 4: Build Visual Review
+
+Include baseline sections:
 1. Executive Summary
 2. File Change Map
 3. Architecture Impact
@@ -79,9 +103,12 @@ Include these sections:
 9. Review Checklist
 10. Recommendation
 
+If doc-impact enabled, add:
+11. SpecKit Doc Impact
+
 Default aesthetic: `blueprint`.
 
-### Step 4: Validate and Deliver
+### Step 5: Validate and Deliver
 
 - Run quality checklist validations.
 - Save to `.opencode/output/visual/diff-review-{branch-or-commit}-{timestamp}.html`.
@@ -96,6 +123,7 @@ Default aesthetic: `blueprint`.
 | --- | --- |
 | Invalid git target | Return `STATUS=FAIL ERROR="Invalid diff target: <target>"` |
 | `gh` unavailable for PR mode | Return `STATUS=FAIL ERROR="GitHub CLI is required for PR targets"` |
+| `--spec-folder` set but path does not exist | Return `STATUS=FAIL ERROR="Spec folder not found: <path>"` |
 | No diff data found | Return `STATUS=FAIL ERROR="No changes found for target"` |
 | Render/validation failure | Return `STATUS=FAIL` with failing stage detail |
 
@@ -107,7 +135,7 @@ After successful execution, return:
 
 ```text
 STATUS=OK ACTION=create PATH=<output-path>
-SUMMARY="Generated visual diff review with risk and recommendation sections"
+SUMMARY="Generated visual diff review with risk analysis and optional SpecKit doc-impact lane"
 ```
 
 ---
@@ -117,6 +145,6 @@ SUMMARY="Generated visual diff review with risk and recommendation sections"
 ```bash
 /visual-explainer:diff-review
 /visual-explainer:diff-review "feature/oauth-refresh"
-/visual-explainer:diff-review "abc1234"
-/visual-explainer:diff-review "PR#42"
+/visual-explainer:diff-review "abc1234" --include-doc-impact
+/visual-explainer:diff-review "PR#42" --spec-folder "specs/007-auth" --include-doc-impact
 ```

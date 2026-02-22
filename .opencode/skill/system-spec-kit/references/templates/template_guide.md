@@ -720,6 +720,7 @@ node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js spe
 8. **Document level changes** - Use `upgrade-level.sh` for level upgrades (recommended), then auto-populate placeholder content. Note changes in changelog
 9. **Keep history immutable** - Append to history, don't rewrite
 10. **Validate before coding** - Complete pre-implementation checklist first
+11. **Apply ToC policy consistently** - Only `research.md` may include a Table of Contents section; keep standard spec artifacts ToC-free
 
 ### Pre-Delivery Checklist
 
@@ -735,6 +736,7 @@ Before presenting documentation to user, verify:
 - [ ] Numbering and emojis preserved
 - [ ] Structure matches template
 - [ ] Descriptive filenames used (for decision records)
+- [ ] No ToC heading in non-research spec artifacts (`spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `decision-record.md`, `implementation-summary.md`, `handover.md`, `debug-delegation.md`)
 
 **If ANY unchecked → Fix before presenting to user**
 

@@ -621,6 +621,7 @@ Automated validation of spec folder contents via `validate.sh`.
 16. **Suggest /spec_kit:phase when task requires multi-phase decomposition** - Complex specs spanning multiple sessions or workstreams
 17. **Route all code creation/updates through `sk-code--opencode`** - Full alignment is mandatory before claiming completion
 18. **Route all documentation creation/updates through `sk-documentation`** - Full alignment is mandatory before claiming completion
+19. **Enforce ToC policy from validation rules** - Only `research.md` may include a Table of Contents section; remove ToC headings from standard spec artifacts
 
 ### ❌ NEVER
 
@@ -632,6 +633,7 @@ Automated validation of spec folder contents via `validate.sh`.
 6. **Claim done without checklist verification** - Level 2+ requirement
 7. **Proceed without spec folder confirmation** - Wait for A/B/C/D/E
 8. **Skip validation before completion** - Completion Verification hard block
+9. **Add ToC sections to standard spec artifacts** - `spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `decision-record.md`, `implementation-summary.md`, `handover.md`, and `debug-delegation.md` must not contain ToC headings
 
 ### ⚠️ ESCALATE IF
 
@@ -661,6 +663,7 @@ Automated validation of spec folder contents via `validate.sh`.
 - [ ] All placeholders replaced with actual content
 - [ ] Sample content and instructional comments removed
 - [ ] Cross-references to sibling documents work (spec.md ↔ plan.md ↔ tasks.md)
+- [ ] No ToC heading in non-research spec artifacts (ToC allowed only in `research.md`)
 
 ### User Approval
 
