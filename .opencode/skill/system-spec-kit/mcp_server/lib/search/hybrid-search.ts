@@ -405,7 +405,8 @@ async function hybridSearch(
 
 /**
  * Enhanced hybrid search with RRF fusion.
- * Channels execute in parallel for lower latency.
+ * All search channels use synchronous better-sqlite3; sequential execution
+ * is correct — Promise.all would add overhead without achieving parallelism.
  */
 async function hybridSearchEnhanced(
   query: string,
@@ -424,77 +425,65 @@ async function hybridSearchEnhanced(
     let ftsChannelResults: HybridSearchResult[] = [];
     let bm25ChannelResults: HybridSearchResult[] = [];
 
-    // Run all 4 channels in parallel for lower latency
-    const channelPromises: Array<Promise<void>> = [];
+    // All channels use synchronous better-sqlite3; sequential execution
+    // is correct — Promise.all adds overhead without parallelism.
 
     // Vector channel
     if (embedding && vectorSearchFn) {
-      const vectorFn = vectorSearchFn; // capture for closure
-      channelPromises.push((async () => {
-        try {
-          const vectorResults = vectorFn(embedding, {
-            limit: options.limit || DEFAULT_LIMIT,
-            specFolder: options.specFolder,
-            minSimilarity: options.minSimilarity || 0,
-            includeConstitutional: false,
-            includeArchived: options.includeArchived || false,
-          });
-          semanticResults = vectorResults.map((r: Record<string, unknown>): { id: number | string; source: string; [key: string]: unknown } => ({
-            ...r,
-            id: r.id as number | string,
-            source: 'vector',
-          }));
-          lists.push({ source: 'vector', results: semanticResults, weight: 1.0 });
-        } catch {
-          // Skip on failure
-        }
-      })());
+      try {
+        const vectorResults = vectorSearchFn(embedding, {
+          limit: options.limit || DEFAULT_LIMIT,
+          specFolder: options.specFolder,
+          minSimilarity: options.minSimilarity || 0,
+          includeConstitutional: false,
+          includeArchived: options.includeArchived || false,
+        });
+        semanticResults = vectorResults.map((r: Record<string, unknown>): { id: number | string; source: string; [key: string]: unknown } => ({
+          ...r,
+          id: r.id as number | string,
+          source: 'vector',
+        }));
+        lists.push({ source: 'vector', results: semanticResults, weight: 1.0 });
+      } catch {
+        // Non-critical — vector channel failure does not block pipeline
+      }
     }
 
-    // FTS channel
-    channelPromises.push((async () => {
-      ftsChannelResults = ftsSearch(query, options);
-      if (ftsChannelResults.length > 0) {
-        lists.push({ source: 'fts', results: ftsChannelResults, weight: 0.8 });
-      }
-    })());
+    // FTS channel (internal error handling in ftsSearch)
+    ftsChannelResults = ftsSearch(query, options);
+    if (ftsChannelResults.length > 0) {
+      lists.push({ source: 'fts', results: ftsChannelResults, weight: 0.8 });
+    }
 
-    // BM25 channel
-    channelPromises.push((async () => {
-      bm25ChannelResults = bm25Search(query, options);
-      if (bm25ChannelResults.length > 0) {
-        lists.push({ source: 'bm25', results: bm25ChannelResults, weight: 0.6 });
-      }
-    })());
+    // BM25 channel (internal error handling in bm25Search)
+    bm25ChannelResults = bm25Search(query, options);
+    if (bm25ChannelResults.length > 0) {
+      lists.push({ source: 'bm25', results: bm25ChannelResults, weight: 0.6 });
+    }
 
     // Graph channel (T008: metrics collection)
     const useGraph = (options.useGraph !== false);
     if (useGraph && graphSearchFn) {
-      const graphFn = graphSearchFn; // capture for closure
-      graphMetrics.totalQueries++;
-      channelPromises.push((async () => {
-        try {
-          const graphResults = graphFn(query, {
-            limit: options.limit || DEFAULT_LIMIT,
-            specFolder: options.specFolder,
-            intent: options.intent,
-          });
-          if (graphResults.length > 0) {
-            graphMetrics.graphHits++;
-            lists.push({ source: 'graph', results: graphResults.map(r => ({
-              ...r,
-              id: r.id as number | string,
-            })), weight: 0.5 });
-          }
-        } catch {
-          // Non-critical — graph channel failure does not block pipeline
+      try {
+        graphMetrics.totalQueries++; // counted only if channel executes
+        const graphResults = graphSearchFn(query, {
+          limit: options.limit || DEFAULT_LIMIT,
+          specFolder: options.specFolder,
+          intent: options.intent,
+        });
+        if (graphResults.length > 0) {
+          graphMetrics.graphHits++;
+          lists.push({ source: 'graph', results: graphResults.map(r => ({
+            ...r,
+            id: r.id as number | string,
+          })), weight: 0.5 });
         }
-      })());
+      } catch {
+        // Non-critical — graph channel failure does not block pipeline
+      }
     }
 
-    await Promise.all(channelPromises);
-
-    // Merge keyword results after parallel execution completes
+    // Merge keyword results after all channels complete
     const keywordResults: Array<{ id: number | string; source: string; [key: string]: unknown }> = [
       ...ftsChannelResults,
       ...bm25ChannelResults,

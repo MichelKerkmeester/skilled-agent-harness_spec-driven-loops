@@ -3,5 +3,6 @@ sandbox_mode = "read-only"
 developer_instructions = """
 Use `.opencode/agent/chatgpt/orchestrate.md` as the canonical role playbook.
 Decompose tasks, delegate intentionally, and synthesize one coherent response.
+When dispatching `@review`, require `sk-code` baseline plus one stack-specific `sk-code--*` overlay.
 Avoid direct implementation unless strictly required.
 """

@@ -88,10 +88,8 @@ Request -> Route skill -> Load SKILL.md -> Load only needed references/assets/sc
 ├── mcp-code-mode/
 ├── mcp-figma/
 ├── scripts/
-├── sk-code--full-stack/
-├── sk-code--review/
-├── sk-code--opencode/
-├── sk-code--web/
+├── sk-code/                # Baseline code workflow (optional by repo)
+├── sk-code--*/             # Overlay code workflow skills (repo-specific)
 ├── sk-documentation/
 ├── sk-git/
 ├── sk-visual-explainer/
@@ -112,8 +110,7 @@ Request -> Route skill -> Load SKILL.md -> Load only needed references/assets/sc
 | Skill | Scripts |
 | --- | --- |
 | `mcp-code-mode` | `scripts/update-code-mode.sh`, `scripts/validate_config.py` |
-| `sk-code--opencode` | `scripts/verify_alignment_drift.py`, `scripts/test_verify_alignment_drift.py` |
-| `sk-code--web` | `scripts/minify-webflow.mjs`, `scripts/verify-minification.mjs`, `scripts/test-minified-runtime.mjs` |
+| `sk-code` or `sk-code--*` | Overlay-owned scripts vary by repo (for example alignment checks or minification pipelines) |
 | `sk-documentation` | `scripts/init_skill.py`, `scripts/quick_validate.py`, `scripts/package_skill.py`, `scripts/validate_document.py`, `scripts/extract_structure.py`, `scripts/validate_flowchart.sh` |
 | `sk-visual-explainer` | `scripts/validate-html-output.sh`, `scripts/check-version-drift.sh`, `scripts/cleanup-output.sh` |
 | `system-spec-kit` | `scripts/spec/create.sh`, `scripts/spec/validate.sh`, `scripts/memory/generate-context.ts`, `scripts/memory/reindex-embeddings.ts`, `scripts/setup/check-prerequisites.sh` |
@@ -133,21 +130,14 @@ Spec folder workflow, template validation and memory context workflows. This is 
 
 ### Code Workflows
 
-#### `sk-code--full-stack` (v1.1.0.0)
+#### `sk-code | sk-code--*` (version varies by repo)
 
-Stack-agnostic coding workflow with implementation, debugging and verification phases.
+Portable code workflow contract:
 
-#### `sk-code--review` (v1.1.0.0)
-
-Stack-agnostic findings-first review baseline with baseline+overlay standards contract for `@review`.
-
-#### `sk-code--web` (v1.0.8.0)
-
-Frontend workflow for implementation, debugging and browser verification with Webflow support.
-
-#### `sk-code--opencode` (v1.0.9.0)
-
-Language standards for JavaScript, TypeScript, Python, Shell and JSON/JSONC in OpenCode repos.
+- Use `sk-code` as the baseline when available
+- Add one overlay skill via `sk-code--*` for repo-specific standards
+- Review flow: baseline + one overlay
+- Overlay examples: `sk-code--opencode` | `sk-code--web` | `sk-code--full-stack`
 
 ### Documentation
 
@@ -202,10 +192,7 @@ Converts terminal output and technical context into styled, self-contained HTML 
 | `mcp-chrome-devtools` | Yes | No | No |
 | `mcp-code-mode` | Yes | Yes | Yes |
 | `mcp-figma` | Yes | Yes | No |
-| `sk-code--full-stack` | Yes | Yes | No |
-| `sk-code--review` | Yes | No | No |
-| `sk-code--opencode` | Yes | Yes | Yes |
-| `sk-code--web` | Yes | Yes | Yes |
+| `sk-code` or `sk-code--*` | Varies | Varies | Varies |
 | `sk-documentation` | Yes | Yes | Yes |
 | `sk-git` | Yes | Yes | No |
 | `sk-visual-explainer` | Yes | Yes | Yes |
@@ -272,10 +259,7 @@ Framework and routing:
 Skill folders:
 
 - [system-spec-kit](system-spec-kit/)
-- [sk-code--full-stack](sk-code--full-stack/)
-- [sk-code--review](sk-code--review/)
-- [sk-code--web](sk-code--web/)
-- [sk-code--opencode](sk-code--opencode/)
+- `sk-code/` or `sk-code--*/` (repo-specific code baseline and overlays)
 - [sk-documentation](sk-documentation/)
 - [sk-git](sk-git/)
 - [sk-visual-explainer](sk-visual-explainer/)

@@ -1,6 +1,7 @@
 ---
 title: "Feature Specification: sk-code--review Promotion [041-code-review-skill/spec]"
 description: "Level 2 specification for promoting sk-code--review to a first-class stack-agnostic review skill with baseline+overlay routing across agents, commands, and advisor logic."
+SPECKIT_TEMPLATE_SOURCE: "spec-core | v2.2"
 trigger_phrases:
   - "sk-code--review"
   - "code review skill"
@@ -10,9 +11,9 @@ trigger_phrases:
 importance_tier: "important"
 contextType: "decision"
 ---
+<!-- SPECKIT_LEVEL: 2 -->
 # Feature Specification: sk-code--review Promotion
 
-<!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 
 ## 1. OVERVIEW
@@ -76,7 +77,8 @@ Promote `sk-code--review` as a first-class, stack-agnostic review baseline that:
   - baseline: `sk-code--review`
   - overlay: one of `sk-code--opencode`, `sk-code--web`, `sk-code--full-stack`
   - precedence: overlay style/process/build/test overrides generic guidance; baseline security/correctness minimums are always enforced.
-- Update review agents and both orchestrators to document and follow baseline+overlay contract.
+- Update review agents and orchestrators across runtime profiles (`.opencode`, `.opencode/chatgpt`, `.gemini`, `.claude`) to document and follow baseline+overlay contract.
+- Update `.codex/agents/review.toml` and `.codex/agents/orchestrate.toml` wrappers to require the same baseline+overlay contract when delegating to canonical chatgpt playbooks.
 - Update all listed review-dispatch command YAML assets (18 files) to include the same contract.
 - Update skill routing (`skill_advisor.py`) so generic review intents route to `sk-code--review` while preserving git and visual-review behavior.
 - Update skill indexes (`.opencode/skill/README.md`, `.opencode/README.md`).
@@ -93,7 +95,7 @@ Promote `sk-code--review` as a first-class, stack-agnostic review baseline that:
 | Group | Paths |
 |------|-------|
 | Skill package | `.opencode/skill/sk-code--review/SKILL.md`, `.opencode/skill/sk-code--review/README.md`, `.opencode/skill/sk-code--review/references/*.md` |
-| Review agents/orchestrators | `.opencode/agent/review.md`, `.opencode/agent/chatgpt/review.md`, `.opencode/agent/orchestrate.md`, `.opencode/agent/chatgpt/orchestrate.md` |
+| Review agents/orchestrators | `.opencode/agent/review.md`, `.opencode/agent/chatgpt/review.md`, `.opencode/agent/orchestrate.md`, `.opencode/agent/chatgpt/orchestrate.md`, `.gemini/agents/review.md`, `.gemini/agents/orchestrate.md`, `.claude/agents/review.md`, `.claude/agents/orchestrate.md`, `.codex/agents/review.toml`, `.codex/agents/orchestrate.toml` |
 | Review dispatch commands | 18 YAMLs under `.opencode/command/spec_kit/assets/` and `.opencode/command/create/assets/` (full list in `tasks.md`) |
 | Routing + catalogs | `.opencode/skill/scripts/skill_advisor.py`, `.opencode/skill/README.md`, `.opencode/README.md` |
 | Spec docs | `.opencode/specs/002-commands-and-skills/041-code-review-skill/spec.md`, `.opencode/specs/002-commands-and-skills/041-code-review-skill/plan.md`, `.opencode/specs/002-commands-and-skills/041-code-review-skill/tasks.md`, `.opencode/specs/002-commands-and-skills/041-code-review-skill/checklist.md`, `.opencode/specs/002-commands-and-skills/041-code-review-skill/implementation-summary.md` |
@@ -110,7 +112,7 @@ Promote `sk-code--review` as a first-class, stack-agnostic review baseline that:
 |----|-------------|---------------------|
 | REQ-001 | Hard rename completed | Skill folder exists only as `.opencode/skill/sk-code--review/`; `legacy-single-hyphen-review.zip` removed |
 | REQ-002 | Router rebuilt to standards parity | `SKILL.md` includes required section order + smart routing model + baseline+overlay logic + precedence matrix + related resources |
-| REQ-003 | Review runtime contract updated | Both review agents and both orchestrators explicitly document baseline `sk-code--review` + one overlay model |
+| REQ-003 | Review runtime contract updated | Review agents/orchestrators in `.opencode`, `.opencode/chatgpt`, `.gemini`, `.claude`, plus `.codex` wrapper configs, explicitly document/enforce baseline `sk-code--review` + one overlay model |
 | REQ-004 | Command review dispatch updated | All 18 listed command YAMLs include baseline+overlay review contract wording/config |
 | REQ-005 | Review routing updated | `skill_advisor.py` routes generic code-review intents to `sk-code--review` and preserves `sk-git` / `sk-visual-explainer` behavior |
 
@@ -163,7 +165,7 @@ Promote `sk-code--review` as a first-class, stack-agnostic review baseline that:
 
 ### Reliability
 - **NFR-R01**: Advisor routing behavior validated with representative prompts.
-- **NFR-R02**: Command and agent contract wording is consistent between copilot/chatgpt runtime docs.
+- **NFR-R02**: Command and agent contract wording is consistent across copilot/chatgpt/gemini/claude runtime docs and codex wrapper configs.
 <!-- /ANCHOR:nfr -->
 
 ---

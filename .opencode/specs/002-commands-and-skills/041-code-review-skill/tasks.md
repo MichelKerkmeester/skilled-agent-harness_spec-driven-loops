@@ -1,6 +1,7 @@
 ---
 title: "Tasks: sk-code--review Promotion [041-code-review-skill/tasks]"
 description: "Execution checklist for promoting sk-code--review and wiring baseline+overlay review contract across skill, agents, commands, routing, and Level 2 documentation."
+SPECKIT_TEMPLATE_SOURCE: "tasks-core | v2.2"
 trigger_phrases:
   - "tasks"
   - "sk-code--review"
@@ -9,9 +10,9 @@ trigger_phrases:
 importance_tier: "normal"
 contextType: "implementation"
 ---
+<!-- SPECKIT_LEVEL: 2 -->
 # Tasks: sk-code--review Promotion
 
-<!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
 
 ## 1. OVERVIEW
@@ -68,15 +69,25 @@ rg -n "baseline\+overlay|overlay|precedence|RELATED RESOURCES" .opencode/skill/s
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Agents + orchestrators
 
-- [x] T006 Update `.opencode/agent/review.md` contract to baseline `sk-code--review` + one overlay skill
-- [x] T007 Update `.opencode/agent/chatgpt/review.md` with same contract and precedence behavior
-- [x] T008 Update `.opencode/agent/orchestrate.md` review skill mapping to baseline+overlay model
-- [x] T009 Update `.opencode/agent/chatgpt/orchestrate.md` review skill mapping to baseline+overlay model
+- [x] T006 Update review agent contracts in `.opencode/agent/review.md`, `.opencode/agent/chatgpt/review.md`, `.gemini/agents/review.md`, and `.claude/agents/review.md`
+- [x] T007 Update orchestrator review mapping in `.opencode/agent/orchestrate.md`, `.opencode/agent/chatgpt/orchestrate.md`, `.gemini/agents/orchestrate.md`, and `.claude/agents/orchestrate.md`
+- [x] T008 Update `.codex/agents/review.toml` to enforce baseline+overlay review contract while using canonical chatgpt review playbook
+- [x] T009 Update `.codex/agents/orchestrate.toml` to require baseline+overlay contract whenever `@review` is dispatched
 
 Verification commands:
 
 ```bash
-rg -n "sk-code--review|baseline\+overlay|overlay" .opencode/agent/review.md .opencode/agent/chatgpt/review.md .opencode/agent/orchestrate.md .opencode/agent/chatgpt/orchestrate.md
+rg -n "sk-code--review|baseline\+overlay|overlay" \
+  .opencode/agent/review.md \
+  .opencode/agent/chatgpt/review.md \
+  .opencode/agent/orchestrate.md \
+  .opencode/agent/chatgpt/orchestrate.md \
+  .gemini/agents/review.md \
+  .gemini/agents/orchestrate.md \
+  .claude/agents/review.md \
+  .claude/agents/orchestrate.md \
+  .codex/agents/review.toml \
+  .codex/agents/orchestrate.toml
 ```
 <!-- /ANCHOR:phase-2 -->
 

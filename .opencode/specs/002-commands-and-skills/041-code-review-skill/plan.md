@@ -1,6 +1,7 @@
 ---
 title: "Implementation Plan: sk-code--review Promotion [041-code-review-skill/plan]"
 description: "Level 2 implementation plan for promoting sk-code--review to first-class review baseline with baseline+overlay runtime contract across skills, agents, commands, and routing."
+SPECKIT_TEMPLATE_SOURCE: "plan-core | v2.2"
 trigger_phrases:
   - "implementation plan"
   - "sk-code--review"
@@ -9,9 +10,9 @@ trigger_phrases:
 importance_tier: "important"
 contextType: "implementation"
 ---
+<!-- SPECKIT_LEVEL: 2 -->
 # Implementation Plan: sk-code--review Promotion
 
-<!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 
 ## 1. OVERVIEW
@@ -68,7 +69,7 @@ Execution is organized into six phases:
 
 ### Definition of Done
 - [x] `sk-code--review` package exists with updated routing contract.
-- [x] Review agents + orchestrators document baseline+overlay model.
+- [x] Review agents + orchestrators across all runtime profiles document baseline+overlay model.
 - [x] All 18 listed review-dispatch YAMLs include standards contract.
 - [x] `skill_advisor.py` routes review intents correctly for targeted prompts.
 - [x] Spec docs reflect actual changes and evidence.
@@ -86,8 +87,9 @@ Review baseline + stack overlay contract.
 ### Key Components
 - **Baseline skill**: `.opencode/skill/sk-code--review/`
 - **Overlay skills**: `sk-code--opencode`, `sk-code--web`, `sk-code--full-stack`
-- **Review runtimes**: `.opencode/agent/review.md`, `.opencode/agent/chatgpt/review.md`
-- **Orchestration docs**: `.opencode/agent/orchestrate.md`, `.opencode/agent/chatgpt/orchestrate.md`
+- **Review runtimes**: `.opencode/agent/review.md`, `.opencode/agent/chatgpt/review.md`, `.gemini/agents/review.md`, `.claude/agents/review.md`
+- **Orchestration docs**: `.opencode/agent/orchestrate.md`, `.opencode/agent/chatgpt/orchestrate.md`, `.gemini/agents/orchestrate.md`, `.claude/agents/orchestrate.md`
+- **Codex wrappers**: `.codex/agents/review.toml`, `.codex/agents/orchestrate.toml`
 - **Workflow dispatch**: 18 YAMLs under `spec_kit/assets` and `create/assets`
 - **Routing engine**: `.opencode/skill/scripts/skill_advisor.py`
 
@@ -115,8 +117,9 @@ Review baseline + stack overlay contract.
 - [x] Add `RELATED RESOURCES` section.
 
 ### Phase 3: Runtime wiring
-- [x] Update both review agents with explicit ordered standards load contract.
-- [x] Update both orchestrators to document `@review` as baseline+overlay.
+- [x] Update review agents across `.opencode`, `.opencode/chatgpt`, `.gemini`, and `.claude` with explicit ordered standards load contract.
+- [x] Update orchestrators across `.opencode`, `.opencode/chatgpt`, `.gemini`, and `.claude` to document `@review` as baseline+overlay.
+- [x] Update `.codex` wrapper agent configs so review dispatch explicitly enforces baseline+overlay.
 
 ### Phase 4: Command sweep
 - [x] Update all 6 `spec_kit` review-dispatch blocks with `standards_contract`.
@@ -143,7 +146,7 @@ Review baseline + stack overlay contract.
 | Skill structural validation | `sk-code--review` package | `python3 .opencode/skill/sk-documentation/scripts/quick_validate.py .opencode/skill/sk-code--review --json` |
 | Skill packaging | `sk-code--review` package | `python3 .opencode/skill/sk-documentation/scripts/package_skill.py .opencode/skill/sk-code--review` |
 | Advisor routing scenarios | review/git/visual prompts | `python3 .opencode/skill/scripts/skill_advisor.py "..." --threshold 0.8` |
-| Contract consistency | command/agent docs | `rg -n "standards_contract|sk-code--review" ...` |
+| Contract consistency | command/agent docs across all runtimes | `rg -n "standards_contract|sk-code--review|baseline\+overlay" ...` |
 | Spec validation | Level 2 docs | `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/002-commands-and-skills/041-code-review-skill` |
 <!-- /ANCHOR:testing -->
 

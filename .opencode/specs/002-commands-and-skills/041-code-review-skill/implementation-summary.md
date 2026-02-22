@@ -43,12 +43,13 @@ contextType: "implementation"
   - unknown fallback checklist,
   - baseline+overlay precedence matrix,
   - related resources section.
-- Updated `@review` runtime docs in both providers to explicit standards-loading order:
+- Updated `@review` runtime docs across all runtime profiles (`.opencode`, `.opencode/chatgpt`, `.gemini`, `.claude`) to explicit standards-loading order:
   1. load `sk-code--review` baseline,
   2. detect stack,
   3. load one overlay (`sk-code--opencode` / `sk-code--web` / `sk-code--full-stack`),
   4. apply precedence rules.
-- Updated both orchestrators to document `@review` as baseline+overlay instead of generic `sk-code--*` only.
+- Updated orchestrators in all runtime profiles (`.opencode`, `.opencode/chatgpt`, `.gemini`, `.claude`) to document `@review` as baseline+overlay instead of generic `sk-code--*` only.
+- Updated `.codex/agents/review.toml` and `.codex/agents/orchestrate.toml` so Codex runtime wrappers explicitly enforce the same baseline+overlay review contract while pointing to canonical chatgpt playbooks.
 - Updated all 18 review-dispatch YAML assets with `standards_contract` and consistent dispatch wording.
 - Updated `skill_advisor.py` review routing to prioritize `sk-code--review` for review intents while preserving git and visual-review routing behavior.
 - Updated skill catalogs (`.opencode/skill/README.md`, `.opencode/README.md`) for new skill and 11-skill counts.
@@ -94,7 +95,9 @@ contextType: "implementation"
 | `python3 .opencode/skill/scripts/skill_advisor.py "review this PR for race conditions and auth bugs" --threshold 0.8` | PASS: top `sk-code--review` |
 | `python3 .opencode/skill/scripts/skill_advisor.py "help me rebase and split commits" --threshold 0.8` | PASS: top `sk-git` |
 | `python3 .opencode/skill/scripts/skill_advisor.py "visual review of architecture diff" --threshold 0.8` | PASS: top `sk-visual-explainer`, `sk-code--review` secondary |
+| `rg -n "sk-code--review|baseline\+overlay|overlay"` across `.opencode/agent/*.md`, `.opencode/agent/chatgpt/*.md`, `.gemini/agents/*.md`, `.claude/agents/*.md`, `.codex/agents/{review,orchestrate}.toml` | PASS: baseline+overlay contract present in all runtime agent locations |
 | `rg -n "standards_contract|baseline: \"sk-code--review\""` across 18 YAML assets | PASS: all target files matched |
+| `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/002-commands-and-skills/041-code-review-skill` | PASS (exit 0): all rules passed, no warnings |
 <!-- /ANCHOR:verification -->
 
 ---
