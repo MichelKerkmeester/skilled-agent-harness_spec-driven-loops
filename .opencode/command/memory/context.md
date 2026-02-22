@@ -99,17 +99,15 @@ Provide a unified entry point for context retrieval that:
 
 The system detects one of seven intent types:
 
-| Intent Type        | Description                    | Weight Adjustments                                        | Graph Weight | Graph Causal Bias |
-| ------------------ | ------------------------------ | --------------------------------------------------------- | ------------ | ----------------- |
-| **add_feature**    | Implementing new functionality | implementation: 1.5x, architecture: 1.3x, patterns: 1.2x | —            | —                 |
-| **fix_bug**        | Debugging and fixing issues    | decisions: 1.4x, implementation: 1.3x, errors: 1.5x      | 0.3          | 0.5               |
-| **refactor**       | Code restructuring             | architecture: 1.5x, patterns: 1.4x, decisions: 1.2x      | —            | —                 |
-| **security_audit** | Security review                | decisions: 1.4x, implementation: 1.3x, security: 1.5x    | —            | —                 |
-| **understand**     | Learning existing code         | architecture: 1.4x, decisions: 1.3x, overview: 1.5x      | 0.5          | 0.5               |
-| **find_spec**      | Spec document retrieval        | spec-doc: 1.5x, architecture: 1.3x, overview: 1.2x       | 0.9          | 0.3               |
-| **find_decision**  | Decision rationale lookup      | decisions: 1.5x, rationale: 1.4x, architecture: 1.2x     | 0.8          | 0.9               |
-
-> **Graph channel:** Graph Weight and Graph Causal Bias apply when `SPECKIT_GRAPH_UNIFIED` is enabled (3-channel fusion: vector + BM25 + graph). Intents with `—` do not have a dedicated graph weight profile and use the balanced default (0.5 / 0.5). For `find_cause`, the same profile as `find_decision` applies (graphWeight 0.8, graphCausalBias 0.9). For `find_procedure`, the same profile as `find_spec` applies (graphWeight 0.7, graphCausalBias 0.3). `find_decision` and `find_cause` prioritize causal traversal, `find_spec` and `find_procedure` use balanced graph retrieval with lower causal bias, and all other intents use the default balanced profile.
+| Intent Type        | Description                    | Weight Adjustments                                        |
+| ------------------ | ------------------------------ | --------------------------------------------------------- |
+| **add_feature**    | Implementing new functionality | implementation: 1.5x, architecture: 1.3x, patterns: 1.2x |
+| **fix_bug**        | Debugging and fixing issues    | decisions: 1.4x, implementation: 1.3x, errors: 1.5x      |
+| **refactor**       | Code restructuring             | architecture: 1.5x, patterns: 1.4x, decisions: 1.2x      |
+| **security_audit** | Security review                | decisions: 1.4x, implementation: 1.3x, security: 1.5x    |
+| **understand**     | Learning existing code         | architecture: 1.4x, decisions: 1.3x, overview: 1.5x      |
+| **find_spec**      | Spec document retrieval        | spec-doc: 1.5x, architecture: 1.3x, overview: 1.2x       |
+| **find_decision**  | Decision rationale lookup      | decisions: 1.5x, rationale: 1.4x, architecture: 1.2x     |
 
 ### Detection Logic
 
@@ -348,10 +346,7 @@ deduplication:
 
 > **Adaptive Fusion & Telemetry:** When `SPECKIT_ADAPTIVE_FUSION` is enabled, fusion weights adapt dynamically to the detected intent — anchor boosts and context-type filters are adjusted at query time rather than using static multipliers. Search results may also be routed through artifact-class classification before scoring. When `SPECKIT_EXTENDED_TELEMETRY` is enabled, extended telemetry is captured alongside results (query timing, score distributions, fusion decisions) and written to the telemetry log.
 >
-> **Graph Channel Flag (default: ENABLED):**
-> - `SPECKIT_GRAPH_UNIFIED` — gates the graph channel in hybrid search. When enabled, fusion becomes 3-channel (vector + BM25 + graph); when disabled, it falls back to 2-channel (vector + BM25).
->
-> **Evidence Gap Prevention:** When `SPECKIT_GRAPH_UNIFIED` is enabled, graph coverage is predicted before returning results. Queries with fewer than 3 connected memory nodes in the graph trigger an early evidence gap warning in the response.
+> **Evidence Gap Prevention:** Low-confidence retrieval can trigger an early evidence-gap warning in the response so sparse results are treated cautiously.
 
 ```javascript
 // Option 1: Dedicated context tool (preferred — single call)

@@ -166,7 +166,6 @@ Feature flags control experimental and optional functionality. All flags default
 | `SPEC_KIT_PROVIDER_FALLBACK` | `true` | Auto-switch embedding providers on failure |
 | `SPECKIT_ADAPTIVE_FUSION` | `true` | Enables intent-aware weighted RRF with 7 task-type profiles in `memory_search()` (set `false` to disable) |
 | `SPECKIT_EXTENDED_TELEMETRY` | `true` | Emits 4-dimension retrieval metrics (latency, mode, fallback, quality) per search operation |
-| `SPECKIT_GRAPH_UNIFIED` | `true` | Gates the unified graph channel in hybrid search (causal graph contribution in RRF fusion) |
 | `SPECKIT_INDEX_SPEC_DOCS` | `true` | Gates spec document indexing in `memory_index_scan()` (discovers and indexes spec folder documents with document-type scoring multipliers) |
 
 ### Usage Examples
@@ -189,9 +188,6 @@ SPEC_KIT_ENABLE_TRIGGERS=false node mcp_server/context-server.ts
 
 # Enable adaptive fusion (intent-aware search weighting)
 SPECKIT_ADAPTIVE_FUSION=true node mcp_server/context-server.ts
-
-# Disable graph channel
-SPECKIT_GRAPH_UNIFIED=false node mcp_server/context-server.ts
 
 # Disable spec document indexing
 SPECKIT_INDEX_SPEC_DOCS=false node mcp_server/context-server.ts

@@ -3,6 +3,23 @@
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->
 
+## 1. OVERVIEW
+
+Verification status and evidence matrix for all Level 2 P0/P1/P2 checklist items tied to this hardening scope.
+
+## TABLE OF CONTENTS
+
+- [VERIFICATION PROTOCOL](#verification-protocol)
+- [PRE-IMPLEMENTATION](#pre-implementation)
+- [P0 REQUIREMENT EVIDENCE](#p0-requirement-evidence)
+- [P1 REQUIREMENT EVIDENCE](#p1-requirement-evidence)
+- [CODE QUALITY](#code-quality)
+- [TESTING](#testing)
+- [SECURITY](#security)
+- [DOCUMENTATION](#documentation)
+- [FILE ORGANIZATION](#file-organization)
+- [VERIFICATION SUMMARY](#verification-summary)
+
 ---
 
 <!-- ANCHOR:protocol -->

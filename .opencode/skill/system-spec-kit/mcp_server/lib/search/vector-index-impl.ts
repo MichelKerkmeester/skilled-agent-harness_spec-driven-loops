@@ -20,6 +20,7 @@ import * as fs from 'fs';
 import * as crypto from 'crypto';
 import { formatAgeString as format_age_string } from '../utils/format-helpers';
 import { validateFilePath } from '../utils/path-security';
+import { getCanonicalPathKey } from '../utils/canonical-path';
 import { createLogger } from '../utils/logger';
 import { SERVER_DIR } from '../../core/config';
 import { IVectorStore } from '../interfaces/vector-store';
@@ -436,7 +437,7 @@ type PreparedStatements = {
   count_by_folder: Database.Statement<[string], { count: number }>;
   get_by_id: Database.Statement<[number], MemoryRow | undefined>;
   get_by_path: Database.Statement<[string], MemoryRow | undefined>;
-  get_by_folder_and_path: Database.Statement<[string, string, string | null, string | null], { id: number } | undefined>;
+  get_by_folder_and_path: Database.Statement<[string, string, string, string | null, string | null], { id: number } | undefined>;
   get_stats: Database.Statement<[], { total: number; complete: number; pending: number; failed: number }>;
   list_base: Database.Statement<[number, number], MemoryRow[]>;
 };
@@ -450,7 +451,7 @@ function init_prepared_statements(database: Database.Database): PreparedStatemen
     count_by_folder: database.prepare('SELECT COUNT(*) as count FROM memory_index WHERE spec_folder = ?'),
     get_by_id: database.prepare('SELECT * FROM memory_index WHERE id = ?'),
     get_by_path: database.prepare('SELECT * FROM memory_index WHERE file_path = ?'),
-    get_by_folder_and_path: database.prepare('SELECT id FROM memory_index WHERE spec_folder = ? AND file_path = ? AND (anchor_id = ? OR (anchor_id IS NULL AND ? IS NULL))'),
+    get_by_folder_and_path: database.prepare('SELECT id FROM memory_index WHERE spec_folder = ? AND (canonical_file_path = ? OR file_path = ?) AND (anchor_id = ? OR (anchor_id IS NULL AND ? IS NULL)) ORDER BY id DESC LIMIT 1'),
     get_stats: database.prepare(`
       SELECT 
         COUNT(*) as total,
@@ -1356,6 +1357,63 @@ function migrate_confidence_columns(database: Database.Database) {
     } catch (e: unknown) {
       if (!get_error_message(e).includes('duplicate column')) throw e;
     }
+  }
+}
+
+function ensure_canonical_file_path_support(database: Database.Database) {
+  const columns = database.prepare('PRAGMA table_info(memory_index)').all() as Array<{ name: string }>;
+  const hasCanonicalColumn = columns.some((column) => column.name === 'canonical_file_path');
+
+  if (!hasCanonicalColumn) {
+    try {
+      database.exec('ALTER TABLE memory_index ADD COLUMN canonical_file_path TEXT');
+      console.warn('[vector-index] Migration: Added canonical_file_path column');
+    } catch (e: unknown) {
+      if (!get_error_message(e).includes('duplicate column')) {
+        throw e;
+      }
+    }
+  }
+
+  try {
+    database.exec('CREATE INDEX IF NOT EXISTS idx_canonical_file_path ON memory_index(canonical_file_path)');
+    database.exec('CREATE INDEX IF NOT EXISTS idx_spec_canonical_path ON memory_index(spec_folder, canonical_file_path)');
+  } catch (e: unknown) {
+    console.warn('[vector-index] Canonical path index warning:', get_error_message(e));
+  }
+
+  const rowsNeedingBackfill = database.prepare(`
+    SELECT id, file_path
+    FROM memory_index
+    WHERE canonical_file_path IS NULL OR canonical_file_path = ''
+  `).all() as Array<{ id: number; file_path: string | null }>;
+
+  if (rowsNeedingBackfill.length === 0) {
+    return;
+  }
+
+  const updateCanonicalPath = database.prepare(`
+    UPDATE memory_index
+    SET canonical_file_path = ?
+    WHERE id = ?
+  `);
+
+  let updated = 0;
+  const backfillTx = database.transaction((rows: Array<{ id: number; file_path: string | null }>) => {
+    for (const row of rows) {
+      if (!row.file_path) {
+        continue;
+      }
+
+      updateCanonicalPath.run(getCanonicalPathKey(row.file_path), row.id);
+      updated++;
+    }
+  });
+
+  backfillTx(rowsNeedingBackfill);
+
+  if (updated > 0) {
+    logger.info(`Migration: Backfilled canonical_file_path for ${updated} memory rows`);
   }
 }
 

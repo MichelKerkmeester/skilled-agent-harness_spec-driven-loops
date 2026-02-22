@@ -1,5 +1,5 @@
 ---
-description: "Deep-dive reference for Mermaid.js v11, Chart.js v4, and anime.js v3.2.2 initialization, configuration, and integration patterns"
+description: "Deep-dive reference for Mermaid.js 11.12.3, Chart.js 4.5.1, and anime.js 4.3.6 with accessibility, security, and performance defaults"
 ---
 
 # Visual Explainer — Library Guide
@@ -10,7 +10,15 @@ Detailed reference for all external JavaScript libraries used in sk-visual-expla
 
 ---
 
-## Mermaid.js v11
+## 1. OVERVIEW
+
+Use this reference when output depends on Mermaid, Chart.js, or anime.js and you need exact version-safe setup details.
+
+It provides canonical CDN/import patterns, initialization rules, and minimal working snippets for each library.
+
+---
+
+## Mermaid.js 11.12.3
 
 ### CDN Import
 
@@ -18,8 +26,8 @@ Mermaid v11 is ESM-only. Always import as an ES module at the bottom of `<body>`
 
 ```html
 <script type="module">
-  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
-  import elkLayouts from 'https://cdn.jsdelivr.net/npm/@mermaid-js/layout-elk/dist/mermaid-layout-elk.esm.min.mjs';
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11.12.3/dist/mermaid.esm.min.mjs';
+  import elkLayouts from 'https://cdn.jsdelivr.net/npm/@mermaid-js/layout-elk@0.2.0/dist/mermaid-layout-elk.esm.min.mjs';
 
   mermaid.registerLayoutLoaders(elkLayouts);
 
@@ -49,6 +57,26 @@ Mermaid v11 is ESM-only. Always import as an ES module at the bottom of `<body>`
 - `layout: 'elk'` provides superior node positioning for complex graphs. Requires the separate ELK import above. Without it, Mermaid silently falls back to dagre (worse layout).
 - `fontSize: '16px'` is the minimum for readability — never go below this.
 - Always read `window.matchMedia('(prefers-color-scheme: dark)').matches` and pass matching colors.
+
+### Security + Determinism Defaults (Required)
+
+When Mermaid is used, include these initialization options:
+
+```javascript
+mermaid.initialize({
+  startOnLoad: true,
+  theme: 'base',
+  layout: 'elk',
+  securityLevel: 'strict',
+  deterministicIds: true,
+  maxTextSize: 50000,
+  maxEdges: 200,
+});
+```
+
+- `securityLevel: 'strict'` reduces unsafe HTML injection surfaces.
+- `deterministicIds: true` keeps stable output IDs for reproducible renders.
+- `maxTextSize` and `maxEdges` protect against pathological diagram payloads.
 
 ### Full themeVariables Example (Teal palette, light + dark)
 
@@ -450,43 +478,28 @@ document.querySelectorAll('.mermaid-wrap').forEach(function(wrap) {
 });
 ```
 
-### Dark Mode Limitation
+### Dark Mode Behavior
 
-> **Important:** Mermaid renders SVG at initialization time using `theme: 'base'` + `themeVariables`. It cannot reactively switch between light/dark after initialization — the SVG internals are baked in at render time.
->
-> **Workaround:** Render two copies of each diagram (one with light `themeVariables`, one with dark), and toggle visibility using `prefers-color-scheme`:
->
-> ```html
-> <div class="mermaid-light">
->   <pre class="mermaid">graph TD; A --> B</pre>
-> </div>
-> <div class="mermaid-dark">
->   <pre class="mermaid">graph TD; A --> B</pre>
-> </div>
-> ```
-> ```css
-> @media (prefers-color-scheme: dark) {
->   .mermaid-light { display: none; }
-> }
-> @media (prefers-color-scheme: light) {
->   .mermaid-dark { display: none; }
-> }
-> ```
->
-> The CSS overrides on the container (`.mermaid-wrap`) and page level still respond to `prefers-color-scheme` normally — only the Mermaid SVG internals are static.
+Mermaid SVG internals are computed at render time. If the system color scheme changes after render, re-render Mermaid for best fidelity.
+
+Recommended pattern:
+1. Render once on page load with current `prefers-color-scheme` value.
+2. Listen for `matchMedia('(prefers-color-scheme: dark)')` changes.
+3. Re-run Mermaid initialization/render on theme change.
+
+Avoid dual-rendering light/dark duplicates unless re-rendering is not possible.
 
 ---
 
-## Chart.js v4
+## Chart.js 4.5.1
 
 ### CDN Import
 
 ```html
-<!-- Pin to specific minor version to avoid breaking changes -->
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.1/dist/chart.umd.min.js"></script>
 ```
 
-> **Version pinning:** Use `@4.4.1` (exact minor version) instead of `@4` (major-only). Chart.js minor releases occasionally change chart behavior, tooltip defaults, and scale calculations. Pinning ensures reproducible diagrams across time.
+> **Version pinning:** Use the exact pinned version from `assets/library_versions.json`.
 
 ### Base Chart Setup
 
@@ -518,6 +531,8 @@ const chart = new Chart(ctx, {
   options: {
     responsive: true,
     maintainAspectRatio: true,
+    parsing: false,
+    normalized: true,
     plugins: {
       legend: {
         labels: {
@@ -543,6 +558,19 @@ const chart = new Chart(ctx, {
   }
 });
 ```
+
+### Chart Accessibility Expectations
+
+- Wrap chart canvases in `<figure>` with a `<figcaption>` summary.
+- Do not rely on color-only signals in legends and labels.
+- Provide textual fallback for critical numbers (KPI row, summary list, or table).
+
+### Performance Defaults for Large Datasets
+
+- `parsing: false`
+- `normalized: true`
+- Enable decimation for high point counts.
+- Avoid costly shadows/gradients across large datasets.
 
 ### Chart Container Sizing
 
@@ -584,13 +612,15 @@ datasets: [{ data: [{x: 1, y: 2}, {x: 3, y: 4}] }]
 
 ---
 
-## anime.js v3.2.2
+## anime.js 4.3.6 (Optional)
 
 ### CDN Import
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/animejs@3.2.2/lib/anime.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/animejs@4.3.6/lib/anime.min.js"></script>
 ```
+
+Use anime.js only for advanced interaction effects. Default motion in this skill remains CSS-first.
 
 ### Initial State — Set Before anime() Runs
 

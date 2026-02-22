@@ -18,7 +18,7 @@
                                 },
                                 "to": [
                                     {
-                                        "shell_command": "osascript -e 'set the clipboard to \"Think really hard about this...\"' -e 'tell application \"System Events\" to keystroke \"v\" using command down'"
+                                        "shell_command": "osascript -e 'set the clipboard to \"Think really hard about this... Use Sequential Thinking MCP (only available for Copilot models through opencode)\"' -e 'tell application \"System Events\" to keystroke \"v\" using command down'"
                                     }
                                 ],
                                 "type": "basic"
@@ -35,7 +35,7 @@
                                 },
                                 "to": [
                                     {
-                                        "shell_command": "osascript -e 'set the clipboard to \"Use Sequantial Thinking MCP\"' -e 'tell application \"System Events\" to keystroke \"v\" using command down'"
+                                        "shell_command": "osascript -e 'set the clipboard to \"According to [runtime_agent_path]/orchestrate.md logic (resolve [runtime_agent_path] per AGENTS.md §7), delegate simultaneously to up to \"' -e 'tell application \"System Events\" to keystroke \"v\" using command down'"
                                     }
                                 ],
                                 "type": "basic"
@@ -52,7 +52,7 @@
                                 },
                                 "to": [
                                     {
-                                        "shell_command": "osascript -e 'set the clipboard to \"According to [runtime_agent_path]/orchestrate.md logic (resolve [runtime_agent_path] per AGENTS.md §7), delegate simultaneously to up to \"' -e 'tell application \"System Events\" to keystroke \"v\" using command down'"
+                                        "shell_command": "osascript -e 'set the clipboard to \"Follow [runtime_agent_path]/orchestrate.md §6 Compaction Recovery + §8 Self-Protection Rules to prevent context overload (resolve [runtime_agent_path] per AGENTS.md §7)\"' -e 'tell application \"System Events\" to keystroke \"v\" using command down'"
                                     }
                                 ],
                                 "type": "basic"
@@ -69,23 +69,6 @@
                                 },
                                 "to": [
                                     {
-                                        "shell_command": "osascript -e 'set the clipboard to \"Follow [runtime_agent_path]/orchestrate.md §6 Compaction Recovery + §8 Self-Protection Rules to prevent context overload (resolve [runtime_agent_path] per AGENTS.md §7)\"' -e 'tell application \"System Events\" to keystroke \"v\" using command down'"
-                                    }
-                                ],
-                                "type": "basic"
-                            },
-                            {
-                                "from": {
-                                    "key_code": "5",
-                                    "modifiers": {
-                                        "mandatory": [
-                                            "left_command",
-                                            "left_control"
-                                        ]
-                                    }
-                                },
-                                "to": [
-                                    {
                                         "shell_command": "osascript -e 'set the clipboard to \"Review all code you updated or created with [runtime_agent_path]/review.md subagent(s) (resolve [runtime_agent_path] per AGENTS.md §7)\"' -e 'tell application \"System Events\" to keystroke \"v\" using command down'"
                                     }
                                 ],
@@ -93,7 +76,7 @@
                             },
                             {
                                 "from": {
-                                    "key_code": "6",
+                                    "key_code": "5",
                                     "modifiers": {
                                         "mandatory": [
                                             "left_command",

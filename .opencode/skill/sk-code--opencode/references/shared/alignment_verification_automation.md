@@ -2,15 +2,26 @@
 
 This document describes the repeatable verifier introduced for recurring alignment drift checks.
 
+<!-- ANCHOR:overview -->
+## 1. OVERVIEW
+
+Defines the operational contract for `verify_alignment_drift.py`, including:
+- what rule categories are enforced;
+- how severities (`ERROR`/`WARN`) are assigned;
+- default vs strict CI failure behavior.
+
+Use this reference when tuning recurring checks or interpreting verifier output in automation.
+
+<!-- /ANCHOR:overview -->
 <!-- ANCHOR:script -->
-## Script
+## 2. SCRIPT
 
 - Path: `.opencode/skill/sk-code--opencode/scripts/verify_alignment_drift.py`
 - Purpose: run lightweight, deterministic, behavior-neutral checks across OpenCode system languages.
 
 <!-- /ANCHOR:script -->
 <!-- ANCHOR:what-it-checks -->
-## What it checks
+## 3. WHAT IT CHECKS
 
 - **Common (all scanned files)**: UTF-8 readability and LF line endings (flags CRLF).
 - **JavaScript (`.js/.cjs`)**: requires `'use strict';` near file top.
@@ -30,7 +41,7 @@ This document describes the repeatable verifier introduced for recurring alignme
 
 <!-- /ANCHOR:what-it-checks -->
 <!-- ANCHOR:usage -->
-## Usage
+## 4. USAGE
 
 ```bash
 python3 .opencode/skill/sk-code--opencode/scripts/verify_alignment_drift.py --root .opencode

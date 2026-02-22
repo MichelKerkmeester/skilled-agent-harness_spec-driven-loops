@@ -9,6 +9,11 @@
 > - 99.999% of people won't try this system. Beat the odds?
 > - Don't reward me with unwanted coffee: https://buymeacoffee.com/michelkerkmeester
 
+> [!NOTE]
+> Full visual HTML version: [Open via GitHub Pages](https://michelkerkmeester.github.io/opencode-spec-kit-framework/README.visual.html)
+>  
+> If the page is unavailable, enable GitHub Pages for this repository and use the same URL.
+
 </div>
 
 ---
@@ -976,14 +981,15 @@ A: Minimal. SQLite databases are compact. A project with 100+ memories typically
 | [Agent Orchestration](.opencode/changelog/03--agent-orchestration/)                 | 26 files |
 | [Commands](.opencode/changelog/04--commands/)                                       | 29 files |
 | [Skill Advisor](.opencode/changelog/05--skill-advisor/)                             | 4 files  |
-| [Workflows: Documentation](.opencode/changelog/06--sk-documentation/)        | 9 files  |
-| [Workflows: Code (OpenCode)](.opencode/changelog/07--sk-code--opencode/)     | 9 files  |
-| [Workflows: Code (Web Dev)](.opencode/changelog/08--sk-code--web/)       | 10 files |
-| [Workflows: Code (Full Stack)](.opencode/changelog/09--sk-code--full-stack/) | 4 files  |
-| [Workflows: Git](.opencode/changelog/10--sk-git/)                            | 7 files  |
-| [Workflows: Chrome DevTools](.opencode/changelog/11--mcp-chrome-devtools/)    | 4 files  |
-| [MCP: Code Mode](.opencode/changelog/12--mcp-code-mode/)                            | 7 files  |
-| [MCP: Figma](.opencode/changelog/13--mcp-figma/)                                    | 5 files  |
+| [Workflows: Code (OpenCode)](.opencode/changelog/06--sk-code--opencode/)     | 9 files  |
+| [Workflows: Code (Web Dev)](.opencode/changelog/07--sk-code--web/)            | 10 files |
+| [Workflows: Code (Full Stack)](.opencode/changelog/08--sk-code--full-stack/)  | 4 files  |
+| [Workflows: Git](.opencode/changelog/09--sk-git/)                              | 7 files  |
+| [Workflows: Documentation](.opencode/changelog/10--sk-documentation/)          | 9 files  |
+| [Workflows: Visual Explainer](.opencode/changelog/11--sk-visual-explainer/)   | 1 file   |
+| [MCP: Code Mode](.opencode/changelog/12--mcp-code-mode/)                       | 7 files  |
+| [MCP: Chrome DevTools](.opencode/changelog/13--mcp-chrome-devtools/)           | 4 files  |
+| [MCP: Figma](.opencode/changelog/14--mcp-figma/)                               | 5 files  |
 
 ### External Resources
 

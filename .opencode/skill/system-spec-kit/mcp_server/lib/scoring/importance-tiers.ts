@@ -201,6 +201,17 @@ export function getTiersByImportance(): ImportanceTier[] {
  * Get the default importance tier for a given document type.
  * Spec/plan/decision-record are 'important'; others are 'normal'.
  */
+export function normalizeDocumentType(documentType: string | null | undefined): string {
+  if (!documentType || typeof documentType !== 'string') {
+    return 'memory';
+  }
+
+  return documentType
+    .trim()
+    .toLowerCase()
+    .replace(/[\s-]+/g, '_');
+}
+
 export function getDefaultTierForDocumentType(documentType: string): ImportanceTier {
   const DOC_TYPE_TIERS: Record<string, ImportanceTier> = {
     spec: 'important',
@@ -214,5 +225,7 @@ export function getDefaultTierForDocumentType(documentType: string): ImportanceT
     handover: 'normal',
     memory: 'normal',
   };
-  return DOC_TYPE_TIERS[documentType] || 'normal';
+
+  const normalizedDocumentType = normalizeDocumentType(documentType);
+  return DOC_TYPE_TIERS[normalizedDocumentType] || 'normal';
 }

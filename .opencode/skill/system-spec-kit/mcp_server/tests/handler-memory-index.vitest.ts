@@ -91,6 +91,62 @@ describe('Handler Memory Index (T520) [deferred - requires DB test fixtures]', (
     });
   });
 
+  describe('findSpecDocuments', () => {
+    it('T520-9b: deduplicates symlinked specs roots', () => {
+      const root = fs.mkdtempSync(path.join(os.tmpdir(), 'test-spec-docs-'));
+      try {
+        const canonicalSpecs = path.join(root, '.opencode', 'specs');
+        const specFolder = path.join(canonicalSpecs, '003-system-spec-kit', '900-dedup-check');
+        fs.mkdirSync(specFolder, { recursive: true });
+        fs.writeFileSync(path.join(specFolder, 'spec.md'), '# Spec');
+
+        const linkedSpecs = path.join(root, 'specs');
+        try {
+          fs.symlinkSync(canonicalSpecs, linkedSpecs, 'dir');
+        } catch {
+          // Symlink creation can fail in restricted test environments.
+          const fallbackResult = handler.findSpecDocuments(root);
+          expect(Array.isArray(fallbackResult)).toBe(true);
+          return;
+        }
+
+        const result = handler.findSpecDocuments(root);
+        expect(result).toHaveLength(1);
+        expect(path.basename(result[0])).toBe('spec.md');
+      } finally {
+        fs.rmSync(root, { recursive: true, force: true });
+      }
+    });
+
+    it('T520-9c: keeps specFolder filtering with root dedup', () => {
+      const root = fs.mkdtempSync(path.join(os.tmpdir(), 'test-spec-docs-filter-'));
+      try {
+        const canonicalSpecs = path.join(root, '.opencode', 'specs');
+        const targetFolder = path.join(canonicalSpecs, '003-system-spec-kit', '910-target');
+        const otherFolder = path.join(canonicalSpecs, '003-system-spec-kit', '911-other');
+        fs.mkdirSync(targetFolder, { recursive: true });
+        fs.mkdirSync(otherFolder, { recursive: true });
+        fs.writeFileSync(path.join(targetFolder, 'spec.md'), '# Target Spec');
+        fs.writeFileSync(path.join(otherFolder, 'spec.md'), '# Other Spec');
+
+        const linkedSpecs = path.join(root, 'specs');
+        try {
+          fs.symlinkSync(canonicalSpecs, linkedSpecs, 'dir');
+        } catch {
+          const fallbackResult = handler.findSpecDocuments(root, { specFolder: '003-system-spec-kit/910-target' });
+          expect(Array.isArray(fallbackResult)).toBe(true);
+          return;
+        }
+
+        const result = handler.findSpecDocuments(root, { specFolder: '003-system-spec-kit/910-target' });
+        expect(result).toHaveLength(1);
+        expect(result[0].includes('910-target')).toBe(true);
+      } finally {
+        fs.rmSync(root, { recursive: true, force: true });
+      }
+    });
+  });
+
   describe('handleMemoryIndexScan Input/Behavior', () => {
     it('T520-10: empty args returns valid response', async () => {
       try {

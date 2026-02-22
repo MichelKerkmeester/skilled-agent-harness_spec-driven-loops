@@ -6,7 +6,15 @@ description: "Detailed pass/fail verification procedure for all 9 pre-delivery q
 
 > LOAD PRIORITY: ON_DEMAND — load when verifying completed HTML output or debugging quality issues.
 
-Detailed pass/fail criteria for all 9 quality checks. Run every check before delivering any sk-visual-explainer output.
+Detailed pass/fail criteria for 9 core quality checks plus hardening signals. Run every check before delivering any sk-visual-explainer output.
+
+---
+
+## 1. OVERVIEW
+
+Use this checklist as the final verification gate before delivering any visual-explainer HTML file.
+
+Each check includes purpose, pass/fail criteria, common failure modes, and concrete remediations.
 
 ---
 
@@ -14,7 +22,7 @@ Detailed pass/fail criteria for all 9 quality checks. Run every check before del
 
 Before marking an HTML file as complete, work through each check in order. If any check **fails**, fix the issue and re-verify that check before moving on. Checks 1-2 are design quality. Checks 3-7 are technical correctness. Checks 8-9 are accessibility requirements.
 
-**Minimum bar:** All 9 checks must pass. There is no partial credit.
+**Minimum bar:** All core checks and hardening checks must pass. There is no partial credit.
 
 ---
 
@@ -81,6 +89,8 @@ Before marking an HTML file as complete, work through each check in order. If an
 
 **Fix:**
 - Ensure `@media (prefers-color-scheme: dark)` block defines ALL `--ve-*` variables
+- Ensure `<meta name=\"color-scheme\" content=\"light dark\">` exists in `<head>`
+- Add `@media (prefers-contrast: more)` and `@media (forced-colors: active)` fallback rules for critical text/UI
 - Replace hardcoded color values with CSS variables
 - Re-test Chart.js initialization: `const isDark = window.matchMedia('(...)').matches`
 - Check that `--ve-border` and `--ve-border-bright` are defined for dark mode
@@ -197,6 +207,7 @@ pre { overflow-x: auto; }
 **Common failure causes:**
 - Missing `display=swap` in Google Fonts URL (causes FOUC)
 - Incorrect CDN URL (typo, wrong version)
+- Mermaid initialized without hardened limits (`securityLevel`, `maxTextSize`, `maxEdges`, `deterministicIds`)
 - Script that depends on DOM elements before they exist (fix: move script to bottom of `<body>`)
 - `type="module"` scripts running before non-module scripts they depend on
 - `file://` protocol blocked by CORS for certain CDN providers (try JSDelivr as it allows `file://`)
@@ -209,12 +220,12 @@ pre { overflow-x: auto; }
 <link href="https://fonts.googleapis.com/css2?family=...&display=swap" rel="stylesheet">
 
 <!-- Non-module scripts before </body> -->
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
-<script src="https://cdn.jsdelivr.net/npm/animejs@3.2.2/lib/anime.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.1/dist/chart.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/animejs@4.3.6/lib/anime.min.js"></script>
 
 <!-- Module script (Mermaid) LAST -->
 <script type="module">
-  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11.12.3/dist/mermaid.esm.min.mjs';
   ...
 </script>
 ```
@@ -258,6 +269,10 @@ pre { overflow-x: auto; }
 ```
 
 For contrast issues, darken `--ve-text-dim` or lighten `--ve-surface2` until the ratio passes. Test both light and dark modes independently.
+
+Also verify high-contrast support:
+- `@media (prefers-contrast: more)` increases contrast for low-emphasis tokens.
+- `@media (forced-colors: active)` keeps controls and labels visible with system palette overrides.
 
 ---
 

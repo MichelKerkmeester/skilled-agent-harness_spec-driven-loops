@@ -527,8 +527,33 @@ Standard Flow:      Branch:           Parallel:         Merge:
 ---
 
 <!-- /ANCHOR:rules -->
+<!-- ANCHOR:references -->
+## 5. REFERENCES
+
+### Core References
+
+- [core_standards.md](./references/core_standards.md) - markdown structure standards and naming conventions
+- [validation.md](./references/validation.md) - validation pipeline and blocking criteria
+- [workflows.md](./references/workflows.md) - execution workflows by documentation mode
+- [skill_creation.md](./references/skill_creation.md) - skill lifecycle and packaging guidance
+
+### Templates
+
+- [skill_md_template.md](./assets/opencode/skill_md_template.md) - canonical SKILL.md template
+- [readme_template.md](./assets/documentation/readme_template.md) - README structure and quality rules
+- [install_guide_template.md](./assets/documentation/install_guide_template.md) - install guide template
+
+### Validation Scripts
+
+- `scripts/validate_document.py`
+- `scripts/extract_structure.py`
+- `scripts/package_skill.py`
+
+---
+
+<!-- /ANCHOR:references -->
 <!-- ANCHOR:success-criteria -->
-## 5. SUCCESS CRITERIA
+## 6. SUCCESS CRITERIA
 
 ### Document Quality Index (DQI)
 
@@ -622,7 +647,7 @@ The `extract_structure.py` script computes a **DQI** (0-100) based on measurable
 
 <!-- /ANCHOR:success-criteria -->
 <!-- ANCHOR:integration-points -->
-## 6. INTEGRATION POINTS
+## 7. INTEGRATION POINTS
 
 ### Framework Integration
 
@@ -675,31 +700,6 @@ Key integrations:
 ---
 
 <!-- /ANCHOR:integration-points -->
-<!-- ANCHOR:references -->
-## 7. REFERENCES
-
-### Core References
-
-- [core_standards.md](./references/core_standards.md) - markdown structure standards and naming conventions
-- [validation.md](./references/validation.md) - validation pipeline and blocking criteria
-- [workflows.md](./references/workflows.md) - execution workflows by documentation mode
-- [skill_creation.md](./references/skill_creation.md) - skill lifecycle and packaging guidance
-
-### Templates
-
-- [skill_md_template.md](./assets/opencode/skill_md_template.md) - canonical SKILL.md template
-- [readme_template.md](./assets/documentation/readme_template.md) - README structure and quality rules
-- [install_guide_template.md](./assets/documentation/install_guide_template.md) - install guide template
-
-### Validation Scripts
-
-- `scripts/validate_document.py`
-- `scripts/extract_structure.py`
-- `scripts/package_skill.py`
-
----
-
-<!-- /ANCHOR:references -->
 <!-- ANCHOR:external-resources -->
 ## 8. EXTERNAL RESOURCES
 
@@ -716,18 +716,20 @@ Key integrations:
 
 ### For Document Quality
 
-1. Read Sections 3-6 (When/How/Rules/Success)
-2. Navigate: [workflows.md](./references/workflows.md) for execution modes
-3. Run enforcement, optimization, or validation as needed
+1. Read Sections 1-4 for activation, routing, workflow and rules.
+2. Use Section 5 for canonical references and templates.
+3. Navigate: [workflows.md](./references/workflows.md) for execution modes.
+4. Run enforcement, optimization, or validation as needed.
 
 ### For Skill Creation
 
-1. Read Sections 3-6 (When/How/Rules/Success)
-2. Navigate: [skill_creation.md](./references/skill_creation.md) for workflow
-3. For layered skills, use [skill_creation.md](./references/skill_creation.md) (Section 9)
-4. Use templates: [skill_md_template.md](./assets/opencode/skill_md_template.md), [skill_reference_template.md](./assets/opencode/skill_reference_template.md), [skill_asset_template.md](./assets/opencode/skill_asset_template.md)
-5. Use Scripts: `init_skill.py` → edit → `package_skill.py`
-6. Validate: Run Document Quality validation on SKILL.md
+1. Read Sections 1-4 for activation, routing, workflow and rules.
+2. Use Section 5 for canonical references and templates.
+3. Navigate: [skill_creation.md](./references/skill_creation.md) for workflow.
+4. For layered skills, use [skill_creation.md](./references/skill_creation.md) (Section 9).
+5. Use templates: [skill_md_template.md](./assets/opencode/skill_md_template.md), [skill_reference_template.md](./assets/opencode/skill_reference_template.md), [skill_asset_template.md](./assets/opencode/skill_asset_template.md).
+6. Use scripts: `init_skill.py` -> edit -> `package_skill.py`.
+7. Validate: run Document Quality validation on SKILL.md.
 
 ### Quick Reference
 

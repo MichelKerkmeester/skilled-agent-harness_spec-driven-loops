@@ -192,4 +192,18 @@ describe('Importance Tiers (T504)', () => {
       }
     });
   });
+
+  // 4.9 DOCUMENT TYPE DEFAULTS (T504-09)
+  describe('Document Type Defaults (T504-09)', () => {
+    it('T504-09a: Hyphenated and spaced document types normalize correctly', () => {
+      expect(mod.getDefaultTierForDocumentType('decision-record')).toBe('important');
+      expect(mod.getDefaultTierForDocumentType('implementation-summary')).toBe('normal');
+      expect(mod.getDefaultTierForDocumentType('decision record')).toBe('important');
+    });
+
+    it('T504-09b: Normalization is case-insensitive and trims whitespace', () => {
+      expect(mod.getDefaultTierForDocumentType('  SPEC  ')).toBe('important');
+      expect(mod.getDefaultTierForDocumentType('Constitutional')).toBe('constitutional');
+    });
+  });
 });

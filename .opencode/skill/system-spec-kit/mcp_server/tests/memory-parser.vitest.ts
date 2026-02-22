@@ -2,7 +2,10 @@
 // MODULE: Memory Parser Tests
 // ---------------------------------------------------------------
 
-import { describe, it, expect, beforeAll } from 'vitest';
+import { describe, it, expect, beforeAll, afterAll } from 'vitest';
+import * as fs from 'fs';
+import * as path from 'path';
+import * as os from 'os';
 import * as memoryParser from '../lib/parsing/memory-parser';
 
 /* ─────────────────────────────────────────────────────────────
@@ -46,6 +49,36 @@ Just plain markdown content.
       expect(tier).toBe('normal');
     });
 
+    it('T500-02b: Generic session heading falls back to feature heading', () => {
+      const content = `# SESSION SUMMARY
+
+## CONTINUE SESSION
+
+### FEATURE: Add descriptive memory titles for indexing
+
+Implemented the title extraction fallback.
+`;
+
+      const title = memoryParser.extractTitle(content);
+      expect(title).toBe('Add descriptive memory titles for indexing');
+    });
+
+    it('T500-02c: Generic session heading falls back to overview sentence', () => {
+      const content = `# SESSION SUMMARY
+
+## 2. OVERVIEW
+
+Improved context indexing so memory entries use specific task-focused titles.
+
+## 3. DETAILED CHANGES
+
+- Added parser fallback logic.
+`;
+
+      const title = memoryParser.extractTitle(content);
+      expect(title).toBe('Improved context indexing so memory entries use specific task-focused titles.');
+    });
+
     it('T500-03: Empty file returns default/empty result', () => {
       const content = '';
       const title = memoryParser.extractTitle(content);
@@ -85,6 +118,41 @@ Content.
       const tier = memoryParser.extractImportanceTier(content);
 
       expect(title).toBe('Nested Test');
+      expect(tier).toBe('important');
+    });
+
+    it('T500-05b: Tier precedence uses YAML over inline markers and defaults', () => {
+      const content = `---
+importanceTier: critical
+---
+
+# Example
+
+[IMPORTANT]
+`;
+
+      const tier = memoryParser.extractImportanceTier(content, { documentType: 'spec' });
+      expect(tier).toBe('critical');
+    });
+
+    it('T500-05c: Invalid YAML tier falls back to inline marker', () => {
+      const content = `---
+importanceTier: invalid_tier
+---
+
+# Example
+
+[IMPORTANT]
+`;
+
+      const tier = memoryParser.extractImportanceTier(content, { documentType: 'spec' });
+      expect(tier).toBe('important');
+    });
+
+    it('T500-05d: Missing explicit tier falls back to document-type default', () => {
+      const content = `# Spec Document Without Tier`;
+
+      const tier = memoryParser.extractImportanceTier(content, { documentType: 'spec' });
       expect(tier).toBe('important');
     });
   });
@@ -290,6 +358,40 @@ Emoji: Test content
       expect(title).toBeTruthy();
       expect(typeof hash).toBe('string');
       expect(hash.length).toBe(64);
+    });
+  });
+
+  describe('Directory Scanning Deduplication (T500-16)', () => {
+    let workspaceRoot: string;
+
+    beforeAll(() => {
+      workspaceRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'memory-parser-dedup-'));
+    });
+
+    afterAll(() => {
+      if (workspaceRoot && fs.existsSync(workspaceRoot)) {
+        fs.rmSync(workspaceRoot, { recursive: true, force: true });
+      }
+    });
+
+    it('T500-16: findMemoryFiles deduplicates symlinked specs roots', () => {
+      const canonicalSpecsRoot = path.join(workspaceRoot, '.opencode', 'specs');
+      const memoryDir = path.join(canonicalSpecsRoot, '200-dedup-check', 'memory');
+      fs.mkdirSync(memoryDir, { recursive: true });
+      fs.writeFileSync(path.join(memoryDir, 'entry.md'), '# Dedup\n\nMemory content');
+
+      const linkedSpecsRoot = path.join(workspaceRoot, 'specs');
+      try {
+        fs.symlinkSync(canonicalSpecsRoot, linkedSpecsRoot, 'dir');
+      } catch {
+        // Symlink creation can fail in restricted environments.
+        expect(Array.isArray(memoryParser.findMemoryFiles(workspaceRoot))).toBe(true);
+        return;
+      }
+
+      const files = memoryParser.findMemoryFiles(workspaceRoot);
+      expect(files).toHaveLength(1);
+      expect(files[0].endsWith(path.join('200-dedup-check', 'memory', 'entry.md'))).toBe(true);
     });
   });
 

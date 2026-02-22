@@ -27,6 +27,7 @@ interface ListArgs {
   offset?: number;
   specFolder?: string;
   sortBy?: string;
+  includeChunks?: boolean;
 }
 
 /** Arguments for the memory_stats handler. */

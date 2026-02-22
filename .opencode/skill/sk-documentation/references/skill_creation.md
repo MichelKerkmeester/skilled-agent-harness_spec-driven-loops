@@ -75,14 +75,25 @@ skill-name/
 4. RULES (ALWAYS/NEVER/ESCALATE IF)
 5. REFERENCES (or combined `SMART ROUTING & REFERENCES`)
 
+Validation reminder:
+- `scripts/package_skill.py` fails if `REFERENCES` is missing and no approved combined heading variant is present.
+
 **Recommended Sections**:
-5. SUCCESS CRITERIA
-6. INTEGRATION POINTS
-7. RELATED RESOURCES
+6. SUCCESS CRITERIA
+7. INTEGRATION POINTS
+8. RELATED RESOURCES
 
 ### Routing Authority Standard
 
 Intent scoring and the in-code resource map in SMART ROUTING are the authoritative routing source. Do not maintain separate use-case routing tables.
+
+Router parity checklist for modern skills:
+- Guarded in-skill loading (`_guard_in_skill`)
+- Recursive markdown discovery (`discover_markdown_resources`)
+- Weighted intent scoring (`score_intents`)
+- Ambiguity handling (`select_intents`)
+- Explicit loading levels with ON_DEMAND triggers
+- Optional `UNKNOWN_FALLBACK_CHECKLIST` for low-confidence requests
 
 **Section Boundary Rules:**
 ```
@@ -263,7 +274,7 @@ scripts/init_skill.py <skill-name> --path <output-directory>
 3. Creates example resource directories: `scripts/`, `references/`, `assets/`
 4. Adds example files that can be customized or deleted
 
-**Generated SKILL.md**: `init_skill.py` generates a SKILL.md with TODO placeholders for all required sections (WHEN TO USE, SMART ROUTING, REFERENCES, HOW IT WORKS, RULES) plus recommended sections (SUCCESS CRITERIA, INTEGRATION POINTS).
+**Generated SKILL.md**: `init_skill.py` creates a starter SKILL.md. Normalize it to the required section order (WHEN TO USE, SMART ROUTING, HOW IT WORKS, RULES, REFERENCES) and add recommended sections (SUCCESS CRITERIA, INTEGRATION POINTS, RELATED RESOURCES) as you complete the skill.
 
 **After initialization**: Customize or remove generated files as needed.
 
@@ -387,14 +398,14 @@ Answer these questions in SKILL.md:
 | --------------- | -------- | ---------------------------------------------- |
 | `name`          | ✅        | Must match folder name, lowercase-with-hyphens |
 | `description`   | ✅        | Single line, specific about capabilities       |
-| `allowed-tools` | ✅        | Comma-separated tool list                      |
+| `allowed-tools` | ✅        | Array format (`[Read, Write, ...]`)           |
 | `version`       | ⚪        | Semantic versioning (e.g., `1.0.0`)            |
 
 ```yaml
 ---
 name: markdown-optimizer
 description: Complete document quality pipeline with structure enforcement, content optimization (AI-friendly), and style guide compliance
-allowed-tools: Read, Write, Edit, Bash, Glob, Grep
+allowed-tools: [Read, Write, Edit, Bash, Glob, Grep]
 version: 1.0.0
 ---
 ```

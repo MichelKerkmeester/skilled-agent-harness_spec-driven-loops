@@ -3,10 +3,27 @@
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 
+## 1. OVERVIEW
+
+Implementation sequence for delivering and verifying `sk-visual-explainer` hardening with minimal, requirement-bound changes.
+
+## TABLE OF CONTENTS
+
+- [2. SUMMARY](#2--summary)
+- [3. QUALITY GATES](#3--quality-gates)
+- [4. ARCHITECTURE](#4--architecture)
+- [5. IMPLEMENTATION PHASES](#5--implementation-phases)
+- [6. TESTING STRATEGY](#6--testing-strategy)
+- [7. DEPENDENCIES](#7--dependencies)
+- [8. ROLLBACK PLAN](#8--rollback-plan)
+- [L2: PHASE DEPENDENCIES](#l2-phase-dependencies)
+- [L2: EFFORT ESTIMATION](#l2-effort-estimation)
+- [L2: ENHANCED ROLLBACK](#l2-enhanced-rollback)
+
 ---
 
 <!-- ANCHOR:summary -->
-## 1. SUMMARY
+## 2. SUMMARY
 
 ### Technical Context
 
@@ -24,7 +41,7 @@ This plan hardens `sk-visual-explainer` by locking validator behavior and templa
 ---
 
 <!-- ANCHOR:quality-gates -->
-## 2. QUALITY GATES
+## 3. QUALITY GATES
 
 ### Definition of Ready
 - [x] Problem statement clear and scope documented
@@ -40,7 +57,7 @@ This plan hardens `sk-visual-explainer` by locking validator behavior and templa
 ---
 
 <!-- ANCHOR:architecture -->
-## 3. ARCHITECTURE
+## 4. ARCHITECTURE
 
 ### Pattern
 Scripted validation pipeline with reference-template and docs consistency checks.
@@ -61,7 +78,7 @@ Scripted validation pipeline with reference-template and docs consistency checks
 ---
 
 <!-- ANCHOR:phases -->
-## 4. IMPLEMENTATION PHASES
+## 5. IMPLEMENTATION PHASES
 
 ### Phase 1: Baseline capture
 - [x] Capture current validator output and exit code for each template.
@@ -90,7 +107,7 @@ Scripted validation pipeline with reference-template and docs consistency checks
 ---
 
 <!-- ANCHOR:testing -->
-## 5. TESTING STRATEGY
+## 6. TESTING STRATEGY
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
@@ -102,7 +119,7 @@ Scripted validation pipeline with reference-template and docs consistency checks
 ---
 
 <!-- ANCHOR:dependencies -->
-## 6. DEPENDENCIES
+## 7. DEPENDENCIES
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
@@ -115,7 +132,7 @@ Scripted validation pipeline with reference-template and docs consistency checks
 ---
 
 <!-- ANCHOR:rollback -->
-## 7. ROLLBACK PLAN
+## 8. ROLLBACK PLAN
 
 - **Trigger**: Validator starts producing false positives/false negatives, or template output quality regresses.
 - **Procedure**: Revert hardening edits in validator/templates/docs, rerun baseline commands, confirm previous behavior is restored.

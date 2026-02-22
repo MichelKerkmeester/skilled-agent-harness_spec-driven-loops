@@ -142,6 +142,13 @@ else
   info "Recommended: <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">"
 fi
 
+if echo "$HEAD_SECTION" | grep -qi 'name\s*=\s*["\x27]\?color-scheme'; then
+  pass "color-scheme meta tag found"
+else
+  fail "Missing <meta name=\"color-scheme\" content=\"light dark\"> in <head>"
+  info "Required for consistent UA form/control rendering in light and dark modes"
+fi
+
 # ── CHECK 5: No hardcoded absolute paths ─────────────────────────────────────
 section "5" "No Hardcoded Absolute Paths"
 
@@ -248,6 +255,62 @@ else
   fi
 fi
 
+# ── CHECK 7A: Mermaid hardening signals ──────────────────────────────────────
+section "7A" "Mermaid Hardening Signals"
+
+USES_MERMAID=false
+if grep -qiE 'import[[:space:]]+mermaid|class=["\x27]mermaid["\x27]|<pre[^>]*class=["\x27]mermaid["\x27]' "$HTML_FILE"; then
+  USES_MERMAID=true
+fi
+
+if $USES_MERMAID; then
+  if grep -qiE "securityLevel[[:space:]]*:[[:space:]]*['\"]strict['\"]" "$HTML_FILE"; then
+    pass "Mermaid securityLevel: strict detected"
+  else
+    fail "Mermaid is used but securityLevel: 'strict' is missing"
+    info "Add securityLevel: 'strict' to mermaid.initialize(...)"
+  fi
+
+  if grep -qiE 'deterministicIds[[:space:]]*:[[:space:]]*true' "$HTML_FILE"; then
+    pass "Mermaid deterministicIds: true detected"
+  else
+    fail "Mermaid is used but deterministicIds: true is missing"
+  fi
+
+  if grep -qiE 'maxTextSize[[:space:]]*:[[:space:]]*[0-9]+' "$HTML_FILE"; then
+    pass "Mermaid maxTextSize limit detected"
+  else
+    fail "Mermaid is used but maxTextSize limit is missing"
+  fi
+
+  if grep -qiE 'maxEdges[[:space:]]*:[[:space:]]*[0-9]+' "$HTML_FILE"; then
+    pass "Mermaid maxEdges limit detected"
+  else
+    fail "Mermaid is used but maxEdges limit is missing"
+  fi
+else
+  pass "No Mermaid usage detected (hardening signals not required)"
+fi
+
+# ── CHECK 7B: Canvas/Chart accessibility fallback ────────────────────────────
+section "7B" "Canvas Accessibility Fallback"
+
+USES_CANVAS=false
+if grep -qi '<canvas' "$HTML_FILE"; then
+  USES_CANVAS=true
+fi
+
+if $USES_CANVAS; then
+  if grep -qi '<figcaption' "$HTML_FILE" || grep -qiE '<canvas[^>]*(aria-label|aria-labelledby)=' "$HTML_FILE"; then
+    pass "Canvas fallback context detected (figcaption or aria label)"
+  else
+    fail "Canvas found without textual accessibility fallback"
+    info "Add <figcaption> summary or aria-label/aria-labelledby for chart canvas context"
+  fi
+else
+  pass "No canvas elements detected (fallback not required)"
+fi
+
 # ── CHECK 8: No broken internal anchor references ────────────────────────────
 section "8" "Internal Anchor References"
 
@@ -313,6 +376,23 @@ else
   info "Add: @media (prefers-reduced-motion: reduce) {"
   info "       *, *::before, *::after { animation-duration: 0.01ms !important; }"
   info "     }"
+fi
+
+# ── CHECK 10A: Contrast + forced-colors coverage ─────────────────────────────
+section "10A" "Contrast and Forced-Colors Coverage"
+
+if grep -qi 'prefers-contrast' "$HTML_FILE"; then
+  pass "prefers-contrast media query detected"
+else
+  warn "No prefers-contrast media query detected"
+  info "Add @media (prefers-contrast: more) for high-contrast users"
+fi
+
+if grep -qi 'forced-colors' "$HTML_FILE"; then
+  pass "forced-colors media query detected"
+else
+  warn "No forced-colors media query detected"
+  info "Add @media (forced-colors: active) for system high-contrast compatibility"
 fi
 
 # ── CHECK 11: --ve-* token system coverage ────────────────────────────────────

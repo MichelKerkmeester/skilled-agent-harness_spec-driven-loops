@@ -28,10 +28,14 @@ async function handleMemoryList(args: ListArgs): Promise<MCPResponse> {
     offset: rawOffset = 0,
     specFolder,
     sortBy = 'created_at',
+    includeChunks = false,
   } = args;
 
   if (specFolder !== undefined && typeof specFolder !== 'string') {
     throw new Error('specFolder must be a string');
+  }
+  if (includeChunks !== undefined && typeof includeChunks !== 'boolean') {
+    throw new Error('includeChunks must be a boolean');
   }
 
   const safeLimit = Math.max(1, Math.min(rawLimit || 20, 100));
@@ -54,14 +58,26 @@ async function handleMemoryList(args: ListArgs): Promise<MCPResponse> {
     : 'created_at';
 
   try {
-    const countSql = specFolder
-      ? 'SELECT COUNT(*) as count FROM memory_index WHERE spec_folder = ?'
-      : 'SELECT COUNT(*) as count FROM memory_index';
-    const countResult = database.prepare(countSql).get(...(specFolder ? [specFolder] : [])) as Record<string, unknown> | undefined;
+    const whereParts: string[] = [];
+    const baseParams: unknown[] = [];
+
+    if (!includeChunks) {
+      whereParts.push('parent_id IS NULL');
+    }
+
+    if (specFolder) {
+      whereParts.push('spec_folder = ?');
+      baseParams.push(specFolder);
+    }
+
+    const whereClause = whereParts.length > 0 ? `WHERE ${whereParts.join(' AND ')}` : '';
+
+    const countSql = `SELECT COUNT(*) as count FROM memory_index ${whereClause}`;
+    const countResult = database.prepare(countSql).get(...baseParams) as Record<string, unknown> | undefined;
     total = (countResult && typeof countResult.count === 'number') ? countResult.count : 0;
 
-    const sql = `SELECT id, spec_folder, file_path, title, trigger_phrases, importance_weight, created_at, updated_at FROM memory_index ${specFolder ? 'WHERE spec_folder = ?' : ''} ORDER BY ${sortColumn} DESC LIMIT ? OFFSET ?`;
-    const params = specFolder ? [specFolder, safeLimit, safeOffset] : [safeLimit, safeOffset];
+    const sql = `SELECT id, spec_folder, file_path, title, trigger_phrases, importance_weight, created_at, updated_at FROM memory_index ${whereClause} ORDER BY ${sortColumn} DESC LIMIT ? OFFSET ?`;
+    const params = [...baseParams, safeLimit, safeOffset];
     rows = database.prepare(sql).all(...params);
   } catch (dbErr: unknown) {
     const message = toErrorMessage(dbErr);
@@ -101,6 +117,7 @@ async function handleMemoryList(args: ListArgs): Promise<MCPResponse> {
       total,
       offset: safeOffset,
       limit: safeLimit,
+      includeChunks,
       count: memories.length,
       results: memories,
     },

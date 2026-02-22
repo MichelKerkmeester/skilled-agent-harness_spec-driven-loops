@@ -228,9 +228,6 @@ spec_kit_memory_checkpoint_delete({ name: "<name>" })
 ```
 
 > **Feature Flag Behavior:** `SPECKIT_ADAPTIVE_FUSION` affects scan and search behavior — when enabled, index scans apply adaptive weight profiles during embedding and artifact-class routing during re-indexing. `SPECKIT_EXTENDED_TELEMETRY` enables detailed per-operation metrics for scan, search, and health calls. **Mutation Ledger:** cleanup and delete operations are recorded in the append-only mutation ledger, providing a full audit trail that can be reviewed when investigating unexpected state changes.
->
-> **Graph Channel Flag (default: ENABLED):**
-> - `SPECKIT_GRAPH_UNIFIED` — gates the graph channel in hybrid search. When enabled, `memory_search` calls use 3-channel fusion (vector + BM25 + graph), including deduplication searches in scan and cleanup workflows.
 
 ### `memory_index_scan` Parameters
 
@@ -279,7 +276,7 @@ STATUS=OK
 
 User Input: Type action name (scan, cleanup, health, point, quit) to proceed
 
-> **Graph Channel Metrics (P2):** When `SPECKIT_GRAPH_UNIFIED` is enabled, graph channel metrics are tracked internally: `totalQueries`, `graphHits`, `graphOnlyResults`, `multiSourceResults`, `graphHitRate`. These are available via `getGraphMetrics()` (exported from `hybrid-search.ts`) but tool handler wiring is deferred (P2) — metrics are not yet surfaced in this stats dashboard. Once wired, the dashboard will include a graph hit rate row.
+> **Retrieval Metrics (P2):** Additional internal retrieval metrics are tracked by the search pipeline; dashboard exposure remains deferred until handler wiring is completed.
 
 ---
 
@@ -538,9 +535,7 @@ MEMORY:HEALTH
   PASS  causal_edges
   PASS  memory_corrections
 
-  Note: causal_edges is actively used for graph traversal when SPECKIT_GRAPH_UNIFIED
-  is enabled. Graph channel status (hit rate, multi-source results) is available via
-  getGraphMetrics() but tool handler wiring is deferred (P2).
+  Note: causal_edges stores explicit memory relationships for lineage tooling.
 
 → Checks ───────────────────────────────────────────
   PASS  DB accessible

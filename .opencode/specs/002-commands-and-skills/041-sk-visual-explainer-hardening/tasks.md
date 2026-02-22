@@ -3,6 +3,21 @@
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
 
+## 1. OVERVIEW
+
+Task-level execution checklist aligned to the hardening spec and plan, preserving current completion/evidence state.
+
+## TABLE OF CONTENTS
+
+- [TASK NOTATION](#task-notation)
+- [PHASE 1: BASELINE CAPTURE](#phase-1-baseline-capture)
+- [PHASE 2: VALIDATOR FIXES](#phase-2-validator-fixes)
+- [PHASE 3: TEMPLATE TOKEN MIGRATION](#phase-3-template-token-migration)
+- [PHASE 4: DOCS CORRECTION](#phase-4-docs-correction)
+- [PHASE 5: VALIDATION+SUMMARY](#phase-5-validationsummary)
+- [COMPLETION CRITERIA](#completion-criteria)
+- [CROSS-REFERENCES](#cross-references)
+
 ---
 
 <!-- ANCHOR:notation -->

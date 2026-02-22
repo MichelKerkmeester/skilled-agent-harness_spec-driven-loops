@@ -26,7 +26,7 @@ SKILL.md files define AI agent skills - reusable capabilities that extend an age
 This guide provides **one comprehensive SKILL template** (Section 3) that covers all skill types from simple single-purpose tools to complex multi-mode orchestrators.
 
 **The template is flexible:**
-- **Simple skills**: Use core sections only (WHEN TO USE, HOW IT WORKS, RULES)
+- **Simple skills**: Use required core sections only (WHEN TO USE, SMART ROUTING, HOW IT WORKS, RULES, REFERENCES)
 - **Skills with bundled resources**: Include detection context, merged resource domains/mapping, loading levels, and one authoritative Smart Router Pseudocode block; use `references/`, `assets/`, and `scripts/`
 - **Multi-mode skills**: Expand WHEN TO USE and HOW IT WORKS sections by mode
 - **All skills**: MUST include Section 2 (SMART ROUTING) with detection guidance + domain-based routing + pseudocode
@@ -137,6 +137,9 @@ Use retrieval anchors for every H2 section so section-level loading can target s
 - Max 3000 lines
 
 **Required Sections**: WHEN TO USE, SMART ROUTING, HOW IT WORKS, RULES (with ✅ ALWAYS, ❌ NEVER, ⚠️ ESCALATE IF), REFERENCES (or combined `SMART ROUTING & REFERENCES`)
+
+Packaging enforcement note:
+- `package_skill.py` fails if `REFERENCES` is missing and no approved combined `SMART ROUTING & REFERENCES` structure exists.
 
 **Recommended Sections**: SUCCESS CRITERIA, INTEGRATION POINTS, RELATED RESOURCES
 
@@ -677,6 +680,8 @@ Section 2 typically contains five subsections:
 - **Resource Domains** - merged domain mapping + concise domain-level paths
 - **Resource Loading Levels** - ALWAYS/CONDITIONAL/ON_DEMAND table aligned to in-code behavior
 - **Smart Router Pseudocode** - scoped guard + recursive discovery + weighted scoring + top-2 ambiguity handling
+- **Router parity checklist** - include `_guard_in_skill()`, `discover_markdown_resources()`, `score_intents()`, `select_intents()`, and explicit `ON_DEMAND` handling
+- **Unknown fallback behavior** - include `UNKNOWN_FALLBACK_CHECKLIST` for low-confidence intent routing where applicable
 
 **Structure**:
 
@@ -919,7 +924,32 @@ mode_detection:
 
 ---
 
-### Section 5: SUCCESS CRITERIA
+### Section 5: REFERENCES
+
+**Purpose**: Expose the operational references and templates the skill depends on.
+
+**Essential Content**:
+- Core references used during execution
+- Templates/assets used during output generation
+- Loading notes that stay consistent with Section 2 (SMART ROUTING)
+
+**Structure**:
+
+### Core References
+- [reference-name.md](./references/reference-name.md) - Primary guidance
+
+### Templates and Assets
+- [template-name.md](./assets/template-name.md) - Reusable output template
+
+### Reference Loading Notes
+- Load only what current intent requires.
+- Keep Smart Routing as the single routing authority.
+
+**Word Budget**: 40-120 lines
+
+---
+
+### Section 6: SUCCESS CRITERIA
 
 **Purpose**: Define completion conditions and quality standards
 
@@ -955,7 +985,7 @@ mode_detection:
 
 ---
 
-### Section 6: INTEGRATION POINTS
+### Section 7: INTEGRATION POINTS
 
 **Purpose**: Document how skill integrates with systems, tools, and other skills
 
@@ -1058,6 +1088,7 @@ Content - Standard Sections:
 □ WHEN TO USE section includes use cases + anti-patterns
 □ HOW IT WORKS section explains workflow clearly
 □ RULES section has ALWAYS, NEVER, ESCALATE IF
+□ REFERENCES section lists core references/templates explicitly
 □ SUCCESS CRITERIA section defines completion
 □ INTEGRATION POINTS section documents dependencies
 □ All bundled resources referenced from SKILL.md

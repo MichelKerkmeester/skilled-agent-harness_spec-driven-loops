@@ -2,7 +2,7 @@
 
 > Version 3.0.0 | 2026-02-20
 
-Complete installation and configuration guide for the Spec Kit Memory MCP server. This guide enables AI-powered context retrieval and conversation memory across your project. The system indexes markdown documentation from spec folders and constitutional rules to surface relevant information during AI interactions. It provides semantic search, trigger-based memory surfacing, intent-aware context loading, causal relationship tracking and causal graph enrichment.
+Complete installation and configuration guide for the Spec Kit Memory MCP server. This guide enables AI-powered context retrieval and conversation memory across your project. The system indexes markdown documentation from spec folders and constitutional rules to surface relevant information during AI interactions. It provides semantic search, trigger-based memory surfacing, intent-aware context loading and causal relationship tracking.
 
 > **Part of OpenCode Installation.** See the [Master Installation Guide](../README.md) for complete setup.
 
@@ -75,7 +75,7 @@ Spec Kit Memory is an MCP (Model Context Protocol) server that gives AI assistan
 │              Spec Kit Memory MCP Server (Node.js)               │
 │                                                                 │
 │  Context indexing    Semantic search    Trigger matching        │
-│  Graph channel       Adaptive fusion    Extended telemetry      │
+│  Causal lineage      Adaptive fusion    Extended telemetry      │
 │                                                                 │
 │  SQLite + sqlite-vec for vector storage                         │
 │  Canonical DB: mcp_server/dist/database/context-index.sqlite    │
@@ -319,7 +319,6 @@ Add these flags to the `environment` (or `env`) block of any configuration optio
 
 | Variable | Default | Description |
 |---|---|---|
-| `SPECKIT_GRAPH_UNIFIED` | `true` | Controls the entire graph channel. Set to `false` to disable all graph enrichment. |
 | `SPECKIT_ADAPTIVE_FUSION` | `true` | Controls adaptive intent-based fusion weights. Set to `false` to disable (7 task types). |
 | `SPECKIT_EXTENDED_TELEMETRY` | `true` | Controls 4-dimension per-retrieval telemetry. Set to `false` to disable metrics collection. |
 
@@ -337,7 +336,6 @@ Add these flags to the `environment` (or `env`) block of any configuration optio
       "environment": {
         "EMBEDDINGS_PROVIDER": "hf-local",
         "MEMORY_DB_PATH": ".opencode/skill/system-spec-kit/mcp_server/dist/database/context-index.sqlite",
-        "SPECKIT_GRAPH_UNIFIED": "true",
         "SPECKIT_ADAPTIVE_FUSION": "true",
         "SPECKIT_EXTENDED_TELEMETRY": "true"
       },
@@ -512,7 +510,7 @@ Query expansion activates automatically when you use `mode="deep"`.
 
 ### memory_save: Index a Memory File
 
-`memory_save()` indexes a single new or updated memory file into the database. After saving, graph enrichment fires automatically (Step 7.6 in the workflow). For bulk indexing, use `memory_index_scan()` instead.
+`memory_save()` indexes a single new or updated memory file into the database. For bulk indexing, use `memory_index_scan()` instead.
 
 ### memory_index_scan: Bulk Indexing
 
@@ -528,22 +526,16 @@ Query expansion activates automatically when you use `mode="deep"`.
 
 `memory_stats()` returns counts, dates and top-ranked folders for the memory system. Use it to confirm indexing is working and to inspect database health.
 
-### Graph Channel System
+### Causal Lineage System
 
-Graph enrichment in the current runtime is causal-graph based and runs in-process.
+Causal support in the current runtime is relationship-driven and runs in-process.
 
 **Behavior:**
 - Causal traversal augments memory retrieval for lineage/"why" queries
-- Graph channel contributions are included when the graph flag is enabled
-- Graph-related metrics are emitted when extended telemetry is enabled
+- Causal relationship tools support explicit dependency and provenance tracing
+- Retrieval metrics are emitted when extended telemetry is enabled
 
 **Link validation:** Run `check-links.sh` to validate markdown links in skill docs.
-
-### Graph Channel (Enabled by Default)
-
-The causal graph channel now participates in every search query. Previously it was disabled.
-
-- `SPECKIT_GRAPH_UNIFIED`: Master switch for the entire graph channel
 
 ### Adaptive Hybrid Fusion
 
@@ -728,7 +720,6 @@ bash .opencode/skill/system-spec-kit/scripts/validate.sh \
 | Server starts but returns no memories | No indexed memories yet, or embeddings are pending | Run `memory_index_scan({ force: true })` via your AI |
 | Database appears stale after restore | Client still uses old MCP process with in-memory state | Fully restart OpenCode or Claude Code |
 | MCP server not in tools list | Configuration file error or path is wrong | Validate JSON syntax and verify binary path (see below) |
-| Graph enrichment not firing | `SPECKIT_GRAPH_UNIFIED` set to `false` | Remove the flag or set it to `true` in your config |
 | Wikilink validation fails | Broken `[[node-name]]` reference in a skill node file | Run `check-links.sh` and fix the reported broken links |
 
 ### Detailed Fixes
@@ -879,7 +870,6 @@ GRAPH LINKS:  bash scripts/check-links.sh
 PHASE VALID:  bash scripts/validate.sh specs/NNN-name --recursive
 
 FEATURE FLAGS (env vars):
-  SPECKIT_GRAPH_UNIFIED     default: true  (false = disable all graph)
   SPECKIT_ADAPTIVE_FUSION   default: true  (false = disable intent-based fusion)
   SPECKIT_EXTENDED_TELEMETRY default: true (false = disable metrics)
 
@@ -899,6 +889,6 @@ MCP TOOLS: memory_context, memory_search, memory_match_triggers,
 
 | Version | Date | Summary |
 |---|---|---|
-| v3.0.0 | 2026-02-20 | Graph channel enabled by default. Cross-encoder reranking enabled by default. Co-activation score boost fix. Query expansion on deep mode. Evidence gap warnings. MMR reranking with intent-mapped lambda. Phase system support (recursive validation, phase detection scoring). Five new feature flags. `memory_context` tokenUsage parameter. |
+| v3.0.0 | 2026-02-20 | Cross-encoder reranking enabled by default. Co-activation score boost fix. Query expansion on deep mode. Evidence gap warnings. MMR reranking with intent-mapped lambda. Phase system support (recursive validation, phase detection scoring). Feature flag updates. `memory_context` tokenUsage parameter. |
 | v2.x | 2025 | Adaptive fusion, extended telemetry, artifact-class routing, append-only mutation ledger, typed retrieval contracts. |
 | v1.x | 2024 | Initial release. Semantic search, trigger matching, intent-aware context, session deduplication. |

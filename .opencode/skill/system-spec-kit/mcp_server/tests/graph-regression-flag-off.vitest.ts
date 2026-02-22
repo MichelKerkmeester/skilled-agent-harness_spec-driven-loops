@@ -1,7 +1,7 @@
 // ---------------------------------------------------------------
-// TEST: GRAPH REGRESSION - FLAG OFF (T022)
-// Verifies the graph channel is completely bypassed when
-// SPECKIT_GRAPH_UNIFIED is off (default behavior).
+// TEST: GRAPH REGRESSION - LEGACY CHANNEL DISABLED (T022)
+// Verifies the legacy graph channel remains bypassed regardless
+// of SPECKIT_GRAPH_UNIFIED env values.
 // ---------------------------------------------------------------
 
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
@@ -46,34 +46,33 @@ describe('T022: Graph Channel Feature Flag Regression', () => {
       delete process.env.SPECKIT_GRAPH_UNIFIED;
     });
 
-    it('T022-1: Flag returns true when env var is absent (enabled by default)', () => {
+    it('T022-1: Flag returns false when env var is absent', () => {
       delete process.env.SPECKIT_GRAPH_UNIFIED;
-      expect(isGraphUnifiedEnabled()).toBe(true);
+      expect(isGraphUnifiedEnabled()).toBe(false);
     });
 
     // NOTE: T022-2 covers the hybridSearch graphFn=null behavior and lives in the
     // nested describe('T022-2: hybridSearch — graph search fn NOT called...') group below.
 
-    it('T022-3: Flag returns true when env var is exactly "true"', () => {
+    it('T022-3: Flag returns false when env var is exactly "true"', () => {
       process.env.SPECKIT_GRAPH_UNIFIED = 'true';
-      expect(isGraphUnifiedEnabled()).toBe(true);
+      expect(isGraphUnifiedEnabled()).toBe(false);
     });
 
-    it('T022-4: Flag reads from process.env.SPECKIT_GRAPH_UNIFIED exclusively', () => {
-      // Verify the function observes live env mutations — no caching
+    it('T022-4: Flag remains false across env var mutations', () => {
       delete process.env.SPECKIT_GRAPH_UNIFIED;
-      expect(isGraphUnifiedEnabled()).toBe(true);
+      expect(isGraphUnifiedEnabled()).toBe(false);
 
       process.env.SPECKIT_GRAPH_UNIFIED = 'false';
       expect(isGraphUnifiedEnabled()).toBe(false);
 
       delete process.env.SPECKIT_GRAPH_UNIFIED;
-      expect(isGraphUnifiedEnabled()).toBe(true);
+      expect(isGraphUnifiedEnabled()).toBe(false);
     });
 
-    it('T022-5a: Case-insensitive — "TRUE" (uppercase) enables flag', () => {
+    it('T022-5a: "TRUE" (uppercase) does not enable flag', () => {
       process.env.SPECKIT_GRAPH_UNIFIED = 'TRUE';
-      expect(isGraphUnifiedEnabled()).toBe(true);
+      expect(isGraphUnifiedEnabled()).toBe(false);
     });
 
     it('T022-5b: Strict equality — "1" does NOT enable flag', () => {
@@ -86,14 +85,14 @@ describe('T022: Graph Channel Feature Flag Regression', () => {
       expect(isGraphUnifiedEnabled()).toBe(false);
     });
 
-    it('T022-5d: Case-insensitive — "True" (mixed case) enables flag', () => {
+    it('T022-5d: "True" (mixed case) does not enable flag', () => {
       process.env.SPECKIT_GRAPH_UNIFIED = 'True';
-      expect(isGraphUnifiedEnabled()).toBe(true);
+      expect(isGraphUnifiedEnabled()).toBe(false);
     });
 
-    it('T022-5e: Empty string keeps flag enabled (rollout-policy treats empty as unset)', () => {
+    it('T022-5e: Empty string does not enable flag', () => {
       process.env.SPECKIT_GRAPH_UNIFIED = '';
-      expect(isGraphUnifiedEnabled()).toBe(true);
+      expect(isGraphUnifiedEnabled()).toBe(false);
     });
 
     it('T022-5f: Strict equality — "false" does NOT enable flag', () => {
@@ -299,7 +298,7 @@ describe('T022: Graph Channel Feature Flag Regression', () => {
       expect(graphFn).toBeUndefined();
     });
 
-    it('T022-wire-on: When flag is true, a real graphFn is the correct arg to init()', () => {
+    it('T022-wire-on: Even when env var is true, graphFn remains undefined', () => {
       process.env.SPECKIT_GRAPH_UNIFIED = 'true';
 
       const mockGraphFn = vi.fn().mockReturnValue([]);
@@ -307,12 +306,11 @@ describe('T022: Graph Channel Feature Flag Regression', () => {
         ? mockGraphFn
         : undefined;
 
-      expect(graphFn).toBeDefined();
-      expect(typeof graphFn).toBe('function');
+      expect(graphFn).toBeUndefined();
     });
 
     it('T022-wire-init-null: init() called with undefined graphFn stores null internally (search skips graph)', async () => {
-      process.env.SPECKIT_GRAPH_UNIFIED = 'false';
+      process.env.SPECKIT_GRAPH_UNIFIED = 'true';
 
       const graphFn = isGraphUnifiedEnabled() ? vi.fn().mockReturnValue([]) : undefined;
 

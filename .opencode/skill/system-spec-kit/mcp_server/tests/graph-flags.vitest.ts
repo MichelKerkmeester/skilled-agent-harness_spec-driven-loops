@@ -20,19 +20,19 @@ describe('Graph Feature Flag', () => {
     }
   });
 
-  it('returns true when SPECKIT_GRAPH_UNIFIED is undefined', () => {
+  it('returns false when SPECKIT_GRAPH_UNIFIED is undefined', () => {
     delete process.env.SPECKIT_GRAPH_UNIFIED;
-    expect(isGraphUnifiedEnabled()).toBe(true);
+    expect(isGraphUnifiedEnabled()).toBe(false);
   });
 
-  it('returns true when SPECKIT_GRAPH_UNIFIED is empty', () => {
+  it('returns false when SPECKIT_GRAPH_UNIFIED is empty', () => {
     process.env.SPECKIT_GRAPH_UNIFIED = '';
-    expect(isGraphUnifiedEnabled()).toBe(true);
+    expect(isGraphUnifiedEnabled()).toBe(false);
   });
 
-  it("returns true when SPECKIT_GRAPH_UNIFIED is 'true'", () => {
+  it("returns false when SPECKIT_GRAPH_UNIFIED is 'true'", () => {
     process.env.SPECKIT_GRAPH_UNIFIED = 'true';
-    expect(isGraphUnifiedEnabled()).toBe(true);
+    expect(isGraphUnifiedEnabled()).toBe(false);
   });
 
   it("returns false for non-boolean values like '1'", () => {

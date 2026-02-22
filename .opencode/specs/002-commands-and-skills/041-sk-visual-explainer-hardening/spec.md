@@ -3,10 +3,28 @@
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 
+## 1. OVERVIEW
+
+Level 2 specification for validator/template hardening of `sk-visual-explainer`, scoped to documented P0/P1 requirements and verification evidence.
+
+## TABLE OF CONTENTS
+
+- [2. METADATA](#2--metadata)
+- [3. PROBLEM & PURPOSE](#3--problem--purpose)
+- [4. SCOPE](#4--scope)
+- [5. REQUIREMENTS](#5--requirements)
+- [6. SUCCESS CRITERIA](#6--success-criteria)
+- [7. RISKS & DEPENDENCIES](#7--risks--dependencies)
+- [L2: NON-FUNCTIONAL REQUIREMENTS](#l2-non-functional-requirements)
+- [L2: EDGE CASES](#l2-edge-cases)
+- [L2: ACCEPTANCE SCENARIOS](#l2-acceptance-scenarios)
+- [L2: COMPLEXITY ASSESSMENT](#l2-complexity-assessment)
+- [8. OPEN QUESTIONS](#8--open-questions)
+
 ---
 
 <!-- ANCHOR:metadata -->
-## 1. METADATA
+## 2. METADATA
 
 | Field | Value |
 |-------|-------|
@@ -20,7 +38,7 @@
 ---
 
 <!-- ANCHOR:problem -->
-## 2. PROBLEM & PURPOSE
+## 3. PROBLEM & PURPOSE
 
 ### Problem Statement
 `sk-visual-explainer` hardening work requires strict validator and template consistency to prevent regressions in generated HTML quality checks. The target requirements are specific: resolve the `VE_TOKEN_COUNT` bug, enforce canonical `--ve-*` token naming in all three reference templates, and preserve strict typography rules while allowing `Roboto Mono` in non-primary usage.
@@ -32,7 +50,7 @@ Deliver a validator/template/docs state where required hardening checks are expl
 ---
 
 <!-- ANCHOR:scope -->
-## 3. SCOPE
+## 4. SCOPE
 
 ### In Scope
 - Harden `VE_TOKEN_COUNT` detection in the HTML validator.
@@ -61,7 +79,7 @@ Deliver a validator/template/docs state where required hardening checks are expl
 ---
 
 <!-- ANCHOR:requirements -->
-## 4. REQUIREMENTS
+## 5. REQUIREMENTS
 
 ### P0 - Blockers (MUST complete)
 
@@ -83,7 +101,7 @@ Deliver a validator/template/docs state where required hardening checks are expl
 ---
 
 <!-- ANCHOR:success-criteria -->
-## 5. SUCCESS CRITERIA
+## 6. SUCCESS CRITERIA
 
 - **SC-001**: Validator check 11 reports valid `--ve-*` token counts for all three templates.
 - **SC-002**: All three templates produce validator exit code `0`.
@@ -95,7 +113,7 @@ Deliver a validator/template/docs state where required hardening checks are expl
 ---
 
 <!-- ANCHOR:risks -->
-## 6. RISKS & DEPENDENCIES
+## 7. RISKS & DEPENDENCIES
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
@@ -172,7 +190,7 @@ Deliver a validator/template/docs state where required hardening checks are expl
 ---
 
 <!-- ANCHOR:questions -->
-## 10. OPEN QUESTIONS
+## 8. OPEN QUESTIONS
 
 - None at spec drafting time; implementation follows explicit P0/P1 requirements.
 <!-- /ANCHOR:questions -->

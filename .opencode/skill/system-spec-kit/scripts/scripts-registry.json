@@ -35,8 +35,7 @@
       "version": "1.0.0",
       "dependencies": [
         "mcp_server/lib/search/vector-index.ts",
-        "mcp_server/handlers/memory-index.ts",
-        "mcp_server/lib/search/graph-search-fn.ts"
+        "mcp_server/handlers/memory-index.ts"
       ]
     },
     {

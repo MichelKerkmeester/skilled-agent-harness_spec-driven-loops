@@ -194,8 +194,7 @@ configure_mcp() {
             "_NOTE_2_PROVIDERS": "Supports: Voyage (1024 dims), OpenAI (1536/3072 dims), HF Local (768 dims, no API needed)",
             "_NOTE_3_CLOUD_PROVIDERS": "For cloud embeddings: add VOYAGE_API_KEY or OPENAI_API_KEY and set EMBEDDINGS_PROVIDER accordingly",
             "_NOTE_4_PORTABLE": "Uses relative path - works when copying project to new location",
-            "_NOTE_5_FEATURE_FLAGS": "Opt-out flags (all default ON unless noted): SPECKIT_GRAPH_UNIFIED, SPECKIT_EXTENDED_TELEMETRY | Default OFF: SPECKIT_ADAPTIVE_FUSION",
-            "_NOTE_6_GRAPH": "Causal graph retrieval channel is active by default. Disable with SPECKIT_GRAPH_UNIFIED=false"
+            "_NOTE_5_FEATURE_FLAGS": "Opt-out flags: SPECKIT_EXTENDED_TELEMETRY (default ON), SPECKIT_ADAPTIVE_FUSION (default OFF)"
         }
     }'
     

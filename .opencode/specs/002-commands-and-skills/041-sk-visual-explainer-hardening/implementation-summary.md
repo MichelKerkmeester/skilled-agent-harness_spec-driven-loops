@@ -4,6 +4,19 @@
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skill/sk-documentation/references/hvr_rules.md -->
 
+## 1. OVERVIEW
+
+Post-implementation closeout for `sk-visual-explainer` hardening, including delivered changes, decisions, and reproducible verification outcomes.
+
+## TABLE OF CONTENTS
+
+- [METADATA](#metadata)
+- [WHAT WAS BUILT](#what-was-built)
+- [HOW IT WAS DELIVERED](#how-it-was-delivered)
+- [KEY DECISIONS](#key-decisions)
+- [VERIFICATION](#verification)
+- [KNOWN LIMITATIONS](#known-limitations)
+
 ---
 
 <!-- ANCHOR:metadata -->

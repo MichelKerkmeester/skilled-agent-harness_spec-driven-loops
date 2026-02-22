@@ -146,7 +146,7 @@ const memorySave: ToolDefinition = {
 const memoryList: ToolDefinition = {
   name: 'memory_list',
   description: '[L3:Discovery] Browse stored memories with pagination. Use to discover what is remembered and find IDs for delete/update. Token Budget: 800.',
-  inputSchema: { type: 'object', properties: { limit: { type: 'number', default: 20, description: 'Maximum results to return (max 100)' }, offset: { type: 'number', default: 0, description: 'Number of results to skip (for pagination)' }, specFolder: { type: 'string', description: 'Filter by spec folder' }, sortBy: { type: 'string', enum: ['created_at', 'updated_at', 'importance_weight'], description: 'Sort order (default: created_at DESC)' } } },
+  inputSchema: { type: 'object', properties: { limit: { type: 'number', default: 20, description: 'Maximum results to return (max 100)' }, offset: { type: 'number', default: 0, description: 'Number of results to skip (for pagination)' }, specFolder: { type: 'string', description: 'Filter by spec folder' }, sortBy: { type: 'string', enum: ['created_at', 'updated_at', 'importance_weight'], description: 'Sort order (default: created_at DESC)' }, includeChunks: { type: 'boolean', default: false, description: 'Include chunk child rows. Default false returns parent memories only for cleaner browsing.' } } },
 };
 
 const memoryStats: ToolDefinition = {

@@ -60,7 +60,7 @@ None of it works because none of it understands what matters.
 
 This MCP server gives your AI assistant persistent memory with intelligence built in:
 
-- **4-channel hybrid search** (Vector, FTS5, BM25, Graph Channel) finds what you mean, not what you typed
+- **3-channel hybrid search** (Vector, FTS5, BM25) finds what you mean, not what you typed
 - **Post-fusion enhancements** — RRF, Adaptive Fusion, MMR, Co-activation and Recency Boost are applied after retrieval, not separate search channels
 - **Cognitive decay** keeps relevant memories fresh and lets stale ones fade
 - **Causal graph** traces decision lineage ("Why did we choose JWT?")
@@ -77,7 +77,7 @@ This MCP server gives your AI assistant persistent memory with intelligence buil
 | **Recovery** | Hope | Crash recovery with zero data loss |
 | **Sessions** | None | Deduplication with ~50% tokens saved on follow-up |
 | **Context** | Full documents | ANCHOR-based section retrieval (93% token savings) |
-| **Search** | Vector only | 4-channel (Vector, FTS5, BM25, Graph Channel) with adaptive RRF fusion |
+| **Search** | Vector only | 3-channel (Vector, FTS5, BM25) with adaptive RRF fusion |
 | **State** | Stateless | 5-state cognitive model (HOT/WARM/COLD/DORMANT/ARCHIVED) |
 | **Tiers** | None | 6-tier importance with configurable boosts |
 | **Decay** | None or exponential | FSRS power-law (validated on 100M+ users) |
@@ -251,7 +251,7 @@ dist/context-server.js     (compiled output — executed at runtime by node)
 
 | Tool | Purpose | Latency |
 | --- | --- | --- |
-| `memory_search` | Semantic vector search with 4-channel hybrid pipeline and adaptive RRF fusion | ~500ms |
+| `memory_search` | Semantic vector search with a 3-channel hybrid pipeline and adaptive RRF fusion | ~500ms |
 | `memory_match_triggers` | Fast trigger phrase matching with cognitive features | <50ms |
 | `memory_list` | Browse memories with pagination | <50ms |
 | `memory_stats` | System statistics and folder rankings | <10ms |
@@ -398,7 +398,6 @@ Query
 | Vector | `sqlite-vec` 1024d embeddings | 1.0x | Semantic similarity |
 | FTS5 | SQLite full-text search | 1.0x | Full-text lexical matching |
 | BM25 | SQLite FTS5 BM25 ranking | 1.0x | Keyword relevance scoring |
-| Graph Channel | Graph traversal (causal) | 1.5x | Decision lineage and "why" queries |
 
 ### Post-Fusion Enhancements
 
@@ -532,7 +531,7 @@ Prevents duplicate memories from polluting the index:
 | Spec documents | `.opencode/specs/**/*.md` | Per-type multiplier |
 | Spec memories | `specs/**/memory/*.{md,txt}` | 0.5 |
 
-README files and skill documentation trees (`workflows-code--*` / `sk-code--*`, including `references/` and `assets/`) are excluded.
+README files and skill documentation trees (`sk-*`, including `references/` and `assets/`) are excluded.
 
 ---
 
@@ -670,7 +669,6 @@ All flags are evaluated via `isFeatureEnabled()`. After specs 137-139, the flags
 | `SPECKIT_CAUSAL_BOOST` | `true` | Enable 2-hop causal-neighbor score boost |
 | `SPECKIT_SESSION_BOOST` | `true` | Enable session-attention score boost |
 | `SPECKIT_ADAPTIVE_FUSION` | `true` | Enable intent-aware weighted RRF fusion |
-| `SPECKIT_GRAPH_UNIFIED` | `true` | Unified graph search bridging causal graph retrieval |
 | `SPECKIT_PRESSURE_POLICY` | `true` | Enable token-pressure mode override in `memory_context` (set `false` to disable) |
 
 ### Database Schema
@@ -1022,14 +1020,14 @@ A: Yes. Flags are default-on and only explicit `FLAG=false` disables them. `SPEC
 | Spec | Path | Purpose |
 | --- | --- | --- |
 | 137 | `specs/003-system-spec-kit/137-*` | Pre-hybrid-RAG search improvements |
-| 138 | `specs/003-system-spec-kit/138-hybrid-rag-fusion/` | Hybrid RAG fusion (4-channel pipeline, adaptive RRF, MMR) |
+| 138 | `specs/003-system-spec-kit/138-hybrid-rag-fusion/` | Hybrid RAG fusion (adaptive RRF, MMR) |
 | 139 | `specs/003-system-spec-kit/139-*` | Post-fusion enhancements and phase system |
 
 ### Key Library Modules
 
 | Module | Purpose |
 | --- | --- |
-| `lib/search/hybrid-search.ts` | 4-channel scatter-gather pipeline |
+| `lib/search/hybrid-search.ts` | Hybrid scatter-gather retrieval pipeline |
 | `lib/search/adaptive-fusion.ts` | Intent-aware weighted RRF fusion |
 | `lib/search/rrf-fusion.ts` | RRF algorithm implementation |
 | `lib/search/causal-boost.ts` | 2-hop causal-neighbor score boost |

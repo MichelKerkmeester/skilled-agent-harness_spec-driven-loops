@@ -12,6 +12,7 @@ import path from 'path';
 import { getLastScanTime, setLastScanTime, checkDatabaseUpdated } from '../core';
 import { INDEX_SCAN_COOLDOWN, DEFAULT_BASE_PATH, BATCH_SIZE } from '../core/config';
 import { processBatches, requireDb, toErrorMessage, type RetryErrorResult } from '../utils';
+import { getCanonicalPathKey } from '../lib/utils/canonical-path';
 
 /* ---------------------------------------------------------------
    2. LIB MODULE IMPORTS
@@ -64,6 +65,8 @@ function findSpecDocuments(workspacePath: string, options: { specFolder?: string
   }
 
   const results: string[] = [];
+  const seenCanonicalRoots = new Set<string>();
+  const seenCanonicalFiles = new Set<string>();
 
   function walkSpecsDir(specsRoot: string, dir: string): void {
     try {
@@ -90,6 +93,13 @@ function findSpecDocuments(workspacePath: string, options: { specFolder?: string
             }
           }
 
+          const fileKey = getCanonicalPathKey(fullPath);
+          if (seenCanonicalFiles.has(fileKey)) {
+            continue;
+          }
+
+          seenCanonicalFiles.add(fileKey);
+
           results.push(fullPath);
         }
       }
@@ -106,6 +116,13 @@ function findSpecDocuments(workspacePath: string, options: { specFolder?: string
 
   for (const specsRoot of specsRoots) {
     if (!fs.existsSync(specsRoot)) continue;
+
+    const rootKey = getCanonicalPathKey(specsRoot);
+    if (seenCanonicalRoots.has(rootKey)) {
+      continue;
+    }
+
+    seenCanonicalRoots.add(rootKey);
 
     walkSpecsDir(specsRoot, specsRoot);
   }
@@ -197,6 +214,11 @@ interface ScanResults {
     enabled: boolean;
     fast_path_skips: number;
     hash_checks: number;
+  };
+  dedup: {
+    inputTotal: number;
+    uniqueTotal: number;
+    duplicatesSkipped: number;
   };
 }
 
@@ -313,7 +335,36 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
   const specFiles: string[] = memoryParser.findMemoryFiles(workspacePath, { specFolder: spec_folder });
   const constitutionalFiles: string[] = include_constitutional ? findConstitutionalFiles(workspacePath) : [];
   const specDocFiles: string[] = include_spec_docs ? findSpecDocuments(workspacePath, { specFolder: spec_folder }) : [];
-  const files = [...specFiles, ...constitutionalFiles, ...specDocFiles];
+
+  const canonicalKeyCache = new Map<string, string>();
+  const getCachedKey = (filePath: string): string => {
+    const cached = canonicalKeyCache.get(filePath);
+    if (cached) {
+      return cached;
+    }
+
+    const canonicalKey = getCanonicalPathKey(filePath);
+    canonicalKeyCache.set(filePath, canonicalKey);
+    return canonicalKey;
+  };
+
+  const mergedFiles = [...specFiles, ...constitutionalFiles, ...specDocFiles];
+  const seenCanonicalFiles = new Set<string>();
+  const files: string[] = [];
+
+  for (const filePath of mergedFiles) {
+    const canonicalKey = getCachedKey(filePath);
+    if (seenCanonicalFiles.has(canonicalKey)) {
+      continue;
+    }
+    seenCanonicalFiles.add(canonicalKey);
+    files.push(filePath);
+  }
+
+  const dedupDuplicatesSkipped = mergedFiles.length - files.length;
+  if (dedupDuplicatesSkipped > 0) {
+    console.error(`[memory-index-scan] Canonical dedup skipped ${dedupDuplicatesSkipped} alias path(s) (${mergedFiles.length} -> ${files.length})`);
+  }
 
   if (files.length === 0) {
     await setLastScanTime(now);
@@ -335,7 +386,7 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
     });
   }
 
-  const constitutionalSet = new Set(constitutionalFiles);
+  const constitutionalSet = new Set(constitutionalFiles.map((filePath) => getCachedKey(filePath)));
 
   const results: ScanResults = {
     scanned: files.length,
@@ -356,6 +407,11 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
       enabled: incremental && !force,
       fast_path_skips: 0,
       hash_checks: 0
+    },
+    dedup: {
+      inputTotal: mergedFiles.length,
+      uniqueTotal: files.length,
+      duplicatesSkipped: dedupDuplicatesSkipped,
     }
   };
 
@@ -374,7 +430,7 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
     results.incremental.hash_checks = categorized.toUpdate.length;
 
     for (const unchangedPath of categorized.toSkip) {
-      if (constitutionalSet.has(unchangedPath)) {
+      if (constitutionalSet.has(getCachedKey(unchangedPath))) {
         results.constitutional.alreadyIndexed++;
       }
     }
@@ -400,7 +456,7 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
     for (let i = 0; i < batchResults.length; i++) {
       const result = batchResults[i];
       const filePath = filesToIndex[i];
-      const isConstitutional = constitutionalSet.has(filePath);
+      const isConstitutional = constitutionalSet.has(getCachedKey(filePath));
 
       if (result.error) {
         results.failed++;
@@ -538,6 +594,9 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
   if (results.failed > 0) {
     hints.push(`${results.failed} files failed to index - check file format`);
   }
+  if (results.dedup.duplicatesSkipped > 0) {
+    hints.push(`Canonical dedup skipped ${results.dedup.duplicatesSkipped} alias path(s)`);
+  }
   if (results.incremental.enabled && results.incremental.fast_path_skips > 0) {
     hints.push(`Incremental mode saved time: ${results.incremental.fast_path_skips} files skipped via mtime check`);
   }
@@ -561,6 +620,8 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
               constitutionalFiles: constitutionalFiles.length,
               specDocFiles: specDocFiles.length,
               totalFiles: files.length,
+              mergedFiles: mergedFiles.length,
+              dedupSkipped: dedupDuplicatesSkipped,
               includeSpecDocs: include_spec_docs,
               workspacePath,
             },

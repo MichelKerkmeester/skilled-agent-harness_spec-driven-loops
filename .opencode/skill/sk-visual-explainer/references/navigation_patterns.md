@@ -10,9 +10,22 @@ Patterns for in-page navigation: sticky sidebar TOC on desktop, horizontal scrol
 
 ---
 
+## 1. OVERVIEW
+
+Use these patterns when output has four or more sections and needs consistent in-page navigation across desktop and mobile.
+
+The reference includes layout CSS, HTML structure, scroll-spy behavior, and interaction polish for section jumping.
+
+---
+
 ## When to Use Navigation
 
 Add navigation when a page has **4 or more named sections**. Below 4 sections, navigation adds visual noise without functional benefit.
+
+Always pair navigation with:
+- `<meta name="color-scheme" content="light dark">`
+- `@media (prefers-contrast: more)` adjustments for active link clarity
+- `@media (forced-colors: active)` to keep active states visible
 
 ---
 

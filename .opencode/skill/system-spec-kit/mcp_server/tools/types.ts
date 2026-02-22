@@ -89,6 +89,7 @@ export interface ListArgs {
   offset?: number;
   specFolder?: string;
   sortBy?: string;
+  includeChunks?: boolean;
 }
 
 export interface StatsArgs {

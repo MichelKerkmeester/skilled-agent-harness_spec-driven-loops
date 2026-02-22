@@ -288,15 +288,20 @@ function installListMocks(opts: {
   total?: number;
 } = {}) {
   const { rows = [], total = 0 } = opts;
+  const queries: string[] = [];
 
   const fakeDb = {
-    prepare: (sql: string) => ({
+    prepare: (sql: string) => {
+      queries.push(sql);
+      return ({
       get: (...params: any[]) => {
         if (sql.includes('COUNT(*)')) return { count: total };
         return rows[0] || null;
       },
       all: (...params: any[]) => rows,
-    }),
+      });
+    },
+    _queries: queries,
   };
 
   vi.mocked(vectorIndex.getDb).mockImplementation(() => fakeDb);
@@ -757,6 +762,18 @@ describe('handleMemoryList - Happy Path', () => {
     const result = await handler.handleMemoryList({});
     const parsed = parseResponse(result);
     expect(parsed?.data?.results[0].triggerCount).toBe(3);
+  });
+
+  it('EXT-L8: parent-only listing is default, includeChunks bypasses filter', async () => {
+    if (!handler?.handleMemoryList || !vectorIndex) return;
+
+    const dbDefault = installListMocks({ rows: [], total: 0 });
+    await handler.handleMemoryList({});
+    expect(dbDefault._queries.some((sql: string) => sql.includes('parent_id IS NULL'))).toBe(true);
+
+    const dbWithChunks = installListMocks({ rows: [], total: 0 });
+    await handler.handleMemoryList({ includeChunks: true });
+    expect(dbWithChunks._queries.some((sql: string) => sql.includes('parent_id IS NULL'))).toBe(false);
   });
 });
 

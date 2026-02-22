@@ -34,10 +34,10 @@ from typing import Dict, List, Optional, Tuple
 # ───────────────────────────────────────────────────────────────
 
 # Required frontmatter fields
-REQUIRED_FRONTMATTER_FIELDS = ['name', 'description']
+REQUIRED_FRONTMATTER_FIELDS = ['name', 'description', 'allowed-tools']
 
 # Optional frontmatter fields (validated if present, but not required)
-OPTIONAL_FRONTMATTER_FIELDS = ['allowed-tools', 'version']
+OPTIONAL_FRONTMATTER_FIELDS = ['version']
 
 # Recommended frontmatter fields (warning if missing)
 RECOMMENDED_FRONTMATTER_FIELDS = ['version']
@@ -49,7 +49,7 @@ REQUIRED_SECTIONS = [
     'SMART ROUTING',  # Section 2 per skill_creation.md
     'HOW IT WORKS',  # Also accepts 'HOW TO USE'
     'RULES',
-    'REFERENCES',  # Section 3 per skill_creation.md (can be combined with SMART ROUTING)
+    'REFERENCES',  # Section 5 per skill_creation.md (can be combined with SMART ROUTING)
 ]
 
 # Alternative section names (for flexible matching)
@@ -62,9 +62,9 @@ SECTION_ALIASES = {
 
 # Recommended sections (warning if missing)
 RECOMMENDED_SECTIONS = [
-    'SMART ROUTING',
     'SUCCESS CRITERIA',
     'INTEGRATION POINTS',
+    'RELATED RESOURCES',
 ]
 
 # Valid file extensions for each resource type
@@ -194,12 +194,6 @@ def validate_sections(content: str) -> Tuple[bool, str, List[str]]:
         if not found:
             warnings.append(f"Missing recommended section: {section}")
 
-    emoji_pattern = r'[\U0001F300-\U0001F9FF\u2600-\u26FF\u2700-\u27BF]'
-    for heading in headings:
-        if not re.search(emoji_pattern, heading) and heading.strip():
-            warnings.append(f"H2 section '{heading.strip()[:30]}...' missing emoji prefix")
-            break
-
     return True, "Sections valid", warnings
 
 
@@ -295,7 +289,7 @@ def validate_resources(skill_path: Path) -> Tuple[bool, str, List[str]]:
                 if not re.match(r'^[a-z0-9_]+$', name_without_ext):
                     warnings.append(f"Asset file '{file.name}' should use snake_case naming")
 
-    placeholder_patterns = ['example_*', 'placeholder_*', 'template_*', 'sample_*']
+    placeholder_patterns = ['example_*', 'placeholder_*', 'sample_*']
     for pattern in placeholder_patterns:
         for folder in [scripts_dir, refs_dir, assets_dir]:
             if folder.exists():

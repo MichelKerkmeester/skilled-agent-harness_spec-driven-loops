@@ -9,6 +9,9 @@ import * as fs from 'fs';
 // External packages
 import type Database from 'better-sqlite3';
 
+// Internal modules
+import { getCanonicalPathKey } from '../utils/canonical-path';
+
 /* -------------------------------------------------------------
    1. CONSTANTS
 ----------------------------------------------------------------*/
@@ -28,6 +31,7 @@ interface FileMetadata {
 
 interface StoredMetadata {
   file_path: string;
+  canonical_file_path?: string | null;
   file_mtime_ms: number | null;
   content_hash: string | null;
   embedding_status: string;
@@ -47,9 +51,28 @@ interface CategorizedFiles {
 ----------------------------------------------------------------*/
 
 let db: Database.Database | null = null;
+let canonicalPathColumnAvailable: boolean | null = null;
 
 function init(database: Database.Database): void {
   db = database;
+  canonicalPathColumnAvailable = null;
+}
+
+function hasCanonicalPathColumn(): boolean {
+  if (!db) return false;
+
+  if (canonicalPathColumnAvailable !== null) {
+    return canonicalPathColumnAvailable;
+  }
+
+  try {
+    const columns = (db.prepare('PRAGMA table_info(memory_index)').all() as Array<{ name: string }>);
+    canonicalPathColumnAvailable = columns.some((column) => column.name === 'canonical_file_path');
+  } catch {
+    canonicalPathColumnAvailable = false;
+  }
+
+  return canonicalPathColumnAvailable;
 }
 
 /* -------------------------------------------------------------
@@ -79,11 +102,21 @@ function getStoredMetadata(filePath: string): StoredMetadata | null {
   if (!db) return null;
 
   try {
-    const row = (db.prepare(`
-      SELECT file_path, file_mtime_ms, content_hash, embedding_status
-      FROM memory_index
-      WHERE file_path = ?
-    `) as Database.Statement).get(filePath) as StoredMetadata | undefined;
+    const canonicalPath = getCanonicalPathKey(filePath);
+
+    const row = hasCanonicalPathColumn()
+      ? (db.prepare(`
+          SELECT file_path, canonical_file_path, file_mtime_ms, content_hash, embedding_status
+          FROM memory_index
+          WHERE canonical_file_path = ? OR file_path = ?
+          ORDER BY CASE WHEN canonical_file_path = ? THEN 0 ELSE 1 END, id DESC
+          LIMIT 1
+        `) as Database.Statement).get(canonicalPath, filePath, canonicalPath) as StoredMetadata | undefined
+      : (db.prepare(`
+          SELECT file_path, file_mtime_ms, content_hash, embedding_status
+          FROM memory_index
+          WHERE file_path = ?
+        `) as Database.Statement).get(filePath) as StoredMetadata | undefined;
 
     return row || null;
   } catch (error: unknown) {
@@ -138,11 +171,19 @@ function updateFileMtime(filePath: string, mtimeMs: number): boolean {
   if (!db) return false;
 
   try {
-    const result = (db.prepare(`
-      UPDATE memory_index
-      SET file_mtime_ms = ?
-      WHERE file_path = ?
-    `) as Database.Statement).run(mtimeMs, filePath);
+    const canonicalPath = getCanonicalPathKey(filePath);
+
+    const result = hasCanonicalPathColumn()
+      ? (db.prepare(`
+          UPDATE memory_index
+          SET file_mtime_ms = ?
+          WHERE canonical_file_path = ? OR file_path = ?
+        `) as Database.Statement).run(mtimeMs, canonicalPath, filePath)
+      : (db.prepare(`
+          UPDATE memory_index
+          SET file_mtime_ms = ?
+          WHERE file_path = ?
+        `) as Database.Statement).run(mtimeMs, filePath);
 
     return (result as { changes: number }).changes > 0;
   } catch (error: unknown) {

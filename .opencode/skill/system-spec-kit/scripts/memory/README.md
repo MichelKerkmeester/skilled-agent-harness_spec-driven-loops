@@ -80,4 +80,6 @@ node .opencode/skill/system-spec-kit/scripts/dist/memory/reindex-embeddings.js
 - Uses the modular core/extractors/loaders/renderers/lib pipeline.
 - Supports subfolder-aware spec path handling through core utilities.
 - Produces ANCHOR-structured markdown expected by downstream validation and indexing.
+- Writes `MEMORY_TITLE` into generated context frontmatter/headings so index titles stay descriptive.
+- Retroactive title refresh for existing memories: run `memory_index_scan({ force: true })` after parser/template updates.
 <!-- /ANCHOR:workflow-alignment -->

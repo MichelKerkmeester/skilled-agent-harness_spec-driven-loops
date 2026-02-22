@@ -9,6 +9,8 @@ import crypto from 'crypto';
 
 // Internal modules
 import { escapeRegex } from '../utils/path-security';
+import { getCanonicalPathKey } from '../utils/canonical-path';
+import { getDefaultTierForDocumentType, isValidTier, normalizeTier } from '../scoring/importance-tiers';
 // T125: Import type inference for memory_type classification
 import { inferMemoryType } from '../config/type-inference';
 
@@ -71,6 +73,11 @@ export interface ParsedMemoryValidation {
 
 /** Context type string value */
 export type ContextType = 'implementation' | 'research' | 'decision' | 'discovery' | 'general';
+
+interface ExtractImportanceTierOptions {
+  documentType?: string | null;
+  fallbackTier?: string | null;
+}
 
 /* ---------------------------------------------------------------
    2. CONFIGURATION
@@ -148,11 +155,14 @@ export function parseMemoryFile(filePath: string): ParsedMemory {
   }
 
   const content = readFileWithEncoding(filePath);
+  // Spec 126: Infer document type from file path
+  const documentType = extractDocumentType(filePath);
+
   const spec_folder = extractSpecFolder(filePath);
   const title = extractTitle(content);
   const triggerPhrases = extractTriggerPhrases(content);
   const contextType = extractContextType(content);
-  const importance_tier = extractImportanceTier(content);
+  const importance_tier = extractImportanceTier(content, { documentType });
   const content_hash = computeContentHash(content);
   const qualityScore = extractQualityScore(content);
   const qualityFlags = extractQualityFlags(content);
@@ -168,9 +178,6 @@ export function parseMemoryFile(filePath: string): ParsedMemory {
 
   // T126: Extract causal_links for relationship tracking (CHK-231)
   const causalLinks = extractCausalLinks(content);
-
-  // Spec 126: Infer document type from file path
-  const documentType = extractDocumentType(filePath);
 
   return {
     filePath,
@@ -305,18 +312,146 @@ export function extractSpecFolder(filePath: string): string {
   return path.basename(parentDir);
 }
 
-/** Extract title from first # heading */
-export function extractTitle(content: string): string | null {
-  // Check YAML frontmatter first
-  const yamlMatch = content.match(/^---[\s\S]*?title:\s*["']?([^"'\n]+)["']?[\s\S]*?---/m);
-  if (yamlMatch) {
-    return yamlMatch[1].trim();
+const MAX_MEMORY_TITLE_LENGTH = 120;
+
+const GENERIC_MEMORY_TITLES = new Set([
+  'session summary',
+  'session context',
+  'context summary',
+  'memory summary',
+  'conversation summary',
+  'summary',
+]);
+
+function truncateTitle(title: string, maxLength: number = MAX_MEMORY_TITLE_LENGTH): string {
+  if (title.length <= maxLength) {
+    return title;
   }
 
-  // Fall back to first # heading (skip frontmatter)
-  const withoutFrontmatter = content.replace(/^---[\s\S]*?---\n?/, '');
-  const match = withoutFrontmatter.match(/^#\s+(.+)$/m);
-  return match ? match[1].trim() : null;
+  const truncated = title.slice(0, maxLength).trim();
+  const lastSpace = truncated.lastIndexOf(' ');
+  if (lastSpace >= Math.floor(maxLength * 0.6)) {
+    return `${truncated.slice(0, lastSpace)}...`;
+  }
+
+  return `${truncated}...`;
+}
+
+function normalizeExtractedTitle(raw: string): string | null {
+  if (typeof raw !== 'string') {
+    return null;
+  }
+
+  const cleaned = raw
+    .replace(/`+/g, '')
+    .replace(/\*\*/g, '')
+    .replace(/\s+/g, ' ')
+    .trim()
+    .replace(/[\s\-:;,]+$/, '');
+
+  if (!cleaned) {
+    return null;
+  }
+
+  return truncateTitle(cleaned);
+}
+
+function isGenericMemoryTitle(title: string): boolean {
+  const normalized = title
+    .toLowerCase()
+    .replace(/[^a-z0-9\s-]/g, '')
+    .replace(/\s+/g, ' ')
+    .trim();
+
+  return GENERIC_MEMORY_TITLES.has(normalized);
+}
+
+function getFirstMeaningfulLine(section: string): string | null {
+  const lines = section.split('\n');
+  for (const rawLine of lines) {
+    const line = rawLine.trim();
+    if (!line) {
+      continue;
+    }
+
+    // Skip markdown structure/meta lines.
+    if (/^(?:#|[-*]|>|\||```|<!--|\[|\{\{|\}\})/.test(line)) {
+      continue;
+    }
+
+    const normalized = normalizeExtractedTitle(line);
+    if (normalized) {
+      return normalized;
+    }
+  }
+
+  return null;
+}
+
+/** Extract title from frontmatter or descriptive headings/content. */
+export function extractTitle(content: string): string | null {
+  if (!content || typeof content !== 'string') {
+    return null;
+  }
+
+  // Check YAML frontmatter first (allow leading comments before frontmatter).
+  const frontmatterMatch = content.match(/^(?:\uFEFF)?(?:\s*<!--[\s\S]*?-->\s*)*---\s*\n([\s\S]*?)\n---/);
+  if (frontmatterMatch) {
+    const titleLineMatch = frontmatterMatch[1].match(/^\s*title:\s*(.+)\s*$/mi);
+    let rawFrontmatterTitle = titleLineMatch?.[1]?.trim() || '';
+
+    if (
+      (rawFrontmatterTitle.startsWith('"') && rawFrontmatterTitle.endsWith('"')) ||
+      (rawFrontmatterTitle.startsWith("'") && rawFrontmatterTitle.endsWith("'"))
+    ) {
+      rawFrontmatterTitle = rawFrontmatterTitle.slice(1, -1);
+    }
+
+    rawFrontmatterTitle = rawFrontmatterTitle
+      .replace(/\\"/g, '"')
+      .replace(/\\'/g, "'");
+
+    const normalizedTitle = normalizeExtractedTitle(rawFrontmatterTitle);
+    if (normalizedTitle) {
+      return normalizedTitle;
+    }
+  }
+
+  let body = content
+    .replace(/^(?:\uFEFF)?\s*/, '')
+    .replace(/^(?:<!--[\s\S]*?-->\s*)+/, '');
+
+  if (body.startsWith('---')) {
+    body = body.replace(/^---\s*\n[\s\S]*?\n---\s*\n?/, '');
+  }
+
+  const h1Match = body.match(/^#\s+(.+)$/m);
+  const h1Title = normalizeExtractedTitle(h1Match?.[1] || '');
+  if (h1Title && !isGenericMemoryTitle(h1Title)) {
+    return h1Title;
+  }
+
+  const contextualCandidates: Array<string | null> = [];
+
+  const featureHeading = body.match(/^###\s+(?:FEATURE|BUGFIX|DECISION|IMPLEMENTATION|RESEARCH|OBSERVATION):\s+(.+)$/im);
+  contextualCandidates.push(normalizeExtractedTitle(featureHeading?.[1] || ''));
+
+  const summaryLine = body.match(/\*\*Summary:\*\*\s*(.+)$/im);
+  contextualCandidates.push(normalizeExtractedTitle(summaryLine?.[1] || ''));
+
+  const overviewSection = body.match(/##\s+\d+\.\s+OVERVIEW([\s\S]*?)(?:\n##\s+|\n<!--\s*\/ANCHOR:summary\s*-->|$)/i);
+  contextualCandidates.push(getFirstMeaningfulLine(overviewSection?.[1] || ''));
+
+  const h2Match = body.match(/^##\s+(.+)$/m);
+  contextualCandidates.push(normalizeExtractedTitle(h2Match?.[1] || ''));
+
+  for (const candidate of contextualCandidates) {
+    if (candidate && !isGenericMemoryTitle(candidate)) {
+      return candidate;
+    }
+  }
+
+  return h1Title || null;
 }
 
 /** Extract trigger phrases from ## Trigger Phrases section OR YAML frontmatter */
@@ -406,8 +541,8 @@ export function extractContextType(content: string): ContextType {
 }
 
 /** Extract importance tier from content or metadata */
-export function extractImportanceTier(content: string): string {
-  const validTiers: string[] = ['constitutional', 'critical', 'important', 'normal', 'temporary', 'deprecated'];
+export function extractImportanceTier(content: string, options: ExtractImportanceTierOptions = {}): string {
+  const { documentType = null, fallbackTier = null } = options;
 
   // Strip HTML comments to avoid matching instructional examples
   // (e.g., template comments containing "importanceTier: 'constitutional'" as documentation)
@@ -417,8 +552,8 @@ export function extractImportanceTier(content: string): string {
   const yamlMatch = contentWithoutComments.match(/(?:importance_tier|importanceTier):\s*["']?(\w+)["']?/i);
   if (yamlMatch) {
     const tier = yamlMatch[1].toLowerCase();
-    if (validTiers.includes(tier)) {
-      return tier;
+    if (isValidTier(tier)) {
+      return normalizeTier(tier);
     }
   }
 
@@ -431,6 +566,14 @@ export function extractImportanceTier(content: string): string {
   }
   if (contentWithoutComments.includes('[IMPORTANT]') || contentWithoutComments.includes('importance: important')) {
     return 'important';
+  }
+
+  if (fallbackTier && isValidTier(fallbackTier)) {
+    return normalizeTier(fallbackTier);
+  }
+
+  if (documentType) {
+    return getDefaultTierForDocumentType(documentType);
   }
 
   return 'normal';
@@ -680,6 +823,8 @@ export interface FindMemoryFilesOptions {
 export function findMemoryFiles(workspacePath: string, options: FindMemoryFilesOptions = {}): string[] {
   const { specFolder = null } = options;
   const results: string[] = [];
+  const seenCanonicalRoots = new Set<string>();
+  const seenCanonicalFiles = new Set<string>();
 
   // Check both possible specs locations
   const specsLocations: string[] = [
@@ -725,6 +870,13 @@ export function findMemoryFiles(workspacePath: string, options: FindMemoryFilesO
               continue;
             }
           }
+
+          const fileKey = getCanonicalPathKey(fullPath);
+          if (seenCanonicalFiles.has(fileKey)) {
+            continue;
+          }
+
+          seenCanonicalFiles.add(fileKey);
           results.push(fullPath);
         }
       }
@@ -733,9 +885,17 @@ export function findMemoryFiles(workspacePath: string, options: FindMemoryFilesO
 
   // Scan all existing specs locations
   for (const specs_dir of specsLocations) {
-    if (fs.existsSync(specs_dir)) {
-      walkDir(specs_dir);
+    if (!fs.existsSync(specs_dir)) {
+      continue;
     }
+
+    const rootKey = getCanonicalPathKey(specs_dir);
+    if (seenCanonicalRoots.has(rootKey)) {
+      continue;
+    }
+
+    seenCanonicalRoots.add(rootKey);
+    walkDir(specs_dir);
   }
 
   return results;
@@ -771,6 +931,7 @@ module.exports = {
 
   // Directory scanning
   findMemoryFiles,
+  getCanonicalPathKey,
 
   // Constants
   MEMORY_FILE_PATTERN,
@@ -784,6 +945,7 @@ module.exports = {
   extract_trigger_phrases: extractTriggerPhrases,
   extract_context_type: extractContextType,
   extract_importance_tier: extractImportanceTier,
+  get_canonical_path_key: getCanonicalPathKey,
   compute_content_hash: computeContentHash,
   infer_memory_type: inferMemoryType,
   extract_causal_links: extractCausalLinks,

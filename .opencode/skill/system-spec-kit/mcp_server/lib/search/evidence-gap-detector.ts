@@ -5,8 +5,6 @@
 // warnings for the MCP markdown output layer.
 // ---------------------------------------------------------------
 
-import { isGraphUnifiedEnabled } from './graph-flags';
-
 /* ---------------------------------------------------------------
    1. CONSTANTS
    --------------------------------------------------------------- */
@@ -76,9 +74,6 @@ interface MemoryGraphLike {
  * When `earlyGap` is true the caller can skip full retrieval scatter and
  * save 30-50 ms of latency.
  *
- * Guarded by `isGraphUnifiedEnabled()`: when the flag is off this always
- * returns `{ earlyGap: false, connectedNodes: 0 }` (no-op).
- *
  * @param query - Raw query string to tokenize and match against graph nodes.
  * @param graph - A memory-graph-like object with `nodes` and `inbound` maps.
  * @returns GraphCoverageResult with early-gap flag and connected node count.
@@ -87,11 +82,6 @@ export function predictGraphCoverage(
   query: string,
   graph: MemoryGraphLike
 ): GraphCoverageResult {
-  // Feature-flag guard: when disabled, report no gap so callers proceed normally.
-  if (!isGraphUnifiedEnabled()) {
-    return { earlyGap: false, connectedNodes: 0 };
-  }
-
   // Tokenize the query into lowercase keywords.
   const tokens = query
     .toLowerCase()

@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
 <title>CI/CD Pipeline — Reference Template</title>
 <!--
   Reference template for the sk-visual-explainer skill: Mermaid diagrams.
@@ -66,6 +67,27 @@
       --ve-tertiary-dim: rgba(251, 191, 36, 0.12);
       --ve-danger: #f87171;
       --ve-danger-dim: rgba(248, 113, 113, 0.12);
+    }
+  }
+
+  @media (prefers-contrast: more) {
+    :root {
+      --ve-border: rgba(0, 0, 0, 0.22);
+      --ve-border-bright: rgba(0, 0, 0, 0.34);
+      --ve-text-dim: #145b55;
+    }
+  }
+
+  @media (forced-colors: active) {
+    :root {
+      --ve-bg: Canvas;
+      --ve-surface: Canvas;
+      --ve-surface2: Canvas;
+      --ve-border: CanvasText;
+      --ve-border-bright: CanvasText;
+      --ve-text: CanvasText;
+      --ve-text-dim: CanvasText;
+      --ve-primary: LinkText;
     }
   }
 
@@ -284,10 +306,12 @@
 </head>
 <body>
 
-<div class="container">
+<main class="container" role="main">
 
-  <h1 class="animate" style="--i:0">CI/CD Pipeline</h1>
-  <p class="subtitle animate" style="--i:1">github actions &rarr; staging &rarr; production</p>
+  <header>
+    <h1 class="animate" style="--i:0">CI/CD Pipeline</h1>
+    <p class="subtitle animate" style="--i:1">github actions &rarr; staging &rarr; production</p>
+  </header>
 
   <p class="description animate" style="--i:2">
     Every push to <code>main</code> triggers the full pipeline. Tests and linting run in parallel,
@@ -295,11 +319,11 @@
     manual approval via a GitHub environment gate.
   </p>
 
-  <div class="mermaid-wrap animate" style="--i:3">
+  <figure class="mermaid-wrap animate" style="--i:3">
     <div class="zoom-controls">
-      <button onclick="zoomDiagram(this, 1.2)" title="Zoom in">+</button>
-      <button onclick="zoomDiagram(this, 0.8)" title="Zoom out">&minus;</button>
-      <button onclick="resetZoom(this)" title="Reset zoom">&#8634;</button>
+      <button onclick="zoomDiagram(this, 1.2)" title="Zoom in" aria-label="Zoom in">+</button>
+      <button onclick="zoomDiagram(this, 0.8)" title="Zoom out" aria-label="Zoom out">&minus;</button>
+      <button onclick="resetZoom(this)" title="Reset zoom" aria-label="Reset zoom">&#8634;</button>
     </div>
     <pre class="mermaid">
       graph TD
@@ -321,7 +345,10 @@
         N --> O[Health Check]
         O --> P[Done]
     </pre>
-  </div>
+    <figcaption style="margin-top:10px;font-family:var(--font-mono);font-size:11px;color:var(--ve-text-dim);">
+      End-to-end CI/CD flow with gated production deployment and rollback path.
+    </figcaption>
+  </figure>
 
   <div class="legend animate" style="--i:4">
     <div class="legend-item"><div class="legend-swatch" style="background:var(--ve-primary)"></div> Automated step</div>
@@ -338,11 +365,11 @@
     Mermaid silently falls back to dagre.
   </div>
 
-</div>
+</main>
 
 <script type="module">
-  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
-  import elkLayouts from 'https://cdn.jsdelivr.net/npm/@mermaid-js/layout-elk/dist/mermaid-layout-elk.esm.min.mjs';
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11.12.3/dist/mermaid.esm.min.mjs';
+  import elkLayouts from 'https://cdn.jsdelivr.net/npm/@mermaid-js/layout-elk@0.2.0/dist/mermaid-layout-elk.esm.min.mjs';
 
   const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
 
@@ -352,6 +379,10 @@
     theme: 'base',
     look: 'handDrawn',
     layout: 'elk',
+    securityLevel: 'strict',
+    deterministicIds: true,
+    maxTextSize: 50000,
+    maxEdges: 200,
     themeVariables: {
       primaryColor: isDark ? '#115e59' : '#ccfbf1',
       primaryBorderColor: isDark ? '#2dd4bf' : '#0d9488',

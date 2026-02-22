@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
 <title>Requirements Audit — Reference Template</title>
 <!--
   Reference template for the sk-visual-explainer skill: data tables.
@@ -67,6 +68,31 @@
       --ve-danger-dim: rgba(248, 113, 113, 0.1);
       --ve-warning: #fbbf24;
       --ve-warning-dim: rgba(251, 191, 36, 0.1);
+    }
+  }
+
+  @media (prefers-contrast: more) {
+    :root {
+      --ve-border: rgba(0, 0, 0, 0.22);
+      --ve-border-bright: rgba(0, 0, 0, 0.34);
+      --ve-text-dim: #57534e;
+    }
+  }
+
+  @media (forced-colors: active) {
+    :root {
+      --ve-bg: Canvas;
+      --ve-surface: Canvas;
+      --ve-surface2: Canvas;
+      --ve-surface-elevated: Canvas;
+      --ve-border: CanvasText;
+      --ve-border-bright: CanvasText;
+      --ve-text: CanvasText;
+      --ve-text-dim: CanvasText;
+      --ve-accent: LinkText;
+      --ve-success: CanvasText;
+      --ve-danger: CanvasText;
+      --ve-warning: CanvasText;
     }
   }
 
@@ -401,10 +427,12 @@
 </head>
 <body>
 
-<div class="container">
+<main class="container" role="main">
 
-  <h1 class="animate" style="--i:0">Requirements Audit</h1>
-  <p class="subtitle animate" style="--i:1">victoria's email vs. implementation plan &mdash; point-by-point review</p>
+  <header>
+    <h1 class="animate" style="--i:0">Requirements Audit</h1>
+    <p class="subtitle animate" style="--i:1">victoria's email vs. implementation plan &mdash; point-by-point review</p>
+  </header>
 
   <div class="kpi-row animate" style="--i:2">
     <div class="kpi-card">
@@ -431,9 +459,12 @@
     <div class="legend-item"><div class="legend-swatch" style="background:var(--ve-warning)"></div> Partial</div>
   </div>
 
-  <div class="table-wrap animate" style="--i:4">
+  <section class="table-wrap animate" style="--i:4" aria-labelledby="requirements-audit-table">
     <div class="table-scroll">
       <table class="data-table">
+        <caption id="requirements-audit-table" style="text-align:left;padding:12px 16px;font-family:var(--font-mono);font-size:11px;color:var(--ve-text-dim);">
+          Requirement-by-requirement comparison with explicit status labels.
+        </caption>
         <thead>
           <tr>
             <th class="wide">Request</th>
@@ -524,7 +555,7 @@
         </tfoot>
       </table>
     </div>
-  </div>
+  </section>
 
   <details class="collapsible animate" style="--i:19">
     <summary>Gap Analysis Detail</summary>
@@ -534,7 +565,7 @@
     </div>
   </details>
 
-</div>
+</main>
 
 </body>
 </html>

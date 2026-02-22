@@ -10,6 +10,14 @@ A comprehensive CSS pattern library for sk-visual-explainer HTML pages. Copy-pas
 
 ---
 
+## 1. OVERVIEW
+
+Use this reference when selecting or composing a visual style for generated HTML pages.
+
+It defines the canonical `--ve-*` token system, atmosphere backgrounds, layout primitives, and reusable UI pattern snippets.
+
+---
+
 ## Theme Setup — CSS Custom Properties
 
 Always define these variables in `:root`. The `--ve-` prefix namespaces them to avoid conflicts.
@@ -64,6 +72,40 @@ Always define these variables in `:root`. The `--ve-` prefix namespaces them to 
     --ve-warning-dim: rgba(251, 191, 36, 0.1);
     --ve-danger: #f87171;
     --ve-danger-dim: rgba(248, 113, 113, 0.1);
+  }
+}
+```
+
+### Compatibility and Contrast Media Features
+
+Include these support patterns on new pages:
+
+```html
+<meta name="color-scheme" content="light dark">
+```
+
+```css
+@media (prefers-contrast: more) {
+  :root {
+    --ve-border: rgba(0, 0, 0, 0.24);
+    --ve-border-bright: rgba(0, 0, 0, 0.36);
+    --ve-text-dim: #4b5563;
+  }
+}
+
+@media (forced-colors: active) {
+  :root {
+    --ve-bg: Canvas;
+    --ve-surface: Canvas;
+    --ve-surface2: Canvas;
+    --ve-text: CanvasText;
+    --ve-text-dim: CanvasText;
+    --ve-border: CanvasText;
+    --ve-border-bright: CanvasText;
+  }
+
+  * {
+    forced-color-adjust: auto;
   }
 }
 ```

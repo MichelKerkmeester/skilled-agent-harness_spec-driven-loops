@@ -67,7 +67,7 @@ Cross-workflow alignment is mandatory:
 | **Decision Archaeology** | "Why did we build it this way?" | Causal graph traces decision lineage |
 | **Token Usage** | Re-send same memories every query | Session deduplication saves ~50% on follow-ups |
 | **Context** | Re-explain everything every session | Memory persists across sessions, models, projects, tools and runtimes |
-| **Search** | Vector only | 4-channel hybrid with adaptive RRF fusion |
+| **Search** | Vector only | Hybrid search with adaptive RRF fusion |
 | **Ranking** | Score order | MMR diversity reranking + evidence gap detection |
 | **Documentation** | "I'll document later" (never happens) | Gate 3 enforces spec folders on every file change |
 | **Quality Gates** | Trust the AI did it right | PREFLIGHT/POSTFLIGHT validation at operation boundaries |
@@ -79,9 +79,9 @@ Cross-workflow alignment is mandatory:
 
 | Capability | Description |
 | --- | --- |
-| **4-Channel Hybrid Search + Post-Fusion** | Primary scatter-gather across vector, FTS5, BM25 and causal graph; co-activation/session/causal signals are applied post-fusion |
+| **Hybrid Search + Post-Fusion** | Primary scatter-gather across vector, FTS5 and BM25; co-activation/session/causal signals are applied post-fusion |
 | **Adaptive RRF Fusion** | Intent-weighted profiles replace fixed-weight RRF when `SPECKIT_ADAPTIVE_FUSION=true` |
-| **Graph Intelligence** | Unified causal graph search for decision lineage and retrieval enrichment |
+| **Causal Lineage Insights** | Causal tools and boosts surface decision lineage for "why" and dependency questions |
 | **MMR Diversity Reranking** | Lambda mapped to detected intent for relevance-diversity balance |
 | **Evidence Gap Detection** | TRM with Z-score confidence flags missing context before retrieval |
 | **Multi-Query RAG Fusion** | Query expansion with domain vocabulary before scatter-gather |
@@ -181,7 +181,7 @@ When in doubt, choose the higher level.
 The cognitive memory engine. It provides 22 MCP tools over stdio for semantic search, memory management, causal graph operations, checkpoints and session learning.
 
 **Key characteristics after spec 138:**
-- 4-channel scatter-gather search pipeline
+- Hybrid scatter-gather search pipeline
 - Adaptive RRF fusion with 7 intent profiles
 - Unified causal graph search for decision lineage
 - MMR diversity reranking with intent-mapped lambda
@@ -291,7 +291,7 @@ The memory system implements biologically-inspired cognitive features:
 
 | Basic Chat Logs | This Memory System |
 | --- | --- |
-| Search: Ctrl+F (text only) | Search: 4-channel hybrid with adaptive RRF fusion |
+| Search: Ctrl+F (text only) | Search: hybrid retrieval with adaptive RRF fusion |
 | Prioritization: None | Prioritization: 6-tier importance (constitutional to deprecated) |
 | Token Efficiency: Load everything | Token Efficiency: ANCHOR format (93% savings) + session dedup (~50%) |
 | Recovery: Hope you backed up | Recovery: Checkpoints = undo button for your index |
@@ -383,7 +383,7 @@ We chose JWT with refresh tokens because stateless auth scales better.
 | 2 | Spec documents | `.opencode/specs/**/*.md` | Per-type multiplier |
 | 3 | Spec memories | `specs/*/memory/*.{md,txt}` | 0.5 |
 
-README files and skill documentation trees (`workflows-code--*` / `sk-code--*`, including `references/` and `assets/`) are excluded from indexing.
+README files and skill documentation trees (`sk-*`, including `references/` and `assets/`) are excluded from indexing.
 
 ---
 
@@ -400,7 +400,7 @@ All tools use the `spec_kit_memory_` prefix in MCP calls (e.g., `spec_kit_memory
 
 | Tool | Purpose |
 | --- | --- |
-| `memory_search` | 4-channel hybrid search with adaptive RRF, MMR reranking and evidence gap detection |
+| `memory_search` | Hybrid search with adaptive RRF, MMR reranking and evidence gap detection |
 | `memory_match_triggers` | Fast keyword matching (<50ms) for Gate 1 context surfacing |
 | `memory_list` | Browse stored memories with pagination |
 | `memory_stats` | System statistics and folder rankings |
@@ -448,9 +448,9 @@ All tools use the `spec_kit_memory_` prefix in MCP calls (e.g., `spec_kit_memory
 | --- | --- |
 | `memory_health` | Check health status of the memory system |
 
-### Graph Intelligence
+### Causal Lineage Support
 
-After spec 138, `memory_context` with `SPECKIT_GRAPH_UNIFIED=true` incorporates causal-edge traversal directly into retrieval. This surfaces linked decision chains alongside semantically matched memories, improving "why" and lineage-focused queries.
+`memory_context` can surface decision lineage via causal relationships and related retrieval signals, improving "why" and dependency-focused queries.
 
 ---
 
@@ -694,9 +694,9 @@ A: No. Use `node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-co
 
 A: Start with `memory_context`. It routes by intent, applies multi-query RAG fusion and picks the best retrieval path for the query.
 
-**Q: Are all feature flags enabled by default after spec 138?**
+**Q: Are all major feature flags enabled by default after spec 138?**
 
-A: Yes. All major flags including `SPECKIT_ADAPTIVE_FUSION`, `SPECKIT_CAUSAL_BOOST`, `SPECKIT_SESSION_BOOST` and `SPECKIT_GRAPH_UNIFIED` default to enabled via `isFeatureEnabled()`. See [mcp_server/README.md](./mcp_server/README.md) for the full flag table.
+A: Yes. Major flags including `SPECKIT_ADAPTIVE_FUSION`, `SPECKIT_CAUSAL_BOOST` and `SPECKIT_SESSION_BOOST` default to enabled via `isFeatureEnabled()`. See [mcp_server/README.md](./mcp_server/README.md) for the full flag table.
 
 ---
 

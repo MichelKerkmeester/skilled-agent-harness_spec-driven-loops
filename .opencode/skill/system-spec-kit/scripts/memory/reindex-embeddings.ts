@@ -24,8 +24,6 @@ type AccessTrackerModule = typeof import('../../mcp_server/lib/storage/access-tr
 type HybridSearchModule = typeof import('../../mcp_server/lib/search/hybrid-search');
 type CoreModule = typeof import('../../mcp_server/core');
 type HandlersModule = typeof import('../../mcp_server/handlers');
-type GraphSearchFnModule = typeof import('../../mcp_server/lib/search/graph-search-fn');
-type GraphFlagsModule = typeof import('../../mcp_server/lib/search/graph-flags');
 
 interface ScanData {
   status: string;
@@ -73,8 +71,6 @@ const accessTracker = requireFromMcpServerDist<AccessTrackerModule>('lib', 'stor
 const hybridSearch = requireFromMcpServerDist<HybridSearchModule>('lib', 'search', 'hybrid-search');
 const core = requireFromMcpServerDist<CoreModule>('core');
 const handlers = requireFromMcpServerDist<HandlersModule>('handlers');
-const graphSearchFn = requireFromMcpServerDist<GraphSearchFnModule>('lib', 'search', 'graph-search-fn');
-const graphFlags = requireFromMcpServerDist<GraphFlagsModule>('lib', 'search', 'graph-flags');
 
 /* ---------------------------------------------------------------
    3. REINDEX FUNCTION
@@ -115,13 +111,7 @@ async function reindex(): Promise<void> {
     process.exit(1);
   }
   checkpointsLib.init(database);  accessTracker.init(database);
-  hybridSearch.init(
-    database,
-    vectorIndex.vectorSearch,
-    graphFlags.isGraphUnifiedEnabled()
-      ? graphSearchFn.createUnifiedGraphSearchFn(database, '')
-      : undefined
-  );
+  hybridSearch.init(database, vectorIndex.vectorSearch);
 
   console.log('[5/5] Force reindexing all memory files...');
   console.log('');

@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
 <title>Architecture Diagram — Reference Template</title>
 <!--
   Reference template for the sk-visual-explainer skill: CSS Grid architecture layout.
@@ -78,6 +79,28 @@
     }
   }
 
+  @media (prefers-contrast: more) {
+    :root {
+      --ve-border: rgba(0, 0, 0, 0.22);
+      --ve-border-bright: rgba(0, 0, 0, 0.34);
+      --ve-text-dim: #5f5347;
+    }
+  }
+
+  @media (forced-colors: active) {
+    :root {
+      --ve-bg: Canvas;
+      --ve-surface: Canvas;
+      --ve-surface2: Canvas;
+      --ve-surface-elevated: Canvas;
+      --ve-border: CanvasText;
+      --ve-border-bright: CanvasText;
+      --ve-text: CanvasText;
+      --ve-text-dim: CanvasText;
+      --ve-accent: LinkText;
+    }
+  }
+
   /* ============ RESET + BASE ============ */
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -133,6 +156,11 @@
     grid-template-columns: 1fr;
     gap: 24px;
     max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .container {
+    max-width: 1200px;
     margin: 0 auto;
   }
 
@@ -440,8 +468,11 @@
 </head>
 <body>
 
-<h1>System Architecture</h1>
-<p class="subtitle">reference template &mdash; architecture diagram pattern</p>
+<main class="container" role="main">
+<header>
+  <h1>System Architecture</h1>
+  <p class="subtitle">reference template &mdash; architecture diagram pattern</p>
+</header>
 
 <div class="diagram">
 
@@ -591,6 +622,8 @@
   </div>
 
 </div>
+
+</main>
 
 </body>
 </html>

@@ -1,5 +1,5 @@
 ---
-description: "Command cheat sheet, CDN snippets, and font pairings for quick access during sk-visual-explainer generation"
+description: "Command cheat sheet, pinned CDN snippets, and delivery checklist for sk-visual-explainer"
 ---
 
 # Visual Explainer — Quick Reference
@@ -8,107 +8,104 @@ description: "Command cheat sheet, CDN snippets, and font pairings for quick acc
 
 ---
 
+## 1. OVERVIEW
+
+Fast lookup for command mappings, pinned CDN snippets, version matrix linkage, and delivery checks.
+
+---
+
 ## Command Cheat Sheet
 
 | Command | Usage |
 |---------|-------|
-| `generate` | `/visual-explainer:generate [topic] [--type TYPE] [--style STYLE]` — Generate visual HTML page |
-| `diff-review` | `/visual-explainer:diff-review [branch|commit|PR#]` — Visual diff/PR review |
-| `plan-review` | `/visual-explainer:plan-review [plan-file-path]` — Visual plan analysis |
-| `recap` | `/visual-explainer:recap [time-window]` — Visual progress recap |
-| `fact-check` | `/visual-explainer:fact-check [html-file-path]` — Verify HTML accuracy against source |
+| `generate` | `/visual-explainer:generate [topic] [--type TYPE] [--style STYLE]` |
+| `diff-review` | `/visual-explainer:diff-review [branch|commit|PR#]` |
+| `plan-review` | `/visual-explainer:plan-review [plan-file-path]` |
+| `recap` | `/visual-explainer:recap [time-window]` |
+| `fact-check` | `/visual-explainer:fact-check [html-file-path]` |
 
 ---
 
-## Command → Diagram → Aesthetic Mapping
+## Canonical Version Matrix
 
-| Command | Default Diagram | Default Aesthetic | Template |
-|---------|----------------|-------------------|----------|
-| `generate` | Auto-detect | Auto-detect | Varies |
-| `diff-review` | Architecture/Flowchart | Blueprint | `architecture.html` |
-| `plan-review` | Architecture/Table | Editorial | `architecture.html` |
-| `recap` | Dashboard/Timeline | Data-dense | `data-table.html` |
-| `fact-check` | N/A (re-verify) | N/A | N/A |
+Machine source of truth: `assets/library_versions.json`
+
+| Library | Version | CDN |
+|---------|---------|-----|
+| Mermaid.js | `11.12.3` | `https://cdn.jsdelivr.net/npm/mermaid@11.12.3/dist/mermaid.esm.min.mjs` |
+| @mermaid-js/layout-elk | `0.2.0` | `https://cdn.jsdelivr.net/npm/@mermaid-js/layout-elk@0.2.0/dist/mermaid-layout-elk.esm.min.mjs` |
+| Chart.js | `4.5.1` | `https://cdn.jsdelivr.net/npm/chart.js@4.5.1/dist/chart.umd.min.js` |
+| anime.js (optional) | `4.3.6` | `https://cdn.jsdelivr.net/npm/animejs@4.3.6/lib/anime.min.js` |
 
 ---
 
-## CDN Snippet Block
-
-Always use these exact CDN references:
+## CDN Snippet Block (Pinned)
 
 ```html
-<!-- Mermaid v11 (ESM import — must go at bottom of <body>) -->
+<!-- Mermaid + ELK (ESM, keep near end of body) -->
 <script type="module">
-  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
-  import elkLayouts from 'https://cdn.jsdelivr.net/npm/@mermaid-js/layout-elk/dist/mermaid-layout-elk.esm.min.mjs';
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11.12.3/dist/mermaid.esm.min.mjs';
+  import elkLayouts from 'https://cdn.jsdelivr.net/npm/@mermaid-js/layout-elk@0.2.0/dist/mermaid-layout-elk.esm.min.mjs';
+
   mermaid.registerLayoutLoaders(elkLayouts);
-  // ... mermaid.initialize({ ... }) goes here
+  mermaid.initialize({
+    startOnLoad: true,
+    theme: 'base',
+    layout: 'elk',
+    securityLevel: 'strict',
+    deterministicIds: true,
+    maxTextSize: 50000,
+    maxEdges: 200,
+  });
 </script>
 
-<!-- Chart.js v4 -->
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+<!-- Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.1/dist/chart.umd.min.js"></script>
 
-<!-- anime.js v3.2.2 -->
-<script src="https://cdn.jsdelivr.net/npm/animejs@3.2.2/lib/anime.min.js"></script>
+<!-- anime.js (optional advanced motion) -->
+<script src="https://cdn.jsdelivr.net/npm/animejs@4.3.6/lib/anime.min.js"></script>
 ```
 
 ---
 
-## Google Font Pairings (13 Options)
+## Accessibility and Compatibility Signals
 
-> **Single source of truth:** `references/library_guide.md` — "Google Fonts — 13 Pairings" section. This table is a summary. For Google Fonts URL parameters and loading code, see library_guide.md.
+Always include:
+- `<meta name="color-scheme" content="light dark">`
+- `@media (prefers-reduced-motion: reduce)`
+- `@media (prefers-contrast: more)`
+- `@media (forced-colors: active)`
+- `prefers-color-scheme` dark override
 
-| # | Body Font | Mono Font | Feel |
-|---|-----------|-----------|------|
-| 1 | Bricolage Grotesque | Fragment Mono | Technical, modern |
-| 2 | Instrument Serif | JetBrains Mono | Editorial, refined |
-| 3 | IBM Plex Sans | IBM Plex Mono | Corporate, systematic |
-| 4 | Space Grotesk | Space Mono | Geometric, futuristic |
-| 5 | Sora | Fira Code | Clean, developer-friendly |
-| 6 | DM Sans | DM Mono | Neutral, versatile |
-| 7 | Plus Jakarta Sans | Source Code Pro | Contemporary, balanced |
-| 8 | Archivo | Roboto Mono | Bold, industrial |
-| 9 | Outfit | Inconsolata | Rounded, approachable |
-| 10 | Satoshi | Cascadia Code | Premium, modern |
-| 11 | Work Sans | Azeret Mono | Practical, editorial |
-| 12 | General Sans | Martian Mono | Distinctive, technical |
-| 13 | Manrope | Anonymous Pro | Humanist, readable |
+For icon-only controls:
+- Add `aria-label` (for example zoom controls).
 
-Always use `display=swap` in the Google Fonts URL. Define as CSS variables:
-```css
---font-body: 'Bricolage Grotesque', system-ui, sans-serif;
---font-mono: 'Fragment Mono', 'SF Mono', Consolas, monospace;
-```
-
-**Avoid:** Inter, Roboto, Arial, or system-ui as the primary display/body font choice. These are overused and generic.
+For chart canvases:
+- Provide text fallback in `<figcaption>` or nearby summary.
 
 ---
 
-## Output Directory Convention
+## Motion Contract
+
+Default: CSS-first stagger (`--i` delay variable) with reduced-motion fallback.
+
+Optional advanced path: anime.js `4.3.6` only when interaction complexity requires it.
+
+---
+
+## Output Convention
 
 ```
 .opencode/output/visual/{command}-{desc}-{timestamp}.html
 ```
 
-Examples:
-- `.opencode/output/visual/generate-auth-flow-20241215-143022.html`
-- `.opencode/output/visual/diff-review-pr-42-20241215-150311.html`
-- `.opencode/output/visual/recap-week-48-20241215-160000.html`
-
 ---
 
-## Quality Checklist (Quick Version)
+## Quick Delivery Checklist
 
-Before delivering any HTML output, verify all 9 checks pass:
+1. Theme and hierarchy are intentional.
+2. Light and dark are both readable.
+3. No overflow at mobile and desktop widths.
+4. `validate-html-output.sh` exits `0`.
+5. `check-version-drift.sh` exits `0` after library edits.
 
-1. **Squint Test** — Visual hierarchy visible when squinting
-2. **Swap Test** — Design looks wrong with a different theme (it's content-specific)
-3. **Both Themes** — Light and dark mode both look intentional
-4. **Information Completeness** — All source data is represented
-5. **No Overflow** — No horizontal scroll or clipped text at any viewport width
-6. **Mermaid Zoom Controls** — +/- buttons, reset, Ctrl+scroll, drag-to-pan
-7. **File Opens Cleanly** — No console errors on `file://` protocol
-8. **Accessibility** — WCAG AA contrast, no color-only indicators
-9. **Reduced Motion** — All animations disabled when `prefers-reduced-motion: reduce`
-
-> Full details for each check: `references/quality_checklist.md`

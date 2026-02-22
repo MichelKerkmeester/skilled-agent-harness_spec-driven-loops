@@ -127,6 +127,47 @@ function ensureMinTriggerPhrases(existing: string[], enhancedFiles: FileChange[]
   return ['session', 'context'];
 }
 
+function normalizeMemoryTitleCandidate(raw: string): string {
+  return raw
+    .replace(/\s+/g, ' ')
+    .trim()
+    .replace(/[\s\-:;,]+$/, '');
+}
+
+function truncateMemoryTitle(title: string, maxLength: number = 110): string {
+  if (title.length <= maxLength) {
+    return title;
+  }
+
+  const truncated = title.slice(0, maxLength).trim();
+  const lastSpace = truncated.lastIndexOf(' ');
+  if (lastSpace >= Math.floor(maxLength * 0.6)) {
+    return `${truncated.slice(0, lastSpace)}...`;
+  }
+
+  return `${truncated}...`;
+}
+
+function buildMemoryTitle(implementationTask: string, summary: string, specFolderName: string, date: string): string {
+  const genericTitles = new Set(['development session', 'session summary', 'session context']);
+
+  const candidateInputs = [implementationTask, summary.split('\n')[0] || ''];
+  for (const input of candidateInputs) {
+    const normalized = normalizeMemoryTitleCandidate(input || '');
+    if (normalized.length < 8) {
+      continue;
+    }
+    if (!genericTitles.has(normalized.toLowerCase())) {
+      return truncateMemoryTitle(normalized);
+    }
+  }
+
+  const folderLeaf = specFolderName.split('/').filter(Boolean).pop() || specFolderName;
+  const readableFolder = normalizeMemoryTitleCandidate(folderLeaf.replace(/^\d+-/, '').replace(/-/g, ' '));
+  const fallback = readableFolder.length > 0 ? `${readableFolder} session ${date}` : `Session ${date}`;
+  return truncateMemoryTitle(fallback);
+}
+
 function injectQualityMetadata(content: string, qualityScore: number, qualityFlags: string[]): string {
   const yamlBlockMatch = content.match(/```yaml\n([\s\S]*?)\n```/);
   if (!yamlBlockMatch) {
@@ -322,6 +363,7 @@ async function runWorkflow(options: WorkflowOptions = {}): Promise<WorkflowResul
   const keyTopicsInitial: string[] = extractKeyTopics(sessionData.SUMMARY, decisions.DECISIONS, specFolderName);
   const keyTopics: string[] = ensureMinSemanticTopics(keyTopicsInitial, enhancedFiles, specFolderName);
   const keyFiles = enhancedFiles.map((f) => ({ FILE_PATH: f.FILE_PATH }));
+  const memoryTitle = buildMemoryTitle(implSummary.task, sessionData.SUMMARY || '', specFolderName, sessionData.DATE);
 
   // Pre-extract trigger phrases for template embedding AND later indexing
   let preExtractedTriggers: string[] = [];
@@ -410,6 +452,7 @@ async function runWorkflow(options: WorkflowOptions = {}): Promise<WorkflowResul
       EMBEDDING_MODEL: MODEL_NAME || 'text-embedding-3-small',
       EMBEDDING_VERSION: '1.0',
       CHUNK_COUNT: 1,
+      MEMORY_TITLE: memoryTitle,
       GRAPH_CONTEXT: '',
       HAS_GRAPH_CONTEXT: false
     }),

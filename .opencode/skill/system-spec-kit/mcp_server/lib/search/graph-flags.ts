@@ -1,14 +1,12 @@
 // ---------------------------------------------------------------
-// MODULE: Graph Search Feature Flags
-// Feature flags for causal-graph search channel
+// MODULE: Graph Search Compatibility Flag
+// Legacy compatibility shim retained for test/runtime imports.
 // ---------------------------------------------------------------
 
-import { isFeatureEnabled } from '../cache/cognitive/rollout-policy';
-
 /**
- * Check if the causal graph search channel is enabled.
- * Default: TRUE (enabled). Set SPECKIT_GRAPH_UNIFIED=false to disable.
+ * Legacy graph channel is permanently disabled.
+ * Keep this function as a stable no-op compatibility surface.
  */
 export function isGraphUnifiedEnabled(): boolean {
-  return isFeatureEnabled('SPECKIT_GRAPH_UNIFIED');
+  return false;
 }

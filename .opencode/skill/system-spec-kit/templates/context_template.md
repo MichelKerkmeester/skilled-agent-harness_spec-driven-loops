@@ -1,3 +1,9 @@
+---
+title: "{{MEMORY_TITLE}}"
+importanceTier: "{{IMPORTANCE_TIER}}"
+contextType: "{{CONTEXT_TYPE}}"
+---
+
 <!-- TEMPLATE: context_template.md v2.2 - DO NOT EDIT GENERATED FILES -->
 <!-- Template Configuration Comments (stripped during generation) -->
 
@@ -104,7 +110,7 @@
 
 ---
 
-# SESSION SUMMARY
+# {{MEMORY_TITLE}}
 
 | **Meta Data** | **Value** |
 |:--------------|:----------|

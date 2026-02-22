@@ -519,7 +519,7 @@ Context preservation across sessions via hybrid search (vector similarity + BM25
 | `memory_search()`               | L2    | Hybrid search (vector + FTS + BM25 with RRF fusion). With optional adaptive fusion (SPECKIT_ADAPTIVE_FUSION) and artifact-class routing |
 | `memory_match_triggers()`       | L2    | Trigger matching + cognitive (decay, tiers, co-activation) |
 | `memory_save()`                 | L2    | Index a memory file with pre-flight validation    |
-| `memory_list()`                 | L3    | Browse stored memories with pagination            |
+| `memory_list()`                 | L3    | Browse stored memories with pagination (parent rows by default) |
 | `memory_delete()`               | L4    | Delete memories by ID or spec folder              |
 | `checkpoint_create()`           | L5    | Create gzip-compressed checkpoint snapshot        |
 | `checkpoint_restore()`          | L5    | Transaction-wrapped restore with rollback         |
@@ -544,10 +544,11 @@ Context preservation across sessions via hybrid search (vector similarity + BM25
 
 **Key Concepts:**
 - **Constitutional tier** — 3.0x search boost + 2.0x importance multiplier; merged into normal scoring pipeline
-- **Document-type scoring** — 10 indexed document types with multipliers: spec (1.4x), plan (1.3x), constitutional (2.0x), decision_record (1.4x), tasks (1.1x), implementation_summary (1.1x), research (1.1x), checklist (1.0x), handover (1.0x), memory (1.0x). README files and skill-doc trees (`workflows-code--*` / `sk-code--*`, including `references/` and `assets/`) are excluded from memory indexing.
+- **Document-type scoring** — 10 indexed document types with multipliers: spec (1.4x), plan (1.3x), constitutional (2.0x), decision_record (1.4x), tasks (1.1x), implementation_summary (1.1x), research (1.1x), checklist (1.0x), handover (1.0x), memory (1.0x). README files and skill-doc trees (`sk-*`, including `references/` and `assets/`) are excluded from memory indexing.
 - **Decay scoring** — FSRS v4 power-law model; recent memories rank higher
 - **Import-path hardening** - Spec 126 fixed MCP import-path regressions in memory runtime modules (including context server + attention decay wiring)
 - **Metadata preservation pipeline** - `memory_save` update/reinforce paths preserve `document_type` and `spec_level`, and vector-index metadata updates stay in sync
+- **Descriptive memory titles** - context generation writes `MEMORY_TITLE` into frontmatter and heading; parser falls back to feature/overview content when the top heading is generic (for example, "SESSION SUMMARY")
 - **Causal edge stability** - conflict-update semantics keep causal edge IDs stable during re-link and graph maintenance operations
 - **Real-time sync** — Use `memory_save` or `memory_index_scan` after creating files
 - **Checkpoints** — Gzip-compressed JSON snapshots of memory_index + working_memory; max 10 stored; transaction-wrapped restore

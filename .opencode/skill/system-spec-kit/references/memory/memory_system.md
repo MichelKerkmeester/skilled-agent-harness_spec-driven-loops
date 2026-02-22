@@ -111,7 +111,7 @@ Six-tier system for prioritizing memory relevance:
 | L2: Core | `memory_search()` | Semantic search with vector similarity | Find prior decisions on auth |
 | L2: Core | `memory_match_triggers()` | Fast keyword matching (<50ms) with cognitive features | Gate enforcement |
 | L2: Core | `memory_save()` | Index a memory file. Re-generates embedding when **content hash** changes. Title-only changes do not trigger re-embedding. | After generate-context.js |
-| L3: Discovery | `memory_list()` | Browse stored memories with pagination | Review session history |
+| L3: Discovery | `memory_list()` | Browse stored memories with pagination (parent rows by default) | Review session history |
 | L3: Discovery | `memory_stats()` | Get memory system statistics with composite scoring | Check index health |
 | L3: Discovery | `memory_health()` | Check health status of memory system | Diagnose issues |
 | L4: Mutation | `memory_delete()` | Delete memory by ID or bulk delete by spec folder | Remove outdated memories |
@@ -323,6 +323,12 @@ Use exact folder names when filtering. This is intentional for precise filtering
 | `limit` | number | 20 | Maximum results (max 100) |
 | `offset` | number | 0 | Pagination offset |
 | `sortBy` | string | `created_at` DESC | Sort order: created_at, updated_at, importance_weight |
+| `includeChunks` | boolean | `false` | Include chunk child rows. Default returns parent memories only for cleaner browsing |
+
+### Parent vs Chunk Rows
+
+- By default, `memory_list()` filters to `parent_id IS NULL`, so dashboards and maintenance flows show one row per memory file.
+- Use `includeChunks: true` only when chunk-level diagnostics are needed.
 
 ### Spec Folder Filtering
 
