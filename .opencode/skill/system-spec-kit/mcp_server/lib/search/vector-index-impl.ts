@@ -1482,6 +1482,13 @@ function create_common_indexes(database: Database.Database) {
   }
 
   try {
+    database.exec('CREATE INDEX IF NOT EXISTS idx_canonical_file_path ON memory_index(canonical_file_path)');
+    database.exec('CREATE INDEX IF NOT EXISTS idx_spec_canonical_path ON memory_index(spec_folder, canonical_file_path)');
+  } catch (_err: unknown) {
+    // Index may already exist or canonical column may be unavailable in legacy DB.
+  }
+
+  try {
     database.exec(`CREATE INDEX IF NOT EXISTS idx_content_hash ON memory_index(content_hash)`);
     logger.info('Created idx_content_hash index');
   } catch (_err: unknown) {
