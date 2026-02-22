@@ -104,6 +104,7 @@ Audit-first, contract-driven hardening with release-gated invariants and self-he
 - [ ] Build subsystem contract map for all ten scoped areas.
 - [ ] Capture baseline fixtures, latency/reliability metrics, and deferred/skipped-path inventory.
 - [ ] Produce risk register and continuity mapping from `002/003/004/005` to 006 controls.
+- [ ] Lock decision gates `T025`/`T026`/`T027` (relation corpus policy, cognitive-weight scope, self-healing auto-remediation policy) before Phase 2 execution.
 
 ### Phase 2: Ranking and Channel Contract Hardening
 - [ ] Harden retrieval/fusion determinism, graph relation scoring contracts, and cognitive ranking bounds.
@@ -187,9 +188,12 @@ Status criteria:
 ```
 Phase 1 (Audit + Continuity)
   ├──► Phase 2 (Ranking/Channel Hardening)
-  ├──► Phase 3 (Session/State Integrity)
-  └──► Phase 4 (Telemetry/Ops Governance)
-                └──► Phase 5 (Verification + Sign-off)
+  └──► Phase 3 (Session/State Integrity)
+
+Phase 2 outputs ─┐
+                 ├──► Phase 4 (Telemetry/Ops Governance)
+Phase 3 outputs ─┘
+                          └──► Phase 5 (Verification + Sign-off)
 ```
 
 | Phase | Depends On | Blocks |

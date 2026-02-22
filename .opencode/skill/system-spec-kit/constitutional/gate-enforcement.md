@@ -1,4 +1,3 @@
-<!-- TEMPLATE: constitutional_memory.md v1.0 -->
 ---
 title: "GATE ENFORCEMENT - Edge Cases & Cross-Reference"
 importanceTier: constitutional

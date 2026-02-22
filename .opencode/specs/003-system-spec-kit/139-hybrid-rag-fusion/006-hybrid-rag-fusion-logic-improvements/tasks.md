@@ -67,6 +67,9 @@ contextType: "implementation"
 - [ ] T002 [P0] Capture baseline fixture corpus and metrics (latency, quality, misroute, stale-embed backlog, recovery timing) (`mcp_server/tests/*`, benchmark scripts)
 - [ ] T003 [P0] Create ranked seam-risk register with owner and mitigation for each subsystem (`spec.md`, `plan.md`, `decision-record.md`)
 - [ ] T004 [P1] Validate continuity assumptions from `002/003/004/005` and map to 006 requirement IDs (`spec.md`, `plan.md`, `tasks.md`)
+- [ ] T025 [P0] Lock relation-score adjudication corpus policy (shared vs domain-specific corpus) with approved fixture governance (`spec.md`, `decision-record.md`, ranking fixtures)
+- [ ] T026 [P0] Lock cognitive-weight policy scope (global bounds vs intent-scoped bounds) and rollout defaults (`spec.md`, `decision-record.md`, scoring fixtures)
+- [ ] T027 [P1] Lock self-healing auto-remediation policy (auto-apply vs operator acknowledgement by failure class) with escalation guardrails (`plan.md`, `checklist.md`, runbook artifacts)
 <!-- /ANCHOR:phase-1 -->
 
 ### Phase 1 Task Matrix
@@ -77,6 +80,9 @@ contextType: "implementation"
 | T002 | T001 | Baseline metrics are reproducible with command references and fixture versioning. |
 | T003 | T001, T002 | Top risks are ranked by impact/likelihood and have named owner + mitigation path. |
 | T004 | T001 | All inherited assumptions from `002`-`005` map to explicit controls in `006` artifacts. |
+| T025 | T001, T002, T003 | Relation-score adjudication corpus policy is approved with fixture manifest and replay evidence. |
+| T026 | T002, T003 | Cognitive-weight policy scope is approved with ablation evidence and rollout-bound definition. |
+| T027 | T003 | Self-healing auto-remediation policy is approved with failure-class matrix and escalation/rollback guardrails. |
 
 ---
 
@@ -94,8 +100,8 @@ contextType: "implementation"
 | Task ID | Depends On | Acceptance Criteria |
 |---------|------------|---------------------|
 | T005 | T002, T003 | Deterministic regression fixtures pass with stable ranked outputs and fallback order. |
-| T006 | T002, T003 | Graph contract tests pass and relation ordering reaches Kendall tau >= 0.75 on adjudicated fixture. |
-| T007 | T002, T005 | NDCG@5 improves >= 8% on long-tail fixture with <= 3% regression on primary fixture and 5-25% cognitive weight bound. |
+| T006 | T002, T003, T025 | Graph contract tests pass and relation ordering reaches Kendall tau >= 0.75 on adjudicated fixture. |
+| T007 | T002, T005, T026 | NDCG@5 improves >= 8% on long-tail fixture with <= 3% regression on primary fixture and 5-25% cognitive weight bound. |
 | T008 | T005, T006, T007 | Debug metadata includes ranked-channel/cognitive rationale without sensitive data leakage. |
 
 ---
@@ -139,8 +145,8 @@ contextType: "implementation"
 |---------|------------|---------------------|
 | T015 | T008, T012 | All trace payloads validate against schema registry in tests and CI checks. |
 | T016 | T015 | Schema/doc mismatch fails validation with field-level diffs and remediation hints. |
-| T017 | T013, T016 | Four runbook drill classes documented with trigger, command set, owner, and escalation path. |
-| T018 | T014, T017 | Self-healing checks detect/remediate four known failure classes with simulated MTTR <= 10 minutes. |
+| T017 | T013, T016, T027 | Four runbook drill classes documented with trigger, command set, owner, and escalation path. |
+| T018 | T014, T017, T027 | Self-healing checks detect/remediate four known failure classes with simulated MTTR <= 10 minutes. |
 
 ---
 
@@ -153,6 +159,10 @@ contextType: "implementation"
 - [ ] T022 [P1] Synchronize checklist evidence and sign-off model across all Level 3+ docs (`checklist.md`, `spec.md`)
 - [ ] T023 [P1] Finalize decision record and implementation summary with delivered subsystem evidence (`decision-record.md`, `implementation-summary.md`)
 - [ ] T024 [P2] Save context snapshot after implementation completion (`memory/` via generate-context script)
+- [ ] T028 [P0] Execute global quality sweep across all implemented updates/new features and publish evidence in `global-quality-sweep.md`
+- [ ] T029 [P0] Run global bug detection sweep and close all discovered P0/P1 defects; publish closure evidence in `global-quality-sweep.md`
+- [ ] T030 [P1] Complete `sk-code--opencode` compliance audit for all changed/added code paths and capture findings in `global-quality-sweep.md`
+- [ ] T031 [P1] Apply conditional standards update only if architecture mismatch is confirmed; document rationale/evidence in `global-quality-sweep.md`
 <!-- /ANCHOR:phase-5 -->
 
 ### Phase 5 Task Matrix
@@ -165,6 +175,10 @@ contextType: "implementation"
 | T022 | T019, T020 | All P0 checklist items complete; P1 items complete or approved deferred with rationale. |
 | T023 | T022 | ADRs, implementation summary, and sign-off status are synchronized and evidence-backed. |
 | T024 | T023 | Context snapshot saved with final status, blockers, and next-step handoff. |
+| T028 | T019, T020, T021 | Global quality sweep executed across all implemented updates/new features with complete evidence entries in `global-quality-sweep.md`. |
+| T029 | T028 | Bug detection sweep completed with unresolved defect counts `P0=0` and `P1=0`, evidence published in `global-quality-sweep.md`. |
+| T030 | T028 | `sk-code--opencode` compliance audit covers all changed/added code paths with evidence and closure state captured in `global-quality-sweep.md`. |
+| T031 | T030 | If architecture mismatch exists, standards update is documented with rationale and evidence; otherwise marked approved `N/A` with rationale in `global-quality-sweep.md`. |
 
 ---
 
@@ -173,7 +187,10 @@ contextType: "implementation"
 
 - [ ] All P0 tasks marked `[x]`
 - [ ] No `[B]` blocked tasks remaining
+- [ ] Decision-lock tasks `T025`, `T026`, and `T027` are closed before Phase 2 starts
 - [ ] Performance, recovery, and automation gates passed
+- [ ] `T028` and `T029` are closed with evidence in `global-quality-sweep.md`
+- [ ] `T030` and `T031` are closed, or `T031` is approved `N/A` with explicit rationale/evidence in `global-quality-sweep.md`
 - [ ] Governance approval workflow updated to approved state
 <!-- /ANCHOR:completion -->
 
@@ -186,6 +203,7 @@ contextType: "implementation"
 - **Plan**: See `plan.md`
 - **Checklist**: See `checklist.md`
 - **Decision Record**: See `decision-record.md`
+- **Global Quality Sweep**: See `global-quality-sweep.md`
 <!-- /ANCHOR:cross-refs -->
 
 ---

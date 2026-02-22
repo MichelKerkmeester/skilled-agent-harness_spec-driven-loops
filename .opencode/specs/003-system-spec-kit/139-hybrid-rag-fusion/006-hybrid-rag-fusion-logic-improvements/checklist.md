@@ -48,6 +48,9 @@ contextType: "implementation"
 - [x] CHK-002 [P0] Technical approach defined in `plan.md` with requirement-to-phase mapping [EVIDENCE: `plan.md` sections 1-4]
 - [x] CHK-003 [P1] Dependencies identified and risk-classified [EVIDENCE: `plan.md` section 6]
 - [x] CHK-004 [P1] Continuity mapping from `002/003/004/005` expanded across docs [EVIDENCE: `spec.md` section 3.5, `plan.md` section 3.5, `tasks.md` carry-forward table]
+- [ ] CHK-005 [P0] Decision-lock task `T025` (relation-score adjudication corpus policy) is approved before Phase 2 work [EVIDENCE REQUIRED: policy decision record + corpus manifest + baseline replay output]
+- [ ] CHK-006 [P0] Decision-lock task `T026` (cognitive-weight policy scope) is approved before Phase 2 work [EVIDENCE REQUIRED: ablation comparison + bound selection rationale + approval note]
+- [ ] CHK-007 [P1] Decision-lock task `T027` (self-healing auto-remediation policy) is approved with failure-class guardrails [EVIDENCE REQUIRED: remediation policy matrix + escalation/rollback rule set + owner sign-off]
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -63,6 +66,7 @@ contextType: "implementation"
 - [ ] CHK-015 [P1] Parser/index invariant code uses canonical path + tier normalization consistently
 - [ ] CHK-016 [P1] Storage recovery and mutation ledger code includes replay parity assertions
 - [ ] CHK-017 [P1] Telemetry schema validation paths avoid sensitive payload logging
+- [ ] CHK-018 [P1] `sk-code--opencode` compliance audit completed for all changed/added code paths with evidence in `global-quality-sweep.md`
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -77,10 +81,12 @@ contextType: "implementation"
 - [ ] CHK-024 [P0] Session misroute and latency targets pass on ambiguity fixtures
 - [ ] CHK-025 [P0] CRUD re-embedding consistency tests meet queue/backlog SLA thresholds
 - [ ] CHK-026 [P0] Parser/index invariant tests pass and fail correctly on injected violations
-- [ ] CHK-027 [P0] Storage recovery replay tests meet RPO/RTO constraints
+- [ ] CHK-027 [P0] Storage recovery replay tests meet REQ-008 simulation replay SLA (`<= 120s`) with RPO 0 for committed mutations
 - [ ] CHK-028 [P0] Deferred/skipped paths from `002`/`003`/`004`/`005` are closed or approved
-- [ ] CHK-029 [P1] Manual operational drill tests complete for four runbook classes
+- [ ] CHK-029 [P1] Manual operational drill tests complete for four runbook classes with operational drill/incident RTO `<= 10 minutes` (distinct from CHK-027 simulation replay SLA)
 - [ ] CHK-030 [P1] Error scenarios validated for telemetry schema/doc drift and auto-heal escalation
+- [ ] CHK-031 [P0] Global testing round completed across all implemented updates/new features with evidence published in `global-quality-sweep.md`
+- [ ] CHK-032 [P0] Global bug sweep completed with zero unresolved `P0/P1` defects and closure evidence in `global-quality-sweep.md`
 <!-- /ANCHOR:testing -->
 
 ---
@@ -104,6 +110,7 @@ contextType: "implementation"
 - [x] CHK-052 [P1] Requirement -> phase -> task mapping documented [EVIDENCE: `spec.md` section 4.5, `plan.md` section 4]
 - [ ] CHK-053 [P1] Runbook documentation includes trigger, command, owner, and escalation for each failure class
 - [ ] CHK-054 [P2] User-facing docs updated if operational behavior changes surface externally
+- [ ] CHK-055 [P1] Conditional standards update path is completed or explicitly marked `N/A` with rationale in `global-quality-sweep.md`
 <!-- /ANCHOR:docs -->
 
 ---
@@ -123,8 +130,8 @@ contextType: "implementation"
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 20 | 2/20 |
-| P1 Items | 31 | 6/31 |
+| P0 Items | 24 | 2/24 |
+| P1 Items | 34 | 6/34 |
 | P2 Items | 6 | 0/6 |
 
 **Verification Date**: 2026-02-22

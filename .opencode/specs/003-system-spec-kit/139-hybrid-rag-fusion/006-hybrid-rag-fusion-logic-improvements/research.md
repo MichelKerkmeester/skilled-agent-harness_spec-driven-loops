@@ -426,7 +426,7 @@ Evidence basis:
 
 1. Should graph channel results represent edges, memory nodes, or dual objects with explicit translation layer before formatter?
 2. Should deep-mode query expansion be user-visible in telemetry/debug payload by default?
-3. How frequently should the benchmark corpus be refreshed while preserving comparability against the release-gate targets (`auto <= 120ms`, `deep <= 180ms`, overhead `<= 10%`)?
+3. How frequently should the benchmark corpus be refreshed while preserving comparability against the release-gate targets (`auto <= 120ms`, `deep <= 180ms`, overhead `<= 12%`)?
 4. Should evidence-gap detector integrate `predictGraphCoverage()` as an early-stage gate in runtime, or remain test-only utility for now?
 
 Related evidence:

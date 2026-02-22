@@ -88,6 +88,7 @@ Deliver a broadened deep-audit and hardening pass that makes the complete retrie
 | `.opencode/skill/system-spec-kit/mcp_server/lib/scoring/` | Modify | Integrate relation scoring, FSRS/attention decay modifiers, and normalization invariants. |
 | `.opencode/skill/system-spec-kit/mcp_server/lib/session/` | Modify | Improve session manager ranking, low-confidence behavior, and performance instrumentation. |
 | `.opencode/skill/system-spec-kit/mcp_server/lib/session-learning/` | Modify | Harden learning-pipeline quality checks and stale-signal handling. |
+| `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts` | Modify | Harden debug diagnostics and ranking/routing rationale emission contracts used by hybrid retrieval decisions. |
 | `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud.ts` | Modify | Enforce post-mutation embedding refresh workflow and metadata consistency guards. |
 | `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index.ts` | Modify | Expand index invariant checks and auto-heal health probes. |
 | `.opencode/skill/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts` | Modify | Enforce parser invariants tied to canonicalization and frontmatter normalization continuity. |
@@ -139,7 +140,7 @@ Deliver a broadened deep-audit and hardening pass that makes the complete retrie
 | REQ-005 | Session manager and session-learning quality/performance are hardened | Misroute rate <= 1% on ambiguity fixture and p95 session selection <= 250ms for 500 candidates. |
 | REQ-006 | Memory CRUD mutations maintain re-embedding consistency | 100% create/update/delete mutations queue re-embed reconciliation within 5s and clear stale embedding backlog >15m to zero. |
 | REQ-007 | Parser/indexing invariants and index health automation are enforced | CI fails when canonical path, tier precedence, or frontmatter invariants break; index health job reports pass/fail with actionable diagnostics. |
-| REQ-008 | Storage reliability protects committed state under interruption | Transaction recovery replay yields RPO 0 for committed mutations and recovery simulation completes <= 120s on reference dataset. |
+| REQ-008 | Storage reliability protects committed state under interruption | Transaction recovery replay yields RPO 0 for committed mutations and simulation replay SLA completes <= 120s on reference dataset. |
 | REQ-009 | Telemetry/trace schema governance prevents drift | All emitted trace payloads validate against schema registry; documentation drift check fails on schema-doc mismatch. |
 | REQ-010 | Deferred/skipped path coverage is hardened | All deferred/skipped test paths from `002`/`003`/`004`/`005` are converted to active tests or approved with explicit rationale and owner. |
 | REQ-011 | Automation loops and operational runbooks support self-healing checks | Self-healing routines detect and remediate at least four known failure classes with simulated MTTR <= 10 minutes. |
@@ -165,15 +166,15 @@ Deliver a broadened deep-audit and hardening pass that makes the complete retrie
 |-------------|------------|----------|
 | REQ-001 | Phase 1 | T001, T002, T003, T004 |
 | REQ-002 | Phase 2 | T005, T008 |
-| REQ-003 | Phase 2 | T006 |
-| REQ-004 | Phase 2 | T007 |
+| REQ-003 | Phase 1, Phase 2 | T025, T006 |
+| REQ-004 | Phase 1, Phase 2 | T026, T007 |
 | REQ-005 | Phase 3 | T009, T010 |
 | REQ-006 | Phase 3 | T011 |
 | REQ-007 | Phase 3 | T012 |
 | REQ-008 | Phase 3 | T013, T014 |
 | REQ-009 | Phase 4 | T015, T016 |
 | REQ-010 | Phase 5 | T019 |
-| REQ-011 | Phase 4 | T017, T018 |
+| REQ-011 | Phase 1, Phase 4 | T027, T017, T018 |
 | REQ-012 | Phase 5 | T022, T023 |
 | REQ-013 | Phase 5 | T020 |
 | REQ-014 | Phase 2, Phase 4 | T008, T015 |
@@ -249,7 +250,7 @@ Deliver a broadened deep-audit and hardening pass that makes the complete retrie
 ### Reliability
 - **NFR-R01**: Same query and same index state yield deterministic ranking output.
 - **NFR-R02**: Reindex + retrieval + session routing workflows remain idempotent across reruns.
-- **NFR-R03**: Recovery drills achieve RPO 0 for committed mutations and documented RTO <= 10 minutes.
+- **NFR-R03**: Operational drill and incident-remediation workflows achieve documented RTO <= 10 minutes; this operational RTO target is distinct from the REQ-008 simulation replay SLA (<= 120s).
 <!-- /ANCHOR:nfr -->
 
 ---
@@ -475,6 +476,9 @@ Deliver a broadened deep-audit and hardening pass that makes the complete retrie
 
 ## 15. CHANGE LOG
 
+### v1.3 (2026-02-22)
+Consistency patch: added `handlers/memory-search.ts` to the files-to-change allowlist, clarified REQ-008 as simulation replay SLA (`<= 120s`), clarified NFR-R03 as operational drill/incident RTO (`<= 10 minutes`) distinct from REQ-008, mapped decision-lock tasks to REQ-003/REQ-004/REQ-011 traceability rows, and converted open questions into an active decision backlog.
+
 ### v1.1 (2026-02-22)
 Broadened scope from retrieval/fusion-focused hardening to full cross-system hardening across ten audited subsystems; added explicit traceability matrix and expanded governance/verification requirements.
 
@@ -487,11 +491,13 @@ Initial Level 3+ specification for hybrid RAG fusion logic improvements.
 ---
 
 <!-- ANCHOR:questions -->
-## 16. OPEN QUESTIONS
+## 16. ACTIVE DECISION BACKLOG
 
-- Should relation-score calibration use one shared adjudication corpus or separate corpora for graph and session-learning domains?
-- Should cognitive-weight bounds vary by intent class or remain globally fixed for initial rollout?
-- Should self-healing loops auto-apply remediation in production by default or require explicit operator acknowledgement for specific failure classes?
+| Decision ID | Decision Topic | Owner | Due Phase | Required Evidence | Task Linkage | Status |
+|-------------|----------------|-------|-----------|-------------------|--------------|--------|
+| D-001 | Relation-score adjudication corpus policy (shared vs domain-specific corpus) | Retrieval Maintainer | Phase 1 | Corpus policy note, adjudication fixture manifest, and Kendall tau variance report from baseline replay | T025 -> REQ-003 | Open |
+| D-002 | Cognitive-weight policy scope (global bounds vs intent-scoped bounds) | Retrieval Maintainer + QA Lead | Phase 1 | Ablation comparison by intent class, bound-selection rationale, and approval note for rollout defaults | T026 -> REQ-004 | Open |
+| D-003 | Self-healing auto-remediation policy (auto-apply vs operator acknowledgement) | Operations Lead | Phase 1 | Failure-class policy matrix, rollback/escalation guardrail definition, and dry-run command evidence | T027 -> REQ-011 | Open |
 <!-- /ANCHOR:questions -->
 
 ---
