@@ -13,6 +13,11 @@ import {
   getEntryCount,
   getLinkedEntries,
   verifyAppendOnly,
+  DEFAULT_DIVERGENCE_RECONCILE_MAX_RETRIES,
+  DIVERGENCE_RECONCILE_REASON,
+  DIVERGENCE_RECONCILE_ESCALATION_REASON,
+  getDivergenceReconcileAttemptCount,
+  recordDivergenceReconcileHook,
 } from '../lib/storage/mutation-ledger';
 import type { AppendEntryInput } from '../lib/storage/mutation-ledger';
 
@@ -248,5 +253,67 @@ describe('Mutation Ledger', () => {
     // Table and triggers still work after re-init
     appendEntry(db, makeEntry());
     expect(getEntryCount(db)).toBe(1);
+  });
+
+  it('records deterministic bounded retry attempts for divergence reconciliation', () => {
+    const normalizedPath = '/workspace/specs/003-system-spec-kit/700-test/memory/a.md';
+    const variants = [
+      '/workspace/specs/003-system-spec-kit/700-test/memory/a.md',
+      '/workspace/.opencode/specs/003-system-spec-kit/700-test/memory/a.md',
+    ];
+
+    const first = recordDivergenceReconcileHook(db, { normalizedPath, variants });
+    const second = recordDivergenceReconcileHook(db, { normalizedPath, variants });
+    const third = recordDivergenceReconcileHook(db, { normalizedPath, variants });
+
+    expect(DEFAULT_DIVERGENCE_RECONCILE_MAX_RETRIES).toBe(3);
+    expect(first.policy.nextAttempt).toBe(1);
+    expect(second.policy.nextAttempt).toBe(2);
+    expect(third.policy.nextAttempt).toBe(3);
+    expect(first.policy.shouldRetry).toBe(true);
+    expect(second.policy.shouldRetry).toBe(true);
+    expect(third.policy.shouldRetry).toBe(true);
+    expect(getDivergenceReconcileAttemptCount(db, normalizedPath)).toBe(3);
+
+    const retryEntries = db.prepare(
+      'SELECT reason, decision_meta FROM mutation_ledger WHERE reason = ? ORDER BY id ASC'
+    ).all(DIVERGENCE_RECONCILE_REASON) as Array<{ reason: string; decision_meta: string }>;
+    const attempts = retryEntries.map((row) => {
+      const meta = JSON.parse(row.decision_meta) as { attempt?: number };
+      return meta.attempt;
+    });
+    expect(attempts).toEqual([1, 2, 3]);
+  });
+
+  it('escalates with payload when divergence retries are exhausted', () => {
+    const normalizedPath = '/workspace/specs/003-system-spec-kit/701-test/memory/b.md';
+    const variants = [
+      '/workspace/specs/003-system-spec-kit/701-test/memory/b.md',
+      '/workspace/.opencode/specs/003-system-spec-kit/701-test/memory/b.md',
+    ];
+
+    recordDivergenceReconcileHook(db, { normalizedPath, variants, maxRetries: 2 });
+    recordDivergenceReconcileHook(db, { normalizedPath, variants, maxRetries: 2 });
+    const escalationResult = recordDivergenceReconcileHook(db, { normalizedPath, variants, maxRetries: 2 });
+
+    expect(escalationResult.policy.shouldRetry).toBe(false);
+    expect(escalationResult.policy.exhausted).toBe(true);
+    expect(escalationResult.escalation).toBeTruthy();
+    expect(escalationResult.escalation?.code).toBe('E_DIVERGENCE_RECONCILE_RETRY_EXHAUSTED');
+    expect(escalationResult.escalation?.attempts).toBe(2);
+    expect(escalationResult.escalation?.maxRetries).toBe(2);
+    expect(escalationResult.escalation?.normalizedPath).toBe(normalizedPath);
+
+    const escalationEntries = db.prepare(
+      'SELECT reason, decision_meta FROM mutation_ledger WHERE reason = ? ORDER BY id ASC'
+    ).all(DIVERGENCE_RECONCILE_ESCALATION_REASON) as Array<{ reason: string; decision_meta: string }>;
+    expect(escalationEntries).toHaveLength(1);
+    const escalationMeta = JSON.parse(escalationEntries[0].decision_meta) as {
+      status?: string;
+      escalation?: { code?: string; recommendation?: string };
+    };
+    expect(escalationMeta.status).toBe('escalated');
+    expect(escalationMeta.escalation?.code).toBe('E_DIVERGENCE_RECONCILE_RETRY_EXHAUSTED');
+    expect(escalationMeta.escalation?.recommendation).toBe('manual_triage_required');
   });
 });

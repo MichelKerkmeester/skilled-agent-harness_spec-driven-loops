@@ -48,6 +48,18 @@ export interface CollectedDataForAlignment {
   [key: string]: unknown;
 }
 
+export interface TelemetrySchemaFieldDiff {
+  interfaceName: string;
+  schemaOnlyFields: string[];
+  docsOnlyFields: string[];
+}
+
+export interface TelemetrySchemaDocsValidationOptions {
+  schemaPath?: string;
+  docsPath?: string;
+  useCache?: boolean;
+}
+
 /* -----------------------------------------------------------------
    2. CONFIGURATION
 ------------------------------------------------------------------*/
@@ -71,6 +83,19 @@ const ALIGNMENT_CONFIG: AlignmentConfig = {
   INFRASTRUCTURE_THRESHOLD: 0.5
 };
 
+const TELEMETRY_INTERFACE_NAMES = [
+  'RetrievalTelemetry',
+  'LatencyMetrics',
+  'ModeMetrics',
+  'FallbackMetrics',
+  'QualityMetrics',
+] as const;
+
+const telemetrySchemaDocsValidationCache = {
+  checked: false,
+  error: null as Error | null,
+};
+
 /* -----------------------------------------------------------------
    2.5 ARCHIVE FILTERING
 ------------------------------------------------------------------*/
@@ -79,6 +104,183 @@ const ALIGNMENT_CONFIG: AlignmentConfig = {
 function isArchiveFolder(name: string): boolean {
   const lowerName = name.toLowerCase();
   return ALIGNMENT_CONFIG.ARCHIVE_PATTERNS.some((pattern) => lowerName.includes(pattern));
+}
+
+/* -----------------------------------------------------------------
+   2.75 TELEMETRY SCHEMA/DOCS DRIFT VALIDATION
+------------------------------------------------------------------*/
+
+function escapeRegExp(value: string): string {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+function dedupeAndSort(values: string[]): string[] {
+  return Array.from(new Set(values)).sort();
+}
+
+function extractSchemaInterfaceFields(schemaSource: string, interfaceName: string): string[] {
+  const interfacePattern = new RegExp(
+    `interface\\s+${escapeRegExp(interfaceName)}\\s*\\{([\\s\\S]*?)\\}`,
+    'm'
+  );
+  const match = schemaSource.match(interfacePattern);
+  if (!match) return [];
+
+  const fields: string[] = [];
+  const fieldPattern = /^\s*([A-Za-z_][A-Za-z0-9_]*)\??\s*:/gm;
+  let fieldMatch = fieldPattern.exec(match[1]);
+  while (fieldMatch) {
+    fields.push(fieldMatch[1]);
+    fieldMatch = fieldPattern.exec(match[1]);
+  }
+
+  return dedupeAndSort(fields);
+}
+
+function extractDocsInterfaceFields(docsSource: string, interfaceName: string): string[] {
+  const headingPattern = new RegExp(`^###\\s+${escapeRegExp(interfaceName)}\\s*$`, 'm');
+  const headingMatch = headingPattern.exec(docsSource);
+  if (!headingMatch) return [];
+
+  const startIndex = headingMatch.index + headingMatch[0].length;
+  const tail = docsSource.slice(startIndex);
+  const nextHeadingMatch = tail.match(/^###\s+/m);
+  const section = nextHeadingMatch ? tail.slice(0, nextHeadingMatch.index) : tail;
+
+  const fields: string[] = [];
+  const fieldPattern = /^\|\s*`([^`]+)`\s*\|/gm;
+  let fieldMatch = fieldPattern.exec(section);
+  while (fieldMatch) {
+    fields.push(fieldMatch[1].trim());
+    fieldMatch = fieldPattern.exec(section);
+  }
+
+  return dedupeAndSort(fields);
+}
+
+function computeTelemetrySchemaDocsFieldDiffs(
+  schemaSource: string,
+  docsSource: string
+): TelemetrySchemaFieldDiff[] {
+  const diffs: TelemetrySchemaFieldDiff[] = [];
+
+  for (const interfaceName of TELEMETRY_INTERFACE_NAMES) {
+    const schemaFields = extractSchemaInterfaceFields(schemaSource, interfaceName);
+    const docsFields = extractDocsInterfaceFields(docsSource, interfaceName);
+
+    const docsFieldSet = new Set(docsFields);
+    const schemaFieldSet = new Set(schemaFields);
+
+    const schemaOnlyFields = schemaFields.filter((field) => !docsFieldSet.has(field));
+    const docsOnlyFields = docsFields.filter((field) => !schemaFieldSet.has(field));
+
+    if (schemaOnlyFields.length > 0 || docsOnlyFields.length > 0) {
+      diffs.push({
+        interfaceName,
+        schemaOnlyFields,
+        docsOnlyFields,
+      });
+    }
+  }
+
+  return diffs;
+}
+
+function formatTelemetrySchemaDocsDriftDiffs(diffs: TelemetrySchemaFieldDiff[]): string {
+  const lines: string[] = ['Field-level differences:'];
+
+  for (const diff of diffs) {
+    lines.push(`- ${diff.interfaceName}`);
+
+    for (const field of diff.schemaOnlyFields) {
+      lines.push(`  + ${field} (schema-only)`);
+    }
+
+    for (const field of diff.docsOnlyFields) {
+      lines.push(`  - ${field} (docs-only)`);
+    }
+  }
+
+  return lines.join('\n');
+}
+
+function formatPathForMessage(filePath: string): string {
+  const relative = path.relative(process.cwd(), filePath);
+  return relative && !relative.startsWith('..') ? relative : filePath;
+}
+
+async function fileExists(filePath: string): Promise<boolean> {
+  try {
+    await fs.access(filePath);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+async function resolveTelemetrySchemaDocsPaths(): Promise<{ schemaPath: string; docsPath: string }> {
+  const rootCandidates = [
+    path.resolve(__dirname, '..', '..'),
+    path.resolve(__dirname, '..', '..', '..'),
+  ];
+
+  for (const rootDir of rootCandidates) {
+    const schemaPath = path.join(rootDir, 'mcp_server', 'lib', 'telemetry', 'retrieval-telemetry.ts');
+    const docsPath = path.join(rootDir, 'mcp_server', 'lib', 'telemetry', 'README.md');
+
+    if (await fileExists(schemaPath) && await fileExists(docsPath)) {
+      return { schemaPath, docsPath };
+    }
+  }
+
+  throw new Error(
+    'Unable to locate telemetry schema/docs files for drift validation: expected mcp_server/lib/telemetry/retrieval-telemetry.ts and README.md'
+  );
+}
+
+async function validateTelemetrySchemaDocsDrift(
+  options: TelemetrySchemaDocsValidationOptions = {}
+): Promise<void> {
+  const useCache =
+    options.useCache !== false &&
+    typeof options.schemaPath !== 'string' &&
+    typeof options.docsPath !== 'string';
+
+  if (useCache && telemetrySchemaDocsValidationCache.checked) {
+    if (telemetrySchemaDocsValidationCache.error) {
+      throw telemetrySchemaDocsValidationCache.error;
+    }
+    return;
+  }
+
+  const defaultPaths = await resolveTelemetrySchemaDocsPaths();
+  const schemaPath = options.schemaPath || defaultPaths.schemaPath;
+  const docsPath = options.docsPath || defaultPaths.docsPath;
+
+  const schemaSource = await fs.readFile(schemaPath, 'utf-8');
+  const docsSource = await fs.readFile(docsPath, 'utf-8');
+  const diffs = computeTelemetrySchemaDocsFieldDiffs(schemaSource, docsSource);
+
+  if (diffs.length > 0) {
+    const message = [
+      `Telemetry schema/docs drift detected between "${formatPathForMessage(schemaPath)}" and "${formatPathForMessage(docsPath)}".`,
+      formatTelemetrySchemaDocsDriftDiffs(diffs),
+    ].join('\n');
+
+    const error = new Error(message);
+
+    if (useCache) {
+      telemetrySchemaDocsValidationCache.checked = true;
+      telemetrySchemaDocsValidationCache.error = error;
+    }
+
+    throw error;
+  }
+
+  if (useCache) {
+    telemetrySchemaDocsValidationCache.checked = true;
+    telemetrySchemaDocsValidationCache.error = null;
+  }
 }
 
 /* -----------------------------------------------------------------
@@ -258,6 +460,8 @@ async function validateContentAlignment(
   specFolderName: string,
   specsDir: string
 ): Promise<AlignmentResult> {
+  await validateTelemetrySchemaDocsDrift();
+
   const conversationTopics = extractConversationTopics(collectedData);
   const observationKeywords = extractObservationKeywords(collectedData);
   const combinedTopics = [...new Set([...conversationTopics, ...observationKeywords])];
@@ -357,6 +561,8 @@ async function validateFolderAlignment(
   specFolderName: string,
   specsDir: string
 ): Promise<AlignmentResult> {
+  await validateTelemetrySchemaDocsDrift();
+
   const conversationTopics = extractConversationTopics(collectedData);
 
   const workDomain = detectWorkDomain(collectedData);
@@ -455,6 +661,9 @@ export {
   extractObservationKeywords,
   parseSpecFolderTopic,
   calculateAlignmentScore,
+  computeTelemetrySchemaDocsFieldDiffs,
+  formatTelemetrySchemaDocsDriftDiffs,
+  validateTelemetrySchemaDocsDrift,
   validateContentAlignment,
   validateFolderAlignment,
 };

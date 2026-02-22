@@ -6,6 +6,13 @@
 // Feature flag: SPECKIT_EXTENDED_TELEMETRY (default true)
 // ---------------------------------------------------------------
 
+import {
+  sanitizeRetrievalTracePayload,
+} from './trace-schema';
+import type {
+  TelemetryTracePayload,
+} from './trace-schema';
+
 /* ---------------------------------------------------------------
    1. FEATURE FLAG
 --------------------------------------------------------------- */
@@ -63,6 +70,7 @@ interface RetrievalTelemetry {
   mode: ModeMetrics;
   fallback: FallbackMetrics;
   quality: QualityMetrics;
+  tracePayload?: TelemetryTracePayload;
 }
 
 type LatencyStage = keyof Omit<LatencyMetrics, 'totalLatencyMs'>;
@@ -169,6 +177,19 @@ function recordQualityProxy(
   t.quality.qualityProxyScore = computeQualityProxy(t);
 }
 
+function recordTracePayload(t: RetrievalTelemetry, payload: unknown): boolean {
+  if (!t.enabled) return false;
+
+  const sanitized = sanitizeRetrievalTracePayload(payload);
+  if (!sanitized) {
+    delete t.tracePayload;
+    return false;
+  }
+
+  t.tracePayload = sanitized;
+  return true;
+}
+
 /* ---------------------------------------------------------------
    5. QUALITY PROXY COMPUTATION
 --------------------------------------------------------------- */
@@ -210,14 +231,53 @@ function toJSON(t: RetrievalTelemetry): Record<string, unknown> {
   if (!t.enabled) {
     return { enabled: false };
   }
-  return {
+
+  const tracePayload = sanitizeRetrievalTracePayload((t as { tracePayload?: unknown }).tracePayload);
+
+  const modePayload: Record<string, unknown> = {
+    selectedMode: t.mode.selectedMode,
+    modeOverrideApplied: t.mode.modeOverrideApplied,
+    pressureLevel: t.mode.pressureLevel,
+  };
+  if (typeof t.mode.tokenUsageRatio === 'number' && Number.isFinite(t.mode.tokenUsageRatio)) {
+    modePayload.tokenUsageRatio = Math.max(0, Math.min(1, t.mode.tokenUsageRatio));
+  }
+
+  const fallbackPayload: Record<string, unknown> = {
+    fallbackTriggered: t.fallback.fallbackTriggered,
+    degradedModeActive: t.fallback.degradedModeActive,
+  };
+  if (typeof t.fallback.fallbackReason === 'string' && t.fallback.fallbackReason.length > 0) {
+    fallbackPayload.fallbackReason = t.fallback.fallbackReason;
+  }
+
+  const payload: Record<string, unknown> = {
     enabled: t.enabled,
     timestamp: t.timestamp,
-    latency: { ...t.latency },
-    mode: { ...t.mode },
-    fallback: { ...t.fallback },
-    quality: { ...t.quality },
+    latency: {
+      totalLatencyMs: t.latency.totalLatencyMs,
+      candidateLatencyMs: t.latency.candidateLatencyMs,
+      fusionLatencyMs: t.latency.fusionLatencyMs,
+      rerankLatencyMs: t.latency.rerankLatencyMs,
+      boostLatencyMs: t.latency.boostLatencyMs,
+    },
+    mode: modePayload,
+    fallback: fallbackPayload,
+    quality: {
+      resultCount: t.quality.resultCount,
+      avgRelevanceScore: t.quality.avgRelevanceScore,
+      topResultScore: t.quality.topResultScore,
+      boostImpactDelta: t.quality.boostImpactDelta,
+      extractionCountInSession: t.quality.extractionCountInSession,
+      qualityProxyScore: t.quality.qualityProxyScore,
+    },
   };
+
+  if (tracePayload) {
+    payload.tracePayload = tracePayload;
+  }
+
+  return payload;
 }
 
 /* ---------------------------------------------------------------
@@ -231,6 +291,7 @@ export {
   recordMode,
   recordFallback,
   recordQualityProxy,
+  recordTracePayload,
   computeQualityProxy,
   toJSON,
 };

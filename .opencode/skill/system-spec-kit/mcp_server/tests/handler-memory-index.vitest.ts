@@ -41,6 +41,7 @@ describe('Handler Memory Index (T520) [deferred - requires DB test fixtures]', (
         'index_single_file',
         'find_constitutional_files',
         'summarize_alias_conflicts',
+        'run_divergence_reconcile_hooks',
       ];
       for (const alias of aliases) {
         expect(typeof handler[alias]).toBe('function');
@@ -49,6 +50,10 @@ describe('Handler Memory Index (T520) [deferred - requires DB test fixtures]', (
 
     it('T520-4b: summarizeAliasConflicts exported', () => {
       expect(typeof handler.summarizeAliasConflicts).toBe('function');
+    });
+
+    it('T520-4c: runDivergenceReconcileHooks exported', () => {
+      expect(typeof handler.runDivergenceReconcileHooks).toBe('function');
     });
   });
 
@@ -208,6 +213,132 @@ describe('Handler Memory Index (T520) [deferred - requires DB test fixtures]', (
       expect(summary.identicalHashGroups).toBe(0);
       expect(summary.divergentHashGroups).toBe(0);
       expect(summary.samples).toHaveLength(0);
+    });
+  });
+
+  describe('runDivergenceReconcileHooks', () => {
+    it('T520-9g: applies bounded retries then escalation deterministically', () => {
+      const attempts = new Map<string, number>();
+
+      const reconcileHook: NonNullable<
+        Parameters<typeof handler.runDivergenceReconcileHooks>[1]
+      >['reconcileHook'] = (_db, input) => {
+        const maxRetries = input.maxRetries ?? 3;
+        const attemptsSoFar = attempts.get(input.normalizedPath) ?? 0;
+        const shouldRetry = attemptsSoFar < maxRetries;
+        if (shouldRetry) {
+          attempts.set(input.normalizedPath, attemptsSoFar + 1);
+          return {
+            policy: {
+              normalizedPath: input.normalizedPath,
+              attemptsSoFar,
+              nextAttempt: attemptsSoFar + 1,
+              maxRetries,
+              shouldRetry: true,
+              exhausted: false,
+            },
+            retryEntryId: attemptsSoFar + 1,
+            escalationEntryId: null,
+            escalation: null,
+          };
+        }
+
+        return {
+          policy: {
+            normalizedPath: input.normalizedPath,
+            attemptsSoFar,
+            nextAttempt: attemptsSoFar + 1,
+            maxRetries,
+            shouldRetry: false,
+            exhausted: true,
+          },
+          retryEntryId: null,
+          escalationEntryId: 999,
+          escalation: {
+            code: 'E_DIVERGENCE_RECONCILE_RETRY_EXHAUSTED',
+            normalizedPath: input.normalizedPath,
+            attempts: attemptsSoFar,
+            maxRetries,
+            recommendation: 'manual_triage_required',
+            reason: `Auto-reconcile exhausted after ${maxRetries} attempt(s)`,
+            variants: input.variants ?? [],
+          },
+        };
+      };
+
+      const aliasConflicts = {
+        groups: 1,
+        rows: 2,
+        identicalHashGroups: 0,
+        divergentHashGroups: 1,
+        unknownHashGroups: 0,
+        samples: [
+          {
+            normalizedPath: '/workspace/specs/003-system-spec-kit/777-test/memory/a.md',
+            hashState: 'divergent' as const,
+            variants: [
+              '/workspace/specs/003-system-spec-kit/777-test/memory/a.md',
+              '/workspace/.opencode/specs/003-system-spec-kit/777-test/memory/a.md',
+            ],
+          },
+        ],
+      };
+
+      const options = {
+        maxRetries: 2,
+        requireDatabase: () => ({}) as never,
+        reconcileHook,
+      };
+
+      const first = handler.runDivergenceReconcileHooks(aliasConflicts, options);
+      const second = handler.runDivergenceReconcileHooks(aliasConflicts, options);
+      const third = handler.runDivergenceReconcileHooks(aliasConflicts, options);
+
+      expect(first.candidates).toBe(1);
+      expect(first.retriesScheduled).toBe(1);
+      expect(first.escalated).toBe(0);
+      expect(second.retriesScheduled).toBe(1);
+      expect(second.escalated).toBe(0);
+      expect(third.retriesScheduled).toBe(0);
+      expect(third.escalated).toBe(1);
+      expect(third.escalations).toHaveLength(1);
+      expect(third.escalations[0].code).toBe('E_DIVERGENCE_RECONCILE_RETRY_EXHAUSTED');
+      expect(third.escalations[0].attempts).toBe(2);
+    });
+
+    it('T520-9h: skips database hook when no divergent samples exist', () => {
+      let dbCalls = 0;
+      const summary = handler.runDivergenceReconcileHooks(
+        {
+          groups: 1,
+          rows: 2,
+          identicalHashGroups: 1,
+          divergentHashGroups: 0,
+          unknownHashGroups: 0,
+          samples: [
+            {
+              normalizedPath: '/workspace/specs/003-system-spec-kit/778-test/memory/b.md',
+              hashState: 'identical',
+              variants: [
+                '/workspace/specs/003-system-spec-kit/778-test/memory/b.md',
+                '/workspace/.opencode/specs/003-system-spec-kit/778-test/memory/b.md',
+              ],
+            },
+          ],
+        },
+        {
+          requireDatabase: () => {
+            dbCalls++;
+            throw new Error('should not be called');
+          },
+        }
+      );
+
+      expect(dbCalls).toBe(0);
+      expect(summary.candidates).toBe(0);
+      expect(summary.retriesScheduled).toBe(0);
+      expect(summary.escalated).toBe(0);
+      expect(summary.errors).toHaveLength(0);
     });
   });
 

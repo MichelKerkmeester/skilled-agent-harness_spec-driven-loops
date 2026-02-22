@@ -1,0 +1,97 @@
+#!/usr/bin/env bash
+# Self-healing workflow: ledger mismatch.
+
+set -euo pipefail
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "${SCRIPT_DIR}/ops-common.sh"
+
+FAILURE_CLASS="ledger-mismatch"
+OWNER="Engineering Lead"
+SCENARIO="success"
+MAX_ATTEMPTS=3
+BACKOFF_SECONDS=0
+DETECT_FAILURES=1
+REPAIR_FAILURES=0
+VERIFY_FAILURES=0
+
+show_help() {
+    cat << EOF
+heal-ledger-mismatch.sh - Deterministic auto-remediation for mutation ledger mismatch
+
+USAGE:
+  ./heal-ledger-mismatch.sh [OPTIONS]
+
+OPTIONS:
+  --scenario <success|escalate>  Execution profile (default: success)
+  --max-attempts <n>             Retry bound per step (default: 3)
+  --backoff-seconds <n>          Delay between retries (default: 0)
+  --detect-failures <n>          Fail detect step n times before success
+  --repair-failures <n>          Fail repair step n times before success
+  --verify-failures <n>          Fail verify step n times before success
+  --help                         Show this help
+EOF
+}
+
+parse_args() {
+    while [[ $# -gt 0 ]]; do
+        case "$1" in
+            --help|-h) show_help; exit 0 ;;
+            --scenario) SCENARIO="$2"; shift 2 ;;
+            --max-attempts) MAX_ATTEMPTS="$2"; shift 2 ;;
+            --backoff-seconds) BACKOFF_SECONDS="$2"; shift 2 ;;
+            --detect-failures) DETECT_FAILURES="$2"; shift 2 ;;
+            --repair-failures) REPAIR_FAILURES="$2"; shift 2 ;;
+            --verify-failures) VERIFY_FAILURES="$2"; shift 2 ;;
+            *)
+                echo "ERROR: Unknown option: $1" >&2
+                exit 2
+                ;;
+        esac
+    done
+}
+
+apply_scenario() {
+    case "$SCENARIO" in
+        success)
+            ;;
+        escalate)
+            DETECT_FAILURES="$MAX_ATTEMPTS"
+            REPAIR_FAILURES="$MAX_ATTEMPTS"
+            VERIFY_FAILURES="$MAX_ATTEMPTS"
+            ;;
+        *)
+            echo "ERROR: scenario must be success or escalate" >&2
+            exit 2
+            ;;
+    esac
+}
+
+validate() {
+    ops_validate_common_options "$MAX_ATTEMPTS" "$BACKOFF_SECONDS"
+    ops_require_uint "detect_failures" "$DETECT_FAILURES"
+    ops_require_uint "repair_failures" "$REPAIR_FAILURES"
+    ops_require_uint "verify_failures" "$VERIFY_FAILURES"
+}
+
+main() {
+    parse_args "$@"
+    validate
+    apply_scenario
+
+    ops_log "STATE" "class=${FAILURE_CLASS} scenario=${SCENARIO} max_attempts=${MAX_ATTEMPTS}"
+
+    ops_run_step "$FAILURE_CLASS" "detect-ledger-divergence" "$MAX_ATTEMPTS" "$BACKOFF_SECONDS" "$DETECT_FAILURES" "$OWNER" \
+        "node dist/memory/cleanup-orphaned-vectors.js --check-ledger --strict" || exit 1
+
+    ops_run_step "$FAILURE_CLASS" "replay-ledger" "$MAX_ATTEMPTS" "$BACKOFF_SECONDS" "$REPAIR_FAILURES" "$OWNER" \
+        "node dist/memory/cleanup-orphaned-vectors.js --repair-ledger --replay" || exit 1
+
+    ops_run_step "$FAILURE_CLASS" "verify-rpo-zero" "$MAX_ATTEMPTS" "$BACKOFF_SECONDS" "$VERIFY_FAILURES" "$OWNER" \
+        "node dist/evals/run-quality-legacy-remediation.js --check ledger-consistency" || exit 1
+
+    ops_emit_success "$FAILURE_CLASS" "$OWNER" "ledger replay consistency restored"
+}
+
+main "$@"
+

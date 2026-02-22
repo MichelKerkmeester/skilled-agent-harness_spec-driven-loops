@@ -47,6 +47,40 @@ interface GetEntriesOptions {
   offset?: number;
 }
 
+interface DivergenceReconcilePolicy {
+  normalizedPath: string;
+  attemptsSoFar: number;
+  nextAttempt: number;
+  maxRetries: number;
+  shouldRetry: boolean;
+  exhausted: boolean;
+}
+
+interface DivergenceEscalationPayload {
+  code: 'E_DIVERGENCE_RECONCILE_RETRY_EXHAUSTED';
+  normalizedPath: string;
+  attempts: number;
+  maxRetries: number;
+  recommendation: 'manual_triage_required';
+  reason: string;
+  variants: string[];
+}
+
+interface RecordDivergenceReconcileInput {
+  normalizedPath: string;
+  variants?: string[];
+  actor?: string;
+  session_id?: string | null;
+  maxRetries?: number;
+}
+
+interface RecordDivergenceReconcileResult {
+  policy: DivergenceReconcilePolicy;
+  retryEntryId: number | null;
+  escalationEntryId: number | null;
+  escalation: DivergenceEscalationPayload | null;
+}
+
 /* -------------------------------------------------------------
    2. SCHEMA SQL
 ----------------------------------------------------------------*/
@@ -202,7 +236,182 @@ function verifyAppendOnly(db: Database.Database): boolean {
 }
 
 /* -------------------------------------------------------------
-   9. EXPORTS
+   9. DIVERGENCE RETRY + ESCALATION HOOKS
+----------------------------------------------------------------*/
+
+const DEFAULT_DIVERGENCE_RECONCILE_MAX_RETRIES = 3;
+const DIVERGENCE_RECONCILE_REASON = 'alias_divergence_auto_reconcile';
+const DIVERGENCE_RECONCILE_ESCALATION_REASON = 'alias_divergence_auto_reconcile_escalated';
+const DIVERGENCE_RECONCILE_ACTOR = 'memory-index-scan';
+
+function normalizeMaxRetries(maxRetries?: number): number {
+  if (!Number.isFinite(maxRetries) || (maxRetries ?? 0) < 1) {
+    return DEFAULT_DIVERGENCE_RECONCILE_MAX_RETRIES;
+  }
+  return Math.max(1, Math.floor(maxRetries as number));
+}
+
+function normalizePath(value: string): string {
+  return value.trim().replace(/\\/g, '/');
+}
+
+function normalizeVariants(variants?: string[]): string[] {
+  if (!Array.isArray(variants)) {
+    return [];
+  }
+
+  const unique = new Set<string>();
+  for (const variant of variants) {
+    if (typeof variant !== 'string' || variant.trim().length === 0) {
+      continue;
+    }
+    unique.add(normalizePath(variant));
+  }
+  return Array.from(unique).sort((a, b) => a.localeCompare(b));
+}
+
+function readDecisionMetaNormalizedPath(decisionMetaJson: string): string | null {
+  try {
+    const parsed = JSON.parse(decisionMetaJson) as { normalizedPath?: unknown };
+    return typeof parsed.normalizedPath === 'string' ? normalizePath(parsed.normalizedPath) : null;
+  } catch {
+    return null;
+  }
+}
+
+function getDivergenceReconcileAttemptCount(db: Database.Database, normalizedPath: string): number {
+  const targetPath = normalizePath(normalizedPath);
+  if (targetPath.length === 0) {
+    return 0;
+  }
+
+  const rows = db.prepare(`
+    SELECT decision_meta
+    FROM mutation_ledger
+    WHERE mutation_type = 'reindex'
+      AND reason = ?
+    ORDER BY id ASC
+  `).all(DIVERGENCE_RECONCILE_REASON) as Array<{ decision_meta: string }>;
+
+  let attempts = 0;
+  for (const row of rows) {
+    const rowPath = readDecisionMetaNormalizedPath(row.decision_meta);
+    if (rowPath === targetPath) {
+      attempts++;
+    }
+  }
+
+  return attempts;
+}
+
+function buildDivergenceReconcilePolicy(
+  normalizedPath: string,
+  attemptsSoFar: number,
+  maxRetries: number = DEFAULT_DIVERGENCE_RECONCILE_MAX_RETRIES
+): DivergenceReconcilePolicy {
+  const boundedMaxRetries = normalizeMaxRetries(maxRetries);
+  const safeAttempts = Math.max(0, Math.floor(attemptsSoFar));
+  const nextAttempt = safeAttempts + 1;
+  const shouldRetry = safeAttempts < boundedMaxRetries;
+
+  return {
+    normalizedPath: normalizePath(normalizedPath),
+    attemptsSoFar: safeAttempts,
+    nextAttempt,
+    maxRetries: boundedMaxRetries,
+    shouldRetry,
+    exhausted: !shouldRetry,
+  };
+}
+
+function buildDivergenceEscalationPayload(
+  policy: DivergenceReconcilePolicy,
+  variants: string[]
+): DivergenceEscalationPayload {
+  return {
+    code: 'E_DIVERGENCE_RECONCILE_RETRY_EXHAUSTED',
+    normalizedPath: policy.normalizedPath,
+    attempts: policy.attemptsSoFar,
+    maxRetries: policy.maxRetries,
+    recommendation: 'manual_triage_required',
+    reason: `Auto-reconcile exhausted after ${policy.maxRetries} attempt(s)`,
+    variants: normalizeVariants(variants),
+  };
+}
+
+function recordDivergenceReconcileHook(
+  db: Database.Database,
+  input: RecordDivergenceReconcileInput
+): RecordDivergenceReconcileResult {
+  initLedger(db);
+
+  const normalizedPath = normalizePath(input.normalizedPath);
+  if (normalizedPath.length === 0) {
+    throw new Error('normalizedPath is required for divergence reconciliation');
+  }
+
+  const maxRetries = normalizeMaxRetries(input.maxRetries);
+  const attemptsSoFar = getDivergenceReconcileAttemptCount(db, normalizedPath);
+  const policy = buildDivergenceReconcilePolicy(normalizedPath, attemptsSoFar, maxRetries);
+  const actor = input.actor ?? DIVERGENCE_RECONCILE_ACTOR;
+  const variants = normalizeVariants(input.variants);
+
+  if (policy.shouldRetry) {
+    const retryEntry = appendEntry(db, {
+      mutation_type: 'reindex',
+      reason: DIVERGENCE_RECONCILE_REASON,
+      prior_hash: null,
+      new_hash: computeHash(`${normalizedPath}|attempt:${policy.nextAttempt}|max:${policy.maxRetries}`),
+      linked_memory_ids: [],
+      decision_meta: {
+        normalizedPath,
+        attempt: policy.nextAttempt,
+        maxRetries: policy.maxRetries,
+        boundedRetry: true,
+        status: 'retry_scheduled',
+        variants,
+      },
+      actor,
+      session_id: input.session_id ?? null,
+    });
+
+    return {
+      policy,
+      retryEntryId: retryEntry.id,
+      escalationEntryId: null,
+      escalation: null,
+    };
+  }
+
+  const escalation = buildDivergenceEscalationPayload(policy, variants);
+  const escalationEntry = appendEntry(db, {
+    mutation_type: 'reindex',
+    reason: DIVERGENCE_RECONCILE_ESCALATION_REASON,
+    prior_hash: null,
+    new_hash: computeHash(`${normalizedPath}|escalated|attempts:${policy.attemptsSoFar}|max:${policy.maxRetries}`),
+    linked_memory_ids: [],
+    decision_meta: {
+      normalizedPath,
+      attempts: policy.attemptsSoFar,
+      maxRetries: policy.maxRetries,
+      boundedRetry: true,
+      status: 'escalated',
+      escalation,
+    },
+    actor,
+    session_id: input.session_id ?? null,
+  });
+
+  return {
+    policy,
+    retryEntryId: null,
+    escalationEntryId: escalationEntry.id,
+    escalation,
+  };
+}
+
+/* -------------------------------------------------------------
+   10. EXPORTS
 ----------------------------------------------------------------*/
 
 export {
@@ -217,6 +426,13 @@ export {
   getEntryCount,
   getLinkedEntries,
   verifyAppendOnly,
+  DEFAULT_DIVERGENCE_RECONCILE_MAX_RETRIES,
+  DIVERGENCE_RECONCILE_REASON,
+  DIVERGENCE_RECONCILE_ESCALATION_REASON,
+  getDivergenceReconcileAttemptCount,
+  buildDivergenceReconcilePolicy,
+  buildDivergenceEscalationPayload,
+  recordDivergenceReconcileHook,
 };
 
 export type {
@@ -224,4 +440,8 @@ export type {
   MutationLedgerEntry,
   AppendEntryInput,
   GetEntriesOptions,
+  DivergenceReconcilePolicy,
+  DivergenceEscalationPayload,
+  RecordDivergenceReconcileInput,
+  RecordDivergenceReconcileResult,
 };

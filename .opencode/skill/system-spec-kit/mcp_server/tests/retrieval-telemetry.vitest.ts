@@ -10,6 +10,7 @@ import {
   recordMode,
   recordFallback,
   recordQualityProxy,
+  recordTracePayload,
   computeQualityProxy,
   toJSON,
   isExtendedTelemetryEnabled,
@@ -306,5 +307,95 @@ describe('C136-12: retrieval-telemetry', () => {
     recordLatency(t, 'candidateLatencyMs', 50);
     expect(t.latency.candidateLatencyMs).toBe(50);
     expect(t.latency.totalLatencyMs).toBe(50);
+  });
+
+  // ---------------------------------------------------------------
+  // T11: Trace payload schema + serialization redaction
+  // ---------------------------------------------------------------
+  it('T11: recordTracePayload stores canonical trace payload', () => {
+    const t = createTelemetry();
+    const accepted = recordTracePayload(t, {
+      traceId: 'tr_abc123',
+      query: 'sensitive query',
+      sessionId: 'session-secret',
+      stages: [
+        {
+          stage: 'candidate',
+          timestamp: 1700000000000,
+          inputCount: 100,
+          outputCount: 25,
+          durationMs: 8,
+          metadata: { apiKey: 'secret' },
+        },
+      ],
+      totalDurationMs: 8,
+      finalResultCount: 25,
+      token: 'sensitive-token',
+    });
+
+    expect(accepted).toBe(true);
+
+    const json = toJSON(t) as any;
+    expect(json.tracePayload).toBeDefined();
+    expect(json.tracePayload.traceId).toBe('tr_abc123');
+    expect(json.tracePayload.totalDurationMs).toBe(8);
+    expect(json.tracePayload.finalResultCount).toBe(25);
+    expect(json.tracePayload.query).toBeUndefined();
+    expect(json.tracePayload.sessionId).toBeUndefined();
+    expect(json.tracePayload.token).toBeUndefined();
+    expect(json.tracePayload.stages[0].metadata).toBeUndefined();
+  });
+
+  it('T11b: toJSON excludes non-canonical telemetry fields', () => {
+    const t = createTelemetry() as any;
+
+    t.mode.apiKey = 'secret';
+    t.fallback.authorization = 'Bearer token';
+    t.quality.password = 'should-not-leak';
+    t.tracePayload = {
+      traceId: 'tr_clean',
+      stages: [
+        {
+          stage: 'candidate',
+          timestamp: 1,
+          inputCount: 2,
+          outputCount: 1,
+          durationMs: 3,
+          secret: 'hidden',
+        },
+      ],
+      totalDurationMs: 3,
+      finalResultCount: 1,
+      apiKey: 'hidden',
+    };
+
+    const json = toJSON(t) as any;
+
+    expect(json.mode.apiKey).toBeUndefined();
+    expect(json.fallback.authorization).toBeUndefined();
+    expect(json.quality.password).toBeUndefined();
+    expect(json.tracePayload.apiKey).toBeUndefined();
+    expect(json.tracePayload.stages[0].secret).toBeUndefined();
+  });
+
+  it('T11c: invalid trace payload is rejected and omitted', () => {
+    const t = createTelemetry();
+    const accepted = recordTracePayload(t, {
+      traceId: 'tr_invalid',
+      stages: [
+        {
+          stage: 'invalid-stage',
+          timestamp: 1,
+          inputCount: 1,
+          outputCount: 1,
+          durationMs: 1,
+        },
+      ],
+    });
+
+    expect(accepted).toBe(false);
+
+    const json = toJSON(t) as any;
+    expect(json.tracePayload).toBeUndefined();
   });
 });

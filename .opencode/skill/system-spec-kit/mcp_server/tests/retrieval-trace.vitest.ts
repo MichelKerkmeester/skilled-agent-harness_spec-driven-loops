@@ -10,6 +10,11 @@ import {
   createDegradedContract,
   ENVELOPE_VERSION,
 } from '../lib/contracts/retrieval-trace';
+import {
+  RETRIEVAL_TRACE_STAGES,
+  isRetrievalTracePayload,
+  sanitizeRetrievalTracePayload,
+} from '../lib/telemetry/trace-schema';
 import type {
   RetrievalStage,
   RetrievalTrace,
@@ -231,5 +236,89 @@ describe('C136-08: Retrieval Trace Contracts', () => {
     for (let i = 1; i < trace.stages.length; i++) {
       expect(trace.stages[i].timestamp).toBeGreaterThanOrEqual(trace.stages[i - 1].timestamp);
     }
+  });
+
+  // ---------------------------------------------------------------
+  // 7. Telemetry trace schema validation
+  // ---------------------------------------------------------------
+
+  it('telemetry schema exports expected canonical retrieval stages', () => {
+    expect(RETRIEVAL_TRACE_STAGES).toEqual([
+      'candidate',
+      'filter',
+      'fusion',
+      'rerank',
+      'fallback',
+      'final-rank',
+    ]);
+  });
+
+  it('sanitizeRetrievalTracePayload strips non-canonical fields', () => {
+    const rawPayload = {
+      traceId: 'tr_sanitize',
+      query: 'sensitive',
+      sessionId: 'session-id',
+      stages: [
+        {
+          stage: 'candidate',
+          timestamp: 100,
+          inputCount: 50,
+          outputCount: 20,
+          durationMs: 9,
+          metadata: { apiKey: 'secret' },
+        },
+      ],
+      totalDurationMs: 9,
+      finalResultCount: 20,
+      token: 'secret-token',
+    };
+
+    const sanitized = sanitizeRetrievalTracePayload(rawPayload) as any;
+    expect(sanitized).toBeDefined();
+    expect(sanitized.traceId).toBe('tr_sanitize');
+    expect(sanitized.stages).toHaveLength(1);
+    expect(sanitized.query).toBeUndefined();
+    expect(sanitized.sessionId).toBeUndefined();
+    expect(sanitized.token).toBeUndefined();
+    expect(sanitized.stages[0].metadata).toBeUndefined();
+  });
+
+  it('isRetrievalTracePayload validates only canonical strict payloads', () => {
+    const canonicalPayload = {
+      traceId: 'tr_valid',
+      totalDurationMs: 12,
+      finalResultCount: 8,
+      stages: [
+        {
+          stage: 'candidate',
+          timestamp: 1,
+          inputCount: 25,
+          outputCount: 8,
+          durationMs: 12,
+        },
+      ],
+    };
+
+    const withExtraField = {
+      ...canonicalPayload,
+      query: 'sensitive',
+    };
+
+    const withInvalidStage = {
+      ...canonicalPayload,
+      stages: [
+        {
+          stage: 'invalid-stage',
+          timestamp: 1,
+          inputCount: 25,
+          outputCount: 8,
+          durationMs: 12,
+        },
+      ],
+    };
+
+    expect(isRetrievalTracePayload(canonicalPayload)).toBe(true);
+    expect(isRetrievalTracePayload(withExtraField)).toBe(false);
+    expect(isRetrievalTracePayload(withInvalidStage)).toBe(false);
   });
 });

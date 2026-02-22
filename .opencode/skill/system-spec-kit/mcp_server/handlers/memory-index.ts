@@ -22,6 +22,7 @@ import * as memoryParser from '../lib/parsing/memory-parser';
 import * as embeddings from '../lib/providers/embeddings';
 import * as triggerMatcher from '../lib/parsing/trigger-matcher';
 import * as incrementalIndex from '../lib/storage/incremental-index';
+import * as mutationLedger from '../lib/storage/mutation-ledger';
 
 // REQ-019: Standardized Response Structure
 import { createMCPSuccessResponse, createMCPErrorResponse } from '../lib/response/envelope';
@@ -224,6 +225,7 @@ interface ScanResults {
     duplicatesSkipped: number;
   };
   aliasConflicts: AliasConflictSummary;
+  divergenceReconcile: DivergenceReconcileSummary;
 }
 
 interface AliasConflictRow {
@@ -253,6 +255,23 @@ interface AliasConflictBucket {
   hashes: Set<string>;
 }
 
+interface DivergenceReconcileSummary {
+  enabled: boolean;
+  candidates: number;
+  retriesScheduled: number;
+  escalated: number;
+  maxRetries: number;
+  escalations: mutationLedger.DivergenceEscalationPayload[];
+  errors: string[];
+}
+
+interface DivergenceReconcileHookOptions {
+  maxRetries?: number;
+  actor?: string;
+  requireDatabase?: typeof requireDb;
+  reconcileHook?: typeof mutationLedger.recordDivergenceReconcileHook;
+}
+
 const EMPTY_ALIAS_CONFLICT_SUMMARY: AliasConflictSummary = {
   groups: 0,
   rows: 0,
@@ -261,6 +280,23 @@ const EMPTY_ALIAS_CONFLICT_SUMMARY: AliasConflictSummary = {
   unknownHashGroups: 0,
   samples: [],
 };
+
+const DIVERGENCE_RECONCILE_ACTOR = 'memory-index-scan';
+
+function createDefaultDivergenceReconcileSummary(maxRetries?: number): DivergenceReconcileSummary {
+  const boundedMaxRetries = Number.isFinite(maxRetries) && (maxRetries ?? 0) > 0
+    ? Math.max(1, Math.floor(maxRetries as number))
+    : mutationLedger.DEFAULT_DIVERGENCE_RECONCILE_MAX_RETRIES;
+  return {
+    enabled: true,
+    candidates: 0,
+    retriesScheduled: 0,
+    escalated: 0,
+    maxRetries: boundedMaxRetries,
+    escalations: [],
+    errors: [],
+  };
+}
 
 interface CategorizedFiles {
   toIndex: string[];
@@ -339,8 +375,9 @@ function summarizeAliasConflicts(rows: AliasConflictRow[]): AliasConflictSummary
   }
 
   const buckets = new Map<string, AliasConflictBucket>();
+  const sortedRows = [...rows].sort((a, b) => a.file_path.localeCompare(b.file_path));
 
-  for (const row of rows) {
+  for (const row of sortedRows) {
     if (!row || typeof row.file_path !== 'string' || row.file_path.length === 0) {
       continue;
     }
@@ -417,6 +454,7 @@ function detectAliasConflictsFromIndex(): AliasConflictSummary {
       FROM memory_index
       WHERE parent_id IS NULL
         AND file_path LIKE '%/specs/%'
+      ORDER BY file_path ASC
     `).all() as AliasConflictRow[];
     return summarizeAliasConflicts(rows);
   } catch (err: unknown) {
@@ -424,6 +462,57 @@ function detectAliasConflictsFromIndex(): AliasConflictSummary {
     console.warn(`[memory-index-scan] Alias conflict detection skipped: ${message}`);
     return { ...EMPTY_ALIAS_CONFLICT_SUMMARY };
   }
+}
+
+function runDivergenceReconcileHooks(
+  aliasConflicts: AliasConflictSummary,
+  options: DivergenceReconcileHookOptions = {}
+): DivergenceReconcileSummary {
+  const summary = createDefaultDivergenceReconcileSummary(options.maxRetries);
+  const divergentSamples = aliasConflicts.samples
+    .filter(sample => sample.hashState === 'divergent')
+    .sort((a, b) => a.normalizedPath.localeCompare(b.normalizedPath));
+
+  summary.candidates = divergentSamples.length;
+  if (divergentSamples.length === 0) {
+    return summary;
+  }
+
+  const getDatabase = options.requireDatabase ?? requireDb;
+  const reconcileHook = options.reconcileHook ?? mutationLedger.recordDivergenceReconcileHook;
+  let database: Parameters<typeof mutationLedger.recordDivergenceReconcileHook>[0];
+
+  try {
+    database = getDatabase() as Parameters<typeof mutationLedger.recordDivergenceReconcileHook>[0];
+  } catch (err: unknown) {
+    summary.errors.push(toErrorMessage(err));
+    return summary;
+  }
+
+  for (const sample of divergentSamples) {
+    try {
+      const hookResult = reconcileHook(database, {
+        normalizedPath: sample.normalizedPath,
+        variants: sample.variants,
+        actor: options.actor ?? DIVERGENCE_RECONCILE_ACTOR,
+        maxRetries: summary.maxRetries,
+      });
+
+      if (hookResult.policy.shouldRetry) {
+        summary.retriesScheduled++;
+      }
+      if (hookResult.escalation) {
+        summary.escalated++;
+        summary.escalations.push(hookResult.escalation);
+      }
+    } catch (err: unknown) {
+      const message = toErrorMessage(err);
+      summary.errors.push(`[${sample.normalizedPath}] ${message}`);
+    }
+  }
+
+  summary.escalations.sort((a, b) => a.normalizedPath.localeCompare(b.normalizedPath));
+  return summary;
 }
 
 /* ---------------------------------------------------------------
@@ -555,6 +644,7 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
       duplicatesSkipped: dedupDuplicatesSkipped,
     },
     aliasConflicts: { ...EMPTY_ALIAS_CONFLICT_SUMMARY },
+    divergenceReconcile: createDefaultDivergenceReconcileSummary(),
   };
 
   let filesToIndex: string[] = files;
@@ -731,6 +821,7 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
   }
 
   results.aliasConflicts = detectAliasConflictsFromIndex();
+  results.divergenceReconcile = runDivergenceReconcileHooks(results.aliasConflicts);
 
   const summary = `Scan complete: ${results.indexed} indexed, ${results.updated} updated, ${results.unchanged} unchanged, ${results.failed} failed`;
 
@@ -746,6 +837,15 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
   }
   if (results.aliasConflicts.divergentHashGroups > 0) {
     hints.push(`${results.aliasConflicts.divergentHashGroups} alias group(s) have divergent content hashes`);
+  }
+  if (results.divergenceReconcile.retriesScheduled > 0) {
+    hints.push(`Auto-reconcile scheduled for ${results.divergenceReconcile.retriesScheduled} divergent alias sample(s)`);
+  }
+  if (results.divergenceReconcile.escalated > 0) {
+    hints.push(`Auto-reconcile exhausted for ${results.divergenceReconcile.escalated} sample(s); manual triage required`);
+  }
+  if (results.divergenceReconcile.errors.length > 0) {
+    hints.push(`Auto-reconcile hook encountered ${results.divergenceReconcile.errors.length} error(s)`);
   }
   if (results.incremental.enabled && results.incremental.fast_path_skips > 0) {
     hints.push(`Incremental mode saved time: ${results.incremental.fast_path_skips} files skipped via mtime check`);
@@ -793,6 +893,7 @@ export {
   findSpecDocuments,
   detectSpecLevel,
   summarizeAliasConflicts,
+  runDivergenceReconcileHooks,
 };
 
 // Backward-compatible aliases (snake_case)
@@ -802,6 +903,7 @@ const find_constitutional_files = findConstitutionalFiles;
 const find_spec_documents = findSpecDocuments;
 const detect_spec_level = detectSpecLevel;
 const summarize_alias_conflicts = summarizeAliasConflicts;
+const run_divergence_reconcile_hooks = runDivergenceReconcileHooks;
 
 export {
   handle_memory_index_scan,
@@ -810,4 +912,5 @@ export {
   find_spec_documents,
   detect_spec_level,
   summarize_alias_conflicts,
+  run_divergence_reconcile_hooks,
 };

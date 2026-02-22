@@ -45,10 +45,11 @@ The telemetry module provides structured observability for the retrieval pipelin
 | Feature | Description |
 |---------|-------------|
 | **RetrievalTelemetry** | Main interface aggregating all metric groups for a single retrieval run |
-| **LatencyMetrics** | Stage-by-stage timing: vector, bm25, graph, fusion, rerank, total |
-| **ModeMetrics** | Search mode selection, override flag, and pressure level at time of retrieval |
-| **FallbackMetrics** | Fallback trigger detection, reason string, and degraded-mode flag |
-| **QualityMetrics** | Composite 0–1 quality score derived from relevance, result count, and latency |
+| **LatencyMetrics** | Stage-by-stage timing: candidate, fusion, rerank, boost, and total |
+| **ModeMetrics** | Search mode selection, override flag, pressure level, and optional token usage ratio |
+| **FallbackMetrics** | Fallback trigger detection, optional reason string, and degraded-mode flag |
+| **QualityMetrics** | Composite 0–1 quality proxy derived from relevance, result count, and latency |
+| **TelemetryTracePayload** | Canonical retrieval trace payload (sanitized, no sensitive/extra fields) |
 | **Feature Flag** | `SPECKIT_EXTENDED_TELEMETRY` gates extended metric collection (default: enabled) |
 
 <!-- /ANCHOR:overview -->
@@ -91,12 +92,13 @@ When disabled, only the minimal `RetrievalTelemetry` shell is populated; latency
 
 | Field | Type | Description |
 |-------|------|-------------|
-| `runId` | `string` | Unique identifier for this retrieval run |
-| `timestamp` | `number` | Unix ms when the run started |
+| `enabled` | `boolean` | Whether extended telemetry collection is enabled |
+| `timestamp` | `string` | ISO timestamp when the run started |
 | `latency` | `LatencyMetrics` | Per-stage timing breakdown |
 | `mode` | `ModeMetrics` | Search mode selection details |
 | `fallback` | `FallbackMetrics` | Fallback trigger record |
 | `quality` | `QualityMetrics` | Composite quality assessment |
+| `tracePayload` | `TelemetryTracePayload \| undefined` | Optional canonical retrieval trace payload |
 
 ### LatencyMetrics
 
@@ -104,12 +106,11 @@ When disabled, only the minimal `RetrievalTelemetry` shell is populated; latency
 
 | Field | Type | Description |
 |-------|------|-------------|
-| `vectorMs` | `number` | Vector search duration |
-| `bm25Ms` | `number` | BM25 lexical search duration |
-| `graphMs` | `number` | Graph traversal duration |
-| `fusionMs` | `number` | RRF fusion duration |
-| `rerankMs` | `number \| null` | Cross-encoder rerank duration (null if skipped) |
-| `totalMs` | `number` | Wall-clock total for the full pipeline |
+| `totalLatencyMs` | `number` | Wall-clock total for the full pipeline |
+| `candidateLatencyMs` | `number` | Candidate retrieval stage duration |
+| `fusionLatencyMs` | `number` | RRF fusion duration |
+| `rerankLatencyMs` | `number` | Cross-encoder rerank duration (0 if skipped) |
+| `boostLatencyMs` | `number` | Session/causal boost duration |
 
 ### ModeMetrics
 
@@ -117,9 +118,10 @@ When disabled, only the minimal `RetrievalTelemetry` shell is populated; latency
 
 | Field | Type | Description |
 |-------|------|-------------|
-| `selected` | `string` | Mode chosen for this run (e.g., `hybrid`, `vector-only`, `bm25-only`) |
-| `overridden` | `boolean` | Whether the default mode was overridden by caller or pressure policy |
-| `pressureLevel` | `number` | Cognitive pressure level at the time of selection (0–1) |
+| `selectedMode` | `string \| null` | Mode chosen for this run (e.g., `hybrid`, `auto`, `deep`) |
+| `modeOverrideApplied` | `boolean` | Whether the default mode was overridden by caller or pressure policy |
+| `pressureLevel` | `string \| null` | Pressure level label at the time of selection |
+| `tokenUsageRatio` | `number \| undefined` | Optional normalized token usage ratio (0–1) |
 
 ### FallbackMetrics
 
@@ -127,9 +129,9 @@ When disabled, only the minimal `RetrievalTelemetry` shell is populated; latency
 
 | Field | Type | Description |
 |-------|------|-------------|
-| `triggered` | `boolean` | Whether any fallback was activated |
-| `reason` | `string \| null` | Human-readable reason for fallback (null if not triggered) |
-| `degraded` | `boolean` | Whether the run completed in degraded mode |
+| `fallbackTriggered` | `boolean` | Whether any fallback was activated |
+| `fallbackReason` | `string \| undefined` | Human-readable reason for fallback (omitted when not triggered) |
+| `degradedModeActive` | `boolean` | Whether the run completed in degraded mode |
 
 ### QualityMetrics
 
@@ -137,10 +139,12 @@ When disabled, only the minimal `RetrievalTelemetry` shell is populated; latency
 
 | Field | Type | Description |
 |-------|------|-------------|
-| `score` | `number` | Composite quality score (0–1) |
-| `relevanceComponent` | `number` | Contribution from result relevance scores |
-| `countComponent` | `number` | Contribution from result count vs. requested limit |
-| `latencyComponent` | `number` | Contribution from total latency vs. target threshold |
+| `resultCount` | `number` | Number of retrieval results used in scoring |
+| `avgRelevanceScore` | `number` | Average relevance component (0–1) |
+| `topResultScore` | `number` | Highest result relevance score (0–1) |
+| `boostImpactDelta` | `number` | Delta contributed by boost stages |
+| `extractionCountInSession` | `number` | Session extraction count at scoring time |
+| `qualityProxyScore` | `number` | Composite quality proxy score (0–1) |
 
 **Score Interpretation:**
 
@@ -170,36 +174,37 @@ import {
 } from './telemetry/retrieval-telemetry';
 
 const latency: LatencyMetrics = {
-  vectorMs: 18,
-  bm25Ms: 4,
-  graphMs: 11,
-  fusionMs: 3,
-  rerankMs: null,
-  totalMs: 36,
+  totalLatencyMs: 36,
+  candidateLatencyMs: 18,
+  fusionLatencyMs: 3,
+  rerankLatencyMs: 0,
+  boostLatencyMs: 15,
 };
 
 const mode: ModeMetrics = {
-  selected: 'hybrid',
-  overridden: false,
-  pressureLevel: 0.2,
+  selectedMode: 'auto',
+  modeOverrideApplied: false,
+  pressureLevel: 'low',
+  tokenUsageRatio: 0.2,
 };
 
 const fallback: FallbackMetrics = {
-  triggered: false,
-  reason: null,
-  degraded: false,
+  fallbackTriggered: false,
+  degradedModeActive: false,
 };
 
 const quality: QualityMetrics = {
-  score: 0.87,
-  relevanceComponent: 0.90,
-  countComponent: 0.85,
-  latencyComponent: 0.86,
+  resultCount: 8,
+  avgRelevanceScore: 0.90,
+  topResultScore: 0.95,
+  boostImpactDelta: 0.05,
+  extractionCountInSession: 3,
+  qualityProxyScore: 0.87,
 };
 
 const telemetry: RetrievalTelemetry = {
-  runId: 'run-xyz-001',
-  timestamp: Date.now(),
+  enabled: true,
+  timestamp: new Date().toISOString(),
   latency,
   mode,
   fallback,
@@ -215,11 +220,10 @@ const extended = process.env.SPECKIT_EXTENDED_TELEMETRY !== 'false';
 if (extended) {
   // Collect full latency breakdown and quality score
   telemetry.latency = collectLatencyMetrics(stages);
-  telemetry.quality = computeQualityScore(results, requestedLimit, telemetry.latency.totalMs);
+  telemetry.quality = computeQualityScore(results, requestedLimit, telemetry.latency.totalLatencyMs);
 } else {
-  // Minimal telemetry only — skip latency and quality sub-metrics
-  telemetry.latency = null;
-  telemetry.quality = null;
+  // Minimal telemetry only — consumer can emit { enabled: false }
+  telemetry.enabled = false;
 }
 ```
 
