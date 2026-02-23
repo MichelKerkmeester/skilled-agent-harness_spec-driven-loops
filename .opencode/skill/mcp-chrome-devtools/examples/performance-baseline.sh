@@ -34,7 +34,7 @@ sleep 3
 
 # Capture performance metrics
 echo "📊 Capturing performance metrics..."
-bdg cdp Performance.getMetrics 2>&1 > "$OUTPUT_DIR/metrics-${DATE_STAMP}.json"
+bdg cdp Performance.getMetrics > "$OUTPUT_DIR/metrics-${DATE_STAMP}.json" 2>&1
 
 # Capture network HAR
 echo "🌐 Capturing network trace..."
@@ -53,7 +53,7 @@ STYLESHEET_COUNT=$(bdg dom eval "document.styleSheets.length" 2>&1)
 
 # Capture console logs
 echo "📝 Capturing console logs..."
-bdg console --list 2>&1 > "$OUTPUT_DIR/console-${DATE_STAMP}.json"
+bdg console --list > "$OUTPUT_DIR/console-${DATE_STAMP}.json" 2>&1
 
 # Stop session
 echo "🛑 Stopping browser session..."

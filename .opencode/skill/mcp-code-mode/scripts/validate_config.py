@@ -21,7 +21,7 @@ import json
 import re
 import sys
 from pathlib import Path
-from typing import Dict, List, Set, Tuple
+from typing import Any, Dict, List, Optional, Set, Tuple
 
 
 # ───────────────────────────────────────────────────────────────
@@ -49,12 +49,12 @@ class ConfigValidator:
         env_path: Optional path to a .env file for variable validation.
     """
 
-    def __init__(self, config_path: str, env_path: str = None) -> None:
+    def __init__(self, config_path: str, env_path: Optional[str] = None) -> None:
         self.config_path = Path(config_path)
         self.env_path = Path(env_path) if env_path else None
         self.errors: List[str] = []
         self.warnings: List[str] = []
-        self.config: Dict = {}
+        self.config: Dict[str, Any] = {}
         self.env_vars: Set[str] = set()
         self._required_env_vars: Set[Tuple[str, str]] = set()
 
@@ -92,13 +92,22 @@ class ConfigValidator:
             return False
 
         try:
-            with open(self.config_path, 'r') as f:
-                self.config = json.load(f)
-            print("✓ Valid JSON structure")
-            return True
+            with open(self.config_path, 'r', encoding='utf-8') as f:
+                parsed_config = json.load(f)
         except json.JSONDecodeError as e:
             self.errors.append(f"Invalid JSON: {e}")
             return False
+        except (OSError, UnicodeDecodeError) as e:
+            self.errors.append(f"Unable to read configuration file: {e}")
+            return False
+
+        if not isinstance(parsed_config, dict):
+            self.errors.append("Top-level JSON must be an object")
+            return False
+
+        self.config = parsed_config
+        print("✓ Valid JSON structure")
+        return True
 
     def _load_env(self) -> None:
         """Load environment variable names from a .env file.
@@ -136,17 +145,26 @@ class ConfigValidator:
                 self.errors.append("'load_variables_from' must be an array")
             else:
                 for idx, loader in enumerate(self.config['load_variables_from']):
+                    if not isinstance(loader, dict):
+                        self.errors.append(
+                            f"load_variables_from[{idx}]: must be an object"
+                        )
+                        continue
                     if 'variable_loader_type' not in loader:
                         self.errors.append(
                             f"load_variables_from[{idx}]: missing 'variable_loader_type'"
                         )
 
         if 'tool_repository' in self.config:
-            if 'tool_repository_type' not in self.config['tool_repository']:
+            if not isinstance(self.config['tool_repository'], dict):
+                self.errors.append("tool_repository: must be an object")
+            elif 'tool_repository_type' not in self.config['tool_repository']:
                 self.errors.append("tool_repository: missing 'tool_repository_type'")
 
         if 'tool_search_strategy' in self.config:
-            if 'tool_search_strategy_type' not in self.config['tool_search_strategy']:
+            if not isinstance(self.config['tool_search_strategy'], dict):
+                self.errors.append("tool_search_strategy: must be an object")
+            elif 'tool_search_strategy_type' not in self.config['tool_search_strategy']:
                 self.errors.append(
                     "tool_search_strategy: missing 'tool_search_strategy_type'"
                 )
@@ -176,12 +194,15 @@ class ConfigValidator:
         manual_names: Set[str] = set()
 
         for idx, template in enumerate(templates):
+            if not isinstance(template, dict):
+                self.errors.append(f"manual_call_templates[{idx}]: must be an object")
+                continue
             self._validate_single_template(template, idx, manual_names)
 
         print(f"✓ Validated {len(templates)} manual call template(s)")
 
     def _validate_single_template(
-        self, template: Dict, idx: int, manual_names: Set[str]
+        self, template: Dict[str, Any], idx: int, manual_names: Set[str]
     ) -> None:
         """Validate a single manual call template entry.
 
@@ -199,49 +220,60 @@ class ConfigValidator:
 
         if 'name' in template:
             name = template['name']
-
-            if not VALID_IDENTIFIER.match(name):
-                self.errors.append(
-                    f"{prefix}: invalid manual name '{name}' "
-                    "(must be valid JavaScript identifier: letters, digits, _, $ only)"
-                )
-
-            if name in manual_names:
-                self.errors.append(f"{prefix}: duplicate manual name '{name}'")
+            if not isinstance(name, str):
+                self.errors.append(f"{prefix}: field 'name' must be a string")
             else:
-                manual_names.add(name)
+                if not VALID_IDENTIFIER.match(name):
+                    self.errors.append(
+                        f"{prefix}: invalid manual name '{name}' "
+                        "(must be valid JavaScript identifier: letters, digits, _, $ only)"
+                    )
 
-            if '-' in name:
-                self.errors.append(
-                    f"{prefix}: manual name '{name}' contains hyphen "
-                    "(use underscores instead)"
-                )
+                if name in manual_names:
+                    self.errors.append(f"{prefix}: duplicate manual name '{name}'")
+                else:
+                    manual_names.add(name)
 
-            if ' ' in name:
-                self.errors.append(
-                    f"{prefix}: manual name '{name}' contains spaces "
-                    "(use underscores instead)"
-                )
+                if '-' in name:
+                    self.errors.append(
+                        f"{prefix}: manual name '{name}' contains hyphen "
+                        "(use underscores instead)"
+                    )
+
+                if ' ' in name:
+                    self.errors.append(
+                        f"{prefix}: manual name '{name}' contains spaces "
+                        "(use underscores instead)"
+                    )
 
         if 'call_template_type' in template:
+            call_template_type = template['call_template_type']
             valid_types = ['mcp', 'http', 'cli', 'file']
-            if template['call_template_type'] not in valid_types:
+            if not isinstance(call_template_type, str):
+                self.errors.append(
+                    f"{prefix}: field 'call_template_type' must be a string"
+                )
+            elif call_template_type not in valid_types:
                 self.warnings.append(
                     f"{prefix}: unexpected call_template_type "
-                    f"'{template['call_template_type']}' "
+                    f"'{call_template_type}' "
                     f"(expected one of: {', '.join(valid_types)})"
                 )
 
         if template.get('call_template_type') == 'mcp':
             self._validate_mcp_config(template.get('config', {}), prefix)
 
-    def _validate_mcp_config(self, config: Dict, prefix: str) -> None:
+    def _validate_mcp_config(self, config: Any, prefix: str) -> None:
         """Validate MCP server configuration within a template.
 
         Args:
             config: The config dictionary from a manual call template.
             prefix: Context string for error message formatting.
         """
+        if not isinstance(config, dict):
+            self.errors.append(f"{prefix}.config: must be an object")
+            return
+
         if 'mcpServers' not in config:
             self.errors.append(f"{prefix}.config: missing 'mcpServers'")
             return
@@ -253,6 +285,10 @@ class ConfigValidator:
 
         for server_key, server_config in servers.items():
             server_prefix = f"{prefix}.config.mcpServers.{server_key}"
+
+            if not isinstance(server_config, dict):
+                self.errors.append(f"{server_prefix}: must be an object")
+                continue
 
             if 'transport' not in server_config:
                 self.errors.append(f"{server_prefix}: missing 'transport'")
@@ -270,7 +306,7 @@ class ConfigValidator:
                     self.errors.append(f"{server_prefix}: missing 'url'")
 
             if 'env' in server_config and isinstance(server_config['env'], dict):
-                for env_key, env_value in server_config['env'].items():
+                for _env_key, env_value in server_config['env'].items():
                     if isinstance(env_value, str):
                         self._extract_env_vars(env_value, server_prefix)
 

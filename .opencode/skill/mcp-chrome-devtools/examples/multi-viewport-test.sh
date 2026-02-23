@@ -78,10 +78,10 @@ for viewport in "${VIEWPORTS[@]}"; do
 
     # Get performance metrics
     echo "  📊 Capturing performance metrics..."
-    bdg cdp Performance.getMetrics 2>&1 > "$OUTPUT_DIR/$DATE_STAMP/${name}-metrics.json"
+    bdg cdp Performance.getMetrics > "$OUTPUT_DIR/$DATE_STAMP/${name}-metrics.json" 2>&1
 
     # Get console logs
-    bdg console --list 2>&1 > "$OUTPUT_DIR/$DATE_STAMP/${name}-console.json"
+    bdg console --list > "$OUTPUT_DIR/$DATE_STAMP/${name}-console.json" 2>&1
 
     # Check for console errors
     ERROR_COUNT=$(jq '[.[] | select(.level=="error")] | length' "$OUTPUT_DIR/$DATE_STAMP/${name}-console.json" 2>/dev/null || echo "0")

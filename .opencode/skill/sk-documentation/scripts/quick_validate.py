@@ -33,6 +33,14 @@ from typing import Any, Dict, List, Tuple, Union
 # 1. VALIDATION
 # ───────────────────────────────────────────────────────────────
 
+def strip_matching_quotes(value: str) -> str:
+    """Strip one matching pair of wrapping single/double quotes."""
+    value = value.strip()
+    if len(value) >= 2 and value[0] == value[-1] and value[0] in ('"', "'"):
+        return value[1:-1]
+    return value
+
+
 def validate_skill(skill_path: Union[str, Path]) -> Tuple[bool, str, List[str]]:
     """
     Validate a skill directory.
@@ -68,7 +76,7 @@ def validate_skill(skill_path: Union[str, Path]) -> Tuple[bool, str, List[str]]:
 
     name_match = re.search(r'name:\s*(.+)', frontmatter)
     if name_match:
-        name = name_match.group(1).strip()
+        name = strip_matching_quotes(name_match.group(1))
         # Hyphen-case: lowercase with hyphens only
         if not re.match(r'^[a-z0-9-]+$', name):
             return False, f"Name '{name}' should be hyphen-case (lowercase letters, digits, and hyphens only)", warnings
@@ -83,7 +91,7 @@ def validate_skill(skill_path: Union[str, Path]) -> Tuple[bool, str, List[str]]:
 
     desc_match = re.search(r'description:\s*(.+)', frontmatter)
     if desc_match:
-        description = desc_match.group(1).strip()
+        description = strip_matching_quotes(desc_match.group(1))
 
         if '<' in description or '>' in description:
             return False, "Description cannot contain angle brackets (< or >)", warnings

@@ -38,7 +38,7 @@ echo "📸 Capturing state before animation..."
 bdg dom screenshot "$OUTPUT_DIR/animation-before-${DATE_STAMP}.png" 2>&1
 
 # Clear performance metrics
-bdg cdp Performance.enable 2>&1 > /dev/null
+bdg cdp Performance.enable > /dev/null 2>&1
 
 # Trigger animation
 echo "🎬 Triggering animation..."
@@ -58,7 +58,7 @@ echo "$METRICS" > "$OUTPUT_DIR/animation-metrics-${DATE_STAMP}.json"
 
 # Capture console logs (check for errors)
 echo "📝 Capturing console logs..."
-bdg console --list 2>&1 > "$OUTPUT_DIR/animation-console-${DATE_STAMP}.json"
+bdg console --list > "$OUTPUT_DIR/animation-console-${DATE_STAMP}.json" 2>&1
 
 # Stop session
 echo "🛑 Stopping browser session..."
