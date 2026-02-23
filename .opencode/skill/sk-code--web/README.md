@@ -35,6 +35,8 @@ This skill provides unified workflow guidance across specialized code quality do
 
 The core principle is that no completion claim ("works", "fixed", "done") is valid without fresh browser verification evidence. The skill routes to domain-specific references based on task keywords, loading resources at multiple levels from always-loaded to on-demand (see Configuration for details).
 
+For formal findings-first code review output, pair this skill with `sk-code--review` (baseline severity + risk reporting). This skill remains the web-specific overlay.
+
 It covers the full frontend development spectrum including async handling, form validation, animation workflows, CSS architecture, accessibility, performance optimization, CDN deployment and minification. All of this operates within a Webflow-centric development context.
 
 <!-- /ANCHOR:overview -->
@@ -142,6 +144,7 @@ Phase 0: Research (optional) -> Phase 1: Implementation -> Phase 1.5: Code Quali
 - **Performance targets:** FCP < 1.8s, LCP < 2.5s, CLS < 0.1, 60fps animations, 0 console errors
 - **Timing constants:** Validated defaults: 64ms pointer throttle, 180ms validation debounce, 200ms resize debounce
 - **Multi-agent research:** Parallel analysis methodology for complex performance audits
+- **Review baseline alignment:** delegate formal severity/findings contract to `sk-code--review`
 
 <!-- /ANCHOR:features -->
 
@@ -226,6 +229,7 @@ wrangler r2 object put project-cdn/js/file.min.js \
 
 | Resource                        | Relationship                                      |
 | ------------------------------- | ------------------------------------------------- |
+| `sk-code--review`        | Findings-first review baseline and severity model  |
 | `mcp-chrome-devtools`     | Browser debugging companion (CLI-first via bdg)   |
 | `sk-documentation`       | Documentation quality, skill creation             |
 | `sk-git`                 | Git workflows, commit hygiene, PR creation        |

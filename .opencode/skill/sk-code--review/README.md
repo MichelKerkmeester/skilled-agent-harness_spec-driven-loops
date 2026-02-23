@@ -37,6 +37,7 @@ sk-code--review/
     ├── solid_checklist.md
     ├── security_checklist.md
     ├── code_quality_checklist.md
+    ├── test_quality_checklist.md
     └── removal_plan.md
 ```
 

@@ -191,9 +191,9 @@ When defining routes in a group, follow this order:
 | `/:id` before `/upload-process` | Move `/upload-process` above `/:id` |
 | `/templates/:id` before `/templates/helpers` | Move `/templates/helpers` above `/templates/:id` |
 
-### Code Review Checkpoint
+### Review Handoff (sk-code--review baseline)
 
-When reviewing HTTP controller code, verify:
+For formal findings-first review output, run `sk-code--review` and use this section as Go overlay evidence. Validate:
 
 - [ ] All static routes appear before parameterized routes in each group
 - [ ] Sub-groups with static prefixes are defined before parameterized routes

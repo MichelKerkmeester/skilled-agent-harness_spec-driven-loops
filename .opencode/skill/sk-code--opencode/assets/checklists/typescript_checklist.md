@@ -342,38 +342,16 @@ interface SearchConfig {
 <!-- ANCHOR:checklist-template -->
 ## 5. CHECKLIST TEMPLATE
 
-Copy this for code review:
+For formal findings-first review output, use `sk-code--review` as the baseline and treat this file as the TypeScript standards overlay.
 
 ```markdown
-## TypeScript Code Quality Check
+## TypeScript Standards Overlay Notes (sk-code--opencode)
 
-### P0 - HARD BLOCKERS
-- [ ] File header present (box format)
-- [ ] No `any` in public API
-- [ ] PascalCase types/interfaces/enums
-- [ ] No commented-out code
-- [ ] AI-intent comments (max 3/10, AI-WHY/AI-GUARD/AI-INVARIANT/AI-TRACE/AI-RISK)
-
-### P1 - REQUIRED
-- [ ] Explicit return types on exported functions
-- [ ] Named interfaces for data shapes
-- [ ] strict: true in tsconfig
-- [ ] Non-null assertions justified
-- [ ] TSDoc on public API
-- [ ] Typed error handling (catch unknown)
-
-### P2 - RECOMMENDED
-- [ ] Utility types used (Partial, Pick, Omit, etc.)
-- [ ] Discriminated unions for multi-state objects
-- [ ] Type-only imports separated (import type)
-- [ ] Generic constraints where meaningful
-- [ ] Readonly for immutable data
-
-### Universal Checklist
-- [ ] [universal_checklist.md](./universal_checklist.md) passed
-
-### Notes
-[Any specific observations or deferred items]
+- [ ] TypeScript standards validated in `typescript_checklist.md`
+- [ ] Universal standards validated in `universal_checklist.md`
+- [ ] Findings severity/order produced with `sk-code--review/references/quick_reference.md`
+- [ ] Baseline security, quality, and test checks sourced from `sk-code--review`
+- [ ] Overlay-only deviations documented with file:line evidence
 ```
 
 ---

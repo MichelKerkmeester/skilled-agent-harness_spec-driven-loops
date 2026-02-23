@@ -620,6 +620,8 @@ Before claiming "done" or "complete" on **JavaScript or CSS** implementation:
 7. **Document** P2 deferrals with reasons
 8. **Only then** claim completion
 
+For formal findings-first review output, run `sk-code--review` baseline and use this workflow as web overlay evidence.
+
 ### Language-Specific Gate Selection
 
 | File Type | Checklist Sections | P0 Item Count |
@@ -649,7 +651,7 @@ If you cannot resolve a violation:
 1. Document the specific violation
 2. Explain why it cannot be fixed
 3. Ask for guidance or approval to deviate
-4. Never silently skip P0/P1 violations
+4. Route unresolved findings through `sk-code--review` for severity-ranked reporting
 
 ---
 

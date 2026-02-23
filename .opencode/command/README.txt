@@ -96,7 +96,7 @@ Scaffold OpenCode components using the `sk-documentation` skill. Each command su
 | Skill | `/create:skill <name>` | Create skill with SKILL.md, references, assets, scripts |
 | Skill Asset | `/create:skill_asset <skill> <type>` | Create asset file for existing skill |
 | Skill Reference | `/create:skill_reference <skill> <type>` | Create reference file for existing skill |
-| Visual HTML | `/create:visual_html <target> --mode <generate\|plan-review\|diff-review\|recap\|fact-check>` | Unified visual generation/review/fact-check command |
+| Visual HTML | `/create:visual_html <target> --mode <auto\|create\|analyze\|verify\|custom>` | Unified visual command with broad intent-based routing |
 
 ### Memory Commands
 
@@ -134,7 +134,7 @@ Structured workflows for the spec folder development lifecycle.
 
 ```
 /create:skill my-new-skill "Description of what it does"
-/create:visual_html "specs/007-auth/plan.md" --mode plan-review
+/create:visual_html "specs/007-auth/plan.md" --mode analyze
 /memory:save specs/007-feature
 /spec_kit:plan "Add user authentication" :auto
 ```

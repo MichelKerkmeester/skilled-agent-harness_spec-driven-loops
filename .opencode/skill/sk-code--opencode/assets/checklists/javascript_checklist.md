@@ -290,36 +290,16 @@ function process({ data, options = {} }) { }
 <!-- ANCHOR:checklist-template -->
 ## 5. CHECKLIST TEMPLATE
 
-Copy this for code review:
+For formal findings-first review output, use `sk-code--review` as the baseline and treat this file as the JavaScript standards overlay.
 
 ```markdown
-## JavaScript Code Quality Check
+## JavaScript Standards Overlay Notes (sk-code--opencode)
 
-### P0 - HARD BLOCKERS
-- [ ] Box header present
-- [ ] 'use strict' directive
-- [ ] Functions use camelCase
-- [ ] No commented-out code
-- [ ] AI-intent comments (max 3/10, AI-WHY/AI-GUARD/AI-INVARIANT/AI-TRACE/AI-RISK)
-
-### P1 - REQUIRED
-- [ ] CommonJS exports (module.exports)
-- [ ] Guard clauses / early returns
-- [ ] Bracketed logging format
-- [ ] UPPER_SNAKE_CASE constants
-- [ ] Error handling with context
-
-### P2 - RECOMMENDED
-- [ ] JSDoc for public functions
-- [ ] Consistent single quotes
-- [ ] async/await pattern
-- [ ] Appropriate destructuring
-
-### Universal Checklist
-- [ ] [universal_checklist.md](./universal_checklist.md) passed
-
-### Notes
-[Any specific observations or deferred items]
+- [ ] JavaScript standards validated in `javascript_checklist.md`
+- [ ] Universal standards validated in `universal_checklist.md`
+- [ ] Findings severity/order produced with `sk-code--review/references/quick_reference.md`
+- [ ] Baseline security, quality, and test checks sourced from `sk-code--review`
+- [ ] Overlay-only deviations documented with file:line evidence
 ```
 
 ---

@@ -1339,7 +1339,7 @@ async function needsAsync(): Promise<number> {
 1. **Deadlock suspected** - Circular await dependencies
 2. **Memory growing** - Possible promise accumulation
 3. **Unhandled rejection warnings** - Missing error handling
-4. **Performance degradation** - Async patterns may need review
+4. **Performance degradation** - Run `sk-code--review` baseline with performance focus
 5. **Timeout values uncertain** - Business decision required
 6. **Retry strategy needed** - Error categorization required
 

@@ -268,29 +268,16 @@ python -m json.tool config.json
 <!-- ANCHOR:checklist-template -->
 ## 6. CHECKLIST TEMPLATE
 
-Copy this for code review:
+For formal findings-first review output, use `sk-code--review` as the baseline and treat this file as the cross-language standards overlay.
 
 ```markdown
-## Universal Code Quality Check
+## Cross-Language Standards Overlay Notes (sk-code--opencode)
 
-### P0 - HARD BLOCKERS
-- [ ] File header present
-- [ ] No commented-out code
-- [ ] AI-intent comments (max 3/10, AI-WHY/AI-GUARD/AI-INVARIANT/AI-TRACE/AI-RISK)
-
-### P1 - REQUIRED
-- [ ] Consistent naming conventions
-- [ ] TODOs have context
-- [ ] Error messages include context
-- [ ] No magic numbers/strings
-
-### P2 - RECOMMENDED
-- [ ] Appropriate comment density
-- [ ] Code logically organized
-- [ ] Line lengths reasonable
-
-### Notes
-[Any specific observations or deferred items]
+- [ ] Universal standards validated in `universal_checklist.md`
+- [ ] Language overlay checklist validated for changed files
+- [ ] Findings severity/order produced with `sk-code--review/references/quick_reference.md`
+- [ ] Baseline risk checks sourced from `sk-code--review` references
+- [ ] Overlay-only deviations documented with file:line evidence
 ```
 
 ---

@@ -311,38 +311,16 @@ class ValidationResult:
 <!-- ANCHOR:checklist-template -->
 ## 5. CHECKLIST TEMPLATE
 
-Copy this for code review:
+For formal findings-first review output, use `sk-code--review` as the baseline and treat this file as the Python standards overlay.
 
 ```markdown
-## Python Code Quality Check
+## Python Standards Overlay Notes (sk-code--opencode)
 
-### P0 - HARD BLOCKERS
-- [ ] Shebang: #!/usr/bin/env python3
-- [ ] COMPONENT header block
-- [ ] Module docstring present
-- [ ] Functions use snake_case
-- [ ] Constants use UPPER_SNAKE_CASE
-- [ ] No commented-out code
-- [ ] AI-intent comments (max 3/10, AI-WHY/AI-GUARD/AI-INVARIANT/AI-TRACE/AI-RISK)
-
-### P1 - REQUIRED
-- [ ] Type hints on all functions
-- [ ] Google-style docstrings
-- [ ] Specific exception handling
-- [ ] Early return pattern
-- [ ] TODOs have context
-
-### P2 - RECOMMENDED
-- [ ] PEP 8 import order
-- [ ] f-strings for formatting
-- [ ] Line length under 120
-- [ ] Dataclasses for structured data
-
-### Universal Checklist
-- [ ] [universal_checklist.md](./universal_checklist.md) passed
-
-### Notes
-[Any specific observations or deferred items]
+- [ ] Python standards validated in `python_checklist.md`
+- [ ] Universal standards validated in `universal_checklist.md`
+- [ ] Findings severity/order produced with `sk-code--review/references/quick_reference.md`
+- [ ] Baseline security, quality, and test checks sourced from `sk-code--review`
+- [ ] Overlay-only deviations documented with file:line evidence
 ```
 
 ---

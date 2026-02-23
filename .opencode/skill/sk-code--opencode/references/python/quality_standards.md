@@ -435,33 +435,15 @@ class TestValidateRequest:
 
 <!-- /ANCHOR:testing-requirements -->
 <!-- ANCHOR:code-review-checklist -->
-## 8. CODE REVIEW CHECKLIST
+## 8. REVIEW HANDOFF (SK-CODE--REVIEW BASELINE)
 
-Before submitting Python code for review:
+Use `sk-code--review` for formal findings-first review output and severity handling. Keep this file focused on Python technical standards.
 
-```markdown
-P0 - HARD BLOCKERS:
-[ ] Shebang line present (#!/usr/bin/env python3)
-[ ] File header present (COMPONENT comment block)
-[ ] Module docstring present
-[ ] All functions use snake_case
-[ ] All constants use UPPER_SNAKE_CASE
-[ ] No commented-out code
-[ ] AI-intent comments (max 3/10, AI-WHY/AI-GUARD/AI-INVARIANT/AI-TRACE/AI-RISK)
+For review runs:
 
-P1 - REQUIRED:
-[ ] Type hints on all function signatures
-[ ] Google-style docstrings on public functions
-[ ] Specific exception handling (no bare except)
-[ ] Early return pattern used
-[ ] TODOs have context (ticket/owner)
-
-P2 - RECOMMENDED:
-[ ] Import ordering (stdlib, third-party, local)
-[ ] Consistent string quotes
-[ ] Line length under 120 chars
-[ ] Full docstring coverage
-```
+1. Use `sk-code--review/references/quick_reference.md` for severity model and output contract.
+2. Use `sk-code--review/references/code_quality_checklist.md`, `security_checklist.md`, and `test_quality_checklist.md` for baseline risk checks.
+3. Cite this Python standards file as the overlay source for language-specific findings.
 
 ---
 

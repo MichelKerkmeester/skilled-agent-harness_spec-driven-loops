@@ -38,7 +38,14 @@ git diff
 - Correctness and regression risk
 - Security and reliability
 - Performance and maintainability
+- Test quality and coverage adequacy
+- Change context and contract safety
 - Removal/deprecation opportunities
+
+Context and scope checks:
+- Read surrounding code beyond the diff to understand call sites and data flow.
+- Flag scope drift: unrelated changes mixed into a focused PR should be split.
+- Flag incomplete work: TODO/FIXME/HACK comments left in production code paths.
 
 3. Publish findings by severity (`P0` -> `P3`) with file-line references.
 4. Ask user what to do next before writing code.
@@ -102,6 +109,10 @@ Before returning a review, confirm:
 - [ ] Risk and impact are explained in plain language.
 - [ ] Suggested fixes are specific and proportional.
 - [ ] KISS/DRY/SOLID checks are explicitly reported.
+- [ ] Test quality is assessed for changed or added test files.
+- [ ] Non-blocking suggestions use "Nit:" prefix to distinguish from required fixes.
+- [ ] Good patterns and improvements are acknowledged alongside defects.
+- [ ] Contract and behavioral changes are assessed for backward compatibility.
 - [ ] Next-step options are presented.
 
 Recommended next-step options:
@@ -134,6 +145,7 @@ If no changes are detected, return:
 - [code_quality_checklist.md](./code_quality_checklist.md) - Non-security correctness, KISS, and DRY checks.
 - [solid_checklist.md](./solid_checklist.md) - Architecture and SOLID (SRP/OCP/LSP/ISP/DIP) checks.
 - [removal_plan.md](./removal_plan.md) - Safe-now versus deferred deletion planning.
+- [test_quality_checklist.md](./test_quality_checklist.md) - Test quality, coverage, and anti-pattern detection.
 
 Overlay portability: apply this baseline with `sk-code--opencode`, `sk-code--web`, or `sk-code--full-stack`.
 <!-- /ANCHOR:related-resources -->

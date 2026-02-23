@@ -87,7 +87,7 @@ assets/review/...
 | Level | When to Load | Resources |
 | --- | --- | --- |
 | ALWAYS | Every invocation | `references/quick_reference.md`, `references/security_checklist.md`, `references/code_quality_checklist.md` |
-| CONDITIONAL | Intent score indicates need | `references/solid_checklist.md`, `references/code_quality_checklist.md`, `references/removal_plan.md` |
+| CONDITIONAL | Intent score indicates need | `references/solid_checklist.md`, `references/code_quality_checklist.md`, `references/removal_plan.md`, `references/test_quality_checklist.md` |
 | ON_DEMAND | Explicit deep-dive request | Full mapped reference set |
 
 ### Precedence Matrix
@@ -125,11 +125,12 @@ DEFAULT_RESOURCES = [
 
 INTENT_SIGNALS = {
     "SECURITY": {"weight": 5, "keywords": ["security", "auth", "injection", "vulnerability", "race"]},
-    "QUALITY": {"weight": 4, "keywords": ["correctness", "bug", "regression", "performance", "boundary"]},
+    "QUALITY": {"weight": 4, "keywords": ["correctness", "bug", "regression", "performance", "boundary", "contract", "breaking change", "backward compatible", "compatibility"]},
     "KISS": {"weight": 3, "keywords": ["kiss", "simple", "simplicity", "over-engineer", "overengineering"]},
     "DRY": {"weight": 3, "keywords": ["dry", "duplication", "duplicate", "copy-paste", "repeated logic"]},
     "SOLID": {"weight": 3, "keywords": ["solid", "architecture", "design", "coupling", "cohesion", "module", "adapter", "interface", "abstraction", "responsibility", "dependency", "boundary"]},
     "REMOVAL": {"weight": 3, "keywords": ["remove", "dead code", "cleanup", "deprecate"]},
+    "TESTING": {"weight": 3, "keywords": ["test", "tests", "testing", "coverage", "assertion", "mock", "stub", "fixture", "test quality", "brittle"]},
 }
 
 RESOURCE_MAP = {
@@ -139,12 +140,13 @@ RESOURCE_MAP = {
     "DRY": ["references/code_quality_checklist.md"],
     "SOLID": ["references/solid_checklist.md"],
     "REMOVAL": ["references/removal_plan.md"],
+    "TESTING": ["references/test_quality_checklist.md"],
 }
 
 ON_DEMAND_KEYWORDS = ["deep review", "full review", "all checks", "comprehensive"]
 UNKNOWN_FALLBACK_CHECKLIST = [
     "Confirm review scope (diff/staged/files/commit range)",
-    "Confirm risk priority (security/correctness/performance/maintainability)",
+    "Confirm risk priority (security/correctness/performance/maintainability/test quality/contract safety)",
     "Confirm architecture lens (KISS/DRY/SOLID required or optional)",
     "Confirm stack context (opencode/web/full-stack)",
     "Confirm findings-only vs findings+fix follow-up",
@@ -286,7 +288,7 @@ def route_review_resources(task, workspace_files=None, changed_files=None):
 ### Phase 3: Findings-First Analysis
 
 1. Analyze for security and correctness first.
-2. Analyze quality/performance and architecture concerns.
+2. Analyze quality/performance, test adequacy, contract safety, and architecture concerns.
 3. Analyze KISS/DRY and SOLID violations (SRP/OCP/LSP/ISP/DIP) with evidence.
 4. Analyze removal opportunities with safe-now vs deferred classification.
 5. Produce findings ordered by severity (`P0`, `P1`, `P2`, `P3`).
@@ -362,6 +364,7 @@ After reporting findings, request explicit next action before any implementation
 - [code_quality_checklist.md](./references/code_quality_checklist.md) - Correctness, performance, KISS, and DRY checks.
 - [solid_checklist.md](./references/solid_checklist.md) - SOLID (SRP/OCP/LSP/ISP/DIP) and architecture assessment prompts.
 - [removal_plan.md](./references/removal_plan.md) - Safe-now vs deferred removal planning template.
+- [test_quality_checklist.md](./references/test_quality_checklist.md) - Test quality, coverage, and anti-pattern detection.
 
 ### Reference Loading Notes
 

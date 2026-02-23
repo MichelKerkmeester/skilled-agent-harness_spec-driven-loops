@@ -1312,9 +1312,9 @@ app.use(cors(corsOptions));
 ### ⚠️ ESCALATE IF
 
 1. **New middleware pattern needed** - Consult team before introducing
-2. **Authentication strategy change** - Security implications require review
+2. **Authentication strategy change** - Run `sk-code--review` baseline before approval
 3. **Rate limiting adjustment** - Balance UX and protection
-4. **CORS policy modification** - Security team approval needed
+4. **CORS policy modification** - Run `sk-code--review` baseline and get security-team approval
 5. **Response format changes** - API versioning considerations
 6. **Error code additions** - Document in API specification
 

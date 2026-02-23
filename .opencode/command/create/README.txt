@@ -140,7 +140,7 @@ The `--chained` flag on `skill_asset` and `skill_reference` indicates the comman
 /create:install_guide my-tool --platforms opencode,claude-code :confirm
 
 # Generate a visual HTML artifact from a spec plan
-/create:visual_html specs/007-auth/plan.md --mode plan-review :auto
+/create:visual_html specs/007-auth/plan.md --mode analyze :auto
 ```
 
 ---

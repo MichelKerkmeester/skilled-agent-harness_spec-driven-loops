@@ -50,6 +50,15 @@ This orchestrator runs in three primary phases:
 
 **The Iron Law**: no completion claims without verification commands for the detected stack.
 
+### Review Baseline Contract
+
+`sk-code--full-stack` owns stack detection, implementation patterns, and stack-specific verification commands.
+
+For formal findings-first code review output, use `sk-code--review` as the baseline:
+- Severity model and review output contract: `sk-code--review/references/quick_reference.md`
+- Baseline security/quality/test review checks: `sk-code--review` references
+- This skill: stack-specific overlay rules and verification commands
+
 ---
 
 <!-- /ANCHOR:when-to-use -->
@@ -571,6 +580,11 @@ sk-code--full-stack/
 └── SKILL.md
 ```
 
+### Review Delegation
+
+- Use `sk-code--review` for severity-ranked findings and merge-readiness decisions.
+- Use `sk-code--full-stack` for stack-specific conventions and command-level verification evidence.
+
 ### Naming Conventions (Stack-Specific)
 
 | Stack        | Files        | Variables    | Functions/Types                 |
@@ -633,6 +647,7 @@ sk-code--full-stack/
 
 | Skill                         | Use For                                                     |
 | ----------------------------- | ----------------------------------------------------------- |
+| **sk-code--review**    | Findings-first review baseline, severity model, risk reporting |
 | **sk-documentation**   | Documentation quality, skill creation, markdown validation  |
 | **sk-git**             | Git workflows, commit hygiene, PR creation                  |
 | **system-spec-kit**           | Spec folder management, memory system, context preservation |

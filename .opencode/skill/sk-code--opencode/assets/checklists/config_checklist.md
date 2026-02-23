@@ -296,34 +296,16 @@ These improve quality but can be deferred.
 <!-- ANCHOR:checklist-template -->
 ## 6. CHECKLIST TEMPLATE
 
-Copy this for code review:
+For formal findings-first review output, use `sk-code--review` as the baseline and treat this file as the config standards overlay.
 
 ```markdown
-## Config File Quality Check
+## Config Standards Overlay Notes (sk-code--opencode)
 
-### P0 - HARD BLOCKERS
-- [ ] Valid JSON/JSONC syntax
-- [ ] All strings double-quoted
-- [ ] Proper bracket/brace matching
-- [ ] No trailing commas (JSON)
-
-### P1 - REQUIRED
-- [ ] $schema reference (if available)
-- [ ] Section comments (JSONC)
-- [ ] camelCase keys
-- [ ] Inline documentation for non-obvious values
-
-### P2 - RECOMMENDED
-- [ ] Logical key ordering
-- [ ] 2-space indentation
-- [ ] Blank lines between sections
-- [ ] Type hints in comments
-
-### Universal Checklist
-- [ ] [universal_checklist.md](./universal_checklist.md) passed
-
-### Notes
-[Any specific observations or deferred items]
+- [ ] Config standards validated in `config_checklist.md`
+- [ ] Universal standards validated in `universal_checklist.md`
+- [ ] Findings severity/order produced with `sk-code--review/references/quick_reference.md`
+- [ ] Baseline security, quality, and test checks sourced from `sk-code--review`
+- [ ] Overlay-only deviations documented with file:line evidence
 ```
 
 ---

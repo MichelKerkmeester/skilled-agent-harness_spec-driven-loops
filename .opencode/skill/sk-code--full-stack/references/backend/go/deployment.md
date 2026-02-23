@@ -306,7 +306,7 @@ Production additionally triggers Terraform for API Gateway:
 ### Before Tagging Release
 
 - [ ] All tests passing locally
-- [ ] Code reviewed and approved
+- [ ] `sk-code--review` baseline completed (P0/P1 resolved or explicitly deferred with approval)
 - [ ] Migrations tested (if any)
 - [ ] Configuration changes documented
 - [ ] Breaking changes communicated
@@ -446,7 +446,7 @@ go test ./...
 - Skip the version tagging strategy
 - Ignore failing CI pipelines
 - Deploy without monitoring
-- Modify workflow files without review
+- Modify workflow files without `sk-code--review` baseline and explicit approval
 
 ### ⚠️ ESCALATE IF
 

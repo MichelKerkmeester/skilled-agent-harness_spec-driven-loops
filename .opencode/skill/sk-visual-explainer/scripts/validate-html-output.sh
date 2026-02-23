@@ -1,11 +1,31 @@
 #!/usr/bin/env bash
-# validate-html-output.sh — Static analysis checks for sk-visual-explainer HTML output
+# ───────────────────────────────────────────────────────────────
+# COMPONENT: VISUAL EXPLAINER HTML OUTPUT VALIDATOR
+# ───────────────────────────────────────────────────────────────
+# Static analysis checks for sk-visual-explainer HTML output.
+#
 # Usage: ./validate-html-output.sh <html-file>
-# Exit codes: 0=pass, 1=warnings only, 2=errors (one or more checks failed)
+#
+# Exit Codes:
+#   0 - Pass (no warnings or errors)
+#   1 - Pass with warnings
+#   2 - Fail (one or more errors)
 
 set -euo pipefail
 
-# ── Colors ────────────────────────────────────────────────────────────────────
+
+# ───────────────────────────────────────────────────────────────
+# 1. CONFIGURATION
+# ───────────────────────────────────────────────────────────────
+
+SCRIPT_NAME="$(basename "$0")"
+readonly SCRIPT_NAME
+
+
+# ───────────────────────────────────────────────────────────────
+# 2. COLOR DEFINITIONS
+# ───────────────────────────────────────────────────────────────
+
 RED='\033[0;31m'
 YELLOW='\033[0;33m'
 GREEN='\033[0;32m'
@@ -14,41 +34,53 @@ DIM='\033[2m'
 RESET='\033[0m'
 BOLD='\033[1m'
 
-# ── State ─────────────────────────────────────────────────────────────────────
+if [[ ! -t 1 ]]; then
+  RED='' YELLOW='' GREEN='' CYAN='' DIM='' RESET='' BOLD=''
+fi
+
+
+# ───────────────────────────────────────────────────────────────
+# 3. STATE
+# ───────────────────────────────────────────────────────────────
+
 ERRORS=0
 WARNINGS=0
 CHECKS_PASSED=0
 
-# ── Helpers ───────────────────────────────────────────────────────────────────
+
+# ───────────────────────────────────────────────────────────────
+# 4. HELPERS
+# ───────────────────────────────────────────────────────────────
+
 pass() {
-  echo -e "  ${GREEN}✓${RESET} $1"
+  printf '  %s✓%s %s\n' "${GREEN}" "${RESET}" "$1"
   CHECKS_PASSED=$((CHECKS_PASSED + 1))
 }
 
 warn() {
-  echo -e "  ${YELLOW}⚠${RESET} $1"
+  printf '  %s⚠%s %s\n' "${YELLOW}" "${RESET}" "$1" >&2
   WARNINGS=$((WARNINGS + 1))
 }
 
 fail() {
-  echo -e "  ${RED}✗${RESET} $1"
+  printf '  %s✗%s %s\n' "${RED}" "${RESET}" "$1" >&2
   ERRORS=$((ERRORS + 1))
 }
 
 info() {
-  echo -e "  ${DIM}→ $1${RESET}"
+  printf '  %s→ %s%s\n' "${DIM}" "$1" "${RESET}" >&2
 }
 
 section() {
-  echo ""
-  echo -e "${CYAN}${BOLD}[$1]${RESET} $2"
+  printf '\n'
+  printf '%s%s[%s]%s %s\n' "${CYAN}" "${BOLD}" "$1" "${RESET}" "$2"
 }
 
 # ── Usage check ───────────────────────────────────────────────────────────────
 if [[ $# -lt 1 ]]; then
-  echo -e "${RED}Error:${RESET} No file specified."
-  echo "Usage: $0 <html-file>"
-  echo "       $0 path/to/output.html"
+  printf '%sError:%s No file specified.\n' "${RED}" "${RESET}" >&2
+  printf 'Usage: %s <html-file>\n' "${SCRIPT_NAME}" >&2
+  printf '       %s path/to/output.html\n' "${SCRIPT_NAME}" >&2
   exit 2
 fi
 
@@ -65,7 +97,7 @@ section "1" "File Exists & Readable"
 if [[ ! -e "$HTML_FILE" ]]; then
   fail "File does not exist: ${HTML_FILE}"
   echo ""
-  echo -e "${RED}Fatal: Cannot proceed — file not found.${RESET}"
+  echo -e "${RED}Fatal: Cannot proceed — file not found.${RESET}" >&2
   exit 2
 fi
 
@@ -574,12 +606,12 @@ echo -e "  ${RED}Errors:${RESET}   ${ERRORS}"
 echo ""
 
 if [[ $ERRORS -gt 0 ]]; then
-  echo -e "${RED}${BOLD}FAIL${RESET} — ${ERRORS} error(s) must be fixed before delivery."
-  echo ""
+  echo -e "${RED}${BOLD}FAIL${RESET} — ${ERRORS} error(s) must be fixed before delivery." >&2
+  echo "" >&2
   exit 2
 elif [[ $WARNINGS -gt 0 ]]; then
-  echo -e "${YELLOW}${BOLD}PASS WITH WARNINGS${RESET} — ${WARNINGS} warning(s) found. Review before delivery."
-  echo ""
+  echo -e "${YELLOW}${BOLD}PASS WITH WARNINGS${RESET} — ${WARNINGS} warning(s) found. Review before delivery." >&2
+  echo "" >&2
   exit 1
 else
   echo -e "${GREEN}${BOLD}PASS${RESET} — All checks passed. File is ready for delivery."

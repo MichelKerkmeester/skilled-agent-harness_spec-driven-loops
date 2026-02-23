@@ -34,6 +34,8 @@ This skill provides a unified development workflow for any technology stack: **G
 
 The core lifecycle is **Implementation -> Debugging (if needed) -> Verification (MANDATORY)**. Every completion claim must be backed by running the stack-specific verification commands (test, lint, build, type-check). This enforces "The Iron Law": no claiming "done" without verification evidence.
 
+For formal findings-first review output, pair this skill with `sk-code--review` (baseline severity + risk reporting). This skill remains the stack-specific overlay.
+
 The skill uses intelligent task classification (keywords like "implement", "debug", "verify") to load only the resources needed for the current phase, keeping context lean. It integrates with the OpenCode framework via Gate 2 skill routing and Spec Kit Memory for context preservation.
 
 <!-- /ANCHOR:overview -->
@@ -103,6 +105,7 @@ sk-code--full-stack/
 - **Per-stack checklists**: code quality (P0/P1 items), debugging and verification
 - **Bundled code patterns**: `.go`, `.ts`, `.tsx`, `.swift` templates for each stack
 - **Stack-specific rules**: Go context/error handling, Swift optionals, React hooks, Node.js async
+- **Review baseline alignment**: delegate severity model and findings contract to `sk-code--review`
 
 <!-- /ANCHOR:features -->
 
@@ -185,6 +188,7 @@ Verify: swift test -> swiftlint -> swift build
 
 | Resource                         | Relationship                                    |
 | -------------------------------- | ----------------------------------------------- |
+| `sk-code--review`                | Findings-first review baseline and severity model |
 | `sk-code--web`                   | Single-stack variant for Webflow/vanilla JS     |
 | `sk-code--opencode`       | OpenCode system code standards for core tooling  |
 | `sk-documentation`        | Documentation creation and skill authoring      |

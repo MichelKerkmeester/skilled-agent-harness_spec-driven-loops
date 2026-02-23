@@ -33,13 +33,13 @@ Validate code against quality standards before claiming implementation is comple
 | Swift | `.swift` | Sections 2-6, 9 |
 | All Languages | N/A | Sections 2-6 (Universal) |
 
-### Priority Enforcement
+### Review Baseline Handoff
 
-| Priority | Handling | Action |
-|----------|----------|--------|
-| **[P0]** | HARD BLOCKER | Must pass before claiming complete |
-| **[P1]** | Required | Must pass OR document approved deferral |
-| **[P2]** | Optional | Can defer with documented reason |
+For formal findings-first review output, run `sk-code--review` as the baseline and use this checklist as the stack overlay.
+
+- Severity model and review output contract: `sk-code--review/references/quick_reference.md`
+- Baseline security/quality/test review checks: `sk-code--review` references
+- This checklist: stack-specific implementation and verification standards
 
 ---
 

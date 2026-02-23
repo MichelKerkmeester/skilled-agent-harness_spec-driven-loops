@@ -51,7 +51,7 @@ This skill activates automatically via Gate 2 (`skill_advisor.py`) when you work
 3. Language-specific style guide and quality standards load conditionally
 4. Checklists load on demand for validation passes
 
-**Manual invocation:** Load the skill when writing or reviewing code in `.opencode/`, MCP servers or system scripts.
+**Manual invocation:** Load the skill when writing OpenCode system code in `.opencode/`, MCP servers or system scripts. For formal review output, pair with `sk-code--review`.
 
 <!-- /ANCHOR:quick-start -->
 
@@ -194,6 +194,7 @@ No configuration files are required. The skill self-configures through language 
 
 | Skill                         | Relationship                                      |
 | ----------------------------- | ------------------------------------------------- |
+| `sk-code--review`             | Findings-first review baseline, severity handling, risk checklists |
 | `sk-code--web`                | Web/frontend code (DOM, CSS, browser testing)     |
 | `sk-code--full-stack`  | Multi-stack projects (Go, React, Swift, etc.)     |
 | `mcp-code-mode`               | TypeScript orchestration for external MCP tools    |

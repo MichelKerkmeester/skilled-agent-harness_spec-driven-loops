@@ -24,7 +24,7 @@ Multi-language code standards for OpenCode system code across JavaScript, TypeSc
 - Writing Python scripts (validators, advisors, test utilities)
 - Creating Shell scripts (automation, validation, deployment)
 - Configuring JSON/JSONC files (manifests, schemas, configs)
-- Reviewing code for standards compliance before commit
+- Preparing stack-specific standards evidence for `sk-code--review` baseline runs
 - Need naming, formatting, or structure guidance
 
 **Keyword triggers:**
@@ -453,6 +453,14 @@ This skill operates within the behavioral framework defined in AGENTS.md.
 - **Gate 2**: Skill routing via `skill_advisor.py`
 - **Memory**: Context preserved via Spec Kit Memory MCP
 
+### Review Baseline Delegation
+
+`sk-code--opencode` is the standards overlay for OpenCode system code. Formal findings-first review logic is owned by `sk-code--review`.
+
+- Use `sk-code--review/references/quick_reference.md` for severity model and review output contract.
+- Use `sk-code--review` security/code-quality/test checklists for baseline risk findings.
+- Use this skill's references/checklists only for language-specific standards evidence.
+
 ### Skill Differentiation
 
 | Task Type                 | This Skill | sk-code--web |
@@ -512,6 +520,7 @@ This skill operates within the behavioral framework defined in AGENTS.md.
 
 | Skill                       | Use For                                    |
 | --------------------------- | ------------------------------------------ |
+| **sk-code--review**       | Findings-first review baseline, severity model, risk reporting |
 | **sk-code--web**          | Web/frontend development, browser testing  |
 | **sk-documentation** | Markdown documentation, skill creation     |
 | **system-spec-kit**         | Spec folders, memory, context preservation |

@@ -58,6 +58,15 @@ This orchestrator operates in four primary phases:
 
 **The Iron Law**: NO COMPLETION CLAIMS WITHOUT FRESH BROWSER VERIFICATION EVIDENCE
 
+### Review Baseline Contract
+
+`sk-code--web` owns frontend implementation patterns, web-specific quality gates, and browser verification steps.
+
+For formal findings-first code review output, use `sk-code--review` as the baseline:
+- Severity model and review output contract: `sk-code--review/references/quick_reference.md`
+- Baseline security/quality/test review checks: `sk-code--review` references
+- This skill: web-specific overlay rules and browser verification evidence
+
 ---
 
 <!-- /ANCHOR:when-to-use -->
@@ -375,6 +384,8 @@ See [implementation_workflows.md](./references/implementation/implementation_wor
 
 6. **Only Then** - Proceed to verification or claim completion
 
+Formal review output remains baseline-owned: use `sk-code--review` for severity-ranked findings and treat this phase as overlay compliance evidence.
+
 **Gate Rule**: If ANY P0 item fails, completion is BLOCKED until fixed.
 
 See [code_style_enforcement.md](./references/standards/code_style_enforcement.md) for remediation instructions.
@@ -457,6 +468,7 @@ See [implementation_workflows.md](./references/implementation/implementation_wor
 - Fix P0 violations before proceeding
 - Document any P1/P2 deferrals with reasons
 - Use code_style_enforcement.md for remediation guidance
+- Use `sk-code--review` baseline for formal findings-first review output
 
 #### ❌ NEVER (JavaScript)
 - Skip the quality gate for "simple" changes
@@ -593,6 +605,7 @@ Run Lighthouse 3× in Incognito with mobile emulation, use median scores.
 
 | Skill                         | Use For                                                     |
 | ----------------------------- | ----------------------------------------------------------- |
+| **sk-code--review**    | Findings-first review baseline, severity model, risk reporting |
 | **sk-documentation**   | Documentation quality, skill creation, markdown validation  |
 | **sk-git**             | Git workflows, commit hygiene, PR creation                  |
 | **system-spec-kit**           | Spec folder management, memory system, context preservation |

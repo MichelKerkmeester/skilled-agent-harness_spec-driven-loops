@@ -1030,8 +1030,8 @@ The ESLint configuration above enforces this order automatically.
 ### ⚠️ ESCALATE IF
 
 1. **New pattern needed** - Consult team before introducing new conventions
-2. **Major dependency upgrade** - Breaking changes require team review
-3. **Security configuration** - JWT secrets, encryption keys need review
+2. **Major dependency upgrade** - Run `sk-code--review` baseline before approval
+3. **Security configuration** - Run `sk-code--review` baseline + security checklist before approval
 4. **Performance concerns** - When logging or validation impacts latency
 5. **Schema changes** - Database migrations need team approval
 6. **Third-party integration** - New external service dependencies
