@@ -69,6 +69,7 @@ async function extractConversations(
 
   const MESSAGES: ConversationMessage[] = [];
   const phaseTimestamps = new Map<string, Date[]>();
+  const consumedObservationIndexes = new Set<number>();
 
   const validPrompts = userPrompts;
 
@@ -85,14 +86,28 @@ async function extractConversations(
     MESSAGES.push(userMessage);
 
     const userTime = new Date(rawTimestamp);
-    const relatedObs = observations.filter((obs) => {
-      const obsTime = new Date(obs.timestamp || '');
-      const timeDiff = Math.abs(obsTime.getTime() - userTime.getTime());
-      return timeDiff < CONFIG.MESSAGE_TIME_WINDOW;
-    });
+    const relatedObs = observations
+      .map((obs, obsIndex) => ({ obs, obsIndex }))
+      .filter(({ obs, obsIndex }) => {
+        if (consumedObservationIndexes.has(obsIndex)) {
+          return false;
+        }
+        const obsTime = new Date(obs.timestamp || '');
+        const timeDiff = Math.abs(obsTime.getTime() - userTime.getTime());
+        return timeDiff < CONFIG.MESSAGE_TIME_WINDOW;
+      })
+      .sort((a, b) => {
+        const timeA = new Date(a.obs.timestamp || '').getTime();
+        const timeB = new Date(b.obs.timestamp || '').getTime();
+        return timeA - timeB;
+      });
 
     if (relatedObs.length > 0) {
-      const TOOL_CALLS: ToolCallEntry[] = relatedObs.flatMap((obs) => {
+      for (const related of relatedObs) {
+        consumedObservationIndexes.add(related.obsIndex);
+      }
+
+      const TOOL_CALLS: ToolCallEntry[] = relatedObs.flatMap(({ obs }) => {
         if (!obs.facts) return [];
 
         return obs.facts.map((fact) => {
@@ -121,7 +136,7 @@ async function extractConversations(
         }).filter(Boolean) as ToolCallEntry[];
       });
 
-      const narratives: string[] = relatedObs.map((o) => o.narrative).filter(Boolean) as string[];
+      const narratives: string[] = relatedObs.map(({ obs }) => obs.narrative).filter(Boolean) as string[];
       const summary = summarizeExchange(
         userMessage.CONTENT,
         narratives.join(' '),
@@ -129,7 +144,7 @@ async function extractConversations(
       );
 
       const assistantMessage: ConversationMessage = {
-        TIMESTAMP: formatTimestamp(relatedObs[0].timestamp || rawTimestamp, 'readable'),
+        TIMESTAMP: formatTimestamp(relatedObs[0].obs.timestamp || rawTimestamp, 'readable'),
         ROLE: 'Assistant',
         CONTENT: summary.fullSummary,
         TOOL_CALLS: TOOL_CALLS.slice(0, 10)

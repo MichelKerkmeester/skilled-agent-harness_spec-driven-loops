@@ -345,13 +345,17 @@ function restoreCheckpoint(nameOrId: string | number, clearExisting: boolean = f
               confidence, stability, difficulty, last_review, review_count
             ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
           `).run(
+            // Preserve valid zero values while still defaulting null/undefined/non-finite inputs.
             memory.id, memory.spec_folder, memory.file_path, memory.anchor_id,
             memory.title, memory.trigger_phrases, memory.importance_weight,
             memory.created_at, memory.updated_at, memory.embedding_model,
             memory.embedding_generated_at, memory.embedding_status,
-            memory.importance_tier, memory.confidence || 0.5,
-            memory.stability || 1.0, memory.difficulty || 5.0,
-            memory.last_review, memory.review_count || 0
+            memory.importance_tier,
+            Number.isFinite(memory.confidence) ? memory.confidence : 0.5,
+            Number.isFinite(memory.stability) ? memory.stability : 1.0,
+            Number.isFinite(memory.difficulty) ? memory.difficulty : 5.0,
+            memory.last_review,
+            Number.isFinite(memory.review_count) ? memory.review_count : 0
           );
           result.restored++;
         } catch (e: unknown) {

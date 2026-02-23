@@ -1,3 +1,5 @@
+<!-- ANCHOR:overview -->
+<!-- SPECKIT_TEMPLATE_SOURCE: test-fixture -->
 
 # Test Feature - With Extra Files
 
@@ -25,3 +27,4 @@ Tests that L1 folders can have extra files like notes.md and research.md.
 ### Out of Scope
 
 - N/A
+<!-- /ANCHOR:overview -->

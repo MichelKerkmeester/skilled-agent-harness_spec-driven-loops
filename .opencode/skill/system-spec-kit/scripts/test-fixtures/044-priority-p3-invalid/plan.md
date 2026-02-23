@@ -1,3 +1,5 @@
+<!-- ANCHOR:implementation-plan -->
+<!-- SPECKIT_TEMPLATE_SOURCE: test-fixture -->
 
 # Implementation Plan
 
@@ -26,3 +28,4 @@ L2 with P3/P4 headers.
 ### Phase 1: Setup
 
 Create checklist with P3/P4 priorities.
+<!-- /ANCHOR:implementation-plan -->

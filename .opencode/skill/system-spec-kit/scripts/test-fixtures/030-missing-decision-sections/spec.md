@@ -1,3 +1,5 @@
+<!-- ANCHOR:overview -->
+<!-- SPECKIT_TEMPLATE_SOURCE: test-fixture -->
 
 # Test Feature - Missing Decision Sections
 
@@ -24,3 +26,4 @@ Tests missing Consequences section in decision-record.md.
 ### Out of Scope
 
 - N/A
+<!-- /ANCHOR:overview -->

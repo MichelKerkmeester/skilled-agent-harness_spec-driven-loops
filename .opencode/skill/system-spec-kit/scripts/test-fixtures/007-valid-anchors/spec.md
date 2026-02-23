@@ -1,3 +1,5 @@
+<!-- ANCHOR:overview -->
+<!-- SPECKIT_TEMPLATE_SOURCE: test-fixture -->
 
 # Test Feature Spec
 
@@ -24,3 +26,4 @@ This fixture tests valid anchor pairs.
 ### Out of Scope
 
 - Invalid anchor testing
+<!-- /ANCHOR:overview -->

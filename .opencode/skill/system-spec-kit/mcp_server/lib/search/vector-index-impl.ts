@@ -1,4 +1,5 @@
 // ---------------------------------------------------------------
+// MODULE: Vector Index Implementation
 // SEARCH: VECTOR INDEX
 // ---------------------------------------------------------------
 // TypeScript port of the vector index implementation.

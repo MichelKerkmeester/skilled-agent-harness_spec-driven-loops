@@ -1,3 +1,5 @@
+<!-- ANCHOR:overview -->
+<!-- SPECKIT_TEMPLATE_SOURCE: test-fixture -->
 
 # Test Feature - With Config
 
@@ -24,3 +26,4 @@ Tests .speckit.yaml config file detection.
 ### Out of Scope
 
 - N/A
+<!-- /ANCHOR:overview -->

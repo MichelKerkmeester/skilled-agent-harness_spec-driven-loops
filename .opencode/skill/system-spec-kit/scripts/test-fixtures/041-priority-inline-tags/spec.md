@@ -1,3 +1,5 @@
+<!-- ANCHOR:overview -->
+<!-- SPECKIT_TEMPLATE_SOURCE: test-fixture -->
 
 # Test Feature - Inline Priority Tags
 
@@ -24,3 +26,4 @@ Tests inline priority tags [P0]/[P1]/[P2] are recognized.
 ### Out of Scope
 
 - N/A
+<!-- /ANCHOR:overview -->

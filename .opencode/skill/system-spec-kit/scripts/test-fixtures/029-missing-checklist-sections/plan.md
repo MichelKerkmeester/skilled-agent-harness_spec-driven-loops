@@ -1,3 +1,5 @@
+<!-- ANCHOR:implementation-plan -->
+<!-- SPECKIT_TEMPLATE_SOURCE: test-fixture -->
 
 # Implementation Plan
 
@@ -26,3 +28,4 @@ L2 structure.
 ### Phase 1: Setup
 
 Create checklist without priority headers.
+<!-- /ANCHOR:implementation-plan -->

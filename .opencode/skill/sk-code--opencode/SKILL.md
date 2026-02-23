@@ -377,6 +377,10 @@ The recurring verifier at `scripts/verify_alignment_drift.py` applies severity-a
    - Keep `## N. UPPERCASE SECTION NAME` unchanged in standards and examples
    - Treat header style drift as non-regression failure
 
+8. **Run alignment verifier before completion claims**
+   - Command: `python3 .opencode/skill/sk-code--opencode/scripts/verify_alignment_drift.py --root <changed-scope-root>`
+   - Default mode fails on `ERROR` findings. Use `--fail-on-warn` when strict mode is required.
+
 ### ❌ NEVER
 
 1. **Leave commented-out code** - Delete it (git preserves history)
@@ -406,6 +410,7 @@ The recurring verifier at `scripts/verify_alignment_drift.py` applies severity-a
 | Naming Convention  | Consistent throughout file               | P0       |
 | No Commented Code  | Zero commented-out code blocks           | P0       |
 | Header Invariant   | Numbered ALL-CAPS section headers preserved | P0    |
+| Alignment Verifier | `verify_alignment_drift.py` returns no `ERROR` on changed scope | P0 |
 | Error Handling     | All error paths handled                  | P1       |
 | AI Comment Policy  | Max 3/10 + AI-intent comment tags only   | P1       |
 | KISS/DRY/SOLID     | SRP/OCP/LSP/ISP/DIP violations identified | P1      |
@@ -428,6 +433,7 @@ P0 Items (MUST pass):
 □ No commented-out code
 □ Consistent naming convention
 □ Numbered ALL-CAPS section headers preserved
+□ Alignment verifier reports no ERROR findings for changed scope
 
 P1 Items (Required):
 □ AI comment policy enforced (max 3/10, AI-WHY/AI-GUARD/AI-INVARIANT/AI-TRACE/AI-RISK)
@@ -452,6 +458,7 @@ This skill operates within the behavioral framework defined in AGENTS.md.
 
 - **Gate 2**: Skill routing via `skill_advisor.py`
 - **Memory**: Context preserved via Spec Kit Memory MCP
+- **Completion gate**: run `verify_alignment_drift.py` on changed scope before claiming done
 
 ### Review Baseline Delegation
 
@@ -515,6 +522,7 @@ This skill operates within the behavioral framework defined in AGENTS.md.
 - `assets/checklists/python_checklist.md` - Python-specific validation
 - `assets/checklists/shell_checklist.md` - Shell-specific validation
 - `assets/checklists/config_checklist.md` - JSON/JSONC validation
+- `references/shared/alignment_verification_automation.md` - verifier contract and automation workflow
 
 ### Related Skills
 

@@ -1,3 +1,5 @@
+<!-- ANCHOR:checklist -->
+<!-- SPECKIT_TEMPLATE_SOURCE: test-fixture -->
 # Validation Checklist
 
 ## P0 - Critical
@@ -15,3 +17,4 @@ Items with inline P1 tags:
 ## P2 - Optional
 
 - [ ] [P2] Optional item with inline tag
+<!-- /ANCHOR:checklist -->

@@ -266,6 +266,32 @@ describe('Batch Processor', () => {
       expect(DEFAULT_RETRY_OPTIONS.maxRetries).toBe(2);
       expect(DEFAULT_RETRY_OPTIONS.retryDelay).toBe(1000);
     });
+
+    it('T26a: invalid maxRetries falls back to default without crashing', async () => {
+      let attempts = 0;
+      const result = await processWithRetry(
+        'retry',
+        async () => {
+          attempts++;
+          throw new Error('SQLITE_BUSY transient');
+        },
+        { maxRetries: -5, retryDelay: 0 }
+      ) as unknown;
+      expect(attempts).toBe(DEFAULT_RETRY_OPTIONS.maxRetries + 1);
+      expect(result.retries_failed).toBe(true);
+    });
+
+    it('T26b: invalid retryDelay falls back to default and still completes', async () => {
+      const result = await processWithRetry(
+        1,
+        async () => {
+          throw new Error('permanent failure');
+        },
+        { maxRetries: 0, retryDelay: Number.NaN }
+      ) as unknown;
+      expect(result.retries_failed).toBe(true);
+      expect(result.errorDetail).toContain('permanent failure');
+    });
   });
 
   /* ═══════════════════════════════════════════════════════════

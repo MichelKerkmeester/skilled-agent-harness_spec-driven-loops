@@ -1,3 +1,5 @@
+<!-- ANCHOR:checklist -->
+<!-- SPECKIT_TEMPLATE_SOURCE: test-fixture -->
 # Validation Checklist
 
 ## P0 - Critical
@@ -12,3 +14,4 @@
 ## P2 - Optional
 
 - [ ] Additional documentation
+<!-- /ANCHOR:checklist -->

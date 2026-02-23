@@ -1,3 +1,5 @@
+<!-- ANCHOR:overview -->
+<!-- SPECKIT_TEMPLATE_SOURCE: test-fixture -->
 
 # Test Feature - Mixed Priority Format
 
@@ -24,3 +26,4 @@ Tests mixed headers and inline tags work together.
 ### Out of Scope
 
 - N/A
+<!-- /ANCHOR:overview -->

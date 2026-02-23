@@ -1,3 +1,5 @@
+<!-- ANCHOR:overview -->
+<!-- SPECKIT_TEMPLATE_SOURCE: test-fixture -->
 
 # Test Feature - Placeholder in Inline Code
 
@@ -26,3 +28,4 @@ The pattern `[PLACEHOLDER]` should not trigger a warning.
 ### Out of Scope
 
 - N/A
+<!-- /ANCHOR:overview -->

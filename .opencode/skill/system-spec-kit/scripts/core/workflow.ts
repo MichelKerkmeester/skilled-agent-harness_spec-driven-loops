@@ -7,7 +7,7 @@
 import * as path from 'path';
 
 // Internal modules
-import { CONFIG, findActiveSpecsDir } from './config';
+import { CONFIG, findActiveSpecsDir, getSpecsDirectories } from './config';
 import {
   extractConversations,
   extractDecisions,
@@ -260,7 +260,37 @@ async function runWorkflow(options: WorkflowOptions = {}): Promise<WorkflowResul
   log('Step 2: Detecting spec folder...');
   const specFolder: string = await detectSpecFolder(collectedData);
   const specsDir: string = findActiveSpecsDir() || path.join(CONFIG.PROJECT_ROOT, 'specs');
-  const specFolderName: string = path.relative(specsDir, specFolder);
+  const normalizedSpecFolder = path.resolve(specFolder).replace(/\\/g, '/');
+  const candidateSpecsDirs = Array.from(new Set([
+    specsDir,
+    ...getSpecsDirectories(),
+    path.join(CONFIG.PROJECT_ROOT, 'specs'),
+    path.join(CONFIG.PROJECT_ROOT, '.opencode', 'specs'),
+  ]));
+
+  let specFolderName = '';
+  for (const candidateRoot of candidateSpecsDirs) {
+    const normalizedRoot = path.resolve(candidateRoot).replace(/\\/g, '/');
+    const relative = path.relative(normalizedRoot, normalizedSpecFolder).replace(/\\/g, '/');
+    if (
+      relative &&
+      relative !== '.' &&
+      relative !== '..' &&
+      !relative.startsWith('../') &&
+      !path.isAbsolute(relative)
+    ) {
+      specFolderName = relative;
+      break;
+    }
+  }
+
+  if (!specFolderName) {
+    const marker = '/specs/';
+    const markerIndex = normalizedSpecFolder.lastIndexOf(marker);
+    specFolderName = markerIndex >= 0
+      ? normalizedSpecFolder.slice(markerIndex + marker.length)
+      : path.basename(normalizedSpecFolder);
+  }
   log(`   Using: ${specFolder}\n`);
 
   // Step 3: Setup context directory

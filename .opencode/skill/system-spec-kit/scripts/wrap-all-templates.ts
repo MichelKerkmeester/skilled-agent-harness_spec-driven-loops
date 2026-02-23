@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// MODULE: Wrap All Templates
 /**
  * Wraps all level_1-3+ template files with ANCHOR tags
  * Uses anchor-generator.ts wrapSectionsWithAnchors() function
@@ -25,6 +26,7 @@ const TEMPLATE_FILES = [
 interface ProcessResult {
   file: string;
   success: boolean;
+  skipped?: boolean;
   anchorsAdded: number;
   anchorsPreserved: number;
   collisions: number;
@@ -39,11 +41,12 @@ async function processTemplate(filePath: string): Promise<ProcessResult> {
     if (!fs.existsSync(filePath)) {
       return {
         file: relativePath,
-        success: false,
+        success: true,
+        skipped: true,
         anchorsAdded: 0,
         anchorsPreserved: 0,
         collisions: 0,
-        error: 'File not found (skipped)'
+        error: 'Not present for this level (skipped)'
       };
     }
 
@@ -85,6 +88,7 @@ async function main() {
   const results: ProcessResult[] = [];
   let totalFiles = 0;
   let totalSuccess = 0;
+  let totalSkipped = 0;
   let totalAnchorsAdded = 0;
   let totalAnchorsPreserved = 0;
   
@@ -101,6 +105,12 @@ async function main() {
       
       if (result.success) {
         totalSuccess++;
+        if (result.skipped) {
+          totalSkipped++;
+          console.log(`  · ${filename}: Not present for this level (skipped)`);
+          continue;
+        }
+
         totalAnchorsAdded += result.anchorsAdded;
         totalAnchorsPreserved += result.anchorsPreserved;
         
@@ -119,6 +129,7 @@ async function main() {
   console.log('\n## Summary');
   console.log(`Total files processed: ${totalFiles}`);
   console.log(`Success: ${totalSuccess}`);
+  console.log(`Skipped: ${totalSkipped}`);
   console.log(`Failed: ${totalFiles - totalSuccess}`);
   console.log(`Total anchors added: ${totalAnchorsAdded}`);
   console.log(`Total anchors preserved: ${totalAnchorsPreserved}`);
@@ -129,7 +140,7 @@ async function main() {
   console.log('|------|--------|-------|-----------|--------|');
   
   for (const result of results) {
-    const status = result.success ? '✓' : '✗';
+    const status = result.skipped ? '·' : (result.success ? '✓' : '✗');
     const issues = result.error || '-';
     console.log(`| ${result.file} | ${status} | ${result.anchorsAdded} | ${result.anchorsPreserved} | ${issues} |`);
   }

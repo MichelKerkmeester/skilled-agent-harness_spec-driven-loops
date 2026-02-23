@@ -47,6 +47,14 @@ Decision: adopt deterministic scoring.
 
   const v5 = validator.validateMemoryQualityContent(validContent.replace('  - "memory"\n  - "quality"', '  []'));
   assert(v5.failedRules.includes('V5'), 'V5 should fail empty trigger_phrases with >=5 tools');
+
+  const inlineTriggerPhrases = validator.validateMemoryQualityContent(
+    validContent.replace(
+      'trigger_phrases:\n  - "memory"\n  - "quality"',
+      'trigger_phrases: ["memory", "quality"]'
+    )
+  );
+  assert(inlineTriggerPhrases.valid === true, 'inline trigger_phrases list should count as populated');
 }
 
 function runContaminationTests() {

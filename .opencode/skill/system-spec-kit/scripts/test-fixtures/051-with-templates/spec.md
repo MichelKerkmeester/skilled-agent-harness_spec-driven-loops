@@ -1,3 +1,5 @@
+<!-- ANCHOR:overview -->
+<!-- SPECKIT_TEMPLATE_SOURCE: test-fixture -->
 
 # Test Feature - With Templates
 
@@ -25,3 +27,4 @@ Tests that templates/ directory is properly skipped during validation.
 ### Out of Scope
 
 - N/A
+<!-- /ANCHOR:overview -->

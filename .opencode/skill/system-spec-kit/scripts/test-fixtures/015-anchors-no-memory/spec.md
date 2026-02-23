@@ -1,3 +1,5 @@
+<!-- ANCHOR:overview -->
+<!-- SPECKIT_TEMPLATE_SOURCE: test-fixture -->
 
 # Test Feature - No Memory Directory
 
@@ -24,3 +26,4 @@ Tests missing memory/ directory is skipped.
 ### Out of Scope
 
 - N/A
+<!-- /ANCHOR:overview -->

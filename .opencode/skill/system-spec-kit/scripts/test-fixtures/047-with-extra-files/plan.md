@@ -1,3 +1,5 @@
+<!-- ANCHOR:implementation-plan -->
+<!-- SPECKIT_TEMPLATE_SOURCE: test-fixture -->
 
 # Implementation Plan
 
@@ -30,3 +32,4 @@ Standard Level 1 with bonus documentation.
 ### Phase 1: Setup
 
 Create fixture with extra files.
+<!-- /ANCHOR:implementation-plan -->

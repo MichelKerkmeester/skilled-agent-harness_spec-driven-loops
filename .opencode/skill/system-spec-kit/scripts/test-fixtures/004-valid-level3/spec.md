@@ -1,3 +1,5 @@
+<!-- ANCHOR:overview -->
+<!-- SPECKIT_TEMPLATE_SOURCE: test-fixture -->
 
 # Test Feature Spec - Level 3
 
@@ -27,3 +29,4 @@ This is a test fixture to validate Level 3 spec folder structure.
 ### Out of Scope
 
 - Production deployment
+<!-- /ANCHOR:overview -->

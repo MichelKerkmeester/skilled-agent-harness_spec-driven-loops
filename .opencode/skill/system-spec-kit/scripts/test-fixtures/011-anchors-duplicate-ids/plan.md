@@ -1,3 +1,5 @@
+<!-- ANCHOR:implementation-plan -->
+<!-- SPECKIT_TEMPLATE_SOURCE: test-fixture -->
 
 # Implementation Plan
 
@@ -26,3 +28,4 @@ L1 with duplicate anchors.
 ### Phase 1: Setup
 
 Create memory file with duplicate IDs.
+<!-- /ANCHOR:implementation-plan -->

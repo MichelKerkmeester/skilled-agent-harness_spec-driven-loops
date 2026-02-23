@@ -10,6 +10,11 @@ import * as path from 'path';
 
 // Internal modules
 import { CONFIG } from '../core';
+import {
+  createValidShortTerms,
+  shouldIncludeTopicWord,
+  tokenizeTopicWords,
+} from '../lib/topic-keywords';
 
 /* -----------------------------------------------------------------
    1. INTERFACES
@@ -186,9 +191,11 @@ function extractNextAction(
   observations: Observation[],
   recentContext?: RecentContextEntry[]
 ): string {
-  for (const obs of observations) {
+  for (let i = observations.length - 1; i >= 0; i--) {
+    const obs = observations[i];
     if (obs.facts) {
-      for (const fact of obs.facts) {
+      for (let j = obs.facts.length - 1; j >= 0; j--) {
+        const fact = obs.facts[j];
         if (typeof fact === 'string') {
           const nextMatch = fact.match(/\b(?:next|todo|follow-?up):\s*(.+)/i);
           if (nextMatch) return nextMatch[1].trim();
@@ -361,10 +368,7 @@ function extractKeyTopics(summary: string | undefined, decisions: DecisionForTop
     'start', 'started', 'stop', 'stopped', 'done', 'complete', 'completed'
   ]);
 
-  const validShortTerms = new Set([
-    'db', 'ui', 'js', 'ts', 'ai', 'ml', 'ci', 'cd', 'io', 'os',
-    'vm', 'qa', 'ux', 'id', 'ip', 'wp', 'go', 'rx'
-  ]);
+  const validShortTerms = createValidShortTerms();
 
   const isPlaceholderSummary: boolean = !summary ||
     summary.includes('SIMULATION MODE') ||
@@ -373,10 +377,9 @@ function extractKeyTopics(summary: string | undefined, decisions: DecisionForTop
     summary.length < 20;
 
   const addTopics = (text: string): void => {
-    const words = text.toLowerCase().match(/\b[a-z][a-z0-9]+\b/g) || [];
+    const words = tokenizeTopicWords(text);
     words.forEach((word) => {
-      if (stopwords.has(word)) return;
-      if (word.length >= 3 || validShortTerms.has(word)) {
+      if (shouldIncludeTopicWord(word, stopwords, validShortTerms)) {
         topics.add(word);
       }
     });

@@ -23,6 +23,23 @@ import type { DeleteArgs, MemoryHashSnapshot } from './memory-crud-types';
    CORE LOGIC
 --------------------------------------------------------------- */
 
+function parseMemoryId(rawId: number | string): number {
+  const numericId = typeof rawId === 'string'
+    ? Number.parseInt(rawId.trim(), 10)
+    : rawId;
+
+  if (
+    typeof numericId !== 'number' ||
+    !Number.isSafeInteger(numericId) ||
+    numericId <= 0 ||
+    (typeof rawId === 'string' && !/^\d+$/.test(rawId.trim()))
+  ) {
+    throw new Error('Invalid memory ID: must be a positive integer');
+  }
+
+  return numericId;
+}
+
 /** Handle memory_delete tool -- deletes a single memory by ID or bulk-deletes by spec folder. */
 async function handleMemoryDelete(args: DeleteArgs): Promise<MCPResponse> {
   await checkDatabaseUpdated();
@@ -34,10 +51,7 @@ async function handleMemoryDelete(args: DeleteArgs): Promise<MCPResponse> {
 
   let numericId: number | null = null;
   if (id !== undefined && id !== null) {
-    numericId = typeof id === 'string' ? parseInt(id, 10) : id as number;
-    if (isNaN(numericId)) {
-      throw new Error('Invalid memory ID: must be a number');
-    }
+    numericId = parseMemoryId(id);
   }
 
   let deletedCount = 0;

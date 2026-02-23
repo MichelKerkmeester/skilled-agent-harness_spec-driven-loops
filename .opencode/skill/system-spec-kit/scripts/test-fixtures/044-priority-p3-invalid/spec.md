@@ -1,3 +1,5 @@
+<!-- ANCHOR:overview -->
+<!-- SPECKIT_TEMPLATE_SOURCE: test-fixture -->
 
 # Test Feature - Invalid P3/P4
 
@@ -24,3 +26,4 @@ Tests P3/P4 priority levels generate warnings.
 ### Out of Scope
 
 - N/A
+<!-- /ANCHOR:overview -->

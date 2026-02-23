@@ -135,16 +135,17 @@ load_config() {
         local rule_order_str=""
         if command -v yq >/dev/null 2>&1; then
             rule_order_str=$(yq -r '.validation.rule_order[]? // empty' "$CONFIG_FILE_PATH" 2>/dev/null || true)
+            [[ -z "$rule_order_str" ]] && rule_order_str=$(yq -r '.rule_order[]? // empty' "$CONFIG_FILE_PATH" 2>/dev/null || true)
         else
             # Fallback: simple grep for rule_order entries
             local in_order=false
             while IFS= read -r line; do
                 if [[ "$line" =~ ^[[:space:]]*rule_order: ]]; then
                     in_order=true; continue
-                elif [[ "$line" =~ ^[[:alpha:]] ]] && $in_order; then
+                elif $in_order && [[ "$line" =~ ^[[:space:]]*[A-Za-z0-9_]+: ]]; then
                     break
                 fi
-                if $in_order && [[ "$line" =~ ^[[:space:]]+-[[:space:]]+([A-Z_]+) ]]; then
+                if $in_order && [[ "$line" =~ ^[[:space:]]+-[[:space:]]+([A-Za-z0-9_-]+) ]]; then
                     rule_order_str+="${BASH_REMATCH[1]}"$'\n'
                 fi
             done < "$CONFIG_FILE_PATH"
@@ -152,7 +153,9 @@ load_config() {
         if [[ -n "$rule_order_str" ]]; then
             RULE_ORDER=()
             while IFS= read -r rule; do
-                [[ -n "$rule" ]] && RULE_ORDER+=("$rule")
+                local canonical_rule
+                canonical_rule=$(canonicalize_rule_name "$rule")
+                [[ -n "$canonical_rule" ]] && RULE_ORDER+=("$canonical_rule")
             done <<< "$rule_order_str"
         fi
     fi
@@ -265,6 +268,32 @@ get_rule_severity() {
 should_run_rule() { [[ "$(get_rule_severity "$1")" != "skip" ]]; }
 
 # Map rule name to script filename
+canonicalize_rule_name() {
+    local raw="$1"
+    local normalized
+    normalized=$(echo "$raw" | tr '[:lower:]-' '[:upper:]_')
+    case "$normalized" in
+        FILES|FILES_PRESENT|FILES_EXISTS|FILE_EXISTS) echo "FILE_EXISTS" ;;
+        PLACEHOLDERS|PLACEHOLDER|PLACEHOLDER_FILLED|PLACEHOLDERS_FILLED) echo "PLACEHOLDER_FILLED" ;;
+        SECTIONS|SECTIONS_PRESENT) echo "SECTIONS_PRESENT" ;;
+        LEVEL|LEVEL_DECLARED) echo "LEVEL_DECLARED" ;;
+        PRIORITY|PRIORITY_TAGS) echo "PRIORITY_TAGS" ;;
+        EVIDENCE|EVIDENCE_CITED) echo "EVIDENCE_CITED" ;;
+        ANCHOR|ANCHORS|ANCHOR_MATCHED|ANCHORS_VALID) echo "ANCHORS_VALID" ;;
+        TOC|TOC_POLICY) echo "TOC_POLICY" ;;
+        PHASE_LINKS) echo "PHASE_LINKS" ;;
+        LINKS|LINKS_VALID) echo "LINKS_VALID" ;;
+        AI_PROTOCOL|AI_PROTOCOLS) echo "AI_PROTOCOLS" ;;
+        COMPLEXITY|COMPLEXITY_MATCH) echo "COMPLEXITY_MATCH" ;;
+        FOLDER_NAMING) echo "FOLDER_NAMING" ;;
+        FRONTMATTER|FRONTMATTER_VALID) echo "FRONTMATTER_VALID" ;;
+        LEVEL_MATCH) echo "LEVEL_MATCH" ;;
+        SECTION_COUNTS) echo "SECTION_COUNTS" ;;
+        TEMPLATE_SOURCE) echo "TEMPLATE_SOURCE" ;;
+        *) echo "$normalized" ;;
+    esac
+}
+
 rule_name_to_script() {
     local rule="$1"
     case "$rule" in
@@ -277,6 +306,14 @@ rule_name_to_script() {
         ANCHORS_VALID) echo "anchors" ;;
         TOC_POLICY) echo "toc-policy" ;;
         PHASE_LINKS) echo "phase-links" ;;
+        AI_PROTOCOLS) echo "ai-protocols" ;;
+        COMPLEXITY_MATCH) echo "complexity" ;;
+        FOLDER_NAMING) echo "folder-naming" ;;
+        FRONTMATTER_VALID) echo "frontmatter" ;;
+        LEVEL_MATCH) echo "level-match" ;;
+        LINKS_VALID) echo "links" ;;
+        SECTION_COUNTS) echo "section-counts" ;;
+        TEMPLATE_SOURCE) echo "template-source" ;;
         *) echo "" ;;
     esac
 }
@@ -367,7 +404,19 @@ print_header() {
 }
 
 print_summary() {
-    $JSON_MODE && return 0; $QUIET_MODE && return 0
+    $JSON_MODE && return 0
+    if $QUIET_MODE; then
+        local status="PASSED"
+        if [[ $ERRORS -gt 0 ]]; then
+            status="FAILED"
+        elif [[ $WARNINGS -gt 0 ]] && $STRICT_MODE; then
+            status="FAILED_STRICT"
+        elif [[ $WARNINGS -gt 0 ]]; then
+            status="PASSED_WITH_WARNINGS"
+        fi
+        echo "RESULT: $status (errors=$ERRORS warnings=$WARNINGS)"
+        return 0
+    fi
     echo -e "\n${BLUE}───────────────────────────────────────────────────────────────${NC}\n"
     echo -e "  ${BOLD}Summary:${NC} ${RED}Errors:${NC} $ERRORS  ${YELLOW}Warnings:${NC} $WARNINGS"
     $VERBOSE && echo -e "  ${BLUE}Info:${NC} $INFOS" || true

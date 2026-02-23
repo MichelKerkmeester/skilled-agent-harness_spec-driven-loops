@@ -1,3 +1,5 @@
+<!-- ANCHOR:checklist -->
+<!-- SPECKIT_TEMPLATE_SOURCE: test-fixture -->
 # Validation Checklist
 
 ## P0
@@ -16,3 +18,4 @@
 
 - [ ] Nice-to-have feature (no evidence required for P2)
 - [x] Optional cleanup [DEFERRED: will address in v2]
+<!-- /ANCHOR:checklist -->

@@ -1,3 +1,5 @@
+<!-- ANCHOR:overview -->
+<!-- SPECKIT_TEMPLATE_SOURCE: test-fixture -->
 
 # Test Feature - With Scratch
 
@@ -25,3 +27,4 @@ Tests that scratch/ directory is properly ignored during validation.
 ### Out of Scope
 
 - N/A
+<!-- /ANCHOR:overview -->

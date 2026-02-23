@@ -50,6 +50,7 @@ This skill activates automatically via Gate 2 (`skill_advisor.py`) when you work
 2. Shared patterns (`universal_patterns.md`, `code_organization.md`) load automatically
 3. Language-specific style guide and quality standards load conditionally
 4. Checklists load on demand for validation passes
+5. Run `verify_alignment_drift.py` on changed scope before completion claims
 
 **Manual invocation:** Load the skill when writing OpenCode system code in `.opencode/`, MCP servers or system scripts. For formal review output, pair with `sk-code--review`.
 
@@ -87,7 +88,7 @@ This skill activates automatically via Gate 2 (`skill_advisor.py`) when you work
 │   └── config/
 │       ├── style_guide.md            # JSON/JSONC structure, $schema
 │       └── quick_reference.md        # Cheat sheet
-└── assets/
+├── assets/
     └── checklists/
         ├── universal_checklist.md    # Cross-language P0 items
         ├── javascript_checklist.md   # JS-specific validation
@@ -95,6 +96,9 @@ This skill activates automatically via Gate 2 (`skill_advisor.py`) when you work
         ├── python_checklist.md       # Python-specific validation
         ├── shell_checklist.md        # Shell-specific validation
         └── config_checklist.md       # JSON/JSONC validation
+└── scripts/
+    ├── verify_alignment_drift.py     # Severity-aware alignment verifier
+    └── test_verify_alignment_drift.py # Verifier regression tests
 ```
 
 <!-- /ANCHOR:structure -->
@@ -137,6 +141,12 @@ No configuration files are required. The skill self-configures through language 
 | P0    | HARD BLOCKER, must fix      | File header, no commented code    |
 | P1    | Required OR skip w/approval | Naming, error handling            |
 | P2    | Can defer                   | Reference comments, import order  |
+
+**Completion gate command:**
+
+```bash
+python3 .opencode/skill/sk-code--opencode/scripts/verify_alignment_drift.py --root .opencode
+```
 
 <!-- /ANCHOR:configuration -->
 

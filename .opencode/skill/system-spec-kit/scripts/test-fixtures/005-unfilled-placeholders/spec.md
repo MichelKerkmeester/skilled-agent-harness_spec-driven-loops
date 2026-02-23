@@ -1,3 +1,5 @@
+<!-- ANCHOR:overview -->
+<!-- SPECKIT_TEMPLATE_SOURCE: test-fixture -->
 
 # Test Feature Spec
 
@@ -25,3 +27,4 @@
 ### Out of Scope
 
 - Future enhancements
+<!-- /ANCHOR:overview -->

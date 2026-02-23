@@ -1,3 +1,5 @@
+<!-- ANCHOR:overview -->
+<!-- SPECKIT_TEMPLATE_SOURCE: test-fixture -->
 
 # Test Feature - All Evidence Patterns
 
@@ -24,3 +26,4 @@ Tests all 5 evidence patterns are recognized.
 ### Out of Scope
 
 - N/A
+<!-- /ANCHOR:overview -->

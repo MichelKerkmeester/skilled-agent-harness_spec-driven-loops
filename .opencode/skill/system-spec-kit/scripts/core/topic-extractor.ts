@@ -1,17 +1,18 @@
 // --- MODULE: Topic Extractor ---
 // Extracts key topics from session data using weighted scoring and bigram analysis
 
+import {
+  createValidShortTerms,
+  shouldIncludeTopicWord,
+  tokenizeTopicWords,
+} from '../lib/topic-keywords';
+
 export interface DecisionForTopics {
   TITLE?: string;
   RATIONALE?: string;
 }
 
-const WORD_PATTERN = /\b[a-z][a-z0-9]+\b/g;
 const SIMULATION_MARKER = 'SIMULATION';
-
-function tokenizeWords(text: string): string[] {
-  return text.toLowerCase().match(WORD_PATTERN) || [];
-}
 
 // NOTE: Similar to extractors/session-extractor.ts:extractKeyTopics but differs in:
 // - Uses compound phrase extraction (bigrams) for more meaningful topics
@@ -32,23 +33,19 @@ export function extractKeyTopics(
     'session', 'context', 'data', 'tool', 'tools', 'run', 'running', 'started',
     'changes', 'changed', 'change', 'check', 'checked', 'checking'
   ]);
-  const validShortTerms = new Set([
-    'db', 'ui', 'js', 'ts', 'ai', 'ml', 'ci', 'cd', 'io', 'os', 'vm', 'qa',
-    'ux', 'id', 'ip', 'wp', 'go', 'rx', 'mcp', 'api', 'css', 'dom', 'sql'
-  ]);
+  const validShortTerms = createValidShortTerms();
 
   // Scored topics: phrase -> weight
   const topicScores = new Map<string, number>();
   const addWord = (word: string, weight: number): void => {
-    if (stopwords.has(word)) return;
-    if (word.length >= 3 || validShortTerms.has(word)) {
+    if (shouldIncludeTopicWord(word, stopwords, validShortTerms)) {
       topicScores.set(word, (topicScores.get(word) || 0) + weight);
     }
   };
 
   const addBigrams = (text: string, weight: number): void => {
-    const words = tokenizeWords(text);
-    const filtered = words.filter(w => !stopwords.has(w) && (w.length >= 3 || validShortTerms.has(w)));
+    const words = tokenizeTopicWords(text);
+    const filtered = words.filter((w) => shouldIncludeTopicWord(w, stopwords, validShortTerms));
     for (let i = 0; i < filtered.length - 1; i++) {
       const bigram = `${filtered[i]} ${filtered[i + 1]}`;
       if (bigram.length >= 7) { // meaningful compound phrase
@@ -74,17 +71,17 @@ export function extractKeyTopics(
     const title = d.TITLE || '';
     const rationale = d.RATIONALE || '';
     if (title && !title.includes(SIMULATION_MARKER)) {
-      tokenizeWords(title).forEach(w => addWord(w, 2.0));
+      tokenizeTopicWords(title).forEach((w) => addWord(w, 2.0));
       addBigrams(title, 2.0);
     }
     if (rationale && !rationale.includes(SIMULATION_MARKER)) {
-      tokenizeWords(rationale).forEach(w => addWord(w, 1.0));
+      tokenizeTopicWords(rationale).forEach((w) => addWord(w, 1.0));
     }
   });
 
   // Summary gets standard weight
   if (summary && summary.length >= 20 && !summary.includes(SIMULATION_MARKER)) {
-    tokenizeWords(summary).forEach(w => addWord(w, 1.0));
+    tokenizeTopicWords(summary).forEach((w) => addWord(w, 1.0));
     addBigrams(summary, 1.0);
   }
 

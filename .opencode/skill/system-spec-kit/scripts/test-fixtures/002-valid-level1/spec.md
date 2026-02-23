@@ -1,4 +1,6 @@
 
+<!-- SPECKIT_TEMPLATE_SOURCE: level_1/spec.md | v2.2 -->
+
 # Test Feature Spec
 
 | Field | Value |
@@ -7,9 +9,11 @@
 | **Status** | Active |
 | **Created** | 2025-01-01 |
 
+<!-- ANCHOR:problem-statement -->
 ## Problem Statement
 
 This is a test fixture to validate Level 1 spec folder structure.
+<!-- /ANCHOR:problem-statement -->
 
 ## Requirements
 

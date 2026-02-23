@@ -93,13 +93,29 @@ run_check() {
         tmp_opens=$(mktemp)
         tmp_closes=$(mktemp)
 
+        # Detect malformed opening anchor syntax.
+        while IFS=: read -r line_num line_text; do
+            [[ -z "$line_num" ]] && continue
+            if ! printf '%s\n' "$line_text" | grep -Eq '<!--[[:space:]]*ANCHOR:[[:space:]]*[A-Za-z0-9][A-Za-z0-9_-]*[[:space:]]*-->'; then
+                errors+=("$display_name:$line_num: Malformed opening anchor syntax")
+            fi
+        done < <(grep -n '<!--[[:space:]]*ANCHOR:' "$file" 2>/dev/null || true)
+
+        # Detect malformed closing anchor syntax.
+        while IFS=: read -r line_num line_text; do
+            [[ -z "$line_num" ]] && continue
+            if ! printf '%s\n' "$line_text" | grep -Eq '<!--[[:space:]]*/ANCHOR:[[:space:]]*[A-Za-z0-9][A-Za-z0-9_-]*[[:space:]]*-->'; then
+                errors+=("$display_name:$line_num: Malformed closing anchor syntax")
+            fi
+        done < <(grep -n '<!--[[:space:]]*/ANCHOR:' "$file" 2>/dev/null || true)
+
         # Extract opening anchors: <!-- ANCHOR:id --> format: "linenum id"
-        { grep -n '<!-- ANCHOR:[^/]' "$file" 2>/dev/null || true; } | \
-            sed -n 's/^\([0-9]*\):.*ANCHOR:\([^[:space:]>]*\).*/\1 \2/p' > "$tmp_opens"
+        { grep -nE '<!--[[:space:]]*ANCHOR:[[:space:]]*[A-Za-z0-9][A-Za-z0-9_-]*[[:space:]]*-->' "$file" 2>/dev/null || true; } | \
+            sed -nE 's/^([0-9]+):.*ANCHOR:[[:space:]]*([A-Za-z0-9][A-Za-z0-9_-]*).*/\1 \2/p' > "$tmp_opens"
 
         # Extract closing anchors: <!-- /ANCHOR:id -->
-        { grep -n '<!-- /ANCHOR:' "$file" 2>/dev/null || true; } | \
-            sed -n 's/^\([0-9]*\):.*\/ANCHOR:\([^[:space:]>]*\).*/\1 \2/p' > "$tmp_closes"
+        { grep -nE '<!--[[:space:]]*/ANCHOR:[[:space:]]*[A-Za-z0-9][A-Za-z0-9_-]*[[:space:]]*-->' "$file" 2>/dev/null || true; } | \
+            sed -nE 's/^([0-9]+):.*\/ANCHOR:[[:space:]]*([A-Za-z0-9][A-Za-z0-9_-]*).*/\1 \2/p' > "$tmp_closes"
 
         local all_ids
         all_ids=$(awk '{print $2}' "$tmp_opens" "$tmp_closes" 2>/dev/null | sort -u)

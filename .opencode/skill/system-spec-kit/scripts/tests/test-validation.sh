@@ -187,6 +187,7 @@ run_test() {
     local name="$1"
     local fixture="$2"
     local expect="$3"  # "pass", "warn", or "fail"
+    local expected_rule="${4:-}"  # Optional rule marker that must appear in output
     
     # Register test for listing
     local test_entry="[$CURRENT_CATEGORY] $name"
@@ -277,6 +278,16 @@ ${test_entry}"
     
     # Compare
     if [[ "$actual" = "$expect" ]]; then
+        if [[ -n "$expected_rule" ]] && ! printf '%s\n' "$output" | grep -Fq "$expected_rule"; then
+            echo -e "${RED}✗${NC} $name ${DIM}[${time_display}]${NC}"
+            echo -e "  ${RED}Expected rule marker not found:${NC} $expected_rule"
+            echo -e "  ${DIM}Output:${NC}"
+            echo "$output" | sed 's/^/    /'
+            FAILED=$((FAILED + 1))
+            CURRENT_CAT_FAILED=$((CURRENT_CAT_FAILED + 1))
+            return
+        fi
+
         echo -e "${GREEN}✓${NC} $name ${DIM}[${time_display}]${NC}"
         PASSED=$((PASSED + 1))
         CURRENT_CAT_PASSED=$((CURRENT_CAT_PASSED + 1))
@@ -730,7 +741,7 @@ if begin_category "Anchor Edge Cases"; then
     run_test "Duplicate anchor IDs, each properly closed" "011-anchors-duplicate-ids" "warn"
 
     # FAIL cases - anchor errors in multi-file scenarios
-    run_test "Multiple memory files, one with error" "013-anchors-multiple-files" "fail"
+    run_test "Multiple memory files, one with error" "013-anchors-multiple-files" "fail" "ANCHORS_VALID"
 fi
 
 # ─────────────────────────────────────────────────────────────────
@@ -789,7 +800,7 @@ if begin_category "CLI Options Tests"; then
 
     # Test 6: Rule execution order configuration
     # Minimal fixture triggers SECTION_COUNTS warning
-    run_test "Rule order: .speckit.yaml rule_order" "049-with-rule-order" "warn"
+    run_test "Rule order: .speckit.yaml rule_order" "049-with-rule-order" "pass"
 fi
 
 # Save final category

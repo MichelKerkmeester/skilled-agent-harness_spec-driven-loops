@@ -1,4 +1,5 @@
 // ---------------------------------------------------------------
+// MODULE: Database Helpers
 // UTILS: Database Helpers
 // ---------------------------------------------------------------
 // T304: Consolidated database access and error-coercion utilities

@@ -1,3 +1,5 @@
+<!-- ANCHOR:implementation-plan -->
+<!-- SPECKIT_TEMPLATE_SOURCE: test-fixture -->
 
 # Implementation Plan
 
@@ -26,3 +28,4 @@ L2 with P2 items.
 ### Phase 1: Setup
 
 Create checklist with P2 items lacking evidence.
+<!-- /ANCHOR:implementation-plan -->

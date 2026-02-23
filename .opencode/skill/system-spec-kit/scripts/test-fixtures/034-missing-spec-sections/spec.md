@@ -1,3 +1,5 @@
+<!-- ANCHOR:overview -->
+<!-- SPECKIT_TEMPLATE_SOURCE: test-fixture -->
 
 # Test Feature - Missing Spec Sections
 
@@ -20,3 +22,4 @@ This spec is missing the Problem Statement section.
 ### Out of Scope
 
 - N/A
+<!-- /ANCHOR:overview -->

@@ -41,8 +41,35 @@ function extractYamlValue(frontMatter: string, key: string): string | null {
 }
 
 function parseYamlList(frontMatter: string, key: string): string[] {
+  const escapedKey = key.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const inlineMatch = frontMatter.match(new RegExp(`^${escapedKey}:\\s*\\[(.*)\\]\\s*$`, 'm'));
+  if (inlineMatch) {
+    const rawInline = inlineMatch[1].trim();
+    if (!rawInline) {
+      return [];
+    }
+
+    const quoted = rawInline.replace(/'/g, '"');
+    try {
+      const parsed = JSON.parse(`[${quoted}]`);
+      if (Array.isArray(parsed)) {
+        return parsed
+          .filter((item): item is string => typeof item === 'string')
+          .map((item) => item.trim())
+          .filter((item) => item.length > 0);
+      }
+    } catch {
+      // Fall through to comma-delimited parsing.
+    }
+
+    return rawInline
+      .split(',')
+      .map((item) => item.trim().replace(/^['"]|['"]$/g, ''))
+      .filter((item) => item.length > 0);
+  }
+
   const lines = frontMatter.split('\n');
-  const keyRegex = new RegExp(`^${key.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}:\\s*$`);
+  const keyRegex = new RegExp(`^${escapedKey}:\\s*$`);
   const list: string[] = [];
   let inList = false;
 

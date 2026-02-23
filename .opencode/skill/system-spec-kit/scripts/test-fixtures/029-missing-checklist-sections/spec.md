@@ -1,3 +1,5 @@
+<!-- ANCHOR:overview -->
+<!-- SPECKIT_TEMPLATE_SOURCE: test-fixture -->
 
 # Test Feature - Missing Checklist Sections
 
@@ -24,3 +26,4 @@ Tests missing P0/P1 sections in checklist.md.
 ### Out of Scope
 
 - N/A
+<!-- /ANCHOR:overview -->

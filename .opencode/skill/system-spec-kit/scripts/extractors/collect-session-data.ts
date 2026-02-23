@@ -7,7 +7,7 @@
 import * as path from 'path';
 
 // Internal modules
-import { CONFIG, findActiveSpecsDir } from '../core';
+import { CONFIG, findActiveSpecsDir, getSpecsDirectories } from '../core';
 import { formatTimestamp } from '../utils/message-utils';
 import { detectSpecFolder } from '../spec-folder';
 
@@ -498,7 +498,7 @@ function generateResumeContext(
     items.push({ CONTEXT_ITEM: `Check: ${relevantDocs.map((d) => d.FILE_NAME).join(', ')}` });
   }
 
-  const lastMeaningful = observations.find((o) => o.narrative && o.narrative.length > 50);
+  const lastMeaningful = [...observations].reverse().find((o) => o.narrative && o.narrative.length > 50);
   if (lastMeaningful) {
     items.push({ CONTEXT_ITEM: `Last: ${(lastMeaningful.title || lastMeaningful.narrative || '').substring(0, 80)}` });
   }
@@ -587,7 +587,40 @@ async function collectSessionData(
   if (!folderName) {
     const detectedFolder = await detectSpecFolder();
     const specsDir = findActiveSpecsDir() || path.join(CONFIG.PROJECT_ROOT, 'specs');
-    folderName = path.relative(specsDir, detectedFolder);
+    const normalizedDetected = path.resolve(detectedFolder).replace(/\\/g, '/');
+
+    const candidateSpecsDirs = Array.from(new Set([
+      specsDir,
+      ...getSpecsDirectories(),
+      path.join(CONFIG.PROJECT_ROOT, 'specs'),
+      path.join(CONFIG.PROJECT_ROOT, '.opencode', 'specs'),
+    ]));
+
+    let resolvedFolderName = '';
+    for (const candidateRoot of candidateSpecsDirs) {
+      const normalizedRoot = path.resolve(candidateRoot).replace(/\\/g, '/');
+      const relative = path.relative(normalizedRoot, normalizedDetected).replace(/\\/g, '/');
+      if (
+        relative &&
+        relative !== '.' &&
+        relative !== '..' &&
+        !relative.startsWith('../') &&
+        !path.isAbsolute(relative)
+      ) {
+        resolvedFolderName = relative;
+        break;
+      }
+    }
+
+    if (!resolvedFolderName) {
+      const marker = '/specs/';
+      const markerIndex = normalizedDetected.lastIndexOf(marker);
+      resolvedFolderName = markerIndex >= 0
+        ? normalizedDetected.slice(markerIndex + marker.length)
+        : path.basename(normalizedDetected);
+    }
+
+    folderName = resolvedFolderName;
   }
   const dateOnly: string = formatTimestamp(now, 'date-dutch');
   const timeOnly: string = formatTimestamp(now, 'time-short');

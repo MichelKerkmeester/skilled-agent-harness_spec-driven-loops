@@ -1,3 +1,5 @@
+<!-- ANCHOR:overview -->
+<!-- SPECKIT_TEMPLATE_SOURCE: test-fixture -->
 # Test Feature - Multiple Placeholders
 
 | Field | Value |
@@ -23,3 +25,4 @@ Tests multiple placeholders across files are all detected.
 ### Out of Scope
 
 - N/A
+<!-- /ANCHOR:overview -->

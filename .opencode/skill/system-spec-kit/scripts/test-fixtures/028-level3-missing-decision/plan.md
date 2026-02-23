@@ -1,3 +1,5 @@
+<!-- ANCHOR:implementation-plan -->
+<!-- SPECKIT_TEMPLATE_SOURCE: test-fixture -->
 
 # Implementation Plan
 
@@ -30,3 +32,4 @@ L3 without decision-record.md.
 ### Phase 1: Setup
 
 Create L3 fixture without decision-record.md.
+<!-- /ANCHOR:implementation-plan -->

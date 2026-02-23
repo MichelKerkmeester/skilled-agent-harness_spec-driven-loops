@@ -1,3 +1,5 @@
+<!-- SPECKIT_TEMPLATE_SOURCE: level_1/implementation-summary.md | v2.2 -->
+
 # Implementation Summary
 
 ## Overview

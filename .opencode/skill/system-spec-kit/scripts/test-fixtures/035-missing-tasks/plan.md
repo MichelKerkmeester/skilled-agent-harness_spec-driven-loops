@@ -1,3 +1,5 @@
+<!-- ANCHOR:implementation-plan -->
+<!-- SPECKIT_TEMPLATE_SOURCE: test-fixture -->
 
 # Implementation Plan
 
@@ -28,3 +30,4 @@ L1 without tasks.md.
 ### Phase 1: Setup
 
 Create fixture without tasks.md.
+<!-- /ANCHOR:implementation-plan -->

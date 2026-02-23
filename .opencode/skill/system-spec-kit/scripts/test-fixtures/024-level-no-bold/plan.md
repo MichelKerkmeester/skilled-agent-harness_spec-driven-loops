@@ -1,3 +1,5 @@
+<!-- ANCHOR:implementation-plan -->
+<!-- SPECKIT_TEMPLATE_SOURCE: test-fixture -->
 
 # Implementation Plan
 
@@ -27,3 +29,4 @@ L1 files with non-bold level.
 ### Phase 1: Setup
 
 Create fixture with non-bold level.
+<!-- /ANCHOR:implementation-plan -->

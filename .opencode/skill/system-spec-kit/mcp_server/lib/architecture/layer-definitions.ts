@@ -1,4 +1,5 @@
 // ---------------------------------------------------------------
+// MODULE: Layer Definitions
 // LIB: LAYER DEFINITIONS
 // T060: 7-Layer MCP Architecture with Token Budgets
 // ---------------------------------------------------------------

@@ -204,4 +204,5 @@ export interface BulkDeleteArgs {
   specFolder?: string;
   confirm: boolean;
   olderThanDays?: number;
+  skipCheckpoint?: boolean;
 }

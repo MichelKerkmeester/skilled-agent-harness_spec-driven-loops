@@ -1,3 +1,4 @@
+<!-- SPECKIT_TEMPLATE_SOURCE: test-fixture -->
 # Implementation Summary
 
 ## Overview

@@ -1,4 +1,5 @@
 // ---------------------------------------------------------------
+// MODULE: Batch Processor Utils
 // UTILS: BATCH PROCESSOR
 // ---------------------------------------------------------------
 
@@ -47,6 +48,13 @@ export const DEFAULT_RETRY_OPTIONS: Readonly<RetryDefaults> = {
   retryDelay: 1000
 } as const;
 
+function normalizeRetryValue(value: number | undefined, fallback: number): number {
+  if (typeof value !== 'number' || !Number.isFinite(value) || value < 0) {
+    return fallback;
+  }
+  return Math.floor(value);
+}
+
 /* ---------------------------------------------------------------
    3. RETRY LOGIC
    --------------------------------------------------------------- */
@@ -60,8 +68,8 @@ export async function processWithRetry<T, R>(
   processor: ItemProcessor<T, R>,
   options: RetryOptions = {}
 ): Promise<R | RetryErrorResult> {
-  const maxRetries = options.maxRetries ?? DEFAULT_RETRY_OPTIONS.maxRetries;
-  const retryDelay = options.retryDelay ?? DEFAULT_RETRY_OPTIONS.retryDelay;
+  const maxRetries = normalizeRetryValue(options.maxRetries, DEFAULT_RETRY_OPTIONS.maxRetries);
+  const retryDelay = normalizeRetryValue(options.retryDelay, DEFAULT_RETRY_OPTIONS.retryDelay);
   let last_error: Error | undefined;
 
   for (let attempt = 0; attempt <= maxRetries; attempt++) {
@@ -80,7 +88,16 @@ export async function processWithRetry<T, R>(
       }
     }
   }
-  return { error: userFriendlyError(last_error!), errorDetail: last_error instanceof Error ? last_error.message : String(last_error), item, retries_failed: true };
+  if (!last_error) {
+    last_error = new Error('Retry loop exited without processor result');
+  }
+
+  return {
+    error: userFriendlyError(last_error),
+    errorDetail: last_error.message,
+    item,
+    retries_failed: true,
+  };
 }
 
 /* ---------------------------------------------------------------

@@ -1,3 +1,5 @@
+<!-- ANCHOR:overview -->
+<!-- SPECKIT_TEMPLATE_SOURCE: test-fixture -->
 
 # Test Feature - Inferred Level
 
@@ -23,3 +25,4 @@ Tests level inference when no explicit level field.
 ### Out of Scope
 
 - N/A
+<!-- /ANCHOR:overview -->

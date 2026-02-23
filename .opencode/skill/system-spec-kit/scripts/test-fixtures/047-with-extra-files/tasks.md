@@ -1,3 +1,5 @@
+<!-- ANCHOR:tasks -->
+<!-- SPECKIT_TEMPLATE_SOURCE: test-fixture -->
 # Tasks
 
 ## Active
@@ -8,3 +10,4 @@
 ## Completed
 
 All tasks completed.
+<!-- /ANCHOR:tasks -->

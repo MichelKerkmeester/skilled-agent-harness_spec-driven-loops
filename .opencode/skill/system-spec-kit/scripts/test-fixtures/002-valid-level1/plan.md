@@ -1,9 +1,13 @@
 
+<!-- SPECKIT_TEMPLATE_SOURCE: level_1/plan.md | v2.2 -->
+
 # Implementation Plan
 
+<!-- ANCHOR:technical-context -->
 ## Technical Context
 
 This is a minimal Level 1 spec folder for testing validation scripts.
+<!-- /ANCHOR:technical-context -->
 
 ### Current State
 

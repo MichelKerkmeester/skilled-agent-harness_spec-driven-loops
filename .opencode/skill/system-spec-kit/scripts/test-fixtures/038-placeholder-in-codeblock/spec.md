@@ -1,3 +1,5 @@
+<!-- ANCHOR:overview -->
+<!-- SPECKIT_TEMPLATE_SOURCE: test-fixture -->
 
 # Test Feature - Placeholder in Codeblock
 
@@ -24,3 +26,4 @@ Tests placeholders in fenced code blocks are ignored.
 ### Out of Scope
 
 - N/A
+<!-- /ANCHOR:overview -->

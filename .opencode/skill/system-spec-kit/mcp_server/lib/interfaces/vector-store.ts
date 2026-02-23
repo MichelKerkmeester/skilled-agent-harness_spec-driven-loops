@@ -1,4 +1,5 @@
 // ───────────────────────────────────────────────────────────────
+// MODULE: Vector Store Interface
 // INTERFACE: IVectorStore (abstract base class)
 // ───────────────────────────────────────────────────────────────
 // Concrete base class providing the IVectorStore contract for JS consumers.

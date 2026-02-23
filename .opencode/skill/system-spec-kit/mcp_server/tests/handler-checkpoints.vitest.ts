@@ -156,6 +156,10 @@ describe('Handler Checkpoints (T521, T102) [deferred - requires DB test fixtures
     it('T521-V3: Non-boolean wasUseful throws', async () => {
       await expect(handler.handleMemoryValidate({ id: 1, wasUseful: 'yes' })).rejects.toThrow(/wasUseful.*boolean/);
     });
+
+    it('T521-V4: Non-integer string id throws', async () => {
+      await expect(handler.handleMemoryValidate({ id: '7abc', wasUseful: true })).rejects.toThrow(/id.*integer|id.*number/i);
+    });
   });
 
   // ─────────────────────────────────────────────────────────────
@@ -208,8 +212,8 @@ describe('Handler Checkpoints (T521, T102) [deferred - requires DB test fixtures
           expect(calls).toContain('clearSearchCache');
           expect(calls).toContain('refreshTriggerCache');
         } else {
-          // Restore threw before reaching rebuild (no DB) — acceptable
-          expect(calls.length).toBeGreaterThanOrEqual(0);
+          // Restore threw before reaching rebuild (no DB/checkpoint) — no rebuild calls should run
+          expect(calls).toHaveLength(0);
         }
       } finally {
         // Restore originals via vitest

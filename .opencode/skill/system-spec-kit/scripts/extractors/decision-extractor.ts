@@ -248,10 +248,10 @@ async function extractDecisions(
       });
     }
 
-    const chosenMatch = narrative.match(/chose|selected|decided on|went with:?\s+([^\.\n]+)/i);
+    const chosenMatch = narrative.match(/(?:chose|selected|decided on|went with):?\s+([^\.\n]+)/i);
     const CHOSEN: string = chosenMatch?.[1]?.trim() || (OPTIONS.length > 0 ? OPTIONS[0].LABEL : 'N/A');
 
-    const rationaleMatch = narrative.match(/because|rationale|reason:?\s+([^\.\n]+)/i);
+    const rationaleMatch = narrative.match(/(?:because|rationale|reason):?\s+([^\.\n]+)/i);
     const RATIONALE: string = rationaleMatch?.[1]?.trim() || narrative.substring(0, 200);
 
     const confidenceMatch = narrative.match(/confidence:?\s*(\d+)%?/i);

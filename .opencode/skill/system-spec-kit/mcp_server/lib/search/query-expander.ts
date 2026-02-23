@@ -72,11 +72,15 @@ export function expandQuery(query: string): string[] {
     if (variants.size >= MAX_VARIANTS) break;
     const synonyms = DOMAIN_VOCABULARY_MAP[word];
     if (synonyms && synonyms.length > 0) {
-      // Try each synonym to generate distinct variants
+      // Keep one expansion per matched word to avoid over-expanding simple queries.
       for (const synonym of synonyms) {
         if (variants.size >= MAX_VARIANTS) break;
         const expanded = query.replace(new RegExp(`\\b${word}\\b`, 'i'), synonym);
+        const beforeSize = variants.size;
         variants.add(expanded);
+        if (variants.size > beforeSize) {
+          break;
+        }
       }
     }
   }

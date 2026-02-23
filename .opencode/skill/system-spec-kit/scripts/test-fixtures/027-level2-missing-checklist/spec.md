@@ -1,3 +1,5 @@
+<!-- ANCHOR:overview -->
+<!-- SPECKIT_TEMPLATE_SOURCE: test-fixture -->
 
 # Test Feature - L2 Missing Checklist
 
@@ -24,3 +26,4 @@ Tests L2 folder missing checklist.md fails validation.
 ### Out of Scope
 
 - N/A
+<!-- /ANCHOR:overview -->

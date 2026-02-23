@@ -1,5 +1,5 @@
 ---
-title: "Spec Kit Memory — MCP Server"
+title: "Spec Kit Memory - MCP Server"
 description: "Model Context Protocol server providing semantic memory, hybrid search and graph intelligence for AI-assisted development."
 trigger_phrases:
   - "MCP server"
@@ -9,7 +9,7 @@ trigger_phrases:
 importance_tier: "normal"
 ---
 
-# Spec Kit Memory — MCP Server
+# Spec Kit Memory - MCP Server
 
 > AI memory that persists without poisoning your context window.
 
@@ -61,7 +61,7 @@ None of it works because none of it understands what matters.
 This MCP server gives your AI assistant persistent memory with intelligence built in:
 
 - **3-channel hybrid search** (Vector, FTS5, BM25) finds what you mean, not what you typed
-- **Post-fusion enhancements** — RRF, Adaptive Fusion, MMR, Co-activation and Recency Boost are applied after retrieval, not separate search channels
+- **Post-fusion enhancements**: RRF, Adaptive Fusion, MMR, Co-activation and Recency Boost are applied after retrieval, not separate search channels
 - **Cognitive decay** keeps relevant memories fresh and lets stale ones fade
 - **Causal graph** traces decision lineage ("Why did we choose JWT?")
 - **Session awareness** prevents duplicate context and saves tokens
@@ -181,10 +181,10 @@ Add to your MCP client configuration (e.g., `opencode.json`):
 context-server.ts          (server init, startup, shutdown, main orchestration)
         |
         v
-tool-schemas.ts            (TOOL_DEFINITIONS — all 23 tool schemas)
+tool-schemas.ts            (TOOL_DEFINITIONS: all 23 tool schemas)
         |
         v
-tools/index.ts             (dispatchTool — routes call to correct handler)
+tools/index.ts             (dispatchTool: routes call to correct handler)
         |
         +-------+-------+-------+-------+-------+-------+-------+-------+
         |       |       |       |       |       |       |       |       |
@@ -192,10 +192,10 @@ tools/index.ts             (dispatchTool — routes call to correct handler)
   search   triggers  save   context   index   points  learning  crud    graph
         |
         v
-lib/                       (76 library modules — search, cognitive, storage, etc.)
+lib/                       (76 library modules: search, cognitive, storage, etc.)
         |
         v
-dist/context-server.js     (compiled output — executed at runtime by node)
+dist/context-server.js     (compiled output, executed at runtime by node)
 ```
 
 ### Key Entry Points
@@ -205,7 +205,7 @@ dist/context-server.js     (compiled output — executed at runtime by node)
 | `context-server.ts` | Server init, stdio transport, startup/shutdown lifecycle                                 |
 | `tool-schemas.ts`   | All 23 tool schema definitions (decomposed from server in T303)                          |
 | `cli.ts`            | CLI entry point for maintenance commands (stats, bulk-delete, reindex, schema-downgrade) |
-| `tools/index.ts`    | `dispatchTool()` — routes MCP call to handler module                                     |
+| `tools/index.ts`    | `dispatchTool()` routes an MCP call to the correct handler module                        |
 | `core/config.ts`    | Path resolution (`SERVER_DIR`, `LIB_DIR`, `SHARED_DIR`)                                  |
 | `core/db-state.ts`  | Database connection state shared across handlers                                         |
 
@@ -491,9 +491,9 @@ Where `R(t, S)` = retrievability at time t with stability S. Higher importance t
 | ------------ | ---------------- | ---------------- | --------- | ------------------------------------------ |
 | **HOT**      | R >= 0.80        | Full content     | 5         | Active working memory, top priority        |
 | **WARM**     | 0.25 <= R < 0.80 | Summary only     | 10        | Accessible background context              |
-| **COLD**     | 0.05 <= R < 0.25 | None             | —         | Inactive but retrievable on demand         |
-| **DORMANT**  | 0.02 <= R < 0.05 | None             | —         | Very weak, needs explicit revival          |
-| **ARCHIVED** | R < 0.02 or 90d+ | None             | —         | Time-based archival, effectively forgotten |
+| **COLD**     | 0.05 <= R < 0.25 | None             | N/A       | Inactive but retrievable on demand         |
+| **DORMANT**  | 0.02 <= R < 0.05 | None             | N/A       | Very weak, needs explicit revival          |
+| **ARCHIVED** | R < 0.02 or 90d+ | None             | N/A       | Time-based archival, effectively forgotten |
 
 ### Type-Specific Half-Lives
 
@@ -790,7 +790,7 @@ memory_causal_link({
 ### Session Learning Workflow
 
 ```typescript
-// 1. Before starting — capture baseline
+// 1. Before starting, capture baseline
 task_preflight({
   specFolder: "specs/077-upgrade",
   taskId: "T1",
@@ -801,7 +801,7 @@ task_preflight({
 
 // 2. Do the work
 
-// 3. After completing — measure improvement
+// 3. After completing, measure improvement
 task_postflight({
   specFolder: "specs/077-upgrade",
   taskId: "T1",

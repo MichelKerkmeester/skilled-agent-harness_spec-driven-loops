@@ -55,6 +55,23 @@ interface ValidationResult {
   promotionEligible: boolean;
 }
 
+function parseMemoryId(rawId: number | string): number {
+  const numericId = typeof rawId === 'string'
+    ? Number.parseInt(rawId.trim(), 10)
+    : rawId;
+
+  if (
+    typeof numericId !== 'number' ||
+    !Number.isSafeInteger(numericId) ||
+    numericId <= 0 ||
+    (typeof rawId === 'string' && !/^\d+$/.test(rawId.trim()))
+  ) {
+    throw new Error('id must be a positive integer');
+  }
+
+  return numericId;
+}
+
 /* ---------------------------------------------------------------
    3. CHECKPOINT CREATE HANDLER
 --------------------------------------------------------------- */
@@ -225,9 +242,11 @@ async function handleMemoryValidate(args: MemoryValidateArgs): Promise<MCPRespon
     throw new Error('wasUseful is required and must be a boolean');
   }
 
+  const memoryId = parseMemoryId(id);
+
   vectorIndex.initializeDb();
   const database = requireDb();
-  const result: ValidationResult = confidenceTracker.recordValidation(database, Number(id), wasUseful);
+  const result: ValidationResult = confidenceTracker.recordValidation(database, memoryId, wasUseful);
 
   const summary = wasUseful
     ? `Positive validation recorded (confidence: ${result.confidence.toFixed(2)})`
@@ -245,7 +264,7 @@ async function handleMemoryValidate(args: MemoryValidateArgs): Promise<MCPRespon
     tool: 'memory_validate',
     summary,
     data: {
-      memoryId: id,
+      memoryId,
       wasUseful: wasUseful,
       confidence: result.confidence,
       validationCount: result.validationCount,

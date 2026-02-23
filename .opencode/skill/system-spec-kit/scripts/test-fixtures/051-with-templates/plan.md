@@ -1,3 +1,5 @@
+<!-- ANCHOR:implementation-plan -->
+<!-- SPECKIT_TEMPLATE_SOURCE: test-fixture -->
 
 # Implementation Plan
 
@@ -29,3 +31,4 @@ Standard Level 1 structure with templates/ folder.
 ### Phase 1: Setup
 
 Create fixture with templates/ containing placeholder content.
+<!-- /ANCHOR:implementation-plan -->

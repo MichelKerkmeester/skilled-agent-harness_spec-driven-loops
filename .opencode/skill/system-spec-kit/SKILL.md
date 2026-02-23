@@ -591,7 +591,8 @@ Automated validation of spec folder contents via `validate.sh`.
 1. Run validation: `./scripts/spec/validate.sh <spec-folder>`
 2. Exit 2 → FIX errors
 3. Exit 1 → ADDRESS warnings or document reason
-4. Exit 0 → Proceed with completion claim
+4. For code changes, run alignment verifier: `python3 .opencode/skill/sk-code--opencode/scripts/verify_alignment_drift.py --root .opencode/skill/system-spec-kit`
+5. Exit 0 from both checks → Proceed with completion claim
 
 **Full documentation:** See [validation_rules.md](./references/validation/validation_rules.md) for all rules, configuration, and troubleshooting.
 
@@ -731,6 +732,7 @@ Automated validation of spec folder contents via `validate.sh`.
 | --- | --- |
 | Create spec folder | `./scripts/spec/create.sh "Description" --short-name name --level 2` |
 | Validate | `.opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/007-feature/` |
+| Verify code alignment drift | `python3 .opencode/skill/sk-code--opencode/scripts/verify_alignment_drift.py --root .opencode/skill/system-spec-kit` |
 | Save context | `node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js specs/007-feature/` |
 | Next spec number | `ls -d specs/[0-9]*/ \| sed 's/.*\/\([0-9]*\)-.*/\1/' \| sort -n \| tail -1` |
 | Upgrade level | `bash .opencode/skill/system-spec-kit/scripts/spec/upgrade-level.sh specs/007-feature/ --to 2` |

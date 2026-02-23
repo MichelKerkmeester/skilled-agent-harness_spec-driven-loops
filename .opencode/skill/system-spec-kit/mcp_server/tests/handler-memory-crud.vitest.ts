@@ -66,6 +66,12 @@ describe('Handler Memory CRUD (T519) [deferred - requires DB test fixtures]', ()
         /Invalid|number/
       );
     });
+
+    it('T519-D5: Partially numeric id strings are rejected', async () => {
+      await expect(handler.handleMemoryDelete({ id: '12abc' })).rejects.toThrow(
+        /Invalid|integer|number/
+      );
+    });
   });
 
   describe('handleMemoryUpdate Input Validation', () => {

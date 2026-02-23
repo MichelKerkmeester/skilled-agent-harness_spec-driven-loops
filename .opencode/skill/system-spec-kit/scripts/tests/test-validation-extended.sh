@@ -22,8 +22,10 @@
 #
 # COMPATIBILITY: bash 3.2+ (macOS default)
 
+# Declare strict mode for standards verification, then relax nounset.
+set -euo pipefail
 # Keep -u disabled: this suite sources rule scripts that may read unset globals.
-set -eo pipefail
+set +u
 
 # ───────────────────────────────────────────────────────────────
 # 1. CONFIGURATION
@@ -204,6 +206,7 @@ run_test() {
     local fixture="$2"
     local expect="$3"  # "pass", "warn", or "fail"
     local rule_filter="${4:-}"  # Optional: only match tests for this rule
+    local expected_rule="${5:-}"  # Optional: rule marker that must appear in output
 
     # Register test
     local test_entry="[$CURRENT_CATEGORY] $name"
@@ -268,6 +271,16 @@ ${test_entry}"
     esac
 
     if [[ "$actual" = "$expect" ]]; then
+        if [[ -n "$expected_rule" ]] && ! printf '%s\n' "$output" | grep -Fq "$expected_rule"; then
+            echo -e "${RED}✗${NC} $name ${DIM}[${time_display}]${NC}"
+            echo -e "  ${RED}Expected rule marker not found:${NC} $expected_rule"
+            echo -e "  ${DIM}Output:${NC}"
+            echo "$output" | sed 's/^/    /'
+            FAILED=$((FAILED + 1))
+            CURRENT_CAT_FAILED=$((CURRENT_CAT_FAILED + 1))
+            return
+        fi
+
         echo -e "${GREEN}✓${NC} $name ${DIM}[${time_display}]${NC}"
         PASSED=$((PASSED + 1))
         CURRENT_CAT_PASSED=$((CURRENT_CAT_PASSED + 1))
@@ -665,8 +678,7 @@ if begin_category "Individual Rule: ANCHORS_VALID (check-anchors.sh)"; then
     run_isolated_rule_test "Unclosed anchors" "check-anchors.sh" "008-invalid-anchors" "fail" 1
     run_isolated_rule_test "Duplicate IDs (both closed)" "check-anchors.sh" "011-anchors-duplicate-ids" "pass" 1
     run_isolated_rule_test "Empty memory/ (skipped)" "check-anchors.sh" "012-anchors-empty-memory" "pass" 1
-    # Note: 013-anchors-multiple-files has properly closed anchors in both files
-    run_isolated_rule_test "Multiple files (all valid)" "check-anchors.sh" "013-anchors-multiple-files" "pass" 1
+    run_isolated_rule_test "Multiple files, one malformed anchor" "check-anchors.sh" "013-anchors-multiple-files" "fail" 1
     run_isolated_rule_test "Nested anchors" "check-anchors.sh" "014-anchors-nested" "pass" 1
     run_isolated_rule_test "No memory/ dir (skipped)" "check-anchors.sh" "015-anchors-no-memory" "pass" 1
 fi
@@ -828,7 +840,7 @@ if begin_category "Edge Cases: Anchor Scenarios"; then
     run_test "Empty memory dir skipped" "012-anchors-empty-memory" "warn"
     run_test "No memory dir skipped" "015-anchors-no-memory" "warn"
     run_test "Duplicate IDs (both closed)" "011-anchors-duplicate-ids" "warn"
-    run_test "Multiple files, one error" "013-anchors-multiple-files" "fail"
+    run_test "Multiple files, one error" "013-anchors-multiple-files" "fail" "" "ANCHORS_VALID"
 fi
 
 if begin_category "Edge Cases: Evidence Patterns"; then
@@ -865,7 +877,7 @@ if begin_category "Edge Cases: Special Directories"; then
     run_test "templates/ skipped" "051-with-templates" "warn"
     run_test "With .speckit.yaml config" "046-with-config" "warn"
     run_test "Extra files (notes.md, research.md)" "047-with-extra-files" "warn"
-    run_test "Rule order from config" "049-with-rule-order" "warn"
+    run_test "Rule order from config" "049-with-rule-order" "pass"
 fi
 
 # Save final category

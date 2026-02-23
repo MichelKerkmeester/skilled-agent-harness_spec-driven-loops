@@ -283,6 +283,11 @@ fi
 # 1. HELPER FUNCTIONS (shared functions sourced from lib/)
 # ───────────────────────────────────────────────────────────────
 
+slugify_token() {
+    local input="$1"
+    echo "$input" | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z0-9]/-/g' | sed 's/--*/-/g' | sed 's/^-//' | sed 's/-$//'
+}
+
 create_versioned_subfolder() {
     local base_folder="$1"
     local topic="$2"
@@ -365,10 +370,14 @@ if [[ "$SUBFOLDER_MODE" = true ]]; then
     
     # Determine topic name
     if [[ -n "$SUBFOLDER_TOPIC" ]]; then
-        TOPIC_NAME="$SUBFOLDER_TOPIC"
+        TOPIC_NAME=$(slugify_token "$SUBFOLDER_TOPIC")
     else
         # Generate from feature description
-        TOPIC_NAME=$(echo "$FEATURE_DESCRIPTION" | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z0-9]/-/g' | sed 's/--*/-/g' | sed 's/^-//' | sed 's/-$//')
+        TOPIC_NAME=$(slugify_token "$FEATURE_DESCRIPTION")
+    fi
+    if [[ -z "$TOPIC_NAME" ]]; then
+        echo "Error: --topic must contain at least one alphanumeric character after slugification" >&2
+        exit 1
     fi
 
     SUBFOLDER_PATH=$(create_versioned_subfolder "$RESOLVED_BASE" "$TOPIC_NAME")
@@ -433,7 +442,7 @@ fi
 
 resolve_branch_name() {
     if [[ -n "$SHORT_NAME" ]]; then
-        BRANCH_SUFFIX=$(echo "$SHORT_NAME" | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z0-9]/-/g' | sed 's/--*/-/g' | sed 's/^-//' | sed 's/-$//')
+        BRANCH_SUFFIX=$(slugify_token "$SHORT_NAME")
     else
         BRANCH_SUFFIX=$(generate_branch_name "$FEATURE_DESCRIPTION")
     fi
@@ -523,7 +532,11 @@ if [[ "$PHASE_MODE" = true ]]; then
         for _name in "${_raw_names[@]}"; do
             # Trim whitespace and slugify
             _trimmed=$(echo "$_name" | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
-            _slugified=$(echo "$_trimmed" | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z0-9]/-/g' | sed 's/--*/-/g' | sed 's/^-//' | sed 's/-$//')
+            _slugified=$(slugify_token "$_trimmed")
+            if [[ -z "$_slugified" ]]; then
+                echo "Error: --phase-names entries must include alphanumeric text (invalid entry: '$_name')" >&2
+                exit 1
+            fi
             PHASE_NAME_ARRAY+=("$_slugified")
         done
         # If --phase-names provided, override PHASE_COUNT with actual count
@@ -666,8 +679,23 @@ if [[ "$PHASE_MODE" = true ]]; then
             >&2 echo "[speckit] Existing PHASE DOCUMENTATION MAP found; appending new phase rows and handoffs"
             _tmp_parent_spec=$(mktemp)
             PHASE_TMP_FILES+=("$_tmp_parent_spec")
+            _tmp_phase_rows=$(mktemp)
+            PHASE_TMP_FILES+=("$_tmp_phase_rows")
+            _tmp_handoff_rows=$(mktemp)
+            PHASE_TMP_FILES+=("$_tmp_handoff_rows")
+            printf '%s\n' "$PHASE_ROWS" > "$_tmp_phase_rows"
+            printf '%s\n' "$HANDOFF_ROWS" > "$_tmp_handoff_rows"
 
-            awk -v phase_rows="$PHASE_ROWS" -v handoff_rows="$HANDOFF_ROWS" '
+            _handoff_has_rows=false
+            [[ -n "$HANDOFF_ROWS" ]] && _handoff_has_rows=true
+
+            awk -v phase_rows_file="$_tmp_phase_rows" -v handoff_rows_file="$_tmp_handoff_rows" -v handoff_has_rows="$_handoff_has_rows" '
+                function print_rows(path, row) {
+                    while ((getline row < path) > 0) {
+                        print row;
+                    }
+                    close(path);
+                }
                 BEGIN {
                     in_phase=0;
                     in_handoff=0;
@@ -678,20 +706,18 @@ if [[ "$PHASE_MODE" = true ]]; then
                     in_phase=1;
                 }
                 in_phase && /^### Phase Transition Rules/ && !inserted_phase {
-                    if (phase_rows != "") {
-                        print phase_rows;
-                    }
+                    print_rows(phase_rows_file);
                     inserted_phase=1;
                 }
                 in_phase && /^### Phase Handoff Criteria/ {
                     in_handoff=1;
                 }
-                in_phase && in_handoff && handoff_rows != "" && $0 ~ /^\| \(single phase - no handoffs\) \| \| \| \|$/ {
+                in_phase && in_handoff && handoff_has_rows == "true" && $0 ~ /^\| \(single phase - no handoffs\) \| \| \| \|$/ {
                     next;
                 }
                 in_phase && /<!-- \/ANCHOR:phase-map -->/ && !inserted_handoff {
-                    if (handoff_rows != "") {
-                        print handoff_rows;
+                    if (handoff_has_rows == "true") {
+                        print_rows(handoff_rows_file);
                     }
                     inserted_handoff=1;
                     in_phase=0;

@@ -247,6 +247,15 @@ Frontmatter contract for indexed markdown uses managed keys:
 Parser compatibility is non-breaking: both `contextType` and `context_type` are accepted.
 Migration reports include a dedicated `malformed` summary counter for strict-mode diagnostics.
 
+### Code Alignment Verifier Workflow
+
+Run the OpenCode alignment verifier on changed code paths before completion claims:
+
+```bash
+python3 .opencode/skill/sk-code--opencode/scripts/verify_alignment_drift.py \
+  --root .opencode/skill/system-spec-kit
+```
+
 ### Templates (`templates/`)
 
 Spec folder templates using CORE + ADDENDUM v2.2 architecture:
@@ -503,7 +512,7 @@ All tools use the `spec_kit_memory_` prefix in MCP calls (e.g., `spec_kit_memory
 | `/spec_kit:resume` | 4 | Resume previous session |
 | `/spec_kit:handover` | 4 | Create session handover document |
 | `/spec_kit:debug` | 5 | Delegate debugging to sub-agent |
-| `/spec_kit:phase` | — | Decompose complex features into parent and child phase folders |
+| `/spec_kit:phase` | N/A | Decompose complex features into parent and child phase folders |
 
 ### Memory Commands
 

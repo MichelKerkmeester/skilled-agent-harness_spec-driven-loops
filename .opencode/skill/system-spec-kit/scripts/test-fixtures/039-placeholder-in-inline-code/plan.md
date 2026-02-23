@@ -1,3 +1,5 @@
+<!-- ANCHOR:implementation-plan -->
+<!-- SPECKIT_TEMPLATE_SOURCE: test-fixture -->
 
 # Implementation Plan
 
@@ -26,3 +28,4 @@ L1 with inline code containing placeholders.
 ### Phase 1: Setup
 
 Create files with placeholders in inline code.
+<!-- /ANCHOR:implementation-plan -->

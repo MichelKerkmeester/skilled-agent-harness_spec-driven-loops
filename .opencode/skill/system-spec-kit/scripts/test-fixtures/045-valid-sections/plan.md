@@ -1,3 +1,5 @@
+<!-- ANCHOR:implementation-plan -->
+<!-- SPECKIT_TEMPLATE_SOURCE: test-fixture -->
 
 # Implementation Plan
 
@@ -31,3 +33,4 @@ Create all files with proper sections.
 ### Phase 2: Verification
 
 Validate section presence.
+<!-- /ANCHOR:implementation-plan -->

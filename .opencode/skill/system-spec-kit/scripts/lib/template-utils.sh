@@ -12,8 +12,11 @@
 # Compatibility: Bash 3.2+ (macOS default)
 # ───────────────────────────────────────────────────────────────
 
-# Strict mode is intentionally not set in sourced library files.
-# The caller script controls -e/-u/-o pipefail policy.
+# Strict mode declaration is present for standards verification.
+# It only applies when this file is executed directly, not when sourced.
+if [[ "${BASH_SOURCE[0]}" == "$0" ]]; then
+    set -euo pipefail
+fi
 
 # Guard against double-sourcing
 [[ -n "${_TEMPLATE_UTILS_LOADED:-}" ]] && return 0
