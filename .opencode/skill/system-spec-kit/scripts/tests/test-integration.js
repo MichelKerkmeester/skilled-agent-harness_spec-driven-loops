@@ -356,6 +356,15 @@ async function testValidationPipeline() {
   startSuite('Workflow 2: Validation Pipeline');
 
   try {
+    const parseValidationJson = (stdout) => {
+      try {
+        const jsonMatch = stdout.match(/\{[\s\S]*\}/);
+        return jsonMatch ? JSON.parse(jsonMatch[0]) : null;
+      } catch (_) {
+        return null;
+      }
+    };
+
     // Test 2.1: Create valid Level 2 spec folder
     const specPath = createTestSpecFolder('002-validation-test', 2);
 
@@ -385,23 +394,16 @@ async function testValidationPipeline() {
 
     // Test 2.3: Run validation on valid folder
     const validResult = runScript('spec/validate.sh', [specPath, '--json']);
+    const validJson = parseValidationJson(validResult.stdout);
+    const hasStructuredResults = !!(validJson && Array.isArray(validJson.results));
+    const hasFileExistsRule = hasStructuredResults && validJson.results.some(r => r.rule === 'FILE_EXISTS');
 
-    // Parse JSON output if available
-    let validJson = null;
-    try {
-      // Extract JSON from output (may have other text)
-      const jsonMatch = validResult.stdout.match(/\{[\s\S]*\}/);
-      if (jsonMatch) {
-        validJson = JSON.parse(jsonMatch[0]);
-      }
-    } catch (e) {
-      // Ignore parse errors
-    }
-
-    if (validResult.exitCode === 0 || validResult.exitCode === 1) {
-      pass('W2-T3: Validation runs without errors', `Exit code: ${validResult.exitCode}`);
+    if ([0, 1, 2].includes(validResult.exitCode) && hasFileExistsRule) {
+      pass('W2-T3: Validation returns structured diagnostics',
+           `Exit code: ${validResult.exitCode}, rules: ${validJson.results.length}`);
     } else {
-      fail('W2-T3: Validation runs without errors', `Exit code: ${validResult.exitCode}, stderr: ${validResult.stderr}`);
+      fail('W2-T3: Validation returns structured diagnostics',
+           `Exit code: ${validResult.exitCode}, hasStructuredResults=${hasStructuredResults}`);
     }
 
     // Test 2.4: Introduce placeholder to cause warning/error
@@ -409,11 +411,17 @@ async function testValidationPipeline() {
     fs.writeFileSync(path.join(specPath, 'spec.md'), specWithPlaceholder);
 
     const placeholderResult = runScript('spec/validate.sh', [specPath, '--json']);
+    const placeholderJson = parseValidationJson(placeholderResult.stdout);
+    const placeholderRule = placeholderJson && Array.isArray(placeholderJson.results)
+      ? placeholderJson.results.find(r => r.rule === 'PLACEHOLDER_FILLED')
+      : null;
 
-    if (placeholderResult.exitCode >= 1) {
-      pass('W2-T4: Placeholder detected causes warning/error', `Exit code: ${placeholderResult.exitCode}`);
+    if (placeholderResult.exitCode >= 1 && placeholderRule && placeholderRule.status !== 'pass') {
+      pass('W2-T4: Placeholder detected causes warning/error',
+           `Exit code: ${placeholderResult.exitCode}, status: ${placeholderRule.status}`);
     } else {
-      fail('W2-T4: Placeholder detected causes warning/error', 'Expected non-zero exit code');
+      fail('W2-T4: Placeholder detected causes warning/error',
+           `Exit code: ${placeholderResult.exitCode}, rule=${placeholderRule ? placeholderRule.status : 'missing'}`);
     }
 
     // Test 2.5: Remove required file to cause error
@@ -422,19 +430,20 @@ async function testValidationPipeline() {
     fs.unlinkSync(checklistPath);
 
     const missingFileResult = runScript('spec/validate.sh', [specPath, '--json']);
+    const missingFileJson = parseValidationJson(missingFileResult.stdout);
+    const missingFileRule = missingFileJson && Array.isArray(missingFileJson.results)
+      ? missingFileJson.results.find(r => r.rule === 'FILE_EXISTS')
+      : null;
 
     // Restore checklist for cleanup
     fs.writeFileSync(checklistPath, checklistBackup);
 
-    if (missingFileResult.exitCode === 2) {
-      pass('W2-T5: Missing required file causes exit code 2', 'FILE_EXISTS rule triggered');
+    if (missingFileResult.exitCode >= 1 && missingFileRule && missingFileRule.status !== 'pass') {
+      pass('W2-T5: Missing required file causes error',
+           `Exit code: ${missingFileResult.exitCode}, FILE_EXISTS=${missingFileRule.status}`);
     } else {
-      // Exit code 1 is also acceptable (warnings)
-      if (missingFileResult.exitCode >= 1) {
-        pass('W2-T5: Missing required file causes error', `Exit code: ${missingFileResult.exitCode}`);
-      } else {
-        fail('W2-T5: Missing required file causes error', `Expected exit code >= 1, got: ${missingFileResult.exitCode}`);
-      }
+      fail('W2-T5: Missing required file causes error',
+           `Exit code: ${missingFileResult.exitCode}, FILE_EXISTS=${missingFileRule ? missingFileRule.status : 'missing'}`);
     }
 
     // Test 2.6: Verify individual rule scripts exist
@@ -766,20 +775,39 @@ async function testCheckpointCycle() {
       skip('W5-T3: getGitBranch works', 'Function not exported');
     }
 
-    // Test 5.4: Verify checkpoint name validation
-    const invalidNames = ['name with spaces', 'name@special', '../path/attack', ''];
-    const validNames = ['my-checkpoint', 'checkpoint_v1', 'test123'];
-
-    // Check that validation would reject invalid names
-    let validationWorks = true;
-
-    // Note: We can't test the actual create without a database,
-    // but we can verify the validation regex exists in the code
+    // Test 5.4: verify schema validation helper catches malformed rows
     const checkpointsSource = fs.readFileSync(checkpointsPath, 'utf-8');
-    if (checkpointsSource.includes('[a-zA-Z0-9_-]+')) {
-      pass('W5-T4: Checkpoint name validation pattern exists', 'Alphanumeric + underscore + hyphen only');
+    if (typeof checkpoints.validateMemoryRow !== 'function') {
+      fail('W5-T4: Checkpoint schema validator exported', 'validateMemoryRow not exported');
     } else {
-      fail('W5-T4: Checkpoint name validation pattern exists', 'Pattern not found in source');
+      const validRow = {
+        id: 1,
+        file_path: '/tmp/test.md',
+        spec_folder: '001-test',
+        title: 'Test Memory',
+        importance_weight: 0.5,
+        created_at: new Date().toISOString(),
+        updated_at: new Date().toISOString(),
+        importance_tier: 'normal',
+      };
+
+      let rejectedInvalidRow = false;
+      try {
+        checkpoints.validateMemoryRow(validRow, 0);
+        try {
+          checkpoints.validateMemoryRow({ id: 'invalid' }, 1);
+        } catch (_) {
+          rejectedInvalidRow = true;
+        }
+      } catch (err) {
+        fail('W5-T4: Checkpoint schema validator exported', `Unexpected throw on valid row: ${err.message}`);
+      }
+
+      if (rejectedInvalidRow) {
+        pass('W5-T4: Checkpoint schema validator exported', 'Accepts valid row and rejects malformed row');
+      } else {
+        fail('W5-T4: Checkpoint schema validator exported', 'Malformed row was not rejected');
+      }
     }
 
     // Test 5.5: Verify compression is used
@@ -789,10 +817,11 @@ async function testCheckpointCycle() {
       fail('W5-T5: Checkpoint compression enabled', 'Compression not found');
     }
 
-    // Test 5.6: Verify TTL and max checkpoint limits
-    if (checkpointsSource.includes('MAX_CHECKPOINTS') &&
-        checkpointsSource.includes('CHECKPOINT_TTL_DAYS')) {
-      pass('W5-T6: Checkpoint limits configured', 'MAX_CHECKPOINTS and TTL_DAYS found');
+    // Test 5.6: Verify max checkpoint limit is exported and enforced in source
+    if (typeof checkpoints.MAX_CHECKPOINTS === 'number' &&
+        checkpoints.MAX_CHECKPOINTS > 0 &&
+        checkpointsSource.includes('MAX_CHECKPOINTS')) {
+      pass('W5-T6: Checkpoint limits configured', `MAX_CHECKPOINTS=${checkpoints.MAX_CHECKPOINTS}`);
     } else {
       fail('W5-T6: Checkpoint limits configured', 'Limit constants not found');
     }
@@ -883,15 +912,17 @@ async function testCrossCuttingIntegration() {
     const vectorIndexPath = path.join(MCP_SERVER_DIR, 'dist', 'lib', 'search', 'vector-index.js');
 
     if (fs.existsSync(vectorIndexPath)) {
-      const vectorIndexSource = fs.readFileSync(vectorIndexPath, 'utf-8');
+      const vectorIndex = require(vectorIndexPath);
 
-      // Check for key components
-      const hasEmbeddingDim = vectorIndexSource.includes('EMBEDDING_DIM') || vectorIndexSource.includes('get_embedding_dim');
-      const hasIndexMemory = vectorIndexSource.includes('indexMemory') || vectorIndexSource.includes('index_memory');
-      const hasSearchMemory = vectorIndexSource.includes('vector_search') || vectorIndexSource.includes('enhanced_search') || vectorIndexSource.includes('cached_search');
+      // Check for key components via runtime exports (camelCase contracts)
+      const hasEmbeddingDim = typeof vectorIndex.EMBEDDING_DIM === 'number' && vectorIndex.EMBEDDING_DIM > 0;
+      const hasIndexMemory = typeof vectorIndex.indexMemory === 'function' || typeof vectorIndex.indexMemoryDeferred === 'function';
+      const hasSearchMemory = typeof vectorIndex.vectorSearch === 'function' ||
+                              typeof vectorIndex.enhancedSearch === 'function' ||
+                              typeof vectorIndex.cachedSearch === 'function';
 
       if (hasEmbeddingDim && hasIndexMemory && hasSearchMemory) {
-        pass('X-T5: Vector-index module has key components', 'EMBEDDING_DIM, indexMemory, searchMemory found');
+        pass('X-T5: Vector-index module has key components', 'EMBEDDING_DIM, indexMemory, and search APIs exported');
       } else {
         fail('X-T5: Vector-index module has key components',
              `hasEmbeddingDim=${hasEmbeddingDim}, hasIndexMemory=${hasIndexMemory}, hasSearchMemory=${hasSearchMemory}`);

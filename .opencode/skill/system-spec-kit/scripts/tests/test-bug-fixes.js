@@ -67,36 +67,43 @@ async function testBug001() {
     const dbUpdatedFile = path.join(DB_PATH, '.db-updated');
     
     // Test 1: Notification file mechanism exists
-    // NOTE: After Spec 058 modularization, notifyDatabaseUpdated() moved to core/workflow.js
-    const generateContext = fs.readFileSync(
-      path.join(ROOT, 'scripts', 'dist', 'memory', 'generate-context.js'),
-      'utf8'
-    );
-    const workflowJs = fs.readFileSync(
+    // NOTE: notifyDatabaseUpdated currently lives in core/memory-indexer.
+    const notifyCandidates = [
+      path.join(ROOT, 'scripts', 'dist', 'core', 'memory-indexer.js'),
+      path.join(ROOT, 'scripts', 'core', 'memory-indexer.ts'),
       path.join(ROOT, 'scripts', 'dist', 'core', 'workflow.js'),
-      'utf8'
-    );
-    // Check either file (workflow.js is the actual location after modularization)
-    const hasNotify = (generateContext.includes('notifyDatabaseUpdated') && 
-                        generateContext.includes('.db-updated')) ||
-                       (workflowJs.includes('notifyDatabaseUpdated') && 
-                        workflowJs.includes('.db-updated'));
-    if (hasNotify) {
+      path.join(ROOT, 'scripts', 'dist', 'memory', 'generate-context.js'),
+    ].filter(p => fs.existsSync(p));
+
+    let notifyEvidence = null;
+    for (const candidate of notifyCandidates) {
+      const source = fs.readFileSync(candidate, 'utf8');
+      const hasNotifyFn = /\bnotifyDatabaseUpdated\b/.test(source);
+      const hasDbMarker = source.includes('DB_UPDATED_FILE') || source.includes('.db-updated');
+      const hasFileWrite = source.includes('writeFileSync') || source.includes('writeFile(');
+      if (hasNotifyFn && hasDbMarker && hasFileWrite) {
+        notifyEvidence = path.relative(ROOT, candidate);
+        break;
+      }
+    }
+
+    if (notifyEvidence) {
       pass('T-005a: Notification mechanism in scripts/', 
-           'notifyDatabaseUpdated() function found');
+           `notifyDatabaseUpdated() + DB marker write found in ${notifyEvidence}`);
     } else {
       fail('T-005a: Notification mechanism in scripts/', 
-           'Function not found');
+           'notifyDatabaseUpdated() file-write marker not found');
     }
     
     // Test 2: Check detection in db-state.js (moved from context-server after modularization)
     const dbStatePath = path.join(ROOT, 'mcp_server', 'dist', 'core', 'db-state.js');
     if (fs.existsSync(dbStatePath)) {
       const dbState = fs.readFileSync(dbStatePath, 'utf8');
-      if (dbState.includes('check_database_updated') &&
-          dbState.includes('reinitialize_database')) {
+      const hasCheck = dbState.includes('checkDatabaseUpdated') || dbState.includes('check_database_updated');
+      const hasReinitialize = dbState.includes('reinitializeDatabase') || dbState.includes('reinitialize_database');
+      if (hasCheck && hasReinitialize) {
         pass('T-005b: Check mechanism in db-state.js',
-             'check_database_updated() and reinitialize_database() found');
+             'checkDatabaseUpdated()/reinitializeDatabase() (or snake_case aliases) found');
       } else {
         skip('T-005b: Check mechanism in db-state.js',
              'Deferred to spec 054: functions not yet in compiled dist');

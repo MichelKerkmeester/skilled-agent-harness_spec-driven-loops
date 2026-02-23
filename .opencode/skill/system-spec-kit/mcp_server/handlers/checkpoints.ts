@@ -178,6 +178,7 @@ async function handleCheckpointRestore(args: CheckpointRestoreArgs): Promise<MCP
 
   const result = checkpoints.restoreCheckpoint(name, clear_existing);
   const hasRestoreErrors = result.errors.length > 0;
+  const hasRestoredData = result.restored > 0 || result.workingMemoryRestored > 0;
 
   // T102 FIX: Rebuild search indexes after checkpoint restore
   // Without this, restored memories are invisible to search until server restart.
@@ -199,7 +200,7 @@ async function handleCheckpointRestore(args: CheckpointRestoreArgs): Promise<MCP
     }
   }
 
-  if (hasRestoreErrors) {
+  if (hasRestoreErrors && !hasRestoredData) {
     return createMCPErrorResponse({
       tool: 'checkpoint_restore',
       error: `Checkpoint "${name}" restore failed`,
@@ -215,6 +216,24 @@ async function handleCheckpointRestore(args: CheckpointRestoreArgs): Promise<MCP
         hint: 'Use checkpoint_list() to confirm checkpoint name and retry.',
         actions: ['Inspect checkpoint integrity', 'Create a fresh checkpoint before retrying restore'],
       },
+      startTime,
+    });
+  }
+
+  if (hasRestoreErrors && hasRestoredData) {
+    return createMCPSuccessResponse({
+      tool: 'checkpoint_restore',
+      summary: `Checkpoint "${name}" restored with warnings (${result.errors.length})`,
+      data: {
+        success: true,
+        partial: true,
+        warningCount: result.errors.length,
+        restored: result,
+      },
+      hints: [
+        'Restore applied partially; review restored.errors before retrying',
+        'Avoid immediate retry with clearExisting=true unless you intend to replace current state',
+      ],
       startTime,
     });
   }

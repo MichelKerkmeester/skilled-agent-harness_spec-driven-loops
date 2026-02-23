@@ -47,24 +47,26 @@ function toSnakeCase(str) {
 }
 
 /**
- * Extract exported keys from a module.exports = { ... } block.
+ * Extract exported keys from:
+ *  - CJS module.exports = { ... }
+ *  - ESM export default { ... }
+ *  - ESM named exports: export { a, b as c } [from '...']
+ *  - Direct ESM declarations: export function foo() {}
  * Returns array of { key, value, line } objects.
  */
 function extractExportKeys(source) {
   const keys = [];
   const lines = source.split('\n');
 
+  // 1) CJS/ESM default object export blocks
   let inExports = false;
   let braceDepth = 0;
-
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i];
 
-    // Match both CJS (module.exports = {) and ESM (export default {) patterns
     if (/module\.exports\s*=\s*\{/.test(line) || /export\s+default\s*\{/.test(line)) {
       inExports = true;
       braceDepth = (line.match(/\{/g) || []).length - (line.match(/\}/g) || []).length;
-      // Check for keys on the same line
       const afterBrace = line.substring(line.indexOf('{') + 1);
       extractKeysFromLine(afterBrace, i, keys);
       continue;
@@ -81,7 +83,37 @@ function extractExportKeys(source) {
     }
   }
 
-  return keys;
+  // 2) ESM named export blocks (supports multiline and "from" re-export)
+  const exportBlockRegex = /export\s*\{([\s\S]*?)\}\s*(?:from\s+['"][^'"]+['"])?\s*;/g;
+  for (const match of source.matchAll(exportBlockRegex)) {
+    const exportClause = match[1] || '';
+    const lineNum = source.slice(0, match.index).split('\n').length;
+    extractKeysFromExportClause(exportClause, lineNum, keys);
+  }
+
+  // 3) Direct exported declarations
+  const directExportRegexes = [
+    /export\s+(?:async\s+)?function\s+(\w+)/g,
+    /export\s+(?:const|let|var|class)\s+(\w+)/g,
+  ];
+  for (const regex of directExportRegexes) {
+    for (const match of source.matchAll(regex)) {
+      const lineNum = source.slice(0, match.index).split('\n').length;
+      keys.push({ key: match[1], value: match[1], line: lineNum });
+    }
+  }
+
+  // Deduplicate noisy duplicates from multiple export forms
+  const seen = new Set();
+  const deduped = [];
+  for (const item of keys) {
+    const signature = `${item.key}:${item.value}`;
+    if (seen.has(signature)) continue;
+    seen.add(signature);
+    deduped.push(item);
+  }
+
+  return deduped;
 }
 
 function extractKeysFromLine(line, lineNum, keys) {
@@ -99,6 +131,26 @@ function extractKeysFromLine(line, lineNum, keys) {
   const shortMatch = trimmed.match(/^(\w+)\s*,?\s*(?:\/\/.*)?$/);
   if (shortMatch) {
     keys.push({ key: shortMatch[1], value: shortMatch[1], line: lineNum + 1 });
+  }
+}
+
+function extractKeysFromExportClause(exportClause, lineNum, keys) {
+  const entries = exportClause
+    .split(',')
+    .map(entry => entry.replace(/\/\*.*?\*\//g, '').replace(/\/\/.*$/g, '').trim())
+    .filter(Boolean);
+
+  for (const entry of entries) {
+    const aliasMatch = entry.match(/^(\w+)\s+as\s+(\w+)$/);
+    if (aliasMatch) {
+      keys.push({ key: aliasMatch[2], value: aliasMatch[1], line: lineNum });
+      continue;
+    }
+
+    const plainMatch = entry.match(/^(\w+)$/);
+    if (plainMatch) {
+      keys.push({ key: plainMatch[1], value: plainMatch[1], line: lineNum });
+    }
   }
 }
 
@@ -277,9 +329,17 @@ function t6BackwardCompatAliases() {
       const hasAlias = exportKeys.some(k => k.key === snakeKey);
       if (hasAlias) {
         totalAliases++;
-        // Verify alias points to same function
+        // Verify alias points to same function.
+        // Supports both:
+        //   - direct export mapping: handle_x: handleX
+        //   - local alias then export shorthand:
+        //       const handle_x = handleX;
+        //       export { handle_x };
         const aliasEntry = exportKeys.find(k => k.key === snakeKey);
-        if (aliasEntry && aliasEntry.value !== camelKey) {
+        const directMappingOk = aliasEntry && aliasEntry.value === camelKey;
+        const localAliasOk = new RegExp(`\\bconst\\s+${snakeKey}\\s*=\\s*${camelKey}\\b`).test(source);
+
+        if (!directMappingOk && !localAliasOk) {
           missingAliases.push(`${file}: ${snakeKey} -> ${aliasEntry.value} (expected -> ${camelKey})`);
         }
       } else {

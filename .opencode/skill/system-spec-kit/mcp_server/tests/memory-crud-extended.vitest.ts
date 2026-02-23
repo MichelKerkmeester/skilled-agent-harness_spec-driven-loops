@@ -199,9 +199,15 @@ function installDeleteMocks(opts: {
 function installBulkDeleteMocks(opts: {
   memories?: { id: number }[];
   checkpointThrows?: boolean;
+  checkpointReturnsNull?: boolean;
   dbAvailable?: boolean;
 } = {}) {
-  const { memories = [{ id: 10 }, { id: 11 }, { id: 12 }], checkpointThrows = false, dbAvailable = true } = opts;
+  const {
+    memories = [{ id: 10 }, { id: 11 }, { id: 12 }],
+    checkpointThrows = false,
+    checkpointReturnsNull = false,
+    dbAvailable = true,
+  } = opts;
   const calls: Record<string, any[]> = {
     deleteMemory: [],
     getMemoriesByFolder: [],
@@ -224,8 +230,9 @@ function installBulkDeleteMocks(opts: {
 
   if (checkpointsMod) {
     vi.mocked(checkpointsMod.createCheckpoint).mockImplementation((opts: any) => {
-      if (checkpointThrows) throw new Error('Mock checkpoint error');
       calls.createCheckpoint.push(opts);
+      if (checkpointThrows) throw new Error('Mock checkpoint error');
+      if (checkpointReturnsNull) return null;
       return {
         name: opts?.name ?? 'pre-cleanup-test',
         specFolder: opts?.specFolder ?? null,
@@ -571,6 +578,17 @@ describe('handleMemoryDelete - Bulk Delete Transaction', () => {
     const result = await handler.handleMemoryDelete({ specFolder: 'specs/empty', confirm: true });
     const parsed = parseResponse(result);
     expect(parsed?.data?.deleted).toBe(0);
+  });
+
+  it('EXT-BD7: Null checkpoint response omits restore metadata', async () => {
+    if (!handler?.handleMemoryDelete || !vectorIndex || !checkpointsMod) return;
+    const calls = installBulkDeleteMocks({ memories: [{ id: 60 }], checkpointReturnsNull: true });
+    const result = await handler.handleMemoryDelete({ specFolder: 'specs/test', confirm: true });
+    const parsed = parseResponse(result);
+    expect(parsed?.data?.deleted).toBe(1);
+    expect(parsed?.data?.checkpoint).toBeUndefined();
+    expect(parsed?.data?.restoreCommand).toBeUndefined();
+    expect(calls.createCheckpoint.length).toBe(1);
   });
 });
 

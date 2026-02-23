@@ -19,6 +19,7 @@ const MODULE_PATH = path.join(SCRIPTS_DIR, 'memory', 'cleanup-orphaned-vectors.j
 // Track sqlite-vec availability (loaded once)
 let sqliteVecAvailable = false;
 let loadSqliteVec = null;
+let sqliteVecUnavailableReason = '';
 
 // Monotonic counter for unique history IDs (avoids Date.now() collisions)
 let historyIdCounter = 0;
@@ -26,9 +27,19 @@ let historyIdCounter = 0;
 try {
   const sqliteVec = require('sqlite-vec');
   loadSqliteVec = sqliteVec.load;
-  sqliteVecAvailable = true;
+  const probeDb = new Database(':memory:');
+  try {
+    loadSqliteVec(probeDb);
+    sqliteVecAvailable = true;
+  } catch (e) {
+    sqliteVecUnavailableReason = e instanceof Error ? e.message : String(e);
+    sqliteVecAvailable = false;
+  } finally {
+    probeDb.close();
+  }
 } catch (e) {
-  // sqlite-vec not available — vec_memories tests will be skipped
+  sqliteVecUnavailableReason = e instanceof Error ? e.message : String(e);
+  sqliteVecAvailable = false;
 }
 
 // Test results tracking
@@ -420,7 +431,7 @@ async function testOrphanedVectorDetection() {
   log('\n🔬 SQL LOGIC: Orphaned Vector Detection');
 
   if (!sqliteVecAvailable) {
-    skip('T-COV-003a: Orphaned vector detection (entire section)', 'sqlite-vec not available');
+    skip('T-COV-003a: Orphaned vector detection (entire section)', `sqlite-vec unavailable: ${sqliteVecUnavailableReason || 'unknown reason'}`);
     return;
   }
 
@@ -595,7 +606,7 @@ async function testVerificationCounts() {
       const vectorCount = db.prepare('SELECT COUNT(*) as count FROM vec_memories').get();
       assertEqual(vectorCount.count, 2, 'T-COV-004c: vec_memories count is correct');
     } else {
-      skip('T-COV-004c: vec_memories count', 'sqlite-vec not available');
+      skip('T-COV-004c: vec_memories count', `sqlite-vec unavailable: ${sqliteVecUnavailableReason || 'unknown reason'}`);
     }
 
     db.close();
@@ -661,7 +672,7 @@ async function testVerificationCounts() {
       const finalVecCount = db.prepare('SELECT COUNT(*) as count FROM vec_memories').get();
       assertEqual(finalVecCount.count, 2, 'T-COV-004f: vec_memories count after cleanup');
     } else {
-      skip('T-COV-004f: vec_memories count after cleanup', 'sqlite-vec not available');
+      skip('T-COV-004f: vec_memories count after cleanup', `sqlite-vec unavailable: ${sqliteVecUnavailableReason || 'unknown reason'}`);
     }
 
     db.close();
@@ -877,7 +888,7 @@ async function testFullCleanupWorkflow() {
   log('\n🔬 INTEGRATION: Full Cleanup Workflow Simulation');
 
   if (!sqliteVecAvailable) {
-    skip('T-COV-006a: Full cleanup workflow (entire section)', 'sqlite-vec not available');
+    skip('T-COV-006a: Full cleanup workflow (entire section)', `sqlite-vec unavailable: ${sqliteVecUnavailableReason || 'unknown reason'}`);
     return;
   }
 
@@ -1100,7 +1111,11 @@ async function main() {
   log('=============================================');
   log(`Date: ${new Date().toISOString()}`);
   log(`Module: ${MODULE_PATH}`);
-  log(`sqlite-vec available: ${sqliteVecAvailable}\n`);
+  log(`sqlite-vec available: ${sqliteVecAvailable}`);
+  if (!sqliteVecAvailable && sqliteVecUnavailableReason) {
+    log(`sqlite-vec unavailable reason: ${sqliteVecUnavailableReason}`);
+  }
+  log('');
 
   // Module structure verification
   await testModuleStructure();

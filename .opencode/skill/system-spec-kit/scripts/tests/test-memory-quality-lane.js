@@ -168,31 +168,93 @@ function runQualityScorerTests() {
 }
 
 function runBenchmarkFixtureTest() {
-  const base = path.join(
-    __dirname,
-    '..', '..', '..', '..', 'specs',
-    '003-system-spec-kit',
-    '136-mcp-working-memory-hybrid-rag',
-    'scratch',
-    'quality-benchmarks'
-  );
+  const benchmarkRoots = [
+    path.join(__dirname, '..', 'test-fixtures', 'memory-quality-benchmarks'),
+    path.join(__dirname, '..', 'test-fixtures', 'quality-benchmarks'),
+    path.join(
+      __dirname,
+      '..', '..', '..', '..', 'specs',
+      '003-system-spec-kit',
+      '136-mcp-working-memory-hybrid-rag',
+      'scratch',
+      'quality-benchmarks'
+    ),
+    path.join(
+      __dirname,
+      '..', '..', '..', '..', '..', 'specs',
+      '003-system-spec-kit',
+      '136-mcp-working-memory-hybrid-rag',
+      'scratch',
+      'quality-benchmarks'
+    ),
+  ];
 
-  const badDir = path.join(base, 'bad');
-  const goodDir = path.join(base, 'good');
+  const readFixtures = (dir) => fs
+    .readdirSync(dir)
+    .filter((name) => name.endsWith('.md'))
+    .map((name) => ({
+      name,
+      content: fs.readFileSync(path.join(dir, name), 'utf-8')
+    }));
 
-  const badFiles = fs.readdirSync(badDir).filter((name) => name.endsWith('.md'));
-  const goodFiles = fs.readdirSync(goodDir).filter((name) => name.endsWith('.md'));
-
-  for (const name of badFiles) {
-    const content = fs.readFileSync(path.join(badDir, name), 'utf-8');
-    const result = validator.validateMemoryQualityContent(content);
-    assert(result.valid === false, `bad fixture should fail: ${name}`);
+  let badFixtures = [];
+  let goodFixtures = [];
+  for (const root of benchmarkRoots) {
+    const badDir = path.join(root, 'bad');
+    const goodDir = path.join(root, 'good');
+    if (fs.existsSync(badDir) && fs.existsSync(goodDir)) {
+      badFixtures = readFixtures(badDir);
+      goodFixtures = readFixtures(goodDir);
+      if (badFixtures.length > 0 && goodFixtures.length > 0) {
+        break;
+      }
+    }
   }
 
-  for (const name of goodFiles) {
-    const content = fs.readFileSync(path.join(goodDir, name), 'utf-8');
-    const result = validator.validateMemoryQualityContent(content);
-    assert(result.valid === true, `good fixture should pass: ${name}`);
+  if (badFixtures.length === 0 || goodFixtures.length === 0) {
+    const inlineGoodFixture = `\
+\`\`\`yaml
+spec_folder: "003-system-spec-kit/136-mcp-working-memory-hybrid-rag"
+tool_count: 9
+trigger_phrases:
+  - "memory"
+  - "quality"
+\`\`\`
+
+# Inline benchmark fixture
+
+Decision: adopt deterministic scoring.
+`;
+
+    goodFixtures = [
+      { name: 'inline-good.md', content: inlineGoodFixture },
+    ];
+    badFixtures = [
+      {
+        name: 'inline-bad-v1.md',
+        content: inlineGoodFixture.replace(
+          'Decision: adopt deterministic scoring.',
+          'decisions: [TBD]'
+        )
+      },
+      {
+        name: 'inline-bad-v2.md',
+        content: inlineGoodFixture.replace(
+          'tool_count: 9',
+          'tool_count: 9\nblockers: [N/A]'
+        )
+      },
+    ];
+  }
+
+  for (const fixture of badFixtures) {
+    const result = validator.validateMemoryQualityContent(fixture.content);
+    assert(result.valid === false, `bad fixture should fail: ${fixture.name}`);
+  }
+
+  for (const fixture of goodFixtures) {
+    const result = validator.validateMemoryQualityContent(fixture.content);
+    assert(result.valid === true, `good fixture should pass: ${fixture.name}`);
   }
 }
 

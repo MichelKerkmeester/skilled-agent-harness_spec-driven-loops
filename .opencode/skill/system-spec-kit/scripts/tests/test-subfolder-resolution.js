@@ -7,6 +7,7 @@
 'use strict';
 
 const path = require('path');
+const fs = require('fs');
 
 /* ─────────────────────────────────────────────────────────────
    1. CONFIGURATION
@@ -286,23 +287,44 @@ async function testFindChildFolderSyncExisting() {
 
   try {
     const { findChildFolderSync } = require(path.join(DIST_DIR, 'core', 'subfolder-utils'));
-
-    // 121-script-audit-comprehensive exists under 003-system-spec-kit
-    const result = findChildFolderSync('121-script-audit-comprehensive');
-
-    if (result === null) {
-      fail('T-SF03a: Find existing child', 'Returned null — folder not found (check specs directory config)');
+    const { getSpecsDirectories } = require(path.join(DIST_DIR, 'core', 'config'));
+    const specsDirs = getSpecsDirectories().filter(dir => fs.existsSync(dir));
+    if (specsDirs.length === 0) {
+      skip('T-SF03a: Find existing child', 'No specs directories available');
       return;
     }
 
-    const isAbsolute = path.isAbsolute(result);
-    const endsCorrectly = result.endsWith('121-script-audit-comprehensive');
-    const containsParent = result.includes('003-system-spec-kit');
+    const token = Date.now().toString(36);
+    const parentName = `997-sync-parent-${token}`;
+    const childName = `996-sync-child-${token}`;
+    const createdPath = path.join(specsDirs[0], parentName, childName);
+    fs.mkdirSync(createdPath, { recursive: true });
 
-    if (isAbsolute && endsCorrectly && containsParent) {
-      pass('T-SF03a: Find existing child', `Found: ${result}`);
-    } else {
-      fail('T-SF03a: Find existing child', `Path unexpected: ${result} (absolute=${isAbsolute}, ends=${endsCorrectly}, parent=${containsParent})`);
+    try {
+      const result = findChildFolderSync(childName);
+      const realSpecsDirs = specsDirs.map(dir => {
+        try { return fs.realpathSync(dir); } catch (_) { return path.resolve(dir); }
+      });
+      const hasAliasedRoots = new Set(realSpecsDirs).size < realSpecsDirs.length;
+
+      if (hasAliasedRoots) {
+        if (result === null) {
+          pass('T-SF03a: Find existing child', 'Returned null as expected with aliased specs roots');
+        } else {
+          fail('T-SF03a: Find existing child', `Expected null for aliased roots, got: ${result}`);
+        }
+      } else {
+        const isAbsolute = path.isAbsolute(result || '');
+        const endsCorrectly = (result || '').endsWith(childName);
+        const containsParent = (result || '').includes(parentName);
+        if (result !== null && isAbsolute && endsCorrectly && containsParent) {
+          pass('T-SF03a: Find existing child', `Found: ${result}`);
+        } else {
+          fail('T-SF03a: Find existing child', `Unexpected result: ${result}`);
+        }
+      }
+    } finally {
+      try { fs.rmSync(path.join(specsDirs[0], parentName), { recursive: true, force: true }); } catch (_) {}
     }
   } catch (err) {
     fail('T-SF03a: Find existing child', err.message);
@@ -314,19 +336,38 @@ async function testFindChildFolderSyncSecondChild() {
 
   try {
     const { findChildFolderSync } = require(path.join(DIST_DIR, 'core', 'subfolder-utils'));
-
-    // 123-generate-context-subfolder exists under 003-system-spec-kit
-    const result = findChildFolderSync('123-generate-context-subfolder');
-
-    if (result === null) {
-      fail('T-SF03b: Find second existing child', 'Returned null');
+    const { getSpecsDirectories } = require(path.join(DIST_DIR, 'core', 'config'));
+    const specsDirs = getSpecsDirectories().filter(dir => fs.existsSync(dir));
+    if (specsDirs.length === 0) {
+      skip('T-SF03b: Find second existing child', 'No specs directories available');
       return;
     }
 
-    if (path.isAbsolute(result) && result.endsWith('123-generate-context-subfolder')) {
-      pass('T-SF03b: Find second existing child', `Found: ${path.basename(path.dirname(result))}/${path.basename(result)}`);
-    } else {
-      fail('T-SF03b: Find second existing child', `Unexpected: ${result}`);
+    const token = `${Date.now().toString(36)}-b`;
+    const parentName = `997-sync-parent2-${token}`;
+    const childName = `996-sync-child2-${token}`;
+    fs.mkdirSync(path.join(specsDirs[0], parentName, childName), { recursive: true });
+
+    try {
+      const result = findChildFolderSync(childName);
+      const realSpecsDirs = specsDirs.map(dir => {
+        try { return fs.realpathSync(dir); } catch (_) { return path.resolve(dir); }
+      });
+      const hasAliasedRoots = new Set(realSpecsDirs).size < realSpecsDirs.length;
+
+      if (hasAliasedRoots) {
+        if (result === null) {
+          pass('T-SF03b: Find second existing child', 'Returned null as expected with aliased specs roots');
+        } else {
+          fail('T-SF03b: Find second existing child', `Expected null for aliased roots, got: ${result}`);
+        }
+      } else if (path.isAbsolute(result || '') && (result || '').endsWith(childName)) {
+        pass('T-SF03b: Find second existing child', `Found: ${path.basename(path.dirname(result))}/${path.basename(result)}`);
+      } else {
+        fail('T-SF03b: Find second existing child', `Unexpected: ${result}`);
+      }
+    } finally {
+      try { fs.rmSync(path.join(specsDirs[0], parentName), { recursive: true, force: true }); } catch (_) {}
     }
   } catch (err) {
     fail('T-SF03b: Find second existing child', err.message);
@@ -430,21 +471,42 @@ async function testFindChildFolderAsyncExisting() {
 
   try {
     const { findChildFolderAsync } = require(path.join(DIST_DIR, 'core', 'subfolder-utils'));
-
-    const result = await findChildFolderAsync('121-script-audit-comprehensive');
-
-    if (result === null) {
-      fail('T-SF04a: Async find existing child', 'Returned null');
+    const { getSpecsDirectories } = require(path.join(DIST_DIR, 'core', 'config'));
+    const specsDirs = getSpecsDirectories().filter(dir => fs.existsSync(dir));
+    if (specsDirs.length === 0) {
+      skip('T-SF04a: Async find existing child', 'No specs directories available');
       return;
     }
 
-    const isAbsolute = path.isAbsolute(result);
-    const endsCorrectly = result.endsWith('121-script-audit-comprehensive');
+    const token = `${Date.now().toString(36)}-a`;
+    const parentName = `997-async-parent-${token}`;
+    const childName = `996-async-child-${token}`;
+    fs.mkdirSync(path.join(specsDirs[0], parentName, childName), { recursive: true });
 
-    if (isAbsolute && endsCorrectly) {
-      pass('T-SF04a: Async find existing child', `Found: ${result}`);
-    } else {
-      fail('T-SF04a: Async find existing child', `Unexpected path: ${result}`);
+    try {
+      const result = await findChildFolderAsync(childName);
+      const realSpecsDirs = specsDirs.map(dir => {
+        try { return fs.realpathSync(dir); } catch (_) { return path.resolve(dir); }
+      });
+      const hasAliasedRoots = new Set(realSpecsDirs).size < realSpecsDirs.length;
+
+      if (hasAliasedRoots) {
+        if (result === null) {
+          pass('T-SF04a: Async find existing child', 'Returned null as expected with aliased specs roots');
+        } else {
+          fail('T-SF04a: Async find existing child', `Expected null for aliased roots, got: ${result}`);
+        }
+      } else {
+        const isAbsolute = path.isAbsolute(result || '');
+        const endsCorrectly = (result || '').endsWith(childName);
+        if (result !== null && isAbsolute && endsCorrectly) {
+          pass('T-SF04a: Async find existing child', `Found: ${result}`);
+        } else {
+          fail('T-SF04a: Async find existing child', `Unexpected path: ${result}`);
+        }
+      }
+    } finally {
+      try { fs.rmSync(path.join(specsDirs[0], parentName), { recursive: true, force: true }); } catch (_) {}
     }
   } catch (err) {
     fail('T-SF04a: Async find existing child', err.message);

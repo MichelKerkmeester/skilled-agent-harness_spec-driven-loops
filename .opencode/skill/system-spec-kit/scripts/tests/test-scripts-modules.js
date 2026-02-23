@@ -111,7 +111,7 @@ async function testCoreConfig() {
   log('\n🔬 CORE: config.js');
 
   try {
-    const { CONFIG, loadConfig, getSpecsDirectories, findActiveSpecsDir, getAllExistingSpecsDirs } = require(path.join(SCRIPTS_DIR, 'core', 'config'));
+    const { CONFIG, getSpecsDirectories, findActiveSpecsDir, getAllExistingSpecsDirs } = require(path.join(SCRIPTS_DIR, 'core', 'config'));
 
     // Test 1: CONFIG object exists with required properties
     assertExists(CONFIG, 'T-001a: CONFIG object exists', 'Object loaded');
@@ -119,10 +119,18 @@ async function testCoreConfig() {
     assertExists(CONFIG.PROJECT_ROOT, 'T-001c: PROJECT_ROOT defined', CONFIG.PROJECT_ROOT);
     assertExists(CONFIG.TEMPLATE_DIR, 'T-001d: TEMPLATE_DIR defined', CONFIG.TEMPLATE_DIR);
 
-    // Test 2: loadConfig returns object with defaults
-    const config = loadConfig();
-    assertType(config, 'object', 'T-001e: loadConfig() returns object');
-    assertExists(config.maxResultPreview, 'T-001f: Default maxResultPreview', config.maxResultPreview);
+    // Test 2: CONFIG includes merged runtime numeric values
+    if (typeof CONFIG.MAX_RESULT_PREVIEW === 'number' && CONFIG.MAX_RESULT_PREVIEW > 0) {
+      pass('T-001e: CONFIG has MAX_RESULT_PREVIEW', CONFIG.MAX_RESULT_PREVIEW);
+    } else {
+      fail('T-001e: CONFIG has MAX_RESULT_PREVIEW', `Value: ${CONFIG.MAX_RESULT_PREVIEW}`);
+    }
+
+    if (typeof CONFIG.MAX_CONVERSATION_MESSAGES === 'number' && CONFIG.MAX_CONVERSATION_MESSAGES > 0) {
+      pass('T-001f: CONFIG has MAX_CONVERSATION_MESSAGES', CONFIG.MAX_CONVERSATION_MESSAGES);
+    } else {
+      fail('T-001f: CONFIG has MAX_CONVERSATION_MESSAGES', `Value: ${CONFIG.MAX_CONVERSATION_MESSAGES}`);
+    }
 
     // Test 3: getSpecsDirectories returns array
     const specsDirs = getSpecsDirectories();
@@ -158,23 +166,25 @@ async function testCoreWorkflow() {
 
   try {
     const workflow = require(path.join(SCRIPTS_DIR, 'core', 'workflow'));
+    const { validateNoLeakedPlaceholders, validateAnchors } = require(path.join(SCRIPTS_DIR, 'utils', 'validation-utils'));
+    const { extractKeyTopics } = require(path.join(SCRIPTS_DIR, 'core', 'topic-extractor'));
 
-    // Test 1: Module exports expected functions
+    // Test 1: Public API boundaries and delegated helpers
     assertType(workflow.runWorkflow, 'function', 'T-002a: runWorkflow exported');
-    assertType(workflow.validateNoLeakedPlaceholders, 'function', 'T-002d: validateNoLeakedPlaceholders exported');
-    assertType(workflow.validateAnchors, 'function', 'T-002e: validateAnchors exported');
-    assertType(workflow.extractKeyTopics, 'function', 'T-002f: extractKeyTopics exported');
+    assertType(validateNoLeakedPlaceholders, 'function', 'T-002d: validateNoLeakedPlaceholders exported');
+    assertType(validateAnchors, 'function', 'T-002e: validateAnchors exported');
+    assertType(extractKeyTopics, 'function', 'T-002f: extractKeyTopics exported');
 
     // Test 2: validateNoLeakedPlaceholders detects placeholders
-    assertThrows(() => workflow.validateNoLeakedPlaceholders('{{TITLE}}', 'test.md'),
+    assertThrows(() => validateNoLeakedPlaceholders('{{TITLE}}', 'test.md'),
       'T-002g: validateNoLeakedPlaceholders throws on leaked placeholder');
 
-    assertDoesNotThrow(() => workflow.validateNoLeakedPlaceholders('No placeholders here', 'test.md'),
+    assertDoesNotThrow(() => validateNoLeakedPlaceholders('No placeholders here', 'test.md'),
       'T-002h: validateNoLeakedPlaceholders allows clean content');
 
     // Test 3: validateAnchors detects anchor issues
     const validContent = '<!-- ANCHOR:test -->content<!-- /ANCHOR:test -->';
-    const warnings = workflow.validateAnchors(validContent);
+    const warnings = validateAnchors(validContent);
     if (Array.isArray(warnings) && warnings.length === 0) {
       pass('T-002i: validateAnchors returns empty array for valid anchors', 'No warnings');
     } else {
@@ -182,7 +192,7 @@ async function testCoreWorkflow() {
     }
 
     const unclosedContent = '<!-- ANCHOR:test -->content';
-    const unclosedWarnings = workflow.validateAnchors(unclosedContent);
+    const unclosedWarnings = validateAnchors(unclosedContent);
     if (unclosedWarnings.length > 0) {
       pass('T-002j: validateAnchors detects unclosed anchor', unclosedWarnings[0]);
     } else {
@@ -190,7 +200,7 @@ async function testCoreWorkflow() {
     }
 
     // Test 4: extractKeyTopics returns array of topics
-    const topics = workflow.extractKeyTopics('Implemented OAuth authentication with JWT tokens');
+    const topics = extractKeyTopics('Implemented OAuth authentication with JWT tokens');
     if (Array.isArray(topics) && topics.length > 0) {
       pass('T-002k: extractKeyTopics extracts topics', `Found: ${topics.slice(0, 3).join(', ')}`);
     } else {
@@ -1520,49 +1530,61 @@ async function testCoreWorkflowAdditional() {
 
   try {
     const workflow = require(path.join(SCRIPTS_DIR, 'core', 'workflow'));
+    const fileWriter = require(path.join(SCRIPTS_DIR, 'core', 'file-writer'));
+    const memoryIndexer = require(path.join(SCRIPTS_DIR, 'core', 'memory-indexer'));
 
-    // Test 1: writeFilesAtomically is a function
-    assertType(workflow.writeFilesAtomically, 'function', 'T-024a: writeFilesAtomically exported');
+    // Test 1: workflow only exposes orchestration entry point
+    if (typeof workflow.runWorkflow === 'function' &&
+        workflow.writeFilesAtomically === undefined &&
+        workflow.indexMemory === undefined) {
+      pass('T-024a: workflow keeps internal helpers private', 'runWorkflow only public entry point');
+    } else {
+      fail('T-024a: workflow keeps internal helpers private', `Exports: ${Object.keys(workflow).join(', ')}`);
+    }
 
-    // Test 2: indexMemory is a function
-    assertType(workflow.indexMemory, 'function', 'T-024b: indexMemory exported');
+    // Test 2: writeFilesAtomically is exported from file-writer module
+    assertType(fileWriter.writeFilesAtomically, 'function', 'T-024b: writeFilesAtomically exported via file-writer');
 
-    // Test 3: updateMetadataWithEmbedding is a function
-    assertType(workflow.updateMetadataWithEmbedding, 'function', 'T-024c: updateMetadataWithEmbedding exported');
+    // Test 3: indexMemory is exported from memory-indexer module
+    assertType(memoryIndexer.indexMemory, 'function', 'T-024c: indexMemory exported via memory-indexer');
 
-    // Test 4: notifyDatabaseUpdated is a function
-    assertType(workflow.notifyDatabaseUpdated, 'function', 'T-024d: notifyDatabaseUpdated exported');
+    // Test 4: updateMetadataWithEmbedding is exported from memory-indexer module
+    assertType(memoryIndexer.updateMetadataWithEmbedding, 'function', 'T-024d: updateMetadataWithEmbedding exported via memory-indexer');
 
-    // Test 5: notifyDatabaseUpdated does not throw
-    assertDoesNotThrow(() => workflow.notifyDatabaseUpdated(),
-      'T-024e: notifyDatabaseUpdated executes without error');
+    // Test 5: notifyDatabaseUpdated is exported and callable
+    assertType(memoryIndexer.notifyDatabaseUpdated, 'function', 'T-024e: notifyDatabaseUpdated exported via memory-indexer');
+    assertDoesNotThrow(() => memoryIndexer.notifyDatabaseUpdated(),
+      'T-024f: notifyDatabaseUpdated executes without error');
 
     // Test 6: writeFilesAtomically rejects leaked placeholders
     const tempDir = path.join(__dirname, '../scratch/test-atomic');
+    fs.mkdirSync(tempDir, { recursive: true });
     try {
       // This should throw because of leaked placeholder
-      await workflow.writeFilesAtomically(tempDir, { 'test.md': 'Content with {{LEAKED_PLACEHOLDER}}' });
-      fail('T-024f: writeFilesAtomically rejects leaked placeholders', 'Did not throw');
+      await fileWriter.writeFilesAtomically(tempDir, { 'test.md': 'Content with {{LEAKED_PLACEHOLDER}}' });
+      fail('T-024g: writeFilesAtomically rejects leaked placeholders', 'Did not throw');
     } catch (e) {
       if (e.message.includes('Leaked placeholders')) {
-        pass('T-024f: writeFilesAtomically rejects leaked placeholders', 'Threw expected error');
+        pass('T-024g: writeFilesAtomically rejects leaked placeholders', 'Threw expected error');
       } else {
-        fail('T-024f: writeFilesAtomically rejects leaked placeholders', e.message);
+        fail('T-024g: writeFilesAtomically rejects leaked placeholders', e.message);
       }
+    } finally {
+      try { fs.rmSync(tempDir, { recursive: true, force: true }); } catch (_) {}
     }
 
     // Test 7: indexMemory signature check (async function)
-    if (workflow.indexMemory.constructor.name === 'AsyncFunction') {
-      pass('T-024g: indexMemory is async function', 'AsyncFunction confirmed');
+    if (memoryIndexer.indexMemory.constructor.name === 'AsyncFunction') {
+      pass('T-024h: indexMemory is async function', 'AsyncFunction confirmed');
     } else {
-      fail('T-024g: indexMemory is async function', 'Not an async function');
+      fail('T-024h: indexMemory is async function', 'Not an async function');
     }
 
     // Test 8: updateMetadataWithEmbedding signature check (async function)
-    if (workflow.updateMetadataWithEmbedding.constructor.name === 'AsyncFunction') {
-      pass('T-024h: updateMetadataWithEmbedding is async function', 'AsyncFunction confirmed');
+    if (memoryIndexer.updateMetadataWithEmbedding.constructor.name === 'AsyncFunction') {
+      pass('T-024i: updateMetadataWithEmbedding is async function', 'AsyncFunction confirmed');
     } else {
-      fail('T-024h: updateMetadataWithEmbedding is async function', 'Not an async function');
+      fail('T-024i: updateMetadataWithEmbedding is async function', 'Not an async function');
     }
 
   } catch (error) {
@@ -3156,10 +3178,9 @@ async function testMemoryGenerateContext() {
     const {
       parseArguments,
       validateArguments,
-      isValidSpecFolder,
-      SPEC_FOLDER_PATTERN,
-      SPEC_FOLDER_BASIC_PATTERN
+      isValidSpecFolder
     } = require(path.join(SCRIPTS_DIR, 'memory', 'generate-context'));
+    const { SPEC_FOLDER_PATTERN, SPEC_FOLDER_BASIC_PATTERN } = require(path.join(SCRIPTS_DIR, 'core'));
 
     // Test 1: parseArguments is a function
     assertType(parseArguments, 'function', 'T-042a: parseArguments is a function');

@@ -213,6 +213,104 @@ describe('Regression 010: index large files guardrails', () => {
     vectorIndex.closeDb();
   });
 
+  it('proceeds without rollback metadata when checkpoint creation returns null on non-critical tier', async () => {
+    const tempDir = makeTempDir('spec-kit-bulk-null-checkpoint-');
+    process.env.SPEC_KIT_DB_DIR = tempDir;
+    process.env.MEMORY_ALLOWED_PATHS = process.cwd();
+
+    vi.resetModules();
+    const vectorIndex = await import('../lib/search/vector-index');
+    const checkpoints = await import('../lib/storage/checkpoints');
+    const bulkDelete = await import('../handlers/memory-bulk-delete');
+
+    vectorIndex.initializeDb();
+    const db = vectorIndex.getDb();
+    expect(db).toBeTruthy();
+    // @ts-expect-error -- db confirmed non-null by expect(db).toBeTruthy() above
+    checkpoints.init(db);
+
+    // @ts-expect-error -- db confirmed non-null by expect(db).toBeTruthy() above
+    db.prepare(`
+      INSERT INTO memory_index
+      (spec_folder, file_path, title, content_hash, importance_tier, created_at, updated_at, embedding_status)
+      VALUES (?, ?, ?, ?, ?, ?, ?, 'pending')
+    `).run(
+      'specs/010-test',
+      '/specs/010-test/memory/deprecated-null-checkpoint.md',
+      'Deprecated memory',
+      'deprecated-null-checkpoint-hash',
+      'deprecated',
+      '2025-01-01 00:00:00',
+      '2025-01-01 00:00:00'
+    );
+
+    const checkpointSpy = vi.spyOn(checkpoints, 'createCheckpoint').mockReturnValue(null);
+
+    try {
+      const response = await bulkDelete.handleMemoryBulkDelete({
+        tier: 'deprecated',
+        confirm: true,
+      });
+
+      const envelope = JSON.parse(response.content[0].text);
+      expect(envelope.data?.deleted).toBe(1);
+      expect(envelope.data?.checkpoint).toBeUndefined();
+      expect(envelope.data?.restoreCommand).toBeUndefined();
+      expect(checkpointSpy).toHaveBeenCalledTimes(1);
+    } finally {
+      checkpointSpy.mockRestore();
+      vectorIndex.closeDb();
+    }
+  });
+
+  it('aborts critical tier bulk delete when checkpoint creation returns null', async () => {
+    const tempDir = makeTempDir('spec-kit-bulk-critical-null-checkpoint-');
+    process.env.SPEC_KIT_DB_DIR = tempDir;
+    process.env.MEMORY_ALLOWED_PATHS = process.cwd();
+
+    vi.resetModules();
+    const vectorIndex = await import('../lib/search/vector-index');
+    const checkpoints = await import('../lib/storage/checkpoints');
+    const bulkDelete = await import('../handlers/memory-bulk-delete');
+
+    vectorIndex.initializeDb();
+    const db = vectorIndex.getDb();
+    expect(db).toBeTruthy();
+    // @ts-expect-error -- db confirmed non-null by expect(db).toBeTruthy() above
+    checkpoints.init(db);
+
+    // @ts-expect-error -- db confirmed non-null by expect(db).toBeTruthy() above
+    db.prepare(`
+      INSERT INTO memory_index
+      (spec_folder, file_path, title, content_hash, importance_tier, created_at, updated_at, embedding_status)
+      VALUES (?, ?, ?, ?, ?, ?, ?, 'pending')
+    `).run(
+      'specs/010-test',
+      '/specs/010-test/memory/critical-null-checkpoint.md',
+      'Critical memory',
+      'critical-null-checkpoint-hash',
+      'critical',
+      '2025-01-01 00:00:00',
+      '2025-01-01 00:00:00'
+    );
+
+    const checkpointSpy = vi.spyOn(checkpoints, 'createCheckpoint').mockReturnValue(null);
+
+    try {
+      await expect(
+        bulkDelete.handleMemoryBulkDelete({
+          tier: 'critical',
+          specFolder: 'specs/010-test',
+          confirm: true,
+        })
+      ).rejects.toThrow(/mandatory checkpoint|Aborting high-safety/i);
+      expect(checkpointSpy).toHaveBeenCalledTimes(1);
+    } finally {
+      checkpointSpy.mockRestore();
+      vectorIndex.closeDb();
+    }
+  });
+
   it('downgrades schema from v16 to v15 and removes chunk columns', async () => {
     const tempDir = makeTempDir('spec-kit-schema-downgrade-');
     process.env.SPEC_KIT_DB_DIR = tempDir;

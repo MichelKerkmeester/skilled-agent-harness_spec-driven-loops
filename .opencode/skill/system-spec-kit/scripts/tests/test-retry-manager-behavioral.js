@@ -784,7 +784,9 @@ async function testRetryEmbedding() {
     // T-107a: Returns error when DB null
     nullifyDb();
     const result1 = await retryManager.retryEmbedding(1, 'content');
-    if (result1.success === false && result1.error === 'Database not initialized') {
+    if (result1.success === false &&
+        typeof result1.error === 'string' &&
+        result1.error.includes('Database not initialized')) {
       pass('T-107a: Returns error when DB null',
         `error="${result1.error}"`);
     } else {

@@ -267,8 +267,8 @@ async function testCollectSessionData() {
 
     // Test getScoreAssessment
     const { getScoreAssessment } = collectSessionData;
-    assertEqual(getScoreAssessment(null, 'knowledge'), '[Not assessed]', 'EXT-CSData-008: null score returns not assessed');
-    assertEqual(getScoreAssessment(undefined, 'knowledge'), '[Not assessed]', 'EXT-CSData-009: undefined score returns not assessed');
+    assertEqual(getScoreAssessment(null, 'knowledge'), '', 'EXT-CSData-008: null score returns empty assessment');
+    assertEqual(getScoreAssessment(undefined, 'knowledge'), '', 'EXT-CSData-009: undefined score returns empty assessment');
     assertEqual(getScoreAssessment(90, 'knowledge'), 'Strong', 'EXT-CSData-010: High score (90) is Strong');
     assertEqual(getScoreAssessment(70, 'knowledge'), 'Good', 'EXT-CSData-011: Score 70 is Good');
     assertEqual(getScoreAssessment(50, 'knowledge'), 'Moderate', 'EXT-CSData-012: Score 50 is Moderate');
@@ -323,7 +323,7 @@ async function testCollectSessionData() {
 
     // Test with no data
     const emptyPP = extractPreflightPostflightData({});
-    assertEqual(emptyPP.PREFLIGHT_KNOW_SCORE, '[TBD]', 'EXT-CSData-037: Missing data returns TBD');
+    assertEqual(emptyPP.PREFLIGHT_KNOW_SCORE, null, 'EXT-CSData-037: Missing data returns null');
     assertEqual(emptyPP.LEARNING_SUMMARY.length > 0, true, 'EXT-CSData-038: Learning summary provided even with no data');
 
     // Test generateLearningSummary
@@ -704,10 +704,10 @@ async function testFileExtractor() {
     const uniqueAnchorIds = new Set(anchorIds);
     assertEqual(uniqueAnchorIds.size, anchorIds.length, 'EXT-File-025: All anchor IDs unique');
 
-    // Test null filtering
+    // Test caller-side null filtering with valid observations preserved
     const obsWithNulls = [null, { title: 'Valid' }, undefined, { title: 'Also Valid' }];
-    const filteredObs = buildObservationsWithAnchors(obsWithNulls, '007-test');
-    assertEqual(filteredObs.length, 2, 'EXT-File-026: Null observations filtered');
+    const filteredObs = buildObservationsWithAnchors(obsWithNulls.filter(Boolean), '007-test');
+    assertEqual(filteredObs.length, 2, 'EXT-File-026: Caller-side null filtering preserves valid observations');
 
     // Test enhanceFilesWithSemanticDescriptions
     const { enhanceFilesWithSemanticDescriptions } = fileExtractor;

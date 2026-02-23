@@ -16,6 +16,7 @@ const SKILL_ROOT = path.join(REPO_ROOT, '.opencode', 'skill', 'system-spec-kit')
 const CREATE_SCRIPT = path.join(SKILL_ROOT, 'scripts', 'spec', 'create.sh');
 const RECOMMEND_SCRIPT = path.join(SKILL_ROOT, 'scripts', 'spec', 'recommend-level.sh');
 const VALIDATE_SCRIPT = path.join(SKILL_ROOT, 'scripts', 'spec', 'validate.sh');
+const ARCHIVE_SCRIPT = path.join(SKILL_ROOT, 'scripts', 'spec', 'archive.sh');
 const FIXTURE_ROOT = path.join(SKILL_ROOT, 'scripts', 'tests', 'fixtures');
 const ALLOWED_SPECS_ROOT = path.join(REPO_ROOT, '.opencode', 'specs');
 
@@ -357,11 +358,88 @@ function testPhaseValidationFixtures() {
   }
 }
 
+function testPathSafetyGuards() {
+  fs.mkdirSync(ALLOWED_SPECS_ROOT, { recursive: true });
+
+  const outsideSubfolder = fs.mkdtempSync(path.join(os.tmpdir(), 'speckit-outside-subfolder-'));
+  try {
+    const outsideResult = runBashExpectFailure(CREATE_SCRIPT, [
+      '--subfolder',
+      outsideSubfolder,
+      '--topic',
+      'guard-test',
+      '--json',
+      'Path safety regression',
+    ]);
+
+    const outsideOutput = `${outsideResult.stdout}\n${outsideResult.stderr}`;
+    assertTrue(outsideResult.code !== 0, 'path-safety: create.sh rejects outside --subfolder path');
+    assertTrue(
+      /must be under specs\/ or \.opencode\/specs\//.test(outsideOutput),
+      'path-safety: create.sh reports allowed root containment error'
+    );
+  } finally {
+    fs.rmSync(outsideSubfolder, { recursive: true, force: true });
+  }
+
+  const symlinkTarget = fs.mkdtempSync(path.join(os.tmpdir(), 'speckit-outside-symlink-target-'));
+  const symlinkPath = path.join(ALLOWED_SPECS_ROOT, '912-path-safety-link');
+  try {
+    fs.rmSync(symlinkPath, { recursive: true, force: true });
+    fs.symlinkSync(symlinkTarget, symlinkPath, 'dir');
+
+    const symlinkResult = runBashExpectFailure(CREATE_SCRIPT, [
+      '--subfolder',
+      symlinkPath,
+      '--topic',
+      'guard-test',
+      '--json',
+      'Path safety symlink regression',
+    ]);
+    const symlinkOutput = `${symlinkResult.stdout}\n${symlinkResult.stderr}`;
+    assertTrue(symlinkResult.code !== 0, 'path-safety: create.sh rejects symlink escape path');
+    assertTrue(
+      /must be under specs\/ or \.opencode\/specs\//.test(symlinkOutput),
+      'path-safety: create.sh enforces canonical containment for symlink path'
+    );
+  } finally {
+    fs.rmSync(symlinkPath, { recursive: true, force: true });
+    fs.rmSync(symlinkTarget, { recursive: true, force: true });
+  }
+
+  const outsideArchivePath = fs.mkdtempSync(path.join(os.tmpdir(), '123-archive-outside-'));
+  try {
+    const archiveResult = runBashExpectFailure(ARCHIVE_SCRIPT, ['--force', outsideArchivePath]);
+    const archiveOutput = `${archiveResult.stdout}\n${archiveResult.stderr}`;
+    assertTrue(archiveResult.code !== 0, 'path-safety: archive.sh rejects paths outside specs root');
+    assertTrue(
+      /Refusing to archive outside specs root/.test(archiveOutput),
+      'path-safety: archive.sh reports outside-specs-root rejection'
+    );
+  } finally {
+    fs.rmSync(outsideArchivePath, { recursive: true, force: true });
+  }
+
+  const outsideRestorePath = fs.mkdtempSync(path.join(os.tmpdir(), '124-restore-outside-'));
+  try {
+    const restoreResult = runBashExpectFailure(ARCHIVE_SCRIPT, ['--restore', outsideRestorePath]);
+    const restoreOutput = `${restoreResult.stdout}\n${restoreResult.stderr}`;
+    assertTrue(restoreResult.code !== 0, 'path-safety: archive.sh rejects restore from non-archive path');
+    assertTrue(
+      /not in archive directory/.test(restoreOutput),
+      'path-safety: archive.sh reports restore containment error'
+    );
+  } finally {
+    fs.rmSync(outsideRestorePath, { recursive: true, force: true });
+  }
+}
+
 function main() {
   testPhaseDetectionFixtures();
   testPhaseDefaultsContracts();
   testPhaseCreationFixtures();
   testPhaseValidationFixtures();
+  testPathSafetyGuards();
 
   console.log(`\nResult: passed=${passed} failed=${failed}`);
   process.exit(failed > 0 ? 1 : 0);

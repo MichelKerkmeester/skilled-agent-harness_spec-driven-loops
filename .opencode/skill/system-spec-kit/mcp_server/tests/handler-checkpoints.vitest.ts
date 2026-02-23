@@ -140,7 +140,7 @@ describe('Handler Checkpoints (T521, T102) [deferred - requires DB test fixtures
       await expect(handler.handleCheckpointRestore({ name: 999 })).rejects.toThrow(/name.*string/);
     });
 
-    it('T521-R4: Returns MCP error response when restore reports errors', async () => {
+    it('T521-R4: Returns MCP error response when restore reports errors with no restored data', async () => {
       const spy = vi.spyOn(checkpointStorageMod, 'restoreCheckpoint').mockReturnValue({
         restored: 0,
         skipped: 0,
@@ -152,6 +152,26 @@ describe('Handler Checkpoints (T521, T102) [deferred - requires DB test fixtures
         expect(result.isError).toBe(true);
         const parsed = JSON.parse(result.content[0].text);
         expect(parsed.data?.code).toBe('CHECKPOINT_RESTORE_FAILED');
+      } finally {
+        spy.mockRestore();
+      }
+    });
+
+    it('T521-R5: Returns MCP success-with-warning when restore is partial', async () => {
+      const spy = vi.spyOn(checkpointStorageMod, 'restoreCheckpoint').mockReturnValue({
+        restored: 2,
+        skipped: 1,
+        errors: ['Memory 10: duplicate key'],
+        workingMemoryRestored: 1,
+      });
+      try {
+        const result = await handler.handleCheckpointRestore({ name: 'partial-checkpoint' });
+        expect(result.isError).toBeFalsy();
+        const parsed = JSON.parse(result.content[0].text);
+        expect(parsed.data?.success).toBe(true);
+        expect(parsed.data?.partial).toBe(true);
+        expect(parsed.data?.warningCount).toBe(1);
+        expect(parsed.summary).toMatch(/with warnings/i);
       } finally {
         spy.mockRestore();
       }
