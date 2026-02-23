@@ -185,7 +185,23 @@ const memoryHealth: ToolDefinition = {
 const memoryDelete: ToolDefinition = {
   name: 'memory_delete',
   description: '[L4:Mutation] Delete a memory by ID or all memories in a spec folder. Use to remove incorrect or outdated information. Token Budget: 500.',
-  inputSchema: { type: 'object', properties: { id: { type: 'number', description: 'Memory ID to delete' }, specFolder: { type: 'string', description: 'Delete all memories in this spec folder' }, confirm: { type: 'boolean', description: 'Required for bulk delete (when specFolder is used without id)' } } },
+  inputSchema: {
+    type: 'object',
+    properties: {
+      id: { type: 'number', description: 'Memory ID to delete' },
+      specFolder: { type: 'string', description: 'Delete all memories in this spec folder' },
+      confirm: { type: 'boolean', description: 'Required for bulk delete (when specFolder is used without id)' }
+    },
+    oneOf: [
+      // Single-delete path: allow id with optional companion fields.
+      { required: ['id'] },
+      // Bulk-delete path: require explicit confirmation and enforce confirm=true.
+      {
+        required: ['specFolder', 'confirm'],
+        properties: { confirm: { const: true } }
+      }
+    ]
+  },
 };
 
 const memoryUpdate: ToolDefinition = {

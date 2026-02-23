@@ -1,5 +1,5 @@
 // ---------------------------------------------------------------
-// SHARED: CENTRAL TYPE DEFINITIONS
+// MODULE: Shared Central Type Definitions
 // ---------------------------------------------------------------
 // Single source of truth for cross-workspace types.
 // Used across shared/, mcp_server/, and scripts/.

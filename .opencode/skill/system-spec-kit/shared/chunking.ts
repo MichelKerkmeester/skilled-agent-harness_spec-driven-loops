@@ -1,5 +1,5 @@
 // ---------------------------------------------------------------
-// SHARED: SEMANTIC CHUNKING
+// MODULE: Shared Semantic Chunking
 // ---------------------------------------------------------------
 
 import type { PriorityPatterns, PriorityBuckets } from './types';

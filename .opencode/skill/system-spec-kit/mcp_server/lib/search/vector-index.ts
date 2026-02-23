@@ -178,7 +178,7 @@ const ALLOWED_BASE_PATHS: string[] = [
   path.join(process.cwd(), '.opencode'),
   path.join(os.homedir(), '.claude'),
   process.cwd(),
-  ...(process.env.MEMORY_ALLOWED_PATHS ? process.env.MEMORY_ALLOWED_PATHS.split(':') : []),
+  ...(process.env.MEMORY_ALLOWED_PATHS ? process.env.MEMORY_ALLOWED_PATHS.split(path.delimiter) : []),
 ].filter(Boolean).map(p => path.resolve(p));
 
 function validateFilePathLocal(filePath: string): string | null {

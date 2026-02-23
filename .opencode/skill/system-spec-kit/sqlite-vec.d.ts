@@ -1,5 +1,5 @@
 // ---------------------------------------------------------------
-// TYPES: SQLITE-VEC DECLARATIONS
+// MODULE: sqlite-vec Declarations
 // ---------------------------------------------------------------
 
 declare module 'sqlite-vec' {

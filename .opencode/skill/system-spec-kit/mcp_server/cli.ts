@@ -22,6 +22,7 @@ import * as mutationLedger from './lib/storage/mutation-ledger';
 import * as triggerMatcher from './lib/parsing/trigger-matcher';
 import { downgradeSchemaV16ToV15 } from './lib/storage/schema-downgrade';
 import { DATABASE_PATH, init as initDbState } from './core';
+import { detectNodeVersionMismatch } from './startup-checks';
 
 /* ---------------------------------------------------------------
    1. ARGUMENT PARSING
@@ -454,6 +455,9 @@ async function main(): Promise<void> {
     printUsage();
     process.exit(0);
   }
+
+  // Non-blocking startup hint for native-module ABI mismatches.
+  detectNodeVersionMismatch();
 
   switch (command) {
     case 'stats':

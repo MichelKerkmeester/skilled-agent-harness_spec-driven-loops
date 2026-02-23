@@ -1,5 +1,5 @@
 // ---------------------------------------------------------------
-// SHARED: TRIGGER PHRASE EXTRACTOR
+// MODULE: Shared Trigger Phrase Extractor
 // ---------------------------------------------------------------
 
 import type {
@@ -650,5 +650,4 @@ export function extractTriggerPhrasesWithStats(text: string): ExtractionResult {
     },
   };
 }
-
 

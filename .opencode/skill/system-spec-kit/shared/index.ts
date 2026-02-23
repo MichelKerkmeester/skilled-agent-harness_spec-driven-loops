@@ -1,5 +1,5 @@
 // ---------------------------------------------------------------
-// SHARED: BARREL EXPORT
+// MODULE: Shared Barrel Export
 // ---------------------------------------------------------------
 // Central export surface for all shared modules.
 // Re-exports types, utilities, embeddings, scoring, and chunking.

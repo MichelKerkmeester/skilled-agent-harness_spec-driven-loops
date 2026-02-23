@@ -2,7 +2,7 @@
 // MODULE: Database State
 // ---------------------------------------------------------------
 
-import fs from 'fs';
+import fs from 'fs/promises';
 import { DB_UPDATED_FILE } from './config';
 import type { DatabaseExtended } from '../../shared/types';
 
@@ -82,7 +82,11 @@ let graphSearchFnRef: unknown = undefined;
 
 /** Initialize db-state with module dependencies for database lifecycle management. */
 export function init(deps: DbStateDeps): void {
-  if (deps.vectorIndex) vectorIndex = deps.vectorIndex;
+  if (deps.vectorIndex) {
+    vectorIndex = deps.vectorIndex;
+    // The backing DB handle may differ across init calls; force config table re-check.
+    configTableCreated = false;
+  }
   if (deps.checkpoints) checkpoints = deps.checkpoints;
   if (deps.accessTracker) accessTracker = deps.accessTracker;
   if (deps.hybridSearch) hybridSearch = deps.hybridSearch;
@@ -98,17 +102,20 @@ export function init(deps: DbStateDeps): void {
 /** Check if the database was updated externally and reinitialize if needed. */
 export async function checkDatabaseUpdated(): Promise<boolean> {
   try {
-    if (fs.existsSync(DB_UPDATED_FILE)) {
-      const updateTime = parseInt(fs.readFileSync(DB_UPDATED_FILE, 'utf8'), 10);
-      if (updateTime > lastDbCheck) {
-        console.error('[db-state] Database updated externally, reinitializing connection...');
-        lastDbCheck = updateTime;
-        await reinitializeDatabase();
-        return true;
-      }
+    const updateTimeRaw = await fs.readFile(DB_UPDATED_FILE, 'utf8');
+    const updateTime = Number.parseInt(updateTimeRaw, 10);
+    if (!Number.isFinite(updateTime)) {
+      return false;
+    }
+
+    if (updateTime > lastDbCheck) {
+      console.error('[db-state] Database updated externally, reinitializing connection...');
+      lastDbCheck = updateTime;
+      await reinitializeDatabase();
+      return true;
     }
   } catch {
-    // Ignore errors reading notification file
+    // Ignore missing marker or read errors.
   }
   return false;
 }
@@ -134,6 +141,7 @@ export async function reinitializeDatabase(): Promise<void> {
   try {
     constitutionalCache = null;
     constitutionalCacheTime = 0;
+    configTableCreated = false;
 
     if (typeof vectorIndex.closeDb === 'function') {
       vectorIndex.closeDb();

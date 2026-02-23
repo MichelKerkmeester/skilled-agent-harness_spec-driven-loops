@@ -5,7 +5,6 @@
 
 // Node stdlib
 import * as zlib from 'zlib';
-import { execSync } from 'child_process';
 
 // External packages
 import type Database from 'better-sqlite3';
@@ -95,15 +94,20 @@ function getDatabase(): Database.Database {
 ----------------------------------------------------------------*/
 
 function getGitBranch(): string | null {
-  try {
-    const branch = execSync('git rev-parse --abbrev-ref HEAD', {
-      timeout: 5000,
-      stdio: ['pipe', 'pipe', 'pipe'],
-    }).toString().trim();
-    return branch || null;
-  } catch {
-    return null;
+  const candidates = [
+    process.env.GIT_BRANCH,
+    process.env.BRANCH_NAME,
+    process.env.CI_COMMIT_REF_NAME,
+    process.env.VERCEL_GIT_COMMIT_REF,
+  ];
+
+  for (const candidate of candidates) {
+    if (typeof candidate === 'string' && candidate.trim().length > 0) {
+      return candidate.trim();
+    }
   }
+
+  return null;
 }
 
 function tableExists(database: Database.Database, tableName: string): boolean {
