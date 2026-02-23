@@ -1,619 +1,525 @@
 ---
-description: Capture explicit learning from session - patterns, mistakes, insights, optimizations, constraints. Also provides correction, undo, and history subcommands.
-argument-hint: "[learning-description] | correct <id> <type> [replacement-id] | undo <id> | history"
-allowed-tools: Read, Bash, spec_kit_memory_memory_save, spec_kit_memory_memory_search, spec_kit_memory_memory_update, spec_kit_memory_memory_list, spec_kit_memory_memory_delete
+description: Create and manage constitutional memories — always-surface rules that appear at the top of every search result.
+argument-hint: "[rule-description] | list | edit <filename> | remove <filename> | budget"
+allowed-tools: Read, Write, Edit, Glob, Bash, spec_kit_memory_memory_save, spec_kit_memory_memory_search, spec_kit_memory_memory_stats, spec_kit_memory_memory_list, spec_kit_memory_memory_delete, spec_kit_memory_memory_index_scan
 ---
 
-# /memory:learn
+# 🚨 MANDATORY FIRST ACTION - DO NOT SKIP
 
-Capture explicit learnings as high-importance semantic memories (85% confidence, auto-boosted).
+**BEFORE READING ANYTHING ELSE IN THIS FILE, CHECK `$ARGUMENTS`:**
+
+```
+IF $ARGUMENTS is empty, undefined, or contains only whitespace:
+    → STOP IMMEDIATELY
+    → Present the user with this question:
+        question: "What always-surface rule would you like to create?"
+        options:
+          - label: "Safety constraint"
+            description: "Rule that prevents dangerous actions (e.g., never commit secrets)"
+          - label: "Workflow rule"
+            description: "Process that must always be followed (e.g., always ask spec folder)"
+          - label: "Project constraint"
+            description: "Hard limit or requirement (e.g., API rate limit, token budget)"
+    → WAIT for user response
+    → Use their response as the rule description
+    → Only THEN continue with this workflow
+
+IF $ARGUMENTS starts with "edit" and has NO <filename>:
+    → STOP IMMEDIATELY
+    → Run Glob(".opencode/skill/system-spec-kit/constitutional/*.md")
+    → Present available files (exclude README.md)
+    → WAIT for user selection
+
+IF $ARGUMENTS starts with "remove" and has NO <filename>:
+    → STOP IMMEDIATELY
+    → Run Glob(".opencode/skill/system-spec-kit/constitutional/*.md")
+    → Present available files (exclude README.md)
+    → WAIT for user selection
+
+IF $ARGUMENTS contains recognized input:
+    → Continue reading this file
+```
+
+**CRITICAL RULES:**
+- **DO NOT** infer rule content from conversation context
+- **DO NOT** assume what the user wants based on screenshots or open files
+- **DO NOT** proceed past this point without explicit input from the user
+- The rule MUST come from `$ARGUMENTS` or user's answer to the question above
 
 ---
 
-## 1. ARGUMENT VALIDATION
+# /memory:learn — Constitutional Memory Manager
 
-**CRITICAL: For subcommands with `<required>` arguments, you MUST have explicit values.**
+Create, list, edit, and remove **constitutional memories** — the highest-tier rules that surface at the top of every search result, never decay, and carry a 3.0x search boost.
 
-### 4 Critical Rules
+---
 
-1. **NEVER assume or infer** `<id>`, `<type>`, or `<replacement-id>` values
-2. **NEVER proceed** without explicit user-provided values for required arguments
-3. **ALWAYS ask** if a required argument is missing from $ARGUMENTS
-4. **STOP and request** missing values before any workflow execution
+## 1. PURPOSE
 
-```
-ARGUMENT VALIDATION:
-├─ IF $ARGUMENTS contains "correct":
-│   ├─ REQUIRE: <id> (memory ID to correct)
-│   ├─ REQUIRE: <type> (superseded|deprecated|refined|merged)
-│   ├─ OPTIONAL: [replacement-id]
-│   └─ IF missing required → ASK user, do not proceed
-│
-├─ IF $ARGUMENTS contains "undo":
-│   ├─ REQUIRE: <id> (memory ID to undo)
-│   └─ IF missing required → ASK user, do not proceed
-│
-└─ OTHERWISE: Proceed to subcommand routing
+Provide a dedicated command for managing constitutional memories — the most powerful tier in the Spec Kit Memory system. Constitutional memories always appear at the top of every `memory_search()` result, never decay, and are exempt from archival. This command handles the full lifecycle: creation with proper frontmatter and ANCHOR format, budget validation, editing, and removal.
+
+**Key difference from `/memory:save`:**
+- `/memory:save` = Session context saved to `specs/*/memory/` (any tier)
+- `/memory:learn` = Constitutional rules saved to `constitutional/` (always-surface tier)
+
+---
+
+## 2. CONTRACT
+
+```yaml
+role: Constitutional Memory Manager
+purpose: Create and manage always-surface rules in the constitutional tier
+destination: .opencode/skill/system-spec-kit/constitutional/
 ```
 
-## 2. SUBCOMMAND ROUTING
+**Inputs:** `$ARGUMENTS` — Rule description, or subcommand (list, edit, remove, budget)
+**Outputs:** `STATUS=<OK|FAIL|CANCELLED> ACTION=<created|listed|edited|removed|budget>`
 
-**After validating required arguments, route based on $ARGUMENTS:**
+---
+
+## 3. ARGUMENT ROUTING
 
 ```
 $ARGUMENTS
-    ├─ "correct <id> <type> [rid]" → Section 10: CORRECTION WORKFLOW
-    ├─ "undo <id>"                 → Section 11: UNDO WORKFLOW
-    ├─ "history"                   → Section 12: HISTORY VIEW
-    └─ Any other text or empty     → DEFAULT LEARNING CAPTURE (Phase 1 below)
+    │
+    ├─► Empty (no args)
+    │   └─► MANDATORY GATE: Ask user for rule → CREATE (Section 5)
+    │
+    ├─► First word matches ACTION KEYWORD (case-insensitive)
+    │   ├─► "list"                → LIST DASHBOARD (Section 6)
+    │   ├─► "edit <filename>"     → EDIT MODE (Section 7)
+    │   ├─► "remove <filename>"   → REMOVE MODE (Section 8) [destructive]
+    │   └─► "budget"              → BUDGET DASHBOARD (Section 9)
+    │
+    └─► Any other text (natural language rule)
+        └─► CREATE (Section 5) with $ARGUMENTS as rule description
 ```
 
 ---
 
-## 3. CONTRACT
+## 4. REFERENCE: CONSTITUTIONAL TIER
 
-```yaml
-role: Learning Capture Specialist
-purpose: Transform session insights into searchable, high-value semantic memories
-action: Classify learning, link to source, save with importance boost
-```
+| Property | Constitutional | Critical | Normal |
+|----------|---------------|----------|--------|
+| Surfaces in | EVERY search | Relevant only | Relevant only |
+| Search boost | 3.0x | 2.0x | 1.0x |
+| Decays | Never | Never | Yes (90-day) |
+| Token budget | ~2000 total | Unlimited | Unlimited |
+| Location | `constitutional/` | `specs/*/memory/` | `specs/*/memory/` |
 
-**Inputs:** `$ARGUMENTS` — Optional learning description
-**Outputs:** `STATUS=<OK|FAIL> LEARNING_TYPE=<type> FOLDER=<spec-folder>`
-
-**Key Difference from `/memory:save`:**
-- `/memory:save` = Full session context (episodic memory)
-- `/memory:learn` = Distilled lesson (semantic memory with auto-boost)
-
----
-
-## 4. LEARNING TYPES
-
-| Type           | When to Use                        | Importance Tier | Confidence | Examples                                               |
-| -------------- | ---------------------------------- | --------------- | ---------- | ------------------------------------------------------ |
-| `pattern`      | Reusable approach discovered       | **critical**    | 85%        | "Always debounce input handlers in Webflow"            |
-| `mistake`      | Error made or anti-pattern hit     | **critical**    | 85%        | "Never use sync localStorage in async flow"            |
-| `insight`      | Understanding gained               | **important**   | 85%        | "FSRS retrievability drops exponentially after 7 days" |
-| `optimization` | Performance improvement identified | **important**   | 85%        | "Batch DOM updates to reduce reflows by 60%"           |
-| `constraint`   | Hard limit or requirement found    | **critical**    | 85%        | "Webflow custom code must be under 10KB per page"      |
-
-**Note:** `pitfall` renamed to `mistake` for clarity (spec 082 alignment).
-
-**Importance Auto-Boost:**
-- `pattern`, `mistake`, `constraint` → `critical` tier (always surfaces in search)
-- `insight`, `optimization` → `important` tier (high priority)
-
-**Confidence:** All explicit learnings via `/memory:learn` receive 85% (auto-set). If classification confidence < 80% → ASK user to select type from menu.
-
-> **Note:** Learning types (pattern, mistake, insight, optimization, constraint) are orthogonal to the 7 retrieval intents. Learnings are indexed as memories and retrievable via all intents including `find_spec` and `find_decision`.
+**When NOT constitutional** (suggest `/memory:save` instead):
+- Session-specific context
+- Rules for one project area only
+- Temporary notes or implementation details
 
 ---
 
-## 5. CORE WORKFLOW (Phases 1-4)
+## 5. INSTRUCTIONS
 
-### Phase 1: Learning Extraction
+Execute the action determined by argument routing (Section 3). Each mode below is a self-contained workflow.
 
-```
-├─ IF $ARGUMENTS contains learning description:
-│   ├─ Store as: raw_learning → PROCEED TO PHASE 2
-│
-└─ IF $ARGUMENTS is empty:
-    ├─ HARD BLOCK - Cannot infer from conversation
-    ├─ ASK: "What did you learn? Describe the lesson, pattern, or insight."
-    └─ WAIT for explicit response → Store as raw_learning → PROCEED
-```
+### CREATE MODE (Default)
 
-### Phase 2: Learning Type Classification
+### Step 1: Extract Rule
+
+Use rule text from `$ARGUMENTS` (or user's answer to mandatory gate prompt).
+
+### Step 2: Qualify
+
+Verify this rule belongs in the constitutional tier:
 
 ```
-├─ Analyze raw_learning content
-├─ Classify into ONE primary type:
-│   ├─ PATTERN: Keywords "always", "use this when", "standard approach"
-│   ├─ MISTAKE: Keywords "avoid", "don't", "breaks when", "fails if"
-│   ├─ INSIGHT: Keywords "realized", "understand now", "why", "how it works"
-│   ├─ OPTIMIZATION: Keywords "faster", "reduce", "improve", "optimize"
-│   └─ CONSTRAINT: Keywords "must", "cannot", "limit", "requires", "boundary"
-│
-├─ Generate structured title (max 60 chars)
-├─ Assign confidence score (auto-set 85% for explicit captures)
-└─ If classification confidence < 80% → ASK user to select type
+Self-check (do NOT prompt user unless ALL are "no"):
+  □ Does this rule apply to EVERY interaction? (not just one domain)
+  □ Would forgetting it cause significant problems?
+  □ Is it a safety constraint or hard requirement?
+
+IF all yes → PROCEED to Step 3
+IF any no → Display:
+
+MEMORY:LEARN
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  ⚠ This rule may not need constitutional tier.
+  Constitutional memories appear in EVERY search
+  and consume shared budget (~2000 tokens).
+
+─────────────────────────────────────────────────────
+[y] proceed anyway    [c] save as critical instead    [n] cancel
 ```
 
-**Phase 2 Output:**
-```
-learning_type: [pattern|mistake|insight|optimization|constraint]
-learning_title: "Debounce input handlers in Webflow"
-classification_confidence: [0-100]%
-```
+### Step 3: Structure the Memory
 
-### Phase 3: Source Context Linking
-
-```
-├─ IF learning from current spec folder work:
-│   ├─ Extract current spec folder → source_spec_folder
-│   └─ link_to_source: true
-│
-├─ IF learning from prior memory/conversation:
-│   ├─ Search: memory_search({ query: "<title>", limit: 3 })
-│   ├─ IF match → source_memory_id
-│   └─ link_to_source: true
-│
-└─ IF general/theoretical:
-    ├─ source_spec_folder: null
-    └─ link_to_source: false
-```
-
-### Phase 4: Destination Folder Selection
-
-```
-├─ IF source_spec_folder exists:
-│   ├─ DEFAULT destination: source_spec_folder
-│   ├─ ASK: "Save learning to [source_spec_folder]? Or select different folder?"
-│   └─ OPTIONS: "[Y]es | [L]ist folders | [S]pecify folder"
-│
-├─ IF source_spec_folder is null:
-│   ├─ List recent spec folders from memory_stats()
-│   ├─ ASK: "Which spec folder should this learning belong to?"
-│   └─ OPTIONS: Show top 5 recent + "[O]ther | [N]ew folder"
-│
-└─ IF user selects "New folder":
-    └─ ASK: "Enter new spec folder name (e.g., '025-learnings')"
-```
-
----
-
-## 6. SAVE WORKFLOW
-
-**After all phases pass (1-4), execute save:**
-
-### Step 1: Structure Learning Content
+Generate a properly formatted constitutional memory file:
 
 ```markdown
-# LEARNING: <learning_title>
+---
+title: "<RULE_TITLE>"
+importanceTier: constitutional
+contextType: <decision|implementation|discovery>
+triggerPhrases:
+  - <keyword1>
+  - <keyword2>
+  - <keyword3>
+---
 
-**Type:** <learning_type>
-**Captured:** <ISO_timestamp>
-**Source:** <source_spec_folder OR source_memory_id OR "General">
+# <RULE_TITLE>
 
-## The Learning
-<raw_learning>
+> <One-line description of what this rule enforces.>
 
-## Context
-- Files involved: <if applicable>
-- Problem solved: <if applicable>
-- Related work: <if applicable>
+<!-- ANCHOR:rule -->
+## Rule
 
-## Application
-<!-- Type-specific guidance: -->
-- Pattern: When to use, template/approach
-- Mistake: When to avoid, warning signs, recovery
-- Insight: Mental model, implications
-- Optimization: When to apply, expected gain, trade-offs
-- Constraint: Hard limit, scope, violation consequence
+**TRIGGER:** <When this rule activates>
+
+**ACTION:**
+1. <Step 1>
+2. <Step 2>
+3. <Step 3>
+
+**RATIONALE:** <Why this rule exists>
+<!-- /ANCHOR:rule -->
+
+*Constitutional Memory — Always surfaces at top of search results*
 ```
 
-### Step 2: Execute Save
+**Structuring guidelines:**
+- Title: ALL CAPS descriptor, max 60 chars
+- Filename: `kebab-case.md` (e.g., `never-commit-secrets.md`)
+- Trigger phrases: 5-20 specific action words. No common words ("the", "a")
+- Content: Concise — each file should be <200 tokens
+- ANCHOR tags: Wrap main sections for section-level retrieval
 
-```bash
-# Create the memory file
-node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js <target_spec_folder>
+**SHOW the generated file to user and WAIT for approval before writing.**
+
+### Step 4: Budget Check
+
+```
+1. Glob(".opencode/skill/system-spec-kit/constitutional/*.md")
+   → Exclude README.md
+
+2. Read each file, estimate token count (~4 chars per token)
+
+3. Estimate new file token count
+
+4. IF (existing + new) > 2000 tokens:
+     Display budget warning (see dashboard below)
+     Options: [t]rim existing | [s]horten new | [c]ancel
+     WAIT for user decision
+
+5. IF within budget → PROCEED
 ```
 
-```javascript
-// Index the file into the memory database
-spec_kit_memory_memory_save({
-  filePath: "specs/<target_spec_folder>/memory/<generated_filename>.md",
-  force: false
-})
+### Step 5: Write, Index, Verify
+
+```
+1. WRITE file:
+   Write(".opencode/skill/system-spec-kit/constitutional/<filename>.md")
+
+2. INDEX in memory database:
+   memory_save({
+     filePath: ".opencode/skill/system-spec-kit/constitutional/<filename>.md",
+     force: true
+   })
+
+3. VERIFY it surfaces:
+   memory_search({ query: "<one trigger phrase>", limit: 3 })
+   → Confirm isConstitutional: true in results
 ```
 
-### Step 3: Display Confirmation
+### Step 6: Display Confirmation
 
 ```
 MEMORY:LEARN
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-  Title       <learning_title>
-  Type        <learning_type>
-  Tier        <importance_tier>
-  Confidence  █████████░  85%
-  Folder      <target_spec_folder>
+  Created     <filename>.md
+  Title       <rule_title>
+  Tier        constitutional (3.0x boost · no decay)
+  Location    .opencode/skill/system-spec-kit/constitutional/
 
 → Triggers ──────────────────────────────────────────
-  <phrase1> · <phrase2> · <phrase3>
+  <trigger1> · <trigger2> · <trigger3> · <trigger4>
 
-→ Surfaces When ────────────────────────────────────
-  Searching for related topics
-  Working in <target_spec_folder>
-  Trigger phrases mentioned in conversation
+→ Budget ────────────────────────────────────────────
+  ██████░░░░  ~<used>/2000 tokens  (<N> files)
 
-STATUS=OK LEARNING_TYPE=<type> FOLDER=<target_spec_folder>
+─────────────────────────────────────────────────────
+[list] view all    [budget] details    [edit] modify
+
+STATUS=OK ACTION=created
 ```
 
 ---
 
-## 7. MCP ENFORCEMENT MATRIX
+## 6. LIST DASHBOARD
 
-**CRITICAL:** Use the correct MCP tools for each step.
+**Trigger:** `/memory:learn list`
 
-| Step             | Required MCP Call                                                    | Mode     | On Failure   |
-| ---------------- | -------------------------------------------------------------------- | -------- | ------------ |
-| SOURCE LINKING   | `memory_search({ query, limit: 3 })`                                 | OPTIONAL | Skip linking |
-| FOLDER SELECTION | `memory_list({ sortBy: "updated_at", limit: 10 })`                   | SINGLE   | Ask user     |
-| SAVE             | `memory_save({ filePath: "specs/.../memory/....md", force: false })` | SINGLE   | Show error   |
+### Step 1: Discover Files
 
-**Tool Call Signatures:**
+```
+Glob(".opencode/skill/system-spec-kit/constitutional/*.md")
+→ Exclude README.md
+```
 
-```javascript
-spec_kit_memory_memory_search({ query: "<q>", limit: 3 })
-spec_kit_memory_memory_list({ sortBy: "updated_at", limit: 10 })
-spec_kit_memory_memory_save({
-  filePath: "specs/<folder>/memory/<filename>.md",
-  force: false,
-  dryRun: false,       // Validate only without saving
-  skipPreflight: false,  // Skip pre-flight validation (not recommended)
-  asyncEmbedding: false  // Optional non-blocking embedding mode
+### Step 2: Read Each File
+
+Extract from frontmatter: title, triggerPhrases. Estimate token count per file.
+
+### Step 3: Display Dashboard
+
+```
+MEMORY:LEARN LIST
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+→ Constitutional Memories ───────────── <N> files
+
+  1  <filename1>.md
+     "<title1>"
+     Triggers: <phrase1> · <phrase2> · <phrase3>
+     ~<N> tokens
+
+  2  <filename2>.md
+     "<title2>"
+     Triggers: <phrase1> · <phrase2>
+     ~<N> tokens
+
+→ Budget ────────────────────────────────────────────
+  ██████░░░░  ~<used>/2000 tokens  (<pct>%)
+
+─────────────────────────────────────────────────────
+[edit <file>] modify    [remove <file>] delete    [budget] details
+
+STATUS=OK ACTION=listed
+```
+
+---
+
+## 7. EDIT MODE
+
+**Trigger:** `/memory:learn edit <filename>`
+
+### Step 1: Validate File Exists
+
+```
+IF file not found in constitutional/:
+  → Display LIST dashboard
+  → ASK user to select a file
+  → WAIT for response
+```
+
+### Step 2: Show Current Content
+
+Read the file and display to user.
+
+### Step 3: Collect Changes
+
+ASK: "What would you like to change?"
+- Title / trigger phrases / content / all
+
+### Step 4: Apply Edits
+
+Use Edit tool. Preserve frontmatter structure and ANCHOR tags.
+
+### Step 5: Re-index
+
+```
+memory_save({
+  filePath: ".opencode/skill/system-spec-kit/constitutional/<filename>",
+  force: true
 })
 ```
 
----
-
-## 8. EXAMPLES
-
-### Example 1: PATTERN Learning
-
-**User:** `/memory:learn Always use debounce for input handlers in Webflow to avoid performance issues`
+### Step 6: Display Confirmation
 
 ```
-PHASE 1: raw_learning extracted
-PHASE 2: Classified as PATTERN (confidence 95%)
-         Title: "Debounce input handlers in Webflow"
-PHASE 3: Source: 007-input-handler-optimization
-PHASE 4: User confirms → target: "007-input-handler-optimization"
-
-SAVE:
-  Title: "Debounce input handlers in Webflow"
-  Type: pattern | Tier: critical | Confidence: 85%
-  Triggers: ["pattern", "debounce", "input", "webflow", "performance"]
-```
-
-### Example 2: MISTAKE Learning
-
-**User:** `I learned that sync localStorage access in async flows causes race conditions`
-
-```
-PHASE 1: raw_learning extracted
-PHASE 2: Classified as MISTAKE (confidence 92%)
-         Title: "Avoid sync localStorage in async flows"
-PHASE 3: Source: 012-storage-refactor
-PHASE 4: User confirms → target: "012-storage-refactor"
-
-SAVE:
-  Title: "Avoid sync localStorage in async flows"
-  Type: mistake | Tier: critical | Confidence: 85%
-  Triggers: ["mistake", "localStorage", "async", "race condition"]
-```
-
----
-
-## 9. QUICK REFERENCE
-
-| Command                                             | Result                                      |
-| --------------------------------------------------- | ------------------------------------------- |
-| `/memory:learn`                                     | Prompt for learning description             |
-| `/memory:learn [description]`                       | Auto-classify and save with folder prompt   |
-| `/memory:learn [description] --folder:007-auth`     | Save to specified folder (skip Phase 4)     |
-| `/memory:learn [description] --type:pattern`        | Override auto-classification                |
-| `/memory:learn [description] --tier:constitutional` | Override auto-importance (use with caution) |
-
----
-
-## 10. CORRECTION SUBCOMMAND
-
-**Trigger:** `/memory:learn correct <id> <type> [replacement-id]`
-
-### Purpose
-
-Learn from mistakes by marking memories as corrected, applying stability penalties, and boosting replacement memories.
-
-### Correction Types
-
-| Type       | Description                   | Penalty | Boost | Use When                        |
-| ---------- | ----------------------------- | ------- | ----- | ------------------------------- |
-| superseded | Replaced by newer information | 0.5x    | 1.2x  | Newer version exists            |
-| deprecated | No longer valid               | 0.5x    | N/A   | Decision/pattern obsolete       |
-| refined    | Clarified or improved         | 0.7x    | 1.1x  | Original was incomplete/unclear |
-| merged     | Combined with another memory  | 0.6x    | 1.15x | Redundant content consolidated  |
-
-### Workflow
-
-1. **Parse Arguments**
-   ```
-   /memory:learn correct 42 superseded 67
-   → memory_id: 42, correction_type: superseded, replacement_id: 67
-   ```
-
-2. **Load Original Memory** via `memory_list({ limit: 100, sortBy: "created_at" })`
-
-3. **Show Correction Preview**
-   ```
-   MEMORY:CORRECT
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-   → Original ─────────────────────────────────────────
-     Memory      #<id> "<title>"
-     Tier        <tier>
-     Stability   █████████░  <stability>%
-
-   → Correction ───────────────────────────────────────
-     Type        <correction_type>
-     Penalty     <penalty>x stability (<old>% → <new>%)
-     New Tier    <new_tier>
-
-   → Replacement ──────────────────────────────────────
-     Memory      #<replacement_id> "<replacement_title>"
-     Boost       <boost>x stability (<old>% → <new>%)
-
-   ─────────────────────────────────────────────────────
-   [y] confirm    [n] cancel    [e] edit
-   ```
-
-4. **Apply Correction (on confirmation)**
-   ```javascript
-   // Downgrade original
-   spec_kit_memory_memory_update({
-     id: 42,
-     importanceTier: "normal"
-   })
-
-   // Boost replacement (if provided)
-   spec_kit_memory_memory_update({
-     id: 67,
-     importanceTier: "critical"
-   })
-   ```
-
-5. **Display Result**
-   ```
-   MEMORY:CORRECT
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-     Original    #<id> → <correction_type> (tier: <new_tier>)
-     Replacement #<replacement_id> → boosted (tier: <new_tier>)
-
-   STATUS=OK CORRECTED=<id> TYPE=<type> REPLACED_BY=<replacement_id>
-   ```
-
-### Examples
-
-```
-/memory:learn correct 42 superseded 67   # Replace old with new
-/memory:learn correct 42 deprecated      # Mark as obsolete (no replacement)
-/memory:learn correct 42 refined 68      # Clarify with improved version
-/memory:learn correct 42 merged 69       # Consolidate redundant content
-```
-
----
-
-## 11. UNDO SUBCOMMAND
-
-**Trigger:** `/memory:learn undo <id>`
-
-Reverses a correction if made in error.
-
-### Workflow
-
-1. **Load Correction Metadata** via `memory_list` — find memory, check for correction metadata
-2. **Show Undo Preview**
-   ```
-   MEMORY:UNDO
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-     Memory      #<id>
-     Current     <current_tier>
-     Restore To  <original_tier>
-     Stability   <current>% → <restored>%
-
-   ─────────────────────────────────────────────────────
-   [y] confirm undo    [n] cancel
-   ```
-3. **Apply Reversal**
-   ```javascript
-   spec_kit_memory_memory_update({
-     id: 42,
-     importanceTier: "important"  // Restore original tier
-   })
-   ```
-4. **Display Result**
-   ```
-   MEMORY:UNDO
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-     Memory      #<id> — tier restored: <old_tier> → <new_tier>
-
-   STATUS=OK UNDONE=<id>
-   ```
-
----
-
-## 12. HISTORY SUBCOMMAND
-
-**Trigger:** `/memory:learn history`
-
-View all corrections applied to memories.
-
-### Workflow
-
-1. **Load Records** via `memory_list({ limit: 100, sortBy: "updated_at" })` — filter for memories with correction metadata
-2. **Display Timeline**
-   ```
-   MEMORY:HISTORY
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-   → Corrections ──────────────────────────── <N> total
-
-     #<id>  <title>
-            <date> — marked as <type>
-            Replaced by: #<replacement_id> (<replacement_title>)
-            Penalty: <penalty>x stability
-
-     #<id>  <title>
-            <date> — marked as <type>
-            Clarified by: #<replacement_id> (<replacement_title>)
-            Penalty: <penalty>x stability
-
-     Active <N>  ·  Undone <N>
-
-   STATUS=OK
-   ```
-
-When no corrections exist:
-```
-MEMORY:HISTORY
+MEMORY:LEARN EDIT
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-  (no corrections recorded)
+  Updated     <filename>.md
+  Title       <title>
+  Indexed     ✓ re-indexed
 
-  Use: /memory:learn correct <id> <type>
+→ Budget ────────────────────────────────────────────
+  ██████░░░░  ~<used>/2000 tokens  (<N> files)
 
-STATUS=OK
+STATUS=OK ACTION=edited
 ```
 
 ---
 
-## 13. ERROR HANDLING
+## 8. REMOVE MODE (Destructive)
 
-| Condition                       | Response                                          |
-| ------------------------------- | ------------------------------------------------- |
-| No learning description         | ASK user for description                          |
-| Classification confidence < 80% | ASK user to select type from menu                 |
-| Source folder not found         | Offer to create or select alternative             |
-| Target folder validation fails  | List available folders, ask user to select        |
-| Save operation fails            | Show error, suggest retry or manual save          |
-| Duplicate learning detected     | WARN user, offer to update existing or create new |
-| Missing required argument       | ASK user, do not proceed                          |
+**Trigger:** `/memory:learn remove <filename>`
 
----
+### Step 1: Validate File Exists
 
-## 14. LEARNING RETRIEVAL
-
-**How saved learnings surface in future sessions:**
-
-### Automatic Triggers
-When conversation contains trigger phrases, memory system auto-loads related learnings:
 ```
-User: "I'm implementing an input handler in Webflow"
-System: Surfaced learning: "Debounce input handlers in Webflow" (pattern, critical)
+IF file not found in constitutional/:
+  → Display LIST dashboard
+  → ASK user to select a file
+  → WAIT for response
 ```
 
-### Manual Search
+### Step 2: Show File Content + Confirm
+
+Read the file and display. Then:
+
 ```
-/memory:context pattern debounce
-→ Returns all pattern-type learnings about debounce
+MEMORY:LEARN REMOVE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  ⚠ DESTRUCTIVE — This removes a constitutional memory.
+  File: <filename>.md
+  Title: "<title>"
+
+  This rule will NO LONGER surface in search results.
+
+─────────────────────────────────────────────────────
+[y] confirm removal    [n] cancel
 ```
 
-### Folder Context
-Working in a spec folder auto-loads its learnings:
+**HARD STOP:** Do NOT delete until user explicitly confirms.
+
+### Step 3: Delete + Re-index
+
 ```
-User: Working in 007-input-handler-optimization
-System: Available learnings (2):
-  - "Debounce input handlers in Webflow" (pattern)
-  - "Event delegation vs direct binding" (insight)
+1. Delete file via Bash: rm "<path>"
+2. Re-index: memory_index_scan({ force: true })
 ```
 
-### Importance Surfacing
-- `critical` tier → top 5 results
-- `important` tier → top 10 results
-- `normal` tier → standard retrieval
+### Step 4: Display Confirmation
 
----
-
-## 15. CONSOLIDATION PIPELINE
-
-Learnings are processed through the memory consolidation pipeline to maintain quality and reduce redundancy.
-
-> **Mutation Ledger & Adaptive Fusion:** All learning captures and corrections (including `correct`, `undo`, and tier changes) are recorded in the append-only mutation ledger for auditability. During consolidation deduplication, similarity scoring may be influenced by adaptive fusion weight profiles when `SPECKIT_ADAPTIVE_FUSION` is enabled — learnings of different types (pattern vs. insight) can receive differentiated boost factors, reducing false-positive merges across orthogonal learning categories.
-
-### Deduplication
-
-When a new learning is saved:
-1. **Similarity Check**: Vector search for semantically similar existing learnings
-2. **Threshold**: If similarity > 0.85, flag as potential duplicate
-3. **Resolution**: Merge (combine, keep higher-tier) | Supersede (mark old, boost new) | Keep Both (user confirms distinct)
-
-### Promotion Based on Access Frequency
-
-| Access Frequency | Action                                      |
-| ---------------- | ------------------------------------------- |
-| High (>10/week)  | Promote to constitutional tier (if pattern) |
-| Medium (3-10/wk) | Maintain current tier                       |
-| Low (1-2/week)   | No change                                   |
-| Rare (<1/month)  | Flag for review, potential deprecation      |
-
-### Pipeline Integration Points
-
-| Stage         | MCP Tool        | Purpose                 |
-| ------------- | --------------- | ----------------------- |
-| Pre-save      | `memory_search` | Deduplication check     |
-| Consolidation | `memory_update` | Merge/promote/deprecate |
-| Cleanup       | `memory_delete` | Remove orphan learnings |
-
----
-
-## 16. CONSTITUTIONAL LEARNING CAUTION
-
-**IMPORTANT:** Setting a learning to constitutional tier means it will appear in EVERY search result.
-
-**Only use constitutional tier for:**
-- Core security principles (e.g., "Never commit secrets")
-- Critical safety rules (e.g., "Always backup before destructive ops")
-- Mandatory project constraints (e.g., "Match Webflow's async patterns")
-
-**Budget:** ~2000 tokens max for all constitutional learnings combined.
-
-**Override syntax:**
 ```
-/memory:learn "Never commit secrets to git" --tier:constitutional
+MEMORY:LEARN REMOVE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  Removed     <filename>.md
+  Re-indexed  ✓
+
+→ Budget ────────────────────────────────────────────
+  ████░░░░░░  ~<used>/2000 tokens  (<N> files)
+
+STATUS=OK ACTION=removed
 ```
 
 ---
 
-## 17. BEST PRACTICES
+## 9. BUDGET DASHBOARD
 
-### When to Use `/memory:learn`
+**Trigger:** `/memory:learn budget`
 
-**DO use when:**
-- You discover a reusable **pattern** or approach
-- You hit a **mistake** or anti-pattern worth remembering
-- You gain understanding of a complex system (**insight**)
-- You identify a performance **optimization**
-- You discover a hard limit or **constraint**
+### Step 1: Read All Constitutional Files
 
-**DON'T use when:**
-- Saving full session context (use `/memory:save` instead)
-- Recording routine task completion (not a learning)
-- Documenting implementation details (use spec folder docs)
-- Storing temporary notes (use scratch folder)
+```
+Glob(".opencode/skill/system-spec-kit/constitutional/*.md")
+→ Exclude README.md
+→ Read each, estimate tokens (~4 chars per token)
+```
 
-### Trigger Phrase Strategy
+### Step 2: Display Dashboard
 
-Auto-generated triggers include:
-- Learning type (pattern, mistake, insight, optimization, constraint)
-- Key nouns from title (extracted automatically)
-- Domain context (if detectable from source)
+```
+MEMORY:LEARN BUDGET
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-Manual override: `/memory:learn "Use React.memo for expensive renders" --triggers:React,memo,performance`
+→ Token Budget ──────────────────────────────────────
+  Total budget    ~2000 tokens
+  Used            ~<N> tokens
+  Available       ~<N> tokens
+  Files           <N>
 
-### Batch Learning Capture
+→ Breakdown ─────────────────────────────────────────
 
-End-of-session with multiple learnings — list them, AI captures as separate learnings with type classification, user confirms batch.
+  <filename1>.md         ~<N> tokens  ████░░░░░░
+  <filename2>.md         ~<N> tokens  ██░░░░░░░░
+  <filename3>.md         ~<N> tokens  █░░░░░░░░░
+
+→ Status ────────────────────────────────────────────
+  <OK | ⚠ WARNING: over 80% | ⛔ EXCEEDED>
+
+─────────────────────────────────────────────────────
+[list] view all    [edit <file>] modify    [remove <file>] delete
+
+STATUS=OK ACTION=budget
+```
 
 ---
 
-## 18. RELATED COMMANDS
+## 10. TOOL SIGNATURES
 
-- `/memory:save` — Save full conversation context (episodic memory)
-- `/memory:context` — Search and browse all memories
-- `/memory:manage` — Manage memory database (tier changes, cleanup)
+| Step | Tool | Purpose |
+|------|------|---------|
+| Discover files | `Glob(".opencode/skill/system-spec-kit/constitutional/*.md")` | Find constitutional files |
+| Write new file | `Write("<path>")` | Create constitutional memory |
+| Edit existing | `Edit("<path>")` | Modify constitutional memory |
+| Index new file | `memory_save({ filePath, force: true })` | Add to search index |
+| Verify surfaces | `memory_search({ query })` | Confirm isConstitutional: true |
+| Remove from index | `memory_index_scan({ force: true })` | Rebuild index after deletion |
+| Check stats | `memory_stats()` | Verify tier breakdown |
 
-**Full documentation:** `.opencode/skill/system-spec-kit/SKILL.md`
+---
+
+## 11. ERROR HANDLING
+
+| Condition | Action |
+|-----------|--------|
+| No rule description | Mandatory gate prompts user |
+| Rule doesn't qualify as constitutional | Suggest `/memory:save` with critical tier |
+| Token budget exceeded | Warn with dashboard, offer trim/shorten/cancel |
+| File already exists with same name | ASK: overwrite or rename |
+| File not found (edit/remove) | Show list dashboard, ask user to select |
+| `memory_save` fails | Show error, suggest `memory_index_scan({ force: true })` |
+| Filename has spaces or uppercase | Auto-convert to kebab-case |
+
+---
+
+## 12. EXAMPLES
+
+### Example 1: Create a Security Rule
+
+```bash
+/memory:learn Never commit API keys or secrets to git
+```
+
+```
+MEMORY:LEARN
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  Created     never-commit-secrets.md
+  Title       NEVER COMMIT SECRETS
+  Tier        constitutional (3.0x boost · no decay)
+  Location    .opencode/skill/system-spec-kit/constitutional/
+
+→ Triggers ──────────────────────────────────────────
+  secret · api key · credential · password · commit
+
+→ Budget ────────────────────────────────────────────
+  ██████░░░░  ~520/2000 tokens  (3 files)
+
+STATUS=OK ACTION=created
+```
+
+### Example 2: List All Memories
+
+```bash
+/memory:learn list
+```
+
+### Example 3: Check Budget
+
+```bash
+/memory:learn budget
+```
+
+---
+
+## 13. RELATED COMMANDS
+
+- `/memory:save` — Save session context (episodic memory, any tier)
+- `/memory:context` — Search and retrieve memories
+- `/memory:manage` — Database operations (scan, cleanup, tier changes, health)
+
+**Constitutional directory:** `.opencode/skill/system-spec-kit/constitutional/`
+**Full documentation:** `.opencode/skill/system-spec-kit/constitutional/README.md`

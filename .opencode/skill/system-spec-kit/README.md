@@ -522,7 +522,7 @@ All tools use the `spec_kit_memory_` prefix in MCP calls (e.g., `spec_kit_memory
 | `/memory:context <query>` | Unified entry with intent awareness |
 | `/memory:manage` | Database management operations |
 | `/memory:continue` | Session recovery from crash or compaction |
-| `/memory:learn` | Explicit learning capture |
+| `/memory:learn` | Constitutional memory manager (create, list, edit, remove, budget) |
 
 ### Mode Suffixes
 

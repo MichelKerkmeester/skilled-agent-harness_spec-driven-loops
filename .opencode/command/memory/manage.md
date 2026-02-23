@@ -759,7 +759,7 @@ STATUS=OK CHECKPOINT=<name> ACTION=delete
 - `/memory:context` — Intent-aware context retrieval (read-only)
 - `/memory:save` — Save current conversation context
 - `/memory:continue` — Resume session using CONTINUE_SESSION.md
-- `/memory:learn` — Capture explicit learnings
+- `/memory:learn` — Create and manage constitutional memories
 
 ---
 

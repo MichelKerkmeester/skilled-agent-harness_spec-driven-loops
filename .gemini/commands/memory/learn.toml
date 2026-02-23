@@ -1,4 +1,4 @@
-description = "Capture explicit learning from session - patterns, mistakes, insights, optimizations, constraints. Also provides correction, undo, and history subcommands."
+description = "Create and manage constitutional memories — always-surface rules that appear at the top of every search result."
 prompt = """@{../../.opencode/command/memory/learn.md}
 
 User request: {{args}}"""

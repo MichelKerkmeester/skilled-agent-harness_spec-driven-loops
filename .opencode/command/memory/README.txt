@@ -1,6 +1,6 @@
 ---
 title: "Memory Commands"
-description: "Slash commands for managing the Spec Kit Memory system including context retrieval, session recovery, learning capture, and database operations."
+description: "Slash commands for managing the Spec Kit Memory system including context retrieval, session recovery, constitutional memory management, and database operations."
 trigger_phrases:
   - "memory command"
   - "memory save"
@@ -33,7 +33,7 @@ trigger_phrases:
 <!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
-The `memory` command group provides operations for the Spec Kit Memory MCP system. These commands handle context preservation across sessions, intent-aware retrieval, session recovery, explicit learning capture, and database maintenance.
+The `memory` command group provides operations for the Spec Kit Memory MCP system. These commands handle context preservation across sessions, intent-aware retrieval, session recovery, constitutional memory management, and database maintenance.
 
 All commands interact with the memory MCP server tools (`spec_kit_memory_*`). They follow a gate-based argument validation pattern: if required arguments are missing, the command prompts the user before proceeding.
 
@@ -47,7 +47,7 @@ All commands interact with the memory MCP server tools (`spec_kit_memory_*`). Th
 |---------|------------|-------------|
 | **context** | `/memory:context <query> [--intent:<type>]` | Intent-aware context retrieval with task-specific weight optimization |
 | **continue** | `/memory:continue [recovery-mode:auto\|manual]` | Recover session from crash, compaction, or timeout |
-| **learn** | `/memory:learn <description>` | Capture learnings, corrections, patterns, and insights |
+| **learn** | `/memory:learn [rule] \| list \| edit \| remove \| budget` | Create and manage constitutional memories (always-surface rules) |
 | **manage** | `/memory:manage <subcommand>` | Database operations (scan with source-scope prompt, cleanup, tier, health, checkpoint) |
 | **save** | `/memory:save <spec-folder>` | Save conversation context with semantic indexing |
 
@@ -67,10 +67,11 @@ All commands interact with the memory MCP server tools (`spec_kit_memory_*`). Th
 
 | Subcommand | Invocation | Description |
 |------------|------------|-------------|
-| (default) | `/memory:learn "description"` | Save a new learning |
-| correct | `/memory:learn correct <id> <type> [replacement-id]` | Correct an existing memory |
-| undo | `/memory:learn undo <id>` | Undo a previous learning |
-| history | `/memory:learn history` | View learning history |
+| (default) | `/memory:learn [rule]` | Create new constitutional memory (guided) |
+| list | `/memory:learn list` | Show all constitutional memories + budget |
+| edit | `/memory:learn edit <filename>` | Edit existing constitutional memory |
+| remove | `/memory:learn remove <filename>` | Remove constitutional memory |
+| budget | `/memory:learn budget` | Token budget status (~2000 max) |
 
 ---
 
@@ -82,7 +83,7 @@ All commands interact with the memory MCP server tools (`spec_kit_memory_*`). Th
 memory/
 ├── context.md      # /memory:context - Intent-aware retrieval
 ├── continue.md     # /memory:continue - Session recovery
-├── learn.md        # /memory:learn - Learning capture and correction
+├── learn.md        # /memory:learn - Constitutional memory manager
 ├── manage.md       # /memory:manage - Database management
 └── save.md         # /memory:save - Context saving
 ```
@@ -111,11 +112,14 @@ No `assets/` folder exists for memory commands. Workflows are defined inline wit
 # Auto-recovery mode
 /memory:continue :auto
 
-# Capture a learning
-/memory:learn "Always validate input before database queries"
+# Create a constitutional memory (always-surface rule)
+/memory:learn "Never commit API keys or secrets to git"
 
-# Correct a previous memory
-/memory:learn correct 42 factual 55
+# List all constitutional memories and budget
+/memory:learn list
+
+# Check token budget status
+/memory:learn budget
 
 # View database stats
 /memory:manage stats
@@ -162,7 +166,7 @@ The `/memory:manage` command accepts these subcommands:
 | Save fails | Spec folder path invalid or missing | Verify path exists under `specs/` |
 | Continue finds no session | No saved context from prior session | Use `/memory:context` with manual query instead |
 | Manage scan finds 0 files | No memory files in expected directories | Check `specs/**/memory/`, `.opencode/skill/*/constitutional/`, and configured `.opencode/skill/*/{references,assets}/` paths |
-| Learn correct fails | Invalid memory ID | Run `/memory:manage stats` to find valid IDs |
+| Learn file not found | Wrong filename for edit/remove | Run `/memory:learn list` to see available files |
 
 ---
 
