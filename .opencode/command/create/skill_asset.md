@@ -51,7 +51,7 @@ SELF-CHECK: Are you operating as the @write agent?
     │   │ This command requires the @write agent for:                │
     │   │   • Template-first workflow (loads before creating)          │
     │   │   • DQI scoring (target: 75+ Good)                         │
-    │   │   • sk-documentation skill integration               │
+    │   │   • sk-doc skill integration               │
     │   │                                                            │
     │   │ To proceed, restart with:                                  │
     │   │   @write /create:skill_asset [skill-name] [type]           │
@@ -374,7 +374,7 @@ $ARGUMENTS
 | Completion Report  | `completion_report_template`       |
 
 ### Template Reference
-- **Template location**: `.opencode/skill/sk-documentation/assets/opencode/skill_asset_template.md`
+- **Template location**: `.opencode/skill/sk-doc/assets/opencode/skill_asset_template.md`
 
 ---
 
@@ -388,9 +388,9 @@ $ARGUMENTS
 
 **Example 2: Create lookup asset**
 ```
-/documentation:create_asset sk-documentation lookup
+/documentation:create_asset sk-doc lookup
 ```
-→ Creates `.opencode/skill/sk-documentation/assets/[name]_reference.md`
+→ Creates `.opencode/skill/sk-doc/assets/[name]_reference.md`
 
 **Example 3: Create example asset**
 ```
@@ -412,7 +412,7 @@ $ARGUMENTS
 
 **Example 6: Confirm mode (step-by-step approval)**
 ```
-/create:skill_asset sk-documentation lookup :confirm
+/create:skill_asset sk-doc lookup :confirm
 ```
 → Pauses at each step for user confirmation
 

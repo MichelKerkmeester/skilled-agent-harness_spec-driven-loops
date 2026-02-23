@@ -109,7 +109,7 @@ Rename the skill directory from `workflows-code` to `workflows-code--web-dev` so
 | `.opencode/skill/system-spec-kit/references/validation/phase_checklists.md` | Modify | Update references |
 | `.opencode/skill/system-spec-kit/references/memory/epistemic-vectors.md` | Modify | Update references |
 | `.opencode/skill/system-spec-kit/mcp_server/tests/README.md` | Modify | Update references |
-| `.opencode/skill/sk-documentation/assets/opencode/skill_md_template.md` | Modify | Update references |
+| `.opencode/skill/sk-doc/assets/opencode/skill_md_template.md` | Modify | Update references |
 
 **Category 5: NOT changing (archived / historical)**
 

@@ -14,7 +14,7 @@ contextType: "implementation"
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-documentation/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -56,7 +56,7 @@ Gemini CLI users can now access the full agent, command, and skill system that C
 | `.gemini/skills/sk-code--full-stack` | Created (symlink) | Resolves to `../../.opencode/skill/sk-code--full-stack` |
 | `.gemini/skills/sk-code--opencode` | Created (symlink) | Resolves to `../../.opencode/skill/sk-code--opencode` |
 | `.gemini/skills/workflows-code--web-dev` | Created (symlink) | Resolves to `../../.opencode/skill/workflows-code--web-dev` |
-| `.gemini/skills/sk-documentation` | Created (symlink) | Resolves to `../../.opencode/skill/sk-documentation` |
+| `.gemini/skills/sk-doc` | Created (symlink) | Resolves to `../../.opencode/skill/sk-doc` |
 | `.gemini/skills/sk-git` | Created (symlink) | Resolves to `../../.opencode/skill/sk-git` |
 | `.gemini/skills/scripts` | Created (symlink) | Resolves to `../../.opencode/skill/scripts` |
 | `.gemini/specs` | Created (symlink) | Resolves to `../.opencode/specs` |
@@ -154,5 +154,5 @@ SC-006 (`.opencode/agent/gemini/` directory) was reconsidered during implementat
 <!--
 Level 2: Full post-implementation summary with delivery narrative.
 Write in human voice: active, direct, specific. No em dashes, no hedging, no AI filler.
-HVR rules: .opencode/skill/sk-documentation/references/hvr_rules.md
+HVR rules: .opencode/skill/sk-doc/references/hvr_rules.md
 -->

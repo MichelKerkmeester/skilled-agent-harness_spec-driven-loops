@@ -51,7 +51,7 @@ Implemented a "Copy-First, Validate-All" approach to prevent H2 emoji omission i
 
 ### Phase 2: Detection (extract_structure.py)
 
-**File:** `.opencode/skill/sk-documentation/scripts/extract_structure.py`
+**File:** `.opencode/skill/sk-doc/scripts/extract_structure.py`
 
 1. **SECTION_EMOJIS Constant** (Lines 299-311)
    - Set of 25+ standard section emojis
@@ -75,13 +75,13 @@ Implemented a "Copy-First, Validate-All" approach to prevent H2 emoji omission i
 
 ### Phase 3: Documentation
 
-**File:** `.opencode/skill/sk-documentation/SKILL.md`
+**File:** `.opencode/skill/sk-doc/SKILL.md`
 
 1. **H2 Emoji Enforcement Table** (Lines 547-560)
    - Document type → Emoji Required → Enforcement Level → Severity
    - 7 document types with clear enforcement rules
 
-**File:** `.opencode/skill/sk-documentation/references/core_standards.md`
+**File:** `.opencode/skill/sk-doc/references/core_standards.md`
 
 1. **H2 Emoji Violations Section** (Lines 168-199)
    - Violation table with detection, severity, and fix
@@ -130,9 +130,9 @@ Implemented a "Copy-First, Validate-All" approach to prevent H2 emoji omission i
 | File | Changes |
 |------|---------|
 | `.opencode/agent/write.md` | CORE WORKFLOW, checklist, emoji table, anti-patterns |
-| `.opencode/skill/sk-documentation/scripts/extract_structure.py` | Constants, check_h2_formatting, REFERENCE_CHECKLIST, style checks |
-| `.opencode/skill/sk-documentation/SKILL.md` | H2 emoji enforcement table |
-| `.opencode/skill/sk-documentation/references/core_standards.md` | H2 emoji violations section |
+| `.opencode/skill/sk-doc/scripts/extract_structure.py` | Constants, check_h2_formatting, REFERENCE_CHECKLIST, style checks |
+| `.opencode/skill/sk-doc/SKILL.md` | H2 emoji enforcement table |
+| `.opencode/skill/sk-doc/references/core_standards.md` | H2 emoji violations section |
 
 ---
 

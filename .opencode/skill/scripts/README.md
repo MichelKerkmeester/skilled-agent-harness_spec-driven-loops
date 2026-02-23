@@ -378,7 +378,7 @@ High-confidence keywords that directly map to specific skills:
 | `worktree` | sk-git | +1.2 |
 | `devtools` | mcp-chrome-devtools | +1.0 |
 | `rebase` | sk-git | +0.8 |
-| `flowchart` | sk-documentation | +0.7 |
+| `flowchart` | sk-doc | +0.7 |
 | `checkpoint` | system-spec-kit | +0.6 |
 
 ### Multi-Skill Boosters
@@ -523,7 +523,7 @@ $ python skill_advisor.py "create a flowchart for the authentication process"
 
 [
   {
-    "skill": "sk-documentation",
+    "skill": "sk-doc",
     "confidence": 0.88,
     "reason": "Matched: !flowchart, documentation(name), create"
   }
@@ -587,7 +587,7 @@ $ python skill_advisor.py "call figma api"
 |-------------|----------------|-----------|
 | Git operations | sk-git | commit, push, branch, merge, worktree, github, pr, issue |
 | Browser debugging | mcp-chrome-devtools | devtools, chrome, browser, debug, console |
-| Documentation | sk-documentation | markdown, flowchart, diagram, readme |
+| Documentation | sk-doc | markdown, flowchart, diagram, readme |
 | Code implementation | sk-code--web | implement, fix, bug, refactor, verification |
 | Memory/context | system-spec-kit | remember, save, context, checkpoint |
 | Specifications | system-spec-kit | spec, checklist, plan, specification |
@@ -754,6 +754,6 @@ A: No, the script uses word tokenization. Regex patterns will be treated as lite
 |----------|---------|
 | `.opencode/skill/*/SKILL.md` | Individual skill definitions parsed by the advisor |
 | [system-spec-kit README](../system-spec-kit/README.md) | Documentation and memory framework |
-| [sk-documentation SKILL.md](../sk-documentation/SKILL.md) | Documentation standards and templates |
+| [sk-doc SKILL.md](../sk-doc/SKILL.md) | Documentation standards and templates |
 
 <!-- /ANCHOR:related-documents -->

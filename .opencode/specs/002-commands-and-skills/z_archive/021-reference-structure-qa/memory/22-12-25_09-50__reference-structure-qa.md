@@ -119,7 +119,7 @@ This session was migrated from an older format to v2.2. Review the OVERVIEW and 
 
 - `specs/002-skills/007-skill-system-improvements/tasks.md` - Documentation
 
-- `.opencode/skills/sk-documentation/assets` - Core assets
+- `.opencode/skills/sk-doc/assets` - Core assets
 
 - `.opencode/.../references/skill_creation.md` - Documentation
 
@@ -175,7 +175,7 @@ This session was migrated from an older format to v2.2. Review the OVERVIEW and 
 | `specs/002-skills/007-skill-system-improvements/spec.md` | Specs/002-skills/007-skill-system-improvements/spec.md |
 | `specs/002-skills/007-skill-system-improvements/plan.md` | Specs/002-skills/007-skill-system-improvements/plan.md |
 | `specs/002-skills/007-skill-system-improvements/tasks.md` | Updated tasks |
-| `.opencode/skills/sk-documentation/assets` | Updated assets |
+| `.opencode/skills/sk-doc/assets` | Updated assets |
 | `.opencode/.../references/skill_creation.md` | Updated skill creation |
 | `.opencode/scripts` | Updated scripts |
 | `specs/006-opencode/002-opencode-hooks/plan.md` | Modified during session |
@@ -309,7 +309,7 @@ I have successfully implemented, refined, and tested the **Skill Advisor** syste
 <!-- ANCHOR:architecture-agentsmd-reference-skill-templates-5926e9eb-session-1766393458673-9sjlv5vmt -->
 ### FEATURE: I have updated `AGENTS.md` to reference the 3 skill templates found in `workflow
 
-I have updated `AGENTS.md` to reference the 3 skill templates found in `sk-documentation/assets/`.
+I have updated `AGENTS.md` to reference the 3 skill templates found in `sk-doc/assets/`.
 
 **Updated Section:**
 ```markdown
@@ -318,8 +318,8 @@ I have updated `AGENTS.md` to reference the 3 skill templates found in `sk-docum
 Skills are located in `.opencode/skills/`.
 
 When creating or editing skills:
-- Validate skill structure matches template in `sk-documentation/references/skill_creation.md`
-- Use the templates in `sk-documentation/assets/` (`skill_md_template.md`, `skill_reference_template.md`, `skill_asset_template.md`)
+- Validate skill structure matches template in `sk-doc/references/skill_creation.md`
+- Use the templates in `sk-doc/assets/` (`skill_md_template.md`, `skill_reference_template.md`, `skill_asset_template.md`)
 - Ensure all bund
 
 <!-- /ANCHOR:architecture-agentsmd-reference-skill-templates-5926e9eb-session-1766393458673-9sjlv5vmt -->
@@ -338,7 +338,7 @@ I have completed the testing and verification phase.
     *   **Test Results**:
         *   "fix a bug" → `workflows-code` (95% confidence)
         *   "make a new feature" → `command-spec-kit` (100% confidence)
-        *   "how do i use this" → `sk-documentation` (95% confidence)
+        *   "how do i use this" → `sk-doc` (95% confidence)
         *   "where is config" → `mcp-leann` (45% confidence
 
 <!-- /ANCHOR:implementation-completed-testing-verification-phase-1830ff85-session-1766393458673-9sjlv5vmt -->
@@ -631,9 +631,9 @@ Executed sequential_thinking_sequentialthinking
 <!-- ANCHOR:implementation-tool-list-9fccbff5-session-1766393458673-9sjlv5vmt -->
 ### OBSERVATION: Tool: list
 
-.opencode/skills/sk-documentation/assets
+.opencode/skills/sk-doc/assets
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/sk-documentation/assets
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/sk-doc/assets
 **Details:** Tool: list | Status: completed
 <!-- /ANCHOR:implementation-tool-list-9fccbff5-session-1766393458673-9sjlv5vmt -->
 
@@ -665,9 +665,9 @@ Executed glob
 <!-- ANCHOR:implementation-tool-read-bb2ef129-3-session-1766393458673-9sjlv5vmt -->
 ### OBSERVATION: Tool: read
 
-.opencode/skills/sk-documentation/references/skill_creation.md
+.opencode/skills/sk-doc/references/skill_creation.md
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/sk-documentation/references/skill_creation.md
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/sk-doc/references/skill_creation.md
 **Details:** Tool: read | Status: completed
 <!-- /ANCHOR:implementation-tool-read-bb2ef129-3-session-1766393458673-9sjlv5vmt -->
 
@@ -1174,7 +1174,7 @@ Updating AGENTS.md Skill Maintenance
 
 > **Assistant** | 2025-12-22 @ 09:26:10
 
-Updating AGENTS.md Skill Maintenance → I have updated `AGENTS. md` to reference the 3 skill templates found in `sk-documentation/assets/`. Used tools: , ,  and 16 more.
+Updating AGENTS.md Skill Maintenance → I have updated `AGENTS. md` to reference the 3 skill templates found in `sk-doc/assets/`. Used tools: , ,  and 16 more.
 
 **Tool: list**
 Tool: list
@@ -1210,7 +1210,7 @@ Tool: list
 
 > **Assistant** | 2025-12-22 @ 09:26:10
 
-Checking Skill advisor reference → I have updated `AGENTS. md` to reference the 3 skill templates found in `sk-documentation/assets/`. Used tools: , ,  and 20 more.
+Checking Skill advisor reference → I have updated `AGENTS. md` to reference the 3 skill templates found in `sk-doc/assets/`. Used tools: , ,  and 20 more.
 
 **Tool: list**
 Tool: list
@@ -1246,7 +1246,7 @@ Tool: list
 
 > **Assistant** | 2025-12-22 @ 09:26:10
 
-Addressing Skill advisor agents.md reference → I have updated `AGENTS. md` to reference the 3 skill templates found in `sk-documentation/assets/`. Used tools: , ,  and 21 more.
+Addressing Skill advisor agents.md reference → I have updated `AGENTS. md` to reference the 3 skill templates found in `sk-doc/assets/`. Used tools: , ,  and 21 more.
 
 **Tool: list**
 Tool: list
@@ -1730,7 +1730,7 @@ key_files:
   - "specs/002-skills/007-skill-system-improvements/spec.md"
   - "specs/002-skills/007-skill-system-improvements/plan.md"
   - "specs/002-skills/007-skill-system-improvements/tasks.md"
-  - ".opencode/skills/sk-documentation/assets"
+  - ".opencode/skills/sk-doc/assets"
   - ".opencode/.../references/skill_creation.md"
   - ".opencode/scripts"
   - "specs/006-opencode/002-opencode-hooks/plan.md"

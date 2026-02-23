@@ -410,5 +410,5 @@ CHK-M20: 2025-12-26 DOC mcp-narsil/SKILL.md frontmatter updated with Code Mode t
 ```
 CHK-L-DOCS: 2025-12-26 DOC scripts/rules/README.md created (DQI 99/100 Excellent)
 CHK-L-DOCS: 2025-12-26 DOC mcp_server/lib/README.md created (DQI 99/100 Excellent)
-CHK-L-DOCS: 2025-12-26 DOC Both READMEs follow sk-documentation template standards
+CHK-L-DOCS: 2025-12-26 DOC Both READMEs follow sk-doc template standards
 ```

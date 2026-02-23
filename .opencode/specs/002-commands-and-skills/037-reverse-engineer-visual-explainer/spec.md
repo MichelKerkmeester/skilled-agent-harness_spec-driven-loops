@@ -1,6 +1,6 @@
 ---
-title: "Feature Specification: Reverse-Engineer Visual Explainer Skill [037-reverse-engineer-visual-explainer/spec]"
-description: "Reverse-engineer the open-source nicobailon/visual-explainer GitHub repo (v0.1.1, MIT license) into a full OpenCode skill called sk-visual-explainer. The skill transforms comple..."
+title: "Feature Specification: Reverse-Engineer Doc Visual Skill [037-reverse-engineer-doc-visual/spec]"
+description: "Reverse-engineer the open-source nicobailon/doc-visual GitHub repo (v0.1.1, MIT license) into a full OpenCode skill called sk-doc-visual. The skill transforms comple..."
 trigger_phrases:
   - "feature"
   - "specification"
@@ -12,7 +12,7 @@ trigger_phrases:
 importance_tier: "important"
 contextType: "decision"
 ---
-# Feature Specification: Reverse-Engineer Visual Explainer Skill
+# Feature Specification: Reverse-Engineer Doc Visual Skill
 
 <!-- SPECKIT_LEVEL: 3 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify + level3-arch | v2.2 -->
@@ -22,11 +22,11 @@ contextType: "decision"
 <!-- ANCHOR:executive-summary -->
 ## EXECUTIVE SUMMARY
 
-Reverse-engineer the open-source `nicobailon/visual-explainer` GitHub repo (v0.1.1, MIT license) into a full OpenCode skill called `sk-visual-explainer`. The skill transforms complex technical concepts into production-quality HTML visual explainers with diagrams, data tables, and styled layouts using a Skill Graph architecture (10 nodes, 5 commands, 3 HTML templates).
+Reverse-engineer the open-source `nicobailon/doc-visual` GitHub repo (v0.1.1, MIT license) into a full OpenCode skill called `sk-doc-visual`. The skill transforms complex technical concepts into production-quality HTML doc visuals with diagrams, data tables, and styled layouts using a Skill Graph architecture (10 nodes, 5 commands, 3 HTML templates).
 
 **Key Decisions**: Skill Graph architecture over monolithic SKILL.md; `workflows-` prefix following process-oriented skill conventions; progressive disclosure via 3-tier loading (ALWAYS/CONDITIONAL/ON_DEMAND)
 
-**Critical Dependencies**: Source repo (nicobailon/visual-explainer v0.1.1) for content extraction; existing skill_advisor.py for routing integration; package_skill.py for validation
+**Critical Dependencies**: Source repo (nicobailon/doc-visual v0.1.1) for content extraction; existing skill_advisor.py for routing integration; package_skill.py for validation
 <!-- /ANCHOR:executive-summary -->
 
 ---
@@ -49,10 +49,10 @@ Reverse-engineer the open-source `nicobailon/visual-explainer` GitHub repo (v0.1
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-The `nicobailon/visual-explainer` repo contains a powerful visual explanation system for AI coding agents, but it exists as a standalone single-file prompt (700+ lines) with no integration into the OpenCode skill framework. Users cannot discover or invoke it through the standard skill routing system, and the monolithic format prevents progressive loading and efficient context usage.
+The `nicobailon/doc-visual` repo contains a powerful visual explanation system for AI coding agents, but it exists as a standalone single-file prompt (700+ lines) with no integration into the OpenCode skill framework. Users cannot discover or invoke it through the standard skill routing system, and the monolithic format prevents progressive loading and efficient context usage.
 
 ### Purpose
-Transform the external visual-explainer repo into a fully integrated OpenCode skill with auto-discovery via `skill_advisor.py`, progressive content loading via Skill Graph architecture, 5 slash commands for different workflows, and production-quality HTML template exemplars.
+Transform the external doc-visual repo into a fully integrated OpenCode skill with auto-discovery via `skill_advisor.py`, progressive content loading via Skill Graph architecture, 5 slash commands for different workflows, and production-quality HTML template exemplars.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -70,42 +70,42 @@ Transform the external visual-explainer repo into a fully integrated OpenCode sk
 - 9 quality checks (7 original + 2 new: accessibility, reduced-motion)
 
 ### Out of Scope
-- Runtime execution engine for visual explainer commands - the skill provides instructions, not automation
+- Runtime execution engine for doc visual commands - the skill provides instructions, not automation
 - Chrome DevTools MCP integration testing - referenced but not implemented as part of this spec
 - Webflow or CMS publishing pipeline - output is local HTML only
-- Modifications to the original visual-explainer repo - we reverse-engineer, not fork
+- Modifications to the original doc-visual repo - we reverse-engineer, not fork
 
 ### Files to Change
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skill/sk-visual-explainer/SKILL.md` | Create | Lean router entrypoint (~1,683 words) |
-| `.opencode/skill/sk-visual-explainer/index.md` | Create | Skill Graph MOC with 4 groups, 10 wikilinks |
-| `.opencode/skill/sk-visual-explainer/nodes/when-to-use.md` | Create | 5 command overview, decision matrix |
-| `.opencode/skill/sk-visual-explainer/nodes/rules.md` | Create | 9 ALWAYS, 7 NEVER, 4 ESCALATE IF rules |
-| `.opencode/skill/sk-visual-explainer/nodes/success-criteria.md` | Create | 9 quality checks |
-| `.opencode/skill/sk-visual-explainer/nodes/how-it-works.md` | Create | 4-phase workflow (Think > Structure > Style > Deliver) |
-| `.opencode/skill/sk-visual-explainer/nodes/smart-routing.md` | Create | Python pseudocode for intent classification |
-| `.opencode/skill/sk-visual-explainer/nodes/commands.md` | Create | Full contracts for 5 commands |
-| `.opencode/skill/sk-visual-explainer/nodes/diagram-types.md` | Create | 11 types with decision tree |
-| `.opencode/skill/sk-visual-explainer/nodes/aesthetics.md` | Create | 9 profiles, CSS variables, 11x9 compatibility matrix |
-| `.opencode/skill/sk-visual-explainer/nodes/integration-points.md` | Create | CDN libraries, cross-skill integration |
-| `.opencode/skill/sk-visual-explainer/nodes/related-resources.md` | Create | Master index |
-| `.opencode/skill/sk-visual-explainer/references/quick_reference.md` | Create | ALWAYS-loaded cheat sheet |
-| `.opencode/skill/sk-visual-explainer/references/css_patterns.md` | Create | CONDITIONAL CSS pattern library (~15KB) |
-| `.opencode/skill/sk-visual-explainer/references/library_guide.md` | Create | ON_DEMAND library guide (~16KB) |
-| `.opencode/skill/sk-visual-explainer/references/navigation_patterns.md` | Create | CONDITIONAL nav patterns |
-| `.opencode/skill/sk-visual-explainer/references/quality_checklist.md` | Create | ON_DEMAND verification checklist |
-| `.opencode/skill/sk-visual-explainer/assets/templates/architecture.html` | Create | Terracotta/sage template (~17KB) |
-| `.opencode/skill/sk-visual-explainer/assets/templates/mermaid-flowchart.html` | Create | Teal/cyan Mermaid template (~13KB) |
-| `.opencode/skill/sk-visual-explainer/assets/templates/data-table.html` | Create | Rose/cranberry data table template (~16KB) |
-| `.opencode/skill/sk-visual-explainer/scripts/validate-html-output.sh` | Create | 10-check static HTML validator |
-| `.opencode/skill/sk-visual-explainer/scripts/cleanup-output.sh` | Create | Output directory maintenance |
-| `.opencode/command/visual-explainer/generate.md` | Create | Generate command definition |
-| `.opencode/command/visual-explainer/diff-review.md` | Create | Diff review command definition |
-| `.opencode/command/visual-explainer/plan-review.md` | Create | Plan review command definition |
-| `.opencode/command/visual-explainer/recap.md` | Create | Recap command definition |
-| `.opencode/command/visual-explainer/fact-check.md` | Create | Fact check command definition |
+| `.opencode/skill/sk-doc-visual/SKILL.md` | Create | Lean router entrypoint (~1,683 words) |
+| `.opencode/skill/sk-doc-visual/index.md` | Create | Skill Graph MOC with 4 groups, 10 wikilinks |
+| `.opencode/skill/sk-doc-visual/nodes/when-to-use.md` | Create | 5 command overview, decision matrix |
+| `.opencode/skill/sk-doc-visual/nodes/rules.md` | Create | 9 ALWAYS, 7 NEVER, 4 ESCALATE IF rules |
+| `.opencode/skill/sk-doc-visual/nodes/success-criteria.md` | Create | 9 quality checks |
+| `.opencode/skill/sk-doc-visual/nodes/how-it-works.md` | Create | 4-phase workflow (Think > Structure > Style > Deliver) |
+| `.opencode/skill/sk-doc-visual/nodes/smart-routing.md` | Create | Python pseudocode for intent classification |
+| `.opencode/skill/sk-doc-visual/nodes/commands.md` | Create | Full contracts for 5 commands |
+| `.opencode/skill/sk-doc-visual/nodes/diagram-types.md` | Create | 11 types with decision tree |
+| `.opencode/skill/sk-doc-visual/nodes/aesthetics.md` | Create | 9 profiles, CSS variables, 11x9 compatibility matrix |
+| `.opencode/skill/sk-doc-visual/nodes/integration-points.md` | Create | CDN libraries, cross-skill integration |
+| `.opencode/skill/sk-doc-visual/nodes/related-resources.md` | Create | Master index |
+| `.opencode/skill/sk-doc-visual/references/quick_reference.md` | Create | ALWAYS-loaded cheat sheet |
+| `.opencode/skill/sk-doc-visual/references/css_patterns.md` | Create | CONDITIONAL CSS pattern library (~15KB) |
+| `.opencode/skill/sk-doc-visual/references/library_guide.md` | Create | ON_DEMAND library guide (~16KB) |
+| `.opencode/skill/sk-doc-visual/references/navigation_patterns.md` | Create | CONDITIONAL nav patterns |
+| `.opencode/skill/sk-doc-visual/references/quality_checklist.md` | Create | ON_DEMAND verification checklist |
+| `.opencode/skill/sk-doc-visual/assets/templates/architecture.html` | Create | Terracotta/sage template (~17KB) |
+| `.opencode/skill/sk-doc-visual/assets/templates/mermaid-flowchart.html` | Create | Teal/cyan Mermaid template (~13KB) |
+| `.opencode/skill/sk-doc-visual/assets/templates/data-table.html` | Create | Rose/cranberry data table template (~16KB) |
+| `.opencode/skill/sk-doc-visual/scripts/validate-html-output.sh` | Create | 10-check static HTML validator |
+| `.opencode/skill/sk-doc-visual/scripts/cleanup-output.sh` | Create | Output directory maintenance |
+| `.opencode/command/doc-visual/generate.md` | Create | Generate command definition |
+| `.opencode/command/doc-visual/diff-review.md` | Create | Diff review command definition |
+| `.opencode/command/doc-visual/plan-review.md` | Create | Plan review command definition |
+| `.opencode/command/doc-visual/recap.md` | Create | Recap command definition |
+| `.opencode/command/doc-visual/fact-check.md` | Create | Fact check command definition |
 | `.opencode/skill/scripts/skill_advisor.py` | Modify | Add 11 INTENT_BOOSTERS + 5 MULTI_SKILL_BOOSTERS |
 <!-- /ANCHOR:scope -->
 
@@ -120,9 +120,9 @@ Transform the external visual-explainer repo into a fully integrated OpenCode sk
 |----|-------------|---------------------|
 | REQ-001 | SKILL.md lean router under 5,000-word limit | Word count verified < 5,000 (actual: 1,683) |
 | REQ-002 | Skill Graph with index.md MOC and 10 node files | All 10 wikilinks in index.md resolve to existing files |
-| REQ-003 | skill_advisor.py routes to sk-visual-explainer at >= 0.90 confidence | Tested: 0.95 confidence for "create visual explainer" |
+| REQ-003 | skill_advisor.py routes to sk-doc-visual at >= 0.90 confidence | Tested: 0.95 confidence for "create doc visual" |
 | REQ-004 | package_skill.py validation passes | PASS with at most non-blocking warnings |
-| REQ-005 | 5 slash commands registered in `.opencode/command/visual-explainer/` | All 5 command .md files exist and follow command template |
+| REQ-005 | 5 slash commands registered in `.opencode/command/doc-visual/` | All 5 command .md files exist and follow command template |
 
 ### P1 - Required (complete OR user-approved deferral)
 
@@ -140,7 +140,7 @@ Transform the external visual-explainer repo into a fully integrated OpenCode sk
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: skill_advisor.py returns >= 0.90 confidence for visual explainer queries (verified: 0.95)
+- **SC-001**: skill_advisor.py returns >= 0.90 confidence for doc visual queries (verified: 0.95)
 - **SC-002**: package_skill.py validates skill folder with PASS (verified: 1 non-blocking emoji warning only)
 - **SC-003**: SKILL.md word count stays under 5,000-word limit (verified: 1,683 words)
 - **SC-004**: All 10 wikilinks in index.md resolve to actual files (verified: 10/10)
@@ -155,7 +155,7 @@ Transform the external visual-explainer repo into a fully integrated OpenCode sk
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | nicobailon/visual-explainer v0.1.1 source | Cannot extract content without access | Clone repo locally before starting; content is MIT licensed |
+| Dependency | nicobailon/doc-visual v0.1.1 source | Cannot extract content without access | Clone repo locally before starting; content is MIT licensed |
 | Dependency | skill_advisor.py existing INTENT_BOOSTERS | Conflicting keywords could break other skill routing | Use MULTI_SKILL_BOOSTERS for shared keywords (diagram, flowchart, review) |
 | Dependency | package_skill.py validation rules | Must pass validation for skill to be valid | snake_case filenames, ANCHOR tags, word count limits |
 | Risk | Skill Graph complexity (10 nodes) | Higher maintenance burden | Clear MOC in index.md; each node is self-contained |
@@ -230,18 +230,18 @@ Transform the external visual-explainer repo into a fully integrated OpenCode sk
 <!-- ANCHOR:user-stories -->
 ## 11. USER STORIES
 
-### US-001: Discover Visual Explainer via Skill Routing (Priority: P0)
+### US-001: Discover Doc Visual via Skill Routing (Priority: P0)
 
-**As a** user asking an AI agent to create a diagram or visual explanation, **I want** the skill_advisor.py to automatically route to sk-visual-explainer, **so that** I get the specialized visual explanation workflow without knowing the skill name.
+**As a** user asking an AI agent to create a diagram or visual explanation, **I want** the skill_advisor.py to automatically route to sk-doc-visual, **so that** I get the specialized visual explanation workflow without knowing the skill name.
 
 **Acceptance Criteria**:
-1. Given a query "create a visual explainer for my API architecture", When skill_advisor.py processes it, Then it returns sk-visual-explainer with >= 0.90 confidence
+1. Given a query "create a doc visual for my API architecture", When skill_advisor.py processes it, Then it returns sk-doc-visual with >= 0.90 confidence
 
 ---
 
-### US-002: Generate Visual Explainer from Topic (Priority: P0)
+### US-002: Generate Doc Visual from Topic (Priority: P0)
 
-**As a** developer, **I want** to use `/generate` to create a complete HTML visual explainer from a topic description, **so that** I get a production-quality single-file HTML with diagrams, styling, and responsive layout.
+**As a** developer, **I want** to use `/generate` to create a complete HTML doc visual from a topic description, **so that** I get a production-quality single-file HTML with diagrams, styling, and responsive layout.
 
 **Acceptance Criteria**:
 1. Given a topic description, When `/generate` is invoked, Then the 4-phase workflow (Think > Structure > Style > Deliver) is followed
@@ -307,6 +307,6 @@ Transform the external visual-explainer repo into a fully integrated OpenCode sk
 
 <!--
 LEVEL 3 SPEC - Retroactive documentation
-Reverse-engineered sk-visual-explainer skill
+Reverse-engineered sk-doc-visual skill
 27 files created + 1 modified, ~2,500+ LOC
 -->

@@ -1,17 +1,17 @@
-# Changelog - 2026-02-22 - Visual Explainer Palette Alignment
+# Changelog - 2026-02-22 - Doc Visual Palette Alignment
 
 - Date: 2026-02-22
-- Scope: Enforce a single shared palette across `sk-visual-explainer` templates within `139-hybrid-rag-fusion/006-hybrid-rag-fusion-logic-improvements`.
+- Scope: Enforce a single shared palette across `sk-doc-visual` templates within `139-hybrid-rag-fusion/006-hybrid-rag-fusion-logic-improvements`.
 
 ## Summary of Request
-Enforce one palette across all `sk-visual-explainer` templates, using `artifact-dashboard` as the palette baseline.
+Enforce one palette across all `sk-doc-visual` templates, using `artifact-dashboard` as the palette baseline.
 
 ## Files Changed
 Paths below are absolute relative to workspace root (`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public`):
-- `.opencode/skill/sk-visual-explainer/assets/templates/architecture.html`
-- `.opencode/skill/sk-visual-explainer/assets/templates/data-table.html`
-- `.opencode/skill/sk-visual-explainer/assets/templates/mermaid-flowchart.html`
-- `.opencode/skill/sk-visual-explainer/assets/templates/traceability-board.html`
+- `.opencode/skill/sk-doc-visual/assets/templates/architecture.html`
+- `.opencode/skill/sk-doc-visual/assets/templates/data-table.html`
+- `.opencode/skill/sk-doc-visual/assets/templates/mermaid-flowchart.html`
+- `.opencode/skill/sk-doc-visual/assets/templates/traceability-board.html`
 
 ## Visual Bug Fixes Applied
 - `data-table`: improved sticky header reliability by applying sticky positioning to table header cells (`th`) for consistent behavior.
@@ -19,12 +19,12 @@ Paths below are absolute relative to workspace root (`/Users/michelkerkmeester/M
 
 ## Validation Evidence
 - Template validator passed for all 5 templates:
-  - `.opencode/skill/sk-visual-explainer/assets/templates/architecture.html`
-  - `.opencode/skill/sk-visual-explainer/assets/templates/data-table.html`
-  - `.opencode/skill/sk-visual-explainer/assets/templates/mermaid-flowchart.html`
-  - `.opencode/skill/sk-visual-explainer/assets/templates/artifact-dashboard.html`
-  - `.opencode/skill/sk-visual-explainer/assets/templates/traceability-board.html`
-- Fixture tests passed: `.opencode/skill/sk-visual-explainer/scripts/tests/test-validator-fixtures.sh` (result: `validator fixture tests passed`).
+  - `.opencode/skill/sk-doc-visual/assets/templates/architecture.html`
+  - `.opencode/skill/sk-doc-visual/assets/templates/data-table.html`
+  - `.opencode/skill/sk-doc-visual/assets/templates/mermaid-flowchart.html`
+  - `.opencode/skill/sk-doc-visual/assets/templates/artifact-dashboard.html`
+  - `.opencode/skill/sk-doc-visual/assets/templates/traceability-board.html`
+- Fixture tests passed: `.opencode/skill/sk-doc-visual/scripts/tests/test-validator-fixtures.sh` (result: `validator fixture tests passed`).
 
 ## Scope Control
 No unrelated changes.

@@ -66,7 +66,7 @@ Deliver a documentation-only update that applies the ToC policy consistently and
 | `.opencode/specs/003-system-spec-kit/139-hybrid-rag-fusion/007-spec-kit-templates/checklist.md` | Create | Verification checklist with evidence |
 | `.opencode/specs/003-system-spec-kit/139-hybrid-rag-fusion/007-spec-kit-templates/implementation-summary.md` | Create | Completion summary and outcomes |
 | `.opencode/specs/002-commands-and-skills/039-sk-code-opencode-alignment-hardening/{spec,plan,tasks,checklist,decision-record,implementation-summary}.md` | Modify | Remove disallowed ToC sections |
-| `.opencode/specs/002-commands-and-skills/040-sk-visual-explainer-hardening/{spec,plan,tasks,checklist,implementation-summary}.md` | Modify | Remove disallowed ToC sections |
+| `.opencode/specs/002-commands-and-skills/040-sk-doc-visual-hardening/{spec,plan,tasks,checklist,implementation-summary}.md` | Modify | Remove disallowed ToC sections |
 | `.opencode/specs/002-commands-and-skills/041-code-review-skill/{spec,plan,tasks,checklist}.md` | Modify | Remove disallowed ToC sections |
 <!-- /ANCHOR:scope -->
 

@@ -1,6 +1,6 @@
 ---
 title: "Command Document Refinement - Tasks [003-command-document-refinment/tasks]"
-description: "Location: .opencode/skill/sk-documentation/assets/command_template.md"
+description: "Location: .opencode/skill/sk-doc/assets/command_template.md"
 trigger_phrases:
   - "command"
   - "document"
@@ -45,7 +45,7 @@ contextType: "implementation"
 
 ### T4: Update command_template.md
 
-**Location**: `.opencode/skill/sk-documentation/assets/command_template.md`
+**Location**: `.opencode/skill/sk-doc/assets/command_template.md`
 
 **Changes Required**:
 1. Add "Step Numbering Rules" section

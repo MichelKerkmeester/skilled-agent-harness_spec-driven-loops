@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Reverse-Engineer Visual Explainer Skill [037-reverse-engineer-visual-explainer/tasks]"
+title: "Tasks: Reverse-Engineer Doc Visual Skill [037-reverse-engineer-doc-visual/tasks]"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "tasks"
@@ -11,7 +11,7 @@ trigger_phrases:
 importance_tier: "normal"
 contextType: "implementation"
 ---
-# Tasks: Reverse-Engineer Visual Explainer Skill
+# Tasks: Reverse-Engineer Doc Visual Skill
 
 <!-- SPECKIT_LEVEL: 3 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
@@ -36,7 +36,7 @@ contextType: "implementation"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Research & Analysis
 
-- [x] T001 Clone nicobailon/visual-explainer v0.1.1 repo locally
+- [x] T001 Clone nicobailon/doc-visual v0.1.1 repo locally
 - [x] T002 Analyze single-file prompt structure (700+ lines)
 - [x] T003 Map content sections to Skill Graph node candidates
 - [x] T004 Identify 5 commands and their contracts
@@ -50,18 +50,18 @@ contextType: "implementation"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Skill Graph Core
 
-- [x] T008 Create SKILL.md lean router with Smart Router pseudocode (~1,683 words) (`.opencode/skill/sk-visual-explainer/SKILL.md`)
-- [x] T009 Create index.md MOC with 4 groups and 10 wikilinks (`.opencode/skill/sk-visual-explainer/index.md`)
-- [x] T010 Create nodes/when-to-use.md — 5 command overview, decision matrix, proactive trigger table (`.opencode/skill/sk-visual-explainer/nodes/when-to-use.md`)
-- [x] T011 Create nodes/rules.md — 9 ALWAYS, 7 NEVER, 4 ESCALATE IF rules (`.opencode/skill/sk-visual-explainer/nodes/rules.md`)
-- [x] T012 Create nodes/success-criteria.md — 9 quality checks (7 original + accessibility + reduced-motion) (`.opencode/skill/sk-visual-explainer/nodes/success-criteria.md`)
-- [x] T013 Create nodes/how-it-works.md — 4-phase Think > Structure > Style > Deliver workflow (`.opencode/skill/sk-visual-explainer/nodes/how-it-works.md`)
-- [x] T014 Create nodes/smart-routing.md — Python pseudocode for intent classification (`.opencode/skill/sk-visual-explainer/nodes/smart-routing.md`)
-- [x] T015 Create nodes/commands.md — full contracts for all 5 commands (`.opencode/skill/sk-visual-explainer/nodes/commands.md`)
-- [x] T016 Create nodes/diagram-types.md — 11 types with decision tree (`.opencode/skill/sk-visual-explainer/nodes/diagram-types.md`)
-- [x] T017 Create nodes/aesthetics.md — 9 profiles with CSS variables and 11x9 compatibility matrix (`.opencode/skill/sk-visual-explainer/nodes/aesthetics.md`)
-- [x] T018 Create nodes/integration-points.md — CDN libraries, cross-skill integration (`.opencode/skill/sk-visual-explainer/nodes/integration-points.md`)
-- [x] T019 Create nodes/related-resources.md — master index (`.opencode/skill/sk-visual-explainer/nodes/related-resources.md`)
+- [x] T008 Create SKILL.md lean router with Smart Router pseudocode (~1,683 words) (`.opencode/skill/sk-doc-visual/SKILL.md`)
+- [x] T009 Create index.md MOC with 4 groups and 10 wikilinks (`.opencode/skill/sk-doc-visual/index.md`)
+- [x] T010 Create nodes/when-to-use.md — 5 command overview, decision matrix, proactive trigger table (`.opencode/skill/sk-doc-visual/nodes/when-to-use.md`)
+- [x] T011 Create nodes/rules.md — 9 ALWAYS, 7 NEVER, 4 ESCALATE IF rules (`.opencode/skill/sk-doc-visual/nodes/rules.md`)
+- [x] T012 Create nodes/success-criteria.md — 9 quality checks (7 original + accessibility + reduced-motion) (`.opencode/skill/sk-doc-visual/nodes/success-criteria.md`)
+- [x] T013 Create nodes/how-it-works.md — 4-phase Think > Structure > Style > Deliver workflow (`.opencode/skill/sk-doc-visual/nodes/how-it-works.md`)
+- [x] T014 Create nodes/smart-routing.md — Python pseudocode for intent classification (`.opencode/skill/sk-doc-visual/nodes/smart-routing.md`)
+- [x] T015 Create nodes/commands.md — full contracts for all 5 commands (`.opencode/skill/sk-doc-visual/nodes/commands.md`)
+- [x] T016 Create nodes/diagram-types.md — 11 types with decision tree (`.opencode/skill/sk-doc-visual/nodes/diagram-types.md`)
+- [x] T017 Create nodes/aesthetics.md — 9 profiles with CSS variables and 11x9 compatibility matrix (`.opencode/skill/sk-doc-visual/nodes/aesthetics.md`)
+- [x] T018 Create nodes/integration-points.md — CDN libraries, cross-skill integration (`.opencode/skill/sk-doc-visual/nodes/integration-points.md`)
+- [x] T019 Create nodes/related-resources.md — master index (`.opencode/skill/sk-doc-visual/nodes/related-resources.md`)
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -69,14 +69,14 @@ contextType: "implementation"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: References & Assets
 
-- [x] T020 Create references/quick_reference.md — ALWAYS tier, command cheat sheet, CDN snippets, 13 font pairings (`.opencode/skill/sk-visual-explainer/references/quick_reference.md`)
-- [x] T021 [P] Create references/css_patterns.md — CONDITIONAL tier, ~15KB CSS pattern library (`.opencode/skill/sk-visual-explainer/references/css_patterns.md`)
-- [x] T022 [P] Create references/library_guide.md — ON_DEMAND tier, ~16KB Mermaid v11, Chart.js v4, anime.js, Google Fonts (`.opencode/skill/sk-visual-explainer/references/library_guide.md`)
-- [x] T023 [P] Create references/navigation_patterns.md — CONDITIONAL tier, sticky TOC, scroll spy, mobile nav (`.opencode/skill/sk-visual-explainer/references/navigation_patterns.md`)
-- [x] T024 [P] Create references/quality_checklist.md — ON_DEMAND tier, detailed 9-check verification (`.opencode/skill/sk-visual-explainer/references/quality_checklist.md`)
-- [x] T025 Port assets/templates/architecture.html — terracotta/sage, CSS Grid, ~17KB (`.opencode/skill/sk-visual-explainer/assets/templates/architecture.html`)
-- [x] T026 [P] Port assets/templates/mermaid-flowchart.html — teal/cyan, Mermaid+ELK, ~13KB (`.opencode/skill/sk-visual-explainer/assets/templates/mermaid-flowchart.html`)
-- [x] T027 [P] Port assets/templates/data-table.html — rose/cranberry, data table, ~16KB (`.opencode/skill/sk-visual-explainer/assets/templates/data-table.html`)
+- [x] T020 Create references/quick_reference.md — ALWAYS tier, command cheat sheet, CDN snippets, 13 font pairings (`.opencode/skill/sk-doc-visual/references/quick_reference.md`)
+- [x] T021 [P] Create references/css_patterns.md — CONDITIONAL tier, ~15KB CSS pattern library (`.opencode/skill/sk-doc-visual/references/css_patterns.md`)
+- [x] T022 [P] Create references/library_guide.md — ON_DEMAND tier, ~16KB Mermaid v11, Chart.js v4, anime.js, Google Fonts (`.opencode/skill/sk-doc-visual/references/library_guide.md`)
+- [x] T023 [P] Create references/navigation_patterns.md — CONDITIONAL tier, sticky TOC, scroll spy, mobile nav (`.opencode/skill/sk-doc-visual/references/navigation_patterns.md`)
+- [x] T024 [P] Create references/quality_checklist.md — ON_DEMAND tier, detailed 9-check verification (`.opencode/skill/sk-doc-visual/references/quality_checklist.md`)
+- [x] T025 Port assets/templates/architecture.html — terracotta/sage, CSS Grid, ~17KB (`.opencode/skill/sk-doc-visual/assets/templates/architecture.html`)
+- [x] T026 [P] Port assets/templates/mermaid-flowchart.html — teal/cyan, Mermaid+ELK, ~13KB (`.opencode/skill/sk-doc-visual/assets/templates/mermaid-flowchart.html`)
+- [x] T027 [P] Port assets/templates/data-table.html — rose/cranberry, data table, ~16KB (`.opencode/skill/sk-doc-visual/assets/templates/data-table.html`)
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -84,15 +84,15 @@ contextType: "implementation"
 <!-- ANCHOR:phase-4 -->
 ## Phase 4: Commands & Integration
 
-- [x] T028 Create command/visual-explainer/generate.md (`.opencode/command/visual-explainer/generate.md`)
-- [x] T029 [P] Create command/visual-explainer/diff-review.md (`.opencode/command/visual-explainer/diff-review.md`)
-- [x] T030 [P] Create command/visual-explainer/plan-review.md (`.opencode/command/visual-explainer/plan-review.md`)
-- [x] T031 [P] Create command/visual-explainer/recap.md (`.opencode/command/visual-explainer/recap.md`)
-- [x] T032 [P] Create command/visual-explainer/fact-check.md (`.opencode/command/visual-explainer/fact-check.md`)
+- [x] T028 Create command/doc-visual/generate.md (`.opencode/command/doc-visual/generate.md`)
+- [x] T029 [P] Create command/doc-visual/diff-review.md (`.opencode/command/doc-visual/diff-review.md`)
+- [x] T030 [P] Create command/doc-visual/plan-review.md (`.opencode/command/doc-visual/plan-review.md`)
+- [x] T031 [P] Create command/doc-visual/recap.md (`.opencode/command/doc-visual/recap.md`)
+- [x] T032 [P] Create command/doc-visual/fact-check.md (`.opencode/command/doc-visual/fact-check.md`)
 - [x] T033 Add 11 INTENT_BOOSTERS entries to skill_advisor.py (`.opencode/skill/scripts/skill_advisor.py`)
 - [x] T034 Add 5 MULTI_SKILL_BOOSTERS entries to skill_advisor.py (`.opencode/skill/scripts/skill_advisor.py`)
-- [x] T035 Create scripts/validate-html-output.sh — 10-check static HTML validator (`.opencode/skill/sk-visual-explainer/scripts/validate-html-output.sh`)
-- [x] T036 [P] Create scripts/cleanup-output.sh — output directory maintenance (`.opencode/skill/sk-visual-explainer/scripts/cleanup-output.sh`)
+- [x] T035 Create scripts/validate-html-output.sh — 10-check static HTML validator (`.opencode/skill/sk-doc-visual/scripts/validate-html-output.sh`)
+- [x] T036 [P] Create scripts/cleanup-output.sh — output directory maintenance (`.opencode/skill/sk-doc-visual/scripts/cleanup-output.sh`)
 <!-- /ANCHOR:phase-4 -->
 
 ---
@@ -101,7 +101,7 @@ contextType: "implementation"
 ## Phase 5: Verification
 
 - [x] T037 Run package_skill.py validation (result: PASS, 1 non-blocking emoji warning)
-- [x] T038 Test skill_advisor.py routing (result: 0.95 confidence for "create visual explainer")
+- [x] T038 Test skill_advisor.py routing (result: 0.95 confidence for "create doc visual")
 - [x] T039 Verify SKILL.md word count (result: 1,683 words, under 5,000 limit)
 - [x] T040 Verify all 10 wikilinks in index.md resolve to existing files (result: 10/10)
 - [x] T041 Validate HTML templates via validate-html-output.sh (result: all 3 pass)

@@ -44,7 +44,7 @@ Agent Allocation:
 │   └── Agent 13: Security review
 │
 └── Group 4: Workflow Skills (2 agents)
-    ├── Agent 14: sk-documentation, workflows-code
+    ├── Agent 14: sk-doc, workflows-code
     └── Agent 15: sk-git, mcp-chrome-devtools
 ```
 

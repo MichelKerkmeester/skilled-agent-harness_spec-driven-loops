@@ -75,7 +75,7 @@ contextType: "implementation"
 - [ ] T052 Audit `.opencode/install_guides/README.md` (Node modules relocation spec 120)
 
 ### Workflow skill READMEs (6 files)
-- [ ] T053 Audit `sk-documentation/README.md`
+- [ ] T053 Audit `sk-doc/README.md`
 - [ ] T054 Audit `sk-code--opencode/README.md`
 - [ ] T055 Audit `workflows-code--web-dev/README.md`
 - [ ] T056 Audit `sk-code--full-stack/README.md`

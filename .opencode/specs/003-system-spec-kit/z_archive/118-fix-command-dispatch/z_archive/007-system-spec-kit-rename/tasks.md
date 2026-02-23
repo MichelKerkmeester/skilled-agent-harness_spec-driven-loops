@@ -226,7 +226,7 @@ contextType: "implementation"
 - **References**: 6
 - **Status**: [ ] Pending
 
-### Task 3.17: Update sk-documentation files
+### Task 3.17: Update sk-doc files
 - **Files**:
   - `SKILL.md` (line 449)
   - `references/quick_reference.md` (line 188)

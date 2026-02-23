@@ -522,7 +522,7 @@ This skill operates within the behavioral framework defined in AGENTS.md.
 | --------------------------- | ------------------------------------------ |
 | **sk-code--review**       | Findings-first review baseline, severity model, risk reporting |
 | **sk-code--web**          | Web/frontend development, browser testing  |
-| **sk-documentation** | Markdown documentation, skill creation     |
+| **sk-doc** | Markdown documentation, skill creation     |
 | **system-spec-kit**         | Spec folders, memory, context preservation |
 | **sk-git**           | Git workflows, commits, PR creation        |
 

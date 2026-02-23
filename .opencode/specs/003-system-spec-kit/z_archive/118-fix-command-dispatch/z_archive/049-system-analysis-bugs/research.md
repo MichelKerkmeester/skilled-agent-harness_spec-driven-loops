@@ -315,7 +315,7 @@ All placeholders documented with examples.
 **Verified Integrations:**
 - workflows-code: Downstream, correct references
 - sk-git: Downstream, correct references
-- sk-documentation: Downstream, correct references
+- sk-doc: Downstream, correct references
 - mcp-narsil: Via Code Mode, correct access pattern
 - mcp-code-mode: Standalone orchestration
 

@@ -1,1 +1,1 @@
-../../.opencode/command/visual-explainer/diff-review.md
+../../.opencode/command/create/visual_html.md

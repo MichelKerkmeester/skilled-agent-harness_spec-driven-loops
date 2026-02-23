@@ -264,7 +264,7 @@ Nodes: 416 | Edges: 630 | Skills: 9
 - sk-code--full-stack: 62 nodes
 - sk-code--opencode: 35 nodes
 - workflows-code--web-dev: 44 nodes
-- sk-documentation: 36 nodes
+- sk-doc: 36 nodes
 - sk-git: 21 nodes
 
 **Node types:** :Asset(51), :Document(135), :Entrypoint(9), :Index(9), :Node(73), :Reference(130), :Skill(9)
@@ -1406,7 +1406,7 @@ trigger_phrases:
   - "verification_workflows"
   - "verification workflows - phase 3 (mandatory)"
   - "browser verification requirements for all completion claims - no exceptions."
-  - "sk-documentation"
+  - "sk-doc"
   - "documentation"
   - "workflows documentation"
   - "unified markdown and opencode component specialist providing document quality enforcement, content optimization, component creation workflows, ascii flowcharts and install guides"
@@ -1560,7 +1560,7 @@ trigger_phrases:
   - "references/validation/validation_rules.md"
   - "references/validation/five-checks.md"
   - "../sk-code--opencode/skill.md"
-  - "../sk-documentation/skill.md"
+  - "../sk-doc/skill.md"
   - "level_specifications.md"
   - "template_guide.md"
   - "save_workflow.md"

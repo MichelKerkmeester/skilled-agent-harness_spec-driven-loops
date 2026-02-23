@@ -472,7 +472,7 @@ EVIDENCE SOURCES (5-Agent Parallel Research - 2026-02-04):
 ## Agent 3: Python Pattern Extraction (10 files)
 - .opencode/scripts/skill_advisor.py (header, sections, docstrings, naming)
 - .opencode/skill/mcp-code-mode/scripts/validate_config.py (validation patterns)
-- .opencode/skill/sk-documentation/scripts/validate_document.py (CLI, error handling)
+- .opencode/skill/sk-doc/scripts/validate_document.py (CLI, error handling)
 - .opencode/skill/system-spec-kit/scripts/tests/test_dual_threshold.py (pytest patterns)
 
 ## Agent 4: Shell/Config Pattern Extraction (60+ scripts, 3 JSONC files)

@@ -46,6 +46,6 @@ sk-code--review/
 Run validation from repo root:
 
 ```bash
-python3 .opencode/skill/sk-documentation/scripts/quick_validate.py .opencode/skill/sk-code--review --json
-python3 .opencode/skill/sk-documentation/scripts/package_skill.py .opencode/skill/sk-code--review
+python3 .opencode/skill/sk-doc/scripts/quick_validate.py .opencode/skill/sk-code--review --json
+python3 .opencode/skill/sk-doc/scripts/package_skill.py .opencode/skill/sk-code--review
 ```

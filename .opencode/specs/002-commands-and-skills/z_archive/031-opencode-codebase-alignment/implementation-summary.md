@@ -84,11 +84,11 @@ Level 3+ spec artifacts were created and refined, baseline audit was completed, 
 
 #### Python (`.py`)
 - `.opencode/skill/scripts/skill_advisor.py`
-- `.opencode/skill/sk-documentation/scripts/validate_document.py`
-- `.opencode/skill/sk-documentation/scripts/extract_structure.py`
+- `.opencode/skill/sk-doc/scripts/validate_document.py`
+- `.opencode/skill/sk-doc/scripts/extract_structure.py`
 
 #### Config (`.json` / `.jsonc`)
-- `.opencode/skill/sk-documentation/assets/template_rules.json`
+- `.opencode/skill/sk-doc/assets/template_rules.json`
 - `.opencode/skill/system-spec-kit/mcp_server/configs/search-weights.json`
 - `.opencode/skill/system-spec-kit/config/filters.jsonc`
 - `.opencode/skill/system-spec-kit/package.json`

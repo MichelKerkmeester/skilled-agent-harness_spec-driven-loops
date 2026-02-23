@@ -42,7 +42,7 @@ Unified workflow guidance across 6 specialized code quality skills for frontend 
 - Documentation-only changes
 - Pure research without implementation
 - Git/version control operations (use sk-git instead)
-- Skill creation/editing (use sk-documentation instead)
+- Skill creation/editing (use sk-doc instead)
 
 ### Phase Overview
 
@@ -606,7 +606,7 @@ Run Lighthouse 3× in Incognito with mobile emulation, use median scores.
 | Skill                         | Use For                                                     |
 | ----------------------------- | ----------------------------------------------------------- |
 | **sk-code--review**    | Findings-first review baseline, severity model, risk reporting |
-| **sk-documentation**   | Documentation quality, skill creation, markdown validation  |
+| **sk-doc**   | Documentation quality, skill creation, markdown validation  |
 | **sk-git**             | Git workflows, commit hygiene, PR creation                  |
 | **system-spec-kit**           | Spec folder management, memory system, context preservation |
 | **mcp-chrome-devtools** | Browser debugging, screenshots, console access              |

@@ -1,1 +1,1 @@
-../../.opencode/command/visual-explainer/generate.md
+../../.opencode/command/create/visual_html.md

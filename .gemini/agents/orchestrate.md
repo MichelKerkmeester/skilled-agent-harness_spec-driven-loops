@@ -89,7 +89,7 @@ flowchart TD
 | 2        | Evidence / investigation                                                  | `@research`            | LEAF | `system-spec-kit`                                                                 | `"general"`   |
 | 3        | Spec folder docs                                                          | `@speckit` ⛔ EXCLUSIVE | LEAF | `system-spec-kit`                                                                 | `"general"`   |
 | 4        | Code review / security                                                    | `@review`              | LEAF | `sk-code` baseline + one `sk-code--*` overlay (auto-detected)      | `"general"`   |
-| 5        | Documentation (non-spec)                                                  | `@write`               | LEAF | `sk-documentation`                                                         | `"general"`   |
+| 5        | Documentation (non-spec)                                                  | `@write`               | LEAF | `sk-doc`                                                         | `"general"`   |
 | 6        | Implementation / testing                                                  | `@general`             | LEAF | `sk-code--*` (auto-detects available variant), `mcp-chrome-devtools` | `"general"`   |
 | 7        | Debugging (stuck, 3+ fails)                                               | `@debug`               | LEAF | Code analysis tools                                                               | `"general"`   |
 | 8        | Session handover                                                          | `@handover`            | LEAF | `system-spec-kit`                                                                 | `"general"`   |
@@ -760,7 +760,7 @@ The orchestrator's own behavior can cause context overload. Follow these rules:
 | `sk-code`         | Review baseline | Findings-first review floor, mandatory security/correctness minimums | -                       |
 | `sk-code--*`         | Implementation/overlay | Code changes, debugging, stack-specific standards and verification | -                    |
 | `sk-git`             | Version Control | See skill for details                                            | -                          |
-| `sk-documentation`   | Markdown        | Doc quality, DQI scoring, skill creation, flowcharts             | `/create:*`                |
+| `sk-doc`   | Markdown        | Doc quality, DQI scoring, skill creation, flowcharts             | `/create:*`                |
 | `mcp-chrome-devtools` | Browser         | DevTools automation, screenshots, console, CDP                   | `bdg` CLI                  |
 | `mcp-code-mode`             | External Tools  | Webflow, Figma, ClickUp, Chrome DevTools via MCP                 | `call_tool_chain()`        |
 
@@ -777,7 +777,7 @@ The orchestrator's own behavior can cause context overload. Follow these rules:
 | `sk-code`         | Review baseline lifecycle | `.opencode/skill/sk-code/` |
 | `sk-code--*`         | Stack overlay lifecycle (auto-detects variant) | `.opencode/skill/sk-code--*/` |
 | `sk-git`             | Version control workflows                       | `.opencode/skill/sk-git/`             |
-| `sk-documentation`   | Doc quality, DQI scoring, skill creation        | `.opencode/skill/sk-documentation/`   |
+| `sk-doc`   | Doc quality, DQI scoring, skill creation        | `.opencode/skill/sk-doc/`   |
 | `mcp-chrome-devtools` | Browser debugging, screenshots, CDP             | `.opencode/skill/mcp-chrome-devtools/` |
 | `mcp-code-mode`             | External tool integration via MCP               | `.opencode/skill/mcp-code-mode/`             |
 

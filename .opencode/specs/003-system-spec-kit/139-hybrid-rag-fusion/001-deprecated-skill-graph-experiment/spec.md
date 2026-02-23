@@ -78,7 +78,7 @@ Provide completion-grade closure for deprecating skill graph + README/skill-ref/
   - README auto-indexing notes removed from create-folder-readme auto/confirm YAML.
 - Confirm and document missing README table-of-contents anchor additions in:
   - `.opencode/skill/mcp-chrome-devtools/README.md`
-  - `.opencode/skill/sk-documentation/README.md`
+  - `.opencode/skill/sk-doc/README.md`
   - `.opencode/skill/system-spec-kit/templates/addendum/README.md`
 - Capture MCP residual cleanup:
   - `SkillGraphLike` renamed to `MemoryGraphLike`.

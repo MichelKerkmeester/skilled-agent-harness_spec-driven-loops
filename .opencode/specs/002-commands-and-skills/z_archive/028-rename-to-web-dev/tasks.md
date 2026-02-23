@@ -92,7 +92,7 @@ contextType: "implementation"
 - [ ] T029 [P] Update `.opencode/skill/system-spec-kit/references/validation/phase_checklists.md`
 - [ ] T030 [P] Update `.opencode/skill/system-spec-kit/references/memory/epistemic-vectors.md`
 - [ ] T031 [P] Update `.opencode/skill/system-spec-kit/mcp_server/tests/README.md`
-- [ ] T032 [P] Update `.opencode/skill/sk-documentation/assets/opencode/skill_md_template.md`
+- [ ] T032 [P] Update `.opencode/skill/sk-doc/assets/opencode/skill_md_template.md`
 
 <!-- /ANCHOR:phase-3 -->
 

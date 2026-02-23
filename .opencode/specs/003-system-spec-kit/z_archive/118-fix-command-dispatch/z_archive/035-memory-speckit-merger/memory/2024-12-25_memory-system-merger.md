@@ -260,7 +260,7 @@ Single unified skill with all capabilities merged:
 **Options Considered**:
 1. Keep existing format
 2. Create new documentation structure
-3. Apply sk-documentation standards
+3. Apply sk-doc standards
 
 **Chosen**: Option 3 - Apply standards
 
@@ -306,8 +306,8 @@ Single unified skill with all capabilities merged:
 |------|--------|
 | `.opencode/skill/system-spec-kit/SKILL.md` | Updated to v16.0.0 with merged architecture |
 | `.opencode/skill/system-spec-kit/README.md` | Updated component locations |
-| `.opencode/skill/system-spec-kit/references/validation_rules.md` | Aligned with sk-documentation standards |
-| `.opencode/skill/system-spec-kit/references/worked_examples.md` | Aligned with sk-documentation standards |
+| `.opencode/skill/system-spec-kit/references/validation_rules.md` | Aligned with sk-doc standards |
+| `.opencode/skill/system-spec-kit/references/worked_examples.md` | Aligned with sk-doc standards |
 
 ### MCP Server
 | File | Change |
@@ -352,8 +352,8 @@ Single unified skill with all capabilities merged:
 - Updated `skill_advisor.py`
 
 ### Phase 11: Documentation Alignment
-- Aligned `validation_rules.md` with sk-documentation standards
-- Aligned `worked_examples.md` with sk-documentation standards
+- Aligned `validation_rules.md` with sk-doc standards
+- Aligned `worked_examples.md` with sk-doc standards
 
 ### Final: Cleanup
 - Deleted old `.opencode/skill/system-memory/` folder

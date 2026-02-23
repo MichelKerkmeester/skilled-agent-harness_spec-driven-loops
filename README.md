@@ -545,7 +545,7 @@ Skills are domain expertise on demand. The AI loads the right skill and already 
 | `sk-code--full-stack` | Multi-Stack   | Go, Node.js, React, React Native, Swift, auto-detected via marker files                |
 | `sk-code--opencode`   | System Code   | TypeScript, Python, Shell for MCP servers and scripts                                  |
 | `sk-code--web`        | Web Dev       | Webflow, vanilla JS: implementation, debugging, verification                           |
-| `sk-documentation`    | Docs          | Document quality scoring, skill creation and install guides                            |
+| `sk-doc`    | Docs          | Document quality scoring, skill creation and install guides                            |
 | `sk-git`              | Git           | Commits, branches, PRs, worktrees                                                      |
 
 ### Auto-Detection
@@ -971,7 +971,7 @@ A: Each provider uses a separate database, so switching is safe. Your old embedd
 A: Run `/create:skill my-skill-name` or use the init script:
 
 ```bash
-python3 .opencode/skill/sk-documentation/scripts/init_skill.py my-skill
+python3 .opencode/skill/sk-doc/scripts/init_skill.py my-skill
 ```
 
 Skills are auto-discovered from `.opencode/skill/*/SKILL.md`. No plugin registration needed.
@@ -1013,8 +1013,8 @@ A: Minimal. SQLite databases are compact. A project with 100+ memories typically
 | [Workflows: Code (Web Dev)](.opencode/changelog/07--sk-code--web/)           | 10 files |
 | [Workflows: Code (Full Stack)](.opencode/changelog/08--sk-code--full-stack/) | 4 files  |
 | [Workflows: Git](.opencode/changelog/09--sk-git/)                            | 7 files  |
-| [Workflows: Documentation](.opencode/changelog/10--sk-documentation/)        | 9 files  |
-| [Workflows: Visual Explainer](.opencode/changelog/11--sk-visual-explainer/)  | 1 file   |
+| [Workflows: Documentation](.opencode/changelog/10--sk-doc/)        | 9 files  |
+| [Workflows: Doc Visual](.opencode/changelog/11--sk-doc-visual/)  | 1 file   |
 | [MCP: Code Mode](.opencode/changelog/12--mcp-code-mode/)                     | 7 files  |
 | [MCP: Chrome DevTools](.opencode/changelog/13--mcp-chrome-devtools/)         | 4 files  |
 | [MCP: Figma](.opencode/changelog/14--mcp-figma/)                             | 5 files  |

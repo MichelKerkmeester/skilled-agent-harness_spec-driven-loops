@@ -124,12 +124,12 @@ Legacy Memory File
 **Original Content (preserved from legacy format):**
 
 ---
-title: "Skill Rename: create-documentation → sk-documentation"
+title: "Skill Rename: create-documentation → sk-doc"
 context_type: implementation
 importance: critical
 timestamp: 2024-12-17T07:55:00Z
 triggers:
-  - sk-documentation
+  - sk-doc
   - create-documentation
   - skill rename
   - documentation skill
@@ -138,14 +138,14 @@ triggers:
 <!-- ANCHOR:skill-rename-summary -->
 ## Summary
 
-Successfully renamed the `create-documentation` skill to `sk-documentation` to align with the naming convention of other workflow skills (workflows-code, sk-git, workflows-memory, workflows-spec-kit).
+Successfully renamed the `create-documentation` skill to `sk-doc` to align with the naming convention of other workflow skills (workflows-code, sk-git, workflows-memory, workflows-spec-kit).
 <!-- /ANCHOR:skill-rename-summary -->
 
 <!-- ANCHOR:files-changed -->
 ## Files Changed
 
 ### Directory Rename
-- `.opencode/skills/create-documentation/` → `.opencode/skills/sk-documentation/`
+- `.opencode/skills/create-documentation/` → `.opencode/skills/sk-doc/`
 
 ### AGENTS Files (5 edits)
 | File | Lines Changed |
@@ -161,10 +161,10 @@ Successfully renamed the `create-documentation` skill to `sk-documentation` to a
 ### Skill Internal Files (6 edits)
 | File | Changes |
 |------|---------|
-| `sk-documentation/SKILL.md` | name field, keywords |
-| `sk-documentation/assets/skill_md_template.md` | 3 refs |
-| `sk-documentation/references/quick_reference.md` | 1 ref |
-| `sk-documentation/markdown-document-specialist` | 2 refs |
+| `sk-doc/SKILL.md` | name field, keywords |
+| `sk-doc/assets/skill_md_template.md` | 3 refs |
+| `sk-doc/references/quick_reference.md` | 1 ref |
+| `sk-doc/markdown-document-specialist` | 2 refs |
 
 ### Cross-Skill References (5 edits)
 | File | Changes |
@@ -203,7 +203,7 @@ These are historical records that should reflect the name at time of writing.
 ✓ mcp-semantic-search   - CLEAN (0 old refs)
 ✓ mcp-chrome-devtools - CLEAN (0 old refs)
 ✓ workflows-code        - CLEAN (0 old refs)
-✓ sk-documentation - CLEAN (0 old refs)
+✓ sk-doc - CLEAN (0 old refs)
 ✓ sk-git         - CLEAN (0 old refs)
 ✓ workflows-memory      - CLEAN (0 old refs)
 ✓ workflows-spec-kit    - CLEAN (0 old refs)
@@ -238,10 +238,10 @@ These are historical records that should reflect the name at time of writing.
 <!-- ANCHOR:related-files -->
 ## Related Files
 
-- Spec: `specs/002-skills/001-sk-documentation/spec.md`
-- Plan: `specs/002-skills/001-sk-documentation/plan.md`
-- Tasks: `specs/002-skills/001-sk-documentation/tasks.md`
-- Test results: `specs/002-skills/001-sk-documentation/scratch/test_results.md`
+- Spec: `specs/002-skills/001-sk-doc/spec.md`
+- Plan: `specs/002-skills/001-sk-doc/plan.md`
+- Tasks: `specs/002-skills/001-sk-doc/tasks.md`
+- Test results: `specs/002-skills/001-sk-doc/scratch/test_results.md`
 <!-- /ANCHOR:related-files -->
 
 

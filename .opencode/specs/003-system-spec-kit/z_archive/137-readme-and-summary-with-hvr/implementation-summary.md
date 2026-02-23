@@ -14,7 +14,7 @@ contextType: "implementation"
 
 <!-- SPECKIT_LEVEL: 3+ -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-documentation/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -43,7 +43,7 @@ Six changes shipped across six distinct deliverables.
 
 The source document `context/Rules - Human Voice - v0.101.md` was read in full. Every reference to Barter systems, MEQT scoring, DEAL content workflows, and LinkedIn distribution was removed. The loading condition changed from "active for Barter documentation" to "always active for documentation generation tasks." The scope statement moved from "6 Barter content systems" to system-agnostic language.
 
-The result is `.opencode/skill/sk-documentation/assets/documentation/hvr_rules.md`, a 580-line document covering 11 sections: voice directives, punctuation standards, AI structural patterns to avoid, the full banned-words list (18 words), banned phrases, soft deductions, and a pre-publish checklist. Section 11 is new: it explains how templates should reference and embed HVR guidance, turning the document into both a ruleset and an integration guide.
+The result is `.opencode/skill/sk-doc/assets/documentation/hvr_rules.md`, a 580-line document covering 11 sections: voice directives, punctuation standards, AI structural patterns to avoid, the full banned-words list (18 words), banned phrases, soft deductions, and a pre-publish checklist. Section 11 is new: it explains how templates should reference and embed HVR guidance, turning the document into both a ruleset and an integration guide.
 
 The YAML frontmatter carries `trigger_phrases` for MCP memory retrieval and `importance_tier: constitutional`, marking HVR as a non-negotiable baseline rather than a style preference.
 
@@ -72,13 +72,13 @@ The `install_guide_template.md` received an HVR reference in its Writing Style s
 
 ### SKILL.md Resource Map
 
-The `SKILL.md` for the sk-documentation skill was updated with a new HVR intent signal (weight: 4, keywords: human voice, hvr, voice rules, banned words, writing style) and a new resource mapping to `hvr_rules.md`. Two existing references that pointed writers to "see readme_template.md §9" now point directly to `hvr_rules.md` instead.
+The `SKILL.md` for the sk-doc skill was updated with a new HVR intent signal (weight: 4, keywords: human voice, hvr, voice rules, banned words, writing style) and a new resource mapping to `hvr_rules.md`. Two existing references that pointed writers to "see readme_template.md §9" now point directly to `hvr_rules.md` instead.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/skill/sk-documentation/assets/documentation/hvr_rules.md` | Created | Standalone system-agnostic HVR rules extracted from Barter source |
+| `.opencode/skill/sk-doc/assets/documentation/hvr_rules.md` | Created | Standalone system-agnostic HVR rules extracted from Barter source |
 | `.opencode/skill/system-spec-kit/templates/core/implementation-summary.md` | Modified | HVR reference, voice guide comments, decisions table update |
 | `.opencode/skill/system-spec-kit/templates/level_1/implementation-summary.md` | Modified | HVR reference, voice guide comments, decisions table update |
 | `.opencode/skill/system-spec-kit/templates/level_2/implementation-summary.md` | Modified | HVR reference, voice guide comments, How It Was Delivered section, decisions table update |
@@ -87,9 +87,9 @@ The `SKILL.md` for the sk-documentation skill was updated with a new HVR intent 
 | `.opencode/skill/system-spec-kit/templates/level_3/decision-record.md` | Modified | HVR reference, plain-English labels, voice guide comments |
 | `.opencode/skill/system-spec-kit/templates/level_3+/decision-record.md` | Modified | HVR reference, plain-English labels, voice guide comments |
 | `.opencode/skill/system-spec-kit/templates/addendum/level3-arch/decision-record.md` | Modified | HVR reference, plain-English labels, voice guide comments |
-| `.opencode/skill/sk-documentation/assets/documentation/readme_template.md` | Modified | Section 9 replaced: full embedded rules to compact quick reference + link |
-| `.opencode/skill/sk-documentation/assets/documentation/install_guide_template.md` | Modified | HVR reference in Writing Style section; "bridge the gap" violation fixed |
-| `.opencode/skill/sk-documentation/SKILL.md` | Modified | HVR intent signal, resource mapping, two cross-reference updates |
+| `.opencode/skill/sk-doc/assets/documentation/readme_template.md` | Modified | Section 9 replaced: full embedded rules to compact quick reference + link |
+| `.opencode/skill/sk-doc/assets/documentation/install_guide_template.md` | Modified | HVR reference in Writing Style section; "bridge the gap" violation fixed |
+| `.opencode/skill/sk-doc/SKILL.md` | Modified | HVR intent signal, resource mapping, two cross-reference updates |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -153,5 +153,5 @@ The `addendum/level3-arch/decision-record.md` template is a source component use
 <!--
 CORE TEMPLATE: Post-implementation documentation, created AFTER work completes.
 Write in human voice: active, direct, specific. No em dashes, no hedging, no AI filler.
-HVR rules: .opencode/skill/sk-documentation/references/hvr_rules.md
+HVR rules: .opencode/skill/sk-doc/references/hvr_rules.md
 -->

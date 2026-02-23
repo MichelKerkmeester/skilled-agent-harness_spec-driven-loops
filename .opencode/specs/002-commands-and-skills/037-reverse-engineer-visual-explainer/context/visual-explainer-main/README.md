@@ -1,8 +1,8 @@
 <p>
-  <img src="banner.png" alt="visual-explainer" width="1100">
+  <img src="banner.png" alt="doc-visual" width="1100">
 </p>
 
-# visual-explainer
+# doc-visual
 
 **An agent skill that turns complex terminal output into styled HTML pages you actually want to read.**
 
@@ -32,10 +32,10 @@ The skill follows the [Agent Skills specification](https://agentskills.io/specif
 
 ```bash
 # Pi
-git clone https://github.com/nicobailon/visual-explainer.git ~/.pi/agent/skills/visual-explainer
+git clone https://github.com/nicobailon/doc-visual.git ~/.pi/agent/skills/doc-visual
 
 # Claude Code
-git clone https://github.com/nicobailon/visual-explainer.git ~/.claude/skills/visual-explainer
+git clone https://github.com/nicobailon/doc-visual.git ~/.claude/skills/doc-visual
 
 # Other agents — point at the directory containing SKILL.md,
 # or paste its contents into your system prompt
@@ -44,7 +44,7 @@ git clone https://github.com/nicobailon/visual-explainer.git ~/.claude/skills/vi
 For Pi, restart after cloning. To get the slash commands (`/diff-review`, `/plan-review`, etc.), copy the prompt templates:
 
 ```bash
-cp ~/.pi/agent/skills/visual-explainer/prompts/*.md ~/.pi/agent/prompts/
+cp ~/.pi/agent/skills/doc-visual/prompts/*.md ~/.pi/agent/prompts/
 ```
 
 If you have [surf-cli](https://github.com/nicobailon/surf-cli) installed, the skill can also generate illustrations via Gemini Nano Banana Pro and embed them in pages. The agent detects surf automatically and skips image generation if it's not there.

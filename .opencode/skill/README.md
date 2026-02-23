@@ -61,14 +61,14 @@ python3 .opencode/skill/scripts/skill_advisor.py "rewrite README for skill libra
 **2. Open a skill directly**
 
 ```bash
-sed -n '1,120p' .opencode/skill/sk-documentation/SKILL.md
+sed -n '1,120p' .opencode/skill/sk-doc/SKILL.md
 ```
 
 **3. Run skill-local scripts**
 
 ```bash
-python3 .opencode/skill/sk-documentation/scripts/validate_document.py .opencode/skill/README.md
-python3 .opencode/skill/sk-documentation/scripts/extract_structure.py .opencode/skill/README.md --json
+python3 .opencode/skill/sk-doc/scripts/validate_document.py .opencode/skill/README.md
+python3 .opencode/skill/sk-doc/scripts/extract_structure.py .opencode/skill/README.md --json
 ```
 
 Loading sequence:
@@ -90,9 +90,9 @@ Request -> Route skill -> Load SKILL.md -> Load only needed references/assets/sc
 ├── scripts/
 ├── sk-code/                # Baseline code workflow (optional by repo)
 ├── sk-code--*/             # Overlay code workflow skills (repo-specific)
-├── sk-documentation/
+├── sk-doc/
 ├── sk-git/
-├── sk-visual-explainer/
+├── sk-doc-visual/
 ├── system-spec-kit/
 └── README.md
 ```
@@ -111,8 +111,8 @@ Request -> Route skill -> Load SKILL.md -> Load only needed references/assets/sc
 | --- | --- |
 | `mcp-code-mode` | `scripts/update-code-mode.sh`, `scripts/validate_config.py` |
 | `sk-code` or `sk-code--*` | Overlay-owned scripts vary by repo (for example alignment checks or minification pipelines) |
-| `sk-documentation` | `scripts/init_skill.py`, `scripts/quick_validate.py`, `scripts/package_skill.py`, `scripts/validate_document.py`, `scripts/extract_structure.py`, `scripts/validate_flowchart.sh` |
-| `sk-visual-explainer` | `scripts/validate-html-output.sh`, `scripts/check-version-drift.sh`, `scripts/cleanup-output.sh` |
+| `sk-doc` | `scripts/init_skill.py`, `scripts/quick_validate.py`, `scripts/package_skill.py`, `scripts/validate_document.py`, `scripts/extract_structure.py`, `scripts/validate_flowchart.sh` |
+| `sk-doc-visual` | `scripts/validate-html-output.sh`, `scripts/check-version-drift.sh`, `scripts/cleanup-output.sh` |
 | `system-spec-kit` | `scripts/spec/create.sh`, `scripts/spec/validate.sh`, `scripts/memory/generate-context.ts`, `scripts/memory/reindex-embeddings.ts`, `scripts/setup/check-prerequisites.sh` |
 
 For the full `system-spec-kit` script inventory, use `system-spec-kit/scripts/scripts-registry.json`.
@@ -141,7 +141,7 @@ Portable code workflow contract:
 
 ### Documentation
 
-#### `sk-documentation` (v1.1.2.0)
+#### `sk-doc` (v1.1.2.0)
 
 Documentation quality workflows, HVR enforcement, component templates and validation scripts.
 
@@ -167,7 +167,7 @@ Figma MCP workflow for file retrieval, image export and component/style extracti
 
 ### Visual Output
 
-#### `sk-visual-explainer` (v1.1.0.0)
+#### `sk-doc-visual` (v1.1.0.0)
 
 Converts terminal output and technical context into styled, self-contained HTML visual artifacts.
 
@@ -193,9 +193,9 @@ Converts terminal output and technical context into styled, self-contained HTML 
 | `mcp-code-mode` | Yes | Yes | Yes |
 | `mcp-figma` | Yes | Yes | No |
 | `sk-code` or `sk-code--*` | Varies | Varies | Varies |
-| `sk-documentation` | Yes | Yes | Yes |
+| `sk-doc` | Yes | Yes | Yes |
 | `sk-git` | Yes | Yes | No |
-| `sk-visual-explainer` | Yes | Yes | Yes |
+| `sk-doc-visual` | Yes | Yes | Yes |
 | `system-spec-kit` | Yes | Yes | Yes |
 
 <!-- /ANCHOR:skill-structure -->
@@ -227,21 +227,21 @@ Request -> skill_advisor.py -> top match + confidence -> invoke or continue
 <!-- ANCHOR:creating-skills -->
 ## 7. CREATING SKILLS
 
-Use `sk-documentation` for skill scaffolding and validation.
+Use `sk-doc` for skill scaffolding and validation.
 
 Primary references:
 
-- `.opencode/skill/sk-documentation/references/skill_creation.md`
-- `.opencode/skill/sk-documentation/assets/opencode/skill_md_template.md`
-- `.opencode/skill/sk-documentation/assets/opencode/skill_reference_template.md`
-- `.opencode/skill/sk-documentation/assets/opencode/skill_asset_template.md`
+- `.opencode/skill/sk-doc/references/skill_creation.md`
+- `.opencode/skill/sk-doc/assets/opencode/skill_md_template.md`
+- `.opencode/skill/sk-doc/assets/opencode/skill_reference_template.md`
+- `.opencode/skill/sk-doc/assets/opencode/skill_asset_template.md`
 
 Typical flow:
 
 ```bash
-python3 .opencode/skill/sk-documentation/scripts/init_skill.py my-skill --path .opencode/skill
-python3 .opencode/skill/sk-documentation/scripts/quick_validate.py .opencode/skill/my-skill --json
-python3 .opencode/skill/sk-documentation/scripts/package_skill.py .opencode/skill/my-skill
+python3 .opencode/skill/sk-doc/scripts/init_skill.py my-skill --path .opencode/skill
+python3 .opencode/skill/sk-doc/scripts/quick_validate.py .opencode/skill/my-skill --json
+python3 .opencode/skill/sk-doc/scripts/package_skill.py .opencode/skill/my-skill
 ```
 
 <!-- /ANCHOR:creating-skills -->
@@ -260,9 +260,9 @@ Skill folders:
 
 - [system-spec-kit](system-spec-kit/)
 - `sk-code/` or `sk-code--*/` (repo-specific code baseline and overlays)
-- [sk-documentation](sk-documentation/)
+- [sk-doc](sk-doc/)
 - [sk-git](sk-git/)
-- [sk-visual-explainer](sk-visual-explainer/)
+- [sk-doc-visual](sk-doc-visual/)
 - [mcp-chrome-devtools](mcp-chrome-devtools/)
 - [mcp-code-mode](mcp-code-mode/)
 - [mcp-figma](mcp-figma/)

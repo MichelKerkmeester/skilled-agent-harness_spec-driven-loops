@@ -64,7 +64,7 @@ contextType: "implementation"
 - [x] T014 Improve sk-code--full-stack README.md
 - [x] T015 Improve sk-code--opencode README.md
 - [x] T016 Improve workflows-code--web-dev README.md
-- [x] T017 Improve sk-documentation README.md
+- [x] T017 Improve sk-doc README.md
 - [x] T018 Improve sk-git README.md
 
 ### Core Documentation (6 files)
@@ -73,7 +73,7 @@ contextType: "implementation"
 - [x] T021 Tighten install_guides/install_scripts/README.md
 - [x] T022 Tighten .opencode/scripts/README.md
 - [x] T023 Tighten root README.md
-- [x] T024 Improve sk-documentation/SKILL.md
+- [x] T024 Improve sk-doc/SKILL.md
 
 **NOTE**: Covered 63% of documentation scope (81/127 files). Uncovered files (46) include:
 - 8 agent definition files (.opencode/agent/*.md)
@@ -84,7 +84,7 @@ contextType: "implementation"
 These represent future work for comprehensive documentation quality.
 
 ### Version & Template Management
-- [x] T025 Bump sk-documentation SKILL.md version to 1.0.6.0
+- [x] T025 Bump sk-doc SKILL.md version to 1.0.6.0
 - [x] T026 Restructure readme_template.md (+191 lines of improvements)
 
 ### Configuration Cleanup

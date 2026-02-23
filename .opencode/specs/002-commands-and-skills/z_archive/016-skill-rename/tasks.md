@@ -1,5 +1,5 @@
 ---
-title: "Tasks: sk-documentation Skill Functional Testing [016-skill-rename/tasks]"
+title: "Tasks: sk-doc Skill Functional Testing [016-skill-rename/tasks]"
 description: "Result: ALL TESTS PASSED"
 trigger_phrases:
   - "tasks"
@@ -13,7 +13,7 @@ contextType: "implementation"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: legacy-normalized | v2.2 -->
 
-# Tasks: sk-documentation Skill Functional Testing
+# Tasks: sk-doc Skill Functional Testing
 
 <!-- ANCHOR:notation -->
 ## Task Notation
@@ -73,11 +73,11 @@ contextType: "implementation"
 <!-- ANCHOR:phase-4 -->
 ## US4: Skill Invocation
 
-- [x] TSK-010: Verify SKILL.md name is "sk-documentation"
-  - Verified: Line 2 contains `name: sk-documentation`
+- [x] TSK-010: Verify SKILL.md name is "sk-doc"
+  - Verified: Line 2 contains `name: sk-doc`
 
-- [x] TSK-011: Verify keywords include "sk-documentation"
-  - Verified: Line 8 keywords include `sk-documentation`
+- [x] TSK-011: Verify keywords include "sk-doc"
+  - Verified: Line 8 keywords include `sk-doc`
 
 <!-- /ANCHOR:phase-4 -->
 

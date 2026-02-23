@@ -93,7 +93,7 @@ The skill currently named `workflows-spec-kit` provides mandatory spec folder wo
 
 ## Reference: Previous Skill Rename
 
-The `create-documentation` → `sk-documentation` rename (documented in `specs/002-skills/001-sk-documentation/001-skill-rename/`) established these patterns:
+The `create-documentation` → `sk-doc` rename (documented in `specs/002-skills/001-sk-doc/001-skill-rename/`) established these patterns:
 
 1. **Preserve historical references** in specs/memory files
 2. **Two-tier verification**: Reference grep + Functional testing
@@ -144,7 +144,7 @@ The `create-documentation` → `sk-documentation` rename (documented in `specs/0
 | Skill | Files | Refs |
 |-------|-------|------|
 | workflows-memory | 5 | 9 |
-| sk-documentation | 3 | 4 |
+| sk-doc | 3 | 4 |
 | cli-codex | 1 | 2 |
 | cli-gemini | 1 | 2 |
 

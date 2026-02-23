@@ -198,7 +198,7 @@ No configuration files are required. The skill self-configures through language 
 | `sk-code--web`                | Web/frontend code (DOM, CSS, browser testing)     |
 | `sk-code--full-stack`  | Multi-stack projects (Go, React, Swift, etc.)     |
 | `mcp-code-mode`               | TypeScript orchestration for external MCP tools    |
-| `sk-documentation`     | Markdown docs, skill creation, DQI validation     |
+| `sk-doc`     | Markdown docs, skill creation, DQI validation     |
 | `system-spec-kit`             | Spec folders, memory, context preservation        |
 | `sk-git`               | Git workflows, commits, PR creation               |
 

@@ -16,7 +16,7 @@ contextType: "implementation"
 
 <!-- SPECKIT_LEVEL: 3+ -->
 <!-- SPECKIT_TEMPLATE_SOURCE: implementation-summary | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-documentation/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
 
 <!-- ANCHOR:implementation-summary-001-workstream-a -->
 
@@ -389,7 +389,7 @@ Level 3+: Workstream A implementation summary — Hybrid RAG Fusion Pipeline.
 24/24 tasks complete. 5 new production modules, 6 modified source files, 11 test files.
 Latest verification: 4,546 passed, 19 skipped, 0 failed, 155 files.
 Written in human voice: active, direct, specific. No em dashes, no hedging, no AI filler.
-HVR rules: .opencode/skill/sk-documentation/references/hvr_rules.md
+HVR rules: .opencode/skill/sk-doc/references/hvr_rules.md
 -->
 
 <!-- /ANCHOR:implementation-summary-001-workstream-a -->

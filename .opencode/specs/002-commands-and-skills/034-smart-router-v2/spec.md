@@ -102,7 +102,7 @@ Implement weighted keyword intent classification with recursive discovery and st
 | `.opencode/skill/sk-code--full-stack/SKILL.md` | Modify | Add weighted classification + stack detection (Go/Node/React/RN/Swift) |
 | `.opencode/skill/sk-code--opencode/SKILL.md` | Modify | Add weighted classification + language detection (JS/TS/Python/Shell) |
 | `.opencode/skill/workflows-code--web-dev/SKILL.md` | Modify | Add weighted classification + stack detection (Webflow/vanilla JS) |
-| `.opencode/skill/sk-documentation/SKILL.md` | Modify | Add weighted classification, recursive discovery for templates |
+| `.opencode/skill/sk-doc/SKILL.md` | Modify | Add weighted classification, recursive discovery for templates |
 | `.opencode/skill/sk-git/SKILL.md` | Modify | Add weighted classification, read-only enforcement weights |
 | `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Barter/coder/.opencode/skill/sk-git/SKILL.md` | Modify | Add weighted classification (Barter-specific) |
 | `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Barter/coder/.opencode/skill/workflows-code/SKILL.md` | Modify | Add weighted classification + stack detection (Barter-specific) |

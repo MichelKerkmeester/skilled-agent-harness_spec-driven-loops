@@ -59,7 +59,7 @@ Skills were designed before the anchor-based retrieval system (ANCHOR tags) was 
 ### In Scope
 
 **Core Deliverables**:
-1. Update three skill template files in `.opencode/skill/sk-documentation/assets/opencode/`:
+1. Update three skill template files in `.opencode/skill/sk-doc/assets/opencode/`:
    - `skill_md_template.md` (main SKILL.md structure)
    - `skill_reference_template.md` (references folder docs)
    - `skill_asset_template.md` (assets folder docs)
@@ -108,7 +108,7 @@ Skills were designed before the anchor-based retrieval system (ANCHOR tags) was 
 
 ### Dependencies
 
-- `.opencode/skill/sk-documentation/` templates (source of truth)
+- `.opencode/skill/sk-doc/` templates (source of truth)
 - Memory ANCHOR format specification (reference implementation)
 - Python validation scripts (anchor format checking)
 
@@ -248,7 +248,7 @@ python3 scripts/add-anchors-to-skills.py \
 #### NFR-4: Documentation
 **Priority**: P1  
 - Migration guide in spec folder
-- Anchor usage guidelines in sk-documentation skill
+- Anchor usage guidelines in sk-doc skill
 - Troubleshooting section for common issues
 - Before/after examples for each skill type
 
@@ -470,7 +470,7 @@ python3 scripts/add-anchors-to-skills.py \
 
 ### Upstream Dependencies
 - Memory ANCHOR format specification (reference implementation in memory/*.md files)
-- sk-documentation skill structure (template source of truth)
+- sk-doc skill structure (template source of truth)
 
 ### Downstream Dependencies
 - None (this is infrastructure work, no dependencies on this feature)
@@ -487,7 +487,7 @@ python3 scripts/add-anchors-to-skills.py \
 ### Prior Art
 - **Memory system ANCHOR format**: Implemented in `specs/003-system-spec-kit/` memory files
 - **5-state memory model**: Provides reference for anchor usage patterns
-- **Template system**: `.opencode/skill/sk-documentation/` templates as foundation
+- **Template system**: `.opencode/skill/sk-doc/` templates as foundation
 
 ### Related Initiatives
 - **Spec Kit Memory MCP**: Will benefit from anchored skills (better context retrieval)

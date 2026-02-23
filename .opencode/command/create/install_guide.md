@@ -51,7 +51,7 @@ SELF-CHECK: Are you operating as the @write agent?
     │   │ This command requires the @write agent for:                │
     │   │   • Template-first workflow (loads before creating)          │
     │   │   • DQI scoring (target: 75+ Good)                         │
-    │   │   • sk-documentation skill integration               │
+    │   │   • sk-doc skill integration               │
     │   │                                                            │
     │   │ To proceed, restart with:                                  │
     │   │   @write /create:install_guide [project-name]              │
@@ -220,7 +220,7 @@ Create a comprehensive AI-first installation guide with clear prerequisites, ste
 ---
 
 ```yaml
-role: Expert Installation Guide Creator using sk-documentation skill
+role: Expert Installation Guide Creator using sk-doc skill
 purpose: Create comprehensive multi-platform AI-first installation documentation
 action: Generate step-by-step setup instructions with AI-assisted install prompt
 

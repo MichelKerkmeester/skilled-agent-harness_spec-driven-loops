@@ -1,5 +1,5 @@
 ---
-title: "Plan: sk-documentation Skill Functional Testing [016-skill-rename/plan]"
+title: "Plan: sk-doc Skill Functional Testing [016-skill-rename/plan]"
 description: "Parallel execution of 8 test agents, each validating a specific component"
 trigger_phrases:
   - "plan"
@@ -13,11 +13,11 @@ contextType: "decision"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: legacy-normalized | v2.2 -->
 
-# Plan: sk-documentation Skill Functional Testing
+# Plan: sk-doc Skill Functional Testing
 
 | Field | Value |
 |-------|-------|
-| Spec | `008-sk-documentation-test` |
+| Spec | `008-sk-doc-test` |
 | Level | 1 (Baseline) |
 | LOC | N/A (testing, not implementation) |
 | Risk | Low |
@@ -61,7 +61,7 @@ Parallel execution of 8 test agents, each validating a specific component:
 ### File Paths
 
 ```
-.opencode/skills/sk-documentation/
+.opencode/skills/sk-doc/
 ├── SKILL.md                          # Main skill file
 ├── markdown-document-specialist      # CLI executable
 ├── scripts/

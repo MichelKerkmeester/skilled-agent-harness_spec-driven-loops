@@ -818,9 +818,9 @@ Skills are automatically discovered from:
 | sk-code--full-stack | v1.0.0     | Full-stack implementation orchestrator               |
 | sk-code--opencode   | v1.0.5.0   | OpenCode system code standards                       |
 | sk-code--web    | v1.0.5.0   | Web development implementation orchestrator          |
-| sk-documentation    | v1.0.6.0   | Unified markdown and skill management                |
+| sk-doc    | v1.0.6.0   | Unified markdown and skill management                |
 | sk-git              | v1.0.2.0   | Git workflow orchestrator                            |
-| sk-visual-explainer | v1.0.0     | Visual explanation generation                        |
+| sk-doc-visual | v1.0.0     | Visual explanation generation                        |
 
 **How it works:**
 - OpenCode scans skill folders on startup
@@ -1154,10 +1154,10 @@ Create custom skills to extend AI agent capabilities:
 
 ```bash
 # Initialize new skill
-python .opencode/skill/sk-documentation/scripts/init_skill.py my-skill --path .opencode/skill
+python .opencode/skill/sk-doc/scripts/init_skill.py my-skill --path .opencode/skill
 
 # Validate skill
-python .opencode/skill/sk-documentation/scripts/package_skill.py .opencode/skill/my-skill
+python .opencode/skill/sk-doc/scripts/package_skill.py .opencode/skill/my-skill
 ```
 
 **Detailed Guide**: [SET-UP - Skill Creation.md](./SET-UP%20-%20Skill%20Creation.md)
@@ -1219,7 +1219,7 @@ You have completed the installation. Here is your roadmap for getting started.
 | ------------------------ | ----------------------------- | --------------------------------------------------------- |
 | **Context Preservation** | Spec Kit Memory               | `/memory:save`, `memory_search()`                         |
 | **Browser Debugging**    | Chrome DevTools CLI           | `bdg screenshot --url https://example.com`                |
-| **Documentation**        | sk-documentation skill | Invoke skill for doc structure                            |
+| **Documentation**        | sk-doc skill | Invoke skill for doc structure                            |
 | **Git Operations**       | sk-git skill           | Commit, PR creation workflows                             |
 | **Implementation**       | sk-code--web or sk-code--full-stack | 3-phase implementation lifecycle                          |
 
@@ -1418,7 +1418,7 @@ sudo chown -R $(whoami) /usr/local/lib/node_modules
 | Category           | Count | Items                                                                                                                    |
 | ------------------ | ----- | ------------------------------------------------------------------------------------------------------------------------ |
 | Native MCP Servers | 3     | code_mode, spec_kit_memory, sequential_thinking                                                                          |
-| Skills             | 9     | mcp-code-mode, mcp-figma, system-spec-kit, mcp-chrome-devtools, sk-code--full-stack, sk-code--opencode, sk-code--web, sk-documentation, sk-git |
+| Skills             | 9     | mcp-code-mode, mcp-figma, system-spec-kit, mcp-chrome-devtools, sk-code--full-stack, sk-code--opencode, sk-code--web, sk-doc, sk-git |
 | Commands           | 19    | /create:* (6), /memory:* (5), /spec_kit:* (7), agent_router (1)                                                         |
 | CLI Tools          | 1     | Chrome DevTools (bdg)                                                                                                    |
 | Plugins            | 2     | Antigravity Auth, OpenAI Codex Auth                                                                                      |
@@ -1435,7 +1435,7 @@ sudo chown -R $(whoami) /usr/local/lib/node_modules
 |----------|---------|
 | [AGENTS.md](../../AGENTS.md) | AI agent behavior configuration and mandatory gates |
 | [Spec Kit Framework](../.opencode/skill/system-spec-kit/README.md) | Spec folder and memory system documentation |
-| [sk-documentation SKILL.md](../skill/sk-documentation/SKILL.md) | Document creation standards and templates |
+| [sk-doc SKILL.md](../skill/sk-doc/SKILL.md) | Document creation standards and templates |
 
 ### External Resources
 

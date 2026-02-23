@@ -1,6 +1,6 @@
 ---
 title: "Tasks: Zero-Tolerance Documentation Formatting [018-style-enforcement/tasks]"
-description: "Location: .opencode/skill/sk-documentation/assets/template_rules.json"
+description: "Location: .opencode/skill/sk-doc/assets/template_rules.json"
 trigger_phrases:
   - "tasks"
   - "zero"
@@ -30,7 +30,7 @@ contextType: "implementation"
 | T003 | Test validator against existing READMEs | P0 | Pending | T002 |
 | T004 | Add auto-fix capability | P1 | Pending | T002 |
 | T005 | Update write.md agent | P1 | Pending | T002 |
-| T006 | Update sk-documentation SKILL.md | P2 | Pending | T005 |
+| T006 | Update sk-doc SKILL.md | P2 | Pending | T005 |
 | T007 | Create test suite | P2 | Pending | T002 |
 
 <!-- /ANCHOR:notation -->
@@ -42,7 +42,7 @@ contextType: "implementation"
 
 ### T001: Create `template_rules.json`
 
-**Location:** `.opencode/skill/sk-documentation/assets/template_rules.json`
+**Location:** `.opencode/skill/sk-doc/assets/template_rules.json`
 
 **Content:**
 ```json
@@ -130,7 +130,7 @@ contextType: "implementation"
 
 ### T002: Create `validate_document.py`
 
-**Location:** `.opencode/skill/sk-documentation/scripts/validate_document.py`
+**Location:** `.opencode/skill/sk-doc/scripts/validate_document.py`
 
 **Features:**
 1. Load and parse template_rules.json
@@ -250,7 +250,7 @@ python validate_document.py <file.md> --fix --dry-run
 
 Before claiming completion, run:
 \`\`\`bash
-python .opencode/skill/sk-documentation/scripts/validate_document.py <file>
+python .opencode/skill/sk-doc/scripts/validate_document.py <file>
 \`\`\`
 
 - Exit 0 = proceed to delivery
@@ -269,7 +269,7 @@ python .opencode/skill/sk-documentation/scripts/validate_document.py <file>
 <!-- ANCHOR:phase-3 -->
 ## P2 Tasks (Medium Priority)
 
-### T006: Update sk-documentation SKILL.md
+### T006: Update sk-doc SKILL.md
 
 **Changes:**
 
@@ -303,7 +303,7 @@ python .opencode/skill/sk-documentation/scripts/validate_document.py <file>
 
 ### T007: Create Test Suite
 
-**Location:** `.opencode/skill/sk-documentation/scripts/tests/`
+**Location:** `.opencode/skill/sk-doc/scripts/tests/`
 
 **Test Files:**
 ```

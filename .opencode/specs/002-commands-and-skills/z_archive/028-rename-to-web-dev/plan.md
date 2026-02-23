@@ -90,7 +90,7 @@ contextType: "decision"
 - [ ] Update `.opencode/skill/mcp-chrome-devtools/examples/README.md`
 - [ ] Update `.opencode/skill/system-spec-kit/SKILL.md`
 - [ ] Update all system-spec-kit reference files that mention `workflows-code`
-- [ ] Update `.opencode/skill/sk-documentation/assets/opencode/skill_md_template.md`
+- [ ] Update `.opencode/skill/sk-doc/assets/opencode/skill_md_template.md`
 
 ### Phase 4: Verification
 - [ ] Run grep to verify no stale `workflows-code` references remain in active files (excluding `sk-code--opencode`, `workflows-code--web-dev`, and `z_archive/`)

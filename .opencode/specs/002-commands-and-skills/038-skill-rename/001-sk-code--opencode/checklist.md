@@ -70,7 +70,7 @@ contextType: "implementation"
 - [x] CHK-031 [P0] skill_advisor.py MULTI_SKILL_BOOSTERS updated (Evidence: same smoke output passes threshold for `sk-code--opencode`)
 - [x] CHK-032 [P1] .opencode/skill/README.md updated (Evidence: active-path legacy-token scan returned 0 matches)
 - [x] CHK-033 [P1] .opencode/skill/sk-code--full-stack/README.md updated (Evidence: active-path legacy-token scan returned 0 matches)
-- [x] CHK-034 [P1] .opencode/skill/sk-documentation/README.md updated (Evidence: active-path legacy-token scan returned 0 matches)
+- [x] CHK-034 [P1] .opencode/skill/sk-doc/README.md updated (Evidence: active-path legacy-token scan returned 0 matches)
 - [x] CHK-035 [P1] .opencode/skill/sk-git/README.md updated (Evidence: active-path legacy-token scan returned 0 matches)
 - [x] CHK-036 [P1] .opencode/skill/system-spec-kit/README.md updated (Evidence: active-path legacy-token scan returned 0 matches)
 - [x] CHK-037 [P1] .opencode/skill/system-spec-kit/SKILL.md updated (Evidence: active-path legacy-token scan returned 0 matches)

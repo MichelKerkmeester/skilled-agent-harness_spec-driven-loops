@@ -26,7 +26,7 @@
   - mcp-chrome-devtools: v1.0.1.0
   - sk-code--opencode: v1.0.5.0
   - workflows-code--web-dev: v1.0.5.0
-  - sk-documentation: v1.0.6.0
+  - sk-doc: v1.0.6.0
   - sk-git: v1.0.2.0
 - Replaced stale `workflows-code` references with `workflows-code--web-dev` and `sk-code--full-stack`
 
@@ -200,7 +200,7 @@
 ### 57-64. Workflow Skill Documentation
 **Priority**: P1
 **Files**:
-- `.opencode/skill/sk-documentation/README.md`
+- `.opencode/skill/sk-doc/README.md`
 - `.opencode/skill/sk-code--opencode/README.md`
 - `.opencode/skill/workflows-code--web-dev/README.md`
 - `.opencode/skill/sk-code--full-stack/README.md`

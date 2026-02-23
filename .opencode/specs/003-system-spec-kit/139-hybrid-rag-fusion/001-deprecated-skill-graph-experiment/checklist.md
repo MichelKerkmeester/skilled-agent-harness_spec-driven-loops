@@ -51,7 +51,7 @@ Evidence format: `[Evidence: command/file/result]`
 <!-- ANCHOR:p1 -->
 ## P1 - Required
 
-- [x] CHK-020 [P1] README TOC anchor completion captured for three README files [Evidence: `.opencode/skill/mcp-chrome-devtools/README.md:20`, `.opencode/skill/sk-documentation/README.md:20`, `.opencode/skill/system-spec-kit/templates/addendum/README.md:20`]
+- [x] CHK-020 [P1] README TOC anchor completion captured for three README files [Evidence: `.opencode/skill/mcp-chrome-devtools/README.md:20`, `.opencode/skill/sk-doc/README.md:20`, `.opencode/skill/system-spec-kit/templates/addendum/README.md:20`]
 - [x] CHK-021 [P1] MCP residual rename cleanup captured (`MemoryGraphLike` present; `SkillGraphLike` absent) [Evidence: `rg -n "SkillGraphLike|MemoryGraphLike" .opencode/skill/system-spec-kit/mcp_server --glob '!**/dist/**'` -> only `MemoryGraphLike` in `.opencode/skill/system-spec-kit/mcp_server/lib/search/evidence-gap-detector.ts:61` and `.opencode/skill/system-spec-kit/mcp_server/lib/search/fsrs.ts:15`]
 - [x] CHK-022 [P1] runtime assets restored for tests after dist rebuild [Evidence: `.opencode/skill/system-spec-kit/mcp_server/dist/database` exists; `.opencode/skill/system-spec-kit/mcp_server/dist/configs/search-weights.json` exists]
 - [x] CHK-023 [P1] deprecation boundary documented: causal graph features preserved [Evidence: `decision-record.md` ADR-002 consequences/implementation sections and ADR-003 decision]

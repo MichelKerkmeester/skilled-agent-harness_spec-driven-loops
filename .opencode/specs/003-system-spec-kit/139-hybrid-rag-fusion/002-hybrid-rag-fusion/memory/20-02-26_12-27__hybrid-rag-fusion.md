@@ -137,7 +137,7 @@ Next: Continue implementation
 
 **Key Context to Review:**
 
-- Files modified: .opencode/.../references/skill_creation.md, .opencode/skill/sk-documentation/SKILL.md, .opencode/.../nodes/mode-component-creation.md
+- Files modified: .opencode/.../references/skill_creation.md, .opencode/skill/sk-doc/SKILL.md, .opencode/.../nodes/mode-component-creation.md
 
 - Last: Trimmed 373 lines of redundant content from skill_creation.md (1,387 to 1,014 li
 
@@ -176,7 +176,7 @@ Next: Continue implementation
 
 - `.opencode/.../references/skill_creation.md` - Documentation
 
-- `.opencode/skill/sk-documentation/SKILL.md` - Documentation
+- `.opencode/skill/sk-doc/SKILL.md` - Documentation
 
 - `.opencode/.../nodes/mode-component-creation.md` - Documentation
 
@@ -222,7 +222,7 @@ Trimmed 373 lines of redundant content from skill_creation.md (1,387 to 1,014 li
 | **File** | **Description** |
 |:---------|:----------------|
 | `.opencode/.../references/skill_creation.md` | One-line summaries |
-| `.opencode/skill/sk-documentation/SKILL.md` | Mode-component-creation |
+| `.opencode/skill/sk-doc/SKILL.md` | Mode-component-creation |
 | `.opencode/.../nodes/mode-component-creation.md` | Updated mode component creation |
 | `.opencode/.../opencode/skill_md_template.md` | Updated skill md template |
 | `.opencode/.../037-trim-skill-creation-bloat/implementation-summary.md` | File modified (description pending) |
@@ -241,7 +241,7 @@ Trimmed 373 lines of redundant content from skill_creation.md (1,387 to 1,014 li
 
 Trimmed 373 lines of redundant content from skill_creation.md (1,387 to 1,014 lines, 27% reduction). Removed three entirely redundant sections (Quick Reference, Script Usage, Writing Best Practices), replaced two template dumps with one-line summaries, removed duplicate 'Use cases' sub-lists, fixed an empty Section 2 gap, renumbered all sections sequentially (1-10), and updated external references in SKILL.md, mode-component-creation.md and skill_md_template.md. Created a detailed HVR-compliant implementation summary documenting all changes, decisions and verification results.
 
-**Details:** skill_creation.md | trim bloat | redundant sections | section renumbering | Section 13 to Section 9 | Quick Reference removal | Script Usage removal | Writing Best Practices removal | template dump trimming | sk-documentation references | HVR compliance | implementation summary
+**Details:** skill_creation.md | trim bloat | redundant sections | section renumbering | Section 13 to Section 9 | Quick Reference removal | Script Usage removal | Writing Best Practices removal | template dump trimming | sk-doc references | HVR compliance | implementation summary
 <!-- /ANCHOR:implementation-trimmed-373-lines-redundant-33843d5f -->
 
 <!-- ANCHOR:implementation-technical-implementation-details-5a5adf02 -->
@@ -1436,7 +1436,7 @@ trigger_phrases:
   - "verification_workflows"
   - "verification workflows - phase 3 (mandatory)"
   - "browser verification requirements for all completion claims - no exceptions."
-  - "sk-documentation"
+  - "sk-doc"
   - "documentation"
   - "unified markdown and opencode component specialist providing document quality enforcement, content optimization, component creation workflows, ascii flowcharts and install guides"
   - "documentation creation specialist - unified markdown & component management"
@@ -1589,7 +1589,7 @@ trigger_phrases:
   - "references/validation/validation_rules.md"
   - "references/validation/five-checks.md"
   - "../sk-code--opencode/skill.md"
-  - "../sk-documentation/skill.md"
+  - "../sk-doc/skill.md"
   - "level_specifications.md"
   - "template_guide.md"
   - "save_workflow.md"
@@ -1689,7 +1689,7 @@ trigger_phrases:
 
 key_files:
   - ".opencode/.../references/skill_creation.md"
-  - ".opencode/skill/sk-documentation/SKILL.md"
+  - ".opencode/skill/sk-doc/SKILL.md"
   - ".opencode/.../nodes/mode-component-creation.md"
   - ".opencode/.../opencode/skill_md_template.md"
   - ".opencode/.../037-trim-skill-creation-bloat/implementation-summary.md"

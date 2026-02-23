@@ -395,7 +395,7 @@ bdg stop 2>&1
 ### Related Skills
 
 - **sk-code--web** - Development workflow orchestration
-- **sk-documentation** - Documentation creation and validation
+- **sk-doc** - Documentation creation and validation
 
 <!-- /ANCHOR:related -->
 

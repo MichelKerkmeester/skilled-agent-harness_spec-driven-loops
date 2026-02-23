@@ -18,7 +18,7 @@ contextType: "decision"
 
 ## 1. OVERVIEW
 
-Level 2 specification for converting the draft `legacy-single-hyphen-review` package into `sk-code--review`, aligning router behavior to `sk-documentation` standards, and wiring `@review` workflows to a baseline+overlay model.
+Level 2 specification for converting the draft `legacy-single-hyphen-review` package into `sk-code--review`, aligning router behavior to `sk-doc` standards, and wiring `@review` workflows to a baseline+overlay model.
 ---
 
 <!-- ANCHOR:metadata -->
@@ -40,7 +40,7 @@ Level 2 specification for converting the draft `legacy-single-hyphen-review` pac
 ## 3. PROBLEM & PURPOSE
 
 ### Problem Statement
-The draft review skill existed as `legacy-single-hyphen-review` and was not aligned with project naming patterns (`sk-code--*`) or the current `sk-documentation` routing structure. Review agents and review-dispatch command workflows also lacked a unified baseline+overlay standards contract.
+The draft review skill existed as `legacy-single-hyphen-review` and was not aligned with project naming patterns (`sk-code--*`) or the current `sk-doc` routing structure. Review agents and review-dispatch command workflows also lacked a unified baseline+overlay standards contract.
 
 ### Purpose
 Promote `sk-code--review` as a first-class, stack-agnostic review baseline that:
@@ -57,7 +57,7 @@ Promote `sk-code--review` as a first-class, stack-agnostic review baseline that:
 ### In Scope
 
 - Hard rename skill package: `legacy-single-hyphen-review` -> `sk-code--review`.
-- Rebuild `SKILL.md` router to `sk-documentation` parity (resource domains, loading levels, weighted scoring, ambiguity handling, unknown fallback, guarded recursive discovery).
+- Rebuild `SKILL.md` router to `sk-doc` parity (resource domains, loading levels, weighted scoring, ambiguity handling, unknown fallback, guarded recursive discovery).
 - Add baseline+overlay contract and precedence matrix:
   - baseline: `sk-code--review`
   - overlay: one of `sk-code--opencode`, `sk-code--web`, `sk-code--full-stack`
@@ -99,7 +99,7 @@ Promote `sk-code--review` as a first-class, stack-agnostic review baseline that:
 | REQ-002 | Router rebuilt to standards parity | `SKILL.md` includes required section order + smart routing model + baseline+overlay logic + precedence matrix + related resources |
 | REQ-003 | Review runtime contract updated | Review agents/orchestrators in `.opencode`, `.opencode/chatgpt`, `.gemini`, `.claude`, plus `.codex` wrapper configs, explicitly document/enforce baseline `sk-code--review` + one overlay model |
 | REQ-004 | Command review dispatch updated | All 18 listed command YAMLs include baseline+overlay review contract wording/config |
-| REQ-005 | Review routing updated | `skill_advisor.py` routes generic code-review intents to `sk-code--review` and preserves `sk-git` / `sk-visual-explainer` behavior |
+| REQ-005 | Review routing updated | `skill_advisor.py` routes generic code-review intents to `sk-code--review` and preserves `sk-git` / `sk-doc-visual` behavior |
 
 ### P1 - Required (complete OR user-approved deferral)
 
@@ -129,7 +129,7 @@ Promote `sk-code--review` as a first-class, stack-agnostic review baseline that:
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | `sk-documentation` validators | `quick_validate.py` and `package_skill.py` currently reject consecutive hyphens in `name` | Record command evidence and note existing validator/name mismatch with current `sk-code--*` naming convention |
+| Dependency | `sk-doc` validators | `quick_validate.py` and `package_skill.py` currently reject consecutive hyphens in `name` | Record command evidence and note existing validator/name mismatch with current `sk-code--*` naming convention |
 | Dependency | YAML structure consistency | Broken indentation could invalidate command assets | Applied standardized `standards_contract` insertions and re-checked blocks |
 | Risk | Scope drift | Large file list across agents/commands/docs | Limited edits to explicit scope list |
 | Risk | Routing regression | Review intent could still route to git or visual unexpectedly | Added dedicated review boosts and test prompts in evidence |
@@ -178,7 +178,7 @@ Promote `sk-code--review` as a first-class, stack-agnostic review baseline that:
 
 1. **Given** a review request with security language, **When** advisor routing runs, **Then** `sk-code--review` is top skill.
 2. **Given** git workflow phrasing, **When** advisor routing runs, **Then** `sk-git` remains top skill.
-3. **Given** visual review phrasing, **When** advisor routing runs, **Then** `sk-visual-explainer` remains valid top contender.
+3. **Given** visual review phrasing, **When** advisor routing runs, **Then** `sk-doc-visual` remains valid top contender.
 4. **Given** review dispatch steps in all listed YAMLs, **When** inspected, **Then** each contains baseline+overlay standards contract.
 <!-- /ANCHOR:acceptance-scenarios -->
 
@@ -191,7 +191,7 @@ Promote `sk-code--review` as a first-class, stack-agnostic review baseline that:
 |-----------|-------|-------|
 | Scope | 20/25 | Skill + agents + orchestrators + 18 command assets + advisor + catalogs + spec docs |
 | Risk | 17/25 | Routing regressions and YAML contract consistency across many files |
-| Research | 11/20 | Required parity with existing `sk-documentation` and `sk-code--*` patterns |
+| Research | 11/20 | Required parity with existing `sk-doc` and `sk-code--*` patterns |
 | **Total** | **48/70** | **Level 2** |
 <!-- /ANCHOR:complexity -->
 

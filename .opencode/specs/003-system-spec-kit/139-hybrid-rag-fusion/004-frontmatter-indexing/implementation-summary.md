@@ -15,7 +15,7 @@ contextType: "implementation"
 
 <!-- SPECKIT_LEVEL: 3 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-documentation/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -75,7 +75,7 @@ Delivery and verification evidence captured in this run:
 
 5. Standards alignment checks:
 - `python3 .opencode/skill/sk-code--opencode/scripts/verify_alignment_drift.py --root .opencode/skill/system-spec-kit/mcp_server/lib/parsing --root .opencode/skill/system-spec-kit/scripts/lib --root .opencode/skill/system-spec-kit/scripts/memory --root .opencode/skill/system-spec-kit/mcp_server/tests --root .opencode/skill/system-spec-kit/scripts/tests` passed with `Errors: 0`. Warnings were in unrelated shell utilities, and no findings matched touched frontmatter/indexing files.
-- `python3 .opencode/skill/sk-documentation/scripts/extract_structure.py` was run for active 003/004 remediation docs, and all scoped docs reported `style_issues=0` and `content_issues=0` after plan code-fence language tagging.
+- `python3 .opencode/skill/sk-doc/scripts/extract_structure.py` was run for active 003/004 remediation docs, and all scoped docs reported `style_issues=0` and `content_issues=0` after plan code-fence language tagging.
 <!-- /ANCHOR:how-delivered -->
 
 ---

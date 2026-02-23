@@ -157,7 +157,7 @@ This session was migrated from an older format to v2.2. Review the OVERVIEW and 
 
 ---
 
-<!-- ANCHOR:task-guide-commands-and-skills/003-sk-documentation/001-h2-emoji-enforcement-002-commands-and-skills/017-h2-emoji-enforcement -->
+<!-- ANCHOR:task-guide-commands-and-skills/003-sk-doc/001-h2-emoji-enforcement-002-commands-and-skills/017-h2-emoji-enforcement -->
 <a id="implementation-guide"></a>
 
 ## 1. IMPLEMENTATION GUIDE
@@ -174,7 +174,7 @@ This session was migrated from an older format to v2.2. Review the OVERVIEW and 
 
 - `.opencode/.../scripts/extract_structure.py` - Core extract structure
 
-- `.opencode/skill/sk-documentation/SKILL.md` - Documentation
+- `.opencode/skill/sk-doc/SKILL.md` - Documentation
 
 - `.opencode/.../references/core_standards.md` - Documentation
 
@@ -200,7 +200,7 @@ This session was migrated from an older format to v2.2. Review the OVERVIEW and 
 
 - **Functional Transforms**: Use functional methods for data transformation
 
-<!-- /ANCHOR:task-guide-commands-and-skills/003-sk-documentation/001-h2-emoji-enforcement-002-commands-and-skills/017-h2-emoji-enforcement -->
+<!-- /ANCHOR:task-guide-commands-and-skills/003-sk-doc/001-h2-emoji-enforcement-002-commands-and-skills/017-h2-emoji-enforcement -->
 
 ---
 
@@ -226,7 +226,7 @@ Implemented a comprehensive 'Copy-First, Validate-All' approach to prevent H2 em
 |:---------|:----------------|
 | `.opencode/agent/write.md` | Modified during session |
 | `.opencode/.../scripts/extract_structure.py` | Modified during session |
-| `.opencode/skill/sk-documentation/SKILL.md` | Modified during session |
+| `.opencode/skill/sk-doc/SKILL.md` | Modified during session |
 | `.opencode/.../references/core_standards.md` | Modified during session |
 | `specs/.../001-h2-emoji-enforcement/checklist.md` | Modified during session |
 | `specs/.../001-h2-emoji-enforcement/tasks.md` | Modified during session |
@@ -588,7 +588,7 @@ trigger_phrases:
 key_files:
   - ".opencode/agent/write.md"
   - ".opencode/.../scripts/extract_structure.py"
-  - ".opencode/skill/sk-documentation/SKILL.md"
+  - ".opencode/skill/sk-doc/SKILL.md"
   - ".opencode/.../references/core_standards.md"
   - "specs/.../001-h2-emoji-enforcement/checklist.md"
   - "specs/.../001-h2-emoji-enforcement/tasks.md"

@@ -51,7 +51,7 @@ contextType: "implementation"
 
 - [x] T010 Capture README TOC anchor completion evidence for:
   - `.opencode/skill/mcp-chrome-devtools/README.md`
-  - `.opencode/skill/sk-documentation/README.md`
+  - `.opencode/skill/sk-doc/README.md`
   - `.opencode/skill/system-spec-kit/templates/addendum/README.md`
 - [x] T011 Capture MCP residual rename cleanup evidence (`SkillGraphLike` -> `MemoryGraphLike`)
 - [x] T012 Capture runtime asset restoration evidence (`mcp_server/dist/database`, `mcp_server/dist/configs/search-weights.json`)

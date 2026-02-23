@@ -65,7 +65,7 @@ Rename 7 skills to a cleaner naming convention: `sk-*` for standard skills and `
 - Update all internal references within each skill (SKILL.md, index.md, nodes/, references/, assets/, scripts/)
 - Update skill_advisor.py (INTENT_BOOSTERS + MULTI_SKILL_BOOSTERS)
 - Update agent files across 4 runtimes (`.opencode/agent/`, `.opencode/agent/chatgpt/`, `.claude/agents/`, `.gemini/agents/`)
-- Update command files (`.opencode/command/create/`, `.opencode/command/visual-explainer/`)
+- Update command files (`.opencode/command/create/`, `.opencode/command/doc-visual/`)
 - Update install guides (`.opencode/install_guides/`)
 - Update root documentation (README.md, CLAUDE.md, AGENTS.md, .opencode/README.md, PUBLIC_RELEASE.md)
 - Update system-spec-kit references (config, tests, templates, SKILL.md, README.md)
@@ -85,9 +85,9 @@ Rename 7 skills to a cleaner naming convention: `sk-*` for standard skills and `
 | `sk-code--opencode` | `sk-code--opencode` |
 | `workflows-code--web-dev` | `sk-code--web` |
 | `sk-code--full-stack` | `sk-code--full-stack` |
-| `sk-documentation` | `sk-documentation` |
+| `sk-doc` | `sk-doc` |
 | `sk-git` | `sk-git` |
-| `sk-visual-explainer` | `sk-visual-explainer` |
+| `sk-doc-visual` | `sk-doc-visual` |
 | `mcp-chrome-devtools` | `mcp-chrome-devtools` |
 
 ### Wildcard Pattern Updates
@@ -105,7 +105,7 @@ Rename 7 skills to a cleaner naming convention: `sk-*` for standard skills and `
 | Skill internal files | ~290 files | SKILL.md, index.md, nodes/, refs, assets within renamed skills |
 | skill_advisor.py | 1 file | ~100+ line changes in dictionaries |
 | Agent files (4 runtimes) | 12 files | orchestrate.md, review.md, write.md × 4 |
-| Command files | ~25 files | create/ YAMLs/MDs, visual-explainer/ MDs |
+| Command files | ~25 files | create/ YAMLs/MDs, doc-visual/ MDs |
 | Install guides | 4 files | README.md, SET-UP docs |
 | Root docs | 5 files | README.md, CLAUDE.md, AGENTS.md, .opencode/README.md, PUBLIC_RELEASE.md |
 | system-spec-kit | ~20 files | config, tests, templates, SKILL.md, README.md, references |
@@ -124,9 +124,9 @@ Rename 7 skills to a cleaner naming convention: `sk-*` for standard skills and `
 | 1 | 001-sk-code--opencode/ | Rename `sk-code--opencode` → `sk-code--opencode` (35 internal, 13 external files) | None | Completed |
 | 2 | 002-sk-code--web/ | Rename `workflows-code--web-dev` → `sk-code--web` (51 internal, 17 external files) | None | Completed |
 | 3 | 003-sk-code--full-stack/ | Rename `sk-code--full-stack` → `sk-code--full-stack` (88 internal, 11 external files) | None | Completed |
-| 4 | 004-sk-documentation/ | Rename `sk-documentation` → `sk-documentation` (49 internal, 52 external files) | None | Completed |
+| 4 | 004-sk-doc/ | Rename `sk-doc` → `sk-doc` (49 internal, 52 external files) | None | Completed |
 | 5 | 005-sk-git/ | Rename `sk-git` → `sk-git` (20 internal, 39 external files) | None | Completed |
-| 6 | 006-sk-visual-explainer/ | Rename `sk-visual-explainer` → `sk-visual-explainer` (22 internal, 6 external files) | None | Completed |
+| 6 | 006-sk-doc-visual/ | Rename `sk-doc-visual` → `sk-doc-visual` (22 internal, 6 external files) | None | Completed |
 | 7 | 007-mcp-chrome-devtools/ | Rename `mcp-chrome-devtools` → `mcp-chrome-devtools` (21 internal, 36 external files) | None | Completed |
 | 8 | 008-sk-code-from-barter-repo/ | Rename `workflows-code` → `sk-code` in Barter repo (6 internal, 8 external files) | Phase 007 | Completed |
 | 9 | 009-sk-git-from-barter-repo/ | Rename `workflows-git` → `sk-git` in Barter repo (8 internal files, 8 text changes) | Phase 005, 008 | Completed |
@@ -145,9 +145,9 @@ Rename 7 skills to a cleaner naming convention: `sk-*` for standard skills and `
 | 003-sk-code--full-stack | 001-sk-code--opencode | All `sk-code--full-stack` refs replaced | `grep -r "sk-code--full-stack"` = 0 |
 | 001-sk-code--opencode | 002-sk-code--web | All `sk-code--opencode` refs replaced | `grep -r "sk-code--opencode"` = 0 |
 | 002-sk-code--web | 007-mcp-chrome-devtools | All `workflows-code--web-dev` refs replaced | `grep -r "workflows-code--web-dev"` = 0 |
-| 007-mcp-chrome-devtools | 004-sk-documentation | All `mcp-chrome-devtools` refs replaced | `grep -r "mcp-chrome-devtools"` = 0 |
-| 004-sk-documentation | 006-sk-visual-explainer | All `sk-documentation` refs replaced | `grep -r "sk-documentation"` = 0 |
-| 006-sk-visual-explainer | 005-sk-git | All `sk-visual-explainer` refs replaced | `grep -r "sk-visual-explainer"` = 0 |
+| 007-mcp-chrome-devtools | 004-sk-doc | All `mcp-chrome-devtools` refs replaced | `grep -r "mcp-chrome-devtools"` = 0 |
+| 004-sk-doc | 006-sk-doc-visual | All `sk-doc` refs replaced | `grep -r "sk-doc"` = 0 |
+| 006-sk-doc-visual | 005-sk-git | All `sk-doc-visual` refs replaced | `grep -r "sk-doc-visual"` = 0 |
 <!-- /ANCHOR:phase-map -->
 
 ---
@@ -161,7 +161,7 @@ Rename 7 skills to a cleaner naming convention: `sk-*` for standard skills and `
 |----|-------------|---------------------|
 | REQ-001 | Rename all 7 skill folders on disk | `ls .opencode/skill/sk-*` and `ls .opencode/skill/mcp-chrome-devtools` show correct folders |
 | REQ-002 | Update skill_advisor.py with new names | `python3 skill_advisor.py "git commit"` returns `sk-git` (not legacy names) |
-| REQ-003 | Zero remaining references to old names in active files | `grep -r "workflows-code--\|sk-documentation\|sk-git\|sk-visual-explainer\|mcp-chrome-devtools" .opencode/skill/ .opencode/command/ .opencode/agent/ .opencode/install_guides/ .claude/ .gemini/ README.md AGENTS.md CLAUDE.md` returns 0 results (excluding changelog content, specs/memory, archives) |
+| REQ-003 | Zero remaining references to old names in active files | `grep -r "workflows-code--\|sk-doc\|sk-git\|sk-doc-visual\|mcp-chrome-devtools" .opencode/skill/ .opencode/command/ .opencode/agent/ .opencode/install_guides/ .claude/ .gemini/ README.md AGENTS.md CLAUDE.md` returns 0 results (excluding changelog content, specs/memory, archives) |
 | REQ-004 | Update all agent files across 4 runtimes | All orchestrate.md, review.md, write.md files use new names |
 | REQ-005 | Update wildcard patterns `workflows-code--*` → `sk-code--*` | All agent files use `sk-code--*` pattern |
 
@@ -185,7 +185,7 @@ Rename 7 skills to a cleaner naming convention: `sk-*` for standard skills and `
 
 - **SC-001**: `grep -r "workflows-" .opencode/skill/ .opencode/command/ .opencode/agent/ .opencode/install_guides/ .claude/ .gemini/` returns 0 matches in active files (excluding changelog content/archives/memory)
 - **SC-002**: `python3 .opencode/skill/scripts/skill_advisor.py "implement feature"` returns `sk-code--web` (not `workflows-code--web-dev`)
-- **SC-003**: All 7 new skill folders exist with complete contents: `sk-code--opencode`, `sk-code--web`, `sk-code--full-stack`, `sk-documentation`, `sk-git`, `sk-visual-explainer`, `mcp-chrome-devtools`
+- **SC-003**: All 7 new skill folders exist with complete contents: `sk-code--opencode`, `sk-code--web`, `sk-code--full-stack`, `sk-doc`, `sk-git`, `sk-doc-visual`, `mcp-chrome-devtools`
 - **SC-004**: No old skill folders remain: `ls .opencode/skill/workflows-*` returns empty
 <!-- /ANCHOR:success-criteria -->
 
@@ -229,7 +229,7 @@ Rename 7 skills to a cleaner naming convention: `sk-*` for standard skills and `
 
 ### Path References
 - Absolute paths containing old skill names: Update path segments
-- Relative paths (`../sk-documentation/`): Update to `../sk-documentation/`
+- Relative paths (`../sk-doc/`): Update to `../sk-doc/`
 - Hard-coded script paths within SKILL.md files: Update all
 
 ### Historical References
@@ -263,9 +263,9 @@ Rename 7 skills to a cleaner naming convention: `sk-*` for standard skills and `
 | R-001 | `sk-code--opencode` rename breaks opencode skill loading | H | L | grep verification + smoke test |
 | R-002 | `sk-code--web` shortening from `web-dev` breaks exact-match logic | M | M | Verify skill_advisor.py handles shortened name |
 | R-003 | `sk-code--full-stack` has 88 internal files — high volume | M | L | Mechanical replacement, batch processing |
-| R-004 | `sk-documentation` has 52 external refs — most cross-cutting | H | M | Careful per-file verification, dedicated high-effort phase |
+| R-004 | `sk-doc` has 52 external refs — most cross-cutting | H | M | Careful per-file verification, dedicated high-effort phase |
 | R-005 | `sk-git` has 28 skill_advisor lines — dense routing changes | M | L | Test all routing queries post-rename |
-| R-006 | `sk-visual-explainer` references in command files | L | L | Low reference count, straightforward |
+| R-006 | `sk-doc-visual` references in command files | L | L | Low reference count, straightforward |
 | R-007 | `mcp-chrome-devtools` prefix change (`workflows-` to `mcp-`) is non-standard | M | L | Explicit MCP categorization is the goal |
 <!-- /ANCHOR:risk-matrix -->
 
@@ -300,9 +300,9 @@ Rename 7 skills to a cleaner naming convention: `sk-*` for standard skills and `
 | Phase 001 Complete (sk-code--opencode) | User | Approved | 2026-02-21 |
 | Phase 002 Complete (sk-code--web) | User | Approved | 2026-02-21 |
 | Phase 003 Complete (sk-code--full-stack) | User | Approved | 2026-02-21 |
-| Phase 004 Complete (sk-documentation) | User | Approved | 2026-02-21 |
+| Phase 004 Complete (sk-doc) | User | Approved | 2026-02-21 |
 | Phase 005 Complete (sk-git) | User | Approved | 2026-02-21 |
-| Phase 006 Complete (sk-visual-explainer) | User | Approved | 2026-02-21 |
+| Phase 006 Complete (sk-doc-visual) | User | Approved | 2026-02-21 |
 | Phase 007 Complete (mcp-chrome-devtools) | User | Approved | 2026-02-21 |
 <!-- /ANCHOR:approval-workflow -->
 
@@ -313,7 +313,7 @@ Rename 7 skills to a cleaner naming convention: `sk-*` for standard skills and `
 
 ### Naming Consistency
 - [x] All 7 skill folders use `sk-*` or `mcp-*` prefix (Evidence: required-folder existence check passed for all 7 targets)
-- [x] skill_advisor.py entries match folder names exactly (Evidence: smoke tests route to `sk-git`, `sk-code--web`, `sk-documentation`, `mcp-chrome-devtools`)
+- [x] skill_advisor.py entries match folder names exactly (Evidence: smoke tests route to `sk-git`, `sk-code--web`, `sk-doc`, `mcp-chrome-devtools`)
 - [x] Agent files across 4 runtimes are consistent (Evidence: old-name active-path grep checks returned no matches)
 
 ### Cross-Reference Integrity

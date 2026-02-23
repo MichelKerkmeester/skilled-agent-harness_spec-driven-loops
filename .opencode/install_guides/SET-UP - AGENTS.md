@@ -604,7 +604,7 @@ Discovery: search_tools(), list_tools(), or read .utcp_config.json
 | `sk-code--full-stack`| v1.0.0   | "implement", "debug", "verify", "refactor" (full-stack)          | Full-stack implementation lifecycle orchestrator      |
 | `sk-code--opencode`  | v1.3.2   | "opencode code", "system code", "TypeScript", "Python"           | OpenCode system code standards                        |
 | `sk-code--web`   | v1.0.9   | "implement", "debug", "verify", "refactor" (frontend)            | Web development implementation lifecycle              |
-| `sk-documentation`   | v5.2.0   | "skill", "markdown", "flowchart", "documentation"                | Unified markdown and skill management                 |
+| `sk-doc`   | v5.2.0   | "skill", "markdown", "flowchart", "documentation"                | Unified markdown and skill management                 |
 | `sk-git`             | v1.5.0   | "commit", "branch", "PR", "push", "git"                          | Git workflow orchestration                            |
 
 ### 6.2 Skill Routing Table
@@ -1017,7 +1017,7 @@ ls .opencode/commands/
 
 | Category        | Count | Items                                                                                                                                                     |
 | --------------- | ----- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Skills**      | 9     | mcp-figma, mcp-code-mode, system-spec-kit, mcp-chrome-devtools, sk-code--full-stack, sk-code--opencode, sk-code--web, sk-documentation, sk-git |
+| **Skills**      | 9     | mcp-figma, mcp-code-mode, system-spec-kit, mcp-chrome-devtools, sk-code--full-stack, sk-code--opencode, sk-code--web, sk-doc, sk-git |
 | **MCP Servers** | 3     | sequential-thinking, spec-kit-memory, code-mode                                                                                                           |
 | **Commands**    | 19    | /create:* (6), /memory:* (5), /spec_kit:* (7), agent_router (1)                                                                                           |
 | **Gates + Rules** | 3 + 3 | Gate 1-3 (Understanding, Skill Routing, Spec Folder) + Behavioral Rules (Memory Context Loading, Memory Save Rule, Completion Verification)               |

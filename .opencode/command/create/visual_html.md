@@ -1,5 +1,5 @@
 ---
-description: Create or verify styled, self-contained visual HTML artifacts from topics, docs, diffs, and recaps using sk-visual-explainer - supports :auto and :confirm modes
+description: Create or verify styled, self-contained visual HTML artifacts from topics, docs, diffs, and recaps using sk-doc-visual - supports :auto and :confirm modes
 argument-hint: "<target-or-source> [--mode <auto|create|analyze|verify|custom>] [--artifact <auto|spec|plan|tasks|checklist|implementation-summary|research|decision-record|readme|install-guide>] [--source-file <path>] [--spec-folder <path>] [--traceability] [--include-doc-impact] [--include-doc-health] [--type <architecture|flowchart|sequence|data-flow|er|state|mindmap|table|timeline|dashboard>] [--style <terminal|editorial|blueprint|neon|paper|hand-drawn|ide|data-dense|gradient>] [:auto|:confirm]"
 allowed-tools: Read, Write, Edit, Bash, Glob, Grep
 ---
@@ -219,8 +219,8 @@ Create or verify visual HTML artifacts through one unified command entrypoint wi
 
 ## 5. REFERENCE SOURCES
 
-Load `sk-visual-explainer` and relevant references per mode:
-- `.opencode/skill/sk-visual-explainer/SKILL.md`
+Load `sk-doc-visual` and relevant references per mode:
+- `.opencode/skill/sk-doc-visual/SKILL.md`
 - `references/quick_reference.md`
 - `references/css_patterns.md`
 - `references/quality_checklist.md`

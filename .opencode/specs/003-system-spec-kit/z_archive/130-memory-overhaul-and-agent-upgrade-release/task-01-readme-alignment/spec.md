@@ -79,7 +79,7 @@ All 60+ system-spec-kit sub-READMEs:
 - Verify YAML frontmatter present
 
 Workflow skill READMEs (6 files):
-- `.opencode/skill/sk-documentation/README.md`
+- `.opencode/skill/sk-doc/README.md`
 - `.opencode/skill/sk-code--opencode/README.md`
 - `.opencode/skill/workflows-code--web-dev/README.md`
 - `.opencode/skill/sk-code--full-stack/README.md`

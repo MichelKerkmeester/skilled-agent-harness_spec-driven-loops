@@ -126,7 +126,7 @@ chmod +x .opencode/skill/scripts/skill_advisor.py
 │   ├── mcp-chrome-devtools/
 │   ├── sk-code--full-stack/
 │   ├── sk-code--web/
-│   ├── sk-documentation/
+│   ├── sk-doc/
 │   └── sk-git/
 └── install_guides/
     └── SET-UP - Skill Advisor.md
@@ -426,7 +426,7 @@ pr, pull, push, rebase, repo, review, stash, worktree
 
 ---
 
-### 5.7 sk-documentation
+### 5.7 sk-doc
 
 **Purpose**: Unified markdown and skill management - document quality enforcement, skill creation workflow, flowchart creation, and install guide creation
 
@@ -556,7 +556,7 @@ Filtered: ["write", "documentation", "api"]
 Final search terms: ["write", "documentation", "api", "create", "generate"]
 ```
 
-**Step 5: Skill Matching (for sk-documentation)**
+**Step 5: Skill Matching (for sk-doc)**
 ```
 Intent boost: 0 (no boosters matched)
 "documentation" in description: +1.0
@@ -573,7 +573,7 @@ confidence = min(0.25 + 1.0 * 0.15, 0.95)
 confidence = min(0.40, 0.95) = 0.40
 ```
 
-**Result**: `sk-documentation` with **0.40 confidence** ❌ (below 0.8)
+**Result**: `sk-doc` with **0.40 confidence** ❌ (below 0.8)
 
 **Why?** No intent boosters matched. To improve, add "document" keyword:
 - `"help me document the API"` → "document" triggers +0.5 boost
@@ -679,7 +679,7 @@ python .opencode/skill/scripts/skill_advisor.py "fix the bug and verify"
 python .opencode/skill/scripts/skill_advisor.py "create a pull request on github"
 python .opencode/skill/scripts/skill_advisor.py "commit my changes and push"
 
-# sk-documentation - should return > 0.8
+# sk-doc - should return > 0.8
 python .opencode/skill/scripts/skill_advisor.py "create a skill for my workflow"
 python .opencode/skill/scripts/skill_advisor.py "validate the markdown structure"
 
@@ -701,8 +701,8 @@ TESTS=(
     "debug in chrome|mcp-chrome-devtools"
     "implement the feature|sk-code--web"
     "create pull request github|sk-git"
-    "create a skill for workflow|sk-documentation"
-    "validate markdown structure|sk-documentation"
+    "create a skill for workflow|sk-doc"
+    "validate markdown structure|sk-doc"
 )
 
 echo "=== Skill Advisor Batch Test ==="

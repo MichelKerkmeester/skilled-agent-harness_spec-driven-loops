@@ -35,7 +35,7 @@ contextType: "decision"
 | **Parent Plan** | ../plan.md |
 | **Phase** | 7 of 7 |
 | **Predecessor** | 002-sk-code--web |
-| **Successor** | 004-sk-documentation |
+| **Successor** | 004-sk-doc |
 | **Handoff Criteria** | `rg -n "workflows-.*chrome-devtools"` returns 0 matches in active files |
 <!-- /ANCHOR:metadata -->
 

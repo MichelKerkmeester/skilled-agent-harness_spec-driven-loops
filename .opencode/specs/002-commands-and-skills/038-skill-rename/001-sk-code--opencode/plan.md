@@ -62,7 +62,7 @@ Mechanical find-and-replace refactor. No architectural changes.
 ### Key Components
 - **Skill folder**: `.opencode/skill/sk-code--opencode/` (35 files)
 - **skill_advisor.py**: 19 line changes in INTENT_BOOSTERS/MULTI_SKILL_BOOSTERS dictionaries
-- **Skill documentation refs**: `.opencode/skill/README.md`, `sk-code--full-stack/README.md`, `sk-documentation/README.md`, `sk-git/README.md`
+- **Skill documentation refs**: `.opencode/skill/README.md`, `sk-code--full-stack/README.md`, `sk-doc/README.md`, `sk-git/README.md`
 - **system-spec-kit refs**: README, SKILL.md, nodes/rules.md, config/config.jsonc, mcp_server test fixture
 - **Install guides**: 2 files with skill registry entries
 
@@ -90,7 +90,7 @@ No data flow changes. Skills are loaded by name from filesystem paths.
 ### Step 3: External Reference Updates (12 active-path files)
 - [x] Update skill_advisor.py (19 lines)
 - [x] Update `.opencode/skill/README.md`
-- [x] Update `sk-code--full-stack/README.md`, `sk-documentation/README.md`, `sk-git/README.md`
+- [x] Update `sk-code--full-stack/README.md`, `sk-doc/README.md`, `sk-git/README.md`
 - [x] Update system-spec-kit references (`README.md`, `SKILL.md`, `nodes/rules.md`, `config/config.jsonc`, `mcp_server/tests/skill-ref-config.vitest.ts`)
 - [x] Update install guides (2 files)
 

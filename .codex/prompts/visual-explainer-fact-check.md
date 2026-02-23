@@ -1,1 +1,1 @@
-../../.opencode/command/visual-explainer/fact-check.md
+../../.opencode/command/create/visual_html.md

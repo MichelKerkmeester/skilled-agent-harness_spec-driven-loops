@@ -32,7 +32,7 @@ contextType: "decision"
 | **Testing** | Manual command execution, structural validation |
 
 ### Overview
-Refactor all 6 create commands from an inverted inline-workflow model to YAML-first architecture matching the spec_kit command pattern. The refactor proceeds in 4 phases: bug fixes, .md refactor, YAML refactor, and sk-documentation alignment. The golden reference strategy refactors skill.md first, then replicates the pattern to the remaining 5 commands.
+Refactor all 6 create commands from an inverted inline-workflow model to YAML-first architecture matching the spec_kit command pattern. The refactor proceeds in 4 phases: bug fixes, .md refactor, YAML refactor, and sk-doc alignment. The golden reference strategy refactors skill.md first, then replicates the pattern to the remaining 5 commands.
 
 - **Level**: 3
 
@@ -46,7 +46,7 @@ Refactor all 6 create commands from an inverted inline-workflow model to YAML-fi
 ### Definition of Ready
 - [x] Problem statement clear and scope documented
 - [x] Success criteria measurable
-- [x] Dependencies identified (spec_kit reference, sk-documentation skill)
+- [x] Dependencies identified (spec_kit reference, sk-doc skill)
 - [x] Golden reference pattern established (spec_kit commands)
 
 ### Definition of Done
@@ -148,7 +148,7 @@ User invokes /create:{command} → .md file loads
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
 | spec_kit commands (reference architecture) | Internal | Green | Cannot establish pattern to replicate |
-| sk-documentation skill | Internal | Green | Cannot integrate DQI enforcement |
+| sk-doc skill | Internal | Green | Cannot integrate DQI enforcement |
 | validate_document.py | Internal | Green | Cannot verify document quality |
 | Existing create command functionality | Internal | Green | Must preserve as regression baseline |
 

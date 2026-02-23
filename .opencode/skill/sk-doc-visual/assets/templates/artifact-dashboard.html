@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+<meta name="ve-artifact-type" content="spec">
+<meta name="ve-source-doc" content=".opencode/specs/002-commands-and-skills/044-sk-doc-visual-template-improvement/spec.md">
+<meta name="ve-speckit-level" content="2">
+<meta name="ve-view-mode" content="artifact-dashboard">
+<title>Artifact Dashboard Ledger - Visual Template</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #131314;
+  --surface: #1c1c1e;
+  --text: #fafafa;
+  --accent: #3b82f6;
+  --muted: #71717a;
+  --border: #27272a;
+  --surface2: #232326;
+  --surface-elevated: #2a2a2d;
+  --success: #22c55e;
+  --warn: #f59e0b;
+  --danger: #ef4444;
+  --shadow: 0 24px 44px rgba(0, 0, 0, 0.38);
+
+  --font-body: 'Inter', sans-serif;
+  --font-display: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', Consolas, monospace;
+
+  --ve-font-display: var(--font-display);
+  --ve-font-body: var(--font-body);
+  --ve-font-mono: var(--font-mono);
+
+  --ve-bg: var(--bg);
+  --ve-surface: var(--surface);
+  --ve-surface2: var(--surface2);
+  --ve-surface-elevated: var(--surface-elevated);
+  --ve-panel: color-mix(in srgb, var(--surface) 86%, transparent 14%);
+  --ve-panel-strong: color-mix(in srgb, var(--surface-elevated) 92%, #000 8%);
+  --ve-panel-soft: color-mix(in srgb, var(--surface2) 88%, #000 12%);
+  --ve-border: var(--border);
+  --ve-border-strong: color-mix(in srgb, var(--border) 70%, var(--text) 30%);
+
+  --ve-text: var(--text);
+  --ve-text-dim: var(--muted);
+  --ve-accent: var(--accent);
+  --ve-accent-soft: color-mix(in srgb, var(--accent) 24%, transparent 76%);
+  --ve-success: var(--success);
+  --ve-success-soft: color-mix(in srgb, var(--success) 20%, transparent 80%);
+  --ve-warn: var(--warn);
+  --ve-warn-soft: color-mix(in srgb, var(--warn) 22%, transparent 78%);
+  --ve-danger: var(--danger);
+  --ve-danger-soft: color-mix(in srgb, var(--danger) 20%, transparent 80%);
+
+  --ve-shadow: var(--shadow);
+  --ve-sidebar: 260px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #131314;
+    --surface: #1c1c1e;
+    --text: #fafafa;
+    --accent: #3b82f6;
+    --muted: #71717a;
+    --border: #27272a;
+  }
+}
+
+@media (prefers-contrast: more) {
+  :root {
+    --border: #4a4a51;
+    --muted: #9b9ba4;
+    --ve-border: var(--border);
+    --ve-border-strong: #8f8f99;
+    --ve-text-dim: var(--muted);
+  }
+}
+
+@media (forced-colors: active) {
+  :root {
+    --bg: Canvas;
+    --surface: Canvas;
+    --text: CanvasText;
+    --accent: LinkText;
+    --muted: CanvasText;
+    --border: CanvasText;
+    --surface2: Canvas;
+    --surface-elevated: Canvas;
+    --success: CanvasText;
+    --warn: CanvasText;
+    --danger: CanvasText;
+    --shadow: none;
+
+    --ve-bg: var(--bg);
+    --ve-surface: var(--surface);
+    --ve-surface2: var(--surface2);
+    --ve-surface-elevated: var(--surface-elevated);
+    --ve-panel: Canvas;
+    --ve-panel-strong: Canvas;
+    --ve-panel-soft: Canvas;
+    --ve-border: var(--border);
+    --ve-border-strong: var(--border);
+    --ve-text: var(--text);
+    --ve-text-dim: var(--muted);
+    --ve-accent: var(--accent);
+    --ve-accent-soft: Canvas;
+    --ve-success: var(--success);
+    --ve-success-soft: Canvas;
+    --ve-warn: var(--warn);
+    --ve-warn-soft: Canvas;
+    --ve-danger: var(--danger);
+    --ve-danger-soft: Canvas;
+    --ve-shadow: none;
+  }
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  color: var(--ve-text);
+  font-family: var(--ve-font-body);
+  background:
+    radial-gradient(circle at 10% -12%, color-mix(in srgb, var(--accent) 24%, transparent 76%) 0%, transparent 44%),
+    radial-gradient(circle at 90% 118%, color-mix(in srgb, var(--accent) 16%, transparent 84%) 0%, transparent 42%),
+    linear-gradient(160deg, #0d0d0e 0%, var(--ve-bg) 58%, #09090a 100%);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background:
+      radial-gradient(circle at 10% -12%, color-mix(in srgb, var(--accent) 26%, transparent 74%) 0%, transparent 46%),
+      radial-gradient(circle at 90% 118%, color-mix(in srgb, var(--accent) 18%, transparent 82%) 0%, transparent 44%),
+      linear-gradient(162deg, #0a0a0b 0%, var(--ve-bg) 60%, #070708 100%);
+  }
+}
+
+.scanline {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image: repeating-linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.04) 0,
+    rgba(255, 255, 255, 0.04) 1px,
+    transparent 1px,
+    transparent 4px
+  );
+  opacity: 0.34;
+  mix-blend-mode: soft-light;
+  transform: translateY(-100vh);
+  animation: scanline 10s linear infinite;
+  z-index: 0;
+}
+
+@keyframes scanline {
+  from { transform: translateY(-100vh); }
+  to { transform: translateY(100vh); }
+}
+
+.wrapper {
+  position: relative;
+  z-index: 1;
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 24px 18px 56px;
+}
+
+.glass-card {
+  background: var(--ve-panel);
+  border: 1px solid var(--ve-border);
+  box-shadow: var(--ve-shadow);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 16px;
+}
+
+.terminal-header {
+  padding: 16px 18px;
+  display: grid;
+  gap: 12px;
+}
+
+.terminal-line {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  font-family: var(--ve-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ve-text-dim);
+}
+
+.terminal-left {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.terminal-dots {
+  display: inline-flex;
+  gap: 6px;
+}
+
+.terminal-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  border: 1px solid var(--ve-border-strong);
+  background: var(--ve-panel-soft);
+}
+
+.terminal-dot:nth-child(1) { background: var(--ve-danger-soft); }
+.terminal-dot:nth-child(2) { background: var(--ve-warn-soft); }
+.terminal-dot:nth-child(3) { background: var(--ve-success-soft); }
+
+h1 {
+  margin: 0;
+  font-family: var(--ve-font-display);
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  letter-spacing: -0.03em;
+}
+
+.subhead {
+  margin: 6px 0 0;
+  color: var(--ve-text-dim);
+  max-width: 78ch;
+}
+
+.system-status {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--ve-border);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.status-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--ve-border-strong);
+  background: color-mix(in srgb, var(--ve-panel-soft) 82%, transparent 18%);
+  color: var(--ve-text-dim);
+  font-family: var(--ve-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.status-chip::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--ve-accent);
+  box-shadow: 0 0 0 3px var(--ve-accent-soft);
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: var(--ve-sidebar) minmax(0, 1fr);
+  gap: 20px;
+  margin-top: 18px;
+}
+
+.toc-desktop {
+  position: sticky;
+  top: 16px;
+  align-self: start;
+  padding: 14px;
+}
+
+.toc-title {
+  margin: 0 0 10px;
+  font-family: var(--ve-font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  font-size: 11px;
+  color: var(--ve-text-dim);
+}
+
+.toc-list {
+  display: grid;
+  gap: 6px;
+}
+
+.toc-list a {
+  text-decoration: none;
+  color: var(--ve-text-dim);
+  padding: 8px 10px;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  font-size: 13px;
+}
+
+.toc-list a:hover,
+.toc-list a.active {
+  color: var(--ve-accent);
+  border-color: var(--ve-border);
+  background: var(--ve-accent-soft);
+}
+
+.toc-mobile {
+  display: none;
+  margin-top: 14px;
+  padding: 10px 12px;
+}
+
+.toc-mobile summary {
+  cursor: pointer;
+  font-family: var(--ve-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ve-text-dim);
+}
+
+.toc-mobile .toc-list { margin-top: 10px; }
+
+main { display: grid; gap: 14px; }
+
+.section { padding: 18px; }
+
+.section h2 {
+  margin: 0;
+  font-family: var(--ve-font-display);
+  font-size: 1.3rem;
+  letter-spacing: -0.02em;
+}
+
+.section p {
+  margin: 10px 0 0;
+  color: var(--ve-text-dim);
+  line-height: 1.65;
+}
+
+.kpi-grid {
+  margin-top: 14px;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(110px, 1fr));
+  gap: 10px;
+}
+
+.kpi-item {
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid var(--ve-border);
+  background: var(--ve-panel-soft);
+}
+
+.kpi-label {
+  font-family: var(--ve-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ve-text-dim);
+}
+
+.kpi-value {
+  margin-top: 6px;
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+.viz-bars {
+  margin-top: 12px;
+  display: grid;
+  gap: 10px;
+}
+
+.viz-row {
+  display: grid;
+  grid-template-columns: minmax(120px, 180px) 1fr auto;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+}
+
+.bar-track {
+  width: 100%;
+  height: 10px;
+  border-radius: 999px;
+  background: var(--ve-panel-soft);
+  border: 1px solid var(--ve-border);
+  overflow: hidden;
+}
+
+.bar-track > i {
+  display: block;
+  height: 100%;
+  width: var(--pct, 0%);
+  background: linear-gradient(90deg, var(--ve-accent), var(--ve-success));
+}
+
+.flow-stack {
+  margin: 12px 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 10px;
+}
+
+.flow-step {
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid var(--ve-border);
+  background: var(--ve-panel-soft);
+  display: grid;
+  gap: 6px;
+}
+
+.flow-step strong {
+  font-family: var(--ve-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ve-accent);
+}
+
+.ledger-line {
+  margin: 12px 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 12px;
+}
+
+.ledger-line li {
+  border-left: 2px solid var(--ve-border-strong);
+  padding-left: 12px;
+  display: grid;
+  gap: 5px;
+}
+
+.ledger-line time {
+  font-family: var(--ve-font-mono);
+  color: var(--ve-text-dim);
+  font-size: 11px;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-family: var(--ve-font-mono);
+  font-size: 10px;
+}
+
+.badge.ok { color: var(--ve-success); background: var(--ve-success-soft); }
+.badge.warn { color: var(--ve-warn); background: var(--ve-warn-soft); }
+.badge.risk { color: var(--ve-danger); background: var(--ve-danger-soft); }
+
+.table-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin-top: 12px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+th, td {
+  text-align: left;
+  vertical-align: top;
+  padding: 10px;
+  border-bottom: 1px solid var(--ve-border);
+}
+
+th {
+  font-family: var(--ve-font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 10px;
+  color: var(--ve-text-dim);
+}
+
+code {
+  font-family: var(--ve-font-mono);
+  font-size: 12px;
+  color: var(--ve-accent);
+  background: var(--ve-accent-soft);
+  border-radius: 6px;
+  padding: 1px 5px;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(10px);
+  animation: reveal 520ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: calc(var(--i, 0) * 80ms);
+}
+
+@keyframes reveal {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 1080px) {
+  .layout { grid-template-columns: 1fr; }
+  .toc-desktop { display: none; }
+  .toc-mobile {
+    display: block;
+    position: sticky;
+    top: 8px;
+    z-index: 5;
+  }
+}
+
+@media (max-width: 880px) {
+  .kpi-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .viz-row { grid-template-columns: 1fr; gap: 6px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-delay: 0ms !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .reveal { opacity: 1; transform: none; }
+
+  .scanline { animation: none !important; }
+}
+</style>
+</head>
+<body>
+<div class="scanline" aria-hidden="true"></div>
+<div class="wrapper">
+  <header class="terminal-header glass-card reveal" style="--i:0">
+    <div class="terminal-line">
+      <span class="terminal-left">
+        <span class="terminal-dots" aria-hidden="true">
+          <span class="terminal-dot"></span>
+          <span class="terminal-dot"></span>
+          <span class="terminal-dot"></span>
+        </span>
+        <span>Artifact Dashboard Ledger</span>
+      </span>
+      <time id="clock" datetime="" aria-live="polite">--:--:-- UTC</time>
+    </div>
+    <div>
+      <h1>Artifact Dashboard</h1>
+      <p class="subhead">One-page artifact health board with KPI snapshot, coverage bars, risk diagnostics, and evidence links.</p>
+      <div class="system-status" role="list" aria-label="System status">
+        <span class="status-chip" role="listitem">Profile: README Ledger</span>
+        <span class="status-chip" role="listitem">Theme: Dark Brutalist</span>
+        <span class="status-chip" role="listitem">State: Validator Ready</span>
+      </div>
+    </div>
+  </header>
+
+  <details class="toc-mobile glass-card reveal" style="--i:1">
+    <summary>Section Index</summary>
+    <nav class="toc-list" aria-label="Artifact dashboard section index">
+      <a data-toc-link href="#artifact-kpis">KPI Row</a>
+      <a data-toc-link href="#section-coverage-map">Coverage Map</a>
+      <a data-toc-link href="#risk-gaps-panel">Risk Gaps</a>
+      <a data-toc-link href="#evidence-table">Evidence</a>
+    </nav>
+  </details>
+
+  <div class="layout">
+    <aside class="toc-desktop glass-card reveal" style="--i:1">
+      <p class="toc-title">Contents</p>
+      <nav class="toc-list" aria-label="Artifact dashboard section index">
+        <a data-toc-link href="#artifact-kpis">KPI Row</a>
+        <a data-toc-link href="#section-coverage-map">Coverage Map</a>
+        <a data-toc-link href="#risk-gaps-panel">Risk Gaps</a>
+        <a data-toc-link href="#evidence-table">Evidence</a>
+      </nav>
+    </aside>
+
+    <main>
+      <section id="artifact-kpis" class="section glass-card reveal" style="--i:2">
+        <h2>Artifact KPIs</h2>
+        <p>Use these cards to summarize readiness in under ten seconds.</p>
+        <div class="kpi-grid">
+          <article class="kpi-item">
+            <div class="kpi-label">Artifact</div>
+            <div class="kpi-value">spec.md</div>
+          </article>
+          <article class="kpi-item">
+            <div class="kpi-label">SpecKit Level</div>
+            <div class="kpi-value">2</div>
+          </article>
+          <article class="kpi-item">
+            <div class="kpi-label">Coverage</div>
+            <div class="kpi-value">94%</div>
+          </article>
+          <article class="kpi-item">
+            <div class="kpi-label">Open Gaps</div>
+            <div class="kpi-value">3</div>
+          </article>
+          <article class="kpi-item">
+            <div class="kpi-label">Overall</div>
+            <div class="kpi-value"><span class="badge ok">Healthy</span></div>
+          </article>
+        </div>
+      </section>
+
+      <section id="section-coverage-map" class="section glass-card reveal" style="--i:3">
+        <h2>Section Coverage Map</h2>
+        <p>Bars visualize which sections are fully resolved and which still require hard evidence.</p>
+        <div class="viz-bars" role="list" aria-label="Section coverage bars">
+          <div class="viz-row" role="listitem">
+            <span>Scope + goals</span>
+            <span class="bar-track"><i style="--pct:100%"></i></span>
+            <strong>100%</strong>
+          </div>
+          <div class="viz-row" role="listitem">
+            <span>Acceptance criteria</span>
+            <span class="bar-track"><i style="--pct:92%"></i></span>
+            <strong>92%</strong>
+          </div>
+          <div class="viz-row" role="listitem">
+            <span>Edge-case definitions</span>
+            <span class="bar-track"><i style="--pct:79%"></i></span>
+            <strong>79%</strong>
+          </div>
+          <div class="viz-row" role="listitem">
+            <span>Rollback guidance</span>
+            <span class="bar-track"><i style="--pct:71%"></i></span>
+            <strong>71%</strong>
+          </div>
+        </div>
+      </section>
+
+      <section id="risk-gaps-panel" class="section glass-card reveal" style="--i:4">
+        <h2>Risk and Gap Panel</h2>
+        <p>List each unresolved area with concrete action so downstream work does not re-open scope decisions.</p>
+        <ol class="flow-stack">
+          <li class="flow-step">
+            <strong>Gap A</strong>
+            <span>Two acceptance paths still use qualitative language without measurable pass criteria.</span>
+            <span class="badge risk">P1</span>
+          </li>
+          <li class="flow-step">
+            <strong>Gap B</strong>
+            <span>Cross-reference from checklist to implementation summary is missing in one subsection.</span>
+            <span class="badge warn">P2</span>
+          </li>
+          <li class="flow-step">
+            <strong>Gap C</strong>
+            <span>Validation command output path is implied but not explicitly documented.</span>
+            <span class="badge warn">P2</span>
+          </li>
+        </ol>
+      </section>
+
+      <section id="evidence-table" class="section glass-card reveal" style="--i:5">
+        <h2>Evidence Table</h2>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Requirement</th>
+                <th>Status</th>
+                <th>Evidence Pointer</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Template regeneration ownership respected</td>
+                <td><span class="badge ok">Pass</span></td>
+                <td><code>.opencode/skill/sk-doc-visual/assets/templates/</code></td>
+              </tr>
+              <tr>
+                <td>Design language parity with ledger baseline</td>
+                <td><span class="badge ok">Pass</span></td>
+                <td><code>terminal-header, scanline, glass-card, flow-step</code></td>
+              </tr>
+              <tr>
+                <td>Accessibility and theme support blocks</td>
+                <td><span class="badge ok">Pass</span></td>
+                <td><code>prefers-color-scheme / reduced-motion / forced-colors</code></td>
+              </tr>
+              <tr>
+                <td>Validator contract requirements</td>
+                <td><span class="badge ok">Pass</span></td>
+                <td><code>validate-html-output.sh</code> clean result</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+  </div>
+</div>
+
+<script>
+(function initUtcClock() {
+  var clock = document.getElementById('clock');
+  if (!clock) return;
+
+  var lastSecond = -1;
+  function tick() {
+    var now = new Date();
+    var second = now.getUTCSeconds();
+    if (second !== lastSecond) {
+      lastSecond = second;
+      var hh = String(now.getUTCHours()).padStart(2, '0');
+      var mm = String(now.getUTCMinutes()).padStart(2, '0');
+      var ss = String(now.getUTCSeconds()).padStart(2, '0');
+      clock.textContent = hh + ':' + mm + ':' + ss + ' UTC';
+      clock.dateTime = now.toISOString();
+      clock.title = now.toISOString();
+    }
+    window.requestAnimationFrame(tick);
+  }
+  window.requestAnimationFrame(tick);
+})();
+
+(function initActiveToc() {
+  var links = Array.prototype.slice.call(document.querySelectorAll('[data-toc-link][href^="#"]'));
+  if (!links.length) return;
+
+  var seen = {};
+  var sectionIds = [];
+  links.forEach(function(link) {
+    var id = link.getAttribute('href').slice(1);
+    if (!seen[id] && document.getElementById(id)) {
+      seen[id] = true;
+      sectionIds.push(id);
+    }
+
+    link.addEventListener('click', function(event) {
+      event.preventDefault();
+      var target = document.getElementById(id);
+      if (!target) return;
+      var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      target.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+      setActive(id);
+    });
+  });
+
+  function setActive(id) {
+    links.forEach(function(link) {
+      var active = link.getAttribute('href') === '#' + id;
+      link.classList.toggle('active', active);
+      if (active) link.setAttribute('aria-current', 'true');
+      else link.removeAttribute('aria-current');
+    });
+  }
+
+  if (!('IntersectionObserver' in window)) {
+    setActive(sectionIds[0]);
+    return;
+  }
+
+  var observer = new IntersectionObserver(function(entries) {
+    var visible = entries.filter(function(entry) {
+      return entry.isIntersecting;
+    }).sort(function(a, b) {
+      return b.intersectionRatio - a.intersectionRatio;
+    });
+
+    if (visible.length) {
+      setActive(visible[0].target.id);
+    }
+  }, {
+    rootMargin: '-25% 0px -55% 0px',
+    threshold: [0.2, 0.35, 0.55]
+  });
+
+  sectionIds.forEach(function(id) {
+    var el = document.getElementById(id);
+    if (el) observer.observe(el);
+  });
+
+  setActive(sectionIds[0]);
+})();
+</script>
+</body>
+</html>

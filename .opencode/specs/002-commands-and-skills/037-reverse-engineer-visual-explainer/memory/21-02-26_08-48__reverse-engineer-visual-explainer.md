@@ -1,5 +1,5 @@
 ---
-title: "To promote a memory to [037-reverse-engineer-visual-explainer/21-02-26_08-48__reverse-engineer-visual-explainer]"
+title: "To promote a memory to [037-reverse-engineer-doc-visual/21-02-26_08-48__reverse-engineer-doc-visual]"
 importance_tier: "normal"
 contextType: "general"
 ---
@@ -36,7 +36,7 @@ contextType: "general"
 |:--------------|:----------|
 | Session Date | 2026-02-21 |
 | Session ID | session-1771660090997-404p3fuf9 |
-| Spec Folder | 002-commands-and-skills/037-reverse-engineer-visual-explainer |
+| Spec Folder | 002-commands-and-skills/037-reverse-engineer-doc-visual |
 | Channel | main |
 | Importance Tier | normal |
 | Context Type | general |
@@ -114,7 +114,7 @@ contextType: "general"
 
 **Decisions:** 4 decisions recorded
 
-**Summary:** Audited and fixed 7 compliance gaps in the sk-visual-explainer skill against sk-documentation standards. The skill (22 files, 10 nodes) was reverse-engineered from nicobailon/visual-expl...
+**Summary:** Audited and fixed 7 compliance gaps in the sk-doc-visual skill against sk-doc standards. The skill (22 files, 10 nodes) was reverse-engineered from nicobailon/visual-expl...
 
 ### Pending Work
 
@@ -124,24 +124,24 @@ contextType: "general"
 
 **To continue this work, use:**
 ```
-/spec_kit:resume 002-commands-and-skills/037-reverse-engineer-visual-explainer
+/spec_kit:resume 002-commands-and-skills/037-reverse-engineer-doc-visual
 ```
 
 **Or paste this continuation prompt:**
 ```
 CONTINUATION - Attempt 2
-Spec: 002-commands-and-skills/037-reverse-engineer-visual-explainer
+Spec: 002-commands-and-skills/037-reverse-engineer-doc-visual
 Last: Technical Implementation Details
 Next: Continue implementation
 ```
 
 **Key Context to Review:**
 
-- Files modified: .opencode/skill/sk-visual-explainer/SKILL.md, .opencode/.../references/quick_reference.md, .opencode/.../references/css_patterns.md
+- Files modified: .opencode/skill/sk-doc-visual/SKILL.md, .opencode/.../references/quick_reference.md, .opencode/.../references/css_patterns.md
 
 - Check: plan.md, tasks.md, checklist.md
 
-- Last: Audited and fixed 7 compliance gaps in the sk-visual-explainer skill agai
+- Last: Audited and fixed 7 compliance gaps in the sk-doc-visual skill agai
 
 <!-- /ANCHOR:continue-session -->
 
@@ -154,7 +154,7 @@ Next: Continue implementation
 | Field | Value |
 |-------|-------|
 | Phase | RESEARCH |
-| Active File | .opencode/skill/sk-visual-explainer/SKILL.md |
+| Active File | .opencode/skill/sk-doc-visual/SKILL.md |
 | Last Action | Technical Implementation Details |
 | Next Action | Continue implementation |
 | Blockers | Fixed: GAP-1 (H1 missing subtitle), GAP-2 (3 missing SMART ROUTING subsections), GAP-3 (RULES bold t |
@@ -187,13 +187,13 @@ Next: Continue implementation
 
 **What Was Built**:
 
-- **Audited and fixed 7 compliance gaps in the sk-visual-explainer skill against...** - Audited and fixed 7 compliance gaps in the sk-visual-explainer skill against sk-documentation standards.
+- **Audited and fixed 7 compliance gaps in the sk-doc-visual skill against...** - Audited and fixed 7 compliance gaps in the sk-doc-visual skill against sk-doc standards.
 
 - **Technical Implementation Details** - rootCause: Skill was reverse-engineered from external source and had not been validated against the
 
 **Key Files and Their Roles**:
 
-- `.opencode/skill/sk-visual-explainer/SKILL.md` - Documentation
+- `.opencode/skill/sk-doc-visual/SKILL.md` - Documentation
 
 - `.opencode/.../references/quick_reference.md` - Documentation
 
@@ -224,10 +224,10 @@ Next: Continue implementation
 
 ## 2. OVERVIEW
 
-Audited and fixed 7 compliance gaps in the sk-visual-explainer skill against sk-documentation standards. The skill (22 files, 10 nodes) was reverse-engineered from nicobailon/visual-explainer and needed structural fixes to match canonical skill templates. Fixed: GAP-1 (H1 missing subtitle), GAP-2 (3 missing SMART ROUTING subsections), GAP-3 (RULES bold text instead of H3 headings), GAP-4 (5 reference files missing YAML frontmatter), GAP-5 (Section 7 duplicate routing table merged into Section 6), GAP-6 (bare code block without language tag), GAP-7 (orphaned Skill Graph Status content outside ANCHOR blocks). All 7 gaps fixed across 6 files with verification confirming compliance.
+Audited and fixed 7 compliance gaps in the sk-doc-visual skill against sk-doc standards. The skill (22 files, 10 nodes) was reverse-engineered from nicobailon/doc-visual and needed structural fixes to match canonical skill templates. Fixed: GAP-1 (H1 missing subtitle), GAP-2 (3 missing SMART ROUTING subsections), GAP-3 (RULES bold text instead of H3 headings), GAP-4 (5 reference files missing YAML frontmatter), GAP-5 (Section 7 duplicate routing table merged into Section 6), GAP-6 (bare code block without language tag), GAP-7 (orphaned Skill Graph Status content outside ANCHOR blocks). All 7 gaps fixed across 6 files with verification confirming compliance.
 
 **Key Outcomes**:
-- Audited and fixed 7 compliance gaps in the sk-visual-explainer skill against...
+- Audited and fixed 7 compliance gaps in the sk-doc-visual skill against...
 - Merged Section 7 REFERENCES into Section 6 INTEGRATION POINTS as a ### Resources
 - Added 3 new SMART ROUTING subsections (Primary Detection Signal, Phase Detection
 - Converted bold text rules (ALWAYS/NEVER/ESCALATE IF) to H3 headings with emoji p
@@ -238,7 +238,7 @@ Audited and fixed 7 compliance gaps in the sk-visual-explainer skill against sk-
 
 | **File** | **Description** |
 |:---------|:----------------|
-| `.opencode/skill/sk-visual-explainer/SKILL.md` | File modified (description pending) |
+| `.opencode/skill/sk-doc-visual/SKILL.md` | File modified (description pending) |
 | `.opencode/.../references/quick_reference.md` | File modified (description pending) |
 | `.opencode/.../references/css_patterns.md` | File modified (description pending) |
 | `.opencode/.../references/library_guide.md` | File modified (description pending) |
@@ -262,9 +262,9 @@ Nodes: 435 | Edges: 655 | Skills: 10
 - sk-code--full-stack: 62 nodes
 - sk-code--opencode: 35 nodes
 - workflows-code--web-dev: 44 nodes
-- sk-documentation: 36 nodes
+- sk-doc: 36 nodes
 - sk-git: 21 nodes
-- sk-visual-explainer: 18 nodes
+- sk-doc-visual: 18 nodes
 
 **Node types:** :Asset(51), :Document(136), :Entrypoint(10), :Index(10), :Node(83), :Reference(135), :Skill(10)
 
@@ -278,17 +278,17 @@ Nodes: 435 | Edges: 655 | Skills: 10
 ## 3. DETAILED CHANGES
 
 <!-- ANCHOR:architecture-audited-compliance-gaps-workflowsvisualexplainer-1e2f9e35 -->
-### FEATURE: Audited and fixed 7 compliance gaps in the sk-visual-explainer skill against...
+### FEATURE: Audited and fixed 7 compliance gaps in the sk-doc-visual skill against...
 
-Audited and fixed 7 compliance gaps in the sk-visual-explainer skill against sk-documentation standards. The skill (22 files, 10 nodes) was reverse-engineered from nicobailon/visual-explainer and needed structural fixes to match canonical skill templates. Fixed: GAP-1 (H1 missing subtitle), GAP-2 (3 missing SMART ROUTING subsections), GAP-3 (RULES bold text instead of H3 headings), GAP-4 (5 reference files missing YAML frontmatter), GAP-5 (Section 7 duplicate routing table merged into Section 6), GAP-6 (bare code block without language tag), GAP-7 (orphaned Skill Graph Status content outside ANCHOR blocks). All 7 gaps fixed across 6 files with verification confirming compliance.
+Audited and fixed 7 compliance gaps in the sk-doc-visual skill against sk-doc standards. The skill (22 files, 10 nodes) was reverse-engineered from nicobailon/doc-visual and needed structural fixes to match canonical skill templates. Fixed: GAP-1 (H1 missing subtitle), GAP-2 (3 missing SMART ROUTING subsections), GAP-3 (RULES bold text instead of H3 headings), GAP-4 (5 reference files missing YAML frontmatter), GAP-5 (Section 7 duplicate routing table merged into Section 6), GAP-6 (bare code block without language tag), GAP-7 (orphaned Skill Graph Status content outside ANCHOR blocks). All 7 gaps fixed across 6 files with verification confirming compliance.
 
-**Details:** visual-explainer audit | skill compliance | sk-documentation standards | SKILL.md structure | SMART ROUTING subsections | reference file frontmatter | YAML frontmatter | skill template validation | reverse-engineer visual-explainer | gap analysis skill
+**Details:** doc-visual audit | skill compliance | sk-doc standards | SKILL.md structure | SMART ROUTING subsections | reference file frontmatter | YAML frontmatter | skill template validation | reverse-engineer doc-visual | gap analysis skill
 <!-- /ANCHOR:architecture-audited-compliance-gaps-workflowsvisualexplainer-1e2f9e35 -->
 
 <!-- ANCHOR:implementation-technical-implementation-details-49fa6cac -->
 ### IMPLEMENTATION: Technical Implementation Details
 
-rootCause: Skill was reverse-engineered from external source and had not been validated against the canonical sk-documentation skill template structure; solution: Systematic 7-gap audit with precise edits: H1 subtitle, 3 new SMART ROUTING subsections, RULES H3 headings with emoji, Section 7 merge into Section 6, code block language tag, orphaned content removal, and YAML frontmatter for all 5 reference files; patterns: Used Edit tool with unique string matching for non-overlapping edits on same file, batch-processed 5 reference file edits in parallel, verified all changes with Grep-based structural checks
+rootCause: Skill was reverse-engineered from external source and had not been validated against the canonical sk-doc skill template structure; solution: Systematic 7-gap audit with precise edits: H1 subtitle, 3 new SMART ROUTING subsections, RULES H3 headings with emoji, Section 7 merge into Section 6, code block language tag, orphaned content removal, and YAML frontmatter for all 5 reference files; patterns: Used Edit tool with unique string matching for non-overlapping edits on same file, batch-processed 5 reference file edits in parallel, verified all changes with Grep-based structural checks
 
 <!-- /ANCHOR:implementation-technical-implementation-details-49fa6cac -->
 
@@ -455,7 +455,7 @@ This session followed a **Linear Sequential** conversation pattern with **0** di
 
 > **User** | 2026-02-21 @ 08:48:10
 
-Audited and fixed 7 compliance gaps in the sk-visual-explainer skill against sk-documentation standards. The skill (22 files, 10 nodes) was reverse-engineered from nicobailon/visual-explainer and needed structural fixes to match canonical skill templates. Fixed: GAP-1 (H1 missing subtitle), GAP-2 (3 missing SMART ROUTING subsections), GAP-3 (RULES bold text instead of H3 headings), GAP-4 (5 reference files missing YAML frontmatter), GAP-5 (Section 7 duplicate routing table merged into Section 6), GAP-6 (bare code block without language tag), GAP-7 (orphaned Skill Graph Status content outside ANCHOR blocks). All 7 gaps fixed across 6 files with verification confirming compliance.
+Audited and fixed 7 compliance gaps in the sk-doc-visual skill against sk-doc standards. The skill (22 files, 10 nodes) was reverse-engineered from nicobailon/doc-visual and needed structural fixes to match canonical skill templates. Fixed: GAP-1 (H1 missing subtitle), GAP-2 (3 missing SMART ROUTING subsections), GAP-3 (RULES bold text instead of H3 headings), GAP-4 (5 reference files missing YAML frontmatter), GAP-5 (Section 7 duplicate routing table merged into Section 6), GAP-6 (bare code block without language tag), GAP-7 (orphaned Skill Graph Status content outside ANCHOR blocks). All 7 gaps fixed across 6 files with verification confirming compliance.
 
 ---
 
@@ -474,9 +474,9 @@ Audited and fixed 7 compliance gaps in the sk-visual-explainer skill against sk-
 
 | Scenario | Symptoms | Recovery Action |
 |----------|----------|-----------------|
-| Context Loss | Agent doesn't remember prior work | Run `/spec_kit:resume 002-commands-and-skills/037-reverse-engineer-visual-explainer` |
+| Context Loss | Agent doesn't remember prior work | Run `/spec_kit:resume 002-commands-and-skills/037-reverse-engineer-doc-visual` |
 | State Mismatch | Files don't match expected state | Verify with `git status` and `git diff` |
-| Memory Not Found | Search returns no results | Check `memory_search({ specFolder: "002-commands-and-skills/037-reverse-engineer-visual-explainer" })` |
+| Memory Not Found | Search returns no results | Check `memory_search({ specFolder: "002-commands-and-skills/037-reverse-engineer-doc-visual" })` |
 | Stale Context | Information seems outdated | Check `last_accessed_epoch` vs current time |
 | Incomplete Handover | Missing continuation context | Review CONTINUE SESSION section above |
 | Dedup Collision | Wrong memory surfaced | Check `fingerprint_hash` for conflicts |
@@ -488,16 +488,16 @@ Audited and fixed 7 compliance gaps in the sk-visual-explainer skill against sk-
 node .opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts --status
 
 # List memories for this spec folder
-memory_search({ specFolder: "002-commands-and-skills/037-reverse-engineer-visual-explainer", limit: 10 })
+memory_search({ specFolder: "002-commands-and-skills/037-reverse-engineer-doc-visual", limit: 10 })
 
 # Verify memory file integrity
-ls -la 002-commands-and-skills/037-reverse-engineer-visual-explainer/memory/
+ls -la 002-commands-and-skills/037-reverse-engineer-doc-visual/memory/
 
 # Check for orphaned memories
 memory_search({ query: "orphaned", anchors: ["state"] })
 
 # Force re-index of this spec folder
-node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js 002-commands-and-skills/037-reverse-engineer-visual-explainer --force
+node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js 002-commands-and-skills/037-reverse-engineer-doc-visual --force
 ```
 
 ### Recovery Priority
@@ -570,7 +570,7 @@ Learning metrics will be calculated when both preflight and postflight data are 
 ```yaml
 # Core Identifiers
 session_id: "session-1771660090997-404p3fuf9"
-spec_folder: "002-commands-and-skills/037-reverse-engineer-visual-explainer"
+spec_folder: "002-commands-and-skills/037-reverse-engineer-doc-visual"
 channel: "main"
 
 # Classification
@@ -653,8 +653,8 @@ key_topics:
 
 # Trigger Phrases (auto-extracted for fast <50ms matching)
 trigger_phrases:
-  - "commands and skills/037 reverse engineer visual explainer"
-  - "workflows visual explainer"
+  - "commands and skills/037 reverse engineer doc visual"
+  - "workflows doc visual"
   - "workflows documentation"
   - "reverse engineered"
   - "gap 1"
@@ -1385,7 +1385,7 @@ trigger_phrases:
   - "verification_workflows"
   - "verification workflows - phase 3 (mandatory)"
   - "browser verification requirements for all completion claims - no exceptions."
-  - "sk-documentation"
+  - "sk-doc"
   - "documentation"
   - "unified markdown and opencode component specialist providing document quality enforcement, content optimization, component creation workflows, ascii flowcharts and install guides"
   - "documentation creation specialist - unified markdown & component management"
@@ -1515,37 +1515,37 @@ trigger_phrases:
   - "worktree_workflows"
   - "git worktrees - detailed workflow reference"
   - "complete workflow documentation for creating isolated git workspaces with minimal branching."
-  - "sk-visual-explainer"
-  - "sk-visual-explainer — styled html diagram generator"
+  - "sk-doc-visual"
+  - "sk-doc-visual — styled html diagram generator"
   - "converts complex terminal output and technical concepts into styled, self-contained html pages with diagrams, tables, and visualizations through a 4-phase think-structure-style-deliver workflow."
-  - "visual explainer — styled html diagram generator"
+  - "doc visual — styled html diagram generator"
   - "converts complex terminal output and technical concepts into styled, self-contained html pages with diagrams, tables, and visualizations."
   - "aesthetics"
   - "9 aesthetic profiles with css variable values, font pairings, background atmosphere, and a compatibility matrix with diagram types"
-  - "full contracts for all 5 sk-visual-explainer slash commands including argument parsing, data gathering, section architecture, and output specs"
+  - "full contracts for all 5 sk-doc-visual slash commands including argument parsing, data gathering, section architecture, and output specs"
   - "diagram-types"
   - "diagram types"
   - "all 11 diagram types with rendering approach, best-fit scenarios, constraints, and a decision tree for selection"
   - "4-phase think > structure > style > deliver workflow with sub-steps and decision points"
-  - "cdn libraries, cross-skill integration, output conventions, and google fonts pairings for sk-visual-explainer"
-  - "index of all reference files, asset files, template files, and related skills for the sk-visual-explainer skill"
-  - "always/never/escalate if behavioral rules for sk-visual-explainer outputs"
+  - "cdn libraries, cross-skill integration, output conventions, and google fonts pairings for sk-doc-visual"
+  - "index of all reference files, asset files, template files, and related skills for the sk-doc-visual skill"
+  - "always/never/escalate if behavioral rules for sk-doc-visual outputs"
   - "intent scoring pseudocode and resource loading strategy for routing user requests to the correct command and resources"
-  - "9 pre-delivery quality checks for sk-visual-explainer html output"
-  - "activation triggers, 5 command overview, and decision matrix for when to use sk-visual-explainer"
-  - "visual explainer — css patterns"
+  - "9 pre-delivery quality checks for sk-doc-visual html output"
+  - "activation triggers, 5 command overview, and decision matrix for when to use sk-doc-visual"
+  - "doc visual — css patterns"
   - "comprehensive css pattern library covering all 9 aesthetic profiles with custom properties, depth tiers, backgrounds, and animations"
   - "library_guide"
-  - "visual explainer — library guide"
+  - "doc visual — library guide"
   - "deep-dive reference for mermaid.js v11, chart.js v4, and anime.js v3.2.2 initialization, configuration, and integration patterns"
   - "navigation_patterns"
-  - "visual explainer — navigation patterns"
+  - "doc visual — navigation patterns"
   - "in-page navigation patterns including sticky sidebar toc, mobile horizontal nav, and scroll-spy via intersectionobserver"
   - "quality_checklist"
-  - "visual explainer — quality checklist"
+  - "doc visual — quality checklist"
   - "detailed pass/fail verification procedure for all 9 pre-delivery quality checks with step-by-step instructions"
-  - "visual explainer — quick reference"
-  - "command cheat sheet, cdn snippets, and font pairings for quick access during sk-visual-explainer generation"
+  - "doc visual — quick reference"
+  - "command cheat sheet, cdn snippets, and font pairings for quick access during sk-doc-visual generation"
   - "skill.md"
   - "env_template.md"
   - "config_template.md"
@@ -1570,7 +1570,7 @@ trigger_phrases:
   - "references/validation/five-checks.md"
   - "references/workflows/rollback-runbook.md"
   - "../sk-code--opencode/skill.md"
-  - "../sk-documentation/skill.md"
+  - "../sk-doc/skill.md"
   - "level_specifications.md"
   - "template_guide.md"
   - "save_workflow.md"
@@ -1669,7 +1669,7 @@ trigger_phrases:
   - "pr_template.md"
 
 key_files:
-  - ".opencode/skill/sk-visual-explainer/SKILL.md"
+  - ".opencode/skill/sk-doc-visual/SKILL.md"
   - ".opencode/.../references/quick_reference.md"
   - ".opencode/.../references/css_patterns.md"
   - ".opencode/.../references/library_guide.md"
@@ -1681,7 +1681,7 @@ related_sessions:
 
   []
 
-parent_spec: "002-commands-and-skills/037-reverse-engineer-visual-explainer"
+parent_spec: "002-commands-and-skills/037-reverse-engineer-doc-visual"
 child_sessions:
 
   []

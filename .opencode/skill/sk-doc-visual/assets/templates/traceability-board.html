@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+<meta name="ve-artifact-type" content="plan">
+<meta name="ve-source-doc" content=".opencode/specs/002-commands-and-skills/044-sk-doc-visual-template-improvement/plan.md">
+<meta name="ve-speckit-level" content="2">
+<meta name="ve-view-mode" content="traceability-board">
+<title>Traceability Board Ledger - Visual Template</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #131314;
+  --surface: #1c1c1e;
+  --text: #fafafa;
+  --accent: #3b82f6;
+  --muted: #71717a;
+  --border: #27272a;
+  --surface2: #232326;
+  --surface-elevated: #2a2a2d;
+  --success: #22c55e;
+  --warn: #f59e0b;
+  --danger: #ef4444;
+  --shadow: 0 24px 44px rgba(0, 0, 0, 0.38);
+
+  --font-body: 'Inter', sans-serif;
+  --font-display: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', Consolas, monospace;
+
+  --ve-font-display: var(--font-display);
+  --ve-font-body: var(--font-body);
+  --ve-font-mono: var(--font-mono);
+
+  --ve-bg: var(--bg);
+  --ve-surface: var(--surface);
+  --ve-surface2: var(--surface2);
+  --ve-surface-elevated: var(--surface-elevated);
+  --ve-panel: color-mix(in srgb, var(--surface) 86%, transparent 14%);
+  --ve-panel-strong: color-mix(in srgb, var(--surface-elevated) 92%, #000 8%);
+  --ve-panel-soft: color-mix(in srgb, var(--surface2) 88%, #000 12%);
+  --ve-border: var(--border);
+  --ve-border-strong: color-mix(in srgb, var(--border) 70%, var(--text) 30%);
+
+  --ve-text: var(--text);
+  --ve-text-dim: var(--muted);
+  --ve-accent: var(--accent);
+  --ve-accent-soft: color-mix(in srgb, var(--accent) 24%, transparent 76%);
+  --ve-success: var(--success);
+  --ve-success-soft: color-mix(in srgb, var(--success) 20%, transparent 80%);
+  --ve-warn: var(--warn);
+  --ve-warn-soft: color-mix(in srgb, var(--warn) 22%, transparent 78%);
+  --ve-danger: var(--danger);
+  --ve-danger-soft: color-mix(in srgb, var(--danger) 20%, transparent 80%);
+
+  --ve-shadow: var(--shadow);
+  --ve-sidebar: 260px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #131314;
+    --surface: #1c1c1e;
+    --text: #fafafa;
+    --accent: #3b82f6;
+    --muted: #71717a;
+    --border: #27272a;
+  }
+}
+
+@media (prefers-contrast: more) {
+  :root {
+    --border: #4a4a51;
+    --muted: #9b9ba4;
+    --ve-border: var(--border);
+    --ve-border-strong: #8f8f99;
+    --ve-text-dim: var(--muted);
+  }
+}
+
+@media (forced-colors: active) {
+  :root {
+    --bg: Canvas;
+    --surface: Canvas;
+    --text: CanvasText;
+    --accent: LinkText;
+    --muted: CanvasText;
+    --border: CanvasText;
+    --surface2: Canvas;
+    --surface-elevated: Canvas;
+    --success: CanvasText;
+    --warn: CanvasText;
+    --danger: CanvasText;
+    --shadow: none;
+
+    --ve-bg: var(--bg);
+    --ve-surface: var(--surface);
+    --ve-surface2: var(--surface2);
+    --ve-surface-elevated: var(--surface-elevated);
+    --ve-panel: Canvas;
+    --ve-panel-strong: Canvas;
+    --ve-panel-soft: Canvas;
+    --ve-border: var(--border);
+    --ve-border-strong: var(--border);
+    --ve-text: var(--text);
+    --ve-text-dim: var(--muted);
+    --ve-accent: var(--accent);
+    --ve-accent-soft: Canvas;
+    --ve-success: var(--success);
+    --ve-success-soft: Canvas;
+    --ve-warn: var(--warn);
+    --ve-warn-soft: Canvas;
+    --ve-danger: var(--danger);
+    --ve-danger-soft: Canvas;
+    --ve-shadow: none;
+  }
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  color: var(--ve-text);
+  font-family: var(--ve-font-body);
+  background:
+    radial-gradient(circle at 10% -12%, color-mix(in srgb, var(--accent) 24%, transparent 76%) 0%, transparent 44%),
+    radial-gradient(circle at 90% 118%, color-mix(in srgb, var(--accent) 16%, transparent 84%) 0%, transparent 42%),
+    linear-gradient(160deg, #0d0d0e 0%, var(--ve-bg) 58%, #09090a 100%);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background:
+      radial-gradient(circle at 10% -12%, color-mix(in srgb, var(--accent) 26%, transparent 74%) 0%, transparent 46%),
+      radial-gradient(circle at 90% 118%, color-mix(in srgb, var(--accent) 18%, transparent 82%) 0%, transparent 44%),
+      linear-gradient(162deg, #0a0a0b 0%, var(--ve-bg) 60%, #070708 100%);
+  }
+}
+
+.scanline {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image: repeating-linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.04) 0,
+    rgba(255, 255, 255, 0.04) 1px,
+    transparent 1px,
+    transparent 4px
+  );
+  opacity: 0.34;
+  mix-blend-mode: soft-light;
+  transform: translateY(-100vh);
+  animation: scanline 10s linear infinite;
+  z-index: 0;
+}
+
+@keyframes scanline {
+  from { transform: translateY(-100vh); }
+  to { transform: translateY(100vh); }
+}
+
+.wrapper {
+  position: relative;
+  z-index: 1;
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 24px 18px 56px;
+}
+
+.glass-card {
+  background: var(--ve-panel);
+  border: 1px solid var(--ve-border);
+  box-shadow: var(--ve-shadow);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 16px;
+}
+
+.terminal-header {
+  padding: 16px 18px;
+  display: grid;
+  gap: 12px;
+}
+
+.terminal-line {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  font-family: var(--ve-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ve-text-dim);
+}
+
+.terminal-left {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.terminal-dots {
+  display: inline-flex;
+  gap: 6px;
+}
+
+.terminal-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  border: 1px solid var(--ve-border-strong);
+  background: var(--ve-panel-soft);
+}
+
+.terminal-dot:nth-child(1) { background: var(--ve-danger-soft); }
+.terminal-dot:nth-child(2) { background: var(--ve-warn-soft); }
+.terminal-dot:nth-child(3) { background: var(--ve-success-soft); }
+
+h1 {
+  margin: 0;
+  font-family: var(--ve-font-display);
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  letter-spacing: -0.03em;
+}
+
+.subhead {
+  margin: 6px 0 0;
+  color: var(--ve-text-dim);
+  max-width: 78ch;
+}
+
+.system-status {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--ve-border);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.status-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--ve-border-strong);
+  background: color-mix(in srgb, var(--ve-panel-soft) 82%, transparent 18%);
+  color: var(--ve-text-dim);
+  font-family: var(--ve-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.status-chip::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--ve-accent);
+  box-shadow: 0 0 0 3px var(--ve-accent-soft);
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: var(--ve-sidebar) minmax(0, 1fr);
+  gap: 20px;
+  margin-top: 18px;
+}
+
+.toc-desktop {
+  position: sticky;
+  top: 16px;
+  align-self: start;
+  padding: 14px;
+}
+
+.toc-title {
+  margin: 0 0 10px;
+  font-family: var(--ve-font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  font-size: 11px;
+  color: var(--ve-text-dim);
+}
+
+.toc-list {
+  display: grid;
+  gap: 6px;
+}
+
+.toc-list a {
+  text-decoration: none;
+  color: var(--ve-text-dim);
+  padding: 8px 10px;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  font-size: 13px;
+}
+
+.toc-list a:hover,
+.toc-list a.active {
+  color: var(--ve-accent);
+  border-color: var(--ve-border);
+  background: var(--ve-accent-soft);
+}
+
+.toc-mobile {
+  display: none;
+  margin-top: 14px;
+  padding: 10px 12px;
+}
+
+.toc-mobile summary {
+  cursor: pointer;
+  font-family: var(--ve-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ve-text-dim);
+}
+
+.toc-mobile .toc-list { margin-top: 10px; }
+
+main { display: grid; gap: 14px; }
+
+.section { padding: 18px; }
+
+.section h2 {
+  margin: 0;
+  font-family: var(--ve-font-display);
+  font-size: 1.3rem;
+  letter-spacing: -0.02em;
+}
+
+.section p {
+  margin: 10px 0 0;
+  color: var(--ve-text-dim);
+  line-height: 1.65;
+}
+
+.mermaid-wrap {
+  margin-top: 12px;
+  border: 1px solid var(--ve-border);
+  border-radius: 12px;
+  background: var(--ve-panel-soft);
+  padding: 34px 12px 12px;
+  position: relative;
+  overflow: auto;
+}
+
+.zoom-controls {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  display: inline-flex;
+  gap: 4px;
+}
+
+.zoom-controls button {
+  border: 1px solid var(--ve-border);
+  background: var(--ve-panel-strong);
+  color: var(--ve-text-dim);
+  border-radius: 8px;
+  width: 28px;
+  height: 28px;
+  cursor: pointer;
+  font-family: var(--ve-font-mono);
+}
+
+.zoom-controls button:hover {
+  color: var(--ve-accent);
+  border-color: var(--ve-border-strong);
+}
+
+.mermaid {
+  transform-origin: top center;
+}
+
+.table-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin-top: 12px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+th, td {
+  text-align: left;
+  vertical-align: top;
+  padding: 10px;
+  border-bottom: 1px solid var(--ve-border);
+}
+
+th {
+  font-family: var(--ve-font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 10px;
+  color: var(--ve-text-dim);
+}
+
+code {
+  font-family: var(--ve-font-mono);
+  font-size: 12px;
+  color: var(--ve-accent);
+  background: var(--ve-accent-soft);
+  border-radius: 6px;
+  padding: 1px 5px;
+}
+
+.ledger-line {
+  margin: 12px 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 12px;
+}
+
+.ledger-line li {
+  border-left: 2px solid var(--ve-border-strong);
+  padding-left: 12px;
+  display: grid;
+  gap: 5px;
+}
+
+.ledger-line time {
+  font-family: var(--ve-font-mono);
+  color: var(--ve-text-dim);
+  font-size: 11px;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-family: var(--ve-font-mono);
+  font-size: 10px;
+}
+
+.badge.ok { color: var(--ve-success); background: var(--ve-success-soft); }
+.badge.warn { color: var(--ve-warn); background: var(--ve-warn-soft); }
+.badge.risk { color: var(--ve-danger); background: var(--ve-danger-soft); }
+
+.reveal {
+  opacity: 0;
+  transform: translateY(10px);
+  animation: reveal 520ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: calc(var(--i, 0) * 80ms);
+}
+
+@keyframes reveal {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 1080px) {
+  .layout { grid-template-columns: 1fr; }
+  .toc-desktop { display: none; }
+  .toc-mobile {
+    display: block;
+    position: sticky;
+    top: 8px;
+    z-index: 5;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-delay: 0ms !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .reveal { opacity: 1; transform: none; }
+
+  .scanline { animation: none !important; }
+}
+</style>
+</head>
+<body>
+<div class="scanline" aria-hidden="true"></div>
+<div class="wrapper">
+  <header class="terminal-header glass-card reveal" style="--i:0">
+    <div class="terminal-line">
+      <span class="terminal-left">
+        <span class="terminal-dots" aria-hidden="true">
+          <span class="terminal-dot"></span>
+          <span class="terminal-dot"></span>
+          <span class="terminal-dot"></span>
+        </span>
+        <span>Traceability Board Ledger</span>
+      </span>
+      <time id="clock" datetime="" aria-live="polite">--:--:-- UTC</time>
+    </div>
+    <div>
+      <h1>Traceability Board</h1>
+      <p class="subhead">Graph + matrix + diagnostics for cross-document linkage across core SpecKit artifacts.</p>
+      <div class="system-status" role="list" aria-label="System status">
+        <span class="status-chip" role="listitem">Profile: README Ledger</span>
+        <span class="status-chip" role="listitem">Theme: Dark Brutalist</span>
+        <span class="status-chip" role="listitem">State: Validator Ready</span>
+      </div>
+    </div>
+  </header>
+
+  <details class="toc-mobile glass-card reveal" style="--i:1">
+    <summary>Section Index</summary>
+    <nav class="toc-list" aria-label="Traceability board section index">
+      <a data-toc-link href="#traceability-graph">Graph</a>
+      <a data-toc-link href="#crossref-matrix">Matrix</a>
+      <a data-toc-link href="#missing-link-diagnostics">Diagnostics</a>
+      <a data-toc-link href="#actions">Actions</a>
+    </nav>
+  </details>
+
+  <div class="layout">
+    <aside class="toc-desktop glass-card reveal" style="--i:1">
+      <p class="toc-title">Contents</p>
+      <nav class="toc-list" aria-label="Traceability board section index">
+        <a data-toc-link href="#traceability-graph">Graph</a>
+        <a data-toc-link href="#crossref-matrix">Matrix</a>
+        <a data-toc-link href="#missing-link-diagnostics">Diagnostics</a>
+        <a data-toc-link href="#actions">Actions</a>
+      </nav>
+    </aside>
+
+    <main>
+      <section id="traceability-graph" class="section glass-card reveal" style="--i:2">
+        <h2>Traceability Graph</h2>
+        <p>This graph maps the core document chain: <code>spec.md</code> -> <code>plan.md</code> -> <code>tasks.md</code> -> <code>checklist.md</code> -> <code>implementation-summary.md</code>.</p>
+        <figure class="mermaid-wrap">
+          <div class="zoom-controls" aria-label="Diagram zoom controls">
+            <button type="button" data-zoom-in aria-label="Zoom in">+</button>
+            <button type="button" data-zoom-out aria-label="Zoom out">-</button>
+            <button type="button" data-zoom-reset aria-label="Reset zoom">R</button>
+          </div>
+          <pre class="mermaid">
+flowchart LR
+  S["spec.md"] --> P["plan.md"]
+  P --> T["tasks.md"]
+  T --> C["checklist.md"]
+  C --> I["implementation-summary.md"]
+  P -. "design decisions" .-> D["decision-record.md"]
+  S -. "investigation" .-> R["research.md"]
+          </pre>
+          <figcaption>Primary dependency chain plus optional supporting docs.</figcaption>
+        </figure>
+      </section>
+
+      <section id="crossref-matrix" class="section glass-card reveal" style="--i:3">
+        <h2>Cross-Reference Matrix</h2>
+        <p>Use this table to prove links are bidirectional where needed and explicit when optional.</p>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Source Doc</th>
+                <th>Expected Target</th>
+                <th>Status</th>
+                <th>Evidence</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>spec.md</code></td>
+                <td><code>plan.md</code>, <code>tasks.md</code></td>
+                <td><span class="badge ok">Linked</span></td>
+                <td>Problem and scope sections include direct references.</td>
+              </tr>
+              <tr>
+                <td><code>plan.md</code></td>
+                <td><code>tasks.md</code>, <code>checklist.md</code></td>
+                <td><span class="badge warn">Partial</span></td>
+                <td>Checklist anchor present, task handoff note missing in one phase.</td>
+              </tr>
+              <tr>
+                <td><code>checklist.md</code></td>
+                <td><code>implementation-summary.md</code></td>
+                <td><span class="badge risk">Missing</span></td>
+                <td>Completion proof table has no explicit summary backlink.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="missing-link-diagnostics" class="section glass-card reveal" style="--i:4">
+        <h2>Missing-Link Diagnostics</h2>
+        <p>Each diagnostic item should name the broken edge and the remediation owner.</p>
+        <ul class="ledger-line">
+          <li>
+            <time datetime="P1D">P1</time>
+            <span><code>checklist.md</code> does not link back to <code>implementation-summary.md</code> in completion steps.</span>
+            <span class="badge risk">Fix Required</span>
+          </li>
+          <li>
+            <time datetime="P2D">P2</time>
+            <span><code>tasks.md</code> references plan phases but misses an explicit pointer to final verification outputs.</span>
+            <span class="badge warn">Follow Up</span>
+          </li>
+          <li>
+            <time datetime="P2D">P2</time>
+            <span><code>plan.md</code> mentions optional <code>decision-record.md</code> without path convention guidance.</span>
+            <span class="badge warn">Follow Up</span>
+          </li>
+        </ul>
+      </section>
+
+      <section id="actions" class="section glass-card reveal" style="--i:5">
+        <h2>Action Plan</h2>
+        <p>Close gaps with short, concrete tasks rather than broad refactor directives.</p>
+        <ol class="ledger-line">
+          <li>
+            <time datetime="P1D">Action 1</time>
+            <span>Add missing back-links in <code>checklist.md</code> completion and evidence blocks.</span>
+          </li>
+          <li>
+            <time datetime="P2D">Action 2</time>
+            <span>Normalize cross-reference heading format across <code>spec.md</code>, <code>plan.md</code>, and <code>tasks.md</code>.</span>
+          </li>
+          <li>
+            <time datetime="P3D">Action 3</time>
+            <span>Rerun traceability validation after document updates and attach the matrix snapshot.</span>
+          </li>
+        </ol>
+      </section>
+    </main>
+  </div>
+</div>
+
+<script>
+(function initUtcClock() {
+  var clock = document.getElementById('clock');
+  if (!clock) return;
+
+  var lastSecond = -1;
+  function tick() {
+    var now = new Date();
+    var second = now.getUTCSeconds();
+    if (second !== lastSecond) {
+      lastSecond = second;
+      var hh = String(now.getUTCHours()).padStart(2, '0');
+      var mm = String(now.getUTCMinutes()).padStart(2, '0');
+      var ss = String(now.getUTCSeconds()).padStart(2, '0');
+      clock.textContent = hh + ':' + mm + ':' + ss + ' UTC';
+      clock.dateTime = now.toISOString();
+      clock.title = now.toISOString();
+    }
+    window.requestAnimationFrame(tick);
+  }
+  window.requestAnimationFrame(tick);
+})();
+
+(function initActiveToc() {
+  var links = Array.prototype.slice.call(document.querySelectorAll('[data-toc-link][href^="#"]'));
+  if (!links.length) return;
+
+  var seen = {};
+  var sectionIds = [];
+  links.forEach(function(link) {
+    var id = link.getAttribute('href').slice(1);
+    if (!seen[id] && document.getElementById(id)) {
+      seen[id] = true;
+      sectionIds.push(id);
+    }
+
+    link.addEventListener('click', function(event) {
+      event.preventDefault();
+      var target = document.getElementById(id);
+      if (!target) return;
+      var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      target.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+      setActive(id);
+    });
+  });
+
+  function setActive(id) {
+    links.forEach(function(link) {
+      var active = link.getAttribute('href') === '#' + id;
+      link.classList.toggle('active', active);
+      if (active) link.setAttribute('aria-current', 'true');
+      else link.removeAttribute('aria-current');
+    });
+  }
+
+  if (!('IntersectionObserver' in window)) {
+    setActive(sectionIds[0]);
+    return;
+  }
+
+  var observer = new IntersectionObserver(function(entries) {
+    var visible = entries.filter(function(entry) {
+      return entry.isIntersecting;
+    }).sort(function(a, b) {
+      return b.intersectionRatio - a.intersectionRatio;
+    });
+
+    if (visible.length) {
+      setActive(visible[0].target.id);
+    }
+  }, {
+    rootMargin: '-25% 0px -55% 0px',
+    threshold: [0.2, 0.35, 0.55]
+  });
+
+  sectionIds.forEach(function(id) {
+    var el = document.getElementById(id);
+    if (el) observer.observe(el);
+  });
+
+  setActive(sectionIds[0]);
+})();
+
+(function initDiagramZoom() {
+  var wraps = Array.prototype.slice.call(document.querySelectorAll('.mermaid-wrap'));
+  wraps.forEach(function(wrap) {
+    var diagram = wrap.querySelector('.mermaid');
+    if (!diagram) return;
+
+    var zoom = 1;
+    function apply() {
+      diagram.style.transform = 'scale(' + zoom + ')';
+    }
+
+    var zoomIn = wrap.querySelector('[data-zoom-in]');
+    var zoomOut = wrap.querySelector('[data-zoom-out]');
+    var zoomReset = wrap.querySelector('[data-zoom-reset]');
+
+    if (zoomIn) {
+      zoomIn.addEventListener('click', function() {
+        zoom = Math.min(2.5, zoom + 0.1);
+        apply();
+      });
+    }
+
+    if (zoomOut) {
+      zoomOut.addEventListener('click', function() {
+        zoom = Math.max(0.6, zoom - 0.1);
+        apply();
+      });
+    }
+
+    if (zoomReset) {
+      zoomReset.addEventListener('click', function() {
+        zoom = 1;
+        apply();
+      });
+    }
+
+    wrap.addEventListener('wheel', function(event) {
+      if (!(event.ctrlKey || event.metaKey)) return;
+      event.preventDefault();
+      zoom = Math.max(0.6, Math.min(2.5, zoom + (event.deltaY < 0 ? 0.08 : -0.08)));
+      apply();
+    }, { passive: false });
+
+    var dragging = false;
+    var startX = 0;
+    var startY = 0;
+    wrap.addEventListener('mousedown', function(event) {
+      if (event.button !== 0) return;
+      if (event.target.closest('.zoom-controls')) return;
+      if (zoom <= 1) return;
+      dragging = true;
+      startX = event.clientX;
+      startY = event.clientY;
+      wrap.style.cursor = 'grabbing';
+    });
+
+    window.addEventListener('mouseup', function() {
+      dragging = false;
+      wrap.style.cursor = '';
+    });
+
+    wrap.addEventListener('mousemove', function(event) {
+      if (!dragging) return;
+      wrap.scrollLeft -= event.clientX - startX;
+      wrap.scrollTop -= event.clientY - startY;
+      startX = event.clientX;
+      startY = event.clientY;
+    });
+  });
+})();
+</script>
+
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11.12.3/dist/mermaid.esm.min.mjs';
+import elkLayouts from 'https://cdn.jsdelivr.net/npm/@mermaid-js/layout-elk@0.2.0/dist/mermaid-layout-elk.esm.min.mjs';
+
+var style = getComputedStyle(document.documentElement);
+function cssVar(name, fallback) {
+  var value = style.getPropertyValue(name).trim();
+  return value || fallback;
+}
+
+mermaid.registerLayoutLoaders(elkLayouts);
+mermaid.initialize({
+  startOnLoad: true,
+  theme: 'base',
+  layout: 'elk',
+  securityLevel: 'strict',
+  deterministicIds: true,
+  maxTextSize: 50000,
+  maxEdges: 200,
+  themeVariables: {
+    fontFamily: "Manrope, system-ui, sans-serif",
+    fontSize: '15px',
+    primaryColor: cssVar('--ve-panel-soft', '#eaf2f8'),
+    primaryBorderColor: cssVar('--ve-accent', '#3b82f6'),
+    primaryTextColor: cssVar('--ve-text', '#fafafa'),
+    lineColor: cssVar('--ve-accent', '#3b82f6'),
+    tertiaryColor: cssVar('--ve-warn-soft', 'rgba(154, 107, 33, 0.16)'),
+    tertiaryTextColor: cssVar('--ve-text', '#fafafa')
+  }
+});
+</script>
+</body>
+</html>

@@ -266,31 +266,31 @@ INTENT_BOOSTERS = {
     # ─────────────────────────────────────────────────────────────────
     # WORKFLOWS-DOCUMENTATION: Documentation and diagrams
     # ─────────────────────────────────────────────────────────────────
-    "ascii": ("sk-documentation", 0.4),
-    "diagram": ("sk-documentation", 0.4),
-    "document": ("sk-documentation", 0.5),
-    "documentation": ("sk-documentation", 0.6),
-    "flowchart": ("sk-documentation", 0.7),
-    "markdown": ("sk-documentation", 0.5),
-    "readme": ("sk-documentation", 0.5),
-    "template": ("sk-documentation", 0.4),
+    "ascii": ("sk-doc", 0.4),
+    "diagram": ("sk-doc", 0.4),
+    "document": ("sk-doc", 0.5),
+    "documentation": ("sk-doc", 0.6),
+    "flowchart": ("sk-doc", 0.7),
+    "markdown": ("sk-doc", 0.5),
+    "readme": ("sk-doc", 0.5),
+    "template": ("sk-doc", 0.4),
 
     # ─────────────────────────────────────────────────────────────────
-    # SK-VISUAL-EXPLAINER: Visual HTML diagrams and pages
+    # SK-DOC-VISUAL: Visual HTML diagrams and pages
     # ─────────────────────────────────────────────────────────────────
-    "visual": ("sk-visual-explainer", 1.2),
-    "visualization": ("sk-visual-explainer", 1.0),
-    "html": ("sk-visual-explainer", 1.0),
-    "mermaid": ("sk-visual-explainer", 1.5),
-    "architecture": ("sk-visual-explainer", 0.8),
-    "sequence": ("sk-visual-explainer", 0.8),
-    "chart": ("sk-visual-explainer", 0.8),
-    "timeline": ("sk-visual-explainer", 0.8),
-    "dashboard": ("sk-visual-explainer", 0.6),
-    "render": ("sk-visual-explainer", 1.0),
-    "explainer": ("sk-visual-explainer", 0.9),
-    "aesthetic": ("sk-visual-explainer", 1.0),
-    "recap": ("sk-visual-explainer", 1.2),
+    "visual": ("sk-doc-visual", 1.2),
+    "visualization": ("sk-doc-visual", 1.0),
+    "html": ("sk-doc-visual", 1.0),
+    "mermaid": ("sk-doc-visual", 1.5),
+    "architecture": ("sk-doc-visual", 0.8),
+    "sequence": ("sk-doc-visual", 0.8),
+    "chart": ("sk-doc-visual", 0.8),
+    "timeline": ("sk-doc-visual", 0.8),
+    "dashboard": ("sk-doc-visual", 0.6),
+    "render": ("sk-doc-visual", 1.0),
+    "explainer": ("sk-doc-visual", 0.9),
+    "aesthetic": ("sk-doc-visual", 1.0),
+    "recap": ("sk-doc-visual", 1.2),
 
     # ─────────────────────────────────────────────────────────────────
     # WORKFLOWS-CODE--WEB-DEV: Implementation and verification (frontend/Webflow)
@@ -377,17 +377,17 @@ MULTI_SKILL_BOOSTERS = {
     "task": [("system-spec-kit", 0.3)],
     "test": [("sk-code--web", 0.3), ("sk-code--full-stack", 0.3), ("mcp-chrome-devtools", 0.2)],
     "update": [("mcp-code-mode", 0.3), ("sk-git", 0.2), ("sk-code--web", 0.2), ("sk-code--full-stack", 0.2)],
-    "diagram": [("sk-visual-explainer", 0.6)],
-    "flowchart": [("sk-visual-explainer", 0.8)],
-    "generate": [("sk-visual-explainer", 0.4)],
-    "table": [("sk-visual-explainer", 0.3)],
-    "review": [("sk-code--review", 0.8), ("sk-visual-explainer", 0.3)],
+    "diagram": [("sk-doc-visual", 0.6)],
+    "flowchart": [("sk-doc-visual", 0.8)],
+    "generate": [("sk-doc-visual", 0.4)],
+    "table": [("sk-doc-visual", 0.3)],
+    "review": [("sk-code--review", 0.8), ("sk-doc-visual", 0.3)],
 }
 
 # Phrase-level intent boosters for high-signal multi-token requests
 # Format: phrase -> list of (skill_name, boost_amount)
 PHRASE_INTENT_BOOSTERS = {
-    "create documentation": [("sk-documentation", 0.6)],
+    "create documentation": [("sk-doc", 1.0)],
     "code review": [("sk-code--review", 2.4)],
     "pr review": [("sk-code--review", 2.3), ("sk-git", 0.4)],
     "security review": [("sk-code--review", 2.2)],
@@ -414,16 +414,16 @@ PHRASE_INTENT_BOOSTERS = {
     "sk-code--review": [("sk-code--review", 2.8)],
     "/sk-code--review": [("sk-code--review", 2.8)],
     ".opencode/skill/sk-code--review": [("sk-code--review", 3.0)],
-    "visual review": [("sk-visual-explainer", 1.6), ("sk-code--review", 0.4)],
-    # Explicit visual-explainer intents and path references
-    "sk-visual-explainer": [("sk-visual-explainer", 2.2)],
-    "/visual-explainer": [("sk-visual-explainer", 2.2)],
-    "styled html": [("sk-visual-explainer", 1.8)],
-    "html diagram": [("sk-visual-explainer", 2.0)],
-    "html page": [("sk-visual-explainer", 1.5)],
-    "generate html": [("sk-visual-explainer", 1.2)],
-    ".codex/skills/sk-visual-explainer": [("sk-visual-explainer", 2.8)],
-    ".opencode/skill/sk-visual-explainer": [("sk-visual-explainer", 2.8)],
+    "visual review": [("sk-doc-visual", 1.6), ("sk-code--review", 0.4)],
+    # Explicit doc-visual intents and path references
+    "sk-doc-visual": [("sk-doc-visual", 2.2)],
+    "/doc-visual": [("sk-doc-visual", 2.2)],
+    "styled html": [("sk-doc-visual", 1.8)],
+    "html diagram": [("sk-doc-visual", 2.0)],
+    "html page": [("sk-doc-visual", 1.5)],
+    "generate html": [("sk-doc-visual", 1.2)],
+    ".codex/skills/sk-doc-visual": [("sk-doc-visual", 2.8)],
+    ".opencode/skill/sk-doc-visual": [("sk-doc-visual", 2.8)],
 }
 
 

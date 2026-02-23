@@ -67,7 +67,7 @@ Implement a **"Copy-First, Validate-All"** approach with three layers of defense
 
 1. **write.md agent** - Add copy-skeleton step, comprehensive checklist, anti-pattern
 2. **extract_structure.py** - Make H2 emoji check blocking for template-based documents
-3. **sk-documentation SKILL.md** - Add document-type emoji requirements table
+3. **sk-doc SKILL.md** - Add document-type emoji requirements table
 4. **core_standards.md** - Add H2 emoji as blocking violation
 
 ### Out of Scope
@@ -139,6 +139,6 @@ Implement a **"Copy-First, Validate-All"** approach with three layers of defense
 ## Related Documents
 
 - [write.md](.opencode/agent/write.md) - Write agent to be modified
-- [extract_structure.py](.opencode/skill/sk-documentation/scripts/extract_structure.py) - Validation script
-- [readme_template.md](.opencode/skill/sk-documentation/assets/readme_template.md) - Source of truth for README format
-- [core_standards.md](.opencode/skill/sk-documentation/references/core_standards.md) - Structural standards
+- [extract_structure.py](.opencode/skill/sk-doc/scripts/extract_structure.py) - Validation script
+- [readme_template.md](.opencode/skill/sk-doc/assets/readme_template.md) - Source of truth for README format
+- [core_standards.md](.opencode/skill/sk-doc/references/core_standards.md) - Structural standards

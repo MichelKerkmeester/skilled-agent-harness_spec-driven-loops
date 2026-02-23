@@ -54,7 +54,7 @@ contextType: "implementation"
 - [x] T010 Update `.opencode/skill/sk-code--full-stack/SKILL.md` with stack-aware weighted routing + scoped guard + recursive discovery
 - [x] T011 Update `.opencode/skill/sk-code--opencode/SKILL.md` with language-aware weighted routing + scoped guard + recursive discovery
 - [x] T012 Update `.opencode/skill/workflows-code--web-dev/SKILL.md` with stack-aware weighted routing + scoped guard + recursive discovery
-- [x] T013 [P] Update `.opencode/skill/sk-documentation/SKILL.md` with recursive discovery + weighted intent mapping + ambiguity handling
+- [x] T013 [P] Update `.opencode/skill/sk-doc/SKILL.md` with recursive discovery + weighted intent mapping + ambiguity handling
 - [x] T014 [P] Update `.opencode/skill/sk-git/SKILL.md` with weighted intent mapping + scoped guard + ambiguity handling
 - [x] T015 Update `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Barter/coder/.opencode/skill/sk-git/SKILL.md` with Barter-aligned weighted routing + pseudocode-first Smart Routing
 - [x] T016 Update `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Barter/coder/.opencode/skill/workflows-code/SKILL.md` with Barter-aligned weighted + stack routing + pseudocode-first Smart Routing

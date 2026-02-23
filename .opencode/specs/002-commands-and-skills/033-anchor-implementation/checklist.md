@@ -86,9 +86,9 @@ contextType: "implementation"
   - [x] ✅ Modified: 2026-02-17 07:50
 
 **Evidence**:
-- [E:file-path-1] `.opencode/skill/sk-documentation/assets/opencode/skill_md_template.md` ✅
-- [E:file-path-2] `.opencode/skill/sk-documentation/assets/opencode/skill_reference_template.md` ✅
-- [E:file-path-3] `.opencode/skill/sk-documentation/assets/opencode/skill_asset_template.md` ✅
+- [E:file-path-1] `.opencode/skill/sk-doc/assets/opencode/skill_md_template.md` ✅
+- [E:file-path-2] `.opencode/skill/sk-doc/assets/opencode/skill_reference_template.md` ✅
+- [E:file-path-3] `.opencode/skill/sk-doc/assets/opencode/skill_asset_template.md` ✅
 - [E:file-sizes] All three templates show increased file sizes (content added)
 - [E:timestamps] All modified 2026-02-17 07:50 (same session)
 
@@ -171,7 +171,7 @@ contextType: "implementation"
 ### P0: Pre-Migration Validation ✅ COMPLETE (Manual Approach)
 - [x] ✅ **Manual crawl of all skill folders** [E:10-skill-folders-processed]
   - [x] ✅ system-spec-kit ✅
-  - [x] ✅ sk-documentation ✅
+  - [x] ✅ sk-doc ✅
   - [x] ✅ workflows-code--web-dev ✅
   - [x] ✅ sk-code--full-stack ✅
   - [x] ✅ sk-git ✅
@@ -241,7 +241,7 @@ contextType: "implementation"
 - [x] ✅ **All validation items addressed** [E:validation-0-warnings]
 - [x] ✅ **Key skills verified** [E:system-spec-kit-workflows-docs-validated]
   - [x] ✅ system-spec-kit: 100% coverage
-  - [x] ✅ sk-documentation: 100% coverage
+  - [x] ✅ sk-doc: 100% coverage
   - [x] ✅ sk-code--full-stack: 100% coverage
 - [x] ✅ **Anchored content verified readable** [E:manual-inspection]
 - [x] ✅ **No malformed anchors** [E:validation-clean]
@@ -272,7 +272,7 @@ contextType: "implementation"
 
 **Rationale**: Manual one-time migration doesn't require reusable guide. Templates provide sufficient guidance for new skill creation.
 
-### P0: Update sk-documentation Skill ✅ COMPLETE (Via Templates)
+### P0: Update sk-doc Skill ✅ COMPLETE (Via Templates)
 - [x] ✅ **Templates updated with anchor examples** [E:templates-updated]
 - [x] ✅ **Anchor usage demonstrated in context** [E:anchor-examples-in-templates]
 - [x] ✅ **Future skills will follow template patterns** [E:template-guidance]
@@ -506,7 +506,7 @@ contextType: "implementation"
 **All evidence documented with [E:evidence-id] markers:**
 
 ### Template Updates
-- [E:template-files] All 3 templates in `.opencode/skill/sk-documentation/assets/opencode/`
+- [E:template-files] All 3 templates in `.opencode/skill/sk-doc/assets/opencode/`
 - [E:file-sizes] skill_md: 36,481 bytes, skill_reference: 30,531 bytes, skill_asset: 27,116 bytes
 - [E:timestamps] All modified 2026-02-17 07:50
 

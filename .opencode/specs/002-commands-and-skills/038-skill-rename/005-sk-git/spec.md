@@ -34,7 +34,7 @@ contextType: "decision"
 | **Parent Spec** | ../spec.md |
 | **Parent Plan** | ../plan.md |
 | **Phase** | 5 of 7 |
-| **Predecessor** | 006-sk-visual-explainer |
+| **Predecessor** | 006-sk-doc-visual |
 | **Successor** | None (last phase) |
 | **Handoff Criteria** | Active-target binary-safe `rg` check for legacy git skill token returns `0` output lines |
 <!-- /ANCHOR:metadata -->

@@ -14,7 +14,7 @@ contextType: "implementation"
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-documentation/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -95,5 +95,5 @@ None identified for this phase's active-path documentation scope.
 <!--
 Level 2: Full post-implementation summary with delivery narrative.
 Write in human voice: active, direct, specific. No em dashes, no hedging, no AI filler.
-HVR rules: .opencode/skill/sk-documentation/references/hvr_rules.md
+HVR rules: .opencode/skill/sk-doc/references/hvr_rules.md
 -->

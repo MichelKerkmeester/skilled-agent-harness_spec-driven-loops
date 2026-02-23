@@ -231,7 +231,7 @@ wrangler r2 object put project-cdn/js/file.min.js \
 | ------------------------------- | ------------------------------------------------- |
 | `sk-code--review`        | Findings-first review baseline and severity model  |
 | `mcp-chrome-devtools`     | Browser debugging companion (CLI-first via bdg)   |
-| `sk-documentation`       | Documentation quality, skill creation             |
+| `sk-doc`       | Documentation quality, skill creation             |
 | `sk-git`                 | Git workflows, commit hygiene, PR creation        |
 | `system-spec-kit`               | Spec folder management, memory, context           |
 | `sk-code--full-stack`    | Multi-stack variant (Go, Node, React, Swift)      |

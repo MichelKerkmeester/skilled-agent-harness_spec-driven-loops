@@ -344,7 +344,7 @@ function getPatternUseCases(patternType: string = 'linear'): string[] {
 // 7. DIAGRAM CLASSIFICATION
 // ---------------------------------------------------------------
 
-/** Classifies ASCII art using 7 core patterns from sk-documentation */
+/** Classifies ASCII art using 7 core patterns from sk-doc */
 function classifyDiagramPattern(asciiArt: string): DiagramClassification {
   const art: string = asciiArt.toLowerCase();
   let complexity: ComplexityLevel = COMPLEXITY.LOW;

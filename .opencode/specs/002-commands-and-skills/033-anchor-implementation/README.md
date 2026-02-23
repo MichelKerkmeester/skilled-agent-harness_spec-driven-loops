@@ -274,7 +274,7 @@ Placeholder document ready to capture:
 
 ### Phase 4: Documentation (8 hours)
 - T013: Migration guide (2h)
-- T014: Update sk-documentation skill (3h)
+- T014: Update sk-doc skill (3h)
 - T015: Create anchor usage examples (2h)
 - T016: CI integration documentation (1h)
 
@@ -292,7 +292,7 @@ Placeholder document ready to capture:
 - Build migration script (dry-run, interactive, batch)
 - Build validation script (format + coverage)
 - Create migration guide and examples
-- Update sk-documentation skill with anchor guidelines
+- Update sk-doc skill with anchor guidelines
 
 ### Out of Scope ❌
 

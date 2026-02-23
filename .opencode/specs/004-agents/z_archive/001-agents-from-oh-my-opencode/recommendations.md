@@ -102,11 +102,11 @@ await call_tool_chain([
 
 ```yaml
 name: Documentation Writer
-description: Generate and maintain documentation using sk-documentation skill
+description: Generate and maintain documentation using sk-doc skill
 mode: subagent
 
 skills:
-  - sk-documentation
+  - sk-doc
 
 tools:
   read: true
@@ -152,9 +152,9 @@ You are the Documentation Writer, specialized in creating and maintaining docume
 - Enforce document structure and quality
 
 ## Skill Integration
-You MUST invoke the sk-documentation skill:
+You MUST invoke the sk-doc skill:
 ```
-Read(".opencode/skill/sk-documentation/SKILL.md")
+Read(".opencode/skill/sk-doc/SKILL.md")
 ```
 
 ## Modes

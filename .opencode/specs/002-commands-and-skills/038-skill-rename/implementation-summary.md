@@ -14,7 +14,7 @@ contextType: "implementation"
 
 <!-- SPECKIT_LEVEL: 3+ -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core + level2-verify + level3-arch + level3plus-govern | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-documentation/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -41,9 +41,9 @@ Documentation closure for parent spec `038-skill-rename` and all phase subfolder
 |------------|--------|---------|
 | `spec.md`, `plan.md`, `tasks.md`, `checklist.md` (parent) | Modified | Synchronized parent status, phase map, and verification/checklist completion state |
 | `002-sk-code--web/{spec.md,plan.md,tasks.md,checklist.md}` | Modified | Promoted phase 002 from draft/pending to verified completion |
-| `006-sk-visual-explainer/{spec.md,plan.md,tasks.md,checklist.md}` | Modified | Promoted phase 006 from draft/pending to verified completion |
+| `006-sk-doc-visual/{spec.md,plan.md,tasks.md,checklist.md}` | Modified | Promoted phase 006 from draft/pending to verified completion |
 | `003-sk-code--full-stack/checklist.md` | Modified | Closed memory-save P2 item with saved-context evidence |
-| `004-sk-documentation/checklist.md` | Modified | Closed memory-save P2 item with saved-context evidence |
+| `004-sk-doc/checklist.md` | Modified | Closed memory-save P2 item with saved-context evidence |
 | `005-sk-git/checklist.md` | Modified | Closed memory-save P2 item with saved-context evidence |
 | `007-mcp-chrome-devtools/checklist.md` | Modified | Closed memory-save P2 item with saved-context evidence |
 | `implementation-summary.md` files (parent, phase 002, phase 006) | Created | Added missing required implementation summaries blocking recursive validation |
@@ -82,7 +82,7 @@ The closure used only verified command outputs from this session and synchronize
 | `rg -n "workflows-code|workflows-" README.md CLAUDE.md .opencode/README.md` | PASS - no root-doc legacy references (`exit 1`) |
 | `python3 -m py_compile .opencode/skill/scripts/skill_advisor.py` | PASS |
 | `npx vitest run tests/memory-parser-readme.vitest.ts tests/skill-ref-config.vitest.ts` | PASS - `73` tests passed |
-| `skill_advisor.py` smoke queries (`git commit`, `implement feature`, `create documentation`, `take screenshot`) | PASS - routed to `sk-git` (0.95), `sk-code--web` (0.80), `sk-documentation` (0.91), `mcp-chrome-devtools` (0.95) |
+| `skill_advisor.py` smoke queries (`git commit`, `implement feature`, `create documentation`, `take screenshot`) | PASS - routed to `sk-git` (0.95), `sk-code--web` (0.80), `sk-doc` (0.91), `mcp-chrome-devtools` (0.95) |
 | Folder existence check for 7 required skill folders | PASS - all required folders present |
 | Memory save via `generate-context.js` | PASS - parent + phases `002/003/004/005/006/007` saved (`#87-#93`) |
 | `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/002-commands-and-skills/038-skill-rename --recursive` | PASS WITH WARNINGS - missing-summary blockers resolved; `Errors: 0`, `Warnings: 19` |

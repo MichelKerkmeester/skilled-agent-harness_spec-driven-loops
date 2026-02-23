@@ -75,7 +75,7 @@ Multi-Provider Runtime Adapter (existing pattern — mirrors `.claude/` provider
 1. Gemini CLI starts → reads `.gemini/settings.json` → enables agents, loads MCP servers
 2. Gemini CLI reads `GEMINI.md` → follows symlink to `AGENTS.md` → behavioral framework loaded
 3. User invokes `/spec_kit:plan` → reads `.gemini/commands/spec_kit/plan.toml` → `@{path}` injection pulls OpenCode command content
-4. Model activates skill → reads `.gemini/skills/sk-documentation/SKILL.md` → follows symlink to `.opencode/skill/` source
+4. Model activates skill → reads `.gemini/skills/sk-doc/SKILL.md` → follows symlink to `.opencode/skill/` source
 5. Model dispatches subagent → reads `.gemini/agents/research.md` → executes with Gemini frontmatter config
 <!-- /ANCHOR:architecture -->
 
@@ -184,7 +184,7 @@ Create 10 relative symlinks from `.gemini/skills/` to `.opencode/skill/`:
 - [ ] `.gemini/skills/sk-code--full-stack` → `../../.opencode/skill/sk-code--full-stack`
 - [ ] `.gemini/skills/sk-code--opencode` → `../../.opencode/skill/sk-code--opencode`
 - [ ] `.gemini/skills/workflows-code--web-dev` → `../../.opencode/skill/workflows-code--web-dev`
-- [ ] `.gemini/skills/sk-documentation` → `../../.opencode/skill/sk-documentation`
+- [ ] `.gemini/skills/sk-doc` → `../../.opencode/skill/sk-doc`
 - [ ] `.gemini/skills/sk-git` → `../../.opencode/skill/sk-git`
 - [ ] `.gemini/skills/scripts` → `../../.opencode/skill/scripts`
 

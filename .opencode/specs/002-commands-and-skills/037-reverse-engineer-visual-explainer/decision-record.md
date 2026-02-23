@@ -1,6 +1,6 @@
 ---
-title: "Decision Record: Reverse-Engineer Visual Explainer Skill [037-reverse-engineer-visual-explainer/decision-record]"
-description: "The visual-explainer source material contains 5 commands, 11 diagram types, 9 aesthetic profiles, a CSS pattern library (~15KB), a library guide (~16KB), and 3 HTML templates. P..."
+title: "Decision Record: Reverse-Engineer Doc Visual Skill [037-reverse-engineer-doc-visual/decision-record]"
+description: "The doc-visual source material contains 5 commands, 11 diagram types, 9 aesthetic profiles, a CSS pattern library (~15KB), a library guide (~16KB), and 3 HTML templates. P..."
 trigger_phrases:
   - "decision"
   - "record"
@@ -12,11 +12,11 @@ trigger_phrases:
 importance_tier: "important"
 contextType: "decision"
 ---
-# Decision Record: Reverse-Engineer Visual Explainer Skill
+# Decision Record: Reverse-Engineer Doc Visual Skill
 
 <!-- SPECKIT_LEVEL: 3 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-documentation/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -36,7 +36,7 @@ contextType: "decision"
 
 ### Context
 
-The visual-explainer source material contains 5 commands, 11 diagram types, 9 aesthetic profiles, a CSS pattern library (~15KB), a library guide (~16KB), and 3 HTML templates. Putting all of this into a single SKILL.md file would far exceed the 5,000-word limit enforced by package_skill.py. We needed to decide how to structure the skill to fit within framework constraints while preserving all content.
+The doc-visual source material contains 5 commands, 11 diagram types, 9 aesthetic profiles, a CSS pattern library (~15KB), a library guide (~16KB), and 3 HTML templates. Putting all of this into a single SKILL.md file would far exceed the 5,000-word limit enforced by package_skill.py. We needed to decide how to structure the skill to fit within framework constraints while preserving all content.
 
 ### Constraints
 
@@ -111,11 +111,11 @@ The visual-explainer source material contains 5 commands, 11 diagram types, 9 ae
 ### Implementation
 
 **What changes**:
-- Created `.opencode/skill/sk-visual-explainer/SKILL.md` (router, 1,683 words)
-- Created `.opencode/skill/sk-visual-explainer/index.md` (MOC, 4 groups, 10 wikilinks)
-- Created 10 files in `.opencode/skill/sk-visual-explainer/nodes/`
+- Created `.opencode/skill/sk-doc-visual/SKILL.md` (router, 1,683 words)
+- Created `.opencode/skill/sk-doc-visual/index.md` (MOC, 4 groups, 10 wikilinks)
+- Created 10 files in `.opencode/skill/sk-doc-visual/nodes/`
 
-**How to roll back**: Delete the entire `.opencode/skill/sk-visual-explainer/` directory.
+**How to roll back**: Delete the entire `.opencode/skill/sk-doc-visual/` directory.
 <!-- /ANCHOR:adr-001-impl -->
 <!-- /ANCHOR:adr-001 -->
 
@@ -137,12 +137,12 @@ The visual-explainer source material contains 5 commands, 11 diagram types, 9 ae
 
 ### Context
 
-The OpenCode skill framework uses naming prefixes to classify skills by type. We needed to decide the correct prefix for the sk-visual-explainer skill. The skill defines a multi-phase workflow (Think > Structure > Style > Deliver) with defined step sequences, which aligns with the `workflows-` convention.
+The OpenCode skill framework uses naming prefixes to classify skills by type. We needed to decide the correct prefix for the sk-doc-visual skill. The skill defines a multi-phase workflow (Think > Structure > Style > Deliver) with defined step sequences, which aligns with the `workflows-` convention.
 
 ### Constraints
 
 - Existing convention: `workflows-` prefix for process-oriented skills with defined phase sequences
-- Existing examples: `sk-documentation`, `sk-git`, `sk-code--opencode`
+- Existing examples: `sk-doc`, `sk-git`, `sk-code--opencode`
 - Must be discoverable via skill_advisor.py naming patterns
 <!-- /ANCHOR:adr-002-context -->
 
@@ -151,7 +151,7 @@ The OpenCode skill framework uses naming prefixes to classify skills by type. We
 <!-- ANCHOR:adr-002-decision -->
 ### Decision
 
-**We chose**: `sk-visual-explainer` as the skill directory name.
+**We chose**: `sk-doc-visual` as the skill directory name.
 
 **How it works**: The `workflows-` prefix signals that this skill follows a defined multi-phase process (Think > Structure > Style > Deliver). This matches the naming convention used by other process-oriented skills in the framework.
 <!-- /ANCHOR:adr-002-decision -->
@@ -163,9 +163,9 @@ The OpenCode skill framework uses naming prefixes to classify skills by type. We
 
 | Option | Pros | Cons | Score |
 |--------|------|------|-------|
-| **sk-visual-explainer (chosen)** | Matches convention; signals process orientation | Longer name | 9/10 |
-| visual-explainer (no prefix) | Shorter name | Breaks convention; no type signal | 4/10 |
-| tools-visual-explainer | Alternative prefix | `tools-` implies utility, not workflow | 5/10 |
+| **sk-doc-visual (chosen)** | Matches convention; signals process orientation | Longer name | 9/10 |
+| doc-visual (no prefix) | Shorter name | Breaks convention; no type signal | 4/10 |
+| tools-doc-visual | Alternative prefix | `tools-` implies utility, not workflow | 5/10 |
 
 **Why this one**: The 4-phase workflow (Think > Structure > Style > Deliver) is the defining characteristic of this skill, making `workflows-` the correct classification.
 <!-- /ANCHOR:adr-002-alternatives -->
@@ -176,7 +176,7 @@ The OpenCode skill framework uses naming prefixes to classify skills by type. We
 ### Consequences
 
 **What improves**:
-- Consistent naming with existing skills (sk-documentation, sk-git)
+- Consistent naming with existing skills (sk-doc, sk-git)
 - Users and agents can infer the skill type from the prefix
 
 **What it costs**:
@@ -211,8 +211,8 @@ The OpenCode skill framework uses naming prefixes to classify skills by type. We
 ### Implementation
 
 **What changes**:
-- Skill directory created as `.opencode/skill/sk-visual-explainer/`
-- skill_advisor.py entries reference `sk-visual-explainer`
+- Skill directory created as `.opencode/skill/sk-doc-visual/`
+- skill_advisor.py entries reference `sk-doc-visual`
 
 **How to roll back**: Rename the directory and update all skill_advisor.py references.
 <!-- /ANCHOR:adr-002-impl -->
@@ -339,7 +339,7 @@ The skill contains ~46KB of reference material (quick_reference ~4KB, css_patter
 
 ### Context
 
-Several keywords relevant to the sk-visual-explainer skill (diagram, flowchart, review, architecture, data) already exist in skill_advisor.py's INTENT_BOOSTERS mapped to other skills. Adding them as INTENT_BOOSTERS for sk-visual-explainer would overwrite the existing mappings and break routing for other skills.
+Several keywords relevant to the sk-doc-visual skill (diagram, flowchart, review, architecture, data) already exist in skill_advisor.py's INTENT_BOOSTERS mapped to other skills. Adding them as INTENT_BOOSTERS for sk-doc-visual would overwrite the existing mappings and break routing for other skills.
 
 ### Constraints
 
@@ -355,7 +355,7 @@ Several keywords relevant to the sk-visual-explainer skill (diagram, flowchart, 
 
 **We chose**: Use MULTI_SKILL_BOOSTERS for the 5 conflicting keywords (diagram, flowchart, review, architecture, data), and INTENT_BOOSTERS for the 11 unique keywords.
 
-**How it works**: MULTI_SKILL_BOOSTERS allows multiple skills to be boosted by the same keyword. When "diagram" appears in a query, both the existing skill and sk-visual-explainer get boosted, and the final routing score determines which one wins based on other context signals.
+**How it works**: MULTI_SKILL_BOOSTERS allows multiple skills to be boosted by the same keyword. When "diagram" appears in a query, both the existing skill and sk-doc-visual get boosted, and the final routing score determines which one wins based on other context signals.
 <!-- /ANCHOR:adr-004-decision -->
 
 ---
@@ -369,7 +369,7 @@ Several keywords relevant to the sk-visual-explainer skill (diagram, flowchart, 
 | Overwrite INTENT_BOOSTERS | Simpler; direct mapping | Breaks existing skill routing for those keywords | 2/10 |
 | Avoid conflicting keywords entirely | No risk to existing routing | Reduces discoverability for common queries | 4/10 |
 
-**Why this one**: MULTI_SKILL_BOOSTERS is the framework's built-in mechanism for exactly this scenario. Using it preserves existing routing while enabling sk-visual-explainer discovery.
+**Why this one**: MULTI_SKILL_BOOSTERS is the framework's built-in mechanism for exactly this scenario. Using it preserves existing routing while enabling sk-doc-visual discovery.
 <!-- /ANCHOR:adr-004-alternatives -->
 
 ---
@@ -379,11 +379,11 @@ Several keywords relevant to the sk-visual-explainer skill (diagram, flowchart, 
 
 **What improves**:
 - Existing skill routing remains intact for all 5 conflicting keywords
-- sk-visual-explainer becomes discoverable for queries containing these common terms
+- sk-doc-visual becomes discoverable for queries containing these common terms
 - Multiple skills can compete fairly on routing score
 
 **What it costs**:
-- Routing for ambiguous queries (e.g., just "diagram") may require more context to disambiguate. Mitigation: sk-visual-explainer-specific keywords in INTENT_BOOSTERS provide strong signal.
+- Routing for ambiguous queries (e.g., just "diagram") may require more context to disambiguate. Mitigation: sk-doc-visual-specific keywords in INTENT_BOOSTERS provide strong signal.
 
 **Risks**:
 
@@ -439,7 +439,7 @@ Several keywords relevant to the sk-visual-explainer skill (diagram, flowchart, 
 
 ### Context
 
-The original visual-explainer repo defines 7 quality checks for generated HTML output. During reverse-engineering, we identified two gaps: accessibility (color contrast, semantic HTML, screen reader support) and reduced-motion support (respecting `prefers-reduced-motion` media query). These are standard web quality concerns that the original did not explicitly address.
+The original doc-visual repo defines 7 quality checks for generated HTML output. During reverse-engineering, we identified two gaps: accessibility (color contrast, semantic HTML, screen reader support) and reduced-motion support (respecting `prefers-reduced-motion` media query). These are standard web quality concerns that the original did not explicitly address.
 
 ### Constraints
 
@@ -655,7 +655,7 @@ The original repo contains 3 production-quality HTML templates (architecture, me
 
 **We chose**: Port all 3 HTML templates as-is from the original repo, without modification.
 
-**How it works**: Templates are placed in `assets/templates/` and serve as exemplars that agents can reference when generating new visual explainers. They demonstrate best practices for structure, styling, and library integration.
+**How it works**: Templates are placed in `assets/templates/` and serve as exemplars that agents can reference when generating new doc visuals. They demonstrate best practices for structure, styling, and library integration.
 <!-- /ANCHOR:adr-007-decision -->
 
 ---
@@ -740,7 +740,7 @@ The original repo contains 3 production-quality HTML templates (architecture, me
 
 ### Context
 
-The original visual-explainer repo outputs generated HTML to `~/.agent/diagrams/`, a user-home directory. In the OpenCode framework, skills should produce output in project-local directories to maintain portability and avoid polluting the user's home directory.
+The original doc-visual repo outputs generated HTML to `~/.agent/diagrams/`, a user-home directory. In the OpenCode framework, skills should produce output in project-local directories to maintain portability and avoid polluting the user's home directory.
 
 ### Constraints
 
@@ -756,7 +756,7 @@ The original visual-explainer repo outputs generated HTML to `~/.agent/diagrams/
 
 **We chose**: Output generated HTML to `.opencode/output/visual/` within the project directory.
 
-**How it works**: All generated visual explainer HTML files are written to `.opencode/output/visual/`. The cleanup-output.sh script manages this directory. This keeps output project-local and follows the `.opencode/` convention for framework-managed files.
+**How it works**: All generated doc visual HTML files are written to `.opencode/output/visual/`. The cleanup-output.sh script manages this directory. This keeps output project-local and follows the `.opencode/` convention for framework-managed files.
 <!-- /ANCHOR:adr-008-decision -->
 
 ---
@@ -768,7 +768,7 @@ The original visual-explainer repo outputs generated HTML to `~/.agent/diagrams/
 |--------|------|------|-------|
 | **`.opencode/output/visual/` (chosen)** | Project-local; follows convention; easy cleanup | Adds files to project directory | 9/10 |
 | `~/.agent/diagrams/` (original) | Matches source repo | Pollutes home directory; not portable; breaks convention | 3/10 |
-| `/tmp/visual-explainer/` | No project pollution | Lost on restart; not discoverable | 4/10 |
+| `/tmp/doc-visual/` | No project pollution | Lost on restart; not discoverable | 4/10 |
 
 **Why this one**: Project-local output follows OpenCode conventions, is portable across machines, and is manageable via cleanup-output.sh.
 <!-- /ANCHOR:adr-008-alternatives -->
@@ -841,7 +841,7 @@ The original visual-explainer repo outputs generated HTML to `~/.agent/diagrams/
 
 ### Context
 
-The source repository (nicobailon/visual-explainer v0.1.1) relies on surf-cli for placeholder image generation. surf-cli is an external headless browser dependency that may not be available in all environments — it requires a system-level installation and network access to function. During gap analysis, this was classified as gap C1 (Critical) because the dependency blocks a core use case in environments where surf-cli is absent.
+The source repository (nicobailon/doc-visual v0.1.1) relies on surf-cli for placeholder image generation. surf-cli is an external headless browser dependency that may not be available in all environments — it requires a system-level installation and network access to function. During gap analysis, this was classified as gap C1 (Critical) because the dependency blocks a core use case in environments where surf-cli is absent.
 
 ### Constraints
 
@@ -858,7 +858,7 @@ The source repository (nicobailon/visual-explainer v0.1.1) relies on surf-cli fo
 
 **We chose**: CSS-first placeholder generation using CSS gradients, geometric shapes, and `background-image` patterns as a drop-in replacement for surf-cli-generated images.
 
-**How it works**: Placeholder image areas in generated HTML use CSS `background` properties (linear-gradient, radial-gradient, repeating-linear-gradient) to render colored geometric shapes that visually indicate image zones. These render in any browser without external dependencies. The patterns are documented in css_patterns.md and available to agents generating visual explainer output.
+**How it works**: Placeholder image areas in generated HTML use CSS `background` properties (linear-gradient, radial-gradient, repeating-linear-gradient) to render colored geometric shapes that visually indicate image zones. These render in any browser without external dependencies. The patterns are documented in css_patterns.md and available to agents generating doc visual output.
 <!-- /ANCHOR:adr-009-decision -->
 
 ---

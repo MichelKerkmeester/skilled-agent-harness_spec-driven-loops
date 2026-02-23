@@ -26,7 +26,7 @@ contextType: "decision"
 | Aspect | Value |
 |--------|-------|
 | **Language/Stack** | Markdown files, Python validation scripts |
-| **Framework** | sk-documentation v1.0.7.0 |
+| **Framework** | sk-doc v1.0.7.0 |
 | **Storage** | Local filesystem (.opencode/ directory) |
 | **Testing** | validate_document.py, extract_structure.py, grep verification |
 
@@ -43,7 +43,7 @@ This plan executes a 12-phase AI swarm operation to strip emojis from H2 heading
 ### Definition of Ready
 - [x] Problem statement clear and scope documented
 - [x] Success criteria measurable (zero emoji H2 headings)
-- [x] Dependencies identified (sk-documentation v1.0.7.0 merged)
+- [x] Dependencies identified (sk-doc v1.0.7.0 merged)
 - [x] File inventory complete (287 files across 12 groups)
 - [x] Regex pattern validated on Phase 0 files
 
@@ -88,7 +88,7 @@ For each file in phase:
 ### Exempt Files (NEVER modify)
 - `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/AGENTS.md`
 - `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/README.md`
-- All files in `.opencode/skill/sk-documentation/` (already done)
+- All files in `.opencode/skill/sk-doc/` (already done)
 - All files in `node_modules/`, `.git/`, `__pycache__/`, `venv/`
 <!-- /ANCHOR:architecture -->
 
@@ -97,9 +97,9 @@ For each file in phase:
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
-### Phase 0: Validation Engine & sk-documentation (COMPLETED)
+### Phase 0: Validation Engine & sk-doc (COMPLETED)
 **Status**: Complete (2026-02-16)
-**Files**: ~30 files in `.opencode/skill/sk-documentation/`
+**Files**: ~30 files in `.opencode/skill/sk-doc/`
 **Summary**: Updated template_rules.json, validate_document.py, extract_structure.py. Stripped emojis from all templates, references, core docs and test fixtures. All 6/6 tests pass.
 
 ---
@@ -351,7 +351,7 @@ For each file in phase:
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| sk-documentation v1.0.7.0 | Internal | Green (merged) | Cannot validate without updated rules |
+| sk-doc v1.0.7.0 | Internal | Green (merged) | Cannot validate without updated rules |
 | validate_document.py | Internal | Green (updated) | Cannot verify README compliance |
 | extract_structure.py | Internal | Green (updated) | Cannot verify SKILL compliance |
 | template_rules.json | Internal | Green (updated) | Validation would still enforce emojis |
@@ -417,7 +417,7 @@ Phase 0 (Complete) ──┐
 **Phase**: 0
 **Duration**: Completed
 **Agent**: Primary
-**Output**: Updated validation engine and sk-documentation skill
+**Output**: Updated validation engine and sk-doc skill
 
 ### Tier 2: Parallel Execution
 | Agent | Phase | Focus | File Count |

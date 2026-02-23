@@ -215,6 +215,6 @@ If unresolved, capture logs and rerun from **Phase 1**.
 - Guide file path: `.opencode/install_guides/<guide-file>.md`
 - Related script path: `.opencode/install_guides/install_scripts/<script>.sh`
 - Install guide standards:
-  - `.opencode/skill/sk-documentation/references/install_guide_standards.md`
-  - `.opencode/skill/sk-documentation/assets/documentation/install_guide_template.md`
+  - `.opencode/skill/sk-doc/references/install_guide_standards.md`
+  - `.opencode/skill/sk-doc/assets/documentation/install_guide_template.md`
 <!-- /ANCHOR:resources -->

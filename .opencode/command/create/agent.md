@@ -51,7 +51,7 @@ SELF-CHECK: Are you operating as the @write agent?
     │   │ This command requires the @write agent for:                │
     │   │   • Template-first workflow (loads before creating)          │
     │   │   • Frontmatter validation                                 │
-    │   │   • sk-documentation skill integration               │
+    │   │   • sk-doc skill integration               │
     │   │                                                            │
     │   │ To proceed, restart with:                                  │
     │   │   @write /create:agent [agent-name]                        │
@@ -226,7 +226,7 @@ Use `[runtime_agent_path]` based on the active runtime profile:
 ## 1. ROLE & PURPOSE
 
 ```yaml
-role: Expert Agent Creator using sk-documentation skill
+role: Expert Agent Creator using sk-doc skill
 purpose: Create production-ready OpenCode agents with proper frontmatter and behavioral rules
 action: Guide agent creation from understanding through validation with YAML frontmatter verification
 
@@ -239,7 +239,7 @@ operating_mode:
   validation: yaml_frontmatter_check
 ```
 
-Create a complete, production-ready OpenCode agent following the 6-step agent creation process from the `sk-documentation` skill. The workflow ensures understanding before implementation, validates YAML frontmatter syntax, and produces agents that integrate seamlessly with OpenCode's agent system.
+Create a complete, production-ready OpenCode agent following the 6-step agent creation process from the `sk-doc` skill. The workflow ensures understanding before implementation, validates YAML frontmatter syntax, and produces agents that integrate seamlessly with OpenCode's agent system.
 
 ---
 
@@ -376,15 +376,15 @@ permission:
 ## 6. AGENT CREATION TEMPLATES
 
 ### Agent Template Path
-`.opencode/skill/sk-documentation/assets/opencode/agent_template.md`
+`.opencode/skill/sk-doc/assets/opencode/agent_template.md`
 
 ### Agent Scripts
-- Validation: `.opencode/skill/sk-documentation/scripts/validate_document.py`
-- Structure extraction: `.opencode/skill/sk-documentation/scripts/extract_structure.py`
+- Validation: `.opencode/skill/sk-doc/scripts/validate_document.py`
+- Structure extraction: `.opencode/skill/sk-doc/scripts/extract_structure.py`
 
 ### Agent References
-- Core standards: `.opencode/skill/sk-documentation/references/core_standards.md`
-- Agent creation guide: `.opencode/skill/sk-documentation/references/agent_creation.md`
+- Core standards: `.opencode/skill/sk-doc/references/core_standards.md`
+- Agent creation guide: `.opencode/skill/sk-doc/references/agent_creation.md`
 
 ---
 
@@ -501,8 +501,8 @@ FOR WORKFLOW VIOLATIONS:
 
 | Resource | Path |
 |---|---|
-| Agent template | `sk-documentation/assets/opencode/agent_template.md` |
-| sk-documentation skill | `.opencode/skill/sk-documentation/SKILL.md` |
+| Agent template | `sk-doc/assets/opencode/agent_template.md` |
+| sk-doc skill | `.opencode/skill/sk-doc/SKILL.md` |
 | system-spec-kit skill | `.opencode/skill/system-spec-kit/SKILL.md` |
-| Scripts: validate_document.py, extract_structure.py | `sk-documentation/scripts/` |
-| Core standards reference | `sk-documentation/references/core_standards.md` |
+| Scripts: validate_document.py, extract_structure.py | `sk-doc/scripts/` |
+| Core standards reference | `sk-doc/references/core_standards.md` |

@@ -37,7 +37,7 @@ contextType: "implementation"
 
 - Hard rename completed: `.opencode/skill/legacy-single-hyphen-review/` -> `.opencode/skill/sk-code--review/`.
 - Rebuilt `SKILL.md` as stack-agnostic review baseline with:
-  - sk-documentation-style smart routing structure,
+  - sk-doc-style smart routing structure,
   - weighted intent scoring,
   - ambiguity handling,
   - unknown fallback checklist,
@@ -89,12 +89,12 @@ contextType: "implementation"
 
 | Check | Result |
 |-------|--------|
-| `python3 .opencode/skill/sk-documentation/scripts/quick_validate.py .opencode/skill/sk-code--review --json` | FAIL: `Name 'sk-code--review' cannot contain consecutive hyphens` |
-| `python3 .opencode/skill/sk-documentation/scripts/package_skill.py .opencode/skill/sk-code--review` | FAIL: same validator rule |
-| `python3 .opencode/skill/sk-documentation/scripts/quick_validate.py .opencode/skill/sk-code--web --json` | FAIL (same rule), confirming existing validator mismatch with established `sk-code--*` naming |
+| `python3 .opencode/skill/sk-doc/scripts/quick_validate.py .opencode/skill/sk-code--review --json` | FAIL: `Name 'sk-code--review' cannot contain consecutive hyphens` |
+| `python3 .opencode/skill/sk-doc/scripts/package_skill.py .opencode/skill/sk-code--review` | FAIL: same validator rule |
+| `python3 .opencode/skill/sk-doc/scripts/quick_validate.py .opencode/skill/sk-code--web --json` | FAIL (same rule), confirming existing validator mismatch with established `sk-code--*` naming |
 | `python3 .opencode/skill/scripts/skill_advisor.py "review this PR for race conditions and auth bugs" --threshold 0.8` | PASS: top `sk-code--review` |
 | `python3 .opencode/skill/scripts/skill_advisor.py "help me rebase and split commits" --threshold 0.8` | PASS: top `sk-git` |
-| `python3 .opencode/skill/scripts/skill_advisor.py "visual review of architecture diff" --threshold 0.8` | PASS: top `sk-visual-explainer`, `sk-code--review` secondary |
+| `python3 .opencode/skill/scripts/skill_advisor.py "visual review of architecture diff" --threshold 0.8` | PASS: top `sk-doc-visual`, `sk-code--review` secondary |
 | `rg -n "sk-code--review|baseline\+overlay|overlay"` across `.opencode/agent/*.md`, `.opencode/agent/chatgpt/*.md`, `.gemini/agents/*.md`, `.claude/agents/*.md`, `.codex/agents/{review,orchestrate}.toml` | PASS: baseline+overlay contract present in all runtime agent locations |
 | `rg -n "standards_contract|baseline: \"sk-code--review\""` across 18 YAML assets | PASS: all target files matched |
 | `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/002-commands-and-skills/041-code-review-skill` | PASS (exit 0): all rules passed, no warnings |
@@ -117,6 +117,6 @@ contextType: "implementation"
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. Current `sk-documentation` validators reject consecutive hyphens in skill `name`, which conflicts with established `sk-code--*` skill naming used in this repository.
+1. Current `sk-doc` validators reject consecutive hyphens in skill `name`, which conflicts with established `sk-code--*` skill naming used in this repository.
 2. Because validator updates were not part of this scoped implementation, validation pass remains a documented caveat rather than a fixed item.
 <!-- /ANCHOR:limitations -->

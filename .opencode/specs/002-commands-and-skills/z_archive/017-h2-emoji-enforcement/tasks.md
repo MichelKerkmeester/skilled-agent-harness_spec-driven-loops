@@ -139,7 +139,7 @@ H2 Header Validation (BLOCKING for template-based docs):
 
 ### T5: Add SECTION_EMOJIS constant to extract_structure.py
 
-**File:** `.opencode/skill/sk-documentation/scripts/extract_structure.py`
+**File:** `.opencode/skill/sk-doc/scripts/extract_structure.py`
 **Location:** After SEMANTIC_EMOJIS constant (~line 295)
 
 **Action:** Add emoji set and required types constant.
@@ -170,7 +170,7 @@ EMOJI_REQUIRED_TYPES = {'skill', 'readme', 'asset', 'reference'}
 
 ### T6: Modify check_h2_formatting function
 
-**File:** `.opencode/skill/sk-documentation/scripts/extract_structure.py`
+**File:** `.opencode/skill/sk-doc/scripts/extract_structure.py`
 **Function:** check_h2_formatting (lines 378-423)
 
 **Action:** Update to use SECTION_EMOJIS and return 'error' severity for required types.
@@ -186,7 +186,7 @@ EMOJI_REQUIRED_TYPES = {'skill', 'readme', 'asset', 'reference'}
 
 ### T7: Add h2_emoji to REFERENCE_CHECKLIST
 
-**File:** `.opencode/skill/sk-documentation/scripts/extract_structure.py`
+**File:** `.opencode/skill/sk-doc/scripts/extract_structure.py`
 **Location:** REFERENCE_CHECKLIST (~line 639)
 
 **Action:** Add h2_emoji check to reference checklist.
@@ -202,7 +202,7 @@ EMOJI_REQUIRED_TYPES = {'skill', 'readme', 'asset', 'reference'}
 
 ### T8: Expand style checks for template-based types
 
-**File:** `.opencode/skill/sk-documentation/scripts/extract_structure.py`
+**File:** `.opencode/skill/sk-doc/scripts/extract_structure.py`
 **Location:** Main extraction function (~lines 1103-1109)
 
 **Action:** Run check_h2_formatting for all EMOJI_REQUIRED_TYPES.
@@ -225,7 +225,7 @@ if doc_type in EMOJI_REQUIRED_TYPES:
 
 ### T9: Add emoji requirements table to SKILL.md
 
-**File:** `.opencode/skill/sk-documentation/SKILL.md`
+**File:** `.opencode/skill/sk-doc/SKILL.md`
 **Location:** After Emoji Usage Rules (~line 543)
 
 **Action:** Add document-type emoji requirements table.
@@ -236,7 +236,7 @@ if doc_type in EMOJI_REQUIRED_TYPES:
 
 ### T10: Add H2 emoji violations to core_standards.md
 
-**File:** `.opencode/skill/sk-documentation/references/core_standards.md`
+**File:** `.opencode/skill/sk-doc/references/core_standards.md`
 **Location:** Section 5 (Common Violations)
 
 **Action:** Add H2 emoji violations subsection.

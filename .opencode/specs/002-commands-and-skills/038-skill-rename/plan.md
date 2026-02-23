@@ -64,7 +64,7 @@ Mechanical find-and-replace refactor across filesystem and file contents. No arc
 - **Skill folders**: 7 folders under `.opencode/skill/` to rename
 - **skill_advisor.py**: Central skill routing script with name-to-skill mappings
 - **Agent files**: 12 files across 4 runtime directories with skill references
-- **Command YAMLs**: 20+ template files referencing `sk-documentation` paths
+- **Command YAMLs**: 20+ template files referencing `sk-doc` paths
 - **Install guides**: 4 files with skill registry tables
 - **Root docs**: 5 files (README.md, CLAUDE.md, AGENTS.md, etc.)
 - **system-spec-kit**: Config, tests, templates, and documentation referencing skill names
@@ -82,9 +82,9 @@ No data flow changes. Skills are loaded by name from filesystem paths. Renaming 
 - [x] `mv .opencode/skill/sk-code--opencode → sk-code--opencode`
 - [x] `mv .opencode/skill/workflows-code--web-dev → sk-code--web`
 - [x] `mv .opencode/skill/sk-code--full-stack → sk-code--full-stack`
-- [x] `mv .opencode/skill/sk-documentation → sk-documentation`
+- [x] `mv .opencode/skill/sk-doc → sk-doc`
 - [x] `mv .opencode/skill/sk-git → sk-git`
-- [x] `mv .opencode/skill/sk-visual-explainer → sk-visual-explainer`
+- [x] `mv .opencode/skill/sk-doc-visual → sk-doc-visual`
 - [x] `mv .opencode/skill/mcp-chrome-devtools → mcp-chrome-devtools`
 
 ### Phase 2: Update Internal Skill References (~290 files)
@@ -104,9 +104,9 @@ For each renamed skill folder, update all internal files:
 | `sk-code--opencode` | `sk-code--opencode` | `.opencode/skill/sk-code--opencode/` → `.opencode/skill/sk-code--opencode/` |
 | `workflows-code--web-dev` | `sk-code--web` | `.opencode/skill/workflows-code--web-dev/` → `.opencode/skill/sk-code--web/` |
 | `sk-code--full-stack` | `sk-code--full-stack` | `.opencode/skill/sk-code--full-stack/` → `.opencode/skill/sk-code--full-stack/` |
-| `sk-documentation` | `sk-documentation` | `.opencode/skill/sk-documentation/` → `.opencode/skill/sk-documentation/` |
+| `sk-doc` | `sk-doc` | `.opencode/skill/sk-doc/` → `.opencode/skill/sk-doc/` |
 | `sk-git` | `sk-git` | `.opencode/skill/sk-git/` → `.opencode/skill/sk-git/` |
-| `sk-visual-explainer` | `sk-visual-explainer` | `.opencode/skill/sk-visual-explainer/` → `.opencode/skill/sk-visual-explainer/` |
+| `sk-doc-visual` | `sk-doc-visual` | `.opencode/skill/sk-doc-visual/` → `.opencode/skill/sk-doc-visual/` |
 | `mcp-chrome-devtools` | `mcp-chrome-devtools` | `.opencode/skill/mcp-chrome-devtools/` → `.opencode/skill/mcp-chrome-devtools/` |
 
 **Special cases:**
@@ -116,8 +116,8 @@ For each renamed skill folder, update all internal files:
 ### Phase 3: Update skill_advisor.py (~100+ lines)
 - [x] Update all `sk-git` entries in INTENT_BOOSTERS → `sk-git`
 - [x] Update all `mcp-chrome-devtools` entries → `mcp-chrome-devtools`
-- [x] Update all `sk-documentation` entries → `sk-documentation`
-- [x] Update all `sk-visual-explainer` entries → `sk-visual-explainer`
+- [x] Update all `sk-doc` entries → `sk-doc`
+- [x] Update all `sk-doc-visual` entries → `sk-doc-visual`
 - [x] Update all `workflows-code--web-dev` entries → `sk-code--web`
 - [x] Update all `sk-code--opencode` entries → `sk-code--opencode`
 - [x] Update all `sk-code--full-stack` entries in MULTI_SKILL_BOOSTERS → `sk-code--full-stack`
@@ -125,7 +125,7 @@ For each renamed skill folder, update all internal files:
 ### Phase 4: Update Agent Files (12 files × 4 runtimes)
 - [x] `.opencode/agent/orchestrate.md` — skill tables, routing tables, path references
 - [x] `.opencode/agent/review.md` — `workflows-code--*` → `sk-code--*`, bare references
-- [x] `.opencode/agent/write.md` — `sk-documentation` → `sk-documentation` (extensive: ~30 refs)
+- [x] `.opencode/agent/write.md` — `sk-doc` → `sk-doc` (extensive: ~30 refs)
 - [x] `.opencode/agent/chatgpt/orchestrate.md` — same as above
 - [x] `.opencode/agent/chatgpt/review.md` — same as above
 - [x] `.opencode/agent/chatgpt/write.md` — same as above
@@ -141,7 +141,7 @@ For each renamed skill folder, update all internal files:
 - [x] `.opencode/command/create/` — All 6 .md files (skill.md, skill_asset.md, skill_reference.md, agent.md, install_guide.md, folder_readme.md)
 - [x] `.opencode/command/create/README.txt`
 - [x] `.opencode/command/README.txt`
-- [x] `.opencode/command/visual-explainer/` — 5 files (generate.md, fact-check.md, diff-review.md, plan-review.md, recap.md)
+- [x] `.opencode/command/doc-visual/` — 5 files (generate.md, fact-check.md, diff-review.md, plan-review.md, recap.md)
 
 ### Phase 6: Update Install Guides (4 files)
 - [x] `.opencode/install_guides/README.md` — skill registry, routing tables, file paths, manifest
@@ -176,17 +176,17 @@ For each renamed skill folder, update all internal files:
 - [x] `mv .opencode/changelog/07--sk-code--opencode → 07--sk-code--opencode`
 - [x] `mv .opencode/changelog/08--workflows-code--web-dev → 08--sk-code--web`
 - [x] `mv .opencode/changelog/09--sk-code--full-stack → 09--sk-code--full-stack`
-- [x] `mv .opencode/changelog/06--sk-documentation → 06--sk-documentation`
+- [x] `mv .opencode/changelog/06--sk-doc → 06--sk-doc`
 - [x] `mv .opencode/changelog/10--sk-git → 10--sk-git`
 - [x] `mv .opencode/changelog/11--mcp-chrome-devtools → 11--mcp-chrome-devtools`
-- [x] Verify: `sk-visual-explainer` changelog dir existence
+- [x] Verify: `sk-doc-visual` changelog dir existence
 
 ### Phase 10: Verification
-- [x] Run: `grep -r "workflows-code--\|sk-documentation\|sk-git\|sk-visual-explainer\|mcp-chrome-devtools" .opencode/skill/ .opencode/command/ .opencode/agent/ .opencode/install_guides/ .claude/ .gemini/ README.md CLAUDE.md AGENTS.md .opencode/README.md`
+- [x] Run: `grep -r "workflows-code--\|sk-doc\|sk-git\|sk-doc-visual\|mcp-chrome-devtools" .opencode/skill/ .opencode/command/ .opencode/agent/ .opencode/install_guides/ .claude/ .gemini/ README.md CLAUDE.md AGENTS.md .opencode/README.md`
 - [x] Expected: 0 results (excluding changelog content, specs/memory, archives)
 - [x] Run: `python3 .opencode/skill/scripts/skill_advisor.py "git commit"` → verify returns `sk-git`
 - [x] Run: `python3 .opencode/skill/scripts/skill_advisor.py "implement feature"` → verify returns `sk-code--web`
-- [x] Run: `python3 .opencode/skill/scripts/skill_advisor.py "create documentation"` → verify returns `sk-documentation`
+- [x] Run: `python3 .opencode/skill/scripts/skill_advisor.py "create documentation"` → verify returns `sk-doc`
 - [x] Run: `python3 .opencode/skill/scripts/skill_advisor.py "take screenshot"` → verify returns `mcp-chrome-devtools`
 - [x] Verify all 7 new folders exist: `ls -d .opencode/skill/sk-* .opencode/skill/mcp-chrome-devtools`
 - [x] Verify no old folders remain: `ls -d .opencode/skill/workflows-* 2>/dev/null` → empty
@@ -266,7 +266,7 @@ Phase 1 (Filesystem Renames) ──┐
 | Phase 2: Internal Skill Refs | High | ~290 files, mostly mechanical |
 | Phase 3: skill_advisor.py | Med | ~100 line changes in 1 file |
 | Phase 4: Agent Files | Med | 12 files, ~10 replacements each |
-| Phase 5: Command Files | High | ~25 files, ~172 refs for `sk-documentation` alone |
+| Phase 5: Command Files | High | ~25 files, ~172 refs for `sk-doc` alone |
 | Phase 6: Install Guides | Med | 4 files, ~80 references total |
 | Phase 7: Root Docs | Low | 5 files, ~30 references total |
 | Phase 8: system-spec-kit | Med | ~20 files, mix of config/test/template |
@@ -337,8 +337,8 @@ Phase 1 (Filesystem Renames) ──┐
 | Phase 1 (opencode) | Phase 3 | Renamed `sk-code--opencode` | Phase 2 |
 | Phase 2 (web) | Phase 1 | Renamed `sk-code--web` | Phase 7 |
 | Phase 7 (chrome-devtools) | Phase 2 | Renamed `mcp-chrome-devtools` | Phase 4 |
-| Phase 4 (documentation) | Phase 7 | Renamed `sk-documentation` | Phase 6 |
-| Phase 6 (sk-visual-explainer) | Phase 4 | Renamed `sk-visual-explainer` | Phase 5 |
+| Phase 4 (documentation) | Phase 7 | Renamed `sk-doc` | Phase 6 |
+| Phase 6 (sk-doc-visual) | Phase 4 | Renamed `sk-doc-visual` | Phase 5 |
 | Phase 5 (git) | Phase 6 | Renamed `sk-git` | None |
 <!-- /ANCHOR:dependency-graph -->
 
@@ -351,8 +351,8 @@ Phase 1 (Filesystem Renames) ──┐
 2. **Phase 1: sk-code--opencode** — 35 internal + 13 external files — CRITICAL
 3. **Phase 2: sk-code--web** — 51 internal + 17 external files — CRITICAL
 4. **Phase 7: mcp-chrome-devtools** — 21 internal + 36 external files — CRITICAL
-5. **Phase 4: sk-documentation** — 49 internal + 52 external files — CRITICAL (most external refs)
-6. **Phase 6: sk-visual-explainer** — 22 internal + 6 external files — CRITICAL
+5. **Phase 4: sk-doc** — 49 internal + 52 external files — CRITICAL (most external refs)
+6. **Phase 6: sk-doc-visual** — 22 internal + 6 external files — CRITICAL
 7. **Phase 5: sk-git** — 20 internal + 39 external files — CRITICAL (shortest match last)
 
 **Total Critical Path**: All 7 phases sequential (~370 unique files)
@@ -415,9 +415,9 @@ Phase 1 (Filesystem Renames) ──┐
 | Phase 1 Agent | 001-sk-code--opencode/ | spec.md, plan.md, tasks.md, checklist.md |
 | Phase 2 Agent | 002-sk-code--web/ | spec.md, plan.md, tasks.md, checklist.md |
 | Phase 3 Agent | 003-sk-code--full-stack/ | spec.md, plan.md, tasks.md, checklist.md |
-| Phase 4 Agent | 004-sk-documentation/ | spec.md, plan.md, tasks.md, checklist.md |
+| Phase 4 Agent | 004-sk-doc/ | spec.md, plan.md, tasks.md, checklist.md |
 | Phase 5 Agent | 005-sk-git/ | spec.md, plan.md, tasks.md, checklist.md |
-| Phase 6 Agent | 006-sk-visual-explainer/ | spec.md, plan.md, tasks.md, checklist.md |
+| Phase 6 Agent | 006-sk-doc-visual/ | spec.md, plan.md, tasks.md, checklist.md |
 | Phase 7 Agent | 007-mcp-chrome-devtools/ | spec.md, plan.md, tasks.md, checklist.md |
 
 **Duration**: ~180s (parallel)
@@ -441,8 +441,8 @@ Phase 1 (Filesystem Renames) ──┐
 | W-B | Phase 1: Opencode | Impl Agent | `.opencode/skill/sk-code--opencode/` | Completed |
 | W-C | Phase 2: Web | Impl Agent | `.opencode/skill/sk-code--web/` | Completed |
 | W-D | Phase 7: Chrome DT | Impl Agent | `.opencode/skill/mcp-chrome-devtools/` | Completed |
-| W-E | Phase 4: Documentation | Impl Agent | `.opencode/skill/sk-documentation/` | Completed |
-| W-F | Phase 6: Visual Expl. | Impl Agent | `.opencode/skill/sk-visual-explainer/` | Completed |
+| W-E | Phase 4: Documentation | Impl Agent | `.opencode/skill/sk-doc/` | Completed |
+| W-F | Phase 6: Visual Expl. | Impl Agent | `.opencode/skill/sk-doc-visual/` | Completed |
 | W-G | Phase 5: Git | Impl Agent | `.opencode/skill/sk-git/` | Completed |
 
 ### Sync Points
@@ -491,8 +491,8 @@ Given the massive number of files (~370), the implementation should use **batch 
      2. `sk-code--opencode` → `sk-code--opencode`
      3. `workflows-code--web-dev` → `sk-code--web`
      4. `mcp-chrome-devtools` → `mcp-chrome-devtools`
-     5. `sk-documentation` → `sk-documentation`
-     6. `sk-visual-explainer` → `sk-visual-explainer`
+     5. `sk-doc` → `sk-doc`
+     6. `sk-doc-visual` → `sk-doc-visual`
      7. `sk-git` → `sk-git`
      8. `workflows-code--*` → `sk-code--*` (wildcard pattern in prose)
      9. `workflows-code` (bare) → `sk-code--web` (only in non-wildcard contexts)

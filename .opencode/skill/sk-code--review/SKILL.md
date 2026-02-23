@@ -401,7 +401,7 @@ After reporting findings, request explicit next action before any implementation
 <!-- ANCHOR:related-resources -->
 ## 8. RELATED RESOURCES
 
-- [sk-documentation](../sk-documentation/SKILL.md) - Skill authoring and packaging standards.
+- [sk-doc](../sk-doc/SKILL.md) - Skill authoring and packaging standards.
 - [sk-code--opencode](../sk-code--opencode/SKILL.md) - OpenCode system code overlay standards.
 - [sk-code--web](../sk-code--web/SKILL.md) - Web/frontend overlay standards.
 - [sk-code--full-stack](../sk-code--full-stack/SKILL.md) - Default multi-stack overlay standards.

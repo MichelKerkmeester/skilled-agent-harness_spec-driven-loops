@@ -1,5 +1,5 @@
 ---
-title: "Verification Checklist: Reverse-Engineer Visual Explainer Skill [037-reverse-engineer-visual-explainer/checklist]"
+title: "Verification Checklist: Reverse-Engineer Doc Visual Skill [037-reverse-engineer-doc-visual/checklist]"
 description: "Verification Date: 2025-02-21 (Phase 1) / 2025-02-21 (Phase 2 gap remediation)"
 trigger_phrases:
   - "verification"
@@ -11,7 +11,7 @@ trigger_phrases:
 importance_tier: "normal"
 contextType: "implementation"
 ---
-# Verification Checklist: Reverse-Engineer Visual Explainer Skill
+# Verification Checklist: Reverse-Engineer Doc Visual Skill
 
 <!-- SPECKIT_LEVEL: 3 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->

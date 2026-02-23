@@ -1,6 +1,6 @@
 ---
 title: "Plan: Figma MCP Install Guide & Skill Creation [013-initial-creation/plan]"
-description: "1. Load templates from sk-documentation skill"
+description: "1. Load templates from sk-doc skill"
 trigger_phrases:
   - "plan"
   - "figma"
@@ -25,7 +25,7 @@ contextType: "decision"
 
 ### Strategy: Template-First, Pattern-Matching
 
-1. **Load templates** from sk-documentation skill
+1. **Load templates** from sk-doc skill
 2. **Match patterns** from existing mcp-narsil and mcp-code-mode skills
 3. **Adapt content** for Figma MCP's 18 tools
 4. **Validate alignment** against templates before delivery
@@ -253,7 +253,7 @@ const images = await figma.figma_get_image({
 
 ```bash
 # Run DQI scoring
-python3 .opencode/skill/sk-documentation/scripts/extract_structure.py \
+python3 .opencode/skill/sk-doc/scripts/extract_structure.py \
   .opencode/install_guides/MCP/MCP\ -\ Figma.md
 
 # Target: Score ≥90 (Excellent)

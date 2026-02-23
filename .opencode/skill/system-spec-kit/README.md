@@ -56,7 +56,7 @@ Spec Kit adds the missing layers: persistent memory, enforced documentation and 
 
 Cross-workflow alignment is mandatory:
 - All code created or updated must fully align with `sk-code--opencode`.
-- All documentation created or updated must fully align with `sk-documentation`.
+- All documentation created or updated must fully align with `sk-doc`.
 
 ---
 
@@ -749,7 +749,7 @@ A: Yes. Major flags including `SPECKIT_ADAPTIVE_FUSION`, `SPECKIT_CAUSAL_BOOST` 
 | [references/validation/five_checks.md](./references/validation/five_checks.md) | Five Checks evaluation framework |
 | [references/workflows/rollback_runbook.md](./references/workflows/rollback_runbook.md) | Feature-flag rollback and smoke-test procedure |
 | [../sk-code--opencode/SKILL.md](../sk-code--opencode/SKILL.md) | Mandatory standard for all code creation and updates |
-| [../sk-documentation/SKILL.md](../sk-documentation/SKILL.md) | Mandatory standard for all documentation creation and updates |
+| [../sk-doc/SKILL.md](../sk-doc/SKILL.md) | Mandatory standard for all documentation creation and updates |
 
 ### Directory Structure
 

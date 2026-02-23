@@ -1,1 +1,1 @@
-../../.opencode/command/visual-explainer/plan-review.md
+../../.opencode/command/create/visual_html.md

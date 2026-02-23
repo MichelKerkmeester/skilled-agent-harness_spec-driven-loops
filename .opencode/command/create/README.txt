@@ -166,9 +166,9 @@ The `--chained` flag on `skill_asset` and `skill_reference` indicates the comman
 | Document | Purpose |
 |----------|---------|
 | [Parent: OpenCode Commands](../README.txt) | Overview of all command groups |
-| [sk-documentation SKILL.md](../../skill/sk-documentation/SKILL.md) | Templates and standards used by create commands |
-| [agent_template.md](../../skill/sk-documentation/assets/opencode/agent_template.md) | Agent creation template |
-| [command_template.md](../../skill/sk-documentation/assets/opencode/command_template.md) | Command creation template |
-| [skill_creation.md](../../skill/sk-documentation/references/skill_creation.md) | Skill creation workflow reference |
+| [sk-doc SKILL.md](../../skill/sk-doc/SKILL.md) | Templates and standards used by create commands |
+| [agent_template.md](../../skill/sk-doc/assets/opencode/agent_template.md) | Agent creation template |
+| [command_template.md](../../skill/sk-doc/assets/opencode/command_template.md) | Command creation template |
+| [skill_creation.md](../../skill/sk-doc/references/skill_creation.md) | Skill creation workflow reference |
 | [spec_kit:phase](../spec_kit/phase.md) | Phase-aware spec setup workflow for complex features |
 <!-- /ANCHOR:related-documents -->

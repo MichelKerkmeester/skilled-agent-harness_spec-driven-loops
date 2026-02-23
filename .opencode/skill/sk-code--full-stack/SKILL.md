@@ -34,7 +34,7 @@ Unified workflow guidance for any technology stack: Go, Node.js, React/Next.js, 
 ### When NOT to Use
 
 **Do NOT use this skill for:**
-- Documentation-only changes (use `sk-documentation`)
+- Documentation-only changes (use `sk-doc`)
 - Git/version-control workflows (use `sk-git`)
 - Browser inspection tasks only (use `mcp-chrome-devtools`)
 
@@ -648,7 +648,7 @@ sk-code--full-stack/
 | Skill                         | Use For                                                     |
 | ----------------------------- | ----------------------------------------------------------- |
 | **sk-code--review**    | Findings-first review baseline, severity model, risk reporting |
-| **sk-documentation**   | Documentation quality, skill creation, markdown validation  |
+| **sk-doc**   | Documentation quality, skill creation, markdown validation  |
 | **sk-git**             | Git workflows, commit hygiene, PR creation                  |
 | **system-spec-kit**           | Spec folder management, memory system, context preservation |
 | **mcp-code-mode**             | Token-efficient MCP orchestration and tool chaining         |

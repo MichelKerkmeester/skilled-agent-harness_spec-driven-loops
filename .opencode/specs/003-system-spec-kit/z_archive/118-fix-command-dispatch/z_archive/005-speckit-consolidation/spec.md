@@ -55,7 +55,7 @@ Enable users to update the SpecKit functionality by updating a single skill fold
 - Move 2 evidence JSON files from `.opencode/speckit/checklist-evidence/`
 - Update all path references in 16+ files across the codebase
 - Update AGENTS.md and AGENTS (Universal).md
-- Update all skill references (workflows-spec-kit, workflows-memory, sk-documentation, cli-codex, cli-gemini)
+- Update all skill references (workflows-spec-kit, workflows-memory, sk-doc, cli-codex, cli-gemini)
 - Update command YAML assets (8 files)
 - Update script internal paths (4 scripts with hardcoded paths)
 
@@ -133,7 +133,7 @@ Enable users to update the SpecKit functionality by updating a single skill fold
 |-------|-----------------|------|
 | workflows-spec-kit | 53+ | Primary owner |
 | workflows-memory | 6 | Related skills |
-| sk-documentation | 3 | Related skills |
+| sk-doc | 3 | Related skills |
 | cli-codex | 2 | Command refs |
 | cli-gemini | 2 | Command refs |
 
@@ -315,7 +315,7 @@ As a script user, I need internal script paths updated so that shell scripts wor
 | workflows-spec-kit | assets/template_mapping.md | 30 |
 | workflows-memory | references/alignment_scoring.md | 4 |
 | workflows-memory | mcp_server/README.md | 1 |
-| sk-documentation | assets/command_template.md | 1 |
+| sk-doc | assets/command_template.md | 1 |
 
 ### Command YAML Files (8)
 | File | References |

@@ -1,6 +1,6 @@
 ---
 title: "Checklist: Zero-Tolerance Documentation Formatting [018-style-enforcement/checklist]"
-description: "python -c \"import json; json.load(open('.opencode/skill/sk-documentation/assets/template_rules.json'))\""
+description: "python -c \"import json; json.load(open('.opencode/skill/sk-doc/assets/template_rules.json'))\""
 trigger_phrases:
   - "checklist"
   - "zero"
@@ -118,16 +118,16 @@ contextType: "implementation"
 
 ```bash
 # Verify template_rules.json is valid JSON
-python -c "import json; json.load(open('.opencode/skill/sk-documentation/assets/template_rules.json'))"
+python -c "import json; json.load(open('.opencode/skill/sk-doc/assets/template_rules.json'))"
 
 # Test validator on a valid README
-python .opencode/skill/sk-documentation/scripts/validate_document.py .opencode/skill/system-spec-kit/mcp_server/lib/README.md --json
+python .opencode/skill/sk-doc/scripts/validate_document.py .opencode/skill/system-spec-kit/mcp_server/lib/README.md --json
 
 # Test validator on multiple READMEs
-find .opencode/skill/system-spec-kit -name "README.md" -exec python .opencode/skill/sk-documentation/scripts/validate_document.py {} --json \;
+find .opencode/skill/system-spec-kit -name "README.md" -exec python .opencode/skill/sk-doc/scripts/validate_document.py {} --json \;
 
 # Run automated test suite (RECOMMENDED)
-python .opencode/skill/sk-documentation/scripts/tests/test_validator.py --verbose
+python .opencode/skill/sk-doc/scripts/tests/test_validator.py --verbose
 ```
 
 <!-- /ANCHOR:protocol -->

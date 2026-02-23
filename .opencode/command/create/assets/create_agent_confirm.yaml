@@ -6,7 +6,7 @@
 #       multi-phase nature requiring user decisions at each checkpoint.
 #       All executions use interactive confirmation gates.
 # ───────────────────────────────────────────────────────────────────
-role: Expert Agent Creator using sk-documentation skill
+role: Expert Agent Creator using sk-doc skill
 purpose: Create production-ready OpenCode agents with 6-step workflow
 action: Guide agent creation from understanding through validation with YAML frontmatter verification and permission configuration
 
@@ -16,7 +16,7 @@ action: Guide agent creation from understanding through validation with YAML fro
 # This workflow REQUIRES the @write agent for:
 #   • Template-first workflow (loads templates before creating)
 #   • YAML frontmatter validation
-#   • sk-documentation skill integration
+#   • sk-doc skill integration
 #
 # PHASE 0 in the command markdown verifies @write agent BEFORE
 # this YAML workflow loads. If you're executing this workflow,
@@ -146,16 +146,16 @@ documentation_level:
 # AGENT CREATION TEMPLATES
 # ─────────────────────────────────────────────────────────────────
 agent_templates:
-  primary: .opencode/skill/sk-documentation/assets/opencode/agent_template.md
+  primary: .opencode/skill/sk-doc/assets/opencode/agent_template.md
 
 agent_scripts:
-  validate_document: .opencode/skill/sk-documentation/scripts/validate_document.py
-  extract_structure: .opencode/skill/sk-documentation/scripts/extract_structure.py
+  validate_document: .opencode/skill/sk-doc/scripts/validate_document.py
+  extract_structure: .opencode/skill/sk-doc/scripts/extract_structure.py
 
 agent_references:
-  agent_creation: .opencode/skill/sk-documentation/references/agent_creation.md
-  core_standards: .opencode/skill/sk-documentation/references/core_standards.md
-  validation: .opencode/skill/sk-documentation/references/validation.md
+  agent_creation: .opencode/skill/sk-doc/references/agent_creation.md
+  core_standards: .opencode/skill/sk-doc/references/core_standards.md
+  validation: .opencode/skill/sk-doc/references/validation.md
 
 # ─────────────────────────────────────────────────────────────────
 # CHECKPOINT OPTIONS
@@ -545,10 +545,10 @@ workflow:
     agent_availability:
       agent_file: "[runtime_agent_path]/write.md"
       template_contract:
-        source: "sk-documentation"
+        source: "sk-doc"
         validators: "validate_document.py + extract_structure.py"
         precedence: "Template compliance and DQI quality checks are mandatory before completion."
-      rule_reference: "AGENTS.md §3 — sk-documentation template alignment and quality validation"
+      rule_reference: "AGENTS.md §3 — sk-doc template alignment and quality validation"
       condition: "ONLY when this step is actively executing"
       blocking: false
       not_for: "reviewing this workflow prompt or any pre-step activity"
@@ -725,7 +725,7 @@ quality_standards:
     stage_3: "Mode validation (primary/subagent/all)"
     stage_4: "Permission format validation (unified v1.1.1+)"
   template_adherence: required
-  core_standards_reference: ".opencode/skill/sk-documentation/references/core_standards.md"
+  core_standards_reference: ".opencode/skill/sk-doc/references/core_standards.md"
 
 # ─────────────────────────────────────────────────────────────────
 # COMPLETION REPORT TEMPLATE

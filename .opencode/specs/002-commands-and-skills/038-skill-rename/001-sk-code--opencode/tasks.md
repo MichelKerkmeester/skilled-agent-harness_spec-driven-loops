@@ -70,7 +70,7 @@ contextType: "implementation"
 ### Active-Path Skill References
 - [x] T016 [P] Update .opencode/skill/README.md — skill listing and link targets
 - [x] T017 [P] Update .opencode/skill/sk-code--full-stack/README.md — cross-skill reference
-- [x] T018 [P] Update .opencode/skill/sk-documentation/README.md — cross-skill reference
+- [x] T018 [P] Update .opencode/skill/sk-doc/README.md — cross-skill reference
 - [x] T019 [P] Update .opencode/skill/sk-git/README.md — cross-skill reference
 - [x] T020 [P] Update .opencode/skill/system-spec-kit/README.md — routing and relative link
 - [x] T021 [P] Update .opencode/skill/system-spec-kit/SKILL.md — routing/downstream references

@@ -34,7 +34,7 @@ contextType: "implementation"
 ---
 
 <!-- ANCHOR:phase-0 -->
-## Phase 0: Validation Engine & sk-documentation (COMPLETED)
+## Phase 0: Validation Engine & sk-doc (COMPLETED)
 
 - [x] T001 Set `h2_emoji_required: false` for all 7 document types in `template_rules.json`
 - [x] T002 Remove `missing_h2_emoji` and `toc_missing_emoji` from blocking errors in `template_rules.json`
@@ -238,7 +238,7 @@ contextType: "implementation"
 - [x] T1206 Generate final summary report with file counts
   > **Note**: T1206 (task) is summary report generation (complete). CHK-1206 (checklist item) is root README unchanged verification (blocked).
 - [x] T1207 Create changelog entries for all modified skills
-- [x] T1208 Verify sk-documentation test suite passing
+- [x] T1208 Verify sk-doc test suite passing
 - [x] T1209 Verify file count matches or exceeds target (287+ files)
 <!-- /ANCHOR:phase-12 -->
 

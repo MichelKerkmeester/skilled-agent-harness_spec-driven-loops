@@ -129,8 +129,8 @@ Review baseline + stack overlay contract.
 
 | Test Type | Scope | Tool/Command |
 |-----------|-------|--------------|
-| Skill structural validation | `sk-code--review` package | `python3 .opencode/skill/sk-documentation/scripts/quick_validate.py .opencode/skill/sk-code--review --json` |
-| Skill packaging | `sk-code--review` package | `python3 .opencode/skill/sk-documentation/scripts/package_skill.py .opencode/skill/sk-code--review` |
+| Skill structural validation | `sk-code--review` package | `python3 .opencode/skill/sk-doc/scripts/quick_validate.py .opencode/skill/sk-code--review --json` |
+| Skill packaging | `sk-code--review` package | `python3 .opencode/skill/sk-doc/scripts/package_skill.py .opencode/skill/sk-code--review` |
 | Advisor routing scenarios | review/git/visual prompts | `python3 .opencode/skill/scripts/skill_advisor.py "..." --threshold 0.8` |
 | Contract consistency | command/agent docs across all runtimes | `rg -n "standards_contract|sk-code--review|baseline\+overlay" ...` |
 | Spec validation | Level 2 docs | `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/002-commands-and-skills/041-code-review-skill` |
@@ -143,7 +143,7 @@ Review baseline + stack overlay contract.
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| `sk-documentation` validator scripts | Internal | Known mismatch | Reported command failure for double-hyphen skill names |
+| `sk-doc` validator scripts | Internal | Known mismatch | Reported command failure for double-hyphen skill names |
 | `system-spec-kit` spec validator | Internal | Pending final run | Required for completion evidence |
 | Existing `sk-code--*` skills | Internal | Available | Overlay model depends on them |
 | YAML command assets | Internal | Updated | Contract consistency required across all review dispatch steps |

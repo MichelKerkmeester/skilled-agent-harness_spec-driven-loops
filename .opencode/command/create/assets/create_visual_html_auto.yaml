@@ -8,7 +8,7 @@
 # This command is intentionally GENERAL-AGENT based.
 # It does not require @write agent routing.
 # ───────────────────────────────────────────────────────────────────
-role: Expert Visual HTML Orchestrator using sk-visual-explainer
+role: Expert Visual HTML Orchestrator using sk-doc-visual
 purpose: Generate or verify visual HTML artifacts from unified intent routing
 action: Route broad user intent into mode-specific flows and deliver validated visual outputs
 
@@ -40,7 +40,7 @@ request_analysis_framework:
   solution_flow:
     - "Parse command arguments and intent"
     - "Resolve source and optional flags"
-    - "Load sk-visual-explainer references"
+    - "Load sk-doc-visual references"
     - "Execute mode pipeline with minimal complexity"
     - "Run quality checks before returning success"
 
@@ -128,23 +128,23 @@ spec_metadata_contract:
 
 reference_loading:
   always:
-    - ".opencode/skill/sk-visual-explainer/SKILL.md"
-    - ".opencode/skill/sk-visual-explainer/references/quick_reference.md"
-    - ".opencode/skill/sk-visual-explainer/references/css_patterns.md"
-    - ".opencode/skill/sk-visual-explainer/references/quality_checklist.md"
+    - ".opencode/skill/sk-doc-visual/SKILL.md"
+    - ".opencode/skill/sk-doc-visual/references/quick_reference.md"
+    - ".opencode/skill/sk-doc-visual/references/css_patterns.md"
+    - ".opencode/skill/sk-doc-visual/references/quality_checklist.md"
   conditional:
     plan-review:
-      - ".opencode/skill/sk-visual-explainer/references/artifact_profiles.md"
-      - ".opencode/skill/sk-visual-explainer/references/user_guide_profiles.md"
+      - ".opencode/skill/sk-doc-visual/references/artifact_profiles.md"
+      - ".opencode/skill/sk-doc-visual/references/user_guide_profiles.md"
     generate:
-      - ".opencode/skill/sk-visual-explainer/references/library_guide.md"
+      - ".opencode/skill/sk-doc-visual/references/library_guide.md"
     diff-review:
-      - ".opencode/skill/sk-visual-explainer/references/navigation_patterns.md"
+      - ".opencode/skill/sk-doc-visual/references/navigation_patterns.md"
     recap:
-      - ".opencode/skill/sk-visual-explainer/references/navigation_patterns.md"
+      - ".opencode/skill/sk-doc-visual/references/navigation_patterns.md"
     fact-check:
-      - ".opencode/skill/sk-visual-explainer/references/artifact_profiles.md"
-      - ".opencode/skill/sk-visual-explainer/references/user_guide_profiles.md"
+      - ".opencode/skill/sk-doc-visual/references/artifact_profiles.md"
+      - ".opencode/skill/sk-doc-visual/references/user_guide_profiles.md"
 
 workflow:
   step_1_request_analysis:

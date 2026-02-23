@@ -85,7 +85,7 @@ Stabilize the Spec Kit Memory system by fixing all critical bugs, resolving sign
 ### Out of Scope
 - LEANN MCP (separate semantic search system) - different codebase
 - Narsil MCP (code analysis system) - different codebase
-- Other skills (workflows-code, sk-git, sk-documentation) - unrelated
+- Other skills (workflows-code, sk-git, sk-doc) - unrelated
 - Agent definitions in `.opencode/agent/` - unless directly related to Spec Kit
 - New feature development beyond fixing identified issues
 - Performance optimization beyond identified issues
@@ -298,7 +298,7 @@ As a developer using the memory system, I need improved search quality and bette
 
 - **LEANN MCP changes** - Separate semantic search system with independent codebase
 - **Narsil MCP changes** - Code analysis system not related to Spec Kit
-- **Other skills modifications** - workflows-code, sk-git, sk-documentation have separate concerns
+- **Other skills modifications** - workflows-code, sk-git, sk-doc have separate concerns
 - **New feature development** - Focus is on fixing existing issues, not adding capabilities
 - **Performance optimization** - Beyond fixing identified performance bugs
 - **UI/UX redesign** - Commands will work the same way, just correctly

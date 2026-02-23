@@ -209,7 +209,7 @@ Evidence (2): evidence.json, general-evidence.json
 | AGENTS files | 2 | 6 |
 | workflows-spec-kit skill | 7 | 111 |
 | workflows-memory skill | 0 | 0 (already correct) |
-| sk-documentation skill | 1 | 1 |
+| sk-doc skill | 1 | 1 |
 | Command YAML files | 8 | 82 |
 | Additional fixes | 4 | 8 |
 | **Total** | **22** | **208** |

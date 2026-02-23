@@ -104,7 +104,7 @@ Rename the legacy workflow-prefixed skill identifier to `sk-code--opencode` acro
 | skill_advisor | `.opencode/skill/scripts/skill_advisor.py` | Modify | Update 19 lines in INTENT_BOOSTERS/MULTI_SKILL_BOOSTERS |
 | Skill Registry | `.opencode/skill/README.md` | Modify | Update skill listing and links |
 | Skill Cross-Ref | `.opencode/skill/sk-code--full-stack/README.md` | Modify | Update cross-skill reference |
-| Skill Cross-Ref | `.opencode/skill/sk-documentation/README.md` | Modify | Update cross-skill reference |
+| Skill Cross-Ref | `.opencode/skill/sk-doc/README.md` | Modify | Update cross-skill reference |
 | Skill Cross-Ref | `.opencode/skill/sk-git/README.md` | Modify | Update cross-skill reference |
 | Skill Cross-Ref | `.opencode/skill/system-spec-kit/README.md` | Modify | Update cross-skill reference and relative link |
 | Skill Cross-Ref | `.opencode/skill/system-spec-kit/SKILL.md` | Modify | Update routing and downstream skill references |
@@ -135,7 +135,7 @@ Rename the legacy workflow-prefixed skill identifier to `sk-code--opencode` acro
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
 | REQ-005 | Rename changelog directory | `ls .opencode/changelog/07--sk-code--opencode/` exists and legacy workflow-prefixed alias is absent |
-| REQ-006 | Update cross-refs in active-path skills | sk-code--full-stack/sk-documentation/sk-git/system-spec-kit references use new name |
+| REQ-006 | Update cross-refs in active-path skills | sk-code--full-stack/sk-doc/sk-git/system-spec-kit references use new name |
 <!-- /ANCHOR:requirements -->
 
 ---

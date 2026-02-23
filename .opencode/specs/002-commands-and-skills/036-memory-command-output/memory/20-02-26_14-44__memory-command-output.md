@@ -222,7 +222,7 @@ Next: Continue implementation
 
 ## 2. OVERVIEW
 
-Completed the Unified Memory Dashboard Visual Design System (v2.2.27.0) across all 5 memory commands with 10 shared output components and ~29 standardized templates. Then performed a sk-documentation compliance audit that identified 2 P1 structural issues and multiple P2 warnings. Fixed all: save.md got mandatory gate block and section renumbering (1-15); continue.md got PURPOSE/MCP section swap and MCP table conversion; context.md got MCP box-drawing table converted to markdown; manage.md got emoji stripped from gate headers and status markers. All changes committed and pushed.
+Completed the Unified Memory Dashboard Visual Design System (v2.2.27.0) across all 5 memory commands with 10 shared output components and ~29 standardized templates. Then performed a sk-doc compliance audit that identified 2 P1 structural issues and multiple P2 warnings. Fixed all: save.md got mandatory gate block and section renumbering (1-15); continue.md got PURPOSE/MCP section swap and MCP table conversion; context.md got MCP box-drawing table converted to markdown; manage.md got emoji stripped from gate headers and status markers. All changes committed and pushed.
 
 **Key Outcomes**:
 - Completed the Unified Memory Dashboard Visual Design System (v2.2.27.0) across all 5 memory...
@@ -263,7 +263,7 @@ Nodes: 412 | Edges: 627 | Skills: 9
 - sk-code--full-stack: 62 nodes
 - sk-code--opencode: 35 nodes
 - workflows-code--web-dev: 44 nodes
-- sk-documentation: 36 nodes
+- sk-doc: 36 nodes
 - sk-git: 21 nodes
 
 **Node types:** :Asset(51), :Document(133), :Entrypoint(9), :Index(9), :Node(72), :Reference(129), :Skill(9)
@@ -280,9 +280,9 @@ Nodes: 412 | Edges: 627 | Skills: 9
 <!-- ANCHOR:architecture-completed-unified-memory-dashboard-199185f8 -->
 ### FEATURE: Completed the Unified Memory Dashboard Visual Design System (v2.2.27.0) across all 5 memory...
 
-Completed the Unified Memory Dashboard Visual Design System (v2.2.27.0) across all 5 memory commands with 10 shared output components and ~29 standardized templates. Then performed a sk-documentation compliance audit that identified 2 P1 structural issues and multiple P2 warnings. Fixed all: save.md got mandatory gate block and section renumbering (1-15); continue.md got PURPOSE/MCP section swap and MCP table conversion; context.md got MCP box-drawing table converted to markdown; manage.md got emoji stripped from gate headers and status markers. All changes committed and pushed.
+Completed the Unified Memory Dashboard Visual Design System (v2.2.27.0) across all 5 memory commands with 10 shared output components and ~29 standardized templates. Then performed a sk-doc compliance audit that identified 2 P1 structural issues and multiple P2 warnings. Fixed all: save.md got mandatory gate block and section renumbering (1-15); continue.md got PURPOSE/MCP section swap and MCP table conversion; context.md got MCP box-drawing table converted to markdown; manage.md got emoji stripped from gate headers and status markers. All changes committed and pushed.
 
-**Details:** memory dashboard visual design | memory command output templates | unified output components | MEMORY:COMMAND headers | bar chart visualization | command template compliance | sk-documentation audit | mandatory gate block | section renumbering | box-drawing table conversion
+**Details:** memory dashboard visual design | memory command output templates | unified output components | MEMORY:COMMAND headers | bar chart visualization | command template compliance | sk-doc audit | mandatory gate block | section renumbering | box-drawing table conversion
 <!-- /ANCHOR:architecture-completed-unified-memory-dashboard-199185f8 -->
 
 <!-- ANCHOR:implementation-technical-implementation-details-7906e4d5 -->
@@ -481,7 +481,7 @@ This session followed a **Linear Sequential** conversation pattern with **0** di
 
 > **User** | 2026-02-20 @ 14:44:40
 
-Completed the Unified Memory Dashboard Visual Design System (v2.2.27.0) across all 5 memory commands with 10 shared output components and ~29 standardized templates. Then performed a sk-documentation compliance audit that identified 2 P1 structural issues and multiple P2 warnings. Fixed all: save.md got mandatory gate block and section renumbering (1-15); continue.md got PURPOSE/MCP section swap and MCP table conversion; context.md got MCP box-drawing table converted to markdown; manage.md got emoji stripped from gate headers and status markers. All changes committed and pushed.
+Completed the Unified Memory Dashboard Visual Design System (v2.2.27.0) across all 5 memory commands with 10 shared output components and ~29 standardized templates. Then performed a sk-doc compliance audit that identified 2 P1 structural issues and multiple P2 warnings. Fixed all: save.md got mandatory gate block and section renumbering (1-15); continue.md got PURPOSE/MCP section swap and MCP table conversion; context.md got MCP box-drawing table converted to markdown; manage.md got emoji stripped from gate headers and status markers. All changes committed and pushed.
 
 ---
 
@@ -1397,7 +1397,7 @@ trigger_phrases:
   - "verification_workflows"
   - "verification workflows - phase 3 (mandatory)"
   - "browser verification requirements for all completion claims - no exceptions."
-  - "sk-documentation"
+  - "sk-doc"
   - "documentation"
   - "unified markdown and opencode component specialist providing document quality enforcement, content optimization, component creation workflows, ascii flowcharts and install guides"
   - "documentation creation specialist - unified markdown & component management"
@@ -1550,7 +1550,7 @@ trigger_phrases:
   - "references/validation/validation_rules.md"
   - "references/validation/five-checks.md"
   - "../sk-code--opencode/skill.md"
-  - "../sk-documentation/skill.md"
+  - "../sk-doc/skill.md"
   - "level_specifications.md"
   - "template_guide.md"
   - "save_workflow.md"

@@ -160,8 +160,8 @@ python3 .opencode/skill/scripts/skill_advisor.py "visual review of architecture 
 Verification commands:
 
 ```bash
-python3 .opencode/skill/sk-documentation/scripts/quick_validate.py .opencode/skill/sk-code--review --json
-python3 .opencode/skill/sk-documentation/scripts/package_skill.py .opencode/skill/sk-code--review
+python3 .opencode/skill/sk-doc/scripts/quick_validate.py .opencode/skill/sk-code--review --json
+python3 .opencode/skill/sk-doc/scripts/package_skill.py .opencode/skill/sk-code--review
 bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/002-commands-and-skills/041-code-review-skill
 ```
 <!-- /ANCHOR:phase-5 -->

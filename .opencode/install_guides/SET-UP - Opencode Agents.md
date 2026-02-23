@@ -36,14 +36,14 @@ The agent system enables both focused single-agent work and complex multi-agent 
 - Loads `agent_template.md` BEFORE creating (template-first workflow)
 - Validates frontmatter format (YAML syntax, required fields)
 - Ensures proper tool permissions and behavioral rules
-- Invokes `sk-documentation` skill for documentation standards
+- Invokes `sk-doc` skill for documentation standards
 - Validates template alignment AFTER creating
 
-**Template Location:** `.opencode/skill/sk-documentation/assets/opencode/agent_template.md`
+**Template Location:** `.opencode/skill/sk-doc/assets/opencode/agent_template.md`
 
 **Verification (MUST pass before proceeding):**
 - [ ] Write agent exists: `ls .opencode/agent/write.md`
-- [ ] Agent template exists: `ls .opencode/skill/sk-documentation/assets/opencode/agent_template.md`
+- [ ] Agent template exists: `ls .opencode/skill/sk-doc/assets/opencode/agent_template.md`
 - [ ] Use `@write` prefix when invoking the prompt below
 
 **❌ DO NOT** create agents without the @write agent — manual creation bypasses quality gates and frontmatter validation.
@@ -59,7 +59,7 @@ The agent system enables both focused single-agent work and complex multi-agent 
 
 **PREREQUISITE CHECK (you MUST verify before proceeding):**
 - [ ] You are operating as the @write agent
-- [ ] sk-documentation skill is accessible
+- [ ] sk-doc skill is accessible
 
 ⚠️ If you are NOT the @write agent: STOP immediately and instruct the user to restart with the "@write" prefix. Do NOT proceed with agent creation.
 
@@ -861,7 +861,7 @@ Content...
 ## 4. RELATED RESOURCES
 
 - [Skill Name](../skill/skill-name/SKILL.md)
-- [Template](../skill/sk-documentation/assets/opencode/agent_template.md)
+- [Template](../skill/sk-doc/assets/opencode/agent_template.md)
 ```
 
 #### Step 5: Test the Agent
@@ -899,7 +899,7 @@ Content...
 | Need domain knowledge/workflows | ❌                | ✅                           |
 | Need templates and standards    | ❌                | ✅                           |
 | Need behavioral constraints     | ✅                | ✅                           |
-| Creating documentation          | ✅ `@write`       | ✅ `sk-documentation` |
+| Creating documentation          | ✅ `@write`       | ✅ `sk-doc` |
 | Complex multi-step task         | ✅ `@orchestrate` | ❌                           |
 | Code quality standards          | ❌                | ✅ `sk-code--web`          |
 | Git workflows                   | ❌                | ✅ `sk-git`           |
@@ -915,7 +915,7 @@ Agent Selected (based on task type)
     ▼
 Agent Invokes Skills (for domain expertise)
     │
-    ├─► sk-documentation (for doc standards)
+    ├─► sk-doc (for doc standards)
     ├─► sk-code--web (for code standards)
     ├─► system-spec-kit (for spec folders)
     └─► etc.
@@ -966,7 +966,7 @@ User: "@orchestrate analyze this codebase and create a refactoring plan"
 User: "Create a new skill for API testing"
 
 → Routes to @write agent
-→ Agent invokes sk-documentation skill
+→ Agent invokes sk-doc skill
 → Skill provides:
    - skill_md_template.md
    - skill_reference_template.md
@@ -1072,7 +1072,7 @@ python3 -c "import yaml; yaml.safe_load(open('.opencode/agent/write.md').read().
 
 | Skill                   | Location                            | Purpose                 |
 | ----------------------- | ----------------------------------- | ----------------------- |
-| sk-documentation | `../skill/sk-documentation/` | Documentation standards |
+| sk-doc | `../skill/sk-doc/` | Documentation standards |
 | sk-code--web          | `../skill/sk-code--web/`          | Code quality standards  |
 | system-spec-kit         | `../skill/system-spec-kit/`         | Spec folder management  |
 | sk-git           | `../skill/sk-git/`           | Git workflows           |
@@ -1081,9 +1081,9 @@ python3 -c "import yaml; yaml.safe_load(open('.opencode/agent/write.md').read().
 
 | Template                 | Location                                                      | Purpose                  |
 | ------------------------ | ------------------------------------------------------------- | ------------------------ |
-| skill_md_template        | `../skill/sk-documentation/assets/opencode/` | SKILL.md structure       |
-| skill_reference_template | `../skill/sk-documentation/assets/opencode/` | Reference file structure |
-| skill_asset_template     | `../skill/sk-documentation/assets/opencode/` | Asset file structure     |
+| skill_md_template        | `../skill/sk-doc/assets/opencode/` | SKILL.md structure       |
+| skill_reference_template | `../skill/sk-doc/assets/opencode/` | Reference file structure |
+| skill_asset_template     | `../skill/sk-doc/assets/opencode/` | Asset file structure     |
 
 ---
 

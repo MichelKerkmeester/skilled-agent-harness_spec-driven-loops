@@ -44,9 +44,9 @@ contextType: "implementation"
 - [x] T006 [P] Create phase 001-sk-code--opencode/ folder with L2 docs
 - [x] T007 [P] Create phase 002-sk-code--web/ folder with L2 docs
 - [x] T008 [P] Create phase 003-sk-code--full-stack/ folder with L2 docs
-- [x] T009 [P] Create phase 004-sk-documentation/ folder with L2 docs
+- [x] T009 [P] Create phase 004-sk-doc/ folder with L2 docs
 - [x] T010 [P] Create phase 005-sk-git/ folder with L2 docs
-- [x] T011 [P] Create phase 006-sk-visual-explainer/ folder with L2 docs
+- [x] T011 [P] Create phase 006-sk-doc-visual/ folder with L2 docs
 - [x] T012 [P] Create phase 007-mcp-chrome-devtools/ folder with L2 docs
 <!-- /ANCHOR:phase-0 -->
 
@@ -59,8 +59,8 @@ contextType: "implementation"
 - [x] T014 Execute Phase 1: `sk-code--opencode` → `sk-code--opencode` (001-sk-code--opencode/)
 - [x] T015 Execute Phase 2: `workflows-code--web-dev` → `sk-code--web` (002-sk-code--web/)
 - [x] T016 Execute Phase 7: `mcp-chrome-devtools` → `mcp-chrome-devtools` (007-mcp-chrome-devtools/)
-- [x] T017 Execute Phase 4: `sk-documentation` → `sk-documentation` (004-sk-documentation/)
-- [x] T018 Execute Phase 6: `sk-visual-explainer` → `sk-visual-explainer` (006-sk-visual-explainer/)
+- [x] T017 Execute Phase 4: `sk-doc` → `sk-doc` (004-sk-doc/)
+- [x] T018 Execute Phase 6: `sk-doc-visual` → `sk-doc-visual` (006-sk-doc-visual/)
 - [x] T019 Execute Phase 5: `sk-git` → `sk-git` (005-sk-git/)
 <!-- /ANCHOR:phase-exec -->
 
