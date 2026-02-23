@@ -209,14 +209,41 @@ function executeAtomicSave(
 /**
  * Find pending files in a directory (crash recovery).
  */
+function listFilesRecursive(dirPath: string): string[] {
+  const files: string[] = [];
+  const stack: string[] = [dirPath];
+
+  while (stack.length > 0) {
+    const current = stack.pop();
+    if (!current) continue;
+
+    const entries = fs.readdirSync(current, { withFileTypes: true });
+    for (const entry of entries) {
+      const fullPath = path.join(current, entry.name);
+      if (entry.isDirectory()) {
+        stack.push(fullPath);
+      } else if (entry.isFile()) {
+        files.push(fullPath);
+      }
+    }
+  }
+
+  return files;
+}
+
 function findPendingFiles(dirPath: string): string[] {
   try {
     if (!fs.existsSync(dirPath)) return [];
 
-    const files = fs.readdirSync(dirPath, { recursive: true }) as string[];
-    return files
-      .map(f => path.join(dirPath, f))
-      .filter(f => isPendingFile(f) && fs.statSync(f).isFile());
+    let files: string[];
+    try {
+      files = (fs.readdirSync(dirPath, { recursive: true }) as string[]).map((f) => path.join(dirPath, f));
+    } catch {
+      // Node 18 compatibility fallback when recursive readdir is unavailable.
+      files = listFilesRecursive(dirPath);
+    }
+
+    return files.filter((f) => isPendingFile(f) && fs.statSync(f).isFile());
   } catch (error: unknown) {
     const msg = error instanceof Error ? error.message : String(error);
     console.warn(`[transaction-manager] findPendingFiles error: ${msg}`);

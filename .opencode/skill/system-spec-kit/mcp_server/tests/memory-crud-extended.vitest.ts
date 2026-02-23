@@ -226,6 +226,10 @@ function installBulkDeleteMocks(opts: {
     vi.mocked(checkpointsMod.createCheckpoint).mockImplementation((opts: any) => {
       if (checkpointThrows) throw new Error('Mock checkpoint error');
       calls.createCheckpoint.push(opts);
+      return {
+        name: opts?.name ?? 'pre-cleanup-test',
+        specFolder: opts?.specFolder ?? null,
+      } as any;
     });
   }
 

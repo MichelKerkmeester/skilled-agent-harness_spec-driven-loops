@@ -114,7 +114,7 @@ extraction/
 ### Example 1: Run the Redaction Gate Before Insert
 
 ```typescript
-import { checkRedactionGate } from './extraction/redaction-gate';
+import { checkRedactionGate } from './redaction-gate';
 
 const content = 'User token: sk-abc123xyz, email: user@example.com';
 
@@ -131,7 +131,7 @@ if (!result.allowed) {
 ### Example 2: Resolve a Memory ID with Deterministic Fallback
 
 ```typescript
-import { resolveMemoryId } from './extraction/extraction-adapter';
+import { resolveMemoryId } from './extraction-adapter';
 
 // Tool output may or may not include an explicit memory_id
 const toolOutput = { content: 'session summary text', memory_id: undefined };

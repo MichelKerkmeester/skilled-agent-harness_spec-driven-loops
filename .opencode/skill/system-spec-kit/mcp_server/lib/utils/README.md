@@ -119,7 +119,7 @@ formatAgeString(null);                    // "never"
 import { validateFilePath, escapeRegex } from './path-security';
 
 const allowed = ['/home/user/project', '/tmp'];
-const userPath = '../../../etc/passwd';
+const userPath = '../../../<blocked-path>';
 
 const safe = validateFilePath(userPath, allowed);
 // Returns null - path traversal blocked

@@ -9,6 +9,22 @@
 
 ---
 
+## TABLE OF CONTENTS
+
+- [1. OVERVIEW](#1--overview)
+- [2. VERIFICATION REPORT](#verification-report)
+- [3. CONTENT VERIFICATION](#content-verification)
+- [4. GOVERNANCE STRUCTURE](#governance-structure)
+- [5. KEY REQUIREMENTS SUMMARY](#key-requirements-summary)
+- [6. RISKS & MITIGATION](#risks--mitigation)
+- [7. IMPLEMENTATION PHASES](#implementation-phases)
+
+## 1. OVERVIEW
+
+This README summarizes the documentation status, quality gates, and implementation expectations for spec folder `033-anchor-implementation`.
+
+---
+
 ## VERIFICATION REPORT
 
 ### Files Created ✅

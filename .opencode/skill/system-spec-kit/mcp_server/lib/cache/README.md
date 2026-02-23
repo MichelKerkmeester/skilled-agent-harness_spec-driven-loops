@@ -179,7 +179,7 @@ const result = await withCache(
 import { invalidateOnWrite } from './tool-cache';
 
 // After memory_save operation
-invalidateOnWrite('save', { specFolder: 'specs/001-feature' });
+invalidateOnWrite('save', { specFolder: 'specs/<###-spec-name>' });
 // Automatically clears memory_search, memory_match_triggers, etc.
 ```
 

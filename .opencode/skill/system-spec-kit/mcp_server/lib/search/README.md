@@ -375,7 +375,7 @@ IDF = log((N - n(qi) + 0.5) / (n(qi) + 0.5) + 1)
 **Spec Folder Scoping**:
 ```javascript
 // Filter to specific project context
-hybridSearch("authentication", { specFolder: "specs/007-auth" })
+hybridSearch("authentication", { specFolder: "specs/<###-spec-name>" })
 ```
 
 **Graceful Degradation**:
@@ -453,7 +453,7 @@ init(db, vectorSearch);
 // Search with all methods
 const results = await unifiedSearch('authentication flow', {
   limit: 10,
-  specFolder: 'specs/007-auth',  // Optional: scope to project
+  specFolder: 'specs/<###-spec-name>',  // Optional: scope to project
   enableGraph: true,              // Include graph search
 });
 
@@ -512,7 +512,7 @@ if (bm25Index.isBm25Enabled()) {
   // Search directly
   const results = bm25Index.getIndex().search('authentication', {
     limit: 10,
-    specFolder: 'specs/007-auth',
+    specFolder: 'specs/<###-spec-name>',
   });
 
   // Results: [{ id, score, rank }]

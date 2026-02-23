@@ -216,7 +216,7 @@ The SpecKit validation and creation scripts require a Bash shell:
 Run scripts from Git Bash or WSL on Windows:
 ```bash
 # From Git Bash
-./scripts/validate-spec.sh specs/001-feature/
+.opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/<001-feature>/
 ```
 
 </details>
@@ -1157,7 +1157,7 @@ Create custom skills to extend AI agent capabilities:
 python .opencode/skill/sk-doc/scripts/init_skill.py my-skill --path .opencode/skill
 
 # Validate skill
-python .opencode/skill/sk-doc/scripts/package_skill.py .opencode/skill/my-skill
+python .opencode/skill/sk-doc/scripts/package_skill.py .opencode/skill/<my-skill>/
 ```
 
 **Detailed Guide**: [SET-UP - Skill Creation.md](./SET-UP%20-%20Skill%20Creation.md)
@@ -1434,7 +1434,7 @@ sudo chown -R $(whoami) /usr/local/lib/node_modules
 | Document | Purpose |
 |----------|---------|
 | [AGENTS.md](../../AGENTS.md) | AI agent behavior configuration and mandatory gates |
-| [Spec Kit Framework](../.opencode/skill/system-spec-kit/README.md) | Spec folder and memory system documentation |
+| [Spec Kit Framework](../skill/system-spec-kit/README.md) | Spec folder and memory system documentation |
 | [sk-doc SKILL.md](../skill/sk-doc/SKILL.md) | Document creation standards and templates |
 
 ### External Resources

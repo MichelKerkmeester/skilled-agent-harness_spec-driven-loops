@@ -67,6 +67,7 @@ interface MemorySearchRow extends Record<string, unknown> {
   similarity?: number;
   importance_tier?: string;
   contextType?: string;
+  context_type?: string;
   attentionScore?: number;
   retrievability?: number;
   stability?: number;
@@ -148,6 +149,16 @@ interface SearchArgs {
   minQualityScore?: number;
   min_quality_score?: number;
   mode?: string; // C138-P3: "deep" mode enables query expansion for multi-query RAG
+}
+
+function resolveRowContextType(row: MemorySearchRow): string | undefined {
+  if (typeof row.contextType === 'string' && row.contextType.length > 0) {
+    return row.contextType;
+  }
+  if (typeof row.context_type === 'string' && row.context_type.length > 0) {
+    return row.context_type;
+  }
+  return undefined;
 }
 
 function filterByMinQualityScore(results: MemorySearchRow[], minQualityScore?: number): MemorySearchRow[] {
@@ -1314,7 +1325,7 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
             filteredResults = filteredResults.filter(r => r.importance_tier === tier);
           }
           if (contextType) {
-            filteredResults = filteredResults.filter(r => r.contextType === contextType);
+            filteredResults = filteredResults.filter(r => resolveRowContextType(r) === contextType);
           }
 
           if (includeConstitutional !== false && !tier) {
@@ -1479,6 +1490,7 @@ export const __testables = {
   filterByMinQualityScore,
   resolveQualityThreshold,
   buildCacheArgs,
+  resolveRowContextType,
   resolveArtifactRoutingQuery,
   applyArtifactRouting,
   collapseAndReassembleChunkResults,

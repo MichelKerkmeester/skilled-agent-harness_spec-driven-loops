@@ -400,8 +400,10 @@ Never trust user-provided paths:
 
 ```javascript
 // JavaScript
-const safePath = path.resolve(baseDir, userPath);
-if (!safePath.startsWith(baseDir)) {
+const safePath = fs.realpathSync(path.resolve(baseDir, userPath));
+const basePath = fs.realpathSync(baseDir);
+const relative = path.relative(basePath, safePath);
+if (relative.startsWith('..') || path.isAbsolute(relative)) {
   throw new Error('Path traversal detected');
 }
 ```
@@ -410,9 +412,20 @@ if (!safePath.startsWith(baseDir)) {
 # Python
 import os
 safe_path = os.path.realpath(os.path.join(base_dir, user_path))
-if not safe_path.startswith(os.path.realpath(base_dir)):
+relative = os.path.relpath(safe_path, os.path.realpath(base_dir))
+if relative.startswith(".."):
     raise ValueError("Path traversal detected")
 ```
+
+### Spec Folder Path Invariants (OpenCode scripts)
+
+When code touches spec folders (`specs/` or `.opencode/specs/`), enforce these rules:
+
+- Canonicalize both candidate path and allowed roots (`realpath`)
+- Validate containment with `relative` or boundary-safe checks, never plain substring checks
+- Enforce spec folder naming pattern `NNN-name` before destructive operations
+- Reject restore/archive/create targets outside approved roots
+- Do not emit rollback/restore instructions unless checkpoint creation actually succeeded
 
 ### Secrets Management
 

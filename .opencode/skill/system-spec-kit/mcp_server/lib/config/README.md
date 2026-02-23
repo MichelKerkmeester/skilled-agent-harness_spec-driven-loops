@@ -103,7 +103,7 @@ The system infers memory type using this precedence:
 
 | Pattern | Type | Example Paths |
 |---------|------|---------------|
-| `/scratch/`, `/temp/` | working | `specs/scratch/debug.md` |
+| `/scratch/`, `/temp/` | working | `specs/<###-spec-name>/scratch/debug.md` |
 | `session-\d+`, `debug-log` | episodic | `memory/session-1.md` |
 | `todo`, `next-steps` | prospective | `memory/next-steps.md` |
 | `guide`, `checklist` | procedural | `docs/install-guide.md` |
@@ -163,7 +163,7 @@ import { inferMemoryType } from './type-inference';
 
 // From file path
 const result1 = inferMemoryType({
-  filePath: 'specs/012-auth/scratch/debug.md',
+  filePath: 'specs/<###-spec-name>/scratch/debug.md',
 });
 // Returns: { type: 'working', source: 'file_path', confidence: 0.8 }
 

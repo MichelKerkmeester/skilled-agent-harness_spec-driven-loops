@@ -225,7 +225,7 @@ pwd
 ls specs/
 
 # Create or repair required docs
-.opencode/skill/system-spec-kit/scripts/spec/create.sh specs/my-spec
+.opencode/skill/system-spec-kit/scripts/spec/create.sh "<feature-title>" --level 1
 ```
 
 ---
@@ -244,18 +244,17 @@ ls specs/
 ### Diagnostic Commands
 
 ```bash
-# Check script exists and is executable
-ls -la check-prerequisites.sh
+# Check script exists and is executable (from repository root)
+ls -la .opencode/skill/system-spec-kit/scripts/setup/check-prerequisites.sh
 
-# Test from spec folder
-cd specs/my-spec/
-../../.opencode/skill/system-spec-kit/scripts/setup/check-prerequisites.sh
+# Test from repository root
+.opencode/skill/system-spec-kit/scripts/setup/check-prerequisites.sh
 
 # Get verbose validation output
-./check-prerequisites.sh --validate
+.opencode/skill/system-spec-kit/scripts/setup/check-prerequisites.sh --validate
 
-# Check which files exist
-ls -la spec.md plan.md checklist.md
+# Check which files exist in a spec folder
+ls -la specs/<###-spec-name>/spec.md specs/<###-spec-name>/plan.md specs/<###-spec-name>/checklist.md
 ```
 
 <!-- /ANCHOR:troubleshooting -->

@@ -116,7 +116,7 @@ learning/
 ### Recording a Correction
 
 ```typescript
-import { corrections } from './learning';
+import { corrections } from './index';
 
 // Initialize with database
 corrections.init(db);
@@ -140,7 +140,7 @@ console.log(result.stability_changes);
 ### Deprecating a Memory
 
 ```typescript
-import { deprecate_memory } from './learning';
+import { deprecate_memory } from './index';
 
 // Mark memory as outdated (no replacement)
 const result = deprecate_memory(42, 'Outdated API documentation');
@@ -150,7 +150,7 @@ const result = deprecate_memory(42, 'Outdated API documentation');
 ### Merging Multiple Memories
 
 ```typescript
-import { merge_memories } from './learning';
+import { merge_memories } from './index';
 
 // Consolidate 3 memories into 1
 const results = merge_memories(
@@ -164,7 +164,7 @@ const results = merge_memories(
 ### Undoing a Correction
 
 ```typescript
-import { undo_correction } from './learning';
+import { undo_correction } from './index';
 
 // Reverse correction #7
 const result = undo_correction(7);
@@ -176,7 +176,7 @@ console.log(result.stability_restored);
 ### Querying Correction History
 
 ```typescript
-import { get_corrections_for_memory, get_corrections_stats } from './learning';
+import { get_corrections_for_memory, get_corrections_stats } from './index';
 
 // Get all corrections involving memory 5
 const history = get_corrections_for_memory(5, { include_undone: false });

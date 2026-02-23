@@ -94,6 +94,24 @@ max_retries = 5
     - Do not switch to sentence-case section names
 ```
 
+### Filesystem Mutation Safety
+
+```markdown
+[ ] File and folder mutations are guarded by canonical path checks
+    - Use realpath/canonical path resolution for candidate and allowed roots
+    - Use relative/boundary-safe containment checks (not substring-only checks)
+    - Reject traversal/symlink escape attempts before create/move/delete
+```
+
+### Spec Folder Invariants (when touching specs)
+
+```markdown
+[ ] Spec folder operations enforce `NNN-name` and approved roots
+    - Allowed roots: `specs/` and `.opencode/specs/` only
+    - Archive/restore/create targets validated before execution
+    - Do not emit restore instructions unless checkpoint creation succeeded
+```
+
 ---
 
 <!-- /ANCHOR:p0-hard-blockers -->

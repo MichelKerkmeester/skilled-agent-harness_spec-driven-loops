@@ -240,8 +240,8 @@ Typical flow:
 
 ```bash
 python3 .opencode/skill/sk-doc/scripts/init_skill.py my-skill --path .opencode/skill
-python3 .opencode/skill/sk-doc/scripts/quick_validate.py .opencode/skill/my-skill --json
-python3 .opencode/skill/sk-doc/scripts/package_skill.py .opencode/skill/my-skill
+python3 .opencode/skill/sk-doc/scripts/quick_validate.py .opencode/skill/<my-skill>/ --json
+python3 .opencode/skill/sk-doc/scripts/package_skill.py .opencode/skill/<my-skill>/
 ```
 
 <!-- /ANCHOR:creating-skills -->

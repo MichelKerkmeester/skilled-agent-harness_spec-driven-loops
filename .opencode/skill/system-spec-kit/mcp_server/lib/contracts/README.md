@@ -157,7 +157,7 @@ import {
   createEntry,
   createEnvelope,
   RetrievalStage,
-} from './contracts/retrieval-trace';
+} from './retrieval-trace';
 
 // Start a new trace
 const trace = createTrace('trace-abc-123', 50);
@@ -179,7 +179,7 @@ const envelope = createEnvelope(results, trace, { query: 'authentication flow' }
 import {
   createDegradedContract,
   RetrievalStage,
-} from './contracts/retrieval-trace';
+} from './retrieval-trace';
 
 // Reranker timed out — signal degraded mode
 const degraded = createDegradedContract(

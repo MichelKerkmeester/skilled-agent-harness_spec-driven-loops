@@ -193,6 +193,12 @@ Primary configuration file defining:
 - Custom keybindings and permissions
 - Agent and skill registration
 
+### `package.json` (project root, when present)
+Node.js project manifest used by scripts and npm workflows:
+- Script entry points (`npm run ...`) for framework tooling
+- Dependency versions for local utilities and MCP-related helpers
+- Engine constraints (Node/npm) where configured
+
 ### `.utcp_config.json` (project root)
 Code Mode MCP configuration for external tools:
 - Webflow API integration

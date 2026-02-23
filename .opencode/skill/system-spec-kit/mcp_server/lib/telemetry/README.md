@@ -171,7 +171,7 @@ import {
   ModeMetrics,
   FallbackMetrics,
   QualityMetrics,
-} from './telemetry/retrieval-telemetry';
+} from './retrieval-telemetry';
 
 const latency: LatencyMetrics = {
   totalLatencyMs: 36,

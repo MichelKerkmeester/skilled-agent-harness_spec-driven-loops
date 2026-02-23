@@ -8,6 +8,7 @@
 // ---------------------------------------------------------------
 
 // Node stdlib
+import fs from 'fs';
 import path from 'path';
 
 // Internal modules
@@ -31,6 +32,18 @@ function sanitizePath(inputPath: string, allowedBases: string[] | null = null): 
   }
 
   const resolved: string = path.resolve(inputPath);
+  let canonicalResolved = resolved;
+  try {
+    canonicalResolved = fs.realpathSync(resolved);
+  } catch {
+    // Path may not exist yet. Canonicalize parent when possible.
+    try {
+      const parentCanonical = fs.realpathSync(path.dirname(resolved));
+      canonicalResolved = path.join(parentCanonical, path.basename(resolved));
+    } catch {
+      canonicalResolved = resolved;
+    }
+  }
 
   const bases: string[] = allowedBases || [
     process.cwd(),
@@ -39,20 +52,31 @@ function sanitizePath(inputPath: string, allowedBases: string[] | null = null): 
   ];
 
   const isAllowed: boolean = bases.some((base: string) => {
-    const normalizedBase: string = path.normalize(base);
-    return resolved.startsWith(normalizedBase + path.sep) || resolved === normalizedBase;
+    try {
+      const resolvedBase = path.resolve(base);
+      let canonicalBase = resolvedBase;
+      try {
+        canonicalBase = fs.realpathSync(resolvedBase);
+      } catch {
+        canonicalBase = resolvedBase;
+      }
+      const relative = path.relative(canonicalBase, canonicalResolved);
+      return relative === '' || (!relative.startsWith('..') && !path.isAbsolute(relative));
+    } catch {
+      return false;
+    }
   });
 
   if (!isAllowed) {
     structuredLog('warn', 'Path outside allowed directories', {
       inputPath,
-      resolved,
+      resolved: canonicalResolved,
       allowedBases: bases
     });
     throw new Error(`Path outside allowed directories: ${inputPath}`);
   }
 
-  return resolved;
+  return canonicalResolved;
 }
 
 // ---------------------------------------------------------------

@@ -72,12 +72,8 @@ Validation rules are modular shell scripts that check spec folders for structura
 
 ```bash
 # Rules are invoked via the orchestrator, not directly
-# Navigate to a spec folder and run validation
-
-cd specs/003-memory-and-spec-kit/046-post-release-refinement-1/
-
-# Run validation (automatically invokes all rules)
-../../.opencode/skill/system-spec-kit/scripts/spec/validate.sh .
+# Run validation from repository root (automatically invokes all rules)
+.opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/<###-spec-name>/
 ```
 
 ### Verify Installation
@@ -97,7 +93,7 @@ ls -la .opencode/skill/system-spec-kit/scripts/rules/
 
 ```bash
 # Validate a spec folder with verbose output
-.opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/my-spec/ --verbose
+.opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/<###-spec-name>/ --verbose
 ```
 
 <!-- /ANCHOR:quick-start -->
@@ -398,7 +394,7 @@ L3+: 10+ major sections, detailed acceptance scenarios
 
 ```bash
 # Validate a spec folder
-.opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/my-feature/
+.opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/<###-spec-name>/
 
 # Output:
 # FILE_EXISTS: All required files present for Level 2
@@ -411,7 +407,7 @@ L3+: 10+ major sections, detailed acceptance scenarios
 
 ```bash
 # Get detailed output including passing rules
-.opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/my-feature/ --verbose
+.opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/<###-spec-name>/ --verbose
 
 # Shows all rule results with details
 ```
@@ -420,7 +416,7 @@ L3+: 10+ major sections, detailed acceptance scenarios
 
 ```bash
 # Get machine-readable output
-.opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/my-feature/ --json
+.opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/<###-spec-name>/ --json
 
 # Returns structured JSON for programmatic processing
 ```
@@ -496,7 +492,7 @@ ls .opencode/skill/system-spec-kit/scripts/rules/*.sh
 
 # Test a single rule manually (advanced)
 source .opencode/skill/system-spec-kit/scripts/rules/check-files.sh
-run_check "specs/my-spec" 2
+run_check "specs/<###-spec-name>" 2
 echo "Status: $RULE_STATUS, Message: $RULE_MESSAGE"
 ```
 

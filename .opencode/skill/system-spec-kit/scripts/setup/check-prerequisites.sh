@@ -59,6 +59,17 @@ done
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 source "$SCRIPT_DIR/../common.sh"
 
+# JSON escape helper for safe machine-readable output.
+json_escape() {
+    local str="$1"
+    str="${str//\\/\\\\}"
+    str="${str//\"/\\\"}"
+    str="${str//$'\n'/\\n}"
+    str="${str//$'\r'/\\r}"
+    str="${str//$'\t'/\\t}"
+    printf '%s' "$str"
+}
+
 # SECURITY: get_feature_paths uses printf %q for shell-safe output
 eval "$(get_feature_paths)"
 check_feature_branch "$CURRENT_BRANCH" "$HAS_GIT" || exit 1
@@ -71,7 +82,12 @@ if $PATHS_ONLY; then
     if $JSON_MODE; then
         # Minimal JSON paths payload (no validation performed)
         printf '{"REPO_ROOT":"%s","BRANCH":"%s","FEATURE_DIR":"%s","FEATURE_SPEC":"%s","IMPL_PLAN":"%s","TASKS":"%s"}\n' \
-            "$REPO_ROOT" "$CURRENT_BRANCH" "$FEATURE_DIR" "$FEATURE_SPEC" "$IMPL_PLAN" "$TASKS"
+            "$(json_escape "$REPO_ROOT")" \
+            "$(json_escape "$CURRENT_BRANCH")" \
+            "$(json_escape "$FEATURE_DIR")" \
+            "$(json_escape "$FEATURE_SPEC")" \
+            "$(json_escape "$IMPL_PLAN")" \
+            "$(json_escape "$TASKS")"
     else
         echo "REPO_ROOT: $REPO_ROOT"
         echo "BRANCH: $CURRENT_BRANCH"
@@ -132,11 +148,15 @@ if $JSON_MODE; then
     if [[ ${#docs[@]} -eq 0 ]]; then
         json_docs="[]"
     else
-        json_docs=$(printf '"%s",' "${docs[@]}")
-        json_docs="[${json_docs%,}]"
+        json_docs="["
+        for doc in "${docs[@]}"; do
+            [[ "$json_docs" != "[" ]] && json_docs+=","
+            json_docs+="\"$(json_escape "$doc")\""
+        done
+        json_docs+="]"
     fi
     
-    printf '{"FEATURE_DIR":"%s","AVAILABLE_DOCS":%s}\n' "$FEATURE_DIR" "$json_docs"
+    printf '{"FEATURE_DIR":"%s","AVAILABLE_DOCS":%s}\n' "$(json_escape "$FEATURE_DIR")" "$json_docs"
 else
     echo "FEATURE_DIR:$FEATURE_DIR"
     echo "AVAILABLE_DOCS:"

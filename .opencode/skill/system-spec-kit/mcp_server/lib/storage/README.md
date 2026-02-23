@@ -221,7 +221,7 @@ Note: Restored checkpoints do **not** include embedding vectors. Run `memory_ind
 ### Example 1: Check if File Needs Re-indexing
 
 ```typescript
-import { shouldReindex } from './storage/incremental-index';
+import { shouldReindex } from './incremental-index';
 
 const decision = shouldReindex('/path/to/file.md');
 
@@ -247,7 +247,7 @@ switch (decision) {
 ### Example 2: Create and Traverse Causal Edges
 
 ```typescript
-import { insertEdge, getCausalChain, RELATION_TYPES } from './storage/causal-edges';
+import { insertEdge, getCausalChain, RELATION_TYPES } from './causal-edges';
 
 // Create edge (returns edge ID or null)
 const edgeId = insertEdge(
@@ -267,12 +267,12 @@ console.log(`Root: ${chain.id}, children: ${chain.children.length}`);
 ### Example 3: Create and Restore Checkpoint
 
 ```typescript
-import { createCheckpoint, restoreCheckpoint } from './storage/checkpoints';
+import { createCheckpoint, restoreCheckpoint } from './checkpoints';
 
 // Create checkpoint
 const checkpoint = createCheckpoint({
   name: 'before-refactor',
-  specFolder: 'specs/005-feature',
+  specFolder: 'specs/<###-spec-name>',
   metadata: { reason: 'Pre-refactoring snapshot' }
 });
 
@@ -313,7 +313,7 @@ console.log(`Restored ${result.restored} memories, ${result.skipped} skipped`);
 **Solution**:
 ```bash
 # Run memory_index_scan to regenerate embeddings
-memory_index_scan({ specFolder: "specs/your-folder" })
+memory_index_scan({ specFolder: "specs/<###-spec-name>" })
 ```
 
 #### Files Not Being Re-indexed
@@ -324,7 +324,7 @@ memory_index_scan({ specFolder: "specs/your-folder" })
 
 **Solution**:
 ```typescript
-import { shouldReindex, categorizeFilesForIndexing } from './storage/incremental-index';
+import { shouldReindex, categorizeFilesForIndexing } from './incremental-index';
 
 // Check individual file
 const decision = shouldReindex('/path/to/file.md');
@@ -348,26 +348,26 @@ console.log(`To index: ${categorized.toIndex.length}, To update: ${categorized.t
 
 ```typescript
 // Check causal graph health
-import { getGraphStats, findOrphanedEdges } from './storage/causal-edges';
+import { getGraphStats, findOrphanedEdges } from './causal-edges';
 console.log(getGraphStats());
 console.log(findOrphanedEdges());
 
 // Check transaction metrics
-import { getMetrics } from './storage/transaction-manager';
+import { getMetrics } from './transaction-manager';
 console.log(getMetrics());
 
 // Check access accumulator
-import { getAccumulatorState, calculateUsageBoost } from './storage/access-tracker';
+import { getAccumulatorState, calculateUsageBoost } from './access-tracker';
 console.log(getAccumulatorState(42));
 console.log(calculateUsageBoost(10, Date.now()));
 
 // Check change history
-import { getHistory, getHistoryStats } from './storage/history';
+import { getHistory, getHistoryStats } from './history';
 console.log(getHistory(42, 10));
 console.log(getHistoryStats());
 
 // Check embedding index health
-import { getIndexStats, needsRefresh, getUnindexedDocuments } from './storage/index-refresh';
+import { getIndexStats, needsRefresh, getUnindexedDocuments } from './index-refresh';
 console.log(getIndexStats());
 console.log(`Needs refresh: ${needsRefresh()}`);
 console.log(getUnindexedDocuments());

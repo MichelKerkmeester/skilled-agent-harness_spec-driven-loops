@@ -112,17 +112,24 @@ async function handleMemoryDelete(args: DeleteArgs): Promise<MCPResponse> {
 
     if (memories.length > 0) {
       const timestamp = new Date().toISOString().replace(/[:.]/g, '-').slice(0, 19);
-      checkpointName = `pre-cleanup-${timestamp}`;
+      const proposedCheckpointName = `pre-cleanup-${timestamp}`;
       try {
-        checkpoints.createCheckpoint({
-          name: checkpointName,
+        const checkpoint = checkpoints.createCheckpoint({
+          name: proposedCheckpointName,
           specFolder,
           metadata: {
             reason: 'auto-checkpoint before bulk delete',
             memoryCount: memories.length,
           },
         });
-        console.error(`[memory-delete] Created checkpoint: ${checkpointName}`);
+
+        if (checkpoint) {
+          checkpointName = checkpoint.name;
+          console.error(`[memory-delete] Created checkpoint: ${checkpointName}`);
+        } else {
+          console.warn('[memory-delete] Checkpoint creation returned no checkpoint; proceeding without rollback.');
+          checkpointName = null;
+        }
       } catch (cpErr: unknown) {
         const message = toErrorMessage(cpErr);
         console.error(`[memory-delete] Failed to create checkpoint: ${message}`);

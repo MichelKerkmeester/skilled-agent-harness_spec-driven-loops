@@ -135,7 +135,7 @@ Generated on checkpoint with:
 ### Example 1: Filter Search Results (Primary Integration)
 
 ```typescript
-import { filterSearchResults, markResultsSent } from './session/session-manager';
+import { filterSearchResults, markResultsSent } from './session-manager';
 
 // After retrieving search results
 const { filtered, dedupStats } = filterSearchResults(sessionId, results);
@@ -150,7 +150,7 @@ markResultsSent(sessionId, filtered);
 ### Example 2: Crash Recovery on Startup
 
 ```typescript
-import { init, resetInterruptedSessions, getInterruptedSessions } from './session/session-manager';
+import { init, resetInterruptedSessions, getInterruptedSessions } from './session-manager';
 
 // Initialize session manager
 init(database);
@@ -169,11 +169,11 @@ sessions.forEach(s => {
 ### Example 3: Save Session State with Checkpoint
 
 ```typescript
-import { checkpointSession, saveSessionState } from './session/session-manager';
+import { checkpointSession, saveSessionState } from './session-manager';
 
 // Save state immediately (minimal)
 saveSessionState(sessionId, {
-  specFolder: 'specs/005-feature',
+  specFolder: 'specs/<###-spec-name>',
   currentTask: 'T071',
   lastAction: 'Implemented causal edges',
   contextSummary: 'Working on memory relationships...',
@@ -182,10 +182,10 @@ saveSessionState(sessionId, {
 
 // Full checkpoint with CONTINUE_SESSION.md
 checkpointSession(sessionId, {
-  specFolder: 'specs/005-feature',
+  specFolder: 'specs/<###-spec-name>',
   currentTask: 'T072',
   contextSummary: 'Session checkpoint before break'
-}, '/absolute/path/to/specs/005-feature');
+}, '/absolute/path/to/specs/<###-spec-name>');
 ```
 
 ### Common Patterns
@@ -218,7 +218,7 @@ checkpointSession(sessionId, {
 
 **Solution**:
 ```typescript
-import { getSessionStats, clearSession } from './session/session-manager';
+import { getSessionStats, clearSession } from './session-manager';
 
 // Check session stats
 const stats = getSessionStats(sessionId);
@@ -236,7 +236,7 @@ clearSession(sessionId);
 
 **Solution**:
 ```typescript
-import { getDb } from './session/session-manager';
+import { getDb } from './session-manager';
 
 // Verify initialization
 const db = getDb();
@@ -259,7 +259,7 @@ console.log(`Using session: ${sessionId}`);
 ### Diagnostic Commands
 
 ```typescript
-import { isEnabled, getConfig, getSessionStats, getInterruptedSessions } from './session/session-manager';
+import { isEnabled, getConfig, getSessionStats, getInterruptedSessions } from './session-manager';
 
 // Check if deduplication enabled
 console.log('Enabled:', isEnabled());

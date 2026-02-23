@@ -94,8 +94,8 @@ ls -la dist/utils/*.js
 # Expected: Compiled JavaScript files
 
 # Test path sanitization (uses compiled output)
-node -e "const { sanitizePath } = require('./dist/utils/path-utils'); console.log(sanitizePath('./specs/test'));"
-# Expected: Absolute path to specs/test
+node -e "const { sanitizePath } = require('./dist/utils/path-utils'); console.log(sanitizePath('./specs/<test-folder>'));"
+# Expected: Absolute path to specs/<test-folder>
 ```
 
 ### First Use
@@ -272,7 +272,7 @@ ls -la utils/*.ts
 ls -la dist/utils/*.js
 
 # Test path sanitization (from scripts directory)
-node -e "const { sanitizePath } = require('./dist/utils/path-utils'); console.log(sanitizePath('./specs/test'));"
+node -e "const { sanitizePath } = require('./dist/utils/path-utils'); console.log(sanitizePath('./specs/<test-folder>'));"
 
 # Verify module exports
 node -e "const utils = require('./dist/utils/index'); console.log(Object.keys(utils));"

@@ -7,13 +7,13 @@
 'use strict';
 
 const fs = require('fs');
-const os = require('os');
 const path = require('path');
 const { execFileSync } = require('child_process');
 
 const REPO_ROOT = path.resolve(__dirname, '..', '..', '..', '..', '..');
 const CREATE_SCRIPT = path.join(REPO_ROOT, '.opencode', 'skill', 'system-spec-kit', 'scripts', 'spec', 'create.sh');
 const RECOMMEND_SCRIPT = path.join(REPO_ROOT, '.opencode', 'skill', 'system-spec-kit', 'scripts', 'spec', 'recommend-level.sh');
+const ALLOWED_SPECS_ROOT = path.join(REPO_ROOT, '.opencode', 'specs');
 
 let passed = 0;
 let failed = 0;
@@ -58,6 +58,11 @@ function parseJsonOutput(raw) {
     const msg = error instanceof Error ? error.message : String(error);
     throw new Error(`Failed to parse JSON output: ${msg}\nRaw output:\n${raw}`);
   }
+}
+
+function createTempSpecFolder(prefix) {
+  fs.mkdirSync(ALLOWED_SPECS_ROOT, { recursive: true });
+  return fs.mkdtempSync(path.join(ALLOWED_SPECS_ROOT, prefix));
 }
 
 function testRecommendLevelPhaseFixtures() {
@@ -123,63 +128,65 @@ function countOccurrences(haystack, needle) {
 }
 
 function testCreatePhaseParentAppendMode() {
-  const tmpRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'speckit-phase-system-'));
-  const parent = path.join(tmpRoot, '200-parent-phase-test');
-  fs.mkdirSync(parent, { recursive: true });
-  fs.mkdirSync(path.join(parent, 'memory'), { recursive: true });
-  fs.mkdirSync(path.join(parent, 'scratch'), { recursive: true });
-  fs.writeFileSync(path.join(parent, 'spec.md'), '# Parent\n');
-  fs.writeFileSync(path.join(parent, 'plan.md'), '# Plan\n');
+  const parent = createTempSpecFolder('200-parent-phase-test-');
+  try {
+    fs.mkdirSync(path.join(parent, 'memory'), { recursive: true });
+    fs.mkdirSync(path.join(parent, 'scratch'), { recursive: true });
+    fs.writeFileSync(path.join(parent, 'spec.md'), '# Parent\n');
+    fs.writeFileSync(path.join(parent, 'plan.md'), '# Plan\n');
 
-  const firstRaw = runBash(CREATE_SCRIPT, [
-    '--phase',
-    '--parent', parent,
-    '--phases', '2',
-    '--phase-names', 'foundation,implementation',
-    '--skip-branch',
-    '--json',
-    'Phase append test',
-  ]);
-  const first = parseJsonOutput(firstRaw);
+    const firstRaw = runBash(CREATE_SCRIPT, [
+      '--phase',
+      '--parent', parent,
+      '--phases', '2',
+      '--phase-names', 'foundation,implementation',
+      '--skip-branch',
+      '--json',
+      'Phase append test',
+    ]);
+    const first = parseJsonOutput(firstRaw);
 
-  assertTrue(first.PHASE_MODE === true, 'create.sh parent mode: PHASE_MODE true');
-  assertEqual(first.PHASE_COUNT, 2, 'create.sh parent mode: first append phase count');
-  assertTrue(fs.existsSync(path.join(parent, '001-foundation', 'spec.md')), 'create.sh parent mode: 001-foundation created');
-  assertTrue(fs.existsSync(path.join(parent, '002-implementation', 'spec.md')), 'create.sh parent mode: 002-implementation created');
+    assertTrue(first.PHASE_MODE === true, 'create.sh parent mode: PHASE_MODE true');
+    assertEqual(first.PHASE_COUNT, 2, 'create.sh parent mode: first append phase count');
+    assertTrue(fs.existsSync(path.join(parent, '001-foundation', 'spec.md')), 'create.sh parent mode: 001-foundation created');
+    assertTrue(fs.existsSync(path.join(parent, '002-implementation', 'spec.md')), 'create.sh parent mode: 002-implementation created');
 
-  const secondRaw = runBash(CREATE_SCRIPT, [
-    '--phase',
-    '--parent', parent,
-    '--phases', '1',
-    '--phase-names', 'stabilization',
-    '--skip-branch',
-    '--json',
-    'Phase append test',
-  ]);
-  const second = parseJsonOutput(secondRaw);
+    const secondRaw = runBash(CREATE_SCRIPT, [
+      '--phase',
+      '--parent', parent,
+      '--phases', '1',
+      '--phase-names', 'stabilization',
+      '--skip-branch',
+      '--json',
+      'Phase append test',
+    ]);
+    const second = parseJsonOutput(secondRaw);
 
-  assertEqual(second.PHASE_COUNT, 1, 'create.sh parent mode: second append phase count');
-  assertTrue(fs.existsSync(path.join(parent, '003-stabilization', 'spec.md')), 'create.sh parent mode: 003-stabilization created');
+    assertEqual(second.PHASE_COUNT, 1, 'create.sh parent mode: second append phase count');
+    assertTrue(fs.existsSync(path.join(parent, '003-stabilization', 'spec.md')), 'create.sh parent mode: 003-stabilization created');
 
-  const parentSpec = fs.readFileSync(path.join(parent, 'spec.md'), 'utf-8');
-  const phaseMapCount = countOccurrences(parentSpec, '<!-- ANCHOR:phase-map -->');
-  assertEqual(phaseMapCount, 1, 'create.sh parent mode: phase-map section not duplicated');
-  assertTrue(
-    parentSpec.includes('| 3 | 003-stabilization/ | [Phase 3 scope] | [deps] | Pending |'),
-    'create.sh parent mode: append updates phase-map rows with new phase'
-  );
-  assertTrue(
-    parentSpec.includes('| 002-implementation | 003-stabilization | [Criteria TBD] | [Verification TBD] |'),
-    'create.sh parent mode: append updates handoff rows for new phase transition'
-  );
-  assertTrue(
-    !parentSpec.includes('| (single phase - no handoffs) | | | |'),
-    'create.sh parent mode: append removes single-phase placeholder handoff row'
-  );
+    const parentSpec = fs.readFileSync(path.join(parent, 'spec.md'), 'utf-8');
+    const phaseMapCount = countOccurrences(parentSpec, '<!-- ANCHOR:phase-map -->');
+    assertEqual(phaseMapCount, 1, 'create.sh parent mode: phase-map section not duplicated');
+    assertTrue(
+      parentSpec.includes('| 3 | 003-stabilization/ | [Phase 3 scope] | [deps] | Pending |'),
+      'create.sh parent mode: append updates phase-map rows with new phase'
+    );
+    assertTrue(
+      parentSpec.includes('| 002-implementation | 003-stabilization | [Criteria TBD] | [Verification TBD] |'),
+      'create.sh parent mode: append updates handoff rows for new phase transition'
+    );
+    assertTrue(
+      !parentSpec.includes('| (single phase - no handoffs) | | | |'),
+      'create.sh parent mode: append removes single-phase placeholder handoff row'
+    );
 
-  const childSpec = fs.readFileSync(path.join(parent, '003-stabilization', 'spec.md'), 'utf-8');
-  assertTrue(childSpec.includes('| **Phase** | 3 of 3 |'), 'create.sh parent mode: absolute phase numbering in child header');
-  assertTrue(childSpec.includes('| **Predecessor** | 002-implementation |'), 'create.sh parent mode: predecessor links to prior phase');
+    const childSpec = fs.readFileSync(path.join(parent, '003-stabilization', 'spec.md'), 'utf-8');
+    assertTrue(childSpec.includes('| **Phase** | 3 of 3 |'), 'create.sh parent mode: absolute phase numbering in child header');
+    assertTrue(childSpec.includes('| **Predecessor** | 002-implementation |'), 'create.sh parent mode: predecessor links to prior phase');
+  } finally {
+    fs.rmSync(parent, { recursive: true, force: true });
+  }
 }
 
 function main() {

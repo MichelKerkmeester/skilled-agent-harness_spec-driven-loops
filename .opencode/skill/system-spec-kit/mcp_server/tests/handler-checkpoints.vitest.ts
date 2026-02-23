@@ -11,6 +11,7 @@ import * as handler from '../handlers/checkpoints';
 import * as vectorIndexMod from '../lib/search/vector-index';
 import * as bm25IndexMod from '../lib/search/bm25-index';
 import * as triggerMatcherMod from '../lib/parsing/trigger-matcher';
+import * as checkpointStorageMod from '../lib/storage/checkpoints';
 
 // Track which optional modules loaded
 const vectorIndexAvailable = false;
@@ -76,6 +77,18 @@ describe('Handler Checkpoints (T521, T102) [deferred - requires DB test fixtures
     it('T521-C4: Non-string specFolder throws', async () => {
       await expect(handler.handleCheckpointCreate({ name: 'test', specFolder: 123 })).rejects.toThrow();
     });
+
+    it('T521-C5: Returns MCP error response when checkpoint storage create fails', async () => {
+      const spy = vi.spyOn(checkpointStorageMod, 'createCheckpoint').mockReturnValue(null);
+      try {
+        const result = await handler.handleCheckpointCreate({ name: 'create-failure-test' });
+        expect(result.isError).toBe(true);
+        const parsed = JSON.parse(result.content[0].text);
+        expect(parsed.data?.code).toBe('CHECKPOINT_CREATE_FAILED');
+      } finally {
+        spy.mockRestore();
+      }
+    });
   });
 
   // ─────────────────────────────────────────────────────────────
@@ -125,6 +138,23 @@ describe('Handler Checkpoints (T521, T102) [deferred - requires DB test fixtures
 
     it('T521-R3: Non-string name throws', async () => {
       await expect(handler.handleCheckpointRestore({ name: 999 })).rejects.toThrow(/name.*string/);
+    });
+
+    it('T521-R4: Returns MCP error response when restore reports errors', async () => {
+      const spy = vi.spyOn(checkpointStorageMod, 'restoreCheckpoint').mockReturnValue({
+        restored: 0,
+        skipped: 0,
+        errors: ['Checkpoint not found or empty'],
+        workingMemoryRestored: 0,
+      });
+      try {
+        const result = await handler.handleCheckpointRestore({ name: 'missing-checkpoint' });
+        expect(result.isError).toBe(true);
+        const parsed = JSON.parse(result.content[0].text);
+        expect(parsed.data?.code).toBe('CHECKPOINT_RESTORE_FAILED');
+      } finally {
+        spy.mockRestore();
+      }
     });
   });
 

@@ -411,6 +411,8 @@ The recurring verifier at `scripts/verify_alignment_drift.py` applies severity-a
 | No Commented Code  | Zero commented-out code blocks           | P0       |
 | Header Invariant   | Numbered ALL-CAPS section headers preserved | P0    |
 | Alignment Verifier | `verify_alignment_drift.py` returns no `ERROR` on changed scope | P0 |
+| Filesystem Safety  | Canonical path containment checks on create/move/delete flows | P0 |
+| Spec Folder Safety | `NNN-name` validation + approved roots for spec operations | P0 |
 | Error Handling     | All error paths handled                  | P1       |
 | AI Comment Policy  | Max 3/10 + AI-intent comment tags only   | P1       |
 | KISS/DRY/SOLID     | SRP/OCP/LSP/ISP/DIP violations identified | P1      |
@@ -434,6 +436,8 @@ P0 Items (MUST pass):
 □ Consistent naming convention
 □ Numbered ALL-CAPS section headers preserved
 □ Alignment verifier reports no ERROR findings for changed scope
+□ Filesystem mutation paths use canonical containment checks
+□ Spec folder operations enforce `NNN-name` and approved roots
 
 P1 Items (Required):
 □ AI comment policy enforced (max 3/10, AI-WHY/AI-GUARD/AI-INVARIANT/AI-TRACE/AI-RISK)

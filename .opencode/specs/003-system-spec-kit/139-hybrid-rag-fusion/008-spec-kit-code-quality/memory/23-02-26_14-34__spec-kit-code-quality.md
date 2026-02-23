@@ -254,11 +254,12 @@ Next: Program closure review for 139-hybrid-rag-fusion
 Phase 008 code-quality fixes: repaired touched-files manifest generation, aligned triad evidence to memory-save-extended, corrected lint evidence, hardened anchor parsing and fixture expectations, improved validation test confidence checks, made template wrapper pass with level-specific optional files, and replaced vacuous checkpoint assertion.
 
 **Key Outcomes**:
-- Phase 008 code-quality fixes: repaired touched-files manifest generation, aligned triad evidence to...
-- Use strict anchor syntax validation and fail malformed open/close tags.
-- Require expected rule markers in high-risk validation tests to reduce false conf
-- Treat level-missing templates as skipped, not failed, in wrap-all-templates.
-- Technical Implementation Details
+- Baseline triad stabilized: graph-search-fn (order-independent SQL), query-expander (single-word normalization), memory-save-extended
+- memory-index.ts modularized into discovery + alias modules (91 tests green post-extraction)
+- Security hardened: strict positive-integer parsing on checkpoint/delete inputs
+- ~195 test fixtures normalized to current anchor/template-source contracts
+- 66 repo-owned READMEs validated; scripts/ops/README.md rewritten
+- All verification gates green (typecheck, npm test, vitest, lint, validation 55+129+5, alignment drift, README 66/66)
 
 **Key Files:**
 
@@ -601,7 +602,7 @@ causal_links:
 created_at: "2026-02-23"
 created_at_epoch: 1771853666
 last_accessed_epoch: 1771853666
-expires_at_epoch: 1779629666  # 0 for critical (never expires)
+expires_at_epoch: 0  # 0 for critical (never expires)
 
 # Session Metrics
 message_count: 50

@@ -68,7 +68,7 @@ trigger_phrases:
 | Requirement | Minimum | Recommended |
 |-------------|---------|-------------|
 | Python | 3.6+ | 3.10+ |
-| `.opencode/skill/` | At least 1 SKILL.md | All project skills installed |
+| `.opencode/skill/` | At least one `.opencode/skill/<skill-name>/SKILL.md` file | All project skills installed |
 
 <!-- /ANCHOR:overview -->
 
@@ -92,11 +92,11 @@ trigger_phrases:
     ├── scripts/
     │   └── skill_advisor.py     ← This directory
     ├── sk-git/
-    │   └── SKILL.md         # Parsed for name/description
+    │   └── .opencode/skill/sk-git/SKILL.md         # Parsed for name/description
     ├── sk-code--web/
-    │   └── SKILL.md
+    │   └── .opencode/skill/sk-code--web/SKILL.md
     ├── system-spec-kit/
-    │   └── SKILL.md
+    │   └── .opencode/skill/system-spec-kit/SKILL.md
     └── ...
 ```
 

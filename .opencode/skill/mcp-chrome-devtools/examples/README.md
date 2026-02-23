@@ -91,7 +91,7 @@ command -v bc >/dev/null || echo "Install bc for calculations"
 ./performance-baseline.sh https://example.com
 
 # Custom output directory
-./performance-baseline.sh https://example.com ./my-baselines
+./performance-baseline.sh https://example.com ./<my-baselines-dir>
 ```
 
 **What it captures:**
@@ -237,7 +237,7 @@ set -e  # Exit on first failure
 echo "Running visual regression tests..."
 
 # 1. Capture current baseline
-./performance-baseline.sh https://staging.example.com ./baselines/current
+./performance-baseline.sh https://staging.example.com ./<baselines>/current
 
 # 2. Test animations
 ./animation-testing.sh https://staging.example.com ".hero" "animate-in"
@@ -252,14 +252,14 @@ echo "All visual tests passed"
 
 ```bash
 # Before optimization
-./performance-baseline.sh https://staging.example.com ./baselines/before
+./performance-baseline.sh https://staging.example.com ./<baselines>/before
 
 # After optimization
-./performance-baseline.sh https://staging.example.com ./baselines/after
+./performance-baseline.sh https://staging.example.com ./<baselines>/after
 
 # Compare metrics
-echo "Before: $(jq '.result.metrics[] | select(.name=="TaskDuration") | .value' ./baselines/before/metrics-*.json)"
-echo "After: $(jq '.result.metrics[] | select(.name=="TaskDuration") | .value' ./baselines/after/metrics-*.json)"
+echo "Before: $(jq '.result.metrics[] | select(.name=="TaskDuration") | .value' ./<baselines>/before/metrics-*.json)"
+echo "After: $(jq '.result.metrics[] | select(.name=="TaskDuration") | .value' ./<baselines>/after/metrics-*.json)"
 ```
 
 ### Visual Diff Workflow
@@ -361,12 +361,12 @@ bdg stop 2>&1
 
 ```bash
 # Check output directory permissions
-mkdir -p ./test-output
-chmod 755 ./test-output
+mkdir -p ./<test-output>
+chmod 755 ./<test-output>
 
 # Test screenshot command
 bdg https://example.com 2>&1
-bdg dom screenshot ./test-output/test.png 2>&1
+bdg dom screenshot ./<test-output>/test.png 2>&1
 bdg stop 2>&1
 ```
 

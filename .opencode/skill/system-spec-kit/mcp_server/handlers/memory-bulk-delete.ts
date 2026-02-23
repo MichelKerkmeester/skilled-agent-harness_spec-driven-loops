@@ -99,11 +99,11 @@ async function handleMemoryBulkDelete(args: BulkDeleteArgs): Promise<MCPResponse
   let checkpointName: string | null = null;
   if (!skipCheckpoint) {
     const timestamp = new Date().toISOString().replace(/[:.]/g, '-').slice(0, 19);
-    checkpointName = `pre-bulk-delete-${tier}-${timestamp}`;
+    const proposedCheckpointName = `pre-bulk-delete-${tier}-${timestamp}`;
 
     try {
-      checkpoints.createCheckpoint({
-        name: checkpointName,
+      const checkpoint = checkpoints.createCheckpoint({
+        name: proposedCheckpointName,
         specFolder,
         metadata: {
           reason: `auto-checkpoint before bulk delete of ${affectedCount} "${tier}" memories`,
@@ -112,11 +112,25 @@ async function handleMemoryBulkDelete(args: BulkDeleteArgs): Promise<MCPResponse
           olderThanDays: olderThanDays || null,
         },
       });
-      console.error(`[memory-bulk-delete] Created checkpoint: ${checkpointName}`);
+
+      if (!checkpoint) {
+        const checkpointError = `Checkpoint creation failed before deleting ${tier} memories`;
+        if (tier === 'constitutional' || tier === 'critical') {
+          throw new Error(`${checkpointError}. Aborting high-safety bulk delete.`);
+        }
+        console.warn(`[memory-bulk-delete] ${checkpointError}. Proceeding without rollback.`);
+      } else {
+        checkpointName = checkpoint.name;
+        console.error(`[memory-bulk-delete] Created checkpoint: ${checkpointName}`);
+      }
     } catch (cpErr: unknown) {
       const message = toErrorMessage(cpErr);
       console.error(`[memory-bulk-delete] Failed to create checkpoint: ${message}`);
-      // Still proceed — user confirmed
+      // High-safety tiers require a valid checkpoint.
+      if (tier === 'constitutional' || tier === 'critical') {
+        throw new Error(`Failed to create mandatory checkpoint for "${tier}" tier: ${message}`);
+      }
+      // Lower tiers can proceed with explicit no-rollback notice.
       checkpointName = null;
     }
   } else {

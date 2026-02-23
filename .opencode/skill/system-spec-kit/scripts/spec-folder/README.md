@@ -93,8 +93,8 @@ const activeFolders = filterArchiveFolders([
 // Returns: ['042-feature', '043-new-feature']
 
 // Setup memory directory
-await setupContextDirectory('specs/042-feature');
-// Creates: specs/042-feature/memory/
+await setupContextDirectory('specs/<###-feature-name>');
+// Creates: specs/<###-feature-name>/memory/
 ```
 
 ### Topic Extraction
@@ -171,9 +171,9 @@ scripts/dist/spec-folder/
 ls -la specs/
 
 # Use correct format: ###-feature-name
-node scripts/dist/memory/generate-context.js specs/042-feature/
+node scripts/dist/memory/generate-context.js specs/<###-feature-name>/
 # Or use the full path
-node scripts/dist/memory/generate-context.js .opencode/specs/042-feature/
+node scripts/dist/memory/generate-context.js .opencode/specs/<###-feature-name>/
 ```
 
 #### Alignment score is low despite correct folder
@@ -185,7 +185,7 @@ node scripts/dist/memory/generate-context.js .opencode/specs/042-feature/
 **Solution**: Manually confirm correct folder when prompted or use CLI argument:
 ```bash
 # Force specific folder with CLI arg
-node scripts/dist/memory/generate-context.js /tmp/context.json specs/042-feature/
+node scripts/dist/memory/generate-context.js /tmp/context.json specs/<###-feature-name>/
 ```
 
 #### Multiple specs directories warning
@@ -206,7 +206,7 @@ node scripts/dist/memory/generate-context.js /tmp/context.json specs/042-feature
 | Problem                        | Quick Fix                                       |
 | ------------------------------ | ----------------------------------------------- |
 | Module not found               | `npm install` in project root                   |
-| Permission denied on memory/   | `chmod 755 specs/042-feature`                   |
+| Permission denied on memory/   | `chmod 755 specs/<###-feature-name>`                   |
 | Archive pattern false positive | Rename folder without z_, archive, old patterns |
 | Wrong folder selected          | Use CLI argument to override detection          |
 

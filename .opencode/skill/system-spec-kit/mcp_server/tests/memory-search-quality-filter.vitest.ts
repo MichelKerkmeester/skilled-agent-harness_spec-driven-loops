@@ -11,6 +11,7 @@ const {
   filterByMinQualityScore,
   resolveQualityThreshold,
   buildCacheArgs,
+  resolveRowContextType,
   resolveArtifactRoutingQuery,
   applyArtifactRouting,
 } = __testables;
@@ -165,5 +166,15 @@ describe('C138: memory-search cache args include behavior-changing parameters', 
     });
 
     expect(args.concepts).toBeUndefined();
+  });
+});
+
+describe('C138: contextType row normalization', () => {
+  it('prefers camelCase contextType when present', () => {
+    expect(resolveRowContextType({ id: 1, contextType: 'decision', context_type: 'research' } as any)).toBe('decision');
+  });
+
+  it('falls back to snake_case context_type for hybrid rows', () => {
+    expect(resolveRowContextType({ id: 2, context_type: 'research' } as any)).toBe('research');
   });
 });

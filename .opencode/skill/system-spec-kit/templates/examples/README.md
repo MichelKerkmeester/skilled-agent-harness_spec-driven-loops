@@ -46,7 +46,7 @@ Use them for comparison, not direct copying.
 <!-- ANCHOR:usage -->
 
 1. Choose your level from real requirements.
-2. Copy templates from `../level_N/`, not from `examples/`.
+2. Copy templates from `../level_1/, ../level_2/, ../level_3/, or ../level_3+/`, not from `examples/`.
 3. Compare your spec docs to examples for quality and completeness.
 
 <!-- /ANCHOR:usage -->

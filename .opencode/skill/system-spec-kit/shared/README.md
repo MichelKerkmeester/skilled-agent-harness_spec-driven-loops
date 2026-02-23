@@ -60,7 +60,7 @@ This consolidation eliminates code duplication and ensures consistent behavior a
 │           ┌───────────┴───────────────────┐                      │
 │           │                               │                      │
 │    ┌──────┴──────┐                 ┌──────┴──────┐               │
-│    │scripts/lib/ │                 │mcp_server/  │               │
+│    │scripts/lib  │                 │mcp_server/  │               │
 │    │(RE-EXPORTS) │                 │lib/         │               │
 │    ├─────────────┤                 │(RE-EXPORTS) │               │
 │    │embeddings.ts│                 ├─────────────┤               │
@@ -83,6 +83,7 @@ This consolidation eliminates code duplication and ensures consistent behavior a
 | Top-Level Modules        | 6             | index, embeddings, chunking, trigger extractor, types, normalization |
 | Provider Implementations | 3             | OpenAI, HF Local, Voyage                         |
 | Embedding Dimensions     | 768/1024/1536 | Provider-dependent                               |
+| Build Artifacts          | 2             | `package.json` + `tsconfig*.json`               |
 
 ### Key Features
 
@@ -137,7 +138,7 @@ ls .opencode/skill/system-spec-kit/shared/
 ### First Use
 
 ```typescript
-import { generateDocumentEmbedding, getProviderMetadata } from './shared/embeddings';
+import { generateDocumentEmbedding, getProviderMetadata } from './embeddings';
 
 // Check active provider
 const meta: { provider: string; model: string; dim: number; healthy: boolean } = getProviderMetadata();
@@ -350,7 +351,7 @@ async function handleSearch(query: string): Promise<void> {
 ### Example 3: Get Provider Information
 
 ```typescript
-import { getProviderMetadata, getEmbeddingProfile } from './shared/embeddings';
+import { getProviderMetadata, getEmbeddingProfile } from './embeddings';
 
 // Check current provider
 const meta = getProviderMetadata();
@@ -368,7 +369,7 @@ const dbPath: string = profile.getDatabasePath('/base/path');
 ### Example 4: Trigger Extraction with Stats
 
 ```typescript
-import { extractTriggerPhrasesWithStats } from './shared/trigger-extractor';
+import { extractTriggerPhrasesWithStats } from './trigger-extractor';
 
 const result = extractTriggerPhrasesWithStats(memoryContent);
 console.log(result);
@@ -415,7 +416,7 @@ console.log(result);
 **Solution**:
 ```typescript
 // Pre-warm on startup
-import { preWarmModel } from './shared/embeddings';
+import { preWarmModel } from './embeddings';
 await preWarmModel();
 ```
 
@@ -466,11 +467,14 @@ echo "VOYAGE_API_KEY: ${VOYAGE_API_KEY:0:10}..."
 echo "OPENAI_API_KEY: ${OPENAI_API_KEY:0:10}..."
 echo "EMBEDDINGS_PROVIDER: $EMBEDDINGS_PROVIDER"
 
+# Run from shared/ so Node resolves compiled modules in dist/
+cd .opencode/skill/system-spec-kit/shared
+
 # Test embedding generation (runs compiled .js output)
-node -e "require('./shared/embeddings').generateDocumentEmbedding('test').then(e => console.log('Dims:', e.length))"
+node -e "require('./dist/embeddings').generateDocumentEmbedding('test').then(e => console.log('Dims:', e.length))"
 
 # Test trigger extraction (runs compiled .js output)
-node -e "console.log(require('./shared/trigger-extractor').extractTriggerPhrases('memory search trigger extraction'))"
+node -e "console.log(require('./dist/trigger-extractor').extractTriggerPhrases('memory search trigger extraction'))"
 ```
 
 <!-- /ANCHOR:troubleshooting -->

@@ -212,7 +212,7 @@ CLI tools for day-to-day spec kit operations:
 **Memory generation is mandatory via script:**
 
 ```bash
-node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js specs/042-feature/
+node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js specs/<###-feature-name>/
 ```
 
 Never create memory files with the Write tool. The script enforces format and indexing consistency.
@@ -302,7 +302,7 @@ Every file modification requires a spec folder. Level is determined by estimated
 ### Spec Folder Structure
 
 ```
-specs/042-user-authentication/
+specs/<###-feature-name>/
 ├── spec.md                    # Feature specification
 ├── plan.md                    # Implementation plan
 ├── tasks.md                   # Task breakdown
@@ -633,7 +633,7 @@ cp .opencode/skill/system-spec-kit/templates/level_3/*.md specs/###-name/
 
 ```bash
 # Generate memory file (executes compiled JS from dist/)
-node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js specs/042-feature/
+node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js specs/<###-feature-name>/
 
 # Generate for nested phase folder
 node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js 003-system-spec-kit/121-child-name
@@ -665,10 +665,10 @@ ls -d specs/[0-9]*/
 
 ```bash
 # Find all placeholders
-grep -r "\[YOUR_VALUE_HERE\]" specs/042-feature/
+grep -r "\[YOUR_VALUE_HERE\]" specs/<###-feature-name>/
 
 # Replace with actual content (check-placeholders.sh helps)
-.opencode/skill/system-spec-kit/scripts/spec/check-placeholders.sh specs/042-feature/
+.opencode/skill/system-spec-kit/scripts/spec/check-placeholders.sh specs/<###-feature-name>/
 ```
 
 #### Memory Loading Issues
@@ -804,6 +804,7 @@ A: Yes. Major flags including `SPECKIT_ADAPTIVE_FUSION`, `SPECKIT_CAUSAL_BOOST` 
 | **Memory MCP** | `.opencode/skill/system-spec-kit/mcp_server/` |
 | **References** | `.opencode/skill/system-spec-kit/references/` |
 | **Commands** | `.opencode/command/spec_kit/` and `.opencode/command/memory/` |
+| **Root Build Manifests** | `.opencode/skill/system-spec-kit/package.json` and `.opencode/skill/system-spec-kit/tsconfig*.json` |
 
 ### External Dependencies
 

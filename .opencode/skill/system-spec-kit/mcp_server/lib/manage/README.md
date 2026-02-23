@@ -150,8 +150,8 @@ const result = computePageRank([]);
 ### Integration Pattern: Memory Manage Cycle
 
 ```typescript
-import { computePageRank } from '../lib/manage/pagerank';
-import type { GraphNode } from '../lib/manage/pagerank';
+import { computePageRank } from './pagerank';
+import type { GraphNode } from './pagerank';
 
 async function runMemoryManageCycle(db: Database): Promise<void> {
   // 1. Load memory graph from relation table

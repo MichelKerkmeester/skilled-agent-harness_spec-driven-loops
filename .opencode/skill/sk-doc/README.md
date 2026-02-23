@@ -63,7 +63,7 @@ python3 scripts/extract_structure.py path/to/document.md
 python3 scripts/init_skill.py my-skill --path .opencode/skill
 
 # Package and validate a skill
-python3 scripts/package_skill.py .opencode/skill/my-skill
+python3 scripts/package_skill.py .opencode/skill/<my-skill>/
 
 # Validate a README
 python3 scripts/validate_document.py path/to/README.md

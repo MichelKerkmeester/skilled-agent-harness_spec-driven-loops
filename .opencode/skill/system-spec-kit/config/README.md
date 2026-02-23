@@ -128,7 +128,7 @@ This directory contains the JSON configuration files that control how the Spec K
 The main config is loaded by `scripts/core/config.ts`:
 
 ```typescript
-import { loadConfig } from './core/config';
+import { loadConfig } from '../scripts/core/config';
 
 const config = loadConfig();  // Loads config.jsonc (Section 1 keys only used at runtime)
 ```

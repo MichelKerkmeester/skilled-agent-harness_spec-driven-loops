@@ -344,7 +344,7 @@ If yes to all, constitutional tier is appropriate.
 
 ```bash
 # Create file in constitutional directory
-touch .opencode/skill/system-spec-kit/constitutional/my-rule.md
+touch .opencode/skill/system-spec-kit/constitutional/<rule-name>.md
 ```
 
 #### Step 3: Add Frontmatter
@@ -387,7 +387,7 @@ Your rule content here...
 memory_index_scan({ force: true })
 
 # Option 3: Index single file
-memory_save({ filePath: ".opencode/skill/system-spec-kit/constitutional/my-rule.md" })
+memory_save({ filePath: ".opencode/skill/system-spec-kit/constitutional/<rule-name>.md" })
 ```
 
 #### Step 6: Verify

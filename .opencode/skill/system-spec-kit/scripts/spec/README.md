@@ -52,15 +52,15 @@ Canonical flow for upgrades:
 
 ```bash
 # 1) Upgrade target level
-bash .opencode/skill/system-spec-kit/scripts/spec/upgrade-level.sh specs/003-system-spec-kit/130-memory-overhaul-and-agent-upgrade-release --to 3
+bash .opencode/skill/system-spec-kit/scripts/spec/upgrade-level.sh specs/<###-spec-name> --to 3
 
 # 2) AI auto-populate injected placeholder sections from existing spec context
 
 # 3) Verify no placeholders remain
-bash .opencode/skill/system-spec-kit/scripts/spec/check-placeholders.sh specs/003-system-spec-kit/130-memory-overhaul-and-agent-upgrade-release
+bash .opencode/skill/system-spec-kit/scripts/spec/check-placeholders.sh specs/<###-spec-name>
 
 # 4) Run full validation (includes anchor checks)
-bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/003-system-spec-kit/130-memory-overhaul-and-agent-upgrade-release
+bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/<###-spec-name>
 ```
 
 `validate.sh` executes modular rules in `scripts/rules/`, including `check-anchors.sh` for ANCHOR tag pairing.
@@ -70,10 +70,10 @@ Phase-based spec folders (specs 136-139 and later) use `--phase` with `create.sh
 
 ```bash
 # Create a phase child folder inside an existing spec
-bash .opencode/skill/system-spec-kit/scripts/spec/create.sh --phase specs/003-system-spec-kit/138-hybrid-rag-fusion/001-phase-name
+bash .opencode/skill/system-spec-kit/scripts/spec/create.sh --phase specs/<###-parent-spec>/<###-phase-child>
 
 # Validate a phase parent and all its children recursively
-bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/003-system-spec-kit/138-hybrid-rag-fusion --recursive
+bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/<###-parent-spec> --recursive
 ```
 
 <!-- /ANCHOR:upgrade-flow-spec124128129136-139 -->
@@ -84,7 +84,7 @@ bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/003-system-s
 Before completion claims:
 
 ```bash
-bash .opencode/skill/system-spec-kit/scripts/spec/check-completion.sh specs/003-system-spec-kit/130-memory-overhaul-and-agent-upgrade-release
+bash .opencode/skill/system-spec-kit/scripts/spec/check-completion.sh specs/<###-spec-name>
 ```
 
 

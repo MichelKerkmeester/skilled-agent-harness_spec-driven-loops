@@ -326,6 +326,75 @@ create_versioned_subfolder() {
     echo "$subfolder_path"
 }
 
+# Resolve an existing directory to a canonical physical path.
+resolve_existing_dir() {
+    local dir_path="$1"
+    if [[ ! -d "$dir_path" ]]; then
+        return 1
+    fi
+    (cd "$dir_path" >/dev/null 2>&1 && pwd -P)
+}
+
+# Containment check with path boundary semantics.
+is_path_within() {
+    local candidate="$1"
+    local base="$2"
+    [[ "$candidate" == "$base" || "$candidate" == "$base"/* ]]
+}
+
+validate_spec_folder_basename() {
+    local folder_name="$1"
+    if [[ ! "$folder_name" =~ ^[0-9]{3}-[A-Za-z0-9._-]+$ ]]; then
+        echo "Error: Spec folder must match NNN-name pattern (got: $folder_name)" >&2
+        exit 1
+    fi
+}
+
+# Resolve and validate a spec folder path against approved roots.
+resolve_and_validate_spec_path() {
+    local raw_path="$1"
+    local label="${2:-spec folder}"
+    local candidate resolved
+
+    if [[ "$raw_path" = /* ]]; then
+        candidate="$raw_path"
+    else
+        candidate="$REPO_ROOT/$raw_path"
+    fi
+
+    if [[ ! -d "$candidate" ]]; then
+        echo "Error: ${label} does not exist: $raw_path" >&2
+        exit 1
+    fi
+
+    if ! resolved="$(resolve_existing_dir "$candidate")"; then
+        echo "Error: Unable to resolve ${label}: $raw_path" >&2
+        exit 1
+    fi
+
+    local allowed found=false
+    for allowed in "$REPO_ROOT/specs" "$REPO_ROOT/.opencode/specs"; do
+        if [[ -d "$allowed" ]]; then
+            local allowed_resolved
+            if allowed_resolved="$(resolve_existing_dir "$allowed")"; then
+                if is_path_within "$resolved" "$allowed_resolved"; then
+                    found=true
+                    break
+                fi
+            fi
+        fi
+    done
+
+    if [[ "$found" != "true" ]]; then
+        echo "Error: ${label} must be under specs/ or .opencode/specs/" >&2
+        echo "Resolved path: $resolved" >&2
+        exit 1
+    fi
+
+    validate_spec_folder_basename "$(basename "$resolved")"
+    printf '%s\n' "$resolved"
+}
+
 # ───────────────────────────────────────────────────────────────
 # 2. REPOSITORY DETECTION
 # ───────────────────────────────────────────────────────────────
@@ -354,19 +423,7 @@ mkdir -p "$SPECS_DIR"
 # ───────────────────────────────────────────────────────────────
 
 if [[ "$SUBFOLDER_MODE" = true ]]; then
-    # Resolve base folder path (handle both absolute and relative paths)
-    if [[ "$SUBFOLDER_BASE" = /* ]]; then
-        RESOLVED_BASE="$SUBFOLDER_BASE"
-    else
-        RESOLVED_BASE="$REPO_ROOT/$SUBFOLDER_BASE"
-    fi
-    
-    # Validate base folder exists
-    if [[ ! -d "$RESOLVED_BASE" ]]; then
-        echo "Error: Base folder does not exist: $SUBFOLDER_BASE" >&2
-        echo "Hint: Provide a valid spec folder path, e.g., specs/005-memory" >&2
-        exit 1
-    fi
+    RESOLVED_BASE="$(resolve_and_validate_spec_path "$SUBFOLDER_BASE" "Base folder")"
     
     # Determine topic name
     if [[ -n "$SUBFOLDER_TOPIC" ]]; then
@@ -512,7 +569,7 @@ if [[ "$PHASE_MODE" = true ]]; then
 
     # Trap for temp file cleanup on error exit
     PHASE_TMP_FILES=()
-    _phase_cleanup() { for _f in "${PHASE_TMP_FILES[@]}"; do rm -f "$_f"; done; }
+    _phase_cleanup() { for _f in "${PHASE_TMP_FILES[@]-}"; do rm -f "$_f"; done; }
     trap _phase_cleanup EXIT
 
     # Validate addendum templates exist
@@ -554,16 +611,7 @@ if [[ "$PHASE_MODE" = true ]]; then
 
     # Optional append mode: add phases to an existing parent folder.
     if [[ -n "$PHASE_PARENT" ]]; then
-        if [[ "$PHASE_PARENT" = /* ]]; then
-            PHASE_PARENT_RESOLVED="$PHASE_PARENT"
-        else
-            PHASE_PARENT_RESOLVED="$REPO_ROOT/$PHASE_PARENT"
-        fi
-
-        if [[ ! -d "$PHASE_PARENT_RESOLVED" ]]; then
-            echo "Error: --parent folder not found: $PHASE_PARENT" >&2
-            exit 1
-        fi
+        PHASE_PARENT_RESOLVED="$(resolve_and_validate_spec_path "$PHASE_PARENT" "--parent folder")"
 
         if [[ ! -f "$PHASE_PARENT_RESOLVED/spec.md" ]]; then
             echo "Error: --parent folder must contain spec.md: $PHASE_PARENT" >&2

@@ -7,7 +7,21 @@
 
 ---
 
-## Overview
+## TABLE OF CONTENTS
+
+- [1. OVERVIEW](#1--overview)
+- [2. SUCCESS TARGETS](#success-targets)
+- [3. DOCUMENTS](#documents)
+- [4. QUICK START](#quick-start)
+- [5. DEPENDENCIES](#dependencies)
+- [6. ROLLBACK PLAN](#rollback-plan)
+- [7. VERIFICATION HIGHLIGHTS](#verification-highlights)
+- [8. ARCHITECTURE DECISIONS (ADRS)](#architecture-decisions-adrs)
+- [9. IMPLEMENTATION TARGETS](#implementation-targets)
+- [10. UNRESOLVED ITEMS](#unresolved-items)
+- [11. RELATED SPECS](#related-specs)
+
+## 1. OVERVIEW
 
 This spec documents refinements to Smart Router V2 (baseline: 034-smart-router-v2) addressing ambiguity handling gaps and efficiency weaknesses discovered during initial deployment.
 
@@ -83,7 +97,7 @@ This spec documents refinements to Smart Router V2 (baseline: 034-smart-router-v
 
 **Procedure**:
 1. Set feature flag: `ROUTER_TOP_N_ADAPTIVE=false`
-2. Revert SKILL.md changes to V2 baseline: `git restore .opencode/skill/workflows-code--*/SKILL.md`
+2. Revert SKILL.md changes to V2 baseline: `git restore .opencode/skill/sk-code--*/SKILL.md .opencode/skill/sk-git/SKILL.md`
 3. Revert router-rules.json: `git restore ...034-smart-router-v2/scratch/smart-router-tests/router-rules.json`
 4. Re-run test suite to verify V2 baseline behavior restored
 5. Preserve fixtures and benchmark harness (no rollback needed)
@@ -134,7 +148,7 @@ This spec documents refinements to Smart Router V2 (baseline: 034-smart-router-v
 
 ### Skills Affected (4 files)
 - `.opencode/skill/sk-code--full-stack/SKILL.md` (primary implementation)
-- `.opencode/skill/workflows-code--web-dev/SKILL.md` (synonym + UNKNOWN fallback)
+- `.opencode/skill/sk-code--web/SKILL.md` (synonym + UNKNOWN fallback)
 - `.opencode/skill/sk-code--opencode/SKILL.md` (synonym + UNKNOWN fallback)
 - `.opencode/skill/sk-git/SKILL.md` (synonym + UNKNOWN fallback)
 

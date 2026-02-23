@@ -1,5 +1,13 @@
 # Examples Directory
 
+## TABLE OF CONTENTS
+
+- [1. OVERVIEW](#1--overview)
+- [2. PLANNED EXAMPLES](#planned-examples)
+- [3. PURPOSE](#purpose)
+
+## 1. OVERVIEW
+
 This directory will contain before/after examples of anchor implementation in skill documentation.
 
 ## Planned Examples

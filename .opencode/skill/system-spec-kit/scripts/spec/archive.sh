@@ -79,6 +79,32 @@ log_success() { echo -e "${GREEN}SUCCESS:${NC} $1"; }
 log_warning() { echo -e "${YELLOW}WARNING:${NC} $1"; }
 log_error() { echo -e "${RED}ERROR:${NC} $1" >&2; }
 
+# Resolve an existing directory to a canonical physical path.
+resolve_existing_dir() {
+    local dir_path="$1"
+    if [[ ! -d "$dir_path" ]]; then
+        return 1
+    fi
+    (cd "$dir_path" >/dev/null 2>&1 && pwd -P)
+}
+
+# Containment check with path boundary semantics.
+is_path_within() {
+    local candidate="$1"
+    local base="$2"
+    [[ "$candidate" == "$base" || "$candidate" == "$base"/* ]]
+}
+
+# Spec folders must match NNN-name.
+validate_spec_folder_name() {
+    local folder_name="$1"
+    local label="${2:-Spec}"
+    if [[ ! "$folder_name" =~ ^[0-9]{3}-[A-Za-z0-9._-]+$ ]]; then
+        log_error "${label} folder name must match NNN-name pattern: $folder_name"
+        exit 1
+    fi
+}
+
 # ───────────────────────────────────────────────────────────────
 # 4. CORE FUNCTIONS
 # ───────────────────────────────────────────────────────────────
@@ -107,22 +133,40 @@ get_completeness() {
 archive_spec() {
     local spec_folder="$1"
     local force="${2:-false}"
+    local specs_root archive_root resolved_spec
 
     spec_folder="${spec_folder%/}"
 
-    if [[ ! -d "$spec_folder" ]]; then
+    if ! specs_root="$(resolve_existing_dir "$PROJECT_ROOT/specs")"; then
+        log_error "Specs directory not found: $PROJECT_ROOT/specs"
+        exit 1
+    fi
+
+    mkdir -p "$PROJECT_ROOT/$ARCHIVE_DIR"
+    if ! archive_root="$(resolve_existing_dir "$PROJECT_ROOT/$ARCHIVE_DIR")"; then
+        log_error "Archive directory not accessible: $PROJECT_ROOT/$ARCHIVE_DIR"
+        exit 1
+    fi
+
+    if ! resolved_spec="$(resolve_existing_dir "$spec_folder")"; then
         log_error "Spec folder not found: $spec_folder"
         exit 1
     fi
 
-    if [[ "$spec_folder" == *"$ARCHIVE_DIR"* ]]; then
-        log_error "Folder is already archived: $spec_folder"
+    if is_path_within "$resolved_spec" "$archive_root"; then
+        log_error "Folder is already archived: $resolved_spec"
+        exit 1
+    fi
+
+    if ! is_path_within "$resolved_spec" "$specs_root"; then
+        log_error "Refusing to archive outside specs root: $resolved_spec"
+        log_info "Allowed root: $specs_root"
         exit 1
     fi
 
     if [[ "$force" != "true" ]]; then
         local completeness
-        completeness=$(get_completeness "$spec_folder")
+        completeness=$(get_completeness "$resolved_spec")
 
         if [[ "$completeness" -lt "$MIN_COMPLETENESS" ]]; then
             log_warning "Spec is only ${completeness}% complete (minimum: ${MIN_COMPLETENESS}%)"
@@ -137,41 +181,40 @@ archive_spec() {
         fi
     fi
 
-    mkdir -p "$ARCHIVE_DIR"
-
     local basename
-    basename=$(basename "$spec_folder")
+    basename=$(basename "$resolved_spec")
+    validate_spec_folder_name "$basename" "Spec"
 
-    if [[ -d "$ARCHIVE_DIR/$basename" ]]; then
-        log_error "Archive target already exists: $ARCHIVE_DIR/$basename"
+    if [[ -d "$archive_root/$basename" ]]; then
+        log_error "Archive target already exists: $archive_root/$basename"
         exit 1
     fi
 
     # Atomic move: First copy to temp location within target, then rename
     # This avoids race conditions during directory operations
-    local temp_target="$ARCHIVE_DIR/.tmp_$$_$basename"
+    local temp_target="$archive_root/.tmp_$$_$basename"
     
     # Clean up any stale temp directories from previous failed runs
-    rm -rf "$ARCHIVE_DIR"/.tmp_*_"$basename" 2>/dev/null || true
+    rm -rf "$archive_root"/.tmp_*_"$basename" 2>/dev/null || true
     
     # Copy to temp location first
-    if ! cp -R "$spec_folder" "$temp_target"; then
+    if ! cp -R "$resolved_spec" "$temp_target"; then
         rm -rf "$temp_target" 2>/dev/null || true
         log_error "Failed to copy spec folder to archive"
         exit 1
     fi
     
     # Atomic rename (mv within same filesystem is atomic)
-    if ! mv "$temp_target" "$ARCHIVE_DIR/$basename"; then
+    if ! mv "$temp_target" "$archive_root/$basename"; then
         rm -rf "$temp_target" 2>/dev/null || true
         log_error "Failed to rename temp archive to final location"
         exit 1
     fi
     
     # Only remove source after successful copy+rename
-    rm -rf "$spec_folder"
+    rm -rf "$resolved_spec"
 
-    log_success "Archived: $spec_folder -> $ARCHIVE_DIR/$basename"
+    log_success "Archived: $resolved_spec -> $archive_root/$basename"
 }
 
 list_archived() {
@@ -207,33 +250,45 @@ list_archived() {
 
 restore_spec() {
     local archived_folder="$1"
+    local specs_root archive_root resolved_archived
 
     archived_folder="${archived_folder%/}"
 
-    if [[ ! -d "$archived_folder" ]]; then
+    if ! specs_root="$(resolve_existing_dir "$PROJECT_ROOT/specs")"; then
+        log_error "Specs directory not found: $PROJECT_ROOT/specs"
+        exit 1
+    fi
+
+    if ! archive_root="$(resolve_existing_dir "$PROJECT_ROOT/$ARCHIVE_DIR")"; then
+        log_error "Archive directory not found: $PROJECT_ROOT/$ARCHIVE_DIR"
+        exit 1
+    fi
+
+    if ! resolved_archived="$(resolve_existing_dir "$archived_folder")"; then
         log_error "Archived folder not found: $archived_folder"
         exit 1
     fi
 
-    if [[ "$archived_folder" != *"$ARCHIVE_DIR"* ]]; then
+    if ! is_path_within "$resolved_archived" "$archive_root"; then
         log_error "Folder is not in archive directory: $archived_folder"
-        log_info "Archive directory: $ARCHIVE_DIR"
+        log_info "Archive directory: $archive_root"
         exit 1
     fi
 
     local basename
-    basename=$(basename "$archived_folder")
+    basename=$(basename "$resolved_archived")
+    validate_spec_folder_name "$basename" "Archived"
 
-    local destination="specs/$basename"
+    local destination="$specs_root/$basename"
 
     if [[ -d "$destination" ]]; then
         log_error "Restore target already exists: $destination"
         exit 1
     fi
 
-    mv "$archived_folder" "$destination"
+    mv "$resolved_archived" "$destination"
 
-    log_success "Restored: $archived_folder -> $destination"
+    log_success "Restored: $resolved_archived -> $destination"
 }
 
 # ───────────────────────────────────────────────────────────────

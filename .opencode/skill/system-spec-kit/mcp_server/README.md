@@ -792,7 +792,7 @@ memory_causal_link({
 ```typescript
 // 1. Before starting, capture baseline
 task_preflight({
-  specFolder: "specs/077-upgrade",
+  specFolder: "specs/<###-spec-name>",
   taskId: "T1",
   knowledgeScore: 40,
   uncertaintyScore: 70,
@@ -803,7 +803,7 @@ task_preflight({
 
 // 3. After completing, measure improvement
 task_postflight({
-  specFolder: "specs/077-upgrade",
+  specFolder: "specs/<###-spec-name>",
   taskId: "T1",
   knowledgeScore: 85,
   uncertaintyScore: 20,
@@ -822,7 +822,7 @@ checkpoint_create({
 })
 
 // Do risky operation
-memory_delete({ specFolder: "specs/old-project", confirm: true })
+memory_delete({ specFolder: "specs/<###-spec-name>", confirm: true })
 
 // If something went wrong
 checkpoint_restore({ name: "pre-cleanup" })
@@ -836,7 +836,7 @@ Use `memory_health` in `divergent_aliases` mode when you need a compact manual-t
 memory_health({
   reportMode: "divergent_aliases",
   limit: 25,
-  specFolder: "specs/139-hybrid-rag-fusion"
+  specFolder: "specs/<###-spec-name>"
 })
 // Returns only divergent alias groups:
 // - normalizedPath (canonical key)

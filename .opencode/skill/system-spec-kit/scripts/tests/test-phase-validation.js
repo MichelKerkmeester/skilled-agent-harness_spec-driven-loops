@@ -17,6 +17,7 @@ const CREATE_SCRIPT = path.join(SKILL_ROOT, 'scripts', 'spec', 'create.sh');
 const RECOMMEND_SCRIPT = path.join(SKILL_ROOT, 'scripts', 'spec', 'recommend-level.sh');
 const VALIDATE_SCRIPT = path.join(SKILL_ROOT, 'scripts', 'spec', 'validate.sh');
 const FIXTURE_ROOT = path.join(SKILL_ROOT, 'scripts', 'tests', 'fixtures');
+const ALLOWED_SPECS_ROOT = path.join(REPO_ROOT, '.opencode', 'specs');
 
 let passed = 0;
 let failed = 0;
@@ -98,6 +99,11 @@ function parseJson(raw, message) {
 function loadFixture(relativePath) {
   const fixturePath = path.join(FIXTURE_ROOT, relativePath, 'fixture.json');
   return JSON.parse(fs.readFileSync(fixturePath, 'utf-8'));
+}
+
+function createTempSpecFolder(prefix) {
+  fs.mkdirSync(ALLOWED_SPECS_ROOT, { recursive: true });
+  return fs.mkdtempSync(path.join(ALLOWED_SPECS_ROOT, prefix));
 }
 
 function writeSpecBundle(folderPath, options = {}) {
@@ -205,47 +211,55 @@ function testPhaseDefaultsContracts() {
 }
 
 function testPhaseCreationFixtures() {
-  const tempRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'speckit-phase-create-'));
   const scenarios = [
     'phase-2/single-phase',
     'phase-2/multi-phase',
     'phase-2/named-phases',
   ];
+  const createdParents = [];
 
-  for (const scenario of scenarios) {
-    const fixture = loadFixture(scenario);
-    const parentFolder = path.join(tempRoot, scenario.replace(/\//g, '-'));
-    writeSpecBundle(parentFolder, { level: 1, includePhaseMap: true });
+  try {
+    for (const scenario of scenarios) {
+      const fixture = loadFixture(scenario);
+      const scenarioSlug = scenario.replace(/[^A-Za-z0-9]+/g, '-').replace(/^-+|-+$/g, '').toLowerCase();
+      const parentFolder = createTempSpecFolder(`210-${scenarioSlug}-`);
+      createdParents.push(parentFolder);
+      writeSpecBundle(parentFolder, { level: 1, includePhaseMap: true });
 
-    const args = [
-      '--phase',
-      '--parent',
-      parentFolder,
-      '--phases',
-      String(fixture.phases),
-      '--phase-names',
-      fixture.phase_names.join(','),
-      '--skip-branch',
-      '--json',
-      'Fixture phase creation',
-    ];
+      const args = [
+        '--phase',
+        '--parent',
+        parentFolder,
+        '--phases',
+        String(fixture.phases),
+        '--phase-names',
+        fixture.phase_names.join(','),
+        '--skip-branch',
+        '--json',
+        'Fixture phase creation',
+      ];
 
-    const raw = runBash(CREATE_SCRIPT, args);
-    const result = parseJson(raw, `create.sh fixture parse failed (${scenario})`);
-    assertEqual(result.PHASE_MODE, true, `${scenario}: PHASE_MODE true`);
-    assertEqual(result.PHASE_COUNT, fixture.phases, `${scenario}: PHASE_COUNT`);
+      const raw = runBash(CREATE_SCRIPT, args);
+      const result = parseJson(raw, `create.sh fixture parse failed (${scenario})`);
+      assertEqual(result.PHASE_MODE, true, `${scenario}: PHASE_MODE true`);
+      assertEqual(result.PHASE_COUNT, fixture.phases, `${scenario}: PHASE_COUNT`);
 
-    for (const expectedFolder of fixture.expect_folders) {
-      assertTrue(
-        fs.existsSync(path.join(parentFolder, expectedFolder, 'spec.md')),
-        `${scenario}: creates ${expectedFolder}/spec.md`
-      );
+      for (const expectedFolder of fixture.expect_folders) {
+        assertTrue(
+          fs.existsSync(path.join(parentFolder, expectedFolder, 'spec.md')),
+          `${scenario}: creates ${expectedFolder}/spec.md`
+        );
+      }
+    }
+
+    const invalidFixture = loadFixture('phase-2/error-cases');
+    const invalidResult = runBashExpectFailure(CREATE_SCRIPT, invalidFixture.invalid_args);
+    assertTrue(invalidResult.code !== 0, 'phase-2/error-cases: invalid args return non-zero exit');
+  } finally {
+    for (const folderPath of createdParents) {
+      fs.rmSync(folderPath, { recursive: true, force: true });
     }
   }
-
-  const invalidFixture = loadFixture('phase-2/error-cases');
-  const invalidResult = runBashExpectFailure(CREATE_SCRIPT, invalidFixture.invalid_args);
-  assertTrue(invalidResult.code !== 0, 'phase-2/error-cases: invalid args return non-zero exit');
 }
 
 function buildPhaseValidationFixture(basePath, fixture) {

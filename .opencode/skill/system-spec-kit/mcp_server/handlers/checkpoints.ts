@@ -15,7 +15,7 @@ import { checkDatabaseUpdated } from '../core';
 import { requireDb, toErrorMessage } from '../utils';
 
 // REQ-019: Standardized Response Structure
-import { createMCPSuccessResponse } from '../lib/response/envelope';
+import { createMCPErrorResponse, createMCPSuccessResponse } from '../lib/response/envelope';
 
 // Shared handler types
 import type { MCPResponse } from './types';
@@ -92,6 +92,23 @@ async function handleCheckpointCreate(args: CheckpointCreateArgs): Promise<MCPRe
 
   const result = checkpoints.createCheckpoint({ name, specFolder: spec_folder, metadata });
 
+  if (!result) {
+    return createMCPErrorResponse({
+      tool: 'checkpoint_create',
+      error: 'Checkpoint creation failed',
+      code: 'CHECKPOINT_CREATE_FAILED',
+      details: {
+        name,
+        specFolder: spec_folder ?? null,
+      },
+      recovery: {
+        hint: 'Verify database availability and retry checkpoint_create.',
+        actions: ['Run checkpoint_list() to confirm checkpoint state before destructive operations'],
+      },
+      startTime,
+    });
+  }
+
   return createMCPSuccessResponse({
     tool: 'checkpoint_create',
     summary: `Checkpoint "${name}" created successfully`,
@@ -160,23 +177,46 @@ async function handleCheckpointRestore(args: CheckpointRestoreArgs): Promise<MCP
   }
 
   const result = checkpoints.restoreCheckpoint(name, clear_existing);
+  const hasRestoreErrors = result.errors.length > 0;
 
   // T102 FIX: Rebuild search indexes after checkpoint restore
   // Without this, restored memories are invisible to search until server restart.
   // Matches the startup rebuild sequence in context-server.ts (lines 776-791).
-  try {
-    vectorIndex.clearConstitutionalCache(null);
-    vectorIndex.clearSearchCache(null);
+  if (result.restored > 0 || result.workingMemoryRestored > 0) {
+    try {
+      vectorIndex.clearConstitutionalCache(null);
+      vectorIndex.clearSearchCache(null);
 
-    const database = vectorIndex.getDb();
-    if (database && bm25Index.isBm25Enabled()) {
-      bm25Index.getIndex().rebuildFromDatabase(database);
+      const database = vectorIndex.getDb();
+      if (database && bm25Index.isBm25Enabled()) {
+        bm25Index.getIndex().rebuildFromDatabase(database);
+      }
+
+      triggerMatcher.refreshTriggerCache();
+    } catch (rebuildErr: unknown) {
+      // Index rebuild failure is non-fatal — indexes will self-heal on next query or restart
+      console.error('[T102] Index rebuild after checkpoint restore failed:', toErrorMessage(rebuildErr));
     }
+  }
 
-    triggerMatcher.refreshTriggerCache();
-  } catch (rebuildErr: unknown) {
-    // Index rebuild failure is non-fatal — indexes will self-heal on next query or restart
-    console.error('[T102] Index rebuild after checkpoint restore failed:', toErrorMessage(rebuildErr));
+  if (hasRestoreErrors) {
+    return createMCPErrorResponse({
+      tool: 'checkpoint_restore',
+      error: `Checkpoint "${name}" restore failed`,
+      code: 'CHECKPOINT_RESTORE_FAILED',
+      details: {
+        name,
+        clearExisting: clear_existing,
+        restored: result.restored,
+        workingMemoryRestored: result.workingMemoryRestored,
+        errors: result.errors,
+      },
+      recovery: {
+        hint: 'Use checkpoint_list() to confirm checkpoint name and retry.',
+        actions: ['Inspect checkpoint integrity', 'Create a fresh checkpoint before retrying restore'],
+      },
+      startTime,
+    });
   }
 
   return createMCPSuccessResponse({

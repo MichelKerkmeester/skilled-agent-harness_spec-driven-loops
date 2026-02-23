@@ -82,7 +82,7 @@ bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/###-feature-
 
 Phase decomposition is recommended for Level 3 tasks exceeding 500 LOC across multiple subsystems. Breaking large architectural work into ordered phases improves delivery control and risk management. Use Gate 3 Option E to target a specific phase child and `/spec_kit:phase` to create the phase structure.
 
-See the Phase System in the [main templates README](../README.md#phase-system) for full details.
+See the Phase System in the [main templates README](../../../skill/system-spec-kit/templates/README.md#5--phase-system) for full details.
 
 <!-- /ANCHOR:phase -->
 

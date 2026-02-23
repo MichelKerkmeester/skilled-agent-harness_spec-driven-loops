@@ -158,8 +158,8 @@ import { runPreflight } from './preflight';
 
 const result = runPreflight({
   content: memoryFileContent,
-  file_path: '/specs/001-feature/memory/context.md',
-  spec_folder: 'specs/001-feature',
+  file_path: '/specs/<###-spec-name>/memory/context.md',
+  spec_folder: 'specs/<###-spec-name>',
   database: db,
 }, {
   check_anchors: true,

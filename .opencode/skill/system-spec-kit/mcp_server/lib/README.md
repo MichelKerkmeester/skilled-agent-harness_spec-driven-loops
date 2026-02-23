@@ -394,7 +394,7 @@ const newStability = cognitive.fsrsScheduler.update_stability(
 ```typescript
 // Combines recency, relevance, importance and access patterns
 const score = scoring.folderScoring.calculate_folder_score({
-  specFolder: 'specs/007-authentication',
+  specFolder: 'specs/<###-spec-name>',
   queryRelevance: 0.85,
   lastAccessed: new Date('2025-01-20'),
   importanceTier: 'critical',
@@ -464,7 +464,7 @@ import { search } from '@spec-kit/mcp-server/dist/lib';
 const results = await search.vectorIndex.search_memories('authentication flow', {
   limit: 5,
   threshold: 0.7,
-  specFolder: 'specs/007-authentication' // Optional: filter by folder
+  specFolder: 'specs/<###-spec-name>' // Optional: filter by folder
 });
 
 console.log(`Found ${results.length} relevant memories`);

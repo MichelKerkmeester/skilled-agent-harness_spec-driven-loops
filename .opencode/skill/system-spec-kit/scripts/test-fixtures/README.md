@@ -78,10 +78,10 @@ Test fixtures are pre-built spec folder examples that cover all validation scena
 cd .opencode/skill/system-spec-kit/scripts
 
 # 2. Run validation on a single fixture
-./spec/validate.sh test-fixtures/002-valid-level1
+.opencode/skill/system-spec-kit/scripts/spec/validate.sh test-fixtures/002-valid-level1
 
 # 3. Run full test suite
-./tests/test-validation.sh
+.opencode/skill/system-spec-kit/scripts/tests/test-validation.sh
 ```
 
 ### Verify Test Suite
@@ -89,7 +89,7 @@ cd .opencode/skill/system-spec-kit/scripts
 ```bash
 # Run all fixtures with expected results
 cd .opencode/skill/system-spec-kit/scripts
-./tests/test-validation.sh
+.opencode/skill/system-spec-kit/scripts/tests/test-validation.sh
 
 # Expected output:
 # ✓ 51/51 tests passed
@@ -99,7 +99,7 @@ cd .opencode/skill/system-spec-kit/scripts
 
 ```bash
 # Test a specific validation rule
-./spec/validate.sh test-fixtures/007-valid-anchors
+.opencode/skill/system-spec-kit/scripts/spec/validate.sh test-fixtures/007-valid-anchors
 
 # Output shows anchor validation results
 ```
@@ -248,8 +248,8 @@ test-fixtures/004-valid-level3/
 **Purpose**: Run all fixtures with expected results validation
 
 ```bash
-# Located in ../tests/test-validation.sh
-./tests/test-validation.sh
+# Located in ..opencode/skill/system-spec-kit/scripts/tests/test-validation.sh
+.opencode/skill/system-spec-kit/scripts/tests/test-validation.sh
 
 # Tests each fixture against expected validation outcome
 # Exit 0: All tests passed
@@ -268,7 +268,7 @@ test-fixtures/004-valid-level3/
 ```bash
 # Test a specific validation scenario
 cd .opencode/skill/system-spec-kit/scripts
-./spec/validate.sh test-fixtures/007-valid-anchors
+.opencode/skill/system-spec-kit/scripts/spec/validate.sh test-fixtures/007-valid-anchors
 ```
 
 **Result**: Shows validation results for anchor syntax checking.
@@ -278,7 +278,7 @@ cd .opencode/skill/system-spec-kit/scripts
 ```bash
 # Run all fixtures with expected results
 cd .opencode/skill/system-spec-kit/scripts
-./tests/test-validation.sh
+.opencode/skill/system-spec-kit/scripts/tests/test-validation.sh
 ```
 
 **Result**: Reports pass/fail for all 51 fixtures.
@@ -287,12 +287,12 @@ cd .opencode/skill/system-spec-kit/scripts
 
 ```bash
 # Test all anchor-related fixtures
-./spec/validate.sh test-fixtures/007-valid-anchors
-./spec/validate.sh test-fixtures/008-invalid-anchors
-./spec/validate.sh test-fixtures/011-anchors-duplicate-ids
-./spec/validate.sh test-fixtures/012-anchors-empty-memory
-./spec/validate.sh test-fixtures/013-anchors-multiple-files
-./spec/validate.sh test-fixtures/014-anchors-nested
+.opencode/skill/system-spec-kit/scripts/spec/validate.sh test-fixtures/007-valid-anchors
+.opencode/skill/system-spec-kit/scripts/spec/validate.sh test-fixtures/008-invalid-anchors
+.opencode/skill/system-spec-kit/scripts/spec/validate.sh test-fixtures/011-anchors-duplicate-ids
+.opencode/skill/system-spec-kit/scripts/spec/validate.sh test-fixtures/012-anchors-empty-memory
+.opencode/skill/system-spec-kit/scripts/spec/validate.sh test-fixtures/013-anchors-multiple-files
+.opencode/skill/system-spec-kit/scripts/spec/validate.sh test-fixtures/014-anchors-nested
 ```
 
 **Result**: Tests anchor validation logic across all cases.
@@ -301,7 +301,7 @@ cd .opencode/skill/system-spec-kit/scripts
 
 ```bash
 # Test edge case to verify validation behavior
-./spec/validate.sh test-fixtures/038-placeholder-in-codeblock --verbose
+.opencode/skill/system-spec-kit/scripts/spec/validate.sh test-fixtures/038-placeholder-in-codeblock --verbose
 
 # Confirm placeholders in code blocks are allowed (should pass)
 ```
@@ -312,7 +312,7 @@ cd .opencode/skill/system-spec-kit/scripts
 
 ```bash
 # After modifying validation logic, run full suite
-./tests/test-validation.sh
+.opencode/skill/system-spec-kit/scripts/tests/test-validation.sh
 
 # Any failures indicate regression
 ```
@@ -323,11 +323,11 @@ cd .opencode/skill/system-spec-kit/scripts
 
 | Pattern | Command | When to Use |
 |---------|---------|-------------|
-| Single fixture test | `./spec/validate.sh test-fixtures/[name]` | Testing specific rule |
-| Full regression test | `./tests/test-validation.sh` | After validation changes |
-| Rule category test | `./spec/validate.sh test-fixtures/*-priority-*` | Testing priority logic |
-| Baseline validation | `./spec/validate.sh test-fixtures/00[2-4]-valid-*` | Sanity check |
-| Edge case verification | `./spec/validate.sh test-fixtures/0[3-4][0-9]-*` | Boundary conditions |
+| Single fixture test | `.opencode/skill/system-spec-kit/scripts/spec/validate.sh test-fixtures/[name]` | Testing specific rule |
+| Full regression test | `.opencode/skill/system-spec-kit/scripts/tests/test-validation.sh` | After validation changes |
+| Rule category test | `.opencode/skill/system-spec-kit/scripts/spec/validate.sh test-fixtures/*-priority-*` | Testing priority logic |
+| Baseline validation | `.opencode/skill/system-spec-kit/scripts/spec/validate.sh test-fixtures/00[2-4]-valid-*` | Sanity check |
+| Edge case verification | `.opencode/skill/system-spec-kit/scripts/spec/validate.sh test-fixtures/0[3-4][0-9]-*` | Boundary conditions |
 
 ---
 
@@ -340,14 +340,14 @@ cd .opencode/skill/system-spec-kit/scripts
 
 #### Test suite reports failures
 
-**Symptom**: `./tests/test-validation.sh` shows failed tests
+**Symptom**: `.opencode/skill/system-spec-kit/scripts/tests/test-validation.sh` shows failed tests
 
 **Cause**: Validation logic change or fixture corruption
 
 **Solution**:
 ```bash
 # Run specific failing fixture with verbose output
-./spec/validate.sh test-fixtures/[failing-fixture] --verbose
+.opencode/skill/system-spec-kit/scripts/spec/validate.sh test-fixtures/[failing-fixture] --verbose
 
 # Compare expected vs actual validation results
 # Update fixture or fix validation logic as needed
@@ -382,7 +382,7 @@ grep -r "PLACEHOLDER" .  # Check for placeholders
 grep -r "P3" .           # Check for invalid priorities
 
 # Run with verbose output to see validation logic
-./spec/validate.sh test-fixtures/[fixture-name] --verbose
+.opencode/skill/system-spec-kit/scripts/spec/validate.sh test-fixtures/[fixture-name] --verbose
 ```
 
 #### Need to add new test case
@@ -403,17 +403,17 @@ cp -r test-fixtures/002-valid-level1/* test-fixtures/052-new-test-case/
 # Edit files to introduce the condition you want to test
 
 # 4. Validate behavior
-./spec/validate.sh test-fixtures/052-new-test-case
+.opencode/skill/system-spec-kit/scripts/spec/validate.sh test-fixtures/052-new-test-case
 
 # 5. Add to test suite
-# Update ../tests/test-validation.sh with expected result
+# Update ..opencode/skill/system-spec-kit/scripts/tests/test-validation.sh with expected result
 ```
 
 ### Quick Fixes
 
 | Problem | Quick Fix |
 |---------|-----------|
-| Test suite fails | `./tests/test-validation.sh` to see which fixtures |
+| Test suite fails | `.opencode/skill/system-spec-kit/scripts/tests/test-validation.sh` to see which fixtures |
 | Need baseline example | Use `test-fixtures/002-valid-level1` |
 | Check anchor syntax | Examine `test-fixtures/007-valid-anchors/memory/` |
 | Check evidence patterns | Examine `test-fixtures/016-evidence-all-patterns/checklist.md` |
@@ -423,7 +423,7 @@ cp -r test-fixtures/002-valid-level1/* test-fixtures/052-new-test-case/
 
 ```bash
 # Run full test suite
-./tests/test-validation.sh
+.opencode/skill/system-spec-kit/scripts/tests/test-validation.sh
 
 # Count fixtures by category
 ls test-fixtures/ | grep -c "valid"
@@ -453,14 +453,14 @@ ls test-fixtures/ | grep "priority"
 | [../../references/validation/validation_rules.md](../../references/validation/validation_rules.md) | Validation rule reference |
 | [../../references/validation/phase_checklists.md](../../references/validation/phase_checklists.md) | Validation phase definitions |
 | [../../references/templates/template_guide.md](../../references/templates/template_guide.md) | Template usage guide |
-| [../spec/validate.sh](../spec/validate.sh) | Main validation script |
+| [.opencode/skill/system-spec-kit/scripts/spec/validate.sh](.opencode/skill/system-spec-kit/scripts/spec/validate.sh) | Main validation script |
 
 ### Testing Resources
 
 | Resource | Location |
 |----------|----------|
-| Test runner | `../tests/test-validation.sh` |
-| Validation script | `../spec/validate.sh` |
+| Test runner | `.opencode/skill/system-spec-kit/scripts/tests/test-validation.sh` |
+| Validation script | `.opencode/skill/system-spec-kit/scripts/spec/validate.sh` |
 | Template fixtures | `../templates/` |
 
 ### Fixture Categories

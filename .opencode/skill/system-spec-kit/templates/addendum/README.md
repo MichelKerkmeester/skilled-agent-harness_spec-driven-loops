@@ -70,7 +70,7 @@ The `phase/` addendum is orthogonal to level composition -- it can be applied to
 ## 4. 💡 WORKFLOW NOTES
 <!-- ANCHOR:workflow-notes -->
 
-- Copy from `../level_N/` for real specs — never use addendum source files directly.
+- Copy from `../level_1/, ../level_2/, ../level_3/, or ../level_3+/` for real specs — never use addendum source files directly.
 - Keep addendums aligned with the current level architecture.
 - When sections move between levels, update both the addendum source and all affected level READMEs.
 

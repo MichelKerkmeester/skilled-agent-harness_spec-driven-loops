@@ -265,8 +265,8 @@ All scripts support these standard options:
 |---------|---------|-------------|
 | Core setup | `./install-all.sh --only code-mode --only spec-kit-memory --only sequential-thinking` | New project setup |
 | Full setup | `./install-all.sh` | Complete MCP installation |
-| Reinstall | `./install-{name}.sh --force` | Fix broken installation |
-| Debug | `./install-{name}.sh -v` | Troubleshoot issues |
+| Reinstall | `./install-<component>.sh --force` | Fix broken installation |
+| Debug | `./install-<component>.sh -v` | Troubleshoot issues |
 
 <!-- /ANCHOR:usage-examples -->
 
@@ -312,7 +312,7 @@ chmod +x .opencode/install_guides/install_scripts/*.sh
 ```bash
 # Run from project root containing opencode.json
 cd /path/to/your/project
-./install-{name}.sh
+./install-<component>.sh
 ```
 
 #### JSON validation failed

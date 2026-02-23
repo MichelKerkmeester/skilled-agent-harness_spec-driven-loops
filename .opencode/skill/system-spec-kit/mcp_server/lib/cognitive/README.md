@@ -408,7 +408,7 @@ const result = evaluateMemory(
     { id: 42, similarity: 92, content: 'Use React for UI' },
     { id: 58, similarity: 88, content: 'React is the UI framework' }
   ],
-  { specFolder: 'specs/042' }     // options
+  { specFolder: 'specs/<###-spec-name>' }     // options
 );
 
 // result = {
@@ -433,7 +433,7 @@ const record = formatConflictRecord(
   contradiction,      // ContradictionResult
   'preview of new',   // newContentPreview
   'preview of old',   // existingContentPreview
-  'specs/042'         // specFolder
+  'specs/<###-spec-name>'         // specFolder
 );
 logConflict(record);  // Single ConflictRecord param
 
@@ -790,7 +790,7 @@ const decision = gate.evaluateMemory(
   contentHash,
   newMemoryContent,
   candidates,        // from vector search
-  { specFolder: 'specs/042' }
+  { specFolder: 'specs/<###-spec-name>' }
 );
 
 switch (decision.action) {

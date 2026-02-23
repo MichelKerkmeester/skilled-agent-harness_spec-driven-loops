@@ -780,7 +780,7 @@ Real workflows, not toy examples.
 ```bash
 # 1. Start with a plan
 /spec_kit:plan "add rate limiting to API"
-# -> Creates specs/043-rate-limiting/ with spec.md and plan.md
+# -> Creates specs/<NNN-rate-limiting>/ with spec.md and plan.md
 
 # 2. Review and approve the plan, then implement
 /spec_kit:implement
@@ -831,7 +831,7 @@ memory_index_scan({ includeSpecDocs: true })
 → Skips unchanged files (content hash comparison)
 → Generates embeddings only for new/modified content
 
-memory_index_scan({ specFolder: "043-rate-limiting", force: true })
+memory_index_scan({ specFolder: "<NNN-rate-limiting>", force: true })
 → Re-indexes a single spec folder (force = regenerate all embeddings)
 
 memory_index_scan({ includeSpecDocs: false })
@@ -1012,12 +1012,12 @@ A: Minimal. SQLite databases are compact. A project with 100+ memories typically
 | [Workflows: Code (OpenCode)](.opencode/changelog/06--sk-code--opencode/)     | 9 files  |
 | [Workflows: Code (Web Dev)](.opencode/changelog/07--sk-code--web/)           | 10 files |
 | [Workflows: Code (Full Stack)](.opencode/changelog/08--sk-code--full-stack/) | 4 files  |
-| [Workflows: Git](.opencode/changelog/09--sk-git/)                            | 7 files  |
-| [Workflows: Documentation](.opencode/changelog/10--sk-doc/)                  | 9 files  |
-| [Workflows: Doc Visual](.opencode/changelog/11--sk-doc-visual/)              | 1 file   |
-| [MCP: Code Mode](.opencode/changelog/12--mcp-code-mode/)                     | 7 files  |
-| [MCP: Chrome DevTools](.opencode/changelog/13--mcp-chrome-devtools/)         | 4 files  |
-| [MCP: Figma](.opencode/changelog/14--mcp-figma/)                             | 5 files  |
+| [Workflows: Git](.opencode/changelog/10--sk-git/)                            | 7 files  |
+| [Workflows: Documentation](.opencode/changelog/11--sk-doc/)                  | 9 files  |
+| [Workflows: Doc Visual](.opencode/changelog/12--sk-doc-visual/)              | 1 file   |
+| [MCP: Code Mode](.opencode/changelog/13--mcp-code-mode/)                     | 7 files  |
+| [MCP: Chrome DevTools](.opencode/changelog/14--mcp-chrome-devtools/)         | 4 files  |
+| [MCP: Figma](.opencode/changelog/15--mcp-figma/)                             | 5 files  |
 
 ### External Resources
 

@@ -52,6 +52,7 @@ Primary script directories:
 - `evals/` - 8 evaluation scripts (redaction calibration, phase1-5 shadow eval, quality backfill, performance benchmarks, closure metrics, telemetry dashboard, quality legacy remediation)
 - `kpi/` - shell KPI scripts (`quality-kpi.sh`)
 - `tests/` - JS, shell, and Python test suites for scripts and modules
+- `templates/` - wrapper/composition helpers for template packaging workflows
 
 
 <!-- /ANCHOR:inventory-snapshot -->
@@ -88,13 +89,13 @@ npm run build
 Memory save entrypoint (required by Memory Save Rule):
 
 ```bash
-node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js specs/003-system-spec-kit/130-memory-overhaul-and-agent-upgrade-release
+node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js specs/<###-spec-name>
 ```
 
 JSON mode is also supported:
 
 ```bash
-node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js /tmp/save-context-data.json specs/003-system-spec-kit/130-memory-overhaul-and-agent-upgrade-release
+node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js /tmp/save-context-data.json specs/<###-spec-name>
 ```
 
 
@@ -111,4 +112,5 @@ node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js /tm
 - `loaders/README.md`
 - `renderers/README.md`
 - `lib/README.md`
+- `templates/README.md`
 <!-- /ANCHOR:related-readmes -->

@@ -82,13 +82,23 @@ sk-code--full-stack/
 │       └── swift/                    # swift_standards, swiftui_patterns, mvvm, async, ...
 └── assets/
     ├── backend/
-    │   ├── go/checklists/ + patterns/
-    │   └── nodejs/checklists/ + patterns/
+    │   ├── go/
+    │   │   ├── checklists/
+    │   │   └── patterns/
+    │   └── nodejs/
+    │       ├── checklists/
+    │       └── patterns/
     ├── frontend/
-    │   └── react/checklists/ + patterns/
+    │   └── react/
+    │       ├── checklists/
+    │       └── patterns/
     └── mobile/
-        ├── react-native/checklists/ + patterns/
-        └── swift/checklists/ + patterns/
+        ├── react-native/
+        │   ├── checklists/
+        │   └── patterns/
+        └── swift/
+            ├── checklists/
+            └── patterns/
 ```
 
 <!-- /ANCHOR:structure -->
