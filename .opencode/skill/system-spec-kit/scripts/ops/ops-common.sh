@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
+# ───────────────────────────────────────────────────────────────
 # Shared deterministic retry + escalation helpers for self-healing ops scripts.
+# ───────────────────────────────────────────────────────────────
 
 set -euo pipefail
 

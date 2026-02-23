@@ -34,7 +34,7 @@ import {
 } from './handlers';
 
 // Utils
-import { validateInputLengths } from './utils';
+import { validateInputLengths, validateToolInputSchema } from './utils';
 
 // Hooks
 import { MEMORY_AWARE_TOOLS, extractContextHint, autoSurfaceMemories } from './hooks';
@@ -188,6 +188,8 @@ server.setRequestHandler(CallToolRequestSchema, async (request, _extra: unknown)
   try {
     // SEC-003: Validate input lengths before processing (CWE-400 mitigation)
     validateInputLengths(args);
+    // T304: Enforce declared MCP tool schema contract before dispatch.
+    validateToolInputSchema(name, args, TOOL_DEFINITIONS);
 
     // SK-004: Auto-surface memories for memory-aware tools (after validation)
     let autoSurfacedContext: AutoSurfaceResult | null = null;

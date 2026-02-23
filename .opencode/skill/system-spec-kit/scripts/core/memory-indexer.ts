@@ -1,6 +1,8 @@
-// --- MODULE: Memory Indexer ---
+// ---------------------------------------------------------------
+// MODULE: Memory Indexer
 // Handles persisting memory files to the vector index: embedding generation,
 // database storage, metadata updates, and DB-change notifications.
+// ---------------------------------------------------------------
 
 import * as fs from 'fs/promises';
 import * as fsSync from 'fs';

@@ -1627,7 +1627,7 @@ async function atomicSaveMemory(params: AtomicSaveParams, options: AtomicSaveOpt
 
   // Index the saved file (async, after atomic write succeeded)
   try {
-    indexResult = await indexMemoryFile(file_path, { force });
+    indexResult = await indexMemoryFile(file_path, { force, asyncEmbedding: true });
   } catch (err: unknown) {
     indexError = err instanceof Error ? err : new Error(String(err));
   }

@@ -53,3 +53,8 @@ export {
   requireDb,
   toErrorMessage,
 } from './db-helpers';
+
+export {
+  // Functions
+  validateToolInputSchema,
+} from './tool-input-schema';

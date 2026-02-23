@@ -37,6 +37,7 @@ interface AutoSurfaceResult {
 --------------------------------------------------------------- */
 
 const MEMORY_AWARE_TOOLS: Set<string> = new Set([
+  'memory_context',
   'memory_search',
   'memory_match_triggers',
   'memory_list',
@@ -56,7 +57,7 @@ const CONSTITUTIONAL_CACHE_TTL = 60000; // 1 minute
 function extractContextHint(args: Record<string, unknown> | null | undefined): string | null {
   if (!args || typeof args !== 'object') return null;
 
-  const contextFields = ['query', 'prompt', 'specFolder', 'filePath'];
+  const contextFields = ['input', 'query', 'prompt', 'specFolder', 'filePath'];
   for (const field of contextFields) {
     if (args[field] && typeof args[field] === 'string' && (args[field] as string).length >= 3) {
       return args[field] as string;

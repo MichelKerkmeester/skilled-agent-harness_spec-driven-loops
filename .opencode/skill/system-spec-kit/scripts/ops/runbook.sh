@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
+# ───────────────────────────────────────────────────────────────
 # Runbook helper for deterministic self-healing classes.
+# ───────────────────────────────────────────────────────────────
 
 set -euo pipefail
 

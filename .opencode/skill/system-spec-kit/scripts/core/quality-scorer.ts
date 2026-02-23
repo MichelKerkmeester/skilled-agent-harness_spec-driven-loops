@@ -1,5 +1,7 @@
-// --- MODULE: Quality Scorer ---
+// ---------------------------------------------------------------
+// MODULE: Quality Scorer
 // Scores the quality of generated memory files based on multiple criteria
+// ---------------------------------------------------------------
 
 interface FileWithDescription {
   DESCRIPTION?: string;

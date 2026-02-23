@@ -1,5 +1,7 @@
-// --- MODULE: Topic Extractor ---
+// ---------------------------------------------------------------
+// MODULE: Topic Extractor
 // Extracts key topics from session data using weighted scoring and bigram analysis
+// ---------------------------------------------------------------
 
 import {
   createValidShortTerms,

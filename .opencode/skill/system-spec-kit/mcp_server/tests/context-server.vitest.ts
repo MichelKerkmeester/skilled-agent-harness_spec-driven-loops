@@ -359,7 +359,10 @@ describe('Context Server', () => {
         setEmbeddingModelReady: vi.fn(),
       }))
 
-      vi.doMock('../utils', () => ({ validateInputLengths: vi.fn() }))
+      vi.doMock('../utils', () => ({
+        validateInputLengths: vi.fn(),
+        validateToolInputSchema: vi.fn(),
+      }))
 
       vi.doMock('../hooks', () => ({
         MEMORY_AWARE_TOOLS: new Set<string>(),
@@ -871,7 +874,7 @@ describe('Context Server', () => {
       expect(hooksModule.MEMORY_AWARE_TOOLS).toBeInstanceOf(Set)
     })
 
-    const expectedAwareTools = ['memory_search', 'memory_match_triggers', 'memory_list', 'memory_save', 'memory_index_scan']
+    const expectedAwareTools = ['memory_context', 'memory_search', 'memory_match_triggers', 'memory_list', 'memory_save', 'memory_index_scan']
     for (const t of expectedAwareTools) {
       it(`T31b: MEMORY_AWARE_TOOLS contains '${t}'`, async () => {
         let hooksModule: any = null
@@ -952,6 +955,25 @@ describe('Context Server', () => {
       }
       if (typeof hooksModule?.extractContextHint !== 'function') return
       expect(hooksModule.extractContextHint({ prompt: 'trigger phrase' })).toBe('trigger phrase')
+    })
+
+    it('T31ea: extractContextHint extracts input', async () => {
+      let hooksModule: any = null
+      try {
+        hooksModule = await import('../hooks/index')
+      } catch {
+        try {
+          hooksModule = await import('../hooks')
+        } catch {
+          try {
+            hooksModule = await import('../hooks/memory-surface')
+          } catch {
+            return
+          }
+        }
+      }
+      if (typeof hooksModule?.extractContextHint !== 'function') return
+      expect(hooksModule.extractContextHint({ input: 'memory context request' })).toBe('memory context request')
     })
 
     it('T31f: extractContextHint handles null', async () => {
@@ -1039,6 +1061,11 @@ describe('Context Server', () => {
     it('T32: validateInputLengths called before dispatchTool', () => {
       const validationOrder = /validateInputLengths\(args\)[\s\S]*?dispatchTool\(name/
       expect(validationOrder.test(sourceCode)).toBe(true)
+    })
+
+    it('T32a: validateToolInputSchema called before dispatchTool', () => {
+      const schemaValidationOrder = /validateToolInputSchema\(name,\s*args,\s*TOOL_DEFINITIONS\)[\s\S]*?dispatchTool\(name/
+      expect(schemaValidationOrder.test(sourceCode)).toBe(true)
     })
 
     // T33: validateInputLengths direct tests

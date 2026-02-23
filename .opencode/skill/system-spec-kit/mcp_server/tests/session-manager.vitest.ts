@@ -332,6 +332,28 @@ describe('Session Manager Tests (T001-T008)', () => {
       expect(dedupStats.total).toBe(5);
       expect(dedupStats.enabled).toBe(true);
     });
+
+    it('T007b: Removes duplicates within the same result batch', () => {
+      const sessionId: string = 'test-session-T007b';
+
+      const duplicateResultA: MemoryObject = createMemory({ id: 701, anchorId: 'dup-result' });
+      const duplicateResultB: MemoryObject = createMemory({ id: 701, anchorId: 'dup-result' });
+      const uniqueResult: MemoryObject = createMemory({ id: 702, anchorId: 'unique-result' });
+
+      const { filtered, dedupStats }: FilterResult = sessionManager.filterSearchResults(sessionId, [
+        duplicateResultA,
+        duplicateResultB,
+        uniqueResult,
+      ]);
+
+      expect(filtered).toHaveLength(2);
+      const filteredIds: number[] = filtered.map((m: MemoryObject) => m.id);
+      expect(filteredIds).toEqual([701, 702]);
+
+      expect(dedupStats.filtered).toBe(1);
+      expect(dedupStats.total).toBe(3);
+      expect(dedupStats.enabled).toBe(true);
+    });
   });
 
   // ─────────────────────────────────────────────────────────────

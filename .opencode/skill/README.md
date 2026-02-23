@@ -37,11 +37,11 @@ The Skills Library contains the current skill set under `.opencode/skill/`. Skil
 
 This folder now has 11 skill folders and one shared scripts folder:
 
-| Item | Count | Notes |
-| --- | --- | --- |
-| Skill folders | 11 | Each skill has a `SKILL.md` entry point |
-| Skills with local `scripts/` | 6 | Automation lives close to the skill that owns it |
-| Shared routing scripts | 1 executable | `.opencode/skill/scripts/skill_advisor.py` |
+| Item                         | Count        | Notes                                            |
+| ---------------------------- | ------------ | ------------------------------------------------ |
+| Skill folders                | 11           | Each skill has a `SKILL.md` entry point          |
+| Skills with local `scripts/` | 6            | Automation lives close to the skill that owns it |
+| Shared routing scripts       | 1 executable | `.opencode/skill/scripts/skill_advisor.py`       |
 
 Skills are not passive references. Each skill contains executable guidance with references, assets or scripts.
 
@@ -90,8 +90,8 @@ Request -> Route skill -> Load SKILL.md -> Load only needed references/assets/sc
 ├── scripts/
 ├── sk-code/                # Baseline code workflow (optional by repo)
 ├── sk-code--*/             # Overlay code workflow skills (repo-specific)
-├── sk-doc/
 ├── sk-git/
+├── sk-doc/
 ├── sk-doc-visual/
 ├── system-spec-kit/
 └── README.md
@@ -99,21 +99,21 @@ Request -> Route skill -> Load SKILL.md -> Load only needed references/assets/sc
 
 ### Shared Scripts (`.opencode/skill/scripts/`)
 
-| File | Purpose |
-| --- | --- |
-| `skill_advisor.py` | Gate 2 skill routing with confidence scores |
-| `README.md` | Script usage and integration reference |
-| `SET-UP_GUIDE.md` | Setup and tuning guide for `skill_advisor.py` |
+| File               | Purpose                                       |
+| ------------------ | --------------------------------------------- |
+| `skill_advisor.py` | Gate 2 skill routing with confidence scores   |
+| `README.md`        | Script usage and integration reference        |
+| `SET-UP_GUIDE.md`  | Setup and tuning guide for `skill_advisor.py` |
 
 ### Skill-Local Script Entry Points
 
-| Skill | Scripts |
-| --- | --- |
-| `mcp-code-mode` | `scripts/update-code-mode.sh`, `scripts/validate_config.py` |
-| `sk-code` or `sk-code--*` | Overlay-owned scripts vary by repo (for example alignment checks or minification pipelines) |
-| `sk-doc` | `scripts/init_skill.py`, `scripts/quick_validate.py`, `scripts/package_skill.py`, `scripts/validate_document.py`, `scripts/extract_structure.py`, `scripts/validate_flowchart.sh` |
-| `sk-doc-visual` | `scripts/validate-html-output.sh`, `scripts/check-version-drift.sh`, `scripts/cleanup-output.sh` |
-| `system-spec-kit` | `scripts/spec/create.sh`, `scripts/spec/validate.sh`, `scripts/memory/generate-context.ts`, `scripts/memory/reindex-embeddings.ts`, `scripts/setup/check-prerequisites.sh` |
+| Skill                     | Scripts                                                                                                                                                                           |
+| ------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `mcp-code-mode`           | `scripts/update-code-mode.sh`, `scripts/validate_config.py`                                                                                                                       |
+| `sk-code` or `sk-code--*` | Overlay-owned scripts vary by repo (for example alignment checks or minification pipelines)                                                                                       |
+| `sk-doc`                  | `scripts/init_skill.py`, `scripts/quick_validate.py`, `scripts/package_skill.py`, `scripts/validate_document.py`, `scripts/extract_structure.py`, `scripts/validate_flowchart.sh` |
+| `sk-doc-visual`           | `scripts/validate-html-output.sh`, `scripts/check-version-drift.sh`, `scripts/cleanup-output.sh`                                                                                  |
+| `system-spec-kit`         | `scripts/spec/create.sh`, `scripts/spec/validate.sh`, `scripts/memory/generate-context.ts`, `scripts/memory/reindex-embeddings.ts`, `scripts/setup/check-prerequisites.sh`        |
 
 For the full `system-spec-kit` script inventory, use `system-spec-kit/scripts/scripts-registry.json`.
 
@@ -139,21 +139,19 @@ Portable code workflow contract:
 - Review flow: baseline + one overlay
 - Overlay examples: `sk-code--opencode` | `sk-code--web` | `sk-code--full-stack`
 
+#### `sk-git` (v1.0.8.0)
+
+Git workflows for workspace setup, clean commits and branch completion.
+
 ### Documentation
 
 #### `sk-doc` (v1.1.2.0)
 
 Documentation quality workflows, HVR enforcement, component templates and validation scripts.
 
-### Git and Browser
+#### `sk-doc-visual` (v1.1.0.0)
 
-#### `sk-git` (v1.0.8.0)
-
-Git workflows for workspace setup, clean commits and branch completion.
-
-#### `mcp-chrome-devtools` (v1.0.7.0)
-
-Browser debugging through CLI-first flow with MCP fallback for multi-tool runs.
+Converts terminal output and technical context into styled, self-contained HTML visual artifacts.
 
 ### MCP Integrations
 
@@ -161,15 +159,14 @@ Browser debugging through CLI-first flow with MCP fallback for multi-tool runs.
 
 TypeScript-based orchestration for MCP tools with progressive discovery and type-safe calls.
 
+#### `mcp-chrome-devtools` (v1.0.7.0)
+
+Browser debugging through CLI-first flow with MCP fallback for multi-tool runs.
+
 #### `mcp-figma` (v1.0.7.0)
 
 Figma MCP workflow for file retrieval, image export and component/style extraction.
 
-### Visual Output
-
-#### `sk-doc-visual` (v1.1.0.0)
-
-Converts terminal output and technical context into styled, self-contained HTML visual artifacts.
 
 <!-- /ANCHOR:skills-catalog -->
 
@@ -178,25 +175,25 @@ Converts terminal output and technical context into styled, self-contained HTML 
 
 ### Recommended Layout
 
-| Path | Purpose |
-| --- | --- |
-| `SKILL.md` | Required entry point and routing logic |
-| `references/` | Focused domain guidance |
-| `assets/` | Templates and static support files |
-| `scripts/` | Optional automation for checks and generation |
+| Path          | Purpose                                       |
+| ------------- | --------------------------------------------- |
+| `SKILL.md`    | Required entry point and routing logic        |
+| `references/` | Focused domain guidance                       |
+| `assets/`     | Templates and static support files            |
+| `scripts/`    | Optional automation for checks and generation |
 
 ### Current Folder Signals
 
-| Skill | `references/` | `assets/` | `scripts/` |
-| --- | --- | --- | --- |
-| `mcp-chrome-devtools` | Yes | No | No |
-| `mcp-code-mode` | Yes | Yes | Yes |
-| `mcp-figma` | Yes | Yes | No |
-| `sk-code` or `sk-code--*` | Varies | Varies | Varies |
-| `sk-doc` | Yes | Yes | Yes |
-| `sk-git` | Yes | Yes | No |
-| `sk-doc-visual` | Yes | Yes | Yes |
-| `system-spec-kit` | Yes | Yes | Yes |
+| Skill                     | `references/` | `assets/` | `scripts/` |
+| ------------------------- | ------------- | --------- | ---------- |
+| `mcp-chrome-devtools`     | Yes           | No        | No         |
+| `mcp-code-mode`           | Yes           | Yes       | Yes        |
+| `mcp-figma`               | Yes           | Yes       | No         |
+| `sk-code` or `sk-code--*` | Varies        | Varies    | Varies     |
+| `sk-git`                  | Yes           | Yes       | No         |
+| `sk-doc`                  | Yes           | Yes       | Yes        |
+| `sk-doc-visual`           | Yes           | Yes       | Yes        |
+| `system-spec-kit`         | Yes           | Yes       | Yes        |
 
 <!-- /ANCHOR:skill-structure -->
 
@@ -211,10 +208,10 @@ python3 .opencode/skill/scripts/skill_advisor.py "<request>" --threshold 0.8
 
 Routing policy:
 
-| Condition | Action |
-| --- | --- |
+| Condition           | Action                       |
+| ------------------- | ---------------------------- |
 | Confidence `>= 0.8` | Skill invocation is required |
-| Confidence `< 0.8` | General approach is allowed |
+| Confidence `< 0.8`  | General approach is allowed  |
 
 Minimal flow:
 

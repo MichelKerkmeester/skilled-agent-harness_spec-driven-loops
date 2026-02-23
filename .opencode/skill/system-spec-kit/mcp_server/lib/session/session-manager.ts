@@ -361,7 +361,14 @@ function shouldSendMemoriesBatch(sessionId: string, memories: MemoryInput[]): Ma
 
     for (const memory of memories) {
       const hash = generateMemoryHash(memory);
-      result.set(memory.id, !existingHashes.has(hash));
+      const shouldSend = !existingHashes.has(hash);
+      if (shouldSend) {
+        existingHashes.add(hash);
+      }
+      // Preserve first occurrence decision for the same memory ID.
+      if (!result.has(memory.id)) {
+        result.set(memory.id, shouldSend);
+      }
     }
 
     return result;
@@ -641,8 +648,23 @@ function filterSearchResults(sessionId: string, results: MemoryInput[]): FilterR
   }
 
   const shouldSendMap = shouldSendMemoriesBatch(sessionId, results);
-
-  const filtered = results.filter((r) => shouldSendMap.get(r.id) !== false);
+  const seenBatchHashes = new Set<string>();
+  const filtered = results.filter((r) => {
+    if (shouldSendMap.get(r.id) === false) {
+      return false;
+    }
+    try {
+      const hash = generateMemoryHash(r);
+      if (seenBatchHashes.has(hash)) {
+        return false;
+      }
+      seenBatchHashes.add(hash);
+    } catch {
+      // If hash generation fails unexpectedly, preserve existing behavior.
+      return true;
+    }
+    return true;
+  });
   const filteredCount = results.length - filtered.length;
 
   return {

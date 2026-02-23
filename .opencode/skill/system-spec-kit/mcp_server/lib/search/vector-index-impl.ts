@@ -1824,6 +1824,9 @@ function index_memory(params: IndexMemoryParams) {
     const metadata_id = Number(row_id);
 
     if (sqlite_vec_available) {
+      // Defensive: remove any orphaned vector entry from a prior failed delete
+      // (memory_index can reuse rowids since it lacks AUTOINCREMENT)
+      database.prepare('DELETE FROM vec_memories WHERE rowid = ?').run(row_id);
       database.prepare(`
         INSERT INTO vec_memories (rowid, embedding) VALUES (?, ?)
       `).run(row_id, embedding_buffer);

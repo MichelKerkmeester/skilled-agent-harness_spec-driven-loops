@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
+# ───────────────────────────────────────────────────────────────
 # Self-healing workflow: ledger mismatch.
-
+# ───────────────────────────────────────────────────────────────
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"

@@ -10,7 +10,7 @@ SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 ROOT_DIR="$(cd "$SCRIPT_DIR/../.." && pwd)"
 
 echo "╔══════════════════════════════════════════════════════════╗"
-echo "║  Rebuilding Native Modules                              ║"
+echo "║  Rebuilding Native Modules                               ║"
 echo "╚══════════════════════════════════════════════════════════╝"
 echo ""
 echo "Node.js:        $(node --version)"

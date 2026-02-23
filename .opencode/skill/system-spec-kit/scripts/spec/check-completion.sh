@@ -25,6 +25,8 @@ P2_TOTAL=0
 P2_COMPLETE=0
 UNTAGGED_TOTAL=0
 UNTAGGED_COMPLETE=0
+P0_MISSING_EVIDENCE=0
+P1_MISSING_EVIDENCE=0
 
 if [[ -t 1 ]]; then
     RED='\033[0;31m'
@@ -63,7 +65,8 @@ PRIORITY ENFORCEMENT:
   [P0] Critical  - HARD BLOCKER, must be complete
   [P1] High      - Required, must complete OR get user approval
   [P2] Medium    - Can defer with documented reason (unless --strict)
-  [UNTAGGED]     - Treated as required until explicitly prioritized
+  [UNTAGGED]     - BLOCKING; add P0/P1/P2 context before claiming completion
+  Completed P0/P1 items must include evidence markers ([EVIDENCE:], | Evidence:, checkmark, or verified/tested/confirmed note)
 
 EXAMPLES:
   ./$SCRIPT_NAME specs/007-feature/
@@ -131,6 +134,8 @@ count_checklist_items() {
         if [[ "$line" =~ ^[[:space:]]*-[[:space:]]\[([[:space:]]|x|X)\][[:space:]] ]]; then
             local is_completed=false
             local item_priority=""
+            local line_lower=""
+            local has_evidence=false
 
             ((TOTAL_ITEMS++)) || true
 
@@ -143,6 +148,27 @@ count_checklist_items() {
                 item_priority="${BASH_REMATCH[1]}"
             elif [[ -n "$current_priority" ]]; then
                 item_priority="$current_priority"
+            fi
+
+            line_lower=$(printf '%s' "$line" | tr '[:upper:]' '[:lower:]')
+            [[ "$line_lower" == *"[evidence:"* ]] && has_evidence=true
+            [[ "$line_lower" == *"| evidence:"* ]] && has_evidence=true
+            [[ "$line_lower" == *"(verified)"* || "$line_lower" == *"(tested)"* || "$line_lower" == *"(confirmed)"* ]] && has_evidence=true
+            [[ "$line_lower" == *"[deferred:"* ]] && has_evidence=true
+            if [[ "$line" == *"✓"* || "$line" == *"✔"* || "$line" == *"☑"* || "$line" == *"✅"* ]]; then
+                has_evidence=true
+            fi
+            if [[ "$line" =~ \[[xX]\].*\[[xX]\] ]]; then
+                has_evidence=true
+            fi
+
+            if [[ "$is_completed" == "true" ]]; then
+                if [[ "$item_priority" == "P0" && "$has_evidence" == "false" ]]; then
+                    ((P0_MISSING_EVIDENCE++)) || true
+                fi
+                if [[ "$item_priority" == "P1" && "$has_evidence" == "false" ]]; then
+                    ((P1_MISSING_EVIDENCE++)) || true
+                fi
             fi
 
             case "$item_priority" in
@@ -179,7 +205,6 @@ calculate_status() {
     local p0_pass=true
     local p1_pass=true
     local p2_pass=true
-    local untagged_pass=true
 
     if [[ $P0_TOTAL -gt 0 && $P0_COMPLETE -lt $P0_TOTAL ]]; then
         p0_pass=false
@@ -195,18 +220,16 @@ calculate_status() {
         fi
     fi
 
-    if [[ $UNTAGGED_TOTAL -gt 0 && $UNTAGGED_COMPLETE -lt $UNTAGGED_TOTAL ]]; then
-        untagged_pass=false
-    fi
-
     if ! $p0_pass; then
         echo "P0_INCOMPLETE"
     elif ! $p1_pass; then
         echo "P1_INCOMPLETE"
     elif $STRICT_MODE && ! $p2_pass; then
         echo "P2_INCOMPLETE"
-    elif ! $untagged_pass; then
-        echo "UNTAGGED_INCOMPLETE"
+    elif [[ $UNTAGGED_TOTAL -gt 0 ]]; then
+        echo "PRIORITY_CONTEXT_MISSING"
+    elif [[ $P0_MISSING_EVIDENCE -gt 0 || $P1_MISSING_EVIDENCE -gt 0 ]]; then
+        echo "EVIDENCE_MISSING"
     else
         echo "COMPLETE"
     fi
@@ -237,6 +260,11 @@ output_json() {
     "p1": { "total": $P1_TOTAL, "completed": $P1_COMPLETE },
     "p2": { "total": $P2_TOTAL, "completed": $P2_COMPLETE },
     "untagged": { "total": $UNTAGGED_TOTAL, "completed": $UNTAGGED_COMPLETE }
+  },
+  "qualityGates": {
+    "priorityContextMissing": $UNTAGGED_TOTAL,
+    "p0MissingEvidence": $P0_MISSING_EVIDENCE,
+    "p1MissingEvidence": $P1_MISSING_EVIDENCE
   }
 }
 EOF
@@ -286,11 +314,16 @@ output_text() {
     fi
 
     if [[ $UNTAGGED_TOTAL -gt 0 ]]; then
-        if [[ $UNTAGGED_COMPLETE -eq $UNTAGGED_TOTAL ]]; then
-            echo -e "    ${GREEN}✓${NC} [UNTAGGED] Required fallback: $UNTAGGED_COMPLETE/$UNTAGGED_TOTAL complete"
-        else
-            echo -e "    ${RED}✗${NC} [UNTAGGED] Required fallback: $UNTAGGED_COMPLETE/$UNTAGGED_TOTAL complete ${RED}(BLOCKING)${NC}"
-        fi
+        echo -e "    ${RED}✗${NC} [UNTAGGED] Priority context: $UNTAGGED_TOTAL item(s) ${RED}(BLOCKING - add P0/P1/P2 context)${NC}"
+    else
+        echo -e "    ${GREEN}✓${NC} Priority context present for all checklist items"
+    fi
+
+    if [[ $P0_MISSING_EVIDENCE -gt 0 || $P1_MISSING_EVIDENCE -gt 0 ]]; then
+        local total_missing_evidence=$((P0_MISSING_EVIDENCE + P1_MISSING_EVIDENCE))
+        echo -e "    ${RED}✗${NC} Evidence on completed P0/P1: missing on $total_missing_evidence item(s) ${RED}(BLOCKING)${NC}"
+    else
+        echo -e "    ${GREEN}✓${NC} Evidence present for all completed P0/P1 items"
     fi
 
     echo -e "\n${BLUE}───────────────────────────────────────────────────────────────${NC}\n"
@@ -315,9 +348,13 @@ output_text() {
             echo -e "  ${YELLOW}${BOLD}RESULT: BLOCKED (strict mode)${NC}"
             echo -e "  P2 items incomplete. Required in strict mode."
             ;;
-        UNTAGGED_INCOMPLETE)
+        PRIORITY_CONTEXT_MISSING)
             echo -e "  ${RED}${BOLD}RESULT: BLOCKED${NC}"
-            echo -e "  Untagged checklist items are incomplete. Add priorities or complete all untagged items."
+            echo -e "  Missing priority context on checklist items. Add P0/P1/P2 headers or inline tags."
+            ;;
+        EVIDENCE_MISSING)
+            echo -e "  ${RED}${BOLD}RESULT: BLOCKED${NC}"
+            echo -e "  Completed P0/P1 items are missing evidence markers. Add [EVIDENCE:] before claiming completion."
             ;;
     esac
 
