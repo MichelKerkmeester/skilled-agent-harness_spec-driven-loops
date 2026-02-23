@@ -45,17 +45,23 @@ run_check() {
     while IFS= read -r line || [[ -n "$line" ]]; do
         ((line_num++)) || true
         
-        # Detect priority section headers (## P0, ## P1, ## P2)
-        if [[ "$line" =~ ^##[[:space:]]+(P[0-2]) ]]; then
+        # Detect priority section headers (## P0, ## [P1], ### P2: ...)
+        if [[ "$line" =~ ^#{1,6}[[:space:]]+\[?(P[0-2])\]?([[:space:]]|$|:|-) ]]; then
             current_priority="${BASH_REMATCH[1]}"
             continue
         fi
-        
-        [[ -z "$current_priority" ]] && continue
-        [[ "$current_priority" == "P2" ]] && continue
-        
+
         # Check completed items: - [x] or - [X]
         if [[ "$line" =~ ^[[:space:]]*-[[:space:]]\[[xX]\] ]]; then
+            local item_priority=""
+            if [[ "$line" =~ \[(P[0-2])\] ]]; then
+                item_priority="${BASH_REMATCH[1]}"
+            elif [[ -n "$current_priority" ]]; then
+                item_priority="$current_priority"
+            fi
+
+            [[ "$item_priority" == "P2" ]] && continue
+
             local task_text="${line#*] }"
             local has_evidence=false
             local line_lower
@@ -81,7 +87,8 @@ run_check() {
                 if [[ ${#display_task} -gt 50 ]]; then
                     display_task="${display_task:0:47}..."
                 fi
-                RULE_DETAILS+=("${current_priority}:${line_num}: ${display_task}")
+                local priority_label="${item_priority:-UNSPECIFIED}"
+                RULE_DETAILS+=("${priority_label}:${line_num}: ${display_task}")
             fi
         fi
     done < "$checklist"

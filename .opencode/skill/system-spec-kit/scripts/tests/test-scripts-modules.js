@@ -3240,12 +3240,12 @@ async function testMemoryGenerateContext() {
       fail('T-042h: isValidSpecFolder rejects invalid folder', 'Should be invalid');
     }
 
-    // Test 9: isValidSpecFolder warns for non-specs path
+    // Test 9: isValidSpecFolder rejects non-specs path
     const nonSpecsResult = isValidSpecFolder('/tmp/042-feature');
-    if (nonSpecsResult.valid === true && nonSpecsResult.warning) {
-      pass('T-042i: isValidSpecFolder warns for non-specs path', 'Warning provided');
+    if (nonSpecsResult.valid === false && nonSpecsResult.reason) {
+      pass('T-042i: isValidSpecFolder rejects non-specs path', nonSpecsResult.reason);
     } else {
-      fail('T-042i: isValidSpecFolder warns for non-specs path', 'No warning');
+      fail('T-042i: isValidSpecFolder rejects non-specs path', 'Should be invalid');
     }
 
     // Test 10: SPEC_FOLDER_BASIC_PATTERN exists

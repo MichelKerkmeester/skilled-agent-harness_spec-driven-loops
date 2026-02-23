@@ -146,6 +146,19 @@ function isPathWithin(parentPath: string, childPath: string): boolean {
   return relative === '' || (!relative.startsWith('..') && !path.isAbsolute(relative));
 }
 
+function isNotFoundFsError(error: unknown): boolean {
+  const nodeErr = error as NodeJS.ErrnoException;
+  return nodeErr?.code === 'ENOENT' || nodeErr?.code === 'ENOTDIR';
+}
+
+function isUnderApprovedSpecsRoots(specPath: string): boolean {
+  const approvedRoots = [
+    path.join(CONFIG.PROJECT_ROOT, 'specs'),
+    path.join(CONFIG.PROJECT_ROOT, '.opencode', 'specs'),
+  ];
+  return approvedRoots.some((root) => isPathWithin(root, specPath));
+}
+
 function normalizeSpecReferenceForLookup(specFolderRef: string): string {
   const normalized = normalizeSlashes(specFolderRef.trim()).replace(/^\.\//, '');
   if (normalized.startsWith('.opencode/specs/')) {
@@ -768,6 +781,12 @@ async function detectSpecFolder(collectedData: CollectedDataForAlignment | null 
           : path.join(specsDir || defaultSpecsDir, specArg);
 
     try {
+      if (!isUnderApprovedSpecsRoots(specFolderPath)) {
+        throw new Error(
+          `Spec folder path must be under specs/ or .opencode/specs/: ${specArg}`
+        );
+      }
+
       await fs.access(specFolderPath);
       console.log(`   Using spec folder from CLI argument: ${path.basename(specFolderPath)}`);
 
@@ -783,7 +802,11 @@ async function detectSpecFolder(collectedData: CollectedDataForAlignment | null 
       }
 
       return specFolderPath;
-    } catch {
+    } catch (error: unknown) {
+      if (!isNotFoundFsError(error)) {
+        throw error;
+      }
+
       // NEW: Try nested parent/child resolution (e.g., "005-memory/002-upgrade")
       const argParts = specArg.split('/');
       if (argParts.length === 2 && SPEC_FOLDER_PATTERN.test(argParts[0]) && SPEC_FOLDER_PATTERN.test(argParts[1])) {
@@ -847,6 +870,12 @@ async function detectSpecFolder(collectedData: CollectedDataForAlignment | null 
     const alignmentBaseDir = path.dirname(specFolderPath);
 
     try {
+      if (!isUnderApprovedSpecsRoots(specFolderPath)) {
+        throw new Error(
+          `Spec folder path must be under specs/ or .opencode/specs/: ${specFolderFromData}`
+        );
+      }
+
       await fs.access(specFolderPath);
       console.log(`   Using spec folder from data: ${specFolderFromData}`);
       const alignmentResult = await validateFolderAlignment(collectedData, alignmentFolderName, alignmentBaseDir);
@@ -859,7 +888,11 @@ async function detectSpecFolder(collectedData: CollectedDataForAlignment | null 
         }
         return specFolderPath;
       }
-    } catch {
+    } catch (error: unknown) {
+      if (!isNotFoundFsError(error)) {
+        throw error;
+      }
+
       // NEW: Try nested parent/child resolution for JSON data value
       const dataParts = specFolderFromData.split('/');
       if (dataParts.length === 2 && SPEC_FOLDER_PATTERN.test(dataParts[0]) && SPEC_FOLDER_PATTERN.test(dataParts[1])) {
@@ -883,7 +916,10 @@ async function detectSpecFolder(collectedData: CollectedDataForAlignment | null 
             }
 
             return nestedPath;
-          } catch {
+          } catch (nestedError: unknown) {
+            if (!isNotFoundFsError(nestedError)) {
+              throw nestedError;
+            }
             // Not found in this specs dir, continue searching
           }
         }
@@ -1057,9 +1093,32 @@ async function detectSpecFolder(collectedData: CollectedDataForAlignment | null 
     if (choice <= alternatives.length) {
       return alternatives[choice - 1].candidate.path;
     } else {
-      const customPath = await promptUser('   Enter spec folder name: ');
+      const customPathInput = (await promptUser('   Enter spec folder name: ')).trim();
+      if (customPathInput.length === 0) {
+        throw new Error('Custom spec folder path cannot be empty');
+      }
+      if (path.isAbsolute(customPathInput)) {
+        throw new Error('Custom spec folder path must be relative to specs root');
+      }
+
       const customBaseDir = specsDir || autoDetectSpecsDirs[0] || defaultSpecsDir;
-      return path.join(customBaseDir, customPath);
+      const normalizedCustomPath = normalizeSlashes(customPathInput).replace(/^\.\//, '');
+      const customSegments = splitPathSegments(normalizedCustomPath);
+
+      if (
+        customSegments.length === 0 ||
+        customSegments.length > 2 ||
+        customSegments.some((segment) => !SPEC_FOLDER_PATTERN.test(segment))
+      ) {
+        throw new Error('Custom spec folder must be NNN-name or NNN-parent/NNN-child');
+      }
+
+      const resolvedCustomPath = path.resolve(customBaseDir, ...customSegments);
+      if (!isPathWithin(customBaseDir, resolvedCustomPath) || !isUnderApprovedSpecsRoots(resolvedCustomPath)) {
+        throw new Error(`Custom spec folder path escapes approved specs roots: ${customPathInput}`);
+      }
+
+      return resolvedCustomPath;
     }
 
   } catch (error: unknown) {
@@ -1067,7 +1126,9 @@ async function detectSpecFolder(collectedData: CollectedDataForAlignment | null 
     if (errMsg.includes('retry attempts') ||
         errMsg.includes('Spec folder not found') ||
         errMsg.includes('No spec folders found') ||
-        errMsg.includes('No specs/ directory found')) {
+        errMsg.includes('No specs/ directory found') ||
+        errMsg.includes('must be under specs/ or .opencode/specs/') ||
+        errMsg.includes('Custom spec folder')) {
       throw error;
     }
     printNoSpecFolderError('save-context');

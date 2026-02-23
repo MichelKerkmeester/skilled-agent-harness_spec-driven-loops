@@ -23,6 +23,8 @@ P1_TOTAL=0
 P1_COMPLETE=0
 P2_TOTAL=0
 P2_COMPLETE=0
+UNTAGGED_TOTAL=0
+UNTAGGED_COMPLETE=0
 
 if [[ -t 1 ]]; then
     RED='\033[0;31m'
@@ -61,6 +63,7 @@ PRIORITY ENFORCEMENT:
   [P0] Critical  - HARD BLOCKER, must be complete
   [P1] High      - Required, must complete OR get user approval
   [P2] Medium    - Can defer with documented reason (unless --strict)
+  [UNTAGGED]     - Treated as required until explicitly prioritized
 
 EXAMPLES:
   ./$SCRIPT_NAME specs/007-feature/
@@ -117,31 +120,57 @@ parse_args() {
 
 count_checklist_items() {
     local checklist_file="$1"
+    local current_priority=""
 
     while IFS= read -r line; do
+        if [[ "$line" =~ ^#{1,6}[[:space:]]+\[?(P[0-2])\]?([[:space:]]|$|:|-) ]]; then
+            current_priority="${BASH_REMATCH[1]}"
+            continue
+        fi
+
         if [[ "$line" =~ ^[[:space:]]*-[[:space:]]\[([[:space:]]|x|X)\][[:space:]] ]]; then
+            local is_completed=false
+            local item_priority=""
+
             ((TOTAL_ITEMS++)) || true
 
             if [[ "$line" =~ ^[[:space:]]*-[[:space:]]\[[xX]\] ]]; then
                 ((COMPLETED_ITEMS++)) || true
+                is_completed=true
             fi
 
-            if [[ "$line" =~ \[P0\] ]]; then
-                ((P0_TOTAL++)) || true
-                if [[ "$line" =~ ^[[:space:]]*-[[:space:]]\[[xX]\] ]]; then
-                    ((P0_COMPLETE++)) || true
-                fi
-            elif [[ "$line" =~ \[P1\] ]]; then
-                ((P1_TOTAL++)) || true
-                if [[ "$line" =~ ^[[:space:]]*-[[:space:]]\[[xX]\] ]]; then
-                    ((P1_COMPLETE++)) || true
-                fi
-            elif [[ "$line" =~ \[P2\] ]]; then
-                ((P2_TOTAL++)) || true
-                if [[ "$line" =~ ^[[:space:]]*-[[:space:]]\[[xX]\] ]]; then
-                    ((P2_COMPLETE++)) || true
-                fi
+            if [[ "$line" =~ \[(P[0-2])\] ]]; then
+                item_priority="${BASH_REMATCH[1]}"
+            elif [[ -n "$current_priority" ]]; then
+                item_priority="$current_priority"
             fi
+
+            case "$item_priority" in
+                P0)
+                    ((P0_TOTAL++)) || true
+                    if [[ "$is_completed" == "true" ]]; then
+                        ((P0_COMPLETE++)) || true
+                    fi
+                    ;;
+                P1)
+                    ((P1_TOTAL++)) || true
+                    if [[ "$is_completed" == "true" ]]; then
+                        ((P1_COMPLETE++)) || true
+                    fi
+                    ;;
+                P2)
+                    ((P2_TOTAL++)) || true
+                    if [[ "$is_completed" == "true" ]]; then
+                        ((P2_COMPLETE++)) || true
+                    fi
+                    ;;
+                *)
+                    ((UNTAGGED_TOTAL++)) || true
+                    if [[ "$is_completed" == "true" ]]; then
+                        ((UNTAGGED_COMPLETE++)) || true
+                    fi
+                    ;;
+            esac
         fi
     done < "$checklist_file"
 }
@@ -150,6 +179,7 @@ calculate_status() {
     local p0_pass=true
     local p1_pass=true
     local p2_pass=true
+    local untagged_pass=true
 
     if [[ $P0_TOTAL -gt 0 && $P0_COMPLETE -lt $P0_TOTAL ]]; then
         p0_pass=false
@@ -165,12 +195,18 @@ calculate_status() {
         fi
     fi
 
+    if [[ $UNTAGGED_TOTAL -gt 0 && $UNTAGGED_COMPLETE -lt $UNTAGGED_TOTAL ]]; then
+        untagged_pass=false
+    fi
+
     if ! $p0_pass; then
         echo "P0_INCOMPLETE"
     elif ! $p1_pass; then
         echo "P1_INCOMPLETE"
     elif $STRICT_MODE && ! $p2_pass; then
         echo "P2_INCOMPLETE"
+    elif ! $untagged_pass; then
+        echo "UNTAGGED_INCOMPLETE"
     else
         echo "COMPLETE"
     fi
@@ -199,7 +235,8 @@ output_json() {
   "priorities": {
     "p0": { "total": $P0_TOTAL, "completed": $P0_COMPLETE },
     "p1": { "total": $P1_TOTAL, "completed": $P1_COMPLETE },
-    "p2": { "total": $P2_TOTAL, "completed": $P2_COMPLETE }
+    "p2": { "total": $P2_TOTAL, "completed": $P2_COMPLETE },
+    "untagged": { "total": $UNTAGGED_TOTAL, "completed": $UNTAGGED_COMPLETE }
   }
 }
 EOF
@@ -248,6 +285,14 @@ output_text() {
         fi
     fi
 
+    if [[ $UNTAGGED_TOTAL -gt 0 ]]; then
+        if [[ $UNTAGGED_COMPLETE -eq $UNTAGGED_TOTAL ]]; then
+            echo -e "    ${GREEN}✓${NC} [UNTAGGED] Required fallback: $UNTAGGED_COMPLETE/$UNTAGGED_TOTAL complete"
+        else
+            echo -e "    ${RED}✗${NC} [UNTAGGED] Required fallback: $UNTAGGED_COMPLETE/$UNTAGGED_TOTAL complete ${RED}(BLOCKING)${NC}"
+        fi
+    fi
+
     echo -e "\n${BLUE}───────────────────────────────────────────────────────────────${NC}\n"
 
     echo -e "  ${BOLD}Summary:${NC} $COMPLETED_ITEMS/$TOTAL_ITEMS items ($percentage%)"
@@ -269,6 +314,10 @@ output_text() {
         P2_INCOMPLETE)
             echo -e "  ${YELLOW}${BOLD}RESULT: BLOCKED (strict mode)${NC}"
             echo -e "  P2 items incomplete. Required in strict mode."
+            ;;
+        UNTAGGED_INCOMPLETE)
+            echo -e "  ${RED}${BOLD}RESULT: BLOCKED${NC}"
+            echo -e "  Untagged checklist items are incomplete. Add priorities or complete all untagged items."
             ;;
     esac
 

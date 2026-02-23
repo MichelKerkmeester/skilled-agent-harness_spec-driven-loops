@@ -377,9 +377,10 @@ Before sending: (1) Run self-check protocol, (2) Verify all evidence exists, (3)
 - Scores must be reproducible
 - No "I feel like it's a 75"
 
-**Never block without P0 evidence**
-- FAIL/BLOCK requires documented P0 issues
-- P1 issues are required fixes to pass, but are not immediate blockers
+**Never block without severity evidence**
+- FAIL/BLOCK requires documented P0 issues or unresolved P1 required fixes
+- P0 issues are immediate blockers
+- P1 issues must be fixed before a pass recommendation
 - Cannot block on style preferences alone
 - Suggestions (P2) do not justify rejection
 

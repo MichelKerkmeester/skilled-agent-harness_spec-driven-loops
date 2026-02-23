@@ -108,6 +108,13 @@ process.on('SIGINT', () => {
 // 3. SPEC FOLDER VALIDATION
 // ---------------------------------------------------------------
 
+function isUnderApprovedSpecsRoot(normalizedInput: string): boolean {
+  return normalizedInput.includes('/specs/') ||
+    normalizedInput.startsWith('specs/') ||
+    normalizedInput.includes('/.opencode/specs/') ||
+    normalizedInput.startsWith('.opencode/specs/');
+}
+
 function isValidSpecFolder(folderPath: string): SpecFolderValidation {
   const folderName = path.basename(folderPath);
 
@@ -120,15 +127,12 @@ function isValidSpecFolder(folderPath: string): SpecFolderValidation {
     const lastTwo = trailingSegments.slice(-2);
     if (SPEC_FOLDER_PATTERN.test(lastTwo[0]) && SPEC_FOLDER_PATTERN.test(lastTwo[1])) {
       // Both segments are valid spec folder names — valid nested spec folder
-      const hasSpecsParent = normalizedInput.includes('/specs/') ||
-                             normalizedInput.startsWith('specs/') ||
-                             normalizedInput.includes('/.opencode/specs/') ||
-                             normalizedInput.startsWith('.opencode/specs/');
+      const hasSpecsParent = isUnderApprovedSpecsRoot(normalizedInput);
 
       if (!hasSpecsParent) {
         return {
-          valid: true,
-          warning: `Spec folder not under specs/ or .opencode/specs/ path: ${folderPath}`
+          valid: false,
+          reason: `Spec folder must be under specs/ or .opencode/specs/: ${folderPath}`
         };
       }
       return { valid: true };
@@ -150,15 +154,12 @@ function isValidSpecFolder(folderPath: string): SpecFolderValidation {
     return { valid: false, reason: 'Invalid spec folder format. Expected: NNN-feature-name' };
   }
 
-  const hasSpecsParent = normalizedInput.includes('/specs/') ||
-                         normalizedInput.startsWith('specs/') ||
-                         normalizedInput.includes('/.opencode/specs/') ||
-                         normalizedInput.startsWith('.opencode/specs/');
+  const hasSpecsParent = isUnderApprovedSpecsRoot(normalizedInput);
 
   if (!hasSpecsParent) {
     return {
-      valid: true,
-      warning: `Spec folder not under specs/ or .opencode/specs/ path: ${folderPath}`
+      valid: false,
+      reason: `Spec folder must be under specs/ or .opencode/specs/: ${folderPath}`
     };
   }
 

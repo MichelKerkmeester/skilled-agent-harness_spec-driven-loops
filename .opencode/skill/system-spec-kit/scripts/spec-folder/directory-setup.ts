@@ -9,7 +9,7 @@ import * as path from 'path';
 
 // Internal modules
 import { structuredLog, sanitizePath } from '../utils';
-import { CONFIG, findActiveSpecsDir, getSpecsDirectories } from '../core';
+import { CONFIG, findActiveSpecsDir, getSpecsDirectories, SPEC_FOLDER_PATTERN } from '../core';
 
 /* -----------------------------------------------------------------
    1. DIRECTORY SETUP
@@ -18,10 +18,7 @@ import { CONFIG, findActiveSpecsDir, getSpecsDirectories } from '../core';
 async function setupContextDirectory(specFolder: string): Promise<string> {
   let sanitizedPath: string;
   try {
-    sanitizedPath = sanitizePath(specFolder, [
-      CONFIG.PROJECT_ROOT,
-      path.join(CONFIG.PROJECT_ROOT, 'specs')
-    ]);
+    sanitizedPath = sanitizePath(specFolder, getSpecsDirectories());
   } catch (sanitizeError: unknown) {
     const errMsg = sanitizeError instanceof Error ? sanitizeError.message : String(sanitizeError);
     structuredLog('error', 'Invalid spec folder path', {
@@ -29,6 +26,17 @@ async function setupContextDirectory(specFolder: string): Promise<string> {
       error: errMsg
     });
     throw new Error(`Invalid spec folder path: ${errMsg}`);
+  }
+
+  const leafFolder = path.basename(sanitizedPath);
+  if (!SPEC_FOLDER_PATTERN.test(leafFolder)) {
+    structuredLog('error', 'Spec folder leaf name is invalid', {
+      specFolder: sanitizedPath,
+      expected: 'NNN-name'
+    });
+    throw new Error(
+      `Invalid spec folder path: expected leaf folder in NNN-name format, received "${leafFolder}"`
+    );
   }
 
   try {

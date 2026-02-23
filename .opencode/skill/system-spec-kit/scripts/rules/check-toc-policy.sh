@@ -34,7 +34,7 @@ run_check() {
     )
     local -a violations=()
     local checked_count=0
-    local toc_heading_pattern='^[[:space:]]*#{1,6}[[:space:]]*(TABLE OF CONTENTS|Table of Contents|TOC)[[:space:]]*$'
+    local toc_heading_pattern='^[[:space:]]*#{1,6}[[:space:]]*([0-9]+[.)][[:space:]]+)?(table of contents|toc)[[:space:]]*$'
 
     for doc_name in "${toc_restricted_files[@]-}"; do
         local doc_path="$folder/$doc_name"
