@@ -22,7 +22,7 @@ command = "node"
 args = [".opencode/skill/mcp-code-mode/mcp_server/dist/index.js"]
 
 [mcp_servers.code_mode.env]
-UTCP_CONFIG_FILE = ".utcp_config.json"
+UTCP_CONFIG_FILE = ".utcp_config.toml"
 
 [features]
 multi_agent = true
