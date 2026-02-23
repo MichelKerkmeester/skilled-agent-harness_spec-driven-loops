@@ -2,13 +2,17 @@
 // MODULE: Memory Triggers
 // ---------------------------------------------------------------
 
+// Shared packages
+import { validateFilePath } from '@spec-kit/shared/utils/path-security';
+
 /* ---------------------------------------------------------------
    1. DEPENDENCIES
 --------------------------------------------------------------- */
 
 // Core utilities
-import { checkDatabaseUpdated } from '../core';
+import { ALLOWED_BASE_PATHS, checkDatabaseUpdated } from '../core';
 import { toErrorMessage } from '../utils';
+import { createFilePathValidator } from '../utils/validators';
 
 // Formatters
 import { calculateTokenMetrics, type TokenMetrics } from '../formatters';
@@ -99,6 +103,7 @@ interface TriggerArgs {
 
 /** Per-turn decay rate for attention scoring. */
 const TURN_DECAY_RATE = 0.98;
+const validateTieredFilePath = createFilePathValidator(ALLOWED_BASE_PATHS, validateFilePath);
 
 /* ---------------------------------------------------------------
    2c. HELPER FUNCTIONS
@@ -138,7 +143,9 @@ async function getTieredContent(
   if (tier === 'COLD' || tier === 'DORMANT' || tier === 'ARCHIVED') return '';
   try {
     const fs = await import('fs');
-    const content = fs.readFileSync(memoryInfo.filePath, 'utf-8');
+    const validatedPath = validateTieredFilePath(memoryInfo.filePath);
+    const canonicalPath = validateTieredFilePath(fs.realpathSync(validatedPath));
+    const content = fs.readFileSync(canonicalPath, 'utf-8');
     if (tier === 'HOT') return content;
     // WARM: return truncated summary
     return content.substring(0, 150) + (content.length > 150 ? '...' : '');

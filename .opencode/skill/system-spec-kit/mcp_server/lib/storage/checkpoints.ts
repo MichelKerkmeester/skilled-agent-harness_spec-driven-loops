@@ -59,6 +59,18 @@ interface RestoreResult {
   workingMemoryRestored: number;
 }
 
+interface SnapshotVectorRow {
+  rowid: number;
+  embedding: Buffer | null;
+}
+
+interface CheckpointSnapshot {
+  memories: Array<Record<string, unknown>>;
+  workingMemory: Array<Record<string, unknown>>;
+  vectors?: SnapshotVectorRow[];
+  timestamp: string;
+}
+
 /* -------------------------------------------------------------
    3. MODULE STATE
 ----------------------------------------------------------------*/
@@ -92,6 +104,143 @@ function getGitBranch(): string | null {
   } catch {
     return null;
   }
+}
+
+function tableExists(database: Database.Database, tableName: string): boolean {
+  try {
+    const row = database.prepare(
+      "SELECT name FROM sqlite_master WHERE type IN ('table','view') AND name = ?"
+    ).get(tableName) as { name?: string } | undefined;
+    return !!row?.name;
+  } catch {
+    return false;
+  }
+}
+
+function getTableColumns(database: Database.Database, tableName: string): string[] {
+  try {
+    return (database.prepare(`PRAGMA table_info(${tableName})`).all() as Array<{ name: string }>)
+      .map((column) => column.name)
+      .filter((name) => typeof name === 'string' && name.length > 0);
+  } catch {
+    return [];
+  }
+}
+
+function toBuffer(value: unknown): Buffer | null {
+  if (Buffer.isBuffer(value)) return value;
+  if (value && typeof value === 'object') {
+    const maybeSerialized = value as { type?: unknown; data?: unknown };
+    if (
+      maybeSerialized.type === 'Buffer' &&
+      Array.isArray(maybeSerialized.data) &&
+      maybeSerialized.data.every((entry) => typeof entry === 'number')
+    ) {
+      return Buffer.from(maybeSerialized.data);
+    }
+  }
+  return null;
+}
+
+function normalizeMemoryColumnValue(column: string, value: unknown): unknown {
+  if (value === undefined) {
+    if (column === 'confidence') return 0.5;
+    if (column === 'stability') return 1.0;
+    if (column === 'difficulty') return 5.0;
+    if (column === 'review_count') return 0;
+    return null;
+  }
+
+  if (column === 'confidence') {
+    return Number.isFinite(value) ? value : 0.5;
+  }
+  if (column === 'stability') {
+    return Number.isFinite(value) ? value : 1.0;
+  }
+  if (column === 'difficulty') {
+    return Number.isFinite(value) ? value : 5.0;
+  }
+  if (column === 'review_count') {
+    return Number.isFinite(value) ? value : 0;
+  }
+
+  if ((column === 'trigger_phrases' || column === 'quality_flags') && Array.isArray(value)) {
+    return JSON.stringify(value);
+  }
+
+  return value;
+}
+
+function getMemoryRestoreColumns(
+  database: Database.Database,
+  memories: Array<Record<string, unknown>>
+): string[] {
+  const tableColumns = new Set(getTableColumns(database, 'memory_index'));
+  if (tableColumns.size === 0) {
+    return [];
+  }
+
+  const snapshotColumns = new Set<string>();
+  for (const memory of memories) {
+    for (const key of Object.keys(memory)) {
+      if (tableColumns.has(key)) {
+        snapshotColumns.add(key);
+      }
+    }
+  }
+
+  const preferredOrder = [
+    'id',
+    'spec_folder',
+    'file_path',
+    'canonical_file_path',
+    'anchor_id',
+    'title',
+    'trigger_phrases',
+    'importance_weight',
+    'created_at',
+    'updated_at',
+    'embedding_model',
+    'embedding_generated_at',
+    'embedding_status',
+    'retry_count',
+    'last_retry_at',
+    'failure_reason',
+    'base_importance',
+    'decay_half_life_days',
+    'is_pinned',
+    'access_count',
+    'last_accessed',
+    'importance_tier',
+    'session_id',
+    'context_type',
+    'channel',
+    'content_hash',
+    'expires_at',
+    'confidence',
+    'validation_count',
+    'stability',
+    'difficulty',
+    'last_review',
+    'review_count',
+    'file_mtime_ms',
+    'is_archived',
+    'document_type',
+    'spec_level',
+    'content_text',
+    'quality_score',
+    'quality_flags',
+    'parent_id',
+    'chunk_index',
+    'chunk_label',
+  ];
+
+  const ordered = preferredOrder.filter((column) => snapshotColumns.has(column));
+  const extras = Array.from(snapshotColumns)
+    .filter((column) => !ordered.includes(column))
+    .sort((a, b) => a.localeCompare(b));
+
+  return [...ordered, ...extras];
 }
 
 /* -------------------------------------------------------------
@@ -158,6 +307,26 @@ function createCheckpoint(options: CreateCheckpointOptions = {}): CheckpointInfo
       `SELECT * FROM memory_index ${folderFilter}`
     ).all(...params) as Array<Record<string, unknown>>;
 
+    // Snapshot vectors from vec_memories when enabled/available.
+    // This preserves semantic search state across clearExisting restores.
+    let vectors: SnapshotVectorRow[] = [];
+    if (_includeEmbeddings && tableExists(database, 'vec_memories')) {
+      try {
+        const vectorSql = specFolder
+          ? `
+              SELECT v.rowid as rowid, v.embedding as embedding
+              FROM vec_memories v
+              JOIN memory_index m ON m.id = v.rowid
+              WHERE m.spec_folder = ?
+            `
+          : 'SELECT rowid, embedding FROM vec_memories';
+        const vectorParams = specFolder ? [specFolder] : [];
+        vectors = database.prepare(vectorSql).all(...vectorParams) as SnapshotVectorRow[];
+      } catch {
+        vectors = [];
+      }
+    }
+
     // Snapshot working memory if exists
     let workingMemorySnapshot: Array<Record<string, unknown>> = [];
     try {
@@ -168,9 +337,10 @@ function createCheckpoint(options: CreateCheckpointOptions = {}): CheckpointInfo
       // Table may not exist
     }
 
-    const snapshot = {
+    const snapshot: CheckpointSnapshot = {
       memories,
       workingMemory: workingMemorySnapshot,
+      vectors,
       timestamp: new Date().toISOString(),
     };
 
@@ -189,7 +359,12 @@ function createCheckpoint(options: CreateCheckpointOptions = {}): CheckpointInfo
       specFolder,
       gitBranch,
       compressed,
-      JSON.stringify({ ...metadata, memoryCount: memories.length })
+      JSON.stringify({
+        ...metadata,
+        memoryCount: memories.length,
+        vectorCount: vectors.length,
+        includeEmbeddings: _includeEmbeddings,
+      })
     );
 
     // Enforce max checkpoints
@@ -283,12 +458,16 @@ function restoreCheckpoint(nameOrId: string | number, clearExisting: boolean = f
 
     // Decompress snapshot
     const decompressed = zlib.gunzipSync(checkpoint.memory_snapshot);
-    const snapshot = JSON.parse(decompressed.toString());
+    const snapshot = JSON.parse(decompressed.toString()) as CheckpointSnapshot;
 
     if (!snapshot.memories || !Array.isArray(snapshot.memories)) {
       result.errors.push('Invalid snapshot format');
       return result;
     }
+
+    const hasVecMemories = tableExists(database, 'vec_memories');
+    const checkpointVectors = Array.isArray(snapshot.vectors) ? snapshot.vectors : [];
+    const hasVectorSnapshot = hasVecMemories && checkpointVectors.length > 0;
 
     // T107 FIX: Validate every row BEFORE any DB mutations.
     // Reject the entire restore on schema violations to prevent
@@ -305,6 +484,21 @@ function restoreCheckpoint(nameOrId: string | number, clearExisting: boolean = f
       }
     }
 
+    const memoryRestoreColumns = snapshot.memories.length > 0
+      ? getMemoryRestoreColumns(database, snapshot.memories)
+      : [];
+    if (snapshot.memories.length > 0 && memoryRestoreColumns.length === 0) {
+      result.errors.push('No compatible memory_index columns found for restore');
+      return result;
+    }
+
+    const memoryInsertStmt = memoryRestoreColumns.length > 0
+      ? database.prepare(`
+          INSERT OR REPLACE INTO memory_index (${memoryRestoreColumns.join(', ')})
+          VALUES (${memoryRestoreColumns.map(() => '?').join(', ')})
+        `) as Database.Statement
+      : null;
+
     // T101 FIX: Transaction-wrap checkpoint restore to prevent data loss.
     // When clearExisting=true, the DELETE and all INSERTs must be atomic.
     // If any INSERT fails after DELETE, ROLLBACK restores original data.
@@ -314,54 +508,91 @@ function restoreCheckpoint(nameOrId: string | number, clearExisting: boolean = f
       // Clear existing data if requested
       if (clearExisting) {
         database.prepare('DELETE FROM memory_index').run();
-        try { database.prepare('DELETE FROM vec_memories').run(); } catch { /* table may not exist */ }
+        // Only clear vec table when checkpoint contains vectors to restore.
+        // This keeps backward compatibility for older checkpoints that lacked vector snapshots.
+        if (hasVectorSnapshot) {
+          try { database.prepare('DELETE FROM vec_memories').run(); } catch { /* table may not exist */ }
+        }
       }
 
       const txErrors: string[] = [];
+      const restoredMemoryIds = new Set<number>();
 
       for (const memory of snapshot.memories) {
         try {
-          // P4-11 FIX: When clearExisting=false, check for duplicate file_path
-          // before inserting. INSERT OR REPLACE only handles ID-based conflicts,
-          // but a memory with the same file_path under a different ID would
-          // create a true duplicate.
+          // P4-11 FIX: When clearExisting=false, check for duplicate logical key
+          // (spec_folder + file_path + anchor_id) before inserting.
           if (!clearExisting) {
             const existingByPath = database.prepare(
-              'SELECT id FROM memory_index WHERE file_path = ? AND id != ?'
-            ).get(memory.file_path, memory.id) as { id: number } | undefined;
+              `
+                SELECT id FROM memory_index
+                WHERE spec_folder = ?
+                  AND file_path = ?
+                  AND (
+                    (anchor_id IS NULL AND ? IS NULL)
+                    OR anchor_id = ?
+                  )
+                  AND id != ?
+              `
+            ).get(
+              memory.spec_folder,
+              memory.file_path,
+              memory.anchor_id ?? null,
+              memory.anchor_id ?? null,
+              memory.id
+            ) as { id: number } | undefined;
 
             if (existingByPath) {
-              console.error(`[checkpoints] Skipping restore of memory ${memory.id}: file_path "${memory.file_path}" already exists as memory ${existingByPath.id}`);
+              console.error(
+                `[checkpoints] Skipping restore of memory ${memory.id}: identity "${memory.spec_folder}:${memory.file_path}:${String(memory.anchor_id ?? '')}" already exists as memory ${existingByPath.id}`
+              );
               result.skipped++;
               continue;
             }
           }
-          // UPSERT: restore memory data
-          database.prepare(`
-            INSERT OR REPLACE INTO memory_index (
-              id, spec_folder, file_path, anchor_id, title, trigger_phrases,
-              importance_weight, created_at, updated_at, embedding_model,
-              embedding_generated_at, embedding_status, importance_tier,
-              confidence, stability, difficulty, last_review, review_count
-            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-          `).run(
-            // Preserve valid zero values while still defaulting null/undefined/non-finite inputs.
-            memory.id, memory.spec_folder, memory.file_path, memory.anchor_id,
-            memory.title, memory.trigger_phrases, memory.importance_weight,
-            memory.created_at, memory.updated_at, memory.embedding_model,
-            memory.embedding_generated_at, memory.embedding_status,
-            memory.importance_tier,
-            Number.isFinite(memory.confidence) ? memory.confidence : 0.5,
-            Number.isFinite(memory.stability) ? memory.stability : 1.0,
-            Number.isFinite(memory.difficulty) ? memory.difficulty : 5.0,
-            memory.last_review,
-            Number.isFinite(memory.review_count) ? memory.review_count : 0
+
+          if (!memoryInsertStmt) {
+            txErrors.push(`Memory ${memory.id}: restore statement unavailable`);
+            result.skipped++;
+            continue;
+          }
+
+          const values = memoryRestoreColumns.map((column) =>
+            normalizeMemoryColumnValue(column, memory[column as keyof typeof memory])
           );
+          memoryInsertStmt.run(...values);
+          restoredMemoryIds.add(memory.id as number);
           result.restored++;
         } catch (e: unknown) {
           const msg = toErrorMessage(e);
           txErrors.push(`Memory ${memory.id}: ${msg}`);
           result.skipped++;
+        }
+      }
+
+      // Restore vector rows when available in checkpoint snapshot.
+      if (hasVectorSnapshot) {
+        const deleteVectorById = database.prepare('DELETE FROM vec_memories WHERE rowid = ?') as Database.Statement;
+        const insertVector = database.prepare(
+          'INSERT INTO vec_memories (rowid, embedding) VALUES (?, ?)'
+        ) as Database.Statement;
+
+        for (const vectorRow of checkpointVectors) {
+          try {
+            if (!restoredMemoryIds.has(vectorRow.rowid)) {
+              continue;
+            }
+            const embeddingBuffer = toBuffer(vectorRow.embedding);
+            if (!embeddingBuffer) {
+              txErrors.push(`Vector ${vectorRow.rowid}: missing or invalid embedding payload`);
+              continue;
+            }
+            deleteVectorById.run(vectorRow.rowid);
+            insertVector.run(vectorRow.rowid, embeddingBuffer);
+          } catch (e: unknown) {
+            const msg = toErrorMessage(e);
+            txErrors.push(`Vector ${vectorRow.rowid}: ${msg}`);
+          }
         }
       }
 

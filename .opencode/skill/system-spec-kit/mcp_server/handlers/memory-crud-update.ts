@@ -17,6 +17,7 @@ import { createMCPSuccessResponse } from '../lib/response/envelope';
 import { toErrorMessage } from '../utils';
 
 import { appendMutationLedgerSafe, getMemoryHashSnapshot } from './memory-crud-utils';
+import { clearConstitutionalCache } from '../hooks/memory-surface';
 
 import type { MCPResponse } from './types';
 import type { UpdateArgs } from './memory-crud-types';
@@ -118,6 +119,7 @@ async function handleMemoryUpdate(args: UpdateArgs): Promise<MCPResponse> {
   vectorIndex.updateMemory(updateParams);
   triggerMatcher.clearCache();
   toolCache.invalidateOnWrite('update', { memoryId: id });
+  clearConstitutionalCache();
 
   const fields = Object.keys(updateParams).filter((key) => key !== 'id' && key !== 'embedding');
 

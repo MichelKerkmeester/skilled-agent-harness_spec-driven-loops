@@ -17,6 +17,7 @@ import { createMCPSuccessResponse } from '../lib/response/envelope';
 import { toErrorMessage } from '../utils';
 
 import { appendMutationLedgerSafe } from './memory-crud-utils';
+import { clearConstitutionalCache } from '../hooks/memory-surface';
 
 import type { MCPResponse } from './types';
 
@@ -205,6 +206,7 @@ async function handleMemoryBulkDelete(args: BulkDeleteArgs): Promise<MCPResponse
   if (deletedCount > 0) {
     triggerMatcher.clearCache();
     toolCache.invalidateOnWrite('delete', { specFolder });
+    clearConstitutionalCache();
   }
 
   const summary = `Deleted ${deletedCount} "${tier}" memory(s)${specFolder ? ` from "${specFolder}"` : ''}${olderThanDays ? ` older than ${olderThanDays} days` : ''}`;

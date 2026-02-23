@@ -1431,18 +1431,32 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
 
   // T123: Apply session deduplication AFTER cache
   if (sessionId && enableDedup && sessionManager.isEnabled()) {
-    const resultsData = cachedResult?.content?.[0]?.text
-      ? JSON.parse(cachedResult.content[0].text)
-      : cachedResult;
+    let resultsData: Record<string, unknown> | null = null;
+    if (cachedResult?.content?.[0]?.text && typeof cachedResult.content[0].text === 'string') {
+      try {
+        resultsData = JSON.parse(cachedResult.content[0].text) as Record<string, unknown>;
+      } catch (err: unknown) {
+        const message = toErrorMessage(err);
+        console.warn('[memory-search] Failed to parse cached response for dedup:', message);
+        return cachedResult;
+      }
+    } else if (cachedResult && typeof cachedResult === 'object') {
+      resultsData = cachedResult as unknown as Record<string, unknown>;
+    }
 
-    if (resultsData?.data?.results && resultsData.data.results.length > 0) {
+    const data = (resultsData && typeof resultsData.data === 'object' && resultsData.data !== null)
+      ? resultsData.data as Record<string, unknown>
+      : null;
+    const existingResults = Array.isArray(data?.results) ? data.results as MemorySearchRow[] : null;
+
+    if (resultsData && data && existingResults && existingResults.length > 0) {
       const { results: dedupedResults } = applySessionDedup(
-        resultsData.data.results,
+        existingResults,
         sessionId,
         enableDedup
       );
 
-      const originalCount = resultsData.data.results.length;
+      const originalCount = existingResults.length;
       const dedupedCount = dedupedResults.length;
       const filteredCount = originalCount - dedupedCount;
 
@@ -1451,10 +1465,10 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
         ? Math.round((filteredCount / originalCount) * 100)
         : 0;
 
-      resultsData.data.results = dedupedResults;
-      resultsData.data.count = dedupedCount;
+      data.results = dedupedResults;
+      data.count = dedupedCount;
 
-      resultsData.dedupStats = {
+      const dedupStats = {
         enabled: true,
         sessionId,
         originalCount: originalCount,
@@ -1464,14 +1478,20 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
         savingsPercent: savingsPercent,
         tokenSavingsEstimate: tokensSaved > 0 ? `~${tokensSaved} tokens` : '0'
       };
+      resultsData.dedupStats = dedupStats;
 
-      if (filteredCount > 0 && resultsData.summary) {
+      if (resultsData.meta && typeof resultsData.meta === 'object') {
+        (resultsData.meta as Record<string, unknown>).dedupStats = dedupStats;
+      }
+
+      if (filteredCount > 0 && typeof resultsData.summary === 'string') {
         resultsData.summary += ` (${filteredCount} duplicates filtered, ~${tokensSaved} tokens saved)`;
       }
 
       return {
+        ...cachedResult,
         content: [{ type: 'text', text: JSON.stringify(resultsData, null, 2) }]
-      };
+      } as MCPResponse;
     }
   }
 

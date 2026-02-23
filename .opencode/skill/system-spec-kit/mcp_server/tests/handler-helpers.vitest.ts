@@ -450,6 +450,15 @@ describe('resolveMemoryReference', () => {
     db.close();
   });
 
+  it('resolves Windows-style specs path', () => {
+    if (!memorySave?.resolveMemoryReference || !BetterSqlite3) return;
+    const db = createTestDb();
+    seedTestMemories(db);
+    const result = memorySave.resolveMemoryReference(db, 'specs\\002-feature\\memory\\implementation-notes.md');
+    expect(result).toBe(3);
+    db.close();
+  });
+
   it('resolves exact title', () => {
     if (!memorySave?.resolveMemoryReference || !BetterSqlite3) return;
     const db = createTestDb();
@@ -510,6 +519,31 @@ describe('resolveMemoryReference', () => {
     seedTestMemories(db);
     const result = memorySave.resolveMemoryReference(db, 'memory/decision-auth.md');
     expect(result).toBe(2);
+    db.close();
+  });
+
+  it('does not treat date-like reference as numeric ID prefix', () => {
+    if (!memorySave?.resolveMemoryReference || !BetterSqlite3) return;
+    const db = createTestDb();
+    seedTestMemories(db);
+
+    // Control row that previously could hijack parseInt("2024-...") resolution.
+    db.prepare(`
+      INSERT INTO memory_index (id, spec_folder, file_path, title, content, content_hash, stability, difficulty)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+    `).run(
+      2024,
+      'specs/099-control',
+      '/specs/099-control/memory/unrelated.md',
+      'Control Memory',
+      'Control content',
+      'hash-control',
+      1.0,
+      5.0
+    );
+
+    const result = memorySave.resolveMemoryReference(db, '2024-12-01-session');
+    expect(result).toBe(5);
     db.close();
   });
 });

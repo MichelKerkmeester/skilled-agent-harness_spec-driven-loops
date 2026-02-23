@@ -338,7 +338,169 @@ describe('CHECKPOINTS EXTENDED TESTS [deferred - requires DB test fixtures]', ()
     });
   });
 
-  // 4.7 T107: Schema validation rejects corrupt checkpoint rows
+  // 4.7 Extended restore fidelity and vector preservation
+  describe('Storage: Restore Fidelity', () => {
+    it('EXT-S14: restore preserves extended memory_index columns when schema supports them', () => {
+      // Add modern schema columns to this fixture DB if missing.
+      const alterStatements = [
+        'ALTER TABLE memory_index ADD COLUMN canonical_file_path TEXT',
+        'ALTER TABLE memory_index ADD COLUMN content_hash TEXT',
+        'ALTER TABLE memory_index ADD COLUMN content_text TEXT',
+        'ALTER TABLE memory_index ADD COLUMN quality_score REAL DEFAULT 0',
+        'ALTER TABLE memory_index ADD COLUMN quality_flags TEXT',
+        'ALTER TABLE memory_index ADD COLUMN parent_id INTEGER',
+        'ALTER TABLE memory_index ADD COLUMN chunk_index INTEGER',
+        'ALTER TABLE memory_index ADD COLUMN chunk_label TEXT',
+      ];
+      for (const statement of alterStatements) {
+        try {
+          testDb.exec(statement);
+        } catch {
+          // Column may already exist from prior test execution.
+        }
+      }
+
+      testDb.prepare(`
+        UPDATE memory_index
+        SET canonical_file_path = ?,
+            content_hash = ?,
+            content_text = ?,
+            quality_score = ?,
+            quality_flags = ?,
+            parent_id = ?,
+            chunk_index = ?,
+            chunk_label = ?
+        WHERE id = ?
+      `).run(
+        '/canonical/path/mem1.md',
+        'abc123hash',
+        'restorable content payload',
+        0.91,
+        '["flag_a","flag_b"]',
+        null,
+        2,
+        'chunk-2',
+        1
+      );
+
+      checkpointStorage.createCheckpoint({ name: 'extended-cols-test' });
+
+      testDb.prepare(`
+        UPDATE memory_index
+        SET canonical_file_path = NULL,
+            content_hash = NULL,
+            content_text = NULL,
+            quality_score = 0,
+            quality_flags = NULL,
+            parent_id = NULL,
+            chunk_index = NULL,
+            chunk_label = NULL
+        WHERE id = ?
+      `).run(1);
+
+      const result = checkpointStorage.restoreCheckpoint('extended-cols-test', true);
+      expect(result.errors.length).toBe(0);
+
+      const restored = testDb.prepare(`
+        SELECT canonical_file_path, content_hash, content_text, quality_score, quality_flags, chunk_index, chunk_label
+        FROM memory_index
+        WHERE id = ?
+      `).get(1) as unknown;
+
+      expect(restored).toBeDefined();
+      expect(restored.canonical_file_path).toBe('/canonical/path/mem1.md');
+      expect(restored.content_hash).toBe('abc123hash');
+      expect(restored.content_text).toBe('restorable content payload');
+      expect(restored.quality_score).toBe(0.91);
+      expect(restored.quality_flags).toBe('["flag_a","flag_b"]');
+      expect(restored.chunk_index).toBe(2);
+      expect(restored.chunk_label).toBe('chunk-2');
+
+      checkpointStorage.deleteCheckpoint('extended-cols-test');
+    });
+
+    it('EXT-S15: restore non-clear keeps same file_path entries when anchor_id differs', () => {
+      const now = new Date().toISOString();
+
+      testDb.prepare(`
+        INSERT OR REPLACE INTO memory_index (
+          id, spec_folder, file_path, anchor_id, title, created_at, updated_at, importance_tier
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+      `).run(9101, 'anchor-spec', '/anchor-spec/shared.md', 'section-a', 'Anchor A', now, now, 'normal');
+
+      testDb.prepare(`
+        INSERT OR REPLACE INTO memory_index (
+          id, spec_folder, file_path, anchor_id, title, created_at, updated_at, importance_tier
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+      `).run(9102, 'anchor-spec', '/anchor-spec/shared.md', 'section-b', 'Anchor B', now, now, 'normal');
+
+      checkpointStorage.createCheckpoint({ name: 'anchor-aware-duplicate-test' });
+
+      // Simulate a missing anchor variant that should be restored.
+      testDb.prepare('DELETE FROM memory_index WHERE id = ?').run(9102);
+
+      const result = checkpointStorage.restoreCheckpoint('anchor-aware-duplicate-test', false);
+      expect(result.errors.length).toBe(0);
+
+      const restoredVariant = testDb.prepare(`
+        SELECT COUNT(*) as cnt
+        FROM memory_index
+        WHERE spec_folder = ? AND file_path = ? AND anchor_id = ?
+      `).get('anchor-spec', '/anchor-spec/shared.md', 'section-b') as unknown;
+
+      expect(restoredVariant.cnt).toBe(1);
+
+      checkpointStorage.deleteCheckpoint('anchor-aware-duplicate-test');
+      testDb.prepare('DELETE FROM memory_index WHERE id IN (?, ?)').run(9101, 9102);
+    });
+
+    it('EXT-S16: clearExisting restore reinstates checkpoint vector snapshot', () => {
+      testDb.exec(`
+        CREATE TABLE IF NOT EXISTS vec_memories (
+          rowid INTEGER PRIMARY KEY,
+          embedding BLOB NOT NULL
+        )
+      `);
+
+      const originalEmbedding = Buffer.from([0x01, 0x02, 0x03, 0x04]);
+      testDb.prepare(`
+        INSERT OR REPLACE INTO vec_memories (rowid, embedding)
+        VALUES (?, ?)
+      `).run(1, originalEmbedding);
+
+      checkpointStorage.createCheckpoint({ name: 'vector-restore-test' });
+
+      // Mutate vector payload and add an orphan vector row not in checkpoint memory set.
+      testDb.prepare(`
+        INSERT OR REPLACE INTO vec_memories (rowid, embedding)
+        VALUES (?, ?)
+      `).run(1, Buffer.from([0xaa, 0xbb, 0xcc]));
+      testDb.prepare(`
+        INSERT OR REPLACE INTO vec_memories (rowid, embedding)
+        VALUES (?, ?)
+      `).run(9999, Buffer.from([0xff]));
+
+      const result = checkpointStorage.restoreCheckpoint('vector-restore-test', true);
+      expect(result.errors.length).toBe(0);
+
+      const restored = testDb.prepare(`
+        SELECT hex(embedding) as hex_embedding
+        FROM vec_memories
+        WHERE rowid = ?
+      `).get(1) as unknown;
+
+      expect(restored).toBeDefined();
+      expect(restored.hex_embedding).toBe(originalEmbedding.toString('hex').toUpperCase());
+
+      const orphan = testDb.prepare('SELECT COUNT(*) as cnt FROM vec_memories WHERE rowid = ?')
+        .get(9999) as unknown;
+      expect(orphan.cnt).toBe(0);
+
+      checkpointStorage.deleteCheckpoint('vector-restore-test');
+    });
+  });
+
+  // 4.8 T107: Schema validation rejects corrupt checkpoint rows
   describe('Storage: T107 Schema Validation Before Restore', () => {
     function injectCheckpoint(name: string, memories: any[]): boolean {
       const snapshot = {

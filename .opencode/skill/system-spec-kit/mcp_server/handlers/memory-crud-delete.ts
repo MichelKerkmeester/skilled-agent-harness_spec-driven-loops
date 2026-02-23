@@ -15,6 +15,7 @@ import { createMCPSuccessResponse } from '../lib/response/envelope';
 import { toErrorMessage } from '../utils';
 
 import { appendMutationLedgerSafe, getMemoryHashSnapshot } from './memory-crud-utils';
+import { clearConstitutionalCache } from '../hooks/memory-surface';
 
 import type { MCPResponse } from './types';
 import type { DeleteArgs, MemoryHashSnapshot } from './memory-crud-types';
@@ -191,6 +192,7 @@ async function handleMemoryDelete(args: DeleteArgs): Promise<MCPResponse> {
   if (deletedCount > 0) {
     triggerMatcher.clearCache();
     toolCache.invalidateOnWrite('delete', { specFolder });
+    clearConstitutionalCache();
   }
 
   const summary = deletedCount > 0

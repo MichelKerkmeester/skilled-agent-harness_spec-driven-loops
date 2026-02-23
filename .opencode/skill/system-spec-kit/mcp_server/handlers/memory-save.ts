@@ -36,6 +36,7 @@ import { requireDb, toErrorMessage } from '../utils';
 import { needsChunking, chunkLargeFile } from '../lib/chunking/anchor-chunker';
 import type { MCPResponse } from './types';
 import type BetterSqlite3 from 'better-sqlite3';
+import { clearConstitutionalCache } from '../hooks/memory-surface';
 
 import { getMemoryHashSnapshot, appendMutationLedgerSafe } from './memory-crud-utils';
 
@@ -452,27 +453,30 @@ function resolveMemoryReference(database: BetterSqlite3.Database, reference: str
     return null;
   }
 
-  const numericId = parseInt(trimmed, 10);
-  if (!isNaN(numericId) && numericId > 0) {
+  const normalizedReference = trimmed.replace(/\\/g, '/');
+  const normalizedLower = normalizedReference.toLowerCase();
+
+  if (/^\d+$/.test(trimmed)) {
+    const numericId = parseInt(trimmed, 10);
     const exists = database.prepare('SELECT id FROM memory_index WHERE id = ?').get(numericId);
     if (exists) {
       return numericId;
     }
   }
 
-  if (trimmed.includes('session') || trimmed.match(/^\d{4}-\d{2}-\d{2}/)) {
+  if (normalizedLower.includes('session') || normalizedReference.match(/^\d{4}-\d{2}-\d{2}/)) {
     const bySession = database.prepare(`
       SELECT id FROM memory_index WHERE file_path LIKE ? ESCAPE '\\'
-    `).get(`%${escapeLikePattern(trimmed)}%`) as Record<string, unknown> | undefined;
+    `).get(`%${escapeLikePattern(normalizedReference)}%`) as Record<string, unknown> | undefined;
     if (bySession) {
       return bySession.id as number;
     }
   }
 
-  if (trimmed.includes('specs/') || trimmed.includes('memory/')) {
+  if (normalizedLower.includes('specs/') || normalizedLower.includes('memory/')) {
     const byPath = database.prepare(`
       SELECT id FROM memory_index WHERE file_path LIKE ? ESCAPE '\\'
-    `).get(`%${escapeLikePattern(trimmed)}%`) as Record<string, unknown> | undefined;
+    `).get(`%${escapeLikePattern(normalizedReference)}%`) as Record<string, unknown> | undefined;
     if (byPath) {
       return byPath.id as number;
     }
@@ -1485,6 +1489,7 @@ async function handleMemorySave(args: SaveArgs): Promise<MCPResponse> {
 
   triggerMatcher.clearCache();
   toolCache.invalidateOnWrite('save', { specFolder: result.specFolder, filePath: file_path });
+  clearConstitutionalCache();
 
   const response: Record<string, unknown> = {
     status: result.status,
@@ -1637,6 +1642,7 @@ async function atomicSaveMemory(params: AtomicSaveParams, options: AtomicSaveOpt
   }
 
   triggerMatcher.clearCache();
+  clearConstitutionalCache();
   return result;
 }
 

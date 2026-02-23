@@ -4,7 +4,7 @@
    IMPORTS
 --------------------------------------------------------------- */
 
-import { readFileSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 
 import { checkDatabaseUpdated } from '../core';
@@ -26,9 +26,22 @@ import type { HealthArgs, ProviderMetadata } from './memory-crud-types';
 // Read version from package.json at module load time (CJS __dirname is available)
 // WHY try-catch: if package.json is missing or malformed, the server should still start
 const SERVER_VERSION: string = (() => {
+  const packageCandidates = [
+    resolve(__dirname, '../package.json'),
+    resolve(__dirname, '../../package.json'),
+  ];
+
   try {
-    const pkg = JSON.parse(readFileSync(resolve(__dirname, '../package.json'), 'utf-8'));
-    return pkg.version ?? 'unknown';
+    for (const candidate of packageCandidates) {
+      if (!existsSync(candidate)) {
+        continue;
+      }
+      const pkg = JSON.parse(readFileSync(candidate, 'utf-8'));
+      if (pkg?.version) {
+        return pkg.version;
+      }
+    }
+    return 'unknown';
   } catch {
     return 'unknown';
   }
