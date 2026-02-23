@@ -8,12 +8,6 @@
 
 > - 99.999% of people won't try this system. Beat the odds?
 > - Don't reward me with unwanted coffee: https://buymeacoffee.com/michelkerkmeester
-
-> [!NOTE]
-> Full visual HTML version: [Open via GitHub Pages](https://michelkerkmeester.github.io/opencode-spec-kit-framework/README.visual.html)
->  
-> If the page is unavailable, enable GitHub Pages for this repository and use the same URL.
-
 </div>
 
 ---
