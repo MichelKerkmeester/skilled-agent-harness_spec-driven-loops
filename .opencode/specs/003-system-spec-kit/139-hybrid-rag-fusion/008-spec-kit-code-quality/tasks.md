@@ -32,6 +32,14 @@ contextType: "implementation"
 
 ---
 
+<!-- ANCHOR:phase-continuity -->
+## Phase Continuity Notice
+
+As of 2026-02-23, `008-spec-kit-code-quality` supersedes `009-spec-kit-code-quality` for all ongoing work in this stream. Continue execution, verification, and documentation updates only in this `008` folder.
+<!-- /ANCHOR:phase-continuity -->
+
+---
+
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Baseline Stabilization (Locked Triad)
 

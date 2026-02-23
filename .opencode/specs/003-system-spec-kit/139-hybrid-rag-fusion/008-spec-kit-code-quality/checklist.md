@@ -33,6 +33,7 @@ contextType: "implementation"
 ## Evidence Format (Mandatory for Checked Items)
 
 - Use `"[EVIDENCE: <command or artifact path>]"` for each checked item.
+- For deferred P1/P2 items, use `"[DEFERRED: <reason>]"`.
 - Accepted examples:
   - `[EVIDENCE: npm --prefix .opencode/skill/system-spec-kit/mcp_server run test -- tests/query-expander.vitest.ts (pass)]`
   - `[EVIDENCE: .opencode/specs/003-system-spec-kit/139-hybrid-rag-fusion/008-spec-kit-code-quality/scratch/review-lane-3.md]`
@@ -84,14 +85,76 @@ P2 items are optional and may be deferred when documented.
 
 ---
 
+<!-- ANCHOR:arch-verify -->
+## L3+: ARCHITECTURE VERIFICATION
+
+- [x] CHK-301 [P0] ADRs document all major sequencing, refactor-boundary, and phase-merge continuity decisions. [EVIDENCE: `decision-record.md` (ADR-001..ADR-004)]
+- [x] CHK-302 [P1] ADR alternatives include rejection rationale. [EVIDENCE: `decision-record.md`]
+- [x] CHK-303 [P1] Consequence and risk sections are updated after implementation and merge continuity updates. [EVIDENCE: `decision-record.md` + `implementation-summary.md`]
+<!-- /ANCHOR:arch-verify -->
+
+---
+
+<!-- ANCHOR:perf-verify -->
+## L3+: PERFORMANCE VERIFICATION
+
+- [x] CHK-311 [P1] Runtime verification indicates no significant regressions versus baseline. [EVIDENCE: `implementation-summary.md` Verification table]
+- [x] CHK-312 [P1] Hotspot refactor checks complete within expected runtime windows. [EVIDENCE: `implementation-summary.md` Verification table + `scratch/from-009-verification-log.md`]
+- [ ] CHK-313 [P2] Optional benchmark table is captured for future trend analysis. [DEFERRED: No benchmark mandate for this phase]
+<!-- /ANCHOR:perf-verify -->
+
+---
+
+<!-- ANCHOR:deploy-ready -->
+## L3+: DEPLOYMENT READINESS
+
+- [x] CHK-321 [P0] Rollback procedure is documented for core refactor batches. [EVIDENCE: `decision-record.md` rollback sections under ADR-001..ADR-003]
+- [x] CHK-322 [P1] Final command matrix can be re-run from documented instructions. [EVIDENCE: `implementation-summary.md` Verification table]
+- [x] CHK-323 [P1] Open blockers/deferred items are explicitly listed. [EVIDENCE: this checklist `CHK-313`, `CHK-333`, `CHK-343` + `implementation-summary.md` Known Limitations]
+<!-- /ANCHOR:deploy-ready -->
+
+---
+
+<!-- ANCHOR:compliance-verify -->
+## L3+: COMPLIANCE VERIFICATION
+
+- [x] CHK-331 [P1] Security-sensitive paths remain compliant with existing safeguards. [EVIDENCE: `checklist.md` CHK-006 + `implementation-summary.md` Verification]
+- [x] CHK-332 [P1] License/ownership boundaries are respected for documentation changes. [EVIDENCE: phase scope lock in `spec.md` and merge artifact import under `scratch/from-009-*` only]
+- [ ] CHK-333 [P2] Optional OWASP-style review notes are captured where relevant. [DEFERRED: Not required for this phase]
+<!-- /ANCHOR:compliance-verify -->
+
+---
+
+<!-- ANCHOR:docs-verify -->
+## L3+: DOCUMENTATION VERIFICATION
+
+- [x] CHK-341 [P1] All in-scope READMEs comply with latest workflow template structure. [EVIDENCE: `implementation-summary.md` Verification (`validate_document.py` pass)]
+- [x] CHK-342 [P1] HVR style alignment is complete for in-scope READMEs. [EVIDENCE: README verification results in `implementation-summary.md` + imported `scratch/from-009-readme-audit-global.md`]
+- [ ] CHK-343 [P2] Non-phase docs follow-up list is recorded for future work. [DEFERRED: No additional follow-up queue required after merged audits]
+<!-- /ANCHOR:docs-verify -->
+
+---
+
+<!-- ANCHOR:sign-off -->
+## L3+: SIGN-OFF
+
+| Approver | Role | Status | Date |
+|----------|------|--------|------|
+| Spec Kit Maintainer | Technical Lead | [ ] Approved | |
+| Quality Owner | Product Owner | [ ] Approved | |
+| Verification Owner | QA Lead | [ ] Approved | |
+<!-- /ANCHOR:sign-off -->
+
+---
+
 <!-- ANCHOR:summary -->
 ## Verification Summary
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 9 | 9/9 |
-| P1 Items | 5 | 5/5 |
-| P2 Items | 2 | 2/2 |
+| P0 Items | 11 | 11/11 |
+| P1 Items | 15 | 15/15 |
+| P2 Items | 5 | 2/5 (3 deferred) |
 
 **Verification Date**: 2026-02-23
 <!-- /ANCHOR:summary -->

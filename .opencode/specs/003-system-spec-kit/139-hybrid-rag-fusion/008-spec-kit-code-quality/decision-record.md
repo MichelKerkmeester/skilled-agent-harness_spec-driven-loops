@@ -311,3 +311,89 @@ Documentation modernization is required, but scope is intentionally constrained 
 **How to roll back**: Revert README and standards-doc commits independently, regenerate manifest, and re-run scope validation.
 <!-- /ANCHOR:adr-003-impl -->
 <!-- /ANCHOR:adr-003 -->
+
+---
+
+<!-- ANCHOR:adr-004 -->
+## ADR-004: Consolidate Phase 009 into Canonical Phase 008
+
+### Metadata
+
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted |
+| **Date** | 2026-02-23 |
+| **Deciders** | Phase 008 spec owner, governance owner |
+
+---
+
+<!-- ANCHOR:adr-004-context -->
+### Context
+
+Two sibling phase folders (`008-spec-kit-code-quality` and `009-spec-kit-code-quality`) held overlapping governance and verification artifacts for the same initiative under `139-hybrid-rag-fusion`. Continuing dual active folders risks drift in checklist gates, audit artifacts, and closure evidence.
+
+### Constraints
+
+- `008` remains the authoritative root documentation set.
+- `009` evidence must be preserved without deleting existing `009` files.
+- Ongoing work must continue in one canonical phase folder.
+<!-- /ANCHOR:adr-004-context -->
+
+---
+
+<!-- ANCHOR:adr-004-decision -->
+### Decision
+
+**We chose**: Merge phase `009-spec-kit-code-quality` into `008-spec-kit-code-quality`, keep `008` as the single active phase folder, import `009` evidence snapshots into `008/scratch/from-009-*`, and tombstone `009`.
+
+**How it works**: Governance deltas from `009` are merged into `008/checklist.md`, continuity notes are added in `008` root docs, and `009/TOMBSTONE.md` redirects all future execution to `008`.
+<!-- /ANCHOR:adr-004-decision -->
+
+---
+
+<!-- ANCHOR:adr-004-alternatives -->
+### Alternatives Considered
+
+| Option | Pros | Cons | Score |
+|--------|------|------|-------|
+| **Merge into 008 and tombstone 009 (chosen)** | Single source of truth; preserves full evidence chain | Requires one-time continuity edits | 10/10 |
+| Keep both folders active | No immediate merge effort | Ongoing drift risk and ambiguous execution path | 2/10 |
+| Replace 008 root docs wholesale with 009 | Fast consolidation | Violates authoritative-root requirement and loses 008 continuity | 1/10 |
+
+**Why this one**: It preserves traceability while eliminating dual-phase ambiguity with minimal disruption.
+<!-- /ANCHOR:adr-004-alternatives -->
+
+---
+
+<!-- ANCHOR:adr-004-consequences -->
+### Consequences
+
+**What improves**:
+- `008` becomes the canonical execution and governance location.
+- `009` artifacts remain auditable via imported `from-009-*` snapshots and scratch evidence.
+
+**What it costs**:
+- Additional documentation maintenance for merge continuity. Mitigation: keep updates minimal and explicit.
+
+**Risks**:
+
+| Risk | Impact | Mitigation |
+|------|--------|------------|
+| Missing critical `009` evidence during merge | Medium | Explicit imported-artifact list in `implementation-summary.md` |
+| Team continues using `009` accidentally | Medium | Tombstone file with exact destination path and instruction to continue in `008` |
+<!-- /ANCHOR:adr-004-consequences -->
+
+---
+
+<!-- ANCHOR:adr-004-impl -->
+### Implementation
+
+**What changes**:
+- Added merge governance sections to `008/checklist.md`.
+- Imported specified `009` root and scratch artifacts into `008/scratch/from-009-*`.
+- Added continuity notes in `008/tasks.md` and `008/implementation-summary.md`.
+- Added `009/TOMBSTONE.md`.
+
+**How to roll back**: Remove merge-specific continuity sections and imported `from-009-*` artifacts, then restore previous dual-folder workflow explicitly.
+<!-- /ANCHOR:adr-004-impl -->
+<!-- /ANCHOR:adr-004 -->

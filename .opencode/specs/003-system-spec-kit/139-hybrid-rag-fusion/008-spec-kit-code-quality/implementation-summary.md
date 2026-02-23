@@ -82,6 +82,28 @@ When stricter validator rules surfaced fixture drift, fixtures were normalized t
 
 ---
 
+<!-- ANCHOR:merge-continuity -->
+## Phase Merge Continuity (009 -> 008)
+
+Phase `009-spec-kit-code-quality` was merged into this canonical phase folder on 2026-02-23. The following artifacts were imported into `scratch/` to preserve evidence and root-doc snapshots:
+
+- `scratch/from-009-global-quality-sweep.md`
+- `scratch/from-009-readme-audit-global.json`
+- `scratch/from-009-readme-audit-global.md`
+- `scratch/from-009-readme-audit.json`
+- `scratch/from-009-readme-audit.md`
+- `scratch/from-009-review-summary.md`
+- `scratch/from-009-verification-log.md`
+- `scratch/from-009-spec.md`
+- `scratch/from-009-plan.md`
+- `scratch/from-009-tasks.md`
+- `scratch/from-009-checklist.md`
+- `scratch/from-009-decision-record.md`
+- `scratch/from-009-implementation-summary.md`
+<!-- /ANCHOR:merge-continuity -->
+
+---
+
 <!-- ANCHOR:verification -->
 ## Verification
 
