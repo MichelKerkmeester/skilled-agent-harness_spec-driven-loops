@@ -90,8 +90,12 @@ Everything connects. Memory files live *inside* spec folders. Gates enforce docu
 
 ### Recent Platform Highlights
 
-- **Hybrid RAG Fusion (spec 138)**: The memory engine activates three retrieval channels simultaneously (Vector, BM25, FTS5) and fuses results via Reciprocal Rank Fusion. MMR diversity pruning, Transparent Reasoning Module confidence gating, multi-query expansion and AST-based section extraction complete the Unified Context Engine.
+- **Hybrid RAG Fusion phase tree (spec 139)**: The memory engine now covers a full multi-phase rollout: baseline tri-channel retrieval (Vector/BM25/FTS5), deterministic alias/tier fixes, frontmatter normalization + reindex flow, session auto-detection hardening, deprecation closure, subsystem hardening, template policy enforcement, and code-quality completion.
+- **Hybrid retrieval baseline (RRF + MMR + TRM)**: Tri-channel fusion via Reciprocal Rank Fusion, MMR diversity pruning, Transparent Reasoning Module confidence gating, and multi-query expansion are active in the Unified Context Engine.
 - **Frontmatter normalization + title disambiguation (spec 139/004)**: Managed metadata was standardized across templates, spec docs and memory files so dashboard/search titles are unique, parser compatibility accepts `contextType` and `context_type`, and bulk backfill + reindex scripts keep the index consistent.
+- **SpecKit Phase System (spec 138)**: phase-aware recommendation and folder creation (`--recommend-phases`, `--phase`) plus recursive validation (`--recursive`) are integrated. Implementation is broadly complete (`31/34`) with fixture backlog tracked in `T005`, `T028`, and `T033`.
+- **Code review baseline promoted (spec 041)**: `sk-code--review` is a first-class findings-first review baseline with a baseline-plus-overlay contract and mandatory security/correctness minimums.
+- **AGENTS.md modernization shipped**: Gate formatting was condensed from ASCII box blocks to structured markdown, section topology was consolidated from 9 to 8, and `AGENTS_example_fs_enterprises.md` was added as a runtime-neutral companion.
 - **Gemini CLI is the 4th runtime**: 8 agents, 19 TOML command wrappers, 10 skill symlinks and 3 MCP servers. Agents optimized for gemini-3.1-pro within a 400K effective token window.
 - **Spec documents are indexed and searchable**: spec folder docs (`spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `decision-record.md`, `implementation-summary.md`, `research.md`, `handover.md`) surface via `find_spec` and `find_decision` intents.
 - **473 anchor tags across 74 READMEs**: section-level retrieval with ~93% token savings over loading full files.
@@ -539,6 +543,7 @@ Skills are domain expertise on demand. The AI loads the right skill and already 
 | `sk-code--full-stack` | Multi-Stack   | Go, Node.js, React, React Native, Swift, auto-detected via marker files                |
 | `sk-code--opencode`   | System Code   | TypeScript, Python, Shell for MCP servers and scripts                                  |
 | `sk-code--web`        | Web Dev       | Webflow, vanilla JS: implementation, debugging, verification                           |
+| `sk-code--review`     | Review        | Findings-first review baseline with security/correctness minimums and baseline+overlay contract |
 | `sk-doc`              | Docs          | Document quality scoring, skill creation and install guides                            |
 | `sk-git`              | Git           | Commits, branches, PRs, worktrees                                                      |
 
@@ -989,6 +994,7 @@ A: Minimal. SQLite databases are compact. A project with 100+ memories typically
 | ------------------------------------------------------------------------------------ | ----------------------------------------------------------------- |
 | [Spec Kit README](.opencode/skill/system-spec-kit/README.md)                         | Full memory system and documentation framework reference          |
 | [AGENTS.md](AGENTS.md)                                                               | Complete gate system, confidence framework, operational protocols |
+| [AGENTS_example_fs_enterprises.md](AGENTS_example_fs_enterprises.md)                 | Runtime-neutral full-stack AGENTS companion                      |
 | [Install Guides](.opencode/install_guides/README.md)                                 | MCP servers, skill creation, agent configuration                  |
 | [SET-UP - AGENTS.md](.opencode/install_guides/SET-UP%20-%20AGENTS.md)                | Detailed AGENTS.md configuration guide                            |
 | [SET-UP - Skill Creation](.opencode/install_guides/SET-UP%20-%20Skill%20Creation.md) | Custom skill creation walkthrough                                 |
