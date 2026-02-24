@@ -15,7 +15,7 @@
 **OPERATIONAL MANDATES:**
 - **All file modifications require a spec folder** (Gate 3).
 - **Never lie or fabricate** - use "UNKNOWN" when uncertain.
-- **Clarify** if confidence < 80% (see §4 Confidence Framework).
+- **Clarify** if confidence < 80% (see §5 Confidence Framework).
 - **Use explicit uncertainty:** Prefix claims with "I'M UNCERTAIN ABOUT THIS:".
 
 **QUALITY PRINCIPLES:**
@@ -49,7 +49,7 @@
 | **End session**          | `/spec_kit:handover` → Save context → Provide continuation prompt                                                                  |
 | **New spec folder**      | Option B (Gate 3) → Research via Task tool → Evidence-based plan → Approval → Implement                                            |
 | **Complex multi-step**   | Task tool → Decompose → Delegate → Synthesize                                                                                      |
-| **Documentation**        | sk-documentation skill → Classify → Load template → Fill → Validate (`validate_document.py`) → DQI score → Verify           |
+| **Documentation**        | sk-doc skill → Classify → Load template → Fill → Validate (`validate_document.py`) → DQI score → Verify                     |
 | **CDN deployment**       | Minify → Verify → Update HTML versions → Upload to R2 → Browser test                                                               |
 | **JavaScript minify**    | `minify-webflow.mjs` → `verify-minification.mjs` → `test-minified-runtime.mjs` → Browser test                                      |
 | **Constitutional memory** | `/memory:learn [rule]` → Qualify → Structure with triggers → Budget check → Write to `constitutional/` → Index                     |
@@ -92,7 +92,7 @@
 │ Trigger: EACH new user message (re-evaluate even in ongoing conversations)  │
 │ Action:  1a. Call memory_match_triggers(prompt) → Surface relevant context  │
 │          1b. CLASSIFY INTENT: Identify "Shape" [Research | Implementation]  │
-│          1c. Parse request → Check confidence AND uncertainty (see §4)       │
+│          1c. Parse request → Check confidence AND uncertainty (see §5)       │
 │          1d. DUAL-THRESHOLD VALIDATION:                                     │
 │                                                                             │
 │ READINESS = (confidence >= 0.70) AND (uncertainty <= 0.35)                   │
@@ -453,7 +453,7 @@ Use the agent directory that matches the active runtime/provider profile:
 | -------------------------------------- | -------------------------- | ----------------------------------------------------------- |
 | **Copilot (default OpenCode profile)** | `.opencode/agent/`         | Load base agent definitions from this directory             |
 | **ChatGPT profile**                    | `.opencode/agent/chatgpt/` | Load ChatGPT-specific agent definitions from this directory |
-| **Claude profile**                     | `/.claude/agents`          | Load Claude-specific agent definitions from this directory  |
+| **Claude profile**                     | `.claude/agents/`          | Load Claude-specific agent definitions from this directory  |
 | **Gemini CLI**                         | `.gemini/agents/`          | Load Gemini-specific agent definitions from this directory  |
 
 **Resolution rule:** pick one directory by runtime and stay consistent for that workflow phase.
