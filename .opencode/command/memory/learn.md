@@ -10,19 +10,10 @@ allowed-tools: Read, Write, Edit, Glob, Bash, spec_kit_memory_memory_save, spec_
 
 ```
 IF $ARGUMENTS is empty, undefined, or contains only whitespace:
-    → STOP IMMEDIATELY
-    → Present the user with this question:
-        question: "What always-surface rule would you like to create?"
-        options:
-          - label: "Safety constraint"
-            description: "Rule that prevents dangerous actions (e.g., never commit secrets)"
-          - label: "Workflow rule"
-            description: "Process that must always be followed (e.g., always ask spec folder)"
-          - label: "Project constraint"
-            description: "Hard limit or requirement (e.g., API rate limit, token budget)"
-    → WAIT for user response
-    → Use their response as the rule description
-    → Only THEN continue with this workflow
+    → SHOW OVERVIEW DASHBOARD (Section 6)
+    → Dashboard includes action hints at the bottom
+    → WAIT for user to type a follow-up action
+    → Only THEN route to the appropriate section
 
 IF $ARGUMENTS starts with "edit" and has NO <filename>:
     → STOP IMMEDIATELY
@@ -37,14 +28,13 @@ IF $ARGUMENTS starts with "remove" and has NO <filename>:
     → WAIT for user selection
 
 IF $ARGUMENTS contains recognized input:
-    → Continue reading this file
+    → Continue reading this file and route per Section 3
 ```
 
 **CRITICAL RULES:**
-- **DO NOT** infer rule content from conversation context
+- **DO NOT** infer rule content from conversation context when creating
 - **DO NOT** assume what the user wants based on screenshots or open files
-- **DO NOT** proceed past this point without explicit input from the user
-- The rule MUST come from `$ARGUMENTS` or user's answer to the question above
+- When no arguments: show the dashboard, do NOT ask a question
 
 ---
 
@@ -73,7 +63,7 @@ destination: .opencode/skill/system-spec-kit/constitutional/
 ```
 
 **Inputs:** `$ARGUMENTS` — Rule description, or subcommand (list, edit, remove, budget)
-**Outputs:** `STATUS=<OK|FAIL|CANCELLED> ACTION=<created|listed|edited|removed|budget>`
+**Outputs:** `STATUS=<OK|FAIL|CANCELLED> ACTION=<overview|created|listed|edited|removed|budget>`
 
 ---
 
@@ -83,13 +73,13 @@ destination: .opencode/skill/system-spec-kit/constitutional/
 $ARGUMENTS
     │
     ├─► Empty (no args)
-    │   └─► MANDATORY GATE: Ask user for rule → CREATE (Section 5)
+    │   └─► OVERVIEW DASHBOARD (Section 6)
     │
     ├─► First word matches ACTION KEYWORD (case-insensitive)
-    │   ├─► "list"                → LIST DASHBOARD (Section 6)
-    │   ├─► "edit <filename>"     → EDIT MODE (Section 7)
-    │   ├─► "remove <filename>"   → REMOVE MODE (Section 8) [destructive]
-    │   └─► "budget"              → BUDGET DASHBOARD (Section 9)
+    │   ├─► "list"                → LIST DASHBOARD (Section 7)
+    │   ├─► "edit <filename>"     → EDIT MODE (Section 8)
+    │   ├─► "remove <filename>"   → REMOVE MODE (Section 9) [destructive]
+    │   └─► "budget"              → BUDGET DASHBOARD (Section 10)
     │
     └─► Any other text (natural language rule)
         └─► CREATE (Section 5) with $ARGUMENTS as rule description
@@ -252,7 +242,42 @@ STATUS=OK ACTION=created
 
 ---
 
-## 6. LIST DASHBOARD
+## 6. OVERVIEW DASHBOARD
+
+**Trigger:** `/memory:learn` (no arguments)
+
+### Step 1: Discover Files
+
+```
+Glob(".opencode/skill/system-spec-kit/constitutional/*.md")
+→ Exclude README.md
+→ Read each, estimate tokens (~4 chars per token)
+```
+
+### Step 2: Display Dashboard
+
+```
+MEMORY:LEARN
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+→ Constitutional Memories ───────────── <N> files
+
+  <filename1>.md    "<title1>"    ~<N> tokens
+  <filename2>.md    "<title2>"    ~<N> tokens
+
+→ Budget ────────────────────────────────────────────
+  ██████░░░░  ~<used>/2000 tokens  (<pct>%)
+
+─────────────────────────────────────────────────────
+[<rule>] create    [list] details    [budget] usage
+[edit <file>] modify    [remove <file>] delete
+
+STATUS=OK ACTION=overview
+```
+
+---
+
+## 7. LIST DASHBOARD
 
 **Trigger:** `/memory:learn list`
 
@@ -296,9 +321,9 @@ STATUS=OK ACTION=listed
 
 ---
 
-## 7. EDIT MODE
+## 8. EDIT MODE
 
-**Trigger:** `/memory:learn edit <filename>`
+**Trigger:** `/memory:learn edit <filename>` (or select from overview)
 
 ### Step 1: Validate File Exists
 
@@ -349,9 +374,9 @@ STATUS=OK ACTION=edited
 
 ---
 
-## 8. REMOVE MODE (Destructive)
+## 9. REMOVE MODE (Destructive)
 
-**Trigger:** `/memory:learn remove <filename>`
+**Trigger:** `/memory:learn remove <filename>` (or select from overview)
 
 ### Step 1: Validate File Exists
 
@@ -406,7 +431,7 @@ STATUS=OK ACTION=removed
 
 ---
 
-## 9. BUDGET DASHBOARD
+## 10. BUDGET DASHBOARD
 
 **Trigger:** `/memory:learn budget`
 
@@ -447,7 +472,7 @@ STATUS=OK ACTION=budget
 
 ---
 
-## 10. TOOL SIGNATURES
+## 11. TOOL SIGNATURES
 
 | Step | Tool | Purpose |
 |------|------|---------|
@@ -461,11 +486,11 @@ STATUS=OK ACTION=budget
 
 ---
 
-## 11. ERROR HANDLING
+## 12. ERROR HANDLING
 
 | Condition | Action |
 |-----------|--------|
-| No rule description | Mandatory gate prompts user |
+| No rule description | Shows overview dashboard with action hints |
 | Rule doesn't qualify as constitutional | Suggest `/memory:save` with critical tier |
 | Token budget exceeded | Warn with dashboard, offer trim/shorten/cancel |
 | File already exists with same name | ASK: overwrite or rename |
@@ -475,7 +500,7 @@ STATUS=OK ACTION=budget
 
 ---
 
-## 12. EXAMPLES
+## 13. EXAMPLES
 
 ### Example 1: Create a Security Rule
 
@@ -515,7 +540,7 @@ STATUS=OK ACTION=created
 
 ---
 
-## 13. RELATED COMMANDS
+## 14. RELATED COMMANDS
 
 - `/memory:save` — Save session context (episodic memory, any tier)
 - `/memory:context` — Search and retrieve memories
