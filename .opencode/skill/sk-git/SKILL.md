@@ -3,7 +3,7 @@ name: sk-git
 description: "Git workflow orchestrator guiding developers through workspace setup, clean commits, and work completion across git-worktrees, git-commit, and git-finish skills"
 allowed-tools: [Read, Bash, mcp__code_mode__call_tool_chain]
 argument-hint: "[worktree|commit|finish]"
-version: 1.0.8.0
+version: 1.0.9.0
 ---
 
 <!-- Keywords: git-workflow, git-worktree, conventional-commits, branch-management, pull-request, commit-hygiene, workspace-isolation, version-control, github, issues, pr-review -->
@@ -234,13 +234,50 @@ Git development flows through 3 phases:
 
 ### ✅ ALWAYS
 
-1. **Use conventional commit format** - All commits must follow `type(scope): description` pattern
+1. **Use deterministic conventional commit format** - All commits must follow `type(scope): description` using the commit-message logic defined below
 2. **Create worktree for parallel work** - Never work on multiple features in the same worktree
 3. **Verify branch is up-to-date** - Pull latest changes before creating PR
 4. **Use descriptive branch names** - Format: `type/short-description` (e.g., `feat/add-auth`, `fix/login-bug`)
 5. **Reference spec folder in commits** - Include spec folder path in commit body when applicable
 6. **Clean up after merge** - Delete local and remote feature branches after successful merge
 7. **Squash commits for clean history** - Use squash merge for feature branches with many WIP commits
+
+### Commit Message Logic (AI-Scannable)
+
+Use this logic whenever the AI writes or rewrites commit messages.
+
+1. **Subject format (required)**: `type(scope): summary`
+2. **Type selection order (first match wins)**:
+   - `merge`: merge commits (`Merge ...`)
+   - `release`: version or release subjects (`vX.Y.Z`, `release`)
+   - `docs`: docs-only changes or README/CHANGELOG-focused updates
+   - `fix`: bug/security/hotfix/error correction
+   - `feat`: new behavior, support, or capability
+   - `refactor`: internal restructuring without behavior change
+   - `test`: test-only updates
+   - `chore`: fallback for operational or mixed maintenance work
+3. **Scope selection order (first match wins)**:
+   - `.opencode/skill/<name>/...` -> `<name>`
+   - `AGENTS.md` changes -> `agents`
+   - `README.md`-only changes -> `readme`
+   - `opencode.json` or `.utcp_config.json` -> `config`
+   - `.opencode/agent/...` -> `agents`
+   - `.opencode/command/...` -> `commands`
+   - docs-only set -> `docs`
+   - fallback -> dominant top-level path or `repo`
+4. **Summary normalization**:
+   - Keep concise and specific
+   - Remove duplicate prefixes like `feat(scope):` from legacy subjects
+   - Avoid trailing period
+   - Preserve key context tokens (version, skill name, issue id) when relevant
+5. **Body format (optional)**:
+   - Add only when context is non-obvious
+   - Prefer:
+     - `Context: <why>`
+     - `Changes:` with 1-3 bullets
+     - `Refs: <spec-folder|issue|PR>` when available
+6. **Determinism rule**:
+   - The same diff + metadata should produce the same commit subject every time.
 
 ### ❌ NEVER
 

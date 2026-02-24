@@ -69,6 +69,8 @@ skill_advisor.py "commit my changes" --threshold 0.8
 .opencode/skill/sk-git/
 ├── SKILL.md                              # Entry point with routing logic
 ├── README.md                             # This file
+├── changelog/
+│   └── CHANGELOG.md                      # Skill change history
 ├── references/
 │   ├── worktree_workflows.md             # 7-step workspace creation
 │   ├── commit_workflows.md               # 6-step commit workflow
@@ -92,6 +94,7 @@ skill_advisor.py "commit my changes" --threshold 0.8
 - **Smart routing:** Loads only the resources needed for the current phase
 - **Workspace choice enforcement:** Always asks user before choosing branch, worktree, or current branch
 - **Conventional Commits:** Enforces `type(scope): description` format on all commits
+- **Deterministic commit logic:** Adds first-match type/scope inference for AI-generated commit subjects
 - **Artifact filtering:** Excludes build files, coverage reports and other non-public artifacts from commits
 - **Quality gates:** Pre-commit, pre-merge, pre-PR and post-merge checkpoints
 - **GitHub MCP integration:** Programmatic access to PRs, issues and CI/CD via Code Mode

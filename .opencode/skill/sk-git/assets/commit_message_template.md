@@ -55,6 +55,19 @@ This asset provides structured templates and examples for commit messages. Use i
 | `perf` | Performance improvement | Possibly |
 | `ci` | CI/CD configuration changes | No |
 
+### AI Type Selection Priority
+
+When the AI infers the commit type, use first-match priority:
+
+1. `merge` for merge commits (`Merge ...`)
+2. `release` for version or release subjects (`vX.Y.Z`, `release`)
+3. `docs` for documentation-only changes
+4. `fix` for bug/security/hotfix/error correction
+5. `feat` for new behavior or capability
+6. `refactor` for structural changes without behavior changes
+7. `test` for test-only changes
+8. `chore` as fallback
+
 ---
 
 <!-- /ANCHOR:type-reference -->
@@ -75,6 +88,19 @@ The component or area of the codebase affected by the change.
 
 **Scope is optional** - omit if change affects multiple areas or is too general.
 
+### AI Scope Selection Priority
+
+Use first-match order for scope inference:
+
+1. `.opencode/skill/<name>/...` -> `<name>`
+2. `AGENTS.md` changes -> `agents`
+3. `README.md`-only changes -> `readme`
+4. `opencode.json` or `.utcp_config.json` -> `config`
+5. `.opencode/agent/...` -> `agents`
+6. `.opencode/command/...` -> `commands`
+7. docs-only set -> `docs`
+8. fallback -> dominant top-level path or `repo`
+
 ---
 
 <!-- /ANCHOR:scope-guidelines -->
@@ -94,6 +120,13 @@ The component or area of the codebase affected by the change.
 - Be vague ("update stuff", "fix bug")
 - Include implementation details
 - Use internal task numbers in subject
+
+### AI Summary Normalization
+
+1. Remove duplicate legacy prefixes (`feat(scope): ...`, `docs: ...`) before rebuilding subject.
+2. Keep summary concise and specific.
+3. Avoid trailing punctuation.
+4. Preserve key context (version, skill name, issue id) when relevant.
 
 ---
 

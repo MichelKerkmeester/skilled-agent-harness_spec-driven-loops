@@ -183,6 +183,32 @@ IF changes include both code and tests:
 - `perf` - Performance improvements
 - `ci` - CI/CD changes
 
+**Deterministic AI Commit Logic**:
+
+1. **Type selection order** (first match wins):
+   - `merge` for merge commits (`Merge ...`)
+   - `release` for version/release subjects (`vX.Y.Z`, `release`)
+   - `docs` for docs-only changes (README/CHANGELOG/docs paths)
+   - `fix` for bug/security/hotfix/error correction
+   - `feat` for new behavior or capabilities
+   - `refactor` for non-behavioral restructuring
+   - `test` for test-only changes
+   - `chore` as fallback
+2. **Scope selection order** (first match wins):
+   - `.opencode/skill/<name>/...` -> `<name>`
+   - `AGENTS.md` updates -> `agents`
+   - `README.md`-only changes -> `readme`
+   - `opencode.json` or `.utcp_config.json` -> `config`
+   - `.opencode/agent/...` -> `agents`
+   - `.opencode/command/...` -> `commands`
+   - docs-only set -> `docs`
+   - fallback -> dominant top-level area or `repo`
+3. **Summary normalization**:
+   - Remove legacy prefixes already in the subject (`feat(scope): ...`)
+   - Keep concise and specific
+   - Avoid trailing period
+   - Preserve high-signal context tokens (version, issue id, skill name)
+
 **Rules**:
 
 1. **Subject line** (<type>(<scope>): <description>):
