@@ -6,7 +6,7 @@
 
 ### Multi-Stack Architecture
 
-**Universal Framework:** This AGENTS.md variant extends the base template with stack-aware development workflows. Stack-specific behavior is handled automatically by the `sk-code--full-stack` skill.
+**Universal Framework:** This AGENTS.md variant extends the base template with stack-aware development workflows. Stack-specific behavior is handled automatically by the `sk--code` skill.
 
 **Stack Detection:** Automatic via marker files (first match wins):
 
@@ -19,8 +19,8 @@
 | Node.js       | `package.json` (fallback)          | Service layering, async flow, middleware        |
 
 **How It Works:**
-1. `sk-code--full-stack` detects stack via marker files at session start
-2. Stack-specific patterns load from `.opencode/skill/sk-code--full-stack/references/{category}/{stack}/`
+1. `sk--code` detects stack via marker files at session start
+2. Stack-specific patterns load from `.opencode/skill/sk--code/references/{category}/{stack}/`
 3. Verification commands auto-adjust per stack (see Quick Reference below)
 
 **The Iron Law:** NO completion claims without running stack-appropriate verification.
@@ -70,7 +70,7 @@
 | **New spec folder**       | Option B (Gate 3) → Research via Task tool → Evidence-based plan → Approval → Implement                                  |
 | **Complex multi-step**    | Task tool → Decompose → Delegate → Synthesize                                                                            |
 | **Documentation**         | sk-doc skill → Classify → Load template → Fill → Validate → DQI score → Verify                                           |
-| **Code implementation**   | sk-code--full-stack skill → Detect stack → Phase 1-3 (Implement → Test → Verify)                                         |
+| **Code implementation**   | sk--code skill → Detect stack → Phase 1-3 (Implement → Test → Verify)                                                    |
 | **Git workflow**          | sk-git skill → Worktree setup / Commit / Finish (PR)                                                                     |
 | **Go verification**       | `go test ./...` → `golangci-lint run` → `go build ./...`                                                                 |
 | **Node.js verification**  | `npm test` → `npx eslint .` → `npm run build`                                                                            |
@@ -311,9 +311,9 @@ Task Received → Gate 2: Run skill_advisor.py
 4. Follow skill instructions to completion
 5. Do NOT re-invoke a skill already in context
 
-### Primary Skill: sk-code--full-stack
+### Primary Skill: sk--code
 
-For ALL code implementation, `sk-code--full-stack` is the primary orchestrator skill.
+For ALL code implementation, `sk--code` is the primary orchestrator skill.
 
 **3-Phase Lifecycle (MANDATORY):**
 1. **Phase 1 - Implementation**: Write code following stack-specific patterns from `references/{category}/{stack}/`
