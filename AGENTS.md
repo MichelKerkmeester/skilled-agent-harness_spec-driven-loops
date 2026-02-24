@@ -36,25 +36,25 @@
 
 ### Quick Reference: Common Workflows
 
-| Task                     | Flow                                                                                                                               |
-| ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------- |
-| **File modification**    | Gate 1 → Gate 2 → Gate 3 (ask spec folder) → Load memory context → Execute                                                         |
-| **Research/exploration** | `memory_match_triggers()` → `memory_context()` (unified) OR `memory_search()` (targeted) → Document findings                       |
-| **Code search**          | `Grep()` for text patterns, `Glob()` for file discovery, `Read()` for file contents                                                |
-| **Resume prior work**    | `/memory:continue` OR `memory_search({ query, specFolder, anchors: ['state', 'next-steps'] })` → Review checklist → Continue       |
-| **Save context**         | `/memory:save` OR `node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js [spec-folder-path]` → Auto-indexed |
-| **Claim completion**     | Validation runs automatically → Load `checklist.md` → Verify ALL items → Mark with evidence                                        |
-| **Debug delegation**     | `/spec_kit:debug` → Model selection → Task tool dispatch                                                                           |
-| **Debug stuck issue**    | 3+ failed attempts → /spec_kit:debug → Model selection → Task tool dispatch                                                        |
-| **End session**          | `/spec_kit:handover` → Save context → Provide continuation prompt                                                                  |
-| **New spec folder**      | Option B (Gate 3) → Research via Task tool → Evidence-based plan → Approval → Implement                                            |
-| **Complex multi-step**   | Task tool → Decompose → Delegate → Synthesize                                                                                      |
-| **Documentation**        | sk-doc skill → Classify → Load template → Fill → Validate (`validate_document.py`) → DQI score → Verify                     |
-| **CDN deployment**       | Minify → Verify → Update HTML versions → Upload to R2 → Browser test                                                               |
-| **JavaScript minify**    | `minify-webflow.mjs` → `verify-minification.mjs` → `test-minified-runtime.mjs` → Browser test                                      |
+| Task                      | Flow                                                                                                                               |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
+| **File modification**     | Gate 1 → Gate 2 → Gate 3 (ask spec folder) → Load memory context → Execute                                                         |
+| **Research/exploration**  | `memory_match_triggers()` → `memory_context()` (unified) OR `memory_search()` (targeted) → Document findings                       |
+| **Code search**           | `Grep()` for text patterns, `Glob()` for file discovery, `Read()` for file contents                                                |
+| **Resume prior work**     | `/memory:continue` OR `memory_search({ query, specFolder, anchors: ['state', 'next-steps'] })` → Review checklist → Continue       |
+| **Save context**          | `/memory:save` OR `node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js [spec-folder-path]` → Auto-indexed |
+| **Claim completion**      | Validation runs automatically → Load `checklist.md` → Verify ALL items → Mark with evidence                                        |
+| **Debug delegation**      | `/spec_kit:debug` → Model selection → Task tool dispatch                                                                           |
+| **Debug stuck issue**     | 3+ failed attempts → /spec_kit:debug → Model selection → Task tool dispatch                                                        |
+| **End session**           | `/spec_kit:handover` → Save context → Provide continuation prompt                                                                  |
+| **New spec folder**       | Option B (Gate 3) → Research via Task tool → Evidence-based plan → Approval → Implement                                            |
+| **Complex multi-step**    | Task tool → Decompose → Delegate → Synthesize                                                                                      |
+| **Documentation**         | sk-doc skill → Classify → Load template → Fill → Validate (`validate_document.py`) → DQI score → Verify                            |
+| **CDN deployment**        | Minify → Verify → Update HTML versions → Upload to R2 → Browser test                                                               |
+| **JavaScript minify**     | `minify-webflow.mjs` → `verify-minification.mjs` → `test-minified-runtime.mjs` → Browser test                                      |
 | **Constitutional memory** | `/memory:learn [rule]` → Qualify → Structure with triggers → Budget check → Write to `constitutional/` → Index                     |
-| **Phase workflow**       | `/spec_kit:phase` → Decompose → `create.sh --phase` → Populate parent/children → `validate.sh --recursive`                         |
-| **Database maintenance** | `/memory:manage` → stats, health, cleanup, checkpoint operations                                                                   |
+| **Phase workflow**        | `/spec_kit:phase` → Decompose → `create.sh --phase` → Populate parent/children → `validate.sh --recursive`                         |
+| **Database maintenance**  | `/memory:manage` → stats, health, cleanup, checkpoint operations                                                                   |
 
 ### Coding Analysis Lenses 
 
@@ -86,221 +86,72 @@
 
 ### 🔒 PRE-EXECUTION GATES (Pass before ANY tool use)
 
-```
-┌─────────────────────────────────────────────────────────────────────────────┐
-│ GATE 1: UNDERSTANDING + CONTEXT SURFACING [SOFT BLOCK]                      │
-│ Trigger: EACH new user message (re-evaluate even in ongoing conversations)  │
-│ Action:  1a. Call memory_match_triggers(prompt) → Surface relevant context  │
-│          1b. CLASSIFY INTENT: Identify "Shape" [Research | Implementation]  │
-│          1c. Parse request → Check confidence AND uncertainty (see §5)       │
-│          1d. DUAL-THRESHOLD VALIDATION:                                     │
-│                                                                             │
-│ READINESS = (confidence >= 0.70) AND (uncertainty <= 0.35)                   │
-│   - BOTH pass → PROCEED                                                     │
-│   - Either fails → INVESTIGATE (max 3 iterations)                           │
-│   - 3 failures → ESCALATE to user with options                              │
-│                                                                             │
-│ Simple thresholds (confidence-only, for straightforward queries):            │
-│   If <40%: ASK | 40-69%: PROCEED WITH CAUTION | ≥70%: PASS                  │
-│                                                                             │
-│ ⚠️ PRIORITY NOTE: Gate 1 is SOFT - if file modification detected, Gate 3      │
-│    (HARD BLOCK) takes precedence. Ask spec folder question BEFORE analysis. │
-└─────────────────────────────────────────────────────────────────────────────┘
-                                    ↓ PASS
-┌─────────────────────────────────────────────────────────────────────────────┐
-│ GATE 2: SKILL ROUTING [ALWAYS REQUIRED for non-trivial tasks]               │
-│                                                                             │
-│ Action:  Verify skill routing via ONE of:                                   │
-│   A) Run: python3 .opencode/skill/scripts/skill_advisor.py "[request]" --threshold 0.8│
-│   B) Cite user's explicit direction: "User specified: [exact quote]"         │
-│                                                                             │
-│ Logic:   Script confidence ≥ 0.8 → MUST invoke recommended skill             │
-│          Script confidence < 0.8 → Proceed with general approach             │
-│          User explicitly names skill/agent → Cite and proceed               │
-│                                                                             │
-│ Output:  First response MUST include either:                                │
-│          "SKILL ROUTING: [brief script result]" OR                          │
-│          "SKILL ROUTING: User directed → [skill/agent name]"                │
-│                                                                             │
-│ Skip:    Only for trivial queries (greetings, single-line questions)        │
-└─────────────────────────────────────────────────────────────────────────────┘
-                                    ↓ PASS
-┌─────────────────────────────────────────────────────────────────────────────┐
-│ GATE 3: SPEC FOLDER QUESTION [HARD BLOCK] ⭐ PRIORITY GATE                  │
-│                                                                             │
-│ ⚠️ HARD BLOCK OVERRIDES SOFT BLOCKS: If file modification detected,           │
-│    Gate 3 question MUST be asked BEFORE Gates 1-2 analysis/tool calls.      │
-│    Sequence: Detect intent → Ask Gate 3 → Wait for A/B/C/D/E → Then analyze.│
-│                                                                             │
-│ FILE MODIFICATION TRIGGERS (if ANY match → Q1 REQUIRED):                    │
-│   □ "rename", "move", "delete", "create", "add", "remove"                   │
-│   □ "update", "change", "modify", "edit", "fix", "refactor"                  │
-│   □ "implement", "build", "write", "generate", "configure", "analyze"        │
-│   □ "decompose", "phased", "multi-phase", "phase"                           │
-│   □ Any task that will result in file changes                                │
-│                                                                             │
-│ Q1: SPEC FOLDER - If file modification triggers detected                      │
-│     Options: A) Existing | B) New | C) Update related | D) Skip             │
-│              E) Phase folder — target a specific phase child                 │
-│                 (e.g., specs/NNN-name/001-phase/)                           │
-│     ❌ DO NOT use Read/Edit/Write/Bash (except Gate Actions) before asking  │
-│     ✅ ASK FIRST, wait for A/B/C/D/E response, THEN proceed                 │
-│                                                                             │
-│ BENEFIT: Better planning, reduced rework, consistent documentation          │
-│ SKIP: User can say "skip research" to bypass Research task dispatch         │
-│                                                                             │
-│ PHASE BOUNDARY: Gate 3 answers apply ONLY within the current workflow        │
-│ phase. When a plan workflow completes and user requests implementation:      │
-│   1. Gate 3 MUST be re-evaluated (spec folder needs confirmation)            │
-│   2. Free-text implement requests → Route through /spec_kit:implement       │
-│   3. Plan-phase Gate 3 answer does NOT auto-carry to implementation         │
-│   Exception: Gate 3 carry-over IS valid for Memory Save Rule (post-exec)    │
-│                                                                             │
-│ Block: HARD - Cannot use tools without answer                               │
-└─────────────────────────────────────────────────────────────────────────────┘
-```
+#### GATE 1: UNDERSTANDING + CONTEXT SURFACING** [SOFT BLOCK]
+Trigger: EACH new user message (re-evaluate even in ongoing conversations)
+1. Call `memory_match_triggers(prompt)` → Surface relevant context
+2. Classify intent: Research or Implementation
+3. Parse request → Check confidence AND uncertainty (see §4)
+4. **Dual-threshold:** confidence ≥ 0.70 AND uncertainty ≤ 0.35 → PROCEED. Either fails → INVESTIGATE (max 3 iterations) → ESCALATE. Simple: <40% ASK | 40-69% CAUTION | ≥70% PASS
 
-### @speckit Exclusivity Enforcement (T020)
+> Gate 1 is SOFT — if file modification detected, Gate 3 (HARD) takes precedence. Ask spec folder question BEFORE analysis.
 
-**CRITICAL RULE**: ALL spec folder template documentation MUST be created by @speckit agent exclusively.
+####  GATE 2: SKILL ROUTING [REQUIRED for non-trivial tasks]
+1. A) Run: `python3 .opencode/skill/scripts/skill_advisor.py "[request]" --threshold 0.8`
+2. B) Cite user's explicit direction: "User specified: [exact quote]"
+- Confidence ≥ 0.8 → MUST invoke skill | < 0.8 → general approach | User names skill → cite and proceed
+- Output: `SKILL ROUTING: [result]` or `SKILL ROUTING: User directed → [name]`
+- Skip: trivial queries only (greetings, single-line questions)
 
-**SCOPE**: Any markdown file (*.md) written inside `specs/[###-name]/` or `.opencode/specs/[###-name]/` — including but not limited to:
-- spec.md, plan.md, tasks.md, checklist.md, decision-record.md, implementation-summary.md
+#### GATE 3: SPEC FOLDER QUESTION [HARD BLOCK] — PRIORITY GATE
+- **Overrides Gates 1-2:** If file modification detected → ask Gate 3 BEFORE any analysis/tool calls
+- **Triggers:** rename, move, delete, create, add, remove, update, change, modify, edit, fix, refactor, implement, build, write, generate, configure, analyze, decompose, phase — or any task resulting in file changes
+- **Options:** A) Existing | B) New | C) Update related | D) Skip | E) Phase folder (e.g., `specs/NNN-name/001-phase/`)
+- **DO NOT** use Read/Edit/Write/Bash (except Gate Actions) before asking. ASK FIRST, wait for response, THEN proceed
+- **Phase boundary:** Gate 3 answers apply ONLY within current workflow phase. Plan→implement transition MUST re-evaluate. Exception: carry-over IS valid for Memory Save Rule
 
-**EXCEPTIONS** (non-@speckit agents MAY write):
-- `memory/` subdirectory → Use `generate-context.js` script (NEVER manual Write tool)
-- `scratch/` subdirectory → Temporary workspace, any agent permitted
-- `handover.md` → @handover agent exclusively
-- `research.md` → @research agent exclusively
-- `debug-delegation.md` → @debug agent exclusively
-
-**DETECTION**: If @general, @write, or other non-@speckit agent attempts to create/modify spec template files → VIOLATION
-
-**RESPONSE**:
-1. STOP immediately
-2. STATE: "ROUTING VIOLATION: Spec folder documentation requires @speckit agent (exclusive authority per AGENTS.md §3 Gate 3)"
-3. Re-route to @speckit with proper context (spec folder path + level + task requirements)
-
-**WHY**: @speckit enforces template structure (CORE + ADDENDUM v2.2), ANCHOR tags, Level 1-3+ standards, and validation workflows. Other agents lack this enforcement and produce non-compliant documentation.
-
-
-### 🔒 POST-EXECUTION RULES (Behavioral - Not Numbered)
-
-```
-                                    ↓ TASK COMPLETE?
-┌─────────────────────────────────────────────────────────────────────────────┐
-│ MEMORY SAVE RULE [HARD]                                                     │
-│ Trigger: "save context", "save memory", /memory:save, memory file creation   │
-│                                                                             │
-│ VALIDATION:                                                                 │
-│   0. If spec folder was established at Gate 3 in this conversation →        │
-│      USE IT as the folder argument for memory saves (do NOT re-ask).        │
-│      NOTE: This carry-over applies ONLY to memory saves. New workflow        │
-│      phases (e.g., plan→implement transition) MUST re-evaluate Gate 3.      │
-│   1. If NO folder AND Gate 3 was never answered → HARD BLOCK → Ask user     │
-│   2. If folder provided → Validate alignment with conversation topic        │
-│                                                                             │
-│ EXECUTION (script: .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js):│
-│   Mode 1 (JSON): Write JSON to /tmp/save-context-data.json, pass as arg     │
-│            node [script] /tmp/save-context-data.json                        │
-│   Mode 2 (Direct): Pass spec folder path directly                           │
-│            node [script] specs/005-memory                                   │
-│                                                                             │
-│   Subfolder Support:                                                        │
-│     # Nested path: parent/child format                                      │
-│     node [script] 003-system-spec-kit/121-child-name                        │
-│     # Bare child: auto-searches all parents for unique match                │
-│     node [script] 121-child-name                                            │
-│     # With prefix                                                            │
-│     node [script] specs/003-parent/121-child-name                           │
-│                                                                             │
-│ INDEXING NOTE: Script reports "Indexed as memory #X" but running MCP server │
-│   may not see it immediately (separate DB connection). For immediate MCP    │
-│   visibility: call memory_index_scan({ specFolder }) or memory_save()       │
-│                                                                             │
-│ VIOLATION: Write tool on memory/ path → DELETE & re-run via script          │
-└─────────────────────────────────────────────────────────────────────────────┘
-                                    ↓
-┌─────────────────────────────────────────────────────────────────────────────┐
-│ COMPLETION VERIFICATION RULE [HARD]                                         │
-│ Trigger: Claiming "done", "complete", "finished", "works"                    │
-│                                                                             │
-│ Action:                                                                     │
-│   1. Validation runs automatically on spec folder (if exists)               │
-│   2. Load checklist.md → Verify ALL items → Mark [x] with evidence          │
-│                                                                             │
-│ Skip: Level 1 tasks (no checklist.md required)                              │
-│ Validation: Exit 0 = pass, Exit 1 = warnings, Exit 2 = errors (must fix)     │
-└─────────────────────────────────────────────────────────────────────────────┘
-                                    ↓
-                              ✅ CLAIM COMPLETION
-
-┌─────────────────────────────────────────────────────────────────────────────┐
-│ VIOLATION RECOVERY [SELF-CORRECTION]                                        │
-│ Trigger: About to skip gates, or realized gates were skipped                │
-│                                                                             │
-│ Action:                                                                     │
-│   1. STOP immediately                                                       │
-│   2. STATE: "Before I proceed, I need to ask about documentation:"          │
-│   3. ASK the applicable Gate 3 question (spec folder A/B/C/D/E)             │
-│   4. WAIT for response, then continue                                       │
-│                                                                             │
-│ Self-Check (run before ANY tool-using response):                            │
-│   □ File modification detected? Did I ask spec folder question?              │
-│   □ Skill routing verified? Script output OR user direction cited?           │
-│   □ Saving memory/context? Using generate-context.js (not Write tool)?      │
-│   □ Aligned with ORIGINAL request? No scope drift from Turn 1?              │
-│   □ Claiming completion? checklist.md verified?                              │
-└─────────────────────────────────────────────────────────────────────────────┘
-```
+#### CONSOLIDATED QUESTION PROTOCOL
+When multiple inputs are needed, consolidate into a SINGLE prompt — never split across messages. Include only applicable questions; omit when pre-determined.
+- **Round-trip optimization** — Only 1 user interaction needed for setup
+- **First Message Protocol** — ALL questions asked BEFORE any analysis or tool calls
+- **Violation:** Multiple separate prompts → STOP, apologize, re-present as single prompt
+- **Bypass phrases:** "skip context" / "fresh start" / "skip memory" / [skip] for memory loading; Level 1 tasks skip completion verification
 
 ---
 
-## 3. ⚡ CONSOLIDATED QUESTION PROTOCOL
+### 🔒 POST-EXECUTION RULES
 
-**🚨 ONE USER INTERACTION - Ask ALL questions together, wait ONCE**
+#### MEMORY SAVE RULE [HARD]
+Trigger: "save context", "save memory", `/memory:save`, memory file creation
+- If spec folder established at Gate 3 → USE IT (don't re-ask). Carry-over applies ONLY to memory saves
+- If NO folder and Gate 3 never answered → HARD BLOCK → Ask user
+- **Script:** `node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js [spec-folder-path]`
+  - Mode 1 (JSON): Write JSON to `/tmp/save-context-data.json`, pass as arg
+  - Mode 2 (Direct): Pass spec folder path (e.g., `specs/005-memory`)
+  - Subfolder: `003-parent/121-child` or bare `121-child` (auto-searches parents)
+- **Indexing:** For immediate MCP visibility after save: `memory_index_scan({ specFolder })` or `memory_save()`
+- **Violation:** Write tool on `memory/` path → DELETE and re-run via script
 
-When multiple inputs are needed, consolidate into a SINGLE prompt. Never split questions across multiple messages.
+#### COMPLETION VERIFICATION RULE [HARD]
+Trigger: Claiming "done", "complete", "finished", "works"
+1. Validation runs automatically on spec folder (if exists)
+2. Load `checklist.md` → Verify ALL items → Mark `[x]` with evidence
+- Skip: Level 1 tasks (no checklist.md required) | Exit 0 = pass, Exit 1 = warnings, Exit 2 = errors (must fix)
 
-**Example: Multi-question consolidated prompt**
-```markdown
-**Before proceeding, please answer:**
+#### VIOLATION RECOVERY [SELF-CORRECTION]
+Trigger: About to skip gates, or realized gates were skipped → STOP → STATE: "Before I proceed, I need to ask about documentation:" → ASK Gate 3 (A/B/C/D/E) → WAIT
 
-1. **Spec Folder** (required):
-   A) Use existing: [suggest if related found]
-   B) Create new: specs/[###]-[feature-slug]/
-   C) Update related: [if partial match]
-   D) Skip documentation
-
-2. **Execution Mode** (if applicable):
-   A) Autonomous - Execute without approval
-   B) Interactive - Pause at each step
-
-3. **Memory Context** (if using existing spec):
-   A) Load most recent
-   B) Load all recent (up to 3)
-   C) Skip (start fresh)
-
-Reply with answers, e.g.: "B, A, C" or "A, , A" (blank for default)
-```
-
-**Principles:**
-- **Round-trip optimization** - Only 1 user interaction needed for setup
-- **No sequential prompts** - NEVER ask one question, wait, ask another
-- **First Message Protocol** - ALL questions asked BEFORE any analysis or tool calls
-- **Include only applicable questions** - Omit questions when answer is pre-determined
-
-**Violation:** If you ask questions in MULTIPLE separate prompts instead of ONE consolidated prompt → STOP, apologize, re-present as single prompt.
-
-**Gate Bypass Phrases** (user can skip specific gates):
-- Memory Context Loading: "skip context", "fresh start", "skip memory", [skip]
-- Completion Verification: Level 1 tasks (no checklist.md required)
+#### Self-Check (before ANY tool-using response):
+- [ ] File modification? Asked spec folder question?
+- [ ] Skill routing verified?
+- [ ] Saving memory? Using `generate-context.js` (not Write tool)?
+- [ ] Aligned with ORIGINAL request? No scope drift?
+- [ ] Claiming completion? `checklist.md` verified?
 
 ---
 
-## 4. 📝 MANDATORY: CONVERSATION DOCUMENTATION
+## 3. 📝 MANDATORY: CONVERSATION DOCUMENTATION
 
-Every conversation that modifies files MUST have a spec folder. **Full details**: system-spec-kit skill
+Every conversation that modifies files MUST have a spec folder. **Full details:** system-spec-kit SKILL.md (§1 When to Use, §3 How it Works, §4 Rules)
 
 ### Documentation Levels
 
@@ -311,137 +162,60 @@ Every conversation that modifies files MUST have a spec folder. **Full details**
 | **3**  | ≥500           | Level 2 + decision-record.md (+ optional research.md) | Complex/architecture changes       |
 | **3+** | Complexity 80+ | Level 3 + AI protocols, extended checklist, sign-offs | Multi-agent, enterprise governance |
 
-> **Note:** `implementation-summary.md` is REQUIRED for all levels but created after implementation completes, not at spec folder creation time.
+> **Note:** `implementation-summary.md` is REQUIRED for all levels but created **after implementation completes**, not at spec folder creation time. See SKILL.md §4 Rule 13.
 
-**Rules:** 
-- When in doubt → higher level
-- LOC is soft guidance (risk/complexity can override)
-- Single typo/whitespace fixes (<5 characters in one file) are exempt from spec folder requirements
+**Rules:** When in doubt → higher level. LOC is soft guidance (risk/complexity can override). Single typo/whitespace fixes (<5 characters in one file) are exempt.
 
-### Spec Folder Structure
-**Path:** `/specs/[###-short-name]/` (e.g., `007-add-auth`)
-**Templates:** `.opencode/skill/system-spec-kit/templates/`
+**Spec folder path:** `specs/[###-short-name]/` | **Templates:** `.opencode/skill/system-spec-kit/templates/`
 
-| Folder     | Purpose                     | Examples                               |
-| ---------- | --------------------------- | -------------------------------------- |
-| `scratch/` | Temporary/disposable        | Debug logs, test scripts, prototypes   |
-| `memory/`  | Context for future sessions | Decisions, blockers, session summaries |
-| Root       | Permanent documentation     | spec.md, plan.md, checklist.md         |
-
-**Sub-Folder Versioning** (when reusing spec folders):
-- Option A with existing content → Archive to `001-{topic}/`, new work in `002-{name}/`
-- Each sub-folder has independent `memory/` context
-
-### Dynamic State (Auto-Evolution) & Completion Verification
-- **Live Tracking:** Update `checklist.md` *during* the task. It represents the live "Project State".
-- **Verification:** When claiming "done": Load checklist.md → Verify ALL items → Mark `[x]` with evidence
-- **P0** = HARD BLOCKER (must complete)
-- **P1** = Must complete OR user-approved deferral
-- **P2** = Can defer without approval
-
-### Scratch vs Memory
-
-| Write to...     | When...                      | Examples                               |
-| --------------- | ---------------------------- | -------------------------------------- |
-| **scratch/**    | Temporary, disposable        | Debug logs, test scripts, prototypes   |
-| **memory/**     | Future sessions need context | Decisions, blockers, session summaries |
-| **spec folder** | Permanent documentation      | spec.md, plan.md, final implementation |
-
-**MANDATORY:** All temp files in `scratch/`, NEVER in project root or spec folder root. Clean up when done.
+**For details on:** folder structure, `scratch/` vs `memory/` usage, sub-folder versioning, checklist verification (P0/P1/P2), and completion workflow — see system-spec-kit SKILL.md §3.
 
 ---
 
-## 5. 🧑‍🏫 CONFIDENCE & CLARIFICATION FRAMEWORK
+## 4. 🧑‍🏫 CONFIDENCE & CLARIFICATION FRAMEWORK
 
-**Core Principle:** If not sure or confidence < 80%, pause and ask for clarification. Present a multiple-choice path forward.
+**Core Principle:** If confidence < 80%, pause and ask for clarification with multiple-choice options.
 
-### Thresholds & Actions
-- **80–100% (HIGH):** Proceed with at least one citable source or strong evidence
-- **40–79% (MEDIUM):** Proceed with caution - provide caveats and counter-evidence
-- **0–39% (LOW):** Ask for clarification with multiple-choice question or mark "UNKNOWN"
-- **Safety override:** If there's a blocker or conflicting instruction, ask regardless of score
+| Confidence   | Action                                       |
+| ------------ | -------------------------------------------- |
+| **≥80%**     | Proceed with citable source                  |
+| **40-79%**   | Proceed with caveats                         |
+| **<40%**     | Ask for clarification or mark "UNKNOWN"      |
+| **Override** | Blockers/conflicts → ask regardless of score |
 
-### Clarification Question Format
-"I need clarity (confidence: [NN%]). Which approach:
-- A) [option with brief rationale]
-- B) [option with brief rationale]
-- C) [option with brief rationale]"
+**Logic-Sync Protocol:** On contradiction (Spec vs Code, conflicting requirements) → HALT → Report "LOGIC-SYNC REQUIRED: [Fact A] contradicts [Fact B]" → Ask "Which truth prevails?"
 
-### Logic-Sync Protocol (Contradiction Handling)
-Trigger: Internal contradiction detected (e.g., Spec vs Code, conflicting requirements).
-Action:
-1. **HALT** immediately.
-2. **Report**: "LOGIC-SYNC REQUIRED: [Fact A] contradicts [Fact B]."
-3. **Ask**: "Which truth prevails?"
-
-### Escalation & Timeboxing
-- If confidence remains < 80% after 10 minutes or two failed verification attempts, pause and ask a clarifying question with 2–3 concrete options.
-- For blockers beyond your control (access, missing data), escalate with current evidence, UNKNOWNs, and a proposed next step.
+**Escalation:** Confidence stays <80% after two failed attempts → ask with 2-3 options. Blockers beyond control → escalate with evidence and proposed next step.
 
 ---
 
-## 6. 🧠 REQUEST ANALYSIS & SOLUTION FRAMEWORK
+## 5. 🧠 REQUEST ANALYSIS & SOLUTION FRAMEWORK
 
-### Solution Flow
-```
-Request → Parse (what's ACTUALLY asked?) → Read files first
-    ↓
-Analyze → SYSTEMS (what does this touch?) → BIAS (right problem?) → SCOPE (size match?)
-    ↓
-Design → Simplest solution? → Existing patterns? → Evidence-based?
-    ↓
-Validate → Confidence ≥80%? → Sources cited? → Approval received?
-    ↓
-Execute → Implement with minimal complexity
-```
+**Flow:** Parse request → Read files first → Analyze → Design simplest solution → Validate → Execute
 
-### Core Principles
+| Principle         | Rule                                               | Anti-Pattern                            |
+| ----------------- | -------------------------------------------------- | --------------------------------------- |
+| **Simplicity**    | Reuse patterns; earn every abstraction             | Utilities for <3 uses, single-impl intf |
+| **Evidence**      | Cite `[SOURCE: file:lines]` or `[CITATION: NONE]`  | Claims without verification             |
+| **Scope Match**   | Solution size = problem size                       | Refactoring during bug fix              |
+| **Right Problem** | Root cause, not symptom; measure before optimizing | Premature optimization, wrong framing   |
 
-| Principle         | Rule                                                             | Anti-Pattern                                               |
-| ----------------- | ---------------------------------------------------------------- | ---------------------------------------------------------- |
-| **Simplicity**    | Use existing patterns; every abstraction must earn its existence | Creating utilities for <3 uses, interfaces for single impl |
-| **Evidence**      | Cite sources (`file.md:lines`) or state "UNKNOWN"                | Claims without verification                                |
-| **Scope Match**   | Solution size = problem size (1-line bug → 1-line fix)           | Refactoring during bug fix, framework for 3-file feature   |
-| **Right Problem** | Verify root cause, not symptom; measure before optimizing        | Premature optimization, wrong framing                      |
+**CLARITY Triggers** (justify before proceeding):
+- Utility for <3 uses | Config for single value | Abstraction without clear boundary
+- Pattern where simple code suffices | Interface for single impl
+- On bias → don't argue, redirect to root cause
 
-**Citation format:** `[SOURCE: file.md:42-58]` or `[CITATION: NONE]`
+**Pre-Change Checklist:**
+- [ ] Read first? | Simplest solution? | Scope discipline?
+- [ ] Confidence ≥80%? | Sources cited? | Spec folder? | Approval?
 
-**CLARITY Triggers** (require justification before proceeding):
-- Creating utility function for <3 use cases
-- Adding configuration for single-use value
-- Introducing abstraction layer without clear boundary
-- Using design pattern where simple code suffices
-- Adding interface for single implementation
+**Five Checks (>100 LOC):** Necessary now? | Alternatives (≥2)? | Simplest sufficient? | On critical path? | No tech debt?
 
-**BIAS Reframe Technique:** Don't argue, redirect:
-> *"Before we add retry logic, let me check if the error handling upstream might be the actual issue."*
-
-### Pre-Change Checklist
-```
-□ Read files first? (understand before modify)
-□ Simplest solution? (no unneeded abstractions)
-□ Scope discipline? (ONLY stated problem, no gold-plating)
-□ Confidence ≥80%? (if not: ask with options)
-□ Sources cited? (or "UNKNOWN")
-□ Spec folder exists?
-□ User approval received?
-```
-
-### Five Checks (>100 LOC or architectural)
-
-| Check             | Question                   | Pass When                             |
-| ----------------- | -------------------------- | ------------------------------------- |
-| **Necessary?**    | Solving actual need NOW?   | Clear requirement, not speculative    |
-| **Alternatives?** | Explored other approaches? | ≥2 options considered with trade-offs |
-| **Sufficient?**   | Simplest approach?         | No simpler solution achieves goal     |
-| **Fits Goal?**    | On critical path?          | Directly advances stated objective    |
-| **Long-term?**    | Creates tech debt?         | No lock-in, maintainable              |
-
-**STOP CONDITIONS:** □ unchecked | no spec folder | no approval → STOP and address
+**STOP CONDITIONS:** Any check unchecked | no spec folder | no approval → STOP and address
 
 ---
 
-## 7. 🤖 AGENT ROUTING
+## 6. 🤖 AGENT ROUTING
 
 When using the orchestrate agent or Task tool for complex multi-step workflows, route to specialized agents:
 
@@ -460,21 +234,19 @@ Use the agent directory that matches the active runtime/provider profile:
 
 ### Agent Definitions
 
-| Agent          | Use When                                                                                                                                                                                                                                                                                                                     |
-| -------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `@general`     | Implementation, complex tasks                                                                                                                                                                                                                                                                                                |
-| `@context`     | ALL codebase exploration, file search, pattern discovery, context loading. Internally dispatches sub-agents for fast search and deep investigation.                                                                                                                                                                          |
-| `@orchestrate` | Multi-agent coordination, complex workflows                                                                                                                                                                                                                                                                                  |
-| `@research`    | Evidence gathering, planning, Gate 3 Option B. ✅ Exception: may write `research.md` inside spec folders                                                                                                                                                                                                                      |
-| `@write`       | Creating READMEs, Skills, Guides                                                                                                                                                                                                                                                                                             |
-| `@review`      | Code review, PRs, quality gates (READ-ONLY)                                                                                                                                                                                                                                                                                  |
-| `@speckit`     | Spec folder creation Level 1-3+ ⛔ **EXCLUSIVE: Only agent permitted to create/write ANY documentation (*.md) inside spec folders. Exceptions: `memory/` (uses generate-context.js), `scratch/` (temporary, any agent), `handover.md` (@handover only), `research.md` (@research only), `debug-delegation.md` (@debug only)** |
-| `@debug`       | Fresh perspective debugging, root cause analysis. ✅ Exception: may write `debug-delegation.md` inside spec folders                                                                                                                                                                                                           |
-| `@handover`    | Session continuation, context preservation. ✅ Exception: may write `handover.md` inside spec folders                                                                                                                                                                                                                         |
+- **`@general`** — Implementation, complex tasks
+- **`@context`** — ALL codebase exploration, file search, pattern discovery, context loading. Dispatches sub-agents for fast search and deep investigation
+- **`@orchestrate`** — Multi-agent coordination, complex workflows
+- **`@research`** — Evidence gathering, planning, Gate 3 Option B. May write `research.md` inside spec folders
+- **`@write`** — Creating READMEs, Skills, Guides
+- **`@review`** — Code review, PRs, quality gates (READ-ONLY)
+- **`@speckit`** — Spec folder creation Level 1-3+. **EXCLUSIVE:** Only agent permitted to write `*.md` inside spec folders. Exceptions: `memory/` (generate-context.js), `scratch/` (any agent), `handover.md` (@handover), `research.md` (@research), `debug-delegation.md` (@debug)
+- **`@debug`** — Fresh perspective debugging, root cause analysis. May write `debug-delegation.md` inside spec folders
+- **`@handover`** — Session continuation, context preservation. May write `handover.md` inside spec folders
 
 ---
 
-## 8. ⚙️  MCP CONFIGURATION
+## 7. ⚙️  MCP CONFIGURATION
 
 **Two systems:**
 
@@ -488,7 +260,7 @@ Use the agent directory that matches the active runtime/provider profile:
   
 ---
 
-## 9. 🧩 SKILLS SYSTEM
+## 8. 🧩 SKILLS SYSTEM
 
 Skills are specialized, on-demand capabilities that provide domain expertise. Unlike knowledge files (passive references), skills are explicitly invoked to handle complex, multi-step workflows.
 
