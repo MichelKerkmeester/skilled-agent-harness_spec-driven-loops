@@ -1,7 +1,7 @@
 ---
 name: ultra-think
 description: "Multi-strategy planning architect that dispatches diverse thinking strategies for optimal plans. Outputs plans only, never modifies files."
-mode: primary
+mode: all
 temperature: 0.1
 permission:
   read: allow
