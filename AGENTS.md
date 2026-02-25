@@ -241,6 +241,7 @@ Use the agent directory that matches the active runtime/provider profile:
 - **`@speckit`** — Spec folder creation Level 1-3+. **EXCLUSIVE:** Only agent permitted to write `*.md` inside spec folders. Exceptions: `memory/` (generate-context.js), `scratch/` (any agent), `handover.md` (@handover), `research.md` (@research), `debug-delegation.md` (@debug)
 - **`@debug`** — Fresh perspective debugging, root cause analysis. May write `debug-delegation.md` inside spec folders
 - **`@handover`** — Session continuation, context preservation. May write `handover.md` inside spec folders
+- **`@ultra-think`** — Multi-strategy planning architect. Dispatches diverse thinking strategies, scores via 5-dimension rubric, synthesizes optimal plan. Planning-only: no file modifications
 
 ---
 

@@ -401,11 +401,11 @@ This enables traversal from high-level specs down to implementation details (and
 ## 5. 🤖 AGENT NETWORK
 <!-- ANCHOR:agent-network -->
 
-10 specialized agents with role-based routing.
+11 specialized agents with role-based routing.
 
-Ten specialized agents prevent AI assistants from making assumptions, skipping documentation, creating technical debt and drifting from scope. Two are built into OpenCode. Eight are custom agents in `.opencode/agent/`.
+Eleven specialized agents prevent AI assistants from making assumptions, skipping documentation, creating technical debt and drifting from scope. Two are built into OpenCode. Nine are custom agents in `.opencode/agent/`.
 
-10 specialized agents across 4 runtime platforms (OpenCode, Claude Code, ChatGPT, Gemini CLI) with aligned role definitions.
+11 specialized agents across 4 runtime platforms (OpenCode, Claude Code, ChatGPT, Gemini CLI) with aligned role definitions.
 
 ### All Agents
 
@@ -421,6 +421,7 @@ Ten specialized agents prevent AI assistants from making assumptions, skipping d
 | `@review`      | Custom   | inherited     | Code review with pattern validation (READ-ONLY)                    |
 | `@write`       | Custom   | claude-sonnet | Documentation generation (READMEs, skills, guides)                 |
 | `@handover`    | Custom   | claude-haiku  | Session continuation, context preservation                         |
+| `@ultra-think` | Custom   | Primary       | Multi-strategy planning architect (planning-only, no file changes) |
 
 ### Enterprise Orchestration
 
@@ -450,7 +451,7 @@ OpenCode is the source of truth. Claude, ChatGPT and Gemini directories are runt
 
 ### How Agents Get Chosen
 
-`@research` for investigation. `@speckit` for spec documentation (exclusively). `@debug` when stuck 3+ attempts. `@review` for code quality. `@orchestrate` for multi-agent coordination.
+`@research` for investigation. `@speckit` for spec documentation (exclusively). `@debug` when stuck 3+ attempts. `@review` for code quality. `@orchestrate` for multi-agent coordination. `@ultra-think` for multi-strategy planning analysis on complex tasks.
 
 ### Fresh-Perspective Debugging
 
@@ -1003,21 +1004,22 @@ A: Minimal. SQLite databases are compact. A project with 100+ memories typically
 
 | Component                                                                    | Versions |
 | ---------------------------------------------------------------------------- | -------- |
-| [OpenCode Environment](.opencode/changelog/00--opencode-environment/)        | 90 files |
-| [System Spec Kit](.opencode/changelog/01--system-spec-kit/)                  | 45 files |
-| [AGENTS.md](.opencode/changelog/02--agents-md/)                              | 27 files |
-| [Agent Orchestration](.opencode/changelog/03--agent-orchestration/)          | 26 files |
-| [Commands](.opencode/changelog/04--commands/)                                | 29 files |
-| [Skill Advisor](.opencode/changelog/05--skill-advisor/)                      | 4 files  |
-| [Workflows: Code (OpenCode)](.opencode/changelog/06--sk-code--opencode/)     | 9 files  |
-| [Workflows: Code (Web Dev)](.opencode/changelog/07--sk-code--web/)           | 10 files |
-| [Workflows: Code (Full Stack)](.opencode/changelog/08--sk-code--full-stack/) | 4 files  |
-| [Workflows: Git](.opencode/changelog/10--sk-git/)                            | 7 files  |
-| [Workflows: Documentation](.opencode/changelog/11--sk-doc/)                  | 9 files  |
-| [Workflows: Doc Visual](.opencode/changelog/12--sk-doc-visual/)              | 1 file   |
-| [MCP: Code Mode](.opencode/changelog/13--mcp-code-mode/)                     | 7 files  |
-| [MCP: Chrome DevTools](.opencode/changelog/14--mcp-chrome-devtools/)         | 4 files  |
-| [MCP: Figma](.opencode/changelog/15--mcp-figma/)                             | 5 files  |
+| [OpenCode Environment](.opencode/changelog/00--opencode-environment/)        | 107 files |
+| [System Spec Kit](.opencode/changelog/01--system-spec-kit/)                  | 68 files  |
+| [AGENTS.md](.opencode/changelog/02--agents-md/)                              | 30 files  |
+| [Agent Orchestration](.opencode/changelog/03--agent-orchestration/)          | 34 files  |
+| [Commands](.opencode/changelog/04--commands/)                                | 34 files  |
+| [Skill Advisor](.opencode/changelog/05--skill-advisor/)                      | 4 files   |
+| [Workflows: Code (OpenCode)](.opencode/changelog/06--sk-code--opencode/)     | 11 files  |
+| [Workflows: Code (Web Dev)](.opencode/changelog/07--sk-code--web/)           | 11 files  |
+| [Workflows: Code (Full Stack)](.opencode/changelog/08--sk-code--full-stack/) | 5 files   |
+| [Workflows: Code Review](.opencode/changelog/09--sk-code--review/)           | 2 files   |
+| [Workflows: Git](.opencode/changelog/10--sk-git/)                            | 8 files   |
+| [Workflows: Documentation](.opencode/changelog/11--sk-doc/)                  | 12 files  |
+| [Workflows: Doc Visual](.opencode/changelog/12--sk-doc-visual/)              | 4 files   |
+| [MCP: Code Mode](.opencode/changelog/13--mcp-code-mode/)                     | 8 files   |
+| [MCP: Chrome DevTools](.opencode/changelog/14--mcp-chrome-devtools/)         | 5 files   |
+| [MCP: Figma](.opencode/changelog/15--mcp-figma/)                             | 6 files   |
 
 ### External Resources
 
