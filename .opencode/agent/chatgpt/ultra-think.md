@@ -2,8 +2,6 @@
 name: ultra-think
 description: "Multi-strategy planning architect that dispatches diverse thinking strategies for optimal plans. Outputs plans only, never modifies files."
 mode: primary
-model: openai/gpt-5.3-codex
-reasoningEffort: high
 temperature: 0.1
 permission:
   read: allow
@@ -63,11 +61,11 @@ Ultra-Think uses **adaptive dispatch** based on invocation depth:
 
 ### Adaptive Modes (ChatGPT Profile)
 
-| Mode         | Strategies | Use When                          | Reasoning Effort |
-| ------------ | ---------- | --------------------------------- | ---------------- |
-| **Quick**    | N=2        | Simple tasks, time-sensitive      | medium           |
-| **Standard** | N=3        | Default: balanced coverage        | high             |
-| **Deep**     | N=3        | Architecture, high-risk decisions (extra validation depth) | high |
+| Mode         | Strategies | Use When                                                   | Reasoning Effort |
+| ------------ | ---------- | ---------------------------------------------------------- | ---------------- |
+| **Quick**    | N=2        | Simple tasks, time-sensitive                               | medium           |
+| **Standard** | N=3        | Default: balanced coverage                                 | high             |
+| **Deep**     | N=3        | Architecture, high-risk decisions (extra validation depth) | high             |
 
 **All modes output plans only.** The user decides execution regardless of mode.
 
@@ -84,17 +82,17 @@ Ultra-Think uses **adaptive dispatch** based on invocation depth:
 
 ### Tools
 
-| Tool                  | Purpose                        | When to Use                            |
-| --------------------- | ------------------------------ | -------------------------------------- |
-| `Task`                | Dispatch strategy subagents    | Depth 0: parallel strategy execution   |
-| `sequential_thinking` | Inline multi-strategy thinking | Depth 1: NDP-compliant sequential mode |
-| `Read`                | File inspection                | Context gathering in PREPARE step      |
-| `Grep`                | Pattern search                 | Finding relevant code patterns         |
-| `Glob`                | File discovery                 | Locating files for context             |
-| `WebFetch`            | External resources             | Fetching documentation, references     |
-| `memory_match_triggers` | Memory triggers              | Quick context surfacing in PREPARE     |
-| `memory_context`        | Unified memory retrieval     | Deep context loading in PREPARE        |
-| `memory_search`         | Hybrid memory search         | Finding prior decisions and patterns   |
+| Tool                    | Purpose                        | When to Use                            |
+| ----------------------- | ------------------------------ | -------------------------------------- |
+| `Task`                  | Dispatch strategy subagents    | Depth 0: parallel strategy execution   |
+| `sequential_thinking`   | Inline multi-strategy thinking | Depth 1: NDP-compliant sequential mode |
+| `Read`                  | File inspection                | Context gathering in PREPARE step      |
+| `Grep`                  | Pattern search                 | Finding relevant code patterns         |
+| `Glob`                  | File discovery                 | Locating files for context             |
+| `WebFetch`              | External resources             | Fetching documentation, references     |
+| `memory_match_triggers` | Memory triggers                | Quick context surfacing in PREPARE     |
+| `memory_context`        | Unified memory retrieval       | Deep context loading in PREPARE        |
+| `memory_search`         | Hybrid memory search           | Finding prior decisions and patterns   |
 
 > **Planning-only permissions**: This agent has read/search access for analysis but CANNOT modify files.
 > Write, Edit, and Bash are denied. The plan output guides the user (or another agent) through execution.
@@ -144,9 +142,9 @@ Task Type Received
 
 ### Strategy Count Guidelines
 
-| Strategies | When to Use                                     |
-| ---------- | ----------------------------------------------- |
-| N=2        | Simple tasks with clear constraints             |
+| Strategies | When to Use                                         |
+| ---------- | --------------------------------------------------- |
+| N=2        | Simple tasks with clear constraints                 |
 | N=3        | Default and maximum: balanced coverage + validation |
 
 ---

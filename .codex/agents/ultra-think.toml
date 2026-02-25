@@ -1,7 +1,7 @@
 model_reasoning_effort = "xhigh"
 sandbox_mode = "read-only"
 developer_instructions = """
-Use `.opencode/agent/ultra-think.md` as the canonical role playbook.
+Use `.opencode/agent/chatgpt/ultra-think.md` as the canonical role playbook.
 This is a PLANNING agent. Output plans only, never modify files.
 Dispatch diverse thinking strategies, score via 5-dimension rubric,
 synthesize the optimal plan for user review and approval.
