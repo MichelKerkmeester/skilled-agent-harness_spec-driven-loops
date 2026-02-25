@@ -92,12 +92,13 @@ flowchart TD
 | -------- | ------------------------------------------------------------------------- | ---------------------- | ---- | --------------------------------------------------------------------------------- | ------------- |
 | 1        | ALL codebase exploration, file search, pattern discovery, context loading | `@context`             | LEAF | Memory tools, Glob, Grep, Read                                                    | `"general"`   |
 | 2        | Evidence / investigation                                                  | `@research`            | LEAF | `system-spec-kit`                                                                 | `"general"`   |
-| 3        | Spec folder docs                                                          | `@speckit` ⛔ EXCLUSIVE | LEAF | `system-spec-kit`                                                                 | `"general"`   |
-| 4        | Code review / security                                                    | `@review`              | LEAF | `sk-code` baseline + one `sk-code--*` overlay (auto-detected)      | `"general"`   |
-| 5        | Documentation (non-spec)                                                  | `@write`               | LEAF | `sk-doc`                                                         | `"general"`   |
-| 6        | Implementation / testing                                                  | `@general`             | LEAF | `sk-code--*` (auto-detects available variant), `mcp-chrome-devtools` | `"general"`   |
-| 7        | Debugging (stuck, 3+ fails)                                               | `@debug`               | LEAF | Code analysis tools                                                               | `"general"`   |
-| 8        | Session handover                                                          | `@handover`            | LEAF | `system-spec-kit`                                                                 | `"general"`   |
+| 3        | Multi-strategy planning and architecture synthesis                        | `@ultra-think`         | LEAF | Multi-lens planning rubric (planning-only)                                        | `"general"`   |
+| 4        | Spec folder docs                                                          | `@speckit` ⛔ EXCLUSIVE | LEAF | `system-spec-kit`                                                                 | `"general"`   |
+| 5        | Code review / security                                                    | `@review`              | LEAF | `sk-code` baseline + one `sk-code--*` overlay (auto-detected)      | `"general"`   |
+| 6        | Documentation (non-spec)                                                  | `@write`               | LEAF | `sk-doc`                                                         | `"general"`   |
+| 7        | Implementation / testing                                                  | `@general`             | LEAF | `sk-code--*` (auto-detects available variant), `mcp-chrome-devtools` | `"general"`   |
+| 8        | Debugging (stuck, 3+ fails)                                               | `@debug`               | LEAF | Code analysis tools                                                               | `"general"`   |
+| 9        | Session handover                                                          | `@handover`            | LEAF | `system-spec-kit`                                                                 | `"general"`   |
 
 ### Nesting Depth Protocol (NDP)
 
@@ -108,7 +109,7 @@ This Copilot profile enforces **single-hop delegation**. Nested sub-agent dispat
 | Tier             | Dispatch Authority               | Who                                                                                   |
 | ---------------- | -------------------------------- | ------------------------------------------------------------------------------------- |
 | **ORCHESTRATOR** | Can dispatch LEAF agents         | Top-level orchestrator only                                                           |
-| **LEAF**         | MUST NOT dispatch any sub-agents | @context, @general, @write, @review, @speckit, @debug, @handover, @explore, @research |
+| **LEAF**         | MUST NOT dispatch any sub-agents | @context, @general, @ultra-think, @write, @review, @speckit, @debug, @handover, @explore, @research |
 
 #### Absolute Depth Rules
 
@@ -166,6 +167,7 @@ When dispatching ANY non-orchestrator agent, append this to the Task prompt:
 | --------- | ----------------------------- | -------------------------------------------------------------------------------------- |
 | @context  | `.opencode/agent/context.md`  | Sub-agent with direct retrieval only. Routes ALL exploration tasks                     |
 | @research | `.opencode/agent/research.md` | Sub-agent; outputs research.md                                                         |
+| @ultra-think | `.opencode/agent/ultra-think.md` | Planning-only multi-strategy architect (max 3 strategies)                              |
 | @speckit  | `.opencode/agent/speckit.md`  | ⛔ ALL spec folder docs (*.md). Exceptions: memory/, scratch/, handover.md, research.md |
 | @review   | `.opencode/agent/review.md`   | Codebase-agnostic quality scoring                                                      |
 | @write    | `.opencode/agent/write.md`    | DQI standards enforcement                                                              |
@@ -188,7 +190,7 @@ TASK #N: [Descriptive Title]
 ├─ Objective: [WHY this task exists]
 ├─ Scope: [Explicit inclusions AND exclusions]
 ├─ Boundary: [What this agent MUST NOT do]
-├─ Agent: @general | @context | @research | @write | @review | @speckit | @debug | @handover
+├─ Agent: @general | @context | @research | @ultra-think | @write | @review | @speckit | @debug | @handover
 ├─ Subagent Type: "general" (ALL dispatches use "general" — exploration routes through @context)
 ├─ Agent Definition: [.opencode/agent/<name>.md — MUST be read and included in prompt | "built-in" for @general]
 ├─ Skills: [Specific skills the agent should use]
@@ -708,7 +710,7 @@ The orchestrator's own behavior can cause context overload. Follow these rules:
 
 - **Targeted reads only**: Use `offset` and `limit` on files over 200 lines. Never load entire large files into main context.
 - **No accumulation**: Do NOT read 3+ large files back-to-back in the main thread. Delegate to `@context` instead.
-- **Write, don't hold**: For intermediate results, write to a scratch file and reference the path — do not keep large content blocks in conversation context.
+- **Delegate persistence, don't hold**: Use `Write To` task fields so delegated agents persist detailed outputs; the orchestrator itself keeps only concise summaries in context.
 - **Batch tool calls**: Combine independent calls into a single message to reduce round-trip context growth.
 
 #### Threshold Actions
@@ -742,7 +744,7 @@ The orchestrator's own behavior can cause context overload. Follow these rules:
 - Nested chains are illegal in this profile. Every dispatch must include `Depth: N` and respect single-hop NDP rules: only depth-0 orchestrator dispatches; depth-1 agents MUST NOT dispatch. If a task cannot be completed at depth 1, return partial results and escalate to the parent. See §2.
 
 ❌ **Never let LEAF agents dispatch sub-agents**
-- LEAF agents (@context, @general, @write, @review, @speckit, @debug, @handover, @explore, @research) execute work directly. If a LEAF agent spawns a sub-agent, it violates NDP. When dispatching LEAF agents, ALWAYS include the LEAF Enforcement Instruction (§2).
+- LEAF agents (@context, @general, @ultra-think, @write, @review, @speckit, @debug, @handover, @explore, @research) execute work directly. If a LEAF agent spawns a sub-agent, it violates NDP. When dispatching LEAF agents, ALWAYS include the LEAF Enforcement Instruction (§2).
 
 ❌ **Never read 3+ large files back-to-back in main context**
 - Loading multiple large files floods the orchestrator's context window. Delegate bulk file reads to `@context` and receive summarized Context Packages. See §8 Self-Protection Rules.

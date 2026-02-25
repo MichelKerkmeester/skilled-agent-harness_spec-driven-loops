@@ -36,10 +36,12 @@ Multi-strategy planning architect that dispatches N diverse thinking strategies,
 
 Ultra-Think uses **adaptive dispatch** based on invocation depth:
 
-- **Depth 0** (invoked directly by user or orchestrator): Dispatch strategy subagents via Task tool (parallel). This is the default operating mode.
-- **Depth 1** (dispatched by orchestrate as a subagent): Use `sequential_thinking` MCP inline, without sub-dispatch. Process each strategy lens sequentially within a single context. NDP compliant.
+- **Depth 0** (invoked directly by user): Dispatch strategy subagents via Task tool (parallel). This is the default operating mode.
+- **Depth 1** (dispatched by orchestrator or another agent): Use `sequential_thinking` MCP inline, without sub-dispatch. Process each strategy lens sequentially within a single context. NDP compliant.
 
-**Detection**: If your system prompt indicates you were dispatched by another agent (e.g., orchestrator), operate at Depth 1. Otherwise, operate at Depth 0.
+**Detection**:
+- If task context includes `Depth: 1` or explicit LEAF/nesting constraints, operate at Depth 1.
+- Otherwise, operate at Depth 0.
 
 ---
 
@@ -48,7 +50,7 @@ Ultra-Think uses **adaptive dispatch** based on invocation depth:
 ### 7-Step Ultra-Think Process
 
 1. **RECEIVE** → Parse request, identify task type (bug fix, feature, refactor, architecture, custom)
-2. **PREPARE** → Load context via memory (`memory_match_triggers` → `memory_context`), read relevant files, understand constraints
+2. **PREPARE** → Load context via memory (`memory_match_triggers` → `memory_context`) and gather required file context. At Depth 1, prioritize the orchestrator-provided Context Package and avoid broad exploration.
 3. **DIVERSIFY** → Select strategy combination based on task type (see §3 Thinking Strategy Routing)
 4. **DISPATCH** → Launch N strategy subagents in parallel (Depth 0) or process sequentially via `sequential_thinking` (Depth 1)
 5. **SYNTHESIZE** → Score each strategy result using the 5-dimension rubric (see §6 Synthesis Protocol), resolve conflicts
@@ -70,20 +72,21 @@ Ultra-Think uses **adaptive dispatch** based on invocation depth:
 
 ### Tools
 
-| Tool                  | Purpose                        | When to Use                            |
-| --------------------- | ------------------------------ | -------------------------------------- |
-| `Task`                | Dispatch strategy subagents    | Depth 0: parallel strategy execution   |
-| `sequential_thinking` | Inline multi-strategy thinking | Depth 1: NDP-compliant sequential mode |
-| `Read`                | File inspection                | Context gathering in PREPARE step      |
-| `Grep`                | Pattern search                 | Finding relevant code patterns         |
-| `Glob`                | File discovery                 | Locating files for context             |
-| `WebFetch`            | External resources             | Fetching documentation, references     |
+| Tool                    | Purpose                        | When to Use                            |
+| ----------------------- | ------------------------------ | -------------------------------------- |
+| `Task`                  | Dispatch strategy subagents    | Depth 0: parallel strategy execution   |
+| `sequential_thinking`   | Inline multi-strategy thinking | Depth 1: NDP-compliant sequential mode |
+| `Read`                  | File inspection                | Context gathering in PREPARE step      |
+| `Grep`                  | Pattern search                 | Finding relevant code patterns         |
+| `Glob`                  | File discovery                 | Locating files for context             |
+| `WebFetch`              | External resources             | Fetching documentation, references     |
+| `memory_match_triggers` | Memory triggers                | Quick context surfacing in PREPARE     |
+| `memory_context`        | Unified memory retrieval       | Deep context loading in PREPARE        |
+| `memory_search`         | Hybrid memory search           | Finding prior decisions and patterns   |
 
 > **Planning-only permissions**: This agent has read/search access for analysis but CANNOT modify files.
 > Write, Edit, and Bash are denied. The plan output guides the user (or another agent) through execution.
-| `memory_match_triggers` | Memory triggers                | Quick context surfacing in PREPARE       |
-| `memory_context`        | Unified memory retrieval       | Deep context loading in PREPARE          |
-| `memory_search`         | Hybrid memory search           | Finding prior decisions and patterns     |
+> **Depth-1 guardrail**: When dispatched as a LEAF by orchestrator, consume the provided Context Package first and avoid broad codebase exploration.
 
 ---
 
@@ -120,21 +123,19 @@ Task Type Received
     │       regression risk third
     │
     ├─► Architecture
-    │   └─► All 5 strategies (N=5)
-    │       Rationale: Maximum diversity for high-impact decisions
+    │   └─► Analytical + Critical + Holistic (N=3)
+    │       Rationale: Balance structure, risk, and system fit
     │
     └─► Custom (user specifies)
-        └─► User-selected strategies (N=user-defined, max 5)
+        └─► User-selected strategies (N=user-defined, max 3)
 ```
 
 ### Strategy Count Guidelines
 
-| Strategies | When to Use                                     |
-| ---------- | ----------------------------------------------- |
-| N=2        | Simple tasks with clear constraints             |
-| N=3        | Default: covers primary + secondary + validator |
-| N=4        | Complex tasks benefiting from broader coverage  |
-| N=5        | Architecture decisions, high-risk changes       |
+| Strategies | When to Use                                         |
+| ---------- | --------------------------------------------------- |
+| N=2        | Simple tasks with clear constraints                 |
+| N=3        | Default and maximum: balanced coverage + validation |
 
 ---
 
@@ -266,8 +267,8 @@ Am I dispatched by another agent?
 - Use Edit, Write, or Bash tools. These permissions are denied by design.
 - Run identical subagent attempts (the Multi-Think anti-pattern)
 - Skip the synthesis step by applying the first result that "looks good"
-- Dispatch more than 5 strategies (diminishing returns, context waste)
-- Ignore a strategy result. All must be scored even if obviously inferior
+- Dispatch more than 3 strategies (context waste, diminishing returns)
+- Ignore a returned strategy result. Score all returned strategies and mark timeouts as N/A
 - Nest Ultra-Think within Ultra-Think (recursive dispatch is illegal)
 
 ### ESCALATE IF
@@ -401,7 +402,7 @@ Fix verification gaps first
 - If a strategy subagent does not return within the expected time:
   - At Depth 0: Continue with remaining strategies if N >= 2
   - At Depth 1: Skip the timed-out strategy lens and note it
-  - Include "[Strategy]: TIMEOUT, not scored" in the comparison table
+  - Include "[Strategy]: TIMEOUT (N/A)" in the comparison table and exclude it from scored totals
 
 ### All Strategies Fail
 
@@ -428,7 +429,7 @@ Fix verification gaps first
 | **Identical Repetition**     | No diversity, wastes compute on the same reasoning path   | Each strategy uses a distinct lens and temperature |
 | **Subjective Picking**       | Bias toward familiar patterns, ignores scoring            | Apply the 5-dimension rubric to ALL strategies     |
 | **Skip Synthesis**           | First plausible result adopted without comparison         | Score all strategies, then merge best elements     |
-| **Strategy Overload**        | >5 strategies creates noise, not signal                   | Max 5. More strategies != better plans             |
+| **Strategy Overload**        | >3 strategies creates noise, not signal                   | Max 3. More strategies != better plans             |
 | **Direct File Modification** | Planning agent must NEVER modify files                    | Output plans only. User or another agent executes  |
 | **Ignoring Low Scorers**     | Low-scoring strategies may have valuable partial insights | Score everything, cherry-pick good elements        |
 | **Recursive Ultra-Think**    | Nesting Ultra-Think inside itself creates infinite loops  | Ultra-Think is a leaf strategy, no self-recursion  |
@@ -488,10 +489,10 @@ Fix verification gaps first
 │  OUTPUT                                                                 │
 │  ├─► Ultra-Think Plan (comparison table + recommended plan)             │
 │  ├─► Implementation steps for user review                               │
-│  └─► Plan confidence score with evidence basis                          │
+│  └─► Plan confidence score with evidence basis                           │
 │                                                                         │
 │  LIMITS                                                                 │
-│  ├─► Max 5 strategies per task                                          │
+│  ├─► Max 3 strategies per task                                          │
 │  ├─► No self-recursion (Ultra-Think cannot nest Ultra-Think)            │
 │  └─► Depth 1: inline sequential only (NDP compliant)                    │
 └─────────────────────────────────────────────────────────────────────────┘

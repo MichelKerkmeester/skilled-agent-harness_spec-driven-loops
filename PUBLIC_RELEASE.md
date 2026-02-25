@@ -177,17 +177,17 @@ gh release create vX.X.X.X \
 
 | Field              | Value                                                                                  |
 | ------------------ | -------------------------------------------------------------------------------------- |
-| **Version**        | v2.4.0.1                                                                               |
+| **Version**        | v2.4.0.2                                                                               |
 | **Release Date**   | 2026-02-25                                                                             |
 | **GitHub**         | https://github.com/MichelKerkmeester/opencode-spec-kit-framework                       |
 | **Latest Release** | https://github.com/MichelKerkmeester/opencode-spec-kit-framework/releases/latest       |
-| **Release Notes**  | https://github.com/MichelKerkmeester/opencode-spec-kit-framework/releases/tag/v2.4.0.1 |
+| **Release Notes**  | https://github.com/MichelKerkmeester/opencode-spec-kit-framework/releases/tag/v2.4.0.2 |
 
 ### Release Notes
 
 Release notes for each version are stored as individual files in `.opencode/changelog/00--opencode-environment/vX.X.X.X.md`, formatted per the template in Section 7. For GitHub publishing, use an extracted body that excludes the local changelog wrapper (`# v...`, `> Part of ...`, `## [**x.x.x.x**] - date`).
 
-**Latest**: See `.opencode/changelog/00--opencode-environment/v2.4.0.1.md`
+**Latest**: See `.opencode/changelog/00--opencode-environment/v2.4.0.2.md`
 
 ---
 
@@ -338,7 +338,7 @@ Releases use a 4-part versioning scheme: `MAJOR.MINOR.SERIES.PATCH`
 | `2.2.1.x` | 2.2.1.0     | Context overload prevention for orchestrator agents                                     |
 | `2.2.2.x` | 2.2.2.0     | Gemini CLI agent fleet + TOML commands + MCP server config                              |
 | `2.3.0.x` | 2.3.0.0     | Gemini CLI full provider integration (4th runtime: agents, commands, skills, MCP)        |
-| `2.4.0.x` | 2.4.0.0-1   | SpecKit/Review/Agents consolidation + @ultra-think agent + sk-git commit logic           |
+| `2.4.0.x` | 2.4.0.0-2   | SpecKit/Review/Agents consolidation + @ultra-think agent + sk-git commit logic           |
 
 ---
 
